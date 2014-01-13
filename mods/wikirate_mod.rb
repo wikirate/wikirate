@@ -1,0 +1,1 @@
+../../mods/wikirate_mod.rb
