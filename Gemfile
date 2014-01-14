@@ -1,18 +1,12 @@
 source 'http://rubygems.org'
 
-gem 'wagn', '~>1.12.5', :path=>File.expand_path( '../../gem', __FILE__ )
+gem 'wagn', '~>1.12.5', :path=>File.expand_path( '/opt/wagn', __FILE__ )
+gem "mysql2", "~> 0.3"
 
+gem 'dalli'
+gem 'capistrano'
+gem 'capistrano-bundler'
 
-group :mysql do
-  gem "mysql2", "~> 0.3"
-end
-
-group :postgres do
-  gem 'pg', '~>0.12.2'
-  # if using 1.8.7 or ree and having no luck with the above, try:
-  # gem 'postgres', '~>0.7.9.2008.01.28'
-end
-#gem 'sqlite3-ruby', :require => 'sqlite3', :group=>'sqlite'
 
 # These should only be needed if you're developing new JS / CSS.  It's all pre-compiled for production
 group :assets do
@@ -29,12 +23,7 @@ group :assets do
   gem 'therubyrhino', :platform=>:ruby         # :ruby is MRI rubies, so if you use a mac ruby ...
 end
 
-group :test, :development do
+group :development do
   gem 'rspec-rails', "~> 2.6"                  # behavior-driven-development suite
   gem 'rails-dev-tweaks', '~> 0.6'             # dramatic speeds up asset loading, among other tweaks
-
-
-#  gem "jeweler", "~> 1.8.8"
-
-#  gem 'jasmine-rails'
 end
