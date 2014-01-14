@@ -5,7 +5,7 @@ gem "mysql2", "~> 0.3"
 
 gem 'dalli'
 gem 'capistrano'
-gem 'capistrano-bundler'
+#gem 'capistrano-bundler'
 
 
 # These should only be needed if you're developing new JS / CSS.  It's all pre-compiled for production

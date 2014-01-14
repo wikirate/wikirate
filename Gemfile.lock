@@ -54,9 +54,6 @@ GEM
       i18n
       rake (>= 10.0.0)
       sshkit (>= 0.0.23)
-    capistrano-bundler (1.1.1)
-      capistrano (~> 3.0)
-      sshkit (>= 1.2.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.3)
@@ -186,7 +183,6 @@ PLATFORMS
 
 DEPENDENCIES
   capistrano
-  capistrano-bundler
   coffee-rails (~> 3.1)
   dalli
   jquery-rails (~> 2.1.4)
