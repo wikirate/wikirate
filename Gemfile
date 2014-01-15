@@ -4,8 +4,6 @@ gem 'wagn', '~>1.12.5', :path=>File.expand_path( '/opt/wagn', __FILE__ )
 gem "mysql2", "~> 0.3"
 
 gem 'dalli'
-gem 'capistrano'
-#gem 'capistrano-bundler'
 
 
 # These should only be needed if you're developing new JS / CSS.  It's all pre-compiled for production
@@ -24,6 +22,10 @@ group :assets do
 end
 
 group :development do
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
+  
   gem 'rspec-rails', "~> 2.6"                  # behavior-driven-development suite
   gem 'rails-dev-tweaks', '~> 0.6'             # dramatic speeds up asset loading, among other tweaks
 end

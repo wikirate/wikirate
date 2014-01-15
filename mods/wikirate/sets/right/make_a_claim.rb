@@ -1,6 +1,6 @@
 view :core do |args|
   
-  needed_fields = %w{ Link Website Title Topics Companies Markets }.find_all do |field|
+  needed_fields = %w{ Link Website Title Topics Companies }.find_all do |field|
     !Card.exists? "#{card.cardname.left}+#{field}"
   end
     

@@ -1,7 +1,5 @@
-Capfile
 config
 files
-lib/capistrano
 log
 tmp
 

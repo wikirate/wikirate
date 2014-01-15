@@ -1,7 +1,8 @@
-
+=begin
 def options_restricted_by_source
   options_card.item_cards :limit=>0, :vars=>{ :source=>wikirate_claim_source }
 end
+=end
 
 def wikirate_claim_source
   #FIXME - can only handle one source!
