@@ -1,0 +1,4 @@
+namespace :bundler do
+  before :install, 'rvm:init'  # initialize rvm before bundler:install
+  before :install, 'wagn:pull' # get latest wagn; necessary when using explicit gem path
+end

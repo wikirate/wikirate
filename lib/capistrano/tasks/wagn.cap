@@ -1,0 +1,9 @@
+namespace :wagn do
+  task :pull do
+    on roles(:app) do
+      within fetch(:wagn_path) do
+        execute :git, :pull
+      end
+    end
+  end
+end
