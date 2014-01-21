@@ -1,3 +1,5 @@
+
+=begin
 view :core do |args|
   
   needed_fields = %w{ Link Website Title Topics Companies }.find_all do |field|
@@ -26,3 +28,4 @@ view :core do |args|
     
   end
 end
+=end
