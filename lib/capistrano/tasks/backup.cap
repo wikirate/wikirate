@@ -1,11 +1,34 @@
 namespace :backup do
-  task :unzip do    
+  task :pull do
+    invoke 'backup:download'
+    invoke 'refresh_local'
+  end
+  
+  task :download do
+    run_locally do
+      execute :rm, '-rf /tmp/wikirate'
+      execute :mkdir, '/tmp/wikirate'
+    end
+    on roles(:db) do
+      download! "#{ fetch :data_backups_dir }/db.gz",     "/tmp/wikirate"
+      download! "#{ fetch :data_backups_dir }/files.tgz", "/tmp/wikirate"
+    end
+  end
+  
+  task :refresh_local do
+    run_locally do
+      execute :pull_wikirate
+    end
+  end
+    
+  
+  task :unzip do
     on roles(:db) do
       backup_dir = fetch :data_backups_dir
-      if test( "[ -f #{ backup_dir }/db.gz ]")      
+      if test( "[ ! -f #{ backup_dir }/db ]")      
         within backup_dir do
           execute :mkdir, 'files; cd files; tar -xzf ../files.tgz'
-          execute :gunzip, 'db.gz'
+          execute :zcat, 'db.gz > db'
         end
       end
     end
