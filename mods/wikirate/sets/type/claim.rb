@@ -5,7 +5,9 @@ format :html do
   end
   
   view :new do |args|
-    _final_new args.reverse_merge( :structure=>:quick_claim )
+    _final_new args.merge( :structure=>:quick_claim, :hidden=>{
+      :success=>{ :redirect=>true, :id=>'_self', :view=>'edit', :layout=>'split_screen' }
+    })
   end
   
 end
@@ -25,9 +27,8 @@ event :process_quick_claim_source, :before=>:approve_subcards do
     existing_page = Card.search(:type_id=>Card::WebpageID, :limit=>1, :right_plus=>[
       Card[:wikirate_link].name, { :content=>@link_source[:content] }]
     ).first
-    Rails.logger.info "existing page = #{existing_page.inspect}"
     
-    source_card = existing_page or begin
+    source_card = existing_page || begin
       # create Page card
       @subcards[:source] = Card.new :type_id=>Card::WebpageID,  :cards=>{ @link_key => @link_source }
       @subcards[:source].set_autoname #do this now so we know where to link.  need better mechanism!
