@@ -1,36 +1,42 @@
 # changes label of name on claims (should be obviatable)
-view :name_editor do |args|
-  fieldset 'Claim', raw( name_field form ), :editor=>'name', :help=>args[:help]
+format :html do
+  view :name_editor do |args|
+    fieldset 'Claim', raw( name_field form ), :editor=>'name', :help=>args[:help]
+  end
+  
+  view :new do |args|
+    _final_new args.reverse_merge( :structure=>:quick_claim )
+  end
+  
 end
-
 
 event :reset_claim_counts, :after=>:store do
   Card.reset_claim_counts
 end
 
 event :interpret_quick_claim_link, :before=>:process_subcards do
-  if Wagn::Env.params[:quick_claim]
     @link_key = "+#{ Card[:wikirate_link].name }"
     @link_source = cards.delete @link_key
-  end
 end
 
 event :process_quick_claim_source, :before=>:approve_subcards do
   if @link_source
-    # create Page card
-    @subcards[:source] = Card.new(
-      :type_id=>Card::WebpageID, 
-      :cards=>{ @link_key => @link_source }
-    )
-    @subcards[:source].set_autoname #do this now so we know where to link.  need better mechanism!
+    
+    existing_page = Card.search(:type_id=>Card::WebpageID, :limit=>1, :right_plus=>[
+      Card[:wikirate_link].name, { :content=>@link_source[:content] }]
+    ).first
+    Rails.logger.info "existing page = #{existing_page.inspect}"
+    
+    source_card = existing_page or begin
+      # create Page card
+      @subcards[:source] = Card.new :type_id=>Card::WebpageID,  :cards=>{ @link_key => @link_source }
+      @subcards[:source].set_autoname #do this now so we know where to link.  need better mechanism!
+      @subcards[:source]
+    end
     
     # create +Source pointer to page on claim card
     plus_source = "+#{Card[:source].name}"
-    @subcards[plus_source] = Card.new(
-      :name=>plus_source,
-      :supercard=>self,
-      :content=>"[[#{@subcards[:source].name}]]"
-    )
+    @subcards[plus_source] = Card.new :name=>plus_source, :supercard=>self, :content=>"[[#{source_card.name}]]"
   end
 end
 

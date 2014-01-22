@@ -1,4 +1,11 @@
 namespace :backup do
+  task :create do
+    on roles(:db) do
+#      execute :sudo, "/opt/bin/backup_local wikirate"
+      execute :sudo, "/opt/bin/backup_remote wikirate"
+    end
+  end
+  
   task :pull do
     invoke 'backup:download'
     invoke 'refresh_local'
