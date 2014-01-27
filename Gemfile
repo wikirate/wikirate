@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'wagn', '~>1.12.5', :path=>File.expand_path( '/opt/wagn', __FILE__ )
+gem 'wagn', '~>1.12.5', :path=>'/opt/wagn'
 gem "mysql2", "~> 0.3"
 
 gem 'dalli'
