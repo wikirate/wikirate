@@ -6,7 +6,7 @@ format :html do
   
   view :new do |args|
     _final_new args.merge( :structure=>:quick_claim, :hidden=>{
-      :success=>{ :redirect=>true, :id=>'_self', :view=>'edit', :layout=>'split_screen' }
+      :success=>{ :redirect=>true, :id=>'_self' ) #, :view=>'edit' }
     })
   end
   

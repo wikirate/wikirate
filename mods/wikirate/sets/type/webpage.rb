@@ -61,14 +61,14 @@ end
 #end
 
 view :new do |args|
-  _final_new args.merge( :hidden=>{:success=>{ :redirect=>true, :id=>'_self', :view=>'edit', :layout=>'split_screen' } } )
+  _final_new args.merge( :hidden=>{:success=>{ :redirect=>true, :id=>'_self' } } ) #, :view=>'edit',} } )
 end
 
-view :edit do |args|
-  if Wagn::Env.params[:layout] == 'split_screen'
-    args.merge! :hidden=>{:success=>{:redirect=>true}}
-  end
-  _final_edit args
-end
+#view :edit do |args|
+#  if Wagn::Env.params[:layout] == 'split_screen'
+#    args.merge! :hidden=>{:success=>{:redirect=>true}}
+#  end
+#  _final_edit args
+#end
 
 
