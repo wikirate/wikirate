@@ -1,7 +1,7 @@
 PATH
   remote: /opt/wagn
   specs:
-    wagn (1.12.5)
+    wagn (1.12.9)
       airbrake (~> 3.1)
       coderay (~> 1.0)
       htmlentities (~> 4.3)
@@ -201,4 +201,4 @@ DEPENDENCIES
   therubyrhino
   tinymce-rails (~> 3.4)
   uglifier
-  wagn (~> 1.12.5)!
+  wagn!
