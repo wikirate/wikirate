@@ -15,19 +15,6 @@ PATH
       uuid (~> 2.3)
       xmlscan (~> 0.3)
 
-PATH
-  remote: /opt/wagn-dev
-  specs:
-    wagn-dev (0.0.1)
-      coffee-rails (~> 3.1)
-      jquery-rails (~> 2.3)
-      jquerymobile-rails (~> 0.2)
-      rails-dev-tweaks (~> 0.6)
-      rspec-rails (~> 2.6)
-      sass-rails (~> 3.1)
-      tinymce-rails (~> 3.4)
-      uglifier
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -93,7 +80,7 @@ GEM
     htmlentities (4.3.1)
     i18n (0.6.9)
     journey (1.0.4)
-    jquery-rails (2.3.0)
+    jquery-rails (2.1.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     jquerymobile-rails (0.2.3)
@@ -192,6 +179,15 @@ GEM
       json (>= 1.8.0)
     uuid (2.3.7)
       macaddr (~> 1.0)
+    wagn-dev (0.0.1)
+      coffee-rails (~> 3.1)
+      jquery-rails (~> 2.1.4)
+      jquerymobile-rails (~> 0.2)
+      rails-dev-tweaks (~> 0.6)
+      rspec-rails (~> 2.6)
+      sass-rails (~> 3.1)
+      tinymce-rails (~> 3.4)
+      uglifier
     xmlscan (0.3.0)
 
 PLATFORMS
@@ -204,4 +200,4 @@ DEPENDENCIES
   dalli
   mysql2 (~> 0.3)
   wagn!
-  wagn-dev!
+  wagn-dev
