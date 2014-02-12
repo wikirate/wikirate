@@ -3,6 +3,6 @@ view :missing do |args|
   if args[:denied_view] == :core
     core
   else
-    wrap( :missing_image, :no_slot=>true ) { core }
+    wrap :no_slot=>true do core end
   end
 end

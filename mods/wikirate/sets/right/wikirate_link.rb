@@ -23,3 +23,19 @@ event :validate_content, :before=>:approve, :on=>:save do
     errors.add :link, "source uri already in use.  see #{Card::Format.new( duplicates.first ).render_link}"
   end
 end
+
+
+view :iframe do |args|
+  subformat( Card.fetch( "#{card.cardname.left}+source frame" ) ).render_content
+#  %{<iframe src="#{_render_raw}"></iframe>}
+end
+
+view :edit_in_form do |args|
+  if !card.content.blank? and card.left and card.left.type_id == Card::WebpageID
+    view = args[:home_view] || :core
+    render view, args
+  else
+    _final_edit_in_form args
+  end
+end
+

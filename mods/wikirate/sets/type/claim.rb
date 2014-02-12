@@ -1,13 +1,20 @@
 # changes label of name on claims (should be obviatable)
 format :html do
-  view :name_editor do |args|
+  view :name_fieldset do |args|
     fieldset 'Claim', raw( name_field form ), :editor=>'name', :help=>args[:help]
   end
-  
+
   view :new do |args|
-    _final_new args.merge( :structure=>:quick_claim, :hidden=>{
-      :success=>{ :redirect=>true, :id=>'_self' } #, :view=>'edit' }
-    })
+    _final_new args.merge( 
+      :structure=>:quick_claim,
+      :core_edit=>true
+    )
+  end
+
+  view :edit do |args|
+    _final_edit args.merge(
+      :core_edit=>true
+    )
   end
   
 end
