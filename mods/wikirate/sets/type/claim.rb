@@ -5,10 +5,9 @@ format :html do
   end
 
   view :new do |args|
-    _final_new args.merge( 
-      :structure=>:quick_claim,
-      :core_edit=>true
-    )
+    args[:core_edit] = true
+    args[:structure] = :quick_claim unless params['_Source']
+    _final_new args
   end
 
   view :edit do |args|

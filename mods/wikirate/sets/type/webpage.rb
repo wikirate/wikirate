@@ -31,17 +31,3 @@ view :edit do |args|
   _final_edit args.merge( :core_edit=>true )
 end
 
-=begin
-view :source_frame do |args|
-  args[:st]
-  output([
-      link_to_page( "Source", card.name ),
-      subformat( card.fetch :trait=>:wikirate_link ).render_content
-      subformat(Card.fetch( "#{card.name}+source frame")).render_content
-    
-    ])
-    
-  }
-end
-
-=end

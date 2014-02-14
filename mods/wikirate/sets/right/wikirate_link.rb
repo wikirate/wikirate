@@ -26,6 +26,7 @@ end
 
 
 view :iframe do |args|
+  return 'iframe' if Rails.env.development?
   subformat( Card.fetch( "#{card.cardname.left}+source frame" ) ).render_content
 #  %{<iframe src="#{_render_raw}"></iframe>}
 end
