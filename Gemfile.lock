@@ -85,6 +85,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquerymobile-rails (0.2.3)
     json (1.8.1)
+    libv8 (3.16.14.3)
     macaddr (1.6.1)
       systemu (~> 2.5.0)
     mail (2.5.4)
@@ -131,6 +132,7 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     recaptcha (0.3.6)
+    ref (1.0.5)
     rmagick (2.13.2)
     rspec-core (2.14.7)
     rspec-expectations (2.14.5)
@@ -165,6 +167,9 @@ GEM
     systemu (2.5.2)
     term-ansicolor (1.2.2)
       tins (~> 0.8)
+    therubyracer (0.12.1)
+      libv8 (~> 3.16.14.0)
+      ref
     thor (0.18.1)
     tilt (1.4.1)
     tins (0.13.2)
@@ -200,5 +205,6 @@ DEPENDENCIES
   coffee-script (~> 2.2.0)
   dalli
   mysql2 (~> 0.3)
+  therubyracer
   wagn!
   wagn-dev
