@@ -1,7 +1,7 @@
 PATH
   remote: /opt/wagn
   specs:
-    wagn (1.12.10)
+    wagn (1.12.11)
       airbrake (~> 3.1)
       coderay (~> 1.0)
       htmlentities (~> 4.3)
@@ -197,6 +197,7 @@ DEPENDENCIES
   capistrano
   capistrano-bundler
   capistrano-rvm
+  coffee-script (~> 2.2.0)
   dalli
   mysql2 (~> 0.3)
   wagn!

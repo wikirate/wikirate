@@ -49,7 +49,7 @@ event :process_quick_claim_source, :before=>:approve_subcards do
   end
 end
 
-event :sort_tags, :before=>:approve_subcards do
+event :sort_tags, :before=>:approve_subcards, :on=>:create do
   tag_key = "+tags" #FIXME - hardcoded card name
   if tags_card = @subcards[tag_key]
     tags_card.item_names.each do |tag|

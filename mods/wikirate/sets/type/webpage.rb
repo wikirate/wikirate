@@ -31,3 +31,8 @@ view :edit do |args|
   _final_edit args.merge( :core_edit=>true )
 end
 
+view :content do |args|
+  add_name_context
+  _final_content args
+end
+

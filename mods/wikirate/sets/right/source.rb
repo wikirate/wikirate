@@ -10,6 +10,3 @@ view :edit_in_form do |args|
     content
   end
 end
-
-
-

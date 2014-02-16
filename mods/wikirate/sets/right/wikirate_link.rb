@@ -20,13 +20,18 @@ event :validate_content, :before=>:approve, :on=>:save do
   duplicate_wql[:not] = { :id => id } if id
   duplicates = Card.search duplicate_wql
   if duplicates.any?
-    errors.add :link, "source uri already in use.  see #{Card::Format.new( duplicates.first ).render_link}"
+    if Wagn::Env.params[:quickframe]
+      supercard.name = duplicates.first.cardname.left
+      abort :success
+    else
+      errors.add :link, "source uri already in use.  see #{Card::Format.new( duplicates.first ).render_link}"
+    end
   end
 end
 
 
 view :iframe do |args|
-  return 'iframe' if Rails.env.development?
+#  return 'iframe' if Rails.env.development?
   subformat( Card.fetch( "#{card.cardname.left}+source frame" ) ).render_content
 #  %{<iframe src="#{_render_raw}"></iframe>}
 end
