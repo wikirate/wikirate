@@ -24,9 +24,27 @@ namespace :deploy do
     end
   end
 
-  task :import_json do
-    
-  end
 
-  after :finishing, 'deploy:cleanup'
+  task :import_json do
+    import_files = run_locally do
+      Dir.entries( 'import' ).reject { |file| file =~ /^\./ }
+    end
+    import_files.each do |filename|
+      on roles(:db) do
+        within release_path do
+          filename = "import/#{ filename }"
+          json     = %{ JSON.parse( File.read( "#{ filename }" ) ) }
+          command  = %( Card.merge_list #{ json }["card"]["value"], :output_file=>"/tmp/unmerged_wikirate.json")
+          command  = %( Account.as_bot { #{ command } })
+          
+          execute :bundle, :exec, :wagn, :runner, "-e production '#{ command }'"
+          execute :rm, "log/production.log"
+        end
+      end
+    end
+  end
+  
+#  after :published, :import_json
+  
+  after :finishing, :cleanup
 end

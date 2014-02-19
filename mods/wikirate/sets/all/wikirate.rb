@@ -15,31 +15,24 @@ CLAIM_SUBJECT_SQL = %{
 
 module ClassMethods
 
+  def claim_count_cache
+    Wagn::Cache[Card::Set::Right::WikirateClaimCount]
+  end
 
   def claim_counts subj
-    @@claim_counts ||= {}
-    @@claim_counts[ subj ] ||= begin
+    ccc = claim_count_cache
+    ccc.read subj  or begin
       subjname = subj.to_name
-      if subjname.simple?
-#        if all_topics.member? subj
-#          subj = topic_descendants subj
-#        end
-        claim_subjects.find_all do |id, subjects|
+      count = claim_subjects.find_all do |id, subjects|
+        if subjname.simple? 
           subjects_apply? subjects, subj
-        end
-      else
-#        left = subjname.left
-#        right = topic_descendants subjname.right
-#        right = subjname.right
-
-        claim_subjects.find_all do |id, subjects|
+        else
           subjects_apply? subjects, subjname.left and subjects_apply? subjects, subjname.right
         end
       end.size
+      ccc.write subj, count
     end
   end
-  
-  
   
   def subjects_apply? references, test_list
     !!Array.wrap(test_list).find do |subject|
@@ -49,21 +42,20 @@ module ClassMethods
   end
   
   def claim_subjects
-    @@claim_subjects ||= begin
+    ccc = claim_count_cache
+    ccc.read 'CLAIM-SUBJECTS' or begin
       hash = {}
       sql = 
       ActiveRecord::Base.connection.select_all( CLAIM_SUBJECT_SQL ).each do |row|
         hash[ row['id'] ] ||= []
         hash[ row['id'] ] << row['subject']
       end
-      hash
+      ccc.write 'CLAIM-SUBJECTS', hash
     end
   end
 
   def reset_claim_counts
-    #FIXME - 
-    @@claim_counts = nil
-    @@claim_subjects = nil
+    claim_count_cache.reset hard=true
   end
 end
 
