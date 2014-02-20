@@ -27,7 +27,7 @@ namespace :deploy do
 
   task :import_json do
     import_files = run_locally do
-      Dir.entries( 'import' ).reject { |file| file =~ /^\./ }
+      Dir.entries( 'import' ).find_all { |f| f =~ /\.json$/ }
     end
     import_files.each do |filename|
       on roles(:db) do
@@ -44,7 +44,7 @@ namespace :deploy do
     end
   end
   
-#  after :published, :import_json
+  after :published, :import_json
   
   after :finishing, :cleanup
 end
