@@ -1,34 +1,5 @@
 # -*- encoding : utf-8 -*-
 class Card
-  #module Set  
-  #  module TypePlusRight
-  #    module Claim
-  #      module WikirateTopic
-  #        extend Set
-  #        
-  #        #explicitly override js topic tree
-  #        view :editor, :ltype=>:claim, :right=>:wikirate_topic do |args|  
-  #          _final_pointer_type_editor args
-  #        end
-  #        
-  #        def options; options_restricted_by_source; end
-  #      end
-  #      
-  #      module WikirateCompany
-  #        extend Set
-  #        def options; options_restricted_by_source; end
-  #      end
-  #      
-  #      module WikirateMarket
-  #        extend Set
-  #        def options; options_restricted_by_source; end
-  #      end          
-  #    end
-  #  end
-  #
-  #end
-  
-#  raise "woot"
 
   class SetPattern::LtypeRtypePattern < SetPattern
     class << self

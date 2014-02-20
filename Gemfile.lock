@@ -1,10 +1,11 @@
 PATH
   remote: /opt/wagn
   specs:
-    wagn (1.12.11)
+    wagn (1.12.12)
       airbrake (~> 3.1)
       coderay (~> 1.0)
       htmlentities (~> 4.3)
+      macaddr (= 1.6.1)
       paperclip (~> 2.8)
       rails (= 3.2.16)
       recaptcha (~> 0.3)
@@ -102,7 +103,7 @@ GEM
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
       mime-types
-    polyglot (0.3.3)
+    polyglot (0.3.4)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
