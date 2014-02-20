@@ -1,0 +1,32 @@
+{
+  "url": "http://cutch:3000/export.json?pretty=true",
+  "timestamp": "2014-02-20 16:46:50 -0700",
+  "card": {
+    "name": "export",
+    "type": "Pointer",
+    "content": "[[Quick_Page\r]]\n[[Topic+right sidebar+*type plus right+*structure\r]]\n[[Company+right sidebar+*type plus right+*structure\r]]\n[[Source Link]]",
+    "value": [
+      {
+        "name": "Quick_Page",
+        "type": "HTML",
+        "content": "<div class=\"source-side\">\r\n  {{+Link|iframe}}\r\n</div>\r\n\r\n<div class=\"meta-side\">\r\n  {{+Title|labeled}}\r\n  {{+Companies|labeled|content;structure:company link}}\r\n  {{+Topics|labeled|content;structure:topic link}}\r\n  {{+Date|labeled}}\r\n  {{+Tags|labeled; item:link}}\r\n  {{+Description|titled}}\r\n</div>",
+        "codename": "quick_page"
+      },
+      {
+        "name": "Topic+right sidebar+*type plus right+*structure",
+        "type": "HTML",
+        "content": "{{_left+analyses|titled;title:Companies Analysed|content;structure:company analysis link}}\r\n\r\n{{_left+sources+ready+unclaimed|titled;title:Unclaimed Sources | content;structure:source link}}\r\n\r\n"
+      },
+      {
+        "name": "Company+right sidebar+*type plus right+*structure",
+        "type": "HTML",
+        "content": "{{_1+Analyses|titled;title:Topics Analysed|content;structure:topic analysis link}}\r\n\r\n{{_left+sources+ready+unclaimed|titled;title:Unclaimed Sources | content;structure:source link}}"
+      },
+      {
+        "name": "Source Link",
+        "type": "HTML",
+        "content": "[[/new/Claim?_Source={{_|linkname}}|{{+website|content|name}}{{+title|content}}]]"
+      }
+    ]
+  }
+}

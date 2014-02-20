@@ -24,7 +24,7 @@ event :autopopulate_website, :after=>:approve_subcards, :on=>:create do
 end
 
 view :new do |args|
-  _final_new args.merge( :core_edit=>true )
+  _final_new args.merge( :core_edit=>true, :structure=>:quick_page )
 end
 
 view :edit do |args|
