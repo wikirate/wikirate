@@ -1,7 +1,7 @@
 PATH
   remote: /opt/wagn
   specs:
-    wagn (1.12.12)
+    wagn (1.12.13)
       airbrake (~> 3.1)
       coderay (~> 1.0)
       htmlentities (~> 4.3)
