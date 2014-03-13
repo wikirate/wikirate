@@ -22,7 +22,7 @@ $(window).ready ->
         quickframe: true
         card: {
           type_code: 'webpage'
-          cards    : { '+Link' : { 'content' : field.val() } }
+          subcards : { '+Link' : { 'content' : field.val() } }
         }
       }
       success: (data) -> frameslot.slotSuccess data

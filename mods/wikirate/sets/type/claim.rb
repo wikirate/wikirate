@@ -24,8 +24,8 @@ end
 
 event :interpret_quick_claim_link, :before=>:process_subcards do
   @link_key = "+#{ Card[:wikirate_link].name }"
-  if cards
-    @link_source = cards.delete @link_key
+  if subcards.present?
+    @link_source = subcards.delete @link_key
   end
 end
 
@@ -38,7 +38,7 @@ event :process_quick_claim_source, :before=>:approve_subcards do
     
     source_card = existing_page || begin
       # create Page card
-      @subcards[:source] = Card.new :type_id=>Card::WebpageID,  :cards=>{ @link_key => @link_source }
+      @subcards[:source] = Card.new :type_id=>Card::WebpageID,  :subcards=>{ @link_key => @link_source }
       @subcards[:source].set_autoname #do this now so we know where to link.  need better mechanism!
       @subcards[:source]
     end

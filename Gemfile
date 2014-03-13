@@ -9,7 +9,7 @@ gem 'therubyracer'
 gem 'dalli'
 
 group :development do
-  gem 'wagn-dev'
+  gem 'wagn-dev', :path=>'/opt/wagn-dev'
   gem 'capistrano'
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
