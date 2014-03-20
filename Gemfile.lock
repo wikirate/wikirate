@@ -13,19 +13,6 @@ PATH
       smartname (= 0.2.3)
       uuid (~> 2.3)
 
-PATH
-  remote: /opt/wagn-dev
-  specs:
-    wagn-dev (0.0.5)
-      coffee-rails (~> 3.1)
-      jquery-rails (~> 3.1)
-      jquery-ui-rails (~> 4.2)
-      jquery_mobile_rails (~> 1.4)
-      rails-dev-tweaks (~> 0.6)
-      rspec-rails (~> 2.6)
-      tinymce-rails (~> 3.4)
-      uglifier (~> 2.4)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -106,7 +93,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
-    multi_json (1.9.0)
+    multi_json (1.9.2)
     mysql2 (0.3.15)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
@@ -160,7 +147,7 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
-    sass (3.3.2)
+    sass (3.3.3)
     smartname (0.2.3)
       activesupport
       htmlentities (~> 4.3.0)
@@ -181,7 +168,7 @@ GEM
       ref
     thor (0.18.1)
     tilt (1.4.1)
-    tins (1.0.0)
+    tins (1.0.1)
     tinymce-rails (3.5.9)
       railties (>= 3.1.1)
     treetop (1.4.15)
@@ -193,6 +180,15 @@ GEM
       json (>= 1.8.0)
     uuid (2.3.7)
       macaddr (~> 1.0)
+    wagn-dev (0.0.5)
+      coffee-rails (~> 3.1)
+      jquery-rails (~> 3.1)
+      jquery-ui-rails (~> 4.2)
+      jquery_mobile_rails (~> 1.4)
+      rails-dev-tweaks (~> 0.6)
+      rspec-rails (~> 2.6)
+      tinymce-rails (~> 3.4)
+      uglifier (~> 2.4)
 
 PLATFORMS
   ruby
@@ -206,4 +202,4 @@ DEPENDENCIES
   mysql2 (~> 0.3)
   therubyracer
   wagn!
-  wagn-dev!
+  wagn-dev
