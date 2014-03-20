@@ -20,7 +20,7 @@ event :validate_content, :before=>:approve, :on=>:save do
   duplicate_wql[:not] = { :id => id } if id
   duplicates = Card.search duplicate_wql
   if duplicates.any?
-    if Wagn::Env.params[:quickframe]
+    if Card::Env.params[:quickframe]
       supercard.name = duplicates.first.cardname.left
       abort :success
     else

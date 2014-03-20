@@ -4,7 +4,7 @@
 #end
 
 event :autopopulate_website, :after=>:approve_subcards, :on=>:create do
-  unless link_card = @subcards["+#{ Card[:wikirate_link].name }"]
+  unless link_card = subcards["+#{ Card[:wikirate_link].name }"]
     errors.add :link, 'valid uri required'
   end
   if errors[:link].empty?
@@ -14,7 +14,7 @@ event :autopopulate_website, :after=>:approve_subcards, :on=>:create do
     website_card = Card.new :name=>"+#{website}", :content => "[[#{host}]]", :supercard=>self
     website_card.approve
 
-    @subcards["+#{website}"] = website_card
+    subcards["+#{website}"] = website_card
 #    self.name = generate_name host
     
     if !Card.exists? host
