@@ -35,7 +35,7 @@ namespace :deploy do
           filename = "import/#{ filename }"
           json     = %{ JSON.parse( File.read( "#{ filename }" ) ) }
           command  = %( Card.merge_list #{ json }["card"]["value"], :output_file=>"/tmp/unmerged_wikirate.json")
-          command  = %( Account.as_bot { #{ command } })
+          command  = %( Card::Auth.as_bot { #{ command } })
           
           execute :bundle, :exec, :wagn, :runner, "-e production '#{ command }'"
           execute :rm, "log/production.log"
