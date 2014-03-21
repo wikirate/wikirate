@@ -79,5 +79,11 @@ format :html do
     
 end
 
-
-
+format :json do
+  
+  view :id_atom do |args|
+    h = _render_atom
+    h[:id] = card.id if card.id
+    h    
+  end
+end
