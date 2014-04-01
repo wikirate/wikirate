@@ -1,27 +1,27 @@
 namespace :deploy do
 
-  desc 'Restart application'
-  after :updated, :restart_passenger do
-    on roles(:app), in: :sequence, wait: 5 do
-      execute :mkdir, release_path.join('tmp')
-      execute :touch, release_path.join('tmp/restart.txt')
-    end
-  end
-
-  desc "Set www-data permissions on config.ru / log"
-  after :updated, :deploy_chown do
-    on roles(:app) do
-      execute :mkdir, release_path.join('log')
-      execute :sudo, '/opt/bin/deploy_chown', release_path
-    end
-  end
-
-  after :published, :clear_cache do
+  before :published, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
       within release_path do
+        execute :mkdir, 'tmp'
+        execute :mkdir, 'log'
         execute :rake, 'wagn:reset_cache'
       end
+    end
+  end
+  
+  desc "Set www-data permissions on config.ru / log"
+  before :published, :deploy_chown do
+    on roles(:app) do
+      execute :sudo, '/opt/bin/deploy_chown', release_path
+    end
+  end
+  
+  desc 'Restart application'
+  before :published, :restart_passenger do
+    on roles(:app), in: :sequence, wait: 5 do
+      execute :touch, release_path.join('tmp/restart.txt')
     end
   end
 
