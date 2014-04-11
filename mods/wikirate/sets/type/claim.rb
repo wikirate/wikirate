@@ -66,4 +66,9 @@ event :sort_tags, :before=>:approve_subcards, :on=>:create do
   end
 end
 
+view :missing do |args|
+  _render_link args
+end
+
+
 

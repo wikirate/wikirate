@@ -36,3 +36,6 @@ view :content do |args|
   _final_content args
 end
 
+view :missing do |args|
+  _render_link args
+end
