@@ -1,5 +1,8 @@
-
-
+format :html do
+  view :menu_link do |args|
+    '<a class="fa fa-link"></a>'
+  end
+end
 
 CLAIM_SUBJECT_SQL = %{
   select subjects.`key` as subject, claims.id from cards claims 
