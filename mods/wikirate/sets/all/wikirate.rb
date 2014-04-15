@@ -1,6 +1,6 @@
 format :html do
   view :menu_link do |args|
-    '<a class="fa fa-pencil"></a>'
+    '<a class="fa fa-pencil-square-o"></a>'
   end
 end
 
