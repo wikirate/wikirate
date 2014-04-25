@@ -25,7 +25,7 @@ format do
   end
   
   def compile_coffee script
-    CoffeeScript.compile script
+    ::CoffeeScript.compile script
   rescue Exception=>e
     e
   end
