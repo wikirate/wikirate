@@ -1,9 +1,10 @@
 view :core do |args|
   if topic = params[:topic]
-    topic_card = Card[topic]
-    topic_name = topic_card && topic_card.name
-    topic_image = Card["#{topic_name}+image"]
-    topic = topic_card.key
+    if topic_card = Card[topic]
+      topic_name = topic_card.name
+      topic_image = Card["#{topic_name}+image"]
+      topic = topic_card.key
+    end
   end
   
   topics = Card.search :type_id=>WikirateTopicID, :sort=>:name, :return=>:name
@@ -17,11 +18,13 @@ view :core do |args|
   company_selects, analyses = [],[]
   %w{ 1 2 }.each do |i|
     if key = params["company#{i}"]
-      ccard = Card[key]
-      cname = ccard && ccard.name
+      if ccard = Card[key]
+        cname = ccard.name
+        ckey = ccard.key
+      end
     end
     analyses << ( cname && topic_name ? Card.fetch("#{cname}+#{topic_name}") : nil )
-    company_selects << select_tag( "company#{i}", options_for_select(company_options, key), :include_blank=>true )
+    company_selects << select_tag( "company#{i}", options_for_select(company_options, ckey), :include_blank=>true )
   end
     
   analysis_args = { :view=>:titled, :show=>'title_link', :structure=>'analysis comparison'}
