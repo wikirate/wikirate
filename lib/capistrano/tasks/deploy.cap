@@ -42,7 +42,7 @@ namespace :deploy do
           command  = %( Card::Auth.as_bot { #{ command } })
           
           execute :bundle, :exec, :wagn, :runner, "-e production '#{ command }'"
-          execute :rm, "log/production.log"
+          execute :rm, "log/production.log" #avoids permissions issue but not ideal
         end
       end
     end

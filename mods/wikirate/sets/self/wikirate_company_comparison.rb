@@ -9,11 +9,12 @@ view :core do |args|
   
   topics = Card.search :type_id=>WikirateTopicID, :sort=>:name, :return=>:name
   topic_options = topics.map { |t| [t,t.to_name.key] }
-  topic_select = select_tag "topic", options_for_select(topic_options, topic), :include_blank=>true
+  topic_options.unshift [ '-- Select Topic --', '' ]
+  topic_select = select_tag "topic", options_for_select(topic_options, topic)
 
   
   all_companies = Card.search :type_id=>WikirateCompanyID, :sort=>:name, :return=>:name
-  company_options = all_companies.map { |c| [c,c.to_name.key] }
+#  all_company_options = all_companies.map { |c| [c,c.to_name.key] }
 
   company_selects, analyses = [],[]
   %w{ 1 2 }.each do |i|
@@ -24,7 +25,19 @@ view :core do |args|
       end
     end
     analyses << ( cname && topic_name ? Card.fetch("#{cname}+#{topic_name}") : nil )
-    company_selects << select_tag( "company#{i}", options_for_select(company_options, ckey), :include_blank=>true )
+    company_options = all_companies.map do |company_name|
+      label = company_name
+      if topic.present?
+        claim_count = Card.claim_counts "#{company_name.to_name.key}+#{topic}"
+        if claim_count > 0
+          label = "#{company_name} -- #{ pluralize claim_count, 'claim' }"
+        end
+      end
+      [ label, company_name.to_name.key ]
+    end
+    
+    empty_option = [[ "-- Select Company #{i} --", '' ]]
+    company_selects << select_tag( "company#{i}", options_for_select(empty_option + company_options, ckey))
   end
     
   analysis_args = { :view=>:titled, :show=>'title_link', :structure=>'analysis comparison'}
