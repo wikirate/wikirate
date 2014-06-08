@@ -1,6 +1,5 @@
-Gemfile.lock
-config
-files
-log
-tmp
+/config
+/files
+/log
+/tmp
 
