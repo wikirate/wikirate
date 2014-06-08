@@ -3,13 +3,14 @@ source 'http://rubygems.org'
 gem 'wagn', :path=>'/opt/wagn'
 gem "mysql2", "~> 0.3"
 
-gem 'coffee-script', '~> 2.2.0'
-gem 'therubyracer'
+if RUBY_PLATFORM =~ /darwin/
+  gem 'therubyracer'
+end
 
 gem 'dalli'
 
 group :development do
-  gem 'wagn-dev'#:wq, :path=>'/opt/wagn-dev'
+  gem 'wagn-dev', :path=>'/opt/wagn-dev'
   gem 'capistrano'
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
