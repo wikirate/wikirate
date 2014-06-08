@@ -3,11 +3,10 @@ source 'http://rubygems.org'
 gem 'wagn', :path=>'/opt/wagn'
 gem "mysql2", "~> 0.3"
 
-if RUBY_PLATFORM =~ /darwin/
+if RUBY_PLATFORM !~ /darwin/
   gem 'therubyracer'
+  gem 'dalli'
 end
-
-gem 'dalli'
 
 group :development do
   gem 'wagn-dev', :path=>'/opt/wagn-dev'
