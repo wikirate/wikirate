@@ -4,9 +4,10 @@ gem 'wagn', :path=>'/opt/wagn'
 gem "mysql2", "~> 0.3"
 
 #if RUBY_PLATFORM !~ /darwin/
+group :live do
   gem 'therubyracer'
   gem 'dalli'
-#end
+end
 
 group :development do
   gem 'wagn-dev', :path=>'/opt/wagn-dev'
