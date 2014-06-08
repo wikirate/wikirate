@@ -10,7 +10,6 @@ namespace :deploy do
         execute :mkdir, 'tmp'
         execute :mkdir, 'log'
         execute :rake, 'wagn:migrate'
-        execute :rm, '-r tmp/*'
       end
     end
   end
@@ -43,7 +42,6 @@ namespace :deploy do
           command  = %( Card::Auth.as_bot { #{ command } })
           
           execute :bundle, :exec, :wagn, :runner, "-e production '#{ command }'"
-          execute :rm, '-r tmp/*'
           execute :rm, "log/production.log" #avoids permissions issue but not ideal
         end
       end
