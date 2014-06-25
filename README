@@ -1,1 +1,6 @@
 Wagn application code used at Wikirate.org
+
+Step 1: create folders "files","config","public" and "public/assets" under the wikirate root directory.
+Step 2: rake wagn:create
+Step 3: import the database
+Step 4: bundle exec wagn s
