@@ -4,3 +4,31 @@ Step 1: create folders "files","config","public" and "public/assets" under the w
 Step 2: rake wagn:create
 Step 3: import the database
 Step 4: bundle exec wagn s
+
+
+
+To let the wikirate run the rspec,
+Step 1: add 
+
+gem 'rspec-rails', "~> 2.6"   # behavior-driven-development suite
+gem 'spork', '>=0.9'
+gem 'timecop'
+
+to Gemfile
+
+Step 2:
+
+create .rspec with content
+
+--color
+--profile
+--backtrace
+--default-path 'mods/'
+--require 'wagn/mods_spec_helper'
+
+
+Step 3:
+
+create a user call joe_user(maybe you need a joe_admin)
+
+

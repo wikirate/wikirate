@@ -32,6 +32,7 @@ end
 event :process_quick_claim_source, :before=>:approve_subcards do
   if @link_source
     
+    #byebug
     existing_page = Card.search(:type_id=>Card::WebpageID, :limit=>1, :right_plus=>[
       Card[:wikirate_link].name, { :content=>@link_source[:content] }]
     ).first
@@ -64,6 +65,11 @@ event :sort_tags, :before=>:approve_subcards, :on=>:create do
       end
     end
   end
+end
+
+event :validate_name, :before=>:approve, :on=>:save do 
+
+  abort :failure, "The claim is too long(length >100)" if name.length > 100
 end
 
 view :missing do |args|
