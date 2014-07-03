@@ -67,7 +67,7 @@ event :sort_tags, :before=>:approve_subcards, :on=>:create do
   end
 end
 
-event :validate_name, :before=>:approve, :on=>:save do 
+event :validate_claim, :before=>:approve, :on=>:save do 
   errors.add :claim, "The claim is too long(length >100)" if name.length > 100
 end
 
