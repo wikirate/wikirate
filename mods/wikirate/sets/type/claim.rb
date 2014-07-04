@@ -66,6 +66,10 @@ event :sort_tags, :before=>:approve_subcards, :on=>:create do
   end
 end
 
+event :validate_claim, :before=>:approve, :on=>:save do 
+  errors.add :claim, "is too long (100 character maximum)" if name.length > 100
+end
+
 view :missing do |args|
   _render_link args
 end

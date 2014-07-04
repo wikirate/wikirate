@@ -9,8 +9,19 @@ group :live do
   gem 'dalli'
 end
 
+group :test do
+  gem 'rspec-rails', "~> 2.6"   # behavior-driven-development suite
+  gem 'spork', '>=0.9'
+  gem 'timecop'
+  gem 'sprockets'
+end
+
 group :development do
   gem 'capistrano'
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
+end
+
+group :test, :development do
+  gem "byebug"
 end

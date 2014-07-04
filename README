@@ -4,3 +4,18 @@ Step 1: create folders "files","config","public" and "public/assets" under the w
 Step 2: rake wagn:create
 Step 3: import the database
 Step 4: bundle exec wagn s
+
+
+
+To let the wikirate run the rspec,
+
+Step 1:
+
+create a user call joe_user(maybe you need a joe_admin)
+
+
+Step 2:
+
+ wagn rspec
+
+
