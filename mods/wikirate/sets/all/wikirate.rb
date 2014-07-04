@@ -65,8 +65,9 @@ end
 format :html do
 
   view :cite do |args|
-    @parent.vars[:citation_number] ||= 0
-    num = @parent.vars[:citation_number] += 1
+#    @parent.vars[:citation_number] ||= 0
+#    num = @parent.vars[:citation_number] += 1
+num = 1
     %{<sup><a class="citation" href="##{card.cardname.url_key}">#{num}</a></sup>}
   end
 
