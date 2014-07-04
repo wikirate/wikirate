@@ -63,11 +63,11 @@ module ClassMethods
 end
 
 format :html do
-
+  attr_accessor :citation_number
+  
   view :cite do |args|
-#    @parent.vars[:citation_number] ||= 0
-#    num = @parent.vars[:citation_number] += 1
-num = 1
+    @parent.citation_number ||= 0
+    num = @parent.citation_number += 1
     %{<sup><a class="citation" href="##{card.cardname.url_key}">#{num}</a></sup>}
   end
 
