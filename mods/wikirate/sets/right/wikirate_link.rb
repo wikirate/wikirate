@@ -1,4 +1,5 @@
 require 'link_thumbnailer'
+
 view :core do |args|
   
   site_card = Card["#{card.name.to_name.trunk_name}+Website"]
@@ -23,7 +24,7 @@ event :validate_content, :before=>:approve, :on=>:save do
   if duplicates.any?
     if Card::Env.params[:quickframe]
       supercard.name = duplicates.first.cardname.left
-      abort :success
+      abort :triumph
     else
       errors.add :link, "source uri already in use.  see #{Card::Format.new( duplicates.first ).render_link}"
     end
@@ -81,7 +82,7 @@ view :edit_in_form do |args|
     view = args[:home_view] || :core
     render view, args
   else
-    _final_edit_in_form args
+    super args
   end
 end
 

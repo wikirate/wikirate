@@ -18,11 +18,11 @@ format :html do
   view :new do |args|
     args[:core_edit] = true
     args[:structure] = :quick_claim unless params['_Source']
-    _final_new args
+    super args
   end
 
   view :edit do |args|
-    _final_edit args.merge(
+    super args.merge(
       :core_edit=>true
     )
   end
@@ -43,7 +43,6 @@ end
 event :process_quick_claim_source, :before=>:approve_subcards do
   if @link_source
     
-    #byebug
     existing_page = Card.search(:type_id=>Card::WebpageID, :limit=>1, :right_plus=>[
       Card[:wikirate_link].name, { :content=>@link_source[:content] }]
     ).first
@@ -79,7 +78,7 @@ event :sort_tags, :before=>:approve_subcards, :on=>:create do
 end
 
 event :validate_claim, :before=>:approve, :on=>:save do 
-  errors.add :claim, "The claim is too long(length >100)" if name.length > 100
+  errors.add :claim, "is too long (100 character maximum)" if name.length > 100
 end
 
 view :missing do |args|

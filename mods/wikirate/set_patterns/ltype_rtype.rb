@@ -1,10 +1,8 @@
 @@options = {
-  :opt_keys      => [:ltype, :rtype],
   :junction_only => true,
   :assigns_type  => true, 
   :index         => 4
 }
-
 
 def label name
   %{All "#{name.to_name.left_name}" + "#{name.to_name.tag}" cards}
