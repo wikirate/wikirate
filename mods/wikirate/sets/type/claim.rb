@@ -5,11 +5,7 @@ format :html do
   end
   view :content_fieldsets do |args|
     raw %{
-      <div style='float:right>
-        <div style='float:right;color:red;' id='countId'>100
-        </div>
-         character(s) left
-      </div>
+      <div style='float:right;' ><span id='countId' style="color:red">100</span> character(s) left</div>
       <div class="card-editor editor">
         #{ edit_slot args }
       </div>
