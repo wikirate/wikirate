@@ -3,7 +3,18 @@ format :html do
   view :name_fieldset do |args|
     fieldset 'Claim', raw( name_field form ), :editor=>'name', :help=>args[:help]
   end
-
+  view :content_fieldsets do |args|
+    raw %{
+      <div style='float:right>
+        <div style='float:right;color:red;' id='countId'>100
+        </div>
+         character(s) left
+      </div>
+      <div class="card-editor editor">
+        #{ edit_slot args }
+      </div>
+    }
+  end
   view :new do |args|
     args[:core_edit] = true
     args[:structure] = :quick_claim unless params['_Source']
