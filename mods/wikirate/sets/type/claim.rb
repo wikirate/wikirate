@@ -43,7 +43,7 @@ event :process_quick_claim_source, :before=>:approve_subcards do
 
     existing_page = Card.search(:type_id=>Card::WebpageID, :limit=>1, :right_plus=>[
       Card[:wikirate_link].name, { :content=>@link_source[:content] }]
-      ).first
+    ).first
     
     source_card = existing_page || begin
       # create Page card
