@@ -12,6 +12,7 @@ gem 'rspec-rails', "~> 2.6"   # behavior-driven-development suite
 gem 'spork', '>=0.9'
 gem 'timecop'
 gem 'sprockets'
+gem 'link_thumbnailer'
 group :development do
   gem 'wagn-dev' #, :path=>'/opt/wagn-dev'
   gem 'capistrano'

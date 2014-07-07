@@ -45,6 +45,7 @@ GEM
     activesupport (3.2.16)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
+    addressable (2.3.6)
     airbrake (3.2.1)
       builder
       multi_json
@@ -82,6 +83,8 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.2.0)
+    fastimage (1.6.3)
+      addressable (~> 2.3, >= 2.3.5)
     hike (1.2.3)
     htmlentities (4.3.2)
     i18n (0.6.9)
@@ -95,17 +98,29 @@ GEM
       railties (>= 3.1.0)
     json (1.8.1)
     libv8 (3.16.14.3)
+    link_thumbnailer (2.2.0)
+      activesupport (>= 3.0)
+      fastimage (~> 1.6)
+      json (~> 1.7, >= 1.7.7)
+      net-http-persistent (~> 2.9)
+      nokogiri (~> 1.6)
+      rake (>= 0.9)
+      video_info (~> 2.3)
     macaddr (1.7.1)
       systemu (~> 2.6.2)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mini_portile (0.6.0)
     multi_json (1.10.1)
     mysql2 (0.3.16)
+    net-http-persistent (2.9.4)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
+    nokogiri (1.6.2.1)
+      mini_portile (= 0.6.0)
     paperclip (2.8.0)
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
@@ -190,6 +205,10 @@ GEM
       json (>= 1.8.0)
     uuid (2.3.7)
       macaddr (~> 1.0)
+    video_info (2.3.1)
+      addressable
+      htmlentities
+      multi_json
     wagn-dev (0.0.5)
       coffee-rails (~> 3.1)
       jquery-rails (~> 3.1)
@@ -209,6 +228,7 @@ DEPENDENCIES
   capistrano-bundler
   capistrano-rvm
   dalli
+  link_thumbnailer
   mysql2 (~> 0.3)
   rspec-rails (~> 2.6)
   spork (>= 0.9)
