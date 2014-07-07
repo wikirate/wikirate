@@ -24,16 +24,16 @@ event :autopopulate_website, :after=>:approve_subcards, :on=>:create do
 end
 
 view :new do |args|
-  _final_new args.merge( :core_edit=>true, :structure=>:quick_page )
+  super args.merge( :core_edit=>true, :structure=>:quick_page )
 end
 
 view :edit do |args|
-  _final_edit args.merge( :core_edit=>true )
+  super args.merge( :core_edit=>true )
 end
 
 view :content do |args|
   add_name_context
-  _final_content args
+  super args
 end
 
 view :missing do |args|

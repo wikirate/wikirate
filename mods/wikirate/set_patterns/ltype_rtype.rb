@@ -1,5 +1,4 @@
 @@options = {
-  :opt_keys      => [:ltype, :rtype],
   :junction_only => true,
   :assigns_type  => true, 
   :index         => 4

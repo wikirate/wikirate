@@ -7,11 +7,11 @@ format :html do
   view :new do |args|
     args[:core_edit] = true
     args[:structure] = :quick_claim unless params['_Source']
-    _final_new args
+    super args
   end
 
   view :edit do |args|
-    _final_edit args.merge(
+    super args.merge(
       :core_edit=>true
     )
   end

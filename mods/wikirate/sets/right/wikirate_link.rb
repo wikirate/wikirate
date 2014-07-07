@@ -81,7 +81,7 @@ view :edit_in_form do |args|
     view = args[:home_view] || :core
     render view, args
   else
-    _final_edit_in_form args
+    super args
   end
 end
 
