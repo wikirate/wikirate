@@ -208,7 +208,6 @@ DEPENDENCIES
   mysql2 (~> 0.3)
   rspec-rails (~> 2.6)
   spork (>= 0.9)
-  sprockets
   therubyracer
   timecop
   wagn!
