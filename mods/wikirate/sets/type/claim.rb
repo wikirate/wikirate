@@ -1,16 +1,16 @@
 # changes label of name on claims (should be obviatable)
+require 'byebug'
 format :html do
   view :name_fieldset do |args|
-    fieldset 'Claim', raw( name_field form ), :editor=>'name', :help=>args[:help]
-  end
-  view :content_fieldsets do |args|
-    raw %{
-      <div style='float:right;' ><span id='countId' style="color:red">100</span> character(s) left</div>
-      <div class="card-editor editor">
-        #{ edit_slot args }
+    %{
+      #{ fieldset 'Claim', raw( name_field form ), :editor=>'name', :help=>args[:help] }
+      <div class='claim-counting'>
+        <span class='claim-counting-number'>100</span> character(s) left
       </div>
-    }
+    } 
+
   end
+
   view :new do |args|
     args[:core_edit] = true
     args[:structure] = :quick_claim unless params['_Source']
@@ -20,9 +20,11 @@ format :html do
   view :edit do |args|
     super args.merge(
       :core_edit=>true
-    )
+      )
   end
-  
+
+
+
 end
 
 event :reset_claim_counts, :after=>:store do
@@ -38,10 +40,10 @@ end
 
 event :process_quick_claim_source, :before=>:approve_subcards do
   if @link_source
-    
+
     existing_page = Card.search(:type_id=>Card::WebpageID, :limit=>1, :right_plus=>[
       Card[:wikirate_link].name, { :content=>@link_source[:content] }]
-    ).first
+      ).first
     
     source_card = existing_page || begin
       # create Page card
