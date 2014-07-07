@@ -1,5 +1,4 @@
 # changes label of name on claims (should be obviatable)
-require 'byebug'
 format :html do
   view :name_fieldset do |args|
     %{
