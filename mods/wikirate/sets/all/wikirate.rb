@@ -2,6 +2,13 @@ format :html do
   view :menu_link do |args|
     '<a class="fa fa-pencil-square-o"></a>'
   end
+  view :name_fieldset do |args|
+    fieldset 'name', raw( name_field form ), :editor=>'name', :help=>true
+  end
+  view :new do |args|
+    args[:optional_help] = :hide
+    super args
+  end
 end
 
 CLAIM_SUBJECT_SQL = %{

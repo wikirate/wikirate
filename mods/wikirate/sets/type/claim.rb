@@ -13,8 +13,7 @@ format :html do
 
   view :new do |args|
     args[:core_edit] = true
-    args[:structure] = :quick_claim unless params['_Source']
-    args[:optional_help] = :hide
+    args[:structure] = :quick_claim unless params['_Source']    
     super args
   end
 
