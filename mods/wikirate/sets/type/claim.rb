@@ -14,6 +14,7 @@ format :html do
   view :new do |args|
     args[:core_edit] = true
     args[:structure] = :quick_claim unless params['_Source']
+    args[:optional_help] = :hide
     super args
   end
 
@@ -23,11 +24,7 @@ format :html do
       )
   end
 
-  view :help, :tags=>:unknown_ok do |args|
-    if args.length==0
-      super args
-    end
-  end
+ 
 end
 
 event :reset_claim_counts, :after=>:store do
