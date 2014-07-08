@@ -1,13 +1,14 @@
 # changes label of name on claims (should be obviatable)
+
 format :html do
   view :name_fieldset do |args|
     %{
-      #{ fieldset 'Claim', raw( name_field form ), :editor=>'name', :help=>args[:help] }
+      #{ fieldset 'Claim', raw( name_field form ), :editor=>'name', :help=>true }
       <div class='claim-counting'>
         <span class='claim-counting-number'>100</span> character(s) left
       </div>
     } 
-
+  
   end
 
   view :new do |args|
@@ -22,8 +23,11 @@ format :html do
       )
   end
 
-
-
+  view :help, :tags=>:unknown_ok do |args|
+    if args.length==0
+      super args
+    end
+  end
 end
 
 event :reset_claim_counts, :after=>:store do
