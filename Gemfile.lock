@@ -132,6 +132,9 @@ GEM
       activesupport (= 3.2.16)
       bundler (~> 1.0)
       railties (= 3.2.16)
+    rails-dev-tweaks (1.1.0)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
     railties (3.2.16)
       actionpack (= 3.2.16)
       activesupport (= 3.2.16)
@@ -206,8 +209,10 @@ DEPENDENCIES
   dalli
   link_thumbnailer
   mysql2 (~> 0.3)
+  rails-dev-tweaks
   rspec-rails (~> 2.6)
   spork (>= 0.9)
+  sprockets
   therubyracer
   timecop
   wagn!

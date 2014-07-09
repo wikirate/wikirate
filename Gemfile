@@ -17,6 +17,8 @@ group :test do
 end
 
 group :development do
+  gem 'rails-dev-tweaks'
+  gem 'sprockets' # just so above works
   gem 'capistrano'
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'

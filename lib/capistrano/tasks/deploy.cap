@@ -48,7 +48,7 @@ namespace :deploy do
     end
   end
   
-  after :published, :import_json  
+#  after :published, :import_json  
 # FIXME - still perms issues on production
 
   after :finishing, :cleanup

@@ -66,7 +66,7 @@ event :reset_claim_counts, :after=>:store do
 end
 
 
-event :process_source_form, :before=>:approve, :when=>proc{ |c| Card::Env.params[:process_source_form] }
+event :process_source_form, :before=>:approve, :when=>proc{ |c| Card::Env.params[:process_source_form] } do
   raise "I got here!"
   
 end
