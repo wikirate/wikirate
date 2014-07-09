@@ -7,24 +7,25 @@ format :html do
       <div class='claim-counting'>
         <span class='claim-counting-number'>100</span> character(s) left
       </div>
-    } 
+    }   
+  end
   
-  end
-
-  view :new do |args|
-    args[:core_edit] = true
-    super args
-  end
-
-  view :edit do |args|
+  def edit_slot args
     super args.merge(:core_edit=>true)
   end
-
 end
+
 
 event :reset_claim_counts, :after=>:store do
   Card.reset_claim_counts
 end
+
+
+event :process_source_form, :before=>:approve, :when=>proc{ |c| Card::Env.params[:process_source_form] }
+raise "I got here!"
+  
+end
+
 
 event :interpret_claim_link, :before=>:process_subcards do
   @link_key = "+#{ Card[:wikirate_link].name }"
