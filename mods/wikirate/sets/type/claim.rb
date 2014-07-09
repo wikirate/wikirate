@@ -13,8 +13,51 @@ format :html do
   end
   
   def edit_slot args
+    # :core_edit means the new and edit views will render form fields from within the core view
+    # (which in this case is defined by Claim+*type+*structure), as opposed to the default behavior,
+    # which is to strip out the inclusions and render them alone.
     super args.merge(:core_edit=>true)
   end
+
+  
+  view :tip, :perms=>:none do |args|
+    # special view for prompting users with next steps
+    %{
+      <div class="claim-tip">
+        #{process_content next_step}
+        <span id="close-tip">X</span>
+      </div>
+    }
+  end
+  
+  def next_step
+    if (not topics = Card["#{card.name}+topics"]) || topics.item_names.empty?
+      "Tip: You can improve this claim by adding a topic."
+    elsif (not companies = Card["#{card.name}+company"]) || companies.item_names.empty?
+      "Tip: You can improve this claim by adding a company."
+    else
+      cited_in = Card.search :refer_to => card.name, :left=>{:type=>'Analysis'}, :right=>{:name=>'article'} || []
+      analysis_names.each do |analysis|
+        if analysis_card = Card[analysis] and not cited_in.include? analysis_card
+            return "Tip: You can cite this claim in [[#{analysis}]]."
+        end
+      end
+      "Tip: You can cite this claim to write an article about [[#{topics.item_names.first}+#{companies.item_names.first}]]"
+    end
+  end
+  
+  def analysis_names
+    result = []
+    if topics = Card["#{card.name}+topics"] and companies = Card["#{card.name}+company"]
+      topics.item_names.each do |topic|
+        companies.item_names.each do |company|
+          result << "#{topic}+#{company}"
+        end
+      end
+    end
+    result
+  end
+
 end
 
 
@@ -24,7 +67,7 @@ end
 
 
 event :process_source_form, :before=>:approve, :when=>proc{ |c| Card::Env.params[:process_source_form] }
-raise "I got here!"
+  raise "I got here!"
   
 end
 
