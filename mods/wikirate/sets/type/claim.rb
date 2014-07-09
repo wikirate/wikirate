@@ -5,7 +5,6 @@ format :html do
   end
 
   view :new do |args|
-    args[:optional_tip] = :hide
     args[:optional_help] = :hide
     args[:core_edit] = true
     args[:structure] = :quick_claim unless params['_Source']
@@ -15,18 +14,16 @@ format :html do
   view :edit do |args|
     super args.merge(
        :core_edit=>true,
-       :optional_tip=>:hide
      )
   end
     
   view :core do |args|
     %{
-      #{ optional_render_tip args}
       #{ super args }
     }
   end
   
-  view :tip do |args|
+  view :tip, :perms=>:none do |args|
     %{
       <div class="claim-tip">
       #{process_content next_step}
