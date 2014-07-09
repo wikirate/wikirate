@@ -25,7 +25,7 @@ format :html do
     %{
       <div class="claim-tip">
         #{process_content next_step}
-        <span id="close-tip">X</span>
+        <span id="close-tip" class="fa fa-times-circle"></span>
       </div>
     }
   end
@@ -66,12 +66,7 @@ event :reset_claim_counts, :after=>:store do
 end
 
 
-event :process_source_form, :before=>:approve, :when=>proc{ |c| Card::Env.params[:process_source_form] } do
-  raise "I got here!"
-  
-end
-
-
+=begin
 event :interpret_claim_link, :before=>:process_subcards do
   @link_key = "+#{ Card[:wikirate_link].name }"
   if subcards.present?
@@ -103,6 +98,8 @@ event :process_claim_source, :before=>:approve_subcards do
     subcards[plus_source] = Card.new :name=>plus_source, :supercard=>self, :content=>"[[#{source_card.name}]]"
   end
 end
+=end
+
 
 event :sort_tags, :before=>:approve_subcards, :on=>:create do
   tag_key = "+tags" #FIXME - hardcoded card name
