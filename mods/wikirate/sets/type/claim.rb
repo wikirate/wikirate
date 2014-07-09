@@ -13,31 +13,27 @@ format :html do
 
   view :new do |args|
     args[:core_edit] = true
-    args[:structure] = :quick_claim unless params['_Source']    
     super args
   end
 
   view :edit do |args|
-    super args.merge(
-      :core_edit=>true
-      )
+    super args.merge(:core_edit=>true)
   end
 
- 
 end
 
 event :reset_claim_counts, :after=>:store do
   Card.reset_claim_counts
 end
 
-event :interpret_quick_claim_link, :before=>:process_subcards do
+event :interpret_claim_link, :before=>:process_subcards do
   @link_key = "+#{ Card[:wikirate_link].name }"
   if subcards.present?
     @link_source = subcards.delete @link_key
   end
 end
 
-event :process_quick_claim_source, :before=>:approve_subcards do
+event :process_claim_source, :before=>:approve_subcards do
   if @link_source
 
     existing_page = Card.search(:type_id=>Card::WebpageID, :limit=>1, :right_plus=>[
@@ -45,8 +41,13 @@ event :process_quick_claim_source, :before=>:approve_subcards do
     ).first
     
     source_card = existing_page || begin
-      # create Page card
-      subcards[:source] = Card.new :type_id=>Card::WebpageID,  :subcards=>{ @link_key => @link_source }
+      # create new source card card
+      subcards[:source] = Card.new :type_id=>Card::WebpageID,  :subcards=>{ 
+        @link_key => @link_source #,
+        # '+title' => title of 
+        # '+description' =>
+        # '+image url' =>
+      }
       subcards[:source].set_autoname #do this now so we know where to link.  need better mechanism!
       subcards[:source]
     end
