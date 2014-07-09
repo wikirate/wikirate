@@ -5,6 +5,8 @@ format :html do
   end
 
   view :new do |args|
+    args[:optional_tip] = :hide
+    args[:optional_help] = :hide
     args[:core_edit] = true
     args[:structure] = :quick_claim unless params['_Source']
     super args
@@ -12,10 +14,54 @@ format :html do
 
   view :edit do |args|
     super args.merge(
-      :core_edit=>true
-    )
+       :core_edit=>true,
+       :optional_tip=>:hide
+     )
+  end
+    
+  view :core do |args|
+    %{
+      #{ optional_render_tip args}
+      #{ super args }
+    }
   end
   
+  view :tip do |args|
+    %{
+      <div class="claim-tip">
+      #{process_content next_step}
+      <span id="close-tip">X</span>
+      </div>
+    }
+  end
+  
+  def next_step
+    if (not topics = Card["#{card.name}+topics"]) || topics.item_names.empty?
+      "Tip: You can improve this claim by adding a topic."
+    elsif (not companies = Card["#{card.name}+company"]) || companies.item_names.empty?
+      "Tip: You can improve this claim by adding a company."
+    else
+      cited_in = Card.search :refer_to => card.name, :left=>{:type=>'Analysis'}, :right=>{:name=>'article'} || []
+      analysis_names.each do |analysis|
+        if analysis_card = Card[analysis] and not cited_in.include? analysis_card
+            return "Tip: You can cite this claim in [[#{analysis}]]."
+        end
+      end
+      "Tip: You can cite this claim to write an article about [[#{topics.item_names.first}+#{companies.item_names.first}]]"
+    end
+  end
+  
+  def analysis_names
+    result = []
+    if topics = Card["#{card.name}+topics"] and companies = Card["#{card.name}+company"]
+      topics.item_names.each do |topic|
+        companies.item_names.each do |company|
+          result << "#{topic}+#{company}"
+        end
+      end
+    end
+    result
+  end
 end
 
 event :reset_claim_counts, :after=>:store do
