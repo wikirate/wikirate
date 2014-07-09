@@ -2,6 +2,8 @@
 
 format :html do
   view :name_fieldset do |args|
+    #rename "name" to "Claim"
+    #add a div for claim word counting
     %{
       #{ fieldset 'Claim', raw( name_field form ), :editor=>'name', :help=>true }
       <div class='claim-counting'>

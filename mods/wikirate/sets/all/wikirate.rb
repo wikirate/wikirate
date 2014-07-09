@@ -3,9 +3,11 @@ format :html do
     '<a class="fa fa-pencil-square-o"></a>'
   end
   view :name_fieldset do |args|
-    fieldset 'name', raw( name_field form ), :editor=>'name', :help=>true
+    args[:help]=true
+    super args
   end
   view :new do |args|
+    #hide all help text under title 
     args[:optional_help] = :hide
     super args
   end
