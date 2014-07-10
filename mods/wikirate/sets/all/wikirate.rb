@@ -3,6 +3,7 @@ format :html do
     '<a class="fa fa-pencil-square-o"></a>'
   end
   view :name_fieldset do |args|
+    #force showing help text
     args[:help]=true
     super args
   end

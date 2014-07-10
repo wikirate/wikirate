@@ -1,13 +1,32 @@
+require 'link_thumbnailer'
 
 #event :clear_silly_name, :before=>:set_autoname do
 #  self.name = ''
 #end
-
-event :autopopulate_website, :after=>:approve_subcards, :on=>:create do
+event :grab_fields_from_url,  :before=>:process_subcards, :on=>:create do
+  
   unless link_card = subcards["+#{ Card[:wikirate_link].name }"]
     errors.add :link, 'valid uri required'
   end
+
+  url = link_card["content"]
+  preview = LinkThumbnailer.generate(url)
+  first_image_url = ""
+  if preview.images.length >0
+    first_image_url = preview.images.first.src.to_s
+  end
+
+  subcards["+title"] ={'content'=> "#{preview.title}"}
+  subcards["+description"] = {'content'=> "#{preview.description}"}
+  subcards["+image url"] ={'content'=> "#{first_image_url}" }
+
+
+end
+event :autopopulate_website, :after=>:approve_subcards, :on=>:create do
+
+
   if errors[:link].empty?
+    link_card = subcards["+#{ Card[:wikirate_link].name }"]
     host = link_card.instance_variable_get '@host'
 
     website = Card[:wikirate_website].name    
