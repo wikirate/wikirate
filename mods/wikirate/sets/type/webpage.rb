@@ -6,22 +6,27 @@ event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc
   linkparams = subcards["+#{ Card[:wikirate_link].name }"]
   url = linkparams && linkparams[:content] or raise "don't got it"
 
+  abort :failure, "Empty Source" if url.length == 0
   duplicates = find_duplicates( url )
   if duplicates.any?
     self.name = duplicates.first.cardname.left
     abort :success
   end
-  
-  preview = LinkThumbnailer.generate(url)
+  begin
+    preview = LinkThumbnailer.generate(url)
 
-  first_image_url = ""
-  if preview.images.length >0
-   first_image_url = preview.images.first.src.to_s
+    first_image_url = ""
+    if preview.images.length >0
+     first_image_url = preview.images.first.src.to_s
+    end
+
+    subcards["+title"] = preview.title
+    subcards["+description"] = preview.description
+    subcards["+image url"] = first_image_url
+  rescue
+    Rails.logger.info "Fail to extract information from the #{url}"
   end
-
-  subcards["+title"] = preview.title
-  subcards["+description"] = preview.description
-  subcards["+image url"] = first_image_url
+  
 
 end
 

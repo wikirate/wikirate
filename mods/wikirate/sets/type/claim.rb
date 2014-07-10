@@ -42,7 +42,7 @@ format :html do
             return "Tip: You can cite this claim in [[#{analysis}]]."
         end
       end
-      "Tip: You can cite this claim here: [[#{topics.item_names.first}+#{companies.item_names.first}]]"
+      "Tip: You can cite this claim here: [[#{companies.item_names.first}+#{topics.item_names.first}]]"
     end
   end
   
@@ -121,6 +121,7 @@ end
 
 
 event :validate_claim, :before=>:approve, :on=>:save do 
+  errors.add :link, "is empty" if !subcards["+source"]||!subcards["+source"][:content]||subcards["+source"][:content].empty?
   errors.add :claim, "is too long (100 character maximum)" if name.length > 100
 end
 
