@@ -51,12 +51,11 @@ event :autopopulate_website, :after=>:approve_subcards, :on=>:create do
   end
 end
 
-view :new do |args|
-  super args.merge( :core_edit=>true, :structure=>:quick_page )
-end
 
-view :edit do |args|
-  super args.merge( :core_edit=>true )
+
+def edit_slot args
+  # see claim.rb for explanation of core_edit
+  super args.merge(:core_edit=>true)
 end
 
 view :content do |args|
