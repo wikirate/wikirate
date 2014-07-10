@@ -91,19 +91,7 @@ format :html do
     %{ <ul>#{items}</ul> }
   end
 
-  view :credit do |args|
-   
-    action =  'added'
-     
-    %{
-      <span class="credit_creator">
-        #{ action }
-        #{ _render_created_at }
-        ago by
-        #{ subformat(card.creator)._render_link }
-      </span> 
-    }
-  end
+ 
 end
 
 format :json do
