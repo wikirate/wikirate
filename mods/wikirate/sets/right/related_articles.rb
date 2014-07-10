@@ -21,7 +21,7 @@ format :html do
       if Card.search(:refer_to => card.left.name, :name=>"#{analysis_name}+article").include? card.left
         process_content "[[#{analysis_name}|Add article]]"
       else
-        process_content "[[#{analysis_name}|Needs review]]"
+        process_content "[[#{analysis_name}|Review article]]"
       end
     end
   end

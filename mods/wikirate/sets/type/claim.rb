@@ -42,7 +42,7 @@ format :html do
             return "Tip: You can cite this claim in [[#{analysis}]]."
         end
       end
-      "Tip: You can cite this claim to write an article about [[#{topics.item_names.first}+#{companies.item_names.first}]]"
+      "Tip: You can cite this claim here: [[#{topics.item_names.first}+#{companies.item_names.first}]]"
     end
   end
   
@@ -98,7 +98,6 @@ event :process_claim_source, :before=>:approve_subcards do
     subcards[plus_source] = Card.new :name=>plus_source, :supercard=>self, :content=>"[[#{source_card.name}]]"
   end
 end
-=end
 
 
 event :sort_tags, :before=>:approve_subcards, :on=>:create do
@@ -117,6 +116,9 @@ event :sort_tags, :before=>:approve_subcards, :on=>:create do
     end
   end
 end
+=end
+
+
 
 event :validate_claim, :before=>:approve, :on=>:save do 
   errors.add :claim, "is too long (100 character maximum)" if name.length > 100

@@ -15,20 +15,6 @@ event :validate_content, :before=>:approve, :on=>:save do
   ensure
     errors.add :link, 'invalid uri' unless @host
   end
-  
-  
-  #need to check if content changed...
-  duplicate_wql = { :right=>cardname.tag, :content=>content }
-  duplicate_wql[:not] = { :id => id } if id
-  duplicates = Card.search duplicate_wql
-  if duplicates.any?
-    if Card::Env.params[:quickframe]
-      supercard.name = duplicates.first.cardname.left
-      abort :triumph
-    else
-      errors.add :link, "source uri already in use.  see #{Card::Format.new( duplicates.first ).render_link}"
-    end
-  end
 end
 
 
