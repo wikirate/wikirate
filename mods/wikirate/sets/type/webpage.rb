@@ -1,14 +1,13 @@
-
-#event :clear_silly_name, :before=>:set_autoname do
-#  self.name = ''
-#end
+require 'link_thumbnailer'
 
 
 event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc{ |c| Card::Env.params[:sourcebox] } do
 
-  url = Card::Env.params[:sourcebox] 
+  linkparams = subcards["+#{ Card[:wikirate_link].name }"]
+  url = linkparams && linkparams[:content] or raise "don't got it"
 
-  if card.find_duplicates( url ).any?
+  duplicates = find_duplicates( url )
+  if duplicates.any?
     self.name = duplicates.first.cardname.left
     abort :success
   end
@@ -20,7 +19,6 @@ event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc
    first_image_url = preview.images.first.src.to_s
   end
 
-  subcards["+#{ Card[:wikirate_link].name }"] = url
   subcards["+title"] = preview.title
   subcards["+description"] = preview.description
   subcards["+image url"] = first_image_url
@@ -30,7 +28,7 @@ end
 
 def find_duplicates url
   #need to check if content changed...
-  duplicate_wql = { :right=>Card[:wikirate_link].name, :content=>content }
+  duplicate_wql = { :right=>Card[:wikirate_link].name, :content=>url }
 #  duplicate_wql[:not] = { :id => id } if id
   duplicates = Card.search duplicate_wql
 end
