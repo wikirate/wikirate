@@ -42,7 +42,7 @@ format :html do
             return "Tip: You can cite this claim in [[#{analysis}]]."
         end
       end
-      "Tip: You can cite this claim here: [[#{topics.item_names.first}+#{companies.item_names.first}]]"
+      "Tip: You can cite this claim here: [[#{companies.item_names.first}+#{topics.item_names.first}]]"
     end
   end
   
