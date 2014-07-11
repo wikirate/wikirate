@@ -57,22 +57,22 @@ event :autopopulate_website, :after=>:approve_subcards, :on=>:create do
   end
 end
 
+format :html do
 
+  def edit_slot args
+    # see claim.rb for explanation of core_edit
+    super args.merge(:core_edit=>true)
+  end
 
-def edit_slot args
-  # see claim.rb for explanation of core_edit
-  super args.merge(:core_edit=>true)
-end
+  view :content do |args|
+    add_name_context
+    super args
+  end
 
-view :content do |args|
-  add_name_context
-  super args
-end
+  view :missing do |args|
+    _view_link args
+  end
 
-view :missing do |args|
-  _view_link args
-end
-
-  
+end  
 
 
