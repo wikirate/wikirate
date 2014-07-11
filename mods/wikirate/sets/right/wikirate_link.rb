@@ -17,12 +17,14 @@ event :validate_content, :before=>:approve, :on=>:save do
   end
 end
 
+=begin
 
 view :iframe do |args|
 #  return 'iframe' if Rails.env.development?
 #  subformat( Card.fetch( "#{card.cardname.left}+source frame" ) ).render_content
   %{<iframe sandbox="allow-same-origin allow-scripts allow-popups allow-forms" src="#{_render_raw}"></iframe>}
 end
+
 
 view :edit_in_form do |args|
   if !card.content.blank? and card.left and card.left.type_id == Card::WebpageID
@@ -33,3 +35,4 @@ view :edit_in_form do |args|
   end
 end
 
+=end
