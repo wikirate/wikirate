@@ -2,7 +2,7 @@ format :html do
   view :editor do |args|
     with_inclusion_mode :normal do
       %{
-        <div class="source-editor">
+        <div class="source-editor nodblclick">
           #{ form.hidden_field :content, :class=>'card-content' }
           <div class="sourcebox">
             #{ text_field_tag :sourcebox, nil, :placeholder=>'http://' }

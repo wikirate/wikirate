@@ -67,39 +67,6 @@ end
 
 
 =begin
-event :interpret_claim_link, :before=>:process_subcards do
-  @link_key = "+#{ Card[:wikirate_link].name }"
-  if subcards.present?
-    @link_source = subcards.delete @link_key
-  end
-end
-
-event :process_claim_source, :before=>:approve_subcards do
-  if @link_source
-
-    existing_page = Card.search(:type_id=>Card::WebpageID, :limit=>1, :right_plus=>[
-      Card[:wikirate_link].name, { :content=>@link_source[:content] }]
-    ).first
-    
-    source_card = existing_page || begin
-      # create new source card card
-      subcards[:source] = Card.new :type_id=>Card::WebpageID,  :subcards=>{ 
-        @link_key => @link_source #,
-        # '+title' => title of 
-        # '+description' =>
-        # '+image url' =>
-      }
-      subcards[:source].set_autoname #do this now so we know where to link.  need better mechanism!
-      subcards[:source]
-    end
-    
-    # create +Source pointer to page on claim card
-    plus_source = "+#{Card[:source].name}"
-    subcards[plus_source] = Card.new :name=>plus_source, :supercard=>self, :content=>"[[#{source_card.name}]]"
-  end
-end
-
-
 event :sort_tags, :before=>:approve_subcards, :on=>:create do
   tag_key = "+tags" #FIXME - hardcoded card name
   if tags_card = subcards[tag_key]
@@ -121,9 +88,6 @@ end
 
 
 event :validate_claim, :before=>:approve, :on=>:save do 
-  sub_source_card = subcards["+source"]
-  #check if there is subcard +source and whether content exists and empty
-  errors.add :link, "is empty" if !sub_source_card||!sub_source_card[:content]||sub_source_card[:content].empty?
   errors.add :claim, "is too long (100 character maximum)" if name.length > 100
 end
 
