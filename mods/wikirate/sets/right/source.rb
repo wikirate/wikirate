@@ -7,7 +7,7 @@ format :html do
           #{ text_field_tag :sourcebox, nil, :placeholder=>'http://' }
           #{ button_tag 'Add' }
         </div>
-        #{ _render_content args }
+        #{ _render_core args }
       }
     end
   end

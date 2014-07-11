@@ -7,30 +7,26 @@ event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc
 
   errors.add :link, "is empty" if url.length == 0
   
-  duplicates = find_duplicates( url )
+  duplicates = find_duplicates url
   if duplicates.any?
     self.name = duplicates.first.cardname.left
     abort :success
   end
 
-  title = ""
-  description = ""
-  first_image_url = ""
+  parse_source_page url
+end
+
+def parse_source_page url
   if errors.empty?
-    begin
-      preview = LinkThumbnailer.generate(url)
-      if preview.images.length > 0
-       first_image_url = preview.images.first.src.to_s
-      end
-      title = preview.title
-      description = preview.description
-    rescue
-      Rails.logger.info "Fail to extract information from the #{url}"
+    preview = LinkThumbnailer.generate url
+    if preview.images.length > 0
+     subcards["+image url" ] = preview.images.first.src.to_s
     end
+    subcards["+title"      ] = preview.title
+    subcards["+description"] = preview.description
   end
-  subcards["+title"] = title
-  subcards["+description"] = description
-  subcards["+image url"] = first_image_url
+rescue
+  Rails.logger.info "Fail to extract information from the #{ url }"
 end
 
 
