@@ -7,7 +7,7 @@ describe Card::Set::Type::Webpage do
       login_as 'joe_user'	
         url = 'http://www.google.com'
         Card::Env.params[:sourcebox] = true
-        sourcepage = Card.create! :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> "#{url}"} }
+        sourcepage = Card.create! :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
         preview = LinkThumbnailer.generate(url)
 
         Card.fetch("#{ sourcepage.name }+title").content.should == preview.title

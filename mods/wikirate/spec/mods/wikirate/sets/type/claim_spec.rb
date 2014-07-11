@@ -11,7 +11,7 @@ describe Card::Set::Type::Claim do
   
   it "should handle normal claim" do
     login_as 'joe_user'	
-    card = Card.new(   :type=>"Claim", :name=>"2"*100 )
+    card = Card.new(   :type=>"Claim", :name=>"2"*100 ,:subcards=>{ '+source' => {:content=> 'http://www.google.com/?q=a1'}})
     card.should be_valid
   end
 end

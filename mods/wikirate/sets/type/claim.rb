@@ -121,7 +121,9 @@ end
 
 
 event :validate_claim, :before=>:approve, :on=>:save do 
-  errors.add :link, "is empty" if !subcards["+source"]||!subcards["+source"][:content]||subcards["+source"][:content].empty?
+  sub_source_card = subcards["+source"]
+  #check if there is subcard +source and whether content exists and empty
+  errors.add :link, "is empty" if !sub_source_card||!sub_source_card[:content]||sub_source_card[:content].empty?
   errors.add :claim, "is too long (100 character maximum)" if name.length > 100
 end
 
