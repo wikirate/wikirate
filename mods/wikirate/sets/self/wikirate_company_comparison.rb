@@ -51,8 +51,12 @@ view :core do |args|
           <td>#{ topic_select }</td>
           <td>
             #{ 
-              if topic.present? 
-                link_to_page( raw( nest topic_image, :view=>:content, :size=>:small ), topic) +
+              if topic_image
+                link_to_page( raw( nest topic_image, :view=>:content, :size=>:small ), topic)
+              end
+            }
+            #{
+              if topic.present?
                 link_to_page( topic_name )
               end
             }

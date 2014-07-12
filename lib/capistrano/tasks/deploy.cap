@@ -1,6 +1,6 @@
 namespace :deploy do
 
-  after :updated, :clear_cache do
+  after :updated, :run_migrations do
     
     #because this creates the log and tmp files, it needs to be executed before the chown,
     # which in turn needs to happen before the restart.  not ideal.
