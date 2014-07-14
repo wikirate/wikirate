@@ -20,50 +20,58 @@ format :html do
   end
 
   
-  view :tip, :perms=>:none do |args|
+  view :tip, :perms=>:update do |args|
     # special view for prompting users with next steps
-    %{
-      <div class="claim-tip">
-        #{process_content next_step}
-        <span id="close-tip" class="fa fa-times-circle"></span>
-      </div>
-    }
+    if tip = next_step_tip
+      %{
+        <div class="claim-tip">
+          Tip: You can #{ process_content tip }. (see below)
+          <span id="close-tip" class="fa fa-times-circle"></span>
+        </div>
+      }
+    end
   end
   
-  def next_step
+  def next_step_tip
     if (not topics = Card["#{card.name}+topics"]) || topics.item_names.empty?
-      "Tip: You can improve this claim by adding a topic."
+      "improve this claim by adding a topic"
     elsif (not companies = Card["#{card.name}+company"]) || companies.item_names.empty?
-      "Tip: You can improve this claim by adding a company."
+      "improve this claim by adding a company"
     else
       cited_in = Card.search :refer_to => card.name, :left=>{:type=>'Analysis'}, :right=>{:name=>'article'} || []
-      analysis_names.each do |analysis|
-        if analysis_card = Card[analysis] and not cited_in.include? analysis_card
-            return "Tip: You can cite this claim in [[#{analysis}]]."
-        end
-      end
-      "Tip: You can cite this claim here: [[#{companies.item_names.first}+#{topics.item_names.first}]]"
-    end
-  end
-  
-  def analysis_names
-    result = []
-    if topics = Card["#{card.name}+topics"] and companies = Card["#{card.name}+company"]
-      topics.item_names.each do |topic|
-        companies.item_names.each do |company|
-          result << "#{topic}+#{company}"
-        end
+      if card.analysis_names.size > cited_in.size
+        "cite this claim in related articles"
       end
     end
-    result
   end
 
 end
 
+
+def analysis_names
+  if topics = Card["#{name}+topics"] and companies = Card["#{name}+company"]
+    companies.item_names.map do |company|    
+      topics.item_names.map do |topic|
+        "#{company}+#{topic}"
+      end
+    end.flatten
+  end
+end
 
 event :reset_claim_counts, :after=>:store do
   Card.reset_claim_counts
 end
+
+
+event :validate_claim, :before=>:approve, :on=>:save do 
+  errors.add :claim, "is too long (100 character maximum)" if name.length > 100
+end
+
+view :missing do |args|
+  _render_link args
+end
+
+
 
 
 =begin
@@ -84,16 +92,3 @@ event :sort_tags, :before=>:approve_subcards, :on=>:create do
   end
 end
 =end
-
-
-
-event :validate_claim, :before=>:approve, :on=>:save do 
-  errors.add :claim, "is too long (100 character maximum)" if name.length > 100
-end
-
-view :missing do |args|
-  _render_link args
-end
-
-
-
