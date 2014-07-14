@@ -1,17 +1,52 @@
+format do
+  view :cite do |args|
+    ''
+  end
+
+  view :raw_or_blank, :perms=>:none do |args|
+    _render(:raw) or ''
+  end
+end
+
+
 format :html do
+
+  attr_accessor :citation_number
+  
   view :menu_link do |args|
     '<a class="fa fa-pencil-square-o"></a>'
   end
+  
   view :name_fieldset do |args|
     #force showing help text
     args[:help]=true
     super args
   end
+  
   view :new do |args|
     #hide all help text under title 
     args[:optional_help] = :hide
     super args
   end
+  
+  view :cite do |args|
+    @parent.citation_number ||= 0
+    num = @parent.citation_number += 1
+    %{<sup><a class="citation" href="##{card.cardname.url_key}">#{num}</a></sup>}
+  end
+
+=begin
+  # navdrop views are called by wikirate-nav js
+  view :navdrop, :tags=>:unknown_ok do |args|
+    items = Card.search( :type_id=>card.type_id, :sort=>:name, :return=>:name ).map do |item|
+      klass = item.to_name.key == card.key ? 'class="current-item"' : ''
+      %{<li #{ klass }>#{ link_to_page item }</li>}
+    end.join "\n"
+    %{ <ul>#{items}</ul> }
+  end
+=end
+  
+    
 end
 
 CLAIM_SUBJECT_SQL = %{
@@ -72,27 +107,8 @@ module ClassMethods
   end
 end
 
-format :html do
-  attr_accessor :citation_number
-  
-  view :cite do |args|
-    @parent.citation_number ||= 0
-    num = @parent.citation_number += 1
-    %{<sup><a class="citation" href="##{card.cardname.url_key}">#{num}</a></sup>}
-  end
 
 
-  # navdrop views are called by wikirate-nav js
-  view :navdrop, :tags=>:unknown_ok do |args|
-    items = Card.search( :type_id=>card.type_id, :sort=>:name, :return=>:name ).map do |item|
-      klass = item.to_name.key == card.key ? 'class="current-item"' : ''
-      %{<li #{ klass }>#{ link_to_page item }</li>}
-    end.join "\n"
-    %{ <ul>#{items}</ul> }
-  end
-
- 
-end
 
 format :json do
   
