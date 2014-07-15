@@ -71,12 +71,16 @@ view :missing do |args|
   _render_link args
 end
 
-
 view :title do |args|
   "#{ args[:title_icon] }#{ super args }"
 end
 
-
+view :clipboard do |args|
+  %{
+    <i class="fa fa-clipboard claim-clipboard" id="copy-button" data-clipboard-text="#{card.name} {{#{card.name}|cite}}"></i>
+}
+  #clipboard_flash source
+end
 
 =begin
 event :sort_tags, :before=>:approve_subcards, :on=>:create do
