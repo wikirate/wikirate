@@ -29,7 +29,7 @@ format :html do
           <span id="close-tip" class="fa fa-times-circle"></span>
         </div>
       }
-    end
+    end.to_s
   end
   
   def next_step_tip
@@ -38,7 +38,7 @@ format :html do
     elsif (not companies = Card["#{card.name}+company"]) || companies.item_names.empty?
       "improve this claim by adding a company"
     else
-      cited_in = Card.search :refer_to => card.name, :left=>{:type=>'Analysis'}, :right=>{:name=>'article'} || []
+      cited_in = Card.search :refer_to => card.name, :left=>{:type=>'Analysis'}, :right=>{:name=>'article'}
       if card.analysis_names.size > cited_in.size
         "cite this claim in related articles"
       end
