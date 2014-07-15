@@ -1,6 +1,4 @@
-require 'byebug'
 event :create_missing_tags, :after=>:store, :on=>:save do
-	byebug
 	full_tagname = Card[name].content
 	tagname = full_tagname[2..full_tagname.length-3]
 	
