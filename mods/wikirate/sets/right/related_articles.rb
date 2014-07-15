@@ -1,8 +1,9 @@
 format :html do
   
   view :core do |args|
-    if claim = card.left and claim.type_id == Card::ClaimID  # unnecessary if we do this as type plus right
-      process_content( claim.analysis_names.map do |analysis_name|
+    if claim = card.left and claim.type_id == Card::ClaimID and analysis_names = claim.analysis_names
+      # unnecessary if we do this as type plus right
+      process_content( analysis_names.map do |analysis_name|
         company_name = %{<span class="company">#{analysis_name.to_name.trunk_name}</span>}
         topic_name   = %{<span class="topic">#{  analysis_name.to_name.tag_name  }</span>}
         %{
