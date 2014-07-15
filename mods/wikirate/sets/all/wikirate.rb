@@ -11,7 +11,7 @@ end
 
 format :html do
 
-  attr_accessor :citation_number
+  attr_accessor :citations
   
   view :menu_link do |args|
     '<a class="fa fa-pencil-square-o"></a>'
@@ -30,9 +30,15 @@ format :html do
   end
   
   view :cite do |args|
-    @parent.citation_number ||= 0
-    num = @parent.citation_number += 1
-    %{<sup><a class="citation" href="##{card.cardname.url_key}">#{num}</a></sup>}
+    %{<sup><a class="citation" href="##{card.cardname.url_key}">#{ cite! }</a></sup>}
+  end
+  
+  
+  def cite!
+    holder = parent.parent
+    holder.citations ||= []
+    holder.citations << card.key
+    holder.citations.size
   end
 
 =begin

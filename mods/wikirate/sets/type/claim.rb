@@ -72,6 +72,10 @@ view :missing do |args|
 end
 
 
+view :title do |args|
+  "#{ args[:title_icon] }#{ super args }"
+end
+
 
 
 =begin
