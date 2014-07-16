@@ -30,12 +30,14 @@ format :html do
   end
   
   view :cite do |args|
-    %{<sup><a class="citation" href="##{card.cardname.url_key}">#{ cite! }</a></sup>}
+    href_root = parent ? parent.card.cardname.trunk_name.url_key : ''
+    href = "#{ href_root }##{ card.cardname.url_key }"
+    %{<sup><a class="citation" href="#{ href }">#{ cite! }</a></sup>}
   end
   
   
   def cite!
-    holder = parent.parent
+    holder = parent.parent || parent || self
     holder.citations ||= []
     holder.citations << card.key
     holder.citations.size
