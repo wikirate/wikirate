@@ -14,8 +14,7 @@ Steps to rspec test
 =========
 
 1. create a user call joe_user(maybe you need a joe_admin). You may create in the webpage.
-
-2.
+2. run the following command in console
 ```sh
  wagn rspec
 ```
