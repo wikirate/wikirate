@@ -31,7 +31,7 @@ format :html do
     if tip = args[:tip] || next_step_tip
       %{
         <div class="claim-tip">
-          Tip: You can #{ process_content tip }
+          Tip: You can #{ tip }
           <span id="close-tip" class="fa fa-times-circle"></span>
         </div>
       }
@@ -52,22 +52,24 @@ format :html do
   end
   
   view :sample_citation do |args|
-    %{
-      <div class="sample-citation">
-        #{ render :tip, :tip=>'easily cite a claim by pasting the following:'}
-        #{ text_area_tag :citable_claim, card.default_citation }
-      </div>
-    }
+    tip = "easily cite this claim by pasting the following:" +
+      text_area_tag( :citable_claim, card.default_citation )
+    %{ <div class="sample-citation">#{ render :tip, :tip=>tip }</div> }
   end
 
 end
 
 
 def analysis_names
-  if topics = Card["#{name}+topics"] and companies = Card["#{name}+company"]
-    companies.item_names.map do |company|    
-      topics.item_names.map do |topic|
-        "#{company}+#{topic}"
+  if topics   = Card["#{name}+#{Card[:wikirate_topic  ].name}"] and 
+    companies = Card["#{name}+#{Card[:wikirate_company].name}"]
+    
+    companies = companies.item_cards.reject { |c| c.new_card? || c.type_id != Card::WikirateCompanyID }
+    topics    = topics   .item_cards.reject { |c| c.new_card? || c.type_id != Card::WikirateTopicID   }
+    
+    companies.map do |company|
+      topics.map do |topic|
+        "#{company.name}+#{topic.name}"
       end
     end.flatten
   end
