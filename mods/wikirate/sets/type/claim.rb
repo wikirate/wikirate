@@ -16,7 +16,7 @@ format :html do
     # :core_edit means the new and edit views will render form fields from within the core view
     # (which in this case is defined by Claim+*type+*structure), as opposed to the default behavior,
     # which is to strip out the inclusions and render them alone.
-    super args.merge(:core_edit=>true)
+    super args.merge(:core_edit=>true, :optional_help=> :hide)
   end
 
   

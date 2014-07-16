@@ -36,7 +36,7 @@ namespace :deploy do
     import_files.each do |filename|
       on roles(:db) do
         within release_path do
-          execute :bundle, :exec, "./script/import_json.rb #{filename}"
+          execute :bundle, :exec, "./script/import_json.rb import/#{ filename }"
         end
       end
     end

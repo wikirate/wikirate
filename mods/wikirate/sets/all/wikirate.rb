@@ -22,13 +22,15 @@ format :html do
     args[:help]=true
     super args
   end
-  
+
+=begin  
   view :new do |args|
     #hide all help text under title 
     args[:optional_help] = :hide
     super args
   end
-  
+=end
+    
   view :cite do |args|
     href_root = parent ? parent.card.cardname.trunk_name.url_key : ''
     href = "#{ href_root }##{ card.cardname.url_key }"
