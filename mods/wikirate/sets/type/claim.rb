@@ -12,11 +12,17 @@ format :html do
     }   
   end
   
+  
+  view :new do |args|
+    #hide all help text under title 
+    super args.merge( :optional_help => :hide )
+  end
+  
   def edit_slot args
     # :core_edit means the new and edit views will render form fields from within the core view
     # (which in this case is defined by Claim+*type+*structure), as opposed to the default behavior,
     # which is to strip out the inclusions and render them alone.
-    super args.merge(:core_edit=>true, :optional_help=> :hide)
+    super args.merge( :core_edit=>true )
   end
 
   
