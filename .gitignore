@@ -1,5 +1,6 @@
 /.bundle
 /config
+!/config/initializers
 /files
 /log
 /tmp
