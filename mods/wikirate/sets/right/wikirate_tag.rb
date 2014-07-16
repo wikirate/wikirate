@@ -1,6 +1,6 @@
-require 'byebug'
+
 event :create_missing_tags, :after=>:store, :on=>:save do
-  byebug
+
   new_right_tag = Card[name]
   new_tags = new_right_tag.item_cards
   new_tags.each do |tag|
