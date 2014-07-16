@@ -73,7 +73,7 @@ end
 
 view :clipboard do |args|
   %{
-    <i class="fa fa-clipboard claim-clipboard" id="copy-button" data-clipboard-text="#{card.name} {{#{card.name}|cite}}"></i>
+    <i title="Click to copy this Claim as a cite" class="fa fa-clipboard claim-clipboard" id="copy-button" data-clipboard-text="#{card.name} {{#{card.name}|cite}}"></i>
 }
   #clipboard_flash source
 end
