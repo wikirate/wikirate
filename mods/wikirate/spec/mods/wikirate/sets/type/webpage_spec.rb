@@ -7,7 +7,8 @@ describe Card::Set::Type::Webpage do
       login_as 'joe_user' 
     end
     it "should add title,description" do
-        url = 'http://www.google.com'
+      
+        url = 'http://www.google.com/?q=wikirateissocoolyouknow'
         Card::Env.params[:sourcebox] = true
         sourcepage = Card.create! :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
         preview = LinkThumbnailer.generate(url)
@@ -26,7 +27,7 @@ describe Card::Set::Type::Webpage do
     end
 
     it "should handle duplicated url " do
-      url = 'http://www.google.com'
+      url = 'http://www.google.com/?q=wikirateissocoolyouknow'
       Card::Env.params[:sourcebox] = true
       firstsourcepage = Card.create! :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
       secondsourcepage = Card.create! :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }

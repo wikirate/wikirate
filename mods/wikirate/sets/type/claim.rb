@@ -12,20 +12,26 @@ format :html do
     }   
   end
   
+  
+  view :new do |args|
+    #hide all help text under title 
+    super args.merge( :optional_help => :hide )
+  end
+  
   def edit_slot args
     # :core_edit means the new and edit views will render form fields from within the core view
     # (which in this case is defined by Claim+*type+*structure), as opposed to the default behavior,
     # which is to strip out the inclusions and render them alone.
-    super args.merge(:core_edit=>true)
+    super args.merge( :core_edit=>true )
   end
 
   
   view :tip, :perms=>:update do |args|
     # special view for prompting users with next steps
-    if tip = next_step_tip
+    if tip = args[:tip] || next_step_tip
       %{
         <div class="claim-tip">
-          Tip: You can #{ process_content tip }. (see below)
+          Tip: You can #{ process_content tip }
           <span id="close-tip" class="fa fa-times-circle"></span>
         </div>
       }
@@ -34,15 +40,24 @@ format :html do
   
   def next_step_tip
     if (not topics = Card["#{card.name}+topics"]) || topics.item_names.empty?
-      "improve this claim by adding a topic"
+      "improve this claim by adding a topic."
     elsif (not companies = Card["#{card.name}+company"]) || companies.item_names.empty?
-      "improve this claim by adding a company"
+      "improve this claim by adding a company."
     else
       cited_in = Card.search :refer_to => card.name, :left=>{:type=>'Analysis'}, :right=>{:name=>'article'}
       if card.analysis_names.size > cited_in.size
-        "cite this claim in related articles"
+        "cite this claim in related articles."
       end
     end
+  end
+  
+  view :sample_citation do |args|
+    %{
+      <div class="sample-citation">
+        #{ render :tip, :tip=>'easily cite a claim by pasting the following:'}
+        #{ text_area_tag :citable_claim, card.default_citation }
+      </div>
+    }
   end
 
 end
@@ -71,13 +86,24 @@ view :missing do |args|
   _render_link args
 end
 
-view :clipboard do |args|
-  %{
-    <i title="Click to copy this Claim as a cite" class="fa fa-clipboard claim-clipboard" id="copy-button" data-clipboard-text="#{card.name} {{#{card.name}|cite}}"></i>
-}
-  #clipboard_flash source
+view :title do |args|
+  %{ 
+    #{ args[:citation_number] }
+    #{ super args }
+    #{ optional_render :clipboard, args, :hide }
+  }
 end
 
+view :clipboard do |args|
+  %{
+    <i class="fa fa-clipboard claim-clipboard" id="copy-button" title="copy claim citation to clipboard" data-clipboard-text="#{h card.default_citation}"></i>
+  }
+end
+
+
+def default_citation
+  "#{name} {{#{name}|cite}}"
+end
 
 =begin
 event :sort_tags, :before=>:approve_subcards, :on=>:create do
