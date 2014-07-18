@@ -12,7 +12,7 @@ format :html do
       prompt = with_inclusion_mode :normal do
         nest claim, :view=>:sample_citation
       end
-      %{ #{ super args } #{ prompt } }
+      %{ #{ prompt } #{ super args } }
     else
       super args
     end
