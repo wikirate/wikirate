@@ -6,7 +6,9 @@ view :core do |args|
   #site = site_card && site_card.item_names.first
   link_to "source page", card.raw_content, :target=>'source', :class=>'wikirate-source-link external-link'
 end
-
+view :editor do |args|
+  form.text_field :content, :class=>'card-content',:placeholder=>"http://example.com"
+end
 event :validate_content, :before=>:approve, :on=>:save do
   begin
     @host = nil
