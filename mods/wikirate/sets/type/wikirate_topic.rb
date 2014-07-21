@@ -1,6 +1,6 @@
 view :missing do |args|
-  _render_link args
 end
+  _render_link args
 view :image do |args|
   #byebug
   image_card = Card.fetch("#{ card.name }+image")
