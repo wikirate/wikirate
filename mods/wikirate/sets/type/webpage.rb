@@ -34,7 +34,7 @@ end
 
 def find_duplicates url
   #need to check if content changed...
-  duplicate_wql = { :right=>Card[:wikirate_link].name, :content=>url }
+   duplicate_wql = { :right=>Card[:wikirate_link].name, :content=>url ,:left=>{:type_id=>Card::WebpageID}}
 #  duplicate_wql[:not] = { :id => id } if id
   duplicates = Card.search duplicate_wql
 end
