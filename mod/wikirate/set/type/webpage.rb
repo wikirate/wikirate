@@ -6,13 +6,14 @@ event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc
   
   linkparams = subcards["+#{ Card[:wikirate_link].name }"]
   url = linkparams && linkparams[:content] or raise "don't got it"
-
-  errors.add :link, "is empty" if url.length == 0
-  
-  duplicates = find_duplicates url
-  if duplicates.any?
-    self.name = duplicates.first.cardname.left
-    abort :success
+  if url.length == 0
+    errors.add :link, "is empty" 
+  else
+    duplicates = find_duplicates url
+    if duplicates.any?
+      self.name = duplicates.first.cardname.left
+      abort :success
+    end
   end
 
   parse_source_page url
@@ -34,7 +35,7 @@ end
 
 def find_duplicates url
   #need to check if content changed...
-  duplicate_wql = { :right=>Card[:wikirate_link].name, :content=>url }
+   duplicate_wql = { :right=>Card[:wikirate_link].name, :content=>url ,:left=>{:type_id=>Card::WebpageID}}
 #  duplicate_wql[:not] = { :id => id } if id
   duplicates = Card.search duplicate_wql
 end
