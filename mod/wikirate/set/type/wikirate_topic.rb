@@ -1,3 +1,3 @@
 view :missing do |args|
-    _render_link args
+  _render_link args
 end
