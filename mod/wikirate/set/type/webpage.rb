@@ -3,7 +3,7 @@ require 'link_thumbnailer'
 event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc{ 
    |c| Card::Env.params[:sourcebox] == 'true'
   } do
-  byebug
+  
   linkparams = subcards["+#{ Card[:wikirate_link].name }"]
   url = linkparams && linkparams[:content] or raise "don't got it"
   if url.length == 0

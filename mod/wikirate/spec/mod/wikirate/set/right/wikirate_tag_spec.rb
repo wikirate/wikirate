@@ -5,9 +5,12 @@ describe Card::Set::Right::WikirateTag do
     login_as 'joe_user' 
   end
   it "should create tag card(s) while creating +tag card(s)" do
+    #create the webpage first
     url = 'http://www.google.com/?q=newpage'
     Card::Env.params[:sourcebox] = 'true'
     sourcepage = Card.create! :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
+    Card::Env.params[:sourcebox] = 'false'
+
     card = Card.create! :type=>"Claim", :name=>"Testing Claim",:subcards=>{ "+tag"=>{:content=>"[[zzz]]\n[[xxx]]", :type=>"pointer"},'+source' => {:content=> url,:type_id=>Card::WebpageID}}
     Card.exists?("zzz").should == true
     Card.exists?("xxx").should == true

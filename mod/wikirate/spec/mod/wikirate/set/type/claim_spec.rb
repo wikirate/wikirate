@@ -17,8 +17,9 @@ describe Card::Set::Type::Claim do
     Card::Env.params[:sourcebox] = 'true'
     sourcepage = Card.create! :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
     preview = LinkThumbnailer.generate(url)
+    Card::Env.params[:sourcebox] = 'false'
 
-    card = Card.new(   :type=>"Claim", :name=>"2"*100 ,:subcards=>{ '+source' => {:content=> 'http://www.google.com/?q=a1',:type_id=>Card::WebpageID}})
+    card = Card.new(   :type=>"Claim", :name=>"2"*100 ,:subcards=>{ '+source' => {:content=> url,:type_id=>Card::WebpageID}})
     card.should be_valid
   end
 
