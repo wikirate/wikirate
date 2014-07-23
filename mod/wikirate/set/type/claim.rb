@@ -81,6 +81,15 @@ end
 
 
 event :validate_claim, :before=>:approve, :on=>:save do 
+  source_card = subcards["+source"]
+  if !source_card 
+    errors.add :link, "is empty" 
+  else
+    if source_card[:type_id] != Card::WebpageID
+      errors.add :link, "is pointing to invalid page" 
+    end
+  end
+   
   errors.add :claim, "is too long (100 character maximum)" if name.length > 100
 end
 
