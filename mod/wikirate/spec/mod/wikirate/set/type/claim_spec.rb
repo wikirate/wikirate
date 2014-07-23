@@ -13,15 +13,21 @@ describe Card::Set::Type::Claim do
   
   it "should handle normal claim" do
     
-    card = Card.new(   :type=>"Claim", :name=>"2"*100 ,:subcards=>{ '+source' => {:content=> 'http://www.google.com/?q=a1'}})
+    card = Card.new(   :type=>"Claim", :name=>"2"*100 ,:subcards=>{ '+source' => {:content=> 'http://www.google.com/?q=a1',:type_id=>Card::WebpageID}})
     card.should be_valid
   end
 
-  it "should handle empty source claim" do
+  it "should require +source card " do
     card = Card.new(   :type=>"Claim", :name=>"2"*100)
     card.should_not be_valid
     card.errors.should have_key :link
     card.errors[:link]=="is empty"
+
+    card = Card.new(   :type=>"Claim", :name=>"2"*100,:subcards=>{ '+source' => {:content=> 'http://www.google.com/?q=a1'}})
+    card.should_not be_valid
+    card.errors.should have_key :link
+    card.errors[:link]=="is pointing to invalid page"
   end
 
 end
+
