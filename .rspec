@@ -1,5 +1,5 @@
 --color
 --profile
 --backtrace
---default-path 'mods'
+--default-path 'mod'
 --require 'wagn/mods_spec_helper'
