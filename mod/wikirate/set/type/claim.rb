@@ -82,11 +82,17 @@ end
 
 event :validate_claim, :before=>:approve, :on=>:save do 
   source_card = subcards["+source"]
-  if !source_card 
+  if !source_card or !source_card[:content] or !source_card[:content].empty?
     errors.add :link, "is empty" 
   else
     if source_card[:type_id] != Card::WebpageID
       errors.add :link, "is pointing to invalid page" 
+    else
+      duplicate_wql = { :right=>Card[:wikirate_link].name, :content=>source_card[:content] ,:left=>{:type_id=>Card::WebpageID}}
+      duplicates = Card.search duplicate_wql   
+      if !duplicates.any? 
+        errors.add :link, "is pointing to a non exisiting page" 
+      end
     end
   end
    
