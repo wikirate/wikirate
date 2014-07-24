@@ -33,14 +33,6 @@ rescue
 end
 
 
-# def find_duplicates url
-#   #need to check if content changed...
-#    duplicate_wql = { :right=>Card[:wikirate_link].name, :content=>url ,:left=>{:type_id=>Card::WebpageID}}
-# #  duplicate_wql[:not] = { :id => id } if id
-#   duplicates = Card.search duplicate_wql
-# end
-
-
 event :autopopulate_website, :after=>:approve_subcards, :on=>:create do
   if link_card = subcards["+#{ Card[:wikirate_link].name }"] and link_card.errors.empty?
     host = link_card.instance_variable_get '@host'
