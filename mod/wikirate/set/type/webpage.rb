@@ -9,7 +9,7 @@ event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc
   if url.length == 0
     errors.add :link, "is empty" 
   else
-    duplicates = find_duplicates url
+    duplicates = self.type_card.find_duplicates url
     if duplicates.any?
       self.name = duplicates.first.cardname.left
       abort :success
@@ -33,12 +33,12 @@ rescue
 end
 
 
-def find_duplicates url
-  #need to check if content changed...
-   duplicate_wql = { :right=>Card[:wikirate_link].name, :content=>url ,:left=>{:type_id=>Card::WebpageID}}
-#  duplicate_wql[:not] = { :id => id } if id
-  duplicates = Card.search duplicate_wql
-end
+# def find_duplicates url
+#   #need to check if content changed...
+#    duplicate_wql = { :right=>Card[:wikirate_link].name, :content=>url ,:left=>{:type_id=>Card::WebpageID}}
+# #  duplicate_wql[:not] = { :id => id } if id
+#   duplicates = Card.search duplicate_wql
+# end
 
 
 event :autopopulate_website, :after=>:approve_subcards, :on=>:create do
