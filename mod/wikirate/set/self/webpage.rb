@@ -23,7 +23,10 @@ format :json do
     duplicates = card.find_duplicates url
     if duplicates.any?
       origin_page_card = duplicates.first.left
-      metadata.set_meta_data Card["#{origin_page_card.name}+title"].content, Card["#{origin_page_card.name}+description"].content, Card["#{origin_page_card.name}+image_url"].content
+      title =  Card["#{origin_page_card.name}+title"] ? Card["#{origin_page_card.name}+title"].content : ""
+      description =  Card["#{origin_page_card.name}+description"] ? Card["#{origin_page_card.name}+description"].content : ""
+      image_url = Card["#{origin_page_card.name}+image_url"] ? Card["#{origin_page_card.name}+image_url"].content : ""
+      metadata.set_meta_data title,description,image_url
     else
       begin 
         preview = LinkThumbnailer.generate url
