@@ -88,7 +88,7 @@ GEM
     journey (1.0.4)
     json (1.8.1)
     libv8 (3.16.14.3)
-    link_thumbnailer (2.2.0)
+    link_thumbnailer (2.2.3)
       activesupport (>= 3.0)
       fastimage (~> 1.6)
       json (~> 1.7, >= 1.7.7)
@@ -207,7 +207,7 @@ DEPENDENCIES
   capistrano-bundler
   capistrano-rvm
   dalli
-  link_thumbnailer
+  link_thumbnailer (>= 2.2.3)
   mysql2 (~> 0.3)
   rails-dev-tweaks
   rspec-rails (~> 2.6)
