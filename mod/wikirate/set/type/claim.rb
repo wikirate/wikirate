@@ -81,21 +81,43 @@ end
 
 
 event :validate_claim, :before=>:approve, :on=>:save do 
-  source_card = subcards["+source"]
-  if !source_card or !source_card[:content] or source_card[:content].empty?
-    errors.add :link, "is empty" 
-  else
-    if source_card[:type_id] != Card::WebpageID
-      errors.add :link, "is pointing to invalid page" 
-    else
-      duplicate_wql = { :right=>Card[:wikirate_link].name, :content=>source_card[:content] ,:left=>{:type_id=>Card::WebpageID}}
-      duplicates = Card.search duplicate_wql   
-      if !duplicates.any? 
-        errors.add :link, "is pointing to a non exisiting page" 
-      end
-    end
-  end
   errors.add :claim, "is too long (100 character maximum)" if name.length > 100
+end
+
+event :validate_source, :after=>:approve, :on=>:save do 
+  # 1. it correctly validates when adding a claim
+  # 2. it correctly validates when editing a claim with +source
+  # 3. it doesn't break anything when editing a claim without +source (eg renaming)
+
+  #first, get the source card from request
+  source_card = subcards["+source"]||subcards["+Source"]
+
+  #second, if it is already a real card, fetch the source card
+  source_card||=fetch( :trait=>:source ) if real?
+
+  #if it is renaming, the above line wont be empty or in pointer type, maybe in search type 
+  #no need to check for this case
+  #check when null or the source_card is in pointer
+  if !real?
+    check_source source_card
+  elsif !source_card or source_card.type_id != Card::SearchTypeID 
+    check_source source_card
+  end
+end
+
+def check_source source_card
+
+  if !source_card or !source_card.content.present?
+    errors.add :source, "is empty" 
+  else
+    source_card.item_cards.each do |item_card|
+      if !item_card.real? 
+        errors.add :source, "#{item_card.name} does not exist" 
+      elsif item_card.type_id != Card::WebpageID
+        errors.add :source, "#{item_card.name} is not a valid Source Page" 
+      end
+    end   
+  end
 end
 
 view :missing do |args|
@@ -139,3 +161,4 @@ event :sort_tags, :before=>:approve_subcards, :on=>:create do
   end
 end
 =end
+
