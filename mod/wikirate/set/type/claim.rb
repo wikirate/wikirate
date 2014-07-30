@@ -84,6 +84,34 @@ event :validate_claim, :before=>:approve, :on=>:save do
   errors.add :claim, "is too long (100 character maximum)" if name.length > 100
 end
 
+event :validate_source, :after=>:approve, :on=>:save do 
+  # 1. it correctly validates when adding a claim
+  # 2. it correctly validates when editing a claim with +source
+  # 3. it doesn't break anything when editing a claim without +source (eg renaming)
+
+  #first, get the source card from request
+  source_card = subcards["+source"]||subcards["+Source"]
+
+  if source_card || new_card?
+    check_source source_card
+  end
+end
+
+def check_source source_card
+
+  if !source_card or !source_card.content.present?
+    errors.add :source, "is empty" 
+  else
+    source_card.item_cards.each do |item_card|
+      if !item_card.real? 
+        errors.add :source, "#{item_card.name} does not exist" 
+      elsif item_card.type_id != Card::WebpageID
+        errors.add :source, "#{item_card.name} is not a valid Source Page" 
+      end
+    end   
+  end
+end
+
 view :missing do |args|
   _render_link args
 end
@@ -125,3 +153,4 @@ event :sort_tags, :before=>:approve_subcards, :on=>:create do
   end
 end
 =end
+
