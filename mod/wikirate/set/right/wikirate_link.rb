@@ -18,7 +18,7 @@ event :validate_content, :before=>:approve, :on=>:save do
     errors.add :link, 'invalid uri' unless @host
   end
 end
-event :check_url_checking, :before=>:approve, :on=>:update do 
+event :block_url_changing, :before=>:approve, :on=>:update do 
   if real?
     origin_card = revisions.last
     if origin_card.content != content
