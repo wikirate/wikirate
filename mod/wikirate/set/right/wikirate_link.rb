@@ -18,7 +18,14 @@ event :validate_content, :before=>:approve, :on=>:save do
     errors.add :link, 'invalid uri' unless @host
   end
 end
-
+event :check_url_checking, :before=>:approve, :on=>:update do 
+  if real?
+    origin_card = revisions[revisions.length-1]
+    if origin_card.content != content
+      errors.add :link, "is not allowed to be changed."
+    end
+  end
+end
 =begin
 
 view :iframe do |args|
