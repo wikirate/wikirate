@@ -92,15 +92,7 @@ event :validate_source, :after=>:approve, :on=>:save do
   #first, get the source card from request
   source_card = subcards["+source"]||subcards["+Source"]
 
-  #second, if it is already a real card, fetch the source card
-  source_card||=fetch( :trait=>:source ) if real?
-
-  #if it is renaming, the above line wont be empty or in pointer type, maybe in search type 
-  #no need to check for this case
-  #check when null or the source_card is in pointer
-  if !real?
-    check_source source_card
-  elsif !source_card or source_card.type_id != Card::SearchTypeID 
+  if source_card || new_card?
     check_source source_card
   end
 end
