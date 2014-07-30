@@ -42,10 +42,10 @@ format :html do
     card_name = args[:show_popup]||Card::Env.params[:show_popup]
     after_card = Card[card_name]
     if !after_card
-      Rails.logger.info "Expect #{card_name} exist"
-      return ""
+       Rails.logger.info "Expect #{card_name} exist"
+    else
+       "<div class='popup-window'>#{ after_card.subformat( :format=>:html).render_core } </div>"
     end
-    content = "<div class='popup-window'>#{ after_card.format( :format=>:html).render_core } </div>"
   end
   
 =begin
