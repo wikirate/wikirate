@@ -20,7 +20,7 @@ event :validate_content, :before=>:approve, :on=>:save do
 end
 event :check_url_checking, :before=>:approve, :on=>:update do 
   if real?
-    origin_card = revisions[revisions.length-1]
+    origin_card = revisions.last
     if origin_card.content != content
       errors.add :link, "is not allowed to be changed."
     end
