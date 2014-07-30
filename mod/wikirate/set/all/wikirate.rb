@@ -38,6 +38,16 @@ format :html do
     holder.citations.size
   end
 
+  view :popup do |args|
+    card_name = args[:show_popup]||Card::Env.params[:show_popup]
+    after_card = Card[card_name]
+    if !after_card
+       Rails.logger.info "Expect #{card_name} exist"
+    else
+       "<div class='popup-window'>#{ after_card.subformat( :format=>:html).render_core } </div>"
+    end
+  end
+  
 =begin
   # navdrop views are called by wikirate-nav js
   view :navdrop, :tags=>:unknown_ok do |args|
