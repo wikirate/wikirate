@@ -40,16 +40,16 @@ format :html do
 
   view :modal do |args|
     card_name = Card::Env.params[:show_modal]
-    after_card = Card[card_name]
-    if !after_card
-       Rails.logger.info "Expect #{card_name} exist"
-       "" #otherwise it will return true
+    if card_name.present?
+      after_card = Card[card_name]
+      if !after_card
+         Rails.logger.info "Expect #{card_name} exist"
+         "" #otherwise it will return true
+      else
+         "<div class='modal-window'>#{ subformat( after_card ).render_core } </div>"
+      end
     else
-<<<<<<< HEAD
-       "<div class='modal-window'>#{ subformat( after_card ).render_core }</div>"
-=======
-       "<div class='modal-window'>#{ subformat( after_card ).render_core } </div>"
->>>>>>> wagn/master
+      ""
     end
   end
   
