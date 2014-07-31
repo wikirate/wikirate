@@ -44,7 +44,7 @@ format :html do
     if !after_card
        Rails.logger.info "Expect #{card_name} exist"
     else
-       "<div class='popup-window'>#{ after_card.subformat( :format=>:html).render_core } </div>"
+       "<div class='popup-window'>#{ subformat( after_card ).render_core } </div>"
     end
   end
   
