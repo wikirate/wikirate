@@ -45,7 +45,11 @@ format :html do
        Rails.logger.info "Expect #{card_name} exist"
        "" #otherwise it will return true
     else
+<<<<<<< HEAD
        "<div class='modal-window'>#{ subformat( after_card ).render_core }</div>"
+=======
+       "<div class='modal-window'>#{ subformat( after_card ).render_core } </div>"
+>>>>>>> wagn/master
     end
   end
   
