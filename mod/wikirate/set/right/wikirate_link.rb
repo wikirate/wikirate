@@ -19,11 +19,8 @@ event :validate_content, :before=>:approve, :on=>:save do
   end
 end
 event :block_url_changing, :before=>:approve, :on=>:update do 
-  if real?
-    origin_card = revisions.last
-    if origin_card.content != content
-      errors.add :link, "is not allowed to be changed."
-    end
+  if real? and updates.for(:content)
+    errors.add :link, "is not allowed to be changed."
   end
 end
 =begin

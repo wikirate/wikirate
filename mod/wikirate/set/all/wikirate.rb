@@ -38,13 +38,13 @@ format :html do
     holder.citations.size
   end
 
-  view :popup do |args|
-    card_name = args[:show_popup]||Card::Env.params[:show_popup]
+  view :modal do |args|
+    card_name = Card::Env.params[:show_modal]
     after_card = Card[card_name]
     if !after_card
        Rails.logger.info "Expect #{card_name} exist"
     else
-       "<div class='popup-window'>#{ subformat( after_card ).render_core } </div>"
+       "<div class='modal-window'>#{ subformat( after_card ).render_core } </div>"
     end
   end
   
