@@ -1,24 +1,25 @@
 namespace :backup do
   task :create do
     on roles(:db) do
-#      execute :sudo, "/opt/bin/backup_local wikirate"
-      execute :sudo, "/opt/bin/backup_remote wikirate"
+      execute  "/opt/bin/backup_local wikirate"
+      #execute :sudo, "/opt/bin/backup_remote wikirate"
     end
   end
   
   task :pull do
     invoke 'backup:download'
-    invoke 'refresh_local'
+    invoke 'backup:refresh_local'
   end
   
   task :download do
+    backup_dir = fetch :local_backups_dir
     run_locally do
-      execute :rm, '-rf /tmp/wikirate'
-      execute :mkdir, '/tmp/wikirate'
+      execute :rm, "-rf #{ backup_dir }"
+      execute :mkdir, "#{ backup_dir }"
     end
     on roles(:db) do
-      download! "#{ fetch :data_backups_dir }/db.gz",     "/tmp/wikirate"
-      download! "#{ fetch :data_backups_dir }/files.tgz", "/tmp/wikirate"
+      download! "#{ fetch :data_backups_dir }/db.gz",     backup_dir
+      download! "#{ fetch :data_backups_dir }/files.tgz", backup_dir
     end
   end
   
@@ -40,6 +41,17 @@ namespace :backup do
       end
     end
   end
+  task :unzip_local do
+    run_locally do
+      backup_dir = fetch :local_backups_dir
+      if test( "[ ! -f #{ backup_dir }/db ]")      
+        within backup_dir do
+          execute :mkdir, 'files; cd files; tar -xzf ../files.tgz'
+          execute :gunzip, 'db.gz'
+        end
+      end
+    end
+  end
   
   task :refresh do
     invoke 'backup:unzip'
@@ -50,7 +62,12 @@ namespace :backup do
       #custom script for this because file permissions are all www-data.www-data
     end
   end
-  
-  
-  
 end
+desc "Backup to local /tmp/wikirate"
+  task :get_backup do
+    on roles(:db) do
+      invoke 'backup:create'
+      invoke 'backup:download'
+      invoke 'backup:unzip_local'
+    end
+  end
