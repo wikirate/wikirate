@@ -71,3 +71,4 @@ desc "Backup to local /tmp/wikirate"
       invoke 'backup:unzip_local'
     end
   end
+  
