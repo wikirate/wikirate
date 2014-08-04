@@ -53,17 +53,7 @@ format :html do
     end
   end
   
-=begin
-  # navdrop views are called by wikirate-nav js
-  view :navdrop, :tags=>:unknown_ok do |args|
-    items = Card.search( :type_id=>card.type_id, :sort=>:name, :return=>:name ).map do |item|
-      klass = item.to_name.key == card.key ? 'class="current-item"' : ''
-      %{<li #{ klass }>#{ link_to_page item }</li>}
-    end.join "\n"
-    %{ <ul>#{items}</ul> }
-  end
-=end
-  
+
     
 end
 
