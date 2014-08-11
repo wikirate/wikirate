@@ -40,25 +40,20 @@ format :html do
 
   view :modal do |args|
     card_name = Card::Env.params[:show_modal]
-    after_card = Card[card_name]
-    if !after_card
-       Rails.logger.info "Expect #{card_name} exist"
+    if card_name.present?
+      after_card = Card[card_name]
+      if !after_card
+         Rails.logger.info "Expect #{card_name} exist"
+         "" #otherwise it will return true
+      else
+         "<div class='modal-window'>#{ subformat( after_card ).render_core } </div>"
+      end
     else
-       "<div class='modal-window'>#{ subformat( after_card ).render_core } </div>"
+      ""
     end
   end
   
-=begin
-  # navdrop views are called by wikirate-nav js
-  view :navdrop, :tags=>:unknown_ok do |args|
-    items = Card.search( :type_id=>card.type_id, :sort=>:name, :return=>:name ).map do |item|
-      klass = item.to_name.key == card.key ? 'class="current-item"' : ''
-      %{<li #{ klass }>#{ link_to_page item }</li>}
-    end.join "\n"
-    %{ <ul>#{items}</ul> }
-  end
-=end
-  
+
     
 end
 
