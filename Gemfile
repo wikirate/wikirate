@@ -14,6 +14,7 @@ group :test do
   gem 'rspec-rails', "~> 2.6"   # behavior-driven-development suite
   gem 'spork', '>=0.9'
   gem 'timecop'
+  gem 'simplecov'
 end
 
 group :development do
