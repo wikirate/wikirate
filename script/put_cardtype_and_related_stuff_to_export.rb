@@ -76,10 +76,27 @@ klasses.map do |klass, rules|
               #cards_in_export.push child.name
               
             end
-            puts "#{rule.left.name} #{rule.left.left.name}"
-            export_card.add_item "#{rule.left.name}+*structure"
+
             export_card.add_item rule.left.left.name
-            #export_card.save!
+
+            wql = { :left=> {:name=> rule.left.left.name}}
+            left_part_of_card = Card.search wql
+            left_part_of_card.each do |card|
+              wql = { :left=> {:part=> rule.left.left.name},:right=>"*structure"}
+              simple_structure = Card.search wql
+              simple_structure.each do |str|
+                export_card.add_item "#{str.name}"    
+              end
+              wql = { :left=> {:part=> rule.left.left.name},:right_plus=>"*structure"}
+              right_plus_structure = Card.search wql
+              right_plus_structure.each do |str|
+                export_card.add_item "#{str.name}+*structure"    
+              end
+              #export_card.add_item "#{card.name}+*structure"  
+
+            end
+            puts "#{rule.left.name} #{rule.left.left.name}"
+            
           end
         end
        
