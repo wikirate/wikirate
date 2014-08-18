@@ -1,3 +1,5 @@
+require 'YAML'
+require 'byebug'
 namespace :backup do
   task :create do
     on roles(:db) do
@@ -68,9 +70,16 @@ namespace :backup do
       backup_dir = fetch :local_backups_dir
       if test( "[  -f #{ backup_dir }/db ]")      
         within backup_dir do
-          mysql_pw = fetch :local_database_password
-          mysql_options = "-u #{fetch :local_database_user} #{fetch :local_database} " 
-          mysql_options << "-p#{mysql_pw} " if mysql_pw.length>0
+
+          info = YAML::load(IO.read("config/database.yml"))
+          
+          local_database = info["development"]["database"]
+          local_database_user =  info["development"]["username"]
+          local_database_password =  info["development"]["password"]
+          
+          
+          mysql_options = "-u #{local_database_user} #{local_database} " 
+          mysql_options << "-p#{local_database_password} " if local_database_password
           time = Time.new
           execute :mysqldump, "#{mysql_options} >before_importing_#{time.strftime("%Y%m%d%H%M%S")}.sql"
           execute :mysql, "#{mysql_options} < db"
