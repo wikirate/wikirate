@@ -59,7 +59,10 @@ klasses.map do |klass, rules|
         if !rule.item_names.include? "Anyone"
           get_cards_included rule.left.left.name,cards_in_export
           cards_in_export.each do |cc|
-            export_card.add_item cc
+            _card = Card[cc]
+            puts "card type = #{_card.name} #{_card.type_id}"
+            export_card.add_item cc if _card.type_id ==  19
+
           end
             #export_card.add_item rule.left.left.name
             #export_card.save!
