@@ -62,6 +62,35 @@ namespace :backup do
       #custom script for this because file permissions are all www-data.www-data
     end
   end
+
+  task :update_db do
+    run_locally do
+      backup_dir = fetch :local_backups_dir
+      if test( "[  -f #{ backup_dir }/db ]")      
+        within backup_dir do
+          mysql_pw = fetch :local_database_password
+          mysql_options = "-u #{fetch :local_database_user} #{fetch :local_database} " 
+          mysql_options << "-p#{mysql_pw} " if mysql_pw.length>0
+          time = Time.new
+          execute :mysqldump, "#{mysql_options} >before_importing_#{time.strftime("%Y%m%d%H%M%S")}.sql"
+          execute :mysql, "#{mysql_options} < db"
+        end
+      end
+    end
+  end
+  task :update_files do
+    run_locally do
+      backup_dir = fetch :local_backups_dir
+      if File.exists? "#{ backup_dir }/files"    
+        within backup_dir do
+          time = Time.new
+          files_dir = fetch :local_wikirate_file_dir
+          execute :mv, "#{files_dir} #{backup_dir}/before_updating_files_#{time.strftime("%Y%m%d%H%M%S")}"
+          execute :mv, "files #{files_dir}"
+        end
+      end
+    end
+  end
 end
 desc "Backup to local /tmp/wikirate"
   task :get_backup do
@@ -69,6 +98,8 @@ desc "Backup to local /tmp/wikirate"
       invoke 'backup:create'
       invoke 'backup:download'
       invoke 'backup:unzip_local'
+      invoke 'backup:update_db'
+      invoke 'backup:update_files'
     end
   end
   
