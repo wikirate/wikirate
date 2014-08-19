@@ -24,7 +24,6 @@ klasses = Card.set_patterns.reverse.map do |set_class|
   if set_class==Card::TypeSet
     wql = { :left  => { :type =>Card::SetID },
     :right => card.id,
-            #:sort  => 'content',
             
             :sort  => ['content', 'name'],
             :limit => 0
@@ -59,21 +58,16 @@ klasses.map do |klass, rules|
             wql = { :type=> rule.left.left.name}
 
             cards_in_type = Card.search wql
-            #byebug
             cards_in_type.each do |card|
               cards_in_export.push card.name
               puts "card added:#{card.name}"
             end
 
             wql = { :left=> {:type=> rule.left.left.name}}
-            #byebug
-            #cards in this type 
             related_cards = Card.search wql
            
             related_cards.each do |child|
               get_cards_included child.name,cards_in_export
-              #cards_in_export.push child.name
-              #cards_in_export.push child.name
               
             end
 
@@ -91,8 +85,7 @@ klasses.map do |klass, rules|
               right_plus_structure = Card.search wql
               right_plus_structure.each do |str|
                 export_card.add_item "#{str.name}+*structure"    
-              end
-              #export_card.add_item "#{card.name}+*structure"  
+              end 
 
             end
             puts "#{rule.left.name} #{rule.left.left.name}"
@@ -106,13 +99,9 @@ klasses.map do |klass, rules|
   end
 end
 
-
-
-
-puts "cards_in_export.count=#{cards_in_export.count}"
 cards_in_export.each do |name|
   puts "add to export = #{name}"
   export_card.add_item name
 end
-puts "count = #{export_card.item_names.count}"
+
 export_card.save!
