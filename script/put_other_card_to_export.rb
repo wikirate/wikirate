@@ -45,15 +45,7 @@ klasses.map do |klass, rules|
   unless klass.anchorless?
     previous_content = nil
     rules.map do |rule|
-     
-      # wql = { :included_by=> rule.left.left.name}
-      # card_included = Card.search wql
-      # #byebug
-      # card_included.each do |card|
-      #   export_card.add_item card.name
-      #   puts "card added:#{card.name}"
-      # end
-      
+
       puts "#{klass}:#{rule.name}(#{rule.item_names} #{Card[rule.left.left.type_id].codename})" if !rule.item_names.include? "Anyone"
       if !rule.name.include? "*email+*right"
         if !rule.item_names.include? "Anyone"
@@ -64,8 +56,6 @@ klasses.map do |klass, rules|
             export_card.add_item cc if _card.type_id ==  19
 
           end
-            #export_card.add_item rule.left.left.name
-            #export_card.save!
           
         end
        
@@ -74,5 +64,4 @@ klasses.map do |klass, rules|
 
   end
 end
-puts "count=#{export_card.item_names.count}"
 export_card.save!
