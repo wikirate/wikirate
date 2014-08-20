@@ -164,6 +164,10 @@ GEM
       rspec-expectations (~> 2.99.0)
       rspec-mocks (~> 2.99.0)
     sass (3.3.9)
+    simplecov (0.7.1)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.7.1)
+    simplecov-html (0.7.1)
     smartname (0.2.3)
       activesupport
       htmlentities (~> 4.3.0)
@@ -211,6 +215,7 @@ DEPENDENCIES
   mysql2 (~> 0.3)
   rails-dev-tweaks
   rspec-rails (~> 2.6)
+  simplecov
   spork (>= 0.9)
   sprockets
   therubyracer
