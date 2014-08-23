@@ -19,7 +19,7 @@ format :html do
   
   view :name_fieldset do |args|
     #force showing help text
-    args[:help]=true
+    args[:help] ||= true
     super args
   end
 
