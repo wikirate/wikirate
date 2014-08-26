@@ -29,7 +29,6 @@ klasses.map do |klass, rules|
 
       puts "#{klass}:#{rule.name}(#{rule.item_names} #{Card[rule.left.left.type_id].codename})" if !rule.item_names.include? "Anyone"
       if !rule.name.include? "*email+*right"
-        #byebug
         if rule.left.left.type_id==5
 
           wql={:type =>rule.left.left.name }
