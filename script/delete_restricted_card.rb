@@ -29,13 +29,24 @@ klasses.map do |klass, rules|
 
       puts "#{klass}:#{rule.name}(#{rule.item_names} #{Card[rule.left.left.type_id].codename})" if !rule.item_names.include? "Anyone"
       if !rule.name.include? "*email+*right"
-        if !rule.item_names.include? "Anyone"
-          #rule.delete!
-          puts "#{rule.name} with permission only for #{rule.item_names} is deleted." 
-        end
-        if !Card[rule.left.left.type_id].codename
-          #Card[rule.left.left.type_id].delete!
-          puts "Cardtype: #{Card[rule.left.left.type_id].name} is deleted."
+        #byebug
+        if rule.left.left.type_id==5
+
+          wql={:type =>rule.left.left.name }
+          children = Card.search wql
+          children.each do |child|
+            puts "Card: #{child.name} is deleted."  
+            child.delete!
+          end
+          puts "Cardtype: #{rule.left.left.name} is deleted."
+          rule.left.left.delete!
+          
+        else
+          if !rule.item_names.include? "Anyone"
+            puts "#{rule.left.left.name} with permission only for #{rule.item_names} is deleted." 
+            Card[rule.left.left.name].delete!
+            
+          end
         end
       end
     end
