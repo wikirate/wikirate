@@ -1,11 +1,14 @@
 require 'link_thumbnailer'
 
+=begin
 view :core do |args|
   
-  site_card = Card["#{card.name.to_name.trunk_name}+Website"]
+#  site_card = Card["#{card.name.to_name.trunk_name}+Website"]
   #site = site_card && site_card.item_names.first
   link_to "source page", card.raw_content, :target=>'source', :class=>'wikirate-source-link external-link'
 end
+=end
+
 view :editor do |args|
   form.text_field :content, :class=>'card-content',:placeholder=>"http://example.com"
 end

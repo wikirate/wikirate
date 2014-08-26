@@ -1,24 +1,27 @@
+require 'YAML'
+require 'byebug'
 namespace :backup do
   task :create do
     on roles(:db) do
-#      execute :sudo, "/opt/bin/backup_local wikirate"
-      execute :sudo, "/opt/bin/backup_remote wikirate"
+      execute  "/opt/bin/backup_local wikirate"
+      #execute :sudo, "/opt/bin/backup_remote wikirate"
     end
   end
   
   task :pull do
     invoke 'backup:download'
-    invoke 'refresh_local'
+    invoke 'backup:refresh_local'
   end
   
   task :download do
+    backup_dir = fetch :local_backups_dir
     run_locally do
-      execute :rm, '-rf /tmp/wikirate'
-      execute :mkdir, '/tmp/wikirate'
+      execute :rm, "-rf #{ backup_dir }"
+      execute :mkdir, "#{ backup_dir }"
     end
     on roles(:db) do
-      download! "#{ fetch :data_backups_dir }/db.gz",     "/tmp/wikirate"
-      download! "#{ fetch :data_backups_dir }/files.tgz", "/tmp/wikirate"
+      download! "#{ fetch :data_backups_dir }/db.gz",     backup_dir
+      download! "#{ fetch :data_backups_dir }/files.tgz", backup_dir
     end
   end
   
@@ -40,6 +43,17 @@ namespace :backup do
       end
     end
   end
+  task :unzip_local do
+    run_locally do
+      backup_dir = fetch :local_backups_dir
+      if test( "[ ! -f #{ backup_dir }/db ]")      
+        within backup_dir do
+          execute :mkdir, 'files; cd files; tar -xzf ../files.tgz'
+          execute :gunzip, 'db.gz'
+        end
+      end
+    end
+  end
   
   task :refresh do
     invoke 'backup:unzip'
@@ -50,7 +64,51 @@ namespace :backup do
       #custom script for this because file permissions are all www-data.www-data
     end
   end
-  
-  
-  
+
+  task :update_db do
+    run_locally do
+      backup_dir = fetch :local_backups_dir
+      if test( "[  -f #{ backup_dir }/db ]")      
+        within backup_dir do
+
+          info = YAML::load(IO.read("config/database.yml"))
+          
+          local_database = info["development"]["database"]
+          local_database_user =  info["development"]["username"]
+          local_database_password =  info["development"]["password"]
+          
+          
+          mysql_options = "-u #{local_database_user} #{local_database} " 
+          mysql_options << "-p#{local_database_password} " if local_database_password
+          time = Time.new
+          execute :mysqldump, "#{mysql_options} >before_importing_#{time.strftime("%Y%m%d%H%M%S")}.sql"
+          execute :mysql, "#{mysql_options} < db"
+        end
+      end
+    end
+  end
+  task :update_files do
+    run_locally do
+      backup_dir = fetch :local_backups_dir
+      if File.exists? "#{ backup_dir }/files"    
+        within backup_dir do
+          time = Time.new
+          files_dir = fetch :local_wikirate_file_dir
+          execute :mv, "#{files_dir} #{backup_dir}/before_updating_files_#{time.strftime("%Y%m%d%H%M%S")}"
+          execute :mv, "files #{files_dir}"
+        end
+      end
+    end
+  end
 end
+desc "Backup to local /tmp/wikirate"
+  task :get_backup do
+    on roles(:db) do
+      invoke 'backup:create'
+      invoke 'backup:download'
+      invoke 'backup:unzip_local'
+      invoke 'backup:update_db'
+      invoke 'backup:update_files'
+    end
+  end
+  
