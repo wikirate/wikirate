@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.1.0
+  - 1.9.3p484
 install:
   - bundle install
   - wagn seed
