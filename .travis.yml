@@ -1,12 +1,13 @@
 language: ruby
 rvm:
   - 
-install:
-  - bundle config build.nokogiri --use-system-libraries
-  - bundle install
+#install:
+#  - bundle config build.nokogiri --use-system-libraries
+#  - bundle install
+before_script:
   - bundle exec wagn seed
   - mysql --database=wikirate < test/wikiratetest.db
-before_script:
+  
 
 script:
   - bundle exec wagn rs
