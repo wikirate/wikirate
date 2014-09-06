@@ -1,0 +1,9 @@
+language: ruby
+install:
+	- bundle install
+	- mysql --database=wikirate < test/wikiratetest.db
+before_script:
+
+script:
+	- bundle exec wagn rs
+	- bundle exec wagn cc
