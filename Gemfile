@@ -26,5 +26,5 @@ group :development do
 end
 
 group :test, :development do
-  gem "byebug"
+  #gem "byebug"
 end
