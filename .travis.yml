@@ -3,6 +3,7 @@ rvm:
   - 2.1.0
 install:
   - bundle install
+  - wagn seed
   - mysql --database=wikirate < test/wikiratetest.db
 before_script:
 
