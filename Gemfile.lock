@@ -34,6 +34,9 @@ GEM
       multi_json
     arel (3.0.3)
     builder (3.0.4)
+    byebug (3.2.0)
+      columnize (~> 0.8)
+      debugger-linecache (~> 1.2)
     capistrano (3.2.1)
       i18n
       rake (>= 10.0.0)
@@ -54,7 +57,9 @@ GEM
       execjs
     coffee-script-source (1.7.1)
     colorize (0.7.3)
+    columnize (0.8.9)
     dalli (2.7.2)
+    debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.2.1)
@@ -197,6 +202,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  byebug
   capistrano
   capistrano-bundler
   capistrano-rvm

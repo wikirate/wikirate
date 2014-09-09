@@ -7,10 +7,10 @@ rvm:
 before_script:
   - mkdir public
   - mkdir tmp
-  - bundle exec wagn seed
+  - RAILS_ENV=test COVERAGE=false bundle exec wagn seed
   - mysql --database=wikirate < test/wikiratetest.db
   
 
 script:
-  - bundle exec wagn rs
+  - RAILS_ENV=test RAILS_ROOT=. COVERAGE=false bundle exec rspec
   - bundle exec wagn cc
