@@ -26,5 +26,7 @@ group :development do
 end
 
 group :test, :development do
-  #gem "byebug"
+  if RUBY_VERSION =~ /^2/
+ 		gem 'byebug' 
+  end
 end
