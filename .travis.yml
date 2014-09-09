@@ -3,8 +3,8 @@ rvm:
   - 
 #install:
 #  - bundle config build.nokogiri --use-system-libraries
-#  - bundle install
 before_script:
+  - bundle install
   - mkdir public
   - mkdir tmp
   - RAILS_ENV=test COVERAGE=false bundle exec wagn seed
