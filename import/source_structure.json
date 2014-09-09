@@ -10,11 +10,6 @@
         "name": "Source+*self+*structure",
         "type": "HTML",
         "content": "{{list of source||view:content;structure:source preview}}"
-      },
-      {
-        "name": "list of source",
-        "type": "Search",
-        "content": "{\"type\":\"page\"}"
       }
     ]
   }
