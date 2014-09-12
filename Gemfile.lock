@@ -1,3 +1,20 @@
+PATH
+  remote: /opt/wagn
+  specs:
+    wagn (1.13.0)
+      airbrake (~> 3.1)
+      coderay (~> 1.0)
+      coffee-script (~> 2.2)
+      htmlentities (~> 4.3)
+      paperclip (~> 2.8)
+      rails (= 3.2.16)
+      recaptcha (~> 0.3)
+      rmagick (~> 2.13)
+      sass (~> 3.2)
+      smartname (= 0.2.3)
+      uglifier (~> 2.5)
+      uuid (~> 2.3)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -33,10 +50,13 @@ GEM
       builder
       multi_json
     arel (3.0.3)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.0.4)
-    byebug (3.2.0)
+    byebug (3.4.0)
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
+      slop (~> 3.6)
     capistrano (3.2.1)
       i18n
       rake (>= 10.0.0)
@@ -59,6 +79,7 @@ GEM
     colorize (0.7.3)
     columnize (0.8.9)
     dalli (2.7.2)
+    debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
@@ -68,6 +89,7 @@ GEM
     hike (1.2.3)
     htmlentities (4.3.2)
     i18n (0.6.9)
+    interception (0.5)
     journey (1.0.4)
     json (1.8.1)
     libv8 (3.16.14.3)
@@ -84,6 +106,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.6.0)
     multi_json (1.10.1)
@@ -100,6 +123,21 @@ GEM
       cocaine (>= 0.0.2)
       mime-types
     polyglot (0.3.5)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-byebug (2.0.0)
+      byebug (~> 3.4)
+      pry (~> 0.10)
+    pry-rails (0.3.2)
+      pry (>= 0.9.10)
+    pry-rescue (1.4.1)
+      interception (>= 0.5)
+      pry
+    pry-stack_explorer (0.4.9.1)
+      binding_of_caller (>= 0.7)
+      pry (>= 0.9.11)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -151,6 +189,7 @@ GEM
       multi_json (~> 1.0)
       simplecov-html (~> 0.7.1)
     simplecov-html (0.7.1)
+    slop (3.6.0)
     smartname (0.2.3)
       activesupport
       htmlentities (~> 4.3.0)
@@ -184,31 +223,21 @@ GEM
       addressable
       htmlentities
       multi_json
-    wagn (1.13.0)
-      airbrake (~> 3.1)
-      coderay (~> 1.0)
-      coffee-script (~> 2.2)
-      htmlentities (~> 4.3)
-      paperclip (~> 2.8)
-      rails (= 3.2.16)
-      recaptcha (~> 0.3)
-      rmagick (~> 2.13)
-      sass (~> 3.2)
-      smartname (= 0.2.3)
-      uglifier (~> 2.5)
-      uuid (~> 2.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  byebug
   capistrano
   capistrano-bundler
   capistrano-rvm
   dalli
   link_thumbnailer (>= 2.2.3)
   mysql2 (~> 0.3)
+  pry-byebug
+  pry-rails
+  pry-rescue
+  pry-stack_explorer
   rails-dev-tweaks
   rspec-rails (~> 2.6)
   simplecov
@@ -216,4 +245,4 @@ DEPENDENCIES
   sprockets
   therubyracer
   timecop
-  wagn
+  wagn!
