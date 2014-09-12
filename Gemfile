@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'wagn'#, :path=>'/opt/wagn'
+gem 'wagn', :path=>'/opt/wagn'
 gem "mysql2", "~> 0.3"
 gem 'link_thumbnailer', ">= 2.2.3"
 
@@ -26,7 +26,10 @@ group :development do
 end
 
 group :test, :development do
+  gem 'pry-rails'
+  gem 'pry-rescue'
+  gem 'pry-stack_explorer'
   if RUBY_VERSION =~ /^2/
- 		gem 'byebug' 
+ 		gem 'pry-byebug' 
   end
 end
