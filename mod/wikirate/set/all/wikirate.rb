@@ -154,20 +154,20 @@ format :json do
   end
   view :check_source do |args|
     url = Card::Env.params[:url]
-    source= Card::Set::Self::Webpage.find_duplicates url
-    result = Hash.new 
-    result[:result] = false
-    if source.any?
-      origin_page_card = source.first.left
-      result[:source] = origin_page_card.name
+    result = {:result => false }
+    if url
+      source = Self::Webpage.find_duplicates url
+      result[:source] = source.first.left.name if source.any?
     end
     result.to_json
   end
   view :check_iframable do |args|
     url = Card::Env.params[:url]
-    result = Hash.new 
-    counter = 0
-    result[:result]=isIframable url, counter
+    if url
+      result = {:result => isIframable( url, counter=0 ) }
+    else
+      result = {:result => false }
+    end
     result.to_json
   end
 end
