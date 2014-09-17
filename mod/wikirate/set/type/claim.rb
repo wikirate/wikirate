@@ -28,7 +28,7 @@ format :html do
   
   view :tip do |args|
     # special view for prompting users with next steps
-    if ( tip = args[:tip] || next_step_tip ) and Auth.signed_in?
+    if Auth.signed_in? and ( tip = args[:tip] || next_step_tip ) 
       %{
         <div class="claim-tip">
           Tip: You can #{ tip }
