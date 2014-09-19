@@ -2,6 +2,10 @@
 require "net/https"
 require "uri"
 format do
+  def html_escape_except_quotes s
+    # to be used inside single quotes (makes for readable json attributes)
+    s.to_s.gsub(/&/, "&amp;").gsub(/\'/, "&apos;").gsub(/>/, "&gt;").gsub(/</, "&lt;")
+  end
   view :cite do |args|
     ''
   end
@@ -156,8 +160,8 @@ format :json do
     url = Card::Env.params[:url]
     result = {:result => false }
     if url
-      source = Self::Webpage.find_duplicates url
-      result[:source] = source.first.left.name if source.any?
+      source = Self::Webpage.find_duplicates html_escape_except_quotes(url)
+      result = {:result => true, :source => source.first.left.name} if source.any?
     end
     result.to_json
   end
