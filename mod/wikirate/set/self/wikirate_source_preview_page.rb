@@ -1,5 +1,6 @@
 format :json do
   def isIframable url,counter
+
     return false if counter>5
     begin 
       uri = URI.parse(url)
@@ -11,14 +12,20 @@ format :json do
       if response.code=="301" or response.code=="302"
         #redirection
         counter+=1
-        return isIframable(response["location"],counter)
+        if response["location"].start_with?('/')
+          redirect_location = "http://"+uri.host+":#{uri.port}"+response["location"]
+        else
+          redirect_location = response["location"]
+        end
+        return isIframable(redirect_location,counter)
       else
         xFrameOptions = response["x-frame-options"]
         if xFrameOptions and ( xFrameOptions.upcase.include? "DENY" or xFrameOptions.upcase.include? "SAMEORIGIN" )
           return false
         end
       end
-    rescue
+    rescue => error
+      Rails.logger.error error.message
       return false
     end
     return true
