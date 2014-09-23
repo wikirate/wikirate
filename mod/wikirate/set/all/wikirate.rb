@@ -2,10 +2,7 @@
 require "net/https"
 require "uri"
 format do
-  def html_escape_except_quotes s
-    # to be used inside single quotes (makes for readable json attributes)
-    s.to_s.gsub(/&/, "&amp;").gsub(/\'/, "&apos;").gsub(/>/, "&gt;").gsub(/</, "&lt;")
-  end
+
   view :cite do |args|
     ''
   end
@@ -126,52 +123,11 @@ end
 
 
 format :json do
-  def isIframable url,counter
-    
-    return false if counter>5
-    begin 
-      uri = URI.parse(url)
-      http = Net::HTTP.new(uri.host, uri.port)
-      request = Net::HTTP::Get.new(uri.request_uri)
-      request.initialize_http_header({"User-Agent" => "My Ruby Script"})
 
-      response = http.request(request)
-      if response.code=="301" or response.code=="302"
-        #redirection
-        counter+=1
-        return isIframable(response["location"],counter)
-      else
-        xFrameOptions = response["x-frame-options"]
-        if xFrameOptions and ( xFrameOptions.upcase.include? "DENY" or xFrameOptions.upcase.include? "SAMEORIGIN" )
-          return false
-        end
-      end
-    rescue
-      return false
-    end
-    return true
-  end
   view :id_atom do |args|
     h = _render_atom
     h[:id] = card.id if card.id
     h    
   end
-  view :check_source do |args|
-    url = Card::Env.params[:url]
-    result = {:result => false }
-    if url
-      source = Self::Webpage.find_duplicates html_escape_except_quotes(url)
-      result = {:result => true, :source => source.first.left.name} if source.any?
-    end
-    result.to_json
-  end
-  view :check_iframable do |args|
-    url = Card::Env.params[:url]
-    if url
-      result = {:result => isIframable( url, counter=0 ) }
-    else
-      result = {:result => false }
-    end
-    result.to_json
-  end
+ 
 end

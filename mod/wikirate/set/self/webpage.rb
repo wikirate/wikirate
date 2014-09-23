@@ -1,4 +1,7 @@
-
+# def html_escape_except_quotes s
+#   # to be used inside single quotes (makes for readable json attributes)
+#   s.to_s.gsub(/&/, "&amp;").gsub(/\'/, "&apos;").gsub(/>/, "&gt;").gsub(/</, "&lt;")
+# end
 def self.find_duplicates url
   duplicate_wql = { :right=>Card[:wikirate_link].name, :content=>url ,:left=>{:type_id=>Card::WebpageID}}
   duplicates = Card.search duplicate_wql
