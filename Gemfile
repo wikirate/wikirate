@@ -4,6 +4,7 @@ gem 'wagn', :path=>'/opt/wagn'
 gem "mysql2", "~> 0.3"
 gem 'link_thumbnailer', ">= 2.2.3"
 
+
 #if RUBY_PLATFORM !~ /darwin/
 group :live do
   gem 'therubyracer'
@@ -11,7 +12,9 @@ group :live do
 end
 
 group :test do
-  gem 'rspec-rails', "~> 2.6"   # behavior-driven-development suite
+  gem 'rspec-rails', "~> 3.1.0"   # behavior-driven-development suite
+  #gem 'rspec'
+  #gem 'wagn-rspec-formatter', :path=>'/opt/wagn-rspec-formatter'
   gem 'spork', '>=0.9'
   gem 'timecop'
   gem 'simplecov'
@@ -29,7 +32,7 @@ group :test, :development do
   gem 'pry-rails'
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
-#  if RUBY_VERSION =~ /^2/
-# 		gem 'pry-byebug' 
-#  end
+  #if RUBY_VERSION =~ /^2/
+  #  gem 'pry-byebug' 
+  #end
 end
