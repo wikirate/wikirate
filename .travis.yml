@@ -1,0 +1,16 @@
+language: ruby
+rvm:
+  - 
+#install:
+#  - bundle config build.nokogiri --use-system-libraries
+before_script:
+  - bundle install
+  - mkdir public
+  - mkdir tmp
+  - RAILS_ENV=test COVERAGE=false bundle exec wagn seed
+  - mysql --database=wikirate < test/wikiratetest.db
+  
+
+script:
+  - RAILS_ENV=test RAILS_ROOT=. COVERAGE=false bundle exec rspec
+  - bundle exec wagn cc
