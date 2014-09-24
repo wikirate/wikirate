@@ -9,7 +9,7 @@ event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc
   if url.length == 0
     errors.add :link, "is empty" 
   else
-    duplicates = Card::Set::Self::Webpage.find_duplicates url
+    duplicates = Self::Webpage.find_duplicates url
     if duplicates.any?
       self.name = duplicates.first.cardname.left
       abort :success
