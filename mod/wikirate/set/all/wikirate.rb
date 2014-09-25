@@ -125,9 +125,13 @@ end
 format :json do
 
   view :id_atom do |args|
-    h = _render_atom
-    h[:id] = card.id if card.id
-    h    
+    if params['start'] and start = params['start'].to_i and card.updated_at.to_i >= start 
+      h = _render_atom
+      h[:id] = card.id if card.id
+      h    
+    else
+      ''
+    end
   end
  
 end
