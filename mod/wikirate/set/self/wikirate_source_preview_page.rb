@@ -51,7 +51,7 @@ format :json do
     end
     result.to_json
   end
-   view :feedback ,:perms=>:update do |args|
+   view :feedback ,:perms=>lambda { |r| Auth.signed_in? } do |args|
     url = Card::Env.params[:url]
     company = Card::Env.params[:company]
     topic = Card::Env.params[:topic]
