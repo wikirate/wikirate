@@ -58,8 +58,10 @@ namespace :backup do
   task :refresh do
     invoke 'backup:unzip'
     on roles(:db) do
-      execute :mysql, "-u %s -p%s %s < %s/db" % 
-        [:database_user, :database_password, :database, :data_backups_dir ].map { |x| fetch x }
+      db_args = [:database_user, :database_password, :database, :data_backups_dir ].map { |x| fetch x }
+      execute :mysql, "-u %s -p%s -e 'drop database %s'"   % db_args
+      execute :mysql, "-u %s -p%s -e 'create database %s'" % db_args
+      execute :mysql, "-u %s -p%s %s < %s/db"              % db_args        
       execute :sudo, "/opt/bin/replace_files #{ fetch :data_backups_dir } #{ shared_path }"
       #custom script for this because file permissions are all www-data.www-data
     end
