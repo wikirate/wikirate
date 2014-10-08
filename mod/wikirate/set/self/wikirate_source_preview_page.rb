@@ -30,6 +30,9 @@ format :json do
     end
     return true
   end
+  view :get_user_id do |args|
+    result = {:id=>Auth.current_id}
+  end
   view :check_source do |args|
     url = Card::Env.params[:url]
     result = {:result => false }
@@ -48,16 +51,16 @@ format :json do
     end
     result.to_json
   end
-   view :feedback do |args|
+   view :feedback ,:perms=>lambda { |r| Auth.signed_in? } do |args|
     url = Card::Env.params[:url]
     company = Card::Env.params[:company]
     topic = Card::Env.params[:topic]
     
-    type_of_irrelevance = Card::Env.params[:type_of_irrelevance]
+    type = Card::Env.params[:type]
 
     
     result = {:result => false }
-    case type_of_irrelevance
+    case type
     when "either"
       rel_topic_score = -1
       rel_company_score = -1     
@@ -67,6 +70,9 @@ format :json do
     when "topic"
       rel_topic_score = -1
       rel_company_score = 1
+    when "relevant"
+      rel_topic_score = 1
+      rel_company_score = 1
     else
       return result
     end
@@ -74,7 +80,7 @@ format :json do
     company_id = Card[company].id if Card[company]
     topic_id = Card[topic].id if Card[topic]
     
-    if company_id and topic_id and url and type_of_irrelevance
+    if company_id and topic_id and url and type
       request_url = "http://mklab.iti.gr/wikirate-sandbox/api/index.php/relevance/?url=#{url}&user_id=#{user_id}&rel_topic_score=#{rel_topic_score}&rel_company_score=#{rel_company_score}&company_id=#{company_id}&topic_id=#{topic_id}"
       uri = URI.parse(request_url)
       http = Net::HTTP.new(uri.host, uri.port)
