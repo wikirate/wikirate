@@ -22,7 +22,7 @@ event :validate_content, :before=>:approve, :on=>:save do
   end
 end
 event :block_url_changing, :before=>:approve, :on=>:update do 
-  if real? and content_changed?
+  if real? and db_content_changed?
     errors.add :link, "is not allowed to be changed."
   end
 end
