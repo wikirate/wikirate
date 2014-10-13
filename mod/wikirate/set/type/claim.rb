@@ -1,5 +1,11 @@
 # changes label of name on claims (should be obviatable)
 
+card_accessor :vote_count, :type=>:number, :default=>"0"
+card_accessor :upvote_count, :type=>:number, :default=>"0"
+card_accessor :downvote_count, :type=>:number, :default=>"0"
+
+
+
 format :html do
   view :name_fieldset do |args|
     #rename "name" to "Claim"
@@ -55,6 +61,17 @@ format :html do
     tip = "easily cite this claim by pasting the following:" +
       text_area_tag( :citable_claim, card.default_citation )
     %{ <div class="sample-citation">#{ render :tip, :tip=>tip }</div> }
+  end
+  
+  view :header do |args|
+    render_haml({:args=>args,:super_view=>super(args)}) do
+    %{
+.claim-header
+  = process_content "{{+*vote count|core}}"
+  .claim-title
+    = super_view
+}
+    end
   end
 
 end
@@ -133,6 +150,25 @@ end
 
 def default_citation
   "#{name} {{#{name}|cite}}"
+end
+
+
+def add_upvote;      update_votecount :upvote,   1; end
+def delete_upvote;   update_votecount :upvote,  -1; end
+def add_downvote;    update_votecount :downvote, 1; end
+def delete_downvote; update_votecount :downvote,-1; end
+
+def update_votecount type, value
+  Auth.as_bot do
+    case type
+    when :upvote
+      upvote_count_card.update_attributes :content => "#{upvote_count.to_i + value}"
+      vote_count_card.update_attributes   :content => "#{vote_count.to_i + value}"
+    when :downvote
+      downvote_count_card.update_attributes :content => "#{downvote_count.to_i + value}"
+      vote_count_card.update_attributes     :content => "#{vote_count.to_i - value}"
+    end
+  end
 end
 
 =begin
