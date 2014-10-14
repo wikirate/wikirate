@@ -64,6 +64,9 @@ format :html do
   end
   
   view :header do |args|
+    if card.vote_count_card.new_card?
+      Auth.as_bot { card.vote_count_card.save! }
+    end
     render_haml({:args=>args,:super_view=>super(args)}) do
     %{
 .claim-header
