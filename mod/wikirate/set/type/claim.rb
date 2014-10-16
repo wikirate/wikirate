@@ -64,16 +64,25 @@ format :html do
   end
   
   view :header do |args|
-    if card.vote_count_card.new_card?
-      Auth.as_bot { card.vote_count_card.save! }
-    end
-    render_haml({:args=>args,:super_view=>super(args)}) do
-    %{
+    if args[:home_view] == :open
+      if card.vote_count_card.new_card?
+        Auth.as_bot { card.vote_count_card.save! }
+      end
+      render_haml({:args=>args,:super_view=>super(args)}) do
+      %{
 .claim-header
-  = process_content "{{+*vote count|core}}"
-  .claim-title
+  .claim-vote{:style=>"border-right: solid 1px #eee; float: left; margin-right: 10px; padding-bottom: 10px;"}
+    = process_content "{{+*vote count|core}}"
+  .claim-title{:style=>"text-align: center;"}
     = super_view
-}
+    .creator-credit
+      = process_content "{{_self | structure:creator credit}}"
+    = #process_content "{{_self|tip}}"
+%div{:style=>"clear: both; border-bottom: solid 1px #eee;"}
+  }
+      end
+    else
+      super(args)
     end
   end
 
