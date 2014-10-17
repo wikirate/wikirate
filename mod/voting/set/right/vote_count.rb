@@ -133,40 +133,50 @@ format :html do
   view :core do |args |
     render_haml(:vote_status=>card.vote_status, :up_count=>card.left.upvote_count, :down_count=>card.left.downvote_count) do 
 %{
-.vote{:style=>"padding: 5px 5px 5px 10px; margin-right: 10px; margin-top:5px;"}
-  %style
-    :plain
-      .vote-button, .vote-button:hover {
-      border: solid 1px #ccc; border-radius:0; padding: 0; margin: 0; margin-right: 5px; width: 30px; height: 30px; 
-      background: none;
-      font-size: 6px;
-      text-align: center;
-      font-weight: normal;
-      }
-
-      .vote-link {
-      color: #888; background-color: #eee;
-      }
-      .disabled-vote-link, .disabled-vote-link:hover {
-      color: #fff; background-color: #bbb; 
-      }
-      
-      .vote-count {
-      color: #555; width: 30px; height: 25px; text-align: center; padding-top: 4px;
-      font-weight: bold;
-      }
-      
-      .vote-details {
-      color: #bbb;
-      font-size: 14px;
-      padding-top: 8px;
-      }
-      .vote-number {
-      font-weight: bold;
-      }
-  </style>
-  .vote-up
+%style
+  :plain
+    .vote {
+    padding: 5px 5px 5px 5px;
+    }
     
+    .vote-button, .vote-button:hover {
+    border: solid 1px #ccc; border-radius:0; padding: 0; margin: 0; 
+    margin-right: 5px; 
+    width: 30px; 
+    height: 30px; 
+    background: none;
+    font-size: 6px;
+    text-align: center;
+    font-weight: normal;
+    }
+
+    .vote-link {
+    color: #888; background-color: #eee;
+    }
+    .disabled-vote-link, .disabled-vote-link:hover {
+    color: #fff; background-color: #bbb; 
+    }
+    
+    .vote-count {
+    color: #555; 
+    width: 30px; 
+    height: 25px; 
+    text-align: center; 
+    padding-top: 4px;
+    font-weight: bold;
+    }
+    
+    .vote-details {
+    color: #bbb;
+    font-size: 14px;
+    padding-top: 7px;
+    }
+    .vote-number {
+    font-weight: bold;
+    }
+    
+.vote
+  .vote-up
     = vote_up_link
     %span.vote-details
       <i class="fa fa-users"></i>

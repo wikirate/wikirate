@@ -70,15 +70,32 @@ format :html do
       end
       render_haml({:args=>args,:super_view=>super(args)}) do
       %{
+%style
+  :plain
+    .claim-vote {
+    border-right: solid 1px #eee; 
+    float: left; 
+    margin-right: 10px; 
+    padding: 10px;
+    }
+    .claim-title {
+    padding-right: 10px;
+    padding-left:  10px;
+    text-align: center;
+    }
+    .clear-line {
+    clear: both; 
+    border-bottom: solid 1px #eee;
+    }
 .claim-header
-  .claim-vote{:style=>"border-right: solid 1px #eee; float: left; margin-right: 10px; padding-bottom: 10px;"}
+  .claim-vote
     = process_content "{{+*vote count|core}}"
-  .claim-title{:style=>"text-align: center;"}
+  .claim-title
     = super_view
     .creator-credit
       = process_content "{{_self | structure:creator credit}}"
     = #process_content "{{_self|tip}}"
-%div{:style=>"clear: both; border-bottom: solid 1px #eee;"}
+.clear-line
   }
       end
     else
