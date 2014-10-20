@@ -5,7 +5,6 @@ def vote_up
     uv_card = Auth.current.upvotes_card
     if uv_card.add_id left.id
       uv_card.save!
-      #add_upvote
       update_votecount
     end
   when '-'
@@ -13,7 +12,6 @@ def vote_up
     if dv_card.drop_id left.id
       dv_card.save!
       update_votecount
-      #delete_downvote
     end
   end
 end
@@ -24,14 +22,12 @@ def vote_down
     dv_card = Auth.current.downvotes_card
     if dv_card.add_id left.id
       dv_card.save!
-      #add_downvote
       update_votecount
     end
   when '+'
     uv_card = Auth.current.upvotes_card
     if uv_card.drop_id left.id
       uv_card.save!
-      #delete_upvote
       update_votecount
     end
   end
@@ -61,6 +57,19 @@ def update_votecount
   self.content = (up_count - down_count).to_s
 end
 
+def vote_status
+  if Auth.signed_in?
+    if Auth.current.upvotes_card.include_item? "~#{left.id}"
+      '+'
+    elsif Auth.current.downvotes_card.include_item? "~#{left.id}"
+      '-'
+    else
+      '?'
+    end
+  else
+    '#'
+  end
+end
 
 event :vote, :before=>:approve, :on=>:update, :when=>proc{ |c| Env.params['vote'] } do
   if Auth.signed_in?
@@ -73,21 +82,6 @@ event :vote, :before=>:approve, :on=>:update, :when=>proc{ |c| Env.params['vote'
                  :success=>{:id=>left.name}, :vote=>Env.params['vote'] }
    self.format.save_interrupted_action path_hash
    abort :success => "REDIRECT: #{Card[:signin].cardname.url_key}"
-  end
-end
-
-
-def vote_status
-  if Auth.signed_in?
-    if Auth.current.upvotes_card.include_item? "~#{left.id}"
-      '+'
-    elsif Auth.current.downvotes_card.include_item? "~#{left.id}"
-      '-'
-    else
-      '?'
-    end
-  else
-    '#'
   end
 end
 
