@@ -182,24 +182,6 @@ def default_citation
 end
 
 
-def add_upvote;      update_votecount :upvote,   1; end
-def delete_upvote;   update_votecount :upvote,  -1; end
-def add_downvote;    update_votecount :downvote, 1; end
-def delete_downvote; update_votecount :downvote,-1; end
-
-def update_votecount type, value
-  Auth.as_bot do
-    case type
-    when :upvote
-      upvote_count_card.update_attributes :content => "#{upvote_count.to_i + value}"
-      vote_count_card.update_attributes   :content => "#{vote_count.to_i + value}"
-    when :downvote
-      downvote_count_card.update_attributes :content => "#{downvote_count.to_i + value}"
-      vote_count_card.update_attributes     :content => "#{vote_count.to_i - value}"
-    end
-  end
-end
-
 =begin
 event :sort_tags, :before=>:approve_subcards, :on=>:create do
   tag_key = "+tags" #FIXME - hardcoded card name
