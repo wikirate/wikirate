@@ -30,7 +30,7 @@ format :html do
     %{
       <div class="edits-by">
         <div class='subtitle-header'>Edits by</div>
-        #{ subformat( editor_card, args).render_shorter_search_result :item=>:link}
+        #{ subformat( editor_card).render_shorter_search_result :item=>:link}
       </div>
     }  
   end
