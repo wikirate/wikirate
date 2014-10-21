@@ -14,6 +14,27 @@ end
 
 
 format :html do
+  view :titled_with_edits do |args|
+    wrap args do   
+      [
+        _render_header( args ),
+        render_edits_by( args ),
+        wrap_body( :content=>true ) { _render_core args },
+      ]
+    end  
+  end  
+  
+  
+  view :edits_by do |args|
+    editor_card = card.fetch :trait=>:editors
+    %{
+      <div class="edits-by">
+        <div class='subtitle-header'>Edits by</div>
+        #{ subformat( editor_card, args).render_shorter_search_result :item=>:link}
+      </div>
+    }  
+  end
+  
 
   attr_accessor :citations
   
