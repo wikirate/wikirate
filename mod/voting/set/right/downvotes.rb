@@ -19,4 +19,3 @@ end
 def drop_id id
   drop_item  ("~#{id}")
 end
-
