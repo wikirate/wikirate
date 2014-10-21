@@ -67,6 +67,5 @@ describe Card::Set::Right::Upvotes do
   #     end
   #     expect(Card.fetch('joe user+*upvotes').content).not_to match "[[#{@claim.name}]]"
   #   end
-  # end
-  
+  # end  
 end

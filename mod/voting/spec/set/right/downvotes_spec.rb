@@ -67,6 +67,5 @@ describe Card::Set::Right::Downvotes do
   #     end
   #     expect(Card.fetch('joe user+*downvotes').content).not_to match "[[#{@claim.name}]]"
   #   end
-  # end
-  
+  # end  
 end
