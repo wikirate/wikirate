@@ -33,21 +33,6 @@ def vote_down
   end
 end
 
-# def add_upvote;      change_votecount :upvote,   1; end
-# def delete_upvote;   change_votecount :upvote,  -1; end
-# def add_downvote;    change_votecount :downvote, 1; end
-# def delete_downvote; change_votecount :downvote,-1; end
-#
-# def change_votecount type, value
-#   case type
-#   when :upvote
-#     subcards[left.upvote_count_card.name] = (left.upvote_count.to_i + value).to_s
-#     self.content = (content.to_i + value).to_s
-#   when :downvote
-#     subcards[left.downvote_count_card.name] = (left.downvote_count.to_i + value).to_s
-#     self.content = (content.to_i - value).to_s
-#   end
-# end
 
 def update_votecount 
   up_count = Card.search( :plus=>[{:codename=>'upvotes'},:link_to=>left.name], :return=>'count' )
@@ -126,49 +111,7 @@ format :html do
   
   view :core do |args |
     render_haml(:vote_status=>card.vote_status, :up_count=>card.left.upvote_count, :down_count=>card.left.downvote_count) do 
-%{
-%style
-  :plain
-    .vote {
-    padding: 5px 5px 5px 5px;
-    }
-    
-    .vote-button, .vote-button:hover {
-    border: solid 1px #ccc; border-radius:0; padding: 0; margin: 0; 
-    margin-right: 5px; 
-    width: 30px; 
-    height: 30px; 
-    background: none;
-    font-size: 6px;
-    text-align: center;
-    font-weight: normal;
-    }
-
-    .vote-link {
-    color: #888; background-color: #eee;
-    }
-    .disabled-vote-link, .disabled-vote-link:hover {
-    color: #fff; background-color: #bbb; 
-    }
-    
-    .vote-count {
-    color: #555; 
-    width: 30px; 
-    height: 25px; 
-    text-align: center; 
-    padding-top: 4px;
-    font-weight: bold;
-    }
-    
-    .vote-details {
-    color: #bbb;
-    font-size: 14px;
-    padding-top: 7px;
-    }
-    .vote-number {
-    font-weight: bold;
-    }
-    
+%{    
 .vote
   .vote-up
     = vote_up_link
