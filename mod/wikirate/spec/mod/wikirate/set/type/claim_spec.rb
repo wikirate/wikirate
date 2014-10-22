@@ -12,7 +12,13 @@ describe Card::Set::Type::Claim do
 
     sourcepage
   end
+  it "hides help text under title" do
 
+  end
+  it "gives a correct citation in clipboard view" do
+
+    
+  end
   it "should handle too long claim" do
     card = Card.new(   :type=>"Claim", :name=>"2"*101 )
     card.should_not be_valid

@@ -17,13 +17,21 @@ describe Card::Set::Type::Webpage do
         Card.fetch("#{ sourcepage.name }+description").content.should == preview.description
      
     end
+    it "should create website card for new website" do
+        url = 'http://thisisanewwebsite.com/abc'
+        Card::Env.params[:sourcebox] = 'true'
+        sourcepage = Card.create! :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
+
+        Card["thisisanewwebsite.com"].real?.should==true
+
+    end
     it "should handle empty url" do
         url = ''
         Card::Env.params[:sourcebox] = 'true'
         sourcepage = Card.new :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
         sourcepage.should_not be_valid
-        sourcepage.errors.should have_key :link
-        sourcepage.errors[:source]=="is empty"
+        sourcepage.errors.should have_key :source
+        sourcepage.errors[:source].include?("is empty").should==true
     end
 
     it "should handle duplicated url " do
