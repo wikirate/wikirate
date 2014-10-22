@@ -2,4 +2,4 @@
 --profile
 --backtrace
 --default-path 'mod'
---require 'wagn/mods_spec_helper'
+--require './spec/spec_helper'
