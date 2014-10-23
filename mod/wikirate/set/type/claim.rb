@@ -63,6 +63,17 @@ format :html do
     %{ <div class="sample-citation">#{ render :tip, :tip=>tip }</div> }
   end
   
+  view :titled, :tags=>:comment do |args|
+    wrap args do   
+      [
+        subformat( card.vote_count_card ).render_content,
+        _render_header( args.reverse_merge :optional_menu=>:hide ),
+        wrap_body( :content=>true ) { _render_core args },
+        optional_render( :comment_box, args )
+      ]
+    end
+  end
+  
   view :header do |args|
     if args[:home_view] == :open
       if card.vote_count_card.new_card?
@@ -84,17 +95,16 @@ format :html do
     text-align: center;
     }
     .clear-line {
-    clear: both; 
+    clear: both;
     border-bottom: solid 1px #eee;
     }
 .claim-header
   .claim-vote
-    = process_content "{{+*vote count|core}}"
+    = subformat( card.vote_count_card ).render_details
   .claim-title
     = super_view
     .creator-credit
       = process_content "{{_self | structure:creator credit}}"
-    = #process_content "{{_self|tip}}"
 .clear-line
   }
       end
