@@ -1,3 +1,5 @@
+card_accessor :direct_contribution_count, :type=>:number, :default=>"0"
+
 require 'link_thumbnailer'
 
 event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc{ 
