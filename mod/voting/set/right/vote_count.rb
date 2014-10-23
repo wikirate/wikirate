@@ -80,56 +80,95 @@ format :html do
     end
   end
 
-  def vote_link text, title, up_or_down, extra={}
-    path_hash = {:card=>card, :action=>:update, :view=>:core} #, 
+  def vote_link text, title, up_or_down, view, extra={}
+    path_hash = {:card=>card, :action=>:update, :view=>view} #, 
     path_hash[:vote] = up_or_down
     
     button_tag({:href=>path(path_hash), 
-        :class=>"slotter vote-link vote-button", :type=>'button', :title=>title, :remote=>true, :method=>'post',  :slotSelector=>".vote"}.merge(extra)) do
+        :class=>"slotter vote-link vote-button", :type=>'button', :title=>title, :remote=>true, :method=>'post'}.merge(extra)) do
       text
     end
   end
 
 
-  def vote_up_link
-    case card.vote_status
+  def vote_up_link success_view
+    link = case card.vote_status
     when '+'
       disabled_vote_link :up, "You have already upvoted this claim."
     else
-      vote_link '<i class="fa fa-angle-up fa-4x"></i>', "Vote up", :up
+      vote_link '<i class="fa fa-angle-up fa-4x"></i>', "Vote up", :up, success_view
     end
   end
 
-  def vote_down_link
-    case card.vote_status
+  def vote_down_link success_view
+    link = case card.vote_status
     when '-'
       disabled_vote_link :down, "You have already downvoted this claim."
     else
-      vote_link '<i class="fa fa-angle-down fa-4x"></i>', "Vote down", :down
+      vote_link '<i class="fa fa-angle-down fa-4x"></i>', "Vote down", :down, success_view
     end
   end
   
-  view :core do |args |
-    render_haml(:vote_status=>card.vote_status, :up_count=>card.left.upvote_count, :down_count=>card.left.downvote_count) do 
-%{    
-.vote
-  .vote-up
-    = vote_up_link
-    %span.vote-details
-      <i class="fa fa-users"></i>
-      %span.vote-number
-        = up_count
-      Important
-  .vote-count
-    = card.content
-  .vote-down
-    = vote_down_link
-    %span.vote-details
-      <i class="fa fa-users"></i>
-      %span.vote-number
-        = down_count
-      Not important
-}   
+  def wrap_with_class css_class
+     "<div class=\"#{css_class}\">#{output yield}</div>"
+  end
+  
+  view :content do |args|
+    wrap args.merge(:slot_class=>'card-content') do
+      [
+        _optional_render( :menu, args, :hide ),
+        wrap_with_class('vote-up') { vote_up_link(:content) },
+        _render_core( args ),
+        wrap_with_class('vote-down') {vote_down_link(:content) }
+      ]
+    end
+  end
+  
+  view :core do |args|
+    wrap_with_class('vote-count') do
+      super(args)
+    end
+  end
+  
+  def up_details 
+    render_haml :up_count=>card.left.upvote_count do %{
+%span.vote-details
+  <i class="fa fa-users"></i>
+  %span.vote-number
+    = up_count
+  Important
+      }
+    end
+  end
+  
+  def down_details
+    render_haml :down_count=>card.left.downvote_count do %{
+%span.vote-details
+  <i class="fa fa-users"></i>
+  %span.vote-number
+    = down_count
+  Not important
+      }
+    end
+  end
+  
+  view :details do |args |
+    wrap do 
+      [
+        wrap_with_class('vote-up') do 
+          [
+            vote_up_link(:details),
+            up_details
+          ]
+        end, 
+        _render_core( args ),
+        wrap_with_class('vote-down') do
+          [
+            vote_down_link(:details),
+            down_details
+          ]
+        end 
+      ]      
     end
   end
 end
