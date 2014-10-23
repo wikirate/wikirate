@@ -64,9 +64,13 @@ format :html do
   end
   
   view :titled, :tags=>:comment do |args|
+    vote_count_card = card.vote_count_card
+    if vote_count_card.new_card?
+      Auth.as_bot { vote_count_card.save! }
+    end
     wrap args do   
       [
-        subformat( card.vote_count_card ).render_content,
+        subformat( vote_count_card ).render_content,
         _render_header( args.reverse_merge :optional_menu=>:hide ),
         wrap_body( :content=>true ) { _render_core args },
         optional_render( :comment_box, args )
