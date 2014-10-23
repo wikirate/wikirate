@@ -14,6 +14,27 @@ end
 
 
 format :html do
+  view :titled_with_edits do |args|
+    wrap args do   
+      [
+        _render_header( args ),
+        render_edits_by( args ),
+        wrap_body( :content=>true ) { _render_core args },
+      ]
+    end  
+  end  
+  
+  
+  view :edits_by do |args|
+    editor_card = card.fetch :trait=>:editors
+    %{
+      <div class="edits-by">
+        <div class='subtitle-header'>Edits by</div>
+        #{ subformat( editor_card).render_shorter_search_result :item=>:link}
+      </div>
+    }  
+  end
+  
 
   attr_accessor :citations
   
@@ -21,6 +42,26 @@ format :html do
     '<a class="fa fa-pencil-square-o"></a>'
   end
   
+  view :shorter_search_result do |args|
+    result = ""
+    total_number = card.count
+    fetch_number = total_number>4 ? 4 : total_number
+    items = card.item_cards :limit=>fetch_number
+    for i in 0..fetch_number-1
+      link = items[i].format.render(:link)
+      if i == 0 
+        result+=link
+      elsif i == total_number-1
+        result+=" and "+link
+      elsif i >=3 
+        result+=" and <a class=\"known-card\" href=\"#{card.format.render(:url)}\"> #{total_number-3} others</a>"
+      else
+        result+=" , "+link
+      end
+    end
+    result
+  end
+
   view :name_fieldset do |args|
     #force showing help text
     args[:help] ||= true
