@@ -14,23 +14,6 @@ format :html do
   view :header_with_voting do |args|
     render_haml({:args=>args.merge(:without_voting=>true)}) do
       %{
-%style
-  :plain
-    .header-vote {
-    border-right: solid 1px #eee; 
-    float: left; 
-    margin-right: 10px; 
-    padding: 10px;
-    }
-    .header-title {
-    padding-right: 10px;
-    padding-left:  10px;
-    text-align: center;
-    }
-    .clear-line {
-    clear: both;
-    border-bottom: solid 1px #eee;
-    }
 .header-with-vote
   .header-vote
     = subformat( card.vote_count_card ).render_details
