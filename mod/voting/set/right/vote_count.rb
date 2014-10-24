@@ -72,6 +72,14 @@ end
 
 
 format :html do  
+  view :missing  do |args|
+    if card.new_card?
+      Auth.as_bot { card.save! }
+      render(args[:denied_view],args)
+    else
+      super(args)
+    end
+  end
   
   def disabled_vote_link up_or_down, message, extra={}
     button_tag({:disabled=>true, 
@@ -89,6 +97,7 @@ format :html do
       text
     end
   end
+
 
 
   def vote_up_link success_view
@@ -109,12 +118,13 @@ format :html do
     end
   end
   
+
   def wrap_with_class css_class
      "<div class=\"#{css_class}\">#{output yield}</div>"
   end
   
   view :content do |args|
-    wrap args.merge(:slot_class=>'card-content') do
+    wrap args.merge(:slot_class=>'card-content nodblclick') do
       [
         _optional_render( :menu, args, :hide ),
         wrap_with_class('vote-up') { vote_up_link(:content) },
@@ -153,7 +163,7 @@ format :html do
   end
   
   view :details do |args |
-    wrap do 
+    wrap args.merge(:slot_class=>'nodblclick') do 
       [
         wrap_with_class('vote-up') do 
           [
