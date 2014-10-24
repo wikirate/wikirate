@@ -40,6 +40,7 @@ describe Card::Set::Right::WikirateClaimCount do
     html = render_card :raw,{:name=>ct1.name+"+claim count"}
     
     expect(html).to eq("2")
+    expect(Card.claim_counts ct1.key).to eq(2)
 
   end
 

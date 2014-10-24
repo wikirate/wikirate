@@ -112,11 +112,11 @@ describe Card::Set::All::Wikirate do
       end
     end
     it "shows correct html for the menu_link view" do
-      html = render_card :menu_link,{:name=>"test"}
+      html = render_card :menu_link,{:name=>"non-exisiting-card"}
       expect(html).to eq('<a class="fa fa-pencil-square-o"></a>')
     end
     it "shows empty string for not real card for raw_or_blank view" do
-      html = render_card :raw_or_blank,{:name=>"test"}
+      html = render_card :raw_or_blank,{:name=>"non-exisiting-card"}
       expect(html).to eq('')
     end
     it "renders raw for real card for raw_or_blank view" do
@@ -125,16 +125,65 @@ describe Card::Set::All::Wikirate do
     end
   end
   describe "while viewing id_atom in json format" do
-  
-    it "should include id" do
+    it "includes id" do
       login_as 'WagnBot' 
       search_card = Card.create! :type=>"search",:content=>"{\"type\":\"company\"}",:name=>"id_atom_test"
       Card::Env.params[:item] = 'id_atom'
-      result = search_card.format( :format=>:json)._render(:id_atom) 
-      card_array = result[:value]
+      result = search_card.format( :format=>:json)._render(:content) 
+      card_array = result[:card][:value]
+      # binding.pry
       card_array.each do |card|
         card.should have_key :id
       end
+      
+    end
+    it "handle param:start " do
+      login_as 'WagnBot' 
+      start = 20140601000000
+      search_card = Card.create! :type=>"search",:content=>"{\"type\":\"company\"}",:name=>"id_atom_test"
+      Card::Env.params[:item] = 'id_atom'
+      Card::Env.params["start"] = start
+      wql = {:type=>"Company"}
+      company_cards_list = Card.search wql
+      valid_company_cards = Hash.new
+      company_cards_list.each do |card|
+        if card.updated_at.strftime("%Y%m%d%H%M%S").to_i >= start 
+          valid_company_cards[card.id]=card.name
+        end
+      end
+      result = search_card.format( :format=>:json).render(:content)
+      card_array = result[:card][:value]
+      binding.pry
+      card_array.each do |card|
+        card.should have_key :id
+        expect(valid_company_cards.has_key? card[:id]).to be true
+      end
+    end
+  end
+  describe "view of shorter_search_result" do
+    before do
+      login_as 'WagnBot' 
+    end
+    it "handles only 1 result" do
+      search_card = Card.create! :name=>"searchtest",:type=>"search",:content=>"{\"type\":\"User\",\"limit\":1}"
+      expected_content = search_card.item_cards[0].format.render(:link)
+      expect(render_card :shorter_search_result,:name=>"searchtest").to eq(expected_content)
+    end
+    it "handles only 2 results" do
+      search_card = Card.create! :name=>"searchtest",:type=>"search",:content=>"{\"type\":\"User\",\"limit\":2}"
+      expected_content = search_card.item_cards[0].format.render(:link)+" and "+search_card.item_cards[1].format.render(:link)
+      expect(render_card :shorter_search_result,:name=>"searchtest").to eq(expected_content)
+    end
+    it "handles only 3 results" do
+      search_card = Card.create! :name=>"searchtest",:type=>"search",:content=>"{\"type\":\"User\",\"limit\":3}"
+      expected_content = search_card.item_cards[0].format.render(:link)+" , "+search_card.item_cards[1].format.render(:link)+" and "+search_card.item_cards[2].format.render(:link)
+      expect(render_card :shorter_search_result,:name=>"searchtest").to eq(expected_content)    
+    end
+    it "handles more than 3 results" do
+      search_card = Card.create! :name=>"searchtest",:type=>"search",:content=>"{\"type\":\"User\",\"limit\":10}"
+      expected_content = search_card.item_cards[0].format.render(:link)+" , "+search_card.item_cards[1].format.render(:link)+" , "+search_card.item_cards[2].format.render(:link)+" and <a class=\"known-card\" href=\"#{search_card.format.render(:url)}\"> 7 others</a>"
+      expect(render_card :shorter_search_result,:name=>"searchtest").to eq(expected_content)    
+     
     end
   end
   

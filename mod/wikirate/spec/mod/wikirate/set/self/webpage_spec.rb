@@ -1,13 +1,6 @@
 # -*- encoding : utf-8 -*-
 require 'link_thumbnailer'
 
-
-def create_webpage url,sourcebox
-  _url = url
-  _url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow' if !url
-  Card::Env.params[:sourcebox] = sourcebox
-  sourcepage = Card.create! :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> _url} }
-end
 describe Card::Set::Self::Webpage do
   describe "get meta data of url" do
     

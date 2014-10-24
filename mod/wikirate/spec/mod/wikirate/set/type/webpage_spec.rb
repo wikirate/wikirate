@@ -30,10 +30,16 @@ describe Card::Set::Type::Webpage do
         Card::Env.params[:sourcebox] = 'true'
         sourcepage = Card.new :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
         sourcepage.should_not be_valid
-        sourcepage.errors.should have_key :source
-        sourcepage.errors[:source].include?("is empty").should==true
+        sourcepage.errors.should have_key :link
+        sourcepage.errors[:link].include?("is empty").should==true
     end
-
+    # it "includes name context in content view" do 
+    #   url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
+    #   Card::Env.params[:sourcebox] = 'true'
+    #   sourcepage = Card.create! :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
+    #   binding.pry
+    #   sourcepage.format.render_content
+    # end
     it "should handle duplicated url " do
       url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
       Card::Env.params[:sourcebox] = 'true'

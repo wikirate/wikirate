@@ -57,10 +57,10 @@ format :html do
     super args.merge(:core_edit=>true)
   end
 
-  view :content do |args|
-    add_name_context
-    super args
-  end
+  # view :content do |args|
+  #   add_name_context
+  #   super args
+  # end
 
   view :missing do |args|
     _view_link args
