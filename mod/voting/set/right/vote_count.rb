@@ -91,6 +91,7 @@ format :html do
   end
 
 
+
   def vote_up_link success_view
     link = case card.vote_status
     when '+'
@@ -109,12 +110,13 @@ format :html do
     end
   end
   
+
   def wrap_with_class css_class
      "<div class=\"#{css_class}\">#{output yield}</div>"
   end
   
   view :content do |args|
-    wrap args.merge(:slot_class=>'card-content') do
+    wrap args.merge(:slot_class=>'card-content nodblclick') do
       [
         _optional_render( :menu, args, :hide ),
         wrap_with_class('vote-up') { vote_up_link(:content) },
@@ -153,7 +155,7 @@ format :html do
   end
   
   view :details do |args |
-    wrap do 
+    wrap args.merge(:slot_class=>'nodblclick') do 
       [
         wrap_with_class('vote-up') do 
           [
