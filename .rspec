@@ -2,5 +2,5 @@
 --profile
 --backtrace
 --default-path 'mod'
---require 'wagn/mods_spec_helper'
+--require './spec/spec_helper'
 --require ./mod/wikirate/spec/mod/wikirate/spec_helper

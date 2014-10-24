@@ -1,0 +1,3 @@
+[submodule "vendor/wagn"]
+	path = vendor/wagn
+	url = git://github.com/wagn/wagn.git

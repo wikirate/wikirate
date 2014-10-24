@@ -82,8 +82,8 @@ describe Card::Set::Type::Claim do
     card.errors.should have_key :source
     puts card.errors[:source]
     card.errors[:source].include?("Home is not a valid Source Page").should ==true
-
   end
+<<<<<<< HEAD
   describe "views" do 
     before do
       login_as 'joe_user'
@@ -129,5 +129,7 @@ describe Card::Set::Type::Claim do
     end
   end
  
+=======
+>>>>>>> wagn/master
 end
 

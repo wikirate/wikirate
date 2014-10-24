@@ -1,5 +1,11 @@
 # changes label of name on claims (should be obviatable)
 
+card_accessor :vote_count, :type=>:number, :default=>"0"
+card_accessor :upvote_count, :type=>:number, :default=>"0"
+card_accessor :downvote_count, :type=>:number, :default=>"0"
+
+
+
 format :html do
   view :name_fieldset do |args|
     #rename "name" to "Claim"
@@ -55,6 +61,60 @@ format :html do
     tip = "easily cite this claim by pasting the following:" +
       text_area_tag( :citable_claim, card.default_citation )
     %{ <div class="sample-citation">#{ render :tip, :tip=>tip }</div> }
+  end
+  
+  view :titled, :tags=>:comment do |args|
+    vote_count_card = card.vote_count_card
+    if vote_count_card.new_card?
+      Auth.as_bot { vote_count_card.save! }
+    end
+    wrap args do   
+      [
+        subformat( vote_count_card ).render_content,
+        _render_header( args.reverse_merge :optional_menu=>:hide ),
+        wrap_body( :content=>true ) { _render_core args },
+        optional_render( :comment_box, args )
+      ]
+    end
+  end
+  
+  view :header do |args|
+    if args[:home_view] == :open
+      if card.vote_count_card.new_card?
+        Auth.as_bot { card.vote_count_card.save! }
+      end
+      render_haml({:args=>args,:super_view=>super(args)}) do
+      %{
+%style
+  :plain
+    .claim-vote {
+    border-right: solid 1px #eee; 
+    float: left; 
+    margin-right: 10px; 
+    padding: 10px;
+    }
+    .claim-title {
+    padding-right: 10px;
+    padding-left:  10px;
+    text-align: center;
+    }
+    .clear-line {
+    clear: both;
+    border-bottom: solid 1px #eee;
+    }
+.claim-header
+  .claim-vote
+    = subformat( card.vote_count_card ).render_details
+  .claim-title
+    = super_view
+    .creator-credit
+      = process_content "{{_self | structure:creator credit}}"
+.clear-line
+  }
+      end
+    else
+      super(args)
+    end
   end
 
 end
@@ -134,6 +194,7 @@ end
 def default_citation
   "#{name} {{#{name}|cite}}"
 end
+
 
 =begin
 event :sort_tags, :before=>:approve_subcards, :on=>:create do
