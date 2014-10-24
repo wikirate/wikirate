@@ -72,6 +72,14 @@ end
 
 
 format :html do  
+  view :missing  do |args|
+    if card.new_card?
+      Auth.as_bot { card.save! }
+      render(args[:denied_view],args)
+    else
+      super(args)
+    end
+  end
   
   def disabled_vote_link up_or_down, message, extra={}
     button_tag({:disabled=>true, 
