@@ -146,20 +146,20 @@ describe Card::Set::Right::VoteCount do
     end
   end
   
-  describe "core view" do
+  describe "content view" do
     before do
       Card::Auth.as_bot  do
         @card.save!
       end
     end
-    let(:core_view)  { @card.format.render_core }
+    let(:content_view)  { @card.format.render_content }
     it "has 'vote up' button" do
-      assert_view_select core_view, 'button i[class~=fa-angle-up]'
-      assert_view_select core_view, 'button[disabled="disabled"] i[class~=fa-angle-up]', :count=>0
+      assert_view_select content_view, 'button i[class~=fa-angle-up]'
+      assert_view_select content_view, 'button[disabled="disabled"] i[class~=fa-angle-up]', :count=>0
     end
     it "has 'vote down' button" do
-      assert_view_select core_view, 'button i[class~=fa-angle-down]'
-      assert_view_select core_view, 'button[disabled="disabled"] i[class~=fa-angle-down]', :count=>0
+      assert_view_select content_view, 'button i[class~=fa-angle-down]'
+      assert_view_select content_view, 'button[disabled="disabled"] i[class~=fa-angle-down]', :count=>0
     end
     context "when voted up" do
       before do
@@ -169,7 +169,7 @@ describe Card::Set::Right::VoteCount do
         end
       end
       it "has disabled 'vote up' button" do
-        assert_view_select core_view, 'button[disabled="disabled"] i[class~=fa-angle-up]'
+        assert_view_select content_view, 'button[disabled="disabled"] i[class~=fa-angle-up]'
       end
     end
     context "when voted down" do
@@ -180,7 +180,7 @@ describe Card::Set::Right::VoteCount do
         end
       end
       it "has disabled 'vote down' button" do
-        assert_view_select core_view, 'button[disabled="disabled"] i[class~=fa-angle-down]'
+        assert_view_select content_view, 'button[disabled="disabled"] i[class~=fa-angle-down]'
       end
     end
   end

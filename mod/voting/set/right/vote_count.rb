@@ -75,7 +75,7 @@ format :html do
   view :missing  do |args|
     if card.new_card?
       Auth.as_bot { card.save! }
-      render(args[:denied_view],args)
+      render(args[:denied_view], args)
     else
       super(args)
     end
