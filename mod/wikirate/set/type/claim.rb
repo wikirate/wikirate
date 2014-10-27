@@ -66,59 +66,16 @@ format :html do
   end
   
   view :titled, :tags=>:comment do |args|
-    vote_count_card = card.vote_count_card
-    if vote_count_card.new_card?
-      Auth.as_bot { vote_count_card.save! }
-    end
-    wrap args do   
-      [
-        subformat( vote_count_card ).render_content,
-        _render_header( args.reverse_merge :optional_menu=>:hide ),
-        wrap_body( :content=>true ) { _render_core args },
-        optional_render( :comment_box, args )
-      ]
-    end
+    render_titled_with_voting args
   end
   
   view :header do |args|
-    if args[:home_view] == :open
-      if card.vote_count_card.new_card?
-        Auth.as_bot { card.vote_count_card.save! }
-      end
-      render_haml({:args=>args,:super_view=>super(args)}) do
-      %{
-%style
-  :plain
-    .claim-vote {
-    border-right: solid 1px #eee; 
-    float: left; 
-    margin-right: 10px; 
-    padding: 10px;
-    }
-    .claim-title {
-    padding-right: 10px;
-    padding-left:  10px;
-    text-align: center;
-    }
-    .clear-line {
-    clear: both;
-    border-bottom: solid 1px #eee;
-    }
-.claim-header
-  .claim-vote
-    = subformat( card.vote_count_card ).render_details
-  .claim-title
-    = super_view
-    .creator-credit
-      = process_content "{{_self | structure:creator credit}}"
-.clear-line
-  }
-      end
+    if args[:home_view] == :open and !args[:without_voting] 
+      render_header_with_voting
     else
       super(args)
     end
   end
-
 end
 
 
