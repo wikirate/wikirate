@@ -25,7 +25,7 @@ end
 
 # find all analysis, source, claim, topic and company cards to which self contributes
 def contributees res=[], visited=::Set.new
-  visited << self
+  visited << self.name
   if type_code == :claim or type_code == :webpage
     res += [Card["#{name}+company"], Card["#{name}+topic"]].compact.map do |pointer|
 	      pointer.item_cards
