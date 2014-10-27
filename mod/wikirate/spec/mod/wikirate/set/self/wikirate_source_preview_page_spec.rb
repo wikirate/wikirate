@@ -59,112 +59,112 @@ describe Card::Set::All::Wikirate do
     result = @source_preview_page.format( :format=>:json)._render(:get_user_id) 
     expect(result[:id]).to eq(JOE_USER_ID)
   end
-  describe "send feedback to CERTH" do
-    before do
-      @url = "http://google.com"
-    end
-    describe "send insufficient parameters" do
-      it "handles no parameter" do 
-        #no parameters
-        result = @source_preview_page.format( :format=>:json)._render(:feedback)
-        expect(result[:result]).to be false
-      end
-      it "handles no url" do
-        Card::Env.params[:company] = "Apple"
-        Card::Env.params[:topic] = "Natural Resource Use"
-        Card::Env.params[:type] = "either"
-        result = @source_preview_page.format( :format=>:json)._render(:feedback)
-        expect(result[:result]).to be false
+  # describe "send feedback to CERTH" do
+  #   before do
+  #     @url = "http://google.com"
+  #   end
+  #   describe "send insufficient parameters" do
+  #     it "handles no parameter" do 
+  #       #no parameters
+  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
+  #       expect(result[:result]).to be false
+  #     end
+  #     it "handles no url" do
+  #       Card::Env.params[:company] = "Apple"
+  #       Card::Env.params[:topic] = "Natural Resource Use"
+  #       Card::Env.params[:type] = "either"
+  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
+  #       expect(result[:result]).to be false
 
-      end
-      it "handles no company" do
-       Card::Env.params[:url] = @url
-        Card::Env.params[:topic] = "Natural Resource Use"
-        Card::Env.params[:type] = "either"
-        result = @source_preview_page.format( :format=>:json)._render(:feedback)
-        expect(result[:result]).to be false
+  #     end
+  #     it "handles no company" do
+  #      Card::Env.params[:url] = @url
+  #       Card::Env.params[:topic] = "Natural Resource Use"
+  #       Card::Env.params[:type] = "either"
+  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
+  #       expect(result[:result]).to be false
 
-      end
-      it "handles no topic" do
-        Card::Env.params[:url] = @url
-        Card::Env.params[:company] = "Apple"
-        Card::Env.params[:type] = "either"
-        result = @source_preview_page.format( :format=>:json)._render(:feedback)
-        expect(result[:result]).to be false
+  #     end
+  #     it "handles no topic" do
+  #       Card::Env.params[:url] = @url
+  #       Card::Env.params[:company] = "Apple"
+  #       Card::Env.params[:type] = "either"
+  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
+  #       expect(result[:result]).to be false
 
-      end
-      it "handles no type" do
-        Card::Env.params[:url] = @url
-        Card::Env.params[:company] = "Apple"
-        Card::Env.params[:topic] = "Natural Resource Use"
-        result = @source_preview_page.format( :format=>:json)._render(:feedback)
-        expect(result[:result]).to be false
+  #     end
+  #     it "handles no type" do
+  #       Card::Env.params[:url] = @url
+  #       Card::Env.params[:company] = "Apple"
+  #       Card::Env.params[:topic] = "Natural Resource Use"
+  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
+  #       expect(result[:result]).to be false
 
-      end
-    end
-    describe "send invalid parameters" do
-      it "handles invalid company" do 
-        Card::Env.params[:url] = @url
-        Card::Env.params[:company] = "joe_user"
-        Card::Env.params[:topic] = "Natural Resource Use"
-        Card::Env.params[:type] = "either"
-        result = @source_preview_page.format( :format=>:json)._render(:feedback)
-        expect(result[:result]).to be false
-      end
-      it "handles invalid topic" do 
-        Card::Env.params[:url] = @url
-        Card::Env.params[:company] = "Apple"
-        Card::Env.params[:topic] = "joe_user"
-        Card::Env.params[:type] = "either"
-        result = @source_preview_page.format( :format=>:json)._render(:feedback)
-        expect(result[:result]).to be false
-      end
-      it "handles invalid type" do 
-        Card::Env.params[:url] = @url
-        Card::Env.params[:company] = "Apple"
-        Card::Env.params[:topic] = "Natural Resource Use"
-        Card::Env.params[:type] = "joe_user"
-        result = @source_preview_page.format( :format=>:json)._render(:feedback)
-        expect(result[:result]).to be false
-      end
-    end
-    describe "normal cases" do
-      it "handles either type" do 
-        Card::Env.params[:url] = @url
-        Card::Env.params[:company] = "Apple"
-        Card::Env.params[:topic] = "Natural Resource Use"
-        Card::Env.params[:type] = "either"
-        result = @source_preview_page.format( :format=>:json)._render(:feedback)
-        expect(result[:result]).to be true
-        expect(result[:result_from_certh]).to eq(1)
-      end
-      it "handles company type" do 
-        Card::Env.params[:url] = @url
-        Card::Env.params[:company] = "Apple"
-        Card::Env.params[:topic] = "Natural Resource Use"
-        Card::Env.params[:type] = "company"
-        result = @source_preview_page.format( :format=>:json)._render(:feedback)
-        expect(result[:result]).to be true
-        expect(result[:result_from_certh]).to eq(1)
-      end
-      it "handles topic type" do 
-        Card::Env.params[:url] = @url
-        Card::Env.params[:company] = "Apple"
-        Card::Env.params[:topic] = "Natural Resource Use"
-        Card::Env.params[:type] = "topic"
-        result = @source_preview_page.format( :format=>:json)._render(:feedback)
-        expect(result[:result]).to be true
-        expect(result[:result_from_certh]).to eq(1)
-      end
-      it "handles relevant type" do 
-        Card::Env.params[:url] = @url
-        Card::Env.params[:company] = "Apple"
-        Card::Env.params[:topic] = "Natural Resource Use"
-        Card::Env.params[:type] = "relevant"
-        result = @source_preview_page.format( :format=>:json)._render(:feedback)
-        expect(result[:result]).to be true
-        expect(result[:result_from_certh]).to eq(1)
-      end
-    end
-  end
+  #     end
+  #   end
+  #   describe "send invalid parameters" do
+  #     it "handles invalid company" do 
+  #       Card::Env.params[:url] = @url
+  #       Card::Env.params[:company] = "joe_user"
+  #       Card::Env.params[:topic] = "Natural Resource Use"
+  #       Card::Env.params[:type] = "either"
+  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
+  #       expect(result[:result]).to be false
+  #     end
+  #     it "handles invalid topic" do 
+  #       Card::Env.params[:url] = @url
+  #       Card::Env.params[:company] = "Apple"
+  #       Card::Env.params[:topic] = "joe_user"
+  #       Card::Env.params[:type] = "either"
+  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
+  #       expect(result[:result]).to be false
+  #     end
+  #     it "handles invalid type" do 
+  #       Card::Env.params[:url] = @url
+  #       Card::Env.params[:company] = "Apple"
+  #       Card::Env.params[:topic] = "Natural Resource Use"
+  #       Card::Env.params[:type] = "joe_user"
+  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
+  #       expect(result[:result]).to be false
+  #     end
+  #   end
+  #   describe "normal cases" do
+  #     it "handles either type" do 
+  #       Card::Env.params[:url] = @url
+  #       Card::Env.params[:company] = "Apple"
+  #       Card::Env.params[:topic] = "Natural Resource Use"
+  #       Card::Env.params[:type] = "either"
+  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
+  #       expect(result[:result]).to be true
+  #       expect(result[:result_from_certh]).to eq(1)
+  #     end
+  #     it "handles company type" do 
+  #       Card::Env.params[:url] = @url
+  #       Card::Env.params[:company] = "Apple"
+  #       Card::Env.params[:topic] = "Natural Resource Use"
+  #       Card::Env.params[:type] = "company"
+  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
+  #       expect(result[:result]).to be true
+  #       expect(result[:result_from_certh]).to eq(1)
+  #     end
+  #     it "handles topic type" do 
+  #       Card::Env.params[:url] = @url
+  #       Card::Env.params[:company] = "Apple"
+  #       Card::Env.params[:topic] = "Natural Resource Use"
+  #       Card::Env.params[:type] = "topic"
+  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
+  #       expect(result[:result]).to be true
+  #       expect(result[:result_from_certh]).to eq(1)
+  #     end
+  #     it "handles relevant type" do 
+  #       Card::Env.params[:url] = @url
+  #       Card::Env.params[:company] = "Apple"
+  #       Card::Env.params[:topic] = "Natural Resource Use"
+  #       Card::Env.params[:type] = "relevant"
+  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
+  #       expect(result[:result]).to be true
+  #       expect(result[:result_from_certh]).to eq(1)
+  #     end
+  #   end
+  # end
 end

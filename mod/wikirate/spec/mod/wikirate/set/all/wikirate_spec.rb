@@ -153,7 +153,6 @@ describe Card::Set::All::Wikirate do
       end
       result = search_card.format( :format=>:json).render(:content)
       card_array = result[:card][:value]
-      binding.pry
       card_array.each do |card|
         card.should have_key :id
         expect(valid_company_cards.has_key? card[:id]).to be true
@@ -161,27 +160,42 @@ describe Card::Set::All::Wikirate do
     end
   end
   describe "view of shorter_search_result" do
+    def create_dump_card number
+      cards = Array.new
+      for i in 0..number-1 
+        Card.create! :name=>"testcard#{i+1}",:type=>"Basic"
+        cards.push "\"testcard#{i+1}\""
+      end
+      cards.join(',')
+    end
     before do
       login_as 'WagnBot' 
     end
     it "handles only 1 result" do
-      search_card = Card.create! :name=>"searchtest",:type=>"search",:content=>"{\"type\":\"User\",\"limit\":1}"
-      expected_content = search_card.item_cards[0].format.render(:link)
+      cards_name = create_dump_card 1
+      search_card = Card.create! :name=>"searchtest",:type=>"search",:content=>"{\"name\":#{cards_name}}"
+      expected_content = search_card.item_cards(:limit=>0)[0].format.render(:link)
       expect(render_card :shorter_search_result,:name=>"searchtest").to eq(expected_content)
     end
     it "handles only 2 results" do
-      search_card = Card.create! :name=>"searchtest",:type=>"search",:content=>"{\"type\":\"User\",\"limit\":2}"
-      expected_content = search_card.item_cards[0].format.render(:link)+" and "+search_card.item_cards[1].format.render(:link)
+      cards_name = create_dump_card 2
+      search_card = Card.create! :name=>"searchtest",:type=>"search",:content=>"{\"name\":[\"in\", #{cards_name}]}"
+      result_cards = search_card.item_cards(:limit=>0)
+      expected_content = result_cards[0].format.render(:link)+" and "+result_cards[1].format.render(:link)
       expect(render_card :shorter_search_result,:name=>"searchtest").to eq(expected_content)
     end
     it "handles only 3 results" do
-      search_card = Card.create! :name=>"searchtest",:type=>"search",:content=>"{\"type\":\"User\",\"limit\":3}"
-      expected_content = search_card.item_cards[0].format.render(:link)+" , "+search_card.item_cards[1].format.render(:link)+" and "+search_card.item_cards[2].format.render(:link)
+      cards_name = create_dump_card 3
+      search_card = Card.create! :name=>"searchtest",:type=>"search",:content=>"{\"name\":[\"in\", #{cards_name}]}"
+      result_cards = search_card.item_cards(:limit=>0)
+      expected_content = result_cards[0].format.render(:link)+" , "+result_cards[1].format.render(:link)+" and "+result_cards[2].format.render(:link)
       expect(render_card :shorter_search_result,:name=>"searchtest").to eq(expected_content)    
     end
     it "handles more than 3 results" do
-      search_card = Card.create! :name=>"searchtest",:type=>"search",:content=>"{\"type\":\"User\",\"limit\":10}"
-      expected_content = search_card.item_cards[0].format.render(:link)+" , "+search_card.item_cards[1].format.render(:link)+" , "+search_card.item_cards[2].format.render(:link)+" and <a class=\"known-card\" href=\"#{search_card.format.render(:url)}\"> 7 others</a>"
+      cards_name = create_dump_card 10
+      search_card = Card.create! :name=>"searchtest",:type=>"search",:content=>"{\"name\":[\"in\", #{cards_name}]}"
+      result_cards = search_card.item_cards(:limit=>0)      
+      expected_content = result_cards[0].format.render(:link)+" , "+result_cards[1].format.render(:link)+" , "+result_cards[2].format.render(:link)+" and <a class=\"known-card\" href=\"#{search_card.format.render(:url)}\"> 7 others</a>"
       expect(render_card :shorter_search_result,:name=>"searchtest").to eq(expected_content)    
      
     end

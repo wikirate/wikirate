@@ -1,3 +1,7 @@
+card_accessor :vote_count, :type=>:number, :default=>"0"
+card_accessor :upvote_count, :type=>:number, :default=>"0"
+card_accessor :downvote_count, :type=>:number, :default=>"0"
+
 require 'link_thumbnailer'
 
 event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc{ 
@@ -57,13 +61,37 @@ format :html do
     super args.merge(:core_edit=>true)
   end
 
-  # view :content do |args|
-  #   add_name_context
-  #   super args
-  # end
-
+  view :content do |args|
+    add_name_context
+    super args
+  end
+ 
   view :missing do |args|
     _view_link args
+  end
+  
+  view :extended_title do |args|
+    websites = Card.fetch("#{card.name}+website")
+    domain = websites.item_cards.first
+    title   = Card.fetch("#{card.name}+title")
+    
+    %{
+      #{subformat(domain).render_name} 
+      <i class="fa fa-long-arrow-right"></i>
+      #{subformat(title).render_core} 
+    }
+  end
+  
+  view :titled, :tags=>:comment do |args|
+    render_titled_with_voting args
+  end
+  
+  view :header do |args|
+    if args[:home_view] == :open and !args[:without_voting]
+      render_header_with_voting
+    else
+      super(args)
+    end
   end
 
 end  
