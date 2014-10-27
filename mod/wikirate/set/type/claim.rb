@@ -135,9 +135,8 @@ end
 
 view :title do |args|
   %{ 
-    #{ args[:citation_number] }
+    #{ args[:citation_number]||(optional_render :clipboard, args, :hide) }
     #{ super args }
-    #{ optional_render :clipboard, args, :hide }
   }
 end
 
