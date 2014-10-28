@@ -6,6 +6,7 @@ card_accessor :downvote_count, :type=>:number, :default=>"0"
 
 
 
+
 format :html do
   view :name_fieldset do |args|
     #rename "name" to "Claim"
@@ -158,6 +159,11 @@ view :clipboard do |args|
     <i class="fa fa-clipboard claim-clipboard" id="copy-button" title="copy claim citation to clipboard" data-clipboard-text="#{h card.default_citation}"></i>
   }
 end
+
+
+#res = Card.search :plus=>["company", "or"=>{:content=>["match","Apple"], :left=>{:plus=>["topic",:content=>['match',"Natural Resource Use"]] }}], :and=> {:plus=>["topic", :content=>["match","Natural Resource Use"]]}
+
+
 
 
 def default_citation
