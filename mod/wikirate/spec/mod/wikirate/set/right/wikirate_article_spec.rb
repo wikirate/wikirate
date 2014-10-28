@@ -6,7 +6,7 @@ describe Card::Set::Right::WikirateArticle do
       topic = Card.create :name=>"topic1",:type=>"topic"
       article = Card.create :name=>"company1+topic1+article",:type=>"basic",:content=>"hello world"
       html = article.format.render_content
-      expect(html).to eq(article.format.render_editor)
+      expect(html).to eq(article.format.render_edit)
     end
     it "renders content view if params[:edit_article] is false/nil" do 
 
@@ -16,8 +16,8 @@ describe Card::Set::Right::WikirateArticle do
       company = Card.create :name=>"company1",:type=>"company"
       topic = Card.create :name=>"topic1",:type=>"topic"
       article = Card.create :name=>"company1+topic1+article",:type=>"basic",:content=>"hello world"
-      html = article.format.render_content
-      expect(html).to eq(article.format.render_editor)
+      html = article.format.render_missing
+      expect(html).to eq(article.format.render_edit)
     end
     it "renders missing view if params[:edit_article] is false/nil" do 
 
