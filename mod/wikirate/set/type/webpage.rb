@@ -70,18 +70,6 @@ format :html do
     _view_link args
   end
   
-  view :extended_title do |args|
-    websites = Card.fetch("#{card.name}+website")
-    domain = websites.item_cards.first
-    title   = Card.fetch("#{card.name}+title")
-    
-    %{
-      #{subformat(domain).render_name} 
-      <i class="fa fa-long-arrow-right"></i>
-      #{subformat(title).render_core} 
-    }
-  end
-  
   view :titled, :tags=>:comment do |args|
     render_titled_with_voting args
   end

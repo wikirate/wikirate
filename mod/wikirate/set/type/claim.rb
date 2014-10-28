@@ -68,12 +68,24 @@ format :html do
   end
   
   view :header do |args|
-    if args[:home_view] == :open and !args[:without_voting] 
-      render_header_with_voting
-    else
-      super(args)
-    end
-  end
+     if args[:home_view] == :open and !args[:without_voting] 
+       render_haml({:args=>args.merge(:without_voting=>true)}) do
+             %{
+ .header-with-vote
+   = card.fetch(:trait=>:citation_count).format.render_titled(:title=>"Citation")
+   .header-vote
+     = subformat( card.vote_count_card ).render_details
+   .header-title
+     = super(args)
+     .creator-credit
+       = process_content "{{_self | structure:creator credit}}"
+ .clear-line
+             }
+           end
+     else
+       super(args)
+     end
+   end
 end
 
 
