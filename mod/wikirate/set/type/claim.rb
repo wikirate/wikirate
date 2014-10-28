@@ -68,12 +68,24 @@ format :html do
   end
   
   view :header do |args|
-    if args[:home_view] == :open and !args[:without_voting] 
-      render_header_with_voting
-    else
-      super(args)
-    end
-  end
+     if args[:home_view] == :open
+       render_haml(:super_view=>super(args)) do
+             %{
+.header-with-vote
+  = nest card.fetch(:trait=>:citation_count), :view=>:titled, :title=>"Citation"
+  .header-vote
+    = subformat( card.vote_count_card ).render_details
+  .header-title
+    = super_view
+    .creator-credit
+      = nest card, :structure=>"creator credit"
+.clear-line
+             }
+           end
+     else
+       super(args)
+     end
+   end
 end
 
 
