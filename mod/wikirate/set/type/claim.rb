@@ -145,13 +145,6 @@ view :missing do |args|
   _render_link args
 end
 
-view :title do |args|
-  %{ 
-    #{ args[:citation_number]||(optional_render :clipboard, args, :hide) }
-    #{ super args }
-  }
-end
-
 view :clipboard do |args|
   %{
     <i class="fa fa-clipboard claim-clipboard" id="copy-button" title="copy claim citation to clipboard" data-clipboard-text="#{h card.default_citation}"></i>
