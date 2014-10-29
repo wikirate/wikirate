@@ -76,7 +76,6 @@ format :html do
     = subformat( card.vote_count_card ).render_details
   .header-citation
     = nest card.fetch(:trait=>:citation_count), :view=>:titled, :title=>"Citations"
-    
   .header-title
     = super_view
     .creator-credit

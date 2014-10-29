@@ -1,34 +1,38 @@
 
 def vote_up
-  case vote_status
-  when '?'
-    uv_card = Auth.current.upvotes_card
-    if uv_card.add_id left.id
-      uv_card.save!
-      update_votecount
-    end
-  when '-'
-    dv_card = Auth.current.downvotes_card
-    if dv_card.drop_id left.id
-      dv_card.save!
-      update_votecount
+  Auth.as_bot do
+    case vote_status
+    when '?'
+      uv_card = Auth.current.upvotes_card
+      if uv_card.add_id left.id
+        uv_card.save!
+        update_votecount
+      end
+    when '-'
+      dv_card = Auth.current.downvotes_card
+      if dv_card.drop_id left.id
+        dv_card.save!
+        update_votecount
+      end
     end
   end
 end
 
 def vote_down
-  case vote_status
-  when '?'
-    dv_card = Auth.current.downvotes_card
-    if dv_card.add_id left.id
-      dv_card.save!
-      update_votecount
-    end
-  when '+'
-    uv_card = Auth.current.upvotes_card
-    if uv_card.drop_id left.id
-      uv_card.save!
-      update_votecount
+  Auth.as_bot do
+    case vote_status
+    when '?'
+      dv_card = Auth.current.downvotes_card
+      if dv_card.add_id left.id
+        dv_card.save!
+        update_votecount
+      end
+    when '+'
+      uv_card = Auth.current.upvotes_card
+      if uv_card.drop_id left.id
+        uv_card.save!
+        update_votecount
+      end
     end
   end
 end
@@ -74,8 +78,10 @@ end
 format :html do  
   view :missing  do |args|
     if card.new_card?
-      card.update_votecount
-      Auth.as_bot { card.save! }
+      Auth.as_bot do
+        card.update_votecount
+        card.save!
+      end
       render(args[:denied_view], args)
     else
       super(args)
