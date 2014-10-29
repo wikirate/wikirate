@@ -41,9 +41,17 @@ end
 def update_votecount 
   up_count = Card.search( :plus=>[{:codename=>'upvotes'},:link_to=>left.name], :return=>'count' )
   down_count = Card.search( :plus=>[{:codename=>'downvotes'},:link_to=>left.name], :return=>'count')
-  subcards[left.upvote_count_card.name] = up_count.to_s
-  subcards[left.downvote_count_card.name] = down_count.to_s
+  
+  uvc = left.upvote_count_card
+  uvc.auto_content = true
+  subcards[uvc.name] = up_count.to_s
+  
+  dvc = left.downvote_count_card
+  dvc.auto_content = true
+  subcards[dvc.name] = down_count.to_s
+  
   self.content = (up_count - down_count).to_s
+  self.auto_content = true
 end
 
 def vote_status
