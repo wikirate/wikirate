@@ -72,11 +72,11 @@ format :html do
        render_haml(:super_view=>super(args)) do
              %{
 .header-with-vote
-  = nest card.fetch(:trait=>:citation_count), :view=>:titled, :title=>"Citations"
   .header-vote
     = subformat( card.vote_count_card ).render_details
   .header-title
     = super_view
+    = nest card.fetch(:trait=>:citation_count), :view=>:titled, :title=>"Citations"
     .creator-credit
       = nest card, :structure=>"creator credit"
 .clear-line
