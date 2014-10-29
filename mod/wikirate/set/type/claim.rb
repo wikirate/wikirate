@@ -64,12 +64,17 @@ format :html do
     %{ <div class="sample-citation">#{ render :tip, :tip=>tip }</div> }
   end
   
+  
+  view :open do |args|
+    super args.merge( :custom_claim_header=>true )
+  end
+  
   view :titled, :tags=>:comment do |args|
     render_titled_with_voting args
   end
   
   view :header do |args|
-     if args[:home_view] == :open
+     if args[:custom_claim_header] 
        render_haml(:super_view=>super(args)) do
              %{
 .header-with-vote
