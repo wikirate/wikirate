@@ -19,9 +19,9 @@ format :html do
   def next_action_link analysis_name
     article = Card["#{analysis_name}+Article"]
     act = case
-      when !article;                                'Start a new Article'
-      when !article.includees.include?( card.left); 'Cite this Claim'
-      else                                          'Edit Article'
+      when !article;                                'Cite'
+      when !article.includees.include?( card.left); 'Cite'
+      else                                          'View'
       end
     opts = { :edit_article=>true }
     opts[ :citable ] = card.cardname.trunk_name unless act =~ /^Edit/
