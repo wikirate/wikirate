@@ -5,7 +5,6 @@ card_accessor :upvote_count, :type=>:number, :default=>"0"
 card_accessor :downvote_count, :type=>:number, :default=>"0"
 
 
-
 format :html do
   view :name_fieldset do |args|
     #rename "name" to "Claim"
@@ -63,6 +62,11 @@ format :html do
     %{ <div class="sample-citation">#{ render :tip, :tip=>tip }</div> }
   end
   
+  
+  view :open do |args|
+    super args.merge( :custom_claim_header=>true )
+  end
+  
   view :titled, :tags=>:comment do |args|
     render_titled_with_voting args
   end
@@ -72,8 +76,8 @@ format :html do
   end
   
   view :header do |args|
-     if args[:custom_claim_header]
-       render_haml(:super_view=>super(args)) do
+    if args[:custom_claim_header]
+      render_haml(:super_view=>super(args)) do
              %{
 .header-with-vote
   .header-vote
@@ -87,10 +91,10 @@ format :html do
 .clear-line
              }
            end
-     else
-       super(args)
-     end
-   end
+    else
+      super(args)
+    end
+  end
 end
 
 
@@ -155,6 +159,7 @@ view :clipboard do |args|
     <i class="fa fa-clipboard claim-clipboard" id="copy-button" title="copy claim citation to clipboard" data-clipboard-text="#{h card.default_citation}"></i>
   }
 end
+
 
 
 def default_citation
