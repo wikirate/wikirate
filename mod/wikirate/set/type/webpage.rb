@@ -2,6 +2,13 @@ card_accessor :vote_count, :type=>:number, :default=>"0"
 card_accessor :upvote_count, :type=>:number, :default=>"0"
 card_accessor :downvote_count, :type=>:number, :default=>"0"
 card_accessor :direct_contribution_count, :type=>:number, :default=>"0"
+card_accessor :contribution_count, :type=>:number, :default=>"0"
+
+def indirect_contributer_search_args
+  [
+    {:right_id=>VoteCountID, :left=>self.name }
+  ]
+end
 
 require 'link_thumbnailer'
 

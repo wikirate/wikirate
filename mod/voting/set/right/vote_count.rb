@@ -1,4 +1,3 @@
-
 def vote_up
   Auth.as_bot do
     case vote_status
@@ -37,6 +36,10 @@ def vote_down
   end
 end
 
+
+def direct_contribution_count
+  return left.upvote_count.to_i + left.downvote_count.to_i
+end
 
 def update_votecount 
   up_count   = Auth.as_bot { Card.search( :right_plus=>[{:codename=>'upvotes'  },:link_to=>left.name], :return=>'count' ) }
@@ -197,3 +200,4 @@ format :html do
     end
   end
 end
+
