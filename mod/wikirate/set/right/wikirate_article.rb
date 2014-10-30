@@ -7,7 +7,7 @@ format :html do
     handle_edit_article( args ) { super args }    
   end
   
-  view :open, :tags=>:comment do |args|
+  view :titled_with_edits do |args|
     handle_edit_article( args ) { super args }    
   end  
 
