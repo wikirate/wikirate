@@ -7,7 +7,6 @@ card_accessor :direct_contribution_count, :type=>:number, :default=>"0"
 
 
 
-
 format :html do
   view :name_fieldset do |args|
     #rename "name" to "Claim"
@@ -34,9 +33,9 @@ format :html do
   end
 
   
-  view :tip do |args|
+  view :tip, :perms=>:none do |args|
     # special view for prompting users with next steps
-    if Auth.signed_in? and ( tip = args[:tip] || next_step_tip ) 
+    if Auth.signed_in? and ( tip = args[:tip] || next_step_tip ) and @mode != :closed
       %{
         <div class="claim-tip">
           Tip: You can #{ tip }
@@ -65,13 +64,35 @@ format :html do
     %{ <div class="sample-citation">#{ render :tip, :tip=>tip }</div> }
   end
   
+  
+  view :open do |args|
+    super args.merge( :custom_claim_header=>true )
+  end
+  
   view :titled, :tags=>:comment do |args|
     render_titled_with_voting args
   end
   
+  view :open do |args|
+    super args.merge( :custom_claim_header=>true )
+  end
+  
   view :header do |args|
-    if args[:home_view] == :open and !args[:without_voting] 
-      render_header_with_voting
+    if args[:custom_claim_header]
+      render_haml(:super_view=>super(args)) do
+             %{
+.header-with-vote
+  .header-vote
+    = subformat( card.vote_count_card ).render_details
+  .header-citation
+    = nest card.fetch(:trait=>:citation_count), :view=>:titled, :title=>"Citations"
+  .header-title
+    = super_view
+    .creator-credit
+      = nest card, :structure=>"creator credit"
+.clear-line
+             }
+      end
     else
       super(args)
     end
@@ -135,19 +156,12 @@ view :missing do |args|
   _render_link args
 end
 
-view :title do |args|
-  %{ 
-    #{ args[:citation_number] }
-    #{ super args }
-    #{ optional_render :clipboard, args, :hide }
-  }
-end
-
 view :clipboard do |args|
   %{
     <i class="fa fa-clipboard claim-clipboard" id="copy-button" title="copy claim citation to clipboard" data-clipboard-text="#{h card.default_citation}"></i>
   }
 end
+
 
 
 def default_citation
