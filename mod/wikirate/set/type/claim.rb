@@ -90,7 +90,7 @@ format :html do
       = nest card, :structure=>"creator credit"
 .clear-line
              }
-           end
+      end
     else
       super(args)
     end
