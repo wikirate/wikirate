@@ -32,9 +32,9 @@ format :html do
   end
 
   
-  view :tip do |args|
+  view :tip, :perms=>:none do |args|
     # special view for prompting users with next steps
-    if Auth.signed_in? and ( tip = args[:tip] || next_step_tip ) 
+    if Auth.signed_in? and ( tip = args[:tip] || next_step_tip ) and @mode != :closed
       %{
         <div class="claim-tip">
           Tip: You can #{ tip }
@@ -67,8 +67,12 @@ format :html do
     render_titled_with_voting args
   end
   
+  view :open do |args|
+    super args.merge( :custom_claim_header=>true )
+  end
+  
   view :header do |args|
-     if args[:home_view] == :open
+     if args[:custom_claim_header]
        render_haml(:super_view=>super(args)) do
              %{
 .header-with-vote
