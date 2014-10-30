@@ -9,13 +9,22 @@ end
 
 def update_contribution_count
   update_direct_contribution_count
-  return unless contribution_count_card
+  return unless respond_to?(:contribution_count_card)
   new_contr_count = direct_contribution_count.to_i
   if respond_to? :indirect_contributer_search_args
-    indirect_contributer_ids = indirect_contributer_search_args.inject([]) do |ids, search_args|
-      ids += Card.search(search_args.merge(:return=>'id'))
+    indirect_contributer = indirect_contributer_search_args.inject([]) do |cards, search_args|
+      cards += Card.search(search_args)
     end
-    new_contr_count += Card::Act.find_all_with_actions_on(indirect_contributer_ids).count
+    new_contr_count += indirect_contributer.inject(0) do |res,c| 
+      res += if c.respond_to?(:contribution_count)
+        c.contribution_count.to_i
+      elsif c.respond_to?(:direct_contribution_count)
+        c.direct_contribution_count.to_i
+      else
+         Card::Act.find_all_with_actions_on(c.id).count
+      end
+    end
+    #new_contr_count += Card::Act.find_all_with_actions_on(indirect_contributer_ids).count
   end
   Card::Auth.as_bot do
     contribution_count_card.update_attributes!(:content => new_contr_count.to_s)
@@ -27,19 +36,22 @@ end
 def contributees res=[], visited=::Set.new
   visited << self.name
   if type_code == :claim or type_code == :webpage
-    res += [Card["#{name}+company"], Card["#{name}+topic"]].compact.map do |pointer|
+    res += [self] + [Card["#{name}+company"], Card["#{name}+topic"]].compact.map do |pointer|
 	      pointer.item_cards
 	    end.flatten
   elsif type_code == :wikirate_analysis
-    res += [left, right]  
+    res += [self, left, right]  
   elsif type_code == :wikirate_company or type_code == :wikirate_topic
     res << self
-	end
-
-  if left and !visited.include?(left.name) and
-       includee_set = Card.search(:included_by=>left.name).map(&:name) and
-       !visited.intersection(includee_set).empty?
-    res, visited = left.contributees(res, visited)
+  else
+    if left and !visited.include?(left.name) and
+      ( 
+        right_id == VoteCountID or
+        ( includee_set = Card.search(:included_by=>left.name).map(&:name) and
+         !visited.intersection(includee_set).empty? )
+      )
+      res, visited = left.contributees(res, visited)
+    end
   end
   [res, visited]
 end
