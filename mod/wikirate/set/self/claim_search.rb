@@ -2,7 +2,7 @@ def get_spec unused={}
   filter_words = Env.params[:filter] ? Env.params[:filter].split(',') : []
   search_args = { :limit=> 10 }
   search_args.merge!( if Env.params[:order] == 'important'
-      {:sort => {"right"=>"*vote count"}, "sort_as"=>"integer","dir"=>"desc"}
+      {:sort => {:right=>"*vote count"}, :sort_as=>"integer", :dir=>"desc"}
     else
       {:sort => "update" }
     end
