@@ -23,8 +23,11 @@ format :html do
       when !article.includees.include?( card.left); 'Cite'
       else                                          'View'
       end
-    opts = { :edit_article=>true }
-    opts[ :citable ] = card.cardname.trunk_name unless act =~ /^Edit/
+    if act == "Cite"
+      opts = { :edit_article=>true }
+      opts[ :citable ] = card.cardname.trunk_name
+      opts[ :view ] = :content
+    end
     %{ <span class="claim-next-action">[[/#{analysis_name.url_key}?#{opts.to_param} | #{ act }]]</span> }
   end
   
