@@ -3,7 +3,6 @@ format :html do
   view :titled_with_voting, :tags=>:comment do |args|
     wrap args do   
       [
-        args[:citation_number]||(optional_render :clipboard, args, :hide),
         subformat( card.vote_count_card ).render_content,
         _render_header( args.reverse_merge :optional_menu=>:hide ),
         wrap_body( :content=>true ) { _render_core args },
