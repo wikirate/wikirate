@@ -1,34 +1,173 @@
-format :json do
-  def isIframable url,counter
+require 'open-uri'
+format :html do
 
-    return false if counter>5
-    begin 
-      uri = URI.parse(url)
-      http = Net::HTTP.new(uri.host, uri.port)
-      request = Net::HTTP::Get.new(uri.request_uri)
-      request.initialize_http_header({"User-Agent" => "My Ruby Script"})
-
-      response = http.request(request)
-      if response.code=="301" or response.code=="302"
-        #redirection
-        counter+=1
-        if response["location"].start_with?('/')
-          redirect_location = "http://"+uri.host+":#{uri.port}"+response["location"]
-        else
-          redirect_location = response["location"]
-        end
-        return isIframable(redirect_location,counter)
+  def company_and_topic_match? source_name, company, topic
+    if !source_name
+      return false
+    else
+      company_pointer = Card[source_name+"+company"]
+      topic_pointer = Card[source_name+"+topic"]
+      if !company_pointer or !topic_pointer
+        return false
       else
-        xFrameOptions = response["x-frame-options"]
-        if xFrameOptions and ( xFrameOptions.upcase.include? "DENY" or xFrameOptions.upcase.include? "SAMEORIGIN" )
-          return false
+        if company_pointer.item_names.include?(company) and topic_pointer.item_names.include?(topic)
+          return true
         end
       end
+    end
+    false
+  end
+
+  view :company_and_topic_detail do |args|
+    company = Card::Env.params[:company]
+    topic = Card::Env.params[:topic]
+    url = Card::Env.params[:url]
+    from_certh = Card::Env.params[:from_certh]
+    from_certh = from_certh == "true"
+    first_company = %{<a id='add-company-link' href='#' >Add Company</a>}
+    first_topic =  %{<a id='add-topic-link' href='#' >Add Topic</a>}
+    company_no_content = "no-content"
+    topic_no_content = "no-content"
+    dropdown_style = ""
+    source = Self::Webpage.find_duplicates url
+    source_name = source.first.left.name if source.any?
+
+    if from_certh and !company_and_topic_match? source_name,company,topic
+      #not match
+      dropdown_style = "display:none;"
+      first_company = if company
+        %{<a href="#{company}" target="_blank"><span class="company-name">#{company}</span></a>} 
+      else
+        company_no_content = ""
+        ""
+      end
+      first_topic = if topic 
+        %{<a href="#{topic}" target="_blank"><span class="topic-name">#{topic}</span></a>}  
+      else
+        topic_no_content = ""
+        ""
+      end
+    else    
+      if source_name 
+        company_card = Card[source_name+"+company"]
+        topic_card = Card[source_name+"+topic"]
+        if company_card
+          companies = company_card.item_names
+          if companies.length > 0 
+            first_company = %{<a href="#{companies[0]}" target="_blank"><span class="company-name">#{companies[0]}</span></a>}  
+            company_no_content = ""
+          end
+        end
+        if topic_card
+          topics = topic_card.item_names
+          if topics.length > 0 
+            first_topic  = %{<a href="#{topics[0]}" target="_blank"><span class="topic-name">#{topics[0]}</span></a>} 
+            topic_no_content = ""
+          end
+        end   
+      end
+    end
+    %{
+        <div class="company-name #{company_no_content}">
+          #{first_company}
+        </div>
+        <div class="topic-name #{topic_no_content}">
+          #{first_topic}
+        </div>
+        <a href="#" id="company-and-topic-detail-link" style="#{dropdown_style}">
+          <i class="fa fa-caret-square-o-down"></i>
+        </a>
+      } 
+  end
+  def show_options source_from_certh,source_page_name,url
+    if source_from_certh
+      %{
+        <div id="mark-irrelevant" class="button-primary button-secondary">
+          <a href="#" id="mark-irrelevant-button">
+            <i class="fa fa-exclamation-triangle">
+            </i>
+            <span>Irrelevant</span>
+          </a>
+        </div>
+        <div id="mark-relevant" class="mark-relevant" >
+          <button class="create-submit-button" id="mark-relevant-button" name="button">
+            Relevant
+          </button>
+        </div>
+      }
+    else
+      
+      related_claim_wql = {:left=>{:type=>"Claim"},:right=>"source",:link_to=>"#{source_page_name}",:return=>"count"}
+      claim_count = Card.search related_claim_wql
+
+      result = %{
+        <div id="source-page-link" class="mark-irrelevant-button" >
+          <a href="/#{source_page_name}" id="source-page-button" target="_blank">
+            Source Details
+            <i class="fa fa-chevron-circle-right"></i>
+          </a>
+          <a href="#{url}" id="direct-link-button" target="_blank">
+            Direct Link
+            <i class="fa fa-chevron-circle-right"></i>
+          </a>
+        </div>
+        <div id="make-claim" class="new-claim-button" >
+          <button class="create-submit-button" id="make-a-claim-button" name="button">
+            Make a claim
+          </button>
+        </div>
+      }
+      result+=%{<div id="claim-count"><span id="claim-number">#{claim_count}</span> Claim</div>} if claim_count == 0
+      result
+
+    end
+  end
+  view :source_preview_options do |args|
+    company = Card::Env.params[:company]
+    topic = Card::Env.params[:topic]
+    url = Card::Env.params[:url]
+    from_certh = Card::Env.params[:from_certh]
+    source = Self::Webpage.find_duplicates url
+    source_name = source.first.left.name if source.any?
+    if from_certh and !company_and_topic_match? source_name,company,topic
+      #check company and topic combination
+      #if no source found for url
+      # => showFromCerthSourceOptions
+      #else
+      # => if company and topic from url match source's 
+      # =>  showExisitingSourceOptions
+      # => else
+      # =>  showFromCerthSourceOptions
+      show_options true, source_name ,url
+    else
+      #showExisitingSourceOptions
+      show_options false, source_name ,url
+    end
+  end
+  view :source_name do |args|
+    url = Card::Env.params[:url]
+    source_name = ""
+    if url 
+      source = Self::Webpage.find_duplicates url
+      source_name = source.first.left.name if source.any?
+    end
+    source_name
+  end
+end
+
+format :json do
+  def is_iframable? url
+    return false if !url or url.length == 0
+    begin 
+      uri = open(url)
+      xFrameOptions = uri.metas["x-frame-options"]
+      return false if xFrameOptions and ( xFrameOptions.upcase.include? "DENY" or xFrameOptions.upcase.include? "SAMEORIGIN" )
+      return false if uri.content_type != "text/html"
     rescue => error
       Rails.logger.error error.message
       return false
     end
-    return true
+    true
   end
   view :get_user_id do |args|
     result = {:id=>Auth.current_id}
@@ -45,7 +184,7 @@ format :json do
   view :check_iframable do |args|
     url = Card::Env.params[:url]
     if url
-      result = {:result => isIframable( url, counter=0 ) }
+      result = {:result => is_iframable?( url ) }
     else
       result = {:result => false }
     end
@@ -92,4 +231,5 @@ format :json do
     end
     result
   end
+
 end

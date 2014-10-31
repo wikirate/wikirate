@@ -66,6 +66,40 @@ format :html do
     super args
   end
  
+  view :first_company_and_topic do |args|
+    company_card = Card[card.name+"+company"]
+    topic_card = Card[card.name+"+topic"]
+    first_company = %{<a id='add-company-link' href='#' >Add Company</a>}
+    first_topic =  %{<a id='add-topic-link' href='#' >Add Topic</a>}
+    no_content = "no-content"
+    if company_card
+      companies = company_card.item_names
+      if companies.length > 0 
+        first_company = %{<a href="#{companies[0]}" target="_blank"><span class="company-name">#{companies[0]}</span></a>}  
+        no_content = ""
+      end
+    end
+    if topic_card
+      topics = topic_card.item_names
+      if topics.length > 0 
+        first_topic  = %{<a href="#{topics[0]}" target="_blank"><span class="topic-name">#{topics[0]}</span></a>} 
+        no_content = ""
+      end
+    end   
+    %{
+      <div class="company-name #{no_content}">
+        #{first_company}
+      </div>
+      <div class="topic-name #{no_content}">
+        #{first_topic}
+      </div>
+      <a href="#" id="company-and-topic-detail-link" style="">
+        <i class="fa fa-caret-square-o-down"></i>
+      </a>
+    } 
+    
+  end
+
   view :missing do |args|
     _view_link args
   end
