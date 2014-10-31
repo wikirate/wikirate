@@ -21,4 +21,9 @@ describe Card::Set::Right::Source do
 
   end
 
+  it "has a place holder" do
+    html = render_card :editor,{:name=>"Test+Link"}
+    expect(html).to include("placeholder=\"http://example.com\"" )
+    
+  end
 end

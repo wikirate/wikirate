@@ -12,7 +12,13 @@ describe Card::Set::Type::Claim do
 
     sourcepage
   end
+  it "hides help text under title" do
 
+  end
+  it "gives a correct citation in clipboard view" do
+
+    
+  end
   it "should handle too long claim" do
     card = Card.new(   :type=>"Claim", :name=>"2"*101 )
     card.should_not be_valid
@@ -77,5 +83,51 @@ describe Card::Set::Type::Claim do
     puts card.errors[:source]
     card.errors[:source].include?("Home is not a valid Source Page").should ==true
   end
+
+  describe "views" do 
+    before do
+      login_as 'joe_user'
+      @claim_name = "testing claim"
+      @sourcepage = create_page 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
+    end
+    describe "tip view" do
+      it "shows nothing for non signed in users" do
+        claim_card = Card.create :type=>"Claim", :name=>@claim_name ,:subcards=>{'+source' => {:content=>"[[#{@sourcepage.name}]]",:type_id=>Card::PointerID}}    
+        login_as 'Anonymous'
+        expect(claim_card.format.render_tip).to eq('')
+      end
+      it "shows tip about adding topic for no topic case" do
+        claim_card = Card.create :type=>"Claim", :name=>@claim_name ,:subcards=>{ '+company'=>'apple','+source' => {:content=>"[[#{@sourcepage.name}]]",:type_id=>Card::PointerID}}    
+        expect(claim_card.format.render_tip).to include('improve this claim by adding a topic.')
+      end
+      it "shows tip about adding company for no company case" do
+        claim_card = Card.create :type=>"Claim", :name=>@claim_name ,:subcards=>{ '+topic'=>'natural resource use','+source' => {:content=>"[[#{@sourcepage.name}]]",:type_id=>Card::PointerID}}    
+        expect(claim_card.format.render_tip).to include('improve this claim by adding a company.')
+      end
+      # it "shows tip about citing" do
+      #   claim_card = Card.new :type=>"Claim", :name=>@claim_name ,:subcards=>{ '+company'=>'apple','topic'=>'natural resource use','+source' => {:content=>"[[#{@sourcepage.name}]]",:type_id=>Card::PointerID}}    
+
+      #   expect(claim_card.format.render_tip).to eq('')
+      # end
+      # it "shows nothing" do
+      #   claim_card = Card.new :type=>"Claim", :name=>@claim_name ,:subcards=>{ '+company'=>'apple','topic'=>'natural resource use','+source' => {:content=>"[[#{@sourcepage.name}]]",:type_id=>Card::PointerID}}    
+
+      #   expect(claim_card.format.render_tip).to eq('')
+      # end
+    end
+    
+    it "shows the link for view \"missing\"" do
+      claim_card = Card.create :type=>"Claim", :name=>@claim_name ,:subcards=>{ '+source' => {:content=>"[[#{@sourcepage.name}]]",:type_id=>Card::PointerID}}    
+      html = claim_card.format.render_missing
+      expect(html).to eq(claim_card.format.render_link )
+    end
+     it "show clipboard view" do 
+      claim_card = Card.create :type=>"Claim", :name=>@claim_name ,:subcards=>{ '+source' => {:content=>"[[#{@sourcepage.name}]]",:type_id=>Card::PointerID}}    
+      expected_html = %{<i class="fa fa-clipboard claim-clipboard" id="copy-button" title="copy claim citation to clipboard" data-clipboard-text="#{claim_card.name} {{#{claim_card.name}|cite}}"></i>}
+      expect(claim_card.format.render_clipboard).to include(expected_html)
+       
+    end
+  end
+
 end
 
