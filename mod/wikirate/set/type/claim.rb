@@ -17,6 +17,17 @@ format :html do
     }   
   end
   
+  view :citation_and_content do |args|
+    output([
+      render_citation_or_clipboard(args),
+      render_content(args)
+    ])
+  end
+  
+  view :citation_or_clipboard do |args|
+    args[:citation_number] || optional_render( :clipboard, args )
+  end
+  
   
   view :new do |args|
     #hide all help text under title 
