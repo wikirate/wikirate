@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 
+=begin
 class FilterSearch < ActiveRecord::Migration
   include Wagn::MigrationHelper
   def up
@@ -8,3 +9,4 @@ class FilterSearch < ActiveRecord::Migration
     end
   end
 end
+=end
