@@ -3,24 +3,30 @@ def get_spec params={}
   filter_words += Env.params[:topic] if Env.params[:topic]
   filter_words += Env.params[:tag] if Env.params[:tag]
   search_args = { :limit=> 10 }
-  search_args.merge!( if Env.params[:sort] == 'important'
-      {:sort => {"right"=>"*vote count"}, "sort_as"=>"integer","dir"=>"desc"}
-    else
-      {:sort => "update" }
-    end
-  )
-  cited = case Env.params[:cited]
-  when 'yes'
-    {:referred_to_by=>{:left=>{:type_id=>WikirateAnalysisID},:right_id=>WikirateArticleID}}
-  when 'no'
-    {:not=>{:referred_to_by=>{:left=>{:type_id=>WikirateAnalysisID},:right_id=>WikirateArticleID}}}
-  end
-  search_args.merge!(cited) if cited
+  search_args.merge!(sort_spec)
+  search_args.merge!(cited_spec)
   search_args.merge!(:type=>left.name)
   params[:spec] = Card.tag_filter_spec(filter_words, search_args,['tag','company','topic'])
   super(params)
 end
 
+
+def cited_spec
+  yes_spec = {:referred_to_by=>{:left=>{:type_id=>WikirateAnalysisID},:right_id=>WikirateArticleID}}
+  case Env.params[:cited]
+  when 'yes' then yes_spec
+  when 'no'  then {:not=>yes_spec}
+  else            {}
+  end
+end
+
+def sort_spec
+  if Env.params[:sort] == 'important'
+    {:sort => {"right"=>"*vote count"}, "sort_as"=>"integer","dir"=>"desc"}
+  else
+    {:sort => "update" }
+  end    
+end
 
 format :html do 
   def page_link text, page
@@ -50,7 +56,7 @@ format :html do
       optional_render( :tag_fieldset, args),
       #render( :button_fieldset, args )
     ])
-    %{ <form action="/Claim" method="GET">#{content}</form>}
+    %{ <form action="/#{left.name}" method="GET">#{content}</form>}
   end
   
   view :sort_fieldset do |args|
@@ -73,16 +79,16 @@ format :html do
     multiselect_filter 'tag', args
   end
   
-  def select_filter type, options
-    fieldset( type.capitalize, select_tag(type, options, :onchange=>"this.form.submit()") )
+  def select_filter type_name, options
+    fieldset( type_name.capitalize, select_tag(type_name, options) )
   end
   
-  def multiselect_filter type, args
-    options_card = Card.new :name=>"+#{type}"  #codename
-    selected_options = params[type]
+  def multiselect_filter type_name, args
+    options_card = Card.new :name=>"+#{type_name}"  #codename
+    selected_options = params[type_name]
     options = options_from_collection_for_select(options_card.options,:name,:name,selected_options)
-    multiselect_tag = select_tag(type, options, :multiple=>true, :class=>'pointer-multiselect', :onchange=>"this.form.submit()")
-    fieldset( type.capitalize, multiselect_tag ,:attribs=>{:class=>"filter-input #{type}"} )
+    multiselect_tag = select_tag(type_name, options, :multiple=>true, :class=>'pointer-multiselect')
+    fieldset( type_name.capitalize, multiselect_tag ,:attribs=>{:class=>"filter-input #{type_name}"} )
   end  
 end
 
