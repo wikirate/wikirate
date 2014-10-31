@@ -77,19 +77,24 @@ format :html do
   
   view :header do |args|
     if args[:custom_claim_header]
-      render_haml(:super_view=>super(args)) do
-             %{
+      render_haml(:args=>args) do
+        %{
 .header-with-vote
   .header-vote
     = subformat( card.vote_count_card ).render_details
   .header-citation
     = nest card.fetch(:trait=>:citation_count), :view=>:titled, :title=>"Citations"
   .header-title
-    = super_view
+    %h1.card-header
+      = _optional_render :toggle, args, :hide
+      %i.fa.fa-quote-left
+      = _optional_render :title, args
+      %i.fa.fa-quote-right
+      = _optional_render :menu, args
     .creator-credit
       = nest card, :structure=>"creator credit"
 .clear-line
-             }
+        }
       end
     else
       super(args)
