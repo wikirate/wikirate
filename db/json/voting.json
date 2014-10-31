@@ -1,10 +1,10 @@
 {
   "url": "http://dev.wikirate.org/export.json",
-  "timestamp": "2014-10-31 22:20:14 +0100",
+  "timestamp": "2014-10-31 22:57:55 +0100",
   "card": {
     "name": "export",
     "type": "Pointer",
-    "content": "[[source item]]\n[[Sources by importance]]\n[[Claims by importance]]\n[[Sources+*self+*structure]]\n[[*css]]\n[[Claim+*type+*structure]]\n[[Claim+*self+*structure]]\n[[Claim+tabs]]\n[[page+claim count+*type plus right+*structure]]\n[[claim summary]]\n[[source icon3]]\n[[claim item]]\n[[claim+citation count+*type plus right+*structure]]\n[[*vote count]]\n[[*vote count+*right+*update]]\n[[*upvote count]]\n[[*upvote count+*right+*update]]\n[[*downvote count]]\n[[*downvote count+*right+*update]]\n[[citation count]]\n[[Source Link]]\n[[*all+*script]]\n[[source claim list script]]\n[[claim citation script]]\n[[Page+source claim list+*type plus right+*structure]]\n[[*upvotes]]\n[[*downvotes]]\n[[claim citation script]]\n[[source claim list script]]\n[[Page+source claim list+*type plus right+*structure]]\n[[Company+right sidebar+*type plus right+*structure]]\n[[filter search]]\n[[Cardtype+filter search+*type plus right+*structure]]\n[[Analysis+*type+*structure]]",
+    "content": "[[source item]]\n[[Sources by importance]]\n[[Claims by importance]]\n[[Sources+*self+*structure]]\n[[*css]]\n[[Claim+*type+*structure]]\n[[Claim+*self+*structure]]\n[[Claim+tabs]]\n[[page+claim count+*type plus right+*structure]]\n[[claim summary]]\n[[source icon3]]\n[[claim item]]\n[[claim+citation count+*type plus right+*structure]]\n[[*vote count]]\n[[*vote count+*right+*update]]\n[[*upvote count]]\n[[*upvote count+*right+*update]]\n[[*downvote count]]\n[[*downvote count+*right+*update]]\n[[citation count]]\n[[Source Link]]\n[[*all+*script]]\n[[source claim list script]]\n[[claim citation script]]\n[[Page+source claim list+*type plus right+*structure]]\n[[*upvotes]]\n[[*downvotes]]\n[[claim citation script]]\n[[source claim list script]]\n[[Page+source claim list+*type plus right+*structure]]\n[[Company+right sidebar+*type plus right+*structure]]\n[[Topic+right sidebar+*type plus right+*structure]]\n[[filter search]]\n[[Cardtype+filter search+*type plus right+*structure]]\n[[Analysis+*type+*structure]]\n[[Source+Description]]",
     "value": [
       {
         "name": "source item",
@@ -165,7 +165,12 @@
       {
         "name": "Company+right sidebar+*type plus right+*structure",
         "type": "HTML",
-        "content": "  <h1>More about {{_1|name}}</h1>\r\n\r\n\r\n<div class=\"right-sidebar-button\">\r\n  [[/new/Claim?_Companies={{_1|name}}| Add a new Claim<i class=\"fa fa-caret-right\"></i>]]\r\n</div>\r\n<div class=\"right-sidebar-button\">\r\n  [[/new/Page?_Companies={{_1|name}}| Add a new Source<i class=\"fa fa-caret-right\"></i>]]\r\n</div>\r\n<div class=\"right-sidebar-button button-secondary-a\">\r\n  [[/Claim?filter={{_1|name}}|View all {{_1+claims+*count}} Claims<i class=\"fa fa-caret-right\"></i>]]\r\n</div>\r\n\r\n<div class=\"right-sidebar-button button-secondary-a\">\r\n  [[/{{_1|linkname}}+source list|View all {{_1+sources+*count}} Sources<i class=\"fa fa-caret-right\"></i>]]\r\n</div>\r\n\r\n\r\n{{#coming soon|titled;title:Coming Soon}}\r\n"
+        "content": "  <h1>More about {{_1|name}}</h1>\r\n\r\n\r\n<div class=\"right-sidebar-button\">\r\n  [[/new/Claim?_Companies={{_1|name}}| Add a new Claim<i class=\"fa fa-caret-right\"></i>]]\r\n</div>\r\n<div class=\"right-sidebar-button\">\r\n  [[/new/Page?_Companies={{_1|name}}| Add a new Source<i class=\"fa fa-caret-right\"></i>]]\r\n</div>\r\n<div class=\"right-sidebar-button button-secondary-a\">\r\n  [[/Claim?company={{_1|name}}|View all {{_1+claims+*count|core}} Claims<i class=\"fa fa-caret-right\"></i>]]\r\n</div>\r\n\r\n<div class=\"right-sidebar-button button-secondary-a\">\r\n  [[/Source?company={{_1|name}}|View all {{_1+sources+*count|core}} Sources<i class=\"fa fa-caret-right\"></i>]]\r\n</div>\r\n\r\n\r\n{{#coming soon|titled;title:Coming Soon}}\r\n"
+      },
+      {
+        "name": "Topic+right sidebar+*type plus right+*structure",
+        "type": "HTML",
+        "content": "<h1>More about {{_1|name}}</h1>\r\n\r\n<div class=\"right-sidebar-button\">\r\n  [[/new/Claim?_Topics={{_1|name}}| Add a new Claim<i class=\"fa fa-caret-right\"></i>]]\r\n</div>\r\n<div class=\"right-sidebar-button\">\r\n  [[/new/Page?_Topics={{_1|name}}| Add a new Source<i class=\"fa fa-caret-right\"></i>]]\r\n</div>\r\n<div class=\"right-sidebar-button button-secondary-a\">\r\n  [[/Claim?topic={{_1|name}}|View all {{_1+claims+*count|core}} Claims<i class=\"fa fa-caret-right\"></i>]]\r\n</div>\r\n\r\n<div class=\"right-sidebar-button button-secondary-a\">\r\n  [[/Source?topic={{_1|name}}|View all {{_1+sources+*count|core}} Sources<i class=\"fa fa-caret-right\"></i>]]\r\n</div>\r\n\r\n{{#coming soon|titled;title:Coming Soon}}\r\n"
       },
       {
         "name": "filter search",
@@ -181,7 +186,12 @@
       {
         "name": "Analysis+*type+*structure",
         "type": "HTML",
-        "content": "<div class=\"source-side\">\r\n  <div class=\"side-by-side\">\r\n    <a class=\"company-link image-link\" href=\"{{_1|linkname}}\">{{_1+logo|size:small}}</a>\r\n    <a class=\"topic-link image-link\" href=\"{{_2|linkname}}\">{{_2+image|size:small}}</a>\r\n    <div class=\"analysis-name\">\r\n      <div class=\"analysis-company-name\">[[_1]]</div>\r\n      <div class=\"analysis-joint\">and</div>\r\n      <div class=\"analysis-topic-name\">[[_2]]</div>\r\n    </div>\r\n  </div>\r\n  {{+Article|titled_with_edits;title:Article;show:menu;clear:both}}\r\n  <h1>Claims</h1>\r\n{{+Cited Claims+*count|core}} cited\r\n  {{+Cited Claims||content;show:title_link,clipboard;structure:claim item}}\r\n{{+Uncited Claims+*count|core}} uncited\r\n  {{+Uncited Claims||content;show:title_link,clipboard;structure:claim item}}\r\n</div>\r\n\r\n<div class=\"meta-side\">\r\n  {{+right sidebar}}\r\n</div>"
+        "content": "<div class=\"source-side\">\r\n  <div class=\"side-by-side\">\r\n    <a class=\"company-link image-link\" href=\"{{_1|linkname}}\">{{_1+logo|size:small}}</a>\r\n    <a class=\"topic-link image-link\" href=\"{{_2|linkname}}\">{{_2+image|size:small}}</a>\r\n    <div class=\"analysis-name\">\r\n      <div class=\"analysis-company-name\">[[_1]]</div>\r\n      <div class=\"analysis-joint\">and</div>\r\n      <div class=\"analysis-topic-name\">[[_2]]</div>\r\n    </div>\r\n  </div>\r\n  {{+Article|titled_with_edits;title:Article;show:menu;clear:both}}\r\n  <h1>Claims</h1>\r\n{{+Cited Claims+*count|core}} cited\r\n  {{+Cited Claims||citation_and_content;structure:claim item}}\r\n{{+Uncited Claims+*count|core}} uncited\r\n  {{+Uncited Claims||citation_and_content;structure:claim item}}\r\n</div>\r\n\r\n<div class=\"meta-side\">\r\n  {{+right sidebar}}\r\n</div>"
+      },
+      {
+        "name": "Source+Description",
+        "type": "Basic",
+        "content": "<p>Wikirate does not publish original research; everything is based on an external source.</p>"
       }
     ]
   }

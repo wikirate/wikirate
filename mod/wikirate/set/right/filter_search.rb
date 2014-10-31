@@ -1,7 +1,7 @@
 def get_spec params={}
-  filter_words = Env.params[:company] || []
-  filter_words += Env.params[:topic] if Env.params[:topic]
-  filter_words += Env.params[:tag] if Env.params[:tag]
+  filter_words =  Array.wrap(Env.params[:company]) || []
+  filter_words += Array.wrap(Env.params[:topic]  ) if Env.params[:topic]
+  filter_words += Array.wrap(Env.params[:tag]    ) if Env.params[:tag]
   search_args = { :limit=> 10 }
   search_args.merge!( if Env.params[:sort] == 'important'
       {:sort => {"right"=>"*vote count"}, "sort_as"=>"integer","dir"=>"desc"}
