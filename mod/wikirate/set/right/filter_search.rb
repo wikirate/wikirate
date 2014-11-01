@@ -56,7 +56,7 @@ format :html do
       optional_render( :tag_fieldset, args),
       #render( :button_fieldset, args )
     ])
-    %{ <form action="/#{left.name}" method="GET">#{content}</form>}
+    %{ <form action="/#{card.left.name}" method="GET">#{content}</form>}
   end
   
   view :sort_fieldset do |args|
