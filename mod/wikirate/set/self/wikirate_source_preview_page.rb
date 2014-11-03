@@ -24,53 +24,55 @@ format :html do
     url = Card::Env.params[:url]
     from_certh = Card::Env.params[:fromcerth]
     from_certh = from_certh == "true"
+    
     first_company = %{<a id='add-company-link' href='#' >Add Company</a>}
     first_topic =  %{<a id='add-topic-link' href='#' >Add Topic</a>}
-    company_no_content = "no-content"
-    topic_no_content = "no-content"
+    #no-content class is for "Add company" and "Add Topic"
+    company_no_content_class = "no-content"
+    topic_no_content_class = "no-content"
     dropdown_style = ""
     source = Self::Webpage.find_duplicates url
     source_name = source.first.left.name if source.any?
-    # binding.pry
+    #if company and topic match exisiting source, show it as a exisiting source
     if from_certh and !company_and_topic_match? source_name,company,topic
       dropdown_style = "display:none;"
       first_company = if company
         %{<a href="#{company}" target="_blank"><span class="company-name">#{company}</span></a>} 
       else
-        company_no_content = ""
+        company_no_content_class = ""
         ""
       end
       first_topic = if topic 
         %{<a href="#{topic}" target="_blank"><span class="topic-name">#{topic}</span></a>}  
       else
-        topic_no_content = ""
+        topic_no_content_class = ""
         ""
       end
     else    
       if source_name 
-        company_card = Card[source_name+"+company"]
-        topic_card = Card[source_name+"+topic"]
+        company_card = Card[source_name+"+company"] 
+        topic_card = Card[source_name+"+topic"] 
         if company_card
           companies = company_card.item_names
           if companies.length > 0 
             first_company = %{<a href="#{companies[0]}" target="_blank"><span class="company-name">#{companies[0]}</span></a>}  
-            company_no_content = ""
+            company_no_content_class = ""
           end
         end
         if topic_card
           topics = topic_card.item_names
           if topics.length > 0 
             first_topic  = %{<a href="#{topics[0]}" target="_blank"><span class="topic-name">#{topics[0]}</span></a>} 
-            topic_no_content = ""
+            topic_no_content_class = ""
           end
         end   
       end
     end
     %{
-        <div class="company-name #{company_no_content}">
+        <div class="company-name #{company_no_content_class}">
           #{first_company}
         </div>
-        <div class="topic-name #{topic_no_content}">
+        <div class="topic-name #{topic_no_content_class}">
           #{first_topic}
         </div>
         <a href="#" id="company-and-topic-detail-link" style="#{dropdown_style}">
@@ -88,12 +90,13 @@ format :html do
             <span>Irrelevant</span>
           </a>
         </div>
-        <div id="mark-relevant" class="mark-relevant" >
-          <button class="create-submit-button" id="mark-relevant-button" name="button">
-            Relevant
-          </button>
+        <div id="mark-relevant" class="button-primary">
+          <a href="#" id="mark-relevant-button">
+            <i class="fa fa-exclamation-triangle">
+            </i>
+            <span>Relevant</span>
+          </a>
         </div>
-        <div id="claim-count" style="display:none;"></div>
       }
     else
       
@@ -111,15 +114,14 @@ format :html do
             <i class="fa fa-chevron-circle-right"></i>
           </a>
         </div>
-        <div id="make-claim" class="new-claim-button" >
-          <button class="create-submit-button" id="make-a-claim-button" name="button">
-            Make a claim
-          </button>
+        <div id="make-claim" class="button-primary">
+          <a href="#" id="make-a-claim-button">
+            <span>Make a Claim</span>
+          </a>
         </div>
       }
-      result+=%{<div id="claim-count"><a class='show-link-in-popup' href='/#{source_page_name}+source claim list' target='_blank'>#{claim_count} Claims</a></div>} if claim_count != 0
+      result+=%{<div id="claim-count">#{"<a class='show-link-in-popup' href='/#{source_page_name}+source claim list' target='_blank'>#{claim_count} Claims</a>" if claim_count != 0}</div>} 
       result
-
     end
   end
   view :source_preview_options do |args|
@@ -152,7 +154,8 @@ format :json do
   def is_iframable? url
     return false if !url or url.length == 0
     begin 
-      url.gsub!(/[#@].+/, '')
+      # escape space in url, eg, http://www.businessweek.com/articles/2014-10-30/tim-cook-im-proud-to-be-gay#r=most popular
+      url.gsub!(/ /, '%20')
       uri = open(url)
       xFrameOptions = uri.metas["x-frame-options"]
       return false if xFrameOptions and ( xFrameOptions.upcase.include? "DENY" or xFrameOptions.upcase.include? "SAMEORIGIN" )
