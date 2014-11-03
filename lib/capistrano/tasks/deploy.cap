@@ -28,7 +28,7 @@ namespace :deploy do
     end
   end
 
-
+=begin
   task :import_json do
     import_files = run_locally do
       Dir.entries( 'import' ).find_all { |f| f =~ /\.json$/ }
@@ -41,9 +41,11 @@ namespace :deploy do
       end
     end
   end
-  
+      
   after :published, :import_json  
 # FIXME - still perms issues on production
+=end
+
 
   after :finishing, :cleanup
 end
