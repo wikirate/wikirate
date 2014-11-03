@@ -2,6 +2,6 @@
 
 class MoreVotingCards < Wagn::Migration
   def up
-    import 'voting.json'
+    import_json 'voting.json'
   end
 end
