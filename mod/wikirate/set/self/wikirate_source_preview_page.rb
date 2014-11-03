@@ -22,7 +22,7 @@ format :html do
     company = Card::Env.params[:company]
     topic = Card::Env.params[:topic]
     url = Card::Env.params[:url]
-    from_certh = Card::Env.params[:from_certh]
+    from_certh = Card::Env.params[:fromcerth]
     from_certh = from_certh == "true"
     first_company = %{<a id='add-company-link' href='#' >Add Company</a>}
     first_topic =  %{<a id='add-topic-link' href='#' >Add Topic</a>}
@@ -31,9 +31,8 @@ format :html do
     dropdown_style = ""
     source = Self::Webpage.find_duplicates url
     source_name = source.first.left.name if source.any?
-
+    # binding.pry
     if from_certh and !company_and_topic_match? source_name,company,topic
-      #not match
       dropdown_style = "display:none;"
       first_company = if company
         %{<a href="#{company}" target="_blank"><span class="company-name">#{company}</span></a>} 
@@ -94,6 +93,7 @@ format :html do
             Relevant
           </button>
         </div>
+        <div id="claim-count" style="display:none;"></div>
       }
     else
       
@@ -117,7 +117,7 @@ format :html do
           </button>
         </div>
       }
-      result+=%{<div id="claim-count"><span id="claim-number">#{claim_count}</span> Claim</div>} if claim_count == 0
+      result+=%{<div id="claim-count"><a class='show-link-in-popup' href='/#{source_page_name}+source claim list' target='_blank'>#{claim_count} Claims</a></div>} if claim_count != 0
       result
 
     end
@@ -126,21 +126,14 @@ format :html do
     company = Card::Env.params[:company]
     topic = Card::Env.params[:topic]
     url = Card::Env.params[:url]
-    from_certh = Card::Env.params[:from_certh]
+    from_certh = Card::Env.params[:fromcerth]
+    from_certh = from_certh == "true"
     source = Self::Webpage.find_duplicates url
     source_name = source.first.left.name if source.any?
+    #show options as existing source one if it is from certh and the company and topic match the source's one
     if from_certh and !company_and_topic_match? source_name,company,topic
-      #check company and topic combination
-      #if no source found for url
-      # => showFromCerthSourceOptions
-      #else
-      # => if company and topic from url match source's 
-      # =>  showExisitingSourceOptions
-      # => else
-      # =>  showFromCerthSourceOptions
       show_options true, source_name ,url
     else
-      #showExisitingSourceOptions
       show_options false, source_name ,url
     end
   end
@@ -159,6 +152,7 @@ format :json do
   def is_iframable? url
     return false if !url or url.length == 0
     begin 
+      url.gsub!(/[#@].+/, '')
       uri = open(url)
       xFrameOptions = uri.metas["x-frame-options"]
       return false if xFrameOptions and ( xFrameOptions.upcase.include? "DENY" or xFrameOptions.upcase.include? "SAMEORIGIN" )
