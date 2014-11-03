@@ -1,7 +1,7 @@
 def get_spec params={}
-  filter_words = Env.params[:company] || []
-  filter_words += Env.params[:topic] if Env.params[:topic]
-  filter_words += Env.params[:tag] if Env.params[:tag]
+  filter_words =  Array.wrap(Env.params[:company]) || []
+  filter_words += Array.wrap(Env.params[:topic]  ) if Env.params[:topic]
+  filter_words += Array.wrap(Env.params[:tag]    ) if Env.params[:tag]
   search_args = { :limit=> 10 }
   search_args.merge!(sort_spec)
   search_args.merge!(cited_spec)
@@ -56,7 +56,9 @@ format :html do
       optional_render( :tag_fieldset, args),
       #render( :button_fieldset, args )
     ])
-    %{ <form action="/#{left.name}" method="GET">#{content}</form>}
+    action = card.left.name
+    action = 'Source' if action == 'Page'
+    %{ <form action="/#{ action }" method="GET">#{content}</form>}
   end
   
   view :sort_fieldset do |args|
