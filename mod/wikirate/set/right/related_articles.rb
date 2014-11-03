@@ -13,18 +13,17 @@ format :html do
           </div>
         }
       end.join ' '
-      articles = "<span class='no-article'>No related Article</span>"+ claim.format.render_tips if analysis_names.length == 0
+      if analysis_names.length == 0
+        articles = "<span class='no-article'>No related Articles yet</span>"+ claim.format.render_tips 
+      end
+      articles
       process_content( articles )
     end
   end
   
   def next_action_link analysis_name
     article = Card["#{analysis_name}+Article"]
-    act = case
-      when !article;                                'Cite'
-      when !article.includees.include?( card.left); 'Cite'
-      else                                          'View'
-      end
+    act = ( article && article.includees.include?( card.left) ) ? '' : 'Cite'
     if act == "Cite"
       opts = { :edit_article=>true }
       opts[ :citable ] = card.cardname.trunk_name 

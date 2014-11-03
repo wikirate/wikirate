@@ -1,5 +1,14 @@
 namespace :deploy do
 
+  after :updated, :update_submodules do
+    on roles(:app) do
+      within_release_path do
+        execute :git, 'submodules init'
+        execute :git, 'submodules update'
+      end
+    end
+  end
+
   after :updated, :run_migrations do
     
     #because this creates the log and tmp files, it needs to be executed before the chown,
@@ -27,24 +36,6 @@ namespace :deploy do
       execute :touch, release_path.join('tmp/restart.txt')
     end
   end
-
-=begin
-  task :import_json do
-    import_files = run_locally do
-      Dir.entries( 'import' ).find_all { |f| f =~ /\.json$/ }
-    end
-    import_files.each do |filename|
-      on roles(:db) do
-        within release_path do
-          execute :bundle, :exec, "./script/import_json.rb import/#{ filename }"
-        end
-      end
-    end
-  end
-      
-  after :published, :import_json  
-# FIXME - still perms issues on production
-=end
 
 
   after :finishing, :cleanup
