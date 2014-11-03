@@ -1,13 +1,20 @@
-namespace :deploy do
 
-  before :updated, :update_submodules do
-    on roles(:app) do
-      within_release_path do
-        execute :git, 'submodules init'
-        execute :git, 'submodules update'
+# this overrides the default git:create_release in order to run submodules
+namespace :git do
+  desc 'Copy repo to releases'
+  task create_release: :'git:update' do
+    on roles(:all) do
+      with fetch(:git_environmental_variables) do
+        within repo_path do
+          execute :git, :clone, '-b', fetch(:branch), '--recursive', '.', release_path
+        end
       end
     end
   end
+end
+
+  
+namespace :deploy do
 
   after :updated, :run_migrations do
     
