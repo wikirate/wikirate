@@ -36,14 +36,14 @@ end
 #   gem 'minitest', "~>4.0"
 # end
 #
-# group :development do
-#   gem 'rails-dev-tweaks'
-#   gem 'sprockets' # just so above works
-#   gem 'capistrano'
-#   gem 'capistrano-bundler'
-#   gem 'capistrano-rvm'
-#
-# end
+group :development do
+  gem 'rails-dev-tweaks'
+  gem 'sprockets' # just so above works
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
+
+end
 #
 # group :test, :development do
 #   gem 'pry-rails'
