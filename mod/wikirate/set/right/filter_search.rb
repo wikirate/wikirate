@@ -62,7 +62,7 @@ format :html do
   end
   
   view :sort_fieldset do |args|
-    select_filter 'sort',  options_for_select({'Most Recent'=>'recent', 'Most Important'=>'important'}, params[:order] || 'recent')
+    select_filter 'sort',  options_for_select({'Most Recent'=>'recent', 'Most Important'=>'important'}, params[:sort] || 'recent')
   end
   
   view :cited_fieldset do |args|
