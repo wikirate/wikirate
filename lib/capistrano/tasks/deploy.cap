@@ -16,7 +16,7 @@ end
   
 namespace :deploy do
 
-  after :updated, :run_migrations do
+  after :updated, :migrate do
     
     #because this creates the log and tmp files, it needs to be executed before the chown,
     # which in turn needs to happen before the restart.  not ideal.
@@ -41,6 +41,7 @@ namespace :deploy do
   after :published, :restart_passenger do
     on roles(:app), in: :sequence, wait: 5 do
       execute :touch, release_path.join('tmp/restart.txt')
+      execute :rake, 'wagn:reset_cache'
     end
   end
 
