@@ -26,22 +26,3 @@ event :block_url_changing, :before=>:approve, :on=>:update do
     errors.add :link, "is not allowed to be changed."
   end
 end
-=begin
-
-view :iframe do |args|
-#  return 'iframe' if Rails.env.development?
-#  subformat( Card.fetch( "#{card.cardname.left}+source frame" ) ).render_content
-  %{<iframe sandbox="allow-same-origin allow-scripts allow-popups allow-forms" src="#{_render_raw}"></iframe>}
-end
-
-
-view :edit_in_form do |args|
-  if !card.content.blank? and card.left and card.left.type_id == Card::WebpageID
-    view = args[:home_view] || :core
-    render view, args
-  else
-    super args
-  end
-end
-
-=end
