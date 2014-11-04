@@ -2,16 +2,16 @@
 
 class AddCreatorUpvotes < Wagn::Migration
   def up
-    Card.search(:type_id => Card::ClaimID).each do |claim|
-
-      if claim.creator.id != Card::WagnBotID   and 
-         !claim.creator.upvotes_card.include_item? "~#{claim.id}" and 
-         !claim.creator.downvotes_card.include_item? "~#{claim.id}"
+    Card.search(:type_id => [:in, Card::ClaimID, Card::WebpageID], :return=>:name).each do |name|
+      subject = Card[name]
+      if subject.creator.id != Card::WagnBotID   and 
+         !subject.creator.upvotes_card.include_item? "~#{subject.id}" and 
+         !subject.creator.downvotes_card.include_item? "~#{subject.id}"
          
-        up_card = claim.creator.upvotes_card
-        up_card.add_id claim.id
+        up_card = subject.creator.upvotes_card
+        up_card.add_id subject.id
         up_card.save!
-        vc = claim.vote_count_card
+        vc = subject.vote_count_card
         vc.update_votecount
         vc.save!
       end
