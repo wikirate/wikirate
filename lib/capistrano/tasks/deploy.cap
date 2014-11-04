@@ -41,12 +41,18 @@ namespace :deploy do
   after :published, :restart_passenger do
     on roles(:app), in: :sequence, wait: 5 do
       execute :touch, release_path.join('tmp/restart.txt')
+    end
+    invoke 'deploy:clear_cache'
+  end
+
+  desc 'clear cache'
+  task :clear_cache do
+    on roles(:app) do
       within release_path do
         execute :rake, 'wagn:reset_cache'
       end
     end
   end
-
 
   after :finishing, :cleanup
 end

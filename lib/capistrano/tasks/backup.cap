@@ -65,6 +65,8 @@ namespace :backup do
       execute :sudo, "/opt/bin/replace_files #{ fetch :data_backups_dir } #{ shared_path }"
       #custom script for this because file permissions are all www-data.www-data
     end
+    invoke 'deploy:clear_cache'
+    
   end
 
   task :update_db do
