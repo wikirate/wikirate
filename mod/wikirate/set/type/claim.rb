@@ -5,6 +5,15 @@ card_accessor :upvote_count, :type=>:number, :default=>"0"
 card_accessor :downvote_count, :type=>:number, :default=>"0"
 
 
+event :vote_on_create, :on=>:create, :after=>:extend do
+  Auth.as_bot do
+    vc = vote_count_card
+    vc.vote_up
+    vc.save!
+  end
+end
+
+
 format :html do
   view :name_fieldset do |args|
     #rename "name" to "Claim"
