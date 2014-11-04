@@ -16,3 +16,4 @@ def create_claim name
     Card.create! :type=>"Claim", :name=>name, :subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}    
   end
 end
+
