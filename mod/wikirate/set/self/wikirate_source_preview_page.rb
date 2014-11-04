@@ -176,7 +176,7 @@ format :json do
       source = Self::Webpage.find_duplicates url
       result = {:result => true, :source => source.first.left.name} if source.any?
     end
-    result.to_json
+    result
   end
   view :check_iframable do |args|
     url = Card::Env.params[:url]
@@ -185,7 +185,7 @@ format :json do
     else
       result = {:result => false }
     end
-    result.to_json
+    result
   end
    view :feedback ,:perms=>lambda { |r| Auth.signed_in? } do |args|
     url = Card::Env.params[:url]
@@ -213,8 +213,8 @@ format :json do
       return result
     end
     user_id = Auth.current_id
-    company_id = Card[company].id if Card[company]
-    topic_id = Card[topic].id if Card[topic]
+    company_id = Card[company].id if Card[company] and Card[company].type_id == Card::WikirateCompanyID
+    topic_id = Card[topic].id if Card[topic] and Card[topic].type_id == Card::WikirateTopicID
     
     if company_id and topic_id and url and type
       request_url = "http://mklab.iti.gr/wikirate-sandbox/api/index.php/relevance/?url=#{url}&user_id=#{user_id}&rel_topic_score=#{rel_topic_score}&rel_company_score=#{rel_company_score}&company_id=#{company_id}&topic_id=#{topic_id}"
