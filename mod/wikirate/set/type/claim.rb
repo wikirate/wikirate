@@ -5,6 +5,15 @@ card_accessor :upvote_count, :type=>:number, :default=>"0"
 card_accessor :downvote_count, :type=>:number, :default=>"0"
 
 
+event :vote_on_create, :on=>:create, :before=>:extend do
+  Auth.as_bot do
+    vc = vote_count_card
+    vc.vote_up
+    vc.save!
+  end
+end
+
+
 format :html do
   view :name_fieldset do |args|
     #rename "name" to "Claim"
@@ -71,11 +80,6 @@ format :html do
     tip = "easily cite this claim by pasting the following:" +
       text_area_tag( :citable_claim, card.default_citation )
     %{ <div class="sample-citation">#{ render :tip, :tip=>tip }</div> }
-  end
-  
-  
-  view :open do |args|
-    super args.merge( :custom_claim_header=>true )
   end
   
   view :titled, :tags=>:comment do |args|

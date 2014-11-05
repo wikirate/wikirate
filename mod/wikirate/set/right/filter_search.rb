@@ -5,6 +5,7 @@ def get_spec params={}
   search_args = { :limit=> 10 }
   search_args.merge!(sort_spec)
   search_args.merge!(cited_spec)
+  search_args.merge!(claimed_spec)
   search_args.merge!(:type=>left.name)
   params[:spec] = Card.tag_filter_spec(filter_words, search_args,['tag','company','topic'])
   super(params)
@@ -20,6 +21,16 @@ def cited_spec
   end
 end
 
+def claimed_spec
+  yes_spec = {:linked_to_by=>{:left=>{:type_id=>ClaimID}, :right_id=>SourceID }}
+  case Env.params[:claimed]
+  when 'yes' then yes_spec
+  when 'no'  then {:not=>yes_spec}
+  else            {}
+  end
+end
+
+
 def sort_spec
   if Env.params[:sort] == 'important'
     {:sort => {"right"=>"*vote count"}, "sort_as"=>"integer","dir"=>"desc"}
@@ -32,7 +43,7 @@ format :html do
   def page_link text, page
     @paging_path_args[:offset] = page * @paging_limit
     filter_args = {}
-    [:sort, :cited, :company, :topic, :tag].each do |key|
+    [:sort, :cited, :claimed, :company, :topic, :tag].each do |key|
       filter_args[key] = params[key] if params[key].present?
     end
     " #{link_to raw(text), path(@paging_path_args.merge(filter_args)), :class=>'card-paging-link slotter', :remote => true} "
@@ -50,6 +61,7 @@ format :html do
     #args[:buttons] = button_tag 'Filter', :class=>'submit-button', :disable_with=>'Filtering'
     content = output([
       optional_render( :sort_fieldset, args),
+      optional_render( :claimed_fieldset, args),
       optional_render( :cited_fieldset, args),
       optional_render( :company_fieldset, args),
       optional_render( :topic_fieldset, args),
@@ -62,11 +74,15 @@ format :html do
   end
   
   view :sort_fieldset do |args|
-    select_filter 'sort',  options_for_select({'Most Recent'=>'recent', 'Most Important'=>'important'}, params[:order] || 'recent')
+    select_filter 'sort',  options_for_select({'Most Recent'=>'recent', 'Most Important'=>'important'}, params[:sort] || 'recent')
   end
   
   view :cited_fieldset do |args|
     select_filter 'cited', options_for_select({'All'=>'all', 'Yes'=>'yes', 'No'=>'no'}, params[:cited] || 'all')
+  end
+  
+  view :claimed_fieldset do |args|
+    select_filter 'claimed', options_for_select({'All'=>'all', 'Yes'=>'yes', 'No'=>'no'}, params[:claimed] || 'all')
   end
   
   view :company_fieldset do |args|
