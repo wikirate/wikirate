@@ -1,45 +1,57 @@
 
 def vote_up
-  case vote_status
-  when '?'
-    uv_card = Auth.current.upvotes_card
-    if uv_card.add_id left.id
-      uv_card.save!
-      update_votecount
-    end
-  when '-'
-    dv_card = Auth.current.downvotes_card
-    if dv_card.drop_id left.id
-      dv_card.save!
-      update_votecount
+  Auth.as_bot do
+    case vote_status
+    when '?'
+      uv_card = Auth.current.upvotes_card
+      if uv_card.add_id left.id
+        uv_card.save!
+        update_votecount
+      end
+    when '-'
+      dv_card = Auth.current.downvotes_card
+      if dv_card.drop_id left.id
+        dv_card.save!
+        update_votecount
+      end
     end
   end
 end
 
 def vote_down
-  case vote_status
-  when '?'
-    dv_card = Auth.current.downvotes_card
-    if dv_card.add_id left.id
-      dv_card.save!
-      update_votecount
-    end
-  when '+'
-    uv_card = Auth.current.upvotes_card
-    if uv_card.drop_id left.id
-      uv_card.save!
-      update_votecount
+  Auth.as_bot do
+    case vote_status
+    when '?'
+      dv_card = Auth.current.downvotes_card
+      if dv_card.add_id left.id
+        dv_card.save!
+        update_votecount
+      end
+    when '+'
+      uv_card = Auth.current.upvotes_card
+      if uv_card.drop_id left.id
+        uv_card.save!
+        update_votecount
+      end
     end
   end
 end
 
 
 def update_votecount 
-  up_count = Card.search( :plus=>[{:codename=>'upvotes'},:link_to=>left.name], :return=>'count' )
-  down_count = Card.search( :plus=>[{:codename=>'downvotes'},:link_to=>left.name], :return=>'count')
-  subcards[left.upvote_count_card.name] = up_count.to_s
-  subcards[left.downvote_count_card.name] = down_count.to_s
+  up_count   = Auth.as_bot { Card.search( :right_plus=>[{:codename=>'upvotes'  },:link_to=>left.name], :return=>'count' ) }
+  down_count = Auth.as_bot { Card.search( :right_plus=>[{:codename=>'downvotes'},:link_to=>left.name], :return=>'count' ) }
+  
+  uvc = left.upvote_count_card
+  uvc.auto_content = true
+  subcards[uvc.name] = up_count.to_s
+  
+  dvc = left.downvote_count_card
+  dvc.auto_content = true
+  subcards[dvc.name] = down_count.to_s
+  
   self.content = (up_count - down_count).to_s
+  self.auto_content = true
 end
 
 def vote_status
@@ -74,7 +86,10 @@ end
 format :html do  
   view :missing  do |args|
     if card.new_card?
-      Auth.as_bot { card.save! }
+      Auth.as_bot do
+        card.update_votecount
+        card.save!
+      end
       render(args[:denied_view], args)
     else
       super(args)

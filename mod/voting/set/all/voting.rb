@@ -12,7 +12,7 @@ format :html do
   end
   
   view :header_with_voting do |args|
-    render_haml({:args=>args.merge(:without_voting=>true)}) do
+    render_haml( :args=>args ) do
       %{
 .header-with-vote
   .header-vote
