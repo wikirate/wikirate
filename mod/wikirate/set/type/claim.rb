@@ -5,6 +5,14 @@ card_accessor :upvote_count, :type=>:number, :default=>"0"
 card_accessor :downvote_count, :type=>:number, :default=>"0"
 
 
+event :vote_on_create, :on=>:create, :before=>:extend do
+  Auth.as_bot do
+    vc = vote_count_card
+    vc.vote_up
+    vc.save!
+  end
+end
+
 
 format :html do
   view :name_fieldset do |args|
@@ -16,6 +24,17 @@ format :html do
         <span class='claim-counting-number'>100</span> character(s) left
       </div>
     }   
+  end
+  
+  view :citation_and_content do |args|
+    output([
+      render_citation_or_clipboard(args),
+      render_content(args)
+    ])
+  end
+  
+  view :citation_or_clipboard do |args|
+    args[:citation_number] || optional_render( :clipboard, args )
   end
   
   
@@ -32,9 +51,9 @@ format :html do
   end
 
   
-  view :tip do |args|
+  view :tip, :perms=>:none do |args|
     # special view for prompting users with next steps
-    if Auth.signed_in? and ( tip = args[:tip] || next_step_tip ) 
+    if Auth.signed_in? and ( tip = args[:tip] || next_step_tip ) and @mode != :closed
       %{
         <div class="claim-tip">
           Tip: You can #{ tip }
@@ -63,22 +82,35 @@ format :html do
     %{ <div class="sample-citation">#{ render :tip, :tip=>tip }</div> }
   end
   
+  view :titled, :tags=>:comment do |args|
+    render_titled_with_voting args
+  end
+  
+  view :open do |args|
+    super args.merge( :custom_claim_header=>true )
+  end
+  
   view :header do |args|
-    if args[:home_view] == :open and !args[:without_voting] 
-      render_haml({:args=>args.merge(:without_voting=>true)}) do
-            %{
+    if args[:custom_claim_header]
+      render_haml(:args=>args) do
+        %{
 .header-with-vote
-  = card.fetch(:trait=>:citation_count).format.render_titled(:title=>"Citation")
   .header-vote
     = subformat( card.vote_count_card ).render_details
+  .header-citation
+    = nest card.fetch(:trait=>:citation_count), :view=>:titled, :title=>"Citations"
   .header-title
-    = super(args)
+    %h1.card-header
+      = _optional_render :toggle, args, :hide
+      %i.fa.fa-quote-left
+      = _optional_render :title, args
+      %i.fa.fa-quote-right
+      = _optional_render :menu, args
     .creator-credit
-      = process_content "{{_self | structure:creator credit}}"
-  
+      = nest card, :structure=>"creator credit"
 .clear-line
-            }
-          end
+        }
+      end
     else
       super(args)
     end
@@ -142,19 +174,12 @@ view :missing do |args|
   _render_link args
 end
 
-view :title do |args|
-  %{ 
-    #{ args[:citation_number] }
-    #{ super args }
-    #{ optional_render :clipboard, args, :hide }
-  }
-end
-
 view :clipboard do |args|
   %{
     <i class="fa fa-clipboard claim-clipboard" id="copy-button" title="copy claim citation to clipboard" data-clipboard-text="#{h card.default_citation}"></i>
   }
 end
+
 
 
 def default_citation

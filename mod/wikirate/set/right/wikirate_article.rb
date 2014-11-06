@@ -7,6 +7,10 @@ format :html do
     handle_edit_article( args ) { super args }    
   end
   
+  view :titled_with_edits do |args|
+    handle_edit_article( args ) { super args }    
+  end  
+
   view :editor do |args|
     if claim_name = params[:citable] and claim = Card[claim_name]      
       prompt = with_inclusion_mode :normal do
