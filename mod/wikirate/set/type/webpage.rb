@@ -13,7 +13,7 @@ end
 require 'link_thumbnailer'
 
 
-event :vote_on_create, :on=>:create, :before=>:extend do
+event :vote_on_create_webpage, :on=>:create, :before=>:extend do
   Auth.as_bot do
     vc = vote_count_card
     vc.vote_up
