@@ -63,6 +63,6 @@ event :new_contributions, :before=>:extend, :when=>proc{ |c| !c.supercard and c.
     contr, visited = contributees( contr, visited )
   end
   contr.uniq.each do |con_card|
-    con_card.update_contribution_count
+    con_card.update_contribution_count if con_card.respond_to? :update_contribution_count
   end
 end
