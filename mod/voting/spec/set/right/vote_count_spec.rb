@@ -1,11 +1,13 @@
 describe Card::Set::Right::VoteCount do 
   before do
+    Card::Auth.current_id = Card['Joe Admin'].id
     @claim = create_claim "another voting claim"
     @card = @claim.vote_count_card
+    Card::Auth.current_id = Card['Joe User'].id
   end
   
-  it 'default vote count is 0' do
-    expect(@claim.vote_count.to_i).to eq 0
+  it 'default vote count is 1' do
+    expect(@claim.vote_count.to_i).to eq 1
   end
   
   describe "#vote_status" do
@@ -121,7 +123,7 @@ describe Card::Set::Right::VoteCount do
     context "when not voted" do
       before do
         Card::Auth.as_bot do
-          @dvc = @claim.upvote_count.to_i
+          @dvc = @claim.downvote_count.to_i
           @vc = @claim.vote_count.to_i
           @card.vote_down
           @card.save!
