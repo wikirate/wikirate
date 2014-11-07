@@ -1,6 +1,22 @@
+
+# this overrides the default git:create_release in order to run submodules
+namespace :git do
+  desc 'Copy repo to releases'
+  task create_release: :'git:update' do
+    on roles(:all) do
+      with fetch(:git_environmental_variables) do
+        within repo_path do
+          execute :git, :clone, '-b', fetch(:branch), '--recursive', '.', release_path
+        end
+      end
+    end
+  end
+end
+
+  
 namespace :deploy do
 
-  after :updated, :run_migrations do
+  after :updated, :migrate do
     
     #because this creates the log and tmp files, it needs to be executed before the chown,
     # which in turn needs to happen before the restart.  not ideal.
@@ -26,24 +42,17 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       execute :touch, release_path.join('tmp/restart.txt')
     end
+    invoke 'deploy:clear_cache'
   end
 
-
-  task :import_json do
-    import_files = run_locally do
-      Dir.entries( 'import' ).find_all { |f| f =~ /\.json$/ }
-    end
-    import_files.each do |filename|
-      on roles(:db) do
-        within release_path do
-          execute :bundle, :exec, "./script/import_json.rb import/#{ filename }"
-        end
+  desc 'clear cache'
+  task :clear_cache do
+    on roles(:app) do
+      within release_path do
+        execute :rake, 'wagn:reset_cache'
       end
     end
   end
-  
-  after :published, :import_json  
-# FIXME - still perms issues on production
 
   after :finishing, :cleanup
 end
