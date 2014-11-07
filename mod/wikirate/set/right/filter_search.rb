@@ -2,7 +2,7 @@ def get_spec params={}
   filter_words =  Array.wrap(Env.params[:company]) || []
   filter_words += Array.wrap(Env.params[:topic]  ) if Env.params[:topic]
   filter_words += Array.wrap(Env.params[:tag]    ) if Env.params[:tag]
-  search_args = { :limit=> 10 }
+  search_args = { :limit=> 15 }
   search_args.merge!(sort_spec)
   search_args.merge!(cited_spec)
   search_args.merge!(claimed_spec)
