@@ -13,6 +13,15 @@ def indirect_contributer_search_args
 end
 
 
+event :vote_on_create, :on=>:create, :before=>:extend do
+  Auth.as_bot do
+    vc = vote_count_card
+    vc.vote_up
+    vc.save!
+  end
+end
+
+
 format :html do
   view :name_fieldset do |args|
     #rename "name" to "Claim"
@@ -23,6 +32,17 @@ format :html do
         <span class='claim-counting-number'>100</span> character(s) left
       </div>
     }   
+  end
+  
+  view :citation_and_content do |args|
+    output([
+      render_citation_or_clipboard(args),
+      render_content(args)
+    ])
+  end
+  
+  view :citation_or_clipboard do |args|
+    args[:citation_number] || optional_render( :clipboard, args )
   end
   
   
@@ -70,11 +90,6 @@ format :html do
     %{ <div class="sample-citation">#{ render :tip, :tip=>tip }</div> }
   end
   
-  
-  view :open do |args|
-    super args.merge( :custom_claim_header=>true )
-  end
-  
   view :titled, :tags=>:comment do |args|
     render_titled_with_voting args
   end
@@ -85,19 +100,24 @@ format :html do
   
   view :header do |args|
     if args[:custom_claim_header]
-      render_haml(:super_view=>super(args)) do
-             %{
+      render_haml(:args=>args) do
+        %{
 .header-with-vote
   .header-vote
     = subformat( card.vote_count_card ).render_details
   .header-citation
     = nest card.fetch(:trait=>:citation_count), :view=>:titled, :title=>"Citations"
   .header-title
-    = super_view
+    %h1.card-header
+      = _optional_render :toggle, args, :hide
+      %i.fa.fa-quote-left
+      = _optional_render :title, args
+      %i.fa.fa-quote-right
+      = _optional_render :menu, args
     .creator-credit
       = nest card, :structure=>"creator credit"
 .clear-line
-             }
+        }
       end
     else
       super(args)

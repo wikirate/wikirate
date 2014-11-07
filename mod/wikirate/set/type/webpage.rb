@@ -12,6 +12,16 @@ end
 
 require 'link_thumbnailer'
 
+
+event :vote_on_create, :on=>:create, :before=>:extend do
+  Auth.as_bot do
+    vc = vote_count_card
+    vc.vote_up
+    vc.save!
+  end
+end
+
+
 event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc{ 
    |c| Card::Env.params[:sourcebox] == 'true'
   } do
@@ -82,8 +92,12 @@ format :html do
     render_titled_with_voting args
   end
   
+  view :open do |args|
+    super args.merge( :custom_source_header=>true )
+  end
+  
   view :header do |args|
-    if args[:home_view] == :open and !args[:without_voting]
+    if args.delete(:custom_source_header)
       render_header_with_voting
     else
       super(args)
