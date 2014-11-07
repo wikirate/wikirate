@@ -6,7 +6,9 @@ namespace :wikirate do
       Wagn.config.action_mailer.delivery_method = :test
       Wagn.config.action_mailer.perform_deliveries = false
       puts 'Import wikirate database'
-      system 'mysql -u root wikirate < /tmp/wikirate/db'
+      test_database = Wagn.config.database_configuration["test"]["database"]
+      system "mysql -u root #{test_database} < /tmp/wikirate/db"
+      Rake::Task['wagn:migrate'].invoke
       puts "Seed test data"
       require "#{Wagn.root}/test/seed.rb"
       SharedData.add_test_data
