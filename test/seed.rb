@@ -13,7 +13,7 @@ class SharedData
     Wagn::Cache.reset_global
     Card::Env.reset
     Card::Auth.as_bot
-
+    
     Card.create! :name=>"Joe User",  :type_code=>'user', :content=>"I'm number two", :subcards=>account_args( '+*email'=>'joe@user.com'  )
     Card.create! :name=>"Joe Admin", :type_code=>'user', :content=>"I'm number one", :subcards=>account_args( '+*email'=>'joe@admin.com' )
     Card.create! :name=>"Joe Camel", :type_code=>'user', :content=>"Mr. Buttz",      :subcards=>account_args( '+*email'=>'joe@camel.com' )
@@ -41,12 +41,13 @@ class SharedData
       Card.create! :type=>type, :name=>"Sample #{type}"
     end
 
+    Card::Auth.current_id = Card::WagnBotID
     # data for role_test.rb
-
     Card.create! :name=>"u1", :type_code=>'user', :subcards=>account_args('+*email'=>'u1@user.com', '+*password'=>'u1_pass')
     Card.create! :name=>"u2", :type_code=>'user', :subcards=>account_args('+*email'=>'u2@user.com', '+*password'=>'u2_pass')
     Card.create! :name=>"u3", :type_code=>'user', :subcards=>account_args('+*email'=>'u3@user.com', '+*password'=>'u3_pass')
-
+    
+  
     r1 = Card.create!( :type_code=>'role', :name=>'r1' )
     r2 = Card.create!( :type_code=>'role', :name=>'r2' )
     r3 = Card.create!( :type_code=>'role', :name=>'r3' )
@@ -119,7 +120,6 @@ class SharedData
     Timecop.freeze(Wagn.future_stamp - 1.day) do
       # fwiw Timecop is apparently limited by ruby Time object, which goes only to 2037 and back to 1900 or so.
       #  whereas DateTime can represent all dates.
-      Card['John'].delete
       Card.create! :name=>"John", :type_code=>'user', :subcards=>account_args('+*email'=>'john@user.com', '+*password'=>'john_pass')
       Card.create! :name=>"Sara", :type_code=>'user', :subcards=>account_args('+*email'=>'sara@user.com', '+*password'=>'sara_pass')
       
@@ -155,7 +155,6 @@ class SharedData
     Card.create! :name=>"OnneHeading", :content => "<h1>This is one heading</h1>\r\n<p>and some text</p>"
     Card.create! :name=>'TwwoHeading', :content => "<h1>One Heading</h1>\r\n<p>and some text</p>\r\n<h2>And a Subheading</h2>\r\n<p>and more text</p>"
     Card.create! :name=>'ThreeHeading', :content =>"<h1>A Heading</h1>\r\n<p>and text</p>\r\n<h2>And Subhead</h2>\r\n<p>text</p>\r\n<h1>And another top Heading</h1>"
-
 
   end
 end
