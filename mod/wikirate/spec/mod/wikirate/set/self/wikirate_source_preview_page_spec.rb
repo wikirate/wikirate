@@ -62,15 +62,15 @@ describe Card::Set::All::Wikirate do
   describe "company_and_topic_detail and source_preview_options view" do
     describe "sources from CERTH" do
       before do 
-        @nonexisting_url = "http://nonexisitingpage.com"
-        @url = "http://exisitingpage.com"
+        @nonexisting_url = "http://nonexistingpage.com"
+        @url = "http://existingpage.com"
       end
       describe "source exists in wikirate" do
         before do
           @existing_source = create_webpage @url,false,"Apple","Natural Resource Use"
         end
-        it "shows nothing in the company_and_topic_detail if exisiting source does not have company or topic" do 
-          new_url = "http://www.google.com/nonexisitingwikiratewebpage"
+        it "shows nothing in the company_and_topic_detail if existing source does not have company or topic" do 
+          new_url = "http://www.google.com/nonexistingwikiratewebpage"
           existing_source = create_webpage new_url,false
           Card::Env.params[:url] = new_url
           Card::Env.params[:fromcerth] = "true"
@@ -99,10 +99,12 @@ describe Card::Set::All::Wikirate do
 
           result = @source_preview_page.format._render(:company_and_topic_detail) 
           #show company and topic
-          expect(result).to include(%{<a href="#{company}" target="_blank"><span class="company-name">#{company}</span></a>})
-          expect(result).to include(%{<a href="#{topic}" target="_blank"><span class="topic-name">#{topic}</span></a>})
+          expect(result).to include(%{<a href="#{company}" target="_blank">})
+          expect(result).to include(%{<span class="company-name">#{company}</span>})
+          expect(result).to include(%{<a href="#{topic}" target="_blank">})
+          expect(result).to include(%{<span class="topic-name">#{topic}</span>})
           #show dropdown button
-          expect(result).to include(%{<a href="#" id="company-and-topic-detail-link" style="">})
+          expect(result).to include(%{<a href="#" id="company-and-topic-detail-link" class="">})
 
           result = @source_preview_page.format._render(:source_preview_options) 
           expect(result).to include("Source Details")
@@ -121,10 +123,12 @@ describe Card::Set::All::Wikirate do
 
           result = @source_preview_page.format._render(:company_and_topic_detail) 
           #show company and topic
-          expect(result).to include(%{<a href="#{company}" target="_blank"><span class="company-name">#{company}</span></a>})
-          expect(result).to include(%{<a href="#{topic}" target="_blank"><span class="topic-name">#{topic}</span></a>})
+          expect(result).to include(%{<a href="#{company}" target="_blank">})
+          expect(result).to include(%{<span class="company-name">#{company}</span>})
+          expect(result).to include(%{<a href="#{topic}" target="_blank">})
+          expect(result).to include(%{<span class="topic-name">#{topic}</span>})
           #hide dropdown button
-          expect(result).to include(%{<a href="#" id="company-and-topic-detail-link" style="display:none;">})
+          expect(result).to include(%{<a href="#" id="company-and-topic-detail-link" class="no-dropdown">})
 
           result = @source_preview_page.format._render(:source_preview_options) 
           expect(result).to include("Irrelevant")
@@ -142,10 +146,12 @@ describe Card::Set::All::Wikirate do
 
           result = @source_preview_page.format._render(:company_and_topic_detail) 
           #show company and topic
-          expect(result).to include(%{<a href="#{company}" target="_blank"><span class="company-name">#{company}</span></a>})
-          expect(result).to include(%{<a href="#{topic}" target="_blank"><span class="topic-name">#{topic}</span></a>})
+          expect(result).to include(%{<a href="#{company}" target="_blank">})
+          expect(result).to include(%{<span class="company-name">#{company}</span>})
+          expect(result).to include(%{<a href="#{topic}" target="_blank">})
+          expect(result).to include(%{<span class="topic-name">#{topic}</span>})
           #hide dropdown button
-          expect(result).to include(%{<a href="#" id="company-and-topic-detail-link" style="display:none;">})
+          expect(result).to include(%{<a href="#" id="company-and-topic-detail-link" class="no-dropdown">})
 
           result = @source_preview_page.format._render(:source_preview_options) 
           expect(result).to include("Irrelevant")
@@ -156,12 +162,12 @@ describe Card::Set::All::Wikirate do
     end
     describe "sources from wikirate" do
       before do
-        @url = "http://exisitingpage.com"
+        @url = "http://existingpage.com"
         @company = "Ahold"
         @topic = "Natural Resource Use"
         @existing_source = create_webpage @url,false,@company,@topic
       end
-      it "shows options for exisiting sources" do 
+      it "shows options for existing sources" do 
         
         
         Card::Env.params[:url] = @url
@@ -179,26 +185,29 @@ describe Card::Set::All::Wikirate do
 
         result = @source_preview_page.format._render(:company_and_topic_detail) 
         #show company and topic
-        expect(result).to include(%{<a href="#{@company}" target="_blank"><span class="company-name">#{@company}</span></a>})
-        expect(result).to include(%{<a href="#{@topic}" target="_blank"><span class="topic-name">#{@topic}</span></a>})
+        expect(result).to include(%{<a href="#{@company}" target="_blank">})
+        expect(result).to include(%{<span class="company-name">#{@company}</span>})
+        expect(result).to include(%{<a href="#{@topic}" target="_blank">})
+        expect(result).to include(%{<span class="topic-name">#{@topic}</span>})
         #hide dropdown button
-        expect(result).to include(%{<a href="#" id="company-and-topic-detail-link" style="">})
+        expect(result).to include(%{<a href="#" id="company-and-topic-detail-link" class="">})
       end
       it "shows add topic if topic does not exist" do
-        new_url = "http://www.google.com/nonexisitingwikiratewebpage"
+        new_url = "http://www.google.com/nonexistingwikiratewebpage"
         existing_source = create_webpage new_url,false,"Apple"
         Card::Env.params[:url] = new_url
         Card::Env.params[:fromcerth] = "false"
 
         result = @source_preview_page.format._render(:company_and_topic_detail) 
         #show company and topic
-        expect(result).to include(%{<a href="Apple" target="_blank"><span class="company-name">Apple</span></a>})
+        expect(result).to include(%{<a href="Apple" target="_blank">})
+        expect(result).to include(%{<span class="company-name">Apple</span>})
         expect(result).to include(%{<a id='add-topic-link' href='#' >Add Topic</a>})
         #hide dropdown button
-        expect(result).to include(%{<a href="#" id="company-and-topic-detail-link" style="">})
+        expect(result).to include(%{<a href="#" id="company-and-topic-detail-link" class="">})
       end
       it "shows add company if topic does not exist" do
-        new_url = "http://www.google.com/nonexisitingwikiratewebpage"
+        new_url = "http://www.google.com/nonexistingwikiratewebpage"
         existing_source = create_webpage new_url,false,nil,"Natural Resource Use"
         Card::Env.params[:url] = new_url
         Card::Env.params[:fromcerth] = "false"
@@ -206,22 +215,23 @@ describe Card::Set::All::Wikirate do
         result = @source_preview_page.format._render(:company_and_topic_detail) 
         #show company and topic
         expect(result).to include(%{<a id='add-company-link' href='#' >Add Company</a>})
-        expect(result).to include(%{<a href="Natural Resource Use" target="_blank"><span class="topic-name">Natural Resource Use</span></a>})
+        expect(result).to include(%{<a href="Natural Resource Use" target="_blank">})
+        expect(result).to include(%{<span class="topic-name">Natural Resource Use</span>})
         #hide dropdown button
-        expect(result).to include(%{<a href="#" id="company-and-topic-detail-link" style="">})
+        expect(result).to include(%{<a href="#" id="company-and-topic-detail-link" class="">})
       end
     end
   end
   describe "source_name view" do
     it "returns correct source name for url" do 
-      url = "http://www.google.com/exisitingwikiratewebpage"
+      url = "http://www.google.com/existingwikiratewebpage"
       existing_source = create_webpage url,false
       Card::Env.params[:url] = url
       result = @source_preview_page.format._render(:source_name) 
       expect(result).to eq(existing_source.name)
     end
-    it "returns '' for non exisiting url" do 
-      Card::Env.params[:url] = "http://www.google.com/nonexisitingwikiratewebpage"
+    it "returns '' for non existing url" do 
+      Card::Env.params[:url] = "http://www.google.com/nonexistingwikiratewebpage"
       result = @source_preview_page.format._render(:source_name) 
       expect(result).to eq("")
     end
