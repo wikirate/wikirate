@@ -11,6 +11,20 @@ class UpdateSystemEmails < Wagn::Migration
       etmpl.delete!
     end
 
+
+    # change email address list fields to pointers
+    [:to, :from, :cc, :bcc].each do |field|
+      set = Card[field].fetch(:trait=>:right, :new=>{})
+      default_rule = set.fetch(:trait=>:default, :new=>{})
+      default_rule.type_id = Card::PointerID
+      default_rule.save!
+      
+      options_rule = set.fetch(:trait=>:options, :new=>{})
+      options_rule.type_id = Card::SearchID
+      options_rule.content = %( { "right":{"codename":"account"} } )
+      options_rule.save!
+    end
+
     # create system email cards
     dir = "#{Wagn.gem_root}/db/migrate_cards/data/mailer"
     json = File.read( File.join( dir, 'mail_config.json' ))
@@ -39,6 +53,13 @@ class UpdateSystemEmails < Wagn::Migration
       request_card.delete!
     end
     
+    
+    signup_alert_from = Card["signup alert email"].fetch(:trait=>:from, :new=>{})
+    if signup_alert_from.content.blank?
+      signup_alert_from.content = '_user'
+      signup_alert_from.save!
+    end
+    
     # migrate old flexmail cards
 
     if email_config_card = Card['email_config']
@@ -49,16 +70,7 @@ class UpdateSystemEmails < Wagn::Migration
     end
     
     
+
     
-    
-    
-    json = File.read( File.join( dir, 'mail_config.json' ))
-    data = JSON.parse(json)
-    data.each do |mail|
-      mail = mail.symbolize_keys!
-      Card.fetch("#{mail[:name]}+*html message").update_attributes! :content=>File.read( File.join( dir, "#{mail[:codename]}.html" ))
-      Card.fetch("#{mail[:name]}+*text message").update_attributes! :content=>File.read( File.join( dir, "#{mail[:codename]}.txt" ))
-      Card.fetch("#{mail[:name]}+*subject").update_attributes! :content=>mail[:subject] 
-    end
   end
 end
