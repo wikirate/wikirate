@@ -99,9 +99,7 @@ format :html do
     end
   end
   
-  view :new  do |args|
-    render_missing args
-  end
+  view :new, :missing
   
   def disabled_vote_link up_or_down, message, extra={}
     button_tag({:disabled=>true, 

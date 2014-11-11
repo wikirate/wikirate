@@ -10,8 +10,7 @@ format :html do
       super(args)
     end
   end
+  
+  view :new, :missing
 end
 
-view :new  do |args|
-  render_missing args
-end
