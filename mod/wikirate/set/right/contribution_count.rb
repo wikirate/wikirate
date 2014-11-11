@@ -3,4 +3,6 @@ format :html do
     card.left.update_contribution_count
     render(args[:denied_view],args)
   end
+  
+  view :new, :missing
 end
