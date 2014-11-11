@@ -3,7 +3,7 @@ namespace :wikirate do
     
     db_path = File.join Wagn.root, 'test', 'wikiratetest.db'
     test_database = (t = Wagn.config.database_configuration["test"] and t["database"])
-    prod_database = Wagn.config.database_configuration["production"]["database"]        
+    prod_database = (p = Wagn.config.database_configuration["production"] and p["database"])        
     user = ENV['MYSQL_USER'] || 'root'
     pwd  = ENV['MYSQL_PASSWORD'] 
     
@@ -19,6 +19,10 @@ namespace :wikirate do
     task :update_seed_data do 
       if ENV['RAILS_ENV'] != 'test'
         system 'env RAILS_ENV=test rake wikirate:test:update_seed_data'
+      elsif !test_database
+        puts "Error: no test database defined in config/database.yml" 
+      elsif !prod_database
+        puts "Error: no production database defined in config/database.yml" 
       else
         tmp_path = File.join Wagn.paths['tmp'].first, 'test.db'
         require "#{Wagn.root}/config/environment"
