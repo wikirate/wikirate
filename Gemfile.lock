@@ -1,15 +1,15 @@
 PATH
   remote: ./vendor/wagn
   specs:
-    wagn (1.13.0)
+    wagn (1.14.0.pre3)
       airbrake (~> 3.1)
       coderay (~> 1.0)
       coffee-script (~> 2.2)
-      diff-lcs (~> 1.2.5)
-      diffy (~> 3.0.6)
-      haml (~> 4.0.5)
+      diff-lcs (~> 1.2)
+      diffy (~> 3.0)
+      haml (~> 4.0)
       htmlentities (~> 4.3)
-      kaminari (~> 0.16.1)
+      kaminari (~> 0.16)
       paperclip (~> 2.8)
       rails (= 3.2.16)
       recaptcha (~> 0.3)
@@ -153,7 +153,7 @@ GEM
     recaptcha (0.3.6)
     ref (1.0.5)
     rmagick (2.13.3)
-    sass (3.4.6)
+    sass (3.4.7)
     smartname (0.2.3)
       activesupport
       htmlentities (~> 4.3.0)
@@ -175,7 +175,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.41)
+    tzinfo (0.3.42)
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
