@@ -99,6 +99,10 @@ format :html do
     end
   end
   
+  view :new  do |args|
+    render_missing args
+  end
+  
   def disabled_vote_link up_or_down, message, extra={}
     button_tag({:disabled=>true, 
         :class=>"slotter disabled-vote-link vote-button", :type=>'button', :title=>message}.merge(extra)) do
