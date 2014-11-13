@@ -155,6 +155,26 @@ class SharedData
     Card.create! :name=>"OnneHeading", :content => "<h1>This is one heading</h1>\r\n<p>and some text</p>"
     Card.create! :name=>'TwwoHeading', :content => "<h1>One Heading</h1>\r\n<p>and some text</p>\r\n<h2>And a Subheading</h2>\r\n<p>and more text</p>"
     Card.create! :name=>'ThreeHeading', :content =>"<h1>A Heading</h1>\r\n<p>and text</p>\r\n<h2>And Subhead</h2>\r\n<p>text</p>\r\n<h1>And another top Heading</h1>"
-
+    
+    Card.create! :name=>'Death Star', :type=>'company', :subcards=> {
+      '+about'  => { :content=>"Judge me by my size, do you?" }
+    }
+    Card.create! :name=>'Force', :type=>'topic', :subcards=> {
+      '+about'  => { :content=>"A Jedi uses the Force for knowledge and defense, never for attack." }
+    }
+    Card.create! :name=>'Death Star+Force', :type=>'analysis', :subcards=> {
+      '+article'  => { :content=>"I'm your father!" }
+    }
+    
+    sourcepage = Card.create! :type_id=>Card::WebpageID, :subcards=>{ 
+      '+Link' => {:content=> 'http://www.wikiwand.com/en/Star_Wars'},
+      '+company' => { :content=>"[[Death Star]]",         :type_id=>Card::PointerID },
+      '+topic'   => { :content=>"[[Force]]",              :type_id=>Card::PointerID }
+    }
+    Card.create! :name=>'Death Star uses dark side of the Force', :type_id=>Card::ClaimID, :subcards=> {
+      '+source'  => { :content=>"[[#{sourcepage.name}]]" }, 
+      '+company' => { :content=>"[[Death Star]]",         :type_id=>Card::PointerID },
+      '+topic'   => { :content=>"[[Force]]",              :type_id=>Card::PointerID }
+    }
   end
 end
