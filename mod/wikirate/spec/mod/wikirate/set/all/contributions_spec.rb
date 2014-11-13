@@ -1,6 +1,6 @@
 shared_examples_for 'contributions' do |subject_type|
-  company_name = "Apple"
-  topic_name   = "Natural Resource Use"
+  company_name = "Death Star"
+  topic_name   = "Force"
   subject { @subject.contribution_count.to_i }
   before do
 
@@ -13,16 +13,16 @@ shared_examples_for 'contributions' do |subject_type|
   end
   
   context "when claim added" do
-    before do  
-      claim = create_claim("contributions claim", "+#{subject_type}"=>{:content=>"[[#{@subject.name}]"})
+    before do
+      claim = create_claim("That's no moon.", "+#{subject_type}"=>{:content=>"[[#{@subject.name}]"})
     end
     it "increases by 2" do
       is_expected.to eq(@initial_count+2)
     end
   end
-  
+
   context "when source added" do
-    before do  
+    before do
       @initial_count = @subject.contribution_count.to_i
       create_page "http://www.google.com/?q=source", "+#{subject_type}"=>{:content=>"[[#{@subject.name}]]"}
     end
@@ -30,7 +30,7 @@ shared_examples_for 'contributions' do |subject_type|
       is_expected.to eq(@initial_count+2)
     end
   end
-      
+
   context "when +about edited" do
     before do
       about = Card.fetch("#{@subject.name}+about")
@@ -40,7 +40,7 @@ shared_examples_for 'contributions' do |subject_type|
     end
     it { is_expected.to eq(@initial_count+1) }
   end
-  
+
   context "when article edited" do
     before do
       @analysis = Card["#{company_name}+#{topic_name}"]
@@ -48,7 +48,7 @@ shared_examples_for 'contributions' do |subject_type|
       @direct_cc = @analysis.direct_contribution_count.to_i
       @subject.update_contribution_count
       @initial_count = @subject.contribution_count.to_i
-      
+
       article = Card.fetch("#{@analysis.name}+article")
       Card::Auth.as_bot do
         article.update_attributes!(:content=>"change about")
@@ -59,44 +59,41 @@ shared_examples_for 'contributions' do |subject_type|
     end
     it { is_expected.to eq(@initial_count+1) }
   end
-  
+
   context "when voted on claim" do
     before do
-      Card::Auth.as_bot do
-        @claim = create_claim("contributions claim", "+#{subject_type}"=>{:content=>"[[#{@subject.name}]"})
-      end
-      #@claim = Card.search(:type=>'claim',:right_plus=>[subject_type.to_s,:link_to=>@subject.name]).last
+      @claim = Card['Death Star uses dark side of the Force']
       @claim.update_contribution_count
-      @direct_cc = @claim.contribution_count.to_i
+      @claim_cc = @claim.contribution_count.to_i
+      
       @subject.update_contribution_count
       @initial_count = @subject.contribution_count.to_i
       Card::Auth.current_id = Card['Joe Admin'].id
       vote = @claim.vote_count_card
       vote.vote_up
       vote.save!
-      @claim.update_contribution_count
     end
     it "increases claim's contribution count" do
-      expect(@claim.contribution_count.to_i).to eq (@direct_cc+1)
+      expect(@claim.contribution_count.to_i).to eq (@claim_cc+1)
     end
     it { is_expected.to eq(@initial_count+1) }
   end
-  
+
   context "when voted on source" do
     before do
-      @source = Card.search(:type=>'page',:right_plus=>[subject_type.to_s,:link_to=>@subject.name]).last
+      @source = Card['Death Star uses dark side of the Force+source'].item_cards.first
       @source.update_contribution_count
-      @direct_cc = @source.direct_contribution_count.to_i
+      @source_cc = @source.contribution_count.to_i
+      
       @subject.update_contribution_count
       @initial_count = @subject.contribution_count.to_i
-      Card::Auth.as_bot do
-        vote = @source.vote_count_card
-        vote.vote_up
-        vote.save!
-      end
+      Card::Auth.current_id = Card['Joe Admin'].id
+      vote = @source.vote_count_card
+      vote.vote_up
+      vote.save!
     end
     it "increases source's contribution count" do
-      expect(@source.contribution_count.to_i).to eq (@direct_cc+1)
+      expect(@source.contribution_count.to_i).to eq (@source_cc+1)
     end
     it { is_expected.to eq(@initial_count+1) }
   end

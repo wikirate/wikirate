@@ -15,13 +15,13 @@ def update_contribution_count
     indirect_contributer = indirect_contributer_search_args.inject([]) do |cards, search_args|
       cards += Card.search(search_args)
     end
-    new_contr_count += indirect_contributer.inject(0) do |res,c| 
-      res += if c.respond_to?(:contribution_count)
-        c.contribution_count.to_i
-      elsif c.respond_to?(:direct_contribution_count)
-        c.direct_contribution_count.to_i
+    new_contr_count += indirect_contributer.inject(0) do |res,c_card| 
+      res += if c_card.respond_to?(:contribution_count)
+        c_card.contribution_count.to_i
+      elsif c_card.respond_to?(:direct_contribution_count)
+        c_card.direct_contribution_count.to_i
       else
-         Card::Act.find_all_with_actions_on(c.id).count
+         Card::Act.find_all_with_actions_on(c_card.id).count
       end
     end
     #new_contr_count += Card::Act.find_all_with_actions_on(indirect_contributer_ids).count
