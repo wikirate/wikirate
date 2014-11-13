@@ -77,3 +77,4 @@ namespace :wikirate do
     end
   end
 end
+
