@@ -43,23 +43,6 @@ namespace :wikirate do
       end
     end
   end
-  task :update_test_db => :environment do
-      ENV['RAILS_ENV'] = 'test'
-      require "#{Wagn.root}/config/environment"
-      Wagn.config.action_mailer.delivery_method = :test
-      Wagn.config.action_mailer.perform_deliveries = false
-      puts 'Import wikirate database'
-      test_database = Wagn.config.database_configuration["test"]["database"]
-      system "mysql -u root #{test_database} < /tmp/wikirate/db"
-      Rake::Task['wagn:migrate'].invoke
-      puts "Seed test data"
-      require "#{Wagn.root}/test/seed.rb"
-      SharedData.add_test_data
-      puts "Clean data"
-      Rake::Task['wagn:bootstrap:clean'].invoke
-      puts "Dump data to  #{Wagn.root}/test/wikiratetest.db"
-      system "mysqldump -u root wikirate > #{Wagn.root}/test/wikiratetest.db"
-  end
 end
 desc "fetch json from export card and generate migration"
 task :import_from_dev do
