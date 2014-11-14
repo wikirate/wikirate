@@ -15,4 +15,6 @@ format :html do
      </form>
     }
   end
+  
+  view :core, :raw
 end
