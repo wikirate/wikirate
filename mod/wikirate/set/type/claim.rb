@@ -3,9 +3,17 @@
 card_accessor :vote_count, :type=>:number, :default=>"0"
 card_accessor :upvote_count, :type=>:number, :default=>"0"
 card_accessor :downvote_count, :type=>:number, :default=>"0"
+card_accessor :direct_contribution_count, :type=>:number, :default=>"0"
+card_accessor :contribution_count, :type=>:number, :default=>"0"
+
+def indirect_contributer_search_args
+  [
+    {:right_id=>VoteCountID, :left=>self.name }
+  ]
+end
 
 
-event :vote_on_create, :on=>:create, :before=>:extend do
+event :vote_on_create_claim, :on=>:create, :before=>:extend, :when=> proc{ |c| Card::Auth.current_id != Card::WagnBotID } do
   Auth.as_bot do
     vc = vote_count_card
     vc.vote_up

@@ -13,6 +13,7 @@ namespace :backup do
     invoke 'backup:refresh_local'
   end
   
+  
   task :download do
     backup_dir = fetch :local_backups_dir
     run_locally do
@@ -21,7 +22,9 @@ namespace :backup do
     end
     on roles(:db) do
       download! "#{ fetch :data_backups_dir }/db.gz",     backup_dir
-      download! "#{ fetch :data_backups_dir }/files.tgz", backup_dir
+      unless ENV['BACKUP_MODE'] == 'only_db'
+        download! "#{ fetch :data_backups_dir }/files.tgz", backup_dir
+      end
     end
   end
   
@@ -37,7 +40,9 @@ namespace :backup do
       backup_dir = fetch :data_backups_dir
       if test( "[ ! -f #{ backup_dir }/db ]")      
         within backup_dir do
-          execute :mkdir, 'files; cd files; tar -xzf ../files.tgz'
+          unless ENV['BACKUP_MODE'] == 'only_db'
+            execute :mkdir, 'files; cd files; tar -xzf ../files.tgz'
+          end
           execute :zcat, 'db.gz > db'
         end
       end
@@ -48,7 +53,9 @@ namespace :backup do
       backup_dir = fetch :local_backups_dir
       if test( "[ ! -f #{ backup_dir }/db ]")      
         within backup_dir do
-          execute :mkdir, 'files; cd files; tar -xzf ../files.tgz'
+          unless ENV['BACKUP_MODE'] == 'only_db'
+            execute :mkdir, 'files; cd files; tar -xzf ../files.tgz'
+          end
           execute :gunzip, 'db.gz'
         end
       end
@@ -113,6 +120,16 @@ desc "Backup to local /tmp/wikirate"
       invoke 'backup:unzip_local'
       invoke 'backup:update_db'
       invoke 'backup:update_files'
+    end
+  end
+  
+  task :pull_db do
+    ENV['BACKUP_MODE'] = 'only_db'
+    on roles(:db) do
+      invoke 'backup:create'
+      invoke 'backup:download'
+      invoke 'backup:unzip_local'
+      invoke 'backup:update_db'
     end
   end
   
