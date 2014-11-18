@@ -36,7 +36,7 @@ describe Card::Set::All::Wikirate do
     it "should return existing source" do
       #create source
       url = 'http://thisisanewwebsite.com/abc11111'    
-      sourcepage = create_page url,{},'true'
+      sourcepage = create_page_with_sourcebox url,{},'true'
     
       
       Card::Env.params[:url] = url
@@ -67,11 +67,11 @@ describe Card::Set::All::Wikirate do
       end
       describe "source exists in wikirate" do
         before do
-          @existing_source = create_page @url,{"+Company"=>"Apple","+Topic"=>"Natural Resource Use"},'false'
+          @existing_source = create_page_with_sourcebox @url,{"+Company"=>"Apple","+Topic"=>"Natural Resource Use"},'false'
         end
         it "shows nothing in the company_and_topic_detail if existing source does not have company or topic" do 
           new_url = "http://www.google.com/nonexistingwikiratewebpage"
-          existing_source = create_page new_url,{},'false'
+          existing_source = create_page_with_sourcebox new_url,{},'false'
           Card::Env.params[:url] = new_url
           Card::Env.params[:fromcerth] = "true"
 
@@ -165,7 +165,7 @@ describe Card::Set::All::Wikirate do
         @url = "http://existingpage.com"
         @company = "Ahold"
         @topic = "Natural Resource Use"
-        @existing_source = create_page @url,{"+Company"=>@company,"+Topic"=>@topic},'false'
+        @existing_source = create_page_with_sourcebox @url,{"+Company"=>@company,"+Topic"=>@topic},'false'
       end
       it "shows options for existing sources" do 
         
@@ -194,7 +194,7 @@ describe Card::Set::All::Wikirate do
       end
       it "shows add topic if topic does not exist" do
         new_url = "http://www.google.com/nonexistingwikiratewebpage"
-        existing_source = create_page new_url,{"+Company"=>"Apple"},'false'
+        existing_source = create_page_with_sourcebox new_url,{"+Company"=>"Apple"},'false'
         Card::Env.params[:url] = new_url
         Card::Env.params[:fromcerth] = "false"
 
@@ -208,7 +208,7 @@ describe Card::Set::All::Wikirate do
       end
       it "shows add company if topic does not exist" do
         new_url = "http://www.google.com/nonexistingwikiratewebpage"
-        existing_source = create_page new_url,{"+Topic"=>"Natural Resource Use"},'false'
+        existing_source = create_page_with_sourcebox new_url,{"+Topic"=>"Natural Resource Use"},'false'
         Card::Env.params[:url] = new_url
         Card::Env.params[:fromcerth] = "false"
 
@@ -225,7 +225,7 @@ describe Card::Set::All::Wikirate do
   describe "source_name view" do
     it "returns correct source name for url" do 
       url = "http://www.google.com/existingwikiratewebpage"
-      existing_source = create_page url,{},"false"
+      existing_source = create_page_with_sourcebox url,{},"false"
       Card::Env.params[:url] = url
       result = @source_preview_page.format._render(:source_name) 
       expect(result).to eq(existing_source.name)

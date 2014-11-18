@@ -1,6 +1,10 @@
 require 'wagn/mods_spec_helper'
 
-def create_page iUrl=nil, subcards={},sourcebox
+def create_page iUrl=nil, subcards={}
+  create_page_with_sourcebox iUrl, subcards,'false'
+end
+
+def create_page_with_sourcebox iUrl=nil, subcards={},sourcebox=nil
   Card::Auth.as_bot do
     url = iUrl||'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
     _sourcebox = sourcebox||'true'
