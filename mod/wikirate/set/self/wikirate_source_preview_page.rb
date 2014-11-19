@@ -84,15 +84,15 @@ format :html do
   def show_options source_from_certh,source_page_name,url
     if source_from_certh
       %{
-        <div id="mark-irrelevant" class="button-primary button-secondary">
-          <a href="#" id="mark-irrelevant-button">
+        <div id="mark-irrelevant" >
+          <a href="#" id="mark-irrelevant-button" class="button-primary button-secondary">
             <i class="fa fa-exclamation-triangle">
             </i>
             <span>Irrelevant</span>
           </a>
         </div>
-        <div id="mark-relevant" class="button-primary">
-          <a href="#" id="mark-relevant-button">
+        <div id="mark-relevant" >
+          <a href="#" id="mark-relevant-button" class="button-primary">
             <i class="fa fa-exclamation-triangle">
             </i>
             <span>Relevant</span>
