@@ -21,7 +21,7 @@ describe Card::Set::All::Wikirate do
       ct3 = Card.create! :name=>"#{company2.name}+#{topic1.name}",:type=>"analysis"
       ct4 = Card.create! :name=>"#{company2.name}+#{topic2.name}",:type=>"analysis"
 
-      sourcepage = create_page 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
+      sourcepage = create_page_with_sourcebox 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
 
       #test single source
       claim1 = Card.create! :type=>"Claim", :name=>"claim1" ,:subcards=>{ 
@@ -91,7 +91,7 @@ describe Card::Set::All::Wikirate do
       #create 2 claims
       #create an card with claim cite contents
       #check the number and the content
-      sourcepage = create_webpage nil,'false'
+      sourcepage = create_page_with_sourcebox nil,{},'false'
       claim1 = Card.create! :type=>"Claim", :name=>"test1",:subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}    
       claim2 = Card.create! :type=>"Claim", :name=>"test2",:subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}    
       content=""

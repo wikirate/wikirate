@@ -31,7 +31,7 @@ describe Card::Set::Self::Webpage do
 
     it "should handle normal existing url " do
       url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
-      sourcepage = create_webpage url,'true'
+      sourcepage = create_page_with_sourcebox url,{},'true'
 
       page_card = Card["Page"]
       Card::Env.params[:url] = url
@@ -59,12 +59,12 @@ describe Card::Set::Self::Webpage do
       
     end
     # it "uses the right context for content view" do
-    #   sourcepage = create_webpage nil,'true'
+    #   sourcepage = create_page_with_sourcebox nil,'true'
     #   html = render_card :content,{:name=>sourcepage.name+"+a"}
     #   expect(html).to eq("+a")
     # end
     it "shows the link for view \"missing\"" do
-      sourcepage = create_webpage nil,'true'
+      sourcepage = create_page_with_sourcebox nil,{},'true'
       html = render_card :missing,{:name=>sourcepage.name}
       expect(html).to eq(render_card :link,{:name=>sourcepage.name} )
     end

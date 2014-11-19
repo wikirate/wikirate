@@ -80,7 +80,6 @@ describe Card::Set::Type::Claim do
     card = Card.new(   :type=>"Claim", :name=>"2"*100,:subcards=>{ '+source' => {:content=> "[[Home]]",:type_id=>Card::PointerID}})
     card.should_not be_valid
     card.errors.should have_key :source
-    puts card.errors[:source]
     card.errors[:source].include?("Home is not a valid Source Page").should ==true
   end
 
