@@ -1,16 +1,20 @@
 require 'wagn/mods_spec_helper'
 
 def create_page iUrl=nil, subcards={}
+  create_page_with_sourcebox iUrl, subcards,'false'
+end
+
+def create_page_with_sourcebox iUrl=nil, subcards={},sourcebox=nil
   Card::Auth.as_bot do
     url = iUrl||'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
-    Card::Env.params[:sourcebox] = 'true'
+    _sourcebox = sourcebox||'true'
+    Card::Env.params[:sourcebox] = _sourcebox
     sourcepage = Card.create! :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }.merge(subcards)
     Card::Env.params[:sourcebox] = 'false'
 
     sourcepage
   end
 end
-
 
 def create_claim name, subcards={}
   Card::Auth.as_bot do

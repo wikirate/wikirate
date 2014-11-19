@@ -36,7 +36,7 @@ describe Card::Set::All::Wikirate do
     it "should return existing source" do
       #create source
       url = 'http://thisisanewwebsite.com/abc11111'    
-      sourcepage = create_webpage url,'true'
+      sourcepage = create_page_with_sourcebox url,{},'true'
     
       
       Card::Env.params[:url] = url
@@ -59,112 +59,289 @@ describe Card::Set::All::Wikirate do
     result = @source_preview_page.format( :format=>:json)._render(:get_user_id) 
     expect(result[:id]).to eq(JOE_USER_ID)
   end
-  # describe "send feedback to CERTH" do
-  #   before do
-  #     @url = "http://google.com"
-  #   end
-  #   describe "send insufficient parameters" do
-  #     it "handles no parameter" do 
-  #       #no parameters
-  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
-  #       expect(result[:result]).to be false
-  #     end
-  #     it "handles no url" do
-  #       Card::Env.params[:company] = "Apple"
-  #       Card::Env.params[:topic] = "Natural Resource Use"
-  #       Card::Env.params[:type] = "either"
-  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
-  #       expect(result[:result]).to be false
+  describe "company_and_topic_detail and source_preview_options view" do
+    describe "sources from CERTH" do
+      before do 
+        @nonexisting_url = "http://nonexistingpage.com"
+        @url = "http://existingpage.com"
+      end
+      describe "source exists in wikirate" do
+        before do
+          @existing_source = create_page_with_sourcebox @url,{"+Company"=>"Apple","+Topic"=>"Natural Resource Use"},'false'
+        end
+        it "shows nothing in the company_and_topic_detail if existing source does not have company or topic" do 
+          new_url = "http://www.google.com/nonexistingwikiratewebpage"
+          existing_source = create_page_with_sourcebox new_url,{},'false'
+          Card::Env.params[:url] = new_url
+          Card::Env.params[:fromcerth] = "true"
 
-  #     end
-  #     it "handles no company" do
-  #      Card::Env.params[:url] = @url
-  #       Card::Env.params[:topic] = "Natural Resource Use"
-  #       Card::Env.params[:type] = "either"
-  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
-  #       expect(result[:result]).to be false
+          result = @source_preview_page.format._render(:company_and_topic_detail) 
 
-  #     end
-  #     it "handles no topic" do
-  #       Card::Env.params[:url] = @url
-  #       Card::Env.params[:company] = "Apple"
-  #       Card::Env.params[:type] = "either"
-  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
-  #       expect(result[:result]).to be false
+          expect(result).to match(%{<div class="company-name ">[ \\n]+<\/div>})
+          expect(result).to match(%{<div class="topic-name ">[ \\n]+<\/div>})
+        end
+        it "shows nothing in the company_and_topic_detail if no company and topic in url" do 
+          Card::Env.params[:url] = @nonexisting_url
+          Card::Env.params[:fromcerth] = "true"
 
-  #     end
-  #     it "handles no type" do
-  #       Card::Env.params[:url] = @url
-  #       Card::Env.params[:company] = "Apple"
-  #       Card::Env.params[:topic] = "Natural Resource Use"
-  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
-  #       expect(result[:result]).to be false
+          result = @source_preview_page.format._render(:company_and_topic_detail) 
 
-  #     end
-  #   end
-  #   describe "send invalid parameters" do
-  #     it "handles invalid company" do 
-  #       Card::Env.params[:url] = @url
-  #       Card::Env.params[:company] = "joe_user"
-  #       Card::Env.params[:topic] = "Natural Resource Use"
-  #       Card::Env.params[:type] = "either"
-  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
-  #       expect(result[:result]).to be false
-  #     end
-  #     it "handles invalid topic" do 
-  #       Card::Env.params[:url] = @url
-  #       Card::Env.params[:company] = "Apple"
-  #       Card::Env.params[:topic] = "joe_user"
-  #       Card::Env.params[:type] = "either"
-  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
-  #       expect(result[:result]).to be false
-  #     end
-  #     it "handles invalid type" do 
-  #       Card::Env.params[:url] = @url
-  #       Card::Env.params[:company] = "Apple"
-  #       Card::Env.params[:topic] = "Natural Resource Use"
-  #       Card::Env.params[:type] = "joe_user"
-  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
-  #       expect(result[:result]).to be false
-  #     end
-  #   end
-  #   describe "normal cases" do
-  #     it "handles either type" do 
-  #       Card::Env.params[:url] = @url
-  #       Card::Env.params[:company] = "Apple"
-  #       Card::Env.params[:topic] = "Natural Resource Use"
-  #       Card::Env.params[:type] = "either"
-  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
-  #       expect(result[:result]).to be true
-  #       expect(result[:result_from_certh]).to eq(1)
-  #     end
-  #     it "handles company type" do 
-  #       Card::Env.params[:url] = @url
-  #       Card::Env.params[:company] = "Apple"
-  #       Card::Env.params[:topic] = "Natural Resource Use"
-  #       Card::Env.params[:type] = "company"
-  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
-  #       expect(result[:result]).to be true
-  #       expect(result[:result_from_certh]).to eq(1)
-  #     end
-  #     it "handles topic type" do 
-  #       Card::Env.params[:url] = @url
-  #       Card::Env.params[:company] = "Apple"
-  #       Card::Env.params[:topic] = "Natural Resource Use"
-  #       Card::Env.params[:type] = "topic"
-  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
-  #       expect(result[:result]).to be true
-  #       expect(result[:result_from_certh]).to eq(1)
-  #     end
-  #     it "handles relevant type" do 
-  #       Card::Env.params[:url] = @url
-  #       Card::Env.params[:company] = "Apple"
-  #       Card::Env.params[:topic] = "Natural Resource Use"
-  #       Card::Env.params[:type] = "relevant"
-  #       result = @source_preview_page.format( :format=>:json)._render(:feedback)
-  #       expect(result[:result]).to be true
-  #       expect(result[:result_from_certh]).to eq(1)
-  #     end
-  #   end
-  # end
+          expect(result).to match(%{<div class="company-name ">[ \\n]+<\/div>})
+          expect(result).to match(%{<div class="topic-name ">[ \\n]+<\/div>})
+        end
+        it "shows the edit dropbox button, options for existing sources if company and topic match wikirate's one" do
+          company = "Apple"
+          topic = "Natural Resource Use"
+          Card::Env.params[:url] = @url
+          Card::Env.params[:company] = company
+          Card::Env.params[:topic] = topic
+          Card::Env.params[:fromcerth] = "true"
+
+          result = @source_preview_page.format._render(:company_and_topic_detail) 
+          #show company and topic
+          expect(result).to include(%{<a href="#{company}" target="_blank">})
+          expect(result).to include(%{<span class="company-name">#{company}</span>})
+          expect(result).to include(%{<a href="#{topic}" target="_blank">})
+          expect(result).to include(%{<span class="topic-name">#{topic}</span>})
+          #show dropdown button
+          expect(result).to include(%{<a href="#" id="company-and-topic-detail-link" class="">})
+
+          result = @source_preview_page.format._render(:source_preview_options) 
+          expect(result).to include("Source Details")
+          expect(result).to include("Direct Link")
+          expect(result).to include("Make a Claim")
+          expect(result).to include(%{<div id="claim-count">})
+
+        end
+        it "hides the edit dropbox button if company and topic do not match wikirate's one" do
+          company = "Ahold"
+          topic = "Natural Resource Use"
+          Card::Env.params[:url] = @url
+          Card::Env.params[:company] = company
+          Card::Env.params[:topic] = topic
+          Card::Env.params[:fromcerth] = "true"
+
+          result = @source_preview_page.format._render(:company_and_topic_detail) 
+          #show company and topic
+          expect(result).to include(%{<a href="#{company}" target="_blank">})
+          expect(result).to include(%{<span class="company-name">#{company}</span>})
+          expect(result).to include(%{<a href="#{topic}" target="_blank">})
+          expect(result).to include(%{<span class="topic-name">#{topic}</span>})
+          #hide dropdown button
+          expect(result).to include(%{<a href="#" id="company-and-topic-detail-link" class="no-dropdown">})
+
+          result = @source_preview_page.format._render(:source_preview_options) 
+          expect(result).to include("Irrelevant")
+          expect(result).to include("Relevant")
+        end
+      end
+      describe "source does not exist in wikirate" do
+        it "shows company and topic from url, hide the edit drop down button" do
+          company = "Ahold"
+          topic = "Natural Resource Use"
+          Card::Env.params[:url] = @nonexisting_url
+          Card::Env.params[:company] = company
+          Card::Env.params[:topic] = topic
+          Card::Env.params[:fromcerth] = "true"
+
+          result = @source_preview_page.format._render(:company_and_topic_detail) 
+          #show company and topic
+          expect(result).to include(%{<a href="#{company}" target="_blank">})
+          expect(result).to include(%{<span class="company-name">#{company}</span>})
+          expect(result).to include(%{<a href="#{topic}" target="_blank">})
+          expect(result).to include(%{<span class="topic-name">#{topic}</span>})
+          #hide dropdown button
+          expect(result).to include(%{<a href="#" id="company-and-topic-detail-link" class="no-dropdown">})
+
+          result = @source_preview_page.format._render(:source_preview_options) 
+          expect(result).to include("Irrelevant")
+          expect(result).to include("Relevant")
+
+        end
+      end
+    end
+    describe "sources from wikirate" do
+      before do
+        @url = "http://existingpage.com"
+        @company = "Ahold"
+        @topic = "Natural Resource Use"
+        @existing_source = create_page_with_sourcebox @url,{"+Company"=>@company,"+Topic"=>@topic},'false'
+      end
+      it "shows options for existing sources" do 
+        
+        
+        Card::Env.params[:url] = @url
+        Card::Env.params[:fromcerth] = "false"
+
+        result = @source_preview_page.format._render(:source_preview_options) 
+        expect(result).to include("Source Details")
+        expect(result).to include("Direct Link")
+        expect(result).to include("Make a Claim")
+        expect(result).to include(%{<div id="claim-count">})
+      end
+      it "shows dropdown button and company and topic" do
+        Card::Env.params[:url] = @url
+        Card::Env.params[:fromcerth] = "false"
+
+        result = @source_preview_page.format._render(:company_and_topic_detail) 
+        #show company and topic
+        expect(result).to include(%{<a href="#{@company}" target="_blank">})
+        expect(result).to include(%{<span class="company-name">#{@company}</span>})
+        expect(result).to include(%{<a href="#{@topic}" target="_blank">})
+        expect(result).to include(%{<span class="topic-name">#{@topic}</span>})
+        #hide dropdown button
+        expect(result).to include(%{<a href="#" id="company-and-topic-detail-link" class="">})
+      end
+      it "shows add topic if topic does not exist" do
+        new_url = "http://www.google.com/nonexistingwikiratewebpage"
+        existing_source = create_page_with_sourcebox new_url,{"+Company"=>"Apple"},'false'
+        Card::Env.params[:url] = new_url
+        Card::Env.params[:fromcerth] = "false"
+
+        result = @source_preview_page.format._render(:company_and_topic_detail) 
+        #show company and topic
+        expect(result).to include(%{<a href="Apple" target="_blank">})
+        expect(result).to include(%{<span class="company-name">Apple</span>})
+        expect(result).to include(%{<a id='add-topic-link' href='#' >Add Topic</a>})
+        #hide dropdown button
+        expect(result).to include(%{<a href="#" id="company-and-topic-detail-link" class="">})
+      end
+      it "shows add company if topic does not exist" do
+        new_url = "http://www.google.com/nonexistingwikiratewebpage"
+        existing_source = create_page_with_sourcebox new_url,{"+Topic"=>"Natural Resource Use"},'false'
+        Card::Env.params[:url] = new_url
+        Card::Env.params[:fromcerth] = "false"
+
+        result = @source_preview_page.format._render(:company_and_topic_detail) 
+        #show company and topic
+        expect(result).to include(%{<a id='add-company-link' href='#' >Add Company</a>})
+        expect(result).to include(%{<a href="Natural Resource Use" target="_blank">})
+        expect(result).to include(%{<span class="topic-name">Natural Resource Use</span>})
+        #hide dropdown button
+        expect(result).to include(%{<a href="#" id="company-and-topic-detail-link" class="">})
+      end
+    end
+  end
+  describe "source_name view" do
+    it "returns correct source name for url" do 
+      url = "http://www.google.com/existingwikiratewebpage"
+      existing_source = create_page_with_sourcebox url,{},"false"
+      Card::Env.params[:url] = url
+      result = @source_preview_page.format._render(:source_name) 
+      expect(result).to eq(existing_source.name)
+    end
+    it "returns '' for non existing url" do 
+      Card::Env.params[:url] = "http://www.google.com/nonexistingwikiratewebpage"
+      result = @source_preview_page.format._render(:source_name) 
+      expect(result).to eq("")
+    end
+  end
+  describe "send feedback to CERTH" do
+    before do
+      @url = "http://google.com"
+    end
+    describe "send insufficient parameters" do
+      it "handles no parameter" do 
+        #no parameters
+        result = @source_preview_page.format( :format=>:json)._render(:feedback)
+        expect(result[:result]).to be false
+      end
+      it "handles no url" do
+        Card::Env.params[:company] = "Apple"
+        Card::Env.params[:topic] = "Natural Resource Use"
+        Card::Env.params[:type] = "either"
+        result = @source_preview_page.format( :format=>:json)._render(:feedback)
+        expect(result[:result]).to be false
+
+      end
+      it "handles no company" do
+       Card::Env.params[:url] = @url
+        Card::Env.params[:topic] = "Natural Resource Use"
+        Card::Env.params[:type] = "either"
+        result = @source_preview_page.format( :format=>:json)._render(:feedback)
+        expect(result[:result]).to be false
+
+      end
+      it "handles no topic" do
+        Card::Env.params[:url] = @url
+        Card::Env.params[:company] = "Apple"
+        Card::Env.params[:type] = "either"
+        result = @source_preview_page.format( :format=>:json)._render(:feedback)
+        expect(result[:result]).to be false
+
+      end
+      it "handles no type" do
+        Card::Env.params[:url] = @url
+        Card::Env.params[:company] = "Apple"
+        Card::Env.params[:topic] = "Natural Resource Use"
+        result = @source_preview_page.format( :format=>:json)._render(:feedback)
+        expect(result[:result]).to be false
+
+      end
+    end
+    describe "send invalid parameters" do
+      it "handles invalid company" do 
+        Card::Env.params[:url] = @url
+        Card::Env.params[:company] = "joe_user"
+        Card::Env.params[:topic] = "Natural Resource Use"
+        Card::Env.params[:type] = "either"
+        result = @source_preview_page.format( :format=>:json)._render(:feedback)
+        expect(result[:result]).to be false
+      end
+      it "handles invalid topic" do 
+        Card::Env.params[:url] = @url
+        Card::Env.params[:company] = "Apple"
+        Card::Env.params[:topic] = "joe_user"
+        Card::Env.params[:type] = "either"
+        result = @source_preview_page.format( :format=>:json)._render(:feedback)
+        expect(result[:result]).to be false
+      end
+      it "handles invalid type" do 
+        Card::Env.params[:url] = @url
+        Card::Env.params[:company] = "Apple"
+        Card::Env.params[:topic] = "Natural Resource Use"
+        Card::Env.params[:type] = "joe_user"
+        result = @source_preview_page.format( :format=>:json)._render(:feedback)
+        expect(result[:result]).to be false
+      end
+    end
+    describe "normal cases" do
+      it "handles either type" do 
+        Card::Env.params[:url] = @url
+        Card::Env.params[:company] = "Apple"
+        Card::Env.params[:topic] = "Natural Resource Use"
+        Card::Env.params[:type] = "either"
+        result = @source_preview_page.format( :format=>:json)._render(:feedback)
+        expect(result[:result]).to be true
+        expect(result[:result_from_certh]).to eq(1)
+      end
+      it "handles company type" do 
+        Card::Env.params[:url] = @url
+        Card::Env.params[:company] = "Apple"
+        Card::Env.params[:topic] = "Natural Resource Use"
+        Card::Env.params[:type] = "company"
+        result = @source_preview_page.format( :format=>:json)._render(:feedback)
+        expect(result[:result]).to be true
+        expect(result[:result_from_certh]).to eq(1)
+      end
+      it "handles topic type" do 
+        Card::Env.params[:url] = @url
+        Card::Env.params[:company] = "Apple"
+        Card::Env.params[:topic] = "Natural Resource Use"
+        Card::Env.params[:type] = "topic"
+        result = @source_preview_page.format( :format=>:json)._render(:feedback)
+        expect(result[:result]).to be true
+        expect(result[:result_from_certh]).to eq(1)
+      end
+      it "handles relevant type" do 
+        Card::Env.params[:url] = @url
+        Card::Env.params[:company] = "Apple"
+        Card::Env.params[:topic] = "Natural Resource Use"
+        Card::Env.params[:type] = "relevant"
+        result = @source_preview_page.format( :format=>:json)._render(:feedback)
+        expect(result[:result]).to be true
+        expect(result[:result_from_certh]).to eq(1)
+      end
+    end
+  end
 end

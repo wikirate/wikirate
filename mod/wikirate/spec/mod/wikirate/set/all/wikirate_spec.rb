@@ -170,33 +170,34 @@ describe Card::Set::All::Wikirate do
     end
     before do
       login_as 'WagnBot' 
+      @search_card_name = "_search_test"
     end
     it "handles only 1 result" do
       cards_name = create_dump_card 1
-      search_card = Card.create! :name=>"searchtest",:type=>"search",:content=>"{\"name\":#{cards_name}}"
+      search_card = Card.create! :name=>@search_card_name,:type=>"search",:content=>"{\"name\":#{cards_name}}"
       expected_content = search_card.item_cards(:limit=>0)[0].format.render(:link)
-      expect(render_card :shorter_search_result,:name=>"searchtest").to eq(expected_content)
+      expect(render_card :shorter_search_result,:name=>@search_card_name).to eq(expected_content)
     end
     it "handles only 2 results" do
       cards_name = create_dump_card 2
-      search_card = Card.create! :name=>"searchtest",:type=>"search",:content=>"{\"name\":[\"in\", #{cards_name}]}"
+      search_card = Card.create! :name=>@search_card_name,:type=>"search",:content=>"{\"name\":[\"in\", #{cards_name}]}"
       result_cards = search_card.item_cards(:limit=>0)
       expected_content = result_cards[0].format.render(:link)+" and "+result_cards[1].format.render(:link)
-      expect(render_card :shorter_search_result,:name=>"searchtest").to eq(expected_content)
+      expect(render_card :shorter_search_result,:name=>@search_card_name).to eq(expected_content)
     end
     it "handles only 3 results" do
       cards_name = create_dump_card 3
-      search_card = Card.create! :name=>"searchtest",:type=>"search",:content=>"{\"name\":[\"in\", #{cards_name}]}"
+      search_card = Card.create! :name=>@search_card_name,:type=>"search",:content=>"{\"name\":[\"in\", #{cards_name}]}"
       result_cards = search_card.item_cards(:limit=>0)
       expected_content = result_cards[0].format.render(:link)+" , "+result_cards[1].format.render(:link)+" and "+result_cards[2].format.render(:link)
-      expect(render_card :shorter_search_result,:name=>"searchtest").to eq(expected_content)    
+      expect(render_card :shorter_search_result,:name=>@search_card_name).to eq(expected_content)    
     end
     it "handles more than 3 results" do
       cards_name = create_dump_card 10
-      search_card = Card.create! :name=>"searchtest",:type=>"search",:content=>"{\"name\":[\"in\", #{cards_name}]}"
+      search_card = Card.create! :name=>@search_card_name,:type=>"search",:content=>"{\"name\":[\"in\", #{cards_name}]}"
       result_cards = search_card.item_cards(:limit=>0)      
       expected_content = result_cards[0].format.render(:link)+" , "+result_cards[1].format.render(:link)+" , "+result_cards[2].format.render(:link)+" and <a class=\"known-card\" href=\"#{search_card.format.render(:url)}\"> 7 others</a>"
-      expect(render_card :shorter_search_result,:name=>"searchtest").to eq(expected_content)    
+      expect(render_card :shorter_search_result,:name=>@search_card_name).to eq(expected_content)    
      
     end
   end

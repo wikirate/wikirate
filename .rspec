@@ -3,4 +3,3 @@
 --backtrace
 --default-path 'mod'
 --require './spec/spec_helper'
---require ./mod/wikirate/spec/mod/wikirate/spec_helper
