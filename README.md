@@ -10,12 +10,26 @@ Steps to make it work
 4. bundle exec wagn s
 
 
+Testing
+=========
 
-Steps to rspec test
-----
-
-1. create a user call joe_user(maybe you need a joe_admin). You may create in the webpage.
-2. run the following command in console
+Paths:
 ```sh
- wagn rspec
+ mod/*/spec                       # rspec tests
+ mod/*/features                   # cucumber tests
+ mod/*/features/step_definitions  # cucumber step definitions
 ```
+
+Run `rake wikirate:test:seed` to prepare test database.
+
+Start rspec with `wagn rspec` and cucumber with `wagn cucumber`.
+Alternatively, you can use the shorter commands `wagn rs` and `wagn cc`
+
+To update the test data from the dev site run
+```sh
+cap staging pull_db
+rake wikirate:test:update_seed_data
+```
+
+This updates the mysql dump in  test/wikiratetest.db that is also used for
+continuous integration testing. So don't forget to include it in your git commits.
