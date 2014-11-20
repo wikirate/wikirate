@@ -25,13 +25,28 @@ describe Card::Set::Type::Webpage do
         sourcepage.errors.should have_key :link
         sourcepage.errors[:source]=="is empty"
     end
+    describe "while creating duplicated source on claim page" do
+      it "should return exisiting url" do
+        url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
+        Card::Env.params[:sourcebox] = 'true'
+        firstsourcepage = Card.create! :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
+        secondsourcepage = Card.create! :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
+        firstsourcepage.name.should == secondsourcepage.name
+      end
+    end
+    describe "while creating duplicated source on claim page" do
+      it "should show error" do
+        url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
+        
+        firstsourcepage = Card.create :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
+        secondsourcepage = Card.new :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
 
-    it "should handle duplicated url " do
-      url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
-      Card::Env.params[:sourcebox] = 'true'
-      firstsourcepage = Card.create! :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
-      secondsourcepage = Card.create! :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
-      firstsourcepage.name.should == secondsourcepage.name
+        secondsourcepage.should_not be_valid
+        secondsourcepage.errors.should have_key :link
+        expect(secondsourcepage.errors[:link]).to include("exists already. <a href='/#{firstsourcepage.name}'>Visit the source.</a>")
+
+       
+      end
     end
   end
 end
