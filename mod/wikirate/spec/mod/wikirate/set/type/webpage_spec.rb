@@ -34,7 +34,7 @@ describe Card::Set::Type::Webpage do
         firstsourcepage.name.should == secondsourcepage.name
       end
     end
-    describe "while creating duplicated source on claim page" do
+    describe "while creating duplicated source on source page" do
       it "should show error" do
         url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
         
