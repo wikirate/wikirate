@@ -46,5 +46,10 @@ group :development do
 end
 
 group :test, :development do
-  gem "byebug"
+  gem 'pry-rails'
+  gem 'pry-rescue'
+  gem 'pry-stack_explorer'
+  # if RUBY_VERSION =~ /^2/
+  #   gem 'pry-byebug'
+  # end
 end
