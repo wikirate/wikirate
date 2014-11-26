@@ -22,7 +22,7 @@ def create_claim name, subcards={}
     Card.create! :type=>"Claim", :name=>name, 
                  :subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}.merge(subcards)    
   end
-<<<<<<< HEAD
+
 end
 #cards only exist in testing db
 def get_a_sample_claim 
@@ -48,6 +48,4 @@ def html_trim str
   s.delete!("  ")
   s
 end
-=======
-end
->>>>>>> wagn/master
+
