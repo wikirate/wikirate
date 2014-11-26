@@ -59,10 +59,26 @@ describe Card::Set::All::Wikirate do
   end
 
   describe "while showing view" do
+
+    it "renders edits_by view" do 
+      html = render_card :edits_by,{:name=>"Home"}
+      expect(html).to include(render_card_with_args :shorter_search_result,{:name=>"Home+*editor"},{},{:item=>:link})
+    end
+
+    it "renders titled_with_edits view" do
+      html = render_card :titled_with_edits,{:name=>"Home"}
+      expect(html).to include(render_card :header,{:name=>"Home"})
+      expect(html).to include(render_card :edits_by,{:name=>"Home"})
+    end
+
     it "should always show the help text " do
       
       #render help text of source page
-
+      #create a page with help text
+      login_as "WagnBot" 
+      basic = Card.create :type=>"Basic", :name=>"testhelptext",:content=>"<p>hello test case</p>"
+      help_card = Card.create :type=>"Basic", :name=>"testhelptext+*self+*help",:content=>"Can I help you?"
+      expect(render_card :name_fieldset,{:name=>"testhelptext"}).to include("Can I help you?")
 
     end
     it "show \"\" when for cite view other than in html format" do 

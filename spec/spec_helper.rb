@@ -23,3 +23,27 @@ def create_claim name, subcards={}
                  :subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}.merge(subcards)    
   end
 end
+#cards only exist in testing db
+def get_a_sample_claim 
+  Card["Death Star uses dark side of the Force"]
+end
+
+def get_a_sample_company
+  Card["Death Star"]
+end
+
+def get_a_sample_topic
+  Card["Force"]
+end
+
+def get_a_sample_analysis 
+  Card["Death Star+Force"]
+end
+
+def html_trim str
+  s = str.dup
+  s.delete!("\r\n")
+  s.delete!("\n")
+  s.delete!("  ")
+  s
+end

@@ -8,7 +8,7 @@ describe Card::Set::Right::WikirateTitle do
     #create the page with source with title
     url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknowsigh'
     Card::Env.params[:sourcebox] = 'true'
-    sourcepage = Card.create! :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
+    sourcepage = Card.create :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
     
     #link card
     title_card = Card["#{sourcepage.name}+title"]
@@ -21,7 +21,8 @@ describe Card::Set::Right::WikirateTitle do
     #create the page with source
     url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknowsigh'
     
-    sourcepage = Card.create! :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
+    sourcepage = Card.create :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
+    Card[sourcepage.name+"+Title"].delete!
     html = render_card :needed,{:name=>"#{sourcepage.name}+Title"}
     expect(html).to eq("<span class=\"wanted-card\">title needed</span>" )
 
