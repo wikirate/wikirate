@@ -43,23 +43,23 @@ format :html do
   end
   
   view :shorter_search_result do |args|
-    result = ""
-    total_number = card.count
-    fetch_number = total_number>4 ? 4 : total_number
-    items = card.item_cards :limit=>fetch_number
-    for i in 0..fetch_number-1
-      link = items[i].format.render(:link)
-      if i == 0 
-        result+=link
-      elsif i == total_number-1
-        result+=" and "+link
-      elsif i >=3 
-        result+=" and <a class=\"known-card\" href=\"#{card.format.render(:url)}\"> #{total_number-3} others</a>"
-      else
-        result+=" , "+link
-      end
+    items = card.item_cards :limit=>0
+    total_number = items.size
+    fetch_number = [total_number, 4].min
+    
+    result = ''
+    if fetch_number > 1
+      result += items[0..fetch_number-2].map do |c|
+        subformat(c).render(:link)
+      end.join(' , ') 
+      result += ' and ' 
     end
-    result
+      
+    result += if total_number > fetch_number
+        "<a class=\"known-card\" href=\"#{card.format.render(:url)}\"> #{total_number-3} others</a>"
+      else
+        subformat(items[fetch_number-1]).render(:link)
+      end
   end
 
   view :name_fieldset do |args|
