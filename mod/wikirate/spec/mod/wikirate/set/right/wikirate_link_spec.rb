@@ -15,9 +15,9 @@ describe Card::Set::Right::Source do
 
     link_card.content = "http://www.google.com/"
 
-    link_card.save.should == false
-    link_card.errors.should have_key :link
-    link_card.errors[:link]=="is not allowed to be changed."
+    expect(link_card.save).to be false
+    expect(link_card.errors).to have_key(:link)
+    expect(link_card.errors[:link]).to include("is not allowed to be changed.")
 
   end
 
