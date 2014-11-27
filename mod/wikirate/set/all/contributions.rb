@@ -3,8 +3,12 @@ def update_direct_contribution_count
  
   new_contr_count = intrusive_family_acts.count
   Card::Auth.as_bot do
-    direct_contribution_count_card.update_column(:db_content, new_contr_count.to_s)
-    direct_contribution_count_card.expire
+    if direct_contribution_count_card.new_card?
+       direct_contribution_count_card.update_attributes!(:db_content => new_contr_count.to_s)
+    else
+      direct_contribution_count_card.update_column(:db_content, new_contr_count.to_s)
+      direct_contribution_count_card.expire
+    end
   end
 end
 
@@ -28,8 +32,12 @@ def update_contribution_count
     #new_contr_count += Card::Act.find_all_with_actions_on(indirect_contributer_ids).count
   end
   Card::Auth.as_bot do
-    contribution_count_card.update_column(:db_content, new_contr_count.to_s)
-    contribution_count_card.expire
+    if contribution_count_card.new_card?
+      contribution_count_card.update_attributes!(:db_content => new_contr_count.to_s)
+    else
+      contribution_count_card.update_column(:db_content, new_contr_count.to_s)
+      contribution_count_card.expire
+    end
   end
 end
 
