@@ -10,11 +10,8 @@ describe Card::Set::Type::Claim do
  
   end
 
-  end
-  it "gives a correct citation in clipboard view" do
 
-    
-  end
+
   it "should handle too long claim" do
     card = Card.new(   :type=>"Claim", :name=>"2"*101 )
     card.should_not be_valid
@@ -175,4 +172,3 @@ describe Card::Set::Type::Claim do
     expect(claim_card.analysis_names).to eq(["CW TV+Should we have supernatural season 11?", "CW TV+Force", "Death Star+Should we have supernatural season 11?", "Death Star+Force"])
   end
 end
-

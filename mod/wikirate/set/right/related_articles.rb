@@ -17,7 +17,7 @@ format :html do
       if cited.any?
         body += %{
           <div class="related-articles cited-articles">
-            <h3>Articles that cite this Claim</h2>
+            <h3>Articles that cite this Claim</h3>
             <ul>#{ cited.map { |a| "<li>#{ analysis_links a, :cited=>true }" }.join "\n" }</ul>
           </div>
         }
@@ -25,7 +25,7 @@ format :html do
       if uncited.any?
         body += %{
           <div class="related-articles uncited-articles">
-            <h3>Articles that <em>could</em> cite this Claim</h2>
+            <h3>Articles that <em>could</em> cite this Claim</h3>
             <ul>#{ uncited.map { |a| "<li>#{ analysis_links a }" }.join "\n" }</ul>
           </div>
         }
@@ -38,6 +38,7 @@ format :html do
   
   
   def analysis_links analysis_name, cited=false
+
     company_name = %{<span class="company">#{analysis_name.to_name.trunk_name}</span>}
     topic_name   = %{<span class="topic">#{  analysis_name.to_name.tag_name  }</span>}
     simple_link  = %{[[#{analysis_name}|#{company_name}#{topic_name}]]}
