@@ -41,8 +41,7 @@ event :process_source_url, :before=>:process_subcards, :on=>:create do
       end
     end
   end
-
-  parse_source_page url
+  parse_source_page url if Card::Env.params[:sourcebox] == 'true'
 end
 
 def parse_source_page url
