@@ -3,7 +3,12 @@ def update_direct_contribution_count
  
   new_contr_count = intrusive_family_acts.count
   Card::Auth.as_bot do
-    direct_contribution_count_card.update_attributes!(:content => new_contr_count.to_s)
+    if direct_contribution_count_card.new_card?
+      direct_contribution_count_card.update_attributes!(:db_content => new_contr_count.to_s)
+    else
+      direct_contribution_count_card.update_column(:db_content, new_contr_count.to_s)
+      direct_contribution_count_card.expire
+    end
   end
 end
 
@@ -27,7 +32,12 @@ def update_contribution_count
     #new_contr_count += Card::Act.find_all_with_actions_on(indirect_contributer_ids).count
   end
   Card::Auth.as_bot do
-    contribution_count_card.update_attributes!(:content => new_contr_count.to_s)
+    if contribution_count_card.new_card?
+      contribution_count_card.update_attributes!(:db_content => new_contr_count.to_s)
+    else
+      contribution_count_card.update_column(:db_content, new_contr_count.to_s)
+      contribution_count_card.expire
+    end
   end
 end
 
@@ -56,7 +66,7 @@ def contributees res=[], visited=::Set.new
   [res, visited]
 end
 
-event :new_contributions, :before=>:extend, :when=>proc{ |c| !c.supercard and c.current_act} do
+event :new_contributions, :before=>:extend, :when=>proc{ |c| !c.supercard and c.current_act and not (c.right and (c.right.codename == 'contribution_count' or c.right.codename == 'direct_contribution_count')) } do
   visited = ::Set.new
   contr = []
   @current_act.actions.each do
