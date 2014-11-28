@@ -169,7 +169,7 @@ format :json do
       url.gsub!(/ /, '%20')
       uri = open(url)
       xFrameOptions = uri.metas["x-frame-options"]
-      is_firefox = request.env['HTTP_USER_AGENT'] =~ /Firefox/
+      is_firefox = request ? request.env['HTTP_USER_AGENT'] =~ /Firefox/ : false
       return false if xFrameOptions and ( xFrameOptions.upcase.include? "DENY" or xFrameOptions.upcase.include? "SAMEORIGIN" )
       return false if !allow_content_type.include?(uri.content_type) and  !is_firefox
     rescue => error
