@@ -13,10 +13,11 @@ def indirect_contributer_search_args
 end
 
 
-event :vote_on_create_claim, :on=>:create, :before=>:extend, :when=> proc{ |c| Card::Auth.current_id != Card::WagnBotID } do
+event :vote_on_create_claim, :on=>:create, :after=>:store, :when=> proc{ |c| Card::Auth.current_id != Card::WagnBotID } do
   Auth.as_bot do
     vc = vote_count_card
     vc.vote_up
+    vc.supercard = self
     vc.save!
   end
 end
