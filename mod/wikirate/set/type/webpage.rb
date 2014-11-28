@@ -22,9 +22,8 @@ event :vote_on_create_webpage, :on=>:create, :before=>:extend, :when=> proc{ |c|
 end
 
 
-event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc{ 
-   |c| Card::Env.params[:sourcebox] == 'true'
-  } do
+event :process_source_url, :before=>:process_subcards, :on=>:create do
+#, :when=>proc{    |c| Card::Env.params[:sourcebox] == 'true'  } do
   
   linkparams = subcards["+#{ Card[:wikirate_link].name }"]
   url = linkparams && linkparams[:content] or raise "don't got it"
@@ -33,12 +32,16 @@ event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc
   else
     duplicates = Self::Webpage.find_duplicates url
     if duplicates.any?
-      self.name = duplicates.first.cardname.left
-      abort :success
+      duplicated_name = duplicates.first.cardname.left
+      if Card::Env.params[:sourcebox] == 'true'
+        self.name = duplicated_name
+        abort :success
+      else
+        errors.add :link, "exists already. <a href='/#{duplicated_name}'>Visit the source.</a>"   
+      end
     end
   end
-
-  parse_source_page url
+  parse_source_page url if Card::Env.params[:sourcebox] == 'true'
 end
 
 def parse_source_page url
