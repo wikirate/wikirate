@@ -13,9 +13,10 @@ end
 require 'link_thumbnailer'
 
 
-event :vote_on_create_webpage, :on=>:create, :before=>:extend, :when=> proc{ |c| Card::Auth.current_id != Card::WagnBotID }do
+event :vote_on_create_webpage, :on=>:create, :after=>:store, :when=> proc{ |c| Card::Auth.current_id != Card::WagnBotID }do
   Auth.as_bot do
     vc = vote_count_card
+    vc.supercard = self
     vc.vote_up
     vc.save!
   end
