@@ -134,7 +134,7 @@ describe Card::Set::Right::FilterSearch do
         end
         context "when sorting" do
           before do 
-            @claim_card1 = create_claim "whateverclaimrecent",{"+company"=>{:content=>"[[#{@new_company.name}]]\r\n[[#{@new_company1.name}]]"},"+topic"=>{:content=>"[[#{@new_topic.name}]]\r\n[[#{@new_topic1.name}]]"},"+tag"=>{:content=>"[[thisisatestingtag]]\r\n[[thisisalsoatestingtag]]"}}      
+            @claim_card1 = create_claim_with_url "whateverclaimrecent","http://www.google.com/yo",{"+company"=>{:content=>"[[#{@new_company.name}]]\r\n[[#{@new_company1.name}]]"},"+topic"=>{:content=>"[[#{@new_topic.name}]]\r\n[[#{@new_topic1.name}]]"},"+tag"=>{:content=>"[[thisisatestingtag]]\r\n[[thisisalsoatestingtag]]"}}      
           end
           it "is most recent" do
             html = Card["Claim"].format.render_core
@@ -142,10 +142,9 @@ describe Card::Set::Right::FilterSearch do
           end
           it "is most important" do
 
-            Auth.as_bot do
+            Card::Auth.as_bot do
               vc = @claim_card1.vote_count_card
               vc.vote_up
-              vc.supercard = self
               vc.save!
             end
 

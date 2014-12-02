@@ -45,7 +45,6 @@ describe Card::Set::Self::WikirateCompanyComparison do
         Card::Env.params["company2"] = @companies[1].to_name.key
 
         html = @comparision_card.format.render_core
-        puts html
         expect(html).to have_tag('form', :with => { }) do
           with_tag "select", :with => { :name => "topic", :id => "topic" } do
             topic_options = @topics.map { |t| [t,t.to_name.key] }  

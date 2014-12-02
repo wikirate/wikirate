@@ -193,7 +193,7 @@ format :json do
   view :check_iframable do |args|
     url = Card::Env.params[:url]
     if url
-      result = {:result => is_iframable?( url, request.env['HTTP_USER_AGENT'] ) }
+      result = {:result => is_iframable?( url, request ? request.env['HTTP_USER_AGENT'] : nil ) }
     else
       result = {:result => false }
     end
