@@ -14,6 +14,7 @@ end
 group :test do
   gem 'rspec-rails', "~> 3.1.0"   # behavior-driven-development suite
   gem 'rspec'
+  gem 'rspec-html-matchers'
 #  gem 'wagn-rspec-formatter', :path=>'/opt/wagn-rspec-formatter'
   gem 'spork', '>=0.9'
   gem 'timecop'

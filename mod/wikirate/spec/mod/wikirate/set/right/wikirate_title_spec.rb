@@ -22,7 +22,7 @@ describe Card::Set::Right::WikirateTitle do
     url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknowsigh'
     
     sourcepage = Card.create :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
-    Card[sourcepage.name+"+Title"].delete!
+    Card[sourcepage.name+"+Title"].delete! if Card[sourcepage.name+"+Title"]
     html = render_card :needed,{:name=>"#{sourcepage.name}+Title"}
     expect(html).to eq("<span class=\"wanted-card\">title needed</span>" )
 

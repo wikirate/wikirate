@@ -19,6 +19,19 @@ describe Card::Set::All::Wikirate do
       result = @source_preview_page.format( :format=>:json)._render(:check_iframable) 
       expect(result[:result]).to be false
     end
+    context "when checking iframble" do 
+      it "returns true if it is firefox" do 
+        url = 'http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/pdf_open_parameters.pdf'
+        result = @source_preview_page.format( :format=>:json).is_iframable url,"Firefox"
+        expect(result).to be(true)
+      end
+      it "returns false if it is not firefox" do 
+        url = 'http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/pdf_open_parameters.pdf'
+        result = @source_preview_page.format( :format=>:json).is_iframable url,"Chrome"
+        expect(result).to be(false)
+      end
+    end
+    
     it "should return false for non sense website" do
       url = 'helloworld'
       
