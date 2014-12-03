@@ -10,56 +10,54 @@ describe Card::Set::Type::Claim do
  
   end
 
-
-
   it "should handle too long claim" do
     card = Card.new(   :type=>"Claim", :name=>"2"*101 )
-    card.should_not be_valid
-    card.errors.should have_key :claim
-    card.errors[:claim].first.should=="is too long (100 character maximum)"
+    expect(card).not_to be_valid
+    expect(card.errors).to have_key(:claim)
+    expect(card.errors[:claim].first).to eq("is too long (100 character maximum)")
   end
   
-  it "should handle normal claim creation" do
+  it "handles normal claim creation" do
     #create the testing webpage first
     claim_name = "2"*100
     sourcepage = create_page 
 
     #test single source
     card = Card.new :type=>"Claim", :name=>claim_name ,:subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}    
-    card.should be_valid
+    expect(card).to be_valid
 
     card = Card.new :type=>"Claim", :name=>claim_name ,:subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]\r\n[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}
-    card.should be_valid
+    expect(card).to be_valid
 
   end
 
-  it "should require +source card " do
+  it "requires +source card " do
     fake_pagename = "Page-1"
     url = "[[#{fake_pagename}]]"
 
     # nth here
     card = Card.new(   :type=>"Claim", :name=>"2"*100)
-    card.should_not be_valid
-    card.errors.should have_key :source
-    card.errors[:source].include?("is empty").should==true
+    expect(card).not_to be_valid
+    expect(card.errors).to have_key :source
+    expect(card.errors[:source]).to include("is empty")
     #without type
     card = Card.new(   :type=>"Claim", :name=>"2"*100,:subcards=>{ '+source' => {:content=> url}})
-    card.should_not be_valid
-    card.errors.should have_key :source
-    card.errors[:source].include?("#{fake_pagename} does not exist").should ==true
+    expect(card).not_to be_valid
+    expect(card.errors).to have_key :source
+    expect(card.errors[:source]).to include("#{fake_pagename} does not exist")
 
     #with a non exisiting url in any webpage
     card = Card.new(   :type=>"Claim", :name=>"2"*100 ,:subcards=>{ '+source' => {:content=> url,:type_id=>Card::PointerID}})
-    card.should_not be_valid
-    card.errors.should have_key :source
-    card.errors[:source].include?("#{fake_pagename} does not exist").should ==true
+    expect(card).not_to be_valid
+    expect(card.errors).to have_key :source
+    expect(card.errors[:source]).to include("#{fake_pagename} does not exist")
 
 
     page = create_page
     card = Card.new(   :type=>"Claim", :name=>"2"*100,:subcards=>{ '+source' => {:content=> "[[Home]]",:type_id=>Card::PointerID}})
-    card.should_not be_valid
-    card.errors.should have_key :source
-    card.errors[:source].include?("Home is not a valid Source Page").should ==true
+    expect(card).not_to be_valid
+    expect(card.errors).to have_key :source
+    expect(card.errors[:source]).to include("Home is not a valid Source Page")
   end
 
   describe "views" do 
@@ -160,12 +158,6 @@ describe Card::Set::Type::Claim do
 
     another_real_company = Card.create :name=>"CW TV",:type_id=>Card::WikirateCompanyID
     another_real_topic = Card.create :name=>"Should we have supernatural season 11?",:type_id=>Card::WikirateTopicID
-    # these are not working as vote count cards cannot be created 
-    # non_company = Card.create :name=>"iamnocompany",:type=>"Basic"
-    # non_topic = Card.create :name=>"iamnotopic",:type=>"Basic"
-
-    # new_company = Card.new :name=>"iamanewcompany",:type=>"Company"
-    # new_topic = Card.new :name=>"iamanewtopic",:type=>"Topic"
 
     claim_card = create_claim "testclaim",{'+company' => {:content=>"[[#{another_real_company.name}]]\r\n[[#{real_company.name}]]"},'+topic' => {:content=>"[[#{another_real_topic.name}]]\r\n[[#{real_topic.name}]]"}}
 

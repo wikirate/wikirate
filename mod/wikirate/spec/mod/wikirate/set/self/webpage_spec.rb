@@ -12,9 +12,9 @@ describe Card::Set::Self::Webpage do
       result = page_card.format( :format=>:json)._render(:metadata) 
 
       result_hash = JSON.parse(result)
-      result_hash["title"].should == ""
-      result_hash["description"].should == ""
-      result_hash["error"].should == 'invalid url'
+      expect(result_hash["title"]).to eq("")
+      expect(result_hash["description"]).to eq("")
+      expect(result_hash["error"]).to eq('invalid url')
      
     end
     it "should handle empty url" do
@@ -24,9 +24,9 @@ describe Card::Set::Self::Webpage do
       result = page_card.format( :format=>:json)._render(:metadata) 
 
       result_hash = JSON.parse(result)
-      result_hash["title"].should == ""
-      result_hash["description"].should == ""
-      result_hash["error"].should == 'empty url'
+      expect(result_hash["title"]).to eq("")
+      expect(result_hash["description"]).to eq("")
+      expect(result_hash["error"]).to eq('empty url')
     end
 
     it "should handle normal existing url " do
@@ -40,7 +40,7 @@ describe Card::Set::Self::Webpage do
       result_hash = JSON.parse(result)
       Card.fetch("#{ sourcepage.name }+title").content.should == result_hash["title"]
       Card.fetch("#{ sourcepage.name }+description").content.should == result_hash["description"]
-      result_hash["error"].empty?.should == true
+      expect(result_hash["error"].empty?).to be true
     end
 
     it "should handle normal non existing url " do
@@ -53,9 +53,9 @@ describe Card::Set::Self::Webpage do
       result_hash = JSON.parse(result)
       preview = LinkThumbnailer.generate(url)
 
-      result_hash["title"].should == preview.title
-      result_hash["description"].should == preview.description
-      result_hash["error"].empty?.should == true
+      expect(result_hash["title"]).to eq(preview.title)
+      expect(result_hash["description"]).to eq(preview.description)
+      expect(result_hash["error"].empty?).to be true
       
     end
     # it "uses the right context for content view" do

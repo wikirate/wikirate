@@ -140,20 +140,19 @@ describe Card::Set::All::Wikirate do
       expect(html).to eq(render_card :raw,{:name=>"home"})
     end
   end
-  describe "while viewing id_atom in json format" do
+  context "while viewing id_atom in json format" do
     it "includes id" do
       login_as 'WagnBot' 
       search_card = Card.create! :type=>"search",:content=>"{\"type\":\"company\"}",:name=>"id_atom_test"
       Card::Env.params[:item] = 'id_atom'
       result = search_card.format( :format=>:json)._render(:content) 
       card_array = result[:card][:value]
-      # binding.pry
       card_array.each do |card|
-        card.should have_key :id
+        expect(card).to have_key :id
       end
       
     end
-    it "handle param:start " do
+    it "handles param:start " do
       login_as 'WagnBot' 
       start = 20140601000000
       search_card = Card.create! :type=>"search",:content=>"{\"type\":\"company\"}",:name=>"id_atom_test"
@@ -170,7 +169,7 @@ describe Card::Set::All::Wikirate do
       result = search_card.format( :format=>:json).render(:content)
       card_array = result[:card][:value]
       card_array.each do |card|
-        card.should have_key :id
+        expect(card).to have_key :id
         expect(valid_company_cards.has_key? card[:id]).to be true
       end
     end

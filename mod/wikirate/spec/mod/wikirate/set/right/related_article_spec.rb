@@ -9,7 +9,7 @@ describe Card::Set::Right::RelatedArticles do
     @related_article_card = Card.fetch @sample_claim.name+"+related article"
   end
   describe "core views" do
-    it do
+    it "shows cited article and uncited article" do
       # one claim
       # 2 analysis
       # 1 cited in article
@@ -42,7 +42,7 @@ describe Card::Set::Right::RelatedArticles do
       expect(html.squish).to eq(expected_html.squish)
     end
     context "when no related article" do
-      it do 
+      it "shows no related articles" do 
         claim_card = create_claim "whateverclaim",{}
         related_article_card = Card.fetch claim_card.name+"+related article"
         html = related_article_card.format(:format=>:html)._render_core

@@ -21,9 +21,9 @@ describe Card::Set::Type::Webpage do
         url = ''
         Card::Env.params[:sourcebox] = 'true'
         sourcepage = Card.new :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
-        sourcepage.should_not be_valid
-        sourcepage.errors.should have_key :link
-        sourcepage.errors[:source]=="is empty"
+        expect(sourcepage).not_to be_valid
+        expect(sourcepage.errors).to have_key :link
+        expect(sourcepage.errors[:link]).to include("is empty")
     end
     describe "while creating duplicated source on claim page" do
       it "should return exisiting url" do
@@ -31,7 +31,7 @@ describe Card::Set::Type::Webpage do
         Card::Env.params[:sourcebox] = 'true'
         firstsourcepage = Card.create :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
         secondsourcepage = Card.create :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
-        firstsourcepage.name.should == secondsourcepage.name
+        expect(firstsourcepage.name).to eq(secondsourcepage.name)
       end
     end
     describe "while creating duplicated source on source page" do
@@ -40,9 +40,9 @@ describe Card::Set::Type::Webpage do
         
         firstsourcepage = Card.create :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
         secondsourcepage = Card.new :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
-
-        secondsourcepage.should_not be_valid
-        secondsourcepage.errors.should have_key :link
+        
+        expect(secondsourcepage).not_to be_valid
+        expect(secondsourcepage.errors).to have_key :link
         expect(secondsourcepage.errors[:link]).to include("exists already. <a href='/#{firstsourcepage.name}'>Visit the source.</a>")
 
        
@@ -55,10 +55,6 @@ describe Card::Set::Type::Webpage do
       url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
       @source_page = create_page url,{}
     end
-    # it "renders edit view following its structure rule" do 
-    
-    # end
-
     it "renders titled view with voting" do
       expect(@source_page.format.render_titled).to eq(@source_page.format.render_titled_with_voting)
     end
