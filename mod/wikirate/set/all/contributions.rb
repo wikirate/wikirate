@@ -1,5 +1,5 @@
 def update_direct_contribution_count
-  return unless direct_contribution_count_card
+  return unless respond_to? :direct_contribution_count
  
   new_contr_count = intrusive_family_acts.count
   Card::Auth.as_bot do
@@ -13,9 +13,14 @@ def update_direct_contribution_count
 end
 
 def update_contribution_count
-  update_direct_contribution_count
-  return unless respond_to?(:contribution_count_card)
-  new_contr_count = direct_contribution_count.to_i
+  return unless respond_to?(:contribution_count)
+  new_contr_count = if respond_to? :direct_contribution_count
+      update_direct_contribution_count
+      direct_contribution_count.to_i
+    else
+      0
+    end
+    
   if respond_to? :indirect_contributer_search_args
     indirect_contributer = indirect_contributer_search_args.inject([]) do |cards, search_args|
       cards += Card.search(search_args)
@@ -72,6 +77,7 @@ event :new_contributions, :before=>:extend, :when=>proc{ |c| !c.supercard and c.
   @current_act.actions.each do
     contr, visited = contributees( contr, visited )
   end
+  
   contr.uniq.each do |con_card|
     con_card.update_contribution_count if con_card.respond_to? :update_contribution_count
   end
