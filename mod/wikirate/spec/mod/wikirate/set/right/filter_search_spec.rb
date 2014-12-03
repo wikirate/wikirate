@@ -7,7 +7,7 @@ describe Card::Set::Right::FilterSearch do
   end
   describe "views" do
     context "when rendering filter_form" do
-      it "includeds required fieldsets" do
+      it "includes required fieldsets" do
         filter_search_card = Card.fetch "Claim+filter_search"
         format = filter_search_card.format
         html = format.render_filter_form

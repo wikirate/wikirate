@@ -13,8 +13,8 @@ describe Card::Set::Type::Webpage do
       sourcepage = Card.create! :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
       preview = LinkThumbnailer.generate(url)
 
-      Card.fetch("#{ sourcepage.name }+title").content.should == preview.title
-      Card.fetch("#{ sourcepage.name }+description").content.should == preview.description
+      expect(Card.fetch("#{ sourcepage.name }+title").content).to eq(preview.title)
+      expect(Card.fetch("#{ sourcepage.name }+description").content).to eq(preview.description)
      
     end
     it "should handle empty url" do
