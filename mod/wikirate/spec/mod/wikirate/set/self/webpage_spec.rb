@@ -4,7 +4,7 @@ require 'link_thumbnailer'
 describe Card::Set::Self::Webpage do
   describe "get meta data of url" do
     
-    it "should handle invalid url" do
+    it "handles invalid url" do
       
       url = 'abcdefg'
       page_card = Card["Page"]
@@ -17,7 +17,7 @@ describe Card::Set::Self::Webpage do
       expect(result_hash["error"]).to eq('invalid url')
      
     end
-    it "should handle empty url" do
+    it "handles empty url" do
       url = ''
       page_card = Card["Page"]
       Card::Env.params[:url] = url
@@ -29,7 +29,7 @@ describe Card::Set::Self::Webpage do
       expect(result_hash["error"]).to eq('empty url')
     end
 
-    it "should handle normal existing url " do
+    it "handles normal existing url " do
       url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
       sourcepage = create_page_with_sourcebox url,{},'true'
 
@@ -43,7 +43,7 @@ describe Card::Set::Self::Webpage do
       expect(result_hash["error"].empty?).to be true
     end
 
-    it "should handle normal non existing url " do
+    it "handles normal non existing url " do
       url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
       
       page_card = Card["Page"]
@@ -58,11 +58,7 @@ describe Card::Set::Self::Webpage do
       expect(result_hash["error"].empty?).to be true
       
     end
-    # it "uses the right context for content view" do
-    #   sourcepage = create_page_with_sourcebox nil,'true'
-    #   html = render_card :content,{:name=>sourcepage.name+"+a"}
-    #   expect(html).to eq("+a")
-    # end
+
     it "shows the link for view \"missing\"" do
       sourcepage = create_page_with_sourcebox nil,{},'true'
       html = render_card :missing,{:name=>sourcepage.name}

@@ -14,7 +14,7 @@ describe Card::Set::Right::WikirateTag do
     card = Card.create! :type=>"Claim", :name=>"Testing Claim",:subcards=>{ "+tag"=>{:content=>"[[zzz]]\n[[xxx]]", :type=>"pointer"},'+source' => {:content=> "[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}
     expect(Card.exists?("zzz")).to be true
     expect(Card.exists?("xxx")).to be true
-   #Card["zzz"]&&Card["xxx"]
+   
   end
 
 end

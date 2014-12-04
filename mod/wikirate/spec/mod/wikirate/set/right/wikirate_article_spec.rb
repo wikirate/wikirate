@@ -8,9 +8,7 @@ describe Card::Set::Right::WikirateArticle do
       html = article.format.render_content.gsub(/company1\+topic1\+article[\-\d]+/,"company1+topic1+article")
       expect(html).to eq(article.format.render_edit.gsub(/company1\+topic1\+article[\-\d]+/,"company1+topic1+article"))
     end
-    it "renders content view if params[:edit_article] is false/nil" do 
 
-    end
     it "return edit view when rendering missing view if params[:edit_article] is true" do 
       Card::Env.params[:edit_article] = true
       company = Card.create :name=>"company1",:type=>"company"
@@ -25,14 +23,6 @@ describe Card::Set::Right::WikirateArticle do
       _html = article.format.render_edit.gsub(/company1\+topic1\+article[\-\d]+/,"company1+topic1+article")
       expect(html).to eq(_html)
     end
-    it "renders missing view if params[:edit_article] is false/nil" do 
 
-    end
-    it "renders editor view if citable" do 
-
-    end
-    it "renders editor view normal" do 
-
-    end
   end
 end
