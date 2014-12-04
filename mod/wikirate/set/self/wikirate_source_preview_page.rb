@@ -167,7 +167,7 @@ format :json do
     begin 
       # escape space in url, eg, http://www.businessweek.com/articles/2014-10-30/tim-cook-im-proud-to-be-gay#r=most popular
       url.gsub!(/ /, '%20')
-      uri = open(url)
+      uri = open(url, :allow_redirections => :safe)
       xFrameOptions = uri.meta["x-frame-options"]
       is_firefox = request ? request.env['HTTP_USER_AGENT'] =~ /Firefox/ : false
       return false if xFrameOptions and ( xFrameOptions.upcase.include? "DENY" or xFrameOptions.upcase.include? "SAMEORIGIN" )
