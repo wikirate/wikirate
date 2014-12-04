@@ -16,10 +16,45 @@ def create_page_with_sourcebox iUrl=nil, subcards={},sourcebox=nil
   end
 end
 
+def create_claim_with_url name,url, subcards={}
+  Card::Auth.as_bot do
+    sourcepage = create_page url
+    Card.create! :type=>"Claim", :name=>name, 
+                 :subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}.merge(subcards)    
+  end
+
+end
+
 def create_claim name, subcards={}
   Card::Auth.as_bot do
     sourcepage = create_page 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
     Card.create! :type=>"Claim", :name=>name, 
                  :subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}.merge(subcards)    
   end
+
 end
+#cards only exist in testing db
+def get_a_sample_claim 
+  Card["Death Star uses dark side of the Force"]
+end
+
+def get_a_sample_company
+  Card["Death Star"]
+end
+
+def get_a_sample_topic
+  Card["Force"]
+end
+
+def get_a_sample_analysis 
+  Card["Death Star+Force"]
+end
+
+def html_trim str
+  s = str.dup
+  s.delete!("\r\n")
+  s.delete!("\n")
+  s.delete!("  ")
+  s
+end
+
