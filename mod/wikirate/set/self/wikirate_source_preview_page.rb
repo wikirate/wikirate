@@ -161,15 +161,15 @@ format :html do
 end
 
 format :json do
-  def is_iframable? url, request
+  def is_iframable? url, user_agent
     allow_content_type = ["text/html","text/plain","image/png","image/jpeg"]
     return false if !url or url.length == 0
     begin 
       # escape space in url, eg, http://www.businessweek.com/articles/2014-10-30/tim-cook-im-proud-to-be-gay#r=most popular
       url.gsub!(/ /, '%20')
-      uri = open(url)
+      uri = open(url, :allow_redirections => :safe)
       xFrameOptions = uri.meta["x-frame-options"]
-      is_firefox = request ? request.env['HTTP_USER_AGENT'] =~ /Firefox/ : false
+      is_firefox = user_agent ? user_agent =~ /Firefox/ : false
       return false if xFrameOptions and ( xFrameOptions.upcase.include? "DENY" or xFrameOptions.upcase.include? "SAMEORIGIN" )
       return false if !allow_content_type.include?(uri.content_type) and  !is_firefox
     rescue => error
@@ -193,7 +193,7 @@ format :json do
   view :check_iframable do |args|
     url = Card::Env.params[:url]
     if url
-      result = {:result => is_iframable?( url, request ) }
+      result = {:result => is_iframable?( url, request ? request.env['HTTP_USER_AGENT'] : nil ) }
     else
       result = {:result => false }
     end

@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'wagn', :path=>'./vendor/wagn'
 gem "mysql2", "~> 0.3"
 gem 'link_thumbnailer', ">= 2.2.3"
-
+gem 'open_uri_redirections'
 
 #if RUBY_PLATFORM !~ /darwin/
 group :live do
@@ -14,6 +14,7 @@ end
 group :test do
   gem 'rspec-rails', "~> 3.1.0"   # behavior-driven-development suite
   gem 'rspec'
+  gem 'rspec-html-matchers'
 #  gem 'wagn-rspec-formatter', :path=>'/opt/wagn-rspec-formatter'
   gem 'spork', '>=0.9'
   gem 'timecop'
