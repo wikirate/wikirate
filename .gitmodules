@@ -3,4 +3,4 @@
 	url = git://github.com/wagn/wagn.git
 [submodule "vendor/mods"]
 	path = vendor/mods
-	url = https://github.com/xithan/mods.git
+	url = https://github.com/wagn/mods.git
