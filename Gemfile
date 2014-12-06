@@ -1,6 +1,8 @@
 source 'http://rubygems.org'
 
 gem 'wagn', :path=>'./vendor/wagn'
+
+
 gem "mysql2", "~> 0.3"
 gem 'link_thumbnailer', ">= 2.2.3"
 gem 'open_uri_redirections'
