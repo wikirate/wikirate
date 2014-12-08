@@ -228,8 +228,6 @@ GEM
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
     rubyzip (1.1.6)
-    rufus-scheduler (3.0.9)
-      tzinfo
     sass (3.4.9)
     selenium-webdriver (2.44.0)
       childprocess (~> 0.5)
@@ -298,7 +296,6 @@ DEPENDENCIES
   link_thumbnailer (>= 2.2.3)
   minitest (~> 4.0)
   mysql2 (~> 0.3)
-  nokogiri
   open_uri_redirections
   pry-rails
   pry-rescue
@@ -307,7 +304,6 @@ DEPENDENCIES
   rspec
   rspec-html-matchers
   rspec-rails (~> 3.1.0)
-  rufus-scheduler
   selenium-webdriver
   simplecov
   spork (>= 0.9)

@@ -58,6 +58,6 @@ group :test, :development do
   # end
 end
 
-Dir.glob("vendor/mods/**{,/*/**}/Gemfile").each do |gemfile|
+Dir.glob("mod/**{,/*/**}/Gemfile").each do |gemfile|
   instance_eval(File.read(gemfile)) 
 end
