@@ -42,7 +42,8 @@ end
 group :development do
   gem 'rails-dev-tweaks'
   gem 'sprockets' # just so above works
-  gem 'capistrano', '3.2.1'
+  
+  gem 'capistrano', '3.2.1'  #note - ssh was breaking on 3.3.3
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
 
