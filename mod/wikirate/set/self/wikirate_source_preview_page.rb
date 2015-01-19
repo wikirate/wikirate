@@ -225,11 +225,20 @@ format :json do
       return result
     end
     user_id = Auth.current_id
-    company_id = Card[company].id if Card[company] and Card[company].type_id == Card::WikirateCompanyID
-    topic_id = Card[topic].id if Card[topic] and Card[topic].type_id == Card::WikirateTopicID
+    company_id, company_name = Card[company].id, Card[company].name if Card[company] and Card[company].type_id == Card::WikirateCompanyID
+    topic_id, topic_name = Card[topic].id, Card[topic].name if Card[topic] and Card[topic].type_id == Card::WikirateTopicID
     
     if company_id and topic_id and url and type
-      request_url = "http://mklab.iti.gr/wikirate-sandbox/api/index.php/relevance/?url=#{url}&user_id=#{user_id}&rel_topic_score=#{rel_topic_score}&rel_company_score=#{rel_company_score}&company_id=#{company_id}&topic_id=#{topic_id}"
+      query = { url: url, 
+                user_id: user_id,
+                rel_topic_score: rel_topic_score,
+                rel_company_score: rel_company_score, 
+                company_id: company_id, 
+                company: company_name, 
+                topic_id: topic_id, 
+                topic: topic_name}
+                .to_query
+      request_url = "http://mklab.iti.gr/wikirate-sandbox/api/index.php/relevance/?#{query}"
       uri = URI.parse(request_url)
       http = Net::HTTP.new(uri.host, uri.port)
       request = Net::HTTP::Get.new(uri.request_uri)

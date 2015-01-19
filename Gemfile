@@ -2,7 +2,6 @@ source 'http://rubygems.org'
 
 gem 'wagn', :path=>'./vendor/wagn'
 
-
 gem "mysql2", "~> 0.3"
 gem 'link_thumbnailer', ">= 2.2.3"
 gem 'open_uri_redirections'
@@ -42,7 +41,8 @@ end
 group :development do
   gem 'rails-dev-tweaks'
   gem 'sprockets' # just so above works
-  gem 'capistrano', '3.2.1'
+  
+  gem 'capistrano', '3.2.1'  #note - ssh was breaking on 3.3.3
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
 
