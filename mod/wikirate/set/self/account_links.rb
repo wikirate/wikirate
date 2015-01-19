@@ -18,9 +18,8 @@ format :html do
       end
       links << link_to( 'Log in', wagn_path(':signin'), :id=>'signin-link', :class=>'button-primary button-secondary' )
     end
-    
+
     %{<span id="logging" class="#{klasses}">#{ links.join ' ' }</span>}
   end
 
 end
-  
