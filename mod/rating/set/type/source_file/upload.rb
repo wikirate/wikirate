@@ -11,6 +11,6 @@ end
 format :html do
   include Card::Set::Type::File::HtmlFormat
   view :new do |args|
-    super args.merge :success=>{:view=>:import_data}
+    super args.merge :hidden=>{:success=>{:view=>:import}}
   end
 end
