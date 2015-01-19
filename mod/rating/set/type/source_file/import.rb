@@ -1,25 +1,22 @@
 card_accessor :metric
 card_accessor :year
 
-
-
 event :validate_import, :before=>:approve, :on=>:update do
   if !(@metric = Env.params[:metric])
     errors.add :content, "Please give a metric."
   elsif !(metric = Card.fetch(Env.params[:metric])) or (metric.type_id != Card::WikirateMetricID)
     errors.add  :content, "Invalid metric"
   else
-    @subcards['+metric'] = {:name=>Env.params[:metric]}
-    @subcards['+year']   = {:name=>(Env.params[:year] || DateTime.now.year) ,:type=>'number'}
+    @subcards['+metric'] = {:content=>Env.params[:metric], :type=>'phrase'}
+    @subcards['+year']   = {:content=>(Env.params[:year] || DateTime.now.year) ,:type=>'number'}
   end
 end
 
 
 event :import_csv, :after=>:store, :on=>:update do
-  year = Env.params
-  if Env.params[](metric_values = Env.params[:metric_values]) && metric_values.kind_of? Hash
+  if (metric_values = Env.params[:metric_values]) && metric_values.kind_of?(Hash)
     metric_values.each do |company, value|
-      Card.create! :name=>"#{@metric}+#{company}+"
+      Card.create! :name=>"#{metric}+#{company}+#{year}", :content=>value
     end
   end
 end
@@ -82,7 +79,8 @@ format :html do
   end
   
   view :metric_select do |args|
-    
+    metrics_search = Card.new(:name=>'metrics', :content=>'{"type":"metric"}')
+    subformat(metrics_search).render_editor
   end
   
   view :import_table do |args|
