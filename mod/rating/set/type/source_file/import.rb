@@ -34,18 +34,18 @@ end
 
 format :html do
   view :import_data do |args|
-    header = ['Select', 'Company in File', 'Company in Wikirate', 'Match']
+    header = ['Select', 'Company in File', 'Company in Wikirate', 'Match'
     thead = content_tag :thead do
       content_tag :tr do
         header.map {|title|  content_tag(:th, title)}.join().html_safe
       end
     end
 
-    # tbody = content_tag :tbody do
-    #  each_row(path) do |row|
-    #    content_tag :tr=>{ render_row(row) }
-    #  end.join().html_safe
-    # end
+    tbody = content_tag :tbody do
+     each_row(path) do |row|
+       content_tag :tr { render_row(row) }
+     end.join().html_safe
+    end
 
     content_tag :table, thead.concat(tbody)
   end
