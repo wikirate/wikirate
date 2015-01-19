@@ -211,8 +211,8 @@ describe Card::Set::All::Wikirate do
       cards_name = create_dump_card 10
       search_card = Card.create! :name=>@search_card_name,:type=>"search",:content=>"{\"name\":[\"in\", #{cards_name}]}"
       result_cards = search_card.item_cards(:limit=>0)      
-      expected_content = result_cards[0].format.render(:link)+" , "+result_cards[1].format.render(:link)+" , "+result_cards[2].format.render(:link)+" and <a class=\"known-card\" href=\"#{search_card.format.render(:url)}\"> 7 others</a>"
-      expect(render_card :shorter_search_result,:name=>@search_card_name).to eq(expected_content)    
+      expected_content = result_cards[0].format.render(:link)+" , "+result_cards[1].format.render(:link)+" , "+result_cards[2].format.render(:link)
+      expect(render_card :shorter_search_result,:name=>@search_card_name).to eq(%{#{expected_content} and <a class=\"known-card\" href=\"#{search_card.format.render(:url)}\"> 7 others</a>})    
      
     end
   end

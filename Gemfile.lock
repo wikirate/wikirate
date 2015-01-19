@@ -1,7 +1,7 @@
 PATH
   remote: ./vendor/wagn
   specs:
-    wagn (1.14.4)
+    wagn (1.14.5)
       airbrake (~> 4.1)
       coderay (~> 1.0)
       coffee-script (~> 2.2)
@@ -228,7 +228,7 @@ GEM
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
     rubyzip (1.1.6)
-    sass (3.4.9)
+    sass (3.4.10)
     selenium-webdriver (2.44.0)
       childprocess (~> 0.5)
       multi_json (~> 1.0)
@@ -266,7 +266,7 @@ GEM
     turn (0.8.3)
       ansi
     tzinfo (0.3.42)
-    uglifier (2.6.1)
+    uglifier (2.7.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     uuid (2.3.7)

@@ -1,37 +1,38 @@
-def get_spec params={}
+def get_query params={}
   filter_words =  Array.wrap(Env.params[:company]) || []
   filter_words += Array.wrap(Env.params[:topic]  ) if Env.params[:topic]
   filter_words += Array.wrap(Env.params[:tag]    ) if Env.params[:tag]
   search_args = { :limit=> 15 }
-  search_args.merge!(sort_spec)
-  search_args.merge!(cited_spec)
-  search_args.merge!(claimed_spec)
+  search_args.merge!(sort_query)
+  search_args.merge!(cited_query)
+  search_args.merge!(claimed_query)
   search_args.merge!(:type=>left.name)
-  params[:spec] = Card.tag_filter_spec(filter_words, search_args,['tag','company','topic'])
+  params[:query] = Card.tag_filter_query(filter_words, search_args,['tag','company','topic'])
+  # binding.pry
   super(params)
 end
 
 
-def cited_spec
-  yes_spec = {:referred_to_by=>{:left=>{:type_id=>WikirateAnalysisID},:right_id=>WikirateArticleID}}
+def cited_query
+  yes_query = {:referred_to_by=>{:left=>{:type_id=>WikirateAnalysisID},:right_id=>WikirateArticleID}}
   case Env.params[:cited]
-  when 'yes' then yes_spec
-  when 'no'  then {:not=>yes_spec}
+  when 'yes' then yes_query
+  when 'no'  then {:not=>yes_query}
   else            {}
   end
 end
 
-def claimed_spec
-  yes_spec = {:linked_to_by=>{:left=>{:type_id=>ClaimID}, :right_id=>SourceID }}
+def claimed_query
+  yes_query = {:linked_to_by=>{:left=>{:type_id=>ClaimID}, :right_id=>SourceID }}
   case Env.params[:claimed]
-  when 'yes' then yes_spec
-  when 'no'  then {:not=>yes_spec}
+  when 'yes' then yes_query
+  when 'no'  then {:not=>yes_query}
   else            {}
   end
 end
 
 
-def sort_spec
+def sort_query
   if Env.params[:sort] == 'important'
     {:sort => {"right"=>"*vote count"}, "sort_as"=>"integer","dir"=>"desc"}
   else

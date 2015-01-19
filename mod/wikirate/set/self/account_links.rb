@@ -6,7 +6,7 @@ format :html do
     klasses = ''
     if Auth.signed_in?
       klasses = 'logged-in'
-      links << link_to_page( Auth.current.name, nil, :id=>'my-card-link' )
+      links << card_link( Auth.current.name, :id=>'my-card-link' )
       if Card.new(:type_id=>Card.default_accounted_type_id).ok? :create
         links << link_to( 'Invite', wagn_path('new/:signup'), :id=>'invite-a-friend-link' )
       end
