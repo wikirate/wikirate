@@ -1,7 +1,7 @@
 PATH
   remote: ./vendor/wagn
   specs:
-    wagn (1.14.5)
+    wagn (1.14.6)
       airbrake (~> 4.1)
       coderay (~> 1.0)
       coffee-script (~> 2.2)
