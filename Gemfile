@@ -52,9 +52,9 @@ group :test, :development do
   gem 'pry-rails'
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
-  # if RUBY_VERSION =~ /^2/
-  #   gem 'pry-byebug'
-  # end
+  if RUBY_VERSION =~ /^2/
+    gem 'pry-byebug'
+  end
 end
 
 Dir.glob("mod/**{,/*/**}/Gemfile").each do |gemfile|
