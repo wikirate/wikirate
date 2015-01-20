@@ -2,14 +2,16 @@ card_accessor :metric
 card_accessor :year
 
 event :validate_import, :before=>:approve, :on=>:update do
-  if !(@metric = Env.params[:metric])
-    errors.add :content, "Please give a metric."
-  elsif !(metric = Card.fetch(Env.params[:metric])) or (metric.type_id != Card::WikirateMetricID)
-    errors.add  :content, "Invalid metric"
-  else
-    @subcards['+metric'] = {:content=>Env.params[:metric], :type=>'phrase'}
-    @subcards['+year']   = {:content=>(Env.params[:year] || DateTime.now.year) ,:type=>'number'}
-  end
+  # if !(@metric = Env.params[:metric])
+  #   errors.add :content, "Please give a metric."
+  # elsif !(metric = Card.fetch(Env.params[:metric])) or (metric.type_id != Card::WikirateMetricID)
+  #   errors.add  :content, "Invalid metric"
+  # else
+    #@subcards['+metric'] = {:content=>Env.params[:metric], :type=>'phrase'}
+#    @subcards['+year']   = {:content=>(Env.params[:year] || DateTime.now.year) ,:type=>'number'}
+#  end
+# binding.pry
+# puts "hello"
 end
 
 
@@ -19,6 +21,7 @@ event :import_csv, :after=>:store, :on=>:update do
       Card.create! :name=>"#{metric}+#{company}+#{year}", :content=>value
     end
   end
+  abort :success=>"REDIRECT: #{metric_card.cardname.url_key}"
 end
 
 def csv_rows
@@ -72,15 +75,23 @@ format :html do
     frame_and_form :update, args do
       [
         _optional_render( :metric_select, args),
+        _optional_render( :year_select, args),
         _optional_render( :import_table, args ),
         _optional_render( :button_fieldset,   args )
       ]
     end
   end
   
+  view :year_select do |args|
+    year_select = Card.fetch 'year select'
+    year_select.name = 'year'
+    nest year_select, :view=>:edit_in_form
+  end
+  
   view :metric_select do |args|
-    metrics_search = Card.new(:name=>'metrics', :content=>'{"type":"metric"}')
-    subformat(metrics_search).render_editor
+    metrics_search = Card.fetch 'metric select'
+    metrics_search.name = 'metric'
+    nest metrics_search, :view=>:edit_in_form
   end
   
   view :import_table do |args|
