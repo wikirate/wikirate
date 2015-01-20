@@ -1,6 +1,7 @@
 card_accessor :metric
 card_accessor :year
 
+
 event :validate_import, :before=>:approve, :on=>:update do
   # if !(@metric = Env.params[:metric])
   #   errors.add :content, "Please give a metric."
@@ -10,15 +11,21 @@ event :validate_import, :before=>:approve, :on=>:update do
     #@subcards['+metric'] = {:content=>Env.params[:metric], :type=>'phrase'}
 #    @subcards['+year']   = {:content=>(Env.params[:year] || DateTime.now.year) ,:type=>'number'}
 #  end
-# binding.pry
+#  binding.pry
 # puts "hello"
 end
 
 
 event :import_csv, :after=>:store, :on=>:update do
+  # binding.pry
   if (metric_values = Env.params[:metric_values]) && metric_values.kind_of?(Hash)
     metric_values.each do |company, value|
-      Card.create! :name=>"#{metric}+#{company}+#{year}", :content=>value
+      metric_value_card_name = "#{metric_card.item_names.first}+#{company}+#{year_card.item_names.first}"
+      if metric_value_card = Card[metric_value_card_name]
+        metric_value_card.update_attributes! :content => value[0] 
+      else
+        Card.create! :name=>metric_value_card_name, :content=>value[0]
+      end
     end
   end
   abort :success=>"REDIRECT: #{metric_card.cardname.url_key}"
@@ -41,7 +48,7 @@ format :html do
     wikirate_company, status = matched_company(file_company) 
     checked =  [:partial, :exact].include? status
     checkbox = content_tag(:td) do
-      check_box_tag "metric[#{wikirate_company}][]", value, checked, :disabled => (status==:none)
+      check_box_tag "metric_values[#{wikirate_company}][]", value, checked, :disabled => (status==:none)
     end 
     [file_company, wikirate_company, status.to_s].inject(checkbox) do |row, item|
       row.concat content_tag(:td, item)
@@ -74,7 +81,7 @@ format :html do
   view :import do |args|
     frame_and_form :update, args do
       [
-        _optional_render( :metric_select, args),
+        _optional_render( :metric_select, args ),
         _optional_render( :year_select, args),
         _optional_render( :import_table, args ),
         _optional_render( :button_fieldset,   args )
@@ -83,15 +90,11 @@ format :html do
   end
   
   view :year_select do |args|
-    year_select = Card.fetch 'year select'
-    year_select.name = 'year'
-    nest year_select, :view=>:edit_in_form
+    nest year_card, :view=>:edit_in_form
   end
   
   view :metric_select do |args|
-    metrics_search = Card.fetch 'metric select'
-    metrics_search.name = 'metric'
-    nest metrics_search, :view=>:edit_in_form
+    nest metric_card, :view=>:edit_in_form
   end
   
   view :import_table do |args|
