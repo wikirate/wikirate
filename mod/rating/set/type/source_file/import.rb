@@ -90,11 +90,11 @@ format :html do
   end
   
   view :year_select do |args|
-    nest year_card, :view=>:edit_in_form
+    nest card.year_card, :view=>:edit_in_form
   end
   
   view :metric_select do |args|
-    nest metric_card, :view=>:edit_in_form
+    nest card.metric_card, :view=>:edit_in_form
   end
   
   view :import_table do |args|
