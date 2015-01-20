@@ -7,19 +7,17 @@ class AddSourcefileType < Wagn::Migration
     else
       Card.create! :name=>'Source file', :type_id=>Card::CardtypeID, :codename=>'source_file'
     end
+   
+    Card.create! :name=>'Metric', :type_id=>Card::CardtypeID, :codename=>'metric'
+    Card.create! :name=>'Source file+metric+*type plus right+*default', :type=>'pointer'
+    Card.create! :name=>'Source file+metric+*type plus right+*options', :type=>'search', :content=>'{"type":"metric"}'
+    Card.create! :name=>'Source file+metric+*type plus right+*input',  :content=>'[[select]]'
+    
     year = Card.fetch "year"
     year.update_attributes! :codename=>'year'
-    Card.create! :name=>'Metric', :type_id=>Card::CardtypeID, :codename=>'metric'
-    Card.create! :name=>'metric select', :type=>'pointer',
-      :subcards=>{
-        '+*self+*options'=>{:type=>'search', :content=>'{"type":"metric"}'},
-        '+*self+*input'=>{:content=>'[[select]]'}
-      }
-      
-    Card.create! :name=>'year select', :type=>'pointer',
-      :subcards=>{
-        '+*self+*options'=>{:type=>'search', :content=>'{"type":"year"}'},
-        '+*self+*input'=>{:content=>'[[list]]'}
-      }
+    Card.create! :name=>'Source file+year*type plus right+*default', :type=>'pointer'
+    Card.create! :name=>'Source file+year*type plus right+*options', :type=>'search', :content=>'{"type":"year"}'
+    Card.create! :name=>'Source file+year*type plus right+*input', :content=>'[[list]]'
   end
 end
+
