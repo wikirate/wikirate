@@ -52,12 +52,12 @@ view :core do |args|
           <td>
             #{ 
               if topic_image
-                link_to_page( raw( nest topic_image, :view=>:content, :size=>:small ), topic)
+                card_link topic, :text=>raw( nest topic_image, :view=>:content, :size=>:small )
               end
             }
             #{
               if topic.present?
-                link_to_page( topic_name )
+                card_link( topic_name )
               end
             }
           </td>
