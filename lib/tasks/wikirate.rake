@@ -51,7 +51,7 @@ namespace :wikirate do
     elsif ENV['name'].match /^(?:import)_(.*)(?:\.json)?/ 
       require "#{Wagn.root}/config/environment"
       export = open("http://dev.wikirate.org/export.json")
-      File.open(File.join(Wagn::Migration.deck_card_migration_paths.first, 'data', "#{$1}.json"),'w') do |f|
+      File.open(File.join(Wagn::Migration.paths(:deck_cards).first, 'data', "#{$1}.json"),'w') do |f|
         f.print export.read
       end
       system "bundle exec wagn generate card_migration #{ENV['name']}"
@@ -68,7 +68,7 @@ namespace :wikirate do
     elsif ENV['name'].match /^(?:import)_(.*)(?:\.json)?/ 
       require "#{Wagn.root}/config/environment"
       export_hash = Card['export'].format(:format=>:json).render_content
-      File.open(File.join(Wagn::Migration.deck_card_migration_paths.first, 'data', "#{$1}.json"),'w') do |f|
+      File.open(File.join(Wagn::Migration.paths(:deck_cards).first, 'data', "#{$1}.json"),'w') do |f|
         f.print JSON(export_hash)
       end
       system "bundle exec wagn generate card_migration #{ENV['name']}"

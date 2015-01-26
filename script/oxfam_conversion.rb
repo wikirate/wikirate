@@ -50,7 +50,8 @@ SHEETS_TO_IMPORT.each do |sheetnum|
     start = smap[:intro_columns] + ( smap[:columns_per_company] * cidx )
     cmap[company] = {
       :start => start,
-      :value => smap[:value_columns].map { |c| start+c }
+      :value => smap[:value_columns].map { |c| start+c },
+      :source => smap[:source_columns] + start
     }
   end
   
@@ -67,7 +68,8 @@ SHEETS_TO_IMPORT.each do |sheetnum|
       value_col = cmap[company][:value].find { |col| row[col] }
       if value_col
         value = row[value_col]
-        puts "  #{company} => #{value}"
+        source = row[cmap[company][:source]]
+        puts "  #{company} => #{value}#{ " - source: #{source}" if source }"
       else
         puts "  #{company} => (VALUE NOT FOUND)"
       end
