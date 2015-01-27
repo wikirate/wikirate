@@ -2,7 +2,7 @@ require 'roo'
 require 'csv'
 
 
-SHEETS = ["Overview", "Land", "Women", "Transparency", "Farmers", "Water", "Workers", "Climate Change", "Release Notes"]
+SHEETS = ["Land", "Women", "Transparency", "Farmers", "Water", "Workers", "Climate Change"]
 
 event :import_sheet, :after=>:store, :on=>:update do
   if Env.params[:sheet] and SHEETS.include? Env.params[:sheet]
@@ -17,7 +17,10 @@ event :import_sheet, :after=>:store, :on=>:update do
 end
 
 def import_oxfam_data sheet
+  #cnt = 0
   sheet.metrics.each do |code, metric|
+    #cnt += 1
+    #break if cnt > 5
     metric.save! 
     metric.save_values! 
   end
@@ -179,9 +182,9 @@ class OxfamMetric
     
     list = @submetrics.map do |submetric| 
       format =  if submetric.submetrics.present?
-          "{{%s+methodology|closed;title:%s * %s;hide:closed_content,menu;show:title_link}}" 
+          "{{%s+methodology|closed;title:0-%s %s;hide:closed_content,menu;show:title_link}}" 
         else
-          "{{%s+methodology|closed;title:%s * %s;hide:toggle,menu;show:title_link}}"
+          "{{%s|closed;title:0-%s %s;hide:toggle,menu;show:title_link}}"
         end
       text = format % [submetric.cardname, submetric.weight.round(2).to_s.chomp('.0'), submetric.question]
       "<li>#{text}</li>"
@@ -213,7 +216,7 @@ class OxfamMetric
   def save_values!
     @values.each do |value|      
       value_cardname = "#{cardname}+#{value.company}+#{year}"    
-      #puts "save #{value_cardname} #{cnt}"
+      #puts "save #{value_cardname}"
       source_pages = Array.wrap(value.links).map do |uri|
         page = if (dups=Webpage.find_duplicates(uri).first) 
             dups.left 
@@ -247,11 +250,20 @@ class Value
     :score     => 3,
     :reference => 4,
   }
-
+  
+  COMPANY_CARDNAME = {
+    'Associated British Foods' => 'Associated British Foods plc',
+    'Coca Cola' =>                'Coca Cola Company',
+    'Danone' =>                   'Groupe Danone',
+    'Kellogg' =>                  "Kellogg's",
+    'Mars' =>                     'Mars Inc.',
+    'Mondolez' =>                 'Mondelēz International',
+    'PepsiCo' =>                  'PepsiCo Inc.',
+  }
   VALUE_COLUMNS  = [:score, :answer]    
   
   def initialize row, company, company_offset
-    @company = company
+    @company = COMPANY_CARDNAME[company] || company
     @data = {}
     MAP.each do |col_name, col_offset|
       index = company_offset + col_offset
@@ -264,7 +276,7 @@ class Value
       end
     end
     @links = @data[:links]
-    @measurement = VALUE_COLUMNS.find { |col_name| @data[col_name] }
+    @measurement = VALUE_COLUMNS.inject(nil) { |res,col_name| res || @data[col_name] }
   end
 
 end
