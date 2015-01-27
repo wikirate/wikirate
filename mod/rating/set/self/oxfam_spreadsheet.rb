@@ -208,7 +208,7 @@ class OxfamMetric
      '+code'        => code,
      '+question'    => question,
      '+methodology' => desc,
-     '+formula'     => formula.join("\n"),
+     '+formula'     => {:content=>formula.join("\n"), :type=>'pointer'},
      '+submetrics'  => {:content=>@submetrics.map { |sm| "[[#{sm.cardname}]]" }.join("\n"), :type=>'pointer'}
     }
   end
