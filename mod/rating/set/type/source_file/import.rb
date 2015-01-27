@@ -129,6 +129,6 @@ format :html do
       }
 
     end.html_safe
-    content_tag(:table, thead.concat(tbody)).html_safe
+    content_tag(:table, thead.concat(tbody),:class=>"import_table").html_safe
   end
 end
