@@ -17,12 +17,9 @@ event :import_sheet, :after=>:store, :on=>:update do
 end
 
 def import_oxfam_data sheet
-  cnt = 0
   sheet.metrics.each do |code, metric|
-    cnt += 1
-    break if cnt > 30
     metric.save! 
-    metric.save_values! :limit=>2
+    metric.save_values! #:limit=>2
   end
 end
 
@@ -214,12 +211,7 @@ class OxfamMetric
   end
 
   def save_values! opts
-    cnt = 0
-    @values.each do |value|
-      if opts[:limit] && cnt > opts[:limit]
-        return 
-      end
-      
+    @values.each do |value|      
       value_cardname = "#{cardname}+#{value.company}+#{year}"    
       puts "save #{value_cardname} #{cnt}"
       source_pages = Array.wrap(value.links).map do |uri|
@@ -236,7 +228,6 @@ class OxfamMetric
         '+source' => {:content=>source_content, :type_id=>PointerID},
       }
       Card.create! :name=>value_cardname, :content=>value.measurement.to_s, :subcards=>subcards
-      cnt += 1
     end
   end
   
