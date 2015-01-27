@@ -88,7 +88,7 @@ format :html do
       [
         _optional_render( :metric_select, args ),
         _optional_render( :year_select, args),
-        _optional_render( :selection_radio, args),
+        _optional_render( :selection_checkbox, args),
         _optional_render( :import_table, args ),
         _optional_render( :button_fieldset,   args )
       ]
@@ -106,13 +106,13 @@ format :html do
   view :selection_checkbox do |args|
     content = %{
       #{ check_box_tag "uncheck_all", "", false,:class=>'checkbox-button' }
-        <label>Uncheck All</label>
+      #{ label_tag "Uncheck All" }
       #{ check_box_tag "partial", "", false, :class=>'checkbox-button' }
-        <label>Select Partial</label>
+      #{ label_tag "Select Partial" }
       #{ check_box_tag "exact", "", false, :class=>'checkbox-button' }
-        <label>Select Exact</label>
+      #{ label_tag "Select Exact" }
     }
-    content_tag(:div, content, :class=> "selection_checkboxs")
+    content_tag(:div, content, {:class=> "selection_checkboxs"}, false)
   end
 
   view :import_table do |args|
