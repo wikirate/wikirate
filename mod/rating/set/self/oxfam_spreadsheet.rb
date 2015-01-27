@@ -2,7 +2,7 @@ require 'roo'
 require 'csv'
 
 
-SHEETS = ["Overview", "Land", "Women", "Transparency", "Farmers", "Water", "Workers", "Climate Change", "Release Notes"]
+SHEETS = ["Land", "Women", "Transparency", "Farmers", "Water", "Workers", "Climate Change"]
 
 event :import_sheet, :after=>:store, :on=>:update do
   if Env.params[:sheet] and SHEETS.include? Env.params[:sheet]
@@ -17,9 +17,12 @@ event :import_sheet, :after=>:store, :on=>:update do
 end
 
 def import_oxfam_data sheet
-  sheet.metrics.each do |metric|
+  #cnt = 0
+  sheet.metrics.each do |code, metric|
+    #cnt += 1
+    #break if cnt > 5
     metric.save! 
-    metric.save_values! :limit=>20
+    metric.save_values! 
   end
 end
 
@@ -35,9 +38,25 @@ end
 
 
 
-
 class Sheet
   attr_reader :metrics, :companies
+  METRIC_MAP = {
+    'DEFAULT' => {
+      :code => 0,
+      :question => 1,
+      :weight  => 2,
+      :description => false      
+    },
+    'Land' => {
+      :description => 8
+    },
+    'Farmers' => {
+      :description => 8
+    },
+    'Climate Change' => {
+      :weight => 4,
+    }
+  }
   
   MAP = {
     'DEFAULT' => {
@@ -45,22 +64,16 @@ class Sheet
       :company_row => 4,
       :intro_columns => 2,          # how many columns before you get to a country section   
       :columns_per_company => 6,    # include blanks
-      :metric_description => false,
-      :has_value_if_metric => 0,     # to exlcude non-metric rows
-      :metric_weight => 3,
     },
     'Land' => { 
       :columns_per_company => 7,    
-      :metric_description => true
     },
     'Farmers' => { 
       :columns_per_company => 7,    
-      :metric_description => true
     },
     'Climate Change' => {
       :intro_columns => 5,
       :columns_per_company => 8,
-      :metric_weight => 5
     }
   }
   
@@ -68,8 +81,9 @@ class Sheet
     @category  = sheetname
     path = filecard.attach.path
     xlsx = Roo::Excelx.new(path)
-    @sheet     = xlsx.sheet(@category)
-    @sheet_map = MAP['DEFAULT'].merge(MAP[@category])
+    @sheet      = xlsx.sheet(@category)
+    @sheet_map  = MAP['DEFAULT'].merge(MAP[@category])
+    @metric_map = METRIC_MAP['DEFAULT'].merge(METRIC_MAP[@category])
   
     @companies = @sheet.row( @sheet_map[:company_row] ).compact
     load_metrics year, filecard.name
@@ -78,14 +92,30 @@ class Sheet
   private
   
   def each_metric_row_with_index
-     for row_idx in (@sheet_map[:header_rows]+1)..(@sheet.last_row)
-       row = @sheet.row(row_idx)
-       if row[@sheet_map[:has_value_if_metric]]
-         yield(row, row_idx)
-       end
-     end
+    def method_missing name, *args
+      if col=@metric_map[name] 
+        res = if args.size == 1
+            @sheet.row(args[0])[col]
+          else
+            @row[col]
+          end
+        name==:code && res ? res.to_s.strip : res
+      else
+        super
+      end
+    end
+    
+    for row_idx in (@sheet_map[:header_rows]+1)..(@sheet.last_row)
+      if code(row_idx)
+        @row = @sheet.row(row_idx)
+        yield(@row, row_idx)
+      end
+    end
   end
   
+  
+
+
   
   def load_metrics year, sourcename
     company_offset = {} 
@@ -94,66 +124,99 @@ class Sheet
       company_offset[company] = start
     end
     
-    @metrics = []
+    @metrics = {}
     each_metric_row_with_index do |row, row_idx|
-      @metrics << OxfamMetric.new(row, row_idx, @sheet_map[:metric_description], @sheet_map[:metric_weight], company_offset, year, sourcename) 
-    end
-    
-    @metrics.each do
-      
-    end
-    
+      desc = if question(row_idx+1) && !code(row_idx+1)
+          question(row_idx+1)
+        else
+          description(row_idx)
+        end
+        
+      metric =  OxfamMetric.new(row, company_offset,
+          :code=>code, 
+          :question=>question,
+          :description=>desc,
+          :year=>year,
+          :weight=>weight,
+          :sourcename=>sourcename,
+          :row_index=>row_idx
+        ) 
+      @metrics[metric.code] = metric
+      digits = metric.code.split '.'
+      if digits.size > 1
+        digits.pop
+        code = digits.join '.'
+        @metrics[code].add_submetric metric
+      end 
+    end 
   end
 end
 
 
 class OxfamMetric
-  attr_reader :companies, :code, :question, :values
-  attr_accessor :submetrics
+  attr_reader :companies, :submetrics
   
-  MAP = {                  # column indices
-          :code => 0,
-          :question => 1,
-          :description => 8,
-          :weight  => 3
-        }
+
   
-  def initialize row, row_index, description, weight_col, company_offset, year, sourcename
-    @code        = row[MAP[:code]].strip
-    @question    = row[MAP[:question]].strip
-    @weight      = row[weight_col]
-    @year        = year
-    @row_index   = row_index
-    @description = description ? row[MAP[:description]] : nil
-    @sourcename  = sourcename
-    @submetrics  = {}
+  def initialize row, company_offset, data
+    @data = data
+    @submetrics  = []
     @values = []
     company_offset.each do |company, offset|
       @values << Value.new(row, company, offset)
     end
   end
 
+  def method_missing name, *args
+    @data[name]
+  end
   
   def cardname
-    "Oxfam+#{@code}"
+    "Oxfam+#{code}"
   end
   
   def save!
+    formula = @submetrics.map do |submetric|
+      "(#{submetric.weight}) * [[#{submetric.cardname}]]"
+    end
+    
+    list = @submetrics.map do |submetric| 
+      format =  if submetric.submetrics.present?
+          "{{%s+methodology|closed;title:0-%s %s;hide:closed_content,menu;show:title_link}}" 
+        else
+          "{{%s|closed;title:0-%s %s;hide:toggle,menu;show:title_link}}"
+        end
+      text = format % [submetric.cardname, submetric.weight.round(2).to_s.chomp('.0'), submetric.question]
+      "<li>#{text}</li>"
+    end.join "\n"
+    
+    desc = if formula.present?
+        %{
+          #{description}
+          <p>
+          Sum of
+          <ul>
+          #{list}
+          </ul>
+          </p>
+        }
+      else
+        description
+      end
+    
     Card.create! :name=>cardname, :type=>'metric', :subcards=>{
-     '+code'     => @code,
-     '+question' => @question,
-     '+description' => @description,
+     '+code'        => code,
+     '+question'    => question,
+     '+methodology' => desc,
+     '+formula'     => {:content=>formula.join("\n"), :type=>'pointer'},
+     '+submetrics'  => {:content=>@submetrics.map { |sm| "[[#{sm.cardname}]]" }.join("\n"), :type=>'pointer'}
     }
   end
 
-  def save_values! opts
-    cnt = 0
-    @values.each do |value|
-      if opts[:limit] && cnt > opts[:limit]
-        break
-      end
-      
-      value_cardname = "#{cardname}+#{value.company}+#{@year}"    
+  def save_values!
+    @values.each do |value|      
+      value_cardname = "#{cardname}+#{value.company}+#{year}"    
+      #puts "save #{value_cardname}"
       source_pages = Array.wrap(value.links).map do |uri|
         page = if (dups=Webpage.find_duplicates(uri).first) 
             dups.left 
@@ -162,14 +225,17 @@ class OxfamMetric
           end
         page.name
       end
-      source_pages << @sourcename
+      source_pages << sourcename
       source_content = source_pages.map {|cardname| "[[#{cardname}]]"}.join "\n" 
       subcards = {
         '+source' => {:content=>source_content, :type_id=>PointerID},
       }
       Card.create! :name=>value_cardname, :content=>value.measurement.to_s, :subcards=>subcards
-      cnt += 1
     end
+  end
+  
+  def add_submetric metric
+    @submetrics << metric
   end
 end
 
@@ -179,17 +245,25 @@ class Value
   attr_reader :company, :measurement, :links
 
   MAP = {             # column indices relative to first company column
-    :weight    => 0, 
     :answer    => 1,
     :subscore  => 2,
     :score     => 3,
     :reference => 4,
   }
-
+  
+  COMPANY_CARDNAME = {
+    'Associated British Foods' => 'Associated British Foods plc',
+    'Coca Cola' =>                'Coca Cola Company',
+    'Danone' =>                   'Groupe Danone',
+    'Kellogg' =>                  "Kellogg's",
+    'Mars' =>                     'Mars Inc.',
+    'Mondelez' =>                 'Mondelēz International',
+    'PepsiCo' =>                  'PepsiCo Inc.',
+  }
   VALUE_COLUMNS  = [:score, :answer]    
   
   def initialize row, company, company_offset
-    @company = company
+    @company = COMPANY_CARDNAME[company] || company
     @data = {}
     MAP.each do |col_name, col_offset|
       index = company_offset + col_offset
@@ -197,13 +271,12 @@ class Value
     end
     if @data[:reference]
       @data[:links] = []
-      @data[:reference].scan %r(http://\S+) do |match|
-        binding.pry unless match
+      @data[:reference].scan %r(http://[^\s\u00a0]+) do |match|
         @data[:links] << match
       end
     end
     @links = @data[:links]
-    @measurement = VALUE_COLUMNS.find { |col_name| @data[col_name] }
+    @measurement = VALUE_COLUMNS.inject(nil) { |res,col_name| res || @data[col_name] }
   end
 
 end

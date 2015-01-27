@@ -22,7 +22,6 @@ end
 
 
 event :import_csv, :after=>:store, :on=>:update do
-  # binding.pry
   if (metric_values = Env.params[:metric_values]) && metric_values.kind_of?(Hash)
     metric_values.each do |company, value|
       metric_value_card_name = "#{metric_card.item_names.first}+#{company}+#{year_card.item_names.first}"

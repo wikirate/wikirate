@@ -3,11 +3,11 @@ require "net/https"
 require "uri"
 format do
 
-  view :cite do |args|
+  view :cite, :closed=>true do |args|
     ''
   end
 
-  view :raw_or_blank, :perms=>:none do |args|
+  view :raw_or_blank, :perms=>:none, :closed=>true do |args|
     _render(:raw) or ''
   end
 end

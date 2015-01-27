@@ -53,7 +53,6 @@ describe Card::Set::Self::WikirateCompanyComparison do
               with_option  option[0], option[1], :selected=>option[1]==@topics[0].to_name.key
             end
           end
-          # binding.pry
           with_tag "div", :with => { :id => "#{@topics[0].to_name.url_key}+image"}
           with_tag "a", :href => "/#{@topics[0].to_name.url_key}", :content => @topics[0]
           
