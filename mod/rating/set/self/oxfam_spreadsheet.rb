@@ -19,7 +19,7 @@ end
 def import_oxfam_data sheet
   sheet.metrics.each do |code, metric|
     metric.save! 
-    metric.save_values! #:limit=>2
+    metric.save_values! 
   end
 end
 
@@ -210,10 +210,10 @@ class OxfamMetric
     }
   end
 
-  def save_values! opts
+  def save_values!
     @values.each do |value|      
       value_cardname = "#{cardname}+#{value.company}+#{year}"    
-      puts "save #{value_cardname} #{cnt}"
+      #puts "save #{value_cardname} #{cnt}"
       source_pages = Array.wrap(value.links).map do |uri|
         page = if (dups=Webpage.find_duplicates(uri).first) 
             dups.left 
