@@ -257,7 +257,7 @@ class Value
     'Danone' =>                   'Groupe Danone',
     'Kellogg' =>                  "Kellogg's",
     'Mars' =>                     'Mars Inc.',
-    'Mondolez' =>                 'Mondelēz International',
+    'Mondelez' =>                 'Mondelēz International',
     'PepsiCo' =>                  'PepsiCo Inc.',
   }
   VALUE_COLUMNS  = [:score, :answer]    
