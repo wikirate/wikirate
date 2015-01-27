@@ -213,6 +213,10 @@ GEM
     recaptcha (0.3.6)
     ref (1.0.5)
     rmagick (2.13.4)
+    roo (1.13.2)
+      nokogiri
+      rubyzip
+      spreadsheet (> 0.6.4)
     rspec (3.1.0)
       rspec-core (~> 3.1.0)
       rspec-expectations (~> 3.1.0)
@@ -236,6 +240,7 @@ GEM
       rspec-mocks (~> 3.1.0)
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
+    ruby-ole (1.2.11.8)
     rubyzip (1.1.6)
     sass (3.4.10)
     selenium-webdriver (2.44.0)
@@ -253,6 +258,8 @@ GEM
       activesupport
       htmlentities (~> 4.3.0)
     spork (0.9.2)
+    spreadsheet (1.0.1)
+      ruby-ole (>= 1.0)
     sprockets (2.2.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -311,6 +318,7 @@ DEPENDENCIES
   pry-rescue
   pry-stack_explorer
   rails-dev-tweaks
+  roo
   rspec
   rspec-html-matchers
   rspec-rails (~> 3.1.0)
@@ -322,5 +330,3 @@ DEPENDENCIES
   timecop
   turn (~> 0.8.3)
   wagn!
-			
-
