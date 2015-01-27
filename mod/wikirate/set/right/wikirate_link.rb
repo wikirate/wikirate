@@ -18,7 +18,7 @@ event :validate_content, :before=>:approve, :on=>:save do
     @host = URI(content).host
   rescue
   ensure
-    errors.add :link, 'invalid uri' unless @host
+    errors.add :link, "invalid uri #{content}" unless @host
   end
 end
 event :block_url_changing, :before=>:approve, :on=>:update do 
