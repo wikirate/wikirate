@@ -21,13 +21,13 @@ event :import_csv, :after=>:store, :on=>:update do
     metric_values.each do |company, value|
       metric_value_card_name = "#{metric_card.item_names.first}+#{company}+#{year_card.item_names.first}"
       if metric_value_card = Card[metric_value_card_name]
-        metric_value_card.update_attributes! :content => value[0] 
+        metric_value_card.update_attributes! :content => value[0]
       else
         Card.create! :name=>metric_value_card_name, :content=>value[0]
       end
     end
   end
-  abort :success=>"REDIRECT: #{metric_card.cardname.url_key}"
+  abort :success=>"REDIRECT: #{metric_card.item_names.first}"
 end
 
 def csv_rows
@@ -36,24 +36,24 @@ end
 
 
 def clean_html? # return always true ;)
-  false 
+  false
 end
 
 
 format :html do
-  
+
   def render_row row
     file_company, value = row
-    wikirate_company, status = matched_company(file_company) 
+    wikirate_company, status = matched_company(file_company)
     checked =  [:partial, :exact].include? status
     checkbox = content_tag(:td) do
       check_box_tag "metric_values[#{wikirate_company}][]", value, checked, :disabled => (status==:none)
-    end 
+    end
     [file_company, wikirate_company, status.to_s].inject(checkbox) do |row, item|
       row.concat content_tag(:td, item)
     end
   end
-  
+
   def matched_company name
     if (company = Card.fetch(name)) && company.type_id == Card::WikirateCompanyID
       [name, :exact]
@@ -68,15 +68,15 @@ format :html do
       ['', :none]
     end
   end
-  
-  
+
+
   def default_import_args args
     args[:buttons] = %{
       #{ button_tag 'Import', :class=>'submit-button', :disable_with=>'Submitting' }
       #{ button_tag 'Cancel', :class=>'cancel-button slotter', :href=>path, :type=>'button' }
     }
   end
-  
+
   view :import do |args|
     frame_and_form :update, args do
       [
@@ -87,15 +87,15 @@ format :html do
       ]
     end
   end
-  
+
   view :year_select do |args|
     nest card.year_card, :view=>:edit_in_form
   end
-  
+
   view :metric_select do |args|
     nest card.metric_card, :view=>:edit_in_form
   end
-  
+
   view :import_table do |args|
     header = ['Select', 'Company in File', 'Company in Wikirate', 'Match']
     thead = content_tag :thead do
@@ -105,7 +105,7 @@ format :html do
     end.html_safe
     #fields_for 'metric[]' , product do |product_fields|
     tbody = content_tag :tbody do
-      card.csv_rows.collect { |elem| 
+      card.csv_rows.collect { |elem|
         concat content_tag(:tr, render_row(elem))
       }
 
