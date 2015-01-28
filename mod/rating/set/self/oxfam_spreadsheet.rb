@@ -45,7 +45,8 @@ class Sheet
       :code => 0,
       :question => 1,
       :weight  => 2,
-      :description => false      
+      :description => false,
+      :is_score => 5    
     },
     'Land' => {
       :description => 8
@@ -55,6 +56,7 @@ class Sheet
     },
     'Climate Change' => {
       :weight => 4,
+      :is_score => 8
     }
   }
   
@@ -82,8 +84,9 @@ class Sheet
     path = filecard.attach.path
     xlsx = Roo::Excelx.new(path)
     @sheet      = xlsx.sheet(@category)
-    @sheet_map  = MAP['DEFAULT'].merge(MAP[@category])
-    @metric_map = METRIC_MAP['DEFAULT'].merge(METRIC_MAP[@category])
+#    binding.pry
+    @sheet_map  = MAP['DEFAULT'].merge(MAP[@category] || {})
+    @metric_map = METRIC_MAP['DEFAULT'].merge(METRIC_MAP[@category] || {})
   
     @companies = @sheet.row( @sheet_map[:company_row] ).compact
     load_metrics year, filecard.name
@@ -93,16 +96,22 @@ class Sheet
   
   def each_metric_row_with_index
     def method_missing name, *args
-      if col=@metric_map[name] 
-        res = if args.size == 1
-            @sheet.row(args[0])[col]
-          else
-            @row[col]
-          end
-        name==:code && res ? res.to_s.strip : res
-      else
+      col=@metric_map[name]
+      case col
+      when nil
         super
+      when false
+        nil
+      else
+        res = if args.size == 1
+                @sheet.row(args[0])[col]
+              else
+                @row[col]
+              end
+        name==:code && res ? res.to_s.strip : res
       end
+#    rescue
+#      binding.pry
     end
     
     for row_idx in (@sheet_map[:header_rows]+1)..(@sheet.last_row)
@@ -114,9 +123,6 @@ class Sheet
   end
   
   
-
-
-  
   def load_metrics year, sourcename
     company_offset = {} 
     @companies.each_with_index do |company, cidx|
@@ -127,10 +133,11 @@ class Sheet
     @metrics = {}
     each_metric_row_with_index do |row, row_idx|
       desc = if question(row_idx+1) && !code(row_idx+1)
-          question(row_idx+1)
-        else
-          description(row_idx)
-        end
+               question(row_idx+1)
+             else
+               description(row_idx)
+             end
+        
         
       metric =  OxfamMetric.new(row, company_offset,
           :code=>code, 
@@ -139,7 +146,8 @@ class Sheet
           :year=>year,
           :weight=>weight,
           :sourcename=>sourcename,
-          :row_index=>row_idx
+          :row_index=>row_idx,
+          :is_score=>!!is_score
         ) 
       @metrics[metric.code] = metric
       digits = metric.code.split '.'
@@ -156,8 +164,6 @@ end
 class OxfamMetric
   attr_reader :companies, :submetrics
   
-
-  
   def initialize row, company_offset, data
     @data = data
     @submetrics  = []
@@ -172,7 +178,7 @@ class OxfamMetric
   end
   
   def cardname
-    "Oxfam+#{code}"
+    "Oxfam+#{ (is_score ? question : code).strip }"
   end
   
   def save!
@@ -204,6 +210,9 @@ class OxfamMetric
         description
       end
     
+    
+#    Rails.logger.info "\n\n\nMetric: #{cardname}, code: #{code}, question: #{question}, desc: #{desc}\n\n\n"
+
     Card.create! :name=>cardname, :type=>'metric', :subcards=>{
      '+code'        => code,
      '+question'    => question,
@@ -219,10 +228,10 @@ class OxfamMetric
       #puts "save #{value_cardname}"
       source_pages = Array.wrap(value.links).map do |uri|
         page = if (dups=Webpage.find_duplicates(uri).first) 
-            dups.left 
-          else
-            Card.create! :type_code=>:webpage, :subcards=>{"+#{Card[:wikirate_link].name}"=>{:content=>uri}}
-          end
+                 dups.left 
+               else
+                 Card.create! :type_code=>:webpage, :subcards=>{"+#{Card[:wikirate_link].name}"=>{:content=>uri}}
+               end
         page.name
       end
       source_pages << sourcename
