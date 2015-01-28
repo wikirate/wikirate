@@ -1,10 +1,10 @@
 card_accessor :metric, :type=>:pointer
-card_accessor :year
+card_accessor :year, :type=>:pointer
 
 
 event :validate_import, :before=>:approve_subcards, :on=>:update do
   
-  metric_pointer_card = subcards[name+"+metric"]
+  metric_pointer_card = subcards[name+"+Metric"]
   metric_year = subcards[name+"+Year"]
 
   if !(metric_card = metric_pointer_card.item_cards.first)
