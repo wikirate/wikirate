@@ -93,31 +93,28 @@ class Sheet
   end
   
   private
-  
-  def each_metric_row_with_index
-    def method_missing name, *args
-      col=@metric_map[name]
-      case col
-      when nil
-        super
-      when false
-        ''
-      else
-        res = if args.size == 1
-            @sheet.row(args[0])[col]
-          else
-            @row[col]
-          end
-        if res && name == :code
-          res.to_s.sub(/^(\D+)\.(\d)/, '\1\2').strip  # the regex fixes a typo in the workers sheets (W.1.2 instead of W1.2)
-        else 
-          res  
-        end
-      end
-    else
+
+  def method_missing name, *args
+    col=@metric_map[name]
+    case col
+    when nil
       super
+    when false
+      ''
+    else
+      res = if args.size == 1
+          @sheet.row(args[0])[col]
+        else
+          @row[col]
+        end
+      if res && name == :code
+        res.to_s.sub(/^(\D+)\.(\d)/, '\1\2').strip  # the regex fixes a typo in the workers sheets (W.1.2 instead of W1.2)
+      else 
+        res  
+      end
     end
   end
+  
   
   def each_metric_row_with_index  
     for row_idx in (@sheet_map[:header_rows]+1)..(@sheet.last_row)
