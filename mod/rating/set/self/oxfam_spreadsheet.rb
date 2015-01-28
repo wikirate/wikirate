@@ -178,7 +178,11 @@ class OxfamMetric
   end
   
   def cardname
-    shortname = ( is_score && question.length < 100 ? question : code )
+    shortname = if is_score && question.length < 100
+                  "#{question} (#{code})"
+                else
+                  code
+                end
     "Oxfam+#{ shortname.strip }"
   end
   
