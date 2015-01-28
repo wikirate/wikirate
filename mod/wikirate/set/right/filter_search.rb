@@ -8,7 +8,6 @@ def get_query params={}
   search_args.merge!(claimed_query)
   search_args.merge!(:type=>left.name)
   params[:query] = Card.tag_filter_query(filter_words, search_args,['tag','company','topic'])
-  # binding.pry
   super(params)
 end
 
