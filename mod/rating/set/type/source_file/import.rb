@@ -26,8 +26,8 @@ event :import_csv, :after=>:store, :on=>:update do
         Card.create! :name=>metric_value_card_name, :content=>value[0]
       end
     end
+    abort :success=>"REDIRECT: #{metric_card.item_names.first}"
   end
-  abort :success=>"REDIRECT: #{metric_card.item_names.first}"
 end
 
 def csv_rows
