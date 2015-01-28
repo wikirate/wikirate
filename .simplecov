@@ -1,5 +1,5 @@
 unless ENV['COVERAGE'] == 'false'
-  require '/opt/wagn/lib/wagn/simplecov_helper'
+  require File.expand_path( '../vendor/wagn/lib/wagn/simplecov_helper', __FILE__ )
   SimpleCov.start do
     wagn_simplecov_filters
   end

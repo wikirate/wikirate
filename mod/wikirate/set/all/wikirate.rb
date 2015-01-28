@@ -161,7 +161,7 @@ module ClassMethods
     claim_count_cache.reset hard=true
   end
   
-  def tag_filter_spec filter_words, extra={}, tag_types=['tag']
+  def tag_filter_query filter_words, extra={}, tag_types=['tag']
     filter_words = [filter_words] unless Array === filter_words
     search_args = filter_words.inject({}) do |res, filter|
      hash = {}

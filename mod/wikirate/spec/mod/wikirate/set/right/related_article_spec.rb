@@ -27,7 +27,7 @@ describe Card::Set::Right::RelatedArticles do
 
       related_article_card = Card.fetch claim_card.name+"+related article"
       html = related_article_card.format(:format=>:html)._render_core
-      
+
       expected_html = %{<div class="related-articles cited-articles">
           <h3>Articles that cite this Claim</h3>
           <ul><li><div class="analysis-link"><a class="known-card" href="/Death_Star+Force"><span class="company">Death Star</span><span class="topic">Force</span></a> </div></ul>
@@ -35,9 +35,9 @@ describe Card::Set::Right::RelatedArticles do
 
         <div class="related-articles uncited-articles">
           <h3>Articles that <em>could</em> cite this Claim</h3>
-          <ul><li><div class="analysis-link"><a class="known-card" href="/test_company+test_topic"><span class="company">test_company</span><span class="topic">test_topic</span></a>  <span class="claim-next-action"><a class="internal-link" href="/test_company+test_topic?citable=whateverclaim&edit_article=true">Cite!</a></span> </div>
-              <li><div class="analysis-link"><a class="known-card" href="/test_company+Force"><span class="company">test_company</span><span class="topic">Force</span></a>  <span class="claim-next-action"><a class="internal-link" href="/test_company+Force?citable=whateverclaim&edit_article=true">Cite!</a></span> </div>
-              <li><div class="analysis-link"><a class="known-card" href="/Death_Star+test_topic"><span class="company">Death Star</span><span class="topic">test_topic</span></a>  <span class="claim-next-action"><a class="internal-link" href="/Death_Star+test_topic?citable=whateverclaim&edit_article=true">Cite!</a></span> </div></ul>
+          <ul><li><div class="analysis-link"><a class="known-card" href="/test_company+test_topic"><span class="company">test_company</span><span class="topic">test_topic</span></a>  <span class="claim-next-action"><a class="internal-link" href="/test_company+test_topic?citable=whateverclaim&amp;edit_article=true">Cite!</a></span> </div>
+              <li><div class="analysis-link"><a class="known-card" href="/test_company+Force"><span class="company">test_company</span><span class="topic">Force</span></a>  <span class="claim-next-action"><a class="internal-link" href="/test_company+Force?citable=whateverclaim&amp;edit_article=true">Cite!</a></span> </div>
+              <li><div class="analysis-link"><a class="known-card" href="/Death_Star+test_topic"><span class="company">Death Star</span><span class="topic">test_topic</span></a>  <span class="claim-next-action"><a class="internal-link" href="/Death_Star+test_topic?citable=whateverclaim&amp;edit_article=true">Cite!</a></span> </div></ul>
         </div>}
       expect(html.squish).to eq(expected_html.squish)
     end
