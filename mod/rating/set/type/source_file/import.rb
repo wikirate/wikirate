@@ -1,4 +1,4 @@
-card_accessor :metric
+card_accessor :metric, :type=>:pointer
 card_accessor :year
 
 
