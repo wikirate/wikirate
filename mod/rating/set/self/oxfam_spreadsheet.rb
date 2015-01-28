@@ -82,8 +82,11 @@ class Sheet
     path = filecard.attach.path
     xlsx = Roo::Excelx.new(path)
     @sheet      = xlsx.sheet(@category)
-    @sheet_map  = MAP['DEFAULT'].merge(MAP[@category])
-    @metric_map = METRIC_MAP['DEFAULT'].merge(METRIC_MAP[@category])
+    @sheet_map  = MAP['DEFAULT']
+    @metric_map = METRIC_MAP['DEFAULT']
+    
+    @sheet_map.merge! MAP[@category]           if MAP[@category]
+    @metric_map.merge! METRIC_MAP[@category]   if METRIC_MAP[@category]
   
     @companies = @sheet.row( @sheet_map[:company_row] ).compact
     load_metrics year, filecard.name
@@ -91,20 +94,28 @@ class Sheet
   
   private
   
-  def each_metric_row_with_index
-    def method_missing name, *args
-      if col=@metric_map[name] 
+  def method_missing name, *args
+    if @metric_map.key? name
+      if col=@metric_map[name]
         res = if args.size == 1
             @sheet.row(args[0])[col]
           else
             @row[col]
           end
-        name==:code && res ? res.to_s.strip : res
+        if res && name == :code
+          res.to_s.sub(/^(\D+)\.(\d)/, '\1\2').strip  # the regex fixes a typo in the workers sheets (W.1.2 instead of W1.2)
+        else 
+          res  
+        end
       else
-        super
+        ''
       end
+    else
+      super
     end
-    
+  end
+  
+  def each_metric_row_with_index  
     for row_idx in (@sheet_map[:header_rows]+1)..(@sheet.last_row)
       if code(row_idx)
         @row = @sheet.row(row_idx)
@@ -146,7 +157,7 @@ class Sheet
       if digits.size > 1
         digits.pop
         code = digits.join '.'
-        @metrics[code].add_submetric metric
+        @metrics[code].add_submetric metric if @metrics[code]
       end 
     end 
   end
@@ -206,6 +217,7 @@ class OxfamMetric
     
     Card.create! :name=>cardname, :type=>'metric', :subcards=>{
      '+code'        => code,
+     '+about'       => question,
      '+question'    => question,
      '+methodology' => desc,
      '+formula'     => {:content=>formula.join("\n"), :type=>'pointer'},
@@ -277,6 +289,9 @@ class Value
     end
     @links = @data[:links]
     @measurement = VALUE_COLUMNS.inject(nil) { |res,col_name| res || @data[col_name] }
+    if @measurement.kind_of? Float
+      @measurement = @measurement.round(2).to_s.chomp('.0')
+    end
   end
 
 end
