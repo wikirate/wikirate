@@ -101,7 +101,7 @@ class Sheet
       when nil
         super
       when false
-        nil
+        ''
       else
         res = if args.size == 1
             @sheet.row(args[0])[col]
