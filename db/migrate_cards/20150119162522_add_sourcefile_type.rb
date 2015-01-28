@@ -7,8 +7,7 @@ class AddSourcefileType < Wagn::Migration
     else
       Card.create! :name=>'Source file', :type_id=>Card::CardtypeID, :codename=>'source_file'
     end
-   
-    #Card.create! :name=>'Metric', :type_id=>Card::CardtypeID, :codename=>'metric'
+    Card.create! :name=>'Metric', :type_id=>Card::CardtypeID, :codename=>'metric'   
     Card.create! :name=>'Source file+metric+*type plus right+*default', :type=>'pointer'
     Card.create! :name=>'Source file+metric+*type plus right+*options', :type=>'search', :content=>'{"type":"metric"}'
     Card.create! :name=>'Source file+metric+*type plus right+*input',  :content=>'[[select]]'

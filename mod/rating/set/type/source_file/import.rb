@@ -2,17 +2,22 @@ card_accessor :metric
 card_accessor :year
 
 
-event :validate_import, :before=>:approve, :on=>:update do
-  # if !(@metric = Env.params[:metric])
-  #   errors.add :content, "Please give a metric."
-  # elsif !(metric = Card.fetch(Env.params[:metric])) or (metric.type_id != Card::WikirateMetricID)
-  #   errors.add  :content, "Invalid metric"
-  # else
-    #@subcards['+metric'] = {:content=>Env.params[:metric], :type=>'phrase'}
-#    @subcards['+year']   = {:content=>(Env.params[:year] || DateTime.now.year) ,:type=>'number'}
-#  end
-#  binding.pry
-# puts "hello"
+event :validate_import, :before=>:approve_subcards, :on=>:update do
+  
+  metric_pointer_card = subcards[name+"+metric"]
+  metric_year = subcards[name+"+Year"]
+
+  if !(metric_card = metric_pointer_card.item_cards.first)
+    errors.add :content, "Please give a metric."
+  elsif metric_card.type_id != Card::MetricID
+    errors.add  :content, "Invalid metric"
+  end
+
+  if !(year_card = metric_year.item_cards.first)
+    errors.add :content, "Please give a year."
+  elsif year_card.type_id != Card::YearID
+    errors.add  :content, "Invalid Year"
+  end  
 end
 
 
@@ -82,6 +87,7 @@ format :html do
       [
         _optional_render( :metric_select, args ),
         _optional_render( :year_select, args),
+        _optional_render( :selection_checkbox, args),
         _optional_render( :import_table, args ),
         _optional_render( :button_fieldset,   args )
       ]
@@ -94,6 +100,18 @@ format :html do
 
   view :metric_select do |args|
     nest card.metric_card, :view=>:edit_in_form
+  end
+
+  view :selection_checkbox do |args|
+    content = %{
+      #{ check_box_tag "uncheck_all", "", false,:class=>'checkbox-button' }
+      #{ label_tag "Uncheck All" }
+      #{ check_box_tag "partial", "", false, :class=>'checkbox-button' }
+      #{ label_tag "Select Partial" }
+      #{ check_box_tag "exact", "", false, :class=>'checkbox-button' }
+      #{ label_tag "Select Exact" }
+    }
+    content_tag(:div, content, {:class=> "selection_checkboxs"}, false)
   end
 
   view :import_table do |args|
@@ -110,6 +128,6 @@ format :html do
       }
 
     end.html_safe
-    content_tag(:table, thead.concat(tbody)).html_safe
+    content_tag(:table, thead.concat(tbody),:class=>"import_table").html_safe
   end
 end
