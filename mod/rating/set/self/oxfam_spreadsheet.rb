@@ -113,8 +113,6 @@ class Sheet
         else 
           res  
         end
-      else
-        ''
       end
     else
       super
