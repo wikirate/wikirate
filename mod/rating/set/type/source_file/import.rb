@@ -1,10 +1,10 @@
-card_accessor :metric
-card_accessor :year
+card_accessor :metric, :type=>:pointer
+card_accessor :year, :type=>:pointer
 
 
 event :validate_import, :before=>:approve_subcards, :on=>:update do
   
-  metric_pointer_card = subcards[name+"+metric"]
+  metric_pointer_card = subcards[name+"+Metric"]
   metric_year = subcards[name+"+Year"]
 
   if !(metric_card = metric_pointer_card.item_cards.first)
@@ -31,8 +31,8 @@ event :import_csv, :after=>:store, :on=>:update do
         Card.create! :name=>metric_value_card_name, :content=>value[0]
       end
     end
+    abort :success=>"REDIRECT: #{metric_card.item_names.first}"
   end
-  abort :success=>"REDIRECT: #{metric_card.item_names.first}"
 end
 
 def csv_rows
