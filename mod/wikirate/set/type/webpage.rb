@@ -78,23 +78,6 @@ end
 
 format :html do
 
-  view :preview ,:tags=>:unknown_ok do |args|
-    content = wrap args do
-      [
-
-        %{<div class="top-bar-icon"> #{web_link("/", :text=>raw( nest Card["*logo"], :view=>:content, :size=>:medium ))} </div>},
-        # render_source_preview_options(args),
-        render_company_and_topic_detail(args),
-        %{<div id="webpage-preview" class="webpage-preview"></div>}
-      ]
-    end
-    %{
-      <div id="logo-bar" class="top-bar nodblclick">
-        #{content}
-      </div>
-    }
-
-  end
   def company_and_topic_match? company, topic , url
     source = Self::Webpage.find_duplicates url
     return false if ! source.any?
@@ -132,6 +115,21 @@ format :html do
     }
   end
 
+  view :preview ,:tags=>:unknown_ok do |args|
+    content = wrap args do
+      [
+        content_tag(:div, web_link("/", :text=>raw( nest Card["*logo"], :view=>:content, :size=>:medium )), {:class=> "top-bar-icon"},false),
+        render_company_and_topic_detail(args),
+        content_tag(:div, "", {:id=>"webpage-preview", :class=> "webpage-preview"},false)
+      ]
+    end
+    %{
+      <div id="logo-bar" class="top-bar nodblclick">
+        #{content}
+      </div>
+    }
+  end
+
   view :company_and_topic_detail ,:tags=>:unknown_ok  do |args|
 
     company = Card::Env.params[:company]
@@ -140,12 +138,14 @@ format :html do
 
     from_certh = !card.real? 
 
-
-
     if card.real?
-      company = card.fetch(:trait=>:wikirate_company).item_names.first
-      topic = card.fetch(:trait=>:wikirate_topic).item_names.first
-      url = card.fetch(:trait=>:wikirate_link).item_names.first
+      company_card = card.fetch(:trait=>:wikirate_company)
+      topic_card = card.fetch(:trait=>:wikirate_topic)
+      url_card = card.fetch(:trait=>:wikirate_link)
+      company = company_card ? card.fetch(:trait=>:wikirate_company).item_names.first : nil
+      topic = topic_card ? card.fetch(:trait=>:wikirate_topic).item_names.first : nil
+      url = company_card ? card.fetch(:trait=>:wikirate_link).item_names.first : nil
+      
     end
     
     dropdown_class = ""
