@@ -288,7 +288,9 @@ class Value
       end
     end
     @links = @data[:links]
-    @measurement = VALUE_COLUMNS.inject(nil) { |res,col_name| res || @data[col_name] }
+    @measurement = VALUE_COLUMNS.inject(nil) do |res,col_name| 
+        (res == '-' && @data[col_name]) || res || @data[col_name]
+      end
     if @measurement.kind_of? Float
       @measurement = @measurement.round(2).to_s.chomp('.0')
     end
