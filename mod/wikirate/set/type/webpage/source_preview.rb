@@ -87,6 +87,12 @@ format :html do
   view :options, :tags=>:unknown_ok  do |args|
     from_certh = !card.real?   
     url = args[:url]
+    if !url
+       if card.real?
+        url_card = card.fetch(:trait=>:wikirate_link)
+        url = url_card ? url_card.item_names.first : nil
+      end
+    end
     %{
        <div class="menu-options">
         #{show_options from_certh, card.name ,url}
@@ -115,7 +121,8 @@ format :html do
   def first_or_add first_name, type_name, show_add_link
     no_content_class = "no-content"
     content = if first_name
-      linkname = Card[first_name].cardname.url_key
+      linkname = first_name
+      linkname = Card[first_name].cardname.url_key if Card[first_name]
       no_content_class = ""
       %{
         <a href="#{linkname}" target="_blank">
