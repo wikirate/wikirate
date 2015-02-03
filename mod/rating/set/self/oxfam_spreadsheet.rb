@@ -167,15 +167,16 @@ end
 class OxfamMetric
   attr_reader :companies, :submetrics
   
-
-  
   def initialize row, company_offset, data
     @data = data
     @submetrics  = []
     @values = []
     company_offset.each do |company, offset|
-      @values << Value.new(row, company, offset)
-    end
+      begin
+        @values << Value.new(row, company, offset)
+      rescue RuntimeError => e # No Value
+      end
+    end 
   end
 
   def method_missing name, *args
@@ -291,6 +292,9 @@ class Value
     @measurement = VALUE_COLUMNS.inject(nil) do |res,col_name| 
         (res == '-' && @data[col_name]) || res || @data[col_name]
       end
+    if !@measurement || @measurement == '-' || @measurement.empty?
+      raise RuntimeError, "No value for #{company}"
+    end
     if @measurement.kind_of? Float
       @measurement = @measurement.round(2).to_s.chomp('.0')
     end
