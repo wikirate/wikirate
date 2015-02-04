@@ -172,8 +172,11 @@ class OxfamMetric
     @submetrics  = []
     @values = []
     company_offset.each do |company, offset|
-      @values << Value.new(row, company, offset)
-    end
+      begin
+        @values << Value.new(row, company, offset)
+      rescue RuntimeError => e # No Value
+      end
+    end 
   end
 
   def method_missing name, *args
@@ -294,7 +297,12 @@ class Value
       end
     end
     @links = @data[:links]
-    @measurement = VALUE_COLUMNS.inject(nil) { |res,col_name| res || @data[col_name] }
+    @measurement = VALUE_COLUMNS.inject(nil) do |res,col_name| 
+        (res == '-' && @data[col_name]) || res || @data[col_name]
+      end
+    if !@measurement || @measurement == '-' || @measurement.empty?
+      raise RuntimeError, "No value for #{company}"
+    end
     if @measurement.kind_of? Float
       @measurement = @measurement.round(2).to_s.chomp('.0')
     end
