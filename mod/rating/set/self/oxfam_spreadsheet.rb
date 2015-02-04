@@ -281,7 +281,7 @@ class Value
     'Mondelez' =>                 'Mondelēz International',
     'PepsiCo' =>                  'PepsiCo Inc.',
   }
-  VALUE_COLUMNS  = [:score, :answer]    
+  VALUE_COLUMNS  = [:answer, :score]    
   
   def initialize row, company, company_offset
     @company = COMPANY_CARDNAME[company] || company
