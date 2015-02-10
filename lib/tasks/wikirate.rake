@@ -69,7 +69,7 @@ namespace :wikirate do
       require "#{Wagn.root}/config/environment"
       export_hash = Card['export'].format(:format=>:json).render_content
       File.open(File.join(Wagn::Migration.paths(:deck_cards).first, 'data', "#{$1}.json"),'w') do |f|
-        f.print JSON(export_hash)
+        f.print JSON.pretty_generate(export_hash)
       end
       system "bundle exec wagn generate card_migration #{ENV['name']}"
     else
