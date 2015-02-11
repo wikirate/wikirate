@@ -49,7 +49,7 @@ GEM
     activesupport (3.2.16)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
-    addressable (2.3.6)
+    addressable (2.3.7)
     airbrake (4.1.0)
       builder
       multi_json
@@ -128,20 +128,20 @@ GEM
     interception (0.5)
     journey (1.0.4)
     json (1.8.2)
-    kaminari (0.16.2)
+    kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     libv8 (3.16.14.7)
-    link_thumbnailer (2.4.0)
+    link_thumbnailer (2.5.0)
       activesupport (>= 3.0)
       fastimage (~> 1.6)
-      json (~> 1.7, >= 1.7.7)
+      json (~> 1.8, >= 1.7.7)
       net-http-persistent (~> 2.9)
       nokogiri (~> 1.6)
       rake (>= 0.9)
-      video_info (~> 2.3)
+      video_info (~> 2.4)
     macaddr (1.7.1)
       systemu (~> 2.6.2)
     mail (2.5.4)
@@ -171,10 +171,10 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    pry-byebug (3.0.0)
+    pry-byebug (3.0.1)
       byebug (~> 3.4)
       pry (~> 0.10)
-    pry-rails (0.3.2)
+    pry-rails (0.3.3)
       pry (>= 0.9.10)
     pry-rescue (1.4.1)
       interception (>= 0.5)
@@ -320,7 +320,7 @@ DEPENDENCIES
   rails-dev-tweaks
   roo
   rspec
-  rspec-html-matchers
+  rspec-html-matchers (= 0.6.1)
   rspec-rails (~> 3.1.0)
   selenium-webdriver
   simplecov
