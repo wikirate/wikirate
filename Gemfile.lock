@@ -299,6 +299,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  airbrake (~> 4.1)
   capistrano (= 3.2.1)
   capistrano-bundler
   capistrano-rvm
