@@ -46,7 +46,7 @@ format :html do
     %{
       <div id="logo-bar" class="top-bar nodblclick">
         #{content_tag(:div, web_link("/", :text=>raw( nest Card["*logo"], :view=>:content, :size=>:medium )), {:class=> "top-bar-icon"},false)}
-        #{render_options(args)}
+        #{render_preview_options(args)}
         #{render_company_and_topic_detail(args)}
       </div>
     }
@@ -84,7 +84,7 @@ format :html do
     } 
   end
 
-  view :options, :tags=>:unknown_ok  do |args|
+  view :preview_options, :tags=>:unknown_ok  do |args|
     from_certh = !card.real?   
     url = args[:url]
     if !url
