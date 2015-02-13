@@ -54,7 +54,7 @@ format :html do
     if parent.parent.present? and parent.parent.card.present?
       article_name = parent.parent.card.cardname.url_key
       url = "/#{article_name}?citable=#{card.cardname.url_key}&edit_article=true"
-      link_to 'Cite!', url
+      link_to 'Cite!', url, :class=>"cite-button"
     else
       ""
     end

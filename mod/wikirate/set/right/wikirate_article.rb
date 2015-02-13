@@ -24,6 +24,7 @@ format :html do
   
   def handle_edit_article args
     if params[:edit_article] && card.ok?(:update)
+      render :core, args #to trigger fetching citations information
       render :edit, args
     else
       yield
