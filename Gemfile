@@ -1,6 +1,11 @@
 source 'http://rubygems.org'
 
-gem 'wagn', :path=>'./vendor/wagn'
+wagn_gem_path = ENV['WIKIRATE_WAGN_GEM_PATH'] || './vendor/wagn'
+
+gem 'wagn',        :path=>"#{wagn_gem_path}/wagn"
+gem 'decko-rails', :path=>"#{wagn_gem_path}/decko-rails"
+gem 'card',        :path=>"#{wagn_gem_path}/card", :require=>false
+
 
 gem "mysql2", "~> 0.3"
 gem 'link_thumbnailer', ">= 2.2.3"
