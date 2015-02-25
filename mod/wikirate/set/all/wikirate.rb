@@ -119,7 +119,7 @@ module ClassMethods
   
 
   def claim_count_cache
-    Wagn::Cache[Card::Set::Right::WikirateClaimCount]
+    Card::Cache[Card::Set::Right::WikirateClaimCount]
   end
 
   def claim_counts subj

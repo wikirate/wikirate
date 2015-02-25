@@ -10,7 +10,7 @@ class SharedData
   end
 
   def self.add_test_data
-    Wagn::Cache.reset_global
+    Card::Cache.reset_global
     Card::Env.reset
     Card::Auth.as_bot
     
