@@ -19,17 +19,10 @@ PATH
       uuid (~> 2.3)
 
 PATH
-  remote: ./vendor/wagn/decko-rails
-  specs:
-    decko-rails (1.15.pre)
-      card (= 1.15.pre)
-      rails (= 3.2.16)
-
-PATH
   remote: ./vendor/wagn/wagn
   specs:
     wagn (1.15.pre)
-      decko-rails (= 1.15.pre)
+      card (= 1.15.pre)
       rails (= 3.2.16)
 
 GEM
@@ -252,7 +245,7 @@ GEM
       rspec-expectations (~> 3.1.0)
       rspec-mocks (~> 3.1.0)
       rspec-support (~> 3.1.0)
-    rspec-support (3.1.0)
+    rspec-support (3.1.2)
     ruby-ole (1.2.11.8)
     rubyzip (1.1.7)
     sass (3.4.12)
@@ -288,7 +281,7 @@ GEM
       ref
     thor (0.19.1)
     tilt (1.4.1)
-    timecop (0.7.1)
+    timecop (0.7.3)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -321,7 +314,6 @@ DEPENDENCIES
   cucumber-rails
   dalli
   database_cleaner (~> 0.7)
-  decko-rails!
   email_spec
   launchy
   link_thumbnailer (>= 2.2.3)

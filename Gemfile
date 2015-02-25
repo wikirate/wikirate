@@ -2,9 +2,8 @@ source 'http://rubygems.org'
 
 wagn_gem_path = ENV['WIKIRATE_WAGN_GEM_PATH'] || './vendor/wagn'
 
-gem 'wagn',        :path=>"#{wagn_gem_path}/wagn"
-gem 'decko-rails', :path=>"#{wagn_gem_path}/decko-rails"
-gem 'card',        :path=>"#{wagn_gem_path}/card", :require=>false
+gem 'wagn', :path=>"#{wagn_gem_path}/wagn"
+gem 'card', :path=>"#{wagn_gem_path}/card", :require=>false
 
 
 gem "mysql2", "~> 0.3"
@@ -51,7 +50,6 @@ group :development do
   gem 'capistrano', '3.2.1'  #note - ssh was breaking on 3.3.3
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
-
 end
 
 group :test, :development do
