@@ -46,12 +46,15 @@ namespace :wikirate do
 
   desc "fetch json from export card on dev site and generate migration"
   task :import_from_dev do
+    
     if !ENV['name']
       puts "pass a name for the migration 'name=...'"
     elsif ENV['name'].match /^(?:import)_(.*)(?:\.json)?/
       require "#{Wagn.root}/config/environment"
+      require 'card/migration'
+      
       export = open("http://dev.wikirate.org/export.json")
-      File.open(File.join(Wagn::Migration.paths(:deck_cards).first, 'data', "#{$1}.json"),'w') do |f|
+      File.open(Card::Migration.data_path("#{$1}.json"),'w') do |f|
         f.print export.read
       end
       system "bundle exec wagn generate card_migration #{ENV['name']}"
@@ -63,12 +66,14 @@ namespace :wikirate do
 
   desc "fetch json from local export card and generate migration"
   task :import_from_local do
+    
     if !ENV['name']
       puts "pass a name for the migration 'name=...'"
     elsif ENV['name'].match /^(?:import)_(.*)(?:\.json)?/
       require "#{Wagn.root}/config/environment"
+      require 'card/migration'
       export_hash = Card['export'].format(:format=>:json).render_content
-      File.open(File.join(Wagn::Migration.paths(:deck_cards).first, 'data', "#{$1}.json"),'w') do |f|
+      File.open(Card::Migration.data_path("#{$1}.json"),'w') do |f|
         f.print JSON.pretty_generate(export_hash)
       end
       system "bundle exec wagn generate card_migration #{ENV['name']}"

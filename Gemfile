@@ -1,6 +1,10 @@
 source 'http://rubygems.org'
 
-gem 'wagn', :path=>'./vendor/wagn'
+wagn_gem_path = ENV['WIKIRATE_WAGN_GEM_PATH'] || './vendor/wagn'
+
+gem 'wagn', :path=>"#{wagn_gem_path}/wagn"
+gem 'card', :path=>"#{wagn_gem_path}/card", :require=>false
+
 
 gem "mysql2", "~> 0.3"
 gem 'link_thumbnailer', ">= 2.2.3"
@@ -16,7 +20,7 @@ end
 group :test do
   gem 'rspec-rails', "~> 3.1.0"   # behavior-driven-development suite
   gem 'rspec'
-  gem 'rspec-html-matchers'
+  gem 'rspec-html-matchers', "0.6.1" # 0.7.0 broke stuff!
 #  gem 'wagn-rspec-formatter', :path=>'/opt/wagn-rspec-formatter'
   gem 'spork', '>=0.9'
   gem 'timecop'
@@ -46,7 +50,6 @@ group :development do
   gem 'capistrano', '3.2.1'  #note - ssh was breaking on 3.3.3
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
-
 end
 
 group :test, :development do
