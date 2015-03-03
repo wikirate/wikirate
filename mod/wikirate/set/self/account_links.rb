@@ -14,9 +14,9 @@ format :html do
     else
       klasses = 'logged-out'
       if Card.new(:type_id=>Card::SignupID).ok? :create
-        links << link_to( 'Join', card_path('new/:signup'), :id=>'signup-link', :class=>'button-primary' )
+        links << link_to( 'Join', card_path('new/:signup'), :id=>'signup-link', :class=>'btn btn-highlight' )
       end
-      links << link_to( 'Log in', card_path(':signin'), :id=>'signin-link', :class=>'button-primary button-secondary' )
+      links << link_to( 'Log in', card_path(':signin'), :id=>'signin-link', :class=>'btn btn-default' )
     end
 
     %{<span id="logging" class="#{klasses}">#{ links.join ' ' }</span>}
