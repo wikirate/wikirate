@@ -63,7 +63,6 @@ class SharedData
 
     # cards for rename_test
     # FIXME: could probably refactor these..
-    Card['A'].delete
     z = Card.create! :name=>"Z", :content=>"I'm here to be referenced to"
     a = Card.create! :name=>"A", :content=>"Alpha [[Z]]"
     b = Card.create! :name=>"B", :content=>"Beta {{Z}}"
@@ -117,7 +116,7 @@ class SharedData
 
 
     ### -------- Notification data ------------
-    Timecop.freeze(Wagn.future_stamp - 1.day) do
+    Timecop.freeze(Cardio.future_stamp - 1.day) do
       # fwiw Timecop is apparently limited by ruby Time object, which goes only to 2037 and back to 1900 or so.
       #  whereas DateTime can represent all dates.
       Card.create! :name=>"John", :type_code=>'user', :subcards=>account_args('+*email'=>'john@user.com', '+*password'=>'john_pass')
