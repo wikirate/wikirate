@@ -42,10 +42,11 @@ end
 format :html do 
   def page_link text, page, current=false, options={}
     @paging_path_args[:offset] = page * @paging_limit
-    options.merge!(:class=>'card-paging-link slotter', :remote => true)
+    filter_args = {}
     [:sort, :cited, :claimed, :company, :topic, :tag].each do |key|
       filter_args[key] = params[key] if params[key].present?
     end
+    options.merge!(:class=>'card-paging-link slotter', :remote => true)
     link_to raw(text), path(@paging_path_args.merge(filter_args)), options
   end
     
