@@ -40,15 +40,15 @@ def sort_query
 end
 
 format :html do 
-  def page_link text, page
+  def page_link text, page, current=false, options={}
     @paging_path_args[:offset] = page * @paging_limit
-    filter_args = {}
+    options.merge!(:class=>'card-paging-link slotter', :remote => true)
     [:sort, :cited, :claimed, :company, :topic, :tag].each do |key|
       filter_args[key] = params[key] if params[key].present?
     end
-    " #{link_to raw(text), path(@paging_path_args.merge(filter_args)), :class=>'card-paging-link slotter', :remote => true} "
+    link_to raw(text), path(@paging_path_args.merge(filter_args)), options
   end
-  
+    
   view :no_search_results do |args|
     %{ 
       <div class="search-no-results">
