@@ -48,8 +48,8 @@ namespace :wikirate do
         ActiveRecord::Base.connection.execute 'drop table card_revisions'
         ActiveRecord::Base.connection.execute 'drop table users'
         ActiveRecord::Base.connection.execute 'delete from sessions'
-        ActiveRecord::Base.connection.execute "delete ca from cards ca inner join cards le ON ca.left_id = le.id where le.type_id in ('631' '651' '699' '974' '1010' '1109' '1591' '1638' '1690' '2207' '2317' '2327' '2754' '2755' '2813' '2995' '4010' '4030')" # delete all webpage++link
-        ActiveRecord::Base.connection.execute "delete from cards where type_id in ('631' '651' '699' '974' '1010' '1109' '1591' '1638' '1690' '2207' '2317' '2327' '2754' '2755' '2813' '2995' '4010' '4030')"
+        ActiveRecord::Base.connection.execute "delete ca from cards ca inner join cards le ON ca.left_id = le.id where le.type_id in ('631' '651' '699' '974' '1010' '1109' '1591' '1638' '1690' '2207' '2317' '2327' '2754' '2755' '2813' '2995' '4010' '4030') and ca.created_at < '2014'" # delete all webpage++link
+        ActiveRecord::Base.connection.execute "delete from cards where type_id in ('631' '651' '699' '974' '1010' '1109' '1591' '1638' '1690' '2207' '2317' '2327' '2754' '2755' '2813' '2995' '4010' '4030') and created_at < '2014'"
         puts "clean database"
         Rake::Task['wagn:bootstrap:clean'].invoke
         puts "add test data"
