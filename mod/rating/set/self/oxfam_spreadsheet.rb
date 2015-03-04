@@ -84,7 +84,6 @@ class Sheet
     path = filecard.attach.path
     xlsx = Roo::Excelx.new(path)
     @sheet      = xlsx.sheet(@category)
-#    binding.pry
     @sheet_map  = MAP['DEFAULT'].merge(MAP[@category] || {})
     @metric_map = METRIC_MAP['DEFAULT'].merge(METRIC_MAP[@category] || {})
   
