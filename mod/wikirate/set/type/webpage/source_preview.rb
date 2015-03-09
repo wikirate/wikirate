@@ -169,7 +169,7 @@ format :html do
 
       result = %{
         <div id="source-page-link" class="mark-irrelevant-button" >
-          <a href="/#{source_page_name}" id="source-page-button" target="_blank">
+          <a href="/#{source_page_name}?layout=wikirate layout" id="source-page-button" target="_blank">
             Source Details
             <i class="fa fa-chevron-circle-right"></i>
           </a>
