@@ -28,7 +28,7 @@ Alternatively, you can use the shorter commands `wagn rs` and `wagn cc`
 To update the test data from the dev site run
 ```sh
 cap staging pull_db
-rake wikirate:test:update_seed_data
+env RAILS_ENV=test rake wikirate:test:update_seed_data
 ```
 
 This updates the mysql dump in  test/wikiratetest.db that is also used for

@@ -125,8 +125,8 @@ GEM
       launchy (~> 2.1)
       mail (~> 2.2)
     erubis (2.7.0)
-    execjs (2.3.0)
-    fastimage (1.6.7)
+    execjs (2.4.0)
+    fastimage (1.6.8)
       addressable (~> 2.3, >= 2.3.5)
     ffi (1.9.6)
     gherkin (2.12.2)
@@ -269,7 +269,7 @@ GEM
       activesupport
       htmlentities (~> 4.3.0)
     spork (0.9.2)
-    spreadsheet (1.0.1)
+    spreadsheet (1.0.2)
       ruby-ole (>= 1.0)
     sprockets (2.2.3)
       hike (~> 1.2)
@@ -298,7 +298,7 @@ GEM
       json (>= 1.8.0)
     uuid (2.3.7)
       macaddr (~> 1.0)
-    video_info (2.4.0)
+    video_info (2.4.1)
       addressable
       htmlentities
       multi_json
