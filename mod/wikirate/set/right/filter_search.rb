@@ -32,10 +32,10 @@ end
 
 
 def sort_query
-  if Env.params[:sort] == 'important'
-    {:sort => {"right"=>"*vote count"}, "sort_as"=>"integer","dir"=>"desc"}
-  else
+  if Env.params[:sort] == 'recent'
     {:sort => "update" }
+  else
+    {:sort => {"right"=>"*vote count"}, "sort_as"=>"integer","dir"=>"desc"}
   end    
 end
 
@@ -75,7 +75,7 @@ format :html do
   end
   
   view :sort_fieldset do |args|
-    select_filter 'sort',  options_for_select({'Most Recent'=>'recent', 'Most Important'=>'important'}, params[:sort] || 'recent')
+    select_filter 'sort',  options_for_select({'Most Important'=>'important','Most Recent'=>'recent'}, params[:sort] || 'important')
   end
   
   view :cited_fieldset do |args|
