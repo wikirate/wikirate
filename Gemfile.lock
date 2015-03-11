@@ -4,7 +4,6 @@ PATH
     card (1.15.pre)
       airbrake (~> 4.1)
       bootstrap-kaminari-views (~> 0.0.5)
-      cocaine (~> 0.5.5)
       coderay (~> 1.0)
       coffee-script (~> 2.2)
       diff-lcs (~> 1.2)
