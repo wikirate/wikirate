@@ -39,34 +39,32 @@ namespace :wikirate do
           card.destroy
         end
         Rake::Task['wagn:migrate'].invoke
-        # binding.pry
+        
+        # select 5 companies and topics
         companies = [Card["Apple"],Card["Amazon"],Card["Samsung"],Card["Siemens"],Card["Sony Corporation"]]
         topics = [Card["Natural Resource Use"],Card["Community"],Card["Human Rights"],Card["Climate Change"],Card["Animal Welfare"]]
 
         company_ids = ""
         topic_ids = ""
 
-        company_names = ""
-        topic_names = ""
+        company_names = Array.new
+        topic_names = Array.new
 
         companies.each do |company|
           company_ids += "#{company.id},"
-          company_names+=",#{company.name}"
+          company_names.push company.name
         end
 
         topics.each do |topic|
           topic_ids += "#{topic.id},"
-          topic_names+=",#{topic.name}"
+          topic_names.push topic.name
         end
-
-
 
         card_to_be_kept = ""
 
-
-        company_related_article = Card.search :type=>"Analysis",:left=>["in#{company_names}"]
-        topic_related_article = Card.search :type=>"Analysis",:right=>["in#{topic_names}"]
-
+        company_related_article = Card.search :type=>"Analysis",:left=>{:name=> company_names.unshift("in")}
+        topic_related_article = Card.search :type=>"Analysis",:right=>{:name=>topic_names.unshift("in")}
+        
         (companies + topics ).each do |c|
           search_args = {:type=>["in","claim","page"]}
           query = Card.tag_filter_query(c.name, search_args,['company','topic'])
@@ -89,15 +87,15 @@ namespace :wikirate do
         ActiveRecord::Base.connection.execute 'drop table card_revisions'
         ActiveRecord::Base.connection.execute 'drop table users'
         ActiveRecord::Base.connection.execute 'delete from sessions'
-        binding.pry
+        
         # delete companies
         ActiveRecord::Base.connection.execute "delete from cards where type_id = '651' and id not in ( #{company_ids[0...-1]} )"
         # delete topics
         ActiveRecord::Base.connection.execute "delete from cards where type_id = '1010' and id not in ( #{topic_ids[0...-1]} )"
 
         # delete all webpage++link
-        ActiveRecord::Base.connection.execute "delete ca from cards ca inner join cards le ON ca.left_id = le.id where le.type_id in ('631' '651' '699' '974' '1010' '1109' '1591' '1638' '1690' '2207' '2317' '2327' '2754' '2755' '2813' '2995' '4010' '4030') and ca.id not in  ( #{card_to_be_kept[0...-1]} )" 
-        ActiveRecord::Base.connection.execute "delete from cards where type_id in ('631' '699' '974' '1109' '1591' '1638' '1690' '2207' '2317' '2327' '2754' '2755' '2813' '2995' '4010' '4030') and id not in ( #{card_to_be_kept[0...-1]} )"
+        ActiveRecord::Base.connection.execute "delete ca from cards ca inner join cards le ON ca.left_id = le.id where le.type_id in ('631','651','699','974','1010','1109','1591','1638','1690','2207','2317','2327','2754','2755','2813','2995','4010','4030') and ca.id not in  ( #{card_to_be_kept[0...-1]} )" 
+        ActiveRecord::Base.connection.execute "delete from cards where type_id in ('631','699','974','1109','1591','1638','1690','2207','2317','2327','2754','2755','2813','2995','4010','4030') and id not in ( #{card_to_be_kept[0...-1]} )"
         puts "clean database"
         Rake::Task['wagn:bootstrap:clean'].invoke
         puts "add test data"
@@ -105,6 +103,7 @@ namespace :wikirate do
         SharedData.add_test_data
         puts "mysqldump #{mysql_args} #{test_database} > #{db_path}"
         system "mysqldump #{mysql_args} #{test_database} > #{db_path}"
+        # prevent from looping
         exit
       end
     end
