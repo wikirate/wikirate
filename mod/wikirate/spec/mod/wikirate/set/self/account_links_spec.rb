@@ -8,18 +8,23 @@ describe Card::Set::Self::AccountLinks do
   describe "raw view" do
     context "when the user signed in" do
       it do
-        login_as 'Anonymous' 
-        expected_html = %{<span id=\"logging\" class=\"logged-out\"><a class=\"btn btn-highlight\" href=\"/new/:signup\" id=\"signup-link\">Join</a> <a class=\"btn btn-default\" href=\"/:signin\" id=\"signin-link\">Log in</a></span>}
-        expect(@account_link.format(:format=>:html).render_raw.squish).to eq(expected_html.squish)
-        
+        login_as 'Anonymous'
+        rendered_html = @account_link.format(:format=>:html).render_raw 
+
+        expect(rendered_html).to have_tag("span", :with=>{:id=>"logging",:class=>"logged-out"}) do
+          with_tag "a", :with=>{ :id=>"signup-link", :href=>"/new/:signup" }, :text=>"Join"
+          with_tag "a", :with=>{ :id=>"signin-link", :href=>"/:signin" }, :text=>"Log in"
+        end
       end
     end
      context "when the user did not sign in" do
       it do
         login_as 'joe_user'
-        expected_html = %{<span id=\"logging\" class=\"logged-in\"><a class=\"known-card\" href=\"/Joe_User\" id=\"my-card-link\">Joe User</a> <a href=\"/new/:signup\" id=\"invite-a-friend-link\">Invite</a> <a href=\"/delete/:signin\" id=\"signout-link\">Log out</a></span>}
-        expect(@account_link.format(:format=>:html).render_raw.squish).to eq(expected_html.squish) 
-        
+        expect(@account_link.format(:format=>:html).render_raw).to have_tag("span", :with=>{:id=>"logging",:class=>"logged-in"}) do
+          with_tag "a", :with=>{ :id=>"my-card-link", :href=>"/Joe_User" }, :text=>"Joe User"
+          with_tag "a", :with=>{ :id=>"invite-a-friend-link", :href=>"/new/:signup" }, :text=>"Invite"
+          with_tag "a", :with=>{ :id=>"signout-link", :href=>"/delete/:signin" }, :text=>"Log out"
+        end
       end
     end
   end
