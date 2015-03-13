@@ -9,7 +9,7 @@ describe Card::Set::Self::AccountLinks do
     context "when the user signed in" do
       it do
         login_as 'Anonymous' 
-        expected_html = %{<span id=\"logging\" class=\"logged-out\"><a class=\"button-primary\" href=\"/new/:signup\" id=\"signup-link\">Join</a> <a class=\"button-primary button-secondary\" href=\"/:signin\" id=\"signin-link\">Log in</a></span>}
+        expected_html = %{<span id=\"logging\" class=\"logged-out\"><a class=\"btn btn-highlight\" href=\"/new/:signup\" id=\"signup-link\">Join</a> <a class=\"btn btn-default\" href=\"/:signin\" id=\"signin-link\">Log in</a></span>}
         expect(@account_link.format(:format=>:html).render_raw.squish).to eq(expected_html.squish)
         
       end

@@ -5,7 +5,7 @@ view :missing do |args|
   _render_link args
 end
 
-def indirect_contributer_search_args
+def indirect_contributor_search_args
   [
     {:type=>'claim', :plus=>['company',:link_to=>self.name]},
     {:type=>'page', :plus=>['company',:link_to=>self.name]},

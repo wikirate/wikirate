@@ -20,7 +20,7 @@ describe Card::Set::Right::CitedClaims do
       
       html = @sample_analysis.format.render_core
       expect(html.squish).to include(%{<span class="cited-claim-number">1</span> <div id="whateverclaim"})
-      expect(html.squish).to include(%{<i class=\"fa fa-clipboard claim-clipboard\" id=\"copy-button\" title=\"copy claim citation to clipboard\" data-clipboard-text=\"Death Star uses dark side of the Force {{Death Star uses dark side of the Force|cite}}\"></i> <div id=\"Death_Star_uses_dark_side_of_the_Force\"})
+      expect(html.squish).to include(%{<a class="cite-button" href="/Death_Star+Force?citable=Death_Star_uses_dark_side_of_the_Force&amp;edit_article=true">Cite!</a>})
 
     end
   end
