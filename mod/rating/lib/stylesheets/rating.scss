@@ -1,0 +1,129 @@
+.wiki {
+  float:left;
+  width: 50%;
+  .yinyang {
+    color: #ddd;
+    float: right;
+    font-size: 30px;
+  }
+}
+
+
+
+.rate{
+  float:left;
+  width: 50%;
+  background: #ddd;
+
+  .yinyang {
+    float: left;
+    color: #fff;
+    font-size: 30px;
+  }
+}
+
+
+.present-message {
+  display: none;
+}
+
+.empty-message {
+  padding: 15px;
+  border: 1px dashed #ccc;
+  text-align: center;
+}
+.list-drag-and-drop {
+  //border: 2px dashed #000;
+  margin: 10px;
+  padding: 5px;
+  background: #fff;
+  .list-group-item {
+    padding: 0;
+  }
+}
+
+.drag-item {
+  .header {
+    height: 100%;
+    float: left;
+    width: 70%;
+    border-right: 1px solid #ddd;
+  
+    .handle {
+      float: left;
+      margin-top: 20px;
+    }
+    .glyphicon-option-vertical.left {
+      margin-right: -4px;
+    }
+    .glyphicon-option-vertical.right {
+      margin-left: -4px;
+    }
+    button.vote-button {
+        width: 17px;
+        height: 17px;
+        padding: 0;
+        border: none;
+    }
+    .vote-count {
+        width: 20px;
+        height: 15px;
+    }
+    .title {
+      padding-top: 20px;
+      
+      .name {
+        padding-top: 15px;
+        padding-left: 10px;
+        font-size: 14px;
+      }
+    }
+  }
+  .data {
+    margin-top: 15px;
+    padding-left: 20px;
+    width: 30%;
+    height: 100%;
+    float: left;
+    height:100%;
+  }
+  
+  .details {
+    clear: both;
+  }
+  .details-toggle {
+    float: right;
+  }
+}
+
+.metric-item {
+  float:left; 
+  //height: 60px;
+  width: 100%;
+  background:#fff;
+}
+
+
+
+.metric-year {
+  font-size: 14px;
+  color: gray;
+}
+.metric-value {
+  color: blue;
+  font-size: 18px;
+}
+
+
+.votee-filter {
+  background: #ccc;
+  padding: 5px;
+  text-align: center;
+}
+.filter-details {
+  display: none;
+}
+.filter-toggle {
+  float: right;
+}
+
