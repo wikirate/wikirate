@@ -4,14 +4,10 @@ handleDropEvent = ( event, ui ) ->
   if $(this).attr('data-bucket-name') != $(old_list).attr('data-bucket-name')    
     # ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
     drag_item.draggable( 'option', 'revert', false );
-    if old_list.find('.drag-item').length == 1
-      old_list.find('.empty-message').show()
-    if old_list.find('.drag-item').length == 2
-      old_list.find('.unsaved-message').hide()
+      
     $(this).append(drag_item)
+    updateHints(old_list, this)
     drag_item.attr("style","")
-    $(this).find('.empty-message').hide()
-    $(this).find('.unsaved-message').show()
 
     vote = drag_item.find('.vote-count') 
     update_path = drag_item.attr('data-update-path') + '&' + $(this).attr('data-query')
@@ -26,73 +22,79 @@ $('.list-drag-and-drop').droppable
 $('.drag-item').draggable
   revert: true
 
+updateHints = (old_list, new_list) ->
+  if $(old_list).find('.drag-item').length == 0
+    $(old_list).find('.unsaved-message').hide()
+    $(old_list).find('.empty-message').show()
+  $(new_list).find('.empty-message').hide()
+  $(new_list).find('.unsaved-message').show()
 
 # vote buttons
 
 drop_list = (votee, vote_type) ->
   $(votee).closest('.voting').find(".list-drag-and-drop[data-bucket-name=#{vote_type}]")
-
-$('body').on 'click', '.list-drag-and-drop[data-bucket-name=no_vote] .drag-item .vote-up button.vote-link', ->
-  console.log "no -> up"
-  drag_up = $(this).closest('.drag-item')
-  $(drop_list(drag_up, 'up_vote')).append(drag_up)
-
-$('body').on 'click', '.list-drag-and-drop[data-bucket-name=down_vote] .drag-item .vote-up button.vote-link', ->
-  console.log "down -> no"
-  drag_up = $(this).closest('.drag-item')
-  $(drop_list(drag_up, 'no_vote')).append(drag_up)
-
-$('body').on 'click', '.list-drag-and-drop[data-bucket-name=up_vote] .drag-item .vote-down button.vote-link', ->
-  console.log "up -> no"
-  drag_down = $(this).closest('.drag-item')
-  $(drop_list(drag_down, 'no_vote')).prepend(drag_down)
-
-$('body').on 'click', '.list-drag-and-drop[data-bucket-name=no_vote] .drag-item .vote-down button.vote-link', ->
-  console.log "no -> down"
-  drag_down = $(this).closest('.drag-item')
-  $(drop_list(drag_down, 'down_vote')).prepend(drag_down)
-
-# filter
-
-$('body').on 'click','.filter-toggle', ->
-  parent = $(this).parent()
-  $(this).find('.glyphicon').toggleClass('glyphicon-triangle-bottom','glyphicon-triangle-right')
-  details = $(parent).find('.filter-details').toggle()
   
+appendDragItem = (vote_type, vote_button) ->
+  drag_item = $(vote_button).closest('.drag-item')
+  old_list = drag_item.parent()
+  new_list = drop_list(drag_item, vote_type)
+  $(new_list).append(drag_item)
+  updateHints(old_list, new_list)
+
+prependDragItem = (vote_type, vote_button) ->
+  drag_item = $(vote_button).closest('.drag-item')
+  old_list = drag_item.parent()
+  new_list = drop_list(drag_item, vote_type)
+  $(new_list).prepend(drag_item)
+  updateHints(old_list, new_list)
+
+
+# no vote -> up vote
+$('body').on 'click', '.list-drag-and-drop[data-bucket-name=no_vote] .drag-item .vote-up button.vote-link', ->
+  appendDragItem('up_vote', this)
+
+# down vote -> no vote
+$('body').on 'click', '.list-drag-and-drop[data-bucket-name=down_vote] .drag-item .vote-up button.vote-link', ->
+  appendDragItem('no_vote', this)
+
+# up vote -> no vote
+$('body').on 'click', '.list-drag-and-drop[data-bucket-name=up_vote] .drag-item .vote-down button.vote-link', ->
+  prependDragItem('no_vote', this)
+
+# no vote -> down vote
+$('body').on 'click', '.list-drag-and-drop[data-bucket-name=no_vote] .drag-item .vote-down button.vote-link', ->
+  prependDragItem('down_vote', this)
+
+  
+# details toggle
 $('body').on 'click','.details-toggle', ->
-  item = $(this).closest('.drag-item')
   $(this).find('.glyphicon').toggleClass('glyphicon-triangle-bottom','glyphicon-triangle-right')
-  card_name = $(item).attr('id')
-  details = $(item).find('.details')
+  details = $(this).closest('.drag-item').find('.details')
   if !$.trim(details.html()) # empty
+    card_name = $(this).closest('.card-slot').attr('id')
     view = $(this).attr('data-view') || 'content'
-    load_path = "/#{card_name}+#{$(this).attr('data-append')}?view=#{view}"
-    console.log("loal #{load_path}")
+    right_name = $(this).attr('data-append')
+    load_path = "/#{card_name}+#{right_name}?view=#{view}"
     $(details).load load_path
   else if $(details).is(':visible')
     $(details).hide()
   else
     $(details).show()
-  
+
+
+# filter
+
+$('body').on 'click','.filter-toggle', ->
+  $(this).find('.glyphicon').toggleClass('glyphicon-triangle-bottom','glyphicon-triangle-right')
+  $(this).parent().find('.filter-details').toggle()
 
 $('button.recent').on 'click', ->
-  console.log "order by recent"
-  $(this).closest('.voting').find('.list-drag-and-drop[data-bucket-name=no_vote] .drag-item').sortElements( (a, b) ->
-    if $(a).attr('data-sort-recent') > $(b).attr('data-sort-recent') 
-      -1 
-    else
-      1
-  )
+  $(this).closest('.voting').find('.list-drag-and-drop[data-bucket-name=no_vote] .drag-item').sortElements (a, b) ->
+    if $(a).attr('data-sort-recent') > $(b).attr('data-sort-recent') then -1 else 1
 
 $('button.importance').on 'click', ->
-  console.log "order by importance"
-  $(this).closest('.voting').find('.list-drag-and-drop[data-bucket-name=no_vote] .drag-item').sortElements( (a, b) ->
-    if $(a).attr('data-sort-importance') > $(b).attr('data-sort-importance') 
-      -1
-    else
-      1
-  )
-
+  $(this).closest('.voting').find('.list-drag-and-drop[data-bucket-name=no_vote] .drag-item').sortElements (a, b) ->
+    if $(a).attr('data-sort-importance') > $(b).attr('data-sort-importance') then -1 else 1
 
 ###*
 # jQuery.fn.sortElements

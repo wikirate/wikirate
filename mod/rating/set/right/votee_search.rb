@@ -37,12 +37,17 @@ end
 format :html do
   include Right::NonVoteeSearch::HtmlFormat
   
-  def default_drag_and_drop_list_args args
+  def default_drag_and_drop_args args
     super(args)
-    if !Card::Auth.signed_in? && ( unsaved = Card.fetch("#{card.cardname.parts[-2]}+#{Card[:unsaved_list]}") )
-      args[:unsaved] = subformat(unsaved).render_core(args)
+    if !Card::Auth.signed_in? 
+      args[:unsaved] = 
+        if ( unsaved = Card.fetch("#{card.cardname.parts[-2]}+#{Card[:unsaved_list].name}") )
+          subformat(unsaved).render_core(args)
+        else
+          subformat(Card[:unsaved_list]).render_core(args)
+        end
     end
-    if ( empty = Card.fetch("#{card.cardname.parts[-2]}+#{Card[:empty_list]}") )
+    if ( empty = Card.fetch("#{card.cardname.parts[-2]}+#{Card[:empty_list].name}") )
       args[:empty] = subformat(empty).render_core(args)
     end
 

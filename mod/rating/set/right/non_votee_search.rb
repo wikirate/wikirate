@@ -26,13 +26,8 @@ end
 
 
 format :html do
-  def default_drag_and_drop_list_args args
-    args[:unsaved] ||= 
-      if !Card::Auth.signed_in? && (unsaved = Card[:unsaved_list])
-        subformat(unsaved).render_core(args)
-      else
-        ''
-      end
+  def default_drag_and_drop_args args
+    args[:unsaved] ||= ''
     args[:empty] ||=       
       if ( empty = Card[:empty_list] )
         subformat(empty).render_core(args)
