@@ -14,37 +14,6 @@ describe Card::Set::Right::FilterSearch do
 
         html = html.squish
 
-        # sort_html = %{<fieldset >
-        #   <legend>
-        #     <h2>Sort</h2>
-
-        #   </legend>
-        #   <div class="editor"><select id="sort" name="sort">
-        #   <option value="important" selected="selected">Most Important</option>
-        #   <option value="recent">Most Recent</option></select></div>
-        #   </fieldset>
-        #   }
-        # claimed_html = %{<fieldset >
-        #   <legend>
-        #     <h2>Claimed</h2>
-
-        #   </legend>
-        #   <div class="editor"><select id="claimed" name="claimed"><option value="all" selected="selected">All</option>
-        #   <option value="yes">Yes</option>
-        #   <option value="no">No</option></select></div>
-        #   </fieldset>
-        #   }
-        # cited_html = %{
-        #     <fieldset >
-        #   <legend>
-        #     <h2>Cited</h2>
-
-        #   </legend>
-        #   <div class="editor"><select id="cited" name="cited"><option value="all" selected="selected">All</option>
-        #   <option value="yes">Yes</option>
-        #   <option value="no">No</option></select></div>
-        #   </fieldset>
-        #   }
         expect(html).to have_tag("div",:with=>{:class=>"editor"}) do
           with_tag "select", :with=>{:id=>"sort"} do
             with_tag "option", :with=>{:value=>"important",:selected=>"selected"},:text=>"Most Important"
