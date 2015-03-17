@@ -75,7 +75,7 @@ namespace :wikirate do
         end
 
         (company_related_article + topic_related_article).each do |c|
-          card_to_be_kept.push card.id
+          card_to_be_kept.push c.id
         end
 
         card_id_to_be_kept = card_to_be_kept.join(",")
@@ -83,8 +83,7 @@ namespace :wikirate do
         type_ids = %w{ Claim Company Market Issue Topic Analysis Task Newspaper Book Activists Donor Website Person Institution Donor Status Organization Periodical Page  }.map do |typename|
           id = Card.fetch_id(typename)
           "'#{id}'" if id
-        end
-        type_ids.reject! { |c| c == nil }
+        end.compact
         type_ids_str = type_ids.join(",")
         
         type_ids.delete("'#{Card::WikirateCompanyID}'")
