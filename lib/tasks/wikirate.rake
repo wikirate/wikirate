@@ -88,6 +88,9 @@ namespace :wikirate do
             end
           end
         end
+        vote_ids = %w{ *upvotes *downvotes }.map do |vote_name|
+          "'#{Card.fetch_id(vote_name)}'"
+        end.join ','
 
         ActiveRecord::Base.connection.execute 'delete from card_revisions'
         #ActiveRecord::Base.connection.execute 'delete from card_actions'
@@ -107,6 +110,8 @@ namespace :wikirate do
         # delete all webpage++link
         ActiveRecord::Base.connection.execute "delete ca from cards ca inner join cards le ON ca.left_id = le.id where le.type_id in (#{type_ids[0...-1]}) and ca.id not in  ( #{card_to_be_kept[0...-1]} )" 
         ActiveRecord::Base.connection.execute "delete from cards where type_id in (#{type_ids_without_company_and_topic[0...-1]}) and id not in ( #{card_to_be_kept[0...-1]} )"
+        ActiveRecord::Base.connection.execute "delete from cards where right_id in (#{vote_ids})"
+
         puts "clean database"
         Rake::Task['wagn:bootstrap:clean'].invoke
         puts "add test data"
