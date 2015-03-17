@@ -14,52 +14,41 @@ describe Card::Set::Right::FilterSearch do
 
         html = html.squish
 
-        sort_html = %{<fieldset >
-          <legend>
-            <h2>Sort</h2>
+        expect(html).to have_tag("div",:with=>{:class=>"editor"}) do
+          with_tag "select", :with=>{:id=>"sort"} do
+            with_tag "option", :with=>{:value=>"important",:selected=>"selected"},:text=>"Most Important"
+            with_tag "option", :with=>{:value=>"recent"},:without=>{:selected=>"selected"},:text=>"Most Recent"
+          end
+        end
+        expect(html).to have_tag("div",:with=>{:class=>"editor"}) do
+          with_tag "select", :with=>{:id=>"claimed"} do
+            with_tag "option", :with=>{:value=>"all",:selected=>"selected"},:text=>"All"
+            with_tag "option", :with=>{:value=>"yes"},:without=>{:selected=>"selected"},:text=>"Yes"
+            with_tag "option", :with=>{:value=>"no"},:without=>{:selected=>"selected"},:text=>"No"
+          end
+        end
+         expect(html).to have_tag("div",:with=>{:class=>"editor"}) do
+          with_tag "select", :with=>{:id=>"cited"} do
+            with_tag "option", :with=>{:value=>"all",:selected=>"selected"},:text=>"All"
+            with_tag "option", :with=>{:value=>"yes"},:without=>{:selected=>"selected"},:text=>"Yes"
+            with_tag "option", :with=>{:value=>"no"},:without=>{:selected=>"selected"},:text=>"No"
+          end
+        end
 
-          </legend>
-          <div class="editor"><select id="sort" name="sort"><option value="recent" selected="selected">Most Recent</option>
-          <option value="important">Most Important</option></select></div>
-          </fieldset>
-          }
-        claimed_html = %{<fieldset >
-          <legend>
-            <h2>Claimed</h2>
+        expect(html).to have_tag "form",:with=>{:action=>"/Claim",:method=>"GET"}
 
-          </legend>
-          <div class="editor"><select id="claimed" name="claimed"><option value="all" selected="selected">All</option>
-          <option value="yes">Yes</option>
-          <option value="no">No</option></select></div>
-          </fieldset>
-          }
-        cited_html = %{
-            <fieldset >
-          <legend>
-            <h2>Cited</h2>
-
-          </legend>
-          <div class="editor"><select id="cited" name="cited"><option value="all" selected="selected">All</option>
-          <option value="yes">Yes</option>
-          <option value="no">No</option></select></div>
-          </fieldset>
-          }
-
-        expect(html).to include(sort_html.squish)
-        expect(html).to include(claimed_html.squish)
-        expect(html).to include(cited_html.squish)
         expect(html).to include(format.render_company_fieldset.squish)
         expect(html).to include(format.render_topic_fieldset.squish)
         expect(html).to include(format.render_tag_fieldset.squish)
 
-        expect(html.start_with?(%{<form action="/Claim" method="GET">})).to be true
+        
       end
       it "shows Source for action 'Page'" do 
         filter_search_card = Card.fetch "Page+filter_search"
         format = filter_search_card.format
         html = format.render_filter_form
-        html = html.squish
-        expect(html.start_with?(%{<form action="/Source" method="GET">})).to be true
+        expect(html).to have_tag "form",:with=>{:action=>"/Source",:method=>"GET"}
+        
       end
       context "when rendering with parameters" do
         before do
