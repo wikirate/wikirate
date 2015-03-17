@@ -60,7 +60,7 @@ namespace :wikirate do
           topic_names.push topic.name
         end
 
-        card_to_be_kept = ""
+        card_to_be_kept = Array.new
 
         company_related_article = Card.search :type=>"Analysis",:left=>{:name=> company_names.unshift("in")}
         topic_related_article = Card.search :type=>"Analysis",:right=>{:name=>topic_names.unshift("in")}
@@ -70,13 +70,26 @@ namespace :wikirate do
           query = Card.tag_filter_query(c.name, search_args,['company','topic'])
           cards = Card.search query
           cards.each do |card|
-            card_to_be_kept+= "#{card.id},"
+            card_to_be_kept.push card.id
           end
         end
 
         (company_related_article + topic_related_article).each do |c|
-          card_to_be_kept+= "#{c.id},"
+          card_to_be_kept.push c.id
         end
+
+        card_id_to_be_kept = card_to_be_kept.join(",")
+
+        type_ids = %w{ Claim Company Market Issue Topic Analysis Task Newspaper Book Activists Donor Website Person Institution Donor Status Organization Periodical Page  }.map do |typename|
+          id = Card.fetch_id(typename)
+          "'#{id}'" if id
+        end.compact
+        type_ids_str = type_ids.join(",")
+        
+        type_ids.delete("'#{Card::WikirateCompanyID}'")
+        type_ids.delete("'#{Card::WikirateTopicID}'")
+
+        type_ids_without_company_and_topic = type_ids.join(",")
 
         ActiveRecord::Base.connection.execute 'delete from card_revisions'
         #ActiveRecord::Base.connection.execute 'delete from card_actions'
@@ -89,13 +102,13 @@ namespace :wikirate do
         ActiveRecord::Base.connection.execute 'delete from sessions'
         
         # delete companies
-        ActiveRecord::Base.connection.execute "delete from cards where type_id = '651' and id not in ( #{company_ids[0...-1]} )"
+        ActiveRecord::Base.connection.execute "delete from cards where type_id = '#{Card::WikirateCompanyID}' and id not in ( #{company_ids[0...-1]} )"
         # delete topics
-        ActiveRecord::Base.connection.execute "delete from cards where type_id = '1010' and id not in ( #{topic_ids[0...-1]} )"
+        ActiveRecord::Base.connection.execute "delete from cards where type_id = '#{Card::WikirateTopicID}' and id not in ( #{topic_ids[0...-1]} )"
 
         # delete all webpage++link
-        ActiveRecord::Base.connection.execute "delete ca from cards ca inner join cards le ON ca.left_id = le.id where le.type_id in ('631','651','699','974','1010','1109','1591','1638','1690','2207','2317','2327','2754','2755','2813','2995','4010','4030') and ca.id not in  ( #{card_to_be_kept[0...-1]} )" 
-        ActiveRecord::Base.connection.execute "delete from cards where type_id in ('631','699','974','1109','1591','1638','1690','2207','2317','2327','2754','2755','2813','2995','4010','4030') and id not in ( #{card_to_be_kept[0...-1]} )"
+        ActiveRecord::Base.connection.execute "delete ca from cards ca inner join cards le ON ca.left_id = le.id where le.type_id in (#{type_ids_str}) and ca.id not in  ( #{card_id_to_be_kept} )" 
+        ActiveRecord::Base.connection.execute "delete from cards where type_id in (#{type_ids_without_company_and_topic}) and id not in ( #{card_id_to_be_kept} )"
         puts "clean database"
         Rake::Task['wagn:bootstrap:clean'].invoke
         puts "add test data"
