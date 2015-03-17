@@ -13,6 +13,7 @@ def update_direct_contribution_count
 end
 
 def update_contribution_count
+#  binding.pry
   update_direct_contribution_count
   return unless respond_to?(:contribution_count)
   new_contr_count = if respond_to? :direct_contribution_count
@@ -21,11 +22,11 @@ def update_contribution_count
       0
     end
     
-  if respond_to? :indirect_contributer_search_args
-    indirect_contributer = indirect_contributer_search_args.inject([]) do |cards, search_args|
+  if respond_to? :indirect_contributor_search_args
+    indirect_contributor = indirect_contributor_search_args.inject([]) do |cards, search_args|
       cards += Card.search(search_args)
     end
-    new_contr_count += indirect_contributer.inject(0) do |res,c_card| 
+    new_contr_count += indirect_contributor.inject(0) do |res,c_card|
       res += if c_card.respond_to?(:contribution_count)
         c_card.contribution_count.to_i
       elsif c_card.respond_to?(:direct_contribution_count)
@@ -34,7 +35,7 @@ def update_contribution_count
          Card::Act.find_all_with_actions_on(c_card.id).count
       end
     end
-    #new_contr_count += Card::Act.find_all_with_actions_on(indirect_contributer_ids).count
+    #new_contr_count += Card::Act.find_all_with_actions_on(indirect_contributor_ids).count
   end
   Card::Auth.as_bot do
     if contribution_count_card.new_card?

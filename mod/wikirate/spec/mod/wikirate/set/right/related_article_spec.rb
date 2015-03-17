@@ -42,7 +42,6 @@ describe Card::Set::Right::RelatedArticles do
           with_tag "span", :text=>"Force"
         end
       end
-      # binding.pry
       expect(html).to have_tag("div",:with=>{:class=>"related-articles uncited-articles"}) do
         # with_tag "h3",:text=>"Articles that <em>could</em> cite this Claim"
         with_tag "div", :with=>{:class=>"analysis-link"} do
