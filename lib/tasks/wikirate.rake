@@ -90,7 +90,7 @@ namespace :wikirate do
         type_ids.delete("'#{Card::WikirateTopicID}'")
         type_ids_without_company_and_topic = type_ids.join(",")
 
-  vote_ids = %w{ *upvotes *downvotes }.map do |vote_name|
+        vote_ids = %w{ *upvotes *downvotes }.map do |vote_name|
           "'#{Card.fetch_id(vote_name)}'"
         end.join ','
 
@@ -144,7 +144,7 @@ namespace :wikirate do
       File.open(Card::Migration.data_path("#{$1}.json"),'w') do |f|
         f.print export.read
       end
-      system "bundle exec wagn generate card_migration #{ENV['name']}"
+      system "bundle exec wagn generate card:migration #{ENV['name']}"
     else
       puts "invalid format: name must match /import_(.*)/"
     end
@@ -163,7 +163,7 @@ namespace :wikirate do
       File.open(Card::Migration.data_path("#{$1}.json"),'w') do |f|
         f.print JSON.pretty_generate(export_hash)
       end
-      system "bundle exec wagn generate card_migration #{ENV['name']}"
+      system "bundle exec wagn generate card:migration #{ENV['name']}"
     else
       puts "invalid format: name must match /import_(.*)/"
     end
