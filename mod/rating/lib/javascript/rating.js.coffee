@@ -1,14 +1,12 @@
 handleDropEvent = ( event, ui ) ->
   drag_item = ui.item 
   new_list = drag_item.parent()
-  if new_list.parent().is(old_list.parent()) 
+  if new_list.parent().is(old_list.parent()) # don't mix topics and metrics
     updateHints(old_list, new_list)
-    $(new_list).find('.empty-message').hide()
-    $(new_list).find('.unsaved-message').show()
-    vote = drag_item.find('.vote-count') 
     update_path = drag_item.attr('data-update-path') + '&' + $(new_list).attr('data-query')
     if next_item = $(drag_item).next('.drag-item')
       update_path += '&insert-before=' + next_item.attr('data-votee-id')
+    vote = drag_item.find('.vote-count') 
     $(vote).closest('.card-slot').load(update_path)
   else
     $( this ).sortable( "cancel" )
@@ -39,6 +37,7 @@ updateHints = (old_list, new_list) ->
     $(old_list).find('.empty-message').show()
   $(new_list).find('.empty-message').hide()
   $(new_list).find('.unsaved-message').show()
+
 
 # vote buttons
 

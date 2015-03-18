@@ -39,8 +39,6 @@ format :html do
         #{timeline_body}
       </div>
     </div>
-    #{ #process_content '{{rating css and js|raw}}'
-    }
     }
   end
 end

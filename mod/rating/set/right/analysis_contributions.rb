@@ -24,6 +24,6 @@ format :html do
     end    
     data << [(source_cnt == '0' ? empty : source_cnt), 'Sources', ('danger' if source_cnt=='0')]
       
-    data.reverse.map {|opts| data_item(*opts)}.join "\n"
+    data.reverse.map {|opts| data_item(*opts)}.join "\n"  # reverse because of float:right
   end
 end
