@@ -7,16 +7,30 @@ format do
           if !Auth.signed_in?
             searched_type_id = Card.fetch(card.cardname.parts[1]).id
             if Env.session[vote_type]
-              Env.session[vote_type].select do |votee_name|
-                (votee = Card.fetch(votee_name)) && votee.type_id == searched_type_id
-              end.map do |votee_name|
-                "#{votee_name}+card.cardname.parts[0]"
-              end
+              Env.session[vote_type].map do |votee_id|
+                if (votee = Card.find(votee_id)) && votee.type_id == searched_type_id
+                  Card.fetch "#{votee.name}+card.cardname.parts[0]"
+                end
+              end.compact
             else
               []
             end
           else
-            super
+            vote_trait = case vote_type
+                         when :up_vote   then 'upvotes'
+                         when :down_vote then 'downvotes'
+                         end       
+            if vote_trait && (vote_card = Auth.current.fetch(:trait=>vote_trait))
+              votee_items = vote_card.item_names
+              # super returns array with votee+company cards
+              # in the topic case these cards are virtual so we can't use left_id
+              # we have to fetch left to get the id
+              super.sort do |x,y|
+                votee_items.index("~#{x.left.id}") <=> votee_items.index("~#{y.left.id}")
+              end
+            else
+              super
+            end
           end
         end
   end

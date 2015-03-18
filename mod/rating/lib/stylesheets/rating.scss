@@ -1,83 +1,89 @@
-.wiki {
-  float:left;
-  width: 50%;
-  .yinyang {
-    color: #ddd;
-    float: right;
-    font-size: 30px;
-  }
-  .drag-item {
-    border-left: 3px solid #2b7ea0;
-  }
-}
+$drag_item_height: 45px;
+$dark_text_color: #999;
+$bright_text_color: #ddd; 
 
-
-
-.rate{
-  float:left;
-  width: 50%;
-  background: #ddd;
-
-  .yinyang {
-    float: left;
-    color: #fff;
-    font-size: 30px;
-  }
-  .drag-item {
-    border-left: 3px solid #AB00FF;
+.yinyang {
+  border-top: 1px solid $bright_text_color;
+  h4 {
+    text-align: center;
+    color: #999;
+    margin-bottom: 10px;
   }
 }
 
-
-.empty-message {
-  padding: 15px;
-  border: 1px dashed #ccc;
+.header-row {
+  font-size: 10px;
+  color: $bright_text_color;
   text-align: center;
+  margin-top: 10px;
+  .header-header {
+    float: left;
+    margin-left: 80px;
+  }
+  .data-header {
+    width :161px;
+    float:right;
+    margin-right: 15px;
+  }
+}
+.empty-message {
+  padding: 5px;
+  border: 1px dashed $bright_text_color;
+  text-align: center;
+  height: 25px;
+  background: #fff;
 }
 .unsaved-message {
   display: none;
+  height: 25px;
 }
 
 .list-drag-and-drop {
-  //border: 2px dashed #000;
+  clear: both;
   margin: 10px;
   padding: 5px;
-  background: #fff;
+  background: none;
+  border: none;
+  box-shadow: none;
+  --webkit-box-shadow: none;
   .list-group-item {
     padding: 0;
+    margin-bottom: 6px;
+    border: 1px solid $bright_text_color;
+    background: rgb(251, 251, 251);
+    color: rgb(204, 204, 204);
   }
 }
 
-.drag-item {
-  
+.drag-item {  
   .header {
-    height: 50px;
+    height: $drag_item_height;
     float: left;
-    width: 70%;
-    border-right: 1px solid #ddd;
-  
+      
     .handle {
       float: left;
-      margin-top: 20px;
+      margin-top: 15px;
+      margin-left: 5px;
     }
-    .glyphicon-option-vertical.left {
-      margin-right: -4px;
-    }
-    .glyphicon-option-vertical.right {
-      margin-left: -4px;
-    }
+
     button.vote-button {
-        width: 17px;
-        height: 17px;
+        color: $bright_text_color;
+        width: 15px;
+        height: 15px;
         padding: 0;
         border: none;
+        box-shadow: none;
+        --webkit-box-shadow: none;
+        background: none;
     }
     .vote-count {
-        width: 20px;
+        color: $bright_text_color;
+        width: 15px;
         height: 15px;
     }
     .title {
-      padding-top: 20px;
+      padding-top: 15px;
+      float: left;
       
       .name {
         padding-top: 15px;
@@ -87,28 +93,16 @@
     }
   }
   .data {
-    margin-top: 15px;
-    padding-left: 20px;
-    width: 30%;
-    height: 100%;
-    float: left;
-    height:100%;
-  }
-  
-  .value {
+    height: $drag_item_height;
     float: right;
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    .label {
-      color: black;
+    width: 161px;
+    height: $drag_item_height;
+    border-left: 1px solid $bright_text_color;
+    
+    .data-item {
+      margin-top: 15px;
+      padding-left: 20px;
     }
-    border-right: 1px solid #ddd;
-  }
-  .analysis-toggle {
-    float: right;
-    width: 10px;
-    height: 50px;
   }
   
   .details {
@@ -119,68 +113,166 @@
   }
 }
 
-.metric-item {
-  float:left; 
-  //height: 60px;
-  width: 100%;
-  background:#fff;
-}
 
-.timeline {
-  .item {
-    float: left;
-    margin: 10px;
-  }
-  .timeline-body {
-    .timeline-row {
-      clear: both;
-      height: 50px;
-      .td {
-        float: left;
-        margin: 10px;
-      }
-    }
-  }
-  .timeline-dot {
-    position: relative;
-    top: 13px;
-    left: 40px;
-    height: 5px;
-    width: 5px;
-    background: gray;
-  }
-  .timeline-line {
-    position: relative;
-    top: 13px;
-    left: 42px;
-    height: 65px;
-    width: 1px;
-    border-left: 1px solid gray;
-  }
-}
-
-
-
-
-.metric-year {
-  font-size: 14px;
-  color: gray;
-}
-.metric-value {
-  color: blue;
-  font-size: 18px;
-}
-
+// filter
 
 .votee-filter {
-  background: #ccc;
+  background: #F2F2F2;
+  color: $dark_text_color;
   padding: 5px;
   text-align: center;
+  font-size: 12px;
+  font-weight: bold;
 }
 .filter-details {
   display: none;
 }
 .filter-toggle {
   float: right;
+}
+
+
+// topic specific 
+
+.wiki {
+  padding-left: 0;
+  padding-right: 0;
+  .yin {
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    color: #ddd;
+    font-size: 50px;
+    line-height: 50px;
+  }
+
+}
+
+.topic-item {
+  .header {
+    border-left: 3px solid #2b7ea0;
+    .title {
+      color: #2b7ea0;
+      font-size: 20px;
+    }
+  }
+  
+  .analysis-toggle {
+    height: $drag_item_height;
+    float: right;
+    padding-top: 15px;
+    width: 10px;
+    height: $drag_item_height;
+  }
+  
+  
+  .contribution {
+    &.danger {
+      border: 1px solid #E06666;
+      background: #EA9999;
+      color: #fff;
+      .name {
+        color: #fff;
+      }
+      .content {
+        padding-top: 6px;
+      }
+    }
+    &.warning {
+      .content {
+        padding-top: 3px;
+      }
+    }
+    float: right;
+    width: 50px;
+    height: $drag_item_height;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    color: #999;
+    .content {
+      padding-top: 10px;
+    }
+    .name {
+      padding-top: 3px;
+      font-size: 11px;
+      color: $bright_text_color;
+      
+      font-weight: normal;
+    }
+    border-right: 1px solid $bright_text_color;
+  }
+}
+
+// metric specific
+
+.rate{
+  padding-left: 0;
+  padding-right: 0;
+  background: #F7F7F7;
+
+  .yang {
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    color: #fff;
+    font-size: 50px;
+    line-height: 50px;
+  }
+}
+
+.metric-item {
+  color: $dark_text_color;
+  float:left; 
+  width: 100%;
+  background:#fff;
+  
+  .metric-year {
+    font-size: 14px;
+    color: $bright_text_color;
+  }
+  .metric-value {
+    color: #674EA7;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .header {
+    border-left: 3px solid #674EA7;
+  }
+  
+  // metric value details
+
+  .timeline {
+    .item {
+      float: left;
+      margin: 10px;
+    }
+    .timeline-body {
+      .timeline-row {
+        clear: both;
+        height: 50px;
+        .td {
+          float: left;
+          margin: 10px;
+        }
+      }
+    }
+    .timeline-dot {
+      position: relative;
+      top: 13px;
+      left: 40px;
+      height: 5px;
+      width: 5px;
+      background: gray;
+    }
+    .timeline-line {
+      position: relative;
+      top: 13px;
+      left: 42px;
+      height: 65px;
+      width: 1px;
+      border-left: 1px solid gray;
+    }
+  }
 }
 

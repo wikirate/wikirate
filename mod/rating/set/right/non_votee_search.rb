@@ -8,12 +8,12 @@ format do
         result = super
         
         if !Auth.signed_in?
-          searched_type_id = Card.fetch(card.cardname.parts[1]).id
+          #searched_type_id = Card.fetch(card.cardname.parts[1]).id
           [:up_vote, :down_vote].each do |bucket|    
             if Env.session[bucket]
               result.reject! do |votee_plus_company|
                 votee_name = votee_plus_company.to_name.left
-                (votee = Card.fetch(votee_name)) && votee.type_id == searched_type_id
+                (votee_id = Card.fetch_id(votee_name)) && Env.session[bucket].include?(votee_id)#type_id == searched_type_id
               end
             end
           end
@@ -49,7 +49,8 @@ format :html do
             votee.updated_at.to_i
           end          
 
-        draggable nest(votee_plus_company), :update_path => votee.vote_count_card.format.vote_path, 
+        draggable nest(votee_plus_company), :votee_id => votee.id,
+                                            :update_path => votee.vote_count_card.format.vote_path, 
                                             :sort => {:importance=>votee.vote_count, :recent=>updated_at}
                                       
       end.join("\n").html_safe
@@ -71,7 +72,8 @@ format :html do
   end
   
   def draggable content, args
-    data_args = {'data-update-path' => args[:update_path]}
+    data_args = {'data-update-path' => args[:update_path],
+                 'data-votee-id' => args[:votee_id]        }
     args[:sort].each do |k,v|
       data_args["data-sort-#{k}"] = v
     end

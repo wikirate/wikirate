@@ -1,26 +1,37 @@
 handleDropEvent = ( event, ui ) ->
-  drag_item = ui.draggable
-  old_list = drag_item.parent()
-  if $(this).attr('data-bucket-name') != $(old_list).attr('data-bucket-name')    
-    # ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
-    drag_item.draggable( 'option', 'revert', false );
-      
-    $(this).append(drag_item)
-    updateHints(old_list, this)
-    drag_item.attr("style","")
-
+  drag_item = ui.item 
+  new_list = drag_item.parent()
+  if new_list.parent().is(old_list.parent()) 
+    updateHints(old_list, new_list)
+    $(new_list).find('.empty-message').hide()
+    $(new_list).find('.unsaved-message').show()
     vote = drag_item.find('.vote-count') 
-    update_path = drag_item.attr('data-update-path') + '&' + $(this).attr('data-query')
+    update_path = drag_item.attr('data-update-path') + '&' + $(new_list).attr('data-query')
+    if next_item = $(drag_item).next('.drag-item')
+      update_path += '&insert-before=' + next_item.attr('data-votee-id')
     $(vote).closest('.card-slot').load(update_path)
+  else
+    $( this ).sortable( "cancel" )
 
-$('.list-drag-and-drop').droppable
-  accept: '.list-drag-and-drop div.drag-item',
-  drop: handleDropEvent
+old_list = null
 
-  
-#$('.list-drag-and-drop').sortable()
-$('.drag-item').draggable
-  revert: true
+handleStopEvent = (event, ui) ->
+  new_list = ui.item.parent()
+  if !new_list.parent().is(old_list.parent())
+    $( this ).sortable( "cancel" )
+
+handleStartEvent = (event, ui) ->
+  old_list = ui.item.parent()
+
+$('.voting .list-drag-and-drop').sortable
+  connectWith: '.voting .list-drag-and-drop'
+  items: ".drag-item"
+  update: handleDropEvent
+  start: handleStartEvent
+  stop: handleStopEvent
+  dropOnEmpty: true
+  revert: false
+
 
 updateHints = (old_list, new_list) ->
   if $(old_list).find('.drag-item').length == 0
