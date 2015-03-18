@@ -6,7 +6,7 @@ card_accessor :downvote_count, :type=>:number, :default=>"0"
 card_accessor :direct_contribution_count, :type=>:number, :default=>"0"
 card_accessor :contribution_count, :type=>:number, :default=>"0"
 
-def indirect_contributer_search_args
+def indirect_contributor_search_args
   [
     {:right_id=>VoteCountID, :left=>self.name }
   ]
@@ -37,7 +37,7 @@ format :html do
   
   view :citation_and_content do |args|
     output([
-      render_citation_or_clipboard(args),
+      render_citation_or_cite_button(args),
       render_content(args)
     ])
   end
@@ -46,7 +46,20 @@ format :html do
     args[:citation_number] || optional_render( :clipboard, args )
   end
   
+  view :citation_or_cite_button do |args|
+    args[:citation_number] || optional_render( :cite_button, args )
+  end
   
+  view :cite_button do |args|
+    if parent.parent.present? and parent.parent.card.present?
+      article_name = parent.parent.card.cardname.url_key
+      url = "/#{article_name}?citable=#{card.cardname.url_key}&edit_article=true"
+      link_to 'Cite!', url, :class=>"cite-button"
+    else
+      ""
+    end
+  end
+
   view :new do |args|
     #hide all help text under title 
     super args.merge( :optional_help => :hide )

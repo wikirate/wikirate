@@ -32,23 +32,24 @@ end
 
 
 def sort_query
-  if Env.params[:sort] == 'important'
-    {:sort => {"right"=>"*vote count"}, "sort_as"=>"integer","dir"=>"desc"}
-  else
+  if Env.params[:sort] == 'recent'
     {:sort => "update" }
+  else
+    {:sort => {"right"=>"*vote count"}, "sort_as"=>"integer","dir"=>"desc"}
   end    
 end
 
 format :html do 
-  def page_link text, page
+  def page_link text, page, current=false, options={}
     @paging_path_args[:offset] = page * @paging_limit
     filter_args = {}
     [:sort, :cited, :claimed, :company, :topic, :tag].each do |key|
       filter_args[key] = params[key] if params[key].present?
     end
-    " #{link_to raw(text), path(@paging_path_args.merge(filter_args)), :class=>'card-paging-link slotter', :remote => true} "
+    options.merge!(:class=>'card-paging-link slotter', :remote => true)
+    link_to raw(text), path(@paging_path_args.merge(filter_args)), options
   end
-  
+    
   view :no_search_results do |args|
     %{ 
       <div class="search-no-results">
@@ -74,7 +75,7 @@ format :html do
   end
   
   view :sort_fieldset do |args|
-    select_filter 'sort',  options_for_select({'Most Recent'=>'recent', 'Most Important'=>'important'}, params[:sort] || 'recent')
+    select_filter 'sort',  options_for_select({'Most Important'=>'important','Most Recent'=>'recent'}, params[:sort] || 'important')
   end
   
   view :cited_fieldset do |args|

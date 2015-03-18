@@ -40,9 +40,12 @@ describe Card::Set::Self::WikirateCompanyComparison do
     end
     context "when companies and topic selected" do 
       it "compares companies" do 
-        Card::Env.params[:topic] = @topics[0].to_name.key
-        Card::Env.params["company1"] = @companies[0].to_name.key
-        Card::Env.params["company2"] = @companies[1].to_name.key
+        topic_chosen = Card["Natural Resource Use"]
+        company1 = Card["Apple"]
+        company2 = Card["Samsung"]
+        Card::Env.params[:topic] = topic_chosen.key
+        Card::Env.params["company1"] = company1.key
+        Card::Env.params["company2"] = company2.key
 
         html = @comparision_card.format.render_core
         expect(html).to have_tag('form', :with => { }) do
@@ -50,16 +53,17 @@ describe Card::Set::Self::WikirateCompanyComparison do
             topic_options = @topics.map { |t| [t,t.to_name.key] }  
             with_option '-- Select Topic --', ''
             topic_options.each do |option|
-              with_option  option[0], option[1], :selected=>option[1]==@topics[0].to_name.key
+              with_option  option[0], option[1], :selected=>option[1]==topic_chosen.to_name.key
             end
           end
-          with_tag "div", :with => { :id => "#{@topics[0].to_name.url_key}+image"}
-          with_tag "a", :href => "/#{@topics[0].to_name.url_key}", :content => @topics[0]
+          #comment because image are removed in test databases
+          # with_tag "div", :with => { :id => "#{topic_chosen.to_name.url_key}+image"}
+          with_tag "a", :href => "/#{topic_chosen.to_name.url_key}", :content => topic_chosen
           
 
           all_company_options = @companies.map do |company_name|
             label = company_name
-            claim_count = Card.claim_counts "#{company_name.to_name.key}+#{Card[@topics[0]].key}"
+            claim_count = Card.claim_counts "#{company_name.to_name.key}+#{topic_chosen.key}"
             if claim_count > 0
               label = "#{company_name} -- #{ pluralize claim_count, 'claim' }"
             end 
@@ -68,22 +72,22 @@ describe Card::Set::Self::WikirateCompanyComparison do
           with_tag "select", :with => { :name => "company1", :id => "company1" } do
             with_option '-- Select Company 1 --', ''
             all_company_options.each do |option|
-              with_option  option[0], option[1] ,:selected=>option[1]==@companies[0].to_name.key
+              with_option  option[0], option[1] ,:selected=>option[1]==company1.to_name.key
             end
           end
           with_tag "select", :with => { :name => "company2", :id => "company2" } do
             with_option '-- Select Company 2 --', ''
             all_company_options.each do |option|
-              with_option  option[0], option[1] ,:selected=>option[1]==@companies[1].to_name.key
+              with_option  option[0], option[1] ,:selected=>option[1]==company2.to_name.key
             end
           end
           
         end
          expect(html).to have_tag("div",  :class => "left-side") do 
-          with_tag "div", :with => { :id => "#{@companies[0].to_name.url_key}+#{@topics[0].to_name.url_key}" }
+          with_tag "div", :with => { :id => "#{company1.name.to_name.url_key}+#{topic_chosen.name.to_name.url_key}" }
         end
         expect(html).to have_tag("div", :class => "right-side") do
-          with_tag "div", :with => { :id => "#{@companies[1].to_name.url_key}+#{@topics[0].to_name.url_key}" }
+          with_tag "div", :with => { :id => "#{company2.name.to_name.url_key}+#{topic_chosen.name.to_name.url_key}" }
         end
       end
      
