@@ -1,6 +1,6 @@
 {
   "url": null,
-  "timestamp": "2015-03-18 21:12:33 +0100",
+  "timestamp": "2015-03-19 18:42:51 +0100",
   "card": {
     "name": "export",
     "type": "Pointer",
@@ -9,17 +9,17 @@
       {
         "name": "yinyang",
         "type": "HTML",
-        "content": "{{+Logo|size:small;float:left}}\r\n{{+About|content;hide:menu}}\r\n\r\n<div class=\"yinyang\">\r\n<div class=\"col-md-6 wiki\">\r\n  <div class=\"yin\">\r\n    Wiki\r\n  </div>\r\n  <h4>\r\n    Topics important to me\r\n  </h4>\r\n  {{_left+topic sidebar}}\r\n</div>\r\n\r\n<div class=\"col-md-6 rate\">\r\n  <div class=\"yang\">\r\n    Rate\r\n  </div>\r\n  <h4>\r\n    Metrics important to me\r\n  </h4>\r\n  {{_left+metric sidebar}}\r\n</div>\r\n</div>\r\n{{rating css and js|raw}}"
+        "content": "{{+Logo|size:small;float:left}}\r\n{{+About|content;hide:menu}}\r\n\r\n<div class=\"yinyang\">\r\n<div class=\"col-md-6 wiki\">\r\n  <div class=\"yin\">\r\n    Wiki\r\n  </div>\r\n  <h4>\r\n    Topics important to me\r\n  </h4>\r\n  {{_left+topic sidebar}}\r\n</div>\r\n\r\n<div class=\"col-md-6 rate\">\r\n  <div class=\"yang\">\r\n    Rate\r\n  </div>\r\n  <h4>\r\n    Metrics important to me\r\n  </h4>\r\n  {{_left+metric sidebar}}\r\n</div>\r\n</div>"
       },
       {
         "name": "Company+metric sidebar+*type plus right+*structure",
         "type": "HTML",
-        "content": "  <div class=\"voting\">\r\n  {{_left+metric+*upvotes+votee search|drag_and_drop|structure:metric drag item}}\r\n  {{votee filter|raw}}\r\n  <div class=\"header-row\">\r\n    <div class=\"header-header\">\r\n      Topics\r\n    </div>\r\n    <div class=\"data-header\">\r\n      Contributions\r\n    </div>\r\n  </div>\r\n\r\n  {{_left+metric+non-votee search|drag_and_drop|structure:metric drag item}} \r\n  {{_left+metric+*downvotes+votee search|drag_and_drop|structure:metric drag item}}\r\n  </div>"
+        "content": "  <div class=\"voting\">\r\n  {{_left+metric+*upvotes+votee search|drag_and_drop|structure:metric drag item}}\r\n  {{votee filter|raw}}\r\n  <div class=\"header-row\">\r\n    <div class=\"header-header\">\r\n      Metrics\r\n    </div>\r\n    <div class=\"data-header\">\r\n      Value\r\n    </div>\r\n  </div>\r\n\r\n  {{_left+metric+non-votee search|drag_and_drop|structure:metric drag item}} \r\n  {{_left+metric+*downvotes+votee search|drag_and_drop|structure:metric drag item}}\r\n  </div>"
       },
       {
         "name": "Company+topic sidebar+*type plus right+*structure",
         "type": "HTML",
-        "content": "<div class=\"voting\">\r\n{{_left+topic+*upvotes+votee search|drag_and_drop|structure:topic drag item}}\r\n{{votee filter}}\r\n<div class=\"header-row\">\r\n  <div class=\"header-header\">\r\n      Metrics\r\n    </div>\r\n    <div class=\"data-header\">\r\n      Value\r\n    </div>\r\n</div>\r\n{{_left+topic+non-votee search|drag_and_drop|structure:topic drag item}} \r\n{{_left+topic+*downvotes+votee search|drag_and_drop|structure:topic drag item}}\r\n</div>"
+        "content": "<div class=\"voting\">\r\n{{_left+topic+*upvotes+votee search|drag_and_drop|structure:topic drag item}}\r\n{{votee filter}}\r\n<div class=\"header-row\">\r\n  <div class=\"header-header\">\r\n      Topics\r\n    </div>\r\n    <div class=\"data-header\">\r\n      Contributions\r\n    </div>\r\n</div>\r\n{{_left+topic+non-votee search|drag_and_drop|structure:topic drag item}} \r\n{{_left+topic+*downvotes+votee search|drag_and_drop|structure:topic drag item}}\r\n</div>"
       },
       {
         "name": "metric drag item",
