@@ -9,7 +9,7 @@ format do
             if Env.session[vote_type]
               Env.session[vote_type].map do |votee_id|
                 if (votee = Card.find(votee_id)) && votee.type_id == searched_type_id
-                  Card.fetch "#{votee.name}+card.cardname.parts[0]"
+                  Card.fetch "#{votee.name}+#{card.cardname.parts[0]}"
                 end
               end.compact
             else
