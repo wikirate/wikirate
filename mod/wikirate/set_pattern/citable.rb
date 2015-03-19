@@ -1,7 +1,7 @@
 
 
 def label name
-  'All Card with type "Web Source", "File Source" and "Text Source" cards'
+  'all citable sources'
 end
 
 def prototype_args anchor
