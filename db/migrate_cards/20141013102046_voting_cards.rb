@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class VotingCards < Wagn::Migration
+class VotingCards < Card::Migration
   def up
     Card.create! :name=>"*upvote count", :codename=>:upvote_count, :type_code=>:number, :content=>"0"
     Card.create! :name=>"*downvote count", :codename=>:downvote_count, :type_code=>:number, :content=>"0"
