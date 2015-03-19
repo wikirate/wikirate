@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class AddSourcefileType < Wagn::Migration
+class AddSourcefileType < Card::Migration
   def up
     if (source = Card.fetch('Source file'))
       source.update_attributes! :type_id=>Card::CardtypeID, :codename=>'source_file'
