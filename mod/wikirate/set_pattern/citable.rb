@@ -5,7 +5,7 @@ def label name
 end
 
 def prototype_args anchor
-  { :name=>anchor }
+  { :name=>"*dummy", :type_id => Card::SourceFileID }
 end
 
 def pattern_applies? card
