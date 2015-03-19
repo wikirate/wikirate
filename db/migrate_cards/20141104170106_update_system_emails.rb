@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class UpdateSystemEmails < Wagn::Migration
+class UpdateSystemEmails < Card::Migration
   def up
 
     #get rid of previous emails

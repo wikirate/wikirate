@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class ImportMetricMigration < Wagn::Migration
+class ImportMetricMigration < Card::Migration
   def up
     import_json "metric_migration.json"
     
