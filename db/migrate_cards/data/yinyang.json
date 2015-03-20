@@ -182,6 +182,16 @@
         "name": "Company+*type+*structure",
         "type": "HTML",
         "content":"<div class=\"top\">\r\n{{+Logo|size:small;float:left}}\r\n{{+About|content;hide:menu}}\r\n</div>\r\n<div class=\"yinyang\">\r\n<div class=\"col-md-6 wiki\">\r\n  <div class=\"yin\">\r\n    Wiki\r\n  </div>\r\n  <h4>\r\n    Topics important to me\r\n  </h4>\r\n  {{_left+topic sidebar}}\r\n</div>\r\n\r\n<div class=\"col-md-6 rate\">\r\n  <div class=\"yang\">\r\n    Rate\r\n  </div>\r\n  <h4>\r\n    Metrics important to me\r\n  </h4>\r\n  {{_left+metric sidebar}}\r\n</div>\r\n</div>"
+      },
+      {
+        "name": "*default html view",
+        "type": "Setting",
+        "codename": "default_html_view"
+      },
+      {
+        "name": "*all+*default html view",
+        "type": "Phrase",
+        "content": "content"
       }
     ]
   }
