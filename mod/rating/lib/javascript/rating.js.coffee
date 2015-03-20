@@ -78,18 +78,29 @@ $('body').on 'click', '.list-drag-and-drop[data-bucket-name=no_vote] .drag-item 
   
 # details toggle
 $('body').on 'click','.details-toggle', ->
-  $(this).find('.glyphicon').toggleClass('glyphicon-triangle-bottom','glyphicon-triangle-right')
-  details = $(this).closest('.drag-item').find('.details')
+  toggleDetails this
+$('body').on 'click', '.topic-item > .header,  .metric-item > .header', ->
+  toggleDetails $(this).closest('.drag-item').find('.details-toggle')
+    
+
+toggleDetails = (toggle) ->
+  $(toggle).find('.glyphicon').toggleClass('glyphicon-triangle-bottom','glyphicon-triangle-right')
+  details = $(toggle).closest('.drag-item').find('.details')
   if !$.trim(details.html()) # empty
-    card_name = $(this).closest('.card-slot').attr('id')
+    card_name = $(toggle).closest('.card-slot').attr('id')
     view = $(this).attr('data-view') || 'content'
-    right_name = $(this).attr('data-append')
+    right_name = $(toggle).attr('data-append') 
     load_path = "/#{card_name}+#{right_name}?view=#{view}"
     $(details).load load_path
+    s(details).find('.RIGHT-topic_detail > .TYPE_PLUS_RIGHT-analysi-article').readmore
+      maxHeight: 50,
+      speed: 500
   else if $(details).is(':visible')
     $(details).hide()
   else
     $(details).show()
+    
+
 
 
 # filter

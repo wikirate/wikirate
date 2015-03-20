@@ -11,6 +11,30 @@ $bright_text_color: #ddd;
   }
 }
 
+
+
+
+.TYPE-company {
+  .panel-body {
+    padding: 0;
+  }
+  .top {
+    height: 100px;
+    > .TYPE_PLUS_RIGHT-company-logo {
+      height: 100px;
+      padding: 10px;
+      border-right: 1px solid $bright_text_color;
+    }
+    > .TYPE_PLUS_RIGHT-company-about {
+      margin-left: 110px;
+      width: inherit;
+    }
+    a.readmore-js-toggle {
+      width: inherit;
+    }
+  }
+}
+
 .header-row {
   font-size: 10px;
   color: $bright_text_color;
@@ -81,21 +105,24 @@ $bright_text_color: #ddd;
         width: 15px;
         height: 15px;
     }
-    .title {
-      padding-top: 15px;
+    .logo {
+      padding-top: 5px;
       float: left;
-      
-      .name {
+      img {
+        width: 35px;
+      }
+    }
+    .name {
         padding-top: 15px;
         padding-left: 10px;
         font-size: 14px;
-      }
+        float: left;
     }
+    
   }
   .data {
     height: $drag_item_height;
     float: right;
-    width: 161px;
     height: $drag_item_height;
     border-left: 1px solid $bright_text_color;
     
@@ -107,6 +134,7 @@ $bright_text_color: #ddd;
   
   .details {
     clear: both;
+    color: $dark_text_color;
   }
   .details-toggle {
     float: right;
@@ -149,11 +177,12 @@ $bright_text_color: #ddd;
 }
 
 .topic-item {
+  overflow: hidden;
   .header {
     border-left: 3px solid #2b7ea0;
-    .title {
+    .name {
       color: #2b7ea0;
-      font-size: 20px;
+      font-size: 18px;
     }
   }
   
@@ -167,10 +196,16 @@ $bright_text_color: #ddd;
   
   
   .contribution {
+    a {
+      color: #999;
+    }
     &.danger {
       border: 1px solid #E06666;
       background: #EA9999;
       color: #fff;
+      a {
+        color: #fff;
+      }
       .name {
         color: #fff;
       }
@@ -226,6 +261,7 @@ $bright_text_color: #ddd;
   float:left; 
   width: 100%;
   background:#fff;
+  overflow: hidden;
   
   .metric-year {
     font-size: 14px;
@@ -237,9 +273,16 @@ $bright_text_color: #ddd;
     font-weight: bold;
   }
   .header {
+    width: 63%;
     border-left: 3px solid #674EA7;
+
+    .name {
+      width: 70%;
+    }
   }
-  
+  .data {
+    width:35%;
+  }
   // metric value details
 
   .timeline {
