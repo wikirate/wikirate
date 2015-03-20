@@ -73,7 +73,7 @@ format :html do
   end
 
   
-  view :tip, :perms=>:none do |args|
+  view :tip, :perms=>:none, :closed=>:blank do |args|
     # special view for prompting users with next steps
     if Auth.signed_in? and ( tip = args[:tip] || next_step_tip ) and @mode != :closed
       %{
