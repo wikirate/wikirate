@@ -77,7 +77,7 @@ describe Card::Set::Type::Claim do
       else
         claim_help_card.save
       end
-      html = claim_card.format._render_name_fieldset :new=>true
+      html = claim_card.format._render_name_formgroup :new=>true
       expect(html).to include("claim-counting")
       expect(html).to include(help_content)
 

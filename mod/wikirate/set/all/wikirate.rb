@@ -62,7 +62,7 @@ format :html do
       end
   end
 
-  view :name_fieldset do |args|
+  view :name_formgroup do |args|
     #force showing help text
     args[:help] ||= true
     super args

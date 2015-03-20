@@ -5,7 +5,7 @@ Steps to make it work
 ----
 
 1. create folders "files","config","public" and "public/assets" under the wikirate root directory.
-2. rake wagn:create
+2. rake wagn:seed
 3. import the database
 4. bundle exec wagn s
 
