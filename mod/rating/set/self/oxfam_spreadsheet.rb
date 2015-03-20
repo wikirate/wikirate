@@ -299,7 +299,7 @@ class Value
     @measurement = VALUE_COLUMNS.inject(nil) do |res,col_name| 
         (res == '-' && @data[col_name]) || res || @data[col_name]
       end
-    if !@measurement || @measurement == '-' || @measurement.empty?
+    if !@measurement || @measurement == '-' || !@measurement.present?
       raise RuntimeError, "No value for #{company}"
     end
     if @measurement.kind_of? Float
