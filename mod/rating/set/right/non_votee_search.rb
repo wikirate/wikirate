@@ -47,13 +47,13 @@ format :html do
             votee_plus_company.updated_at.to_i
           else
             votee.updated_at.to_i
-          end          
+          end
 
         draggable nest(votee_plus_company),
           :votee_id    => votee.id,
           :update_path => votee.vote_count_card.format.vote_path, 
           :sort        => {:importance=>votee.vote_count, :recent=>updated_at},
-          :has_value   => votee_plus_company.real?
+          :no_value    => (votee.type_id==MetricID && votee_plus_company.new_card?)
                                       
       end.join("\n").html_safe
     end.html_safe
@@ -79,7 +79,7 @@ format :html do
       'data-votee-id'    => args[:votee_id],
       :class             => 'drag-item list-group-item'
     }
-    data_args[:class] += ' no-metric-value' unless args[:has_value]
+    data_args[:class] += ' no-metric-value' if args[:no_value]
     args[:sort].each { |k,v| data_args["data-sort-#{k}"] = v }
     
     content_tag :div, content.html_safe, data_args
