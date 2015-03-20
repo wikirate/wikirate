@@ -50,6 +50,10 @@ def get_a_sample_analysis
   Card["Death Star+Force"]
 end
 
+def get_a_sample_metric
+  Card["Jedi+disturbances in the Force"]
+end
+
 def html_trim str
   s = str.dup
   s.delete!("\r\n")

@@ -89,7 +89,7 @@ format :html do
         _optional_render( :year_select, args),
         _optional_render( :selection_checkbox, args),
         _optional_render( :import_table, args ),
-        _optional_render( :button_fieldset,   args )
+        _optional_render( :button_formgroup,   args )
       ]
     end
   end

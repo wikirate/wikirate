@@ -7,7 +7,7 @@ describe Card::Set::Right::FilterSearch do
   end
   describe "views" do
     context "when rendering filter_form" do
-      it "includes required fieldsets" do
+      it "includes required formgroups" do
         filter_search_card = Card.fetch "Claim+filter_search"
         format = filter_search_card.format
         html = format.render_filter_form
@@ -37,9 +37,9 @@ describe Card::Set::Right::FilterSearch do
 
         expect(html).to have_tag "form",:with=>{:action=>"/Claim",:method=>"GET"}
 
-        expect(html).to include(format.render_company_fieldset.squish)
-        expect(html).to include(format.render_topic_fieldset.squish)
-        expect(html).to include(format.render_tag_fieldset.squish)
+        expect(html).to include(format.render_company_formgroup.squish)
+        expect(html).to include(format.render_topic_formgroup.squish)
+        expect(html).to include(format.render_tag_formgroup.squish)
 
         
       end
