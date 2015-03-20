@@ -177,6 +177,11 @@
         "name": "activate readmore script",
         "type": "JavaScript",
         "content": "wagn.slotReady(function(slot) {\r\n    slot.find('.card-content.TYPE_PLUS_RIGHT-page-description').readmore({\r\n        maxHeight: 90,\r\n        embedCSS: false\r\n    });\r\n\r\n    slot.find('.titled_with_edit-view.RIGHT-about > .card-content').each(function() {\r\n        $(this).readmore({\r\n            maxHeight: 180,\r\n            speed: 500\r\n        });\r\n\r\n    });\r\n    slot.find('.TYPE-company > .top >  .TYPE_PLUS_RIGHT-company-about.card-content').each(function() {\r\n        $(this).readmore({\r\n            maxHeight: 50,\r\n            speed: 500\r\n        });\r\n\r\n    });\r\n    slot.find('.details > .RIGHT-topic_detail > .TYPE_PLUS_RIGHT-analysi-article').each(function() {\r\n        $(this).readmore({\r\n            maxHeight: 50,\r\n            speed: 500\r\n        });\r\n\r\n    });\r\n    \r\n    \r\n    slot.find('.titled_with_edit-view.RIGHT-about > .card-content').each(function() {\r\n\r\n        $(this).readmore(\"resizeBoxes\");\r\n    });\r\n\r\n});"
+      },
+      {
+        "name": "Company+*type+*structure",
+        "type": "HTML",
+        "content":"<div class=\"top\">\r\n{{+Logo|size:small;float:left}}\r\n{{+About|content;hide:menu}}\r\n</div>\r\n<div class=\"yinyang\">\r\n<div class=\"col-md-6 wiki\">\r\n  <div class=\"yin\">\r\n    Wiki\r\n  </div>\r\n  <h4>\r\n    Topics important to me\r\n  </h4>\r\n  {{_left+topic sidebar}}\r\n</div>\r\n\r\n<div class=\"col-md-6 rate\">\r\n  <div class=\"yang\">\r\n    Rate\r\n  </div>\r\n  <h4>\r\n    Metrics important to me\r\n  </h4>\r\n  {{_left+metric sidebar}}\r\n</div>\r\n</div>"
       }
     ]
   }
