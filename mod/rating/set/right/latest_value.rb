@@ -1,7 +1,7 @@
 format :html do
   view :concise do |args|
     latest = search_results.first
-    unit = Card.fetch("#{latest.cardname.left}+unit")
+    unit = Card.fetch("#{latest.cardname.left_name.left}+unit")
     %{
       <span class="metric-year">
         #{latest.cardname.right} =
@@ -10,7 +10,7 @@ format :html do
         #{latest.raw_content}
       </span>
       <span class="metric-unit">
-        #{unit.raw_content if unit}
+        /#{unit.raw_content if unit}
       </span>
     }
   end
