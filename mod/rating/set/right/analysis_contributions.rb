@@ -1,10 +1,10 @@
 format :html do
   def data_item content, label, type=:default
-    extra_class = 
+    extra_class =
       case type
       when :highlight then 'btn btn-highlight'
       when :warning   then 'warning'
-      else 
+      else
         'btn btn-default'
       end
     content_tag :div, :class=>"contribution #{extra_class if extra_class}" do
