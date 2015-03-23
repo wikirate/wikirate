@@ -10,7 +10,7 @@ format :html do
         #{latest.raw_content}
       </span>
       <span class="metric-unit">
-        /#{unit.raw_content if unit}
+        #{"/#{unit.raw_content}" if unit}
       </span>
     }
   end
