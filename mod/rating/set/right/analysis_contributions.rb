@@ -1,9 +1,11 @@
 format :html do
   def data_item content, label, extra_class=false
-    content_tag :div, :class=>"contribution #{extra_class if extra_class}" do
+    content_tag :div, :class=>"contribution btn btn-highlight #{extra_class if extra_class}" do
       card_link "#{card.cardname.parts[1]}+#{card.cardname.parts[0]}", :text=>%{
-          <div class="content">#{content}</div>
-          <div class="name">#{label}</div>
+          <div class="content">
+            #{content}
+            <div class="name">#{label}</div>
+          </div>
         }
     end
   end
