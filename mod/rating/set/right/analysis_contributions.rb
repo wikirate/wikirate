@@ -28,7 +28,7 @@ format :html do
       data << ['<i class="fa fa-exclamation-circle"></i>', 'Need Claims', :warning]
       data << [ empty, 'Claims', :highlight ]
     else 
-      data << [(article_card ? nest(Card.fetch('venn icon'), :view=>:content,:size=>:icon) : empty), 'Article', (:highlight if !article_card)]
+      data << [(article_card ? nest(Card.fetch('venn icon'), :view=>:content,:size=>:small) : empty), 'Article', (:highlight if !article_card)]
       data << [ claim_cnt, 'Claims']
     end    
     data << [(source_cnt == '0' ? empty : source_cnt), 'Sources', (:highlight if source_cnt=='0')]
