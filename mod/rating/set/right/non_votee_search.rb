@@ -79,7 +79,7 @@ format :html do
                       'data-default-sort'=>args[:default_sort] do
       [
         content_tag(:div,:class=>'empty-message',:style=>display_empty_msg) { args[:empty] },
-        content_tag(:div,:class=>'unsaved-message') { args[:unsaved] },
+        ((content_tag(:div,:class=>'unsaved-message') { args[:unsaved] } ) if !Auth.signed_in? ),
         yield
       ].join.html_safe
     end
