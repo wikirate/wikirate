@@ -10,7 +10,7 @@ format :html do
         content_tag(:div, year.html_safe, :class=>'year td'), 
         content_tag(:div, value, :class=>'value td' ),
         content_tag(:div, credit.html_safe, :class=>'credit td'),
-        (link_to 'View Source(s)', "/#{card.left.name}+#{value_card.cardname.right}+Summary",:class=>'btn btn-yellow btn-xs view-source-btn'),
+        (card_link "#{card.cardname.left}+#{value_card.cardname.right}+Summary",:text=>"View Sources",:class=>'btn btn-yellow btn-xs view-source-btn'),
         line
       ].compact
     end
