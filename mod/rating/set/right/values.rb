@@ -4,7 +4,7 @@ format :html do
     value = value_card.content
     source_link = card_link "#{card.cardname.left}+#{value_card.cardname.right}+Summary",:text=>"View Sources",:class=>'btn btn-yellow btn-xs view-source-btn'
     credit = nest(value_card, :view=>:content, :structure=>'creator credit'})
-    credit << content_tag :p, source_link
+    credit << content_tag(:p, source_link)
     line = '<div class="timeline-dot"></div>'
     line += '<div class="timeline-line"></div>' if connect
 
