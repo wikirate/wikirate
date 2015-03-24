@@ -1,21 +1,18 @@
 format :html do
   view :concise do |args|
     latest = search_results.first
-    legend =
-      if (unit = Card.fetch("#{latest.cardname.left_name.left}+unit"))
-        unit.raw_content
-      elsif (range = Card.fetch("#{latest.cardname.left_name.left}+range"))
-        "/#{range.raw_content}"
-      end
+    year   = latest.cardname.right
+    metric = latest.cardname.left_name.left
+    legend = subformat(Card.fetch(metric))._render_legend args
     %{
       <span class="metric-year">
-        #{latest.cardname.right} =
+        #{year} =
       </span>
       <span class="metric-value">
         #{latest.raw_content}
       </span>
       <span class="metric-unit">
-        #{legend if legend}
+        #{legend}
       </span>
     }
   end
