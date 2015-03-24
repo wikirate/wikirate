@@ -7,9 +7,9 @@ format :html do
     line += '<div class="timeline-line"></div>' if connect
     wrap_with :div, :class=>'timeline-row' do
       [
-        content_tag(:div, year.html_safe, :class=>'year td'), 
-        content_tag(:div, value, :class=>'value td' ),
-        content_tag(:div, credit.html_safe, :class=>'credit td'),
+        content_tag(:div, year.html_safe, :class=>'td year'), 
+        content_tag(:div, value, :class=>'td value' ),
+        content_tag(:div, credit.html_safe, :class=>'td td credit'),
         line
       ].compact
     end
@@ -25,13 +25,13 @@ format :html do
     %{
     <div class="timeline">
       <div class="timeline-header">
-        <div class="item">
+        <div class="th year">
           Year
         </div>
-        <div class="item">
+        <div class="th value">
           Value
         </div>
-        <div class="item">
+        <div class="th new">
           Add New
         </div>
       </div>
