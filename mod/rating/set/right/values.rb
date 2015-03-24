@@ -1,8 +1,10 @@
 format :html do
   def timeline_row value_card, connect=false
-    year        = value_card.cardname.right
-    value       = value_card.content
-    source_link = card_link "#{card.cardname.left}+#{value_card.cardname.right}+Summary",
+    year  =  value_card.cardname.right
+    value =  content_tag(:span, value_card.content, :class=>'metric-value')
+    value << content_tag(:span, subformat(value_card[0..1])._render_legend(), :class=>'metric-unit')
+
+    source_link =  card_link "#{card.cardname.left}+#{value_card.cardname.right}+Summary",
                             :text=>"View Sources", :class=>'btn btn-yellow btn-xs view-source-btn'
     credit =  nest(value_card, :view=>:content, :structure=>'creator credit')
     credit << content_tag(:p, source_link)
@@ -12,8 +14,8 @@ format :html do
     wrap_with :div, :class=>'timeline-row' do
       [
         line,
-        content_tag(:div, year, :class=>'td year'),
-        content_tag(:div, value, :class=>'td value' ),
+        content_tag(:div, year,             :class=>'td year'),
+        content_tag(:div, value.html_safe,  :class=>'td value' ),
         content_tag(:div, credit.html_safe, :class=>'td credit'),
       ]
     end
