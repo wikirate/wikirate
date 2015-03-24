@@ -175,11 +175,6 @@ class SharedData
       '+company' => { :content=>"[[Death Star]]",         :type_id=>Card::PointerID },
       '+topic'   => { :content=>"[[Force]]",              :type_id=>Card::PointerID }
     }
-    Card.create! :name=>'Death Star uses dark side of the Force', :type_id=>Card::ClaimID, :subcards=> {
-      '+source'  => { :content=>"[[#{sourcepage.name}]]" },
-      '+company' => { :content=>"[[Death Star]]",         :type_id=>Card::PointerID },
-      '+topic'   => { :content=>"[[Force]]",              :type_id=>Card::PointerID }
-    }
     Card.create! :name=>'Jedi+disturbances in the Force', :type_id=>Card::MetricID
     Card.create! :name=>'Jedi+deadliness', :type_id=>Card::MetricID
     Card.create! :name=>'Jedi+disturbances in the Force+Death Star', :content=>'yes'
