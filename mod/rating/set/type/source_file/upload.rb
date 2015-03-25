@@ -20,7 +20,7 @@ format :html do
     result = formgroup 'name', raw( name_field form ), :editor=>'name', :help=>args[:help]
     %{
       <div><i class="fa fa-upload" style="display:inline"></i> <h2 style="display:inline">Upload CSV File</h2></div>
-      <span>You can upload measure as a CSV file. The file should have two columns, the first contatining company names and the second containing the measurements.</span>
+      <span>You can upload measure as a CSV file. The file should have two columns, the first containing company names and the second containing the measurements.</span>
       #{result}
     }
   end

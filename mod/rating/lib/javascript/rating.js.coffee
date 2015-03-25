@@ -95,10 +95,11 @@ toggleDetails = (toggle) ->
     s(details).find('.RIGHT-topic_detail > .TYPE_PLUS_RIGHT-analysi-article').readmore
       maxHeight: 50,
       speed: 500
-  else if $(details).is(':visible')
-    $(details).hide()
+    details.show()
+  else if details.is(':visible')
+    details.hide()
   else
-    $(details).show()
+    details.show()
     
 
 

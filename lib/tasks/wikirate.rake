@@ -127,9 +127,9 @@ namespace :wikirate do
     end
   end
   
-#  delete from cards where type_id = 631;
-#delete from cards where type_id = 2327;
-#delete from card_references;
+# delete from cards where type_id = 631;
+# delete from cards where type_id = 2327;
+# delete from card_references;
 
   desc "fetch json from export card on dev site and generate migration"
   task :import_from_dev do
