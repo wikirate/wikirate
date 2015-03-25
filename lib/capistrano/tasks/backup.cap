@@ -3,7 +3,7 @@ require 'YAML'
 namespace :backup do
   task :create do
     on roles(:db) do
-      execute  "/opt/bin/backup_local wikirate"
+      execute  "/opt/bin/backup_local #{fetch :deploy_to} #{fetch :database}"
       #execute :sudo, "/opt/bin/backup_remote wikirate"
     end
   end

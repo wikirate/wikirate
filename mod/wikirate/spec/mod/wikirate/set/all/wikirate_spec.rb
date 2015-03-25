@@ -78,7 +78,7 @@ describe Card::Set::All::Wikirate do
       login_as "WagnBot" 
       basic = Card.create :type=>"Basic", :name=>"testhelptext",:content=>"<p>hello test case</p>"
       help_card = Card.create :type=>"Basic", :name=>"testhelptext+*self+*help",:content=>"Can I help you?"
-      expect(render_card :name_fieldset,{:name=>"testhelptext"}).to include("Can I help you?")
+      expect(render_card :name_formgroup,{:name=>"testhelptext"}).to include("Can I help you?")
 
     end
     it "show \"\" when for cite view other than in html format" do 

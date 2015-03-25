@@ -15,7 +15,7 @@ format :html do
     items = (results.each_with_index.map do |claim, num|
       citation_number = %{<span class="cited-claim-number">#{ num + 1 }</span>}
       item = nest claim, :citation_number=>citation_number
-      %{<div class="search-result-item item-#{ inclusion_defaults[:view] }">#{ item}</div>}
+      %{<div class="search-result-item item-#{ inclusion_defaults(claim)[:view] }">#{ item}</div>}
     end.join )   
     %{<div class="search-result-list">#{items}</div>}
   end

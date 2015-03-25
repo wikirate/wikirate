@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class AddCreatorUpvotes < Wagn::Migration
+class AddCreatorUpvotes < Card::Migration
   def up
     Card.search(:type_id => [:in, Card::ClaimID, Card::WebpageID], :return=>:name).each do |name|
       begin
