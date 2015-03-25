@@ -3,7 +3,7 @@ require 'YAML'
 namespace :backup do
   task :create do
     on roles(:db) do
-      execute  "/opt/bin/backup_local wikirate"
+      execute  "/opt/bin/backup_local #{fetch :deploy_to} #{fetch :database}"
       #execute :sudo, "/opt/bin/backup_remote wikirate"
     end
   end
@@ -111,25 +111,26 @@ namespace :backup do
       end
     end
   end
-end
-desc "Backup to local /tmp/wikirate"
-task :get_backup do
-  on roles(:db) do
-    invoke 'backup:create'
-    invoke 'backup:download'
-    invoke 'backup:unzip_local'
-    invoke 'backup:update_db'
-    invoke 'backup:update_files'
+  desc "Backup to local /tmp/wikirate"
+  task :get do
+    on roles(:db) do
+      invoke 'backup:create'
+      invoke 'backup:download'
+      invoke 'backup:unzip_local'
+      invoke 'backup:update_db'
+      invoke 'backup:update_files'
+    end
+  end
+
+  task :pull_db do
+    ENV['BACKUP_MODE'] = 'only_db'
+    on roles(:db) do
+      invoke 'backup:create'
+      invoke 'backup:download'
+      invoke 'backup:unzip_local'
+      invoke 'backup:update_db'
+    end
   end
 end
 
-task :pull_db do
-  ENV['BACKUP_MODE'] = 'only_db'
-  on roles(:db) do
-    invoke 'backup:create'
-    invoke 'backup:download'
-    invoke 'backup:unzip_local'
-    invoke 'backup:update_db'
-  end
-end
   

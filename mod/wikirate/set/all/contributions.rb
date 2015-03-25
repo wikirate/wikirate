@@ -13,7 +13,6 @@ def update_direct_contribution_count
 end
 
 def update_contribution_count
-#  binding.pry
   update_direct_contribution_count
   return unless respond_to?(:contribution_count)
   new_contr_count = if respond_to? :direct_contribution_count

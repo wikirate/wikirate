@@ -175,5 +175,10 @@ class SharedData
       '+company' => { :content=>"[[Death Star]]",         :type_id=>Card::PointerID },
       '+topic'   => { :content=>"[[Force]]",              :type_id=>Card::PointerID }
     }
+    Card.create! :name=>'Jedi+disturbances in the Force', :type_id=>Card::MetricID
+    Card.create! :name=>'Jedi+deadliness', :type_id=>Card::MetricID
+    Card.create! :name=>'Jedi+disturbances in the Force+Death Star', :content=>'yes'
+    Card.create! :name=>'Jedi+deadliness+Death Star', :content=>'high'
+
   end
 end
