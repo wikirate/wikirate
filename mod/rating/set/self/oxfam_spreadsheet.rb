@@ -21,8 +21,8 @@ def import_oxfam_data sheet
   sheet.metrics.each do |code, metric|
     #cnt += 1
     #break if cnt > 5
-    metric.save! 
-    metric.save_values! 
+    metric.save!
+    metric.save_values!
   end
 end
 
@@ -46,7 +46,7 @@ class Sheet
       :question => 1,
       :weight  => 2,
       :description => false,
-      :is_score => 5    
+      :is_score => 5
     },
     'Land' => {
       :description => 8
@@ -59,26 +59,26 @@ class Sheet
       :is_score => 8
     }
   }
-  
+
   MAP = {
     'DEFAULT' => {
       :header_rows => 6,
       :company_row => 4,
-      :intro_columns => 2,          # how many columns before you get to a country section   
+      :intro_columns => 2,          # how many columns before you get to a country section
       :columns_per_company => 6,    # include blanks
     },
-    'Land' => { 
-      :columns_per_company => 7,    
+    'Land' => {
+      :columns_per_company => 7,
     },
-    'Farmers' => { 
-      :columns_per_company => 7,    
+    'Farmers' => {
+      :columns_per_company => 7,
     },
     'Climate Change' => {
       :intro_columns => 5,
       :columns_per_company => 8,
     }
   }
-  
+
   def initialize filecard, sheetname, year=2014
     @category  = sheetname
     path = filecard.attach.path
@@ -86,11 +86,11 @@ class Sheet
     @sheet      = xlsx.sheet(@category)
     @sheet_map  = MAP['DEFAULT'].merge(MAP[@category] || {})
     @metric_map = METRIC_MAP['DEFAULT'].merge(METRIC_MAP[@category] || {})
-  
+
     @companies = @sheet.row( @sheet_map[:company_row] ).compact
     load_metrics year, filecard.name
   end
-  
+
   private
 
   def method_missing name, *args
@@ -108,14 +108,14 @@ class Sheet
         end
       if res && name == :code
         res.to_s.sub(/^(\D+)\.(\d)/, '\1\2').strip  # the regex fixes a typo in the workers sheets (W.1.2 instead of W1.2)
-      else 
-        res  
+      else
+        res
       end
     end
   end
-  
-  
-  def each_metric_row_with_index  
+
+
+  def each_metric_row_with_index
     for row_idx in (@sheet_map[:header_rows]+1)..(@sheet.last_row)
       if code(row_idx)
         @row = @sheet.row(row_idx)
@@ -123,15 +123,15 @@ class Sheet
       end
     end
   end
-  
-  
+
+
   def load_metrics year, sourcename
-    company_offset = {} 
+    company_offset = {}
     @companies.each_with_index do |company, cidx|
       start = @sheet_map[:intro_columns] + ( @sheet_map[:columns_per_company] * cidx )
       company_offset[company] = start
     end
-    
+
     @metrics = {}
     each_metric_row_with_index do |row, row_idx|
       desc = if question(row_idx+1) && !code(row_idx+1)
@@ -139,10 +139,10 @@ class Sheet
              else
                description(row_idx)
              end
-        
-        
+
+
       metric =  OxfamMetric.new(row, company_offset,
-          :code=>code, 
+          :code=>code,
           :question=>question,
           :description=>desc,
           :year=>year,
@@ -150,22 +150,22 @@ class Sheet
           :sourcename=>sourcename,
           :row_index=>row_idx,
           :is_score=>!!is_score
-        ) 
+        )
       @metrics[metric.code] = metric
       digits = metric.code.split '.'
       if digits.size > 1
         digits.pop
         code = digits.join '.'
         @metrics[code].add_submetric metric if @metrics[code]
-      end 
-    end 
+      end
+    end
   end
 end
 
 
 class OxfamMetric
   attr_reader :companies, :submetrics
-  
+
   def initialize row, company_offset, data
     @data = data
     @submetrics  = []
@@ -175,13 +175,13 @@ class OxfamMetric
         @values << Value.new(row, company, offset)
       rescue RuntimeError => e # No Value
       end
-    end 
+    end
   end
 
   def method_missing name, *args
     @data[name]
   end
-  
+
   def cardname
     shortname = if is_score && question.length < 100
                   "#{question} (#{code})"
@@ -190,22 +190,22 @@ class OxfamMetric
                 end
     "Oxfam+#{ shortname.strip }"
   end
-  
+
   def save!
     formula = @submetrics.map do |submetric|
       "(#{submetric.weight}) * [[#{submetric.cardname}]]"
     end
-    
-    list = @submetrics.map do |submetric| 
+
+    list = @submetrics.map do |submetric|
       format =  if submetric.submetrics.present?
-          "{{%s+methodology|closed;title:0-%s %s;hide:closed_content,menu;show:title_link}}" 
+          "{{%s+methodology|closed;title:0-%s %s;hide:closed_content,menu;show:title_link}}"
         else
           "{{%s|closed;title:0-%s %s;hide:toggle,menu;show:title_link}}"
         end
       text = format % [submetric.cardname, submetric.weight.round(2).to_s.chomp('.0'), submetric.question]
       "<li>#{text}</li>"
     end.join "\n"
-    
+
     desc = if formula.present?
         %{
           #{description}
@@ -219,8 +219,8 @@ class OxfamMetric
       else
         description
       end
-    
-    
+
+
 #    Rails.logger.info "\n\n\nMetric: #{cardname}, code: #{code}, question: #{question}, desc: #{desc}\n\n\n"
 
     Card.create! :name=>cardname, :type=>'metric', :subcards=>{
@@ -234,26 +234,27 @@ class OxfamMetric
   end
 
   def save_values!
-    @values.each do |value|      
-      value_cardname = "#{cardname}+#{value.company}+#{year}"    
+    @values.each do |value|
+      value_cardname = "#{cardname}+#{value.company}+#{year}"
       #puts "save #{value_cardname}"
       source_pages = Array.wrap(value.links).map do |uri|
-        page = if (dups=Webpage.find_duplicates(uri).first) 
-                 dups.left 
+        page = if (dups=Webpage.find_duplicates(uri).first)
+                 dups.left
                else
                  Card.create! :type_code=>:webpage, :subcards=>{"+#{Card[:wikirate_link].name}"=>{:content=>uri}}
                end
         page.name
       end
       source_pages << sourcename
-      source_content = source_pages.map {|cardname| "[[#{cardname}]]"}.join "\n" 
+      source_content = source_pages.map {|cardname| "[[#{cardname}]]"}.join "\n"
       subcards = {
         '+source' => {:content=>source_content, :type_id=>PointerID},
+        '+value'  => {:content=>value.measurement.to_s, :type_id=>PhraseID}
       }
-      Card.create! :name=>value_cardname, :content=>value.measurement.to_s, :subcards=>subcards
+      Card.create! :name=>value_cardname,:subcards=>subcards
     end
   end
-  
+
   def add_submetric metric
     @submetrics << metric
   end
@@ -270,7 +271,7 @@ class Value
     :score     => 3,
     :reference => 4,
   }
-  
+
   COMPANY_CARDNAME = {
     'Associated British Foods' => 'Associated British Foods plc',
     'Coca Cola' =>                'Coca Cola Company',
@@ -280,14 +281,14 @@ class Value
     'Mondelez' =>                 'Mondelēz International',
     'PepsiCo' =>                  'PepsiCo Inc.',
   }
-  VALUE_COLUMNS  = [:answer, :score]    
-  
+  VALUE_COLUMNS  = [:answer, :score]
+
   def initialize row, company, company_offset
     @company = COMPANY_CARDNAME[company] || company
     @data = {}
     MAP.each do |col_name, col_offset|
       index = company_offset + col_offset
-      @data[col_name] = row[index] 
+      @data[col_name] = row[index]
     end
     if @data[:reference]
       @data[:links] = []
@@ -296,7 +297,7 @@ class Value
       end
     end
     @links = @data[:links]
-    @measurement = VALUE_COLUMNS.inject(nil) do |res,col_name| 
+    @measurement = VALUE_COLUMNS.inject(nil) do |res,col_name|
         (res == '-' && @data[col_name]) || res || @data[col_name]
       end
     if !@measurement || @measurement == '-' || !@measurement.present?
