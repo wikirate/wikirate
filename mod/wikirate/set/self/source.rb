@@ -49,7 +49,7 @@ format :json do
       xFrameOptions = uri.meta["x-frame-options"]
       is_firefox = user_agent ? user_agent =~ /Firefox/ : false
       return false if xFrameOptions and ( xFrameOptions.upcase.include? "DENY" or xFrameOptions.upcase.include? "SAMEORIGIN" )
-      return false if !allow_content_type.include?(uri.content_type) and  !is_firefox
+      return false if !allow_content_type.include?(uri.content_type) and  !(is_firefox and uri.content_type == "application/pdf")
     rescue => error
       Rails.logger.error error.message
       return false

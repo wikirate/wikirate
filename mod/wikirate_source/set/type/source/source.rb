@@ -13,7 +13,7 @@ end
 require 'link_thumbnailer'
 
 
-event :vote_on_create_webpage, :on=>:create, :after=>:store, :when=> proc{ |c| Card::Auth.current_id != Card::WagnBotID }do
+event :vote_on_create_source, :on=>:create, :after=>:store, :when=> proc{ |c| Card::Auth.current_id != Card::WagnBotID }do
   Auth.as_bot do
     vc = vote_count_card
     vc.supercard = self
@@ -39,7 +39,7 @@ event :process_source_url, :before=>:process_subcards, :on=>:create do
   if url.length != 0
     # errors.add :link, "is empty" 
   # else
-    duplicates = Self::Webpage.find_duplicates url
+    duplicates = Self::Source.find_duplicates url
     if duplicates.any?
       duplicated_name = duplicates.first.cardname.left
       if Card::Env.params[:sourcebox] == 'true'

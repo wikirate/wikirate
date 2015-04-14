@@ -43,13 +43,6 @@ describe Card::Set::Right::FilterSearch do
 
         
       end
-      it "shows Source for action 'Page'" do 
-        filter_search_card = Card.fetch "Page+filter_search"
-        format = filter_search_card.format
-        html = format.render_filter_form
-        expect(html).to have_tag "form",:with=>{:action=>"/Source",:method=>"GET"}
-        
-      end
       context "when rendering with parameters" do
         before do
           @company_card = get_a_sample_company
@@ -126,6 +119,7 @@ describe Card::Set::Right::FilterSearch do
             @claim_card1 = create_claim_with_url "whateverclaimrecent","http://www.google.com/yo",{"+company"=>{:content=>"[[#{@new_company.name}]]\r\n[[#{@new_company1.name}]]"},"+topic"=>{:content=>"[[#{@new_topic.name}]]\r\n[[#{@new_topic1.name}]]"},"+tag"=>{:content=>"[[thisisatestingtag]]\r\n[[thisisalsoatestingtag]]"}}      
           end
           it "is most recent" do
+            Card::Env.params[:sort] = 'recent'
             html = Card["Claim"].format.render_core
             expect(html.index("whateverclaimrecent")).to be <= html.index("whateverclaim")
           end
@@ -137,7 +131,7 @@ describe Card::Set::Right::FilterSearch do
               vc.save!
             end
 
-            Card::Env.params[:sort] == 'important'
+            Card::Env.params[:sort] = 'important'
             html = Card["Claim"].format.render_core
             expect(html.index("whateverclaimrecent")).to be >= html.index("whateverclaim")
           end

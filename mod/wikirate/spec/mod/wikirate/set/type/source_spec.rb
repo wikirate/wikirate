@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 require 'link_thumbnailer'
 
-describe Card::Set::Type::Webpage do
+describe Card::Set::Type::Source do
   describe "while creating a Page" do
     before do
       login_as 'joe_user' 
@@ -10,27 +10,28 @@ describe Card::Set::Type::Webpage do
       
       url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
       Card::Env.params[:sourcebox] = 'true'
-      sourcepage = Card.create! :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
+      sourcepage = Card.create! :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url} }
       preview = LinkThumbnailer.generate(url)
 
       expect(Card.fetch("#{ sourcepage.name }+title").content).to eq(preview.title)
       expect(Card.fetch("#{ sourcepage.name }+description").content).to eq(preview.description)
      
     end
-    it "should handle empty url" do
+    it "should handle empty source" do
         url = ''
         Card::Env.params[:sourcebox] = 'true'
-        sourcepage = Card.new :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
+        sourcepage = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url} }
         expect(sourcepage).not_to be_valid
-        expect(sourcepage.errors).to have_key :link
-        expect(sourcepage.errors[:link]).to include("is empty")
+        expect(sourcepage.errors).to have_key :source
+        
+        expect(sourcepage.errors[:source]).to include("Please at least add one type of source")
     end
     describe "while creating duplicated source on claim page" do
       it "should return exisiting url" do
         url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
         Card::Env.params[:sourcebox] = 'true'
-        firstsourcepage = Card.create :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
-        secondsourcepage = Card.create :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
+        firstsourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url} }
+        secondsourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url} }
         expect(firstsourcepage.name).to eq(secondsourcepage.name)
       end
     end
@@ -38,8 +39,8 @@ describe Card::Set::Type::Webpage do
       it "should show error" do
         url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
         
-        firstsourcepage = Card.create :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
-        secondsourcepage = Card.new :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
+        firstsourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url} }
+        secondsourcepage = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url} }
         
         expect(secondsourcepage).not_to be_valid
         expect(secondsourcepage.errors).to have_key :link
@@ -73,7 +74,7 @@ describe Card::Set::Type::Webpage do
       before do 
         @nonexisting_url = "http://nonexistingpage.com"
         @url = "http://existingpage.com"
-        @new_page_card = Card.new :type_id=>Card::WebpageID
+        @new_page_card = Card.new :type_id=>Card::SourceID
       end
       describe "source exists in wikirate" do
         before do
@@ -104,13 +105,7 @@ describe Card::Set::Type::Webpage do
           expect(result).to include(%{<a href="#{topic_link_name}" target="_blank">})
           expect(result).to include(%{<span class="topic-name">#{topic}</span>})
           #show dropdown button
-          expect(result).to include(%{<a href="/#{@existing_source.name}?slot[structure]=source_company_and_topic&view=edit" id="company-and-topic-detail-link" class="">})
-
-          
-          expect(result).to include("Source Details")
-          expect(result).to include("Direct Link")
-          expect(result).to include("Make a Claim")
-          expect(result).to include(%{<div id="claim-count">})
+          expect(result).to include(%{<a href="/#{@existing_source.cardname.url_key}?slot[structure]=source_company_and_topic&view=edit" id="company-and-topic-detail-link" class="">})
 
         end
         it "hides the edit dropbox button if company and topic do not match wikirate's one" do
@@ -174,16 +169,16 @@ describe Card::Set::Type::Webpage do
         @existing_source = create_page_with_sourcebox @url,{"+Company"=>@company,"+Topic"=>@topic},'false'
       end
       it "shows options for existing sources" do 
-        
-        
         Card::Env.params[:url] = @url
-        
-
         result = @existing_source.format._render_preview
-        expect(result).to include("Source Details")
-        expect(result).to include("Direct Link")
-        expect(result).to include("Make a Claim")
-        expect(result).to include(%{<div id="claim-count">})
+        expect(result).to have_tag("div", :with=>{:class=>"menu-options"}) do
+          with_tag "div", :with=>{:id=>"source-page-link"} do 
+            with_tag "a",  :with=>{:class=>"show-link-in-popup", :href=>"/#{@existing_source.cardname.url_key}+source_claim_list"}
+            with_tag "a",  :with=>{:class=>"show-link-in-popup", :href=>"/#{@existing_source.cardname.url_key}+discussion"}
+            with_tag "a",  :with=>{:class=>"show-link-in-popup", :href=>"/#{@existing_source.cardname.url_key}?slot[structure]=source_structure&view=edit"}
+            with_tag "a",  :with=>{:href=>@existing_source.fetch(:trait=>:wikirate_link).content}
+          end
+        end
       end
       it "shows dropdown button and company and topic" do
         Card::Env.params[:url] = @url
@@ -199,7 +194,7 @@ describe Card::Set::Type::Webpage do
         expect(result).to include(%{<a href="#{topic_link_name}" target="_blank">})
         expect(result).to include(%{<span class="topic-name">#{@topic}</span>})
         #hide dropdown button
-        expect(result).to include(%{<a href="/#{@existing_source.name}?slot[structure]=source_company_and_topic&view=edit" id="company-and-topic-detail-link" class="">})
+        expect(result).to include(%{<a href="/#{@existing_source.cardname.url_key}?slot[structure]=source_company_and_topic&view=edit" id="company-and-topic-detail-link" class="">})
       end
       it "shows add topic if topic does not exist" do
         new_url = "http://www.google.com/nonexistingwikiratewebpage"
@@ -215,7 +210,7 @@ describe Card::Set::Type::Webpage do
         expect(result).to include(%{<span class="company-name">#{company}</span>})
         expect(result).to include(%{<a id='add-topic-link' href='#' >Add Topic</a>})
         #hide dropdown button
-        expect(result).to include(%{<a href="/#{existing_source.name}?slot[structure]=source_company_and_topic&view=edit" id="company-and-topic-detail-link" class="">})
+        expect(result).to include(%{<a href="/#{existing_source.cardname.url_key}?slot[structure]=source_company_and_topic&view=edit" id="company-and-topic-detail-link" class="">})
       end
       it "shows add company if topic does not exist" do
         new_url = "http://www.google.com/nonexistingwikiratewebpage"
@@ -230,7 +225,7 @@ describe Card::Set::Type::Webpage do
         expect(result).to include(%{<a href="#{topic_link_name}" target="_blank">})
         expect(result).to include(%{<span class="topic-name">#{topic}</span>})
         #hide dropdown button
-        expect(result).to include(%{<a href="/#{existing_source.name}?slot[structure]=source_company_and_topic&view=edit" id="company-and-topic-detail-link" class="">})
+        expect(result).to include(%{<a href="/#{existing_source.cardname.url_key}?slot[structure]=source_company_and_topic&view=edit" id="company-and-topic-detail-link" class="">})
       end
     end
   end

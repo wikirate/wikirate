@@ -1,9 +1,9 @@
 # -*- encoding : utf-8 -*-
 require 'link_thumbnailer'
 
-describe Card::Set::Self::Webpage do
+describe Card::Set::Self::Source do
    before do
-     @page_card = Card["Page"]
+     @page_card = Card["Source"]
   end
   describe "while check iframable" do
     it "should return true for a iframable website" do
@@ -22,7 +22,7 @@ describe Card::Set::Self::Webpage do
       result = @page_card.format( :format=>:json)._render(:check_iframable) 
       expect(result[:result]).to be false
     end
-    context "when checking iframble" do 
+    context "when rendering pdf in firefox" do 
       it "returns true if it is firefox" do 
         url = 'http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/pdf_open_parameters.pdf'
         result = @page_card.format( :format=>:json).is_iframable? url,"Firefox"

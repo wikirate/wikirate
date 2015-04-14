@@ -37,7 +37,7 @@ class SharedData
     #above still necessary?  try commenting out above and 'Sign up' below
 
     Card::Auth.createable_types.each do |type|
-      next if ['User', 'Sign up', 'Set', 'Number', 'Page', 'Claim'].include? type
+      next if ['User', 'Sign up', 'Set', 'Number', 'Source', 'Claim'].include? type
       Card.create! :type=>type, :name=>"Sample #{type}"
     end
 
@@ -165,7 +165,7 @@ class SharedData
       '+article'  => { :content=>"I'm your father!" }
     }
     
-    sourcepage = Card.create! :type_id=>Card::WebpageID, :subcards=>{ 
+    sourcepage = Card.create! :type_id=>Card::SourceID, :subcards=>{ 
       '+Link' => {:content=> 'http://www.wikiwand.com/en/Star_Wars'},
       '+company' => { :content=>"[[Death Star]]",         :type_id=>Card::PointerID },
       '+topic'   => { :content=>"[[Force]]",              :type_id=>Card::PointerID }

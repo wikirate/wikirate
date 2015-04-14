@@ -185,7 +185,7 @@ def check_source source_card
     source_card.item_cards.each do |item_card|
       if !item_card.real? 
         errors.add :source, "#{item_card.name} does not exist" 
-      elsif item_card.type_id != Card::WebpageID
+      elsif item_card.type_id != Card::SourceID
         errors.add :source, "#{item_card.name} is not a valid Source Page" 
       end
     end   

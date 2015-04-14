@@ -18,7 +18,7 @@ format :html do
 
     args.merge!({:url=>url,:company=>company, :topic=>topic})
     if from_certh
-      source = Self::Webpage.find_duplicates url
+      source = Self::Source.find_duplicates url
       if source.any? and source_card = source.first.left and company_and_topic_match? company,topic, url, source_card.name
         return subformat( source_card ).render_preview args
       end
@@ -77,7 +77,7 @@ format :html do
       <div id="company-and-topic" class="company-and-topic">
         #{first_company}
         #{first_topic}
-        <a href="/#{card.name}?slot[structure]=source_company_and_topic&view=edit" id="company-and-topic-detail-link" class="#{dropdown_class}">
+        <a href="/#{card.cardname.url_key}?slot[structure]=source_company_and_topic&view=edit" id="company-and-topic-detail-link" class="#{dropdown_class}">
           <i class="fa fa-caret-square-o-down"></i>
         </a>
       </div>
@@ -95,7 +95,7 @@ format :html do
     end
     %{
        <div class="menu-options">
-        #{show_options from_certh, card.name ,url}
+        #{show_options from_certh, card.cardname.url_key ,url}
       </div>
     }
   end
@@ -152,7 +152,7 @@ format :html do
   end
 
   def company_and_topic_match? company, topic , url, source_name
-    source = Self::Webpage.find_duplicates url
+    source = Self::Source.find_duplicates url
     return false if ! source.any?
     source_name = source.first.left.name 
     company_pointer = Card[source_name].fetch :trait=>:wikirate_company
@@ -217,7 +217,7 @@ format :html do
       result =%{
 
         <div id="source-page-link" class="mark-irrelevant-button" >
-          <a class='show-link-in-popup' href='/#{source_page_name}+source claim list' target='_blank'>
+          <a class='show-link-in-popup' href='/#{source_page_name}+source_claim_list' target='_blank'>
             <span class='claim-count'>
               <i class='fa fa-quote-left'></i>#{claim_count}
             </span>
@@ -226,7 +226,7 @@ format :html do
           <a class='show-link-in-popup popup-original-link no-header position-right' href='/#{source_page_name}+discussion' target='_blank'>
             <i class="fa fa-comments"></i>
           </a>
-          <a class='show-link-in-popup popup-original-link no-header position-right' href='/#{source_page_name}?slot[structure]=source%20structure&view=edit' target='_blank'>
+          <a class='show-link-in-popup popup-original-link no-header position-right' href='/#{source_page_name}?slot[structure]=source_structure&view=edit' target='_blank'>
             <i class="fa fa-info-circle"></i>
           </a>
           #{%{<a href='#{url}' target='_blank'>

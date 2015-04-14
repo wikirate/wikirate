@@ -1,6 +1,6 @@
 
 def self.find_duplicates url
-  duplicate_wql = { :right=>Card[:wikirate_link].name, :content=>url ,:left=>{:type_id=>Card::WebpageID}}
+  duplicate_wql = { :right=>Card[:wikirate_link].name, :content=>url ,:left=>{:type_id=>Card::SourceID}}
   duplicates = Card.search duplicate_wql
 end
 
@@ -20,7 +20,7 @@ format :json do
       metadata.error = 'invalid url' 
       return metadata.to_json
     end
-    duplicates = Webpage.find_duplicates url
+    duplicates = Source.find_duplicates url
     if duplicates.any?
       origin_page_card = duplicates.first.left
       title =  Card["#{origin_page_card.name}+title"] ? Card["#{origin_page_card.name}+title"].content : ""
