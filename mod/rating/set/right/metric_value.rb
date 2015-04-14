@@ -3,7 +3,7 @@ format :html do
     timeline = output [
       (wrap_with :div, :class=>'pull-left timeline-data' do
         [
-          _optional_render(:timeline_header, args, :show),
+          _optional_render(:timeline_header, args.merge(:column=>:data), :show),
           (search_results.map.with_index do |res,i|
             subformat(res).render_timeline_data(args.merge(:connect=> i<search_results.size-1))
           end.join "\n")
@@ -12,7 +12,7 @@ format :html do
       end),
       (wrap_with :div, :class=>'pull-left timeline-credit' do
         [
-          _optional_render(:timeline_add_new_link, args, :show),
+          _optional_render(:timeline_header, args.merge(:column=>:credit), :show),
           (search_results.map.with_index do |res,i|
             subformat(res).render_timeline_credit(args.merge(:connect=> i<search_results.size-1))
           end.join "\n")
@@ -29,20 +29,19 @@ format :html do
   end
 
   view :timeline_add_new_link do |args|
-    %{
-      <div class="timeline-header">
-        #{timeline_head view_link('+ Add New', :open), 'new' }
-      </div>
-    }
+    timeline_head view_link('+ Add New', :open), 'new'
   end
 
   view :timeline_header do |args|
-    %{
-      <div class="timeline-header">
-        #{timeline_head "Year", 'year'}
-        #{timeline_head "Value", 'year'}
-      </div>
-    }
+    wrap_with :div, :class=>'timeline-header' do
+      case args[:column]
+      when :credit
+        _optional_render(:timeline_add_new_link, args, :show) || ''
+      when :data
+        timeline_head('Year','year')+timeline_head('Value','value')
+      else ''
+      end
+    end
   end
 
   def timeline_head content, css_class

@@ -15,7 +15,8 @@ format :html do
           #{glyphicon 'pencil'}
         </label>
       </div>
-      #{super(args)}
+      #{#super(args)
+    }
     }
   end
 end
