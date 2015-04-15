@@ -126,10 +126,11 @@ format :html do
     file_card = Card[card.name+"+File"]
     text_card = Card[card.name+"+Text"]
     if text_card 
+      ##{content_tag(:div, nest(text_card,:view=>"open",:hide=>"toggle"), {:id=>"text_source", :class=> "webpage-preview "},false) }  
       %{
         <div class="container-fluid">
           <div class="row-fluid">
-            #{content_tag(:div, subformat(text_card).render_content(args), {:id=>"text_source", :class=> "webpage-preview "},false) }  
+            #{content_tag(:div, subformat(text_card).render(:open,args.merge({:home_view=>"open",:hide=>"toggle"})), {:id=>"text_source", :class=> "webpage-preview "},false) }  
           </div>
         </div>
       }
