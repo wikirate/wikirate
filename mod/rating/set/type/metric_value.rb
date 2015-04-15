@@ -1,4 +1,41 @@
+card_accessor :value, :type=>:phrase
+
+def year
+  cardname.right
+end
+
+def metric_name
+  cardname.left_name.left
+end
+
+def company_name
+  cardname.left_name.right
+end
+
+def metric_card
+  Card.fetch metric_name
+end
+
+def company_card
+  Card.fetch company_name
+end
+
 format :html do
+
+  view :concise do |args|
+    legend = subformat(card.metric_card)._render_legend args
+    %{
+      <span class="metric-year">
+        #{card.year} =
+      </span>
+      <span class="metric-value">
+        #{card.value}
+      </span>
+      <span class="metric-unit">
+        #{legend}
+      </span>
+    }
+  end
 
   view :timeline_data do |args|
     year  =  content_tag(:span, card.cardname.right, :class=>'metric-year')

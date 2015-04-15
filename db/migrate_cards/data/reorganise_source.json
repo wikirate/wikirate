@@ -85,8 +85,7 @@
         "name": "Source+*type+*add help",
         "type": "Basic",
         "content": "<p>Start with a link to a source webpage</p>"
-      },
-      ""
+      }
     ]
   }
 }
