@@ -311,15 +311,6 @@
         "name": "Greenpeace+Detox Transparency+H M+2014",
         "type": "Metric value"
       },
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
       {
         "name": "greenpeace+Seafood Labeling and Transparency+Aldi Sud",
         "type": "HTML"
@@ -665,22 +656,16 @@
         "type": "Basic",
         "content": ""
       },
-      "",
-      "",
       {
         "name": "auditing minerals suppliers",
         "type": "Basic",
         "content": ""
       },
-      "",
-      "",
       {
         "name": "supporting conflict minerals legislations",
         "type": "Basic",
         "content": ""
       },
-      "",
-      "",
       {
         "name": "The Enough Project",
         "type": "Company"
@@ -719,8 +704,6 @@
         "type": "Basic",
         "content": "<p>Has the company investigated and come to know precisely which companies refine/smelt the company's supply of 3TG, with third-party verification?</p>"
       },
-      "",
-      "",
       {
         "name": "publishing refiners and smelters",
         "type": "Basic",
@@ -837,9 +820,6 @@
         "type": "Basic",
         "content": ""
       },
-      "",
-      "",
-      "",
       {
         "name": "Greenpeace+GHG emission",
         "type": "metric"
@@ -936,7 +916,6 @@
         "type": "Pointer",
         "content": "[[Oceans]]"
       },
-      "",
       {
         "name": "Range",
         "type": "Basic",
