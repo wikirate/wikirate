@@ -172,12 +172,10 @@ describe Card::Set::Type::Source do
         Card::Env.params[:url] = @url
         result = @existing_source.format._render_preview
         expect(result).to have_tag("div", :with=>{:class=>"menu-options"}) do
-          with_tag "div", :with=>{:id=>"source-page-link"} do 
-            with_tag "a",  :with=>{:class=>"show-link-in-popup", :href=>"/#{@existing_source.cardname.url_key}+source_claim_list"}
-            with_tag "a",  :with=>{:class=>"show-link-in-popup", :href=>"/#{@existing_source.cardname.url_key}+discussion"}
-            with_tag "a",  :with=>{:class=>"show-link-in-popup", :href=>"/#{@existing_source.cardname.url_key}?slot[structure]=source_structure&view=edit"}
-            with_tag "a",  :with=>{:href=>@existing_source.fetch(:trait=>:wikirate_link).content}
-          end
+          with_tag "a",  :with=>{:class=>"show-link-in-popup", :href=>"/#{@existing_source.cardname.url_key}+source_claim_list?slot[hide]=header"}
+          with_tag "a",  :with=>{:class=>"show-link-in-popup", :href=>"/#{@existing_source.cardname.url_key}+discussion?slot[hide]=header"}
+          with_tag "a",  :with=>{:class=>"show-link-in-popup", :href=>"/#{@existing_source.cardname.url_key}?slot[structure]=source_structure&view=edit&slot[hide]=header"}
+          with_tag "a",  :with=>{:href=>@existing_source.fetch(:trait=>:wikirate_link).content}  
         end
       end
       it "shows dropdown button and company and topic" do

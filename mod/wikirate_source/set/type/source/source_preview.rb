@@ -26,8 +26,8 @@ format :html do
     wrap args do
     [
       render_hidden_information(args),
-      # render_logo_bar(args),#render in structure source_preview_nav_bar_structure
-      render_content(args.merge({:structure=>"source_preview_nav_bar_structure"})),
+      render_logo_bar(args),#render in structure source_preview_nav_bar_structure
+      # render_content(args.merge({:structure=>"source_preview_nav_bar_structure"})),
       render_iframe_view(args)
     ]
     end
@@ -45,11 +45,38 @@ format :html do
   end
   view :logo_bar ,:tags=>:unknown_ok  do |args|
     %{
-      <div id="logo-bar" class="navbar top-bar nodblclick">
-        #{content_tag(:div, web_link("/", :text=>raw( nest Card["*logo"], :view=>:content, :size=>:medium )), {:class=> "top-bar-icon"},false)}
-        #{render_preview_options(args)}
-        #{render_company_and_topic_detail(args)}
-      </div>
+      <nav class="navbar navbar-default navbar-fixed-top ">
+
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-brand" href="#">
+              #{web_link("/", :text=>raw( nest Card["*logo"], :view=>:core, :size=>:original ))}
+            </div>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="navbar-left nav-center visible-lg visible-md ">
+              
+              #{render_company_and_topic_detail(args)}
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+               #{render_preview_options(args)}
+            </ul>
+
+          </div>
+          <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+      </nav>
     }
   end
 
