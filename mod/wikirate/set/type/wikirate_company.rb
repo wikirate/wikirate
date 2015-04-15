@@ -8,7 +8,7 @@ end
 def indirect_contributor_search_args
   [
     {:type=>'claim', :plus=>['company',:link_to=>self.name]},
-    {:type=>'page', :plus=>['company',:link_to=>self.name]},
+    {:type=>'source', :plus=>['company',:link_to=>self.name]},
     {:type=>'analysis', :left=>self.name }
   ]
 end

@@ -241,7 +241,7 @@ class OxfamMetric
         page = if (dups=Webpage.find_duplicates(uri).first)
                  dups.left
                else
-                 Card.create! :type_code=>:webpage, :subcards=>{"+#{Card[:wikirate_link].name}"=>{:content=>uri}}
+                 Card.create! :type_code=>:source, :subcards=>{"+#{Card[:wikirate_link].name}"=>{:content=>uri}}
                end
         page.name
       end
