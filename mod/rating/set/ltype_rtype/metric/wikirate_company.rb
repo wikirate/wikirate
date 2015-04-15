@@ -1,6 +1,6 @@
-event :debug_form, :before=>:approve, :on=>:update do
-  @subcards = {"+#{Env.params[:year]}"=>{:type_id=>Card::MetricValueID, :subcards=>{'+value'=>{:content=>Env.params[:value]}}}}
-end
+# event :debug_form, :before=>:approve, :on=>:update do
+#   @subcards = {"+#{Env.params[:year]}"=>{:type_id=>Card::MetricValueID, :subcards=>{'+value'=>{:content=>Env.params[:value]}}}}
+# end
 
 format :html do
   view :all_values do |args|
