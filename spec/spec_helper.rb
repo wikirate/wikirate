@@ -9,7 +9,7 @@ def create_page_with_sourcebox iUrl=nil, subcards={},sourcebox=nil
     url = iUrl||'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
     _sourcebox = sourcebox||'true'
     Card::Env.params[:sourcebox] = _sourcebox
-    sourcepage = Card.create! :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }.merge(subcards)
+    sourcepage = Card.create! :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url} }.merge(subcards)
     Card::Env.params[:sourcebox] = 'false'
 
     sourcepage

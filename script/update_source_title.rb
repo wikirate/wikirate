@@ -7,7 +7,7 @@ Wagn.config.perform_deliveries = false
 Card::Auth.as_bot
 
 
-Card.search(:type=>Card::WebpageID).each do |card|
+Card.search(:type=>Card::SourceID).each do |card|
 	cardname = card.name 
 
 	if Card[cardname+"+link"] and ( !Card[cardname+"+title"] or !Card[cardname+"+description"] or !Card[cardname+"+image url"] )

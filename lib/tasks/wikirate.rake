@@ -159,6 +159,7 @@ namespace :wikirate do
     elsif ENV['name'].match /^(?:import)_(.*)(?:\.json)?/
       require "#{Wagn.root}/config/environment"
       require 'card/migration'
+      require 'generators/card'
       export_hash = Card['export'].format(:format=>:json).render_content
       File.open(Card::Migration.data_path("#{$1}.json"),'w') do |f|
         f.print JSON.pretty_generate(export_hash)

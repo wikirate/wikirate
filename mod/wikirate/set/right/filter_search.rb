@@ -70,7 +70,7 @@ format :html do
       #render( :button_formgroup, args )
     ])
     action = card.left.name
-    action = 'Source' if action == 'Page'
+    # action = 'Source' if action == 'Page'
     %{ <form action="/#{ action }" method="GET">#{content}</form>}
   end
   

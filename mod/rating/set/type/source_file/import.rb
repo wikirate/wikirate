@@ -3,7 +3,7 @@ card_accessor :year, :type=>:pointer
 
 
 event :validate_import, :before=>:approve_subcards, :on=>:update do
-  
+
   metric_pointer_card = subcards[name+"+Metric"]
   metric_year = subcards[name+"+Year"]
 
@@ -17,7 +17,7 @@ event :validate_import, :before=>:approve_subcards, :on=>:update do
     errors.add :content, "Please give a year."
   elsif year_card.type_id != Card::YearID
     errors.add  :content, "Invalid Year"
-  end  
+  end
 end
 
 
@@ -28,7 +28,8 @@ event :import_csv, :after=>:store, :on=>:update do
       if metric_value_card = Card[metric_value_card_name]
         metric_value_card.update_attributes! :content => value[0]
       else
-        Card.create! :name=>metric_value_card_name, :content=>value[0]
+        Card.create! :name=>metric_value_card_name, :type_id=>Card::MetricValueID,
+                     :subcards=>{'+value'=>value[0]}
       end
     end
     abort :success=>"REDIRECT: #{metric_card.item_names.first}"

@@ -1,5 +1,5 @@
 
-require File.expand_path('../../self/webpage_spec',  __FILE__)
+require File.expand_path('../../self/source_spec',  __FILE__)
 
 describe Card::Set::All::Wikirate do
   describe "claim count things" do 
