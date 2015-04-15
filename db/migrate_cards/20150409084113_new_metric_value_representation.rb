@@ -2,7 +2,6 @@
 
 class NewMetricValueRepresentation < Card::Migration
   def up
-    Card.create! :name=>'Metric value', :codename=>'metric_value', :type_code=>:cardtype
     Card.create! :name=>'Metric value+*type+*structure', :content=>"{{+value}}\n{{+source}}\n{{+discussion}}"
     card = Card[:values]
     card.update_attributes! :codename=>'value', :subcards=>{
