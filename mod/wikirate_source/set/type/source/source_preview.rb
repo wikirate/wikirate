@@ -26,7 +26,8 @@ format :html do
     wrap args do
     [
       render_hidden_information(args),
-      render_logo_bar(args),
+      # render_logo_bar(args),#render in structure source_preview_nav_bar_structure
+      render_content(args.merge({:structure=>"source_preview_nav_bar_structure"})),
       render_iframe_view(args)
     ]
     end
@@ -94,7 +95,7 @@ format :html do
       end
     end
     %{
-       <div class="menu-options">
+      <div class="menu-options">
         #{show_options from_certh, card.cardname.url_key ,url}
       </div>
     }
@@ -126,10 +127,11 @@ format :html do
     file_card = Card[card.name+"+File"]
     text_card = Card[card.name+"+Text"]
     if text_card 
+      ##{content_tag(:div, nest(text_card,:view=>"open",:hide=>"toggle"), {:id=>"text_source", :class=> "webpage-preview "},false) }  
       %{
         <div class="container-fluid">
           <div class="row-fluid">
-            #{content_tag(:div, subformat(text_card).render_content(args), {:id=>"text_source", :class=> "webpage-preview "},false) }  
+            #{content_tag(:div, subformat(text_card).render(:open,args.merge({:home_view=>"open",:hide=>"toggle",:title=>"Text Source"})), {:id=>"text_source", :class=> "webpage-preview "},false) }  
           </div>
         </div>
       }
@@ -193,20 +195,20 @@ format :html do
   def show_options source_from_certh,source_page_name,url
     if source_from_certh
       %{
-        <div id="mark-irrelevant" >
-          <a href="#" id="mark-irrelevant-button" class="button-primary button-secondary">
-            <i class="fa fa-exclamation-triangle">
-            </i>
-            <span>Irrelevant</span>
-          </a>
-        </div>
-        <div id="mark-relevant" >
+        <li>
           <a href="#" id="mark-relevant-button" class="button-primary">
             <i class="fa fa-exclamation-triangle">
             </i>
             <span>Relevant</span>
           </a>
-        </div>
+        </li>
+        <li>
+          <a href="#" id="mark-irrelevant-button" class="button-primary button-secondary">
+            <i class="fa fa-exclamation-triangle">
+            </i>
+            <span>Irrelevant</span>
+          </a>
+        </li>
       }
     else
       
@@ -214,33 +216,38 @@ format :html do
       claim_count = Card.search related_claim_wql
       file_card = Card[card.name+"+File"]
       text_card = Card[card.name+"+Text"]
-      result =%{
-
-        <div id="source-page-link" class="mark-irrelevant-button" >
-          <a class='show-link-in-popup' href='/#{source_page_name}+source_claim_list' target='_blank'>
-            <span class='claim-count'>
-              <i class='fa fa-quote-left'></i>#{claim_count}
-            </span>
-            
-          </a>
-          <a class='show-link-in-popup popup-original-link no-header position-right' href='/#{source_page_name}+discussion' target='_blank'>
-            <i class="fa fa-comments"></i>
-          </a>
-          <a class='show-link-in-popup popup-original-link no-header position-right' href='/#{source_page_name}?slot[structure]=source_structure&view=edit' target='_blank'>
-            <i class="fa fa-info-circle"></i>
-          </a>
-          #{%{<a href='#{url}' target='_blank'>
-            <i class="fa fa-external-link-square"></i>
-          </a>} if !( file_card || text_card )}
-        </div>
-      }
-      result += %{
-        <div id="make-claim" class="button-primary">
-          <a href="#" id="make-a-claim-button">
+      result = %{
+        <li>
+          <a href="#" id="make-a-claim-button" class="btn btn-primary">
             <span><i class="fa fa-quote-left"></i>Make a Claim</span>
           </a>
-        </div>
+        </li>
       }
+      result += %{
+
+        <li>
+          <a class='btn btn-default show-link-in-popup popup-original-link' href='/#{source_page_name}+source_claim_list?slot[hide]=header' target='_blank'>
+            <span class='claim-count'>
+              <i class='fa fa-quote-left'></i><span id="claim-count-number">#{claim_count}</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class='btn btn-default show-link-in-popup popup-original-link no-header position-right' href='/#{source_page_name}+discussion?slot[hide]=header' target='_blank'>
+            <i class="fa fa-comments"></i>
+          </a>
+          </li>
+          <li>
+          <a class='btn btn-default show-link-in-popup popup-original-link no-header position-right' href='/#{source_page_name}?slot[structure]=source_structure&view=edit&slot[hide]=header' target='_blank'>
+            <i class="fa fa-info-circle"></i>
+          </a>
+          </li>
+          #{%{<li><a href='#{url}' target='_blank'>
+            <i class="fa fa-external-link-square"></i>
+          </a></li>} if !( file_card || text_card )}
+        
+      }
+      
       result
     end
   end

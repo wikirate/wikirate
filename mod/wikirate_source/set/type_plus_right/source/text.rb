@@ -2,7 +2,7 @@ event :validate_editor, :after=>:approve, :on=>:save do
 
   # block not author editing except bot?
   if real? and ( creator.id != Card::Auth.current_id or Card::Auth.current_id == Card::WagnBotID )
-    errors.add :link, "exists already. <a href='/#{duplicated_name}'>Visit the source.</a>"   
+    errors.add :text, " can only be edited by author"   
   end
 end
 

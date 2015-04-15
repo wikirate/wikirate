@@ -69,20 +69,6 @@ end
 
 
 event :autopopulate_website, :after=>:approve_subcards, :on=>:create do
-#   if link_card = subcards["+#{ Card[:wikirate_link].name }"] and link_card.errors.empty?
-#     host = link_card.instance_variable_get '@host'
-
-#     website = Card[:wikirate_website].name    
-#     website_card = Card.new :name=>"+#{website}", :content => "[[#{host}]]", :supercard=>self
-#     website_card.approve
-
-#     subcards["+#{website}"] = website_card
-# #    self.name = generate_name host
-    
-#     if !Card.exists? host
-#       Card.create :name=>host, :type_id=>Card::WikirateWebsiteID
-#     end
-#   end
   website = Card[:wikirate_website].name  
   if link_card = subcards["+#{ Card[:wikirate_link].name }"] and link_card.errors.empty?  
     website_subcard = subcards["+#{website}"]
