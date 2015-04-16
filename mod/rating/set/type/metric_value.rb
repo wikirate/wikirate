@@ -67,7 +67,7 @@ format :html do
   end
 
   view :source_link do |args|
-    source_link =  card_link "#{card.name}+Summary",
+    source_link =  card_link card.name,
                             :text=>"View Sources", :class=>'btn btn-yellow btn-xs view-source-btn'
     content_tag(:p, source_link)
   end
