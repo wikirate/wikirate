@@ -29,7 +29,7 @@ format :html do
   end
 
   view :timeline_add_new_link do |args|
-    timeline_head view_link('+ Add New', :open), 'new'
+    timeline_head card_link(card.left, :text=>'+ Add New'), 'new'
   end
 
   view :timeline_header do |args|
