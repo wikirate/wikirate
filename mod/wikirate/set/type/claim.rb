@@ -120,7 +120,7 @@ format :html do
   .header-vote
     = subformat( card.vote_count_card ).render_details
   .header-citation
-    = nest card.fetch(:trait=>:citation_count), :view=>:titled, :title=>"Citations"
+    = nest card.fetch(:trait=>:citation_count), :view=>:titled, :hide=>"menu", :title=>"Citations"
   .header-title
     %h1.card-header
       = _optional_render :toggle, args, :hide
