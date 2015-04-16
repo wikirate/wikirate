@@ -1,6 +1,8 @@
-# event :debug_form, :before=>:approve, :on=>:update do
-#   @subcards = {"+#{Env.params[:year]}"=>{:type_id=>Card::MetricValueID, :subcards=>{'+value'=>{:content=>Env.params[:value]}}}}
-# end
+event :add_value, :before=>:approve, :on=>:update do
+  if Env.params[:year]
+    @subcards = {"+#{Env.params[:year]}"=>{:type_id=>Card::MetricValueID, :subcards=>{'+value'=>{:content=>Env.params[:value]}}}}
+  end
+end
 
 format :html do
   view :all_values do |args|
@@ -20,8 +22,8 @@ format :html do
     card_form :update do
       wrap_each_with :div, :class=>'form-group' do
         [
-          #wrap_with(:div, "<label>Year</label>#{year_tag}".html_safe, :class=>'metric-value-year'),
-          #wrap_with(:div, "<label>Value</label>#{value_tag}".html_safe, :class=>'metric-value-value'),
+          wrap_with(:div, "<label>Year</label>#{year_tag}".html_safe, :class=>'metric-value-year'),
+          wrap_with(:div, "<label>Value</label>#{value_tag}".html_safe, :class=>'metric-value-value'),
         ]
       end.concat(_render_add_source(args)).concat  "#{ button_tag 'Add', :class=>'submit-button', :disable_with=>'Submitting' }"
     end
