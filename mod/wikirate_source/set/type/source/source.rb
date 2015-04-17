@@ -39,6 +39,18 @@ event :process_source_url, :before=>:process_subcards, :on=>:create do
   if url.length != 0
     # errors.add :link, "is empty" 
   # else
+    if Card::Env.params[:sourcebox] == 'true'
+      if cite_card = Card[url] 
+        if cite_card.type_code != :source
+          errors.add :card, " can only be source type."     
+        else
+          self.name = cite_card.name
+          abort :success
+        end
+      else
+        errors.add :card, " does not exist." if not (url.start_with?"http://" or url.start_with?"https://")
+      end
+    end
     duplicates = Self::Source.find_duplicates url
     if duplicates.any?
       duplicated_name = duplicates.first.cardname.left

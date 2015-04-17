@@ -46,7 +46,33 @@ describe Card::Set::Type::Source do
         expect(secondsourcepage.errors).to have_key :link
         expect(secondsourcepage.errors[:link]).to include("exists already. <a href='/#{firstsourcepage.name}'>Visit the source.</a>")
 
-       
+      end
+    end
+    describe "creating a source in sourcebox"
+      before do
+        Card::Env.params[:sourcebox] = 'true'
+      end
+      context "while link is a card name" do
+        it "returns source card " do
+          source_card = create_page
+          return_source_card = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> source_page.name} }
+          expect(return_source_card.name).to eq(source_card.name)
+        end
+        it "returns error" do
+          return_source_card = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> get_a_sample_company.name} }
+           expect(return_source_card).not_to be_valid
+          expect(return_source_card.errors).to have_key :card
+          expect(return_source_card.errors[:card]).to include(" can only be source type.")
+        end
+      end
+      context "while link is a non existing card" do
+        it "returns source card " do
+          return_source_card = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> "this is not a exisiting card"} }
+          expect(return_source_card).not_to be_valid
+          expect(return_source_card.errors).to have_key :card
+          expect(return_source_card.errors[:card]).to include(" does not exist")
+
+        end
       end
     end
   end

@@ -5,7 +5,7 @@ format :html do
         <div class="source-editor nodblclick">
           #{ form.hidden_field :content, :class=>'card-content' }
           <div class="sourcebox">
-            #{ text_field_tag :sourcebox, nil, :placeholder=>'http://' }
+            #{ text_field_tag :sourcebox, nil, :placeholder=>'card name or http://' }
             #{ button_tag 'Add' }
           </div>
           #{ _render_core args }
