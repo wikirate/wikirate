@@ -1,6 +1,6 @@
 event :add_value, :before=>:approve, :on=>:update do
   if Env.params[:year]
-    source_card = Card.create! :type_id=>Card::SourceID,:subcards=>{}.merge(subcards)
+    source_card = Card.create! :type_id=>Card::SourceID,:subcards=>subcards
     @subcards = {
       "+#{Env.params[:year]}"=>{
         :type_id=>Card::MetricValueID, 
@@ -38,7 +38,7 @@ format :html do
 
   view :add_source do |args|
     source = Card.new :type_code=>:source
-    subformat(source)._render_edit(args.merge(:hide=>'header help',:button=>""))
+    subformat(source)._render_edit(args.merge(:hide=>'header help',:buttons=>""))
   #   file_source = Card.new :name=>'+file', :supercard=>source
   #   web_source = Card.new :type_code=>:uri
   #   direct_source = Card.new :type_code=>:basic
