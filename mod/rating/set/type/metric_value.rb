@@ -68,7 +68,8 @@ format :html do
 
   view :source_link do |args|
     source_link =  card_link card.name,
-                            :text=>"View Sources", :class=>'btn btn-yellow btn-xs view-source-btn'
+                            :text=>"View Sources", :class=>'btn btn-yellow btn-xs view-source-btn show-link-in-popup popup-original-link no-header',
+                            "data-popup-title"=>card.name
     content_tag(:p, source_link)
   end
 

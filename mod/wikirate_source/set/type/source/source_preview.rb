@@ -269,7 +269,7 @@ format :html do
             <i class="fa fa-info-circle"></i>
           </a>
           </li>
-          #{%{<li><a href='#{url}' target='_blank'>
+          #{%{<li><a class='btn btn-default' href='#{url}' target='_blank'>
             <i class="fa fa-external-link-square"></i>
           </a></li>} if !( file_card || text_card )}
         
