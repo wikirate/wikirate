@@ -38,7 +38,10 @@ format :html do
 
   view :add_source do |args|
     source = Card.new :type_code=>:source
-    subformat(source)._render_edit(args.merge(:hide=>'header help',:buttons=>""))
+    @mode = :edit
+    source_form_content = subformat(source)._render_content_formgroups(args.merge(:hide=>'header help',:buttons=>""))
+    @mode = :normal
+    source_form_content
   #   file_source = Card.new :name=>'+file', :supercard=>source
   #   web_source = Card.new :type_code=>:uri
   #   direct_source = Card.new :type_code=>:basic
