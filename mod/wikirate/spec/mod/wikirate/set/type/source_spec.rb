@@ -48,7 +48,7 @@ describe Card::Set::Type::Source do
 
       end
     end
-    describe "creating a source in sourcebox"
+    describe "creating a source in sourcebox" do
       before do
         Card::Env.params[:sourcebox] = 'true'
       end
