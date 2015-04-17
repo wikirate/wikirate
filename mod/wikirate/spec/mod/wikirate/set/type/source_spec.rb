@@ -58,8 +58,8 @@ describe Card::Set::Type::Source do
         end
         it "returns error" do
           Card::Env.params[:sourcebox] = 'true'
-          return_source_card = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> get_a_sample_company.name} }
-          
+          return_source_card = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> get_a_sample_company.name} }
+          expect(return_source_card).not_to be_valid
           expect(return_source_card.errors).to have_key :card
           expect(return_source_card.errors[:card]).to include(" can only be source type.")
         end
@@ -67,8 +67,8 @@ describe Card::Set::Type::Source do
       context "while link is a non existing card" do
         it "returns source card " do
           Card::Env.params[:sourcebox] = 'true'
-          return_source_card = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> "this is not a exisiting card"} }
-          
+          return_source_card = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> "this is not a exisiting card"} }
+          expect(return_source_card).not_to be_valid
           expect(return_source_card.errors).to have_key :card
           expect(return_source_card.errors[:card]).to include(" does not exist.")
 
