@@ -32,24 +32,24 @@ format :html do
       <div class='claim-counting'>
         <span class='claim-counting-number'>100</span> character(s) left
       </div>
-    }   
+    }
   end
-  
+
   view :citation_and_content do |args|
     output([
       render_citation_or_cite_button(args),
       render_content(args)
     ])
   end
-  
+
   view :citation_or_clipboard do |args|
     args[:citation_number] || optional_render( :clipboard, args )
   end
-  
+
   view :citation_or_cite_button do |args|
     args[:citation_number] || optional_render( :cite_button, args )
   end
-  
+
   view :cite_button do |args|
     if parent.parent.present? and parent.parent.card.present?
       article_name = parent.parent.card.cardname.url_key
@@ -61,10 +61,10 @@ format :html do
   end
 
   view :new do |args|
-    #hide all help text under title 
+    #hide all help text under title
     super args.merge( :optional_help => :hide )
   end
-  
+
   def edit_slot args
     # :core_edit means the new and edit views will render form fields from within the core view
     # (which in this case is defined by Claim+*type+*structure), as opposed to the default behavior,
@@ -72,7 +72,7 @@ format :html do
     super args.merge( :core_edit=>true )
   end
 
-  
+
   view :tip, :perms=>:none, :closed=>:blank do |args|
     # special view for prompting users with next steps
     if Auth.signed_in? and ( tip = args[:tip] || next_step_tip ) and @mode != :closed
@@ -84,7 +84,7 @@ format :html do
       }
     end.to_s
   end
-  
+
   def next_step_tip
     if (not topics = Card["#{card.name}+topics"]) || topics.item_names.empty?
       "improve this claim by adding a topic."
@@ -97,21 +97,21 @@ format :html do
       end
     end
   end
-  
+
   view :sample_citation do |args|
     tip = "easily cite this claim by pasting the following:" +
       text_area_tag( :citable_claim, card.default_citation )
     %{ <div class="sample-citation">#{ render :tip, :tip=>tip }</div> }
   end
-  
+
   view :titled, :tags=>:comment do |args|
     render_titled_with_voting args
   end
-  
+
   view :open do |args|
-    super args.merge( :custom_claim_header=>true )
+    super args.merge( :custom_claim_header=>true, :optional_horizontal_menu=>:hide )
   end
-  
+
   view :header do |args|
     if args[:custom_claim_header]
       render_haml(:args=>args) do
@@ -141,12 +141,12 @@ end
 
 
 def analysis_names
-  if topics   = Card["#{name}+#{Card[:wikirate_topic  ].name}"] and 
+  if topics   = Card["#{name}+#{Card[:wikirate_topic  ].name}"] and
     companies = Card["#{name}+#{Card[:wikirate_company].name}"]
-    
+
     companies = companies.item_cards.reject { |c| c.new_card? || c.type_id != Card::WikirateCompanyID }
     topics    = topics   .item_cards.reject { |c| c.new_card? || c.type_id != Card::WikirateTopicID   }
-    
+
     companies.map do |company|
       topics.map do |topic|
         "#{company.name}+#{topic.name}"
@@ -160,11 +160,11 @@ event :reset_claim_counts, :after=>:store do
 end
 
 
-event :validate_claim, :before=>:approve, :on=>:save do 
+event :validate_claim, :before=>:approve, :on=>:save do
   errors.add :claim, "is too long (100 character maximum)" if name.length > 100
 end
 
-event :validate_source, :after=>:approve, :on=>:save do 
+event :validate_source, :after=>:approve, :on=>:save do
   # 1. it correctly validates when adding a claim
   # 2. it correctly validates when editing a claim with +source
   # 3. it doesn't break anything when editing a claim without +source (eg renaming)
@@ -180,15 +180,15 @@ end
 def check_source source_card
 
   if !source_card or !source_card.content.present?
-    errors.add :source, "is empty" 
+    errors.add :source, "is empty"
   else
     source_card.item_cards.each do |item_card|
-      if !item_card.real? 
-        errors.add :source, "#{item_card.name} does not exist" 
+      if !item_card.real?
+        errors.add :source, "#{item_card.name} does not exist"
       elsif item_card.type_id != Card::SourceID
-        errors.add :source, "#{item_card.name} is not a valid Source Page" 
+        errors.add :source, "#{item_card.name} is not a valid Source Page"
       end
-    end   
+    end
   end
 end
 
@@ -221,7 +221,7 @@ event :sort_tags, :before=>:approve_subcards, :on=>:create do
           subcards[type_key].add_item tag
           tags_card.drop_item tag
         end
-        
+
       end
     end
   end
