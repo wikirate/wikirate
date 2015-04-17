@@ -20,7 +20,7 @@ format :html do
       end),
     ]
     %{
-      <div class="timeline">
+      <div class="timeline container">
         <div class="timeline-body">
           #{timeline}
         </div>
@@ -29,7 +29,8 @@ format :html do
   end
 
   view :timeline_add_new_link do |args|
-    timeline_head card_link(card.left, :text=>'+ Add New'), 'new'
+    link = subformat(card.left)._render_modal_link(args.merge(:text=>'+ Add New'))
+    timeline_head(link, 'new')+subformat(card.left)._render_modal_slot(args)
   end
 
   view :timeline_header do |args|

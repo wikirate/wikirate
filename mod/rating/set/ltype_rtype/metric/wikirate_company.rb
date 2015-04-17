@@ -5,6 +5,11 @@ event :add_value, :before=>:approve, :on=>:update do
 end
 
 format :html do
+
+  def default_menu_args args
+    args[:optional_horizontal_menu] = :hide
+  end
+
   view :all_values do |args|
     values = Card.search :left=>card.name, :type=>Card::MetricValueID
     values.map.with_index do |v, i|
