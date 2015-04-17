@@ -49,28 +49,28 @@ describe Card::Set::Type::Source do
       end
     end
     describe "creating a source in sourcebox" do
-      before do
-        Card::Env.params[:sourcebox] = 'true'
-      end
       context "while link is a card name" do
         it "returns source card " do
           source_card = create_page
-          return_source_card = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> source_page.name} }
+          Card::Env.params[:sourcebox] = 'true'
+          return_source_card = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> source_card.name} }
           expect(return_source_card.name).to eq(source_card.name)
         end
         it "returns error" do
+          Card::Env.params[:sourcebox] = 'true'
           return_source_card = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> get_a_sample_company.name} }
-           expect(return_source_card).not_to be_valid
+          
           expect(return_source_card.errors).to have_key :card
           expect(return_source_card.errors[:card]).to include(" can only be source type.")
         end
       end
       context "while link is a non existing card" do
         it "returns source card " do
+          Card::Env.params[:sourcebox] = 'true'
           return_source_card = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> "this is not a exisiting card"} }
-          expect(return_source_card).not_to be_valid
+          
           expect(return_source_card.errors).to have_key :card
-          expect(return_source_card.errors[:card]).to include(" does not exist")
+          expect(return_source_card.errors[:card]).to include(" does not exist.")
 
         end
       end
