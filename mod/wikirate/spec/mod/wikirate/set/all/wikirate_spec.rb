@@ -61,14 +61,15 @@ describe Card::Set::All::Wikirate do
   describe "while showing view" do
 
     it "renders edits_by view" do
-      html = render_card :edits_by,{:name=>"Home"}
-      expect(html).to include(render_card_with_args :shorter_search_result,{:name=>"Home+*editor"},{},{:item=>:link})
+      html = render_card :edits_by,{:name=>get_a_sample_company.name}
+      expect(html).to include(render_card_with_args :shorter_search_result,{:name=>"#{get_a_sample_company.name}+*editor"},{},{:item=>:link})
     end
 
     it "renders titled_with_edits view" do
-      html = render_card :titled_with_edits,{:name=>"Home"}
-      expect(html).to include(render_card :header,{:name=>"Home"})
-      expect(html).to include(render_card :edits_by,{:name=>"Home"})
+      card_name = get_a_sample_company.name
+      html = render_card :titled_with_edits,{:name=>card_name}
+      expect(html).to include(render_card :header,{:name=>card_name})
+      expect(html).to include(render_card :edits_by,{:name=>card_name})
     end
 
     it "should always show the help text " do

@@ -42,7 +42,7 @@ event :process_source_url, :before=>:process_subcards, :on=>:create do
     if Card::Env.params[:sourcebox] == 'true'
       if cite_card = Card[url] 
         if cite_card.type_code != :source
-          errors.add :souce, " can only be source type or valid URL."     
+          errors.add :source, " can only be source type or valid URL."     
         else
           self.name = cite_card.name
           abort :success
