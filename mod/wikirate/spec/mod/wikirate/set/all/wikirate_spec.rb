@@ -89,17 +89,17 @@ describe Card::Set::All::Wikirate do
       login_as "WagnBot"
       card = Card.create! :name=>"test_basic",:type=>"html",:content=>"Hello World"
       Card::Env.params[:show_modal] = card.name
-      html = render_card :modal,{:name=>card.name}
+      html = render_card :wikirate_modal,{:name=>card.name}
       expect(html).to eq("<div class='modal-window'>#{ render_card :core,{:name=>card.name} } </div>")
 
     end
     it "return \"\" for an non existing card or nil card in arg for modal view" do
       #nil card in arg
-      html = render_card :modal,{:name=>"test1"}
+      html = render_card :wikirate_modal,{:name=>"test1"}
       expect(html).to eq("")
 
       Card::Env.params[:show_modal] = "test1"
-      html = render_card :modal,{:name=>"test1"}
+      html = render_card :wikirate_modal,{:name=>"test1"}
       expect(html).to eq("")
     end
 

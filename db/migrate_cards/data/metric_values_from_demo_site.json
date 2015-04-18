@@ -1,0 +1,306 @@
+{
+  "url": null,
+  "timestamp": "2015-04-17 16:42:14 +0200",
+  "card": {
+    "name": "export",
+    "type": "Pointer",
+    "content": "[[The Enough Project+Stating policy of 3TG supplier audits+Samungs+2011+value]]\n[[The Enough Project+tracing 3TG refineries and smelters+Panasonic+2011+value]]\n[[The Enough Project+Tracing 3TG refiners and smelters+Panasonice+2011+value]]\n[[Clean Clothes Campaign+H&M+2013+value]]\n[[SOMO+Freedom of association and collective bargaining+Samung+2011+value]]\n[[SOMO+Green procurement policies+Samung+2011+value]]\n[[greenpeace+e waste recycling+Panasonic+2011+value]]\n[[greenpeace+e waste recycling+Samsung+2011+value]]\n[[Roberts Environmental Center+Degrading Treatment or Punishment of Employees+Ahold+2012+value]]\n[[Roberts Environmental Center+Elimination of Discrimination+Ahold+2012+value]]\n[[Roberts Environmental Center+Political Contributions+Ahold+2012+value]]\n[[Roberts Environmental Center+Anti corruption Practices+Ahold+2012+value]]\n[[Roberts Environmental Center+Bribery+Ahold+2012+value]]\n[[greenpeace+Red List Seafood Sales+WalMart+2013+value]]\n[[greenpeace+Sustainable Seafood Policy+WalMart+2013+value]]\n[[greenpeace+Seafood Labeling and Transparency+WalMart+2013+value]]\n[[greenpeace+Seafood Sustainability Initiatives+WalMart+2013+value]]\n[[greenpeace+Red List Seafood Sales+ahold+2013+value]]\n[[greenpeace+Seafood Labeling and Transparency+ahold+2013+value]]\n[[greenpeace+Sustainable Seafood Policy+Ahold+2013+value]]\n[[greenpeace+Seafood Sustainability Initiatives+Ahold+2013+value]]\n[[SOMO+Green procurement policies+Panasonic+2011+value]]\n[[SOMO+Freedom of association and collective bargaining+Panasonic+2011+value]]\n[[SOMO+CSR business initiative+Panasonic+2011+value]]\n[[The Enough Project+Publishing 3TG refiners and smelters+Panasonic+2011+value]]\n[[The Enough Project+Publishing 3TG refiners and smelters+Samsung+2011+value]]\n[[SOMO+CSR business initiative+Samsung+2011+value]]\n[[The Enough Project+Tracing 3TG refiners and smelters+Samsung+2011+value]]\n[[The Enough Project+Stating policy of 3TG supplier audits+Samsung+2011+value]]\n[[The Enough Project+Stating policy of 3TG supplier audits+Panasonic+2011+value]]\n[[The Enough Project+Tracing 3TG refiners and smelters+Panasonic+2011+value]]\n[[Greenpeace+GHG emission+Samsung+2011+value]]\n[[greenpeace+Clean Energy Policy Advocacy+Panasonic+2011+value]]\n[[greenpeace+Clean Energy Policy Advocacy+Samsung+2011+value]]\n[[Clean Clothes Campaign+Strategy+H M+2013+value]]\n[[Clean Clothes Campaign+Collaborative Approach+H M+2013+value]]\n[[Clean Clothes Campaign+Commitment and Practice+H&M+2013+value]]\n[[Clean Clothes Campaign+Living wage Benchmarks+H M+2013+value]]\n[[Clean Clothes Campaign+Worker Empowerment+H M+2013+value]]\n[[greenpeace+Red List Seafood Sales+Aldi Sud+2013+value]]\n[[greenpeace+Sustainable Seafood Policy+Aldi Sud+2013+value]]\n[[greenpeace+Seafood Sustainability Initiatives+Aldi Sud+2013+value]]\n[[greenpeace+Seafood Labeling and Transparency+Aldi Sud+2013+value]]\n[[Greenpeace+Detox Transparency+H M+2014+value]]\n[[Greenpeace+Detox Transparency+Adidas+2014+value]]\n[[Greenpeace+Elimination of PFCs+H M+2014+value]]\n[[Greenpeace+Elimination of PFCs+Adidas+2014+value]]\n[[Greenpeace+Elimination of APEOs and Phthalates+H M+2014+value]]\n[[Greenpeace+Elimination of APEOs and Phthalates+Adidas+2014+value]]\n[[Clean Clothes Campaign+Strategy+Adidas+2013+value]]\n[[Clean Clothes Campaign+Strategy+Aldi Sud+2013+value]]\n[[Clean Clothes Campaign+Collaborative Approach+Adidas+2013+value]]\n[[Clean Clothes Campaign+Collaborative Approach+Aldi Sud+2013+value]]\n[[Clean Clothes Campaign+Commitment and Practice+Aldi Sud+2013+value]]\n[[Clean Clothes Campaign+Commitment and Practice+Adidas+2013+value]]\n[[Clean Clothes Campaign+Living wage Benchmarks+Aldi Sud+2013+value]]\n[[Clean Clothes Campaign+Living wage Benchmarks+Adidas+2013+value]]\n[[Clean Clothes Campaign+Worker Empowerment+Aldi Sud+2013+value]]\n[[Clean Clothes Campaign+Worker Empowerment+Adidas+2013+value]]",
+    "value": [
+      {
+        "name": "The Enough Project+Stating policy of 3TG supplier audits+Samungs+2011+value",
+        "type": "Phrase",
+        "content": ""
+      },
+      {
+        "name": "The Enough Project+tracing 3TG refineries and smelters+Panasonic+2011+value",
+        "type": "Phrase",
+        "content": ""
+      },
+      {
+        "name": "The Enough Project+Tracing 3TG refiners and smelters+Panasonice+2011+value",
+        "type": "Phrase",
+        "content": ""
+      },
+      {
+        "name": "Clean Clothes Campaign+H&M+2013+value",
+        "type": "Phrase",
+        "content": ""
+      },
+      {
+        "name": "The Enough Project+Stating policy of 3TG supplier audits+Samsung+2011+value",
+        "type": "Phrase",
+        "content": ""
+      },
+      {
+        "name": "SOMO+Freedom of association and collective bargaining+Samung+2011+value",
+        "type": "Phrase",
+        "content": "Yes"
+      },
+      {
+        "name": "SOMO+Green procurement policies+Samung+2011+value",
+        "type": "Phrase",
+        "content": "Yes"
+      },
+      {
+        "name": "greenpeace+e waste recycling+Panasonic+2011+value",
+        "type": "Phrase",
+        "content": "2"
+      },
+      {
+        "name": "greenpeace+e waste recycling+Samsung+2011+value",
+        "type": "Phrase",
+        "content": "6"
+      },
+      {
+        "name": "Roberts Environmental Center+Degrading Treatment or Punishment of Employees+Ahold+2012+value",
+        "type": "Phrase",
+        "content": "50.00"
+      },
+      {
+        "name": "Roberts Environmental Center+Elimination of Discrimination+Ahold+2012+value",
+        "type": "Phrase",
+        "content": "14.29"
+      },
+      {
+        "name": "Roberts Environmental Center+Political Contributions+Ahold+2012+value",
+        "type": "Phrase",
+        "content": "14.29"
+      },
+      {
+        "name": "Roberts Environmental Center+Anti corruption Practices+Ahold+2012+value",
+        "type": "Phrase",
+        "content": "14.29"
+      },
+      {
+        "name": "Roberts Environmental Center+Bribery+Ahold+2012+value",
+        "type": "Phrase",
+        "content": "14.29"
+      },
+      {
+        "name": "greenpeace+Red List Seafood Sales+WalMart+2013+value",
+        "type": "Phrase",
+        "content": "67"
+      },
+      {
+        "name": "greenpeace+Sustainable Seafood Policy+WalMart+2013+value",
+        "type": "Phrase",
+        "content": "67.23"
+      },
+      {
+        "name": "greenpeace+Seafood Labeling and Transparency+WalMart+2013+value",
+        "type": "Phrase",
+        "content": "33"
+      },
+      {
+        "name": "greenpeace+Seafood Sustainability Initiatives+WalMart+2013+value",
+        "type": "Phrase",
+        "content": "56.68"
+      },
+      {
+        "name": "greenpeace+Red List Seafood Sales+ahold+2013+value",
+        "type": "Phrase",
+        "content": "52"
+      },
+      {
+        "name": "greenpeace+Seafood Labeling and Transparency+ahold+2013+value",
+        "type": "Phrase",
+        "content": "66.5"
+      },
+      {
+        "name": "greenpeace+Sustainable Seafood Policy+Ahold+2013+value",
+        "type": "Phrase",
+        "content": "67.78"
+      },
+      {
+        "name": "greenpeace+Seafood Sustainability Initiatives+Ahold+2013+value",
+        "type": "Phrase",
+        "content": "65.36"
+      },
+      {
+        "name": "SOMO+Green procurement policies+Panasonic+2011+value",
+        "type": "Phrase",
+        "content": "Yes"
+      },
+      {
+        "name": "SOMO+Freedom of association and collective bargaining+Panasonic+2011+value",
+        "type": "Phrase",
+        "content": "Yes"
+      },
+      {
+        "name": "SOMO+CSR business initiative+Panasonic+2011+value",
+        "type": "Phrase",
+        "content": "No"
+      },
+      {
+        "name": "The Enough Project+Publishing 3TG refiners and smelters+Panasonic+2011+value",
+        "type": "Phrase",
+        "content": "2"
+      },
+      {
+        "name": "The Enough Project+Publishing 3TG refiners and smelters+Samsung+2011+value",
+        "type": "Phrase",
+        "content": "2"
+      },
+      {
+        "name": "SOMO+CSR business initiative+Samsung+2011+value",
+        "type": "Phrase",
+        "content": "Yes"
+      },
+      {
+        "name": "The Enough Project+Tracing 3TG refiners and smelters+Samsung+2011+value",
+        "type": "Phrase",
+        "content": "2"
+      },
+      {
+        "name": "The Enough Project+Stating policy of 3TG supplier audits+Panasonic+2011+value",
+        "type": "Phrase",
+        "content": "0"
+      },
+      {
+        "name": "The Enough Project+Tracing 3TG refiners and smelters+Panasonic+2011+value",
+        "type": "Phrase",
+        "content": "2"
+      },
+      {
+        "name": "Greenpeace+GHG emission+Samsung+2011+value",
+        "type": "Phrase",
+        "content": "11,304,000"
+      },
+      {
+        "name": "greenpeace+Clean Energy Policy Advocacy+Panasonic+2011+value",
+        "type": "Phrase",
+        "content": "2"
+      },
+      {
+        "name": "greenpeace+Clean Energy Policy Advocacy+Samsung+2011+value",
+        "type": "Phrase",
+        "content": "2"
+      },
+      {
+        "name": "Clean Clothes Campaign+Strategy+H M+2013+value",
+        "type": "Phrase",
+        "content": "4.5"
+      },
+      {
+        "name": "Clean Clothes Campaign+Collaborative Approach+H M+2013+value",
+        "type": "Phrase",
+        "content": "4"
+      },
+      {
+        "name": "Clean Clothes Campaign+Commitment and Practice+H&M+2013+value",
+        "type": "Phrase",
+        "content": "1.5"
+      },
+      {
+        "name": "Clean Clothes Campaign+Living wage Benchmarks+H M+2013+value",
+        "type": "Phrase",
+        "content": "No"
+      },
+      {
+        "name": "Clean Clothes Campaign+Worker Empowerment+H M+2013+value",
+        "type": "Phrase",
+        "content": "1.5"
+      },
+      {
+        "name": "greenpeace+Red List Seafood Sales+Aldi Sud+2013+value",
+        "type": "Phrase",
+        "content": "75"
+      },
+      {
+        "name": "greenpeace+Sustainable Seafood Policy+Aldi Sud+2013+value",
+        "type": "Phrase",
+        "content": "75.04"
+      },
+      {
+        "name": "greenpeace+Seafood Sustainability Initiatives+Aldi Sud+2013+value",
+        "type": "Phrase",
+        "content": "57.5"
+      },
+      {
+        "name": "greenpeace+Seafood Labeling and Transparency+Aldi Sud+2013+value",
+        "type": "Phrase",
+        "content": "56.5"
+      },
+      {
+        "name": "Greenpeace+Detox Transparency+H M+2014+value",
+        "type": "Phrase",
+        "content": "Yes"
+      },
+      {
+        "name": "Greenpeace+Detox Transparency+Adidas+2014+value",
+        "type": "Phrase",
+        "content": "Yes"
+      },
+      {
+        "name": "Greenpeace+Elimination of PFCs+H M+2014+value",
+        "type": "Phrase",
+        "content": "Yes"
+      },
+      {
+        "name": "Greenpeace+Elimination of PFCs+Adidas+2014+value",
+        "type": "Phrase",
+        "content": "Yes"
+      },
+      {
+        "name": "Greenpeace+Elimination of APEOs and Phthalates+H M+2014+value",
+        "type": "Phrase",
+        "content": "Yes"
+      },
+      {
+        "name": "Greenpeace+Elimination of APEOs and Phthalates+Adidas+2014+value",
+        "type": "Phrase",
+        "content": "Yes"
+      },
+      {
+        "name": "Clean Clothes Campaign+Strategy+Adidas+2013+value",
+        "type": "Phrase",
+        "content": "2"
+      },
+      {
+        "name": "Clean Clothes Campaign+Strategy+Aldi Sud+2013+value",
+        "type": "Phrase",
+        "content": "0"
+      },
+      {
+        "name": "Clean Clothes Campaign+Collaborative Approach+Adidas+2013+value",
+        "type": "Phrase",
+        "content": "3"
+      },
+      {
+        "name": "Clean Clothes Campaign+Collaborative Approach+Aldi Sud+2013+value",
+        "type": "Phrase",
+        "content": "0"
+      },
+      {
+        "name": "Clean Clothes Campaign+Commitment and Practice+Aldi Sud+2013+value",
+        "type": "Phrase",
+        "content": "0.5"
+      },
+      {
+        "name": "Clean Clothes Campaign+Commitment and Practice+Adidas+2013+value",
+        "type": "Phrase",
+        "content": "0.5"
+      },
+      {
+        "name": "Clean Clothes Campaign+Living wage Benchmarks+Aldi Sud+2013+value",
+        "type": "Phrase",
+        "content": "No"
+      },
+      {
+        "name": "Clean Clothes Campaign+Living wage Benchmarks+Adidas+2013+value",
+        "type": "Phrase",
+        "content": "No"
+      },
+      {
+        "name": "Clean Clothes Campaign+Worker Empowerment+Aldi Sud+2013+value",
+        "type": "Phrase",
+        "content": "1"
+      },
+      {
+        "name": "Clean Clothes Campaign+Worker Empowerment+Adidas+2013+value",
+        "type": "Phrase",
+        "content": "5"
+      }
+    ]
+  }
+}

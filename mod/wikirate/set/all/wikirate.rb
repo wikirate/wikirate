@@ -40,7 +40,7 @@ format :html do
 
 
   view :open do |args|
-    super(args.merge :optional_horizontal_menu=>:show)
+    super(args.reverse_merge :optional_horizontal_menu=>:show)
   end
 
   attr_accessor :citations
@@ -51,7 +51,7 @@ format :html do
   end
 
   def default_menu_args args
-    args[:optional_horizontal_menu] = :show if main?
+    args[:optional_horizontal_menu] ||= :show if main?
   end
 
   view :shorter_search_result do |args|
@@ -95,7 +95,7 @@ format :html do
     holder.citations.size
   end
 
-  view :modal do |args|
+  view :wikirate_modal do |args|
     card_name = Card::Env.params[:show_modal]
     if card_name.present?
       after_card = Card[card_name]
