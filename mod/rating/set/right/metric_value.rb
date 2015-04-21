@@ -29,8 +29,9 @@ format :html do
   end
 
   view :timeline_add_new_link do |args|
-    link = subformat(card.left)._render_modal_link(args.merge(:text=>'+ Add New'))
-    timeline_head(link, 'new')+subformat(card.left)._render_modal_slot(args)
+    add_card = card.left.fetch(:trait=>:add_value)
+    link = subformat(add_card)._render_modal_link(args.merge(:text=>'+ Add New'))
+    timeline_head(link, 'new')+subformat(add_card)._render_modal_slot(args)
   end
 
   view :timeline_header do |args|
