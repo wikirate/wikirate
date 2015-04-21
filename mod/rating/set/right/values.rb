@@ -4,10 +4,13 @@ format :html do
     value =  content_tag(:span, value_card.content, :class=>'metric-value')
     value << content_tag(:span, subformat(value_card[0..1])._render_legend(), :class=>'metric-unit')
 
-    source_link =  card_link "#{card.cardname.left}+#{value_card.cardname.right}+Summary",
-                            :text=>"View Sources",
-                            :class=>'btn btn-yellow btn-xs view-source-btn show-link-in-popup popup-original-link no-header',
-                            "data-popup-title"=>"#{card.cardname.left}+#{value_card.cardname.right}"
+    # source_link =  card_link "#{card.cardname.left}+#{value_card.cardname.right}+Summary",
+    #                         :text=>"View Sources",
+    #                         :class=>'btn btn-yellow btn-xs view-source-btn show-link-in-popup popup-original-link no-header',
+    #                         "data-popup-title"=>"#{card.cardname.left}+#{value_card.cardname.right}"
+    summary_card = Card["#{card.cardname.left}+#{value_card.cardname.right}+Summary"]
+    source_link = subformat(summary_card)._render_modal_link(args.merge(:text=>'View Sources',:html_args=>{:class=>"btn btn-yellow btn-xs"}))
+    source_link += subformat(summary_card)._render_modal_slot(args)
     credit =  nest(value_card, :view=>:content, :structure=>'creator credit')
     credit << content_tag(:p, source_link)
     line   =  content_tag(:div, '', :class=>'timeline-dot')
