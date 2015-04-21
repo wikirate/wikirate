@@ -67,10 +67,8 @@ format :html do
   end
 
   view :source_link do |args|
-    source_link =  card_link card.name,
-                            :text=>"View Sources", :class=>'btn btn-yellow btn-xs view-source-btn show-link-in-popup popup-original-link no-header',
-                            "data-popup-title"=>card.name
-    content_tag(:p, source_link)
+    source_link = subformat(card)._render_modal_link(args.merge(:text=>'View Sources',:html_args=>{:class=>"btn btn-yellow btn-xs"}))
+    content_tag(:p, source_link+subformat(card)._render_modal_slot(args))
   end
 
 end
