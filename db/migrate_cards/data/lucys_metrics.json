@@ -222,22 +222,16 @@
         "type": "Basic",
         "content": ""
       },
-      "",
-      "",
       {
         "name": "auditing minerals suppliers",
         "type": "Basic",
         "content": ""
       },
-      "",
-      "",
       {
         "name": "supporting conflict minerals legislations",
         "type": "Basic",
         "content": ""
       },
-      "",
-      "",
       {
         "name": "The Enough Project",
         "type": "Company"
@@ -424,9 +418,6 @@
         "type": "Basic",
         "content": ""
       },
-      "",
-      "",
-      "",
       {
         "name": "Greenpeace+GHG emission",
         "type": "metric"
@@ -539,7 +530,6 @@
         "type": "Pointer",
         "content": "[[Oceans]]"
       },
-      "",
       {
         "name": "Range",
         "type": "Basic",

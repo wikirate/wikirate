@@ -1,10 +1,10 @@
 # -*- encoding : utf-8 -*-
 
-class ImportMaxisMetrics < Card::Migration
+class ImportDemoMetrics < Card::Migration
   def up
-    Card::Auth.current = Card.fetch "Maxi"
+    Card::Auth.current_id = Card.fetch_id "Maxi"
     import_json "maxis_metrics.json"
-    Card::Auth.current = Card.fetch "Lucia Lu"
+    Card::Auth.current_id = Card.fetch_id "Lucia Lu"
     import_json "lucys_metrics.json"
   end
 end
