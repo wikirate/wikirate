@@ -1,483 +1,11 @@
 {
   "url": null,
-  "timestamp": "2015-04-13 14:03:31 +0200",
+  "timestamp": "2015-04-21 19:42:12 +0200",
   "card": {
     "name": "export",
     "type": "Pointer",
-    "content": "[[metric+right sidebar+*type plus right+*structure]]\r\n[[customized classic skin]]\r\n[[non-votee search+*right+*structure]]\r\n[[*css]]\r\n[[topic drag item]]\r\n[[Company+topic sidebar+*type plus right+*structure]]\r\n[[votee filter]]\r\n[[topic votee filter]]\r\n[[unit+*right+*default]]\r\n[[range+*right+*default]]\r\n[[metric drag item]]\r\n[[Company+*type+*structure]]\r\n[[script: rating]]\r\n[[above is from demo.wikirate.org, below is new]]\r\n[[metric details+*right+*structure]]\r\n[[style: rating]]\r\n[[Metric+Company+*ltype_rtype+*structure]]\r\n[[Metric value+*type+*structure]]\r\n[[year select+*right+*default]]\r\n[[Clean Clothes Campaign+Logo]]\r\n[[Clean Clothes Campaign+About]]\r\n[[Worker Empowerment]]\r\n[[Clean Clothes Campaign+Worker Empowerment]]\r\n[[Clean Clothes Campaign+Worker Empowerment+Topics]]\r\n[[Clean Clothes Campaign+Worker Empowerment+About]]\r\n[[Clean Clothes Campaign+Worker Empowerment+Range]]\r\n[[Clean Clothes Campaign+Worker Empowerment+Adidas]]\r\n[[Clean Clothes Campaign+Worker Empowerment+Adidas+2013]]\r\n[[Clean Clothes Campaign+Worker Empowerment+Aldi Sud]]\r\n[[Clean Clothes Campaign+Worker Empowerment+Aldi Sud+2013]]\r\n[[Living-wage Benchmarks]]\r\n[[Clean Clothes Campaign+Living-wage Benchmarks]]\r\n[[Clean Clothes Campaign+Living-wage Benchmarks+Topics]]\r\n[[Clean Clothes Campaign+Living wage Benchmarks+About]]\r\n[[Clean Clothes Campaign+Living wage Benchmarks+Adidas]]\r\n[[Clean Clothes Campaign+Living wage Benchmarks+Adidas+2013]]\r\n[[Clean Clothes Campaign+Living wage Benchmarks+Aldi Sud]]\r\n[[Clean Clothes Campaign+Living wage Benchmarks+Aldi Sud+2013]]\r\n[[Commitment and Practices]]\r\n[[Clean Clothes Campaign+Commitment and Practice]]\r\n[[Clean Clothes Campaign+Commitment and Practice+Range]]\r\n[[Clean Clothes Campaign+Commitment and Practice+Topics]]\r\n[[Clean Clothes Campaign+Commitment and Practice+About]]\r\n[[Clean Clothes Campaign+Commitment and Practice+Adidas]]\r\n[[Clean Clothes Campaign+Commitment and Practice+Adidas+2013]]\r\n[[Clean Clothes Campaign+Commitment and Practice+Aldi Sud]]\r\n[[Clean Clothes Campaign+Commitment and Practice+Aldi Sud+2013]]\r\n[[Collaborative Approach]]\r\n[[Clean Clothes Campaign+Collaborative Approach]]\r\n[[Clean Clothes Campaign+Collaborative Approach+Range]]\r\n[[Clean Clothes Campaign+Collaborative Approach+Topics]]\r\n[[Clean Clothes Campaign+Collaborative Approach+About]]\r\n[[Clean Clothes Campaign+Collaborative Approach+Adidas]]\r\n[[Clean Clothes Campaign+Collaborative Approach+Adidas+2013]]\r\n[[Clean Clothes Campaign+Collaborative Approach+Aldi Sud]]\r\n[[Clean Clothes Campaign+Collaborative Approach+Aldi Sud+2013]]\r\n[[Strategy]]\r\n[[Clean Clothes Campaign+Strategy]]\r\n[[Clean Clothes Campaign+Strategy+Range]]\r\n[[Clean Clothes Campaign+Strategy+Topics]]\r\n[[Clean Clothes Campaign+Strategy+About]]\r\n[[Clean Clothes Campaign+Strategy+Aldi Sud]]\r\n[[Clean Clothes Campaign+Strategy+Aldi Sud+2013]]\r\n[[Clean Clothes Campaign+Strategy+Adidas]]\r\n[[Clean Clothes Campaign+Strategy+Adidas+2013]]\r\n[[Elimination of APEOs and Phthalates]]\r\n[[Greenpeace+Elimination of APEOs and Phthalates]]\r\n[[Greenpeace+Elimination of APEOs and Phthalates+About]]\r\n[[Greenpeace+Elimination of APEOs and Phthalates+Adidas]]\r\n[[Greenpeace+Elimination of APEOs and Phthalates+Adidas+2014]]\r\n[[Greenpeace+Elimination of APEOs and Phthalates+H M]]\r\n[[Greenpeace+Elimination of APEOs and Phthalates+H M+2014]]\r\n[[Elimination of PFCs]]\r\n[[Greenpeace+Elimination of PFCs]]\r\n[[Greenpeace+Elimination of PFCs+Topics]]\r\n[[Greenpeace+Elimination of PFCs+About]]\r\n[[Greenpeace+Elimination of PFCs+Adidas]]\r\n[[Greenpeace+Elimination of PFCs+Adidas+2014]]\r\n[[Greenpeace+Elimination of PFCs+H M]]\r\n[[Greenpeace+Elimination of PFCs+H M+2014]]\r\n[[Detox Transparency]]\r\n[[Greenpeace+Detox Transparency]]\r\n[[Greenpeace+Detox Transparency+Topics]]\r\n[[Greenpeace+Detox Transparency+About]]\r\n[[Greenpeace+Detox Transparency+Adidas]]\r\n[[Greenpeace+Detox Transparency+Adidas+2014]]\r\n[[Greenpeace+Detox Transparency+H M]]\r\n[[Greenpeace+Detox Transparency+H M+2014]]\r\n[[Aldi]]\r\n[[greenpeace+Seafood Sustainability Initiatives+Aldi]]\r\n[[greenpeace+Seafood Sustainability Initiatives+Aldi+2013]]\r\n[[greenpeace+Sustainable Seafood Policy+Aldi]]\r\n[[greenpeace+Sustainable Seafood Policy+Aldi+2013]]\r\n[[greenpeace+Red List Seafood Sales+Aldi]]\r\n[[greenpeace+Red List Seafood Sales+Aldi+2013]]\r\n[[greenpeace+Seafood Labeling and Transparency+Aldi]]\r\n[[greenpeace+Seafood Labeling and Transparency+Aldi+2013]]\r\n[[greenpeace+Seafood Labeling and Transparency+Aldi Sud]]\r\n[[greenpeace+Seafood Labeling and Transparency+Aldi Sud+2013]]\r\n[[greenpeace+Seafood Sustainability Initiatives+Aldi Sud]]\r\n[[greenpeace+Seafood Sustainability Initiatives+Aldi Sud+2013]]\r\n[[greenpeace+Sustainable Seafood Policy+Aldi Sud]]\r\n[[greenpeace+Sustainable Seafood Policy+Aldi Sud+2013]]\r\n[[greenpeace+Red List Seafood Sales+Aldi Sud]]\r\n[[greenpeace+Red List Seafood Sales+Aldi Sud+2013]]\r\n[[Clean Clothes Campaign+Worker Empowerment+H M]]\r\n[[Clean Clothes Campaign+Worker Empowerment+H M+2013]]\r\n[[Clean Clothes Campaign+Living wage Benchmarks+H M]]\r\n[[Clean Clothes Campaign+Living wage Benchmarks+H M+2013]]\r\n[[Clean Clothes Campaign+Commitment and Practice+H&M]]\r\n[[Clean Clothes Campaign+Commitment and Practice+H&M+2013]]\r\n[[Clean Clothes Campaign+Collaborative Approach+H M]]\r\n[[Clean Clothes Campaign+Collaborative Approach+H M+2013]]\r\n[[Clean Clothes Campaign+Strategy+H M]]\r\n[[Clean Clothes Campaign+Strategy+H M+2013]]\r\n[[secured-static.greenpeace.org]]\r\n[[Page-000001540]]\r\n[[Page-000001540+Link]]\r\n[[Page-000001540+Website]]\r\n[[Page-000001540+Companies]]\r\n[[Page-000001540+Topics]]\r\n[[Page-000001540+Tags]]\r\n[[Page 000001540+Title]]\r\n[[Page 000001540+Date]]\r\n[[SOMO+CSR business initiative+Samsung+2011+Source]]\r\n[[Samsung motivates employees to participate to their education programmes+tag]]\r\n[[Saudi Arabia]]\r\n[[Samsung addresses economic challenges in Africa+tag]]\r\n[[www.csrdigest.com]]\r\n[[Page-000001544]]\r\n[[Page-000001544+Link]]\r\n[[Page-000001544+image url]]\r\n[[Page-000001544+title]]\r\n[[Page-000001544+description]]\r\n[[Page-000001544+Website]]\r\n[[Is the company s supplier code explicit about the following environmental issues related to la]]\r\n[[Oxfam+Is the company s supplier code explicit about the following environmental issues related to la]]\r\n[[SOMO+Logo]]\r\n[[SOMO+About]]\r\n[[Adopting a CSR business initiative]]\r\n[[SOMO+CSR business initiative]]\r\n[[SOMO+CSR business initiative+Samsung]]\r\n[[SOMO+CSR business initiative+Samsung+2011]]\r\n[[Page-000001536]]\r\n[[Page-000001536+Link]]\r\n[[Page-000001536+Website]]\r\n[[Page-000001536+Companies]]\r\n[[Page 000001536+Title]]\r\n[[Page 000001536+Date]]\r\n[[Page 000001536+Topics]]\r\n[[Page 000001536+Tags]]\r\n[[SOMO+CSR business initiative+Panasonic]]\r\n[[SOMO+CSR business initiative+Panasonic+2011]]\r\n[[Green procurement policies]]\r\n[[SOMO+Green procurement policies]]\r\n[[Samung]]\r\n[[SOMO+Green procurement policies+Samung]]\r\n[[SOMO+Green procurement policies+Samung+2011]]\r\n[[SOMO+Green procurement policies+Panasonic]]\r\n[[SOMO+Green procurement policies+Panasonic+2011]]\r\n[[SOMO+Freedom of association and collective bargaining]]\r\n[[SOMO+Freedom of association and collective bargaining+Samung]]\r\n[[SOMO+Freedom of association and collective bargaining+Samung+2011]]\r\n[[SOMO+Freedom of association and collective bargaining+Panasonic]]\r\n[[SOMO+Freedom of association and collective bargaining+Panasonic+2011]]\r\n[[SOMO+Freedom of association and collective bargaining+about]]\r\n[[SOMO+Freedom of association and collective bargaining+Topics]]\r\n[[CSR business initiative]]\r\n[[SOMO+CSR business initiative+Topics]]\r\n[[SOMO+CSR business initiative+About]]\r\n[[Greenpeace+About]]\r\n[[Greenpeace+Logo]]\r\n[[tracing and publishing smelters]]\r\n[[Greenpeace+tracing and publishing smelters]]\r\n[[Greenpeace+tracing and publishing smelters+Topics]]\r\n[[auditing minerals suppliers]]\r\n[[Greenpeace+auditing minerals suppliers]]\r\n[[Greenpeace+auditing minerals suppliers+Topics]]\r\n[[supporting conflict minerals legislations]]\r\n[[Greenpeace+supporting conflict minerals legislations]]\r\n[[Greenpeace+supporting conflict minerals legislations+Topics]]\r\n[[The Enough Project]]\r\n[[The Enough Project+Logo]]\r\n[[The Enough Project+about]]\r\n[[tracing minerals refineries and smelters]]\r\n[[The Enough Project+Tracing 3TG refiners and smelters]]\r\n[[The Enough Project+Tracing 3TG refiners and smelters+Topics]]\r\n[[tracing 3TG refineries and smelters]]\r\n[[The Enough Project+Tracing 3TG refiners and smelters+About]]\r\n[[The Enough Project+tracing 3TG refiners and smelters+Samung]]\r\n[[The Enough Project+tracing 3TG refiners and smelters+Samung+2011]]\r\n[[publishing refiners and smelters]]\r\n[[The Enough Project+Publishing 3TG refiners and smelters]]\r\n[[The Enough Project+Publishing 3TG refiners and smelters+Topics]]\r\n[[The Enough Project+Publishing 3TG refiners and smelters+About]]\r\n[[tracing 3TG refiners and smelters]]\r\n[[The Enough Project+Publishing 3TG refiners and smelters+Samsung]]\r\n[[The Enough Project+Publishing 3TG refiners and smelters+Samsung+2011]]\r\n[[The Enough Project+Tracing 3TG refiners and smelters+Samsung]]\r\n[[The Enough Project+Tracing 3TG refiners and smelters+Samsung+2011]]\r\n[[publishing 3TG refiners and smelters]]\r\n[[Stating policy of 3TG supplier audits]]\r\n[[The Enough Project+Stating policy of 3TG supplier audits]]\r\n[[The Enough Project+Stating policy of 3TG supplier audits+Topics]]\r\n[[The Enough Project+Stating policy of 3TG supplier audits+About]]\r\n[[The Enough Project+Stating policy of 3TG supplier audits+Samsung]]\r\n[[The Enough Project+Stating policy of 3TG supplier audits+Samsung+2011]]\r\n[[The Enough Project+Stating policy of 3TG supplier audits+Panasonic]]\r\n[[The Enough Project+Stating policy of 3TG supplier audits+Panasonic+2011]]\r\n[[The Enough Project+Publishing 3TG refiners and smelters+Panasonic]]\r\n[[The Enough Project+Publishing 3TG refiners and smelters+Panasonic+2011]]\r\n[[Panasonice]]\r\n[[The Enough Project+Tracing 3TG refiners and smelters+Panasonice]]\r\n[[The Enough Project+Tracing 3TG refiners and smelters+Panasonice+2011]]\r\n[[The Enough Project+Tracing 3TG refiners and smelters+Panasonic]]\r\n[[The Enough Project+Tracing 3TG refiners and smelters+Panasonic+2011]]\r\n[[Disclosing targets for GHG emissions and RE supply]]\r\n[[Greenpeace+Disclosing targets for GHG emissions and RE supply]]\r\n[[Greenpeace+Disclosing targets for GHG emissions and RE supply+Topics]]\r\n[[Greenpeace+Disclosing targets for GHG emissions and RE supply+About]]\r\n[[Greenpeace+GHG emission]]\r\n[[Greenpeace+GHG emission+Topics]]\r\n[[Greenpeace+GHG emission+Samsung]]\r\n[[Greenpeace+GHG emission+Samsung+2011]]\r\n[[Clean Energy Policy Advocacy]]\r\n[[greenpeace+Clean Energy Policy Advocacy]]\r\n[[greenpeace+Clean Energy Policy Advocacy+Topics]]\r\n[[greenpeace+Clean Energy Policy Advocacy+About]]\r\n[[greenpeace+Clean Energy Policy Advocacy+methodology]]\r\n[[greenpeace+Clean Energy Policy Advocacy+Samsung]]\r\n[[greenpeace+Clean Energy Policy Advocacy+Samsung+2011]]\r\n[[greenpeace+Clean Energy Policy Advocacy+Panasonic]]\r\n[[greenpeace+Clean Energy Policy Advocacy+Panasonic+2011]]\r\n[[Page-000001537]]\r\n[[Page-000001537+Link]]\r\n[[Page-000001537+Title]]\r\n[[Page-000001537+Website]]\r\n[[Page-000001537+Companies]]\r\n[[Page-000001537+Topics]]\r\n[[Page 000001537+Date]]\r\n[[Page 000001537+Tags]]\r\n[[greenpeace+Clean Energy Policy Advocacy+Unit]]\r\n[[Range]]\r\n[[greenpeace+Clean Energy Policy Advocacy+Range]]\r\n[[The Enough Project+Tracing 3TG refiners and smelters+Range]]\r\n[[The Enough Project+Publishing 3TG refiners and smelters+Range]]\r\n[[The Enough Project+Stating policy of 3TG supplier audits+Range]]\r\n[[e-waste recycling]]\r\n[[greenpeace+e-waste recycling]]\r\n[[greenpeace+e-waste recycling+Range]]\r\n[[greenpeace+e-waste recycling+Topics]]\r\n[[greenpeace+e-waste recycling+About]]\r\n[[greenpeace+e waste recycling+Samsung]]\r\n[[greenpeace+e waste recycling+Samsung+2011]]\r\n[[greenpeace+e waste recycling+Panasonic]]\r\n[[greenpeace+e waste recycling+Panasonic+2011]]\r\n[[Seafood Sustainability Initiatives]]\r\n[[greenpeace+Seafood Sustainability Initiatives]]\r\n[[greenpeace+Seafood Sustainability Initiatives+Range]]\r\n[[greenpeace+Seafood Sustainability Initiatives+About]]\r\n[[greenpeace+Seafood Sustainability Initiatives+Ahold]]\r\n[[greenpeace+Seafood Sustainability Initiatives+Ahold+2013]]\r\n[[greenpeace+Seafood Sustainability Initiatives+Walmart]]\r\n[[greenpeace+Seafood Sustainability Initiatives+WalMart+2013]]\r\n[[Sustainable Seafood Policy]]\r\n[[greenpeace+Sustainable Seafood Policy]]\r\n[[greenpeace+Sustainable Seafood Policy+Range]]\r\n[[greenpeace+Sustainable Seafood Policy+About]]\r\n[[greenpeace+Sustainable Seafood Policy+Ahold]]\r\n[[greenpeace+Sustainable Seafood Policy+Ahold+2013]]\r\n[[greenpeace+Sustainable Seafood Policy+walmart]]\r\n[[greenpeace+Sustainable Seafood Policy+WalMart+2013]]\r\n[[Labeling and Transparency]]\r\n[[greenpeace+Seafood Labeling and Transparency]]\r\n[[greenpeace+Seafood Labeling and Transparency+Range]]\r\n[[greenpeace+Seafood Labeling and Transparency+Topics]]\r\n[[greenpeace+Seafood Labeling and Transparency+About]]\r\n[[greenpeace+Seafood Labeling and Transparency+Walmart]]\r\n[[greenpeace+Seafood Labeling and Transparency+WalMart+2013]]\r\n[[greenpeace+Seafood Labeling and Transparency+ahold]]\r\n[[greenpeace+Seafood Labeling and Transparency+ahold+2013]]\r\n[[Red List Seafood Sales]]\r\n[[greenpeace+Red List Seafood Sales]]\r\n[[greenpeace+Red List Seafood Sales+Range]]\r\n[[greenpeace+Red List Seafood Sales+Topics]]\r\n[[greenpeace+Red List Seafood Sales+About]]\r\n[[greenpeace+Red List Seafood Sales+walmart]]\r\n[[greenpeace+Red List Seafood Sales+WalMart+2013]]\r\n[[greenpeace+Red List Seafood Sales+ahold]]\r\n[[greenpeace+Red List Seafood Sales+ahold+2013]]\r\n[[Seafood Labeling and Transparency]]\r\n[[Company policy]]\r\n[[greenpeace+Sustainable Seafood Policy+Topics]]\r\n[[greenpeace+Seafood Sustainability Initiatives+Topics]]\r\n[[greenpeace+Seafood Sustainability Initiatives+WalMart]]\r\n[[greenpeace+Seafood Labeling and Transparency+WalMart]]\r\n[[greenpeace+Sustainable Seafood Policy+WalMart]]\r\n[[greenpeace+Red List Seafood Sales+WalMart]]\r\n[[Page-000001538]]\r\n[[Page-000001538+Link]]\r\n[[Page-000001538+Title]]\r\n[[Page-000001538+Website]]\r\n[[Page-000001538+Companies]]\r\n[[Page-000001538+Topics]]\r\n[[Page-000001538+Tags]]\r\n[[Roberts Environmental Center]]\r\n[[Roberts Environmental Center+Logo]]\r\n[[Roberts Environmental Center+About]]\r\n[[Anti-corruption Practices]]\r\n[[Roberts Environmental Center+Bribery]]\r\n[[Roberts Environmental Center+Bribery+Range]]\r\n[[Roberts Environmental Center+Bribery+Topics]]\r\n[[Roberts Environmental Center+Bribery+About]]\r\n[[Roberts Environmental Center+Bribery+methodology]]\r\n[[Roberts Environmental Center+Bribery+Ahold]]\r\n[[Roberts Environmental Center+Bribery+Ahold+2012]]\r\n[[Roberts Environmental Center+Anti-corruption Practices]]\r\n[[Roberts Environmental Center+Anti-corruption Practices+Range]]\r\n[[Roberts Environmental Center+Anti-corruption Practices+Topics]]\r\n[[Roberts Environmental Center+Anti-corruption Practices+About]]\r\n[[Roberts Environmental Center+Anti-corruption Practices+methodology]]\r\n[[Roberts Environmental Center+Anti corruption Practices+Ahold]]\r\n[[Roberts Environmental Center+Anti corruption Practices+Ahold+2012]]\r\n[[Political Contributions]]\r\n[[Roberts Environmental Center+Political Contributions]]\r\n[[Roberts Environmental Center+Political Contributions+Range]]\r\n[[Roberts Environmental Center+Political Contributions+Topics]]\r\n[[Roberts Environmental Center+Political Contributions+About]]\r\n[[Roberts Environmental Center+Political Contributions+methodology]]\r\n[[Roberts Environmental Center+Political Contributions+Ahold]]\r\n[[Roberts Environmental Center+Political Contributions+Ahold+2012]]\r\n[[Elimination of Discrimination]]\r\n[[Roberts Environmental Center+Elimination of Discrimination]]\r\n[[Roberts Environmental Center+Elimination of Discrimination+Range]]\r\n[[Roberts Environmental Center+Elimination of Discrimination+Topics]]\r\n[[Roberts Environmental Center+Elimination of Discrimination+About]]\r\n[[Roberts Environmental Center+Elimination of Discrimination+methodology]]\r\n[[Roberts Environmental Center+Elimination of Discrimination+Ahold]]\r\n[[Roberts Environmental Center+Elimination of Discrimination+Ahold+2012]]\r\n[[Degrading Treatment or Punishment of Employees]]\r\n[[Roberts Environmental Center+Degrading Treatment or Punishment of Employees]]\r\n[[Roberts Environmental Center+Degrading Treatment or Punishment of Employees+Range]]\r\n[[Roberts Environmental Center+Degrading Treatment or Punishment of Employees+Topics]]\r\n[[Roberts Environmental Center+Degrading Treatment or Punishment of Employees+About]]\r\n[[Roberts Environmental Center+Degrading Treatment or Punishment of Employees+methodology]]\r\n[[Roberts Environmental Center+Degrading Treatment or Punishment of Employees+Ahold]]\r\n[[Roberts Environmental Center+Degrading Treatment or Punishment of Employees+Ahold+2012]]\r\n[[www.claremontmckenna.edu]]\r\n[[Page-000001539]]\r\n[[Page-000001539+Link]]\r\n[[Page-000001539+Title]]\r\n[[Page-000001539+Website]]\r\n[[Page-000001539+Companies]]\r\n[[Page-000001539+Tags]]\r\n[[The Enough Project+Publishing 3TG refiners and smelters+Panasonic+2011+Source]]\r\n[[Page-000001541]]\r\n[[Page-000001541+Link]]\r\n[[Page-000001541+Website]]\r\n[[Page-000001541+Companies]]\r\n[[Page-000001541+Topics]]\r\n[[Page-000001541+Tags]]\r\n[[Page 000001541+Title]]\r\n[[Page 000001541+Date]]\r\n[[Clean Clothes Campaign+H&M]]\r\n[[Clean Clothes Campaign+H&M+2013]]\r\n[[Clean Clothes Campaign+H&M+2013+Source]]\r\n[[www.raisehopeforcongo.org]]\r\n[[The Enough Project+Tracing 3TG refiners and smelters+Panasonice+2011+Source]]\r\n[[The Enough Project+tracing 3TG refineries and smelters]]\r\n[[The Enough Project+tracing 3TG refineries and smelters+Panasonic]]\r\n[[The Enough Project+tracing 3TG refineries and smelters+Panasonic+2011]]\r\n[[The Enough Project+tracing 3TG refineries and smelters+Panasonic+2011+Source]]\r\n[[The Enough Project+Tracing 3TG refiners and smelters+Panasonic+2011+Source]]\r\n[[Clean Clothes Campaign+Living wage Benchmarks+adidas+2013+Source]]\r\n[[Page 000001542+Topics]]\r\n[[Page 000001542+Tags]]\r\n[[Clean Clothes Campaign+Worker Empowerment+Adidas+2013+Source]]\r\n[[Clean Clothes Campaign+Commitment and Practice+Adidas+2013+Source]]\r\n[[Clean Clothes Campaign+Collaborative Approach+Adidas+2013+Source]]\r\n[[Clean Clothes Campaign+Strategy+Adidas+2013+Source]]\r\n[[Greenpeace+Elimination of APEOs and Phthalates+Topics]]\r\n[[Greenpeace+Elimination of APEOs and Phthalates+Adidas+2014+Source]]\r\n[[Greenpeace+Elimination of PFCs+Adidas+2014+Source]]\r\n[[Greenpeace+Detox Transparency+Adidas+2014+Source]]\r\n[[SOMO+CSR business initiative+Panasonic+2011+Source]]\r\n[[SOMO+Freedom of association and collective bargaining+Panasonic+2011+Source]]\r\n[[SOMO+Green procurement policies+Topics]]\r\n[[SOMO+Green procurement policies+Panasonic+2011+Source]]\r\n[[Olympus]]\r\n[[Canon]]\r\n[[Ricoh]]\r\n[[FujiFilm]]\r\n[[The Enough Project+Stating policy of 3TG supplier audits+Samungs]]\r\n[[The Enough Project+Stating policy of 3TG supplier audits+Samungs+2011]]\r\n[[The Enough Project+Stating policy of 3TG supplier audits+Samungs+2011+Source]]\r\n[[Page 000001542+Title]]\r\n[[Page 000001542+Date]]\r\n[[Page 000001542+Description]]\r\n[[greenpeace+Clean Energy Policy Advocacy+Panasonic+2011+source]]\r\n[[greenpeace+e waste recycling+Panasonic+2011+Source]]\r\n[[Microsoft Buys Madagascar Carbon Credits+tag]]\r\n[[Microsoft Buys Madagascar Carbon Credits+Year]]\r\n[[Microsoft Buys Madagascar Carbon Credits+Basis]]",
+    "content": "[[Is the company s supplier code explicit about the following environmental issues related to la]]\n[[Oxfam+Is the company s supplier code explicit about the following environmental issues related to la]]\n[[SOMO+*direct contribution count]]\n[[SOMO+*contribution count]]\n[[SOMO+Logo]]\n[[SOMO+About]]\n[[Adopting a CSR business initiative]]\n[[SOMO+CSR business initiative]]\n[[SOMO+CSR business initiative+Samsung]]\n[[SOMO+CSR business initiative+Samsung+2011]]\n[[Page-000001536]]\n[[Page-000001536+Link]]\n[[Page-000001536+Website]]\n[[Page-000001536+Companies]]\n[[Page-000001536+*direct contribution count]]\n[[Page-000001536+*contribution count]]\n[[Page 000001536+Title]]\n[[Page 000001536+Date]]\n[[Page 000001536+Topics]]\n[[Page 000001536+Tags]]\n[[SOMO+CSR business initiative+Panasonic]]\n[[SOMO+CSR business initiative+Panasonic+2011]]\n[[Green procurement policies]]\n[[SOMO+Green procurement policies]]\n[[Samung]]\n[[SOMO+Green procurement policies+Samung]]\n[[SOMO+Green procurement policies+Samung+2011]]\n[[SOMO+Green procurement policies+Panasonic]]\n[[SOMO+Green procurement policies+Panasonic+2011]]\n[[SOMO+Freedom of association and collective bargaining]]\n[[SOMO+Freedom of association and collective bargaining+Samung]]\n[[SOMO+Freedom of association and collective bargaining+Samung+2011]]\n[[SOMO+Freedom of association and collective bargaining+Panasonic]]\n[[SOMO+Freedom of association and collective bargaining+Panasonic+2011]]\n[[SOMO+Freedom of association and collective bargaining+about]]\n[[SOMO+Freedom of association and collective bargaining+Topics]]\n[[CSR business initiative]]\n[[SOMO+CSR business initiative+Topics]]\n[[SOMO+CSR business initiative+About]]\n[[Greenpeace+*direct contribution count]]\n[[Greenpeace+*contribution count]]\n[[Greenpeace+About]]\n[[Greenpeace+Logo]]\n[[tracing and publishing smelters]]\n[[Greenpeace+tracing and publishing smelters]]\n[[Greenpeace+tracing and publishing smelters+Topics]]\n[[auditing minerals suppliers]]\n[[Greenpeace+auditing minerals suppliers]]\n[[Greenpeace+auditing minerals suppliers+Topics]]\n[[supporting conflict minerals legislations]]\n[[Greenpeace+supporting conflict minerals legislations]]\n[[Greenpeace+supporting conflict minerals legislations+Topics]]\n[[The Enough Project]]\n[[The Enough Project+Logo]]\n[[The Enough Project+*direct contribution count]]\n[[The Enough Project+*contribution count]]\n[[The Enough Project+about]]\n[[tracing minerals refineries and smelters]]\n[[The Enough Project+Tracing 3TG refiners and smelters]]\n[[The Enough Project+Tracing 3TG refiners and smelters+Topics]]\n[[tracing 3TG refineries and smelters]]\n[[The Enough Project+Tracing 3TG refiners and smelters+About]]\n[[The Enough Project+tracing 3TG refiners and smelters+Samung]]\n[[The Enough Project+tracing 3TG refiners and smelters+Samung+2011]]\n[[publishing refiners and smelters]]\n[[The Enough Project+Publishing 3TG refiners and smelters]]\n[[The Enough Project+Publishing 3TG refiners and smelters+Topics]]\n[[The Enough Project+Publishing 3TG refiners and smelters+About]]\n[[tracing 3TG refiners and smelters]]\n[[The Enough Project+Publishing 3TG refiners and smelters+Samsung]]\n[[The Enough Project+Publishing 3TG refiners and smelters+Samsung+2011]]\n[[The Enough Project+Tracing 3TG refiners and smelters+Samsung]]\n[[The Enough Project+Tracing 3TG refiners and smelters+Samsung+2011]]\n[[publishing 3TG refiners and smelters]]\n[[Stating policy of 3TG supplier audits]]\n[[The Enough Project+Stating policy of 3TG supplier audits]]\n[[The Enough Project+Stating policy of 3TG supplier audits+Topics]]\n[[The Enough Project+Stating policy of 3TG supplier audits+About]]\n[[The Enough Project+Stating policy of 3TG supplier audits+Samsung]]\n[[The Enough Project+Stating policy of 3TG supplier audits+Samsung+2011]]\n[[The Enough Project+Stating policy of 3TG supplier audits+Panasonic]]\n[[The Enough Project+Stating policy of 3TG supplier audits+Panasonic+2011]]\n[[The Enough Project+Publishing 3TG refiners and smelters+Panasonic]]\n[[The Enough Project+Publishing 3TG refiners and smelters+Panasonic+2011]]\n[[Panasonice]]\n[[The Enough Project+Tracing 3TG refiners and smelters+Panasonice]]\n[[The Enough Project+Tracing 3TG refiners and smelters+Panasonice+2011]]\n[[The Enough Project+Tracing 3TG refiners and smelters+Panasonic]]\n[[The Enough Project+Tracing 3TG refiners and smelters+Panasonic+2011]]\n[[Disclosing targets for GHG emissions and RE supply]]\n[[Greenpeace+Disclosing targets for GHG emissions and RE supply]]\n[[Greenpeace+Disclosing targets for GHG emissions and RE supply+Topics]]\n[[Greenpeace+Disclosing targets for GHG emissions and RE supply+About]]\n[[Greenpeace+GHG emission]]\n[[Greenpeace+GHG emission+Topics]]\n[[Greenpeace+GHG emission+Samsung]]\n[[Greenpeace+GHG emission+Samsung+2011]]\n[[Clean Energy Policy Advocacy]]\n[[greenpeace+Clean Energy Policy Advocacy]]\n[[greenpeace+Clean Energy Policy Advocacy+Topics]]\n[[greenpeace+Clean Energy Policy Advocacy+About]]\n[[greenpeace+Clean Energy Policy Advocacy+methodology]]\n[[greenpeace+Clean Energy Policy Advocacy+Samsung]]\n[[greenpeace+Clean Energy Policy Advocacy+Samsung+2011]]\n[[greenpeace+Clean Energy Policy Advocacy+Panasonic]]\n[[greenpeace+Clean Energy Policy Advocacy+Panasonic+2011]]\n[[Page-000001537]]\n[[Page-000001537+Link]]\n[[Page-000001537+Title]]\n[[Page-000001537+Website]]\n[[Page-000001537+Companies]]\n[[Page-000001537+Topics]]\n[[Page-000001537+*direct contribution count]]\n[[Page-000001537+*contribution count]]\n[[Page 000001537+Date]]\n[[Page 000001537+Tags]]\n[[greenpeace+Clean Energy Policy Advocacy+Unit]]\n[[Range]]\n[[greenpeace+Clean Energy Policy Advocacy+Range]]\n[[The Enough Project+Tracing 3TG refiners and smelters+Range]]\n[[The Enough Project+Publishing 3TG refiners and smelters+Range]]\n[[The Enough Project+Stating policy of 3TG supplier audits+Range]]\n[[e-waste recycling]]\n[[greenpeace+e-waste recycling]]\n[[greenpeace+e-waste recycling+Range]]\n[[greenpeace+e-waste recycling+Topics]]\n[[greenpeace+e-waste recycling+About]]\n[[greenpeace+e waste recycling+Samsung]]\n[[greenpeace+e waste recycling+Samsung+2011]]\n[[greenpeace+e waste recycling+Panasonic]]\n[[greenpeace+e waste recycling+Panasonic+2011]]\n[[Seafood Sustainability Initiatives]]\n[[greenpeace+Seafood Sustainability Initiatives]]\n[[greenpeace+Seafood Sustainability Initiatives+Range]]\n[[greenpeace+Seafood Sustainability Initiatives+About]]\n[[greenpeace+Seafood Sustainability Initiatives+Ahold]]\n[[greenpeace+Seafood Sustainability Initiatives+Ahold+2013]]\n[[greenpeace+Seafood Sustainability Initiatives+Walmart]]\n[[greenpeace+Seafood Sustainability Initiatives+WalMart+2013]]\n[[Sustainable Seafood Policy]]\n[[greenpeace+Sustainable Seafood Policy]]\n[[greenpeace+Sustainable Seafood Policy+Range]]\n[[greenpeace+Sustainable Seafood Policy+About]]\n[[greenpeace+Sustainable Seafood Policy+Ahold]]\n[[greenpeace+Sustainable Seafood Policy+Ahold+2013]]\n[[greenpeace+Sustainable Seafood Policy+walmart]]\n[[greenpeace+Sustainable Seafood Policy+WalMart+2013]]\n[[Labeling and Transparency]]\n[[greenpeace+Seafood Labeling and Transparency]]\n[[greenpeace+Seafood Labeling and Transparency+Range]]\n[[greenpeace+Seafood Labeling and Transparency+Topics]]\n[[greenpeace+Seafood Labeling and Transparency+About]]\n[[greenpeace+Seafood Labeling and Transparency+Walmart]]\n[[greenpeace+Seafood Labeling and Transparency+WalMart+2013]]\n[[greenpeace+Seafood Labeling and Transparency+ahold]]\n[[greenpeace+Seafood Labeling and Transparency+ahold+2013]]\n[[Red List Seafood Sales]]\n[[greenpeace+Red List Seafood Sales]]\n[[greenpeace+Red List Seafood Sales+Range]]\n[[greenpeace+Red List Seafood Sales+Topics]]\n[[greenpeace+Red List Seafood Sales+About]]\n[[greenpeace+Red List Seafood Sales+walmart]]\n[[greenpeace+Red List Seafood Sales+WalMart+2013]]\n[[greenpeace+Red List Seafood Sales+ahold]]\n[[greenpeace+Red List Seafood Sales+ahold+2013]]\n[[Seafood Labeling and Transparency]]\n[[Company policy]]\n[[Company policy+*direct contribution count]]\n[[Company policy+*contribution count]]\n[[greenpeace+Sustainable Seafood Policy+Topics]]\n[[greenpeace+Seafood Sustainability Initiatives+Topics]]\n[[greenpeace+Seafood Sustainability Initiatives+WalMart]]\n[[greenpeace+Seafood Labeling and Transparency+WalMart]]\n[[greenpeace+Sustainable Seafood Policy+WalMart]]\n[[greenpeace+Red List Seafood Sales+WalMart]]\n[[Page-000001538]]\n[[Page-000001538+Link]]\n[[Page-000001538+Title]]\n[[Page-000001538+Website]]\n[[Page-000001538+Companies]]\n[[Page-000001538+Topics]]\n[[Page-000001538+Tags]]\n[[Page-000001538+*direct contribution count]]\n[[Page-000001538+*contribution count]]\n[[Roberts Environmental Center]]\n[[Roberts Environmental Center+Logo]]\n[[Roberts Environmental Center+About]]\n[[Roberts Environmental Center+*direct contribution count]]\n[[Roberts Environmental Center+*contribution count]]\n[[Anti-corruption Practices]]\n[[Roberts Environmental Center+Bribery]]\n[[Roberts Environmental Center+Bribery+Range]]\n[[Roberts Environmental Center+Bribery+Topics]]\n[[Roberts Environmental Center+Bribery+About]]\n[[Roberts Environmental Center+Bribery+methodology]]\n[[Roberts Environmental Center+Bribery+Ahold]]\n[[Roberts Environmental Center+Bribery+Ahold+2012]]\n[[Roberts Environmental Center+Anti-corruption Practices]]\n[[Roberts Environmental Center+Anti-corruption Practices+Range]]\n[[Roberts Environmental Center+Anti-corruption Practices+Topics]]\n[[Roberts Environmental Center+Anti-corruption Practices+About]]\n[[Roberts Environmental Center+Anti-corruption Practices+methodology]]\n[[Roberts Environmental Center+Anti corruption Practices+Ahold]]\n[[Roberts Environmental Center+Anti corruption Practices+Ahold+2012]]\n[[Political Contributions]]\n[[Roberts Environmental Center+Political Contributions]]\n[[Roberts Environmental Center+Political Contributions+Range]]\n[[Roberts Environmental Center+Political Contributions+Topics]]\n[[Roberts Environmental Center+Political Contributions+About]]\n[[Roberts Environmental Center+Political Contributions+methodology]]\n[[Roberts Environmental Center+Political Contributions+Ahold]]\n[[Roberts Environmental Center+Political Contributions+Ahold+2012]]\n[[Elimination of Discrimination]]\n[[Roberts Environmental Center+Elimination of Discrimination]]\n[[Roberts Environmental Center+Elimination of Discrimination+Range]]\n[[Roberts Environmental Center+Elimination of Discrimination+Topics]]\n[[Roberts Environmental Center+Elimination of Discrimination+About]]\n[[Roberts Environmental Center+Elimination of Discrimination+methodology]]\n[[Roberts Environmental Center+Elimination of Discrimination+Ahold]]\n[[Roberts Environmental Center+Elimination of Discrimination+Ahold+2012]]\n[[Degrading Treatment or Punishment of Employees]]\n[[Roberts Environmental Center+Degrading Treatment or Punishment of Employees]]\n[[Roberts Environmental Center+Degrading Treatment or Punishment of Employees+Range]]\n[[Roberts Environmental Center+Degrading Treatment or Punishment of Employees+Topics]]\n[[Roberts Environmental Center+Degrading Treatment or Punishment of Employees+About]]\n[[Roberts Environmental Center+Degrading Treatment or Punishment of Employees+methodology]]\n[[Roberts Environmental Center+Degrading Treatment or Punishment of Employees+Ahold]]\n[[Roberts Environmental Center+Degrading Treatment or Punishment of Employees+Ahold+2012]]\n[[www.claremontmckenna.edu]]\n[[Page-000001539]]\n[[Page-000001539+Link]]\n[[Page-000001539+Title]]\n[[Page-000001539+Website]]\n[[Page-000001539+Companies]]\n[[Page-000001539+Tags]]\n[[Page-000001539+*direct contribution count]]\n[[Page-000001539+*contribution count]]\n[[The Enough Project+Publishing 3TG refiners and smelters+Panasonic+2011+Source]]\n[[Page-000001541]]\n[[Page-000001541+Link]]\n[[Page-000001541+Website]]\n[[Page-000001541+Companies]]\n[[Page-000001541+Topics]]\n[[Page-000001541+Tags]]\n[[Page-000001541+*direct contribution count]]\n[[Page-000001541+*contribution count]]\n[[Page 000001541+Title]]\n[[Page 000001541+Date]]\n[[Clean Clothes Campaign+H&M]]\n[[Clean Clothes Campaign+H&M+2013]]\n[[Clean Clothes Campaign+H&M+2013+Source]]\n[[www.raisehopeforcongo.org]]\n[[The Enough Project+Tracing 3TG refiners and smelters+Panasonice+2011+Source]]\n[[The Enough Project+tracing 3TG refineries and smelters]]\n[[The Enough Project+tracing 3TG refineries and smelters+Panasonic]]\n[[The Enough Project+tracing 3TG refineries and smelters+Panasonic+2011]]\n[[The Enough Project+tracing 3TG refineries and smelters+Panasonic+2011+Source]]\n[[The Enough Project+Tracing 3TG refiners and smelters+Panasonic+2011+Source]]\n[[Clean Clothes Campaign+Living wage Benchmarks+adidas+2013+Source]]\n[[Page 000001542+Topics]]\n[[Page 000001542+Tags]]\n[[Clean Clothes Campaign+Worker Empowerment+Adidas+2013+Source]]\n[[Clean Clothes Campaign+Commitment and Practice+Adidas+2013+Source]]\n[[Clean Clothes Campaign+Collaborative Approach+Adidas+2013+Source]]\n[[Clean Clothes Campaign+Strategy+Adidas+2013+Source]]\n[[Greenpeace+Elimination of APEOs and Phthalates+Topics]]\n[[Greenpeace+Elimination of APEOs and Phthalates+Adidas+2014+Source]]\n[[Greenpeace+Elimination of PFCs+Adidas+2014+Source]]\n[[Greenpeace+Detox Transparency+Adidas+2014+Source]]\n[[SOMO+CSR business initiative+Panasonic+2011+Source]]\n[[SOMO+Freedom of association and collective bargaining+Panasonic+2011+Source]]\n[[SOMO+Green procurement policies+Topics]]\n[[SOMO+Green procurement policies+Panasonic+2011+Source]]\n[[Olympus]]\n[[Olympus+*direct contribution count]]\n[[Olympus+*contribution count]]\n[[Canon]]\n[[Canon+*direct contribution count]]\n[[Canon+*contribution count]]\n[[Ricoh]]\n[[Ricoh+*direct contribution count]]\n[[Ricoh+*contribution count]]\n[[FujiFilm]]\n[[FujiFilm+*direct contribution count]]\n[[FujiFilm+*contribution count]]\n[[The Enough Project+Stating policy of 3TG supplier audits+Samungs]]\n[[The Enough Project+Stating policy of 3TG supplier audits+Samungs+2011]]\n[[The Enough Project+Stating policy of 3TG supplier audits+Samungs+2011+Source]]\n[[Page 000001542+Title]]\n[[Page 000001542+Date]]\n[[Page 000001542+Description]]\n[[greenpeace+Clean Energy Policy Advocacy+Panasonic+2011+source]]\n[[greenpeace+e waste recycling+Panasonic+2011+Source]]\n[[Microsoft Buys Madagascar Carbon Credits+tag]]\n[[Microsoft Buys Madagascar Carbon Credits+Year]]\n[[Microsoft Buys Madagascar Carbon Credits+Basis]]\n[[SOMO+CSR business initiative+Samsung+2011+value]]\n[[SOMO+CSR business initiative+Panasonic+2011+value]]\n[[SOMO+Green procurement policies+Samung+2011+value]]\n[[SOMO+Green procurement policies+Panasonic+2011+value]]\n[[SOMO+Freedom of association and collective bargaining+Samung+2011+value]]\n[[SOMO+Freedom of association and collective bargaining+Panasonic+2011+value]]\n[[The Enough Project+tracing 3TG refiners and smelters+Samung+2011+value]]\n[[The Enough Project+Publishing 3TG refiners and smelters+Samsung+2011+value]]\n[[The Enough Project+Tracing 3TG refiners and smelters+Samsung+2011+value]]\n[[The Enough Project+Stating policy of 3TG supplier audits+Samsung+2011+value]]\n[[The Enough Project+Stating policy of 3TG supplier audits+Panasonic+2011+value]]\n[[The Enough Project+Publishing 3TG refiners and smelters+Panasonic+2011+value]]\n[[The Enough Project+Tracing 3TG refiners and smelters+Panasonice+2011+value]]\n[[The Enough Project+Tracing 3TG refiners and smelters+Panasonic+2011+value]]\n[[Greenpeace+GHG emission+Samsung+2011+value]]\n[[greenpeace+Clean Energy Policy Advocacy+Samsung+2011+value]]\n[[greenpeace+Clean Energy Policy Advocacy+Panasonic+2011+value]]\n[[greenpeace+e waste recycling+Samsung+2011+value]]\n[[greenpeace+e waste recycling+Panasonic+2011+value]]\n[[greenpeace+Seafood Sustainability Initiatives+Ahold+2013+value]]\n[[greenpeace+Seafood Sustainability Initiatives+WalMart+2013+value]]\n[[greenpeace+Sustainable Seafood Policy+Ahold+2013+value]]\n[[greenpeace+Sustainable Seafood Policy+WalMart+2013+value]]\n[[greenpeace+Seafood Labeling and Transparency+WalMart+2013+value]]\n[[greenpeace+Seafood Labeling and Transparency+ahold+2013+value]]\n[[greenpeace+Red List Seafood Sales+WalMart+2013+value]]\n[[greenpeace+Red List Seafood Sales+ahold+2013+value]]\n[[Roberts Environmental Center+Bribery+Ahold+2012+value]]\n[[Roberts Environmental Center+Anti corruption Practices+Ahold+2012+value]]\n[[Roberts Environmental Center+Political Contributions+Ahold+2012+value]]\n[[Roberts Environmental Center+Elimination of Discrimination+Ahold+2012+value]]\n[[Roberts Environmental Center+Degrading Treatment or Punishment of Employees+Ahold+2012+value]]\n[[Clean Clothes Campaign+H&M+2013+value]]\n[[The Enough Project+tracing 3TG refineries and smelters+Panasonic+2011+value]]\n[[The Enough Project+Stating policy of 3TG supplier audits+Samungs+2011+value]]",
     "value": [
-      {
-        "name": "Clean Clothes Campaign+Logo",
-        "type": "Image",
-        "content": "Clean_Clothes_Campaign.gif\nimage/gif\n2535"
-      },
-      {
-        "name": "Clean Clothes Campaign+About",
-        "type": "Basic",
-        "content": "<p>SOMO is an independent, not-for-profit research and network organisation working on social, ecological and economic issues related to sustainable development. Since 1973, the organisation investigates multinational corporations and the consequences of their activities for people and the environment around the world.<br><br>SOMO strives toward global economic development that is sustainable and fair and toward the  elimination of the structural causes of poverty, environmental problems, exploitation and inequality. Through research targeted at achieving sustainable change and strengthening cooperation, SOMO seeks to offer social organisations worldwide, especially those in developing countries, the opportunity to promote sustainable alternatives and to provide a counterweight to unsustainable strategies and practices of multinational corporations.</p>"
-      },
-      {
-        "name": "Worker Empowerment",
-        "type": "Basic",
-        "content": ""
-      },
-      {
-        "name": "Clean Clothes Campaign+Worker Empowerment",
-        "type": "metric"
-      },
-      {
-        "name": "Clean Clothes Campaign+Worker Empowerment+Topics",
-        "type": "Pointer",
-        "content": "[[Working Conditions and Benefits]]"
-      },
-      {
-        "name": "Clean Clothes Campaign+Worker Empowerment+About",
-        "type": "Basic",
-        "content": "<p> </p>\r\n<div>\r\n<div>\r\n<div>\r\n<div>Freedom of association and the right to collective bargaining are key ‘enabling rights’. This means that when these rights are respected, workers can use them to ensure that other labour standards, including a living wage, are upheld. A living wage must always be a negotiated figure. We see worker empowerment as central to this. Unfortunately, workers face many barriers to joining or forming a trade union and bargaining collectively. Many governments restrict, undermine, obstruct or even outlaw independent trade unions. Employers often express a hostile attitude toward trade unions and frequently use a range of tactics to prevent unions from emerging, including intimidation, discrimination, dismissal, blacklisting and even physical violence. Brands need to take proactive steps to help prevent these trends and ensure practical respect for freedom of association is upheld.</div>\r\n<div><br><strong>Practical steps we were looking for evidence of included:</strong></div>\r\n<div>\r\n<ul>\r\n<li>Clear communication of a policy to support freedom of association and the right to collective bargaining for all stakeholders</li>\r\n<li>Training on these rights for a significant proportion of workers and management</li>\r\n<li>Issuing the right to organise guarantee to workers and promoting the use of union access agreements with suppliers; adoption of a credible and well-used complaints mechanism</li>\r\n<li>Work to limit the use of short-term contracts, which are often a barrier to trade-union freedom.</li>\r\n</ul>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n<p> </p>"
-      },
-      {
-        "name": "Clean Clothes Campaign+Worker Empowerment+Range",
-        "type": "Phrase",
-        "content": "10"
-      },
-      {
-        "name": "Clean Clothes Campaign+Worker Empowerment+Adidas",
-        "type": "HTML"
-      },
-      {
-        "name": "Clean Clothes Campaign+Worker Empowerment+Adidas+2013",
-        "type": "Metric value"
-      },
-      {
-        "name": "Clean Clothes Campaign+Worker Empowerment+Aldi Sud",
-        "type": "HTML"
-      },
-      {
-        "name": "Clean Clothes Campaign+Worker Empowerment+Aldi Sud+2013",
-        "type": "Metric value"
-      },
-      {
-        "name": "Living-wage Benchmarks",
-        "type": "Basic",
-        "content": ""
-      },
-      {
-        "name": "Clean Clothes Campaign+Living-wage Benchmarks",
-        "type": "metric"
-      },
-      {
-        "name": "Clean Clothes Campaign+Living-wage Benchmarks+Topics",
-        "type": "Pointer",
-        "content": "[[Working Conditions and Benefits]]"
-      },
-      {
-        "name": "Clean Clothes Campaign+Living wage Benchmarks+About",
-        "type": "Basic",
-        "content": "<p><strong>Does the company commit to living-wage benchmarks?</strong></p>\r\n<p><br>Companies must commit to living-wage benchmarks for many reasons. By putting a figure on the living wage, the labour cost can be calculated and embedded into pricing breakdowns, and companies can use this to be sure that suppliers are receiving enough to pay a living wage. If enough companies do this, production-country governments are given a clear signal that putting up the minimum wage to a living-wage level will not risk loss of business. The commitment to a real living-wage benchmark from companies also opens up space in wage negotiations between workers and factory owners. Currently, these negotiations often achieve very little because factory owners say they cannot pay more, due to low prices paid by buyers. But if unions or worker groups know that brands being produced in their factory have committed to a specified living-wage figure, these negotiations are opened up and a living wage becomes a possibility. </p>\r\n<p> </p>"
-      },
-      {
-        "name": "Clean Clothes Campaign+Living wage Benchmarks+Adidas",
-        "type": "HTML"
-      },
-      {
-        "name": "Clean Clothes Campaign+Living wage Benchmarks+Adidas+2013",
-        "type": "Metric value"
-      },
-      {
-        "name": "Clean Clothes Campaign+Living wage Benchmarks+Aldi Sud",
-        "type": "HTML"
-      },
-      {
-        "name": "Clean Clothes Campaign+Living wage Benchmarks+Aldi Sud+2013",
-        "type": "Metric value"
-      },
-      {
-        "name": "Commitment and Practices",
-        "type": "Basic",
-        "content": ""
-      },
-      {
-        "name": "Clean Clothes Campaign+Commitment and Practice",
-        "type": "metric"
-      },
-      {
-        "name": "Clean Clothes Campaign+Commitment and Practice+Range",
-        "type": "Phrase",
-        "content": "10"
-      },
-      {
-        "name": "Clean Clothes Campaign+Commitment and Practice+Topics",
-        "type": "Pointer",
-        "content": "[[Working Conditions and Benefits]]"
-      },
-      {
-        "name": "Clean Clothes Campaign+Commitment and Practice+About",
-        "type": "Basic",
-        "content": "<p> The Clean Clothes Campaign believes that suppliers must be adequately compensated for the costs involved in meeting compliance demands. This requires that pricing practices do not prevent suppliers from being decent employers. Global buyers must be sure that the prices they pay will, at the very least, cover payment of a living wage. At the same time, global buyers should also express a willingness to establish long-term relations with their suppliers. Lead times and factory capacity must also be taken into account to ensure use of overtime does not become standard practice. Buyers can further take positive steps to drive change by giving incentives for suppliers displaying best practice.</p>\r\n<div>\r\n<div>\r\n<div>\r\n<div><br><strong>Practical steps we were looking for evidence of included:</strong></div>\r\n<div>\r\n<ul>\r\n<li>Adoption of figures for living-wage benchmarks in main production countries and evidence of their use</li>\r\n<li>Buying systems that break down the free-on-board (FOB) price to include specified labour costs; open costing with suppliers</li>\r\n<li>Buying practices that show a preference for factories with high wage standards or factories that support the establishment and functioning of independent trade unions</li>\r\n<li>Work to consolidate supply chains.</li>\r\n</ul>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n<p> </p>"
-      },
-      {
-        "name": "Clean Clothes Campaign+Commitment and Practice+Adidas",
-        "type": "HTML"
-      },
-      {
-        "name": "Clean Clothes Campaign+Commitment and Practice+Adidas+2013",
-        "type": "Metric value"
-      },
-      {
-        "name": "Clean Clothes Campaign+Commitment and Practice+Aldi Sud",
-        "type": "HTML"
-      },
-      {
-        "name": "Clean Clothes Campaign+Commitment and Practice+Aldi Sud+2013",
-        "type": "Metric value"
-      },
-      {
-        "name": "Collaborative Approach",
-        "type": "Basic",
-        "content": ""
-      },
-      {
-        "name": "Clean Clothes Campaign+Collaborative Approach",
-        "type": "metric"
-      },
-      {
-        "name": "Clean Clothes Campaign+Collaborative Approach+Range",
-        "type": "Phrase",
-        "content": "10"
-      },
-      {
-        "name": "Clean Clothes Campaign+Collaborative Approach+Topics",
-        "type": "Pointer",
-        "content": "[[Working Conditions and Benefits]]"
-      },
-      {
-        "name": "Clean Clothes Campaign+Collaborative Approach+About",
-        "type": "Basic",
-        "content": "<p>The solution to the problem of low wages will involve a number of key players in supply chains being willing to work together, namely brands, suppliers, unions (local, national and global), employer federations and governments. This will require trust and partnership between all parties being built over time. A willingness to be transparent also plays a key role. It is vital that brands play their part in initiating partnerships with corporate and labour stakeholders. Vitally important in all of this is the engagement of workers and their organisations in the design and implementation of any projects to increase wages. So often these partners are overlooked or only briefly consulted.</p>\r\n<p><br><strong>Practical steps we were looking for evidence of included:</strong></p>\r\n<ul>\r\n<li>Partnership projects with local and international independent trade unions</li>\r\n<li>Central worker involvement in all projects</li>\r\n<li>Collaborations with other brands</li>\r\n<li>Membership of credible MSIs</li>\r\n<li>Work to publicly support national demands for minimum-wage increases to production-country governments</li>\r\n<li>Disclosure of supplier lists and a commitment to transparent working</li>\r\n</ul>\r\n<p> </p>"
-      },
-      {
-        "name": "Clean Clothes Campaign+Collaborative Approach+Adidas",
-        "type": "HTML"
-      },
-      {
-        "name": "Clean Clothes Campaign+Collaborative Approach+Adidas+2013",
-        "type": "Metric value"
-      },
-      {
-        "name": "Clean Clothes Campaign+Collaborative Approach+Aldi Sud",
-        "type": "HTML"
-      },
-      {
-        "name": "Clean Clothes Campaign+Collaborative Approach+Aldi Sud+2013",
-        "type": "Metric value"
-      },
-      {
-        "name": "Strategy",
-        "type": "Basic",
-        "content": ""
-      },
-      {
-        "name": "Clean Clothes Campaign+Strategy",
-        "type": "metric"
-      },
-      {
-        "name": "Clean Clothes Campaign+Strategy+Range",
-        "type": "Phrase",
-        "content": "10"
-      },
-      {
-        "name": "Clean Clothes Campaign+Strategy+Topics",
-        "type": "Pointer",
-        "content": "[[Working Conditions and Benefits]]"
-      },
-      {
-        "name": "Clean Clothes Campaign+Strategy+About",
-        "type": "Basic",
-        "content": "<p> </p>\r\n<div>\r\n<div>\r\n<div>\r\n<div>The lack of a comprehensive approach regarding the implementation of a living wage remains an obstacle to progress. Some companies have already adopted a living-wage standard within their codes of conduct, but unfortunately very few global buyers have come up with comprehensive plan for its implementation. If any progress is to be made, it is vital that companies get behind transparent and credible strategies to follow through on their living-wage commitments. A clearly articulated goal allows clear communication between all players in the supply chain about what change will happen, how and when.</div>\r\n<div><br><strong>Practical steps we were looking for evidence of included:</strong></div>\r\n<div>\r\n<ul>\r\n<li>Public commitment to delivering a living wage within a specified time frame and a detailed strategy for doing so</li>\r\n<li>Consultation and negotiation with trade unions and worker groups on this strategy</li>\r\n<li>Inclusion of vulnerable workers</li>\r\n<li>Pilot projects demonstrating real wage increases that are up-scalable and create models that can be replicated in other factories</li>\r\n</ul>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n<p> </p>"
-      },
-      {
-        "name": "Clean Clothes Campaign+Strategy+Aldi Sud",
-        "type": "HTML"
-      },
-      {
-        "name": "Clean Clothes Campaign+Strategy+Aldi Sud+2013",
-        "type": "Metric value"
-      },
-      {
-        "name": "Clean Clothes Campaign+Strategy+Adidas",
-        "type": "HTML"
-      },
-      {
-        "name": "Clean Clothes Campaign+Strategy+Adidas+2013",
-        "type": "Metric value"
-      },
-      {
-        "name": "Elimination of APEOs and Phthalates",
-        "type": "Basic",
-        "content": ""
-      },
-      {
-        "name": "Greenpeace+Elimination of APEOs and Phthalates",
-        "type": "metric"
-      },
-      {
-        "name": "Greenpeace+Elimination of APEOs and Phthalates+About",
-        "type": "Basic",
-        "content": "<p><span>Within the 11 PHC groups, two hazardous chemical groups, widely and deliberately used in textile manufacturing are targeted for elimination far before the final 01 January 2020 deadline. </span><span>The Detox Catwalk evaluates the elimination status of these two initial priority hazardous chemical groups across the companies’ respective supply chains. </span></p>\r\n<div>\r\n<div>\r\n<div>\r\n<p> </p>\r\n<p><span>The elimination of any hazardous chemical must be supported by regular, credible, public documentation via a corporate website, and include case studies on the substitution of hazardous chemicals with safer alternatives, published, for example, via the online Subsport.org platform.</span></p>\r\n<p> </p>\r\n<p><span>As a Detox commitment is a continuous process, companies need clear and credible intermediate targets on the elimination of hazardous chemicals (beyond the 11 priority chemical groups) and the introduction of non-hazardous chemistry by the earliest specific date possible. Responsible companies will act now and not wait until 31 December 2019 to eliminate their hazardous chemical use. </span></p>\r\n</div>\r\n</div>\r\n</div>\r\n<p> </p>"
-      },
-      {
-        "name": "Greenpeace+Elimination of APEOs and Phthalates+Adidas",
-        "type": "HTML"
-      },
-      {
-        "name": "Greenpeace+Elimination of APEOs and Phthalates+Adidas+2014",
-        "type": "Metric value"
-      },
-      {
-        "name": "Greenpeace+Elimination of APEOs and Phthalates+H M",
-        "type": "HTML"
-      },
-      {
-        "name": "Greenpeace+Elimination of APEOs and Phthalates+H M+2014",
-        "type": "Metric value"
-      },
-      {
-        "name": "Elimination of PFCs",
-        "type": "Basic",
-        "content": ""
-      },
-      {
-        "name": "Greenpeace+Elimination of PFCs",
-        "type": "metric"
-      },
-      {
-        "name": "Greenpeace+Elimination of PFCs+Topics",
-        "type": "Pointer",
-        "content": "[[Pollution & Toxics]]"
-      },
-      {
-        "name": "Greenpeace+Elimination of PFCs+About",
-        "type": "Basic",
-        "content": "<p> </p>\r\n<div>\r\n<div>\r\n<div>\r\n<p><span>PFCs are a group of chemicals that are known for their water and oil repellent properties and have been identified as persistent, bio-accumulative and toxic. </span><span> </span><span>The process of eliminating PFCs involves the identification of suitable substitutes for some or all of the functions and attributes of PFC.</span></p>\r\n<p> </p>\r\n<div>\r\n<div>\r\n<div>\r\n<p><span>A credible programme of elimination needs to include the whole group of PFCs as well as the entire product range of the company concerned, leading to the elimination of this group of chemicals. Unfortunately, the </span><span>Greenwashers </span><span>Nike and LiNing do not commit to the elimination of all PFCs with a clear deadline, in all their products and allow the substitution of PFCs that are now subject to regulations, with other PFCs that are not yet regulated, but may be equally hazardous. </span></p>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n<p> </p>"
-      },
-      {
-        "name": "Greenpeace+Elimination of PFCs+Adidas",
-        "type": "HTML"
-      },
-      {
-        "name": "Greenpeace+Elimination of PFCs+Adidas+2014",
-        "type": "Metric value"
-      },
-      {
-        "name": "Greenpeace+Elimination of PFCs+H M",
-        "type": "HTML"
-      },
-      {
-        "name": "Greenpeace+Elimination of PFCs+H M+2014",
-        "type": "Metric value"
-      },
-      {
-        "name": "Detox Transparency",
-        "type": "Basic",
-        "content": ""
-      },
-      {
-        "name": "Greenpeace+Detox Transparency",
-        "type": "metric"
-      },
-      {
-        "name": "Greenpeace+Detox Transparency+Topics",
-        "type": "Pointer",
-        "content": "[[Pollution & Toxics]]"
-      },
-      {
-        "name": "Greenpeace+Detox Transparency+About",
-        "type": "Basic",
-        "content": "<p> </p>\r\n<div>\r\n<div>\r\n<div>\r\n<p><span>A credible, individual Detox plan is not possible without transparency on the use and discharge of all hazardous chemicals. Once the reality of hazardous chemical pollution is revealed to the public,</span><span> </span><span>the obligation is on those responsible to act rapidly and effectively to achieve zero use of hazardous chemicals. </span><span>It is crucial that local communities, the general public and public interest organisations can regularly and easily access up to date and detailed information, for example via the IPE (Chinese Institute for Public and Environmental Affairs</span><span>13</span><span>) global online platform. The IPE disclosure platform provides an existing, well-known, publicly accessible and independent online database where a company’s suppliers can disclose chemical discharge data. </span></p>\r\n<p> </p>\r\n<p><span>For this version of the Detox Catwalk, brands have been asked to report on the number and percentage of global wet processing suppliers that have disclosed discharge data for the initial 11 priority hazardous chemical groups on the IPE platform (i.e. the percentage of units produced relative to total global \"wet processing\" production and the percentage per country). This information must also be published on the company’s website. </span></p>\r\n<p> </p>\r\n<p><span>By publishing chemical discharge data via the IPE disclosure platform, a company’s suppliers ensure that the data is credible, that it includes the necessary details to identify the individual facility concerned and that it covers at least the 11 groups of priority hazardous chemicals. Because much of the world’s textiles production takes place in China, companies must ensure data from suppliers in China is disclosed, followed by other major suppliers in the Global South. </span></p>\r\n</div>\r\n</div>\r\n</div>\r\n<p> </p>"
-      },
-      {
-        "name": "Greenpeace+Detox Transparency+Adidas",
-        "type": "HTML"
-      },
-      {
-        "name": "Greenpeace+Detox Transparency+Adidas+2014",
-        "type": "Metric value"
-      },
-      {
-        "name": "Greenpeace+Detox Transparency+H M",
-        "type": "HTML"
-      },
-      {
-        "name": "Greenpeace+Detox Transparency+H M+2014",
-        "type": "Metric value"
-      },
-      {
-        "name": "greenpeace+Seafood Labeling and Transparency+Aldi Sud",
-        "type": "HTML"
-      },
-      {
-        "name": "greenpeace+Seafood Labeling and Transparency+Aldi Sud+2013",
-        "type": "Metric value"
-      },
-      {
-        "name": "greenpeace+Seafood Sustainability Initiatives+Aldi Sud",
-        "type": "HTML"
-      },
-      {
-        "name": "greenpeace+Seafood Sustainability Initiatives+Aldi Sud+2013",
-        "type": "Metric value"
-      },
-      {
-        "name": "greenpeace+Sustainable Seafood Policy+Aldi Sud",
-        "type": "HTML"
-      },
-      {
-        "name": "greenpeace+Sustainable Seafood Policy+Aldi Sud+2013",
-        "type": "Metric value"
-      },
-      {
-        "name": "greenpeace+Red List Seafood Sales+Aldi Sud",
-        "type": "HTML"
-      },
-      {
-        "name": "greenpeace+Red List Seafood Sales+Aldi Sud+2013",
-        "type": "Metric value"
-      },
-      {
-        "name": "Clean Clothes Campaign+Worker Empowerment+H M",
-        "type": "HTML"
-      },
-      {
-        "name": "Clean Clothes Campaign+Worker Empowerment+H M+2013",
-        "type": "Metric value"
-      },
-      {
-        "name": "Clean Clothes Campaign+Living wage Benchmarks+H M",
-        "type": "HTML"
-      },
-      {
-        "name": "Clean Clothes Campaign+Living wage Benchmarks+H M+2013",
-        "type": "Metric value"
-      },
-      {
-        "name": "Clean Clothes Campaign+Commitment and Practice+H&M",
-        "type": "HTML"
-      },
-      {
-        "name": "Clean Clothes Campaign+Commitment and Practice+H&M+2013",
-        "type": "Metric value"
-      },
-      {
-        "name": "Clean Clothes Campaign+Collaborative Approach+H M",
-        "type": "HTML"
-      },
-      {
-        "name": "Clean Clothes Campaign+Collaborative Approach+H M+2013",
-        "type": "Metric value"
-      },
-      {
-        "name": "Clean Clothes Campaign+Strategy+H M",
-        "type": "HTML"
-      },
-      {
-        "name": "Clean Clothes Campaign+Strategy+H M+2013",
-        "type": "Metric value"
-      },
-      {
-        "name": "secured-static.greenpeace.org",
-        "type": "Website"
-      },
-      {
-        "name": "Page-000001540",
-        "type": "Page"
-      },
-      {
-        "name": "Page-000001540+Link",
-        "type": "Phrase",
-        "content": "https://secured-static.greenpeace.org/international/Global/international/code/2015/detox-catwalk/pdf/Detox_Catwalk_Company_Assessments.pdf"
-      },
-      {
-        "name": "Page-000001540+Website",
-        "type": "Pointer",
-        "content": "[[secured-static.greenpeace.org]]"
-      },
-      {
-        "name": "Page-000001540+Companies",
-        "type": "Pointer",
-        "content": "[[Adidas]]\n[[Aldi Sud]]\n[[H&M]]"
-      },
-      {
-        "name": "Page-000001540+Topics",
-        "type": "Pointer",
-        "content": "[[Pollution & Toxics]]"
-      },
-      {
-        "name": "Page-000001540+Tags",
-        "type": "Pointer",
-        "content": "[[Greenpeace]]"
-      },
-      {
-        "name": "Page 000001540+Title",
-        "type": "Phrase",
-        "content": "DETOX CATWALK: Company assessments for Detox Leaders and Greenwashers"
-      },
-      {
-        "name": "Page 000001540+Date",
-        "type": "Date",
-        "content": "2015-03-19"
-      },
-      {
-        "name": "SOMO+CSR business initiative+Samsung+2011+Source",
-        "type": "Pointer",
-        "content": "[[Page_000001536]]"
-      },
-      {
-        "name": "Samsung motivates employees to participate to their education programmes+tag",
-        "type": "Pointer",
-        "content": "[[Saudi Arabia]]"
-      },
-      {
-        "name": "Saudi Arabia",
-        "type": "Tag"
-      },
-      {
-        "name": "Samsung addresses economic challenges in Africa+tag",
-        "type": "Pointer",
-        "content": "[[Africa]]"
-      },
-      {
-        "name": "www.csrdigest.com",
-        "type": "Website"
-      },
-      {
-        "name": "Page-000001544",
-        "type": "Page"
-      },
-      {
-        "name": "Page-000001544+Link",
-        "type": "Phrase",
-        "content": "http://www.csrdigest.com/2011/03/the-sweatshop-on-your-conscience-how-consumers-and-marketers-are-more-responsible-than-they%E2%80%99d-like-to-think/#more-5148"
-      },
-      {
-        "name": "Page-000001544+image url",
-        "type": "Basic",
-        "content": "http://www.csrdigest.com/images/csr-digest-banner.png"
-      },
-      {
-        "name": "Page-000001544+title",
-        "type": "Phrase",
-        "content": "CSR Digest"
-      },
-      {
-        "name": "Page-000001544+description",
-        "type": "Basic",
-        "content": "If you are considering becoming a Certified Nursing Assistant (CNA), congratulations, you have made a wonderful career \n\t\tchoice! Although you may be very excited to start your CNA training, \n\t\tthere are some questions that you should have the answers to so that you will know what you are getting yourself into."
-      },
-      {
-        "name": "Page-000001544+Website",
-        "type": "Pointer",
-        "content": "[[www.csrdigest.com]]"
-      },
       {
         "name": "Is the company s supplier code explicit about the following environmental issues related to la",
         "type": "Basic",
@@ -487,6 +15,16 @@
         "name": "Oxfam+Is the company s supplier code explicit about the following environmental issues related to la",
         "type": "Pointer",
         "content": "[[Ecosystems & Biodiversity]]"
+      },
+      {
+        "name": "SOMO+*direct contribution count",
+        "type": "Number",
+        "content": "3"
+      },
+      {
+        "name": "SOMO+*contribution count",
+        "type": "Number",
+        "content": "3"
       },
       {
         "name": "SOMO+Logo",
@@ -509,11 +47,13 @@
       },
       {
         "name": "SOMO+CSR business initiative+Samsung",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "SOMO+CSR business initiative+Samsung+2011",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "Yes"
       },
       {
         "name": "Page-000001536",
@@ -533,6 +73,16 @@
         "name": "Page-000001536+Companies",
         "type": "Pointer",
         "content": "[[Panasonic]]\n[[Samsung]]\n[[Olympus]]\n[[Canon]]\n[[Ricoh]]\n[[FujiFilm]]"
+      },
+      {
+        "name": "Page-000001536+*direct contribution count",
+        "type": "Number",
+        "content": "7"
+      },
+      {
+        "name": "Page-000001536+*contribution count",
+        "type": "Number",
+        "content": "8"
       },
       {
         "name": "Page 000001536+Title",
@@ -556,11 +106,13 @@
       },
       {
         "name": "SOMO+CSR business initiative+Panasonic",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "SOMO+CSR business initiative+Panasonic+2011",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "No"
       },
       {
         "name": "Green procurement policies",
@@ -588,11 +140,13 @@
       },
       {
         "name": "SOMO+Green procurement policies+Panasonic",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "SOMO+Green procurement policies+Panasonic+2011",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "Yes"
       },
       {
         "name": "SOMO+Freedom of association and collective bargaining",
@@ -610,11 +164,13 @@
       },
       {
         "name": "SOMO+Freedom of association and collective bargaining+Panasonic",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "SOMO+Freedom of association and collective bargaining+Panasonic+2011",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "Yes"
       },
       {
         "name": "SOMO+Freedom of association and collective bargaining+about",
@@ -642,6 +198,16 @@
         "content": "<p>Has the company adopted any CSR business initatives?</p>"
       },
       {
+        "name": "Greenpeace+*direct contribution count",
+        "type": "Number",
+        "content": "4"
+      },
+      {
+        "name": "Greenpeace+*contribution count",
+        "type": "Number",
+        "content": "4"
+      },
+      {
         "name": "Greenpeace+About",
         "type": "Basic",
         "content": "<p>Greenpeace is an independent global campaigning organisation that acts to change attitudes and behaviour, to protect and conserve the environment and to promote peace by:</p>\r\n<ul>\r\n<li>Catalysing an energy revolution to address the number one threat facing our planet: climate change.</li>\r\n<li>Defending our oceans by challenging wasteful and destructive fishing, and creating a global network of marine reserves.</li>\r\n<li>Protecting the world's ancient forests and the animals, plants and people that depend on them.</li>\r\n<li>Working for disarmament and peace by tackling the causes of conflict and calling for the elimination of all nuclear weapons.</li>\r\n<li>Creating a toxic free future with safer alternatives to hazardous chemicals in today's products and manufacturing.</li>\r\n<li>Campaigning for sustainable agriculture by rejecting genetically engineered organisms, protecting biodiversity and encouraging socially responsible farming.</li>\r\n</ul>\r\n<p>(Source: [[http://www.greenpeace.org/international/en/about/|Greenpeace.org]])</p>\r\n<p> </p>\r\n<p><strong>Campaigns and studies by Greenpeace:</strong></p>\r\n<ul>\r\n<li>[[Page_000001140|Dreckige Discounter Gefährliche Chemikalien in Supermarkt-Kleidung]] (2014)</li>\r\n<li>[[Page_000001060|Trouble Brewing: Pesticide residues in tea samples from India]] (2014)</li>\r\n<li>[[Page-000000849|A Red Card for sportswear brands - Hazardous chemicals found in World Cup merchandise]] (2014)</li>\r\n<li>[[Page-000000848|Palm Oil's New Frontier - How industrial expansion threatens Africa's rainforests]] (2012)</li>\r\n<li>[[Page-000000140|Dirty Laundry: Reloaded - How big brands are making consumers unwitting accomplices in the toxic water cycle ]] (2012)</li>\r\n<li>[[Page-000000750|We're trashin' it - how McDonald's is eating up the Amazon]] (2006)</li>\r\n</ul>"
@@ -656,16 +222,22 @@
         "type": "Basic",
         "content": ""
       },
+      "",
+      "",
       {
         "name": "auditing minerals suppliers",
         "type": "Basic",
         "content": ""
       },
+      "",
+      "",
       {
         "name": "supporting conflict minerals legislations",
         "type": "Basic",
         "content": ""
       },
+      "",
+      "",
       {
         "name": "The Enough Project",
         "type": "Company"
@@ -674,6 +246,16 @@
         "name": "The Enough Project+Logo",
         "type": "Image",
         "content": "Enough_project_logo.png\nimage/png\n23241"
+      },
+      {
+        "name": "The Enough Project+*direct contribution count",
+        "type": "Number",
+        "content": "2"
+      },
+      {
+        "name": "The Enough Project+*contribution count",
+        "type": "Number",
+        "content": "2"
       },
       {
         "name": "The Enough Project+about",
@@ -705,6 +287,16 @@
         "content": "<p>Has the company investigated and come to know precisely which companies refine/smelt the company's supply of 3TG, with third-party verification?</p>"
       },
       {
+        "name": "The Enough Project+tracing 3TG refiners and smelters+Samung",
+        "type": "Basic",
+        "content": ""
+      },
+      {
+        "name": "The Enough Project+tracing 3TG refiners and smelters+Samung+2011",
+        "type": "Basic",
+        "content": ""
+      },
+      {
         "name": "publishing refiners and smelters",
         "type": "Basic",
         "content": ""
@@ -730,19 +322,23 @@
       },
       {
         "name": "The Enough Project+Publishing 3TG refiners and smelters+Samsung",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "The Enough Project+Publishing 3TG refiners and smelters+Samsung+2011",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "2"
       },
       {
         "name": "The Enough Project+Tracing 3TG refiners and smelters+Samsung",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "The Enough Project+Tracing 3TG refiners and smelters+Samsung+2011",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "2"
       },
       {
         "name": "publishing 3TG refiners and smelters",
@@ -770,27 +366,33 @@
       },
       {
         "name": "The Enough Project+Stating policy of 3TG supplier audits+Samsung",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "The Enough Project+Stating policy of 3TG supplier audits+Samsung+2011",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "4"
       },
       {
         "name": "The Enough Project+Stating policy of 3TG supplier audits+Panasonic",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "The Enough Project+Stating policy of 3TG supplier audits+Panasonic+2011",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "0"
       },
       {
         "name": "The Enough Project+Publishing 3TG refiners and smelters+Panasonic",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "The Enough Project+Publishing 3TG refiners and smelters+Panasonic+2011",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "2"
       },
       {
         "name": "Panasonice",
@@ -809,17 +411,22 @@
       },
       {
         "name": "The Enough Project+Tracing 3TG refiners and smelters+Panasonic",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "The Enough Project+Tracing 3TG refiners and smelters+Panasonic+2011",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "2"
       },
       {
         "name": "Disclosing targets for GHG emissions and RE supply",
         "type": "Basic",
         "content": ""
       },
+      "",
+      "",
+      "",
       {
         "name": "Greenpeace+GHG emission",
         "type": "metric"
@@ -831,11 +438,13 @@
       },
       {
         "name": "Greenpeace+GHG emission+Samsung",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "Greenpeace+GHG emission+Samsung+2011",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "11,304,000"
       },
       {
         "name": "Clean Energy Policy Advocacy",
@@ -863,19 +472,23 @@
       },
       {
         "name": "greenpeace+Clean Energy Policy Advocacy+Samsung",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "greenpeace+Clean Energy Policy Advocacy+Samsung+2011",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "2"
       },
       {
         "name": "greenpeace+Clean Energy Policy Advocacy+Panasonic",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "greenpeace+Clean Energy Policy Advocacy+Panasonic+2011",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "2"
       },
       {
         "name": "Page-000001537",
@@ -907,6 +520,16 @@
         "content": "[[Natural Resource Use]]"
       },
       {
+        "name": "Page-000001537+*direct contribution count",
+        "type": "Number",
+        "content": "3"
+      },
+      {
+        "name": "Page-000001537+*contribution count",
+        "type": "Number",
+        "content": "4"
+      },
+      {
         "name": "Page 000001537+Date",
         "type": "Date",
         "content": "2011-04-01"
@@ -916,6 +539,7 @@
         "type": "Pointer",
         "content": "[[Oceans]]"
       },
+      "",
       {
         "name": "Range",
         "type": "Basic",
@@ -967,19 +591,23 @@
       },
       {
         "name": "greenpeace+e waste recycling+Samsung",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "greenpeace+e waste recycling+Samsung+2011",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "6"
       },
       {
         "name": "greenpeace+e waste recycling+Panasonic",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "greenpeace+e waste recycling+Panasonic+2011",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "2"
       },
       {
         "name": "Seafood Sustainability Initiatives",
@@ -1002,11 +630,13 @@
       },
       {
         "name": "greenpeace+Seafood Sustainability Initiatives+Ahold",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "greenpeace+Seafood Sustainability Initiatives+Ahold+2013",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "65.36"
       },
       {
         "name": "greenpeace+Seafood Sustainability Initiatives+Walmart",
@@ -1015,7 +645,8 @@
       },
       {
         "name": "greenpeace+Seafood Sustainability Initiatives+WalMart+2013",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "56.68"
       },
       {
         "name": "Sustainable Seafood Policy",
@@ -1038,11 +669,13 @@
       },
       {
         "name": "greenpeace+Sustainable Seafood Policy+Ahold",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "greenpeace+Sustainable Seafood Policy+Ahold+2013",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "67.78"
       },
       {
         "name": "greenpeace+Sustainable Seafood Policy+walmart",
@@ -1051,7 +684,8 @@
       },
       {
         "name": "greenpeace+Sustainable Seafood Policy+WalMart+2013",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "67.23"
       },
       {
         "name": "Labeling and Transparency",
@@ -1084,15 +718,18 @@
       },
       {
         "name": "greenpeace+Seafood Labeling and Transparency+WalMart+2013",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "33"
       },
       {
         "name": "greenpeace+Seafood Labeling and Transparency+ahold",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "greenpeace+Seafood Labeling and Transparency+ahold+2013",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "66.5"
       },
       {
         "name": "Red List Seafood Sales",
@@ -1125,15 +762,18 @@
       },
       {
         "name": "greenpeace+Red List Seafood Sales+WalMart+2013",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "67"
       },
       {
         "name": "greenpeace+Red List Seafood Sales+ahold",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "greenpeace+Red List Seafood Sales+ahold+2013",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "52"
       },
       {
         "name": "Seafood Labeling and Transparency",
@@ -1144,6 +784,16 @@
         "name": "Company policy",
         "type": "Basic",
         "content": ""
+      },
+      {
+        "name": "Company policy+*direct contribution count",
+        "type": "Number",
+        "content": "2"
+      },
+      {
+        "name": "Company policy+*contribution count",
+        "type": "Number",
+        "content": "2"
       },
       {
         "name": "greenpeace+Sustainable Seafood Policy+Topics",
@@ -1157,19 +807,23 @@
       },
       {
         "name": "greenpeace+Seafood Sustainability Initiatives+WalMart",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "greenpeace+Seafood Labeling and Transparency+WalMart",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "greenpeace+Sustainable Seafood Policy+WalMart",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "greenpeace+Red List Seafood Sales+WalMart",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "Page-000001538",
@@ -1206,6 +860,16 @@
         "content": "[[Greenpeace]]\n[[Tuna]]"
       },
       {
+        "name": "Page-000001538+*direct contribution count",
+        "type": "Number",
+        "content": "2"
+      },
+      {
+        "name": "Page-000001538+*contribution count",
+        "type": "Number",
+        "content": "3"
+      },
+      {
         "name": "Roberts Environmental Center",
         "type": "Company"
       },
@@ -1218,6 +882,16 @@
         "name": "Roberts Environmental Center+About",
         "type": "Basic",
         "content": "<p>The Roberts Environmental Center is a research institute at Claremont McKenna College in Claremont, California, United States. It is named after George R. Roberts '66, Founding Partner, Kohlberg Kravis Roberts &amp; Co., a private equity firm. The principal goal of the Roberts Environmental Center is to involve students in real-world environmental issues and train them to analyze issues from as broad a perspective as possible, taking science, economics and policy into consideration, especially environmental law, environmental biology, and natural resource management. The Center’s current research is focused on global corporate environmental transparency and performance. The Center is a leading analyst of online corporate environmental and sustainability self-reporting, with free analysis of more than 1,900 corporate reports. All analyses are available free online with more added weekly.</p>"
+      },
+      {
+        "name": "Roberts Environmental Center+*direct contribution count",
+        "type": "Number",
+        "content": "1"
+      },
+      {
+        "name": "Roberts Environmental Center+*contribution count",
+        "type": "Number",
+        "content": "1"
       },
       {
         "name": "Anti-corruption Practices",
@@ -1250,11 +924,13 @@
       },
       {
         "name": "Roberts Environmental Center+Bribery+Ahold",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "Roberts Environmental Center+Bribery+Ahold+2012",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "14.29"
       },
       {
         "name": "Roberts Environmental Center+Anti-corruption Practices",
@@ -1282,11 +958,13 @@
       },
       {
         "name": "Roberts Environmental Center+Anti corruption Practices+Ahold",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "Roberts Environmental Center+Anti corruption Practices+Ahold+2012",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "14.29"
       },
       {
         "name": "Political Contributions",
@@ -1319,11 +997,13 @@
       },
       {
         "name": "Roberts Environmental Center+Political Contributions+Ahold",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "Roberts Environmental Center+Political Contributions+Ahold+2012",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "14.29"
       },
       {
         "name": "Elimination of Discrimination",
@@ -1356,11 +1036,13 @@
       },
       {
         "name": "Roberts Environmental Center+Elimination of Discrimination+Ahold",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "Roberts Environmental Center+Elimination of Discrimination+Ahold+2012",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "14.29"
       },
       {
         "name": "Degrading Treatment or Punishment of Employees",
@@ -1393,11 +1075,13 @@
       },
       {
         "name": "Roberts Environmental Center+Degrading Treatment or Punishment of Employees+Ahold",
-        "type": "HTML"
+        "type": "Basic",
+        "content": ""
       },
       {
         "name": "Roberts Environmental Center+Degrading Treatment or Punishment of Employees+Ahold+2012",
-        "type": "Metric value"
+        "type": "Phrase",
+        "content": "50.00"
       },
       {
         "name": "www.claremontmckenna.edu",
@@ -1433,6 +1117,16 @@
         "content": "[[Roberts Environmental Center]]"
       },
       {
+        "name": "Page-000001539+*direct contribution count",
+        "type": "Number",
+        "content": "1"
+      },
+      {
+        "name": "Page-000001539+*contribution count",
+        "type": "Number",
+        "content": "2"
+      },
+      {
         "name": "The Enough Project+Publishing 3TG refiners and smelters+Panasonic+2011+Source",
         "type": "Pointer",
         "content": "[[Page_000001542]]"
@@ -1465,6 +1159,16 @@
         "name": "Page-000001541+Tags",
         "type": "Pointer",
         "content": "[[Clean Clothes Campaign]]"
+      },
+      {
+        "name": "Page-000001541+*direct contribution count",
+        "type": "Number",
+        "content": "4"
+      },
+      {
+        "name": "Page-000001541+*contribution count",
+        "type": "Number",
+        "content": "6"
       },
       {
         "name": "Page 000001541+Title",
@@ -1606,9 +1310,29 @@
         "content": ""
       },
       {
+        "name": "Olympus+*direct contribution count",
+        "type": "Number",
+        "content": "0"
+      },
+      {
+        "name": "Olympus+*contribution count",
+        "type": "Number",
+        "content": "8"
+      },
+      {
         "name": "Canon",
         "type": "Basic",
         "content": ""
+      },
+      {
+        "name": "Canon+*direct contribution count",
+        "type": "Number",
+        "content": "0"
+      },
+      {
+        "name": "Canon+*contribution count",
+        "type": "Number",
+        "content": "8"
       },
       {
         "name": "Ricoh",
@@ -1616,9 +1340,29 @@
         "content": ""
       },
       {
+        "name": "Ricoh+*direct contribution count",
+        "type": "Number",
+        "content": "0"
+      },
+      {
+        "name": "Ricoh+*contribution count",
+        "type": "Number",
+        "content": "8"
+      },
+      {
         "name": "FujiFilm",
         "type": "Basic",
         "content": ""
+      },
+      {
+        "name": "FujiFilm+*direct contribution count",
+        "type": "Number",
+        "content": "0"
+      },
+      {
+        "name": "FujiFilm+*contribution count",
+        "type": "Number",
+        "content": "8"
       },
       {
         "name": "The Enough Project+Stating policy of 3TG supplier audits+Samungs",
@@ -1674,6 +1418,181 @@
         "name": "Microsoft Buys Madagascar Carbon Credits+Basis",
         "type": "Basic",
         "content": "<p>Technology giant Microsoft has bought the first carbon credits generated under a rainforest conservation project in Madagascar, reports Wildlife Conservation Society (WCS), which organized and backed the initiative.</p>"
+      },
+      {
+        "name": "SOMO+CSR business initiative+Samsung+2011+value",
+        "type": "Phrase",
+        "content": "Yes"
+      },
+      {
+        "name": "SOMO+CSR business initiative+Panasonic+2011+value",
+        "type": "Phrase",
+        "content": "No"
+      },
+      {
+        "name": "SOMO+Green procurement policies+Samung+2011+value",
+        "type": "Phrase",
+        "content": "<p>Yes</p>"
+      },
+      {
+        "name": "SOMO+Green procurement policies+Panasonic+2011+value",
+        "type": "Phrase",
+        "content": "Yes"
+      },
+      {
+        "name": "SOMO+Freedom of association and collective bargaining+Samung+2011+value",
+        "type": "Phrase",
+        "content": "<p>Yes</p>"
+      },
+      {
+        "name": "SOMO+Freedom of association and collective bargaining+Panasonic+2011+value",
+        "type": "Phrase",
+        "content": "Yes"
+      },
+      {
+        "name": "The Enough Project+tracing 3TG refiners and smelters+Samung+2011+value",
+        "type": "Phrase",
+        "content": "<p>2</p>"
+      },
+      {
+        "name": "The Enough Project+Publishing 3TG refiners and smelters+Samsung+2011+value",
+        "type": "Phrase",
+        "content": "2"
+      },
+      {
+        "name": "The Enough Project+Tracing 3TG refiners and smelters+Samsung+2011+value",
+        "type": "Phrase",
+        "content": "2"
+      },
+      {
+        "name": "The Enough Project+Stating policy of 3TG supplier audits+Samsung+2011+value",
+        "type": "Phrase",
+        "content": "4"
+      },
+      {
+        "name": "The Enough Project+Stating policy of 3TG supplier audits+Panasonic+2011+value",
+        "type": "Phrase",
+        "content": "0"
+      },
+      {
+        "name": "The Enough Project+Publishing 3TG refiners and smelters+Panasonic+2011+value",
+        "type": "Phrase",
+        "content": "2"
+      },
+      {
+        "name": "The Enough Project+Tracing 3TG refiners and smelters+Panasonice+2011+value",
+        "type": "Phrase",
+        "content": ""
+      },
+      {
+        "name": "The Enough Project+Tracing 3TG refiners and smelters+Panasonic+2011+value",
+        "type": "Phrase",
+        "content": "2"
+      },
+      {
+        "name": "Greenpeace+GHG emission+Samsung+2011+value",
+        "type": "Phrase",
+        "content": "11,304,000"
+      },
+      {
+        "name": "greenpeace+Clean Energy Policy Advocacy+Samsung+2011+value",
+        "type": "Phrase",
+        "content": "2"
+      },
+      {
+        "name": "greenpeace+Clean Energy Policy Advocacy+Panasonic+2011+value",
+        "type": "Phrase",
+        "content": "2"
+      },
+      {
+        "name": "greenpeace+e waste recycling+Samsung+2011+value",
+        "type": "Phrase",
+        "content": "6"
+      },
+      {
+        "name": "greenpeace+e waste recycling+Panasonic+2011+value",
+        "type": "Phrase",
+        "content": "2"
+      },
+      {
+        "name": "greenpeace+Seafood Sustainability Initiatives+Ahold+2013+value",
+        "type": "Phrase",
+        "content": "65.36"
+      },
+      {
+        "name": "greenpeace+Seafood Sustainability Initiatives+WalMart+2013+value",
+        "type": "Phrase",
+        "content": "56.68"
+      },
+      {
+        "name": "greenpeace+Sustainable Seafood Policy+Ahold+2013+value",
+        "type": "Phrase",
+        "content": "67.78"
+      },
+      {
+        "name": "greenpeace+Sustainable Seafood Policy+WalMart+2013+value",
+        "type": "Phrase",
+        "content": "67.23"
+      },
+      {
+        "name": "greenpeace+Seafood Labeling and Transparency+WalMart+2013+value",
+        "type": "Phrase",
+        "content": "33"
+      },
+      {
+        "name": "greenpeace+Seafood Labeling and Transparency+ahold+2013+value",
+        "type": "Phrase",
+        "content": "66.5"
+      },
+      {
+        "name": "greenpeace+Red List Seafood Sales+WalMart+2013+value",
+        "type": "Phrase",
+        "content": "67"
+      },
+      {
+        "name": "greenpeace+Red List Seafood Sales+ahold+2013+value",
+        "type": "Phrase",
+        "content": "52"
+      },
+      {
+        "name": "Roberts Environmental Center+Bribery+Ahold+2012+value",
+        "type": "Phrase",
+        "content": "14.29"
+      },
+      {
+        "name": "Roberts Environmental Center+Anti corruption Practices+Ahold+2012+value",
+        "type": "Phrase",
+        "content": "14.29"
+      },
+      {
+        "name": "Roberts Environmental Center+Political Contributions+Ahold+2012+value",
+        "type": "Phrase",
+        "content": "14.29"
+      },
+      {
+        "name": "Roberts Environmental Center+Elimination of Discrimination+Ahold+2012+value",
+        "type": "Phrase",
+        "content": "14.29"
+      },
+      {
+        "name": "Roberts Environmental Center+Degrading Treatment or Punishment of Employees+Ahold+2012+value",
+        "type": "Phrase",
+        "content": "50.00"
+      },
+      {
+        "name": "Clean Clothes Campaign+H&M+2013+value",
+        "type": "Phrase",
+        "content": ""
+      },
+      {
+        "name": "The Enough Project+tracing 3TG refineries and smelters+Panasonic+2011+value",
+        "type": "Phrase",
+        "content": ""
+      },
+      {
+        "name": "The Enough Project+Stating policy of 3TG supplier audits+Samungs+2011+value",
+        "type": "Phrase",
+        "content": ""
       }
     ]
   }
