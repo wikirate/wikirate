@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
 
-class ImportMetricValuesFix < Card::Migration
+class ImportMetricFix < Card::Migration
   def up
-    import_json "metric_values_fix.json"
+    import_json "metric_fix.json"
     Card.create! :name=>'add value', :codename=>'add_value'
   end
 end
