@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class ImportMaxisMetrics < Card::Migration
+class ImportDemoMetrics < Card::Migration
   def up
     Card::Auth.current = Card.fetch "Maxi"
     import_json "maxis_metrics.json"
