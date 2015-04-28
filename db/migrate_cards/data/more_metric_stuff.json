@@ -1,0 +1,171 @@
+{
+  "url": null,
+  "timestamp": "2015-04-28 16:16:29 +0200",
+  "card": {
+    "name": "export",
+    "type": "Pointer",
+    "content": "[[Metric+Company+*ltype rtype+*structure]]\n[[company item]]\n[[topic metric drag item]]\n[[topic company item]]\n[[Metric+Topic+*ltype rtype+*structure]]\n[[Topic+*type+*structure]]\n[[Metric+company count+*type plus right+*structure]]\n[[Topic+company sidebar+*type plus right+*structure]]\n[[Topic+metric sidebar+*type plus right+*structure]]\n[[Topic+analysis+*type plus right+*structure]]\n[[activate readmore script]]\n[[style: rating]]\n[[style: wikirate metrics]]\n[[style: yinyang]]\n[[customized classic skin]]\n[[metric drag item]]\n[[topic drag item]]\n[[topic metric details+*right+*structure]]\n[[company votee filter]]\n[[Metric+*type+*structure]]\n[[Metric+left sidebar+*type plus right+*structure]]\n[[my contributions+*right+*structure]]\n[[my sources+*right+*structure]]\n[[my claims+*right+*structure]]\n[[my metrics+*right+*structure]]\n[[source+icon]]\n[[metric+icon]]\n[[claim+icon]]\n[[User+source+*type plus right+*structure]]\n[[User+claims+*type plus right+*structure]]\n[[User+metrics+*type plus right+*structure]]\n[[export]]",
+    "value": [
+      {
+        "name": "Metric+Company+*ltype rtype+*structure",
+        "type": "HTML",
+        "content": "{{#+source|editor}}\r\n{{_+metric values|timeline}}\r\n  \r\n"
+      },
+      {
+        "name": "company item",
+        "type": "HTML",
+        "content": "<div class=\"yinyang-row\">\r\n  <div class=\"company-item value-item\">\r\n    <div class=\"header\">\r\n      <div class=\"logo\">\r\n        {{_r+logo|core;size:small}} \r\n      </div>\r\n      <div class=\"name\">\r\n        {{_r|name}}\r\n      </div>\r\n    </div>\r\n    <div class=\"data\">\r\n      <div class=\"data-item\">\r\n        {{_self|all_values}} \r\n      </div>\r\n      <div class=\"details-toggle\" data-append=\"metric_values\" data-view=\"timeline\">\r\n        <span class=\"glyphicon glyphicon-triangle-right\"></span>\r\n      </div>\r\n    </div>\r\n    <div class=\"details\">\r\n    </div>\r\n  </div>\r\n</div>"
+      },
+      {
+        "name": "topic metric drag item",
+        "type": "HTML",
+        "content": "  <div class=\"metric-item contribution-item\">\r\n    <div class=\"header\">\r\n      <div class=\"handle\">\r\n        <span class=\"glyphicon glyphicon-option-vertical\"></span>\r\n      </div>\r\n      {{_l+*vote count}}\r\n      <div class=\"logo\">\r\n        {{_ll+logo|core;size:small}} \r\n      </div>\r\n      <div class=\"name\">\r\n        {{_lr|name}}\r\n      </div>\r\n    </div>\r\n    <div class=\"data\">\r\n      <div class=\"details-toggle\" data-append=\"topic_metric_details\">\r\n        <span class=\"glyphicon glyphicon-triangle-right\"></span>\r\n      </div>\r\n      <div class=\"contribution company-count btn btn-default hide-with-details\">\r\n        <a class=\"known-card\" href=\"/{{_|linkname}}\">\r\n          <div class=\"content\">\r\n            {{_l+company count|core}}\r\n            <div class=\"name\">Companies</div>\r\n          </div>\r\n        </a>\r\n      </div>\r\n      <div class=\"contribution metric-details show-with-details text-center\">\r\n        <span class=\"label label-metric\">[[_l|Metric Details]]</span> \r\n      </div>\r\n    </div>\r\n    <div class=\"details\">\r\n    </div>\r\n  </div>"
+      },
+      {
+        "name": "topic company item",
+        "type": "HTML",
+        "content": "<div class=\"yinyang-row\">\r\n  <div class=\"company-item contribution-item\">\r\n    <div class=\"header\">\r\n      <div class=\"logo\">\r\n        {{_l+logo|core;size:small}} \r\n      </div>\r\n      <a class=\"name\" href=\"{{_|linkname}}\">{{_l|name}}</a>\r\n    </div>\r\n    <div class=\"data\">\r\n      <div class=\"details-toggle\" data-append=\"article\">\r\n        <span class=\"glyphicon glyphicon-triangle-right\"></span>\r\n      </div>\r\n      {{_+analysis contributions|core}}\r\n    </div>\r\n    <div class=\"details\"></div>\r\n  </div>\r\n</div>"
+      },
+      {
+        "name": "Metric+Topic+*ltype rtype+*structure",
+        "type": "HTML",
+        "content": "{{#_+metric values|timeline}}\r\n{{_|name}}"
+      },
+      {
+        "name": "Topic+*type+*structure",
+        "type": "HTML",
+        "content": "<div class=\"top\">\r\n{{+Image|size:small;float:left}}\r\n{{+About|content;hide:menu}}\r\n</div>\r\n<div class=\"yinyang nodblclick\">\r\n  <div class=\"col-md-6 wiki\">\r\n    <div class=\"yin\">\r\n      Wiki\r\n    </div>\r\n    <h4>\r\n      Companies\r\n    </h4>\r\n    {{_left+company sidebar}}\r\n  </div>\r\n  \r\n  <div class=\"col-md-6 rate\">\r\n    <div class=\"yang\">\r\n      Rate\r\n    </div>\r\n    <h4>\r\n      Metrics important to me\r\n    </h4>\r\n    {{_left+metric sidebar}}\r\n  </div>\r\n</div>\r\n\r\n"
+      },
+      {
+        "name": "Metric+company count+*type plus right+*structure",
+        "type": "Search",
+        "content": "{\"left\":\"_self\",\"right\":{\"type\":\"company\"},\"return\":\"count\",\"limit\":\"0\"}"
+      },
+      {
+        "name": "Topic+company sidebar+*type plus right+*structure",
+        "type": "HTML",
+        "content": "<div class=\"voting\">\r\n  {{company votee filter}}\r\n  <div class=\"header-row\">\r\n    <div class=\"header-header\">Companies</div>\r\n    <div class=\"data-header\">Contributions</div>\r\n  </div>\r\n  <div class=\"yinyang-list\">\r\n    {{_l+analysis|content|content;structure:topic company item}} \r\n  </div>\r\n</div>"
+      },
+      {
+        "name": "Topic+metric sidebar+*type plus right+*structure",
+        "type": "HTML",
+        "content": "<div class=\"voting\">\r\n  {{_left+metric+*upvotes+votee search|drag_and_drop|structure:topic metric drag item}}\r\n  {{votee filter|raw}}\r\n  <div class=\"header-row\">\r\n    <div class=\"header-header\">\r\n      Metrics\r\n    </div>\r\n    <div class=\"data-header\">\r\n      Value\r\n    </div>\r\n  </div>\r\n  {{_left+metric+non-votee search|drag_and_drop|structure:topic metric drag item}} \r\n  {{_left+metric+*downvotes+votee search|drag_and_drop|structure:topic metric drag item}}\r\n</div>"
+      },
+      {
+        "name": "Topic+analysis+*type plus right+*structure",
+        "type": "Search",
+        "content": "{\"type\":\"company\", \"append\":\"_self\", \"limit\":0}"
+      },
+      {
+        "name": "activate readmore script",
+        "type": "JavaScript",
+        "content": "wagn.slotReady(function(slot) {\r\n    slot.find('.card-content.TYPE_PLUS_RIGHT-page-description').readmore({\r\n        maxHeight: 90,\r\n        embedCSS: false\r\n    });\r\n\r\n    slot.find('.titled_with_edit-view.RIGHT-about > .card-content').each(function() {\r\n        $(this).readmore({\r\n            maxHeight: 180,\r\n            speed: 500\r\n        });\r\n\r\n    });\r\n    slot.find('.TYPE-company > .top >  .TYPE_PLUS_RIGHT-company-about.card-content').each(function() {\r\n        $(this).readmore({\r\n            maxHeight: 50,\r\n            speed: 500\r\n        });\r\n\r\n    });\r\n    slot.find('.TYPE-topic > .top >  .TYPE_PLUS_RIGHT-topic-about.card-content').each(function() {\r\n      $(this).readmore({\r\n        maxHeight: 50,\r\n        speed: 500\r\n      });\r\n    });\r\n    slot.find('.details > .RIGHT-topic_detail > .TYPE_PLUS_RIGHT-analysi-article').each(function() {\r\n        $(this).readmore({\r\n            maxHeight: 50,\r\n            speed: 500\r\n        });\r\n\r\n    });\r\n    \r\n    \r\n    slot.find('.titled_with_edit-view.RIGHT-about > .card-content').each(function() {\r\n\r\n        $(this).readmore(\"resizeBoxes\");\r\n    });\r\n\r\n});"
+      },
+      {
+        "name": "style: rating",
+        "type": "SCSS",
+        "content": "\r\n\r\n"
+      },
+      {
+        "name": "style wikirate metrics",
+        "type": "SCSS",
+        "content": "$dark-text-color: #999;\r\n$bright-text-color: #ededed;\r\n$metric-color: #674ea7;\r\n$company-color: #d3741c;\r\n\r\n@mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,.4), $inset: \"\") {\r\n  @if ($inset != \"\") {\r\n    -webkit-box-shadow: $inset $x $y $blur $color;\r\n    -moz-box-shadow:    $inset $x $y $blur $color;\r\n    box-shadow:         $inset $x $y $blur $color;\r\n  } @else {\r\n    -webkit-box-shadow: $x $y $blur $color;\r\n    -moz-box-shadow:    $x $y $blur $color;\r\n    box-shadow:         $x $y $blur $color;\r\n  }\r\n}\r\n\r\n.metric-source .tab-content {\r\n  background: #fffefa;\r\n  padding: 30px;\r\n}\r\n\r\n.form .metric-value-year {\r\n  width: 135px;\r\n}\r\n.form .metric-value-value {\r\n  width: 200px;\r\n}\r\n\r\n\r\n.label-metric {\r\n  background: $metric-color;\r\n  color: white;\r\n  a {\r\n    font-weight: normal;\r\n    color: white;\r\n  }\r\n}\r\n\r\n// metric value details\r\n.metric-year, .metric-unit {\r\n  font-size: 12px;\r\n  color: $dark-text-color;\r\n}\r\n.metric-value {\r\n  color: #674ea7;\r\n  font-size: 18px;\r\n  font-weight: bold;\r\n}\r\n.no-metric-value {\r\n  display: none;\r\n}\r\n\r\n\r\n.timeline {\r\n  .year {\r\n    width: 35px; \r\n  }\r\n  .timeline-header {\r\n    height: 22px;\r\n    margin-top: 15px;\r\n    .th {\r\n      float: left;\r\n      margin: 0px 10px 0px 10px;\r\n      font-weight: bold;\r\n    }\r\n    .new a {\r\n      color: $dark-text-color;\r\n      background-color: $bright-text-color;\r\n      border: 1px solid #cdcdcd;\r\n      font-weight: normal;\r\n      font-size: 0.8em;\r\n      padding: 2px 5px 2px 5px;\r\n    }\r\n  }\r\n  .timeline-body {\r\n    .timeline-row {\r\n      position: relative;\r\n      clear: both;\r\n      height: 52px;\r\n      font-size: 12px;\r\n      color: $dark-text-color;\r\n      .td {\r\n        float: left;\r\n        margin: 0px 10px 0px 10px;\r\n        .metric-value {\r\n          font-size: 16px;\r\n        }\r\n      }\r\n      .year, .credit {\r\n        padding-top: 2px;\r\n      }\r\n      .search-result-list {\r\n        display: inline-block;\r\n        padding: 0px;\r\n        .search-result-item {\r\n          display: inline;\r\n          padding-left: 0;\r\n        }\r\n      }\r\n    }\r\n\r\n  }\r\n  .timeline-dot {\r\n    position: absolute;\r\n    top: 8px;\r\n    left: 46px;\r\n    height: 5px;\r\n    width: 5px;\r\n    background: gray;\r\n  }\r\n  .timeline-line {\r\n    position: absolute;\r\n    top: 10px;\r\n    left: 48px;\r\n    height: 54px;\r\n    width: 1px;\r\n    border-left: 1px solid gray;\r\n  }\r\n}\r\n\r\n.RIGHT-company.card-content .company-item .item-link>a {\r\n  background: #03998d;\r\n  border-top-left-radius: 0px;\r\n  border-bottom-left-radius: 0px;\r\n}\r\n\r\n.metric-info {\r\n  border-bottom: 1px solid $bright-text-color;\r\n  .row {\r\n    margin-left: 5px;\r\n    margin-right: 5px;\r\n    .row-icon {\r\n      text-align: center;\r\n      font-size: 17px;\r\n      float: left;\r\n      width: 30px;\r\n      color: $bright-text-color;\r\n    }\r\n    .glyphicon-question-mark {\r\n      font-weight: bold;\r\n    }\r\n    .row-data {\r\n      margin-left: 40px;\r\n    }\r\n  }\r\n}\r\n\r\n.TYPE-metric_value {\r\n  .timeline, .RIGHT-discussion, .TYPE_PLUS_RIGHT-metric_value-source{\r\n    float: left;\r\n    width: 100%;\r\n    .missing-view{\r\n      display: none;\r\n    }\r\n  }\r\n}\r\n\r\n\r\n//browse metric\r\n.browse-metric-item {\r\n  padding: 0;\r\n  margin-bottom: 6px;\r\n  outline: 1px solid $bright-text-color;\r\n  border-top: 3px solid $metric-color;\r\n  @include box-shadow(0,1px,6px,rgba(0,0,0,.13));\r\n  font-size:14px;\r\n  .RIGHT-Xvote_count > div {\r\n    line-height: 1em;\r\n  }\r\n  button.vote-button {\r\n    color: $dark-text-color;\r\n    width: 15px;\r\n    height: 15px;\r\n    padding: 0;\r\n    border: none;\r\n    box-shadow: none;\r\n    --webkit-box-shadow: none;\r\n    background: none;\r\n  }\r\n  .vote-count {\r\n    color: $dark-text-color;\r\n    width: 15px;\r\n    height: 15px;\r\n  }\r\n  .logo {\r\n    padding-top: 5px;\r\n    float: left;\r\n    img {\r\n      max-width: 35px;\r\n      max-height: 35px;\r\n      margin: 0 10px;\r\n    }\r\n  }\r\n  .header {\r\n    margin: 4px 12px;\r\n  }\r\n  .name {\r\n    padding: 12px 16px;\r\n    font-size: 21px;\r\n    float: left;\r\n    max-width: 94%;\r\n    text-overflow: ellipsis;\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    color: $metric-color;\r\n    a {\r\n      color: $metric-color; \r\n    }\r\n  }\r\n  .question {\r\n    height:60px;\r\n    text-overflow: ellipsis;\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n }\r\n}\r\n\r\n.data-count {\r\n  border-top: 1px solid $bright-text-color;\r\n  padding: 0;\r\n  text-align: center;\r\n  margin: 0px!important;\r\n  >div {\r\n      padding: 8px 0px;\r\n  }\r\n  > div:first-child {\r\n      border-right: 1px solid $bright-text-color;\r\n  }\r\n  .number-label {\r\n    font-size: 12px;\r\n    color: $dark-text-color;\r\n  }\r\n  .number {\r\n      font-size: 26px;\r\n  }\r\n}\r\n\r\n.ellipsis, .ellipsis .known-card {\r\n  max-width: 94%;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  overflow: hidden;\r\n}\r\n\r\n.SELF-metric .search-result-item.item-content {\r\n  width: 330px;\r\n  padding: 10px;\r\n  display: inline-block;\r\n}\r\n\r\n.modal-body .LTYPE_RTYPE-metric-company .timeline {\r\n  padding-top: 10px;\r\n  margin-top: 25px;\r\n  border-top: 1px dotted $metric-color;\r\n  width: 100%;\r\n}\r\n"
+      },
+      {
+        "name": "style yinyang",
+        "type": "SCSS",
+        "content": "$drag-item-height: 52px;\r\n$dark-text-color: #999;\r\n$bright-text-color: #e5e5e5;\r\n$company-header-bg: #d3741c;\r\n$topic-header-bg: #2b7ea0;\r\n$metric-header-bg: #674ea7;\r\n\r\n\r\n.yinyang {\r\n  border-top: 1px solid $bright-text-color;\r\n  h4 {\r\n    text-align: center;\r\n    color: #999;\r\n    margin-bottom: 10px;\r\n  }\r\n  \r\n  .wiki {\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n    .yin {\r\n      position: absolute;\r\n      top: 5px;\r\n      right: 0;\r\n      color: #f7f7f7;\r\n      font-size: 50px;\r\n      line-height: 50px;\r\n    }\r\n  }\r\n  \r\n  .rate {\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n    background: #f7f7f7;\r\n  \r\n    .yang {\r\n      position: absolute;\r\n      top: 5px;\r\n      left: 0;\r\n      color: #fff;\r\n      font-size: 50px;\r\n      line-height: 50px;\r\n    }\r\n  }\r\n  \r\n  .header-row {\r\n    font-size: 10px;\r\n    color: $bright-text-color;\r\n    text-align: center;\r\n    margin-top: 10px;\r\n    .header-header {\r\n      float: left;\r\n      margin-left: 80px;\r\n    }\r\n    .data-header {\r\n      width: 161px;\r\n      float: right;\r\n      margin-right: 15px;\r\n    }\r\n  }\r\n  \r\n  .empty-message {\r\n    padding: 5px;\r\n    border: 1px dashed #ddd;\r\n    text-align: center;\r\n    height: 32px;\r\n    color: #ddd;\r\n    background: #fff;\r\n    font-weight: normal;\r\n  }\r\n  .unsaved-message {\r\n    display: none;\r\n    height: 25px;\r\n  }\r\n}\r\n\r\n.list-drag-and-drop, .yinyang-list {\r\n  clear: both;\r\n  margin: 10px;\r\n  padding: 5px;\r\n  background: none;\r\n  border: none;\r\n  box-shadow: none;\r\n  --webkit-box-shadow: none;\r\n}\r\n\r\n@mixin yinyang-frame($header-color) {\r\n  > .card-body.card-content {\r\n    padding: 0;\r\n  }\r\n  > .card-header {\r\n    background: $header-color;\r\n    .panel-title {\r\n      color: #fff;\r\n       a {\r\n        color: inherit !important;\r\n        font-size: 16px;\r\n      } \r\n    }\r\n  }\r\n}\r\n\r\n#main > .card-frame.TYPE-company, .card-frame.TYPE-company { @include yinyang-frame($company-header-bg); }\r\n#main > .card-frame.TYPE-topic,   .card-frame.TYPE-topic   { @include yinyang-frame($topic-header-bg); }\r\n#main > .card-frame.TYPE-metric,  .card-frame.TYPE-metric  {\r\n  @include yinyang-frame($metric-header-bg);\r\n  > .card-body.card-content {\r\n    .yinyang {\r\n      .wiki, .rate{\r\n        padding-top: 0px;\r\n      }\r\n    }\r\n  }\r\n}\r\n\r\n.TYPE-metric {\r\n  .rate {\r\n    padding-top: 34px;\r\n    .RIGHT-methodology {\r\n      margin-top: 20px;\r\n      padding-top: 15px;\r\n    }\r\n    .chosen-container {\r\n      height: 12px;\r\n      margin-left: -18px;\r\n    }\r\n  }\r\n  .wiki {\r\n    .metric-info .row {\r\n      padding-bottom: 14px;\r\n      .RIGHT-discussion .card-header {\r\n      margin-top: 0px !important;\r\n      }\r\n    }\r\n    .name {\r\n      font-size: 1.5em;\r\n      padding: 24px 24px;\r\n      margin-left: 24px;\r\n      position: relative;\r\n      color: $metric-header-bg;\r\n    }\r\n    .metric-info .header {\r\n      height: 100px;\r\n      margin-top: 10px;\r\n      margin-left: -1px;\r\n      padding-left: 10px;\r\n      border-bottom: 1px solid $bright-text-color;\r\n      margin-bottom: 20px;\r\n    }\r\n  }\r\n}\r\n\r\n\r\n.TYPE-company, .TYPE-topic, .TYPE-metric {\r\n  &.card-content {\r\n    padding: 0;\r\n  }\r\n  .top {\r\n    height: 100px;\r\n    > .TYPE_PLUS_RIGHT-company-logo {\r\n      height: 100px;\r\n      padding: 10px;\r\n      border-right: 1px solid $bright-text-color;\r\n    }\r\n    .TYPE_PLUS_RIGHT-topic-image {\r\n      height: 100px;\r\n      width: 100px;\r\n      border-right: 1px solid $bright-text-color;\r\n      img {\r\n        width: 100%;\r\n      } \r\n    }\r\n    > .TYPE_PLUS_RIGHT-company-about, .TYPE_PLUS_RIGHT-topic-about {\r\n      margin-left: 100px;\r\n      width: inherit;\r\n      padding: 10px 10px 5px 10px;\r\n    }\r\n    a.readmore-js-toggle {\r\n      width: inherit;\r\n      margin: 14px;\r\n    }\r\n  }\r\n}\r\n\r\n\r\n.drag-item, .yinyang-row{\r\n  padding: 0;\r\n  margin-bottom: 6px;\r\n  border: 1px solid $bright-text-color;\r\n  background: rgb(251, 251, 251);\r\n  color: rgb(204, 204, 204);\r\n  .contribution-item {\r\n    overflow: hidden;\r\n    .header {\r\n      .name {\r\n        font-size: 18px;\r\n      }\r\n    }\r\n    &.metric-item .header .name {\r\n      color: $metric-header-bg;\r\n    }\r\n    &.company-item .header .name {\r\n      color: $company-header-bg;\r\n    }\r\n    &.topic-item .header .name {\r\n      color: $topic-header-bg;\r\n    }\r\n  }\r\n  .value-item {\r\n    color: $dark-text-color;\r\n    width: 100%;\r\n    background: #fff;\r\n    overflow: hidden;\r\n    .header {\r\n      width: 60%;\r\n      cursor: move;\r\n      .name {\r\n        width: 70%;\r\n      }\r\n    }\r\n    .data {\r\n      width: 38%;\r\n      .data-item {\r\n        float: left;\r\n        width: 90%;\r\n      }\r\n    }\r\n  }\r\n  \r\n  .topic-item .header {\r\n    border-left: 3px solid $topic-header-bg;\r\n  }\r\n  .company-item .header {\r\n    border-left: 3px solid $company-header-bg;\r\n  }\r\n  .metric-item {\r\n    .header {\r\n      border-left: 3px solid $metric-header-bg;\r\n    }\r\n    .timeline {\r\n      .year, .credit {\r\n        margin-top: 2px;\r\n      }\r\n    }\r\n    .metric-info {\r\n      border-bottom: 1px solid $bright-text-color;\r\n      .row {\r\n        margin-left: 5px;\r\n        margin-right: 5px;\r\n        .row-icon {\r\n          text-align: center;\r\n          font-size: 17px;\r\n          float: left;\r\n          width: 30px;\r\n          color: $bright-text-color;\r\n        }\r\n        .glyphicon-question-mark {\r\n          font-weight: bold;\r\n        }\r\n        .row-data {\r\n          margin-left: 40px;\r\n        }\r\n      }\r\n    }\r\n  }\r\n\r\n  .header {\r\n    height: $drag-item-height;\r\n    float: left;\r\n    .handle {\r\n      float: left;\r\n      margin-top: 15px;\r\n      margin-left: 5px;\r\n      cursor: move;\r\n      color: #ddd;\r\n    }\r\n    .RIGHT-Xvote_count > div {\r\n      line-height: 1em;\r\n    }\r\n    button.vote-button {\r\n      color: $dark-text-color;\r\n      width: 15px;\r\n      height: 15px;\r\n      padding: 0;\r\n      border: none;\r\n      box-shadow: none;\r\n      --webkit-box-shadow: none;\r\n      background: none;\r\n    }\r\n    .vote-count {\r\n      color: $dark-text-color;\r\n      width: 15px;\r\n      height: 15px;\r\n    }\r\n    .logo {\r\n      padding-top: 5px;\r\n      float: left;\r\n      img {\r\n        max-width: 35px;\r\n        max-height: 35px;\r\n        margin: 0 10px;\r\n      }\r\n\r\n    }\r\n    .name {\r\n      padding-top: 11px;\r\n      font-size: 14px;\r\n      float: left;\r\n      max-width: 250px;\r\n      text-overflow: ellipsis;\r\n      white-space: nowrap;\r\n      overflow: hidden;\r\n    }\r\n  }\r\n  \r\n  \r\n  .data {\r\n    height: $drag-item-height;\r\n    float: right;\r\n    height: $drag-item-height;\r\n    border-left: 1px solid $bright-text-color;\r\n    \r\n    .btn-highlight a,\r\n    .btn-default a {\r\n      text-decoration: none;\r\n    }\r\n    .btn-default{\r\n      border-color: $bright-text-color;\r\n    }\r\n    .data-item {\r\n      margin-top: 15px;\r\n      padding-left: 15px;\r\n    }\r\n    \r\n    .contribution {\r\n      float: right;\r\n      width: 58px;\r\n      height: 54px;\r\n      font-size: 14px;\r\n      font-weight: bold;\r\n      text-align: center;\r\n      margin-top: -1px;\r\n      margin-right: -1px;\r\n      margin-left: -1px;\r\n      &.company-count {\r\n        width: 108px;\r\n      }\r\n      &.metric-details {\r\n        width: 108px;\r\n        padding-top: 15px;\r\n      }\r\n      &.btn-default {\r\n        .name {\r\n          color: #ccc;\r\n        }\r\n        .content {\r\n          color: #737373;\r\n        }\r\n      }\r\n      &.btn.btn-highlight {\r\n        background-color: #f29393;\r\n        border-color: #f06464;\r\n        a {\r\n          color: #fff;\r\n        }\r\n        &:hover {\r\n          background-color: #f06e6e;\r\n        }\r\n      }\r\n      .glyphicon {\r\n        font-size: 12px;\r\n      }\r\n      &.danger {\r\n        /*border: 1px solid #E06666;*/\r\n        background: #ea9999;\r\n        color: #fff;\r\n        a {\r\n          color: #fff;\r\n        }\r\n        .name {\r\n          color: #fff;\r\n        }\r\n      }\r\n      &.warning {\r\n        a {\r\n          text-decoration: none;\r\n          color: #dadada;\r\n        }\r\n      }\r\n      .name {\r\n        font-size: 11px;\r\n        text-align: center;\r\n        margin-left: -2px;\r\n        font-weight: normal;\r\n        padding-top: 2px;\r\n      }\r\n      // border-right: 1px solid $bright-text-color;\r\n    }\r\n  }\r\n  .show-with-details {\r\n   display: none;\r\n  }\r\n  .details {\r\n    clear: both;\r\n    color: $dark-text-color;\r\n    padding: 10px;\r\n    font-size: 12px;\r\n    display: none;\r\n    border-top: 1px solid $bright-text-color;\r\n  }\r\n  .details-toggle {\r\n    float: right;\r\n    font-size: 11px;\r\n    padding: 19px 4px 0 4px;\r\n    min-width: 12px;\r\n    height: $drag-item-height;\r\n    cursor:pointer;\r\n  }\r\n}\r\n\r\n\r\n// filter\r\n.filter-header {\r\n  cursor: pointer;\r\n}\r\n.votee-filter {\r\n  background: #f2f2f2;\r\n  color: $dark-text-color;\r\n  padding: 5px;\r\n  text-align: center;\r\n  font-size: 12px;\r\n  font-weight: bold;\r\n}\r\n.filter-details {\r\n  display: none;\r\n  margin-bottom: -4px;\r\n  margin-left: -5px;\r\n  margin-right: -4px;\r\n  background: #FDFDFD;\r\n}\r\n.filter-toggle {\r\n  float: right;\r\n}\r\n"
+      },
+      {
+        "name": "customized classic skin",
+        "type": "Skin",
+        "content": "[[bootstrap default skin]]\n[[*css]]\n[[layout with sidebar scss]]\n[[chosen style]]\n[[top bar scss]]\n[[slick scss]]\n[[article item scss]]\n[[company and topic item scss]]\n[[homepage layout scss]]\n[[style: wikirate bootstrap buttons]]\n[[style: user following list]]\n[[style: wikirate bootstrap navbar]]\n[[style: wikirate bootstrap form]]\n[[style: wikirate bootstrap common]]\n[[style: wikirate metrics]]\n[[style: yinyang]]"
+      },
+      {
+        "name": "metric drag item",
+        "type": "HTML",
+        "content": "  <div class=\"metric-item value-item\">\r\n    <div class=\"header\">\r\n      <div class=\"handle\">\r\n        <span class=\"glyphicon glyphicon-option-vertical\"></span>\r\n      </div>\r\n      {{_l+*vote count}}\r\n      <div class=\"logo\">\r\n        {{_ll+logo|core;size:small}} \r\n      </div>\r\n      <div class=\"name\">\r\n        {{_lr|name}}\r\n      </div>\r\n    </div>\r\n    <div class=\"data\">\r\n      <div class=\"data-item hide-with-details\">\r\n        {{_self+latest value|concise}}\r\n      </div>\r\n      <div class=\"data-item show-with-details text-center\">\r\n        <span class=\"label label-metric\">[[_l|Metric Details]]</span> \r\n      </div>\r\n      <div class=\"details-toggle\" data-append=\"metric_details\">\r\n        <span class=\"glyphicon glyphicon-triangle-right\"></span>\r\n      </div>\r\n    </div>\r\n    <div class=\"details\">\r\n    </div>\r\n  </div>"
+      },
+      {
+        "name": "topic drag item",
+        "type": "HTML",
+        "content": "  <div class=\"topic-item contribution-item\">\r\n    <div class=\"header\">\r\n      <div class=\"handle\">\r\n        <span class=\"glyphicon glyphicon-option-vertical\"></span>\r\n      </div>\r\n      {{_l+*vote count}}\r\n      <div class=\"logo\">{{_l+image|core;size:small}}</div>\r\n      <a class=\"name\" href=\"{{_r+_l|linkname}}\">{{_l|name}}</a>\r\n    </div>\r\n    <div class=\"data\">\r\n      <div class=\"details-toggle\" data-append=\"topic_details\">\r\n        <span class=\"glyphicon glyphicon-triangle-right\"></span>\r\n      </div>\r\n      {{_+analysis contributions|core}}\r\n    </div>\r\n    <div class=\"details\"></div>\r\n  </div>"
+      },
+      {
+        "name": "topic metric details+*right+*structure",
+        "type": "HTML",
+        "content": "<div class=\"metric-info\">\r\n  <div class=\"row\">\r\n    <div class=\"row-icon\">\r\n      <i class=\"fa fa-building-o\"></i>\r\n    </div>\r\n    <div class=\"row-data\">\r\n      {{_1+logo|core;size:icon}}\r\n      {{_1|link}}\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"row-icon\">\r\n      <i class=\"fa fa-question\"></i>\r\n    </div>\r\n    <div class=\"row-data\">\r\n      {{_ll+question|core}}\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"row-icon\">\r\n      <i class=\"fa fa-tag\"></i>\r\n    </div>\r\n    <div class=\"row-data\">\r\n      {{_ll+topics|content|link}}\r\n    </div>\r\n  </div>\r\n  {{#_ll+methodology}}\r\n</div>"
+      },
+      {
+        "name": "company votee filter",
+        "type": "HTML",
+        "content": "<div class=\"votee-filter\">\r\n  <div class=\"filter-header\">\r\n    <span class=\"glyphicon glyphicon-filter\"></span>\r\n    Filter\r\n    <span class=\"filter-toggle\">\r\n    <span class=\"glyphicon glyphicon-triangle-right\"></span>\r\n    </span>\r\n  </div>\r\n  <div class=\"filter-details\">\r\n    <ul class=\"nav nav-pills\">\r\n      <li role=\"presentation\" class=\"active\" data-toggle=\"pill\">\r\n        <a href=\"#\" class=\"filter\" data-sort-key=\"importance\">importance</a>\r\n      </li>\r\n      <li role=\"presentation\" data-toggle=\"pill\">\r\n        <a href=\"#\" class=\"filter\" data-sort-key=\"recent\">recent</a>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</div>"
+      },
+      {
+        "name": "metric+*type+*structure",
+        "type": "HTML",
+        "content": "<div class=\"yinyang nodblclick\">\r\n<div class=\"col-md-6 wiki\">\r\n  <div class=\"yin\">\r\n    Measure\r\n  </div>\r\n  <div class=\"metric-info\">\r\n    <div class=\"header\">\r\n        {{+*vote count}}\r\n        <div class=\"name\">\r\n          {{_r|name}}\r\n        </div>\r\n    </div>\r\n    \r\n    <div class=\"row\">\r\n      <div class=\"row-icon\">\r\n        <i class=\"fa fa-building-o\"></i>\r\n      </div>\r\n      <div class=\"row-data\">\r\n        {{_l+logo|core;size:icon}}\r\n        {{_l|link}}\r\n      </div>\r\n    </div>\r\n  \r\n    <div class=\"row\">\r\n      <div class=\"row-icon\">\r\n        <i class=\"fa fa-question\"></i>\r\n      </div>\r\n      <div class=\"row-data\">\r\n        {{+Question|titled;title:Question;hide:menu}}\r\n      </div>\r\n    </div>\r\n      \r\n    <div class=\"row\">\r\n      <div class=\"row-icon\">\r\n        <i class=\"fa fa-tag\"></i>\r\n      </div>\r\n      <div class=\"row-data\">\r\n        {{+topics|content|link}}\r\n      </div>\r\n    </div>\r\n  \r\n    <div class=\"row\">\r\n      <div class=\"row-data\">\r\n        {{+Unit|titled;title:Unit;hide:menu}}\r\n      </div>\r\n      <div class=\"row-data\">\r\n        {{+Range|titled;title:Range;hide:menu}}\r\n      </div>\r\n      <div class=\"row-data\">\r\n        {{+About|titled_with_edits;title:About;hide:menu}}\r\n      </div>\r\n      <div class=\"row-data\">\r\n        {{+Methodology|titled;title:Methodology;hide:menu}}\r\n      </div>   \r\n    </div>\r\n    \r\n    <div class=\"row\">\r\n      <div class=\"row-icon\">\r\n        <i class=\"fa fa-comment\"></i>\r\n      </div>\r\n      <div class=\"row-data\">\r\n        {{+discussion|titled;title:Discussion; show:commentbox;hide:menu}}\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"col-md-6 rate\">\r\n  <div class=\"yang\">\r\n    Companies\r\n  </div>\r\n  {{_+right sidebar}}\r\n</div>\r\n</div>\r\n\r\n\r\n"
+      },
+      {
+        "name": "metric+left sidebar+*type plus right+*structure",
+        "type": "HTML",
+        "content": "<div class=\"metric-info\">\r\n <div class=\"header\">\r\n      {{_l+*vote count}}\r\n      <div class=\"name\">\r\n        {{_lr|name}}\r\n      </div>\r\n  </div>\r\n  \r\n  <div class=\"row\">\r\n    <div class=\"row-icon\">\r\n      <i class=\"fa fa-building-o\"></i>\r\n    </div>\r\n    <div class=\"row-data\">\r\n      {{_ll+logo|core;size:icon}}\r\n      {{_ll|link}}\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"row\">\r\n    <div class=\"row-icon\">\r\n      <i class=\"fa fa-question\"></i>\r\n    </div>\r\n    <div class=\"row-data\">\r\n      {{_l+Question|titled;title:Question;hide:menu}}\r\n    </div>\r\n  </div>\r\n    \r\n  <div class=\"row\">\r\n    <div class=\"row-icon\">\r\n      <i class=\"fa fa-tag\"></i>\r\n    </div>\r\n    <div class=\"row-data\">\r\n      {{_l+topics|content|link}}\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"row\">\r\n    <div class=\"row-data\">\r\n      {{_l+Unit|titled;title:Unit;hide:menu}}\r\n    </div>\r\n    <div class=\"row-data\">\r\n      {{_l+Range|titled;title:Range;hide:menu}}\r\n    </div>\r\n    <div class=\"row-data\">\r\n      {{_l+About|titled_with_edits;title:About;hide:menu}}\r\n    </div>\r\n    <div class=\"row-data\">\r\n      {{_l+Methodology|titled;title:Methodology;hide:menu}}\r\n    </div>   \r\n  </div>\r\n  \r\n  <div class=\"row\">\r\n    <div class=\"row-icon\">\r\n      <i class=\"fa fa-comment\"></i>\r\n    </div>\r\n    <div class=\"row-data\">\r\n      {{_left+discussion|titled;title:Discussion; show:commentbox;hide:menu}}\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n"
+      },
+      {
+        "name": "my contributions+*right+*structure",
+        "type": "Basic",
+        "content": "<p>{{_left+my metrics|open_profile;title:Metrics}}</p>\r\n<p><span>{{_left+my claims|open;title:Claims|content;structure:claim item}}</span></p>\r\n<p><span>{{_left+my sources|open;title:Sources|content;structure:source item}}</span></p>\r\n<p> </p>\r\n<p> </p>"
+      },
+      {
+        "name": "my sources+*right+*structure",
+        "type": "Search",
+        "content": "{\"type\":\"Page\",\"created_by\":\"_1\"}"
+      },
+      {
+        "name": "my claims+*right+*structure",
+        "type": "Search",
+        "content": "{\"type\":\"Claim\",\"created_by\":\"_\"}"
+      },
+      {
+        "name": "my metrics+*right+*structure",
+        "type": "Search",
+        "content": "{\"type\":\"Metric\",\"left\":\"_self\"}"
+      },
+      {
+        "name": "source+icon",
+        "type": "Phrase",
+        "content": "globe"
+      },
+      {
+        "name": "metric+icon",
+        "type": "Phrase",
+        "content": "bar-chart-o"
+      },
+      {
+        "name": "claim+icon",
+        "type": "Phrase",
+        "content": "quote-left"
+      },
+      {
+        "name": "User+Sources+*type_plus_right+*structure",
+        "type": "Search",
+        "content": "{\"type\":\"Page\",\"created_by\":\"_\",\"limit\":\"10\"}"
+      },
+      {
+        "name": "User+Claims+*type plus right+*structure",
+        "type": "Search",
+        "content": "{\"type\":\"Claim\",\"created_by\":\"_\",\"limit\":\"10\"}"
+      },
+      {
+        "name": "User+metrics+*type plus right+*structure",
+        "type": "Search",
+        "content": "{\"type\":\"Metric\",\"left\":\"_self\"}"
+      },
+      {
+        "name": "export",
+        "type": "Pointer",
+        "content": "[[Metric+Company+*ltype rtype+*structure]]\n[[company item]]\n[[topic metric drag item]]\n[[topic company item]]\n[[Metric+Topic+*ltype rtype+*structure]]\n[[Topic+*type+*structure]]\n[[Metric+company count+*type plus right+*structure]]\n[[Topic+company sidebar+*type plus right+*structure]]\n[[Topic+metric sidebar+*type plus right+*structure]]\n[[Topic+analysis+*type plus right+*structure]]\n[[activate readmore script]]\n[[style: rating]]\n[[style: wikirate metrics]]\n[[style: yinyang]]\n[[customized classic skin]]\n[[metric drag item]]\n[[topic drag item]]\n[[topic metric details+*right+*structure]]\n[[company votee filter]]\n[[Metric+*type+*structure]]\n[[Metric+left sidebar+*type plus right+*structure]]\n[[my contributions+*right+*structure]]\n[[my sources+*right+*structure]]\n[[my claims+*right+*structure]]\n[[my metrics+*right+*structure]]\n[[source+icon]]\n[[metric+icon]]\n[[claim+icon]]\n[[User+source+*type plus right+*structure]]\n[[User+claims+*type plus right+*structure]]\n[[User+metrics+*type plus right+*structure]]\n[[export]]"
+      }
+    ]
+  }
+}

@@ -45,7 +45,7 @@ format :html do
   end
 
   view :drag_and_drop do |args|
-    with_drag_and_drop(args) do
+    res = with_drag_and_drop(args) do
       search_results.map do |votee_plus_company|
         votee = votee_plus_company.left
         draggable_opts = {
