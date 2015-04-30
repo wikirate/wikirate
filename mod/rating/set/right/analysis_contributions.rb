@@ -1,14 +1,6 @@
 format :html do
-
-  # left name can be <company>+<topic> or <topic>+<company>
-  # return it in the right order to get the analysis name
   def analysis_name
-    @analysis_name ||=
-      if card.left.type_code == :wikirate_analysis
-        card.cardname.left
-      else
-        "#{card.cardname.parts[1]}+#{card.cardname.parts[0]}"
-      end
+    @analysis_name ||= card.cardname.left
   end
 
   def data_item content, label, type=:default
