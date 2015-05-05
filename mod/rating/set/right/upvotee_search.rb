@@ -1,15 +1,11 @@
-def virtual?; true end
-
-def raw_content
-  '{"type":"_r","linked_to_by":{"left":"_user","right":"*upvotes"}, "limit":0}'
-end
+include Right::DownvoteeSearch
 
 def vote_type
   :up_vote
 end
 
-def sort_by
-  'upvotes'
+def vote_type_codename
+  :upvotes
 end
 
 format do

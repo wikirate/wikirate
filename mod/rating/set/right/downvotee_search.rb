@@ -1,16 +1,21 @@
 def virtual?; true end
 
 def raw_content
-  '{"type":"_r","linked_to_by":{"left":"_user","right":"*downvotes"}, "limit":0}'
+  %({"type":"_r","linked_to_by":{"left":"_user","right":{"codename":"#{vote_type_codename}"}}, "limit":0})
 end
 
 def vote_type
   :down_vote
 end
 
-def sort_by
-  'downvotes'
+def vote_type_codename
+  :downvotes
 end
+
+def sort_by
+  vote_type_codename
+end
+
 
 format do
   include Type::SearchType::Format
@@ -49,7 +54,7 @@ format do
   end
 
   def main_name
-    card.cardname.left_name.left_name.left
+    card.cardname.left_name.left
   end
 
   def main_type_id
@@ -57,7 +62,7 @@ format do
   end
 
   def searched_type_id
-    Card.fetch_id card.cardname.left_name.left_name.right
+    Card.fetch_id card.cardname.left_name.right
   end
 
   def get_result_from_session
@@ -76,18 +81,57 @@ format do
 end
 
 format :html do
+  view :drag_and_drop do |args|
+    Card.fetch[:report_error_to_airbrake].now
+    res = with_drag_and_drop(args) do
+      search_results.map do |item|
+        votee = extract_votee item
+        draggable_opts = {
+          :votee_id    => votee.id,
+          :update_path => votee.vote_count_card.format.vote_path,
+          :sort        => {:importance=>votee.vote_count}
+        }
+        case main_type_id
+        when WikirateTopicID then topic_draggable_opts(votee,draggable_opts)
+        when MetricID then metric_draggable_opts(votee, draggable_opts)
+        when WikirateCompanyID then company_draggable_opts(votee, draggable_opts)
+        when WikirateAnalysisID then analysis_draggable_opts(votee, draggable_opts)
+        end
+    #binding.pry
+        draggable nest(item), draggable_opts
+      end.join("\n").html_safe
+    end.html_safe
+  end
+
+  view :filter_and_sort do |args|
+    res = with_filter_and_sort(args) do
+      search_results.map do |item|
+        votee = extract_votee item
+        sort_opts = { :sort => {} }
+        case main_type_id
+        when WikirateTopicID then topic_draggable_opts(votee,sort_opts)
+        when MetricID then metric_draggable_opts(votee, sort_opts)
+        when WikirateCompanyID then company_draggable_opts(votee, sort_opts)
+        when WikirateAnalysisID then analysis_draggable_opts(votee, sort_opts)
+        end
+
+        sortable nest(item), sort_opts
+      end.join("\n").html_safe
+    end.html_safe
+  end
+
   def default_drag_and_drop_args args
     args[:vote_type] ||= card.vote_type
     args[:query] ||= 'vote=force-down'
     args[:empty] ||=
-      if ( empty =  Card.fetch("#{card.cardname.parts[-2]}+#{Card[:empty_list].name}") || Card[:empty_list] )
+      if ( empty =  Card[card.vote_type_codename].fetch(:trait=>:empty_list) || Card[:empty_list] )
         subformat(empty).render_core(args)
       else
         ''
       end
 
     if !Card::Auth.signed_in? &&
-       ( unsaved = Card.fetch("#{card.cardname.parts[-2]}+#{Card[:unsaved_list].name}") || Card[:unsaved_list] )
+       ( unsaved = Card[card.vote_type_codename].fetch :trait=>:unsaved_list || Card[:unsaved_list] )
       args[:unsaved] = subformat(unsaved).render_core(args)
     end
   end
@@ -118,7 +162,7 @@ format :html do
         claim_cnt = subformat(Card.fetch("#{analysis.name}+claim+*count")).render_core.to_i
         source_cnt = subformat(Card.fetch("#{analysis.name}+sources+*count")).render_core.to_i
         opts[:sort][:contributions] = analysis.direct_contribution_count.to_i + claim_cnt + source_cnt
-        opts[:sort][:name] = votee.name
+        opts[:sort][:name] = votee.name.upcase
       end
     end
   end
@@ -150,45 +194,6 @@ format :html do
     end
   end
 
-
-  view :drag_and_drop do |args|
-    res = with_drag_and_drop(args) do
-      search_results.map do |item|
-        votee = extract_votee item
-        draggable_opts = {
-          :votee_id    => votee.id,
-          :update_path => votee.vote_count_card.format.vote_path,
-          :sort        => {:importance=>votee.vote_count}
-        }
-        case main_type_id
-        when WikirateTopicID then topic_draggable_opts(votee,draggable_opts)
-        when MetricID then metric_draggable_opts(votee, draggable_opts)
-        when WikirateCompanyID then company_draggable_opts(votee, draggable_opts)
-        when WikirateAnalysisID then analysis_draggable_opts(votee, draggable_opts)
-        end
-
-        draggable nest(item), draggable_opts
-      end.join("\n").html_safe
-    end.html_safe
-  end
-
-  view :filter_and_sort do |args|
-    res = with_filter_and_sort(args) do
-      search_results.map do |item|
-        votee = extract_votee item
-        sort_opts = { :sort => {} }
-        case main_type_id
-        when WikirateTopicID then topic_draggable_opts(votee,sort_opts)
-        when MetricID then metric_draggable_opts(votee, sort_opts)
-        when WikirateCompanyID then company_draggable_opts(votee, sort_opts)
-        when WikirateAnalysisID then analysis_draggable_opts(votee, sort_opts)
-        end
-
-        sortable nest(item), sort_opts
-      end.join("\n").html_safe
-    end.html_safe
-  end
-
   def with_filter_and_sort args
     display_empty_msg = search_results.empty? ? '' : 'display: none;'
     content_tag :div, :class=>"yinyang-list",
@@ -213,22 +218,22 @@ format :html do
   end
 
   def draggable content, args
-    data_args = {
+    html_args = {
       'data-update-path' => args[:update_path],
       'data-votee-id'    => args[:votee_id],
       :class             => 'drag-item yinyang-row'
     }
-    data_args[:class] += ' no-metric-value' if args[:no_value]
-    args[:sort].each { |k,v| data_args["data-sort-#{k}"] = v }
+    html_args[:class] += ' no-metric-value' if args[:no_value]
+    args[:sort].each { |k,v| html_args["data-sort-#{k}"] = v } if args[:sort]
 
-    content_tag :div, content.html_safe, data_args
+    content_tag :div, content.html_safe, html_args
   end
 
   def sortable content, args
-    data_args[:class] = 'yinyang-row'
-    data_args[:class] += ' no-metric-value' if args[:no_value]
-    args[:sort].each { |k,v| data_args["data-sort-#{k}"] = v }
-    content_tag :div, content.html_safe, data_args
+    html_args = { :class => 'yinyang-row' }
+    html_args[:class] += ' no-metric-value' if args[:no_value]
+    args[:sort].each { |k,v| html_args["data-sort-#{k}"] = v } if args[:sort]
+    content_tag :div, content.html_safe, html_args
   end
 
 end

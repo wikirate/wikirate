@@ -8,6 +8,10 @@ def vote_type
   :no_vote
 end
 
+def vote_type_codename
+  :novotes
+end
+
 def sort_by
   false
 end
@@ -36,15 +40,20 @@ end
 
 format :html do
   include Right::DownvoteeSearch::HtmlFormat
-  def default_drag_and_drop_args args
-    args[:query] ||= 'vote=force-neutral'
-    args[:unsaved] ||= ''
+
+  def default_filter_and_sort args
     args[:default_sort] ||=
-      if card[1].id == WikirateTopicID || card[1].id == WikirateCompanyID
+      if main_type_id == WikirateCompanyID && searched_typed_id == WikirateTopicID
         :contributions
       else
         :importance
       end
+  end
+
+  def default_drag_and_drop_args args
+    default_filter_and_sort(args)
+    args[:query] ||= 'vote=force-neutral'
+    args[:unsaved] ||= ''
     super(args)
   end
 

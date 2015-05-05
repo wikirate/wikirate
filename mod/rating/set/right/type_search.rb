@@ -22,10 +22,11 @@ end
 format :html do
   include Right::DownvoteeSearch::HtmlFormat
 
-  def default_drag_and_drop_args args
+  def default_filter_and_sort args
     args[:unsaved] ||= ''
+    binding.pry
     args[:default_sort] ||=
-      if card[1].id == WikirateTopicID || card[1].id == WikirateCompanyID
+      if main_type_id == WikirateTopicID && searched_type_id == WikirateCompanyID
         :contributions
       else
         :importance
