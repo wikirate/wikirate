@@ -82,7 +82,6 @@ end
 
 format :html do
   view :drag_and_drop do |args|
-    Card.fetch[:report_error_to_airbrake].now
     res = with_drag_and_drop(args) do
       search_results.map do |item|
         votee = extract_votee item
