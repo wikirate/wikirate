@@ -92,11 +92,6 @@
         "content": "\r\n<div class=\"metric-info\">\r\n  <div class=\"row\">\r\n    <div class=\"row-icon\">\r\n      <i class=\"fa fa-building-o\"></i>\r\n    </div>\r\n    <div class=\"row-data\">\r\n      {{_1+logo|core;size:icon}}\r\n      {{_1|link}}\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"row-icon\">\r\n      <i class=\"fa fa-question\"></i>\r\n    </div>\r\n    <div class=\"row-data\">\r\n      {{_ll+about|core}}\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"row-icon\">\r\n      <i class=\"fa fa-tag\"></i>\r\n    </div>\r\n    <div class=\"row-data\">\r\n      {{_ll+topics|content|link}}\r\n    </div>\r\n  </div>\r\n  {{#_ll+methodology}}\r\n</div>\r\n{{_l+metric values|timeline}}\r\n"
       },
       {
-        "name": "Metric+Company+*ltype rtype+*structure",
-        "type": "HTML",
-        "content": "{{_self|add_value}}\r\n{{+source|editor}}\r\n{{_+metric values|timeline}}\r\n  \r\n"
-      },
-      {
         "name": "Metric value+*type+*structure",
         "type": "Basic",
         "content": "<p>{{+value|timeline row;hide:source_link<span>}}  {{+source</span>|hide:paging,title|content;structure:source item}}<span> {{+discussion}}</span></p>"
