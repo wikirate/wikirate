@@ -8,7 +8,13 @@ class ImportNewMetric < Card::Migration
         subcards = { }
         subcards.merge!({'+about'=>{:content=>row[:about]}}) if row[:about]
         subcards.merge!({'+methodology'=>{:content=>row[:methodology]}}) if row[:methodology]
-        subcards.merge!({'+topics'=>{:content=>"[[#{row[:topics]}]]",:type_id=>Card::PointerID}}) if row[:topics]
+        if topics = row[:topics]
+          topic_str = ""
+          topics.split(";").each do |t|
+            topic_str+="[[#{t}]]\n"
+          end
+          subcards.merge!({'+topics'=>{:content=>topic_str,:type_id=>Card::PointerID}}) 
+        end
         subcards.merge!({'+question'=>{:content=>row[:question]}}) if row[:question]
         subcards.merge!({'+unit'=>{:content=>row[:unit].to_s,:type_id=>Card::PhraseID}}) if row[:unit]
         subcards.merge!({'+range'=>{:content=>row[:range].to_s,:type_id=>Card::PhraseID}}) if row[:range]
