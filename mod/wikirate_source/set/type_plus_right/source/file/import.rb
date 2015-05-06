@@ -40,7 +40,9 @@ event :import_csv, :after=>:store, :on=>:update do
 end
 
 def csv_rows
-  CSV.read(attach.path)
+  # transcode to utf8 before CSV reads it. 
+  # some users upload files in non utf8 encoding. The microsoft excel may not save a CSV file in utf8 encoding
+  CSV.read(attach.path,:encoding => 'windows-1251:utf-8') 
 end
 
 
