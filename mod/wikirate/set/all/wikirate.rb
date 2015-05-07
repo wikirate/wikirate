@@ -110,7 +110,50 @@ format :html do
     end
   end
 
+  view :yinyang_list do |args|
+    content_tag :div, :class=>"yinyang-list #{args[:yinyang_list_class]}" do
+      _render_yinyang_list_items(args)
+    end
+  end
 
+  view :yinyang_list_items do |args|
+    item_args = { :view => ( args[:item] || (@inclusion_opts && @inclusion_opts[:view]) || default_item_view ) }
+    joint = args[:joint] || ' '
+
+    if type = card.item_type
+      item_args[:type] = type
+    end
+
+    enrich_result(card.item_cards).map do |icard|
+      content_tag :div, :class=>"yinyang-row" do
+       nest(icard, item_args.clone).html_safe
+      end
+    end.join joint
+  end
+
+  def enrich_result result
+    result.map do |item_card|
+       # 1) add the main card name on the left
+       # the pattern is as follows:
+       # "Apple+metric+*upvotes+votee search" finds "a metric+yinyang drag item" and we add "Apple" to the left
+       # because we need it to show the metric values of "Apple+a metric" in the view of that item
+       # 2) add "yinyang drag item" on the right
+       # this way we can make sure that the card always exists with a "yinyang drag item+*right" structure
+      Card.fetch "#{main_name}+#{item_card.cardname}+yinyang drag item"
+    end
+  end
+
+  def main_name
+    card.cardname.left_name.left
+  end
+
+  def main_type_id
+    Card.fetch(main_name).type_id
+  end
+
+  def searched_type_id
+    Card.fetch_id card.cardname.left_name.right
+  end
 
 end
 
