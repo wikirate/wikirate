@@ -193,8 +193,8 @@ describe Card::Set::Self::Source do
       result = @page_card.format( :format=>:json)._render(:metadata) 
 
       result_hash = JSON.parse(result)
-      Card.fetch("#{ sourcepage.name }+title").content.should == result_hash["title"]
-      Card.fetch("#{ sourcepage.name }+description").content.should == result_hash["description"]
+      expect(Card.fetch("#{ sourcepage.name }+title").content).to eq result_hash["title"]
+      expect(Card.fetch("#{ sourcepage.name }+description").content).to eq result_hash["description"]
       expect(result_hash["error"].empty?).to be true
     end
 
