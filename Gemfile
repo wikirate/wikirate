@@ -21,7 +21,7 @@ group :test do
   gem 'rspec-rails', "~> 3.1.0"   # behavior-driven-development suite
   gem 'rspec'
   gem 'rspec-html-matchers', "0.6.1" # 0.7.0 broke stuff!
-  # gem 'wagn-rspec-formatter', :path=>'/opt/wagn-rspec-formatter'
+  #gem 'wagn-rspec-formatter', :path=>'/opt/wagn-rspec-formatter'
   gem 'spork', '>=0.9'
   gem 'timecop'
   gem 'simplecov'
@@ -46,7 +46,7 @@ end
 group :development do
   gem 'rails-dev-tweaks'
   gem 'sprockets' # just so above works
-  
+
   gem 'capistrano', '3.2.1'  #note - ssh was breaking on 3.3.3
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
@@ -62,5 +62,5 @@ group :test, :development do
 end
 
 Dir.glob("mod/**{,/*/**}/Gemfile").each do |gemfile|
-  instance_eval(File.read(gemfile)) 
+  instance_eval(File.read(gemfile))
 end
