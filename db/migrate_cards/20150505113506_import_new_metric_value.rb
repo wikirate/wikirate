@@ -10,16 +10,16 @@ class ImportNewMetricValue < Card::Migration
       
       company_to_wikirate_company = Hash.new
       wikirate_company_to_aliases = Hash.new
-      # CSV.foreach(data_path("first_metrics_to_import.csv"),:encoding => 'windows-1251:utf-8',:headers => true, :header_converters => :symbol, :converters => :all) do |row|
-      #   if row[:snippet_name] and row[:snippet_provider]
-      #     accepted_snippet_name["#{row[:snippet_provider]}+#{row[:snippet_name]}"] = "#{row[:designer]}+#{row[:name]}"
-      #   end
-      # end
-      accepted_snippet_name["Newsweek+Newsweek Green Score"] = "Newsweek+Newsweek Green Score"
+      CSV.foreach(data_path("first_metrics_to_import.csv"),:encoding => 'windows-1251:utf-8',:headers => true, :header_converters => :symbol, :converters => :all) do |row|
+        if row[:snippet_name] and row[:snippet_provider]
+          accepted_snippet_name["#{row[:snippet_provider]}+#{row[:snippet_name]}"] = "#{row[:designer]}+#{row[:name]}"
+        end
+      end
       CSV.foreach(data_path("companies_in_wikirate.csv"),:encoding => 'windows-1251:utf-8',:headers => true, :header_converters => :symbol, :converters => :all) do |row|
         if company_name = row[:company] and not company_name.include?"/" and ( not row.has_key? :accept_status or row[:accept_status] == 1 or row[:accept_status] == nil)
           company_to_wikirate_company[company_name] = row[:wikirate_company]
           _aliases = row[:aliases] || ""
+          _aliases = _aliases.collect{|x| x.strip}
           aliases = _aliases.split(",")
           aliases.delete_if { |a| a.start_with?"com" and a.include?"/" or a.length<=3}
           wikirate_company_to_aliases[row[:company]] = aliases 
@@ -47,6 +47,7 @@ class ImportNewMetricValue < Card::Migration
         snippets = json_obj["Snippets"][0]
         company = json_obj["Company_name"]
         content = ""
+        # next if company != "Apple" and company != "Samsung Electronics"
         next if  snippets == nil
         if wikirate_company_to_aliases.has_key?company
           wikirate_company_to_aliases[company].each do |al|
@@ -74,12 +75,13 @@ class ImportNewMetricValue < Card::Migration
               end
             end
             if any_accepted_snipprt
-              a = {:name=>company,:type_id=>Card::WikirateCompanyID, :subcards=>{"+aliases"=>{:content=>content}}}
-              puts "Card created #{a}"
+         
               if existing_card = Card[company]
                 company_name = existing_card.name
               else
-                Card.create! :name=>company,:type_id=>Card::WikirateCompanyID, :subcards=>{"+aliases"=>{:content=>content}}
+                args = {:name=>company,:type_id=>Card::WikirateCompanyID, :subcards=>{"+aliases"=>{:content=>content}}}
+                puts "Comapny Card created #{args}"
+                Card.create! args
                 company_to_wikirate_company[company] = company
               end
             end
@@ -97,21 +99,21 @@ class ImportNewMetricValue < Card::Migration
             # create metric value
             metric_name = accepted_snippet_name["#{source_name}+#{name}"]
             if !Card.exists? "#{metric_name}+#{company_name}+#{value["citeyear"]}"
-               a = { :name=>"#{metric_name}+#{company_name}+#{value["citeyear"]}",:type_id=>Card::MetricValueID,:subcards=>{'+value'=>{:content=>value["value"].to_s}}}
-              puts "Card created #{a}"
-              Card.create! :name=>"#{metric_name}+#{company_name}+#{value["citeyear"]}",:type_id=>Card::MetricValueID,:subcards=>{'+value'=>{:content=>value["value"].to_s}}
+              args = { :name=>"#{metric_name}+#{company_name}+#{value["citeyear"]}",:type_id=>Card::MetricValueID,:subcards=>{'+value'=>{:content=>value["value"].to_s.gsub("%","")}}}
+              puts "Metric Value Card created #{args}"
+              Card.create! args
              
               sourcepage = source_cache[value["source"]]
               if sourcepage == nil
                 Card::Env.params[:sourcebox] = 'true'
-                a = { :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> value["source"]}} }
-                puts "Card created #{a}"
-                sourcepage = Card.create! :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> value["source"]}} 
+                args = { :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> value["source"]}} }
+                puts "Source Card created #{args}"
+                sourcepage = Card.create! args
                 source_cache[value["source"]] = sourcepage
               end
-              a = { :name=>"#{metric_name}+#{company_name}+#{value["citeyear"]}+source",:type_id=>Card::PointerID,:content=>"[[#{sourcepage.name}]]\n"  }
-              puts "Card created #{a}"
-              Card.create! :name=>"#{metric_name}+#{company_name}+#{value["citeyear"]}+source",:type_id=>Card::PointerID,:content=>"[[#{sourcepage.name}]]\n"
+              args = { :name=>"#{metric_name}+#{company_name}+#{value["citeyear"]}+source",:type_id=>Card::PointerID,:content=>"[[#{sourcepage.name}]]\n"  }
+              puts "Metric Source Card created #{args}"
+              Card.create! args
             else
               puts "duplicated snippets #{metric_name}+#{company_name}+#{value["citeyear"]}"
             end
@@ -120,6 +122,5 @@ class ImportNewMetricValue < Card::Migration
         end
       end
     end
-    # raise "hjello"
   end
 end
