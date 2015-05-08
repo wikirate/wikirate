@@ -41,30 +41,6 @@ format do
     end
   end
 
-  def enrich_result result
-    result.map do |item_card|
-       # 1) add the main card name on the left
-       # the pattern is as follows:
-       # "Apple+metric+*upvotes+votee search" finds "a metric+yinyang drag item" and we add "Apple" to the left
-       # because we need it to show the metric values of "Apple+a metric" in the view of that item
-       # 2) add "yinyang drag item" on the right
-       # this way we can make sure that the card always exists with a "yinyang drag item+*right" structure
-      Card.fetch "#{main_name}+#{item_card.cardname}+yinyang drag item"
-    end
-  end
-
-  def main_name
-    card.cardname.left_name.left
-  end
-
-  def main_type_id
-    Card.fetch(main_name).type_id
-  end
-
-  def searched_type_id
-    Card.fetch_id card.cardname.left_name.right
-  end
-
   def get_result_from_session
     list_with_session_votes
   end
