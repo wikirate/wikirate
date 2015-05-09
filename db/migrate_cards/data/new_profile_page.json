@@ -1,0 +1,76 @@
+{
+  "url": null,
+  "timestamp": "2015-05-07 23:12:27 +0200",
+  "card": {
+    "name": "export",
+    "type": "Pointer",
+    "content": "[[my contributions+*right+*structure]]\n[[my sources+*right+*structure]]\n[[my claims+*right+*structure]]\n[[my metrics+*right+*structure]]\n[[source+icon]]\n[[metric+icon]]\n[[claim+icon]]\n[[User+source+*type plus right+*structure]]\n[[User+claims+*type plus right+*structure]]\n[[User+metrics+*type plus right+*structure]]\n[[export]]\n[[User+*type+*structure]]\n[[showcase+*right+*structure]]",
+    "value": [
+      {
+        "name": "my contributions+*right+*structure",
+        "type": "Basic",
+        "content": "<p>{{_left+my metrics|open_profile;title:Metrics}}</p>\r\n<p><span>{{_left+my claims|open;title:Claims|content;structure:claim item}}</span></p>\r\n<p><span>{{_left+my sources|open;title:Sources|content;structure:source item}}</span></p>\r\n<p> </p>\r\n<p> </p>"
+      },
+      {
+        "name": "my sources+*right+*structure",
+        "type": "Search",
+        "content": "{\"type\":\"Page\",\"created_by\":\"_1\"}"
+      },
+      {
+        "name": "my claims+*right+*structure",
+        "type": "Search",
+        "content": "{\"type\":\"Claim\",\"created_by\":\"_\"}"
+      },
+      {
+        "name": "my metrics+*right+*structure",
+        "type": "Search",
+        "content": "{\"type\":\"Metric\",\"left\":\"_self\"}"
+      },
+      {
+        "name": "source+icon",
+        "type": "Phrase",
+        "content": "globe"
+      },
+      {
+        "name": "metric+icon",
+        "type": "Phrase",
+        "content": "bar-chart-o"
+      },
+      {
+        "name": "claim+icon",
+        "type": "Phrase",
+        "content": "quote-left"
+      },
+      {
+        "name": "User+Sources+*type_plus_right+*structure",
+        "type": "Search",
+        "content": "{\"type\":\"Page\",\"created_by\":\"_\",\"limit\":\"10\"}"
+      },
+      {
+        "name": "User+Claims+*type plus right+*structure",
+        "type": "Search",
+        "content": "{\"type\":\"Claim\",\"created_by\":\"_\",\"limit\":\"10\"}"
+      },
+      {
+        "name": "User+metrics+*type plus right+*structure",
+        "type": "Search",
+        "content": "{\"type\":\"Metric\",\"left\":\"_self\"}"
+      },
+      {
+        "name": "export",
+        "type": "Pointer",
+        "content": "[[my contributions+*right+*structure]]\n[[my sources+*right+*structure]]\n[[my claims+*right+*structure]]\n[[my metrics+*right+*structure]]\n[[source+icon]]\n[[metric+icon]]\n[[claim+icon]]\n[[User+source+*type plus right+*structure]]\n[[User+claims+*type plus right+*structure]]\n[[User+metrics+*type plus right+*structure]]\n[[export]]\n[[User+*type+*structure]]\n[[showcase+*right+*structure]]"
+      },
+      {
+        "name": "User+*type+*structure",
+        "type": "HTML",
+        "content": "<div class=\"container-fluid\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-3\">\r\n      {{+Image|size:large;}}\r\n      {{+About me|open;hide:menu toggle;title:About}}\r\n      {{+*follow|open;hide:menu toggle;title:Following|content;structure:User following result row}}\r\n      {{+activity|open;title:Activity;hide:menu toggle}}\r\n    </div>\r\n    <div class=\"col-md-9\">\r\n      {{+showcase|open;hide:menu toggle}}\r\n      {{+my contributions|open;hide:menu toggle}}\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n<div class=\"join-date\" >Joined {{_self| created_at}} ago</div>\r\n<div class=\"user-profile-left\">\r\n  {{+Image|size:large;}}\r\n\r\n    <table style=\"width:100%\">\r\n      <tr>\r\n        <td>\r\n          Claims:\r\n        </td>\r\n        <td>{{+claim count|core}}</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Sources:</td>\r\n        <td>{{+source count}}</td>\r\n      </tr>\r\n      <tr>\r\n        <td>Articles Edited:</td>\r\n        <td>{{+article count}}</td>\r\n      </tr>\r\n    </table>\r\n<br />\r\n{{+*follow|hide:menu|content;structure:User following result row}}\r\n</div>\r\n<div class=\"user-profile-right\">\r\n  <div class=\"user-profile-right-top \">\r\n           <div class=\"panel-title panel-heading\">About me</div>\r\n\r\n<br />\r\n    {{+About me}}\r\n  </div>\r\n\r\n    <div class=\"user-profile-right-bottom-contribution\">\r\n        <div class=\"panel-title panel-heading\">Contributions</div>\r\n        <div   role=\"tabpanel\" >\r\n         <ul  class=\"nav nav-tabs\" role=\"tablist\">\r\n          <li role=\"presentation\" class=\"active\"><a href=\"#user-profile-claim\" role=\"tab\" data-toggle=\"tab\">Claims</a>\r\n          </li>\r\n          <li role=\"presentation\" ><a href=\"#user-profile-analyses\" role=\"tab\" data-toggle=\"tab\">Articles</a>\r\n          </li>\r\n          <li role=\"presentation\" ><a href=\"#user-profile-source\" role=\"tab\" data-toggle=\"tab\">Source</a>\r\n          </li>\r\n        </ul>\r\n        <div class=\"tab-content\">\r\n          <div  id=\"user-profile-analyses\" role=\"tabpanel\" class=\"tab-pane\">\r\n            {{+Analyses||content;structure:user_profile_claim_row}}\r\n          </div>\r\n          <div id=\"user-profile-claim\" role=\"tabpanel\" class=\"tab-pane active\">\r\n            {{+Claims||content;structure:user_profile_claim_row}}\r\n          </div>\r\n          <div id=\"user-profile-source\" role=\"tabpanel\" class=\"tab-pane\">\r\n            {{+Sources||core;structure:user profile source row}}\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n    \r\n      {{+Discussion|titled;title:Discussion;show:comment_box,menu}}\r\n  \r\n\r\n</div>"
+      },
+      {
+        "name": "showcase+*right+*structure",
+        "type": "Basic",
+        "content": "<p>{{+campaigns}}</p>\r\n<p>{{+metrics}}</p>\r\n<p>{{+sources}}</p>\r\n<p>{{+articles}}</p>"
+      }
+    ]
+  }
+}
