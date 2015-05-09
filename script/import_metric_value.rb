@@ -10,7 +10,11 @@ Card::Auth.as_bot do
     year = row[:year]
     value = row[:value]
     source_url = row[:source]
-    if !Card.exists? "#{metric_name}+#{company_name}+#{year}"
+    if !Card.exists? "#{metric_name}+#{company_name}+#{year}" 
+      if company_name.include?"/"
+        puts "Company name with /:\t#{company_name}"
+        next
+      end
       args = { :name=>"#{metric_name}+#{company_name}+#{year}",:type_id=>Card::MetricValueID,:subcards=>{'+value'=>{:content=>value.to_s.gsub("%","")}}}
       puts "Metric Value Card created #{args}"
       Card.create! args
