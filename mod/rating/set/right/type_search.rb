@@ -22,15 +22,13 @@ end
 format :html do
   include Right::DownvoteeSearch::HtmlFormat
 
-  def default_filter_and_sort args
+  def default_filter_and_sort_args args
     args[:unsaved] ||= ''
-    binding.pry
     args[:default_sort] ||=
       if main_type_id == WikirateTopicID && searched_type_id == WikirateCompanyID
         :contributions
       else
         :importance
       end
-    super(args)
   end
 end
