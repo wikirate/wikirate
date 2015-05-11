@@ -24,7 +24,7 @@ Card::Auth.as_bot do
         Card::Env.params[:sourcebox] = 'true'
         args = { :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> source_url}} }
         puts "Source Card created #{args}"
-        sourcepage = Card.new args
+        sourcepage = Card.create! args
         source_cache[source_url] = sourcepage
       end
       args = { :name=>"#{metric_name}+#{company_name}+#{year}+source",:type_id=>Card::PointerID,:content=>"[[#{sourcepage.name}]]\n"  }
