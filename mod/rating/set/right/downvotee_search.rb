@@ -41,30 +41,6 @@ format do
     end
   end
 
-  def enrich_result result
-    result.map do |item_card|
-       # 1) add the main card name on the left
-       # the pattern is as follows:
-       # "Apple+metric+*upvotes+votee search" finds "a metric+yinyang drag item" and we add "Apple" to the left
-       # because we need it to show the metric values of "Apple+a metric" in the view of that item
-       # 2) add "yinyang drag item" on the right
-       # this way we can make sure that the card always exists with a "yinyang drag item+*right" structure
-      Card.fetch "#{main_name}+#{item_card.cardname}+yinyang drag item"
-    end
-  end
-
-  def main_name
-    card.cardname.left_name.left
-  end
-
-  def main_type_id
-    Card.fetch(main_name).type_id
-  end
-
-  def searched_type_id
-    Card.fetch_id card.cardname.left_name.right
-  end
-
   def get_result_from_session
     list_with_session_votes
   end
@@ -128,10 +104,9 @@ format :html do
       else
         ''
       end
-
     if !Card::Auth.signed_in? &&
-       ( unsaved = Card[card.vote_type_codename].fetch :trait=>:unsaved_list || Card[:unsaved_list] )
-      args[:unsaved] = subformat(unsaved).render_core(args)
+       ( unsaved = Card[card.vote_type_codename].fetch(:trait=>:unsaved_list) || Card[:unsaved_list] )
+      args[:unsaved] ||= subformat(unsaved).render_core(args)
     end
   end
 
@@ -202,15 +177,15 @@ format :html do
   end
 
   def with_drag_and_drop args
-    display_empty_msg = search_results.empty? ? '' : 'display: none;'
+    show_unsaved_msg = args[:unsaved] && args[:unsaved].present? && !Auth.signed_in?
     content_tag :div, :class=>"list-drag-and-drop yinyang-list",
                       'data-query'=>args[:query],
                       'data-update-id'=>card.cardname.url_key,
                       'data-bucket-name'=>args[:vote_type],
                       'data-default-sort'=>args[:default_sort] do
       [
-        content_tag(:div,:class=>'empty-message',:style=>display_empty_msg) { args[:empty] },
-        ((content_tag(:div,:class=>'unsaved-message') { args[:unsaved] } ) if !Auth.signed_in? ),
+        content_tag(:div,:class=>'empty-message') { args[:empty] },
+        ((content_tag(:div,:class=>'unsaved-message') { args[:unsaved] } ) if show_unsaved_msg ),
         yield
       ].join.html_safe
     end
