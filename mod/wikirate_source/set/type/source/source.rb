@@ -26,6 +26,7 @@ event :vote_on_create_source, :on=>:create, :after=>:store, :when=> proc{ |c| Ca
 end
 
 event :check_source, :after=>:approve_subcards, :on=>:create do
+  binding.pry
   source_cards = [subcards["+#{ Card[:wikirate_link].name }"],subcards["+File"],subcards["+Text"]].compact
   if source_cards.length > 1 
     errors.add :source, "Please only add one type of source"
@@ -36,7 +37,8 @@ end
 
 event :process_source_url, :before=>:process_subcards, :on=>:create do
 #, :when=>proc{    |c| Card::Env.params[:sourcebox] == 'true'  } do
-  
+binding.pry
+  return if subcards["+File"] or subcards["+Text"]
   linkparams = subcards["+#{ Card[:wikirate_link].name }"]
   url = linkparams && linkparams[:content] or raise "don't got it"
   if url.length != 0
