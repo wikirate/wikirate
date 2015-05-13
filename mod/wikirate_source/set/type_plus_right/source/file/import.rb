@@ -4,6 +4,8 @@ event :validate_import, :before=>:approve_subcards, :on=>:update do
   metric_pointer_card = subcards[cardname.left+"+#{Card[:metric].name}"]
   metric_year = subcards[cardname.left+"+#{Card[:year].name}"]
 
+  return if Env.params["is_metric_import_update"] != 'true'
+
   if !(metric_card = metric_pointer_card.item_cards.first)
     errors.add :content, "Please give a metric."
   elsif metric_card.type_id != Card::MetricID
@@ -20,6 +22,8 @@ end
 
 event :import_csv, :after=>:store, :on=>:update do
   
+  return if Env.params["is_metric_import_update"] != 'true'
+
   metric_pointer_card = subcards[cardname.left+"+#{Card[:metric].name}"]
   metric_year = subcards[cardname.left+"+#{Card[:year].name}"]
   if (metric_values = Env.params[:metric_values]) && metric_values.kind_of?(Hash)
@@ -93,6 +97,7 @@ format :html do
       [
         _optional_render( :metric_select, args ),
         _optional_render( :year_select, args),
+        _optional_render( :hidden_field, args),
         _optional_render( :selection_checkbox, args),
         _optional_render( :import_table, args ),
         _optional_render( :button_formgroup,   args )
@@ -106,6 +111,10 @@ format :html do
 
   view :metric_select do |args|
     nest card.left.metric_card, :view=>:edit_in_form
+  end
+
+  view :hidden_field do |args|
+    hidden_field_tag :is_metric_import_update, 'true'
   end
 
   view :selection_checkbox do |args|

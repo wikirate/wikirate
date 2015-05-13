@@ -66,7 +66,7 @@ namespace :wikirate do
         topic_related_article = Card.search :type=>"Analysis",:right=>{:name=>topic_names.unshift("in")}
         
         (companies + topics ).each do |c|
-          search_args = {:type=>["in","claim","page"]}
+          search_args = {:type=>["in","claim","source"]}
           query = Card.tag_filter_query(c.name, search_args,['company','topic'])
           cards = Card.search query
           cards.each do |card|
