@@ -18,7 +18,7 @@ Card::Auth.as_bot do
       if wikirate_company_name = row[:wikirate_company]
         aliases_card = Card.fetch("#{wikirate_company_name}+aliases") || Card.create!(:name=>"#{wikirate_company_name}+aliases",:type_id=>Card::PointerID)
         aliases_card.content = "#{alias_content}"
-        
+        aliases_card.type_id = Card::PointerID
         puts "Aliases card:#{aliases_card.name} \talias:  #{alias_content}"
         aliases_card.save!
       elsif !Card.exists? row[:company]
