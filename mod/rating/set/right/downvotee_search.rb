@@ -64,7 +64,7 @@ format :html do
         draggable_opts = {
           :votee_id    => votee.id,
           :update_path => votee.vote_count_card.format.vote_path,
-          :sort        => {:importance=>votee.vote_count}
+          :sort        => { :importance=>votee.vote_count }
         }
         case main_type_id
         when WikirateTopicID then topic_draggable_opts(votee,draggable_opts)
