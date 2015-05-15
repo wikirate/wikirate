@@ -14,14 +14,15 @@ Card::Auth.as_bot do
       
 
       alias_content = aliases.join("]]\n[[")
+      alias_content = aliases.length > 0 ? "[[#{alias_content}]]" : ""
       if wikirate_company_name = row[:wikirate_company]
-        aliases_card = Card.fetch("#{wikirate_company_name}+aliases") || Card.create!(:name=>"#{wikirate_company_name}+aliases")
-        aliases_card.content = "[[#{alias_content}]]"
-        
-        puts "Aliases card:#{aliases_card.name} \t#{alias_content}"
+        aliases_card = Card.fetch("#{wikirate_company_name}+aliases") || Card.create!(:name=>"#{wikirate_company_name}+aliases",:type_id=>Card::PointerID)
+        aliases_card.content = "#{alias_content}"
+        aliases_card.type_id = Card::PointerID
+        puts "Aliases card:#{aliases_card.name} \talias:  #{alias_content}"
         aliases_card.save!
       elsif !Card.exists? row[:company]
-        args = {:name=>row[:company],:type_id=>Card::WikirateCompanyID, :subcards=>{"+aliases"=>{:content=>"[[#{alias_content}]]"}}}
+        args = {:name=>row[:company],:type_id=>Card::WikirateCompanyID, :subcards=>{"+aliases"=>{:content=>"#{alias_content}",:type_id=>Card::PointerID}}}
         puts "Comapny Card created #{args}"
         Card.create! args
       end
