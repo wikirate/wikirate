@@ -2,14 +2,23 @@ def virtual?; true end
 
 event :add_value, :before=>:approve, :on=>:update do
   if (v_name = value_name)
-    source_card = Card.create! :type_id=>Card::SourceID,:subcards=>subcards
-    @subcards = {
-      v_name => {
-        :type_id=>Card::MetricValueID,
-        :subcards=>{
-          '+value'=>{:content=>Env.params[:value]},
-          '+source'=>"[[#{source_card.name}]]"
-        }}}
+    Env.params[:sourcebox] = 'true'
+    source_card = Card.create :type_id=>Card::SourceID,:subcards=>subcards
+    Env.params[:sourcebox] = nil
+    if source_card.errors.empty?
+      @subcards = {
+        v_name => {
+          :type_id=>Card::MetricValueID,
+          :subcards=>{
+            '+value'=>{:content=>Env.params[:value]},
+            '+source'=>"[[#{source_card.name}]]"
+          }}}
+    else
+      source_card.errors.each do |key,value|
+        errors.add key,value
+      end
+      abort :failure
+    end
   end
 end
 

@@ -38,8 +38,8 @@ event :process_source_url, :before=>:process_subcards, :on=>:create do
 #, :when=>proc{    |c| Card::Env.params[:sourcebox] == 'true'  } do
   
   linkparams = subcards["+#{ Card[:wikirate_link].name }"]
-  url = linkparams && linkparams[:content] or raise "don't got it"
-  if url.length != 0
+  url = linkparams && linkparams[:content] or errors.add(:link, " does not exist.")  
+  if url.length != 0 and errors.empty?
     # errors.add :link, "is empty" 
   # else
     if Card::Env.params[:sourcebox] == 'true'
