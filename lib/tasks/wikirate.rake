@@ -41,7 +41,7 @@ namespace :wikirate do
         Rake::Task['wagn:migrate'].invoke
         
         # select 5 companies and topics
-        companies = [Card["Apple"],Card["Amazon"],Card["Samsung"],Card["Siemens"],Card["Sony Corporation"]]
+        companies = [Card["Apple"],Card["Amazon"],Card["Samsung Group"],Card["Siemens AG"],Card["Sony Corporation"]]
         topics = [Card["Natural Resource Use"],Card["Community"],Card["Human Rights"],Card["Climate Change"],Card["Animal Welfare"]]
 
         company_ids = ""
@@ -80,7 +80,7 @@ namespace :wikirate do
 
         card_id_to_be_kept = card_to_be_kept.join(",")
 
-        type_ids = %w{ Claim Company Market Issue Topic Analysis Task Newspaper Book Activists Donor Website Person Institution Donor Status Organization Periodical Page  }.map do |typename|
+        type_ids = %w{ Claim Company Market Issue Topic Analysis Task Newspaper Book Activists Donor Website Person Institution Donor Status Organization Periodical Source Metric_value }.map do |typename|
           id = Card.fetch_id(typename)
           "'#{id}'" if id
         end.compact

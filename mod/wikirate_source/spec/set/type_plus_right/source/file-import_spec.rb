@@ -9,29 +9,36 @@ describe Card::Set::TypePlusRight::Source::File::Import do
   describe "while adding metric value" do
     it "shows errors while params do not fit" do 
 
-      # Card::Env.params["is_metric_import_update"] = 'true'
-      # source_file = @source.fetch :trait=>:file
-      # source_file.update_attributes :subcards=>
-      # {
-      #   "#{@source.name}+#{Card[:metric].name}"=>{:content=>'[[Clean Clothes Campaign+Strategy]]',:type_id=>Card::PointerID}}
-      
-      # expect(source_file.errors).to have_key(:content)
-      # expect(source_file.errors[:content]).to include("Please give a year.")
-      
-      # source_file.update_attributes :subcards=>{"#{@source.name}+#{Card[:year].name}"=>'[[2015]]'}
-      
-      # expect(source_file.errors).to have_key(:content)
-      # expect(source_file.errors[:content]).to include("Please give a metric.")
+      Card::Env.params["is_metric_import_update"] = 'true'
+      source_file = @source.fetch :trait=>:file
+      source_file.update_attributes :subcards=>{"#{@source.name}+#{Card[:metric].name}"=>{:content=>'[[Access to Nutrition Index+Marketing Score]]',:type_id=>Card::PointerID}}
 
-      # source_file.update_attributes :subcards=>{"#{@source.name}+#{Card[:year].name}"=>'[[yyyy]]'}
       
-      # expect(source_file.errors).to have_key(:content)
-      # expect(source_file.errors[:content]).to include("Invalid Year")
+      expect(source_file.errors).to have_key(:content)
+      expect(source_file.errors[:content]).to include("Please give a year.")
+      
+      source_file.update_attributes :subcards=>{"#{@source.name}+#{Card[:year].name}"=>{:content=>'[[2015]]',:type_id=>Card::PointerID}}
+      
+      expect(source_file.errors).to have_key(:content)
+      expect(source_file.errors[:content]).to include("Please give a metric.")
 
-      # source_file.update_attributes :subcards=>{"#{@source.name}+#{Card[:metric].name}"=>'[[yyyy]]'}
+    end
+    it "adds correct metric values" do 
       
-      # expect(source_file.errors).to have_key(:content)
-      # expect(source_file.errors[:content]).to include("Invalid metric")
+      Card::Env.params["is_metric_import_update"] = 'true'
+      Card::Env.params[:metric_values] = {"Amazon"=>["9"], "Apple"=>["62"]}
+      source_file = @source.fetch :trait=>:file
+      source_file.update_attributes :subcards=>{"#{@source.name}+#{Card[:metric].name}"=>{:content=>'[[Access to Nutrition Index+Marketing Score]]',:type_id=>Card::PointerID},"#{@source.name}+#{Card[:year].name}"=>{:content=>'[[2015]]',:type_id=>Card::PointerID}}
+
+      expect(Card.exists?("Access to Nutrition Index+Marketing Score+Amazon+2015")).to be true
+      expect(Card.exists?("Access to Nutrition Index+Marketing Score+Apple+2015")).to be true
+
+      amazon_2015_metric_value_card = Card["Access to Nutrition Index+Marketing Score+Amazon+2015+value"]
+      apple_2015_metric_value_card = Card["Access to Nutrition Index+Marketing Score+Apple+2015+value"]
+
+      expect(amazon_2015_metric_value_card.content).to eq("9")
+      expect(apple_2015_metric_value_card.content).to eq("62")
+      
 
     end
   end
@@ -39,12 +46,11 @@ describe Card::Set::TypePlusRight::Source::File::Import do
     
     it "shows field correctly" do
       
-
       source_file_card = @source.fetch :trait=>:file
       html = source_file_card.format.render_import      
 
-      expect(html).to have_tag("div", :with=>{:card_name=>"#{@source.name}+metric"}) do
-        with_tag "input", :with=>{:class=>"card-content form-control",:id=>"card_subcards_#{@source.name}_metric_content"}
+      expect(html).to have_tag("div", :with=>{:card_name=>"#{@source.name}+Metric"}) do
+        with_tag "input", :with=>{:class=>"card-content form-control",:id=>"card_subcards_#{@source.name}_Metric_content"}
       end
       expect(html).to have_tag("div", :with=>{:card_name=>"#{@source.name}+Year"}) do
         with_tag "input", :with=>{:class=>"card-content form-control",:id=>"card_subcards_#{@source.name}_Year_content"}

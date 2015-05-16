@@ -6,15 +6,13 @@ event :validate_import, :before=>:approve_subcards, :on=>:update do
   metric_pointer_card = subcards[cardname.left+"+#{Card[:metric].name}"]
   metric_year = subcards[cardname.left+"+#{Card[:year].name}"]
 
-  return if Env.params["is_metric_import_update"] != 'true'
-
-  if !(metric_card = metric_pointer_card.item_cards.first)
+  if !metric_pointer_card or !(metric_card = metric_pointer_card.item_cards.first)
     errors.add :content, "Please give a metric."
   elsif metric_card.type_id != Card::MetricID
     errors.add  :content, "Invalid metric"
   end
 
-  if !(year_card = metric_year.item_cards.first)
+  if !metric_year or !(year_card = metric_year.item_cards.first)
     errors.add :content, "Please give a year."
   elsif year_card.type_id != Card::YearID
     errors.add  :content, "Invalid Year"
@@ -26,8 +24,6 @@ event :import_csv, :after=>:store, :on=>:update do
 
   return if Env.params["is_metric_import_update"] != 'true'
   
-  return if Env.params["is_metric_import_update"] != 'true'
-
   metric_pointer_card = subcards[cardname.left+"+#{Card[:metric].name}"]
   metric_year = subcards[cardname.left+"+#{Card[:year].name}"]
   if (metric_values = Env.params[:metric_values]) && metric_values.kind_of?(Hash)
@@ -40,8 +36,10 @@ event :import_csv, :after=>:store, :on=>:update do
                      :subcards=>{'+value'=>value[0]}
       end
       source_card = Card[metric_value_card_name+"+source"] || Card.create!(:name=>"#{metric_value_card_name}+source", :type_id=>Card::PointerID)
-      source_card<<cardname.left
-      source_card.save!      
+      if not source_card.item_names.include? cardname.left
+        source_card<<cardname.left
+        source_card.save!      
+      end
     end
     abort :success=>"REDIRECT: #{metric_pointer_card.item_names.first}"
   end
