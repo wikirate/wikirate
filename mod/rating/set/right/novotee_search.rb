@@ -12,6 +12,10 @@ def vote_type_codename
   :novotes
 end
 
+def vote_label
+  nil
+end
+
 def sort_by
   false
 end
