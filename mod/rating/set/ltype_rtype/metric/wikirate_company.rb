@@ -5,7 +5,7 @@ format :html do
   end
 
   view :all_values do |args|
-    values = Card.search :left=>card.name, :type=>Card::MetricValueID
+    values = Card.search :left=>card.name, :type=>Card::MetricValueID, :sort=>'name', :dir=>'desc'
     values.map.with_index do |v, i|
       %{
         <span data-year=#{v.year} data-value=#{v.value} #{'style="display: none;"' if i > 0}>#{subformat(v).render_concise(args)}</span>
