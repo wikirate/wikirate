@@ -14,6 +14,11 @@ end
 
 
 format :html do
+
+  view :cgi_escape_name do |args|
+    CGI::escape card.name
+  end
+
   view :titled_with_edits do |args|
     wrap args do
       [
