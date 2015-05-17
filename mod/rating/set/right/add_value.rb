@@ -22,12 +22,6 @@ event :add_value, :before=>:approve, :on=>:update do
   end
 end
 
-def value_name
-  if (metric_name = cardname.left) && Env.params[:year]
-    "#{metric_name}+#{Env.params[:year]}"
-  end
-end
-
 
 format :html do
   view :add_source do |args|
