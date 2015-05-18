@@ -8,6 +8,10 @@ def vote_type_codename
   :upvotes
 end
 
+def vote_label
+  'Important to Me'
+end
+
 format do
   include Right::DownvoteeSearch::Format
 end

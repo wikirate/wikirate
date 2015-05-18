@@ -1,15 +1,20 @@
 def value_name
-  if (metric_name = cardname.left) && Env.params[:company] && Env.params[:year]
-    "#{metric_name}+#{Env.params[:company]}+#{Env.params[:year]}"
+  if (metric_name = cardname.left) && Env.params[:year] && company_name = subcards.delete("#{metric_name}+add value company")
+    company = Card.new company_name
+    "#{metric_name}+#{company.item_names.first}+#{Env.params[:year]}"
   end
 end
 
 
 format :html do
   view :core do |args|
-    companies = Card.search :type=>'company', :sort=>'name'
-    c_options = [["-- Select --",""]] + companies.map{|x| [x.name,x.name]}
-    company_tag = select_tag('company', options_for_select(c_options, companies.first.name), :class=>'pointer-select form-control')
+    company_tag = ""
+    company_card = Card.fetch card.cardname.left+"+add value company",:new=>{}
+    with_inclusion_mode :edit do
+      source = Card.new :type_code=>:source
+      company_tag += subformat(company_card)._render_content_formgroups(args.merge(:hide=>'header help',:buttons=>""))
+      company_tag += company_card.format.form_for_multi.hidden_field :type_id
+    end
     years = Card.search :type=>'year', :sort=>'name', :dir=>'desc'
     y_options = [["-- Select --",""]] + years.map{|x| [x.name,x.name]}
     year_tag = select_tag('year', options_for_select(y_options, years.first.name), :class=>'pointer-select form-control')
