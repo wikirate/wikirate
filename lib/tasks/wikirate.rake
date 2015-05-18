@@ -3,7 +3,7 @@ namespace :wikirate do
 
     db_path = File.join Wagn.root, 'test', 'wikiratetest.db'
     test_database = (t = Wagn.config.database_configuration["test"] and t["database"])
-    prod_database = (p = Wagn.config.database_configuration["production"] and p["database"])
+    prod_database = (p = Wagn.config.database_configuration["development"] and p["database"])
     user = ENV['MYSQL_USER'] || 'root'
     pwd  = ENV['MYSQL_PASSWORD']
 
@@ -41,7 +41,7 @@ namespace :wikirate do
         Rake::Task['wagn:migrate'].invoke
         
         # select 5 companies and topics
-        companies = [Card["Apple"],Card["Amazon"],Card["Samsung Group"],Card["Siemens AG"],Card["Sony Corporation"]]
+        companies = [Card["Apple Inc."],Card["Amazon"],Card["Samsung Group"],Card["Siemens AG"],Card["Sony Corporation"]]
         topics = [Card["Natural Resource Use"],Card["Community"],Card["Human Rights"],Card["Climate Change"],Card["Animal Welfare"]]
 
         company_ids = ""
@@ -49,7 +49,7 @@ namespace :wikirate do
 
         company_names = Array.new
         topic_names = Array.new
-
+        
         companies.each do |company|
           company_ids += "#{company.id},"
           company_names.push company.name

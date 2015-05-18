@@ -1,6 +1,6 @@
 
 event :validate_import, :before=>:approve_subcards, :on=>:update do
-  
+  binding.pry
   return if Env.params["is_metric_import_update"] != 'true'
 
   metric_pointer_card = subcards[cardname.left+"+#{Card[:metric].name}"]
@@ -21,7 +21,7 @@ end
 
 
 event :import_csv, :after=>:store, :on=>:update do
-
+  binding.pry
   return if Env.params["is_metric_import_update"] != 'true'
   
   metric_pointer_card = subcards[cardname.left+"+#{Card[:metric].name}"]

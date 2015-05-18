@@ -26,12 +26,12 @@ describe Card::Set::TypePlusRight::Source::File::Import do
     it "adds correct metric values" do 
       
       Card::Env.params["is_metric_import_update"] = 'true'
-      Card::Env.params[:metric_values] = {"Amazon"=>["9"], "Apple"=>["62"]}
+      Card::Env.params[:metric_values] = {"Amazon"=>["9"], "Apple Inc."=>["62"]}
       source_file = @source.fetch :trait=>:file
       source_file.update_attributes :subcards=>{"#{@source.name}+#{Card[:metric].name}"=>{:content=>'[[Access to Nutrition Index+Marketing Score]]',:type_id=>Card::PointerID},"#{@source.name}+#{Card[:year].name}"=>{:content=>'[[2015]]',:type_id=>Card::PointerID}}
 
       expect(Card.exists?("Access to Nutrition Index+Marketing Score+Amazon+2015")).to be true
-      expect(Card.exists?("Access to Nutrition Index+Marketing Score+Apple+2015")).to be true
+      expect(Card.exists?("Access to Nutrition Index+Marketing Score+Apple Inc.+2015")).to be true
 
       amazon_2015_metric_value_card = Card["Access to Nutrition Index+Marketing Score+Amazon+2015+value"]
       apple_2015_metric_value_card = Card["Access to Nutrition Index+Marketing Score+Apple+2015+value"]
@@ -71,8 +71,8 @@ describe Card::Set::TypePlusRight::Source::File::Import do
         end
 
         with_tag "tr" do 
-          with_tag "input", :with=>{:checked=>"checked",:type=>"checkbox",:value=>"62",:id=>"metric_values_Apple_"} 
-          with_tag "td",:text=>"Apple"
+          with_tag "input", :with=>{:checked=>"checked",:type=>"checkbox",:value=>"62",:id=>"metric_values_Apple_Inc._"} 
+          with_tag "td",:text=>"Apple Inc."
           with_tag "td",:text=>"exact"
         end
         with_tag "tr" do 
