@@ -34,8 +34,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
       expect(Card.exists?("Access to Nutrition Index+Marketing Score+Apple Inc.+2015")).to be true
 
       amazon_2015_metric_value_card = Card["Access to Nutrition Index+Marketing Score+Amazon+2015+value"]
-      apple_2015_metric_value_card = Card["Access to Nutrition Index+Marketing Score+Apple+2015+value"]
-
+      apple_2015_metric_value_card = Card["Access to Nutrition Index+Marketing Score+Apple Inc.+2015+value"]
       expect(amazon_2015_metric_value_card.content).to eq("9")
       expect(apple_2015_metric_value_card.content).to eq("62")
       
