@@ -3,7 +3,7 @@ namespace :wikirate do
 
     db_path = File.join Wagn.root, 'test', 'wikiratetest.db'
     test_database = (t = Wagn.config.database_configuration["test"] and t["database"])
-    prod_database = (p = Wagn.config.database_configuration["development"] and p["database"])
+    prod_database = (p = Wagn.config.database_configuration["production"] and p["database"])
     user = ENV['MYSQL_USER'] || 'root'
     pwd  = ENV['MYSQL_PASSWORD']
 
