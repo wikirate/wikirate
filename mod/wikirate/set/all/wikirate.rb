@@ -117,14 +117,12 @@ format :html do
   end
 
   view :showcase_list, :tags=>:unknown_ok do |args|
-    item_type_name = card.cardname.right_name
-    user_name = card.cardname.left_name
-      icon_class = Card.fetch("#{item_type_name}+icon").content
-    content_tag :div, :id=>"showcase-#{user_name.url_key}+my_#{item_type_name.url_key}",
-                      :class=>('hidden' if card.content.empty?) do
+    item_type_name = card.cardname.right.split.last
+    icon_card = Card.fetch("#{item_type_name}+icon")
+    wrap args.merge(:slot_class=>"showcase #{'hidden' if card.content.empty?}") do
       %{
-        <i class="fa fa-#{icon_class}"></i>
-        #{card.cardname.right.capitalize}
+        #{subformat(icon_card)._render_core}
+        #{item_type_name.capitalize}
         #{_render_core(args)}
       }
     end

@@ -24,11 +24,20 @@ format :html do
         },
         :return=>:count
       }
+    article_search_args =  {
+        :right_plus=> [ 'article', {:or=>{:created_by=>user_id, :edited_by=>user_id }} ],
+        :return=>:count
+      }
     campaign_count = Card.search contribution_search_args.merge(:type=>'campaign')
     content_tag :div, :class=>'counts' do
-      [{:name=>'Metrics', :id=>MetricID}, {:name=>'Claims',:id=>ClaimID}, {:name=>'Sources', :id=>SourceID}].map do |args|
-        count = Card.search contribution_search_args.merge(:type_id=>args[:id])
-        content_tag :div, :class=>'item' do
+      [ {:name=>'Metrics', :id=>MetricID},
+        {:name=>'Claims',:id=>ClaimID},
+        {:name=>'Sources', :id=>SourceID},
+        {:name=>'Articles', :id=>WikirateAnalysisID, :query=>article_search_args}
+      ].map do |args|
+
+        count = Card.search (args[:query] || contribution_search_args).merge(:type_id=>args[:id])
+        content_tag :div, :class=>"item" do
           %{
           <span class="#{args[:name].downcase}">#{count}</span>
           <p class="legend">#{args[:name]}</p>
@@ -37,7 +46,7 @@ format :html do
       end.join("\n")
     end.concat %{
         <div class="pull-right">
-        <i class="fa fa-bullhorn"></i>#{campaign_count}
+        <i class="fa fa-bullhorn"></i> #{campaign_count}
         </div>
       }.html_safe
   end
