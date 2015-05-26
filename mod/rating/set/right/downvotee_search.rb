@@ -12,9 +12,15 @@ def vote_type_codename
   :downvotes
 end
 
+def vote_label
+  # should be card content
+  'Not Important to Me'
+end
+
 def sort_by
   vote_type_codename
 end
+
 
 
 format do
@@ -64,7 +70,7 @@ format :html do
         draggable_opts = {
           :votee_id    => votee.id,
           :update_path => votee.vote_count_card.format.vote_path,
-          :sort        => {:importance=>votee.vote_count}
+          :sort        => { :importance=>votee.vote_count }
         }
         case main_type_id
         when WikirateTopicID then topic_draggable_opts(votee,draggable_opts)
@@ -72,7 +78,6 @@ format :html do
         when WikirateCompanyID then company_draggable_opts(votee, draggable_opts)
         when WikirateAnalysisID then analysis_draggable_opts(votee, draggable_opts)
         end
-    #binding.pry
         draggable nest(item), draggable_opts
       end.join("\n").html_safe
     end.html_safe
@@ -104,10 +109,9 @@ format :html do
       else
         ''
       end
-
     if !Card::Auth.signed_in? &&
-       ( unsaved = Card[card.vote_type_codename].fetch :trait=>:unsaved_list || Card[:unsaved_list] )
-      args[:unsaved] = subformat(unsaved).render_core(args)
+       ( unsaved = Card[card.vote_type_codename].fetch(:trait=>:unsaved_list) || Card[:unsaved_list] )
+      args[:unsaved] ||= subformat(unsaved).render_core(args)
     end
   end
 
@@ -178,17 +182,18 @@ format :html do
   end
 
   def with_drag_and_drop args
-    display_empty_msg = search_results.empty? ? '' : 'display: none;'
-    content_tag :div, :class=>"list-drag-and-drop yinyang-list",
+    show_unsaved_msg = args[:unsaved].present? && !Auth.signed_in?
+    content_tag :div, :class=>"list-drag-and-drop yinyang-list #{args[:vote_type]}-container",
                       'data-query'=>args[:query],
                       'data-update-id'=>card.cardname.url_key,
                       'data-bucket-name'=>args[:vote_type],
                       'data-default-sort'=>args[:default_sort] do
       [
-        content_tag(:div,:class=>'empty-message',:style=>display_empty_msg) { args[:empty] },
-        ((content_tag(:div,:class=>'unsaved-message') { args[:unsaved] } ) if !Auth.signed_in? ),
+        (content_tag(:h5, :class=>'vote-title') { card.vote_label } if card.vote_label),
+        content_tag(:div,:class=>'empty-message') { args[:empty] },
+        ((content_tag(:div,:class=>'alert alert-info unsaved-message') { args[:unsaved] } ) if show_unsaved_msg ),
         yield
-      ].join.html_safe
+      ].compact.join.html_safe
     end
   end
 

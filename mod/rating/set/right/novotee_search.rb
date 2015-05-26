@@ -12,6 +12,10 @@ def vote_type_codename
   :novotes
 end
 
+def vote_label
+  nil
+end
+
 def sort_by
   false
 end
@@ -41,7 +45,7 @@ end
 format :html do
   include Right::DownvoteeSearch::HtmlFormat
 
-  def default_filter_and_sort args
+  def default_filter_and_sort_args args
     args[:default_sort] ||=
       if main_type_id == WikirateCompanyID && searched_type_id == WikirateTopicID
         :contributions
@@ -51,9 +55,9 @@ format :html do
   end
 
   def default_drag_and_drop_args args
-    default_filter_and_sort(args)
+    default_filter_and_sort_args(args)
     args[:query] ||= 'vote=force-neutral'
-    args[:unsaved] ||= ''
+    args[:unsaved] = nil
     super(args)
   end
 

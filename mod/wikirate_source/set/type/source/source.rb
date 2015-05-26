@@ -4,6 +4,9 @@ card_accessor :downvote_count, :type=>:number, :default=>"0"
 card_accessor :direct_contribution_count, :type=>:number, :default=>"0"
 card_accessor :contribution_count, :type=>:number, :default=>"0"
 
+card_accessor :metric, :type=>:pointer
+card_accessor :year, :type=>:pointer
+
 def indirect_contributor_search_args
   [
     {:right_id=>VoteCountID, :left=>self.name }
@@ -35,8 +38,8 @@ event :process_source_url, :before=>:process_subcards, :on=>:create do
 #, :when=>proc{    |c| Card::Env.params[:sourcebox] == 'true'  } do
   
   linkparams = subcards["+#{ Card[:wikirate_link].name }"]
-  url = linkparams && linkparams[:content] or raise "don't got it"
-  if url.length != 0
+  url = linkparams && linkparams[:content] or errors.add(:link, " does not exist.")  
+  if url.length != 0 and errors.empty?
     # errors.add :link, "is empty" 
   # else
     if Card::Env.params[:sourcebox] == 'true'
@@ -110,6 +113,14 @@ format :html do
     super args.merge(:core_edit=>true)
   end
 
+  view :metric_import_link do |args|
+    file_card = Card[card.name+"+File"]
+    if file_card and mime_type = file_card.content.split("\n")[1] and mime_type == "text/csv"
+      card_link file_card, {:text=>"Import to metric values",:path_opts=>{:view=>:import}}
+    else
+      ""
+    end
+  end
 
   view :content do |args|
     add_name_context

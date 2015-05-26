@@ -1,24 +1,40 @@
 def virtual?; true end
 
 event :add_value, :before=>:approve, :on=>:update do
+  add_metric_value
+end
+
+event :add_value, :before=>:approve, :on=>:create do
+  add_metric_value
+end
+
+def add_metric_value 
   if (v_name = value_name)
-    source_card = Card.create! :type_id=>Card::SourceID,:subcards=>subcards
-    @subcards = {
-      v_name => {
-        :type_id=>Card::MetricValueID,
-        :subcards=>{
-          '+value'=>{:content=>Env.params[:value]},
-          '+source'=>"[[#{source_card.name}]]"
-        }}}
+    Env.params[:sourcebox] = 'true'
+    source_card = Card.create :type_id=>Card::SourceID,:subcards=>subcards
+    Env.params[:sourcebox] = nil
+    if source_card.errors.empty?
+      if v_name_card = Card[v_name]
+        v_name_card.update_attributes! :subcards=>{
+            '+value'=>{:content=>Env.params[:value]},
+            '+source'=>"[[#{source_card.name}]]"
+          }
+      else
+        Card.create! :name=>v_name ,:type_id=>Card::MetricValueID, :subcards=>{
+            '+value'=>{:content=>Env.params[:value]},
+            '+source'=>"[[#{source_card.name}]]"
+          }
+        
+      end
+      abort :success
+    else
+      source_card.errors.each do |key,value|
+        errors.add key,value
+      end
+      abort :failure
+    end
   end
 end
-
-def value_name
-  if (metric_name = cardname.left) && Env.params[:year]
-    "#{metric_name}+#{Env.params[:year]}"
-  end
-end
-
 
 format :html do
   view :add_source do |args|
