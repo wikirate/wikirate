@@ -121,6 +121,43 @@ format :html do
     end
   end
 
+  view :showcase_list, :tags=>:unknown_ok do |args|
+    item_type_name = card.cardname.right.split.last
+    icon_card = Card.fetch("#{item_type_name}+icon")
+    wrap args.merge(:slot_class=>"showcase #{'hidden' if card.content.empty?}") do
+      %{
+        #{subformat(icon_card)._render_core}
+        #{item_type_name.capitalize}
+        #{_render_core(args)}
+      }
+    end
+  end
+
+  view :open_contribution_list do |args|
+    _render_open(args.merge(:contribution_list=>true))
+  end
+
+  view :header do |args|
+    if args.delete(:contribution_list)
+      view :header do |args|
+        %{
+          <div class="card-header #{ args[:header_class] }">
+            <div class="card-header-title #{ args[:title_class] }">
+              #{ _optional_render :title, args }
+              #{ _optional_render :contribution_counts, args }
+              #{ _optional_render :toggle, args, :hide }
+            </div>
+          </div>
+          #{ _optional_render :toolbar, args, :hide}
+          #{ _optional_render :edit_toolbar, args, :hide}
+          #{ _optional_render :account_toolbar, args, :hide}
+        }
+      end
+    else
+      super(args)
+    end
+  end
+
   view :yinyang_list_items do |args|
     item_args = { :view => ( args[:item] || (@inclusion_opts && @inclusion_opts[:view]) || default_item_view ) }
     joint = args[:joint] || ' '
