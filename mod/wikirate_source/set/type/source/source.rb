@@ -35,7 +35,7 @@ event :check_source, :after=>:approve_subcards, :on=>:create do
 end
 
 event :process_source_url, :before=>:process_subcards, :on=>:create do
-
+  
   linkparams = subcards["+#{ Card[:wikirate_link].name }"]
   url = linkparams && linkparams[:content] 
   if url.length != 0 and errors.empty?
@@ -77,7 +77,7 @@ event :process_source_url, :before=>:process_subcards, :on=>:create do
 end
 
 def download_file_and_add_to_plus_file url
-  # binding.pry
+  
   url.gsub!(/ /, '%20')
   url.gsub!(/https:/, 'http:')
   uri = nil  
@@ -106,6 +106,9 @@ def file_link url
   max_size = (max = Card['*upload max']) ? max.db_content.to_i : 5
   
   not (content_type.start_with?"text/html" or content_type.start_with?"image/") and content_size.to_i <= max_size.kilobytes
+rescue 
+  Rails.logger.info "Fail to extract header from the #{ url }"
+  false
 end
 
 def parse_source_page url
