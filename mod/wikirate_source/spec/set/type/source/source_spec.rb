@@ -48,6 +48,29 @@ describe Card::Set::Type::Source do
 
       end
     end
+    describe "while creating a source with a file link" do 
+      it "downloads it and saves as a file source" do
+        pdf_url = "http://www.relacweb.org/conferencia/images/documentos/Hoteles_cerca.pdf"
+        sourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> pdf_url} }
+        expect(sourcepage.errors).to be_empty
+        expect(sourcepage.fetch(:trait=>:file)).to_not be_nil
+        expect(sourcepage.fetch(:trait=>:wikirate_link)).to be_nil
+      end
+    end
+    describe "while creating a source with a wikirate link" do 
+      it "return the source card" do
+        
+        Card::Env.params[:sourcebox] = 'true'
+        url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
+        sourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url} }
+        url_key = sourcepage.cardname.url_key
+        new_source_url = "#{ Card::Env[:protocol] }#{ Card::Env[:host] }#{sourcepage.format.card_path url_key }"
+
+        new_sourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> new_source_url} }
+        expect(sourcepage.name).to eq(new_sourcepage.name)
+
+      end
+    end
     describe "creating a source in sourcebox" do
       context "while link is a card name" do
         it "returns source card " do
