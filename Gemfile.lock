@@ -1,7 +1,7 @@
 PATH
   remote: ./vendor/wagn/card
   specs:
-    card (1.15.2)
+    card (1.15.3)
       bootstrap-kaminari-views (~> 0.0.5)
       coderay (~> 1.0)
       coffee-script (~> 2.2)
@@ -20,8 +20,8 @@ PATH
 PATH
   remote: ./vendor/wagn/wagn
   specs:
-    wagn (1.15.2)
-      card (= 1.15.2)
+    wagn (1.15.3)
+      card (= 1.15.3)
       rails (= 3.2.16)
 
 GEM
@@ -244,7 +244,7 @@ GEM
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
     rubyzip (1.1.7)
-    sass (3.4.13)
+    sass (3.4.14)
     selenium-webdriver (2.45.0)
       childprocess (~> 0.5)
       multi_json (~> 1.0)
