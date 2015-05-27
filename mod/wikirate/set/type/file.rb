@@ -4,7 +4,9 @@ format :html do
     if args[:structure]
       process_content _render_raw(args)
     else
-      super args
+      handle_source args do |source|
+        card_url source
+      end
     end
   end
 

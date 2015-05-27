@@ -12,7 +12,7 @@ describe Card::Set::Type::Source do
       end
       describe "source exists in wikirate" do
         before do
-          @existing_source = create_page_with_sourcebox @url,{"+Company"=>"Apple","+Topic"=>"Natural Resource Use"},'false'
+          @existing_source = create_page_with_sourcebox @url,{"+Company"=>"Apple Inc.","+Topic"=>"Natural Resource Use"},'false'
         end
         it "shows nothing in the company_and_topic_detail if no company and topic in url" do 
           Card::Env.params[:url] = @nonexisting_url
@@ -23,7 +23,7 @@ describe Card::Set::Type::Source do
           expect(result).to match(%{<div class="topic-name ">[ \\n]+<\/div>})
         end
         it "shows the edit dropbox button, options for existing sources if company and topic match wikirate's one" do
-          company = "Apple"
+          company = "Apple Inc."
           topic = "Natural Resource Use"
           Card::Env.params[:url] = @url
           Card::Env.params[:company] = company
@@ -130,10 +130,10 @@ describe Card::Set::Type::Source do
       end
       it "shows add topic if topic does not exist" do
         new_url = "http://www.google.com/nonexistingwikiratewebpage"
-        existing_source = create_page_with_sourcebox new_url,{"+Company"=>"Apple"},'false'
+        existing_source = create_page_with_sourcebox new_url,{"+Company"=>"Apple Inc."},'false'
         Card::Env.params[:url] = new_url
         
-        company = "Apple"
+        company = "Apple Inc."
         company_link_name = Card[company].cardname.url_key
 
         result = existing_source.format._render_preview

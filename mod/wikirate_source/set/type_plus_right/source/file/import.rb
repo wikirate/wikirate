@@ -1,16 +1,18 @@
 
 event :validate_import, :before=>:approve_subcards, :on=>:update do
-  
+
+  return if Env.params["is_metric_import_update"] != 'true'
+
   metric_pointer_card = subcards[cardname.left+"+#{Card[:metric].name}"]
   metric_year = subcards[cardname.left+"+#{Card[:year].name}"]
 
-  if !(metric_card = metric_pointer_card.item_cards.first)
+  if !metric_pointer_card or !(metric_card = metric_pointer_card.item_cards.first)
     errors.add :content, "Please give a metric."
   elsif metric_card.type_id != Card::MetricID
     errors.add  :content, "Invalid metric"
   end
 
-  if !(year_card = metric_year.item_cards.first)
+  if !metric_year or !(year_card = metric_year.item_cards.first)
     errors.add :content, "Please give a year."
   elsif year_card.type_id != Card::YearID
     errors.add  :content, "Invalid Year"
@@ -19,6 +21,8 @@ end
 
 
 event :import_csv, :after=>:store, :on=>:update do
+
+  return if Env.params["is_metric_import_update"] != 'true'
   
   metric_pointer_card = subcards[cardname.left+"+#{Card[:metric].name}"]
   metric_year = subcards[cardname.left+"+#{Card[:year].name}"]
@@ -32,8 +36,10 @@ event :import_csv, :after=>:store, :on=>:update do
                      :subcards=>{'+value'=>value[0]}
       end
       source_card = Card[metric_value_card_name+"+source"] || Card.create!(:name=>"#{metric_value_card_name}+source", :type_id=>Card::PointerID)
-      source_card<<cardname.left
-      source_card.save!      
+      if not source_card.item_names.include? cardname.left
+        source_card<<cardname.left
+        source_card.save!      
+      end
     end
     abort :success=>"REDIRECT: #{metric_pointer_card.item_names.first}"
   end
@@ -93,6 +99,7 @@ format :html do
       [
         _optional_render( :metric_select, args ),
         _optional_render( :year_select, args),
+        _optional_render( :hidden_field, args),
         _optional_render( :selection_checkbox, args),
         _optional_render( :import_table, args ),
         _optional_render( :button_formgroup,   args )
@@ -106,6 +113,10 @@ format :html do
 
   view :metric_select do |args|
     nest card.left.metric_card, :view=>:edit_in_form
+  end
+
+  view :hidden_field do |args|
+    hidden_field_tag :is_metric_import_update, 'true'
   end
 
   view :selection_checkbox do |args|

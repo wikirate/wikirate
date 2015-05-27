@@ -36,7 +36,7 @@ end
 
 event :process_source_url, :before=>:process_subcards, :on=>:create do
 #, :when=>proc{    |c| Card::Env.params[:sourcebox] == 'true'  } do
-  
+  return if subcards["+File"] or subcards["+Text"]
   linkparams = subcards["+#{ Card[:wikirate_link].name }"]
   url = linkparams && linkparams[:content] or errors.add(:link, " does not exist.")  
   if url.length != 0 and errors.empty?
