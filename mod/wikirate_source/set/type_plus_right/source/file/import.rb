@@ -142,7 +142,7 @@ format :html do
     tbody = content_tag :tbody do
       wrap_each_with :tr  do
         card.csv_rows.map { |elem| render_row(elem) }
-      end
+      end.html_safe
     end.html_safe
     content_tag(:table, thead.concat(tbody),:class=>"import_table").html_safe
   end
