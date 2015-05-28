@@ -140,10 +140,9 @@ format :html do
     end.html_safe
     #fields_for 'metric[]' , product do |product_fields|
     tbody = content_tag :tbody do
-      card.csv_rows.collect { |elem|
-        concat content_tag(:tr, render_row(elem))
-      }
-
+      wrap_each_with :tr  do
+        card.csv_rows.map { |elem| render_row(elem) }
+      end
     end.html_safe
     content_tag(:table, thead.concat(tbody),:class=>"import_table").html_safe
   end
