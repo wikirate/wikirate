@@ -20,9 +20,8 @@ event :validate_import, :before=>:approve_subcards, :on=>:update do
 end
 
 
-event :import_csv, :after=>:store, :on=>:update do
-
-  return if Env.params["is_metric_import_update"] != 'true'
+event :import_csv, :after=>:store, :on=>:update,
+ :when=>proc{  |c| Env.params["is_metric_import_update"] == 'true' } do
   
   metric_pointer_card = subcards[cardname.left+"+#{Card[:metric].name}"]
   metric_year = subcards[cardname.left+"+#{Card[:year].name}"]
