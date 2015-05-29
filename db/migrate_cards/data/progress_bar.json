@@ -8,7 +8,7 @@
     "value": [
       {
         "name": "progress bar",
-        "type": "Cardtype",
+        "type": "Basic",
         "codename": "progress_bar"
       },
       {
