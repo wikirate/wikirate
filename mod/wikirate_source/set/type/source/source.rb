@@ -34,8 +34,7 @@ event :check_source, :after=>:approve_subcards, :on=>:create do
   end
 end
 
-event :process_source_url, :before=>:process_subcards, :on=>:create,
- :when=>proc{  |c| not (subcards["+File"] or subcards["+Text"])  } do
+event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc{ |c| not (c.subcards["+File"] or c.subcards["+Text"]) } do
   
   linkparams = subcards["+#{ Card[:wikirate_link].name }"]
   url = linkparams && linkparams[:content] or errors.add(:link, " does not exist.")  
