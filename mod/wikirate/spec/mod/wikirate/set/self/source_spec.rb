@@ -60,7 +60,7 @@ describe Card::Set::Self::Source do
         expect(result[:result]).to be false
       end
       it "handles no url" do
-        Card::Env.params[:company] = "Apple"
+        Card::Env.params[:company] = "Apple Inc."
         Card::Env.params[:topic] = "Natural Resource Use"
         Card::Env.params[:type] = "either"
         result = @page_card.format( :format=>:json)._render(:feedback)
@@ -77,7 +77,7 @@ describe Card::Set::Self::Source do
       end
       it "handles no topic" do
         Card::Env.params[:url] = @url
-        Card::Env.params[:company] = "Apple"
+        Card::Env.params[:company] = "Apple Inc."
         Card::Env.params[:type] = "either"
         result = @page_card.format( :format=>:json)._render(:feedback)
         expect(result[:result]).to be false
@@ -85,7 +85,7 @@ describe Card::Set::Self::Source do
       end
       it "handles no type" do
         Card::Env.params[:url] = @url
-        Card::Env.params[:company] = "Apple"
+        Card::Env.params[:company] = "Apple Inc."
         Card::Env.params[:topic] = "Natural Resource Use"
         result = @page_card.format( :format=>:json)._render(:feedback)
         expect(result[:result]).to be false
@@ -103,7 +103,7 @@ describe Card::Set::Self::Source do
       end
       it "handles invalid topic" do 
         Card::Env.params[:url] = @url
-        Card::Env.params[:company] = "Apple"
+        Card::Env.params[:company] = "Apple Inc."
         Card::Env.params[:topic] = "joe_user"
         Card::Env.params[:type] = "either"
         result = @page_card.format( :format=>:json)._render(:feedback)
@@ -111,7 +111,7 @@ describe Card::Set::Self::Source do
       end
       it "handles invalid type" do 
         Card::Env.params[:url] = @url
-        Card::Env.params[:company] = "Apple"
+        Card::Env.params[:company] = "Apple Inc."
         Card::Env.params[:topic] = "Natural Resource Use"
         Card::Env.params[:type] = "joe_user"
         result = @page_card.format( :format=>:json)._render(:feedback)
@@ -121,7 +121,7 @@ describe Card::Set::Self::Source do
     describe "normal cases" do
       it "handles either type" do 
         Card::Env.params[:url] = @url
-        Card::Env.params[:company] = "Apple"
+        Card::Env.params[:company] = "Apple Inc."
         Card::Env.params[:topic] = "Natural Resource Use"
         Card::Env.params[:type] = "either"
         result = @page_card.format( :format=>:json)._render(:feedback)
@@ -130,7 +130,7 @@ describe Card::Set::Self::Source do
       end
       it "handles company type" do 
         Card::Env.params[:url] = @url
-        Card::Env.params[:company] = "Apple"
+        Card::Env.params[:company] = "Apple Inc."
         Card::Env.params[:topic] = "Natural Resource Use"
         Card::Env.params[:type] = "company"
         result = @page_card.format( :format=>:json)._render(:feedback)
@@ -139,7 +139,7 @@ describe Card::Set::Self::Source do
       end
       it "handles topic type" do 
         Card::Env.params[:url] = @url
-        Card::Env.params[:company] = "Apple"
+        Card::Env.params[:company] = "Apple Inc."
         Card::Env.params[:topic] = "Natural Resource Use"
         Card::Env.params[:type] = "topic"
         result = @page_card.format( :format=>:json)._render(:feedback)
@@ -148,7 +148,7 @@ describe Card::Set::Self::Source do
       end
       it "handles relevant type" do 
         Card::Env.params[:url] = @url
-        Card::Env.params[:company] = "Apple"
+        Card::Env.params[:company] = "Apple Inc."
         Card::Env.params[:topic] = "Natural Resource Use"
         Card::Env.params[:type] = "relevant"
         result = @page_card.format( :format=>:json)._render(:feedback)
