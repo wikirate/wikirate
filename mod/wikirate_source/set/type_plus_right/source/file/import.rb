@@ -95,7 +95,7 @@ format :html do
       [
         _optional_render( :metric_select, args ),
         _optional_render( :year_select, args),
-        _optional_render( :hidden_field, args),
+        _optional_render( :metric_import_flag, args),
         _optional_render( :selection_checkbox, args),
         _optional_render( :import_table, args ),
         _optional_render( :button_formgroup,   args )
@@ -111,7 +111,7 @@ format :html do
     nest card.left.metric_card, :view=>:edit_in_form
   end
 
-  view :hidden_field do |args|
+  view :metric_import_flag do |args|
     hidden_field_tag :is_metric_import_update, 'true'
   end
 
