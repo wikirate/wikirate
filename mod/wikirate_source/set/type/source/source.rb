@@ -35,12 +35,13 @@ event :check_source, :after=>:approve_subcards, :on=>:create do
 end
 
 event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc{ |c| not (c.subcards["+File"] or c.subcards["+Text"]) } do
-  
+
   linkparams = subcards["+#{ Card[:wikirate_link].name }"]
   url = linkparams && linkparams[:content] or errors.add(:link, " does not exist.")  
-  if url.length != 0 and errors.empty?
+  if errors.empty? and url.length != 0 
     if Card::Env.params[:sourcebox] == 'true'
-      if url.start_with?"#{ Card::Env[:protocol] }#{ Card::Env[:host] }#"
+      wikirate_url = "#{ Card::Env[:protocol] }#{ Card::Env[:host] }"
+      if url.start_with?wikirate_url
         # try to convert the link to source card, easier for users to add source in +source editor
         uri = URI.parse(URI.unescape(url))
         cite_card = Card[uri.path] 
@@ -54,8 +55,8 @@ event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc
           self.name = cite_card.name
           abort :success
         end
-      else
-        errors.add :source, " does not exist." if not (url.start_with?"http://" or url.start_with?"https://")
+      elsif not (url.start_with?"http://" or url.start_with?"https://") or url.start_with?wikirate_url
+        errors.add :source, " does not exist."
       end
     end
     duplicates = Self::Source.find_duplicates url
