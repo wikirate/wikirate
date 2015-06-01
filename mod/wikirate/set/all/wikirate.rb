@@ -19,6 +19,25 @@ format :html do
     CGI::escape card.name
   end
 
+  def is_number? str
+    true if Float(str) rescue false
+  end
+
+  view :progress_bar do |args|
+    value = card.db_content
+    if is_number? value
+      %{
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuenow="#{value}" aria-valuemin="0" aria-valuemax="100" style="width: #{value}%;">
+            #{value}%
+          </div>
+        </div>
+      }
+    else
+      "Only card with numberic content can be shown as progress bar."
+    end
+  end
+
   view :titled_with_edits do |args|
     wrap args do
       [
