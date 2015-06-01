@@ -8,6 +8,13 @@ event :add_value, :before=>:approve, :on=>:create do
   add_metric_value
 end
 
+def value_name
+  if (metric_and_company_name = cardname.left) && Env.params[:year] 
+    "#{metric_and_company_name}+#{Env.params[:year]}"
+  end
+end
+
+
 def add_metric_value 
   if (v_name = value_name)
     Env.params[:sourcebox] = 'true'

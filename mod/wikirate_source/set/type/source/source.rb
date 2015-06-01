@@ -34,10 +34,10 @@ event :check_source, :after=>:approve_subcards, :on=>:create do
   end
 end
 
-event :process_source_url, :before=>:process_subcards, :on=>:create do
+event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc{ |c| not (c.subcards["+File"] or c.subcards["+Text"]) } do
   
   linkparams = subcards["+#{ Card[:wikirate_link].name }"]
-  url = linkparams && linkparams[:content] 
+  url = linkparams && linkparams[:content] or errors.add(:link, " does not exist.")  
   if url.length != 0 and errors.empty?
     if Card::Env.params[:sourcebox] == 'true'
       if url.start_with?"#{ Card::Env[:protocol] }#{ Card::Env[:host] }#"

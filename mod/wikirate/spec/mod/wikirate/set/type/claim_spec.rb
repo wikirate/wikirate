@@ -113,7 +113,7 @@ describe Card::Set::Type::Claim do
       context "when company and topic exist" do 
         context "when  card.analysis_names.size > cited_in.size " do 
           it "shows tip about citing this claim in related articles" do
-            claim_card = create_claim @claim_name,{'+company'=>'apple','+topic'=>'natural resource use'}
+            claim_card = create_claim @claim_name,{'+company'=>'Apple Inc.','+topic'=>'natural resource use'}
             expect(claim_card.format.render_tip).to include('cite this claim in related articles.')
           end
         end
