@@ -24,7 +24,7 @@ format :html do
   end
 
   view :progress_bar do |args|
-    value = card.db_content
+    value = card.raw_content
     if is_number? value
       %{
         <div class="progress">
@@ -34,7 +34,7 @@ format :html do
         </div>
       }
     else
-      "Only card with numberic content can be shown as progress bar."
+      "Only card with numeric content can be shown as progress bar."
     end
   end
 
