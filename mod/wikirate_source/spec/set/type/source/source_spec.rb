@@ -5,8 +5,6 @@ describe Card::Set::Type::Source do
   describe "while creating a Source" do
     before do
       login_as 'joe_user' 
-      Card::Env[:protocol] = "http://"
-      Card::Env[:host] = "wikirate.org"
     end
     it "should add title,description" do
       
