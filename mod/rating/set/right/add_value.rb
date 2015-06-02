@@ -47,7 +47,7 @@ format :html do
   view :add_source do |args|
     with_inclusion_mode :edit do
       source = Card.new :type_code=>:source
-      source_form_content = subformat(source)._render_content_formgroups(args.merge(:hide=>'header help',:buttons=>""))
+      source_form_content = subformat(source)._render_content_formgroup(args.merge(:hide=>'header help',:buttons=>""))
     end
   end
 
