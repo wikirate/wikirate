@@ -12,7 +12,7 @@ format :html do
     company_card = Card.fetch card.cardname.left+"+add value company",:new=>{}
     with_inclusion_mode :edit do
       source = Card.new :type_code=>:source
-      company_tag += subformat(company_card)._render_content_formgroups(args.merge(:hide=>'header help',:buttons=>""))
+      company_tag += subformat(company_card)._render_content_formgroup(args.merge(:hide=>'header help',:buttons=>""))
       company_tag += company_card.format.form_for_multi.hidden_field :type_id
     end
     years = Card.search :type=>'year', :sort=>'name', :dir=>'desc'

@@ -43,7 +43,7 @@ describe Card::Set::Type::Source do
 
         end
         it "hides the edit dropbox button if company and topic do not match wikirate's one" do
-          company = "Amazon"
+          company = "Amazon.com, Inc."
           topic = "Natural Resource Use"
           Card::Env.params[:url] = @url
           Card::Env.params[:company] = company
@@ -68,7 +68,7 @@ describe Card::Set::Type::Source do
       end
       describe "source does not exist in wikirate" do
         it "shows company and topic from url, hide the edit drop down button" do
-          company = "Amazon"
+          company = "Amazon.com, Inc."
           topic = "Natural Resource Use"
           Card::Env.params[:url] = @nonexisting_url
           Card::Env.params[:company] = company
@@ -98,7 +98,7 @@ describe Card::Set::Type::Source do
     describe "sources from wikirate" do
       before do
         @url = "http://existingpage.com"
-        @company = "Amazon"
+        @company = "Amazon.com, Inc."
         @topic = "Natural Resource Use"
         @existing_source = create_page_with_sourcebox @url,{"+Company"=>@company,"+Topic"=>@topic},'false'
       end
