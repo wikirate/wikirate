@@ -35,9 +35,10 @@ format :html do
         {:name=>'Sources', :id=>SourceID},
         {:name=>'Articles', :id=>WikirateAnalysisID, :query=>article_search_args}
       ].map do |args|
-
+        inpage_link = "##{card.cardname.left_name.url_key}+"
+        inpage_link += args[:name] == 'Articles' ? "analysis" : args[:name].downcase
         count = Card.search (args[:query] || contribution_search_args).merge(:type_id=>args[:id])
-        content_tag :div, :class=>"item" do
+        content_tag :a, :class=>"item", :href=>inpage_link do
           %{
           <span class="#{args[:name].downcase}">#{count}</span>
           <p class="legend">#{args[:name]}</p>
@@ -45,9 +46,9 @@ format :html do
         end
       end.join("\n")
     end.concat %{
-        <div class="pull-right">
+        <a class="pull-right" href="##{card.cardname.left_name.url_key}+campaigns">
         <i class="fa fa-bullhorn"></i> #{campaign_count}
-        </div>
+        </a>
       }.html_safe
   end
 end
