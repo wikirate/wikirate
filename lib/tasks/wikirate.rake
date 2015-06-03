@@ -41,7 +41,7 @@ namespace :wikirate do
         Rake::Task['wagn:migrate'].invoke
         
         # select 5 companies and topics
-        companies = [Card["Apple Inc."],Card["Amazon"],Card["Samsung Group"],Card["Siemens AG"],Card["Sony Corporation"]]
+        companies = [Card["Apple Inc."],Card["Amazon.com, Inc."],Card["Samsung Group"],Card["Siemens AG"],Card["Sony Corporation"]]
         topics = [Card["Natural Resource Use"],Card["Community"],Card["Human Rights"],Card["Climate Change"],Card["Animal Welfare"]]
 
         company_ids = ""
