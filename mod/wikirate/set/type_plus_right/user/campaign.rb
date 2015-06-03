@@ -22,8 +22,8 @@ format :html do
         <div class="card-header-title #{ args[:title_class] }">
           #{ args[:icon] }
           #{ _optional_render :title, args }
+          <span class="badge">#{args[:count]}</span>
           <div class="pull-right">
-            <span class="item-count">#{args[:count]}</span>
             #{ _optional_render :toggle, args, :hide }
           </div>
         </div>
