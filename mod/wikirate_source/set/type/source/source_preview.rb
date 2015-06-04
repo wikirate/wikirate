@@ -105,7 +105,7 @@ format :html do
       <div id="company-and-topic" class="company-and-topic">
         #{first_company}
         #{first_topic}
-        <a href="/#{card.cardname.url_key}?slot[structure]=source_company_and_topic&view=edit" id="company-and-topic-detail-link" class="#{dropdown_class}">
+        <a href="/#{card.cardname.url_key}?slot[structure]=source_company_and_topic&view=edit&slot[hide]=menu,header,toolbar" id="company-and-topic-detail-link" class="#{dropdown_class}">
           <i class="fa fa-caret-square-o-down"></i>
         </a>
       </div>
@@ -253,19 +253,19 @@ format :html do
       result += %{
 
         <li>
-          <a class='btn btn-default show-link-in-popup popup-original-link' href='/#{source_page_name}+source_claim_list?slot[hide]=header' target='_blank'>
+          <a class='btn btn-default show-link-in-popup popup-original-link' href='/#{source_page_name}+source_claim_list?slot[hide]=header,menu' target='_blank'>
             <span class='claim-count'>
               <i class='fa fa-quote-left'></i><span id="claim-count-number">#{claim_count}</span>
             </span>
           </a>
         </li>
         <li>
-          <a class='btn btn-default show-link-in-popup popup-original-link no-header position-right' href='/#{source_page_name}+discussion?slot[hide]=header' target='_blank'>
+          <a class='btn btn-default show-link-in-popup popup-original-link position-right' href='/#{source_page_name}+discussion?slot[hide]=header&slot[show]=commentbox' target='_blank'>
             <i class="fa fa-comments"></i>
           </a>
           </li>
           <li>
-          <a class='btn btn-default show-link-in-popup popup-original-link no-header position-right' href='/#{source_page_name}?slot[structure]=source_structure&view=edit&slot[hide]=header' target='_blank'>
+          <a class='btn btn-default show-link-in-popup popup-original-link position-right' href='/#{source_page_name}?slot[structure]=source_structure&view=edit&slot[hide]=header' target='_blank'>
             <i class="fa fa-info-circle"></i>
           </a>
           </li>
