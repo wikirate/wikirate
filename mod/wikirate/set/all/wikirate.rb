@@ -19,6 +19,10 @@ format :html do
     CGI::escape card.name
   end
 
+  view :meta_preview do |args|
+    ActionView::Base.full_sanitizer.sanitize(Card::Content.truncatewords_with_closing_tags _render_core(args), words=50)
+  end 
+
   def is_number? str
     true if Float(str) rescue false
   end
