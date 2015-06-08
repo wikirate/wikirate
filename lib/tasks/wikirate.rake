@@ -41,7 +41,7 @@ namespace :wikirate do
         Rake::Task['wagn:migrate'].invoke
         
         # select 5 companies and topics
-        companies = [Card["Apple Inc."],Card["Amazon.com, Inc."],Card["Samsung Group"],Card["Siemens AG"],Card["Sony Corporation"]]
+        companies = [Card["Apple Inc."],Card["Amazon.com, Inc."],Card["Samsung"],Card["Siemens AG"],Card["Sony Corporation"]]
         topics = [Card["Natural Resource Use"],Card["Community"],Card["Human Rights"],Card["Climate Change"],Card["Animal Welfare"]]
 
         company_ids = ""
@@ -77,8 +77,9 @@ namespace :wikirate do
         (company_related_article + topic_related_article).each do |c|
           card_to_be_kept.push c.id
         end
+        alias_card_id = Card["aliases"].id
 
-        card_id_to_be_kept = card_to_be_kept.join(",")
+        card_id_to_be_kept = card_to_be_kept.push(alias_card_id).join(",")
 
         type_ids = %w{ Claim Company Market Issue Topic Analysis Task Newspaper Book Activists Donor Website Person Institution Donor Status Organization Periodical Source Metric_value }.map do |typename|
           id = Card.fetch_id(typename)
@@ -103,14 +104,14 @@ namespace :wikirate do
         ActiveRecord::Base.connection.execute 'drop table card_revisions'
         ActiveRecord::Base.connection.execute 'drop table users'
         ActiveRecord::Base.connection.execute 'delete from sessions'
-        
         # delete companies
         ActiveRecord::Base.connection.execute "delete from cards where type_id = '#{Card::WikirateCompanyID}' and id not in ( #{company_ids[0...-1]} )"
         # delete topics
         ActiveRecord::Base.connection.execute "delete from cards where type_id = '#{Card::WikirateTopicID}' and id not in ( #{topic_ids[0...-1]} )"
 
         # delete all webpage++link
-        ActiveRecord::Base.connection.execute "delete ca from cards ca inner join cards le ON ca.left_id = le.id where le.type_id in (#{type_ids_str}) and ca.id not in  ( #{card_id_to_be_kept} )" 
+        # 47294 is alias card
+        ActiveRecord::Base.connection.execute "delete ca from cards ca inner join cards le ON ca.left_id = le.id where le.type_id in (#{type_ids_str}) and ca.id not in  ( #{card_id_to_be_kept} ) and ca.right_id <> '#{alias_card_id}'" 
         ActiveRecord::Base.connection.execute "delete from cards where type_id in (#{type_ids_without_company_and_topic}) and id not in ( #{card_id_to_be_kept} )"
         ActiveRecord::Base.connection.execute "delete from cards where right_id in (#{vote_ids})"
 

@@ -59,13 +59,15 @@ describe Card::Set::TypePlusRight::Source::File::Import do
         with_tag "tr" do 
           with_tag "input", :with=>{:disabled=>"disabled",:type=>"checkbox",:value=>"43",:id=>"metric_values__"} 
           with_tag "td",:text=>"Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live"
-          with_tag "td",:text=>"none"
+          with_tag "td" do
+            with_tag "a", :with=>{ :href=>"/Always+code+as+if+the+guy+who+ends+up+maintaining+your+code+will+be+a+violent+psychopath+who+knows+where+you+live?type=company&slot[structure]=new_company_structure" }, :text=>"Add Company"
+          end
         end
 
         with_tag "tr" do 
           with_tag "input", :with=>{:checked=>"checked",:type=>"checkbox",:value=>"9",:id=>"metric_values_Amazon.com__Inc._"} 
           with_tag "td",:text=>"Amazon.com, Inc."
-          with_tag "td",:text=>"Amazon.com"
+          with_tag "td",:text=>"Amazon"
           with_tag "td",:text=>"partial"
         end
 
@@ -77,8 +79,8 @@ describe Card::Set::TypePlusRight::Source::File::Import do
         with_tag "tr" do 
           with_tag "input", :with=>{:checked=>"checked",:type=>"checkbox",:value=>"33",:id=>"metric_values_Sony_Corporation_"} 
           with_tag "td",:text=>"Sony Corporation"
-          with_tag "td",:text=>"Sony"
-          with_tag "td",:text=>"partial"
+          with_tag "td",:text=>"Sony Corp."
+          with_tag "td",:text=>"alias"
         end
 
       end

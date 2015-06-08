@@ -55,21 +55,38 @@ end
 
 format :html do
 
-  def render_row row
+  def get_aliases_hash
+    aliases_hash = Hash.new
+    aliases_cards = Card.search :right=>"aliases",:left=>{:type_id=>Card::WikirateCompanyID}
+    aliases_cards.each do |aliases_card|
+      aliases_card.item_names.each do |name|
+        aliases_hash[name.downcase] = aliases_card.cardname.left
+      end
+    end
+    aliases_hash
+  end
+
+  def render_row hash,row
     file_company, value = row
-    wikirate_company, status = matched_company(file_company)
-    checked =  [:partial, :exact].include? status
+    wikirate_company, status = matched_company(hash,file_company)
+    checked =  [:partial, :exact, :alias].include? status
     checkbox = content_tag(:td) do
       check_box_tag "metric_values[#{wikirate_company}][]", value, checked, :disabled => (status==:none)
     end
-    [file_company, wikirate_company, status.to_s].inject(checkbox) do |row, item|
+    row_content = [file_company, wikirate_company, status.to_s].inject(checkbox) do |row, item|
       row.concat content_tag(:td, item)
     end
+    row_content +=content_tag(:td,link_to("Add Company","/#{CGI::escape file_company}?type=company&slot[structure]=new_company_structure",:target => "_blank")) if status==:none
+    row_content
   end
 
-  def matched_company name
+  def matched_company aliases_hash,name
     if (company = Card.fetch(name)) && company.type_id == Card::WikirateCompanyID
       [name, :exact]
+    # elsif (result = Card.search :right=>"aliases",:left=>{:type_id=>Card::WikirateCompanyID},:content=>["match","\\[\\[#{name}\\]\\]"]) && !result.empty?
+    #   [result.first.cardname.left, :alias]  
+    elsif company_name = aliases_hash[name.downcase]
+      [company_name, :alias]
     elsif (result = Card.search :type=>'company', :name=>['match', name]) && !result.empty?
       [result.first.name, :partial]
     else
@@ -134,10 +151,10 @@ format :html do
         header.map {|title|  content_tag(:th, title)}.join().html_safe
       end.html_safe
     end.html_safe
-    #fields_for 'metric[]' , product do |product_fields|
+    aliases_hash = get_aliases_hash
     tbody = content_tag :tbody do
       wrap_each_with :tr  do
-        card.csv_rows.map { |elem| render_row(elem) }
+        card.csv_rows.map { |elem| render_row(aliases_hash,elem) }
       end.html_safe
     end.html_safe
     content_tag(:table, thead.concat(tbody),:class=>"import_table").html_safe
