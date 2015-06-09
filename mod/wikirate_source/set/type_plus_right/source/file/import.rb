@@ -71,12 +71,12 @@ format :html do
 
   def get_aliases_hash
     aliases_hash = Hash.new
-    # aliases_cards = Card.search :right=>"aliases",:left=>{:type_id=>Card::WikirateCompanyID}
-    # aliases_cards.each do |aliases_card|
-    #   aliases_card.item_names.each do |name|
-    #     aliases_hash[name.downcase] = aliases_card.cardname.left
-    #   end
-    # end
+    aliases_cards = Card.search :right=>"aliases",:left=>{:type_id=>Card::WikirateCompanyID}
+    aliases_cards.each do |aliases_card|
+      aliases_card.item_names.each do |name|
+        aliases_hash[name.downcase] = aliases_card.cardname.left
+      end
+    end
     aliases_hash
   end
 
@@ -102,10 +102,10 @@ format :html do
   def matched_company aliases_hash,name
     if (company = Card.fetch(name)) && company.type_id == Card::WikirateCompanyID
       [name, :exact]
-    elsif (result = Card.search :right=>"aliases",:left=>{:type_id=>Card::WikirateCompanyID},:content=>["match","\\[\\[#{name}\\]\\]"]) && !result.empty?
-      [result.first.cardname.left, :alias]  
-    # elsif company_name = aliases_hash[name.downcase]
-    #   [company_name, :alias]
+    # elsif (result = Card.search :right=>"aliases",:left=>{:type_id=>Card::WikirateCompanyID},:content=>["match","\\[\\[#{name}\\]\\]"]) && !result.empty?
+    #   [result.first.cardname.left, :alias]  
+    elsif company_name = aliases_hash[name.downcase]
+      [company_name, :alias]
     elsif (result = Card.search :type=>'company', :name=>['match', name]) && !result.empty?
       [result.first.name, :partial]
     else
