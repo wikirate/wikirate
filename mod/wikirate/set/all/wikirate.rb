@@ -19,6 +19,14 @@ format :html do
     CGI::escape card.name
   end
 
+  view :og_source, :tags=>:unknown_ok do |args|
+    if card.real?
+      card.format.render_source
+    else
+      Card["*logo"].format.render_source args.merge({:size=>"large"})
+    end
+  end
+
   view :meta_preview do |args|
     ActionView::Base.full_sanitizer.sanitize(Card::Content.truncatewords_with_closing_tags _render_core(args), words=50)
   end 

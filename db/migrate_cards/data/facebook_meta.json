@@ -1,15 +1,21 @@
 {
   "url": null,
-  "timestamp": "2015-06-08 17:08:08 +0100",
+  "timestamp": "2015-06-09 22:46:46 +0100",
   "card": {
     "name": "export",
     "type": "Pointer",
-    "content": "[[facebook meta+*right+*structure]]\n[[Metric+facebook meta description+*type plus right+*structure]]\n[[Article+facebook meta description+*type plus right+*structure]]\n[[User+facebook meta description+*type plus right+*structure]]\n[[Topic+facebook meta description+*type plus right+*structure]]\n[[Company+facebook meta description+*type plus right+*structure]]\n[[Company+facebook meta image+*type plus right+*structure]]\n[[Topic+facebook meta image+*type plus right+*structure]]\n[[User+facebook meta image+*type plus right+*structure]]\n[[Article+facebook meta image+*type plus right+*structure]]\n[[Metric+facebook meta image+*type plus right+*structure]]\n[[Metric+facebook meta title+*type plus right+*structure]]\n[[User+facebook meta type+*type plus right+*structure]]\n[[Article+facebook meta type+*type plus right+*structure]]\n[[facebook meta image+*right+*structure]]\n[[facebook meta title+*right+*structure]]\n[[facebook meta description+*right+*structure]]\n[[facebook meta type+*right+*structure]]\n[[wikirate layout]]",
+    "content": "[[facebook meta]]\n[[facebook meta+*right+*structure]]\n[[Metric+facebook meta description+*type plus right+*structure]]\n[[Article+facebook meta description+*type plus right+*structure]]\n[[User+facebook meta description+*type plus right+*structure]]\n[[Topic+facebook meta description+*type plus right+*structure]]\n[[Company+facebook meta description+*type plus right+*structure]]\n[[Company+facebook meta image+*type plus right+*structure]]\n[[Topic+facebook meta image+*type plus right+*structure]]\n[[User+facebook meta image+*type plus right+*structure]]\n[[Article+facebook meta image+*type plus right+*structure]]\n[[Metric+facebook meta image+*type plus right+*structure]]\n[[Metric+facebook meta title+*type plus right+*structure]]\n[[User+facebook meta type+*type plus right+*structure]]\n[[Article+facebook meta type+*type plus right+*structure]]\n[[facebook meta image+*right+*structure]]\n[[facebook meta title+*right+*structure]]\n[[facebook meta description+*right+*structure]]\n[[facebook meta type+*right+*structure]]",
     "value": [
+      {
+        "name": "facebook meta",
+        "type": "Basic",
+        "content": "",
+        "codename": "facebook_meta"
+      },
       {
         "name": "facebook meta+*right+*structure",
         "type": "HTML",
-        "content": "<div style=\"display:none\">\r\n  <meta property=\"og:site_name\"          content=\"WikiRate.org\" />\r\n  <meta property=\"og:url\"                content=\"http://wikirate.org/{{_l|linkname}}\" />\r\n  <meta property=\"og:type\"               content=\"{{_l+facebook_meta_type|core}}\" />\r\n  <meta property=\"og:title\"              content=\"{{_l+facebook_meta_title|core}}\" />\r\n  <meta property=\"og:description\"        content=\"{{_l+facebook_meta_description|core}}\" />\r\n  <meta property=\"og:image\"              content=\"http://wikirate.org{{_l+facebook_meta_image|core}}\" />\r\n</div>"
+        "content": "\r\n  <meta property=\"og:site_name\"          content=\"WikiRate.org\" />\r\n  <meta property=\"og:url\"                content=\"http://6e43cd94.ngrok.com/{{_l|linkname}}\" />\r\n  <meta property=\"og:type\"               content=\"{{_l+facebook_meta_type|core}}\" />\r\n  <meta property=\"og:title\"              content=\"{{_l+facebook_meta_title|core}}\" />\r\n  <meta property=\"og:description\"        content=\"{{_l+facebook_meta_description|core}}\" />\r\n  <meta property=\"og:image\"              content=\"http://wikirate.org{{_l+facebook_meta_image|core}}\" />\r\n"
       },
       {
         "name": "Metric+facebook meta description+*type plus right+*structure",
@@ -39,27 +45,27 @@
       {
         "name": "Company+facebook meta image+*type plus right+*structure",
         "type": "Phrase",
-        "content": "{{_l+logo|source;size:medium}}"
+        "content": "{{_l+logo|og_source;size:medium}}"
       },
       {
         "name": "Topic+facebook meta image+*type plus right+*structure",
         "type": "Phrase",
-        "content": "{{_l+image|source;size:medium}}"
+        "content": "{{_l+image|og_source;size:medium}}"
       },
       {
         "name": "User+facebook meta image+*type plus right+*structure",
         "type": "Phrase",
-        "content": "{{_l+image|source;size:medium}}"
+        "content": "{{_l+image|og_source;size:medium}}"
       },
       {
         "name": "Article+facebook meta image+*type plus right+*structure",
         "type": "Phrase",
-        "content": "{{_ll+image|source;size:medium}}"
+        "content": "{{_ll+image|og_source;size:medium}}"
       },
       {
         "name": "Metric+facebook meta image+*type plus right+*structure",
         "type": "Phrase",
-        "content": "{{_ll+image|source;size:medium}}"
+        "content": "{{_ll+image|og_source;size:medium}}"
       },
       {
         "name": "Metric+facebook meta title+*type plus right+*structure",
@@ -95,11 +101,6 @@
         "name": "facebook meta type+*right+*structure",
         "type": "Phrase",
         "content": "website"
-      },
-      {
-        "name": "wikirate layout",
-        "type": "Layout",
-        "content": "<!DOCTYPE HTML>\r\n<html>\r\n  {{wikirate head|core}}\r\n  {{_main+facebook_meta|core}}\r\n  <body id=\"wagn\" class=\"wikirate-layout\">\r\n    {{nav bar|core}}\r\n    {{_main|open}}\r\n    {{wikirate footer | content}}\r\n{{_main+google analytics conversion snippet|core}}\r\n  </body>\r\n</html>"
       }
     ]
   }

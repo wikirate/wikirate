@@ -16,6 +16,15 @@ format :html do
       }
     end
   end
+
+  view :raw do |args|
+    result = super(args)
+    user_agent = request.user_agent
+    if user_agent=="Facebot" or user_agent.include?"facebookexternalhit/1.1"
+      result += subformat(Card.fetch("#{Env.params["id"]}+facebook_meta"))._render_core
+    end
+    result
+  end
 end
    
       
