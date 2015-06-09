@@ -22,11 +22,25 @@ event :import_csv, :after=>:store, :on=>:update, :when=>proc{ |c| Env.params["is
   
   metric_pointer_card = subcards[cardname.left+"+#{Card[:metric].name}"]
   metric_year = subcards[cardname.left+"+#{Card[:year].name}"]
+
+  corrected_company_hash = Hash.new
+  if (corrected_company_name = Env.params[:corrected_company_name]) && corrected_company_name.kind_of?(Hash)
+    corrected_company_hash = corrected_company_name
+    corrected_company_hash.delete_if { |k, v| v.nil? or v.empty? }
+  end
   if (metric_values = Env.params[:metric_values]) && metric_values.kind_of?(Hash)
     metric_values.each do |company, value|
-      metric_value_card_name = "#{metric_pointer_card.item_names.first}+#{company}+#{metric_year.item_names.first}"
+      final_company_name = company
+      if ( input_company_name = (corrected_company_hash[company] || company )) 
+        final_company_name = input_company_name
+        if !Card.exists?input_company_name
+          Card.create! :name=>input_company_name, :type_id=>Card::WikirateCompanyID
+        end
+      end
+      metric_value_card_name = "#{metric_pointer_card.item_names.first}+#{final_company_name}+#{metric_year.item_names.first}"
+      # binding.pry
       if metric_value_card = Card[metric_value_card_name]
-        metric_value_card.update_attributes! :content => value[0]
+        metric_value_card.update_attributes! :subcards=>{'+value'=>value[0]}
       else
         Card.create! :name=>metric_value_card_name, :type_id=>Card::MetricValueID,
                      :subcards=>{'+value'=>value[0]}
@@ -57,12 +71,12 @@ format :html do
 
   def get_aliases_hash
     aliases_hash = Hash.new
-    aliases_cards = Card.search :right=>"aliases",:left=>{:type_id=>Card::WikirateCompanyID}
-    aliases_cards.each do |aliases_card|
-      aliases_card.item_names.each do |name|
-        aliases_hash[name.downcase] = aliases_card.cardname.left
-      end
-    end
+    # aliases_cards = Card.search :right=>"aliases",:left=>{:type_id=>Card::WikirateCompanyID}
+    # aliases_cards.each do |aliases_card|
+    #   aliases_card.item_names.each do |name|
+    #     aliases_hash[name.downcase] = aliases_card.cardname.left
+    #   end
+    # end
     aliases_hash
   end
 
@@ -71,22 +85,27 @@ format :html do
     wikirate_company, status = matched_company(hash,file_company)
     checked =  [:partial, :exact, :alias].include? status
     checkbox = content_tag(:td) do
-      check_box_tag "metric_values[#{wikirate_company}][]", value, checked, :disabled => (status==:none)
+      check_box_tag "metric_values[#{wikirate_company}][]", value, checked
     end
+    wikirate_company = "" if status == :none
     row_content = [file_company, wikirate_company, status.to_s].inject(checkbox) do |row, item|
       row.concat content_tag(:td, item)
     end
-    row_content +=content_tag(:td,link_to("Add Company","/#{CGI::escape file_company}?type=company&slot[structure]=new_company_structure",:target => "_blank")) if status==:none
+    if status != :exact
+      input = text_field_tag("corrected_company_name[#{wikirate_company.empty? ? file_company : wikirate_company }]", "", class: 'company_autocomplete' )
+      row_content += content_tag(:td, input) if status!=:exact
+      row_content
+    end
     row_content
   end
 
   def matched_company aliases_hash,name
     if (company = Card.fetch(name)) && company.type_id == Card::WikirateCompanyID
       [name, :exact]
-    # elsif (result = Card.search :right=>"aliases",:left=>{:type_id=>Card::WikirateCompanyID},:content=>["match","\\[\\[#{name}\\]\\]"]) && !result.empty?
-    #   [result.first.cardname.left, :alias]  
-    elsif company_name = aliases_hash[name.downcase]
-      [company_name, :alias]
+    elsif (result = Card.search :right=>"aliases",:left=>{:type_id=>Card::WikirateCompanyID},:content=>["match","\\[\\[#{name}\\]\\]"]) && !result.empty?
+      [result.first.cardname.left, :alias]  
+    # elsif company_name = aliases_hash[name.downcase]
+    #   [company_name, :alias]
     elsif (result = Card.search :type=>'company', :name=>['match', name]) && !result.empty?
       [result.first.name, :partial]
     else
@@ -95,7 +114,7 @@ format :html do
           return [company.name, :partial]
         end
       end
-      ['', :none]
+      [name, :none]
     end
   end
 
@@ -115,7 +134,7 @@ format :html do
         _optional_render( :metric_import_flag, args),
         _optional_render( :selection_checkbox, args),
         _optional_render( :import_table, args ),
-        _optional_render( :button_formgroup,   args )
+        _optional_render( :button_formgroup, args )
       ]
     end
   end
@@ -145,7 +164,7 @@ format :html do
   end
 
   view :import_table do |args|
-    header = ['Select', 'Company in File', 'Company in Wikirate', 'Match']
+    header = ['Select', 'Company in File', 'Company in Wikirate', 'Match', "Correction"]
     thead = content_tag :thead do
       content_tag :tr do
         header.map {|title|  content_tag(:th, title)}.join().html_safe
@@ -157,6 +176,6 @@ format :html do
         card.csv_rows.map { |elem| render_row(aliases_hash,elem) }
       end.html_safe
     end.html_safe
-    content_tag(:table, thead.concat(tbody),:class=>"import_table").html_safe
+    content_tag(:table, thead.concat(tbody),:class=>"import_table table table-bordered table-hover").html_safe
   end
 end
