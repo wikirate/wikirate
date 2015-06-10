@@ -23,7 +23,7 @@ format :html do
     if card.real?
       card.format.render_source
     else
-      Card["*logo"].format.render_source args.merge({:size=>"large"})
+      Card["*Vertical_Logo"].format.render_source args.merge({:size=>"large"})
     end
   end
 

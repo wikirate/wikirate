@@ -1,10 +1,10 @@
 {
   "url": null,
-  "timestamp": "2015-06-10 13:15:45 +0100",
+  "timestamp": "2015-06-10 17:42:24 +0100",
   "card": {
     "name": "export",
     "type": "Pointer",
-    "content": "[[facebook meta]]\n[[facebook meta+*right+*structure]]\n[[Metric+facebook meta description+*type plus right+*structure]]\n[[Article+facebook meta description+*type plus right+*structure]]\n[[User+facebook meta description+*type plus right+*structure]]\n[[Topic+facebook meta description+*type plus right+*structure]]\n[[Company+facebook meta description+*type plus right+*structure]]\n[[Company+facebook meta image+*type plus right+*structure]]\n[[Topic+facebook meta image+*type plus right+*structure]]\n[[User+facebook meta image+*type plus right+*structure]]\n[[Article+facebook meta image+*type plus right+*structure]]\n[[Metric+facebook meta image+*type plus right+*structure]]\n[[Metric+facebook meta title+*type plus right+*structure]]\n[[User+facebook meta type+*type plus right+*structure]]\n[[Article+facebook meta type+*type plus right+*structure]]\n[[facebook meta image+*right+*structure]]\n[[facebook meta title+*right+*structure]]\n[[facebook meta description+*right+*structure]]\n[[facebook meta type+*right+*structure]]\n[[home+facebook_meta_description]]\n[[home+facebook_meta_description+*self+*structure]]",
+    "content": "[[facebook meta]]\n[[facebook meta+*right+*structure]]\n[[Metric+facebook meta description+*type plus right+*structure]]\n[[Article+facebook meta description+*type plus right+*structure]]\n[[User+facebook meta description+*type plus right+*structure]]\n[[Topic+facebook meta description+*type plus right+*structure]]\n[[Company+facebook meta description+*type plus right+*structure]]\n[[Company+facebook meta image+*type plus right+*structure]]\n[[Topic+facebook meta image+*type plus right+*structure]]\n[[User+facebook meta image+*type plus right+*structure]]\n[[Article+facebook meta image+*type plus right+*structure]]\n[[Metric+facebook meta image+*type plus right+*structure]]\n[[Metric+facebook meta title+*type plus right+*structure]]\n[[User+facebook meta type+*type plus right+*structure]]\n[[Article+facebook meta type+*type plus right+*structure]]\n[[facebook meta image+*right+*structure]]\n[[facebook meta title+*right+*structure]]\n[[facebook meta description+*right+*structure]]\n[[facebook meta type+*right+*structure]]\n[[home+facebook_meta_description]]\n[[home+facebook_meta_description+*self+*structure]]\n[[*Vertical Logo]]",
     "value": [
       {
         "name": "facebook meta",
@@ -15,7 +15,7 @@
       {
         "name": "facebook meta+*right+*structure",
         "type": "HTML",
-        "content": "\r\n  <meta property=\"og:site_name\"          content=\"WikiRate.org\" />\r\n  <meta property=\"og:url\"                content=\"http://6e43cd94.ngrok.com/{{_l|linkname}}\" />\r\n  <meta property=\"og:type\"               content=\"{{_l+facebook_meta_type|core}}\" />\r\n  <meta property=\"og:title\"              content=\"{{_l+facebook_meta_title|core}}\" />\r\n  <meta property=\"og:description\"        content=\"{{_l+facebook_meta_description|core}}\" />\r\n  <meta property=\"og:image\"              content=\"http://wikirate.org{{_l+facebook_meta_image|core}}\" />\r\n"
+        "content": "\r\n  <meta property=\"og:site_name\"          content=\"WikiRate.org\" />\r\n  <meta property=\"og:url\"                content=\"http://wikirate.org/{{_l|linkname}}\" />\r\n  <meta property=\"og:type\"               content=\"{{_l+facebook_meta_type|core}}\" />\r\n  <meta property=\"og:title\"              content=\"{{_l+facebook_meta_title|core}}\" />\r\n  <meta property=\"og:description\"        content=\"{{_l+facebook_meta_description|core}}\" />\r\n  <meta property=\"og:image\"              content=\"http://wikirate.org{{_l+facebook_meta_image|core}}\" />\r\n"
       },
       {
         "name": "Metric+facebook meta description+*type plus right+*structure",
@@ -110,6 +110,11 @@
         "name": "home+facebook_meta_description+*self+*structure",
         "type": "Phrase",
         "content": "{{what_i_wiki_rate|meta_preview}}"
+      },
+      {
+        "name": "*Vertical Logo",
+        "type": "Image",
+        "content": "LOGO_VERTICAL.jpg\nimage/jpeg\n155464"
       }
     ]
   }
