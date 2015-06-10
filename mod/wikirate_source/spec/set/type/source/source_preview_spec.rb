@@ -39,7 +39,7 @@ describe Card::Set::Type::Source do
           expect(result).to include(%{<a href="#{topic_link_name}" target="_blank">})
           expect(result).to include(%{<span class="topic-name">#{topic}</span>})
           #show dropdown button
-          expect(result).to include(%{<a href="/#{@existing_source.cardname.url_key}?slot[structure]=source_company_and_topic&view=edit" id="company-and-topic-detail-link" class="">})
+          expect(result).to include(%{<a href="/#{@existing_source.cardname.url_key}?slot[structure]=source_company_and_topic&view=edit&slot[hide]=menu,header,toolbar" id="company-and-topic-detail-link" class="">})
 
         end
         it "hides the edit dropbox button if company and topic do not match wikirate's one" do
@@ -59,7 +59,7 @@ describe Card::Set::Type::Source do
           expect(result).to include(%{<a href="#{topic_link_name}" target="_blank">})
           expect(result).to include(%{<span class="topic-name">#{topic}</span>})
           #hide dropdown button
-          expect(result).to include(%{<a href="/?slot[structure]=source_company_and_topic&view=edit" id="company-and-topic-detail-link" class="no-dropdown">})
+          expect(result).to include(%{<a href="/?slot[structure]=source_company_and_topic&view=edit&slot[hide]=menu,header,toolbar" id="company-and-topic-detail-link" class="no-dropdown">})
 
           
           expect(result).to include("Irrelevant")
@@ -86,7 +86,7 @@ describe Card::Set::Type::Source do
           expect(result).to include(%{<span class="topic-name">#{topic}</span>})
           #hide dropdown button
           
-          expect(result).to include(%{<a href="/?slot[structure]=source_company_and_topic&view=edit" id="company-and-topic-detail-link" class="no-dropdown">})
+          expect(result).to include(%{<a href="/?slot[structure]=source_company_and_topic&view=edit&slot[hide]=menu,header,toolbar" id="company-and-topic-detail-link" class="no-dropdown">})
 
           
           expect(result).to include("Irrelevant")
@@ -106,8 +106,8 @@ describe Card::Set::Type::Source do
         Card::Env.params[:url] = @url
         result = @existing_source.format._render_preview
         expect(result).to have_tag("div", :with=>{:class=>"menu-options"}) do
-          with_tag "a",  :with=>{:class=>"show-link-in-popup", :href=>"/#{@existing_source.cardname.url_key}+source_claim_list?slot[hide]=header"}
-          with_tag "a",  :with=>{:class=>"show-link-in-popup", :href=>"/#{@existing_source.cardname.url_key}+discussion?slot[hide]=header"}
+          with_tag "a",  :with=>{:class=>"show-link-in-popup", :href=>"/#{@existing_source.cardname.url_key}+source_claim_list?slot[hide]=header,menu"}
+          with_tag "a",  :with=>{:class=>"show-link-in-popup", :href=>"/#{@existing_source.cardname.url_key}+discussion?slot[hide]=header&slot[show]=commentbox"}
           with_tag "a",  :with=>{:class=>"show-link-in-popup", :href=>"/#{@existing_source.cardname.url_key}?slot[structure]=source_structure&view=edit&slot[hide]=header"}
           with_tag "a",  :with=>{:href=>@existing_source.fetch(:trait=>:wikirate_link).content}  
         end
@@ -126,7 +126,7 @@ describe Card::Set::Type::Source do
         expect(result).to include(%{<a href="#{topic_link_name}" target="_blank">})
         expect(result).to include(%{<span class="topic-name">#{@topic}</span>})
         #hide dropdown button
-        expect(result).to include(%{<a href="/#{@existing_source.cardname.url_key}?slot[structure]=source_company_and_topic&view=edit" id="company-and-topic-detail-link" class="">})
+        expect(result).to include(%{<a href="/#{@existing_source.cardname.url_key}?slot[structure]=source_company_and_topic&view=edit&slot[hide]=menu,header,toolbar" id="company-and-topic-detail-link" class="">})
       end
       it "shows add topic if topic does not exist" do
         new_url = "http://www.google.com/nonexistingwikiratewebpage"
@@ -142,7 +142,7 @@ describe Card::Set::Type::Source do
         expect(result).to include(%{<span class="company-name">#{company}</span>})
         expect(result).to include(%{<a id='add-topic-link' href='#' >Add Topic</a>})
         #hide dropdown button
-        expect(result).to include(%{<a href="/#{existing_source.cardname.url_key}?slot[structure]=source_company_and_topic&view=edit" id="company-and-topic-detail-link" class="">})
+        expect(result).to include(%{<a href="/#{existing_source.cardname.url_key}?slot[structure]=source_company_and_topic&view=edit&slot[hide]=menu,header,toolbar" id="company-and-topic-detail-link" class="">})
       end
       it "shows add company if topic does not exist" do
         new_url = "http://www.google.com/nonexistingwikiratewebpage"
@@ -157,7 +157,7 @@ describe Card::Set::Type::Source do
         expect(result).to include(%{<a href="#{topic_link_name}" target="_blank">})
         expect(result).to include(%{<span class="topic-name">#{topic}</span>})
         #hide dropdown button
-        expect(result).to include(%{<a href="/#{existing_source.cardname.url_key}?slot[structure]=source_company_and_topic&view=edit" id="company-and-topic-detail-link" class="">})
+        expect(result).to include(%{<a href="/#{existing_source.cardname.url_key}?slot[structure]=source_company_and_topic&view=edit&slot[hide]=menu,header,toolbar" id="company-and-topic-detail-link" class="">})
       end
     end
   end
