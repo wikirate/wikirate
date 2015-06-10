@@ -1,4 +1,10 @@
 format :html do
+  def default_header_args args
+    args[:count] = Card.search :type_id=>WikirateAnalysisID,
+                    :right_plus=>[ 'article', {:or=>{:created_by=>card.left.name, :edited_by=>card.left.name }}],
+                    :return=>:count
+    args[:icon] = nest(Card.fetch('venn icon'), :view=>:core, :size=>:icon)
+  end
 
   view :toggle do |args|
     verb, adjective, direction = ( args[:toggle_mode] == :close ? %w{ open open triangle-right } : %w{ close closed triangle-bottom } )
@@ -10,9 +16,11 @@ format :html do
              :class => "#{verb}-icon toggler slotter nodblclick"
   end
 
-  def default_header_args args
-    args[:count] = subformat(Card.fetch("#{card.cardname.left}+campaigns edited by+*count"))._render_core
-    args[:icon] = (icon_card = Card.fetch "#{card.cardname.right}+icon") && subformat(icon_card)._render_core
+  view :open do |args|
+    if Auth.current_id == card.left.id
+      args.merge! :slot_class=>'editable'
+    end
+    super(args)
   end
 
   view :header do |args|

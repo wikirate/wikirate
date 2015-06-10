@@ -44,7 +44,6 @@ format :html do
 
   def default_filter_and_sort args
     args[:unsaved] ||= ''
-    binding.pry
     args[:default_sort] ||=
       if main_type_id == WikirateTopicID && searched_type_id == WikirateCompanyID
         :contributions
