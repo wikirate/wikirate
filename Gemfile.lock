@@ -1,7 +1,7 @@
 PATH
   remote: ./vendor/wagn/card
   specs:
-    card (1.15.3)
+    card (1.15.5)
       bootstrap-kaminari-views (~> 0.0.5)
       coderay (~> 1.0)
       coffee-script (~> 2.2)
@@ -20,8 +20,8 @@ PATH
 PATH
   remote: ./vendor/wagn/wagn
   specs:
-    wagn (1.15.3)
-      card (= 1.15.3)
+    wagn (1.15.5)
+      card (= 1.15.5)
       rails (= 3.2.16)
 
 GEM
@@ -55,7 +55,7 @@ GEM
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     addressable (2.3.8)
-    airbrake (4.1.0)
+    airbrake (4.2.1)
       builder
       multi_json
     ansi (1.5.0)
@@ -119,7 +119,7 @@ GEM
       mail (~> 2.2)
     erubis (2.7.0)
     execjs (2.5.2)
-    fastimage (1.6.8)
+    fastimage (1.7.0)
       addressable (~> 2.3, >= 2.3.5)
     ffi (1.9.8)
     gherkin (2.12.2)
@@ -131,14 +131,14 @@ GEM
     i18n (0.7.0)
     interception (0.5)
     journey (1.0.4)
-    json (1.8.2)
+    json (1.8.3)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     libv8 (3.16.14.7)
-    link_thumbnailer (2.5.1)
+    link_thumbnailer (2.5.2)
       activesupport (>= 3.0)
       fastimage (~> 1.6)
       json (~> 1.8, >= 1.7.7)
@@ -216,8 +216,8 @@ GEM
       json (~> 1.4)
     recaptcha (0.4.0)
     ref (1.0.5)
-    rmagick (2.15.0)
-    roo (2.0.0)
+    rmagick (2.15.2)
+    roo (2.0.1)
       nokogiri (~> 1)
       rubyzip (~> 1.1, < 2.0.0)
     rspec (3.1.0)
@@ -245,7 +245,7 @@ GEM
     rspec-support (3.1.2)
     rubyzip (1.1.7)
     sass (3.4.14)
-    selenium-webdriver (2.45.0)
+    selenium-webdriver (2.46.2)
       childprocess (~> 0.5)
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
@@ -275,7 +275,7 @@ GEM
       ref
     thor (0.19.1)
     tilt (1.4.1)
-    timecop (0.7.3)
+    timecop (0.7.4)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -285,7 +285,7 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    uuid (2.3.7)
+    uuid (2.3.8)
       macaddr (~> 1.0)
     video_info (2.4.2)
       addressable
