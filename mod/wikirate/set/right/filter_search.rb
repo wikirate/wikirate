@@ -36,10 +36,10 @@ def sort_query
     {:sort => "update" }
   else
     {:sort => {"right"=>"*vote count"}, "sort_as"=>"integer","dir"=>"desc"}
-  end    
+  end
 end
 
-format :html do 
+format :html do
   def page_link text, page, current=false, options={}
     @paging_path_args[:offset] = page * @paging_limit
     filter_args = {}
@@ -49,9 +49,9 @@ format :html do
     options.merge!(:class=>'card-paging-link slotter', :remote => true)
     link_to raw(text), path(@paging_path_args.merge(filter_args)), options
   end
-    
+
   view :no_search_results do |args|
-    %{ 
+    %{
       <div class="search-no-results">
         No result
       </div>
@@ -73,19 +73,19 @@ format :html do
     # action = 'Source' if action == 'Page'
     %{ <form action="/#{ action }" method="GET">#{content}</form>}
   end
-  
+
   view :sort_formgroup do |args|
     select_filter 'sort',  options_for_select({'Most Important'=>'important','Most Recent'=>'recent'}, params[:sort] || 'important')
   end
-  
+
   view :cited_formgroup do |args|
     select_filter 'cited', options_for_select({'All'=>'all', 'Yes'=>'yes', 'No'=>'no'}, params[:cited] || 'all')
   end
-  
+
   view :claimed_formgroup do |args|
     select_filter 'claimed', options_for_select({'All'=>'all', 'Yes'=>'yes', 'No'=>'no'}, params[:claimed] || 'all')
   end
-  
+
   view :company_formgroup do |args|
     multiselect_filter 'company', args
   end
@@ -93,21 +93,21 @@ format :html do
   view :topic_formgroup do |args|
     multiselect_filter 'topic',args
   end
-  
+
   view :tag_formgroup do |args|
     multiselect_filter 'tag', args
   end
-  
+
   def select_filter type_name, options
     formgroup( type_name.capitalize, select_tag(type_name, options) )
   end
-  
+
   def multiselect_filter type_name, args
     options_card = Card.new :name=>"+#{type_name}"  #codename
     selected_options = params[type_name]
-    options = options_from_collection_for_select(options_card.options,:name,:name,selected_options)
+    options = options_for_select(options_card.option_names, selected_options)
     multiselect_tag = select_tag(type_name, options, :multiple=>true, :class=>'pointer-multiselect')
     formgroup( type_name.capitalize, multiselect_tag, :class=>"filter-input #{type_name}" )
-  end  
+  end
 end
 
