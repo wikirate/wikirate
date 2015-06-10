@@ -1,5 +1,5 @@
 format :html do
-  include Campaign::HtmlFormat
+  include ContributedAnalysis::HtmlFormat
 
   def default_header_args args
     super(args)
@@ -9,5 +9,6 @@ format :html do
                              :linked_to_by=>{:left=>card.left.name, :right=>["in", "*upvotes", "*downvotes"]}
                             },
                             :return=>:count
+    args[:icon] = '<i class="fa fa-quote-left"></i>'
   end
 end

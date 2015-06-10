@@ -1,4 +1,12 @@
 format :html do
+  view :open do |args|
+    if Auth.current_id == card.left.id
+      args.merge! :slot_class=>'editable'
+    end
+    super(args)
+  end
+
+
   # view :core do |args|
   # [CampaignID, MetricID, ClaimID, SourceID, WikirateArticleID].map do |type_id|
   #     if (search_card = card.fetch(:trait=>type_id, :new=>{:type_id=>PointerID}))
