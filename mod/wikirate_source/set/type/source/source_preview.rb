@@ -25,10 +25,8 @@ format :html do
     end
     wrap args do
     [
-      render_hidden_information(args),
       render_navigation_bar(args),#render in structure source_preview_nav_bar_structure
-      # render_content(args.merge({:structure=>"source_preview_nav_bar_structure"})),
-      # render_iframe_view(args)
+      render_hidden_information(args),
       render_source_preview_container(args)
     ]
     end
@@ -47,11 +45,10 @@ format :html do
     }
   end
 
-  #View: for hidden information
+
   view :hidden_information, :tags=>:unknown_ok do |args|
-    %{
+    %{  
       <div style="display:none">
-        #{content_tag(:div, Auth.current_id, {:id=>"user-id"})}
         #{content_tag(:div, card.cardname.url_key, {:id=>"source-name"})}
         #{content_tag(:div, args[:url], {:id=>"source_url"})}
         #{content_tag(:div, args[:company], {:id=>"source_company"})}
@@ -93,51 +90,6 @@ format :html do
     }
   end
 
-  view :company_and_topic_detail, :tags=>:unknown_ok  do |args|
-    company = args[:company]
-    topic = args[:topic]
-    #refresh from front end
-    if !company or !topic
-      if card.real?
-        company_card = card.fetch(:trait=>:wikirate_company)
-        topic_card = card.fetch(:trait=>:wikirate_topic)
-        company = company_card ? company_card.item_names.first : nil
-        topic = topic_card ? topic_card.item_names.first : nil
-      end
-    end
-
-    dropdown_class = ""
-    from_certh = !card.real?
-
-    dropdown_class = "no-dropdown"  if from_certh
-
-    first_company = first_or_add company,"company",!from_certh
-    first_topic = first_or_add topic,"topic",!from_certh
-
-    %{
-      <div id="company-and-topic" class="company-and-topic">
-        #{first_company}
-        #{first_topic}
-        <a href="/#{card.cardname.url_key}?slot[structure]=source_company_and_topic&view=edit" id="company-and-topic-detail-link" class="#{dropdown_class}">
-          <i class="fa fa-caret-square-o-down"></i>
-        </a>
-      </div>
-    }
-  end
-
-  view :preview_options, :tags=>:unknown_ok  do |args|
-    from_certh = !card.real?
-    url = args[:url]
-    if !url
-       if card.real?
-        url_card = card.fetch(:trait=>:wikirate_link)
-        url = url_card ? url_card.item_names.first : nil
-      end
-    end
-    %{
-        #{show_options from_certh, card.cardname.url_key ,url}
-    }
-  end
 
   view :non_previewable ,:tags=>:unknown_ok do |args|
     if file_card = Card[card.name+"+File"]
@@ -153,13 +105,20 @@ format :html do
     end
   end
 
-  def iframbale_file? mime
-    if mime == "application/pdf" or mime.start_with?("image/")
-      return true
+  view :preview_options, :tags=>:unknown_ok  do |args|
+    from_certh = !card.real?
+    url = args[:url]
+    if !url
+       if card.real?
+        url_card = card.fetch(:trait=>:wikirate_link)
+        url = url_card ? url_card.item_names.first : nil
+      end
     end
-    return false
+    %{
+        #{show_options from_certh, card.cardname.url_key ,url}
+    }
   end
-
+  
   view :iframe_view ,:tags=>:unknown_ok  do |args|
     url = args[:url]
     file_card = Card[card.name+"+File"]
@@ -191,45 +150,7 @@ format :html do
     end
   end
 
-  def company_and_topic_match? company, topic , url, source_name
-    source = Self::Source.find_duplicates url
-    return false if ! source.any?
-    source_name = source.first.left.name
-    company_pointer = Card[source_name].fetch :trait=>:wikirate_company
-    topic_pointer = Card[source_name].fetch :trait=>:wikirate_topic
-    if company_pointer and topic_pointer
-      if company_pointer.item_names.include?(company) and topic_pointer.item_names.include?(topic)
-        return true
-      end
-    end
-    false
-  end
-
-  def first_or_add first_name, type_name, show_add_link
-    no_content_class = "no-content"
-    content = if first_name
-      linkname = first_name
-      linkname = Card[first_name].cardname.url_key if Card[first_name]
-      no_content_class = ""
-      %{
-        <a href="#{linkname}" target="_blank">
-          <span class="#{type_name}-name">#{first_name}</span>
-        </a>
-      }
-    else
-      if show_add_link
-        %{<a id='add-#{type_name}-link' href='#' >Add #{type_name.humanize}</a>}
-      else
-        no_content_class=""
-        ""
-      end
-    end
-    %{
-      <div class="#{type_name}-name #{no_content_class}">
-        #{content}
-      </div>
-    }
-  end
+ 
 
   def show_options source_from_certh,source_page_name,url
     if source_from_certh
@@ -257,13 +178,7 @@ format :html do
       metric_count = Card.search related_metric_wql
       file_card = Card[card.name+"+File"]
       text_card = Card[card.name+"+Text"]
-      # result = %{
-      #   <li>
-      #     <a href="#" id="make-a-claim-button" class="btn btn-primary">
-      #       <span><i class="fa fa-quote-left"></i>Make a Claim</span>
-      #     </a>
-      #   </li>
-      # }
+
 
       #Source Details tab
       result = %{
@@ -293,24 +208,20 @@ format :html do
       }
 
       #External Link
-      result += %{
-          #{
-          %{
-            <li role="presentation" >
-              <a class='' href='#{url}' >
-                <i class="fa fa-external-link-square"></i> View Original
-              </a>
-            </li>
-          }if !( file_card || text_card )
-          }
-      }
+      if !( file_card || text_card )
+        result += %{
+          <li role="presentation" >
+            <a class='' href='#{url}' >
+              <i class="fa fa-external-link-square"></i> View Original
+            </a>
+          </li>
+        }
+      end
 
       result
     end
   end
-  view :source_details, :tags=>:unknown_ok  do |args|
 
-  end
   view :tab_containers, :tags=>:unknown_ok  do |args|
     %{
     <div class="tab-content">
