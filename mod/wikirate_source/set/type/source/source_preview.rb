@@ -37,7 +37,7 @@ format :html do
   view :source_preview_container,:tags=>:unknown_ok  do |args|
     %{
       <div class="row clearfix source-preview-content">
-        <div class="col-md-8 column">
+        <div class="col-md-8 column source-iframe-container">
           #{render_iframe_view(args)}
         </div>
         <div class="col-md-4 column">
@@ -81,7 +81,7 @@ format :html do
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav nav-tabs navbar-right">
+            <ul class="nav nav-tabs navbar-right gray-color ">
                #{render_preview_options(args)}
             </ul>
           </div>
