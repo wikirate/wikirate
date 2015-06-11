@@ -252,7 +252,7 @@ format :html do
     else
 
       related_claim_wql = {:left=>{:type=>"Claim"},:right=>"source",:link_to=>"#{source_page_name}",:return=>"count"}
-      related_metric_wql = {:left=>{:type=>"Metric"},:right=>"source",:link_to=>"#{source_page_name}",:return=>"count"}
+      related_metric_wql = {:type=>"metric", :right_plus=>[{"type"=>"company"}, :right_plus=>[{:type=>"year"}, :right_plus=>["source", {:link_to=>source_page_name}]]],:return=>"count"}
       claim_count = Card.search related_claim_wql
       metric_count = Card.search related_metric_wql
       file_card = Card[card.name+"+File"]
@@ -286,7 +286,7 @@ format :html do
       #Metrics tab
       result += %{
         <li role="presentation" >
-          <a class='' data-target="#tab_metrics" data-toggle="source_preview_tab_ajax" href='/#{source_page_name}+discussion?slot[hide]=header' >
+          <a class='' data-target="#tab_metrics" data-toggle="source_preview_tab_ajax" href='/#{source_page_name}+metric_search?slot[hide]=header' >
             <i class="fa fa-glass"><span id="claim-count-number " class="count-number">#{metric_count}</span></i><span>Metrics</span>
           </a>
         </li>
