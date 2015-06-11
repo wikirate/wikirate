@@ -1,10 +1,10 @@
 {
   "url": null,
-  "timestamp": "2015-06-11 18:26:07 +0100",
+  "timestamp": "2015-06-11 19:24:09 +0100",
   "card": {
     "name": "export",
     "type": "Pointer",
-    "content": "[[webpage source preview script]]\n[[source structure]]\n[[style: source preview]]\n[[*all+*style]]\n[[source preview item]]\n[[*css]]\n[[source+metric search+*type plus right+*structure]]\n[[Source+source claim list+*type plus right+*structure]]\n[[Source+source metric search list+*type plus right+*structure]]\n[[source structure]]\n[[*all+*script]]\n[[script: source preview]]\n[[script: wikirate scripts]]",
+    "content": "[[webpage source preview script]]\n[[source structure]]\n[[style: source preview]]\n[[*all+*style]]\n[[source preview item]]\n[[*css]]\n[[source+metric search+*type plus right+*structure]]\n[[Source+source claim list+*type plus right+*structure]]\n[[Source+source metric search list+*type plus right+*structure]]\n[[source structure]]\n[[*all+*script]]\n[[script: source preview]]\n[[script: wikirate scripts]]\n[[customized classic skin]]",
     "value": [
       {
         "name": "webpage source preview script",
@@ -39,7 +39,7 @@
       {
         "name": "source+metric search+*type plus right+*structure",
         "type": "HTML",
-        "content": "<div class=\"col-md-12 source-details-tab\">\r\n<div class=\"panel-heading\">\r\n\t\t\t\t\t<h3 class=\"panel-title\">\r\n\t\t\t\t\t\tMetrics\r\n\t\t\t\t\t</h3>\r\n</div>\r\n<br>\r\n{{_l+source metric search list}}\r\n</div>"
+        "content": "<div class=\"col-md-12 source-details-tab\">\r\n<div class=\"panel-heading\">\r\n\t\t\t\t\t<h3 class=\"panel-title\">\r\n\t\t\t\t\t\tMetrics\r\n\t\t\t\t\t</h3>\r\n</div>\r\n<br>\r\n{{_l+source metric search list||content;structure:profile metric item}}\r\n</div>"
       },
       {
         "name": "Source+source claim list+*type plus right+*structure",
@@ -70,6 +70,11 @@
         "name": "script: wikirate scripts",
         "type": "Pointer",
         "content": "[[script: new claim page]]\n[[script: new source page]]\n[[homepage carousel init]]\n[[homepage ie8 handling script]]\n[[script: source preview]]\n[[claim chosen]]\n[[modal window script]]\n[[activate readmore script]]\n[[suggested source script]]\n[[empty tab content script]]\n[[script: filter search]]\n[[wikirate coffee]]\n[[script: article page]]\n[[script: rating]]\n[[script: metrics]]\n[[import page script]]\n[[script: showcase]]"
+      },
+      {
+        "name": "customized classic skin",
+        "type": "Skin",
+        "content": "[[bootstrap default skin]]\n[[*css]]\n[[layout with sidebar scss]]\n[[chosen style]]\n[[top bar scss]]\n[[slick scss]]\n[[article item scss]]\n[[company and topic item scss]]\n[[homepage layout scss]]\n[[style: wikirate bootstrap buttons]]\n[[style: user following list]]\n[[style: wikirate bootstrap navbar]]\n[[style: wikirate bootstrap form]]\n[[style: wikirate bootstrap common]]\n[[style: wikirate metrics]]\n[[style: yinyang]]\n[[style: profile page]]\n[[style: company header]]\n[[style: source preview]]"
       }
     ]
   }
