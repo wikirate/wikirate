@@ -37,10 +37,10 @@ format :html do
   view :source_preview_container,:tags=>:unknown_ok  do |args|
     %{
       <div class="row clearfix source-preview-content">
-        <div class="col-md-8 column source-iframe-container">
+        <div class="col-md-6 hidden-xs column source-iframe-container">
           #{render_iframe_view(args)}
         </div>
-        <div class="col-md-4 column">
+        <div class="col-md-6 column source-righ-sidebar">
           #{render_tab_containers(args)}
         </div>
      </div>
@@ -277,7 +277,7 @@ format :html do
       #Claims tab
       result += %{
         <li role="presentation" >
-          <a class='' data-target="#tab_claims" data-toggle="source_preview_tab_ajax"  href='/#{source_page_name}+source_claim_list?slot[hide]=header' >
+          <a class='' data-target="#tab_claims" data-toggle="source_preview_tab_ajax"  href='/#{source_page_name}+source_claim_list?slot[hide]=header,menu' >
               <i class='fa fa-quote-left'><span id="claim-count-number " class="count-number">#{claim_count}</span></i><span>Claims</span>
           </a>
         </li>
@@ -286,7 +286,7 @@ format :html do
       #Metrics tab
       result += %{
         <li role="presentation" >
-          <a class='' data-target="#tab_metrics" data-toggle="source_preview_tab_ajax" href='/#{source_page_name}+metric_search?slot[hide]=header' >
+          <a class='' data-target="#tab_metrics" data-toggle="source_preview_tab_ajax" href='/#{source_page_name}+metric_search?slot[hide]=header, menu' >
             <i class="fa fa-glass"><span id="claim-count-number " class="count-number">#{metric_count}</span></i><span>Metrics</span>
           </a>
         </li>
@@ -315,7 +315,7 @@ format :html do
     %{
     <div class="tab-content">
       <div class="tab-pane active" id="tab_details">#{card.format.render_core ({:structure=>"source_structure",:show=>"header"})}</div>
-      <div class="tab-pane" id="tab_claims">#{Card["loading gif"].format.render_core} </div>
+      <div class="tab-pane" id="tab_claims">#{Card["loading gif"].format.render_core } </div>
       <div class="tab-pane" id="tab_metrics">#{Card["loading gif"].format.render_core} </div>
       <div class="tab-pane" id="tab_view_original"></div>
     </div>
