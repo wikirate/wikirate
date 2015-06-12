@@ -28,9 +28,18 @@ format :html do
         :right_plus=> [ 'article', {:or=>{:created_by=>user_id, :edited_by=>user_id }} ],
         :return=>:count
       }
+    metric_search_args = {
+        :or=>{
+          :created_by=>user_id,
+          :edited_by=>user_id,
+          :linked_to_by=>{:left=>user_id,:right=>["in","*upvotes","*downvotes"]},
+          :left_id=>user_id
+        },
+        :return=>:count
+      }
     campaign_count = Card.search contribution_search_args.merge(:type=>'campaign')
     content_tag :div, :class=>'counts' do
-      [ {:name=>'Metrics', :id=>MetricID},
+      [ {:name=>'Metrics', :id=>MetricID, :query=>metric_search_args},
         {:name=>'Claims',:id=>ClaimID},
         {:name=>'Sources', :id=>SourceID},
         {:name=>'Articles', :id=>WikirateAnalysisID, :query=>article_search_args}
