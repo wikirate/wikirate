@@ -168,8 +168,8 @@ format :html do
 
           
       }
-
-      result
     end
+    result
+    
   end
 end

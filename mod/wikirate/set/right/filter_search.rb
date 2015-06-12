@@ -105,7 +105,7 @@ format :html do
   def multiselect_filter type_name, args
     options_card = Card.new :name=>"+#{type_name}"  #codename
     selected_options = params[type_name]
-    options = options_from_collection_for_select(options_card.options,:name,:name,selected_options)
+    options = options_for_select(options_card.option_names, selected_options)
     multiselect_tag = select_tag(type_name, options, :multiple=>true, :class=>'pointer-multiselect')
     formgroup( type_name.capitalize, multiselect_tag, :class=>"filter-input #{type_name}" )
   end  
