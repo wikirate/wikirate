@@ -1,10 +1,14 @@
 format :html do
   def default_header_args args
-    args[:count] = Card.search :type_id=>WikirateAnalysisID,
-                    :right_plus=>[ 'article', {:or=>{:created_by=>card.left.name, :edited_by=>card.left.name }}],
-                    :return=>:count
     args[:icon] = nest(Card.fetch('venn icon'), :view=>:core, :size=>:icon)
   end
+
+  def contribution_count
+    @cc ||= Card.search :type_id=>WikirateAnalysisID,
+              :right_plus=>[ 'article', {:or=>{:created_by=>card.left.name, :edited_by=>card.left.name }}],
+              :return=>:count
+  end
+
 
   view :toggle do |args|
     verb, adjective, direction = ( args[:toggle_mode] == :close ? %w{ open open triangle-right } : %w{ close closed triangle-bottom } )
@@ -17,11 +21,16 @@ format :html do
   end
 
   view :open do |args|
-    if Auth.current_id == card.left.id
-      args.merge! :slot_class=>'editable'
+    if contribution_count == 0
+      _render_closed(args)
+    else
+      if Auth.current_id == card.left.id
+        args.merge! :slot_class=>'editable'
+      end
+      super(args)
     end
-    super(args)
   end
+
 
   view :header do |args|
 
@@ -30,7 +39,7 @@ format :html do
         <div class="card-header-title #{ args[:title_class] }">
           #{ args[:icon] }
           #{ _optional_render :title, args }
-          <span class="badge">#{args[:count]}</span>
+          <span class="badge">#{contribution_count}</span>
           <div class="pull-right">
             #{ _optional_render :toggle, args, :hide }
           </div>
