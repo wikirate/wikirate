@@ -19,7 +19,7 @@ format :html do
         <div class="col-md-6 hidden-xs column source-iframe-container">
           #{render_iframe_view(args)}
         </div>
-        <div class="col-md-6 column source-righ-sidebar">
+        <div class="col-md-6 column source-right-sidebar">
           #{render_tab_containers(args)}
         </div>
      </div>
@@ -28,13 +28,15 @@ format :html do
 
   view :tab_containers, :tags=>:unknown_ok  do |args|
     %{
-      <div class="tab-content">
-        <div class="tab-pane active" id="tab_details">#{card.format.render_core ({:structure=>"source_structure",:show=>"header"})}</div>
-        <div class="tab-pane" id="tab_claims">#{Card["loading gif"].format.render_core } </div>
-        <div class="tab-pane" id="tab_metrics">#{Card["loading gif"].format.render_core} </div>
-        <div class="tab-pane" id="tab_view_original"></div>
-      </div>
+    <div class="tab-content">
+      <span class="close-tab fa fa-times"></span>
+      <div class="tab-pane active" id="tab_details">#{card.format.render_core ({:structure=>"source_structure",:show=>"header"})}</div>
+      <div class="tab-pane" id="tab_claims">#{Card["loading gif"].format.render_core } </div>
+      <div class="tab-pane" id="tab_metrics">#{Card["loading gif"].format.render_core} </div>
+      <div class="tab-pane" id="tab_view_original"></div>
+    </div>
     }
+
   end
 
   view :iframe_view ,:tags=>:unknown_ok  do |args|
@@ -157,13 +159,17 @@ format :html do
     #External Link
     if !( file_card || text_card )
       result += %{
-        <li role="presentation" >
-          <a class='' href='#{url}' >
-            <i class="fa fa-external-link-square"></i> View Original
-          </a>
-        </li>
+  
+            <li role="presentation" >
+              <a class='' href='#{url}' target="_blank">
+                <i class="fa fa-external-link-square"></i> View Original
+              </a>
+            </li>
+
+          
       }
+
+      result
     end
-    result
   end
 end
