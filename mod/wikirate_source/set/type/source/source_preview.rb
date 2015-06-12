@@ -40,7 +40,7 @@ format :html do
         <div class="col-md-6 hidden-xs column source-iframe-container">
           #{render_iframe_view(args)}
         </div>
-        <div class="col-md-6 column source-righ-sidebar">
+        <div class="col-md-6 column source-right-sidebar">
           #{render_tab_containers(args)}
         </div>
      </div>
@@ -297,7 +297,7 @@ format :html do
           #{
           %{
             <li role="presentation" >
-              <a class='' href='#{url}' >
+              <a class='' href='#{url}' target="_blank" >
                 <i class="fa fa-external-link-square"></i> View Original
               </a>
             </li>
@@ -314,6 +314,7 @@ format :html do
   view :tab_containers, :tags=>:unknown_ok  do |args|
     %{
     <div class="tab-content">
+      <span class="close-tab fa fa-times"></span>
       <div class="tab-pane active" id="tab_details">#{card.format.render_core ({:structure=>"source_structure",:show=>"header"})}</div>
       <div class="tab-pane" id="tab_claims">#{Card["loading gif"].format.render_core } </div>
       <div class="tab-pane" id="tab_metrics">#{Card["loading gif"].format.render_core} </div>

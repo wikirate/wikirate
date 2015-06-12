@@ -14,5 +14,4 @@ Card.search(:type=>"Claim").each do |card|
       tags.save!
     end
   end
-
 end
