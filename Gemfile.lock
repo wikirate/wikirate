@@ -1,7 +1,7 @@
 PATH
   remote: ./vendor/wagn/card
   specs:
-    card (1.15.5)
+    card (1.15.3)
       bootstrap-kaminari-views (~> 0.0.5)
       coderay (~> 1.0)
       coffee-script (~> 2.2)
@@ -20,8 +20,8 @@ PATH
 PATH
   remote: ./vendor/wagn/wagn
   specs:
-    wagn (1.15.5)
-      card (= 1.15.5)
+    wagn (1.15.3)
+      card (= 1.15.3)
       rails (= 3.2.16)
 
 GEM
@@ -109,7 +109,6 @@ GEM
       mime-types (>= 1.16, < 3)
       nokogiri (~> 1.5)
       rails (>= 3, < 5)
-    daemons (1.2.2)
     dalli (2.7.4)
     database_cleaner (0.9.1)
     debug_inspector (0.0.2)
@@ -119,7 +118,6 @@ GEM
       launchy (~> 2.1)
       mail (~> 2.2)
     erubis (2.7.0)
-    eventmachine (1.0.7)
     execjs (2.5.2)
     fastimage (1.7.0)
       addressable (~> 2.3, >= 2.3.5)
@@ -275,10 +273,6 @@ GEM
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
-    thin (1.6.3)
-      daemons (~> 1.0, >= 1.0.9)
-      eventmachine (~> 1.0)
-      rack (~> 1.0)
     thor (0.19.1)
     tilt (1.4.1)
     timecop (0.7.4)
@@ -334,7 +328,6 @@ DEPENDENCIES
   spork (>= 0.9)
   sprockets
   therubyracer
-  thin
   timecop
   turn (~> 0.8.3)
   wagn!
