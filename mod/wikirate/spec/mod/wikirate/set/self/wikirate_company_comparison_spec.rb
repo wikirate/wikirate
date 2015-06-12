@@ -42,7 +42,7 @@ describe Card::Set::Self::WikirateCompanyComparison do
       it "compares companies" do 
         topic_chosen = Card["Natural Resource Use"]
         company1 = Card["Apple Inc."]
-        company2 = Card["Samsung Group"]
+        company2 = Card["Samsung"]
         Card::Env.params[:topic] = topic_chosen.key
         Card::Env.params["company1"] = company1.key
         Card::Env.params["company2"] = company2.key
