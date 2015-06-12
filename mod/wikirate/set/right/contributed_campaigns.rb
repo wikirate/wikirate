@@ -2,7 +2,7 @@ format :html do
   include ContributedAnalysis::HtmlFormat
 
   def contribution_count
-    @cc ||= subformat(Card.fetch("#{card.cardname.left}+campaigns edited by+*count"))._render_core
+    @cc ||= subformat(Card.fetch("#{card.cardname.left}+campaigns edited by+*count"))._render_core.to_i
   end
 
   def default_header_args args
