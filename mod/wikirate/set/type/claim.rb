@@ -127,7 +127,6 @@ format :html do
       %i.fa.fa-quote-left
       = _optional_render :title, args
       %i.fa.fa-quote-right
-      = _optional_render :menu, args
     .creator-credit
       = nest card, :structure=>"creator credit"
 .clear-line
