@@ -64,7 +64,7 @@ format :html do
       end
     else
       url = args[:url]
-      content_tag(:div, '<iframe id="source-preview-iframe" src="' + URI.escape(url) + '"  security="restricted" sandbox="allow-same-origin allow-scripts allow-forms" ></iframe>', {:id=>"webpage-preview", :class=> "webpage-preview"},false)
+      content_tag(:div, '<iframe id="source-preview-iframe" src="' + url + '"  security="restricted" sandbox="allow-same-origin allow-scripts allow-forms" ></iframe>', {:id=>"webpage-preview", :class=> "webpage-preview"},false)
     end
   end
 
