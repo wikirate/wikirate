@@ -118,7 +118,7 @@ format :json do
 #     end
 #     result
 #   end
-# end
+end
 
 class MetaData  
   attr_accessor :title,:description,:image_url,:website,:error
