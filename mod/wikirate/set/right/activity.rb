@@ -38,11 +38,7 @@ format :html do
   end
 
   view :open do |args|
-    if !card.account
-      ''
-    else
-      super(args)
-    end
+    card.left.account ? super(args) : ''
   end
 
 end
