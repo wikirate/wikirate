@@ -217,6 +217,39 @@ describe Card::Set::All::Wikirate do
 
     end
   end
-
+  describe "og_source view" do
+    context "exisiting card" do
+      it "renders source view" do
+        cards_name = create_dump_card 1
+        expect(Card[cards_name].format.render_og_source).to eq(Card[cards_name].format.render_source)
+      end
+    end
+    context "non-exisiting card" do
+      it "renders the vertical logo link" do
+        new_card = Card.new :name=>"oragne pen phone"
+        vertical_logo_source_view = Card["*Vertical_Logo"].format.render_source args.merge({:size=>"large"})
+        expect(new_card.format.render_og_source).to eq(vertical_logo_source_view)
+      end
+    end
+  end
+  describe "progress bar view" do
+    context "card content is numeric" do
+      it "render progress bar" do 
+        value = "3.14159265"
+        numeric_card = Card.create! :name=>"I am a number",:content=>"3.14159265"
+        html = numeric_card.format.render_progress_bar
+        expect(html).to have_tag("div", :with=>{:class=>"progress"}) do
+          with_tag "div",:with=>{:class=>"progress-bar","aria-valuenow"=>value},:text=>value
+        end
+      end
+    end
+    context "card content is not numeric" do
+      it "returns error message" do 
+        non_numeric_card = Card.create! :name=>"I am not a number",:content=>"There are 2 hard problems in computer science: cache invalidation, naming things, and off-by-1 errors."
+        html = non_numeric_card.format.render_progress_bar
+        expect(html).to eq("Only card with numeric content can be shown as progress bar.")
+      end
+    end
+  end
 
 end
