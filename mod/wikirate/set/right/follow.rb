@@ -10,12 +10,12 @@ format :html do
   end
 
   view :profile, :tags=>:unknown_ok do |args|
-    if !card.account
-      ''
-    else
+    if card.left.account
       frame args.merge(:optional_more_link=>:show) do
         _render_following_list(args)
       end
+    else
+      ''
     end
   end
 
