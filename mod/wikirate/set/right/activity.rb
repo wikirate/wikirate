@@ -36,4 +36,13 @@ format :html do
       </div>
     }.html_safe
   end
+
+  view :open do |args|
+    if !card.accountable? && !card.account
+      ''
+    else
+      super(args)
+    end
+  end
+
 end

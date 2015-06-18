@@ -10,7 +10,7 @@ format :html do
       super(args)
     end
   end
-  
+
   view :new, :missing
 end
 
