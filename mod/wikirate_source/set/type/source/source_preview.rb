@@ -118,7 +118,7 @@ format :html do
     else
       url_card = card.fetch(:trait=>:wikirate_link)
       url = url_card ? url_card.item_names.first : nil
-      %{<a href="#{url}" class="btn btn-primary" role="button">Visit Source</a>}
+      %{<a href="#{url}" class="btn btn-primary" role="button">Visit Original Source</a>}
     end
   end
 
@@ -162,7 +162,7 @@ format :html do
   
             <li role="presentation" >
               <a class='' href='#{url}' target="_blank">
-                <i class="fa fa-external-link-square"></i> View Original
+                <i class="fa fa-external-link-square"></i> Visit Original
               </a>
             </li>
 
