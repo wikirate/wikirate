@@ -13,3 +13,9 @@ def indirect_contributor_search_args
   ]
 end
 
+format :html do
+  def view_caching?
+    true
+  end
+end
+

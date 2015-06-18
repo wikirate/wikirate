@@ -9,9 +9,14 @@ format :html do
     card_link card, :text=> 'more...'
   end
 
-  view :profile do |args|
-    frame args.merge(:optional_more_link=>:show) do
-      _render_following_list(args)
+  view :profile, :tags=>:unknown_ok do |args|
+    if !card.account
+      ''
+    else
+      frame args.merge(:optional_more_link=>:show) do
+        _render_following_list(args)
+      end
     end
   end
+
 end
