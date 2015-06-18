@@ -70,7 +70,7 @@ describe Card::Set::Type::Source do
       context "link points to a file" do
         it "downloads it and saves as a file source" do
           pdf_url = "http://www.relacweb.org/conferencia/images/documentos/Hoteles_cerca.pdf"
-          sourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> pdf_url} }
+          sourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> pdf_url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""}}
           expect(sourcepage.errors).to be_empty
           expect(sourcepage.fetch(:trait=>:file)).to_not be_nil
           expect(sourcepage.fetch(:trait=>:wikirate_link)).to be_nil
