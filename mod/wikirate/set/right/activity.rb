@@ -38,7 +38,7 @@ format :html do
   end
 
   view :open do |args|
-    if !card.accountable? && !card.account
+    if !card.account
       ''
     else
       super(args)
