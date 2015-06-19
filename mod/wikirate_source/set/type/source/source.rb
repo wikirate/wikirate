@@ -34,9 +34,9 @@ event :check_source, :after=>:approve_subcards, :on=>:create do
   end
 end
 
-event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc{  |c|
-    not ( (c.subcards["+File"] and c.subcards["+File"].has_key?"content") or ( c.subcards["+Text"] and c.subcards["+Text"]["content"] and !c.subcards["+Text"]["content"].empty? )) 
-  } do
+event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc{  |c| 
+  not ( (file_card = stringified_subcards["+File"] and file_card.stringify_keys.has_key?"content")  or ( text_card =  stringified_subcards["+Text"] and text_card_content = (text_card.stringify_keys)["content"] and !text_card_content.empty? )) 
+ } do
 
   linkparams = subcards["+#{ Card[:wikirate_link].name }"]
   url = linkparams && linkparams[:content] or errors.add(:link, " does not exist.")  
