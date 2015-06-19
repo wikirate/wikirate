@@ -35,8 +35,7 @@ event :check_source, :after=>:approve_subcards, :on=>:create do
 end
 
 event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc{  |c| 
-  stringified_subcards = c.subcards.stringify_keys
-  not ( (file_card = stringified_subcards["+File"] and file_card.stringify_keys.has_key?"content")  or ( text_card =  stringified_subcards["+Text"] and text_card_content = (text_card.stringify_keys)["content"] and !text_card_content.empty? )) 
+  not ( (file_card = c.subcards["+File"] and file_card.stringify_keys.has_key?"content")  or ( text_card =  c.subcards["+Text"] and text_card_content = (text_card.stringify_keys)["content"] and !text_card_content.empty? )) 
  } do
 
   linkparams = subcards["+#{ Card[:wikirate_link].name }"]
