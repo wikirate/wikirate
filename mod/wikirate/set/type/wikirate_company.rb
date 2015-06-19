@@ -14,9 +14,8 @@ def indirect_contributor_search_args
 end
 
 format :html do
-  def edit_slot args
-    # refer to claim.rb
-    super args.merge( :core_edit=>true )
+  def view_caching?
+    true
   end
 end
 

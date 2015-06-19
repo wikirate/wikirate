@@ -1,4 +1,37 @@
+def virtual?
+  true
+end
+
+def sections
+  @sections ||= begin
+    user_card = left
+    [ {:name=>'Metrics',  :contributions => :contributed_metrics},
+      {:name=>'Claims',   :contributions => :contributed_claims},
+      {:name=>'Sources',  :contributions => :contributed_sources},
+      {:name=>'Articles', :contributions => :contributed_analysis},
+      {:name=>'Campaigns',:contributions => :contributed_campaigns}
+    ].map do |args|
+      c_card     = user_card.fetch(:trait=>args[:contributions])
+      count      = c_card && c_card.contribution_count
+      contr_name = c_card && c_card.cardname.url_key
+      [ (count || 0), args[:name], contr_name ]
+    end
+  end
+end
+
+
 format :html do
+  view :core do |args|
+    card.sections.sort.reverse.map do |count, name, contr_name|
+      section_args = {:view=>:open, :title=>name, :hide=>'menu'}
+      if name == 'Campaigns'
+        nest Card.fetch(contr_name), section_args.merge(:item=>{:view=>:content, :structure=>'campaign item'})
+      else
+        nest Card.fetch(contr_name), section_args
+      end
+    end.join "\n"
+  end
+
   view :header do |args|
     %{
       <div class="card-header #{ args[:header_class] }">
@@ -15,49 +48,16 @@ format :html do
   end
 
   view :contribution_counts do |args|
-    user_id = card.left.id
-    contribution_search_args = {
-        :or=>{
-          :created_by=>user_id,
-          :edited_by=>user_id,
-          :linked_to_by=>{:left=>user_id,:right=>["in","*upvotes","*downvotes"]}
-        },
-        :return=>:count
-      }
-    article_search_args =  {
-        :right_plus=> [ 'article', {:or=>{:created_by=>user_id, :edited_by=>user_id }} ],
-        :return=>:count
-      }
-    metric_search_args = {
-        :or=>{
-          :created_by=>user_id,
-          :edited_by=>user_id,
-          :linked_to_by=>{:left=>user_id,:right=>["in","*upvotes","*downvotes"]},
-          :left_id=>user_id
-        },
-        :return=>:count
-      }
-    campaign_count = Card.search contribution_search_args.merge(:type=>'campaign')
+    campaign_count = card.sections.last[0]
     content_tag :div, :class=>'counts' do
-      [ {:name=>'Metrics', :id=>MetricID, :query=>metric_search_args},
-        {:name=>'Claims',:id=>ClaimID},
-        {:name=>'Sources', :id=>SourceID},
-        {:name=>'Articles', :id=>WikirateAnalysisID, :query=>article_search_args}
-      ].map do |args|
-        inpage_link = "##{card.cardname.left_name.url_key}+"
-        inpage_link += args[:name] == 'Articles' ? "analysis" : args[:name].downcase
-        count = Card.search (args[:query] || contribution_search_args).merge(:type_id=>args[:id])
-        content_tag :a, :class=>"item", :href=>inpage_link do
+      card.sections.map do |count, name, contr_name|
+        content_tag :a, :class=>"item", :href=>"##{contr_name}" do
           %{
-          <span class="#{args[:name].downcase}">#{count}</span>
-          <p class="legend">#{args[:name]}</p>
+            <span class="#{name.downcase}">#{count}</span>
+            <p class="legend">#{name}</p>
           }.html_safe
         end
       end.join("\n")
-    end.concat %{
-        <a class="pull-right" href="##{card.cardname.left_name.url_key}+campaigns">
-        <i class="fa fa-bullhorn"></i> #{campaign_count}
-        </a>
-      }.html_safe
+    end
   end
 end

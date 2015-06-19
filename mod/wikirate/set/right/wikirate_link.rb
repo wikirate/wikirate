@@ -10,7 +10,7 @@ end
 =end
 
 view :editor do |args|
-  form.text_field :content, :class=>'card-content',:placeholder=>"http://example.com"
+  form.text_field :content, :class=>'card-content form-control',:placeholder=>"http://example.com"
 end
 event :validate_content, :before=>:approve, :on=>:save do
   begin

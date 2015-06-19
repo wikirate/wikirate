@@ -16,3 +16,9 @@ def indirect_contributor_search_args
     {:type=>'analysis', :right=>self.name }
   ]
 end
+
+format :html do
+  def view_caching?
+    true
+  end
+end

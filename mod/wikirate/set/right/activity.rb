@@ -36,4 +36,9 @@ format :html do
       </div>
     }.html_safe
   end
+
+  view :open do |args|
+    card.left.account ? super(args) : ''
+  end
+
 end

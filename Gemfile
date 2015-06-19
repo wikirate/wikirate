@@ -15,6 +15,8 @@ gem 'roo'
 group :live do
   gem 'therubyracer'
   gem 'dalli'
+  gem 'dalli-delete-matched'
+
 end
 
 group :test do
