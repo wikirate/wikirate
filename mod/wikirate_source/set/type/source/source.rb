@@ -37,7 +37,7 @@ end
 def has_file_or_text?
   file_card = subcards["+File"]
   text_card = subcards["+Text"]
-  ( file_card && file_card.stringify_keys.has_key?"content" ) || ( text_card && text_card_content = (text_card.stringify_keys)["content"] && !text_card_content.empty? )
+  ( file_card && file_card.stringify_keys.has_key?("content") ) || ( text_card && ( text_card_content = (text_card.stringify_keys)["content"] ) && !text_card_content.empty? )
 end
 
 event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc{  |c| !c.has_file_or_text? } do
