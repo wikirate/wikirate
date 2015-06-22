@@ -58,10 +58,6 @@ format :html do
     end
   end
 
-  view :edit_without_title do |args|
-
-  end
-
   view :edits_by do |args|
     editor_card = card.fetch :trait=>:editors
     %{
