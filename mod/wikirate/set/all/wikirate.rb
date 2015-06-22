@@ -40,9 +40,7 @@ format :html do
     if is_number? value
       %{
         <div class="progress">
-          <div class="progress-bar" role="progressbar" aria-valuenow="#{value}" aria-valuemin="0" aria-valuemax="100" style="width: #{value}%;">
-            #{value}%
-          </div>
+          <div class="progress-bar" role="progressbar" aria-valuenow="#{value}" aria-valuemin="0" aria-valuemax="100" style="width: #{value}%;">#{value}%</div>
         </div>
       }
     else
@@ -161,31 +159,6 @@ format :html do
         #{item_type_name.capitalize}
         #{_render_core(args)}
       }
-    end
-  end
-
-  view :open_contribution_list do |args|
-    _render_open(args.merge(:contribution_list=>true))
-  end
-
-  view :header do |args|
-    if args.delete(:contribution_list)
-      view :header do |args|
-        %{
-          <div class="card-header #{ args[:header_class] }">
-            <div class="card-header-title #{ args[:title_class] }">
-              #{ _optional_render :title, args }
-              #{ _optional_render :contribution_counts, args }
-              #{ _optional_render :toggle, args, :hide }
-            </div>
-          </div>
-          #{ _optional_render :toolbar, args, :hide}
-          #{ _optional_render :edit_toolbar, args, :hide}
-          #{ _optional_render :account_toolbar, args, :hide}
-        }
-      end
-    else
-      super(args)
     end
   end
 

@@ -220,14 +220,14 @@ describe Card::Set::All::Wikirate do
   describe "og_source view" do
     context "exisiting card" do
       it "renders source view" do
-        cards_name = create_dump_card 1
-        expect(Card[cards_name].format.render_og_source).to eq(Card[cards_name].format.render_source)
+        dump_card = Card.create! :name=>"dump is dump",:content=>"what a dump"
+        expect(dump_card.format.render_og_source).to eq(dump_card.format.render_source)
       end
     end
     context "non-exisiting card" do
       it "renders the vertical logo link" do
         new_card = Card.new :name=>"oragne pen phone"
-        vertical_logo_source_view = Card["*Vertical_Logo"].format.render_source args.merge({:size=>"large"})
+        vertical_logo_source_view = Card["*vertical_logo"].format.render_source :size=>"large"
         expect(new_card.format.render_og_source).to eq(vertical_logo_source_view)
       end
     end
@@ -239,7 +239,7 @@ describe Card::Set::All::Wikirate do
         numeric_card = Card.create! :name=>"I am a number",:content=>"3.14159265"
         html = numeric_card.format.render_progress_bar
         expect(html).to have_tag("div", :with=>{:class=>"progress"}) do
-          with_tag "div",:with=>{:class=>"progress-bar","aria-valuenow"=>value},:text=>value
+          with_tag "div",:with=>{:class=>"progress-bar","aria-valuenow"=>value},:text=>"#{value}%"
         end
       end
     end
@@ -252,4 +252,58 @@ describe Card::Set::All::Wikirate do
     end
   end
 
+  describe "yinyang_list" do
+    it "renders correct yinyang list items" do
+      args = {
+        :item=>"content"
+      }
+
+      sample_company = Card.create! :name=>"Steelseries",:type_id=>Card::WikirateCompanyID
+
+      metric1 = Card.create! :name=>"Joe User+how many responses",:type_id=>Card::MetricID
+      metric2 = Card.create! :name=>"Joe User+how many types of responses",:type_id=>Card::MetricID
+      metric3 = Card.create! :name=>"Joe User+the unusualness of the responses",:type_id=>Card::MetricID
+      metric4 = Card.create! :name=>"Joe User+the detail of the responses",:type_id=>Card::MetricID
+
+      metric_value1 = Card.create! :name=>"#{metric1.name}+#{sample_company.name}+2015",:type_id=>Card::MetricValueID,:subcards=>{
+          '+value'=>{:content=>"1"}
+        }
+      metric_value2 = Card.create! :name=>"#{metric2.name}+#{sample_company.name}+2015",:type_id=>Card::MetricValueID,:subcards=>{
+          '+value'=>{:content=>"2"}
+        }
+      metric_value3 = Card.create! :name=>"#{metric3.name}+#{sample_company.name}+2015",:type_id=>Card::MetricValueID,:subcards=>{
+          '+value'=>{:content=>"3"}
+        }
+      metric_value4 = Card.create! :name=>"#{metric4.name}+#{sample_company.name}+2015",:type_id=>Card::MetricValueID,:subcards=>{
+          '+value'=>{:content=>"4"}
+        }
+      search_card = Card.fetch "#{sample_company.name}+limited_metric"
+      html = search_card.format.render_yinyang_list args
+      
+      expect(html).to have_tag "div",:with=>{:class=>"yinyang-list"} do
+        with_tag "div",:with=>{:id=>"+Joe_User+how_many_responses+Steelseries+yinyang_drag_item"}
+        with_tag "div",:with=>{:id=>"+Joe_User+how_many_types_of_responses+Steelseries+yinyang_drag_item"}
+        with_tag "div",:with=>{:id=>"+Joe_User+the_unusualness_of_the_responses+Steelseries+yinyang_drag_item"}
+        with_tag "div",:with=>{:id=>"+Joe_User+the_detail_of_the_responses+Steelseries+yinyang_drag_item"}
+      end
+    end
+  end
+
+  describe "showcase_list view" do
+    it "shows icons, type name and core view" do
+      
+      source_showcast = Card.fetch "joe_user+showcast sources",:new=>{:type_id=>Card::PointerID}
+      source_card = create_page_with_sourcebox "http://example.com",{},"true"
+      source_showcast<<source_card
+      source_showcast.save!
+      
+      html = source_showcast.format.render_showcase_list
+      expect(html).to have_tag("i",:with=>{:class=>"fa fa-globe"})
+      expect(html).to include("Sources")
+      expect(html).to have_tag("div",:with=>{:class=>"pointer-list"}) do
+        with_tag "div",:with=>{:id=>source_card.cardname.url_key}
+      end
+    end
+  end
+  
 end
