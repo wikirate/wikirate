@@ -169,8 +169,8 @@ format :html do
     enrich_result(card.item_cards).map do |icard|
       content_tag :div, :class=>"yinyang-row" do
        nest(icard, item_args.clone).html_safe
-      end
-    end.join joint
+      end.html_safe
+    end.join(joint).html_safe
   end
 
   def enrich_result result
