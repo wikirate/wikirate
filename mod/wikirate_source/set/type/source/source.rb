@@ -34,7 +34,13 @@ event :check_source, :after=>:approve_subcards, :on=>:create do
   end
 end
 
-event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc{ |c| not (c.subcards["+File"] or c.subcards["+Text"]) } do
+def has_file_or_text?
+  file_card = subcards["+File"]
+  text_card = subcards["+Text"]
+  ( file_card && file_card.stringify_keys.has_key?("content") ) || ( text_card && ( text_card_content = (text_card.stringify_keys)["content"] ) && !text_card_content.empty? )
+end
+
+event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc{  |c| !c.has_file_or_text? } do
 
   linkparams = subcards["+#{ Card[:wikirate_link].name }"]
   url = linkparams && linkparams[:content] or errors.add(:link, " does not exist.")  
@@ -69,7 +75,7 @@ event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc
         errors.add :link, "exists already. <a href='/#{duplicated_name}'>Visit the source.</a>"   
       end
     end
-    if errors.empty? and file_link url
+    if errors.empty? and file_link? url
       download_file_and_add_to_plus_file url
     end   
     parse_source_page url if Card::Env.params[:sourcebox] == 'true'
@@ -95,7 +101,7 @@ rescue
   parse_source_page url
 end
 
-def file_link url 
+def file_link? url 
   # just got the header instead of downloading the whole file
   uri = URI.parse( url )
   http = Net::HTTP.start(uri.host)
@@ -162,6 +168,55 @@ format :html do
       card_link file_card, {:text=>"Import to metric values",:path_opts=>{:view=>:import}}
     else
       ""
+    end
+  end
+
+  view :original_link do |args|
+    with_original do |card, type|
+      case type
+      when :file
+        link_to (args[:title] || "Download"),card.attach.url
+      when :link
+        link_to (args[:title] || "Visit Source"),card.content
+      when :text
+        card_link card, :text=>(args[:title] || "Visit Text Source")
+      end
+    end
+  end
+
+  view :original_icon_link do |args|
+    _render_original_link args.merge(:title=>content_tag(:i, '', :class=>"fa fa-#{icon}"))
+  end
+
+  def with_original
+    if file_card = card.fetch(:trait=>:file )
+      yield file_card, :file
+    elsif link_card = card.fetch(:trait=>:wikirate_link)
+      yield link_card, :link
+    elsif text_card = Card[card.name+"+text"]
+      yield text_card, :text
+    end
+  end
+
+  def icon
+    icon_type =
+      case source_type
+      when :file
+        'upload'
+      when :link
+        'globe'
+      when :text
+        'pencil'
+      end
+  end
+
+  def source_type
+    if card.fetch :trait=>:file
+      :file
+    elsif card.fetch(:trait=>:wikirate_link)
+      :link
+    elsif Card[card.name+"+text"]
+      :text
     end
   end
 

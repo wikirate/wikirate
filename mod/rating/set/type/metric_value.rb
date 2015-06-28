@@ -59,7 +59,7 @@ format :html do
     wrap_with :div, :class=>'timeline-row' do
       wrap_with :div, :class=>'td credit' do
         [
-          nest(card, :view=>:content, :structure=>'creator credit'),
+          nest(card, :view=>:core, :structure=>'creator credit'),
           _optional_render(:source_link, args, :show)
         ]
       end
@@ -67,8 +67,15 @@ format :html do
   end
 
   view :source_link do |args|
-    source_link = subformat(card)._render_modal_link(args.merge(:text=>'View Sources',:html_args=>{:class=>"btn btn-yellow btn-xs"}))
-    content_tag(:p, source_link+subformat(card)._render_modal_slot(args))
+    if source_card = card.fetch(:trait=>:source)
+      source_card.item_cards.map do |i_card|
+        subformat(i_card).render_original_icon_link
+      end.join "\n"
+    else
+      ''
+    end
+    #source_link = subformat(card)._render_modal_link(args.merge(:text=>'View Sources',:html_args=>{:class=>"btn btn-yellow btn-xs"}))
+    #content_tag(:p, source_link+subformat(card)._render_modal_slot(args))
   end
 
 end
