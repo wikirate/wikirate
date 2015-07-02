@@ -61,6 +61,7 @@ group :test, :development do
   if RUBY_VERSION =~ /^2/
     gem 'pry-byebug'
   end
+  gem 'wbench'
 end
 
 Dir.glob("mod/**{,/*/**}/Gemfile").each do |gemfile|
