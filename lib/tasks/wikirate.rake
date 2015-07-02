@@ -88,7 +88,7 @@ namespace :wikirate do
           "'#{id}'" if id
         end.compact
         type_ids_str = type_ids.join(",")
-        
+
         type_ids.delete("'#{Card::WikirateCompanyID}'")
         type_ids.delete("'#{Card::WikirateTopicID}'")
         type_ids_without_company_and_topic = type_ids.join(",")
@@ -100,7 +100,7 @@ namespace :wikirate do
         ActiveRecord::Base.connection.execute 'delete from card_revisions'
         #ActiveRecord::Base.connection.execute 'delete from card_actions'
         #xActiveRecord::Base.connection.execute 'delete from card_changes'
-        
+
         # delete claims, pages and websites
 #        ActiveRecord::Base.connection.execute 'delete from cards where type_id = 631 or type_id = 2327 or type_id = 4030'
         ActiveRecord::Base.connection.execute 'drop table card_revisions'
@@ -113,7 +113,7 @@ namespace :wikirate do
 
         # delete all webpage++link
         # 47294 is alias card
-        ActiveRecord::Base.connection.execute "delete ca from cards ca inner join cards le ON ca.left_id = le.id where le.type_id in (#{type_ids_str}) and ca.id not in  ( #{card_id_to_be_kept} ) and ca.right_id <> '#{alias_card_id}'" 
+        ActiveRecord::Base.connection.execute "delete ca from cards ca inner join cards le ON ca.left_id = le.id where le.type_id in (#{type_ids_str}) and ca.id not in  ( #{card_id_to_be_kept} ) and ca.right_id <> '#{alias_card_id}'"
         ActiveRecord::Base.connection.execute "delete from cards where type_id in (#{type_ids_without_company_and_topic}) and id not in ( #{card_id_to_be_kept} )"
         ActiveRecord::Base.connection.execute "delete from cards where right_id in (#{vote_ids})"
 
@@ -190,8 +190,8 @@ namespace :wikirate do
         </ul>
       }
     end
-    #host = 'http://dev.wikirate.org'
-    host = 'http://localhost:3000'
+    host = 'http://dev.wikirate.org'
+    #host = 'http://localhost:3000'
     test_pages = ENV['page'] ? [ENV['page']] : ['Home','Articles','Topics','Companies','Metrics','Claims','Sources','Sara_Cifani','Apple_Inc','Natural_Resource_Use','McDonald_s_Corporation+Natural_Resource_Use', 'Newsweek+Newsweek_Green_Score']
     #test_pages = ENV['name'] ? [ENV['name']] : ['Home']
     runs = ENV['run'] || 1
