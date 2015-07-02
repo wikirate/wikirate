@@ -15,7 +15,6 @@ gem 'roo'
 group :live do
   gem 'therubyracer'
   gem 'dalli'
-  gem 'dalli-delete-matched'
 
 end
 
@@ -42,7 +41,7 @@ group :test do
   gem 'database_cleaner', '~> 0.7'             # used by cucumber for db transactions
 
   gem 'turn', "~>0.8.3", :require => false      # Pretty printed test output.  (version constraint is to avoid minitest requirement)
-  gem 'minitest', "~>4.0"
+  gem 'minitest'
 end
 
 group :development do
