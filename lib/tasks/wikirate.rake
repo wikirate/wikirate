@@ -121,7 +121,7 @@ namespace :wikirate do
         ActiveRecord::Base.connection.execute "delete from cards where type_id = '#{Card::WikirateCompanyID}' and id not in ( #{company_ids[0...-1]} )"
         # delete topics
         ActiveRecord::Base.connection.execute "delete from cards where type_id = '#{Card::WikirateTopicID}' and id not in ( #{topic_ids[0...-1]} )"
-        ActiveRecord::Base.connection.execute "delete from cards where type_id = '#{Card::MetricID}'" # and id not in ( #{metric_ids[0...-1]} )"
+        #ActiveRecord::Base.connection.execute "delete from cards where type_id = '#{Card::MetricID}'" # and id not in ( #{metric_ids[0...-1]} )"
 
         # delete all webpage++link
         # 47294 is alias card
