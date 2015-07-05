@@ -42,15 +42,17 @@ namespace :wikirate do
         end
         Rake::Task['wagn:migrate'].invoke
 
-        # select 5 companies and topics
+        # select 5 companies and topics and metrics
         companies = [Card["Apple Inc."],Card["Amazon.com, Inc."],Card["Samsung"],Card["Siemens AG"],Card["Sony Corporation"]]
         topics = [Card["Natural Resource Use"],Card["Community"],Card["Human Rights"],Card["Climate Change"],Card["Animal Welfare"]]
-
+        metrics = [Card['Sebastian Jekutsch+CSR Report Available'],Card['Good Company Index+Good Company Grade'],Card['BSR+BSR Member']]
         company_ids = ""
         topic_ids = ""
-
+        metric_ids = ""
         company_names = Array.new
         topic_names = Array.new
+
+        card_to_be_kept = Array.new
 
         companies.each do |company|
           company_ids += "#{company.id},"
@@ -62,7 +64,14 @@ namespace :wikirate do
           topic_names.push topic.name
         end
 
-        card_to_be_kept = Array.new
+
+        metrics.each do |metric|
+          metric_ids += "#{metric.id},"
+          card_to_be_kept << metric.id
+          card_to_be_kept += Card.search :left=>metric.name, :return=>:id
+        end
+
+
 
         company_related_article = Card.search :type=>"Analysis",:left=>{:name=> company_names.unshift("in")}
         topic_related_article = Card.search :type=>"Analysis",:right=>{:name=>topic_names.unshift("in")}
@@ -76,12 +85,13 @@ namespace :wikirate do
           end
         end
 
+
         (company_related_article + topic_related_article).each do |c|
           card_to_be_kept.push c.id
         end
         alias_card_id = Card["aliases"].id
 
-        card_id_to_be_kept = card_to_be_kept.push(alias_card_id).join(",")
+        card_id_to_be_kept = card_to_be_kept.push(alias_card_id).compact.join(",")
 
         type_ids = %w{ Claim Company Market Issue Topic Analysis Task Newspaper Book Activists Donor Website Person Institution Donor Status Organization Periodical Source Metric_value }.map do |typename|
           id = Card.fetch_id(typename)
@@ -91,6 +101,7 @@ namespace :wikirate do
 
         type_ids.delete("'#{Card::WikirateCompanyID}'")
         type_ids.delete("'#{Card::WikirateTopicID}'")
+        type_ids.delete("'#{Card::MetricID}'")
         type_ids_without_company_and_topic = type_ids.join(",")
 
         vote_ids = %w{ *upvotes *downvotes }.map do |vote_name|
@@ -110,6 +121,7 @@ namespace :wikirate do
         ActiveRecord::Base.connection.execute "delete from cards where type_id = '#{Card::WikirateCompanyID}' and id not in ( #{company_ids[0...-1]} )"
         # delete topics
         ActiveRecord::Base.connection.execute "delete from cards where type_id = '#{Card::WikirateTopicID}' and id not in ( #{topic_ids[0...-1]} )"
+        ActiveRecord::Base.connection.execute "delete from cards where type_id = '#{Card::MetricID}'" # and id not in ( #{metric_ids[0...-1]} )"
 
         # delete all webpage++link
         # 47294 is alias card
