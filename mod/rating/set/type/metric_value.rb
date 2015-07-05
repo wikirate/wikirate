@@ -2,7 +2,7 @@ card_accessor :value, :type=>:phrase
 
 event :metric_value_change, :after=>:store do
   if left.respond_to? :update_latest_value_year
-    left.update_latest_value_year
+    #left.update_latest_value_year
   end
 end
 
