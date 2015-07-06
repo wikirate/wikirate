@@ -65,11 +65,11 @@ namespace :wikirate do
         end
 
 
-        metrics.each do |metric|
-          metric_ids += "#{metric.id},"
-          card_to_be_kept << metric.id
-          card_to_be_kept += Card.search :left=>metric.name, :return=>:id
-        end
+        # metrics.each do |metric|
+        #   metric_ids += "#{metric.id},"
+        #   card_to_be_kept << metric.id
+        #   card_to_be_kept += Card.search :left=>metric.name, :return=>:id
+        # end
 
 
 
@@ -101,7 +101,7 @@ namespace :wikirate do
 
         type_ids.delete("'#{Card::WikirateCompanyID}'")
         type_ids.delete("'#{Card::WikirateTopicID}'")
-        type_ids.delete("'#{Card::MetricID}'")
+        #type_ids.delete("'#{Card::MetricID}'")
         type_ids_without_company_and_topic = type_ids.join(",")
 
         vote_ids = %w{ *upvotes *downvotes }.map do |vote_name|
