@@ -3,6 +3,8 @@
 class ImportProfilePageFix2 < Card::Migration
   def up
     import_json "profile_page_fix_2.json"
-    Card.fetch('my contributions+*right+*structure').delete
+    if (card = Card.fetch('my contributions+*right+*structure'))
+      card.delete
+    end
   end
 end
