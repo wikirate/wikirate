@@ -10,6 +10,7 @@ gem "mysql2", "~> 0.3"
 gem 'link_thumbnailer', ">= 2.2.3"
 gem 'open_uri_redirections'
 gem 'roo'
+gem 'wbench'
 
 #if RUBY_PLATFORM !~ /darwin/
 group :live do
@@ -60,7 +61,6 @@ group :test, :development do
   if RUBY_VERSION =~ /^2/
     gem 'pry-byebug'
   end
-  gem 'wbench'
 end
 
 Dir.glob("mod/**{,/*/**}/Gemfile").each do |gemfile|
