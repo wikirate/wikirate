@@ -10,12 +10,12 @@ gem "mysql2", "~> 0.3"
 gem 'link_thumbnailer', ">= 2.2.3"
 gem 'open_uri_redirections'
 gem 'roo'
+gem 'wbench'
 
 #if RUBY_PLATFORM !~ /darwin/
 group :live do
   gem 'therubyracer'
   gem 'dalli'
-  gem 'dalli-delete-matched'
 
 end
 
@@ -42,7 +42,7 @@ group :test do
   gem 'database_cleaner', '~> 0.7'             # used by cucumber for db transactions
 
   gem 'turn', "~>0.8.3", :require => false      # Pretty printed test output.  (version constraint is to avoid minitest requirement)
-  gem 'minitest', "~>4.0"
+  gem 'minitest'
 end
 
 group :development do

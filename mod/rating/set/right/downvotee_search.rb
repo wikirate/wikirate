@@ -149,7 +149,6 @@ format :html do
   def analysis_draggable_opts votee, opts
     case votee.type_id
     when MetricID
-#      binding.pry if votee.cardname.right == "e-waste recycling"
       metric_plus_company = Card.fetch("#{votee.name}+#{main_name.to_name.left}")
       topic_tags = votee.fetch :trait=>:wikirate_topic
       opts[:no_value] = (metric_plus_company.new_card? || !topic_tags || !topic_tags.include_item?(main_name.to_name.right))

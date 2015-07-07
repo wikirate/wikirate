@@ -19,7 +19,7 @@ end
 
 
 event :import_csv, :after=>:store, :on=>:update, :when=>proc{ |c| Env.params["is_metric_import_update"] == 'true' } do
-  
+
   metric_pointer_card = subcards[cardname.left+"+#{Card[:metric].name}"]
   metric_year = subcards[cardname.left+"+#{Card[:year].name}"]
 
@@ -31,14 +31,13 @@ event :import_csv, :after=>:store, :on=>:update, :when=>proc{ |c| Env.params["is
   if (metric_values = Env.params[:metric_values]) && metric_values.kind_of?(Hash)
     metric_values.each do |company, value|
       final_company_name = company
-      if ( input_company_name = (corrected_company_hash[company] || company )) 
+      if ( input_company_name = (corrected_company_hash[company] || company ))
         final_company_name = input_company_name
         if !Card.exists?input_company_name
           Card.create! :name=>input_company_name, :type_id=>Card::WikirateCompanyID
         end
       end
       metric_value_card_name = "#{metric_pointer_card.item_names.first}+#{final_company_name}+#{metric_year.item_names.first}"
-      # binding.pry
       if metric_value_card = Card[metric_value_card_name]
         metric_value_card.update_attributes! :subcards=>{'+value'=>value[0]}
       else
@@ -48,7 +47,7 @@ event :import_csv, :after=>:store, :on=>:update, :when=>proc{ |c| Env.params["is
       source_card = Card[metric_value_card_name+"+source"] || Card.create!(:name=>"#{metric_value_card_name}+source", :type_id=>Card::PointerID)
       if not source_card.item_names.include? cardname.left
         source_card<<cardname.left
-        source_card.save!      
+        source_card.save!
       end
     end
     abort :success=>"REDIRECT: #{metric_pointer_card.item_names.first}"
@@ -56,9 +55,9 @@ event :import_csv, :after=>:store, :on=>:update, :when=>proc{ |c| Env.params["is
 end
 
 def csv_rows
-  # transcode to utf8 before CSV reads it. 
+  # transcode to utf8 before CSV reads it.
   # some users upload files in non utf8 encoding. The microsoft excel may not save a CSV file in utf8 encoding
-  CSV.read(attach.path,:encoding => 'windows-1251:utf-8') 
+  CSV.read(attach.path,:encoding => 'windows-1251:utf-8')
 end
 
 
@@ -103,7 +102,7 @@ format :html do
     if (company = Card.fetch(name)) && company.type_id == Card::WikirateCompanyID
       [name, :exact]
     # elsif (result = Card.search :right=>"aliases",:left=>{:type_id=>Card::WikirateCompanyID},:content=>["match","\\[\\[#{name}\\]\\]"]) && !result.empty?
-    #   [result.first.cardname.left, :alias]  
+    #   [result.first.cardname.left, :alias]
     elsif company_name = aliases_hash[name.downcase]
       [company_name, :alias]
     elsif (result = Card.search :type=>'company', :name=>['match', name]) && !result.empty?
