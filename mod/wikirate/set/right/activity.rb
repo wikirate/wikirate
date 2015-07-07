@@ -20,7 +20,6 @@ format :html do
     card_type = if card.type_id == Card::BasicID
                   ' card'
                 else
-                  binding.pry unless card.type_name
                   card.type_name.downcase
                 end
     "%sd %s%s" % [action_type, ('a new ' if action_type == :create), card_type]

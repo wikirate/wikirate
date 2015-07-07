@@ -12,4 +12,8 @@ format :html do
       ''
     end
   end
+
+  def view_caching?
+    true
+  end
 end
