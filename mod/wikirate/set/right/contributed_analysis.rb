@@ -25,7 +25,7 @@ format :html do
     if card.contribution_count == 0
       _render_closed(args)
     else
-      if Auth.current_id == card.left.id
+      if (l = card.left) && (Auth.current_id == l.id || l.type_code == :wikirate_company)
         args.merge! :slot_class=>'editable'
       end
       super(args)
