@@ -1,5 +1,5 @@
 card_accessor :contribution_count, :type=>:number, :default=>"0"
-card_accessor :direct_contibution_count, :type=>:number, :default=>"0"
+card_accessor :direct_contribution_count, :type=>:number, :default=>"0"
 
 def update_direct_contribution_count
   new_contr_count = count
