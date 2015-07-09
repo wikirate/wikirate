@@ -1,0 +1,16 @@
+{
+  "url": null,
+  "timestamp": "2015-07-09 13:49:50 +0200",
+  "card": {
+    "name": "export",
+    "type": "Pointer",
+    "content": "[[Company+company_contribution_details+*type_plus_right+*structure]]",
+    "value": [
+      {
+        "name": "Company+company contribution details+*type plus right+*structure",
+        "type": "HTML",
+        "content": "<div class=\"row clearfix company-content company-page-logo-container\">\r\n    <div class=\"col-md-12 col-xs-12 nopadding left\">\r\n      <a class=\"inherit-anchor\" href=\"{{_l|url}}\"><div class=\"row-data center-logo\">{{_l+logo}}</div></a>\r\n      <div class=\"row-data data-count contribution-count\">\r\n        <div class=\"number-large\">{{_l+*contribution count}}\r\n          <div class=\"number-label\">Contributions</div>\r\n        </div>\r\n      </div>\r\n      <div class=\"row-data data-count contribution-details\">\r\n        <div class=\"col-md-12 nopadding\">\r\n          <div class=\"row clearfix\">\r\n            <div class=\"col-md-6 col-xs-6\">\r\n              <a class=\"inherit-anchor\" href=\"{{_l|url}}\">\r\n               <div class=\"number-small\">{{_l+Analyses with Articles+*contribution count|core}}\r\n                <div class=\"number-label\">Articles</div>\r\n              </div>\r\n              </a>\r\n            </div>\r\n            <div class=\"col-md-6 col-xs-6\">\r\n              <a class=\"inherit-anchor\" href=\"{{_l|url}}\">\r\n              <div class=\"number-small\">{{_l+metric+*contribution count|core}}\r\n                <div class=\"number-label\">Metrics</div>\r\n              </div>\r\n              </a>\r\n            </div>\r\n          </div>\r\n          <div class=\"row clearfix\">\r\n            <div class=\"col-md-6 col-xs-6\">\r\n              <a class=\"inherit-anchor\" href=\"/claims?company={{_l|cgi_escape_name}}\">\r\n              <div class=\"number-small\">{{_l+claim_count|core}}\r\n                <div class=\"number-label\">Claims</div>\r\n              </div>\r\n              </a>\r\n            </div>\r\n            <div class=\"col-md-6 col-xs-6\">\r\n              <a class=\"inherit-anchor\" href=\"/sources?company={{_l|cgi_escape_name}}\">\r\n              <div class=\"number-small\">{{_l+source+*count|core}}\r\n                <div class=\"number-label\">Sources</div>\r\n              </div>\r\n              </a>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n  </div>"
+      }
+    ]
+  }
+}
