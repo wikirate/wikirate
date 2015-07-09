@@ -1,5 +1,10 @@
 card_accessor :latest_value_year, :type=>:phrase
 
+def direct_contribution_count
+  1
+  #latest_value_year.present? ? 1 : 0
+end
+
 def latest_value_card
   Card.fetch "#{name}+#{latest_value_year}"
 end

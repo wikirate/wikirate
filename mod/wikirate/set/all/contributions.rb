@@ -1,6 +1,6 @@
 def update_direct_contribution_count
   return unless respond_to? :direct_contribution_count
- 
+
   new_contr_count = intrusive_family_acts.count
   Card::Auth.as_bot do
     if direct_contribution_count_card.new_card?
@@ -20,7 +20,7 @@ def update_contribution_count
     else
       0
     end
-    
+
   if respond_to? :indirect_contributor_search_args
     indirect_contributor = indirect_contributor_search_args.inject([]) do |cards, search_args|
       cards += Card.search(search_args)
@@ -55,12 +55,14 @@ def contributees res=[], visited=::Set.new
 	      pointer.item_cards
 	    end.flatten
   elsif type_code == :wikirate_analysis
-    res += [self, left, right]  
+    res += [self, left, right, self.fetch(:trait=>'analyses_with_articles') ]
   elsif type_code == :wikirate_company or type_code == :wikirate_topic
     res << self
+  elsif type_code == :metric
+    res += [right, Card.fetch("#{right.name}+metric")]
   else
     if left and !visited.include?(left.name) and
-      ( 
+      (
         right_id == VoteCountID or
         ( includee_set = Card.search(:included_by=>left.name).map(&:name) and
          !visited.intersection(includee_set).empty? )
@@ -71,13 +73,17 @@ def contributees res=[], visited=::Set.new
   [res, visited]
 end
 
-event :new_contributions, :before=>:extend, :when=>proc{ |c| !c.supercard and c.current_act and not (c.right and (c.right.codename == 'contribution_count' or c.right.codename == 'direct_contribution_count')) } do
+def contribution_card?
+  (r = right) && (r.codename == 'contribution_count' || r.codename == 'direct_contribution_count')
+end
+
+event :new_contributions, :before=>:extend, :when=>proc{ |c| !c.supercard && c.current_act && !c.contribution_card? } do
   visited = ::Set.new
   contr = []
   @current_act.actions.each do
     contr, visited = contributees( contr, visited )
   end
-  
+
   contr.uniq.each do |con_card|
     con_card.update_contribution_count if con_card.respond_to? :update_contribution_count
   end
