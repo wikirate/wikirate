@@ -58,8 +58,8 @@ def contributees res=[], visited=::Set.new
     res += [self, left, right, self.fetch(:trait=>'analyses_with_articles') ]
   elsif type_code == :wikirate_company or type_code == :wikirate_topic
     res << self
-  elsif type_code == :metric
-    res += [right, Card.fetch("#{right.name}+metric")]
+  elsif type_code == :metric && (r = right)
+    res += [r, Card.fetch("#{r.name}+metric")]
   else
     if left and !visited.include?(left.name) and
       (
