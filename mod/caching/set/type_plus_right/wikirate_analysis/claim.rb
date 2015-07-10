@@ -1,0 +1,8 @@
+include Card::CachedCount
+
+expired_cached_counts do |changed_card|
+  if (l=changed_card.left)  && l.type_code == :claim &&
+     (r=changed_card.right) && r.type_code == :pointer && (r.key == 'company' || r.key == 'topic')
+    changed_card.item_cards
+  end
+end

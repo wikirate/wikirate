@@ -25,6 +25,12 @@ PATH
       card (= 1.15.7)
       rails (~> 4.2)
 
+PATH
+  remote: /opt/wagn-rspec-formatter
+  specs:
+    wagn-rspec-formatter (2.4.0)
+      rspec-core (~> 3.1.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -361,4 +367,5 @@ DEPENDENCIES
   timecop
   turn (~> 0.8.3)
   wagn!
+  wagn-rspec-formatter!
   wbench
