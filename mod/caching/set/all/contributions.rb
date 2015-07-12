@@ -60,6 +60,7 @@ def contributees res=[], visited=::Set.new
     res << self
   elsif type_code == :metric && (r = right)
     res << r
+    Card::Cache[Card::Set::Right::YinyangDragItem].delete key
   else
     if left and !visited.include?(left.name) and
       (
