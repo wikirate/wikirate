@@ -138,8 +138,8 @@ format :html do
       opts[:no_value] = !topic_tags || !topic_tags.include_item?(main_name)
     when WikirateCompanyID
       if (analysis = Card.fetch "#{votee.name}+#{main_name}")
-        claim_cnt = subformat(Card.fetch("#{analysis.name}+claim+*count")).render_core.to_i
-        source_cnt = subformat(Card.fetch("#{analysis.name}+sources+*count")).render_core.to_i
+        claim_cnt = subformat(Card.fetch("#{analysis.name}+claim+*cached count")).render_core.to_i
+        source_cnt = subformat(Card.fetch("#{analysis.name}+sources+*cached count")).render_core.to_i
         opts[:sort][:contributions] = analysis.direct_contribution_count.to_i + claim_cnt + source_cnt
         opts[:sort][:name] = votee.name.upcase
       end
@@ -161,8 +161,8 @@ format :html do
     when WikirateTopicID
       opts[:sort][:recent] = votee.updated_at.to_i
       if (analysis = Card.fetch "#{main_name}+#{votee.name}")
-        claim_cnt = subformat(Card.fetch("#{analysis.name}+claim+*count")).render_core.to_i
-        source_cnt = subformat(Card.fetch("#{analysis.name}+sources+*count")).render_core.to_i
+        claim_cnt = subformat(Card.fetch("#{analysis.name}+claim+*cached count")).render_core.to_i
+        source_cnt = subformat(Card.fetch("#{analysis.name}+sources+*cached count")).render_core.to_i
         opts[:sort][:contributions] = analysis.direct_contribution_count.to_i + claim_cnt + source_cnt
       end
     when MetricID
