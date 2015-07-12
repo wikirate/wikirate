@@ -1,5 +1,3 @@
-CACHED_METRIC_KEY
-
 format :html do
   view :content do |args|
     if (metric = card[1..2]) && metric.type_code == :metric
