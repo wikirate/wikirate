@@ -202,12 +202,13 @@ namespace :wikirate do
         </ul>
       }
     end
-    host = 'http://dev.wikirate.org'
-    #host = 'http://localhost:3000'
-    test_pages = ENV['page'] ? [ENV['page']] : ['Home','Articles','Topics','Companies','Metrics','Claims','Sources','Sara_Cifani','Apple_Inc','Natural_Resource_Use','McDonald_s_Corporation+Natural_Resource_Use', 'Newsweek+Newsweek_Green_Score']
+
+    #host = 'http://dev.wikirate.org'
+    host = 'http://localhost:3000'
+    test_pages = ENV['page'] ? [ENV['page']] : ['Companies'] #['Home','Articles','Topics','Companies','Metrics','Claims','Sources','Sara_Cifani','Apple_Inc','Natural_Resource_Use','McDonald_s_Corporation+Natural_Resource_Use', 'Newsweek+Newsweek_Green_Score']
     #test_pages = ENV['name'] ? [ENV['name']] : ['Home']
     runs = ENV['run'] || 1
-    log_args = {:performance_log=>{:output=>:card, :methods=>[:view, :search, :fetch], :details=>true}}
+    log_args = {:performance_log=>{:output=>:card, :methods=>[:view, :search, :fetch], :details=>true, :min_time=>1}}
     test_pages.each do |page|
       url = "#{host}/#{page}"
       puts page

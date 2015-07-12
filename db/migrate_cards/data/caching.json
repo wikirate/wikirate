@@ -1,0 +1,26 @@
+{
+  "url": null,
+  "timestamp": "2015-07-12 14:06:56 +0200",
+  "card": {
+    "name": "export",
+    "type": "Pointer",
+    "content": "[[Company+company contribution details+*type plus right+*structure]]\n[[company topic drag item]]\n[[company metric drag item]]",
+    "value": [
+      {
+        "name": "Company+company contribution details+*type plus right+*structure",
+        "type": "HTML",
+        "content": "<div class=\"row clearfix company-content company-page-logo-container\">\r\n    <div class=\"col-md-12 col-xs-12 nopadding left\">\r\n      <a class=\"inherit-anchor\" href=\"{{_l|url}}\"><div class=\"row-data center-logo\">{{_l+logo}}</div></a>\r\n      <div class=\"row-data data-count contribution-count\">\r\n        <div class=\"number-large\">{{_l+*contribution count}}\r\n          <div class=\"number-label\">Contributions</div>\r\n        </div>\r\n      </div>\r\n      <div class=\"row-data data-count contribution-details\">\r\n        <div class=\"col-md-12 nopadding\">\r\n          <div class=\"row clearfix\">\r\n            <div class=\"col-md-6 col-xs-6\">\r\n              <a class=\"inherit-anchor\" href=\"{{_l|url}}\">\r\n               <div class=\"number-small\">{{_l+Analyses with Articles+*cached count|core}}\r\n                <div class=\"number-label\">Articles</div>\r\n              </div>\r\n              </a>\r\n            </div>\r\n            <div class=\"col-md-6 col-xs-6\">\r\n              <a class=\"inherit-anchor\" href=\"{{_l|url}}\">\r\n              <div class=\"number-small\">{{_l+metric+*cached count|core}}\r\n                <div class=\"number-label\">Metrics</div>\r\n              </div>\r\n              </a>\r\n            </div>\r\n          </div>\r\n          <div class=\"row clearfix\">\r\n            <div class=\"col-md-6 col-xs-6\">\r\n              <a class=\"inherit-anchor\" href=\"/claims?company={{_l|cgi_escape_name}}\">\r\n              <div class=\"number-small\">{{_l+claim_count|core}}\r\n                <div class=\"number-label\">Claims</div>\r\n              </div>\r\n              </a>\r\n            </div>\r\n            <div class=\"col-md-6 col-xs-6\">\r\n              <a class=\"inherit-anchor\" href=\"/sources?company={{_l|cgi_escape_name}}\">\r\n              <div class=\"number-small\">{{_l+source+*cached count|core}}\r\n                <div class=\"number-label\">Sources</div>\r\n              </div>\r\n              </a>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n  </div>"
+      },
+      {
+        "name": "company topic drag item",
+        "type": "HTML",
+        "content": "  <div class=\"topic-item contribution-item\">\r\n    <div class=\"header\">\r\n      <div class=\"handle\">\r\n        <span class=\"glyphicon glyphicon-option-vertical\"></span>\r\n      </div>\r\n      {{_2+*vote count}}\r\n      <div class=\"logo\">{{_2+image|core;size:small}}</div>\r\n      <a class=\"name\" href=\"{{_l|linkname}}\">{{_2|name}}</a>\r\n    </div>\r\n    <div class=\"data\">\r\n     <!-- <div class=\"details-toggle\" data-append=\"topic_details\">\r\n        <span class=\"glyphicon glyphicon-triangle-right\"></span>\r\n      </div>-->\r\n      {{_l+analysis contributions|core}}\r\n    </div>\r\n    <div class=\"details\"></div>\r\n  </div>"
+      },
+      {
+        "name": "company metric drag item",
+        "type": "HTML",
+        "content": "  \r\n  <!--prototype: Company+MetricDesigner+MetricName+yinyang drag item -->\r\n  <div class=\"metric-item value-item\">\r\n    <div class=\"header\">\r\n      <div class=\"handle\">\r\n        <span class=\"glyphicon glyphicon-option-vertical\"></span>\r\n      </div>\r\n      {{_llr+_lr+*vote count}}\r\n      <a href=\"{{_lr+contributions|linkname}}\">\r\n      <div class=\"logo\">\r\n        {{_llr+logo|core;size:small}} \r\n      </div>\r\n      </a>\r\n      <div class=\"name\">\r\n        <a href=\"{{_llr+_lr|linkname}}\">\r\n          {{_lr|name}}\r\n        </a>\r\n      </div>\r\n    </div>\r\n    <div class=\"data\">\r\n      <div class=\"data-item hide-with-details\">\r\n        {{_llr+_lr+_1+latest value|concise}}\r\n      </div>\r\n      <div class=\"data-item show-with-details text-center\">\r\n        <span class=\"label label-metric\">[[_llr+_lr|Metric Details]]</span> \r\n      </div>\r\n      <div class=\"details-toggle\" data-append=\"metric_details\">\r\n        <span class=\"glyphicon glyphicon-triangle-right\"></span>\r\n      </div>\r\n    </div>\r\n    <div class=\"details\">\r\n    </div>\r\n  </div>"
+      }
+    ]
+  }
+}
