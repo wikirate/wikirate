@@ -3,6 +3,7 @@
 class Caching < Card::Migration
   def up
     Card.fetch("Analyses with articles").update_attributes! :codename=>'analyses_with_articles'
+    Card['yinyang drag item'].update_attributes! :codename=>'yinyang_drag_item'
     import_json "company_contribution_details.json"
     Card.create! :name=>'*cached count', :codename=>'cached_count',
       :subcards=>{'+*right+*update'=>'[[Administrator]]', '+*right+*delete'=>'[[Administrator]]'}
