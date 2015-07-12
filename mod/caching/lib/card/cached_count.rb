@@ -7,28 +7,30 @@ class Card
 
     # contains blocks that get called with a card as argmuent and return
     # all cards that need cache update after a change to to that card
-    @@update_triggers = {:delete=>[], :create=>[], :update=>[], :all=>[]}
-    mattr_accessor :update_triggers  # accessible in E and M
+    @@expiry_checks = {:delete=>[], :create=>[], :update=>[], :all=>[], :save=>[]}
+    mattr_accessor :expiry_checks  # accessible in E and M
     def self.included(host_class)
       host_class.extend ClassMethods
-      host_class.card_accessor :cached_count, :type=>:number, :default=>'0'
+      host_class.card_accessor :cached_count, :type=>:number
       host_class
     end
 
     module ClassMethods
-      def expired_cached_counts args={}, &block
-        on_action = args[:on] || :all
-        Array.wrap(on_action).each do |a|
-          Card::CachedCount.update_triggers[a] << block
-        end
-      end
-    end
 
-    def run_update_triggers action
-      Card::CachedCount.update_triggers[action].each do |block|
-        if (expired = block.call(self))
-          Array.wrap(expired).each do |item|
-            item.update_cached_count if item.respond_to? :update_cached_count
+      def expired_cached_count_cards args={}, &block
+        if args[:set]
+          set_name = args[:set].to_s.gsub(':','').underscore
+          on_actions = Array.wrap(args[:on]) || [:create, :update, :delete]
+          event_name = "update_cached_counts_for_set_#{set_name}_on_#{on_actions.join('_')}"
+          args[:set].class_eval do
+            event event_name.to_sym, :on => on_actions, :after=>:extend, &block# do
+#              Array.wrap(block.call).update_cached_count
+ #           end
+          end
+        else
+          on_actions = args[:on] || :all
+          Array.wrap(on_actions).each do |a|
+            Card::CachedCount.expiry_checks[a] << block
           end
         end
       end
@@ -45,6 +47,7 @@ class Card
             cached_count_card.expire
           end
         end
+        new_count
       end
     end
 

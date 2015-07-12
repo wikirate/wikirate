@@ -1,3 +1,7 @@
+def followable?
+  false
+end
+
 format :html do
   view :missing  do |args|
     if @card.new_card? and @card.left
