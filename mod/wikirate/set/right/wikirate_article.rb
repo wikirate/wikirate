@@ -24,7 +24,13 @@ format :html do
   
   def handle_edit_article args
     if params[:edit_article] && card.ok?(:update)
-      render :core, args #to trigger fetching citations information
+      # if missing view renders core view, it will cause infinit loop
+      # core -> missing -> core ... -> stack level too deep
+      if @current_view == :missing 
+        yield
+      else
+        render :core, args #to trigger fetching citations information
+      end
       render :edit, args
     else
       yield
