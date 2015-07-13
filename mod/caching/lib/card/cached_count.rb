@@ -17,7 +17,7 @@ class Card
 
     def cached_count
       count = cached_count_card.content
-      count.present? ? count : update_cached_count
+      count.present? ? count.to_i : update_cached_count
     end
 
     module ClassMethods
