@@ -1,8 +1,7 @@
 include Card::CachedCount  # used to cache year of latest metric value
 
 def latest_value_year
-  cc = cached_count
-  cc.present? ? cc : update_cached_count
+  cached_count
 end
 
 def latest_value_card
