@@ -36,7 +36,7 @@ format :html do
   end
 
   view :modal_details do |args|
-    modal_link = subformat(card)._render_modal_link(args.merge(:text=>card.value))#,:html_args=>{:class=>"td year"}))
+    modal_link = subformat(card)._render_modal_link(args.merge(:text=>card.value, :path_opts=>{:slot=>{:show=>:menu}})) #,:html_args=>{:class=>"td year"}))
     %{
       <span class="metric-value">
         #{modal_link}
@@ -48,9 +48,9 @@ format :html do
   view :timeline_data do |args|
     year  =  content_tag(:span, card.cardname.right, :class=>'metric-year')
     value_card = card.fetch(:trait=>:value)
-    value = ((value_card = card.fetch(:trait=>:value)) && value_card.content) || ''
+    #value = ((value_card = card.fetch(:trait=>:value)) && value_card.content) || ''
     #value = nest value_card
-    value <<  _render_modal_details(args) # content_tag(:span, value, :class=>'metric-value')
+    value =  _render_modal_details(args.merge(:modal_slot_id_postfix=>'timeline')) # content_tag(:span, value, :class=>'metric-value')
     value << content_tag(:span, subformat(card[0..1])._render_legend(), :class=>'metric-unit')
 
     line   =  content_tag(:div, '', :class=>'timeline-dot')
