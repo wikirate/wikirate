@@ -10,7 +10,7 @@ describe Card::Set::Type::Source do
       
       url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
       Card::Env.params[:sourcebox] = 'true'
-      sourcepage = Card.create! :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url} }
+      sourcepage = Card.create! :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
       preview = LinkThumbnailer.generate(url)
 
       expect(Card.fetch("#{ sourcepage.name }+title").content).to eq(preview.title)
@@ -20,7 +20,7 @@ describe Card::Set::Type::Source do
     it "should handle empty source" do
         url = ''
         Card::Env.params[:sourcebox] = 'true'
-        sourcepage = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url} }
+        sourcepage = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
         expect(sourcepage).not_to be_valid
         expect(sourcepage.errors).to have_key :source
         
@@ -30,8 +30,8 @@ describe Card::Set::Type::Source do
       it "should return exisiting url" do
         url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
         Card::Env.params[:sourcebox] = 'true'
-        firstsourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url} }
-        secondsourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url} }
+        firstsourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url} , '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""}}
+        secondsourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
         expect(firstsourcepage.name).to eq(secondsourcepage.name)
       end
     end
@@ -39,8 +39,8 @@ describe Card::Set::Type::Source do
       it "should show error" do
         url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
         
-        firstsourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url} }
-        secondsourcepage = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url} }
+        firstsourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
+        secondsourcepage = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
         
         expect(secondsourcepage).not_to be_valid
         expect(secondsourcepage.errors).to have_key :link
@@ -60,7 +60,7 @@ describe Card::Set::Type::Source do
       it do 
         url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
         
-        sourcepage = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url}, '+Text' => {:content=>"Hello boys!",:type_id=>Card::BasicID} }
+        sourcepage = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url},'+File' =>{:type_id=>Card::FileID}, '+Text' => {:content=>"Hello boys!",:type_id=>Card::BasicID} }
         expect(sourcepage).not_to be_valid
         expect(sourcepage.errors).to have_key :source
         expect(sourcepage.errors[:source]).to include("Please only add one type of source")
@@ -70,7 +70,7 @@ describe Card::Set::Type::Source do
       context "link points to a file" do
         it "downloads it and saves as a file source" do
           pdf_url = "http://www.relacweb.org/conferencia/images/documentos/Hoteles_cerca.pdf"
-          sourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> pdf_url} }
+          sourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> pdf_url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""}}
           expect(sourcepage.errors).to be_empty
           expect(sourcepage.fetch(:trait=>:file)).to_not be_nil
           expect(sourcepage.fetch(:trait=>:wikirate_link)).to be_nil
@@ -83,7 +83,7 @@ describe Card::Set::Type::Source do
           
           Card::Env.params[:sourcebox] = 'true'
           url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
-          sourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url} }
+          sourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
           url_key = sourcepage.cardname.url_key
           new_source_url = "#{ Card::Env[:protocol] }#{ Card::Env[:host] }/#{url_key }"
 
@@ -99,7 +99,7 @@ describe Card::Set::Type::Source do
           url_key = company.cardname.url_key
 
           new_source_url = "#{ Card::Env[:protocol] }#{ Card::Env[:host] }/#{url_key }"
-          new_sourcepage = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> new_source_url} }
+          new_sourcepage = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> new_source_url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
           expect(new_sourcepage).not_to be_valid
           expect(new_sourcepage.errors).to have_key :source
           expect(new_sourcepage.errors[:source]).to include(" can only be source type or valid URL.")
@@ -112,7 +112,7 @@ describe Card::Set::Type::Source do
          
           new_source_url = "#{ Card::Env[:protocol] }#{ Card::Env[:host] }/non_exisiting_card_1"
 
-          new_sourcepage = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> new_source_url} }
+          new_sourcepage = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> new_source_url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
           expect(new_sourcepage).not_to be_valid
           expect(new_sourcepage.errors).to have_key :source
           expect(new_sourcepage.errors[:source]).to include(" does not exist.")
@@ -125,12 +125,12 @@ describe Card::Set::Type::Source do
         it "returns source card " do
           source_card = create_page
           Card::Env.params[:sourcebox] = 'true'
-          return_source_card = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> source_card.name} }
+          return_source_card = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> source_card.name}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
           expect(return_source_card.name).to eq(source_card.name)
         end
         it "returns error" do
           Card::Env.params[:sourcebox] = 'true'
-          return_source_card = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> get_a_sample_company.name} }
+          return_source_card = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> get_a_sample_company.name}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
           expect(return_source_card).not_to be_valid
           expect(return_source_card.errors).to have_key :source
           expect(return_source_card.errors[:source]).to include(" can only be source type or valid URL.")
@@ -139,7 +139,7 @@ describe Card::Set::Type::Source do
       context "while link is a non existing card" do
         it "returns error " do
           Card::Env.params[:sourcebox] = 'true'
-          return_source_card = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> "this is not a exisiting card"} }
+          return_source_card = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> "this is not a exisiting card"}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
           expect(return_source_card).not_to be_valid
           expect(return_source_card.errors).to have_key :source
           expect(return_source_card.errors[:source]).to include(" does not exist.")

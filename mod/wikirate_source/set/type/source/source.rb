@@ -27,30 +27,36 @@ end
 
 event :check_source, :after=>:approve_subcards, :on=>:create do
   source_cards = [subcards["+#{ Card[:wikirate_link].name }"],subcards["+File"],subcards["+Text"]].compact
-  if source_cards.length > 1 
+  if source_cards.length > 1
     errors.add :source, "Please only add one type of source"
   elsif source_cards.length == 0
     errors.add :source, "Please at least add one type of source"
   end
 end
 
-event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc{ |c| not (c.subcards["+File"] or c.subcards["+Text"]) } do
+def has_file_or_text?
+  file_card = subcards["+File"]
+  text_card = subcards["+Text"]
+  ( file_card && file_card.stringify_keys.has_key?("content") ) || ( text_card && ( text_card_content = (text_card.stringify_keys)["content"] ) && !text_card_content.empty? )
+end
+
+event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc{  |c| !c.has_file_or_text? } do
 
   linkparams = subcards["+#{ Card[:wikirate_link].name }"]
-  url = linkparams && linkparams[:content] or errors.add(:link, " does not exist.")  
-  if errors.empty? and url.length != 0 
+  url = linkparams && linkparams[:content] or errors.add(:link, " does not exist.")
+  if errors.empty? and url.length != 0
     if Card::Env.params[:sourcebox] == 'true'
       wikirate_url = "#{ Card::Env[:protocol] }#{ Card::Env[:host] }"
       if url.start_with?wikirate_url
         # try to convert the link to source card, easier for users to add source in +source editor
         uri = URI.parse(URI.unescape(url))
-        cite_card = Card[uri.path] 
+        cite_card = Card[uri.path]
       else
-        cite_card = Card[url] 
+        cite_card = Card[url]
       end
-      if cite_card 
+      if cite_card
         if cite_card.type_code != :source
-          errors.add :source, " can only be source type or valid URL."     
+          errors.add :source, " can only be source type or valid URL."
         else
           self.name = cite_card.name
           abort :success
@@ -66,36 +72,34 @@ event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc
         self.name = duplicated_name
         abort :success
       else
-        errors.add :link, "exists already. <a href='/#{duplicated_name}'>Visit the source.</a>"   
+        errors.add :link, "exists already. <a href='/#{duplicated_name}'>Visit the source.</a>"
       end
     end
-    if errors.empty? and file_link url
+    if errors.empty? and file_link? url
       download_file_and_add_to_plus_file url
-    end   
+    end
     parse_source_page url if Card::Env.params[:sourcebox] == 'true'
   end
-  
+
 end
 
 def download_file_and_add_to_plus_file url
-  
   url.gsub!(/ /, '%20')
   url.gsub!(/https:/, 'http:')
-  uri = nil  
-  # if open raises errors , just treat the source as a normal source
-  uri = open(url, :allow_redirections => :safe,  "User-Agent" => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.65 Safari/537.36",) 
-  filename = ::File.basename(URI.parse(url).path)    
-  file_uploaded = ActionDispatch::Http::UploadedFile.new(:tempfile => uri, :filename => filename)
+  #uri = nil
+  #uri = open(url, :allow_redirections => :safe,  "User-Agent" => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.65 Safari/537.36",)
+  #filename = ::File.basename(URI.parse(url).path)
+  #file_uploaded = ActionDispatch::Http::UploadedFile.new(:tempfile => uri, :filename => filename)
   subcards["+File"] = {
-    :attach=>file_uploaded,:content=>"CHOSEN",:type_id=>Card::FileID
+    :attach=>URI.parse(url),:content=>"CHOSEN",:type_id=>Card::FileID
   }
   subcards.delete("+#{ Card[:wikirate_link].name }")
-rescue
+rescue  # if open raises errors , just treat the source as a normal source
   Rails.logger.info "Fail to get the file from link"
   parse_source_page url
 end
 
-def file_link url 
+def file_link? url
   # just got the header instead of downloading the whole file
   uri = URI.parse( url )
   http = Net::HTTP.start(uri.host)
@@ -105,9 +109,9 @@ def file_link url
   http.finish
   # prevent from showing file too big while users are adding a link source
   max_size = (max = Card['*upload max']) ? max.db_content.to_i : 5
-  
+
   not (content_type.start_with?"text/html" or content_type.start_with?"image/") and content_size.to_i <= max_size.kilobytes
-rescue 
+rescue
   Rails.logger.info "Fail to extract header from the #{ url }"
   false
 end
@@ -127,24 +131,24 @@ end
 
 
 event :autopopulate_website, :after=>:approve_subcards, :on=>:create do
-  website = Card[:wikirate_website].name  
-  if link_card = subcards["+#{ Card[:wikirate_link].name }"] and link_card.errors.empty?  
+  website = Card[:wikirate_website].name
+  if link_card = subcards["+#{ Card[:wikirate_link].name }"] and link_card.errors.empty?
     website_subcard = subcards["+#{website}"]
     unless website_subcard
-      host = link_card.instance_variable_get '@host' 
+      host = link_card.instance_variable_get '@host'
       website_card = Card.new :name=>"+#{website}", :content => "[[#{host}]]", :supercard=>self
       website_card.approve
-      subcards["+#{website}"] = website_card  
+      subcards["+#{website}"] = website_card
       if !Card.exists? host
         Card.create :name=>host, :type_id=>Card::WikirateWebsiteID
       end
     end
   end
   if subcards["+File"]
-    unless website_subcard  
+    unless website_subcard
       website_card = Card.new :name=>"+#{website}", :content => "[[wikirate.org]]", :supercard=>self
       website_card.approve
-      subcards["+#{website}"] = website_card  
+      subcards["+#{website}"] = website_card
     end
   end
 end
@@ -169,19 +173,19 @@ format :html do
     add_name_context
     super args
   end
- 
+
   view :missing do |args|
     _view_link args
   end
-  
+
   view :titled, :tags=>:comment do |args|
     render_titled_with_voting args
   end
-  
+
   view :open do |args|
     super args.merge( :custom_source_header=>true )
   end
-  
+
   view :header do |args|
     if args.delete(:custom_source_header)
       render_header_with_voting
@@ -190,5 +194,5 @@ format :html do
     end
   end
 
-end  
+end
 
