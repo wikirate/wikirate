@@ -23,8 +23,8 @@ format :html do
 
   view :core do |args|
     article_card = Card.fetch "#{analysis_name}+article"
-    claim_cnt = subformat(Card.fetch("#{analysis_name}+claim+*cached count", :new=>{})).render_core
-    source_cnt = subformat(Card.fetch("#{analysis_name}+sources+*cached count", :new=>{})).render_core
+    claim_cnt = (claims = Card.fetch("#{analysis_name}+claim")) && claims.cached_count
+    source_cnt = (sources = Card.fetch("#{analysis_name}+sources")) && sources.cached_count
     empty = glyphicon 'plus'
     data = []
     if claim_cnt == '0'
