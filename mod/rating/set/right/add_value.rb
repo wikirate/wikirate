@@ -9,13 +9,13 @@ event :add_value, :before=>:approve, :on=>:create do
 end
 
 def value_name
-  if (metric_and_company_name = cardname.left) && Env.params[:year] 
+  if (metric_and_company_name = cardname.left) && Env.params[:year]
     "#{metric_and_company_name}+#{Env.params[:year]}"
   end
 end
 
 
-def add_metric_value 
+def add_metric_value
   if (v_name = value_name)
     Env.params[:sourcebox] = 'true'
     source_card = Card.create :type_id=>Card::SourceID,:subcards=>subcards
@@ -31,7 +31,7 @@ def add_metric_value
             '+value'=>{:content=>Env.params[:value]},
             '+source'=>"[[#{source_card.name}]]"
           }
-        
+
       end
       abort :success
     else
@@ -52,7 +52,7 @@ format :html do
   end
 
 
-  view :core do |args|
+  view :core, :perms=>:update do |args|
     years = Card.search :type=>'year', :sort=>'name', :dir=>'desc'
     options = [["-- Select --",""]] + years.map{|x| [x.name,x.name]}
     year_tag = select_tag('year', options_for_select(options, years.first.name), :class=>'pointer-select form-control')
