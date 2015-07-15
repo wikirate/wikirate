@@ -20,7 +20,7 @@ format :html do
   view :raw do |args|
     result = super(args)
     user_agent = request.user_agent
-    if user_agent && user_agent=="Facebot" || user_agent.include?"facebookexternalhit/1.1"
+    if user_agent && ( user_agent=="Facebot" || user_agent.include?("facebookexternalhit/1.1"))
       result += subformat(Card.fetch("#{Env.params["id"]}+facebook_meta"))._render_core
     end
     result
