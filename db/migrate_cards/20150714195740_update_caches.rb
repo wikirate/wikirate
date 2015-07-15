@@ -11,8 +11,8 @@ class UpdateCaches < Card::Migration
     end
     Card::Cache.reset_global
     Card.search(:type=>'analysis').each do |analysis|
-      company.fetch(:trait=>:claim).update_cached_count
-      company.fetch(:trait=>:source).update_cached_count
+      analysis.fetch(:trait=>:claim).update_cached_count
+      analysis.fetch(:trait=>:source).update_cached_count
     end
     Card::Cache.reset_global
     Card.search(:left=>{:type=>'metric'}, :right=>{:type=>'company'}).each do |metric_value_set_card|
