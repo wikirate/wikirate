@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class UpdateCaches < Card::Migration
+class UpdateMetricValueCaches < Card::Migration
   def up
     Card::Cache.reset_global
     Card.search(:left=>{:type=>'metric'}, :right=>{:type=>'company'}).each do |metric_value_set_card|

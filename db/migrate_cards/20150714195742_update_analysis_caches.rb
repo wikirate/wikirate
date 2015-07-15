@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class UpdateCaches < Card::Migration
+class UpdateAnalysisCaches < Card::Migration
   def up
     Card::Cache.reset_global
     Card.search(:type=>'analysis').each do |analysis|
