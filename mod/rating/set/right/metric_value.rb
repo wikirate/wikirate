@@ -35,7 +35,7 @@ format :html do
       :slot   => {:company => card.cardname.left_name.tag, :metric=>card.cardname.left_name.trunk}
     }
     link = _render_modal_link(args.merge(:text=>'+ Add New', :path_opts=>path_opts))
-    timeline_head(link, 'new')+_render_modal_slot(args)
+    timeline_head(link, 'new')
   end
 
   view :timeline_header do |args|

@@ -20,9 +20,7 @@ def company_card
   Card.fetch company_name
 end
 
-event :add_value, :before=>:process_subcards, :on=>:save do
-  create_source
-end
+
 
 event :set_metric_value_name, :before=>:set_autoname do
   self.name = ['+metric', '+company', '+year'].map do |name|
@@ -30,7 +28,12 @@ event :set_metric_value_name, :before=>:set_autoname do
     end.join '+'
 end
 
+event :add_value, :after=>:set_metric_value_name, :on=>:save do
+  create_source
+end
+
 def create_source
+  binding.pry
   Env.params[:sourcebox] = 'true'
   value = subcards.delete('+value')
   source_card = Card.create :type_id=>Card::SourceID, :subcards=>subcards
@@ -38,7 +41,7 @@ def create_source
   if source_card.errors.empty?
     @subcards = {
       '+value' => value,
-      '+source' => "[[#{source_card.name}]]"
+      '+source' => {:content=>"[[#{source_card.name}]]"}
     }
   else
     source_card.errors.each do |key,value|
@@ -51,8 +54,10 @@ end
 
 format :html do
   def default_new_args args
-    args[:hidden] = {#:success=>args[:success],
-      'card[subcards][+metric][content]' => args[:metric]}
+    args[:hidden] = {
+      :success=>{:id=>'_self', :soft_redirect=>true, :view=>:titled},
+      'card[subcards][+metric][content]' => args[:metric]
+    }
 
     if args[:company]
       args[:hidden]['card[subcards][+company][content]'] = args[:company]
@@ -80,12 +85,11 @@ format :html do
   end
 
   view :modal_details do |args|
-    modal_link = subformat(card)._render_modal_link(args.merge(:text=>card.value, :path_opts=>{:slot=>{:show=>:menu}})) #,:html_args=>{:class=>"td year"}))
+    modal_link = subformat(card)._render_modal_link(args.merge(:text=>card.value, :path_opts=>{:slot=>{:show=>:menu,:optional_horizontal_menu=>:hide}})) #,:html_args=>{:class=>"td year"}))
     %{
       <span class="metric-value">
         #{modal_link}
       </span>
-      #{subformat(card)._render_modal_slot(args)}
     }
   end
 
@@ -94,7 +98,7 @@ format :html do
     value_card = card.fetch(:trait=>:value)
     #value = ((value_card = card.fetch(:trait=>:value)) && value_card.content) || ''
     #value = nest value_card
-    value =  _render_modal_details(args.merge(:modal_slot_id_postfix=>'timeline')) # content_tag(:span, value, :class=>'metric-value')
+    value =  _render_modal_details(args) # content_tag(:span, value, :class=>'metric-value')
     value << content_tag(:span, subformat(card[0..1])._render_legend(), :class=>'metric-unit')
 
     line   =  content_tag(:div, '', :class=>'timeline-dot')
