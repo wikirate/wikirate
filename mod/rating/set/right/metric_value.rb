@@ -29,9 +29,13 @@ format :html do
   end
 
   view :timeline_add_new_link do |args|
-    add_card = card.left.fetch(:trait=>:add_value)
-    link = subformat(add_card)._render_modal_link(args.merge(:text=>'+ Add New'))
-    timeline_head(link, 'new')+subformat(add_card)._render_modal_slot(args)
+    path_opts = {
+      :action => :new,
+      :type   => :metric_value,
+      :slot   => {:company => card.cardname.left_name.tag, :metric=>card.cardname.left_name.trunk}
+    }
+    link = _render_modal_link(args.merge(:text=>'+ Add New', :path_opts=>path_opts))
+    timeline_head(link, 'new')+_render_modal_slot(args)
   end
 
   view :timeline_header do |args|

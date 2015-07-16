@@ -20,7 +20,51 @@ def company_card
   Card.fetch company_name
 end
 
+event :add_value, :before=>:process_subcards, :on=>:save do
+  create_source
+end
+
+event :set_metric_value_name, :before=>:set_autoname do
+  self.name = ['+metric', '+company', '+year'].map do |name|
+      subcards.delete(name)['content'].gsub('[[','').gsub(']]','')
+    end.join '+'
+end
+
+def create_source
+  Env.params[:sourcebox] = 'true'
+  value = subcards.delete('+value')
+  source_card = Card.create :type_id=>Card::SourceID, :subcards=>subcards
+  Env.params[:sourcebox] = nil
+  if source_card.errors.empty?
+    @subcards = {
+      '+value' => value,
+      '+source' => "[[#{source_card.name}]]"
+    }
+  else
+    source_card.errors.each do |key,value|
+      errors.add key,value
+    end
+    abort :failure
+  end
+end
+
+
 format :html do
+  def default_new_args args
+    args[:hidden] = {#:success=>args[:success],
+      'card[subcards][+metric][content]' => args[:metric]}
+
+    if args[:company]
+      args[:hidden]['card[subcards][+company][content]'] = args[:company]
+    end
+    args[:structure] =
+      if args[:company]
+        'metric company add value'
+      else
+        'metric add value'
+      end
+    super(args)
+  end
 
   view :concise do |args|
     legend = subformat(card.metric_card)._render_legend args
