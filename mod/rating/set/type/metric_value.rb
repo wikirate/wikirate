@@ -21,19 +21,13 @@ def company_card
 end
 
 
-
 event :set_metric_value_name, :before=>:set_autoname do
   self.name = ['+metric', '+company', '+year'].map do |name|
       subcards.delete(name)['content'].gsub('[[','').gsub(']]','')
     end.join '+'
 end
 
-event :add_value, :after=>:set_metric_value_name, :on=>:save do
-  create_source
-end
-
-def create_source
-  binding.pry
+event :create_source_for_metric_value, :after=>:validate_name, :on=>:save do
   Env.params[:sourcebox] = 'true'
   value = subcards.delete('+value')
   source_card = Card.create :type_id=>Card::SourceID, :subcards=>subcards
@@ -50,6 +44,7 @@ def create_source
     abort :failure
   end
 end
+
 
 
 format :html do
