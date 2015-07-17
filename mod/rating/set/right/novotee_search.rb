@@ -1,7 +1,7 @@
 def virtual?; true end
 
 def raw_content
-  if cardname.left_name.right_name.key == 'metric'  # find only metrics with values
+  if self[0].type_id == WikirateCompanyID && cardname.left_name.right_name.key == 'metric'  # find only metrics with values
     '{"type":"_r","right_plus":["_1",{"right_plus":["*cached count",{"content":["ne","0"]}]}], "not":{"linked_to_by":{"left":"_user","right":["in","*upvotes","*downvotes"]}}, "limit":0, "return":"name"}'
   else
     '{"type":"_r","not":{"linked_to_by":{"left":"_user","right":["in","*upvotes","*downvotes"]}}, "limit":0, "return":"name"}'
