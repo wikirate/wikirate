@@ -1,7 +1,7 @@
 def virtual?; true end
 
 def raw_content
-  %({"type":"_r","linked_to_by":{"left":"_user","right":{"codename":"#{vote_type_codename}"}}, "limit":0})
+  %({"type":"_r","linked_to_by":{"left":"_user","right":{"codename":"#{vote_type_codename}"}}, "limit":0, "return":"name"})
 end
 
 def vote_type
@@ -29,22 +29,32 @@ format do
   alias :super_search_results :search_results
 
   def search_results
-    @search_results ||= enrich_result(get_search_result)
+     @search_results ||= enrich_result(get_search_result)
   end
 
   def get_search_result
     if !Auth.signed_in?
       get_result_from_session
     else
-      if card.sort_by && (vote_card = Auth.current.fetch(:trait=>card.sort_by))
-        votee_items = vote_card.item_names
+      if vote_order
         super_search_results.sort do |x,y|  # super returns array with votee cards
-          votee_items.index("~#{x.id}") <=> votee_items.index("~#{y.id}")
+          vote_order[x] <=> vote_order[y]
         end
       else
         super_search_results
       end
     end
+  end
+
+  def vote_order
+    @vote_order ||=
+      if card.sort_by && (vote_card = Auth.current.fetch(:trait=>card.sort_by))
+        votee_items = vote_card.item_names
+        super_search_results.each_with_object({}) do |name, hash|
+          hash[name] = votee_items.index "~#{Card.fetch_id(name)}"
+        end
+      end
+
   end
 
   def get_result_from_session
@@ -54,7 +64,7 @@ format do
   def list_with_session_votes
     if Env.session[card.vote_type]
       Env.session[card.vote_type].map do |votee_id|
-        Card.find_by_id_and_type_id votee_id, searched_type_id
+        Card.find_by_id_and_type_id(votee_id, searched_type_id).name
       end.compact
     else
       []
@@ -73,13 +83,15 @@ format :html do
           :sort        => { :importance=>votee.vote_count }
         }
         case main_type_id
-        when WikirateTopicID then topic_draggable_opts(votee,draggable_opts)
-        when MetricID then metric_draggable_opts(votee, draggable_opts)
-        when WikirateCompanyID then company_draggable_opts(votee, draggable_opts)
+        when WikirateTopicID    then topic_draggable_opts(votee, draggable_opts)
+        when MetricID           then metric_draggable_opts(votee, draggable_opts)
+        when WikirateCompanyID  then company_draggable_opts(votee, draggable_opts)
         when WikirateAnalysisID then analysis_draggable_opts(votee, draggable_opts)
         end
-        draggable nest(item), draggable_opts
-      end.join("\n").html_safe
+        unless draggable_opts[:no_value]
+          draggable nest(item), draggable_opts
+        end
+      end.compact.join("\n").html_safe
     end.html_safe
   end
   # it is for type_search
@@ -89,9 +101,9 @@ format :html do
         votee = extract_votee item
         sort_opts = { :sort => {} }
         case main_type_id
-        when WikirateTopicID then topic_draggable_opts(votee,sort_opts)
-        when MetricID then metric_draggable_opts(votee, sort_opts)
-        when WikirateCompanyID then company_draggable_opts(votee, sort_opts)
+        when WikirateTopicID    then topic_draggable_opts(votee, sort_opts)
+        when MetricID           then metric_draggable_opts(votee, sort_opts)
+        when WikirateCompanyID  then company_draggable_opts(votee, sort_opts)
         when WikirateAnalysisID then analysis_draggable_opts(votee, sort_opts)
         end
 
@@ -137,7 +149,7 @@ format :html do
       topic_tags = votee.fetch :trait=>:wikirate_topic
       opts[:no_value] = !topic_tags || !topic_tags.include_item?(main_name)
     when WikirateCompanyID
-      if (analysis = Card.fetch "#{votee.name}+#{main_name}")
+      if (analysis = Card["#{votee.name}+#{main_name}"])
         claim_cnt = Card.fetch("#{analysis.name}+claim").cached_count.to_i
         source_cnt = Card.fetch("#{analysis.name}+sources").cached_count.to_i
         opts[:sort][:contributions] = analysis.direct_contribution_count.to_i + claim_cnt + source_cnt
@@ -160,7 +172,7 @@ format :html do
     case votee.type_id
     when WikirateTopicID
       opts[:sort][:recent] = votee.updated_at.to_i
-      if (analysis = Card.fetch "#{main_name}+#{votee.name}")
+      if (analysis = Card["#{main_name}+#{votee.name}"])
         claim_cnt = Card.fetch("#{analysis.name}+claim").cached_count.to_i
         source_cnt = Card.fetch("#{analysis.name}+sources").cached_count.to_i
         opts[:sort][:contributions] = analysis.direct_contribution_count.to_i + claim_cnt + source_cnt

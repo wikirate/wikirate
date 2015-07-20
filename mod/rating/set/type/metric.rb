@@ -7,7 +7,7 @@ format :html do
     if (unit = Card.fetch("#{card.name}+unit"))
       unit.raw_content
     elsif (range = Card.fetch("#{card.name}+range"))
-        "/#{range.raw_content}"
+      "/#{range.raw_content}"
     else
       ''
     end
