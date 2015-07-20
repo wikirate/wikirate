@@ -36,48 +36,93 @@ describe Card::Set::Right::DownvoteeSearch do
   end
   describe "Html view" do
     describe "drag and drop view" do
+      before do
+        @metric = Card["Jedi+deadliness"]
+      end
       context "topic" do
         it "show drag and drop items" do
           topic = Card["Natural Resource Use"]
-          search_card = Card.fetch "#{topic.name}+metric+novotee_search"
-
+          
           # show downvotee 
           Card::Auth.current_id = Card['Joe User'].id
           Card::Auth.as_bot do
-            card_to_be_voted_down = Card[search_card.item_names[0]]
+            card_to_be_voted_down = @metric.vote_count_card
             card_to_be_voted_down.vote_down
             card_to_be_voted_down.save!
           end
           voted_down_search_card = Card.fetch "#{topic.name}+metric+downvotee_search"
           html = voted_down_search_card.format.render_drag_and_drop
+          expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down","data-update-id"=>"Natural_Resource_Use+metric+downvotee_search","data-bucket-name"=>"down_vote"}) do
+            with_tag "h5",:with=>{:class=>"vote-title"},:text=>"Not Important to Me"  
+            with_tag "div",:with=>{:class=>"empty-message"} 
+            with_tag("div",:with=>{:class=>"drag-item yinyang-row no-metric-value"}) do
+              with_tag "div",:with=>{:id=>"Natural_Resource_Use+Jedi+deadliness+yinyang_drag_item"}
+            end
+          end
         end
       end
-      context "metric" do
-
-      end
       context "company" do
-
+        context "topic" do
+          it "show drag and drop items" do
+            company = Card["Apple Inc"]
+            topic = Card["Force"]
+            # show downvotee 
+            Card::Auth.current_id = Card['Joe User'].id
+            Card::Auth.as_bot do
+              card_to_be_voted_down = topic.vote_count_card
+              card_to_be_voted_down.vote_down
+              card_to_be_voted_down.save!
+            end
+            voted_down_search_card = Card.fetch "#{company.name}+topic+downvotee_search"
+            html = voted_down_search_card.format.render_drag_and_drop
+            expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down","data-update-id"=>"Apple_Inc_+topic+downvotee_search","data-bucket-name"=>"down_vote"}) do
+              with_tag("div",:with=>{:class=>"drag-item yinyang-row"}) do
+                with_tag "div",:with=>{:id=>"Apple_Inc_+Force+yinyang_drag_item"}
+              end
+            end
+          end
+        end
+        context "metric" do
+          it "show drag and drop items" do
+            company = Card["Apple Inc"]
+          
+            # show downvotee 
+            Card::Auth.current_id = Card['Joe User'].id
+            Card::Auth.as_bot do
+              card_to_be_voted_down = @metric.vote_count_card
+              card_to_be_voted_down.vote_down
+              card_to_be_voted_down.save!
+            end
+            voted_down_search_card = Card.fetch "#{company.name}+metric+downvotee_search"
+            html = voted_down_search_card.format.render_drag_and_drop
+            expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down","data-update-id"=>"Apple_Inc_+metric+downvotee_search","data-bucket-name"=>"down_vote"}) do
+              with_tag("div",:with=>{:class=>"drag-item yinyang-row no-metric-value"}) do
+                with_tag "div",:with=>{:id=>"Apple_Inc_+Jedi+deadliness+yinyang_drag_item"}
+              end
+            end
+          end
+        end
       end
       context "analysis" do
-
+        it "shows metric drag and drop items" do
+            analysis = Card["Apple Inc+Natural_Resource_Use"]
+          
+            # show downvotee 
+            Card::Auth.current_id = Card['Joe User'].id
+            Card::Auth.as_bot do
+              card_to_be_voted_down = @metric.vote_count_card
+              card_to_be_voted_down.vote_down
+              card_to_be_voted_down.save!
+            end
+            voted_down_search_card = Card.fetch "#{analysis.name}+metric+downvotee_search"
+            html = voted_down_search_card.format.render_drag_and_drop
+            expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down","data-update-id"=>"Apple_Inc_+Natural_Resource_Use+metric+downvotee_search","data-bucket-name"=>"down_vote"}) do
+              with_tag("div",:with=>{:class=>"drag-item yinyang-row no-metric-value"}) do
+                with_tag "div",:with=>{:id=>"Apple_Inc_+Natural_Resource_Use+Jedi+deadliness+yinyang_drag_item"}
+              end
+            end
+          end
       end
-    end
-    describe "filter_and_sort view" do
-      context "topic" do
-
-      end
-      context "metric" do
-
-      end
-      context "company" do
-
-      end
-      context "analysis" do
-
-      end
-    end
-    describe "#extract_votee" do
-
     end
   end
 end

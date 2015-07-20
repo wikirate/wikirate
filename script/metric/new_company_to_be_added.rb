@@ -1,4 +1,4 @@
-require File.expand_path('../../config/environment',  __FILE__)
+require File.expand_path('../../../config/environment',  __FILE__)
 Card::Auth.as_bot
 company_file = ARGV[0] || 'script/companies.txt'
 def matched_company name

@@ -82,7 +82,7 @@ format :html do
       end.join("\n").html_safe
     end.html_safe
   end
-
+  # it is for type_search
   view :filter_and_sort do |args|
     res = with_filter_and_sort(args) do
       search_results.map do |item|
@@ -116,7 +116,7 @@ format :html do
   end
 
   def extract_votee item
-    if main_type_id == WikirateAnalysisID
+    if main_type_id == WikirateAnalysisID || main_type_id == MetricID
       item[2..-2]
     else
       item[1..-2]
