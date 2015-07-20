@@ -22,9 +22,10 @@ end
 
 
 event :set_metric_value_name, :before=>:set_autoname do
-  self.name = ['+metric', '+company', '+year'].map do |name|
-    subcards.delete(name)['content'].gsub('[[','').gsub(']]','')
-  end.join '+'
+  self.name = 
+    ['+metric', '+company', '+year'].map do |name|
+      subcards.delete(name)['content'].gsub('[[','').gsub(']]','')
+    end.join '+'
 end
 
 event :create_source_for_metric_value, :after=>:validate_name, :on=>:save do
