@@ -22,15 +22,16 @@ end
 
 
 event :set_metric_value_name, :before=>:set_autoname do
-  self.name = 
-    ['+metric', '+company', '+year'].map do |name|
+  self.name = ['+metric', '+company', '+year'].map do |name|
       subcards.delete(name)['content'].gsub('[[','').gsub(']]','')
     end.join '+'
 end
 
 event :create_source_for_metric_value, :after=>:validate_name, :on=>:save do
+  Env.params[:sourcebox] = 'true'
   value = subcards.delete('+value')
   source_card = Card.create :type_id=>Card::SourceID, :subcards=>subcards
+  Env.params[:sourcebox] = nil
   if source_card.errors.empty?
     @subcards = {
       '+value' => value,
