@@ -38,16 +38,19 @@ event :import_csv, :after=>:store, :on=>:update, :when=>proc{ |c| Env.params["is
         end
       end
       metric_value_card_name = "#{metric_pointer_card.item_names.first}+#{final_company_name}+#{metric_year.item_names.first}"
+
+      _subcard = {
+        "+metric"=>{"content"=>metric_pointer_card.content},
+        "+company"=>{"content"=>"[[#{final_company_name}]]",:type_id=>Card::PointerID},
+        "+value"=>{"content"=>value[0], :type_id=>Card::PhraseID},
+        "+year"=>{"content"=>metric_year.content, :type_id=>Card::PointerID},
+        "+Link"=>{:content=>"#{ Card::Env[:protocol] }#{ Card::Env[:host] }/#{left.cardname.url_key}", "type_id"=>Card::PhraseID}
+      }
       if metric_value_card = Card[metric_value_card_name]
-        metric_value_card.update_attributes! :subcards=>{'+value'=>value[0]}
+        metric_value_card.update_attributes! :subcards=>_subcard
       else
         Card.create! :name=>metric_value_card_name, :type_id=>Card::MetricValueID,
-                     :subcards=>{'+value'=>value[0]}
-      end
-      source_card = Card[metric_value_card_name+"+source"] || Card.create!(:name=>"#{metric_value_card_name}+source", :type_id=>Card::PointerID)
-      if not source_card.item_names.include? cardname.left
-        source_card<<cardname.left
-        source_card.save!
+                     :subcards=>_subcard
       end
     end
     abort :success=>"REDIRECT: #{metric_pointer_card.item_names.first}"

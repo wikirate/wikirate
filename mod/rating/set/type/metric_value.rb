@@ -22,7 +22,8 @@ end
 
 
 event :set_metric_value_name, :before=>:set_autoname do
-  self.name = ['+metric', '+company', '+year'].map do |name|
+  self.name = 
+    ['+metric', '+company', '+year'].map do |name|
       subcards.delete(name)['content'].gsub('[[','').gsub(']]','')
     end.join '+'
 end
