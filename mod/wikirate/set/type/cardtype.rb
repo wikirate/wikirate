@@ -1,5 +1,5 @@
 format :html do
   def view_caching?
-    true
+    card.key == 'company' || card.key == 'topic'
   end
 end
