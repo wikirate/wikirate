@@ -1,6 +1,7 @@
 format :html do
   view :editor do |args|
-    if card.item_names.length == 0
+    
+    if card.new?
       source = Card.new :type_code=>:source
       subformat(source)._render_content_formgroup(:hide=>'header help',:buttons=>"")
     else
