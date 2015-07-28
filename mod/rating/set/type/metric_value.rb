@@ -27,10 +27,10 @@ event :set_metric_value_name, :before=>:set_autoname do
     end.join '+'
 end
 
-event :create_source_for_metric_value, :after=>:validate_name, :on=>:save do
+event :create_source_for_metric_value, :after=>:validate_name, :on=>:create do
   Env.params[:sourcebox] = 'true'
   value = subcards.delete('+value')
-  source_card = Card.create :type_id=>Card::SourceID, :subcards=>subcards
+  source_card = Card.create :type_id=>Card::SourceID, :subcards=>subcards.clone
   Env.params[:sourcebox] = nil
   if source_card.errors.empty?
     @subcards = {
