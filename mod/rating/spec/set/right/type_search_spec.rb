@@ -21,7 +21,7 @@ describe Card::Set::Right::TypeSearch do
       it "show filter_and_sort items" do
         metric = get_a_sample_metric
         company = get_a_sample_company
-        binding.pry
+        # binding.pry
         type_search_card = Card.fetch "#{metric.name}+company+type_search"
         html = type_search_card.format.render_filter_and_sort
         
