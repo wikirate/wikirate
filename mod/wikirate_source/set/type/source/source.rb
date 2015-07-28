@@ -122,8 +122,8 @@ def parse_source_page url
     if preview.images.length > 0
      subcards["+image url" ] = preview.images.first.src.to_s
     end
-    subcards["+title"      ] = preview.title
-    subcards["+description"] = preview.description
+    subcards["+title"      ] ||= preview.title unless subcards["+Title"]
+    subcards["+description"] ||= preview.description unless subcards["+Description"]
   end
 rescue
   Rails.logger.info "Fail to extract information from the #{ url }"
@@ -162,7 +162,7 @@ format :html do
 
   view :metric_import_link do |args|
     file_card = Card[card.name+"+File"]
-    if file_card and mime_type = file_card.content.split("\n")[1] and mime_type == "text/csv"
+    if file_card and mime_type = file_card.content.split("\n")[1] and ( mime_type == "text/csv" || mime_type == "text/comma-separated-values" )
       card_link file_card, {:text=>"Import to metric values",:path_opts=>{:view=>:import}}
     else
       ""

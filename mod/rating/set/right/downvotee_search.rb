@@ -64,7 +64,7 @@ format do
   def list_with_session_votes
     if Env.session[card.vote_type]
       Env.session[card.vote_type].map do |votee_id|
-        Card.find_by_id_and_type_id votee_id, searched_type_id
+        Card.find_by_id_and_type_id(votee_id, searched_type_id).name
       end.compact
     else
       []

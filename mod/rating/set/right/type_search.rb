@@ -12,11 +12,12 @@ def raw_content
           },
           "right":"company"
         },
-        "limit":"0"
+        "limit":"0",
+        "return":"name"
       }
     )
   else
-    '{"type":"_r", "limit":0}'
+    '{"type":"_r", "limit":0,"return":"name"}'
   end
 end
 
