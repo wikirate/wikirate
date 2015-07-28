@@ -1,28 +1,41 @@
 describe Card::Set::Right::WikirateArticle do
-  describe "views" do
-    it "return edit view when rendering content view if params[:edit_article] is true" do 
+  describe "#handle_edit_article" do
+    before do
       Card::Env.params[:edit_article] = true
-      company = Card.create :name=>"company1",:type=>"company"
-      topic = Card.create :name=>"topic1",:type=>"topic"
-      article = Card.create :name=>"company1+topic1+article",:type=>"basic",:content=>"hello world"
-      html = article.format.render_content.gsub(/company1\+topic1\+article[\-\d]+/,"company1+topic1+article")
-      expect(html).to eq(article.format.render_edit.gsub(/company1\+topic1\+article[\-\d]+/,"company1+topic1+article"))
+      @company = Card.create :name=>"company1",:type=>"company"
+      @topic = Card.create :name=>"topic1",:type=>"topic"
+      @claim = get_a_sample_claim
+      Card::Env.params[:citable]=@claim.name
+      @citation = "Death Star uses dark side of the Force {{Death Star uses dark side of the Force|cite}}"
     end
+    context "missing view" do
+      it "render editor with empty content with citation tips" do
+        article = Card.new :name=>"#{@company.name}+#{@topic.name}+article",:type=>"basic"
+        html = article.format.render_missing
+        
+        expect(html).to have_tag("div",:with=>{:class=>"claim-tip"}) do
+          with_tag "textarea",:with=>{:id=>"citable_claim"},:text=>/#{@citation}/
+        end
+        expect(html).to have_tag("textarea",:with=>{:class=>"tinymce-textarea",:name=>"card[content]"})
 
-    it "return edit view when rendering missing view if params[:edit_article] is true" do 
-      Card::Env.params[:edit_article] = true
-      company = Card.create :name=>"company1",:type=>"company"
-      topic = Card.create :name=>"topic1",:type=>"topic"
-      article = Card.create :name=>"company1+topic1+article",:type=>"basic",:content=>"hello world"
-      
-
-      #<textarea class="tinymce-textarea card-content" cols="40" id="company1+topic1+article-1416413328-1" name="card[content]" rows="3">
-      #<textarea class="tinymce-textarea card-content" cols="40" id="company1+topic1+article-1416413328-2" name="card[content]" rows="3">
-      #these 2 lines explain everything
-      html = article.format.render_missing.gsub(/company1\+topic1\+article[\-\d]+/,"company1+topic1+article")
-      _html = article.format.render_edit.gsub(/company1\+topic1\+article[\-\d]+/,"company1+topic1+article")
-      expect(html).to eq(_html)
+      end
     end
+    context "content and titled_with_edits views" do
+      it "render editor with content with citation tips" do
+        article = Card.create :name=>"#{@company.name}+#{@topic.name}+article",:type=>"basic",:content=>"hello world"
+        html = article.format.render_content
+        expect(html).to have_tag("div",:with=>{:class=>"claim-tip"}) do
+          with_tag "textarea",:with=>{:id=>"citable_claim"},:text=>/#{@citation}/
+        end
+        expect(html).to have_tag("textarea",:with=>{:class=>"tinymce-textarea",:name=>"card[content]"},:text=>/hello world/)
 
+        html = article.format.render_titled_with_edits
+        expect(html).to have_tag("div",:with=>{:class=>"claim-tip"}) do
+          with_tag "textarea",:with=>{:id=>"citable_claim"},:text=>/#{@citation}/
+        end
+        expect(html).to have_tag("textarea",:with=>{:class=>"tinymce-textarea",:name=>"card[content]"},:text=>/hello world/)
+
+      end
+    end
   end
 end
