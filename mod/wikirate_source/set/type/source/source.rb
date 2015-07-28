@@ -122,8 +122,8 @@ def parse_source_page url
     if preview.images.length > 0
      subcards["+image url" ] = preview.images.first.src.to_s
     end
-    subcards["+title"      ] = preview.title
-    subcards["+description"] = preview.description
+    subcards["+title"      ] ||= preview.title unless subcards["+Title"]
+    subcards["+description"] ||= preview.description unless subcards["+Description"]
   end
 rescue
   Rails.logger.info "Fail to extract information from the #{ url }"

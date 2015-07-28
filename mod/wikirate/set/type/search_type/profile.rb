@@ -16,8 +16,6 @@ format :html do
           </div>
         </div>
         #{ _optional_render :toolbar, args, :hide}
-        #{ _optional_render :edit_toolbar, args, :hide}
-        #{ _optional_render :account_toolbar, args, :hide}
       }
     else
       super(args)

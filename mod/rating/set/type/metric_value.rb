@@ -22,8 +22,7 @@ end
 
 
 event :set_metric_value_name, :before=>:set_autoname do
-  self.name = 
-    ['+metric', '+company', '+year'].map do |name|
+  self.name = ['+metric', '+company', '+year'].map do |name|
       subcards.delete(name)['content'].gsub('[[','').gsub(']]','')
     end.join '+'
 end
@@ -42,7 +41,6 @@ event :create_source_for_metric_value, :after=>:validate_name, :on=>:save do
     source_card.errors.each do |key,value|
       errors.add key,value
     end
-    abort :failure
   end
 end
 
@@ -67,15 +65,18 @@ format :html do
     super(args)
   end
 
+  def legend args
+    subformat(card.metric_card)._render_legend args
+  end
+
   view :concise do |args|
-    legend = subformat(card.metric_card)._render_legend args
     %{
       <span class="metric-year">
         #{card.year} =
       </span>
       #{_render_modal_details(args)}
       <span class="metric-unit">
-        #{legend}
+        #{legend(args)}
       </span>
     }
   end
@@ -95,7 +96,7 @@ format :html do
     #value = ((value_card = card.fetch(:trait=>:value)) && value_card.content) || ''
     #value = nest value_card
     value =  _render_modal_details(args) # content_tag(:span, value, :class=>'metric-value')
-    value << content_tag(:span, subformat(card[0..1])._render_legend(), :class=>'metric-unit')
+    value << content_tag(:span, legend(args), :class=>'metric-unit')
 
     line   =  content_tag(:div, '', :class=>'timeline-dot')
     line   << content_tag(:div, '', :class=>'timeline-line') if args[:connect]

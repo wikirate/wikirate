@@ -158,6 +158,29 @@ format :html do
     end
   end
 
+  view :open_contribution_list do |args|
+    _render_open(args.merge(:contribution_list=>true))
+  end
+
+  view :header do |args|
+    if args.delete(:contribution_list)
+      view :header do |args|
+        %{
+          <div class="card-header #{ args[:header_class] }">
+            <div class="card-header-title #{ args[:title_class] }">
+              #{ _optional_render :title, args }
+              #{ _optional_render :contribution_counts, args }
+              #{ _optional_render :toggle, args, :hide }
+            </div>
+          </div>
+          #{ _optional_render :toolbar, args, :hide}
+        }
+      end
+    else
+      super(args)
+    end
+  end
+
   view :yinyang_list_items do |args|
     item_args = { :view => ( args[:item] || (@inclusion_opts && @inclusion_opts[:view]) || default_item_view ) }
     joint = args[:joint] || ' '
