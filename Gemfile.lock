@@ -124,7 +124,7 @@ GEM
       rails (>= 3, < 5)
     daemons (1.2.3)
     dalli (2.7.4)
-    database_cleaner (0.9.1)
+    database_cleaner (1.4.1)
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
     docile (1.1.5)
@@ -342,7 +342,7 @@ DEPENDENCIES
   card!
   cucumber-rails
   dalli
-  database_cleaner (~> 0.7)
+  database_cleaner (~> 1.4.1)
   email_spec
   launchy
   link_thumbnailer (>= 2.2.3)

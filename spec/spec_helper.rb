@@ -10,7 +10,7 @@ Spork.prefork do
 end
 
 def create_page iUrl=nil, subcards={}
-  create_page_with_sourcebox iUrl, subcards,'false'
+  create_page_with_sourcebox iUrl, subcards,'true'
 end
 
 def create_page_with_sourcebox iUrl=nil, subcards={},sourcebox=nil
