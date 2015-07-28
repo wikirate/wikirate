@@ -59,3 +59,9 @@ Feature: Claim
     And I wait until ajax response
     Then I should not see "Problems with"
     And the card "Hello World is a name of a new born baby" should contain "google.com"
+
+  Scenario: Claim name counting is correct
+    When I go to  "/new claim"
+    And I fill in "card_name" with "Hello World is a name of a new born baby"
+    And I wait until ajax response
+    Then I should see "60 character(s) left"
