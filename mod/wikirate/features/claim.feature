@@ -14,6 +14,7 @@ Feature: Claim
     And I fill in "sourcebox" with "http://google.com/?q=ymca"
     And I press "Add" within ".sourcebox"
     And I wait until ajax response
+    # And I wait 60 seconds
     And I press "Submit"
     And I wait until ajax response
     Then I should not see "Problems with"
