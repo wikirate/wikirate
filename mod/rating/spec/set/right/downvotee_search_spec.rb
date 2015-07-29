@@ -55,7 +55,7 @@ describe Card::Set::Right::DownvoteeSearch do
           expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down","data-update-id"=>"Natural_Resource_Use+metric+downvotee_search","data-bucket-name"=>"down_vote"}) do
             with_tag "h5",:with=>{:class=>"vote-title"},:text=>"Not Important to Me"  
             with_tag "div",:with=>{:class=>"empty-message"} 
-            with_tag("div",:with=>{:class=>"drag-item yinyang-row no-metric-value"}) do
+            with_tag("div",:with=>{:class=>"drag-item yinyang-row"}) do
               with_tag "div",:with=>{:id=>"Natural_Resource_Use+Jedi+deadliness+yinyang_drag_item"}
             end
           end
