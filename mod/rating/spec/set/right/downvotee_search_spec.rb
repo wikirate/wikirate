@@ -25,9 +25,9 @@ describe Card::Set::Right::DownvoteeSearch do
         end
         metric_downvotee_search_card = Card.fetch "#{apple.name}+metric+downvotee search"
         result = metric_downvotee_search_card.item_cards
-        expect(result[0].id).to eq(metrics_result[0].id)
-        expect(result[1].id).to eq(metrics_result[2].id)
-        expect(result[2].id).to eq(metrics_result[1].id)
+        expect(Card[result[0]].id).to eq(metrics_result[0].id)
+        expect(Card[result[1]].id).to eq(metrics_result[2].id)
+        expect(Card[result[2]].id).to eq(metrics_result[1].id)
       end
     end
     context "anonymous" do

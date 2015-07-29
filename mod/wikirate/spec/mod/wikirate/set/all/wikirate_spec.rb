@@ -265,18 +265,21 @@ describe Card::Set::All::Wikirate do
       metric3 = Card.create! :name=>"Joe User+the unusualness of the responses",:type_id=>Card::MetricID
       metric4 = Card.create! :name=>"Joe User+the detail of the responses",:type_id=>Card::MetricID
 
-      metric_value1 = Card.create! :name=>"#{metric1.name}+#{sample_company.name}+2015",:type_id=>Card::MetricValueID,:subcards=>{
-          '+value'=>{:content=>"1"}
+      metrics = [ metric1, metric2, metric3, metric4 ]
+      metric_values = Array.new
+
+      metrics.each do |metric|
+        subcard = {
+          "+metric"=>{"content"=>metric.name},
+          "+company"=>{"content"=>"[[#{sample_company.name}]]",:type_id=>Card::PointerID},
+          "+value"=>{"content"=>"Nature doesn't recongize good or evil. Nature only recongizes balance and imbalance.", :type_id=>Card::PhraseID},
+          "+year"=>{"content"=>"2015", :type_id=>Card::PointerID},
+          "+Link"=>{:content=>"http://www.google.com/?q=fringe", "type_id"=>Card::PhraseID}
         }
-      metric_value2 = Card.create! :name=>"#{metric2.name}+#{sample_company.name}+2015",:type_id=>Card::MetricValueID,:subcards=>{
-          '+value'=>{:content=>"2"}
-        }
-      metric_value3 = Card.create! :name=>"#{metric3.name}+#{sample_company.name}+2015",:type_id=>Card::MetricValueID,:subcards=>{
-          '+value'=>{:content=>"3"}
-        }
-      metric_value4 = Card.create! :name=>"#{metric4.name}+#{sample_company.name}+2015",:type_id=>Card::MetricValueID,:subcards=>{
-          '+value'=>{:content=>"4"}
-        }
+        metric_value = Card.create! :type_id=>Card::MetricValueID,:subcards=>subcard
+        metric_values.push(metric_value)
+      end
+      
       search_card = Card.fetch "#{sample_company.name}+limited_metric"
       html = search_card.format.render_yinyang_list args
       
