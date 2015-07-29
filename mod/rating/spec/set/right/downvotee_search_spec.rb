@@ -42,7 +42,7 @@ describe Card::Set::Right::DownvoteeSearch do
       context "topic" do
         it "show drag and drop items" do
           topic = Card["Natural Resource Use"]
-          
+          @metric.update_attributes! :subcards=>{"+#{Card[:wikirate_topic].name}"=>topic.name}
           # show downvotee 
           Card::Auth.current_id = Card['Joe User'].id
           Card::Auth.as_bot do
@@ -85,7 +85,14 @@ describe Card::Set::Right::DownvoteeSearch do
         context "metric" do
           it "show drag and drop items" do
             company = Card["Apple Inc"]
-          
+            subcard = {
+              "+metric"=>{"content"=>@metric.name},
+              "+company"=>{"content"=>"[[#{company.name}]]",:type_id=>Card::PointerID},
+              "+value"=>{"content"=>"Na einai kalytero anthropo apo ton patera toy", :type_id=>Card::PhraseID},
+              "+year"=>{"content"=>"2015", :type_id=>Card::PointerID},
+              "+Link"=>{:content=>"http://www.google.com/?q=fringepeter", "type_id"=>Card::PhraseID}
+            }
+            Card.create! :type_id=>Card::MetricValueID,:subcards=>subcard
             # show downvotee 
             Card::Auth.current_id = Card['Joe User'].id
             Card::Auth.as_bot do
@@ -96,7 +103,7 @@ describe Card::Set::Right::DownvoteeSearch do
             voted_down_search_card = Card.fetch "#{company.name}+metric+downvotee_search"
             html = voted_down_search_card.format.render_drag_and_drop
             expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down","data-update-id"=>"Apple_Inc_+metric+downvotee_search","data-bucket-name"=>"down_vote"}) do
-              with_tag("div",:with=>{:class=>"drag-item yinyang-row no-metric-value"}) do
+              with_tag("div",:with=>{:class=>"drag-item yinyang-row"}) do
                 with_tag "div",:with=>{:id=>"Apple_Inc_+Jedi+deadliness+yinyang_drag_item"}
               end
             end
@@ -106,7 +113,15 @@ describe Card::Set::Right::DownvoteeSearch do
       context "analysis" do
         it "shows metric drag and drop items" do
             analysis = Card["Apple Inc+Natural_Resource_Use"]
-          
+            @metric.update_attributes! :subcards=>{"+#{Card[:wikirate_topic].name}"=>analysis.cardname.right}
+            subcard = {
+              "+metric"=>{"content"=>@metric.name},
+              "+company"=>{"content"=>"[[#{analysis.cardname.left}]]",:type_id=>Card::PointerID},
+              "+value"=>{"content"=>"Na einai kalytero anthropo apo ton patera toy", :type_id=>Card::PhraseID},
+              "+year"=>{"content"=>"2015", :type_id=>Card::PointerID},
+              "+Link"=>{:content=>"http://www.google.com/?q=fringepeter", "type_id"=>Card::PhraseID}
+            }
+            Card.create! :type_id=>Card::MetricValueID,:subcards=>subcard
             # show downvotee 
             Card::Auth.current_id = Card['Joe User'].id
             Card::Auth.as_bot do
@@ -117,7 +132,7 @@ describe Card::Set::Right::DownvoteeSearch do
             voted_down_search_card = Card.fetch "#{analysis.name}+metric+downvotee_search"
             html = voted_down_search_card.format.render_drag_and_drop
             expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down","data-update-id"=>"Apple_Inc_+Natural_Resource_Use+metric+downvotee_search","data-bucket-name"=>"down_vote"}) do
-              with_tag("div",:with=>{:class=>"drag-item yinyang-row no-metric-value"}) do
+              with_tag("div",:with=>{:class=>"drag-item yinyang-row"}) do
                 with_tag "div",:with=>{:id=>"Apple_Inc_+Natural_Resource_Use+Jedi+deadliness+yinyang_drag_item"}
               end
             end
