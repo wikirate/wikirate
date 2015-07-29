@@ -10,7 +10,7 @@ Spork.prefork do
 end
 
 def create_page iUrl=nil, subcards={}
-  create_page_with_sourcebox iUrl, subcards,Card::Env.params[:sourcebox]||"false"
+  create_page_with_sourcebox iUrl, subcards,'true'
 end
 
 def create_page_with_sourcebox iUrl=nil, subcards={},sourcebox=nil
@@ -35,7 +35,6 @@ def create_claim_with_url name,url, subcards={}
 end
 
 def create_claim name, subcards={}
-  Card::Env.params[:sourcebox] = "true"
   Card::Auth.as_bot do
     sourcepage = create_page 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
     Card.create! :type=>"Claim", :name=>name, 

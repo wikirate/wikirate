@@ -40,11 +40,13 @@ source_cards.each do |source_card|
       else
         File.basename(URI.parse(url).path)      
       end
-      source_link_card.delete!
+      
       file_uploaded = ActionDispatch::Http::UploadedFile.new(:tempfile => uri, :filename => filename)
       result = source_card.update_attributes :subcards=>{"+File"=>{:attach=>file_uploaded,:content=>"CHOSEN",:type_id=>Card::FileID}}
       if !result
         puts "Fail : #{source_card.errors.messages}\t#{file_uploaded.size/1024}"
+      else
+        source_link_card.delete!
       end
     end
   end

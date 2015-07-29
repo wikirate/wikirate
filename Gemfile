@@ -39,7 +39,7 @@ group :test do
 
 
   gem 'email_spec'                             #
-  gem 'database_cleaner', '~> 0.7'             # used by cucumber for db transactions
+  gem 'database_cleaner', '~> 1.4.1'             # used by cucumber for db transactions
 
   gem 'turn', "~>0.8.3", :require => false      # Pretty printed test output.  (version constraint is to avoid minitest requirement)
   gem 'minitest'
