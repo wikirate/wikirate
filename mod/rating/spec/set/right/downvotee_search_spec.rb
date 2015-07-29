@@ -31,7 +31,30 @@ describe Card::Set::Right::DownvoteeSearch do
       end
     end
     context "anonymous" do
-
+      context "anonymous" do
+      it "lists correct vote down cards" do
+        Card::Auth.current_id = Card["Anonymous"].id
+        apple = Card["Apple Inc"]
+        metrics_result = nil
+        Card::Auth.as_bot do
+          metrics = Card.search :type_id=>Card::MetricID, :right_plus=>apple.name, :limit=>3
+          # just to ensure there are enough metrics to be used
+          expect(metrics.length).to eq(3)
+          metrics_result = metrics
+          metrics_result.each do |metric|
+            vcc = metric.vote_count_card
+            vcc.vote_down
+            vcc.save!
+          end
+        end
+        metric_downvotee_search_card = Card.fetch "#{apple.name}+metric+downvotee search"
+        search_result = metric_downvotee_search_card.format.get_search_result
+        metrics_result.each do |metric|
+          expect(search_result).to include(metric.name)
+        end   
+        
+      end
+    end
     end
   end
   describe "Html view" do
