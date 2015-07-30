@@ -1,7 +1,9 @@
 
 describe Card::Set::Type::MetricValue do
   before do
+    login_as "joe_user"
     @metric = get_a_sample_metric
+    @metric.update_attributes! :subcards=>{"+Unit"=>{"content"=>"Imperial military units","type_id"=>Card::PhraseID}}
     @company = get_a_sample_company
     subcard = {
       "+metric"=>{"content"=>@metric.name},
@@ -59,11 +61,46 @@ describe Card::Set::Type::MetricValue do
   describe "update metric value's value" do
     it "updates metric value' value correctly" do
       @metric_value.update_attributes! :subcards=>{"+value"=>"if nobody hates you, you're doing something wrong."}
-
       metric_values_value_card = Card["#{@metric_value.name}+value"]
       expect(metric_values_value_card.content).to eq("if nobody hates you, you're doing something wrong.")
-
-
     end 
+  end
+  describe "views" do
+    it "renders timeline_credit" do
+      html = @metric_value.format.render_timeline_credit
+      expect(html).to have_tag("div",:with=>{:class=>"timeline-row"}) do
+        with_tag("div",:with=>{:class=>"td credit"})
+        with_tag("a",:with=>{:href=>"/Joe_User"},:text=>"Joe User")
+      end
+    end
+    it "renders timeline data" do
+
+      html = @metric_value.format.render_timeline_data
+      expect(html).to have_tag("div",:with=>{:class=>"timeline-row"}) do
+        with_tag("div",:with=>{:class=>"timeline-dot"})
+        with_tag("div",:with=>{:class=>"td year"}) do
+          with_tag("span",:with=>{:class=>"metric-year"},:text=>"2015")
+        end
+        with_tag("div",:with=>{:class=>"td value"}) do
+          with_tag("span",:with=>{:class=>"metric-value"}) do
+            with_tag("a",:with=>{:href=>"/#{@metric_value.cardname.url_key}?layout=modal&slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu"},:text=>"I'm fine, I'm just not happy.")
+          end
+          with_tag("span",:with=>{:class=>"metric-unit"},:text=>/Imperial military units/) 
+        end
+      end
+    end
+    it "renders modal_details" do
+      html = @metric_value.format.render_modal_details
+      expect(html).to have_tag("span",:with=>{:class=>"metric-value"}) do
+        with_tag("a",:with=>{:href=>"/#{@metric_value.cardname.url_key}?layout=modal&slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu"},:text=>"I'm fine, I'm just not happy.")
+      end
+    end
+    it "renders concise" do
+      html = @metric_value.format.render_concise
+      
+      expect(html).to have_tag("span",:with=>{:class=>"metric-year"},:text=>/2015 =/) 
+      expect(html).to have_tag("span",:with=>{:class=>"metric-value"}) 
+      expect(html).to have_tag("span",:with=>{:class=>"metric-unit"},:text=>/Imperial military units/) 
+    end
   end
 end
