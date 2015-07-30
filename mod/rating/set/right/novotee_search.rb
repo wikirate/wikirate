@@ -37,7 +37,7 @@ format do
     [:up_vote, :down_vote].each do |bucket|
       if Env.session[bucket]
         result.reject! do |votee_plus_drag_item|
-          votee_name = votee_plus_drag_item.to_name.left
+          votee_name = votee_plus_drag_item.to_name
           (votee_id = Card.fetch_id(votee_name)) && Env.session[bucket].include?(votee_id)
         end
       end
