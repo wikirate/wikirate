@@ -32,29 +32,37 @@ describe Card::Set::Right::DownvoteeSearch do
     end
     context "anonymous" do
       context "anonymous" do
-      it "lists correct vote down cards" do
-        Card::Auth.current_id = Card["Anonymous"].id
-        apple = Card["Apple Inc"]
-        metrics_result = nil
-        Card::Auth.as_bot do
-          metrics = Card.search :type_id=>Card::MetricID, :right_plus=>apple.name, :limit=>3
-          # just to ensure there are enough metrics to be used
-          expect(metrics.length).to eq(3)
-          metrics_result = metrics
-          metrics_result.each do |metric|
-            vcc = metric.vote_count_card
-            vcc.vote_down
-            vcc.save!
+      before do 
+          Card::Auth.current_id = Card["Anonymous"].id
+          @apple = Card["Apple Inc"]
+          metrics_result = nil
+          Card::Auth.as_bot do
+            metrics = Card.search :type_id=>Card::MetricID, :right_plus=>@apple.name, :limit=>3
+            # just to ensure there are enough metrics to be used
+            expect(metrics.length).to eq(3)
+            @metrics_result = metrics
+            @metrics_result.each do |metric|
+              vcc = metric.vote_count_card
+              vcc.vote_down
+              vcc.save!
+            end
           end
         end
-        metric_downvotee_search_card = Card.fetch "#{apple.name}+metric+downvotee search"
-        search_result = metric_downvotee_search_card.format.get_search_result
-        metrics_result.each do |metric|
-          expect(search_result).to include(metric.name)
-        end   
-        
+        it "lists correct metric vote down cards" do
+          
+          metric_downvotee_search_card = Card.fetch "#{@apple.name}+metric+downvotee search"
+          search_result = metric_downvotee_search_card.format.get_search_result
+          @metrics_result.each do |metric|
+            expect(search_result).to include(metric.name)
+          end   
+          
+        end
+        it "lists correct topic vote down cards" do
+          topic_downvotee_search_card = Card.fetch "#{@apple.name}+topic+downvotee search"
+          search_result = topic_downvotee_search_card.format.get_search_result
+          expect(search_result).to be_empty
+        end
       end
-    end
     end
   end
   describe "Html view" do
