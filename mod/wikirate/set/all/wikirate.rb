@@ -40,9 +40,7 @@ format :html do
     if is_number? value
       %{
         <div class="progress">
-          <div class="progress-bar" role="progressbar" aria-valuenow="#{value}" aria-valuemin="0" aria-valuemax="100" style="width: #{value}%;">
-            #{value}%
-          </div>
+          <div class="progress-bar" role="progressbar" aria-valuenow="#{value}" aria-valuemin="0" aria-valuemax="100" style="width: #{value}%;">#{value}%</div>
         </div>
       }
     else
@@ -58,10 +56,6 @@ format :html do
         wrap_body( :content=>true ) { _render_core args },
       ]
     end
-  end
-
-  view :edit_without_title do |args|
-
   end
 
   view :edits_by do |args|
@@ -198,8 +192,8 @@ format :html do
     enrich_result(card.item_names).map do |icard|
       content_tag :div, :class=>"yinyang-row" do
        nest(icard, item_args.clone).html_safe
-      end
-    end.join joint
+      end.html_safe
+    end.join(joint).html_safe
   end
 
   def enrich_result result
