@@ -10,8 +10,8 @@ def latest_value_card
   end
 end
 
-expired_cached_count_cards :set=>Card::Set::Type::MetricValue do
-   left.update_cached_count
+expired_cached_count_cards :set=>Card::Set::Type::MetricValue do |changed_card|
+   changed_card.left
 end
 
 def calculate_count
