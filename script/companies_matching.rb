@@ -1,6 +1,6 @@
 require File.expand_path('../../config/environment',  __FILE__)
 Card::Auth.as_bot
-
+company_file = ARGV[0] || 'script/companies.txt'
 def matched_company name
   if (company = Card.fetch(name)) && company.type_id == Card::WikirateCompanyID
     [name, :exact]
@@ -16,7 +16,7 @@ def matched_company name
   end
 end
 
-File.open('script/companies.txt').each do |line|
+File.open(company_file).each do |line|
   # byebug if line.include?"United Parcel Service"
   aliases = line.split("|")
   # company_name = aliases.shift
