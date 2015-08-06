@@ -1,7 +1,7 @@
 PATH
   remote: ./vendor/wagn/card
   specs:
-    card (1.15.7)
+    card (1.16.1)
       activerecord-session_store
       bootstrap-kaminari-views (~> 0.0.5)
       coderay (~> 1.0)
@@ -21,8 +21,8 @@ PATH
 PATH
   remote: ./vendor/wagn/wagn
   specs:
-    wagn (1.15.7)
-      card (= 1.15.7)
+    wagn (1.16.1)
+      card (= 1.16.1)
       rails (~> 4.2)
 
 GEM
@@ -122,7 +122,6 @@ GEM
       mime-types (>= 1.16, < 3)
       nokogiri (~> 1.5)
       rails (>= 3, < 5)
-    curb (0.8.8)
     daemons (1.2.3)
     dalli (2.7.4)
     database_cleaner (1.4.1)
@@ -342,7 +341,6 @@ DEPENDENCIES
   capybara
   card!
   cucumber-rails
-  curb
   dalli
   database_cleaner (~> 1.4.1)
   email_spec
