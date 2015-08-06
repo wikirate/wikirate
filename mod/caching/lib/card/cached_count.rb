@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
 
-# Used to extend setting modules like Card::Set::Self::Create in the settings mod
 
 class Card
+
   module CachedCount
 
     # contains blocks that get called with a card as argmuent and return

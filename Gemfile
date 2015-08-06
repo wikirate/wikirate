@@ -7,7 +7,7 @@ gem 'card', :path=>"#{wagn_gem_path}/card", :require=>false
 
 
 gem "mysql2", "~> 0.3"
-gem 'link_thumbnailer', ">= 2.2.3"
+gem 'link_thumbnailer', "2.5.2"
 gem 'open_uri_redirections'
 gem 'roo'
 gem 'wbench'
