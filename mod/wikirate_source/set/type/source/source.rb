@@ -76,10 +76,12 @@ event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc
         errors.add :link, "exists already. <a href='/#{duplicated_name}'>Visit the source.</a>"
       end
     end
-    if errors.empty? and file_link? url
-      download_file_and_add_to_plus_file url
-    else
-      parse_source_page url if Card::Env.params[:sourcebox] == 'true'
+    if errors.empty? 
+      if file_link? url
+        download_file_and_add_to_plus_file url
+      else
+        parse_source_page url if Card::Env.params[:sourcebox] == 'true'
+      end
     end
   end
 

@@ -64,8 +64,9 @@ format do
   def list_with_session_votes
     if Env.session[card.vote_type]
       Env.session[card.vote_type].map do |votee_id|
-        Card.find_by_id_and_type_id(votee_id, searched_type_id).name
-      end.compact
+        found_votee_card = Card.find_by_id_and_type_id(votee_id, searched_type_id)
+        found_votee_card ? found_votee_card.name : ""
+      end.compact.reject(&:empty?)
     else
       []
     end
@@ -94,7 +95,7 @@ format :html do
       end.compact.join("\n").html_safe
     end.html_safe
   end
-
+  # it is for type_search
   view :filter_and_sort do |args|
     res = with_filter_and_sort(args) do
       search_results.map do |item|
@@ -128,7 +129,7 @@ format :html do
   end
 
   def extract_votee item
-    if main_type_id == WikirateAnalysisID
+    if main_type_id == WikirateAnalysisID || main_type_id == MetricID
       item[2..-2]
     else
       item[1..-2]

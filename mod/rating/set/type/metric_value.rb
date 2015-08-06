@@ -116,23 +116,22 @@ format :html do
     wrap_with :div, :class=>'timeline-row' do
       wrap_with :div, :class=>'td credit' do
         [
-          nest(card, :view=>:content, :structure=>'creator credit'),
+          nest(card, :view=>:core, :structure=>'creator credit'),
           _optional_render(:source_link, args, :hide)
         ]
       end
     end
   end
 
-  view :source_link do |args|
-    if source_card = card.fetch(:trait=>:wikirate_source)
-      source_card.item_cards.map do |i_card|
-        subformat(i_card).render_original_icon_link
-      end.join "\n"
-    else
-      ''
-    end
-#    source_link = subformat(card)._render_modal_link(args.merge(:text=>'View Sources',:html_args=>{:class=>"btn btn-yellow btn-xs"}))
-#    content_tag(:p, source_link+subformat(card)._render_modal_slot(args))
-  end
+  # TODO: in branch source_link by henry
+  # view :source_link do |args|
+  #   if source_card = card.fetch(:trait=>:source)
+  #     source_card.item_cards.map do |i_card|
+  #       subformat(i_card).render_original_icon_link
+  #     end.join "\n"
+  #   else
+  #     ''
+  #   end
+  # end
 
 end
