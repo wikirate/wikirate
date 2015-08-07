@@ -4,7 +4,7 @@
   "card": {
     "name": "export",
     "type": "Pointer",
-    "content": "[[metric+company+*type plus right+*structure]]\n[[metric item]]\n[[metric+source+*type plus right++structure]]\n[[metric drag item]]",
+    "content": "[[metric+company+*type plus right+*structure]]\n[[metric item]]\n[[metric+source+*type plus right+*structure]]\n[[metric drag item]]",
     "value": [
       {
         "name": "Metric+company+*type plus right+*structure",
