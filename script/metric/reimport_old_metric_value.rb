@@ -6,9 +6,8 @@ Card::Auth.as_bot do
   Card::Env[:protocol] = "http://"
   Card::Env[:host] = "wikirate.org"
 
-
   source_cache = Hash.new
-  CSV.foreach(("script/metric_import/metric_value_to_import.csv"),:encoding => 'windows-1251:utf-8',:headers => true, :header_converters => :symbol, :converters => :all) do |row|
+  CSV.foreach(("script/metric/csv/metric_value_to_import.csv"),:encoding => 'windows-1251:utf-8',:headers => true, :header_converters => :symbol, :converters => :all) do |row|
     
     metric_name = row[:metric]
     company_name = row[:company_name]
@@ -25,6 +24,10 @@ Card::Auth.as_bot do
         metric_name = "Fair Labor Association+Fair Labor Participant"
       end
       if !Card.exists? "#{metric_name}+#{company_name}+#{year}" 
+        if !Card.exists?(company_name) || Card[company_name].type_id != Card::WikirateCompanyID
+          puts "#{company_name} does not exist for #{metric_name}"
+          next
+        end
         if company_name.include?"/"
           puts "Company name with /:\t#{company_name}"
           next
