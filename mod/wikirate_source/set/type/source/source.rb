@@ -76,7 +76,7 @@ event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc
         errors.add :link, "exists already. <a href='/#{duplicated_name}'>Visit the source.</a>"
       end
     end
-    if errors.empty? 
+    if errors.empty?
       if file_link? url
         download_file_and_add_to_plus_file url
       else
@@ -90,7 +90,7 @@ end
 def download_file_and_add_to_plus_file url
   url.gsub!(/ /, '%20')
   subcards["+File"] = {
-    :attach=>URI.parse(url),:content=>"CHOSEN",:type_id=>Card::FileID
+    :file=>URI.parse(url),:content=>"CHOSEN",:type_id=>Card::FileID
   }
   subcards.delete("+#{ Card[:wikirate_link].name }")
 rescue  # if open raises errors , just treat the source as a normal source

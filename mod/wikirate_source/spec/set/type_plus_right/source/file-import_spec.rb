@@ -4,7 +4,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
     test_csv = File.new "#{Rails.root}/mod/wikirate_source/spec/set/type_plus_right/source/import_test.csv"
     file_uploaded = ActionDispatch::Http::UploadedFile.new(:tempfile => test_csv, :filename => File.basename(test_csv))
 
-    @source = Card.create! :type_id=>Card::SourceID,:subcards=>{'+File'=>{ :attach=>file_uploaded,:content=>"CHOSEN",:type_id=>Card::FileID}}
+    @source = Card.create! :type_id=>Card::SourceID,:subcards=>{'+File'=>{ :file=>file_uploaded,:content=>"CHOSEN",:type_id=>Card::FileID}}
     Card::Env.params["is_metric_import_update"] = 'true'
   end
   describe "while adding metric value" do
