@@ -1,6 +1,6 @@
 require File.expand_path('../../../config/environment',  __FILE__)
 Card::Auth.as_bot
-company_file = ARGV[0] || 'script/companies.txt'
+company_file = ARGV[0] || 'script/metric/csv/companies.txt'
 def matched_company name
   if (company = Card.fetch(name)) && company.type_id == Card::WikirateCompanyID
     [name, :exact]

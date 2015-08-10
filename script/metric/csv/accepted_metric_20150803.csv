@@ -1,0 +1,16 @@
+Designer,Name,Snippet name,Snippet provider,Notes
+PERI at University of Massachusetts Amherst,Toxic 100 Air Polluters Rank,rank,Peri,metric exists - values didn't import last time
+PERI at University of Massachusetts Amherst,Toxic Score,toxic_score,Peri,metric exists - values didn't import last time
+PERI at University of Massachusetts Amherst,Toxic Incineration Transfers,toxic_incineration,Peri,metric exists - values didn't import last time
+PERI at University of Massachusetts Amherst,Toxic Air Releases,toxic_air,Peri,metric exists - values didn't import last time
+Green Electronics Council,EPEAT Participant,EPEAT_member,EPEAT,metric exists - values didn't import last time
+Fair Labor Association,Fair Labor Participant,FLA Participating Company,Fairlabor,
+UN Global Compact,CSR reporting level,,UN Global Compact,Metric value should be extracted from the URL of a company's COP
+B Corporations,Overall B Score,Overall B Score,BCorporations,"Value is under the key ""Company Score"""
+B Corporations,Community Score,Community,BCorporations,"Value is under the key ""Company Score"""
+B Corporations,Environment Score,Environment,BCorporations,"Value is under the key ""Company Score"""
+B Corporations,Governance Score,Governance,BCorporations,"Value is under the key ""Company Score"""
+B Corporations,Customers Score,Customers,BCorporations,"Value is under the key ""Company Score"""
+B Corporations,Workers Score,Workers,BCorporations,"Value is under the key ""Company Score"""
+EPA,Green Power Usage,Annual Green Power Usage (kWh),EPA,
+EPA,Green Power %,Percentage Of Green Power,EPA,
