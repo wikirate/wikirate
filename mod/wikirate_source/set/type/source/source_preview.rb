@@ -52,7 +52,7 @@ format :html do
         </div>
       }
     elsif file_card
-      if mime_type = file_card.content.split("\n")[1] and ( mime_type == "application/pdf" or mime_type.start_with?("image/") )
+      if mime_type = file_card.file.content_type and ( mime_type == "application/pdf" or mime_type.start_with?("image/") )
         if mime_type == "application/pdf"
           content_tag(:div, '<iframe id="source-preview-iframe" src="pdfjs/viewer.html?file='+ file_card.attachment.url+'"  security="restricted" sandbox="allow-same-origin allow-scripts allow-forms" ></iframe>', {:id=>"pdf-preview", :class=> "webpage-preview"},false)
         else
