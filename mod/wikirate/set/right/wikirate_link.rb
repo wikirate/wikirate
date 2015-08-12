@@ -23,6 +23,6 @@ event :validate_content, :before=>:approve, :on=>:save do
 end
 
 event :block_url_changing, :before=>:approve, :on=>:update, :changed=>:content,
-     :when=> proc {|c| !db_content_was.empty? } do
+     :when=> proc {|c| !c.db_content_was.empty? } do
   errors.add :link, "is not allowed to be changed."
 end
