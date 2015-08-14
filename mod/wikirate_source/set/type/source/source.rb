@@ -38,7 +38,7 @@ end
 def has_file_or_text?
   file_card = subcards["+File"]
   text_card = subcards["+Text"]
-  ( file_card && file_card.stringify_keys.has_key?("content") ) || ( text_card && ( text_card_content = (text_card.stringify_keys)["content"] ) && !text_card_content.empty? )
+  ( file_card && file_card.stringify_keys.has_key?("file") ) || ( text_card && ( text_card_content = (text_card.stringify_keys)["content"] ) && !text_card_content.empty? )
 end
 
 event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc{  |c| !c.has_file_or_text? } do
@@ -90,7 +90,7 @@ end
 def download_file_and_add_to_plus_file url
   url.gsub!(/ /, '%20')
   subcards["+File"] = {
-    :file=>URI.parse(url),:content=>"CHOSEN",:type_id=>Card::FileID
+    :file=>URI.parse(url),:type_id=>Card::FileID
   }
   subcards.delete("+#{ Card[:wikirate_link].name }")
 rescue  # if open raises errors , just treat the source as a normal source
