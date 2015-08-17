@@ -16,7 +16,8 @@ Feature: Claim
     And I fill in "card_subcards__Link_content" with "http://example.com"
     And I press "Submit"
     And I press "Close"
-    And I go to card "Jedi+size"  # FIXME the new metric should appear witout reloading the page
+    # FIXME the new metric should appear witout reloading the page
+    And I go to card "Jedi+size"
     Then I should see "Death Star"
     When I go to card "Death Star"
     Then I should see "101"
