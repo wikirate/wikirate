@@ -105,7 +105,38 @@ describe Card::Set::TypePlusRight::Source::File::Import do
       end
     end
   end
+  describe "updating metric values" do
+    it "updates correct metric values" do
 
+      test_csv = File.open("#{Rails.root}/mod/wikirate_source/spec/set/type_plus_right/source/import_test2.csv")
+
+      new_source = Card.create! :type_id=>Card::SourceID,:subcards=>{'+File'=>{ :file=>test_csv,:type_id=>Card::FileID}}
+
+      Card::Env.params[:metric_values] = {"Amazon.com, Inc."=>["9"], "Apple Inc."=>["62"]}
+      source_file = @source.fetch :trait=>:file
+      source_file.update_attributes :subcards=>{"#{@source.name}+#{Card[:metric].name}"=>{:content=>'[[Access to Nutrition Index+Marketing Score]]',:type_id=>Card::PointerID},"#{@source.name}+#{Card[:year].name}"=>{:content=>'[[2015]]',:type_id=>Card::PointerID}}
+
+      expect(Card.exists?("Access to Nutrition Index+Marketing Score+Amazon.com, Inc.+2015")).to be true
+      expect(Card.exists?("Access to Nutrition Index+Marketing Score+Apple Inc.+2015")).to be true
+
+      amazon_2015_metric_value_card = Card["Access to Nutrition Index+Marketing Score+Amazon.com, Inc.+2015+value"]
+      apple_2015_metric_value_card = Card["Access to Nutrition Index+Marketing Score+Apple Inc.+2015+value"]
+      expect(amazon_2015_metric_value_card.content).to eq("9")
+      expect(apple_2015_metric_value_card.content).to eq("62")
+
+      Card::Env.params[:metric_values] = {"Amazon.com, Inc."=>["369"], "Apple Inc."=>["689"]}
+      source_file = new_source.fetch :trait=>:file
+      source_file.update_attributes :subcards=>{"#{new_source.name}+#{Card[:metric].name}"=>{:content=>'[[Access to Nutrition Index+Marketing Score]]',:type_id=>Card::PointerID},"#{new_source.name}+#{Card[:year].name}"=>{:content=>'[[2015]]',:type_id=>Card::PointerID}}
+      
+      expect(source_file.errors).to be_empty
+      expect(Card.exists?"Access to Nutrition Index+Marketing Score+Amazon.com, Inc.+2015+link").to be false
+      expect(Card.exists?"Access to Nutrition Index+Marketing Score+Apple Inc.+2015+link").to be false
+      amazon_2015_metric_value_card = Card["Access to Nutrition Index+Marketing Score+Amazon.com, Inc.+2015+value"]
+      apple_2015_metric_value_card = Card["Access to Nutrition Index+Marketing Score+Apple Inc.+2015+value"]
+      expect(amazon_2015_metric_value_card.content).to eq("369")
+      expect(apple_2015_metric_value_card.content).to eq("689")
+    end
+  end
   describe "while rendering import view" do
 
     it "shows field correctly" do

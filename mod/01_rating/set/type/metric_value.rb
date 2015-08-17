@@ -27,7 +27,15 @@ event :set_metric_value_name, :before=>:set_autoname do
     end.join '+'
 end
 
-event :create_source_for_metric_value, :after=>:validate_name, :on=>:create do
+event :create_source_for_metric_value, :after=>:set_metric_value_name, :on=>:create do
+  create_source
+end
+
+event :create_source_for_updating_metric_value, :before=>:process_subcards, :on=>:update do
+  create_source
+end
+
+def create_source
   Env.params[:sourcebox] = 'true'
   value = subcards.delete('+value')
   source_card = Card.create :type_id=>Card::SourceID, :subcards=>subcards.clone
@@ -43,8 +51,6 @@ event :create_source_for_metric_value, :after=>:validate_name, :on=>:create do
     end
   end
 end
-
-
 
 format :html do
   def default_new_args args
