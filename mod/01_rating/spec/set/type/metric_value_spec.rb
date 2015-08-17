@@ -15,7 +15,7 @@ describe Card::Set::Type::MetricValue do
     @metric_value = Card.create! :type_id=>Card::MetricValueID, :subcards=>subcard
   end
   describe "getting related cards" do
-    
+
     it "returns correct year" do
       expect(@metric_value.year).to eq("2015")
     end
@@ -63,16 +63,16 @@ describe Card::Set::Type::MetricValue do
       @metric_value.update_attributes! :subcards=>{"+value"=>"if nobody hates you, you're doing something wrong."}
       metric_values_value_card = Card["#{@metric_value.name}+value"]
       expect(metric_values_value_card.content).to eq("if nobody hates you, you're doing something wrong.")
-    end 
+    end
   end
   describe "views" do
-    it "renders timeline_credit" do
-      html = @metric_value.format.render_timeline_credit
-      expect(html).to have_tag("div",:with=>{:class=>"timeline-row"}) do
-        with_tag("div",:with=>{:class=>"td credit"})
-        with_tag("a",:with=>{:href=>"/Joe_User"},:text=>"Joe User")
-      end
-    end
+    # it "renders timeline_credit" do
+    #   html = @metric_value.format.render_timeline_credit
+    #   expect(html).to have_tag("div",:with=>{:class=>"timeline-row"}) do
+    #     with_tag("div",:with=>{:class=>"td credit"})
+    #     with_tag("a",:with=>{:href=>"/Joe_User"},:text=>"Joe User")
+    #   end
+    # end
     it "renders timeline data" do
 
       html = @metric_value.format.render_timeline_data
@@ -85,7 +85,10 @@ describe Card::Set::Type::MetricValue do
           with_tag("span",:with=>{:class=>"metric-value"}) do
             with_tag("a",:with=>{:href=>"/#{@metric_value.cardname.url_key}?layout=modal&slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu"},:text=>"I'm fine, I'm just not happy.")
           end
-          with_tag("span",:with=>{:class=>"metric-unit"},:text=>/Imperial military units/) 
+          with_tag("span",:with=>{:class=>"metric-unit"},:text=>/Imperial military units/)
+        end
+        with_tag("div",:with=>{:class=>'td credit'}) do
+          with_tag("a",:with=>{:href=>"/Joe_User"},:text=>"Joe User")
         end
       end
     end
@@ -97,10 +100,10 @@ describe Card::Set::Type::MetricValue do
     end
     it "renders concise" do
       html = @metric_value.format.render_concise
-      
-      expect(html).to have_tag("span",:with=>{:class=>"metric-year"},:text=>/2015 =/) 
-      expect(html).to have_tag("span",:with=>{:class=>"metric-value"}) 
-      expect(html).to have_tag("span",:with=>{:class=>"metric-unit"},:text=>/Imperial military units/) 
+
+      expect(html).to have_tag("span",:with=>{:class=>"metric-year"},:text=>/2015 =/)
+      expect(html).to have_tag("span",:with=>{:class=>"metric-value"})
+      expect(html).to have_tag("span",:with=>{:class=>"metric-unit"},:text=>/Imperial military units/)
     end
   end
 end
