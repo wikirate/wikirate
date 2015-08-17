@@ -1,3 +1,4 @@
+require 'curb'
 card_accessor :vote_count, :type=>:number, :default=>"0"
 card_accessor :upvote_count, :type=>:number, :default=>"0"
 card_accessor :downvote_count, :type=>:number, :default=>"0"
@@ -37,7 +38,7 @@ end
 def has_file_or_text?
   file_card = subcards["+File"]
   text_card = subcards["+Text"]
-  ( file_card && file_card.stringify_keys.has_key?("content") ) || ( text_card && ( text_card_content = (text_card.stringify_keys)["content"] ) && !text_card_content.empty? )
+  ( file_card && file_card.stringify_keys.has_key?("file") ) || ( text_card && ( text_card_content = (text_card.stringify_keys)["content"] ) && !text_card_content.empty? )
 end
 
 event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc{  |c| !c.has_file_or_text? } do
@@ -75,42 +76,36 @@ event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc
         errors.add :link, "exists already. <a href='/#{duplicated_name}'>Visit the source.</a>"
       end
     end
-    if errors.empty? and file_link? url
-      download_file_and_add_to_plus_file url
+    if errors.empty?
+      if file_link? url
+        download_file_and_add_to_plus_file url
+      else
+        parse_source_page url if Card::Env.params[:sourcebox] == 'true'
+      end
     end
-    parse_source_page url if Card::Env.params[:sourcebox] == 'true'
   end
 
 end
 
 def download_file_and_add_to_plus_file url
   url.gsub!(/ /, '%20')
-  url.gsub!(/https:/, 'http:')
-  #uri = nil
-  #uri = open(url, :allow_redirections => :safe,  "User-Agent" => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.65 Safari/537.36",)
-  #filename = ::File.basename(URI.parse(url).path)
-  #file_uploaded = ActionDispatch::Http::UploadedFile.new(:tempfile => uri, :filename => filename)
   subcards["+File"] = {
-    :attach=>URI.parse(url),:content=>"CHOSEN",:type_id=>Card::FileID
+    :file=>URI.parse(url),:type_id=>Card::FileID
   }
   subcards.delete("+#{ Card[:wikirate_link].name }")
 rescue  # if open raises errors , just treat the source as a normal source
   Rails.logger.info "Fail to get the file from link"
-  parse_source_page url
 end
 
 def file_link? url
   # just got the header instead of downloading the whole file
-  uri = URI.parse( url )
-  http = Net::HTTP.start(uri.host)
-  resp = http.head(uri.path)
-  content_type = resp["content-type"]
-  content_size = resp["content-length"]
-  http.finish
+  curl_result = Curl::Easy.http_head(url)
+  content_type = curl_result.head[/.*Content-Type: (.*)\r\n/,1]
+  content_size = curl_result.head[/.*Content-Length: (.*)\r\n/,1].to_i
   # prevent from showing file too big while users are adding a link source
   max_size = (max = Card['*upload max']) ? max.db_content.to_i : 5
 
-  not (content_type.start_with?"text/html" or content_type.start_with?"image/") and content_size.to_i <= max_size.kilobytes
+  not (content_type.start_with?"text/html" or content_type.start_with?"image/") and content_size.to_i <= max_size.megabytes
 rescue
   Rails.logger.info "Fail to extract header from the #{ url }"
   false

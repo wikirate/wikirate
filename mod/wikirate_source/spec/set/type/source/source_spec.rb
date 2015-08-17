@@ -74,6 +74,22 @@ describe Card::Set::Type::Source do
           expect(sourcepage.errors).to be_empty
           expect(sourcepage.fetch(:trait=>:file)).to_not be_nil
           expect(sourcepage.fetch(:trait=>:wikirate_link)).to be_nil
+          expect(Card.exists?("#{sourcepage.name}+title")).to eq(false)
+          expect(Card.exists?("#{sourcepage.name}+description")).to eq(false)
+        end
+        it "handles this special url and saves as a file source" do
+          pdf_url = "https://www.unglobalcompact.org/system/attachments/9862/original/Sinopec_2010_Sustainable_Development_Report.pdf?1302508855"
+          sourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> pdf_url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""}}
+          expect(sourcepage.errors).to be_empty
+          expect(sourcepage.fetch(:trait=>:file)).to_not be_nil
+          expect(sourcepage.fetch(:trait=>:wikirate_link)).to be_nil
+        end
+        it "won't create file source if the file is bigger than '*upload max'" do
+          pdf_url = "http://cartographicperspectives.org/index.php/journal/article/download/cp49-issue/489"
+          sourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> pdf_url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""}}
+          expect(sourcepage.errors).to be_empty
+          expect(sourcepage.fetch(:trait=>:wikirate_link)).to_not be_nil
+          expect(sourcepage.fetch(:trait=>:file)).to be_nil
         end
       end
     end
