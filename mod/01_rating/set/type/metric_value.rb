@@ -20,6 +20,15 @@ def company_card
   Card.fetch company_name
 end
 
+def source_exist?
+  file_card = subcards["+File"]
+  text_card = subcards["+Text"]
+  link_card = subcards["+Link"]
+  ( file_card && file_card.stringify_keys.has_key?("file") ) || 
+  ( text_card && ( text_card_content = (text_card.stringify_keys)["content"] ) && !text_card_content.empty? ) ||
+  ( link_card && ( link_card_content = (link_card.stringify_keys)["content"] ) && !link_card_content.empty? )
+
+end
 
 event :set_metric_value_name, :before=>:set_autoname, :when=>proc{|c| c.cardname.parts.size < 4} do
   self.name = ['+metric', '+company', '+year'].map do |name|
@@ -27,7 +36,15 @@ event :set_metric_value_name, :before=>:set_autoname, :when=>proc{|c| c.cardname
     end.join '+'
 end
 
-event :create_source_for_metric_value, :after=>:validate_name, :on=>:create do
+event :create_source_for_metric_value, :after=>:set_metric_value_name, :on=>:create do
+  create_source
+end
+
+event :create_source_for_updating_metric_value, :before=>:process_subcards, :on=>:update, :when=>proc{  |c| c.source_exist? } do
+  create_source
+end
+
+def create_source
   Env.params[:sourcebox] = 'true'
   value = subcards.delete('+value')
   source_card = Card.create :type_id=>Card::SourceID, :subcards=>subcards.clone
@@ -43,8 +60,6 @@ event :create_source_for_metric_value, :after=>:validate_name, :on=>:create do
     end
   end
 end
-
-
 
 format :html do
   def default_new_args args
