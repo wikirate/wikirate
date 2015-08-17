@@ -61,6 +61,9 @@ def contributees res=[], visited=::Set.new
   elsif type_code == :metric && (r = right)
     res << r
     Card::Cache[Card::Set::Right::YinyangDragItem].delete key
+  elsif type_code == :metric_value
+    res << company_card
+    Card::Cache[Card::Set::Right::YinyangDragItem].delete key
   else
     if left and !visited.include?(left.name) and
       (
