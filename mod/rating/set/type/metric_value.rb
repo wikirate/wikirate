@@ -101,6 +101,12 @@ format :html do
     line   =  content_tag(:div, '', :class=>'timeline-dot')
     line   << content_tag(:div, '', :class=>'timeline-line') if args[:connect]
 
+    credit = wrap_with :div, :class=>'td credit' do
+            [
+              nest(card, :view=>:core, :structure=>'creator credit'),
+              _optional_render(:source_link, args, :hide)
+            ]
+          end
 
 
     wrap_with :div, :class=>'timeline-row' do
@@ -108,20 +114,22 @@ format :html do
         line,
         content_tag(:div, year.html_safe,  :class=>'td year'),
         content_tag(:div, value.html_safe, :class=>'td value' ),
+        credit
+
       ]
     end
   end
 
-  view :timeline_credit do |args|
-    wrap_with :div, :class=>'timeline-row' do
-      wrap_with :div, :class=>'td credit' do
-        [
-          nest(card, :view=>:core, :structure=>'creator credit'),
-          _optional_render(:source_link, args, :hide)
-        ]
-      end
-    end
-  end
+  # view :timeline_credit do |args|
+  #   wrap_with :div, :class=>'timeline-row' do
+  #     wrap_with :div, :class=>'td credit' do
+  #       [
+  #         nest(card, :view=>:core, :structure=>'creator credit'),
+  #         _optional_render(:source_link, args, :hide)
+  #       ]
+  #     end
+  #   end
+  # end
 
   # TODO: in branch source_link by henry
   # view :source_link do |args|

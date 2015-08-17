@@ -10,14 +10,14 @@ format :html do
         ]
 
       end),
-      (wrap_with :div, :class=>'pull-left timeline-credit' do
-        [
-          _optional_render(:timeline_header, args.merge(:column=>:credit), :show),
-          (search_results.map.with_index do |res,i|
-            subformat(res).render_timeline_credit(args.merge(:connect=> i<search_results.size-1))
-          end.join "\n")
-        ]
-      end),
+      # (wrap_with :div, :class=>'pull-left timeline-credit' do
+      #   [
+      #     _optional_render(:timeline_header, args.merge(:column=>:credit), :show),
+      #     (search_results.map.with_index do |res,i|
+      #       subformat(res).render_timeline_credit(args.merge(:connect=> i<search_results.size-1))
+      #     end.join "\n")
+      #   ]
+      # end),
     ]
     %{
       <div class="timeline container">
