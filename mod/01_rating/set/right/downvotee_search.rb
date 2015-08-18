@@ -90,7 +90,7 @@ format :html do
         when WikirateAnalysisID then analysis_draggable_opts(votee, draggable_opts)
         end
         unless draggable_opts[:no_value]
-          draggable nest(item), draggable_opts
+          draggable nest(item,:view=>:content), draggable_opts
         end
       end.compact.join("\n").html_safe
     end.html_safe
@@ -108,7 +108,7 @@ format :html do
         when WikirateAnalysisID then analysis_draggable_opts(votee, sort_opts)
         end
 
-        sortable nest(item), sort_opts
+        sortable nest(item,:view=>:content), sort_opts
       end.join("\n").html_safe
     end.html_safe
   end
