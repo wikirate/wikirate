@@ -72,10 +72,13 @@ describe Card::Set::Type::Source do
           pdf_url = "http://www.relacweb.org/conferencia/images/documentos/Hoteles_cerca.pdf"
           sourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> pdf_url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""}}
           expect(sourcepage.errors).to be_empty
-          expect(sourcepage.fetch(:trait=>:file)).to_not be_nil
+          source_file = sourcepage.fetch(:trait=>:file)
+          expect(source_file).to_not be_nil
           expect(sourcepage.fetch(:trait=>:wikirate_link)).to be_nil
           expect(Card.exists?("#{sourcepage.name}+title")).to eq(false)
           expect(Card.exists?("#{sourcepage.name}+description")).to eq(false)
+          expect(File.exist?source_file.file.path).to be true
+
         end
         it "handles this special url and saves as a file source" do
           pdf_url = "https://www.unglobalcompact.org/system/attachments/9862/original/Sinopec_2010_Sustainable_Development_Report.pdf?1302508855"
