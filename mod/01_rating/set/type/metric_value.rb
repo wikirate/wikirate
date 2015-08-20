@@ -36,7 +36,7 @@ event :set_metric_value_name, :before=>:set_autoname, :when=>proc{|c| c.cardname
     end.join '+'
 end
 
-event :create_source_for_metric_value, :after=>:set_metric_value_name, :on=>:create do
+event :create_source_for_metric_value, :before=>:process_subcards, :on=>:create do
   create_source
 end
 
