@@ -132,21 +132,21 @@ format :html do
       wrap_with :div, :class=>'td credit' do
         [
           nest(card, :view=>:core, :structure=>'creator credit'),
-          _optional_render(:source_link, args, :hide)
+          _optional_render(:source_link, args)
         ]
       end
     end
   end
 
   # TODO: in branch source_link by henry
-  # view :source_link do |args|
-  #   if source_card = card.fetch(:trait=>:source)
-  #     source_card.item_cards.map do |i_card|
-  #       subformat(i_card).render_original_icon_link
-  #     end.join "\n"
-  #   else
-  #     ''
-  #   end
-  # end
+  view :source_link do |args|
+    if source_card = card.fetch(:trait=>:source)
+      source_card.item_cards.map do |i_card|
+        subformat(i_card).render_original_icon_link
+      end.join "\n"
+    else
+      ''
+    end
+  end
 
 end

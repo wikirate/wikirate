@@ -77,10 +77,13 @@ event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc
         errors.add :link, "exists already. <a href='/#{duplicated_name}'>Visit the source.</a>"
       end
     end
-    if errors.empty? and file_link url
-      download_file_and_add_to_plus_file url
-    end   
-    parse_source_page url if Card::Env.params[:sourcebox] == 'true'
+    if errors.empty?
+      if file_link? url
+        download_file_and_add_to_plus_file url
+      else
+        parse_source_page url if Card::Env.params[:sourcebox] == 'true'
+      end
+    end
   end
   
 end
@@ -95,7 +98,7 @@ rescue  # if open raises errors , just treat the source as a normal source
   Rails.logger.info "Fail to get the file from link"
 end
 
-def file_link url 
+def file_link? url 
   # just got the header instead of downloading the whole file
   curl_result = Curl::Easy.http_head(url)
   content_type = curl_result.head[/.*Content-Type: (.*)\r\n/,1]
@@ -166,7 +169,7 @@ format :html do
     with_original do |card, type|
       case type
       when :file
-        link_to (args[:title] || "Download"),card.attach.url
+        link_to (args[:title] || "Download"),card.file.url
       when :link
         link_to (args[:title] || "Visit Source"),card.content
       when :text
