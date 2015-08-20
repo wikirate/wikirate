@@ -184,6 +184,13 @@ describe Card::Set::Type::Source do
     it "renders header view with :custom_source_header to be true" do
       expect(@source_page.format.render_header  :custom_source_header=>true ).to include(@source_page.format.render_header_with_voting)
     end
+    it "renders metric_import_link" do
+      test_csv = File.open("#{Rails.root}/mod/wikirate_source/spec/set/type_plus_right/source/import_test.csv")
+      sourcepage = Card.create! :type_id=>Card::SourceID,:subcards=>{'+File'=>{ :file=>test_csv,:type_id=>Card::FileID}}
+      html = sourcepage.format.render_metric_import_link
+      source_file = sourcepage.fetch :trait=>:file
+      expect(html).to have_tag("a",:with=>{:href=>"/#{source_file.cardname.url_key}?view=import"},:text=>"Import to metric values")
+    end
 
   end
   

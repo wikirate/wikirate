@@ -158,7 +158,7 @@ format :html do
 
   view :metric_import_link do |args|
     file_card = Card[card.name+"+File"]
-    if file_card and mime_type = file_card.content.split("\n")[1] and ( mime_type == "text/csv" || mime_type == "text/comma-separated-values" )
+    if file_card and mime_type = file_card.file.content_type and ( mime_type == "text/csv" || mime_type == "text/comma-separated-values" )
       card_link file_card, {:text=>"Import to metric values",:path_opts=>{:view=>:import}}
     else
       ""
