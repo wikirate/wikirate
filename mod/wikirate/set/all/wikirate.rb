@@ -29,7 +29,7 @@ format :html do
 
   view :meta_preview do |args|
     ActionView::Base.full_sanitizer.sanitize(Card::Content.truncatewords_with_closing_tags _render_core(args), words=50)
-  end 
+  end
 
   def is_number? str
     true if Float(str) rescue false
@@ -40,9 +40,7 @@ format :html do
     if is_number? value
       %{
         <div class="progress">
-          <div class="progress-bar" role="progressbar" aria-valuenow="#{value}" aria-valuemin="0" aria-valuemax="100" style="width: #{value}%;">
-            #{value}%
-          </div>
+          <div class="progress-bar" role="progressbar" aria-valuenow="#{value}" aria-valuemin="0" aria-valuemax="100" style="width: #{value}%;">#{value}%</div>
         </div>
       }
     else
@@ -58,10 +56,6 @@ format :html do
         wrap_body( :content=>true ) { _render_core args },
       ]
     end
-  end
-
-  view :edit_without_title do |args|
-
   end
 
   view :edits_by do |args|
@@ -180,8 +174,6 @@ format :html do
             </div>
           </div>
           #{ _optional_render :toolbar, args, :hide}
-          #{ _optional_render :edit_toolbar, args, :hide}
-          #{ _optional_render :account_toolbar, args, :hide}
         }
       end
     else
@@ -197,35 +189,34 @@ format :html do
       item_args[:type] = type
     end
 
-    enrich_result(card.item_cards).map do |icard|
+    enrich_result(card.item_names).map do |icard|
       content_tag :div, :class=>"yinyang-row" do
        nest(icard, item_args.clone).html_safe
-      end
-    end.join joint
+      end.html_safe
+    end.join(joint).html_safe
   end
 
   def enrich_result result
-    result.map do |item_card|
+    result.map do |item_name|
        # 1) add the main card name on the left
-       # the pattern is as follows:
-       # "Apple+metric+*upvotes+votee search" finds "a metric+yinyang drag item" and we add "Apple" to the left
-       # because we need it to show the metric values of "Apple+a metric" in the view of that item
+       # for example if "Apple+metric+*upvotes+votee search" finds "a metric" we add "Apple" to the left
+       # because we need it to show the metric values of "a metric+apple" in the view of that item
        # 2) add "yinyang drag item" on the right
        # this way we can make sure that the card always exists with a "yinyang drag item+*right" structure
-      Card.fetch "#{main_name}+#{item_card.cardname}+yinyang drag item"
+      Card.fetch "#{main_name}+#{item_name}+yinyang drag item"
     end
   end
 
   def main_name
-    card.cardname.left_name.left
+    @main_name ||= card.cardname.left_name.left
   end
 
   def main_type_id
-    Card.fetch(main_name).type_id
+    @main_type_id ||= Card[main_name].type_id
   end
 
   def searched_type_id
-    Card.fetch_id card.cardname.left_name.right
+    @searched_type_id ||= Card.fetch_id card.cardname.left_name.right
   end
 
 end

@@ -7,15 +7,15 @@ gem 'card', :path=>"#{wagn_gem_path}/card", :require=>false
 
 
 gem "mysql2", "~> 0.3"
-gem 'link_thumbnailer', ">= 2.2.3"
+gem 'link_thumbnailer', "2.5.2"
 gem 'open_uri_redirections'
 gem 'roo'
-
+gem 'wbench'
+gem 'curb'
 #if RUBY_PLATFORM !~ /darwin/
 group :live do
   gem 'therubyracer'
   gem 'dalli'
-  gem 'dalli-delete-matched'
 
 end
 
@@ -23,7 +23,7 @@ group :test do
   gem 'rspec-rails', "~> 3.1.0"   # behavior-driven-development suite
   gem 'rspec'
   gem 'rspec-html-matchers', "0.6.1" # 0.7.0 broke stuff!
-  #gem 'wagn-rspec-formatter', :path=>'/opt/wagn-rspec-formatter'
+  #gem 'wagn-rspec-formatter', :git=>'https://github.com/xithan/wagn-rspec-formatter.git'
   gem 'spork', '>=0.9'
   gem 'timecop'
   gem 'simplecov'
@@ -39,22 +39,24 @@ group :test do
 
 
   gem 'email_spec'                             #
-  gem 'database_cleaner', '~> 0.7'             # used by cucumber for db transactions
+  gem 'database_cleaner', '~> 1.4.1'             # used by cucumber for db transactions
 
   gem 'turn', "~>0.8.3", :require => false      # Pretty printed test output.  (version constraint is to avoid minitest requirement)
-  gem 'minitest', "~>4.0"
+  gem 'minitest'
 end
 
 group :development do
   gem 'rails-dev-tweaks'
   gem 'sprockets' # just so above works
-  gem 'thin'
+  
   gem 'capistrano', '3.2.1'  #note - ssh was breaking on 3.3.3
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
 end
 
 group :test, :development do
+  
+  gem 'thin'
   gem 'pry-rails'
   gem 'pry-rescue'
   gem 'pry-stack_explorer'

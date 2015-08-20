@@ -42,13 +42,10 @@ format :html do
         </div>
       </div>
       #{ _optional_render :toolbar, args, :hide}
-      #{ _optional_render :edit_toolbar, args, :hide}
-      #{ _optional_render :account_toolbar, args, :hide}
     }
   end
 
   view :contribution_counts do |args|
-    campaign_count = card.sections.last[0]
     content_tag :div, :class=>'counts' do
       card.sections.map do |count, name, contr_name|
         content_tag :a, :class=>"item", :href=>"##{contr_name}" do

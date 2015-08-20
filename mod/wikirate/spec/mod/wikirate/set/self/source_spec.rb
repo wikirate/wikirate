@@ -8,7 +8,7 @@ describe Card::Set::Self::Source do
   describe "while check iframable" do
     it "should return true for a iframable website" do
     
-      url = 'http://wikirate.org'
+      url = 'http://example.org'
    
       Card::Env.params[:url] = url
       result = @page_card.format( :format=>:json)._render(:check_iframable) 

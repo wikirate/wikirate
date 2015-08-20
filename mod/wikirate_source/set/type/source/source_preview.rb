@@ -40,7 +40,7 @@ format :html do
   end
 
   view :iframe_view ,:tags=>:unknown_ok  do |args|
-    
+
     file_card = Card[card.name+"+File"]
     text_card = Card[card.name+"+Text"]
     if text_card
@@ -52,11 +52,11 @@ format :html do
         </div>
       }
     elsif file_card
-      if mime_type = file_card.content.split("\n")[1] and ( mime_type == "application/pdf" or mime_type.start_with?("image/") )
+      if mime_type = file_card.file.content_type and ( mime_type == "application/pdf" or mime_type.start_with?("image/") )
         if mime_type == "application/pdf"
-          content_tag(:div, '<iframe id="source-preview-iframe" src="pdfjs/viewer.html?file='+ file_card.attach.url+'"  security="restricted" sandbox="allow-same-origin allow-scripts allow-forms" ></iframe>', {:id=>"pdf-preview", :class=> "webpage-preview"},false)
+          content_tag(:div, '<iframe id="source-preview-iframe" src="pdfjs/viewer.html?file='+ file_card.attachment.url+'"  security="restricted" sandbox="allow-same-origin allow-scripts allow-forms" ></iframe>', {:id=>"pdf-preview", :class=> "webpage-preview"},false)
         else
-          content_tag(:div, '<img id="source-preview-iframe" src="'+file_card.attach.url+'"  / >', {:id=>"pdf-preview", :class=> "webpage-preview"},false)
+          content_tag(:div, '<img id="source-preview-iframe" src="'+file_card.attachment.url+'"  / >', {:id=>"pdf-preview", :class=> "webpage-preview"},false)
         end
       else
         redirect_content = _render_content args.merge({:structure=>"source item preview"})
@@ -69,7 +69,7 @@ format :html do
   end
 
   view :hidden_information, :tags=>:unknown_ok do |args|
-    %{  
+    %{
       <div style="display:none">
         #{content_tag(:div, card.cardname.url_key, {:id=>"source-name"})}
         #{content_tag(:div, args[:url], {:id=>"source_url"})}
@@ -114,7 +114,7 @@ format :html do
 
   view :non_previewable ,:tags=>:unknown_ok do |args|
     if file_card = Card[card.name+"+File"]
-      %{<a href="#{file_card.attach.url}" class="btn btn-primary" role="button">Download</a>}
+      %{<a href="#{file_card.attachment.url}" class="btn btn-primary" role="button">Download</a>}
     else
       url_card = card.fetch(:trait=>:wikirate_link)
       url = url_card ? url_card.item_names.first : nil
@@ -159,17 +159,17 @@ format :html do
     #External Link
     if !( file_card || text_card )
       result += %{
-  
+
             <li role="presentation" >
               <a class='' href='#{url}' target="_blank">
                 <i class="fa fa-external-link-square"></i> Visit Original
               </a>
             </li>
 
-          
+
       }
     end
     result
-    
+
   end
 end
