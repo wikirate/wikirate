@@ -170,8 +170,8 @@ describe Card::Set::Type::Source do
   describe "while rendering views" do 
     before do 
       login_as 'joe_user'
-      url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
-      @source_page = create_page url,{}
+      @url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
+      @source_page = create_page @url,{}
     end
     it "renders titled view with voting" do
       expect(@source_page.format.render_titled).to eq(@source_page.format.render_titled_with_voting)
@@ -190,6 +190,38 @@ describe Card::Set::Type::Source do
       html = sourcepage.format.render_metric_import_link
       source_file = sourcepage.fetch :trait=>:file
       expect(html).to have_tag("a",:with=>{:href=>"/#{source_file.cardname.url_key}?view=import"},:text=>"Import to metric values")
+    end
+    describe "original_icon_link" do
+      context "file source" do
+        it "renders upload icon" do
+          test_csv = File.open("#{Rails.root}/mod/wikirate_source/spec/set/type_plus_right/source/import_test.csv")
+          sourcepage = Card.create! :type_id=>Card::SourceID,:subcards=>{'+File'=>{ :file=>test_csv,:type_id=>Card::FileID}}
+          html = sourcepage.format.render_original_icon_link
+          source_file = sourcepage.fetch :trait=>:file
+          expect(html).to have_tag("a",:with=>{:href=>source_file.file.url}) do
+            with_tag "i",:with=>{:class=>"fa fa-upload"}
+          end
+        end
+      end
+      context "link source" do
+        it "renders globe icon" do
+          html = @source_page.format.render_original_icon_link
+          expect(html).to have_tag("a",:with=>{:href=>@url}) do
+            with_tag "i",:with=>{:class=>"fa fa-globe"}
+          end
+        end
+      end
+      context "text source" do
+        it "renders pencil icon" do
+          new_sourcepage = Card.create! :type_id=>Card::SourceID,:subcards=>{'+Text'=>{:type_id=>Card::BasicID,:content=>"test text report"} }
+          html = new_sourcepage.format.render_original_icon_link
+          text_source = new_sourcepage.fetch(:trait=>:text)
+          expect(html).to have_tag("a",:with=>{:href=>"/#{text_source.cardname.url_key}"}) do
+            with_tag "i",:with=>{:class=>"fa fa-pencil"}
+          end
+        
+        end
+      end
     end
 
   end

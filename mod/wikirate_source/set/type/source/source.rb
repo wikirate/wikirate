@@ -187,7 +187,7 @@ format :html do
       yield file_card, :file
     elsif link_card = card.fetch(:trait=>:wikirate_link)
       yield link_card, :link
-    elsif text_card = Card[card.name+"+text"]
+    elsif text_card = card.fetch(:trait=>:text)
       yield text_card, :text
     end
   end
@@ -209,7 +209,7 @@ format :html do
       :file
     elsif card.fetch(:trait=>:wikirate_link)
       :link
-    elsif Card[card.name+"+text"]
+    elsif card.fetch(:trait=>:text)
       :text
     end
   end
