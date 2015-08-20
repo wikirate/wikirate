@@ -100,9 +100,12 @@ end
 
 def file_link? url 
   # just got the header instead of downloading the whole file
-  curl_result = Curl::Easy.http_head(url)
-  content_type = curl_result.head[/.*Content-Type: (.*)\r\n/,1]
-  content_size = curl_result.head[/.*Content-Length: (.*)\r\n/,1].to_i
+  curl = Curl::Easy.new(url)
+  curl.follow_location = true
+  curl.max_redirects = 5
+  curl.http_head
+  content_type = curl.head[/.*Content-Type: (.*)\r\n/,1]
+  content_size = curl.head[/.*Content-Length: (.*)\r\n/,1].to_i
   # prevent from showing file too big while users are adding a link source
   max_size = (max = Card['*upload max']) ? max.db_content.to_i : 5
 
