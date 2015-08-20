@@ -72,10 +72,13 @@ describe Card::Set::Type::Source do
           pdf_url = "http://www.relacweb.org/conferencia/images/documentos/Hoteles_cerca.pdf"
           sourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> pdf_url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""}}
           expect(sourcepage.errors).to be_empty
-          expect(sourcepage.fetch(:trait=>:file)).to_not be_nil
+          source_file = sourcepage.fetch(:trait=>:file)
+          expect(source_file).to_not be_nil
           expect(sourcepage.fetch(:trait=>:wikirate_link)).to be_nil
           expect(Card.exists?("#{sourcepage.name}+title")).to eq(false)
           expect(Card.exists?("#{sourcepage.name}+description")).to eq(false)
+          expect(File.exist?source_file.file.path).to be true
+
         end
         it "handles this special url and saves as a file source" do
           pdf_url = "https://www.unglobalcompact.org/system/attachments/9862/original/Sinopec_2010_Sustainable_Development_Report.pdf?1302508855"
@@ -180,6 +183,13 @@ describe Card::Set::Type::Source do
 
     it "renders header view with :custom_source_header to be true" do
       expect(@source_page.format.render_header  :custom_source_header=>true ).to include(@source_page.format.render_header_with_voting)
+    end
+    it "renders metric_import_link" do
+      test_csv = File.open("#{Rails.root}/mod/wikirate_source/spec/set/type_plus_right/source/import_test.csv")
+      sourcepage = Card.create! :type_id=>Card::SourceID,:subcards=>{'+File'=>{ :file=>test_csv,:type_id=>Card::FileID}}
+      html = sourcepage.format.render_metric_import_link
+      source_file = sourcepage.fetch :trait=>:file
+      expect(html).to have_tag("a",:with=>{:href=>"/#{source_file.cardname.url_key}?view=import"},:text=>"Import to metric values")
     end
 
   end
