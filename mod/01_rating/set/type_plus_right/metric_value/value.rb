@@ -1,6 +1,6 @@
 format :html do
   view :timeline_row do |args|
-    args.merge!(:hide=>'timeline_header source_link timeline_add_new_link')
+    args.merge!(:hide=>'timeline_header timeline_add_new_link')
     wrap_with :div, :class=>'timeline container' do
       wrap_with :div, :class=>'timeline-body' do
         [

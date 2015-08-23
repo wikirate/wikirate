@@ -45,11 +45,16 @@ format :json do
     begin 
       # escape space in url, eg, http://www.businessweek.com/articles/2014-10-30/tim-cook-im-proud-to-be-gay#r=most popular
       url.gsub!(/ /, '%20')
-      uri = open(url, :allow_redirections => :safe)
-      xFrameOptions = uri.meta["x-frame-options"]
+      
+      curl = Curl::Easy.new(url)
+      curl.follow_location = true
+      curl.max_redirects = 5
+      curl.http_head
+      xFrameOptions = curl.head[/.*X-Frame-Options: (.*)\r\n/,1]
+      content_type = curl.head[/.*Content-Type: (.*)\r\n/,1]
       is_firefox = user_agent ? user_agent =~ /Firefox/ : false
       return false if xFrameOptions and ( xFrameOptions.upcase.include? "DENY" or xFrameOptions.upcase.include? "SAMEORIGIN" )
-      return false if !allow_content_type.include?(uri.content_type) and  !is_firefox
+      return false if !allow_content_type.include?(content_type) and  !is_firefox
     rescue => error
       Rails.logger.error error.message
       return false

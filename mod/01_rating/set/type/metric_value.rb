@@ -24,7 +24,7 @@ def source_exist?
   file_card = subcards["+File"]
   text_card = subcards["+Text"]
   link_card = subcards["+Link"]
-  ( file_card && file_card.stringify_keys.has_key?("file") ) || 
+  ( file_card && file_card.stringify_keys.has_key?("file") ) ||
   ( text_card && ( text_card_content = (text_card.stringify_keys)["content"] ) && !text_card_content.empty? ) ||
   ( link_card && ( link_card_content = (link_card.stringify_keys)["content"] ) && !link_card_content.empty? )
 
@@ -36,7 +36,7 @@ event :set_metric_value_name, :before=>:set_autoname, :when=>proc{|c| c.cardname
     end.join '+'
 end
 
-event :create_source_for_metric_value, :after=>:set_metric_value_name, :on=>:create do
+event :create_source_for_metric_value, :before=>:process_subcards, :on=>:create do
   create_source
 end
 
@@ -135,26 +135,17 @@ format :html do
     end
   end
 
-  # view :timeline_credit do |args|
-  #   wrap_with :div, :class=>'timeline-row' do
-  #     wrap_with :div, :class=>'td credit' do
-  #       [
-  #         nest(card, :view=>:core, :structure=>'creator credit'),
-  #         _optional_render(:source_link, args, :hide)
-  #       ]
-  #     end
-  #   end
-  # end
+
 
   # TODO: in branch source_link by henry
-  # view :source_link do |args|
-  #   if source_card = card.fetch(:trait=>:source)
-  #     source_card.item_cards.map do |i_card|
-  #       subformat(i_card).render_original_icon_link
-  #     end.join "\n"
-  #   else
-  #     ''
-  #   end
-  # end
+  view :source_link do |args|
+    if source_card = card.fetch(:trait=>:source)
+      source_card.item_cards.map do |i_card|
+        subformat(i_card).render_original_icon_link
+      end.join "\n"
+    else
+      ''
+    end
+  end
 
 end

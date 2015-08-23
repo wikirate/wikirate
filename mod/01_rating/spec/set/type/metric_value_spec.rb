@@ -66,13 +66,7 @@ describe Card::Set::Type::MetricValue do
     end
   end
   describe "views" do
-    # it "renders timeline_credit" do
-    #   html = @metric_value.format.render_timeline_credit
-    #   expect(html).to have_tag("div",:with=>{:class=>"timeline-row"}) do
-    #     with_tag("div",:with=>{:class=>"td credit"})
-    #     with_tag("a",:with=>{:href=>"/Joe_User"},:text=>"Joe User")
-    #   end
-    # end
+
     it "renders timeline data" do
 
       html = @metric_value.format.render_timeline_data
