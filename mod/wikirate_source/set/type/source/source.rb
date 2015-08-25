@@ -38,7 +38,8 @@ end
 def has_file_or_text?
   file_card = subcards["+File"]
   text_card = subcards["+Text"]
-  ( file_card && file_card.stringify_keys.has_key?("file") ) || ( text_card && ( text_card_content = (text_card.stringify_keys)["content"] ) && !text_card_content.empty? )
+  ( file_card && (file_card.stringify_keys.has_key?("file") || file_card.stringify_keys.has_key?("remote_file_url"))) || 
+  ( text_card && ( text_card_content = (text_card.stringify_keys)["content"] ) && !text_card_content.empty? )
 end
 
 event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc{  |c| !c.has_file_or_text? } do
@@ -84,24 +85,27 @@ event :process_source_url, :before=>:process_subcards, :on=>:create, :when=>proc
       end
     end
   end
-
+  
 end
 
 def download_file_and_add_to_plus_file url
-  url.gsub!(/ /, '%20')
+  url.gsub!(/ /, '%20')  
   subcards["+File"] = {
-    :file=>URI.parse(url),:type_id=>Card::FileID
+    :remote_file_url=>url,:type_id=>Card::FileID,:content=>"dummy"
   }
   subcards.delete("+#{ Card[:wikirate_link].name }")
 rescue  # if open raises errors , just treat the source as a normal source
   Rails.logger.info "Fail to get the file from link"
 end
 
-def file_link? url
+def file_link? url 
   # just got the header instead of downloading the whole file
-  curl_result = Curl::Easy.http_head(url)
-  content_type = curl_result.head[/.*Content-Type: (.*)\r\n/,1]
-  content_size = curl_result.head[/.*Content-Length: (.*)\r\n/,1].to_i
+  curl = Curl::Easy.new(url)
+  curl.follow_location = true
+  curl.max_redirects = 5
+  curl.http_head
+  content_type = curl.head[/.*Content-Type: (.*)\r\n/,1]
+  content_size = curl.head[/.*Content-Length: (.*)\r\n/,1].to_i
   # prevent from showing file too big while users are adding a link source
   max_size = (max = Card['*upload max']) ? max.db_content.to_i : 5
 
@@ -157,10 +161,59 @@ format :html do
 
   view :metric_import_link do |args|
     file_card = Card[card.name+"+File"]
-    if file_card and mime_type = file_card.content.split("\n")[1] and ( mime_type == "text/csv" || mime_type == "text/comma-separated-values" )
+    if file_card and mime_type = file_card.file.content_type and ( mime_type == "text/csv" || mime_type == "text/comma-separated-values" )
       card_link file_card, {:text=>"Import to metric values",:path_opts=>{:view=>:import}}
     else
       ""
+    end
+  end
+
+  view :original_link do |args|
+    with_original do |card, type|
+      case type
+      when :file
+        link_to (args[:title] || "Download"),card.file.url
+      when :link
+        link_to (args[:title] || "Visit Source"),card.content
+      when :text
+        card_link card, :text=>(args[:title] || "Visit Text Source")
+      end
+    end
+  end
+
+  view :original_icon_link do |args|
+    _render_original_link args.merge(:title=>content_tag(:i, '', :class=>"fa fa-#{icon}"))
+  end
+
+  def with_original
+    if file_card = card.fetch(:trait=>:file )
+      yield file_card, :file
+    elsif link_card = card.fetch(:trait=>:wikirate_link)
+      yield link_card, :link
+    elsif text_card = card.fetch(:trait=>:text)
+      yield text_card, :text
+    end
+  end
+
+  def icon
+    icon_type =
+      case source_type
+      when :file
+        'upload'
+      when :link
+        'globe'
+      when :text
+        'pencil'
+      end
+  end
+
+  def source_type
+    if card.fetch :trait=>:file
+      :file
+    elsif card.fetch(:trait=>:wikirate_link)
+      :link
+    elsif card.fetch(:trait=>:text)
+      :text
     end
   end
 

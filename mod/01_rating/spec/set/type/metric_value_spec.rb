@@ -67,10 +67,21 @@ describe Card::Set::Type::MetricValue do
   end
   describe "views" do
     it "renders timeline_credit" do
+      url = "http://wagn.org"
+      metric_value_source_card = @metric_value.fetch :trait=>:source
+      new_source = create_page url
+      metric_value_source_card<<new_source
+      metric_value_source_card.save!
       html = @metric_value.format.render_timeline_credit
       expect(html).to have_tag("div",:with=>{:class=>"timeline-row"}) do
         with_tag("div",:with=>{:class=>"td credit"})
         with_tag("a",:with=>{:href=>"/Joe_User"},:text=>"Joe User")
+        with_tag("a",:with=>{:href=>url}) do
+          with_tag "i",:with=>{:class=>"fa fa-globe"}
+        end
+        with_tag("a",:with=>{:href=>"http://www.google.com/?q=everybodylies"}) do
+          with_tag "i",:with=>{:class=>"fa fa-globe"}
+        end
       end
     end
     it "renders timeline data" do
