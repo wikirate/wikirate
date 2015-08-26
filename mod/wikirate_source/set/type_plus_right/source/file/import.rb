@@ -50,8 +50,7 @@ event :import_csv, :after=>:store, :on=>:update, :when=>proc{ |c| Env.params["is
         metric_value_card.update_attributes :subcards=>_subcard
         metric_value_card
       else
-        Card.create :name=>metric_value_card_name, :type_id=>Card::MetricValueID,
-                     :subcards=>_subcard
+        Card.create :type_id=>Card::MetricValueID, :subcards=>_subcard
       end
       if !metric_value_card.errors.empty?
         metric_value_card.errors.each do |key,value|
