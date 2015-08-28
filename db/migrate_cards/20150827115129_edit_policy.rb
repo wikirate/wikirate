@@ -11,6 +11,8 @@ class EditPolicy < Card::Migration
     Card.search(:type_id=>Card::MetricID).each do |metric_card|
       Card.create! :name=>"#{metric_card.name}+edit_policy",:type_id=>Card::PointerID,:content=>"[[Designer Assessed]]"
     end
-
+    Card.create! :name=>"Metric+edit policy+*type plus right+*input",:type_id=>Card::PointerID,:content=> "[[select]]"
+    Card.create! :name=>"Metric+edit policy+*type plus right+*options",:type_id=>Card::PointerID,:content=>"{\r\n  \"type\":\"Edit Policy\"\r\n}"
+    Card.create! :name=>"Metric+edit policy+*type plus right+*default",:type_id=>Card::PointerID,:content=>"[[Designer Assessed]]"
   end
 end
