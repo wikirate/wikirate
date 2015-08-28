@@ -24,6 +24,9 @@ describe Card::Set::Right::MetricValue do
               with_tag("div",:with=>{:class=>"timeline-header"}) do
                 with_tag("div",:with=>{:class=>"th year"},:text=>/Year/)
                 with_tag("div",:with=>{:class=>"th value"},:text=>/Value/)
+                with_tag("div",:with=>{:class=>"th new"}) do 
+                  with_tag("a",:with=>{:href=>"/new/metric_value?layout=modal&slot%5Bcompany%5D=#{CGI.escape(@company.name)}&slot%5Bmetric%5D=#{CGI.escape(@metric.name)}"},:text=>"+ Add New")
+                end
               end
               with_tag("div",:with=>{:class=>"timeline-row"}) do
                 with_tag("div",:with=>{:class=>"timeline-dot"})
@@ -41,17 +44,6 @@ describe Card::Set::Right::MetricValue do
                 with_tag("span",:with=>{:class=>"metric-unit"},:text=>"Imperial military units")
               end
             end
-            # with_tag("div",:with=>{:class=>"pull-left timeline-credit"}) do
-            #   with_tag("div",:with=>{:class=>"timeline-header"}) do
-            #     with_tag("div",:with=>{:class=>"th new"}) do
-            #       with_tag("a",:with=>{:href=>"/new/metric_value?layout=modal&slot%5Bcompany%5D=#{CGI.escape(@company.name)}&slot%5Bmetric%5D=#{CGI.escape(@metric.name)}"},:text=>"+ Add New")
-            #     end
-            #   end
-            #   with_tag("div",:with=>{:class=>"timeline-row"}) do
-            #     with_tag("div",:with=>{:class=>"td credit"})
-            #     with_tag("a",:with=>{:class=>"known-card",:href=>"/Joe_User"},:text=>"Joe User")
-            #   end
-            # end
           end
         end
       end
