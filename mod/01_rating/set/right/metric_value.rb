@@ -34,7 +34,9 @@ format :html do
     wrap_with :div, :class=>'timeline-header' do
       case args[:column]
       when :data
-        timeline_head('Year','year')+timeline_head('Value','value')+_optional_render(:timeline_add_new_link, args, :show) || ''
+        timeline_head('Year','year')
+          .concat(timeline_head('Value','value'))
+          .concat(_optional_render(:timeline_add_new_link, args, :show) || '')
       else ''
       end
     end
