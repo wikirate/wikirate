@@ -24,7 +24,7 @@ def source_exist?
   file_card = subcards["+File"]
   text_card = subcards["+Text"]
   link_card = subcards["+Link"]
-  ( file_card && file_card.stringify_keys.has_key?("file") ) || 
+  ( file_card && file_card.stringify_keys.has_key?("file") ) ||
   ( text_card && ( text_card_content = (text_card.stringify_keys)["content"] ) && !text_card_content.empty? ) ||
   ( link_card && ( link_card_content = (link_card.stringify_keys)["content"] ) && !link_card_content.empty? )
 
@@ -116,6 +116,12 @@ format :html do
     line   =  content_tag(:div, '', :class=>'timeline-dot')
     line   << content_tag(:div, '', :class=>'timeline-line') if args[:connect]
 
+    credit = wrap_with :div, :class=>'td credit' do
+            [
+              nest(card, :view=>:core, :structure=>'creator credit'),
+              _optional_render(:source_link, args, :hide)
+            ]
+          end
 
 
     wrap_with :div, :class=>'timeline-row' do
@@ -123,20 +129,13 @@ format :html do
         line,
         content_tag(:div, year.html_safe,  :class=>'td year'),
         content_tag(:div, value.html_safe, :class=>'td value' ),
+        credit
+
       ]
     end
   end
 
-  view :timeline_credit do |args|
-    wrap_with :div, :class=>'timeline-row' do
-      wrap_with :div, :class=>'td credit' do
-        [
-          nest(card, :view=>:core, :structure=>'creator credit'),
-          _optional_render(:source_link, args)
-        ]
-      end
-    end
-  end
+
 
   # TODO: in branch source_link by henry
   view :source_link do |args|
