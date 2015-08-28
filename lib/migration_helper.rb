@@ -10,7 +10,7 @@ module MigrationHelper
     ids = Card.search :name=>['match',down_old], :not=>{:type=>'Note'}, :return=>:id
     puts "Update #{ids.size} cards with '#{cap_old}' in the name"
     ids.each do |id|
-      name = Card.where(:id=>id).pluck(:name)
+      name = Card.where(:id=>id).pluck(:name).first
       if name !~ /\+/   # no junctions
         new_name = name.gsub(cap_old, cap_new).gsub(down_old, down_new)
         Card.find(id).update_attributes! :name=>new_name, :update_referencers=>true, :silent_change=>true
