@@ -21,11 +21,11 @@ module MigrationHelper
     ids = Card.search(:content=>['match',down_old], :return=>:id)
     puts "Update #{ids.size} cards with '#{cap_old}' in the content"
     ids.each do |id|
-      content, type_id, name = Card.where(:id=>id).pluck(:db_content, :type_id, :name).first
-      new_content = content.gsub(cap_old, cap_new).gsub(down_old, down_new)
-      Card.update(id, :db_content=>new_content)
-      if type_id == Card::BasicID || type_id == Card::PlainTextID
-        double_check << "[[#{name}]]"
+      card = Card.fetch(id, :skip_modules=>true)
+      new_content = card.content.gsub(cap_old, cap_new).gsub(down_old, down_new)
+      Card.update_column :db_content, new_content
+      if card.type_id == Card::BasicID || card.type_id == Card::PlainTextID
+        double_check << "[[#{card.name}]]"
       end
     end
     Card.create! :name=>"used #{cap_old} in content", :type=>'pointer', :content=> double_check.join("\n")
