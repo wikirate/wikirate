@@ -129,6 +129,11 @@ GEM
     dalli (2.7.4)
     database_cleaner (1.4.1)
     debug_inspector (0.0.2)
+    delayed_job (4.0.6)
+      activesupport (>= 3.0, < 5.0)
+    delayed_job_active_record (4.0.3)
+      activerecord (>= 3.0, < 5.0)
+      delayed_job (>= 3.0, < 4.1)
     diff-lcs (1.2.5)
     docile (1.1.5)
     email_spec (1.6.0)
@@ -267,7 +272,7 @@ GEM
       ansi
       ast
     rubyzip (1.1.7)
-    sass (3.4.17)
+    sass (3.4.18)
     selenium-webdriver (2.47.1)
       childprocess (~> 0.5)
       multi_json (~> 1.0)
@@ -309,7 +314,7 @@ GEM
       ansi
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (2.7.1)
+    uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     uuid (2.3.8)
@@ -344,6 +349,7 @@ DEPENDENCIES
   curb
   dalli
   database_cleaner (~> 1.4.1)
+  delayed_job_active_record
   email_spec
   launchy
   link_thumbnailer (= 2.5.2)
