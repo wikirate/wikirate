@@ -2,7 +2,7 @@
 
 class ValuePolicy < Card::Migration
   def up
-    edit_policy_card = Card.create! :name=>"Value Policy",:codename=>"edit_policy",:type_id=>Card::CardtypeID
+    edit_policy_card = Card.create! :name=>"Value Policy",:codename=>"value_policy",:type_id=>Card::CardtypeID
     Card.create! :name=>"Value Policy+*type+*structure",:type_id=>Card::HtmlID,:content=>"{{+description}}"
     Card.create! :name=>"Designer Assessed",:type_id=>edit_policy_card.id
     Card.create! :name=>"Designer Assessed+description",:type_id=>Card::BasicID,:content=>"Only the metric's designer may assess company values"
