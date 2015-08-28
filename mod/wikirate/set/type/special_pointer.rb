@@ -14,10 +14,28 @@ format :json do
       nest(c),
       Card.search(:left=>c.name).map do |ec|
         nest(ec)
+      end,
+      Card.search(:included_by=>c.name).map do |ec|
+        nest(ec)
       end
     ]
   end
-  view :core do |args|
+  def lite_render args
+    card.item_cards.map do |c|
+      case c.type_id
+      when Card::SearchTypeID
+        [
+          nest(c),
+          c.item_names.map do |cs|
+            nest(cs)
+          end
+        ]
+      else
+        nest(c)
+      end
+    end.flatten.reject { |c| c.nil? || c.empty? }
+  end 
+  def advance_render args
     card.item_cards.map do |c|
       case c.type_id
       when Card::SearchTypeID
@@ -29,12 +47,12 @@ format :json do
             end
           end
         ]
-      when  Card::SpecialPointerID
+      when Card::SpecialPointerID
         [
           nest(c),
           c.format(:json).render_core(args)
         ]
-      when  Card::PointerID
+      when Card::PointerID
         [
           nest(c),
           c.item_cards.map do |c|
@@ -44,7 +62,15 @@ format :json do
       else
         get_list_of_children_and_self c   
       end
-    end.flatten.reject { |c| c.empty? }
+    end.flatten.reject { |c| c.nil? || c.empty? }
+  end
+  view :core do |args|
+    if Env::params["lite"] == "true"
+      lite_render args
+    else
+      advance_render args
+    end
+    
   end
 end
   

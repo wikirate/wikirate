@@ -1,4 +1,4 @@
-
+require 'colorize'
 
 namespace :wikirate do
   namespace :test do
@@ -15,6 +15,41 @@ namespace :wikirate do
       mysql_args = "-u #{user}"
       mysql_args += " -p #{pwd}" if pwd
       system "mysql #{mysql_args} #{test_database} < #{db_path}"
+    end
+
+    desc 'update seed data using the production database'
+    task :reseed_data do
+      if ENV['RAILS_ENV'] != 'init_test'
+        puts "start task in test environment"
+        system 'env RAILS_ENV=init_test rake wikirate:test:reseed_data'
+      elsif !test_database
+        puts "Error: no test database defined in config/database.yml"
+      elsif !prod_database
+        puts "Error: no production database defined in config/database.yml"
+      else
+        # seed from raw wagn db
+        seed_test_db = "RAILS_ENV=test wagn seed"
+        puts seed_test_db.green
+        system seed_test_db
+
+
+        require "#{Wagn.root}/config/environment"
+        
+        puts "getting production export".green
+        export = open("http://127.0.0.1:3000/production_export.json").read
+        puts "Done".green
+        cards = JSON.parse(export)
+        Card::A
+        cards["card"]["value"].each do |c|
+          unless Card.exists?(c["name"])
+            puts "creating card #{c}"
+            Card.create! c 
+          end
+        end
+        require "#{Wagn.root}/test/seed.rb"
+        SharedData.add_wikirate_data
+      end
+      exit()
     end
 
     desc 'update seed data using the production database'
