@@ -3,7 +3,7 @@ format :html do
     args.merge!(:slot_class=>( "no-citations" if card.format.render_core=="0" ))
     super(args)
   end
-  view :related_article_modal_box do |args|
+  view :related_overview_modal_box do |args|
     value = card.format.render_core
     related_article_card = Card.fetch card.cardname.left+"+related article"
     text = subformat(card).render_titled args.merge({:title=>"Citations",:hide=>"menu"})
