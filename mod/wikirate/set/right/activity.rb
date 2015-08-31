@@ -2,7 +2,7 @@ def virtual?; true end
 
 format :html do
   view :core do |args|
-    Card::Act.where(:actor_id=>card.left.id).order('acted_at DESC').limit(10).map do |act|
+    Card::Act.where("actor_id=#{card.left.id} and card_id is not NULL" ).order('acted_at DESC').limit(10).map do |act|
       if (main_action = act.main_action) && (!main_action.draft) && (!act.card.trash)
         item = {
           :time => time_ago_in_words(act.acted_at),
