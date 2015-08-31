@@ -32,7 +32,7 @@ module MigrationHelper
       card = Card.fetch(id, :skip_modules=>true)
       Rails.logger.info "Updating content: #{card.name} (#{id})"
       new_content = card.content.gsub(cap_old, cap_new).gsub(down_old, down_new)
-      Card.update_column :db_content, new_content
+      card.update_column :db_content, new_content
       if card.type_id == Card::BasicID || card.type_id == Card::PlainTextID
         double_check << "[[#{card.name}]]"
       end
