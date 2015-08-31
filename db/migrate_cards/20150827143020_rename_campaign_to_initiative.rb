@@ -5,6 +5,6 @@ include MigrationHelper
 
 class RenameCampaignToInitiative < Card::Migration
   def up
-    rename 'campaign', 'overview'
+    rename 'campaign', 'initiative'
   end
 end
