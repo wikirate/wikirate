@@ -1,12 +1,12 @@
 
 describe Card::Set::Right::RelatedArticles do
   before do
-    login_as 'joe_user' 
+    login_as 'joe_user'
     @sample_company = get_a_sample_company
     @sample_topic = get_a_sample_topic
     @sample_analysis = get_a_sample_analysis
     @sample_claim = get_a_sample_claim
-    @related_article_card = Card.fetch @sample_claim.name+"+related article"
+    @related_article_card = Card.fetch @sample_claim.name+"+related overview"
   end
   describe "core views" do
     it "shows cited article and uncited article" do
@@ -19,7 +19,7 @@ describe Card::Set::Right::RelatedArticles do
       new_analysis = Card.create :name=>"#{new_company.name}+#{new_topic.name}",:type_id=>Card::WikirateAnalysisID
       new_article = Card.create :name=>"#{new_company.name}+#{new_topic.name}+#{Card[:wikirate_article].name}",:type_id=>Card::BasicID,:content=>"Today is Wednesday."
 
-      claim_card = create_claim "whateverclaim",{"+company"=>{:content=>"[[#{new_company.name}]]\r\n[[#{@sample_company.name}]]"},"+topic"=>{:content=>"[[#{new_topic.name}]]\r\n[[#{@sample_topic.name}]]"}}      
+      claim_card = create_claim "whateverclaim",{"+company"=>{:content=>"[[#{new_company.name}]]\r\n[[#{@sample_company.name}]]"},"+topic"=>{:content=>"[[#{new_topic.name}]]\r\n[[#{@sample_topic.name}]]"}}
 
       sample_article = Card[@sample_analysis.name+"+#{Card[:wikirate_article].name}"]
       sample_article.content = "I need some kitkat.#{claim_card.default_citation}"
@@ -31,12 +31,12 @@ describe Card::Set::Right::RelatedArticles do
       death_star_test_company_analysis = Card.create :name=>"#{@sample_company.name}+#{new_topic.name}",:type_id=>Card::WikirateAnalysisID
       death_star_test_company_article = Card.create :name=>"#{@sample_company.name}+#{new_topic.name}+#{Card[:wikirate_article].name}",:type_id=>Card::BasicID,:content=>"Today is Friday."
 
-      related_article_card = Card.fetch claim_card.name+"+related article"
+      related_article_card = Card.fetch claim_card.name+"+related overview"
       html = related_article_card.format(:format=>:html)._render_core
 
       expect(html).to have_tag("div",:with=>{:class=>"related-articles cited-articles"}) do
         with_tag "h3",:text=>"Articles that cite this Claim"
-        with_tag "div", :with=>{:class=>"analysis-link"} 
+        with_tag "div", :with=>{:class=>"analysis-link"}
         with_tag "a", :with=>{ :href=>"/Death_Star+Force" } do
           with_tag "span", :text=>"Death Star"
           with_tag "span", :text=>"Force"
@@ -76,23 +76,23 @@ describe Card::Set::Right::RelatedArticles do
       end
     end
     context "when no related article" do
-      it "shows no related articles" do 
+      it "shows no related articles" do
         claim_card = create_claim "whateverclaim",{}
-        related_article_card = Card.fetch claim_card.name+"+related article"
+        related_article_card = Card.fetch claim_card.name+"+related overviews"
         html = related_article_card.format(:format=>:html)._render_core
         expected_html = %{<h3 class="no-article">No related Articles yet.</h3>} + claim_card.format.render_tips
         expect(html.squish).to eq(expected_html.squish)
       end
     end
   end
-  it "returns citation link" do 
+  it "returns citation link" do
     citation = {:citable=>@related_article_card.cardname.trunk_name}
     html = @related_article_card.format(:format=>:html).citation_link @sample_analysis.to_name
     expect(html).to have_tag "span",:with=>{:class=>"claim-next-action"},:text=>"[[/#{@sample_analysis.to_name.url_key}?#{citation.to_param}&edit_article=true | Cite!]]"
     # expect(html).to include(%{<span class=\"claim-next-action\">[[/#{@sample_analysis.to_name.url_key}?#{citation.to_param}&edit_article=true | Cite!]]</span>})
   end
   context "when calling analysis_links" do
-   
+
     it "show the view without the citation name" do
       html = @related_article_card.format(:format=>:html).analysis_links @sample_analysis.name,true
 
@@ -104,7 +104,7 @@ describe Card::Set::Right::RelatedArticles do
     it "shows the view with the citation name" do
       html = @related_article_card.format(:format=>:html).analysis_links @sample_analysis.name,false
       citation_html = @related_article_card.format(:format=>:html).citation_link @sample_analysis.name.to_name
-      
+
       expect(html).to have_tag("span",:with=>{:class=>"company"},:text=>"#{@sample_analysis.name.to_name.trunk_name}")
       expect(html).to have_tag("span",:with=>{:class=>"topic"},:text=>"#{@sample_analysis.name.to_name.tag_name}")
       expect(html).to have_tag("a",:with=>{:class=>"known-card", :href=>"/#{@sample_analysis.name.to_name.url_key}"})

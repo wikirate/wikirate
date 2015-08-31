@@ -22,8 +22,8 @@ format :html do
   end
 
   view :core do |args|
-    article_card = Card.fetch "#{analysis_name}+article"
-    claim_cnt = (claims = Card.fetch("#{analysis_name}+claim")) && claims.cached_count
+    overview_card = Card.fetch "#{analysis_name}+#{Card[:wikirate_article].name}"
+    claim_cnt = (claims = Card.fetch("#{analysis_name}+#{Card[:claim].name}")) && claims.cached_count
     source_cnt = (sources = Card.fetch("#{analysis_name}+sources")) && sources.cached_count
     empty = glyphicon 'plus'
     data = []
@@ -31,8 +31,8 @@ format :html do
       data << ['<i class="fa fa-exclamation-circle"></i>', 'Need Claims', :warning]
       data << [ empty, 'Claims', :highlight ]
     else
-      data << [(article_card ? nest(Card.fetch('venn icon'), :view=>:content,:size=>:small) : empty), 'Article', (:highlight if !article_card)]
-      data << [ claim_cnt, 'Claims']
+      data << [(overview_card ? nest(Card.fetch('venn icon'), :view=>:content,:size=>:small) : empty), 'Overview', (:highlight if !overview_card)]
+      data << [ claim_cnt, 'Notes']
     end
     data << [(source_cnt == '0' ? empty : source_cnt), 'Sources', (:highlight if source_cnt=='0')]
 
