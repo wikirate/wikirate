@@ -11,7 +11,7 @@ shared_examples_for 'contributions' do |subject_type|
     @subject.update_contribution_count
     @initial_count = @subject.contribution_count.to_i
   end
-  
+
   context "when claim added" do
     before do
       claim = create_claim("That's no moon.", "+#{subject_type}"=>{:content=>"[[#{@subject.name}]"})
@@ -49,7 +49,7 @@ shared_examples_for 'contributions' do |subject_type|
       @subject.update_contribution_count
       @initial_count = @subject.contribution_count.to_i
 
-      article = Card.fetch("#{@analysis.name}+article")
+      article = Card.fetch("#{@analysis.name}+#{Card[:wikirate_article].name}")
       Card::Auth.as_bot do
         article.update_attributes!(:content=>"change about")
       end
@@ -65,7 +65,7 @@ shared_examples_for 'contributions' do |subject_type|
       @claim = Card['Death Star uses dark side of the Force']
       @claim.update_contribution_count
       @claim_cc = @claim.contribution_count.to_i
-      
+
       @subject.update_contribution_count
       @initial_count = @subject.contribution_count.to_i
       Card::Auth.current_id = Card['Joe Admin'].id
@@ -84,7 +84,7 @@ shared_examples_for 'contributions' do |subject_type|
       @source = Card['Death Star uses dark side of the Force+source'].item_cards.first
       @source.update_contribution_count
       @source_cc = @source.contribution_count.to_i
-      
+
       @subject.update_contribution_count
       @initial_count = @subject.contribution_count.to_i
       Card::Auth.current_id = Card['Joe Admin'].id
@@ -103,7 +103,7 @@ describe Card::Set::All::Contributions do
   describe 'contribution count for company' do
     it_behaves_like 'contributions', :company
   end
-  
+
   describe 'contribution count for topic' do
     it_behaves_like 'contributions', :topic
   end
