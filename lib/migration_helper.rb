@@ -5,14 +5,15 @@ module MigrationHelper
     cap_new  = new_name.capitalize
     down_old = old_name.downcase
     down_new = new_name.downcase
-    puts "Change name from '#{cap_old}' to '#{cap_new}'"
+    Rails.logger.info "Change name from '#{cap_old}' to '#{cap_new}'"
     Card[cap_old].update_attributes! :name=>cap_new, :update_referencers=>true, :silent_change=>true
     # don't change claim/note names
     ids = Card.search :name=>['match',down_old], :not=>{:type=>'Note'}, :return=>:id
-    puts "Update #{ids.size} cards with '#{cap_old}' in the name"
+    Rails.logger.info "Update #{ids.size} cards with '#{cap_old}' in the name"
     count = 0
     ids.each do |id|
       name = Card.where(:id=>id).pluck(:name).first
+      Rails.logger.info "Updating name: #{name} (#{id})"
       if name !~ /\+/   # no junctions
         new_name = name.gsub(cap_old, cap_new).gsub(down_old, down_new)
         count += 1
@@ -26,9 +27,10 @@ module MigrationHelper
 
     double_check = []
     ids = Card.search(:content=>['match',down_old], :return=>:id)
-    puts "Update #{ids.size} cards with '#{cap_old}' in the content"
+    Rails.logger.info "Update #{ids.size} cards with '#{cap_old}' in the content"
     ids.each do |id|
       card = Card.fetch(id, :skip_modules=>true)
+      Rails.logger.info "Updating content: #{card.name} (#{id})"
       new_content = card.content.gsub(cap_old, cap_new).gsub(down_old, down_new)
       Card.update_column :db_content, new_content
       if card.type_id == Card::BasicID || card.type_id == Card::PlainTextID
