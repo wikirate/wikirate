@@ -151,7 +151,7 @@ format :html do
       opts[:no_value] = !topic_tags || !topic_tags.include_item?(main_name)
     when WikirateCompanyID
       if (analysis = Card["#{votee.name}+#{main_name}"])
-        claim_cnt = Card.fetch("#{analysis.name}+claim").cached_count.to_i
+        claim_cnt = Card.fetch("#{analysis.name}+#{Card[:claim].name}").cached_count.to_i
         source_cnt = Card.fetch("#{analysis.name}+sources").cached_count.to_i
         opts[:sort][:contributions] = analysis.direct_contribution_count.to_i + claim_cnt + source_cnt
         opts[:sort][:name] = votee.name.upcase
@@ -173,8 +173,9 @@ format :html do
     case votee.type_id
     when WikirateTopicID
       opts[:sort][:recent] = votee.updated_at.to_i
+
       if (analysis = Card["#{main_name}+#{votee.name}"])
-        claim_cnt = Card.fetch("#{analysis.name}+claim").cached_count.to_i
+        claim_cnt = Card.fetch("#{analysis.name}+#{Card[:claim].name}").cached_count.to_i
         source_cnt = Card.fetch("#{analysis.name}+sources").cached_count.to_i
         opts[:sort][:contributions] = analysis.direct_contribution_count.to_i + claim_cnt + source_cnt
       end
