@@ -1,5 +1,5 @@
 def contribution_count
-  @cc ||= Card.fetch("#{cardname.left}+campaigns edited by").count
+  @cc ||= Card.fetch("#{cardname.left}+initiative edited by").count
 end
 
 format :html do

@@ -7,18 +7,18 @@ describe Card::Set::Right::MyContributions do
     it "returns count,name and contribution_card_name of contributions for different types of card" do
       
       result = @user_contribution.sections
-      expect(result).to include([0, "Metrics", "Joe_User+contributed_metrics"])
-      expect(result).to include([0, "Claims", "Joe_User+contributed_claims"])
-      expect(result).to include([0, "Sources", "Joe_User+contributed_sources"])
-      expect(result).to include([0, "Articles", "Joe_User+contributed_analysis"])
-      expect(result).to include([0, "Campaigns", "Joe_User+contributed_campaigns"])
+      expect(result).to include([0, Card[:metric].name, "Joe_User+contributed_metrics"])
+      expect(result).to include([0, Card[:claim].name, "Joe_User+contributed_claims"])
+      expect(result).to include([0, Card[:source].name, "Joe_User+contributed_sources"])
+      expect(result).to include([0, Card[:wikirate_article].name, "Joe_User+contributed_analysis"])
+      expect(result).to include([0, Card[:campaign].name, "Joe_User+contributed_campaigns"])
     end
   end
   describe "core view" do
     it "render the customized view " do
       html = @user_contribution.format.render_core
       expect(html).to have_tag "div",:with=>{:id=>"Joe_User+contributed_sources"} do
-        with_tag "span",:with=>{:class=>"card-title"},:text=>"Sources"
+        with_tag "span",:with=>{:class=>"card-title"},:text=>"Source"
         with_tag "span",:with=>{:class=>"badge"},:text=>"0"
       end
 
@@ -28,24 +28,24 @@ describe Card::Set::Right::MyContributions do
     it "render the counts for different contribution" do
       html = @user_contribution.format.render_contribution_counts
       expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+contributed_metrics"} do
-        with_tag "span",:with=>{:class=>"metrics"},:text=>"0"
-        with_tag "p", :with=>{:class=>"legend"},:text=>"Metrics"
+        with_tag "span",:with=>{:class=>"metric"},:text=>"0"
+        with_tag "p", :with=>{:class=>"legend"},:text=>"Metric"
       end
       expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+contributed_claims"} do
-        with_tag "span",:with=>{:class=>"claims"},:text=>"0"
-        with_tag "p", :with=>{:class=>"legend"},:text=>"Claims"
+        with_tag "span",:with=>{:class=>"claim"},:text=>"0"
+        with_tag "p", :with=>{:class=>"legend"},:text=>"Claim"
       end
       expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+contributed_sources"} do
-        with_tag "span",:with=>{:class=>"sources"},:text=>"0"
-        with_tag "p", :with=>{:class=>"legend"},:text=>"Sources"
+        with_tag "span",:with=>{:class=>"source"},:text=>"0"
+        with_tag "p", :with=>{:class=>"legend"},:text=>"Source"
       end
       expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+contributed_analysis"} do
-        with_tag "span",:with=>{:class=>"articles"},:text=>"0"
-        with_tag "p", :with=>{:class=>"legend"},:text=>"Articles"
+        with_tag "span",:with=>{:class=>"article"},:text=>"0"
+        with_tag "p", :with=>{:class=>"legend"},:text=>"Article"
       end
       expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+contributed_campaigns"} do
-        with_tag "span",:with=>{:class=>"campaigns"},:text=>"0"
-        with_tag "p", :with=>{:class=>"legend"},:text=>"Campaigns"
+        with_tag "span",:with=>{:class=>"campaign"},:text=>"0"
+        with_tag "p", :with=>{:class=>"legend"},:text=>"Campaign"
       end
     end
   end

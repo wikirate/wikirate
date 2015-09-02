@@ -5,11 +5,11 @@ end
 def sections
   @sections ||= begin
     user_card = left
-    [ {:name=>'Metrics',  :contributions => :contributed_metrics},
-      {:name=>'Claims',   :contributions => :contributed_claims},
-      {:name=>'Sources',  :contributions => :contributed_sources},
-      {:name=>'Articles', :contributions => :contributed_analysis},
-      {:name=>'Campaigns',:contributions => :contributed_campaigns}
+    [ {:name=>Card[:metric].name,  :contributions => :contributed_metrics},
+      {:name=>Card[:claim].name,   :contributions => :contributed_claims},
+      {:name=>Card[:source].name,  :contributions => :contributed_sources},
+      {:name=>Card[:wikirate_article].name, :contributions => :contributed_analysis},
+      {:name=>Card[:campaign].name,:contributions => :contributed_campaigns}
     ].map do |args|
       c_card     = user_card.fetch(:trait=>args[:contributions])
       count      = c_card && c_card.contribution_count
@@ -24,7 +24,7 @@ format :html do
   view :core do |args|
     card.sections.sort.reverse.map do |count, name, contr_name|
       section_args = {:view=>:open, :title=>name, :hide=>'menu'}
-      if name == 'Campaigns'
+      if name == 'Initiative'
         nest Card.fetch(contr_name), section_args.merge(:item=>{:view=>:content, :structure=>'campaign item'})
       else
         nest Card.fetch(contr_name), section_args
