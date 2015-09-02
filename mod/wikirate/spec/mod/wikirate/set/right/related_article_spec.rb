@@ -33,7 +33,7 @@ describe Card::Set::Right::RelatedArticles do
 
       related_article_card = Card.fetch claim_card.name+"+related overview"
       html = related_article_card.format(:format=>:html)._render_core
-
+ 
       expect(html).to have_tag("div",:with=>{:class=>"related-articles cited-articles"}) do
         with_tag "h3",:text=>"Overviews that cite this Claim"
         with_tag "div", :with=>{:class=>"analysis-link"}
