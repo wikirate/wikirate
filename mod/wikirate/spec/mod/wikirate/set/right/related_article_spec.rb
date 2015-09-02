@@ -35,7 +35,7 @@ describe Card::Set::Right::RelatedArticles do
       html = related_article_card.format(:format=>:html)._render_core
 
       expect(html).to have_tag("div",:with=>{:class=>"related-articles cited-articles"}) do
-        with_tag "h3",:text=>"Articles that cite this Claim"
+        with_tag "h3",:text=>"Overviews that cite this Claim"
         with_tag "div", :with=>{:class=>"analysis-link"}
         with_tag "a", :with=>{ :href=>"/Death_Star+Force" } do
           with_tag "span", :text=>"Death Star"
@@ -80,7 +80,7 @@ describe Card::Set::Right::RelatedArticles do
         claim_card = create_claim "whateverclaim",{}
         related_article_card = Card.fetch claim_card.name+"+related overviews"
         html = related_article_card.format(:format=>:html)._render_core
-        expected_html = %{<h3 class="no-article">No related Articles yet.</h3>} + claim_card.format.render_tips
+        expected_html = %{<h3 class="no-article no-overview">No related Overviews yet.</h3>} + claim_card.format.render_tips
         expect(html.squish).to eq(expected_html.squish)
       end
     end
