@@ -11,7 +11,7 @@ describe Card::Set::Right::WikirateTag do
     sourcepage = Card.create! :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url} }
     Card::Env.params[:sourcebox] = 'false'
 
-    card = Card.create! :type=>"Claim", :name=>"Testing Claim",:subcards=>{ "+tag"=>{:content=>"[[zzz]]\n[[xxx]]", :type=>"pointer"},'+source' => {:content=> "[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}
+    card = Card.create! :type_id=>Card::ClaimID, :name=>"Testing Claim",:subcards=>{ "+tag"=>{:content=>"[[zzz]]\n[[xxx]]", :type=>"pointer"},'+source' => {:content=> "[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}
     expect(Card.exists?("zzz")).to be true
     expect(Card.exists?("xxx")).to be true
    

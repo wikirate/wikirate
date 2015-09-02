@@ -28,7 +28,7 @@ end
 def create_claim_with_url name,url, subcards={}
   Card::Auth.as_bot do
     sourcepage = create_page url
-    Card.create! :type=>"Claim", :name=>name, 
+    Card.create! :type_id=>Card::ClaimID, :name=>name, 
                  :subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}.merge(subcards)    
   end
 
@@ -37,7 +37,7 @@ end
 def create_claim name, subcards={}
   Card::Auth.as_bot do
     sourcepage = create_page 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
-    Card.create! :type=>"Claim", :name=>name, 
+    Card.create! :type_id=>Card::ClaimID, :name=>name, 
                  :subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}.merge(subcards)    
   end
 

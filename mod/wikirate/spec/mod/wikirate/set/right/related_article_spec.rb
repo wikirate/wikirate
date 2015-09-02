@@ -6,7 +6,7 @@ describe Card::Set::Right::RelatedArticles do
     @sample_topic = get_a_sample_topic
     @sample_analysis = get_a_sample_analysis
     @sample_claim = get_a_sample_claim
-    @related_article_card = Card.fetch @sample_claim.name+"+related article"
+    @related_article_card = Card.fetch @sample_claim.name+"+related overviews"
   end
   describe "core views" do
     it "shows cited article and uncited article" do
@@ -31,7 +31,7 @@ describe Card::Set::Right::RelatedArticles do
       death_star_test_company_analysis = Card.create :name=>"#{@sample_company.name}+#{new_topic.name}",:type_id=>Card::WikirateAnalysisID
       death_star_test_company_article = Card.create :name=>"#{@sample_company.name}+#{new_topic.name}+#{Card[:wikirate_article].name}",:type_id=>Card::BasicID,:content=>"Today is Friday."
 
-      related_article_card = Card.fetch claim_card.name+"+related article"
+      related_article_card = Card.fetch claim_card.name+"+related overviews"
       html = related_article_card.format(:format=>:html)._render_core
 
       expect(html).to have_tag("div",:with=>{:class=>"related-articles cited-articles"}) do
@@ -75,12 +75,12 @@ describe Card::Set::Right::RelatedArticles do
         end
       end
     end
-    context "when no related article" do
-      it "shows no related articles" do 
+    context "when no related overviews" do
+      it "shows no related overviewss" do 
         claim_card = create_claim "whateverclaim",{}
-        related_article_card = Card.fetch claim_card.name+"+related article"
+        related_article_card = Card.fetch claim_card.name+"+related overviews"
         html = related_article_card.format(:format=>:html)._render_core
-        expected_html = %{<h3 class="no-article">No related Articles yet.</h3>} + claim_card.format.render_tips
+        expected_html = %{<h3 class="no-article">No related overviewss yet.</h3>} + claim_card.format.render_tips
         expect(html.squish).to eq(expected_html.squish)
       end
     end

@@ -16,6 +16,44 @@ namespace :wikirate do
       mysql_args += " -p #{pwd}" if pwd
       system "mysql #{mysql_args} #{test_database} < #{db_path}"
     end
+    desc 'update seed data using the production database'
+    task :add_wikirate_test_data do
+      require "#{Wagn.root}/config/environment"
+      require "#{Wagn.root}/test/seed.rb"
+      SharedData.add_wikirate_data
+    end
+    desc 'update seed data using the production database'
+    task :add_data do
+      if ENV['RAILS_ENV'] != 'test'
+        puts "start task in test environment"
+        system 'env RAILS_ENV=init_test rake wikirate:test:reseed_data'
+      elsif !test_database
+        puts "Error: no test database defined in config/database.yml"
+      elsif !prod_database
+        puts "Error: no production database defined in config/database.yml"
+      else
+        require "#{Wagn.root}/config/environment"
+        puts "getting production export".green
+        export = open("http://127.0.0.1:3000/useless_pointer.json",:read_timeout => 50000).read
+        # file = File.open("production_export.json", "rb")
+        # export = file.read
+        puts "Done".green
+        cards = JSON.parse(export)
+        Card::Auth.as_bot
+        cards["card"]["value"].each do |c|
+          card_name = c["name"]
+          begin
+            if card = Card.fetch(card_name)      
+              puts "updating card #{c} #{card.update_attributes!(c)}".light_blue
+            else
+              puts "creating card #{c} #{Card.create!(c)}".yellow
+            end
+          rescue
+            puts "Error in #{c}".red
+          end
+        end
+      end
+    end
 
     desc 'update seed data using the production database'
     task :reseed_data do
@@ -32,22 +70,34 @@ namespace :wikirate do
         puts seed_test_db.green
         system seed_test_db
 
-
+        FileUtils.rm_rf(Dir.glob('tmp/*'))
         require "#{Wagn.root}/config/environment"
         
         puts "getting production export".green
-        export = open("http://127.0.0.1:3000/production_export.json").read
+        export = open("http://127.0.0.1:3000/production_export.json",:read_timeout => 50000).read
+        # file = File.open("production_export.json", "rb")
+        # export = file.read
         puts "Done".green
         cards = JSON.parse(export)
-        Card::A
+        Card::Auth.as_bot
         cards["card"]["value"].each do |c|
-          unless Card.exists?(c["name"])
-            puts "creating card #{c}"
-            Card.create! c 
+          card_name = c["name"]
+          begin
+            if card = Card.fetch(card_name)      
+              puts "updating card #{c} #{card.update_attributes!(c)}".light_blue
+            else
+              puts "creating card #{c} #{Card.create!(c)}".yellow
+            end
+          rescue
+            puts "Error in #{c}".red
           end
         end
-        require "#{Wagn.root}/test/seed.rb"
-        SharedData.add_wikirate_data
+
+        sleep(5)
+        FileUtils.rm_rf(Dir.glob('tmp/*'))
+        seed_test_db = "RAILS_ENV=test rake wikirate:test:add_wikirate_test_data"
+        puts seed_test_db.green
+        system seed_test_db
       end
       exit()
     end

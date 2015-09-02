@@ -10,15 +10,25 @@ end
 
 format :json do
   def get_list_of_children_and_self c
-    [
-      nest(c),
-      Card.search(:left=>c.name).map do |ec|
-        nest(ec)
-      end,
-      Card.search(:included_by=>c.name).map do |ec|
-        nest(ec)
+    # [
+    #   nest(c),
+    #   Card.search(:left=>c.name).map do |ec|
+    #     nest(ec)
+    #   end,
+    #   Card.search(:included_by=>c.name).map do |ec|
+    #     nest(ec)
+    #   end
+    # ]
+    nest(c)
+  end
+  def get_pointer_items c
+    c.item_cards.map do |item_card|
+      if item_card.type_id == Card::PointerID
+        get_pointer_items item_card
+      else
+        get_list_of_children_and_self item_card
       end
-    ]
+    end.flatten
   end
   def lite_render args
     card.item_cards.map do |c|
@@ -42,27 +52,22 @@ format :json do
         [
           nest(c),
           c.item_names.map do |cs|
-            if search_card_item = Card[cs]
-              get_list_of_children_and_self search_card_item
-            end
+            # get_list_of_children_and_self Card[cs]
+            nest(cs)
           end
         ]
-      when Card::SpecialPointerID
-        [
-          nest(c),
-          c.format(:json).render_core(args)
-        ]
+
       when Card::PointerID
         [
           nest(c),
           c.item_cards.map do |c|
-            get_list_of_children_and_self c
-         end
+            get_pointer_items c
+          end
         ]
       else
         get_list_of_children_and_self c   
       end
-    end.flatten.reject { |c| c.nil? || c.empty? }
+    end.flatten.reject { |c| (c.nil? || c.empty?) }
   end
   view :core do |args|
     if Env::params["lite"] == "true"

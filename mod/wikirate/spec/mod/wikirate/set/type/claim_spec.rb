@@ -11,7 +11,7 @@ describe Card::Set::Type::Claim do
   end
 
   it "should handle too long claim" do
-    card = Card.new(   :type=>"Claim", :name=>"2"*101 )
+    card = Card.new(   :type_id=>Card::ClaimID, :name=>"2"*101 )
     expect(card).not_to be_valid
     expect(card.errors).to have_key(:claim)
     expect(card.errors[:claim].first).to eq("is too long (100 character maximum)")
@@ -23,10 +23,10 @@ describe Card::Set::Type::Claim do
     sourcepage = create_page 
 
     #test single source
-    card = Card.new :type=>"Claim", :name=>claim_name ,:subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}    
+    card = Card.new :type_id=>Card::ClaimID, :name=>claim_name ,:subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}    
     expect(card).to be_valid
 
-    card = Card.new :type=>"Claim", :name=>claim_name ,:subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]\r\n[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}
+    card = Card.new :type_id=>Card::ClaimID, :name=>claim_name ,:subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]\r\n[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}
     expect(card).to be_valid
 
   end
@@ -36,25 +36,25 @@ describe Card::Set::Type::Claim do
     url = "[[#{fake_pagename}]]"
 
     # nth here
-    card = Card.new(   :type=>"Claim", :name=>"2"*100)
+    card = Card.new(   :type_id=>Card::ClaimID, :name=>"2"*100)
     expect(card).not_to be_valid
     expect(card.errors).to have_key :source
     expect(card.errors[:source]).to include("is empty")
     #without type
-    card = Card.new(   :type=>"Claim", :name=>"2"*100,:subcards=>{ '+source' => {:content=> url}})
+    card = Card.new(   :type_id=>Card::ClaimID, :name=>"2"*100,:subcards=>{ '+source' => {:content=> url}})
     expect(card).not_to be_valid
     expect(card.errors).to have_key :source
     expect(card.errors[:source]).to include("#{fake_pagename} does not exist")
 
     #with a non exisiting url in any webpage
-    card = Card.new(   :type=>"Claim", :name=>"2"*100 ,:subcards=>{ '+source' => {:content=> url,:type_id=>Card::PointerID}})
+    card = Card.new(   :type_id=>Card::ClaimID, :name=>"2"*100 ,:subcards=>{ '+source' => {:content=> url,:type_id=>Card::PointerID}})
     expect(card).not_to be_valid
     expect(card.errors).to have_key :source
     expect(card.errors[:source]).to include("#{fake_pagename} does not exist")
 
 
     page = create_page
-    card = Card.new(   :type=>"Claim", :name=>"2"*100,:subcards=>{ '+source' => {:content=> "[[Home]]",:type_id=>Card::PointerID}})
+    card = Card.new(   :type_id=>Card::ClaimID, :name=>"2"*100,:subcards=>{ '+source' => {:content=> "[[Home]]",:type_id=>Card::PointerID}})
     expect(card).not_to be_valid
     expect(card.errors).to have_key :source
     expect(card.errors[:source]).to include("Home is not a valid Source Page")
@@ -69,9 +69,9 @@ describe Card::Set::Type::Claim do
     end
 
     it "show help text and claim counting for claim name when creating claim" do
-      claim_card  = card = Card.new :type=>"Claim"
+      claim_card  = card = Card.new :type_id=>Card::ClaimID
       help_content = "Add a Claim about a Company"
-      claim_help_card = Card.fetch "claim+*type+*add help",:new=>{:content=>help_content}
+      claim_help_card = Card.fetch "#{Card[:claim].name}+*type+*add help",:new=>{:content=>help_content}
       if claim_help_card.real?
         help_content = claim_help_card.content
       else
@@ -93,20 +93,20 @@ describe Card::Set::Type::Claim do
     describe "tip view" do
       context "when the user did not signed in" do 
         it "shows nothing" do
-          claim_card = Card.create :type=>"Claim", :name=>@claim_name ,:subcards=>{'+source' => {:content=>"[[#{@sourcepage.name}]]",:type_id=>Card::PointerID}}    
+          claim_card = Card.create :type_id=>Card::ClaimID, :name=>@claim_name ,:subcards=>{'+source' => {:content=>"[[#{@sourcepage.name}]]",:type_id=>Card::PointerID}}    
           login_as 'Anonymous'
           expect(claim_card.format.render_tip).to eq('')
         end
       end
       context "when there is no topic " do 
         it "shows tip about adding topic" do
-          claim_card = Card.create :type=>"Claim", :name=>@claim_name ,:subcards=>{ '+company'=>'apple','+source' => {:content=>"[[#{@sourcepage.name}]]",:type_id=>Card::PointerID}}    
+          claim_card = Card.create :type_id=>Card::ClaimID, :name=>@claim_name ,:subcards=>{ '+company'=>'apple','+source' => {:content=>"[[#{@sourcepage.name}]]",:type_id=>Card::PointerID}}    
           expect(claim_card.format.render_tip).to include('improve this claim by adding a topic.')
         end
       end
       context "when there is no company " do 
         it "shows tip about adding company" do
-          claim_card = Card.create :type=>"Claim", :name=>@claim_name ,:subcards=>{ '+topic'=>'natural resource use','+source' => {:content=>"[[#{@sourcepage.name}]]",:type_id=>Card::PointerID}}    
+          claim_card = Card.create :type_id=>Card::ClaimID, :name=>@claim_name ,:subcards=>{ '+topic'=>'natural resource use','+source' => {:content=>"[[#{@sourcepage.name}]]",:type_id=>Card::PointerID}}    
           expect(claim_card.format.render_tip).to include('improve this claim by adding a company.')
         end
       end
@@ -121,8 +121,8 @@ describe Card::Set::Type::Claim do
           it "shows nothing" do
             new_company_name = "Orange"
             new_topic_name = "Doctor"
-            new_company = Card.create :type=>"Company", :name=>new_company_name
-            new_topic = Card.create :type=>"Topic", :name=>new_topic_name
+            new_company = Card.create :type_id=>Card::WikirateCompanyID, :name=>new_company_name
+            new_topic = Card.create :type_id=>Card::WikirateTopicID, :name=>new_topic_name
             claim_card = create_claim @claim_name,{'+company'=>new_company_name,'+topic'=>new_topic_name}
             expect(claim_card.format.render_tip).to include('')
           end

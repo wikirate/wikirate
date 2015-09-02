@@ -24,22 +24,22 @@ describe Card::Set::All::Wikirate do
       sourcepage = create_page_with_sourcebox 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
 
       #test single source
-      claim1 = Card.create! :type=>"Claim", :name=>"claim1" ,:subcards=>{
+      claim1 = Card.create! :type_id=>Card::ClaimID, :name=>"claim1" ,:subcards=>{
         '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID},
         '+companies' => {:content=>"[[#{company1.name}]]\n[[#{company2.name}]]"},
         '+topics' => {:content=>"[[#{topic1.name}]]"}
       }
-      claim2 = Card.create! :type=>"Claim", :name=>"claim2" ,:subcards=>{
+      claim2 = Card.create! :type_id=>Card::ClaimID, :name=>"claim2" ,:subcards=>{
         '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID},
         '+companies' => {:content=>"[[#{company2.name}]]"},
         '+topics' => {:content=>"[[#{topic1.name}]]"}
       }
-      claim3 = Card.create! :type=>"Claim", :name=>"claim3" ,:subcards=>{
+      claim3 = Card.create! :type_id=>Card::ClaimID, :name=>"claim3" ,:subcards=>{
         '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID},
         '+companies' => {:content=>"[[#{company1.name}]]"},
         '+topics' => {:content=>"[[#{topic2.name}]]"}
       }
-      claim4 = Card.create! :type=>"Claim", :name=>"claim4" ,:subcards=>{
+      claim4 = Card.create! :type_id=>Card::ClaimID, :name=>"claim4" ,:subcards=>{
         '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID},
         '+companies' => {:content=>"[[#{company1.name}]]\n[[#{company2.name}]]"},
         '+topics' => {:content=>"[[#{topic1.name}]]\n[[#{topic2.name}]]"}
@@ -109,8 +109,8 @@ describe Card::Set::All::Wikirate do
       #create an card with claim cite contents
       #check the number and the content
       sourcepage = create_page_with_sourcebox nil,{},'false'
-      claim1 = Card.create! :type=>"Claim", :name=>"test1",:subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}
-      claim2 = Card.create! :type=>"Claim", :name=>"test2",:subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}
+      claim1 = Card.create! :type_id=>Card::ClaimID, :name=>"test1",:subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}
+      claim2 = Card.create! :type_id=>Card::ClaimID, :name=>"test2",:subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}
       content=""
       for i in 0..10
         if i%2==0
