@@ -12,6 +12,8 @@ gem 'open_uri_redirections'
 gem 'roo'
 gem 'wbench'
 gem 'curb'
+gem 'delayed_job_active_record'
+
 #if RUBY_PLATFORM !~ /darwin/
 group :live do
   gem 'therubyracer'
@@ -48,14 +50,14 @@ end
 group :development do
   gem 'rails-dev-tweaks'
   gem 'sprockets' # just so above works
-  
+
   gem 'capistrano', '3.2.1'  #note - ssh was breaking on 3.3.3
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
 end
 
 group :test, :development do
-  
+
   gem 'thin'
   gem 'pry-rails'
   gem 'pry-rescue'

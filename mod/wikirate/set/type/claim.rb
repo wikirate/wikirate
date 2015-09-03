@@ -91,9 +91,9 @@ format :html do
     elsif (not companies = Card["#{card.name}+company"]) || companies.item_names.empty?
       "improve this claim by adding a company."
     else
-      cited_in = Card.search :refer_to => card.name, :left=>{:type=>'Analysis'}, :right=>{:name=>'article'}
+      cited_in = Card.search :refer_to => card.name, :left=>{:type=>'Analysis'}, :right=>{:name=>Card[:wikirate_article].name}
       if card.analysis_names.size > cited_in.size
-        "cite this claim in related articles."
+        "cite this claim in related overviews."
       end
     end
   end

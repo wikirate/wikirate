@@ -2,14 +2,14 @@ describe Card::Set::Right::ContributedAnalysis do
 
   before do
     @user_card = Card["joe_user"]
-    
+
     analysis = get_a_sample_analysis
-    article = Card[analysis.name+"+article"] || Card.new(:name=>analysis.name+"+article")
+
+    article = Card[analysis.name].fetch :trait=>:wikirate_article
     article.content = "One of my most productive days was throwing away 1000 lines of code."
     article.save!
 
-    analysis1 = Card["Apple_Inc+Natural Resource Use"]
-    article1 = Card[analysis1.name+"+article"] || Card.new(:name=>analysis1.name+"+article")
+    article1 = Card["Apple_Inc+Natural Resource Use"].fetch :trait=>:wikirate_article,:new=>{}
     article1.content = "When in doubt, use brute force."
     article1.save!
     @c_card = @user_card.fetch(:trait=>:contributed_analysis)
@@ -29,5 +29,5 @@ describe Card::Set::Right::ContributedAnalysis do
 
     end
   end
-  
+
 end
