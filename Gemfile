@@ -54,6 +54,7 @@ group :development do
   gem 'capistrano', '3.2.1'  #note - ssh was breaking on 3.3.3
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
+  gem 'capistrano-maintenance'
 end
 
 group :test, :development do

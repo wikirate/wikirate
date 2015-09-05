@@ -24,22 +24,22 @@ describe Card::Set::All::Wikirate do
       sourcepage = create_page_with_sourcebox 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
 
       #test single source
-      claim1 = Card.create! :type=>"Claim", :name=>"claim1" ,:subcards=>{
+      claim1 = Card.create! :type_id=>Card::ClaimID, :name=>"claim1" ,:subcards=>{
         '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID},
         '+companies' => {:content=>"[[#{company1.name}]]\n[[#{company2.name}]]"},
         '+topics' => {:content=>"[[#{topic1.name}]]"}
       }
-      claim2 = Card.create! :type=>"Claim", :name=>"claim2" ,:subcards=>{
+      claim2 = Card.create! :type_id=>Card::ClaimID, :name=>"claim2" ,:subcards=>{
         '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID},
         '+companies' => {:content=>"[[#{company2.name}]]"},
         '+topics' => {:content=>"[[#{topic1.name}]]"}
       }
-      claim3 = Card.create! :type=>"Claim", :name=>"claim3" ,:subcards=>{
+      claim3 = Card.create! :type_id=>Card::ClaimID, :name=>"claim3" ,:subcards=>{
         '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID},
         '+companies' => {:content=>"[[#{company1.name}]]"},
         '+topics' => {:content=>"[[#{topic2.name}]]"}
       }
-      claim4 = Card.create! :type=>"Claim", :name=>"claim4" ,:subcards=>{
+      claim4 = Card.create! :type_id=>Card::ClaimID, :name=>"claim4" ,:subcards=>{
         '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID},
         '+companies' => {:content=>"[[#{company1.name}]]\n[[#{company2.name}]]"},
         '+topics' => {:content=>"[[#{topic1.name}]]\n[[#{topic2.name}]]"}
@@ -109,8 +109,8 @@ describe Card::Set::All::Wikirate do
       #create an card with claim cite contents
       #check the number and the content
       sourcepage = create_page_with_sourcebox nil,{},'false'
-      claim1 = Card.create! :type=>"Claim", :name=>"test1",:subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}
-      claim2 = Card.create! :type=>"Claim", :name=>"test2",:subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}
+      claim1 = Card.create! :type_id=>Card::ClaimID, :name=>"test1",:subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}
+      claim2 = Card.create! :type_id=>Card::ClaimID, :name=>"test2",:subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}
       content=""
       for i in 0..10
         if i%2==0
@@ -234,7 +234,7 @@ describe Card::Set::All::Wikirate do
   end
   describe "progress bar view" do
     context "card content is numeric" do
-      it "render progress bar" do 
+      it "render progress bar" do
         value = "3.14159265"
         numeric_card = Card.create! :name=>"I am a number",:content=>"3.14159265"
         html = numeric_card.format.render_progress_bar
@@ -244,7 +244,7 @@ describe Card::Set::All::Wikirate do
       end
     end
     context "card content is not numeric" do
-      it "returns error message" do 
+      it "returns error message" do
         non_numeric_card = Card.create! :name=>"I am not a number",:content=>"There are 2 hard problems in computer science: cache invalidation, naming things, and off-by-1 errors."
         html = non_numeric_card.format.render_progress_bar
         expect(html).to eq("Only card with numeric content can be shown as progress bar.")
@@ -279,10 +279,10 @@ describe Card::Set::All::Wikirate do
         metric_value = Card.create! :type_id=>Card::MetricValueID,:subcards=>subcard
         metric_values.push(metric_value)
       end
-      
+
       search_card = Card.fetch "#{sample_company.name}+limited_metric"
       html = search_card.format.render_yinyang_list args
-      
+
       expect(html).to have_tag "div",:with=>{:class=>"yinyang-list"} do
         with_tag "div",:with=>{:id=>"+Joe_User+how_many_responses+Steelseries+yinyang_drag_item"}
         with_tag "div",:with=>{:id=>"+Joe_User+how_many_types_of_responses+Steelseries+yinyang_drag_item"}
@@ -294,12 +294,12 @@ describe Card::Set::All::Wikirate do
 
   describe "showcase_list view" do
     it "shows icons, type name and core view" do
-      
+
       source_showcast = Card.fetch "joe_user+showcast sources",:new=>{:type_id=>Card::PointerID}
       source_card = create_page_with_sourcebox "http://example.com",{},"true"
       source_showcast<<source_card
       source_showcast.save!
-      
+
       html = source_showcast.format.render_showcase_list
       expect(html).to have_tag("i",:with=>{:class=>"fa fa-globe"})
       expect(html).to include("Sources")
@@ -308,5 +308,5 @@ describe Card::Set::All::Wikirate do
       end
     end
   end
-  
+
 end
