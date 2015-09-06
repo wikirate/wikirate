@@ -50,11 +50,7 @@ Feature: note
     Then I should not see "Problems with"
     And the card "Hello World is a name of a new born baby" should contain "example.com"
 
-<<<<<<< HEAD
-  Scenario: Creating a claim with a source without pressing add
-=======
   Scenario: Creating a note with a source without pressing add
->>>>>>> srivig/new_designs
     When I go to  "/new note"
     And I fill in "card_name" with "Hello World is a name of a new born baby"
     And I wait until ajax response
@@ -64,11 +60,7 @@ Feature: note
     Then I should not see "Problems with"
     And the card "Hello World is a name of a new born baby" should contain "google.com"
 
-<<<<<<< HEAD
-  Scenario: Claim name counting is correct
-=======
-  Scenario: note name counting is correct
->>>>>>> srivig/new_designs
+  Scenario: Note name counting is correct
     When I go to  "/new note"
     And I fill in "card_name" with "Hello World is a name of a new born baby"
     And I wait until ajax response
