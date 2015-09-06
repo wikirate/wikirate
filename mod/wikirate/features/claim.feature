@@ -8,7 +8,7 @@ Feature: Claim
     Given I am signed in as Joe User
 
   Scenario: Creating a claim with a new source
-    When I go to  "/new claim"
+    When I go to  "/new note"
     And I fill in "card_name" with "Hello World is a name of a new born baby"
     And I wait until ajax response
     And I fill in "sourcebox" with "http://google.com/?q=ymca"
@@ -24,7 +24,7 @@ Feature: Claim
     When I go to "/new source"
     And I fill in "card_subcards__Link_content" with "http://example.com"
     And I press "Submit"
-    And I go to  "/new claim"
+    And I go to  "/new note"
     And I fill in "card_name" with "Hello World is a name of a new born baby"
     And I wait until ajax response
     And I fill in "sourcebox" with "http://example.com"
@@ -39,7 +39,7 @@ Feature: Claim
     When I go to "/new source"
     And I fill in "card_subcards__Link_content" with "http://example.com"
     And I press "Submit"
-    And I go to  "/new claim"
+    And I go to  "/new note"
     And I fill in "card_name" with "Hello World is a name of a new born baby"
     And I wait until ajax response
     And I fill in "sourcebox" with card path of source with link "http://example.com"
@@ -51,7 +51,7 @@ Feature: Claim
     And the card "Hello World is a name of a new born baby" should contain "example.com"
 
   Scenario: Creating a claim with a source without pressing add
-    When I go to  "/new claim"
+    When I go to  "/new note"
     And I fill in "card_name" with "Hello World is a name of a new born baby"
     And I wait until ajax response
     And I fill in "sourcebox" with "http://google.com/?q=ymca"
@@ -61,7 +61,7 @@ Feature: Claim
     And the card "Hello World is a name of a new born baby" should contain "google.com"
 
   Scenario: Claim name counting is correct
-    When I go to  "/new claim"
+    When I go to  "/new note"
     And I fill in "card_name" with "Hello World is a name of a new born baby"
     And I wait until ajax response
     Then I should see "60 character(s) left"

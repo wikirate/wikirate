@@ -8,10 +8,10 @@ describe Card::Set::Right::MyContributions do
 
       result = @user_contribution.sections
       expect(result).to include([0, Card[:metric].name, "Joe_User+contributed_metrics"])
-      expect(result).to include([0, Card[:claim].name, "Joe_User+contributed notes"])
+      expect(result).to include([0, Card[:claim].name, "Joe_User+contributed_notes"])
       expect(result).to include([0, Card[:source].name, "Joe_User+contributed_sources"])
       expect(result).to include([0, Card[:wikirate_article].name, "Joe_User+contributed_analysis"])
-      expect(result).to include([0, Card[:campaign].name, "Joe_User+contributed initiatives"])
+      expect(result).to include([0, Card[:campaign].name, "Joe_User+contributed_initiatives"])
     end
   end
   describe "core view" do
@@ -32,7 +32,7 @@ describe Card::Set::Right::MyContributions do
         with_tag "p", :with=>{:class=>"legend"},:text=>"Metric"
       end
       expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+contributed_notes"} do
-        with_tag "span",:with=>{:class=>"claim"},:text=>"0"
+        with_tag "span",:with=>{:class=>"note"},:text=>"0"
         with_tag "p", :with=>{:class=>"legend"},:text=>"Note"
       end
       expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+contributed_sources"} do
@@ -40,11 +40,11 @@ describe Card::Set::Right::MyContributions do
         with_tag "p", :with=>{:class=>"legend"},:text=>"Source"
       end
       expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+contributed_analysis"} do
-        with_tag "span",:with=>{:class=>"article"},:text=>"0"
+        with_tag "span",:with=>{:class=>"overview"},:text=>"0"
         with_tag "p", :with=>{:class=>"legend"},:text=>"Overview"
       end
-      expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+contributed_intiatives"} do
-        with_tag "span",:with=>{:class=>"campaign"},:text=>"0"
+      expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+contributed_initiatives"} do
+        with_tag "span",:with=>{:class=>"initiative"},:text=>"0"
         with_tag "p", :with=>{:class=>"legend"},:text=>"Initiative"
       end
     end

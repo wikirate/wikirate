@@ -14,7 +14,7 @@ shared_examples_for 'contributions' do |subject_type|
 
   context "when note added" do
     before do
-      note = create_note("That's no moon.", "+#{subject_type}"=>{:content=>"[[#{@subject.name}]"})
+      note = create_claim("That's no moon.", "+#{subject_type}"=>{:content=>"[[#{@subject.name}]"})
     end
     it "increases by 2" do
       is_expected.to eq(@initial_count+2)

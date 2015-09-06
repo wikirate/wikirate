@@ -2,7 +2,7 @@
 
 describe Card::Set::Right::CitedClaims do
   before do
-    login_as 'joe_user' 
+    login_as 'joe_user'
     @sample_company = get_a_sample_company
     @sample_topic = get_a_sample_topic
     @sample_analysis = get_a_sample_analysis
@@ -11,16 +11,16 @@ describe Card::Set::Right::CitedClaims do
   end
   describe "core view" do
     it do
-      #create claim related to analysis but not cited      
+      #create claim related to analysis but not cited
 
-      claim_card = create_claim "whateverclaim",{"+company"=>{:content=>"[[#{@sample_company.name}]]"},"+topic"=>{:content=>"[[#{@sample_topic.name}]]"}}      
+      claim_card = create_claim "whateverclaim",{"+company"=>{:content=>"[[#{@sample_company.name}]]"},"+topic"=>{:content=>"[[#{@sample_topic.name}]]"}}
       sample_article = Card[@sample_analysis.name+"+#{Card[:wikirate_article].name}"]
       sample_article.content = "I need some chewing gum.#{claim_card.default_citation}"
       sample_article.save
-      
+
       html = @sample_analysis.format.render_core
-      expect(html).to have_tag("div", :with=>{:id=>"Death_Star+Force+Cited_Claims"}) do
-        with_tag "div", :with=>{:class=>"search-result-list"} do 
+      expect(html).to have_tag("div", :with=>{:id=>"Death_Star+Force+Cited_Notes"}) do
+        with_tag "div", :with=>{:class=>"search-result-list"} do
           with_tag "span",  :with=>{:class=>"cited-claim-number"}, :text=>"1"
           with_tag "div", :with=>{:id=>"whateverclaim", :class=>"SELF-whateverclaim"}
         end
