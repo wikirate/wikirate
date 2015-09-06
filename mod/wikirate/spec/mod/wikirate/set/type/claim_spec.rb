@@ -78,7 +78,7 @@ describe Card::Set::Type::Claim do
         claim_help_card.save
       end
       html = claim_card.format._render_name_formgroup :new=>true
-      expect(html).to include("claim-counting")
+      expect(html).to include("note-counting")
       expect(html).to include(help_content)
 
     end
