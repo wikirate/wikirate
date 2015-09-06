@@ -1,13 +1,13 @@
 @javascript
-Feature: Claim
+Feature: note
   In order to have a short sourced statement about a Company and a Topic
   As a User
-  I want to create and read claims
+  I want to create and read notes
 
   Background:
     Given I am signed in as Joe User
 
-  Scenario: Creating a claim with a new source
+  Scenario: Creating a note with a new source
     When I go to  "/new note"
     And I fill in "card_name" with "Hello World is a name of a new born baby"
     And I wait until ajax response
@@ -20,7 +20,7 @@ Feature: Claim
     Then I should not see "Problems with"
     And the card "Hello World is a name of a new born baby" should contain "google.com"
 
-  Scenario: Creating a claim with a existing source
+  Scenario: Creating a note with a existing source
     When I go to "/new source"
     And I fill in "card_subcards__Link_content" with "http://example.com"
     And I press "Submit"
@@ -35,7 +35,7 @@ Feature: Claim
     Then I should not see "Problems with"
     And the card "Hello World is a name of a new born baby" should contain "example.com"
 
-  Scenario: Creating a claim with a existing source card's url
+  Scenario: Creating a note with a existing source card's url
     When I go to "/new source"
     And I fill in "card_subcards__Link_content" with "http://example.com"
     And I press "Submit"
@@ -50,7 +50,11 @@ Feature: Claim
     Then I should not see "Problems with"
     And the card "Hello World is a name of a new born baby" should contain "example.com"
 
+<<<<<<< HEAD
   Scenario: Creating a claim with a source without pressing add
+=======
+  Scenario: Creating a note with a source without pressing add
+>>>>>>> srivig/new_designs
     When I go to  "/new note"
     And I fill in "card_name" with "Hello World is a name of a new born baby"
     And I wait until ajax response
@@ -60,7 +64,11 @@ Feature: Claim
     Then I should not see "Problems with"
     And the card "Hello World is a name of a new born baby" should contain "google.com"
 
+<<<<<<< HEAD
   Scenario: Claim name counting is correct
+=======
+  Scenario: note name counting is correct
+>>>>>>> srivig/new_designs
     When I go to  "/new note"
     And I fill in "card_name" with "Hello World is a name of a new born baby"
     And I wait until ajax response
