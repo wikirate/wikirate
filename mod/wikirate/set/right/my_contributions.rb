@@ -24,8 +24,9 @@ format :html do
   view :core do |args|
     card.sections.sort.reverse.map do |count, name, contr_name|
       section_args = {:view=>:open, :title=>name, :hide=>'menu'}
+      # FIXME - cardname
       if name == 'Initiative'
-        nest Card.fetch(contr_name), section_args.merge(:item=>{:view=>:content, :structure=>'campaign item'})
+        nest Card.fetch(contr_name), section_args.merge(:item=>{:view=>:content, :structure=>'initiative item'})
       else
         nest Card.fetch(contr_name), section_args
       end

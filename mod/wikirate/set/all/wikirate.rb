@@ -299,7 +299,7 @@ module ClassMethods
   end
 
   def claim_tag_filter_spec filter_words, extra={}
-    tag_filter_spec filter_words, extra.merge(:type_id=>ClaimId), %w( tag company topic )
+    tag_filter_spec filter_words, extra.merge(:type_id=>ClaimID), %w( tag company topic )
   end
 end
 

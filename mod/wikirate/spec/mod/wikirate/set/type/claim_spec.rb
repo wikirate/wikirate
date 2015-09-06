@@ -2,28 +2,28 @@
 
 describe Card::Set::Type::Claim do
   before do
-    login_as 'joe_user' 
+    login_as 'joe_user'
   end
   def create_page iUrl=nil
     url = iUrl||'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
     create_page_with_sourcebox url,{},'true'
- 
+
   end
 
   it "should handle too long claim" do
     card = Card.new(   :type_id=>Card::ClaimID, :name=>"2"*101 )
     expect(card).not_to be_valid
-    expect(card.errors).to have_key(:claim)
-    expect(card.errors[:claim].first).to eq("is too long (100 character maximum)")
+    expect(card.errors).to have_key(:note)
+    expect(card.errors[:note].first).to eq("is too long (100 character maximum)")
   end
-  
+
   it "handles normal claim creation" do
     #create the testing webpage first
     claim_name = "2"*100
-    sourcepage = create_page 
+    sourcepage = create_page
 
     #test single source
-    card = Card.new :type_id=>Card::ClaimID, :name=>claim_name ,:subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}    
+    card = Card.new :type_id=>Card::ClaimID, :name=>claim_name ,:subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}
     expect(card).to be_valid
 
     card = Card.new :type_id=>Card::ClaimID, :name=>claim_name ,:subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]\r\n[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}
@@ -60,17 +60,17 @@ describe Card::Set::Type::Claim do
     expect(card.errors[:source]).to include("Home is not a valid Source Page")
   end
 
-  describe "views" do 
+  describe "views" do
     before do
       login_as 'joe_user'
       @claim_name = "testing claim"
-      @sourcepage = create_page 
+      @sourcepage = create_page
       @sample_claim = get_a_sample_claim
     end
 
     it "show help text and claim counting for claim name when creating claim" do
       claim_card  = card = Card.new :type_id=>Card::ClaimID
-      help_content = "Add a Claim about a Company"
+      help_content = "Add a Note about a Company"
       claim_help_card = Card.fetch "claim+*type+*add help",:new=>{:content=>help_content}
       if claim_help_card.real?
         help_content = claim_help_card.content
@@ -83,7 +83,7 @@ describe Card::Set::Type::Claim do
 
     end
 
-    it "shows sample_citation view" do 
+    it "shows sample_citation view" do
       claim_card  = create_claim @claim_name,{}
       #%{ <div class="sample-citation">#{ render :tip, :tip=>tip }</div> }
       expect(claim_card.format.render_sample_citation).to include(%{<div class="sample-citation">})
@@ -91,33 +91,33 @@ describe Card::Set::Type::Claim do
     end
 
     describe "tip view" do
-      context "when the user did not signed in" do 
+      context "when the user did not signed in" do
         it "shows nothing" do
-          claim_card = Card.create :type_id=>Card::ClaimID, :name=>@claim_name ,:subcards=>{'+source' => {:content=>"[[#{@sourcepage.name}]]",:type_id=>Card::PointerID}}    
+          claim_card = Card.create :type_id=>Card::ClaimID, :name=>@claim_name ,:subcards=>{'+source' => {:content=>"[[#{@sourcepage.name}]]",:type_id=>Card::PointerID}}
           login_as 'Anonymous'
           expect(claim_card.format.render_tip).to eq('')
         end
       end
-      context "when there is no topic " do 
+      context "when there is no topic " do
         it "shows tip about adding topic" do
-          claim_card = Card.create :type_id=>Card::ClaimID, :name=>@claim_name ,:subcards=>{ '+company'=>'apple','+source' => {:content=>"[[#{@sourcepage.name}]]",:type_id=>Card::PointerID}}    
+          claim_card = Card.create :type_id=>Card::ClaimID, :name=>@claim_name ,:subcards=>{ '+company'=>'apple','+source' => {:content=>"[[#{@sourcepage.name}]]",:type_id=>Card::PointerID}}
           expect(claim_card.format.render_tip).to include('improve this claim by adding a topic.')
         end
       end
-      context "when there is no company " do 
+      context "when there is no company " do
         it "shows tip about adding company" do
-          claim_card = Card.create :type_id=>Card::ClaimID, :name=>@claim_name ,:subcards=>{ '+topic'=>'natural resource use','+source' => {:content=>"[[#{@sourcepage.name}]]",:type_id=>Card::PointerID}}    
+          claim_card = Card.create :type_id=>Card::ClaimID, :name=>@claim_name ,:subcards=>{ '+topic'=>'natural resource use','+source' => {:content=>"[[#{@sourcepage.name}]]",:type_id=>Card::PointerID}}
           expect(claim_card.format.render_tip).to include('improve this claim by adding a company.')
         end
       end
-      context "when company and topic exist" do 
-        context "when  card.analysis_names.size > cited_in.size " do 
+      context "when company and topic exist" do
+        context "when  card.analysis_names.size > cited_in.size " do
           it "shows tip about citing this claim in related overview" do
             claim_card = create_claim @claim_name,{'+company'=>'Apple Inc.','+topic'=>'natural resource use'}
             expect(claim_card.format.render_tip).to include('cite this claim in related overviews.')
           end
         end
-        context "when card.analysis_names.size <= cited_in.size " do 
+        context "when card.analysis_names.size <= cited_in.size " do
           it "shows nothing" do
             new_company_name = "Orange"
             new_topic_name = "Doctor"
@@ -144,11 +144,11 @@ describe Card::Set::Type::Claim do
       html = claim_card.format.render_missing
       expect(html).to eq(claim_card.format.render_link )
     end
-     it "show clipboard view" do 
+     it "show clipboard view" do
       claim_card = get_a_sample_claim
       expected_html = %{<i class="fa fa-clipboard claim-clipboard" id="copy-button" title="copy claim citation to clipboard" data-clipboard-text="#{claim_card.name} {{#{claim_card.name}|cite}}"></i>}
       expect(claim_card.format.render_clipboard).to include(expected_html)
-       
+
     end
   end
   it "returns correct analysis_names " do

@@ -125,7 +125,7 @@ format :html do
   view :preview_options, :tags=>:unknown_ok  do |args|
 
     url = args[:url]
-    related_claim_wql = {:left=>{:type=>"Claim"},:right=>"source",:link_to=>card.name,:return=>"count"}
+    related_claim_wql = {:left=>{:type_id=>ClaimID},:right=>"source",:link_to=>card.name,:return=>"count"}
     related_metric_wql = {:type=>"metric", :right_plus=>[{"type"=>"company"}, :right_plus=>[{:type=>"year"}, :right_plus=>["source", {:link_to=>card.name}]]],:return=>"count"}
     claim_count = Card.search related_claim_wql
     metric_count = Card.search related_metric_wql

@@ -4,7 +4,7 @@ require File.dirname(__FILE__) + '/../config/environment'
 
 Card::Auth.as_bot
 
-Card.search(:type=>"Claim").each do |card|
+Card.search(:type_id=>Card::ClaimID).each do |card|
   #claim name should not be longer than 100 characters
   if card.name.length >100
     tags = Card.fetch "#{card.name}+tags", :new=> {:type=>'Pointer'}

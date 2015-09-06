@@ -2,12 +2,12 @@
 require File.dirname(__FILE__) + '/../config/environment'
 Card::Auth.as_bot
 
-Card.search(:right=>"tag",:left=>{:type=>"Claim"}).each do |card|
-  
+Card.search(:right=>"tag",:left=>{:type_id=>Card::ClaimID}).each do |card|
+
   tag_inside = card.item_names
   tag_inside.each do |tag|
 
-    if !Card.exists? tag  
+    if !Card.exists? tag
       begin
       Card.create! :type_id=>Card::WikirateTagID, :name=>tag
       rescue

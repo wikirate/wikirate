@@ -11,7 +11,7 @@ end
 
 def indirect_contributor_search_args
   [
-    {:type=>'claim', :plus=>['topic',:link_to=>self.name]},
+    {:type_id=>ClaimID, :plus=>['topic',:link_to=>self.name]},
     {:type=>'source', :plus=>['topic',:link_to=>self.name]},
     {:type=>'analysis', :right=>self.name }
   ]
