@@ -29,8 +29,8 @@ format :html do
     #add a div for claim word counting
     %{
       #{ formgroup 'Note', raw( name_field form ), :editor=>'name', :help=>true }
-      <div class='claim-counting'>
-        <span class='claim-counting-number'>100</span> character(s) left
+      <div class='note-counting'>
+        <span class='note-counting-number'>100</span> character(s) left
       </div>
     }
   end
