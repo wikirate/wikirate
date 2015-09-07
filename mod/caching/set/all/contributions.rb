@@ -51,6 +51,7 @@ end
 def contributees res=[], visited=::Set.new
   visited << self.name
   if type_code == :claim or type_code == :source
+    #FIXME - cardnames
     res += [self] + [Card["#{name}+company"], Card["#{name}+topic"]].compact.map do |pointer|
 	      pointer.item_cards
 	    end.flatten

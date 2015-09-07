@@ -28,9 +28,9 @@ format :html do
     #rename "name" to "Claim"
     #add a div for claim word counting
     %{
-      #{ formgroup 'Claim', raw( name_field form ), :editor=>'name', :help=>true }
-      <div class='claim-counting'>
-        <span class='claim-counting-number'>100</span> character(s) left
+      #{ formgroup 'Note', raw( name_field form ), :editor=>'name', :help=>true }
+      <div class='note-counting'>
+        <span class='note-counting-number'>100</span> character(s) left
       </div>
     }
   end
@@ -86,12 +86,13 @@ format :html do
   end
 
   def next_step_tip
+    #FIXME - cardnames
     if (not topics = Card["#{card.name}+topics"]) || topics.item_names.empty?
       "improve this claim by adding a topic."
     elsif (not companies = Card["#{card.name}+company"]) || companies.item_names.empty?
       "improve this claim by adding a company."
     else
-      cited_in = Card.search :refer_to => card.name, :left=>{:type=>'Analysis'}, :right=>{:name=>Card[:wikirate_article].name}
+      cited_in = Card.search :refer_to => card.name, :left=>{:type_id=>WikirateAnalysisID}, :right=>{:name=>Card[:wikirate_article].name}
       if card.analysis_names.size > cited_in.size
         "cite this claim in related overviews."
       end
@@ -159,8 +160,8 @@ event :reset_claim_counts, :after=>:store do
 end
 
 
-event :validate_claim, :before=>:approve, :on=>:save do
-  errors.add :claim, "is too long (100 character maximum)" if name.length > 100
+event :validate_note, :before=>:approve, :on=>:save do
+  errors.add :note, "is too long (100 character maximum)" if name.length > 100
 end
 
 event :validate_source, :after=>:approve, :on=>:save do

@@ -5,7 +5,7 @@ describe Card::Set::Right::MyContributions do
   end
   describe ".section" do
     it "returns count,name and contribution_card_name of contributions for different types of card" do
-      
+
       result = @user_contribution.sections
       expect(result).to include([0, Card[:metric].name, "Joe_User+#{Card[:contributed_metrics].cardname.url_key}"])
       expect(result).to include([0, Card[:claim].name, "Joe_User+#{Card[:contributed_claims].cardname.url_key}"])
@@ -43,9 +43,9 @@ describe Card::Set::Right::MyContributions do
         with_tag "span",:with=>{:class=>"overview"},:text=>"0"
         with_tag "p", :with=>{:class=>"legend"},:text=>"Overview"
       end
-      expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+#{Card[:contributed_campaigns].cardname.url_key}"} do
-        with_tag "span",:with=>{:class=>"initiative"},:text=>"0"
-        with_tag "p", :with=>{:class=>"legend"},:text=>"Initiative"
+      expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+contributed_campaigns"} do
+        with_tag "span",:with=>{:class=>"campaign"},:text=>"0"
+        with_tag "p", :with=>{:class=>"legend"},:text=>"Campaign"
       end
     end
   end
@@ -60,5 +60,5 @@ describe Card::Set::Right::MyContributions do
       end
     end
   end
-  
+
 end

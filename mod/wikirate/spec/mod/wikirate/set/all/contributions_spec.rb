@@ -12,9 +12,9 @@ shared_examples_for 'contributions' do |subject_type|
     @initial_count = @subject.contribution_count.to_i
   end
 
-  context "when claim added" do
+  context "when note added" do
     before do
-      claim = create_claim("That's no moon.", "+#{subject_type}"=>{:content=>"[[#{@subject.name}]"})
+      note = create_claim("That's no moon.", "+#{subject_type}"=>{:content=>"[[#{@subject.name}]"})
     end
     it "increases by 2" do
       is_expected.to eq(@initial_count+2)
@@ -59,21 +59,21 @@ shared_examples_for 'contributions' do |subject_type|
     it { is_expected.to eq(@initial_count+1) }
   end
 
-  context "when voted on claim" do
+  context "when voted on note" do
     before do
-      @claim = Card['Death Star uses dark side of the Force']
-      @claim.update_contribution_count
-      @claim_cc = @claim.contribution_count.to_i
+      @note = Card['Death Star uses dark side of the Force']
+      @note.update_contribution_count
+      @note_cc = @note.contribution_count.to_i
 
       @subject.update_contribution_count
       @initial_count = @subject.contribution_count.to_i
       Card::Auth.current_id = Card['Joe Admin'].id
-      vote = @claim.vote_count_card
+      vote = @note.vote_count_card
       vote.vote_up
       vote.save!
     end
-    it "increases claim's contribution count" do
-      expect(@claim.contribution_count.to_i).to eq (@claim_cc+1)
+    it "increases note's contribution count" do
+      expect(@note.contribution_count.to_i).to eq (@note_cc+1)
     end
     it { is_expected.to eq(@initial_count+1) }
   end

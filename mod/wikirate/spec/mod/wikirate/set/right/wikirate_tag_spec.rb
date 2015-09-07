@@ -2,7 +2,7 @@
 
 describe Card::Set::Right::WikirateTag do
   before do
-    login_as 'joe_user' 
+    login_as 'joe_user'
   end
   it "should create tag card(s) while creating +tag card(s)" do
     #create the webpage first
@@ -14,7 +14,7 @@ describe Card::Set::Right::WikirateTag do
     card = Card.create! :type_id=>Card::ClaimID, :name=>"Testing Claim",:subcards=>{ "+tag"=>{:content=>"[[zzz]]\n[[xxx]]", :type=>"pointer"},'+source' => {:content=> "[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}
     expect(Card.exists?("zzz")).to be true
     expect(Card.exists?("xxx")).to be true
-   
+
   end
 
 end

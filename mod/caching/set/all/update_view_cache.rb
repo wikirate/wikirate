@@ -14,7 +14,7 @@ def render_views_for_cache
     :inc_name=>'_main',
     :inc_syntax=>"_main|open"
   }
-  ['Home','Companies', 'Metrics', 'Topics', 'Articles', 'Claims', 'Sources'].each do |name|
+  ['Home','Companies', 'Metrics', 'Topics', 'Overviews', 'Notes', 'Sources'].each do |name|
     Card.fetch(name).format.render_open(args)
   end
   args[:home_view] = :content

@@ -1,9 +1,9 @@
 # -*- encoding : utf-8 -*-
 
 describe Card::Set::Right::FilterSearch do
-  
+
   before do
-    login_as 'joe_user' 
+    login_as 'joe_user'
   end
   describe "views" do
     context "when rendering filter_form" do
@@ -41,7 +41,7 @@ describe Card::Set::Right::FilterSearch do
         expect(html).to include(format.render_topic_formgroup.squish)
         expect(html).to include(format.render_tag_formgroup.squish)
 
-        
+
       end
       context "when rendering with parameters" do
         before do
@@ -54,7 +54,7 @@ describe Card::Set::Right::FilterSearch do
 
           @new_company1 = Card.create :name=>"test_company1",:type_id=>Card::WikirateCompanyID
           @new_topic1 = Card.create :name=>"test_topic1",:type_id=>Card::WikirateTopicID
-          @claim_card = create_claim "whateverclaim",{"+company"=>{:content=>"[[#{@new_company.name}]]\r\n[[#{@new_company1.name}]]"},"+topic"=>{:content=>"[[#{@new_topic.name}]]\r\n[[#{@new_topic1.name}]]"},"+tag"=>{:content=>"[[thisisatestingtag]]\r\n[[thisisalsoatestingtag]]"}}      
+          @claim_card = create_claim "whateverclaim",{"+company"=>{:content=>"[[#{@new_company.name}]]\r\n[[#{@new_company1.name}]]"},"+topic"=>{:content=>"[[#{@new_topic.name}]]\r\n[[#{@new_topic1.name}]]"},"+tag"=>{:content=>"[[thisisatestingtag]]\r\n[[thisisalsoatestingtag]]"}}
         end
         context "when including company and topic, tag parameters" do
           it do
@@ -115,8 +115,8 @@ describe Card::Set::Right::FilterSearch do
           end
         end
         context "when sorting" do
-          before do 
-            @claim_card1 = create_claim_with_url "whateverclaimrecent","http://www.google.com/yo",{"+company"=>{:content=>"[[#{@new_company.name}]]\r\n[[#{@new_company1.name}]]"},"+topic"=>{:content=>"[[#{@new_topic.name}]]\r\n[[#{@new_topic1.name}]]"},"+tag"=>{:content=>"[[thisisatestingtag]]\r\n[[thisisalsoatestingtag]]"}}      
+          before do
+            @claim_card1 = create_claim_with_url "whateverclaimrecent","http://www.google.com/yo",{"+company"=>{:content=>"[[#{@new_company.name}]]\r\n[[#{@new_company1.name}]]"},"+topic"=>{:content=>"[[#{@new_topic.name}]]\r\n[[#{@new_topic1.name}]]"},"+tag"=>{:content=>"[[thisisatestingtag]]\r\n[[thisisalsoatestingtag]]"}}
           end
           it "is most recent" do
             Card::Env.params[:sort] = 'recent'

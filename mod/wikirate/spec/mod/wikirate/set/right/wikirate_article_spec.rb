@@ -10,9 +10,9 @@ describe Card::Set::Right::WikirateArticle do
     end
     context "missing view" do
       it "render editor with empty content with citation tips" do
-        article = Card.new :name=>"#{@company.name}+#{@topic.name}+overview",:type=>"basic"
+        article = Card.new :name=>"#{@company.name}+#{@topic.name}+#{Card[:wikirate_article].name}",:type=>"basic"
         html = article.format.render_missing
-        
+
         expect(html).to have_tag("div",:with=>{:class=>"claim-tip"}) do
           with_tag "textarea",:with=>{:id=>"citable_claim"},:text=>/#{@citation}/
         end
@@ -22,7 +22,8 @@ describe Card::Set::Right::WikirateArticle do
     end
     context "content and titled_with_edits views" do
       it "render editor with content with citation tips" do
-        article = Card.create :name=>"#{@company.name}+#{@topic.name}+overview",:type=>"basic",:content=>"hello world"
+        overview_name = "#{@company.name}+#{@topic.name}+#{Card[:wikirate_article].name}"
+        article = Card.create :name=>overview_name, :type=>"basic",:content=>"hello world"
         html = article.format.render_content
         expect(html).to have_tag("div",:with=>{:class=>"claim-tip"}) do
           with_tag "textarea",:with=>{:id=>"citable_claim"},:text=>/#{@citation}/

@@ -1,5 +1,5 @@
 @javascript
-Feature: Claim
+Feature: note
    As signed in user I want to be able to create a new metric and add a value.
 
   Background:
