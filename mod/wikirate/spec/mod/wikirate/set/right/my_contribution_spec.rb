@@ -43,9 +43,9 @@ describe Card::Set::Right::MyContributions do
         with_tag "span",:with=>{:class=>"overview"},:text=>"0"
         with_tag "p", :with=>{:class=>"legend"},:text=>"Overview"
       end
-      expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+contributed_campaigns"} do
-        with_tag "span",:with=>{:class=>"campaign"},:text=>"0"
-        with_tag "p", :with=>{:class=>"legend"},:text=>"Campaign"
+      expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+#{Card[:contributed_campaigns].cardname.url_key}"} do
+        with_tag "span",:with=>{:class=>"initiative"},:text=>"0"
+        with_tag "p", :with=>{:class=>"legend"},:text=>"Initiative"
       end
     end
   end

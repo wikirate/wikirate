@@ -97,7 +97,7 @@ describe Card::Set::All::Contributions do
       before do
         @company = get_a_sample_company
         logo = Card.fetch("#{@company.name}+logo",:new=>{:type_id=>Card::ImageID})
-        # binding.pry
+        @initial_count = @company.contribution_count.to_i
         Card::Auth.as_bot do
           Card.create :name => "#{@company.name}+logo", :type_code=>'image', :image=>File.new("#{Rails.root}/mod/wikirate/spec/mod/wikirate/set/all/DeathStar.jpg")
         end

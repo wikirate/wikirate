@@ -34,6 +34,7 @@ namespace :wikirate do
         puts "Error: no production database defined in config/database.yml"
       else
         # seed from raw wagn db
+
         seed_test_db = "RAILS_ENV=test wagn seed"
         puts seed_test_db.green
         system seed_test_db
@@ -64,6 +65,14 @@ namespace :wikirate do
         seed_test_db = "RAILS_ENV=test rake wikirate:test:add_wikirate_test_data"
         puts seed_test_db.green
         system seed_test_db
+        
+        mysql_args = "-u #{user}"
+        mysql_args += " -p #{pwd}" if pwd
+        dump_test_db = "mysqldump #{mysql_args} #{test_database} > #{db_path}"
+        puts dump_test_db.green
+        system dump_test_db
+
+        puts "Please pray"
       end
       exit()
     end
