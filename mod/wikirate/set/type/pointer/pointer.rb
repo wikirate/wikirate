@@ -23,8 +23,11 @@ format :json do
     # avoid infinit recursive
     return nil if count > 10
     c.item_cards.map do |item_card|
-      if item_card.type_id == Card::PointerID
-        get_pointer_items item_card,count
+      if item_card.type_id == Card::PointerID || item_card.type_id == Card::SkinID
+        [
+          nest(item_card),
+          get_pointer_items(item_card,count)
+        ]
       else
         nest item_card
       end
@@ -47,12 +50,13 @@ format :json do
               end
             ]
           end
-        when Card::PointerID
+        when Card::PointerID, Card::SkinID
           [
             nest(c),
             # recursively getting pointer items
             get_pointer_items(c)
           ]
+
         else
           nest c   
         end

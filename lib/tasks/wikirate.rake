@@ -65,7 +65,7 @@ namespace :wikirate do
         seed_test_db = "RAILS_ENV=test rake wikirate:test:add_wikirate_test_data"
         puts seed_test_db.green
         system seed_test_db
-        
+
         mysql_args = "-u #{user}"
         mysql_args += " -p #{pwd}" if pwd
         dump_test_db = "mysqldump #{mysql_args} #{test_database} > #{db_path}"
@@ -77,7 +77,7 @@ namespace :wikirate do
       exit()
     end
   end
-
+  
   desc "fetch json from export card on dev site and generate migration"
   task :import_from_dev => :environment do
 
