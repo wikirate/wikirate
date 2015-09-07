@@ -41,7 +41,7 @@ describe Card::Set::Type::Claim do
     expect(card.errors).to have_key :source
     expect(card.errors[:source]).to include("is empty")
     #without type
-    card = Card.new(   :type_id=>Card::ClaimID, :name=>"2"*100,:subcards=>{ '+source' => {:content=> url}})
+    card = Card.new(   :type_id=>Card::ClaimID, :name=>"2"*100,:subcards=>{ '+source' => {:content=> url,:type_id=>Card::PointerID}})
     expect(card).not_to be_valid
     expect(card.errors).to have_key :source
     expect(card.errors[:source]).to include("#{fake_pagename} does not exist")

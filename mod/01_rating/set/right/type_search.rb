@@ -7,7 +7,7 @@ def raw_content
       { "type":"Company",
         "referred_to_by":{
           "left":{
-            "type":["in","Claim","Source"],
+            "type":["in","Note","Source"],
             "right_plus":["topic",{"refer_to":"_1"}]
           },
           "right":"company"

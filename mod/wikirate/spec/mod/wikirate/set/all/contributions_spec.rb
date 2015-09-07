@@ -30,7 +30,7 @@ shared_examples_for 'contributions' do |subject_type|
       is_expected.to eq(@initial_count+2)
     end
   end
-
+  # TODO: +about is not in the type structure
   context "when +about edited" do
     before do
       about = Card.fetch("#{@subject.name}+about")
@@ -48,8 +48,7 @@ shared_examples_for 'contributions' do |subject_type|
       @direct_cc = @analysis.direct_contribution_count.to_i
       @subject.update_contribution_count
       @initial_count = @subject.contribution_count.to_i
-
-      article = Card.fetch("#{@analysis.name}+#{Card[:wikirate_article].name}")
+      article = @analysis.fetch :trait=>:wikirate_article,:new=>{}
       Card::Auth.as_bot do
         article.update_attributes!(:content=>"change about")
       end

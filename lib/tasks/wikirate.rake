@@ -48,8 +48,9 @@ namespace :wikirate do
             else
               puts "creating card #{c} #{Card.create!(c)}".yellow
             end
-          rescue
-            puts "Error in #{c}".red
+          rescue => e
+            puts "Error in #{c} #{e}".red
+
           end
         end
       end
@@ -74,7 +75,7 @@ namespace :wikirate do
         require "#{Wagn.root}/config/environment"
         
         puts "getting production export".green
-        export = open("http://127.0.0.1:3000/production_export.json",:read_timeout => 50000).read
+        export = open("http://127.0.0.1:3000/production_export.json?export=true",:read_timeout => 50000).read
         # file = File.open("production_export.json", "rb")
         # export = file.read
         puts "Done".green
@@ -88,8 +89,8 @@ namespace :wikirate do
             else
               puts "creating card #{c} #{Card.create!(c)}".yellow
             end
-          rescue
-            puts "Error in #{c}".red
+          rescue => e
+            puts "Error in #{c} #{e}".red
           end
         end
 

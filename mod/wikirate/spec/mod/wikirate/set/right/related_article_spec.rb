@@ -6,7 +6,7 @@ describe Card::Set::Right::RelatedArticles do
     @sample_topic = get_a_sample_topic
     @sample_analysis = get_a_sample_analysis
     @sample_claim = get_a_sample_claim
-    @related_article_card = Card.fetch @sample_claim.name+"+related article"
+    @related_article_card = Card.fetch @sample_claim.fetch :trait=>:related_articles
   end
   describe "core views" do
     it "shows cited article and uncited article" do
@@ -21,7 +21,7 @@ describe Card::Set::Right::RelatedArticles do
 
       claim_card = create_claim "whateverclaim",{"+company"=>{:content=>"[[#{new_company.name}]]\r\n[[#{@sample_company.name}]]"},"+topic"=>{:content=>"[[#{new_topic.name}]]\r\n[[#{@sample_topic.name}]]"}}
 
-      sample_article = Card[@sample_analysis.name+"+#{Card[:wikirate_article].name}"]
+      sample_article = @sample_analysis.fetch :trait=>:wikirate_article,:new=>{}
       sample_article.content = "I need some kitkat.#{claim_card.default_citation}"
       sample_article.save
 
@@ -31,7 +31,7 @@ describe Card::Set::Right::RelatedArticles do
       death_star_test_company_analysis = Card.create :name=>"#{@sample_company.name}+#{new_topic.name}",:type_id=>Card::WikirateAnalysisID
       death_star_test_company_article = Card.create :name=>"#{@sample_company.name}+#{new_topic.name}+#{Card[:wikirate_article].name}",:type_id=>Card::BasicID,:content=>"Today is Friday."
 
-      related_article_card = Card.fetch claim_card.name+"+related overview"
+      related_article_card = claim_card.fetch :trait=>:related_articles
       html = related_article_card.format(:format=>:html)._render_core
  
       expect(html).to have_tag("div",:with=>{:class=>"related-articles cited-articles"}) do
