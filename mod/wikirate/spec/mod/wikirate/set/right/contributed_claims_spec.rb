@@ -1,9 +1,21 @@
 describe Card::Set::Right::ContributedClaims do
 
   before do
+
+    # claims = Card.search :type_id=>Card::ClaimID, :limit=>3
+    claim_list = Array.new
+    Card::Auth.current_id = Card::WagnBotID
+    Card::Auth.as_bot do
+      (0...3).each do |i|
+        source = create_page "https://www.google.co.uk/?q=hello#{i}"
+        claim = Card.create! :type_id=>Card::ClaimID, :name=>"claim #{i}" ,:subcards=>{ '+source' => {:content=>"[[#{source.name}]]",:type_id=>Card::PointerID}}
+        claim_list.push claim
+
+      end
+    end
+
     login_as "joe_user" 
-    claims = Card.search :type_id=>Card::ClaimID, :limit=>3
-    claims.each  do |claim|
+    claim_list.each  do |claim|
       vote_count_card = Card[claim.name+"+*vote_count"]
       if !vote_count_card
         Card::Auth.as_bot do
