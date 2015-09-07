@@ -101,11 +101,6 @@ describe Card::Set::All::Contributions do
         Card::Auth.as_bot do
           Card.create :name => "#{@company.name}+logo", :type_code=>'image', :image=>File.new("#{Rails.root}/mod/wikirate/spec/mod/wikirate/set/all/DeathStar.jpg")
         end
-        # Card.create! :name => "#{@company.name}+logo", :type_code=>'image', :image=>File.open("#{Rails.root}/mod/wikirate/spec/mod/wikirate/set/all/DeathStar.jpg")
-
-        # Card::Auth.as_bot do
-        #   about.update_attributes!(:content=>"change about")
-        # end
       end
       it "adds one to contribution counter" do
         expect(@company.contribution_count.to_i).to eq(@initial_count+1)

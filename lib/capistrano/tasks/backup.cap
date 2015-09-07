@@ -121,15 +121,6 @@ namespace :backup do
       invoke 'backup:update_files'
     end
   end
-  desc "download to local /tmp/wikirate"
-  task :download_backup do
-    on roles(:db) do
-      invoke 'backup:download'
-      invoke 'backup:unzip_local'
-      invoke 'backup:update_db'
-      invoke 'backup:update_files'
-    end
-  end
   task :pull_db do
     ENV['BACKUP_MODE'] = 'only_db'
     on roles(:db) do
