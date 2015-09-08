@@ -1,6 +1,6 @@
 
 
-Capybara.default_wait_time = 15
+Capybara.default_wait_time = 60
 
 When /^I press "([^\"]*)" within "([^\"]*)"$/ do |button,scope_selector|
   within(scope_selector) do
@@ -44,5 +44,11 @@ When /^(?:|I )solocomplete "([^"]*)" within "([^"]*)"$/ do |value, scope_selecto
     find(".chosen-single").click
     find(".chosen-search input").set value
     find(".chosen-results li").click
+  end
+end
+
+When /^(?:|I )fill in "([^"]*)" with "([^"]*)" within "([^"]*)"$/ do |selector, value, scope_selector|
+  within(scope_selector) do
+    fill_in(selector, :with => value)
   end
 end
