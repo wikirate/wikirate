@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-describe Card::Set::Type::Pointer::Pointer do
+describe Card::Set::Type::Pointer::Export do
   before do
     login_as 'joe_user'
     Card::Env::params["export"] = "true"
