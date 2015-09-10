@@ -144,7 +144,7 @@ format :html do
     result += %{
       <li role="presentation" >
         <a class='' data-target="#tab_claims" data-toggle="source_preview_tab_ajax"  href='/#{card.cardname.url_key}+source_note_list?slot[hide]=header,menu' >
-            <i class='fa fa-quote-left'><span id="claim-count-number " class="count-number">#{claim_count}</span></i><span>Claims</span>
+            <i class='fa fa-quote-left'><span id="claim-count-number " class="count-number">#{claim_count}</span></i><span>#{Card[ClaimID].name.pluralize}</span>
         </a>
       </li>
     }
@@ -152,7 +152,7 @@ format :html do
     result += %{
       <li role="presentation" >
         <a class='' data-target="#tab_metrics" data-toggle="source_preview_tab_ajax" href='/#{card.cardname.url_key}+metric_search?slot[hide]=header,menu' >
-          <i class="fa fa-glass"><span id="metric-count-number " class="count-number">#{metric_count}</span></i><span>Metrics</span>
+          <i class="fa fa-glass"><span id="metric-count-number " class="count-number">#{metric_count}</span></i><span>#{Card[MetricID].name.pluralize}</span>
         </a>
       </li>
     }
