@@ -153,17 +153,19 @@ namespace :wikirate do
 
     #host = 'http://dev.wikirate.org'
     host = 'http://localhost:3000'
-    test_pages = ENV['page'] ? [ENV['page']] : ['Companies'] #['Home','Articles','Topics','Companies','Metrics','Claims','Sources','Sara_Cifani','Apple_Inc','Natural_Resource_Use','McDonald_s_Corporation+Natural_Resource_Use', 'Newsweek+Newsweek_Green_Score']
+    test_pages = ENV['page'] ? [ENV['page']] : ['Home'] #['Home','Articles','Topics','Companies','Metrics','Claims','Sources','Sara_Cifani','Apple_Inc','Natural_Resource_Use','McDonald_s_Corporation+Natural_Resource_Use', 'Newsweek+Newsweek_Green_Score']
     #test_pages = ENV['name'] ? [ENV['name']] : ['Home']
     runs = ENV['run'] || 1
-    log_args = {:performance_log=>{:output=>:card, :methods=>[:view, :search, :fetch], :details=>true, :min_time=>1}}
     test_pages.each do |page|
-      url = "#{host}/#{page}"
       puts page
+
+      log_args = {:performance_log=>{:output=>:card, :output_card=>page,:methods=> [:execute, :rule, :fetch, :view], :details=>true, :min_time=>1}}
+      url = "#{host}/#{page}"
       open "#{url}?#{log_args.to_param}"
       benchmark = WBench::Benchmark.new(url) { '' }
       results   = benchmark.run(runs) # => WBench::Results
-      Card[:performance_log].add_csv_entry page, results, runs
+      card = Card.fetch "#{page}+#{Card[:performance_log].name}", :new=>{:type_id=>Card::PointerID}
+      card.add_csv_entry page, results, runs
     end
 
     # results.app_server # =>
