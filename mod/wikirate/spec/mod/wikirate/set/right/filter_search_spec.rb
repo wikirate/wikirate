@@ -8,7 +8,7 @@ describe Card::Set::Right::FilterSearch do
   describe "views" do
     context "when rendering filter_form" do
       it "includes required formgroups" do
-        filter_search_card = Card.fetch "Note+filter_search"
+        filter_search_card = Card[:claim].fetch :trait=>:filter_search
         format = filter_search_card.format
         html = format.render_filter_form
 
@@ -35,7 +35,7 @@ describe Card::Set::Right::FilterSearch do
           end
         end
 
-        expect(html).to have_tag "form",:with=>{:action=>"/Note",:method=>"GET"}
+        expect(html).to have_tag "form",:with=>{:action=>"/#{Card[:claim].name}",:method=>"GET"}
 
         expect(html).to include(format.render_company_formgroup.squish)
         expect(html).to include(format.render_topic_formgroup.squish)
@@ -47,8 +47,8 @@ describe Card::Set::Right::FilterSearch do
         before do
           @company_card = get_a_sample_company
           @topic_card = get_a_sample_topic
-          @filter_search_card = Card.fetch "Note+filter_search"
-
+          @filter_search_card = Card[:claim].fetch :trait=>:filter_search
+          
           @new_company = Card.create :name=>"test_company",:type_id=>Card::WikirateCompanyID
           @new_topic = Card.create :name=>"test_topic",:type_id=>Card::WikirateTopicID
 
@@ -64,7 +64,7 @@ describe Card::Set::Right::FilterSearch do
             Card::Env.params[:tag] = "thisisatestingtag"
 
             html = Card[:claim].format.render_core
-            expect(html).to have_tag('div',:with=>{:id=>"Note+filter_search"}) do
+            expect(html).to have_tag('div',:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do
               with_tag('div',:class=>"search-result-list") do
                 with_tag('div',:class=>"search-result-item item-content") do
                   with_tag('div',:with=>{:id=>"whateverclaim"})
@@ -78,28 +78,28 @@ describe Card::Set::Right::FilterSearch do
              Card::Env.params[:tag] = "nonexisitingtag"
 
             html = Card[:claim].format.render_core
-            expect(html).to have_tag('div',:with=>{:id=>"Note+filter_search"}) do
+            expect(html).to have_tag('div',:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do    
               without_tag('div',:with=>{:id=>"whateverclaim"})
             end
           end
           it "uses non related company" do
              Card::Env.params[:company] = "Iamnoangel"
             html = Card[:claim].format.render_core
-            expect(html).to have_tag('div',:with=>{:id=>"Note+filter_search"}) do
+            expect(html).to have_tag('div',:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do    
               without_tag('div',:with=>{:id=>"whateverclaim"})
             end
           end
           it "uses non related topic" do
              Card::Env.params[:topic] = "Iamnodemon"
             html = Card[:claim].format.render_core
-            expect(html).to have_tag('div',:with=>{:id=>"Note+filter_search"}) do
+            expect(html).to have_tag('div',:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do    
               without_tag('div',:with=>{:id=>"whateverclaim"})
             end
           end
           it "is cited" do
             Card::Env.params[:cited] = "yes"
             html = Card[:claim].format.render_core
-            expect(html).to have_tag('div',:with=>{:id=>"Note+filter_search"}) do
+            expect(html).to have_tag('div',:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do    
               without_tag('div',:with=>{:id=>"whateverclaim"})
             end
           end
@@ -109,7 +109,7 @@ describe Card::Set::Right::FilterSearch do
             new_article = Card.create :name=>"#{@new_company.name}+#{@new_topic.name}+#{Card[:wikirate_article].name}",:type_id=>Card::BasicID,:content=>"asdsad#{@claim_card.default_citation}"
 
             html = Card[:claim].format.render_core
-            expect(html).to have_tag('div',:with=>{:id=>"Note+filter_search"}) do
+            expect(html).to have_tag('div',:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do    
               without_tag('div',:with=>{:id=>"whateverclaim"})
             end
           end

@@ -11,6 +11,7 @@ Card::Auth.as_bot do
     year = row[:year]
     value = row[:value]
     source_url = row[:source]
+
     if !Card.exists? "#{metric_name}+#{company_name}+#{year}" 
       if company_name.include?"/"
         puts "Company name with /:\t#{company_name}"

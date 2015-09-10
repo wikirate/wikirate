@@ -41,7 +41,7 @@ describe Card::Set::Type::Claim do
     expect(card.errors).to have_key :source
     expect(card.errors[:source]).to include("is empty")
     #without type
-    card = Card.new(   :type_id=>Card::ClaimID, :name=>"2"*100,:subcards=>{ '+source' => {:content=> url}})
+    card = Card.new(   :type_id=>Card::ClaimID, :name=>"2"*100,:subcards=>{ '+source' => {:content=> url,:type_id=>Card::PointerID}})
     expect(card).not_to be_valid
     expect(card.errors).to have_key :source
     expect(card.errors[:source]).to include("#{fake_pagename} does not exist")
@@ -121,8 +121,8 @@ describe Card::Set::Type::Claim do
           it "shows nothing" do
             new_company_name = "Orange"
             new_topic_name = "Doctor"
-            new_company = Card.create :type=>"Company", :name=>new_company_name
-            new_topic = Card.create :type=>"Topic", :name=>new_topic_name
+            new_company = Card.create :type_id=>Card::WikirateCompanyID, :name=>new_company_name
+            new_topic = Card.create :type_id=>Card::WikirateTopicID, :name=>new_topic_name
             claim_card = create_claim @claim_name,{'+company'=>new_company_name,'+topic'=>new_topic_name}
             expect(claim_card.format.render_tip).to include('')
           end

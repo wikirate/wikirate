@@ -8,7 +8,7 @@ describe Card::Set::Right::Source do
     #create the page with source
     url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknowsigh'
     Card::Env.params[:sourcebox] = 'true'
-    sourcepage = Card.create! :type_id=>Card::WebpageID,:subcards=>{ '+Link' => {:content=> url} }
+    sourcepage = Card.create! :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url} }
     Card::Env.params[:sourcebox] = 'false'
     #link card
     link_card = Card["#{sourcepage.name}+link"]

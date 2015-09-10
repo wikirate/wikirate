@@ -1,5 +1,5 @@
-
-
+require 'colorize'
+require 'pry'
 namespace :wikirate do
   namespace :test do
 
@@ -17,134 +17,82 @@ namespace :wikirate do
       system "mysql #{mysql_args} #{test_database} < #{db_path}"
     end
 
+    desc 'add wikirate test data to test database'
+    task :add_wikirate_test_data do
+      require "#{Wagn.root}/config/environment"
+      require "#{Wagn.root}/test/seed.rb"
+      SharedData.add_wikirate_data
+    end
+
     desc 'update seed data using the production database'
-    task :update_seed_data do
-      if ENV['RAILS_ENV'] != 'test'
+    task :reseed_data, [:location] do |t,args|
+      if ENV['RAILS_ENV'] != 'init_test'
         puts "start task in test environment"
-        system 'env RAILS_ENV=test rake wikirate:test:update_seed_data'
+        system 'env RAILS_ENV=init_test rake wikirate:test:reseed_data'
       elsif !test_database
         puts "Error: no test database defined in config/database.yml"
       elsif !prod_database
         puts "Error: no production database defined in config/database.yml"
       else
-        tmp_path = File.join Wagn.paths['tmp'].first, 'test.db'
-        puts 'copy production database to test database'
-        mysql_args = "-u #{user}"
-        mysql_args += " -p #{pwd}" if pwd
-        system "mysqldump #{mysql_args} #{prod_database} > #{db_path}"
-        system "mysql #{mysql_args} #{test_database} < #{db_path}"
+        # seed from raw wagn db
+        
+        seed_test_db = "RAILS_ENV=test wagn seed"
+        puts seed_test_db.green
+        system seed_test_db
 
+        FileUtils.rm_rf(Dir.glob('tmp/*'))
         require "#{Wagn.root}/config/environment"
-        Wagn.config.action_mailer.delivery_method = :test
-        Wagn.config.action_mailer.perform_deliveries = false
-        if (card = Card.fetch 'A')  # there is a user 'A' on wikirate that conflicts with the test data
-          card.destroy
-        end
-        Rake::Task['wagn:migrate'].invoke
-
-        # select 5 companies and topics and metrics
-        companies = [Card["Apple Inc."],Card["Amazon.com, Inc."],Card["Samsung"],Card["Siemens AG"],Card["Sony Corporation"]]
-        topics = [Card["Natural Resource Use"],Card["Community"],Card["Human Rights"],Card["Climate Change"],Card["Animal Welfare"]]
-        metrics = [Card['Sebastian Jekutsch+CSR Report Available'],Card['Good Company Index+Good Company Grade'],Card['BSR+BSR Member']]
-        company_ids = ""
-        topic_ids = ""
-        metric_ids = ""
-        company_names = Array.new
-        topic_names = Array.new
-
-        card_to_be_kept = Array.new
-
-        companies.each do |company|
-          company_ids += "#{company.id},"
-          company_names.push company.name
-        end
-
-        topics.each do |topic|
-          topic_ids += "#{topic.id},"
-          topic_names.push topic.name
-        end
-
-
-        # metrics.each do |metric|
-        #   metric_ids += "#{metric.id},"
-        #   card_to_be_kept << metric.id
-        #   card_to_be_kept += Card.search :left=>metric.name, :return=>:id
-        # end
-
-
-
-        company_related_article = Card.search :type=>"Analysis",:left=>{:name=> company_names.unshift("in")}
-        topic_related_article = Card.search :type=>"Analysis",:right=>{:name=>topic_names.unshift("in")}
-
-        (companies + topics ).each do |c|
-          search_args = {:type=>["in","claim","source"]}
-          query = Card.tag_filter_query(c.name, search_args,['company','topic'])
-          cards = Card.search query
-          cards.each do |card|
-            card_to_be_kept.push card.id
+        
+        puts "getting production export".green
+        # we can let semaphore make the latest test db on the fly
+        export_location = case args[:location]
+                          when "dev"
+                            "dev.wikirate.org"
+                          when "production"
+                            "wikirate.org"
+                          else
+                            "127.0.0.1:3000"
+                          end          
+        export = open("http://#{export_location}/production_export.json?export=true",:read_timeout => 50000).read
+        puts "Done".green
+        cards = JSON.parse(export)
+        Card::Auth.as_bot
+        cards["card"]["value"].each do |c|
+          card_name = c["name"]
+          begin
+            if card = Card.fetch(card_name)      
+              puts "updating card #{c} #{card.update_attributes!(c)}".light_blue
+            else
+              puts "creating card #{c} #{Card.create!(c)}".yellow
+            end
+          rescue => e
+            puts "Error in #{c} #{e}".red
           end
         end
+        FileUtils.rm_rf(Dir.glob('tmp/*'))
+        seed_test_db = "RAILS_ENV=test rake wikirate:test:add_wikirate_test_data"
+        puts seed_test_db.green
+        system seed_test_db
 
+        dump_test_db = "RAILS_ENV=test rake wikirate:test:dump_test_db"
+        puts dump_test_db.green
+        system dump_test_db
 
-        (company_related_article + topic_related_article).each do |c|
-          card_to_be_kept.push c.id
-        end
-        alias_card_id = Card["aliases"].id
-
-        card_id_to_be_kept = card_to_be_kept.push(alias_card_id).compact.join(",")
-
-        type_ids = %w{ Claim Company Market Issue Topic Analysis Task Newspaper Book Activists Donor Website Person Institution Donor Status Organization Periodical Source Metric_value }.map do |typename|
-          id = Card.fetch_id(typename)
-          "'#{id}'" if id
-        end.compact
-        type_ids_str = type_ids.join(",")
-
-        type_ids.delete("'#{Card::WikirateCompanyID}'")
-        type_ids.delete("'#{Card::WikirateTopicID}'")
-        #type_ids.delete("'#{Card::MetricID}'")
-        type_ids_without_company_and_topic = type_ids.join(",")
-
-        vote_ids = %w{ *upvotes *downvotes }.map do |vote_name|
-          "'#{Card.fetch_id(vote_name)}'"
-        end.join ','
-
-        ActiveRecord::Base.connection.execute 'delete from card_revisions'
-        #ActiveRecord::Base.connection.execute 'delete from card_actions'
-        #xActiveRecord::Base.connection.execute 'delete from card_changes'
-
-        # delete claims, pages and websites
-#        ActiveRecord::Base.connection.execute 'delete from cards where type_id = 631 or type_id = 2327 or type_id = 4030'
-        ActiveRecord::Base.connection.execute 'drop table card_revisions'
-        ActiveRecord::Base.connection.execute 'drop table users'
-        ActiveRecord::Base.connection.execute 'delete from sessions'
-        # delete companies
-        ActiveRecord::Base.connection.execute "delete from cards where type_id = '#{Card::WikirateCompanyID}' and id not in ( #{company_ids[0...-1]} )"
-        # delete topics
-        ActiveRecord::Base.connection.execute "delete from cards where type_id = '#{Card::WikirateTopicID}' and id not in ( #{topic_ids[0...-1]} )"
-        #ActiveRecord::Base.connection.execute "delete from cards where type_id = '#{Card::MetricID}'" # and id not in ( #{metric_ids[0...-1]} )"
-
-        # delete all webpage++link
-        # 47294 is alias card
-        ActiveRecord::Base.connection.execute "delete ca from cards ca inner join cards le ON ca.left_id = le.id where le.type_id in (#{type_ids_str}) and ca.id not in  ( #{card_id_to_be_kept} ) and ca.right_id <> '#{alias_card_id}'"
-        ActiveRecord::Base.connection.execute "delete from cards where type_id in (#{type_ids_without_company_and_topic}) and id not in ( #{card_id_to_be_kept} )"
-        ActiveRecord::Base.connection.execute "delete from cards where right_id in (#{vote_ids})"
-
-        puts "clean database"
-        Rake::Task['wagn:bootstrap:clean'].invoke
-        puts "add test data"
-        require "#{Wagn.root}/test/seed.rb"
-        SharedData.add_test_data
-        puts "mysqldump #{mysql_args} #{test_database} > #{db_path}"
-        system "mysqldump #{mysql_args} #{test_database} > #{db_path}"
-        # prevent from looping
-        exit
+        puts "Please pray"
       end
+      exit()
+    end
+    desc 'dump test database'
+    task :dump_test_db do
+      mysql_args = "-u #{user}"
+      mysql_args += " -p #{pwd}" if pwd
+      dump_test_db = "mysqldump #{mysql_args} #{test_database} > #{db_path}"
+      puts dump_test_db.green
+      system dump_test_db
     end
   end
-
-# delete from cards where type_id = 631;
-# delete from cards where type_id = 2327;
-# delete from card_references;
+  
+  
 
   desc "fetch json from export card on dev site and generate migration"
   task :import_from_dev => :environment do

@@ -27,7 +27,6 @@ describe Card::Set::Right::TypeSearch do
         expect(html).to have_tag("div",:with=>{:class=>"yinyang-list"}) do
           with_tag("div",:with=>{:class=>"yinyang-row"}) do
             with_tag "div",:with=>{:id=>"Jedi+disturbances_in_the_Force+Death_Star+yinyang_drag_item"}
-            with_tag "div",:with=>{:id=>"Jedi+disturbances_in_the_Force+Sample_Company+yinyang_drag_item"}
           end
         end
       end

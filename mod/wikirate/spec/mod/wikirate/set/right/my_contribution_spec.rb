@@ -7,11 +7,11 @@ describe Card::Set::Right::MyContributions do
     it "returns count,name and contribution_card_name of contributions for different types of card" do
 
       result = @user_contribution.sections
-      expect(result).to include([0, Card[:metric].name, "Joe_User+contributed_metrics"])
-      expect(result).to include([0, Card[:claim].name, "Joe_User+contributed_notes"])
-      expect(result).to include([0, Card[:source].name, "Joe_User+contributed_sources"])
-      expect(result).to include([0, Card[:wikirate_article].name, "Joe_User+contributed_analysis"])
-      expect(result).to include([0, Card[:campaign].name, "Joe_User+contributed_initiatives"])
+      expect(result).to include([0, Card[:metric].name, "Joe_User+#{Card[:contributed_metrics].cardname.url_key}"])
+      expect(result).to include([0, Card[:claim].name, "Joe_User+#{Card[:contributed_claims].cardname.url_key}"])
+      expect(result).to include([0, Card[:source].name, "Joe_User+#{Card[:contributed_sources].cardname.url_key}"])
+      expect(result).to include([0, Card[:wikirate_article].name, "Joe_User+#{Card[:contributed_analysis].cardname.url_key}"])
+      expect(result).to include([0, Card[:campaign].name, "Joe_User+#{Card[:contributed_campaigns].cardname.url_key}"])
     end
   end
   describe "core view" do
@@ -27,23 +27,23 @@ describe Card::Set::Right::MyContributions do
   describe "contribution_counts view" do
     it "render the counts for different contribution" do
       html = @user_contribution.format.render_contribution_counts
-      expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+contributed_metrics"} do
+      expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+#{Card[:contributed_metrics].cardname.url_key}"} do
         with_tag "span",:with=>{:class=>"metric"},:text=>"0"
         with_tag "p", :with=>{:class=>"legend"},:text=>"Metric"
       end
-      expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+contributed_notes"} do
+      expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+#{Card[:contributed_claims].cardname.url_key}"} do
         with_tag "span",:with=>{:class=>"note"},:text=>"0"
         with_tag "p", :with=>{:class=>"legend"},:text=>"Note"
       end
-      expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+contributed_sources"} do
+      expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+#{Card[:contributed_sources].cardname.url_key}"} do
         with_tag "span",:with=>{:class=>"source"},:text=>"0"
         with_tag "p", :with=>{:class=>"legend"},:text=>"Source"
       end
-      expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+contributed_analysis"} do
+      expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+#{Card[:contributed_analysis].cardname.url_key}"} do
         with_tag "span",:with=>{:class=>"overview"},:text=>"0"
         with_tag "p", :with=>{:class=>"legend"},:text=>"Overview"
       end
-      expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+contributed_initiatives"} do
+      expect(html).to have_tag "a",:with=>{:class=>"item",:href=>"#Joe_User+#{Card[:contributed_campaigns].cardname.url_key}"} do
         with_tag "span",:with=>{:class=>"initiative"},:text=>"0"
         with_tag "p", :with=>{:class=>"legend"},:text=>"Initiative"
       end

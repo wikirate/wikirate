@@ -1,9 +1,17 @@
 describe Card::Set::Right::ContributedSources do
 
   before do
+    
+    source_list = Array.new
+    Card::Auth.current_id = Card::WagnBotID
+    Card::Auth.as_bot do
+      (0...5).each do |i|
+        source_list.push(create_page("https://www.google.co.uk/?q=hello#{i}"))
+      end
+    end
+
     login_as "joe_user" 
-    sources = Card.search :type_id=>Card::SourceID, :limit=>5
-    sources.each  do |source|
+    source_list.each  do |source|
       vote_count_card = Card[source.name+"+*vote_count"]
       if !vote_count_card
         Card::Auth.as_bot do

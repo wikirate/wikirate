@@ -5,7 +5,7 @@ describe Card::Set::Right::ContributedAnalysis do
 
     analysis = get_a_sample_analysis
 
-    article = Card[analysis.name].fetch :trait=>:wikirate_article
+    article = Card[analysis.name].fetch :trait=>:wikirate_article,:new=>{}
     article.content = "One of my most productive days was throwing away 1000 lines of code."
     article.save!
 

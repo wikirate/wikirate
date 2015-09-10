@@ -121,7 +121,6 @@ namespace :backup do
       invoke 'backup:update_files'
     end
   end
-
   task :pull_db do
     ENV['BACKUP_MODE'] = 'only_db'
     on roles(:db) do

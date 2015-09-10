@@ -1,3 +1,4 @@
+
 shared_examples_for 'contributions' do |subject_type|
   company_name = "Death Star"
   topic_name   = "Force"
@@ -30,17 +31,7 @@ shared_examples_for 'contributions' do |subject_type|
       is_expected.to eq(@initial_count+2)
     end
   end
-
-  context "when +about edited" do
-    before do
-      about = Card.fetch("#{@subject.name}+about")
-      Card::Auth.as_bot do
-        about.update_attributes!(:content=>"change about")
-      end
-    end
-    it { is_expected.to eq(@initial_count+1) }
-  end
-
+  
   context "when article edited" do
     before do
       @analysis = Card["#{company_name}+#{topic_name}"]
@@ -48,8 +39,7 @@ shared_examples_for 'contributions' do |subject_type|
       @direct_cc = @analysis.direct_contribution_count.to_i
       @subject.update_contribution_count
       @initial_count = @subject.contribution_count.to_i
-
-      article = Card.fetch("#{@analysis.name}+#{Card[:wikirate_article].name}")
+      article = @analysis.fetch :trait=>:wikirate_article,:new=>{}
       Card::Auth.as_bot do
         article.update_attributes!(:content=>"change about")
       end
@@ -102,9 +92,37 @@ end
 describe Card::Set::All::Contributions do
   describe 'contribution count for company' do
     it_behaves_like 'contributions', :company
+
+     context "when +about edited" do
+      before do
+        @company = get_a_sample_company
+        logo = Card.fetch("#{@company.name}+logo",:new=>{:type_id=>Card::ImageID})
+        @initial_count = @company.contribution_count.to_i
+        Card::Auth.as_bot do
+          Card.create :name => "#{@company.name}+logo", :type_code=>'image', :image=>File.new("#{Rails.root}/mod/wikirate/spec/mod/wikirate/set/all/DeathStar.jpg")
+        end
+      end
+      it "adds one to contribution counter" do
+        expect(@company.contribution_count.to_i).to eq(@initial_count+1)
+      end 
+    end
   end
 
   describe 'contribution count for topic' do
     it_behaves_like 'contributions', :topic
+    context "when +about edited" do
+      before do
+        @topic = get_a_sample_topic
+        @initial_count = @topic.contribution_count.to_i
+        about = Card.fetch("#{@topic.name}+about")
+        Card::Auth.as_bot do
+          about.update_attributes!(:content=>"change about")
+        end
+      end
+      it "adds one to contribution counter" do
+        expect(@topic.contribution_count.to_i).to eq(@initial_count+1)
+      end 
+
+    end
   end
 end

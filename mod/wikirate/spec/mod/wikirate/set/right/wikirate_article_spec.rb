@@ -2,8 +2,8 @@ describe Card::Set::Right::WikirateArticle do
   describe "#handle_edit_article" do
     before do
       Card::Env.params[:edit_article] = true
-      @company = Card.create :name=>"company1",:type=>"company"
-      @topic = Card.create :name=>"topic1",:type=>"topic"
+      @company = Card.create :name=>"company1",:type_id=>Card::WikirateCompanyID
+      @topic = Card.create :name=>"topic1",:type_id=>Card::WikirateTopicID
       @claim = get_a_sample_claim
       Card::Env.params[:citable]=@claim.name
       @citation = "Death Star uses dark side of the Force {{Death Star uses dark side of the Force|cite}}"
