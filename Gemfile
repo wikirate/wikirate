@@ -6,7 +6,7 @@ gem 'wagn', :path=>"#{wagn_gem_path}/wagn"
 gem 'card', :path=>"#{wagn_gem_path}/card", :require=>false
 
 
-gem "mysql2", "~> 0.3"
+gem "mysql2", "~> 0.3.18"
 gem 'link_thumbnailer', "2.5.2"
 gem 'open_uri_redirections'
 gem 'roo'

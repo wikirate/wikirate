@@ -143,7 +143,7 @@ format :html do
     #Claims tab
     result += %{
       <li role="presentation" >
-        <a class='' data-target="#tab_claims" data-toggle="source_preview_tab_ajax"  href='/#{card.cardname.url_key}+source_claim_list?slot[hide]=header,menu' >
+        <a class='' data-target="#tab_claims" data-toggle="source_preview_tab_ajax"  href='/#{card.cardname.url_key}+source_note_list?slot[hide]=header,menu' >
             <i class='fa fa-quote-left'><span id="claim-count-number " class="count-number">#{claim_count}</span></i><span>Claims</span>
         </a>
       </li>
