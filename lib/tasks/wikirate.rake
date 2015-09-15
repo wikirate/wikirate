@@ -24,6 +24,40 @@ namespace :wikirate do
       SharedData.add_wikirate_data
     end
 
+    def truncate_table table
+      sql = "TRUNCATE  #{table}"
+      ActiveRecord::Base.connection.execute(sql)
+    end
+
+    def insert_migration_records data
+      data.each do |table,values|
+        begin
+          value_string = values.join("'),('")
+          value_string = "('#{value_string}')"
+          truncate_table table
+          sql = "INSERT INTO #{table} (version) VALUES #{value_string}"
+          ActiveRecord::Base.connection.execute(sql)
+        rescue => e
+          puts "Error in #{table},#{values} #{e}".red
+        end
+      end
+    end
+
+    def insert_data data
+      data.each do |c|
+        card_name = c["name"]
+        begin
+          if card = Card.fetch(card_name)      
+            puts "updating card #{c} #{card.update_attributes!(c)}".light_blue
+          else
+            puts "creating card #{c} #{Card.create!(c)}".yellow
+          end
+        rescue => e
+          puts "Error in #{c} #{e}".red
+        end
+      end
+    end
+
     desc 'update seed data using the production database'
     task :reseed_data, [:location] do |t,args|
       if ENV['RAILS_ENV'] != 'init_test'
@@ -57,18 +91,11 @@ namespace :wikirate do
         puts "Done".green
         cards = JSON.parse(export)
         Card::Auth.as_bot
-        cards["card"]["value"].each do |c|
-          card_name = c["name"]
-          begin
-            if card = Card.fetch(card_name)      
-              puts "updating card #{c} #{card.update_attributes!(c)}".light_blue
-            else
-              puts "creating card #{c} #{Card.create!(c)}".yellow
-            end
-          rescue => e
-            puts "Error in #{c} #{e}".red
-          end
-        end
+
+        insert_data cards["card"]["value"]
+
+        insert_migration_records cards["migration_record"]
+
         FileUtils.rm_rf(Dir.glob('tmp/*'))
         seed_test_db = "RAILS_ENV=test rake wikirate:test:add_wikirate_test_data"
         puts seed_test_db.green
