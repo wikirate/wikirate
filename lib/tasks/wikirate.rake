@@ -1,5 +1,5 @@
 require 'colorize'
-require 'pry'
+#require 'pry'
 namespace :wikirate do
   namespace :test do
 
@@ -24,40 +24,6 @@ namespace :wikirate do
       SharedData.add_wikirate_data
     end
 
-    def truncate_table table
-      sql = "TRUNCATE  #{table}"
-      ActiveRecord::Base.connection.execute(sql)
-    end
-
-    def insert_migration_records data
-      data.each do |table,values|
-        begin
-          value_string = values.join("'),('")
-          value_string = "('#{value_string}')"
-          truncate_table table
-          sql = "INSERT INTO #{table} (version) VALUES #{value_string}"
-          ActiveRecord::Base.connection.execute(sql)
-        rescue => e
-          puts "Error in #{table},#{values} #{e}".red
-        end
-      end
-    end
-
-    def insert_data data
-      data.each do |c|
-        card_name = c["name"]
-        begin
-          if card = Card.fetch(card_name)      
-            puts "updating card #{c} #{card.update_attributes!(c)}".light_blue
-          else
-            puts "creating card #{c} #{Card.create!(c)}".yellow
-          end
-        rescue => e
-          puts "Error in #{c} #{e}".red
-        end
-      end
-    end
-
     desc 'update seed data using the production database'
     task :reseed_data, [:location] do |t,args|
       if ENV['RAILS_ENV'] != 'init_test'
@@ -69,14 +35,14 @@ namespace :wikirate do
         puts "Error: no production database defined in config/database.yml"
       else
         # seed from raw wagn db
-        
+
         seed_test_db = "RAILS_ENV=test wagn seed"
         puts seed_test_db.green
         system seed_test_db
 
         FileUtils.rm_rf(Dir.glob('tmp/*'))
         require "#{Wagn.root}/config/environment"
-        
+
         puts "getting production export".green
         # we can let semaphore make the latest test db on the fly
         export_location = case args[:location]
@@ -86,16 +52,23 @@ namespace :wikirate do
                             "wikirate.org"
                           else
                             "127.0.0.1:3000"
-                          end          
+                          end
         export = open("http://#{export_location}/production_export.json?export=true",:read_timeout => 50000).read
         puts "Done".green
         cards = JSON.parse(export)
         Card::Auth.as_bot
-
-        insert_data cards["card"]["value"]
-
-        insert_migration_records cards["migration_record"]
-
+        cards["card"]["value"].each do |c|
+          card_name = c["name"]
+          begin
+            if card = Card.fetch(card_name)
+              puts "updating card #{c} #{card.update_attributes!(c)}".light_blue
+            else
+              puts "creating card #{c} #{Card.create!(c)}".yellow
+            end
+          rescue => e
+            puts "Error in #{c} #{e}".red
+          end
+        end
         FileUtils.rm_rf(Dir.glob('tmp/*'))
         seed_test_db = "RAILS_ENV=test rake wikirate:test:add_wikirate_test_data"
         puts seed_test_db.green
@@ -118,8 +91,8 @@ namespace :wikirate do
       system dump_test_db
     end
   end
-  
-  
+
+
 
   desc "fetch json from export card on dev site and generate migration"
   task :import_from_dev => :environment do
