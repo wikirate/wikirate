@@ -12,7 +12,7 @@ format :json do
     result = super args
     if Env::params["export"] == "true"
       migration_record = {}
-      ["schema_migrations","schema_migrations_cards","schema_migrations_core_cards","schema_migrations_deck_cards"].each do |table|
+      ["schema_migrations","schema_migrations_core_cards","schema_migrations_deck_cards"].each do |table|
         migration_record[table] = get_migration_records table  
       end
       result["migration_record"] = migration_record
