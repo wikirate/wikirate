@@ -1,7 +1,7 @@
 def virtual?; true end
 
 def raw_content
-  %({"type":"_r","linked_to_by":{"left":"_user","right":{"codename":"#{vote_type_codename}"}}, "limit":0, "return":"name"})
+  %({"type":"_lr","linked_to_by":{"left":"_user","right":{"codename":"#{vote_type_codename}"}}, "limit":0, "return":"name"})
 end
 
 def vote_type
