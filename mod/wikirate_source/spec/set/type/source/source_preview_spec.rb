@@ -20,7 +20,7 @@ describe Card::Set::Type::Source do
 
         expect(@result).to have_tag("ul", :with=>{:class=>"navbar-right"}) do
           with_tag "a",  :with=>{"data-target"=>"#tab_details"}
-          with_tag "a",  :with=>{"data-target"=>"#tab_claims", :href=>"/#{@text_source.cardname.url_key}+source_claim_list?slot[hide]=header,menu"}
+          with_tag "a",  :with=>{"data-target"=>"#tab_claims", :href=>"/#{@text_source.cardname.url_key}+source_note_list?slot[hide]=header,menu"}
           with_tag "a",  :with=>{"data-target"=>"#tab_metrics", :href=>"/#{@text_source.cardname.url_key}+metric_search?slot[hide]=header,menu"}
         end
       end
@@ -41,7 +41,7 @@ describe Card::Set::Type::Source do
 
         expect(@result).to have_tag("ul", :with=>{:class=>"navbar-right"}) do
           with_tag "a",  :with=>{"data-target"=>"#tab_details"}
-          with_tag "a",  :with=>{"data-target"=>"#tab_claims", :href=>"/#{@pdf_source.cardname.url_key}+source_claim_list?slot[hide]=header,menu"}
+          with_tag "a",  :with=>{"data-target"=>"#tab_claims", :href=>"/#{@pdf_source.cardname.url_key}+source_note_list?slot[hide]=header,menu"}
           with_tag "a",  :with=>{"data-target"=>"#tab_metrics", :href=>"/#{@pdf_source.cardname.url_key}+metric_search?slot[hide]=header,menu"}
         end
       end
@@ -87,7 +87,7 @@ describe Card::Set::Type::Source do
       it "shows correction options" do
         expect(@result).to have_tag("ul", :with=>{:class=>"navbar-right"}) do
           with_tag "a",  :with=>{"data-target"=>"#tab_details"}
-          with_tag "a",  :with=>{"data-target"=>"#tab_claims", :href=>"/#{@existing_source.cardname.url_key}+source_claim_list?slot[hide]=header,menu"}
+          with_tag "a",  :with=>{"data-target"=>"#tab_claims", :href=>"/#{@existing_source.cardname.url_key}+source_note_list?slot[hide]=header,menu"}
           with_tag "a",  :with=>{"data-target"=>"#tab_metrics", :href=>"/#{@existing_source.cardname.url_key}+metric_search?slot[hide]=header,menu"}
           with_tag "a",  :with=>{:href=>@existing_source.fetch(:trait=>:wikirate_link).content}
         end
