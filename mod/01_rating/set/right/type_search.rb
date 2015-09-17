@@ -18,7 +18,7 @@ def raw_content
       }
     )
   else
-    '{"type":"_r", "limit":0,"return":"name"}'
+    '{"type":"_lr", "limit":0,"return":"name"}'
   end
 end
 
