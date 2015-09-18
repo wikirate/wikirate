@@ -39,8 +39,13 @@ format :json do
     end
     metadata.to_json
   end
+  def valid_content_type? content_type
+    allow_content_type = ["image/png","image/jpeg"]
+    # for case, "text/html; charset=iso-8859-1"
+    allow_content_type.include?(content_type) || content_type.start_with?("text/html") || content_type.start_with?("text/plain")
+  end
   def is_iframable? url, user_agent
-    allow_content_type = ["text/html","text/plain","image/png","image/jpeg"]
+    
     return false if !url or url.length == 0
     begin 
       # escape space in url, eg, http://www.businessweek.com/articles/2014-10-30/tim-cook-im-proud-to-be-gay#r=most popular
@@ -54,7 +59,7 @@ format :json do
       content_type = curl.head[/.*Content-Type: (.*)\r\n/,1]
       is_firefox = user_agent ? user_agent =~ /Firefox/ : false
       return false if xFrameOptions and ( xFrameOptions.upcase.include? "DENY" or xFrameOptions.upcase.include? "SAMEORIGIN" )
-      return false if !allow_content_type.include?(content_type) and  !is_firefox
+      return false if !valid_content_type?(content_type) and  !is_firefox
     rescue => error
       Rails.logger.error error.message
       return false
