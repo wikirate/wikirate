@@ -37,7 +37,7 @@ format :html do
   end
 
   view :open do |args|
-    card.left.account ? super(args) : ''
+    card.left.present? && card.left.account ? super(args) : ''
   end
 
 end
