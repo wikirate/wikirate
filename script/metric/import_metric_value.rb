@@ -28,12 +28,6 @@ Card::Auth.as_bot do
           puts "fail to parse json"
         end
       end
-      if metric_name=="Sebastian Jekutsch+CSR Report Available"
-        binding.pry
-      else
-        next
-
-      end
 
       subcard = {
         "+metric"=>{"content"=>metric_name},
