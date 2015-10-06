@@ -17,8 +17,10 @@ class InitiativeParticipant < Card::Migration
       # create a pointer card called initiative+participant
       initiative_name = initiative.name
       if !Card.exists? "#{initiative_name}+participant"
-        participant = Card.create name: "#{initiative_name}+participant"
-          , type_id: Card::PointerID 
+        Card.create( 
+          name: "#{initiative_name}+participant", 
+          type_id: Card::PointerID 
+        )
       end
     end
   end
