@@ -5,9 +5,9 @@ format :html do
     # EX: user+missing_image_card
     if card.left.present?
       parent_type_card = Card[card.left.type_id]
-      missing_image_card = parent_type_card.fetch(:trait=>:missing_image_card)
+      missing_image_card = parent_type_card.fetch(trait: :missing_image_card)
       if missing_image_card
-        subformat( missing_image_card )._render args[:home_view],args
+        subformat(missing_image_card)._render args[:home_view], args
       else
         super args
       end

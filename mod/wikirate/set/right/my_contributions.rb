@@ -9,13 +9,12 @@ def sections
       [ { name: Card[:metric].name, contributions: :contributed_metrics },
         { name: Card[:claim].name, contributions: :contributed_claims },
         { name: Card[:source].name, contributions: :contributed_sources },
-        { 
-          name: Card[:wikirate_article].name, 
+        { name: Card[:wikirate_article].name, 
           contributions: :contributed_analysis 
         },
         { name: Card[:campaign].name, contributions: :contributed_campaigns }
       ].map do |args|
-        c_card = user_card.fetch(:trait=>args[:contributions])
+        c_card = user_card.fetch(trait: args[:contributions])
         count = c_card && c_card.contribution_count
         contr_name = c_card && c_card.cardname.url_key
         [(count || 0), args[:name], contr_name]
@@ -33,9 +32,8 @@ format :html do
         # FIXME - cardname
         if name == 'Initiative'
           nest Card.fetch(contr_name), section_args.merge(item: {
-              view: :content, structure: 'initiative item'
-            }
-          )
+            view: :content, structure: 'initiative item'
+          })
         else
           nest Card.fetch(contr_name), section_args
         end
@@ -59,7 +57,7 @@ format :html do
   end
 
   view :contribution_counts do |args|
-    content_tag :div, :class=>'counts' do
+    content_tag :div, class: 'counts' do
       if card.sections
         card.sections.map do |count, name, contr_name|
           content_tag :a, class: "item", href: "##{contr_name}" do
