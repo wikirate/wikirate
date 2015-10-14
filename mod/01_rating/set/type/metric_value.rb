@@ -21,18 +21,21 @@ def company_card
 end
 
 def source_exist?
-  file_card = subcards["+File"]
-  text_card = subcards["+Text"]
-  link_card = subcards["+Link"]
-  ( file_card && file_card.stringify_keys.has_key?("file") ) ||
-  ( text_card && ( text_card_content = (text_card.stringify_keys)["content"] ) && !text_card_content.empty? ) ||
-  ( link_card && ( link_card_content = (link_card.stringify_keys)["content"] ) && !link_card_content.empty? )
+  file_card = subfield Card[:file].name
+  text_card = subfield Card[:text].name
+  link_card = subfield Card[:wikirate_link].name
+
+  ( file_card && file_card.attachment.present? ) || 
+  ( text_card && text_card.content.present? ) ||
+  ( link_card && link_card_content.empty? )
 
 end
 
 event :set_metric_value_name, :before=>:set_autoname, :when=>proc{|c| c.cardname.parts.size < 4} do
-  self.name = ['+metric', '+company', '+year'].map do |name|
-      subcards.delete(name)['content'].gsub('[[','').gsub(']]','')
+  self.name = ['metric', 'company', 'year'].map do |name|
+      content = subfield(name).content
+      remove_subfield name
+      content.gsub('[[','').gsub(']]','')
     end.join '+'
 end
 
@@ -45,15 +48,20 @@ event :create_source_for_updating_metric_value, :before=>:process_subcards, :on=
 end
 
 def create_source
+  
   Env.params[:sourcebox] = 'true'
-  value = subcards.delete('+value')
-  source_card = Card.create :type_id=>Card::SourceID, :subcards=>subcards.clone
+  value = subfield 'value'
+  remove_subfield 'value'
+  _subcards = {}
+  subcards.each_with_key do |subcard, key|
+    _subcards[key] = subcard
+  end
+  
+  source_card = Card.create :type_id=>Card::SourceID, :subcards=>_subcards
   Env.params[:sourcebox] = nil
   if source_card.errors.empty?
-    @subcards = {
-      '+value' => value,
-      '+source' => {:content=>"[[#{source_card.name}]]"}
-    }
+    add_subcard '+value', value
+    add_subcard '+source', content: "[[#{source_card.name}]]"
   else
     source_card.errors.each do |key,value|
       errors.add key,value

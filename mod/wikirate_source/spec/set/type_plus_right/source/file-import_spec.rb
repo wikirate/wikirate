@@ -16,7 +16,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
 
       expect(source_file.errors).to have_key(:content)
       expect(source_file.errors[:content]).to include("Please give a year.")
-
+      Card::Cache.reset_local
       source_file.update_attributes :subcards=>{"#{@source.name}+#{Card[:year].name}"=>{:content=>'[[2015]]',:type_id=>Card::PointerID}}
 
       expect(source_file.errors).to have_key(:content)
