@@ -27,9 +27,9 @@ event :vote_on_create_source, :on=>:create, :after=>:store, :when=> proc{ |c| Ca
 end
 
 event :check_source, :after=>:approve_subcards, :on=>:create do
-  source_cards = [subfield(Card[:wikirate_link].name), 
-                  subfield(Card[:file].name),
-                  subfield(Card[:text].name)].compact
+  source_cards = [subfield(:wikirate_link), 
+                  subfield(:file),
+                  subfield(:text)].compact
   if source_cards.length > 1
     errors.add :source, "Please only add one type of source"
   elsif source_cards.length == 0
@@ -38,8 +38,8 @@ event :check_source, :after=>:approve_subcards, :on=>:create do
 end
 
 def has_file_or_text?
-  file_card = subfield("File")
-  text_card = subfield("Text")
+  file_card = subfield(:file)
+  text_card = subfield(:text)
   ( file_card && file_card.attachment.present? ) || 
   ( text_card && text_card.content.present? )
 end

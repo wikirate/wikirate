@@ -21,13 +21,13 @@ def company_card
 end
 
 def source_exist?
-  file_card = subfield Card[:file].name
-  text_card = subfield Card[:text].name
-  link_card = subfield Card[:wikirate_link].name
+  file_card = subfield :file
+  text_card = subfield :text
+  link_card = subfield :wikirate_link
 
   ( file_card && file_card.attachment.present? ) || 
   ( text_card && text_card.content.present? ) ||
-  ( link_card && link_card_content.empty? )
+  ( link_card && link_card.content.present? )
 
 end
 
@@ -48,20 +48,28 @@ event :create_source_for_updating_metric_value, :before=>:process_subcards, :on=
 end
 
 def create_source
-  
   Env.params[:sourcebox] = 'true'
   value = subfield 'value'
   remove_subfield 'value'
   _subcards = {}
-  subcards.each_with_key do |subcard, key|
-    _subcards[key] = subcard
+  ['file', 'link', 'text'].compact.each do |key|
+    if (subcard = subfield(key))
+      if key =='file'
+        _subcards["+#{key}"] = { file: subcard.file.file, type_id: subcard.type_id }
+      else
+        _subcards["+#{key}"] = { content: subcard.content, type_id: subcard.type_id }          
+      end
+    end
   end
-  
-  source_card = Card.create :type_id=>Card::SourceID, :subcards=>_subcards
+  subcards.each_with_key do |subcard, key|
+    remove_subcard key
+  end
+  source_card = Card.create :type_id=>SourceID, :subcards=>_subcards
   Env.params[:sourcebox] = nil
   if source_card.errors.empty?
-    add_subcard '+value', value
-    add_subcard '+source', content: "[[#{source_card.name}]]"
+    add_subcard '+value', content: value.content, type_id: PhraseID
+    add_subcard '+source', content: "[[#{source_card.name}]]",
+                           type_id: PointerID
   else
     source_card.errors.each do |key,value|
       errors.add key,value
@@ -116,9 +124,7 @@ format :html do
   view :timeline_data do |args|
     year  =  content_tag(:span, card.cardname.right, :class=>'metric-year')
     value_card = card.fetch(:trait=>:value)
-    #value = ((value_card = card.fetch(:trait=>:value)) && value_card.content) || ''
-    #value = nest value_card
-    value =  _render_modal_details(args) # content_tag(:span, value, :class=>'metric-value')
+    value =  _render_modal_details(args) 
     value << content_tag(:span, legend(args), :class=>'metric-unit')
 
     line   =  content_tag(:div, '', :class=>'timeline-dot')
@@ -143,9 +149,6 @@ format :html do
     end
   end
 
-
-
-  # TODO: in branch source_link by henry
   view :source_link do |args|
     if source_card = card.fetch(:trait=>:source)
       source_card.item_cards.map do |i_card|

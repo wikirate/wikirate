@@ -65,6 +65,7 @@ describe Card::Set::Type::Claim do
       login_as 'joe_user'
       @claim_name = "testing claim"
       @sourcepage = create_page
+      
       @sample_claim = get_a_sample_claim
     end
 
