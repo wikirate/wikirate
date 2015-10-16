@@ -9,7 +9,6 @@ describe Card::Set::Type::Source do
       @company = "Amazon.com, Inc."
       @topic = "Natural Resource Use"
       @existing_source = create_page_with_sourcebox @url,{"+Company"=>@company,"+Topic"=>@topic},'false'
-      
     end
 
     context "text source" do
@@ -36,7 +35,6 @@ describe Card::Set::Type::Source do
       before do
         pdf_file = File.open("#{Rails.root}/mod/wikirate_source/spec/set/type/source/test_pdf.pdf")
         @pdf_source = Card.create! :type_id=>Card::SourceID,:subcards=>{'+File'=>{ :file=>pdf_file,:type_id=>Card::FileID}}
-        
         @result = @pdf_source.format._render_preview
       end
       it "shows correction options" do
