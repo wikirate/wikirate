@@ -95,7 +95,7 @@ def wikirate_url? url
 end
 
 def get_card url
-  if is_wikirate_url?(url)
+  if wikirate_url?(url)
     # try to convert the link to source card,
     # easier for users to add source in +source editor
     uri = URI.parse(URI.unescape(url))
