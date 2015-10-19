@@ -40,8 +40,8 @@ end
 def has_file_or_text?
   file_card = subfield(:file)
   text_card = subfield(:text)
-  ( file_card && file_card.attachment.present? ) || 
-  ( text_card && text_card.content.present? )
+  (file_card && file_card.attachment.present?) || 
+    (text_card && text_card.content.present?)
 end
 
 event :process_source_url, :before=>:process_subcards, :on=>:create, 
@@ -59,7 +59,7 @@ event :process_source_url, :before=>:process_subcards, :on=>:create,
           self.name = cite_card.name
           abort :success
         end
-      elsif !is_url?(url) || is_wikirate_url?(url)
+      elsif !url?(url) || wikirate_url?(url)
         errors.add :source, " does not exist."
       end
     end
@@ -85,11 +85,11 @@ event :process_source_url, :before=>:process_subcards, :on=>:create,
   
 end
 
-def is_url? url
+def url? url
   url.start_with?("http://") || url.start_with?("https://")
 end
 
-def is_wikirate_url? url
+def wikirate_url? url
   wikirate_url = "#{Card::Env[:protocol]}#{Card::Env[:host]}"
   url.start_with?(wikirate_url)
 end
@@ -124,8 +124,8 @@ def file_link? url
   # prevent from showing file too big while users are adding a link source
   max_size = (max = Card['*upload max']) ? max.db_content.to_i : 5
 
-  !(content_type.start_with?"text/html" or content_type.start_with?"image/") &&
-  content_size.to_i <= max_size.megabytes
+  !(content_type.start_with?"text/html" || content_type.start_with?"image/") &&
+    content_size.to_i <= max_size.megabytes
 rescue
   Rails.logger.info "Fail to extract header from the #{ url }"
   false
