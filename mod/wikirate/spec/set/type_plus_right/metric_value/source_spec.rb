@@ -19,7 +19,16 @@ describe Card::Set::TypePlusRight::MetricValue::Source do
         "+company"=>{"content"=>"[[#{@company.name}]]",:type_id=>Card::PointerID},
         "+value"=>{"content"=>"10", :type_id=>Card::PhraseID},
         "+year"=>{"content"=>"2015", :type_id=>Card::PointerID},
-        "+Link"=>{:content=>"http://www.google.com/?q=yo", "type_id"=>Card::PhraseID}
+        "+source"=>{
+          "subcards"=>{
+            "new source"=>{
+              "+Link"=>{
+                "content"=>"http://www.google.com/?q=yo",
+                 "type_id"=>Card::PhraseID
+              }
+            }
+          }
+        }
       }
       metric_value = Card.create! :name=>@metric_value_card_name, :type_id=>Card::MetricValueID, :subcards=>_subcard
       html = metric_value.format.render_edit

@@ -276,7 +276,16 @@ describe Card::Set::All::Wikirate do
           "+company"=>{"content"=>"[[#{sample_company.name}]]",:type_id=>Card::PointerID},
           "+value"=>{"content"=>"Nature doesn't recongize good or evil. Nature only recongizes balance and imbalance.", :type_id=>Card::PhraseID},
           "+year"=>{"content"=>"2015", :type_id=>Card::PointerID},
-          "+Link"=>{"content"=>"http://www.google.com/?q=fringe", "type_id"=>Card::PhraseID}
+          "+source"=>{
+            "subcards"=>{
+              "new source"=>{
+                "+Link"=>{
+                  "content"=>"http://www.google.com/?q=fringe",
+                   "type_id"=>Card::PhraseID
+                }
+              }
+            }
+          }
         }
         
         metric_value = Card.create! :type_id=>Card::MetricValueID,:subcards=>subcard

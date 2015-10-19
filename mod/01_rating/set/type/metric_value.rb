@@ -33,8 +33,7 @@ end
 
 event :set_metric_value_name, :before=>:set_autoname, :when=>proc{|c| c.cardname.parts.size < 4} do
   self.name = ['metric', 'company', 'year'].map do |name|
-      content = subfield(name).content
-      remove_subfield name
+      content = remove_subfield(name).content
       content.gsub('[[','').gsub(']]','')
     end.join '+'
 end
@@ -49,31 +48,32 @@ end
 
 def create_source
   Env.params[:sourcebox] = 'true'
-  value = subfield 'value'
-  remove_subfield 'value'
-  _subcards = {}
-  ['file', 'link', 'text'].compact.each do |key|
-    if (subcard = subfield(key))
-      if key =='file'
-        _subcards["+#{key}"] = { file: subcard.file.file, type_id: subcard.type_id }
+  value = remove_subfield 'value'
+  if (sub_source_card = subfield('source'))
+    new_source_card = sub_source_card.subcard('new_source')
+    source_subcards = {}
+    new_source_card.subcards.each_with_key do |subcard, key|
+      subcard_key = subcard.tag.key
+      if key == 'file'
+        source_subcards["+#{subcard_key}"] = { file: subcard.file.file, type_id: subcard.type_id }
       else
-        _subcards["+#{key}"] = { content: subcard.content, type_id: subcard.type_id }          
+        source_subcards["+#{subcard_key}"] = { content: subcard.content, type_id: subcard.type_id }          
       end
     end
-  end
-  subcards.each_with_key do |subcard, key|
-    remove_subcard key
-  end
-  source_card = Card.create :type_id=>SourceID, :subcards=>_subcards
-  Env.params[:sourcebox] = nil
-  if source_card.errors.empty?
-    add_subcard '+value', content: value.content, type_id: PhraseID
-    add_subcard '+source', content: "[[#{source_card.name}]]",
-                           type_id: PointerID
-  else
-    source_card.errors.each do |key,value|
-      errors.add key,value
+    clear_subcards
+    source_card = Card.create! type_id: SourceID, subcards: source_subcards
+    Env.params[:sourcebox] = nil
+    if source_card.errors.empty?
+      add_subcard '+value', content: value.content, type_id: PhraseID
+      add_subcard '+source', content: "[[#{source_card.name}]]",
+                             type_id: PointerID
+    else
+      source_card.errors.each do |key,value|
+        errors.add key,value
+      end
     end
+  else
+    errors.add :source, 'does not exist.'
   end
 end
 

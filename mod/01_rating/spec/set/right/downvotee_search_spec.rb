@@ -121,7 +121,16 @@ describe Card::Set::Right::DownvoteeSearch do
               "+company"=>{"content"=>"[[#{company.name}]]",:type_id=>Card::PointerID},
               "+value"=>{"content"=>"Na einai kalytero anthropo apo ton patera toy", :type_id=>Card::PhraseID},
               "+year"=>{"content"=>"2015", :type_id=>Card::PointerID},
-              "+Link"=>{:content=>"http://www.google.com/?q=fringepeter", "type_id"=>Card::PhraseID}
+              "+source"=>{
+                "subcards"=>{
+                  "new source"=>{
+                    "+Link"=>{
+                      "content"=>"http://www.google.com/?q=fringepeter",
+                       "type_id"=>Card::PhraseID
+                    }
+                  }
+                }
+              }
             }
             Card.create! :type_id=>Card::MetricValueID,:subcards=>subcard
             # show downvotee 
@@ -150,7 +159,16 @@ describe Card::Set::Right::DownvoteeSearch do
               "+company"=>{"content"=>"[[#{analysis.cardname.left}]]",:type_id=>Card::PointerID},
               "+value"=>{"content"=>"Na einai kalytero anthropo apo ton patera toy", :type_id=>Card::PhraseID},
               "+year"=>{"content"=>"2015", :type_id=>Card::PointerID},
-              "+Link"=>{:content=>"http://www.google.com/?q=fringepeter", "type_id"=>Card::PhraseID}
+              "+source"=>{
+                "subcards"=>{
+                  "new source"=>{
+                    "+Link"=>{
+                      "content"=>"http://www.google.com/?q=fringepeter",
+                       "type_id"=>Card::PhraseID
+                    }
+                  }
+                }
+              }
             }
             Card.create! :type_id=>Card::MetricValueID,:subcards=>subcard
             # show downvotee 
