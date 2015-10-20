@@ -124,7 +124,8 @@ def file_link? url
   # prevent from showing file too big while users are adding a link source
   max_size = (max = Card['*upload max']) ? max.db_content.to_i : 5
 
-  !(content_type.start_with?"text/html" || content_type.start_with?"image/") &&
+  !(content_type.start_with?("text/html") || 
+    content_type.start_with?("image/")) &&
     content_size.to_i <= max_size.megabytes
 rescue
   Rails.logger.info "Fail to extract header from the #{ url }"
