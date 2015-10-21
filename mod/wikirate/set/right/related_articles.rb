@@ -31,7 +31,7 @@ format :html do
         }
       end
     else
-      body = %{<h3 class="no-article no-overview">No related Overviews yet.</h3>} + claim.format.render_tips
+      body = %{<h3 class="no-article no-overview">No related Overviews yet.</h3>} + subformat(claim).render_tip
     end
     body
   end

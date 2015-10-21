@@ -13,7 +13,16 @@ describe Card::Set::Right::NovoteeSearch do
           "+company"=>{"content"=>"[[#{@company.name}]]",:type_id=>Card::PointerID},
           "+value"=>{"content"=>"I'm fine, I'm just not happy.", :type_id=>Card::PhraseID},
           "+year"=>{"content"=>"2015", :type_id=>Card::PointerID},
-          "+Link"=>{:content=>"http://www.google.com/?q=everybodylies", "type_id"=>Card::PhraseID}
+          "+source"=>{
+            "subcards"=>{
+              "new source"=>{
+                "+Link"=>{
+                  "content"=>"http://www.google.com/?q=everybodylies",
+                   "type_id"=>Card::PhraseID
+                }
+              }
+            }
+          }
         }
         Card.create! :type_id=>Card::MetricValueID, :subcards=>subcard
       end

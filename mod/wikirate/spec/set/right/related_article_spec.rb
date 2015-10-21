@@ -80,7 +80,7 @@ describe Card::Set::Right::RelatedArticles do
         claim_card = create_claim "whateverclaim",{}
         related_article_card = Card.fetch claim_card.name+"+related overviews"
         html = related_article_card.format(:format=>:html)._render_core
-        expected_html = %{<h3 class="no-article no-overview">No related Overviews yet.</h3>} + claim_card.format.render_tips
+        expected_html = %{<h3 class="no-article no-overview">No related Overviews yet.</h3>} + claim_card.format.render_tip
         expect(html.squish).to eq(expected_html.squish)
       end
     end

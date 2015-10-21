@@ -34,7 +34,16 @@ Card::Auth.as_bot do
         "+company"=>{"content"=>"[[#{company_name}]]",:type_id=>Card::PointerID},
         "+value"=>{"content"=>value.to_s, :type_id=>Card::PhraseID},
         "+year"=>{"content"=>year.to_s, :type_id=>Card::PointerID},
-        "+Link"=>{:content=>source_url, "type_id"=>Card::PhraseID}
+        "+source"=>{
+          "subcards"=>{
+            "new source"=>{
+              "+Link"=>{
+                "content"=>source_url,
+                 "type_id"=>Card::PhraseID
+              }
+            }
+          }
+        }
       }
       
       metric_value = Card.new :type_id=>Card::MetricValueID,:subcards=>subcard

@@ -220,7 +220,9 @@ describe Card::Set::All::Wikirate do
   describe "og_source view" do
     context "exisiting card" do
       it "renders source view" do
-        dump_card = Card.create! :name=>"dump is dump",:content=>"what a dump"
+        file_path = "#{Rails.root}/mod/wikirate/spec/set/all/DeathStar.jpg"
+        dump_card = Card.create name: "dump is dump",
+                      type_code: 'image', image: File.new(file_path)
         expect(dump_card.format.render_og_source).to eq(dump_card.format.render_source)
       end
     end
@@ -254,12 +256,12 @@ describe Card::Set::All::Wikirate do
 
   describe "yinyang_list" do
     it "renders correct yinyang list items" do
+      
       args = {
         :item=>"content"
       }
-
       sample_company = Card.create! :name=>"Steelseries",:type_id=>Card::WikirateCompanyID
-
+      
       metric1 = Card.create! :name=>"Joe User+how many responses",:type_id=>Card::MetricID
       metric2 = Card.create! :name=>"Joe User+how many types of responses",:type_id=>Card::MetricID
       metric3 = Card.create! :name=>"Joe User+the unusualness of the responses",:type_id=>Card::MetricID
@@ -274,8 +276,18 @@ describe Card::Set::All::Wikirate do
           "+company"=>{"content"=>"[[#{sample_company.name}]]",:type_id=>Card::PointerID},
           "+value"=>{"content"=>"Nature doesn't recongize good or evil. Nature only recongizes balance and imbalance.", :type_id=>Card::PhraseID},
           "+year"=>{"content"=>"2015", :type_id=>Card::PointerID},
-          "+Link"=>{:content=>"http://www.google.com/?q=fringe", "type_id"=>Card::PhraseID}
+          "+source"=>{
+            "subcards"=>{
+              "new source"=>{
+                "+Link"=>{
+                  "content"=>"http://www.google.com/?q=fringe",
+                   "type_id"=>Card::PhraseID
+                }
+              }
+            }
+          }
         }
+        
         metric_value = Card.create! :type_id=>Card::MetricValueID,:subcards=>subcard
         metric_values.push(metric_value)
       end

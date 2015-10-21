@@ -31,7 +31,6 @@ describe Card::Set::Type::Source do
         url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
         Card::Env.params[:sourcebox] = 'true'
         firstsourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url} , '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""}}
-        Card::Cache.reset_global
         secondsourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
         expect(firstsourcepage.name).to eq(secondsourcepage.name)
       end
@@ -41,7 +40,6 @@ describe Card::Set::Type::Source do
         url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
         
         firstsourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
-        Card::Cache.reset_global
         secondsourcepage = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
         
         expect(secondsourcepage).not_to be_valid
@@ -107,7 +105,6 @@ describe Card::Set::Type::Source do
           sourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
           url_key = sourcepage.cardname.url_key
           new_source_url = "#{ Card::Env[:protocol] }#{ Card::Env[:host] }/#{url_key }"
-          Card::Cache.reset_global
           new_sourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> new_source_url} }
           expect(sourcepage.name).to eq(new_sourcepage.name)
 
@@ -145,7 +142,6 @@ describe Card::Set::Type::Source do
       context "while link is a card name" do
         it "returns source card " do
           source_card = create_page
-          Card::Cache.reset_global
           Card::Env.params[:sourcebox] = 'true'
           return_source_card = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> source_card.name}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
           expect(return_source_card.name).to eq(source_card.name)

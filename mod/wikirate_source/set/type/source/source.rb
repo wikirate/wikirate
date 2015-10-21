@@ -27,9 +27,9 @@ event :vote_on_create_source, :on=>:create, :after=>:store, :when=> proc{ |c| Ca
 end
 
 event :check_source, :after=>:approve_subcards, :on=>:create do
-  source_cards = [subfield(Card[:wikirate_link].name), 
-                  subfield(Card[:file].name),
-                  subfield(Card[:text].name)].compact
+  source_cards = [subfield(:wikirate_link),
+                  subfield(:file),
+                  subfield(:text)].compact
   if source_cards.length > 1
     errors.add :source, "Please only add one type of source"
   elsif source_cards.length == 0
@@ -38,14 +38,14 @@ event :check_source, :after=>:approve_subcards, :on=>:create do
 end
 
 def has_file_or_text?
-  file_card = subfield("File")
-  text_card = subfield("Text")
-  ( file_card && file_card.attachment.present? ) || 
-  ( text_card && text_card.content.present? )
+  file_card = subfield(:file)
+  text_card = subfield(:text)
+  (file_card && file_card.attachment.present?) || 
+    (text_card && text_card.content.present?)
 end
 
-event :process_source_url, :before=>:process_subcards, :on=>:create, 
-  :when=>proc{  |c| !c.has_file_or_text? } do
+event :process_source_url, before: :process_subcards, on: :create, 
+                           when: proc{  |c| !c.has_file_or_text? } do
   
   linkparams = subfield(Card[:wikirate_link].name)
   url = linkparams && linkparams.content or errors.add(:link, "does not exist.")
@@ -59,7 +59,7 @@ event :process_source_url, :before=>:process_subcards, :on=>:create,
           self.name = cite_card.name
           abort :success
         end
-      elsif !is_url?(url) || is_wikirate_url?(url)
+      elsif !url?(url) || wikirate_url?(url)
         errors.add :source, " does not exist."
       end
     end
@@ -70,7 +70,7 @@ event :process_source_url, :before=>:process_subcards, :on=>:create,
         self.name = duplicated_name
         abort :success
       else
-        errors.add :link, 
+        errors.add :link,
           "exists already. <a href='/#{duplicated_name}'>Visit the source.</a>"
       end
     end
@@ -85,18 +85,18 @@ event :process_source_url, :before=>:process_subcards, :on=>:create,
   
 end
 
-def is_url? url
+def url? url
   url.start_with?("http://") || url.start_with?("https://")
 end
 
-def is_wikirate_url? url
-  wikirate_url = "#{ Card::Env[:protocol] }#{ Card::Env[:host] }"
+def wikirate_url? url
+  wikirate_url = "#{Card::Env[:protocol]}#{Card::Env[:host]}"
   url.start_with?(wikirate_url)
 end
 
 def get_card url
-  if is_wikirate_url?(url)
-    # try to convert the link to source card, 
+  if wikirate_url?(url)
+    # try to convert the link to source card,
     # easier for users to add source in +source editor
     uri = URI.parse(URI.unescape(url))
     Card[uri.path]
@@ -107,10 +107,8 @@ end
 
 def download_file_and_add_to_plus_file url
   url.gsub!(/ /, '%20')
-  add_subcard '+file', remote_file_url: url, type_id: Card::FileID,
-                       content: "dummy"
+  add_subcard '+file', remote_file_url: url, type_id: FileID, content: "dummy"
   remove_subfield Card[:wikirate_link].name
-  
 rescue  # if open raises errors , just treat the source as a normal source
   Rails.logger.info "Fail to get the file from link"
 end
@@ -126,8 +124,9 @@ def file_link? url
   # prevent from showing file too big while users are adding a link source
   max_size = (max = Card['*upload max']) ? max.db_content.to_i : 5
 
-  !(content_type.start_with?"text/html" or content_type.start_with?"image/") &&
-  content_size.to_i <= max_size.megabytes
+  !(content_type.start_with?("text/html") || 
+    content_type.start_with?("image/")) &&
+    content_size.to_i <= max_size.megabytes
 rescue
   Rails.logger.info "Fail to extract header from the #{ url }"
   false
@@ -139,11 +138,11 @@ def parse_source_page url
     if preview.images.length > 0
       add_subcard '+image url', content: preview.images.first.src.to_s
     end
-    unless subfield("title")
-      add_subcard '+title', content: preview.title 
+    unless subfield('title')
+      add_subcard '+title', content: preview.title
     end
-    unless subfield("Description")
-      add_subcard '+description', content: preview.description 
+    unless subfield('Description')
+      add_subcard '+description', content: preview.description
     end
   end
 rescue
@@ -153,7 +152,7 @@ end
 
 event :autopopulate_website, :after=>:approve_subcards, :on=>:create do
   website = Card[:wikirate_website].name
-  if link_card = subfield(Card[:wikirate_link].name) and link_card.errors.empty?
+  if link_card = subfield(:wikirate_link) and link_card.errors.empty?
     website_subcard = subfield(website)
     unless website_subcard
       host = link_card.instance_variable_get '@host'
@@ -166,7 +165,7 @@ event :autopopulate_website, :after=>:approve_subcards, :on=>:create do
       end
     end
   end
-  if subfield("File")
+  if subfield('File')
     unless website_subcard
       website_card = Card.new :name=>"+#{website}", :content => "[[wikirate.org]]", :supercard=>self
       website_card.approve
