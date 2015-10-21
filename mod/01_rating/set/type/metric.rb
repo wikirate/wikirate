@@ -2,6 +2,7 @@ card_accessor :vote_count, :type=>:number, :default=>"0"
 card_accessor :upvote_count, :type=>:number, :default=>"0"
 card_accessor :downvote_count, :type=>:number, :default=>"0"
 
+
 format :html do
   view :legend do |args|
     if (unit = Card.fetch("#{card.name}+unit"))
@@ -15,5 +16,16 @@ format :html do
 
   def view_caching?
     true
+  end
+end
+
+format :json do
+  view :content do
+    Card.search(right: 'value', left: {
+      left: { left: card.name },
+      right: { type: 'year' }
+      }).map do |card|
+      [card.cardname.left_name.left_name.right, card.cardname.left_name.right, card.content]
+    end.to_json
   end
 end

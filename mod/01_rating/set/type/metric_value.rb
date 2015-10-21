@@ -25,7 +25,7 @@ def source_exist?
   text_card = subfield Card[:text].name
   link_card = subfield Card[:wikirate_link].name
 
-  ( file_card && file_card.attachment.present? ) || 
+  ( file_card && file_card.attachment.present? ) ||
   ( text_card && text_card.content.present? ) ||
   ( link_card && link_card_content.empty? )
 
@@ -48,7 +48,7 @@ event :create_source_for_updating_metric_value, :before=>:process_subcards, :on=
 end
 
 def create_source
-  
+
   Env.params[:sourcebox] = 'true'
   value = subfield 'value'
   remove_subfield 'value'
@@ -56,7 +56,6 @@ def create_source
   subcards.each_with_key do |subcard, key|
     _subcards[key] = subcard
   end
-  
   source_card = Card.create :type_id=>Card::SourceID, :subcards=>_subcards
   Env.params[:sourcebox] = nil
   if source_card.errors.empty?
