@@ -11,7 +11,7 @@ class Card
     mattr_accessor :expiry_checks  # accessible in E and M
     def self.included(host_class)
       host_class.extend ClassMethods
-      host_class.card_writer :cached_count, :type=>:number
+      host_class.card_writer :cached_count, :type=>:plaintext
       host_class
     end
 
