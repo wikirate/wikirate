@@ -39,7 +39,7 @@ end
 def get_cached_result
   @cached_metric_values ||= begin
     cached_json = fetch(trait: :cached_count, new: {}).format.render_core
-    @cached_metric_values = JSON.parse(cached_json)
+    JSON.parse(cached_json)
   end
 end
 
@@ -131,8 +131,8 @@ format :html do
     url_template = "/#{card.cardname.url_key}?item=content&offset=#{offset}"\
                    "&limit=#{limit}&sort_order=%s&sort_by=%s"
     %{
-      <div class="yinyang-row column-header">
-        <div class="company-item value-item">
+      <div class='yinyang-row column-header'>
+        <div class='company-item value-item'>
           <a class='header metric-list-header slotter' data-remote='true' 
             href='#{sprintf(url_template, company_sort_order, 'company_name')}'>
             Companies #{company_sort_icon}
@@ -153,7 +153,7 @@ format :html do
       length_diff
     end
   end
-  
+
   view :card_list_item do |args|
     c = args[:item_card]
     item_view = inclusion_defaults(c)[:view]
