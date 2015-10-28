@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.24)
 # Database: wikirate_test
-# Generation Time: 2015-10-28 00:18:59 +0000
+# Generation Time: 2015-10-28 01:04:11 +0000
 # ************************************************************
 
 
@@ -2126,7 +2126,7 @@ VALUES
 	(1058,2257,1,'2015-09-16 13:29:09',NULL),
 	(1059,2258,1,'2015-09-16 13:29:09',NULL),
 	(1060,2259,1,'2015-09-16 13:29:09',NULL),
-	(1062,2260,15,'2015-10-27 23:24:08',NULL);
+	(1062,2260,15,'2015-10-28 01:03:52',NULL);
 
 /*!40000 ALTER TABLE `card_acts` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -11690,7 +11690,7 @@ VALUES
 	(2257,2253,'2015-09-16 13:29:09','2015-09-16 13:29:09',NULL,'Jedi+deadliness',1,1,2256,'jedi+deadliness',0,NULL,NULL,'*all plus',500,1819,'<div>\r\n	<div>\r\n		<div>\r\n		  \r\n		  <div>\r\n		    <br>\r\n		      \r\n		      <div>\r\n          		<div>\r\n                  <div>\r\n            				<div>\r\n            				   <h5>Tags:</h5>\r\n            				</div>\r\n            				<div>\r\n            				  {{+topics|content|link}}\r\n            				</div>\r\n                  </div>\r\n          				<div>\r\n          				  <h5>Unit:</h5> <h5>{{+Unit|content}}</h5>\r\n          				</div>\r\n          				\r\n          				<div>\r\n          				  <h5>Range:</h5> <h5>{{+Range|content}}</h5>\r\n          				</div>\r\n          		</div>\r\n          </div>\r\n          \r\n          \r\n		      \r\n		      <div>\r\n  		      <div>\r\n                <div>\r\n                  {{+*vote count}}\r\n                </div>  \r\n                <div>\r\n                  <div>\r\n                    <a href=\"{{_r|url}}\">\r\n                    {{_r|name}}\r\n                    </a>\r\n                  </div>\r\n                  <div>\r\n                    <div>\r\n                      <a href=\"/{{_l|name}}+contribution\">\r\n                        <div> Designed by </div>\r\n                        <div>{{_l+logo|core;size:small}}</div>\r\n                        <div><h3>{{_l|name}}</h3></div>\r\n                      </a>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n            </div>\r\n          </div>\r\n        \r\n      </div>\r\n         <br>\r\n          \r\n\r\n      <div>\r\n          <div>\r\n            <i></i>\r\n          </div>\r\n          <div>\r\n             Question \r\n            {{+Question|content}}\r\n          </div>\r\n      </div>\r\n		</div>\r\n	</div>\r\n	\r\n	\r\n	<div>\r\n	 \r\n	 \r\n\r\n		<div>\r\n		  <div>{{+right sidebar}}</div>\r\n		</div>\r\n		\r\n		\r\n		\r\n		\r\n		<div>\r\n		  \r\n		  \r\n\r\n		  <div>\r\n				<ul>\r\n					<li>\r\n						<a href=\"#metric-details\"><h4>Details</h4></a>\r\n					</li>\r\n					<li>\r\n						<a href=\"#metric-methodology\"><h4>Methodology</h4></a>\r\n					</li>\r\n					<li>\r\n						<a href=\"#metric-references\"><h4>Sources</h4></a>\r\n					</li>\r\n				</ul>\r\n				\r\n				\r\n				<div>\r\n    					<div>\r\n    					  <div>\r\n    					   <div>\r\n    					     <div>Contributing</div>\r\n    					     {{+Value Policy|labeled;title:Value Policy|link}}\r\n    					     {{+Projects|titled;title:Projects|link}}\r\n                </div>\r\n    						 <div>\r\n                    {{+About|titled_with_edits;title:About;show:menu}}\r\n                </div>\r\n                </div>\r\n    					</div>\r\n    					\r\n    					<div>\r\n    					 <div>\r\n            			<div>\r\n                    {{+Unit|titled;title:Unit}}\r\n                  </div>\r\n                  <div>\r\n                    {{+Range|titled;title:Range}}\r\n                  </div>\r\n                  <div>\r\n                    {{+Methodology|titled;title:Methodology}}\r\n                  </div>   \r\n                </div> \r\n    					</div>\r\n    					\r\n    					<div>\r\n                <div>\r\n                  <div>\r\n                    <i></i>\r\n                  </div>\r\n                  <div>\r\n                    {{+source|titled;title:Sources;|content;structure:source_item}}\r\n                  </div>\r\n                </div>\r\n    					</div>\r\n				</div>\r\n				\r\n				\r\n			</div>\r\n			\r\n			\r\n			<hr>\r\n			<div>\r\n        <div>\r\n          <i></i>\r\n        </div>\r\n        <div>\r\n          {{+discussion|titled;title:Discussion; show:commentbox}}\r\n        </div>\r\n      </div>\r\n    \r\n    \r\n		</div>\r\n	</div>\r\n</div>\r\n\r\n'),
 	(2258,2255,'2015-09-16 13:29:09','2015-09-16 13:29:09',NULL,'Jedi+disturbances in the Force+Death Star',1,1,2227,'jedi+disturbance_in_the_force+death_star',0,NULL,NULL,'*all plus',500,50,'yes'),
 	(2259,2257,'2015-09-16 13:29:09','2015-09-16 13:29:09',NULL,'Jedi+deadliness+Death Star',1,1,2227,'jedi+deadliness+death_star',0,NULL,NULL,'*all plus',500,50,'high'),
-	(2260,NULL,'2015-10-27 23:24:08','2015-10-27 23:24:08',NULL,'all_values',15,15,NULL,'all_value',0,NULL,'all_values','*all',500,3,'');
+	(2260,NULL,'2015-10-28 01:03:52','2015-10-28 01:03:52',NULL,'all_values',15,15,NULL,'all_value',0,NULL,'all_values','*all',500,3,'');
 
 /*!40000 ALTER TABLE `cards` ENABLE KEYS */;
 UNLOCK TABLES;
