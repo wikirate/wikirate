@@ -29,6 +29,7 @@ group :test do
   gem 'spork', '>=0.9'
   gem 'timecop'
   gem 'simplecov'
+  gem 'codeclimate-test-reporter', require: nil
 
   # CUKES see features dir
   gem 'cucumber-rails', :require=>false #, '~> 1.3', :require=>false # feature-driven-development suite
