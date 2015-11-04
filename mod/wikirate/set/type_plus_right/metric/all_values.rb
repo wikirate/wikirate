@@ -18,6 +18,13 @@ def raw_content
   }
 end
 
+def get_sort_params
+  [
+    (Env.params["sort_by"]||"company_name"),
+    (Env.params["sort_order"]||"asc")
+  ]
+end
+
 def get_params key, default
   if (value = Env.params[key])
     value.to_i
@@ -49,6 +56,15 @@ end
 
 format do
   include Type::SearchType::Format
+
+  def page_link text, page, _current=false, options={}
+    @paging_path_args[:offset] = page * @paging_limit
+    options.merge!(class: 'card-paging-link slotter', remote: true)
+    sort_by, sort_order = card.get_sort_params
+    paging_args = @paging_path_args.merge({sort_by: sort_by,
+                                           sort_order: sort_order})
+    link_to raw(text), path(paging_args), options
+  end
 
   def sort_value_asc cached_metric_values
     cached_metric_values.sort do |x,y|
@@ -82,8 +98,7 @@ format do
 
   def search_results args={}
     @search_results ||= begin
-      sort_by = Env.params["sort_by"] || "company_name"
-      sort_order = Env.params["sort_order"] || "asc"
+      sort_by, sort_order = card.get_sort_params
       offset = card.get_params("offset", 0)
       limit = card.query(search_params)[:limit]
       cached_result = card.get_cached_result
@@ -121,8 +136,7 @@ format :html do
   end
 
   view :card_list_header do |args|
-    sort_by = Env.params['sort_by'] || 'company_name'
-    sort_order = Env.params['sort_order'] || 'asc'
+    sort_by, sort_order = card.get_sort_params
     offset = card.get_params('offset', 0)
     limit = card.query(search_params)[:limit]
     company_sort_order, value_sort_order = get_sort_order sort_by, sort_order
