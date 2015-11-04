@@ -108,7 +108,7 @@ format :html do
     if sort_by == 'company_name' 
       [toggle_sort_order(sort_order), 'asc']
     else
-      [get_sort_icon(''), get_sort_icon(sort_order)]
+      ['asc', toggle_sort_order(sort_order)]
     end
   end
 
