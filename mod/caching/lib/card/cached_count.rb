@@ -1,14 +1,12 @@
 # -*- encoding : utf-8 -*-
 
-
 class Card
-
   module CachedCount
-
     # contains blocks that get called with a card as argmuent and return
     # all cards that need cache update after a change to to that card
-    @@expiry_checks = {:delete=>[], :create=>[], :update=>[], :all=>[], :save=>[]}
-    mattr_accessor :expiry_checks  # accessible in E and M
+    @@expiry_checks = { delete: [], create: [], update: [], all: [], save: [] }
+    mattr_accessor :expiry_checks # accessible in E and M
+
     def self.included(host_class)
       host_class.extend ClassMethods
       host_class.card_writer :cached_count, :type=>:plaintext
