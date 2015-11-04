@@ -173,7 +173,7 @@ format :html do
   end
 
   view :card_list do |args|
-    paging = _optional_render :paging, args.merge({cached_query: true})
+    paging = _optional_render :paging, args
     if search_results.empty?
       render_no_search_results(args)
     else
