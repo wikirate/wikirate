@@ -44,6 +44,7 @@ class Card
     def update_cached_count
       if respond_to?(:calculate_count) && respond_to?(:cached_count_card)
         new_count = calculate_count
+        #return if new_count == 0
         Card::Auth.as_bot do
           if cached_count_card.new_card?
             cached_count_card.update_attributes!(:content => new_count.to_s)
