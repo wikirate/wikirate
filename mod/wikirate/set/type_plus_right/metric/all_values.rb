@@ -69,7 +69,7 @@ format do
   def sort_value_asc cached_metric_values
     cached_metric_values.sort do |x,y|
       strcmp x[1].sort_by {|value| value["year"]}.reverse[0]["value"],
-        y[1].sort_by {|value| value["value"]}.reverse[0]["value"]
+        y[1].sort_by {|value| value["year"]}.reverse[0]["value"]
     end
   end
 
