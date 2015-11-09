@@ -54,6 +54,31 @@ describe Card::Set::Type::MetricValue do
       value_card = Card["#{@metric_value.name}+value"]
       expect(value_card.content).to eq("I'm fine, I'm just not happy.")
     end
+
+    it "creates metric value with source" do
+      url = 'http://www.google.com/?q=everybodylies'
+      source = Card::Set::Self::Source.find_duplicates(url).first.cardname.left
+      subcard = {
+        "+metric"=>{"content"=>@metric.name},
+        "+company"=>{
+          "content"=>"[[#{@company.name}]]",
+          :type_id=>Card::PointerID
+        },
+        "+value"=>{
+          "content"=>"I'm fine, I'm just not happy.",
+          :type_id=>Card::PhraseID
+        },
+        "+year"=>{"content"=>"2014", :type_id=>Card::PointerID},
+        "+source"=>{"content"=>"#{source}"}
+      }
+      mv = Card.create! :type_id=>Card::MetricValueID, :subcards=>subcard
+      source_card = mv.fetch :trait=>:source
+      expect(source_card.item_names).to include(source)
+
+      value_card = Card["#{mv.name}+value"]
+      expect(value_card.content).to eq("I'm fine, I'm just not happy.")
+    end
+
     it "fails while source card cannot be created" do
       subcard = {
         "+metric"=>{"content"=>@metric.name},

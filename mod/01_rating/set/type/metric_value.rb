@@ -50,18 +50,23 @@ def create_source
   Env.params[:sourcebox] = 'true'
   value = remove_subfield 'value'
   if (sub_source_card = subfield('source'))
-    new_source_card = sub_source_card.subcard('new_source')
-    source_subcards = {}
-    new_source_card.subcards.each_with_key do |subcard, key|
-      subcard_key = subcard.tag.key
-      if key == 'file'
-        source_subcards["+#{subcard_key}"] = { file: subcard.file.file, type_id: subcard.type_id }
-      else
-        source_subcards["+#{subcard_key}"] = { content: subcard.content, type_id: subcard.type_id }          
+    source_card = if (new_source_card = sub_source_card.subcard('new_source'))
+      source_subcards = {}
+      new_source_card.subcards.each_with_key do |subcard, key|
+        subcard_key = subcard.tag.key
+        if key == 'file'
+          source_subcards["+#{subcard_key}"] = { file: subcard.file.file,
+                                                 type_id: subcard.type_id }
+        else
+          source_subcards["+#{subcard_key}"] = { content: subcard.content,
+                                                 type_id: subcard.type_id }          
+        end
       end
+      Card.create! type_id: SourceID, subcards: source_subcards
+    else
+      Card[sub_source_card.content]
     end
     clear_subcards
-    source_card = Card.create! type_id: SourceID, subcards: source_subcards
     Env.params[:sourcebox] = nil
     if source_card.errors.empty?
       add_subcard '+value', content: value.content, type_id: PhraseID
@@ -79,17 +84,23 @@ end
 
 format :html do
   def default_new_args args
-    args[:hidden] = {
-      :success=>{:id=>'_self', :soft_redirect=>true, :view=>:titled},
-      'card[subcards][+metric][content]' => args[:metric]
-    }
-
+    if !args[:source]
+      args[:hidden] = {
+        :success=>{:id=>'_self', :soft_redirect=>true, :view=>:titled},
+        'card[subcards][+metric][content]' => args[:metric]
+      }
+    end
     if args[:company]
       args[:hidden]['card[subcards][+company][content]'] = args[:company]
+    end
+    if args[:source]
+      args[:hidden]['card[subcards][+source][content]'] = args[:source]
     end
     args[:structure] =
       if args[:company]
         'metric company add value'
+      elsif args[:source]
+        'metric_source_add_value'
       else
         'metric add value'
       end
