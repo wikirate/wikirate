@@ -4,7 +4,7 @@ def is_cached_count?
 end
 
 event :update_expired_cached_count_cards, :after=>:extend, :when=>proc{ |c| !c.is_cached_count? } do
-  run_expiry_checks @action
+  run_expiry_checks @action if @action
   run_expiry_checks :all
   if @action == :create || @action == :update
     run_expiry_checks :save
