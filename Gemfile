@@ -5,7 +5,6 @@ wagn_gem_path = ENV['WIKIRATE_WAGN_GEM_PATH'] || './vendor/wagn'
 gem 'wagn', :path=>"#{wagn_gem_path}/wagn"
 gem 'card', :path=>"#{wagn_gem_path}/card", :require=>false
 
-
 gem "mysql2", "~> 0.3.18"
 gem 'link_thumbnailer', "2.5.2"
 gem 'open_uri_redirections'
@@ -29,6 +28,7 @@ group :test do
   gem 'spork', '>=0.9'
   gem 'timecop'
   gem 'simplecov'
+  gem 'codeclimate-test-reporter', require: nil
 
   # CUKES see features dir
   gem 'cucumber-rails', :require=>false #, '~> 1.3', :require=>false # feature-driven-development suite

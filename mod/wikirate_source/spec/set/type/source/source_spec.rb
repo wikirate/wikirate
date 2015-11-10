@@ -105,7 +105,6 @@ describe Card::Set::Type::Source do
           sourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
           url_key = sourcepage.cardname.url_key
           new_source_url = "#{ Card::Env[:protocol] }#{ Card::Env[:host] }/#{url_key }"
-
           new_sourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> new_source_url} }
           expect(sourcepage.name).to eq(new_sourcepage.name)
 

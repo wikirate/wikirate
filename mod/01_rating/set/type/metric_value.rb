@@ -21,18 +21,20 @@ def company_card
 end
 
 def source_exist?
-  file_card = subcards["+File"]
-  text_card = subcards["+Text"]
-  link_card = subcards["+Link"]
-  ( file_card && file_card.stringify_keys.has_key?("file") ) ||
-  ( text_card && ( text_card_content = (text_card.stringify_keys)["content"] ) && !text_card_content.empty? ) ||
-  ( link_card && ( link_card_content = (link_card.stringify_keys)["content"] ) && !link_card_content.empty? )
+  file_card = subfield :file
+  text_card = subfield :text
+  link_card = subfield :wikirate_link
+
+  ( file_card && file_card.attachment.present? ) || 
+  ( text_card && text_card.content.present? ) ||
+  ( link_card && link_card.content.present? )
 
 end
 
 event :set_metric_value_name, :before=>:set_autoname, :when=>proc{|c| c.cardname.parts.size < 4} do
-  self.name = ['+metric', '+company', '+year'].map do |name|
-      subcards.delete(name)['content'].gsub('[[','').gsub(']]','')
+  self.name = ['metric', 'company', 'year'].map do |name|
+      content = remove_subfield(name).content
+      content.gsub('[[','').gsub(']]','')
     end.join '+'
 end
 
@@ -46,18 +48,32 @@ end
 
 def create_source
   Env.params[:sourcebox] = 'true'
-  value = subcards.delete('+value')
-  source_card = Card.create :type_id=>Card::SourceID, :subcards=>subcards.clone
-  Env.params[:sourcebox] = nil
-  if source_card.errors.empty?
-    @subcards = {
-      '+value' => value,
-      '+source' => {:content=>"[[#{source_card.name}]]"}
-    }
-  else
-    source_card.errors.each do |key,value|
-      errors.add key,value
+  value = remove_subfield 'value'
+  if (sub_source_card = subfield('source'))
+    new_source_card = sub_source_card.subcard('new_source')
+    source_subcards = {}
+    new_source_card.subcards.each_with_key do |subcard, key|
+      subcard_key = subcard.tag.key
+      if key == 'file'
+        source_subcards["+#{subcard_key}"] = { file: subcard.file.file, type_id: subcard.type_id }
+      else
+        source_subcards["+#{subcard_key}"] = { content: subcard.content, type_id: subcard.type_id }          
+      end
     end
+    clear_subcards
+    source_card = Card.create! type_id: SourceID, subcards: source_subcards
+    Env.params[:sourcebox] = nil
+    if source_card.errors.empty?
+      add_subcard '+value', content: value.content, type_id: PhraseID
+      add_subcard '+source', content: "[[#{source_card.name}]]",
+                             type_id: PointerID
+    else
+      source_card.errors.each do |key,value|
+        errors.add key,value
+      end
+    end
+  else
+    errors.add :source, 'does not exist.'
   end
 end
 
@@ -108,9 +124,7 @@ format :html do
   view :timeline_data do |args|
     year  =  content_tag(:span, card.cardname.right, :class=>'metric-year')
     value_card = card.fetch(:trait=>:value)
-    #value = ((value_card = card.fetch(:trait=>:value)) && value_card.content) || ''
-    #value = nest value_card
-    value =  _render_modal_details(args) # content_tag(:span, value, :class=>'metric-value')
+    value =  _render_modal_details(args) 
     value << content_tag(:span, legend(args), :class=>'metric-unit')
 
     line   =  content_tag(:div, '', :class=>'timeline-dot')
@@ -135,9 +149,6 @@ format :html do
     end
   end
 
-
-
-  # TODO: in branch source_link by henry
   view :source_link do |args|
     if source_card = card.fetch(:trait=>:source)
       source_card.item_cards.map do |i_card|

@@ -49,7 +49,10 @@ describe Card::Set::Type::Source do
         it "shows pdf" do
           file_card = @pdf_source.fetch :trait=>:file
           expect(@result).to have_tag("div", :with=>{:id=>"pdf-preview"}) do
-            with_tag "iframe", :with=>{:id=>"source-preview-iframe", :src=>"pdfjs/viewer.html?file=#{file_card.attachment.url}"}
+            with_tag "iframe", with: {
+              id: "source-preview-iframe", 
+              src: "files/viewer.html?file=#{file_card.attachment.url}"
+            } 
           end
         end
       end

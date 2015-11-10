@@ -9,14 +9,14 @@ describe Card::Set::TypePlusRight::Source::File::Import do
   describe "while adding metric value" do
     it "shows errors while params do not fit" do
 
-
       source_file = @source.fetch :trait=>:file
       source_file.update_attributes :subcards=>{"#{@source.name}+#{Card[:metric].name}"=>{:content=>'[[Access to Nutrition Index+Marketing Score]]',:type_id=>Card::PointerID}}
-
-
       expect(source_file.errors).to have_key(:content)
       expect(source_file.errors[:content]).to include("Please give a year.")
 
+      # as local cache will be cleaned after every request,
+      # this reset local is pretending last request is done
+      Card::Cache.reset_local
       source_file.update_attributes :subcards=>{"#{@source.name}+#{Card[:year].name}"=>{:content=>'[[2015]]',:type_id=>Card::PointerID}}
 
       expect(source_file.errors).to have_key(:content)

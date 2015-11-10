@@ -13,7 +13,7 @@ Feature: note
     And I fill in "pointer_item" with "Death Star" within "form > fieldset.editor > .RIGHT-company"
     And I fill in "pointer_item" with "2015" within "form > fieldset.editor > .RIGHT-year"
     And I fill in "card_subcards__value_content" with "101"
-    And I fill in "card_subcards__Link_content" with "http://example.com"
+    And I fill in "card_subcards__source_subcards_new_source_subcards__Link_content" with "http://example.com"
     And I press "Submit"
     And I press "Close"
     # FIXME the new metric should appear witout reloading the page

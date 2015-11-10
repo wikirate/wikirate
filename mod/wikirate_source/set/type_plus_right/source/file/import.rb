@@ -1,8 +1,7 @@
 
 event :validate_import, :before=>:approve_subcards, :on=>:update, :when=>proc{ |c| Env.params["is_metric_import_update"] == 'true' } do
-
-  metric_pointer_card = subcards[cardname.left+"+#{Card[:metric].name}"]
-  metric_year = subcards[cardname.left+"+#{Card[:year].name}"]
+  metric_pointer_card = subcard(cardname.left+"+#{Card[:metric].name}")
+  metric_year = subcard(cardname.left+"+#{Card[:year].name}")
 
   if !metric_pointer_card or !(metric_card = metric_pointer_card.item_cards.first)
     errors.add :content, "Please give a metric."
@@ -18,8 +17,8 @@ event :validate_import, :before=>:approve_subcards, :on=>:update, :when=>proc{ |
 end
 
 
-event :import_csv, :after=>:store, :on=>:update, :when=>proc{ |c| Env.params["is_metric_import_update"] == 'true' } do
-
+event :import_csv, :before=>:store, :on=>:update, 
+      :when=>proc{ |c| Env.params["is_metric_import_update"] == 'true' } do
   metric_pointer_card = subcards[cardname.left+"+#{Card[:metric].name}"]
   metric_year = subcards[cardname.left+"+#{Card[:year].name}"]
 
@@ -44,7 +43,17 @@ event :import_csv, :after=>:store, :on=>:update, :when=>proc{ |c| Env.params["is
         "+company"=>{"content"=>"[[#{final_company_name}]]",:type_id=>Card::PointerID},
         "+value"=>{"content"=>value[0], :type_id=>Card::PhraseID},
         "+year"=>{"content"=>metric_year.content, :type_id=>Card::PointerID},
-        "+Link"=>{:content=>"#{ Card::Env[:protocol] }#{ Card::Env[:host] }/#{left.cardname.url_key}", "type_id"=>Card::PhraseID}
+        "+source"=>{
+          "subcards"=>{
+            "new source"=>{
+              "+Link"=>{
+                "content"=>"#{Card::Env[:protocol]}#{Card::Env[:host]}/#{left.cardname.url_key}",
+                 "type_id"=>Card::PhraseID
+              }
+            }
+          }
+        }
+        
       }
       metric_value_card = if metric_value_card = Card[metric_value_card_name]
         metric_value_card.update_attributes :subcards=>_subcard
