@@ -89,7 +89,10 @@ format :html do
         :success=>{:id=>'_self', :soft_redirect=>true, :view=>:titled},
         'card[subcards][+metric][content]' => args[:metric]
       }
+    else
+      args[:hidden] = {}
     end
+    
     if args[:company]
       args[:hidden]['card[subcards][+company][content]'] = args[:company]
     end
