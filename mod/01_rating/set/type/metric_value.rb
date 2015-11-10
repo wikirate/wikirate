@@ -46,35 +46,43 @@ event :create_source_for_updating_metric_value, :before=>:process_subcards, :on=
   create_source
 end
 
-def create_source
-  Env.params[:sourcebox] = 'true'
-  value = remove_subfield 'value'
-  if (sub_source_card = subfield('source'))
-    source_card = if (new_source_card = sub_source_card.subcard('new_source'))
-      source_subcards = {}
-      new_source_card.subcards.each_with_key do |subcard, key|
-        subcard_key = subcard.tag.key
-        if key == 'file'
-          source_subcards["+#{subcard_key}"] = { file: subcard.file.file,
-                                                 type_id: subcard.type_id }
-        else
-          source_subcards["+#{subcard_key}"] = { content: subcard.content,
-                                                 type_id: subcard.type_id }          
-        end
-      end
-      Card.create! type_id: SourceID, subcards: source_subcards
+def clone_subcards_to_hash subcards
+  source_subcards = {}
+  subcards.subcards.each_with_key do |subcard, key|
+    subcard_key = subcard.tag.key
+    if key == 'file'
+      source_subcards["+#{subcard_key}"] = { file: subcard.file.file,
+                                             type_id: subcard.type_id }
     else
-      Card[sub_source_card.content]
+      source_subcards["+#{subcard_key}"] = { content: subcard.content,
+                                             type_id: subcard.type_id }
     end
-    clear_subcards
+  end
+  source_subcards
+end
+
+def create_source
+  metric_value = remove_subfield 'value'
+  if (sub_source_card = subfield('source'))
+    Env.params[:sourcebox] = 'true'
+    source_card =
+      if (new_source_card = sub_source_card.subcard('new_source'))
+        source_subcards = clone_subcards_to_hash new_source_card
+        Card.create type_id: SourceID, subcards: source_subcards
+      else
+        Card[sub_source_card.content]
+      end
     Env.params[:sourcebox] = nil
-    if source_card.errors.empty?
-      add_subcard '+value', content: value.content, type_id: PhraseID
+    clear_subcards
+    if !source_card
+      errors.add :source, "#{sub_source_card.content} does not exist."
+    elsif source_card.errors.empty?
+      add_subcard '+value', content: metric_value.content, type_id: PhraseID
       add_subcard '+source', content: "[[#{source_card.name}]]",
                              type_id: PointerID
     else
-      source_card.errors.each do |key,value|
-        errors.add key,value
+      source_card.errors.each do |key, value|
+        errors.add key, value
       end
     end
   else

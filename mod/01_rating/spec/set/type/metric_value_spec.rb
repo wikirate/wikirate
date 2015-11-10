@@ -55,7 +55,7 @@ describe Card::Set::Type::MetricValue do
       expect(value_card.content).to eq("I'm fine, I'm just not happy.")
     end
 
-    it 'creates metric value with source' do
+    it 'creates metric value with an existing source' do
       url = 'http://www.google.com/?q=everybodylies'
       source = Card::Set::Self::Source.find_duplicates(url).first.cardname.left
       subcard = {
@@ -77,6 +77,25 @@ describe Card::Set::Type::MetricValue do
 
       value_card = Card["#{mv.name}+value"]
       expect(value_card.content).to eq("I'm fine, I'm just not happy.")
+    end
+
+    it 'fails while creating a metric value with a non-existing source' do
+      subcard = {
+        '+metric' => { 'content' => @metric.name },
+        '+company' => {
+          'content' => "[[#{@company.name}]]",
+          'type_id' => Card::PointerID
+        },
+        '+value' => {
+          'content' => "I'm fine, I'm just not happy.",
+          'type_id' => Card::PhraseID
+        },
+        '+year' => { 'content' => '2014', 'type_id' => Card::PointerID },
+        '+source' => { 'content' => 'Page-1' }
+      }
+      fail_mv = Card.new type_id: Card::MetricValueID, subcards: subcard
+      expect(fail_mv).not_to be_valid
+      expect(fail_mv.errors).to have_key(:source)
     end
 
     it "fails while source card cannot be created" do
