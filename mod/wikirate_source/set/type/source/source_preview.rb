@@ -103,7 +103,7 @@ format :html do
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <!-- Navbar Menu -->
-            #{subformat(Card['nav_bar_menu']).render_content}
+            #{ subformat(Card['nav_bar_menu']).render_content }
             <ul class="nav nav-tabs navbar-right gray-color ">
                #{render_preview_options(args)}
             </ul>
