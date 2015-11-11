@@ -2,6 +2,15 @@
 require File.expand_path('../../../config/environment',  __FILE__)
 require 'colorize'
 
+def is_valid_new_metric? metric_name, company, year
+  Card.exists?(metric_name) &&
+  Card[metric_name].type_id == Card::MetricValueID &&
+  Card.exists?(company) &&
+  Card[company].type_id == Card::WikirateCompanyID &&
+  Card.exists?(year) &&
+  Card[year].type_id == Card::YearID
+end
+
 if ARGV.length == 0
   puts "Please include a file path".red
   puts "EX: ruby script/import_metric_value.rb "\
@@ -61,6 +70,10 @@ Card::Auth.as_bot do
           }
         }
       }
+      unless is_valid_new_metric?(metric_name, company_name, year.to_s)
+        puts "Invalid metric card to be created #{subcards}".red
+        next
+      end
       metric_value = Card.new :type_id=>Card::MetricValueID,:subcards=>subcard
       if metric_value.errors.empty?
         puts "metric value card to be created #{subcard}"
