@@ -1,2 +1,2 @@
-ruby:
-  config_file: vendor/wagn/.ruby-style.yml
+.ruby-style.ymlruby:
+  config_file: .ruby-style.yml
