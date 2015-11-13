@@ -29,4 +29,3 @@ weird_companies.each do |company|
   puts "deleting #{company.name}".yellow
   company.delete! if company.type_id == Card::BasicID
 end
-
