@@ -92,9 +92,9 @@ Card::Auth.as_bot do
         end
         if _company != nil
           metric_name = accepted_snippet_name["#{source_name}+#{name}"]
-          if !Card.exists?("#{metric_name}+#{_company}+#{value['citeyear']}")
-            result["\"#{metric_name}\",\"#{_company}\",\"#{value["citeyear"]}\""] =
-             "\"#{_value}\",\"#{source_link}\""
+          unless Card.exists?("#{metric_name}+#{_company}+#{value['citeyear']}")
+            key = "\"#{metric_name}\",\"#{_company}\",\"#{value['citeyear']}\""
+            result[key] = "\"#{_value}\",\"#{source_link}\""
           end
         end
        

@@ -2,13 +2,13 @@
 require File.expand_path('../../../config/environment',  __FILE__)
 require 'colorize'
 
-def is_valid_new_metric? metric_name, company, year
+def valid_new_metric? metric_name, company, year
   Card.exists?(metric_name) &&
-  Card[metric_name].type_id == Card::MetricValueID &&
-  Card.exists?(company) &&
-  Card[company].type_id == Card::WikirateCompanyID &&
-  Card.exists?(year) &&
-  Card[year].type_id == Card::YearID
+    Card[metric_name].type_id == Card::MetricValueID &&
+    Card.exists?(company) &&
+    Card[company].type_id == Card::WikirateCompanyID &&
+    Card.exists?(year) &&
+    Card[year].type_id == Card::YearID
 end
 
 if ARGV.length == 0
@@ -70,7 +70,7 @@ Card::Auth.as_bot do
           }
         }
       }
-      unless is_valid_new_metric?(metric_name, company_name, year.to_s)
+      unless valid_new_metric?(metric_name, company_name, year.to_s)
         puts "Invalid metric card to be created #{subcards}".red
         next
       end
