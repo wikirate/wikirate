@@ -37,7 +37,7 @@ event :check_source, :after=>:approve_subcards, :on=>:create do
   end
 end
 
-def is_attached_file_exist? file_card
+def attached_file_exist? file_card
   file_card.attachment.present? ||
     (file_card.save_preliminary_upload? &&
      file_card.action_id_of_cached_upload.present?
