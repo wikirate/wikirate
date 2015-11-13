@@ -47,7 +47,7 @@ end
 def has_file_or_text?
   file_card = subfield(:file)
   text_card = subfield(:text)
-  (file_card && is_attached_file_exist?(file_card)) ||
+  (file_card && attached_file_exist?(file_card)) ||
     (text_card && text_card.content.present?)
 end
 
