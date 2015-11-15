@@ -68,7 +68,11 @@ event :import_csv, :before=>:store, :on=>:update,
       end
     end
     if errors.empty?
-      abort :success=>"REDIRECT: #{metric_pointer_card.item_names.first}" 
+      abort success: {
+        name: metric_pointer_card.item_names.first,
+        redirect: true,
+        view: :open
+      }
     else
       abort :failure
     end
