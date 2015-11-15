@@ -27,11 +27,11 @@ class Card
           event_name = "update_cached_counts_for_set_#{set_name}_on_#{on_actions.join('_')}"
           args[:set].class_eval do
             event event_name.to_sym, :on => on_actions, :after=>:extend do
-               Array.wrap(block.call(self)).compact.each do |expired_count_card|
+              Array.wrap(block.call(self)).compact.each do |expired_count_card|
                 if expired_count_card.respond_to?(:update_cached_count)
                   expired_count_card.update_cached_count
                 end
-               end
+              end
             end
           end
         else
