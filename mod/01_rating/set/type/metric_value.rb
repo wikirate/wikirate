@@ -31,6 +31,10 @@ def source_exist?
 
 end
 
+def researched?
+  set_modules.include? Card::Set::MetricMethod::Researched
+end
+
 event :set_metric_value_name, :before=>:set_autoname, :when=>proc{|c| c.cardname.parts.size < 4} do
   self.name = ['metric', 'company', 'year'].map do |name|
       content = remove_subfield(name).content
@@ -38,11 +42,15 @@ event :set_metric_value_name, :before=>:set_autoname, :when=>proc{|c| c.cardname
     end.join '+'
 end
 
-event :create_source_for_metric_value, :before=>:process_subcards, :on=>:create do
+event :create_source_for_metric_value,
+      before: :process_subcards, on: :create,
+      when: proc { |c| c.researched? }  do
   create_source
 end
 
-event :create_source_for_updating_metric_value, :before=>:process_subcards, :on=>:update, :when=>proc{  |c| c.source_exist? } do
+event :create_source_for_updating_metric_value,
+      before: :process_subcards, on: :update,
+      when: proc { |c| c.source_exist? && c.researched? } do
   create_source
 end
 
@@ -57,7 +65,7 @@ def create_source
       if key == 'file'
         source_subcards["+#{subcard_key}"] = { file: subcard.file.file, type_id: subcard.type_id }
       else
-        source_subcards["+#{subcard_key}"] = { content: subcard.content, type_id: subcard.type_id }          
+        source_subcards["+#{subcard_key}"] = { content: subcard.content, type_id: subcard.type_id }
       end
     end
     clear_subcards
@@ -124,7 +132,7 @@ format :html do
   view :timeline_data do |args|
     year  =  content_tag(:span, card.cardname.right, :class=>'metric-year')
     value_card = card.fetch(:trait=>:value)
-    value =  _render_modal_details(args) 
+    value =  _render_modal_details(args)
     value << content_tag(:span, legend(args), :class=>'metric-unit')
 
     line   =  content_tag(:div, '', :class=>'timeline-dot')

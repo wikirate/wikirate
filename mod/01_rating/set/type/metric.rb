@@ -2,6 +2,18 @@ card_accessor :vote_count, :type=>:number, :default=>"0"
 card_accessor :upvote_count, :type=>:number, :default=>"0"
 card_accessor :downvote_count, :type=>:number, :default=>"0"
 
+card_accessor :metric_type,
+              :type=>:pointer, :default=>"[[Researched]]"
+
+
+def companies_with_years_and_values
+  Card.search(right: 'value', left: {
+    left: { left: card.name },
+    right: { type: 'year' }
+    }).map do |card|
+    [card.cardname.left_name.left_name.right, card.cardname.left_name.right, card.content]
+  end
+end
 
 format :html do
   view :legend do |args|
@@ -21,11 +33,6 @@ end
 
 format :json do
   view :content do
-    Card.search(right: 'value', left: {
-      left: { left: card.name },
-      right: { type: 'year' }
-      }).map do |card|
-      [card.cardname.left_name.left_name.right, card.cardname.left_name.right, card.content]
-    end.to_json
+    companies_with_years_and_values.to_json
   end
 end
