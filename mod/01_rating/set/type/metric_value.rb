@@ -112,13 +112,36 @@ format :html do
     }
   end
 
+  def get_standardized_value value, type
+    case type
+    when 'Number'
+      number_to_human(value, unit: :number)
+    when 'Monetory'
+      number_to_human(value, unit: :number)
+    else
+      value
+    end
+  end
+
   view :modal_details do |args|
-    modal_link = subformat(card)._render_modal_link(args.merge(:text=>card.value, :path_opts=>{:slot=>{:show=>:menu,:optional_horizontal_menu=>:hide}})) #,:html_args=>{:class=>"td year"}))
-    %{
+    metric_value_type = Card["#{card.left.left.name}+metric value type"]
+    type = metric_value_type.nil? ? '' : metric_value_type.item_names[0]
+    value_to_shown = get_standardized_value card.value, type
+    modal_link = subformat(card)._render_modal_link(
+      args.merge(text: value_to_shown,
+                 path_opts: {
+                   slot: {
+                     show: :menu,
+                     optional_horizontal_menu: :hide
+                   }
+                 }
+                )
+    )
+    %(
       <span class="metric-value">
         #{modal_link}
       </span>
-    }
+    )
   end
 
   view :timeline_data do |args|

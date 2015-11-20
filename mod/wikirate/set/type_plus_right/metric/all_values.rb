@@ -66,10 +66,23 @@ format do
     link_to raw(text), path(paging_args), options
   end
 
-  def sort_value_asc cached_metric_values
-    cached_metric_values.sort do |x,y|
-      strcmp x[1].sort_by {|value| value["year"]}.reverse[0]["value"],
-        y[1].sort_by {|value| value["year"]}.reverse[0]["value"]
+  def sort_value_asc cached_metric_values, is_num
+    cached_metric_values.sort do |x, y|
+      value_a = x[1].sort_by { |value| value['year'] }.reverse[0]['value']
+      value_b = y[1].sort_by { |value| value['year'] }.reverse[0]['value']
+      if is_num
+        dec_value_a = BigDecimal.new(value_a)
+        dec_value_b = BigDecimal.new(value_b)
+        if dec_value_a == dec_value_b
+          0
+        elsif dec_value_a > dec_value_b
+          1
+        else
+          -1
+        end
+      else
+        value_a <=> value_b
+      end
     end
   end
 
@@ -79,7 +92,7 @@ format do
     end
   end
 
-  def get_sorted_result cached_metric_values, sort_by, order
+  def get_sorted_result cached_metric_values, sort_by, order, is_num
     case sort_by
     when "company_name"
       if order == "asc"
@@ -89,9 +102,9 @@ format do
       end
     when "value"
       if order == "asc"
-        sort_value_asc cached_metric_values
+        sort_value_asc cached_metric_values, is_num
       else
-        sort_value_asc(cached_metric_values).reverse
+        sort_value_asc(cached_metric_values, is_num).reverse
       end
     end
   end
@@ -99,10 +112,14 @@ format do
   def search_results args={}
     @search_results ||= begin
       sort_by, sort_order = card.get_sort_params
-      offset = card.get_params("offset", 0)
+      offset = card.get_params('offset', 0)
       limit = card.query(search_params)[:limit]
       cached_result = card.get_cached_result
-      all_results = get_sorted_result(cached_result, sort_by, sort_order)
+      metric_value_type = Card["#{card.cardname.left}+metric value type"]
+      type = metric_value_type.nil? ? '' : metric_value_type.item_names[0]
+      num = (type == 'Number' || type == 'Monetory')
+      # binding.pry
+      all_results = get_sorted_result(cached_result, sort_by, sort_order, num)
       all_results[offset, limit]
     end
   end
@@ -120,7 +137,7 @@ format :html do
   end
 
   def get_sort_order sort_by, sort_order
-    if sort_by == 'company_name' 
+    if sort_by == 'company_name'
       [toggle_sort_order(sort_order), 'asc']
     else
       ['asc', toggle_sort_order(sort_order)]
@@ -128,7 +145,7 @@ format :html do
   end
 
   def get_sort_icon sort_by, sort_order
-    if sort_by == 'company_name' 
+    if sort_by == 'company_name'
       [get_sort_icon_by_state(sort_order), get_sort_icon_by_state('')]
     else
       [get_sort_icon_by_state(''), get_sort_icon_by_state(sort_order)]
@@ -147,11 +164,11 @@ format :html do
     %{
       <div class='yinyang-row column-header'>
         <div class='company-item value-item'>
-          <a class='header metric-list-header slotter' data-remote='true' 
+          <a class='header metric-list-header slotter' data-remote='true'
             href='#{sprintf(url_template, company_sort_order, 'company_name')}'>
             Companies #{company_sort_icon}
           </a>
-          <a class='data metric-list-header slotter' data-remote='true' 
+          <a class='data metric-list-header slotter' data-remote='true'
             href='#{sprintf(url_template, value_sort_order, 'value')}'>
             Values #{value_sort_icon}
           </a>
@@ -160,22 +177,23 @@ format :html do
     }
   end
   # compare lenght first and then normal string comparison
-  def strcmp str1, str2
-    if (length_diff = str1.length - str2.length) == 0
-      str1 <=> str2
-    else
-      length_diff
-    end
-  end
+  # def strcmp str1, str2
+  #   if (length_diff = str1.length - str2.length) == 0
+  #     str1 <=> str2
+  #   else
+  #     length_diff
+  #   end
+
+  # end
 
   view :card_list_item do |args|
     c = args[:item_card]
     item_view = inclusion_defaults(c)[:view]
-    %{
-      <div class="search-result-item item-#{ item_view }">
+    %(
+      <div class="search-result-item item-#{item_view}">
         #{nest(c, size: args[:size], view: item_view)}
       </div>
-    }
+    )
   end
 
   view :card_list_items do |args|
@@ -218,11 +236,11 @@ expired_cached_count_cards do |changed_card|
     metrics = Card.search type_id: MetricID, right_plus: changed_card.name
     metrics.each do |metric|
       changed_card = metric.fetch(trait: :all_values)
-      changed_card.update_cached_count if changed_card  
+      changed_card.update_cached_count if changed_card
     end
   when MetricID
     changed_card = changed_card.fetch(trait: :all_values)
-    changed_card.update_cached_count if changed_card  
+    changed_card.update_cached_count if changed_card
   end
 
 end
@@ -234,10 +252,8 @@ def calculate_count
     company_name = card.left.left.cardname.right
     year = card.cardname.parts[-2]
     value = card.content
-    unless result.has_key?company_name
-      result[company_name] = []
-    end
-    result[company_name].push({ year: year, value: value})
+    result[company_name] = [] unless result.key?(company_name)
+    result[company_name].push(year: year, value: value)
   end
   result.to_json
 end
