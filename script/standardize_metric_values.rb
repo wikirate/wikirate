@@ -8,7 +8,7 @@ def standardize_numeric_metric_values metric_name
                               append: 'value'
   metric_values.each do |mv|
     content = mv.content
-    content.gsub!(',', '')
+    content.delete!(',')
     if !content =~ /[0-9\.]+/
       puts "#{mv.name}'s value cannot be casted as number.".red
     else

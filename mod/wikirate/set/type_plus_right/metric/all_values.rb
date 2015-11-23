@@ -73,13 +73,7 @@ format do
       if is_num
         dec_value_a = BigDecimal.new(value_a)
         dec_value_b = BigDecimal.new(value_b)
-        if dec_value_a == dec_value_b
-          0
-        elsif dec_value_a > dec_value_b
-          1
-        else
-          -1
-        end
+        dec_value_a - dec_value_b
       else
         value_a <=> value_b
       end
@@ -118,9 +112,12 @@ format do
       metric_value_type = Card["#{card.cardname.left}+metric value type"]
       type = metric_value_type.nil? ? '' : metric_value_type.item_names[0]
       num = (type == 'Number' || type == 'Monetory')
-      # binding.pry
       all_results = get_sorted_result(cached_result, sort_by, sort_order, num)
-      all_results[offset, limit]
+      if (results = all_results[offset, limit])
+        results
+      else
+        []
+      end
     end
   end
 
@@ -242,7 +239,6 @@ expired_cached_count_cards do |changed_card|
     changed_card = changed_card.fetch(trait: :all_values)
     changed_card.update_cached_count if changed_card
   end
-
 end
 
 # get all metric values
