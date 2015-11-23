@@ -149,26 +149,25 @@ rescue
   Rails.logger.info "Fail to extract information from the #{ url }"
 end
 
-
-event :autopopulate_website, :after=>:approve_subcards, :on=>:create do
+event :autopopulate_website, after: :process_source_url, on: :create do
   website = Card[:wikirate_website].name
-  if link_card = subfield(:wikirate_link) and link_card.errors.empty?
+  if (link_card = subfield(:wikirate_link)) && link_card.errors.empty?
     website_subcard = subfield(website)
     unless website_subcard
-      host = link_card.instance_variable_get '@host'
-      website_card = Card.new :name=>"+#{website}", :content => "[[#{host}]]", :supercard=>self
-      website_card.approve
-      # subcards["+#{website}"] = website_card
+      uri = URI.parse(link_card.content)
+      host = uri.host
+      website_card = Card.new name: "+#{website}", content: "[[#{host}]]",
+                              supercard: self
       add_subcard "+#{website}", website_card
-      if !Card.exists? host
-        Card.create :name=>host, :type_id=>Card::WikirateWebsiteID
+      unless Card.exists? host
+        Card.create name: host, type_id: Card::WikirateWebsiteID
       end
     end
   end
   if subfield('File')
     unless website_subcard
-      website_card = Card.new :name=>"+#{website}", :content => "[[wikirate.org]]", :supercard=>self
-      website_card.approve
+      website_card = Card.new name: "+#{website}", content: '[[wikirate.org]]',
+                              supercard: self
       add_subcard "+#{website}", website_card
     end
   end
