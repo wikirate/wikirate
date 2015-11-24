@@ -5,16 +5,12 @@
 }
 
 def metric_type card
-#  if card.id
- #   metric_type_cache[card.id]
-#  else
   #(mm = card.fetch(trait: :metric_type, skip_modules: true, skip_type_lookup: true,  new: {type_id: Card::PointerID}) ||
   (mm = Card.fetch("#{card.name}+*metric type",
                    skip_modules: true,
                    skip_type_lookup: true) ||
         card.subfield(:metric_type)) &&
     mm.content.scan(/\[\[([^\]]+)\]\]/).flatten.first
- # end
 end
 
 def label name

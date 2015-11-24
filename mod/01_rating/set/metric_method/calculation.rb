@@ -35,33 +35,39 @@ event :update_values,
 end
 
 def update_value_for_company! company
-  binding.pry
   values = fetch_values company: company
-  values.each_pair do |year, metrics_with_values|
+  values.each_pair do |year, companies|
+    metrics_with_values = companies[company.to_name.key]
     score = calculate_single_value metrics_with_values
-    metric_value_name = "#{metric_name}+#{company}+#{year}"
+    metric_value_name = "#{name}+#{company}+#{year}"
     if (metric_value = Card[metric_value_name])
-      if (value_card = metric_value.fetch trait: :value)
-        value_card.update_attributes content: score
+      if score
+        if (value_card = metric_value.fetch trait: :value)
+          value_card.update_attributes content: score
+        else
+          Card.create! name: "#{metric_value_name}+#{Card[:value].name}",
+                       type_id: NumberID, content: score
+        end
       else
-        Card.create name: "#{metric_value_name}+#{Card[:value].name}",
-                    type_id: NumberID, content: score
+        metric_value.delete
       end
-    else
-      Card.create name: metric_value_name,
-                  type_id: MetricValueID,
-                  subcards: {
-                    '+value' => { type_id: NumberID, content: score }
-                  }
+    elsif score
+      Card.create! name: metric_value_name,
+                   type_id: MetricValueID,
+                   subcards: {
+                     '+value' => { type_id: NumberID, content: score }
+                   }
     end
   end
 end
 
 def add_value company, year, value
   add_subfield "+#{company}+#{year}",
-               #type_id: MetricValueID,   # FIXME: can't use MetricValue because it needs a source
-               subcards: { '+value' => { type_id: NumberID, content: value }
-             }
+               # type_id: MetricValueID,
+               # FIXME: can't use MetricValue because it needs a source
+               subcards: {
+                 '+value' => { type_id: NumberID, content: value }
+               }
 end
 
 def calculate_values
@@ -71,11 +77,12 @@ end
 
 def calculate_single_value metrics_with_values
   expr = insert_into_formula metrics_with_values
+  return if expr.match(/\{\{([^}]+)\}\}/) # missing input values
   evaluate_expression expr
 end
 
 def normalize_value value
-  ("%.1f" % value).gsub(/\.0$/,'')
+  ('%.1f' % value).gsub(/\.0$/, '')
 end
 
 def evaluate_expression expr
@@ -85,7 +92,7 @@ end
 def evaluate_formula input_values
   wl_formula = prepare_formula input_values
   calc_values = evaluate_in_wolfram_cloud(wl_formula)
-  result = Hash.new { |h,k| h[k] = {} }
+  result = Hash.new { |h, k| h[k] = {} }
   input_values.each_pair do |year, companies|
     companies.each_key.with_index do |company, i|
       result[year][company] = normalize_value calc_values[year.to_s][i]
@@ -103,13 +110,12 @@ def extract_metric_keys
 end
 
 def insert_into_formula metrics_with_values
-  result = formula
+  result = keyify_formula formula
   metrics_with_values.each_pair do |metric, value|
     result.gsub! "{{#{metric}}}", value
   end
   result
 end
-
 
 # convert formula to a Wolfram Language expression
 # Example:
@@ -121,37 +127,38 @@ def prepare_formula values
   metrics = extract_metric_keys
   metrics.each_with_index do |metric, i|
     # indices in Wolfram Language start with 1
-    wl_formula.gsub!("{{#{ metric }}}", "#[[#{ i+1 }]]")
+    wl_formula.gsub!("{{#{ metric }}}", "#[[#{ i + 1 }]]")
   end
 
   year_str = []
   values.each_pair do |year, companies|
     company_str = []
-    companies.each do |company, metrics_with_values|
-      values_str = metrics.map do |metric|
+    companies.each do |_company, metrics_with_values|
+      values = metrics.map do |metric|
         # TODO: needs better default value handling
-        metrics_with_values[metric] || 0
-      end.join ','
-     company_str << "{#{values_str}}"
+        metrics_with_values[metric]
+      end.compact
+      next if values.size != metrics.size
+      company_str << "{#{values.join(',')}}"
     end
     year_str << "\"#{year}\" -> {#{company_str.join ','}}"
   end
   wl_input = year_str.join ','
 
-  wl_func = "(#{wl_formula})&/@<| #{wl_input} |>"
+  "(#{wl_formula})&/@<| #{wl_input} |>"
 end
 
 def evaluate_in_wolfram_cloud expr
   uri = URI.parse(WL_INTERPRETER)
   # TODO: error handling
   response = Net::HTTP.post_form uri, 'expr' => expr
-  result = JSON.parse(response.body)["Result"]
+  result = JSON.parse(response.body)['Result']
   JSON.parse result
 end
 
 def keyify_formula formula
-  formula.gsub(/\{\{([^}]+)\}\}/) do |match|
-    "{{#{match[1].to_name.key}}}"
+  formula.gsub(/\{\{\s*([^}]+)\s*\}\}/) do |_match|
+    "{{#{$1.to_name.key}}}"
   end
 end
 
@@ -163,49 +170,37 @@ def fetch_values opts={}
   return values if metrics.size == 1
   value_cards =
     if opts[:company]
-      binding.pry
       value_cards_for_company opts[:company], metrics
     else
       all_value_cards metrics
     end
 
-
   value_cards.each do |v_card|
     year = v_card.cardname.left_name.right
-    company = v_card.cardname.left_name.left_name.right
+    company = v_card.cardname.left_name.left_name.right_name.key
     metric = v_card.cardname.left_name.left_name.left_name.key
     values[year][company][metric] = v_card.content
   end
   values
 end
 
-
-def value_cards opts={}
-  query = {
-    right: 'value',
-    left: {
-      left: {
-      },
-      right: opts[:year] || { type: 'year'},
-    }
-  }
-end
-
 def all_value_cards metrics
-  Card.search right: 'value',
-              left: {
-                left:  { left: { name: metrics } },
-                right: { type: 'year' }
-              }
+  Card.search value_cards_query(metrics: metrics)
 end
 
 def value_cards_for_company company, metrics
-  Card.search right: 'value',
-              left: {
-                left:  {
-                  right: company,
-                  left: { name: metrics }
-                },
-                right: { type: 'year' }
-              }
+  Card.search value_cards_query(company: company, metrics: metrics)
+end
+
+def value_cards_query opts={}
+  left_left = {}
+  left_left[:left] = { name: opts[:metrics] } if opts[:metrics]
+  left_left[:right] = { name: opts[:company] } if opts[:company]
+  {
+    right: 'value',
+    left: {
+      left: left_left,
+      right: opts[:year] || { type: 'year' },
+    }
+  }
 end

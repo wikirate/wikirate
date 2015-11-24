@@ -21,7 +21,9 @@ def company_name
   cardname.left_name.left_name.right
 end
 
-event :update_related_calculations, after: :store, on: :save do
+event :update_related_calculations,
+      after: :store,
+      on: [:create, :update, :delete] do
   metrics = Card.search type_id: MetricID,
                         right_plus: ['formula', { refer_to: metric_name }]
 
