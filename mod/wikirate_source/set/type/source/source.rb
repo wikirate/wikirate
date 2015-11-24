@@ -151,7 +151,8 @@ end
 
 event :autopopulate_website, after: :process_source_url, on: :create do
   website = Card[:wikirate_website].name
-  if (link_card = subfield(:wikirate_link)) && link_card.errors.empty?
+  if (link_card = subfield(:wikirate_link)) && link_card.errors.empty? &&
+       errors.empty?
     website_subcard = subfield(website)
     unless website_subcard
       uri = URI.parse(link_card.content)

@@ -151,7 +151,7 @@ describe Card::Set::Type::Source do
         end
       end
     end
-    describe "creating a source in sourcebox" do
+    describe "in sourcebox" do
       context "while link is a card name" do
         it "returns source card " do
           source_card = create_page
