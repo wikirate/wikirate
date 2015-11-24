@@ -212,7 +212,7 @@ format :html do
   end
 
   def main_type_id
-    @main_type_id ||= Card[main_name].type_id
+    @main_type_id ||= Card.fetch(main_name).type_id
   end
 
   def searched_type_id

@@ -1,17 +1,15 @@
 # -*- encoding : utf-8 -*-
 
-
 class Card
-
   module CachedCount
-
     # contains blocks that get called with a card as argmuent and return
     # all cards that need cache update after a change to to that card
-    @@expiry_checks = {:delete=>[], :create=>[], :update=>[], :all=>[], :save=>[]}
-    mattr_accessor :expiry_checks  # accessible in E and M
+    @@expiry_checks = { delete: [], create: [], update: [], all: [], save: [] }
+    mattr_accessor :expiry_checks # accessible in E and M
+
     def self.included(host_class)
       host_class.extend ClassMethods
-      host_class.card_writer :cached_count, :type=>:number
+      host_class.card_writer :cached_count, :type=>:plaintext
       host_class
     end
 
@@ -46,6 +44,7 @@ class Card
     def update_cached_count
       if respond_to?(:calculate_count) && respond_to?(:cached_count_card)
         new_count = calculate_count
+        #return if new_count == 0
         Card::Auth.as_bot do
           if cached_count_card.new_card?
             cached_count_card.update_attributes!(:content => new_count.to_s)
