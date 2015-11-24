@@ -5,7 +5,6 @@ WL_INTERPRETER = 'https://www.wolframcloud.com/objects/92f1e212-7875-49f9-888f-b
 event :create_values,
       on: :create, before: :approve,
       when: proc { |c| c.formula.present? } do
-        binding.pry
   calculate_values.each_pair do |year, companies|
     companies.each_pair do |company, score|
       add_value company, year, score
@@ -17,15 +16,17 @@ event :update_values,
       on: :update, before: :approve,
       when: proc { |c| c.formula.present? } do
   value_cards = Card.search right: 'value',
-                            left: { left: { left_id: metric_id } }
-  value_cards.trash = true
-  add_subcard value_card
+                            left: { left: { left_id: id } }
+  value_cards.each do |value_card|
+    value_card.trash = true
+    add_subcard value_card
+  end
 
   calculate_values.each_pair do |year, companies|
-    companies.each_pair do |company, score|
+    companies.each_pair do |company, value|
       if (card = subfield "+#{company}+#{year}+value")
         card.trash = false
-        card.content = score
+        card.content = value
       else
         add_value company, year, value
       end
@@ -34,7 +35,8 @@ event :update_values,
 end
 
 def update_value_for_company! company
-  values = fetch_values_for_company company
+  binding.pry
+  values = fetch_values company: company
   values.each_pair do |year, metrics_with_values|
     score = calculate_single_value metrics_with_values
     metric_value_name = "#{metric_name}+#{company}+#{year}"
@@ -57,9 +59,8 @@ end
 
 def add_value company, year, value
   add_subfield "+#{company}+#{year}",
-               type_id: MetricValueID,   # FIXME: can't use MetricValue because it needs a source
+               #type_id: MetricValueID,   # FIXME: can't use MetricValue because it needs a source
                subcards: { '+value' => { type_id: NumberID, content: value }
-               #'+source' => '[[_lll+formula]]'
              }
 end
 
@@ -74,7 +75,7 @@ def calculate_single_value metrics_with_values
 end
 
 def normalize_value value
-  value
+  ("%.1f" % value).gsub(/\.0$/,'')
 end
 
 def evaluate_expression expr
@@ -97,6 +98,10 @@ def extract_metrics
   formula.scan(/\{\{([^}]+)\}\}/).flatten
 end
 
+def extract_metric_keys
+  extract_metrics.map { |m| m.to_name.key }
+end
+
 def insert_into_formula metrics_with_values
   result = formula
   metrics_with_values.each_pair do |metric, value|
@@ -112,10 +117,10 @@ end
 # values in 2014 and 2015 for those metics return
 # (#[[1]]+#[[2]])&/@<|2015 -> {{1,2},{2,3}},2014-> {{4,5},{6,7}}|>
 def prepare_formula values
-  binding.pry
-  wl_formula = formula
-  metrics = extract_metrics
+  wl_formula = keyify_formula formula.clone
+  metrics = extract_metric_keys
   metrics.each_with_index do |metric, i|
+    # indices in Wolfram Language start with 1
     wl_formula.gsub!("{{#{ metric }}}", "#[[#{ i+1 }]]")
   end
 
@@ -144,15 +149,21 @@ def evaluate_in_wolfram_cloud expr
   JSON.parse result
 end
 
+def keyify_formula formula
+  formula.gsub(/\{\{([^}]+)\}\}/) do |match|
+    "{{#{match[1].to_name.key}}}"
+  end
+end
 
 # choose a company or fetch all values
 def fetch_values opts={}
   values = Hash.new { |h1, k1| h1[k1] = Hash.new { |h2, k2| h2[k2] = {} } }
 
-  metrics = extract_metrics.unshift 'in'
+  metrics = extract_metric_keys.unshift 'in'
   return values if metrics.size == 1
   value_cards =
     if opts[:company]
+      binding.pry
       value_cards_for_company opts[:company], metrics
     else
       all_value_cards metrics
@@ -162,7 +173,7 @@ def fetch_values opts={}
   value_cards.each do |v_card|
     year = v_card.cardname.left_name.right
     company = v_card.cardname.left_name.left_name.right
-    metric = v_card.cardname.left_name.left_name.left
+    metric = v_card.cardname.left_name.left_name.left_name.key
     values[year][company][metric] = v_card.content
   end
   values

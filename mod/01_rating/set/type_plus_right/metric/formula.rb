@@ -4,11 +4,6 @@ def metric_name
   cardname.left
 end
 
-def metric_id
-  left_id
-end
-
-
 event :approve_formula, before: :approve do
   not_on_whitelist = content.gsub(/\{\{([^}])+\}\}/,'').scan(/[a-zA-Z][a-zA-Z]+/)
     .reject do |word|
@@ -19,12 +14,14 @@ event :approve_formula, before: :approve do
   end
 end
 
-event :update_scores_for_formula, on: :update, after: :store,
+event :update_scores_for_formula, on: :update, before: :approve,
                          when: proc { |c| !c.supercard } do # don't update if it's part of scored metric update
-  left.update_scores
+  add_subcard left
+  left.update_values
 end
 
-event :create_scores_for_formula, on: :create, after: :store,
+event :create_scores_for_formula, on: :create, before: :approve,
                          when: proc { |c| !c.supercard } do # don't update if it's part of scored metric create
-  left.create_scores
+  add_subcard left
+  left.create_values
 end

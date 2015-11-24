@@ -13,13 +13,17 @@ format :html do
   end
 end
 
+def metric_name
+  cardname.left_name.left_name.left
+end
+
 def company_name
   cardname.left_name.left_name.right
 end
 
-event :update_related_calculations, after: :store do
-  metrics = Card.search left: { type_id: MetricID },
-                        right_plus: ['formula', { refer_to: name }]
+event :update_related_calculations, after: :store, on: :save do
+  metrics = Card.search type_id: MetricID,
+                        right_plus: ['formula', { refer_to: metric_name }]
 
   metrics.each do |metric|
     metric.update_value_for_company! company_name

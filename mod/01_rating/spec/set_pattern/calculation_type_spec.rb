@@ -15,7 +15,6 @@ describe Card::CalculationTypeSet do
             type_id: Card::PhraseID
           }
         }
-        binding.pry
       expect(card.this_is_rating).to be_truthy
     end
   end
