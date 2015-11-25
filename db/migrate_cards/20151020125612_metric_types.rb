@@ -7,7 +7,6 @@ class MetricTypes < Card::Migration
     end.join "\n"
   end
 
-
   def up
     create_card! name: 'Researched', codename: 'researched'
     create_card! name: 'Calculation', codename: 'calculation'
@@ -17,7 +16,10 @@ class MetricTypes < Card::Migration
 
     create_card! name: '*metric type', codename: 'metric_type',
                  subcards: {
-                   '+*right+*default' => { type_id: Card::PointerID},
+                   '+*right+*default' => {
+                     type_id: Card::PointerID,
+                     content: '[[Researched]]'
+                   },
                    '+*right+*options' => {
                      type_id: Card::PointerID,
                      content: metric_types_list
@@ -26,7 +28,12 @@ class MetricTypes < Card::Migration
                      content: 'radio'
                    }
                  }
-    create_card! name: '*metric method', codename: 'metric_method'
-    create_card! name: '*calculation type', codename: 'calculation_type'
+
+    create_card! name: '*metric type plus right',
+                 codename: 'metric_type_plus_right'
+    create_card! name: 'Basic+*metric type+*type plus right+*structure',
+                 type_id: Card::SetID,
+                 content: '{"type":"metric",' \
+                          '"right_plus":["*metric type",{"refer_to":"_left"}]}'
   end
 end
