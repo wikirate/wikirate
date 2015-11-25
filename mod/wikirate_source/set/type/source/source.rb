@@ -37,10 +37,17 @@ event :check_source, :after=>:approve_subcards, :on=>:create do
   end
 end
 
+def attached_file_exist? file_card
+  file_card.attachment.present? ||
+    (file_card.save_preliminary_upload? &&
+     file_card.action_id_of_cached_upload.present?
+    )
+end
+
 def has_file_or_text?
   file_card = subfield(:file)
   text_card = subfield(:text)
-  (file_card && file_card.attachment.present?) || 
+  (file_card && attached_file_exist?(file_card)) ||
     (text_card && text_card.content.present?)
 end
 
