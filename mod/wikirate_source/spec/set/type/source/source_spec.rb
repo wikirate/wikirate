@@ -26,6 +26,19 @@ describe Card::Set::Type::Source do
         
         expect(sourcepage.errors[:source]).to include("Please at least add one type of source")
     end
+
+    it 'creates website card with actions' do
+      url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
+      Card::Env.params[:sourcebox] = 'true'
+      sourcepage = Card.create! type_id: Card::SourceID, subcards: {
+        '+Link' => { content: url },
+        '+File' => { type_id: Card::FileID },
+        '+Text' => { type_id: Card::BasicID, content: '' }
+      }
+      website_card = sourcepage.fetch trait: :wikirate_website
+      expect(website_card.last_action).to be
+    end
+
     describe "while creating duplicated source on claim page" do
       it "should return exisiting url" do
         url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
@@ -138,7 +151,7 @@ describe Card::Set::Type::Source do
         end
       end
     end
-    describe "creating a source in sourcebox" do
+    describe "in sourcebox" do
       context "while link is a card name" do
         it "returns source card " do
           source_card = create_page
