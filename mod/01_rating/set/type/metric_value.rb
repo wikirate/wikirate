@@ -32,7 +32,8 @@ def source_exist?
 end
 
 def researched?
-  set_modules.include? Card::Set::MetricType::Researched
+  defined?(Card::Set::MetricType::Researched) &&
+    set_modules.include?(Card::Set::MetricType::Researched)
 end
 
 event :set_metric_value_name, :before=>:set_autoname, :when=>proc{|c| c.cardname.parts.size < 4} do
