@@ -12,7 +12,8 @@ event :update_expired_cached_count_cards, :after=>:extend, :when=>proc{ |c| !c.i
 end
 
 def run_expiry_checks action
-  Card::CachedCount.expiry_checks[action].each do |block|
+  return unless (expiry_checks =  Card::CachedCount.expiry_checks[action])
+  expiry_checks.each do |block|
     if (expired = block.call(self))
       Array.wrap(expired).compact.each do |item|
         item.update_cached_count if item.respond_to? :update_cached_count
