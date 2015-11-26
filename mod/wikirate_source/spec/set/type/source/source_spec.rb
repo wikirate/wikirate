@@ -4,10 +4,10 @@ require 'link_thumbnailer'
 describe Card::Set::Type::Source do
   describe "while creating a Source" do
     before do
-      login_as 'joe_user' 
+      login_as 'joe_user'
     end
     it "should add title,description" do
-      
+
       url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
       Card::Env.params[:sourcebox] = 'true'
       sourcepage = Card.create! :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
@@ -15,7 +15,7 @@ describe Card::Set::Type::Source do
 
       expect(Card.fetch("#{ sourcepage.name }+title").content).to eq(preview.title)
       expect(Card.fetch("#{ sourcepage.name }+description").content).to eq(preview.description)
-     
+
     end
     it "should handle empty source" do
         url = ''
@@ -23,7 +23,7 @@ describe Card::Set::Type::Source do
         sourcepage = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
         expect(sourcepage).not_to be_valid
         expect(sourcepage.errors).to have_key :source
-        
+
         expect(sourcepage.errors[:source]).to include("Please at least add one type of source")
     end
 
@@ -51,10 +51,10 @@ describe Card::Set::Type::Source do
     describe "while creating duplicated source on source page" do
       it "should show error" do
         url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
-        
+
         firstsourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
         secondsourcepage = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
-        
+
         expect(secondsourcepage).not_to be_valid
         expect(secondsourcepage.errors).to have_key :link
         expect(secondsourcepage.errors[:link]).to include("exists already. <a href='/#{firstsourcepage.name}'>Visit the source.</a>")
@@ -62,7 +62,7 @@ describe Card::Set::Type::Source do
       end
     end
     context "while creating without anything" do
-      it do 
+      it do
         sourcepage = Card.new :type_id=>Card::SourceID
         expect(sourcepage).not_to be_valid
         expect(sourcepage.errors).to have_key :source
@@ -70,20 +70,21 @@ describe Card::Set::Type::Source do
       end
     end
     context "while creating with more than one source type " do
-      it do 
+      it do
         url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
-        
+
         sourcepage = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url},'+File' =>{:type_id=>Card::FileID}, '+Text' => {:content=>"Hello boys!",:type_id=>Card::BasicID} }
         expect(sourcepage).not_to be_valid
         expect(sourcepage.errors).to have_key :source
         expect(sourcepage.errors[:source]).to include("Please only add one type of source")
       end
     end
-    describe "while creating a source with a file link" do 
+    describe "while creating a source with a file link" do
       context "link points to a file" do
         it "downloads it and saves as a file source" do
-          pdf_url = "http://www.relacweb.org/conferencia/images/documentos/Hoteles_cerca.pdf"
+          pdf_url = "http://wikirate.org/files/~176141/241319.pdf"
           sourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> pdf_url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""}}
+          binding.pry
           expect(sourcepage.errors).to be_empty
           source_file = sourcepage.fetch(:trait=>:file)
           expect(source_file).to_not be_nil
@@ -109,10 +110,10 @@ describe Card::Set::Type::Source do
         end
       end
     end
-    describe "while creating a source with a wikirate link" do 
+    describe "while creating a source with a wikirate link" do
       context "a source link" do
         it "return the source card" do
-          
+
           Card::Env.params[:sourcebox] = 'true'
           url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
           sourcepage = Card.create :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
@@ -138,9 +139,9 @@ describe Card::Set::Type::Source do
       end
       context "a non exisiting card link" do
         it "return errors" do
-          
+
           Card::Env.params[:sourcebox] = 'true'
-         
+
           new_source_url = "#{ Card::Env[:protocol] }#{ Card::Env[:host] }/non_exisiting_card_1"
 
           new_sourcepage = Card.new :type_id=>Card::SourceID,:subcards=>{ '+Link' => {:content=> new_source_url}, '+File' =>{:type_id=>Card::FileID}, '+Text'=>{:type_id=>Card::BasicID,:content=>""} }
@@ -179,8 +180,8 @@ describe Card::Set::Type::Source do
       end
     end
   end
-  describe "while rendering views" do 
-    before do 
+  describe "while rendering views" do
+    before do
       login_as 'joe_user'
       @url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
       @source_page = create_page @url,{}
@@ -189,7 +190,7 @@ describe Card::Set::Type::Source do
       expect(@source_page.format.render_titled).to eq(@source_page.format.render_titled_with_voting)
     end
 
-    it "renders open view with :custom_source_header to be true" do 
+    it "renders open view with :custom_source_header to be true" do
       expect(@source_page.format.render_open).to include(@source_page.format.render_header_with_voting)
     end
 
@@ -231,12 +232,12 @@ describe Card::Set::Type::Source do
           expect(html).to have_tag("a",:with=>{:href=>"/#{text_source.cardname.url_key}"}) do
             with_tag "i",:with=>{:class=>"fa fa-pencil"}
           end
-        
+
         end
       end
     end
 
   end
-  
- 
+
+
 end
