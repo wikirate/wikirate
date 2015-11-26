@@ -3,7 +3,7 @@ card_accessor :formula, type_id: PhraseID
 event :create_values,
       on: :create, before: :approve,
       when: proc { |c| c.formula.present? } do
-  formula_card.calculate_all_values do |company, year, value|
+  formula_card.calculate_all_values do |company, year, _value|
     add_value company, year, score
   end
 end
@@ -35,23 +35,32 @@ def update_value_for! opts
     metric_value_name = "#{name}+#{company}+#{year}"
     if (metric_value = Card[metric_value_name])
       if value
-        if (value_card = metric_value.fetch trait: :value)
-          value_card.update_attributes content: value
-        else
-          Card.create! name: "#{metric_value_name}+#{Card[:value].name}",
-                       type_id: NumberID, content: value
-        end
+        update_value_card metric_value, value
       else
         metric_value.delete
       end
     elsif value
-      Card.create! name: metric_value_name,
-                   type_id: MetricValueID,
-                   subcards: {
-                     '+value' => { type_id: NumberID, content: score }
-                   }
+      create_value_card metric_value_name, value
     end
   end
+end
+
+#TODO move these methods to metric_value set ?
+def update_value_card value_card, value
+  if (value_value_card = value_card.fetch trait: :value)
+    value_value_card.update_attributes content: value
+  else
+    Card.create! name: "#{value_card.name}+#{Card[:value].name}",
+                 type_id: NumberID, content: value
+  end
+end
+
+def create_value_card name, value
+  Card.create! name: name,
+               type_id: MetricValueID,
+               subcards: {
+                 '+value' => { type_id: NumberID, content: value }
+               }
 end
 
 def add_value company, year, value

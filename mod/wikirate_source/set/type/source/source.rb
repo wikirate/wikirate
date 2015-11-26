@@ -59,38 +59,36 @@ event :process_source_url,
   linkparams = subfield(Card[:wikirate_link].name)
   url = (linkparams && linkparams.content) ||
         errors.add(:link, 'does not exist.')
-  if errors.empty? && url.length != 0
-    if Card::Env.params[:sourcebox] == 'true'
-      cite_card = get_card(url)
-      if cite_card
-        if cite_card.type_code != :source
-          errors.add :source, ' can only be source type or valid URL.'
-        else
-          self.name = cite_card.name
-          abort :success
-        end
-      elsif !url?(url) || wikirate_url?(url)
-        errors.add :source, ' does not exist.'
-      end
-    end
-    duplicates = Self::Source.find_duplicates url
-    if duplicates.any?
-      duplicated_name = duplicates.first.cardname.left
-      if Card::Env.params[:sourcebox] == 'true'
-        self.name = duplicated_name
+  return if errors.present? || url.length == 0
+  if Card::Env.params[:sourcebox] == 'true'
+    cite_card = get_card(url)
+    if cite_card
+      if cite_card.type_code != :source
+        errors.add :source, ' can only be source type or valid URL.'
+      else
+        self.name = cite_card.name
         abort :success
-      else
-        errors.add :link, "exists already. <a href=\"/#{duplicated_name}\">" \
-                          'Visit the source.</a>'
       end
+    elsif !url?(url) || wikirate_url?(url)
+      errors.add :source, ' does not exist.'
     end
-    if errors.empty?
-      if file_link? url
-        download_file_and_add_to_plus_file url
-      else
-        parse_source_page url if Card::Env.params[:sourcebox] == 'true'
-      end
+  end
+  duplicates = Self::Source.find_duplicates url
+  if duplicates.any?
+    duplicated_name = duplicates.first.cardname.left
+    if Card::Env.params[:sourcebox] == 'true'
+      self.name = duplicated_name
+      abort :success
+    else
+      errors.add :link, "exists already. <a href=\"/#{duplicated_name}\">" \
+                        'Visit the source.</a>'
     end
+  end
+  return if errors.present?
+  if file_link? url
+    download_file_and_add_to_plus_file url
+  else
+    parse_source_page url if Card::Env.params[:sourcebox] == 'true'
   end
 end
 
@@ -149,10 +147,6 @@ def parse_source_page url
   end
   unless subfield('title')
     add_subcard '+title', content: preview.title
-    end
-    unless subfield('Description')
-      add_subcard '+description', content: preview.description
-    end
   end
   unless subfield('Description')
     add_subcard '+description', content: preview.description
@@ -180,7 +174,6 @@ event :autopopulate_website, after: :process_source_url, on: :create do
   if subfield('File')
     unless website_subcard
       website_card = Card.new name: "+#{website}", content: '[[wikirate.org]]',
-                              content: '[[wikirate.org]]',
                               supercard: self
       add_subcard "+#{website}", website_card
     end
