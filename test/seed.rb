@@ -91,22 +91,22 @@ class SharedData
                        }
                      }
                    }
-       Card.create! name: 'Jedi+disturbances in the Force+Death Star+1977',
-                    type_id: Card::MetricValueID,
-                    subcards: {
-                      '+value' => { content: 'yes', type_id: Card::PhraseID },
-                      '+source' => {
-                        subcards: {
-                          'new source' => {
-                            '+Link' => {
-                              content:
-                                'http://www.wikiwand.com/en/Return_of_the_Jedi',
-                              type_id: Card::PhraseID
-                            }
-                          }
-                        }
-                      }
-                    }
-      end
+      Card.create! name: 'Jedi+disturbances in the Force+Death Star+1977',
+                   type_id: Card::MetricValueID,
+                   subcards: {
+                     '+value' => { content: 'yes', type_id: Card::PhraseID },
+                     '+source' => {
+                       subcards: {
+                         'new source' => {
+                           '+Link' => {
+                             content:
+                               'http://www.wikiwand.com/en/Return_of_the_Jedi',
+                             type_id: Card::PhraseID
+                           }
+                         }
+                       }
+                     }
+                   }
+    end
   end
 end

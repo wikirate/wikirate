@@ -55,6 +55,7 @@ def create_claim name, subcards={}
                  }.merge(subcards)
   end
 end
+
 # cards only exist in testing db
 def get_a_sample_claim
   Card['Death Star uses dark side of the Force']
