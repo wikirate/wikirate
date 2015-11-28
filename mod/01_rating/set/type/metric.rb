@@ -1,4 +1,4 @@
-card_accessor :vote_count, :type=>:number, :default=>"0"
+    card_accessor :vote_count, :type=>:number, :default=>"0"
 card_accessor :upvote_count, :type=>:number, :default=>"0"
 card_accessor :downvote_count, :type=>:number, :default=>"0"
 
@@ -15,7 +15,7 @@ def metric_type_codename
   Card[metric_type].codename
 end
 
-# def value company, year
+    # def value company, year
 #   (value_card = Card["#{name}+#{company}+#{year}+#{value}"]) &&
 #     value_card.content
 # end

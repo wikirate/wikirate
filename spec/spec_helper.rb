@@ -98,8 +98,8 @@ end
 
 def html_trim str
   s = str.dup
-  s.delete!('\r\n')
-  s.delete!('\n')
+  s.delete!("\r\n")
+  s.delete!("\n")
   s.delete!('  ')
   s
 end

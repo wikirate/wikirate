@@ -9,8 +9,8 @@ class Formula
     @executed_lambda = exec_lambda(to_lambda)
     result = Hash.new { |h, k| h[k] = {} }
     @formula.input_values.each_pair do |year, companies|
-       companies.each_pair.with_index do |(company, metrics_with_values), i| do
-         value = calc_value year, metrics_with_values, i
+       companies.each_pair.with_index do |(company, metrics_with_values), i|
+         value = get_value year, metrics_with_values, i
          result[year][company] = normalize_value value
        end
     end

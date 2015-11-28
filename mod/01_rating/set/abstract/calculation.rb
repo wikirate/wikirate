@@ -3,8 +3,13 @@ card_accessor :formula, type_id: PhraseID
 event :create_values,
       on: :create, before: :approve,
       when: proc { |c| c.formula.present? } do
-  formula_card.calculate_all_values do |company, year, _value|
-    add_value company, year, score
+
+  # FIXME: formula_card.left has type metric at this points but
+  # formula_card.set_names includes "Basic+formula+*type plus right"
+  formula_card.reset_patterns
+  formula_card.include_set_modules
+  formula_card.calculate_all_values do |company, year, value|
+    add_value company, year, value
   end
 end
 
@@ -27,11 +32,11 @@ event :update_values,
 end
 
 def value_cards
-  Card.search right: 'value', left: { left: { left_id: id } }
+  Card.search right: 'value', left: { left: { left: name } }
 end
 
 def update_value_for! opts
-  calculate_values_for(opts) do |year, value|
+  formula_card.calculate_values_for(opts) do |year, value|
     metric_value_name = "#{name}+#{company}+#{year}"
     if (metric_value = Card[metric_value_name])
       if value

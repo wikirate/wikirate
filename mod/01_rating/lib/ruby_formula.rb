@@ -25,7 +25,7 @@ class RubyFormula < Formula
 
   # allow only numbers, whitespace, mathematical operations and args references
   def safe_to_exec? expr
-    expr.gsub(/args\[\d+\]/,'').match(/^lambda \{ |args| (.+)\}$/)
-    $1.match(/^[\s\d+-\/*\.()]*$/)
+    expr.gsub(/args\[\d+\]/,'').match(/^lambda \{ \|args\| (.+)\}$/)
+    $1 && $1.match(/^[\s\d+-\/*\.()]*$/)
   end
 end

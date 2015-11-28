@@ -1,4 +1,5 @@
 # Use this hook to configure LinkThumbnailer bahaviors.
+
 LinkThumbnailer.configure do |config|
   # Numbers of redirects before raising an exception when trying to parse given url.
   #

@@ -12,7 +12,6 @@ describe Card::MetricTypePlusRightSet do
           '+test' => 'Some content'
         }
 
-        binding.pry
       ca = Card['Designer+MetricName+test']
       expect(ca.set_names).to include("Designer+MetricName+test+*metric type plus right")
     end

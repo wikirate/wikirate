@@ -82,7 +82,7 @@ class SharedData
                      '+value' => { content: '100', type_id: Card::NumberID },
                      '+source' => {
                        subcards: {
-                         'new source' => {
+                         'new source1' => {
                            '+Link' => {
                              content: 'http://www.wikiwand.com/en/Death_Star',
                              type_id: Card::PhraseID
@@ -97,7 +97,7 @@ class SharedData
                      '+value' => { content: 'yes', type_id: Card::PhraseID },
                      '+source' => {
                        subcards: {
-                         'new source' => {
+                         'new source2' => {
                            '+Link' => {
                              content:
                                'http://www.wikiwand.com/en/Return_of_the_Jedi',

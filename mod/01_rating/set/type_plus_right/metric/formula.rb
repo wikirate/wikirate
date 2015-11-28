@@ -31,7 +31,7 @@ end
 def calculate_all_values
   formula_interpreter.evaluate.each_pair do |year, companies|
     companies.each_pair do |company, value|
-      yield company, year, value
+      yield company, year, value if value
     end
   end
 end
@@ -52,6 +52,18 @@ def keyified
   end
 end
 
+def input_values
+  @input_values ||= fetch_input_values
+end
+
+def input_metric_keys
+  @metric_keys ||= extract_metrics.map { |m| m.to_name.key }
+end
+
+def normalize_value value
+  ('%.1f' % value).gsub(/\.0$/, '') if value
+end
+
 private
 
 def formula_interpreter
@@ -60,14 +72,6 @@ def formula_interpreter
   else
     WolframFormula.new(self)
   end
-end
-
-def input_values
-  @input_values ||= fetch_input_values
-end
-
-def input_metric_keys
-  @metric_keys ||= extract_metrics.map { |m| m.to_name.key }
 end
 
 def extract_metrics
@@ -99,23 +103,19 @@ def fetch_input_values opts={}
   values
 end
 
-def normalize_value value
-  ('%.1f' % value).gsub(/\.0$/, '')
-end
-
 def all_input_value_cards
   Card.search value_cards_query(metrics: input_metric_keys)
 end
 
 def input_value_cards_for company
-  Card.search value_cards_query(company: company, metrics: input_metrics_keys)
+  Card.search value_cards_query(company: company, metrics: input_metric_keys)
 end
 
 def value_cards_query opts={}
-  metrics = opts[:metrics].is_a?(Array) ? opts[:metrics].unshift('in') :
-                                          opts[:metrics]
   left_left = {}
-  left_left[:left] = { name: opts[:metrics] } if metrics
+  if opts[:metrics]
+    left_left[:left] = { name: ['in'] + Array.wrap(opts[:metrics]) }
+  end
   left_left[:right] = { name: opts[:company] } if opts[:company]
   {
     right: 'value',
