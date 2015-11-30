@@ -29,7 +29,7 @@ class MetricTypes < Card::Migration
 
     metric_type_plus_right_query =
       '{"right":"_right", "left":{' \
-        '"type":"metric", "right_plus":["*metric type",{"refer_to":"_left"}]}'
+        '"type":"metric", "right_plus":["*metric type",{"refer_to":"_left"}]}}'
     create_card! name: '*metric type plus right',
                  codename: 'metric_type_plus_right'
 

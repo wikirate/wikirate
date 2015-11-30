@@ -4,7 +4,7 @@
   anchor_parts_count: 2
 }
 
-METRIC_TYPE_KEYS = ::Set.new(['researched', 'formula', 'wiki_rating', 'score'])
+@@metric_type_keys = ::Set.new(['researched', 'formula', 'wiki_rating', 'score'])
 
 def label name
   %{All "+#{name.to_name.tag}" cards on metric cards of type "#{name.to_name.left_name}"}
@@ -25,5 +25,6 @@ def follow_label name
 end
 
 def pattern_applies? card
-  (l = card.cardname.left_name) && METRIC_TYPE_KEYS.include?(l.key)
+  (mt = Card::MetricTypeSet.metric_type(card.cardname.left)) &&
+    ['researched', 'Formula', 'wiki_rating', 'score'].include?(mt)
 end

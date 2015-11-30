@@ -1,7 +1,21 @@
+card_accessor :formula_input, type: 'session'
+
 WL_FORMULA_WHITELIST = ::Set.new ['Boole']
 
 def metric_name
   cardname.left
+end
+
+format :html do
+  view :editor do |args|
+    metrics_list = card.input_metrics.map { |m| "[[#{m}]]" }.join "\n"
+    formula_input = card.fetch trait: :formula_input,
+                              new: {
+                                type: 'session',
+                                content:  metrics_list
+                              }
+    super(args) + subformat(formula_input)._render_core(args)
+  end
 end
 
 event :approve_formula, before: :approve do
@@ -57,7 +71,11 @@ def input_values
 end
 
 def input_metric_keys
-  @metric_keys ||= extract_metrics.map { |m| m.to_name.key }
+  @metric_keys ||= input_metrics.map { |m| m.to_name.key }
+end
+
+def input_metrics
+  @input_metrics ||= extract_metrics
 end
 
 def normalize_value value

@@ -1,4 +1,4 @@
-    card_accessor :vote_count, :type=>:number, :default=>"0"
+card_accessor :vote_count, :type=>:number, :default=>"0"
 card_accessor :upvote_count, :type=>:number, :default=>"0"
 card_accessor :downvote_count, :type=>:number, :default=>"0"
 
@@ -48,6 +48,15 @@ def companies_with_years_and_values
     }).map do |card|
     [card.cardname.left_name.left_name.right, card.cardname.left_name.right, card.content]
   end
+end
+
+def random_value_card
+  Card.search right: 'value',
+              left: {
+                left: { left: card.name },
+                right: { type: 'year' }
+              },
+              limit: 1
 end
 
 format :html do
