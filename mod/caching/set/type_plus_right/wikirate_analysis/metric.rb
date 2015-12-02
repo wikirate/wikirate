@@ -22,8 +22,9 @@ expired_cached_count_cards do |changed_card|
       # find all related analysis to the company and metric's topics
       search_args = { type_id: analysis_type_id, left: lr.name,
                       append: 'metric' }
-      if (topic_card = ll.fetch trait: :wikirate_topic)
-        search_args.merge(right: topic_card.item_names.unshift('in'))
+      if (topic_card = ll.fetch trait: :wikirate_topic) &&
+         (topic_cards = topic_card.item_names) && topic_cards.size > 0
+        search_args.merge(right: topic_cards.unshift('in'))
       end
       expired_cached_cards.concat(Card.search search_args)
     end
