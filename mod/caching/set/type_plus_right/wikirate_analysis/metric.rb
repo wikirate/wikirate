@@ -6,9 +6,9 @@ expired_cached_count_cards do |changed_card|
   expired_cached_cards = []
   if (r = changed_card.right)
     # metric's topic changes
+    analysis_type_id = Card::WikirateAnalysisID
     if (l = changed_card.left) && l.type_code == :metric &&
        r.key == 'topic' && changed_card.type_code == :pointer
-      analysis_type_id = Card::WikirateAnalysisID
       # find all related analysis to the topic
       card_names = changed_card.item_names.unshift('in')
       expired_cached_cards.cancat(Card.search type_id: analysis_type_id,
@@ -20,13 +20,12 @@ expired_cached_count_cards do |changed_card|
        (lr = l.right) && ll.type_code == :metric &&
        lr.type_code == :wikirate_company
       # find all related analysis to the company and metric's topics
-      topic_cards =
-        if (topic_card = ll.fetch trait: :wikirate_topic)
-          topic_card.item_names
-        end.unshift('in')
-      expired_cached_cards.concat(Card.search type_id: analysis_type_id,
-                                              left: lr.name, right: topic_cards,
-                                              append: 'metric')
+      search_args = { type_id: analysis_type_id, left: lr.name,
+                      append: 'metric' }
+      if (topic_card = ll.fetch trait: :wikirate_topic)
+        search_args.merge(right: topic_card.item_names.unshift('in'))
+      end
+      expired_cached_cards.concat(Card.search search_args)
     end
   end
   expired_cached_cards.uniq

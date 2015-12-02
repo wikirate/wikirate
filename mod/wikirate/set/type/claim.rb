@@ -100,8 +100,8 @@ format :html do
   end
 
   view :sample_citation do |args|
-    tip = "easily cite this note by pasting the following:" +
-      text_area_tag( :citable_note, card.default_citation )
+    tip = 'easily cite this note by pasting the following:' +
+          text_area_tag(:citable_note, card.default_citation)
     %{ <div class="sample-citation">#{ render :tip, :tip=>tip }</div> }
   end
 
