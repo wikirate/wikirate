@@ -102,20 +102,23 @@ describe Card::Set::Type::Claim do
       context "when there is no topic " do
         it "shows tip about adding topic" do
           claim_card = Card.create :type_id=>Card::ClaimID, :name=>@claim_name ,:subcards=>{ '+company'=>'apple','+source' => {:content=>"[[#{@sourcepage.name}]]",:type_id=>Card::PointerID}}
-          expect(claim_card.format.render_tip).to include('improve this claim by adding a topic.')
+          expected_line = 'improve this note by adding a topic.'
+          expect(claim_card.format.render_tip).to include(expected_line)
         end
       end
       context "when there is no company " do
         it "shows tip about adding company" do
           claim_card = Card.create :type_id=>Card::ClaimID, :name=>@claim_name ,:subcards=>{ '+topic'=>'natural resource use','+source' => {:content=>"[[#{@sourcepage.name}]]",:type_id=>Card::PointerID}}
-          expect(claim_card.format.render_tip).to include('improve this claim by adding a company.')
+          expected_line = 'improve this note by adding a company.'
+          expect(claim_card.format.render_tip).to include(expected_line)
         end
       end
       context "when company and topic exist" do
         context "when  card.analysis_names.size > cited_in.size " do
           it "shows tip about citing this claim in related overview" do
             claim_card = create_claim @claim_name,{'+company'=>'Apple Inc.','+topic'=>'natural resource use'}
-            expect(claim_card.format.render_tip).to include('cite this claim in related overviews.')
+            expected_line = 'cite this note in related overviews.'
+            expect(claim_card.format.render_tip).to include(expected_line)
           end
         end
         context "when card.analysis_names.size <= cited_in.size " do

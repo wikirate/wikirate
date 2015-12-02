@@ -11,7 +11,7 @@ expired_cached_count_cards do |changed_card|
        r.key == 'topic' && changed_card.type_code == :pointer
       # find all related analysis to the topic
       card_names = changed_card.item_names.unshift('in')
-      expired_cached_cards.cancat(Card.search type_id: analysis_type_id,
+      expired_cached_cards.concat(Card.search type_id: analysis_type_id,
                                               right: card_names,
                                               append: 'metric')
     end
