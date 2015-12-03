@@ -1,2 +1,2 @@
-.ruby-style.ymlruby:
+ruby:
   config_file: .ruby-style.yml
