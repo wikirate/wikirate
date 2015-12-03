@@ -16,7 +16,6 @@ weird_companies.each do |company|
   related_cards.each do |related_card|
     if (value_card = Card[related_card.name + '+value'])
       puts "deleting #{value_card.name}".yellow
-      # binding.pry
       value_card.delete!
     end
     if (source_card = Card[related_card.name + '+source'])

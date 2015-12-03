@@ -25,10 +25,15 @@ def source_exist?
   text_card = subfield :text
   link_card = subfield :wikirate_link
 
-  ( file_card && file_card.attachment.present? ) || 
+  ( file_card && file_card.attachment.present? ) ||
   ( text_card && text_card.content.present? ) ||
   ( link_card && link_card.content.present? )
 
+end
+
+def researched?
+  defined?(Card::Set::MetricType::Researched) &&
+    set_modules.include?(Card::Set::MetricType::Researched)
 end
 
 event :set_metric_value_name, :before=>:set_autoname, :when=>proc{|c| c.cardname.parts.size < 4} do
@@ -38,11 +43,15 @@ event :set_metric_value_name, :before=>:set_autoname, :when=>proc{|c| c.cardname
     end.join '+'
 end
 
-event :create_source_for_metric_value, :before=>:process_subcards, :on=>:create do
+event :create_source_for_metric_value,
+      before: :process_subcards, on: :create,
+      when: proc { |c| c.researched? }  do
   create_source
 end
 
-event :create_source_for_updating_metric_value, :before=>:process_subcards, :on=>:update, :when=>proc{  |c| c.source_exist? } do
+event :create_source_for_updating_metric_value,
+      before: :process_subcards, on: :update,
+      when: proc { |c| c.source_exist? && c.researched? } do
   create_source
 end
 
@@ -146,7 +155,7 @@ format :html do
   view :timeline_data do |args|
     year  =  content_tag(:span, card.cardname.right, :class=>'metric-year')
     value_card = card.fetch(:trait=>:value)
-    value =  _render_modal_details(args) 
+    value =  _render_modal_details(args)
     value << content_tag(:span, legend(args), :class=>'metric-unit')
 
     line   =  content_tag(:div, '', :class=>'timeline-dot')
