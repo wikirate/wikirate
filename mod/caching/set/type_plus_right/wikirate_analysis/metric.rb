@@ -3,6 +3,10 @@ include Card::CachedCount
 expired_cached_count_cards do |changed_card|
   # "right_plus":[["topic",{"refer_to":"_2"}],
   #  ["_ll",{"right_plus":["*cached count",{"ne":0}]}] ]
+
+  return if changed_card.simple? ||
+            (changed_card.right_id != CachedCountID &&
+             changed_card.type_id != PointerID)
   expired_cached_cards = []
   if (r = changed_card.right)
     # metric's topic changes
@@ -24,7 +28,7 @@ expired_cached_count_cards do |changed_card|
                       append: 'metric' }
       if (topic_card = ll.fetch trait: :wikirate_topic) &&
          (topic_cards = topic_card.item_names) && topic_cards.size > 0
-        search_args.merge(right: topic_cards.unshift('in'))
+        search_args.merge!(right: topic_cards.unshift('in'))
       end
       expired_cached_cards.concat(Card.search search_args)
     end
