@@ -4,8 +4,8 @@ expired_cached_count_cards do |changed_card|
   # "right_plus":[["topic",{"refer_to":"_2"}],
   #  ["_ll",{"right_plus":["*cached count",{"ne":0}]}] ]
 
-  if !(changed_card.simple? || (changed_card.right_id != CachedCountID &&
-                                changed_card.type_id != PointerID))
+  unless changed_card.simple? || (changed_card.right_id != CachedCountID &&
+                                  changed_card.type_id != PointerID)
     expired_cached_cards = []
     if (r = changed_card.right)
       # metric's topic changes

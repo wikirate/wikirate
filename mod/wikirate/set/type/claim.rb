@@ -88,13 +88,13 @@ format :html do
   def next_step_tip
     #FIXME - cardnames
     if (not topics = Card["#{card.name}+topics"]) || topics.item_names.empty?
-      "improve this note by adding a topic."
+      'improve this note by adding a topic.'
     elsif (not companies = Card["#{card.name}+company"]) || companies.item_names.empty?
-      "improve this note by adding a company."
+      'improve this note by adding a company.'
     else
       cited_in = Card.search :refer_to => card.name, :left=>{:type_id=>WikirateAnalysisID}, :right=>{:name=>Card[:wikirate_article].name}
       if card.analysis_names.size > cited_in.size
-        "cite this note in related overviews."
+        'cite this note in related overviews.'
       end
     end
   end

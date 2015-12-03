@@ -6,14 +6,11 @@ expired_cached_count_cards do |changed_card|
      changed_card.type_code == :pointer
     # find all related analysis
     card_names = changed_card.item_names.unshift('in')
-    analysis_type_id = Card::WikirateAnalysisID
-    args = { type_id: analysis_type_id, append: 'source' }
-    case r.key
-    when 'company'
-      args.merge!(left: card_names)
-    when 'topic'
-      args.merge!(right: card_names)
-    end
-    Card.search args
+    side = case r.key
+           when 'company' then :left
+           when 'topic' then :right
+           end
+    Card.search type_id: Card::WikirateAnalysisID, append: 'source',
+                side => card_names
   end
 end
