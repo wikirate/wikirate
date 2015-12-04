@@ -1,21 +1,24 @@
 # -*- encoding : utf-8 -*-
 
 def put_things_in_tag_to_correct_position cards, skip_year
+  i = 0
   cards.each do |card|
     puts "migrating #{card.name}'s tags"
     company = card.fetch trait: :wikirate_company, new: {}
     topic = card.fetch trait: :wikirate_topic, new: {}
     year = card.fetch trait: :year, new: {}
-    card.fetch(trait: :wikirate_tag).item_cards do |tag|
+    card.fetch(trait: :wikirate_tag).item_cards.each do |tag|
       case tag.type_id
       when Card::WikirateCompanyID then company << tag
       when Card::WikirateTopicID then topic << tag
       when Card::YearID then year << tag unless skip_year
       end
     end
-    company.save!
-    topic.save!
-    year.save!
+    company.save! if company.changed? && company.item_names.size > 0
+    topic.save! if topic.changed? && topic.item_names.size > 0
+    year.save! if year.changed? && year.item_names.size > 0
+    i += 1
+    Card.cache.reset_local if i % 10 == 0
   end
 end
 
