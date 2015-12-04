@@ -31,6 +31,7 @@ class ImportMigrateTagsToTopics < Card::Migration
       card.type_id = Card::WikirateTopicID
       puts "Updating #{card.name}'s type to topic"
       card.save!
+      Card.cache.reset_local
     end
     note_cards_with_tag = Card.search type_id: Card::ClaimID, right_plus: 'tag'
     put_things_in_tag_to_correct_position note_cards_with_tag, false
