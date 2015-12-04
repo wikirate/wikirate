@@ -125,7 +125,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
                                 class: 'header metric-list-header slotter',
                                 href: "/#{url_key}?item=content"\
                                       "&offset=0&limit=20"\
-                                      "&sort_order=desc"\
+                                      "&sort_order=asc"\
                                       "&sort_by=company_name"
                               } 
           with_tag :a, with: { 
