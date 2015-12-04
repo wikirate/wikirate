@@ -119,7 +119,7 @@ describe Card::Set::Type::MetricValue do
       metric_values_value_card = Card["#{@metric_value.name}+value"]
       expect(metric_values_value_card.content).to eq(quote)
     end
-    context "with another source" do
+    context 'with another source' do
       it "won't create card new source" do
         quote = "if nobody hates you, you're doing something wrong."
         subcards = {
