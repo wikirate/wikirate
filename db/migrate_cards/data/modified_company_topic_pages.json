@@ -1,6 +1,6 @@
 {
   "url": "http://dev.wikirate.org/export.json",
-  "timestamp": "2015-12-04 15:47:26 +0100",
+  "timestamp": "2015-12-04 19:58:09 +0100",
   "card": {
     "name": "export",
     "type": "Pointer",
@@ -189,7 +189,7 @@
       {
         "name": "homepage: top banner",
         "type": "HTML",
-        "content": "<div class=\"nodblclick row container-fluid\">\r\n\t\t<div class=\"col-md-12 text-center top-banner-wrapper white-text banner-background\" >\r\n\t\t  <div class=\"row padding-top-20\"></div>\r\n\t\t  <h1 class=\" text-uppercase white-text no-bold-text  \">\r\n\t\t\t\tLet’s Make Companies Better\r\n\t\t\t</h1>\r\n\t\t\t<p class=\" lead\">\r\n\t\t\t\tWelcome to WikiRate, the open collaboration for illuminating corporate impacts on the world.\r\n\t\t\t</p> \r\n\t\t\t<div class=\"row\">\r\n\t\t\t  <a href=\"/new/:signup\" class=\"btn btn-default btn-banner-join\" >\r\n\t\t\t\t  Join us\r\n  \t\t\t</a>&nbsp;\r\n  \t\t  <a href=\"/Why_WikiRate\" class=\"btn btn-default btn-banner-info\">\r\n  \t\t\t\tWhy WikiRate?\r\n  \t\t\t</a>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"row margin-top-50\"></div>\r\n\t\t</div>\r\n\t</div>"
+        "content": "<div class=\"nodblclick row container-fluid\">\r\n\t\t<div class=\"col-md-12 text-center top-banner-wrapper white-text banner-background\" >\r\n\t\t  <div class=\"row padding-top-20\"></div>\r\n\t\t  <h1 class=\" white-text no-bold-text  \">\r\n\t\t\t\tLet’s Make Companies Better\r\n\t\t\t</h1>\r\n\t\t\t<p class=\" lead\">\r\n\t\t\t\tWelcome to WikiRate, the open collaboration for illuminating the social and environmental impacts of corporations.\r\n\t\t\t</p> \r\n\t\t\t<div class=\"row\">\r\n\t\t\t  <a href=\"/new/:signup\" class=\"btn btn-default btn-banner-join\" >\r\n\t\t\t\t  Join us\r\n  \t\t\t</a>&nbsp;\r\n  \t\t  <a href=\"/Why_WikiRate\" class=\"btn btn-default btn-banner-info\">\r\n  \t\t\t\tWhy WikiRate?\r\n  \t\t\t</a>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"row margin-top-50\"></div>\r\n\t\t</div>\r\n\t</div>"
       },
       {
         "name": "homepage: company and metric",

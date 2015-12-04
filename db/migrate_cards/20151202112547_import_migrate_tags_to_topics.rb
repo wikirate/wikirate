@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
 def put_things_in_tag_to_correct_position cards, skip_year
+  i = 0
   cards.each do |card|
     puts "migrating #{card.name}'s tags"
     company = card.fetch trait: :wikirate_company, new: {}
@@ -16,6 +17,8 @@ def put_things_in_tag_to_correct_position cards, skip_year
     company.save! if company.changed? && company.item_names.size > 0
     topic.save! if topic.changed? && topic.item_names.size > 0
     year.save! if year.changed? && year.item_names.size > 0
+    i += 1
+    Card.cache.reset_local if i % 10 == 0
   end
 end
 
