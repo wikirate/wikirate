@@ -26,13 +26,14 @@ end
 # assume some tags are handled manually
 class ImportMigrateTagsToTopics < Card::Migration
   def up
-    tags_card = Card.search type_id: Card::WikirateTagID
+    tags_card = Card.search type_id: Card::WikirateTagID, sort: :name
     tags_card.each do |card|
       card.type_id = Card::WikirateTopicID
       puts "Updating #{card.name}'s type to topic"
       card.save!
       Card.cache.reset_local
     end
+    puts "Finished type updates!"
     note_cards_with_tag = Card.search type_id: Card::ClaimID, right_plus: 'tag'
     put_things_in_tag_to_correct_position note_cards_with_tag, false
     source_cards_with_tag = Card.search type_id: Card::SourceID,
