@@ -19,7 +19,7 @@
       {
         "name": "Topics+*right+*add help",
         "type": "Basic",
-        "content": "<p>You can treat topics as tags </p>"
+        "content": "<p>WikiRate uses Topics to organise content - you can think of these as Tags that are used to find certain types of content and provide spaces to write about it.</p>"
       }
     ]
   }
