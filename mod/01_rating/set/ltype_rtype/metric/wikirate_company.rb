@@ -36,6 +36,6 @@ format :html do
       %{
         <span data-year=#{v.year} data-value=#{v.value} #{'style="display: none;"' if i > 0}>#{subformat(v).render_concise(args)}</span>
       }
-    end
+    end.join("\n")
   end
 end

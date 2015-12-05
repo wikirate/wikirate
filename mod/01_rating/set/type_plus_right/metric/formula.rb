@@ -14,7 +14,10 @@ format :html do
                                 type: 'session',
                                 content:  metrics_list
                               }
-    super(args) + subformat(formula_input)._render_core(args)
+
+    super(args) + with_inclusion_mode(:normal) do
+      subformat(formula_input)._render_core(args)
+    end
   end
 end
 
