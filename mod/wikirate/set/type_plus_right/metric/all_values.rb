@@ -20,8 +20,8 @@ end
 
 def get_sort_params
   [
-    (Env.params["sort_by"]||"company_name"),
-    (Env.params["sort_order"]||"asc")
+    (Env.params['sort_by'] || 'value'),
+    (Env.params['sort_order'] || 'desc')
   ]
 end
 
