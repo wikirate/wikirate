@@ -4,7 +4,7 @@ require 'colorize'
 
 def valid_new_metric? metric_name, company, year
   Card.exists?(metric_name) &&
-    Card[metric_name].type_id == Card::MetricValueID &&
+    Card[metric_name].type_id == Card::MetricID &&
     Card.exists?(company) &&
     Card[company].type_id == Card::WikirateCompanyID &&
     Card.exists?(year) &&
@@ -71,7 +71,7 @@ Card::Auth.as_bot do
         }
       }
       unless valid_new_metric?(metric_name, company_name, year.to_s)
-        puts "Invalid metric card to be created #{subcards}".red
+        puts "Invalid metric card to be created #{subcard}".red
         next
       end
       metric_value = Card.new :type_id=>Card::MetricValueID,:subcards=>subcard
