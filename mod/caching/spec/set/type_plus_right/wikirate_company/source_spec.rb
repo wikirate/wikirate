@@ -7,7 +7,6 @@ describe Card::Set::TypePlusRight::WikirateCompany::Source do
     source = get_a_sample_source
     company_list = source.fetch trait: :wikirate_company
     company_list.add_item! 'Samsung'
-    binding.pry
     expect(samsung_sources.cached_count).to eq 1
   end
 end

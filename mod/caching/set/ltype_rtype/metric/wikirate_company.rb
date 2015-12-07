@@ -2,7 +2,9 @@
 include Card::CachedCount
 
 ensure_set { TypePlusRight::MetricValue::Value }
-expired_cached_count_cards set: TypePlusRight::MetricValue::Value do |changed_card|
+expired_cached_count_cards(
+  set: TypePlusRight::MetricValue::Value
+) do |changed_card|
   changed_card.metric_plus_company_card
 end
 

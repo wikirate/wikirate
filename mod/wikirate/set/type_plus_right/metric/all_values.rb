@@ -44,7 +44,7 @@ end
 
 def get_cached_result
   @cached_metric_values ||= begin
-    cached_json = fetch(trait: :cached_count, new: {}).format.render_core
+    cached_json = fetch(trait: :cached_count, new: {}).format.render_raw
     JSON.parse(cached_json)
   end
 end
