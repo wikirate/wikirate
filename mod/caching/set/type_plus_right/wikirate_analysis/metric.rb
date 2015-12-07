@@ -15,7 +15,7 @@ expired_cached_count_cards(
   set: TypePlusRight::Metric::WikirateTopic
 ) do |changed_card|
   card_names = changed_card.item_names.unshift('in')
-  Card.search type_id: analysis_type_id,
+  Card.search type_id: Card::WikirateAnalysisID,
               right: card_names,
               append: 'metric'
 end
@@ -36,7 +36,7 @@ expired_cached_count_cards(
   # update if metric ist tagged with topics
   next unless (topic_card = metric.fetch trait: :wikirate_topic) &&
      (topic_cards = topic_card.item_names) && topic_cards.size > 0
-  Card.search type_id: analysis_type_id, left: company.name,
+  Card.search type_id: Card::WikirateAnalysisID, left: company.name,
               right: topic_cards.unshift('in'),
               append: 'metric'
 end
