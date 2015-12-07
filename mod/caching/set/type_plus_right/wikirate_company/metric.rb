@@ -1,8 +1,8 @@
+# cache # of metrics with values for this company (=_left)
 include Card::CachedCount
 
-expired_cached_count_cards :set=>Card::Set::LtypeRtype::Metric::WikirateCompany,
-                      :on=>[:create,:delete] do |changed_card|
-  if (metric_count_card = changed_card.fetch(:trait=>:metric))
-    metric_count_card
-  end
+expired_cached_count_cards(
+  set: Type::MetricValue, on: [:create,:delete]
+) do |changed_card|
+  (company = changed_card.company_card) && company.fetch(trait: :metric)
 end
