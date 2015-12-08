@@ -1,37 +1,43 @@
+# cache # of metrics with values for the company (=_ll) and taged
+# with the topic (=_lr)
+# the query for items that get counted
+# (analysis+metrics+*type_plus_right+*structure):
+# "type":"metric",
+# "right_plus":[
+#   ["topic",{"refer_to":"_2"}],
+#   ["_ll",{"right_plus":["*cached count",{"ne":0}]}]
+# ]
 include Card::CachedCount
 
-expired_cached_count_cards do |changed_card|
-  # "right_plus":[["topic",{"refer_to":"_2"}],
-  #  ["_ll",{"right_plus":["*cached count",{"ne":0}]}] ]
-
-  unless changed_card.simple? || (changed_card.right_id != CachedCountID &&
-                                  changed_card.type_id != PointerID)
-    expired_cached_cards = []
-    if (r = changed_card.right)
-      # metric's topic changes
-      analysis_type_id = Card::WikirateAnalysisID
-      if (l = changed_card.left) && l.type_code == :metric &&
-         r.key == 'topic' && changed_card.type_code == :pointer
-        # find all related analysis to the topic
-        card_names = changed_card.item_names.unshift('in')
-        expired_cached_cards.concat(Card.search type_id: analysis_type_id,
-                                                right: card_names,
-                                                append: 'metric')
-      end
-      # metric value sets cached count
-      if r.id == CachedCountID && (l = changed_card.left) && (ll = l.left) &&
-         (lr = l.right) && ll.type_code == :metric &&
-         lr.type_code == :wikirate_company
-        # find all related analysis to the company and metric's topics
-        search_args = { type_id: analysis_type_id, left: lr.name,
-                        append: 'metric' }
-        if (topic_card = ll.fetch trait: :wikirate_topic) &&
-           (topic_cards = topic_card.item_names) && topic_cards.size > 0
-          search_args.merge!(right: topic_cards.unshift('in'))
-        end
-        expired_cached_cards.concat(Card.search search_args)
-      end
-    end
-    expired_cached_cards.uniq
-  end
+# update if topic taging is touched
+ensure_set { TypePlusRight::Metric::WikirateTopic }
+expired_cached_count_cards(
+  set: TypePlusRight::Metric::WikirateTopic
+) do |changed_card|
+  card_names = changed_card.item_names.unshift('in')
+  Card.search type_id: Card::WikirateAnalysisID,
+              right: card_names,
+              append: 'metric'
 end
+
+# update if the cached count card that caches the latest value
+# is created. This means there is at least one value.
+ensure_set { Right::CachedCount }
+expired_cached_count_cards(
+  set: Right::CachedCount, on: :create
+) do |changed_card|
+  next unless (l = changed_card.left) && (metric = l.left) &&
+              (company = l.right) &&
+              metric.type_code == :metric &&
+              company.type_code == :wikirate_company
+  # only <metric>+<company>+*cached count
+  # we can't get this with a set
+
+  # update if metric ist tagged with topics
+  next unless (topic_card = metric.fetch trait: :wikirate_topic) &&
+     (topic_cards = topic_card.item_names) && topic_cards.size > 0
+  Card.search type_id: Card::WikirateAnalysisID, left: company.name,
+              right: topic_cards.unshift('in'),
+              append: 'metric'
+end
+

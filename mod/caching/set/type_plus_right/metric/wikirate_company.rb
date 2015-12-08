@@ -1,10 +1,12 @@
+# cache # of companies with values for left metric
 include Card::CachedCount
 
 ensure_set do
   Type::MetricValue
 end
 
-expired_cached_count_cards :set=>Type::MetricValue, :on=>[:create,:delete] do |changed_card|
+expired_cached_count_cards :set=>Type::MetricValue, :on=>[:create, :delete] do |changed_card|
+  # update company count with values
   result = [
     # cache number of the metric values related to this metric value set
     # for some query

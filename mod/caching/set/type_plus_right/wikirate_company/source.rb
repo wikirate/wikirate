@@ -1,8 +1,11 @@
+# cache # of sources tagged with this company (=_left)
 include Card::CachedCount
 
-expired_cached_count_cards do |changed_card|
-  if (l=changed_card.left)  && l.type_code == :source &&
-     (r=changed_card.right) && r.type_code == :pointer && r.key == 'company'
-    changed_card.item_cards
+ensure_set  { TypePlusRight::Source::WikirateCompany }
+
+# needs update if company list of a source has changed
+expired_cached_count_cards set: TypePlusRight::Source::WikirateCompany do |changed_card|
+  changed_card.item_names.map do |company_name|
+    Card.fetch "#{company_name}+#{Card[:source].name}"
   end
 end

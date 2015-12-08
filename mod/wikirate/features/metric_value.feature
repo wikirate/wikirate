@@ -39,7 +39,7 @@ Feature: note
     And I press "Submit"
     And I press "Close"
     # FIXME the new metric should appear witout reloading the page
-    And I go to card "Jedi+size"
+    And I go to card "Jedi+size".
     Then I should see "Death Star"
     When I go to card "Death Star"
     Then I should see "101"
