@@ -98,8 +98,12 @@ format :html do
             </div>
           </div>
 
+
+
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <!-- Navbar Menu -->
+            #{subformat(Card['nav_bar_menu']).render_content}
             <ul class="nav nav-tabs navbar-right gray-color ">
                #{render_preview_options(args)}
             </ul>
@@ -136,7 +140,7 @@ format :html do
     result = %{
       <li role="presentation" class="active" >
         <a class='' data-target="#tab_details" data-toggle="source_preview_tab_ajax">
-          <i class="fa fa-info-circle"></i> <span>Details</span>
+          <i class="fa fa-info-circle"></i> <span>Source Details</span>
         </a>
       </li>
     }

@@ -11,13 +11,13 @@ gem 'open_uri_redirections'
 gem 'roo'
 gem 'wbench'
 gem 'curb'
+gem 'daemons'
 gem 'delayed_job_active_record'
 
 #if RUBY_PLATFORM !~ /darwin/
 group :live do
   gem 'therubyracer'
   gem 'dalli'
-
 end
 
 group :test do
