@@ -6,23 +6,39 @@ describe Card::Set::Right::RelatedArticles do
     @sample_topic = get_a_sample_topic
     @sample_analysis = get_a_sample_analysis
     @sample_claim = get_a_sample_claim
-    @related_article_card = Card.fetch @sample_claim.fetch :trait=>:related_articles
+    @related_article_card = @sample_claim.fetch trait: :related_articles
   end
-  describe "core views" do
-    it "shows cited article and uncited article" do
+
+  describe 'core views' do
+    it 'shows cited article and uncited article' do
       # one claim
       # 2 analysis
       # 1 cited in article
       # 1 non cited in article
-      new_company = Card.create :name=>"test_company",:type_id=>Card::WikirateCompanyID
-      new_topic = Card.create :name=>"test_topic",:type_id=>Card::WikirateTopicID
-      new_analysis = Card.create :name=>"#{new_company.name}+#{new_topic.name}",:type_id=>Card::WikirateAnalysisID
-      new_article = Card.create :name=>"#{new_company.name}+#{new_topic.name}+#{Card[:wikirate_article].name}",:type_id=>Card::BasicID,:content=>"Today is Wednesday."
+      new_company  = Card.create name: 'test_company',
+                                 type_id: Card::WikirateCompanyID
+      new_topic    = Card.create name: 'test_topic',
+                                 type_id: Card::WikirateTopicID
+      new_analysis = Card.create name: "#{new_company.name}+#{new_topic.name}",
+                                 type_id: Card::WikirateAnalysisID
+      new_article  = Card.create name: "#{new_company.name}+#{new_topic.name}"\
+                                       "+#{Card[:wikirate_article].name}",
+                                 type_id: Card::BasicID,
+                                 content: 'Today is Wednesday.'
 
-      claim_card = create_claim "whateverclaim",{"+company"=>{:content=>"[[#{new_company.name}]]\r\n[[#{@sample_company.name}]]"},"+topic"=>{:content=>"[[#{new_topic.name}]]\r\n[[#{@sample_topic.name}]]"}}
+      claim_card = create_claim(
+        'whateverclaim',
+        '+company' => {
+          content: "[[#{new_company.name}]]\r\n[[#{@sample_company.name}]]"
+        },
+        '+topic' => {
+          content: "[[#{new_topic.name}]]\r\n[[#{@sample_topic.name}]]"
+        }
+      )
 
-      sample_article = @sample_analysis.fetch :trait=>:wikirate_article,:new=>{}
-      sample_article.content = "I need some kitkat.#{claim_card.default_citation}"
+      sample_article = @sample_analysis.fetch trait: :wikirate_article, new: {}
+      sample_article.content =
+        "I need some kitkat.#{claim_card.default_citation}"
       sample_article.save
 
       test_company_force_analysis = Card.create :name=>"#{new_company.name}+#{@sample_topic.name}",:type_id=>Card::WikirateAnalysisID
@@ -33,7 +49,7 @@ describe Card::Set::Right::RelatedArticles do
 
       related_article_card = claim_card.fetch :trait=>:related_articles
       html = related_article_card.format(:format=>:html)._render_core
- 
+
       expect(html).to have_tag("div",:with=>{:class=>"related-articles cited-articles"}) do
         with_tag "h3",:text=>"Overviews that cite this Claim"
         with_tag "div", :with=>{:class=>"analysis-link"}
@@ -76,7 +92,7 @@ describe Card::Set::Right::RelatedArticles do
       end
     end
     context "when no related overviews" do
-      it "shows no related overviewss" do 
+      it "shows no related overviewss" do
         claim_card = create_claim "whateverclaim",{}
         related_article_card = Card.fetch claim_card.name+"+related overviews"
         html = related_article_card.format(:format=>:html)._render_core

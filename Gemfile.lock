@@ -68,9 +68,6 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
-    airbrake (4.3.4)
-      builder
-      multi_json
     ansi (1.5.0)
     arel (6.0.3)
     ast (2.1.0)
@@ -127,7 +124,7 @@ GEM
       mime-types (>= 1.16, < 3)
       nokogiri (~> 1.5)
       rails (>= 3, < 5)
-    curb (0.8.8)
+    curb (0.9.0)
     daemons (1.2.3)
     dalli (2.7.4)
     database_cleaner (1.4.1)
@@ -157,7 +154,7 @@ GEM
     htmlentities (4.3.4)
     i18n (0.7.0)
     interception (0.5)
-    iso8601 (0.8.7)
+    iso8601 (0.9.0)
     json (1.8.3)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
@@ -245,7 +242,7 @@ GEM
     rake (10.4.2)
     recaptcha (0.4.0)
     ref (2.0.0)
-    roo (2.2.0)
+    roo (2.3.0)
       nokogiri (~> 1)
       rubyzip (~> 1.1, < 2.0.0)
     rspec (3.1.0)
@@ -275,7 +272,7 @@ GEM
       ansi
       ast
     rubyzip (1.1.7)
-    sass (3.4.19)
+    sass (3.4.20)
     selenium-webdriver (2.48.1)
       childprocess (~> 0.5)
       multi_json (~> 1.0)
@@ -342,7 +339,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  airbrake (~> 4.1)
   capistrano (= 3.2.1)
   capistrano-bundler
   capistrano-maintenance
