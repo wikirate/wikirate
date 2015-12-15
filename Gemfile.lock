@@ -1,5 +1,5 @@
 PATH
-  remote: /Users/ethan/dev/wagn/gem/card
+  remote: ./vendor/wagn/card
   specs:
     card (1.16.14)
       activerecord-session_store (~> 0.1)
@@ -19,7 +19,7 @@ PATH
       uuid (~> 2.3)
 
 PATH
-  remote: /Users/ethan/dev/wagn/gem/wagn
+  remote: ./vendor/wagn/wagn
   specs:
     wagn (1.16.14)
       card (= 1.16.14)
