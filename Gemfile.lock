@@ -1,7 +1,7 @@
 PATH
-  remote: ./vendor/wagn/card
+  remote: /Users/ethan/dev/wagn/gem/card
   specs:
-    card (1.16.13)
+    card (1.16.14)
       activerecord-session_store (~> 0.1)
       bootstrap-kaminari-views (~> 0.0.5)
       carrierwave (~> 0.10)
@@ -19,10 +19,10 @@ PATH
       uuid (~> 2.3)
 
 PATH
-  remote: ./vendor/wagn/wagn
+  remote: /Users/ethan/dev/wagn/gem/wagn
   specs:
-    wagn (1.16.13)
-      card (= 1.16.13)
+    wagn (1.16.14)
+      card (= 1.16.14)
       rails (~> 4.2)
 
 GEM
