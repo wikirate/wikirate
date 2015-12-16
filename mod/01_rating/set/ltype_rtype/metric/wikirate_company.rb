@@ -13,10 +13,13 @@ format :html do
   end
 
   view :all_values do |args|
-    values = Card.search left: card.name,
-                         type: Card::MetricValueID,
-                         sort: 'name', dir: 'desc'
-    values.map.with_index do |v, i|
+    wql = { left: card.name,
+            type: Card::MetricValueID,
+            sort: 'name',
+            dir: 'desc'
+          }
+    wql_comment = "all metric values where metric = #{card.name}"
+    Card.search(wql, wql_comment).map.with_index do |v, i|
       <<-HTML
         <span data-year="#{v.year}" data-value="#{v.value}"
               #{'style="display: none;"' if i > 0}>
