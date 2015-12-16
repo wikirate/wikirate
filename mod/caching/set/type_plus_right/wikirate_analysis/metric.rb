@@ -11,14 +11,15 @@ include Card::CachedCount
 
 # update if topic taging is touched
 ensure_set { TypePlusRight::Metric::WikirateTopic }
-expired_cached_count_cards(
-  set: TypePlusRight::Metric::WikirateTopic
-) do |changed_card|
-  card_names = changed_card.item_names.unshift('in')
-  Card.search type_id: Card::WikirateAnalysisID,
-              right: card_names,
-              append: 'metric'
-end
+
+# expired_cached_count_cards(
+#   set: TypePlusRight::Metric::WikirateTopic
+# ) do |changed_card|
+#   card_names = changed_card.item_names.unshift('in')
+#   Card.search type_id: Card::WikirateAnalysisID,
+#               right: card_names,
+#               append: 'metric'
+# end
 
 # update if the cached count card that caches the latest value
 # is created. This means there is at least one value.
