@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 
 class Card
+  #
+
   module CachedCount
     # contains blocks that get called with a card as argmuent and return
     # all cards that need cache update after a change to to that card
@@ -9,7 +11,7 @@ class Card
 
     def self.included(host_class)
       host_class.extend ClassMethods
-      host_class.card_writer :cached_count, :type=>:plaintext
+      host_class.card_writer :cached_count, :type=>:plain_text
       host_class
     end
 
@@ -19,18 +21,16 @@ class Card
     end
 
     module ClassMethods
-
       def expired_cached_count_cards args={}, &block
-        if args[:set]
-          set_name = args[:set].to_s.gsub(':','').underscore
-          on_actions = Array.wrap(args[:on]) || [:create, :update, :delete]
-          event_name = "update_cached_counts_for_set_#{set_name}_on_#{on_actions.join('_')}"
-          args[:set].class_eval do
-            event event_name.to_sym, :on => on_actions, :after=>:extend do
+        if (set_of_changed_card = args.delete(:set))
+          args[:on] ||= [:create, :update, :delete]
+          args[:after] = :extend
+          name = event_name set_of_changed_card, args
+          set_of_changed_card.class_eval do
+            event name, args do
               Array.wrap(block.call(self)).compact.each do |expired_count_card|
-                if expired_count_card.respond_to?(:update_cached_count)
-                  expired_count_card.update_cached_count
-                end
+                next unless expired_count_card.respond_to?(:update_cached_count)
+                expired_count_card.update_cached_count
               end
             end
           end
@@ -41,6 +41,14 @@ class Card
           end
         end
       end
+
+      def event_name set, args
+        changed_card_set = set.to_s.tr(':', '_').underscore
+        cached_count_set = to_s.tr(':', '_').underscore
+        actions = Array.wrap args[:on]
+        "update_#{cached_count_set}_cached_counts_changed_by_" \
+        "#{changed_card_set}_on_#{actions.join('_')}".to_sym
+      end
     end
 
     def update_cached_count
@@ -50,7 +58,7 @@ class Card
         Card::Auth.as_bot do
           if cached_count_card.new_card?
             cached_count_card.update_attributes!(:content => new_count.to_s)
-          else
+          elsif new_count.to_s != cached_count_card.content
             cached_count_card.update_column(:db_content, new_count.to_s)
             cached_count_card.expire
           end
@@ -65,6 +73,8 @@ class Card
     def calculate_count
       count
     end
+
+
 
  end
 end

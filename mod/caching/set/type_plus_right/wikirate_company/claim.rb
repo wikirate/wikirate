@@ -1,8 +1,11 @@
+# cache # of claims tagged with this company (=_left)
 include Card::CachedCount
 
-expired_cached_count_cards do |changed_card|
-  if (l=changed_card.left)  && l.type_code == :claim &&
-     (r=changed_card.right) && r.type_code == :pointer && (r.key == 'company' || r.key == 'topic')
-    changed_card.item_cards
+expired_cached_count_cards(
+  set: TypePlusRight::Claim::WikirateCompany
+) do |changed_card|
+  # FIXME: we don't catch deletions of companies
+  changed_card.item_cards.map do |company|
+    company.fetch trait: :claim
   end
 end

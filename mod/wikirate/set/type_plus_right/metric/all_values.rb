@@ -1,4 +1,3 @@
-include Card::CachedCount
 include Type::SearchType
 
 def virtual?; true end
@@ -45,7 +44,7 @@ end
 
 def get_cached_result
   @cached_metric_values ||= begin
-    cached_json = fetch(trait: :cached_count, new: {}).format.render_core
+    cached_json = fetch(trait: :cached_count, new: {}).format.render_raw
     JSON.parse(cached_json)
   end
 end
@@ -120,7 +119,7 @@ format :html do
   end
 
   def get_sort_order sort_by, sort_order
-    if sort_by == 'company_name' 
+    if sort_by == 'company_name'
       [toggle_sort_order(sort_order), 'asc']
     else
       ['asc', toggle_sort_order(sort_order)]
@@ -128,7 +127,7 @@ format :html do
   end
 
   def get_sort_icon sort_by, sort_order
-    if sort_by == 'company_name' 
+    if sort_by == 'company_name'
       [get_sort_icon_by_state(sort_order), get_sort_icon_by_state('')]
     else
       [get_sort_icon_by_state(''), get_sort_icon_by_state(sort_order)]
@@ -141,17 +140,17 @@ format :html do
     limit = card.query(search_params)[:limit]
     company_sort_order, value_sort_order = get_sort_order sort_by, sort_order
     company_sort_icon, value_sort_icon = get_sort_icon sort_by, sort_order
-     
+
     url_template = "/#{card.cardname.url_key}?item=content&offset=#{offset}"\
                    "&limit=#{limit}&sort_order=%s&sort_by=%s"
     %{
       <div class='yinyang-row column-header'>
         <div class='company-item value-item'>
-          <a class='header metric-list-header slotter' data-remote='true' 
+          <a class='header metric-list-header slotter' data-remote='true'
             href='#{sprintf(url_template, company_sort_order, 'company_name')}'>
             Companies #{company_sort_icon}
           </a>
-          <a class='data metric-list-header slotter' data-remote='true' 
+          <a class='data metric-list-header slotter' data-remote='true'
             href='#{sprintf(url_template, value_sort_order, 'value')}'>
             Values #{value_sort_icon}
           </a>
@@ -188,7 +187,7 @@ format :html do
 
   view :card_list do |args|
     paging = _optional_render :paging, args
-    if search_results.empty?
+    if search_results.blank?
       render_no_search_results(args)
     else
       results = render :card_list_items, args
@@ -205,41 +204,5 @@ format :html do
   end
 end
 
-def cached_count
-  cached_count_card.content
-end
-
-expired_cached_count_cards do |changed_card|
-  case changed_card.type_id
-  when MetricValueID
-    changed_card = changed_card.left.left.fetch(trait: :all_values)
-    changed_card.update_cached_count if changed_card
-  when WikirateCompanyID
-    metrics = Card.search type_id: MetricID, right_plus: changed_card.name
-    metrics.each do |metric|
-      changed_card = metric.fetch(trait: :all_values)
-      changed_card.update_cached_count if changed_card  
-    end
-  when MetricID
-    changed_card = changed_card.fetch(trait: :all_values)
-    changed_card.update_cached_count if changed_card  
-  end
-
-end
-
-# get all metric values
-def calculate_count
-  result = {}
-  item_cards(default_query: true).each do |card|
-    company_name = card.left.left.cardname.right
-    year = card.cardname.parts[-2]
-    value = card.content
-    unless result.has_key?company_name
-      result[company_name] = []
-    end
-    result[company_name].push({ year: year, value: value})
-  end
-  result.to_json
-end
 
 

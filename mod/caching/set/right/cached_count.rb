@@ -2,6 +2,10 @@ def followable?
   false
 end
 
+def history?
+  false
+end
+
 format :html do
   view :missing  do |args|
     if @card.new_card? && (l = @card.left) && l.respond_to?(:update_cached_count)

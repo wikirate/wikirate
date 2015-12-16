@@ -1,4 +1,4 @@
-# cache # of articles for this company (=_left)
+# cache # of articles for the topic (=_right)
 include Card::CachedCount
 
 ensure_set { TypePlusRight::WikirateAnalysis::WikirateArticle }
@@ -7,6 +7,6 @@ expired_cached_count_cards(
   set: TypePlusRight::WikirateAnalysis::WikirateArticle,
   on: [:create, :delete]
 ) do |changed_card|
-  (analysis = changed_card.left) && (company = analysis.left) &&
-    company.fetch(trait: :analyses_with_articles)
+  (analysis = changed_card.left) && (topic = analysis.right) &&
+    topic.fetch(trait: :analyses_with_articles)
 end
