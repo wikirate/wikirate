@@ -1,6 +1,7 @@
 # cache # of metrics tagged with this topic (=_left)
 include Card::CachedCount
 
+ensure_set { TypePlusRight::Metric::WikirateTopic }
 expired_cached_count_cards(
   set: TypePlusRight::Metric::WikirateTopic
 ) do |changed_card|

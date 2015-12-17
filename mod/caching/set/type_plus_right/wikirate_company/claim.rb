@@ -1,6 +1,7 @@
 # cache # of claims tagged with this company (=_left)
 include Card::CachedCount
 
+ensure_set { TypePlusRight::Claim::WikirateCompany }
 expired_cached_count_cards(
   set: TypePlusRight::Claim::WikirateCompany
 ) do |changed_card|

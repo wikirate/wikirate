@@ -21,12 +21,13 @@ end
 def calculate_indirect_contribution_count
   indirect_contributor.inject(0) do |total, c_card|
     more_contributions =
-      case c_card
-      when respond_to?(:contribution_count)
+      case
+      when c_card.respond_to?(:contribution_count)
         c_card.contribution_count
-      when respond_to?(:direct_contribution_count)
+      when c_card.respond_to?(:direct_contribution_count)
         c_card.direct_contribution_count
-      else Card::Act.find_all_with_actions_on(c_card.id).count
+      else
+        Card::Act.find_all_with_actions_on(c_card.id).count
       end
     total + more_contributions.to_i
   end

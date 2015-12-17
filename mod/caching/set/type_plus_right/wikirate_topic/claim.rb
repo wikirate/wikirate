@@ -1,6 +1,7 @@
 # cache # of claims tagged with this topic (=_left)
 include Card::CachedCount
 
+ensure_set { TypePlusRight::Claim::WikirateTopic }
 expired_cached_count_cards(
   set: TypePlusRight::Claim::WikirateTopic
 ) do |changed_card|
