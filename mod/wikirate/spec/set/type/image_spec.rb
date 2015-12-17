@@ -9,7 +9,6 @@ describe Card::Set::Type::Image do
                                 image: @file
       missing_image = image_card.format.subformat(@missing_card)._render_core
       html = image_card.format.render_missing denied_view: :core
-
       expect(html).to eq(missing_image)
     end
     it 'shows missing view normally' do
