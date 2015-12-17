@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 describe Card::Set::TypePlusRight::WikirateCompany::Source do
-  it 'updated cached count' do
+  it 'updates cached count' do
     samsung_sources = Card.fetch "Samsung+source"
     expect(samsung_sources.cached_count).to eq 0
     source = get_a_sample_source

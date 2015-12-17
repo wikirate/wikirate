@@ -5,7 +5,7 @@ describe Card::Set::Right::RelatedArticles do
     @sample_company = get_a_sample_company
     @sample_topic = get_a_sample_topic
     @sample_analysis = get_a_sample_analysis
-    @sample_claim = get_a_sample_claim
+    @sample_claim = get_a_sample_note
     @related_article_card = Card.fetch @sample_claim.fetch :trait=>:related_articles
   end
   describe "core views" do
@@ -33,7 +33,7 @@ describe Card::Set::Right::RelatedArticles do
 
       related_article_card = claim_card.fetch :trait=>:related_articles
       html = related_article_card.format(:format=>:html)._render_core
- 
+
       expect(html).to have_tag("div",:with=>{:class=>"related-articles cited-articles"}) do
         with_tag "h3",:text=>"Overviews that cite this Claim"
         with_tag "div", :with=>{:class=>"analysis-link"}
@@ -76,7 +76,7 @@ describe Card::Set::Right::RelatedArticles do
       end
     end
     context "when no related overviews" do
-      it "shows no related overviewss" do 
+      it "shows no related overviews" do
         claim_card = create_claim "whateverclaim",{}
         related_article_card = Card.fetch claim_card.name+"+related overviews"
         html = related_article_card.format(:format=>:html)._render_core
