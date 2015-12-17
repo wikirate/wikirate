@@ -51,9 +51,8 @@ def has_file_or_text?
     (text_card && text_card.content.present?)
 end
 
-event :process_source_url, before: :process_subcards, on: :create, 
-                           when: proc{  |c| !c.has_file_or_text? } do
-  
+event :process_source_url, before: :process_subcards, on: :create,
+                           when: proc { |c| !c.has_file_or_text? } do
   linkparams = subfield(Card[:wikirate_link].name)
   url = linkparams && linkparams.content or errors.add(:link, "does not exist.")
   if errors.empty? and url.length != 0
@@ -89,7 +88,7 @@ event :process_source_url, before: :process_subcards, on: :create,
       end
     end
   end
-  
+
 end
 
 def url? url
@@ -120,7 +119,7 @@ rescue  # if open raises errors , just treat the source as a normal source
   Rails.logger.info "Fail to get the file from link"
 end
 
-def file_link? url 
+def file_link? url
   # just got the header instead of downloading the whole file
   curl = Curl::Easy.new(url)
   curl.follow_location = true
@@ -131,7 +130,7 @@ def file_link? url
   # prevent from showing file too big while users are adding a link source
   max_size = (max = Card['*upload max']) ? max.db_content.to_i : 5
 
-  !(content_type.start_with?("text/html") || 
+  !(content_type.start_with?("text/html") ||
     content_type.start_with?("image/")) &&
     content_size.to_i <= max_size.megabytes
 rescue
@@ -154,6 +153,21 @@ def parse_source_page url
   end
 rescue
   Rails.logger.info "Fail to extract information from the #{ url }"
+end
+
+def analysis_names
+  return [] unless (topics = Card["#{name}+#{Card[:wikirate_topic].name}"]) &&
+                   (companies = Card["#{name}+#{Card[:wikirate_company].name}"])
+
+  companies.item_names.map do |company|
+    topics.item_names.map do |topic|
+      "#{company}+#{topic}"
+    end
+  end.flatten
+end
+
+def analysis_cards
+  analysis_names.map { |aname| Card.fetch aname }
 end
 
 event :autopopulate_website, after: :process_source_url, on: :create do
@@ -270,6 +284,4 @@ format :html do
       super(args)
     end
   end
-
 end
-

@@ -7,8 +7,10 @@ def history?
 end
 
 format :html do
-  view :missing  do |args|
-    if @card.new_card? && (l = @card.left) && l.respond_to?(:update_cached_count)
+  view :missing do |args|
+    if @card.new_card? &&
+       (l = @card.left) &&
+       l.respond_to?(:update_cached_count)
       l.update_cached_count
       @card = Card.fetch(card.name)
       render(args[:denied_view], args)

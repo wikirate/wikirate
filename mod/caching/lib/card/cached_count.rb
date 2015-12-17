@@ -11,7 +11,7 @@ class Card
 
     def self.included(host_class)
       host_class.extend ClassMethods
-      host_class.card_writer :cached_count, :type=>:plain_text
+      host_class.card_writer :cached_count, type: :plain_text
       host_class
     end
 
@@ -21,8 +21,8 @@ class Card
     end
 
     module ClassMethods
-      def expired_cached_count_cards args={}, &block
-        if (set_of_changed_card = args.delete(:set))
+      def recount_trigger set_of_changed_card, args={}, &block
+        if set_of_changed_card
           args[:on] ||= [:create, :update, :delete]
           args[:after] = :extend
           name = event_name set_of_changed_card, args
@@ -52,29 +52,27 @@ class Card
     end
 
     def update_cached_count
-      if respond_to?(:calculate_count) && respond_to?(:cached_count_card)
-        new_count = calculate_count
-        return unless new_count
-        Card::Auth.as_bot do
-          if cached_count_card.new_card?
-            cached_count_card.update_attributes!(:content => new_count.to_s)
-          elsif new_count.to_s != cached_count_card.content
-            cached_count_card.update_column(:db_content, new_count.to_s)
-            cached_count_card.expire
-          end
+      return unless respond_to?(:calculate_count) &&
+                    respond_to?(:cached_count_card)
+      new_count = calculate_count
+      return unless new_count
+      Card::Auth.as_bot do
+        if cached_count_card.new_card?
+          cached_count_card.update_attributes! content: new_count.to_s
+        elsif new_count.to_s != cached_count_card.content
+          cached_count_card.update_column :db_content, new_count.to_s
+          cached_count_card.expire
         end
-        new_count
       end
+      new_count
     end
 
     # called to refresh the cached count
-    # the default way is hthat the card is a search card and we just count the search result
+    # the default way is hthat the card is a search card and we just
+    # count the search result
     # for special calculations override this method in your set
     def calculate_count
       count
     end
-
-
-
- end
+  end
 end
