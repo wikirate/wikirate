@@ -6,7 +6,7 @@
 #  "right_plus":[["Company", {"refer_to":"_1"}],["Topic",{"refer_to":"_2"}]]
 include Card::CachedCount
 
-def self.notes_for_analyses_applicable_to source
+def self.notes_for_analyses_applicable_to(source)
   source.analysis_names.map do |analysis_name|
     Card.fetch "#{analysis_name}+#{Card[:source].name}"
   end

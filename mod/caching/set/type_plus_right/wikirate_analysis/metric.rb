@@ -1,7 +1,7 @@
 
 include Card::CachedCount
 
-def self.notes_for_analyses_applicable_to metric
+def self.notes_for_analyses_applicable_to(metric)
   metric.analysis_names.map do |analysis_name|
     Card.fetch analysis_name.to_name.trait(:claim)
   end

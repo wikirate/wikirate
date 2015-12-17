@@ -52,8 +52,7 @@ def has_file_or_text?
 end
 
 event :process_source_url, before: :process_subcards, on: :create,
-                           when: proc{  |c| !c.has_file_or_text? } do
-
+                           when: proc { |c| !c.has_file_or_text? } do
   linkparams = subfield(Card[:wikirate_link].name)
   url = linkparams && linkparams.content or errors.add(:link, "does not exist.")
   if errors.empty? and url.length != 0
@@ -285,6 +284,4 @@ format :html do
       super(args)
     end
   end
-
 end
-
