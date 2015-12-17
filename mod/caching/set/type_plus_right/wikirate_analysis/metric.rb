@@ -14,10 +14,9 @@ ensure_set { TypePlusRight::Metric::WikirateTopic }
 expired_cached_count_cards(
   set: TypePlusRight::Metric::WikirateTopic
 ) do |changed_card|
-  card_names = changed_card.item_names.unshift('in')
-  Card.search type_id: Card::WikirateAnalysisID,
-              right: card_names,
-              append: 'metric'
+  changed_card.item_names.each do |topic|
+    Card.fetch topic.to_name.trait(:metric)
+  end
 end
 
 # update if the cached count card that caches the latest value
