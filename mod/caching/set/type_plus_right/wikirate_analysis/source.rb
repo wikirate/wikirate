@@ -15,13 +15,13 @@ end
 # recount # of Sources associated with Company+Topic (analysis) when ...
 
 # ...<Source>+company is edited
-ensure_set { Source::WikirateCompany }
-recount_trigger Source::WikirateCompany do |changed_card|
+ensure_set { TypePlusRight::Source::WikirateCompany }
+recount_trigger TypePlusRight::Source::WikirateCompany do |changed_card|
   notes_for_analyses_applicable_to changed_card.left
 end
 
 # ...<Source>+topic is edited
-ensure_set { Source::WikirateTopic }
-recount_trigger Source::WikirateTopic do |changed_card|
+ensure_set { TypePlusRight::Source::WikirateTopic }
+recount_trigger TypePlusRight::Source::WikirateTopic do |changed_card|
   notes_for_analyses_applicable_to changed_card.left
 end

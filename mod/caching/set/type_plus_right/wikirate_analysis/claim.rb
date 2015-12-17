@@ -9,13 +9,13 @@ end
 # recount # of Notes associated with Company+Topic (analysis) when ...
 
 # ... <note>+company is edited
-ensure_set { Claim::WikirateCompany }
-recount_trigger Claim::WikirateCompany do |changed_card|
+ensure_set { TypePlusRight::Claim::WikirateCompany }
+recount_trigger TypePlusRight::Claim::WikirateCompany do |changed_card|
   notes_for_analyses_applicable_to changed_card.left
 end
 
 # ... <note>+topic is edited
-ensure_set { Claim::WikirateTopic }
-recount_trigger Claim::WikirateTopic do |changed_card|
+ensure_set { TypePlusRight::Claim::WikirateTopic }
+recount_trigger TypePlusRight::Claim::WikirateTopic do |changed_card|
   notes_for_analyses_applicable_to changed_card.left
 end

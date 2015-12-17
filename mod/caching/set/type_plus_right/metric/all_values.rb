@@ -10,7 +10,7 @@ end
 # recount # of values for a metric when ...
 
 # ... a +value is changed
-recount_trigger(MetricValue::Value) do |changed_card|
+recount_trigger(TypePlusRight::MetricValue::Value) do |changed_card|
   changed_card.metric_card.fetch trait: :all_values
 end
 
