@@ -7,9 +7,7 @@ card_accessor :direct_contribution_count, :type=>:number, :default=>"0"
 card_accessor :contribution_count, :type=>:number, :default=>"0"
 
 def indirect_contributor_search_args
-  [
-    {:right_id=>VoteCountID, :left=>self.name }
-  ]
+  [{ right_id: VoteCountID, left: name }]
 end
 
 
@@ -139,26 +137,24 @@ format :html do
   end
 end
 
-
 def analysis_names
-  if topics   = Card["#{name}+#{Card[:wikirate_topic  ].name}"] and
-    companies = Card["#{name}+#{Card[:wikirate_company].name}"]
+  return [] unless (topics = Card["#{name}+#{Card[:wikirate_topic].name}"]) &&
+                   (companies = Card["#{name}+#{Card[:wikirate_company].name}"])
 
-    companies = companies.item_cards.reject { |c| c.new_card? || c.type_id != Card::WikirateCompanyID }
-    topics    = topics   .item_cards.reject { |c| c.new_card? || c.type_id != Card::WikirateTopicID   }
-
-    companies.map do |company|
-      topics.map do |topic|
-        "#{company.name}+#{topic.name}"
-      end
-    end.flatten
-  end
+  companies.item_names.map do |company|
+    topics.item_names.map do |topic|
+      "#{company}+#{topic}"
+    end
+  end.flatten
 end
 
-event :reset_claim_counts, :after=>:store do
+def analysis_cards
+  analysis_names.map { |aname| Card.fetch aname }
+end
+
+event :reset_claim_counts, after: :store do
   Card.reset_claim_counts
 end
-
 
 event :validate_note, :before=>:approve, :on=>:save do
   errors.add :note, "is too long (100 character maximum)" if name.length > 100

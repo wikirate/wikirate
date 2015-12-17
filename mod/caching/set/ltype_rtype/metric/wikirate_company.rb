@@ -2,11 +2,11 @@
 include Card::CachedCount
 
 ensure_set { TypePlusRight::MetricValue::Value }
-expired_cached_count_cards(
-  set: TypePlusRight::MetricValue::Value
-) do |changed_card|
-  changed_card.metric_plus_company_card
-end
+recount_trigger TypePlusRight::MetricValue::Value, &:metric_plus_company_card
+
+# ) do |changed_card|
+#  changed_card.metric_plus_company_card
+# end
 
 # returns year of latest metric value
 def calculate_count

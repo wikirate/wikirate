@@ -21,8 +21,8 @@ class Card
     end
 
     module ClassMethods
-      def expired_cached_count_cards args={}, &block
-        if (set_of_changed_card = args.delete(:set))
+      def recount_trigger set_of_changed_card, args={}, &block
+        if set_of_changed_card
           args[:on] ||= [:create, :update, :delete]
           args[:after] = :extend
           name = event_name set_of_changed_card, args

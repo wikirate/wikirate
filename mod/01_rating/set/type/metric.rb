@@ -17,3 +17,14 @@ format :html do
     true
   end
 end
+
+def analysis_names
+  return [] unless (topics = Card["#{name}+#{Card[:wikirate_topic].name}"]) &&
+                   (companies = Card["#{name}+#{Card[:wikirate_company].name}"])
+
+  companies.item_names.map do |company|
+    topics.item_names.map do |topic|
+      "#{company}+#{topic}"
+    end
+  end.flatten
+end

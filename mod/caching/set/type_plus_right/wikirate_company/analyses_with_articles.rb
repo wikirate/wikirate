@@ -1,12 +1,12 @@
 # cache # of articles for this company (=_left)
 include Card::CachedCount
 
-ensure_set { TypePlusRight::WikirateAnalysis::WikirateArticle }
-# update if article gets created or deleted
-expired_cached_count_cards(
-  set: TypePlusRight::WikirateAnalysis::WikirateArticle,
-  on: [:create, :delete]
-) do |changed_card|
-  (analysis = changed_card.left) && (company = analysis.left) &&
-    company.fetch(trait: :analyses_with_articles)
+# recount overviews associated with a company
+# whenever article gets created or deleted
+ensure_set { WikirateAnalysis::WikirateArticle }
+recount_trigger(WikirateAnalysis::WikirateArticle,
+                on: [:create, :delete]) do |changed_card|
+  if (company_name = changed_card.cardname.left_name.left)
+    Card.fetch company_name.to_name.trait(:analyses_with_articles)
+  end
 end
