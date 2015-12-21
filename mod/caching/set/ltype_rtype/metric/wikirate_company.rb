@@ -1,12 +1,8 @@
- # cache year of latest metric value
+# cache year of latest metric value
 include Card::CachedCount
 
 ensure_set { TypePlusRight::MetricValue::Value }
-expired_cached_count_cards(
-  set: TypePlusRight::MetricValue::Value
-) do |changed_card|
-  changed_card.metric_plus_company_card
-end
+recount_trigger TypePlusRight::MetricValue::Value, &:metric_plus_company_card
 
 # returns year of latest metric value
 def calculate_count
@@ -14,8 +10,11 @@ def calculate_count
 end
 
 def search_latest_value_name
-  Card.search(left: name, right: { type: 'year' },
-              dir: 'asc',
-              limit: 1,
-              return: 'name').first
+  Card.search(
+    left: name,
+    right: { type: 'year' },
+    dir: 'asc',
+    limit: 1,
+    return: 'name'
+  ).first
 end

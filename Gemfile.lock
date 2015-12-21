@@ -8,7 +8,7 @@ GIT
 PATH
   remote: ./vendor/wagn/card
   specs:
-    card (1.16.13)
+    card (1.16.14)
       activerecord-session_store (~> 0.1)
       bootstrap-kaminari-views (~> 0.0.5)
       carrierwave (~> 0.10)
@@ -28,8 +28,8 @@ PATH
 PATH
   remote: ./vendor/wagn/wagn
   specs:
-    wagn (1.16.13)
-      card (= 1.16.13)
+    wagn (1.16.14)
+      card (= 1.16.14)
       rails (~> 4.2)
 
 GEM
@@ -134,7 +134,7 @@ GEM
       mime-types (>= 1.16, < 3)
       nokogiri (~> 1.5)
       rails (>= 3, < 5)
-    curb (0.8.8)
+    curb (0.9.0)
     daemons (1.2.3)
     dalli (2.7.4)
     database_cleaner (1.4.1)
@@ -164,7 +164,7 @@ GEM
     htmlentities (4.3.4)
     i18n (0.7.0)
     interception (0.5)
-    iso8601 (0.8.7)
+    iso8601 (0.9.0)
     json (1.8.3)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)

@@ -6,14 +6,22 @@
 #  "right_plus":[["Company", {"refer_to":"_1"}],["Topic",{"refer_to":"_2"}]]
 include Card::CachedCount
 
-ensure_set { TypePlusRight::Source::WikirateCompany }
-expired_cached_count_cards set: TypePlusRight::Source::WikirateCompany do |changed_card|
-  Card.search type_id: Card::WikirateAnalysisID, append: 'source',
-              left: changed_card.item_names.unshift('in')
+def self.notes_for_analyses_applicable_to(source)
+  source.analysis_names.map do |analysis_name|
+    Card.fetch "#{analysis_name}+#{Card[:source].name}"
+  end
 end
 
+# recount # of Sources associated with Company+Topic (analysis) when ...
+
+# ...<Source>+company is edited
+ensure_set { TypePlusRight::Source::WikirateCompany }
+recount_trigger TypePlusRight::Source::WikirateCompany do |changed_card|
+  notes_for_analyses_applicable_to changed_card.left
+end
+
+# ...<Source>+topic is edited
 ensure_set { TypePlusRight::Source::WikirateTopic }
-expired_cached_count_cards set: TypePlusRight::Source::WikirateTopic do |changed_card|
-  Card.search type_id: Card::WikirateAnalysisID, append: 'source',
-              right: changed_card.item_names.unshift('in')
+recount_trigger TypePlusRight::Source::WikirateTopic do |changed_card|
+  notes_for_analyses_applicable_to changed_card.left
 end

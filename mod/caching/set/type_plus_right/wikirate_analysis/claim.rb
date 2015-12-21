@@ -1,17 +1,21 @@
 include Card::CachedCount
 
-ensure_set { TypePlusRight::Claim::WikirateCompany }
-expired_cached_count_cards set: TypePlusRight::Claim::WikirateCompany do |changed_card|
-    # find all related analysis
-    card_names = changed_card.item_names.unshift('in')
-    Card.search type_id: Card::WikirateAnalysisID, append: 'claim',
-                left: card_names
+def self.notes_for_analyses_applicable_to(note)
+  note.analysis_names.map do |analysis_name|
+    Card.fetch analysis_name.to_name.trait(:claim)
+  end
 end
 
+# recount # of Notes associated with Company+Topic (analysis) when ...
+
+# ... <note>+company is edited
+ensure_set { TypePlusRight::Claim::WikirateCompany }
+recount_trigger TypePlusRight::Claim::WikirateCompany do |changed_card|
+  notes_for_analyses_applicable_to changed_card.left
+end
+
+# ... <note>+topic is edited
 ensure_set { TypePlusRight::Claim::WikirateTopic }
-expired_cached_count_cards set: TypePlusRight::Claim::WikirateTopic do |changed_card|
-    # find all related analysis
-    card_names = changed_card.item_names.unshift('in')
-    Card.search type_id: Card::WikirateAnalysisID, append: 'claim',
-                right: card_names
+recount_trigger TypePlusRight::Claim::WikirateTopic do |changed_card|
+  notes_for_analyses_applicable_to changed_card.left
 end

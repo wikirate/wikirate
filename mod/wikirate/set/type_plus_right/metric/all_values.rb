@@ -19,8 +19,8 @@ end
 
 def get_sort_params
   [
-    (Env.params["sort_by"]||"company_name"),
-    (Env.params["sort_order"]||"asc")
+    (Env.params['sort_by'] || 'value'),
+    (Env.params['sort_order'] || 'desc')
   ]
 end
 
@@ -187,7 +187,7 @@ format :html do
 
   view :card_list do |args|
     paging = _optional_render :paging, args
-    if search_results.empty?
+    if search_results.blank?
       render_no_search_results(args)
     else
       results = render :card_list_items, args
