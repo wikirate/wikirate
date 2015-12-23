@@ -28,9 +28,13 @@ format :html do
     #rename "name" to "Claim"
     #add a div for claim word counting
     %{
-      #{ formgroup 'Note', raw( name_field form ), :editor=>'name', :help=>true }
-      <div class='note-counting'>
-        <span class='note-counting-number'>100</span> character(s) left
+      <div class='row'>
+        <div class='col-md-12'>
+            #{ formgroup 'Note', raw( name_field form ), :editor=>'name', :help=>true }
+            <div class='note-counting'>
+              <span class='note-counting-number'>100</span> character(s) left
+            </div>
+        </div>
       </div>
     }
   end
@@ -227,4 +231,3 @@ event :sort_tags, :before=>:approve_subcards, :on=>:create do
   end
 end
 =end
-
