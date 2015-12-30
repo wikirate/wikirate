@@ -60,6 +60,7 @@ end
 group :test, :development do
 
   gem 'thin'
+  gem 'pry', git: 'https://github.com/pry/pry'  # bug in 0.10.3, fixed in master
   gem 'pry-rails'
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
