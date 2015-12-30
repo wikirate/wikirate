@@ -33,7 +33,3 @@ recount_trigger TypePlusRight::Claim::WikirateCompany do |changed_card|
 end
 
 # FIXME: should also count connections via metrics.
-  changed_card.item_names.map do |company|
-    Card.fetch company.to_name.trait(:wikirate_topic)
-  end
-end
