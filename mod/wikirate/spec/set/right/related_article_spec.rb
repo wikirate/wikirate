@@ -5,8 +5,8 @@ describe Card::Set::Right::RelatedArticles do
     @sample_company = get_a_sample_company
     @sample_topic = get_a_sample_topic
     @sample_analysis = get_a_sample_analysis
-    @sample_claim = get_a_sample_claim
-    @related_article_card = @sample_claim.fetch trait: :related_articles
+    @sample_claim = get_a_sample_note
+    @related_article_card = @sample_claim.fetch :trait=>:related_articles
   end
 
   describe 'core views' do

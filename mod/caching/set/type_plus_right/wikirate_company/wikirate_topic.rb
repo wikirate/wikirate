@@ -1,4 +1,20 @@
 include Card::CachedCount
+#{
+#   "type":"topic",
+#   "referred_to_by":{
+#     "or":{
+#       "left":{
+#           "type":["in","Note","Source"],
+#           "right_plus":["company",{"refer_to":"_1"}]
+#       },
+#       "and":{
+#         "type":"Metric",
+#         "right_plus":["_1",{}]
+#        }
+#     },
+#     "right":"topic"
+#   }
+# }
 
 # recount topics associated with a company whenever <source>+company is edited
 ensure_set { TypePlusRight::Source::WikiRateCompany }
