@@ -65,6 +65,20 @@ event :process_source_url,
     if cite_card
       if cite_card.type_code != :source
         errors.add :source, ' can only be source type or valid URL.'
+        else
+          self.name = cite_card.name
+          abort :success
+        end
+      elsif !url?(url) || wikirate_url?(url)
+        errors.add :source, " does not exist."
+      end
+    end
+    duplicates = Self::Source.find_duplicates url
+    if duplicates.any?
+      duplicated_name = duplicates.first.cardname.left
+      if Card::Env.params[:sourcebox] == 'true'
+        self.name = duplicated_name
+        abort :success
       else
         self.name = cite_card.name
         abort :success
@@ -153,6 +167,21 @@ def parse_source_page url
   end
 rescue
   Rails.logger.info "Fail to extract information from the #{ url }"
+end
+
+def analysis_names
+  return [] unless (topics = Card["#{name}+#{Card[:wikirate_topic].name}"]) &&
+                   (companies = Card["#{name}+#{Card[:wikirate_company].name}"])
+
+  companies.item_names.map do |company|
+    topics.item_names.map do |topic|
+      "#{company}+#{topic}"
+    end
+  end.flatten
+end
+
+def analysis_cards
+  analysis_names.map { |aname| Card.fetch aname }
 end
 
 event :autopopulate_website, after: :process_source_url, on: :create do

@@ -1,9 +1,8 @@
+# cache # of sources on which values for metric (=_left) are based on
 include Card::CachedCount
 
-ensure_set do
-  TypePlusRight::MetricValue::Source
-end
-
-expired_cached_count_cards :set=>TypePlusRight::MetricValue::Source do |changed_card|
-  changed_card.item_cards
+# recount no. of sources on metric
+ensure_set { TypePlusRight::MetricValue::Source }
+recount_trigger MetricValue::Source do |changed_card|
+  changed_card.left.metric_card.fetch trait: :source
 end

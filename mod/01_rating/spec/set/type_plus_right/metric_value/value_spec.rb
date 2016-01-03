@@ -45,5 +45,21 @@ describe Card::Set::TypePlusRight::MetricValue::Value do
       end
     end
   end
+
+  describe '#metric' do
+    subject { @metric_value.fetch(trait: :value).metric }
+    it { is_expected.to eq @metric.name }
+  end
+
+  describe '#company' do
+    subject { @metric_value.fetch(trait: :value).company }
+    it { is_expected.to eq @company.name }
+  end
+
+  describe '#year' do
+    subject { @metric_value.fetch(trait: :value).year }
+    it { is_expected.to eq '2015' }
+  end
+
 end
 

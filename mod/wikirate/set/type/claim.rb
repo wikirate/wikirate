@@ -7,9 +7,7 @@ card_accessor :direct_contribution_count, :type=>:number, :default=>"0"
 card_accessor :contribution_count, :type=>:number, :default=>"0"
 
 def indirect_contributor_search_args
-  [
-    {:right_id=>VoteCountID, :left=>self.name }
-  ]
+  [{ right_id: VoteCountID, left: name }]
 end
 
 
@@ -28,9 +26,13 @@ format :html do
     #rename "name" to "Claim"
     #add a div for claim word counting
     %{
-      #{ formgroup 'Note', raw( name_field form ), :editor=>'name', :help=>true }
-      <div class='note-counting'>
-        <span class='note-counting-number'>100</span> character(s) left
+      <div class='row'>
+        <div class='col-md-12'>
+            #{ formgroup 'Note', raw( name_field form ), :editor=>'name', :help=>true }
+            <div class='note-counting'>
+              <span class='note-counting-number'>100</span> character(s) left
+            </div>
+        </div>
       </div>
     }
   end
@@ -77,7 +79,7 @@ format :html do
     # special view for prompting users with next steps
     if Auth.signed_in? and ( tip = args[:tip] || next_step_tip ) and @mode != :closed
       %{
-        <div class="claim-tip">
+        <div class="note-tip">
           Tip: You can #{ tip }
           <span id="close-tip" class="fa fa-times-circle"></span>
         </div>
@@ -88,20 +90,20 @@ format :html do
   def next_step_tip
     #FIXME - cardnames
     if (not topics = Card["#{card.name}+topics"]) || topics.item_names.empty?
-      "improve this claim by adding a topic."
+      'improve this note by adding a topic.'
     elsif (not companies = Card["#{card.name}+company"]) || companies.item_names.empty?
-      "improve this claim by adding a company."
+      'improve this note by adding a company.'
     else
       cited_in = Card.search :refer_to => card.name, :left=>{:type_id=>WikirateAnalysisID}, :right=>{:name=>Card[:wikirate_article].name}
       if card.analysis_names.size > cited_in.size
-        "cite this claim in related overviews."
+        'cite this note in related overviews.'
       end
     end
   end
 
   view :sample_citation do |args|
-    tip = "easily cite this claim by pasting the following:" +
-      text_area_tag( :citable_claim, card.default_citation )
+    tip = 'easily cite this note by pasting the following:' +
+          text_area_tag(:citable_note, card.default_citation)
     %{ <div class="sample-citation">#{ render :tip, :tip=>tip }</div> }
   end
 
@@ -139,26 +141,24 @@ format :html do
   end
 end
 
-
 def analysis_names
-  if topics   = Card["#{name}+#{Card[:wikirate_topic  ].name}"] and
-    companies = Card["#{name}+#{Card[:wikirate_company].name}"]
+  return [] unless (topics = Card["#{name}+#{Card[:wikirate_topic].name}"]) &&
+                   (companies = Card["#{name}+#{Card[:wikirate_company].name}"])
 
-    companies = companies.item_cards.reject { |c| c.new_card? || c.type_id != Card::WikirateCompanyID }
-    topics    = topics   .item_cards.reject { |c| c.new_card? || c.type_id != Card::WikirateTopicID   }
-
-    companies.map do |company|
-      topics.map do |topic|
-        "#{company.name}+#{topic.name}"
-      end
-    end.flatten
-  end
+  companies.item_names.map do |company|
+    topics.item_names.map do |topic|
+      "#{company}+#{topic}"
+    end
+  end.flatten
 end
 
-event :reset_claim_counts, :after=>:store do
+def analysis_cards
+  analysis_names.map { |aname| Card.fetch aname }
+end
+
+event :reset_claim_counts, after: :store do
   Card.reset_claim_counts
 end
-
 
 event :validate_note, :before=>:approve, :on=>:save do
   errors.add :note, "is too long (100 character maximum)" if name.length > 100
@@ -227,4 +227,3 @@ event :sort_tags, :before=>:approve_subcards, :on=>:create do
   end
 end
 =end
-
