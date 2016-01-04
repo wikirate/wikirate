@@ -4,7 +4,7 @@ describe Card::Set::Right::MyContributions do
     @user_contribution = @user_card.fetch trait: :my_contributions
   end
   def joe_plus codename
-    "Joe_User+#{Card[:contributed_metrics].cardname.url_key}"
+    "Joe_User+#{Card[codename].cardname.url_key}"
   end
   describe '.section' do
     it 'returns count, name and contribution_card_name of contributions for ' \
