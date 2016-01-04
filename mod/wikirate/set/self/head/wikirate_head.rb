@@ -17,8 +17,8 @@ format :html do
     end
   end
 
-  view :raw do |args|
-    result = super(args)
+  view :raw do
+    result = super()
     if request
       user_agent = request.user_agent
       if user_agent && ( user_agent=="Facebot" || user_agent.include?("facebookexternalhit/1.1"))
