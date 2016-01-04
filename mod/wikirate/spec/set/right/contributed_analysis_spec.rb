@@ -5,11 +5,11 @@ describe Card::Set::Right::ContributedAnalysis do
 
     analysis = get_a_sample_analysis
 
-    article = Card[analysis.name].fetch :trait=>:wikirate_article,:new=>{}
+    article = Card[analysis.name].fetch :trait=>:overview,:new=>{}
     article.content = "One of my most productive days was throwing away 1000 lines of code."
     article.save!
 
-    article1 = Card["Apple_Inc+Natural Resource Use"].fetch :trait=>:wikirate_article,:new=>{}
+    article1 = Card["Apple_Inc+Natural Resource Use"].fetch :trait=>:overview,:new=>{}
     article1.content = "When in doubt, use brute force."
     article1.save!
     @c_card = @user_card.fetch(:trait=>:contributed_analysis)

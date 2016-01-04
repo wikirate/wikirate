@@ -48,7 +48,7 @@ describe Card::Set::Right::FilterSearch do
           @company_card = get_a_sample_company
           @topic_card = get_a_sample_topic
           @filter_search_card = Card[:claim].fetch :trait=>:filter_search
-          
+
           @new_company = Card.create :name=>"test_company",:type_id=>Card::WikirateCompanyID
           @new_topic = Card.create :name=>"test_topic",:type_id=>Card::WikirateTopicID
 
@@ -78,38 +78,38 @@ describe Card::Set::Right::FilterSearch do
              Card::Env.params[:tag] = "nonexisitingtag"
 
             html = Card[:claim].format.render_core
-            expect(html).to have_tag('div',:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do    
+            expect(html).to have_tag('div',:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do
               without_tag('div',:with=>{:id=>"whateverclaim"})
             end
           end
           it "uses non related company" do
              Card::Env.params[:company] = "Iamnoangel"
             html = Card[:claim].format.render_core
-            expect(html).to have_tag('div',:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do    
+            expect(html).to have_tag('div',:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do
               without_tag('div',:with=>{:id=>"whateverclaim"})
             end
           end
           it "uses non related topic" do
              Card::Env.params[:topic] = "Iamnodemon"
             html = Card[:claim].format.render_core
-            expect(html).to have_tag('div',:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do    
+            expect(html).to have_tag('div',:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do
               without_tag('div',:with=>{:id=>"whateverclaim"})
             end
           end
           it "is cited" do
             Card::Env.params[:cited] = "yes"
             html = Card[:claim].format.render_core
-            expect(html).to have_tag('div',:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do    
+            expect(html).to have_tag('div',:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do
               without_tag('div',:with=>{:id=>"whateverclaim"})
             end
           end
           it "is not cited" do
             Card::Env.params[:cited] = "no"
             new_analysis = Card.create :name=>"#{@new_company.name}+#{@new_topic.name}",:type_id=>Card::WikirateAnalysisID
-            new_article = Card.create :name=>"#{@new_company.name}+#{@new_topic.name}+#{Card[:wikirate_article].name}",:type_id=>Card::BasicID,:content=>"asdsad#{@claim_card.default_citation}"
+            new_article = Card.create :name=>"#{@new_company.name}+#{@new_topic.name}+#{Card[:overview].name}",:type_id=>Card::BasicID,:content=>"asdsad#{@claim_card.default_citation}"
 
             html = Card[:claim].format.render_core
-            expect(html).to have_tag('div',:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do    
+            expect(html).to have_tag('div',:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do
               without_tag('div',:with=>{:id=>"whateverclaim"})
             end
           end

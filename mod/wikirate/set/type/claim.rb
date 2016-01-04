@@ -94,7 +94,7 @@ format :html do
     elsif (not companies = Card["#{card.name}+company"]) || companies.item_names.empty?
       'improve this note by adding a company.'
     else
-      cited_in = Card.search :refer_to => card.name, :left=>{:type_id=>WikirateAnalysisID}, :right=>{:name=>Card[:wikirate_article].name}
+      cited_in = Card.search :refer_to => card.name, :left=>{:type_id=>WikirateAnalysisID}, :right=>{:name=>Card[:overview].name}
       if card.analysis_names.size > cited_in.size
         'cite this note in related overviews.'
       end

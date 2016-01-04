@@ -31,7 +31,7 @@ shared_examples_for 'contributions' do |subject_type|
       is_expected.to eq(@initial_count+2)
     end
   end
-  
+
   context "when article edited" do
     before do
       @analysis = Card["#{company_name}+#{topic_name}"]
@@ -39,7 +39,7 @@ shared_examples_for 'contributions' do |subject_type|
       @direct_cc = @analysis.direct_contribution_count.to_i
       @subject.update_contribution_count
       @initial_count = @subject.contribution_count.to_i
-      article = @analysis.fetch :trait=>:wikirate_article,:new=>{}
+      article = @analysis.fetch :trait=>:overview,:new=>{}
       Card::Auth.as_bot do
         article.update_attributes!(:content=>"change about")
       end
@@ -104,7 +104,7 @@ describe Card::Set::All::Contributions do
       end
       it "adds one to contribution counter" do
         expect(@company.contribution_count.to_i).to eq(@initial_count+1)
-      end 
+      end
     end
   end
 
@@ -121,7 +121,7 @@ describe Card::Set::All::Contributions do
       end
       it "adds one to contribution counter" do
         expect(@topic.contribution_count.to_i).to eq(@initial_count+1)
-      end 
+      end
 
     end
   end

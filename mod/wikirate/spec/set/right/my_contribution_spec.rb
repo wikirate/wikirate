@@ -10,7 +10,7 @@ describe Card::Set::Right::MyContributions do
       expect(result).to include([0, Card[:metric].name, "Joe_User+#{Card[:contributed_metrics].cardname.url_key}"])
       expect(result).to include([0, Card[:claim].name, "Joe_User+#{Card[:contributed_claims].cardname.url_key}"])
       expect(result).to include([0, Card[:source].name, "Joe_User+#{Card[:contributed_sources].cardname.url_key}"])
-      expect(result).to include([0, Card[:wikirate_article].name, "Joe_User+#{Card[:contributed_analysis].cardname.url_key}"])
+      expect(result).to include([0, Card[:overview].name, "Joe_User+#{Card[:contributed_analysis].cardname.url_key}"])
       expect(result).to include([0, Card[:campaign].name, "Joe_User+#{Card[:contributed_campaigns].cardname.url_key}"])
     end
   end
