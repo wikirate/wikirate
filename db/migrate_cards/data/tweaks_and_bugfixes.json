@@ -1,15 +1,15 @@
 {
   "url": "http://dev.wikirate.org/export.json",
-  "timestamp": "2016-01-05 17:24:27 +0100",
+  "timestamp": "2016-01-05 17:33:46 +0100",
   "card": {
     "name": "export",
     "type": "Pointer",
-    "content": "[[export]]\n[[script: homepage carousel init]]\n[[script: rating]]\n[[*css]]\n[[style: yinyang]]\n[[style: wikirate bootstrap common]]\n[[style: wikirate bootstrap common]]\n[[style: source preview]]\n[[style: notes]]\n[[style: homepage layout]]\n[[style wikirate metrics]]\n[[overview item scss]]\n[[customized classic skin]]\n[[Metric+right sidebar+*type plus right+*structure]]\n[[Topic+right sidebar+*type plus right+*structure]]\n[[Company+right sidebar+*type plus right+*structure]]\n[[overview details container+*right+*structure]]\n[[Note+*type+*structure]]\n[[homepage company metric drag item]]\n[[homepage metric company item]]\n[[homepage topic metric drag item]]\n[[nav bar]]\n[[ajax loader anime]]\n[[wikirate layout]]",
+    "content": "[[export]]\n[[script: homepage carousel init]]\n[[script: rating]]\n[[*css]]\n[[style: yinyang]]\n[[style: wikirate bootstrap common]]\n[[style: wikirate bootstrap common]]\n[[style: source preview]]\n[[style: notes]]\n[[style: homepage layout]]\n[[style wikirate metrics]]\n[[overview item scss]]\n[[customized classic skin]]\n[[Metric+right sidebar+*type plus right+*structure]]\n[[Topic+right sidebar+*type plus right+*structure]]\n[[Company+right sidebar+*type plus right+*structure]]\n[[overview details container+*right+*structure]]\n[[Note+*type+*structure]]\n[[homepage company metric drag item]]\n[[homepage metric company item]]\n[[homepage topic metric drag item]]\n[[company metric drag item]]\n[[nav bar]]\n[[ajax loader anime]]\n[[wikirate layout]]\n[[Home]]",
     "value": [
       {
         "name": "export",
         "type": "Pointer",
-        "content": "[[export]]\n[[script: homepage carousel init]]\n[[script: rating]]\n[[*css]]\n[[style: yinyang]]\n[[style: wikirate bootstrap common]]\n[[style: wikirate bootstrap common]]\n[[style: source preview]]\n[[style: notes]]\n[[style: homepage layout]]\n[[style wikirate metrics]]\n[[overview item scss]]\n[[customized classic skin]]\n[[Metric+right sidebar+*type plus right+*structure]]\n[[Topic+right sidebar+*type plus right+*structure]]\n[[Company+right sidebar+*type plus right+*structure]]\n[[overview details container+*right+*structure]]\n[[Note+*type+*structure]]\n[[homepage company metric drag item]]\n[[homepage metric company item]]\n[[homepage topic metric drag item]]\n[[nav bar]]\n[[ajax loader anime]]\n[[wikirate layout]]"
+        "content": "[[export]]\n[[script: homepage carousel init]]\n[[script: rating]]\n[[*css]]\n[[style: yinyang]]\n[[style: wikirate bootstrap common]]\n[[style: wikirate bootstrap common]]\n[[style: source preview]]\n[[style: notes]]\n[[style: homepage layout]]\n[[style wikirate metrics]]\n[[overview item scss]]\n[[customized classic skin]]\n[[Metric+right sidebar+*type plus right+*structure]]\n[[Topic+right sidebar+*type plus right+*structure]]\n[[Company+right sidebar+*type plus right+*structure]]\n[[overview details container+*right+*structure]]\n[[Note+*type+*structure]]\n[[homepage company metric drag item]]\n[[homepage metric company item]]\n[[homepage topic metric drag item]]\n[[company metric drag item]]\n[[nav bar]]\n[[ajax loader anime]]\n[[wikirate layout]]\n[[Home]]"
       },
       {
         "name": "script: homepage carousel init",
@@ -112,6 +112,11 @@
         "content": "  <div class=\"metric-item contribution-item value-item no-hover\">\r\n    <div class=\"header no-hover\">\r\n      <div class=\"logo\">\r\n        <a class=\"inherit-anchor\" href=\"{{_2|linkname}}+contribution\"> {{_2+image|core;size:small}} </a>\r\n      </div>\r\n      <div class=\"name\">\r\n               <a class=\"inherit-anchor\" href=\"{{_2+_3|linkname}}\"> {{_3|name}}</a>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"data no-hover\">\r\n      <!--<div class=\"metric-details-toggle\" data-append=\"metric_details_metric_header\">-->\r\n      <!--  <span class=\"glyphicon glyphicon-triangle-right\"></span>-->\r\n      <!--</div>-->\r\n      <a class=\"contribution company-count btn btn-default \"  href=\"{{_2+_3|linkname}}\">\r\n        <div class=\"content\">\r\n          {{_2+_3+company count|core}}\r\n          <div class=\"name\">Companies</div>\r\n        </div>\r\n      </a>\r\n      <div class=\"contribution metric-details show-with-details text-center\">\r\n        <span class=\"label label-metric\">[[_2+_3|Metric Details]]</span> \r\n      </div>\r\n    </div>\r\n    <div class=\"details\">\r\n    </div>\r\n  </div>"
       },
       {
+        "name": "company metric drag item",
+        "type": "HTML",
+        "content": "  \r\n  <!--prototype: Company+MetricDesigner+MetricName+yinyang drag item -->\r\n  <div class=\"metric-item value-item\">\r\n    <div class=\"header\">\r\n      <div class=\"handle\">\r\n        <span class=\"glyphicon glyphicon-option-vertical\"></span>\r\n      </div>\r\n      <div class=\"hidden-xs hidden-md\">{{_llr+_lr+*vote count}}</div>\r\n      <a href=\"{{_llr+contributions|linkname}}\">\r\n      <div class=\"logo hidden-xs hidden-md\">\r\n        {{_llr+image|core;size:small}} \r\n      </div>\r\n      </a>\r\n      <div class=\"name\">\r\n        <a class=\"inherit-anchor\" href=\"{{_llr+_lr|linkname}}\">\r\n          {{_lr|name}}\r\n        </a>\r\n      </div>\r\n    </div>\r\n    <div class=\"data metric-details-toggle\" data-append=\"metric_details_metric_header\">\r\n      <div class=\"data-item hide-with-details\">\r\n        {{_llr+_lr+_1+latest value|concise}}\r\n      </div>\r\n      <div class=\"data-item show-with-details text-center\">\r\n        <span class=\"label label-metric\">[[_llr+_lr|Metric Details]]</span> \r\n      </div>\r\n    </div>\r\n    <div class=\"details\">\r\n    </div>\r\n  </div>"
+      },
+      {
         "name": "nav bar",
         "type": "HTML",
         "content": "<nav class=\"navbar navbar-default navbar-fixed-top drop-shadow\">\r\n\r\n  <div class=\"container-topbar\">\r\n    <!-- Brand and toggle get grouped for better mobile display -->\r\n    <div class=\"navbar-header\">\r\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\r\n        <span class=\"sr-only\">Toggle navigation</span>\r\n        <span class=\"icon-bar\"></span>\r\n        <span class=\"icon-bar\"></span>\r\n        <span class=\"icon-bar\"></span>\r\n      </button>\r\n      <div class=\"navbar-brand\" href=\"#\">\r\n        [[/|{{*logo|core;size:original}}]]\r\n      </div>\r\n    </div>\r\n\r\n    <!-- Collect the nav links, forms, and other content for toggling -->\r\n    <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\r\n      {{nav bar menu|core}}\r\n      <div class=\"search-bar navbar-form navbar-left visible-lg visible-md \">{{*navbox|core}}</div>\r\n\r\n      <ul class=\"nav navbar-nav navbar-right\">\r\n        <li>\r\n          <div class=\"account-info-bar\">{{*account links|core}}</div>\r\n        </li>\r\n      </ul>\r\n\r\n    </div>\r\n    <!-- /.navbar-collapse -->\r\n  </div>\r\n  <!-- /.container-fluid -->\r\n</nav>\r\n"
@@ -125,6 +130,12 @@
         "name": "wikirate layout",
         "type": "Layout",
         "content": "<!DOCTYPE HTML>\r\n<html>\r\n  {{wikirate head|core}}\r\n  <body id=\"wagn\" class=\"wikirate-layout\">\r\n    <div id=\"fakeLoader\"></div>\r\n    {{nav bar|core}}\r\n    {{_main|open}}\r\n    {{wikirate footer| content}}\r\n    {{ajax loader anime|content}}\r\n    {{_main+google analytics conversion snippet|core}}\r\n\r\n  </body>\r\n</html>"
+      },
+      {
+        "name": "Home",
+        "type": "HTML",
+        "content": "  {{_|wikirate_modal}}\r\n  {{homepage: top banner}}\r\n  {{homepage: company and metric}}\r\n\t{{homepage: wikirate gets it right}}\r\n\t{{homepage: community}}\r\n",
+        "codename": "homepage"
       }
     ]
   }
