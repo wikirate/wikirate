@@ -32,14 +32,14 @@ shared_examples_for 'contributions' do |subject_type|
     end
   end
 
-  context "when article edited" do
+  context "when overview edited" do
     before do
       @analysis = Card["#{company_name}+#{topic_name}"]
       @analysis.update_contribution_count
       @direct_cc = @analysis.direct_contribution_count.to_i
       @subject.update_contribution_count
       @initial_count = @subject.contribution_count.to_i
-      article = @analysis.fetch :trait=>:overview,:new=>{}
+      article = @analysis.fetch :trait=>:overview, :new=>{}
       Card::Auth.as_bot do
         article.update_attributes!(:content=>"change about")
       end
@@ -93,13 +93,12 @@ describe Card::Set::All::Contributions do
   describe 'contribution count for company' do
     it_behaves_like 'contributions', :company
 
-     context "when +about edited" do
+     context "when +image created" do
       before do
         @company = get_a_sample_company
-        logo = Card.fetch("#{@company.name}+logo",:new=>{:type_id=>Card::ImageID})
         @initial_count = @company.contribution_count.to_i
         Card::Auth.as_bot do
-          Card.create :name => "#{@company.name}+logo", :type_code=>'image', :image=>File.new("#{Rails.root}/mod/wikirate/spec/set/all/DeathStar.jpg")
+          Card.create! :name => "#{@company.name}+image", :type_code=>'image', :image=>File.new("#{Rails.root}/mod/wikirate/spec/set/all/DeathStar.jpg")
         end
       end
       it "adds one to contribution counter" do
