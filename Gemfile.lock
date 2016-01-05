@@ -1,3 +1,18 @@
+GIT
+  remote: https://github.com/pry/pry
+  revision: f929b1f5f1f37c8e1884f379f6c688679b8a957e
+  specs:
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+
+GIT
+  remote: https://github.com/xithan/wagn-rspec-formatter.git
+  revision: 523b1db8f225a7fc4ae8b51fabd13fc3d9927bb1
+  specs:
+    wagn-rspec-formatter (2.4.0)
+      rspec-core (~> 3.1.0)
+
 PATH
   remote: ./vendor/wagn/card
   specs:
@@ -197,10 +212,6 @@ GEM
       ast
       ruby-ll (~> 2.1)
     open_uri_redirections (0.2.1)
-    pry (0.10.3)
-      coderay (~> 1.1.0)
-      method_source (~> 0.8.1)
-      slop (~> 3.4)
     pry-byebug (3.3.0)
       byebug (~> 8.0)
       pry (~> 0.10)
@@ -286,7 +297,6 @@ GEM
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
-    slop (3.6.0)
     smartname (0.2.3)
       activesupport
       htmlentities (~> 4.3.0)
@@ -362,6 +372,7 @@ DEPENDENCIES
   minitest
   mysql2 (~> 0.3.18)
   open_uri_redirections
+  pry!
   pry-byebug
   pry-rails
   pry-rescue
@@ -380,6 +391,7 @@ DEPENDENCIES
   timecop
   turn (~> 0.8.3)
   wagn!
+  wagn-rspec-formatter!
   wbench
 
 BUNDLED WITH

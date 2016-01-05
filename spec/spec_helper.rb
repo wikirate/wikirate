@@ -43,7 +43,7 @@ def create_claim name, subcards={}
 
 end
 #cards only exist in testing db
-def get_a_sample_claim
+def get_a_sample_note
   Card["Death Star uses dark side of the Force"]
 end
 
