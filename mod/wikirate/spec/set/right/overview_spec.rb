@@ -1,4 +1,4 @@
-describe Card::Set::Right::WikirateArticle do
+describe Card::Set::Right::Overview do
   describe '#handle_edit_article' do
     before do
       Card::Env.params[:edit_article] = true
