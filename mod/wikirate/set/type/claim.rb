@@ -68,7 +68,7 @@ format :html do
     super args.merge(optional_help: :hide)
   end
 
-  def edit_slot _args
+  def edit_slot args
     # :core_edit means the new and edit views will render form fields from
     # within the core view (which in this case is defined by
     # Claim+*type+*structure), as opposed to the default behavior,
