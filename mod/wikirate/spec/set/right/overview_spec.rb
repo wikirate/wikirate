@@ -1,4 +1,4 @@
-describe Card::Set::Right::WikirateArticle do
+describe Card::Set::Right::Overview do
   describe '#handle_edit_article' do
     before do
       Card::Env.params[:edit_article] = true
@@ -11,7 +11,7 @@ describe Card::Set::Right::WikirateArticle do
     end
     context 'missing view' do
       it 'render editor with empty content with citation tips' do
-        name = "#{@company.name}+#{@topic.name}+#{Card[:wikirate_article].name}"
+        name = "#{@company.name}+#{@topic.name}+#{Card[:overview].name}"
         article = Card.new name: name, type: 'basic'
         html = article.format.render_missing
         id = 'citable_note'
@@ -25,7 +25,7 @@ describe Card::Set::Right::WikirateArticle do
     context 'content and titled_with_edits views' do
       it 'render editor with content with citation tips' do
         overview_name = "#{@company.name}+#{@topic.name}+"\
-                        "#{Card[:wikirate_article].name}"
+                        "#{Card[:overview].name}"
         article = Card.create name: overview_name, type: 'basic',
                               content: 'hello world'
         html = article.format.render_content

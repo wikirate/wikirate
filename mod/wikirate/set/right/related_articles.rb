@@ -6,7 +6,7 @@ format :html do
       # unnecessary if we do this as type plus right
       cited, uncited = [], []
       analysis_names.each do |analysis_name|
-        article = Card["#{analysis_name}+#{ Card[:wikirate_article].name }"]
+        article = Card["#{analysis_name}+#{ Card[:overview].name }"]
         if article && article.includees.include?( card.left )
           cited << analysis_name
         else

@@ -14,7 +14,7 @@ describe Card::Set::Right::CitedClaims do
       #create claim related to analysis but not cited
 
       claim_card = create_claim "whateverclaim",{"+company"=>{:content=>"[[#{@sample_company.name}]]"},"+topic"=>{:content=>"[[#{@sample_topic.name}]]"}}
-      sample_article = @sample_analysis.fetch :trait=>:wikirate_article, :new=>{}
+      sample_article = @sample_analysis.fetch :trait=>:overview, :new=>{}
       sample_article.content = "I need some chewing gum.#{claim_card.default_citation}"
       sample_article.save
 

@@ -16,7 +16,7 @@ def get_query params={}
 end
 
 def cited_query
-  yes_query = {:referred_to_by=>{:left=>{:type_id=>WikirateAnalysisID},:right_id=>WikirateArticleID}}
+  yes_query = {:referred_to_by=>{:left=>{:type_id=>WikirateAnalysisID},:right_id=>OverviewID}}
   case Env.params[:cited]
   when 'yes' then yes_query
   when 'no'  then {:not=>yes_query}
