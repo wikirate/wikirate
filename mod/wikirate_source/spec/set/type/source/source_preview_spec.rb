@@ -81,7 +81,7 @@ describe Card::Set::Type::Source do
     end
     context "link source" do
       before do
-        @url = "http://newsource.com"
+        @url = 'http://wagn.org'
         @company = "Amazon.com, Inc."
         @topic = "Natural Resource Use"
         @existing_source = create_page_with_sourcebox @url,{"+Company"=>@company,"+Topic"=>@topic},'false'

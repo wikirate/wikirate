@@ -5,8 +5,8 @@ describe Card::Set::Right::RelatedArticles do
     @sample_company = get_a_sample_company
     @sample_topic = get_a_sample_topic
     @sample_analysis = get_a_sample_analysis
-    @sample_claim = get_a_sample_claim
-    @related_article_card = @sample_claim.fetch trait: :related_articles
+    @sample_claim = get_a_sample_note
+    @related_article_card = @sample_claim.fetch :trait=>:related_articles
   end
 
   describe 'core views' do
@@ -24,7 +24,7 @@ describe Card::Set::Right::RelatedArticles do
                   type_id: Card::WikirateAnalysisID
       # new_article  =
       Card.create name: "#{new_company.name}+#{new_topic.name}"\
-                        "+#{Card[:wikirate_article].name}",
+                        "+#{Card[:overview].name}",
                   type_id: Card::BasicID,
                   content: 'Today is Wednesday.'
 
@@ -38,7 +38,7 @@ describe Card::Set::Right::RelatedArticles do
         }
       )
 
-      sample_article = @sample_analysis.fetch trait: :wikirate_article, new: {}
+      sample_article = @sample_analysis.fetch trait: :overview, new: {}
       sample_article.content =
         "I need some kitkat.#{claim_card.default_citation}"
       sample_article.save
@@ -47,7 +47,7 @@ describe Card::Set::Right::RelatedArticles do
                   type_id: Card::WikirateAnalysisID
 
       Card.create name: "#{new_company.name}+#{@sample_topic.name}+"\
-                        "#{Card[:wikirate_article].name}",
+                        "#{Card[:overview].name}",
                   type_id: Card::BasicID,
                   content: 'Today is Friday.'
 
@@ -55,7 +55,7 @@ describe Card::Set::Right::RelatedArticles do
                   type_id: Card::WikirateAnalysisID
 
       Card.create name: "#{@sample_company.name}+#{new_topic.name}+"\
-                        "#{Card[:wikirate_article].name}",
+                        "#{Card[:overview].name}",
                   type_id: Card::BasicID,
                   content: 'Today is Friday.'
 

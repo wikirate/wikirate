@@ -65,8 +65,8 @@ describe Card::Set::Type::Claim do
       login_as 'joe_user'
       @claim_name = "testing claim"
       @sourcepage = create_page
-      
-      @sample_claim = get_a_sample_claim
+
+      @sample_claim = get_a_sample_note
     end
 
     it "show help text and claim counting for claim name when creating claim" do
@@ -144,12 +144,12 @@ describe Card::Set::Type::Claim do
       end
     end
     it "shows the link for view \"missing\"" do
-      claim_card = get_a_sample_claim
+      claim_card = get_a_sample_note
       html = claim_card.format.render_missing
       expect(html).to eq(claim_card.format.render_link )
     end
      it "show clipboard view" do
-      claim_card = get_a_sample_claim
+      claim_card = get_a_sample_note
       expected_html = %{<i class="fa fa-clipboard claim-clipboard" id="copy-button" title="copy claim citation to clipboard" data-clipboard-text="#{claim_card.name} {{#{claim_card.name}|cite}}"></i>}
       expect(claim_card.format.render_clipboard).to include(expected_html)
 
