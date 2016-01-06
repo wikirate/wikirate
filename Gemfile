@@ -13,6 +13,8 @@ gem 'wbench'
 gem 'curb'
 gem 'daemons'
 gem 'delayed_job_active_record'
+gem 'rubocop'
+gem 'rubocop-decko'
 
 #if RUBY_PLATFORM !~ /darwin/
 group :live do
@@ -39,6 +41,8 @@ group :test do
 
   # NOTE: had weird errors with timecop 0.4.4.  would like to update when possible
 
+  gem 'email_spec'
+  gem 'database_cleaner', '~> 1.4.1'   # used by cucumber for db transactions
 
   gem 'email_spec'                             #
   gem 'database_cleaner', '~> 1.4.1'             # used by cucumber for db transactions
@@ -55,6 +59,7 @@ group :development do
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
   gem 'capistrano-maintenance', :require=>false
+
 end
 
 group :test, :development do
