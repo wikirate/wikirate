@@ -1,6 +1,6 @@
 def contribution_count
   @cc ||= Card.search :type_id=>WikirateAnalysisID,
-            :right_plus=>[ Card[:wikirate_article].name, {:edited_by=>cardname.left }],
+            :right_plus=>[ Card[:overview].name, {:edited_by=>cardname.left }],
             :return=>:count
 end
 
