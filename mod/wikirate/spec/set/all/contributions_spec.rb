@@ -98,7 +98,10 @@ describe Card::Set::All::Contributions do
         @company = get_a_sample_company
         @initial_count = @company.contribution_count.to_i
         Card::Auth.as_bot do
-          Card.create! :name => "#{@company.name}+image", :type_code=>'image', :image=>File.new("#{Rails.root}/mod/wikirate/spec/set/all/DeathStar.jpg")
+          Card.create! name: "#{@company.name}+image",
+                       type_code: 'image',
+                       image: File.new("#{Rails.root}/mod/wikirate/" \
+                                        'spec/set/all/DeathStar.jpg')
         end
       end
       it "adds one to contribution counter" do
@@ -109,19 +112,39 @@ describe Card::Set::All::Contributions do
 
   describe 'contribution count for topic' do
     it_behaves_like 'contributions', :topic
-    context "when +about edited" do
+    context "when +image created" do
       before do
         @topic = get_a_sample_topic
         @initial_count = @topic.contribution_count.to_i
-        about = Card.fetch("#{@topic.name}+about")
+
         Card::Auth.as_bot do
-          about.update_attributes!(:content=>"change about")
+          Card.create! name: "#{@topic.name}+image",
+                       type_code: 'image',
+                       image: File.new("#{Rails.root}/mod/wikirate/" \
+                                        'spec/set/all/DeathStar.jpg')
         end
       end
       it "adds one to contribution counter" do
         expect(@topic.contribution_count.to_i).to eq(@initial_count+1)
       end
-
     end
+
+    # +about gets included via topic+*right sidebar+*type plus right+*structure
+    # and hence is not recognized as a referenced field
+    # context "when +about edited" do
+    #   before do
+    #     @topic = get_a_sample_topic
+    #     @initial_count = @topic.contribution_count.to_i
+    #
+    #     about = Card.fetch("#{@topic.name}+about")
+    #     Card::Auth.as_bot do
+    #       about.update_attributes!(:content=>"change about")
+    #     end
+    #   end
+    #   it "adds one to contribution counter" do
+    #     expect(@topic.contribution_count.to_i).to eq(@initial_count+1)
+    #   end
+    # end
+
   end
 end
