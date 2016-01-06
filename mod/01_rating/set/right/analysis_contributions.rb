@@ -39,7 +39,7 @@ format :html do
   end
 
   view :core do |_args|
-    analysis_article_name = "#{analysis_name}+#{Card[:wikirate_article].name}"
+    analysis_article_name = "#{analysis_name}+#{Card[:overview].name}"
     overview_card = Card.fetch analysis_article_name
     analysis_claim_name = "#{analysis_name}+#{Card[:claim].name}"
     claim_cnt = (claims = Card.fetch(analysis_claim_name)) &&

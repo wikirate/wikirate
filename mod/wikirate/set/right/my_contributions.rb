@@ -9,8 +9,8 @@ def sections
       [ { name: Card[:metric].name, contributions: :contributed_metrics },
         { name: Card[:claim].name, contributions: :contributed_claims },
         { name: Card[:source].name, contributions: :contributed_sources },
-        { name: Card[:wikirate_article].name, 
-          contributions: :contributed_analysis 
+        { name: Card[:overview].name,
+          contributions: :contributed_analysis
         },
         { name: Card[:campaign].name, contributions: :contributed_campaigns }
       ].map do |args|

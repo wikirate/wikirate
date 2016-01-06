@@ -24,6 +24,22 @@ namespace :wikirate do
       SharedData.add_wikirate_data
     end
 
+    def update_or_create name, attr
+      if attr['type'].in? ['Image', 'File']
+        attr['content'] = ''
+        attr['empty_ok'] = true
+      end
+      begin
+        if card = Card.fetch(name)
+          puts "updating card #{name} #{card.update_attributes!(attr)}".light_blue
+        else
+          puts "creating card #{name} #{Card.create!(attr)}".yellow
+        end
+      rescue => e
+        puts "Error in #{name} #{e}".red
+      end
+    end
+
     desc 'update seed data using the production database'
     task :reseed_data, [:location] do |t,args|
       if ENV['RAILS_ENV'] != 'init_test'
@@ -57,17 +73,8 @@ namespace :wikirate do
         puts "Done".green
         cards = JSON.parse(export)
         Card::Auth.as_bot
-        cards["card"]["value"].each do |c|
-          card_name = c["name"]
-          begin
-            if card = Card.fetch(card_name)
-              puts "updating card #{c} #{card.update_attributes!(c)}".light_blue
-            else
-              puts "creating card #{c} #{Card.create!(c)}".yellow
-            end
-          rescue => e
-            puts "Error in #{c} #{e}".red
-          end
+        cards["card"]["value"].each do |card|
+          update_or_create card["name"], card
         end
         FileUtils.rm_rf(Dir.glob('tmp/*'))
         seed_test_db = "RAILS_ENV=test rake wikirate:test:add_wikirate_test_data"
