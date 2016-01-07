@@ -14,23 +14,24 @@ format :html do
           uncited << analysis_name
         end
       end
-      if params[:general_overview]
-        company_name = params[:company]
-        url = "/#{company_name}+notes_page?citable=#{claim.cardname.url_key}&edit_general_overview=true"
-        body += %{
-          <div class="related-articles cited-articles related-overviews cited-overviews">
-            <a class="cite-button" href="#{url}" >Cite in General Overview</a>
-          </div>
-        }
-
-        link_to 'Cite!', url, class: 'cite-button'
+      if params[:general_overview] && params[:company]
+        body +=
+          content_tag :div, class: 'related-articles cited-articles related-overviews cited-overviews' do
+            card_link "#{params[:company]}+notes_page",
+                      text: 'Cite in General Overview',
+                      path_opts: {
+                        citable: claim.cardname.url_key,
+                        edit_general_overview: true
+                      },
+                      class: 'cite-button'
+          end
       end
       if uncited.any?
         body += %{
           <div class="related-articles uncited-articles related-overviews cited-overviews">
             <h3>Overviews that <em>could</em> cite this Claim</h3>
-            <ul>#{ uncited.map { |a| "<li>#{ analysis_links a }" }.join "\n" }</ul>
-              <h2>#{testparam}</h2?
+            #{ list_tag uncited.map { |a| analysis_links a } }
+              <h2>#{testparam}</h2>
           </div>
         }
       end
@@ -39,7 +40,7 @@ format :html do
           <div class="related-articles cited-articles related-overviews cited-overviews">
             <h3>Overviews that cite this Claim</h3>
             <ul>#{ cited.map { |a| "<li>#{ analysis_links a, :cited=>true }" }.join "\n" }</ul>
-            <h2>#{testparam}</h2?
+            <h2>#{testparam}</h2>
           </div>
         }
       end
