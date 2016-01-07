@@ -5,6 +5,7 @@ format :html do
     if claim = card.left and claim.type_id == Card::ClaimID and analysis_names = claim.analysis_names and analysis_names.length > 0
       # unnecessary if we do this as type plus right
       cited, uncited = [], []
+      testparam = params[:citable]
       analysis_names.each do |analysis_name|
         article = Card["#{analysis_name}+#{ Card[:overview].name }"]
         if article && article.includees.include?( card.left )
@@ -13,23 +14,36 @@ format :html do
           uncited << analysis_name
         end
       end
-
-      if cited.any?
+      if params[:general_overview]
+        company_name = params[:company]
+        url = "/#{company_name}+notes_page?citable=#{claim.cardname.url_key}&edit_general_overview=true"
         body += %{
           <div class="related-articles cited-articles related-overviews cited-overviews">
-            <h3>Overviews that cite this Claim</h3>
-            <ul>#{ cited.map { |a| "<li>#{ analysis_links a, :cited=>true }" }.join "\n" }</ul>
+            <a class="cite-button" href="#{url}" >Cite in General Overview</a>
           </div>
         }
+
+        link_to 'Cite!', url, class: 'cite-button'
       end
       if uncited.any?
         body += %{
           <div class="related-articles uncited-articles related-overviews cited-overviews">
             <h3>Overviews that <em>could</em> cite this Claim</h3>
             <ul>#{ uncited.map { |a| "<li>#{ analysis_links a }" }.join "\n" }</ul>
+              <h2>#{testparam}</h2?
           </div>
         }
       end
+      if cited.any?
+        body += %{
+          <div class="related-articles cited-articles related-overviews cited-overviews">
+            <h3>Overviews that cite this Claim</h3>
+            <ul>#{ cited.map { |a| "<li>#{ analysis_links a, :cited=>true }" }.join "\n" }</ul>
+            <h2>#{testparam}</h2?
+          </div>
+        }
+      end
+
     else
       body = %{<h3 class="no-article no-overview">No related Overviews yet.</h3>} + subformat(claim).render_tip
     end
