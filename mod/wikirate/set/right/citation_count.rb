@@ -20,10 +20,17 @@ format :html do
         text: link_text,
         html_args: { class: "#{'no-citations' if no_citations?(args)}" }
       )
-    return unless parent && (pp = parent.parent) && (ppl = pp.card.left) &&
-                  ppl.type_id == WikirateCompanyID
+    return unless (company = on_company_page?)
     link_args[:path_opts] ||= {}
-    link_args[:path_opts][:company] = ppl.key
+    link_args[:path_opts][:company] = company.key
+    link_args[:path_opts][:general_overview] = true
+  end
+
+  def on_company_page?
+    return unless parent && (pp = parent.parent) && (ppc = pp.card)
+    return ppc if ppc.type_id == WikirateCompanyID
+    return unless (ppl = ppc.left) && ppl.type_id == WikirateCompanyID
+    ppl
   end
 
   def no_citations? args
@@ -32,6 +39,6 @@ format :html do
   end
 
   def related_overview_card
-    Card.fetch "#{card.cardname.left}+#{Card[:related_articles]}"
+    Card.fetch "#{card.cardname.left}+#{Card[:related_articles].name}"
   end
 end
