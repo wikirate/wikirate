@@ -2,9 +2,11 @@
 
 class CorrectVoteCountType < Card::Migration
   def up
-    vote_count_cards = Card.search right: '*vote count', type_id: Card::BasicID
-    vote_count_cards.each do |card|
-      card.update_columns(type_id: Card::NumberID)
-    end
+    sql = "UPDATE cards c SET type_id = '#{Card::NumberID}' "\
+          "WHERE (c.right_id = '#{Card['*vote count'].id}' "\
+          "AND c.type_id = '#{Card::BasicID}') "\
+          'AND c.trash is false;'
+    ActiveRecord::Base.connection.execute(sql)
+    Card::Cache.reset_global
   end
 end
