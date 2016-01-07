@@ -1,6 +1,7 @@
 engines:
   rubocop:
     enabled: true
+    config: .codeclimate_rubocop.yml
   golint:
     enabled: false
   gofmt:

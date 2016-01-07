@@ -1063,3 +1063,13 @@ Lint/Void:
 Rails/Delegate:
   Description: Prefer delegate method for delegations.
   Enabled: false
+Decko/ViewLength:
+  Description: Avoid views longer than 15 lines of code.
+  Enabled: true
+  CountComments: false
+  Max: 15
+Decko/EventLength:
+  Description: Avoid events longer than 15 lines of code.
+  Enabled: true
+  CountComments: false
+  Max: 15
