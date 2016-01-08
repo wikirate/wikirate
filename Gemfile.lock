@@ -411,3 +411,6 @@ DEPENDENCIES
   wagn!
   wagn-rspec-formatter!
   wbench
+
+BUNDLED WITH
+   1.10.6

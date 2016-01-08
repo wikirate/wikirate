@@ -30,7 +30,7 @@ format :html do
         body += %{
           <div class="related-articles uncited-articles related-overviews cited-overviews">
             <h4>Overviews that <em>could</em> cite this Claim</h4>
-            #{ list_tag uncited.map { |a| analysis_links a } }
+            #{list_tag uncited.map { |a| analysis_links(a).html_safe }}
               <h4>#{testparam}</h4>
           </div>
         }

@@ -1,5 +1,12 @@
 
 format :html do
+  view :cited_count do |args|
+    if parent.citations.present?
+      parent.citations.size
+    else
+      0
+    end
+  end
   view :core do |args|
     if parent.citations.present?
       results = parent.citations.map do |name|
