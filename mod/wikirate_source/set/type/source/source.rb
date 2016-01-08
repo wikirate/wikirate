@@ -65,13 +65,12 @@ event :process_source_url,
     if cite_card
       if cite_card.type_code != :source
         errors.add :source, ' can only be source type or valid URL.'
-        else
-          self.name = cite_card.name
-          abort :success
-        end
-      elsif !url?(url) || wikirate_url?(url)
-        errors.add :source, " does not exist."
+      else
+        self.name = cite_card.name
+        abort :success
       end
+    elsif !url?(url) || wikirate_url?(url)
+      errors.add :source, " does not exist."
     end
     duplicates = Self::Source.find_duplicates url
     if duplicates.any?

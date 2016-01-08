@@ -5,7 +5,7 @@ event :create_values,
       when: proc { |c| c.formula.present? } do
 
   # FIXME: formula_card.left has type metric at this points but
-  # formula_card.set_names includes "Basic+formula+*type plus right"
+  #        formula_card.set_names includes "Basic+formula+*type plus right"
   formula_card.reset_patterns
   formula_card.include_set_modules
   formula_card.calculate_all_values do |company, year, value|
