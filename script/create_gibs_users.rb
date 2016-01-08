@@ -1,4 +1,4 @@
-require File.expand_path('../../config/environment',  __FILE__)
+require File.expand_path('../../config/environment', __FILE__)
 
 CSV.foreach('script/gist_users.csv', encoding: 'windows-1251:utf-8',
                                      headers: true,
