@@ -1,27 +1,25 @@
 require File.expand_path('../../config/environment', __FILE__)
-
+Card::Auth.as_bot
 CSV.foreach('script/gibs_users.csv', encoding: 'windows-1251:utf-8',
                                      headers: true,
                                      header_converters: :symbol) do |row|
-  Card::Auth.current_id = Card::AnonymousID
   unless Card.exists? row[:name]
+    Wagn.config.action_mailer.perform_deliveries = false
     args = {
       name: row[:name],
-      type_id: Card::SignupID,
+      type_id: Card::UserID,
       '+*account' => {
-        '+*email' => 'wikirate@mailinator.com',
+        '+*email' => row[:email],
         '+*password' => row[:password]
       }
     }
     puts "account to be created: #{args}"
-    signup = Card.create! args
-    Card::Auth.as_bot
+    user = Card.create! args
     puts "activating #{row[:name]}"
-    signup.type_id = Card.default_accounted_type_id
     status_card = Card["#{row[:name]}+*account+*status"]
     status_card.update_attributes! content: 'active', silent_change: true
-    puts "update email of #{row[:name]} to #{row[:email]}"
-    email_card = Card["#{row[:name]}+*account+*email"]
-    email_card.update_attributes! content: row[:email], silent_change: true
+    
+    Wagn.config.action_mailer.perform_deliveries = true
+    user.account.send_welcome_email
   end
 end
