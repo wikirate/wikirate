@@ -29,24 +29,24 @@ format :html do
       if uncited.any?
         body += %{
           <div class="related-articles uncited-articles related-overviews cited-overviews">
-            <h3>Overviews that <em>could</em> cite this Claim</h3>
+            <h4>Overviews that <em>could</em> cite this Claim</h4>
             #{ list_tag uncited.map { |a| analysis_links a } }
-              <h2>#{testparam}</h2>
+              <h4>#{testparam}</h4>
           </div>
         }
       end
       if cited.any?
         body += %{
           <div class="related-articles cited-articles related-overviews cited-overviews">
-            <h3>Overviews that cite this Claim</h3>
+            <h4>Overviews that cite this Claim</h4>
             <ul>#{ cited.map { |a| "<li>#{ analysis_links a, :cited=>true }" }.join "\n" }</ul>
-            <h2>#{testparam}</h2>
+            <h4>#{testparam}</h4>
           </div>
         }
       end
 
     else
-      body = %{<h3 class="no-article no-overview">No related Overviews yet.</h3>} + subformat(claim).render_tip
+      body = %{<h4 class="no-article no-overview">No related Overviews yet.</h4>} + subformat(claim).render_tip
     end
     body
   end
