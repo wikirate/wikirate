@@ -1,6 +1,6 @@
 require File.expand_path('../../config/environment', __FILE__)
 
-CSV.foreach('script/gist_users.csv', encoding: 'windows-1251:utf-8',
+CSV.foreach('script/gibs_users.csv', encoding: 'windows-1251:utf-8',
                                      headers: true,
                                      header_converters: :symbol) do |row|
   Card::Auth.current_id = Card::AnonymousID
