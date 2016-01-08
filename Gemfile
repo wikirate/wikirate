@@ -57,7 +57,8 @@ group :development do
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
   gem 'capistrano-maintenance', require: false
-
+  gem 'rubocop'
+  gem 'rubocop-decko'
 end
 
 group :test, :development do
