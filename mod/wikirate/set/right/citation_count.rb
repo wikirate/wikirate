@@ -11,10 +11,10 @@ format :html do
     end
   end
 
-  def default_related_overview_modal_box_args args
+  def default_related_overview_modal_box_args(args)
     link_text = subformat(card).render_titled(
-             args.merge(title: "Citations", hide: 'menu')
-           )
+      args.merge(title: 'Citations', hide: 'menu')
+    )
     link_args = args[:link_args] =
       args.merge(
         text: link_text,
@@ -30,10 +30,10 @@ format :html do
     return unless parent && (pp = parent.parent) && (ppc = pp.card)
     return ppc if ppc.type_id == WikirateCompanyID
     return unless (ppl = ppc.left) && ppl.type_id == WikirateCompanyID
-    return ppl
+    ppl
   end
 
-  def no_citations? args
+  def no_citations?(args)
     value = _render_core args
     value == '0' || value == ''
   end
