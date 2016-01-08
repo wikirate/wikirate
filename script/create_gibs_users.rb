@@ -17,7 +17,9 @@ CSV.foreach('script/gist_users.csv', encoding: 'windows-1251:utf-8',
     signup = Card.create! args
     Card::Auth.as_bot
     puts "activating #{row[:name]}"
-    signup.activate_account
+    signup.type_id = Card.default_accounted_type_id
+    status_card = Card["#{row[:name]}+*account+*status"]
+    status_card.update_attributes! content: 'active', silent_change: true
     puts "update email of #{row[:name]} to #{row[:email]}"
     email_card = Card["#{row[:name]}+*account+*email"]
     email_card.update_attributes! content: row[:email], silent_change: true
