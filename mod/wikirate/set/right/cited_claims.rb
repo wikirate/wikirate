@@ -1,6 +1,6 @@
 
 format :html do
-  view :cited_count do |args|
+  view :cited_count do
     if parent.citations.present?
       parent.citations.size
     else
@@ -17,14 +17,14 @@ format :html do
       super args
     end
   end
-  
+
   def card_list results, args
     items = (results.each_with_index.map do |claim, num|
       citation_number = %{<span class="cited-claim-number">#{ num + 1 }</span>}
       item = nest claim, :citation_number=>citation_number
       %{<div class="search-result-item item-#{ inclusion_defaults(claim)[:view] }">#{ item}</div>}
-    end.join )   
+    end.join )
     %{<div class="search-result-list">#{items}</div>}
   end
-  
-end  
+
+end

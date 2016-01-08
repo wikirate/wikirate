@@ -16,7 +16,8 @@ format :html do
       end
       if params[:general_overview] && params[:company]
         body +=
-          content_tag :div, class: 'related-articles cited-articles related-overviews cited-overviews' do
+          content_tag :div,
+                      class: 'related-articles cited-articles related-overviews cited-overviews' do
             card_link "#{params[:company]}+notes_page",
                       text: 'Cite in General Overview',
                       path_opts: {

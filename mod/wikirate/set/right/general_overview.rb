@@ -1,9 +1,9 @@
 format :html do
-  view :content do |args|
-    handle_edit_general_overview( args ) { super args }
+  view :missing do |args|
+    handle_edit_general_overview(args) { super args }
   end
 
-  view :missing do |args|
+  view :content do |args|
     handle_edit_general_overview( args ) { super args }
   end
 
@@ -12,24 +12,20 @@ format :html do
   end
 
   view :editor do |args|
-    # if claim_name = params[:citable] and claim = Card[claim_name]
-      prompt = with_inclusion_mode :normal do
-        if claim_name = params[:citable] and claim = Card[claim_name]
-          nest claim, :view=>:sample_citation
-        else
-          render :citation_tip
-        end
+    prompt = with_inclusion_mode :normal do
+      if claim_name = params[:citable] && claim = Card[claim_name]
+        nest claim, :view => :sample_citation
+      else
+        render :citation_tip
       end
-      %{ #{ prompt } #{ super args } }
-    # else
-      # super args
-    # end
+    end
+    %{ #{prompt}#{super args} }
   end
 
   view :citation_tip do |_args|
     tip = 'easily cite this note by pasting the following:'+
           text_area_tag('sample-citation-textarea')
-    %{ <div class="sample-citation">#{ render :tip, tip: tip }</div> }
+    %{ <div class="sample-citation">#{render :tip, tip: tip}</div> }
   end
 
   view :tip do |args|
@@ -56,5 +52,4 @@ format :html do
       yield
     end
   end
-
 end
