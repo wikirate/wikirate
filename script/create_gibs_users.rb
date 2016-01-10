@@ -4,9 +4,12 @@ Card::Mailer.perform_deliveries = false
 CSV.foreach('script/gibs_users.csv', encoding: 'windows-1251:utf-8',
                                      headers: true,
                                      header_converters: :symbol) do |row|
-  unless Card.exists? row[:name]
+  exist_email = Card.search(content: row[:email], left: { right: '*account' },
+                            right: '*email')
+  username = "#{row[:first_name]} #{row[:surname]}"
+  if !(Card.exists?(username) || exist_email.any?)
     args = {
-      name: row[:name],
+      name: username,
       type_id: Card::UserID,
       '+*account' => {
         '+*email' => row[:email],
@@ -15,9 +18,11 @@ CSV.foreach('script/gibs_users.csv', encoding: 'windows-1251:utf-8',
     }
     puts "account to be created: #{args}"
     Card.create! args
-    puts "activating #{row[:name]}"
-    status_card = Card["#{row[:name]}+*account+*status"]
+    puts "activating #{username}"
+    status_card = Card["#{username}+*account+*status"]
     status_card.update_attributes! content: 'active', silent_change: true
+  else
+    puts "creating existing account #{row}".red
   end
 end
 Card::Mailer.perform_deliveries = true
