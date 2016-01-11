@@ -7,7 +7,6 @@ describe Card::Set::Type::Source do
   end
 
   def create_source args
-    binding.pry
     Card.create! source_args(args)
   end
 

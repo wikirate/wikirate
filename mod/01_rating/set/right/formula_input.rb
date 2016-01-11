@@ -75,7 +75,6 @@ format :html do
     #   #{ view_link metric_card.name, :core, path_opts: {action: :update, add_item: metric_card.name }}
     # HTML
     #{card.key}+add_to_formula
-    binding.pry
     args[:append_for_details] = "#{card.metric_card.key}+add_to_formula"
     subformat(metric_item_card)._render_item_view(args)
   end

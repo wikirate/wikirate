@@ -65,6 +65,63 @@ def random_company_card_with_value
 end
 
 format :html do
+
+  def tab_radio_button id, target, active=false
+    <<-HTML
+    <li role="tab" class="pointer-radio #{'active' if active}">
+        <label data-target="##{target}">
+            <input id="#{id}" name="intervaltype" value=#{id} class="pointer-radio-button" type="radio" #{ 'checked' if active } />
+            #{id}
+        </label>
+    </li>
+    HTML
+  end
+
+  def tab_pane name, active= false
+    new_metric = Card.new type: MetricID, '+*metric type' => "[[#{name}]]"
+    binding.pry
+    new_metric.reset_patterns
+    new_metric.include_set_modules
+    <<-HTML
+      <div role="tabpanel" class="tab-pane active" id="researchedPane">
+        #{subformat(new_metric)._render_new_tab_pane}
+      </div>
+    HTML
+  end
+  view :new do |args|
+    frame_and_form :create, args, 'main-success' => 'REDIRECT' do
+
+    <<-HTML
+    <fieldset class="card-editor editor">
+    <div role="tabpanel">
+      <input class="card-content form-control" type="hidden" value="" name="card[subcards][+*metric type][content]" id="card_subcards___metric_type_content">
+        <ul class="nav nav-tabs pointer-radio-list" role="tablist">
+          #{tab_radio_button 'Researched', 'researchedPane', true}
+          #{tab_radio_button 'Formula', 'formulaPane'}
+          #{tab_radio_button 'Score', 'scorePane'}
+          #{tab_radio_button 'WikiRating', 'wikiratePane'}
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          #{tab_pane 'Researched', true}
+          #{tab_pane 'Formula'}
+          #{tab_pane 'Score'}
+          #{tab_pane 'WikiRating'}
+        </div>
+    </div>
+    <fieldset class="card-editor editor">
+    <script>
+    $('input[name="intervaltype"]').click(function () {
+        //jQuery handles UI toggling correctly when we apply "data-target" attributes and call .tab('show')
+        //on the <li> elements' immediate children, e.g the <label> elements:
+        $(this).closest('label').tab('show');
+    });
+    </script>
+    HTML
+    end
+  end
+
   view :legend do |args|
     if (unit = Card.fetch("#{card.name}+unit"))
       unit.raw_content

@@ -6,3 +6,9 @@ def normalize_value value
   value
 end
 
+
+format :html do
+  view :new_tab_pane do
+    'Score'
+  end
+end

@@ -25,6 +25,7 @@ def follow_label name
 end
 
 def pattern_applies? card
-  (mt = Card::MetricTypeSet.metric_type(card.cardname.left)) &&
-    ['researched', 'Formula', 'wiki_rating', 'score'].include?(mt)
+  false
+#  (mt = Card::MetricTypeSet.metric_type(card.cardname.left)) &&
+#    ['researched', 'Formula', 'wiki_rating', 'score'].include?(mt)
 end
