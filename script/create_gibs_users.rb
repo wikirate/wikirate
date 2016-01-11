@@ -1,12 +1,14 @@
 require File.expand_path('../../config/environment', __FILE__)
 Card::Auth.as_bot
 Card::Mailer.perform_deliveries = false
-CSV.foreach('script/gibs_users.csv', encoding: 'windows-1251:utf-8',
-                                     headers: true,
-                                     header_converters: :symbol) do |row|
+CSV.foreach('script/gibs_users_20160111.csv',
+            encoding: 'windows-1251:utf-8',
+            headers: true,
+            header_converters: :symbol) do |row|
   exist_email = Card.search(content: row[:email], left: { right: '*account' },
                             right: '*email')
-  username = "#{row[:first_name]} #{row[:surname]}"
+  username = row[:username]
+  username = "#{username[0...-1]} #{username[-1].upcase}"
   if !(Card.exists?(username) || exist_email.any?)
     args = {
       name: username,
