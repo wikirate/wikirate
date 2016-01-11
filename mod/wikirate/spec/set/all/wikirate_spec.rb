@@ -122,9 +122,11 @@ describe Card::Set::All::Wikirate do
       html = render_card :content,{:name=>"test_basic",:content=>content}
       for i in 1..11
         if (i-1)%2==0
-          expect(html).to include(%{<sup><a class="citation" href="test_basic#test1">#{i}</a></sup>})
+          expected = %{<sup><a class="citation" href="#test1">#{i}</a></sup>}
+          expect(html).to include(expected)
         else
-          expect(html).to include(%{<sup><a class="citation" href="test_basic#test2">#{i}</a></sup>})
+          expected = %{<sup><a class="citation" href="#test2">#{i}</a></sup>}
+          expect(html).to include(expected)
         end
       end
     end

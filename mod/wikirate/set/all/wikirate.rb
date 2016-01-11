@@ -113,7 +113,7 @@ format :html do
 
   view :cite do |args|
     href_root = parent ? parent.card.cardname.trunk_name.url_key : ''
-    href = "#{ href_root }##{ card.cardname.url_key }"
+    href = "##{ card.cardname.url_key }"
     %{<sup><a class="citation" href="#{ href }">#{ cite! }</a></sup>}
   end
 
