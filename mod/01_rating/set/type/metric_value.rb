@@ -118,6 +118,7 @@ format :html do
     if args[:source]
       args[:hidden]['card[subcards][+source][content]'] = args[:source]
     end
+    args[:title] = "Add new value for #{args[:metric]}"
     args[:structure] =
       if args[:company]
         'metric company add value'
