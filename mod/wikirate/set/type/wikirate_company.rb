@@ -1,5 +1,5 @@
-card_accessor :contribution_count, :type=>:number, :default=>"0"
-card_accessor :direct_contribution_count, :type=>:number, :default=>"0"
+card_accessor :contribution_count, type: :number, default: '0'
+card_accessor :direct_contribution_count, type: :number, default: '0'
 
 view :missing do |args|
   _render_link args
@@ -7,10 +7,10 @@ end
 
 def indirect_contributor_search_args
   [
-    {:type_id=>Card::ClaimID, :plus=>['company',:link_to=>self.name]},
-    {:type_id=>Card::SourceID, :plus=>['company',:link_to=>self.name]},
-    {:type_id=>Card::WikirateAnalysisID, :left=>self.name },
-    {:type_id=>Card::MetricValueID, :left=>{:right=>self.name}}
+    { type_id: Card::ClaimID,  right_plus: ['company', { link_to: name }] },
+    { type_id: Card::SourceID, right_plus: ['company', { link_to: name }] },
+    { type_id: Card::WikirateAnalysisID, left: name },
+    { type_id: Card::MetricValueID, left: { right: name } }
   ]
 end
 
@@ -19,13 +19,35 @@ format :html do
     true
   end
 
-  view :contribution_link do |args|
-    no_of_related_metric = Card.search :type_id=>MetricID, :left=>card.name, :return=>"count"
-    if no_of_related_metric > 0
-      card_link card.name+"+contribution",{:text=>"View Contributions",:class=>"btn btn-primary company-contribution-link"}
+  view :open do |args|
+    if main? && !Env.ajax? && !Env.params['about_company'] &&
+       !contributions_about? && contributions_made?
+
+      link = card_link card, path_opts: { about_company: true }
+      %(<div class="contributions-about-link">) \
+        "showing contributions by #{link}</div>" +
+        subformat(card.fetch trait: :contribution).render_open
     else
-      ""
+      super args
     end
   end
 
+  def contributions_about?
+    return false unless (topic_name = card.cardname.trait_name :wikirate_topic)
+    return false unless (count_name = topic_name.trait_name :cached_count)
+    return false unless (count = Card.fetch count_name)
+    count.content.to_i > 0
+  end
+
+  view :contribution_link do
+    return '' unless contributions_made?
+    card_link card.cardname.trait(:contribution),
+              text: 'View Contributions',
+              class: 'btn btn-primary company-contribution-link'
+  end
+
+  def contributions_made?
+    # FIXME: need way to figure this out without a search!
+    Card.search(type_id: MetricID, left: card.name, return: 'count') > 0
+  end
 end
