@@ -25,6 +25,34 @@ def create_page_with_sourcebox iUrl=nil, subcards={},sourcebox=nil
   end
 end
 
+def create_link_source url
+  create_source link: url
+end
+
+def create_source args
+  Card.create source_args(args)
+end
+
+def source_args args
+  res = {
+    type_id: Card::SourceID,
+    subcards: {
+      '+Link' => {},
+      '+File' => { type_id: Card::FileID },
+      '+Text' => { type_id: Card::BasicID, content: '' }
+    }
+  }
+  source_type_name = Card[:source_type].name
+  [:link, :file, :text].each do |key|
+    next unless args[key]
+    content_key = ( key == :file ? :file : :content)
+    res[:subcards]["+#{key.to_s.capitalize}"][content_key] = args[key]
+    res[:subcards]["+#{source_type_name}"] = {}
+    res[:subcards]["+#{source_type_name}"][:content] = "[[#{key}]]"
+  end
+  res
+end
+
 def create_claim_with_url name,url, subcards={}
   Card::Auth.as_bot do
     sourcepage = create_page url

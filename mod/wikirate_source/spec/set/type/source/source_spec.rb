@@ -5,33 +5,6 @@ describe Card::Set::Type::Source do
   before do
     @wikirate_link_prefix = "#{Card::Env[:protocol]}#{Card::Env[:host]}/"
   end
-  def create_link_source url
-    create_source link: url
-  end
-
-  def create_source args
-    Card.create source_args(args)
-  end
-
-  def source_args args
-    res = {
-      type_id: Card::SourceID,
-      subcards: {
-        '+Link' => {},
-        '+File' => { type_id: Card::FileID },
-        '+Text' => { type_id: Card::BasicID, content: '' }
-      }
-    }
-    source_type_name = Card[:source_type].name
-    [:link, :file, :text].each do |key|
-      next unless args[key]
-      content_key = ( key == :file ? :file : :content)
-      res[:subcards]["+#{key.to_s.capitalize}"][content_key] = args[key]
-      res[:subcards]["+#{source_type_name}"] = {}
-      res[:subcards]["+#{source_type_name}"][:content] = "[[#{key}]]"
-    end
-    res
-  end
 
   describe 'while creating a Source' do
     before do

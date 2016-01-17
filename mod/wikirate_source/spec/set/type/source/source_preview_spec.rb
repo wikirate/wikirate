@@ -4,6 +4,7 @@ require 'link_thumbnailer'
 describe Card::Set::Type::Source do
 
   describe "rendering preview view" do
+
     before do
       @url = "http://existingpage.com"
       @company = "Amazon.com, Inc."
@@ -13,7 +14,9 @@ describe Card::Set::Type::Source do
 
     context "text source" do
       before do
-        @text_source = Card.create! :type_id=>Card::SourceID,:subcards=>{'+Text'=>{ :content=>"There are 2 hard problems in computer science: cache invalidation, naming things, and off-by-1 errors.",:type_id=>Card::BasicID}}
+        text = 'There are 2 hard problems in computer science: cache '\
+               'invalidation, naming things, and off-by-1 errors.'
+        @text_source = create_source text: text
         @result = @text_source.format._render_preview
       end
       it "shows correction options" do
@@ -34,7 +37,7 @@ describe Card::Set::Type::Source do
     context "file source" do
       before do
         pdf_file = File.open("#{Rails.root}/mod/wikirate_source/spec/set/type/source/test_pdf.pdf")
-        @pdf_source = Card.create! :type_id=>Card::SourceID,:subcards=>{'+File'=>{ :file=>pdf_file,:type_id=>Card::FileID}}
+        @pdf_source = create_source file: pdf_file
         @result = @pdf_source.format._render_preview
       end
       it "shows correction options" do
@@ -59,7 +62,7 @@ describe Card::Set::Type::Source do
       context "image file" do
         it "uses img tag" do
           img_file = File.open("#{Rails.root}/mod/wikirate_source/spec/set/type/source/test_logo.png")
-          image_source = Card.create! :type_id=>Card::SourceID,:subcards=>{'+File'=>{ :file=>img_file,:type_id=>Card::FileID}}
+          image_source = create_source file: img_file
           result = image_source.format._render_preview
           file_card = image_source.fetch :trait=>:file
           expect(result).to have_tag("div", :with=>{:id=>"pdf-preview"}) do
@@ -70,7 +73,7 @@ describe Card::Set::Type::Source do
       context "others format" do
         it "render redirect notice" do
           word_file = File.open("#{Rails.root}/mod/wikirate_source/spec/set/type/source/test_word.docx")
-          word_source = Card.create! :type_id=>Card::SourceID,:subcards=>{'+File'=>{ :file=>word_file,:type_id=>Card::FileID}}
+          word_source = create_source file: word_file
           result = word_source.format._render_preview
           expect(result).to have_tag("div", :with=>{:id=>"source-preview-iframe",:class=>"webpage-preview non-previewable"}) do
             with_tag "div", :with=>{:class=>"redirect-notice"}

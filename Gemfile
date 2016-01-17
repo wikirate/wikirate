@@ -22,9 +22,9 @@ end
 
 group :test do
   gem 'rspec-rails'
-  gem 'rspec'
+  gem 'rspec', '~> 3.4'
   gem 'rspec-html-matchers'
-  gem 'wagn-rspec-formatter', :git=>'https://github.com/xithan/wagn-rspec-formatter.git'
+  #gem 'wagn-rspec-formatter', :git=>'https://github.com/xithan/wagn-rspec-formatter.git'
   gem 'spork', '>=0.9'
   gem 'timecop'
   gem 'simplecov'
