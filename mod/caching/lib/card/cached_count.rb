@@ -17,7 +17,6 @@ class Card
 
     def cached_count
       cached_count_card.content.to_i
-      count.present? ? count.to_i : 0
     end
 
     module ClassMethods
