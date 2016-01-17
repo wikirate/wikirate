@@ -2,6 +2,7 @@ require 'wagn/mods_spec_helper'
 
 Spork.prefork do
   RSpec.configure do |config|
+    config.include RSpecHtmlMatchers
     config.before(:each) do
       Card::Env[:protocol] = "http://"
       Card::Env[:host] = "wikirate.org"
