@@ -277,7 +277,7 @@ module ClassMethods
   end
 
   def reset_claim_counts
-    claim_count_cache.reset hard=true
+    claim_count_cache.reset
   end
 
   def tag_filter_query filter_words, extra={}, tag_types=['tag']
