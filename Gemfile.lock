@@ -396,8 +396,8 @@ DEPENDENCIES
   rails-dev-tweaks
   roo
   rspec
-  rspec-html-matchers (= 0.6.1)
-  rspec-rails (~> 3.1.0)
+  rspec-html-matchers
+  rspec-rails
   rubocop
   rubocop-decko
   selenium-webdriver

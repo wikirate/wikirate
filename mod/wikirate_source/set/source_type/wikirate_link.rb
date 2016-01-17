@@ -4,18 +4,22 @@ card_accessor :wikirate_website, type: :pointer
 
 format :html do
   view :original_link do |args|
-    link_to (args[:title] || 'Visit Source'), card.wikirate_link.content
+    link_to (args[:title] || 'Visit Source'), card.wikirate_link
   end
+end
+
+def populate_website?
+  !subfield('website').present? && subfield(:wikirate_link).present?
 end
 
 event :autopopulate_website,
       before: :store, on: :create,
-      when: proc { |c| !c.subfield('website').present? } do
-                              binding.pry
+      when: proc { |c| c.populate_website? } do
   link = subfield(:wikirate_link).content
   uri = URI.parse(link)
   host = uri.host
   add_subfield(:wikirate_website, content: "[[#{host}]]").approve
+  approve_subcards
   return if Card.exists?(host)
   Card.create name: host, type_id: Card::WikirateWebsiteID
 end
@@ -29,7 +33,9 @@ def handle_source_box_source url
       self.name = cite_card.name
       abort :success
     end
-  elsif !url?(url)
+    # if !wikirate url and is a url
+    # if !url
+  elsif !url?(url) || wikirate_url?(url)
     errors.add :source, ' does not exist.'
   end
 end

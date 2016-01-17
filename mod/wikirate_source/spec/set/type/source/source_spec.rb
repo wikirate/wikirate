@@ -22,9 +22,13 @@ describe Card::Set::Type::Source do
         '+Text' => { type_id: Card::BasicID, content: '' }
       }
     }
+    source_type_name = Card[:source_type].name
     [:link, :file, :text].each do |key|
       next unless args[key]
-      res[:subcards]["+#{key.to_s.capitalize}"][:content] = args[key]
+      content_key = ( key == :file ? :file : :content)
+      res[:subcards]["+#{key.to_s.capitalize}"][content_key] = args[key]
+      res[:subcards]["+#{source_type_name}"] = {}
+      res[:subcards]["+#{source_type_name}"][:content] = "[[#{key}]]"
     end
     res
   end
@@ -70,7 +74,6 @@ describe Card::Set::Type::Source do
       Card::Env.params[:sourcebox] = 'true'
       sourcepage = create_link_source url
       website_card = sourcepage.fetch trait: :wikirate_website
-      # binding.pry
       expect(website_card.last_action).to be
     end
 
@@ -196,7 +199,7 @@ describe Card::Set::Type::Source do
         it 'returns source card ' do
           source_card = create_page
           Card::Env.params[:sourcebox] = 'true'
-          return_source_card = create_link_source source_card_name
+          return_source_card = create_link_source source_card.name
           expect(return_source_card.name).to eq(source_card.name)
         end
         it 'returns error' do
