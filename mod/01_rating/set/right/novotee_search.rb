@@ -51,7 +51,8 @@ format :html do
 
   def default_filter_and_sort_args args
     args[:default_sort] ||=
-      if main_type_id == WikirateCompanyID && searched_type_id == WikirateTopicID
+      if main_type_id == WikirateCompanyID &&
+         searched_type_id == WikirateTopicID
         :contributions
       else
         :importance

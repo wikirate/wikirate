@@ -146,7 +146,8 @@ format :html do
 
   def default_import_args args
     args[:buttons] = %{
-      #{ button_tag 'Import', :class=>'submit-button', :disable_with=>'Submitting' }
+      #{button_tag 'Import', class: 'submit-button',
+                             data: { disable_with: 'Importing' }}
       #{ button_tag 'Cancel', :class=>'cancel-button slotter', :href=>path, :type=>'button' }
     }
   end
