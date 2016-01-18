@@ -42,12 +42,16 @@ format :html do
     analysis_article_name = "#{analysis_name}+#{Card[:overview].name}"
     overview_card = Card.fetch analysis_article_name
     analysis_claim_name = "#{analysis_name}+#{Card[:claim].name}"
-    claim_cnt = (claims = Card.fetch(analysis_claim_name)) &&
-                claims.cached_count
-    source_cnt = (sources = Card.fetch("#{analysis_name}+sources")) &&
-                 sources.cached_count
-    metric_cnt = (metrics = Card.fetch("#{analysis_name}+metrics")) &&
-                 metrics.cached_count
+    if !analysis_card
+      claim_cnt = source_cnt = metric_cnt = 0
+    else
+      claim_cnt = (claims = Card.fetch(analysis_claim_name)) &&
+                    claims.cached_count
+      source_cnt = (sources = Card.fetch("#{analysis_name}+sources")) &&
+                     sources.cached_count
+      metric_cnt = (metrics = Card.fetch("#{analysis_name}+metrics")) &&
+                     metrics.cached_count
+    end
     empty = glyphicon 'plus'
     data = []
     if claim_cnt == '0'
