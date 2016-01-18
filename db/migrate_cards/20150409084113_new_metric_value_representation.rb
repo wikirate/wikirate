@@ -70,7 +70,7 @@ class NewMetricValueRepresentation < Card::Migration
 <div class="credit td">{{_self|structure:creator credit}}</div>
 </div>
 }
-    Card::Cache.reset_global
+    Card::Cache.reset_all
     metric_values = Card.search :right=>{:type_id=> Card::YearID}, :left=>{:right=>{:type_id=>Card::WikirateCompanyID}, :left=>{:type_id=>Card::MetricID }}
     metric_values.each do |value_card|
       value_card.update_attributes! :type_id=>Card::MetricValueID, :subcards=>{'+value'=>{:type_code=>:phrase, :content=>value_card.content}}

@@ -19,7 +19,7 @@ module MigrationHelper
         count += 1
         Card.find(id).update_attributes! :name=>new_name, :update_referencers=>true, :silent_change=>true
         if count > BATCH_SIZE
-          Card::Cache.reset_global
+          Card::Cache.reset_all
           count = 0
         end
       end
