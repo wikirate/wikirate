@@ -18,7 +18,6 @@ AllCops:
   Exclude:
   - "vendor/**/*"
   - "db/schema.rb"
-  RunRailsCops: false
   DisplayCopNames: false
   StyleGuideCopsOnly: false
 Style/AccessModifierIndentation:
@@ -362,6 +361,11 @@ Style/SingleLineMethods:
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#no-single-line-methods
   Enabled: false
   AllowIfMethodIsEmpty: true
+Style/SpaceBeforeFirstArg:
+  # When true, allows most uses of extra spacing if the intent is to align
+  # things with the previous or next line, not counting empty lines or comment
+  # lines.
+  AllowForAlignment: true
 Style/StringLiterals:
   Description: Checks if uses of quotes match the configured preference.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#consistent-string-literals
@@ -1031,10 +1035,6 @@ Lint/RescueException:
 Lint/ShadowingOuterLocalVariable:
   Description: Do not use the same name as outer local variable for block arguments
     or block local variables.
-  Enabled: true
-Lint/SpaceBeforeFirstArg:
-  Description: Put a space between a method name and the first argument in a method
-    call without parentheses.
   Enabled: true
 Lint/StringConversionInInterpolation:
   Description: Checks for Object#to_s usage in string interpolation.
