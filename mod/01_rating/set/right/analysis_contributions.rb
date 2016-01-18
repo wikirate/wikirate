@@ -1,6 +1,6 @@
 format :html do
   def analysis_name
-    @analysis_name ||= card.cardname.left
+    @analysis_name ||= card.cardname.left_name
   end
 
   def analysis_card
@@ -13,15 +13,15 @@ format :html do
             #{content}<div class="name">#{label}</div>
           </div>
         }
-    params = "company[]=#{analysis_card.left.name}&"\
-             "topic[]=#{analysis_card.right.name}"
+    params = "company[]=#{analysis_name.left}&"\
+             "topic[]=#{analysis_name.right}"
     case label
     when 'Notes', 'Sources'
       %{<a href="/#{label}?#{params}">#{text}</a>}
     when 'Metrics'
-      %{<a href="/#{analysis_card.cardname.url_key}+metric">#{text}</a>}
+      %{<a href="/#{analysis_name.url_key}+metric">#{text}</a>}
     when 'Overview'
-      card_link analysis_name, text: text
+      card_link analysis_name.s, text: text
     end
   end
 
@@ -39,15 +39,17 @@ format :html do
   end
 
   view :core do |_args|
-    analysis_article_name = "#{analysis_name}+#{Card[:overview].name}"
-    overview_card = Card.fetch analysis_article_name
-    analysis_claim_name = "#{analysis_name}+#{Card[:claim].name}"
-    claim_cnt = (claims = Card.fetch(analysis_claim_name)) &&
-                claims.cached_count
-    source_cnt = (sources = Card.fetch("#{analysis_name}+sources")) &&
-                 sources.cached_count
-    metric_cnt = (metrics = Card.fetch("#{analysis_name}+metrics")) &&
-                 metrics.cached_count
+    overview_card = Card.fetch analysis_name.trait(:overview)
+    if !analysis_card
+      claim_cnt = source_cnt = metric_cnt = 0
+    else
+      claim_cnt = (claims = Card.fetch(analysis_name.trait :claim)) &&
+                    claims.cached_count
+      source_cnt = (sources = Card.fetch(analysis_name.trait :source)) &&
+                     sources.cached_count
+      metric_cnt = (metrics = Card.fetch(analysis_name.trait :metric)) &&
+                     metrics.cached_count
+    end
     empty = glyphicon 'plus'
     data = []
     if claim_cnt == '0'
