@@ -15,6 +15,24 @@ end
 
 format :html do
 
+  def fetch_nested_card options
+    args = { name: options[:inc_name], supercard: card }
+    args[:type] = options[:type] if options[:type]
+    args.delete(:supercard) if options[:inc_name].strip.blank?
+    # special case.  gets absolutized incorrectly. fix in smartname?
+    if options[:inc_name] =~ /^_main\+/
+      # FIXME: this is a rather hacky (and untested) way to get @superleft
+      # to work on new cards named _main+whatever
+      args[:name] = args[:name].gsub /^_main\+/, '+'
+      args[:supercard] = root.card
+    end
+    if (content = get_inclusion_content options[:inc_name])
+      args[:content] = content
+    end
+    Card.fetch options[:inc_name], new: args
+  end
+
+
   view(:linkname, closed: true, perms: :none) { card.cardname.url_key               }
 
   view :cgi_escape_name do |args|
