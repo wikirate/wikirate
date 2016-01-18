@@ -15,6 +15,8 @@ end
 
 format :html do
 
+  view(:linkname, closed: true, perms: :none) { card.cardname.url_key               }
+
   view :cgi_escape_name do |args|
     CGI::escape card.name
   end
