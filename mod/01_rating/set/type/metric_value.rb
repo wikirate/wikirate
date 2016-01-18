@@ -21,8 +21,8 @@ def company_card
 end
 
 def source_subcards new_source_card
-  [new_source_card.subfield :file, new_source_card.subfield :text,
-    new_source_card.subfield :wikirate_link]
+  [new_source_card.subfield(:file), new_source_card.subfield(:text),
+    new_source_card.subfield(:wikirate_link)]
 end
 
 def source_exist?
