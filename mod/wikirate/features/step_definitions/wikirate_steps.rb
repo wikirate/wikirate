@@ -47,6 +47,10 @@ When /^(?:|I )solocomplete "([^"]*)" within "([^"]*)"$/ do |value, scope_selecto
   end
 end
 
+When /^I edit card "([^\"]*)"$/ do |cardname|
+  visit "/card/edit/#{cardname.to_name.url_key}"
+end
+
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)" within "([^"]*)"$/ do |selector, value, scope_selector|
   within(scope_selector) do
     fill_in(selector, :with => value)
