@@ -2,7 +2,7 @@
 
 class UpdateCompanyCaches < Card::Migration
   def up
-    # Card::Cache.reset_global
+    # Card::Cache.reset_all
     # Card.search(:type=>'company').each do |company|
     #   unless company.key == 'ikea' # ikea is causing trouble
     #     company.fetch(:trait=>:analyses_with_articles).update_cached_count

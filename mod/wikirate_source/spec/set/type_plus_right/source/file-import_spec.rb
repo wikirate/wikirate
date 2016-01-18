@@ -17,7 +17,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
 
       # as local cache will be cleaned after every request,
       # this reset local is pretending last request is done
-      Card::Cache.reset_local
+      Card::Cache.reset_soft
       source_file.update_attributes subcards: {"#{@source.name}+#{Card[:year].name}"=>{content: '[[2015]]',type_id: Card::PointerID}}
 
       expect(source_file.errors).to have_key(:content)

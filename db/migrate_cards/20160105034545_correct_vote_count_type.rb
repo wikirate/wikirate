@@ -7,6 +7,6 @@ class CorrectVoteCountType < Card::Migration
           "AND c.type_id = '#{Card::BasicID}') "\
           'AND c.trash is false;'
     ActiveRecord::Base.connection.execute(sql)
-    Card::Cache.reset_global
+    Card::Cache.reset_all
   end
 end

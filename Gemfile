@@ -21,10 +21,10 @@ group :live do
 end
 
 group :test do
-  gem 'rspec-rails', "~> 3.1.0"   # behavior-driven-development suite
-  gem 'rspec'
-  gem 'rspec-html-matchers', "0.6.1" # 0.7.0 broke stuff!
-  gem 'wagn-rspec-formatter', :git=>'https://github.com/xithan/wagn-rspec-formatter.git'
+  gem 'rspec-rails' #, "~> 3.1.0"   # behavior-driven-development suite
+  gem 'rspec', '~> 3.4'
+  gem 'rspec-html-matchers' #, "0.6.1" # 0.7.0 broke stuff!
+  # gem 'wagn-rspec-formatter', :git=>'https://github.com/xithan/wagn-rspec-formatter.git'
   gem 'spork', '>=0.9'
   gem 'timecop'
   gem 'simplecov'
@@ -53,7 +53,7 @@ group :development do
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
   gem 'capistrano-maintenance', :require=>false
-  gem 'rubocop'
+  gem 'rubocop', '0.35.1'
   gem 'rubocop-decko'
 end
 
