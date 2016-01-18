@@ -29,6 +29,7 @@ format :html do
     if (content = get_inclusion_content options[:inc_name])
       args[:content] = content
     end
+    binding.pry if options[:inc_name] == '+Cited Notes'
     Card.fetch options[:inc_name], new: args
   end
 

@@ -17,7 +17,7 @@ describe Card::Set::Right::CitedClaims do
       sample_article = @sample_analysis.fetch :trait=>:overview, :new=>{}
       sample_article.content = "I need some chewing gum.#{claim_card.default_citation}"
       sample_article.save
-
+      binding.pry
       html = @sample_analysis.format.render_core
       expect(html).to have_tag("div", :with=>{:id=>"Death_Star+Force+Cited_Notes"}) do
         with_tag "div", :with=>{:class=>"search-result-list"} do
