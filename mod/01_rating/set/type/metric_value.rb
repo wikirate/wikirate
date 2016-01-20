@@ -20,13 +20,17 @@ def company_card
   Card.fetch company_name
 end
 
+def source_subcards new_source_card
+  [new_source_card.subfield(:file), new_source_card.subfield(:text),
+    new_source_card.subfield(:wikirate_link)]
+end
+
 def source_exist?
   sub_source_card = subfield('source')
-  return false if sub_source_card.nil?
+  return false if sub_source_card.nil? ||
+                  sub_source_card.subcard('new_source').nil?
   new_source_card = sub_source_card.subcard('new_source')
-  file_card = new_source_card.subfield :file
-  text_card = new_source_card.subfield :text
-  link_card = new_source_card.subfield :wikirate_link
+  file_card, text_card, link_card = source_subcards new_source_card
 
   (file_card && file_card.attachment.present?) ||
     (text_card && text_card.content.present?) ||
