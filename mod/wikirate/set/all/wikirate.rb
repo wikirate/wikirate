@@ -38,14 +38,10 @@ format :html do
   view :progress_bar do
     value = card.raw_content
     if is_number? value
-      %{
-        <div class="progress">
-          <div class="progress-bar" role="progressbar" aria-valuenow="#{value}"
-               aria-valuemin="0" aria-valuemax="100" style="width: #{value}%;">
-            #{value}%
-          </div>
-        </div>
-      }
+      progress_bar_div = %{<div class="progress-bar" role="progressbar" aria-valuenow="#{value}" aria-valuemin="0" aria-valuemax="100" style="width: #{value}%;">#{value}%</div>}
+
+      %{<div class="progress">#{progress_bar_div}</div>}
+
     else
       'Only card with numeric content can be shown as progress bar.'
     end
@@ -100,9 +96,8 @@ format :html do
 
     result +
       if total_number > fetch_number
-        %{<a class="known-card" href="#{card.format.render :url}">
-            #{total_number - 3} others
-          </a>}
+        %{<a class="known-card" href="#{card.format.render :url}"> } \
+          "#{total_number - 3} others</a>"
       else
         subformat(items[fetch_number - 1]).render(:link)
       end
@@ -301,11 +296,11 @@ module ClassMethods
   end
 
   def claim_tag_filter_spec filter_words, extra={}
-    tag_filter_spec filter_words, extra.merge(:type_id=>ClaimID), %w( tag company topic )
+    tag_filter_spec filter_words,
+                    extra.merge(type_id: ClaimID),
+                    %w(tag company topic)
   end
 end
-
-
 
 
 format :json do
