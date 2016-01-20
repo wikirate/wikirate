@@ -13,15 +13,14 @@ def populate_website?
 end
 
 event :autopopulate_website,
-      before: :store, on: :create,
+      in: :validate, on: :create,
       when: proc { |c| c.populate_website? } do
   link = subfield(:wikirate_link).content
   uri = URI.parse(link)
   host = uri.host
-  add_subfield(:wikirate_website, content: "[[#{host}]]").approve
-  approve_subcards
+  add_subfield_and_validate(:wikirate_website, content: "[[#{host}]]")
   return if Card.exists?(host)
-  Card.create name: host, type_id: Card::WikirateWebsiteID
+  add_subcard host, type_id: Card::WikirateWebsiteID
 end
 
 def handle_source_box_source url
@@ -54,7 +53,7 @@ def duplication_check url
   end
 end
 
-event :process_source_url, before: :process_subcards, on: :create do
+event :process_source_url, in: :validate, after: :check_source, on: :create do
   if !(link_card = subfield(:wikirate_link)) || link_card.content.empty?
     errors.add(:link, 'does not exist.')
     return
@@ -65,17 +64,19 @@ event :process_source_url, before: :process_subcards, on: :create do
   end
   duplication_check url
   return if errors.present?
-  if file_link? url
+  mime_type, size = file_type_and_size(url)
+  is_file_link = file_link?(mime_type)
+  if is_file_link && within_max_size(size)
     download_file_and_add_to_plus_file url
     reset_patterns
     include_set_modules
-  elsif Card::Env.params[:sourcebox] == 'true'
+  elsif Card::Env.params[:sourcebox] == 'true' && !is_file_link
     parse_source_page url
   end
 end
 
 def url? url
-  url.start_with?('http://') || url.start_with?('https://')
+  url.start_with?('http://', 'https://')
 end
 
 def wikirate_url? url
@@ -96,7 +97,8 @@ end
 
 def download_file_and_add_to_plus_file url
   url.gsub!(/ /, '%20')
-  add_subfield :file, remote_file_url: url, type_id: FileID, content: 'dummy'
+  add_subfield_and_validate :file, remote_file_url: url, type_id: FileID,
+                                   content: 'dummy'
   remove_subfield :wikirate_link
 rescue  # if open raises errors , just treat the source as a normal source
   Rails.logger.info 'Fail to get the file from link'
@@ -121,15 +123,17 @@ def file_type_and_size url
   content_type = curl.head[/.*Content-Type: (.*)\r\n/, 1]
   content_size = curl.head[/.*Content-Length: (.*)\r\n/, 1].to_i
   [content_type, content_size]
-end
-
-def file_link? url
-  mime_type, size = file_type_and_size(url)
-  !(mime_type.start_with?('text/html') || mime_type.start_with?('image/')) &&
-    size.to_i <= max_size.megabytes
 rescue
   Rails.logger.info "Fail to extract header from the #{url}"
-  false
+  ['', '']
+end
+
+def file_link? mime_type
+  !mime_type.start_with?('text/html', 'image/')
+end
+
+def within_max_size? size
+  size.to_i <= max_size.megabytes
 end
 
 def parse_source_page url
@@ -138,10 +142,10 @@ def parse_source_page url
   #   add_subcard '+image url', content: preview.images.first.src.to_s
   # end
   unless subfield('title')
-    add_subcard '+title', content: preview.title
+    add_subcard_and_validate '+title', content: preview.title
   end
   return if subfield('Description')
-  add_subcard '+description', content: preview.description
+  add_subcard_and_validate '+description', content: preview.description
 rescue
   Rails.logger.info "Fail to extract information from the #{url}"
 end

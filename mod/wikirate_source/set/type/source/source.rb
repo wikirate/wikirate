@@ -18,7 +18,7 @@ end
 require 'link_thumbnailer'
 
 event :vote_on_create_source,
-      on: :create, after: :store,
+      in: :integrate, on: :create,
       when: proc { |_c| Card::Auth.current_id != Card::WagnBotID }do
   Auth.as_bot do
     vc = vote_count_card
@@ -28,7 +28,7 @@ event :vote_on_create_source,
   end
 end
 
-event :check_source, after: :approve_subcards, on: :create do
+event :check_source, in: :validate, on: :create do
   source_cards = [subfield(:wikirate_link),
                   subfield(:file),
                   subfield(:text)].compact
