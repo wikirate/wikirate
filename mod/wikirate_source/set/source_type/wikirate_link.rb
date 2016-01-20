@@ -65,17 +65,19 @@ event :process_source_url, before: :process_subcards, on: :create do
   end
   duplication_check url
   return if errors.present?
-  if file_link? url
+  file_type, size = file_type_and_size url
+  is_file_link = file_link? file_type
+  if is_file_link && within_file_size_limit?(size)
     download_file_and_add_to_plus_file url
     reset_patterns
     include_set_modules
-  elsif Card::Env.params[:sourcebox] == 'true'
+  elsif Card::Env.params[:sourcebox] == 'true' && !is_file_link
     parse_source_page url
   end
 end
 
 def url? url
-  url.start_with?('http://') || url.start_with?('https://')
+  url.start_with?('http://', 'https://')
 end
 
 def wikirate_url? url
@@ -121,15 +123,17 @@ def file_type_and_size url
   content_type = curl.head[/.*Content-Type: (.*)\r\n/, 1]
   content_size = curl.head[/.*Content-Length: (.*)\r\n/, 1].to_i
   [content_type, content_size]
-end
-
-def file_link? url
-  mime_type, size = file_type_and_size(url)
-  !(mime_type.start_with?('text/html') || mime_type.start_with?('image/')) &&
-    size.to_i <= max_size.megabytes
 rescue
   Rails.logger.info "Fail to extract header from the #{url}"
-  false
+  ['', '']
+end
+
+def file_link? mime_type
+  !mime_type.start_with?('text/html', 'image/')
+end
+
+def within_file_size_limit? size
+  size.to_i <= max_size.megabytes
 end
 
 def parse_source_page url
