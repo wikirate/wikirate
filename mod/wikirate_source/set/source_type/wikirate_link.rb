@@ -99,7 +99,7 @@ end
 def download_file_and_add_to_plus_file url
   url.gsub!(/ /, '%20')
   add_subfield :file, remote_file_url: url, type_id: FileID, content: 'dummy'
-  remove_subfield :wikirate_link
+  # remove_subfield :wikirate_link
 rescue  # if open raises errors , just treat the source as a normal source
   Rails.logger.info 'Fail to get the file from link'
 end
