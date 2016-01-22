@@ -106,31 +106,40 @@ def create_source
 end
 
 format :html do
-  def default_new_args args
+  def get_structure args
+    if args[:company]
+      'metric company add value'
+    elsif args[:source]
+      'metric_source_add_value'
+    elsif args[:metric]
+      'metric add value'
+    else
+      'default add metric value'
+    end
+  end
+
+  def set_hidden_args args
     if !args[:source]
+      view = (args[:metric] || args[:company]) ? :titled : :open
       args[:hidden] = {
-        :success => { id: '_self', soft_redirect: true, view: :titled },
+        :success => { id: '_self', soft_redirect: true, view: view },
         'card[subcards][+metric][content]' => args[:metric]
       }
     else
       args[:hidden] = {}
     end
+  end
 
+  def default_new_args args
+    set_hidden_args args
     if args[:company]
       args[:hidden]['card[subcards][+company][content]'] = args[:company]
     end
     if args[:source]
       args[:hidden]['card[subcards][+source][content]'] = args[:source]
     end
-    args[:title] = "Add new value for #{args[:metric]}"
-    args[:structure] =
-      if args[:company]
-        'metric company add value'
-      elsif args[:source]
-        'metric_source_add_value'
-      else
-        'metric add value'
-      end
+    args[:title] = "Add new value for #{args[:metric]}" if args[:metric]
+    args[:structure] = get_structure args
     super(args)
   end
 
