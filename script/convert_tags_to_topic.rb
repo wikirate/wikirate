@@ -28,7 +28,7 @@ def put_things_in_tag_to_correct_position cards, skip_year
       year.save!
     end
     i += 1
-    Card.cache.reset_soft if i % 10 == 0
+    Card.cache.reset if i % 10 == 0
   end
 end
 
@@ -40,7 +40,7 @@ Card::Auth.as_bot do
     card.type_id = Card::WikirateTopicID
     puts "Updating #{card.name}'s type to topic".green
     card.save!
-    Card.cache.reset_soft
+    Card.cache.reset
   end
   puts 'Finished type updates!'.green
   puts 'Getting all claim + tag cards'.green
