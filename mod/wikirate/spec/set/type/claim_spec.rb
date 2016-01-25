@@ -69,12 +69,13 @@ describe Card::Set::Type::Claim do
       @sample_claim = get_a_sample_note
     end
 
-    it "show help text and claim counting for claim name when creating claim" do
+    it 'show help text and note counting for note name when creating claim' do
       claim_card  = card = Card.new :type_id=>Card::ClaimID
       help_content = "Add a Note about a Company"
-      claim_help_card = Card.fetch "claim+*type+*add help",:new=>{:content=>help_content}
+      claim_help_card = Card.fetch 'note+*type+*add help',
+                                   new: { content: help_content }
       if claim_help_card.real?
-        help_content = claim_help_card.content
+        help_content = claim_help_card.format.process_content
       else
         claim_help_card.save
       end
