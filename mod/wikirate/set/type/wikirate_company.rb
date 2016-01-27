@@ -16,7 +16,7 @@ end
 
 format :html do
   def view_caching?
-    true
+    false
   end
 
   view :open do |args|
