@@ -8,9 +8,11 @@ Feature: note
     And I go to  "/new metric"
     And I fill in "card_name" with "Jedi+size"
     And I press "Submit"
+    And I wait until ajax response done
 
   Scenario: Creating a new metric and adding a value
     When I go to card "Jedi+size"
+    And I wait until ajax response done
     And In the main card content I click "Add new value"
     And I fill in "pointer_item" with "Death Star" within "form > fieldset.editor > .RIGHT-company"
     And I fill in "pointer_item" with "2015" within "form > fieldset.editor > .RIGHT-year"
@@ -26,6 +28,7 @@ Feature: note
 
   Scenario: Creating a new metric with a file source on metric page
     When I go to card "Jedi+size"
+    And I wait until ajax response done
     And In the main card content I click "Add new value"
     And I fill in "pointer_item" with "Death Star" within "form > fieldset.editor > .RIGHT-company"
     And I fill in "pointer_item" with "2015" within "form > fieldset.editor > .RIGHT-year"
@@ -45,6 +48,7 @@ Feature: note
 
   Scenario: update a metric value
     When I go to card "Jedi+size"
+    And I wait until ajax response done
     And In the main card content I click "Add new value"
     And I fill in "pointer_item" with "Death Star" within "form > fieldset.editor > .RIGHT-company"
     And I fill in "pointer_item" with "2015" within "form > fieldset.editor > .RIGHT-year"
