@@ -19,6 +19,6 @@ end
 
 format :html do
   def view_caching?
-    false
+    true
   end
 end
