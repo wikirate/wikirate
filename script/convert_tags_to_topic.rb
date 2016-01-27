@@ -37,10 +37,9 @@ def updated_cards cards
 end
 
 def update_card card
-  if card.changed? && card.item_names.size > 0
-    puts "\tUpdating #{card.name} to #{card.content}".green
-    card.save!
-  end
+  return unless card.changed? && card.item_names.size > 0
+  puts "\tUpdating #{card.name} to #{card.content}".green
+  card.save!
 end
 
 Card::Auth.as_bot do
