@@ -1,80 +1,77 @@
 
-require "net/https"
-require "uri"
-format do
+require 'net/https'
+require 'uri'
 
-  view :cite, :closed=>true do |args|
+format do
+  view :cite, closed: true do
     ''
   end
 
-  view :raw_or_blank, :perms=>:none, :closed=>true do |args|
-    _render(:raw) or ''
+  view :raw_or_blank, perms: :none, closed: true do |args|
+    _render(:raw, args) || ''
   end
 end
 
-
 format :html do
-
-  view :cgi_escape_name do |args|
+  view :cgi_escape_name do
     CGI::escape card.name
   end
 
-  view :og_source, :tags=>:unknown_ok do |args|
+  view :og_source, tags: :unknown_ok do |args|
     if card.real?
       card.format.render_source
     else
-      Card["*Vertical_Logo"].format.render_source args.merge({:size=>"large"})
+      Card['*Vertical_Logo'].format.render_source args.merge(size: 'large')
     end
   end
 
   view :meta_preview do |args|
-    ActionView::Base.full_sanitizer.sanitize(Card::Content.truncatewords_with_closing_tags _render_core(args), words=50)
+    content = _render_core args
+    truncated = Card::Content.truncatewords_with_closing_tags content, 50
+    ActionView::Base.full_sanitizer.sanitize truncated
   end
 
   def is_number? str
     true if Float(str) rescue false
   end
 
-  view :progress_bar do |args|
+  view :progress_bar do
     value = card.raw_content
     if is_number? value
-      %{
-        <div class="progress">
-          <div class="progress-bar" role="progressbar" aria-valuenow="#{value}" aria-valuemin="0" aria-valuemax="100" style="width: #{value}%;">#{value}%</div>
-        </div>
-      }
+      progress_bar_div = %{<div class="progress-bar" role="progressbar" aria-valuenow="#{value}" aria-valuemin="0" aria-valuemax="100" style="width: #{value}%;">#{value}%</div>}
+
+      %{<div class="progress">#{progress_bar_div}</div>}
+
     else
-      "Only card with numeric content can be shown as progress bar."
+      'Only card with numeric content can be shown as progress bar.'
     end
   end
 
   view :titled_with_edits do |args|
     wrap args do
       [
-        _render_header( args ),
-        render_edits_by( args ),
-        wrap_body( :content=>true ) { _render_core args },
+        _render_header(args),
+        render_edits_by(args),
+        wrap_body(content: true) { _render_core args }
       ]
     end
   end
 
-  view :edits_by do |args|
-    editor_card = card.fetch :trait=>:editors
+  view :edits_by do
+    editor_card = card.fetch trait: :editors
     %{
       <div class="edits-by">
         <div class='subtitle-header'>Edits by</div>
-        #{ subformat( editor_card).render_shorter_search_result :item=>:link}
+        #{subformat(editor_card).render_shorter_search_result item: :link}
       </div>
     }
   end
 
-
   view :open do |args|
-    super(args.reverse_merge :optional_horizontal_menu=>:show)
+    super(args.reverse_merge optional_horizontal_menu: :show)
   end
 
   attr_accessor :citations
-
 
   def default_menu_link_args args
     args[:menu_icon] = 'edit'
@@ -84,39 +81,39 @@ format :html do
     args[:optional_horizontal_menu] ||= :show if main?
   end
 
-  view :shorter_search_result do |args|
-    items = card.item_cards :limit=>0
+  view :shorter_search_result do
+    items = card.item_cards limit: 0
     total_number = items.size
     fetch_number = [total_number, 4].min
 
     result = ''
     if fetch_number > 1
-      result += items[0..fetch_number-2].map do |c|
+      result += items[0..(fetch_number - 2)].map do |c|
         subformat(c).render(:link)
       end.join(' , ')
       result += ' and '
     end
 
-    result += if total_number > fetch_number
-        "<a class=\"known-card\" href=\"#{card.format.render(:url)}\"> #{total_number-3} others</a>"
+    result +
+      if total_number > fetch_number
+        %{<a class="known-card" href="#{card.format.render :url}"> } \
+          "#{total_number - 3} others</a>"
       else
-        subformat(items[fetch_number-1]).render(:link)
+        subformat(items[fetch_number - 1]).render(:link)
       end
   end
 
   view :name_formgroup do |args|
-    #force showing help text
+    # force showing help text
     args[:help] ||= true
     super args
   end
 
-
-  view :cite do |args|
-    href_root = parent ? parent.card.cardname.trunk_name.url_key : ''
-    href = "##{ card.cardname.url_key }"
-    %{<sup><a class="citation" href="#{ href }">#{ cite! }</a></sup>}
+  view :cite do
+    # href_root = parent ? parent.card.cardname.trunk_name.url_key : ''
+    href = "##{card.cardname.url_key}"
+    %{<sup><a class="citation" href="#{href}">#{cite!}</a></sup>}
   end
-
 
   def cite!
     holder = parent.parent || parent || self
@@ -125,18 +122,18 @@ format :html do
     holder.citations.size
   end
 
-  view :wikirate_modal do |args|
+  view :wikirate_modal do
     card_name = Card::Env.params[:show_modal]
     if card_name.present?
       after_card = Card[card_name]
       if !after_card
-         Rails.logger.info "Expect #{card_name} exist"
-         "" #otherwise it will return true
+        Rails.logger.info "Expect #{card_name} exist"
+        '' # otherwise it will return true
       else
-         "<div class='modal-window'>#{ subformat( after_card ).render_core } </div>"
+        "<div class='modal-window'>#{subformat(after_card).render_core} </div>"
       end
     else
-      ""
+      ''
     end
   end
 
@@ -299,11 +296,11 @@ module ClassMethods
   end
 
   def claim_tag_filter_spec filter_words, extra={}
-    tag_filter_spec filter_words, extra.merge(:type_id=>ClaimID), %w( tag company topic )
+    tag_filter_spec filter_words,
+                    extra.merge(type_id: ClaimID),
+                    %w(tag company topic)
   end
 end
-
-
 
 
 format :json do
