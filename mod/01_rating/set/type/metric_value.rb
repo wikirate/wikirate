@@ -22,7 +22,7 @@ end
 
 def source_subcards new_source_card
   [new_source_card.subfield(:file), new_source_card.subfield(:text),
-    new_source_card.subfield(:wikirate_link)]
+   new_source_card.subfield(:wikirate_link)]
 end
 
 def source_exist?
@@ -30,11 +30,19 @@ def source_exist?
   return false if sub_source_card.nil? ||
                   sub_source_card.subcard('new_source').nil?
   new_source_card = sub_source_card.subcard('new_source')
-  file_card, text_card, link_card = source_subcards new_source_card
+  source_subcard_exist?(new_source_card)
+end
 
+def source_subcard_exist? new_source_card
+  file_card, text_card, link_card = source_subcards new_source_card
   (file_card && file_card.attachment.present?) ||
     (text_card && text_card.content.present?) ||
     (link_card && link_card.content.present?)
+end
+
+def subfield_exist? field_name
+  subfield_card = subfield(field_name)
+  !subfield_card.nil? && subfield_card.content.present?
 end
 
 event :set_metric_value_name,
@@ -43,6 +51,14 @@ event :set_metric_value_name,
     content = remove_subfield(name).content
     content.gsub('[[', '').gsub(']]', '')
   end.join '+'
+end
+
+event :validate_metric_value_fields, before: :set_metric_value_name do
+  ['metric', 'company', 'year', 'value'].each do |name|
+    if !subfield_exist?(name)
+      errors.add :field, "Missing #{name}. Please check before submit."
+    end
+  end
 end
 
 event :create_source_for_metric_value, before: :process_subcards, on: :create do
@@ -85,24 +101,32 @@ def get_source_card sub_source_card
 end
 
 def create_source
-  metric_value = remove_subfield 'value'
+  value_card = remove_subfield('value')
   if (sub_source_card = subfield('source'))
-    source_card = get_source_card sub_source_card
     clear_subcards
+    source_card = get_source_card sub_source_card
     if !source_card
       errors.add :source, "#{sub_source_card.content} does not exist."
     elsif source_card.errors.empty?
-      add_subcard '+value', content: metric_value.content, type_id: PhraseID
-      add_subcard '+source', content: "[[#{source_card.name}]]",
-                             type_id: PointerID
+      fill_subcards value_card, source_card
     else
-      source_card.errors.each do |key, value|
-        errors.add key, value
-      end
+      fill_errors source_card
     end
   else
     errors.add :source, 'does not exist.'
   end
+end
+
+def fill_errors source_card
+  source_card.errors.each do |key, value|
+    errors.add key, value
+  end
+end
+
+def fill_subcards metric_value, source_card
+  add_subcard '+value', content: metric_value.content, type_id: PhraseID
+  add_subcard '+source', content: "[[#{source_card.name}]]",
+                         type_id: PointerID
 end
 
 format :html do
