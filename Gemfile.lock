@@ -7,9 +7,9 @@ GIT
       method_source (~> 0.8.1)
 
 PATH
-  remote: ./vendor/wagn/card
+  remote: /Users/ethan/dev/wagn/gem/card
   specs:
-    card (1.17.0)
+    card (1.17.1)
       activerecord-session_store (~> 0.1)
       bootstrap-kaminari-views (~> 0.0.5)
       carrierwave (~> 0.10)
@@ -27,10 +27,10 @@ PATH
       uuid (~> 2.3)
 
 PATH
-  remote: ./vendor/wagn/wagn
+  remote: /Users/ethan/dev/wagn/gem/wagn
   specs:
-    wagn (1.17.0)
-      card (= 1.17.0)
+    wagn (1.17.1)
+      card (= 1.17.1)
       rails (~> 4.2)
 
 GEM

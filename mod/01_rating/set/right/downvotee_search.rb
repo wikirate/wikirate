@@ -1,7 +1,15 @@
 def virtual?; true end
 
 def raw_content
-  %({"type":"_lr","linked_to_by":{"left":"_user","right":{"codename":"#{vote_type_codename}"}}, "limit":0, "return":"name"})
+  %({
+    "type":"_lr",
+    "linked_to_by":{
+      "left":"_user",
+      "right":{"codename":"#{vote_type_codename}"}
+    },
+    "limit":0,
+    "return":"name"
+  })
 end
 
 def vote_type
@@ -21,14 +29,12 @@ def sort_by
   vote_type_codename
 end
 
-
-
 format do
   include Type::SearchType::Format
 
   alias :super_search_results :search_results
 
-  def search_results
+  def search_results args={}
      @search_results ||= enrich_result(get_search_result)
   end
 
@@ -117,7 +123,8 @@ format :html do
     args[:vote_type] ||= card.vote_type
     args[:query] ||= 'vote=force-down'
     args[:empty] ||=
-      if ( empty =  Card[card.vote_type_codename].fetch(:trait=>:empty_list) || Card[:empty_list] )
+      if (empty = Card[card.vote_type_codename].fetch(trait: :empty_list) ||
+                  Card[:empty_list])
         subformat(empty).render_core(args)
       else
         ''
@@ -196,11 +203,13 @@ format :html do
 
   def with_drag_and_drop args
     show_unsaved_msg = args[:unsaved].present? && !Auth.signed_in?
-    content_tag :div, :class=>"list-drag-and-drop yinyang-list #{args[:vote_type]}-container",
-                      'data-query'=>args[:query],
-                      'data-update-id'=>card.cardname.url_key,
-                      'data-bucket-name'=>args[:vote_type],
-                      'data-default-sort'=>args[:default_sort] do
+    content_tag :div,
+                class: 'list-drag-and-drop yinyang-list '\
+                       "#{args[:vote_type]}-container",
+                'data-query'        => args[:query],
+                'data-update-id'    => card.cardname.url_key,
+                'data-bucket-name'  => args[:vote_type],
+                'data-default-sort' => args[:default_sort] do
       [
         (content_tag(:h5, :class=>'vote-title') { card.vote_label } if card.vote_label),
         content_tag(:div,:class=>'empty-message') { args[:empty] },
@@ -217,7 +226,7 @@ format :html do
       :class             => 'drag-item yinyang-row'
     }
     html_args[:class] += ' no-metric-value' if args[:no_value]
-    args[:sort].each { |k,v| html_args["data-sort-#{k}"] = v } if args[:sort]
+    args[:sort].each { |k, v| html_args["data-sort-#{k}"] = v } if args[:sort]
 
     content_tag :div, content.html_safe, html_args
   end
