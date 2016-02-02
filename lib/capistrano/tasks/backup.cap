@@ -13,7 +13,6 @@ namespace :backup do
     invoke 'backup:refresh_local'
   end
 
-
   task :download do
     backup_dir = fetch :local_backups_dir
     run_locally do
@@ -33,7 +32,6 @@ namespace :backup do
       execute :pull_wikirate
     end
   end
-
 
   task :unzip do
     on roles(:db) do
@@ -112,6 +110,7 @@ namespace :backup do
       end
     end
   end
+
   desc "Backup to local /tmp/wikirate"
   task :get do
     on roles(:db) do
@@ -122,6 +121,7 @@ namespace :backup do
       invoke 'backup:update_files'
     end
   end
+
   task :pull_db do
     ENV['BACKUP_MODE'] = 'only_db'
     on roles(:db) do

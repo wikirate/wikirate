@@ -7,8 +7,8 @@ def sections
     if left.present?
       user_card = left
       [ { name: Card[:metric].name, contributions: :contributed_metrics },
-        { name: Card[:claim].name, contributions: :contributed_claims },
-        { name: Card[:source].name, contributions: :contributed_sources },
+#        { name: Card[:claim].name, contributions: :contributed_claims },
+#        { name: Card[:source].name, contributions: :contributed_sources },
         { name: Card[:overview].name,
           contributions: :contributed_analysis
         },

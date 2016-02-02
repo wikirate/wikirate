@@ -22,13 +22,13 @@ describe Card::Set::Right::Overview do
                                                      name: 'card[content]' })
       end
     end
-    context 'content and titled_with_edits views' do
+    context 'core and titled_with_edits views' do
       it 'render editor with content with citation tips' do
         overview_name = "#{@company.name}+#{@topic.name}+"\
                         "#{Card[:overview].name}"
         article = Card.create name: overview_name, type: 'basic',
                               content: 'hello world'
-        html = article.format.render_content
+        html = article.format.render_core
         id = 'citable_note'
         expect(html).to have_tag('div', with: { class: 'note-tip' }) do
           with_tag 'textarea', with: { id: id }, text: /#{@citation}/

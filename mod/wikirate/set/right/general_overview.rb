@@ -3,28 +3,38 @@ format :html do
     handle_edit_general_overview(args) { super args }
   end
 
-  view :content do |args|
+  view :core do |args|
     handle_edit_general_overview(args) { super args }
   end
 
+  # used in analysis page
   view :titled_with_edits do |args|
     handle_edit_general_overview(args) { super args }
   end
 
+  def default_param_key
+    :edit_general_overview
+  end
+
   view :editor do |args|
-    prompt = with_inclusion_mode :normal do
-      claim_name = params[:citable]
-      if claim_name && claim = Card[claim_name]
-        nest claim, view: :sample_citation
-      else
-        render :citation_tip
+    if params[default_param_key] && card.ok?(:update)
+      prompt = with_inclusion_mode :normal do
+        claim_name = params[:citable]
+        if claim_name && (claim = Card[claim_name])
+          nest claim, view: :sample_citation
+        else
+          render :citation_tip
+        end
       end
+      %( #{prompt}#{super args} )
+    else
+      super args
     end
-    %( #{prompt}#{super args} )
   end
 
   view :citation_tip do |_args|
-    tip = 'easily cite this note by pasting the following:' + text_area_tag('sample-citation-textarea')
+    tip = ' easily cite this note by pasting the following: '\
+          "#{text_area_tag('sample-citation-textarea')}"
     %( <div class="sample-citation">#{render :tip, tip: tip}</div> )
   end
 
@@ -42,11 +52,8 @@ format :html do
     end.to_s
   end
 
-  def handle_edit_general_overview(args)
-    if params[:edit_general_overview] && card.ok?(:update)
-      # if missing view renders core view, it will cause infinit loop
-      # core -> missing -> core ... -> stack level too deep
-      render :core, args unless @current_view == :missing
+  def handle_edit_general_overview args
+    if params[default_param_key] && card.ok?(:update)
       render :edit, args
     else
       yield

@@ -33,8 +33,8 @@ format :html do
   end
 
   def contributions_about?
-    return false unless (topic_name = card.cardname.trait_name :wikirate_topic)
-    return false unless (count_name = topic_name.trait_name :cached_count)
+    count_name =
+      card.cardname.trait_name(:wikirate_topic).trait_name :cached_count
     return false unless (count = Card.fetch count_name)
     count.content.to_i > 0
   end
