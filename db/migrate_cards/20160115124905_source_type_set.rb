@@ -43,8 +43,7 @@ class SourceTypeSet < Card::Migration
   end
 
   def update_create_rule
-    create_card! name: 'source+*source_type+*type plus right+*create',
-                 content: '_left'
+    create_card! name: '*source_type+*right+*create', content: '_left'
   end
 
   def create_source_type_card
@@ -60,7 +59,7 @@ class SourceTypeSet < Card::Migration
                    },
                    '+*right+*input' => {
                      content: 'radio'
-                   },
+                   }
                  }
   end
 end

@@ -69,6 +69,7 @@ event :process_source_url, before: :process_subcards, on: :create do
   is_file_link = file_link? file_type
   if is_file_link && within_file_size_limit?(size)
     download_file_and_add_to_plus_file url
+    remove_subfield(:wikirate_link)
     reset_patterns
     include_set_modules
   elsif Card::Env.params[:sourcebox] == 'true' && !is_file_link

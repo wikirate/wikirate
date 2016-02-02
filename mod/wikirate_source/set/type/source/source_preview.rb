@@ -79,6 +79,14 @@ format :html do
                         src="#{file_card.attachment.url}" />},
                       { id: 'pdf-preview', class: 'webpage-preview' }, false)
         end
+      else
+        structure = 'source item preview'
+        redirect_content = _render_content args.merge(structure: structure)
+        content_tag(:div, content_tag(:div, redirect_content,
+                                      { class: 'redirect-notice' }, false),
+                    { id: 'source-preview-iframe',
+                      class: 'webpage-preview non-previewable' },
+                    false)
       end
     when :wikirate_link
       url = args[:url]

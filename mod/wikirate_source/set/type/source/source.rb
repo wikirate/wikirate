@@ -40,7 +40,7 @@ event :check_source, after: :approve_subcards, on: :create do
 end
 
 def source_type_codename
-  card.source_type_card.item_cards[0].codename
+  source_type_card.item_cards[0].codename.to_sym
 end
 
 def analysis_names
