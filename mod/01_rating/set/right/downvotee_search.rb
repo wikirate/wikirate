@@ -1,4 +1,6 @@
-def virtual?; true end
+def virtual?
+  true
+end
 
 def raw_content
   %({
