@@ -1,4 +1,3 @@
-DEFAULT_SOURCE_TYPE = 'Link'
 
 @@options = {
   index: 4,
@@ -12,7 +11,7 @@ def source_type card_or_name
   st_card ||= card_or_name.is_a?(Card) && card_or_name.subfield(:source_type)
   st_type = st_card && st_card.content.scan(/\[\[([^\]]+)\]\]/).flatten.first
 
-  st_type || DEFAULT_SOURCE_TYPE
+  st_type || 'Link'
 end
 
 def label _name
