@@ -8,5 +8,4 @@ format :html do
   def icon
     'pencil'
   end
-  
 end

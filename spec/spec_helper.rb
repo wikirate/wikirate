@@ -47,6 +47,11 @@ def source_args args
     }
   }
   source_type_name = Card[:source_type].name
+  add_source_type args, res, source_type_name
+  res
+end
+
+def add_source_type args, res, source_type_name
   [:link, :file, :text].each do |key|
     next unless args[key]
     content_key = (key == :file ? :file : :content)
@@ -54,7 +59,6 @@ def source_args args
     res[:subcards]["+#{source_type_name}"] = {}
     res[:subcards]["+#{source_type_name}"][:content] = "[[#{key}]]"
   end
-  res
 end
 
 def create_claim_with_url name, url, subcards={}

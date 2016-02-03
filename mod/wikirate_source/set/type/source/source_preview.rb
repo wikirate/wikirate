@@ -1,18 +1,19 @@
 format :html do
-  view :preview ,tags: :unknown_ok do |args|
+  view :preview, tags: :unknown_ok do |args|
     url_card = card.fetch(trait: :wikirate_link)
     url = url_card ? url_card.item_names.first : nil
     args[:url] = url
     wrap args do
       [
-        render_navigation_bar(args),# render in structure source_preview_nav_bar_structure
+        # render in structure source_preview_nav_bar_structure
+        render_navigation_bar(args),
         render_hidden_information(args),
         render_source_preview_container(args)
       ]
     end
   end
 
-  view :source_preview_container,tags: :unknown_ok  do |args|
+  view :source_preview_container, tags: :unknown_ok do |args|
     %{
       <div class="row clearfix source-preview-content">
         <div class="col-md-6 hidden-xs column source-iframe-container">
@@ -107,16 +108,16 @@ format :html do
   view :hidden_information, tags: :unknown_ok do |args|
     %{
       <div style="display:none">
-        #{content_tag(:div, card.cardname.url_key, id: "source-name")}
-        #{content_tag(:div, args[:url], id: "source_url")}
-        #{content_tag(:div, args[:company], id: "source_company")}
-        #{content_tag(:div, args[:topic], id: "source_topic")}
+        #{content_tag(:div, card.cardname.url_key, id: 'source-name')}
+        #{content_tag(:div, args[:url], id: 'source_url')}
+        #{content_tag(:div, args[:company], id: 'source_company')}
+        #{content_tag(:div, args[:topic], id: 'source_topic')}
       </div>
     }
   end
 
   # View: HTML for the navigation bar on preview page
-  view :navigation_bar ,tags: :unknown_ok  do |args|
+  view :navigation_bar, tags: :unknown_ok  do |args|
     %{
       <nav class="navbar navbar-default  ">
 
@@ -130,7 +131,9 @@ format :html do
               <span class="icon-bar"></span>
             </button>
             <div id="source-preview-tabs" class="navbar-brand" href="#">
-              #{web_link("/", text: raw( nest Card["*logo"], view: :core, size: :original ))}
+              #{web_link('/',
+                         text: raw(nest Card['*logo'],
+                                        view: :core, size: :original))}
             </div>
           </div>
 
@@ -152,7 +155,7 @@ format :html do
     }
   end
 
-  view :non_previewable ,tags: :unknown_ok do |_args|
+  view :non_previewable, tags: :unknown_ok do |_args|
     if file_card = Card[card.name+"+File"]
       %{<a href="#{file_card.attachment.url}" class="btn btn-primary" role="button">Download</a>}
     else
@@ -164,8 +167,27 @@ format :html do
 
   view :preview_options, tags: :unknown_ok  do |args|
     url = args[:url]
-    related_claim_wql = {left: {type_id: Card::ClaimID},right: "source",link_to: card.name,return: "count"}
-    related_metric_wql = {type_id: Card::MetricID, right_plus: [{type_id: Card::WikirateCompanyID}, right_plus: [{type: "year"}, right_plus: ["source", {link_to: card.name}]]],return: "count"}
+    related_claim_wql = {
+      left: {
+        type_id: Card::ClaimID
+      },
+      right: 'source',
+      link_to: card.name,
+      return: 'count'
+    }
+    related_metric_wql = {
+      type_id: Card::MetricID,
+      right_plus: [
+        { type_id: Card::WikirateCompanyID },
+        right_plus: [
+          { type: 'year' },
+          right_plus: [
+            'source', { link_to: card.name }
+          ]
+        ]
+      ],
+      return: 'count'
+    }
     claim_count = Card.search related_claim_wql
     metric_count = Card.search related_metric_wql
 
