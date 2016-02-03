@@ -90,7 +90,6 @@ def get_source_card sub_source_card
   Env.params[:sourcebox] = 'true'
   card =
     if (new_source_card = sub_source_card.subcard('new_source'))
-      binding.pry
       new_source_card.approve_subcards
       source_subcards = clone_subcards_to_hash new_source_card
       Card.create type_id: SourceID, subcards: source_subcards
