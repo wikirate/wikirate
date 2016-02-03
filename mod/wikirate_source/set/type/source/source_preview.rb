@@ -132,8 +132,8 @@ format :html do
             </button>
             <div id="source-preview-tabs" class="navbar-brand" href="#">
               #{web_link('/',
-                         text: raw(nest Card['*logo'],
-                                        view: :core, size: :original))}
+                         text: raw(nest(Card['*logo'],
+                                        view: :core, size: :original)))}
             </div>
           </div>
 

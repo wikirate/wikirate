@@ -15,7 +15,6 @@ class SourceTypeSet < Card::Migration
     update_existing_source_cards
 
     import_json 'source_set_type.json'
-
   end
 
   def update_existing_source_cards

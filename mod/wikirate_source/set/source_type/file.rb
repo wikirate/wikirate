@@ -20,4 +20,3 @@ format :html do
       (mime_type == 'text/csv' || mime_type == 'text/comma-separated-values')
   end
 end
-
