@@ -130,7 +130,7 @@ rescue
 end
 
 def file_link? mime_type
-  !mime_type.start_with?('text/html', 'image/')
+  !mime_type.empty? && !mime_type.start_with?('text/html', 'image/')
 end
 
 def within_file_size_limit? size
