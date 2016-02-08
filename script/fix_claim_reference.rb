@@ -6,11 +6,11 @@ Card::Auth.as_bot do
   puts plus_sources.size
   plus_sources.each do |plus_source_card|
     puts "updating reference of #{plus_source_card.name}".green
-    plus_source_card.update_references
+    plus_source_card.update_references_out
   end
   notes = Card.search :type_id=>Card::ClaimID
   notes.each do |note|
     puts "updating reference of #{note.name}".green
-    note.update_references
+    note.update_references_out
   end
 end
