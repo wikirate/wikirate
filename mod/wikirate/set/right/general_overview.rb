@@ -18,7 +18,7 @@ format :html do
 
   view :editor do |args|
     if params[default_param_key] && card.ok?(:update)
-      prompt = with_inclusion_mode :normal do
+      prompt = with_nest_mode :normal do
         claim_name = params[:citable]
         if claim_name && (claim = Card[claim_name])
           nest claim, view: :sample_citation

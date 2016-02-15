@@ -169,7 +169,7 @@ format :html do
 
   view :card_list_item do |args|
     c = args[:item_card]
-    item_view = inclusion_defaults(c)[:view]
+    item_view = nest_defaults(c)[:view]
     %{
       <div class="search-result-item item-#{ item_view }">
         #{nest(c, size: args[:size], view: item_view)}

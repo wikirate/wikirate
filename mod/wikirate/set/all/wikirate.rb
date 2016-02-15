@@ -184,7 +184,7 @@ format :html do
   end
 
   view :yinyang_list_items do |args|
-    item_args = { :view => ( args[:item] || (@inclusion_opts && @inclusion_opts[:view]) || default_item_view ) }
+    item_args = { :view => ( args[:item] || (@nest_opts && @nest_opts[:view]) || default_item_view ) }
     joint = args[:joint] || ' '
 
     if type = card.item_type
