@@ -100,7 +100,7 @@ def contribution_card?
 end
 
 event(:new_contributions,
-      before: :extend,
+      :integrate,
       when: proc { |c| !c.supercard && c.current_act && !c.contribution_card? }
      ) do
   visited = ::Set.new
