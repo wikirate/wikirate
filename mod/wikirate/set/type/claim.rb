@@ -92,9 +92,11 @@ format :html do
 
   def next_step_tip
     # FIXME: cardnames
-    if (not topics = Card["#{card.name}+topics"]) || topics.item_names.empty?
+    if (not topics = Card["#{card.name}+topics"]) ||
+       topics.item_names.empty?
       'improve this note by adding a topic.'
-    elsif (not companies = Card["#{card.name}+company"]) || companies.item_names.empty?
+    elsif (not companies = Card["#{card.name}+company"]) ||
+          companies.item_names.empty?
       'improve this note by adding a company.'
     else
       cited_in = Card.search refer_to: card.name,
