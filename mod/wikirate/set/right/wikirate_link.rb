@@ -1,18 +1,10 @@
 require 'link_thumbnailer'
 
-=begin
-view :core do |args|
-
-#  site_card = Card["#{card.name.to_name.trunk_name}+Website"]
-  #site = site_card && site_card.item_names.first
-  link_to "source page", card.raw_content, :target=>'source', :class=>'wikirate-source-link external-link'
+view :editor do |_args|
+  form.text_field :content, class: 'card-content form-control',
+                            placeholder: 'http://example.com'
 end
-=end
-
-view :editor do |args|
-  form.text_field :content, :class=>'card-content form-control',:placeholder=>"http://example.com"
-end
-event :validate_content, in: :prepare_to_validate, on: :save do
+event :validate_content, :prepare_to_validate, on: :save do
   begin
     @host = nil
     @host = URI(content).host
@@ -22,7 +14,8 @@ event :validate_content, in: :prepare_to_validate, on: :save do
   end
 end
 
-event :block_url_changing, :before=>:approve, :on=>:update, :changed=>:content,
-     :when=> proc {|c| !c.db_content_was.empty? } do
-  errors.add :link, "is not allowed to be changed."
+event :block_url_changing, :validate,
+      on: :update, changed: :content,
+      when: proc { |c| !c.db_content_was.empty? } do
+  errors.add :link, 'is not allowed to be changed.'
 end

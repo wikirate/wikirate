@@ -213,21 +213,3 @@ def default_citation
   "#{name} {{#{name}|cite}}"
 end
 
-=begin
-event :sort_tags, before: :approve_subcards, on: :create do
-  tag_key = '+tags' #FIXME - hardcoded card name
-  if tags_card = subcards[tag_key]
-    tags_card.item_names.each do |tag|
-      if tag_card = Card.fetch(tag)
-        if tagtype = tag_card.type_code and [:wikirate_company, :wikirate_topic].member?(tagtype)
-          type_key = "+#{ Card[tagtype].name }"
-          subcards[type_key] ||= Card.new name: type_key, supercard: self, type_id: Card::PointerID
-          subcards[type_key].add_item tag
-          tags_card.drop_item tag
-        end
-
-      end
-    end
-  end
-end
-=end

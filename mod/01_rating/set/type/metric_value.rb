@@ -25,7 +25,7 @@ def source_subcards new_source_card
    new_source_card.subfield(:wikirate_link)]
 end
 
-def source_exist?
+def source_in_request?
   sub_source_card = subfield('source')
   return false if sub_source_card.nil? ||
                   sub_source_card.subcard('new_source').nil?
@@ -61,13 +61,13 @@ event :validate_metric_value_fields, before: :set_metric_value_name do
   end
 end
 
-event :create_source_for_metric_value, before: :process_subcards, on: :create do
+event :create_source_for_metric_value, :prepare_to_store, on: :create do
   create_source
 end
 
 event :create_source_for_updating_metric_value,
-      before: :process_subcards,
-      on: :update, when: proc {  |c| c.source_exist? } do
+      :prepare_to_store,
+      on: :update, when: proc { |c| c.source_in_request? } do
   create_source
 end
 

@@ -13,8 +13,7 @@ def populate_website?
 end
 
 event :autopopulate_website,
-      in: :validate, on: :create,
-      when: proc { |c| c.populate_website? } do
+      :validate, on: :create, when: proc { |c| c.populate_website? } do
   link = subfield(:wikirate_link).content
   uri = URI.parse(link)
   host = uri.host
@@ -53,7 +52,7 @@ def duplication_check url
   end
 end
 
-event :process_source_url, in: :validate, after: :check_source, on: :create do
+event :process_source_url, :validate, after: :check_source, on: :create do
   if !(link_card = subfield(:wikirate_link)) || link_card.content.empty?
     errors.add(:link, 'does not exist.')
     return
