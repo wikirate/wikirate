@@ -17,7 +17,7 @@ event :autopopulate_website,
   link = subfield(:wikirate_link).content
   uri = URI.parse(link)
   host = uri.host
-  add_subfield_and_validate(:wikirate_website, content: "[[#{host}]]")
+  add_subfield :wikirate_website, content: "[[#{host}]]"
   return if Card.exists?(host)
   add_subcard host, type_id: Card::WikirateWebsiteID
 end
@@ -141,10 +141,10 @@ def parse_source_page url
   #   add_subcard '+image url', content: preview.images.first.src.to_s
   # end
   unless subfield('title')
-    add_subcard_and_validate '+title', content: preview.title
+    add_subcard '+title', content: preview.title
   end
   return if subfield('Description')
-  add_subcard_and_validate '+description', content: preview.description
+  add_subcard '+description', content: preview.description
 rescue
   Rails.logger.info "Fail to extract information from the #{url}"
 end
