@@ -10,8 +10,8 @@ def indirect_contributor_search_args
   [{ right_id: VoteCountID, left: name }]
 end
 
-event :vote_on_create_claim,
-      on: :create, after: :store,
+event :vote_on_create_claim, :integrate,
+      on: :create,
       when: proc { Card::Auth.current_id != Card::WagnBotID } do
   Auth.as_bot do
     vc = vote_count_card
@@ -161,15 +161,17 @@ def analysis_cards
   analysis_names.map { |aname| Card.fetch aname }
 end
 
-event :reset_claim_counts, after: :store do
+event :reset_claim_counts, :integrate do
   Card.reset_claim_counts
 end
 
-event :validate_note, before: :approve, on: :save do
+# TODO: check if this can be moved to :validate stage
+# (was in before: :approve)
+event :validate_note, :prepare_to_validate, on: :save do
   errors.add :note, 'is too long (100 character maximum)' if name.length > 100
 end
 
-event :validate_source, after: :approve, on: :save do
+event :validate_source, :validate, on: :save do
   # 1. it correctly validates when adding a claim
   # 2. it correctly validates when editing a claim with +source
   # 3. it doesn't break anything when editing a claim without +source

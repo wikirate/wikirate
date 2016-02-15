@@ -1,8 +1,8 @@
-event :create_missing_topics, after: :store, on: :save do
+event :create_missing_topics, :integrate, on: :save do
   topics = item_names
   topics.each do |topic|
-    if !Card.exists? topic
-      Card.create! type_id: Card::WikirateTopicID, name: topic
+    next if Card.exists? topic
+    add_subcard topic, type_id: Card::WikirateTopicID
     end
   end
 end
