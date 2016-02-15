@@ -12,7 +12,7 @@ end
 view :editor do |args|
   form.text_field :content, :class=>'card-content form-control',:placeholder=>"http://example.com"
 end
-event :validate_content, :before=>:approve, :on=>:save do
+event :validate_content, in: :prepare_to_validate, on: :save do
   begin
     @host = nil
     @host = URI(content).host

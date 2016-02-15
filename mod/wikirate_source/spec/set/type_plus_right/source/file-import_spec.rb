@@ -2,10 +2,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
   before do
     login_as 'joe_user'
     test_csv = File.open("#{Rails.root}/mod/wikirate_source/spec/set/type_plus_right/source/import_test.csv")
-    @source = Card.create! type_id: Card::SourceID,
-                           subcards: {
-                             '+File'=>{ file: test_csv,type_id: Card::FileID}
-                           }
+    @source = create_source file: test_csv
     Card::Env.params['is_metric_import_update'] = 'true'
   end
   describe 'while adding metric value' do
@@ -108,7 +105,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
     it 'updates correct metric values' do
       test_csv = File.open("#{Rails.root}/mod/wikirate_source/spec/set/type_plus_right/source/import_test2.csv")
 
-      new_source = Card.create! type_id: Card::SourceID,subcards: {'+File'=>{ file: test_csv,type_id: Card::FileID}}
+      new_source = create_source file: test_csv
 
       Card::Env.params[:metric_values] = {"Amazon.com, Inc."=>["9"], "Apple Inc."=>['62']}
       source_file = @source.fetch trait: :file

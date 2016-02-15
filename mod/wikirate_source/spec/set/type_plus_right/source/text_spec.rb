@@ -2,7 +2,9 @@ describe Card::Set::TypePlusRight::Source::Text do
   describe "while editing a file source" do
     before do
       login_as 'joe_user' 
-      @text_source = Card.create! :type_id=>Card::SourceID,:subcards=>{'+Text'=>{ :content=>"There are 2 hard problems in computer science: cache invalidation, naming things, and off-by-1 errors.",:type_id=>Card::BasicID}}
+      text = 'There are 2 hard problems in computer science: cache '\
+             'invalidation, naming things, and off-by-1 errors.'
+      @text_source = create_source text: text
       @another_user = Card.create! :name=>"joe_user_again",:type_id=>Card::UserID
     end
     context "users is not the author" do
