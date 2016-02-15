@@ -39,6 +39,10 @@ event :check_source, :validate, on: :create do
   end
 end
 
+def source_type_codename
+  source_type_card.item_cards[0].codename.to_sym
+end
+
 def analysis_names
   return [] unless (topics = fetch(trait: :wikirate_topic)) &&
                    (companies = fetch(trait: :wikirate_company))

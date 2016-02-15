@@ -63,10 +63,11 @@ event :process_source_url, :validate, after: :check_source, on: :create do
   end
   duplication_check url
   return if errors.present?
-  mime_type, size = file_type_and_size(url)
-  is_file_link = file_link?(mime_type)
-  if is_file_link && within_max_size(size)
+  file_type, size = file_type_and_size url
+  is_file_link = file_link? file_type
+  if is_file_link && within_file_size_limit?(size)
     download_file_and_add_to_plus_file url
+    remove_subfield(:wikirate_link)
     reset_patterns
     include_set_modules
   elsif Card::Env.params[:sourcebox] == 'true' && !is_file_link
@@ -96,9 +97,8 @@ end
 
 def download_file_and_add_to_plus_file url
   url.gsub!(/ /, '%20')
-  add_subfield_and_validate :file, remote_file_url: url, type_id: FileID,
-                                   content: 'dummy'
-  remove_subfield :wikirate_link
+  add_subfield :file, remote_file_url: url, type_id: FileID, content: 'dummy'
+  # remove_subfield :wikirate_link
 rescue  # if open raises errors , just treat the source as a normal source
   Rails.logger.info 'Fail to get the file from link'
 end
@@ -128,10 +128,10 @@ rescue
 end
 
 def file_link? mime_type
-  !mime_type.start_with?('text/html', 'image/')
+  !mime_type.empty? && !mime_type.start_with?('text/html', 'image/')
 end
 
-def within_max_size? size
+def within_file_size_limit? size
   size.to_i <= max_size.megabytes
 end
 

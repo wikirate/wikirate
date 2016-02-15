@@ -4,7 +4,6 @@ require 'link_thumbnailer'
 describe Card::Set::Type::Source do
 
   describe "rendering preview view" do
-
     before do
       @url = "http://existingpage.com"
       @company = "Amazon.com, Inc."

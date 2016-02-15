@@ -96,30 +96,35 @@ describe Card::Set::Type::Source do
     describe 'while creating a source with a file link' do
       context 'link points to a file' do
         it 'downloads it and saves as a file source' do
-          pdf_url = 'http://www.relacweb.org/conferencia/images/documentos/Hoteles_cerca.pdf'
+          pdf_url = 'http://wikirate.org/Page-000003962+File.pdf'
           sourcepage = create_link_source pdf_url
           expect(sourcepage.errors).to be_empty
           source_file = sourcepage.fetch(trait: :file)
           expect(source_file).to_not be_nil
-          expect(sourcepage.fetch(trait: :wikirate_link)).to be_nil
+          # expect(sourcepage.fetch(trait: :wikirate_link)).to be_nil
           expect(Card.exists?("#{sourcepage.name}+title")).to eq(false)
           expect(Card.exists?("#{sourcepage.name}+description")).to eq(false)
-          expect(File.exist? source_file.file.path).to be true
+          expect(File.exist?(source_file.file.path)).to be true
         end
         it 'handles this special url and saves as a file source' do
-          pdf_url = 'https://www.unglobalcompact.org/system/attachments/9862/original/Sinopec_2010_Sustainable_Development_Report.pdf?1302508855'
+          pdf_url = 'https://www.unglobalcompact.org/system/attachments/9862/'\
+                    'original/Sinopec_2010_Sustainable_Development_Report.pdf?'\
+                    '1302508855'
           sourcepage = create_link_source pdf_url
           expect(sourcepage.errors).to be_empty
           expect(sourcepage.fetch(trait: :file)).to_not be_nil
-          expect(sourcepage.fetch(trait: :wikirate_link)).to be_nil
+          # expect(sourcepage.fetch(trait: :wikirate_link)).to be_nil
         end
         context "file is bigger than '*upload max'" do
           it "won't create file source" do
-            pdf_url = 'http://cartographicperspectives.org/index.php/journal/article/download/cp49-issue/489'
+            pdf_url = 'http://cartographicperspectives.org/index.php/journal/'\
+                      'article/download/cp49-issue/489'
             sourcepage = create_link_source pdf_url
             expect(sourcepage.errors).to be_empty
             expect(sourcepage.fetch(trait: :wikirate_link)).to_not be_nil
             expect(sourcepage.fetch(trait: :file)).to be_nil
+            expect(Card["#{sourcepage.name}+title"]).to be_nil
+            expect(Card["#{sourcepage.name}+description"]).to be_nil
           end
         end
       end
