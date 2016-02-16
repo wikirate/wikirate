@@ -15,6 +15,7 @@ gem 'daemons'
 gem 'delayed_job_active_record'
 
 group :live do
+  gem 'newrelic_rpm'
   gem 'therubyracer'
   gem 'dalli'
 end
