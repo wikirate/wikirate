@@ -207,6 +207,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.0.2)
+    newrelic_rpm (3.14.3.313)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     oga (2.1)
@@ -387,6 +388,7 @@ DEPENDENCIES
   link_thumbnailer (= 2.5.2)
   minitest
   mysql2 (~> 0.3.18)
+  newrelic_rpm
   open_uri_redirections
   pry!
   pry-byebug
