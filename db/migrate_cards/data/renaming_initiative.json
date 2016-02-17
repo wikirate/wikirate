@@ -1,0 +1,31 @@
+{
+  "url": null,
+  "timestamp": "2016-02-17 18:07:36 +0000",
+  "card": {
+    "name": "export",
+    "type": "Pointer",
+    "content": "[[project+open]]\n[[project+Closed]]\n[[project+*self+*structure]]\n[[nav bar menu]]",
+    "value": [
+      {
+        "name": "Project+Open",
+        "type": "Search",
+        "content": "{ \r\n  \"type\":\"Project\",\r\n  \"right_plus\":[\"status\",{\"refer_to\":\"_right\"}]\r\n}"
+      },
+      {
+        "name": "Project+Closed",
+        "type": "Search",
+        "content": "{ \r\n  \"type\":\"Project\",\r\n  \"right_plus\":[\"status\",{\"refer_to\":\"_right\"}]\r\n}"
+      },
+      {
+        "name": "Project+*self+*structure",
+        "type": "HTML",
+        "content": "<p>{{+description}}</p>\r\n<p>{{Project|add_button}}</p>\r\n<p>{{+Open|titled;title:Current Project|content;structure: browse initiative item}}</p>\r\n<hr>\r\n<div class=\"col-md-4\">{{+Closed|titled;title: Older Project|content;structure: initiative item}}</div>"
+      },
+      {
+        "name": "nav bar menu",
+        "type": "HTML",
+        "content": "<ul class=\"nav navbar-nav\">\r\n          <li class=\"dropdown\">\r\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\">Browse <span class=\"caret\"></span></a>\r\n          <ul class=\"dropdown-menu\" role=\"menu\">\r\n            <li>[[Companies]]</li>\r\n            <li>[[Topics]]</li>\r\n            <li>[[Metrics]]<hr/></li>\r\n            <li>[[Projects]]</li>\r\n            <li>[[Notes]]</li>\r\n            <li>[[Sources]]</li>\r\n            <li>[[/:recent|Recent Changes]]</li>\r\n          </ul>\r\n        </li>\r\n        <li class=\"dropdown\">\r\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\">About <span class=\"caret\"></span></a>\r\n          <ul class=\"dropdown-menu\" role=\"menu\">\r\n            <li>[[About WikiRate|About WikiRate]]</li>\r\n            <li>[[Using WikiRate]]</li>\r\n            <li>[[Donate]]</li>\r\n            <li>[[FAQ]]</li>\r\n            <li>[[Tickets|Help]]</li>\r\n          </ul>\r\n        </li>\r\n</ul>\r\n<a type=\"button\" class=\"btn btn-primary btn-sm navbar-left margin-top-10 margin-left-10\" href=\"/new/source?layout=wikirate_layout\">\r\n          <span class=\"icon icon-wikirate-logo-o fa-lg\" aria-hidden=\"true\"></span>\r\n          Add Source\r\n</a>"
+      }
+    ]
+  }
+}
