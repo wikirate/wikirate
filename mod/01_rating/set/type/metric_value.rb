@@ -91,11 +91,12 @@ def get_source_card sub_source_card
   card =
     if (new_source_card = sub_source_card.subcard('new_source'))
       source_subcards = clone_subcards_to_hash new_source_card
-      add_subfield :source, type_id: SourceID, subcards: source_subcards
+      add_subcard '', type_id: SourceID, subcards: source_subcards
     else
       Card[sub_source_card.content]
     end
   Env.params[:sourcebox] = nil
+  card.director.catch_up_to_stage(:prepare_to_store)
   card
 end
 
