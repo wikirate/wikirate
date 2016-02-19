@@ -9,12 +9,10 @@ describe Card::Set::TypePlusRight::Source::Text do
     end
     context "users is not the author" do
       it "shows non-editing message " do
-        
         login_as @another_user.name 
         source_text_card = @text_source.fetch :trait=>:text
         html = source_text_card.format.render_edit
         expect(html).to include(%{Only <a class="known-card" href="/Joe_User">Joe User</a>(author) can edit this text source.})
-      
       end
       it "blocks updating content" do
 

@@ -135,7 +135,6 @@ describe Card::Set::TypePlusRight::Source::File::Import do
   describe 'while rendering import view' do
 
     it 'shows field correctly' do
-
       source_file_card = @source.fetch trait: :file
       html = source_file_card.format.render_import
 

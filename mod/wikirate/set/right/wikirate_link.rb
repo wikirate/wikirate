@@ -4,7 +4,7 @@ view :editor do |_args|
   form.text_field :content, class: 'card-content form-control',
                             placeholder: 'http://example.com'
 end
-event :validate_content, :prepare_to_validate, on: :save do
+event :validate_content, :validate, on: :save do
   begin
     @host = nil
     @host = URI(content).host

@@ -10,7 +10,6 @@ def source_type card_or_name
   st_card = Card.fetch(st_name, skip_modules: true, skip_type_lookup: true)
   st_card ||= card_or_name.is_a?(Card) && card_or_name.subfield(:source_type)
   st_type = st_card && st_card.content.scan(/\[\[([^\]]+)\]\]/).flatten.first
-
   st_type || 'Link'
 end
 

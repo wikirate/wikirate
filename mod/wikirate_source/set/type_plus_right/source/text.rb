@@ -12,7 +12,7 @@ format :html do
       super(args)
     else
       link = card_link(card.creator, text: card.creator.name)
-      %{Only #{link}(Author) can edit this text source.}
+      %{Only #{link}(author) can edit this text source.}
     end
   end
 end

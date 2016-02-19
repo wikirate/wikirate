@@ -13,7 +13,7 @@ def populate_website?
 end
 
 event :autopopulate_website,
-      :validate, on: :create, when: proc { |c| c.populate_website? } do
+      :prepare_to_store, on: :create, when: proc { |c| c.populate_website? } do
   link = subfield(:wikirate_link).content
   uri = URI.parse(link)
   host = uri.host
@@ -43,6 +43,7 @@ def duplication_check url
   return unless duplicates.any?
   duplicated_name = duplicates.first.cardname.left
   if Card::Env.params[:sourcebox] == 'true'
+    remove_subfield(:wikirate_link)
     self.name = duplicated_name
     abort :success
   else
@@ -52,7 +53,8 @@ def duplication_check url
   end
 end
 
-event :process_source_url, :validate, after: :check_source, on: :create do
+event :process_source_url, :prepare_to_validate, after: :check_source,
+      on: :create do
   if !(link_card = subfield(:wikirate_link)) || link_card.content.empty?
     errors.add(:link, 'does not exist.')
     return
@@ -62,6 +64,7 @@ event :process_source_url, :validate, after: :check_source, on: :create do
     handle_source_box_source url
   end
   duplication_check url
+  link_card.director.catch_up_to_stage :validate
   return if errors.present?
   file_type, size = file_type_and_size url
   is_file_link = file_link? file_type

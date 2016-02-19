@@ -11,7 +11,7 @@ describe Card::Set::Type::Source do
       login_as 'joe_user'
     end
 
-    it 'should add title,description' do
+    it 'adds title and description' do
       url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
       Card::Env.params[:sourcebox] = 'true'
       sourcepage = Card.create! type_id: Card::SourceID,
@@ -32,7 +32,7 @@ describe Card::Set::Type::Source do
         .to eq(preview.description)
     end
 
-    it 'should handle empty source' do
+    it 'handles empty source' do
       url = ''
       Card::Env.params[:sourcebox] = 'true'
       sourcepage = create_link_source url
@@ -51,7 +51,7 @@ describe Card::Set::Type::Source do
     end
 
     describe 'while creating duplicated source on claim page' do
-      it 'should return exisiting url' do
+      it 'returns exisiting url' do
         url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
         Card::Env.params[:sourcebox] = 'true'
         firstsourcepage = create_link_source url
@@ -60,7 +60,7 @@ describe Card::Set::Type::Source do
       end
     end
     describe 'while creating duplicated source on source page' do
-      it 'should show error' do
+      it 'shows error' do
         url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
 
         firstsourcepage = create_link_source url
@@ -197,6 +197,7 @@ describe Card::Set::Type::Source do
           return_source_card = Card.new source_args(
             link: 'this is not a exisiting card'
           )
+
           expect(return_source_card).not_to be_valid
           expect(return_source_card.errors).to have_key :source
           expect(return_source_card.errors[:source])

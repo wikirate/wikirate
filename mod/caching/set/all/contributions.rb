@@ -67,7 +67,7 @@ def contributees res=[], visited=::Set.new
     res += [self]
     res += [Card["#{name}+company"],
             Card["#{name}+topic"]
-           ].compact.map(&:item_cards).flatten
+           ].compact.map(&:known_item_cards).flatten
   elsif type_code == :wikirate_analysis
     res += [self, left, right]
   elsif (type_code == :wikirate_company) || (type_code == :wikirate_topic)
