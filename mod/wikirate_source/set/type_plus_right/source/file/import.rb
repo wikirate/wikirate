@@ -153,17 +153,18 @@ format :html do
     elsif (result = Card.search type: 'company', name: ['match', name]) &&
           !result.empty?
       [result.first.name, :partial]
-    elsif (company_name = part_of_a_company)
+    elsif (company_name = part_of_a_company(name))
       [company_name, :partial]
     else
-      ['', :none]
+      [name, :none]
     end
   end
 
-  def part_of_a_company
+  def part_of_a_company name
     Card.search(type: 'company', return: 'name').each do |comp|
       return comp if name.match comp
     end
+    nil
   end
 
   def default_import_args args
