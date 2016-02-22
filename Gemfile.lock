@@ -119,7 +119,7 @@ GEM
       ffi (~> 1.0, >= 1.0.11)
     codeclimate-test-reporter (0.4.8)
       simplecov (>= 0.7.1, < 1.0.0)
-    coderay (1.1.0)
+    coderay (1.1.1)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
@@ -196,7 +196,7 @@ GEM
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
-    mime-types (2.99)
+    mime-types (2.99.1)
     mini_magick (4.2.10)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
@@ -207,6 +207,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.0.2)
+    newrelic_rpm (3.15.0.314)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     oga (2.1)
@@ -261,14 +262,14 @@ GEM
     rake (10.5.0)
     recaptcha (0.4.0)
     ref (2.0.0)
-    roo (2.3.1)
+    roo (2.3.2)
       nokogiri (~> 1)
       rubyzip (~> 1.1, < 2.0.0)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)
       rspec-mocks (~> 3.4.0)
-    rspec-core (3.4.2)
+    rspec-core (3.4.3)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -300,7 +301,7 @@ GEM
       ansi
       ast
     ruby-progressbar (1.7.5)
-    rubyzip (1.1.7)
+    rubyzip (1.2.0)
     sass (3.4.21)
     selenium-webdriver (2.52.0)
       childprocess (~> 0.5)
@@ -387,6 +388,7 @@ DEPENDENCIES
   link_thumbnailer (= 2.5.2)
   minitest
   mysql2 (~> 0.3.18)
+  newrelic_rpm
   open_uri_redirections
   pry!
   pry-byebug
