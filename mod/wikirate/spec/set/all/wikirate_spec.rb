@@ -302,7 +302,6 @@ describe Card::Set::All::Wikirate do
                                     :subcards=>subcard
         metric_values.push(metric_value)
       end
-
       search_card = Card.fetch "#{sample_company.name}+limited_metric"
       html = search_card.format.render_yinyang_list args
 

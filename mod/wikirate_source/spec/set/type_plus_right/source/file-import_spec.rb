@@ -149,6 +149,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
         with_tag 'tr' do
           with_tag "input", with: {type: "checkbox",value: "43",id: 'metric_values_Cambridge_'}
           with_tag "td",text: 'Cambridge'
+          with_tag "td",text: 'none'
           with_tag 'td' do
             with_tag "input", with: { type: "text", name: 'corrected_company_name[Cambridge]' }
           end
