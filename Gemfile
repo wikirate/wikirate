@@ -14,6 +14,10 @@ gem 'curb'
 gem 'daemons'
 gem 'delayed_job_active_record'
 
+# seems like newrelic should be in :live, but that wasn't working.
+# not sure why -efm
+gem 'newrelic_rpm'
+
 group :live do
   gem 'therubyracer'
   gem 'dalli'
