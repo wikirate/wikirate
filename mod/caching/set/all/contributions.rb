@@ -19,6 +19,7 @@ def indirect_contributor
 end
 
 def calculate_indirect_contribution_count
+
   indirect_contributor.inject(0) do |total, c_card|
     more_contributions =
       case
@@ -61,6 +62,7 @@ end
 # contributes
 # FIXME: put into set mods!
 def contributees res=[], visited=::Set.new
+  return [res, visited] if visited.include? name
   visited << name
   if (type_code == :claim) || (type_code == :source)
     # FIXME: - cardnames
@@ -99,14 +101,15 @@ def contribution_card?
     )
 end
 
-event(:new_contributions,
-      :integrate,
+event(:new_contributions, #:integrate,
+      :integrate_with_delay,
       when: proc { |c| !c.supercard && c.current_act && !c.contribution_card? }
      ) do
   visited = ::Set.new
   contr = []
-  @current_act.actions.each do
-    contr, visited = contributees(contr, visited)
+  @current_act.actions.each do |action|
+    next unless action.card
+    contr, visited = action.card.contributees(contr, visited)
   end
 
   contr.uniq.each do |con_card|

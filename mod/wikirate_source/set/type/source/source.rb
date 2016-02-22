@@ -17,6 +17,8 @@ end
 
 require 'link_thumbnailer'
 
+# has to happen before the contributions update (the new_contributions event)
+# so we have to use the finalize stage
 event :vote_on_create_source, :integrate,
       on: :create,
       when: proc { Card::Auth.current_id != Card::WagnBotID }do

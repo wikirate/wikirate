@@ -125,11 +125,11 @@ format :html do
 
   def checkbox_row file_company, wikirate_company, status, value
     checked = [:partial, :exact, :alias].include? status
+    company = status == :none ? file_company : wikirate_company
     checkbox =
       content_tag(:td) do
-        check_box_tag "metric_values[#{wikirate_company}][]", value, checked
+        check_box_tag "metric_values[#{company}][]", value, checked
       end
-
     [file_company, wikirate_company, status.to_s].inject(checkbox) do |row, itm|
       row.concat content_tag(:td, itm)
     end
@@ -141,6 +141,8 @@ format :html do
     content_tag(:td, input)
   end
 
+  # @return name of company in db that matches the given name and
+  # the what kind of match
   def matched_company aliases_hash, name
     if (company = Card.fetch(name)) && company.type_id == WikirateCompanyID
       [name, :exact]
@@ -153,17 +155,18 @@ format :html do
     elsif (result = Card.search type: 'company', name: ['match', name]) &&
           !result.empty?
       [result.first.name, :partial]
-    elsif (company_name = part_of_a_company)
+    elsif (company_name = part_of_company(name)) && company_name.present?
       [company_name, :partial]
     else
       ['', :none]
     end
   end
 
-  def part_of_a_company
+  def part_of_company name
     Card.search(type: 'company', return: 'name').each do |comp|
       return comp if name.match comp
     end
+    false
   end
 
   def default_import_args args

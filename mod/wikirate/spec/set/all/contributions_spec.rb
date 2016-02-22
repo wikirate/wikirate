@@ -25,7 +25,8 @@ shared_examples_for 'contributions' do |subject_type|
   context "when source added" do
     before do
       @initial_count = @subject.contribution_count.to_i
-      create_page "http://www.google.com/?q=source", "+#{subject_type}"=>{:content=>"[[#{@subject.name}]]"}
+      @page = create_page "http://www.google.com/?q=source",
+        "+#{subject_type}"=>{:content=>"[[#{@subject.name}]]"}
     end
     it "increases by 2" do
       is_expected.to eq(@initial_count+2)
