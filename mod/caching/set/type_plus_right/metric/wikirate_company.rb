@@ -1,16 +1,14 @@
+# cache # of companies with values for left metric
 include Card::CachedCount
 
-ensure_set do
-  Type::MetricValue
-end
+ensure_set { Type::MetricValue }
 
-expired_cached_count_cards :set=>Type::MetricValue, :on=>[:create,:delete] do |changed_card|
+# recount number of companies for a given metric when a Metric Value card is
+# created or deleted
+recount_trigger Type::MetricValue, on: [:create, :delete] do |changed_card|
   [
-    changed_card.metric_card.fetch(:trait=>:wikirate_company),
-    # actually this is not getting cached count for `metric+company` card
-    # it is to refresh the related metric value to the company
-    # refer to ltype_rtype/metric/wikirate_company.rb
-    Card.fetch("#{changed_card.metric_name}+#{changed_card.company_name}")
+    changed_card.metric_card.fetch(trait: :wikirate_company),
+    # metric + company name contains the latest year for the metric value set
+    changed_card.left
   ]
 end
-

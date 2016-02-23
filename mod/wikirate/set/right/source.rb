@@ -1,6 +1,6 @@
 format :html do
   view :editor do |args|
-    with_inclusion_mode :normal do
+    with_nest_mode :normal do
       %{
         <div class="source-editor nodblclick">
           #{ form.hidden_field :content, :class=>'card-content' }

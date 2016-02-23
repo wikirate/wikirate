@@ -33,3 +33,22 @@ env RAILS_ENV=test rake wikirate:test:update_seed_data
 
 This updates the mysql dump in  test/wikiratetest.db that is also used for
 continuous integration testing. So don't forget to include it in your git commits.
+
+
+Site Maintenance
+================
+
+See documentation here: https://github.com/capistrano/maintenance
+
+quick examples:
+```
+  # turn on maintenance message with defaults
+  cap production maintenance:enable
+
+  # turn on maintenance message with more info
+  cap production maintenance:enable REASON="database update" UNTIL="in a minute or two"
+
+  # turn maintenance message off
+  cap production maintenance:disable
+
+```
