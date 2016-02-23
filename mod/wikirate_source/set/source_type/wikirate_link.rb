@@ -18,7 +18,7 @@ event :autopopulate_website,
   uri = URI.parse(link)
   host = uri.host
   add_subfield :wikirate_website, content: "[[#{host}]]"
-  return if Card.exists?(host)
+  return if Card.exists?(host) || host.blank?
   add_subcard host, type_id: Card::WikirateWebsiteID
 end
 
