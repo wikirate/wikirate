@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 require 'link_thumbnailer'
 
-describe Card::Set::Type::Source do
+describe Card::Set::Type::Source, 'source preview' do
 
   describe "rendering preview view" do
     before do
