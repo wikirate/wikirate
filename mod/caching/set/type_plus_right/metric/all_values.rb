@@ -1,10 +1,14 @@
 # cache all values in a json hash of the form
 # company => [{ year => ..., value => ...}, ... ]
+
 include Card::CachedCount
 
 # recount # of values for a metric when ...
 
 # ... a +value is changed
+ensure_set { TypePlusRight::MetricValue::Value }
+ensure_set { Type::MetricValue }
+
 recount_trigger(TypePlusRight::MetricValue::Value) do |changed_card|
   changed_card.metric_card.fetch trait: :all_values
 end

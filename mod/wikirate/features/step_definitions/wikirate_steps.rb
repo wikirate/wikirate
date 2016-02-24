@@ -64,3 +64,36 @@ When fill_rg do |selector, value, scope_selector|
     fill_in(selector, with: value)
   end
 end
+
+When /^I fill in company with "([^"]*)"$/ do |company|
+  fill_in_pointer_field :company, company
+end
+
+When /^I fill in year with "([^"]*)"$/ do |year|
+  fill_in_pointer_field :year, year
+end
+
+When /^I fill in value with "([^"]*)"$/ do |value|
+  fill_in_value value
+end
+
+When /^I fill in source url with "([^"]*)"$/ do |url|
+  fill_in "card_subcards__source_subcards_new_source_subcards__Link_content",
+          with: url
+end
+
+When /^I fill in metric value with "([^"]*)" as company, "([^"]*)" as year, and "([^"]*)" as value$/ do |company, year, value|
+  fill_in_pointer_field :company, company
+  fill_in_pointer_field :year, year
+  fill_in_value value
+end
+
+def fill_in_pointer_field name, value
+  within "form > fieldset.editor > .RIGHT-#{name}" do
+    fill_in "pointer_item", with: value
+  end
+end
+
+def fill_in_value value
+  fill_in "card_subcards__value_content", with: value
+end
