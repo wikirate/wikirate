@@ -63,7 +63,8 @@ namespace :wikirate do
     task :reseed_data, [:location] do |t,args|
       if ENV['RAILS_ENV'] != 'init_test'
         puts "start task in test environment"
-        system 'env RAILS_ENV=init_test rake wikirate:test:reseed_data'
+        system "env RAILS_ENV=init_test rake " \
+               "\"wikirate:test:reseed_data[#{args[:location]}]\""
       elsif !test_database
         puts "Error: no test database defined in config/database.yml"
       elsif !prod_database
