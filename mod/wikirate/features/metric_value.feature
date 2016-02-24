@@ -43,7 +43,6 @@ Feature: metric value
     And I wait until ajax response done
     And I should see "Jedi+disturbances in the Force+Death Star+2015"
     And I should see "101"
-    And I should see "Page-"
     And I should see "2015"
 
   Scenario: create a metric value with nothing on new metric value page
