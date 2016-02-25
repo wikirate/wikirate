@@ -31,6 +31,17 @@ format :html do
   end
 end
 
+def analysis_names
+  return [] unless (topics = Card["#{name}+#{Card[:wikirate_topic].name}"]) &&
+                   (companies = Card["#{name}+#{Card[:wikirate_company].name}"])
+
+  companies.item_names.map do |company|
+    topics.item_names.map do |topic|
+      "#{company}+#{topic}"
+    end
+  end.flatten
+end
+
 format :json do
   view :content do
     companies_with_years_and_values.to_json

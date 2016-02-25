@@ -23,7 +23,7 @@ class UpdateCodedStyles < Card::Migration
     # bootstrap_default = Card['simple bootstrap skin']
     # bootstrap_default.name = 'bootstrap default skin'
     # bootstrap_default.content = "[[themeless bootstrap skin]]\n[[theme: bootstrap default]]"
-    # bootstrap_default.update_referencers = true
+    # bootstrap_default.update_referers = true
     # bootstrap_default.save!
 
 

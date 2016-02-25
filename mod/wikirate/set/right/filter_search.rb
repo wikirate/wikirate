@@ -1,19 +1,22 @@
 def get_query params={}
   filter_words =  Array.wrap(Env.params[:company]) || []
-  filter_words += Array.wrap(Env.params[:topic]  ) if Env.params[:topic]
-  filter_words += Array.wrap(Env.params[:tag]    ) if Env.params[:tag]
-  search_args = { :limit=> 15 }
-  search_args.merge!(sort_query)
-  search_args.merge!(cited_query)
-  search_args.merge!(claimed_query)
-  search_args.merge!(:type=>left.name)
-  params[:query] = Card.tag_filter_query(filter_words, search_args,['tag','company','topic'])
+  filter_words += Array.wrap(Env.params[:topic]) if Env.params[:topic]
+  filter_words += Array.wrap(Env.params[:tag])   if Env.params[:tag]
+  search_args = { limit: 15 }
+  search_args.merge! sort_query
+  search_args.merge! cited_query
+  search_args.merge! claimed_query
+  search_args.merge! type: left.name
+  params[:query] = Card.tag_filter_query(
+    filter_words,
+    search_args,
+    %w( tag company topic )
+  )
   super(params)
 end
 
-
 def cited_query
-  yes_query = {:referred_to_by=>{:left=>{:type_id=>WikirateAnalysisID},:right_id=>WikirateArticleID}}
+  yes_query = {:referred_to_by=>{:left=>{:type_id=>WikirateAnalysisID},:right_id=>OverviewID}}
   case Env.params[:cited]
   when 'yes' then yes_query
   when 'no'  then {:not=>yes_query}

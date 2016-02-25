@@ -24,11 +24,47 @@ namespace :wikirate do
       SharedData.add_wikirate_data
     end
 
+    def update_or_create name, attr
+      if attr['type'].in? ['Image', 'File']
+        attr['content'] = ''
+        attr['empty_ok'] = true
+      end
+      begin
+        if card = Card.fetch(name)
+          puts "updating card #{name} #{card.update_attributes!(attr)}".light_blue
+        else
+          puts "creating card #{name} #{Card.create!(attr)}".yellow
+        end
+      rescue => e
+        puts "Error in #{name} #{e}".red
+      end
+    end
+
+    def truncate_table table
+      sql = "TRUNCATE  #{table}"
+      ActiveRecord::Base.connection.execute(sql)
+    end
+
+    def insert_migration_records data
+      data.each do |table, values|
+        begin
+          value_string = values.join("'),('")
+          value_string = "('#{value_string}')"
+          truncate_table table
+          sql = "INSERT INTO #{table} (version) VALUES #{value_string}"
+          ActiveRecord::Base.connection.execute(sql)
+        rescue => e
+          puts "Error in #{table},#{values} #{e}".red
+        end
+      end
+    end
+
     desc 'update seed data using the production database'
     task :reseed_data, [:location] do |t,args|
       if ENV['RAILS_ENV'] != 'init_test'
         puts "start task in test environment"
-        system 'env RAILS_ENV=init_test rake wikirate:test:reseed_data'
+        system "env RAILS_ENV=init_test rake " \
+               "\"wikirate:test:reseed_data[#{args[:location]}]\""
       elsif !test_database
         puts "Error: no test database defined in config/database.yml"
       elsif !prod_database
@@ -57,18 +93,10 @@ namespace :wikirate do
         puts "Done".green
         cards = JSON.parse(export)
         Card::Auth.as_bot
-        cards["card"]["value"].each do |c|
-          card_name = c["name"]
-          begin
-            if card = Card.fetch(card_name)
-              puts "updating card #{c} #{card.update_attributes!(c)}".light_blue
-            else
-              puts "creating card #{c} #{Card.create!(c)}".yellow
-            end
-          rescue => e
-            puts "Error in #{c} #{e}".red
-          end
+        cards["card"]["value"].each do |card|
+          update_or_create card["name"], card
         end
+        insert_migration_records cards['migration_record']
         FileUtils.rm_rf(Dir.glob('tmp/*'))
         seed_test_db = "RAILS_ENV=test rake wikirate:test:add_wikirate_test_data"
         puts seed_test_db.green
@@ -191,6 +219,49 @@ namespace :wikirate do
     #     "loadEventStart"             => [2042, 1712, 1663],
     #     "loadEventEnd"               => [2057, 1730, 1680]
     #   }
+  end
+
+  namespace :task do
+    desc "remove empty metric value cards"
+    task :remove_empty_metric_value_cards => :environment do
+      #require File.dirname(__FILE__) + '/../config/environment'
+      # Card::Auth.as_bot
+      Card::Auth.current_id = Card::WagnBotID
+
+      Card.search(type: 'Metric') do |metric|
+        puts "~~~\n\nworking on METRIC: #{metric.name}"
+
+        value_groups = Card.search(
+          left_id: metric.id,
+          right: { type: 'Company' },
+          not: {
+            right_plus: [
+              { type: 'Year' },
+              { type: 'Metric Value' }
+            ]
+          }
+        )
+
+        puts "deleting #{value_groups.size} empty value cards"
+        value_groups.each do |group_card|
+          begin
+            group_card.descendants.each do |desc|
+              desc.update_column :trash, true
+            end
+            group_card.update_column :trash, true
+          rescue
+            puts "FAILED TO DELETE: #{group_card.name}"
+          end
+        end
+      end
+      puts "empty trash"
+      Card.empty_trash
+    end
+
+    desc "delete all cards that are marked as trash"
+    task "empty_trash" => :environment do
+      Card.empty_trash
+    end
   end
 end
 

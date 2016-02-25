@@ -1,7 +1,7 @@
 format :html do
   def google_analytics_head_javascript
-    if ga_key = Card.setting("*google analytics key") #fixme.  escape this?
-      %{
+    return unless (ga_key = Card.global_setting(:google_analytics_key))
+    <<-JAVASCRIPT
         <script type="text/javascript">
           var _gaq = _gaq || [];
           _gaq.push(['_setAccount', '#{ga_key}']);
@@ -13,20 +13,20 @@ format :html do
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
           })();
         </script>
-      }
-    end
+    JAVASCRIPT
   end
 
-  view :raw do |args|
-    result = super(args)
+  view :raw do
+    result = super()
     if request
       user_agent = request.user_agent
-      if user_agent && ( user_agent=="Facebot" || user_agent.include?("facebookexternalhit/1.1"))
-        result += subformat(Card.fetch("#{Env.params["id"]}+facebook_meta"))._render_core
+      if user_agent && (user_agent == 'Facebot' ||
+         user_agent.include?('facebookexternalhit/1.1'))
+        fb_meta_card = Card.fetch("#{Env.params['id']}+facebook_meta")
+        result += subformat(fb_meta_card)._render_core
       end
     end
     result
   end
 end
-   
-      
+

@@ -5,33 +5,49 @@ format :html do
     if claim = card.left and claim.type_id == Card::ClaimID and analysis_names = claim.analysis_names and analysis_names.length > 0
       # unnecessary if we do this as type plus right
       cited, uncited = [], []
+      testparam = params[:citable]
       analysis_names.each do |analysis_name|
-        article = Card["#{analysis_name}+#{ Card[:wikirate_article].name }"]
+        article = Card["#{analysis_name}+#{ Card[:overview].name }"]
         if article && article.includees.include?( card.left )
           cited << analysis_name
         else
           uncited << analysis_name
         end
       end
-
-      if cited.any?
-        body += %{
-          <div class="related-articles cited-articles related-overviews cited-overviews">
-            <h3>Overviews that cite this Claim</h3>
-            <ul>#{ cited.map { |a| "<li>#{ analysis_links a, :cited=>true }" }.join "\n" }</ul>
-          </div>
-        }
+      if params[:general_overview] && params[:company]
+        body +=
+          content_tag :div,
+                      class: 'related-articles cited-articles related-overviews cited-overviews' do
+            card_link "#{params[:company]}+notes_page",
+                      text: 'Cite in General Overview',
+                      path_opts: {
+                        citable: claim.cardname.url_key,
+                        edit_general_overview: true
+                      },
+                      class: 'cite-button'
+          end
       end
       if uncited.any?
         body += %{
           <div class="related-articles uncited-articles related-overviews cited-overviews">
-            <h3>Overviews that <em>could</em> cite this Claim</h3>
-            <ul>#{ uncited.map { |a| "<li>#{ analysis_links a }" }.join "\n" }</ul>
+            <h4>Overviews that <em>could</em> cite this Claim</h4>
+            #{list_tag uncited.map { |a| analysis_links(a).html_safe }}
+              <h4>#{testparam}</h4>
           </div>
         }
       end
+      if cited.any?
+        body += %{
+          <div class="related-articles cited-articles related-overviews cited-overviews">
+            <h4>Overviews that cite this Claim</h4>
+            <ul>#{ cited.map { |a| "<li>#{ analysis_links a, :cited=>true }" }.join "\n" }</ul>
+            <h4>#{testparam}</h4>
+          </div>
+        }
+      end
+
     else
-      body = %{<h3 class="no-article no-overview">No related Overviews yet.</h3>} + subformat(claim).render_tip
+      body = %{<h4 class="no-article no-overview">No related Overviews yet.</h4>} + subformat(claim).render_tip
     end
     body
   end

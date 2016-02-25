@@ -1,12 +1,12 @@
 def contribution_count
   @cc ||= Card.search :type_id=>WikirateAnalysisID,
-            :right_plus=>[ Card[:wikirate_article].name, {:edited_by=>cardname.left }],
+            :right_plus=>[ Card[:overview].name, {:edited_by=>cardname.left }],
             :return=>:count
 end
 
 format :html do
   def default_header_args args
-    with_inclusion_mode :normal do
+    with_nest_mode :normal do
       args[:icon] = nest Card.fetch('venn icon'), :view=>:core, :size=>:small
     end
   end

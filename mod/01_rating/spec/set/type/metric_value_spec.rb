@@ -46,7 +46,7 @@ describe Card::Set::Type::MetricValue do
     end
   end
   context "creating metric value" do
-    it "creates correct metric value based on the subcards" do
+    it "based on subcards" do
       source = Card::Set::Self::Source.find_duplicates("http://www.google.com/?q=everybodylies").first.cardname.left
       source_card = @metric_value.fetch :trait=>:source
       expect(source_card.item_names).to include(source)
@@ -54,23 +54,128 @@ describe Card::Set::Type::MetricValue do
       value_card = Card["#{@metric_value.name}+value"]
       expect(value_card.content).to eq("I'm fine, I'm just not happy.")
     end
-    it "fails while source card cannot be created" do
+
+    it 'with an existing source' do
+      url = 'http://www.google.com/?q=everybodylies'
+      source = Card::Set::Self::Source.find_duplicates(url).first.cardname.left
+      subcard = {
+        '+metric' => { 'content' => @metric.name },
+        '+company' => {
+          'content' => "[[#{@company.name}]]",
+          'type_id' => Card::PointerID
+        },
+        '+value' => {
+          'content' => "I'm fine, I'm just not happy.",
+          'type_id' => Card::PhraseID
+        },
+        '+year' => { 'content' => '2014', 'type_id' => Card::PointerID },
+        '+source' => { 'content' => "#{source}" }
+      }
+      mv = Card.create! type_id: Card::MetricValueID, subcards: subcard
+      source_card = mv.fetch trait: :source
+      expect(source_card.item_names).to include(source)
+
+      value_card = Card["#{mv.name}+value"]
+      expect(value_card.content).to eq("I'm fine, I'm just not happy.")
+    end
+
+    it 'with an existing url' do
+      url = 'http://www.google.com/?q=everybodylies'
+      source = Card::Set::Self::Source.find_duplicates(url).first.cardname.left
+      subcard = {
+        '+metric' => { 'content' => @metric.name },
+        '+company' => {
+          'content' => "[[#{@company.name}]]",
+          'type_id' => Card::PointerID
+        },
+        '+value' => {
+          'content' => "I'm fine, I'm just not happy.",
+          'type_id' => Card::PhraseID
+        },
+        '+year' => { 'content' => '2014', 'type_id' => Card::PointerID },
+        '+source' => {
+          "subcards" => {
+            "new source" => {
+              "+Link" => {
+                content: url,
+                type_id: Card::PhraseID
+              }
+            }
+          }
+        }
+      }
+      mv = Card.create! type_id: Card::MetricValueID, subcards: subcard
+      source_card = mv.fetch trait: :source
+      expect(source_card.item_names).to include(source)
+
+      value_card = Card["#{mv.name}+value"]
+      expect(value_card.content).to eq("I'm fine, I'm just not happy.")
+    end
+
+
+    it 'fails with a non-existing source' do
+      subcard = {
+        '+metric' => { 'content' => @metric.name },
+        '+company' => {
+          'content' => "[[#{@company.name}]]",
+          'type_id' => Card::PointerID
+        },
+        '+value' => {
+          'content' => "I'm fine, I'm just not happy.",
+          'type_id' => Card::PhraseID
+        },
+        '+year' => { 'content' => '2014', 'type_id' => Card::PointerID },
+        '+source' => { 'content' => 'Page-1' }
+      }
+      fail_mv = Card.new type_id: Card::MetricValueID, subcards: subcard
+      expect(fail_mv).not_to be_valid
+      expect(fail_mv.errors).to have_key(:source)
+    end
+
+    it "fails if source card cannot be created" do
       subcard = {
         "+metric"=>{"content"=>@metric.name},
         "+company"=>{"content"=>"[[#{@company.name}]]",:type_id=>Card::PointerID},
         "+value"=>{"content"=>"I'm fine, I'm just not happy.", :type_id=>Card::PhraseID},
         "+year"=>{"content"=>"2015", :type_id=>Card::PointerID}
       }
-      fail_metric_value = Card.new :type_id=>Card::MetricValueID, :subcards=>subcard
+      fail_metric_value = Card.new type_id:Card::MetricValueID,
+                                   subcards: subcard
       expect(fail_metric_value).not_to be_valid
       expect(fail_metric_value.errors).to have_key(:source)
     end
   end
   describe "update metric value's value" do
-    it "updates metric value' value correctly" do
-      @metric_value.update_attributes! :subcards=>{"+value"=>"if nobody hates you, you're doing something wrong."}
+    it "updates metric value's value correctly" do
+      quote = "if nobody hates you, you're doing something wrong."
+      @metric_value.update_attributes! subcards: {
+        '+value' => quote
+      }
       metric_values_value_card = Card["#{@metric_value.name}+value"]
-      expect(metric_values_value_card.content).to eq("if nobody hates you, you're doing something wrong.")
+      expect(metric_values_value_card.content).to eq(quote)
+    end
+    context 'with another source' do
+      it "won't create card new source" do
+        quote = "if nobody hates you, you're doing something wrong."
+        subcards = {
+          '+value' => quote,
+          '+source' => {
+            'subcards' => {
+              'new source' => {
+                '+Link' => {
+                  'content' => 'http://www.google.com/?q=everybodylies1',
+                  'type_id' => Card::PhraseID
+                }
+              }
+            }
+          }
+        }
+        @metric_value.update_attributes! subcards: subcards
+        metric_values_value_card = Card["#{@metric_value.name}+value"]
+        expect(metric_values_value_card.content).to eq(quote)
+        expect(Card.exists?('new source')).not_to be
+        expect(Card.exists?('new source+link')).not_to be
+      end
     end
   end
   describe "views" do

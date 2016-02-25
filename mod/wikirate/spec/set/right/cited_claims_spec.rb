@@ -6,18 +6,17 @@ describe Card::Set::Right::CitedClaims do
     @sample_company = get_a_sample_company
     @sample_topic = get_a_sample_topic
     @sample_analysis = get_a_sample_analysis
-    @sample_claim = get_a_sample_claim
+    @sample_claim = get_a_sample_note
 
   end
   describe "core view" do
     it do
       #create claim related to analysis but not cited
 
-      claim_card = create_claim "whateverclaim",{"+company"=>{:content=>"[[#{@sample_company.name}]]"},"+topic"=>{:content=>"[[#{@sample_topic.name}]]"}}   
-      sample_article = @sample_analysis.fetch :trait=>:wikirate_article, :new=>{}
+      claim_card = create_claim "whateverclaim",{"+company"=>{:content=>"[[#{@sample_company.name}]]"},"+topic"=>{:content=>"[[#{@sample_topic.name}]]"}}
+      sample_article = @sample_analysis.fetch :trait=>:overview, :new=>{}
       sample_article.content = "I need some chewing gum.#{claim_card.default_citation}"
       sample_article.save
-
       html = @sample_analysis.format.render_core
       expect(html).to have_tag("div", :with=>{:id=>"Death_Star+Force+Cited_Notes"}) do
         with_tag "div", :with=>{:class=>"search-result-list"} do

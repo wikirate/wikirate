@@ -1,11 +1,17 @@
 def virtual?; true end
 
 def raw_content
-  if self[0].type_id == WikirateCompanyID && cardname.left_name.right_name.key == 'metric'  # find only metrics with values
-    '{"type":"_lr","right_plus":["_1",{"right_plus":["*cached count",{"content":["ne","0"]}]}], "not":{"linked_to_by":{"left":"_user","right":["in","*upvotes","*downvotes"]}}, "limit":0, "return":"name"}'
-  else
-    '{"type":"_lr","not":{"linked_to_by":{"left":"_user","right":["in","*upvotes","*downvotes"]}}, "limit":0, "return":"name"}'
-  end
+  %({
+    "found_by":"_left",
+    "not":{
+      "linked_to_by":{
+        "left":"_user",
+        "right_id":["in","#{UpvotesID}","#{Card::DownvotesID}"]
+      }
+    },
+    "return":"name",
+    "limit":"0"
+  })
 end
 
 def vote_type
@@ -51,7 +57,8 @@ format :html do
 
   def default_filter_and_sort_args args
     args[:default_sort] ||=
-      if main_type_id == WikirateCompanyID && searched_type_id == WikirateTopicID
+      if main_type_id == WikirateCompanyID &&
+         searched_type_id == WikirateTopicID
         :contributions
       else
         :importance

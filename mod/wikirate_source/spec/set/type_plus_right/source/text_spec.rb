@@ -2,17 +2,17 @@ describe Card::Set::TypePlusRight::Source::Text do
   describe "while editing a file source" do
     before do
       login_as 'joe_user' 
-      @text_source = Card.create! :type_id=>Card::SourceID,:subcards=>{'+Text'=>{ :content=>"There are 2 hard problems in computer science: cache invalidation, naming things, and off-by-1 errors.",:type_id=>Card::BasicID}}
+      text = 'There are 2 hard problems in computer science: cache '\
+             'invalidation, naming things, and off-by-1 errors.'
+      @text_source = create_source text: text
       @another_user = Card.create! :name=>"joe_user_again",:type_id=>Card::UserID
     end
     context "users is not the author" do
       it "shows non-editing message " do
-        
         login_as @another_user.name 
         source_text_card = @text_source.fetch :trait=>:text
         html = source_text_card.format.render_edit
         expect(html).to include(%{Only <a class="known-card" href="/Joe_User">Joe User</a>(author) can edit this text source.})
-      
       end
       it "blocks updating content" do
 

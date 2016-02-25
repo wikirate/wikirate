@@ -20,5 +20,4 @@ format :html do
     super(args)
     args[:icon] = '<i class="fa fa-bar-chart-o"></i>'
   end
-
 end
