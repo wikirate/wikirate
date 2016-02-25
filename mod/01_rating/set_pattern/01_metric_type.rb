@@ -1,33 +1,38 @@
+DEFAULT_METRIC_TYPE = 'Researched'
+
 @@options = {
-  :junction_only => true,
-  :index         => 3,
-  :anchor_parts_count=>1
+  junction_only: true,
+  index: 3,
+  anchor_parts_count: 1
 }
 
-def metric_type card
-  #(mm = card.fetch(trait: :metric_type, skip_modules: true, skip_type_lookup: true,  new: {type_id: Card::PointerID}) ||
-  (mm = Card.fetch("#{card.name}+*metric type", skip_modules: true,
-  new: {type_id: Card::PointerID}) #skip_virtual: true) ||
-        card.subfield(:metric_type)) &&
-    mm.content.scan(/\[\[([^\]]+)\]\]/).flatten.first
+def metric_type card_or_name
+  metric_name = card_or_name.is_a?(Card) ? card_or_name.name : card_or_name
+  mt_name = "#{metric_name}+*metric type"
+  mt_card = Card.fetch(mt_name, skip_modules: true, skip_type_lookup: true)
+  mt_card ||= card_or_name.is_a?(Card) && card_or_name.subfield(:metric_type)
+  mt_type = mt_card && mt_card.content.scan(/\[\[([^\]]+)\]\]/).flatten.first
+
+  mt_type || DEFAULT_METRIC_TYPE
 end
 
 def label name
   'metric type'
 end
 
-
 def pattern_applies? card
   card.type_id == Card::MetricID
 end
 
-
 def prototype_args anchor
-  { type: 'metric' }
+  metric_type = metric_type anchor
+  { type: 'metric', '+*metric_type' => "[[#{metric_type}]]"  }
 end
 
 def anchor_name card
-  Card::MetricTypeSet.metric_type card
+  metric_type card
 end
 
-
+def follow_label name
+  %{all #{metric_type name} metrics}
+end

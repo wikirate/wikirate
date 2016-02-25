@@ -45,15 +45,25 @@ format :html do
   end
 end
 
-def company_name
+def metric
+  cardname.left_name.left_name.left
+end
+
+def company
   cardname.left_name.left_name.right
 end
 
-event :update_related_calculations, after: :store do
-  metrics = Card.search left: { type_id: MetricID },
-                        right_plus: ['formula', { refer_to: name }]
+def year
+  cardname.left_name.right
+end
+
+event :update_related_calculations,
+      after: :store,
+      on: [:create, :update, :delete] do
+  metrics = Card.search type_id: MetricID,
+                        right_plus: ['formula', { refer_to: metric }]
 
   metrics.each do |metric|
-    metric.update_value_for_company! company_name
+    metric.update_value_for! company: company, year: year
   end
 end

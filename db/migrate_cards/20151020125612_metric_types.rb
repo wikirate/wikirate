@@ -7,17 +7,17 @@ class MetricTypes < Card::Migration
     end.join "\n"
   end
 
-
   def up
-    create_card! name: 'Researched', codename: 'researched'
-    create_card! name: 'Calculation', codename: 'calculation'
-    create_card! name: 'WikiRating', codename: 'wiki_rating'
-    create_card! name: 'Formula', codename: 'formula'
-    create_card! name: 'Score', codename: 'score'
+    create_card! name: 'Metric type', type_id: Card::CardtypeID
+    Card::Cache.reset_global
+    create_metric_types %w(Researched WikiRating Formula Score)
 
     create_card! name: '*metric type', codename: 'metric_type',
                  subcards: {
-                   '+*right+*default' => { type_id: Card::PointerID},
+                   '+*right+*default' => {
+                     type_id: Card::PointerID,
+                     content: '[[Researched]]'
+                   },
                    '+*right+*options' => {
                      type_id: Card::PointerID,
                      content: metric_types_list
@@ -26,7 +26,29 @@ class MetricTypes < Card::Migration
                      content: 'radio'
                    }
                  }
-    create_card! name: '*metric method', codename: 'metric_method'
-    create_card! name: '*calculation type', codename: 'calculation_type'
+
+    metric_type_plus_right_query =
+      '{"right":"_right", "left":{' \
+        '"type":"metric", "right_plus":["*metric type",{"refer_to":"_left"}]}}'
+    create_card! name: '*metric type plus right',
+                 codename: 'metric_type_plus_right'
+
+    create_card! name: '*metric type plus right+*right+*structure',
+                     type_id: Card::SetID,
+                     content: metric_type_plus_right_query
+
+
+    create_card! name: 'Metric type+*metric type+*type plus right+*structure',
+                 type_id: Card::SetID,
+                 content: '{"type":"metric",' \
+                          '"right_plus":["*metric type",{"refer_to":"_left"}]}'
+
+    import_json "production_export2.json"
+  end
+
+  def create_metric_types names
+    names.each do |name|
+      create_card! name: name, codename: name.to_name.key, type: 'Metric type'
+    end
   end
 end

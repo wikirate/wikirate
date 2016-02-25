@@ -41,7 +41,8 @@ def source_subcard_exist? new_source_card
 end
 
 def researched?
-  set_modules.include? Card::Set::MetricMethod::Researched
+  defined?(Card::Set::MetricType::Researched) &&
+    set_modules.include?(Card::Set::MetricType::Researched)
 end
 
 # TODO: add #subfield_present? method to subcard API

@@ -26,6 +26,6 @@ format :html do
           #{subformat(v).render_concise(args)}
         </span>
       HTML
-    end
+    end.join("\n")
   end
 end

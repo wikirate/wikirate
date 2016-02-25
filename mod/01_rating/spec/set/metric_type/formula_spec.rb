@@ -1,25 +1,16 @@
 # -*- encoding : utf-8 -*-
 
-describe Card::Set::CalculationType::WikiRating do
-  it 'works' do
-    Card::Auth.as_bot do
-      @card = Card.create! name: 'Jedi+evil rating', type_id: Card::MetricID,
-                          subcards: {
-                            '+*metric type' => "[[#{Card[:wiki_rating].name}]]",
-                            '+formula' => '{{Jedi+deadliness}}*5/10'
-                          }
-    end
-    expect(Card['Jedi+evil rating+Death Star+1977+value'].content).to eq('50')
-  end
+describe Card::Set::MetricType::Formula do
+  include_examples 'calculation', :score
+  #it_behaves_like 'calculation', :score do
+    #end
 
-#  it 'updates vlu'
-
-  describe 'valid_ruby_expression?' do
+  describe '#valid_ruby_expression?' do
     subject do
       Card::Auth.as_bot do
         Card.create! name: 'Jedi+evil rating', type_id: Card::MetricID,
                      subcards: {
-                      '+*metric type' => "[[#{Card[:wiki_rating].name}]]",
+                       '+*metric type' => "[[#{Card[:wiki_rating].name}]]",
                      }
       end
     end
