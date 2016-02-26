@@ -57,8 +57,7 @@ def year
   cardname.left_name.right
 end
 
-event :update_related_calculations,
-      after: :store,
+event :update_related_calculations, :finalize,
       on: [:create, :update, :delete] do
   metrics = Card.search type_id: MetricID,
                         right_plus: ['formula', { refer_to: metric }]

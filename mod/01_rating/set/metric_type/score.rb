@@ -8,7 +8,17 @@ end
 
 
 format :html do
-  view :new_tab_pane do
-    'Score'
+  def name_field form=nil, options={}
+    form ||= self.form
+    name_card = Card.new name: 'name', type_id: PointerID,
+                           subcards: {
+                             '+*input' => '[[select]]',
+                             '+*options' => {
+                               type_id: SearchTypeID,
+                               content: '{"type":"metric"}'
+                             }
+                           }
+
+    subformat(name_card)._render_select
   end
 end

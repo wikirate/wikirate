@@ -66,28 +66,39 @@ end
 
 format :html do
 
-  def tab_radio_button id, target, active=false
+  def tab_radio_button id, active=false
     <<-HTML
     <li role="tab" class="pointer-radio #{'active' if active}">
-        <label data-target="##{target}">
-            <input id="#{id}" name="intervaltype" value=#{id} class="pointer-radio-button" type="radio" #{ 'checked' if active } />
-            #{id}
+      <label data-target="##{tab_pane_id id}">
+        <input id="#{id}" name="intervaltype"
+               value="#{id}"
+               class="pointer-radio-button"
+               type="radio" #{'checked' if active} />
+          #{id}
         </label>
     </li>
     HTML
   end
 
-  def tab_pane name, active= false
+  def tab_pane_id name
+    "#{name.downcase}Pane"
+  end
+
+  def tab_pane name, active=false
     new_metric = Card.new type: MetricID, '+*metric type' => "[[#{name}]]"
-    binding.pry
     new_metric.reset_patterns
     new_metric.include_set_modules
-    <<-HTML
-      <div role="tabpanel" class="tab-pane active" id="researchedPane">
-        #{subformat(new_metric)._render_new_tab_pane}
-      </div>
-    HTML
+    div_args = {
+      role: 'tabpanel',
+      class: 'tab-pane',
+      id: tab_pane_id(name)
+    }
+    add_class div_args, 'active' if active
+    content_tag :div, div_args do
+      subformat(new_metric)._render_new_tab_pane
+    end
   end
+
   view :new do |args|
     frame_and_form :create, args, 'main-success' => 'REDIRECT' do
 
@@ -96,10 +107,10 @@ format :html do
     <div role="tabpanel">
       <input class="card-content form-control" type="hidden" value="" name="card[subcards][+*metric type][content]" id="card_subcards___metric_type_content">
         <ul class="nav nav-tabs pointer-radio-list" role="tablist">
-          #{tab_radio_button 'Researched', 'researchedPane', true}
-          #{tab_radio_button 'Formula', 'formulaPane'}
-          #{tab_radio_button 'Score', 'scorePane'}
-          #{tab_radio_button 'WikiRating', 'wikiratePane'}
+          #{tab_radio_button 'Researched', true}
+          #{tab_radio_button 'Formula'}
+          #{tab_radio_button 'Score'}
+          #{tab_radio_button 'WikiRating'}
         </ul>
 
         <!-- Tab panes -->
@@ -120,6 +131,44 @@ format :html do
     </script>
     HTML
     end
+  end
+
+  view :new_tab_pane do |args|
+    card_form :create, 'main-success' => 'REDIRECT' do
+      output [
+               _render(:name_formgroup, args),
+               _render(:content_formgroup, args),
+               _render(:button_formgroup, args)
+             ]
+    end
+  end
+
+  view :name_formgroup do |args|
+    formgroup 'Metric Name', raw(name_field form), editor: 'name', help:
+      args[:help]
+  end
+
+  def name_field form=nil, options={}
+    form ||= self.form
+    output [
+             metric_designer_field(options),
+             '<span>+</span>',
+             metric_title_field(options)
+           ]
+  end
+
+  def metric_designer_field options={}
+    text_field(:metric_designer, {
+      value: Auth.current.name,
+      autocomplete: 'off'
+    }.merge(options))
+  end
+
+  def metric_title_field options={}
+    text_field(:metric_title, {
+      value: card.name,
+      autocomplete: 'off'
+    }.merge(options))
   end
 
   view :legend do |args|

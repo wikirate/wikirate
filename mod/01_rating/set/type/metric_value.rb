@@ -67,9 +67,8 @@ event :validate_metric_value_fields, before: :set_metric_value_name do
   end
 end
 
-event :create_source_for_metric_value, 
-      :validate, on: :create do
-      when: proc { |c| c.researched? }  do
+event :create_source_for_metric_value, :validate,
+      on: :create, when: proc { |c| c.researched? }  do
   create_source
 end
 

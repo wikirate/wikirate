@@ -1,7 +1,7 @@
 card_accessor :formula, type_id: PhraseID
 
-event :create_values,
-      on: :create, before: :approve,
+event :create_values, :prepare_to_validate,
+      on: :create,
       when: proc { |c| c.formula.present? } do
 
   # FIXME: formula_card.left has type metric at this points but
@@ -13,8 +13,8 @@ event :create_values,
   end
 end
 
-event :update_values,
-      on: :update, before: :approve,
+event :update_values, :prepare_to_validate,
+      on: :update,
       when: proc { |c| c.formula.present? } do
   value_cards.each do |value_card|
     value_card.trash = true

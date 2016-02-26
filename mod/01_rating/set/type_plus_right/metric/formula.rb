@@ -21,7 +21,7 @@ format :html do
   end
 end
 
-event :approve_formula, before: :approve do
+event :approve_formula, :validate do
   not_on_whitelist =
     content.gsub(/\{\{([^}])+\}\}/,'').scan(/[a-zA-Z][a-zA-Z]+/)
     .reject do |word|
@@ -32,18 +32,19 @@ event :approve_formula, before: :approve do
   end
 end
 
-event :update_scores_for_formula, on: :update, before: :approve,
-                         when: proc { |c| !c.supercard } do # don't update if it's part of scored metric update
+# don't update if it's part of scored metric update
+event :update_scores_for_formula, :prepare_to_store, on: :update,
+                         when: proc { |c| !c.supercard } do
   add_subcard left
   left.update_values
 end
 
-event :create_scores_for_formula, on: :create, before: :approve,
-                         when: proc { |c| !c.supercard } do # don't update if it's part of scored metric create
+# don't update if it's part of scored metric create
+event :create_scores_for_formula, :prepare_to_store,  on: :create,
+                         when: proc { |c| !c.supercard } do
   add_subcard left
   left.create_values
 end
-
 
 def calculate_all_values
   formula_interpreter.evaluate.each_pair do |year, companies|
@@ -61,7 +62,6 @@ def calculate_values_for company
     yield year, value
   end
 end
-
 
 def keyified
   content.gsub(/\{\{\s*([^}]+)\s*\}\}/) do |_match|

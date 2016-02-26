@@ -9,7 +9,7 @@ class MetricTypes < Card::Migration
 
   def up
     create_card! name: 'Metric type', type_id: Card::CardtypeID
-    Card::Cache.reset_global
+    Card::Cache.reset_all
     create_metric_types %w(Researched WikiRating Formula Score)
 
     create_card! name: '*metric type', codename: 'metric_type',

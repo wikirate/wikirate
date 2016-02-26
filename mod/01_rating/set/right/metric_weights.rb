@@ -1,5 +1,4 @@
-event :update_formula,
-      before: :store do
+event :update_formula, :prepare_to_store do
   new_formula = item_names.map do |i_name|
     weight = Env.params[i_name] || 0
     "{{#{i_name}}}*#{weight}"
