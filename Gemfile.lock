@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pry/pry
-  revision: ac2e46a9ffb4cfbb58231c98ce1bde7079f43971
+  revision: 90d127778f3f4e9581d9dfb5c17851af48867186
   specs:
     pry (0.10.3)
       coderay (~> 1.1.0)
@@ -9,9 +9,8 @@ GIT
 PATH
   remote: ./vendor/wagn/card
   specs:
-    card (1.18.0)
-      activerecord-session_store (~> 0.1)
-      bootstrap-kaminari-views (~> 0.0.5)
+    card (1.18.1)
+      bootstrap-kaminari-views (~> 0)
       carrierwave (~> 0.10)
       coderay (~> 1.0)
       coffee-script (~> 2.2)
@@ -19,7 +18,7 @@ PATH
       haml (~> 4.0)
       htmlentities (~> 4.3)
       kaminari (~> 0.16)
-      mini_magick (~> 4.2.10)
+      mini_magick (~> 4.2)
       recaptcha (~> 0.4.0)
       sass (~> 3.2)
       smartname (= 0.2.3)
@@ -29,8 +28,8 @@ PATH
 PATH
   remote: ./vendor/wagn/wagn
   specs:
-    wagn (1.18.0)
-      card (= 1.18.0)
+    wagn (1.18.1)
+      card (= 1.18.1)
       rails (~> 4.2)
 
 GEM
@@ -65,10 +64,6 @@ GEM
       activemodel (= 4.2.5.1)
       activesupport (= 4.2.5.1)
       arel (~> 6.0)
-    activerecord-session_store (0.1.2)
-      actionpack (>= 4.0.0, < 5)
-      activerecord (>= 4.0.0, < 5)
-      railties (>= 4.0.0, < 5)
     activesupport (4.2.5.1)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
@@ -197,7 +192,7 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.99.1)
-    mini_magick (4.2.10)
+    mini_magick (4.4.0)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     multi_json (1.11.2)
@@ -210,7 +205,7 @@ GEM
     newrelic_rpm (3.15.0.314)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
-    oga (2.1)
+    oga (2.2)
       ast
       ruby-ll (~> 2.1)
     open_uri_redirections (0.2.1)
@@ -320,7 +315,7 @@ GEM
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.0.1)
+    sprockets-rails (3.0.3)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
