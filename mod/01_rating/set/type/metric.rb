@@ -138,8 +138,12 @@ format :html do
   end
 
   view :new_tab_pane do |args|
+    default_new_args_buttons args
     content_args = args.merge structure: 'metric+*type+*edit structure'
-    card_form :create, 'main-success' => 'REDIRECT' do
+    card_form :create, hidden: {
+                         'subcards[+*metric type]' => "[[#{card.metric_type}]]"
+                       },
+                       'main-success' => 'REDIRECT' do
       output [
                _render(:name_formgroup, args),
                _render(:content_formgroup, content_args),
@@ -163,17 +167,30 @@ format :html do
   end
 
   def metric_designer_field options={}
-    text_field(:metric_designer, {
-      value: Auth.current.name,
-      autocomplete: 'off'
-    }.merge(options))
+    # I don't see a way to get options through to the form field
+    if options.present?
+      label_tag(:designer, 'Metric Designer') +
+        text_field('subcards[+designer]', {
+          value: Auth.current.name,
+          autocomplete: 'off'
+        }.merge(options))
+    else
+      designer = card.add_subfield :designer, content: Auth.current.name,
+                                              type_id: PhraseID
+      nest designer, options.merge(view: :editor, title: 'Metric Designer')
+    end
   end
 
   def metric_title_field options={}
-    text_field(:metric_title, {
-      value: card.name,
-      autocomplete: 'off'
-    }.merge(options))
+    title = card.add_subfield(:title, content: card.cardname.tag,
+                                 type_id: PhraseID)
+    #with_nest_mode :edit  do
+      nest title, view: :editor, title: 'Metric Title'
+   # end
+    # text_field('subcards[+*title]', {
+    #   value: card.name,
+    #   autocomplete: 'off'
+    # }.merge(options))
   end
 
   view :legend do |args|
@@ -324,4 +341,13 @@ format :json do
   view :content do
     companies_with_years_and_values.to_json
   end
+end
+
+event :set_metric_name, :initialize,
+      on: :create do
+  binding.pry
+  return if name.present?
+  title = (tcard = remove_subfield(:title)) && tcard.content
+  designer = (dcard = remove_subfield(:designer)) && dcard.content
+  self.name = "#{designer}+#{title}"
 end
