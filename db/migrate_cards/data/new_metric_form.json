@@ -1,0 +1,41 @@
+{
+  "url": null,
+  "timestamp": "2016-02-29 14:42:15 +0100",
+  "card": {
+    "name": "export",
+    "type": "Pointer",
+    "content": "[[metric+*type+*edit structure]]\n[[export]]\n[[metric+question+*type plus right+*add help]]\n[[metric+value type+*type plus right+*add help]]\n[[metric+topic+*type plus right+*add help]]\n[[metric+research policy+*type plus right+*add help]]",
+    "value": [
+      {
+        "name": "metric+*type+*edit structure",
+        "type": "Basic",
+        "content": "<p>{{+topic|title: Topic}}</p>\r\n<p>{{+value type|title: Value Type}}</p>\r\n<p>{{+research policy|title: Research Policy}}</p>\r\n<p>{{+question|title: Question}}</p>"
+      },
+      {
+        "name": "export",
+        "type": "Pointer",
+        "content": "[[metric+*type+*edit structure]]\n[[export]]\n[[metric+question+*type plus right+*add help]]\n[[metric+value type+*type plus right+*add help]]\n[[metric+topic+*type plus right+*add help]]\n[[metric+research policy+*type plus right+*add help]]"
+      },
+      {
+        "name": "metric+question+*type plus right+*add help",
+        "type": "Basic",
+        "content": "<p>What does this metric answers to?</p>"
+      },
+      {
+        "name": "metric+value type+*type plus right+*add help",
+        "type": "Basic",
+        "content": "<p>Select a value type ...</p>"
+      },
+      {
+        "name": "metric+topic+*type plus right+*add help",
+        "type": "Basic",
+        "content": "<p>Select an existing topic or add your own</p>"
+      },
+      {
+        "name": "metric+research policy+*type plus right+*add help",
+        "type": "Basic",
+        "content": "<p><span>Select a value policy so that users know who can edit it. Learn more about value policy [[research policy|here]]</span></p>"
+      }
+    ]
+  }
+}
