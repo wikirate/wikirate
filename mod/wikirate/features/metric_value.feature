@@ -18,7 +18,6 @@ Feature: metric value
     And I should see "boom"
     And I should see "wagn.org"
     And I should see "2015"
-    
   Scenario: create a metric value with a invalud link source on new metric value page
     When I solocomplete "Jedi+disturbances in the Force" within ".RIGHT-metric"
     And I fill in metric value with "Death Star" as company, "2015" as year, and "boom" as value
@@ -43,7 +42,7 @@ Feature: metric value
     And I should see "2015"
 
   Scenario: create a metric value with nothing on new metric value page
-    
+
     When I press "Submit"
     And I wait until ajax response done
     And I should see "FIELD: Missing metric. Please check before submit."

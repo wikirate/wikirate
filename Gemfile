@@ -29,7 +29,7 @@ group :test do
   gem 'rspec-rails' # behavior-driven-development suite
   gem 'rspec', '~> 3.4'
   gem 'rspec-html-matchers' # 0.7.0 broke stuff!
-  gem 'wagn-rspec-formatter',  git: 'https://github.com/xithan/wagn-rspec-formatter.git'
+  # gem 'wagn-rspec-formatter',  git: 'https://github.com/xithan/wagn-rspec-formatter.git'
   gem 'spork', '>=0.9'
   gem 'timecop'
   gem 'simplecov'
@@ -47,13 +47,13 @@ group :test do
 
 
   gem 'email_spec'
-  # used by cucumber for db transactions 
+  # used by cucumber for db transactions
   gem 'database_cleaner', '~> 1.4.1'
 
   # Pretty printed test output.
   # (version constraint is to avoid minitest requirement)
   gem 'turn', '~>0.8.3', require: false
-  
+
   gem 'minitest'
 end
 
@@ -65,8 +65,6 @@ group :development do
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
   gem 'capistrano-maintenance', require: false
-  gem 'rubocop', '0.35.1'
-  gem 'rubocop-decko'
 end
 
 group :test, :development do

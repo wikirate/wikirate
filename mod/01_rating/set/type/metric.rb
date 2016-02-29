@@ -5,8 +5,6 @@ card_accessor :downvote_count, :type=>:number, :default=>"0"
 card_accessor :metric_type,
               :type=>:pointer, :default=>"[[Researched]]"
 
-
-
 def metric_type
   metric_type_card.item_names.first
 end
@@ -46,7 +44,10 @@ def companies_with_years_and_values
     left: { left: card.name },
     right: { type: 'year' }
     }).map do |card|
-    [card.cardname.left_name.left_name.right, card.cardname.left_name.right, card.content]
+      [
+        card.cardname.left_name.left_name.right,
+        card.cardname.left_name.right, card.content
+      ]
   end
 end
 
@@ -104,27 +105,30 @@ format :html do
 
     <<-HTML
     <fieldset class="card-editor editor">
-    <div role="tabpanel">
-      <input class="card-content form-control" type="hidden" value="" name="card[subcards][+*metric type][content]" id="card_subcards___metric_type_content">
-        <ul class="nav nav-tabs pointer-radio-list" role="tablist">
-          #{tab_radio_button 'Researched', true}
-          #{tab_radio_button 'Formula'}
-          #{tab_radio_button 'Score'}
-          #{tab_radio_button 'WikiRating'}
-        </ul>
+      <div role="tabpanel">
+        <input class="card-content form-control" type="hidden" value=""
+               name="card[subcards][+*metric type][content]"
+               id="card_subcards___metric_type_content">
+          <ul class="nav nav-tabs pointer-radio-list" role="tablist">
+            #{tab_radio_button 'Researched', true}
+            #{tab_radio_button 'Formula'}
+            #{tab_radio_button 'Score'}
+            #{tab_radio_button 'WikiRating'}
+          </ul>
 
-        <!-- Tab panes -->
-        <div class="tab-content">
-          #{tab_pane 'Researched', true}
-          #{tab_pane 'Formula'}
-          #{tab_pane 'Score'}
-          #{tab_pane 'WikiRating'}
-        </div>
-    </div>
-    <fieldset class="card-editor editor">
+          <!-- Tab panes -->
+          <div class="tab-content">
+            #{tab_pane 'Researched', true}
+            #{tab_pane 'Formula'}
+            #{tab_pane 'Score'}
+            #{tab_pane 'WikiRating'}
+          </div>
+      </div>
+    </fieldset>
     <script>
     $('input[name="intervaltype"]').click(function () {
-        //jQuery handles UI toggling correctly when we apply "data-target" attributes and call .tab('show')
+        //jQuery handles UI toggling correctly when we apply "data-target"
+        // attributes and call .tab('show')
         //on the <li> elements' immediate children, e.g the <label> elements:
         $(this).closest('label').tab('show');
     });
@@ -134,10 +138,11 @@ format :html do
   end
 
   view :new_tab_pane do |args|
+    content_args = args.merge structure: 'metric+*type+*edit structure'
     card_form :create, 'main-success' => 'REDIRECT' do
       output [
                _render(:name_formgroup, args),
-               _render(:content_formgroup, args),
+               _render(:content_formgroup, content_args),
                _render(:button_formgroup, args)
              ]
     end
@@ -211,7 +216,8 @@ format :html do
     <!--prototype: Company+MetricDesigner+MetricName+yinyang drag item -->
     <div class="yinyang-row">
     <div class="metric-item value-item">
-      <div class="header metric-details-toggle" data-append="#{card.key}+add_to_formula">
+      <div class="header metric-details-toggle"
+           data-append="#{card.key}+add_to_formula">
         #{handle}
         #{vote}
         <div class="logo hidden-xs hidden-md">
@@ -221,8 +227,7 @@ format :html do
             {{#{metric_name}|name}}
         </div>
       </div>
-       <div class="details">
-       </div>
+      <div class="details"></div>
     </div>
   </div>
     HTML
@@ -278,10 +283,13 @@ format :html do
           </a>
         </div>
       </div>
-      <div class="data metric-details-toggle" data-append="#{card.key}+add_to_formula">
+      <div class="data metric-details-toggle"
+           data-append="#{card.key}+add_to_formula">
         #{value}
         <div class="data-item show-with-details text-center">
-          <span class="label label-metric">[[#{card.name}|Metric Details]]</span>
+          <span class="label label-metric">
+            [[#{card.name}|Metric Details]]
+          </span>
         </div>
       </div>
       <div class="details">
@@ -295,8 +303,6 @@ format :html do
       end
     end
   end
-
-
 
   def view_caching?
     true
