@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pry/pry
-  revision: ac2e46a9ffb4cfbb58231c98ce1bde7079f43971
+  revision: 90d127778f3f4e9581d9dfb5c17851af48867186
   specs:
     pry (0.10.3)
       coderay (~> 1.1.0)
@@ -76,6 +76,9 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.8)
+    airbrake (4.3.6)
+      builder
+      multi_json
     ansi (1.5.0)
     arel (6.0.3)
     ast (2.2.0)
@@ -120,7 +123,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     colorize (0.7.7)
-    concurrent-ruby (1.0.0)
+    concurrent-ruby (1.0.1)
     cucumber (2.3.2)
       builder (>= 2.1.2)
       cucumber-core (~> 1.4.0)
@@ -363,6 +366,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  airbrake (~> 4.1)
   capistrano (= 3.2.1)
   capistrano-bundler
   capistrano-maintenance
