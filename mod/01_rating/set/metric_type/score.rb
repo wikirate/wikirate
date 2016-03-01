@@ -19,7 +19,12 @@ format :html do
   def name_field form=nil, options={}
     form ||= self.form
     option_names =
-      Card.search type_id: MetricID, sort: 'name', return: :name
+      Card.search type_id: MetricID,
+                  right_plus: [
+                    '*metric type',
+                    content: ['in', '[[Formula]]','[[Researched]]']
+                  ],
+                  sort: 'name', return: :name
 
 
       # name_card = Card.new name: 'name', type_id: PointerID,
@@ -31,9 +36,26 @@ format :html do
       #                          }
       #                        }
     options = [['-- Select --', '']] + option_names.map { |x| [x, x] }
-    select_tag 'pointer_select',
-               options_for_select(options, option_names.first),
-               class: 'pointer-select form-control'
+    editor_wrap :card do
+      hidden_field_tag('card[subcards][+metric][content]',
+                       option_names.first,
+                       class: 'card-content') +
+        select_tag('pointer_select',
+                   options_for_select(options, option_names.first),
+                   class: 'pointer-select form-control')
+    end
     # subformat(name_card)._render_select
   end
+
+  def default_content_formgroup_args args
+    args[:structure] = 'metric+*type+*edit structure without value type'
+  end
+end
+
+event :set_scored_metric_name, :initialize,
+      on: :create do
+  binding.pry
+  return if cardname.parts.size >= 3
+  metric = (mcard = remove_subfield(:metric)) && mcard.item_names.first
+  self.name = "#{metric}+#{Auth.current.name}"
 end

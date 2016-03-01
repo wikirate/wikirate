@@ -101,21 +101,22 @@ format :html do
   end
 
   view :new do |args|
-    frame_and_form :create, args, 'main-success' => 'REDIRECT' do
-
+    #frame_and_form :create, args, 'main-success' => 'REDIRECT' do
+    frame args do
     <<-HTML
     <fieldset class="card-editor editor">
       <div role="tabpanel">
         <input class="card-content form-control" type="hidden" value=""
                name="card[subcards][+*metric type][content]"
                id="card_subcards___metric_type_content">
-          <ul class="nav nav-tabs pointer-radio-list" role="tablist">
+          <ul class="nav nav-tabs" role="tablist">
             #{tab_radio_button 'Researched', true}
             #{tab_radio_button 'Formula'}
             #{tab_radio_button 'Score'}
             #{tab_radio_button 'WikiRating'}
           </ul>
-
+      </div>
+   </fieldset>
           <!-- Tab panes -->
           <div class="tab-content">
             #{tab_pane 'Researched', true}
@@ -123,8 +124,8 @@ format :html do
             #{tab_pane 'Score'}
             #{tab_pane 'WikiRating'}
           </div>
-      </div>
-    </fieldset>
+
+
     <script>
     $('input[name="intervaltype"]').click(function () {
         //jQuery handles UI toggling correctly when we apply "data-target"
@@ -138,18 +139,26 @@ format :html do
   end
 
   view :new_tab_pane do |args|
-    default_new_args_buttons args
-    content_args = args.merge structure: 'metric+*type+*edit structure'
-    card_form :create, hidden: {
-                         'subcards[+*metric type]' => "[[#{card.metric_type}]]"
-                       },
+    card_form :create, hidden: args.delete(:hidden),
                        'main-success' => 'REDIRECT' do
       output [
                _render(:name_formgroup, args),
-               _render(:content_formgroup, content_args),
+               _render(:content_formgroup, args),
                _render(:button_formgroup, args)
              ]
     end
+  end
+
+  def default_content_formgroup_args args
+    args[:structure] = 'metric+*type+*edit structure'
+  end
+
+  def default_new_tab_pane_args args
+    default_new_args_buttons args
+    args[:hidden] ||= {
+      'card[subcards][+*metric type][content]' => "[[#{card.metric_type}]]",
+      'card[type_id]' => MetricID
+    }
   end
 
   view :name_formgroup do |args|
@@ -161,24 +170,26 @@ format :html do
     form ||= self.form
     output [
              metric_designer_field(options),
-             '<span>+</span>',
+             '<div class="plus">+</div>',
              metric_title_field(options)
            ]
   end
 
   def metric_designer_field options={}
     # I don't see a way to get options through to the form field
-    if options.present?
-      label_tag(:designer, 'Metric Designer') +
-        text_field('subcards[+designer]', {
-          value: Auth.current.name,
-          autocomplete: 'off'
-        }.merge(options))
-    else
+    # if options.present?
+    #   label_tag(:designer, 'Metric Designer') +
+    #     text_field('subcards[+designer]', {
+    #       value: Auth.current.name,
+    #       autocomplete: 'off'
+    #     }.merge(options))
+    # else
       designer = card.add_subfield :designer, content: Auth.current.name,
                                               type_id: PhraseID
+      designer.reset_patterns
+      designer.include_set_modules
       nest designer, options.merge(view: :editor, title: 'Metric Designer')
-    end
+    # end
   end
 
   def metric_title_field options={}
@@ -346,7 +357,7 @@ end
 event :set_metric_name, :initialize,
       on: :create do
   binding.pry
-  return if name.present?
+  return if name.present? || metric_type == 'Score'
   title = (tcard = remove_subfield(:title)) && tcard.content
   designer = (dcard = remove_subfield(:designer)) && dcard.content
   self.name = "#{designer}+#{title}"

@@ -44,11 +44,22 @@ class MetricTypes < Card::Migration
                           '"right_plus":["*metric type",{"refer_to":"_left"}]}'
 
     import_json "production_export2.json"
+    Card::Cache.reset_all
+    update_existing_metrics
   end
 
   def create_metric_types names
     names.each do |name|
       create_card! name: name, codename: name.to_name.key, type: 'Metric type'
+    end
+  end
+
+  def update_existing_metics
+    Card.search(type_id: Card::MetricID, return: 'name').each do |metric|
+      create_card name: "#{metric}+*metric type",
+                  type_id: Card::PointerID,
+                  content: '[[Researched]]',
+                  silent_change: true
     end
   end
 end
