@@ -1,10 +1,10 @@
 {
   "url": null,
-  "timestamp": "2016-02-29 14:42:15 +0100",
+  "timestamp": "2016-03-01 20:01:04 +0100",
   "card": {
     "name": "export",
     "type": "Pointer",
-    "content": "[[metric+*type+*edit structure]]\n[[export]]\n[[metric+question+*type plus right+*add help]]\n[[metric+value type+*type plus right+*add help]]\n[[metric+topic+*type plus right+*add help]]\n[[metric+research policy+*type plus right+*add help]]",
+    "content": "[[metric+*type+*edit structure]]\n[[export]]\n[[metric+question+*type plus right+*add help]]\n[[metric+value type+*type plus right+*add help]]\n[[metric+topic+*type plus right+*add help]]\n[[metric+research policy+*type plus right+*add help]]\n[[metric+*type+*edit structure without value type]]\n[[style: metric types]]\n[[customized classic skin]]",
     "value": [
       {
         "name": "metric+*type+*edit structure",
@@ -14,7 +14,7 @@
       {
         "name": "export",
         "type": "Pointer",
-        "content": "[[metric+*type+*edit structure]]\n[[export]]\n[[metric+question+*type plus right+*add help]]\n[[metric+value type+*type plus right+*add help]]\n[[metric+topic+*type plus right+*add help]]\n[[metric+research policy+*type plus right+*add help]]"
+        "content": "[[metric+*type+*edit structure]]\n[[export]]\n[[metric+question+*type plus right+*add help]]\n[[metric+value type+*type plus right+*add help]]\n[[metric+topic+*type plus right+*add help]]\n[[metric+research policy+*type plus right+*add help]]\n[[metric+*type+*edit structure without value type]]\n[[style: metric types]]\n[[customized classic skin]]"
       },
       {
         "name": "metric+question+*type plus right+*add help",
@@ -35,6 +35,21 @@
         "name": "metric+research policy+*type plus right+*add help",
         "type": "Basic",
         "content": "<p><span>Select a value policy so that users know who can edit it. Learn more about value policy [[research policy|here]]</span></p>"
+      },
+      {
+        "name": "metric+*type+*edit structure without value type",
+        "type": "Basic",
+        "content": "<p>{{+topic|title: Topic}}</p>\r\n<p>{{+research policy|title: Research Policy}}</p>\r\n<p>{{+question|title: Question}}</p>"
+      },
+      {
+        "name": "style metric types",
+        "type": "SCSS",
+        "content": ".TYPE-metric.new-view { \r\n  ul.nav-tabs li { \r\n    padding: 28px; \r\n    background: #eee; \r\n    margin: 5px;\r\n  }\r\n  fieldset.card-editor.editor {\r\n    clear: both;\r\n  }\r\n  .name-editor {\r\n    .RIGHT-designer, .RIGHT-Xtitle {\r\n      &.card-editor {\r\n        width: 45%;\r\n        float: left;\r\n        .card-title {\r\n          font-size: 0.8em;\r\n        }\r\n      \r\n        input {\r\n          width: 100%;\r\n        }\r\n      }\r\n    }\r\n    .plus {\r\n      float: left;\r\n      font-size: 30px;\r\n      font-weight: bold;\r\n      text-align: center;\r\n      position: relative;\r\n      top: 16px;\r\n      left: 0px;\r\n      width: 10%;\r\n    }\r\n  }\r\n}"
+      },
+      {
+        "name": "customized classic skin",
+        "type": "Skin",
+        "content": "[[bootstrap default skin]]\r\n[[*css]]\r\n[[layout with sidebar scss]]\r\n[[chosen style]]\r\n[[top bar scss]]\r\n[[slick scss]]\r\n[[overview item scss]]\r\n[[company and topic item scss]]\r\n[[style: homepage layout]]\r\n[[style: notes]]\r\n[[style: wikirate bootstrap buttons]]\r\n[[style: user following list]]\r\n[[style: wikirate bootstrap navbar]]\r\n[[style: wikirate bootstrap form]]\r\n[[style: wikirate bootstrap common]]\r\n[[style: wikirate metrics]]\r\n[[style: yinyang]]\r\n[[style: profile page]]\r\n[[style: company header]]\r\n[[style: source preview]]\r\n[[style: wikirate responsiveness]]\r\n[[style: wikirate bootstrap tabs]]\r\n[[style: fakeloader]]\r\n[[style: wikirate font icon]]\r\n[[style: bootstrap modal fix]]\r\n[[style: metric types]]"
       }
     ]
   }
