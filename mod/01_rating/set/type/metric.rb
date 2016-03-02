@@ -66,6 +66,30 @@ def random_company_card_with_value
 end
 
 format :html do
+  view :formula do
+    card.name
+  end
+
+  view :tabs do |args|
+    lazy_loading_tabs args[:tabs], args[:default_tab],
+                      render("#{args[:default_tab]}_tab", skip_permission: true)
+  end
+  def default_tabs_args args
+    args[:tabs] = {
+      'Details' => path(view: 'details_tab'),
+      'Discussion' => path(view: 'discussion_tab')
+    }
+    args[:default_tab] = 'Details'
+  end
+
+  view :details_tab do
+    nest card.field('details'), view: :core
+  end
+
+  view :discussion_tab do |args|
+    binding.pry
+    nest card, view: 'blank', show: 'comment_box'
+  end
 
   def tab_radio_button id, active=false
     <<-HTML
@@ -85,18 +109,31 @@ format :html do
     "#{name.downcase}Pane"
   end
 
-  def tab_pane name, active=false
+  def new_metric_tab_pane name, active=false
     new_metric = Card.new type: MetricID, '+*metric type' => "[[#{name}]]"
     new_metric.reset_patterns
     new_metric.include_set_modules
-    div_args = {
-      role: 'tabpanel',
-      class: 'tab-pane',
-      id: tab_pane_id(name)
-    }
-    add_class div_args, 'active' if active
-    content_tag :div, div_args do
-      subformat(new_metric)._render_new_tab_pane
+    tab_pane tab_pane_id(name), subformat(new_metric)._render_new_tab_pane,
+             active
+  end
+
+  def new_metric_tab_content
+    active = true
+    wrap_with :div, class: 'tab-content' do
+      %w(Researched Formula Score WikiRating).map do |metric_type|
+        new_metric_tab_pane metric_type, active
+        active &&= false
+      end
+    end
+  end
+
+  def new_metric_tab_buttons
+    active = true
+    wrap_with :ul, class: 'nav nav-tabs', role: 'tablist' do
+      %w(Researched Formula Score WikiRating).map do |metric_type|
+        tab_radio_button metric_type, active
+        active &&= false
+      end
     end
   end
 
@@ -109,23 +146,11 @@ format :html do
         <input class="card-content form-control" type="hidden" value=""
                name="card[subcards][+*metric type][content]"
                id="card_subcards___metric_type_content">
-          <ul class="nav nav-tabs" role="tablist">
-            #{tab_radio_button 'Researched', true}
-            #{tab_radio_button 'Formula'}
-            #{tab_radio_button 'Score'}
-            #{tab_radio_button 'WikiRating'}
-          </ul>
+        #{new_metric_tab_buttons}
       </div>
-   </fieldset>
-          <!-- Tab panes -->
-          <div class="tab-content">
-            #{tab_pane 'Researched', true}
-            #{tab_pane 'Formula'}
-            #{tab_pane 'Score'}
-            #{tab_pane 'WikiRating'}
-          </div>
-
-
+    </fieldset>
+    <!-- Tab panes -->
+    #{new_metric_tab_content}
     <script>
     $('input[name="intervaltype"]').click(function () {
         //jQuery handles UI toggling correctly when we apply "data-target"
@@ -260,7 +285,7 @@ format :html do
     </div>
   </div>
     HTML
-    with_inclusion_mode :normal do
+    with_nest_mode :normal do
       wrap args do
         process_content html
       end
@@ -326,7 +351,7 @@ format :html do
     </div>
   </div>
     HTML
-    with_inclusion_mode :normal do
+    with_nest_mode :normal do
       wrap args do
         process_content html
       end
@@ -357,7 +382,6 @@ end
 
 event :set_metric_name, :initialize,
       on: :create do
-  binding.pry
   return if name.present? || metric_type == 'Score'
   title = (tcard = remove_subfield(:title)) && tcard.content
   designer = (dcard = remove_subfield(:designer)) && dcard.content

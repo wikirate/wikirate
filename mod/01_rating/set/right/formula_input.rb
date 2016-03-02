@@ -9,7 +9,9 @@ format :html do
   view :core do |args|
     args ||= {}
     items = args[:item_list] || card.item_names(context: :raw)
-    items = [''] if items.empty?
+    extract_metrics_from_formula if items.empty?
+    items = card.item_names(context: :raw)
+    # items = [''] if items.empty?
     options_card_name = (oc = card.options_rule_card) ? oc.cardname.url_key : ':all'
 
     extra_css_class = args[:extra_css_class] #|| 'pointer-list-ul'
@@ -94,6 +96,7 @@ format :html do
     variable = "M#{args[:index]}"#("A".ord + args[:index]).chr
     item_name = args[:pointer_item]
     item_card = Card[item_name]
+    binding.pry
     example_value =
       if (company = item_card.random_company_card_with_value)
         metric_plus_company = Card["#{item_card.name}+#{company.name}"]
@@ -127,14 +130,18 @@ format :html do
    process_content output
   end
 
+  def extract_metrics_from_formula
+    metrics =
+      @card.left.input_metrics.map do |metric|
+        "[[#{metric}]]"
+      end
+    @card.update_attributes! content: metrics, type_id: PointerID
+  end
+
   view :missing  do |args|
     if @card.new_card? && (l = @card.left) &&
-       l.respond_to?(:extract_metrics)
-      metrics =
-        l.extract_metrics.map do |metric|
-          "[[#{metric}]]"
-        end
-      @card.update_attributes! content: metrics, type_id: PointerID
+       l.respond_to?(:input_metrics)
+      extract_metrics_from_formula
       render(args[:denied_view], args)
     else
       super(args)

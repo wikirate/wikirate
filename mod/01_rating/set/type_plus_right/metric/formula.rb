@@ -15,7 +15,7 @@ format :html do
                                 content:  metrics_list
                               }
 
-    super(args) + with_inclusion_mode(:normal) do
+    super(args) + with_nest_mode(:normal) do
       subformat(formula_input)._render_core(args)
     end
   end
@@ -96,7 +96,7 @@ def formula_interpreter
 end
 
 def extract_metrics
-  content.scan(/\{\{([^}]+)\}\}/).flatten
+  content.scan(/\{\{([^|}]+)(?:\|[^}]*)?\}\}/).flatten
 end
 
 # allow only numbers, whitespace, mathematical operations and args references

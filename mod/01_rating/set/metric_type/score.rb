@@ -1,5 +1,11 @@
 include Set::Abstract::Calculation
 
+card_accessor :formula, type: 'pointer'
+
+def basic_metric
+  left
+end
+
 def normalize_value value
   return 0 if value < 0
   return 10 if value > 10
@@ -16,6 +22,41 @@ end
 
 
 format :html do
+  view :details_tab do
+    nest card.field('score details'), view: :core
+  end
+
+  view :methodology_tab do
+    <<-HTML
+      <div class="row">
+            			<div class="row-data">
+                    {{+Unit|titled;title:Unit}}
+                  </div>
+    <div class="row-data">
+      {{+Range|titled;title:Range}}
+    </div>
+                  <div class="row-data">
+                    {{+Methodology|titled;title:Methodology}}
+                  </div>
+    </div>
+    HTML
+  end
+
+  view :source_tab do
+    <<-HTML
+    <div class="row">
+      <div class="row-icon">
+        <i class="fa fa-globe"></i>
+      </div>
+      <div class="row-data">
+        {{+source|titled;title:Sources;|content;structure:source_item}}
+      </div>
+    </div>
+    HTML
+  end
+
+
+
   def name_field form=nil, options={}
     form ||= self.form
     option_names =
@@ -54,8 +95,12 @@ end
 
 event :set_scored_metric_name, :initialize,
       on: :create do
-  binding.pry
   return if cardname.parts.size >= 3
   metric = (mcard = remove_subfield(:metric)) && mcard.item_names.first
   self.name = "#{metric}+#{Auth.current.name}"
+end
+
+event :default_formula, :prepare_to_store,
+      on: :create do
+  add_subfield :formula, content: "{{#{basic_metric.name}}}"
 end
