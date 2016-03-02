@@ -102,7 +102,7 @@ format :html do
 
   view :new do |args|
     #frame_and_form :create, args, 'main-success' => 'REDIRECT' do
-    frame args do
+    frame args.merge(title: 'New Metric') do
     <<-HTML
     <fieldset class="card-editor editor">
       <div role="tabpanel">
@@ -157,7 +157,8 @@ format :html do
     default_new_args_buttons args
     args[:hidden] ||= {
       'card[subcards][+*metric type][content]' => "[[#{card.metric_type}]]",
-      'card[type_id]' => MetricID
+      'card[type_id]' => MetricID,
+      success: '_self'
     }
   end
 
