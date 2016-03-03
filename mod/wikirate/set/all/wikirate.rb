@@ -75,7 +75,6 @@ format :html do
 
   attr_accessor :citations
 
-
   def default_menu_link_args args
     args[:menu_icon] = 'edit'
   end
@@ -84,7 +83,13 @@ format :html do
     args[:optional_horizontal_menu] ||= :show if main?
   end
 
-  view :shorter_search_result do
+  view :shorter_pointer_content do |args|
+    args_content = { render_link: false }
+    subformat(card).render_shorter_search_result args.merge(args_content)
+  end
+
+  view :shorter_search_result do |args|
+    render_view = args[:render_link] ? :link : :name
     items = card.item_cards limit: 0
     total_number = items.size
     fetch_number = [total_number, 4].min
@@ -92,7 +97,7 @@ format :html do
     result = ''
     if fetch_number > 1
       result += items[0..(fetch_number - 2)].map do |c|
-        subformat(c).render(:link)
+        subformat(c).render(render_view)
       end.join(' , ')
       result += ' and '
     end
@@ -102,7 +107,7 @@ format :html do
         %{<a class="known-card" href="#{card.format.render :url}"> } \
           "#{total_number - 3} others</a>"
       else
-        subformat(items[fetch_number - 1]).render(:link)
+        subformat(items[fetch_number - 1]).render(render_view)
       end
   end
 

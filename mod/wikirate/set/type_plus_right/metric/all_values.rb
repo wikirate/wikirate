@@ -37,7 +37,7 @@ def query params={}
   @query = super params
   if !default_query
     @query[:limit] = params[:default_limit] || 20
-    @query[:offset] = get_params("offset", 0)
+    @query[:offset] = get_params('offset', 0)
   end
   @query
 end
@@ -49,7 +49,7 @@ def get_cached_result
   end
 end
 
-def count params={}
+def count _params={}
   get_cached_result.size
 end
 
@@ -60,8 +60,8 @@ format do
     @paging_path_args[:offset] = page * @paging_limit
     options.merge!(class: 'card-paging-link slotter', remote: true)
     sort_by, sort_order = card.get_sort_params
-    paging_args = @paging_path_args.merge({sort_by: sort_by,
-                                           sort_order: sort_order})
+    paging_args = @paging_path_args.merge(sort_by: sort_by,
+                                          sort_order: sort_order)
     link_to raw(text), path(paging_args), options
   end
 
@@ -70,9 +70,7 @@ format do
       value_a = x[1].sort_by { |value| value['year'] }.reverse[0]['value']
       value_b = y[1].sort_by { |value| value['year'] }.reverse[0]['value']
       if is_num
-        dec_value_a = BigDecimal.new(value_a)
-        dec_value_b = BigDecimal.new(value_b)
-        dec_value_a - dec_value_b
+        BigDecimal.new(value_a) - BigDecimal.new(value_b)
       else
         value_a <=> value_b
       end
@@ -80,21 +78,21 @@ format do
   end
 
   def sort_name_asc cached_metric_values
-    cached_metric_values.sort do |x,y|
+    cached_metric_values.sort do |x, y|
       x[0].downcase <=> y[0].downcase
     end
   end
 
   def get_sorted_result cached_metric_values, sort_by, order, is_num
     case sort_by
-    when "company_name"
-      if order == "asc"
+    when 'company_name'
+      if order == 'asc'
         sort_name_asc cached_metric_values
       else
         sort_name_asc(cached_metric_values).reverse
       end
-    when "value"
-      if order == "asc"
+    when 'value'
+      if order == 'asc'
         sort_value_asc cached_metric_values, is_num
       else
         sort_value_asc(cached_metric_values, is_num).reverse
@@ -102,16 +100,19 @@ format do
     end
   end
 
-  def search_results args={}
+  def num?
+    metric_value_type = Card["#{card.cardname.left}+metric value type"]
+    type = metric_value_type.nil? ? '' : metric_value_type.item_names[0]
+    type == 'Number' || type == 'Monetory'
+  end
+
+  def search_results _args={}
     @search_results ||= begin
       sort_by, sort_order = card.get_sort_params
       offset = card.get_params('offset', 0)
       limit = card.query(search_params)[:limit]
       cached_result = card.get_cached_result
-      metric_value_type = Card["#{card.cardname.left}+metric value type"]
-      type = metric_value_type.nil? ? '' : metric_value_type.item_names[0]
-      num = (type == 'Number' || type == 'Monetory')
-      all_results = get_sorted_result(cached_result, sort_by, sort_order, num)
+      all_results = get_sorted_result(cached_result, sort_by, sort_order, num?)
       if (results = all_results[offset, limit])
         results
       else
@@ -119,7 +120,6 @@ format do
       end
     end
   end
-
 end
 format :html do
   include Type::SearchType::HtmlFormat
@@ -148,7 +148,7 @@ format :html do
     end
   end
 
-  view :card_list_header do |args|
+  view :card_list_header do |_args|
     sort_by, sort_order = card.get_sort_params
     offset = card.get_params('offset', 0)
     limit = card.query(search_params)[:limit]
@@ -185,19 +185,18 @@ format :html do
   view :card_list_item do |args|
     c = args[:item_card]
     item_view = nest_defaults(c)[:view]
-    %{
-      <div class="search-result-item item-#{ item_view }">
+    %(
+      <div class="search-result-item item-#{item_view}">
         #{nest(c, size: args[:size], view: item_view)}
       </div>
     )
   end
 
   view :card_list_items do |args|
-    results =
-      search_results.map do |row|
-        c = Card["#{card.cardname.left}+#{row[0]}"]
-        render :card_list_item, args.clone.merge(item_card: c)
-      end.join "\n"
+    search_results.map do |row|
+      c = Card["#{card.cardname.left}+#{row[0]}"]
+      render :card_list_item, args.clone.merge(item_card: c)
+    end.join "\n"
   end
 
   view :card_list do |args|
@@ -218,6 +217,3 @@ format :html do
     end
   end
 end
-
-
-

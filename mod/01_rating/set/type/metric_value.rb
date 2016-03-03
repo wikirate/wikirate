@@ -62,6 +62,10 @@ event :validate_metric_value_fields, before: :set_metric_value_name do
   end
 end
 
+event :validate_value_type, :validate , on: :save do
+  # check if the value fit the value type of metric
+end
+
 event :create_source_for_metric_value, :validate, on: :create do
   create_source
 end
@@ -111,12 +115,7 @@ def get_source_card source_list
          (source_card = find_duplicate_source(url.content))
         source_card
       else
-
-          source_subcards = clone_subcards_to_hash new_source_card
-          source_card = add_subcard '', type_id: SourceID,
-                                    subcards: source_subcards
-          source_card.director.catch_up_to_stage :prepare_to_store
-          source_card
+        add_source_subcard new_source_card
       end
     else
       Card[source_list.content]
@@ -124,8 +123,16 @@ def get_source_card source_list
   end
 end
 
+def add_source_subcard new_source_card
+  source_subcards = clone_subcards_to_hash new_source_card
+  source_card = add_subcard '', type_id: SourceID,
+                                subcards: source_subcards
+  source_card.director.catch_up_to_stage :prepare_to_store
+  source_card
+end
+
 def find_duplicate_source url
-   (link_card = Card::Set::Self::Source.find_duplicates(url).first) &&
+  (link_card = Card::Set::Self::Source.find_duplicates(url).first) &&
     link_card.left
 end
 

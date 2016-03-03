@@ -9,8 +9,9 @@ GIT
 PATH
   remote: ./vendor/wagn/card
   specs:
-    card (1.18.1)
-      bootstrap-kaminari-views (~> 0)
+    card (1.18.0)
+      activerecord-session_store (~> 0.1)
+      bootstrap-kaminari-views (~> 0.0.5)
       carrierwave (~> 0.10)
       coderay (~> 1.0)
       coffee-script (~> 2.2)
@@ -18,7 +19,7 @@ PATH
       haml (~> 4.0)
       htmlentities (~> 4.3)
       kaminari (~> 0.16)
-      mini_magick (~> 4.2)
+      mini_magick (~> 4.2.10)
       recaptcha (~> 0.4.0)
       sass (~> 3.2)
       smartname (= 0.2.3)
@@ -28,8 +29,8 @@ PATH
 PATH
   remote: ./vendor/wagn/wagn
   specs:
-    wagn (1.18.1)
-      card (= 1.18.1)
+    wagn (1.18.0)
+      card (= 1.18.0)
       rails (~> 4.2)
 
 GEM
@@ -64,6 +65,10 @@ GEM
       activemodel (= 4.2.5.1)
       activesupport (= 4.2.5.1)
       arel (~> 6.0)
+    activerecord-session_store (0.1.2)
+      actionpack (>= 4.0.0, < 5)
+      activerecord (>= 4.0.0, < 5)
+      railties (>= 4.0.0, < 5)
     activesupport (4.2.5.1)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
@@ -192,7 +197,7 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.99.1)
-    mini_magick (4.4.0)
+    mini_magick (4.2.10)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     multi_json (1.11.2)
