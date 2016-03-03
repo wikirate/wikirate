@@ -6,7 +6,7 @@ end
 
 format :html do
   def default_header_args args
-    with_inclusion_mode :normal do
+    with_nest_mode :normal do
       args[:icon] = nest Card.fetch('venn icon'), :view=>:core, :size=>:small
     end
   end

@@ -1,8 +1,8 @@
 
 require 'net/https'
 require 'uri'
-
 format do
+
   view :cite, closed: true do
     ''
   end
@@ -11,6 +11,7 @@ format do
     _render(:raw, args) || ''
   end
 end
+
 
 format :html do
   view :cgi_escape_name do
@@ -67,11 +68,13 @@ format :html do
     }
   end
 
+
   view :open do |args|
     super(args.reverse_merge optional_horizontal_menu: :show)
   end
 
   attr_accessor :citations
+
 
   def default_menu_link_args args
     args[:menu_icon] = 'edit'
@@ -109,11 +112,13 @@ format :html do
     super args
   end
 
+
   view :cite do
     # href_root = parent ? parent.card.cardname.trunk_name.url_key : ''
     href = "##{card.cardname.url_key}"
     %{<sup><a class="citation" href="#{href}">#{cite!}</a></sup>}
   end
+
 
   def cite!
     holder = parent.parent || parent || self
@@ -179,7 +184,7 @@ format :html do
   end
 
   view :yinyang_list_items do |args|
-    item_args = { :view => ( args[:item] || (@inclusion_opts && @inclusion_opts[:view]) || default_item_view ) }
+    item_args = { :view => ( args[:item] || (@nest_opts && @nest_opts[:view]) || default_item_view ) }
     joint = args[:joint] || ' '
 
     if type = card.item_type

@@ -25,7 +25,7 @@ def source_subcards new_source_card
    new_source_card.subfield(:wikirate_link)]
 end
 
-def source_exist?
+def source_in_request?
   sub_source_card = subfield('source')
   return false if sub_source_card.nil? ||
                   sub_source_card.subcard('new_source').nil?
@@ -40,6 +40,7 @@ def source_subcard_exist? new_source_card
     (link_card && link_card.content.present?)
 end
 
+# TODO: add #subfield_present? method to subcard API
 def subfield_exist? field_name
   subfield_card = subfield(field_name)
   !subfield_card.nil? && subfield_card.content.present?
@@ -61,14 +62,31 @@ event :validate_metric_value_fields, before: :set_metric_value_name do
   end
 end
 
-event :create_source_for_metric_value, before: :process_subcards, on: :create do
+event :create_source_for_metric_value, :validate, on: :create do
   create_source
 end
 
 event :create_source_for_updating_metric_value,
-      before: :process_subcards,
-      on: :update, when: proc {  |c| c.source_exist? } do
+      :prepare_to_store,
+      on: :update, when: proc { |c| c.source_in_request? } do
   create_source
+end
+
+def create_source
+  value_card = remove_subfield('value')
+  if (source_list = subfield('source'))
+    clear_subcards
+    source_card = get_source_card source_list
+    if !source_card
+      errors.add :source, "#{source_list.content} does not exist."
+    elsif source_card.errors.empty?
+      fill_subcards value_card, source_card
+    else
+      fill_errors source_card
+    end
+  else
+    errors.add :source, 'does not exist.'
+  end
 end
 
 def clone_subcards_to_hash subcards
@@ -86,35 +104,36 @@ def clone_subcards_to_hash subcards
   source_subcards
 end
 
-def get_source_card sub_source_card
-  Env.params[:sourcebox] = 'true'
-  card =
-    if (new_source_card = sub_source_card.subcard('new_source'))
-      new_source_card.approve_subcards
-      source_subcards = clone_subcards_to_hash new_source_card
-      Card.create type_id: SourceID, subcards: source_subcards
+def get_source_card source_list
+  with_sourcebox do
+    if (new_source_card = source_list.subcard('new_source'))
+      if (url = new_source_card.subfield(:wikirate_link)) &&
+         (source_card = find_duplicate_source(url.content))
+        source_card
+      else
+
+          source_subcards = clone_subcards_to_hash new_source_card
+          source_card = add_subcard '', type_id: SourceID,
+                                    subcards: source_subcards
+          source_card.director.catch_up_to_stage :prepare_to_store
+          source_card
+      end
     else
-      Card[sub_source_card.content]
+      Card[source_list.content]
     end
-  Env.params[:sourcebox] = nil
-  card
+  end
 end
 
-def create_source
-  value_card = remove_subfield('value')
-  if (sub_source_card = subfield('source'))
-    clear_subcards
-    source_card = get_source_card sub_source_card
-    if !source_card
-      errors.add :source, "#{sub_source_card.content} does not exist."
-    elsif source_card.errors.empty?
-      fill_subcards value_card, source_card
-    else
-      fill_errors source_card
-    end
-  else
-    errors.add :source, 'does not exist.'
-  end
+def find_duplicate_source url
+   (link_card = Card::Set::Self::Source.find_duplicates(url).first) &&
+    link_card.left
+end
+
+def with_sourcebox
+  Env.params[:sourcebox] = 'true'
+  result = yield
+  Env.params[:sourcebox] = nil
+  result
 end
 
 def fill_errors source_card

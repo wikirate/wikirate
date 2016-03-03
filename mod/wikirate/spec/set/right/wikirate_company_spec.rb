@@ -4,7 +4,7 @@ describe Card::Set::Right::WikirateCompany do
   before do
     login_as 'joe_user'
   end
-  it 'should create company card(s) while creating +companies card(s)' do
+  it 'creates company card(s) while creating +companies card(s)' do
     # create the webpage first
     url = 'http://www.google.com/?q=newpage'
     Card::Env.params[:sourcebox] = 'true'

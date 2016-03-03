@@ -61,6 +61,7 @@ namespace :backup do
   end
 
   task :refresh do
+    invoke 'backup:create'
     invoke 'backup:unzip'
     on roles(:db) do
       db_args = [:database_user, :database_password, :database, :production_data_backups_dir ].map { |x| fetch x }

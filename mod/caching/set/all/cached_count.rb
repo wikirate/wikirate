@@ -3,8 +3,7 @@ def is_cached_count?
 end
 
 event :update_expired_cached_count_cards,
-      after: :extend,
-      when: proc { |c| !c.is_cached_count? } do
+      :integrate, when: proc { |c| !c.is_cached_count? } do
   run_expiry_checks :all
   next unless @action
   run_expiry_checks @action
@@ -23,3 +22,4 @@ def run_expiry_checks action
     end
   end
 end
+
