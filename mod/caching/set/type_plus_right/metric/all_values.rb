@@ -6,6 +6,7 @@ include Card::CachedCount
 
 # ... a +value is changed
 recount_trigger(TypePlusRight::MetricValue::Value) do |changed_card|
+  binding.pry
   changed_card.metric_card.fetch trait: :all_values
 end
 

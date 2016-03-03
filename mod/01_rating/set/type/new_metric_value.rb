@@ -129,27 +129,8 @@ def fill_subcards metric_value, source_card
                          type_id: PointerID
 end
 
+
 format :html do
-  view :new do |args|
-    return super(args)
-    if Env.params[:noframe]
-      form_opts = args[:form_opts] ? args.delete(:form_opts) : {}
-      form_opts[:hidden] = args.delete(:hidden)
-      form_opts['main-success'] = 'REDIRECT'
-      card_form :create, form_opts do
-        output [
-          _optional_render(:name_formgroup, args),
-          _optional_render(:type_formgroup, args),
-          _optional_render(:content_formgroup, args),
-          _optional_render(:button_formgroup, args)
-        ]
-      end
-    else
-      super(args)
-    end
-  end
-
-
   def get_structure args
     if args[:company]
       'metric company add value'
@@ -184,16 +165,17 @@ format :html do
     end
     args[:title] = "Add new value for #{args[:metric]}" if args[:metric]
     args[:structure] = get_structure args
-    if args[:structure] == 'default add metric value'
-      args.merge(core_edit: true)
-    end
+    args.merge(core_edit: true)
+    # if args[:structure] == 'default add metric value'
+    #   args.merge(core_edit: true)
+    # end
     super(args)
   end
 
-  #
-  # def edit_slot args
-  #   super args.merge(core_edit: true)
-  # end
+
+  def edit_slot args
+    super args.merge(core_edit: true)
+  end
   def legend args
     subformat(card.metric_card)._render_legend args
   end
@@ -225,46 +207,28 @@ format :html do
   end
 
   view :timeline_data do |args|
+    year  =  content_tag(:span, card.cardname.right, class: 'metric-year')
+    # value_card = card.fetch(trait: :value)
+    value =  _render_modal_details(args)
+    value << content_tag(:span, legend(args), class: 'metric-unit')
 
-    #container elements
-    dot =  content_tag(:div, '', class: 'timeline-dot')
-    value_details_toggle = content_tag(
-                          :i,
-                          '',
-                          class:'fa fa-caret-right fa-lg margin-left-10 btn btn-default btn-sm',
-                          data:{
-                            toggle:'collapse-next',
-                            parent:'.value',
-                            collapse:'.metric-value-details'}
-                          )
-    credit = wrap_with :div, class: 'credit' do
+    line   =  content_tag(:div, '', class: 'timeline-dot')
+    line << content_tag(:div, '', class: 'timeline-line') if args[:connect]
+
+    credit = wrap_with :div, class: 'td credit' do
       [
         nest(card, view: :core, structure: 'creator credit'),
         _optional_render(:source_link, args, :hide)
       ]
     end
-    value_details =  content_tag(:div, credit.html_safe, class: 'metric-value-details collapse')
 
-
-    #year parent container
-    year = content_tag(:span, card.cardname.right)
-    year << dot
-    year = content_tag(:div, year.html_safe,  class: 'td year')
-
-
-    #value parent container
-    value =  _render_modal_details(args)
-    value << content_tag(:span, legend(args), class: 'metric-unit')
-    value << value_details_toggle.html_safe
-    value << value_details.html_safe
-    # line = content_tag(:div, '', class: 'timeline-line') if args[:connect]
-
-    #stitch together
     wrap_with :div, class: 'timeline-row' do
       [
-        # line,
-        year,
-        content_tag(:div, value.html_safe, class: 'td value')
+        line,
+        content_tag(:div, year.html_safe,  class: 'td year'),
+        content_tag(:div, value.html_safe, class: 'td value'),
+        credit
+
       ]
     end
   end
