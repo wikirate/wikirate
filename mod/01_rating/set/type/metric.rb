@@ -4,6 +4,9 @@ card_accessor :downvote_count, :type=>:number, :default=>"0"
 
 card_accessor :metric_type,
               :type=>:pointer, :default=>"[[Researched]]"
+card_accessor :about
+card_accessor :methodology
+card_accessor :value_type
 
 def metric_type
   metric_type_card.item_names.first
@@ -34,6 +37,11 @@ def value_type
   (vt = field('value type')) && vt.item_names.first
 end
 
+# TODO: adapt to Henry's value type API
+def categorical?
+  value_type == 'Categorical'
+end
+
     # def value company, year
 #   (value_card = Card["#{name}+#{company}+#{year}+#{value}"]) &&
 #     value_card.content
@@ -48,7 +56,10 @@ def create_value args
   create_args = {
     name: "#{name}+#{args[:company]}+#{args[:year]}",
     type_id: Card::MetricValueID,
-    '+value' => args[:value]
+    '+value' => {
+      content: args[:value],
+      type_id: (args[:value].is_a?(Integer) ? NumberID : PhraseID)
+    }
   }
   if metric_type_codename == :reseached
     if !args[:source]
@@ -87,10 +98,6 @@ def random_company_card_with_value
 end
 
 format :html do
-  view :formula do
-    card.name
-  end
-
   view :tabs do |args|
     lazy_loading_tabs args[:tabs], args[:default_tab],
                       render("#{args[:default_tab]}_tab", skip_permission: true)
@@ -98,36 +105,69 @@ format :html do
   def default_tabs_args args
     args[:tabs] = {
       'Details' => path(view: 'details_tab'),
-      'Discussion' => path(view: 'discussion_tab')
+      "#{fa_icon :comment} Discussion" => path(view: 'discussion_tab')
     }
     args[:default_tab] = 'Details'
   end
 
+  # tabs for metrics of type formula, score and WikiRating
+  # overriden for researched
   view :details_tab do
-    nest card.field('details'), view: :core
+    output [
+             nest(card.formula_card, view: :titled, title: 'Formula'),
+             nest(card.about_card, view: :titled, title: 'About')
+           ]
   end
 
   view :discussion_tab do |args|
-    nest card, view: 'blank', show: 'comment_box'
+    _render_comment_box(args)
   end
 
   view :thumbnail do |args|
     wrap_with :div, class: 'metric-thumbnail' do
       [
         _render_thumbnail_image(args),
-        _render_thumbnail_text(args)
+        _render_thumbnail_text(args),
+        css
       ]
     end
   end
 
+  def css
+    css = <<-CSS
+    .titled-view.TYPE_PLUS_RIGHT-metric-formula {
+      .TYPE_PLUS_RIGHT-metric-formula.card-content {
+        font-size: 1.5em;
+        font-weight: bold;
+      }
+    }
+      .metric-thumbnail {
+        font-size: 0.66em;
+        font-weight: normal;
+        border: solid 1px #ebebeb;
+        display: inline-block;
+        padding: 7px;
+        img {
+          max-width: 35px;
+          max-height: 35px;
+        }
+        .thumbnail-image, .thumbnail-text {
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+    CSS
+    "<style> #{Sass.compile css}</style>"
+  end
+
   view :thumbnail_image do |_args|
-    wrap_with :div, class: 'pull-left thumbnail-image' do
+    wrap_with :div, class: 'thumbnail-image' do
       nest card.designer_card.field(:image, new: {}), view: :core, size: :small
     end
   end
 
   view :thumbnail_text do |args|
-    wrap_with :div, class: 'pull-left thumbnail-text' do
+    wrap_with :div, class: 'thumbnail-text' do
       [
         _render_thumbnail_title(args),
         _render_thumbnail_subtitle(args)
@@ -142,18 +182,16 @@ format :html do
   view :thumbnail_subtitle do |args|
     content_tag :div do
       <<-HTML
-      <span class="authorship">
+      <small class="text-muted">
         #{args[:text]}
-      <span>
-      <span class="author">
         #{args[:author]}
-      <span>
+      </small>
       HTML
     end
   end
   def default_thumbnail_subtitle_args args
-    args[:text] ||= "#{card.value_type} | designed by"
-    args[:author] ||= card.designer
+    args[:text] ||= [card.value_type, 'designed by'].compact.join ' | '
+    args[:author] ||= card_link card.designer
   end
 
   def tab_radio_button id, active=false

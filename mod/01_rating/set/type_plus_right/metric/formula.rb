@@ -6,8 +6,24 @@ def metric_name
   cardname.left
 end
 
+def metric_card
+  left
+end
+
+def categorical_metric?
+  metric_card.categorical?
+end
+
+def translation_table
+  content.split("\n").map do |line|
+    line.split(/\s*\=\>\s*/)
+  end
+end
+
 format :html do
   view :editor do |args|
+    return _render_categorical_editor(args) if categorical_metric?
+
     metrics_list = card.input_metrics.map { |m| "[[#{m}]]" }.join "\n"
     formula_input = card.fetch trait: :formula_input,
                               new: {
@@ -20,12 +36,27 @@ format :html do
     end
   end
 
+  view :categorical_editor do |args|
+    table translation_table.unshift(['Category','Value'])
+  end
+
+  view :core do |args|
+    "= #{super(args)}"
+  end
+
   def get_nest_defaults _nested_card
     { view: :thumbnail }
   end
 end
 
-event :approve_formula, :validate do
+
+event :validate_cateogory_translation, :validate,
+      when: proc { |c| !c.categorical? } do
+  # TODO: Check if there is a value for all categories
+end
+
+event :validate_formula, :validate,
+      when: proc { |c| !c.categorical? } do
   not_on_whitelist =
     content.gsub(/\{\{([^}])+\}\}/,'').scan(/[a-zA-Z][a-zA-Z]+/)
     .reject do |word|
@@ -35,6 +66,9 @@ event :approve_formula, :validate do
     errors.add :formula, "#{not_on_whitelist.first} forbidden keyword"
   end
 end
+
+
+
 
 # don't update if it's part of scored metric update
 event :update_scores_for_formula, :prepare_to_store, on: :update,
@@ -105,7 +139,12 @@ end
 
 # allow only numbers, whitespace, mathematical operations and args references
 def ruby_formula?
+  binding.pry
   content.gsub(/\{\{([^}])+\}\}/,'').match(/^[\s\d+-\/*\.()]*$/)
+end
+
+def translate_formula?
+  content =~ '=>'
 end
 
 # choose a company or fetch all values

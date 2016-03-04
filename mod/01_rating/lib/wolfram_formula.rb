@@ -1,7 +1,7 @@
 class WolframFormula < Formula
   WL_INTERPRETER = 'https://www.wolframcloud.com/objects/92f1e212-7875-49f9-888f-b5b4560b7686'
 
-  def get_value year, metrics_with_values, i
+  def get_value year, _metrics_with_values, i
     @executed_lambda[year.to_s][i]
   end
 

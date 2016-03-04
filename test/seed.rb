@@ -69,44 +69,22 @@ class SharedData
     end
 
     def add_metrics
-      Card.create! name: 'Jedi+disturbances in the Force',
-                   type_id: Card::MetricID
-      Card.create! name: 'Jedi+deadliness',
-                   type_id: Card::MetricID
       Card::Env[:protocol] = 'http://'
       Card::Env[:host] = 'wikirate.org'
-      Card.create! name: '1977', type: 'year'
-      Card.create! name: 'Jedi+deadliness+Death Star+1977',
-                   type_id: Card::MetricValueID,
-                   subcards: {
-                     '+value' => { content: '100', type_id: Card::NumberID },
-                     '+source' => {
-                       subcards: {
-                         'new source1' => {
-                           '+Link' => {
-                             content: 'http://www.wikiwand.com/en/Death_Star',
-                             type_id: Card::PhraseID
-                           }
-                         }
-                       }
-                     }
-                   }
-      Card.create! name: 'Jedi+disturbances in the Force+Death Star+1977',
-                   type_id: Card::MetricValueID,
-                   subcards: {
-                     '+value' => { content: 'yes', type_id: Card::PhraseID },
-                     '+source' => {
-                       subcards: {
-                         'new source2' => {
-                           '+Link' => {
-                             content:
-                               'http://www.wikiwand.com/en/Return_of_the_Jedi',
-                             type_id: Card::PhraseID
-                           }
-                         }
-                       }
-                     }
-                   }
+      Card::Metric.create name: 'Jedi+disturbances in the Force' do
+        Death_Star 1977: { value: 'yes',
+                           source: 'http://www.wikiwand.com/en/Death_Star' }
+      end
+      Card::Metric.create name: 'Jedi+deadliness', type: :categorical do
+        Death_Star 1977: { value: 100,
+                           source: 'http://www.wikiwand.com/en/Return_of_the_Jedi' }
+      end
+      Card::Metric.create name: 'Jedi+deadliness+Joe User', type: :score do
+
+      end
+
     end
+
+
   end
 end

@@ -4,6 +4,10 @@ def metric_card
   left.left
 end
 
+def score?
+  metric_card.metric_type_codename == :score
+end
+
 format :html do
   include Type::Pointer::HtmlFormat
   view :core do |args|
@@ -37,7 +41,7 @@ format :html do
             end * "\n"
           }
         </ul>
-        #{ add_item_button }
+        #{ add_item_button if !card.score?  }
       	<br><br>
       </div>
     </div>

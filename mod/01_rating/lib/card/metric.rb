@@ -12,9 +12,26 @@ class Card::Metric
     end
 
     def create_value company, year, value
-      args = { company: company, year: year, value: value }
+      args = { company: company, year: year }
+      if value.is_a?(Hash)
+        if (source_url = value.delete :source)
+          args['+source'] = {
+            subcards: {
+              'new source1' => {
+                '+Link' => {
+                  content: source_url,
+                  type_id: Card::PhraseID
+                }
+              }
+            }
+          }
+        end
+        args.merge! value
+      else
+        args[:value] = value
+      end
       if @metric.metric_type_codename == :researched
-        args[:source] = get_a_sample_source
+        args[:source] ||= get_a_sample_source
       end
       @metric.create_value args
     end
@@ -40,6 +57,13 @@ class Card::Metric
           type_id: Card::PointerID
         }
       }
+      if opts[:type] == :researched
+        opts[:value_type] ||= 'Number'
+        subcards['+value type'] = {
+          content: "[[#{opts[:value_type]}]]",
+          type_id: Card::PointerID
+        }
+      end
       if opts[:formula]
         subcards['+formula'] = {
           content: opts[:formula],
