@@ -108,7 +108,6 @@ format :html do
   end
 
   view :discussion_tab do |args|
-    binding.pry
     nest card, view: 'blank', show: 'comment_box'
   end
 
@@ -132,7 +131,7 @@ format :html do
       [
         _render_thumbnail_title(args),
         _render_thumbnail_subtitle(args)
-
+      ]
     end
   end
 
@@ -153,7 +152,7 @@ format :html do
     end
   end
   def default_thumbnail_subtitle_args args
-    args[:text] ||= "#{value_type} | designed by"
+    args[:text] ||= "#{card.value_type} | designed by"
     args[:author] ||= card.designer
   end
 
@@ -184,21 +183,17 @@ format :html do
   end
 
   def new_metric_tab_content
-    active = true
     wrap_with :div, class: 'tab-content' do
-      %w(Researched Formula Score WikiRating).map do |metric_type|
-        new_metric_tab_pane metric_type, active
-        active &&= false
+      %w(Researched Formula Score WikiRating).map.with_index do |metric_type, i|
+        new_metric_tab_pane metric_type, (i == 0)
       end
     end
   end
 
   def new_metric_tab_buttons
-    active = true
     wrap_with :ul, class: 'nav nav-tabs', role: 'tablist' do
-      %w(Researched Formula Score WikiRating).map do |metric_type|
-        tab_radio_button metric_type, active
-        active &&= false
+      %w(Researched Formula Score WikiRating).map.with_index do |metric_type, i|
+        tab_radio_button metric_type, (i == 0)
       end
     end
   end
@@ -207,22 +202,22 @@ format :html do
     #frame_and_form :create, args, 'main-success' => 'REDIRECT' do
     frame args.merge(title: 'New Metricj') do
     <<-HTML
-    <fieldset class="card-editor editor">
-      <div role="tabpanel">
-        <input class="card-content form-control" type="hidden" value=""
-               name="card[subcards][+*metric type][content]"
-               id="card_subcards___metric_type_content">
-        #{new_metric_tab_buttons}
-      </div>
-    </fieldset>
+      <fieldset class="card-editor editor">
+        <div role="tabpanel">
+          <input class="card-content form-control" type="hidden" value=""
+                 name="card[subcards][+*metric type][content]"
+                 id="card_subcards___metric_type_content">
+          #{new_metric_tab_buttons}
+        </div>
+      </fieldset>
     <!-- Tab panes -->
     #{new_metric_tab_content}
     <script>
-    $('input[name="intervaltype"]').click(function () {
-        //jQuery handles UI toggling correctly when we apply "data-target"
-        // attributes and call .tab('show')
-        //on the <li> elements' immediate children, e.g the <label> elements:
-        $(this).closest('label').tab('show');
+      $('input[name="intervaltype"]').click(function () {
+          //jQuery handles UI toggling correctly when we apply "data-target"
+          // attributes and call .tab('show')
+          //on the <li> elements' immediate children, e.g the <label> elements:
+          $(this).closest('label').tab('show');
     });
     </script>
     HTML

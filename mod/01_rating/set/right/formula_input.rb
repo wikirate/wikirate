@@ -96,7 +96,6 @@ format :html do
     variable = "M#{args[:index]}"#("A".ord + args[:index]).chr
     item_name = args[:pointer_item]
     item_card = Card[item_name]
-    binding.pry
     example_value =
       if (company = item_card.random_company_card_with_value)
         metric_plus_company = Card["#{item_card.name}+#{company.name}"]

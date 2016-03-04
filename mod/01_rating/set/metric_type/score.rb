@@ -16,13 +16,13 @@ def normalize_value value
   value
 end
 
-  view :select do |_args|
-    options = [['-- Select --', '']] + card.option_names.map { |x| [x, x] }
-    select_tag('pointer_select',
-               options_for_select(options, card.item_names.first),
-               class: 'pointer-select form-control'
-              )
-  end
+view :select do |_args|
+  options = [['-- Select --', '']] + card.option_names.map { |x| [x, x] }
+  select_tag('pointer_select',
+             options_for_select(options, card.item_names.first),
+             class: 'pointer-select form-control'
+            )
+end
 
 
 format :html do
@@ -99,6 +99,7 @@ format :html do
   def default_thumbnail_subtitle_args args
     args[:text] ||= 'scored by'
     args[:author] ||= card.scorer
+end
 end
 
 event :set_scored_metric_name, :initialize,

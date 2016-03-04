@@ -19,6 +19,10 @@ format :html do
       subformat(formula_input)._render_core(args)
     end
   end
+
+  def get_nest_defaults _nested_card
+    { view: :thumbnail }
+  end
 end
 
 event :approve_formula, :validate do
