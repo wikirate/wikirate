@@ -9,8 +9,29 @@ def metric_type
   metric_type_card.item_names.first
 end
 
+def designer
+  cardname.parts[0]
+end
+
+def designer_card
+  self[0]
+end
+
+def metric_title
+  cardname.parts[1]
+end
+
+def metric_title_card
+  self[1]
+end
+
 def metric_type_codename
   Card[metric_type].codename
+end
+
+def value_type
+  # FIXME: value type should have a codename
+  (vt = field('value type')) && vt.item_names.first
 end
 
     # def value company, year
@@ -91,6 +112,51 @@ format :html do
     nest card, view: 'blank', show: 'comment_box'
   end
 
+  view :thumbnail do |args|
+    wrap_with :div, class: 'metric-thumbnail' do
+      [
+        _render_thumbnail_image(args),
+        _render_thumbnail_text(args)
+      ]
+    end
+  end
+
+  view :thumbnail_image do |_args|
+    wrap_with :div, class: 'pull-left thumbnail-image' do
+      nest card.designer_card.field(:image, new: {}), view: :core, size: :small
+    end
+  end
+
+  view :thumbnail_text do |args|
+    wrap_with :div, class: 'pull-left thumbnail-text' do
+      [
+        _render_thumbnail_title(args),
+        _render_thumbnail_subtitle(args)
+
+    end
+  end
+
+  view :thumbnail_title do |args|
+    content_tag(:div, nest(card.metric_title_card, view: :name))
+  end
+
+  view :thumbnail_subtitle do |args|
+    content_tag :div do
+      <<-HTML
+      <span class="authorship">
+        #{args[:text]}
+      <span>
+      <span class="author">
+        #{args[:author]}
+      <span>
+      HTML
+    end
+  end
+  def default_thumbnail_subtitle_args args
+    args[:text] ||= "#{value_type} | designed by"
+    args[:author] ||= card.designer
+  end
+
   def tab_radio_button id, active=false
     <<-HTML
     <li role="tab" class="pointer-radio #{'active' if active}">
@@ -139,7 +205,7 @@ format :html do
 
   view :new do |args|
     #frame_and_form :create, args, 'main-success' => 'REDIRECT' do
-    frame args.merge(title: 'New Metric') do
+    frame args.merge(title: 'New Metricj') do
     <<-HTML
     <fieldset class="card-editor editor">
       <div role="tabpanel">
