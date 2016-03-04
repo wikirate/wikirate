@@ -1,5 +1,9 @@
 include Set::Abstract::Calculation
 
+def scorer
+  cardname.tag
+end
+
 def normalize_value value
   return 0 if value < 0
   return 10 if value > 10
@@ -50,6 +54,10 @@ format :html do
   def default_content_formgroup_args args
     args[:structure] = 'metric+*type+*edit structure without value type'
   end
+
+  def default_thumbnail_subtitle_args args
+    args[:text] ||= 'scored by'
+    args[:author] ||= card.scorer
 end
 
 event :set_scored_metric_name, :initialize,
