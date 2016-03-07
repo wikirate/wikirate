@@ -20,6 +20,17 @@ describe Card::Metric do
       binding.pry
       expect(Card['MD+MT+WithSource+2000+source'].item_cards.first.field('link').content)
         .to eq('http://example.com')
+      expect(Card['MD+MT+WithSource+2000'].set_modules)
+        .to eq  [Card::Set::Type::MetricValue]
+    end
+  end
+
+  describe '#new' do
+    it 'recognizes metric type' do
+      metric = Card.new name: 'MT+MD', type_id: Card::MetricID,
+                        "+*metric type"=>"[[Researched]]"
+      expect(metric.set_format_modules(Card::HtmlFormat)).to include
+      (Card::Set::MetricType::Researched::HtmlFormat)
     end
   end
 end

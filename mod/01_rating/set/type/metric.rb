@@ -42,6 +42,10 @@ def categorical?
   value_type == 'Categorical'
 end
 
+def researched?
+  metric_type_codename == :researched
+end
+
     # def value company, year
 #   (value_card = Card["#{name}+#{company}+#{year}+#{value}"]) &&
 #     value_card.content

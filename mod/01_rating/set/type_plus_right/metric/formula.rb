@@ -22,7 +22,7 @@ end
 
 format :html do
   view :editor do |args|
-    return _render_categorical_editor(args) if categorical_metric?
+    return _render_categorical_editor(args) if card.categorical_metric?
 
     metrics_list = card.input_metrics.map { |m| "[[#{m}]]" }.join "\n"
     formula_input = card.fetch trait: :formula_input,
@@ -139,7 +139,6 @@ end
 
 # allow only numbers, whitespace, mathematical operations and args references
 def ruby_formula?
-  binding.pry
   content.gsub(/\{\{([^}])+\}\}/,'').match(/^[\s\d+-\/*\.()]*$/)
 end
 

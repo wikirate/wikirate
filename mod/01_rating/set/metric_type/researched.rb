@@ -1,5 +1,3 @@
-
-
 format :html do
   def default_tabs_args args
     args[:tabs] = {
@@ -10,7 +8,6 @@ format :html do
     }
     args[:default_tab] = 'Details'
   end
-
 
   view :details_tab do
     output [
