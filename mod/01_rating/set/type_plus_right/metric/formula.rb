@@ -51,12 +51,12 @@ end
 
 
 event :validate_cateogory_translation, :validate,
-      when: proc { |c| !c.categorical? } do
+      when: proc { |c| !c.categorical_metric? } do
   # TODO: Check if there is a value for all categories
 end
 
 event :validate_formula, :validate,
-      when: proc { |c| !c.categorical? } do
+      when: proc { |c| !c.categorical_metric? } do
   not_on_whitelist =
     content.gsub(/\{\{([^}])+\}\}/,'').scan(/[a-zA-Z][a-zA-Z]+/)
     .reject do |word|

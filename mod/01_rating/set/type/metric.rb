@@ -29,7 +29,7 @@ def metric_title_card
 end
 
 def metric_type_codename
-  Card[metric_type].codename
+  Card[metric_type].codename.to_sym
 end
 
 def value_type
@@ -61,12 +61,32 @@ def create_value args
       type_id: (args[:value].is_a?(Integer) ? NumberID : PhraseID)
     }
   }
-  if metric_type_codename == :reseached
-    if !args[:source]
-      errors.add 'metric value', "missing source"
+  if metric_type_codename == :researched
+    case args[:source]
+    when String
+      create_args['+source'] = {
+        subcards: {
+          'new source' => {
+            '+Link' => {
+              content: args[:source],
+              type_id: Card::PhraseID
+            }
+          }
+        }
+        #type_id: PointerID
+      }
+    when Hash
+      create_args['+source'] = args[:source]
+    when Card
+      create_args['+source'] = {
+        content: "[[#{args[:source].name}]]",
+        type_id: Card::PointerID
+      }
+    else
+      errors.add 'metric value', 'missing source'
       return
     end
-    create_args[:source] = args[:source]
+
   end
   Card.create! create_args
 end

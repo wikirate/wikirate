@@ -12,33 +12,22 @@ class Card::Metric
     end
 
     def create_value company, year, value
-      args = { company: company, year: year }
+      args = { company: company.to_s, year: year }
       if value.is_a?(Hash)
-        if (source_url = value.delete :source)
-          args['+source'] = {
-            subcards: {
-              'new source1' => {
-                '+Link' => {
-                  content: source_url,
-                  type_id: Card::PhraseID
-                }
-              }
-            }
-          }
-        end
         args.merge! value
       else
-        args[:value] = value
+        args[:value] = value.to_s
       end
       if @metric.metric_type_codename == :researched
         args[:source] ||= get_a_sample_source
       end
+
       @metric.create_value args
     end
 
     def method_missing company, *args
       args.first.each_pair do |year, value|
-        create_value company, year, value.to_s
+        create_value company, year, value
       end
     end
 

@@ -79,9 +79,9 @@ class SharedData
         Death_Star 1977: { value: 100,
                            source: 'http://www.wikiwand.com/en/Return_of_the_Jedi' }
       end
-      Card::Metric.create name: 'Jedi+deadliness+Joe User', type: :score do
-
-      end
+      Card::Metric.create name: 'Jedi+deadliness+Joe User',
+                          type: :score,
+                          formula: '{{Jedi+deadliness}}/10'
 
     end
 

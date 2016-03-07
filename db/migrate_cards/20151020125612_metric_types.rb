@@ -54,7 +54,7 @@ class MetricTypes < Card::Migration
     end
   end
 
-  def update_existing_metics
+  def update_existing_metrics
     Card.search(type_id: Card::MetricID, return: 'name').each do |metric|
       create_card name: "#{metric}+*metric type",
                   type_id: Card::PointerID,
