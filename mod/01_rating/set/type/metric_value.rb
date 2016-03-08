@@ -48,22 +48,48 @@ end
 
 event :set_metric_value_name,
       before: :set_autoname, when: proc { |c| c.cardname.parts.size < 4 } do
-  self.name = ['metric', 'company', 'year'].map do |name|
+  self.name = %w(metric company year).map do |name|
     content = remove_subfield(name).content
     content.gsub('[[', '').gsub(']]', '')
   end.join '+'
 end
 
 event :validate_metric_value_fields, before: :set_metric_value_name do
-  ['metric', 'company', 'year', 'value'].each do |name|
-    if !subfield_exist?(name)
+  %w(metric company year value).each do |name|
+    unless subfield_exist?(name)
       errors.add :field, "Missing #{name}. Please check before submit."
     end
   end
 end
 
-event :validate_value_type, :validate , on: :save do
+def number? str
+  true if Float(str)
+rescue
+  false
+end
+
+event :validate_value_type, :validate, on: :save do
   # check if the value fit the value type of metric
+  if (value_type = Card["#{metric_card.name}+value type"])
+    value = subfield(:value).content
+    case value_type.item_names[0]
+    when 'Number', 'Monetary'
+      unless number?(value)
+        errors.add :value, 'Only numeric content is valid for this metric.'
+      end
+    when 'Category'
+      # check if the value exist in options
+      if !(option_card = Card["#{metric_card.name}+value options"]) ||
+         !option_card.item_names(contenxt: :raw).include?(value)
+        url = "/#{option_card.cardname.url_key}?view=edit"
+        anchor =
+          <<-HTML
+            <a href='#{url}' target="_blank">add options</a>
+          HTML
+        errors.add :options, "Please #{anchor} before adding metric value."
+      end
+    end
+  end
 end
 
 event :create_source_for_metric_value, :validate, on: :create do
@@ -197,36 +223,64 @@ format :html do
     subformat(card.metric_card)._render_legend args
   end
 
+  def currency
+    return unless (value_type = Card["#{card.metric_card.name}+value type"])
+    return unless value_type.item_names[0] == 'Monetary' &&
+                  (currency = Card["#{card.metric_card.name}+currency"])
+    currency.content
+    
+  end
+
   view :concise do |args|
-    %{
+    %(
       <span class="metric-year">
         #{card.year} =
+      </span>
+      <span class="metric-unit">
+        #{currency}
       </span>
       #{_render_modal_details(args)}
       <span class="metric-unit">
         #{legend(args)}
       </span>
-    }
+    )
   end
 
   view :modal_details do |args|
+    
+    show_value =
+      if (value_type = card.metric_card.fetch trait: :value_type)
+        if %w(Number Monetary).include? value_type.item_names[0]
+          big_number = BigDecimal.new(card.value)
+          number_to_human(big_number)
+        else
+          card.value
+        end
+      end
     modal_link = subformat(card)._render_modal_link(
       args.merge(
-        text: card.value,
-        path_opts: { slot: { show: :menu, optional_horizontal_menu: :hide } }
+        text: show_value,
+        path_opts: { slot: { show: :menu, optional_horizontal_menu: :hide } },
+        html_args: {
+          'data-complete-number': card.value,
+          'data-tooltip': 'true',
+          'data-placement': 'top',
+          'title': card.value
+        }
       )
     ) # ,:html_args=>{:class=>"td year"}))
-    %{
+    %(
       <span class="metric-value">
         #{modal_link}
       </span>
-    }
+    )
   end
 
   view :timeline_data do |args|
-    year  =  content_tag(:span, card.cardname.right, class: 'metric-year')
+    year = content_tag(:span, card.cardname.right, class: 'metric-year')
     # value_card = card.fetch(trait: :value)
-    value =  _render_modal_details(args)
+    value = content_tag(:span, currency, class: 'metric-unit')
+    value << _render_modal_details(args).html_safe
     value << content_tag(:span, legend(args), class: 'metric-unit')
 
     line   =  content_tag(:div, '', class: 'timeline-dot')

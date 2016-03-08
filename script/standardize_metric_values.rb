@@ -214,12 +214,7 @@ def update_options metrics
   metrics.each do |m|
     metric_values = metric_values m.name
     option_card = Card.fetch "#{m.name}+value options", new: {}
-    # if m.name.include?('Good Company Index+Good Company Grade')
-    #   binding.pry 
-    # else
-    #   next
-    # end
-    options = Array.new
+    options = []
     metric_values.each do |mv|
       options.push("[[#{mv.content}]]\n")
     end
@@ -234,7 +229,7 @@ end
 
 Card::Auth.as_bot
 Card::Auth.current_id = Card.fetch_id 'Richard Mills'
-
+Card::Mailer.perform_deliveries = false
 rename_existing_metric_value_type
 convert_monetary_metric_unit
 
@@ -258,4 +253,4 @@ rest_metrics = rest_metric
 # # get the value for options
 update_value_type_category rest_metrics
 update_options rest_metrics
-
+Card::Mailer.perform_deliveries = true
