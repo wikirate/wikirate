@@ -82,9 +82,6 @@ class SharedData
       Card::Metric.create name: 'Jedi+deadliness+Joe User',
                           type: :score,
                           formula: '{{Jedi+deadliness}}/10'
-
     end
-
-
   end
 end

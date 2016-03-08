@@ -1,10 +1,16 @@
 format :html do
+  def default_content_formgroup_args args
+    super(args)
+    args[:edit_fields]['+value type'] = { title: 'Value Type'}
+    args[:edit_fields]['+research policy'] = { title: 'Research Policy'}
+  end
+
   def default_tabs_args args
     args[:tabs] = {
       'Details' => path(view: 'details_tab'),
       'Sources' => path(view: 'source_tab'),
       "#{fa_icon :comment} Discussion" => path(view: 'discussion_tab'),
-      'Scores' => path(view: 'scores_tab'),
+      'Scores' => path(view: 'scores_tab')
     }
     args[:default_tab] = 'Details'
   end

@@ -73,10 +73,6 @@ format :html do
     # subformat(name_card)._render_select
   end
 
-  def default_content_formgroup_args args
-    args[:structure] = 'metric+*type+*edit structure without value type'
-  end
-
   def default_thumbnail_subtitle_args args
     args[:text] ||= 'scored by'
     args[:author] ||= card.scorer
