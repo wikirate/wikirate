@@ -63,6 +63,7 @@ event :validate_metric_value_fields, before: :set_metric_value_name do
 end
 
 event :create_source_for_metric_value, :validate, on: :create do
+  binding.pry
   create_source
 end
 
@@ -75,7 +76,8 @@ end
 def create_source
   value_card = remove_subfield('value')
   if (source_list = subfield('source'))
-    clear_subcards
+    remove_subfield('source')
+    # clear_subcards
     source_card = get_source_card source_list
     if !source_card
       errors.add :source, "#{source_list.content} does not exist."
@@ -149,6 +151,7 @@ def fill_subcards metric_value, source_card
 end
 
 format :html do
+
   view :new do |args|
     return super(args)
     if Env.params[:noframe]
@@ -183,7 +186,7 @@ format :html do
 
   def set_hidden_args args
     if !args[:source]
-      view = (args[:metric] || args[:company]) ? :titled : :open
+      view = (args[:metric] || args[:company]) ? :timeline_data : :timeline_data
       args[:hidden] = {
         :success => { id: '_self', soft_redirect: true, view: view },
         'card[subcards][+metric][content]' => args[:metric]
@@ -209,10 +212,11 @@ format :html do
     super(args)
   end
 
-  #
-  # def edit_slot args
-  #   super args.merge(core_edit: true)
-  # end
+
+  def edit_slot args
+    super args.merge(core_edit: true)
+  end
+
   def legend args
     subformat(card.metric_card)._render_legend args
   end
@@ -262,13 +266,28 @@ format :html do
         _optional_render(:source_link, args, :hide)
       ]
     end
-    value_details =  content_tag(:div, credit.html_safe, class: 'metric-value-details collapse')
-
+    # value_details =  content_tag(:div, credit.html_safe, class: )
 
     #year parent container
     year = content_tag(:span, card.cardname.right)
     year << dot
     year = content_tag(:div, year.html_safe,  class: 'td year')
+
+    #comments
+    comments = (disc_card = card.fetch trait: :discussion) &&
+               subformat(disc_card).render_core.html_safe
+    #source
+    sources = card.fetch trait: :source
+    sources = subformat(sources).render_core(item: :cited).html_safe
+    # sources = subformat(sources).render_core(item: :content, structure: 'source item').html_safe
+    value_details = wrap_with :div, class: 'metric-value-details collapse' do
+      [
+        # line,
+        credit.html_safe,
+        content_tag(:div, comments, class: 'comments-div'),
+        content_tag(:div, sources, class: 'cited-sources')
+      ]
+    end
 
 
     #value parent container
