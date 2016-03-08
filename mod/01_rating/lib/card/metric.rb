@@ -25,6 +25,10 @@ class Card::Metric
       @metric.create_value args
     end
 
+    def value_options *options
+
+    end
+
     def method_missing company, *args
       args.first.each_pair do |year, value|
         create_value company, year, value
@@ -54,8 +58,10 @@ class Card::Metric
         }
       end
       if opts[:formula]
+        formula = opts[:formula].is_a?(Hash) ? opts[:formula].to_json :
+                                               opts[:formula]
         subcards['+formula'] = {
-          content: opts[:formula],
+          content: formula,
           type_id: Card::PhraseID
         }
       end

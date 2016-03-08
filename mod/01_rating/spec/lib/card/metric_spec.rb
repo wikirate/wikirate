@@ -1,4 +1,36 @@
 describe Card::Metric do
+  def add_metrics
+    Card::Env[:protocol] = 'http://'
+    Card::Env[:host] = 'wikirate.org'
+    Card::Metric.create name: 'Jedi+beta disturbances in the Force' do
+      value_options('yes', 'no')
+      Death_Star '1977' => { value: 'yes',
+                         source: 'http://www.wikiwand.com/en/Death_Star' }
+    end
+    Card::Metric.create name: 'Jedi+beta deadliness' do
+      Death_Star '1977' => { value: 100,
+                         source: 'http://www.wikiwand.com/en/Return_of_the_Jedi' }
+    end
+    Card::Metric.create name: 'Jedi+friendliness',
+                        type: :formula,
+                        formula: '1/{{Jedi+deadliness}}'
+    Card::Metric.create name: 'Jedi+deadliness+Joe User',
+                        type: :score,
+                        formula: '{{Jedi+deadliness}}/10'
+    Card::Metric.create name: 'Jedi+deadliness+Joe Camel',
+                        type: :score,
+                        formula: '{{Jedi+deadliness}}/20'
+    Card::Metric.create name: 'Jedi+disturbances in the Force+Joe User',
+                        type: :score,
+                        formula: { yes: 10, no: 0 }
+    Card::Metric.create(
+      name: 'Jedi+darkness rating',
+      type: :wiki_rating,
+      formula: '({{Jedi+deadliness+Joe User}}+' \
+                 '{{Jedi+disturbances in the Force+Joe User}})/2'
+    )
+  end
+
   describe '#create' do
     subject { Card['MD+MT']}
     it 'API test' do
@@ -20,7 +52,13 @@ describe Card::Metric do
       expect(Card['MD+MT+MyCompany+2001+value'].content).to eq '100'
       expect(Card['MD+MT+WithSource+2000+source'].item_cards.first.field('link').content)
         .to eq('http://example.com')
-      expect(Card['MD+MT+WithSource+2000+value'].content).to '50'
+      expect(Card['MD+MT+WithSource+2000+value'].content).to eq '50'
+    end
+
+    it 'second API test' do
+      Card::Auth.as_bot do
+        add_metrics
+      end
     end
   end
 

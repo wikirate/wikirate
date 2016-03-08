@@ -15,8 +15,10 @@ def categorical_metric?
 end
 
 def translation_table
-  content.split("\n").map do |line|
-    line.split(/\s*\=\>\s*/)
+  begin
+    JSON.parse(content).to_aform
+  rescue JSON::ParserError => e
+    fail Card::Error, 'fail to parse formula for categorical input'
   end
 end
 
@@ -24,12 +26,12 @@ format :html do
   view :editor do |args|
     return _render_categorical_editor(args) if card.categorical_metric?
 
-    metrics_list = card.input_metrics.map { |m| "[[#{m}]]" }.join "\n"
-    formula_input = card.fetch trait: :formula_input,
-                              new: {
-                                type: 'session',
-                                content:  metrics_list
-                              }
+    formula_input =
+      card.fetch trait: :formula_input,
+                 new: {
+                   type: 'session',
+                   content: card.input_metrics.to_pointer_content
+                 }
 
     super(args) + with_nest_mode(:normal) do
       subformat(formula_input)._render_core(args)
@@ -49,10 +51,9 @@ format :html do
   end
 end
 
-
 event :validate_cateogory_translation, :validate,
       when: proc { |c| !c.categorical_metric? } do
-  # TODO: Check if there is a value for all categories
+  # TODO: Check if there is a translation for all value options
 end
 
 event :validate_formula, :validate,
@@ -66,9 +67,6 @@ event :validate_formula, :validate,
     errors.add :formula, "#{not_on_whitelist.first} forbidden keyword"
   end
 end
-
-
-
 
 # don't update if it's part of scored metric update
 event :update_scores_for_formula, :prepare_to_store, on: :update,

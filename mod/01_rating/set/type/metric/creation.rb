@@ -1,3 +1,11 @@
+def create_value_options options
+  create_args = {
+    name: cardname.field('value options'),
+    content: options.to_pointer_content
+  }
+  Card.create! create_args
+end
+
 def create_value args
   missing = [:company, :year, :value].reject { |v| args[v] }
   if missing.present?
