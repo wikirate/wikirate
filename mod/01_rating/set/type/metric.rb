@@ -294,6 +294,7 @@ end
 
 event :set_metric_name, :initialize,
       on: :create do
+
   return if name.present? || metric_type == 'Score'
   title = (tcard = remove_subfield(:title)) && tcard.content
   designer = (dcard = remove_subfield(:designer)) && dcard.content

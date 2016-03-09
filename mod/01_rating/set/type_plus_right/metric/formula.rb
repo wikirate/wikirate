@@ -10,13 +10,16 @@ def metric_card
   left
 end
 
-def categorical_metric?
-  metric_card.categorical?
+def categorical?
+  metric_card.respond_to?(:basic_metric_card) &&
+    metric_card.basic_metric_card.categorical?
 end
 
+# converts a categorical formula content to an array
+# @return [Array] list of pairs of value option and the value for that option
 def translation_table
   begin
-    JSON.parse(content).to_aform
+    JSON.parse(content).to_a
   rescue JSON::ParserError => e
     fail Card::Error, 'fail to parse formula for categorical input'
   end
@@ -24,7 +27,7 @@ end
 
 format :html do
   view :editor do |args|
-    return _render_categorical_editor(args) if card.categorical_metric?
+    return _render_categorical_editor(args) if card.categorical?
 
     formula_input =
       card.fetch trait: :formula_input,
@@ -52,12 +55,12 @@ format :html do
 end
 
 event :validate_cateogory_translation, :validate,
-      when: proc { |c| !c.categorical_metric? } do
+      when: proc { |c| c.translate_formula? } do
   # TODO: Check if there is a translation for all value options
 end
 
 event :validate_formula, :validate,
-      when: proc { |c| !c.categorical_metric? } do
+      when: proc { |c| c.wolfram_formula?} do
   not_on_whitelist =
     content.gsub(/\{\{([^}])+\}\}/,'').scan(/[a-zA-Z][a-zA-Z]+/)
     .reject do |word|
@@ -121,10 +124,25 @@ def normalize_value value
   ('%.1f' % value).gsub(/\.0$/, '') if value
 end
 
+# allow only numbers, whitespace, mathematical operations and args references
+def ruby_formula?
+  content.gsub(/\{\{([^}])+\}\}/,'').match(/^[\s\d+-\/*\.()]*$/)
+end
+
+def translate_formula?
+  content =~ /^\{[^{}]+\}$/
+end
+
+def wolfram_formula?
+  !ruby_formula? && !translate_formula?
+end
+
 private
 
 def formula_interpreter
-  if ruby_formula?
+  if translate_formula?
+    TranslateFormula.new(self)
+  elsif ruby_formula?
     RubyFormula.new(self)
   else
     WolframFormula.new(self)
@@ -133,15 +151,6 @@ end
 
 def extract_metrics
   content.scan(/\{\{([^|}]+)(?:\|[^}]*)?\}\}/).flatten
-end
-
-# allow only numbers, whitespace, mathematical operations and args references
-def ruby_formula?
-  content.gsub(/\{\{([^}])+\}\}/,'').match(/^[\s\d+-\/*\.()]*$/)
-end
-
-def translate_formula?
-  content =~ '=>'
 end
 
 # choose a company or fetch all values

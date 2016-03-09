@@ -1,12 +1,14 @@
 include Set::Abstract::Calculation
 
-card_accessor :formula, type: 'pointer'
-
 def scorer
   cardname.tag
 end
 
 def basic_metric
+  cardname.trunk
+end
+
+def basic_metric_card
   left
 end
 
@@ -87,7 +89,12 @@ event :set_scored_metric_name, :initialize,
 end
 
 event :default_formula, :prepare_to_store,
-      on: :create do
-  add_subfield :formula, content: "{{#{basic_metric.name}}}",
+      on: :create,
+      when:  proc { |c| !c.subfield_formula_present?  } do
+  add_subfield :formula, content: "{{#{basic_metric}}}",
                          type_id: PlainTextID
+end
+
+def subfield_formula_present?
+  (f = subfield(:formula)) && f.content.present?
 end

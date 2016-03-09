@@ -26,7 +26,7 @@ class Card::Metric
     end
 
     def value_options *options
-
+      @metric.create_value_options options
     end
 
     def method_missing company, *args
@@ -50,19 +50,27 @@ class Card::Metric
           type_id: Card::PointerID
         }
       }
+      if opts[:formula]
+        if opts[:formula].is_a?(Hash)
+          begin
+            binding.pry
+          opts[:formula] = opts[:formula].to_json
+          rescue => e
+            binding.pry
+            end
+          opts[:value_type] ||= 'Categorical'
+        end
+
+        subcards['+formula'] = {
+          content: opts[:formula],
+          type_id: Card::PhraseID
+        }
+      end
       if opts[:type] == :researched
         opts[:value_type] ||= 'Number'
         subcards['+value type'] = {
           content: "[[#{opts[:value_type]}]]",
           type_id: Card::PointerID
-        }
-      end
-      if opts[:formula]
-        formula = opts[:formula].is_a?(Hash) ? opts[:formula].to_json :
-                                               opts[:formula]
-        subcards['+formula'] = {
-          content: formula,
-          type_id: Card::PhraseID
         }
       end
       metric = Card.create! name: opts[:name],

@@ -39,8 +39,12 @@ class WolframFormula < Formula
     uri = URI.parse(WL_INTERPRETER)
     # TODO: error handling
     response = Net::HTTP.post_form uri, 'expr' => expr
-    result = JSON.parse(response.body)['Result']
-    JSON.parse result
+    begin
+      result = JSON.parse(response.body)['Result']
+      JSON.parse result
+    rescue JSON::ParserError => e
+      fail Card::Error, "failed to process wolfram formula: #{expr}"
+    end
   end
 
   def safe_to_exec? expr

@@ -7,9 +7,7 @@ event :create_values, :prepare_to_validate,
   # FIXME: formula_card.left has type metric at this points but
   #        formula_card.set_names includes "Basic+formula+*type plus right"
   formula_card.reset_patterns
-  binding.pry
   formula_card.include_set_modules
-  binding.pry unless formula_card.respond_to? :calculate_all_values
   formula_card.calculate_all_values do |company, year, value|
     add_value company, year, value
   end

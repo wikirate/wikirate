@@ -2,12 +2,13 @@ describe Card::Metric do
   def add_metrics
     Card::Env[:protocol] = 'http://'
     Card::Env[:host] = 'wikirate.org'
-    Card::Metric.create name: 'Jedi+beta disturbances in the Force' do
+    Card::Metric.create name: 'Jedi+disturbances in the Force',
+                        value_type: 'Categorical' do
       value_options('yes', 'no')
       Death_Star '1977' => { value: 'yes',
                          source: 'http://www.wikiwand.com/en/Death_Star' }
     end
-    Card::Metric.create name: 'Jedi+beta deadliness' do
+    Card::Metric.create name: 'Jedi+deadliness' do
       Death_Star '1977' => { value: 100,
                          source: 'http://www.wikiwand.com/en/Return_of_the_Jedi' }
     end
@@ -27,13 +28,13 @@ describe Card::Metric do
       name: 'Jedi+darkness rating',
       type: :wiki_rating,
       formula: '({{Jedi+deadliness+Joe User}}+' \
-                 '{{Jedi+disturbances in the Force+Joe User}})/2'
+               '{{Jedi+disturbances in the Force+Joe User}})/2'
     )
   end
 
   describe '#create' do
     subject { Card['MD+MT']}
-    it 'API test' do
+    it 'small API test' do
       Card::Auth.as_bot do
         Card::Metric.create name: 'MD+MT',  formula: '1' do
           MyCompany 2000 => 50, 2001 => 100
@@ -55,9 +56,22 @@ describe Card::Metric do
       expect(Card['MD+MT+WithSource+2000+value'].content).to eq '50'
     end
 
-    it 'second API test' do
+    it 'big API test' do
       Card::Auth.as_bot do
         add_metrics
+      end
+      expect(Card['Jedi+disturbances in the Force+value type'].content)
+        .to eq '[[Categorical]]'
+      expect(Card['Jedi+disturbances in the Force+value options'].content)
+        .to eq %w(yes no).to_pointer_content
+
+    end
+
+    it 'creates score' do
+      Card::Auth.as_bot do
+        Card::Metric.create name: 'Jedi+disturbances in the Force+Joe User',
+                            type: :score,
+                            formula: { yes: 10, no: 0 }
       end
     end
   end
