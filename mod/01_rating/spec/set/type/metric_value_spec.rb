@@ -84,8 +84,10 @@ describe Card::Set::Type::MetricValue do
       @company = get_a_sample_company
       subcard = {
         '+metric' => { 'content' => @metric.name },
-        '+company' => { 'content' => "[[#{@company.name}]]", :type_id => Card::PointerID },
-        '+value' => { 'content' => "I'm fine, I'm just not happy.", :type_id => Card::PhraseID },
+        '+company' => { 'content' => "[[#{@company.name}]]",
+                        :type_id => Card::PointerID },
+        '+value' => { 'content' => "I'm fine, I'm just not happy.",
+                      :type_id => Card::PhraseID },
         '+year' => { 'content' => '2015', :type_id => Card::PointerID },
         '+source' => { 'subcards' => {
           'new source' => {
@@ -97,7 +99,8 @@ describe Card::Set::Type::MetricValue do
         }
         }
       }
-      @metric_value = Card.create! type_id: Card::MetricValueID, subcards: subcard
+      @metric_value =
+        Card.create! type_id: Card::MetricValueID, subcards: subcard
     end
     describe 'getting related cards' do
       it 'returns correct year' do
@@ -118,12 +121,15 @@ describe Card::Set::Type::MetricValue do
     end
     describe '#autoname' do
       it 'sets a correct autoname' do
-        expect(@metric_value.name).to eq("#{@metric.name}+#{@company.name}+2015")
+        name = "#{@metric.name}+#{@company.name}+2015"
+        expect(@metric_value.name).to eq(name)
       end
     end
     context 'creating metric value' do
       it 'based on subcards' do
-        source = Card::Set::Self::Source.find_duplicates('http://www.google.com/?q=everybodylies').first.cardname.left
+        url = 'http://www.google.com/?q=everybodylies'
+        source =
+          Card::Set::Self::Source.find_duplicates(url).first.cardname.left
         source_card = @metric_value.fetch trait: :source
         expect(source_card.item_names).to include(source)
 
@@ -133,7 +139,8 @@ describe Card::Set::Type::MetricValue do
 
       it 'with an existing source' do
         url = 'http://www.google.com/?q=everybodylies'
-        source = Card::Set::Self::Source.find_duplicates(url).first.cardname.left
+        source =
+          Card::Set::Self::Source.find_duplicates(url).first.cardname.left
         subcard = {
           '+metric' => { 'content' => @metric.name },
           '+company' => {
@@ -210,8 +217,10 @@ describe Card::Set::Type::MetricValue do
       it 'fails if source card cannot be created' do
         subcard = {
           '+metric' => { 'content' => @metric.name },
-          '+company' => { 'content' => "[[#{@company.name}]]", :type_id => Card::PointerID },
-          '+value' => { 'content' => "I'm fine, I'm just not happy.", :type_id => Card::PhraseID },
+          '+company' => { 'content' => "[[#{@company.name}]]",
+                          :type_id => Card::PointerID },
+          '+value' => { 'content' => "I'm fine, I'm just not happy.",
+                        :type_id => Card::PhraseID },
           '+year' => { 'content' => '2015', :type_id => Card::PointerID }
         }
         fail_metric_value = Card.new type_id: Card::MetricValueID,
@@ -255,6 +264,8 @@ describe Card::Set::Type::MetricValue do
     end
     describe 'views' do
       it 'renders timeline data' do
+        url = "/#{@metric_value.cardname.url_key}?layout=modal&"\
+              "slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu"
         html = @metric_value.format.render_timeline_data
         expect(html).to have_tag('div', with: { class: 'timeline-row' }) do
           with_tag('div', with: { class: 'timeline-dot' })
@@ -263,9 +274,11 @@ describe Card::Set::Type::MetricValue do
           end
           with_tag('div', with: { class: 'td value' }) do
             with_tag('span', with: { class: 'metric-value' }) do
-              with_tag('a', with: { href: "/#{@metric_value.cardname.url_key}?layout=modal&slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu" }, text: "I'm fine, I'm just not happy.")
+              with_tag('a', with: { href: url },
+                            text: "I'm fine, I'm just not happy.")
             end
-            with_tag('span', with: { class: 'metric-unit' }, text: /Imperial military units/)
+            with_tag('span', with: { class: 'metric-unit' },
+                             text: /Imperial military units/)
           end
           with_tag('div', with: { class: 'td credit' }) do
             with_tag('a', with: { href: '/Joe_User' }, text: 'Joe User')
@@ -273,17 +286,22 @@ describe Card::Set::Type::MetricValue do
         end
       end
       it 'renders modal_details' do
+        url = "/#{@metric_value.cardname.url_key}?layout=modal&"\
+              "slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu"
         html = @metric_value.format.render_modal_details
         expect(html).to have_tag('span', with: { class: 'metric-value' }) do
-          with_tag('a', with: { href: "/#{@metric_value.cardname.url_key}?layout=modal&slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu" }, text: "I'm fine, I'm just not happy.")
+          with_tag('a', with: { href: url },
+                        text: "I'm fine, I'm just not happy.")
         end
       end
       it 'renders concise' do
         html = @metric_value.format.render_concise
 
-        expect(html).to have_tag('span', with: { class: 'metric-year' }, text: /2015 =/)
+        expect(html).to have_tag('span', with: { class: 'metric-year' },
+                                         text: /2015 =/)
         expect(html).to have_tag('span', with: { class: 'metric-value' })
-        expect(html).to have_tag('span', with: { class: 'metric-unit' }, text: /Imperial military units/)
+        expect(html).to have_tag('span', with: { class: 'metric-unit' },
+                                         text: /Imperial military units/)
       end
     end
   end
