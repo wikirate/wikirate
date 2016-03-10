@@ -24,7 +24,7 @@ shared_examples_for 'changing type to numeric' do |original_type, new_type|
       @metric_value = Card.create! type_id: Card::MetricValueID,
                                    subcards: subcards
       @metric.update_attributes! subcards: {
-                                   '+value_type' => "[[#{new_type}]]" }
+        '+value_type' => "[[#{new_type}]]" }
       value_type_card = @metric.fetch trait: :value_type
       expect(value_type_card.item_names[0]).to eq(new_type)
     end
@@ -64,7 +64,7 @@ describe Card::Set::TypePlusRight::Metric::ValueType do
           options_card.content = '[[65535]]'
           options_card.save!
           @metric.update_attributes! subcards: {
-                                      '+value_type' => '[[Category]]' }
+            '+value_type' => '[[Category]]' }
           value_type_card = @metric.fetch trait: :value_type
           expect(value_type_card.item_names[0]).to eq('Category')
         end
