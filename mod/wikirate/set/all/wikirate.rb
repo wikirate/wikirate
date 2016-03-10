@@ -39,7 +39,7 @@ format :html do
 
   view :progress_bar do
     value = card.raw_content
-    if number? value
+    if card.number? value
       <<-HTML
         <div class="progress">
            <div class="progress-bar" role="progressbar" aria-valuenow="#{value}"
@@ -94,7 +94,7 @@ format :html do
   end
 
   view :shorter_search_result do |args|
-    render_view = args[:render_link] ? :link : :name
+    render_view = args[:render_link].nil? || args[:render_link] ? :link : :name
     items = card.item_cards limit: 0
     total_number = items.size
     fetch_number = [total_number, 4].min
