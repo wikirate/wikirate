@@ -114,7 +114,6 @@ format do
 
   def sorted_result
     sort_by, sort_order = card.get_sort_params
-    
     cached_result = card.cached_result
     get_sorted_result(cached_result, sort_by, sort_order, num?)
   end
@@ -122,7 +121,7 @@ format do
   def search_results _args={}
     @search_results ||= begin
       limit = card.query(search_params)[:limit]
-      all_results = search_results
+      all_results = sorted_result
       results = all_results[card.get_params('offset', 0), limit]
       results.blank? ? [] : results
     end

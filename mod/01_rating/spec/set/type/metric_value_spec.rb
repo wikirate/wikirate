@@ -4,7 +4,7 @@ shared_examples_for 'numeric_value_type' do |value_type|
     @metric = get_a_sample_metric
     @company = get_a_sample_company
     @metric.update_attributes! subcards: {
-                                '+value_type' => "[[#{value_type}]]" }
+      '+value_type' => "[[#{value_type}]]" }
     @mv_id = Card::MetricValueID
   end
   describe 'add a new value' do
@@ -73,7 +73,7 @@ describe Card::Set::Type::MetricValue do
       @metric = get_a_sample_metric
       @company = get_a_sample_company
       @metric.update_attributes! subcards: {
-                                  '+value_type' => "[[#{value_type}]]" }
+        '+value_type' => "[[#{value_type}]]" }
       @mv_id = Card::MetricValueID
     end
   end
@@ -83,8 +83,8 @@ describe Card::Set::Type::MetricValue do
       login_as 'joe_user'
       @metric = get_a_sample_metric
       subcards_args = {
-         '+Unit' => { 'content' => 'Imperial military units',
-                      'type_id' => Card::PhraseID }
+        '+Unit' => { 'content' => 'Imperial military units',
+                     'type_id' => Card::PhraseID }
       }
       @metric.update_attributes! subcards: subcards_args
       @company = get_a_sample_company
@@ -272,7 +272,7 @@ describe Card::Set::Type::MetricValue do
     describe 'views' do
       it 'renders timeline data' do
         url = "/#{@metric_value.cardname.url_key}?layout=modal&"\
-              "slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu"
+              'slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu'
         html = @metric_value.format.render_timeline_data
         expect(html).to have_tag('div', with: { class: 'timeline-row' }) do
           with_tag('div', with: { class: 'timeline-dot' })
@@ -294,7 +294,7 @@ describe Card::Set::Type::MetricValue do
       end
       it 'renders modal_details' do
         url = "/#{@metric_value.cardname.url_key}?layout=modal&"\
-              "slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu"
+              'slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu'
         html = @metric_value.format.render_modal_details
         expect(html).to have_tag('span', with: { class: 'metric-value' }) do
           with_tag('a', with: { href: url },
