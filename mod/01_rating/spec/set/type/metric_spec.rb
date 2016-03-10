@@ -4,7 +4,7 @@ shared_examples_for 'views' do |value_type, right_card_name|
     @metric = get_a_sample_metric
     unless value_type.empty?
       @metric.update_attributes! subcards: { 
-                                  '+value_type': "[[#{value_type}]]" }
+                                  '+value_type' => "[[#{value_type}]]" }
     end
   end
 

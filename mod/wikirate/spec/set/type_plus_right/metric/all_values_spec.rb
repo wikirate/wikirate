@@ -57,21 +57,21 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
   describe '#num?' do
     context 'Numeric type' do
       it 'returns true' do
-        @metric.update_attributes! subcards: { '+value_type': '[[Number]]' }
+        @metric.update_attributes! subcards: { '+value_type' => '[[Number]]' }
         format = @all_values.format
         expect(format.num?).to be true
-        @metric.update_attributes! subcards: { '+value_type': '[[Monetary]]' }
+        @metric.update_attributes! subcards: { '+value_type' => '[[Monetary]]' }
         expect(format.num?).to be true
       end
     end
     context 'Other type' do
       it 'return false' do
         metric = Card.create! type_id: Card::MetricID, name: 'Totoro+Chinchilla'
-        metric.update_attributes! subcards: { '+value_type': '[[Category]]' }
+        metric.update_attributes! subcards: { '+value_type' => '[[Category]]' }
         all_values = metric.fetch trait: :all_values
         format = all_values.format
         expect(format.num?).to be false
-        metric.update_attributes! subcards: { '+value_type': '[[Free Text]]' }
+        metric.update_attributes! subcards: { '+value_type' => '[[Free Text]]' }
         expect(format.num?).to be false
       end
     end

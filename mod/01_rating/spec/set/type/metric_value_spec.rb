@@ -3,7 +3,8 @@ shared_examples_for 'numeric_value_type' do |value_type|
     login_as 'joe_user'
     @metric = get_a_sample_metric
     @company = get_a_sample_company
-    @metric.update_attributes! subcards: { '+value_type': "[[#{value_type}]]" }
+    @metric.update_attributes! subcards: { 
+                                '+value_type' => "[[#{value_type}]]" }
     @mv_id = Card::MetricValueID
   end
   describe 'add a new value' do
@@ -41,7 +42,7 @@ describe Card::Set::Type::MetricValue do
     it_behaves_like 'numeric_value_type', 'Monetary'
     describe 'render views' do
       it 'shows currency sign' do
-        @metric.update_attributes! subcards: { '+value_type': '[[Monetary]]' }
+        @metric.update_attributes! subcards: { '+value_type' => '[[Monetary]]' }
         subcard = get_subcards_of_metric_value @metric, @company, '33', nil, nil
         metric_value = Card.create type_id: @mv_id, subcards: subcard
         @metric.update_attributes! subcards: { '+currency': '$' }
@@ -72,7 +73,7 @@ describe Card::Set::Type::MetricValue do
       @metric = get_a_sample_metric
       @company = get_a_sample_company
       @metric.update_attributes! subcards: {
-                                  '+value_type': "[[#{value_type}]]" }
+                                  '+value_type' => "[[#{value_type}]]" }
       @mv_id = Card::MetricValueID
     end
   end

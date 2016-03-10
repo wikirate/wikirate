@@ -3,7 +3,7 @@ shared_examples_for 'changing type to numeric' do |original_type, new_type|
     login_as 'joe_user'
     @metric = get_a_sample_metric
     @company = get_a_sample_company
-    @metric.update_attributes! subcards: { '+value_type':
+    @metric.update_attributes! subcards: { '+value_type' =>
                                            "[[#{original_type}]]" }
   end
   context 'some values do not fit the numeric type' do
@@ -23,7 +23,8 @@ shared_examples_for 'changing type to numeric' do |original_type, new_type|
                                               nil
       @metric_value = Card.create! type_id: Card::MetricValueID,
                                    subcards: subcards
-      @metric.update_attributes! subcards: { '+value_type': "[[#{new_type}]]" }
+      @metric.update_attributes! subcards: { 
+                                  '+value_type' => "[[#{new_type}]]" }
       value_type_card = @metric.fetch trait: :value_type
       expect(value_type_card.item_names[0]).to eq(new_type)
     end
@@ -43,7 +44,7 @@ describe Card::Set::TypePlusRight::Metric::ValueType do
         login_as 'joe_user'
         @metric = get_a_sample_metric
         @company = get_a_sample_company
-        @metric.update_attributes! subcards: { '+value_type': '[[Number]]' }
+        @metric.update_attributes! subcards: { '+value_type' => '[[Number]]' }
         subcards = get_subcards_of_metric_value @metric, @company, '65535',
                                                 nil, nil
         @metric_value = Card.create! type_id: Card::MetricValueID,
@@ -62,7 +63,7 @@ describe Card::Set::TypePlusRight::Metric::ValueType do
           options_card = Card.fetch "#{@metric.name}+value options", new: {}
           options_card.content = '[[65535]]'
           options_card.save!
-          @metric.update_attributes! subcards: { '+value_type': '[[Category]]' }
+          @metric.update_attributes! subcards: { '+value_type' => '[[Category]]' }
           value_type_card = @metric.fetch trait: :value_type
           expect(value_type_card.item_names[0]).to eq('Category')
         end
