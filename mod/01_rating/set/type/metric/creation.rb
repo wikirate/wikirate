@@ -6,6 +6,15 @@ def create_value_options options
   Card.create! create_args
 end
 
+# @example
+# create_values do
+#   Siemens 2015 => 4, 2014 => 3
+#   Apple   2105 => 7
+# end
+def create_values &block
+  Card::Metric::ValueCreator.new(self, &block).add_values
+end
+
 def create_value args
   missing = [:company, :year, :value].reject { |v| args[v] }
   if missing.present?
@@ -78,7 +87,7 @@ format :html do
   end
 
   def default_content_formgroup_args args
-    args[:edit_fields] = { '+question' => { title: 'Question'},
+      args[:edit_fiels] = { '+question' => { title: 'Question'},
                            '+topic' => { title: 'Topic'} }
   end
 

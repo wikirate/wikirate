@@ -1,13 +1,4 @@
 class Card::Metric
-  # @example
-  # create_values do
-  #   Siemens 2015 => 4, 2014 => 3
-  #   Apple   2105 => 7
-  # end
-  def create_values &block
-    ValueCreator.new(self, &block).add_values
-  end
-
   class ValueCreator
     def initialize metric=nil, &values_block
       @metric = metric

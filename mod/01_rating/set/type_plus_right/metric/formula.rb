@@ -18,11 +18,19 @@ end
 # converts a categorical formula content to an array
 # @return [Array] list of pairs of value option and the value for that option
 def translation_table
-  begin
-    JSON.parse(content).to_a
-  rescue JSON::ParserError => e
-    fail Card::Error, 'fail to parse formula for categorical input'
+  JSON.parse(content).to_a
+rescue JSON::ParserError => e
+  fail Card::Error, 'fail to parse formula for categorical input'
+end
+
+
+def complete_translation_table
+  translation = translation_table
+  if (all_options = metric_card.value_options)
+    missing_options = translation.map { |opt, _val| all_options.delete opt }
+    translation += missing_options.map { |opt| [opt, ''] }
   end
+  translation
 end
 
 format :html do
@@ -41,13 +49,19 @@ format :html do
     end
   end
 
-  view :categorical_editor do |args|
-    table translation_table.unshift(['Category','Value'])
+  view :categorical_editor do |_args|
+    table card.complete_translation_table.unshift(['Option','Value'])
   end
 
   view :core do |args|
+    return _render_categorical_core(args) if card.categorical?
     "= #{super(args)}"
   end
+
+  view :categorical_core do |_args|
+    table card.translation_table.unshift(['Option','Value'])
+  end
+
 
   def get_nest_defaults _nested_card
     { view: :thumbnail }

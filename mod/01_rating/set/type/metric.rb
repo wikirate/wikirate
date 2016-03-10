@@ -6,7 +6,7 @@ card_accessor :metric_type,
               :type=>:pointer, :default=>"[[Researched]]"
 card_accessor :about
 card_accessor :methodology
-card_accessor :value_type
+#card_accessor :value_type
 
 def metric_type
   metric_type_card.item_names.first
@@ -35,6 +35,10 @@ end
 def value_type
   # FIXME: value type should have a codename
   (vt = field('value type')) && vt.item_names.first
+end
+
+def value_options
+ (vo = field('value options')) && vo.item_names
 end
 
 # TODO: adapt to Henry's value type API
