@@ -261,10 +261,10 @@ format :html do
         text: show_value,
         path_opts: { slot: { show: :menu, optional_horizontal_menu: :hide } },
         html_args: {
-          'data-complete-number': card.value,
-          'data-tooltip': 'true',
-          'data-placement': 'top',
-          'title': card.value
+          'data-complete-number' => card.value,
+          'data-tooltip' => 'true',
+          'data-placement' => 'top',
+          'title' => card.value
         }
       )
     ) # ,:html_args=>{:class=>"td year"}))

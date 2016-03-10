@@ -71,7 +71,8 @@ describe Card::Set::Type::MetricValue do
       login_as 'joe_user'
       @metric = get_a_sample_metric
       @company = get_a_sample_company
-      @metric.update_attributes! subcards: { '+value_type': "[[#{value_type}]]" }
+      @metric.update_attributes! subcards: {
+                                  '+value_type': "[[#{value_type}]]" }
       @mv_id = Card::MetricValueID
     end
   end
@@ -80,7 +81,11 @@ describe Card::Set::Type::MetricValue do
     before do
       login_as 'joe_user'
       @metric = get_a_sample_metric
-      @metric.update_attributes! subcards: { '+Unit' => { 'content' => 'Imperial military units', 'type_id' => Card::PhraseID } }
+      subcards_args = {
+         '+Unit' => { 'content' => 'Imperial military units', 
+                      'type_id' => Card::PhraseID } 
+      }
+      @metric.update_attributes! subcards: subcards_args
       @company = get_a_sample_company
       subcard = {
         '+metric' => { 'content' => @metric.name },
@@ -164,7 +169,8 @@ describe Card::Set::Type::MetricValue do
 
       it 'with an existing url' do
         url = 'http://www.google.com/?q=everybodylies'
-        source = Card::Set::Self::Source.find_duplicates(url).first.cardname.left
+        source =
+          Card::Set::Self::Source.find_duplicates(url).first.cardname.left
         subcard = {
           '+metric' => { 'content' => @metric.name },
           '+company' => {
