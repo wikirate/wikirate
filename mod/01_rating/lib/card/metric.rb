@@ -1,9 +1,12 @@
 class Card::Metric
-  # Usage:
-  # Card::Metric.create type: :researched do
-  #   Siemens 2015: 4, 2014: 3
-  #   Apple   2105: 7
+  # @example
+  # create_values do
+  #   Siemens 2015 => 4, 2014 => 3
+  #   Apple   2105 => 7
   # end
+  def create_values &block
+    ValueCreator.new(self, &block).add_values
+  end
 
   class ValueCreator
     def initialize metric=nil, &values_block
@@ -25,10 +28,6 @@ class Card::Metric
       @metric.create_value args
     end
 
-    def value_options *options
-      @metric.create_value_options options
-    end
-
     def method_missing company, *args
       args.first.each_pair do |year, value|
         create_value company, year, value
@@ -42,8 +41,36 @@ class Card::Metric
   end
 
   class << self
+    # create a metric card
+    # a block can be used to create values using the syntax
+    # `company year => value`
+    # @params [Hash] opts metric properites
+    # @option opts [String] :name
+    # @option opts [Symbol] :type (':researched') one of the metric types
+    # :reasearched, :score, :formula, or :wiki_rating
+    # @option opts [String, Hash] :formula the formula for a calculated metric
+    # @option opts [String] :value_type ('Number') if the
+    #    formula is a hash then it defaults to 'Categorical'
+    # @option opts [Array] :value_options the options that can be choosen for
+    #    a metric vaule
+    # @example
+    # Metric.create name: 'Jedi+disturbances in the Force',
+    #               value_type: 'Categorical',
+    #               value_options: ['yes', 'no'] do
+    #   Death_Star 1977 => { value: 'yes', source: 'http://deathstar.com' },
+    #              1999 => 'no'
+    #   Jar_Jar_Bings 1977 => 'no', 1999 => 'yes'
+    # end
     def create opts, &block
       opts[:type] ||= :researched
+      metric = Card.create! name: opts[:name],
+                            type_id: Card::MetricID,
+                            subcards: subcard_args(opts)
+      metric.create_values &block if block_given?
+      metric
+    end
+
+    def subcard_args opts
       subcards = {
         '+*metric type' => {
           content: "[[#{Card[opts[:type]].name}]]",
@@ -52,12 +79,7 @@ class Card::Metric
       }
       if opts[:formula]
         if opts[:formula].is_a?(Hash)
-          begin
-            binding.pry
           opts[:formula] = opts[:formula].to_json
-          rescue => e
-            binding.pry
-            end
           opts[:value_type] ||= 'Categorical'
         end
 
@@ -73,17 +95,13 @@ class Card::Metric
           type_id: Card::PointerID
         }
       end
-      metric = Card.create! name: opts[:name],
-                            type_id: Card::MetricID,
-                            subcards: subcards
-      ValueCreator.new(metric, &block).add_values if block_given?
-      metric
+      if opts[:value_options]
+        subcards['+value options'] = {
+          content: opts[:value_options].to_pointer_content,
+          type_id: Card::PointerID
+        }
+      end
+      subcards
     end
   end
-
-  def with_values &block
-    ValueCreator.new(metric, &block).add_values
-  end
-
-
 end
