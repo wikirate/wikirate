@@ -159,7 +159,8 @@ format :html do
   view :showcase_list, tags: :unknown_ok do |args|
     item_type_name = card.cardname.right.split.last
     icon_card = Card.fetch("#{item_type_name}+icon")
-    wrap args.merge(slot_class: "showcase #{'hidden' if card.content.empty?}") do
+    hidden_class = card.content.empty? ? 'hidden' : ''
+    wrap args.merge(slot_class: "showcase #{hidden_class}") do
       %(
         #{subformat(icon_card)._render_core}
         #{item_type_name.capitalize}
@@ -264,7 +265,7 @@ module ClassMethods
           subjects_apply? subjects, subj
         else
           subjects_apply?(subjects, subjname.left) &&
-          subjects_apply?(subjects, subjname.right)
+            subjects_apply?(subjects, subjname.right)
         end
       end
       ccc.write subj, count
@@ -281,8 +282,8 @@ module ClassMethods
     ccc = claim_count_cache
     ccc.read('CLAIM-SUBJECTS') || begin
       hash = {}
-      sql =
-      ActiveRecord::Base.connection.select_all(CLAIM_SUBJECT_SQL).each do |row|
+      connection = ActiveRecord::Base.connection
+      connection.select_all(CLAIM_SUBJECT_SQL).each do |row|
         hash[row['id']] ||= []
         hash[row['id']] << row['subject']
       end

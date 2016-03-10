@@ -1,6 +1,6 @@
 shared_examples_for 'numeric_value_type' do |value_type|
   before do
-    login_as "joe_user"
+    login_as 'joe_user'
     @metric = get_a_sample_metric
     @company = get_a_sample_company
     @metric.update_attributes! subcards: { '+value_type': "[[#{value_type}]]" }
@@ -10,7 +10,7 @@ shared_examples_for 'numeric_value_type' do |value_type|
     context 'value not fit the value type' do
       it 'blocks adding a new value' do
         subcard = get_subcards_of_metric_value @metric, @company, nil, nil, nil
-        
+
         metric_value = Card.create type_id: @mv_id, subcards: subcard
         expect(metric_value.errors).to have_key(:value)
         error_msg = 'Only numeric content is valid for this metric.'
@@ -21,7 +21,7 @@ shared_examples_for 'numeric_value_type' do |value_type|
       it 'adds a new value' do
         subcard = get_subcards_of_metric_value @metric, @company, '33', nil, nil
         metric_value = Card.create type_id: @mv_id, subcards: subcard
-        expect(metric_value.errors).to be_empty        
+        expect(metric_value.errors).to be_empty
       end
     end
   end
@@ -29,10 +29,9 @@ end
 
 describe Card::Set::Type::MetricValue do
   before do
-    login_as "joe_user"
+    login_as 'joe_user'
     @metric = get_a_sample_metric
     @company = get_a_sample_company
-   
     @mv_id = Card::MetricValueID
   end
   context 'value type is Number' do
@@ -42,26 +41,26 @@ describe Card::Set::Type::MetricValue do
     it_behaves_like 'numeric_value_type', 'Monetary'
     describe 'render views' do
       it 'shows currency sign' do
-       @metric.update_attributes! subcards: { '+value_type': "[[Monetary]]" }
+        @metric.update_attributes! subcards: { '+value_type': '[[Monetary]]' }
         subcard = get_subcards_of_metric_value @metric, @company, '33', nil, nil
         metric_value = Card.create type_id: @mv_id, subcards: subcard
         @metric.update_attributes! subcards: { '+currency': '$' }
         html = metric_value.format.render_timeline_data
         url = "/#{metric_value.cardname.url_key}?layout=modal&"\
-              "slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu"
-        expect(html).to have_tag('div',with: {class: 'timeline-row'}) do
-          with_tag('div',with: {class: 'timeline-dot'})
-          with_tag('div',with: {class: 'td year'}) do
-            with_tag("span",with: {class: 'metric-year'}, text:'2015')
+              'slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu'
+        expect(html).to have_tag('div', with: { class: 'timeline-row' }) do
+          with_tag('div', with: { class: 'timeline-dot' })
+          with_tag('div', with: { class: 'td year' }) do
+            with_tag('span', with: { class: 'metric-year' }, text: '2015')
           end
-          with_tag('div',with: {class: 'td value'}) do
-            with_tag('span',with: {class: 'metric-value'}) do
-              with_tag('a',with: {href: url},text: '33')
+          with_tag('div', with: { class: 'td value' }) do
+            with_tag('span', with: { class: 'metric-value' }) do
+              with_tag('a', with: { href: url }, text: '33')
             end
-            with_tag('span',with: {class: 'metric-unit'},text: '$')
+            with_tag('span', with: { class: 'metric-unit' }, text: '$')
           end
-          with_tag('div',with: {class: 'td credit'}) do
-            with_tag('a',with: {href: '/Joe_User'},text: 'Joe User')
+          with_tag('div', with: { class: 'td credit' }) do
+            with_tag('a', with: { href: '/Joe_User' }, text: 'Joe User')
           end
         end
       end
@@ -69,64 +68,63 @@ describe Card::Set::Type::MetricValue do
   end
   context 'value type is Category' do
     before do
-       login_as "joe_user"
-    @metric = get_a_sample_metric
-    @company = get_a_sample_company
-    @metric.update_attributes! subcards: { '+value_type': "[[#{value_type}]]" }
-    @mv_id = Card::MetricValueID
-    end    
+      login_as 'joe_user'
+      @metric = get_a_sample_metric
+      @company = get_a_sample_company
+      @metric.update_attributes! subcards: { '+value_type': "[[#{value_type}]]" }
+      @mv_id = Card::MetricValueID
+    end
   end
 
   context 'value type is free text' do
     before do
-      login_as "joe_user"
+      login_as 'joe_user'
       @metric = get_a_sample_metric
-      @metric.update_attributes! :subcards=>{"+Unit"=>{"content"=>"Imperial military units","type_id"=>Card::PhraseID}}
+      @metric.update_attributes! subcards: { '+Unit' => { 'content' => 'Imperial military units', 'type_id' => Card::PhraseID } }
       @company = get_a_sample_company
       subcard = {
-        "+metric"=>{"content"=>@metric.name},
-        "+company"=>{"content"=>"[[#{@company.name}]]",:type_id=>Card::PointerID},
-        "+value"=>{"content"=>"I'm fine, I'm just not happy.", :type_id=>Card::PhraseID},
-        "+year"=>{"content"=>"2015", :type_id=>Card::PointerID},
-        "+source"=>{"subcards"=>{
-            "new source"=>{
-              "+Link"=>{
-                "content"=>"http://www.google.com/?q=everybodylies",
-                 "type_id"=>Card::PhraseID
-              }
+        '+metric' => { 'content' => @metric.name },
+        '+company' => { 'content' => "[[#{@company.name}]]", :type_id => Card::PointerID },
+        '+value' => { 'content' => "I'm fine, I'm just not happy.", :type_id => Card::PhraseID },
+        '+year' => { 'content' => '2015', :type_id => Card::PointerID },
+        '+source' => { 'subcards' => {
+          'new source' => {
+            '+Link' => {
+              'content' => 'http://www.google.com/?q=everybodylies',
+              'type_id' => Card::PhraseID
             }
           }
         }
+        }
       }
-      @metric_value = Card.create! :type_id=>Card::MetricValueID, :subcards=>subcard
+      @metric_value = Card.create! type_id: Card::MetricValueID, subcards: subcard
     end
-    describe "getting related cards" do
-
-      it "returns correct year" do
-        expect(@metric_value.year).to eq("2015")
+    describe 'getting related cards' do
+      it 'returns correct year' do
+        expect(@metric_value.year).to eq('2015')
       end
-      it "returns correct metric name" do
+      it 'returns correct metric name' do
         expect(@metric_value.metric_name).to eq(@metric.name)
       end
-      it "returns correct company name" do
+      it 'returns correct company name' do
         expect(@metric_value.company_name).to eq(@company.name)
       end
-      it "returns correct company card" do
+      it 'returns correct company card' do
         expect(@metric_value.company_card.id).to eq(@company.id)
       end
-      it "returns correct metric card" do
+      it 'returns correct metric card' do
         expect(@metric_value.metric_card.id).to eq(@metric.id)
       end
     end
-    describe "#autoname" do
-      it "sets a correct autoname" do
+    describe '#autoname' do
+      it 'sets a correct autoname' do
         expect(@metric_value.name).to eq("#{@metric.name}+#{@company.name}+2015")
       end
     end
-    context "creating metric value" do
-      it "based on subcards" do
-        source = Card::Set::Self::Source.find_duplicates("http://www.google.com/?q=everybodylies").first.cardname.left
-        source_card = @metric_value.fetch :trait=>:source
+    context 'creating metric value' do
+      it 'based on subcards' do
+        source = Card::Set::Self::Source.find_duplicates('http://www.google.com/?q=everybodylies').first.cardname.left
+        source_card = @metric_value.fetch trait: :source
         expect(source_card.item_names).to include(source)
 
         value_card = Card["#{@metric_value.name}+value"]
@@ -147,7 +145,7 @@ describe Card::Set::Type::MetricValue do
             'type_id' => Card::PhraseID
           },
           '+year' => { 'content' => '2014', 'type_id' => Card::PointerID },
-          '+source' => { 'content' => "#{source}" }
+          '+source' => { 'content' => source }
         }
         mv = Card.create! type_id: Card::MetricValueID, subcards: subcard
         source_card = mv.fetch trait: :source
@@ -172,9 +170,9 @@ describe Card::Set::Type::MetricValue do
           },
           '+year' => { 'content' => '2014', 'type_id' => Card::PointerID },
           '+source' => {
-            "subcards" => {
-              "new source" => {
-                "+Link" => {
+            'subcards' => {
+              'new source' => {
+                '+Link' => {
                   content: url,
                   type_id: Card::PhraseID
                 }
@@ -189,7 +187,6 @@ describe Card::Set::Type::MetricValue do
         value_card = Card["#{mv.name}+value"]
         expect(value_card.content).to eq("I'm fine, I'm just not happy.")
       end
-
 
       it 'fails with a non-existing source' do
         subcard = {
@@ -210,14 +207,14 @@ describe Card::Set::Type::MetricValue do
         expect(fail_mv.errors).to have_key(:source)
       end
 
-      it "fails if source card cannot be created" do
+      it 'fails if source card cannot be created' do
         subcard = {
-          "+metric"=>{"content"=>@metric.name},
-          "+company"=>{"content"=>"[[#{@company.name}]]",:type_id=>Card::PointerID},
-          "+value"=>{"content"=>"I'm fine, I'm just not happy.", :type_id=>Card::PhraseID},
-          "+year"=>{"content"=>"2015", :type_id=>Card::PointerID}
+          '+metric' => { 'content' => @metric.name },
+          '+company' => { 'content' => "[[#{@company.name}]]", :type_id => Card::PointerID },
+          '+value' => { 'content' => "I'm fine, I'm just not happy.", :type_id => Card::PhraseID },
+          '+year' => { 'content' => '2015', :type_id => Card::PointerID }
         }
-        fail_metric_value = Card.new type_id:Card::MetricValueID,
+        fail_metric_value = Card.new type_id: Card::MetricValueID,
                                      subcards: subcard
         expect(fail_metric_value).not_to be_valid
         expect(fail_metric_value.errors).to have_key(:source)
@@ -256,41 +253,38 @@ describe Card::Set::Type::MetricValue do
         end
       end
     end
-    describe "views" do
-
-      it "renders timeline data" do
-
+    describe 'views' do
+      it 'renders timeline data' do
         html = @metric_value.format.render_timeline_data
-        expect(html).to have_tag('div',:with=>{:class=>"timeline-row"}) do
-          with_tag('div',:with=>{:class=>"timeline-dot"})
-          with_tag('div',:with=>{:class=>"td year"}) do
-            with_tag("span",:with=>{:class=>"metric-year"},:text=>"2015")
+        expect(html).to have_tag('div', with: { class: 'timeline-row' }) do
+          with_tag('div', with: { class: 'timeline-dot' })
+          with_tag('div', with: { class: 'td year' }) do
+            with_tag('span', with: { class: 'metric-year' }, text: '2015')
           end
-          with_tag('div',:with=>{:class=>"td value"}) do
-            with_tag("span",:with=>{:class=>"metric-value"}) do
-              with_tag("a",:with=>{:href=>"/#{@metric_value.cardname.url_key}?layout=modal&slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu"},:text=>"I'm fine, I'm just not happy.")
+          with_tag('div', with: { class: 'td value' }) do
+            with_tag('span', with: { class: 'metric-value' }) do
+              with_tag('a', with: { href: "/#{@metric_value.cardname.url_key}?layout=modal&slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu" }, text: "I'm fine, I'm just not happy.")
             end
-            with_tag("span",:with=>{:class=>"metric-unit"},:text=>/Imperial military units/)
+            with_tag('span', with: { class: 'metric-unit' }, text: /Imperial military units/)
           end
-          with_tag('div',:with=>{:class=>'td credit'}) do
-            with_tag("a",:with=>{:href=>"/Joe_User"},:text=>"Joe User")
+          with_tag('div', with: { class: 'td credit' }) do
+            with_tag('a', with: { href: '/Joe_User' }, text: 'Joe User')
           end
         end
       end
-      it "renders modal_details" do
+      it 'renders modal_details' do
         html = @metric_value.format.render_modal_details
-        expect(html).to have_tag("span",:with=>{:class=>"metric-value"}) do
-          with_tag("a",:with=>{:href=>"/#{@metric_value.cardname.url_key}?layout=modal&slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu"},:text=>"I'm fine, I'm just not happy.")
+        expect(html).to have_tag('span', with: { class: 'metric-value' }) do
+          with_tag('a', with: { href: "/#{@metric_value.cardname.url_key}?layout=modal&slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu" }, text: "I'm fine, I'm just not happy.")
         end
       end
-      it "renders concise" do
+      it 'renders concise' do
         html = @metric_value.format.render_concise
 
-        expect(html).to have_tag("span",:with=>{:class=>"metric-year"},:text=>/2015 =/)
-        expect(html).to have_tag("span",:with=>{:class=>"metric-value"})
-        expect(html).to have_tag("span",:with=>{:class=>"metric-unit"},:text=>/Imperial military units/)
+        expect(html).to have_tag('span', with: { class: 'metric-year' }, text: /2015 =/)
+        expect(html).to have_tag('span', with: { class: 'metric-value' })
+        expect(html).to have_tag('span', with: { class: 'metric-unit' }, text: /Imperial military units/)
       end
     end
   end
-
 end

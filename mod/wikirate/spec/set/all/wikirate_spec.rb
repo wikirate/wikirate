@@ -245,7 +245,7 @@ describe Card::Set::All::Wikirate do
         expect(html).to have_tag("div", :with=>{:class=>"progress"}) do
           with_tag 'div', with: { class: 'progress-bar',
                                   'aria-valuenow' => value },
-                          :text=>/#{value}%/
+                          text: /#{value}%/
         end
       end
     end
