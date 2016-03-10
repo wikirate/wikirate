@@ -15,16 +15,17 @@ def get_subcards_of_metric_value metric, company, content, year, source
   this_source = source || 'http://www.google.com/?q=everybodylies'
   this_content = content || "I'm fine, I'm just not happy."
   {
-    "+metric": { "content": metric.name },
-    "+company": { "content": "[[#{company.name}]]", type_id: Card::PointerID },
-    "+value": { "content": this_content, type_id: Card::PhraseID },
-    "+year": { "content": this_year, type_id: Card::PointerID },
-    "+source": { "subcards": {
-      "new source": {
-        "+Link": { "content": this_source, "type_id": Card::PhraseID }
+    '+metric' => { 'content' => metric.name },
+    '+company' => { 'content' => "[[#{company.name}]]",
+                    :type_id => Card::PointerID },
+    '+value' => { 'content' => this_content, :type_id => Card::PhraseID },
+    '+year' => { 'content' => this_year, :type_id => Card::PointerID },
+    '+source' => { 'subcards' => {
+      'new source' => {
+        '+Link' => { 'content' => this_source, 'type_id' => Card::PhraseID }
       }
-    }}
-  }
+    }
+  } }
 end
 
 def create_page iUrl=nil, subcards={}
@@ -34,8 +35,8 @@ end
 def create_page_with_sourcebox iUrl=nil, subcards={}, sourcebox=nil
   Card::Auth.as_bot do
     url = iUrl || 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
-    _sourcebox = sourcebox || 'true'
-    Card::Env.params[:sourcebox] = _sourcebox
+    tmp_sourcebox = sourcebox || 'true'
+    Card::Env.params[:sourcebox] = tmp_sourcebox
     sourcepage = Card.create! type_id: Card::SourceID,
                               subcards: {
                                 '+Link' => { content: url }
