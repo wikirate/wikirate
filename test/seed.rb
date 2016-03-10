@@ -71,14 +71,15 @@ class SharedData
     def add_metrics
       Card::Env[:protocol] = 'http://'
       Card::Env[:host] = 'wikirate.org'
-      Card::Metric.create name: 'Jedi+disturbances in the Force' do
-        value_options 'yes', 'no'
-        Death_Star 1977: { value: 'yes',
-                           source: 'http://www.wikiwand.com/cden/Death_Star' }
+      Card::Metric.create name: 'Jedi+disturbances in the Force',
+                          value_type: 'Categorical',
+                          value_options: ['yes', 'no'] do
+        Death_Star '1977' => { value: 'yes',
+                               source: 'http://wikiwand.com/en/Death_Star' }
       end
       Card::Metric.create name: 'Jedi+deadliness' do
-        Death_Star 1977: { value: 100,
-                           source: 'http://www.wikiwand.com/en/Return_of_the_Jedi' }
+        Death_Star '1977' => { value: 100,
+                               source: 'http://wikiwand.com/en/Return_of_the_Jedi' }
       end
       Card::Metric.create name: 'Jedi+friendliness',
                           type: :formula,
@@ -96,7 +97,7 @@ class SharedData
         name: 'Jedi+darkness rating',
         type: :wiki_rating,
         formula: '({{Jedi+deadliness+Joe User}}+' \
-                 '{{Jedi+disturbances in the Force+Joe User}})/2'
+               '{{Jedi+disturbances in the Force+Joe User}})/2'
       )
     end
   end
