@@ -46,7 +46,7 @@ event :validate_existing_values_type, :validate, on: :save do
     end
   when 'Category'
     options_card = Card.fetch "#{metric_name}+value_options", new: {}
-    if (mv.size > 0 && options_card.new?) ||
+    if (!mv.empty? && options_card.new?) ||
        !all_values_in_options?(mv, options_card)
       show_category_option_errors options_card
     end

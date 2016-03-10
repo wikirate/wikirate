@@ -67,7 +67,6 @@ def metric_values metric_name
 end
 
 def convert_potential_metrics potential_result
-  
   potential_result.each do |m|
     puts "======== Normalizing #{m.name} ========".blue
     metric_values = metric_values m.name

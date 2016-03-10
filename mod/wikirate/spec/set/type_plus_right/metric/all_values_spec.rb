@@ -15,7 +15,8 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
       for i in 0...3
         subcard =
           get_subcards_of_metric_value @metric, company,
-                                       "#{value_idx * 5 + i}", "#{2015 - i}",
+                                       (value_idx * 5 + i).to_s,
+                                       (2015 - i).to_s,
                                        'http://www.google.com/?q=yo'
         metric_value = Card.create! type_id: Card::MetricValueID,
                                     subcards: subcard
@@ -39,7 +40,8 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
       @companies.each do |company|
         expect(results.key?(company.name)).to be_truthy
         for i in 0...3
-          expected_result = { 'year' => "#{2015 - i}", 'value' => "#{value_idx * 5 + i}" }
+          expected_result = { 'year' => (2015 - i).to_s,
+                              'value' => (value_idx * 5 + i).to_s }
           expect(results[company.name]).to include(expected_result)
         end
         value_idx += 1
