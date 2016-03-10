@@ -228,7 +228,6 @@ format :html do
     return unless value_type.item_names[0] == 'Monetary' &&
                   (currency = Card["#{card.metric_card.name}+currency"])
     currency.content
-    
   end
 
   view :concise do |args|

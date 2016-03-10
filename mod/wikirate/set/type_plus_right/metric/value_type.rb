@@ -30,7 +30,7 @@ end
 
 def related_values
   all_value_card = left.fetch trait: :all_values
-  all_value_card.get_cached_result
+  all_value_card.cached_result
 end
 
 event :validate_existing_values_type, :validate, on: :save do

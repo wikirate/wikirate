@@ -66,19 +66,27 @@ def metric_values metric_name
   }, right: 'value'
 end
 
+def skip_metric m
+  puts "Skip the #{m.name} because unknown inside".red
+  Card.create! name: "#{m.name}+pending_normalize", type_id: Card::PhraseID,
+               content: 'true'
+end
+
+def normalize_metric metric_values, m, value_type
+  metric_values.each do |mv|
+    value_type = Card.fetch("#{m.name}+value type", new: {})
+    normalize_content mv, value_type
+  end
+end
+
 def convert_potential_metrics potential_result
   potential_result.each do |m|
     puts "======== Normalizing #{m.name} ========".blue
     metric_values = metric_values m.name
     if unknown_inside? metric_values
-      puts "Skip the #{m.name} because unknown inside".red
-      Card.create! name: "#{m.name}+pending_normalize", type_id: Card::PhraseID,
-                   content: 'true'
+      skip_metric m
     else
-      metric_values.each do |mv|
-        value_type = Card.fetch("#{m.name}+value type", new: {})
-        normalize_content mv, value_type
-      end
+      normalize_metric metric_values, m, value_type
     end
     puts "======== Finished normalizing #{m.name} ========".blue
   end
@@ -92,16 +100,20 @@ def unknown_inside? metric_values
   false
 end
 
+def normalize_number content, mv, value_type
+  content.gsub!(/ [BMK]/, '')
+  big_number = convert_to_big_number content[1..-1], mv.content[-1]
+  update_metric_value mv, value_type, big_number.to_s, '[[Monetary]]'
+  update_unit mv.metric_card, '$'
+end
+
 def normalize_content mv, value_type
   content = mv.content.delete(',%')
   if number?(content)
     update_metric_value mv, value_type, content if mv.content != content
     update_metric_value_type value_type, '[[Number]]'
   elsif content =~ /\$[\-]?[0-9\.]+ [BMK]/
-    content.gsub!(/ [BMK]/, '')
-    big_number = convert_to_big_number content[1..-1], mv.content[-1]
-    update_metric_value mv, value_type, big_number.to_s, '[[Monetary]]'
-    update_unit mv.metric_card, '$'
+    normalize_number content, mv, value_type
   else
     puts "unknown format: #{content}\t#{mv.name}".red
   end
@@ -125,15 +137,19 @@ def update_ratio_metric_info
   mu.save!
 end
 
+def update_ratio_metric_value_content mv, mv_content
+  mv.content.gsub!(/^0+/, '')
+  puts "Updating #{mv.name} from #{mv_content} to #{mv.content}".green
+  mv.save!
+end
+
 def handle_ratio_metric
   ratio_mv = Card.search left: { left: 'PayScale+CEO to Worker pay' },
                          type_id: Card::MetricValueID, append: 'value'
   ratio_mv.each do |mv|
     mv_content = mv.content.clone
     if mv.content.gsub!(':01', '')
-      mv.content.gsub!(/^0+/, '')
-      puts "Updating #{mv.name} from #{mv_content} to #{mv.content}".green
-      mv.save!
+      update_ratio_metric_value_content mv, mv_content
     else
       puts "invalid ratio format of #{mv.name}\t#{mv.content}".red
     end
@@ -209,15 +225,20 @@ def update_value_type_category metrics
   end
 end
 
+def extract_options metric_values
+  options = []
+  metric_values.each do |mv|
+    options.push("[[#{mv.content}]]\n")
+  end
+  options.uniq!
+  options
+end
+
 def update_options metrics
   metrics.each do |m|
     metric_values = metric_values m.name
+    options = extract_options metric_values
     option_card = Card.fetch "#{m.name}+value options", new: {}
-    options = []
-    metric_values.each do |mv|
-      options.push("[[#{mv.content}]]\n")
-    end
-    options.uniq!
     option_card.content = options.join('')
     puts "Saving #{option_card.name} as #{option_card.content}".green
     option_card.save!

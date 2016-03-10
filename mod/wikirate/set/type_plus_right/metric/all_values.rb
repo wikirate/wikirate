@@ -44,7 +44,7 @@ def query params={}
   @query
 end
 
-def get_cached_result
+def cached_result
   @cached_metric_values ||= begin
     cached_json = fetch(trait: :cached_count, new: {}).format.render_raw
     JSON.parse(cached_json)
@@ -52,7 +52,7 @@ def get_cached_result
 end
 
 def count _params={}
-  get_cached_result.size
+  cached_result.size
 end
 
 format do
@@ -67,15 +67,19 @@ format do
     link_to raw(text), path(paging_args), options
   end
 
+  def compare_content value_a, value_b, is_num
+    if is_num
+      BigDecimal.new(value_a) - BigDecimal.new(value_b)
+    else
+      value_a <=> value_b
+    end
+  end
+
   def sort_value_asc cached_metric_values, is_num
     cached_metric_values.sort do |x, y|
       value_a = x[1].sort_by { |value| value['year'] }.reverse[0]['value']
       value_b = y[1].sort_by { |value| value['year'] }.reverse[0]['value']
-      if is_num
-        BigDecimal.new(value_a) - BigDecimal.new(value_b)
-      else
-        value_a <=> value_b
-      end
+      compare_content value_a, value_b, is_num
     end
   end
 
@@ -108,14 +112,19 @@ format do
     type == 'Number' || type == 'Monetary'
   end
 
+  def sorted_result
+    sort_by, sort_order = card.get_sort_params
+    
+    cached_result = card.cached_result
+    get_sorted_result(cached_result, sort_by, sort_order, num?)
+  end
+
   def search_results _args={}
     @search_results ||= begin
-      sort_by, sort_order = card.get_sort_params
-      offset = card.get_params('offset', 0)
       limit = card.query(search_params)[:limit]
-      cached_result = card.get_cached_result
-      all_results = get_sorted_result(cached_result, sort_by, sort_order, num?)
-      (results = all_results[offset, limit]) ? results : []
+      all_results = search_results
+      results = all_results[card.get_params('offset', 0), limit]
+      results.blank? ? [] : results
     end
   end
 end

@@ -33,9 +33,9 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
       expect(@all_values.get_params('offset', 0)).to eq(0)
     end
   end
-  describe '#get_cached_result' do
+  describe '#cached_result' do
     it 'returns correct cached metric values' do
-      results = @all_values.get_cached_result
+      results = @all_values.cached_result
       value_idx = 1
       @companies.each do |company|
         expect(results.key?(company.name)).to be_truthy
@@ -78,7 +78,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
   end
   describe '#get_sorted_result' do
     before do
-      @cached_result = @all_values.get_cached_result
+      @cached_result = @all_values.cached_result
       @format = @all_values.format
     end
     it 'sorts by company name asc' do

@@ -3,7 +3,7 @@ shared_examples_for 'numeric_value_type' do |value_type|
     login_as 'joe_user'
     @metric = get_a_sample_metric
     @company = get_a_sample_company
-    @metric.update_attributes! subcards: { 
+    @metric.update_attributes! subcards: {
                                 '+value_type' => "[[#{value_type}]]" }
     @mv_id = Card::MetricValueID
   end
@@ -83,8 +83,8 @@ describe Card::Set::Type::MetricValue do
       login_as 'joe_user'
       @metric = get_a_sample_metric
       subcards_args = {
-         '+Unit' => { 'content' => 'Imperial military units', 
-                      'type_id' => Card::PhraseID } 
+         '+Unit' => { 'content' => 'Imperial military units',
+                      'type_id' => Card::PhraseID }
       }
       @metric.update_attributes! subcards: subcards_args
       @company = get_a_sample_company
