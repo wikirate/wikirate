@@ -1,9 +1,11 @@
 include Type::SearchType
 
-def virtual?; true end
+def virtual?
+  true
+end
 
 def raw_content
-  %{
+  %(
     {
       "left":{
         "type":"metric_value",
@@ -14,7 +16,7 @@ def raw_content
       "right":"value",
       "limit":0
     }
-  }
+  )
 end
 
 def get_sort_params
@@ -35,7 +37,7 @@ end
 def query params={}
   default_query = params.delete :default_query
   @query = super params
-  if !default_query
+  unless default_query
     @query[:limit] = params[:default_limit] || 20
     @query[:offset] = get_params('offset', 0)
   end
@@ -101,9 +103,9 @@ format do
   end
 
   def num?
-    metric_value_type = Card["#{card.cardname.left}+metric value type"]
+    metric_value_type = Card["#{card.cardname.left}+value type"]
     type = metric_value_type.nil? ? '' : metric_value_type.item_names[0]
-    type == 'Number' || type == 'Monetory'
+    type == 'Number' || type == 'Monetary'
   end
 
   def search_results _args={}
@@ -113,11 +115,7 @@ format do
       limit = card.query(search_params)[:limit]
       cached_result = card.get_cached_result
       all_results = get_sorted_result(cached_result, sort_by, sort_order, num?)
-      if (results = all_results[offset, limit])
-        results
-      else
-        []
-      end
+      (results = all_results[offset, limit]) ? results : []
     end
   end
 end
@@ -125,7 +123,7 @@ format :html do
   include Type::SearchType::HtmlFormat
   def get_sort_icon_by_state state
     order = state.empty? ? '' : "-#{state}"
-    %{<i class="fa fa-sort#{order}"></i>}
+    %(<i class="fa fa-sort#{order}"></i>)
   end
 
   def toggle_sort_order order
@@ -157,7 +155,7 @@ format :html do
 
     url_template = "/#{card.cardname.url_key}?item=content&offset=#{offset}"\
                    "&limit=#{limit}&sort_order=%s&sort_by=%s"
-    %{
+    %(
       <div class='yinyang-row column-header'>
         <div class='company-item value-item'>
           <a class='header metric-list-header slotter' data-remote='true'
@@ -170,7 +168,7 @@ format :html do
           </a>
         </div>
       </div>
-    }
+    )
   end
   # compare lenght first and then normal string comparison
   # def strcmp str1, str2
@@ -206,14 +204,14 @@ format :html do
     else
       results = render :card_list_items, args
       header = render :card_list_header, args
-      %{
+      %(
         #{paging}
         #{header}
         <div class="search-result-list">
           #{results}
         </div>
         #{paging if search_results.length > 10}
-      }
+      )
     end
   end
 end

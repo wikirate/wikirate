@@ -13,24 +13,12 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
     value_idx = 1
     @companies.each do |company|
       for i in 0...3
-        _subcard = {
-          "+metric"=>{content: @metric.name},
-          "+company"=>{content: "[[#{company.name}]]",type_id: Card::PointerID},
-          "+value"=>{content: "#{value_idx*5+i}", type_id: Card::PhraseID},
-          "+year"=>{content: "#{2015-i}", type_id: Card::PointerID},
-          "+source"=>{
-            "subcards"=>{
-              "new source"=>{
-                "+Link"=>{
-                  content: "http://www.google.com/?q=yo",
-                  type_id: Card::PhraseID
-                }
-              }
-            }
-          }
-        }
+        subcard =
+          get_subcards_of_metric_value @metric, company,
+                                       "#{value_idx*5+i}", "#{2015-i}",
+                                       "http://www.google.com/?q=yo"
         metric_value = Card.create! type_id: Card::MetricValueID,
-                                    subcards: _subcard      
+                                    subcards: subcard      
       end
       value_idx += 1
     end
@@ -64,13 +52,36 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
       expect(result).to eq(5)
     end
   end
+  describe '#num?' do
+    context 'Numeric type' do
+      it 'returns true' do
+        @metric.update_attributes! subcards: { '+value_type': "[[Number]]" }
+        format = @all_values.format
+        expect(format.num?).to be true
+        @metric.update_attributes! subcards: { '+value_type': "[[Monetary]]" }
+        expect(format.num?).to be true
+      end
+    end
+    context 'Other type' do
+      it 'return false' do
+        metric = Card.create! type_id: Card::MetricID, name: 'Totoro+Chinchilla'
+        metric.update_attributes! subcards: { '+value_type': "[[Category]]" }
+        all_values = metric.fetch trait: :all_values
+        format = all_values.format
+        expect(format.num?).to be false
+        metric.update_attributes! subcards: { '+value_type': "[[Free Text]]" }
+        expect(format.num?).to be false
+      end
+    end
+  end
   describe "#get_sorted_result" do
     before do
       @cached_result = @all_values.get_cached_result
       @format = @all_values.format
     end
     it 'sorts by company name asc' do
-      results = @format.get_sorted_result @cached_result, 'company_name', 'asc'
+      results = @format.get_sorted_result @cached_result, 'company_name',
+                                          'asc', false
       expect(results[0][0]).to eq('Amazon.com, Inc.')
       expect(results[1][0]).to eq('Apple Inc.')
       expect(results[2][0]).to eq('Death Star')
@@ -78,7 +89,8 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
       expect(results[4][0]).to eq('Sony Corporation')
     end
     it 'sorts by company name desc' do
-      results = @format.get_sorted_result @cached_result, "company_name", 'desc'
+      results = @format.get_sorted_result @cached_result, "company_name",
+                                          'desc', false
       expect(results[0][0]).to eq('Sony Corporation')
       expect(results[1][0]).to eq('Samsung')
       expect(results[2][0]).to eq('Death Star')
@@ -86,7 +98,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
       expect(results[4][0]).to eq('Amazon.com, Inc.')
     end
     it 'sorts by value asc' do
-      results = @format.get_sorted_result @cached_result, 'value', 'asc'
+      results = @format.get_sorted_result @cached_result, 'value', 'asc', true
       expect(results[0][0]).to eq("Death Star")
       expect(results[0][1]).to include({'year'=>'2015', 'value'=>'5'})
       expect(results[1][0]).to eq("Sony Corporation")
@@ -99,7 +111,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
       expect(results[4][1]).to include({'year'=>'2015', 'value'=>'25'})
     end
     it 'sorts by value desc' do
-      results = @format.get_sorted_result @cached_result, 'value', 'desc'
+      results = @format.get_sorted_result @cached_result, 'value', 'desc', true
       expect(results[0][0]).to eq("Samsung")
       expect(results[0][1]).to include({'year'=>'2013', 'value'=>'27'})
       expect(results[1][0]).to eq("Apple Inc.")

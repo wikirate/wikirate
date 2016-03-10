@@ -39,7 +39,7 @@ format :html do
       },
       text: text
     }
-    card.format.render_modal_link(args.merge(edit_args))
+    render_modal_link(args.merge(edit_args))
   end
 
   view :short_view do |_args|
@@ -53,12 +53,9 @@ format :html do
       when 'Category'
         'category_details'
       end
-    if subcard_name.nil?
-      ''
-    else
-      detail_card = Card.fetch "#{card.name}+#{subcard_name}"
-      subformat(detail_card).render_content
-    end
+    return '' if subcard_name.nil?
+    detail_card = Card.fetch "#{card.name}+#{subcard_name}"
+    subformat(detail_card).render_content
   end
 
   def default_edit_args args

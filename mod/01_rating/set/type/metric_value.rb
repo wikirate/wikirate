@@ -247,15 +247,14 @@ format :html do
   end
 
   view :modal_details do |args|
-    
+    # binding.pry
     show_value =
-      if (value_type = card.metric_card.fetch trait: :value_type)
-        if %w(Number Monetary).include? value_type.item_names[0]
-          big_number = BigDecimal.new(card.value)
-          number_to_human(big_number)
-        else
-          card.value
-        end
+      if (value_type = card.metric_card.fetch trait: :value_type) &&
+         %w(Number Monetary).include?(value_type.item_names[0])
+        big_number = BigDecimal.new(card.value)
+        number_to_human(big_number)
+      else
+        card.value
       end
     modal_link = subformat(card)._render_modal_link(
       args.merge(

@@ -1,10 +1,10 @@
 {
   "url": null,
-  "timestamp": "2016-03-08 16:50:44 +0000",
+  "timestamp": "2016-03-10 02:00:56 +0000",
   "card": {
     "name": "export",
     "type": "Pointer",
-    "content": "[[metric+*type+*structure]]\n[[metric value type edit structure]]\n[[Metric+value type+*type plus right+*default]]\n[[Metric+value type+*type plus right+*input]]\n[[Metric+value type+*type plus right+*options]]\n[[Metric+value type+*type plus right+*help]]\n[[script metrics]]",
+    "content": "[[metric+*type+*structure]]\n[[metric value type edit structure]]\n[[Metric+value type+*type plus right+*default]]\n[[Metric+value type+*type plus right+*input]]\n[[Metric+value type+*type plus right+*options]]\n[[Metric+value type+*type plus right+*help]]\n[[script metrics]]\n[[value type]]\n[[metric+numeric details+*type plus right+*structure]]\n[[metric+monetary details+*type plus right+*structure]]\n[[metric+category details+*type plus right+*structure]]\n[[Metric+value options+*type plus right+*default]]\n[[Metric+value options+*type plus right+*input]]",
     "value": [
       {
         "name": "metric+*type+*structure",
@@ -40,6 +40,37 @@
         "name": "script metrics",
         "type": "CoffeeScript",
         "content": "\r\nhideAll = (slot)->\r\n  slot.find(\".value_type_field\").hide()\r\n\r\nshowField = (divName) ->\r\n  return if divName == ''\r\n  $(\"#\" + divName).slideDown(100)\r\n\r\nwagn.slotReady (slot) ->\r\n  slot.find('[data-tooltip=\"true\"]').tooltip()\r\n  if(slot.hasClass('STRUCTURE-metric_value_type_edit_structure'))\r\n    # hide the related field\r\n    # if no type is selected, hide all fields\r\n    div_to_show = ''\r\n    slot.find('.RIGHT-value_type #pointer_select').change(->\r\n      value = $(this).val()\r\n     \r\n      switch value\r\n        when 'Number'\r\n          div_to_show = 'number_details'\r\n        when 'Monetary'\r\n          div_to_show = 'currency_details'\r\n        when 'Category'\r\n          div_to_show = 'category_details'\r\n      hideAll(slot)\r\n      showField(div_to_show)\r\n    ).change()\r\n    # cancel-button to dismiss the modal\r\n    slot.find(\".cancel-button\").data('dismiss','modal')\r\n    # dismiss and refresh page after submit\r\n    slot.find('form:first').on 'ajax:success', (_event, data, xhr) ->\r\n      $('#modal-main-slot').modal('hide');\r\n      $('#fakeLoader').fakeLoader\r\n        timeToHide: 1000000 #Time in milliseconds for fakeLoader disappear\r\n        zIndex: '999' #Default zIndex\r\n        spinner: 'spinner1'#Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7'\r\n        bgColor: 'rgb(255,255,255,0.80)'#Hex, RGB or RGBA colors\r\n      location.reload();\r\n  \r\n  \r\n\r\n\r\n  "
+      },
+      {
+        "name": "value type",
+        "type": "Basic",
+        "content": "",
+        "codename": "value_type"
+      },
+      {
+        "name": "metric+numeric details+*type plus right+*structure",
+        "type": "HTML",
+        "content": "\r\n<div class=\"col-md-11 nopadding pull-right\">\r\n  <h5 class=\"pull-left\">Unit:</h5>\r\n  <h5 class=\"pull-left\">{{_l+Unit|content}}</h5>\r\n</div>\r\n\r\n<div class=\"col-md-11 nopadding  pull-right\">\r\n  <h5 class=\"pull-left\">Range:</h5>\r\n  <h5 class=\"pull-left\">{{_l+Range|content}}</h5>\r\n</div>"
+      },
+      {
+        "name": "metric+monetary details+*type plus right+*structure",
+        "type": "HTML",
+        "content": "\r\n<div class=\"col-md-11 nopadding pull-right\">\r\n  <h5 class=\"pull-left\">Currency:</h5>\r\n  <h5 class=\"pull-left\">{{_l+Currency|content}}</h5>\r\n</div>\r\n"
+      },
+      {
+        "name": "metric+category details+*type plus right+*structure",
+        "type": "HTML",
+        "content": "<div class=\"col-md-11 nopadding  pull-right\">\r\n  <h5 class=\"pull-left\">Options:</h5>\r\n  <h5 class=\"pull-left\">{{_l+Value Options|content}}</h5>\r\n</div>"
+      },
+      {
+        "name": "Metric+value options+*type plus right+*default",
+        "type": "Pointer",
+        "content": ""
+      },
+      {
+        "name": "Metric+value options+*type plus right+*input",
+        "type": "Pointer",
+        "content": "[[list]]"
       }
     ]
   }

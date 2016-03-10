@@ -1,7 +1,9 @@
 
 def all_numeric? metric_values
-  metric_values.each do |mv|
-    return false unless number?(mv.content)
+  metric_values.each do |_key, values|
+    values.each do |mv|
+      return false unless number?(mv['value'])
+    end
   end
   true
 end
@@ -9,8 +11,10 @@ end
 def all_values_in_options? metric_values, options_card
   options = options_card.item_names content: options_card.content.downcase,
                                     context: :raw
-  metric_values.each do |mv|
-    return false unless options.include?(mv.content.downcase)
+  metric_values.each do |_key, values|
+    values.each do |mv|
+      return false unless options.include?(mv['value'].downcase)
+    end
   end
   true
 end
@@ -24,9 +28,9 @@ def show_category_option_errors options_card
   errors.add :invalid_value, "Please #{anchor} first"
 end
 
-def get_related_values metric_name
-  Card.search type_id: Card::MetricValueID, left: { left: metric_name },
-              append: 'value'
+def related_values
+  all_value_card = left.fetch trait: :all_values
+  all_value_card.get_cached_result
 end
 
 event :validate_existing_values_type, :validate, on: :save do
@@ -34,21 +38,16 @@ event :validate_existing_values_type, :validate, on: :save do
   return unless db_content_changed?
   metric_name = cardname.left
   type = item_names[0]
-
+  mv = related_values
   case type
-  when 'Number', 'Currency'
-    mv = get_related_values metric_name
+  when 'Number', 'Monetary'
     unless all_numeric?(mv)
-      errors.add :wrong_type, 'Please check if all values are in number type'
+      errors.add :invalid_value, 'Please check if all values are in number type'
     end
   when 'Category'
     options_card = Card.fetch "#{metric_name}+value_options", new: {}
-    if options_card.new?
-      show_category_option_errors options_card
-      return
-    end
-    mv = get_related_values
-    unless all_values_in_options?(mv, options_card)
+    if (mv.size > 0 && options_card.new?) ||
+       !all_values_in_options?(mv, options_card)
       show_category_option_errors options_card
     end
   end
