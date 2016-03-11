@@ -160,3 +160,10 @@ jQuery.fn.sortElements = do ->
     sort.call(this, comparator).each (i) ->
       placements[i].call getSortable.call(this)
       return
+
+$.extend wagn, editorContentFunctionMap['pairs-editor'] = ->
+  hash = {}
+  @find('.tbody').first().find('tr').each ->
+    cols = $(this).find('td')
+    hash[$.trim(cols[0].text())] = cols[1].text()
+  JSON.stringify(hash)

@@ -50,7 +50,8 @@ format :html do
   end
 
   view :categorical_editor do |_args|
-    table card.complete_translation_table.unshift(['Option','Value'])
+    table card.complete_translation_table.unshift(['Option','Value']),
+          class: 'pairs-editor'
   end
 
   view :core do |args|
