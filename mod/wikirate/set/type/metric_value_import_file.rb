@@ -22,6 +22,23 @@ def parse_hash mv_hash
    mv_hash['value'], mv_hash['source']]
 end
 
+def add_corrected_name_to_alias company_name, potential_alias_name
+  return if company_name.nil?
+  alias_card = Card.fetch "#{company_name}+aliases",
+                          new: { type_id: Card::PointerID }
+  alias_card.insert_item! 0, potential_alias_name
+end
+
+def get_final_company_name correct_company_key, company, corrected_company_hash
+  final_company_name = corrected_company_hash[correct_company_key] || company
+  if final_company_name
+    unless Card.exists? final_company_name
+      Card.create! name: final_company_name, type_id: WikirateCompanyID
+    end
+  end
+  final_company_name
+end
+
 event :import_csv, :prepare_to_store,
       on: :update,
       when: proc { Env.params['is_metric_import_update'] == 'true' } do
@@ -30,48 +47,37 @@ event :import_csv, :prepare_to_store,
     metric_values.each do |metric_value|
       mv_hash = JSON.parse(metric_value)
       metric, company, year, value, source = parse_hash mv_hash
-      correct_company_key = "#{metric}+#{company}"\
-                            "+#{year}"
+      correct_company_key = "#{metric}+#{company}+#{year}"
       potential_alias_name = company
-      final_company_name = corrected_company_hash[correct_company_key] ||
-                           company
-      if final_company_name
-        company = final_company_name
-        unless Card.exists? final_company_name
-          Card.create! name: final_company_name, type_id: WikirateCompanyID
-        end
-      end
+      company = get_final_company_name correct_company_key, company,
+                                       corrected_company_hash
 
       # add corrected name to alias
-      if (cmp_name = corrected_company_hash[correct_company_key])
-        alias_card = Card.fetch "#{cmp_name}+aliases",
-                                new: { type_id: Card::PointerID }
-        alias_card.insert_item! 0, potential_alias_name
-      end
+      add_corrected_name_to_alias corrected_company_hash[correct_company_key],
+                                  potential_alias_name
 
       metric_value_card_name = [metric, company, year].join '+'
       mv_subcards = metric_value_subcards metric, company, year, value, source
-      metric_value_card =
-        if (metric_value_card = Card[metric_value_card_name])
-          metric_value_card.update_attributes subcards: mv_subcards
-          metric_value_card
-        else
-          Card.create type_id: Card::MetricValueID, subcards: mv_subcards
-        end
+      metric_value_card = create_or_update_mv_card metric_value_card_name,
+                                                   mv_subcards
       next if metric_value_card.errors.empty?
       metric_value_card.errors.each do |key, error_value|
         errors.add key, error_value
       end
     end
-    if errors.empty?
-      abort success: {
-        slot: {
-          success_msg: 'Import Successfully <br />'
-        }
+    handle_redirect
+  end
+end
+
+def handle_redirect
+  if errors.empty?
+    abort success: {
+      slot: {
+        success_msg: 'Import Successfully <br />'
       }
-    else
-      abort :failure
-    end
+    }
+  else
+    abort :failure
   end
 end
 
