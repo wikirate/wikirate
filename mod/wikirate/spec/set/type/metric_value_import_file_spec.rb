@@ -13,7 +13,7 @@ describe Card::Set::Type::MetricValueImportFile do
     @apple = 'Jedi+disturbances in the Force+Apple Inc.+2015'
     @sony = 'Jedi+disturbances in the Force+Sony Corporation+2015'
     Card::Env.params[:metric_values] = []
-    for i in 0..2
+    (0..2).each do |i|
       hash = {
         metric: @metric.name,
         company: @companies[i],
@@ -27,7 +27,7 @@ describe Card::Set::Type::MetricValueImportFile do
   describe 'import metric values' do
     it 'adds metric values' do
       @mv_import_file.update_attributes! subcards: {}
-      
+
       expect(Card.exists?(@amazon)).to be true
       expect(Card.exists?(@apple)).to be true
       amazon_2015_metric_value_card = Card["#{@amazon}+value"]
@@ -45,7 +45,6 @@ describe Card::Set::Type::MetricValueImportFile do
         @mv_import_file.update_attributes! subcards: {}
       end
       it 'uses the input company name' do
-        
         expect(Card.exists?(@amazon)).to be true
         expect(Card.exists?(@apple)).to be true
         expect(Card.exists?(@sony)).to be true
