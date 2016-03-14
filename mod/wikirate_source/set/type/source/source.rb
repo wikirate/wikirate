@@ -59,7 +59,34 @@ def analysis_cards
   analysis_names.map { |aname| Card.fetch aname }
 end
 
+# event :source_present, :validate, on: :create,
+#       when: { Env.params[:preview] } do
+#   if ...
+#     errors.add :source, ''
+#   end
+# end
+
 format :html do
+  def default_new_args args
+    if Env.params[:preview]
+      args[:structure] = 'metric value source form'
+      args[:buttons] = content_tag(
+                              :button,
+                              'add',
+                              class: 'btn btn-primary pull-right')
+      args[:hidden] = {
+        :success => { id: '_self', soft_redirect: true, view: :source_item },
+        'card[subcards][+company][content]' => args[:company]
+      }
+    end
+    super(args)
+  end
+  view :source_item do |args|
+    # content_tag(:div,'meow',class:'h1')
+    result = render_content structure: 'source_with_preview'
+    result + render_iframe_view(args.merge(url: card.fetch(trait: :wikirate_link).content))
+  end
+
   def edit_slot args
     # see claim.rb for explanation of core_edit
     super args.merge(core_edit: true)
@@ -102,5 +129,60 @@ format :html do
     else
       super(args)
     end
+  end
+
+  view :creator_credit do |args|
+    "added #{_render_created_at(args)} ago by " \
+    "#{nest Card.fetch(card.cardname.field('*creator')),
+        view: :core,
+        item: :link
+      }"
+  end
+
+  view :website_link do |args|
+    card_link(
+      card,
+      text: nest(Card.fetch(card.cardname.field('website'),
+            new: {}),
+            view: :content,
+            item: :name),
+      class: 'source-preview-link',
+      target: '_blank'
+    )
+  end
+
+  view :title_link do |args|
+    card_link(
+      card,
+      text: nest(Card.fetch(card.cardname.field('title'), new: {}), view: :needed),
+      class: 'source-preview-link preview-page-link',
+      target: '_blank'
+    )
+  end
+
+  view :source_link do |_args|
+    [
+      content_tag(:span, _render_website_link, class: 'source-website'),
+      content_tag(:i, '', class: 'fa fa-long-arrow-right'),
+      content_tag(:span, _render_title_link, class: 'source-title')
+    ].join "\n"
+  end
+
+  view :cited do |args|
+    <<-HTML
+    <div class="source-info-container">
+    <div class="item-content">
+     <div class="fa fa-times-circle remove-source" style="display:none"></div>
+     <div class="source-icon fa fa-globe"></div>
+     <div class="item-summary">
+      #{_render_source_link args}
+      <div class="last-edit">
+        #{ _render_creator_credit args
+        }
+      </div>
+    </div>
+    </div>
+  </div>
+    HTML
   end
 end

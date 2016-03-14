@@ -12,12 +12,12 @@ format :json do
       metadata.error = 'empty url'
       return metadata.to_json
     end
-    begin      
+    begin
       metadata.website = URI(url).host
-    rescue    
+    rescue
     end
     if !metadata.website
-      metadata.error = 'invalid url' 
+      metadata.error = 'invalid url'
       return metadata.to_json
     end
     duplicates = Source.find_duplicates url
@@ -28,7 +28,7 @@ format :json do
       image_url = Card["#{origin_page_card.name}+image_url"] ? Card["#{origin_page_card.name}+image_url"].content : ""
       metadata.set_meta_data title,description,image_url
     else
-      begin 
+      begin
         preview = LinkThumbnailer.generate url
         if preview.images.length > 0
           image_url = preview.images.first.src.to_s
@@ -45,12 +45,12 @@ format :json do
     allow_content_type.include?(content_type) || content_type.start_with?("text/html") || content_type.start_with?("text/plain")
   end
   def is_iframable? url, user_agent
-    
+
     return false if !url or url.length == 0
-    begin 
+    begin
       # escape space in url, eg, http://www.businessweek.com/articles/2014-10-30/tim-cook-im-proud-to-be-gay#r=most popular
       url.gsub!(/ /, '%20')
-      
+
       curl = Curl::Easy.new(url)
       curl.follow_location = true
       curl.max_redirects = 5
@@ -66,7 +66,7 @@ format :json do
     end
     true
   end
-  
+
   view :check_iframable do |args|
     url = Card::Env.params[:url]
     if url
@@ -76,21 +76,20 @@ format :json do
     end
     result
   end
-  
+
 #   uncomment until certh's suggestion is back
 #   view :feedback ,:perms=>lambda { |r| Auth.signed_in? } do |args|
 #     url = Card::Env.params[:url]
 #     company = Card::Env.params[:company]
 #     topic = Card::Env.params[:topic]
-    
+
 #     type = Card::Env.params[:type]
 
-    
 #     result = {:result => false }
 #     case type
 #     when "either"
 #       rel_topic_score = -1
-#       rel_company_score = -1     
+#       rel_company_score = -1
 #     when "company"
 #       rel_topic_score = 1
 #       rel_company_score = -1
@@ -106,15 +105,15 @@ format :json do
 #     user_id = Auth.current_id
 #     company_id, company_name = Card[company].id, Card[company].name if Card[company] and Card[company].type_id == Card::WikirateCompanyID
 #     topic_id, topic_name = Card[topic].id, Card[topic].name if Card[topic] and Card[topic].type_id == Card::WikirateTopicID
-    
+
 #     if company_id and topic_id and url and type
-#       query = { url: url, 
+#       query = { url: url,
 #                 user_id: user_id,
 #                 rel_topic_score: rel_topic_score,
-#                 rel_company_score: rel_company_score, 
-#                 company_id: company_id, 
-#                 company: company_name, 
-#                 topic_id: topic_id, 
+#                 rel_company_score: rel_company_score,
+#                 company_id: company_id,
+#                 company: company_name,
+#                 topic_id: topic_id,
 #                 topic: topic_name}
 #                 .to_query
 #       request_url = "http://mklab.iti.gr/wikirate-sandbox/api/index.php/relevance/?#{query}"
@@ -130,19 +129,18 @@ format :json do
 #   end
 end
 
-class MetaData  
+class MetaData
   attr_accessor :title,:description,:image_url,:website,:error
-  def initialize()  
+  def initialize()
     @title = ""
     @description = ""
     @image_url  =""
     @website = ""
     @error = ""
-  end  
+  end
   def set_meta_data title,desc,image_url
     @title = title
     @description = desc
     @image_url = image_url
   end
-end  
-
+end
