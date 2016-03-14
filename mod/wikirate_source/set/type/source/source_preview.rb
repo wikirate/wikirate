@@ -14,6 +14,7 @@ format :html do
   end
 
   view :source_preview_container, tags: :unknown_ok do |args|
+
     %{
       <div class="row clearfix source-preview-content">
         <div class="col-md-6 hidden-xs column source-iframe-container">

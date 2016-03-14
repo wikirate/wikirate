@@ -59,7 +59,31 @@ def analysis_cards
   analysis_names.map { |aname| Card.fetch aname }
 end
 
+# event :source_present, :validate, on: :create,
+#       when: { Env.params[:preview] } do
+#   if ...
+#     errors.add :source, ''
+#   end
+# end
+
 format :html do
+  def default_new_args args
+    if Env.params[:preview]
+      args[:structure] = 'metric value source form'
+      args[:buttons] = content_tag(:button,'add',class:'btn btn-primary pull-right')
+      args[:hidden] = {
+        :success => { id: '_self', soft_redirect: true, view: :source_item },
+        'card[subcards][+company][content]' => args[:company]
+      }
+    end
+    super(args)
+  end
+  view :source_item do |args|
+    # content_tag(:div,'meow',class:'h1')
+    result = render_content structure: 'source_with_preview'
+    result + render_iframe_view(args.merge(url: card.fetch(trait: :wikirate_link).content))
+  end
+
   def edit_slot args
     # see claim.rb for explanation of core_edit
     super args.merge(core_edit: true)
@@ -139,9 +163,10 @@ format :html do
 
   view :cited do |args|
     <<-HTML
+    <div class="source-info-container">
     <div class="item-content">
      <div class="fa fa-times-circle remove-source" style="display:none"></div>
-     <div class="source-icon"></div>
+     <div class="source-icon fa fa-globe"></div>
      <div class="item-summary">
       #{_render_source_link args}
       <div class="last-edit">
@@ -150,6 +175,7 @@ format :html do
       </div>
     </div>
     </div>
+  </div>
     HTML
   end
 end
