@@ -1,3 +1,3 @@
 view :raw do |_args|
-  File.read File.expand_path('../../lib/javascript/metrics.js.coffee', __FILE__)
+  File.read "#{Rails.root}/mod/01_rating/lib/javascript/metrics.js.coffee"
 end

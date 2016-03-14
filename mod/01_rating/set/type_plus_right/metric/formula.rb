@@ -61,10 +61,12 @@ format :html do
     end
   end
 
-  view :rating_editor do |_args|
+  view :rating_editor do |args|
     table_content = card.translation_table.map do |metric, weight|
       [{ content: subformat(metric)._render_thumbnail(args),
-         'data-value': metric }, weight]
+         'data-value': metric },
+        text_field_tag('pair_value', weight)
+      ]
     end
     table_content.unshift ['Metric','Weight']
     table_content.push ['Sum', text_field_tag('weight_sum', 100, class:
