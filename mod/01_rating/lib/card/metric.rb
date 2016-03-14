@@ -32,18 +32,12 @@ class Card::Metric
   end
 
   class << self
-    # create a metric card
-    # a block can be used to create values using the syntax
-    # `company year => value`
-    # @params [Hash] opts metric properites
-    # @option opts [String] :name
-    # @option opts [Symbol] :type (':researched') one of the metric types
-    # :reasearched, :score, :formula, or :wiki_rating
-    # @option opts [String, Hash] :formula the formula for a calculated metric
-    # @option opts [String] :value_type ('Number') if the
-    #    formula is a hash then it defaults to 'Categorical'
-    # @option opts [Array] :value_options the options that can be choosen for
-    #    a metric vaule
+    # Creates a metric card.
+    # A block can be used to create metric value cards for the metric using
+    # the syntax
+    # `company year => value, year => value`
+    # If you want to define more properties of a metric value than just the
+    # value (like a source for example) you can assign a hash the year
     # @example
     # Metric.create name: 'Jedi+disturbances in the Force',
     #               value_type: 'Categorical',
@@ -52,6 +46,18 @@ class Card::Metric
     #              1999 => 'no'
     #   Jar_Jar_Bings 1977 => 'no', 1999 => 'yes'
     # end
+    # @params [Hash] opts metric properties
+    # @option opts [String] :name the name of the metric. Use the common
+    #   pattern Designer+Title(+Scorer)
+    # @option opts [Symbol] :type (:researched) one of the four metric types
+    #   :researched, :score, :formula, or :wiki_rating
+    # @option opts [String, Hash] :formula the formula for a calculated
+    #   metric. Use a hash for a metric of 'categorical' value type to translate
+    #   value options
+    # @option opts [String] :value_type ('Number') if the
+    #    formula is a hash then it defaults to 'Categorical'
+    # @option opts [Array] :value_options the options that you can choose of
+    # for a metric value
     def create opts, &block
       opts[:type] ||= :researched
       metric = Card.create! name: opts[:name],
