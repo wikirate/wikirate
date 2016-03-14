@@ -85,7 +85,6 @@ format :json do
 
 #     type = Card::Env.params[:type]
 
-
 #     result = {:result => false }
 #     case type
 #     when "either"

@@ -63,7 +63,6 @@ event :validate_metric_value_fields, before: :set_metric_value_name do
 end
 
 event :create_source_for_metric_value, :validate, on: :create do
-  binding.pry
   create_source
 end
 

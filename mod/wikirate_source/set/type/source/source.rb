@@ -70,7 +70,10 @@ format :html do
   def default_new_args args
     if Env.params[:preview]
       args[:structure] = 'metric value source form'
-      args[:buttons] = content_tag(:button,'add',class:'btn btn-primary pull-right')
+      args[:buttons] = content_tag(
+                              :button,
+                              'add',
+                              class: 'btn btn-primary pull-right')
       args[:hidden] = {
         :success => { id: '_self', soft_redirect: true, view: :source_item },
         'card[subcards][+company][content]' => args[:company]
@@ -130,13 +133,19 @@ format :html do
 
   view :creator_credit do |args|
     "added #{_render_created_at(args)} ago by " \
-    "#{nest Card.fetch(card.cardname.field('*creator')), view: :core, item: :link}"
+    "#{nest Card.fetch(card.cardname.field('*creator')),
+        view: :core,
+        item: :link
+      }"
   end
 
   view :website_link do |args|
     card_link(
       card,
-      text: nest(Card.fetch(card.cardname.field('website'), new: {}), view: :content, item: :name),
+      text: nest(Card.fetch(card.cardname.field('website'),
+            new: {}),
+            view: :content,
+            item: :name),
       class: 'source-preview-link',
       target: '_blank'
     )
@@ -151,15 +160,13 @@ format :html do
     )
   end
 
-  view :source_link do |args|
+  view :source_link do |_args|
     [
-        content_tag(:span, _render_website_link, class: 'source-website'),
-        content_tag(:i, '', class:'fa fa-long-arrow-right'),
-        content_tag(:span, _render_title_link, class: 'source-title')
+      content_tag(:span, _render_website_link, class: 'source-website'),
+      content_tag(:i, '', class: 'fa fa-long-arrow-right'),
+      content_tag(:span, _render_title_link, class: 'source-title')
     ].join "\n"
   end
-
-
 
   view :cited do |args|
     <<-HTML

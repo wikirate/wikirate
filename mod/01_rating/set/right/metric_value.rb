@@ -29,7 +29,7 @@ format :html do
       :slot   => {:company => card.cardname.left_name.tag, :metric=>card.cardname.left_name.trunk},
     }
     link = _render_modal_link(args.merge( :class=>'btn btn-default btn-sm',
-                                          :text=>'+ Add meow',
+                                          :text=>'+ Add New Value',
                                           :path_opts=>path_opts
                                         ))
     timeline_head(link, 'new')
