@@ -96,8 +96,8 @@ class SharedData
       Card::Metric.create(
         name: 'Jedi+darkness rating',
         type: :wiki_rating,
-        formula: '({{Jedi+deadliness+Joe User}}+' \
-               '{{Jedi+disturbances in the Force+Joe User}})/2'
+        formula: { 'Jedi+deadliness+Joe User' => 60,
+                   'Jedi+disturbances in the Force+Joe User' => 40 }
       )
     end
   end
