@@ -4,6 +4,10 @@ def scorer
   cardname.tag
 end
 
+def scorer_card
+  right
+end
+
 def basic_metric
   cardname.trunk
 end
@@ -78,7 +82,16 @@ format :html do
   def default_thumbnail_subtitle_args args
     args[:text] ||= 'scored by'
     args[:author] ||= card.scorer
-end
+  end
+
+  view :designer_info do |args|
+    wrap_each_with :div, class: 'metric-designer-info' do
+      [
+        author_link(card.metric_designer_card, 'Designed by'),
+        author_link(card.scorer_card, 'Scored by')
+      ]
+    end
+  end
 end
 
 event :set_scored_metric_name, :initialize,

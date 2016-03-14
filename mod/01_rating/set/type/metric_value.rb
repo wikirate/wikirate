@@ -44,6 +44,10 @@ def researched?
   (mc = metric_card) && mc.researched?
 end
 
+def scored?
+  (mc = metric_card) && mc.scored?
+end
+
 # TODO: add #subfield_present? method to subcard API
 def subfield_exist? field_name
   subfield_card = subfield(field_name)
@@ -207,18 +211,28 @@ format :html do
     }
   end
 
+  def grade
+    return unless value = (card.value && card.value.to_i)
+    case value
+    when 0, 1, 2, 3 then :low
+    when 4, 5, 6, 7 then :middle
+    when 8, 9, 10 then :high
+    end
+  end
+
   view :modal_details do |args|
-    modal_link = subformat(card)._render_modal_link(
-      args.merge(
-        text: card.value,
-        path_opts: { slot: { show: :menu, optional_horizontal_menu: :hide } }
+    span_args = { class: 'metric-value' }
+    if card.scored?
+      add_class span_args, grade
+    end
+    wrap_with :span, span_args do
+      subformat(card)._render_modal_link(
+        args.merge(
+          text: card.value,
+          path_opts: { slot: { show: :menu, optional_horizontal_menu: :hide } }
+        )
       )
-    ) # ,:html_args=>{:class=>"td year"}))
-    %{
-      <span class="metric-value">
-        #{modal_link}
-      </span>
-    }
+    end
   end
 
   view :timeline_data do |args|

@@ -87,7 +87,7 @@ format :html do
   end
 
   def default_content_formgroup_args args
-      args[:edit_fiels] = { '+question' => { title: 'Question'},
+      args[:edit_fields] = { '+question' => { title: 'Question'},
                            '+topic' => { title: 'Topic'} }
   end
 

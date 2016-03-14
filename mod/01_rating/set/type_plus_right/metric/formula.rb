@@ -15,6 +15,17 @@ def categorical?
     metric_card.basic_metric_card.categorical?
 end
 
+def wiki_rating?
+  metric_card.metric_type_codename == :wiki_rating
+end
+
+def each_references_out &block
+  return super(&block) unless wiki_rating?
+  translation_table.each do |key, _value|
+    block.call(key, Content::Chunk::Link::CODE)
+  end
+end
+
 # converts a categorical formula content to an array
 # @return [Array] list of pairs of value option and the value for that option
 def translation_table
@@ -35,6 +46,7 @@ end
 
 format :html do
   view :editor do |args|
+    return _render_rating_editor(args) if card.wiki_rating?
     return _render_categorical_editor(args) if card.categorical?
 
     formula_input =
@@ -49,9 +61,30 @@ format :html do
     end
   end
 
+  view :rating_editor do |_args|
+    table_content = card.translation_table.map do |metric, weight|
+      [{ content: subformat(metric)._render_thumbnail(args),
+         'data-value': metric }, weight]
+    end
+    table_content.unshift ['Metric','Weight']
+    table_content.push ['Sum', text_field_tag('weight_sum', 100, class:
+      'weight-sum' )]
+    table_editor table_content
+  end
+
   view :categorical_editor do |_args|
-    table card.complete_translation_table.unshift(['Option','Value']),
-          class: 'pairs-editor'
+    table_content = card.complete_translation_table.map do |key, value|
+      [{content: key, 'data-key': key}, text_field_tag('pair_value', value)]
+    end
+    table_content.unshift ['Option','Value']
+    table_editor table_content
+  end
+
+  # @param [Array] table_content 2-dimensional array with the data for the
+  # table; first row is the header
+  def table_editor table_content
+    table(table_content, class: 'pairs-editor', header: true) +
+      hidden_field(:content, class: 'card-content')
   end
 
   view :core do |args|
