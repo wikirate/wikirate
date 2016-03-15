@@ -152,7 +152,7 @@ end
 format :html do
 
   view :new do |args|
-    return super(args)
+    # return super(args)
     if Env.params[:noframe]
       form_opts = args[:form_opts] ? args.delete(:form_opts) : {}
       form_opts[:hidden] = args.delete(:hidden)
@@ -185,7 +185,8 @@ format :html do
 
   def set_hidden_args args
     if !args[:source]
-      view = (args[:metric] || args[:company]) ? :timeline_data : :timeline_data
+      # TODO: add appropriate view to the following condition.
+      view = (args[:metric] || args[:company]) ? :timeline : :timeline
       args[:hidden] = {
         :success => { id: '_self', soft_redirect: true, view: view },
         'card[subcards][+metric][content]' => args[:metric]
