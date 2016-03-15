@@ -6,7 +6,7 @@ class Formula
   end
 
   def evaluate
-    @executed_lambda = exec_lambda(to_lambda)
+    compile
     result = Hash.new { |h, k| h[k] = {} }
     @formula.input_values.each_pair do |year, companies|
        companies.each_pair.with_index do |(company, metrics_with_values), i|
@@ -20,10 +20,30 @@ class Formula
   def evaluate_single_input metrics_with_values
     expr = insert_into_formula metrics_with_values
     return if expr.match(/\{\{([^}]+)\}\}/) # missing input values
-    normalize_value exec_lambda(expr)
+    compile expr
+    normalize_value get_single_value(metrics_with_values)
+  end
+
+  def compile expr=nil
+    @executed_lambda = safe_execution(expr || to_lambda)
+  end
+
+  def get_single_value _metrics_with_values
+    @executed_lambda
+  end
+
+  private
+
+  def safe_execution expr
+    return unless safe_to_exec?(expr)
+    exec_lambda expr
   end
 
   protected
+
+  def safe_to_exec? expr
+    false
+  end
 
   def insert_into_formula metrics_with_values
     result = @formula.keyified

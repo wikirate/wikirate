@@ -1,4 +1,4 @@
-card_accessor :formula_input, type: 'session'
+card_accessor :formula_input, type_id: Card::SessionID
 
 WL_FORMULA_WHITELIST = ::Set.new ['Boole']
 
@@ -19,7 +19,7 @@ def wiki_rating?
   metric_card.metric_type_codename == :wiki_rating
 end
 
-def each_references_out &block
+def each_reference_out &block
   return super(&block) unless wiki_rating?
   translation_table.each do |key, _value|
     block.call(key, Content::Chunk::Link::CODE)
@@ -29,7 +29,11 @@ end
 # converts a categorical formula content to an array
 # @return [Array] list of pairs of value option and the value for that option
 def translation_table
-  JSON.parse(content).to_a
+  translation_hash.to_a
+end
+
+def translation_hash
+  JSON.parse(content)
 rescue JSON::ParserError => e
   fail Card::Error, 'fail to parse formula for categorical input'
 end
@@ -44,20 +48,20 @@ def complete_translation_table
   translation
 end
 
+def formula_input_card
+  fetch trait: :formula_input,
+             new: {
+               type: 'session',
+               content: input_metrics.to_pointer_content
+             }
+end
+
 format :html do
   view :editor do |args|
     return _render_rating_editor(args) if card.wiki_rating?
     return _render_categorical_editor(args) if card.categorical?
-
-    formula_input =
-      card.fetch trait: :formula_input,
-                 new: {
-                   type: 'session',
-                   content: card.input_metrics.to_pointer_content
-                 }
-
     super(args) + with_nest_mode(:normal) do
-      subformat(formula_input)._render_core(args)
+      subformat(card.formula_input_card)._render_core(args)
     end
   end
 
@@ -70,24 +74,25 @@ format :html do
         text_field_tag('pair_value', weight, class: 'metric-weight')
       ]
     end
-    table_content.unshift ['Metric','Weight']
-    table_content.push ['Sum', text_field_tag('weight_sum', 100, class:
-      'weight-sum' )]
-    table_editor table_content
+    table_content.push(
+      ['', text_field_tag('weight_sum', 100, class: 'weight-sum' )]
+    )
+    table_editor(table_content, ['Metric','Weight']) + with_nest_mode(:normal) do
+      subformat(card.formula_input_card)._render_add_item_button(args)
+    end
   end
 
   view :categorical_editor do |_args|
     table_content = card.complete_translation_table.map do |key, value|
       [{content: key, 'data-key': key}, text_field_tag('pair_value', value)]
     end
-    table_content.unshift ['Option','Value']
-    table_editor table_content
+    table_editor table_content, ['Option','Value']
   end
 
   # @param [Array] table_content 2-dimensional array with the data for the
   # table; first row is the header
-  def table_editor table_content
-    table(table_content, class: 'pairs-editor', header: true) +
+  def table_editor table_content, header=nil
+    table(table_content, class: 'pairs-editor', header: header) +
       hidden_field(:content, class: 'card-content')
   end
 
@@ -97,12 +102,16 @@ format :html do
     "= #{super(args)}"
   end
 
-  view :rating_core do |_args|
-    table card.translation_table.unshift(['Metric','Weight']), header: true
+  view :rating_core do |args|
+    table_content =
+      card.translation_table.map do |metric, weight|
+        [subformat(metric)._render_thumbnail(args), weight]
+      end
+    table table_content, header: ['Metric','Weight']
   end
 
   view :categorical_core do |_args|
-    table card.translation_table.unshift(['Option','Value']), header: true
+    table card.translation_table, header: ['Option','Value']
   end
 
 
@@ -150,10 +159,16 @@ def calculate_all_values
   end
 end
 
-def calculate_values_for company
-  values = fetch_input_values company: company
+# @param [Hash] opts
+# @option opts [String] :company
+# @option opts [String] :year optional
+def calculate_values_for opts={}
+  unless opts[:company]
+    fail Card::Error, '#calculate_values_for: no company given'
+  end
+  values = fetch_input_values opts
   values.each_pair do |year, companies|
-    metrics_with_values = companies[company.to_name.key]
+    metrics_with_values = companies[opts[:company].to_name.key]
     value = formula_interpreter.evaluate_single_input metrics_with_values
     yield year, value
   end
@@ -197,7 +212,9 @@ end
 private
 
 def formula_interpreter
-  if translate_formula?
+  if wiki_rating?
+    WikiRatingFormula.new(self)
+  elsif translate_formula?
     TranslateFormula.new(self)
   elsif ruby_formula?
     RubyFormula.new(self)
@@ -206,36 +223,39 @@ def formula_interpreter
   end
 end
 
+# find all metrics that are part of the formula
 def extract_metrics
-  content.scan(/\{\{([^|}]+)(?:\|[^}]*)?\}\}/).flatten
+  if metric_card.metric_type_codename == :score
+    [metric_card.basic_metric]
+  elsif wiki_rating?
+    translation_hash.keys
+  else
+    content.scan(/\{\{([^|}]+)(?:\|[^}]*)?\}\}/).flatten
+  end
 end
 
-# choose a company or fetch all values
+# choose a company (and a year) or fetch all values
+# @return [Hash] values in the form
+#   { year => { company => { metric => value } } }
 def fetch_input_values opts={}
   values = Hash.new { |h1, k1| h1[k1] = Hash.new { |h2, k2| h2[k2] = {} } }
   return values if input_metric_keys.empty?
-  value_cards =
-    if opts[:company]
-      input_value_cards_for opts[:company]
-    else
-      all_input_value_cards
-    end
-
-  value_cards.each do |v_card|
+  input_value_cards(opts).each_with_object(values) do |v_card, values|
     year = v_card.cardname.left_name.right
     company = v_card.cardname.left_name.left_name.right_name.key
     metric = v_card.cardname.left_name.left_name.left_name.key
     values[year][company][metric] = v_card.content
   end
-  values
 end
 
-def all_input_value_cards
-  Card.search value_cards_query(metrics: input_metric_keys)
-end
-
-def input_value_cards_for company
-  Card.search value_cards_query(company: company, metrics: input_metric_keys)
+# Searches for all metric value cards that are necessary to calculate all values
+# If a company (and a year) is given it returns only the metric value cards that
+# are needed to calculate the value for that company (and that year)
+# @param [Hash] opts ({})
+# @option [String] :company
+# #option [String] :year
+def input_value_cards opts={}
+  ::Card.search value_cards_query(opts.merge(metrics: input_metric_keys))
 end
 
 def value_cards_query opts={}

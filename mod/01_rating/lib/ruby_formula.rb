@@ -19,13 +19,24 @@ class RubyFormula < Formula
     "lambda { |args| #{rb_formula}}"
   end
 
+  protected
+
   def exec_lambda expr
-    eval expr if safe_to_exec?(expr)
+    eval expr
   end
 
-  # allow only numbers, whitespace, mathematical operations and args references
   def safe_to_exec? expr
-    expr.gsub(/args\[\d+\]/,'').match(/^lambda \{ \|args\| (.+)\}$/)
-    $1 && $1.match(/^[\s\d+-\/*\.()]*$/)
+    cleaned = if expr.match(/^lambda \{ \|args\| (.+)\}$/)
+              $1.gsub(/args\[\d+\]/,'')
+            else
+              expr
+            end
+    ruby_safe? cleaned
+  end
+
+  # allow only numbers, whitespace, mathematical operations
+  def ruby_safe? expr
+    expr.match(/^[\s\d+-\/*\.()]*$/)
   end
 end
+

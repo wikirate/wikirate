@@ -57,11 +57,21 @@ def year
   cardname.left_name.right
 end
 
+
+event :update_related_scores, :finalize,
+      on: [:create, :update, :delete],
+      when: proc { |c| !c.metric_card.scored? } do
+  metrics = Card.search type_id: MetricID,
+                        left_id: metric_card.id
+  metrics.each do |metric|
+    metric.update_value_for! company: company, year: year
+  end
+end
+
 event :update_related_calculations, :finalize,
       on: [:create, :update, :delete] do
   metrics = Card.search type_id: MetricID,
                         right_plus: ['formula', { refer_to: metric }]
-
   metrics.each do |metric|
     metric.update_value_for! company: company, year: year
   end

@@ -37,7 +37,7 @@ end
 
 def update_value_for! opts
   formula_card.calculate_values_for(opts) do |year, value|
-    metric_value_name = "#{name}+#{company}+#{year}"
+    metric_value_name = "#{name}+#{opts[:company]}+#{year}"
     if (metric_value = Card[metric_value_name])
       if value
         update_value_card metric_value, value

@@ -34,8 +34,9 @@ class WolframFormula < Formula
     "(#{wl_formula})&/@<| #{wl_input} |>"
   end
 
+  protected
+
   def exec_lambda expr
-    return unless safe_to_exec?(expr)
     uri = URI.parse(WL_INTERPRETER)
     # TODO: error handling
     response = Net::HTTP.post_form uri, 'expr' => expr

@@ -41,7 +41,7 @@ format :html do
             end * "\n"
           }
         </ul>
-        #{ add_item_button if !card.score?  }
+        #{ _render_add_item_button if !card.score?  }
       	<br><br>
       </div>
     </div>
@@ -71,7 +71,7 @@ format :html do
   end
 
   def metric_list
-    Card.search(type_id: MetricID).map do |m|
+    Card.search(type_id: MetricID, limit: 20).map do |m|
       metric_list_item m
     end.join "\n"
   end
@@ -86,7 +86,7 @@ format :html do
   end
 
 
-  def add_item_button
+  view :add_item_button do |_args|
     content_tag :span, class: 'input-group' do
       button_tag class: 'pointer-item-add btn btn-default slotter',
                  data: { toggle: 'modal', target: '#modal-main-slot' },

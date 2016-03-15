@@ -19,7 +19,8 @@ format :html do
     output [
              nest(card.about_card, view: :titled, title: 'About'),
              nest(card.methodology_card, view: :titled, title: 'Methodology'),
-             nest(card.value_type_card, view: :titled, title: 'Value Type')
+             nest(card.value_type_card, view: :titled, item: :name,
+                                        title: 'Value Type')
            ]
   end
 

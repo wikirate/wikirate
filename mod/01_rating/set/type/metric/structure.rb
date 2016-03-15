@@ -97,7 +97,7 @@ format :html do
         </div>
         <div class="row-data">
           <small>Question</small>
-          #{field_subformat('Question')._render_content}
+          #{subformat(card.question_card)._render_content}
         </div>
       </div>
     HTML
@@ -109,7 +109,9 @@ format :html do
         <!--Ratings and company list -->
         <div class="col-md-6 rate border-right">
           <div class="row">
-            #{field_subformat('right sidebar')._render_content}
+            #{#field_subformat('right sidebar')._render_content(args)
+            }
+            #{process_content '{{+right sidebar}}'}
           </div>
 		    </div>
         <!--Rightside -->

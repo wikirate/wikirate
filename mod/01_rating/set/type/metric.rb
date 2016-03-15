@@ -32,6 +32,10 @@ def metric_title_card
   self[1]
 end
 
+def question_card
+  field('Question', new:{})
+end
+
 def value_type
   # FIXME: value type should have a codename
   (vt = field('value type')) && vt.item_names.first
@@ -167,7 +171,7 @@ format :html do
     end
   end
 
-  def item_wrap
+  def item_wrap args
     with_nest_mode :normal do
       wrap args do
         <<-HTML
@@ -184,18 +188,18 @@ format :html do
   end
 
   view :item_view do |args|
-    item_wrap do
+    item_wrap(args) do
       <<-HTML
       <div class="header metric-details-toggle"
            data-append="#{card.key}+add_to_formula">
         #{_render_handle if args[:draggable]}
         #{_render_vote if args[:vote]}
         <div class="logo hidden-xs hidden-md">
-          #{nest metric_designer_card.fetch(trait: :image), view: :core,
+          #{nest card.metric_designer_card.fetch(trait: :image), view: :core,
                  size: 'small'}
         </div>
         <div class="name">
-          #{nest metric_title_card, view: :name}
+          #{nest card.metric_title_card, view: :name}
         </div>
       </div>
       HTML
@@ -204,14 +208,14 @@ format :html do
 
   view :item_view_with_value do |args|
     contributions_url = path "#{metric_designer}+contributions"
-    item_wrap do
+    item_wrap args do
       <<-HTML
         <div class="header">
           #{_render_handle if args[:draggable]}
           #{_render_vote if args[:vote]}
           <a href="#{contributions_url}">
           <div class="logo hidden-xs hidden-md">
-             #{nest metric_designer_card.fetch(trait: :image),
+             #{nest card.metric_designer_card.fetch(trait: :image),
                     view: :core, size: 'small'}
           </div>
           </a>
