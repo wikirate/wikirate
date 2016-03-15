@@ -63,9 +63,11 @@ format :html do
 
   view :rating_editor do |args|
     table_content = card.translation_table.map do |metric, weight|
-      [{ content: subformat(metric)._render_thumbnail(args),
-         'data-value': metric },
-        text_field_tag('pair_value', weight)
+      metric_thumbnail = with_nest_mode :normal do
+        subformat(metric)._render_thumbnail(args)
+      end
+      [{ content: metric_thumbnail, 'data-key': metric },
+        text_field_tag('pair_value', weight, class: 'metric-weight')
       ]
     end
     table_content.unshift ['Metric','Weight']
@@ -90,12 +92,17 @@ format :html do
   end
 
   view :core do |args|
+    return _render_rating_core(args) if card.wiki_rating?
     return _render_categorical_core(args) if card.categorical?
     "= #{super(args)}"
   end
 
+  view :rating_core do |_args|
+    table card.translation_table.unshift(['Metric','Weight']), header: true
+  end
+
   view :categorical_core do |_args|
-    table card.translation_table.unshift(['Option','Value'])
+    table card.translation_table.unshift(['Option','Value']), header: true
   end
 
 
