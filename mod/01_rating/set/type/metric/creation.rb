@@ -99,9 +99,7 @@ format :html do
                name="intervaltype"
                value="#{id}"
                class="pointer-radio-button"
-               type="radio" #{'checked' if active} />
-        #{id}
-       </label>
+               type="radio" #{'checked' if active} />#{id}</label>
     </li>
     HTML
   end
@@ -190,10 +188,5 @@ format :html do
                               type_id: PhraseID)
     #with_nest_mode :edit  do
     nest title, view: :editor, title: 'Metric Title'
-    # end
-    # text_field('subcards[+*title]', {
-    #   value: card.name,
-    #   autocomplete: 'off'
-    # }.merge(options))
   end
 end
