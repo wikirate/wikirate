@@ -4,8 +4,18 @@ def metric_card
   left.left
 end
 
+def formula_card
+  left
+end
+
 def score?
   metric_card.metric_type_codename == :score
+end
+
+def extract_metrics_from_formula
+  update_attributes! content: formula_card.input_metrics.to_pointer.content,
+                     type_id: PointerID
+  formula_card.input_metrics
 end
 
 format :html do
@@ -13,8 +23,7 @@ format :html do
   view :core do |args|
     args ||= {}
     items = args[:item_list] || card.item_names(context: :raw)
-    extract_metrics_from_formula if items.empty?
-    items = card.item_names(context: :raw)
+    items ||= extract_metrics_from_formula if items.empty?
     # items = [''] if items.empty?
     options_card_name = (oc = card.options_rule_card) ? oc.cardname.url_key : ':all'
 
@@ -41,12 +50,34 @@ format :html do
             end * "\n"
           }
         </ul>
-        #{ _render_add_item_button if !card.score?  }
+        #{ _render_add_metric_button if !card.score?  }
       	<br><br>
       </div>
     </div>
     HTML
-    output.html_safe
+    table_content =
+      items.map.with_index do |item, index|
+          variable(item, index, args)
+      end
+    output([
+      table(table_content, header: ['Metric', 'Variable', 'Example value']),
+      (_render_add_metric_button if !card.score?),
+      _render_modal_slot(args.merge(modal_id: card.cardname.safe_key))
+    ])
+  end
+
+  def variable item_name, index, args
+    item_card = Card[item_name]
+    example_value =
+      if (company = item_card.random_valued_company_card)
+        metric_plus_company = Card["#{item_card.name}+#{company.name}"]
+        subformat(metric_plus_company)._render_all_values(args)
+      end
+    [
+      subformat(item_card)._render_thumbnail(args),
+      "M#{index}", #("A".ord + args[:index]).chr
+      (example_value.html_safe if example_value)
+    ]
   end
 
   view :edit do |args|
@@ -81,64 +112,34 @@ format :html do
     #   #{ view_link metric_card.name, :core, path_opts: {action: :update, add_item: metric_card.name }}
     # HTML
     #{card.key}+add_to_formula
+    #binding.pry
     args[:append_for_details] = "#{card.metric_card.key}+add_to_formula"
     subformat(metric_item_card)._render_item_view(args)
   end
 
 
-  view :add_item_button do |_args|
+  view :add_metric_button do |_args|
+    target = "#modal-#{card.cardname.safe_key}"
     content_tag :span, class: 'input-group' do
       button_tag class: 'pointer-item-add btn btn-default slotter',
-                 data: { toggle: 'modal', target: '#modal-main-slot' },
-                   href: path(layout: 'modal', view: :edit) do
+                 data: { toggle: 'modal', target: target },
+                href: path(layout: 'modal', view: :edit) do
         glyphicon('plus') + ' add metric'
       end
     end
-  end
 
-  view :list_item do |args|
-    variable = "M#{args[:index]}"#("A".ord + args[:index]).chr
-    item_name = args[:pointer_item]
-    item_card = Card[item_name]
-    example_value =
-      if (company = item_card.random_valued_company_card)
-        metric_plus_company = Card["#{item_card.name}+#{company.name}"]
-        subformat(metric_plus_company)._render_all_values(args)
-      end
-    output = <<-HTML
-      <div class="yinyang-row">
-        <div class="company-item value-item">
-          <div class="col-md-6">
-                <a href="/{{#{item_name.to_name.left}|linkname}}" class="inherit-anchor">
-      <div class="logo">
-              {{#{item_name.to_name.left}+image|size:small}}
-            </div>
-            </a>
-                <a href="/{{#{item_name}|linkname}}" class="inherit-anchor">
-                <div class="name">
-                    {{#{item_name.to_name.right}|name}}
-                </div>
-                </a>
-          </div>
-          <div class="col-md-2 data">
-            #{variable}
-          </div>
-          <div class="col-md-4 data">
-            #{example_value}
-          </div>
-        </div>
-      </div>
-   HTML
-
-   process_content output
-  end
-
-  def extract_metrics_from_formula
-    metrics =
-      @card.left.input_metrics.map do |metric|
-        "[[#{metric}]]"
-      end
-    @card.update_attributes! content: metrics, type_id: PointerID
+    # input_card = formula_metric.formula_card.formula_input_card
+    # link_path = subformat(input_card).path(
+    #   action: :update, add_item: input_metric.cardname.key
+    # )
+    # opts.merge!(
+    #   title:           'Add metric',
+    #   'data-path'      => link_path,
+    #   'data-toggle'    => 'modal',
+    #   'data-target'    => "#modal-#{input_card.cardname.safe_key}",
+    #   class: 'button button-primary'
+    # )
+    # link_to 'Add this metric', hash[:path], opts
   end
 
   view :missing  do |args|

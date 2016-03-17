@@ -181,10 +181,12 @@ format :html do
   end
 
   view :item_view do |args|
+    append = args[:append_for_details] ||
+             "#{card.key}+add_to_formula"
     item_wrap(args) do
       <<-HTML
       <div class="header metric-details-toggle"
-           data-append="#{card.key}+add_to_formula">
+           data-append="#{append}">
         #{_render_handle if args[:draggable]}
         #{_render_vote if args[:vote]}
         <div class="logo hidden-xs hidden-md">

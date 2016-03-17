@@ -40,4 +40,41 @@ format :html do
   view :scores_tab do
     'scores'
   end
+
+  view :content_left_col do |args|
+    output [
+             _render_add_value_buttons(args),
+             _render_year_select(args),
+             _render_company_list(args)
+           ]
+  end
+
+  def add_value_path
+    '/new/metric_value?layout=modal&slot[metric]=' +
+      _render_cgi_escape_name
+  end
+
+  view :add_value_buttons do |_args|
+    <<-HTML
+    <div class="col-md-12 text-center">
+      <div class="btn-group" role="group" aria-label="...">
+      <a class="btn btn-default slotter"  href='#{add_value_path}'
+         data-toggle='modal' data-target='#modal-main-slot'>
+        #{fa_icon 'plus'}
+        Add new value
+      </a>
+      <a class="btn btn-default" href='/new/source?layout=wikirate%20layout'>
+        #{fa_icon 'arrow-circle-o-down'}
+        Import
+      </a>
+      <a class="btn btn-default slotter"
+         href='/import_metric_values?layout=modal'
+         data-toggle='modal' data-target='#modal-main-slot'>
+        Help <small>(how to)</small>
+      </a>
+      </div>
+    </div>
+    HTML
+  end
+
 end

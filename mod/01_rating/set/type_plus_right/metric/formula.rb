@@ -61,7 +61,7 @@ format :html do
     return _render_rating_editor(args) if card.wiki_rating?
     return _render_categorical_editor(args) if card.categorical?
     super(args) + with_nest_mode(:normal) do
-      subformat(card.formula_input_card)._render_core(args)
+      subformat(card.formula_input_card)._render_content(args).html_safe
     end
   end
 

@@ -169,10 +169,10 @@ format :html do
 
   view :card_list_item do |args|
     c = args[:item_card]
-    item_view = nest_defaults(c)[:view]
+    nest_args = item_args(args).reverse_merge(nest_defaults(c))
     %{
-      <div class="search-result-item item-#{ item_view }">
-        #{nest(c, size: args[:size], view: item_view)}
+      <div class="search-result-item item-#{nest_args[:view] }">
+        #{nest c, nest_args.merge(size: args[:size])}
       </div>
     }
   end
