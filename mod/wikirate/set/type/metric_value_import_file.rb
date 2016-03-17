@@ -39,34 +39,35 @@ def get_final_company_name correct_company_key, company, corrected_company_hash
   final_company_name
 end
 
-event :import_csv, :prepare_to_store,
-      on: :update,
-      when: proc { Env.params['is_metric_import_update'] == 'true' } do
+def import_csv_information
   corrected_company_hash = clean_corrected_company_hash
-  if (metric_values = Env.params[:metric_values]) && metric_values.is_a?(Array)
-    metric_values.each do |metric_value|
-      mv_hash = JSON.parse(metric_value)
-      metric, company, year, value, source = parse_hash mv_hash
-      correct_company_key = "#{metric}+#{company}+#{year}"
-      potential_alias_name = company
-      company = get_final_company_name correct_company_key, company,
-                                       corrected_company_hash
-
-      # add corrected name to alias
-      add_corrected_name_to_alias corrected_company_hash[correct_company_key],
-                                  potential_alias_name
-
-      metric_value_card_name = [metric, company, year].join '+'
-      mv_subcards = metric_value_subcards metric, company, year, value, source
-      metric_value_card = create_or_update_mv_card metric_value_card_name,
-                                                   mv_subcards
-      next if metric_value_card.errors.empty?
-      metric_value_card.errors.each do |key, error_value|
-        errors.add key, error_value
-      end
+  return unless (metric_values = Env.params[:metric_values]) &&
+                metric_values.is_a?(Array)
+  metric_values.each do |metric_value|
+    mv_hash = JSON.parse(metric_value)
+    metric_value_card = create_metric_value_from_hash mv_hash,
+                                                      corrected_company_hash
+    next if metric_value_card.errors.empty?
+    metric_value_card.errors.each do |key, error_value|
+      errors.add key, error_value
     end
-    handle_redirect
   end
+  handle_redirect
+end
+
+def create_metric_value_from_hash mv_hash, corrected_company_hash
+  metric, company, year, value, source = parse_hash mv_hash
+  correct_company_key = "#{metric}+#{company}+#{year}"
+  potential_alias_name = company
+  company = get_final_company_name correct_company_key, company,
+                                   corrected_company_hash
+  # add corrected name to alias
+  add_corrected_name_to_alias corrected_company_hash[correct_company_key],
+                              potential_alias_name
+
+  metric_value_card_name = [metric, company, year].join '+'
+  mv_subcards = metric_value_subcards metric, company, year, value, source
+  create_or_update_mv_card metric_value_card_name, mv_subcards
 end
 
 def handle_redirect

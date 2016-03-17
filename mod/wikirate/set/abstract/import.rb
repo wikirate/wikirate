@@ -1,24 +1,3 @@
-
-event :validate_import, :prepare_to_validate,
-      on: :update,
-      when: proc { Env.params['is_metric_import_update'] == 'true' } do
-  metric_pointer_card = subcard(cardname.left + "+#{Card[:metric].name}")
-  metric_year = subcard(cardname.left + "+#{Card[:year].name}")
-
-  if !metric_pointer_card ||
-     !(metric_card = metric_pointer_card.item_cards.first)
-    errors.add :content, 'Please give a metric.'
-  elsif metric_card.type_id != Card::MetricID
-    errors.add :content, 'Invalid metric'
-  end
-
-  if !metric_year || !(year_card = metric_year.item_cards.first)
-    errors.add :content, 'Please give a year.'
-  elsif year_card.type_id != Card::YearID
-    errors.add :content, 'Invalid Year'
-  end
-end
-
 def metric_value_subcards metric, company, year, value, source
   {
     '+metric' => { 'content' => metric },
@@ -35,6 +14,15 @@ def metric_value_subcards metric, company, year, value, source
       }
     }
   }
+end
+
+def import_csv_information
+end
+
+event :import_csv, :prepare_to_store,
+      on: :update,
+      when: proc { Env.params['is_metric_import_update'] == 'true' } do
+  import_csv_information
 end
 
 def clean_corrected_company_hash
@@ -73,36 +61,6 @@ def create_or_update_mv_card metric_value_card_name, subcard
     metric_value_card
   else
     Card.create type_id: Card::MetricValueID, subcards: subcard
-  end
-end
-
-event :import_csv, :prepare_to_store,
-      on: :update,
-      when: proc { Env.params['is_metric_import_update'] == 'true' } do
-  metric_pointer_card = subcards[cardname.left + "+#{Card[:metric].name}"]
-  metric_year = subcards[cardname.left + "+#{Card[:year].name}"]
-
-  corrected_company_hash = clean_corrected_company_hash
-
-  if (metric_values = Env.params[:metric_values]) && metric_values.is_a?(Hash)
-    metric_values.each do |company, value|
-      final_company_name = get_final_company_name company,
-                                                  corrected_company_hash
-      metric_value_card_name = "#{metric_pointer_card.item_names.first}+"\
-        "#{final_company_name}+#{metric_year.item_names.first}"
-
-      source_url = "#{Env[:protocol]}#{Env[:host]}/#{left.cardname.url_key}"
-      subcard = metric_value_subcards metric_pointer_card.content,
-                                      final_company_name, metric_year.content,
-                                      value[0], source_url
-      metric_value_card = create_or_update_mv_card metric_value_card_name,
-                                                   subcard
-      next if metric_value_card.errors.empty?
-      metric_value_card.errors.each do |key, error_value|
-        errors.add key, error_value
-      end
-    end
-    handle_redirect metric_pointer_card
   end
 end
 
