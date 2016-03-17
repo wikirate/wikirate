@@ -112,12 +112,11 @@ def get_source_card source_list
          (source_card = find_duplicate_source(url.content))
         source_card
       else
-
-          source_subcards = clone_subcards_to_hash new_source_card
-          source_card = add_subcard '', type_id: SourceID,
-                                    subcards: source_subcards
-          source_card.director.catch_up_to_stage :prepare_to_store
-          source_card
+        source_subcards = clone_subcards_to_hash new_source_card
+        source_card = add_subcard '', type_id: SourceID,
+                                      subcards: source_subcards
+        source_card.director.catch_up_to_stage :prepare_to_store
+        source_card
       end
     else
       Card[source_list.content]
@@ -186,7 +185,7 @@ format :html do
   def set_hidden_args args
     if !args[:source]
       # TODO: add appropriate view to the following condition.
-      view = (args[:metric] || args[:company]) ? :timeline : :timeline
+      view = (args[:metric] || args[:company]) ? :timeline_data : :timeline_data
       args[:hidden] = {
         :success => { id: '_self', soft_redirect: true, view: view },
         'card[subcards][+metric][content]' => args[:metric]
@@ -212,7 +211,6 @@ format :html do
     super(args)
   end
 
-
   def edit_slot args
     super args.merge(core_edit: true)
   end
@@ -222,7 +220,7 @@ format :html do
   end
 
   view :concise do |args|
-    %{
+    <<-HTML
       <span class="metric-year">
         #{card.year} =
       </span>
@@ -230,7 +228,7 @@ format :html do
       <span class="metric-unit">
         #{legend(args)}
       </span>
-    }
+      HTML
   end
 
   view :modal_details do |args|
@@ -240,26 +238,27 @@ format :html do
         path_opts: { slot: { show: :menu, optional_horizontal_menu: :hide } }
       )
     ) # ,:html_args=>{:class=>"td year"}))
-    %{
+    <<-HTML
       <span class="metric-value">
         #{modal_link}
       </span>
-    }
+      HTML
   end
 
   view :timeline_data do |args|
-
-    #container elements
+    # container elements
     dot =  content_tag(:div, '', class: 'timeline-dot')
     value_details_toggle = content_tag(
-                          :i,
-                          '',
-                          class:'fa fa-caret-right fa-lg margin-left-10 btn btn-default btn-sm',
-                          data:{
-                            toggle:'collapse-next',
-                            parent:'.value',
-                            collapse:'.metric-value-details'}
-                          )
+                                        :i,
+                                        '',
+                                        class: 'fa fa-caret-right
+                                                fa-lg margin-left-10
+                                                btn btn-default btn-sm',
+                                        data: { toggle: 'collapse-next',
+                                                parent: '.value',
+                                                collapse: '.metric-value-details'
+                                              }
+                                      )
     credit = wrap_with :div, class: 'credit' do
       [
         nest(card, view: :core, structure: 'creator credit'),
@@ -267,16 +266,15 @@ format :html do
       ]
     end
     # value_details =  content_tag(:div, credit.html_safe, class: )
-
-    #year parent container
+    # year parent container
     year = content_tag(:span, card.cardname.right)
     year << dot
     year = content_tag(:div, year.html_safe,  class: 'td year')
 
-    #comments
+    # comments
     comments = (disc_card = card.fetch trait: :discussion) &&
                subformat(disc_card).render_core.html_safe
-    #source
+    # source
     sources = card.fetch trait: :source
     sources = subformat(sources).render_core(item: :cited).html_safe
     # sources = subformat(sources).render_core(item: :content, structure: 'source item').html_safe
@@ -289,15 +287,14 @@ format :html do
       ]
     end
 
-
-    #value parent container
+    # value parent container
     value =  _render_modal_details(args)
     value << content_tag(:span, legend(args), class: 'metric-unit')
     value << value_details_toggle.html_safe
     value << value_details.html_safe
     # line = content_tag(:div, '', class: 'timeline-line') if args[:connect]
 
-    #stitch together
+    # stitch together
     wrap_with :div, class: 'timeline-row' do
       [
         # line,

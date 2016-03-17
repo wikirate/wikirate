@@ -67,6 +67,27 @@ end
 # end
 
 format :html do
+  view :new do |args|
+    # return super(args)
+    if Env.params[:preview]
+      form_opts = args[:form_opts] ? args.delete(:form_opts) : {}
+      form_opts[:hidden] = args.delete(:hidden)
+      form_opts['main-success'] = 'REDIRECT'
+      form_opts['data-form-for'] = 'new_metric_value'
+      form_opts[:class] = "card-slot"
+      card_form :create, form_opts do
+        output [
+          _optional_render(:name_formgroup, args),
+          _optional_render(:type_formgroup, args),
+          _optional_render(:content_formgroup, args),
+          _optional_render(:button_formgroup, args)
+        ]
+      end
+    else
+      super(args)
+    end
+  end
+
   def default_new_args args
     if Env.params[:preview]
       args[:structure] = 'metric value source form'

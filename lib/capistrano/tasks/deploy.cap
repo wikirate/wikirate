@@ -18,7 +18,7 @@ namespace :deploy do
   before :starting, :backup do
     invoke 'backup:create'
   end
-  
+
   after :updated, :migrate do
 
     #because this creates the log and tmp files, it needs to be executed before the chown,
