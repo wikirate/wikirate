@@ -3,7 +3,6 @@ include Type::SearchType
 def virtual?; true end
 
 def raw_content
-  binding.pry
   %{
     {
       "left":{

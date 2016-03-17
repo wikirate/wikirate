@@ -101,7 +101,7 @@ format :html do
     item_name = args[:pointer_item]
     item_card = Card[item_name]
     example_value =
-      if (company = item_card.random_company_card_with_value)
+      if (company = item_card.random_valued_company_card)
         metric_plus_company = Card["#{item_card.name}+#{company.name}"]
         subformat(metric_plus_company)._render_all_values(args)
       end

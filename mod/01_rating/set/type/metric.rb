@@ -63,15 +63,12 @@ def scored?
     metric_type_codename == :wiki_rating
 end
 
-
-
 def analysis_names
-  return [] unless (topics = Card["#{name}+#{Card[:wikirate_topic].name}"]) &&
-    (companies = Card["#{name}+#{Card[:wikirate_company].name}"])
-
+  return [] unless (topics = fetch(trait: :wikirate_topic)) &&
+                   (companies = fetch(trait: :wikirate_company))
   companies.item_names.map do |company|
     topics.item_names.map do |topic|
-      "#{company}+#{topic}"
+      "#{company.to_name.tag}+#{topic}"
     end
   end.flatten
 end
@@ -82,29 +79,25 @@ end
 # end
 
 def companies_with_years_and_values
-  Card.search(right: 'value', left: {
-    left: { left: card.name },
-    right: { type: 'year' }
-    }).map do |card|
-      [
-        card.cardname.left_name.left_name.right,
-        card.cardname.left_name.right, card.content
-      ]
+  metric_value_cards.map do |mv_card|
+    [mv_card.company, mv_card.year, mv_card.value]
   end
 end
 
 def random_value_card
-  Card.search(right: 'value',
-              left: {
-                left: { left: name },
-                right: { type: 'year' }
-              },
-              limit: 1).first
+  metric_value_cards(limit: 1).first
 end
 
-def random_company_card_with_value
-  return unless rvc = random_value_card
-  rvc.left.left.right
+def random_valued_company_card
+  return unless (rvc = random_value_card)
+  rvc.company_card
+end
+
+def metric_value_cards opts={}
+  Card.search({ left: { left: { left: name },
+                right: { type: 'year' } },
+                right: 'value'
+              }.merge(opts))
 end
 
 format :html do
@@ -260,18 +253,23 @@ format :html do
   end
 end
 
-
 format :json do
   view :content do
     companies_with_years_and_values.to_json
   end
 end
 
+# The new metric form has a title and a designer field instead of a name field
+# We compose the card's name here
 event :set_metric_name, :initialize,
-      on: :create do
-
-  return if name.present? || metric_type == 'Score'
+      on: :create,
+      when: proc { |c| c.needs_name? } do
   title = (tcard = remove_subfield(:title)) && tcard.content
   designer = (dcard = remove_subfield(:designer)) && dcard.content
   self.name = "#{designer}+#{title}"
+end
+
+def needs_name?
+  # score names are handles differently in MetricType::Score
+  !name.present? && metric_type != 'Score'
 end

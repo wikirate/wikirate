@@ -1,4 +1,4 @@
-card_accessor :formula, type_id: PhraseID
+  card_accessor :formula, type_id: PhraseID
 
 event :create_values, :prepare_to_validate,
       on: :create,

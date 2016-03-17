@@ -106,19 +106,76 @@ format :html do
   view :content_row do |args|
     <<-HTML
       <div class="row metric-info">
-        <!--Ratings and company list -->
         <div class="col-md-6 rate border-right">
           <div class="row">
-            #{#field_subformat('right sidebar')._render_content(args)
-            }
-            #{process_content '{{+right sidebar}}'}
+            #{_render_content_left_col args}
           </div>
 		    </div>
-        <!--Rightside -->
         <div class="col-md-6 wiki">
-          #{_render_tabs(args)}
+          #{_render_content_right_col(args)}
         </div>
 	    </div>
     HTML
+  end
+
+  view :content_left_col do |args|
+    output [
+      _render_add_value_buttons(args),
+      _render_year_select(args),
+      _render_company_list(args)
+    ]
+  end
+
+  # ratings and company list
+  view :content_right_col do |args|
+    _render_tabs(args)
+  end
+
+  def add_value_path
+    '/new/metric_value?layout=modal&slot[metric]=' +
+      _render_cgi_escape_name
+  end
+
+  view :add_value_buttons do |_args|
+    <<-HTML
+    <div class="col-md-12 text-center">
+      <div class="btn-group" role="group" aria-label="...">
+      <a class="btn btn-default slotter"  href='#{add_value_path}'
+         data-toggle='modal' data-target='#modal-main-slot'>
+        #{fa_icon 'plus'}
+        Add new value
+      </a>
+      <a class="btn btn-default" href='/new/source?layout=wikirate%20layout'>
+        #{fa_icon 'arrow-circle-o-down'}
+        Import
+      </a>
+      <a class="btn btn-default slotter"
+         href='/import_metric_values?layout=modal'
+         data-toggle='modal' data-target='#modal-main-slot'>
+        Help <small>(how to)</small>
+      </a>
+      </div>
+    </div>
+    HTML
+  end
+
+  view :year_select do |args|
+    # {{#year select|editor}}
+    <<-HTML
+      <div class="col-md-12 form-horizontal" style="display:none">
+        <div class="form-group">
+        <!-- show year once filter is done -->
+        </div>
+      </div>
+    HTML
+  end
+
+  view :company_list do |args|
+    wrap_with :div, class: 'yinyang-list' do
+      subformat("#{card.name}+all values")
+        ._render_core(hide: 'title',
+                         items: { view: 'content',
+                            slot: { structure: 'metric company  item' }})
+    end
   end
 end
