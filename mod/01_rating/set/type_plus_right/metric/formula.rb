@@ -60,25 +60,16 @@ format :html do
     return _render_rating_editor(args) if card.wiki_rating?
     return _render_categorical_editor(args) if card.categorical?
     super(args) + with_nest_mode(:normal) do
-      subformat(card.variables_card)._render_content(args).html_safe
+      subformat(card.variables_card)._render_open(
+        args.merge(optional_header: :hide, optional_menu: :hide)
+      ).html_safe
     end
   end
 
   view :rating_editor do |args|
-    table_content = card.translation_table.map do |metric, weight|
-      metric_thumbnail = with_nest_mode :normal do
-        subformat(metric)._render_thumbnail(args)
-      end
-      [{ content: metric_thumbnail, 'data-key': metric },
-        text_field_tag('pair_value', weight, class: 'metric-weight')
-      ]
-    end
-    table_content.push(
-      ['', text_field_tag('weight_sum', 100, class: 'weight-sum' )]
+    subformat(card.weights_card)._render_open(
+      args.merge(optional_header: :hide, optional_menu: :hide)
     )
-    table_editor(table_content, ['Metric','Weight']) + with_nest_mode(:normal) do
-      subformat(card.variables_card)._render_add_item_button(args)
-    end
   end
 
   view :categorical_editor do |_args|

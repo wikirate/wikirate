@@ -254,6 +254,36 @@ format :html do
   def view_caching?
     true
   end
+
+  view :add_to_formula do |args|
+    html = <<-HTML
+    <div class="metric-details-close-icon pull-right	"><i class="fa fa-times-circle fa-2x"></i></div>
+    <br>
+    <div class="metric-details-header">
+      <div class="row clearfix ">
+        <div class="col-md-12">
+          <div class="name row">
+            <a class="inherit-anchor" href="{{_lllr+_llr|url}}">
+            {{_llr|name}}
+            </a>
+          </div>
+          <div class="row">
+            <div class="metric-designer-info">
+              <a href="/{{_lllr|name}}+contribution">
+                <div><small class="text-muted">Designed by</small></div>
+                <div>{{_lllr+logo|core;size:small}}</div>
+                <div><h3>{{_lllr|name}}</h3></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row clearfix wiki">{{_l+metric details|content}}</div>
+    </div>
+    HTML
+    process_content html  # TODO: get rid of process_content
+  end
 end
 
 format :json do

@@ -2,9 +2,15 @@
 
 class MetricEditor < Card::Migration
   def up
-    create_card! name: '*variables', codename: 'variables'
-    create_card! name: '*variables+*right+*default',
-                 type_id: Card::SessionID
+    create_session_card 'variables'
+    create_session_card 'weights'
     Card::Cache.reset_all
+  end
+
+  def create_session_card codename
+    name = "*#{codename}"
+    create_card! name: name, codename: codename
+    create_card! name: "*#{name}+*right+*default",
+                 type_id: Card::SessionID
   end
 end

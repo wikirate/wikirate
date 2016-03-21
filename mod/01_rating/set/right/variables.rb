@@ -44,7 +44,7 @@ format :html do
     # items = [''] if items.empty?
     table_content =
       items.map.with_index do |item, index|
-          variable(item, index, args)
+          variable_row(item, index, args)
       end
     output([
       table(table_content, header: ['Metric', 'Variable', 'Example value']),
@@ -53,7 +53,7 @@ format :html do
     ])
   end
 
-  def variable item_name, index, args
+  def variable_row item_name, index, args
     item_card = Card[item_name]
     example_value =
       if (company = item_card.random_valued_company_card)
@@ -67,25 +67,27 @@ format :html do
     ]
   end
 
-  view :edit do |args|
-    <<-HTML
-    <div class="container-fluid yinyang nodblclick">
-    	<div class="row yinyang-row" >
-        <div class="col-md-6">
-          <div class="header-row">
-            <div class="header-header">
-              Metric
-            </div>
-          </div>
-          <div class="yinyang-list">
-            #{metric_list}
-          </div>
-        </div>
-        <div class="col-md-6">
-        </div>
-      </div>
-    </div>
-    HTML
+  view :editor do |args|
+    render_haml metric_list: metric_list do
+      <<-HAML
+.container-fluid.nodblclick
+  .row.yinyang
+    .row.yinyang-row
+      .col-md-6
+        .header-row
+          .header-header
+            Metric
+        .yinyang_list
+          = metric_list
+      .col-md-6.metric-details
+      HAML
+    end
+  end
+
+
+  def default_edit_args args
+    args[:optional_toolbar] = :hide
+    args[:optional_menu] = :hide
   end
 
   def metric_list
@@ -111,7 +113,8 @@ format :html do
     content_tag :span, class: 'input-group' do
       button_tag class: 'pointer-item-add btn btn-default slotter',
                  data: { toggle: 'modal', target: target },
-                href: path(layout: 'modal', view: :edit) do
+                href: path(layout: 'modal', view: :edit,
+                           slot: {title: 'Choose Metric'}) do
         glyphicon('plus') + ' add metric'
       end
     end
