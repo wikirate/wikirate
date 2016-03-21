@@ -190,8 +190,9 @@ format :html do
         #{_render_handle if args[:draggable]}
         #{_render_vote if args[:vote]}
         <div class="logo hidden-xs hidden-md">
-          #{nest card.metric_designer_card.fetch(trait: :image), view: :core,
-                 size: 'small'}
+          #{ nest card.metric_designer_card.fetch(trait: :image, new: {}),
+                  view: :core, size: 'small'
+          }
         </div>
         <div class="name">
           #{nest card.metric_title_card, view: :name}
