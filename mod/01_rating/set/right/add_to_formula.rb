@@ -20,10 +20,11 @@ format :html do
   end
 
   def add_metric_link input_metric, formula_metric
-    card_link formula_metric.formula_card.formula_input_card,
+    variables_card = formula_metric.formula_card.variables_card
+    card_link variables_card,
               text: 'Add this metric',
-              class: 'button button-primary close-modal',
-              'data-dismiss' => 'modal',
+              class: 'button button-primary close-modal slotter',
+              'data-slot-selector' => "[data-card-id=#{variables_card.id}]",
               remote: true,
               path_opts: {
                 action: :update, add_item: input_metric.cardname.key,

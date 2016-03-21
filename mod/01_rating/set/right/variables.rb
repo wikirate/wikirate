@@ -18,6 +18,23 @@ def extract_metrics_from_formula
   formula_card.input_metrics
 end
 
+def input_metric_name variable
+  index = if variable.is_a?(Integer)
+            variable
+          elsif variable.to_s =~ /M?(\d+)/
+            $1.to_i
+          end
+  input_metric_name_by_index index if index
+end
+
+def to_variable_name index
+  "M#{index}"
+end
+
+def input_metric_name_by_index index
+  item_cards.fetch(index, nil).name
+end
+
 format :html do
   include Type::Pointer::HtmlFormat
   view :core do |args|
@@ -25,36 +42,6 @@ format :html do
     items = args[:item_list] || card.item_names(context: :raw)
     items ||= extract_metrics_from_formula if items.empty?
     # items = [''] if items.empty?
-    options_card_name = (oc = card.options_rule_card) ? oc.cardname.url_key : ':all'
-
-    extra_css_class = args[:extra_css_class] #|| 'pointer-list-ul'
-    output = <<-HTML
-   <h4> Metrics </h4>
-    <div class="row metric-info">
-	    <div class="header-row">
-        <div class="col-md-6 header-header">
-          Metric
-        </div>
-        <div class="col-md-4 data-header">
-          Variable
-        </div>
-        <div class="col-md-2 data-header">
-          Exampe value
-        </div>
-      </div>
-      <div class="col-md-12 col-xs-12">
-        <ul class="metric-list-editor yinyang-list #{extra_css_class}" data-options-card="#{options_card_name}">
-          #{
-            items.map.with_index do |item,index|
-              _render_list_item args.merge( pointer_item: item, index: index )
-            end * "\n"
-          }
-        </ul>
-        #{ _render_add_metric_button if !card.score?  }
-      	<br><br>
-      </div>
-    </div>
-    HTML
     table_content =
       items.map.with_index do |item, index|
           variable(item, index, args)
@@ -62,7 +49,7 @@ format :html do
     output([
       table(table_content, header: ['Metric', 'Variable', 'Example value']),
       (_render_add_metric_button if !card.score?),
-      _render_modal_slot(args.merge(modal_id: card.cardname.safe_key))
+      #_render_modal_slot(args.merge(modal_id: card.cardname.safe_key))
     ])
   end
 
@@ -119,7 +106,8 @@ format :html do
 
 
   view :add_metric_button do |_args|
-    target = "#modal-#{card.cardname.safe_key}"
+    target = "#modal-main-slot"
+    #"#modal-#{card.cardname.safe_key}"
     content_tag :span, class: 'input-group' do
       button_tag class: 'pointer-item-add btn btn-default slotter',
                  data: { toggle: 'modal', target: target },
@@ -128,7 +116,7 @@ format :html do
       end
     end
 
-    # input_card = formula_metric.formula_card.formula_input_card
+    # input_card = formula_metric.formula_card.variables_card
     # link_path = subformat(input_card).path(
     #   action: :update, add_item: input_metric.cardname.key
     # )

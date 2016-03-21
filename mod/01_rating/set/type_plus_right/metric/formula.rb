@@ -1,4 +1,4 @@
-card_accessor :formula_input, type_id: Card::SessionID
+card_accessor :variables, type_id: Card::SessionID
 
 WL_FORMULA_WHITELIST = ::Set.new ['Boole']
 
@@ -38,7 +38,6 @@ rescue JSON::ParserError => e
   fail Card::Error, 'fail to parse formula for categorical input'
 end
 
-
 def complete_translation_table
   translation = translation_table
   if (all_options = metric_card.value_options)
@@ -48,12 +47,12 @@ def complete_translation_table
   translation
 end
 
-def formula_input_card
-  fetch trait: :formula_input,
-             new: {
-               type: 'session',
-               content: input_metrics.to_pointer_content
-             }
+def variables_card
+  fetch trait: :variables,
+        new: {
+          type: 'session',
+          content: input_metrics.to_pointer_content
+        }
 end
 
 format :html do
@@ -61,7 +60,7 @@ format :html do
     return _render_rating_editor(args) if card.wiki_rating?
     return _render_categorical_editor(args) if card.categorical?
     super(args) + with_nest_mode(:normal) do
-      subformat(card.formula_input_card)._render_content(args).html_safe
+      subformat(card.variables_card)._render_content(args).html_safe
     end
   end
 
@@ -78,7 +77,7 @@ format :html do
       ['', text_field_tag('weight_sum', 100, class: 'weight-sum' )]
     )
     table_editor(table_content, ['Metric','Weight']) + with_nest_mode(:normal) do
-      subformat(card.formula_input_card)._render_add_item_button(args)
+      subformat(card.variables_card)._render_add_item_button(args)
     end
   end
 
@@ -149,6 +148,32 @@ event :create_scores_for_formula, :prepare_to_store,  on: :create,
                          when: proc { |c| !c.supercard } do
   add_subcard left
   left.create_values
+end
+
+event :replace_variables, :prepare_to_validate,
+      on: :save, changed: :content do
+  format.each_nested_chunk do |chunk|
+    metric_name = variables_card.input_metric_name chunk.referee_name
+    content.gsub! chunk.referee_name.to_s, metric_name if metric_name
+  end
+end
+
+def variable_name? v_name
+  v_name =~ /M\d+/
+end
+
+event :validate_formula_input, :validate,
+      on: :save, changed: :content do
+  format.each_nested_chunk do |chunk|
+    case
+    when variable_name?(chunk.referee_name)
+      errors.add :formula, "invalid variable name: #{chunk.referee_name}"
+    when !chunk.referee_card
+      errors.add :formula, "input metric #{chunk.referee_name} doesn't exist"
+    when chunk.referee_card.type_id != MetricID
+      errors.add :formula, "#{chunk.referee_name} is not a metric"
+    end
+  end
 end
 
 def calculate_all_values
