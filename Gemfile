@@ -33,7 +33,7 @@ group :test do
   gem 'spork', '>=0.9'
   gem 'timecop'
   gem 'simplecov'
-  gem 'codeclimate-test-reporter', require: nil
+  # gem 'codeclimate-test-reporter', require: nil
 
   # CUKES see features dir
   gem 'cucumber-rails', require: false
