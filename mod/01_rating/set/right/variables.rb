@@ -8,10 +8,6 @@ def formula_card
   left
 end
 
-def score?
-  metric_card.metric_type_codename == :score
-end
-
 def extract_metrics_from_formula
   update_attributes! content: formula_card.input_metrics.to_pointer.content,
                      type_id: PointerID
@@ -37,6 +33,7 @@ end
 
 format :html do
   include Type::Pointer::HtmlFormat
+
   view :core do |args|
     args ||= {}
     items = args[:item_list] || card.item_names(context: :raw)
@@ -46,11 +43,7 @@ format :html do
       items.map.with_index do |item, index|
           variable_row(item, index, args)
       end
-    output([
-      table(table_content, header: ['Metric', 'Variable', 'Example value']),
-      (_render_add_metric_button if !card.score?),
-      #_render_modal_slot(args.merge(modal_id: card.cardname.safe_key))
-    ])
+    table(table_content, header: ['Metric', 'Variable', 'Example value'])
   end
 
   def variable_row item_name, index, args
@@ -84,7 +77,6 @@ format :html do
     end
   end
 
-
   def default_edit_args args
     args[:optional_toolbar] = :hide
     args[:optional_menu] = :hide
@@ -104,33 +96,6 @@ format :html do
     #binding.pry
     args[:append_for_details] = "#{card.metric_card.key}+add_to_formula"
     subformat(metric_item_card)._render_item_view(args)
-  end
-
-
-  view :add_metric_button do |_args|
-    target = "#modal-main-slot"
-    #"#modal-#{card.cardname.safe_key}"
-    content_tag :span, class: 'input-group' do
-      button_tag class: 'pointer-item-add btn btn-default slotter',
-                 data: { toggle: 'modal', target: target },
-                href: path(layout: 'modal', view: :edit,
-                           slot: {title: 'Choose Metric'}) do
-        glyphicon('plus') + ' add metric'
-      end
-    end
-
-    # input_card = formula_metric.formula_card.variables_card
-    # link_path = subformat(input_card).path(
-    #   action: :update, add_item: input_metric.cardname.key
-    # )
-    # opts.merge!(
-    #   title:           'Add metric',
-    #   'data-path'      => link_path,
-    #   'data-toggle'    => 'modal',
-    #   'data-target'    => "#modal-#{input_card.cardname.safe_key}",
-    #   class: 'button button-primary'
-    # )
-    # link_to 'Add this metric', hash[:path], opts
   end
 
   view :missing  do |args|

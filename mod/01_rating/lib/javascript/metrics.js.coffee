@@ -12,3 +12,20 @@ $(window).ready ->
     $(this).closest('tbody').find('input.metric-weight').each ->
       result += parseInt($(this).val())
     $(this).closest('tbody').find('.weight-sum').val(result)
+    $(this).closest('form.card-form').find('button[type=submit]').prop('disabled', result != 100)
+
+
+  $('body').on 'click', '.add-weight', (event) ->
+    url  = wagn.rootPath + '/~' + $(this).data('metric-id')
+    params = { view: 'weight_row' }
+    $.ajax url, {
+      type : 'GET'
+      data: params
+      success : (data) ->
+        sum_row = $(".TYPE_PLUS_RIGHT-metric-formula.edit-view table.pairs-editor > tbody > tr:last")
+        $(sum_row).before("<tr>" + data + "</tr>")
+    }
+    add_metric_modal = $(this).closest('.modal')
+    add_metric_modal.modal('hide')
+    add_metric_modal.find('.modal-dialog > .modal-content').empty()
+

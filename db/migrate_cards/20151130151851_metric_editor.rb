@@ -3,7 +3,6 @@
 class MetricEditor < Card::Migration
   def up
     create_session_card 'variables'
-    create_session_card 'weights'
     Card::Cache.reset_all
   end
 

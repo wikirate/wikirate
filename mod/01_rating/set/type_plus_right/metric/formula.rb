@@ -19,6 +19,10 @@ def wiki_rating?
   metric_card.metric_type_codename == :wiki_rating
 end
 
+def score?
+  metric_card.metric_type_codename == :score
+end
+
 def each_reference_out &block
   return super(&block) unless wiki_rating?
   translation_table.each do |key, _value|
@@ -55,21 +59,60 @@ def variables_card
         }
 end
 
+
 format :html do
   view :editor do |args|
     return _render_rating_editor(args) if card.wiki_rating?
     return _render_categorical_editor(args) if card.categorical?
-    super(args) + with_nest_mode(:normal) do
+    output [
+             super(args),
+             _render_variables(args),
+             (add_metric_button unless card.score?)
+           ]
+  end
+
+  view :variables do |args|
+    with_nest_mode(:normal) do
       subformat(card.variables_card)._render_open(
         args.merge(optional_header: :hide, optional_menu: :hide)
       ).html_safe
     end
   end
 
+  def add_metric_button
+    target = "#modal-main-slot"
+    #"#modal-#{card.cardname.safe_key}"
+    content_tag :span, class: 'input-group' do
+      button_tag class: 'pointer-item-add btn btn-default slotter',
+                 type: 'button',
+                 data: { toggle: 'modal', target: target },
+                 href: path(layout: 'modal', view: :edit,
+                            id: card.variables_card.name,
+                            slot: {title: 'Choose Metric'}) do
+        glyphicon('plus') + ' add metric'
+      end
+    end
+  end
+
   view :rating_editor do |args|
-    subformat(card.weights_card)._render_open(
-      args.merge(optional_header: :hide, optional_menu: :hide)
+    table_content = card.translation_table.map do |metric, weight|
+      with_nest_mode :normal do
+        subformat(metric)._render_weight_row(args.merge weight: weight)
+      end
+    end
+    table_content.push(
+      ['', sum_field]
     )
+    output [
+             table_editor(table_content, ['Metric','Weight']),
+             add_metric_button
+           ]
+  end
+
+
+
+  def sum_field value=100
+    text_field_tag 'weight_sum', value, class: 'weight-sum', disabled: true
   end
 
   view :categorical_editor do |_args|

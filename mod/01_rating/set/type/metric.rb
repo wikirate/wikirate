@@ -284,6 +284,16 @@ format :html do
     HTML
     process_content html  # TODO: get rid of process_content
   end
+
+  view :weight_row do |args|
+    output(
+      [
+        content_tag(:td, _render_thumbnail(args), 'data-key': card.name),
+        content_tag(:td, text_field_tag('pair_value', (args[:weight] || 0),
+                                        class: 'metric-weight'))
+      ]
+    ).html_safe
+  end
 end
 
 format :json do

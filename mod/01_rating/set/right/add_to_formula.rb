@@ -15,27 +15,33 @@ format :html do
   view :core do |args|
     input_metric, formula_metric = card.split_metrics
     subformat(input_metric).render_add_to_formula(args) +
-    %{
-    <hr>
-     <div class="row clearfix">
-      <div class="data-item text-center">
-        #{add_metric_link(input_metric, formula_metric)}
+    <<-HTML
+      <hr>
+       <div class="row clearfix">
+        <div class="data-item text-center">
+          #{add_metric_link(input_metric, formula_metric)}
+        </div>
       </div>
-    </div>
-    }
-
+    HTML
   end
 
   def add_metric_link input_metric, formula_metric
     variables_card = formula_metric.formula_card.variables_card
-    card_link variables_card,
-              text: 'Add this metric',
-              class: 'button button-primary close-modal slotter',
-              'data-slot-selector' =>
-                ".TYPE_PLUS_RIGHT-metric-formula.edit-view .RIGHT-Xvariable[data-card-name='#{variables_card.name}']",
-              remote: true,
-              path_opts: {
-                action: :update, add_item: input_metric.cardname.key,
-              }
+    args = { class: 'button button-primary' }
+    if formula_metric.formula_card.wiki_rating?
+      add_class args, 'add-weight'
+      content_tag :a, 'Add this metric',
+                  args.merge('data-metric-id' => input_metric.id)
+    else
+      args.merge text: 'Add this metric',
+                 'data-slot-selector' =>
+                    ".TYPE_PLUS_RIGHT-metric-formula.edit-view .RIGHT-Xvariable[data-card-name='#{variables_card.name}']",
+                  remote: true,
+                  path_opts: {
+                    action: :update, add_item: input_metric.cardname.key,
+                  }
+      add_class args, 'close-modal slotter'
+      card_link variables_card, args
+    end
   end
 end
