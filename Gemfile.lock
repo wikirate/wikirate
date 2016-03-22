@@ -30,6 +30,8 @@ PATH
   specs:
     wagn (1.18.3)
       card (= 1.18.3)
+    wagn (1.18.2)
+      card (= 1.18.2)
       rails (~> 4.2)
 
 GEM
