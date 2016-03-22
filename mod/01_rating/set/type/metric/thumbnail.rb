@@ -42,4 +42,8 @@ format :html do
     args[:text] ||= [card.value_type, 'designed by'].compact.join ' | '
     args[:author] ||= card_link card.metric_designer
   end
+
+  view :score_thumbnail do |args|
+    ''
+  end
 end

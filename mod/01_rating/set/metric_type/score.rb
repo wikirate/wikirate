@@ -94,6 +94,16 @@ format :html do
       ]
     end
   end
+
+
+  view :score_thumbnail do |args|
+    <<-HTML
+      Scored by
+      #{_render_thumbnail_image}
+      #{card.scorer}
+      #{time_ago_in_words card.created_at} ago
+    HTML
+  end
 end
 
 event :set_scored_metric_name, :initialize,

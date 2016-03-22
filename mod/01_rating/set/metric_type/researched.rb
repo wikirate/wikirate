@@ -1,3 +1,10 @@
+def score_cards
+  # we don't check the metric type
+  # we assume that a metric with left is a metric again is always a score
+  Card.search type_id: MetricID,
+              left_id: id
+end
+
 format :html do
   def default_content_formgroup_args args
     super(args)
@@ -37,8 +44,12 @@ format :html do
     HTML
   end
 
-  view :scores_tab do
-    'scores'
+  view :scores_tab do |args|
+    items =
+      card.score_cards.map do |s_card|
+        subformat(s_card)._render_score_thumbnail(args)
+      end
+    list_tag items
   end
 
   view :content_left_col do |args|
