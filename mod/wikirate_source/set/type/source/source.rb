@@ -71,10 +71,10 @@ format :html do
     # return super(args)
     if Env.params[:preview]
       form_opts = args[:form_opts] ? args.delete(:form_opts) : {}
-      form_opts[:hidden] = args.delete(:hidden)
-      form_opts['main-success'] = 'REDIRECT'
-      form_opts['data-form-for'] = 'new_metric_value'
-      form_opts[:class] = "card-slot"
+      form_opts.merge! hidden: args.delete(:hidden),
+                       'main-success' => 'REDIRECT',
+                       'data-form-for' => 'new_metric_value',
+                       class: 'card-slot'
       card_form :create, form_opts do
         output [
           _optional_render(:name_formgroup, args),
@@ -91,11 +91,9 @@ format :html do
   def default_new_args args
     if Env.params[:preview]
       args[:structure] = 'metric value source form'
-      args[:buttons] = content_tag(
-                              :button,
-                              'Add',
-                              class: 'btn btn-primary pull-right',
-                              data: { disable_with: 'Adding' })
+      args[:buttons] =
+        content_tag :button, 'Add', class: 'btn btn-primary pull-right',
+                                    data: { disable_with: 'Adding' }
       args[:hidden] = {
         :success => { id: '_self', soft_redirect: true, view: :source_item },
         'card[subcards][+company][content]' => args[:company]
