@@ -38,7 +38,7 @@ end
 
 def translation_hash
   JSON.parse(content)
-rescue JSON::ParserError => e
+rescue JSON::ParserError => _e
   fail Card::Error, 'fail to parse formula for categorical input'
 end
 
@@ -59,16 +59,15 @@ def variables_card
         }
 end
 
-
 format :html do
   view :editor do |args|
     return _render_rating_editor(args) if card.wiki_rating?
     return _render_categorical_editor(args) if card.categorical?
     output [
-             super(args),
-             _render_variables(args),
-             (add_metric_button unless card.score?)
-           ]
+      super(args),
+      _render_variables(args),
+      (add_metric_button unless card.score?)
+    ]
   end
 
   view :variables do |args|
@@ -80,15 +79,15 @@ format :html do
   end
 
   def add_metric_button
-    target = "#modal-main-slot"
-    #"#modal-#{card.cardname.safe_key}"
+    target = '#modal-main-slot'
+    # "#modal-#{card.cardname.safe_key}"
     content_tag :span, class: 'input-group' do
       button_tag class: 'pointer-item-add btn btn-default slotter',
                  type: 'button',
                  data: { toggle: 'modal', target: target },
                  href: path(layout: 'modal', view: :edit,
                             id: card.variables_card.name,
-                            slot: {title: 'Choose Metric'}) do
+                            slot: { title: 'Choose Metric' }) do
         glyphicon('plus') + ' add metric'
       end
     end
@@ -97,19 +96,17 @@ format :html do
   view :rating_editor do |args|
     table_content = card.translation_table.map do |metric, weight|
       with_nest_mode :normal do
-        subformat(metric)._render_weight_row(args.merge weight: weight)
+        subformat(metric)._render_weight_row(args.merge(weight: weight))
       end
     end
     table_content.push(
       ['', sum_field]
     )
     output [
-             table_editor(table_content, ['Metric','Weight']),
-             add_metric_button
-           ]
+      table_editor(table_content, %w(Metric Weight)),
+      add_metric_button
+    ]
   end
-
-
 
   def sum_field value=100
     text_field_tag 'weight_sum', value, class: 'weight-sum', disabled: true
@@ -117,9 +114,9 @@ format :html do
 
   view :categorical_editor do |_args|
     table_content = card.complete_translation_table.map do |key, value|
-      [{content: key, 'data-key': key}, text_field_tag('pair_value', value)]
+      [{ content: key, 'data-key': key }, text_field_tag('pair_value', value)]
     end
-    table_editor table_content, ['Option','Value']
+    table_editor table_content, %w(Option Value)
   end
 
   # @param [Array] table_content 2-dimensional array with the data for the
@@ -140,13 +137,12 @@ format :html do
       card.translation_table.map do |metric, weight|
         [subformat(metric)._render_thumbnail(args), weight]
       end
-    table table_content, header: ['Metric','Weight']
+    table table_content, header: %w(Metric Weight)
   end
 
   view :categorical_core do |_args|
-    table card.translation_table, header: ['Option','Value']
+    table card.translation_table, header: %w(Metric Weight)
   end
-
 
   def get_nest_defaults _nested_card
     { view: :thumbnail }
@@ -159,10 +155,10 @@ event :validate_cateogory_translation, :validate,
 end
 
 event :validate_formula, :validate,
-      when: proc { |c| c.wolfram_formula?} do
+      when: proc { |c| c.wolfram_formula? } do
   not_on_whitelist =
-    content.gsub(/\{\{([^}])+\}\}/,'').scan(/[a-zA-Z][a-zA-Z]+/)
-    .reject do |word|
+    content.gsub(/\{\{([^}])+\}\}/, '').scan(/[a-zA-Z][a-zA-Z]+/)
+           .reject do |word|
       WL_FORMULA_WHITELIST.include? word
     end
   if not_on_whitelist.present?
@@ -171,15 +167,15 @@ event :validate_formula, :validate,
 end
 
 # don't update if it's part of scored metric update
-event :update_scores_for_formula, :prepare_to_store, on: :update,
-                         when: proc { |c| !c.supercard } do
+event :update_scores_for_formula, :prepare_to_store,
+      on: :update, when: proc { |c| !c.supercard } do
   add_subcard left
   left.update_values
 end
 
 # don't update if it's part of scored metric create
-event :create_scores_for_formula, :prepare_to_store,  on: :create,
-                         when: proc { |c| !c.supercard } do
+event :create_scores_for_formula, :prepare_to_store,
+      on: :create, when: proc { |c| !c.supercard } do
   add_subcard left
   left.create_values
 end
@@ -327,7 +323,7 @@ def value_cards_query opts={}
     right: 'value',
     left: {
       left: left_left,
-      right: opts[:year] || { type: 'year' },
+      right: opts[:year] || { type: 'year' }
     }
   }
 end

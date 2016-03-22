@@ -41,7 +41,7 @@ def create_value args
             }
           }
         }
-        #type_id: PointerID
+        # type_id: PointerID
       }
     when Hash
       create_args['+source'] = args[:source]
@@ -61,7 +61,7 @@ end
 format :html do
   # FIXME: inline js
   view :new do |args|
-    #frame_and_form :create, args, 'main-success' => 'REDIRECT' do
+    # frame_and_form :create, args, 'main-success' => 'REDIRECT' do
     frame args.merge(title: 'New Metric') do
       <<-HTML
       <fieldset class="card-editor editor">
@@ -87,8 +87,8 @@ format :html do
   end
 
   def default_content_formgroup_args args
-      args[:edit_fields] = { '+question' => { title: 'Question'},
-                             '+topic' => { title: 'Topic'} }
+    args[:edit_fields] = { '+question' => { title: 'Question' },
+                           '+topic' => { title: 'Topic' } }
   end
 
   def tab_radio_button id, active=false
@@ -134,12 +134,12 @@ format :html do
 
   view :new_tab_pane do |args|
     card_form :create, hidden: args.delete(:hidden),
-              'main-success' => 'REDIRECT' do
+                       'main-success' => 'REDIRECT' do
       output [
-               _render(:name_formgroup, args),
-               _render(:content_formgroup, args),
-               _render(:button_formgroup, args)
-             ]
+        _render(:name_formgroup, args),
+        _render(:content_formgroup, args),
+        _render(:button_formgroup, args)
+      ]
     end
   end
 
@@ -153,17 +153,17 @@ format :html do
   end
 
   view :name_formgroup do |args|
-    formgroup 'Metric Name', raw(name_field form), editor: 'name', help:
-      args[:help]
+    formgroup 'Metric Name', raw(name_field(form)), editor: 'name',
+                                                    help: args[:help]
   end
 
   def name_field form=nil, options={}
     form ||= self.form
     output [
-             metric_designer_field(options),
-             '<div class="plus">+</div>',
-             metric_title_field(options)
-           ]
+      metric_designer_field(options),
+      '<div class="plus">+</div>',
+      metric_title_field(options)
+    ]
   end
 
   def metric_designer_field options={}
@@ -176,17 +176,16 @@ format :html do
     #     }.merge(options))
     # else
     designer = card.add_subfield :designer, content: Auth.current.name,
-                                 type_id: PhraseID
+                                            type_id: PhraseID
     designer.reset_patterns
     designer.include_set_modules
     nest designer, options.merge(view: :editor, title: 'Metric Designer')
     # end
   end
 
-  def metric_title_field options={}
-    title = card.add_subfield(:title, content: card.cardname.tag,
-                              type_id: PhraseID)
-    #with_nest_mode :edit  do
+  def metric_title_field _options={}
+    title = card.add_subfield :title, content: card.cardname.tag,
+                                      type_id: PhraseID
     nest title, view: :editor, title: 'Metric Title'
   end
 end

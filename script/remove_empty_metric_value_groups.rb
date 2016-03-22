@@ -29,6 +29,6 @@ Card.search(type: 'Metric') do |metric|
       puts "FAILED TO DELETE: #{group_card.name}"
     end
   end
-  puts "empty trash"
+  puts 'empty trash'
   Card.empty_trash
 end

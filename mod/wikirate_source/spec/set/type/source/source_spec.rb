@@ -18,9 +18,9 @@ describe Card::Set::Type::Source do
     res = {
       type_id: Card::SourceID,
       subcards: {
-       '+Link' => {},
-       '+File' => { type_id: Card::FileID },
-       '+Text' => { type_id: Card::BasicID, content: '' }
+        '+Link' => {},
+        '+File' => { type_id: Card::FileID },
+        '+Text' => { type_id: Card::BasicID, content: '' }
       }
     }
     [:link, :file, :text].each do |key|
@@ -29,7 +29,6 @@ describe Card::Set::Type::Source do
     end
     res
   end
-
 
   describe 'while creating a Source' do
     before do

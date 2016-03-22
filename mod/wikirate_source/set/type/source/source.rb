@@ -36,7 +36,7 @@ event :check_source, :validate, on: :create do
                   subfield(:text)].compact
   if source_cards.length > 1
     errors.add :source, 'Only one type of content is allowed'
-  elsif source_cards.length == 0
+  elsif source_cards.empty?
     errors.add :source, 'Source content required'
   end
 end
@@ -60,18 +60,18 @@ event :process_source_url, :prepare_to_validate,
   linkparams = subfield(Card[:wikirate_link].name)
   url = (linkparams && linkparams.content) ||
         errors.add(:link, 'does not exist.')
-  return if errors.present? || url.length == 0
+  return if errors.present? || url.empty?
   if Card::Env.params[:sourcebox] == 'true'
     cite_card = get_card(url)
     if cite_card
       if cite_card.type_code != :source
-        errors.add :source, ' can only be source type or valid URL.'
+        errors.add :source, 'can only be source type or valid URL.'
       else
         self.name = cite_card.name
         abort :success
       end
     elsif !url?(url) || wikirate_url?(url)
-      errors.add :source, " does not exist."
+      errors.add :source, 'does not exist.'
     end
     duplicates = Self::Source.find_duplicates url
     if duplicates.any?
@@ -84,7 +84,7 @@ event :process_source_url, :prepare_to_validate,
         abort :success
       end
     elsif !url?(url) || wikirate_url?(url)
-      errors.add :source, ' does not exist.'
+      errors.add :source, 'does not exist.'
     end
   end
   duplicates = Self::Source.find_duplicates url
@@ -101,13 +101,13 @@ event :process_source_url, :prepare_to_validate,
   return if errors.present?
   if file_link? url
     download_file_and_add_to_plus_file url
-  else
-    parse_source_page url if Card::Env.params[:sourcebox] == 'true'
+  elsif Card::Env.params[:sourcebox] == 'true'
+    parse_source_page url
   end
 end
 
 def url? url
-  url.start_with?('http://') || url.start_with?('https://')
+  url.start_with?('http://', 'https://')
 end
 
 def wikirate_url? url
@@ -145,11 +145,10 @@ def file_link? url
   # prevent from showing file too big while users are adding a link source
   max_size = (max = Card['*upload max']) ? max.db_content.to_i : 5
 
-  !(content_type.start_with?('text/html') ||
-    content_type.start_with?('image/')) &&
+  !content_type.start_with?('text/html', 'image/') &&
     content_size.to_i <= max_size.megabytes
 rescue
-  Rails.logger.info "Fail to extract header from the #{ url }"
+  Rails.logger.info "Fail to extract header from the #{url}"
   false
 end
 
@@ -177,10 +176,10 @@ format :html do
     super args.merge(core_edit: true)
   end
 
-  view :metric_import_link do |args|
-    file_card = Card[card.name+'+File']
+  view :metric_import_link do |_args|
+    file_card = Card[card.name + '+File']
     return '' unless has_import_mime_type?(file_card)
-    card_link file_card, text: "Import to metric values",
+    card_link file_card, text: 'Import to metric values',
                          path_opts: { view: :import }
   end
 
