@@ -20,7 +20,7 @@ $(window).ready ->
     params = { view: 'weight_row' }
     $.ajax url, {
       type : 'GET'
-      data: params
+      data : params
       success : (data) ->
         sum_row = $(".TYPE_PLUS_RIGHT-metric-formula.edit-view table.pairs-editor > tbody > tr:last")
         $(sum_row).before("<tr>" + data + "</tr>")
@@ -28,4 +28,5 @@ $(window).ready ->
     add_metric_modal = $(this).closest('.modal')
     add_metric_modal.modal('hide')
     add_metric_modal.find('.modal-dialog > .modal-content').empty()
+
 
