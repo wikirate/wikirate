@@ -93,8 +93,9 @@ format :html do
       args[:structure] = 'metric value source form'
       args[:buttons] = content_tag(
                               :button,
-                              'add',
-                              class: 'btn btn-primary pull-right')
+                              'Add',
+                              class: 'btn btn-primary pull-right',
+                              data: { disable_with: 'Adding' })
       args[:hidden] = {
         :success => { id: '_self', soft_redirect: true, view: :source_item },
         'card[subcards][+company][content]' => args[:company]
@@ -104,8 +105,10 @@ format :html do
   end
   view :source_item do |args|
     # content_tag(:div,'meow',class:'h1')
-    result = render_content structure: 'source_with_preview'
-    result + render_iframe_view(args.merge(url: card.fetch(trait: :wikirate_link).content))
+    wrap_with :div, class: 'source-details', data: { source_for: card.name } do
+      result = render_content structure: 'source_with_preview'
+      result + render_iframe_view(args.merge(url: card.fetch(trait: :wikirate_link).content))
+    end
   end
 
   def edit_slot args
