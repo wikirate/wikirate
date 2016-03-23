@@ -48,22 +48,43 @@ format :html do
 
   view :designer_info do |args|
     wrap_with :div, class: 'metric-designer-info' do
-      author_link card.metric_designer_card, 'Designed by'
+      card_link card.metric_designer_card.cardname.field('contribution'),
+                text: author_info(card.metric_designer_card, 'Designed by')
     end
   end
-  def author_link author_card, text
-    link_text = <<-HTML
+
+  def author_info author_card, text, subtext=nil
+    <<-HTML
       <div>
         <small class="text-muted">#{text}</small>
       </div>
-      <div>
+      <div class="img-container">
+        <span class="img-helper"></span>
         #{subformat(author_card.field(:image, new:{}))._render_core size: 'small'}
       </div>
-      <div><h3>#{author_card.name}</h3></div>
+      #{author_text author_card.name, subtext}
     HTML
-    card_link author_card.cardname.field('contribution'),
-              text: link_text
   end
+
+  def author_text author, subtext=nil
+    subtext &&=
+        <<-HTML
+          <span>
+            <small class="text-muted">
+              #{subtext}
+            </small>
+          </span>
+        HTML
+    args = subtext ? { class: 'margin-6'} : {}
+    author_args = subtext ? { class: 'nopadding'} : {}
+    wrap_with :div, args do
+      [
+        content_tag(subtext ? 'h4' : 'h3', author, author_args),
+        subtext
+      ]
+    end
+  end
+
 
   view :title_right_col do
     <<-HTML

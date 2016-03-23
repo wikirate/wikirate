@@ -9,9 +9,12 @@ format :html do
     end
   end
 
-  view :thumbnail_image do |_args|
+  view :thumbnail_image do |args|
     wrap_with :div, class: 'thumbnail-image' do
-      nest card.metric_designer_card.field(:image, new: {}), view: :core, size: :small
+      [
+        content_tag(:span, class: 'img-helper'),
+        _render_designer_image(args)
+      ]
     end
   end
 
