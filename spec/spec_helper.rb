@@ -1,5 +1,9 @@
 require 'wagn/mods_spec_helper'
 
+# require File.expand_path(
+#   '../../mod/01_rating/spec/lib/shared_calculation_examples.rb', __FILE__
+# )
+
 Spork.prefork do
   RSpec.configure do |config|
     config.include RSpecHtmlMatchers
@@ -68,7 +72,8 @@ def create_claim_with_url name, url, subcards={}
                  subcards: {
                    '+source' => {
                      content: "[[#{sourcepage.name}]]",
-                     type_id: Card::PointerID }
+                     type_id: Card::PointerID
+                   }
                  }.merge(subcards)
   end
 end
@@ -108,6 +113,21 @@ end
 
 def get_a_sample_source
   Card.search(type_id: Card::SourceID, limit: 1).first
+end
+
+# Usage:
+# create_metric type: :researched do
+#   Siemens 2015: 4, 2014: 3
+#   Apple   2105: 7
+# end
+def create_metric opts={}, &block
+  Card::Auth.as_bot do
+    if opts[:name] && opts[:name].to_name.parts.size == 1
+      opts[:name] = "#{Card::Auth.current.name}+#{opts[:name]}"
+    end
+    opts[:name] ||= 'TestDesigner+TestMetric'
+    Card::Metric.create opts, &block
+  end
 end
 
 def html_trim str
