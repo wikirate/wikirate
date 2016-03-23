@@ -101,11 +101,28 @@ format :html do
     end
     super(args)
   end
+
   view :source_item do |args|
-    # content_tag(:div,'meow',class:'h1')
-    wrap_with :div, class: 'source-details', data: { source_for: card.name } do
-      result = render_content structure: 'source_with_preview'
-      result + render_iframe_view(args.merge(url: card.fetch(trait: :wikirate_link).content))
+    source = render_content structure: 'source_with_preview'
+    source_details =
+      wrap_with :div, class: 'source-details',
+                      data: { source_for: card.name } do
+        source.html_safe
+      end
+    source_details + render_iframe_view(
+      args.merge(url: card.fetch(trait: :wikirate_link).content))
+  end
+
+  view :cited do
+    source = render_content structure: 'source without note count'
+    cite_button =
+      content_tag(:a, 'cited!', class: 'btn btn-default _cited_button')
+    source << content_tag(:div, cite_button, class: 'pull-right')
+    source =
+      content_tag(:div, source, class: 'source-info-container with-vote-button')
+    wrap_with :div, class: 'source-details-toggle',
+                    data: { source_for: card.name } do
+      source.html_safe
     end
   end
 
@@ -156,27 +173,27 @@ format :html do
   view :creator_credit do |args|
     "added #{_render_created_at(args)} ago by " \
     "#{nest Card.fetch(card.cardname.field('*creator')),
-        view: :core,
-        item: :link
-      }"
+            view: :core,
+            item: :link}"
   end
 
-  view :website_link do |args|
+  view :website_link do |_args|
     card_link(
       card,
       text: nest(Card.fetch(card.cardname.field('website'),
-            new: {}),
-            view: :content,
-            item: :name),
+                            new: {}),
+                 view: :content,
+                 item: :name),
       class: 'source-preview-link',
       target: '_blank'
     )
   end
 
-  view :title_link do |args|
+  view :title_link do |_args|
     card_link(
       card,
-      text: nest(Card.fetch(card.cardname.field('title'), new: {}), view: :needed),
+      text: nest(Card.fetch(card.cardname.field('title'),
+                            new: {}), view: :needed),
       class: 'source-preview-link preview-page-link',
       target: '_blank'
     )
@@ -190,21 +207,21 @@ format :html do
     ].join "\n"
   end
 
-  view :cited do |args|
-    <<-HTML
-    <div class="source-info-container">
-    <div class="item-content">
-     <div class="fa fa-times-circle remove-source" style="display:none"></div>
-     <div class="source-icon fa fa-globe"></div>
-     <div class="item-summary">
-      #{_render_source_link args}
-      <div class="last-edit">
-        #{ _render_creator_credit args
-        }
-      </div>
-    </div>
-    </div>
-  </div>
-    HTML
-  end
+  # view :cited do |args|
+  #   <<-HTML
+  #   <div class="source-info-container">
+  #   <div class="item-content">
+  #    <div class="fa fa-times-circle remove-source" style="display:none"></div>
+  #    <div class="source-icon fa fa-globe"></div>
+  #    <div class="item-summary">
+  #     #{_render_source_link args}
+  #     <div class="last-edit">
+  #       #{ _render_creator_credit args
+  #       }
+  #     </div>
+  #   </div>
+  #   </div>
+  # </div>
+  #   HTML
+  # end
 end

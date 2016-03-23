@@ -20,7 +20,7 @@ def company_card
   Card.fetch company_name
 end
 
-def source_subcards new_source_card
+def source_subcards(new_source_card)
   [new_source_card.subfield(:file), new_source_card.subfield(:text),
    new_source_card.subfield(:wikirate_link)]
 end
@@ -33,7 +33,7 @@ def source_in_request?
   source_subcard_exist?(new_source_card)
 end
 
-def source_subcard_exist? new_source_card
+def source_subcard_exist?(new_source_card)
   file_card, text_card, link_card = source_subcards new_source_card
   (file_card && file_card.attachment.present?) ||
     (text_card && text_card.content.present?) ||
@@ -41,22 +41,22 @@ def source_subcard_exist? new_source_card
 end
 
 # TODO: add #subfield_present? method to subcard API
-def subfield_exist? field_name
+def subfield_exist?(field_name)
   subfield_card = subfield(field_name)
   !subfield_card.nil? && subfield_card.content.present?
 end
 
 event :set_metric_value_name,
       before: :set_autoname, when: proc { |c| c.cardname.parts.size < 4 } do
-  self.name = ['metric', 'company', 'year'].map do |name|
+  self.name = %w(metric company year).map do |name|
     content = remove_subfield(name).content
     content.gsub('[[', '').gsub(']]', '')
   end.join '+'
 end
 
 event :validate_metric_value_fields, before: :set_metric_value_name do
-  ['metric', 'company', 'year', 'value'].each do |name|
-    if !subfield_exist?(name)
+  %w(metric company year value).each do |name|
+    unless subfield_exist?(name)
       errors.add :field, "Missing #{name}. Please check before submit."
     end
   end
@@ -90,7 +90,7 @@ def create_source
   end
 end
 
-def clone_subcards_to_hash subcards
+def clone_subcards_to_hash(subcards)
   source_subcards = {}
   subcards.subcards.each_with_key do |subcard, _key|
     subcard_key = subcard.tag.key
@@ -105,7 +105,7 @@ def clone_subcards_to_hash subcards
   source_subcards
 end
 
-def get_source_card source_list
+def get_source_card(source_list)
   with_sourcebox do
     if (new_source_card = source_list.subcard('new_source'))
       if (url = new_source_card.subfield(:wikirate_link)) &&
@@ -124,8 +124,8 @@ def get_source_card source_list
   end
 end
 
-def find_duplicate_source url
-   (link_card = Card::Set::Self::Source.find_duplicates(url).first) &&
+def find_duplicate_source(url)
+  (link_card = Card::Set::Self::Source.find_duplicates(url).first) &&
     link_card.left
 end
 
@@ -136,20 +136,19 @@ def with_sourcebox
   result
 end
 
-def fill_errors source_card
+def fill_errors(source_card)
   source_card.errors.each do |key, value|
     errors.add key, value
   end
 end
 
-def fill_subcards metric_value, source_card
+def fill_subcards(metric_value, source_card)
   add_subcard '+value', content: metric_value.content, type_id: PhraseID
   add_subcard '+source', content: "[[#{source_card.name}]]",
                          type_id: PointerID
 end
 
 format :html do
-
   view :new do |args|
     # return super(args)
     if Env.params[:noframe]
@@ -169,8 +168,7 @@ format :html do
     end
   end
 
-
-  def get_structure args
+  def get_structure(args)
     if args[:company]
       'metric company add value'
     elsif args[:source]
@@ -182,7 +180,7 @@ format :html do
     end
   end
 
-  def set_hidden_args args
+  def set_hidden_args(args)
     if !args[:source]
       # TODO: add appropriate view to the following condition.
       view = (args[:metric] || args[:company]) ? :timeline_data : :timeline_data
@@ -195,7 +193,7 @@ format :html do
     end
   end
 
-  def default_new_args args
+  def default_new_args(args)
     set_hidden_args args
     if args[:company]
       args[:hidden]['card[subcards][+company][content]'] = args[:company]
@@ -211,11 +209,11 @@ format :html do
     super(args)
   end
 
-  def edit_slot args
+  def edit_slot(args)
     super args.merge(core_edit: true)
   end
 
-  def legend args
+  def legend(args)
     subformat(card.metric_card)._render_legend args
   end
 
@@ -247,59 +245,65 @@ format :html do
 
   view :timeline_data do |args|
     # container elements
-    dot =  content_tag(:div, '', class: 'timeline-dot')
-    value_details_toggle = content_tag(
-                                        :i,
-                                        '',
-                                        class: 'fa fa-caret-right
-                                                fa-lg margin-left-10
-                                                btn btn-default btn-sm',
-                                        data: { toggle: 'collapse-next',
-                                                parent: '.value',
-                                                collapse: '.metric-value-details'
-                                              }
-                                      )
-    credit = wrap_with :div, class: 'credit' do
-      [
-        nest(card, view: :core, structure: 'creator credit'),
-        _optional_render(:source_link, args, :hide)
-      ]
-    end
-    # value_details =  content_tag(:div, credit.html_safe, class: )
-    # year parent container
+    value_details = _render_value_details(args)
     year = content_tag(:span, card.cardname.right)
-    year << dot
-    year = content_tag(:div, year.html_safe,  class: 'td year')
-
-    # comments
-    comments = (disc_card = card.fetch trait: :discussion) &&
-               subformat(disc_card).render_core.html_safe
-    # source
-    sources = card.fetch trait: :source
-    sources = subformat(sources).render_core(item: :cited).html_safe
-    # sources = subformat(sources).render_core(item: :content, structure: 'source item').html_safe
-    value_details = wrap_with :div, class: 'metric-value-details collapse' do
-      [
-        # line,
-        credit.html_safe,
-        content_tag(:div, comments, class: 'comments-div'),
-        content_tag(:div, sources, class: 'cited-sources')
-      ]
-    end
-
-    # value parent container
+    year << content_tag(:div, '', class: 'timeline-dot')
+    year = content_tag(:div, year.html_safe, class: 'td year')
     value =  _render_modal_details(args)
     value << content_tag(:span, legend(args), class: 'metric-unit')
-    value << value_details_toggle.html_safe
+    value << _render_value_details_toggle
     value << value_details.html_safe
-    # line = content_tag(:div, '', class: 'timeline-line') if args[:connect]
 
     # stitch together
     wrap_with :div, class: 'timeline-row' do
       [
-        # line,
         year,
         content_tag(:div, value.html_safe, class: 'td value')
+      ]
+    end
+  end
+
+  view :value_details do |args|
+    comments = _render_comments
+    sources = _render_sources
+    wrap_with :div, class: 'metric-value-details collapse' do
+      [
+        _optional_render(:credit_name, args, :show),
+        content_tag(:div, comments, class: 'comments-div'),
+        content_tag(:div, sources, class: 'cited-sources')
+      ]
+    end
+  end
+
+  view :value_details_toggle do
+    content_tag(:i, '', class: 'fa fa-caret-right
+                                fa-lg margin-left-10
+                                btn btn-default btn-sm',
+                        data: { toggle: 'collapse-next',
+                                parent: '.value',
+                                collapse: '.metric-value-details'
+                              }
+               )
+  end
+
+  view :sources do
+    heading = content_tag(:h5, 'Cited')
+    sources = card.fetch trait: :source
+    heading << subformat(sources).render_core(item: :cited).html_safe
+  end
+
+  view :comments do
+    comments = (disc_card = card.fetch trait: :discussion) &&
+               subformat(disc_card).render_core.html_safe
+    heading = content_tag(:h5, 'Discussion')
+    heading << comments
+  end
+
+  view :credit_name do |args|
+    wrap_with :div, class: 'credit' do
+      [
+        nest(card, view: :core, structure: 'creator credit'),
+        _optional_render(:source_link, args, :hide)
       ]
     end
   end
