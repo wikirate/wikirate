@@ -12,7 +12,7 @@ format :html do
   view :thumbnail_image do |args|
     wrap_with :div, class: 'thumbnail-image' do
       [
-        content_tag(:span, class: 'img-helper'),
+        content_tag(:span, '', class: 'img-helper'),
         _render_designer_image(args)
       ]
     end

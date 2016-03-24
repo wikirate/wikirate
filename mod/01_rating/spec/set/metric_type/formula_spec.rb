@@ -1,9 +1,9 @@
 # -*- encoding : utf-8 -*-
 
 describe Card::Set::MetricType::Formula do
-  include_examples 'calculation', :score
+  #include_examples 'calculation', :score
   #it_behaves_like 'calculation', :score do
-    #end
+  #end
 
   describe '#valid_ruby_expression?' do
     subject do
@@ -84,4 +84,5 @@ describe Card::Set::MetricType::Formula do
       subject { metric.scored? }
       it { is_expected.to be_falsey }
     end
+  end
 end

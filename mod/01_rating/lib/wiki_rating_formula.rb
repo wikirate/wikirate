@@ -7,7 +7,7 @@ class WikiRatingFormula < TranslateFormula
     result = 0.0
     metrics.each do |metric|
       if (v = metrics_with_values[metric])
-        binding.pry
+        weight = @executed_lambda[metric]
         result += v.to_f * weight
       else
         return nil
