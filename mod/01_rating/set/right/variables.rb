@@ -1,7 +1,12 @@
 include Type::Pointer
 
 def metric_card
+  binding.pry
   left.left
+end
+
+def metric_card_name
+  cardname.left_name.left_name
 end
 
 def formula_card
@@ -94,7 +99,7 @@ format :html do
     # HTML
     #{card.key}+add_to_formula
     #binding.pry
-    args[:append_for_details] = "#{card.metric_card.key}+add_to_formula"
+    args[:append_for_details] = "#{card.metric_card_name.key}+add_to_formula"
     subformat(metric_item_card)._render_item_view(args)
   end
 
