@@ -33,7 +33,7 @@ format :html do
       content_tag :a, 'Add this metric',
                   args.merge('data-metric-id' => input_metric.id)
     else
-      args.merge text: 'Add this metric',
+      args.merge! text: 'Add this metric',
                  'data-slot-selector' =>
                     ".TYPE_PLUS_RIGHT-metric-formula.edit-view .RIGHT-Xvariable[data-card-name='#{variables_card.name}']",
                   remote: true,

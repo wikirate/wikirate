@@ -22,7 +22,7 @@ format :html do
     wrap_with :div, class: 'thumbnail-text' do
       [
         _render_thumbnail_title(args),
-        _render_thumbnail_subtitle(args)
+        _optional_render_thumbnail_subtitle(args)
       ]
     end
   end
