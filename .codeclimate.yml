@@ -19,3 +19,5 @@ exclude_paths:
 - spec/**/*
 - vendor/**/*
 - mod/pdfjs/files/**/*
+- mod/wikirate_source/files/**/*
+- mod/wikirate_source/lib/javascript/**/*

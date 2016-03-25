@@ -103,7 +103,8 @@ end
 format :html do
   view :tabs do |args|
     lazy_loading_tabs args[:tabs], args[:default_tab],
-                      render("#{args[:default_tab]}_tab", skip_permission: true)
+                      render("#{args[:default_tab]}_tab", skip_permission:
+                        true)
   end
   def default_tabs_args args
     args[:tabs] = {
@@ -116,14 +117,31 @@ format :html do
   # tabs for metrics of type formula, score and WikiRating
   # overriden for researched
   view :details_tab do
-    output [
-             nest(card.formula_card, view: :titled, title: 'Formula'),
-             nest(card.about_card, view: :titled, title: 'About')
-           ]
+    tab_wrap do
+      [
+        nest(card.formula_card, view: :titled, title: 'Formula'),
+        nest(card.about_card, view: :titled, title: 'About')
+      ]
+    end
+  end
+
+  def tab_wrap
+    wrap_with :div, class: 'row' do
+      wrap_with :div, class: 'col-md-12' do
+        yield
+      end
+    end
   end
 
   view :discussion_tab do |args|
-    _render_comment_box(args)
+    tab_wrap do
+      _render_comment_box(args)
+    end
+  end
+
+  view :designer_image do |args|
+    nest card.metric_designer_card.field(:image, new: {}), view: :core,
+         size: :small
   end
 
   def css
@@ -185,18 +203,9 @@ format :html do
              "#{card.key}+add_to_formula"
     item_wrap(args) do
       <<-HTML
-      <div class="header metric-details-toggle"
+      <div class="no-data metric-details-toggle"
            data-append="#{append}">
-        #{_render_handle if args[:draggable]}
-        #{_render_vote if args[:vote]}
-        <div class="logo hidden-xs hidden-md">
-          #{ nest card.metric_designer_card.fetch(trait: :image, new: {}),
-                  view: :core, size: 'small'
-          }
-        </div>
-        <div class="name">
-          #{nest card.metric_title_card, view: :name}
-        </div>
+        #{_render_thumbnail(optional_thumbnail_subtitle: :hide)}
       </div>
       HTML
     end
@@ -263,18 +272,10 @@ format :html do
       <div class="row clearfix ">
         <div class="col-md-12">
           <div class="name row">
-            <a class="inherit-anchor" href="{{_lllr+_llr|url}}">
-            {{_llr|name}}
-            </a>
+            #{card_link card, text: card.metric_title, class: 'inherit-anchor'}
           </div>
           <div class="row">
-            <div class="metric-designer-info">
-              <a href="/{{_lllr|name}}+contribution">
-                <div><small class="text-muted">Designed by</small></div>
-                <div>{{_lllr+logo|core;size:small}}</div>
-                <div><h3>{{_lllr|name}}</h3></div>
-              </a>
-            </div>
+            #{_render_designer_info}
           </div>
         </div>
       </div>

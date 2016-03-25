@@ -79,7 +79,7 @@ end
 
 When /^I fill in source url with "([^"]*)"$/ do |url|
   fill_in "card_subcards__source_subcards_new_source_subcards__Link_content",
-          with: "http://example.com"
+          with: url
 end
 
 When /^I fill in metric value with "([^"]*)" as company, "([^"]*)" as year, and "([^"]*)" as value$/ do |company, year, value|

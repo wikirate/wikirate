@@ -32,7 +32,6 @@ view :select do |_args|
             )
 end
 
-
 format :html do
   # view :methodology_tab do
   #   <<-HTML
@@ -89,9 +88,22 @@ format :html do
   view :designer_info do |args|
     wrap_each_with :div, class: 'metric-designer-info' do
       [
-        author_link(card.metric_designer_card, 'Designed by'),
-        author_link(card.scorer_card, 'Scored by')
+        author_info(card.metric_designer_card, 'Designed by'),
+        author_info(card.scorer_card, 'Scored by')
       ]
+    end
+  end
+
+  view :scorer_image do |args|
+    nest card.scorer_card.field(:image, new: {}), view: :core, size: :small
+  end
+
+  view :score_thumbnail do |args|
+    link_text = author_info card.scorer_card, 'Scored by',
+                            "#{time_ago_in_words card.created_at} ago"
+    wrap_with :div, class: 'metric-designer-info' do
+      card_link card, class: 'row list-group-item',
+                      text: link_text
     end
   end
 end

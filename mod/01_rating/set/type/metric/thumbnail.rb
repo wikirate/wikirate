@@ -9,9 +9,12 @@ format :html do
     end
   end
 
-  view :thumbnail_image do |_args|
+  view :thumbnail_image do |args|
     wrap_with :div, class: 'thumbnail-image' do
-      nest card.metric_designer_card.field(:image, new: {}), view: :core, size: :small
+      [
+        content_tag(:span, '', class: 'img-helper'),
+        _render_designer_image(args)
+      ]
     end
   end
 
@@ -19,7 +22,7 @@ format :html do
     wrap_with :div, class: 'thumbnail-text' do
       [
         _render_thumbnail_title(args),
-        _render_thumbnail_subtitle(args)
+        _optional_render_thumbnail_subtitle(args)
       ]
     end
   end
@@ -41,5 +44,9 @@ format :html do
   def default_thumbnail_subtitle_args args
     args[:text] ||= [card.value_type, 'designed by'].compact.join ' | '
     args[:author] ||= card_link card.metric_designer
+  end
+
+  view :score_thumbnail do |args|
+    ''
   end
 end

@@ -37,6 +37,7 @@ def translation_table
 end
 
 def translation_hash
+  return {} unless content.present?
   JSON.parse(content)
 rescue JSON::ParserError => _e
   fail Card::Error, 'fail to parse formula for categorical input'
@@ -86,8 +87,8 @@ format :html do
                  type: 'button',
                  data: { toggle: 'modal', target: target },
                  href: path(layout: 'modal', view: :edit,
-                            id: card.variables_card.name,
-                            slot: { title: 'Choose Metric' }) do
+                            name: card.variables_card.name,
+                            slot: {title: 'Choose Metric'}) do
         glyphicon('plus') + ' add metric'
       end
     end
@@ -99,14 +100,19 @@ format :html do
         subformat(metric)._render_weight_row(args.merge(weight: weight))
       end
     end
-    table_content.push(
-      ['', sum_field]
-    )
+    sum_field =
+      if table_content.empty?
+        { content: sum_field, class: 'hidden' }
+      else
+        sum_field
+      end
+    table_content.push ['', sum_field]
     output [
       table_editor(table_content, %w(Metric Weight)),
       add_metric_button
     ]
   end
+
 
   def sum_field value=100
     text_field_tag 'weight_sum', value, class: 'weight-sum', disabled: true
@@ -159,8 +165,7 @@ event :validate_formula, :validate,
   not_on_whitelist =
     content.gsub(/\{\{([^}])+\}\}/, '').scan(/[a-zA-Z][a-zA-Z]+/)
            .reject do |word|
-      WL_FORMULA_WHITELIST.include? word
-    end
+f    end
   if not_on_whitelist.present?
     errors.add :formula, "#{not_on_whitelist.first} forbidden keyword"
   end

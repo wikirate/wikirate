@@ -1,3 +1,10 @@
+def score_cards
+  # we don't check the metric type
+  # we assume that a metric with left is a metric again is always a score
+  Card.search type_id: MetricID,
+              left_id: id
+end
+
 format :html do
   def default_content_formgroup_args args
     super(args)
@@ -16,29 +23,40 @@ format :html do
   end
 
   view :details_tab do
-    output [
-             nest(card.about_card, view: :titled, title: 'About'),
-             nest(card.methodology_card, view: :titled, title: 'Methodology'),
-             nest(card.value_type_card, view: :titled, item: :name,
-                                        title: 'Value Type')
-           ]
+    tab_wrap do
+      [
+         nest(card.about_card, view: :titled, title: 'About'),
+         nest(card.methodology_card, view: :titled, title: 'Methodology'),
+         nest(card.value_type_card, view: :titled, item: :name,
+                                    title: 'Value Type')
+      ]
+    end
   end
 
   view :source_tab do
-    <<-HTML
-    <div class="row">
-      <div class="row-icon">
-        <i class="fa fa-globe"></i>
+    tab_wrap do
+      # TODO: get rid of process content
+      process_content <<-HTML
+      <div class="row">
+        <div class="row-icon">
+          <i class="fa fa-globe"></i>
+        </div>
+        <div class="row-data">
+            {{+source|titled;title:Sources;|content;structure:source_item}}
+        </div>
       </div>
-      <div class="row-data">
-        {{+source|titled;title:Sources;|content;structure:source_item}}
-      </div>
-    </div>
-    HTML
+      HTML
+    end
   end
 
-  view :scores_tab do
-    'scores'
+  view :scores_tab do |args|
+    tab_wrap do
+      wrap_with :div, class: 'list-group' do
+        card.score_cards.map do |item|
+          subformat(item)._render_score_thumbnail(args)
+        end
+      end
+    end
   end
 
   view :content_left_col do |args|
@@ -76,5 +94,4 @@ format :html do
     </div>
     HTML
   end
-
 end
