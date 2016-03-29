@@ -75,7 +75,7 @@ format :html do
         .header-row
           .header-header
             Metric
-        .yinyang_list
+        .yinyang-list
           = metric_list
       .col-md-6.metric-details
       HAML
