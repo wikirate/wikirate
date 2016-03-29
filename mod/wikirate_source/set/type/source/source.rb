@@ -74,7 +74,7 @@ format :html do
       form_opts.merge! hidden: args.delete(:hidden),
                        'main-success' => 'REDIRECT',
                        'data-form-for' => 'new_metric_value',
-                       class: 'card-slot'
+                       class: 'card-slot new-view TYPE-source'
       card_form :create, form_opts do
         output [
           _optional_render(:name_formgroup, args),
@@ -104,13 +104,13 @@ format :html do
 
   view :source_item do |args|
     source = render_content structure: 'source_with_preview'
-    source_details =
-      wrap_with :div, class: 'source-details',
-                      data: { source_for: card.name } do
-        source.html_safe
-      end
-    source_details + render_iframe_view(
-      args.merge(url: card.fetch(trait: :wikirate_link).content))
+    wrap_with :div, class: 'source-details',
+                    data: { source_for: card.name } do
+      url_card = card.fetch(trait: :wikirate_link)
+      url = url_card ? url_card.item_names.first : nil
+      args[:url] = url
+      source + render_iframe_view(args.merge(url: url)).html_safe
+    end
   end
 
   view :cited do
