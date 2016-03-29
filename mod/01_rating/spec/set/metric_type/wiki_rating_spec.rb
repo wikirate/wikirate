@@ -59,6 +59,10 @@ describe Card::Set::MetricType::WikiRating do
     end
   end
 
+  context 'you are not allowed to add metrics that are no scores' do
+
+  end
+
   context 'missing value' do
     it "doesn't create rating value for companies with missing values" do
       expect(rating_value_card 'Death Star', '1977').to be_falsey
