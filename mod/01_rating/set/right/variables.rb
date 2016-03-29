@@ -88,7 +88,7 @@ format :html do
   end
 
   def metric_list
-    Card.search(type_id: MetricID, limit: 20).map do |m|
+    Card.search(type_id: MetricID, limit: 0).map do |m|
       metric_list_item m
     end.join "\n"
   end
