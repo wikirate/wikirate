@@ -32,7 +32,7 @@ class SharedData
                    }
       Card.create! name: 'Death Star+Force', type: 'analysis',
                    subcards: {
-                     '+article'  => { content: "I'm your father!" }
+                     '+article' => { content: "I'm your father!" }
                    }
     end
 
@@ -40,28 +40,22 @@ class SharedData
       sourcepage = Card.create!(
         type_id: Card::SourceID,
         subcards: {
-          '+Link' => {
-            content: 'http://www.wikiwand.com/en/Star_Wars'
-          },
-          '+company' => {
-            content: '[[Death Star]]',         type_id: Card::PointerID
-          },
-          '+topic'   => {
-            content: '[[Force]]',              type_id: Card::PointerID
-          }
+          '+Link' => { content: 'http://www.wikiwand.com/en/Star_Wars' },
+          '+company' => { content: '[[Death Star]]', type_id: Card::PointerID },
+          '+topic' => { content: '[[Force]]', type_id: Card::PointerID }
         }
       )
       Card.create!(
         name: 'Death Star uses dark side of the Force',
         type_id: Card::ClaimID,
         subcards: {
-          '+source'  => {
+          '+source' => {
             content: "[[#{sourcepage.name}]]", type_id: Card::PointerID
           },
           '+company' => {
             content: '[[Death Star]]',         type_id: Card::PointerID
           },
-          '+topic'   => {
+          '+topic' => {
             content: '[[Force]]',              type_id: Card::PointerID
           }
         }
