@@ -14,12 +14,15 @@ class RubyFormula < Formula
   def to_lambda
     rb_formula = @formula.keyified
     metrics.each_with_index do |metric, i|
-      rb_formula.gsub!("{{#{ metric }}}", "args[#{ i }]")
+      rb_formula.gsub!("{{#{ metric }}}", "data[#{i}][year]")
     end
-    "lambda { |args| #{rb_formula}}"
+    "#{LAMBDA_PREFIX} #{rb_formula} }"
   end
 
+  LAMBDA_PREFIX = "lambda { |data, year| "
   protected
+
+
 
   def exec_lambda expr
     eval expr

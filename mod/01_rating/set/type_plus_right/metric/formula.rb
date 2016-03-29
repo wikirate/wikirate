@@ -227,11 +227,10 @@ def calculate_values_for opts={}
     fail Card::Error, '#calculate_values_for: no company given'
   end
   values = fetch_input_values opts
-  values.each_pair do |year, companies|
-    metrics_with_values = companies[opts[:company].to_name.key]
-    value = formula_interpreter.evaluate_single_input metrics_with_values
-    yield year, value
-  end
+  metrics_with_values_by_year = values[opts[:company]].each_pair
+  value = formula_interpreter.evaluate_single_input
+  year, metrics_with_values_by_year
+  yield year, value
 end
 
 def keyified
@@ -295,8 +294,8 @@ def extract_metrics
 end
 
 # choose a company (and a year) or fetch all values
-# @return [Hash] values in the form
-#   { year => { company => { metric => value } } }
+# @return [Hash] values of the form
+#   { company => { metric => { year => { value } } } }
 def fetch_input_values opts={}
   values = Hash.new { |h1, k1| h1[k1] = Hash.new { |h2, k2| h2[k2] = {} } }
   return values if input_metric_keys.empty?
@@ -304,7 +303,7 @@ def fetch_input_values opts={}
     year = v_card.cardname.left_name.right
     company = v_card.cardname.left_name.left_name.right_name.key
     metric = v_card.cardname.left_name.left_name.left_name.key
-    values[year][company][metric] = v_card.content
+    values[company][metric][year] = v_card.content
   end
 end
 

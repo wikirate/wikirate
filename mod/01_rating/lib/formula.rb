@@ -17,8 +17,8 @@ class Formula
     result
   end
 
-  def evaluate_single_input metrics_with_values
-    expr = insert_into_formula metrics_with_values
+  def evaluate_single_input year, metrics_with_values
+    expr = insert_into_formula year, metrics_with_values
     return if expr.match(/\{\{([^}]+)\}\}/) # missing input values
     compile expr
     normalize_value get_single_value(metrics_with_values)
@@ -45,7 +45,7 @@ class Formula
     false
   end
 
-  def insert_into_formula metrics_with_values
+  def insert_into_formula year, metrics_with_values
     result = @formula.keyified
     metrics_with_values.each_pair do |metric, value|
       result.gsub! "{{#{metric}}}", value
