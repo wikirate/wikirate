@@ -154,40 +154,8 @@ format :html do
   end
 
   def css
+    return ''
     css = <<-CSS
-    .titled-view.TYPE_PLUS_RIGHT-metric-formula {
-      .TYPE_PLUS_RIGHT-metric-formula.card-content {
-        font-size: 1.5em;
-        font-weight: bold;
-      }
-    }
-    .yinyang-row .metric-thumbnail {
-      white-space: nowrap;
-      .thumbnail-text {
-        height: 40px;
-        padding-top: 10px;
-      }
-     .thumbnail-image {
-        height: 40px;
-      }
-    }
-      .metric-thumbnail {
-        font-size: 0.66em;
-        font-weight: normal;
-        white-space: normal;
-        border: solid 1px #ebebeb;
-        display: inline-block;
-        padding: 7px;
-        img {
-          max-width: 35px;
-          max-height: 35px;
-        }
-        .thumbnail-image, .thumbnail-text {
-          display: inline-block;
-          vertical-align: middle;
-
-        }
-      }
     CSS
     "<style> #{Sass.compile css}</style>"
   end
