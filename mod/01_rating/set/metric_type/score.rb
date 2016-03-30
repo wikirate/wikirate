@@ -86,10 +86,15 @@ format :html do
   end
 
   view :designer_info do |args|
+    card_link card.metric_designer_card.cardname.field('contribution'),
+              text: author_info(card.metric_designer_card, 'Designed by')
+
     wrap_each_with :div, class: 'metric-designer-info' do
       [
-        author_info(card.metric_designer_card, 'Designed by'),
-        author_info(card.scorer_card, 'Scored by')
+        card_link(card.metric_designer_card.cardname.field('contribution'),
+                  text: author_info(card.metric_designer_card, 'Designed by')),
+        card_link(card.scorer_card.cardname.field('contribution'),
+                  text: author_info(card.scorer_card, 'Scored by'))
       ]
     end
   end

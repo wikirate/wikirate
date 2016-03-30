@@ -64,10 +64,11 @@ format :html do
   view :editor do |args|
     return _render_rating_editor(args) if card.wiki_rating?
     return _render_categorical_editor(args) if card.categorical?
+    return super(args) if card.score?
     output [
       super(args),
       _render_variables(args),
-      (add_metric_button unless card.score?)
+      add_metric_button
     ]
   end
 
@@ -80,7 +81,7 @@ format :html do
   end
 
   def add_metric_button
-    target = '#modal-main-slot'
+    target = '#modal-add-metric-slot'
     # "#modal-#{card.cardname.safe_key}"
     content_tag :span, class: 'input-group' do
       button_tag class: 'pointer-item-add btn btn-default slotter',
@@ -112,7 +113,6 @@ format :html do
       add_metric_button
     ]
   end
-
 
   def sum_field value=100
     text_field_tag 'weight_sum', value, class: 'weight-sum', disabled: true
@@ -172,17 +172,45 @@ f    end
 end
 
 # don't update if it's part of scored metric update
-event :update_scores_for_formula, :prepare_to_store,
-      on: :update, when: proc { |c| !c.supercard } do
-  add_subcard left
-  left.update_values
+event :update_metric_values, :prepare_to_store,
+      on: :update, changed: :content do
+  metric_card.value_cards.each do |value_card|
+    value_card.trash = true
+    add_subcard value_card
+  end
+
+  calculate_all_values do |company, year, value|
+    metric_value_name = metric_card.metric_value_name(company, year)
+    next if subcard metric_value_name
+    if (card = subcard "#{metric_value_name}+value")
+      card.trash = false
+      card.content = value
+    else
+      add_value company, year, value
+    end
+  end
 end
 
 # don't update if it's part of scored metric create
-event :create_scores_for_formula, :prepare_to_store,
-      on: :create, when: proc { |c| !c.supercard } do
-  add_subcard left
-  left.create_values
+event :create_metric_values, :prepare_to_store,
+      on: :create, changed: :content do
+  # FIXME: left has type metric at this points but
+  #        set_names includes "Basic+formula+*type plus right"
+  # TODO: This event moved from type/metric here
+  # Check if above is still the case
+  reset_patterns
+  include_set_modules
+  calculate_all_values do |company, year, value|
+    add_value company, year, value
+  end
+end
+
+def add_value company, year, value
+  add_subcard metric_card.metric_value_name(company, year),
+               type_id: MetricValueID,
+               subcards: {
+                 '+value' => { type_id: NumberID, content: value }
+               }
 end
 
 event :replace_variables, :prepare_to_validate,

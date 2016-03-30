@@ -79,13 +79,13 @@ end
 # end
 
 def companies_with_years_and_values
-  metric_value_cards.map do |mv_card|
+  value_cards.map do |mv_card|
     [mv_card.company, mv_card.year, mv_card.value]
   end
 end
 
 def random_value_card
-  metric_value_cards(limit: 1).first
+  value_cards(limit: 1).first
 end
 
 def random_valued_company_card
@@ -94,10 +94,19 @@ def random_valued_company_card
 end
 
 def metric_value_cards opts={}
-  Card.search({ left: { left: { left: name },
-                right: { type: 'year' } },
-                right: 'value'
-              }.merge(opts))
+  Card.search metric_value_query.merge(opts)
+end
+
+def value_cards opts={}
+  Card.search({ left: metric_value_query, right: 'value' }.merge(opts))
+end
+
+def metric_value_name company, year
+  "#{name}+#{Card[company].name}+#{year}"
+end
+
+def metric_value_query
+  { left: { left: name }, type_id: MetricValueID }
 end
 
 format :html do
@@ -152,9 +161,20 @@ format :html do
         font-weight: bold;
       }
     }
+    .yinyang-row .metric-thumbnail {
+      white-space: nowrap;
+      .thumbnail-text {
+        height: 40px;
+        padding-top: 10px;
+      }
+     .thumbnail-image {
+        height: 40px;
+      }
+    }
       .metric-thumbnail {
         font-size: 0.66em;
         font-weight: normal;
+        white-space: normal;
         border: solid 1px #ebebeb;
         display: inline-block;
         padding: 7px;
@@ -165,6 +185,7 @@ format :html do
         .thumbnail-image, .thumbnail-text {
           display: inline-block;
           vertical-align: middle;
+
         }
       }
     CSS
