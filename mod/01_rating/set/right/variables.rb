@@ -1,7 +1,6 @@
 include Type::Pointer
 
 def metric_card
-  binding.pry
   left.left
 end
 

@@ -64,10 +64,11 @@ format :html do
   view :editor do |args|
     return _render_rating_editor(args) if card.wiki_rating?
     return _render_categorical_editor(args) if card.categorical?
+    return super(args) if card.score?
     output [
       super(args),
       _render_variables(args),
-      (add_metric_button unless card.score?)
+      add_metric_button
     ]
   end
 
@@ -175,6 +176,7 @@ end
 event :update_scores_for_formula, :prepare_to_store,
       on: :update, when: proc { |c| !c.supercard } do
   add_subcard left
+  binding.pry
   left.update_values
 end
 

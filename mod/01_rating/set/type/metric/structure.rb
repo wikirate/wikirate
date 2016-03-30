@@ -36,7 +36,7 @@ format :html do
         </div>
         <div class="col-md-11">
           <div class="name row">
-            #{card_link card.right, class: 'inherit-anchor'}
+            #{card_link card.metric_title_card, class: 'inherit-anchor'}
           </div>
           <div class="row">
             #{_render_designer_info}

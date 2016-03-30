@@ -155,6 +155,7 @@ format :html do
       .metric-thumbnail {
         font-size: 0.66em;
         font-weight: normal;
+        white-space: normal;
         border: solid 1px #ebebeb;
         display: inline-block;
         padding: 7px;

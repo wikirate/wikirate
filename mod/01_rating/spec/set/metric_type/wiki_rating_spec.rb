@@ -14,29 +14,46 @@ describe Card::Set::MetricType::WikiRating do
   end
 
   before do
-    create_metric name: 'score1', type: metric_type do
+    create_metric name: 'score1', type: :researched do
       Samsung 2014 => 10, 2015 => 5
       Sony_Corporation 2014 => 1
       Death_Star 1977 => 5
     end
-    create_metric name: 'score2', type: metric_type do
+    create_metric name: 'score2', type: :researched do
       Samsung 2014 => 5, 2015 => 2
       Sony_Corporation 2014 => 2
     end
-    create_metric name: 'score3', type: metric_type do
+    create_metric name: 'score3', type: :researched do
       Samsung 2014 => 1, 2015 => 1
     end
     @metric = create_metric(
       name: 'rating1', type: :wiki_rating,
-      formula: '{{Joe User+score1}}*5+{{Joe User+score2}}*2'
+      formula: '{"Joe User+score1":"60","Joe User+score2":"40"}'
     )
   end
 
-  context 'when created' do
+  context 'when created with formula' do
     it 'creates rating values' do
-      expect(rating_value).to eq('60')
-      expect(rating_value 'Samsung', '2015').to eq('29')
-      expect(rating_value 'Sony_Corporation').to eq('9')
+      expect(rating_value).to eq('8')
+      expect(rating_value 'Samsung', '2015').to eq('3.8')
+      expect(rating_value 'Sony_Corporation').to eq('1.4')
+      expect(rating_value_card 'Death_Star', '1977').to be_falsey
+    end
+  end
+
+  context 'when formula created later' do
+    @metric = create_metric(
+      name: 'rating1', type: :wiki_rating,
+    )
+    it 'creates rating values' do
+      Card["#{@metric.name}+formula"].update_attributes!(
+                   type_id: Card::PlainTextID,
+                   content: '{"Joe User+score1":"60","Joe User+score2":"40"}'
+      )
+      expect(rating_value).to eq('8')
+      expect(rating_value 'Samsung', '2015').to eq('3.8')
+      expect(rating_value 'Sony_Corporation').to eq('1.4')
+      expect(rating_value_card 'Death_Star', '1977').to be_falsey
     end
   end
 

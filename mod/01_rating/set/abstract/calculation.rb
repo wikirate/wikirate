@@ -22,7 +22,7 @@ event :update_values, :prepare_to_validate,
   end
 
   formula_card.calculate_all_values do |company, year, value|
-    if (card = subfield "+#{company}+#{year}+value")
+    if (card = subfield "+#{Card[company].name}+#{year}+value")
       card.trash = false
       card.content = value
     else
@@ -69,7 +69,7 @@ def create_value_card name, value
 end
 
 def add_value company, year, value
-  add_subfield "+#{company}+#{year}",
+  add_subfield "+#{Card[company].name}+#{year}",
                # type_id: MetricValueID,
                # FIXME: can't use MetricValue because it needs a source
                subcards: {
