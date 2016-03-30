@@ -47,7 +47,9 @@ format :html do
       items.map.with_index do |item, index|
           variable_row(item, index, args)
       end
-    table(table_content, header: ['Metric', 'Variable', 'Example value'])
+    table(table_content, header: ['Metric', 'Variable', 'Example value']) +
+      _render_modal_slot(modal_id: 'add-metric-slot',
+                              dialog_class: 'large').html_safe
   end
 
   def variable_row item_name, index, args
@@ -64,20 +66,21 @@ format :html do
     ]
   end
 
-  view :editor do |args|
+  view :edit do |args|
+    frame args do
     render_haml metric_list: metric_list do
       <<-HAML
-.container-fluid.nodblclick
-  .row.yinyang
-    .row.yinyang-row
-      .col-md-6
-        .header-row
-          .header-header
-            Metric
-        .yinyang-list
-          = metric_list
-      .col-md-6.metric-details
+.yinyang.nodblclick
+  .row.yinyang-row
+    .col-md-6
+      .header-row
+        .header-header
+          Metric
+      .yinyang-list
+        = metric_list
+    .col-md-6.metric-details
       HAML
+    end
     end
   end
 

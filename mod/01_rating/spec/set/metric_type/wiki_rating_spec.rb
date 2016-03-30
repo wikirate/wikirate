@@ -42,10 +42,10 @@ describe Card::Set::MetricType::WikiRating do
   end
 
   context 'when formula created later' do
-    @metric = create_metric(
-      name: 'rating1', type: :wiki_rating,
-    )
     it 'creates rating values' do
+      @metric = create_metric(
+        name: 'rating2', type: :wiki_rating,
+      )
       Card["#{@metric.name}+formula"].update_attributes!(
                    type_id: Card::PlainTextID,
                    content: '{"Joe User+score1":"60","Joe User+score2":"40"}'
