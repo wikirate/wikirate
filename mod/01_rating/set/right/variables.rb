@@ -47,9 +47,7 @@ format :html do
       items.map.with_index do |item, index|
           variable_row(item, index, args)
       end
-    table(table_content, header: ['Metric', 'Variable', 'Example value']) +
-      _render_modal_slot(modal_id: 'add-metric-slot',
-                              dialog_class: 'large').html_safe
+    table(table_content, header: ['Metric', 'Variable', 'Example value'])
   end
 
   def variable_row item_name, index, args

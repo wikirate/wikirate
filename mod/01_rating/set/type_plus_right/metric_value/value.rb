@@ -53,6 +53,10 @@ def company
   cardname.left_name.left_name.right
 end
 
+def company_key
+  cardname.left_name.left_name.right_name.key
+end
+
 def year
   cardname.left_name.right
 end
@@ -64,7 +68,7 @@ event :update_related_scores, :finalize,
   metrics = Card.search type_id: MetricID,
                         left_id: metric_card.id
   metrics.each do |metric|
-    metric.update_value_for! company: company, year: year
+    metric.update_value_for! company: company_key, year: year
   end
 end
 
@@ -73,6 +77,6 @@ event :update_related_calculations, :finalize,
   metrics = Card.search type_id: MetricID,
                         right_plus: ['formula', { refer_to: metric }]
   metrics.each do |metric|
-    metric.update_value_for! company: company, year: year
+    metric.update_value_for! company: company_key, year: year
   end
 end

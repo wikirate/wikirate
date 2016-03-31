@@ -14,15 +14,17 @@ end
 format :html do
   view :core do |args|
     input_metric, formula_metric = card.split_metrics
-    subformat(input_metric).render_add_to_formula(args) +
-    <<-HTML
-      <hr>
-       <div class="row clearfix">
-        <div class="data-item text-center">
-          #{add_metric_link(input_metric, formula_metric)}
+    binding.pry unless formula_metric.formula_card
+    add_metric =
+      <<-HTML
+        <hr>
+         <div class="row clearfix">
+          <div class="data-item text-center">
+            #{add_metric_link(input_metric, formula_metric)}
+          </div>
         </div>
-      </div>
-    HTML
+      HTML
+    subformat(input_metric).render_add_to_formula(args) + add_metric.html_safe
   end
 
   def add_metric_link input_metric, formula_metric

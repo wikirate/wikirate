@@ -1,9 +1,6 @@
 # -*- encoding : utf-8 -*-
 
 describe Card::Set::MetricType::WikiRating do
-  # it_behaves_like 'calculation', :score do
-  #    let(:formula) { }
-  #  end
   let(:metric_type) { :wiki_rating }
   def rating_value company='Samsung', year='2014'
     rating_value_card(company, year).content
@@ -41,15 +38,20 @@ describe Card::Set::MetricType::WikiRating do
     end
   end
 
-  context 'when formula created later' do
-    it 'creates rating values' do
-      @metric = create_metric(
-        name: 'rating2', type: :wiki_rating,
-      )
-      Card["#{@metric.name}+formula"].update_attributes!(
-                   type_id: Card::PlainTextID,
-                   content: '{"Joe User+score1":"60","Joe User+score2":"40"}'
-      )
+  context 'when created without formula' do
+    before do
+      @metric = create_metric name: 'rating2', type: :wiki_rating
+    end
+    it 'has empty json hash as formula' do
+      expect(Card["#{@metric.name}+formula"].content).to eq '{}'
+    end
+    it 'creates rating values if formula updated' do
+      Card::Auth.as_bot do
+        @metric.formular_card.update_attributes!(
+          type_id: Card::PlainTextID,
+          content: '{"Joe User+score1":"60","Joe User+score2":"40"}'
+        )
+       end
       expect(rating_value).to eq('8')
       expect(rating_value 'Samsung', '2015').to eq('3.8')
       expect(rating_value 'Sony_Corporation').to eq('1.4')
@@ -58,20 +60,20 @@ describe Card::Set::MetricType::WikiRating do
   end
 
   context 'when formula changes' do
-    def update_formula new_formula
-      @metric.formula_card.update_attributes! content: new_formula
+    def update_weights weights
+      @metric.formula_card.update_attributes! content: weights.to_json
     end
     it 'updates existing rating value' do
-      update_formula '{{Joe User+score1}}*4+{{Joe User+score2}}*2'
+      update_weights 'Joe User+score1' => 40, 'Joe User+score2' => 60
       expect(rating_value).to eq '50'
     end
     it 'removes incomplete rating value' do
-      update_formula '{{Joe User+score1}}*5 + {{Joe User+score2}}*2 + ' \
-                     '{{Joe User+score3}}'
+      update_formula 'Joe User+score1' => 40, 'Joe User+score2' => 40,
+                     'Joe User+score3' => 20
       expect(rating_value_card 'Sony_Corporation', '2014').to be_falsey
     end
     it 'adds complete rating value' do
-      update_formula '{{Joe User+score1}}*5'
+      update_formula 'Joe User+score1' => 100
       expect(rating_value 'Death Star', '1977').to eq('25')
     end
   end
@@ -98,12 +100,10 @@ describe Card::Set::MetricType::WikiRating do
       expect(rating_value).to eq '15'
     end
     it 'removes incomplete rating values' do
-
       Card::Auth.as_bot do
         Card['Joe User+score1+Samsung+2014+value'].delete
       end
       expect(rating_value_card).to be_falsey
     end
   end
-
 end

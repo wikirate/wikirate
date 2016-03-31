@@ -58,6 +58,16 @@ def create_value args
   Card.create! create_args
 end
 
+# The new metric form has a title and a designer field instead of a name field
+# We compose the card's name here
+event :set_metric_name, :initialize,
+      on: :create,
+      when: proc { |c| c.needs_name? } do
+  title = (tcard = remove_subfield(:title)) && tcard.content
+  designer = (dcard = remove_subfield(:designer)) && dcard.content
+  self.name = "#{designer}+#{title}"
+end
+
 format :html do
   # FIXME: inline js
   view :new do |args|

@@ -1,16 +1,19 @@
 card_accessor :formula, type_id: PhraseID
 
+
+# @param [Hash] opts
+# @option opts [card key] :company
 def update_value_for! opts
   formula_card.calculate_values_for(opts) do |year, value|
-    metric_value_name = "#{name}+#{opts[:company]}+#{year}"
-    if (metric_value = Card[metric_value_name])
+    value_name = metric_value_name opts[:company], year
+    if (metric_value = Card[value_name])
       if value
         update_value_card metric_value, value
       else
         metric_value.delete
       end
     elsif value
-      create_value_card metric_value_name, value
+      create_value_card value_name, value
     end
   end
 end

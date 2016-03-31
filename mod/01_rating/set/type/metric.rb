@@ -2,8 +2,7 @@ card_accessor :vote_count, :type=>:number, :default=>"0"
 card_accessor :upvote_count, :type=>:number, :default=>"0"
 card_accessor :downvote_count, :type=>:number, :default=>"0"
 
-card_accessor :metric_type,
-              :type=>:pointer, :default=>"[[Researched]]"
+card_accessor :metric_type, :type=>:pointer, :default=>"[[Researched]]"
 card_accessor :about
 card_accessor :methodology
 card_accessor :value_type
@@ -17,19 +16,19 @@ def metric_type_codename
 end
 
 def metric_designer
-  cardname.parts[0]
+  junction? ? cardname.parts[0] : creator.cardname
 end
 
 def metric_designer_card
-  self[0]
+  junction? ? self[0] : creator
 end
 
 def metric_title
-  cardname.parts[1]
+  junction? ? cardname.parts[1] : cardname
 end
 
 def metric_title_card
-  self[1]
+  junction? ? self[1] : self
 end
 
 def question_card
@@ -102,7 +101,8 @@ def value_cards opts={}
 end
 
 def metric_value_name company, year
-  "#{name}+#{Card[company].name}+#{year}"
+  company_name = Card.fetch_real_by_key(company).name
+  "#{name}+#{company_name}+#{year}"
 end
 
 def metric_value_query
@@ -110,44 +110,6 @@ def metric_value_query
 end
 
 format :html do
-  view :tabs do |args|
-    lazy_loading_tabs args[:tabs], args[:default_tab],
-                      render("#{args[:default_tab]}_tab", skip_permission:
-                        true)
-  end
-  def default_tabs_args args
-    args[:tabs] = {
-      'Details' => path(view: 'details_tab'),
-      "#{fa_icon :comment} Discussion" => path(view: 'discussion_tab')
-    }
-    args[:default_tab] = 'Details'
-  end
-
-  # tabs for metrics of type formula, score and WikiRating
-  # overriden for researched
-  view :details_tab do
-    tab_wrap do
-      [
-        nest(card.formula_card, view: :titled, title: 'Formula'),
-        nest(card.about_card, view: :titled, title: 'About')
-      ]
-    end
-  end
-
-  def tab_wrap
-    wrap_with :div, class: 'row' do
-      wrap_with :div, class: 'col-md-12' do
-        yield
-      end
-    end
-  end
-
-  view :discussion_tab do |args|
-    tab_wrap do
-      _render_comment_box(args)
-    end
-  end
-
   view :designer_image do |args|
     nest card.metric_designer_card.field(:image, new: {}), view: :core,
          size: :small
@@ -159,7 +121,6 @@ format :html do
     CSS
     "<style> #{Sass.compile css}</style>"
   end
-
 
   view :legend do |args|
     if (unit = Card.fetch("#{card.name}+unit"))
@@ -243,9 +204,9 @@ format :html do
   view :value do |args|
     return '' unless args[:company]
     <<-HTML
-          <div class="data-item hide-with-details">
-            {{#{card.name}+#{args[:company]}+latest value|concise}}
-          </div>
+      <div class="data-item hide-with-details">
+        {{#{card.name}+#{args[:company]}+latest value|concise}}
+      </div>
     HTML
   end
 
@@ -254,26 +215,69 @@ format :html do
   end
 
   view :add_to_formula do |args|
-    html = <<-HTML
-    <div class="metric-details-close-icon pull-right	"><i class="fa fa-times-circle fa-2x"></i></div>
-    <br>
-    <div class="metric-details-header">
-      <div class="row clearfix ">
-        <div class="col-md-12">
-          <div class="name row">
-            #{card_link card, text: card.metric_title, class: 'inherit-anchor'}
-          </div>
-          <div class="row">
-            #{_render_designer_info}
-          </div>
+    # .metric-details-close-icon.pull-right
+    # i.fa.fa-times-circle.fa-2x
+    # %br
+    render_haml do
+<<-HAML
+%br
+.metric-details-header
+  .row.clearfix
+    .col-md-12
+      .name.row
+        = card_link card, text: card.metric_title, class: 'inherit-anchor'
+      .row
+        = _render_designer_info
+  %hr
+  .row.clearfix.wiki
+    = _render_metric_info
+HAML
+    end
+  end
+
+  view :metric_info do |args|
+    question = subformat(card.question_card)._render_core.html_safe
+    rows = [
+             icon_row('question', question, class: 'metric-details-question'),
+             icon_row('bar-chart', card.metric_type, class: 'text-emphasized'),
+             icon_row('tag', field_nest('+topic', view: :content, item: :link)),
+            ]
+    if card.researched?
+      rows <<  text_row('Unit', field_nest('Unit'))
+      rows <<  text_row('Range', field_nest('Range'))
+    end
+    wrap_with :div, class: 'metric-info' do
+      rows
+    end
+  end
+
+  def metric_info_row left_structure, right_content, opts={}
+    <<-HTML
+      <div class="row #{opts[:class]}">
+        #{left_structure}
+        <div class="row-data">
+          #{right_content}
         </div>
       </div>
-      <hr>
-      <div class="row clearfix wiki">{{_l+metric details|content}}</div>
-    </div>
     HTML
-    process_content html  # TODO: get rid of process_content
   end
+  def text_row text, content, opts={}
+    left = <<-HTML
+            <div class="left-col">
+              <strong>#{text}</strong>
+            </div>
+          HTML
+    metric_info_row left, content, opts
+  end
+  def icon_row icon, content, opts={}
+    left = <<-HTML
+            <div class="left-col icon-muted">
+              #{fa_icon icon}
+            </div>
+          HTML
+    metric_info_row left, content, opts
+  end
+
 
   view :weight_row do |args|
     output(
@@ -290,16 +294,6 @@ format :json do
   view :content do
     companies_with_years_and_values.to_json
   end
-end
-
-# The new metric form has a title and a designer field instead of a name field
-# We compose the card's name here
-event :set_metric_name, :initialize,
-      on: :create,
-      when: proc { |c| c.needs_name? } do
-  title = (tcard = remove_subfield(:title)) && tcard.content
-  designer = (dcard = remove_subfield(:designer)) && dcard.content
-  self.name = "#{designer}+#{title}"
 end
 
 def needs_name?

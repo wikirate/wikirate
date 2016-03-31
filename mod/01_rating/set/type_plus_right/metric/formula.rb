@@ -83,16 +83,20 @@ format :html do
   def add_metric_button
     target = '#modal-add-metric-slot'
     # "#modal-#{card.cardname.safe_key}"
-    content_tag :span, class: 'input-group' do
-      button_tag class: 'pointer-item-add btn btn-default slotter',
-                 type: 'button',
-                 data: { toggle: 'modal', target: target },
-                 href: path(layout: 'modal', view: :edit,
-                            name: card.variables_card.name,
-                            slot: {title: 'Choose Metric'}) do
-        glyphicon('plus') + ' add metric'
-      end
-    end
+    output [
+      (content_tag :span, class: 'input-group' do
+        button_tag class: 'pointer-item-add btn btn-default slotter',
+                   type: 'button',
+                   data: { toggle: 'modal', target: target },
+                   href: path(layout: 'modal', view: :edit,
+                              name: card.variables_card.name,
+                              slot: {title: 'Choose Metric'}) do
+          glyphicon('plus') + ' add metric'
+        end
+      end),
+      _render_modal_slot(modal_id: 'add-metric-slot',
+                         dialog_class: 'large').html_safe
+    ]
   end
 
   view :rating_editor do |args|
@@ -178,7 +182,7 @@ event :update_metric_values, :prepare_to_store,
     value_card.trash = true
     add_subcard value_card
   end
-
+  binding.pry
   calculate_all_values do |company, year, value|
     metric_value_name = metric_card.metric_value_name(company, year)
     next if subcard metric_value_name
@@ -200,6 +204,7 @@ event :create_metric_values, :prepare_to_store,
   # Check if above is still the case
   reset_patterns
   include_set_modules
+  binding.pry
   calculate_all_values do |company, year, value|
     add_value company, year, value
   end
