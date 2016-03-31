@@ -182,7 +182,6 @@ event :update_metric_values, :prepare_to_store,
     value_card.trash = true
     add_subcard value_card
   end
-  binding.pry
   calculate_all_values do |company, year, value|
     metric_value_name = metric_card.metric_value_name(company, year)
     next if subcard metric_value_name
@@ -204,7 +203,6 @@ event :create_metric_values, :prepare_to_store,
   # Check if above is still the case
   reset_patterns
   include_set_modules
-  binding.pry
   calculate_all_values do |company, year, value|
     add_value company, year, value
   end

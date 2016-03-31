@@ -14,7 +14,6 @@ end
 format :html do
   view :core do |args|
     input_metric, formula_metric = card.split_metrics
-    binding.pry unless formula_metric.formula_card
     add_metric =
       <<-HTML
         <hr>
