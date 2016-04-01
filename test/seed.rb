@@ -94,17 +94,20 @@ class SharedData
                    'Jedi+disturbances in the Force+Joe User' => 40 }
       )
 
-      create_metric name: 'score1', type: metric_type do
-        Samsung 2014 => 10, 2015 => 5
-        Sony_Corporation 2014 => 1
-        Death_Star 1977 => 5
+      Card::Metric.create name: 'Joe User+score1', type: :researched,
+                          random_source: true do
+        Samsung          '2014' => 10, '2015' => 5
+        Sony_Corporation '2014' => 1
+        Death_Star       '1977' => 5
       end
-      create_metric name: 'score2', type: metric_type do
-        Samsung 2014 => 5, 2015 => 2
-        Sony_Corporation 2014 => 2
+      Card::Metric.create name: 'Joe User+score2', type: :researched,
+                          random_source: true do
+        Samsung          '2014' => 5, '2015' => 2
+        Sony_Corporation '2014' => 2
       end
-      create_metric name: 'score3', type: metric_type do
-        Samsung 2014 => 1, 2015 => 1
+      Card::Metric.create name: 'Joe User+score3', type: :researched,
+                          random_source: true do
+        Samsung '2014' => 1, '2015' => 1
       end
     end
   end
