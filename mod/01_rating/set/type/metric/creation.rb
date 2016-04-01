@@ -11,8 +11,8 @@ end
 #   Siemens 2015 => 4, 2014 => 3
 #   Apple   2105 => 7
 # end
-def create_values &block
-  Card::Metric::ValueCreator.new(self, &block).add_values
+def create_values random_source=false, &block
+  Card::Metric::ValueCreator.new(self, random_source, &block).add_values
 end
 
 def create_value args

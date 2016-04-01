@@ -18,5 +18,8 @@ class ImportMetricTypes < Card::Migration
     create_or_update name: 'style: wikirate bootstrap common',
                      type_id: Card::ScssID,
                      codename: 'style_wikirate_bootstrap_common'
+    create_or_update name: 'style: mixins and variables',
+                     type_id: Card::ScssID,
+                     codename: 'style_mixins_and_variables'
   end
 end

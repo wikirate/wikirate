@@ -1,15 +1,15 @@
 {
   "url": null,
-  "timestamp": "2016-03-31 19:37:02 +0200",
+  "timestamp": "2016-04-02 00:53:21 +0200",
   "card": {
     "name": "export",
     "type": "Pointer",
-    "content": "[[export]]\n[[metric+question+*type plus right+*add help]]\n[[metric+value type+*type plus right+*add help]]\n[[metric+topic+*type plus right+*add help]]\n[[metric+research policy+*type plus right+*add help]]\n[[customized classic skin]]\n[[style: mixins and variables]]\n[[metric+formula+*type plus right+*default]]",
+    "content": "[[export]]\n[[metric+question+*type plus right+*add help]]\n[[metric+value type+*type plus right+*add help]]\n[[metric+topic+*type plus right+*add help]]\n[[metric+research policy+*type plus right+*add help]]\n[[customized classic skin]]\n[[script: wikirate scripts]]\n[[metric+formula+*type plus right+*default]]",
     "value": [
       {
         "name": "export",
         "type": "Pointer",
-        "content": "[[export]]\n[[metric+question+*type plus right+*add help]]\n[[metric+value type+*type plus right+*add help]]\n[[metric+topic+*type plus right+*add help]]\n[[metric+research policy+*type plus right+*add help]]\n[[customized classic skin]]\n[[style: mixins and variables]]\n[[metric+formula+*type plus right+*default]]"
+        "content": "[[export]]\n[[metric+question+*type plus right+*add help]]\n[[metric+value type+*type plus right+*add help]]\n[[metric+topic+*type plus right+*add help]]\n[[metric+research policy+*type plus right+*add help]]\n[[customized classic skin]]\n[[script: wikirate scripts]]\n[[metric+formula+*type plus right+*default]]"
       },
       {
         "name": "metric+question+*type plus right+*add help",
@@ -34,12 +34,12 @@
       {
         "name": "customized classic skin",
         "type": "Skin",
-        "content": "[[bootstrap default skin]]\r\n[[*css]]\r\n[[layout with sidebar scss]]\r\n[[chosen style]]\r\n[[top bar scss]]\r\n[[slick scss]]\r\n[[overview item scss]]\r\n[[company and topic item scss]]\r\n[[style: homepage layout]]\r\n[[style: notes]]\r\n[[style: wikirate bootstrap buttons]]\r\n[[style: user following list]]\r\n[[style: wikirate bootstrap navbar]]\r\n[[style: wikirate bootstrap form]]\r\n[[style: wikirate bootstrap common]]\r\n[[style: wikirate metrics]]\r\n[[style: drag and drop]]\r\n[[style: profile page]]\r\n[[style: company header]]\r\n[[style: source preview]]\r\n[[style: wikirate responsiveness]]\r\n[[style: wikirate bootstrap tabs]]\r\n[[style: fakeloader]]\r\n[[style: wikirate font icon]]\r\n[[style: bootstrap modal fix]]"
+        "content": "[[bootstrap default skin]]\r\n[[*css]]\r\n[[layout with sidebar scss]]\r\n[[chosen style]]\r\n[[top bar scss]]\r\n[[slick scss]]\r\n[[overview item scss]]\r\n[[company and topic item scss]]\r\n[[style: homepage layout]]\r\n[[style: notes]]\r\n[[style: wikirate bootstrap buttons]]\r\n[[style: user following list]]\r\n[[style: wikirate bootstrap navbar]]\r\n[[style: wikirate bootstrap form]]\r\n[[style: wikirate bootstrap common]]\r\n[[style: metrics]]\r\n[[style: drag and drop]]\r\n[[style: profile page]]\r\n[[style: company header]]\r\n[[style: source preview]]\r\n[[style: wikirate responsiveness]]\r\n[[style: wikirate bootstrap tabs]]\r\n[[style: fakeloader]]\r\n[[style: wikirate font icon]]\r\n[[style: bootstrap modal fix]]"
       },
       {
-        "name": "style mixins and variables",
-        "type": "SCSS",
-        "content": "$dark-text-color: #999;\r\n$bright-text-color: #ededed;\r\n$muted: #777;\r\n\r\n$gray-background-color: #F3F3F3;\r\n\r\n$metric-color: #674ea7;\r\n$company-color: #d3741c;\r\n$topic-color: #2b7ea0;\r\n$main-color: #03998d;\r\n\r\n$company-header-bg: #d3741c;\r\n\r\n@mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,.4), $inset: \"\") {\r\n  @if ($inset != \"\") {\r\n    -webkit-box-shadow: $inset $x $y $blur $color;\r\n    -moz-box-shadow:    $inset $x $y $blur $color;\r\n    box-shadow:         $inset $x $y $blur $color;\r\n  } @else {\r\n    -webkit-box-shadow: $x $y $blur $color;\r\n    -moz-box-shadow:    $x $y $blur $color;\r\n    box-shadow:         $x $y $blur $color;\r\n  }\r\n}"
+        "name": "script: wikirate scripts",
+        "type": "Pointer",
+        "content": "[[script: new note page]]\n[[script: new source page]]\n[[script: homepage carousel init]]\n[[homepage ie8 handling script]]\n[[script: source preview]]\n[[note chosen]]\n[[modal window script]]\n[[activate readmore script]]\n[[suggested source script]]\n[[empty tab content script]]\n[[script: filter search]]\n[[wikirate coffee]]\n[[script: overview page]]\n[[script: drag and drop]]\n[[script: metrics]]\n[[import page script]]\n[[script: showcase]]\n[[script: company page]]\n[[note citation script]]"
       },
       {
         "name": "metric+formula+*type plus right+*default",
