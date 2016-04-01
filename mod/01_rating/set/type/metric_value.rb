@@ -151,32 +151,136 @@ end
 format :html do
   view :new do |args|
     # return super(args)
-    if Env.params[:noframe]
-      form_opts = args[:form_opts] ? args.delete(:form_opts) : {}
-      form_opts[:hidden] = args.delete(:hidden)
-      form_opts['main-success'] = 'REDIRECT'
-      card_form :create, form_opts do
-        output [
-          _optional_render(:name_formgroup, args),
-          _optional_render(:type_formgroup, args),
-          _optional_render(:content_formgroup, args),
-          _optional_render(:button_formgroup, args)
-        ]
-      end
-    else
-      super(args)
+    return _render_no_frame_form args if Env.params[:noframe]
+    # return super(args) if args[:source] || args[:metric] || args[:company]
+    return super(args) if args[:source] || args[:company]
+    @form_root = true
+
+    frame args do # no form!
+      [
+        _optional_render(:content_formgroup,
+                         args.merge(metric_value_landing: true))
+        #  _optional_render(:button_formgroup, button_args)
+      ]
     end
   end
 
-  def get_structure args
-    if args[:company]
-      'metric company add value'
-    elsif args[:source]
-      'metric_source_add_value'
-    elsif args[:metric]
-      'metric add value'
+  view :editor do |args|
+    if args[:company] && args[:metric]
+      _render_metric_company_add_value_editor args
+    # elsif args[:source] || args[:metric]
+    #   _render_add_value_editor args
+    elsif args[:metric_value_landing]
+      _render_metric_value_landing args
     else
-      'default add metric value'
+      super(args.merge(edit_fields: '+value'))
+    end
+  end
+
+  view :metric_value_landing do |args|
+    metric_field = _render_metric_field(args)
+    render_haml source_container: _render_source_container,
+                metric_field: metric_field do
+      <<-HAML
+.col-md-6.border-right.panel-default
+  %h4
+    Company
+  %hr
+    = field_nest :wikirate_company, title: ''
+  %h4
+    Metric
+  %hr
+    = metric_field
+= source_container
+      HAML
+    end
+  end
+
+  view :metric_field do |args|
+    metric = args[:metric]
+    metric_field =
+      Card.fetch(card.cardname.field(:metric), new: { content: metric })
+    render_haml metric: metric,
+                source_container: _render_source_container,
+                metric_field: metric_field do
+      <<-HAML
+- if metric
+  = nest metric_field, title: ''
+- else
+  = field_nest :metric, title: ''
+.col-md-6.col-centered.text-center
+  %a.btn.btn-primary._new_value_next
+    Next
+      HAML
+    end
+  end
+
+  view :source_container do |_args|
+    render_haml do
+      <<-HAML
+.col-md-6.nopadding.panel-default
+  .col-md-6.col-centered.text-center.light-grey-color-2
+    %p
+      Source Preview Container
+    %p
+      Please select a company and metric to add new sources and metric values.
+      HAML
+    end
+  end
+
+  view :no_frame_form do |args|
+    form_opts = args[:form_opts] ? args.delete(:form_opts) : {}
+    form_opts[:hidden] = args.delete(:hidden)
+    form_opts['main-success'] = 'REDIRECT'
+    card_form :create, form_opts do
+      output [
+        _optional_render(:name_formgroup, args),
+        _optional_render(:type_formgroup, args),
+        _optional_render(:content_formgroup, args),
+        _optional_render(:button_formgroup, args)
+      ]
+    end
+  end
+
+  view :add_value_editor do |_args|
+    render_haml do
+      <<-HAML
+= field_nest :metric, title: 'Metric' unless args[:metric]
+= field_nest :wikirate_company, title: 'Company'
+.fluid-container
+  .row
+    .col-xs-2
+      = field_nest :year, title: 'Year'
+    .col-xs-10
+      = field_nest :value, title: 'Value'
+    end
+= field_nest :wikirate_source, title: 'Source' if args[:metric]
+      HAML
+    end
+  end
+
+  view :metric_company_add_value_editor do |_args|
+    render_haml do
+      <<-HAML
+.td.year
+  = field_nest :year, title: 'Year'
+.td.value
+  %span.metric-value
+    = field_nest :value, title: 'Value'
+  = field_nest :discussion, title: 'Comment'
+  %h5
+    Choose Sources or
+    %a.btn.btn-sm.btn-default._add_new_source
+      %small
+        %span.icon.icon-wikirate-logo-o.fa-lg
+        Add a new Source
+  .relevant-sources
+    None
+  %h5
+    Cited Sources
+  .cited-sources
+    None
+  HAML
     end
   end
 
@@ -202,16 +306,12 @@ format :html do
       args[:hidden]['card[subcards][+source][content]'] = args[:source]
     end
     args[:title] = "Add new value for #{args[:metric]}" if args[:metric]
-    args[:structure] = get_structure args
-    if args[:structure] == 'default add metric value'
-      args.merge(core_edit: true)
-    end
     super(args)
   end
 
-  def edit_slot args
-    super args.merge(core_edit: true)
-  end
+  # def edit_slot args
+  #   super args.merge(core_edit: true)
+  # end
 
   def legend args
     subformat(card.metric_card)._render_legend args
