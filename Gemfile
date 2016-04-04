@@ -13,6 +13,8 @@ gem 'wbench'
 gem 'curb'
 gem 'daemons'
 gem 'delayed_job_active_record'
+gem 'rubocop'
+# gem 'rubocop-decko'
 
 # seems like newrelic should be in :live, but that wasn't working.
 # not sure why -efm
@@ -27,26 +29,31 @@ group :test do
   gem 'rspec-rails' # behavior-driven-development suite
   gem 'rspec', '~> 3.4'
   gem 'rspec-html-matchers' # 0.7.0 broke stuff!
+  # gem 'wagn-rspec-formatter',  git: 'https://github.com/xithan/wagn-rspec-formatter.git'
   gem 'spork', '>=0.9'
   gem 'timecop'
   gem 'simplecov'
-  gem 'codeclimate-test-reporter', require: nil
+  # gem 'codeclimate-test-reporter', require: nil
 
   # CUKES see features dir
   gem 'cucumber-rails', require: false
   # feature-driven-development suite
   gem 'capybara'
+                                       # used 2.0.1
   gem 'selenium-webdriver'
-  gem 'launchy'
+  #  gem 'capybara-webkit'
   # lets cucumber launch browser windows
+  gem 'launchy'
 
-  gem 'email_spec'                             #
-  gem 'database_cleaner', '~> 1.4.1'
+
+  gem 'email_spec'
   # used by cucumber for db transactions
+  gem 'database_cleaner', '~> 1.4.1'
 
-  gem 'turn', '~>0.8.3', require: false
   # Pretty printed test output.
   # (version constraint is to avoid minitest requirement)
+  gem 'turn', '~>0.8.3', require: false
+
   gem 'minitest'
 end
 
@@ -54,12 +61,10 @@ group :development do
   gem 'rails-dev-tweaks'
   gem 'sprockets' # just so above works
 
-  gem 'capistrano' #, '3.2.1' # note - ssh was breaking on 3.3.3
+  gem 'capistrano', '3.2.1'  #note - ssh was breaking on 3.3.3
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
   gem 'capistrano-maintenance', require: false
-  gem 'rubocop', '0.35.1'
-  gem 'rubocop-decko'
 end
 
 group :test, :development do
