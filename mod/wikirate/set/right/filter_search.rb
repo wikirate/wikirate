@@ -102,7 +102,7 @@ format :html do
   end
 
   def select_filter type_name, options
-    formgroup( type_name.capitalize, select_tag(type_name, options) )
+    formgroup type_name.capitalize, select_tag(type_name, options)
   end
 
   def multiselect_filter type_name, args
