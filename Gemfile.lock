@@ -9,7 +9,7 @@ GIT
 PATH
   remote: ./vendor/wagn/card
   specs:
-    card (1.18.2)
+    card (1.18.3)
       bootstrap-kaminari-views (~> 0)
       carrierwave (~> 0.10)
       coderay (~> 1.0)
@@ -18,6 +18,7 @@ PATH
       haml (~> 4.0)
       htmlentities (~> 4.3)
       kaminari (~> 0.16)
+      mime-types (= 2.99.1)
       mini_magick (~> 4.2)
       recaptcha (~> 0.4.0)
       sass (~> 3.2)
@@ -28,8 +29,8 @@ PATH
 PATH
   remote: ./vendor/wagn/wagn
   specs:
-    wagn (1.18.2)
-      card (= 1.18.2)
+    wagn (1.18.3)
+      card (= 1.18.3)
       rails (~> 4.2)
 
 GEM
