@@ -204,10 +204,7 @@ format :html do
                 source_container: _render_source_container,
                 metric_field: metric_field do
       <<-HAML
-- if metric
-  = nest metric_field, title: ''
-- else
-  = field_nest :metric, title: ''
+= nest metric_field, title: ''
 .col-md-6.col-centered.text-center
   %a.btn.btn-primary._new_value_next
     Next
