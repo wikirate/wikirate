@@ -1,6 +1,5 @@
 format :html do
   view :timeline do |args|
-    # value_form_container = content_tag(:div,'',class: 'timeline-row metric_value_form_container ')
     timeline = output [
       (wrap_with :div, class: 'pull-left timeline-data' do
         [
@@ -32,24 +31,26 @@ format :html do
             }
     }
     link = _render_modal_link(args.merge(class: 'btn btn-default btn-sm',
-                                          text: '+ Add New Value',
-                                          path_opts: path_opts
+                                         text: '+ Add New Value',
+                                         path_opts: path_opts
                                         ))
     timeline_head(link, 'new')
   end
 
-  view :timeline_add_new_button do |args|
-    button = content_tag(:div,
-                          content_tag(:small, 'add new value'),
-                          class: 'btn btn-sm btn-default _add_new_value',
-                          data: {
-                            company: card.cardname.left_name.tag,
-                            metric: card.cardname.left_name.trunk_name.url_key,
-                            toggle: 'collapse-next',
-                            parent: '.timeline-data',
-                            collapse: '.metric_value_form_container'
-                          }
-                        )
+  view :timeline_add_new_button do
+    content_tag(:div, content_tag(:small, 'Add new value'),
+                class: 'btn btn-sm
+                        btn-default
+                        margin-12
+                        _add_new_value',
+                data: {
+                  company: card.cardname.left_name.tag,
+                  metric: card.cardname.left_name.trunk_name.url_key,
+                  toggle: 'collapse-next',
+                  parent: '.timeline-data',
+                  collapse: '.metric_value_form_container'
+                }
+               )
     # timeline_head(button, 'new')
   end
 
@@ -58,7 +59,6 @@ format :html do
       case args[:column]
       when :data
         _optional_render(:timeline_add_new_button, args, :show) || ''
-
         # timeline_head('Year','year')
         #   .concat(timeline_head('Value','value'))
         #   .concat(_optional_render(:timeline_add_new_link, args, :show) || '')
