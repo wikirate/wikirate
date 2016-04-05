@@ -109,7 +109,8 @@ format :html do
       url_card = card.fetch(trait: :wikirate_link)
       url = url_card ? url_card.item_names.first : nil
       args[:url] = url
-      source + render_iframe_view(args.merge(url: url)).html_safe
+      source + render_iframe_view(args.merge(url: url)).html_safe +
+        render_hidden_information(args.merge(url: url)).html_safe
     end
   end
 

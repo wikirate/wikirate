@@ -56,6 +56,9 @@ $(document).ready ->
       $sourceDetailsToggle = $('<div>').attr('data-source-for',sourceID).addClass('source-details-toggle active')
       $sourceDetailsToggle.append($(data).find(".source-info-container").parent())
       $container.append($sourceDetailsToggle)
+      pageName  = $("#source-name").html();
+      url       = $("#source_url").html();
+      # testSameOrigin(url) if (url);
     else
       $citeButton = $sourceInForm.find('._cite_button')
       if(!$citeButton.length > 0)
@@ -75,24 +78,7 @@ $(document).ready ->
 
   $('body').on 'click', '._cite_button', ->
     sourceCitation(this, 'cite')
-    # $timelineContainer  = $(".timeline-row .card-slot form")
-    # $relSource          = $timelineContainer.find(".relevant-sources")
-    # $citedSource        = $timelineContainer.find(".cited-sources")
-    # $this               = $(this)
-    # sourceName          = $this.closest(".TYPE-source").data("card-name")
-    # sourceID            = "#"+$this.closest(".TYPE-source").attr("id")+".TYPE-source:first"
-    # $sourceContainer    = $timelineContainer.find(sourceID).parent().detach()
-    # $sourceFormContr    = $('#source-form-container').find(sourceID)
-    # $hiddenInput        = $('<input>').attr('type','hidden').attr('name','card[subcards][+source][content]')
-    #
-    # $([$sourceFormContr.find("._cite_button"),$sourceContainer.find("._cite_button"), ]).each ->
-    #   sourceCiteButtons($(this), 'cite')
-    #
-    # $citedSource.empty() if $citedSource.text().search("None") > 0
-    # $hiddenInput.attr('value','[['+sourceName+']]')
-    # $sourceContainer.append($hiddenInput)
-    # $citedSource.append($sourceContainer)
-    # $relSource.text("None") if $relSource.is(':empty')
+
   $('body').on 'click', '._cited_button', ->
     sourceCitation(this, 'uncite')
 
@@ -173,8 +159,6 @@ $(document).ready ->
               ), 'html'
               appendSourceForm(company)
   $('._add_new_value').trigger 'click'
-
-
 
 wagn.slotReady (slot) ->
   resizeIframe()
