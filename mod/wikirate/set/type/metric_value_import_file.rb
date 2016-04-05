@@ -1,91 +1,26 @@
 attachment :metric_value_import_file, uploader: FileUploader
 
-include Type::File
-include Type::File::SelectedAction
-include Card::Set::Abstract::Import
+include_set Type::File
+include_set Abstract::Import
 
-format do
-  include Type::File::Format
+def valid_import_data? data
+  data.is_a? Array
 end
 
-format :file do
-  include Type::File::FileFormat
-end
-
-event :validate_import, :prepare_to_validate,
-      on: :update,
-      when: proc { Env.params['is_metric_import_update'] == 'true' } do
-end
-
-def parse_hash mv_hash
-  [mv_hash['metric'], mv_hash['company'], mv_hash['year'],
-   mv_hash['value'], mv_hash['source']]
-end
-
-def add_corrected_name_to_alias company_name, potential_alias_name
-  return if company_name.nil?
-  alias_card = Card.fetch "#{company_name}+aliases",
-                          new: { type_id: Card::PointerID }
-  alias_card.insert_item! 0, potential_alias_name
-end
-
-def get_final_company_name correct_company_key, company, corrected_company_hash
-  final_company_name = corrected_company_hash[correct_company_key] || company
-  if final_company_name
-    unless Card.exists? final_company_name
-      Card.create! name: final_company_name, type_id: WikirateCompanyID
-    end
+# @return [Hash] args to create metric value card
+def process_metric_value_data metric_value_data
+  mv_hash = JSON.parse(metric_value_data)
+  company = mv_hash[:company]
+  correction_key = [mv_hash[:metric], company, mv_hash[:year]].join '+'
+  corrected_company = correct_company_name company, correction_key
+  if company != corrected_company
+    Card[corrected_company].add_alias company
   end
-  final_company_name
-end
-
-def import_csv_information
-  corrected_company_hash = clean_corrected_company_hash
-  return unless (metric_values = Env.params[:metric_values]) &&
-                metric_values.is_a?(Array)
-  metric_values.each do |metric_value|
-    mv_hash = JSON.parse(metric_value)
-    metric_value_card = create_metric_value_from_hash mv_hash,
-                                                      corrected_company_hash
-    next if metric_value_card.errors.empty?
-    metric_value_card.errors.each do |key, error_value|
-      errors.add key, error_value
-    end
-  end
-  handle_redirect
-end
-
-def create_metric_value_from_hash mv_hash, corrected_company_hash
-  metric, company, year, value, source = parse_hash mv_hash
-  correct_company_key = "#{metric}+#{company}+#{year}"
-  potential_alias_name = company
-  company = get_final_company_name correct_company_key, company,
-                                   corrected_company_hash
-  # add corrected name to alias
-  add_corrected_name_to_alias corrected_company_hash[correct_company_key],
-                              potential_alias_name
-
-  metric_value_card_name = [metric, company, year].join '+'
-  mv_subcards = metric_value_subcards metric, company, year, value, source
-  create_or_update_mv_card metric_value_card_name, mv_subcards
-end
-
-def handle_redirect
-  if errors.empty?
-    abort success: {
-      slot: {
-        success_msg: 'Import Successfully <br />'
-      }
-    }
-  else
-    abort :failure
-  end
+  mv_hash[:company] = corrected_company
+  mv_hash
 end
 
 format :html do
-  include Type::File::HtmlFormat
-  include Card::Set::Abstract::Import::HtmlFormat
-
   def default_new_args args
     args[:hidden] = {
       success: { id: '_self', soft_redirect: false, view: :import_table }

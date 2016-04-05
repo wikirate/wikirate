@@ -1,18 +1,18 @@
-include Card::Set::Abstract::Import
+include_set Abstract::Import
 
 def metric_pointer_card
-  subcards[cardname.left + "+#{Card[:metric].name}"]
+  subcard cardname.left_name.field(:metric)
 end
 
-def metric_year_card
-  subcard(cardname.left + "+#{Card[:year].name}")
+def year_pointer_card
+  subcard cardname.left_name.field(:year)
 end
 
-def metric_content
+def metric
   metric_pointer_card.item_names.first
 end
 
-def metric_year_content
+def year
   metric_year_card.item_names.first
 end
 
@@ -20,33 +20,28 @@ event :validate_import, :prepare_to_validate,
       on: :update,
       when: proc { Env.params['is_metric_import_update'] == 'true' } do
   check_card metric_pointer_card, 'Metric', Card::MetricID
-  check_card metric_year_card, 'Year', Card::YearID
+  check_card year_pointer_card, 'Year', Card::YearID
 end
 
-def import_csv_information
-  corrected_company_hash = clean_corrected_company_hash
-  return unless (metric_values = Env.params[:metric_values]) &&
-                metric_values.is_a?(Hash)
-  metric_values.each do |company, value|
-    metric_value_card =
-      create_metric_value_from_params company, corrected_company_hash, value
-    next if metric_value_card.errors.empty?
-    metric_value_card.errors.each do |key, error_value|
-      errors.add key, error_value
-    end
-  end
-  handle_redirect metric_pointer_card
+def valid_import_data? data
+  data.is_a? Hash
 end
 
-def create_metric_value_from_params company, company_hash, value
-  final_company_name = get_final_company_name company, company_hash
-  metric_value_card_name = "#{metric_content}+#{final_company_name}+"\
-                           "#{metric_year_content}"
+# @return [Hash] args to create metric value card
+def process_metric_value_data metric_value_data
+  company, value = metric_value_data
   source_url = "#{Env[:protocol]}#{Env[:host]}/#{left.cardname.url_key}"
-  subcard = metric_value_subcards metric_content, final_company_name,
-                                  metric_year_content,
-                                  value[0], source_url
-  create_or_update_mv_card metric_value_card_name, subcard
+  {
+    metric: metric,
+    company: correct_company_name(company),
+    year: year,
+    value: value[0],
+    source: source_url
+  }
+end
+
+def redirect_target_after_import
+  metric
 end
 
 def check_card card, name, id
@@ -57,6 +52,3 @@ def check_card card, name, id
   end
 end
 
-format :html do
-  include Card::Set::Abstract::Import::HtmlFormat
-end

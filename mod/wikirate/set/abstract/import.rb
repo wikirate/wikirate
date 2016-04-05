@@ -1,14 +1,21 @@
-def metric_value_subcards metric, company, year, value, source
+# @param [Hash] args
+# @option args [String] :metric
+# @option args [String] :company
+# @option args [String] :year
+# @option args [String] :value
+# @option args [String] :source source url
+# @return [Hash] subcards hash
+def metric_value_subcards args
   {
-    '+metric' => { 'content' => metric },
-    '+company' => { 'content' => company },
-    '+value' => { 'content' => value, :type_id => PhraseID },
-    '+year' => { 'content' => "[[#{year}]]", :type_id => PointerID },
+    '+metric' => { 'content' => args[:metric] },
+    '+company' => { 'content' => args[:company] },
+    '+value' => { 'content' => args[:value], :type_id => PhraseID },
+    '+year' => { 'content' => "[[#{args[:year]}]]", :type_id => PointerID },
     '+source' => {
       'subcards' => {
         'new source' => {
           '+Link' => {
-            'content' => source, 'type_id' => PhraseID
+            'content' => args[:source], 'type_id' => PhraseID
           }
         }
       }
@@ -16,51 +23,71 @@ def metric_value_subcards metric, company, year, value, source
   }
 end
 
-def import_csv_information
-end
-
 event :import_csv, :prepare_to_store,
       on: :update,
       when: proc { Env.params['is_metric_import_update'] == 'true' } do
-  import_csv_information
+  return unless (metric_values = Env.params[:metric_values])
+  return unless valid_import_data?(metric_values)
+  metric_values.each do |metric_value_data|
+    metric_value_card = import_metric_value metric_value_data
+    metric_value_card.errors.each do |key, error_value|
+      errors.add key, error_value
+    end
+  end
+  handle_redirect redirect_target_after_import
 end
 
-def clean_corrected_company_hash
-  hash = Env.params[:corrected_company_name]
-  return {} if !hash.present? && !hash.is_a?(Hash)
-  hash.delete_if { |_k, v| v.nil? || v.empty? }
-  hash
+def redirect_target_after_import
+  nil
 end
 
-def handle_redirect metric_pointer_card
+def company_corrections
+  @company_corrections ||=
+    begin
+      hash = Env.params[:corrected_company_name]
+      return {} unless hash.is_a?(Hash)
+      hash.delete_if { |_k, v| v.blank? }
+    end
+end
+
+def handle_redirect target=nil
   if errors.empty?
-    abort success: {
-      name: metric_pointer_card.item_names.first,
-      redirect: true,
-      view: :open
-    }
+    success_args =
+      if target
+        { name: target, redirect: true, view: :open }
+      else
+        { slot: { success_msg: 'Import Successfully <br />' } }
+      end
+    abort success: success_args
   else
     abort :failure
   end
 end
 
-def get_final_company_name company, corrected_company_hash
-  final_company_name = company
-  if (input_company_name = (corrected_company_hash[company] || company))
-    final_company_name = input_company_name
-    unless Card.exists? input_company_name
-      Card.create! name: input_company_name, type_id: WikirateCompanyID
+def correct_company_name company, correction_key=nil
+  correction_key ||= company
+  corrected = company_corrections[correction_key] || company
+  if corrected.present?
+    unless Card.exists? corrected
+      Card.create! name: corrected, type_id: WikirateCompanyID
     end
   end
-  final_company_name
+  corrected
 end
 
-def create_or_update_mv_card metric_value_card_name, subcard
+# @return updated or created metric value card object
+def import_metric_value import_data
+  args = process_metric_value_data import_data
+  metric_value_card_name =
+    [args[:metric], args[:company], args[:year]].join '+'
+  subcards = metric_value_subcards args
   if (metric_value_card = Card[metric_value_card_name])
-    metric_value_card.update_attributes subcards: subcard
+    metric_value_card.update_attributes subcards: subcards
     metric_value_card
   else
-    Card.create type_id: Card::MetricValueID, subcards: subcard
+    Card.create name: metric_value_card_name,
+                type_id: Card::MetricValueID,
+                subcards: subcards
   end
 end
 
@@ -77,15 +104,15 @@ end
 
 format :html do
   def aliases_hash
-    aliases_hash = {}
-    aliases_cards = Card.search right: 'aliases',
-                                left: { type_id: WikirateCompanyID }
-    aliases_cards.each do |aliases_card|
-      aliases_card.item_names.each do |name|
-        aliases_hash[name.downcase] = aliases_card.cardname.left
+    @aliases_hash ||= begin
+      aliases_cards = Card.search right: 'aliases',
+                  left: { type_id: WikirateCompanyID }
+      aliases_cards.each_with_object({}) do |aliases_card, aliases_hash|
+        aliases_card.item_names.each do |name|
+          aliases_hash[name.downcase] = aliases_card.cardname.left
+        end
       end
     end
-    aliases_hash
   end
 
   def render_row hash, row
