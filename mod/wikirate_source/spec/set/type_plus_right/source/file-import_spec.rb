@@ -16,7 +16,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
         }
       }
       expect(source_file.errors).to have_key(:content)
-      expect(source_file.errors[:content]).to include('Please give a year.')
+      expect(source_file.errors[:content]).to include('Please give a Year.')
 
       # as local cache will be cleaned after every request,
       # this reset local is pretending last request is done
@@ -28,7 +28,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
       }
 
       expect(source_file.errors).to have_key(:content)
-      expect(source_file.errors[:content]).to include('Please give a metric.')
+      expect(source_file.errors[:content]).to include('Please give a Metric.')
     end
     it 'adds correct metric values' do
       Card::Env.params[:metric_values] =
