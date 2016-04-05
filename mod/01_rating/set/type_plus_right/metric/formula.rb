@@ -40,13 +40,21 @@ def translation_hash
   return {} unless content.present?
   JSON.parse(content)
 rescue JSON::ParserError => _e
-  fail Card::Error, 'fail to parse formula for categorical input'
+  content = '{}'
+  return {}
+  #fail Card::Error, 'fail to parse formula for categorical input'
 end
 
 def complete_translation_table
   translation = translation_table
-  if (all_options = metric_card.value_options)
-    missing_options = translation.map { |opt, _val| all_options.delete opt }
+  binding.pry
+  all_options = if score?
+                  metric_card.basic_metric_card.value_options
+                else
+                  metric_card.value_options
+                end
+  if all_options
+    missing_options = all_options - translation_hash.keys
     translation += missing_options.map { |opt| [opt, ''] }
   end
   translation
@@ -159,7 +167,7 @@ format :html do
   end
 end
 
-event :validate_cateogory_translation, :validate,
+event :validate_category_translation, :validate,
       when: proc { |c| c.translate_formula? } do
   # TODO: Check if there is a translation for all value options
 end
@@ -178,10 +186,12 @@ end
 # don't update if it's part of scored metric update
 event :update_metric_values, :prepare_to_store,
       on: :update, changed: :content do
+  binding.pry
   metric_card.value_cards.each do |value_card|
     value_card.trash = true
-    add_subcard value_card
+    # add_subcard value_card
   end
+  binding.pry
   calculate_all_values do |company, year, value|
     metric_value_name = metric_card.metric_value_name(company, year)
     next if subcard metric_value_name
@@ -196,7 +206,7 @@ end
 
 # don't update if it's part of scored metric create
 event :create_metric_values, :prepare_to_store,
-      on: :create, changed: :content do
+      on: :create, changed: :content, when: proc { |c| c.content.present? }  do
   # FIXME: left has type metric at this points but
   #        set_names includes "Basic+formula+*type plus right"
   # TODO: This event moved from type/metric here
@@ -293,7 +303,7 @@ def ruby_formula?
 end
 
 def translate_formula?
-  content =~ /^\{[^{}]+\}$/
+  content =~ /^\{[^{}]*\}$/
 end
 
 def wolfram_formula?
