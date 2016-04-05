@@ -49,8 +49,7 @@ end
 event :set_metric_value_name,
       before: :set_autoname, when: proc { |c| c.cardname.parts.size < 4 } do
   self.name = %w(metric company year).map do |name|
-    content = remove_subfield(name).content
-    content.gsub('[[', '').gsub(']]', '')
+    remove_subfield(name).content.gsub('[[', '').gsub(']]', '')
   end.join '+'
 end
 
@@ -149,6 +148,10 @@ def fill_subcards metric_value, source_card
 end
 
 format :html do
+  view :open_content do |args|
+    _render_timeline_data args
+  end
+
   view :new do |args|
     # return super(args)
     return _render_no_frame_form args if Env.params[:noframe]
@@ -165,6 +168,15 @@ format :html do
     end
   end
 
+  def edit_slot args
+    args.merge! edit_fields: { '+value' => {} } unless special_editor? args
+    super(args)
+  end
+
+  def special_editor? args
+    (args[:company] && args[:metric]) || args[:metric_value_landing]
+  end
+
   view :editor do |args|
     if args[:company] && args[:metric]
       _render_metric_company_add_value_editor args
@@ -173,7 +185,7 @@ format :html do
     elsif args[:metric_value_landing]
       _render_metric_value_landing args
     else
-      super(args.merge(edit_fields: '+value'))
+      super args
     end
   end
 
@@ -284,9 +296,9 @@ format :html do
   def set_hidden_args args
     if !args[:source]
       # TODO: add appropriate view to the following condition.
-      view = (args[:metric] || args[:company]) ? :timeline_data : :timeline_data
+      # view = (args[:metric] || args[:company]) ? :timeline_data : :timeline_data
       args[:hidden] = {
-        :success => { id: '_self', soft_redirect: true, view: view },
+        :success => { id: '_self', soft_redirect: true, view: :timeline_data },
         'card[subcards][+metric][content]' => args[:metric]
       }
     else
@@ -340,9 +352,16 @@ format :html do
       HTML
   end
 
+  view :value_link do |args|
+    url = "/#{card.cardname.url_key}"
+    link = link_to card.value, url, target: '_blank'
+    content_tag(:span, link.html_safe, class: 'metric-value')
+  end
+
   view :timeline_data do |args|
     # container elements
-    value =  _render_modal_details(args)
+    # value =  _render_modal_details(args)
+    value = _render_value_link(args)
     value << content_tag(:span, legend(args), class: 'metric-unit')
     value << _render_value_details_toggle
     value << _render_value_details(args)
@@ -390,10 +409,11 @@ format :html do
   end
 
   view :comments do
-    comments = (disc_card = card.fetch trait: :discussion) &&
-               subformat(disc_card).render_core.html_safe
+    disc_card = card.fetch trait: :discussion, new: {}
+    comments = disc_card.real? ? subformat(disc_card).render_core : ''
+    comments += subformat(disc_card).render_comment_box
     heading = content_tag(:h5, 'Discussion')
-    heading << comments
+    heading << content_tag(:div, comments.html_safe, class: 'card-slot')
   end
 
   view :credit_name do |args|

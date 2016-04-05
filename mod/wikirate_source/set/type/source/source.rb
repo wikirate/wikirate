@@ -115,9 +115,9 @@ format :html do
 
   view :cited do
     source = render_content structure: 'source without note count'
-    cite_button =
-      content_tag(:a, 'cited!', class: 'btn btn-default _cited_button')
-    source << content_tag(:div, cite_button, class: 'pull-right')
+    # cite_button =
+    #   content_tag(:a, 'cited!', class: 'btn btn-default _cited_button')
+    # source << content_tag(:div, cite_button, class: 'pull-right')
     source =
       content_tag(:div, source, class: 'source-info-container with-vote-button')
     wrap_with :div, class: 'source-details-toggle',
