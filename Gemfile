@@ -56,7 +56,7 @@ group :test do
 end
 
 group :development do
-  gem 'rubocop'
+  gem 'rubocop', '0.38.0' # seeing "for_all_cops" issue with 0.39
   # gem 'rubocop-decko'
 
   gem 'rails-dev-tweaks'
