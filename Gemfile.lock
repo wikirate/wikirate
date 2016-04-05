@@ -85,7 +85,7 @@ GEM
       rails (>= 3.1)
     builder (3.2.2)
     byebug (8.2.2)
-    capistrano (3.2.1)
+    capistrano (3.4.0)
       i18n
       rake (>= 10.0.0)
       sshkit (~> 1.3)
@@ -361,7 +361,7 @@ PLATFORMS
 
 DEPENDENCIES
   airbrake (~> 4.1)
-  capistrano (= 3.2.1)
+  capistrano
   capistrano-bundler
   capistrano-maintenance
   capistrano-rvm
