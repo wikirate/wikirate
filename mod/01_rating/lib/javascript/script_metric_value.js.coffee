@@ -56,11 +56,14 @@ $(document).ready ->
       $sourceDetailsToggle = $('<div>').attr('data-source-for',sourceID).addClass('source-details-toggle active')
       $sourceDetailsToggle.append($(data).find(".source-info-container").parent())
       $container.append($sourceDetailsToggle)
+      pageName  = $("#source-name").html();
+      url       = $("#source_url").html();
+      # testSameOrigin(url) if (url);
     else
       $citeButton = $sourceInForm.find('._cite_button')
       if(!$citeButton.length > 0)
-        $citeButton = $(sourceInList+'.source-details').find('._cite_button')
-        $citeButton.removeClass("_cite_button btn-highlight").addClass("_cited_button btn-default").text("Cited!")
+        $citeButton   = $(sourceInList+'.source-details').find('._cite_button')
+        sourceCiteButtons($citeButton, 'cite')
 
   $("body").on 'click', '.source-details-toggle',->
     $this           = $(this)
@@ -74,26 +77,52 @@ $(document).ready ->
     $sourceCntr.find('form').addClass('hide')
 
   $('body').on 'click', '._cite_button', ->
-    $timelineContainer  = $(".timeline-row .card-slot form")
-    $relSource          = $timelineContainer.find(".relevant-sources")
-    $citedSource        = $timelineContainer.find(".cited-sources")
-    $this               = $(this)
-    sourceName          = $this.closest(".TYPE-source").data("card-name")
-    sourceID            = "#"+$this.closest(".TYPE-source").attr("id")+".TYPE-source:first"
-    $sourceContainer    = $timelineContainer.find(sourceID).parent().detach()
-    $sourceFormContr    = $('#source-form-container').find(sourceID)
-    $hiddenInput        = $('<input>').attr('type','hidden').attr('name','card[subcards][+source][content]')
+    sourceCitation(this, 'cite')
 
-    $([$sourceFormContr.find("._cite_button"),$sourceContainer.find("._cite_button"), ]).each ->
-      $(this).removeClass("_cite_button btn-highlight").addClass("_cited_button btn-default").text("Cited!")
+  $('body').on 'click', '._cited_button', ->
+    sourceCitation(this, 'uncite')
 
-    $citedSource.empty() if $citedSource.text().search("None") > 0
+  sourceCitation = (ele, action) ->
+     $timelineContainer  = $(".timeline-row .card-slot form")
+     $relSource          = $timelineContainer.find(".relevant-sources")
+     $citedSource        = $timelineContainer.find(".cited-sources")
+     $this               = $(ele)
+     sourceName          = $this.closest(".TYPE-source").data("card-name")
+     sourceID            = "#"+$this.closest(".TYPE-source").attr("id")+".TYPE-source:first"
+     $sourceContainer    = $timelineContainer.find(sourceID).parent().detach()
+     $sourceFormContr    = $('#source-form-container').find(sourceID)
+     $hiddenInput        = $('<input>').attr('type','hidden').attr('name','card[subcards][+source][content]')
+     if(action =='cite')
+      $([$sourceFormContr.find("._cite_button"),$sourceContainer.find("._cite_button"), ]).each ->
+        sourceCiteButtons($(this),action)
 
-    $hiddenInput.attr('value','[['+sourceName+']]')
-    $sourceContainer.append($hiddenInput)
-    $citedSource.append($sourceContainer)
+      $citedSource.empty() if $citedSource.text().search("None") > 0
+      $hiddenInput.attr('value','[['+sourceName+']]')
+      $sourceContainer.append($hiddenInput)
+      $citedSource.append($sourceContainer)
+      $relSource.text("None") if $relSource.is(':empty')
 
-    $relSource.text("None") if $relSource.is(':empty')
+     if(action == 'uncite')
+       $([$sourceFormContr.find("._cited_button"),$sourceContainer.find("._cited_button"), ]).each ->
+         sourceCiteButtons($(this),action)
+
+       $sourceContainer.find('input').remove()
+       $relSource.empty() if $relSource.text().search("None") > 0
+       $relSource.append($sourceContainer)
+       $citedSource.text("None") if $citedSource.is(':empty')
+
+  sourceCiteButtons = (ele,action)->
+    if(action == 'cite')
+      $citedButton = ele.removeClass("_cite_button btn-highlight").addClass("_cited_button btn-default").text("Cited!")
+      $citedButton.hover (->
+        $(this).text('Uncite!')
+      ), ->
+        $(this).text('Cited!')
+    else
+      $citedButton = ele.removeClass("_cited_button btn-default").addClass("_cite_button btn-highlight").text("Cite!")
+      $citedButton.unbind('mouseenter mouseleave')
+
+
 
   $('body').on 'click', '._add_new_source', ->
     $this           = $(this)
@@ -111,19 +140,24 @@ $(document).ready ->
     company   = $this.data("company")
     metric    = $this.data("metric")
     $target   = $this.closest('.timeline-data')
+    $page = if $('.TYPE-company.open-view').length > 0 then $('.TYPE-company.open-view') else $('.TYPE-metric.open-view')
+
     if(company && metric)
             $target.append($loader_anime)
-            load_path = wagn.prepUrl(wagn.rootPath + "/new/metric_value?noframe=true&slot[company]="+company+"&slot[metric]="+encodeURIComponent(metric))
-            $.get load_path, ((data) ->
-              $template = $('<div class="timeline-row"><div class="card-slot"></div></div>')
-              $template.find('.card-slot').append(data)
-              $target.find(".timeline-header").after($template)
-              $this.hide()
-              wagn.initializeEditors($target);
-              $target.find(".loader-anime").remove()
-              return
-            ), 'html'
-            appendSourceForm(company)
+            if ($page.length>0)
+              location.href = wagn.prepUrl(wagn.rootPath + '/'+encodeURIComponent(metric)+'%2B'+encodeURIComponent(company)+'%2Bnew%20value')
+            else
+              load_path = wagn.prepUrl(wagn.rootPath + "/new/metric_value?noframe=true&slot[company]="+encodeURIComponent(company)+"&slot[metric]="+encodeURIComponent(metric))
+              $.get load_path, ((data) ->
+                $template = $('<div class="timeline-row"><div class="card-slot"></div></div>')
+                $template.find('.card-slot').append(data)
+                $target.find(".timeline-header").after($template)
+                $this.hide()
+                wagn.initializeEditors($target);
+                $target.find(".loader-anime").remove()
+                return
+              ), 'html'
+              appendSourceForm(company)
   $('._add_new_value').trigger 'click'
 
 wagn.slotReady (slot) ->
