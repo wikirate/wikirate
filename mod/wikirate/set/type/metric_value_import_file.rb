@@ -23,7 +23,7 @@ end
 format :html do
   def default_new_args args
     args[:hidden] = {
-      success: { id: '_self', soft_redirect: false, view: :import_table }
+      success: { id: '_self', soft_redirect: false, view: :import }
     }
     super args
   end
