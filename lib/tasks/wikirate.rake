@@ -1,5 +1,5 @@
 require 'colorize'
-require 'pry'
+# require 'pry'
 namespace :wikirate do
   namespace :test do
     db_path = File.join Wagn.root, 'test', 'wikiratetest.db'
