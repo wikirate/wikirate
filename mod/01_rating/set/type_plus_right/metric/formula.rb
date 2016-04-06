@@ -47,7 +47,6 @@ end
 
 def complete_translation_table
   translation = translation_table
-  binding.pry
   all_options = if score?
                   metric_card.basic_metric_card.value_options
                 else
@@ -61,11 +60,15 @@ def complete_translation_table
 end
 
 def variables_card
-  fetch trait: :variables,
+  v_card = fetch trait: :variables,
         new: {
           type: 'session',
           content: input_metrics.to_pointer_content
         }
+  if v_card.content.blank?
+    v_card.content = input_metrics.to_pointer_content
+  end
+  v_card
 end
 
 format :html do
@@ -107,29 +110,6 @@ format :html do
     ]
   end
 
-  view :rating_editor do |args|
-    table_content = card.translation_table.map do |metric, weight|
-      with_nest_mode :normal do
-        subformat(metric)._render_weight_row(args.merge(weight: weight))
-      end
-    end
-    sum_field =
-      if table_content.empty?
-        { content: sum_field, class: 'hidden' }
-      else
-        sum_field
-      end
-    table_content.push ['', sum_field]
-    output [
-      table_editor(table_content, %w(Metric Weight)),
-      add_metric_button
-    ]
-  end
-
-  def sum_field value=100
-    text_field_tag 'weight_sum', value, class: 'weight-sum', disabled: true
-  end
-
   view :categorical_editor do |_args|
     table_content = card.complete_translation_table.map do |key, value|
       [{ content: key, 'data-key': key }, text_field_tag('pair_value', value)]
@@ -150,13 +130,6 @@ format :html do
     "= #{super(args)}"
   end
 
-  view :rating_core do |args|
-    table_content =
-      card.translation_table.map do |metric, weight|
-        [subformat(metric)._render_thumbnail(args), weight]
-      end
-    table table_content, header: %w(Metric Weight)
-  end
 
   view :categorical_core do |_args|
     table card.translation_table, header: %w(Metric Weight)
@@ -177,7 +150,7 @@ event :validate_formula, :validate,
   not_on_whitelist =
     content.gsub(/\{\{([^}])+\}\}/, '').scan(/[a-zA-Z][a-zA-Z]+/)
            .reject do |word|
-f    end
+    end
   if not_on_whitelist.present?
     errors.add :formula, "#{not_on_whitelist.first} forbidden keyword"
   end
@@ -186,12 +159,10 @@ end
 # don't update if it's part of scored metric update
 event :update_metric_values, :prepare_to_store,
       on: :update, changed: :content do
-  binding.pry
   metric_card.value_cards.each do |value_card|
     value_card.trash = true
-    # add_subcard value_card
+    add_subcard value_card
   end
-  binding.pry
   calculate_all_values do |company, year, value|
     metric_value_name = metric_card.metric_value_name(company, year)
     next if subcard metric_value_name
@@ -207,12 +178,11 @@ end
 # don't update if it's part of scored metric create
 event :create_metric_values, :prepare_to_store,
       on: :create, changed: :content, when: proc { |c| c.content.present? }  do
-  # FIXME: left has type metric at this points but
-  #        set_names includes "Basic+formula+*type plus right"
-  # TODO: This event moved from type/metric here
-  # Check if above is still the case
-  reset_patterns
-  include_set_modules
+  # reload set modules seems to be no longer necessary
+  # it used to happen at this point that left has type metric but
+  # set_names includes "Basic+formula+*type plus right"
+  # reset_patterns
+  # include_set_modules
   calculate_all_values do |company, year, value|
     add_value company, year, value
   end
@@ -229,13 +199,14 @@ end
 event :replace_variables, :prepare_to_validate,
       on: :save, changed: :content do
   format.each_nested_chunk do |chunk|
+    next unless variable_name?(chunk.referee_name)
     metric_name = variables_card.input_metric_name chunk.referee_name
     content.gsub! chunk.referee_name.to_s, metric_name if metric_name
   end
 end
 
 def variable_name? v_name
-  v_name =~ /M\d+/
+  v_name =~ /^M\d+$/
 end
 
 event :validate_formula_input, :validate,
@@ -272,6 +243,9 @@ def calculate_values_for opts={}
     metrics_with_values = companies[opts[:company].to_name.key]
     value = formula_interpreter.evaluate_single_input metrics_with_values
     yield year, value
+  end
+  if opts[:year] && values.empty?
+    yield opts[:year], nil
   end
 end
 
@@ -339,6 +313,7 @@ end
 # @return [Hash] values in the form
 #   { year => { company => { metric => value } } }
 def fetch_input_values opts={}
+  #binding.pry
   values = Hash.new { |h1, k1| h1[k1] = Hash.new { |h2, k2| h2[k2] = {} } }
   return values if input_metric_keys.empty?
   input_value_cards(opts).each_with_object(values) do |v_card, values|
@@ -365,11 +340,8 @@ def value_cards_query opts={}
     left_left[:left] = { name: ['in'] + Array.wrap(opts[:metrics]) }
   end
   left_left[:right] = { name: opts[:company] } if opts[:company]
-  {
-    right: 'value',
-    left: {
-      left: left_left,
-      right: opts[:year] || { type: 'year' }
-    }
-  }
+  query = { right: 'value', left: { type_id: MetricValueID } }
+  query[:left][:left] = left_left if left_left.present?
+  query[:left][:right] = opts[:year] if opts[:year]
+  query
 end

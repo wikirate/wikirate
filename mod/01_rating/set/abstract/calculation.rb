@@ -1,8 +1,8 @@
 card_accessor :formula, type_id: PhraseID
 
-
 # @param [Hash] opts
 # @option opts [card key] :company
+# @option opts [String] :year
 def update_value_for! opts
   formula_card.calculate_values_for(opts) do |year, value|
     value_name = metric_value_name opts[:company], year
@@ -29,9 +29,6 @@ def update_value_card value_card, value
 end
 
 def create_value_card name, value
-  Card.create! name: name,
-               type_id: MetricValueID,
-               subcards: {
-                 '+value' => { type_id: NumberID, content: value }
-               }
+  Card.create! name: name, type_id: MetricValueID,
+               subcards: { '+value' => { type_id: NumberID, content: value } }
 end
