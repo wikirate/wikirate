@@ -64,12 +64,12 @@ describe Card::Set::Right::MyContributions do
         with_tag 'p', with: { class: 'legend'}, text: 'Source'
       end
       expect_link(:contributed_analysis) do
-        with_tag 'span', with: { class: 'overview'}, text: '0'
-        with_tag 'p', with: { class: 'legend'}, text: 'Overview'
+        with_tag 'span', with: { class: 'review'}, text: '0'
+        with_tag 'p', with: { class: 'legend'}, text: 'Review'
       end
       expect_link(:contributed_campaigns) do
-        with_tag 'span', with: { class: 'initiative'}, text: '0'
-        with_tag 'p', with: { class: 'legend'}, text: 'Initiative'
+        with_tag 'span', with: { class: 'project'}, text: '0'
+        with_tag 'p', with: { class: 'legend'}, text: 'Project'
       end
     end
   end

@@ -49,8 +49,7 @@ end
 event :set_metric_value_name,
       before: :set_autoname, when: proc { |c| c.cardname.parts.size < 4 } do
   self.name = %w(metric company year).map do |name|
-    content = remove_subfield(name).content
-    content.gsub('[[', '').gsub(']]', '')
+    remove_subfield(name).content.gsub('[[', '').gsub(']]', '')
   end.join '+'
 end
 
@@ -105,7 +104,8 @@ end
 def create_source
   value_card = remove_subfield('value')
   if (source_list = subfield('source'))
-    clear_subcards
+    remove_subfield('source')
+    # clear_subcards
     source_card = get_source_card source_list
     if !source_card
       errors.add :source, "#{source_list.content} does not exist."
@@ -182,23 +182,157 @@ def fill_subcards metric_value, source_card
 end
 
 format :html do
-  def get_structure args
-    if args[:company]
-      'metric company add value'
-    elsif args[:source]
-      'metric_source_add_value'
-    elsif args[:metric]
-      'metric add value'
+  view :open_content do |args|
+    _render_timeline_data args
+  end
+
+  view :new do |args|
+    # return super(args)
+    return _render_no_frame_form args if Env.params[:noframe]
+    # return super(args) if args[:source] || args[:metric] || args[:company]
+    return super(args) if args[:source] || args[:company]
+    @form_root = true
+
+    frame args do # no form!
+      [
+        _optional_render(:content_formgroup,
+                         args.merge(metric_value_landing: true))
+        #  _optional_render(:button_formgroup, button_args)
+      ]
+    end
+  end
+
+  def edit_slot args
+    args.merge! edit_fields: { '+value' => {} } unless special_editor? args
+    super(args)
+  end
+
+  def special_editor? args
+    (args[:company] && args[:metric]) || args[:metric_value_landing]
+  end
+
+  view :editor do |args|
+    if args[:company] && args[:metric]
+      _render_metric_company_add_value_editor args
+    # elsif args[:source] || args[:metric]
+    #   _render_add_value_editor args
+    elsif args[:metric_value_landing]
+      _render_metric_value_landing args
     else
-      'default add metric value'
+      super args
+    end
+  end
+
+  view :metric_value_landing do |args|
+    metric_field = _render_metric_field(args)
+    render_haml source_container: _render_source_container,
+                metric_field: metric_field do
+      <<-HAML
+.col-md-6.border-right.panel-default
+  %h4
+    Company
+  %hr
+    = field_nest :wikirate_company, title: ''
+  %h4
+    Metric
+  %hr
+    = metric_field
+= source_container
+      HAML
+    end
+  end
+
+  view :metric_field do |args|
+    metric = args[:metric]
+    metric_field =
+      Card.fetch(card.cardname.field(:metric), new: { content: metric })
+    render_haml metric: metric,
+                source_container: _render_source_container,
+                metric_field: metric_field do
+      <<-HAML
+= nest metric_field, title: ''
+.col-md-6.col-centered.text-center
+  %a.btn.btn-primary._new_value_next
+    Next
+      HAML
+    end
+  end
+
+  view :source_container do |_args|
+    render_haml do
+      <<-HAML
+.col-md-6.nopadding.panel-default
+  .col-md-6.col-centered.text-center.light-grey-color-2
+    %p
+      Source Preview Container
+    %p
+      Please select a company and metric to add new sources and metric values.
+      HAML
+    end
+  end
+
+  view :no_frame_form do |args|
+    form_opts = args[:form_opts] ? args.delete(:form_opts) : {}
+    form_opts[:hidden] = args.delete(:hidden)
+    form_opts['main-success'] = 'REDIRECT'
+    card_form :create, form_opts do
+      output [
+        _optional_render(:name_formgroup, args),
+        _optional_render(:type_formgroup, args),
+        _optional_render(:content_formgroup, args),
+        _optional_render(:button_formgroup, args)
+      ]
+    end
+  end
+
+  view :add_value_editor do |_args|
+    render_haml do
+      <<-HAML
+= field_nest :metric, title: 'Metric' unless args[:metric]
+= field_nest :wikirate_company, title: 'Company'
+.fluid-container
+  .row
+    .col-xs-2
+      = field_nest :year, title: 'Year'
+    .col-xs-10
+      = field_nest :value, title: 'Value'
+    end
+= field_nest :wikirate_source, title: 'Source' if args[:metric]
+      HAML
+    end
+  end
+
+  view :metric_company_add_value_editor do |_args|
+    render_haml do
+      <<-HAML
+.td.year
+  = field_nest :year, title: 'Year'
+.td.value
+  %span.metric-value
+    = field_nest :value, title: 'Value'
+  = field_nest :discussion, title: 'Comment'
+  %h5
+    Choose Sources or
+    %a.btn.btn-sm.btn-default._add_new_source
+      %small
+        %span.icon.icon-wikirate-logo-o.fa-lg
+        Add a new Source
+  .relevant-sources
+    None
+  %h5
+    Cited Sources
+  .cited-sources
+    None
+  HAML
     end
   end
 
   def set_hidden_args args
     if !args[:source]
-      view = (args[:metric] || args[:company]) ? :titled : :open
+      # TODO: add appropriate view to the following condition.
+      # view = (args[:metric] || args[:company]) ? :timeline_data : :timeline_data
       args[:hidden] = {
-        :success => { id: '_self', soft_redirect: true, view: view },
+        :success => { id: '_self', soft_redirect: true, view: :timeline_data },
         'card[subcards][+metric][content]' => args[:metric]
       }
     else
@@ -215,9 +349,12 @@ format :html do
       args[:hidden]['card[subcards][+source][content]'] = args[:source]
     end
     args[:title] = "Add new value for #{args[:metric]}" if args[:metric]
-    args[:structure] = get_structure args
     super(args)
   end
+
+  # def edit_slot args
+  #   super args.merge(core_edit: true)
+  # end
 
   def legend args
     subformat(card.metric_card)._render_legend args
@@ -267,6 +404,7 @@ format :html do
         }
       )
     ) # ,:html_args=>{:class=>"td year"}))
+
     %(
       <span class="metric-value">
         #{modal_link}
@@ -274,30 +412,75 @@ format :html do
     )
   end
 
+  view :value_link do |args|
+    url = "/#{card.cardname.url_key}"
+    link = link_to card.value, url, target: '_blank'
+    content_tag(:span, link.html_safe, class: 'metric-value')
+  end
+
   view :timeline_data do |args|
-    year = content_tag(:span, card.cardname.right, class: 'metric-year')
-    # value_card = card.fetch(trait: :value)
+    # container elements
     value = content_tag(:span, currency, class: 'metric-unit')
-    value << _render_modal_details(args).html_safe
+    value << _render_value_link(args)
     value << content_tag(:span, legend(args), class: 'metric-unit')
+    value << _render_value_details_toggle
+    value << _render_value_details(args)
 
-    line   =  content_tag(:div, '', class: 'timeline-dot')
-    line << content_tag(:div, '', class: 'timeline-line') if args[:connect]
+    # stitch together
+    wrap_with :div, class: 'timeline-row' do
+      [
+        _render_year,
+        content_tag(:div, value.html_safe, class: 'td value')
+      ]
+    end
+  end
 
-    credit = wrap_with :div, class: 'td credit' do
+  view :year do
+    year = content_tag(:span, card.cardname.right)
+    year << content_tag(:div, '', class: 'timeline-dot')
+    content_tag(:div, year.html_safe, class: 'td year')
+  end
+
+  view :value_details do |args|
+    wrap_with :div, class: 'metric-value-details collapse' do
+      [
+        _optional_render(:credit_name, args, :show),
+        content_tag(:div, _render_comments, class: 'comments-div'),
+        content_tag(:div, _render_sources, class: 'cited-sources')
+      ]
+    end
+  end
+
+  view :value_details_toggle do
+    content_tag(:i, '', class: 'fa fa-caret-right '\
+                                'fa-lg margin-left-10 '\
+                                'btn btn-default btn-sm ',
+                        data: { toggle: 'collapse-next',
+                                parent: '.value',
+                                collapse: '.metric-value-details'
+                              }
+               )
+  end
+
+  view :sources do
+    heading = content_tag(:h5, 'Cited')
+    sources = card.fetch trait: :source
+    heading << subformat(sources).render_core(item: :cited).html_safe
+  end
+
+  view :comments do
+    disc_card = card.fetch trait: :discussion, new: {}
+    comments = disc_card.real? ? subformat(disc_card).render_core : ''
+    comments += subformat(disc_card).render_comment_box
+    heading = content_tag(:h5, 'Discussion')
+    heading << content_tag(:div, comments.html_safe, class: 'card-slot')
+  end
+
+  view :credit_name do |args|
+    wrap_with :div, class: 'credit' do
       [
         nest(card, view: :core, structure: 'creator credit'),
         _optional_render(:source_link, args, :hide)
-      ]
-    end
-
-    wrap_with :div, class: 'timeline-row' do
-      [
-        line,
-        content_tag(:div, year.html_safe,  class: 'td year'),
-        content_tag(:div, value.html_safe, class: 'td value'),
-        credit
-
       ]
     end
   end
