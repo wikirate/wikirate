@@ -1,9 +1,9 @@
-#@javascript
-#Feature: source
-#  In order to have source to support notes/metric values
-#  As a User
-#  I want to create a source
-#
+@javascript
+Feature: source
+  In order to have source to support notes/metric values
+  As a User
+  I want to create a source
+
 #  Background:
 #    Given I am signed in as Joe Admin
 #

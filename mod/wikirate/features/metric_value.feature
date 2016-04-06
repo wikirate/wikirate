@@ -1,15 +1,17 @@
-#@javascript
-#Feature: metric value
-#   As signed in user I want to be able to add a metric value.
-#
+@javascript
+Feature: metric value
+   As signed in user I want to be able to add a metric value.
+
 #  Background:
 #    Given I am signed in as Joe User
 #    And I wait until ajax response done
 #    And I go to  "/new metric_value"
 #
 #  Scenario: create a metric value with a link source on new metric value page
-#    When I solocomplete "Death Star" within ".RIGHT-company"
-#    And I fill in "Jedi+disturbances in the Force" for "Metric"
+#    When I fill in "Death Star" for "+Company"
+#    And I fill in "Jedi+disturbances in the Force" for
+#    When I opt for "Death Star" as the "company"
+#    And I opt for as the "metric"
 #    And I press "Next"
 #    Then show me the page
 #

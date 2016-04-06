@@ -1,7 +1,7 @@
-#@javascript
-#Feature: metric value
-#   As signed in user I want to be able to add a metric value on metric page.
-#
+@javascript
+Feature: metric value
+   As signed in user I want to be able to add a metric value on metric page.
+
 #  Background:
 #    Given I am signed in as Joe User
 #    And I wait until ajax response done
