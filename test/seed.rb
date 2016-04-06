@@ -65,6 +65,7 @@ class SharedData
     def add_metrics
       Card::Env[:protocol] = 'http://'
       Card::Env[:host] = 'wikirate.org'
+      Card.create! name: '1977', type_id: Card::YearID
       Card::Metric.create name: 'Jedi+disturbances in the Force',
                           value_type: 'Categorical',
                           value_options: ['yes', 'no'] do
@@ -94,6 +95,7 @@ class SharedData
                    'Jedi+disturbances in the Force+Joe User' => 40 }
       )
 
+
       Card::Metric.create name: 'Joe User+score1', type: :researched,
                           random_source: true do
         Samsung          '2014' => 10, '2015' => 5
@@ -109,6 +111,22 @@ class SharedData
                           random_source: true do
         Samsung '2014' => 1, '2015' => 1
       end
+
+      # Card::Metric.create name: 'Joe User+score1', type: :score,
+      #                     random_source: true do
+      #   Samsung          '2014' => 10, '2015' => 5
+      #   Sony_Corporation '2014' => 1
+      #   Death_Star       '1977' => 5
+      # end
+      # Card::Metric.create name: 'Joe User+score2', type: :score,
+      #                     random_source: true do
+      #   Samsung          '2014' => 5, '2015' => 2
+      #   Sony_Corporation '2014' => 2
+      # end
+      # Card::Metric.create name: 'Joe User+score3', type: :score,
+      #                     random_source: true do
+      #   Samsung '2014' => 1, '2015' => 1
+      # end
     end
   end
 end
