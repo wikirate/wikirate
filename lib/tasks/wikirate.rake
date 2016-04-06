@@ -112,7 +112,6 @@ namespace :wikirate do
         FileUtils.rm_rf(Dir.glob('tmp/*'))
         require "#{Wagn.root}/config/environment"
         cards = get_data location
-#        binding.pry
         import_data cards
         insert_migration_records cards['migration_record']
         FileUtils.rm_rf(Dir.glob('tmp/*'))

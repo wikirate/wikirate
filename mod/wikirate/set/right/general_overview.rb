@@ -53,7 +53,6 @@ format :html do
   end
 
   def handle_edit_general_overview args
-    binding.pry
     if params[default_param_key] && card.ok?(:update)
       render :edit, args
     else
