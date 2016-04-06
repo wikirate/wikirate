@@ -32,7 +32,7 @@ format :html do
     end
   end
 
-  view :citation_tip do |_args|
+  view :citation_tip, tags: :unknown_ok do |_args|
     tip = ' easily cite this note by pasting the following: '\
           "#{text_area_tag('sample-citation-textarea')}"
     %( <div class="sample-citation">#{render :tip, tip: tip}</div> )
@@ -53,6 +53,7 @@ format :html do
   end
 
   def handle_edit_general_overview args
+    binding.pry
     if params[default_param_key] && card.ok?(:update)
       render :edit, args
     else

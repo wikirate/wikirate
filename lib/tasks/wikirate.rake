@@ -1,5 +1,5 @@
 require 'colorize'
-# require 'pry'
+require 'pry'
 namespace :wikirate do
   namespace :test do
     db_path = File.join Wagn.root, 'test', 'wikiratetest.db'
@@ -24,13 +24,15 @@ namespace :wikirate do
       SharedData.add_wikirate_data
     end
 
-    def update_or_create name, attr
+    def update_or_create name, codename, attr
       if attr['type'].in? ['Image', 'File']
         attr['content'] = ''
         attr['empty_ok'] = true
       end
       begin
-        if (card = Card.fetch(name))
+        # card = codename ? Card.fetch(codename.to_sym) : Card.fetch(name)
+        card = Card.fetch(name)
+        if card
           puts "updating card #{name} "\
                "#{card.update_attributes!(attr)}".light_blue
         else
@@ -87,7 +89,7 @@ namespace :wikirate do
       puts 'importing data'.green
       Card::Auth.as_bot
       cards['card']['value'].each do |card|
-        update_or_create card['name'], card
+        update_or_create card['name'], card['codename'], card
       end
       puts 'Done'.green
     end
@@ -110,6 +112,7 @@ namespace :wikirate do
         FileUtils.rm_rf(Dir.glob('tmp/*'))
         require "#{Wagn.root}/config/environment"
         cards = get_data location
+#        binding.pry
         import_data cards
         insert_migration_records cards['migration_record']
         FileUtils.rm_rf(Dir.glob('tmp/*'))
