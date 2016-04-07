@@ -128,21 +128,13 @@ def clone_subcards_to_hash subcards
   source_subcards
 end
 
-
 def find_or_create new_source_card
   with_sourcebox do
-    if (new_source_card = source_list.subcard('new_source'))
-      if (url = new_source_card.subfield(:wikirate_link)) &&
-         (source_card = find_duplicate_source(url.content))
-        source_card
-      else
-        add_source_subcard new_source_card
-      end
-    else
-      source_subcards = clone_subcards_to_hash new_source_card
-      source_card = add_subcard '', type_id: SourceID, subcards: source_subcards
-      source_card.director.catch_up_to_stage :prepare_to_store
+    if (url = new_source_card.subfield(:wikirate_link)) &&
+       (source_card = find_duplicate_source(url.content))
       source_card
+    else
+      add_source_subcard new_source_card
     end
   end
 end
@@ -159,7 +151,7 @@ def process_sources source_list
   source_names = source_list.item_names
   source_names.each do |source_name|
     if !(source_card = Card[source_name])
-      errors.add :source, "#{source_card.name} does not exist."
+      errors.add :source, "#{source_name} does not exist."
     end
   end
   if (new_source_subcard = source_list.subcard('new_source'))
