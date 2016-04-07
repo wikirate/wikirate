@@ -76,14 +76,8 @@ def create_source
   if (source_list = subfield('source'))
     remove_subfield('source')
     # clear_subcards
-    source_card = get_source_card source_list
-    if !source_card
-      errors.add :source, "#{source_list.content} does not exist."
-    elsif source_card.errors.empty?
-      fill_subcards value_card, source_card
-    else
-      fill_errors source_card
-    end
+    source_names = process_sources source_list
+    fill_subcards value_card, source_names if errors.empty?
   else
     errors.add :source, 'does not exist.'
   end
@@ -104,23 +98,36 @@ def clone_subcards_to_hash subcards
   source_subcards
 end
 
-def get_source_card source_list
+
+def find_or_create new_source_card
   with_sourcebox do
-    if (new_source_card = source_list.subcard('new_source'))
-      if (url = new_source_card.subfield(:wikirate_link)) &&
-         (source_card = find_duplicate_source(url.content))
-        source_card
-      else
-        source_subcards = clone_subcards_to_hash new_source_card
-        source_card = add_subcard '', type_id: SourceID,
-                                      subcards: source_subcards
-        source_card.director.catch_up_to_stage :prepare_to_store
-        source_card
-      end
+    if (url = new_source_card.subfield(:wikirate_link)) &&
+       (source_card = find_duplicate_source(url.content))
+      source_card
     else
-      Card[source_list.content]
+      source_subcards = clone_subcards_to_hash new_source_card
+      source_card = add_subcard '', type_id: SourceID, subcards: source_subcards
+      source_card.director.catch_up_to_stage :prepare_to_store
+      source_card
     end
   end
+end
+
+def process_sources source_list
+  source_names = source_list.item_names
+  source_names.each do |source_name|
+    if !(source_card = Card[source_name])
+      errors.add :source, "#{source_card.name} does not exist."
+    end
+  end
+  if (new_source_subcard = source_list.subcard('new_source'))
+    source_card = find_or_create new_source_subcard
+    if source_card.errors.present?
+      fill_errors source_card
+    end
+    source_names << source_card.name
+  end
+  source_names
 end
 
 def find_duplicate_source url
@@ -141,9 +148,9 @@ def fill_errors source_card
   end
 end
 
-def fill_subcards metric_value, source_card
+def fill_subcards metric_value, source_names
   add_subcard '+value', content: metric_value.content, type_id: PhraseID
-  add_subcard '+source', content: "[[#{source_card.name}]]",
+  add_subcard '+source', content: source_names.to_pointer_content,
                          type_id: PointerID
 end
 
@@ -198,7 +205,7 @@ format :html do
   %h4
     Company
   %hr
-    = field_nest :wikirate_company, title: ''
+    = field_nest :wikirate_company, title: 'Company'
   %h4
     Metric
   %hr
