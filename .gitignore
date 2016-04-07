@@ -2,6 +2,7 @@
 !/config
 /config/*
 !/config/initializers
+!/config/locales
 /files
 /log
 /tmp

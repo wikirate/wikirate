@@ -61,6 +61,36 @@ event :validate_metric_value_fields, before: :set_metric_value_name do
   end
 end
 
+def number? str
+  true if Float(str)
+rescue
+  false
+end
+
+event :validate_value_type, :validate, on: :save do
+  # check if the value fit the value type of metric
+  if (value_type = Card["#{metric_card.name}+value type"])
+    value = subfield(:value).content
+    case value_type.item_names[0]
+    when 'Number', 'Monetary'
+      unless number?(value)
+        errors.add :value, 'Only numeric content is valid for this metric.'
+      end
+    when 'Category'
+      # check if the value exist in options
+      if !(option_card = Card["#{metric_card.name}+value options"]) ||
+         !option_card.item_names(contenxt: :raw).include?(value)
+        url = "/#{option_card.cardname.url_key}?view=edit"
+        anchor =
+          <<-HTML
+            <a href='#{url}' target="_blank">add options</a>
+          HTML
+        errors.add :options, "Please #{anchor} before adding metric value."
+      end
+    end
+  end
+end
+
 event :create_source_for_metric_value, :validate, on: :create do
   create_source
 end
@@ -98,26 +128,30 @@ def clone_subcards_to_hash subcards
   source_subcards
 end
 
-
 def find_or_create new_source_card
   with_sourcebox do
     if (url = new_source_card.subfield(:wikirate_link)) &&
        (source_card = find_duplicate_source(url.content))
       source_card
     else
-      source_subcards = clone_subcards_to_hash new_source_card
-      source_card = add_subcard '', type_id: SourceID, subcards: source_subcards
-      source_card.director.catch_up_to_stage :prepare_to_store
-      source_card
+      add_source_subcard new_source_card
     end
   end
+end
+
+def add_source_subcard new_source_card
+  source_subcards = clone_subcards_to_hash new_source_card
+  source_card = add_subcard '', type_id: SourceID,
+                                subcards: source_subcards
+  source_card.director.catch_up_to_stage :prepare_to_store
+  source_card
 end
 
 def process_sources source_list
   source_names = source_list.item_names
   source_names.each do |source_name|
     if !(source_card = Card[source_name])
-      errors.add :source, "#{source_card.name} does not exist."
+      errors.add :source, "#{source_name} does not exist."
     end
   end
   if (new_source_subcard = source_list.subcard('new_source'))
@@ -335,30 +369,56 @@ format :html do
     subformat(card.metric_card)._render_legend args
   end
 
+  def currency
+    return unless (value_type = Card["#{card.metric_card.name}+value type"])
+    return unless value_type.item_names[0] == 'Monetary' &&
+                  (currency = Card["#{card.metric_card.name}+currency"])
+    currency.content
+  end
+
   view :concise do |args|
-    <<-HTML
+    %(
       <span class="metric-year">
         #{card.year} =
+      </span>
+      <span class="metric-unit">
+        #{currency}
       </span>
       #{_render_modal_details(args)}
       <span class="metric-unit">
         #{legend(args)}
       </span>
-      HTML
+    )
   end
 
   view :modal_details do |args|
+    # binding.pry
+    show_value =
+      if (value_type = card.metric_card.fetch trait: :value_type) &&
+         %w(Number Monetary).include?(value_type.item_names[0])
+        big_number = BigDecimal.new(card.value)
+        number_to_human(big_number)
+      else
+        card.value
+      end
     modal_link = subformat(card)._render_modal_link(
       args.merge(
-        text: card.value,
-        path_opts: { slot: { show: :menu, optional_horizontal_menu: :hide } }
+        text: show_value,
+        path_opts: { slot: { show: :menu, optional_horizontal_menu: :hide } },
+        html_args: {
+          'data-complete-number' => card.value,
+          'data-tooltip' => 'true',
+          'data-placement' => 'top',
+          'title' => card.value
+        }
       )
     ) # ,:html_args=>{:class=>"td year"}))
-    <<-HTML
+
+    %(
       <span class="metric-value">
         #{modal_link}
       </span>
-      HTML
+    )
   end
 
   view :value_link do |args|
@@ -369,8 +429,8 @@ format :html do
 
   view :timeline_data do |args|
     # container elements
-    # value =  _render_modal_details(args)
-    value = _render_value_link(args)
+    value = content_tag(:span, currency, class: 'metric-unit')
+    value << _render_value_link(args)
     value << content_tag(:span, legend(args), class: 'metric-unit')
     value << _render_value_details_toggle
     value << _render_value_details(args)
