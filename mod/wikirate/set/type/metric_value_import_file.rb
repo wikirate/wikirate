@@ -3,13 +3,13 @@ attachment :metric_value_import_file, uploader: FileUploader
 include_set Type::File
 include_set Abstract::Import
 
-def valid_import_data? data
+def valid_import_format? data
   data.is_a? Array
 end
 
 # @return [Hash] args to create metric value card
 def process_metric_value_data metric_value_data
-  mv_hash = JSON.parse(metric_value_data)
+  mv_hash = JSON.parse(metric_value_data).symbolize_keys
   company = mv_hash[:company]
   correction_key = [mv_hash[:metric], company, mv_hash[:year]].join '+'
   corrected_company = correct_company_name company, correction_key
@@ -29,7 +29,7 @@ format :html do
   end
 
   def default_import_table_args args
-    args[:table_header] = ['Select', 'Metric', 'Year', 'Value', 'Source',
+    args[:table_header] = ['Select', '#', 'Metric', 'Year', 'Value', 'Source',
                            'Company in File', 'Company in Wikirate', 'Match',
                            'Correction']
   end
@@ -50,12 +50,13 @@ format :html do
       "<a href=\"#{source}\">Download #{showname args[:title]}</a><br />"
     end
     content + <<-HTML
-      <a href=\"/#{card.cardname.url_key}?view=import\">Click to import</a>
+      <a href=\"/#{card.cardname.url_key}?view=import\">Import ...</a>
     HTML
   end
 
   view :import do |args|
-    frame_and_form :update, args, class: 'nodblclick' do
+    frame_and_form :update, args, class: 'nodblclick',
+                   'notify-success' => 'import successful' do
       [
         _optional_render(:metric_import_flag, args),
         _optional_render(:selection_checkbox, args),
@@ -71,11 +72,12 @@ format :html do
     content_tag(:td, input)
   end
 
-  def render_row hash, row
-    row_hash = row_to_hash row
+  def render_row hash, row, index
+    row_hash = row_to_hash row, index
     file_company = row_hash[:company]
     wikirate_company, status = matched_company(hash, file_company)
-    row_content = checkbox_row file_company, wikirate_company, status, row_hash
+    row_content =
+      checkbox_row file_company, wikirate_company, status, row_hash, index
     if status != :exact
       comp_name = wikirate_company.empty? ? file_company : wikirate_company
       key_name = "#{row_hash[:metric]}+#{comp_name}+#{row_hash[:year]}"
@@ -84,13 +86,14 @@ format :html do
     row_content
   end
 
-  def row_to_hash row
+  def row_to_hash row, index
     {
       metric: row[0],
       company: row[1],
       year: row[2],
       value: row[3],
-      source: row[4]
+      source: row[4],
+      row: index
     }
   end
 
@@ -106,14 +109,14 @@ format :html do
     end
   end
 
-  def checkbox_row file_company, wikirate_company, status, row_hash
+  def checkbox_row file_company, wikirate_company, status, row_hash, index
     checked = [:partial, :exact, :alias].include? status
     company = status == :none ? file_company : wikirate_company
     key_hash = row_hash.deep_dup
     key_hash[:company] = company
     checkbox = metric_value_checkbox key_hash, checked
     fields = [
-      row_hash[:metric], row_hash[:year], row_hash[:value], row_hash[:source],
+      index, row_hash[:metric], row_hash[:year], row_hash[:value], row_hash[:source],
       file_company, wikirate_company, status.to_s]
     fields.inject(checkbox) do |row, itm|
       row.concat content_tag(:td, itm)

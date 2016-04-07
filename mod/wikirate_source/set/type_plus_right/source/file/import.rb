@@ -23,7 +23,7 @@ event :validate_import, :prepare_to_validate,
   check_card year_pointer_card, 'Year', Card::YearID
 end
 
-def valid_import_data? data
+def valid_import_format? data
   data.is_a? Hash
 end
 

@@ -27,11 +27,15 @@ event :import_csv, :prepare_to_store,
       on: :update,
       when: proc { Env.params['is_metric_import_update'] == 'true' } do
   return unless (metric_values = Env.params[:metric_values])
-  return unless valid_import_data?(metric_values)
+  return unless valid_import_format?(metric_values)
   metric_values.each do |metric_value_data|
     metric_value_card = import_metric_value metric_value_data
+    @import_errors.each do |msg|
+      errors.add *msg
+    end
+    next unless metric_value_card
     metric_value_card.errors.each do |key, error_value|
-      errors.add key, error_value
+      errors.add "#{metric_value_card.name}+#{key}", error_value
     end
   end
   handle_redirect redirect_target_after_import
@@ -52,13 +56,11 @@ end
 
 def handle_redirect target=nil
   if errors.empty?
-    success_args =
-      if target
-        { name: target, redirect: true, view: :open }
-      else
-        { slot: { success_msg: 'Import Successfully <br />' } }
-      end
-    abort success: success_args
+    if target
+      abort success:  { name: target, redirect: true, view: :open }
+    else
+      abort :success
+    end
   else
     abort :failure
   end
@@ -75,17 +77,52 @@ def correct_company_name company, correction_key=nil
   corrected
 end
 
+def add_import_error msg, row=nil
+  return unless msg
+  title = "import error"
+  title += " (row #{row})" if row
+  @import_errors << [title, msg]
+end
+
+def valid_value_data? args
+  @import_errors = []
+  add_import_error "metric name missing", args[:row] if args[:metric].blank?
+  %w(company year value).each do |field|
+    add_import_error "#{field} missing", args[:row] if args[field.to_sym].blank?
+  end
+  { metric: MetricID,
+    year: YearID,
+    company: WikirateCompanyID }.each_pair do |type, type_id|
+    msg = check_existence_and_type(args[type], type_id, type)
+    add_import_error msg, args[:row]
+  end
+  @import_errors.empty?
+end
+
+def check_existence_and_type name, type_id, type_name=nil
+  return  "#{name} doesn't exist" unless Card[name]
+  if Card[name].type_id != type_id
+    return "#{name} is not a #{type_name}"
+  end
+end
+
+def ensure_company_exists company
+  return if Card[company]
+  Card.create name: company, type_id: WikirateCompanyID
+end
+
 # @return updated or created metric value card object
 def import_metric_value import_data
   args = process_metric_value_data import_data
-  metric_value_card_name =
-    [args[:metric], args[:company], args[:year]].join '+'
+  ensure_company_exists args[:company]
+  return unless valid_value_data? args
+  metric_value_name = [args[:metric], args[:company], args[:year]].join '+'
   subcards = metric_value_subcards args
-  if (metric_value_card = Card[metric_value_card_name])
+  if (metric_value_card = Card[metric_value_name])
     metric_value_card.update_attributes subcards: subcards
     metric_value_card
   else
-    Card.create name: metric_value_card_name,
+    Card.create name: metric_value_name,
                 type_id: Card::MetricValueID,
                 subcards: subcards
   end
@@ -115,10 +152,11 @@ format :html do
     end
   end
 
-  def render_row hash, row
+  def render_row hash, row, index
     file_company, value = row
     wikirate_company, status = matched_company(hash, file_company)
-    row_content = checkbox_row file_company, wikirate_company, status, value
+    row_content =
+      checkbox_row file_company, wikirate_company, status, value, index
     if status != :exact
       comp_name = wikirate_company.empty? ? file_company : wikirate_company
       row_content += field_to_correct_company comp_name
@@ -126,14 +164,14 @@ format :html do
     row_content
   end
 
-  def checkbox_row file_company, wikirate_company, status, value
+  def checkbox_row file_company, wikirate_company, status, value, index
     checked = [:partial, :exact, :alias].include? status
     company = status == :none ? file_company : wikirate_company
     checkbox =
       content_tag(:td) do
         check_box_tag "metric_values[#{company}][]", value, checked
       end
-    [file_company, wikirate_company, status.to_s].inject(checkbox) do |row, itm|
+    [index, file_company, wikirate_company, status.to_s].inject(checkbox) do |row, itm|
       row.concat content_tag(:td, itm)
     end
   end
@@ -187,7 +225,7 @@ format :html do
   end
 
   view :import do |args|
-    frame_and_form :update, args do
+    frame_and_form :update, args, 'notify-success' => 'import successful' do
       [
         _optional_render(:metric_select, args),
         _optional_render(:year_select, args),
@@ -224,7 +262,7 @@ format :html do
   end
 
   def default_import_table_args args
-    args[:table_header] = ['Select', 'Company in File', 'Company in Wikirate',
+    args[:table_header] = ['Import', '#', 'Company in File', 'Company in Wikirate',
                            'Match', 'Correction']
   end
 
@@ -238,7 +276,7 @@ format :html do
     hash = aliases_hash
     tbody = content_tag :tbody do
       wrap_each_with :tr  do
-        card.csv_rows.map { |elem| render_row(hash, elem) }
+        card.csv_rows.map.with_index { |elem, i| render_row(hash, elem, i+1) }
       end.html_safe
     end.html_safe
     content_tag(
