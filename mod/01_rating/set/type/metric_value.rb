@@ -277,6 +277,8 @@ format :html do
   %span.metric-value
     = field_nest :value, title: 'Value'
   = field_nest :discussion, title: 'Comment'
+  -# .pointer-list-ul._hidden_source
+  -# = hidden_field_tag 'card[subcards][+source][content]'
   %h5
     Choose Sources or
     %a.btn.btn-sm.btn-default._add_new_source
@@ -385,7 +387,7 @@ format :html do
     wrap_with :div, class: 'metric-value-details collapse' do
       [
         _optional_render(:credit_name, args, :show),
-        content_tag(:div, _render_comments, class: 'comments-div'),
+        content_tag(:div, _render_comments(args), class: 'comments-div'),
         content_tag(:div, _render_sources, class: 'cited-sources')
       ]
     end
@@ -408,12 +410,16 @@ format :html do
     heading << subformat(sources).render_core(item: :cited).html_safe
   end
 
-  view :comments do
+  view :comments do |args|
     disc_card = card.fetch trait: :discussion, new: {}
     comments = disc_card.real? ? subformat(disc_card).render_core : ''
     comments += subformat(disc_card).render_comment_box
-    heading = content_tag(:h5, 'Discussion')
-    heading << content_tag(:div, comments.html_safe, class: 'card-slot')
+    wrap do
+      [
+        content_tag(:h5, 'Discussion'),
+        comments.html_safe
+      ]
+    end
   end
 
   view :credit_name do |args|
