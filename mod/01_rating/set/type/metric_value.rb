@@ -277,8 +277,6 @@ format :html do
   %span.metric-value
     = field_nest :value, title: 'Value'
   = field_nest :discussion, title: 'Comment'
-  -# .pointer-list-ul._hidden_source
-  -# = hidden_field_tag 'card[subcards][+source][content]'
   %h5
     Choose Sources or
     %a.btn.btn-sm.btn-default._add_new_source
@@ -289,8 +287,10 @@ format :html do
     None
   %h5
     Cited Sources
-  .cited-sources
-    None
+  .card-editor
+    = hidden_field_tag 'card[subcards][+source][content]', nil, class: 'card-content'
+    .cited-sources.pointer-list-ul
+      None
   HAML
     end
   end

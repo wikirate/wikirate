@@ -103,15 +103,15 @@ $(document).ready ->
                             .attr("id")+".TYPE-source:first"
     $sourceContainer    = $timelineContainer.find(sourceID).parent().detach()
     $sourceFormContr    = $('#source-form-container').find(sourceID)
-    $hiddenInput        = $('<input>').attr('type','hidden')
-                            .attr('name','card[subcards][+source][content]')
+    $hiddenInput        = $('<input>').attr('type','hidden').addClass('pointer-select')
+                            # .attr('name','card[subcards][+source][content]')
     if(action =='cite')
       $([$sourceFormContr.find("._cite_button"),
         $sourceContainer.find("._cite_button"), ]).each ->
           sourceCiteButtons($(this),action)
 
       $citedSource.empty() if $citedSource.text().search("None") > 0
-      $hiddenInput.attr('value','[['+sourceName+']]')
+      $hiddenInput.attr('value',sourceName)
       $sourceContainer.append($hiddenInput)
       $citedSource.append($sourceContainer)
       $relSource.text("None") if $relSource.is(':empty')
@@ -146,7 +146,9 @@ $(document).ready ->
     company         = $this.closest('form')
                         .find('#card_subcards__company_content').attr('value')
     $sourceCntr     = $("#source-form-container")
-    if(!$sourceCntr.find('form').length > 0)
+    $sourceForm     = $sourceCntr.find('form')
+    $loaderThing    = $sourceCntr.find('.loader-anime')
+    if(!$sourceForm.length > 0 && !$loaderThing.length > 0)
       appendSourceForm(company)
     else
       $sourceCntr.find('form').removeClass('hide')
