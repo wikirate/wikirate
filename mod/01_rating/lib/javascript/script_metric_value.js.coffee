@@ -1,5 +1,5 @@
 $(document).ready ->
-  $loader_anime = $("#ajax_loader").html();
+  $loader_anime = $("#ajax_loader").html()
   $('body').on 'click','._new_value_next',->
     $parent_slot = $(this).slot()
     company = $(".RIGHT-company .input-group input").val()
@@ -9,7 +9,10 @@ $(document).ready ->
     metric  = Array.isArray(metric) && metric[0] || metric
     metric  = metric.replace('.','')
     if(company&&metric)
-      load_path = wagn.prepUrl(wagn.rootPath + '/'+encodeURIComponent(metric)+'%2B'+encodeURIComponent(company)+'%2Bnew%20value')
+      load_path = wagn.prepUrl(wagn.rootPath + '/'+
+                               encodeURIComponent(metric)+
+                               '%2B'+encodeURIComponent(company)+
+                               '%2Bnew%20value')
       $parent_slot.append($loader_anime)
       $.get load_path, (data) ->
         $parent_slot.replaceWith(data)
@@ -24,7 +27,7 @@ $(document).ready ->
       $previewContainer.removeClass 'stick-right'
 
     if($(window).scrollTop() > ($("#main").height()-$(window).height()+300))
-      $previewContainer.removeClass("stick-right");
+      $previewContainer.removeClass("stick-right")
 
   $(window).scroll ->
     if($("#source-preview-main").length>0)
@@ -32,33 +35,43 @@ $(document).ready ->
 
   appendSourceForm = (company)->
     $source_target = $("#source-form-container")
-    load_path_source = wagn.prepUrl(wagn.rootPath + "/new/source?preview=true&slot[company]="+company)
+    load_path_source = wagn.prepUrl(wagn.rootPath +
+                                    "/new/source?preview=true&slot[company]="+
+                                    company)
     $source_target.append($loader_anime)
-    $.get load_path_source, ((data) ->
+    $.get(load_path_source, ((data) ->
       $sourceCntr     = $("#source-form-container")
       $sourceCntr.find('.source-details').addClass('hide')
       $source_target.prepend(data)
-      wagn.initializeEditors($source_target);
+      wagn.initializeEditors($source_target)
       $source_target.find(".loader-anime").remove()
       $source_target.find('form').trigger('slotReady')
       return
-    ), 'html'
+    ), 'html').fail((xhr,d,e)->
+      $source_target.find(".loader-anime").remove()
+    )
 
-  $('body').on 'ajax:success', '[data-form-for="new_metric_value"]',(event, data) ->
+  $('body').on 'ajax:success',
+  '[data-form-for="new_metric_value"]',
+  (event, data) ->
     $container      = $(".timeline-row .card-slot form .relevant-sources ")
-    $container      = $container.empty() if $container.text().search("None") > 0
+    $container      = $container.empty() if $container.text().search("None") >-1
     sourceID        = $(data).data('source-for')
     sourceInList    = "[data-source-for='"+sourceID+"']"
-    $sourceInForm   = $('.timeline-row form').find(sourceInList+'.source-details-toggle')
+    $sourceInForm   = $('.timeline-row form')
+                      .find(sourceInList+'.source-details-toggle')
 
     if(!$sourceInForm.length > 0)
       $('.source-details-toggle').removeClass('active')
-      $sourceDetailsToggle = $('<div>').attr('data-source-for',sourceID).addClass('source-details-toggle active')
-      $sourceDetailsToggle.append($(data).find(".source-info-container").parent())
+      $sourceDetailsToggle = $('<div>')
+                            .attr('data-source-for',sourceID)
+                            .addClass('source-details-toggle active')
+      $sourceDetailsToggle.append($(data)
+        .find(".source-info-container").parent())
       $container.append($sourceDetailsToggle)
-      pageName  = $("#source-name").html();
-      url       = $("#source_url").html();
-      # testSameOrigin(url) if (url);
+      pageName  = $("#source-name").html()
+      url       = $("#source_url").html()
+      # testSameOrigin(url) if (url)
     else
       $citeButton = $sourceInForm.find('._cite_button')
       if(!$citeButton.length > 0)
@@ -83,52 +96,62 @@ $(document).ready ->
     sourceCitation(this, 'uncite')
 
   sourceCitation = (ele, action) ->
-     $timelineContainer  = $(".timeline-row .card-slot form")
-     $relSource          = $timelineContainer.find(".relevant-sources")
-     $citedSource        = $timelineContainer.find(".cited-sources")
-     $this               = $(ele)
-     sourceName          = $this.closest(".TYPE-source").data("card-name")
-     sourceID            = "#"+$this.closest(".TYPE-source").attr("id")+".TYPE-source:first"
-     $sourceContainer    = $timelineContainer.find(sourceID).parent().detach()
-     $sourceFormContr    = $('#source-form-container').find(sourceID)
-     $hiddenInput        = $('<input>').attr('type','hidden').attr('name','card[subcards][+source][content]')
-     if(action =='cite')
-      $([$sourceFormContr.find("._cite_button"),$sourceContainer.find("._cite_button"), ]).each ->
-        sourceCiteButtons($(this),action)
+    $timelineContainer   = $(".timeline-row .card-slot form")
+    $relSource          = $timelineContainer.find(".relevant-sources")
+    $citedSource        = $timelineContainer.find(".cited-sources")
+    $this               = $(ele)
+    sourceName          = $this.closest(".TYPE-source").data("card-name")
+    sourceID            = "#"+$this.closest(".TYPE-source")
+                            .attr("id")+".TYPE-source:first"
+    $sourceContainer    = $timelineContainer.find(sourceID).parent().detach()
+    $sourceFormContr    = $('#source-form-container').find(sourceID)
+    $hiddenInput        = $('<input>').attr('type','hidden')
+                          .addClass('pointer-select')
+                            # .attr('name','card[subcards][+source][content]')
+    if(action =='cite')
+      $([$sourceFormContr.find("._cite_button"),
+        $sourceContainer.find("._cite_button"), ]).each ->
+          sourceCiteButtons($(this),action)
 
-      $citedSource.empty() if $citedSource.text().search("None") > 0
-      $hiddenInput.attr('value','[['+sourceName+']]')
+      $citedSource.empty() if $citedSource.text().search("None") > -1
+      $hiddenInput.attr('value',sourceName)
       $sourceContainer.append($hiddenInput)
       $citedSource.append($sourceContainer)
       $relSource.text("None") if $relSource.is(':empty')
 
      if(action == 'uncite')
-       $([$sourceFormContr.find("._cited_button"),$sourceContainer.find("._cited_button"), ]).each ->
-         sourceCiteButtons($(this),action)
+       $([$sourceFormContr.find("._cited_button"),
+        $sourceContainer.find("._cited_button"), ]).each ->
+          sourceCiteButtons($(this),action)
 
        $sourceContainer.find('input').remove()
-       $relSource.empty() if $relSource.text().search("None") > 0
+       $relSource.empty() if $relSource.text().search("None") > -1
        $relSource.append($sourceContainer)
        $citedSource.text("None") if $citedSource.is(':empty')
 
   sourceCiteButtons = (ele,action)->
     if(action == 'cite')
-      $citedButton = ele.removeClass("_cite_button btn-highlight").addClass("_cited_button btn-default").text("Cited!")
+      $citedButton = ele.removeClass("_cite_button btn-highlight")
+                      .addClass("_cited_button btn-default").text("Cited!")
       $citedButton.hover (->
         $(this).text('Uncite!')
       ), ->
         $(this).text('Cited!')
     else
-      $citedButton = ele.removeClass("_cited_button btn-default").addClass("_cite_button btn-highlight").text("Cite!")
+      $citedButton = ele.removeClass("_cited_button btn-default")
+                      .addClass("_cite_button btn-highlight").text("Cite!")
       $citedButton.unbind('mouseenter mouseleave')
 
 
 
   $('body').on 'click', '._add_new_source', ->
     $this           = $(this)
-    company         = $this.closest('form').find('#card_subcards__company_content').attr('value')
+    company         = $this.closest('form')
+                        .find('#card_subcards__company_content').attr('value')
     $sourceCntr     = $("#source-form-container")
-    if(!$sourceCntr.find('form').length > 0)
+    $sourceForm     = $sourceCntr.find('form')
+    $loaderThing    = $sourceCntr.find('.loader-anime')
+    if(!$sourceForm.length > 0 && !$loaderThing.length > 0)
       appendSourceForm(company)
     else
       $sourceCntr.find('form').removeClass('hide')
@@ -140,24 +163,37 @@ $(document).ready ->
     company   = $this.data("company")
     metric    = $this.data("metric")
     $target   = $this.closest('.timeline-data')
-    $page = if $('.TYPE-company.open-view').length > 0 then $('.TYPE-company.open-view') else $('.TYPE-metric.open-view')
-
+    $page     = if $('.TYPE-company.open-view').length > 0
+                  $('.TYPE-company.open-view')
+                else $('.TYPE-metric.open-view')
     if(company && metric)
-            $target.append($loader_anime)
-            if ($page.length>0)
-              location.href = wagn.prepUrl(wagn.rootPath + '/'+encodeURIComponent(metric)+'%2B'+encodeURIComponent(company)+'%2Bnew%20value')
-            else
-              load_path = wagn.prepUrl(wagn.rootPath + "/new/metric_value?noframe=true&slot[company]="+encodeURIComponent(company)+"&slot[metric]="+encodeURIComponent(metric))
-              $.get load_path, ((data) ->
-                $template = $('<div class="timeline-row"><div class="card-slot"></div></div>')
-                $template.find('.card-slot').append(data)
-                $target.find(".timeline-header").after($template)
-                $this.hide()
-                wagn.initializeEditors($target);
-                $target.find(".loader-anime").remove()
-                return
-              ), 'html'
-              appendSourceForm(company)
+      $target.append($loader_anime)
+      if ($page.length>0)
+        location.href = wagn.prepUrl(wagn.rootPath + '/'+
+                                     encodeURIComponent(metric)+
+                                     '%2B'+encodeURIComponent(company)+
+                                     '%2Bnew%20value')
+      else
+        load_path = wagn.prepUrl(wagn.rootPath +
+                               "/new/metric_value?noframe=true&slot[company]="+
+                               encodeURIComponent(company)+"&slot[metric]="+
+                               encodeURIComponent(metric))
+        $template = $('<div>').addClass('timeline-row')
+        $template = $template.append($('<div>').addClass('card-slot'))
+        $.get(load_path, ((data) ->
+          $template.find('.card-slot').append(data)
+          # $target.find(".timeline-header").after($template)
+          $this.hide()
+          wagn.initializeEditors($target)
+          $target.find(".loader-anime").remove()
+          return
+        ), 'html').fail((xhr,d,e)->
+          $template.find('.card-slot').append(xhr.responseText)
+        ).always(->
+          $target.find(".timeline-header").after($template)
+          $target.find(".loader-anime").remove()
+        )
+        appendSourceForm(company)
   $('._add_new_value').trigger 'click'
 
 wagn.slotReady (slot) ->

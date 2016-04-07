@@ -106,14 +106,8 @@ def create_source
   if (source_list = subfield('source'))
     remove_subfield('source')
     # clear_subcards
-    source_card = get_source_card source_list
-    if !source_card
-      errors.add :source, "#{source_list.content} does not exist."
-    elsif source_card.errors.empty?
-      fill_subcards value_card, source_card
-    else
-      fill_errors source_card
-    end
+    source_names = process_sources source_list
+    fill_subcards value_card, source_names if errors.empty?
   else
     errors.add :source, 'does not exist.'
   end
@@ -134,7 +128,8 @@ def clone_subcards_to_hash subcards
   source_subcards
 end
 
-def get_source_card source_list
+
+def find_or_create new_source_card
   with_sourcebox do
     if (new_source_card = source_list.subcard('new_source'))
       if (url = new_source_card.subfield(:wikirate_link)) &&
@@ -144,7 +139,10 @@ def get_source_card source_list
         add_source_subcard new_source_card
       end
     else
-      Card[source_list.content]
+      source_subcards = clone_subcards_to_hash new_source_card
+      source_card = add_subcard '', type_id: SourceID, subcards: source_subcards
+      source_card.director.catch_up_to_stage :prepare_to_store
+      source_card
     end
   end
 end
@@ -155,6 +153,23 @@ def add_source_subcard new_source_card
                                 subcards: source_subcards
   source_card.director.catch_up_to_stage :prepare_to_store
   source_card
+end
+
+def process_sources source_list
+  source_names = source_list.item_names
+  source_names.each do |source_name|
+    if !(source_card = Card[source_name])
+      errors.add :source, "#{source_card.name} does not exist."
+    end
+  end
+  if (new_source_subcard = source_list.subcard('new_source'))
+    source_card = find_or_create new_source_subcard
+    if source_card.errors.present?
+      fill_errors source_card
+    end
+    source_names << source_card.name
+  end
+  source_names
 end
 
 def find_duplicate_source url
@@ -175,9 +190,9 @@ def fill_errors source_card
   end
 end
 
-def fill_subcards metric_value, source_card
+def fill_subcards metric_value, source_names
   add_subcard '+value', content: metric_value.content, type_id: PhraseID
-  add_subcard '+source', content: "[[#{source_card.name}]]",
+  add_subcard '+source', content: source_names.to_pointer_content,
                          type_id: PointerID
 end
 
@@ -229,12 +244,12 @@ format :html do
                 metric_field: metric_field do
       <<-HAML
 .col-md-6.border-right.panel-default
-  %h4
-    Company
+  -# %h4
+  -# Company
   %hr
-    = field_nest :wikirate_company, title: ''
-  %h4
-    Metric
+    = field_nest :wikirate_company, title: 'Company'
+  -# %h4
+    -# Metric
   %hr
     = metric_field
 = source_container
@@ -250,7 +265,7 @@ format :html do
                 source_container: _render_source_container,
                 metric_field: metric_field do
       <<-HAML
-= nest metric_field, title: ''
+= nest metric_field, title: 'Metric'
 .col-md-6.col-centered.text-center
   %a.btn.btn-primary._new_value_next
     Next
@@ -321,8 +336,10 @@ format :html do
     None
   %h5
     Cited Sources
-  .cited-sources
-    None
+  .card-editor
+    = hidden_field_tag 'card[subcards][+source][content]', nil, class: 'card-content'
+    .cited-sources.pointer-list-ul
+      None
   HAML
     end
   end
@@ -445,7 +462,7 @@ format :html do
     wrap_with :div, class: 'metric-value-details collapse' do
       [
         _optional_render(:credit_name, args, :show),
-        content_tag(:div, _render_comments, class: 'comments-div'),
+        content_tag(:div, _render_comments(args), class: 'comments-div'),
         content_tag(:div, _render_sources, class: 'cited-sources')
       ]
     end
@@ -468,12 +485,16 @@ format :html do
     heading << subformat(sources).render_core(item: :cited).html_safe
   end
 
-  view :comments do
+  view :comments do |args|
     disc_card = card.fetch trait: :discussion, new: {}
     comments = disc_card.real? ? subformat(disc_card).render_core : ''
     comments += subformat(disc_card).render_comment_box
-    heading = content_tag(:h5, 'Discussion')
-    heading << content_tag(:div, comments.html_safe, class: 'card-slot')
+    wrap do
+      [
+        content_tag(:h5, 'Discussion'),
+        comments.html_safe
+      ]
+    end
   end
 
   view :credit_name do |args|
