@@ -202,12 +202,12 @@ format :html do
                 metric_field: metric_field do
       <<-HAML
 .col-md-6.border-right.panel-default
-  %h4
-    Company
+  -# %h4
+  -# Company
   %hr
     = field_nest :wikirate_company, title: 'Company'
-  %h4
-    Metric
+  -# %h4
+    -# Metric
   %hr
     = metric_field
 = source_container
@@ -223,7 +223,7 @@ format :html do
                 source_container: _render_source_container,
                 metric_field: metric_field do
       <<-HAML
-= nest metric_field, title: ''
+= nest metric_field, title: 'Metric'
 .col-md-6.col-centered.text-center
   %a.btn.btn-primary._new_value_next
     Next

@@ -39,7 +39,7 @@ $(document).ready ->
                                     "/new/source?preview=true&slot[company]="+
                                     company)
     $source_target.append($loader_anime)
-    $.get load_path_source, ((data) ->
+    $.get(load_path_source, ((data) ->
       $sourceCntr     = $("#source-form-container")
       $sourceCntr.find('.source-details').addClass('hide')
       $source_target.prepend(data)
@@ -47,13 +47,15 @@ $(document).ready ->
       $source_target.find(".loader-anime").remove()
       $source_target.find('form').trigger('slotReady')
       return
-    ), 'html'
+    ), 'html').fail((xhr,d,e)->
+      $source_target.find(".loader-anime").remove()
+    )
 
   $('body').on 'ajax:success',
   '[data-form-for="new_metric_value"]',
   (event, data) ->
     $container      = $(".timeline-row .card-slot form .relevant-sources ")
-    $container      = $container.empty() if $container.text().search("None") > 0
+    $container      = $container.empty() if $container.text().search("None") >-1
     sourceID        = $(data).data('source-for')
     sourceInList    = "[data-source-for='"+sourceID+"']"
     $sourceInForm   = $('.timeline-row form')
@@ -103,14 +105,15 @@ $(document).ready ->
                             .attr("id")+".TYPE-source:first"
     $sourceContainer    = $timelineContainer.find(sourceID).parent().detach()
     $sourceFormContr    = $('#source-form-container').find(sourceID)
-    $hiddenInput        = $('<input>').attr('type','hidden').addClass('pointer-select')
+    $hiddenInput        = $('<input>').attr('type','hidden')
+                          .addClass('pointer-select')
                             # .attr('name','card[subcards][+source][content]')
     if(action =='cite')
       $([$sourceFormContr.find("._cite_button"),
         $sourceContainer.find("._cite_button"), ]).each ->
           sourceCiteButtons($(this),action)
 
-      $citedSource.empty() if $citedSource.text().search("None") > 0
+      $citedSource.empty() if $citedSource.text().search("None") > -1
       $hiddenInput.attr('value',sourceName)
       $sourceContainer.append($hiddenInput)
       $citedSource.append($sourceContainer)
@@ -122,7 +125,7 @@ $(document).ready ->
           sourceCiteButtons($(this),action)
 
        $sourceContainer.find('input').remove()
-       $relSource.empty() if $relSource.text().search("None") > 0
+       $relSource.empty() if $relSource.text().search("None") > -1
        $relSource.append($sourceContainer)
        $citedSource.text("None") if $citedSource.is(':empty')
 
@@ -175,16 +178,21 @@ $(document).ready ->
                                "/new/metric_value?noframe=true&slot[company]="+
                                encodeURIComponent(company)+"&slot[metric]="+
                                encodeURIComponent(metric))
-        $.get load_path, ((data) ->
-          $template = $('<div>').addClass('timeline-row')
-          $template = $template.append($('<div>').addClass('card-slot'))
+        $template = $('<div>').addClass('timeline-row')
+        $template = $template.append($('<div>').addClass('card-slot'))
+        $.get(load_path, ((data) ->
           $template.find('.card-slot').append(data)
-          $target.find(".timeline-header").after($template)
+          # $target.find(".timeline-header").after($template)
           $this.hide()
           wagn.initializeEditors($target)
           $target.find(".loader-anime").remove()
           return
-        ), 'html'
+        ), 'html').fail((xhr,d,e)->
+          $template.find('.card-slot').append(xhr.responseText)
+        ).always(->
+          $target.find(".timeline-header").after($template)
+          $target.find(".loader-anime").remove()
+        )
         appendSourceForm(company)
   $('._add_new_value').trigger 'click'
 
