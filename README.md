@@ -21,12 +21,8 @@ Paths:
 ```
 
 Run `rake wikirate:test:reseed_data` to prepare test database.
-1. This command accepts one argument that indicate the production DB env.
-  `production`, `local`, `dev` are options to set the location of your seed DB.
-  Options other than these three will be treated as `production`.
-2. It will get the pre-defined seed cards from the card `production_export` and
-  then import some needed cards from `test/seed.rb`. Migration will also be run
-  to let the test db catch up to your local dev environment.
+1. This command accepts one argument that indicate the production DB env. `production`, `local`, `dev` are options to set the location of your seed DB. Options other than these three will be treated as `production`.
+2. It will get the pre-defined seed cards from the card `production_export` and then import some needed cards from `test/seed.rb`. Migration will also be run to let the test db catch up to your local dev environment.
 3. It will dump the test db to `test/wikiratetest.db` for the CI testing.
 
 
