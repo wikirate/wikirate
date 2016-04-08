@@ -171,7 +171,7 @@ format :html do
     c = args[:item_card]
     nest_args = item_args(args).reverse_merge(nest_defaults(c))
     %{
-      <div class="search-result-item item-#{nest_args[:view] }">
+      <div class="search-result-item item-#{nest_args[:view]}">
         #{nest c, nest_args.merge(size: args[:size])}
       </div>
     }

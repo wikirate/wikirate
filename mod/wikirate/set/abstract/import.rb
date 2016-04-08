@@ -1,3 +1,5 @@
+IMPORT_FIELDS = [:file_company, :value].freeze
+
 # @param [Hash] args
 # @option args [String] :metric
 # @option args [String] :company
@@ -41,6 +43,10 @@ event :import_csv, :prepare_to_store,
   handle_redirect redirect_target_after_import
 end
 
+def valid_import_format? data
+  data.is_a? Array
+end
+
 def redirect_target_after_import
   nil
 end
@@ -66,13 +72,16 @@ def handle_redirect target=nil
   end
 end
 
-def correct_company_name company, correction_key=nil
-  correction_key ||= company
-  corrected = company_corrections[correction_key] || company
-  if corrected.present?
-    unless Card.exists? corrected
-      Card.create! name: corrected, type_id: WikirateCompanyID
-    end
+
+def get_corrected_company_name params
+  corrected = company_corrections[params[:row]]
+  return params[:company] unless corrected.present?
+
+  unless Card.exists?(corrected)
+    Card.create! name: corrected, type_id: WikirateCompanyID
+  end
+  if corrected != params[:company]
+    Card[corrected].add_alias params[:company]
   end
   corrected
 end
@@ -152,36 +161,6 @@ format :html do
     end
   end
 
-  def render_row hash, row, index
-    file_company, value = row
-    wikirate_company, status = matched_company(hash, file_company)
-    row_content =
-      checkbox_row file_company, wikirate_company, status, value, index
-    if status != :exact
-      comp_name = wikirate_company.empty? ? file_company : wikirate_company
-      row_content += field_to_correct_company comp_name
-    end
-    row_content
-  end
-
-  def checkbox_row file_company, wikirate_company, status, value, index
-    checked = [:partial, :exact, :alias].include? status
-    company = status == :none ? file_company : wikirate_company
-    checkbox =
-      content_tag(:td) do
-        check_box_tag "metric_values[#{company}][]", value, checked
-      end
-    [index, file_company, wikirate_company, status.to_s].inject(checkbox) do |row, itm|
-      row.concat content_tag(:td, itm)
-    end
-  end
-
-  def field_to_correct_company comp_name
-    input = text_field_tag("corrected_company_name[#{comp_name}]", '',
-                           class: 'company_autocomplete')
-    content_tag(:td, input)
-  end
-
   def get_potential_company name
     result = Card.search type: 'company', name: ['match', name]
     return nil if result.empty?
@@ -190,7 +169,7 @@ format :html do
 
   # @return name of company in db that matches the given name and
   # the what kind of match
-  def matched_company aliases_hash, name
+  def matched_company name
     if (company = Card.fetch(name)) && company.type_id == WikirateCompanyID
       [name, :exact]
     # elsif (result = Card.search :right=>"aliases",
@@ -262,26 +241,55 @@ format :html do
   end
 
   def default_import_table_args args
-    args[:table_header] = ['Import', '#', 'Company in File', 'Company in Wikirate',
-                           'Match', 'Correction']
+    args[:table_header] = ['Import', '#', 'Company in File',
+                           'Company in Wikirate', 'Match', 'Correction']
+    args[:table_fields] = [:checkbox, :row, :file_company, :wikirate_company,
+                            :status, :correction]
   end
 
   view :import_table do |args|
-    header = args[:table_header]
-    thead = content_tag :thead do
-      content_tag :tr do
-        header.map { |title|  content_tag(:th, title) }.join.html_safe
-      end.html_safe
-    end.html_safe
-    hash = aliases_hash
-    tbody = content_tag :tbody do
-      wrap_each_with :tr  do
-        card.csv_rows.map.with_index { |elem, i| render_row(hash, elem, i+1) }
-      end.html_safe
-    end.html_safe
-    content_tag(
-      :table, thead.concat(tbody),
-      class: 'import_table table table-bordered table-hover'
-    ).html_safe
+    data = card.csv_rows.map.with_index do |elem, i|
+             import_row(elem, args[:table_fields], i+1)
+           end
+    table data, class: 'import_table table-bordered table-hover',
+                header: args[:table_header]
+  end
+
+
+  def company_correction_field row_hash
+    text_field_tag("corrected_company_name[#{row_hash[:row]}]", '',
+                   class: 'company_autocomplete')
+  end
+
+  def import_checkbox row_hash
+    checked = [:partial, :exact, :alias].include? row_hash[:status]
+    key_hash = row_hash.deep_dup
+    key_hash[:company] = row_hash[:status] == :none ?
+      row_hash[:file_company] : row_hash[:wikirate_company]
+    check_box_tag "metric_values[]", key_hash.to_json, checked
+  end
+
+  def import_row row, fields, index
+    data = row_to_hash row
+    data[:row] = index
+    data[:wikirate_company], data[:status] = matched_company data[:file_company]
+    data[:status] = data[:status].to_s
+    data[:company] =
+      if data[:wikirate_company].empty?
+        data[:file_company]
+      else
+        data[:wikirate_company]
+      end
+    data[:checkbox] = import_check_box data
+    data[:correction] =
+      status == :exact ? '' : company_correction_field data
+
+    fields.map { |key| data[key] }
+  end
+
+  def row_to_hash row
+    IMPORT_FIELDS.each_with_object.with_index({}) do |(key, hash), i|
+      hash[key] = row[i]
+    end
   end
 end

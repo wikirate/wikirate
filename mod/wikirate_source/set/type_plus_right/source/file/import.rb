@@ -23,19 +23,15 @@ event :validate_import, :prepare_to_validate,
   check_card year_pointer_card, 'Year', Card::YearID
 end
 
-def valid_import_format? data
-  data.is_a? Hash
-end
-
 # @return [Hash] args to create metric value card
 def process_metric_value_data metric_value_data
-  company, value = metric_value_data
+  mv_hash = JSON.parse(metric_value_data).symbolize_keys
   source_url = "#{Env[:protocol]}#{Env[:host]}/#{left.cardname.url_key}"
   {
     metric: metric,
-    company: correct_company_name(company),
+    company: get_corrected_company_name(mv_hash),
     year: year,
-    value: value[0],
+    value: mv_hash[:value],
     source: source_url
   }
 end

@@ -78,11 +78,10 @@ event :process_source_url, :prepare_to_validate,
       duplicated_name = duplicates.first.cardname.left
       if Card::Env.params[:sourcebox] == 'true'
         self.name = duplicated_name
-        abort :success
       else
         self.name = cite_card.name
-        abort :success
       end
+      abort :success
     elsif !url?(url) || wikirate_url?(url)
       errors.add :source, 'does not exist.'
     end
