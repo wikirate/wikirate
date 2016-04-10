@@ -16,6 +16,10 @@ def year
   metric_year_card.item_names.first
 end
 
+def source_url
+  "#{Env[:protocol]}#{Env[:host]}/#{left.cardname.url_key}"
+end
+
 event :validate_import, :prepare_to_validate,
       on: :update,
       when: proc { Env.params['is_metric_import_update'] == 'true' } do
@@ -25,15 +29,10 @@ end
 
 # @return [Hash] args to create metric value card
 def process_metric_value_data metric_value_data
-  mv_hash = JSON.parse(metric_value_data).symbolize_keys
-  source_url = "#{Env[:protocol]}#{Env[:host]}/#{left.cardname.url_key}"
-  {
-    metric: metric,
-    company: get_corrected_company_name(mv_hash),
-    year: year,
-    value: mv_hash[:value],
-    source: source_url
-  }
+  mv_hash = super(metric_value_data)
+  mv_hash.merge metric: metric,
+                year: year,
+                source: source_url
 end
 
 def redirect_target_after_import

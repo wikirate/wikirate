@@ -15,46 +15,68 @@ def create_values random_source=false, &block
   Card::Metric::ValueCreator.new(self, random_source, &block).add_values
 end
 
-def create_value args
-  missing = [:company, :year, :value].reject { |v| args[v] }
-  if missing.present?
-    errors.add 'metric value', "missing #{missing.to_sentence}"
-    return
+def add_value_source_args args, source
+  case source
+  when String
+    args['+source'] = {
+      subcards: {
+        'new source' => {
+          '+Link' => {
+            content: source,
+            type_id: Card::PhraseID
+          }
+        }
+      }
+      # type_id: PointerID
+    }
+  when Hash
+    args['+source'] = source
+  when Card
+    args['+source'] = {
+      content: "[[#{source.name}]]",
+      type_id: Card::PointerID
+    }
   end
+end
+
+def valid_value_args? args
+  missing = [:company, :year, :value].reject { |v| args[v] }
+  error_msg = []
+  error_msg += missing.map { |field| "missing #{field.to_sentence}" }
+  metric_value_name = [name, args[:company], args[:year]].join '+'
+  if Card[metric_value_name.to_name.field(:value)]
+    error_msg << 'value already exists'
+  end
+  if metric_type_codename == :researched && !args[:source]
+    error_msg << 'missing source'
+  end
+  if error_msg.present?
+    error_msg.each do |msg|
+      errors.add 'metric value', msg
+    end
+    return false
+  end
+  true
+end
+
+# @param [Hash] args
+# @option args [String] :company
+# @option args [String] :year
+# @option args [String] :value
+# @option args [String] :source source url
+# @return [Hash] subcards hash
+def create_value args
+  return unless valid_value_args? args
+  value_name = [name, args[:company], args[:year]].join '+'
   create_args = {
-    name: "#{name}+#{args[:company]}+#{args[:year]}",
+    name: value_name,
     type_id: Card::MetricValueID,
     '+value' => {
       content: args[:value],
       type_id: (args[:value].is_a?(Integer) ? NumberID : PhraseID)
     }
   }
-  if metric_type_codename == :researched
-    case args[:source]
-    when String
-      create_args['+source'] = {
-        subcards: {
-          'new source' => {
-            '+Link' => {
-              content: args[:source],
-              type_id: Card::PhraseID
-            }
-          }
-        }
-        # type_id: PointerID
-      }
-    when Hash
-      create_args['+source'] = args[:source]
-    when Card
-      create_args['+source'] = {
-        content: "[[#{args[:source].name}]]",
-        type_id: Card::PointerID
-      }
-    else
-      errors.add 'metric value', 'missing source'
-      return
-    end
-  end
+  add_value_source_args create_args, args[:source]
   Card.create! create_args
 end
 
