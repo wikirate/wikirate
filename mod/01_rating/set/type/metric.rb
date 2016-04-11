@@ -286,6 +286,7 @@ format :html do
       HTML
     end
   end
+
   view :add_to_formula do |args|
     # .metric-details-close-icon.pull-right
     # i.fa.fa-times-circle.fa-2x
@@ -349,7 +350,6 @@ HAML
           HTML
     metric_info_row left, content, opts
   end
-
 
   view :weight_row do |args|
     output(
