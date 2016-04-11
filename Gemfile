@@ -13,8 +13,6 @@ gem 'wbench'
 gem 'curb'
 gem 'daemons'
 gem 'delayed_job_active_record'
-gem 'rubocop'
-# gem 'rubocop-decko'
 
 # seems like newrelic should be in :live, but that wasn't working.
 # not sure why -efm
@@ -59,8 +57,8 @@ group :test do
 end
 
 group :development do
-  gem 'rubocop', '0.38.0' # seeing "for_all_cops" issue with 0.39
-  # gem 'rubocop-decko'
+  gem 'rubocop'
+  gem 'rubocop-rspec'
 
   gem 'rails-dev-tweaks'
   gem 'sprockets' # just so above works
