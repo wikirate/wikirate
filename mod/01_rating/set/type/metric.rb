@@ -176,8 +176,6 @@ format :html do
   view :short_view do |_args|
     return '' unless (value_type = Card["#{card.name}+value type"])
     subcard_name =
-      <<-HTML
-        <div class="header">
       case value_type.item_names[0]
       when 'Number'
         'numeric_details'
@@ -187,20 +185,8 @@ format :html do
         'category_details'
       end
     return '' if subcard_name.nil?
-            #{card_link card, text: metric_title, class: 'inherit-anchor'}
-          </div>
     detail_card = Card.fetch "#{card.name}+#{subcard_name}"
-        <div class="data metric-details-toggle"
-             data-append="#{card.key}+add_to_formula">
-          #{_render_value(args)}
-          <div class="data-item show-with-details text-center">
     subformat(detail_card).render_content
-             #{card_link card, text: 'Metric Details'}
-            </span>
-          </div>
-        </div>
-      HTML
-    end
   end
 
   def default_edit_args args
