@@ -187,7 +187,7 @@ format :html do
     sort_by, sort_order = card.sort_params
     company_sort_order, value_sort_order = sort_order sort_by, sort_order
     company_sort_icon, value_sort_icon = sort_icon sort_by, sort_order
-    %{
+    %(
       <div class='yinyang-row column-header'>
         <div class='company-item value-item'>
           #{sort_link "Companies #{company_sort_icon}",
