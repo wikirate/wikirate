@@ -110,31 +110,12 @@ format do
     return sorted if order == 'asc'
     sorted.reverse
   end
-    case sort_by
-    when 'company_name'
-      if order == 'asc'
-        sort_name_asc cached_metric_values
-      else
-    card.get_params('offset', 0)
-      end
-    when 'value'
-      if order == 'asc'
-        sort_value_asc cached_metric_values, is_num
-      else
-        sort_value_asc(cached_metric_values, is_num).reverse
-      end
-    end
-  end
 
   def num?
     metric_value_type = Card["#{card.cardname.left}+value type"]
     type = metric_value_type.nil? ? '' : metric_value_type.item_names[0]
     type == 'Number' || type == 'Monetary'
   end
-
-
-
-
 
   def search_results _args={}
     @search_results ||= begin
