@@ -94,7 +94,7 @@ event :validate_value_type, :validate, on: :save do
             <a href='#{url}' target="_blank">add options</a>
           HTML
         errors.add :options, "Please #{anchor} before adding metric value."
-end
+      end
     end
   end
 end
@@ -144,26 +144,26 @@ def find_or_create new_source_card
          (source_card = find_duplicate_source(url.content))
         source_card
       else
-      add_source_subcard new_source_card
+       add_source_subcard new_source_card
+      end
     end
   end
 end
 
 def add_source_subcard new_source_card
-          source_subcards = clone_subcards_to_hash new_source_card
-          source_card = add_subcard '', type_id: SourceID,
-                                    subcards: source_subcards
-          source_card.director.catch_up_to_stage :prepare_to_store
-          source_card
+  source_subcards = clone_subcards_to_hash new_source_card
+  source_card = add_subcard '', type_id: SourceID,
+                            subcards: source_subcards
+  source_card.director.catch_up_to_stage :prepare_to_store
+  source_card
 end
 
 def process_sources source_list
   source_names = source_list.item_names
   source_names.each do |source_name|
-    if !(source_card = Card[source_name])
-      errors.add :source, "#{source_name} does not exist."
+    next if  Card.exists? source_name
+    errors.add :source, "#{source_name} does not exist."
   end
-      end
   if (new_source_subcard = source_list.subcard('new_source'))
     source_card = find_or_create new_source_subcard
     if source_card.errors.present?
@@ -175,7 +175,7 @@ def process_sources source_list
 end
 
 def find_duplicate_source url
-   (link_card = Card::Set::Self::Source.find_duplicates(url).first) &&
+  (link_card = Card::Set::Self::Source.find_duplicates(url).first) &&
     link_card.left
 end
 
@@ -421,24 +421,23 @@ format :html do
       else
         card.value
 
-      end    
+      end
 
     wrap_with :span, span_args do
       subformat(card)._render_modal_link(
         args.merge(
-        text: show_value,
-        path_opts: { slot: { show: :menu, optional_horizontal_menu: :hide } },
-        html_args: {
-          'data-complete-number' => card.value,
-          'data-tooltip' => 'true',
-          'data-placement' => 'top',
-          'title' => card.value
-        }
+          text: show_value,
+          path_opts: { slot: { show: :menu, optional_horizontal_menu: :hide } },
+          html_args: {
+            'data-complete-number' => card.value,
+            'data-tooltip' => 'true',
+            'data-placement' => 'top',
+            'title' => card.value
+          }
         )
-    ) # ,:html_args=>{:class=>"td year"}))
-
-       end
-end
+      ) # ,:html_args=>{:class=>"td year"}))
+    end
+  end
 
   view :value_link do |args|
     url = "/#{card.cardname.url_key}"
@@ -506,7 +505,7 @@ end
         comments.html_safe
       ]
     end
-    end
+  end
 
   view :credit_name do |args|
     wrap_with :div, class: 'credit' do
