@@ -40,6 +40,14 @@ def source_subcard_exist? new_source_card
     (link_card && link_card.content.present?)
 end
 
+def researched?
+  (mc = metric_card) && mc.researched?
+end
+
+def scored?
+  (mc = metric_card) && mc.scored?
+end
+
 # TODO: add #subfield_present? method to subcard API
 def subfield_exist? field_name
   subfield_card = subfield(field_name)
@@ -62,7 +70,8 @@ event :validate_metric_value_fields, before: :set_metric_value_name do
   end
 end
 
-event :create_source_for_metric_value, :validate, on: :create do
+event :create_source_for_metric_value, :validate,
+      on: :create, when: proc { |c| c.researched? || c.source_in_request? }  do
   create_source
 end
 
@@ -106,12 +115,11 @@ end
 
 def get_source_card source_list
   with_sourcebox do
-    if (new_source_card = source_list.subcard('new_source'))
+    if (new_source_card = source_list.remove_subcard('new_source'))
       if (url = new_source_card.subfield(:wikirate_link)) &&
          (source_card = find_duplicate_source(url.content))
         source_card
       else
-
           source_subcards = clone_subcards_to_hash new_source_card
           source_card = add_subcard '', type_id: SourceID,
                                     subcards: source_subcards
@@ -143,9 +151,9 @@ def fill_errors source_card
 end
 
 def fill_subcards metric_value, source_card
-  add_subcard '+value', content: metric_value.content, type_id: PhraseID
-  add_subcard '+source', content: "[[#{source_card.name}]]",
-                         type_id: PointerID
+  add_subfield :value, content: metric_value.content, type_id: PhraseID
+  add_subfield :source, content: "[[#{source_card.name}]]",
+                        type_id: PointerID
 end
 
 format :html do
@@ -202,18 +210,28 @@ format :html do
     }
   end
 
+  def grade
+    return unless value = (card.value && card.value.to_i)
+    case value
+    when 0, 1, 2, 3 then :low
+    when 4, 5, 6, 7 then :middle
+    when 8, 9, 10 then :high
+    end
+  end
+
   view :modal_details do |args|
-    modal_link = subformat(card)._render_modal_link(
-      args.merge(
-        text: card.value,
-        path_opts: { slot: { show: :menu, optional_horizontal_menu: :hide } }
+    span_args = { class: 'metric-value' }
+    if card.scored?
+      add_class span_args, grade
+    end
+    wrap_with :span, span_args do
+      subformat(card)._render_modal_link(
+        args.merge(
+          text: card.value,
+          path_opts: { slot: { show: :menu, optional_horizontal_menu: :hide } }
+        )
       )
-    ) # ,:html_args=>{:class=>"td year"}))
-    %{
-      <span class="metric-value">
-        #{modal_link}
-      </span>
-    }
+    end
   end
 
   view :timeline_data do |args|
@@ -238,7 +256,6 @@ format :html do
         content_tag(:div, year.html_safe,  class: 'td year'),
         content_tag(:div, value.html_safe, class: 'td value'),
         credit
-
       ]
     end
   end
