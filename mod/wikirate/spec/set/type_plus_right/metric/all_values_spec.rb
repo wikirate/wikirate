@@ -34,8 +34,8 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
       @companies.each do |company|
         expect(results.key?(company.name)).to be_truthy
         for i in 0...3
-          expected_result = { year: "#{2015-i}", 'value'=>"#{value_idx*5+i}" }
-                              'value' => (value_idx * 5 + i).to_s }
+          expected_result = { year: "#{2015-i}",
+                              value: (value_idx * 5 + i).to_s }
           expect(results[company.name]).to include(expected_result)
         end
         value_idx += 1
@@ -76,15 +76,17 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
       @format = all_values.format
     end
     it 'sorts by company name asc' do
-      results = @format.sorted_result @cached_result, 'company_name', 'asc'
-                                          'asc', false
+      results = @format.sorted_result(
+        @cached_result, 'company_name', 'asc', false
+      )
       expect(results[0][0]).to eq('Amazon.com, Inc.')
       expect(results[1][0]).to eq('Apple Inc.')
       expect(results[2][0]).to eq('Sony Corporation')
     end
     it 'sorts by company name desc' do
-      results = @format.sorted_result @cached_result, "company_name", 'desc'
-                                          'desc', false
+      results = @format.sorted_result(
+        @cached_result, "company_name", 'desc', false
+      )
       expect(results[0][0]).to eq('Sony Corporation')
       expect(results[1][0]).to eq('Apple Inc.')
       expect(results[2][0]).to eq('Amazon.com, Inc.')

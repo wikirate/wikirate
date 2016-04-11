@@ -81,7 +81,7 @@ format do
   def sort_value_asc metric_values
     metric_values.sort do |x, y|
       strcmp x[1].sort_by { |value| value[:year] }.reverse[0][:value],
-        y[1].sort_by { |value| value[:year] }.reverse[0][:value]
+             y[1].sort_by { |value| value[:year] }.reverse[0][:value]
       compare_content value_a, value_b, is_num
     end
   end
@@ -101,28 +101,16 @@ format do
   end
 
   def get_sorted_result cached_metric_values, sort_by, order, is_num
-    sorted = case sort_by
-             when "company_name"
-               sort_name_asc card.cached_values
-             when "value"
-               sort_value_asc card.cached_values, is_num
-             end
-    return sorted if order == 'asc'
-    sorted.reverse
-  end
     case sort_by
     when 'company_name'
       if order == 'asc'
         sort_name_asc cached_metric_values
       else
-    card.get_params('offset', 0)
+        card.get_params('offset', 0)
       end
     when 'value'
-      if order == 'asc'
-        sort_value_asc cached_metric_values, is_num
-      else
-        sort_value_asc(cached_metric_values, is_num).reverse
-      end
+      num_list = sort_value_asc cached_metric_values, is_num
+      order == 'asc' ? num_list : num_list.reverse
     end
   end
 
@@ -131,10 +119,6 @@ format do
     type = metric_value_type.nil? ? '' : metric_value_type.item_names[0]
     type == 'Number' || type == 'Monetary'
   end
-
-
-
-
 
   def search_results _args={}
     @search_results ||= begin
@@ -145,6 +129,7 @@ format do
     end
   end
 end
+
 format :html do
   def sort_icon_by_state state
     order = state.empty? ? '' : "-#{state}"
