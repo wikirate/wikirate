@@ -24,13 +24,15 @@ namespace :wikirate do
       SharedData.add_wikirate_data
     end
 
-    def update_or_create name, attr
+    def update_or_create name, codename, attr
       if attr['type'].in? ['Image', 'File']
         attr['content'] = ''
         attr['empty_ok'] = true
       end
       begin
-        if (card = Card.fetch(name))
+        # card = codename ? Card.fetch(codename.to_sym) : Card.fetch(name)
+        card = Card.fetch(name)
+        if card
           puts "updating card #{name} "\
                "#{card.update_attributes!(attr)}".light_blue
         else
@@ -87,7 +89,7 @@ namespace :wikirate do
       puts 'importing data'.green
       Card::Auth.as_bot
       cards['card']['value'].each do |card|
-        update_or_create card['name'], card
+        update_or_create card['name'], card['codename'], card
       end
       puts 'Done'.green
     end

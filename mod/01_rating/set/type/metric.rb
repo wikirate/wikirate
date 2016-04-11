@@ -1,6 +1,6 @@
-card_accessor :vote_count, :type=>:number, :default=>"0"
-card_accessor :upvote_count, :type=>:number, :default=>"0"
-card_accessor :downvote_count, :type=>:number, :default=>"0"
+card_accessor :vote_count, type: :number, default: '0'
+card_accessor :upvote_count, type: :number, default: '0'
+card_accessor :downvote_count, type: :number, default: '0'
 
 card_accessor :metric_type, :type=>:pointer, :default=>"[[Researched]]"
 card_accessor :about
@@ -123,6 +123,7 @@ format :html do
   end
 
   view :legend do |args|
+    # depends on the type
     if (unit = Card.fetch("#{card.name}+unit"))
       unit.raw_content
     elsif (range = Card.fetch("#{card.name}+range"))
@@ -146,6 +147,101 @@ format :html do
         HTML
       end
     end
+  end
+
+  view :value_type_edit_modal_link do |args|
+    value_type_card = card.fetch trait: :value_type, new: {}
+    subformat_card = subformat(value_type_card)
+    text =
+      if value_type_card.new?
+        'Update Value Type'
+      else
+        subformat_card.render(:shorter_pointer_content)
+      end
+    edit_args = {
+      path_opts: {
+        slot: {
+          hide: 'title,header,menu,help,subheader',
+          view: :edit, edit_value_type: true
+        }
+      },
+      html_args: {
+        class: 'btn btn-default slotter'
+      },
+      text: text
+    }
+    render_modal_link(args.merge(edit_args))
+  end
+
+  view :short_view do |_args|
+    return '' unless (value_type = Card["#{card.name}+value type"])
+    subcard_name =
+      <<-HTML
+        <div class="header">
+      case value_type.item_names[0]
+      when 'Number'
+        'numeric_details'
+      when 'Monetary'
+        'monetary_details'
+      when 'Category'
+        'category_details'
+      end
+    return '' if subcard_name.nil?
+            #{card_link card, text: metric_title, class: 'inherit-anchor'}
+          </div>
+    detail_card = Card.fetch "#{card.name}+#{subcard_name}"
+        <div class="data metric-details-toggle"
+             data-append="#{card.key}+add_to_formula">
+          #{_render_value(args)}
+          <div class="data-item show-with-details text-center">
+    subformat(detail_card).render_content
+             #{card_link card, text: 'Metric Details'}
+            </span>
+          </div>
+        </div>
+      HTML
+    end
+  end
+
+  def default_edit_args args
+    edit_args args
+    super(args)
+  end
+
+  def edit_args args
+    return unless args[:edit_value_type]
+    args[:structure] = 'metric value type edit structure'
+  end
+
+  def edit_slot args
+    if args[:edit_value_type]
+      super args.merge(core_edit: true)
+    else
+      super args
+    end
+  end
+
+  view :handle do |args|
+    content_tag :div, class: 'handle' do
+      glyphicon 'option-vertical'
+    end
+  end
+
+  view :vote do |args|
+    %(<div class="hidden-xs hidden-md">{{#{card.name}+*vote count}}</div>)
+  end
+
+  view :value do |args|
+    return '' unless args[:company]
+    <<-HTML
+      <div class="data-item hide-with-details">
+        {{#{card.name}+#{args[:company]}+latest value|concise}}
+      </div>
+    HTML
+  end
+
+  def view_caching?
+    true
   end
 
   view :item_view do |args|
@@ -190,30 +286,6 @@ format :html do
       HTML
     end
   end
-
-  view :handle do |args|
-    content_tag :div, class: 'handle' do
-      glyphicon 'option-vertical'
-    end
-  end
-
-  view :vote do |args|
-    %(<div class="hidden-xs hidden-md">{{#{card.name}+*vote count}}</div>)
-  end
-
-  view :value do |args|
-    return '' unless args[:company]
-    <<-HTML
-      <div class="data-item hide-with-details">
-        {{#{card.name}+#{args[:company]}+latest value|concise}}
-      </div>
-    HTML
-  end
-
-  def view_caching?
-    true
-  end
-
   view :add_to_formula do |args|
     # .metric-details-close-icon.pull-right
     # i.fa.fa-times-circle.fa-2x

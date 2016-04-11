@@ -59,10 +59,13 @@ group :test do
 end
 
 group :development do
+  gem 'rubocop', '0.38.0' # seeing "for_all_cops" issue with 0.39
+  # gem 'rubocop-decko'
+
   gem 'rails-dev-tweaks'
   gem 'sprockets' # just so above works
 
-  gem 'capistrano' #, '3.2.1'  #note - ssh was breaking on 3.3.3
+  gem 'capistrano'
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
   gem 'capistrano-maintenance', require: false
