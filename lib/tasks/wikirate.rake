@@ -116,8 +116,8 @@ namespace :wikirate do
         insert_migration_records cards['migration_record']
         FileUtils.rm_rf(Dir.glob('tmp/*'))
         env = 'RAILS_ENV=test'
-        execute_command "#{env} rake wikirate:test:add_wikirate_test_data"
         execute_command "#{env} rake wagn:migrate"
+        execute_command "#{env} rake wikirate:test:add_wikirate_test_data"
         execute_command "#{env} rake wikirate:test:dump_test_db"
         puts 'Please pray'
       end

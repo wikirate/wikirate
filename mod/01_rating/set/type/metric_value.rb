@@ -40,6 +40,14 @@ def source_subcard_exist? new_source_card
     (link_card && link_card.content.present?)
 end
 
+def researched?
+  (mc = metric_card) && mc.researched?
+end
+
+def scored?
+  (mc = metric_card) && mc.scored?
+end
+
 # TODO: add #subfield_present? method to subcard API
 def subfield_exist? field_name
   subfield_card = subfield(field_name)
@@ -86,12 +94,13 @@ event :validate_value_type, :validate, on: :save do
             <a href='#{url}' target="_blank">add options</a>
           HTML
         errors.add :options, "Please #{anchor} before adding metric value."
-      end
+end
     end
   end
 end
 
-event :create_source_for_metric_value, :validate, on: :create do
+event :create_source_for_metric_value, :validate,
+      on: :create, when: proc { |c| c.researched? || c.source_in_request? }  do
   create_source
 end
 
@@ -130,21 +139,22 @@ end
 
 def find_or_create new_source_card
   with_sourcebox do
-    if (url = new_source_card.subfield(:wikirate_link)) &&
-       (source_card = find_duplicate_source(url.content))
-      source_card
-    else
+    if (new_source_card = source_list.remove_subcard('new_source'))
+      if (url = new_source_card.subfield(:wikirate_link)) &&
+         (source_card = find_duplicate_source(url.content))
+        source_card
+      else
       add_source_subcard new_source_card
     end
   end
 end
 
 def add_source_subcard new_source_card
-  source_subcards = clone_subcards_to_hash new_source_card
-  source_card = add_subcard '', type_id: SourceID,
-                                subcards: source_subcards
-  source_card.director.catch_up_to_stage :prepare_to_store
-  source_card
+          source_subcards = clone_subcards_to_hash new_source_card
+          source_card = add_subcard '', type_id: SourceID,
+                                    subcards: source_subcards
+          source_card.director.catch_up_to_stage :prepare_to_store
+          source_card
 end
 
 def process_sources source_list
@@ -152,8 +162,8 @@ def process_sources source_list
   source_names.each do |source_name|
     if !(source_card = Card[source_name])
       errors.add :source, "#{source_name} does not exist."
-    end
   end
+      end
   if (new_source_subcard = source_list.subcard('new_source'))
     source_card = find_or_create new_source_subcard
     if source_card.errors.present?
@@ -165,7 +175,7 @@ def process_sources source_list
 end
 
 def find_duplicate_source url
-  (link_card = Card::Set::Self::Source.find_duplicates(url).first) &&
+   (link_card = Card::Set::Self::Source.find_duplicates(url).first) &&
     link_card.left
 end
 
@@ -182,10 +192,10 @@ def fill_errors source_card
   end
 end
 
-def fill_subcards metric_value, source_names
-  add_subcard '+value', content: metric_value.content, type_id: PhraseID
-  add_subcard '+source', content: source_names.to_pointer_content,
-                         type_id: PointerID
+def fill_subcards metric_value, source_card
+  add_subfield :value, content: metric_value.content, type_id: PhraseID
+  add_subfield :source, content: "[[#{source_card.name}]]",
+                        type_id: PointerID
 end
 
 format :html do
@@ -391,8 +401,18 @@ format :html do
     )
   end
 
+  def grade
+    return unless value = (card.value && card.value.to_i)
+    case value
+    when 0, 1, 2, 3 then :low
+    when 4, 5, 6, 7 then :middle
+    when 8, 9, 10 then :high
+    end
+  end
+
   view :modal_details do |args|
-    # binding.pry
+    span_args = { class: 'metric-value' }
+    add_class span_args, grade if card.scored?
     show_value =
       if (value_type = card.metric_card.fetch trait: :value_type) &&
          %w(Number Monetary).include?(value_type.item_names[0])
@@ -400,9 +420,12 @@ format :html do
         number_to_human(big_number)
       else
         card.value
-      end
-    modal_link = subformat(card)._render_modal_link(
-      args.merge(
+
+      end    
+
+    wrap_with :span, span_args do
+      subformat(card)._render_modal_link(
+        args.merge(
         text: show_value,
         path_opts: { slot: { show: :menu, optional_horizontal_menu: :hide } },
         html_args: {
@@ -411,15 +434,11 @@ format :html do
           'data-placement' => 'top',
           'title' => card.value
         }
-      )
+        )
     ) # ,:html_args=>{:class=>"td year"}))
 
-    %(
-      <span class="metric-value">
-        #{modal_link}
-      </span>
-    )
-  end
+       end
+end
 
   view :value_link do |args|
     url = "/#{card.cardname.url_key}"
@@ -487,7 +506,7 @@ format :html do
         comments.html_safe
       ]
     end
-  end
+    end
 
   view :credit_name do |args|
     wrap_with :div, class: 'credit' do
