@@ -1,31 +1,25 @@
-IMPORT_FIELDS = [:metric, :file_company, :year, :value, :source].freeze
-
-attachment :metric_value_import_file, uploader: FileUploader
-
 include_set Type::File
 include_set Abstract::Import
 
-# @return [Hash] args to create metric value card
-def process_metric_value_data metric_value_data
-  mv_hash = JSON.parse(metric_value_data).symbolize_keys
-  mv_hash[:company] = get_corrected_company_name mv_hash
-  mv_hash
-end
+attachment :metric_value_import_file, uploader: FileUploader
 
 format :html do
-  def default_new_args args
-    args[:hidden] = {
-      success: { id: '_self', soft_redirect: false, view: :import }
-    }
-    super args
-  end
+  @@import_fields = [:metric, :file_company, :year, :value, :source]
 
   def default_import_table_args args
-    args[:table_header] = ['Select', '#', 'Metric', 'Year', 'Value', 'Source',
+    args[:table_header] = ['Select', '#', 'Metric',
                            'Company in File', 'Company in Wikirate', 'Match',
-                           'Correction']
+                           'Correction',
+                            'Year', 'Value', 'Source']
     args[:table_fields] = [:checkbox, :row, :metric, :file_company,
-      :wikirate_company, :status, :correction, :year, :value, :source]
+                           :wikirate_company, :status, :correction,
+                           :year, :value, :source]
+  end
+
+  def default_import_args args
+    super args
+    args.merge! optional_metric_select: :hide,
+                optional_year_select: :hide
   end
 
   view :import_success do |args|
@@ -46,23 +40,5 @@ format :html do
     content + <<-HTML
       <a href=\"/#{card.cardname.url_key}?view=import\">Import ...</a>
     HTML
-  end
-
-  view :import do |args|
-    frame_and_form :update, args, class: 'nodblclick',
-                   'notify-success' => 'import successful' do
-      [
-        _optional_render(:metric_import_flag, args),
-        _optional_render(:selection_checkbox, args),
-        _optional_render(:import_table, args),
-        _optional_render(:button_formgroup, args)
-      ]
-    end
-  end
-
-  def contruct_header checkbox, headers
-    headers.inject(checkbox) do |row, itm|
-      row.concat content_tag(:td, itm)
-    end
   end
 end

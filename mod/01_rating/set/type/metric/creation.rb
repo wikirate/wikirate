@@ -59,13 +59,7 @@ def valid_value_args? args
   true
 end
 
-# @param [Hash] args
-# @option args [String] :company
-# @option args [String] :year
-# @option args [String] :value
-# @option args [String] :source source url
-# @return [Hash] subcards hash
-def create_value args
+def create_value_args args
   return unless valid_value_args? args
   value_name = [name, args[:company], args[:year]].join '+'
   create_args = {
@@ -77,7 +71,16 @@ def create_value args
     }
   }
   add_value_source_args create_args, args[:source]
-  Card.create! create_args
+  create_args
+end
+
+# @param [Hash] args
+# @option args [String] :company
+# @option args [String] :year
+# @option args [String] :value
+# @option args [String] :source source url
+def create_value
+  Card.create! create_value_args(args)
 end
 
 # The new metric form has a title and a designer field instead of a name field

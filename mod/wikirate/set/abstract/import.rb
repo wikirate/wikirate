@@ -1,29 +1,3 @@
-IMPORT_FIELDS = [:file_company, :value].freeze
-
-# @param [Hash] args
-# @option args [String] :metric
-# @option args [String] :company
-# @option args [String] :year
-# @option args [String] :value
-# @option args [String] :source source url
-# @return [Hash] subcards hash
-def metric_value_subcards args
-  {
-    '+metric' => { 'content' => args[:metric] },
-    '+company' => { 'content' => args[:company] },
-    '+value' => { 'content' => args[:value], :type_id => PhraseID },
-    '+year' => { 'content' => "[[#{args[:year]}]]", :type_id => PointerID },
-    '+source' => {
-      'subcards' => {
-        'new source' => {
-          '+Link' => {
-            'content' => args[:source], 'type_id' => PhraseID
-          }
-        }
-      }
-    }
-  }
-end
 
 event :import_csv, :prepare_to_store,
       on: :update,
@@ -32,19 +6,47 @@ event :import_csv, :prepare_to_store,
   return unless valid_import_format?(metric_values)
   metric_values.each do |metric_value_data|
     metric_value_card = import_metric_value metric_value_data
-    @import_errors.each do |msg|
-      errors.add *msg
-    end
-    next unless metric_value_card
-    metric_value_card.errors.each do |key, error_value|
-      errors.add "#{metric_value_card.name}+#{key}", error_value
-    end
+    handle_import_errors metric_value_card
   end
-  handle_redirect redirect_target_after_import
+  handle_redirect
+end
+
+# @return updated or created metric value card object
+def import_metric_value import_data
+  args = process_metric_value_data import_data
+  ensure_company_exists args[:company]
+  return unless valid_value_data? args
+  binding.pry
+  return unless (create_args = Card[args[:metric]].create_value_args args)
+  add_subcard create_args.delete(:name), create_args
+  #Card[args[:metric]].create_value args
+end
+
+
+# @return [Hash] args to create metric value card
+def process_metric_value_data metric_value_data
+  mv_hash = JSON.parse(metric_value_data).symbolize_keys
+  mv_hash[:company] = get_corrected_company_name mv_hash
+  mv_hash
 end
 
 def valid_import_format? data
   data.is_a? Array
+end
+
+def valid_value_data? args
+  @import_errors = []
+  add_import_error "metric name missing", args[:row] if args[:metric].blank?
+  %w(company year value).each do |field|
+    add_import_error "#{field} missing", args[:row] if args[field.to_sym].blank?
+  end
+  { metric: MetricID,
+    year: YearID,
+    company: WikirateCompanyID }.each_pair do |type, type_id|
+    msg = check_existence_and_type(args[type], type_id, type)
+    add_import_error msg, args[:row]
+  end
+  @import_errors.empty?
 end
 
 def redirect_target_after_import
@@ -60,18 +62,27 @@ def company_corrections
     end
 end
 
-def handle_redirect target=nil
-  if errors.empty?
-    if target
-      abort success:  { name: target, redirect: true, view: :open }
-    else
-      abort :success
-    end
-  else
-    abort :failure
-  end
+def handle_redirect
+  # if errors.empty?
+  #   if (target=redirect_target_after_import)
+  #     abort success:  { name: target, redirect: true, view: :open }
+  #   else
+  #     abort :success
+  #   end
+  # else
+  #   abort :failure
+  # end
 end
 
+def handle_import_errors metric_value_card
+  @import_errors.each do |msg|
+    errors.add *msg
+  end
+  return unless metric_value_card
+  metric_value_card.errors.each do |key, error_value|
+    errors.add "#{metric_value_card.name}+#{key}", error_value
+  end
+end
 
 def get_corrected_company_name params
   corrected = company_corrections[params[:row]]
@@ -93,20 +104,7 @@ def add_import_error msg, row=nil
   @import_errors << [title, msg]
 end
 
-def valid_value_data? args
-  @import_errors = []
-  add_import_error "metric name missing", args[:row] if args[:metric].blank?
-  %w(company year value).each do |field|
-    add_import_error "#{field} missing", args[:row] if args[field.to_sym].blank?
-  end
-  { metric: MetricID,
-    year: YearID,
-    company: WikirateCompanyID }.each_pair do |type, type_id|
-    msg = check_existence_and_type(args[type], type_id, type)
-    add_import_error msg, args[:row]
-  end
-  @import_errors.empty?
-end
+
 
 def check_existence_and_type name, type_id, type_name=nil
   return  "#{name} doesn't exist" unless Card[name]
@@ -118,23 +116,6 @@ end
 def ensure_company_exists company
   return if Card[company]
   Card.create name: company, type_id: WikirateCompanyID
-end
-
-# @return updated or created metric value card object
-def import_metric_value import_data
-  args = process_metric_value_data import_data
-  ensure_company_exists args[:company]
-  return unless valid_value_data? args
-  metric_value_name = [args[:metric], args[:company], args[:year]].join '+'
-  subcards = metric_value_subcards args
-  if (metric_value_card = Card[metric_value_name])
-    metric_value_card.update_attributes subcards: subcards
-    metric_value_card
-  else
-    Card.create name: metric_value_name,
-                type_id: Card::MetricValueID,
-                subcards: subcards
-  end
 end
 
 def csv_rows
@@ -149,50 +130,17 @@ def clean_html? # return always true ;)
 end
 
 format :html do
-  def aliases_hash
-    @aliases_hash ||= begin
-      aliases_cards = Card.search right: 'aliases',
-                  left: { type_id: WikirateCompanyID }
-      aliases_cards.each_with_object({}) do |aliases_card, aliases_hash|
-        aliases_card.item_names.each do |name|
-          aliases_hash[name.downcase] = aliases_card.cardname.left
-        end
-      end
-    end
+  mattr_accessor :import_fields
+  @@import_fields = [:file_company, :value]
+
+
+  def default_new_args args
+    args[:hidden] = {
+      success: { id: '_self', soft_redirect: false, view: :import }
+    }
+    super args
   end
 
-  def get_potential_company name
-    result = Card.search type: 'company', name: ['match', name]
-    return nil if result.empty?
-    result
-  end
-
-  # @return name of company in db that matches the given name and
-  # the what kind of match
-  def matched_company name
-    if (company = Card.fetch(name)) && company.type_id == WikirateCompanyID
-      [name, :exact]
-    # elsif (result = Card.search :right=>"aliases",
-    # :left=>{:type_id=>Card::WikirateCompanyID},
-    # :content=>["match","\\[\\[#{name}\\]\\]"]) && !result.empty?
-    #   [result.first.cardname.left, :alias]
-    elsif (company_name = aliases_hash[name.downcase])
-      [company_name, :alias]
-    elsif (result = get_potential_company(name))
-      [result.first.name, :partial]
-    elsif (company_name = part_of_company(name))
-      [company_name, :partial]
-    else
-      ['', :none]
-    end
-  end
-
-  def part_of_company name
-    Card.search(type: 'company', return: 'name').each do |comp|
-      return comp if name.match comp
-    end
-    nil
-  end
 
   def default_import_args args
     args[:buttons] = %(
@@ -255,6 +203,50 @@ format :html do
                 header: args[:table_header]
   end
 
+  def aliases_hash
+    @aliases_hash ||= begin
+      aliases_cards = Card.search right: 'aliases',
+                                  left: { type_id: WikirateCompanyID }
+      aliases_cards.each_with_object({}) do |aliases_card, aliases_hash|
+        aliases_card.item_names.each do |name|
+          aliases_hash[name.downcase] = aliases_card.cardname.left
+        end
+      end
+    end
+  end
+
+  def get_potential_company name
+    result = Card.search type: 'company', name: ['match', name]
+    return nil if result.empty?
+    result
+  end
+
+  # @return name of company in db that matches the given name and
+  # the what kind of match
+  def matched_company name
+    if (company = Card.fetch(name)) && company.type_id == WikirateCompanyID
+      [name, :exact]
+      # elsif (result = Card.search :right=>"aliases",
+      # :left=>{:type_id=>Card::WikirateCompanyID},
+      # :content=>["match","\\[\\[#{name}\\]\\]"]) && !result.empty?
+      #   [result.first.cardname.left, :alias]
+    elsif (company_name = aliases_hash[name.downcase])
+      [company_name, :alias]
+    elsif (result = get_potential_company(name))
+      [result.first.name, :partial]
+    elsif (company_name = part_of_company(name))
+      [company_name, :partial]
+    else
+      ['', :none]
+    end
+  end
+
+  def part_of_company name
+    Card.search(type: 'company', return: 'name').each do |comp|
+      return comp if name.match comp
+    end
+    nil
+  end
 
   def company_correction_field row_hash
     text_field_tag("corrected_company_name[#{row_hash[:row]}]", '',
@@ -269,7 +261,7 @@ format :html do
     check_box_tag "metric_values[]", key_hash.to_json, checked
   end
 
-  def import_row row, fields, index
+  def import_row row, table_fields, index
     data = row_to_hash row
     data[:row] = index
     data[:wikirate_company], data[:status] = matched_company data[:file_company]
@@ -280,15 +272,19 @@ format :html do
       else
         data[:wikirate_company]
       end
-    data[:checkbox] = import_check_box data
+    data[:checkbox] = import_checkbox data
     data[:correction] =
-      status == :exact ? '' : company_correction_field data
+      if data[:status] == 'exact'
+        ''
+      else
+        company_correction_field data
+      end
 
-    fields.map { |key| data[key] }
+    table_fields.map { |key| data[key] }
   end
 
   def row_to_hash row
-    IMPORT_FIELDS.each_with_object.with_index({}) do |(key, hash), i|
+    @@import_fields.each_with_object({}).with_index do |(key, hash), i|
       hash[key] = row[i]
     end
   end

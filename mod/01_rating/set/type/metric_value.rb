@@ -115,12 +115,11 @@ end
 
 def get_source_card source_list
   with_sourcebox do
-    if (new_source_card = source_list.subcard('new_source'))
+    if (new_source_card = source_list.remove_subcard('new_source'))
       if (url = new_source_card.subfield(:wikirate_link)) &&
          (source_card = find_duplicate_source(url.content))
         source_card
       else
-
           source_subcards = clone_subcards_to_hash new_source_card
           source_card = add_subcard '', type_id: SourceID,
                                     subcards: source_subcards
@@ -152,9 +151,9 @@ def fill_errors source_card
 end
 
 def fill_subcards metric_value, source_card
-  add_subcard '+value', content: metric_value.content, type_id: PhraseID
-  add_subcard '+source', content: "[[#{source_card.name}]]",
-                         type_id: PointerID
+  add_subfield :value, content: metric_value.content, type_id: PhraseID
+  add_subfield :source, content: "[[#{source_card.name}]]",
+                        type_id: PointerID
 end
 
 format :html do
@@ -257,7 +256,6 @@ format :html do
         content_tag(:div, year.html_safe,  class: 'td year'),
         content_tag(:div, value.html_safe, class: 'td value'),
         credit
-
       ]
     end
   end

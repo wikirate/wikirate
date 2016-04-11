@@ -313,7 +313,6 @@ end
 # @return [Hash] values in the form
 #   { year => { company => { metric => value } } }
 def fetch_input_values opts={}
-  #binding.pry
   values = Hash.new { |h1, k1| h1[k1] = Hash.new { |h2, k2| h2[k2] = {} } }
   return values if input_metric_keys.empty?
   input_value_cards(opts).each_with_object(values) do |v_card, values|
