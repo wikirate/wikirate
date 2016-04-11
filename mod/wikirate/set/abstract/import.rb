@@ -62,15 +62,13 @@ def company_corrections
 end
 
 def handle_redirect
-  # if errors.empty?
-  #   if (target=redirect_target_after_import)
-  #     abort success:  { name: target, redirect: true, view: :open }
-  #   else
-  #     abort :success
-  #   end
-  # else
-  #   abort :failure
-  # end
+  if errors.empty?
+    if (target=redirect_target_after_import)
+      success <<  { name: target, redirect: true, view: :open }
+    end
+  else
+    abort :failure
+  end
 end
 
 def handle_import_errors metric_value_card
@@ -151,7 +149,8 @@ format :html do
   end
 
   view :import do |args|
-    frame_and_form :update, args, 'notify-success' => 'import successful' do
+    frame_and_form :update, args.merge(hidden: { success: { id: '_self', view: :open } }),
+                   'notify-success' => 'import successful' do
       [
         _optional_render(:metric_select, args),
         _optional_render(:year_select, args),
