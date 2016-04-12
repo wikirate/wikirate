@@ -30,7 +30,7 @@ end
 
 def related_values
   if (all_value_card = left.fetch trait: :all_values)
-    all_value_card.cached_result
+    all_value_card.cached_values
   end
 end
 

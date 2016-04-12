@@ -78,10 +78,10 @@ format do
     end
   end
 
-  def sort_value_asc metric_values
+  def sort_value_asc metric_values, is_num
     metric_values.sort do |x, y|
-      strcmp x[1].sort_by { |value| value[:year] }.reverse[0][:value],
-        y[1].sort_by { |value| value[:year] }.reverse[0][:value]
+      value_a = x[1].sort_by { |value| value['year'] }.reverse[0]['value']
+      value_b = y[1].sort_by { |value| value['year'] }.reverse[0]['value']
       compare_content value_a, value_b, is_num
     end
   end
@@ -181,15 +181,6 @@ format :html do
         </div>
       </div>
     )
-  end
-
-  # compare lenght first and then normal string comparison
-  def strcmp str1, str2
-    if (length_diff = str1.length - str2.length) == 0
-      str1 <=> str2
-    else
-      length_diff
-    end
   end
 
   view :card_list_item do |args|
