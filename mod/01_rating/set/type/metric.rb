@@ -182,7 +182,7 @@ format :html do
       when 'Category'  then 'category_details'
       end
     return '' if details_field.nil?
-    detail_card = Card.fetch "#{card.name}+#{subcard_name}"
+    detail_card = Card.fetch "#{card.name}+#{details_field}"
     subformat(detail_card).render_content
   end
 
