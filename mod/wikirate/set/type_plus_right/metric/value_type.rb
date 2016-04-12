@@ -29,8 +29,9 @@ def show_category_option_errors options_card
 end
 
 def related_values
-  all_value_card = left.fetch trait: :all_values
-  all_value_card.cached_result
+  if (all_value_card = left.fetch trait: :all_values)
+    all_value_card.cached_values
+  end
 end
 
 event :validate_existing_values_type, :validate, on: :save do
@@ -38,7 +39,7 @@ event :validate_existing_values_type, :validate, on: :save do
   return unless db_content_changed?
   metric_name = cardname.left
   type = item_names[0]
-  mv = related_values
+  return unless (mv = related_values)
   case type
   when 'Number', 'Monetary'
     unless all_numeric?(mv)
