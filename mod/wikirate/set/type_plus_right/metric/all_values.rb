@@ -1,9 +1,11 @@
 include_set Type::SearchType
 
-def virtual?; true end
+def virtual?
+  true
+end
 
 def raw_content
-  %{
+  %(
     {
       "left":{
         "type":"metric_value",
@@ -14,7 +16,7 @@ def raw_content
       "right":"value",
       "limit":0
     }
-  }
+  )
 end
 
 def sort_params
@@ -35,9 +37,9 @@ end
 def query params={}
   default_query = params.delete :default_query
   @query = super params
-  if !default_query
+  unless default_query
     @query[:limit] = params[:default_limit] || 20
-    @query[:offset] = get_params("offset", 0)
+    @query[:offset] = get_params('offset', 0)
   end
   @query
 end
@@ -63,15 +65,24 @@ format do
     @paging_path_args[:offset] = page * @paging_limit
     options.merge!(class: 'card-paging-link slotter', remote: true)
     sort_by, sort_order = card.sort_params
-    paging_args = @paging_path_args.merge({sort_by: sort_by,
-                                           sort_order: sort_order})
+    paging_args = @paging_path_args.merge(sort_by: sort_by,
+                                          sort_order: sort_order)
     link_to raw(text), path(paging_args), options
+  end
+
+  def compare_content value_a, value_b, is_num
+    if is_num
+      BigDecimal.new(value_a) - BigDecimal.new(value_b)
+    else
+      value_a <=> value_b
+    end
   end
 
   def sort_value_asc metric_values
     metric_values.sort do |x, y|
       strcmp x[1].sort_by { |value| value[:year] }.reverse[0][:value],
-        y[1].sort_by { |value| value[:year] }.reverse[0][:value]
+             y[1].sort_by { |value| value[:year] }.reverse[0][:value]
+      compare_content value_a, value_b, is_num
     end
   end
 
@@ -89,30 +100,40 @@ format do
     card.query(search_params)[:limit]
   end
 
-  def sorted_result sort_by, order
-    sorted = case sort_by
-             when "company_name"
-               sort_name_asc card.cached_values
-             when "value"
-               sort_value_asc card.cached_values
-             end
-    return sorted if order == 'asc'
-    sorted.reverse
+  def sorted_result sort_by, order, is_num
+    case sort_by
+    when 'company_name'
+      if order == 'asc'
+        sort_name_asc card.cached_values
+      else
+        card.get_params('offset', 0)
+      end
+    when 'value'
+      num_list = sort_value_asc card.cached_values, is_num
+      order == 'asc' ? num_list : num_list.reverse
+    end
+  end
+
+  def num?
+    metric_value_type = Card["#{card.cardname.left}+value type"]
+    type = metric_value_type.nil? ? '' : metric_value_type.item_names[0]
+    type == 'Number' || type == 'Monetary'
   end
 
   def search_results _args={}
     @search_results ||= begin
       sort_by, sort_order = card.sort_params
-      all_results = sorted_result sort_by, sort_order
-      all_results[offset, limit]
+      all_results = sorted_result sort_by, sort_order, num?
+      results = all_results[offset, limit]
+      results.blank? ? [] : results
     end
   end
-
 end
+
 format :html do
   def sort_icon_by_state state
     order = state.empty? ? '' : "-#{state}"
-    %{<i class="fa fa-sort#{order}"></i>}
+    %(<i class="fa fa-sort#{order}"></i>)
   end
 
   def toggle_sort_order order
@@ -151,7 +172,7 @@ format :html do
     sort_by, sort_order = card.sort_params
     company_sort_order, value_sort_order = sort_order sort_by, sort_order
     company_sort_icon, value_sort_icon = sort_icon sort_by, sort_order
-    %{
+    %(
       <div class='yinyang-row column-header'>
         <div class='company-item value-item'>
           #{sort_link "Companies #{company_sort_icon}",
@@ -162,8 +183,9 @@ format :html do
                       class: 'data'}
         </div>
       </div>
-    }
+    )
   end
+
   # compare lenght first and then normal string comparison
   def strcmp str1, str2
     if (length_diff = str1.length - str2.length) == 0
@@ -175,12 +197,12 @@ format :html do
 
   view :card_list_item do |args|
     c = args[:item_card]
-    nest_args = item_args(args).reverse_merge(nest_defaults(c))
-    %{
-      <div class="search-result-item item-#{nest_args[:view]}">
-        #{nest c, nest_args.merge(size: args[:size])}
+    item_view = nest_defaults(c)[:view]
+    %(
+      <div class="search-result-item item-#{item_view}">
+        #{nest(c, size: args[:size], view: item_view)}
       </div>
-    }
+    )
   end
 
   view :card_list_items do |args|
@@ -197,17 +219,14 @@ format :html do
     else
       results = render :card_list_items, args
       header = render :card_list_header, args
-      %{
+      %(
         #{paging}
         #{header}
         <div class="search-result-list">
           #{results}
         </div>
         #{paging if search_results.length > 10}
-      }
+      )
     end
   end
 end
-
-
-

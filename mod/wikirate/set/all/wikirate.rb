@@ -1,8 +1,14 @@
 
 require 'net/https'
 require 'uri'
-format do
 
+def number? str
+  true if Float(str)
+rescue
+  false
+end
+
+format do
   view :cite, closed: true do
     ''
   end
@@ -12,10 +18,9 @@ format do
   end
 end
 
-
 format :html do
   view :cgi_escape_name do
-    CGI::escape card.name
+    CGI.escape card.name
   end
 
   view :og_source, tags: :unknown_ok do |args|
@@ -32,16 +37,17 @@ format :html do
     ActionView::Base.full_sanitizer.sanitize truncated
   end
 
-  def is_number? str
-    true if Float(str) rescue false
-  end
-
   view :progress_bar do
     value = card.raw_content
-    if is_number? value
-      progress_bar_div = %{<div class="progress-bar" role="progressbar" aria-valuenow="#{value}" aria-valuemin="0" aria-valuemax="100" style="width: #{value}%;">#{value}%</div>}
-
-      %{<div class="progress">#{progress_bar_div}</div>}
+    if card.number? value
+      <<-HTML
+        <div class="progress">
+           <div class="progress-bar" role="progressbar" aria-valuenow="#{value}"
+            aria-valuemin="0" aria-valuemax="100" style="width: #{value}%;">
+            #{value}%
+          </div>
+        </div>
+      HTML
 
     else
       'Only card with numeric content can be shown as progress bar.'
@@ -60,21 +66,19 @@ format :html do
 
   view :edits_by do
     editor_card = card.fetch trait: :editors
-    %{
+    %(
       <div class="edits-by">
         <div class='subtitle-header'>Edits by</div>
         #{subformat(editor_card).render_shorter_search_result item: :link}
       </div>
-    }
+    )
   end
-
 
   view :open do |args|
     super(args.reverse_merge optional_horizontal_menu: :show)
   end
 
   attr_accessor :citations
-
 
   def default_menu_link_args args
     args[:menu_icon] = 'edit'
@@ -84,7 +88,13 @@ format :html do
     args[:optional_horizontal_menu] ||= :show if main?
   end
 
-  view :shorter_search_result do
+  view :shorter_pointer_content do |args|
+    args_content = { render_link: false }
+    subformat(card).render_shorter_search_result args.merge(args_content)
+  end
+
+  view :shorter_search_result do |args|
+    render_view = args[:render_link].nil? || args[:render_link] ? :link : :name
     items = card.item_cards limit: 0
     total_number = items.size
     fetch_number = [total_number, 4].min
@@ -92,17 +102,17 @@ format :html do
     result = ''
     if fetch_number > 1
       result += items[0..(fetch_number - 2)].map do |c|
-        subformat(c).render(:link)
+        subformat(c).render(render_view)
       end.join(' , ')
       result += ' and '
     end
 
     result +
       if total_number > fetch_number
-        %{<a class="known-card" href="#{card.format.render :url}"> } \
+        %(<a class="known-card" href="#{card.format.render :url}"> ) \
           "#{total_number - 3} others</a>"
       else
-        subformat(items[fetch_number - 1]).render(:link)
+        subformat(items[fetch_number - 1]).render(render_view)
       end
   end
 
@@ -112,13 +122,11 @@ format :html do
     super args
   end
 
-
   view :cite do
     # href_root = parent ? parent.card.cardname.trunk_name.url_key : ''
     href = "##{card.cardname.url_key}"
-    %{<sup><a class="citation" href="#{href}">#{cite!}</a></sup>}
+    %(<sup><a class="citation" href="#{href}">#{cite!}</a></sup>)
   end
-
 
   def cite!
     holder = parent.parent || parent || self
@@ -143,40 +151,41 @@ format :html do
   end
 
   view :yinyang_list do |args|
-    content_tag :div, :class=>"yinyang-list #{args[:yinyang_list_class]}" do
+    content_tag :div, class: "yinyang-list #{args[:yinyang_list_class]}" do
       _render_yinyang_list_items(args)
     end
   end
 
-  view :showcase_list, :tags=>:unknown_ok do |args|
+  view :showcase_list, tags: :unknown_ok do |args|
     item_type_name = card.cardname.right.split.last
     icon_card = Card.fetch("#{item_type_name}+icon")
-    wrap args.merge(:slot_class=>"showcase #{'hidden' if card.content.empty?}") do
-      %{
+    hidden_class = card.content.empty? ? 'hidden' : ''
+    wrap args.merge(slot_class: "showcase #{hidden_class}") do
+      %(
         #{subformat(icon_card)._render_core}
         #{item_type_name.capitalize}
         #{_render_core(args)}
-      }
+      )
     end
   end
 
   view :open_contribution_list do |args|
-    _render_open(args.merge(:contribution_list=>true))
+    _render_open(args.merge(contribution_list: true))
   end
 
   view :header do |args|
     if args.delete(:contribution_list)
-      view :header do |args|
-        %{
-          <div class="card-header #{ args[:header_class] }">
-            <div class="card-header-title #{ args[:title_class] }">
-              #{ _optional_render :title, args }
-              #{ _optional_render :contribution_counts, args }
-              #{ _optional_render :toggle, args, :hide }
+      view :header do |_args|
+        %(
+          <div class="card-header #{args[:header_class]}">
+            <div class="card-header-title #{args[:title_class]}">
+              #{_optional_render :title, args}
+              #{_optional_render :contribution_counts, args}
+              #{_optional_render :toggle, args, :hide}
             </div>
           </div>
-          #{ _optional_render :toolbar, args, :hide}
-        }
+          #{_optional_render :toolbar, args, :hide}
+        )
       end
     else
       super(args)
@@ -184,27 +193,33 @@ format :html do
   end
 
   view :yinyang_list_items do |args|
-    item_args = { :view => ( args[:item] || (@nest_opts && @nest_opts[:view]) || default_item_view ) }
+    item_args = {
+      view: (args[:item] || (@nest_opts && @nest_opts[:view]) ||
+            default_item_view)
+    }
     joint = args[:joint] || ' '
 
-    if type = card.item_type
+    if (type = card.item_type)
       item_args[:type] = type
     end
 
     enrich_result(card.item_names).map do |icard|
-      content_tag :div, :class=>"yinyang-row" do
-       nest(icard, item_args.clone).html_safe
+      content_tag :div, class: 'yinyang-row' do
+        nest(icard, item_args.clone).html_safe
       end.html_safe
     end.join(joint).html_safe
   end
 
   def enrich_result result
     result.map do |item_name|
-       # 1) add the main card name on the left
-       # for example if "Apple+metric+*upvotes+votee search" finds "a metric" we add "Apple" to the left
-       # because we need it to show the metric values of "a metric+apple" in the view of that item
-       # 2) add "yinyang drag item" on the right
-       # this way we can make sure that the card always exists with a "yinyang drag item+*right" structure
+      # 1) add the main card name on the left
+      # for example if "Apple+metric+*upvotes+votee search" finds "a metric"
+      # we add "Apple" to the left
+      # because we need it to show the metric values of "a metric+apple"
+      # in the view of that item
+      # 2) add "yinyang drag item" on the right
+      # this way we can make sure that the card always exists with a
+      # "yinyang drag item+*right" structure
       Card.fetch "#{main_name}+#{item_name}+yinyang drag item"
     end
   end
@@ -220,7 +235,6 @@ format :html do
   def searched_type_id
     @searched_type_id ||= Card.fetch_id card.cardname.left_name.right
   end
-
 end
 
 CLAIM_SUBJECT_SQL = %{
@@ -228,32 +242,32 @@ CLAIM_SUBJECT_SQL = %{
   join cards as pointers on claims.id   = pointers.left_id
   join card_references   on pointers.id = referer_id
   join cards as subjects on referee_id  = subjects.id
-  where claims.type_id =    #{ Card::ClaimID }
-  and pointers.right_id in (#{ [ Card::WikirateTopicID, Card::WikirateCompanyID ] * ', ' })
+  where claims.type_id =    #{Card::ClaimID}
+  and pointers.right_id in
+    (#{[Card::WikirateTopicID, Card::WikirateCompanyID].join(', ')})
   and claims.trash   is false
   and pointers.trash is false
   and subjects.trash is false;
 }
 
+# some wikirate specific methods
 module ClassMethods
-
-
-
   def claim_count_cache
     Card::Cache[Card::Set::Right::WikirateClaimCount]
   end
 
   def claim_counts subj
     ccc = claim_count_cache
-    ccc.read subj  or begin
+    ccc.read(subj) || begin
       subjname = subj.to_name
-      count = claim_subjects.find_all do |id, subjects|
+      count = claim_subjects.count do |_id, subjects|
         if subjname.simple?
           subjects_apply? subjects, subj
         else
-          subjects_apply? subjects, subjname.left and subjects_apply? subjects, subjname.right
+          subjects_apply?(subjects, subjname.left) &&
+            subjects_apply?(subjects, subjname.right)
         end
-      end.size
+      end
       ccc.write subj, count
     end
   end
@@ -262,17 +276,16 @@ module ClassMethods
     !!Array.wrap(test_list).find do |subject|
       references.member? subject
     end
-
   end
 
   def claim_subjects
     ccc = claim_count_cache
-    ccc.read 'CLAIM-SUBJECTS' or begin
+    ccc.read('CLAIM-SUBJECTS') || begin
       hash = {}
-      sql =
-      ActiveRecord::Base.connection.select_all( CLAIM_SUBJECT_SQL ).each do |row|
-        hash[ row['id'] ] ||= []
-        hash[ row['id'] ] << row['subject']
+      connection = ActiveRecord::Base.connection
+      connection.select_all(CLAIM_SUBJECT_SQL).each do |row|
+        hash[row['id']] ||= []
+        hash[row['id']] << row['subject']
       end
       ccc.write 'CLAIM-SUBJECTS', hash
     end
@@ -285,16 +298,15 @@ module ClassMethods
   def tag_filter_query filter_words, extra={}, tag_types=['tag']
     filter_words = [filter_words] unless Array === filter_words
     search_args = filter_words.inject({}) do |res, filter|
-     hash = {}
-     hash['and'] = res unless res.empty?
-     hash.merge(
-         { 'right_plus' =>
-               if tag_types.size > 1
-                 [{'name' => ['in'] + tag_types}, 'refer_to'=>filter]
-               else
-                 [tag_types.first, 'refer_to'=>filter]
-               end
-         }
+      hash = {}
+      hash['and'] = res unless res.empty?
+      hash.merge(
+        'right_plus' =>
+              if tag_types.size > 1
+                [{ 'name' => ['in'] + tag_types }, 'refer_to' => filter]
+              else
+                [tag_types.first, 'refer_to' => filter]
+              end
       )
     end
     search_args.merge(extra)
@@ -307,22 +319,18 @@ module ClassMethods
   end
 end
 
-
 format :json do
-
   view :content do |args|
     result = super args
-    result[:card][:value].reject! { |c| c==nil }
+    result[:card][:value].reject!(&:nil?)
     result
   end
-  view :id_atom do |args|
-    if !params['start'] or (params['start'] and start = params['start'].to_i and card.updated_at.strftime("%Y%m%d%H%M%S").to_i >= start )
+  view :id_atom do |_args|
+    if !params['start'] || (params['start'] && (start = params['start'].to_i) &&
+       card.updated_at.strftime('%Y%m%d%H%M%S').to_i >= start)
       h = _render_atom
       h[:id] = card.id  if card.id
       h
-    else
-      nil
     end
   end
-
 end

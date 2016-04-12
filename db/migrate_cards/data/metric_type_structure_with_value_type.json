@@ -1,0 +1,16 @@
+{
+  "url": "http://dev.wikirate.org/export.json",
+  "timestamp": "2016-04-07 22:01:39 +0200",
+  "card": {
+    "name": "export",
+    "type": "Pointer",
+    "content": "[[metric+*type+*structure]]",
+    "value": [
+      {
+        "name": "metric+*type+*structure",
+        "type": "HTML",
+        "content": "  "
+      }
+    ]
+  }
+}

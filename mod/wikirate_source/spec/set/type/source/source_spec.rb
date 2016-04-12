@@ -289,7 +289,7 @@ describe Card::Set::Type::Source do
         it 'renders pencil icon' do
           new_sourcepage = create_source text: 'test text report'
           html = new_sourcepage.format.render_original_icon_link
-          text_source = new_sourcepage.fetch(trait: :text)
+          text_source = new_sourcepage.fetch trait: :text
           expected_url = "/#{text_source.cardname.url_key}"
           expect(html).to have_tag('a', with: {
                                      href: expected_url }) do

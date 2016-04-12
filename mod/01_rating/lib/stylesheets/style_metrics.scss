@@ -1,12 +1,64 @@
 {{style:mixins and variables}}
 
+/*Common styles and classes*/
+
+.no-data-on-missing-view{
+  .missing-view a {
+    display: none;
+  }
+
+  .missing-view:before {
+    content: "";
+    color: #F5BABA;
+    font-size:13px;
+  }
+}
+
+.no-hover:hover {
+  background-color: inherit!important;
+  cursor: inherit!important;
+}
+
+
+
+.company-header{
+  color: $company-color;
+  border-top: 3px solid $company-color;
+  font-size: 18px;
+  border-bottom: 1px solid $bright-text-color;
+  background: #FDFDFD;
+  padding: 2px 0px 0px 0px;
+}
+
+.topic-header{
+  color: $topic-color;
+  border-top: 3px solid $topic-color;
+  font-size: 14px;
+  border-bottom: 1px solid $bright-text-color;
+  padding: 2px 0px 0px 0px;
+  background: #FDFDFD;
+  @include ellipsis();
+  .topic-title {
+    padding: 0px 0px 25px 10px;
+  }
+}
+
+/*Common styles and classes ENDS*/
+
+
+
 .SELF-homepage_company{
   .pointer-item{
     float:left;
   }
 }
 
-.homepage-company-item{
+
+.custom-child-column-2>.col-md-2 {
+  width: 20.0001%;
+}
+
+.homepage-company-item, .homepage-topic-item{
   max-width: 520px;
   @include box-shadow(0,1px,6px,rgba(0,0,0,.13));
   border: 1px solid $bright-text-color;
@@ -187,6 +239,7 @@
     width: 35px;
   }
   .timeline-header {
+    border-top:1px solid #eee;
     .th {
       float: left;
       margin: 0px 10px 0px 10px;
@@ -194,12 +247,12 @@
       color:$dark-text-color;
     }
     .new a {
-      color: $dark-text-color;
-      background-color: $bright-text-color;
-      border: 1px solid #cdcdcd;
-      font-weight: normal;
-      font-size: 0.8em;
-      padding: 2px 5px 2px 5px;
+      // color: $dark-text-color;
+      // background-color: $bright-text-color;
+      // border: 1px solid #cdcdcd;
+      // font-weight: normal;
+      // font-size: 0.8em;
+      // padding: 2px 5px 2px 5px;
     }
   }
   .timeline-body {
@@ -207,25 +260,52 @@
     float: left;
     .timeline-data {
       width: 100%;
-      margin-left: -10px;
+      // margin-left: -10px;
     }
     .metric-year, .metric-unit {
       font-size: 12px;
     }
+  }
+
+  .timeline-line {
+    // position: absolute;
+    // top: 21px;
+    // left: 48px;
+    // height: 53px;
+    // width: 1px;
+    // border-left: 1px solid #CCCCCC;
+    // z-index: 9;
+  }
+}
     .timeline-row {
-      position: relative;
       clear: both;
-      padding: 7px 0px;
       font-size: 12px;
       width: 100%;
-      height: 45px;
       color: $dark-text-color;
+        float: left;
+        border-bottom: 1px solid #eee;
+        border-top: 1px solid #eee;
+        margin-top: -1px; //double border fix
+        .form-group {
+          font-size: 14px;
+          text-align:left;
+        }
+        form>.form-group {
+          margin-top: -15px;
+          padding-top: 15px;
+          padding-bottom: 32px;
+          border-top: 1px solid #eee;
+          button {
+              float: right;
+              margin-right: 14px;
+          }
+    }
       &:hover {
-        background-color: #F3F3F3;
+      // background-color: #F3F3F3;
       }
       .td {
         float: left;
-        margin: 0px 10px 0px 10px;
+        padding: 15px 10px 10px 10px;
         .metric-value {
           font-size: 20px;
         }
@@ -233,8 +313,19 @@
       .credit {
         padding: 10px 5px;
       }
-      .year {
-        padding: 8px 0px;
+    .year{
+        width: 20%;
+        text-align: center;
+        position: relative;
+      > span {
+          padding: 6px;
+          display: inline-block;
+      }
+    }
+    .value{
+      border-left: 1px solid #eee;
+      padding-left: 20px;
+      width: 80%;
       }
       // .year, .credit {
       //   padding-top: 2px;
@@ -247,29 +338,16 @@
           padding-left: 0;
         }
       }
-    }
-
-  }
   .timeline-dot {
     position: absolute;
-    top: 20px;
-    left: 46px;
+        top: 30px;
+        right: -3px;
     height: 5px;
     width: 5px;
-    background: gray;
+        background: #444;
     z-index: 10;
   }
-  .timeline-line {
-    position: absolute;
-    top: 21px;
-    left: 48px;
-    height: 53px;
-    width: 1px;
-    border-left: 1px solid #CCCCCC;
-    z-index: 9;
   }
-}
-
 .RIGHT-company.card-content .company-item .item-link>a {
   background: #03998d;
   border-top-left-radius: 0px;
@@ -299,7 +377,7 @@
       font-size: 20px;
       float: left;
       color: $bright-text-color;
-      border: 1px solid $bright-text-color;
+      // border: 1px solid $bright-text-color;
       border-radius: 50%;
       width: 35px;
       height: 35px;
@@ -338,6 +416,8 @@
     max-height: 50px;
     max-width: 50px;
     vertical-align: middle;
+    // TODO: verify if something breaks without this
+    // float: left;
     // padding: 8px;
     border: 1px solid #ebebeb;
     margin: 0px 4px;

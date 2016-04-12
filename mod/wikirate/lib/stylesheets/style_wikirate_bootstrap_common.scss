@@ -1,27 +1,21 @@
 {{style:mixins and variables}}
 
 /*Common Classes*/
-.float-right{
-  float:right;
+
+.height-auto{
+  height:auto!important;
+}
+.inherit-anchor{
+  text-decoration: none;
+  color:inherit!important;
+  :hover{
+    text-decoration: none;
+    color:inherit;
+  }
 }
 
-.text-align-left{
-  text-align:left;
-}
 
-.nopadding {
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-.no-bold-text{
-  font-weight:normal;
-}
-
-.light-grey-color{
-  color:#ccc;
-}
-
+//Text Colors
 .company-color{
   color:$company-color;
 }
@@ -46,6 +40,46 @@
   color: #333;
 }
 
+.light-grey-color{
+  color:#ccc;
+}
+
+.light-grey-color-2{
+  color:#999;
+}
+
+//Text adjustments
+
+.text-align-left{
+  text-align:left;
+}
+
+.text-align-right{
+  text-align:right;
+}
+
+.no-bold-text{
+  font-weight:normal;
+}
+
+.remove-text-decoration a{
+  text-decoration :none!important;
+}
+
+
+//Common adjustments
+.float-right{
+  float:right;
+}
+
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.margin-12{
+  margin:12px;
+}
 .margin-top-10{
   margin-top: 10px;
 }
@@ -77,16 +111,33 @@
   padding-top:20px!important;
 }
 
+//Div alignments
+
+
+.stick-right {
+  position: fixed;
+  max-width: 608px;
+  top: 68px;
+  left: 50%;
+}
+
+
+//background and borders
+
 .background-white{
   background-color:#fff;
 }
 
-.remove-text-decoration a{
-  text-decoration :none!important;
-}
 
 .border-left {
   border-left: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+.border-top {
+  border-top: 1px solid #e5e5e5;
 }
 
 .double-border-fix-left {
@@ -98,10 +149,51 @@
   width:25.666%;
   float:left;
 }
+
 .col-centered{
   float: none;
   margin: 0 auto;
 }
+
+
+//images
+
+.image-box.medium{
+  width: 94px;
+  height: 94px;
+}
+
+.image-box.small{
+  width: 64px;
+  height: 64px;
+  line-height: 50px;
+}
+
+.image-box.icon{
+  width: 32px;
+  height: 32px;
+  line-height: 16px;
+}
+.image-box {
+  width: 94px;
+  height: 94px;
+  border-radius: 5px;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 5px;
+  border: 1px solid #EEE;
+  background-color: #F8F9FA;
+  line-height: 80px;
+  vertical-align: middle;
+  margin-right: 18px;
+}
+
+
+
+
+
 .homepage-lead{
   font-weight:300;
   margin-bottom: 20px;
@@ -118,9 +210,12 @@
   }
 }
 
+//Ajax loader animation
+
 #ajax_loader{
   display:none;
 }
+
 .loader-anime {
   position: absolute;
   width: 100%;

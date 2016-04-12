@@ -243,7 +243,9 @@ describe Card::Set::All::Wikirate do
         numeric_card = Card.create! :name=>"I am a number",:content=>"3.14159265"
         html = numeric_card.format.render_progress_bar
         expect(html).to have_tag("div", :with=>{:class=>"progress"}) do
-          with_tag "div",:with=>{:class=>"progress-bar","aria-valuenow"=>value},:text=>"#{value}%"
+          with_tag 'div', with: { class: 'progress-bar',
+                                  'aria-valuenow' => value },
+                          text: /#{value}%/
         end
       end
     end

@@ -15,7 +15,7 @@ format :html do
   def default_tabs_args args
     args[:tabs] = {
       'Details' => path(view: 'details_tab'),
-      'Sources' => path(view: 'source_tab'),
+      "#{fa_icon :globe} Sources" => path(view: 'source_tab'),
       "#{fa_icon :comment} Discussion" => path(view: 'discussion_tab'),
       'Scores' => path(view: 'scores_tab')
     }
@@ -25,10 +25,12 @@ format :html do
   view :details_tab do
     tab_wrap do
       [
+         _render_add_value_buttons(args),
          nest(card.about_card, view: :titled, title: 'About'),
          nest(card.methodology_card, view: :titled, title: 'Methodology'),
          nest(card.value_type_card, view: :titled, item: :name,
-                                    title: 'Value Type')
+                                    title: 'Value Type'),
+         _render_import_button(args)
       ]
     end
   end
@@ -61,23 +63,20 @@ format :html do
 
   view :content_left_col do |args|
     output [
-             _render_add_value_buttons(args),
              _render_year_select(args),
              _render_company_list(args)
            ]
   end
 
   def add_value_path
-    '/new/metric_value?layout=modal&slot[metric]=' +
-      _render_cgi_escape_name
+    '/new/metric_value?slot[metric]=' + _render_cgi_escape_name
   end
 
   view :add_value_buttons do |_args|
     <<-HTML
-    <div class="col-md-12 text-center">
+    <div class="col-md-6 padding-top-10">
       <div class="btn-group" role="group" aria-label="...">
-      <a class="btn btn-default slotter"  href='#{add_value_path}'
-         data-toggle='modal' data-target='#modal-main-slot'>
+      <a class="btn btn-primary"  href='#{add_value_path}'>
         #{fa_icon 'plus'}
         Add new value
       </a>
@@ -92,6 +91,24 @@ format :html do
       </a>
       </div>
     </div>
+    HTML
+  end
+
+  view :import_button do |args|
+    <<-HTML
+      <h5>Bulk Import</h5>
+        <div class="btn-group" role="group" aria-label="...">
+          <a class="btn btn-default btn-sm" href='/new/source?layout=wikirate%20layout'>
+            <span class="fa fa-arrow-circle-o-down"></span>
+            Import
+          </a>
+          <!--
+          <a class="btn btn-default btn-sm slotter" href='/?layout=modal' data-toggle='modal' data-target='#modal-main-slot'>
+             <small>Help</small>
+          </a>
+          -->
+        </div>
+      </div>
     HTML
   end
 end
