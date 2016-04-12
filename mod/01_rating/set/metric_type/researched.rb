@@ -22,17 +22,27 @@ format :html do
     args[:default_tab] = 'Details'
   end
 
-  view :details_tab do
+  view :details_tab do |args|
     tab_wrap do
       [
          _render_add_value_buttons(args),
          nest(card.about_card, view: :titled, title: 'About'),
          nest(card.methodology_card, view: :titled, title: 'Methodology'),
-         nest(card.value_type_card, view: :titled, item: :name,
-                                    title: 'Value Type'),
+         nest(card, view: :value_type_detail),
          _render_import_button(args)
       ]
     end
+  end
+
+  view :value_type_detail do
+    process_content <<-HTML
+      <div class="row-data titled-view">
+        <div class="card-header">Value Type:
+          {{_|value_type_edit_modal_link}}
+          {{_|short_view}}
+        </div>
+      </div>
+    HTML
   end
 
   view :source_tab do
