@@ -100,7 +100,7 @@ format do
     card.query(search_params)[:limit]
   end
 
-  def get_sorted_result cached_metric_values, sort_by, order, is_num
+  def sorted_result sort_by, order, is_num
     sorted = case sort_by
              when "company_name"
                sort_name_asc card.cached_values
@@ -120,7 +120,7 @@ format do
   def search_results _args={}
     @search_results ||= begin
       sort_by, sort_order = card.sort_params
-      all_results = sorted_result sort_by, sort_order
+      all_results = sorted_result sort_by, sort_order, num?
       results = all_results[offset, limit]
       results.blank? ? [] : results
     end
@@ -182,15 +182,15 @@ format :html do
       </div>
     )
   end
-  # compare lenght first and then normal string comparison
-  # def strcmp str1, str2
-  #   if (length_diff = str1.length - str2.length) == 0
-  #     str1 <=> str2
-  #   else
-  #     length_diff
-  #   end
 
-  # end
+  # compare lenght first and then normal string comparison
+  def strcmp str1, str2
+    if (length_diff = str1.length - str2.length) == 0
+      str1 <=> str2
+    else
+      length_diff
+    end
+  end
 
   view :card_list_item do |args|
     c = args[:item_card]

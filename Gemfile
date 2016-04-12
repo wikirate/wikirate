@@ -58,7 +58,7 @@ end
 
 group :development do
   gem 'rubocop'
-  # gem 'rubocop-decko'
+  gem 'rubocop-rspec'
 
   gem 'rails-dev-tweaks'
   gem 'sprockets' # just so above works

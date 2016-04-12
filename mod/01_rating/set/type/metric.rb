@@ -175,18 +175,27 @@ format :html do
 
   view :short_view do |_args|
     return '' unless (value_type = Card["#{card.name}+value type"])
-    subcard_name =
+    details_field =
       case value_type.item_names[0]
-      when 'Number'
-        'numeric_details'
-      when 'Monetary'
-        'monetary_details'
-      when 'Category'
-        'category_details'
+      when 'Number'    then 'numeric_details'
+      when 'Monetary'  then 'monetary_details'
+      when 'Category'  then 'category_details'
       end
-    return '' if subcard_name.nil?
+    return '' if details_field.nil?
     detail_card = Card.fetch "#{card.name}+#{subcard_name}"
-    subformat(detail_card).render_content
+    %(
+      <div class="header">
+        #{card_link card, text: metric_title, class: 'inherit-anchor'}
+      </div>
+      <div class="data metric-details-toggle"
+           data-append="#{card.key}+add_to_formula">
+        #{_render_value(args)}
+        <div class="data-item show-with-details text-center">
+          #{subformat(detail_card).render_content}
+          #{card_link card, text: 'Metric Details'}
+        </div>
+      </div>
+    )
   end
 
   def default_edit_args args
