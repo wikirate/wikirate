@@ -28,18 +28,18 @@ format :html do
          _render_add_value_buttons(args),
          nest(card.about_card, view: :titled, title: 'About'),
          nest(card.methodology_card, view: :titled, title: 'Methodology'),
-         nest(card, view: :value_type_detail),
+         _render_value_type_detail(args),
          _render_import_button(args)
       ]
     end
   end
 
   view :value_type_detail do
-    process_content <<-HTML
+    <<-HTML
       <div class="row-data titled-view">
         <div class="card-header">Value Type:
-          {{_|value_type_edit_modal_link}}
-          {{_|short_view}}
+          #{_render_value_type_edit_modal_link}
+          #{_render_short_view}
         </div>
       </div>
     HTML
