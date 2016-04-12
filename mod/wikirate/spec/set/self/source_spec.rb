@@ -31,12 +31,12 @@ describe Card::Set::Self::Source do
     context "when rendering pdf in firefox" do 
       it "returns true if it is firefox" do 
         url = 'http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/pdf_open_parameters.pdf'
-        result = @page_card.format( :format=>:json).iframable? url,"Firefox"
+        result = @page_card.format(format: :json).iframable? url, 'Firefox'
         expect(result).to be(true)
       end
       it "returns false if it is not firefox" do 
         url = 'http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/pdf_open_parameters.pdf'
-        result = @page_card.format( :format=>:json).iframable? url,"Chrome"
+        result = @page_card.format(format: :json).iframable? url, 'Chrome'
         expect(result).to be(false)
       end
     end

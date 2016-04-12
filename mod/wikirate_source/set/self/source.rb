@@ -12,12 +12,12 @@ format :json do
       metadata.error = 'empty url'
       return metadata.to_json
     end
-    begin      
+    begin  
       metadata.website = URI(url).host
-    rescue    
+    rescue
     end
     if !metadata.website
-      metadata.error = 'invalid url' 
+      metadata.error = 'invalid url'
       return metadata.to_json
     end
     duplicates = Source.find_duplicates url
@@ -28,7 +28,7 @@ format :json do
       image_url = Card["#{origin_page_card.name}+image_url"] ? Card["#{origin_page_card.name}+image_url"].content : ""
       metadata.set_meta_data title,description,image_url
     else
-      begin 
+      begin
         preview = LinkThumbnailer.generate url
         if preview.images.length > 0
           image_url = preview.images.first.src.to_s
@@ -86,7 +86,6 @@ format :json do
     end
     true
   end
-  
   view :check_iframable do |_args|
     url = Card::Env.params[:url]
     if url
@@ -117,5 +116,4 @@ class MetaData
     @description = desc
     @image_url = image_url
   end
-end  
-
+end
