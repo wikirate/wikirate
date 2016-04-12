@@ -40,6 +40,14 @@ def source_subcard_exist? new_source_card
     (link_card && link_card.content.present?)
 end
 
+def researched?
+  (mc = metric_card) && mc.researched?
+end
+
+def scored?
+  (mc = metric_card) && mc.scored?
+end
+
 # TODO: add #subfield_present? method to subcard API
 def subfield_exist? field_name
   subfield_card = subfield(field_name)
@@ -91,7 +99,8 @@ event :validate_value_type, :validate, on: :save do
   end
 end
 
-event :create_source_for_metric_value, :validate, on: :create do
+event :create_source_for_metric_value, :validate,
+      on: :create, when: proc { |c| c.researched? || c.source_in_request? }  do
   create_source
 end
 
@@ -130,11 +139,13 @@ end
 
 def find_or_create new_source_card
   with_sourcebox do
-    if (url = new_source_card.subfield(:wikirate_link)) &&
-       (source_card = find_duplicate_source(url.content))
-      source_card
-    else
-      add_source_subcard new_source_card
+    if (new_source_card = source_list.remove_subcard('new_source'))
+      if (url = new_source_card.subfield(:wikirate_link)) &&
+         (source_card = find_duplicate_source(url.content))
+        source_card
+      else
+       add_source_subcard new_source_card
+      end
     end
   end
 end
@@ -142,7 +153,7 @@ end
 def add_source_subcard new_source_card
   source_subcards = clone_subcards_to_hash new_source_card
   source_card = add_subcard '', type_id: SourceID,
-                                subcards: source_subcards
+                            subcards: source_subcards
   source_card.director.catch_up_to_stage :prepare_to_store
   source_card
 end
@@ -150,9 +161,8 @@ end
 def process_sources source_list
   source_names = source_list.item_names
   source_names.each do |source_name|
-    if !(source_card = Card[source_name])
-      errors.add :source, "#{source_name} does not exist."
-    end
+    next if  Card.exists? source_name
+    errors.add :source, "#{source_name} does not exist."
   end
   if (new_source_subcard = source_list.subcard('new_source'))
     source_card = find_or_create new_source_subcard
@@ -182,10 +192,10 @@ def fill_errors source_card
   end
 end
 
-def fill_subcards metric_value, source_names
-  add_subcard '+value', content: metric_value.content, type_id: PhraseID
-  add_subcard '+source', content: source_names.to_pointer_content,
-                         type_id: PointerID
+def fill_subcards metric_value, source_card
+  add_subfield :value, content: metric_value.content, type_id: PhraseID
+  add_subfield :source, content: "[[#{source_card.name}]]",
+                        type_id: PointerID
 end
 
 format :html do
@@ -391,8 +401,18 @@ format :html do
     )
   end
 
+  def grade
+    return unless value = (card.value && card.value.to_i)
+    case value
+    when 0, 1, 2, 3 then :low
+    when 4, 5, 6, 7 then :middle
+    when 8, 9, 10 then :high
+    end
+  end
+
   view :modal_details do |args|
-    # binding.pry
+    span_args = { class: 'metric-value' }
+    add_class span_args, grade if card.scored?
     show_value =
       if (value_type = card.metric_card.fetch trait: :value_type) &&
          %w(Number Monetary).include?(value_type.item_names[0])
@@ -400,25 +420,23 @@ format :html do
         number_to_human(big_number)
       else
         card.value
-      end
-    modal_link = subformat(card)._render_modal_link(
-      args.merge(
-        text: show_value,
-        path_opts: { slot: { show: :menu, optional_horizontal_menu: :hide } },
-        html_args: {
-          'data-complete-number' => card.value,
-          'data-tooltip' => 'true',
-          'data-placement' => 'top',
-          'title' => card.value
-        }
-      )
-    ) # ,:html_args=>{:class=>"td year"}))
 
-    %(
-      <span class="metric-value">
-        #{modal_link}
-      </span>
-    )
+      end
+
+    wrap_with :span, span_args do
+      subformat(card)._render_modal_link(
+        args.merge(
+          text: show_value,
+          path_opts: { slot: { show: :menu, optional_horizontal_menu: :hide } },
+          html_args: {
+            'data-complete-number' => card.value,
+            'data-tooltip' => 'true',
+            'data-placement' => 'top',
+            'title' => card.value
+          }
+        )
+      ) # ,:html_args=>{:class=>"td year"}))
+    end
   end
 
   view :value_link do |args|
