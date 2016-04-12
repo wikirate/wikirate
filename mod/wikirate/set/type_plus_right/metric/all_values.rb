@@ -126,6 +126,7 @@ format do
     end
   end
 end
+
 format :html do
   def sort_icon_by_state state
     order = state.empty? ? '' : "-#{state}"
