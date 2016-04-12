@@ -1,0 +1,15 @@
+en:
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: P
+          thousand: K
+          trillion: T
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3

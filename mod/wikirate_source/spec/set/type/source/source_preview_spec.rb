@@ -18,8 +18,8 @@ describe Card::Set::Type::Source, 'source preview' do
         @text_source = create_source text: text
         @result = @text_source.format._render_preview
       end
-      it "shows correction options" do
 
+      it "shows correction options" do
         expect(@result).to have_tag("ul", :with=>{:class=>"navbar-right"}) do
           with_tag "a",  :with=>{"data-target"=>"#tab_details"}
           with_tag "a",  :with=>{"data-target"=>"#tab_claims", :href=>"/#{@text_source.cardname.url_key}+source_note_list?slot[hide]=header,menu"}
@@ -33,6 +33,7 @@ describe Card::Set::Type::Source, 'source preview' do
 
       end
     end
+
     context "file source" do
       before do
         pdf_file = File.open("#{Rails.root}/mod/wikirate_source/spec/set/type/source/test_pdf.pdf")
@@ -52,9 +53,9 @@ describe Card::Set::Type::Source, 'source preview' do
           file_card = @pdf_source.fetch :trait=>:file
           expect(@result).to have_tag("div", :with=>{:id=>"pdf-preview"}) do
             with_tag "iframe", with: {
-              id: "source-preview-iframe", 
+              id: "source-preview-iframe",
               src: "files/viewer.html?file=#{file_card.attachment.url}"
-            } 
+            }
           end
         end
       end

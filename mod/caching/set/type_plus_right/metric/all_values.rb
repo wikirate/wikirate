@@ -9,7 +9,7 @@ include Card::CachedCount
 ensure_set { TypePlusRight::MetricValue::Value }
 ensure_set { Type::MetricValue }
 
-recount_trigger(TypePlusRight::MetricValue::Value) do |changed_card|
+recount_trigger TypePlusRight::MetricValue::Value do |changed_card|
   changed_card.metric_card.fetch trait: :all_values
 end
 
