@@ -35,3 +35,44 @@ $(window).ready ->
     add_metric_modal.find('.modal-dialog > .modal-content').empty()
 
 
+hideAll = (slot)->
+  slot.find(".value_type_field").hide()
+
+showField = (divName) ->
+  return if divName == ''
+  $("#" + divName).slideDown(100)
+
+wagn.slotReady (slot) ->
+  slot.find('[data-tooltip="true"]').tooltip()
+  if(slot.hasClass('STRUCTURE-metric_value_type_edit_structure'))
+# hide the related field
+# if no type is selected, hide all fields
+
+    slot.find('.RIGHT-value_type #pointer_select').change(->
+      div_to_show = ''
+      value = $(this).val()
+
+      switch value
+        when 'Number'
+          div_to_show = 'number_details'
+        when 'Monetary'
+          div_to_show = 'currency_details'
+        when 'Category'
+          div_to_show = 'category_details'
+        else
+          div_to_show = ''
+      hideAll(slot)
+      showField(div_to_show)
+    ).change()
+    # cancel-button to dismiss the modal
+    slot.find(".cancel-button").data('dismiss','modal')
+    # dismiss and refresh page after submit
+    slot.find('form:first').on 'ajax:success', (_event, data, xhr) ->
+      $('#modal-main-slot').modal('hide');
+      $('#fakeLoader').fakeLoader
+        timeToHide: 1000000 #Time in milliseconds for fakeLoader disappear
+        zIndex: '999' #Default zIndex
+        spinner: 'spinner1'#Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7'
+        bgColor: 'rgb(255,255,255,0.80)'#Hex, RGB or RGBA colors
+      location.reload();
+

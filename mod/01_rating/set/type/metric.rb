@@ -183,19 +183,7 @@ format :html do
       end
     return '' if details_field.nil?
     detail_card = Card.fetch "#{card.name}+#{subcard_name}"
-    %(
-      <div class="header">
-        #{card_link card, text: metric_title, class: 'inherit-anchor'}
-      </div>
-      <div class="data metric-details-toggle"
-           data-append="#{card.key}+add_to_formula">
-        #{_render_value(args)}
-        <div class="data-item show-with-details text-center">
-          #{subformat(detail_card).render_content}
-          #{card_link card, text: 'Metric Details'}
-        </div>
-      </div>
-    )
+    subformat(detail_card).render_content
   end
 
   def default_edit_args args
@@ -281,6 +269,7 @@ format :html do
       HTML
     end
   end
+
   view :add_to_formula do |args|
     # .metric-details-close-icon.pull-right
     # i.fa.fa-times-circle.fa-2x
@@ -344,7 +333,6 @@ HAML
           HTML
     metric_info_row left, content, opts
   end
-
 
   view :weight_row do |args|
     output(

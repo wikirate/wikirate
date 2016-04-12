@@ -78,10 +78,10 @@ format do
     end
   end
 
-  def sort_value_asc metric_values
+  def sort_value_asc metric_values, is_num
     metric_values.sort do |x, y|
-      strcmp x[1].sort_by { |value| value[:year] }.reverse[0][:value],
-             y[1].sort_by { |value| value[:year] }.reverse[0][:value]
+      value_a = x[1].sort_by { |value| value['year'] }.reverse[0]['value']
+      value_b = y[1].sort_by { |value| value['year'] }.reverse[0]['value']
       compare_content value_a, value_b, is_num
     end
   end
@@ -101,17 +101,14 @@ format do
   end
 
   def sorted_result sort_by, order, is_num
-    case sort_by
-    when 'company_name'
-      if order == 'asc'
-        sort_name_asc card.cached_values
-      else
-        card.get_params('offset', 0)
-      end
-    when 'value'
-      num_list = sort_value_asc card.cached_values, is_num
-      order == 'asc' ? num_list : num_list.reverse
-    end
+    sorted = case sort_by
+             when "company_name"
+               sort_name_asc card.cached_values
+             when "value"
+               sort_value_asc card.cached_values, is_num
+             end
+    return sorted if order == 'asc'
+    sorted.reverse
   end
 
   def num?
@@ -186,18 +183,9 @@ format :html do
     )
   end
 
-  # compare lenght first and then normal string comparison
-  def strcmp str1, str2
-    if (length_diff = str1.length - str2.length) == 0
-      str1 <=> str2
-    else
-      length_diff
-    end
-  end
-
   view :card_list_item do |args|
     c = args[:item_card]
-    item_view = nest_defaults(c)[:view]
+    item_view = args[:item] || nest_defaults(c)[:view]
     %(
       <div class="search-result-item item-#{item_view}">
         #{nest(c, size: args[:size], view: item_view)}
