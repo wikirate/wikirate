@@ -22,7 +22,7 @@ format :html do
     args[:default_tab] = 'Details'
   end
 
-  view :details_tab do
+  view :details_tab do |args|
     tab_wrap do
       [
          _render_add_value_buttons(args),
