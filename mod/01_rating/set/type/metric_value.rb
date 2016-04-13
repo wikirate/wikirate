@@ -144,7 +144,7 @@ def find_or_create new_source_card
          (source_card = find_duplicate_source(url.content))
         source_card
       else
-       add_source_subcard new_source_card
+        add_source_subcard new_source_card
       end
     end
   end
@@ -153,7 +153,7 @@ end
 def add_source_subcard new_source_card
   source_subcards = clone_subcards_to_hash new_source_card
   source_card = add_subcard '', type_id: SourceID,
-                            subcards: source_subcards
+                                subcards: source_subcards
   source_card.director.catch_up_to_stage :prepare_to_store
   source_card
 end
@@ -166,9 +166,7 @@ def process_sources source_list
   end
   if (new_source_subcard = source_list.subcard('new_source'))
     source_card = find_or_create new_source_subcard
-    if source_card.errors.present?
-      fill_errors source_card
-    end
+    fill_errors source_card if source_card.errors.present?
     source_names << source_card.name
   end
   source_names
@@ -220,7 +218,7 @@ format :html do
   end
 
   def edit_slot args
-    args.merge! edit_fields: { '+value' => {} } unless special_editor? args
+    args[:edit_fields] = { '+value' => {} } unless special_editor? args
     super(args)
   end
 
@@ -319,7 +317,24 @@ format :html do
     end
   end
 
-  view :metric_company_add_value_editor do |_args|
+  def find_potential_sources company, metric
+    Card.search type_id: Card::SourceID,
+                right_plus: ['company', { refer_to: company }],
+                and: {
+                  right_plus: [
+                    'report_type',
+                    refer_to: {
+                      referred_to_by: metric + '+report_type' }] }
+  end
+
+  view :metric_company_add_value_editor do |args|
+    sources = find_potential_sources args[:company], args[:metric]
+    relevant_sources =
+      if sources.empty?
+        'None'
+      else
+        sources.map(&:name).join(',')
+      end
     render_haml do
       <<-HAML
 .td.year
@@ -335,7 +350,7 @@ format :html do
         %span.icon.icon-wikirate-logo-o.fa-lg
         Add a new Source
   .relevant-sources
-    None
+    #{relevant_sources}
   %h5
     Cited Sources
   .card-editor
@@ -439,7 +454,7 @@ format :html do
     end
   end
 
-  view :value_link do |args|
+  view :value_link do |_args|
     url = "/#{card.cardname.url_key}"
     link = link_to card.value, url, target: '_blank'
     content_tag(:span, link.html_safe, class: 'metric-value')
@@ -495,7 +510,7 @@ format :html do
     heading << subformat(sources).render_core(item: :cited).html_safe
   end
 
-  view :comments do |args|
+  view :comments do |_args|
     disc_card = card.fetch trait: :discussion, new: {}
     comments = disc_card.real? ? subformat(disc_card).render_core : ''
     comments += subformat(disc_card).render_comment_box

@@ -123,7 +123,8 @@ format :html do
 
   def default_content_formgroup_args args
     args[:edit_fields] = { '+question' => { title: 'Question' },
-                           '+topic' => { title: 'Topic' } }
+                           '+topic' => { title: 'Topic' },
+                           '+report_type' => { title: 'Report Type' } }
   end
 
   def tab_radio_button id, active=false
