@@ -79,7 +79,7 @@ end
 # @option args [String] :year
 # @option args [String] :value
 # @option args [String] :source source url
-def create_value
+def create_value args
   Card.create! create_value_args(args)
 end
 
