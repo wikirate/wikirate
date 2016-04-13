@@ -67,7 +67,7 @@ class SharedData
       Card::Env[:host] = 'wikirate.org'
       Card.create! name: '1977', type_id: Card::YearID
       Card::Metric.create name: 'Jedi+disturbances in the Force',
-                          value_type: 'Categorical',
+                          value_type: 'Category',
                           value_options: %w(yes no) do
         Death_Star '1977' => { value: 'yes',
                                source: 'http://wikiwand.com/en/Death_Star' }
@@ -75,6 +75,11 @@ class SharedData
       Card::Metric.create name: 'Jedi+deadliness', value_type: 'Number' do
         source_link = 'http://wikiwand.com/en/Return_of_the_Jedi'
         Death_Star '1977' => { value: 100, source: source_link }
+      end
+      Card::Metric.create name: 'Jedi+cost of planets destroyed',
+                          value_type: 'Currency' do
+        source_link = 'http://wikiwand.com/en/Return_of_the_Jedi'
+        Death_Star '1977' => { value: 200, source: source_link }
       end
       Card::Metric.create name: 'Jedi+friendliness',
                           type: :formula,

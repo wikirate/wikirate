@@ -41,7 +41,7 @@ event :validate_existing_values_type, :validate, on: :save do
   type = item_names[0]
   return unless (mv = related_values)
   case type
-  when 'Number', 'Monetary'
+  when 'Number', 'Money'
     unless all_numeric?(mv)
       errors.add :invalid_value, 'Please check if all values are in number type'
     end

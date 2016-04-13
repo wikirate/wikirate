@@ -7,6 +7,7 @@ shared_examples_for 'numeric_value_type' do |value_type|
       '+value_type' => "[[#{value_type}]]" }
     @mv_id = Card::MetricValueID
   end
+
   describe 'add a new value' do
     context 'value not fit the value type' do
       it 'blocks adding a new value' do
@@ -18,6 +19,7 @@ shared_examples_for 'numeric_value_type' do |value_type|
         expect(metric_value.errors[:value]).to include(error_msg)
       end
     end
+
     context 'value fit the value type' do
       it 'adds a new value' do
         subcard = get_subcards_of_metric_value @metric, @company, '33', nil, nil
@@ -40,12 +42,12 @@ describe Card::Set::Type::MetricValue do
     it_behaves_like 'numeric_value_type', 'Number'
   end
 
-  context 'value type is Monetary' do
-    it_behaves_like 'numeric_value_type', 'Monetary'
+  context 'value type is Money' do
+    it_behaves_like 'numeric_value_type', 'Money'
 
     describe 'render views' do
       it 'shows currency sign' do
-        @metric.update_attributes! subcards: { '+value_type' => '[[Monetary]]' }
+        @metric.update_attributes! subcards: { '+value_type' => '[[Money]]' }
         subcard = get_subcards_of_metric_value @metric, @company, '33', nil, nil
         metric_value = Card.create type_id: @mv_id, subcards: subcard
         @metric.update_attributes! subcards: { '+currency' => '$' }
@@ -67,16 +69,7 @@ describe Card::Set::Type::MetricValue do
       end
     end
   end
-  context 'value type is Category' do
-    before do
-      login_as 'joe_user'
-      @metric = get_a_sample_metric
-      @company = get_a_sample_company
-      @metric.update_attributes! subcards: {
-        '+value_type' => "[[#{value_type}]]" }
-      @mv_id = Card::MetricValueID
-    end
-  end
+
 
   context 'value type is free text' do
     before do

@@ -55,9 +55,9 @@ wagn.slotReady (slot) ->
       switch value
         when 'Number'
           div_to_show = 'number_details'
-        when 'Monetary'
+        when 'Money'
           div_to_show = 'currency_details'
-        when 'Categorical'
+        when 'Category'
           div_to_show = 'category_details'
         else
           div_to_show = ''

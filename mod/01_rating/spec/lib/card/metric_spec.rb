@@ -23,7 +23,7 @@ describe Card::Metric do
     Card::Env[:protocol] = 'http://'
     Card::Env[:host] = 'wikirate.org'
     Card::Metric.create name: 'Jedi+strength in the Force',
-                        value_type: 'Categorical',
+                        value_type: 'Category',
                         value_options: %w(yes no) do
       Death_Star '1977' => { value: 'yes',
                              source: 'http://wikiwand.com/en/Death_Star' }
@@ -74,7 +74,7 @@ describe Card::Metric do
         researched_metrics
       end
       expect(Card['Jedi+strength in the Force+value type'].content)
-        .to eq '[[Categorical]]'
+        .to eq '[[Category]]'
       expect(Card['Jedi+strength in the Force+value options'].content)
         .to eq %w(yes no).to_pointer_content
     end

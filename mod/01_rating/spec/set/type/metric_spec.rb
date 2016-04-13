@@ -22,11 +22,11 @@ describe Card::Set::Type::Metric do
                     'Number', 'numeric_detail'
   end
   # FIXME: need monetary example
-  # context 'Monetary type metric' do
-  #   it_behaves_like 'views', 'Monetary', 'monetary_detail'
+  # context 'Money type metric' do
+  #   it_behaves_like 'views', 'Money', 'monetary_detail'
   # end
   context 'Category type metric' do
     it_behaves_like 'viewable metric', 'Jedi+disturbances in the Force',
-                    'Categorical', 'category_detail'
+                    'Category', 'category_detail'
   end
 end

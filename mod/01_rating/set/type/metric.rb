@@ -46,7 +46,7 @@ end
 
 # TODO: adapt to Henry's value type API
 def categorical?
-  value_type == 'Categorical'
+  value_type == 'Category'
 end
 
 def researched?
@@ -179,8 +179,8 @@ format :html do
     details_field =
       case value_type.item_names[0]
       when 'Number'      then 'numeric_details'
-      when 'Monetary'    then 'monetary_details'
-      when 'Categorical' then 'category_details'
+      when 'Money'    then 'monetary_details'
+      when 'Category' then 'category_details'
       end
     return '' if details_field.nil?
     detail_card = Card.fetch "#{card.name}+#{details_field}", new: {}
