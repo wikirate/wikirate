@@ -57,7 +57,7 @@ wagn.slotReady (slot) ->
           div_to_show = 'number_details'
         when 'Monetary'
           div_to_show = 'currency_details'
-        when 'Category'
+        when 'Categorical'
           div_to_show = 'category_details'
         else
           div_to_show = ''

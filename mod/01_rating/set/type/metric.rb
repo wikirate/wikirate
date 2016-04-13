@@ -178,12 +178,12 @@ format :html do
     return '' unless (value_type = Card["#{card.name}+value type"])
     details_field =
       case value_type.item_names[0]
-      when 'Number'    then 'numeric_details'
-      when 'Monetary'  then 'monetary_details'
-      when 'Category'  then 'category_details'
+      when 'Number'      then 'numeric_details'
+      when 'Monetary'    then 'monetary_details'
+      when 'Categorical' then 'category_details'
       end
     return '' if details_field.nil?
-    detail_card = Card.fetch "#{card.name}+#{details_field}"
+    detail_card = Card.fetch "#{card.name}+#{details_field}", new: {}
     subformat(detail_card).render_content
   end
 
