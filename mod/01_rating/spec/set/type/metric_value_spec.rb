@@ -1,10 +1,8 @@
 shared_examples_for 'numeric_value_type' do |value_type|
   before do
     login_as 'joe_user'
-    @metric = get_a_sample_metric
+    @metric = get_a_sample_metric value_type.to_sym
     @company = get_a_sample_company
-    @metric.update_attributes! subcards: {
-      '+value_type' => "[[#{value_type}]]" }
     @mv_id = Card::MetricValueID
   end
 
@@ -12,7 +10,6 @@ shared_examples_for 'numeric_value_type' do |value_type|
     context 'value not fit the value type' do
       it 'blocks adding a new value' do
         subcard = get_subcards_of_metric_value @metric, @company, nil, nil, nil
-
         metric_value = Card.create type_id: @mv_id, subcards: subcard
         expect(metric_value.errors).to have_key(:value)
         error_msg = 'Only numeric content is valid for this metric.'
@@ -39,15 +36,14 @@ describe Card::Set::Type::MetricValue do
   end
 
   context 'value type is Number' do
-    it_behaves_like 'numeric_value_type', 'Number'
+    it_behaves_like 'numeric_value_type', :number
   end
 
   context 'value type is Money' do
-    it_behaves_like 'numeric_value_type', 'Money'
+    it_behaves_like 'numeric_value_type', :money
 
     describe 'render views' do
       it 'shows currency sign' do
-        @metric.update_attributes! subcards: { '+value_type' => '[[Money]]' }
         subcard = get_subcards_of_metric_value @metric, @company, '33', nil, nil
         metric_value = Card.create type_id: @mv_id, subcards: subcard
         @metric.update_attributes! subcards: { '+currency' => '$' }
@@ -69,7 +65,6 @@ describe Card::Set::Type::MetricValue do
       end
     end
   end
-
 
   context 'value type is free text' do
     before do

@@ -178,7 +178,7 @@ format :html do
     return '' unless (value_type = Card["#{card.name}+value type"])
     details_field =
       case value_type.item_names[0]
-      when 'Number'      then 'numeric_details'
+      when 'Number'   then 'numeric_details'
       when 'Money'    then 'monetary_details'
       when 'Category' then 'category_details'
       end

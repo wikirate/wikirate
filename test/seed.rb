@@ -81,6 +81,8 @@ class SharedData
         source_link = 'http://wikiwand.com/en/Return_of_the_Jedi'
         Death_Star '1977' => { value: 200, source: source_link }
       end
+      Card::Metric.create name: 'Jedi+Sith Lord in Charge',
+                          value_type: 'Free Text'
       Card::Metric.create name: 'Jedi+friendliness',
                           type: :formula,
                           formula: '1/{{Jedi+deadliness}}'
