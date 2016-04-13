@@ -80,7 +80,11 @@ end
 # @option args [String] :value
 # @option args [String] :source source url
 def create_value args
-  Card.create! create_value_args(args)
+  if (valid_args = create_value_args args)
+    Card.create! valid_args
+  else
+    raise "invalid value args: #{args}"
+  end
 end
 
 # The new metric form has a title and a designer field instead of a name field
