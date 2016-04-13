@@ -40,6 +40,14 @@ def source_subcard_exist? new_source_card
     (link_card && link_card.content.present?)
 end
 
+def researched?
+  (mc = metric_card) && mc.researched?
+end
+
+def scored?
+  (mc = metric_card) && mc.scored?
+end
+
 # TODO: add #subfield_present? method to subcard API
 def subfield_exist? field_name
   subfield_card = subfield(field_name)
@@ -69,29 +77,27 @@ end
 
 event :validate_value_type, :validate, on: :save do
   # check if the value fit the value type of metric
-  if (value_type = Card["#{metric_card.name}+value type"])
+  if metric_card && (value_type = Card["#{metric_card.name}+value type"])
     value = subfield(:value).content
     case value_type.item_names[0]
-    when 'Number', 'Monetary'
+    when 'Number', 'Money'
       unless number?(value)
         errors.add :value, 'Only numeric content is valid for this metric.'
       end
     when 'Category'
       # check if the value exist in options
       if !(option_card = Card["#{metric_card.name}+value options"]) ||
-         !option_card.item_names(contenxt: :raw).include?(value)
+         !option_card.item_names.include?(value)
         url = "/#{option_card.cardname.url_key}?view=edit"
-        anchor =
-          <<-HTML
-            <a href='#{url}' target="_blank">add options</a>
-          HTML
+        anchor = %(<a href='#{url}' target="_blank">add options</a>)
         errors.add :options, "Please #{anchor} before adding metric value."
       end
     end
   end
 end
 
-event :create_source_for_metric_value, :validate, on: :create do
+event :create_source_for_metric_value, :validate,
+      on: :create, when: proc { |c| c.researched? || c.source_in_request? }  do
   create_source
 end
 
@@ -103,9 +109,9 @@ end
 
 def create_source
   value_card = remove_subfield('value')
-  if (source_list = subfield('source'))
-    remove_subfield('source')
-    # clear_subcards
+  if (source_list = detach_subfield('source'))
+    #remove_subfield('source')
+    #clear_subcards
     source_names = process_sources source_list
     fill_subcards value_card, source_names if errors.empty?
   else
@@ -142,7 +148,7 @@ end
 def add_source_subcard new_source_card
   source_subcards = clone_subcards_to_hash new_source_card
   source_card = add_subcard '', type_id: SourceID,
-                                subcards: source_subcards
+                            subcards: source_subcards
   source_card.director.catch_up_to_stage :prepare_to_store
   source_card
 end
@@ -150,11 +156,10 @@ end
 def process_sources source_list
   source_names = source_list.item_names
   source_names.each do |source_name|
-    if !(source_card = Card[source_name])
-      errors.add :source, "#{source_name} does not exist."
-    end
+    next if  Card.exists? source_name
+    errors.add :source, "#{source_name} does not exist."
   end
-  if (new_source_subcard = source_list.subcard('new_source'))
+  if (new_source_subcard = source_list.detach_subcard('new_source'))
     source_card = find_or_create new_source_subcard
     if source_card.errors.present?
       fill_errors source_card
@@ -183,9 +188,9 @@ def fill_errors source_card
 end
 
 def fill_subcards metric_value, source_names
-  add_subcard '+value', content: metric_value.content, type_id: PhraseID
-  add_subcard '+source', content: source_names.to_pointer_content,
-                         type_id: PointerID
+  add_subfield :value, content: metric_value.content, type_id: PhraseID
+  add_subfield :source, content: source_names.to_pointer_content,
+                        type_id: PointerID
 end
 
 format :html do
@@ -371,7 +376,7 @@ format :html do
 
   def currency
     return unless (value_type = Card["#{card.metric_card.name}+value type"])
-    return unless value_type.item_names[0] == 'Monetary' &&
+    return unless value_type.item_names[0] == 'Money' &&
                   (currency = Card["#{card.metric_card.name}+currency"])
     currency.content
   end
@@ -391,34 +396,42 @@ format :html do
     )
   end
 
+  def grade
+    return unless value = (card.value && card.value.to_i)
+    case value
+    when 0, 1, 2, 3 then :low
+    when 4, 5, 6, 7 then :middle
+    when 8, 9, 10 then :high
+    end
+  end
+
   view :modal_details do |args|
-    # binding.pry
+    span_args = { class: 'metric-value' }
+    add_class span_args, grade if card.scored?
     show_value =
       if (value_type = card.metric_card.fetch trait: :value_type) &&
-         %w(Number Monetary).include?(value_type.item_names[0])
+         %w(Number Money).include?(value_type.item_names[0])
         big_number = BigDecimal.new(card.value)
         number_to_human(big_number)
       else
         card.value
-      end
-    modal_link = subformat(card)._render_modal_link(
-      args.merge(
-        text: show_value,
-        path_opts: { slot: { show: :menu, optional_horizontal_menu: :hide } },
-        html_args: {
-          'data-complete-number' => card.value,
-          'data-tooltip' => 'true',
-          'data-placement' => 'top',
-          'title' => card.value
-        }
-      )
-    ) # ,:html_args=>{:class=>"td year"}))
 
-    %(
-      <span class="metric-value">
-        #{modal_link}
-      </span>
-    )
+      end
+
+    wrap_with :span, span_args do
+      subformat(card)._render_modal_link(
+        args.merge(
+          text: show_value,
+          path_opts: { slot: { show: :menu, optional_horizontal_menu: :hide } },
+          html_args: {
+            'data-complete-number' => card.value,
+            'data-tooltip' => 'true',
+            'data-placement' => 'top',
+            'title' => card.value
+          }
+        )
+      ) # ,:html_args=>{:class=>"td year"}))
+    end
   end
 
   view :value_link do |args|

@@ -1,0 +1,30 @@
+$dark-text-color: #999;
+$bright-text-color: #ededed;
+$muted: #777;
+
+$gray-background-color: #F3F3F3;
+
+$metric-color: #674ea7;
+$company-color: #d3741c;
+$topic-color: #2b7ea0;
+$main-color: #03998d;
+
+$company-header-bg: #d3741c;
+
+@mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,.4), $inset: "") {
+  @if ($inset != "") {
+    -webkit-box-shadow: $inset $x $y $blur $color;
+    -moz-box-shadow:    $inset $x $y $blur $color;
+    box-shadow:         $inset $x $y $blur $color;
+  } @else {
+    -webkit-box-shadow: $x $y $blur $color;
+    -moz-box-shadow:    $x $y $blur $color;
+    box-shadow:         $x $y $blur $color;
+  }
+}
+
+@mixin ellipsis() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

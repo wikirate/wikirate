@@ -17,6 +17,7 @@ gem 'delayed_job_active_record'
 # seems like newrelic should be in :live, but that wasn't working.
 # not sure why -efm
 gem 'newrelic_rpm'
+gem "airbrussh", :require => false
 
 group :live do
   gem 'therubyracer'
@@ -56,8 +57,8 @@ group :test do
 end
 
 group :development do
-  gem 'rubocop', '0.38.0' # seeing "for_all_cops" issue with 0.39
-  # gem 'rubocop-decko'
+  gem 'rubocop'
+  gem 'rubocop-rspec'
 
   gem 'rails-dev-tweaks'
   gem 'sprockets' # just so above works
@@ -66,6 +67,7 @@ group :development do
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
   gem 'capistrano-maintenance', require: false
+  gem 'capistrano-passenger'
 end
 
 group :test, :development do
