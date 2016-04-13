@@ -1,11 +1,14 @@
 
 event :import_csv, :prepare_to_store,
       on: :update,
+      # is_metric_import_update is used to distinguish between normal update or
+      # import
       when: proc { Env.params['is_metric_import_update'] == 'true' } do
   return unless (metric_values = Env.params[:metric_values])
   return unless valid_import_format?(metric_values)
   metric_values.each do |metric_value_data|
     metric_value_card = import_metric_value metric_value_data
+    binding.pry
     handle_import_errors metric_value_card
   end
   handle_redirect
@@ -18,9 +21,8 @@ def import_metric_value import_data
   return unless valid_value_data? args
   return unless (create_args = Card[args[:metric]].create_value_args args)
   add_subcard create_args.delete(:name), create_args
-  #Card[args[:metric]].create_value args
+  # Card[args[:metric]].create_value args
 end
-
 
 # @return [Hash] args to create metric value card
 def process_metric_value_data metric_value_data
@@ -35,7 +37,7 @@ end
 
 def valid_value_data? args
   @import_errors = []
-  add_import_error "metric name missing", args[:row] if args[:metric].blank?
+  add_import_error 'metric name missing', args[:row] if args[:metric].blank?
   %w(company year value).each do |field|
     add_import_error "#{field} missing", args[:row] if args[field.to_sym].blank?
   end
@@ -63,8 +65,8 @@ end
 
 def handle_redirect
   if errors.empty?
-    if (target=redirect_target_after_import)
-      success <<  { name: target, redirect: true, view: :open }
+    if (target = redirect_target_after_import)
+      success << { name: target, redirect: true, view: :open }
     end
   else
     abort :failure
@@ -88,26 +90,20 @@ def get_corrected_company_name params
   unless Card.exists?(corrected)
     Card.create! name: corrected, type_id: WikirateCompanyID
   end
-  if corrected != params[:company]
-    Card[corrected].add_alias params[:company]
-  end
+  Card[corrected].add_alias params[:company] if corrected != params[:company]
   corrected
 end
 
 def add_import_error msg, row=nil
   return unless msg
-  title = "import error"
+  title = 'import error'
   title += " (row #{row})" if row
   @import_errors << [title, msg]
 end
 
-
-
 def check_existence_and_type name, type_id, type_name=nil
   return  "#{name} doesn't exist" unless Card[name]
-  if Card[name].type_id != type_id
-    return "#{name} is not a #{type_name}"
-  end
+  return "#{name} is not a #{type_name}" if Card[name].type_id != type_id
 end
 
 def ensure_company_exists company
@@ -130,14 +126,12 @@ format :html do
   mattr_accessor :import_fields
   @@import_fields = [:file_company, :value]
 
-
   def default_new_args args
     args[:hidden] = {
       success: { id: '_self', soft_redirect: false, view: :import }
     }
     super args
   end
-
 
   def default_import_args args
     args[:buttons] = %(
@@ -190,13 +184,13 @@ format :html do
     args[:table_header] = ['Import', '#', 'Company in File',
                            'Company in Wikirate', 'Match', 'Correction']
     args[:table_fields] = [:checkbox, :row, :file_company, :wikirate_company,
-                            :status, :correction]
+                           :status, :correction]
   end
 
   view :import_table do |args|
     data = card.csv_rows.map.with_index do |elem, i|
-             import_row(elem, args[:table_fields], i+1)
-           end
+      import_row(elem, args[:table_fields], i + 1)
+    end
     table data, class: 'import_table table-bordered table-hover',
                 header: args[:table_header]
   end
@@ -256,7 +250,7 @@ format :html do
     key_hash = row_hash.deep_dup
     key_hash[:company] = row_hash[:status] == :none ?
       row_hash[:file_company] : row_hash[:wikirate_company]
-    check_box_tag "metric_values[]", key_hash.to_json, checked
+    check_box_tag 'metric_values[]', key_hash.to_json, checked
   end
 
   def import_row row, table_fields, index

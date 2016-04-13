@@ -111,6 +111,7 @@ event :create_source_for_updating_metric_value,
 end
 
 def create_source
+  
   value_card = remove_subfield('value')
   if (source_list = subfield('source'))
     remove_subfield('source')
@@ -126,6 +127,8 @@ def clone_subcards_to_hash subcards
   source_subcards = {}
   subcards.subcards.each_with_key do |subcard, _key|
     subcard_key = subcard.tag.key
+    source_type_key = Card[:source_type].name
+    source_subcards["+#{source_type_key}"] = { content: "[[#{subcard_key}]]" }
     if subcard_key == 'file'
       source_subcards["+#{subcard_key}"] = { file: subcard.file.file,
                                              type_id: subcard.type_id }
@@ -139,13 +142,11 @@ end
 
 def find_or_create new_source_card
   with_sourcebox do
-    if (new_source_card = source_list.remove_subcard('new_source'))
-      if (url = new_source_card.subfield(:wikirate_link)) &&
-         (source_card = find_duplicate_source(url.content))
-        source_card
-      else
-       add_source_subcard new_source_card
-      end
+    if (url = new_source_card.subfield(:wikirate_link)) &&
+       (source_card = find_duplicate_source(url.content))
+      source_card
+    else
+     add_source_subcard new_source_card
     end
   end
 end
@@ -164,7 +165,7 @@ def process_sources source_list
     next if  Card.exists? source_name
     errors.add :source, "#{source_name} does not exist."
   end
-  if (new_source_subcard = source_list.subcard('new_source'))
+  if (new_source_subcard = source_list.remove_subcard('new_source'))
     source_card = find_or_create new_source_subcard
     if source_card.errors.present?
       fill_errors source_card
@@ -194,7 +195,7 @@ end
 
 def fill_subcards metric_value, source_card
   add_subfield :value, content: metric_value.content, type_id: PhraseID
-  add_subfield :source, content: "[[#{source_card.name}]]",
+  add_subfield :source, content: "[[#{source_card.join(']]\n[[')}]]",
                         type_id: PointerID
 end
 
