@@ -7,14 +7,24 @@ class WolframFormula < Formula
 
   # convert formula to a Wolfram Language expression
   # Example:
-  # For formula {{metric A}}+{{metric B}} and two companies with
-  # values in 2014 and 2015 for those metics return
-  # (#[[1]]+#[[2]])&/@<|2015 -> {{1,2},{2,3}},2014-> {{4,5},{6,7}}|>
+  # For formula {{metric M1}}+{{metric M2}} and two companies C1 and C1 with
+  # values in 2014 and 2015:
+  # M1+C1+2014 = 11.14, M2+C1+2014 = 21.14
+  # M1+C1+2015 = 11.15, M2+C1+2015 = 21.15
+  # M1+C2+2014 = 12.14, M2+C2+2014 = 22.14
+  # M1+C2+2015 = 12.15, M2+C2+2015 = 22.15
+  # create the followng expression in Wolfram Language
+  # Apply[(#1+#2)&,<|2014 -> {{11.14, 21.14}, {12.14, 22.14}},
+  #                 2015 -> {{11.15, 21.15}, {12.15, 22.15}}|>, {2}]
+  # The result Wolfram is a hash with an array for every year that contains
+  # the values for all companies
+  # <|2014 -> {32.28, 34.28}, 2015 -> {32.30, 34.30}|>
+
   def to_lambda
     wl_formula = @formula.keyified
     metrics.each_with_index do |metric, i|
       # indices in Wolfram Language start with 1
-      wl_formula.gsub!("{{#{ metric }}}", "#[[#{ i + 1 }]]")
+      wl_formula.gsub!("{{#{ metric }}}", "##{ i + 1 }")
     end
 
     year_str = []
@@ -22,7 +32,11 @@ class WolframFormula < Formula
       company_str = []
       companies.each do |_company, metrics_with_values|
         values = metrics.map do |metric|
-          metrics_with_values[metric]
+          if Card[metric].number_values?
+            metrics_with_values[metric]
+          else
+            "\"#{metrics_with_values[metric]}\""
+          end
         end.compact
         next if values.size != metrics.size
         company_str << "{#{values.join(',')}}"
@@ -31,7 +45,7 @@ class WolframFormula < Formula
     end
     wl_input = year_str.join ','
 
-    "(#{wl_formula})&/@<| #{wl_input} |>"
+    "Apply[(#{wl_formula})&,<| #{wl_input} |>,{2}]"
   end
 
   protected
@@ -40,11 +54,20 @@ class WolframFormula < Formula
     uri = URI.parse(WL_INTERPRETER)
     # TODO: error handling
     response = Net::HTTP.post_form uri, 'expr' => expr
+
+    binding.pry
     begin
-      result = JSON.parse(response.body)['Result']
-      JSON.parse result
+      body = JSON.parse(response.body)
+      if body['Success']
+       result = JSON.parse body['Result']
+      else
+        # TODO: this is a syntax error in the wolfram formula
+        # and shouldn't be fatal
+        # need a way to pass that to errors
+        fail Card::Error, 'wolfram error', body['MessagesText'].join("\n")
+      end
     rescue JSON::ParserError => e
-      fail Card::Error, "failed to process wolfram formula: #{expr}"
+      fail Card::Error, "failed to parse wolfram result: #{expr}"
     end
   end
 
