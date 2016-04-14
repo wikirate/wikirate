@@ -100,12 +100,12 @@ format do
     card.query(search_params)[:limit]
   end
 
-  def sorted_result sort_by, order, is_num
+  def sorted_result values, sort_by, order, is_num=true
     sorted = case sort_by
              when "company_name"
-               sort_name_asc card.cached_values
+               sort_name_asc values
              when "value"
-               sort_value_asc card.cached_values, is_num
+               sort_value_asc values, is_num
              end
     return sorted if order == 'asc'
     sorted.reverse

@@ -6,8 +6,8 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
       Card['Death Star'],
       Card['Sony Corporation'],
       Card['Amazon.com, Inc.'],
-      Card['Apple Inc.'],
-                 ]
+      Card['Apple Inc.']
+    ]
     @companies.each.with_index do |company, value_idx|
       0.upto(3) do |i|
         @metric.create_value company: company.name,
@@ -20,13 +20,15 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
 
   describe '#get_params' do
     it 'returns value from params' do
-      Card::Env.params["offset"] = "5"
-      expect(all_values.get_params("offset", 0)).to eq(5)
+      Card::Env.params['offset'] = '5'
+      expect(all_values.get_params('offset', 0)).to eq(5)
     end
+
     it 'returns default' do
       expect(all_values.get_params("offset", 0)).to eq(0)
     end
   end
+
   describe "#get_cached_values" do
     it 'returns correct cached metric values' do
       results = all_values.get_cached_values
@@ -42,10 +44,11 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
       end
     end
   end
+
   describe '#count' do
     it 'returns correct cached count' do
       result = all_values.count {}
-      expect(result).to eq(5)
+      expect(result).to eq(4)
     end
   end
   describe '#num?' do
@@ -79,37 +82,50 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
       results = @format.sorted_result(
         @cached_result, 'company_name', 'asc', false
       )
-      expect(results[0][0]).to eq('Amazon.com, Inc.')
-      expect(results[1][0]).to eq('Apple Inc.')
-      expect(results[2][0]).to eq('Sony Corporation')
+      expect(results.map { |x| x[0] }).to eq(
+        ['Amazon.com, Inc.',
+         'Apple Inc.',
+         'Death Star',
+         'Sony Corporation'
+        ]
+      )
     end
     it 'sorts by company name desc' do
       results = @format.sorted_result(
         @cached_result, "company_name", 'desc', false
       )
-      expect(results[0][0]).to eq('Sony Corporation')
-      expect(results[1][0]).to eq('Apple Inc.')
-      expect(results[2][0]).to eq('Amazon.com, Inc.')
+      expect(results.map { |x| x[0] }).to eq(
+        ['Sony Corporation',
+         'Death Star',
+         'Apple Inc.',
+         'Amazon.com, Inc.'
+        ]
+      )
     end
+
     it 'sorts by value asc' do
       results = @format.sorted_result @cached_result, 'value', 'asc'
-      expect(results[0][0]).to eq("Sony Corporation")
-      expect(results[0][1]).to include({'year'=>'2015', 'value'=>'5'})
-      expect(results[1][0]).to eq("Amazon.com, Inc.")
-      expect(results[1][1]).to include({'year'=>'2015', 'value'=>'10'})
-      expect(results[2][0]).to eq("Apple Inc.")
-      expect(results[2][1]).to include({'year'=>'2015', 'value'=>'15'})
+      expect(results.map { |x| x[0] }).to eq(
+        ['Sony Corporation',
+         'Death Star',
+         'Apple Inc.',
+         'Amazon.com, Inc.'
+        ]
+      )
     end
+
     it 'sorts by value desc' do
       results = @format.sorted_result @cached_result, 'value', 'desc'
-      expect(results[0][0]).to eq("Apple Inc.")
-      expect(results[0][1]).to include({'year'=>'2013', 'value'=>'17'})
-      expect(results[1][0]).to eq("Amazon.com, Inc.")
-      expect(results[1][1]).to include({'year'=>'2013', 'value'=>'12'})
-      expect(results[2][0]).to eq("Sony Corporation")
-      expect(results[2][1]).to include({'year'=>'2013', 'value'=>'7'})
+      expect(results.map { |x| x[0] }).to eq(
+        ['Amazon.com, Inc.',
+         'Apple Inc.',
+         'Death Star',
+         'Sony Corporation'
+        ]
+      )
     end
   end
+
   describe "view" do
     it 'renders card_list_header' do
       Card::Env.params["offset"] = "0"
