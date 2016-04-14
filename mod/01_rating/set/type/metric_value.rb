@@ -111,10 +111,9 @@ event :create_source_for_updating_metric_value,
 end
 
 def create_source
-  
-  value_card = remove_subfield('value')
-  if (source_list = subfield('source'))
-    remove_subfield('source')
+  value_card = detach_subfield('value')
+  binding.pry
+  if (source_list = detach_subfield('source'))
     # clear_subcards
     source_names = process_sources source_list
     fill_subcards value_card, source_names if errors.empty?
@@ -165,6 +164,7 @@ def process_sources source_list
     next if  Card.exists? source_name
     errors.add :source, "#{source_name} does not exist."
   end
+  binding.pry
   if (new_source_subcard = source_list.remove_subcard('new_source'))
     source_card = find_or_create new_source_subcard
     if source_card.errors.present?

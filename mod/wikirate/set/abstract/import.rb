@@ -8,7 +8,6 @@ event :import_csv, :prepare_to_store,
   return unless valid_import_format?(metric_values)
   metric_values.each do |metric_value_data|
     metric_value_card = import_metric_value metric_value_data
-    binding.pry
     handle_import_errors metric_value_card
   end
   handle_redirect
@@ -19,6 +18,7 @@ def import_metric_value import_data
   args = process_metric_value_data import_data
   ensure_company_exists args[:company]
   return unless valid_value_data? args
+  binding.pry
   return unless (create_args = Card[args[:metric]].create_value_args args)
   add_subcard create_args.delete(:name), create_args
   # Card[args[:metric]].create_value args

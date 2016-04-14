@@ -53,8 +53,9 @@ def duplication_check url
   end
 end
 
-event :process_source_url, :prepare_to_validate, after: :check_source,
+event :process_source_url, after: :check_source,
       on: :create do
+  binding.pry
   if !(link_card = subfield(:wikirate_link)) || link_card.content.empty?
     errors.add(:link, 'does not exist.')
     return
