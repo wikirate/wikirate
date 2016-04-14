@@ -6,30 +6,6 @@ describe Card::Set::Type::Source do
     @wikirate_link_prefix = "#{Card::Env[:protocol]}#{Card::Env[:host]}/"
   end
 
-  def create_link_source url
-    create_source link: url
-  end
-
-  def create_source args
-    Card.create! source_args(args)
-  end
-
-  def source_args args
-    res = {
-      type_id: Card::SourceID,
-      subcards: {
-        '+Link' => {},
-        '+File' => { type_id: Card::FileID },
-        '+Text' => { type_id: Card::BasicID, content: '' }
-      }
-    }
-    [:link, :file, :text].each do |key|
-      next unless args[key]
-      res[:subcards]["+#{key.to_s.capitalize}"][:content] = args[key]
-    end
-    res
-  end
-
   describe 'while creating a Source' do
     before do
       login_as 'joe_user'
@@ -62,8 +38,7 @@ describe Card::Set::Type::Source do
       sourcepage = create_link_source url
       expect(sourcepage).not_to be_valid
       expect(sourcepage.errors).to have_key :source
-      expect(sourcepage.errors[:source])
-        .to include('Source content required')
+      expect(sourcepage.errors[:source]).to include('Source content required')
     end
 
     it 'creates website card with actions' do

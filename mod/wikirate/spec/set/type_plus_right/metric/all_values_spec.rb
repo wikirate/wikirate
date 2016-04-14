@@ -55,7 +55,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
     context 'Numeric type' do
       it 'returns true' do
         @metric.update_attributes! subcards: { '+value_type' => '[[Number]]' }
-        format = @all_values.format
+        format = all_values.format
         expect(format.num?).to be true
         @metric.update_attributes! subcards: { '+value_type' => '[[Money]]' }
         expect(format.num?).to be true
@@ -106,10 +106,10 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
     it 'sorts by value asc' do
       results = @format.sorted_result @cached_result, 'value', 'asc'
       expect(results.map { |x| x[0] }).to eq(
-        ['Sony Corporation',
-         'Death Star',
-         'Apple Inc.',
-         'Amazon.com, Inc.'
+        ['Death Star',
+         'Sony Corporation',
+         'Amazon.com, Inc.',
+         'Apple Inc.'
         ]
       )
     end
@@ -117,10 +117,10 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
     it 'sorts by value desc' do
       results = @format.sorted_result @cached_result, 'value', 'desc'
       expect(results.map { |x| x[0] }).to eq(
-        ['Amazon.com, Inc.',
-         'Apple Inc.',
-         'Death Star',
-         'Sony Corporation'
+        [ 'Apple Inc.',
+         'Amazon.com, Inc.',
+         'Sony Corporation',
+         'Death Star'
         ]
       )
     end
@@ -138,15 +138,16 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
           with_tag :a, with: {
                                 class: 'header metric-list-header slotter',
                                 href: "/#{url_key}?item=content"\
-                                      '&offset=0&limit=20'\
-                                      '&sort_order=asc'\
-                                      '&sort_by=company_name'
+                                      '&limit=20&offset=0'\
+                                      '&sort_by=company_name'\
+                                      '&sort_order=asc'
+                                      
                               }
           with_tag :a, with: {
                                 class: 'data metric-list-header slotter',
                                 href: "/#{url_key}?item=content"\
-                                      '&offset=0&limit=20'\
-                                      '&sort_order=asc&sort_by=value'
+                                      '&limit=20&offset=0'\
+                                      '&sort_by=value&sort_order=asc'
                               }
         end
       end
