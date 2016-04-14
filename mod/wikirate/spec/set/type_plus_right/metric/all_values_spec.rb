@@ -54,7 +54,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
         @metric.update_attributes! subcards: { '+value_type' => '[[Number]]' }
         format = @all_values.format
         expect(format.num?).to be true
-        @metric.update_attributes! subcards: { '+value_type' => '[[Monetary]]' }
+        @metric.update_attributes! subcards: { '+value_type' => '[[Money]]' }
         expect(format.num?).to be true
       end
     end

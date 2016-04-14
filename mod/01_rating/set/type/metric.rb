@@ -2,7 +2,7 @@ card_accessor :vote_count, type: :number, default: '0'
 card_accessor :upvote_count, type: :number, default: '0'
 card_accessor :downvote_count, type: :number, default: '0'
 
-card_accessor :metric_type, :type=>:pointer, :default=>"[[Researched]]"
+card_accessor :metric_type, type: :pointer, default: '[[Researched]]'
 card_accessor :about
 card_accessor :methodology
 card_accessor :value_type
@@ -32,7 +32,7 @@ def metric_title_card
 end
 
 def question_card
-  field('Question', new:{})
+  field 'Question', new: {}
 end
 
 def value_type
@@ -41,7 +41,7 @@ def value_type
 end
 
 def value_options
- (vo = field('value options')) && vo.item_names
+  (vo = field('value options')) && vo.item_names
 end
 
 def number_values?
@@ -51,7 +51,7 @@ end
 
 # TODO: adapt to Henry's value type API
 def categorical?
-  value_type == 'Categorical'
+  value_type == 'Category'
 end
 
 def researched?
@@ -115,19 +115,20 @@ def metric_value_query
 end
 
 format :html do
-  view :designer_image do |args|
-    nest card.metric_designer_card.field(:image, new: {}), view: :core,
+  view :designer_image do |_args|
+    nest card.metric_designer_card.field(:image, new: {}),
+         view: :core,
          size: :small
   end
 
   def css
-    return ''
-    css = <<-CSS
-    CSS
-    "<style> #{Sass.compile css}</style>"
+    ''
+    # css = <<-CSS
+    # CSS
+    # "<style> #{Sass.compile css}</style>"
   end
 
-  view :legend do |args|
+  view :legend do |_args|
     # depends on the type
     if (unit = Card.fetch("#{card.name}+unit"))
       unit.raw_content
@@ -182,12 +183,12 @@ format :html do
     return '' unless (value_type = Card["#{card.name}+value type"])
     details_field =
       case value_type.item_names[0]
-      when 'Number'    then 'numeric_details'
-      when 'Monetary'  then 'monetary_details'
-      when 'Category'  then 'category_details'
+      when 'Number'   then 'numeric_details'
+      when 'Money'    then 'monetary_details'
+      when 'Category' then 'category_details'
       end
     return '' if details_field.nil?
-    detail_card = Card.fetch "#{card.name}+#{details_field}"
+    detail_card = Card.fetch "#{card.name}+#{details_field}", new: {}
     subformat(detail_card).render_content
   end
 
@@ -209,23 +210,23 @@ format :html do
     end
   end
 
-  view :handle do |args|
+  view :handle do |_args|
     content_tag :div, class: 'handle' do
       glyphicon 'option-vertical'
     end
   end
 
-  view :vote do |args|
+  view :vote do |_args|
     %(<div class="hidden-xs hidden-md">{{#{card.name}+*vote count}}</div>)
   end
 
   view :value do |args|
     return '' unless args[:company]
-    <<-HTML
+    %(
       <div class="data-item hide-with-details">
         {{#{card.name}+#{args[:company]}+latest value|concise}}
       </div>
-    HTML
+    )
   end
 
   def view_caching?
@@ -236,12 +237,12 @@ format :html do
     append = args[:append_for_details] ||
              "#{card.key}+add_to_formula"
     item_wrap(args) do
-      <<-HTML
+      %(
       <div class="no-data metric-details-toggle"
            data-append="#{append}">
         #{_render_thumbnail(optional_thumbnail_subtitle: :hide)}
       </div>
-      HTML
+      )
     end
   end
 
@@ -275,34 +276,34 @@ format :html do
     end
   end
 
-  view :add_to_formula do |args|
+  view :add_to_formula do |_args|
     # .metric-details-close-icon.pull-right
     # i.fa.fa-times-circle.fa-2x
     # %br
     render_haml do
-<<-HAML
-%br
-.metric-details-header
-  .row.clearfix
-    .col-md-12
-      .name.row
-        = card_link card, text: card.metric_title, class: 'inherit-anchor'
-      .row
-        = _render_designer_info
-  %hr
-  .row.clearfix.wiki
-    = _render_metric_info
-HAML
+      <<-HAML
+      %br
+      .metric-details-header
+        .row.clearfix
+          .col-md-12
+            .name.row
+              = card_link card, text: card.metric_title, class: 'inherit-anchor'
+            .row
+              = _render_designer_info
+        %hr
+        .row.clearfix.wiki
+          = _render_metric_info
+      HAML
     end
   end
 
-  view :metric_info do |args|
+  view :metric_info do |_args|
     question = subformat(card.question_card)._render_core.html_safe
     rows = [
-             icon_row('question', question, class: 'metric-details-question'),
-             icon_row('bar-chart', card.metric_type, class: 'text-emphasized'),
-             icon_row('tag', field_nest('+topic', view: :content, item: :link)),
-            ]
+      icon_row('question', question, class: 'metric-details-question'),
+      icon_row('bar-chart', card.metric_type, class: 'text-emphasized'),
+      icon_row('tag', field_nest('+topic', view: :content, item: :link))
+    ]
     if card.researched?
       rows <<  text_row('Unit', field_nest('Unit'))
       rows <<  text_row('Range', field_nest('Range'))
@@ -322,6 +323,7 @@ HAML
       </div>
     HTML
   end
+
   def text_row text, content, opts={}
     left = <<-HTML
             <div class="left-col">
@@ -330,6 +332,7 @@ HAML
           HTML
     metric_info_row left, content, opts
   end
+
   def icon_row icon, content, opts={}
     left = <<-HTML
             <div class="left-col icon-muted">

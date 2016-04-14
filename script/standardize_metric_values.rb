@@ -103,7 +103,7 @@ end
 def normalize_number content, mv, value_type
   content.gsub!(/ [BMK]/, '')
   big_number = convert_to_big_number content[1..-1], mv.content[-1]
-  update_metric_value mv, value_type, big_number.to_s, '[[Monetary]]'
+  update_metric_value mv, value_type, big_number.to_s, '[[Money]]'
   update_unit mv.metric_card, '$'
 end
 
@@ -164,7 +164,7 @@ def convert_monetary_metric_unit
   metric_with_unit.each do |metric|
     name = "#{metric}+value_type"
     metric_value_type = Card.fetch name, new: {}
-    metric_value_type.content = '[[Monetary]]'
+    metric_value_type.content = '[[Money]]'
     metric_value_type.save!
 
     metric_currency = Card.fetch "#{metric}+Currency", new: {}

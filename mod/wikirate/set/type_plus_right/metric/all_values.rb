@@ -114,7 +114,7 @@ format do
   def num?
     metric_value_type = Card["#{card.cardname.left}+value type"]
     type = metric_value_type.nil? ? '' : metric_value_type.item_names[0]
-    type == 'Number' || type == 'Monetary'
+    type == 'Number' || type == 'Money'
   end
 
   def search_results _args={}
