@@ -25,11 +25,13 @@ format :html do
   view :details_tab do |args|
     tab_wrap do
       [
-         _render_add_value_buttons(args),
-         nest(card.about_card, view: :titled, title: 'About'),
-         nest(card.methodology_card, view: :titled, title: 'Methodology'),
-         _render_value_type_detail(args),
-         _render_import_button(args)
+        _render_add_value_buttons(args),
+        nest(card.about_card, view: :titled, title: 'About'),
+        nest(card.methodology_card, view: :titled, title: 'Methodology'),
+        _render_value_type_detail(args),
+        nest(Card.fetch(card.name + '+report_type'),
+             view: :titled, title: 'Report Type', items: { view: :name }),
+        _render_import_button(args)
       ]
     end
   end
