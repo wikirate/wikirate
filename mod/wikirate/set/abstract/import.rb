@@ -18,7 +18,6 @@ def import_metric_value import_data
   return unless valid_value_data? args
   return unless (create_args = Card[args[:metric]].create_value_args args)
   add_subcard create_args.delete(:name), create_args
-  #Card[args[:metric]].create_value args
 end
 
 # @return [Hash] args to create metric value card

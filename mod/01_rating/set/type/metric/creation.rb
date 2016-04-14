@@ -40,10 +40,13 @@ def add_value_source_args args, source
 end
 
 def valid_value_args? args
-  missing = [:company, :year, :value].reject { |v| args[v] }
   error_msg = []
-  error_msg += missing.map { |field| "missing #{field.to_sentence}" }
-  metric_value_name = [name, args[:company], args[:year]].join '+'
+  metric_value_name =
+    args[:name] || begin
+      missing = [:company, :year, :value].reject { |v| args[v] }
+      error_msg += missing.map { |field| "missing #{field}" }
+      [name, args[:company], args[:year]].join '+'
+    end
   if Card[metric_value_name.to_name.field(:value)]
     error_msg << 'value already exists'
   end
