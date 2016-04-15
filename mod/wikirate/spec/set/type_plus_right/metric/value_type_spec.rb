@@ -36,8 +36,8 @@ describe Card::Set::TypePlusRight::Metric::ValueType do
     context 'to Number' do
       it_behaves_like 'changing type to numeric', 'Free Text', 'Number'
     end
-    context 'to Monetary' do
-      it_behaves_like 'changing type to numeric', 'Free Text', 'Monetary'
+    context 'to Money' do
+      it_behaves_like 'changing type to numeric', 'Free Text', 'Money'
     end
     describe 'to Category' do
       before do

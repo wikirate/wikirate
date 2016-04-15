@@ -13,7 +13,7 @@ def metric
 end
 
 def year
-  metric_year_card.item_names.first
+  year_pointer_card.item_names.first
 end
 
 def source_url

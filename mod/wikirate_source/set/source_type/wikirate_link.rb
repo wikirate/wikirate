@@ -55,15 +55,12 @@ end
 
 event :process_source_url, after: :check_source,
       on: :create do
-  binding.pry
   if !(link_card = subfield(:wikirate_link)) || link_card.content.empty?
     errors.add(:link, 'does not exist.')
     return
   end
   url = link_card.content
-  if Card::Env.params[:sourcebox] == 'true'
-    handle_source_box_source url
-  end
+  handle_source_box_source url if Card::Env.params[:sourcebox] == 'true'
   duplication_check url
   link_card.director.catch_up_to_stage :validate
   return if errors.present?
@@ -146,9 +143,7 @@ def parse_source_page url
   # if preview.images.length > 0
   #   add_subcard '+image url', content: preview.images.first.src.to_s
   # end
-  unless subfield('title')
-    add_subcard '+title', content: preview.title
-  end
+  add_subcard '+title', content: preview.title unless subfield('title')
   return if subfield('Description')
   add_subcard '+description', content: preview.description
 rescue

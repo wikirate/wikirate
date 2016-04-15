@@ -40,10 +40,13 @@ def add_value_source_args args, source
 end
 
 def valid_value_args? args
-  missing = [:company, :year, :value].reject { |v| args[v] }
   error_msg = []
-  error_msg += missing.map { |field| "missing #{field.to_sentence}" }
-  metric_value_name = [name, args[:company], args[:year]].join '+'
+  metric_value_name =
+    args[:name] || begin
+      missing = [:company, :year, :value].reject { |v| args[v] }
+      error_msg += missing.map { |field| "missing #{field}" }
+      [name, args[:company], args[:year]].join '+'
+    end
   if Card[metric_value_name.to_name.field(:value)]
     error_msg << 'value already exists'
   end
@@ -79,8 +82,12 @@ end
 # @option args [String] :year
 # @option args [String] :value
 # @option args [String] :source source url
-def create_value
-  Card.create! create_value_args(args)
+def create_value args
+  if (valid_args = create_value_args args)
+    Card.create! valid_args
+  else
+    raise "invalid value args: #{args}"
+  end
 end
 
 # The new metric form has a title and a designer field instead of a name field
@@ -214,13 +221,14 @@ format :html do
                                             type_id: PhraseID
     designer.reset_patterns
     designer.include_set_modules
-    nest designer, options.merge(view: :editor, title: 'Metric Designer')
+    subformat(designer)
+      ._render_edit_in_form(options.merge(title: 'Metric Designer'))
     # end
   end
 
   def metric_title_field _options={}
     title = card.add_subfield :title, content: card.cardname.tag,
                                       type_id: PhraseID
-    nest title, view: :editor, title: 'Metric Title'
+    subformat(title)._render_edit_in_form(options.merge(title: 'Metric Title'))
   end
 end

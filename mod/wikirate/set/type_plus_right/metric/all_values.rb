@@ -100,7 +100,7 @@ format do
     card.query(search_params)[:limit]
   end
 
-  def sorted_result sort_by, order, is_num
+  def sorted_result sort_by, order, is_num=true
     sorted = case sort_by
              when "company_name"
                sort_name_asc card.cached_values
@@ -114,7 +114,7 @@ format do
   def num?
     metric_value_type = Card["#{card.cardname.left}+value type"]
     type = metric_value_type.nil? ? '' : metric_value_type.item_names[0]
-    type == 'Number' || type == 'Monetary'
+    type == 'Number' || type == 'Money'
   end
 
   def search_results _args={}
