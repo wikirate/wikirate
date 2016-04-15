@@ -8,6 +8,6 @@ Feature: create metrics
     When I go to new metric
     And I choose "Researched"
     And I fill in "Metric Title" with "MyResearch"
-    And I fill in "Question" with "my question"
-    And I fill in "Value Type" with "Number"
+    And I fill in "card[subcards][+question][content]" with "my question"
+    And I select "Number" from hidden "card_subcards__value_type_content"
     And I press "Submit"
