@@ -1,6 +1,6 @@
 describe Card::Set::TypePlusRight::Source::File::Import do
   before do
-    login_as "joe_user"
+    login_as 'joe_user'
     @source = create_source file: csv1
     Card::Env.params['is_metric_import_update'] = 'true'
   end
@@ -15,12 +15,15 @@ describe Card::Set::TypePlusRight::Source::File::Import do
   def metric_answer_exists? company
     Card.exists?(metric_answer_name(company))
   end
+
   def metric_value company
     Card[metric_answer_name(company) + '+value'].content
   end
+
   def metric_answer_card company
     Card[metric_answer_name(company)]
   end
+
   def metric_answer_name company
     metric + '+' + company_name(company) + '+2015'
   end
@@ -40,6 +43,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
     }
     source_file
   end
+
   def company_name company
     case company
     when :amazon then 'Amazon.com, Inc.'
@@ -92,9 +96,9 @@ describe Card::Set::TypePlusRight::Source::File::Import do
           3 => 'Amazon.com, Inc.'
         }
         trigger_import [
-           { company: 'Amazon.com, Inc.', value: '9', row: 1 },
-           { company: 'Apple Inc.',       value: '62', row: 2 },
-           { company: "Sony Corporation", value: '13', row: 3 }
+          { company: 'Amazon.com, Inc.', value: '9', row: 1 },
+          { company: 'Apple Inc.',       value: '62', row: 2 },
+          { company: 'Sony Corporation', value: '13', row: 3 }
         ]
 
         expect(metric_answer_exists?(:amazon)).to be true
@@ -106,9 +110,9 @@ describe Card::Set::TypePlusRight::Source::File::Import do
         expect(metric_value(:sony)).to eq('62')
       end
       context "input company doesn't exist in wikirate" do
-        it 'should create company and the value' do
+        it 'creates company and the value' do
           Card::Env.params[:corrected_company_name] = { 1 => 'Cambridge University' }
-          trigger_import [{ company: "Cambridge", value: '800', row: 1 }]
+          trigger_import [{ company: 'Cambridge', value: '800', row: 1 }]
           expect(Card.exists?('Cambridge University')).to be true
           expect(metric_answer_exists?(:cambridge_university)).to be true
           expect(metric_value(:cambridge_university)).to eq('800')
@@ -117,8 +121,8 @@ describe Card::Set::TypePlusRight::Source::File::Import do
     end
     context 'company correction name is empty' do
       context 'non-matching case' do
-        it 'should create company and the value' do
-          trigger_import [{ company: "Cambridge", value: '800' }]
+        it 'creates company and the value' do
+          trigger_import [{ company: 'Cambridge', value: '800' }]
           expect(Card.exists?('Cambridge')).to be true
           expect(metric_answer_exists?(:cambridge)).to be true
           expect(metric_value(:cambridge)).to eq('800')
@@ -161,7 +165,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
   # end
   def with_row checked, args
     with = { type: 'checkbox', id: 'metric_values_',
-             value: args.to_json}
+             value: args.to_json }
     with[:checked] = 'checked' if checked
     with_tag 'tr' do
       with_tag 'input', with: with
@@ -173,9 +177,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
       input_args = ['input', with: {
         type: 'text', name: "corrected_company_name[#{args[:row]}]"
       }]
-      if args[:status] != 'exact'
-        with_tag *input_args
-      end
+      with_tag *input_args if args[:status] != 'exact'
       with_tag 'td', text: args[:status]
     end
   end
@@ -184,25 +186,27 @@ describe Card::Set::TypePlusRight::Source::File::Import do
     subject { @source.fetch(trait: :file).format.render_import }
     it 'shows radio buttons correctly' do
       is_expected.to have_tag('div', with: {
-        card_name: "#{@source.name}+Metric"
-      }) do
+                                card_name: "#{@source.name}+Metric"
+                              }) do
         with_tag 'input', with: {
           class: 'card-content form-control',
           id: "card_subcards_#{@source.name}_Metric_content"
         }
       end
       is_expected.to have_tag('div', with: {
-        card_name: "#{@source.name}+Year"
-      }) do
+                                card_name: "#{@source.name}+Year"
+                              }) do
         with_tag 'input', with: {
           class: 'card-content form-control',
           id: "card_subcards_#{@source.name}_Year_content"
         }
       end
       is_expected.to have_tag('input', with: {
-        id: 'is_metric_import_update',value: 'true',type: 'hidden'
-      })
-      is_expected.to have_tag('table', with: {class: 'import_table'}) do
+                                id: 'is_metric_import_update', value: 'true', type: 'hidden'
+                              })
+    end
+    it 'renders table correctly' do
+      is_expected.to have_tag('table', with: { class: 'import_table' }) do
         with_row false,
                  file_company: 'Cambridge',
                  value: '43',
@@ -230,8 +234,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
                  row: 4,
                  wikirate_company: 'Sony Corporation',
                  status: 'partial',
-                company: 'Sony Corporation'
-
+                 company: 'Sony Corporation'
       end
     end
   end
