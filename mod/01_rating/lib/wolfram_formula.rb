@@ -55,7 +55,6 @@ class WolframFormula < Formula
     # TODO: error handling
     response = Net::HTTP.post_form uri, 'expr' => expr
 
-    binding.pry
     begin
       body = JSON.parse(response.body)
       if body['Success']
