@@ -228,7 +228,7 @@ describe Card::Set::Type::Source do
     end
     it 'renders metric_import_link' do
       test_csv = File.open(
-        File.expand_path('../import_test.csv', __FILE__)
+        File.expand_path('../file/import_test.csv', __FILE__)
       )
       sourcepage = create_source file: test_csv
       html = sourcepage.format.render_metric_import_link
@@ -243,7 +243,7 @@ describe Card::Set::Type::Source do
       context 'file source' do
         it 'renders upload icon' do
           test_csv = File.open(
-            File.open File.expand_path('../import_test.csv', __FILE__)
+            File.expand_path('../file/import_test.csv', __FILE__)
           )
           sourcepage = create_source file: test_csv
           html = sourcepage.format.render_original_icon_link
