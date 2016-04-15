@@ -125,8 +125,14 @@ def get_a_sample_analysis
   Card['Death Star+Force']
 end
 
-def get_a_sample_metric
-  Card['Jedi+disturbances in the Force']
+def get_a_sample_metric value_type=:free_text
+  metric_names = {
+    free_text: 'Jedi+Sith Lord in Charge',
+    number: 'Jedi+deadliness',
+    category: 'Jedi+disturbances in the Force',
+    money: 'Jedi+cost of planets destroyed'
+  }
+  Card[metric_names[value_type]]
 end
 
 def get_a_sample_source

@@ -18,13 +18,15 @@ def import_metric_value import_data
   return unless valid_value_data? args
   return unless (create_args = Card[args[:metric]].create_value_args args)
   add_subcard create_args.delete(:name), create_args
-  #Card[args[:metric]].create_value args
 end
-
 
 # @return [Hash] args to create metric value card
 def process_metric_value_data metric_value_data
-  mv_hash = JSON.parse(metric_value_data).symbolize_keys
+  mv_hash = if metric_value_data.is_a? Hash
+              metric_value_data
+            else
+              JSON.parse(metric_value_data).symbolize_keys
+            end
   mv_hash[:company] = get_corrected_company_name mv_hash
   mv_hash
 end

@@ -12,6 +12,10 @@ def company_name
   cardname.left_name.right
 end
 
+def year_card
+  Card.fetch year
+end
+
 def metric_card
   Card.fetch metric_name
 end
@@ -48,6 +52,14 @@ def scored?
   (mc = metric_card) && mc.scored?
 end
 
+
+def valid_value_name?
+  cardname.parts.size >= 3 &&
+    metric_card && metric_card.type_id == MetricID &&
+    company_card && company_card.type_id == WikirateCompanyID &&
+    year_card && year_card.type_id == YearID
+end
+
 # TODO: add #subfield_present? method to subcard API
 def subfield_exist? field_name
   subfield_card = subfield(field_name)
@@ -56,8 +68,14 @@ end
 
 event :set_metric_value_name,
       before: :set_autoname, when: proc { |c| c.cardname.parts.size < 4 } do
-  self.name = %w(metric company year).map do |name|
-    remove_subfield(name).content.gsub('[[', '').gsub(']]', '')
+  return if valid_value_name?
+  self.name = %w(metric company year).map do |part|
+    name_part = remove_subfield(part)
+    unless name_part
+      errors.add :name, "missing #{part} part"
+      next
+    end
+    name_part.content.gsub('[[', '').gsub(']]', '')
   end.join '+'
 end
 
@@ -75,24 +93,21 @@ rescue
   false
 end
 
-event :validate_value_type, :validate, on: :update do
+event :validate_value_type, :validate, on: :save do
   # check if the value fit the value type of metric
-  if (value_type = Card["#{metric_card.name}+value type"])
+  if metric_card && (value_type = Card["#{metric_card.name}+value type"])
     value = subfield(:value).content
     case value_type.item_names[0]
-    when 'Number', 'Monetary'
+    when 'Number', 'Money'
       unless number?(value)
         errors.add :value, 'Only numeric content is valid for this metric.'
       end
     when 'Category'
       # check if the value exist in options
       if !(option_card = Card["#{metric_card.name}+value options"]) ||
-         !option_card.item_names(contenxt: :raw).include?(value)
+         !option_card.item_names.include?(value)
         url = "/#{option_card.cardname.url_key}?view=edit"
-        anchor =
-          <<-HTML
-            <a href='#{url}' target="_blank">add options</a>
-          HTML
+        anchor = %(<a href='#{url}' target="_blank">add options</a>)
         errors.add :options, "Please #{anchor} before adding metric value."
       end
     end
@@ -394,7 +409,7 @@ format :html do
 
   def currency
     return unless (value_type = Card["#{card.metric_card.name}+value type"])
-    return unless value_type.item_names[0] == 'Monetary' &&
+    return unless value_type.item_names[0] == 'Money' &&
                   (currency = Card["#{card.metric_card.name}+currency"])
     currency.content
   end
@@ -428,7 +443,7 @@ format :html do
     add_class span_args, grade if card.scored?
     show_value =
       if (value_type = card.metric_card.fetch trait: :value_type) &&
-         %w(Number Monetary).include?(value_type.item_names[0])
+         %w(Number Money).include?(value_type.item_names[0])
         big_number = BigDecimal.new(card.value)
         number_to_human(big_number)
       else

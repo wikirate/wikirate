@@ -40,7 +40,7 @@ class Card::Metric
     # value (like a source for example) you can assign a hash the year
     # @example
     # Metric.create name: 'Jedi+disturbances in the Force',
-    #               value_type: 'Categorical',
+    #               value_type: 'Category',
     #               value_options: ['yes', 'no'] do
     #   Death_Star 1977 => { value: 'yes', source: 'http://deathstar.com' },
     #              1999 => 'no'
@@ -55,7 +55,7 @@ class Card::Metric
     #   metric. Use a hash for a metric of 'categorical' value type to translate
     #   value options
     # @option opts [String] :value_type ('Number') if the
-    #   formula is a hash then it defaults to 'Categorical'
+    #   formula is a hash then it defaults to 'Category'
     # @option opts [Array] :value_options the options that you can choose of
     #   for a metric value
     # @option opts [Boolean] :random_source (false) pick a random source for
@@ -79,7 +79,7 @@ class Card::Metric
       if opts[:formula]
         if opts[:formula].is_a?(Hash)
           opts[:formula] = opts[:formula].to_json
-          opts[:value_type] ||= 'Categorical'
+          opts[:value_type] ||= 'Category'
         end
 
         subcards['+formula'] = {
