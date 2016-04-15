@@ -160,12 +160,12 @@ describe Card::Set::MetricType::Formula do
   it 'handles wolfram formula' do
     Card::Auth.as_bot do
       Card::Metric.create(
-        name: 'Force formula',
+        name: 'Jedi+Force formula',
         type: :formula,
         formula: '{{Jedi+deadliness}}/10 - 5 + ' \
                'Boole[{{Jedi+disturbances in the Force}} == "yes"]'
       )
     end
-    expect(Card['Force formula+Death Star+1977+value'].content).to eq '6'
+    expect(Card['Jedi+Force formula+Death Star+1977+value'].content).to eq '6'
   end
 end

@@ -12,6 +12,10 @@ def company_name
   cardname.left_name.right
 end
 
+def year_card
+  Card.fetch year
+end
+
 def metric_card
   Card.fetch metric_name
 end
@@ -48,6 +52,14 @@ def scored?
   (mc = metric_card) && mc.scored?
 end
 
+
+def valid_value_name?
+  cardname.parts.size >= 3 &&
+    metric_card && metric_card.type_id == MetricID &&
+    company_card && company_card.type_id == WikirateCompanyID &&
+    year_card && year_card.type_id == YearID
+end
+
 # TODO: add #subfield_present? method to subcard API
 def subfield_exist? field_name
   subfield_card = subfield(field_name)
@@ -56,8 +68,14 @@ end
 
 event :set_metric_value_name,
       before: :set_autoname, when: proc { |c| c.cardname.parts.size < 4 } do
-  self.name = %w(metric company year).map do |name|
-    remove_subfield(name).content.gsub('[[', '').gsub(']]', '')
+  return if valid_value_name?
+  self.name = %w(metric company year).map do |part|
+    name_part = remove_subfield(part)
+    unless name_part
+      errors.add :name, "missing #{part} part"
+      next
+    end
+    name_part.content.gsub('[[', '').gsub(']]', '')
   end.join '+'
 end
 
