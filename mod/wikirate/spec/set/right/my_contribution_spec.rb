@@ -54,24 +54,24 @@ describe Card::Set::Right::MyContributions do
       @html = @user_contribution.format.render_contribution_counts
       # refer to seed.rb, 3 metrics with joe user as designer name
       expect_link(:contributed_metrics) do
-        with_tag 'span', with: { class: 'metric'}, text: '3'
-        with_tag 'p', with: { class: 'legend'}, text: 'Metric'
+        with_tag 'span', with: { class: 'metric' }, text: '3'
+        with_tag 'p', with: { class: 'legend' }, text: 'Metric'
       end
       expect_link(:contributed_claims) do
-        with_tag 'span', with: { class: 'note'}, text: '0'
-        with_tag 'p', with: { class: 'legend'}, text: 'Note'
+        with_tag 'span', with: { class: 'note' }, text: '0'
+        with_tag 'p', with: { class: 'legend' }, text: 'Note'
       end
       expect_link(:contributed_sources) do
-        with_tag 'span', with: { class: 'source'}, text: '0'
-        with_tag 'p', with: { class: 'legend'}, text: 'Source'
+        with_tag 'span', with: { class: 'source' }, text: '0'
+        with_tag 'p', with: { class: 'legend' }, text: 'Source'
       end
       expect_link(:contributed_analysis) do
-        with_tag 'span', with: { class: 'review'}, text: '0'
-        with_tag 'p', with: { class: 'legend'}, text: 'Review'
+        with_tag 'span', with: { class: 'review' }, text: '0'
+        with_tag 'p', with: { class: 'legend' }, text: 'Review'
       end
       expect_link(:contributed_campaigns) do
-        with_tag 'span', with: { class: 'project'}, text: '0'
-        with_tag 'p', with: { class: 'legend'}, text: 'Project'
+        with_tag 'span', with: { class: 'project' }, text: '0'
+        with_tag 'p', with: { class: 'legend' }, text: 'Project'
       end
     end
   end
