@@ -148,8 +148,9 @@ end
 event :validate_formula, :validate,
       when: proc { |c| c.wolfram_formula? } do
   not_on_whitelist =
-    content.gsub(/\{\{([^}])+\}\}/, '').scan(/[a-zA-Z][a-zA-Z]+/)
-           .reject do |word|
+    content.gsub(/\{\{([^}])+\}\}/, '').gsub(/"[^"]+"/,'')
+      .scan(/[a-zA-Z][a-zA-Z]+/).reject do |word|
+      WL_FORMULA_WHITELIST.include? word
     end
   if not_on_whitelist.present?
     errors.add :formula, "#{not_on_whitelist.first} forbidden keyword"

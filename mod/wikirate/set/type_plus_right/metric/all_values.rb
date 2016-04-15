@@ -100,12 +100,12 @@ format do
     card.query(search_params)[:limit]
   end
 
-  def sorted_result values, sort_by, order, is_num=true
+  def sorted_result sort_by, order, is_num=true
     sorted = case sort_by
              when "company_name"
-               sort_name_asc values
+               sort_name_asc card.cached_values
              when "value"
-               sort_value_asc values, is_num
+               sort_value_asc card.cached_values, is_num
              end
     return sorted if order == 'asc'
     sorted.reverse
@@ -159,7 +159,7 @@ format :html do
   # @option args [String] :order
   # @option args [String] :class additional css class
   def sort_link text, args
-    url = path item: 'content', offset: offset, limit: limit,
+    url = path view: 'content', offset: offset, limit: limit,
                sort_order: args[:order], sort_by: args[:sort_by]
     link_to text, url, class: "metric-list-header slotter #{args[:class]}",
                        'data-remote' => true
@@ -185,7 +185,7 @@ format :html do
 
   view :card_list_item do |args|
     c = args[:item_card]
-    item_view = args[:item] || nest_defaults(c)[:view]
+    item_view = args[:items][:view] || nest_defaults(c)[:view]
     %(
       <div class="search-result-item item-#{item_view}">
         #{nest(c, size: args[:size], view: item_view)}

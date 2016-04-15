@@ -119,7 +119,7 @@ describe Card::Set::Right::DownvoteeSearch do
             subcard = {
               "+metric"=>{"content"=>@metric.name},
               "+company"=>{"content"=>"[[#{company.name}]]",:type_id=>Card::PointerID},
-              "+value"=>{"content"=>"Na einai kalytero anthropo apo ton patera toy", :type_id=>Card::PhraseID},
+              "+value"=>{"content"=>"100", :type_id=>Card::PhraseID},
               "+year"=>{"content"=>"2015", :type_id=>Card::PointerID},
               "+source"=>{
                 "subcards"=>{
@@ -157,7 +157,7 @@ describe Card::Set::Right::DownvoteeSearch do
             subcard = {
               "+metric"=>{"content"=>@metric.name},
               "+company"=>{"content"=>"[[#{analysis.cardname.left}]]",:type_id=>Card::PointerID},
-              "+value"=>{"content"=>"Na einai kalytero anthropo apo ton patera toy", :type_id=>Card::PhraseID},
+              "+value"=>{"content"=>"200", :type_id=>Card::PhraseID},
               "+year"=>{"content"=>"2015", :type_id=>Card::PointerID},
               "+source"=>{
                 "subcards"=>{

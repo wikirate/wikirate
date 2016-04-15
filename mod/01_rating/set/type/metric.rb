@@ -44,6 +44,11 @@ def value_options
   (vo = field('value options')) && vo.item_names
 end
 
+def number_values?
+  # FIXME: use codename
+  value_type == 'Number'
+end
+
 # TODO: adapt to Henry's value type API
 def categorical?
   value_type == 'Category'
