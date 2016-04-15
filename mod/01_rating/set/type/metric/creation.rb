@@ -226,7 +226,7 @@ format :html do
     # end
   end
 
-  def metric_title_field _options={}
+  def metric_title_field options={}
     title = card.add_subfield :title, content: card.cardname.tag,
                                       type_id: PhraseID
     subformat(title)._render_edit_in_form(options.merge(title: 'Metric Title'))
