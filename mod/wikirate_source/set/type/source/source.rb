@@ -21,7 +21,7 @@ require 'link_thumbnailer'
 # so we have to use the finalize stage
 event :vote_on_create_source, :integrate,
       on: :create,
-      when: proc { Card::Auth.current_id != Card::WagnBotID }do
+      when: proc { Card::Auth.current_id != Card::WagnBotID } do
   Auth.as_bot do
     vc = vote_count_card
     vc.supercard = self
@@ -36,7 +36,7 @@ event :check_source, :validate, on: :create do
                   subfield(:text)].compact
   if source_cards.length > 1
     errors.add :source, 'Only one type of content is allowed'
-  elsif source_cards.length == 0
+  elsif source_cards.length.empty?
     errors.add :source, 'Source content required'
   end
 end
@@ -116,11 +116,8 @@ format :html do
 
   view :cited do
     source = render_content structure: 'source without note count'
-    # cite_button =
-    #   content_tag(:a, 'cited!', class: 'btn btn-default _cited_button')
-    # source << content_tag(:div, cite_button, class: 'pull-right')
-    source =
-      content_tag(:div, source, class: 'source-info-container with-vote-button')
+    source = content_tag(:div, source,
+                        class: 'source-info-container with-vote-button')
     wrap_with :div, class: 'source-details-toggle',
                     data: { source_for: card.name } do
       source.html_safe

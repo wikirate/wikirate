@@ -196,6 +196,23 @@ $(document).ready ->
         appendSourceForm(company)
   $('._add_new_value').trigger 'click'
 
+  $('body').on 'click.collapse-next', '[data-toggle=collapse-next]', ->
+    $this     = $(this)
+    parent    = $this.data("parent")
+    collapse  = $this.data("collapse")+".collapse"
+    $target   = $this.closest(parent).find(collapse)
+
+    if !$target.data('collapse')
+      $target.collapse('toggle').on('shown.bs.collapse', ->
+        $this.parent().find('.fa-caret-right ')
+                      .removeClass('fa-caret-right ')
+                      .addClass 'fa-caret-down'
+      ).on 'hidden.bs.collapse', ->
+        $this.parent().find('.fa-caret-down')
+                      .removeClass('fa-caret-right')
+                      .addClass 'fa-caret-right'
+
+
 wagn.slotReady (slot) ->
   resizeIframe()
   if(!$(".timeline-row form").is(":visible"))
