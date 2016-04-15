@@ -127,7 +127,6 @@ end
 
 def create_source
   value_card = detach_subfield('value')
-  binding.pry
   if (source_list = detach_subfield('source'))
     #remove_subfield('source')
     #clear_subcards
