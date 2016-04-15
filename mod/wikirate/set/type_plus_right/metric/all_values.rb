@@ -100,7 +100,7 @@ format do
     card.query(search_params)[:limit]
   end
 
-  def sorted_result sort_by, order, is_num
+  def sorted_result sort_by, order, is_num=true
     sorted = case sort_by
              when "company_name"
                sort_name_asc card.cached_values

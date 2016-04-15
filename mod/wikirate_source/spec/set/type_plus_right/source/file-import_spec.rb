@@ -30,9 +30,12 @@ describe Card::Set::TypePlusRight::Source::File::Import do
       expect(source_file.errors).to have_key(:content)
       expect(source_file.errors[:content]).to include('Please give a Metric.')
     end
+
     it 'adds correct metric values' do
       Card::Env.params[:metric_values] =
-        { "Amazon.com, Inc." => ["9"], "Apple Inc." => ['62'] }
+        [{ company: 'Amazon.com, Inc.', value: '9' },
+         { company: 'Apple Inc.',       value: '62' }
+        ]
       source_file = @source.fetch trait: :file
       source_file.update_attributes subcards: {
         "#{@source.name}+#{Card[:metric].name}" => {
