@@ -10,7 +10,7 @@ format :html do
     args[:table_header] = ['Select', '#', 'Metric',
                            'Company in File', 'Company in Wikirate', 'Match',
                            'Correction',
-                            'Year', 'Value', 'Source']
+                           'Year', 'Value', 'Source']
     args[:table_fields] = [:checkbox, :row, :metric, :file_company,
                            :wikirate_company, :status, :correction,
                            :year, :value, :source]
