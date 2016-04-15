@@ -80,7 +80,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
     end
     it 'sorts by company name asc' do
       results = @format.sorted_result(
-        @cached_result, 'company_name', 'asc', false
+        'company_name', 'asc', false
       )
       expect(results.map { |x| x[0] }).to eq(
         ['Amazon.com, Inc.',
@@ -92,7 +92,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
     end
     it 'sorts by company name desc' do
       results = @format.sorted_result(
-        @cached_result, "company_name", 'desc', false
+        "company_name", 'desc', false
       )
       expect(results.map { |x| x[0] }).to eq(
         ['Sony Corporation',
@@ -104,7 +104,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
     end
 
     it 'sorts by value asc' do
-      results = @format.sorted_result @cached_result, 'value', 'asc'
+      results = @format.sorted_result 'value', 'asc'
       expect(results.map { |x| x[0] }).to eq(
         ['Death Star',
          'Sony Corporation',
@@ -115,7 +115,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
     end
 
     it 'sorts by value desc' do
-      results = @format.sorted_result @cached_result, 'value', 'desc'
+      results = @format.sorted_result 'value', 'desc'
       expect(results.map { |x| x[0] }).to eq(
         [ 'Apple Inc.',
          'Amazon.com, Inc.',

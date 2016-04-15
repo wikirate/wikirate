@@ -32,10 +32,10 @@ describe Card::Set::TypePlusRight::Source::File::Import do
     end
 
     it 'adds correct metric values' do
-      Card::Env.params[:metric_values] =
-        [{ company: 'Amazon.com, Inc.', value: '9' },
-         { company: 'Apple Inc.',       value: '62' }
-        ]
+      Card::Env.params[:metric_values] = [
+        { company: 'Amazon.com, Inc.', value: '9' },
+        { company: 'Apple Inc.',  value: '62' }
+      ]
       source_file = @source.fetch trait: :file
       source_file.update_attributes subcards: {
         "#{@source.name}+#{Card[:metric].name}" => {
@@ -57,11 +57,10 @@ describe Card::Set::TypePlusRight::Source::File::Import do
     end
     context 'company correction name is filled' do
       it 'should use the correction name as company names' do
-        Card::Env.params[:metric_values] = {
-          "Amazon.com, Inc."=>['9'],
-          "Apple Inc."=>['62'],
-          "Sony Corporation"=>['13']
-        }
+        Card::Env.params[:metric_values] =
+          [{ company: 'Amazon.com, Inc.', value: '9' },
+           { company: 'Apple Inc.',       value: '62' },
+           { company: "Sony Corporation", value: '13'}]
         Card::Env.params[:corrected_company_name] = {
           "Amazon.com, Inc."=>'Apple Inc.',
           "Apple Inc."=>'Sony Corporation',
@@ -92,7 +91,8 @@ describe Card::Set::TypePlusRight::Source::File::Import do
       end
       context "input company doesn't exist in wikirate" do
         it 'should create company and the value' do
-          Card::Env.params[:metric_values] = {"Cambridge"=>['800']}
+          Card::Env.params[:metric_values] =
+            [{ company: "Cambridge", value: '800' }]
           Card::Env.params[:corrected_company_name] = {"Cambridge"=>'Cambridge University'}
           source_file = @source.fetch trait: :file
           source_file.update_attributes subcards: {"#{@source.name}+#{Card[:metric].name}"=>{content: '[[Access to Nutrition Index+Marketing Score]]',type_id: Card::PointerID},"#{@source.name}+#{Card[:year].name}"=>{content: '[[2015]]',type_id: Card::PointerID}}
@@ -107,7 +107,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
     context 'company correction name is empty' do
       context 'non-matching case' do
         it 'should create company and the value' do
-          Card::Env.params[:metric_values] = {"Cambridge"=>['800']}
+          Card::Env.params[:metric_values] = [{ company: "Cambridge", value: '800' }]
 
           source_file = @source.fetch trait: :file
           source_file.update_attributes subcards: {"#{@source.name}+#{Card[:metric].name}"=>{content: '[[Access to Nutrition Index+Marketing Score]]',type_id: Card::PointerID},"#{@source.name}+#{Card[:year].name}"=>{content: '[[2015]]',type_id: Card::PointerID}}
@@ -120,7 +120,8 @@ describe Card::Set::TypePlusRight::Source::File::Import do
     end
     context 'metric value exists' do
       it 'updates metric values' do
-        Card::Env.params[:metric_values] = {"Amazon.com, Inc."=>['9']}
+        Card::Env.params[:metric_values] = [{company: "Amazon.com, Inc.",
+                                             value:'9'}]
 
         source_file = @source.fetch trait: :file
         source_file.update_attributes subcards: {"#{@source.name}+#{Card[:metric].name}"=>{content: '[[Access to Nutrition Index+Marketing Score]]',type_id: Card::PointerID},"#{@source.name}+#{Card[:year].name}"=>{content: '[[2015]]',type_id: Card::PointerID}}
@@ -142,7 +143,9 @@ describe Card::Set::TypePlusRight::Source::File::Import do
 
       new_source = create_source file: test_csv
 
-      Card::Env.params[:metric_values] = {"Amazon.com, Inc."=>["9"], "Apple Inc."=>['62']}
+      Card::Env.params[:metric_values] =  [{ company: 'Amazon.com, Inc.', value: '9' },
+                                           { company: 'Apple Inc.',
+                                             value: '62' }]
       source_file = @source.fetch trait: :file
       source_file.update_attributes subcards: {"#{@source.name}+#{Card[:metric].name}"=>{content: '[[Access to Nutrition Index+Marketing Score]]',type_id: Card::PointerID},"#{@source.name}+#{Card[:year].name}"=>{content: '[[2015]]',type_id: Card::PointerID}}
 
@@ -154,7 +157,10 @@ describe Card::Set::TypePlusRight::Source::File::Import do
       expect(amazon_2015_metric_value_card.content).to eq('9')
       expect(apple_2015_metric_value_card.content).to eq('62')
 
-      Card::Env.params[:metric_values] = {"Amazon.com, Inc."=>["369"], "Apple Inc."=>['689']}
+      Card::Env.params[:metric_values] = [
+        { company: "Amazon.com, Inc.", value: "369" },
+        { company: "Apple Inc.", value: '689' }
+      ]
       source_file = new_source.fetch trait: :file
       source_file.update_attributes subcards: {"#{new_source.name}+#{Card[:metric].name}"=>{content: '[[Access to Nutrition Index+Marketing Score]]',type_id: Card::PointerID},"#{new_source.name}+#{Card[:year].name}"=>{content: '[[2015]]',type_id: Card::PointerID}}
 

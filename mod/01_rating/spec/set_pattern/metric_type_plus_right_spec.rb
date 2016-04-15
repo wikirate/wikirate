@@ -3,14 +3,11 @@
 describe Card::MetricTypePlusRightSet do
   it 'works' do
     Card::Auth.as_bot do
-      Card.create! name: 'Designer+MetricName', type_id: Card::MetricID,
-                   subcards: {
-                     '+*metric type' => {
-                       content: 'wiki_rating',
-                       type_id: Card::PhraseID
-                     },
-                     '+test' => 'Some content'
-                   }
+      Card::Metric.create!
+        name: 'Designer+MetricName',
+        type: :wiki_rating,
+        '+test' => 'Some content'
+
 
       ca = Card['Designer+MetricName+test']
       expect(ca.set_names)
