@@ -8,10 +8,11 @@ describe Card::Set::Type::MetricValueImportFile do
                                    type_id: Card::MetricValueImportFileID
     Card::Env.params['is_metric_import_update'] = 'true'
     @metric = get_a_sample_metric
+    metric_name = @metric.name
     @companies = ['Amazon.com, Inc.', 'Apple Inc.', 'Sony Corporation']
-    @amazon = 'Jedi+disturbances in the Force+Amazon.com, Inc.+2015'
-    @apple = 'Jedi+disturbances in the Force+Apple Inc.+2015'
-    @sony = 'Jedi+disturbances in the Force+Sony Corporation+2015'
+    @amazon = "#{metric_name}+Amazon.com, Inc.+2015"
+    @apple = "#{metric_name}+Apple Inc.+2015"
+    @sony = "#{metric_name}+Sony Corporation+2015"
     Card::Env.params[:metric_values] = []
     (0..2).each do |i|
       hash = {
