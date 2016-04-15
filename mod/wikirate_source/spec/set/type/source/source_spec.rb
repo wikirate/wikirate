@@ -227,9 +227,9 @@ describe Card::Set::Type::Source do
       expect(render).to include(expected)
     end
     it 'renders metric_import_link' do
-      csv_path = "#{Rails.root}/mod/wikirate_source/"\
-                'spec/set/type_plus_right/source/import_test.csv'
-      test_csv = File.open(csv_path)
+      test_csv = File.open(
+        File.expand_path('../import_test.csv', __FILE__)
+      )
       sourcepage = create_source file: test_csv
       html = sourcepage.format.render_metric_import_link
       source_file = sourcepage.fetch trait: :file
@@ -242,8 +242,9 @@ describe Card::Set::Type::Source do
     describe 'original_icon_link' do
       context 'file source' do
         it 'renders upload icon' do
-          test_csv = File.open("#{Rails.root}/mod/wikirate_source/spec/"\
-                               'set/type_plus_right/source/import_test.csv')
+          test_csv = File.open(
+            File.open File.expand_path('../import_test.csv', __FILE__)
+          )
           sourcepage = create_source file: test_csv
           html = sourcepage.format.render_original_icon_link
           source_file = sourcepage.fetch trait: :file

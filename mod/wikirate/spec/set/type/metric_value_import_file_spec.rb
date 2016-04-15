@@ -20,7 +20,8 @@ describe Card::Set::Type::MetricValueImportFile do
         company: @companies[i],
         year: '2015',
         value: i.to_s,
-        source: 'http://example.com'
+        source: 'http://example.com',
+        row: i + 1
       }
       Card::Env.params[:metric_values].push(hash.to_json)
     end
@@ -39,9 +40,9 @@ describe Card::Set::Type::MetricValueImportFile do
     context 'company correction name is filled' do
       before do
         Card::Env.params[:corrected_company_name] = {
-          @amazon => 'Apple Inc.',
-          @apple => 'Sony Corporation',
-          @sony => 'Amazon.com, Inc.'
+          1 => 'Apple Inc.',
+          2 => 'Sony Corporation',
+          3 => 'Amazon.com, Inc.'
         }
         @mv_import_file.update_attributes! subcards: {}
       end
