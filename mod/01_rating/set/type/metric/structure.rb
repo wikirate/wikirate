@@ -151,8 +151,6 @@ format :html do
     _render_tabs(args)
   end
 
-
-
   view :year_select do |args|
     # {{#year select|editor}}
     <<-HTML
@@ -164,11 +162,11 @@ format :html do
     HTML
   end
 
-  view :company_list do |args|
+  view :company_list do |_args|
     wrap_with :div, class: 'yinyang-list' do
       subformat("#{card.name}+all values")
         ._render_content(hide: 'title',
-                         item: :yinyang_row)
+                         items: { view: :yinyang_row })
     end
   end
 end

@@ -126,7 +126,7 @@ event :create_source_for_updating_metric_value,
 end
 
 def create_source
-  value_card = remove_subfield('value')
+  value_card = detach_subfield('value')
   if (source_list = detach_subfield('source'))
     #remove_subfield('source')
     #clear_subcards
@@ -158,7 +158,7 @@ def find_or_create new_source_card
        (source_card = find_duplicate_source(url.content))
       source_card
     else
-      add_source_subcard new_source_card
+     add_source_subcard new_source_card
     end
   end
 end
@@ -177,6 +177,7 @@ def process_sources source_list
     next if  Card.exists? source_name
     errors.add :source, "#{source_name} does not exist."
   end
+
   if (new_source_subcard = source_list.detach_subcard('new_source'))
     source_card = find_or_create new_source_subcard
     if source_card.errors.present?

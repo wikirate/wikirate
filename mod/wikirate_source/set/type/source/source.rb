@@ -21,7 +21,7 @@ require 'link_thumbnailer'
 # so we have to use the finalize stage
 event :vote_on_create_source, :integrate,
       on: :create,
-      when: proc { Card::Auth.current_id != Card::WagnBotID } do
+      when: proc { Card::Auth.current_id != Card::WagnBotID }do
   Auth.as_bot do
     vc = vote_count_card
     vc.supercard = self
@@ -36,7 +36,7 @@ event :check_source, :validate, on: :create do
                   subfield(:text)].compact
   if source_cards.length > 1
     errors.add :source, 'Only one type of content is allowed'
-  elsif source_cards.empty?
+  elsif source_cards.length == 0
     errors.add :source, 'Source content required'
   end
 end

@@ -1,7 +1,7 @@
-
+# the is_metric_import_update flag distinguishes between an update of the
+# import file and importing the file
 event :import_csv, :prepare_to_store,
-      on: :update,
-      when: proc { Env.params['is_metric_import_update'] == 'true' } do
+      on: :update, when: proc { Env.params['is_metric_import_update'] == 'true' } do
   return unless (metric_values = Env.params[:metric_values])
   return unless valid_import_format?(metric_values)
   metric_values.each do |metric_value_data|
@@ -37,7 +37,7 @@ end
 
 def valid_value_data? args
   @import_errors = []
-  add_import_error "metric name missing", args[:row] if args[:metric].blank?
+  add_import_error 'metric name missing', args[:row] if args[:metric].blank?
   %w(company year value).each do |field|
     add_import_error "#{field} missing", args[:row] if args[field.to_sym].blank?
   end
@@ -97,17 +97,16 @@ def get_corrected_company_name params
   if corrected != params[:company]
     Card[corrected].add_alias params[:company]
   end
+  Card[corrected].add_alias params[:company] if corrected != params[:company]
   corrected
 end
 
 def add_import_error msg, row=nil
   return unless msg
-  title = "import error"
+  title = 'import error'
   title += " (row #{row})" if row
   @import_errors << [title, msg]
 end
-
-
 
 def check_existence_and_type name, type_id, type_name=nil
   return  "#{name} doesn't exist" unless Card[name]
@@ -196,13 +195,13 @@ format :html do
     args[:table_header] = ['Import', '#', 'Company in File',
                            'Company in Wikirate', 'Match', 'Correction']
     args[:table_fields] = [:checkbox, :row, :file_company, :wikirate_company,
-                            :status, :correction]
+                           :status, :correction]
   end
 
   view :import_table do |args|
     data = card.csv_rows.map.with_index do |elem, i|
-             import_row(elem, args[:table_fields], i+1)
-           end
+      import_row(elem, args[:table_fields], i + 1)
+    end
     table data, class: 'import_table table-bordered table-hover',
                 header: args[:table_header]
   end
@@ -262,7 +261,7 @@ format :html do
     key_hash = row_hash.deep_dup
     key_hash[:company] = row_hash[:status] == :none ?
       row_hash[:file_company] : row_hash[:wikirate_company]
-    check_box_tag "metric_values[]", key_hash.to_json, checked
+    check_box_tag 'metric_values[]', key_hash.to_json, checked
   end
 
   def import_row row, table_fields, index

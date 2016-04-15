@@ -12,7 +12,7 @@ format :json do
       metadata.error = 'empty url'
       return metadata.to_json
     end
-    begin
+    begin  
       metadata.website = URI(url).host
     rescue
     end
@@ -39,106 +39,79 @@ format :json do
     end
     metadata.to_json
   end
-  def valid_content_type? content_type
-    allow_content_type = ["image/png","image/jpeg"]
+  def valid_content_type? content_type, user_agent
+    allow_content_type = ['image/png', 'image/jpeg']
     # for case, "text/html; charset=iso-8859-1"
-    allow_content_type.include?(content_type) || content_type.start_with?("text/html") || content_type.start_with?("text/plain")
+    allow_content_type.include?(content_type) ||
+      content_type.start_with?('text/html') ||
+      content_type.start_with?('text/plain') ||
+      firefox?(user_agent)
   end
-  def is_iframable? url, user_agent
 
-    return false if !url or url.length == 0
+  def invalid_x_frame_options? options
+    options &&
+      (options.upcase.include?('DENY') ||
+      options.upcase.include?('SAMEORIGIN'))
+  end
+
+  def iframable_options url
+    # escape space in url, eg,
+    # http://www.businessweek.com/articles/2014-10-30/
+    # tim-cook-im-proud-to-be-gay#r=most popular
+    url.gsub!(/ /, '%20')
+    curl = Curl::Easy.new(url)
+    curl.follow_location = true
+    curl.max_redirects = 5
+    curl.http_head
+    header_str = curl.header_str
+    [header_str[/.*X-Frame-Options: (.*)\r\n/, 1],
+     header_str[/.*Content-Type: (.*)\r\n/, 1]]
+  end
+
+  def firefox? user_agent
+    user_agent ? user_agent =~ /Firefox/ : false
+  end
+
+  def iframable? url, user_agent
+    return false if !url || url.empty?
     begin
-      # escape space in url, eg, http://www.businessweek.com/articles/2014-10-30/tim-cook-im-proud-to-be-gay#r=most popular
-      url.gsub!(/ /, '%20')
-
-      curl = Curl::Easy.new(url)
-      curl.follow_location = true
-      curl.max_redirects = 5
-      curl.http_head
-      xFrameOptions = curl.head[/.*X-Frame-Options: (.*)\r\n/,1]
-      content_type = curl.head[/.*Content-Type: (.*)\r\n/,1]
-      is_firefox = user_agent ? user_agent =~ /Firefox/ : false
-      return false if xFrameOptions and ( xFrameOptions.upcase.include? "DENY" or xFrameOptions.upcase.include? "SAMEORIGIN" )
-      return false if !valid_content_type?(content_type) and  !is_firefox
+      x_frame_options, content_type = iframable_options url
+      if invalid_x_frame_options?(x_frame_options) ||
+         !valid_content_type?(content_type, user_agent)
+        return false
+      end
     rescue => error
       Rails.logger.error error.message
       return false
     end
     true
   end
-
-  view :check_iframable do |args|
+  view :check_iframable do |_args|
     url = Card::Env.params[:url]
     if url
-      result = {:result => is_iframable?( url, request ? request.env['HTTP_USER_AGENT'] : nil ) }
+      iframe =
+        iframable?(url, request ? request.env['HTTP_USER_AGENT'] : nil)
+      result = { result: iframe }
     else
-      result = {:result => false }
+      result = { result: false }
     end
     result
   end
-
-#   uncomment until certh's suggestion is back
-#   view :feedback ,:perms=>lambda { |r| Auth.signed_in? } do |args|
-#     url = Card::Env.params[:url]
-#     company = Card::Env.params[:company]
-#     topic = Card::Env.params[:topic]
-
-#     type = Card::Env.params[:type]
-
-#     result = {:result => false }
-#     case type
-#     when "either"
-#       rel_topic_score = -1
-#       rel_company_score = -1
-#     when "company"
-#       rel_topic_score = 1
-#       rel_company_score = -1
-#     when "topic"
-#       rel_topic_score = -1
-#       rel_company_score = 1
-#     when "relevant"
-#       rel_topic_score = 1
-#       rel_company_score = 1
-#     else
-#       return result
-#     end
-#     user_id = Auth.current_id
-#     company_id, company_name = Card[company].id, Card[company].name if Card[company] and Card[company].type_id == Card::WikirateCompanyID
-#     topic_id, topic_name = Card[topic].id, Card[topic].name if Card[topic] and Card[topic].type_id == Card::WikirateTopicID
-
-#     if company_id and topic_id and url and type
-#       query = { url: url,
-#                 user_id: user_id,
-#                 rel_topic_score: rel_topic_score,
-#                 rel_company_score: rel_company_score,
-#                 company_id: company_id,
-#                 company: company_name,
-#                 topic_id: topic_id,
-#                 topic: topic_name}
-#                 .to_query
-#       request_url = "http://mklab.iti.gr/wikirate-sandbox/api/index.php/relevance/?#{query}"
-#       uri = URI.parse(request_url)
-#       http = Net::HTTP.new(uri.host, uri.port)
-#       request = Net::HTTP::Get.new(uri.request_uri)
-#       response = http.request(request)
-#       result_from_certh = JSON.parse(response.body)
-#       #TODO: log them to a file
-#       result = {:result => true, :result_from_certh => result_from_certh["results"]["code"],:msg=>result_from_certh["results"]["msg"]}
-#     end
-#     result
-#   end
 end
 
+# hash result for iframe checking
 class MetaData
-  attr_accessor :title,:description,:image_url,:website,:error
-  def initialize()
-    @title = ""
-    @description = ""
-    @image_url  =""
-    @website = ""
-    @error = ""
+  attr_accessor :title, :description, :image_url, :website, :error
+
+  def initialize
+    @title = ''
+    @description = ''
+    @image_url = ''
+    @website = ''
+    @error = ''
   end
-  def set_meta_data title,desc,image_url
+
+  def set_meta_data title, desc, image_url
     @title = title
     @description = desc
     @image_url = image_url
