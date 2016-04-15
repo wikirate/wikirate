@@ -79,7 +79,7 @@ end
 # @option args [String] :year
 # @option args [String] :value
 # @option args [String] :source source url
-def create_value
+def create_value args
   Card.create! create_value_args(args)
 end
 
@@ -215,13 +215,14 @@ format :html do
                                             type_id: PhraseID
     designer.reset_patterns
     designer.include_set_modules
-    nest designer, options.merge(view: :editor, title: 'Metric Designer')
+    subformat(designer)
+      ._render_edit_in_form(options.merge(title: 'Metric Designer'))
     # end
   end
 
   def metric_title_field _options={}
     title = card.add_subfield :title, content: card.cardname.tag,
                                       type_id: PhraseID
-    nest title, view: :editor, title: 'Metric Title'
+    subformat(title)._render_edit_in_form(options.merge(title: 'Metric Title'))
   end
 end

@@ -75,7 +75,7 @@ rescue
   false
 end
 
-event :validate_value_type, :validate, on: :save do
+event :validate_value_type, :validate, on: :update do
   # check if the value fit the value type of metric
   if (value_type = Card["#{metric_card.name}+value type"])
     value = subfield(:value).content
@@ -112,9 +112,9 @@ end
 
 def create_source
   value_card = remove_subfield('value')
-  if (source_list = subfield('source'))
-    remove_subfield('source')
-    # clear_subcards
+  if (source_list = detach_subfield('source'))
+    #remove_subfield('source')
+    #clear_subcards
     source_names = process_sources source_list
     fill_subcards value_card, source_names if errors.empty?
   else
@@ -139,13 +139,11 @@ end
 
 def find_or_create new_source_card
   with_sourcebox do
-    if (new_source_card = source_list.remove_subcard('new_source'))
-      if (url = new_source_card.subfield(:wikirate_link)) &&
-         (source_card = find_duplicate_source(url.content))
-        source_card
-      else
-        add_source_subcard new_source_card
-      end
+    if (url = new_source_card.subfield(:wikirate_link)) &&
+       (source_card = find_duplicate_source(url.content))
+      source_card
+    else
+      add_source_subcard new_source_card
     end
   end
 end
@@ -164,7 +162,7 @@ def process_sources source_list
     next if  Card.exists? source_name
     errors.add :source, "#{source_name} does not exist."
   end
-  if (new_source_subcard = source_list.subcard('new_source'))
+  if (new_source_subcard = source_list.detach_subcard('new_source'))
     source_card = find_or_create new_source_subcard
     fill_errors source_card if source_card.errors.present?
     source_names << source_card.name
@@ -190,9 +188,9 @@ def fill_errors source_card
   end
 end
 
-def fill_subcards metric_value, source_card
+def fill_subcards metric_value, source_names
   add_subfield :value, content: metric_value.content, type_id: PhraseID
-  add_subfield :source, content: "[[#{source_card.name}]]",
+  add_subfield :source, content: source_names.to_pointer_content,
                         type_id: PointerID
 end
 
