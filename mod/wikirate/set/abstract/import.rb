@@ -83,8 +83,12 @@ def handle_import_errors metric_value_card
   end
 end
 
+def metric_value_name_in_correction params
+  "#{params[:metric]}+#{params[:company]}+#{params[:year]}"
+end
+
 def get_corrected_company_name params
-  corrected = company_corrections[params[:row]]
+  corrected = company_corrections[metric_value_name_in_correction(params)]
   return params[:company] unless corrected.present?
 
   unless Card.exists?(corrected)
