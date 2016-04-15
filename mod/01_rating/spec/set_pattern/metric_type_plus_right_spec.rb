@@ -3,10 +3,9 @@
 describe Card::MetricTypePlusRightSet do
   it 'works' do
     Card::Auth.as_bot do
-      Card::Metric.create!
-        name: 'Designer+MetricName',
-        type: :wiki_rating,
-        '+test' => 'Some content'
+      Card::Metric.create! name: 'Designer+MetricName',
+                           type: :wiki_rating,
+                           '+test' => 'Some content'
 
 
       ca = Card['Designer+MetricName+test']
