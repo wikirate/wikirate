@@ -10,8 +10,9 @@ describe Card::Set::Right::MyContributions do
     it 'returns count, name and contribution_card_name of contributions for ' \
        'different types of card' do
       result = @user_contribution.sections
+      # refer to seed.rb, 3 metrics with joe user as designer name
       expect(result).to(
-        include([0, Card[:metric].name, joe_plus(:contributed_metrics)])
+        include([3, Card[:metric].name, joe_plus(:contributed_metrics)])
       )
       expect(result).to(
         include([0, Card[:claim].name, joe_plus(:contributed_claims)])
@@ -51,8 +52,9 @@ describe Card::Set::Right::MyContributions do
 
     it 'render the counts for different contribution' do
       @html = @user_contribution.format.render_contribution_counts
+      # refer to seed.rb, 3 metrics with joe user as designer name
       expect_link(:contributed_metrics) do
-        with_tag 'span', with: { class: 'metric'}, text: '0'
+        with_tag 'span', with: { class: 'metric'}, text: '3'
         with_tag 'p', with: { class: 'legend'}, text: 'Metric'
       end
       expect_link(:contributed_claims) do
