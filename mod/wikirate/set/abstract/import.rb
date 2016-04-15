@@ -16,7 +16,6 @@ def import_metric_value import_data
   args = process_metric_value_data import_data
   ensure_company_exists args[:company]
   return unless valid_value_data? args
-  binding.pry
   return unless (create_args = Card[args[:metric]].create_value_args args)
   add_subcard create_args.delete(:name), create_args
 end
