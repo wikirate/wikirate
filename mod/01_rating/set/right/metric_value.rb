@@ -51,7 +51,6 @@ format :html do
                   collapse: '.metric_value_form_container'
                 }
                )
-    # timeline_head(button, 'new')
   end
 
   view :timeline_header do |args|
@@ -59,9 +58,6 @@ format :html do
       case args[:column]
       when :data
         _optional_render(:timeline_add_new_button, args, :show) || ''
-        # timeline_head('Year','year')
-        #   .concat(timeline_head('Value','value'))
-        #   .concat(_optional_render(:timeline_add_new_link, args, :show) || '')
       else ''
       end
     end

@@ -214,17 +214,13 @@ format :html do
   end
 
   view :new do |args|
-    # return super(args)
     return _render_no_frame_form args if Env.params[:noframe]
-    # return super(args) if args[:source] || args[:metric] || args[:company]
     return super(args) if args[:source] || args[:company]
     @form_root = true
-
     frame args do # no form!
       [
         _optional_render(:content_formgroup,
                          args.merge(metric_value_landing: true))
-        #  _optional_render(:button_formgroup, button_args)
       ]
     end
   end
@@ -240,9 +236,7 @@ format :html do
 
   view :editor do |args|
     if args[:company] && args[:metric]
-      _render_metric_company_add_value_editor args
-    # elsif args[:source] || args[:metric]
-    #   _render_add_value_editor args
+      _render_metric_value_editor args
     elsif args[:metric_value_landing]
       _render_metric_value_landing args
     else
@@ -251,9 +245,8 @@ format :html do
   end
 
   view :metric_value_landing do |args|
-    metric_field = _render_metric_field(args)
     render_haml source_container: _render_source_container,
-                metric_field: metric_field do
+                metric_field: _render_metric_field(args) do
       <<-HAML
 .col-md-6.border-right.panel-default
   -# %h4
@@ -312,6 +305,7 @@ format :html do
     end
   end
 
+  # TODO: please verify if this view used anywhere
   view :add_value_editor do |_args|
     render_haml do
       <<-HAML
@@ -329,25 +323,9 @@ format :html do
     end
   end
 
-  def find_potential_sources company, metric
-    Card.search type_id: Card::SourceID,
-                right_plus: ['company', { refer_to: company }],
-                and: {
-                  right_plus: [
-                    'report_type',
-                    refer_to: {
-                      referred_to_by: metric + '+report_type' }] }
-  end
-
-  view :metric_company_add_value_editor do |args|
-    sources = find_potential_sources args[:company], args[:metric]
-    relevant_sources =
-      if sources.empty?
-        'None'
-      else
-        sources.map(&:name).join(',')
-      end
-    render_haml do
+  view :metric_value_editor do |args|
+    render_haml relevant_sources: _render_relevant_sources(args),
+                cited_sources: _render_cited_sources do
       <<-HAML
 .td.year
   = field_nest :year, title: 'Year'
@@ -361,15 +339,45 @@ format :html do
       %small
         %span.icon.icon-wikirate-logo-o.fa-lg
         Add a new Source
-  .relevant-sources
-    #{relevant_sources}
-  %h5
-    Cited Sources
-  .card-editor
-    = hidden_field_tag 'card[subcards][+source][content]', nil, class: 'card-content'
-    .cited-sources.pointer-list-ul
-      None
-  HAML
+  = relevant_sources
+  = cited_sources
+      HAML
+    end
+  end
+
+  def find_potential_sources company, metric
+    Card.search type_id: Card::SourceID,
+                right_plus: ['company', { refer_to: company }],
+                and: {
+                  right_plus: [
+                    'report_type',
+                    refer_to: {
+                      referred_to_by: metric + '+report_type' }] }
+  end
+
+  view :relevant_sources do |args|
+    sources = find_potential_sources args[:company], args[:metric]
+    relevant_sources =
+      if sources.empty?
+        'None'
+      else
+        sources.map do |source|
+          source.format._render_relevant
+        end.join('')
+      end
+    content_tag(:div, relevant_sources.html_safe, class: 'relevant-sources')
+  end
+
+  view :cited_sources do |_args|
+    render_haml do
+      <<-HAML
+%h5
+  Cited Sources
+.card-editor
+  = hidden_field_tag 'card[subcards][+source][content]', nil, class: 'card-content'
+  .cited-sources.pointer-list-ul
+    None
+    HAML
     end
   end
 
@@ -397,10 +405,6 @@ format :html do
     args[:title] = "Add new value for #{args[:metric]}" if args[:metric]
     super(args)
   end
-
-  # def edit_slot args
-  #   super args.merge(core_edit: true)
-  # end
 
   def legend args
     subformat(card.metric_card)._render_legend args
@@ -462,7 +466,7 @@ format :html do
             'title' => card.value
           }
         )
-      ) # ,:html_args=>{:class=>"td year"}))
+      )
     end
   end
 

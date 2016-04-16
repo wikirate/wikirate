@@ -36,7 +36,7 @@ event :check_source, :validate, on: :create do
                   subfield(:text)].compact
   if source_cards.length > 1
     errors.add :source, 'Only one type of content is allowed'
-  elsif source_cards.length.empty?
+  elsif source_cards.empty?
     errors.add :source, 'Source content required'
   end
 end
@@ -95,32 +95,66 @@ format :html do
         content_tag :button, 'Add', class: 'btn btn-primary pull-right',
                                     data: { disable_with: 'Adding' }
       args[:hidden] = {
-        :success => { id: '_self', soft_redirect: true, view: :source_item },
+        :success => { id: '_self',
+                      soft_redirect: true,
+                      view: :source_and_preview },
         'card[subcards][+company][content]' => args[:company]
       }
     end
     super(args)
   end
 
-  view :source_item do |args|
-    source = render_content structure: 'source_with_preview'
+  view :source_item do |_args|
+    <<-HTML
+      <a class="view-original-url" href="" target="_blank">
+        <i class="fa fa-external-link-square cursor"></i>
+        Original
+      </a>
+      #{render_content structure: 'source_without_note_count'}
+    HTML
+  end
+
+  view :with_cite_button do |_args|
+    cite_button =
+      content_tag(:div, 'Cite!', class: 'btn btn-highlight _cite_button')
+    content =
+      _render_source_item +
+      content_tag(:div, cite_button, class: 'pull-right')
+    wrap_with_info content
+  end
+
+  view :source_and_preview do |args|
     wrap_with :div, class: 'source-details',
                     data: { source_for: card.name } do
       url_card = card.fetch(trait: :wikirate_link)
       url = url_card ? url_card.item_names.first : nil
       args[:url] = url
-      source + render_iframe_view(args.merge(url: url)).html_safe +
+      render_with_cite_button +
+        render_iframe_view(args.merge(url: url)).html_safe +
         render_hidden_information(args.merge(url: url)).html_safe
     end
   end
 
+  view :relevant do |_args|
+    add_toggle render_with_cite_button.html_safe
+  end
+
   view :cited do
-    source = render_content structure: 'source without note count'
-    source = content_tag(:div, source,
-                        class: 'source-info-container with-vote-button')
+    source = wrap_with_info _render_source_item
+    add_toggle(source)
+  end
+
+  def wrap_with_info content
+    wrap do
+      content_tag(:div, content.html_safe,
+                  class: 'source-info-container with-vote-button')
+    end
+  end
+
+  def add_toggle content
     wrap_with :div, class: 'source-details-toggle',
                     data: { source_for: card.name } do
-      source.html_safe
+      content.html_safe
     end
   end
 
@@ -178,8 +212,7 @@ format :html do
   view :website_link do |_args|
     card_link(
       card,
-      text: nest(Card.fetch(card.cardname.field('website'),
-                            new: {}),
+      text: nest(Card.fetch(card.cardname.field('website'), new: {}),
                  view: :content,
                  item: :name),
       class: 'source-preview-link',
@@ -190,8 +223,8 @@ format :html do
   view :title_link do |_args|
     card_link(
       card,
-      text: nest(Card.fetch(card.cardname.field('title'),
-                            new: {}), view: :needed),
+      text: nest(Card.fetch(card.cardname.field('title'), new: {}),
+                 view: :needed),
       class: 'source-preview-link preview-page-link',
       target: '_blank'
     )
@@ -204,22 +237,4 @@ format :html do
       content_tag(:span, _render_title_link, class: 'source-title')
     ].join "\n"
   end
-
-  # view :cited do |args|
-  #   <<-HTML
-  #   <div class="source-info-container">
-  #   <div class="item-content">
-  #    <div class="fa fa-times-circle remove-source" style="display:none"></div>
-  #    <div class="source-icon fa fa-globe"></div>
-  #    <div class="item-summary">
-  #     #{_render_source_link args}
-  #     <div class="last-edit">
-  #       #{ _render_creator_credit args
-  #       }
-  #     </div>
-  #   </div>
-  #   </div>
-  # </div>
-  #   HTML
-  # end
 end
