@@ -1,3 +1,5 @@
+include Abstract::Variable
+
 card_accessor :variables, type_id: Card::SessionID
 
 WL_FORMULA_WHITELIST = ::Set.new ['Boole']
@@ -206,9 +208,6 @@ event :replace_variables, :prepare_to_validate,
   end
 end
 
-def variable_name? v_name
-  v_name =~ /^M\d+$/
-end
 
 event :validate_formula_input, :validate,
       on: :save, changed: :content do
