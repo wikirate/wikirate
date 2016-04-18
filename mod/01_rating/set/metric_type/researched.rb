@@ -29,8 +29,8 @@ format :html do
         nest(card.about_card, view: :titled, title: 'About'),
         nest(card.methodology_card, view: :titled, title: 'Methodology'),
         _render_value_type_detail(args),
-        nest(Card.fetch(card.name + '+report_type', new: {}),
-             view: :titled, title: 'Report Type', items: { view: :name }),
+        nest(card.report_type_card, view: :titled, title: 'Report Type',
+                                    items: { view: :name }),
         _render_import_button(args)
       ]
     end

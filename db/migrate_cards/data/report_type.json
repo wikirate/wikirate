@@ -8,7 +8,8 @@
     "value": [
       {
         "name": "Report Type",
-        "type": "Cardtype"
+        "type": "Cardtype",
+        "codename": "report_type"
       },
       {
         "name": "Conflict Minerals Report",
