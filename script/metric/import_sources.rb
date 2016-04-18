@@ -29,13 +29,14 @@ def create_source row
   puts arg.to_s.green
   Card.create! arg
 end
-Card::Mailer.perform_deliveries = false
+
 Card::Auth.as_bot do
-  Card::Env.params[:sourcebox] = 'true'
-  CSV.foreach(file_name, encoding: 'windows-1251:utf-8',
-                         headers: false) do |row|
-    create_company row[1]
-    create_source row
+  slient_mode do
+    Card::Env.params[:sourcebox] = 'true'
+    CSV.foreach(file_name, encoding: 'windows-1251:utf-8',
+                           headers: false) do |row|
+      create_company row[1]
+      create_source row
+    end
   end
 end
-Card::Mailer.perform_deliveries = true
