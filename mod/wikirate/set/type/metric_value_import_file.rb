@@ -4,7 +4,6 @@ include_set Abstract::Import
 attachment :metric_value_import_file, uploader: FileUploader
 
 format :html do
-  
   def default_import_table_args args
     args[:table_header] = ['Select', '#', 'Metric',
                            'Company in File', 'Company in Wikirate', 'Match',
