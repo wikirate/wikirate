@@ -16,18 +16,20 @@ end
 
 def create_source row
   url = row[0]
+  company = row[1]
   year = row[2]
   report_type = row[3]
   arg = { type_id: Card::SourceID,
           subcards: {
             '+Link' => { content: url },
             '+report_type' => report_type,
-            '+date' => year
+            '+date' => year,
+            '+company' => "[[#{company}]]"
           } }
   puts arg.to_s.green
   Card.create! arg
 end
-
+Card::Mailer.perform_deliveries = false
 Card::Auth.as_bot do
   Card::Env.params[:sourcebox] = 'true'
   CSV.foreach(file_name, encoding: 'windows-1251:utf-8',
@@ -36,3 +38,4 @@ Card::Auth.as_bot do
     create_source row
   end
 end
+Card::Mailer.perform_deliveries = true

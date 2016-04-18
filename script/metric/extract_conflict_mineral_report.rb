@@ -1,4 +1,5 @@
 require File.expand_path('../../../config/environment',  __FILE__)
+require File.expand_path('../../wikirate_import_shared', __FILE__)
 require 'colorize'
 require 'json'
 require 'byebug'
@@ -38,12 +39,12 @@ end
 
 begin
   library_card = Card.new type_id: Card::MetricValueImportFileID
-  aliases_hash = library_card.aliases_hash
+  aliases_hash = library_card.format.aliases_hash
   skip_list = company_skip_list
   json_array = JSON.parse(text)
   result = parse_report_source json_array, aliases_hash, skip_list
 
-  write_array_to_file 'script/metric/data/sources.csv', result
+  write_array_to_file 'script/metric/data/sources1.csv', result
 rescue => error
   puts error.message.to_s.red
 end

@@ -28,7 +28,12 @@ def correct_company_name company, aliases, aliases_hash, skip_list
 end
 
 def write_array_to_file file_path, array
-   File.open(file_path, 'w') do |file|
+  File.open(file_path, 'w') do |file|
     file.write(array.join("\n"))
   end
+end
+def slient_mode
+  Card::Mailer.perform_deliveries = false
+  yield
+  Card::Mailer.perform_deliveries = true
 end
