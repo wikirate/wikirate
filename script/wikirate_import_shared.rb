@@ -32,6 +32,7 @@ def write_array_to_file file_path, array
     file.write(array.join("\n"))
   end
 end
+
 def slient_mode
   Card::Mailer.perform_deliveries = false
   yield
