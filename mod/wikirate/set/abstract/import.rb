@@ -1,7 +1,7 @@
 # the is_metric_import_update flag distinguishes between an update of the
 # import file and importing the file
 event :import_csv, :prepare_to_store,
-      on: :update, when: proc { Env.params['is_metric_import_update'] == 'true' } do
+       on: :update, when: proc { Env.params['is_metric_import_update'] == 'true' } do
   return unless (metric_values = Env.params[:metric_values])
   return unless valid_import_format?(metric_values)
   metric_values.each do |metric_value_data|
@@ -253,7 +253,7 @@ format :html do
   end
 
   def import_checkbox row_hash
-    checked = [:partial, :exact, :alias].include? row_hash[:status]
+    checked = %w(partial exact alias).include? row_hash[:status]
     key_hash = row_hash.deep_dup
     key_hash[:company] = row_hash[:status] == :none ?
       row_hash[:file_company] : row_hash[:wikirate_company]

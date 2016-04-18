@@ -12,24 +12,25 @@ describe Card::Set::Right::TypeSearch do
         type_search_card = Card.fetch "#{topic.name}+company+type_search"
         html = type_search_card.format.render_filter_and_sort
 
-        expect(html).to have_tag('div',:with=>{:class=>'yinyang-list'}) do
-          with_tag('div',:with=>{:class=>'yinyang-row','data-sort-name'=>'DEATH STAR'}) do
-            with_tag 'div',:with=>{:id=>'Force+Death_Star+yinyang_drag_item'}
+        expect(html).to have_tag('div', with: { class: 'yinyang-list' }) do
+          with_tag('div', with: { :class => 'yinyang-row',
+                                  'data-sort-name' => 'DEATH STAR' }) do
+            with_tag 'div', with: { id: 'Force+Death_Star+yinyang_drag_item' }
           end
         end
       end
     end
 
-    context "metric" do
-      it "show filter_and_sort items" do
+    context 'metric' do
+      it 'show filter_and_sort items' do
+        # default sample metric is free text
         metric = get_a_sample_metric
-        company = get_a_sample_company
         type_search_card = Card.fetch "#{metric.name}+company+type_search"
         html = type_search_card.format.render_filter_and_sort
-
-        expect(html).to have_tag("div",:with=>{:class=>"yinyang-list"}) do
-          with_tag("div",:with=>{:class=>"yinyang-row"}) do
-            with_tag "div",:with=>{:id=>"Jedi+disturbances_in_the_Force+Death_Star+yinyang_drag_item"}
+        id = 'Jedi+Sith_Lord_in_Charge+Death_Star+yinyang_drag_item'
+        expect(html).to have_tag('div', with: { class: 'yinyang-list' }) do
+          with_tag('div', with: { class: 'yinyang-row' }) do
+            with_tag 'div', with: { id: id }
           end
         end
       end

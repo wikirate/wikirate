@@ -77,7 +77,7 @@ class SharedData
         Death_Star '1977' => { value: 100, source: source_link }
       end
       Card::Metric.create name: 'Jedi+cost of planets destroyed',
-                          value_type: 'Currency' do
+                          value_type: 'Money' do
         source_link = 'http://wikiwand.com/en/Return_of_the_Jedi'
         Death_Star '1977' => { value: 200, source: source_link }
       end
