@@ -282,17 +282,17 @@ format :html do
     # %br
     render_haml do
       <<-HAML
-      %br
-      .metric-details-header
-        .row.clearfix
-          .col-md-12
-            .name.row
-              = card_link card, text: card.metric_title, class: 'inherit-anchor'
-            .row
-              = _render_designer_info
-        %hr
-        .row.clearfix.wiki
-          = _render_metric_info
+%br
+.metric-details-header
+  .row.clearfix
+    .col-md-12
+      .name.row
+        = card_link card, text: card.metric_title, class: 'inherit-anchor'
+      .row
+        = _render_designer_info
+  %hr
+  .row.clearfix.wiki
+    = _render_metric_info
       HAML
     end
   end
