@@ -128,9 +128,10 @@ def clean_html? # return always true ;)
 end
 
 format :html do
-  mattr_accessor :import_fields
-  @@import_fields = [:file_company, :value]
-
+  
+  def import_fields
+    [:file_company, :value]
+  end
 
   def default_new_args args
     args[:hidden] = {
@@ -255,8 +256,12 @@ format :html do
   def import_checkbox row_hash
     checked = %w(partial exact alias).include? row_hash[:status]
     key_hash = row_hash.deep_dup
-    key_hash[:company] = row_hash[:status] == :none ?
-      row_hash[:file_company] : row_hash[:wikirate_company]
+    key_hash[:company] =
+      if row_hash[:status] == :none
+        row_hash[:file_company]
+      else
+        row_hash[:wikirate_company]
+      end
     check_box_tag 'metric_values[]', key_hash.to_json, checked
   end
 
@@ -283,7 +288,7 @@ format :html do
   end
 
   def row_to_hash row
-    @@import_fields.each_with_object({}).with_index do |(key, hash), i|
+    import_fields.each_with_object({}).with_index do |(key, hash), i|
       hash[key] = row[i]
     end
   end

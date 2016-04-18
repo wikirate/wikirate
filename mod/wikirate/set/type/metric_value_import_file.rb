@@ -4,8 +4,7 @@ include_set Abstract::Import
 attachment :metric_value_import_file, uploader: FileUploader
 
 format :html do
-  @@import_fields = [:metric, :file_company, :year, :value, :source]
-
+  
   def default_import_table_args args
     args[:table_header] = ['Select', '#', 'Metric',
                            'Company in File', 'Company in Wikirate', 'Match',
@@ -40,5 +39,9 @@ format :html do
     content + <<-HTML
       <a href=\"/#{card.cardname.url_key}?view=import\">Import ...</a>
     HTML
+  end
+
+  def import_fields
+    [:metric, :file_company, :year, :value, :source]
   end
 end
