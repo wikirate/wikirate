@@ -44,9 +44,10 @@ describe Card::Set::Type::MetricValue do
 
     describe 'render views' do
       it 'shows currency sign' do
-        subcard = get_subcards_of_metric_value @metric, @company, '33', nil, nil
+        metric = get_a_sample_metric :money
+        subcard = get_subcards_of_metric_value metric, @company, '33', nil, nil
         metric_value = Card.create type_id: @mv_id, subcards: subcard
-        @metric.update_attributes! subcards: { '+currency' => '$' }
+        metric.update_attributes! subcards: { '+currency' => '$' }
         html = metric_value.format.render_timeline_data
         # url = "/#{metric_value.cardname.url_key}?layout=modal&"\
         #       'slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu'

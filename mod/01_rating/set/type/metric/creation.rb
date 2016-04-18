@@ -179,7 +179,7 @@ format :html do
     card_form :create, hidden: args.delete(:hidden),
                        'main-success' => 'REDIRECT' do
       output [
-        _render(:name_formgroup, args),
+        _render(:new_name_formgroup, args),
         _render(:content_formgroup, args),
         _render(:button_formgroup, args)
       ]
@@ -195,12 +195,12 @@ format :html do
     }
   end
 
-  view :name_formgroup do |args|
-    formgroup 'Metric Name', raw(name_field(form)), editor: 'name',
+  view :new_name_formgroup do |args|
+    formgroup 'Metric Name', raw(new_name_field(form)), editor: 'name',
                                                     help: args[:help]
   end
 
-  def name_field form=nil, options={}
+  def new_name_field form=nil, options={}
     form ||= self.form
     output [
       metric_designer_field(options),
@@ -227,7 +227,7 @@ format :html do
     # end
   end
 
-  def metric_title_field _options={}
+  def metric_title_field options={}
     title = card.add_subfield :title, content: card.cardname.tag,
                                       type_id: PhraseID
     subformat(title)._render_edit_in_form(options.merge(title: 'Metric Title'))

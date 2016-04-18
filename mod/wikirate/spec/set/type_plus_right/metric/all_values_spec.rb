@@ -137,17 +137,16 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
         with_tag :div, with: { class: 'company-item value-item' } do
           with_tag :a, with: {
                                 class: 'header metric-list-header slotter',
-                                href: "/#{url_key}?item=content"\
-                                      '&limit=20&offset=0'\
+                                href: "/#{url_key}?limit=20&offset=0"\
                                       '&sort_by=company_name'\
-                                      '&sort_order=asc'
+                                      '&sort_order=asc&view=content'
                                       
                               }
           with_tag :a, with: {
                                 class: 'data metric-list-header slotter',
-                                href: "/#{url_key}?item=content"\
-                                      '&limit=20&offset=0'\
-                                      '&sort_by=value&sort_order=asc'
+                                href: "/#{url_key}?limit=20&offset=0"\
+                                      '&sort_by=value&sort_order=asc'\
+                                      '&view=content'
                               }
         end
       end

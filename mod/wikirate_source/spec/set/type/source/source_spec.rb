@@ -206,6 +206,12 @@ describe Card::Set::Type::Source do
     end
   end
   describe 'while rendering views' do
+    let(:csv_file) do
+      path = File.expand_path(
+        '../../../type_plus_right/source/file/import_test.csv', __FILE__
+      )
+      File.open(path)
+    end
     before do
       login_as 'joe_user'
       @url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
@@ -227,10 +233,7 @@ describe Card::Set::Type::Source do
       expect(render).to include(expected)
     end
     it 'renders metric_import_link' do
-      csv_path = "#{Rails.root}/mod/wikirate_source/"\
-                'spec/set/type_plus_right/source/import_test.csv'
-      test_csv = File.open(csv_path)
-      sourcepage = create_source file: test_csv
+      sourcepage = create_source file: csv_file
       html = sourcepage.format.render_metric_import_link
       source_file = sourcepage.fetch trait: :file
       expected_url = "/#{source_file.cardname.url_key}?view=import"
@@ -242,9 +245,7 @@ describe Card::Set::Type::Source do
     describe 'original_icon_link' do
       context 'file source' do
         it 'renders upload icon' do
-          test_csv = File.open("#{Rails.root}/mod/wikirate_source/spec/"\
-                               'set/type_plus_right/source/import_test.csv')
-          sourcepage = create_source file: test_csv
+          sourcepage = create_source file: csv_file
           html = sourcepage.format.render_original_icon_link
           source_file = sourcepage.fetch trait: :file
           expect(html).to have_tag('a', with: { href: source_file.file.url }) do
