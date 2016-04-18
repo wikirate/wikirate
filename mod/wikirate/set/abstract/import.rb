@@ -128,7 +128,6 @@ def clean_html? # return always true ;)
 end
 
 format :html do
-  
   def import_fields
     [:file_company, :value]
   end
