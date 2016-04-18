@@ -40,12 +40,25 @@ $(document).ready ->
                                     company)
     $source_target.append($loader_anime)
     $.get(load_path_source, ((data) ->
-      $sourceCntr     = $("#source-form-container")
-      $sourceCntr.find('.source-details').addClass('hide')
+      # $sourceCntr     = $("#source-form-container")
+      $source_target.find('.source-details').addClass('hide')
       $source_target.prepend(data)
       wagn.initializeEditors($source_target)
       $source_target.find(".loader-anime").remove()
       $source_target.find('form').trigger('slotReady')
+      return
+    ), 'html').fail((xhr,d,e)->
+      $source_target.find(".loader-anime").remove()
+    )
+
+  appendSourceDetails = (sourceID)->
+    $source_target = $("#source-form-container")
+    load_path = wagn.prepUrl(wagn.rootPath + sourceID +
+                                    "?view=source_and_preview")
+    $source_target.append($loader_anime)
+    $.get(load_path, ((data) ->
+      $source_target.prepend(data)
+      $source_target.find(".loader-anime").remove()
       return
     ), 'html').fail((xhr,d,e)->
       $source_target.find(".loader-anime").remove()
@@ -61,6 +74,7 @@ $(document).ready ->
     $sourceInForm   = $('.timeline-row form')
                       .find(sourceInList+'.source-details-toggle')
 
+    #check if the source already exist in new value form.
     if(!$sourceInForm.length > 0)
       $('.source-details-toggle').removeClass('active')
       $sourceDetailsToggle = $('<div>')
@@ -71,7 +85,7 @@ $(document).ready ->
       $container.append($sourceDetailsToggle)
       pageName  = $("#source-name").html()
       url       = $("#source_url").html()
-      # testSameOrigin(url) if (url)
+      testSameOrigin(url) if (url)
     else
       $citeButton = $sourceInForm.find('._cite_button')
       if(!$citeButton.length > 0)
@@ -83,11 +97,18 @@ $(document).ready ->
     sourceID        = $this.data("source-for")
     sourcePreview   = "[data-source-for='"+sourceID+"']"
     $sourceCntr     = $("#source-form-container")
-    $('.source-details-toggle').removeClass('active')
-    $this.addClass("active")
-    $sourceCntr.find('.source-details').addClass('hide')
-    $sourceCntr.find(sourcePreview).removeClass('hide')
-    $sourceCntr.find('form').addClass('hide')
+    $loaderThing    = $sourceCntr.find('.loader-anime')
+    if (!$loaderThing.length > 0)
+      $('.source-details-toggle').removeClass('active')
+      $this.addClass("active")
+      $sourceCntr.find('.source-details').addClass('hide')
+      $sourcePreview = $sourceCntr.find(sourcePreview)
+      $sourceCntr.find('form').addClass('hide')
+      if($sourcePreview.length > 0)
+        $sourcePreview.removeClass('hide')
+      else
+        appendSourceDetails(sourceID)
+
 
   $('body').on 'click', '._cite_button', ->
     sourceCitation(this, 'cite')
@@ -196,9 +217,24 @@ $(document).ready ->
         appendSourceForm(company)
   $('._add_new_value').trigger 'click'
 
+  $('body').on 'click.collapse-next', '[data-toggle=collapse-next]', ->
+    $this     = $(this)
+    parent    = $this.data("parent")
+    collapse  = $this.data("collapse")+".collapse"
+    $target   = $this.closest(parent).find(collapse)
+
+    if !$target.data('collapse')
+      $target.collapse('toggle').on('shown.bs.collapse', ->
+        $this.parent().find('.fa-caret-right ')
+                      .removeClass('fa-caret-right ')
+                      .addClass 'fa-caret-down'
+      ).on 'hidden.bs.collapse', ->
+        $this.parent().find('.fa-caret-down')
+                      .removeClass('fa-caret-right')
+                      .addClass 'fa-caret-right'
+
+
 wagn.slotReady (slot) ->
-  resizeIframe()
-  if(!$(".timeline-row form").is(":visible"))
-    $("._add_new_value").show()
-  else
-    $("._add_new_value").hide()
+  add_val_form = $(".timeline-row form").is(":visible")
+  if add_val_form then $("._add_new_value").hide()
+  else $("._add_new_value").show()

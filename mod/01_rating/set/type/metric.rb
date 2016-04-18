@@ -250,7 +250,6 @@ format :html do
     contributions_url = path "#{metric_designer}+contributions"
     item_wrap args do
       <<-HTML
-      Hello
         <div class="header">
           #{_render_handle if args[:draggable]}
           #{_render_vote if args[:vote]}
