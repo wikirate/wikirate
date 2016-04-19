@@ -78,7 +78,7 @@ format :html do
     super(args)
     args[:hidden] = { success: { id:  card.cardname.left } }
     args[:form_opts] = {
-      'data-slot-selector' => '.card-slot.TYPE-metric' }
+      'data-slot-selector' => '.card-slot.TYPE-metric'
     }
   end
 
@@ -86,7 +86,7 @@ format :html do
     super(args)
     args[:hidden] = { success: { id:  card.cardname.left } }
     args[:form_opts] = {
-      'data-slot-selector' => '.card-slot.TYPE-metric' }
+      'data-slot-selector' => '.card-slot.TYPE-metric'
     }
   end
 
