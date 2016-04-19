@@ -48,5 +48,7 @@ def check_card card, name, id
 end
 
 format :html do
-  @@import_fields = [:file_company, :value]
+  def import_fields
+    [:file_company, :value]
+  end
 end
