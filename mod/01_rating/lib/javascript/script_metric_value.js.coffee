@@ -34,22 +34,29 @@ $(document).ready ->
       stickSourcePreview()
 
   appendSourceForm = (company)->
+
     $source_target = $("#source-form-container")
-    load_path_source = wagn.prepUrl(wagn.rootPath +
-                                    "/new/source?preview=true&slot[company]="+
-                                    company)
-    $source_target.append($loader_anime)
-    $.get(load_path_source, ((data) ->
-      # $sourceCntr     = $("#source-form-container")
+    $sourceForm     = $source_target.find('form')
+    $loaderThing    = $source_target.find('.loader-anime')
+    if(!$sourceForm.length > 0 && !$loaderThing.length > 0)
+      load_path_source = wagn.prepUrl(wagn.rootPath +
+                                      "/new/source?preview=true&slot[company]="+
+                                      company)
+      $source_target.append($loader_anime)
+      $.get(load_path_source, ((data) ->
+        # $sourceCntr     = $("#source-form-container")
+        $source_target.find('.source-details').addClass('hide')
+        $source_target.prepend(data)
+        wagn.initializeEditors($source_target)
+        $source_target.find(".loader-anime").remove()
+        $source_target.find('form').trigger('slotReady')
+        return
+      ), 'html').fail((xhr,d,e)->
+        $source_target.find(".loader-anime").remove()
+      )
+    else
+      $source_target.find('form').removeClass('hide')
       $source_target.find('.source-details').addClass('hide')
-      $source_target.prepend(data)
-      wagn.initializeEditors($source_target)
-      $source_target.find(".loader-anime").remove()
-      $source_target.find('form').trigger('slotReady')
-      return
-    ), 'html').fail((xhr,d,e)->
-      $source_target.find(".loader-anime").remove()
-    )
 
   appendSourceDetails = (sourceID)->
     $source_target = $("#source-form-container")
@@ -169,15 +176,7 @@ $(document).ready ->
     $this           = $(this)
     company         = $this.closest('form')
                         .find('#card_subcards__company_content').attr('value')
-    $sourceCntr     = $("#source-form-container")
-    $sourceForm     = $sourceCntr.find('form')
-    $loaderThing    = $sourceCntr.find('.loader-anime')
-    if(!$sourceForm.length > 0 && !$loaderThing.length > 0)
-      appendSourceForm(company)
-    else
-      $sourceCntr.find('form').removeClass('hide')
-      $sourceCntr.find('.source-details').addClass('hide')
-
+    appendSourceForm(company)
 
   $('body').on 'click', '._add_new_value', ->
     $this     = $(this)
@@ -215,7 +214,7 @@ $(document).ready ->
           $target.find(".loader-anime").remove()
         )
         appendSourceForm(company)
-  $('._add_new_value').trigger 'click'
+  $('._add_new_value:first').trigger 'click'
 
   $('body').on 'click.collapse-next', '[data-toggle=collapse-next]', ->
     $this     = $(this)
@@ -236,5 +235,6 @@ $(document).ready ->
 
 wagn.slotReady (slot) ->
   add_val_form = $(".timeline-row form").is(":visible")
-  if add_val_form then $("._add_new_value").hide()
-  else $("._add_new_value").show()
+  if add_val_form then $("._add_new_value:first").hide()
+  else $("._add_new_value:first").show()
+  resizeIframe()

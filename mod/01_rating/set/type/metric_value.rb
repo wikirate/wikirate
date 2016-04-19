@@ -52,7 +52,6 @@ def scored?
   (mc = metric_card) && mc.scored?
 end
 
-
 def valid_value_name?
   cardname.parts.size >= 3 &&
     metric_card && metric_card.type_id == MetricID &&
