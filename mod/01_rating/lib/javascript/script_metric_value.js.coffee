@@ -58,6 +58,7 @@ $(document).ready ->
     $source_target.append($loader_anime)
     $.get(load_path, ((data) ->
       $source_target.prepend(data)
+      resizeIframe()
       $source_target.find(".loader-anime").remove()
       return
     ), 'html').fail((xhr,d,e)->
@@ -85,7 +86,8 @@ $(document).ready ->
       $container.append($sourceDetailsToggle)
       pageName  = $("#source-name").html()
       url       = $("#source_url").html()
-      testSameOrigin(url) if (url)
+      resizeIframe()
+      testSameOrigin(url, pageName) if (url)
     else
       $citeButton = $sourceInForm.find('._cite_button')
       if(!$citeButton.length > 0)
