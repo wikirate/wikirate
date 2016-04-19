@@ -155,7 +155,7 @@ def find_or_create new_source_card
        (source_card = find_duplicate_source(url.content))
       source_card
     else
-     add_source_subcard new_source_card
+      add_source_subcard new_source_card
     end
   end
 end
@@ -345,13 +345,13 @@ format :html do
   end
 
   def find_potential_sources company, metric
-    Card.search type_id: Card::SourceID,
-                right_plus: ['company', { refer_to: company }],
-                and: {
-                  right_plus: [
-                    'report_type',
-                    refer_to: {
-                      referred_to_by: metric + '+report_type' }] }
+    Card.search(
+      type_id: Card::SourceID,
+      right_plus: [['company', { refer_to: company }],
+                   ['report_type', {
+                     refer_to: {
+                       referred_to_by: metric + '+report_type' } }]]
+    )
   end
 
   view :relevant_sources do |args|
@@ -361,7 +361,9 @@ format :html do
         'None'
       else
         sources.map do |source|
-          source.format._render_relevant
+          with_nest_mode :normal do
+            subformat(source).render_relevant
+          end
         end.join('')
       end
     content_tag(:div, relevant_sources.html_safe, class: 'relevant-sources')
@@ -432,7 +434,7 @@ format :html do
   end
 
   def grade
-    return unless value = (card.value && card.value.to_i)
+    return unless (value = (card.value && card.value.to_i))
     case value
     when 0, 1, 2, 3 then :low
     when 4, 5, 6, 7 then :middle
@@ -469,7 +471,7 @@ format :html do
     end
   end
 
-  view :value_link do |_args|
+  view :value_link do
     url = "/#{card.cardname.url_key}"
     link = link_to card.value, url, target: '_blank'
     content_tag(:span, link.html_safe, class: 'metric-value')

@@ -104,14 +104,20 @@ format :html do
     super(args)
   end
 
+  # show link if link source
   view :source_item do |_args|
-    <<-HTML
-      <a class="view-original-url" href="" target="_blank">
-        <i class="fa fa-external-link-square cursor"></i>
-        Original
-      </a>
-      #{render_content structure: 'source_without_note_count'}
-    HTML
+    original_link = ''
+    if card.source_type_codename == :wikirate_link
+      link = card.fetch(trait: :wikirate_link).content
+      original_link =
+        <<-HTML
+          <a class="view-original-url" href="#{link}" target="_blank">
+            <i class="fa fa-external-link-square cursor"></i>
+            Original
+          </a>
+        HTML
+    end
+    original_link + render_content(structure: 'source_without_note_count')
   end
 
   view :with_cite_button do |_args|
