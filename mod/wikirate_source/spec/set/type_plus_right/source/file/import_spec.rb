@@ -41,6 +41,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
         content: '[[2015]]', type_id: Card::PointerID
       }
     }
+    expect(source_file.errors).to be_empty
     source_file
   end
 
