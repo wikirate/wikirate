@@ -74,6 +74,22 @@ def variables_card
 end
 
 format :html do
+  def default_new_args args
+    super(args)
+    args[:hidden] = { success: { id:  card.cardname.left } }
+    args[:form_opts] = {
+      'data-slot-selector' => '.card-slot.TYPE-metric' }
+    }
+  end
+
+  def default_edit_args args
+    super(args)
+    args[:hidden] = { success: { id:  card.cardname.left } }
+    args[:form_opts] = {
+      'data-slot-selector' => '.card-slot.TYPE-metric' }
+    }
+  end
+
   view :editor do |args|
     return _render_rating_editor(args) if card.wiki_rating?
     return _render_categorical_editor(args) if card.categorical?
