@@ -1,7 +1,5 @@
 include Abstract::Variable
 
-card_accessor :variables, type_id: Card::SessionID
-
 WL_FORMULA_WHITELIST = ::Set.new ['Boole']
 
 def metric_name
@@ -62,7 +60,7 @@ def complete_translation_table
 end
 
 def variables_card
-  v_card = fetch trait: :variables,
+  v_card = metric_card.fetch trait: :variables,
         new: {
           type: 'session',
           content: input_metrics.to_pointer_content

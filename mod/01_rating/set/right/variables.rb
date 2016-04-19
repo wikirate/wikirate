@@ -2,15 +2,15 @@ include Type::Pointer
 include Abstract::Variable
 
 def metric_card
-  left.left
+  left
 end
 
 def metric_card_name
-  cardname.left_name.left_name
+  cardname.left_name
 end
 
 def formula_card
-  left
+  metric_card.fetch trait: :formula
 end
 
 def extract_metrics_from_formula
