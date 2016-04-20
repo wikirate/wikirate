@@ -6,6 +6,7 @@ card_accessor :metric_type, type: :pointer, default: '[[Researched]]'
 card_accessor :about
 card_accessor :methodology
 card_accessor :value_type
+card_accessor :report_type
 
 def metric_type
   metric_type_card.item_names.first
@@ -282,17 +283,17 @@ format :html do
     # %br
     render_haml do
       <<-HAML
-      %br
-      .metric-details-header
-        .row.clearfix
-          .col-md-12
-            .name.row
-              = card_link card, text: card.metric_title, class: 'inherit-anchor'
-            .row
-              = _render_designer_info
-        %hr
-        .row.clearfix.wiki
-          = _render_metric_info
+%br
+.metric-details-header
+  .row.clearfix
+    .col-md-12
+      .name.row
+        = card_link card, text: card.metric_title, class: 'inherit-anchor'
+      .row
+        = _render_designer_info
+  %hr
+  .row.clearfix.wiki
+    = _render_metric_info
       HAML
     end
   end

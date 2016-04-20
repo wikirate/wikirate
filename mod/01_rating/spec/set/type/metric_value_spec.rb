@@ -199,6 +199,38 @@ describe Card::Set::Type::MetricValue do
         expect(value_card.content).to eq("I'm fine, I'm just not happy.")
       end
 
+      it 'with an pdf url' do
+        url = 'http://dev.wikirate.org/Page-000003962+File.pdf'
+        subcard = {
+          '+metric' => { 'content' => @metric.name },
+          '+company' => {
+            'content' => "[[#{@company.name}]]",
+            'type_id' => Card::PointerID
+          },
+          '+value' => {
+            'content' => "I'm fine, I'm just not happy.",
+            'type_id' => Card::PhraseID
+          },
+          '+year' => { 'content' => '2014', 'type_id' => Card::PointerID },
+          '+source' => {
+            'subcards' => {
+              'new source' => {
+                '+Link' => {
+                  content: url,
+                  type_id: Card::PhraseID
+                }
+              }
+            }
+          }
+        }
+        mv = Card.create! type_id: Card::MetricValueID, subcards: subcard
+        source_card = mv.fetch trait: :source
+        expect(source_card.item_cards[0].source_type_codename).to eq(:file)
+
+        value_card = Card["#{mv.name}+value"]
+        expect(value_card.content).to eq("I'm fine, I'm just not happy.")
+      end
+
       it 'fails with a non-existing source' do
         subcard = {
           '+metric' => { 'content' => @metric.name },

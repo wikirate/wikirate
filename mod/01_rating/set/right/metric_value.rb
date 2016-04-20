@@ -4,7 +4,6 @@ format :html do
       (wrap_with :div, class: 'pull-left timeline-data' do
         [
           _optional_render(:timeline_header, args.merge(column: :data), :show),
-          # value_form_container,
           (search_results.map.with_index do |res, i|
             subformat(res).render_timeline_data(
               args.merge(connect: i < search_results.size - 1)
@@ -37,31 +36,40 @@ format :html do
     timeline_head(link, 'new')
   end
 
-  view :timeline_add_new_button do
-    content_tag(:div, content_tag(:small, 'Add new value'),
-                class: 'btn btn-sm
-                        btn-default
-                        margin-12
-                        _add_new_value',
-                data: {
-                  company: card.cardname.left_name.tag,
-                  metric: card.cardname.left_name.trunk_name.url_key,
-                  toggle: 'collapse-next',
-                  parent: '.timeline-data',
-                  collapse: '.metric_value_form_container'
-                }
-               )
-    # timeline_head(button, 'new')
+  view :timeline_header_buttons do
+    btn_class = 'btn btn-sm btn-default margin-12'
+    btn_add_class = [btn_class, '_add_new_value'].join(' ')
+    target_str = ["[id='",
+                  card.cardname.left_name.url_key,
+                  "+metric_details'] #methodology-info"].join('')
+    btn_add =
+      content_tag(:div, content_tag(:small, 'Add new value'),
+                  class: btn_add_class,
+                  data: {
+                    company: card.cardname.left_name.tag,
+                    metric: card.cardname.left_name.trunk_name.url_key,
+                    toggle: 'collapse-next',
+                    parent: '.timeline-data',
+                    collapse: '.metric_value_form_container'
+                  }
+                 )
+    btn_methodology =
+      content_tag(:div, content_tag(:small, 'View Methodology'),
+                  class: btn_class,
+                  data: {
+                    toggle: 'collapse',
+                    target: target_str,
+                    collapse: '.metric_value_form_container'
+                  }
+                 )
+    btn_add + btn_methodology
   end
 
   view :timeline_header do |args|
     wrap_with :div, class: 'timeline-header timeline-row ' do
       case args[:column]
       when :data
-        _optional_render(:timeline_add_new_button, args, :show) || ''
-        # timeline_head('Year','year')
-        #   .concat(timeline_head('Value','value'))
-        #   .concat(_optional_render(:timeline_add_new_link, args, :show) || '')
+        _optional_render(:timeline_header_buttons, args, :show) || ''
       else ''
       end
     end

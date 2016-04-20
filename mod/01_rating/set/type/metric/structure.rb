@@ -1,5 +1,5 @@
 format :html do
-  view :open_content do |args|
+  view :open_content do
     wrap_with :div, class: 'container-fluid yinyang' do
       [
         _render_title_row,
@@ -22,7 +22,7 @@ format :html do
           </div>
         </div>
         <br>
-        #{ _render_question_row(args) }
+        #{_render_question_row(args)}
 		  </div>
 	  </div>
     HTML
@@ -46,7 +46,7 @@ format :html do
     HTML
   end
 
-  view :designer_info do |args|
+  view :designer_info do
     wrap_with :div, class: 'metric-designer-info' do
       card_link card.metric_designer_card.cardname.field('contribution'),
                 text: author_info(card.metric_designer_card, 'Designed by')
@@ -54,13 +54,15 @@ format :html do
   end
 
   def author_info author_card, text, subtext=nil
+    author_content =
+      subformat(author_card.field(:image, new: {}))._render_core size: 'small'
     <<-HTML
       <div>
         <small class="text-muted">#{text}</small>
       </div>
       <div class="img-container">
         <span class="img-helper"></span>
-        #{subformat(author_card.field(:image, new:{}))._render_core size: 'small'}
+        #{author_content}
       </div>
       #{author_text author_card.name, subtext}
     HTML
@@ -75,8 +77,8 @@ format :html do
             </small>
           </span>
         HTML
-    args = subtext ? { class: 'margin-6'} : {}
-    author_args = subtext ? { class: 'nopadding'} : {}
+    args = subtext ? { class: 'margin-6' } : {}
+    author_args = subtext ? { class: 'nopadding' } : {}
     wrap_with :div, args do
       [
         content_tag(subtext ? 'h4' : 'h3', author, author_args),
@@ -110,7 +112,7 @@ format :html do
     HTML
   end
 
-  view :question_row do |args|
+  view :question_row do
     <<-HTML
       <div class="row question-container">
         <div class="row-icon">
@@ -151,7 +153,7 @@ format :html do
     _render_tabs(args)
   end
 
-  view :year_select do |args|
+  view :year_select do
     # {{#year select|editor}}
     <<-HTML
       <div class="col-md-12 form-horizontal" style="display:none">
