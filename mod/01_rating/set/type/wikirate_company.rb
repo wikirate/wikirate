@@ -1,7 +1,6 @@
 
 
 format :html do
-
   def metric_names
     if project
       project.field('metric').item_names
