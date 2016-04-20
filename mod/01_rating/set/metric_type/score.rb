@@ -73,13 +73,20 @@ format :html do
       #                          }
       #                        }
     options = [['-- Select --', '']] + option_names.map { |x| [x, x] }
+    help_text =
+      <<-HTML
+      <div class="help-block help-text">
+        <p>Metric name = [Scored Metric name]+[Your username]</p>
+      </div>
+      HTML
     editor_wrap :card do
       hidden_field_tag('card[subcards][+metric][content]',
                        option_names.first,
                        class: 'card-content') +
         select_tag('pointer_select',
                    options_for_select(options, option_names.first),
-                   class: 'pointer-select form-control')
+                   class: 'pointer-select form-control') +
+        help_text.html_safe
     end
     # subformat(name_card)._render_select
   end
