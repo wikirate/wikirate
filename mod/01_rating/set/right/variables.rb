@@ -1,15 +1,16 @@
 include Type::Pointer
+include Abstract::Variable
 
 def metric_card
-  left.left
+  left
 end
 
 def metric_card_name
-  cardname.left_name.left_name
+  cardname.left_name
 end
 
 def formula_card
-  left
+  metric_card.fetch trait: :formula
 end
 
 def extract_metrics_from_formula
@@ -24,17 +25,10 @@ def input_metric_name variable
           elsif variable_name? variable
             variable_index variable
           end
-  input_metric_name_by_index inex if index
+  input_metric_name_by_index index if index
 end
 
-def to_variable_name index
-  "M#{index}"
-end
 
-def variable_index name
-  name.to_s =~ /^M?(\d+)$/
-  $1.to_i
-end
 
 def input_metric_name_by_index index
   item_cards.fetch(index, nil).name

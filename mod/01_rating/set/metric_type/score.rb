@@ -53,7 +53,7 @@ format :html do
   #   HTML
   # end
 
-  def name_field form=nil, options={}
+  def new_name_field form=nil, options={}
     form ||= self.form
     option_names =
       Card.search type_id: MetricID,
