@@ -387,7 +387,7 @@
       font-weight: bold;
     }
     .row-data {
-      margin-left: 40px;
+      margin-left: 50px;
     }
   }
 }
@@ -708,3 +708,17 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li{
   }
 }
 
+.new_metric_value-view .card-body{
+  padding:0;
+}
+
+.metric-row {
+  padding-bottom: 15px;
+  background: #fafafa;
+  > div {
+    background: #fff;
+    &:first-child {
+      border-top: 1px solid #EEE;
+    }
+  }
+}

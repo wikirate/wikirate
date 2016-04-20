@@ -31,7 +31,7 @@ def create_source row
 end
 
 Card::Auth.as_bot do
-  slient_mode do
+  silent_mode do
     Card::Env.params[:sourcebox] = 'true'
     CSV.foreach(file_name, encoding: 'windows-1251:utf-8',
                            headers: false) do |row|

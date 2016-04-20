@@ -8,8 +8,8 @@ end
 format :html do
   def default_content_formgroup_args args
     super(args)
-    args[:edit_fields]['+value type'] = { title: 'Value Type'}
-    args[:edit_fields]['+research policy'] = { title: 'Research Policy'}
+    args[:edit_fields]['+value type'] = { title: 'Value Type' }
+    args[:edit_fields]['+research policy'] = { title: 'Research Policy' }
   end
 
   def default_tabs_args args
@@ -37,14 +37,15 @@ format :html do
   end
 
   view :value_type_detail do
-    <<-HTML
-      <div class="row-data titled-view">
-        <div class="card-header">Value Type:
-          #{_render_value_type_edit_modal_link}
-          #{_render_short_view}
+    wrap do
+      <<-HTML
+        <div class="padding-bottom-10">
+          <div class="heading-content">Value Type </div>
+            #{_render_value_type_edit_modal_link}
+            #{_render_short_view}
         </div>
-      </div>
-    HTML
+      HTML
+    end
   end
 
   view :source_tab do
@@ -75,9 +76,9 @@ format :html do
 
   view :content_left_col do |args|
     output [
-             _render_year_select(args),
-             _render_company_list(args)
-           ]
+      _render_year_select(args),
+      _render_company_list(args)
+    ]
   end
 
   def add_value_path
@@ -86,27 +87,15 @@ format :html do
 
   view :add_value_buttons do |_args|
     <<-HTML
-    <div class="col-md-6 padding-top-10">
-      <div class="btn-group" role="group" aria-label="...">
+    <div class="row padding-top-10">
       <a class="btn btn-primary"  href='#{add_value_path}'>
-        #{fa_icon 'plus'}
-        Add new value
+        #{fa_icon 'plus'} Add new value
       </a>
-      <a class="btn btn-default" href='/new/source?layout=wikirate%20layout'>
-        #{fa_icon 'arrow-circle-o-down'}
-        Import
-      </a>
-      <a class="btn btn-default slotter"
-         href='/import_metric_values?layout=modal'
-         data-toggle='modal' data-target='#modal-main-slot'>
-        Help <small>(how to)</small>
-      </a>
-      </div>
     </div>
     HTML
   end
 
-  view :import_button do |args|
+  view :import_button do
     <<-HTML
       <h5>Bulk Import</h5>
         <div class="btn-group" role="group" aria-label="...">
@@ -114,13 +103,12 @@ format :html do
             <span class="fa fa-arrow-circle-o-down"></span>
             Import
           </a>
-          <!--
-          <a class="btn btn-default btn-sm slotter" href='/?layout=modal' data-toggle='modal' data-target='#modal-main-slot'>
-             <small>Help</small>
+          <a class="btn btn-default btn-sm slotter"
+             href='/import_metric_values?layout=modal'
+             data-toggle='modal' data-target='#modal-main-slot'>
+            Help <small>(how to)</small>
           </a>
-          -->
         </div>
-      </div>
     HTML
   end
 end

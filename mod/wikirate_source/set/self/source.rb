@@ -12,7 +12,7 @@ format :json do
       metadata.error = 'empty url'
       return metadata.to_json
     end
-    begin  
+    begin
       metadata.website = URI(url).host
     rescue
     end

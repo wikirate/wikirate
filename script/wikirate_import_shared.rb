@@ -33,7 +33,7 @@ def write_array_to_file file_path, array
   end
 end
 
-def slient_mode
+def silent_mode
   Card::Mailer.perform_deliveries = false
   yield
   Card::Mailer.perform_deliveries = true

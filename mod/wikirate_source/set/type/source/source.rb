@@ -92,7 +92,7 @@ format :html do
     if Env.params[:preview]
       args[:structure] = 'metric value source form'
       args[:buttons] =
-        content_tag :button, 'Add', class: 'btn btn-primary pull-right',
+        content_tag :button, 'Add and preview', class: 'btn btn-primary pull-right',
                                     data: { disable_with: 'Adding' }
       args[:hidden] = {
         :success => { id: '_self',
