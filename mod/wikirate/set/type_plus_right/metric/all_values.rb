@@ -63,15 +63,20 @@ end
 format do
   def page_link text, page, _current=false, options={}
     @paging_path_args[:offset] = page * @paging_limit
-    options.merge!(class: 'card-paging-link slotter', remote: true)
+    options[:class] = 'card-paging-link slotter'
+    options[:remote] = true
     sort_by, sort_order = card.sort_params
     paging_args = @paging_path_args.merge(sort_by: sort_by,
                                           sort_order: sort_order)
     link_to raw(text), path(paging_args), options
   end
 
+  def unknown_value? value
+    value.casecmp('unknown') == 0
+  end
+
   def compare_content value_a, value_b, is_num
-    if is_num
+    if is_num && !(unknown_value?(value_a) || unknown_value?(value_b))
       BigDecimal.new(value_a) - BigDecimal.new(value_b)
     else
       value_a <=> value_b
@@ -102,9 +107,9 @@ format do
 
   def sorted_result sort_by, order, is_num=true
     sorted = case sort_by
-             when "company_name"
+             when 'company_name'
                sort_name_asc card.cached_values
-             when "value"
+             when 'value'
                sort_value_asc card.cached_values, is_num
              end
     return sorted if order == 'asc'
@@ -165,7 +170,7 @@ format :html do
                        'data-remote' => true
   end
 
-  view :card_list_header do |args|
+  view :card_list_header do
     sort_by, sort_order = card.sort_params
     company_sort_order, value_sort_order = sort_order sort_by, sort_order
     company_sort_icon, value_sort_icon = sort_icon sort_by, sort_order

@@ -1,25 +1,43 @@
-shared_examples_for 'numeric_value_type' do |value_type|
+shared_examples_for 'all_value_type' do |value_type, valid_cnt, invalid_cnt|
   before do
     login_as 'joe_user'
     @metric = get_a_sample_metric value_type.to_sym
     @company = get_a_sample_company
     @mv_id = Card::MetricValueID
+    @error_msg =
+      if value_type == :category
+        "Please <a href='/Jedi+disturbances_in_the_Force+value_options?"\
+        "view=edit' target=\"_blank\">add options</a> before adding metric"\
+        ' value.'
+      else
+        'Only numeric content is valid for this metric.'
+      end
   end
 
   describe 'add a new value' do
     context 'value not fit the value type' do
       it 'blocks adding a new value' do
-        subcard = get_subcards_of_metric_value @metric, @company, nil, nil, nil
+        subcard =
+          get_subcards_of_metric_value @metric, @company, invalid_cnt, nil, nil
         metric_value = Card.create type_id: @mv_id, subcards: subcard
         expect(metric_value.errors).to have_key(:value)
-        error_msg = 'Only numeric content is valid for this metric.'
-        expect(metric_value.errors[:value]).to include(error_msg)
+        expect(metric_value.errors[:value]).to include(@error_msg)
       end
     end
 
     context 'value fit the value type' do
       it 'adds a new value' do
-        subcard = get_subcards_of_metric_value @metric, @company, '33', nil, nil
+        subcard =
+          get_subcards_of_metric_value @metric, @company, valid_cnt, nil, nil
+        metric_value = Card.create type_id: @mv_id, subcards: subcard
+        expect(metric_value.errors).to be_empty
+      end
+    end
+
+    context 'value is "unknown"' do
+      it 'passes the validation' do
+        subcard =
+          get_subcards_of_metric_value @metric, @company, 'unknown', nil, nil
         metric_value = Card.create type_id: @mv_id, subcards: subcard
         expect(metric_value.errors).to be_empty
       end
@@ -36,11 +54,11 @@ describe Card::Set::Type::MetricValue do
   end
 
   context 'value type is Number' do
-    it_behaves_like 'numeric_value_type', :number
+    it_behaves_like 'all_value_type', :number, '33', 'hello', @numeric_error_msg
   end
 
   context 'value type is Money' do
-    it_behaves_like 'numeric_value_type', :money
+    it_behaves_like 'all_value_type', :money, '33', 'hello', @numeric_error_msg
 
     describe 'render views' do
       it 'shows currency sign' do
@@ -65,6 +83,11 @@ describe Card::Set::Type::MetricValue do
         end
       end
     end
+  end
+
+  context 'value type is category' do
+    it_behaves_like 'all_value_type', :category, 'yes', 'hello',
+                    @categorical_error_msg
   end
 
   context 'value type is free text' do
