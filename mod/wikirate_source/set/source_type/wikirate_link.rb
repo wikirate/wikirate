@@ -28,6 +28,7 @@ def handle_source_box_source url
     if cite_card.type_code != :source
       errors.add :source, ' can only be source type or valid URL.'
     else
+      clear_subcards
       self.name = cite_card.name
       abort :success
     end

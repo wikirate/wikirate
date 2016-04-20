@@ -11,6 +11,10 @@ def company_card
   right
 end
 
+def company_name
+  company_card.cardname
+end
+
 def company
   cardname.tag
 end
@@ -37,24 +41,25 @@ format :html do
     end.join("\n")
   end
 
-  view :image_link do |args|
+  view :image_link do
     # TODO: change the css so that we don't need the extra logo class here
     #   and we can use a logo_link view on the type/company set
-    text = content_tag :div, class: "logo" do
-             field_subformat(:image)._render_core size: 'small'
-           end
+    text = content_tag :div, class: 'logo' do
+      card.company_card.format.field_nest :image, view: :core, size: 'small'
+    end
     card_link card.company_card, class: 'inherit-anchor hidden-xs',
                                  text: text
   end
 
-  view :name_link do |args|
+  view :name_link do
     card_link card.company_card,
               class: 'inherit-anchor',
               text: content_tag(:div, card.company, class: 'name')
   end
 
   view :yinyang_row do |args|
-    <<-HTML
+    wrap(args) do
+      <<-HTML
       <div class="yinyang-row">
         <div class="company-item value-item">
           <div class="header">
@@ -72,6 +77,6 @@ format :html do
         </div>
       </div>
     HTML
+    end
   end
 end
-
