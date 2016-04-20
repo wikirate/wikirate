@@ -24,6 +24,14 @@ shared_examples_for 'numeric_value_type' do |value_type|
         expect(metric_value.errors).to be_empty
       end
     end
+
+    context 'value is "unknown"' do
+      it 'passes the validation' do
+        subcard = get_subcards_of_metric_value @metric, @company, 'unknown', nil, nil
+        metric_value = Card.create type_id: @mv_id, subcards: subcard
+        expect(metric_value.errors).to be_empty
+      end
+    end
   end
 end
 

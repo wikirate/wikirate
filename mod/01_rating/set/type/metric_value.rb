@@ -97,6 +97,7 @@ event :validate_value_type, :validate, on: :save do
   # check if the value fit the value type of metric
   if metric_card && (value_type = Card["#{metric_card.name}+value type"])
     value = subfield(:value).content
+    return if value.casecmp('unknown') == 0
     case value_type.item_names[0]
     when 'Number', 'Money'
       unless number?(value)
