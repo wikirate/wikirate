@@ -2,15 +2,19 @@
 
 format :html do
   def metric_names
-    if project
-      project.field('metric').item_names
-    else
-      Env.params['metric']
-    end
+    return project.field('metric').item_names if project
+    Env.params['metric']
   end
 
   def project
-    Card.fetch(Env.params['project']) || false
+    project_name = Env.params['project']
+    return false unless project_name
+    if Card.exists?project_name
+      Card.fetch(project_name)
+    else
+      card.errors.add :Project, 'Project not exist'
+      return false
+    end
   end
 
   def wrap_metric metric_card
@@ -39,14 +43,27 @@ format :html do
     end
   end
 
+  def error
+    process_metrics
+  rescue
+    card.errors.add :Metrics,
+                    'Incorrect Metric name or Metric not available.'
+    return false
+  end
+
+  def process_metrics
+    (metric_names.map.with_index do |key|
+      metric_company = Card.fetch(key).field(card.name)
+      wrap_metric(metric_company) if Card.exists? key
+    end.join "\n")
+  end
+
   def wrap_metric_list
+    return card.format.render_errors unless error
     wrap_with :div, class: 'row' do
       [
         wrap_metric_header,
-        (metric_names.map.with_index do |key|
-          metric_company = Card.fetch(key).field(card.name)
-          wrap_metric(metric_company) if Card.exists? key
-        end.join "\n")
+        process_metrics
       ]
     end
   end
