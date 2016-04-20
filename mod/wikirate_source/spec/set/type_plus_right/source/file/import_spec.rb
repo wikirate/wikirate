@@ -82,7 +82,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
         metric = get_a_sample_metric :number
         source_file = @source.fetch trait: :file
         Card::Env.params[:metric_values] = [
-          { company: 'Amazon.com, Inc.', value: 'hello world', row: 1 },
+          { company: 'Amazon.com, Inc.', value: 'hello world', row: 1 }
         ]
         source_file.update_attributes subcards: {
           "#{@source.name}+#{Card[:metric].name}" => {
