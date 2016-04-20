@@ -8,7 +8,7 @@ shared_examples_for 'all_value_type' do |value_type, valid_cnt, invalid_cnt|
       if value_type == :category
         "Please <a href='/Jedi+disturbances_in_the_Force+value_options?"\
         "view=edit' target=\"_blank\">add options</a> before adding metric"\
-        " value."
+        ' value.'
       else
         'Only numeric content is valid for this metric.'
       end
