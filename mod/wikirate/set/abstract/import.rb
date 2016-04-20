@@ -78,20 +78,19 @@ def handle_import_errors metric_value_card
     errors.add *msg
   end
   return unless metric_value_card
+  # need to push the stage director to check the metric value
+  metric_value_card.director.catch_up_to_stage :validate
   metric_value_card.errors.each do |key, error_value|
     errors.add "#{metric_value_card.name}+#{key}", error_value
   end
 end
 
 def get_corrected_company_name params
-  corrected = company_corrections[params[:row]]
+  corrected = company_corrections[params[:row].to_s]
   return params[:company] unless corrected.present?
 
   unless Card.exists?(corrected)
     Card.create! name: corrected, type_id: WikirateCompanyID
-  end
-  if corrected != params[:company]
-    Card[corrected].add_alias params[:company]
   end
   Card[corrected].add_alias params[:company] if corrected != params[:company]
   corrected
