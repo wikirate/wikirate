@@ -6,6 +6,8 @@ event :import_csv, :prepare_to_store,
   return unless valid_import_format?(metric_values)
   metric_values.each do |metric_value_data|
     metric_value_card = import_metric_value metric_value_data
+    # validate value type
+    metric_value_card.validate_value_type if metric_value_card
     handle_import_errors metric_value_card
   end
   handle_redirect
@@ -78,8 +80,6 @@ def handle_import_errors metric_value_card
     errors.add *msg
   end
   return unless metric_value_card
-  # need to push the stage director to check the metric value
-  metric_value_card.director.catch_up_to_stage :validate
   metric_value_card.errors.each do |key, error_value|
     errors.add "#{metric_value_card.name}+#{key}", error_value
   end

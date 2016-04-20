@@ -40,9 +40,9 @@ describe Card::Set::Type::MetricValueImportFile do
     context 'company correction name is filled' do
       before do
         Card::Env.params[:corrected_company_name] = {
-          1 => 'Apple Inc.',
-          2 => 'Sony Corporation',
-          3 => 'Amazon.com, Inc.'
+          '1' => 'Apple Inc.',
+          '2' => 'Sony Corporation',
+          '3' => 'Amazon.com, Inc.'
         }
         @mv_import_file.update_attributes! subcards: {}
       end
