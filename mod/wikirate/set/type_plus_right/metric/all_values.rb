@@ -71,11 +71,12 @@ format do
     link_to raw(text), path(paging_args), options
   end
 
+  def unknown_value? value
+    value.casecmp('unknown') == 0
+  end
+
   def compare_content value_a, value_b, is_num
-    if value_a.casecmp('unknown') || value_b.casecmp('unknown')
-      return value_a <=> value_b
-    end
-    if is_num
+    if is_num && !(unknown_value?(value_a) || unknown_value?(value_b))
       BigDecimal.new(value_a) - BigDecimal.new(value_b)
     else
       value_a <=> value_b

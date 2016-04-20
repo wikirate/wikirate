@@ -108,7 +108,7 @@ event :validate_value_type, :validate, on: :save do
          !option_card.item_names.include?(value)
         url = "/#{option_card.cardname.url_key}?view=edit"
         anchor = %(<a href='#{url}' target="_blank">add options</a>)
-        errors.add :options, "Please #{anchor} before adding metric value."
+        errors.add :value, "Please #{anchor} before adding metric value."
       end
     end
   end
