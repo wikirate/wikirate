@@ -60,11 +60,7 @@ def complete_translation_table
 end
 
 def variables_card
-  v_card = metric_card.fetch trait: :variables,
-        new: {
-          type: 'session',
-          content: input_metrics.to_pointer_content
-        }
+  v_card = metric_card.fetch trait: :variables, new: { type: 'session' }
   if v_card.content.blank?
     v_card.content = input_metrics.to_pointer_content
   end
@@ -278,6 +274,7 @@ def input_metric_keys
 end
 
 def input_metrics
+  binding.pry
   @input_metrics ||= extract_metrics
 end
 
