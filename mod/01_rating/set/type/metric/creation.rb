@@ -111,10 +111,15 @@ format :html do
           <input class="card-content form-control" type="hidden" value=""
                  name="card[subcards][+*metric type][content]"
                  id="card_subcards___metric_type_content">
+           <h4>Metric Type</h4>
+           <div class="help-block help-text">
+             <p>There are four "metric types."  Choose one to learn more</p>
+           </div>
           #{new_metric_tab_buttons}
         </div>
       </fieldset>
       <!-- Tab panes -->
+
       #{new_metric_tab_content}
       <script>
         $('input[name="intervaltype"]').click(function () {
@@ -147,7 +152,7 @@ format :html do
   end
 
   def new_metric_tab_buttons
-    wrap_with :ul, class: 'nav nav-pills', role: 'tablist' do
+    wrap_with :ul, class: 'nav nav-pills grey-nav-tab', role: 'tablist' do
       %w(Researched Formula Score WikiRating).map.with_index do |metric_type, i|
         tab_radio_button metric_type, (i == 0)
       end

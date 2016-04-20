@@ -668,6 +668,9 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li{
         float: left;
         .card-title {
           font-size: 0.8em;
+          margin: 5px 0px;
+          float: left;
+          color: #bbb;
         }
 
         input {
@@ -721,4 +724,9 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li{
       border-top: 1px solid #EEE;
     }
   }
+}
+
+
+.card-slot.new-view.TYPE-metric.METRIC_TYPE-researched .nav-pills {
+    margin: 0px -15px!important;
 }
