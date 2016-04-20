@@ -274,7 +274,6 @@ def input_metric_keys
 end
 
 def input_metrics
-  binding.pry
   @input_metrics ||= extract_metrics
 end
 
