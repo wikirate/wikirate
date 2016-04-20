@@ -138,6 +138,7 @@ def clone_subcards_to_hash subcards
   source_subcards = {}
   subcards.subcards.each_with_key do |subcard, _key|
     subcard_key = subcard.tag.key
+    source_subcards['+*source_type'] = { content: "[[#{subcard_key}]]" }
     if subcard_key == 'file'
       source_subcards["+#{subcard_key}"] = { file: subcard.file.file,
                                              type_id: subcard.type_id }
