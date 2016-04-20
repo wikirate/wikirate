@@ -13,13 +13,13 @@ format :html do
         subformat(metric)._render_weight_row(args.merge(weight: weight))
       end
     end
-    sum_field =
+    sum =
       if table_content.empty?
         { content: sum_field, class: 'hidden' }
       else
         sum_field
       end
-    table_content.push ['', sum_field]
+    table_content.push ['', sum]
     output [
              table_editor(table_content, %w(Metric Weight)),
              add_metric_button

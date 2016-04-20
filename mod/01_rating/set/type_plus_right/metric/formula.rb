@@ -1,4 +1,4 @@
-card_accessor :variables, type_id: Card::SessionID
+include Abstract::Variable
 
 WL_FORMULA_WHITELIST = ::Set.new ['Boole']
 
@@ -60,7 +60,7 @@ def complete_translation_table
 end
 
 def variables_card
-  v_card = fetch trait: :variables,
+  v_card = metric_card.fetch trait: :variables,
         new: {
           type: 'session',
           content: input_metrics.to_pointer_content
@@ -72,6 +72,22 @@ def variables_card
 end
 
 format :html do
+  def default_new_args args
+    super(args)
+    args[:hidden] = { success: { id:  card.cardname.left } }
+    args[:form_opts] = {
+      'data-slot-selector' => '.card-slot.TYPE-metric'
+    }
+  end
+
+  def default_edit_args args
+    super(args)
+    args[:hidden] = { success: { id:  card.cardname.left } }
+    args[:form_opts] = {
+      'data-slot-selector' => '.card-slot.TYPE-metric'
+    }
+  end
+
   view :editor do |args|
     return _render_rating_editor(args) if card.wiki_rating?
     return _render_categorical_editor(args) if card.categorical?
@@ -206,9 +222,6 @@ event :replace_variables, :prepare_to_validate,
   end
 end
 
-def variable_name? v_name
-  v_name =~ /^M\d+$/
-end
 
 event :validate_formula_input, :validate,
       on: :save, changed: :content do

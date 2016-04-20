@@ -36,7 +36,7 @@ format :html do
     else
       args.merge! text: 'Add this metric',
                  'data-slot-selector' =>
-                    ".TYPE_PLUS_RIGHT-metric-formula .RIGHT-Xvariable[data-card-name='#{variables_card.name}']",
+                    ".content-editor > .RIGHT-Xvariable[data-card-name='#{variables_card.name}']",
                   remote: true,
                   path_opts: {
                     action: :update, add_item: input_metric.cardname.key,
