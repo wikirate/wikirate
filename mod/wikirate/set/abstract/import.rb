@@ -6,6 +6,8 @@ event :import_csv, :prepare_to_store,
   return unless valid_import_format?(metric_values)
   metric_values.each do |metric_value_data|
     metric_value_card = import_metric_value metric_value_data
+    # validate value type
+    metric_value_card.validate_value_type if metric_value_card
     handle_import_errors metric_value_card
   end
   handle_redirect
@@ -84,14 +86,11 @@ def handle_import_errors metric_value_card
 end
 
 def get_corrected_company_name params
-  corrected = company_corrections[params[:row]]
+  corrected = company_corrections[params[:row].to_s]
   return params[:company] unless corrected.present?
 
   unless Card.exists?(corrected)
     Card.create! name: corrected, type_id: WikirateCompanyID
-  end
-  if corrected != params[:company]
-    Card[corrected].add_alias params[:company]
   end
   Card[corrected].add_alias params[:company] if corrected != params[:company]
   corrected

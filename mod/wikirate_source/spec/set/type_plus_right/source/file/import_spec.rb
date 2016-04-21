@@ -77,7 +77,28 @@ describe Card::Set::TypePlusRight::Source::File::Import do
       expect(source_file.errors).to have_key(:content)
       expect(source_file.errors[:content]).to include('Please give a Metric.')
     end
-
+    describe 'metric value does not fit value type' do
+      it 'shows errors' do
+        metric = get_a_sample_metric :number
+        source_file = @source.fetch trait: :file
+        Card::Env.params[:metric_values] = [
+          { company: 'Amazon.com, Inc.', value: 'hello world', row: 1 }
+        ]
+        source_file.update_attributes subcards: {
+          "#{@source.name}+#{Card[:metric].name}" => {
+            content: "[[#{metric.name}]]",
+            type_id: Card::PointerID
+          },
+          "#{@source.name}+#{Card[:year].name}" => {
+            content: '[[2015]]', type_id: Card::PointerID
+          }
+        }
+        err_key = "#{metric.name}+Amazon.com, Inc.+2015+value"
+        err_msg = 'Only numeric content is valid for this metric.'
+        expect(source_file.errors).to have_key(err_key.to_sym)
+        expect(source_file.errors[err_key]).to include(err_msg)
+      end
+    end
     it 'adds correct metric values' do
       trigger_import [
         { company: 'Amazon.com, Inc.', value: '9' },
@@ -91,10 +112,11 @@ describe Card::Set::TypePlusRight::Source::File::Import do
     end
     context 'company correction name is filled' do
       it 'uses the correction name as company names' do
+        # things in the form will be in string, even number
         Card::Env.params[:corrected_company_name] = {
-          1 => 'Apple Inc.',
-          2 => 'Sony Corporation',
-          3 => 'Amazon.com, Inc.'
+          '1' => 'Apple Inc.',
+          '2' => 'Sony Corporation',
+          '3' => 'Amazon.com, Inc.'
         }
         trigger_import [
           { company: 'Amazon.com, Inc.', value: '9', row: 1 },
@@ -112,7 +134,8 @@ describe Card::Set::TypePlusRight::Source::File::Import do
       end
       context "input company doesn't exist in wikirate" do
         it 'creates company and the value' do
-          Card::Env.params[:corrected_company_name] = { 1 => 'Cambridge University' }
+          Card::Env.params[:corrected_company_name] = {
+            '1' => 'Cambridge University' }
           trigger_import [{ company: 'Cambridge', value: '800', row: 1 }]
           expect(Card.exists?('Cambridge University')).to be true
           expect(metric_answer_exists?(:cambridge_university)).to be true
