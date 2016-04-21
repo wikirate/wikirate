@@ -111,10 +111,15 @@ format :html do
           <input class="card-content form-control" type="hidden" value=""
                  name="card[subcards][+*metric type][content]"
                  id="card_subcards___metric_type_content">
+           <h4>Metric Type</h4>
+           <div class="help-block help-text">
+             <p>There are four "metric types."  Choose one to learn more</p>
+           </div>
           #{new_metric_tab_buttons}
         </div>
       </fieldset>
       <!-- Tab panes -->
+
       #{new_metric_tab_content}
       <script>
         $('input[name="intervaltype"]').click(function () {
@@ -130,14 +135,13 @@ format :html do
 
   def default_content_formgroup_args args
     args[:edit_fields] = { '+question' => { title: 'Question' },
-                           '+topic' => { title: 'Topic' },
-                           '+report_type' => { title: 'Report Type' } }
+                           '+topic' => { title: 'Topic' }}
   end
 
   def tab_radio_button id, active=false
     <<-HTML
     <li role="tab" class="pointer-radio #{'active' if active}">
-      <label data-target="##{tab_pane_id id}">
+      <label data-target="##{tab_pane_id id}" class="tab-primary">
         <input id="#{id}"
                name="intervaltype"
                value="#{id}"
@@ -148,7 +152,7 @@ format :html do
   end
 
   def new_metric_tab_buttons
-    wrap_with :ul, class: 'nav nav-tabs', role: 'tablist' do
+    wrap_with :ul, class: 'nav nav-pills grey-nav-tab', role: 'tablist' do
       %w(Researched Formula Score WikiRating).map.with_index do |metric_type, i|
         tab_radio_button metric_type, (i == 0)
       end
@@ -230,6 +234,8 @@ format :html do
   def metric_title_field options={}
     title = card.add_subfield :title, content: card.cardname.tag,
                                       type_id: PhraseID
+    title.reset_patterns
+    title.include_set_modules
     subformat(title)._render_edit_in_form(options.merge(title: 'Metric Title'))
   end
 end

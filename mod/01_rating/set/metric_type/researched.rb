@@ -10,6 +10,7 @@ format :html do
     super(args)
     args[:edit_fields]['+value type'] = { title: 'Value Type' }
     args[:edit_fields]['+research policy'] = { title: 'Research Policy' }
+    args[:edit_fields]['+report_type'] = { title: 'Report Type' }
   end
 
   def default_tabs_args args
