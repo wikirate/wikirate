@@ -1,4 +1,4 @@
-shared_examples_for 'changing type to numeric' do |new_type|  
+shared_examples_for 'changing type to numeric' do |new_type|
   let(:metric) { get_a_sample_metric }
   let(:company) { get_a_sample_company }
   before do

@@ -3,7 +3,7 @@ def all_numeric? metric_values
   metric_values.each do |_key, values|
     values.each do |mv|
       if !number?(mv['value']) && mv['value'].casecmp('unknown') != 0
-        return false 
+        return false
       end
     end
   end
