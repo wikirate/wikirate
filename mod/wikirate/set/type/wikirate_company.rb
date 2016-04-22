@@ -51,3 +51,10 @@ format :html do
     Card.search(type_id: MetricID, left: card.name, return: 'count') > 0
   end
 end
+
+
+def add_alias alias_name
+  alias_card = Card.fetch "#{name}+aliases",
+                          new: { type_id: Card::PointerID }
+  alias_card.insert_item! 0, alias_name
+end

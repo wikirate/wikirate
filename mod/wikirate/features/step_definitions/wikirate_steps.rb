@@ -97,3 +97,8 @@ end
 def fill_in_value value
   fill_in "card_subcards__value_content", with: value
 end
+
+When /^(?:|I )select "([^"]*)" from hidden "([^"]*)"$/ do |value, field|
+  # our select list is not a real select list. it is a hidden input
+  find(:xpath, "//input[@id='#{field}']", visible: false).set value
+end

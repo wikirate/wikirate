@@ -1,7 +1,7 @@
 format :html do
-  def fa_icon icon
+  def fa_icon icon, opts={}
     <<-HTML
-      <i class="fa fa-#{icon}"></i>
+      <i class="fa fa-#{icon} #{opts[:class]}"></i>
     HTML
   end
 end

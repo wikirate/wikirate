@@ -16,12 +16,16 @@ def basic_metric_card
   left
 end
 
-delegate :question_card, to: :basic_metric_card
+#delegate :question_card, to: :basic_metric_card
 
 def normalize_value value
   return 0 if value < 0
   return 10 if value > 10
   value
+end
+
+def value_type
+  'Number'
 end
 
 view :select do |_args|
@@ -49,7 +53,7 @@ format :html do
   #   HTML
   # end
 
-  def name_field form=nil, options={}
+  def new_name_field form=nil, options={}
     form ||= self.form
     option_names =
       Card.search type_id: MetricID,
@@ -69,13 +73,20 @@ format :html do
       #                          }
       #                        }
     options = [['-- Select --', '']] + option_names.map { |x| [x, x] }
+    help_text =
+      <<-HTML
+      <div class="help-block help-text">
+        <p>Metric name = [Scored Metric name]+[Your username]</p>
+      </div>
+      HTML
     editor_wrap :card do
       hidden_field_tag('card[subcards][+metric][content]',
                        option_names.first,
                        class: 'card-content') +
         select_tag('pointer_select',
                    options_for_select(options, option_names.first),
-                   class: 'pointer-select form-control')
+                   class: 'pointer-select form-control') +
+        help_text.html_safe
     end
     # subformat(name_card)._render_select
   end
@@ -86,10 +97,15 @@ format :html do
   end
 
   view :designer_info do |args|
+    card_link card.metric_designer_card.cardname.field('contribution'),
+              text: author_info(card.metric_designer_card, 'Designed by')
+
     wrap_each_with :div, class: 'metric-designer-info' do
       [
-        author_info(card.metric_designer_card, 'Designed by'),
-        author_info(card.scorer_card, 'Scored by')
+        card_link(card.metric_designer_card.cardname.field('contribution'),
+                  text: author_info(card.metric_designer_card, 'Designed by')),
+        card_link(card.scorer_card.cardname.field('contribution'),
+                  text: author_info(card.scorer_card, 'Scored by'))
       ]
     end
   end

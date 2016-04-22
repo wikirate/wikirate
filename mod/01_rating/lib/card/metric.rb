@@ -1,7 +1,8 @@
 class Card::Metric
   class ValueCreator
-    def initialize metric=nil, &values_block
+    def initialize metric=nil, random_source=false, &values_block
       @metric = metric
+      @random_source = random_source
       define_singleton_method(:add_values, values_block)
     end
 
@@ -12,10 +13,9 @@ class Card::Metric
       else
         args[:value] = value.to_s
       end
-      if @metric.metric_type_codename == :researched
-        args[:source] ||= get_a_sample_source
+      if @metric.metric_type_codename == :researched && @random_source
+        args[:source] ||= Card.search(type_id: Card::SourceID, limit: 1).first
       end
-
       @metric.create_value args
     end
 
@@ -40,7 +40,7 @@ class Card::Metric
     # value (like a source for example) you can assign a hash the year
     # @example
     # Metric.create name: 'Jedi+disturbances in the Force',
-    #               value_type: 'Categorical',
+    #               value_type: 'Category',
     #               value_options: ['yes', 'no'] do
     #   Death_Star 1977 => { value: 'yes', source: 'http://deathstar.com' },
     #              1999 => 'no'
@@ -55,15 +55,17 @@ class Card::Metric
     #   metric. Use a hash for a metric of 'categorical' value type to translate
     #   value options
     # @option opts [String] :value_type ('Number') if the
-    #    formula is a hash then it defaults to 'Categorical'
+    #   formula is a hash then it defaults to 'Category'
     # @option opts [Array] :value_options the options that you can choose of
-    # for a metric value
+    #   for a metric value
+    # @option opts [Boolean] :random_source (false) pick a random source for
+    #   each value
     def create opts, &block
       opts[:type] ||= :researched
       metric = Card.create! name: opts[:name],
                             type_id: Card::MetricID,
                             subcards: subcard_args(opts)
-      metric.create_values &block if block_given?
+      metric.create_values opts[:random_source], &block if block_given?
       metric
     end
 
@@ -77,7 +79,7 @@ class Card::Metric
       if opts[:formula]
         if opts[:formula].is_a?(Hash)
           opts[:formula] = opts[:formula].to_json
-          opts[:value_type] ||= 'Categorical'
+          opts[:value_type] ||= 'Category'
         end
 
         subcards['+formula'] = {

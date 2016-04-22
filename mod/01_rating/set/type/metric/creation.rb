@@ -11,51 +11,93 @@ end
 #   Siemens 2015 => 4, 2014 => 3
 #   Apple   2105 => 7
 # end
-def create_values &block
-  Card::Metric::ValueCreator.new(self, &block).add_values
+def create_values random_source=false, &block
+  Card::Metric::ValueCreator.new(self, random_source, &block).add_values
 end
 
-def create_value args
-  missing = [:company, :year, :value].reject { |v| args[v] }
-  if missing.present?
-    errors.add 'metric value', "missing #{missing.to_sentence}"
-    return
+def add_value_source_args args, source
+  case source
+  when String
+    args['+source'] = {
+      subcards: {
+        'new source' => {
+          '+Link' => {
+            content: source,
+            type_id: Card::PhraseID
+          }
+        }
+      }
+      # type_id: PointerID
+    }
+  when Hash
+    args['+source'] = source
+  when Card
+    args['+source'] = {
+      content: "[[#{source.name}]]",
+      type_id: Card::PointerID
+    }
   end
+end
+
+def valid_value_args? args
+  error_msg = []
+  metric_value_name =
+    args[:name] || begin
+      missing = [:company, :year, :value].reject { |v| args[v] }
+      error_msg += missing.map { |field| "missing #{field}" }
+      [name, args[:company], args[:year]].join '+'
+    end
+  if Card[metric_value_name.to_name.field(:value)]
+    error_msg << 'value already exists'
+  end
+  if metric_type_codename == :researched && !args[:source]
+    error_msg << 'missing source'
+  end
+  if error_msg.present?
+    error_msg.each do |msg|
+      errors.add 'metric value', msg
+    end
+    return false
+  end
+  true
+end
+
+def create_value_args args
+  return unless valid_value_args? args
+  value_name = [name, args[:company], args[:year]].join '+'
   create_args = {
-    name: "#{name}+#{args[:company]}+#{args[:year]}",
+    name: value_name,
     type_id: Card::MetricValueID,
     '+value' => {
       content: args[:value],
       type_id: (args[:value].is_a?(Integer) ? NumberID : PhraseID)
     }
   }
-  if metric_type_codename == :researched
-    case args[:source]
-    when String
-      create_args['+source'] = {
-        subcards: {
-          'new source' => {
-            '+Link' => {
-              content: args[:source],
-              type_id: Card::PhraseID
-            }
-          }
-        }
-        # type_id: PointerID
-      }
-    when Hash
-      create_args['+source'] = args[:source]
-    when Card
-      create_args['+source'] = {
-        content: "[[#{args[:source].name}]]",
-        type_id: Card::PointerID
-      }
-    else
-      errors.add 'metric value', 'missing source'
-      return
-    end
+  add_value_source_args create_args, args[:source]
+  create_args
+end
+
+# @param [Hash] args
+# @option args [String] :company
+# @option args [String] :year
+# @option args [String] :value
+# @option args [String] :source source url
+def create_value args
+  if (valid_args = create_value_args args)
+    Card.create! valid_args
+  else
+    raise "invalid value args: #{args}"
   end
-  Card.create! create_args
+end
+
+# The new metric form has a title and a designer field instead of a name field
+# We compose the card's name here
+event :set_metric_name, :initialize,
+      on: :create,
+      when: proc { |c| c.needs_name? } do
+  title = (tcard = remove_subfield(:title)) && tcard.content
+  designer = (dcard = remove_subfield(:designer)) && dcard.content
+  self.name = "#{designer}+#{title}"
 end
 
 format :html do
@@ -69,10 +111,15 @@ format :html do
           <input class="card-content form-control" type="hidden" value=""
                  name="card[subcards][+*metric type][content]"
                  id="card_subcards___metric_type_content">
+           <h4>Metric Type</h4>
+           <div class="help-block help-text">
+             <p>There are four "metric types."  Choose one to learn more</p>
+           </div>
           #{new_metric_tab_buttons}
         </div>
       </fieldset>
       <!-- Tab panes -->
+
       #{new_metric_tab_content}
       <script>
         $('input[name="intervaltype"]').click(function () {
@@ -88,13 +135,13 @@ format :html do
 
   def default_content_formgroup_args args
     args[:edit_fields] = { '+question' => { title: 'Question' },
-                           '+topic' => { title: 'Topic' } }
+                           '+topic' => { title: 'Topic' }}
   end
 
   def tab_radio_button id, active=false
     <<-HTML
     <li role="tab" class="pointer-radio #{'active' if active}">
-      <label data-target="##{tab_pane_id id}">
+      <label data-target="##{tab_pane_id id}" class="tab-primary">
         <input id="#{id}"
                name="intervaltype"
                value="#{id}"
@@ -105,7 +152,7 @@ format :html do
   end
 
   def new_metric_tab_buttons
-    wrap_with :ul, class: 'nav nav-tabs', role: 'tablist' do
+    wrap_with :ul, class: 'nav nav-pills grey-nav-tab', role: 'tablist' do
       %w(Researched Formula Score WikiRating).map.with_index do |metric_type, i|
         tab_radio_button metric_type, (i == 0)
       end
@@ -136,7 +183,7 @@ format :html do
     card_form :create, hidden: args.delete(:hidden),
                        'main-success' => 'REDIRECT' do
       output [
-        _render(:name_formgroup, args),
+        _render(:new_name_formgroup, args),
         _render(:content_formgroup, args),
         _render(:button_formgroup, args)
       ]
@@ -152,12 +199,12 @@ format :html do
     }
   end
 
-  view :name_formgroup do |args|
-    formgroup 'Metric Name', raw(name_field(form)), editor: 'name',
+  view :new_name_formgroup do |args|
+    formgroup 'Metric Name', raw(new_name_field(form)), editor: 'name',
                                                     help: args[:help]
   end
 
-  def name_field form=nil, options={}
+  def new_name_field form=nil, options={}
     form ||= self.form
     output [
       metric_designer_field(options),
@@ -179,13 +226,16 @@ format :html do
                                             type_id: PhraseID
     designer.reset_patterns
     designer.include_set_modules
-    nest designer, options.merge(view: :editor, title: 'Metric Designer')
+    subformat(designer)
+      ._render_edit_in_form(options.merge(title: 'Metric Designer'))
     # end
   end
 
-  def metric_title_field _options={}
+  def metric_title_field options={}
     title = card.add_subfield :title, content: card.cardname.tag,
                                       type_id: PhraseID
-    nest title, view: :editor, title: 'Metric Title'
+    title.reset_patterns
+    title.include_set_modules
+    subformat(title)._render_edit_in_form(options.merge(title: 'Metric Title'))
   end
 end

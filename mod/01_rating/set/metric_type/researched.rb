@@ -8,28 +8,44 @@ end
 format :html do
   def default_content_formgroup_args args
     super(args)
-    args[:edit_fields]['+value type'] = { title: 'Value Type'}
-    args[:edit_fields]['+research policy'] = { title: 'Research Policy'}
+    args[:edit_fields]['+value type'] = { title: 'Value Type' }
+    args[:edit_fields]['+research policy'] = { title: 'Research Policy' }
+    args[:edit_fields]['+report_type'] = { title: 'Report Type' }
   end
 
   def default_tabs_args args
     args[:tabs] = {
       'Details' => path(view: 'details_tab'),
-      'Sources' => path(view: 'source_tab'),
+      "#{fa_icon :globe} Sources" => path(view: 'source_tab'),
       "#{fa_icon :comment} Discussion" => path(view: 'discussion_tab'),
       'Scores' => path(view: 'scores_tab')
     }
     args[:default_tab] = 'Details'
   end
 
-  view :details_tab do
+  view :details_tab do |args|
     tab_wrap do
       [
-         nest(card.about_card, view: :titled, title: 'About'),
-         nest(card.methodology_card, view: :titled, title: 'Methodology'),
-         nest(card.value_type_card, view: :titled, item: :name,
-                                    title: 'Value Type')
+        _render_add_value_buttons(args),
+        nest(card.about_card, view: :titled, title: 'About'),
+        nest(card.methodology_card, view: :titled, title: 'Methodology'),
+        _render_value_type_detail(args),
+        nest(card.report_type_card, view: :titled, title: 'Report Type',
+                                    items: { view: :name }),
+        _render_import_button(args)
       ]
+    end
+  end
+
+  view :value_type_detail do
+    wrap do
+      <<-HTML
+        <div class="padding-bottom-10">
+          <div class="heading-content">Value Type </div>
+            #{_render_value_type_edit_modal_link}
+            #{_render_short_view}
+        </div>
+      HTML
     end
   end
 
@@ -61,37 +77,39 @@ format :html do
 
   view :content_left_col do |args|
     output [
-             _render_add_value_buttons(args),
-             _render_year_select(args),
-             _render_company_list(args)
-           ]
+      _render_year_select(args),
+      _render_company_list(args)
+    ]
   end
 
   def add_value_path
-    '/new/metric_value?layout=modal&slot[metric]=' +
-      _render_cgi_escape_name
+    '/new/metric_value?slot[metric]=' + _render_cgi_escape_name
   end
 
   view :add_value_buttons do |_args|
     <<-HTML
-    <div class="col-md-12 text-center">
-      <div class="btn-group" role="group" aria-label="...">
-      <a class="btn btn-default slotter"  href='#{add_value_path}'
-         data-toggle='modal' data-target='#modal-main-slot'>
-        #{fa_icon 'plus'}
-        Add new value
+    <div class="row padding-top-10">
+      <a class="btn btn-primary"  href='#{add_value_path}'>
+        #{fa_icon 'plus'} Add new value
       </a>
-      <a class="btn btn-default" href='/new/source?layout=wikirate%20layout'>
-        #{fa_icon 'arrow-circle-o-down'}
-        Import
-      </a>
-      <a class="btn btn-default slotter"
-         href='/import_metric_values?layout=modal'
-         data-toggle='modal' data-target='#modal-main-slot'>
-        Help <small>(how to)</small>
-      </a>
-      </div>
     </div>
+    HTML
+  end
+
+  view :import_button do
+    <<-HTML
+      <h5>Bulk Import</h5>
+        <div class="btn-group" role="group" aria-label="...">
+          <a class="btn btn-default btn-sm" href='/new/source?layout=wikirate%20layout'>
+            <span class="fa fa-arrow-circle-o-down"></span>
+            Import
+          </a>
+          <a class="btn btn-default btn-sm slotter"
+             href='/import_metric_values?layout=modal'
+             data-toggle='modal' data-target='#modal-main-slot'>
+            Help <small>(how to)</small>
+          </a>
+        </div>
     HTML
   end
 end

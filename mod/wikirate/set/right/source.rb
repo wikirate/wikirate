@@ -1,6 +1,14 @@
 format :html do
+  # def edit_args args
+  #  args[:structure] = 'source+*type+*Structure'
+  # end
   view :editor do |args|
+
+
     with_nest_mode :normal do
+
+      args[:structure] = 'metric value type edit structure'
+      render_
       %{
         <div class="source-editor nodblclick">
           #{ form.hidden_field :content, :class=>'card-content' }
@@ -12,8 +20,10 @@ format :html do
         </div>
       }
     end
+    # source = Card.new type_code: :source, name: 'new source'
+    # subformat(source)._render_content_formgroup(hide: '',
+    #                                               buttons: ''
+    #                                              )
+
   end
-
-
 end
-

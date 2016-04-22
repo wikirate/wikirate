@@ -28,6 +28,7 @@ def handle_source_box_source url
     if cite_card.type_code != :source
       errors.add :source, ' can only be source type or valid URL.'
     else
+      clear_subcards
       self.name = cite_card.name
       abort :success
     end
@@ -53,16 +54,14 @@ def duplication_check url
   end
 end
 
-event :process_source_url, :prepare_to_validate, after: :check_source,
+event :process_source_url, after: :check_source,
       on: :create do
   if !(link_card = subfield(:wikirate_link)) || link_card.content.empty?
     errors.add(:link, 'does not exist.')
     return
   end
   url = link_card.content
-  if Card::Env.params[:sourcebox] == 'true'
-    handle_source_box_source url
-  end
+  handle_source_box_source url if Card::Env.params[:sourcebox] == 'true'
   duplication_check url
   link_card.director.catch_up_to_stage :validate
   return if errors.present?
@@ -101,17 +100,19 @@ end
 def download_file_and_add_to_plus_file url
   url.gsub!(/ /, '%20')
   add_subfield :file, remote_file_url: url, type_id: FileID, content: 'dummy'
+  source_type = subfield(:source_type)
+  source_type.content = "[[#{Card[:file].name}]]"
   # remove_subfield :wikirate_link
 rescue  # if open raises errors , just treat the source as a normal source
   Rails.logger.info 'Fail to get the file from link'
 end
 
-def get_curl url
+def get_header url
   curl = Curl::Easy.new(url)
   curl.follow_location = true
   curl.max_redirects = 5
   curl.http_head
-  curl
+  curl.header_str
 end
 
 def max_size
@@ -121,12 +122,12 @@ end
 
 def file_type_and_size url
   # just got the header instead of downloading the whole file
-  curl = get_curl(url)
-  content_type = curl.head[/.*Content-Type: (.*)\r\n/, 1]
-  content_size = curl.head[/.*Content-Length: (.*)\r\n/, 1].to_i
+  header_str = get_header(url)
+  content_type = header_str[/.*Content-Type: (.*)\r\n/, 1]
+  content_size = header_str[/.*Content-Length: (.*)\r\n/, 1].to_i
   [content_type, content_size]
-rescue
-  Rails.logger.info "Fail to extract header from the #{url}"
+rescue => error
+  Rails.logger.info "Fail to extract header from the #{url}, #{error.message}"
   ['', '']
 end
 
@@ -143,9 +144,7 @@ def parse_source_page url
   # if preview.images.length > 0
   #   add_subcard '+image url', content: preview.images.first.src.to_s
   # end
-  unless subfield('title')
-    add_subcard '+title', content: preview.title
-  end
+  add_subcard '+title', content: preview.title unless subfield('title')
   return if subfield('Description')
   add_subcard '+description', content: preview.description
 rescue

@@ -13,12 +13,11 @@ gem 'wbench'
 gem 'curb'
 gem 'daemons'
 gem 'delayed_job_active_record'
-gem 'rubocop'
-gem 'rubocop-decko'
 
 # seems like newrelic should be in :live, but that wasn't working.
 # not sure why -efm
 gem 'newrelic_rpm'
+gem "airbrussh", :require => false
 
 group :live do
   gem 'therubyracer'
@@ -58,13 +57,17 @@ group :test do
 end
 
 group :development do
+  gem 'rubocop'
+  gem 'rubocop-rspec'
+
   gem 'rails-dev-tweaks'
   gem 'sprockets' # just so above works
 
-  gem 'capistrano', '3.2.1'  #note - ssh was breaking on 3.3.3
+  gem 'capistrano'
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
   gem 'capistrano-maintenance', require: false
+  gem 'capistrano-passenger'
 end
 
 group :test, :development do

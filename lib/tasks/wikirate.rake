@@ -24,13 +24,15 @@ namespace :wikirate do
       SharedData.add_wikirate_data
     end
 
-    def update_or_create name, attr
-      if attr['type'].in? ['Image', 'File']
+    def update_or_create name, _codename, attr
+      if attr['type'].in? %w(Image File)
         attr['content'] = ''
         attr['empty_ok'] = true
       end
       begin
-        if (card = Card.fetch(name))
+        # card = codename ? Card.fetch(codename.to_sym) : Card.fetch(name)
+        card = Card.fetch(name)
+        if card
           puts "updating card #{name} "\
                "#{card.update_attributes!(attr)}".light_blue
         else
@@ -78,7 +80,7 @@ namespace :wikirate do
           'wikirate.org'
         end
       url = "http://#{export_location}/production_export.json?export=true"
-      export = open(url, read_timeout: 50000).read
+      export = open(url, read_timeout: 50_000).read
       puts 'Done'.green
       JSON.parse(export)
     end
@@ -87,7 +89,7 @@ namespace :wikirate do
       puts 'importing data'.green
       Card::Auth.as_bot
       cards['card']['value'].each do |card|
-        update_or_create card['name'], card
+        update_or_create card['name'], card['codename'], card
       end
       puts 'Done'.green
     end
@@ -114,8 +116,8 @@ namespace :wikirate do
         insert_migration_records cards['migration_record']
         FileUtils.rm_rf(Dir.glob('tmp/*'))
         env = 'RAILS_ENV=test'
-        execute_command "#{env} rake wikirate:test:add_wikirate_test_data"
         execute_command "#{env} rake wagn:migrate"
+        execute_command "#{env} rake wikirate:test:add_wikirate_test_data"
         execute_command "#{env} rake wikirate:test:dump_test_db"
         puts 'Please pray'
       end
@@ -134,11 +136,12 @@ namespace :wikirate do
   task import_from_dev: :environment do
     if !ENV['name']
       puts "pass a name for the migration 'name=...'"
-    elsif ENV['name'].match /^(?:import)_(.*)(?:\.json)?/
+    elsif ENV['name'] =~ /^(?:import)_(.*)(?:\.json)?/
       require 'card/migration'
 
       export = open('http://dev.wikirate.org/export.json')
-      File.open(Card::Migration.data_path("#{$1}.json"), 'w') do |f|
+      path = Card::Migration.data_path("#{Regexp.last_match(1)}.json")
+      File.open(path, 'w') do |f|
         f.print export.read
       end
       system "bundle exec wagn generate card:migration #{ENV['name']}"
@@ -151,11 +154,12 @@ namespace :wikirate do
   task import_from_local: :environment do
     if !ENV['name']
       puts "pass a name for the migration 'name=...'"
-    elsif ENV['name'].match /^(?:import)_(.*)(?:\.json)?/
+    elsif ENV['name'] =~ /^(?:import)_(.*)(?:\.json)?/
       require 'card/migration'
       require 'generators/card'
       export_hash = Card['export'].format(format: :json).render_content
-      File.open(Card::Migration.data_path("#{$1}.json"), 'w') do |f|
+      path = Card::Migration.data_path("#{Regexp.last_match(1)}.json")
+      File.open(path, 'w') do |f|
         f.print JSON.pretty_generate(export_hash)
       end
       system "bundle exec wagn generate card:migration #{ENV['name']}"
@@ -164,23 +168,44 @@ namespace :wikirate do
     end
   end
 
+  desc 'create folders and files for scripts or styles'
+  task add_codefile: :environment do
+    with_params(:mod, :name, :type) do |mod, name, type|
+      create_content_file mod, name, type
+      create_rb_file mod, name
+      create_migration_file name, type
+    end
+  end
+
+  desc 'create folders and files for stylesheet'
+  task add_stylesheet: :environment do
+    ENV['type'] ||= 'scss'
+    Rake::Task['wikirate:add_codefile'].invoke
+  end
+
+  desc 'create folders and files for script'
+  task add_script: :environment do
+    ENV['type'] ||= 'CoffeeScript'
+    Rake::Task['wikirate:add_codefile'].invoke
+  end
+
   desc 'test the performance for a list of pages'
   task benchmark: :environment do
     def wbench_results_to_html results
       list = ''
       results.browser.each do |key, value|
-        list += %{
+        list += %(
                 <li class="list-group-item">
                   <span class="badge">#{value}</span>
                   #{key}
                 </li>
-              }
+              )
       end
-      %{
+      %(
         <ul class="list-group">
           #{list}
         </ul>
-      }
+      )
     end
 
     # host = 'http://dev.wikirate.org'
@@ -273,4 +298,91 @@ namespace :wikirate do
       Card.empty_trash
     end
   end
+end
+
+def with_params *keys
+  return unless parameters_present?(*keys)
+  values = keys.map { |k| ENV[k.to_s] }
+  yield(*values)
+end
+
+def parameters_present? *env_keys
+  missing = env_keys.select { |k| !ENV[k.to_s] }
+  return true if missing.empty?
+  missing.each do |key|
+    color_puts 'missing parameter:', :red, key
+  end
+  false
+end
+
+def color_puts colored_text, color, text=''
+  puts "#{colored_text.send(color.to_s)} #{text}"
+end
+
+def write_at fname, at_line, sdat
+  open(fname, 'r+') do |f|
+    (at_line - 1).times do    # read up to the line you want to write after
+      f.readline
+    end
+    pos = f.pos               # save your position in the file
+    rest = f.read             # save the rest of the file
+    f.seek pos                # go back to the old position
+    f.puts sdat          # write new data & rest of file
+    f.puts rest
+    color_puts 'created', :green, fname
+  end
+end
+
+def write_to_mod mod, relative_dir, filename
+  mod_dir = File.join 'mod', mod
+  dir = File.join mod_dir, relative_dir
+  path = File.join dir, filename
+  Dir.mkdir(dir) unless Dir.exist?(dir)
+  if File.exist?(path)
+    color_puts 'file exists', :yellow,  path
+  else
+    File.open(path, 'w') do |opened_file|
+      yield(opened_file)
+      color_puts 'created', :green, path
+    end
+  end
+end
+
+def create_content_file mod, name, type
+  dir = case type.downcase
+        when 'js', 'coffeescript' then 'javascript'
+        when 'css', 'scss' then 'stylesheets'
+        end
+  file_ext = type == 'coffeescript' ? '.js.coffee' : '.' + type
+  content_dir = File.join 'lib', dir
+  content_file = name + file_ext
+  write_to_mod(mod, content_dir, content_file) do |f|
+    content = (card = Card.fetch(name)) ? card.content : ''
+    f.puts content
+  end
+end
+
+def create_rb_file mod, name
+  self_dir = File.join 'set', 'self'
+  self_file = name + '.rb'
+  write_to_mod(mod, self_dir, self_file) do |f|
+    f.puts('include_set Abstract::CodeFile')
+  end
+end
+
+def create_migration_file name, type
+  puts 'creating migration file...'.yellow
+  migration_out = `bundle exec wagn generate card:migration #{name}`
+  migration_file = migration_out[/db.*/]
+  unless (type_id = Card.fetch_id(type))
+    color_puts 'invalid type', :red, type
+    return
+  end
+  codename_string =
+    <<-RUBY
+    create_or_update name: '#{Card.fetch(name).name}',
+                     type_id: #{type_id},
+                     codename: '#{name}'
+    RUBY
+  write_at(migration_file, 5, codename_string) # 5 is line no.
 end

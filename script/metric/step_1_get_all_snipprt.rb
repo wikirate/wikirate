@@ -14,7 +14,7 @@ for i in 1..5
   
   puts "\r"
   puts i
-  uri = URI.parse("http://160.40.51.30:8080/WikiRateAPI/Snippets?perPageDocs=10000&page=#{i}")
+  uri = URI.parse("http://160.40.51.30:8080/WikiRateAPI_NEW/Snippets?perPageDocs=10000&page=#{i}")
   response = Net::HTTP.get_response(uri)
   snippet = response.body
   break if snippet=="[]"

@@ -1,16 +1,16 @@
 include Type::Pointer
+include Abstract::Variable
 
 def metric_card
-  binding.pry
-  left.left
+  left
 end
 
 def metric_card_name
-  cardname.left_name.left_name
+  cardname.left_name
 end
 
 def formula_card
-  left
+  metric_card.fetch trait: :formula
 end
 
 def extract_metrics_from_formula
@@ -22,15 +22,13 @@ end
 def input_metric_name variable
   index = if variable.is_a?(Integer)
             variable
-          elsif variable.to_s =~ /M?(\d+)/
-            $1.to_i
+          elsif variable_name? variable
+            variable_index variable
           end
   input_metric_name_by_index index if index
 end
 
-def to_variable_name index
-  "M#{index}"
-end
+
 
 def input_metric_name_by_index index
   item_cards.fetch(index, nil).name
@@ -65,20 +63,21 @@ format :html do
     ]
   end
 
-  view :editor do |args|
+  view :edit do |args|
+    frame args do
     render_haml metric_list: metric_list do
       <<-HAML
-.container-fluid.nodblclick
-  .row.yinyang
-    .row.yinyang-row
-      .col-md-6
-        .header-row
-          .header-header
-            Metric
-        .yinyang_list
-          = metric_list
-      .col-md-6.metric-details
+.yinyang.nodblclick
+  .row.yinyang-row
+    .col-md-6
+      .header-row
+        .header-header
+          Metric
+      .yinyang-list
+        = metric_list
+    .col-md-6.metric-details
       HAML
+    end
     end
   end
 
@@ -88,7 +87,7 @@ format :html do
   end
 
   def metric_list
-    Card.search(type_id: MetricID, limit: 20).map do |m|
+    Card.search(type_id: MetricID, limit: 0).map do |m|
       metric_list_item m
     end.join "\n"
   end

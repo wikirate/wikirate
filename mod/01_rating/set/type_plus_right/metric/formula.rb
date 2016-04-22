@@ -1,4 +1,4 @@
-card_accessor :variables, type_id: Card::SessionID
+include Abstract::Variable
 
 WL_FORMULA_WHITELIST = ::Set.new ['Boole']
 
@@ -40,34 +40,58 @@ def translation_hash
   return {} unless content.present?
   JSON.parse(content)
 rescue JSON::ParserError => _e
-  fail Card::Error, 'fail to parse formula for categorical input'
+  content = '{}'
+  return {}
+  #fail Card::Error, 'fail to parse formula for categorical input'
 end
 
 def complete_translation_table
   translation = translation_table
-  if (all_options = metric_card.value_options)
-    missing_options = translation.map { |opt, _val| all_options.delete opt }
+  all_options = if score?
+                  metric_card.basic_metric_card.value_options
+                else
+                  metric_card.value_options
+                end
+  if all_options
+    missing_options = all_options - translation_hash.keys
     translation += missing_options.map { |opt| [opt, ''] }
   end
   translation
 end
 
 def variables_card
-  fetch trait: :variables,
-        new: {
-          type: 'session',
-          content: input_metrics.to_pointer_content
-        }
+  v_card = metric_card.fetch trait: :variables, new: { type: 'session' }
+  if v_card.content.blank?
+    v_card.content = input_metrics.to_pointer_content
+  end
+  v_card
 end
 
 format :html do
+  def default_new_args args
+    super(args)
+    args[:hidden] = { success: { id:  card.cardname.left } }
+    args[:form_opts] = {
+      'data-slot-selector' => '.card-slot.TYPE-metric'
+    }
+  end
+
+  def default_edit_args args
+    super(args)
+    args[:hidden] = { success: { id:  card.cardname.left } }
+    args[:form_opts] = {
+      'data-slot-selector' => '.card-slot.TYPE-metric'
+    }
+  end
+
   view :editor do |args|
     return _render_rating_editor(args) if card.wiki_rating?
     return _render_categorical_editor(args) if card.categorical?
+    return super(args) if card.score?
     output [
       super(args),
       _render_variables(args),
-      (add_metric_button unless card.score?)
+      add_metric_button
     ]
   end
 
@@ -80,42 +104,22 @@ format :html do
   end
 
   def add_metric_button
-    target = '#modal-main-slot'
+    target = '#modal-add-metric-slot'
     # "#modal-#{card.cardname.safe_key}"
-    content_tag :span, class: 'input-group' do
-      button_tag class: 'pointer-item-add btn btn-default slotter',
-                 type: 'button',
-                 data: { toggle: 'modal', target: target },
-                 href: path(layout: 'modal', view: :edit,
-                            name: card.variables_card.name,
-                            slot: {title: 'Choose Metric'}) do
-        glyphicon('plus') + ' add metric'
-      end
-    end
-  end
-
-  view :rating_editor do |args|
-    table_content = card.translation_table.map do |metric, weight|
-      with_nest_mode :normal do
-        subformat(metric)._render_weight_row(args.merge(weight: weight))
-      end
-    end
-    sum_field =
-      if table_content.empty?
-        { content: sum_field, class: 'hidden' }
-      else
-        sum_field
-      end
-    table_content.push ['', sum_field]
     output [
-      table_editor(table_content, %w(Metric Weight)),
-      add_metric_button
+      (content_tag :span, class: 'input-group' do
+        button_tag class: 'pointer-item-add btn btn-default slotter',
+                   type: 'button',
+                   data: { toggle: 'modal', target: target },
+                   href: path(layout: 'modal', view: :edit,
+                              name: card.variables_card.name,
+                              slot: {title: 'Choose Metric'}) do
+          glyphicon('plus') + ' add metric'
+        end
+      end),
+      _render_modal_slot(modal_id: 'add-metric-slot',
+                         dialog_class: 'large').html_safe
     ]
-  end
-
-
-  def sum_field value=100
-    text_field_tag 'weight_sum', value, class: 'weight-sum', disabled: true
   end
 
   view :categorical_editor do |_args|
@@ -138,13 +142,6 @@ format :html do
     "= #{super(args)}"
   end
 
-  view :rating_core do |args|
-    table_content =
-      card.translation_table.map do |metric, weight|
-        [subformat(metric)._render_thumbnail(args), weight]
-      end
-    table table_content, header: %w(Metric Weight)
-  end
 
   view :categorical_core do |_args|
     table card.translation_table, header: %w(Metric Weight)
@@ -155,7 +152,7 @@ format :html do
   end
 end
 
-event :validate_cateogory_translation, :validate,
+event :validate_category_translation, :validate,
       when: proc { |c| c.translate_formula? } do
   # TODO: Check if there is a translation for all value options
 end
@@ -163,39 +160,64 @@ end
 event :validate_formula, :validate,
       when: proc { |c| c.wolfram_formula? } do
   not_on_whitelist =
-    content.gsub(/\{\{([^}])+\}\}/, '').scan(/[a-zA-Z][a-zA-Z]+/)
-           .reject do |word|
-f    end
+    content.gsub(/\{\{([^}])+\}\}/, '').gsub(/"[^"]+"/,'')
+      .scan(/[a-zA-Z][a-zA-Z]+/).reject do |word|
+      WL_FORMULA_WHITELIST.include? word
+    end
   if not_on_whitelist.present?
     errors.add :formula, "#{not_on_whitelist.first} forbidden keyword"
   end
 end
 
 # don't update if it's part of scored metric update
-event :update_scores_for_formula, :prepare_to_store,
-      on: :update, when: proc { |c| !c.supercard } do
-  add_subcard left
-  left.update_values
+event :update_metric_values, :prepare_to_store,
+      on: :update, changed: :content do
+  metric_card.value_cards.each do |value_card|
+    value_card.trash = true
+    add_subcard value_card
+  end
+  calculate_all_values do |company, year, value|
+    metric_value_name = metric_card.metric_value_name(company, year)
+    next if subcard metric_value_name
+    if (card = subcard "#{metric_value_name}+value")
+      card.trash = false
+      card.content = value
+    else
+      add_value company, year, value
+    end
+  end
 end
 
 # don't update if it's part of scored metric create
-event :create_scores_for_formula, :prepare_to_store,
-      on: :create, when: proc { |c| !c.supercard } do
-  add_subcard left
-  left.create_values
+event :create_metric_values, :prepare_to_store,
+      on: :create, changed: :content, when: proc { |c| c.content.present? }  do
+  # reload set modules seems to be no longer necessary
+  # it used to happen at this point that left has type metric but
+  # set_names includes "Basic+formula+*type plus right"
+  # reset_patterns
+  # include_set_modules
+  calculate_all_values do |company, year, value|
+    add_value company, year, value
+  end
+end
+
+def add_value company, year, value
+  add_subcard metric_card.metric_value_name(company, year),
+               type_id: MetricValueID,
+               subcards: {
+                 '+value' => { type_id: NumberID, content: value }
+               }
 end
 
 event :replace_variables, :prepare_to_validate,
       on: :save, changed: :content do
   format.each_nested_chunk do |chunk|
+    next unless variable_name?(chunk.referee_name)
     metric_name = variables_card.input_metric_name chunk.referee_name
     content.gsub! chunk.referee_name.to_s, metric_name if metric_name
   end
 end
 
-def variable_name? v_name
-  v_name =~ /M\d+/
-end
 
 event :validate_formula_input, :validate,
       on: :save, changed: :content do
@@ -230,7 +252,10 @@ def calculate_values_for opts={}
   metrics_with_values_by_year = values[opts[:company]].each_pair
   value = formula_interpreter.evaluate_single_input
   year, metrics_with_values_by_year
-  yield year, value
+  end
+  if opts[:year] && values.empty?
+    yield opts[:year], nil
+  end
 end
 
 def keyified
@@ -261,7 +286,7 @@ def ruby_formula?
 end
 
 def translate_formula?
-  content =~ /^\{[^{}]+\}$/
+  content =~ /^\{[^{}]*\}$/
 end
 
 def wolfram_formula?
@@ -323,11 +348,8 @@ def value_cards_query opts={}
     left_left[:left] = { name: ['in'] + Array.wrap(opts[:metrics]) }
   end
   left_left[:right] = { name: opts[:company] } if opts[:company]
-  {
-    right: 'value',
-    left: {
-      left: left_left,
-      right: opts[:year] || { type: 'year' }
-    }
-  }
+  query = { right: 'value', left: { type_id: MetricValueID } }
+  query[:left][:left] = left_left if left_left.present?
+  query[:left][:right] = opts[:year] if opts[:year]
+  query
 end
