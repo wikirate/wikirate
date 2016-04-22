@@ -2,7 +2,9 @@
 def all_numeric? metric_values
   metric_values.each do |_key, values|
     values.each do |mv|
-      return false unless number?(mv['value'])
+      if !number?(mv['value']) && mv['value'].casecmp('unknown') != 0
+        return false 
+      end
     end
   end
   true
@@ -13,7 +15,10 @@ def all_values_in_options? metric_values, options_card
                                     context: :raw
   metric_values.each do |_key, values|
     values.each do |mv|
-      return false unless options.include?(mv['value'].downcase)
+      if !options.include?(mv['value'].downcase) &&
+         mv['value'].casecmp('unknown') != 0
+        return false
+      end
     end
   end
   true
@@ -25,7 +30,7 @@ def show_category_option_errors options_card
     <<-HTML
       <a href='#{url}' target="_blank">add the values to options card</a>
     HTML
-  errors.add :invalid_value, "Please #{anchor} first"
+  errors.add :value, "Please #{anchor} first"
 end
 
 def related_values
@@ -43,7 +48,7 @@ event :validate_existing_values_type, :validate, on: :save do
   case type
   when 'Number', 'Money'
     unless all_numeric?(mv)
-      errors.add :invalid_value, 'Please check if all values are in number type'
+      errors.add :value, 'Please check if all values are in number type'
     end
   when 'Category'
     options_card = Card.fetch "#{metric_name}+value_options", new: {}

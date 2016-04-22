@@ -3,7 +3,6 @@ require File.expand_path('../../wikirate_import_shared', __FILE__)
 
 require 'colorize'
 require 'json'
-require 'byebug'
 require 'rubygems'
 require 'csv'
 
