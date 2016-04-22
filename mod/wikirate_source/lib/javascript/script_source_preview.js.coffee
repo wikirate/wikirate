@@ -48,11 +48,5 @@ $(document).ready ->
     url = $('#source_url').html()
     if url
       testSameOrigin url, pageName
-<<<<<<< HEAD
-    resizeIframe()
-    # $('[data-target="#tab_claims"]').trigger 'click'
-  return
-=======
     resizeIframe($('body'))
     $('[data-target="#tab_claims"]').trigger 'click'
->>>>>>> 023cfd834fb5680e825f1dda6a1a77c722ba63ba
