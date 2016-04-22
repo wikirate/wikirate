@@ -7,7 +7,9 @@
       if pageN != ''
         #locally
         #Page_000001545?view=content&slot[structure]=source%20item%20preview
-        $.ajax('/' + pageN + '?view=content&slot[structure]=source_item_preview').done((noteFormHtml) ->
+        load_path = '/' + pageN +
+          '?view=content&slot[structure]=source_item_preview'
+        $.ajax(load_path).done((noteFormHtml) ->
           $redirectNotice.append noteFormHtml
           $redirectNotice.trigger 'slotReady'
           return
@@ -46,5 +48,5 @@ wagn.slotReady (slot) ->
     if url
       testSameOrigin url, pageName
     resizeIframe()
-    $('[data-target="#tab_claims"]').trigger 'click'
+    # $('[data-target="#tab_claims"]').trigger 'click'
   return

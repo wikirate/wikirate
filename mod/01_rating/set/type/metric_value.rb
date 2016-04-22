@@ -170,11 +170,34 @@ def add_source_subcard new_source_card
   source_card
 end
 
+def report_type
+  metric_card.fetch trait: :report_type
+end
+
+def add_report_type source_name
+  if report_type
+    report_names = report_type.item_names
+    source_card = Card.fetch(source_name).fetch trait: :report_type, new: {}
+    report_names.each do |report_name|
+      source_card.add_item! report_name
+    end
+  end
+end
+
+def add_company source_name
+  source_card = Card.fetch(source_name).fetch trait: :wikirate_company, new: {}
+  source_card.add_item! company_name
+end
+
 def process_sources source_list
   source_names = source_list.item_names
   source_names.each do |source_name|
-    next if  Card.exists? source_name
-    errors.add :source, "#{source_name} does not exist."
+    if  Card.exists? source_name
+      add_report_type source_name
+      add_company source_name
+    else
+      errors.add :source, "#{source_name} does not exist."
+    end
   end
 
   if (new_source_subcard = source_list.detach_subcard('new_source'))
@@ -406,6 +429,8 @@ format :html do
       args[:hidden]['card[subcards][+source][content]'] = args[:source]
     end
     args[:title] = "Add new value for #{args[:metric]}" if args[:metric]
+    args[:buttons] = submit_button(class: 'create-submit-button',
+                                   data: { disable_with: 'Adding' })
     super(args)
   end
 
@@ -428,7 +453,7 @@ format :html do
       <span class="metric-unit">
         #{currency}
       </span>
-      #{_render_modal_details(args)}
+      #{_render_metric_details}
       <span class="metric-unit">
         #{legend(args)}
       </span>
@@ -444,23 +469,31 @@ format :html do
     end
   end
 
+  view :metric_details do
+    span_args = { class: 'metric-value' }
+    add_class span_args, grade if card.scored?
+    wrap_with :span, span_args do
+      fetch_value.html_safe
+    end
+  end
+
+  def fetch_value
+    if (value_type = card.metric_card.fetch trait: :value_type) &&
+       %w(Number Money).include?(value_type.item_names[0])
+      big_number = BigDecimal.new(card.value)
+      number_to_human(big_number)
+    else
+      card.value
+    end
+  end
+
   view :modal_details do |args|
     span_args = { class: 'metric-value' }
     add_class span_args, grade if card.scored?
-    show_value =
-      if (value_type = card.metric_card.fetch trait: :value_type) &&
-         %w(Number Money).include?(value_type.item_names[0])
-        big_number = BigDecimal.new(card.value)
-        number_to_human(big_number)
-      else
-        card.value
-
-      end
-
     wrap_with :span, span_args do
       subformat(card)._render_modal_link(
         args.merge(
-          text: show_value,
+          text: fetch_value,
           path_opts: { slot: { show: :menu, optional_horizontal_menu: :hide } },
           html_args: {
             'data-complete-number' => card.value,
