@@ -57,7 +57,7 @@ $(document).ready ->
     $source_target.append($loader_anime)
     $.get(load_path, ((data) ->
       $source_target.prepend(data)
-      resizeIframe()
+      resizeIframe($source_target)
       $source_target.find(".loader-anime").remove()
       return
     ), 'html').fail((xhr,d,e) ->
@@ -275,4 +275,4 @@ wagn.slotReady (slot) ->
   add_val_form = slot.find('.timeline-row .card-slot>form').is(':visible')
   if add_val_form then slot.find('._add_new_value').hide()
   else slot.find('._add_new_value').show()
-  resizeIframe()
+  resizeIframe(slot)

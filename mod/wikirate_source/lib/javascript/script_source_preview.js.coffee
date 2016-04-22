@@ -10,6 +10,7 @@
         load_path = '/' + pageN +
           '?view=content&slot[structure]=source_item_preview'
         $.ajax(load_path).done((noteFormHtml) ->
+
           $redirectNotice.append noteFormHtml
           $redirectNotice.trigger 'slotReady'
           return
@@ -23,12 +24,12 @@
     return
   return
 
-@resizeIframe = ->
-  $('.webpage-preview').height $(window).height() - $('.navbar').height() - 1
+@resizeIframe = (slot) ->
+  height = $(window).height() - $('.navbar').height() - 1
+  slot.find('.webpage-preview').height height
   return
 
-
-wagn.slotReady (slot) ->
+$(document).ready ->
   if $('body').attr('id') == 'source-preview-page-layout'
     # closeTabContent()
     $('[data-toggle="source_preview_tab_ajax"]').click (e) ->
@@ -47,6 +48,11 @@ wagn.slotReady (slot) ->
     url = $('#source_url').html()
     if url
       testSameOrigin url, pageName
+<<<<<<< HEAD
     resizeIframe()
     # $('[data-target="#tab_claims"]').trigger 'click'
   return
+=======
+    resizeIframe($('body'))
+    $('[data-target="#tab_claims"]').trigger 'click'
+>>>>>>> 023cfd834fb5680e825f1dda6a1a77c722ba63ba

@@ -255,7 +255,7 @@ format :html do
     checked = %w(partial exact alias).include? row_hash[:status]
     key_hash = row_hash.deep_dup
     key_hash[:company] =
-      if row_hash[:status] == :none
+      if row_hash[:status] == 'none'
         row_hash[:file_company]
       else
         row_hash[:wikirate_company]
