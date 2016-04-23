@@ -60,7 +60,7 @@ describe Card::Set::TypePlusRight::Metric::ValueType do
       end
       context 'all values are in the options' do
         it 'updates the value type successfully' do
-          options_card = Card.fetch "#{@metric.name}+value options", new: {}
+          options_card = @metric.fetch trait: :value_options, new: {}
           options_card.content = '[[65535]]'
           options_card.save!
           @metric.update_attributes! subcards: {

@@ -12,7 +12,7 @@ class AddSourcefileType < Card::Migration
     Card.create! :name=>'Source file+metric+*type plus right+*options', :type=>'search', :content=>'{"type":"metric"}'
     Card.create! :name=>'Source file+metric+*type plus right+*input',  :content=>'[[select]]'
     
-    year = Card.fetch "year"
+    year = Card.fetch 'year'
     year.update_attributes! :codename=>'year'
     Card.create! :name=>'Source file+year*type plus right+*default', :type=>'pointer'
     Card.create! :name=>'Source file+year*type plus right+*options', :type=>'search', :content=>'{"type":"year"}'

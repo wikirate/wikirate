@@ -220,7 +220,7 @@ format :html do
       # 2) add "yinyang drag item" on the right
       # this way we can make sure that the card always exists with a
       # "yinyang drag item+*right" structure
-      Card.fetch "#{main_name}+#{item_name}+yinyang drag item"
+      Card.fetch main_name, item_name, 'yinyang drag item'
     end
   end
 

@@ -8,7 +8,7 @@ include Card::CachedCount
 
 def self.notes_for_analyses_applicable_to(source)
   source.analysis_names.map do |analysis_name|
-    Card.fetch "#{analysis_name}+#{Card[:source].name}"
+    Card.fetch analysis_name, :source
   end
 end
 

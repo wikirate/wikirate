@@ -9,7 +9,7 @@ describe Card::Set::Right::TypeSearch do
                      '+company' => { content: "[[#{company.name}]]" },
                      '+topic'   => { content: "[[#{topic.name}]]"   }
 
-        type_search_card = Card.fetch "#{topic.name}+company+type_search"
+        type_search_card = topic.fetch trait: [:wikirate_company, :type_search]
         html = type_search_card.format.render_filter_and_sort
 
         expect(html).to have_tag('div', with: { class: 'yinyang-list' }) do
@@ -25,7 +25,7 @@ describe Card::Set::Right::TypeSearch do
       it 'show filter_and_sort items' do
         # default sample metric is free text
         metric = get_a_sample_metric
-        type_search_card = Card.fetch "#{metric.name}+company+type_search"
+        type_search_card = metric.fetch trait: [:wikirate_company, :type_search]
         html = type_search_card.format.render_filter_and_sort
         id = 'Jedi+Sith_Lord_in_Charge+Death_Star+yinyang_drag_item'
         expect(html).to have_tag('div', with: { class: 'yinyang-list' }) do

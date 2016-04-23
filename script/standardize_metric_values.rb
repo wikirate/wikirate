@@ -120,7 +120,7 @@ def normalize_content mv, value_type
 end
 
 def update_unit metric, unit
-  unit_card = Card.fetch "#{metric.name}+unit", new: {}
+  unit_card = metric.fetch trait: :unit, new: {}
   return if unit_card.content.include?(unit)
   puts "Updating #{unit_card.name} from #{unit_card.content} to #{unit}".green
   unit_card.content = unit
@@ -129,10 +129,10 @@ end
 
 def update_ratio_metric_info
   mn = 'PayScale+CEO to Worker pay'
-  mvt = Card.fetch "#{mn}+value_type", new: {}
+  mvt = Card.fetch mn, :value_type, new: {}
   mvt.content = '[[Number]]'
   mvt.save!
-  mu = Card.fetch "#{mn}+unit", new: {}
+  mu = Card.fetch mn, :unit, new: {}
   mu.content = ':01'
   mu.save!
 end
@@ -162,12 +162,11 @@ def convert_monetary_metric_unit
                                  return: 'name'
   # update's its value type and the currency
   metric_with_unit.each do |metric|
-    name = "#{metric}+value_type"
-    metric_value_type = Card.fetch name, new: {}
+    metric_value_type = Card.fetch metric, :value_type, new: {}
     metric_value_type.content = '[[Money]]'
     metric_value_type.save!
 
-    metric_currency = Card.fetch "#{metric}+Currency", new: {}
+    metric_currency = Card.fetch metric, :currency, new: {}
     metric_currency.content = '$'
     metric_currency.save!
 
@@ -238,7 +237,7 @@ def update_options metrics
   metrics.each do |m|
     metric_values = metric_values m.name
     options = extract_options metric_values
-    option_card = Card.fetch "#{m.name}+value options", new: {}
+    option_card = m.fetch trait: :value_options", new: {}
     option_card.content = options.join('')
     puts "Saving #{option_card.name} as #{option_card.content}".green
     option_card.save!

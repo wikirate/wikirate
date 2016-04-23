@@ -2,7 +2,7 @@
 
 describe Card::Set::TypePlusRight::WikirateCompany::Source do
   it 'updates cached count' do
-    samsung_sources = Card.fetch "Samsung+source"
+    samsung_sources = Card.fetch 'Samsung', :wikirate_source
     expect(samsung_sources.cached_count).to eq 0
     source = get_a_sample_source
     company_list = source.fetch trait: :wikirate_company, new: {}
