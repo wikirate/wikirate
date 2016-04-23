@@ -249,9 +249,10 @@ def calculate_values_for opts={}
     fail Card::Error, '#calculate_values_for: no company given'
   end
   values = fetch_input_values opts
-  metrics_with_values_by_year = values[opts[:company]].each_pair
-  value = formula_interpreter.evaluate_single_input
-  year, metrics_with_values_by_year
+  values.each_pair do |year, companies|
+    metrics_with_values = companies[opts[:company].to_name.key]
+    value = formula_interpreter.evaluate_single_input metrics_with_values
+    yield year, value
   end
   if opts[:year] && values.empty?
     yield opts[:year], nil

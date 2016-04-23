@@ -20,16 +20,69 @@ describe Card::Set::MetricType::Formula do
     )
   end
 
- describe 'formula with year reference' do
-    it 'handles fixed year' do
-      @metric = create_metric(
-        name: 'rating1', type: :formula,
-        formula: '{{Joe User+score1|year:2014}}}*2'
-      )
-      value_card = Card["#{@metric.name}+Samsung+2015+value"]
-      expect(value_card.content).to eq '20'
+  describe 'formula with year reference' do
+    subject { Card["#{metric.name}+Samsung+2015+value"].content}
+
+    context 'single year' do
+      let(:metric) do
+        create_metric(
+          name: 'rating1', type: :formula,
+          formula: "{{ Joe User+score1|year:#{@year_expr} }}*2"
+        )
+      end
+
+      it 'fixed year' do
+        @year_expr = '2014'
+        is_expected.to eq '10'
+      end
+      it 'relative year' do
+        @year_expr = '-2'
+        is_expected.to eq '15'
+      end
+      it 'current year' do
+        @year_expr = '0'
+        is_expected.to eq '20'
+      end
+    end
+
+    context 'sum of' do
+      let(:metric) do
+        create_metric(
+          name: 'rating1', type: :formula,
+          formula: "Sum[{{Joe User+score1|year:#{@year_expr}}}]}*2"
+        )
+      end
+
+      it 'relative range' do
+        @year_expr = '-3..-1'
+        is_expect.to eq '20'
+      end
+      it 'relative range with 0' do
+        @year_expr = '-3..0'
+        is_expect.to eq '20'
+      end
+      it 'relative range with ?' do
+        @year_expr = '-3..?'
+        is_expect.to eq '20'
+      end
+      it 'fixed range' do
+        @year_expr = '2012..2013'
+      end
+      it 'fixed start' do
+        @year_expr = '2012..0'
+      end
+      it 'list of years' do
+        @year_expr = '2012, 2014'
+      end
     end
   end
+
+  # -5..0
+  # -3..0
+  # 2000..?
+  #   2000..2010
+  # 2000..0
+  # 2010, 2012, 2014
   describe 'basic properties' do
     before do
       @name = 'Jedi+friendliness'
