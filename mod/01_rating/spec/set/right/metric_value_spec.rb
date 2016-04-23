@@ -23,7 +23,7 @@ describe Card::Set::Right::MetricValue do
                       } } } }
       @metric_value = Card.create! type_id: Card::MetricValueID,
                                    subcards: subcards
-      @card = Card.fetch "#{@metric.name}+#{@company.name}+metric_value"
+      @card = Card.fetch @metric, @company, :metric_value
     end
 
     context 'timeline' do

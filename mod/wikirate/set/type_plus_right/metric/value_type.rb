@@ -46,7 +46,7 @@ event :validate_existing_values_type, :validate, on: :save do
       errors.add :invalid_value, 'Please check if all values are in number type'
     end
   when 'Category'
-    options_card = Card.fetch "#{metric_name}+value_options", new: {}
+    options_card = Card.fetch metric_name, :value_options, new: {}
     if (!mv.empty? && options_card.new?) ||
        !all_values_in_options?(mv, options_card)
       show_category_option_errors options_card

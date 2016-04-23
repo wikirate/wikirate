@@ -50,7 +50,7 @@ describe Card::Set::Right::NovoteeSearch do
       end
 
       metric_novotee_search_card =
-        Card.fetch "#{@company.name}+metric+novotee search"
+        @company.fetch trait: [:metric, :novotee_search]
       search_result =
         metric_novotee_search_card.format.list_with_no_session_votes
       expect(search_result).to include(@metrics[0].name)
