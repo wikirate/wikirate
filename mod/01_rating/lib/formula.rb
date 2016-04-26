@@ -25,6 +25,7 @@ class Formula
     result
   end
 
+
   # Returns all years that are affected by changes on the metric values given
   # by `changed_years`
   def update_range changed_years
