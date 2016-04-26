@@ -1,28 +1,42 @@
+# the processed formula is a block that expects as argument an
+# array that contains the input values  needed to calculated the formula
+# value in order of appearance in the formula
+
+
 class RubyFormula < Formula
-  def get_value year, metrics_with_values, i
-    values = metrics.map do |metric|
-      if (v = metrics_with_values[metric])
-        v.to_f
-      else
-        nil
-      end
-    end.compact
-    return if values.size != metrics.size
-    @executed_lambda.call(values)
+  SYMBOLS = %w{+ - ( ) [ ] . * /}.freeze
+  FUNCTIONS = { 'Sum' => 'sum' }.freeze
+
+  FUNC_MATCHER =  FUNCTIONS.keys.join('|').freeze
+  LAMBDA_PREFIX = 'lambda { |args| '.freeze
+
+  def get_value year, company
+    return unless (input = formula_input(year, company))
+    @executed_lambda.call(input)
+  end
+
+  def translate_functions formula
+    formula.gsub(/(?<func>#{FUNC_MATCHER})\[(?<arg>.+)\]/) do |match|
+      arg = translate_functions $~[:arg]
+      "#{arg}.#{FUNCTIONS[$~[:func]]}"
+    end
   end
 
   def to_lambda
-    rb_formula = @formula.keyified
-    metrics.each_with_index do |metric, i|
-      rb_formula.gsub!("{{#{ metric }}}", "data[#{i}][year]")
+    rb_formula = translate_functions @formula.content
+    index = -1
+    rb_formula.gsub!(/{{[^}]*}}/) do |match|
+      index += 1
+      "args[#{index}]"
     end
     "#{LAMBDA_PREFIX} #{rb_formula} }"
   end
 
-  LAMBDA_PREFIX = "lambda { |data, year| "
   protected
 
-
+  def cast_input val
+    val.to_f
+  end
 
   def exec_lambda expr
     eval expr
@@ -39,7 +53,9 @@ class RubyFormula < Formula
 
   # allow only numbers, whitespace, mathematical operations
   def ruby_safe? expr
-    expr.match(/^[\s\d+-\/*\.()]*$/)
+    without_func = expr.gsub(/\.#{FUNCTIONS.values.join('|')}/,'')
+    symbols = SYMBOLS.map { |s| "\\#{s}"}.join
+    without_func.match(/^[\s\d#{symbols}]*$/)
   end
 end
 
