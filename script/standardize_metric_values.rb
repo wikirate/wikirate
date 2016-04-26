@@ -61,6 +61,16 @@ def skip_metric m
                content: 'true'
 end
 
+def convert_metric metric, metric_values
+  value_type_card = Card.fetch("#{metric.name}+value type", new: {})
+  normalize_numeric_metric metric_values, value_type_card
+  unless value_type_card.real?
+    puts "Updating #{value_type_card.name} "\
+         "to #{value_type_card.content}".yellow
+    value_type_card.save!
+  end
+end
+
 def convert_potential_metrics potential_result
   potential_result.each do |m|
     puts "======== Normalizing #{m.name} ========".blue
@@ -68,13 +78,7 @@ def convert_potential_metrics potential_result
     if unknown_inside? metric_values
       skip_metric m
     else
-      value_type_card = Card.fetch("#{m.name}+value type", new: {})
-      normalize_numeric_metric metric_values, value_type_card
-      unless value_type_card.real?
-        puts "Updating #{value_type_card.name} "\
-             "to #{value_type_card.content}".yellow
-        value_type_card.save!
-      end
+      convert_metric m, metric_values
     end
     puts "======== Finished normalizing #{m.name} ========".blue
   end
@@ -100,13 +104,17 @@ def normalize_metric metric, i_value_type_card=nil
   end
 end
 
+def update_as_number content, value_type_card, mv
+  content.delete!('$')
+  value_type_card.content = '[[Number]]'
+  update_metric_value mv, content if mv.content != content
+end
+
 def normalize_numeric_metric metric_values, value_type_card
   metric_values.each do |mv|
     content = mv.content.delete(',% ')
     if number?(content) || number?(content.delete('$'))
-      content.delete!('$')
-      value_type_card.content = '[[Number]]'
-      update_metric_value mv, content if mv.content != content
+      update_as_number content, value_type_card, mv
     elsif content =~ /\$[\-]?[0-9\.]+[BMK]/
       normalize_number content, mv
       value_type_card.content = '[[Money]]'
@@ -187,6 +195,14 @@ def convert_monetary_metric_unit
   end
 end
 
+def update_metric_and_value_type new_type_name, metric_value_type, existing_type
+  metric_value_type.content = new_type_name
+  normalize_metric metric_value_type.left, metric_value_type
+  puts "Updating #{metric_value_type.name},#{existing_type} to "\
+       "#{metric_value_type.content}".green
+  metric_value_type.save!
+end
+
 def rename_existing_metric_value_type
   exisiting_value_type = Card.search right: 'value type',
                                      left: { type_id: Card::MetricID }
@@ -197,10 +213,7 @@ def rename_existing_metric_value_type
            "#{metric_value_type.item_names[0]}"
       next
     end
-    metric_value_type.content = new_type_name
-    normalize_metric metric_value_type.left, metric_value_type
-    puts "Updating #{metric_value_type.name},#{existing_type} to #{metric_value_type.content}".green
-    metric_value_type.save!
+    update_metric_and_value_type new_type_name, metric_value_type, existing_type
   end
 end
 
