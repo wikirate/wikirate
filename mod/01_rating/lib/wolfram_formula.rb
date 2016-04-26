@@ -16,7 +16,7 @@ class WolframFormula < Formula
   # create the followng expression in Wolfram Language
   # Apply[(#1+#2)&,<|2014 -> {{11.14, 21.14}, {12.14, 22.14}},
   #                 2015 -> {{11.15, 21.15}, {12.15, 22.15}}|>, {2}]
-  # The result Wolfram is a hash with an array for every year that contains
+  # The result is a Wolfram hash with an array for every year that contains
   # the values for all companies
   # <|2014 -> {32.28, 34.28}, 2015 -> {32.30, 34.30}|>
 

@@ -319,6 +319,18 @@ def extract_metrics
   end
 end
 
+
+
+def process_input_data
+  input_values.each do |company, company_values|
+    company_values.each do |year, metric_with_values|
+      value = get_value_for year, company_values
+    end
+  end
+end
+
+
+
 # choose a company (and a year) or fetch all values
 # @return [Hash] values of the form
 #   { company => { metric => { year => { value } } } }
@@ -331,6 +343,7 @@ def fetch_input_values opts={}
     metric = v_card.cardname.left_name.left_name.left_name.key
     values[company][metric][year] = v_card.content
   end
+
 end
 
 # Searches for all metric value cards that are necessary to calculate all values
