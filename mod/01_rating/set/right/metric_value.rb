@@ -43,7 +43,7 @@ format :html do
                   card.cardname.left_name.url_key,
                   "+metric_details'] #methodology-info"].join('')
     btn_add =
-      content_tag(:div, 'Add new value',
+      content_tag(:div, 'Add answer',
                   class: btn_add_class,
                   data: {
                     company: card.cardname.left_name.tag,

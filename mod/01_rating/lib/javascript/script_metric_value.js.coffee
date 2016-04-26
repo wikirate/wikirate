@@ -2,14 +2,14 @@ $(document).ready ->
   $loader_anime = $("#ajax_loader").html()
   if ($.urlParam('view') == 'new_metric_value')
     # http://stackoverflow.com/questions/1704533/intercept-page-exit-event
-    window.onbeforeunload = (e) ->
-      message = 'You may have unsaved metric value.'
-      e = e or window.event
-      # For IE and Firefox
-      if e
-        e.returnValue = message
-      # For Safari
-      message
+    askConfirm = ->
+      if needToConfirm
+        return 'You may have unsaved data'
+    needToConfirm = false
+    window.onbeforeunload = askConfirm
+    $('select,input,textarea').change ->
+      needToConfirm = true
+      return
 
   stickSourcePreview = () ->
     $previewContainer = $("#source-preview-main")
@@ -144,7 +144,7 @@ $(document).ready ->
     $container      = $parentForm.find(".relevant-sources")
     $container      = $container.empty() if $container.text().search("None") >-1
     sourceID        = $(data).data('source-for')
-    year            = $(data).data('year')
+    year            = parseInt($(data).data('year'))
     sourceInList    = "[data-source-for='"+sourceID+"']"
     $sourceInForm   = $('.timeline-row form')
                       .find(sourceInList+'.source-details-toggle')
@@ -164,7 +164,7 @@ $(document).ready ->
         .find('a.known-card, a.source-preview-link').replaceWith ->
           $ '<span>' + $(this).html() + '</span>'
       $container.append($sourceDetailsToggle)
-      $parentForm.find('.year input#pointer_item').val(year)
+      $parentForm.find('.year input#pointer_item').val(year) if !isNaN(year)
       pageName  = $("#source-name").html()
       url       = $("#source_url").html()
 
@@ -179,7 +179,7 @@ $(document).ready ->
   $("body").on 'click', '.source-details-toggle', ->
     $this           = $(this)
     sourceID        = $this.data("source-for")
-    year            = $this.data("year")
+    year            = parseInt($this.data("year"))
     sourceSelector  = "[data-source-for='"+sourceID+"']"
     $sourceCntr     = $("#source-form-container")
     $loaderThing    = $sourceCntr.find('.loader-anime')
@@ -191,7 +191,7 @@ $(document).ready ->
       $sourceCntr.find('.source-details').addClass('hide')
       $sourcePreview = $sourceCntr.find(sourceSelector)
       $sourceCntr.find('form').addClass('hide')
-      $parentForm.find('.year input#pointer_item').val(year)
+      $parentForm.find('.year input#pointer_item').val(year) if !isNaN(year)
       if($sourcePreview.length > 0)
         $sourcePreview.removeClass('hide')
       else

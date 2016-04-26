@@ -356,15 +356,15 @@ format :html do
 .td.value
   %span.metric-value
     = field_nest :value, title: 'Value'
-  = field_nest :discussion, title: 'Comment'
   %h5
     Choose Sources or
     %a.btn.btn-sm.btn-default._add_new_source
       %small
         %span.icon.icon-wikirate-logo-o.fa-lg
-        Add a new Source
+        Add a new source
   = relevant_sources
   = cited_sources
+  = field_nest :discussion, title: 'Comment'
       HAML
     end
   end
@@ -512,19 +512,12 @@ format :html do
     content_tag(:span, link.html_safe, class: 'metric-value')
   end
 
-  view :timeline_data do |args|
-    # container elements
-    value = content_tag(:span, currency, class: 'metric-unit')
-    value << _render_value_link(args)
-    value << content_tag(:span, legend(args), class: 'metric-unit')
-    value << _render_value_details_toggle
-    value << _render_value_details(args)
-
-    # stitch together
+  # Metric value view for data
+  view :timeline_data do
     wrap_with :div, class: 'timeline-row' do
       [
         _render_year,
-        content_tag(:div, value.html_safe, class: 'td value')
+        _render_value
       ]
     end
   end
@@ -535,20 +528,28 @@ format :html do
     content_tag(:div, year.html_safe, class: 'td year')
   end
 
+  view :value do |args|
+    value = content_tag(:span, currency, class: 'metric-unit')
+    value << _render_value_link(args)
+    value << content_tag(:span, legend(args), class: 'metric-unit')
+    value << _render_value_details_toggle
+    value << _render_value_details(args)
+    content_tag(:div, value.html_safe, class: 'td value')
+  end
+
   view :value_details do |args|
     wrap_with :div, class: 'metric-value-details collapse' do
       [
         _optional_render(:credit_name, args, :show),
-        content_tag(:div, _render_comments(args), class: 'comments-div'),
-        content_tag(:div, _render_sources, class: 'cited-sources')
+        content_tag(:div, _render_sources, class: 'cited-sources'),
+        content_tag(:div, _render_comments(args), class: 'comments-div')
       ]
     end
   end
 
   view :value_details_toggle do
-    content_tag(:i, '', class: 'fa fa-caret-right '\
-                                'fa-lg margin-left-10 '\
-                                'btn btn-default btn-sm ',
+    css_class = 'fa fa-caret-right fa-lg margin-left-10 btn btn-default btn-sm'
+    content_tag(:i, '', class: css_class,
                         data: { toggle: 'collapse-next',
                                 parent: '.value',
                                 collapse: '.metric-value-details'
