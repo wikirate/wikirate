@@ -43,7 +43,7 @@ end
 def handle_errors invalid_metric_values
   invalid_metric_values.each do |mv|
     errors.add "#{cardname.left}+#{mv[:company]}+#{mv[:year]}",
-               "'#{mv[:value]}'' is not a numeric value."
+               "'#{mv[:value]}' is not a numeric value."
   end
 end
 
