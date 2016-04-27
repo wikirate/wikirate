@@ -269,6 +269,11 @@ def input_values
   @input_values ||= fetch_input_values
 end
 
+
+def input_cards
+ input_metrics
+end
+
 def input_metric_keys
   @metric_keys ||= input_metrics.map { |m| m.to_name.key }
 end
@@ -283,29 +288,21 @@ end
 
 # allow only numbers, whitespace, mathematical operations and args references
 def ruby_formula?
-  content.gsub(/\{\{([^}])+\}\}/,'').match(/^[\s\d+-\/*\.()]*$/)
+  formula_interpreter.class == RubyFormula
 end
 
 def translate_formula?
-  content =~ /^\{[^{}]*\}$/
+  formula_interpreter.class == TranslateFormula
 end
 
 def wolfram_formula?
-  !ruby_formula? && !translate_formula?
+  formula_interpreter.class == WolframFormula
 end
 
 private
 
 def formula_interpreter
-  if wiki_rating?
-    WikiRatingFormula.new(self)
-  elsif translate_formula?
-    TranslateFormula.new(self)
-  elsif ruby_formula?
-    RubyFormula.new(self)
-  else
-    WolframFormula.new(self)
-  end
+  @formula_interpreter = ::Formula.new_formula(self)
 end
 
 # find all metrics that are part of the formula
@@ -320,50 +317,3 @@ def extract_metrics
 end
 
 
-
-def process_input_data
-  input_values.each do |company, company_values|
-    company_values.each do |year, metric_with_values|
-      value = get_value_for year, company_values
-    end
-  end
-end
-
-
-
-# choose a company (and a year) or fetch all values
-# @return [Hash] values of the form
-#   { company => { metric => { year => { value } } } }
-def fetch_input_values opts={}
-  values = Hash.new { |h1, k1| h1[k1] = Hash.new { |h2, k2| h2[k2] = {} } }
-  return values if input_metric_keys.empty?
-  input_value_cards(opts).each_with_object(values) do |v_card, values|
-    year = v_card.cardname.left_name.right.to_i
-    company = v_card.cardname.left_name.left_name.right_name.key
-    metric = v_card.cardname.left_name.left_name.left_name.key
-    values[company][metric][year] = v_card.content
-  end
-
-end
-
-# Searches for all metric value cards that are necessary to calculate all values
-# If a company (and a year) is given it returns only the metric value cards that
-# are needed to calculate the value for that company (and that year)
-# @param [Hash] opts ({})
-# @option [String] :company
-# #option [String] :year
-def input_value_cards opts={}
-  ::Card.search value_cards_query(opts.merge(metrics: input_metric_keys))
-end
-
-def value_cards_query opts={}
-  left_left = {}
-  if opts[:metrics]
-    left_left[:left] = { name: ['in'] + Array.wrap(opts[:metrics]) }
-  end
-  left_left[:right] = { name: opts[:company] } if opts[:company]
-  query = { right: 'value', left: { type_id: MetricValueID } }
-  query[:left][:left] = left_left if left_left.present?
-  query[:left][:right] = opts[:year] if opts[:year]
-  query
-end

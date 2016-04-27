@@ -5,13 +5,26 @@
 
 class RubyFormula < Formula
   SYMBOLS = %w{+ - ( ) [ ] . * /}.freeze
-  FUNCTIONS = { 'Sum' => 'sum' }.freeze
+  FUNCTIONS = { 'Sum' => 'sum', 'Max' => 'max', 'Min' => 'min' }.freeze
 
   FUNC_MATCHER =  FUNCTIONS.keys.join('|').freeze
   LAMBDA_PREFIX = 'lambda { |args| '.freeze
 
-  def get_value year, company
-    return unless (input = formula_input(year, company))
+  def self.valid_formula? formula
+    check_symbols remove_functions(formula)
+  end
+
+  def self.remove_functions formula, translated=false
+    matcher = translated ? FUNCTIONS.values.join('|') : FUNC_MATCHER
+    formula.gsub(/#{matcher}/,'')
+  end
+
+  def self.check_symbols formula
+    symbols = SYMBOLS.map { |s| "\\#{s}"}.join
+    formula =~ (/^[\s\d#{symbols}]*$/)
+  end
+
+  def get_value input
     @executed_lambda.call(input)
   end
 
@@ -51,11 +64,9 @@ class RubyFormula < Formula
     ruby_safe? cleaned
   end
 
-  # allow only numbers, whitespace, mathematical operations
   def ruby_safe? expr
-    without_func = expr.gsub(/\.#{FUNCTIONS.values.join('|')}/,'')
-    symbols = SYMBOLS.map { |s| "\\#{s}"}.join
-    without_func.match(/^[\s\d#{symbols}]*$/)
+    without_func = RubyFormula.remove_functions expr, true
+    RubyFormula.check_symbols without_func
   end
 end
 

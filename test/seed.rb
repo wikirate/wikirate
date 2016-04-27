@@ -107,6 +107,7 @@ class SharedData
         Samsung          '2014' => 10, '2015' => 5
         Sony_Corporation '2014' => 1
         Death_Star       '1977' => 5
+        Apple_Inc        '2015' => 100
       end
       Card::Metric.create name: 'Joe User+score2', type: :researched,
                           random_source: true do
@@ -118,12 +119,11 @@ class SharedData
         Samsung '2014' => 1, '2015' => 1
       end
 
-      # Card::Metric.create name: 'Joe User+score1', type: :score,
-      #                     random_source: true do
-      #   Samsung          '2014' => 10, '2015' => 5
-      #   Sony_Corporation '2014' => 1
-      #   Death_Star       '1977' => 5
-      # end
+      Card::Metric.create name: 'Joe User+researched1', type: :researched,
+                          random_source: true do
+      Apple_Inc        '2010' => 10, '2011' => 11, '2012' => 12, '2013' => 13,
+                       '2014' => 14
+      end
       # Card::Metric.create name: 'Joe User+score2', type: :score,
       #                     random_source: true do
       #   Samsung          '2014' => 5, '2015' => 2
