@@ -110,6 +110,7 @@ format :html do
       <div style="display:none">
         #{content_tag(:div, card.cardname.url_key, id: 'source-name')}
         #{content_tag(:div, args[:url], id: 'source_url')}
+        #{content_tag(:div, args[:url], id: 'source-year')}
         #{content_tag(:div, args[:company], id: 'source_company')}
         #{content_tag(:div, args[:topic], id: 'source_topic')}
       </div>
