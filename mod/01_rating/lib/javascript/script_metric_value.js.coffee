@@ -235,13 +235,15 @@ $(document).ready ->
           $template.find('.card-slot').append(data)
           # $target.find(".timeline-header").after($template)
           $this.hide()
-          wagn.initializeEditors($target)
+
           $target.find(".loader-anime").remove()
           return
         ), 'html').fail((xhr,d,e) ->
           $template.find('.card-slot').append(xhr.responseText)
         ).always( ->
           $target.find(".timeline-header").after($template)
+          wagn.initializeEditors($target)
+          $template.find('.card-slot').trigger('slotReady')
           $target.find(".loader-anime").remove()
         )
         appendSourceForm(company)
