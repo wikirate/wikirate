@@ -118,6 +118,11 @@ format :html do
           </a>
         HTML
     end
+    unless year.nil? || year == ""
+      year_helper =
+        content_tag(:small, 'year:' + year[/\d+/], class: 'source-year')
+      original_link << year_helper.html_safe
+    end
     original_link + render_content(structure: 'source_without_note_count')
   end
 

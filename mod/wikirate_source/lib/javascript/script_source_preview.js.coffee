@@ -49,4 +49,4 @@ $(document).ready ->
     if url
       testSameOrigin url, pageName
     resizeIframe($('body'))
-    $('[data-target="#tab_claims"]').trigger 'click'
+    # $('[data-target="#tab_claims"]').trigger 'click'

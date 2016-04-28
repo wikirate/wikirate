@@ -238,7 +238,7 @@ format :html do
   end
 
   view :new do |args|
-    return _render_no_frame_form args if Env.params[:noframe]
+    return _render_no_frame_form args if Env.params[:noframe] == 'true'
     return super(args) if args[:source] || args[:company]
     @form_root = true
     frame args do # no form!
@@ -430,7 +430,7 @@ format :html do
     end
     args[:title] = "Add new value for #{args[:metric]}" if args[:metric]
     args[:buttons] = submit_button(class: 'create-submit-button',
-                                   data: { disable_with: 'Adding' })
+                                   data: { disable_with: 'Adding...' })
     super(args)
   end
 
@@ -487,6 +487,26 @@ format :html do
     end
   end
 
+  def checked_value_flag
+    checked_card = card.cardname.field('checked_by')
+    checked_card = Card.fetch(checked_card) if Card.exists?checked_card
+    if !checked_card.item_names.empty?
+      css_class = 'fa fa-lg fa-check-circle verify-blue margin-left-15'
+      content_tag('i', '', class: css_class)
+    else ''
+    end
+  end
+
+  def comment_flag
+    return '' unless Card.exists? card.cardname.field('discussion')
+    disc = card.fetch(trait: :discussion)
+    if disc.content.include? 'w-comment-author'
+      css_class = 'fa fa-lg fa-commenting margin-left-15'
+      content_tag('i', '', class: css_class)
+    else ''
+    end
+  end
+
   view :modal_details do |args|
     span_args = { class: 'metric-value' }
     add_class span_args, grade if card.scored?
@@ -529,18 +549,24 @@ format :html do
   end
 
   view :value do |args|
+    checked_value_flag
     value = content_tag(:span, currency, class: 'metric-unit')
     value << _render_value_link(args)
     value << content_tag(:span, legend(args), class: 'metric-unit')
+    value << checked_value_flag.html_safe
+    value << comment_flag.html_safe
     value << _render_value_details_toggle
     value << _render_value_details(args)
     content_tag(:div, value.html_safe, class: 'td value')
   end
 
   view :value_details do |args|
+    checked_by = card.fetch trait: :checked_by, new: {}
+    checked_by = nest(checked_by, view: :double_check_view)
     wrap_with :div, class: 'metric-value-details collapse' do
       [
         _optional_render(:credit_name, args, :show),
+        content_tag(:div, checked_by.html_safe, class: 'double-check'),
         content_tag(:div, _render_sources, class: 'cited-sources'),
         content_tag(:div, _render_comments(args), class: 'comments-div')
       ]

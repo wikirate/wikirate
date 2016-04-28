@@ -321,6 +321,8 @@ Henry, get rid of me!!!
     overflow-y: scroll;
   }
 }
+
+// TODO: refactor all source related HTML soon. Its a mess
 /*all source related css classes copied from *css */
 .source-info-container,
 .STRUCTURE-source_item_preview,
@@ -346,6 +348,7 @@ Henry, get rid of me!!!
   .item-content {
     background: #FFFBE6;
     padding: 14px;
+    color: #BA8A3C;
   }
   .note-count {
     background-color: #fff;
@@ -396,8 +399,11 @@ Henry, get rid of me!!!
 .source-details-toggle {
     cursor: pointer;
     position: relative;
+    width: 99%;
   &.active .source-info-container {
-    outline: 1px solid #BC8E42;
+    outline: 1px solid #ccc;
+    background: #FFF8D5;
+    color: #666;
   }
   &:hover .source-info-container {
     background: #FFF9DA;
@@ -414,7 +420,7 @@ Henry, get rid of me!!!
       left: 100%;
       width: 0;
       height: 0;
-      border-color: transparent transparent transparent #FFFBE6;
+      border-color: transparent transparent transparent #FFF8D5;
       border-style: solid;
       border-width: 11px;
     }
@@ -426,7 +432,7 @@ Henry, get rid of me!!!
       left: 100%;
       width: 0;
       height: 0;
-      border-color: transparent transparent transparent #BC8E42;
+      border-color: transparent transparent transparent #C3C3C3;
       border-style: solid;
       border-width: 13px;
     }

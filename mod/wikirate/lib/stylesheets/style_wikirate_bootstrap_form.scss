@@ -1,4 +1,8 @@
 $brand-primary: #03998D !default; // #337ab7
+
+.form-control{
+  border-radius: 0px;
+}
 .form-control:focus {
     border-color: #03998D;
     outline: 0;
@@ -46,6 +50,7 @@ body#tinymce {
     li > {
         a,
         span {
+            border-radius: 0px!important;
             position: relative;
             float: left;
             padding: 6px 12px;
