@@ -59,7 +59,7 @@ format :html do
     if (metric_name = metric_name_from_params || card.metric) &&
        (metric_card = Card[metric_name]) &&
        metric_card.value_type == 'Category'
-       _render_select(args.merge(metric_name: metric_name))
+      _render_select(args.merge(metric_name: metric_name))
     else
       super(args)
     end
