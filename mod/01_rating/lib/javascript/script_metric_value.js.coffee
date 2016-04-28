@@ -198,7 +198,7 @@ $(document).ready ->
       $('.source-details-toggle').removeClass('active')
       $sourceDetailsToggle = $('<div>')
                             .attr('data-source-for',sourceID)
-                            .attr('data-year', year)
+                            .attr('data-year', sourceYear)
                             .addClass('source-details-toggle active')
       $sourceDetailsToggle.append($(data)
         .find(".source-info-container").parent())
