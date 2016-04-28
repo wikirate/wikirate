@@ -83,7 +83,7 @@ describe Card::Set::Right::DownvoteeSearch do
             card_to_be_voted_down.vote_down
             card_to_be_voted_down.save!
           end
-          voted_down_search_card =voted_down_search_card =
+          voted_down_search_card =
             topic.fetch trait: [:metric, :downvotee_search]
           html = voted_down_search_card.format.render_drag_and_drop
           expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down","data-update-id"=>"Natural_Resource_Use+metric+downvotee_search","data-bucket-name"=>"down_vote"}) do
