@@ -39,6 +39,7 @@ format :html do
   view :timeline_header_buttons do
     btn_class = 'btn btn-sm btn-default margin-12'
     btn_add_class = [btn_class, '_add_new_value', 'btn-primary'].join(' ')
+    binding.pry
     path = card.left.field('metric_details').cardname.url_key
     target_str = ["[id='", path, "'] #methodology-info"].join('')
     btn_add =

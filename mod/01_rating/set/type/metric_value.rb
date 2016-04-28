@@ -497,9 +497,8 @@ format :html do
   end
 
   def checked_value_flag
-    checked_card = card.cardname.field('checked_by')
-    checked_card = Card.fetch(checked_card) if Card.exists?checked_card
-    if !checked_card.item_names.empty?
+    checked_card = card.field 'checked_by'
+    if checked_card && !checked_card.item_names.empty?
       css_class = 'fa fa-lg fa-check-circle verify-blue margin-left-15'
       content_tag('i', '', class: css_class)
     else ''
