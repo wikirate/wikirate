@@ -89,10 +89,6 @@ def companies_with_years_and_values
   end
 end
 
-def value company, year
-  #if (value_card = Card["#{metric_value_name(company, year)]}+)
-end
-
 def random_value_card
   value_cards(limit: 1).first
 end
@@ -109,8 +105,6 @@ end
 def value_cards opts={}
   Card.search({ left: metric_value_query, right: 'value' }.merge(opts))
 end
-
-
 
 def metric_value_name company, year
   company_name = Card.fetch_real_by_key(company).name
@@ -189,12 +183,11 @@ format :html do
   view :short_view do |_args|
     return '' unless (value_type = card.fetch trait: :value_type)
 
-    # TODO: need codenames
     details_field =
       case value_type.item_names[0]
-      when 'Number'   then 'numeric_details'
-      when 'Money'    then 'monetary_details'
-      when 'Category' then 'category_details'
+      when 'Number'   then :numeric_details
+      when 'Money'    then :monetary_details
+      when 'Category' then :category_details
       end
     return '' if details_field.nil?
     detail_card = Card.fetch card, details_field, new: {}

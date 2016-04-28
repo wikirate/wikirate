@@ -2,9 +2,10 @@
 
 class MissingCodenames < Card::Migration
   def up
-    update_card 'unit', codename: 'unit'
-    update_card 'value options', codename: 'value_options'
-    update_card 'Currency', codename: 'currency'
-    update_card 'aliases', codename: 'aliases'
+    %w(unit value_options currency category number money
+       numeric_details monetary_details category_details
+       aliases).each do |codename|
+      update_card codename, codename: codename
+    end
   end
 end
