@@ -31,7 +31,7 @@ format :html do
     end
   end
 
-  view :discussion_tab do |args|
+  view :discussion_tab do |_args|
     tab_wrap do
       field_subformat(:discussion).render_titled home_view: 'titled',
                                                  hide: [:header, :title],
