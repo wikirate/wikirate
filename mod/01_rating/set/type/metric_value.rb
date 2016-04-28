@@ -24,6 +24,14 @@ def company_card
   Card.fetch company_name
 end
 
+def value_type
+  if (value_type_card = Card.fetch "#{metric_card.name}+value type") &&
+     !value_type_card.content.empty?
+    return value_type_card.item_names[0]
+  end
+  nil
+end
+
 def source_subcards new_source_card
   [new_source_card.subfield(:file), new_source_card.subfield(:text),
    new_source_card.subfield(:wikirate_link)]
@@ -170,11 +178,34 @@ def add_source_subcard new_source_card
   source_card
 end
 
+def report_type
+  metric_card.fetch trait: :report_type
+end
+
+def add_report_type source_name
+  if report_type
+    report_names = report_type.item_names
+    source_card = Card.fetch(source_name).fetch trait: :report_type, new: {}
+    report_names.each do |report_name|
+      source_card.add_item! report_name
+    end
+  end
+end
+
+def add_company source_name
+  source_card = Card.fetch(source_name).fetch trait: :wikirate_company, new: {}
+  source_card.add_item! company_name
+end
+
 def process_sources source_list
   source_names = source_list.item_names
   source_names.each do |source_name|
-    next if  Card.exists? source_name
-    errors.add :source, "#{source_name} does not exist."
+    if  Card.exists? source_name
+      add_report_type source_name
+      add_company source_name
+    else
+      errors.add :source, "#{source_name} does not exist."
+    end
   end
 
   if (new_source_subcard = source_list.detach_subcard('new_source'))
@@ -215,7 +246,7 @@ format :html do
   end
 
   view :new do |args|
-    return _render_no_frame_form args if Env.params[:noframe]
+    return _render_no_frame_form args if Env.params[:noframe] == 'true'
     return super(args) if args[:source] || args[:company]
     @form_root = true
     frame args do # no form!
@@ -333,15 +364,15 @@ format :html do
 .td.value
   %span.metric-value
     = field_nest :value, title: 'Value'
-  = field_nest :discussion, title: 'Comment'
   %h5
     Choose Sources or
     %a.btn.btn-sm.btn-default._add_new_source
       %small
         %span.icon.icon-wikirate-logo-o.fa-lg
-        Add a new Source
+        Add a new source
   = relevant_sources
   = cited_sources
+  = field_nest :discussion, title: 'Comment'
       HAML
     end
   end
@@ -406,6 +437,8 @@ format :html do
       args[:hidden]['card[subcards][+source][content]'] = args[:source]
     end
     args[:title] = "Add new value for #{args[:metric]}" if args[:metric]
+    args[:buttons] = submit_button(class: 'create-submit-button',
+                                   data: { disable_with: 'Adding...' })
     super(args)
   end
 
@@ -428,7 +461,7 @@ format :html do
       <span class="metric-unit">
         #{currency}
       </span>
-      #{_render_modal_details(args)}
+      #{_render_metric_details}
       <span class="metric-unit">
         #{legend(args)}
       </span>
@@ -444,23 +477,51 @@ format :html do
     end
   end
 
+  view :metric_details do
+    span_args = { class: 'metric-value' }
+    add_class span_args, grade if card.scored?
+    wrap_with :span, span_args do
+      fetch_value.html_safe
+    end
+  end
+
+  def fetch_value
+    if (value_type = card.metric_card.fetch trait: :value_type) &&
+       %w(Number Money).include?(value_type.item_names[0]) &&
+       !card.value_card.unknown_value?
+      big_number = BigDecimal.new(card.value)
+      number_to_human(big_number)
+    else
+      card.value
+    end
+  end
+
+  def checked_value_flag
+    checked_card = card.field 'checked_by'
+    if checked_card && !checked_card.item_names.empty?
+      css_class = 'fa fa-lg fa-check-circle verify-blue margin-left-15'
+      content_tag('i', '', class: css_class)
+    else ''
+    end
+  end
+
+  def comment_flag
+    return '' unless Card.exists? card.cardname.field('discussion')
+    disc = card.fetch(trait: :discussion)
+    if disc.content.include? 'w-comment-author'
+      css_class = 'fa fa-lg fa-commenting margin-left-15'
+      content_tag('i', '', class: css_class)
+    else ''
+    end
+  end
+
   view :modal_details do |args|
     span_args = { class: 'metric-value' }
     add_class span_args, grade if card.scored?
-    show_value =
-      if (value_type = card.metric_card.fetch trait: :value_type) &&
-         %w(Number Money).include?(value_type.item_names[0])
-        big_number = BigDecimal.new(card.value)
-        number_to_human(big_number)
-      else
-        card.value
-
-      end
-
     wrap_with :span, span_args do
       subformat(card)._render_modal_link(
         args.merge(
-          text: show_value,
+          text: fetch_value,
           path_opts: { slot: { show: :menu, optional_horizontal_menu: :hide } },
           html_args: {
             'data-complete-number' => card.value,
@@ -479,19 +540,12 @@ format :html do
     content_tag(:span, link.html_safe, class: 'metric-value')
   end
 
-  view :timeline_data do |args|
-    # container elements
-    value = content_tag(:span, currency, class: 'metric-unit')
-    value << _render_value_link(args)
-    value << content_tag(:span, legend(args), class: 'metric-unit')
-    value << _render_value_details_toggle
-    value << _render_value_details(args)
-
-    # stitch together
+  # Metric value view for data
+  view :timeline_data do
     wrap_with :div, class: 'timeline-row' do
       [
         _render_year,
-        content_tag(:div, value.html_safe, class: 'td value')
+        _render_value
       ]
     end
   end
@@ -502,20 +556,34 @@ format :html do
     content_tag(:div, year.html_safe, class: 'td year')
   end
 
+  view :value do |args|
+    checked_value_flag
+    value = content_tag(:span, currency, class: 'metric-unit')
+    value << _render_value_link(args)
+    value << content_tag(:span, legend(args), class: 'metric-unit')
+    value << checked_value_flag.html_safe
+    value << comment_flag.html_safe
+    value << _render_value_details_toggle
+    value << _render_value_details(args)
+    content_tag(:div, value.html_safe, class: 'td value')
+  end
+
   view :value_details do |args|
+    checked_by = card.fetch trait: :checked_by, new: {}
+    checked_by = nest(checked_by, view: :double_check_view)
     wrap_with :div, class: 'metric-value-details collapse' do
       [
         _optional_render(:credit_name, args, :show),
-        content_tag(:div, _render_comments(args), class: 'comments-div'),
-        content_tag(:div, _render_sources, class: 'cited-sources')
+        content_tag(:div, checked_by.html_safe, class: 'double-check'),
+        content_tag(:div, _render_sources, class: 'cited-sources'),
+        content_tag(:div, _render_comments(args), class: 'comments-div')
       ]
     end
   end
 
   view :value_details_toggle do
-    content_tag(:i, '', class: 'fa fa-caret-right '\
-                                'fa-lg margin-left-10 '\
-                                'btn btn-default btn-sm ',
+    css_class = 'fa fa-caret-right fa-lg margin-left-10 btn btn-default btn-sm'
+    content_tag(:i, '', class: css_class,
                         data: { toggle: 'collapse-next',
                                 parent: '.value',
                                 collapse: '.metric-value-details'

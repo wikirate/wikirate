@@ -17,7 +17,7 @@ event :autopopulate_website,
   link = subfield(:wikirate_link).content
   uri = URI.parse(link)
   host = uri.host
-  add_subfield :wikirate_website, content: "[[#{host}]]"
+  add_subfield :wikirate_website, content: "[[#{host}]]", type_id: PointerID
   return if Card.exists?(host) || host.blank?
   add_subcard host, type_id: Card::WikirateWebsiteID
 end
@@ -144,7 +144,9 @@ def parse_source_page url
   # if preview.images.length > 0
   #   add_subcard '+image url', content: preview.images.first.src.to_s
   # end
-  add_subcard '+title', content: preview.title unless subfield('title')
+  if !subfield('title') && !preview.title.empty?
+    add_subcard '+title', content: preview.title
+  end
   return if subfield('Description')
   add_subcard '+description', content: preview.description
 rescue

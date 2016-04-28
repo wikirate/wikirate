@@ -38,12 +38,11 @@ format :html do
 
   view :timeline_header_buttons do
     btn_class = 'btn btn-sm btn-default margin-12'
-    btn_add_class = [btn_class, '_add_new_value'].join(' ')
-    target_str = ["[id='",
-                  card.cardname.left_name.url_key,
-                  "+metric_details'] #methodology-info"].join('')
+    btn_add_class = [btn_class, '_add_new_value', 'btn-primary'].join(' ')
+    path = card.left.field('metric_details').cardname.url_key
+    target_str = ["[id='", path, "'] #methodology-info"].join('')
     btn_add =
-      content_tag(:div, content_tag(:small, 'Add new value'),
+      content_tag(:div, 'Add answer',
                   class: btn_add_class,
                   data: {
                     company: card.cardname.left_name.tag,
@@ -54,7 +53,7 @@ format :html do
                   }
                  )
     btn_methodology =
-      content_tag(:div, content_tag(:small, 'View Methodology'),
+      content_tag(:div, 'View Methodology',
                   class: btn_class,
                   data: {
                     toggle: 'collapse',

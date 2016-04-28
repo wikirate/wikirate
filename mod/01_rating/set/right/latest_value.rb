@@ -20,8 +20,5 @@ format :html do
     else
       ''
     end
-
   end
 end
-
-
