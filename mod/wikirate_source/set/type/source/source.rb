@@ -118,7 +118,7 @@ format :html do
           </a>
         HTML
     end
-    unless year.nil? || year == ""
+    unless year.nil? || year == ''
       year_helper =
         content_tag(:small, 'year:' + year[/\d+/], class: 'source-year')
       original_link << year_helper.html_safe
