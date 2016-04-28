@@ -45,6 +45,21 @@ shared_examples_for 'all_value_type' do |value_type, valid_cnt, invalid_cnt|
   end
 end
 
+shared_examples_for 'numeric type' do |value_type|
+  let(:metric) { get_a_sample_metric value_type.to_sym }
+  let(:company) { get_a_sample_company }
+  let(:mv_id) { Card::MetricValueID }
+  context 'unknown value' do
+    it 'shows unknown instead of 0 in modal_details' do
+      subcard =
+        get_subcards_of_metric_value metric, company, 'unknown', nil, nil
+      metric_value = Card.create type_id: mv_id, subcards: subcard
+      html = metric_value.format.render_modal_details
+      expect(html).to have_tag('a', text: 'unknown')
+    end
+  end
+end
+
 describe Card::Set::Type::MetricValue do
   before do
     login_as 'joe_user'
@@ -55,6 +70,7 @@ describe Card::Set::Type::MetricValue do
 
   context 'value type is Number' do
     it_behaves_like 'all_value_type', :number, '33', 'hello', @numeric_error_msg
+    it_behaves_like 'numeric type', :number
   end
 
   context 'value type is Money' do

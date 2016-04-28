@@ -24,6 +24,14 @@ def company_card
   Card.fetch company_name
 end
 
+def value_type
+  if (value_type_card = Card.fetch "#{metric_card.name}+value type") &&
+     !value_type_card.content.empty?
+    return value_type_card.item_names[0]
+  end
+  nil
+end
+
 def source_subcards new_source_card
   [new_source_card.subfield(:file), new_source_card.subfield(:text),
    new_source_card.subfield(:wikirate_link)]
@@ -479,7 +487,8 @@ format :html do
 
   def fetch_value
     if (value_type = card.metric_card.fetch trait: :value_type) &&
-       %w(Number Money).include?(value_type.item_names[0])
+       %w(Number Money).include?(value_type.item_names[0]) &&
+       !card.value_card.unknown_value?
       big_number = BigDecimal.new(card.value)
       number_to_human(big_number)
     else

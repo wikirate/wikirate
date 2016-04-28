@@ -68,6 +68,8 @@ $(document).ready ->
           $template.find('.card-slot').append(xhr.responseText)
         ).always( ->
           $target.find(".timeline-header").after($template)
+          wagn.initializeEditors($target)
+          $template.find('.card-slot').trigger('slotReady')
           $target.find(".loader-anime").remove()
         )
         appendSourceForm(company)

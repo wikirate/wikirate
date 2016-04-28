@@ -11,7 +11,10 @@ shared_examples_for 'changing type to numeric' do |new_type|
       value_type_card = metric.fetch trait: :value_type
       value_type_card.content = "[[#{new_type}]]"
       value_type_card.save
-      expect(value_type_card.errors).to have_key(:value)
+      key = 'Jedi+Sith Lord in Charge+Death Star+2015'.to_sym
+      msg = "'wow' is not a numeric value."
+      expect(value_type_card.errors).to have_key(key)
+      expect(value_type_card.errors[key]).to include(msg)
     end
   end
   context 'all values fit the numeric type' do

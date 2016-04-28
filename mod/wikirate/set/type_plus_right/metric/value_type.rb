@@ -1,13 +1,14 @@
 
-def all_numeric? metric_values
-  metric_values.each do |_key, values|
+def invalid_metric_values metric_values
+  invalid_metric_values = []
+  metric_values.each do |key, values|
     values.each do |mv|
       if !number?(mv['value']) && mv['value'].casecmp('unknown') != 0
-        return false
+        invalid_metric_values.push(mv.merge(company: key))
       end
     end
   end
-  true
+  invalid_metric_values
 end
 
 def all_values_in_options? metric_values, options_card
@@ -39,6 +40,13 @@ def related_values
   end
 end
 
+def handle_errors invalid_metric_values
+  invalid_metric_values.each do |mv|
+    errors.add "#{cardname.left}+#{mv[:company]}+#{mv[:year]}",
+               "'#{mv[:value]}' is not a numeric value."
+  end
+end
+
 event :validate_existing_values_type, :validate, on: :save do
   # validate the metric value while changing to number or category
   return unless db_content_changed?
@@ -47,8 +55,9 @@ event :validate_existing_values_type, :validate, on: :save do
   return unless (mv = related_values)
   case type
   when 'Number', 'Money'
-    unless all_numeric?(mv)
-      errors.add :value, 'Please check if all values are in number type'
+    if (invalid_metric_values = invalid_metric_values(mv)) &&
+       !invalid_metric_values.empty?
+      handle_errors invalid_metric_values
     end
   when 'Category'
     options_card = Card.fetch "#{metric_name}+value_options", new: {}
