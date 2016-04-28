@@ -67,7 +67,7 @@ describe Card::Set::TypePlusRight::Metric::ValueType do
         before do
           options_card = Card.fetch "#{metric.name}+value options", new: {}
           # in seed data
-          options_card.content = "[[100]]\n"
+          options_card.content = "[[5]]\n[[10]]\n[[100]]\n"
           options_card.save!
         end
         it 'updates the value type successfully' do
