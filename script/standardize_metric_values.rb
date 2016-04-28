@@ -262,7 +262,7 @@ def update_options metrics
   metrics.each do |m|
     metric_values = metric_values m.name
     options = extract_options metric_values
-    option_card = m.fetch trait: :value_options", new: {}
+    option_card = m.fetch trait: :value_options, new: {}
     next if options.empty?
     metrics_with_options.push m
     option_card.content = options.join('')
