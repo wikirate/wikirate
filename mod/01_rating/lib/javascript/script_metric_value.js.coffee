@@ -46,6 +46,7 @@ $(document).ready ->
                 else $('.TYPE-metric.open-view')
     if(company && metric)
       $target.append($loader_anime)
+      $('._blank_state_message').remove()
       if ($page.length>0)
         location.href = wagn.prepUrl(wagn.rootPath + '/' + company +
                                      '?view=new_metric_value&metric[]=' +
@@ -55,8 +56,9 @@ $(document).ready ->
                                "/new/metric_value?noframe=true&slot[company]="+
                                company + "&slot[metric]=" + metric)
 
-        $template = $('<div>').addClass('timeline-row')
-        $template = $template.append($('<div>').addClass('card-slot'))
+        $template = $('<div>').addClass('timeline-row new-value-form')
+        $template = $template.append($('<div>')
+                    .addClass('card-slot '))
         $.get(load_path, ((data) ->
           $template.find('.card-slot').append(data)
           # $target.find(".timeline-header").after($template)
@@ -158,6 +160,11 @@ $(document).ready ->
     ), 'html').fail((xhr,d,e) ->
       $parent.html('Error')
     )
+
+  $('body').on 'click','._view_methodology', ->
+    $(this).text (i, old) ->
+      btn_txt = 'View Methodology'
+      if old == btn_txt then 'Hide Methodology' else btn_txt
 
   $('body').on 'click','._value_check_button', ->
     valueChecking($(this), 'checked')
@@ -270,9 +277,21 @@ $(document).ready ->
     appendSourceForm(company)
 
   $('body').on 'click', '._add_new_value', ->
-    appendNewValueForm($(this))
+    $form = $(this).closest('.timeline-row')
+            .siblings('.new-value-form').find('form')
+    if $form.exists() && $form.hasClass('hide')
+      $form.removeClass('hide')
+      $(this).hide()
+    else
+      appendNewValueForm($(this))
 
-  $('._add_new_value:first').trigger 'click'
+  $('._add_new_value:first').trigger 'click' if $('.metric-row').length == 1
+
+  $('body').on 'click', '._form_close_button', ->
+    $form = $(this).closest('.new-value-form')
+    $form.find('form').addClass('hide')
+    $form.closest('.timeline-body')
+          .find('.timeline-header ._add_new_value').show()
 
   $('body').on 'click.collapse-next', '[data-toggle=collapse-next]', ->
     $this     = $(this)
