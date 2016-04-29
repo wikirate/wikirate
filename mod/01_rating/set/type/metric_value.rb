@@ -437,8 +437,15 @@ format :html do
       args[:hidden]['card[subcards][+source][content]'] = args[:source]
     end
     args[:title] = "Add new value for #{args[:metric]}" if args[:metric]
-    args[:buttons] = submit_button(class: 'create-submit-button',
-                                   data: { disable_with: 'Adding...' })
+    btn_class = 'btn btn-default _form_close_button'
+    args[:buttons] =
+      wrap_with :div do
+        [
+          submit_button(class: 'create-submit-button',
+                        data: { disable_with: 'Adding...' }),
+          content_tag(:button, 'Close', type: 'button', class: btn_class)
+        ]
+      end
     super(args)
   end
 
@@ -465,6 +472,10 @@ format :html do
       <span class="metric-unit">
         #{legend(args)}
       </span>
+      <div class="pull-right">
+        <small>#{checked_value_flag.html_safe}</small>
+        <small>#{comment_flag.html_safe}</small>
+      </div>
     )
   end
 
@@ -499,8 +510,8 @@ format :html do
   def checked_value_flag
     checked_card = card.field 'checked_by'
     if checked_card && !checked_card.item_names.empty?
-      css_class = 'fa fa-lg fa-check-circle verify-blue margin-left-15'
-      content_tag('i', '', class: css_class)
+      css_class = 'fa fa-lg fa-check-circle verify-blue margin-left-10'
+      content_tag('i', '', class: css_class, title: 'Value checked')
     else ''
     end
   end
@@ -509,8 +520,8 @@ format :html do
     return '' unless Card.exists? card.cardname.field('discussion')
     disc = card.fetch(trait: :discussion)
     if disc.content.include? 'w-comment-author'
-      css_class = 'fa fa-lg fa-commenting margin-left-15'
-      content_tag('i', '', class: css_class)
+      css_class = 'fa fa-lg fa-commenting margin-left-10'
+      content_tag('i', '', class: css_class, title: 'Has comments')
     else ''
     end
   end
@@ -557,7 +568,6 @@ format :html do
   end
 
   view :value do |args|
-    checked_value_flag
     value = content_tag(:span, currency, class: 'metric-unit')
     value << _render_value_link(args)
     value << content_tag(:span, legend(args), class: 'metric-unit')

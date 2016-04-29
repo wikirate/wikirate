@@ -54,7 +54,7 @@ format :html do
                  )
     btn_methodology =
       content_tag(:div, 'View Methodology',
-                  class: btn_class,
+                  class: btn_class + ' ' + '_view_methodology',
                   data: {
                     toggle: 'collapse',
                     target: target_str,
