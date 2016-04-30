@@ -1,7 +1,7 @@
-class WolframFormula < Formula
+class Wolfram < Formula::Calculator
   WL_INTERPRETER = 'https://www.wolframcloud.com/objects/92f1e212-7875-49f9-888f-b5b4560b7686'
 
-  def get_value year, _metrics_with_values, i
+  def get_value input, company, year
     @executed_lambda[year.to_s][i]
   end
 
@@ -13,7 +13,7 @@ class WolframFormula < Formula
   # M1+C1+2015 = 11.15, M2+C1+2015 = 21.15
   # M1+C2+2014 = 12.14, M2+C2+2014 = 22.14
   # M1+C2+2015 = 12.15, M2+C2+2015 = 22.15
-  # create the followng expression in Wolfram Language
+  # create the following expression in Wolfram Language
   # Apply[(#1+#2)&,<|2014 -> {{11.14, 21.14}, {12.14, 22.14}},
   #                 2015 -> {{11.15, 21.15}, {12.15, 22.15}}|>, {2}]
   # The result is a Wolfram hash with an array for every year that contains
@@ -21,30 +21,25 @@ class WolframFormula < Formula
   # <|2014 -> {32.28, 34.28}, 2015 -> {32.30, 34.30}|>
 
   def to_lambda
-    wl_formula = @formula.keyified
-    metrics.each_with_index do |metric, i|
-      # indices in Wolfram Language start with 1
-      wl_formula.gsub!("{{#{ metric }}}", "##{ i + 1 }")
-    end
+    wl_formula =
+      replace_nests do |i|
+        # indices in Wolfram Language start with 1
+        "##{ i + 1 }"
+      end
 
     year_str = []
-    @formula.input_values.each_pair do |year, companies|
-      company_str = []
-      companies.each do |_company, metrics_with_values|
-        values = metrics.map do |metric|
-          if Card[metric].number_values?
-            metrics_with_values[metric]
-          else
-            "\"#{metrics_with_values[metric]}\""
-          end
-        end.compact
-        next if values.size != metrics.size
-        company_str << "{#{values.join(',')}}"
-      end
-      year_str << "\"#{year}\" -> {#{company_str.join ','}}"
+    input_by_year = Hash.new_nested Array
+    @input.each do |input_values, year, company|
+      company_str =
+        input_values.map.with_index do |value, i|
+          @input.type(i) == 'Number' ? value : "\"#{value}\""
+        end.join(',')
+      input_by_year[year] << "{#{company_str}}"
+    end
+    input_by_year.each_pair do |year, values|
+      year_str << "\"#{year}\" -> {#{values.join ','}}"
     end
     wl_input = year_str.join ','
-
     "Apply[(#{wl_formula})&,<| #{wl_input} |>,{2}]"
   end
 

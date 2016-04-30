@@ -10,6 +10,8 @@ def metric_card
   left
 end
 
+delegate :cast_input, to: :formula_interpreter
+
 def categorical?
   metric_card.respond_to?(:basic_metric_card) &&
     metric_card.basic_metric_card.categorical?
@@ -248,13 +250,13 @@ def calculate_values_for opts={}
   unless opts[:company]
     fail Card::Error, '#calculate_values_for: no company given'
   end
-  values = fetch_input_values opts
-  values.each_pair do |year, companies|
-    metrics_with_values = companies[opts[:company].to_name.key]
-    value = formula_interpreter.evaluate_single_input metrics_with_values
+  no_value = true
+  formula_interpreter.evaluate(opts).each_pair do |year, companies|
+    no_value = false
+    value = companies[opts[:company]]
     yield year, value
   end
-  if opts[:year] && values.empty?
+  if opts[:year] && no_value
     yield opts[:year], nil
   end
 end
@@ -263,10 +265,6 @@ def keyified
   content.gsub(/\{\{\s*([^}]+)\s*\}\}/) do |_match|
     "{{#{$1.to_name.key}}}"
   end
-end
-
-def input_values
-  @input_values ||= fetch_input_values
 end
 
 
