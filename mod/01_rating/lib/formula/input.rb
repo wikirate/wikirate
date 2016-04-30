@@ -45,7 +45,7 @@ class Formula
     def input_for year, company
       fetch_values company: company, year: year unless @all_fetched
       values_for_all_years = all_values_for company.to_name.key
-      values = year_args_processor.run value_data, year
+      values = year_args_processor.run values_for_all_years, year
       validate_input values
     end
 

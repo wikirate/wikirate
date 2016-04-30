@@ -1,20 +1,19 @@
 # encoding: UTF-8
 
-
-# -5 .. -3 2015  2018 .. 2020
 class Formula
   def initialize formula_card
-    @formula = formula_card
-    @calculator =
+    formula = formula_card.content
+    calc_class =
       if formula_card.wiki_rating?
-        Calculator::WikiRating.new formula_card
-      elsif Calculator::Translation.valid_formula? formula_card.content
-        Calculator::Translation.new formula_card
-      elsif Calculator::Ruby.valid_formula? formula_card.content
-        Calculator::Ruby.new formula_card
+        WikiRating
+      elsif Translation.valid_formula? formula
+        Translation
+      elsif Ruby.valid_formula? formula
+        Ruby
       else
-        Calculator::Wolfram.new formula_card
+        Wolfram
       end
+    @calculator = calc_class.new formula_card
   end
 
 
