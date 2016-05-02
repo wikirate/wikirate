@@ -1,19 +1,18 @@
 class Formula
   class Input
-    def initialize formula_card
-      @formula = formula_card
-      @multi_year = false # formula involves more than the current years
-      @fixed_years = ::Set.new
+    def initialize calculator, formula
+      @calculator = calculator
       @all_fetched = false
+      @year_args_processor = YearArgsProcessor.new formula
     end
 
     def each opts={}
       fetch_values opts
-      years = opts[:year] ? [opts[:year]] : @years_with_values
+      years = opts[:year] ? Array(opts[:year]) : years_with_values
       years.each do |year|
-        @companies_with_values.each do |company|
-          next unless (ip = input_for(year, company))
-          yield(ip, company, year)
+        companies_with_value(year).each do |company_key|
+          next unless (value = input_for(year, company_key))
+          yield(value, company_key, year)
         end
       end
     end
@@ -24,6 +23,14 @@ class Formula
 
     def key index
       @order[index][0]
+    end
+
+    def companies_with_value year
+      @companies_with_values_by_year[year].to_a
+    end
+
+    def years_with_values
+      @companies_with_values_by_year.keys
     end
 
     # @param [Integer] year the year the value is calculated for
@@ -45,7 +52,7 @@ class Formula
     def input_for year, company
       fetch_values company: company, year: year unless @all_fetched
       values_for_all_years = all_values_for company.to_name.key
-      values = year_args_processor.run values_for_all_years, year
+      values = @year_args_processor.run values_for_all_years, year
       validate_input values
     end
 
@@ -56,11 +63,11 @@ class Formula
         if val.is_a?(Array)
           val.map do |v|
             return if v.blank?
-            @formula.cast_input v
+            @calculator.cast_input v
           end
         else
           return if val.blank?
-          @formula.cast_input val
+          @calculator.cast_input val
         end
       end
     end
@@ -71,53 +78,60 @@ class Formula
 
       @metric_values = Hash.new_nested Hash, Hash
       @yearly_values = Hash.new_nested Hash
-      @companies_with_values = opts[:company] ? [opts[:company]] : nil
-      @years_with_values = HAsh.new_nested ::Set
+
+      @companies_with_values =
+        opts[:company] ? [opts[:company].to_name.key] : nil
+      @companies_with_values_by_year = Hash.new_nested ::Set
       @order = []
 
-      @formula.each_nested_chunk do |chunk|
-        case chunk.referee_card.type_id
+      @calculator.each_input_card do |input_card|
+        case input_card.type_id
         when Card::MetricID
-          metric_value_fetch chunk, opts
-          @order << [chunk.referee_card.key, chunk.referee_card.value_type]
+          metric_value_fetch input_card, opts
+          @order << [input_card.key, input_card.value_type]
         when Card::YearlyVariableID
-          yearly_value_fetch chunk
-          @order << [chunk.referee_card.key, :yearly_value]
-        else
-          @formula.errors.add :formula,
-                              "invalid formula input #{chunk.referee_name}"
+          yearly_value_fetch input_card
+          @order << [input_card.key, :yearly_value]
+        end
+        if @companies_with_values.empty?
+          @companies_with_values_by_year = {}
+          return
         end
       end
     end
 
-    def metric_value_fetch chunk, opts={}
+    def metric_value_fetch input_card, opts={}
       search_restrictions = {
-        metrics: chunk.referee_name.to_s,
+        metrics: input_card.name.to_s,
         companies: @companies_with_values
       }
-      if opts[:year] && !@multi_year
+      if opts[:year] && !@year_args_processor.multi_year
         search_restrictions[:year] = opts[:year]
       end
       v_cards = input_metric_value_cards search_restrictions
 
-      @companies_with_values =
-        if @companies_with_values
-          @companies_with_values & v_cards.map(&:company_key)
-        else
-          v_cards.map(&:company_key)
-        end
+      filter_companies v_cards.map(&:company_key)
 
       v_cards.each do |vc|
         @metric_values[vc.metric_key][vc.company_key][vc.year.to_i] = vc.value
-        @years_with_values[vc.year.to_i] << vc.company_key
+        @companies_with_values_by_year[vc.year.to_i] << vc.company_key
       end
     end
 
-    def yearly_value_fetch chunk
-      v_cards = input_yearly_value_cards(variables: chunk.referee_name)
+    def filter_companies company_keys
+      @companies_with_values =
+        if @companies_with_values
+          @companies_with_values & company_keys
+        else
+          company_keys
+        end
+    end
+
+    def yearly_value_fetch input_card
+      v_cards = input_yearly_value_cards(variables: input_card.name)
       v_cards.each do |vc|
-        @yearly_values[chunk.referee_card.key] = vc.content
-        @years_with_values[vc.year.to_i] << chunk.referee_card.key
+        @yearly_values[input_card.key] = vc.content
+        @companies_with_values_by_year[vc.year.to_i] << input_card.key
       end
     end
 
@@ -133,10 +147,6 @@ class Formula
         return nil unless val
         year ? val[year] : val
       end
-    end
-
-    def year_args_processor
-      @year_args_processor ||= YearArgsProcessor.new @formula.content
     end
 
     # Searches for all metric value cards that are necessary to calculate all values
@@ -155,10 +165,10 @@ class Formula
 
     def metric_value_cards_query opts={}
       left_left = {}
-      if opts[:metrics]
+      if opts[:metrics].present?
         left_left[:left] = { name: ['in'] + Array.wrap(opts[:metrics]) }
       end
-      if opts[:companies]
+      if opts[:companies].present?
         left_left[:right] = { name: ['in'] + Array.wrap(opts[:companies]) }
       end
       query = { right: 'value', left: { type_id: Card::MetricValueID } }

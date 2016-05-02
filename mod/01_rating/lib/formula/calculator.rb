@@ -4,7 +4,13 @@
     class Calculator
       def initialize formula_card
         @formula = formula_card
-        @input = Formula::Input.new(@formula)
+        @input = Formula::Input.new(self, @formula.content)
+      end
+
+      def each_input_card
+        @formula.each_nested_chunk do |chunk|
+          yield chunk.referee_card
+        end
       end
 
       # @param [Hash] opts
@@ -14,7 +20,7 @@
       def result opts={}
         compile_formula
         result = Hash.new_nested Hash
-        @input.each(opts) do |year, company, input|
+        @input.each(opts) do |input, company, year|
           next unless (value = get_value(input, company, year))
           result[year][company] = normalize_value value
         end
@@ -23,10 +29,10 @@
 
       # Returns all years that are affected by changes on the metric values given
       # by `changed_years`
-      def update_range changed_years
-        @multi_year ? :all : changed_years
-        #return years unless @multi_year
-      end
+      # def update_range changed_years
+      #   @multi_year ? :all : changed_years
+      #   #return years unless @multi_year
+      # end
 
       def compile_formula expr=nil
         @executed_lambda = safe_execution(expr || to_lambda)

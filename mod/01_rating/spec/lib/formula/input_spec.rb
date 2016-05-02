@@ -1,39 +1,56 @@
 describe Formula::Input do
-  def chunk_include content
-    Card::Content::Chunk::Include.new(
-      Card::Content::Chunk::Include.full_match(content),
-      Card::Content.new(content, Card.new(name:'test'))
-    )
-  end
-  let(:formula_card) do
-    formula = double(Card)
-    allow(formula).to receive(:content)
-                         .and_return(@nests.join)
-    allow(formula).to receive(:each_nested_chunk) do |&block|
-      @nests.each do |n|
-        block.call(chunk_include(n))
+  let(:ruby_calculator) do
+    ruby = double(Formula::Ruby)
+    allow(ruby).to receive(:each_input_card) do |&block|
+      @input.each do |name, year_expr|
+        block.call(Card.fetch(name))
       end
     end
-    allow(formula).to receive(:cast_input) do |v|
+    allow(ruby).to receive(:cast_input) do |v|
       v.to_f
     end
-
-    allow(formula).to receive(:normalize_value) do |v|
-      v
-    end
-    formula
+    ruby
   end
 
-  subject { FormulaInput.new formula_card }
+  before do
+    Card::Auth.as_bot do
+      Card::Metric.create name: 'Joe User+researched1',
+                          type: :researched,
+                          random_source: true do
+
+        Apple_Inc  '2010' => 10, '2011' => 11, '2012' => 12,
+                   '2013' => 13, '2014' => 14
+        Death_Star '1977' => 77
+      end
+    end
+  end
+
+  def formula
+    @input.map do |name, year_expr|
+      if year_expr
+        "{{#{name}|year:#{year_expr}}}"
+      else
+        "{{#{name}}}"
+      end
+    end.join
+  end
+
+  subject { Formula::Input.new ruby_calculator, formula }
   it 'single input' do
-    @nests = ['{{Jedi+deadliness}}']
-    #@formula = "#{@nests.first}*2"
-    expect(subject.input(1977, 'Death Star')).to eq [100.0]
+    @input = ['Jedi+deadliness']
+    expect { |b| subject.each(year: 1977, company: 'Death Star', &b) }
+      .to yield_with_args([100.0], 'death_star', 1977)
   end
 
   it 'two metrics' do
-    @nests = ['{{Jedi+deadliness}}', '{{Joe User+score1}}']
-    #@formula = "#{@nests.first}*2"
-    expect(subject.input(1977, 'Death Star')).to eq [100.0, 5.0]
+    @input = %w(Jedi+deadliness Joe_User+researched1)
+    expect { |b| subject.each(year: 1977, &b) }
+      .to yield_with_args([100.0, 77.0], 'death_star', 1977)
+  end
+
+  it 'year references' do
+    @input = [['Joe User+researched1','-1..0']]
+    expect { |b| subject.each(year: 2013, company: 'Apple Inc', &b) }
+      .to yield_with_args([[12.0, 13.0]], 'apple_inc', 2013)
   end
 end

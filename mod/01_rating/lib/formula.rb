@@ -3,7 +3,7 @@
 class Formula
   def initialize formula_card
     formula = formula_card.content
-    calc_class =
+    calculator_class =
       if formula_card.wiki_rating?
         WikiRating
       elsif Translation.valid_formula? formula
@@ -13,7 +13,7 @@ class Formula
       else
         Wolfram
       end
-    @calculator = calc_class.new formula_card
+    @calculator = calculator_class.new formula_card
   end
 
 
