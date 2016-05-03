@@ -247,7 +247,6 @@ format :html do
 
   view :new do |args|
     return _render_no_frame_form args if Env.params[:noframe] == 'true'
-    return super(args) if args[:source] || args[:company]
     @form_root = true
     frame args do # no form!
       [
@@ -278,9 +277,11 @@ format :html do
 
   view :metric_value_landing do |args|
     render_haml source_container: _render_source_container,
-                metric_field: _render_metric_field(args) do
+                metric_field: _render_metric_field(args),
+                hidden_source_field: _render_hidden_source_field(args) do
       <<-HAML
 .col-md-6.border-right.panel-default
+  = hidden_source_field
   -# %h4
   -# Company
   %hr
@@ -289,8 +290,15 @@ format :html do
     -# Metric
   %hr
     = metric_field
+
 = source_container
       HAML
+    end
+  end
+
+  view :hidden_source_field do |args|
+    if (source = args[:source])
+      hidden_field 'hidden_source', value: source
     end
   end
 
@@ -389,6 +397,9 @@ format :html do
 
   view :relevant_sources do |args|
     sources = find_potential_sources args[:company], args[:metric]
+    if (source_name = args[:source]) && (source_card = Card[source_name])
+      sources.push(source_card)
+    end
     relevant_sources =
       if sources.empty?
         'None'

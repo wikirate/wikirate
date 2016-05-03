@@ -37,6 +37,22 @@ $(document).ready ->
       $sourceForm.removeClass('hide')
       $sourceDetails.addClass('hide')
 
+  getUrlParameter = (sParam) ->
+    sPageURL = decodeURIComponent(window.location.search.substring(1))
+    sURLVariables = sPageURL.split('&')
+    sParameterName = undefined
+    i = undefined
+    i = 0
+    while i < sURLVariables.length
+      sParameterName = sURLVariables[i].split('=')
+      if sParameterName[0] == sParam
+        if sParameterName[1] == undefined
+          return true
+        else
+          return sParameterName[1]
+      i++
+    return
+
   appendNewValueForm = ($this) ->
     company   = encodeURIComponent($this.data("company"))
     metric    = encodeURIComponent($this.data("metric"))
@@ -52,9 +68,14 @@ $(document).ready ->
                                      '?view=new_metric_value&metric[]=' +
                                      metric)
       else
+        source = getUrlParameter('source')
+        if source != undefined
+          source = '&slot[source]=' + source
+        else
+          source = ''
         load_path = wagn.prepUrl(wagn.rootPath +
                                "/new/metric_value?noframe=true&slot[company]="+
-                               company + "&slot[metric]=" + metric)
+                               company + "&slot[metric]=" + metric + source)
 
         $template = $('<div>').addClass('timeline-row new-value-form')
         $template = $template.append($('<div>')
@@ -176,17 +197,19 @@ $(document).ready ->
     $parent_slot = $(this).slot()
     company = $(".RIGHT-company .input-group input").val()
     metric  = $(".RIGHT-metric select").val()
+    source  = $("#card_hidden_source").val()
     company = Array.isArray(company) && company[0] || company
     company = encodeURIComponent(company.replace('.',''))
     metric = metric.map((obj) ->
       obj = '&metric[]=' + encodeURIComponent(obj)
       obj
     ).join('')
+    source = '&source=' + source
     # metric  = encodeURIComponent(metric)
     if(company&&metric)
       $parent_slot.append($loader_anime)
       location.href = wagn.prepUrl(wagn.rootPath + '/' + company +
-                                  '?view=new_metric_value' + metric)
+                                  '?view=new_metric_value' + metric + source)
 
   $('body').on 'ajax:success',
   '[data-form-for="new_metric_value"]',
