@@ -261,13 +261,6 @@ def calculate_values_for opts={}
   end
 end
 
-def keyified
-  content.gsub(/\{\{\s*([^}]+)\s*\}\}/) do |_match|
-    "{{#{$1.to_name.key}}}"
-  end
-end
-
-
 def input_cards
  input_metrics
 end
