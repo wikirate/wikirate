@@ -37,22 +37,6 @@ $(document).ready ->
       $sourceForm.removeClass('hide')
       $sourceDetails.addClass('hide')
 
-  getUrlParameter = (sParam) ->
-    sPageURL = decodeURIComponent(window.location.search.substring(1))
-    sURLVariables = sPageURL.split('&')
-    sParameterName = undefined
-    i = undefined
-    i = 0
-    while i < sURLVariables.length
-      sParameterName = sURLVariables[i].split('=')
-      if sParameterName[0] == sParam
-        if sParameterName[1] == undefined
-          return true
-        else
-          return sParameterName[1]
-      i++
-    return
-
   appendNewValueForm = ($this) ->
     company   = encodeURIComponent($this.data("company"))
     metric    = encodeURIComponent($this.data("metric"))
@@ -68,7 +52,7 @@ $(document).ready ->
                                      '?view=new_metric_value&metric[]=' +
                                      metric)
       else
-        source = getUrlParameter('source')
+        source = $.urlParam('source')
         if source != undefined
           source = '&slot[source]=' + source
         else
