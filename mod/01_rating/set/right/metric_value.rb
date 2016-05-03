@@ -45,7 +45,7 @@ format :html do
       content_tag(:div, 'Add answer',
                   class: btn_add_class,
                   data: {
-                    company: card.cardname.left_name.tag,
+                    company: card.cardname.left_name.right_name.url_key,
                     metric: card.cardname.left_name.trunk_name.url_key,
                     toggle: 'collapse-next',
                     parent: '.timeline-data',
@@ -54,7 +54,7 @@ format :html do
                  )
     btn_methodology =
       content_tag(:div, 'View Methodology',
-                  class: btn_class,
+                  class: btn_class + ' ' + '_view_methodology',
                   data: {
                     toggle: 'collapse',
                     target: target_str,
