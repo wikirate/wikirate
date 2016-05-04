@@ -145,7 +145,7 @@ event :process_sources, :prepare_to_validate,
       on: :save, when: proc { |c| c.researched? } do
   if (sources = subfield(:source))
     sources.item_names.each do |source_name|
-      if  Card.exists? source_name
+      if Card.exists? source_name
         add_report_type source_name
         add_company source_name
       else

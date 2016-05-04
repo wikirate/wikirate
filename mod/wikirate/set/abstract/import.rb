@@ -35,7 +35,7 @@ end
 def create_source url
   Env.params[:sourcebox] = 'true'
   source_card = add_subcard '', type_id: SourceID, subcards: source_args(url)
-  source_card.director.catch_up_to_stage :prepare_to_store
+  source_card.director.catch_up_to_stage :finalize
   Env.params[:sourcebox] = nil
   errors.add(*source_card.errors) unless source_card.errors.empty?
   source_card
