@@ -5,22 +5,57 @@ event :import_csv, :prepare_to_store,
       when: proc { Env.params['is_metric_import_update'] == 'true' } do
   return unless (metric_values = Env.params[:metric_values])
   return unless valid_import_format?(metric_values)
+  source_map = {}
   metric_values.each do |metric_value_data|
-    metric_value_card = import_metric_value metric_value_data
+    metric_value_card = parse_metric_value metric_value_data, source_map
     # validate value type
-    metric_value_card.validate_value_type if metric_value_card
+    metric_value_card.director.catch_up_to_stage :validate if metric_value_card
     handle_import_errors metric_value_card
   end
   handle_redirect
 end
 
 # @return updated or created metric value card object
-def import_metric_value import_data
+def parse_metric_value import_data, source_map
   args = process_metric_value_data import_data
+  process_source args, source_map
   ensure_company_exists args[:company]
   return unless valid_value_data? args
   return unless (create_args = Card[args[:metric]].create_value_args args)
   add_subcard create_args.delete(:name), create_args
+end
+
+def source_args url
+  {
+    '+*source_type' => { content: '[[Link]]' },
+    '+Link' => { content: url, type_id: PhraseID }
+  }
+end
+
+def create_source url
+  Env.params[:sourcebox] = 'true'
+  source_card = add_subcard '', type_id: SourceID, subcards: source_args(url)
+  source_card.director.catch_up_to_stage :prepare_to_store
+  Env.params[:sourcebox] = nil
+  errors.add(*source_card.errors) unless source_card.errors.empty?
+  source_card
+end
+
+def process_source metric_value_data, source_map
+  url = metric_value_data[:source]
+  if (source_card = source_map[url])
+    metric_value_data[:source] = source_card
+    return
+  end
+  duplicates = Self::Source.find_duplicates url
+  source_card =
+    if duplicates.any?
+      duplicates.first.left
+    else
+      create_source url
+    end
+  metric_value_data[:source] = source_card
+  source_map[url] = source_card
 end
 
 # @return [Hash] args to create metric value card

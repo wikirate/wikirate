@@ -107,32 +107,21 @@ describe Card::Set::Type::MetricValue do
   end
 
   context 'value type is free text' do
+    let(:metric) { get_a_sample_metric }
+    let(:company) { get_a_sample_company }
+    let(:source) { get_a_sample_source }
     before do
       login_as 'joe_user'
       @metric = get_a_sample_metric
       subcards_args = {
         '+Unit' => { 'content' => 'Imperial military units',
-                     'type_id' => Card::PhraseID }
+                     'type_id' => Card::PhraseID },
+        '+Report Type' => { 'content' => 'Conflict Mineral Report',
+                            'type_id' => Card::PointerID }
       }
       @metric.update_attributes! subcards: subcards_args
-      @company = get_a_sample_company
-      subcard = {
-        '+metric' => { 'content' => @metric.name },
-        '+company' => { 'content' => "[[#{@company.name}]]",
-                        :type_id => Card::PointerID },
-        '+value' => { 'content' => "I'm fine, I'm just not happy.",
-                      :type_id => Card::PhraseID },
-        '+year' => { 'content' => '2015', :type_id => Card::PointerID },
-        '+source' => { 'subcards' => {
-          'new source' => {
-            '+Link' => {
-              'content' => 'http://www.google.com/?q=everybodylies',
-              'type_id' => Card::PhraseID
-            }
-          }
-        }
-        }
-      }
+      subcard = get_subcards_of_metric_value metric, company, 'hoi polloi',
+                                             '2015', source.name
       @metric_value =
         Card.create! type_id: Card::MetricValueID, subcards: subcard
     end
@@ -141,125 +130,40 @@ describe Card::Set::Type::MetricValue do
         expect(@metric_value.year).to eq('2015')
       end
       it 'returns correct metric name' do
-        expect(@metric_value.metric_name).to eq(@metric.name)
+        expect(@metric_value.metric_name).to eq(metric.name)
       end
       it 'returns correct company name' do
-        expect(@metric_value.company_name).to eq(@company.name)
+        expect(@metric_value.company_name).to eq(company.name)
       end
       it 'returns correct company card' do
-        expect(@metric_value.company_card.id).to eq(@company.id)
+        expect(@metric_value.company_card.id).to eq(company.id)
       end
       it 'returns correct metric card' do
-        expect(@metric_value.metric_card.id).to eq(@metric.id)
+        expect(@metric_value.metric_card.id).to eq(metric.id)
       end
     end
     describe '#autoname' do
       it 'sets a correct autoname' do
-        name = "#{@metric.name}+#{@company.name}+2015"
+        name = "#{metric.name}+#{company.name}+2015"
         expect(@metric_value.name).to eq(name)
       end
     end
-    context 'creating metric value' do
-      it 'based on subcards' do
-        url = 'http://www.google.com/?q=everybodylies'
-        source =
-          Card::Set::Self::Source.find_duplicates(url).first.cardname.left
-        source_card = @metric_value.fetch trait: :source
-        expect(source_card.item_names).to include(source)
-
-        value_card = Card["#{@metric_value.name}+value"]
-        expect(value_card.content).to eq("I'm fine, I'm just not happy.")
+    it 'saving correct value' do
+      value_card = Card["#{@metric_value.name}+value"]
+      expect(value_card.content).to eq('hoi polloi')
+    end
+    describe '+source' do
+      let(:source_card) { @metric_value.fetch trait: :source }
+      it 'includes source in +source' do
+        expect(source_card.item_names).to include(source.name)
       end
 
-      it 'with an existing source' do
-        url = 'http://www.google.com/?q=everybodylies'
-        source =
-          Card::Set::Self::Source.find_duplicates(url).first.cardname.left
-        subcard = {
-          '+metric' => { 'content' => @metric.name },
-          '+company' => {
-            'content' => "[[#{@company.name}]]",
-            'type_id' => Card::PointerID
-          },
-          '+value' => {
-            'content' => "I'm fine, I'm just not happy.",
-            'type_id' => Card::PhraseID
-          },
-          '+year' => { 'content' => '2014', 'type_id' => Card::PointerID },
-          '+source' => { 'content' => source }
-        }
-        mv = Card.create! type_id: Card::MetricValueID, subcards: subcard
-        source_card = mv.fetch trait: :source
-        expect(source_card.item_names).to include(source)
-
-        value_card = Card["#{mv.name}+value"]
-        expect(value_card.content).to eq("I'm fine, I'm just not happy.")
-      end
-
-      it 'with an existing url' do
-        url = 'http://www.google.com/?q=everybodylies'
-        source =
-          Card::Set::Self::Source.find_duplicates(url).first.cardname.left
-        subcard = {
-          '+metric' => { 'content' => @metric.name },
-          '+company' => {
-            'content' => "[[#{@company.name}]]",
-            'type_id' => Card::PointerID
-          },
-          '+value' => {
-            'content' => "I'm fine, I'm just not happy.",
-            'type_id' => Card::PhraseID
-          },
-          '+year' => { 'content' => '2014', 'type_id' => Card::PointerID },
-          '+source' => {
-            'subcards' => {
-              'new source' => {
-                '+Link' => {
-                  content: url,
-                  type_id: Card::PhraseID
-                }
-              }
-            }
-          }
-        }
-        mv = Card.create! type_id: Card::MetricValueID, subcards: subcard
-        source_card = mv.fetch trait: :source
-        expect(source_card.item_names).to include(source)
-
-        value_card = Card["#{mv.name}+value"]
-        expect(value_card.content).to eq("I'm fine, I'm just not happy.")
-      end
-
-      it 'with an pdf url' do
-        url = 'http://dev.wikirate.org/Page-000003962+File.pdf'
-        subcard = {
-          '+metric' => { 'content' => @metric.name },
-          '+company' => {
-            'content' => "[[#{@company.name}]]",
-            'type_id' => Card::PointerID
-          },
-          '+value' => {
-            'content' => "I'm fine, I'm just not happy.",
-            'type_id' => Card::PhraseID
-          },
-          '+year' => { 'content' => '2014', 'type_id' => Card::PointerID },
-          '+source' => {
-            'subcards' => {
-              'new source' => {
-                '+Link' => {
-                  content: url,
-                  type_id: Card::PhraseID
-                }
-              }
-            }
-          }
-        }
-        mv = Card.create! type_id: Card::MetricValueID, subcards: subcard
-        source_card = mv.fetch trait: :source
-        expect(source_card.item_cards[0].source_type_codename).to eq(:file)
-
-        value_card = Card["#{mv.name}+value"]
-        expect(value_card.content).to eq("I'm fine, I'm just not happy.")
+      it "updates source's company and report type" do
+        source_company = source.fetch trait: :wikirate_company
+        source_report_type = source.fetch trait: :report_type
+        expect(source_company.item_cards).to include(company)
+        report_name = 'Conflict Mineral Report'
+        expect(source_report_type.item_names).to include(report_name)
       end
 
       it 'fails with a non-existing source' do
@@ -305,29 +209,6 @@ describe Card::Set::Type::MetricValue do
         metric_values_value_card = Card["#{@metric_value.name}+value"]
         expect(metric_values_value_card.content).to eq(quote)
       end
-      context 'with another source' do
-        it "won't create card new source" do
-          quote = "if nobody hates you, you're doing something wrong."
-          subcards = {
-            '+value' => quote,
-            '+source' => {
-              'subcards' => {
-                'new source' => {
-                  '+Link' => {
-                    'content' => 'http://www.google.com/?q=everybodylies1',
-                    'type_id' => Card::PhraseID
-                  }
-                }
-              }
-            }
-          }
-          @metric_value.update_attributes! subcards: subcards
-          metric_values_value_card = Card["#{@metric_value.name}+value"]
-          expect(metric_values_value_card.content).to eq(quote)
-          expect(Card.exists?('new source')).not_to be
-          expect(Card.exists?('new source+link')).not_to be
-        end
-      end
     end
     describe 'views' do
       it 'renders timeline data' do
@@ -341,7 +222,7 @@ describe Card::Set::Type::MetricValue do
           end
           with_tag('div', with: { class: 'td value' }) do
             with_tag('span', with: { class: 'metric-value' }) do
-              with_tag('a', text: "I'm fine, I'm just not happy.")
+              with_tag('a', text: 'hoi polloi')
             end
             with_tag('span', with: { class: 'metric-unit' },
                              text: /Imperial military units/)
@@ -354,7 +235,7 @@ describe Card::Set::Type::MetricValue do
         html = @metric_value.format.render_modal_details
         expect(html).to have_tag('span', with: { class: 'metric-value' }) do
           with_tag('a', with: { href: url },
-                        text: "I'm fine, I'm just not happy.")
+                        text: 'hoi polloi')
         end
       end
       it 'renders concise' do
