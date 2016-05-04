@@ -1,5 +1,5 @@
-class Formula
-  class WikiRating < Formula::Translation
+module Formula
+  class WikiRating < Translation
     def get_value input, company, year
       result = 0.0
       input.each.with_index do |value, index|

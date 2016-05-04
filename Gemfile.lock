@@ -12,7 +12,6 @@ PATH
       kaminari (~> 0.16)
       mime-types (= 2.99.1)
       mini_magick (~> 4.2)
-      multi_json (<= 1.11.2)
       recaptcha (~> 0.4.0)
       sass (~> 3.2)
       smartname (= 0.2.3)

@@ -1,5 +1,5 @@
-class Formula
-  class Translation < Formula::Calculator
+module Formula
+  class Translation < Calculator
     def get_value input, _company, _year
       if input.size > 1
         fail Card::Error,
@@ -17,6 +17,10 @@ class Formula
     end
 
     protected
+
+    def year_options
+      nil
+    end
 
     def exec_lambda expr
       JSON.parse expr

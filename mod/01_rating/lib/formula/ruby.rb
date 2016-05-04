@@ -2,11 +2,13 @@
 # array that contains the input values  needed to calculated the formula
 # value in order of appearance in the formula
 
-class Formula
-  class Ruby < Formula::Calculator
+module Formula
+  class Ruby < Calculator
     SYMBOLS = %w{+ - ( ) [ ] . * /}.freeze
     FUNCTIONS = { 'Sum' => 'sum', 'Max' => 'max', 'Min' => 'min' }.freeze
     LAMBDA_ARGS_NAME = 'args'.freeze
+
+    INPUT_CAST = lambda { |val| val.to_f }
 
     FUNC_KEY_MATCHER =  FUNCTIONS.keys.join('|').freeze
     FUNC_VALUE_MATCHER =  FUNCTIONS.values.join('|').freeze
@@ -37,10 +39,6 @@ class Formula
           "#{LAMBDA_ARGS_NAME}[#{index}]"
         end
       lambda_wrap rb_formula
-    end
-
-    def cast_input val
-      val.to_f
     end
 
     protected

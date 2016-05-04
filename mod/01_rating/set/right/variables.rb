@@ -28,8 +28,6 @@ def input_metric_name variable
   input_metric_name_by_index index if index
 end
 
-
-
 def input_metric_name_by_index index
   item_cards.fetch(index, nil).name
 end

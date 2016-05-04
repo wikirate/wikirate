@@ -1,17 +1,4 @@
-describe Formula::Input do
-  let(:ruby_calculator) do
-    ruby = double(Formula::Ruby)
-    allow(ruby).to receive(:each_input_card) do |&block|
-      @input.each do |name, year_expr|
-        block.call(Card.fetch(name))
-      end
-    end
-    allow(ruby).to receive(:cast_input) do |v|
-      v.to_f
-    end
-    ruby
-  end
-
+describe Formula::Calculator::Input do
   before do
     Card::Auth.as_bot do
       Card::Metric.create name: 'Joe User+researched1',
@@ -25,17 +12,12 @@ describe Formula::Input do
     end
   end
 
-  def formula
-    @input.map do |name, year_expr|
-      if year_expr
-        "{{#{name}|year:#{year_expr}}}"
-      else
-        "{{#{name}}}"
-      end
-    end.join
+  subject do
+    input_cards = @input.map { |i| Card.fetch i }
+    Formula::Calculator::Input.new(input_cards, @year_options) do |val|
+      val.to_f
+    end
   end
-
-  subject { Formula::Input.new ruby_calculator, formula }
   it 'single input' do
     @input = ['Jedi+deadliness']
     expect { |b| subject.each(year: 1977, company: 'Death Star', &b) }
@@ -49,7 +31,8 @@ describe Formula::Input do
   end
 
   it 'year references' do
-    @input = [['Joe User+researched1','-1..0']]
+    @input = ['Joe User+researched1']
+    @year_options = ['-1..0']
     expect { |b| subject.each(year: 2013, company: 'Apple Inc', &b) }
       .to yield_with_args([[12.0, 13.0]], 'apple_inc', 2013)
   end
