@@ -152,6 +152,14 @@ describe Card::Set::Type::MetricValue do
       value_card = Card["#{@metric_value.name}+value"]
       expect(value_card.content).to eq('hoi polloi')
     end
+    context 'update metric value name' do
+      it 'succeeds' do
+        new_name = "#{metric.name}+#{company.name}+2014"
+        @metric_value.name = new_name
+        @metric_value.save!
+        expect(@metric_value.name).to eq(new_name)
+      end
+    end
     describe '+source' do
       let(:source_card) { @metric_value.fetch trait: :source }
       it 'includes source in +source' do

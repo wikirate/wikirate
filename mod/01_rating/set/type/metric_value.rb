@@ -102,8 +102,9 @@ end
 
 event :validate_value_type, :validate, on: :save do
   # check if the value fit the value type of metric
-  if metric_card && (value_type = Card["#{metric_card.name}+value type"])
-    value = subfield(:value).content
+  if metric_card && (value_type = metric_card.fetch(trait: :value_type)) &&
+     (value_card = subfield(:value))
+    value = value_card.content
     return if value.casecmp('unknown') == 0
     case value_type.item_names[0]
     when 'Number', 'Money'
@@ -152,7 +153,7 @@ event :process_sources, :prepare_to_validate,
         errors.add :source, "#{source_name} does not exist."
       end
     end
-  else
+  elsif action == :create
     errors.add :source, 'does not exist.'
   end
 end
