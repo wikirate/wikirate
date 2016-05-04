@@ -407,6 +407,3 @@ DEPENDENCIES
   turn (~> 0.8.3)
   wagn!
   wbench
-
-BUNDLED WITH
-   1.11.2

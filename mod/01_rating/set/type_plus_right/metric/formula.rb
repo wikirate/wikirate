@@ -211,15 +211,15 @@ end
 
 # allow only numbers, whitespace, mathematical operations and args references
 def ruby_formula?
-  @calculator_class == Ruby
+  @calculator_class == Formula::Ruby
 end
 
 def translate_formula?
-  @calculator_class == Translation
+  @calculator_class == Formula::Translation
 end
 
 def wolfram_formula?
-  @calculator_class ==  Wolfram
+  @calculator_class ==  Formula::Wolfram
 end
 
 private
@@ -227,13 +227,13 @@ private
 def calculator_class
   @calculator_class ||=
     if wiki_rating?
-      WikiRating
-    elsif Translation.valid_formula? content
-      Translation
-    elsif Ruby.valid_formula? cocntent
-      Ruby
+      Formula::WikiRating
+    elsif Formula::Translation.valid_formula? content
+      Formula::Translation
+    elsif Formula::Ruby.valid_formula? cocntent
+      Formula::Ruby
     else
-      Wolfram
+      Formula::Wolfram
     end
 end
 

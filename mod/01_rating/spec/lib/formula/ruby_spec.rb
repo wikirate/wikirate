@@ -1,32 +1,16 @@
 describe Formula::Ruby do
-  def chunk_include content
-    Card::Content::Chunk::Include.new(
-      Card::Content::Chunk::Include.full_match(content),
-      Card::Content.new(content, Card.new(name:'test'))
-    )
-  end
   let(:formula) do
     formula = double(Card)
     content_obj =
       Card::Content.new(@formula, Card.new(name:'test'), chunk_list: :formula)
     @chunks = content_obj.find_chunks(Card::Content::Chunk::FormulaInput)
-    allow(formula).to receive(:content)
-                        .and_return @formula
-    # allow(formula).to receive(:each_nested_chunk) do |&block|
-    #   @nests.each do |n|
-    #     block.call(chunk_include(n))
-    #   end
-    # end
+    allow(formula).to receive(:content).and_return @formula
     allow(formula).to receive(:input_cards) do
       @chunks.map do |chunk|
         chunk.referee_card
       end
     end
-
-    allow(formula).to receive(:input_chunks) do
-      @chunks
-    end
-
+    allow(formula).to receive(:input_chunks).and_return @chunks
     allow(formula).to receive(:normalize_value) do |v|
       v
     end
@@ -75,4 +59,11 @@ describe Formula::Ruby do
     end
   end
 
+  describe 'yearly variables' do
+    before do
+      Card::Auth.as_bot do
+        #Card.create name: 'yearly var', type: 'yea'
+      end
+    end
+  end
 end
