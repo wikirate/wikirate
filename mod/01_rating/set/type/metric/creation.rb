@@ -19,15 +19,8 @@ def add_value_source_args args, source
   case source
   when String
     args['+source'] = {
-      subcards: {
-        'new source' => {
-          '+Link' => {
-            content: source,
-            type_id: Card::PhraseID
-          }
-        }
-      }
-      # type_id: PointerID
+      content: "[[#{source}]]",
+      type_id: Card::PointerID
     }
   when Hash
     args['+source'] = source
