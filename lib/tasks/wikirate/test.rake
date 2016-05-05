@@ -49,14 +49,16 @@ namespace :wikirate do
       elsif !test_database
         puts 'no test database'
       else
-        # seed from raw wagn db
+        # start with raw wagn db
         execute_command 'wagn seed', :test
+
         import_from(location) do |import|
-          import.items_of 'production_export'
-          import.items_of '*codenames'
+          import.items_of :codenames
+          import.items_of 'cardtype+*type+by_name'
           Card.search(type_id: Card::SettingID, return: :name).each do |setting|
             import.items_of setting
           end
+          import.items_of :production_export, subitems: true
           import.migration_records
         end
         execute_command 'rake wagn:migrate', :test
@@ -90,10 +92,15 @@ class Importer
       end
   end
 
-  def items_of cardname
+  # @return [Array<Hash>] each hash contains the attributes for a card
+  def items_of cardname, opts={}
     card_data =
       work_on "getting data from #{cardname} card" do
-        json_export cardname, :export
+        if opts[:subitems]
+          json_export cardname, :export
+        else
+          json_export(cardname)['card']['value']
+        end
       end
     import_card_data card_data
   end
@@ -101,7 +108,7 @@ class Importer
   def migration_records
     migration_data =
       work_on 'getting migration records' do
-        json_export 'production_export', :migrations
+        json_export :admin_info, :migrations
       end
     work_on 'importing migration records' do
       import_migration_data migration_data
@@ -117,8 +124,10 @@ class Importer
     result
   end
 
-  def json_export cardname, view
-    url = "http://#{@export_location}/#{cardname}.json?view=#{view}"
+  def json_export cardname, view=nil
+    name = cardname.is_a?(Symbol) ? ":#{cardname}" : cardname.to_name.key
+    url = "http://#{@export_location}/#{name}.json"
+    url += "?view=#{view}" if view
     JSON.parse open(url, read_timeout: 50_000).read
   end
 
@@ -142,7 +151,7 @@ class Importer
   end
 
   def import_card_data cards
-    work_on 'importing data' do
+    work_on "importing data (#{cards.size} cards)" do
       Card::Auth.as_bot do
         cards.each do |card|
           update_or_create card['name'], card['codename'], card

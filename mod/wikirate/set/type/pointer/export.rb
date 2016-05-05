@@ -1,12 +1,5 @@
 
 format :json do
-  def migration_records table_name
-    sql = "SELECT * FROM #{table_name}"
-    ActiveRecord::Base.connection.execute(sql).each.each.map do |record|
-      record[0]
-    end
-  end
-
   def get_pointer_items c, count=0
     count += 1
     # avoid infinit recursive
@@ -23,11 +16,7 @@ format :json do
     end.flatten
   end
 
-  view :migrations do |args|
-    %w(schema_migrations schema_migrations_core_cards schema_migrations_deck_cards).each_with_object({}) do |table, h|
-      h[table] = migration_records table
-    end.to_json
-  end
+
 
   view :export do |args|
     card.item_cards.map do |c|
