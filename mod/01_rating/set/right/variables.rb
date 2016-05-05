@@ -87,7 +87,10 @@ format :html do
   end
 
   def metric_list
-    Card.search(type_id: MetricID, limit: 0).map do |m|
+    metrics = Card.search(type_id: MetricID,
+                          right_plus: [ '*metric type', { refer_to: 'Score' }],
+                          limit: 0)
+    metrics.map do |m|
       metric_list_item m
     end.join "\n"
   end
