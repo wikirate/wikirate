@@ -34,7 +34,7 @@ describe Card::Set::TypePlusRight::Metric::Formula do
         subject.content = '{"yes":"10","no":""}'
         subject.save
         expect(subject.errors).to have_key(:invalid_value)
-        err_msg = "Option:no's value is empty"
+        err_msg = "Option:no's value is not a number"
         expect(subject.errors[:invalid_value]).to include(err_msg)
       end
       it 'blocks non numeric values' do

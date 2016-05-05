@@ -152,12 +152,17 @@ end
 event :validate_category_translation, :validate,
       when: proc { |c| c.translate_formula? } do
   complete_translation_table.each do |value_pair|
-    if value_pair[1].empty?
-      errors.add :invalid_value, "Option:#{value_pair[0]}'s value is empty"
-    elsif !number?(value_pair[1])
+    unless number?(value_pair[1])
       errors.add :invalid_value, "Option:#{value_pair[0]}'s value is not a"\
                                  ' number'
-    elsif (value = value_pair[1].to_i) && (value < 0 || value > 10)
+    end
+  end
+end
+
+event :validate_score_metric_category_translation, :validate,
+      when: proc { |c| !c.wiki_rating? && c.translate_formula? } do
+  complete_translation_table.each do |value_pair|
+    if (value = value_pair[1].to_i) && (value < 0 || value > 10)
       errors.add :invalid_value, "Option:#{value_pair[0]}'s value is smaller"\
                                  ' than 0 or bigger than 10'
     end

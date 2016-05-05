@@ -81,6 +81,7 @@ describe Card::Metric do
 
     it 'creates score' do
       Card::Auth.as_bot do
+        researched_metrics
         Card::Metric.create name: 'Jedi+strength in the Force+Joe Camel',
                             type: :score,
                             formula: { yes: 10, no: 0 }
