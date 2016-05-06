@@ -144,15 +144,21 @@ format :html do
   end
 
   view :content_left_col do |args|
-    output [
+    wrap do [
+      _render_filter(args),
       _render_year_select(args),
       _render_company_list(args)
     ]
+    end
   end
 
   # ratings and company list
   view :content_right_col do |args|
     _render_tabs(args)
+  end
+
+  view :filter do |args|
+    field_subformat(:metric_value_filter)._render_content args
   end
 
   view :year_select do
