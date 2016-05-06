@@ -36,17 +36,22 @@ describe Card::Set::TypePlusRight::Source::File::Import do
     Card::Env.params[:metric_values] = data
     source = file ? create_source(file: file) : @source
     source_file = source.fetch trait: :file
+    metric = Card['Access to Nutrition Index+Marketing Score']
+    trigger_source_file_update source_file, metric
+    expect(source_file.errors).to be_empty
+    source_file
+  end
+
+  def trigger_source_file_update source_file, metric
     source_file.update_attributes subcards: {
-      "#{source.name}+#{Card[:metric].name}" => {
-        content: '[[Access to Nutrition Index+Marketing Score]]',
+      "#{@source.name}+#{Card[:metric].name}" => {
+        content: "[[#{metric.name}]]",
         type_id: Card::PointerID
       },
-      "#{source.name}+#{Card[:year].name}" => {
+      "#{@source.name}+#{Card[:year].name}" => {
         content: '[[2015]]', type_id: Card::PointerID
       }
     }
-    expect(source_file.errors).to be_empty
-    source_file
   end
 
   def company_name company
@@ -88,15 +93,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
         Card::Env.params[:metric_values] = [
           { company: 'Amazon.com, Inc.', value: 'hello world', row: 1 }
         ]
-        source_file.update_attributes subcards: {
-          "#{@source.name}+#{Card[:metric].name}" => {
-            content: "[[#{metric.name}]]",
-            type_id: Card::PointerID
-          },
-          "#{@source.name}+#{Card[:year].name}" => {
-            content: '[[2015]]', type_id: Card::PointerID
-          }
-        }
+        trigger_source_file_update source_file, metric
         err_key = "#{metric.name}+Amazon.com, Inc.+2015+value"
         err_msg = 'Only numeric content is valid for this metric.'
         expect(source_file.errors).to have_key(err_key.to_sym)
@@ -113,6 +110,39 @@ describe Card::Set::TypePlusRight::Source::File::Import do
 
       expect(metric_value(:amazon)).to eq('9')
       expect(metric_value(:apple)).to eq('62')
+    end
+    context 'duplicated metric value' do
+      it 'blocks adding' do
+        metric = get_a_sample_metric :number
+        source_file = @source.fetch trait: :file
+        Card::Env.params[:metric_values] = [
+          { company: 'Amazon.com, Inc.', value: '55', row: 1 },
+          { company: 'Amazon.com, Inc.', value: '66', row: 2 }
+        ]
+        trigger_source_file_update source_file, metric
+        err_key = "2:#{metric.name}+Amazon.com, Inc.+2015"
+        err_msg = 'Duplicated metric values'
+        expect(source_file.errors).to have_key(err_key.to_sym)
+        expect(source_file.errors[err_key]).to include(err_msg)
+      end
+    end
+    context 'existing metric value' do
+      it 'blocks adding' do
+        metric = get_a_sample_metric :number
+        source_file = @source.fetch trait: :file
+        Card::Env.params[:metric_values] = [
+          { company: 'Amazon.com, Inc.', value: '55', row: 1 }
+        ]
+        trigger_source_file_update source_file, metric
+        Card::Env.params[:metric_values] = [
+          { company: 'Amazon.com, Inc.', value: '56', row: 1 }
+        ]
+        trigger_source_file_update source_file, metric
+        err_key = "1:#{metric.name}+Amazon.com, Inc.+2015+metric value"
+        err_msg = 'value already exists'
+        expect(source_file.errors).to have_key(err_key.to_sym)
+        expect(source_file.errors[err_key]).to include(err_msg)
+      end
     end
     context 'company correction name is filled' do
       before do

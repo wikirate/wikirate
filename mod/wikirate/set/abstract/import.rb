@@ -15,13 +15,29 @@ event :import_csv, :prepare_to_store,
   handle_redirect
 end
 
+def check_duplication name, row_no
+  errors.add "#{row_no}:#{name}", 'Duplicated metric values' if subcards[name]
+end
+
+def construct_value_args args
+  unless (create_args = Card[args[:metric]].create_value_args args)
+    Card[args[:metric]].errors.each do |key, value|
+      errors.add "#{args[:row]}:#{args[:metric]}+#{args[:company]}+"\
+                 "#{args[:year]}+#{key}", value
+    end
+    return nil
+  end
+  create_args
+end
+
 # @return updated or created metric value card object
 def parse_metric_value import_data, source_map
   args = process_metric_value_data import_data
   process_source args, source_map
   ensure_company_exists args[:company]
   return unless valid_value_data? args
-  return unless (create_args = Card[args[:metric]].create_value_args args)
+  return unless (create_args = construct_value_args args)
+  check_duplication create_args[:name], args[:row]
   add_subcard create_args.delete(:name), create_args
 end
 
