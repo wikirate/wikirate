@@ -102,8 +102,9 @@ end
 
 event :validate_value_type, :validate, on: :save do
   # check if the value fit the value type of metric
-  if metric_card && (value_type = Card["#{metric_card.name}+value type"])
-    value = subfield(:value).content
+  if metric_card && (value_type = metric_card.fetch(trait: :value_type)) &&
+     (value_card = subfield(:value))
+    value = value_card.content
     return if value.casecmp('unknown') == 0
     case value_type.item_names[0]
     when 'Number', 'Money'
@@ -120,62 +121,6 @@ event :validate_value_type, :validate, on: :save do
       end
     end
   end
-end
-
-event :create_source_for_metric_value, :validate,
-      on: :create, when: proc { |c| c.researched? || c.source_in_request? }  do
-  create_source
-end
-
-event :create_source_for_updating_metric_value,
-      :prepare_to_store,
-      on: :update, when: proc { |c| c.source_in_request? } do
-  create_source
-end
-
-def create_source
-  value_card = detach_subfield('value')
-  if (source_list = detach_subfield('source'))
-    source_names = process_sources source_list
-    fill_subcards value_card, source_names if errors.empty?
-  else
-    errors.add :source, 'does not exist.'
-  end
-end
-
-def clone_subcards_to_hash subcards
-  source_subcards = {}
-  subcards.subcards.each_with_key do |subcard, _key|
-    subcard_key = subcard.tag.key
-    source_subcards['+*source_type'] = { content: "[[#{subcard_key}]]" }
-    if subcard_key == 'file'
-      source_subcards["+#{subcard_key}"] = { file: subcard.file.file,
-                                             type_id: subcard.type_id }
-    else
-      source_subcards["+#{subcard_key}"] = { content: subcard.content,
-                                             type_id: subcard.type_id }
-    end
-  end
-  source_subcards
-end
-
-def find_or_create new_source_card
-  with_sourcebox do
-    if (url = new_source_card.subfield(:wikirate_link)) &&
-       (source_card = find_duplicate_source(url.content))
-      source_card
-    else
-      add_source_subcard new_source_card
-    end
-  end
-end
-
-def add_source_subcard new_source_card
-  source_subcards = clone_subcards_to_hash new_source_card
-  source_card = add_subcard '', type_id: SourceID,
-                                subcards: source_subcards
-  source_card.director.catch_up_to_stage :prepare_to_store
-  source_card
 end
 
 def report_type
@@ -197,47 +142,20 @@ def add_company source_name
   source_card.add_item! company_name
 end
 
-def process_sources source_list
-  source_names = source_list.item_names
-  source_names.each do |source_name|
-    if  Card.exists? source_name
-      add_report_type source_name
-      add_company source_name
-    else
-      errors.add :source, "#{source_name} does not exist."
+event :process_sources, :prepare_to_validate,
+      on: :save, when: proc { |c| c.researched? } do
+  if (sources = subfield(:source))
+    sources.item_names.each do |source_name|
+      if Card.exists? source_name
+        add_report_type source_name
+        add_company source_name
+      else
+        errors.add :source, "#{source_name} does not exist."
+      end
     end
+  elsif action == :create
+    errors.add :source, 'does not exist.'
   end
-
-  if (new_source_subcard = source_list.detach_subcard('new_source'))
-    source_card = find_or_create new_source_subcard
-    fill_errors source_card if source_card.errors.present?
-    source_names << source_card.name
-  end
-  source_names
-end
-
-def find_duplicate_source url
-  (link_card = Card::Set::Self::Source.find_duplicates(url).first) &&
-    link_card.left
-end
-
-def with_sourcebox
-  Env.params[:sourcebox] = 'true'
-  result = yield
-  Env.params[:sourcebox] = nil
-  result
-end
-
-def fill_errors source_card
-  source_card.errors.each do |key, value|
-    errors.add key, value
-  end
-end
-
-def fill_subcards metric_value, source_names
-  add_subfield :value, content: metric_value.content, type_id: PhraseID
-  add_subfield :source, content: source_names.to_pointer_content,
-                        type_id: PointerID
 end
 
 format :html do
@@ -247,7 +165,6 @@ format :html do
 
   view :new do |args|
     return _render_no_frame_form args if Env.params[:noframe] == 'true'
-    return super(args) if args[:source] || args[:company]
     @form_root = true
     frame args do # no form!
       [
@@ -278,9 +195,11 @@ format :html do
 
   view :metric_value_landing do |args|
     render_haml source_container: _render_source_container,
-                metric_field: _render_metric_field(args) do
+                metric_field: _render_metric_field(args),
+                hidden_source_field: _render_hidden_source_field(args) do
       <<-HAML
 .col-md-6.border-right.panel-default
+  = hidden_source_field
   -# %h4
   -# Company
   %hr
@@ -289,8 +208,15 @@ format :html do
     -# Metric
   %hr
     = metric_field
+
 = source_container
       HAML
+    end
+  end
+
+  view :hidden_source_field do |args|
+    if (source = args[:source])
+      hidden_field 'hidden_source', value: source
     end
   end
 
@@ -389,6 +315,9 @@ format :html do
 
   view :relevant_sources do |args|
     sources = find_potential_sources args[:company], args[:metric]
+    if (source_name = args[:source]) && (source_card = Card[source_name])
+      sources.push(source_card)
+    end
     relevant_sources =
       if sources.empty?
         'None'

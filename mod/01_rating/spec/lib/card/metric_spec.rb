@@ -22,15 +22,18 @@ describe Card::Metric do
   let :researched_metrics do
     Card::Env[:protocol] = 'http://'
     Card::Env[:host] = 'wikirate.org'
+    url = 'http://wikiwand.com/en/Death_Star'
+    source = create_page_with_sourcebox url
     Card::Metric.create name: 'Jedi+strength in the Force',
                         value_type: 'Category',
                         value_options: %w(yes no) do
       Death_Star '1977' => { value: 'yes',
-                             source: 'http://wikiwand.com/en/Death_Star' }
+                             source: "[[#{source.name}]]" }
     end
     Card::Metric.create name: 'Jedi+darksidiness' do
-      source_url = 'http://wikiwand.com/en/Return_of_the_Jedi'
-      Death_Star '1977' => { value: 100, source: source_url }
+      url = 'http://wikiwand.com/en/Return_of_the_Jedi'
+      source = create_page_with_sourcebox url
+      Death_Star '1977' => { value: 100, source: "[[#{source.name}]]" }
     end
   end
 
@@ -48,9 +51,11 @@ describe Card::Metric do
     subject { Card['MD+MT'] }
     it 'small API test' do
       Card::Auth.as_bot do
+        url = 'http://example.com'
+        source = create_page_with_sourcebox url
         Card::Metric.create name: 'MD+MT', formula: '1', random_source: true do
           MyCompany 2000 => 50, 2001 => 100
-          WithSource 2000 => { value: 50, source: 'http://example.com' }
+          WithSource 2000 => { value: 50, source: "[[#{source.name}]]" }
         end
       end
       is_expected.to be_truthy

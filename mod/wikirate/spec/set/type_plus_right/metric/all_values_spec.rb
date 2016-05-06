@@ -13,7 +13,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
         @metric.create_value company: company.name,
                              value: (value_idx + 1) * 5 + i,
                              year: 2015 - i,
-                             source: 'http://www.google.com/?q=yo'
+                             source: get_a_sample_source.name
       end
     end
   end
@@ -25,18 +25,18 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
     end
 
     it 'returns default' do
-      expect(all_values.get_params("offset", 0)).to eq(0)
+      expect(all_values.get_params('offset', 0)).to eq(0)
     end
   end
 
-  describe "#get_cached_values" do
+  describe '#get_cached_values' do
     it 'returns correct cached metric values' do
       results = all_values.get_cached_values
       value_idx = 1
       @companies.each do |company|
         expect(results.key?(company.name)).to be_truthy
         for i in 0...3
-          expected_result = { year: "#{2015-i}",
+          expected_result = { year: (2015 - i).to_s,
                               value: (value_idx * 5 + i).to_s }
           expect(results[company.name]).to include(expected_result)
         end
@@ -73,7 +73,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
       end
     end
   end
-  describe "#sorted_result" do
+  describe '#sorted_result' do
     before do
       @cached_result = all_values.cached_values
       @format = all_values.format
@@ -92,7 +92,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
     end
     it 'sorts by company name desc' do
       results = @format.sorted_result(
-        "company_name", 'desc', false
+        'company_name', 'desc', false
       )
       expect(results.map { |x| x[0] }).to eq(
         ['Sony Corporation',
@@ -117,7 +117,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
     it 'sorts by value desc' do
       results = @format.sorted_result 'value', 'desc'
       expect(results.map { |x| x[0] }).to eq(
-        [ 'Apple Inc.',
+        ['Apple Inc.',
          'Amazon.com, Inc.',
          'Sony Corporation',
          'Death Star'
@@ -126,28 +126,28 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
     end
   end
 
-  describe "view" do
+  describe 'view' do
     it 'renders card_list_header' do
-      Card::Env.params["offset"] = "0"
-      Card::Env.params["limit"] = "20"
+      Card::Env.params['offset'] = '0'
+      Card::Env.params['limit'] = '20'
       html = all_values.format.render_card_list_header
       url_key = all_values.cardname.url_key
       expect(html).to have_tag('div',
                                with: { class: 'yinyang-row column-header' }) do
         with_tag :div, with: { class: 'company-item value-item' } do
           with_tag :a, with: {
-                                class: 'header metric-list-header slotter',
-                                href: "/#{url_key}?limit=20&offset=0"\
+            class: 'header metric-list-header slotter',
+            href: "/#{url_key}?limit=20&offset=0"\
                                       '&sort_by=company_name'\
                                       '&sort_order=asc&view=content'
-                                      
-                              }
+
+          }
           with_tag :a, with: {
-                                class: 'data metric-list-header slotter',
-                                href: "/#{url_key}?limit=20&offset=0"\
+            class: 'data metric-list-header slotter',
+            href: "/#{url_key}?limit=20&offset=0"\
                                       '&sort_by=value&sort_order=asc'\
                                       '&view=content'
-                              }
+          }
         end
       end
     end
