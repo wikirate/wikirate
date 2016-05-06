@@ -48,14 +48,18 @@ def source_args url
   }
 end
 
-def create_source url
+def finalize_source_card source_card
   Env.params[:sourcebox] = 'true'
-  source_card = add_subcard '', type_id: SourceID, subcards: source_args(url)
   source_card.director.catch_up_to_stage :prepare_to_store
   unless Card.exists? source_card.name
     source_card.director.catch_up_to_stage :finalize
   end
   Env.params[:sourcebox] = nil
+end
+
+def create_source url
+  source_card = add_subcard '', type_id: SourceID, subcards: source_args(url)
+  finalize_source_card source_card
   errors.add(*source_card.errors) unless source_card.errors.empty?
   source_card
 end
