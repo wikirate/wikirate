@@ -32,7 +32,7 @@ module Formula
             when Integer
               year?(ip) ? value_data[i][ip] : value_data[i][year + ip]
             when Array
-              ip.map { |year| data[i][year] }
+              ip.map { |year| value_data[i][year] }
             when Proc
               ip.call(year).map { |y| value_data[i][y] }
             else

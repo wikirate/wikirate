@@ -69,18 +69,21 @@ class SharedData
       #Card.create! name: '1977', type_id: Card::YearID
       Card::Metric.create name: 'Jedi+disturbances in the Force',
                           value_type: 'Category',
-                          value_options: %w(yes no) do
-        Death_Star '1977' => { value: 'yes',
-                               source: 'http://wikiwand.com/en/Death_Star' }
+                          value_options: %w(yes no),
+                          random_source: true do
+        Death_Star '1977' => { value: 'yes' }
+        #                       source: 'http://wikiwand.com/en/Death_Star' }
       end
-      Card::Metric.create name: 'Jedi+deadliness', value_type: 'Number' do
+      Card::Metric.create name: 'Jedi+deadliness', value_type: 'Number',
+                          random_source: true do
         source_link = 'http://wikiwand.com/en/Return_of_the_Jedi'
-        Death_Star '1977' => { value: 100, source: source_link }
+        Death_Star '1977' => { value: 100 } #, source: source_link }
       end
       Card::Metric.create name: 'Jedi+cost of planets destroyed',
-                          value_type: 'Money' do
+                          value_type: 'Money',
+                          random_source: true do
         source_link = 'http://wikiwand.com/en/Return_of_the_Jedi'
-        Death_Star '1977' => { value: 200, source: source_link }
+        Death_Star '1977' => { value: 200 } #, source: source_link }
       end
       Card::Metric.create name: 'Jedi+Sith Lord in Charge',
                           value_type: 'Free Text'
@@ -127,7 +130,7 @@ class SharedData
                           type: :researched,
                           random_source: true do
         Apple_Inc  '2010' => 10, '2011' => 11, '2012' => 12,
-                   '2013' => 13, '2014' => 14
+                   '2013' => 13, '2014' => 14, '2015' => 15
         Death_Star '1977' => 77
       end
     end

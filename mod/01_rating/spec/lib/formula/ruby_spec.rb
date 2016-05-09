@@ -65,14 +65,14 @@ describe Formula::Ruby do
       expect(subject[2012]['apple_inc']).to eq nil
       expect(subject[2013]['apple_inc']).to eq 1006.5 + 13
       expect(subject[2014]['apple_inc']).to eq 1007 + 1006.5 + 14
-      expect(subject[2015]['apple_inc']).to eq nil
+      expect(subject[2016]['apple_inc']).to eq nil
     end
     it 'double sum' do
       @formula = "Sum[{{half year|2013..0}}]+Sum[{{Joe User+researched|-1..0}}]"
       expect(subject[2012]['apple_inc']).to eq nil
       expect(subject[2013]['apple_inc']).to eq 1006.5 + 13 + 12
       expect(subject[2014]['apple_inc']).to eq 1007 + 1006.5 + 14 + 13
-      expect(subject[2015]['apple_inc']).to eq nil
+      expect(subject[2016]['apple_inc']).to eq nil
     end
   end
 

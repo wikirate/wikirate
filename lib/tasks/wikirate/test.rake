@@ -2,7 +2,7 @@ require 'colorize'
 require 'pry'
 namespace :wikirate do
   namespace :test do
-    db_path = File.join Wagn.root, 'test', 'wikiratetest_without_seed.db'
+    db_path = File.join Wagn.root, 'test', 'seed.db'
     test_database =
       (t = Wagn.config.database_configuration['test']) && t['database']
     prod_database =
@@ -56,8 +56,10 @@ namespace :wikirate do
         execute_command 'wagn seed', :test
 
         import_from(location) do |import|
-          import.items_of :codenames
+          # cardtype has to be the first
+          # otherwise codename cards get tbe wrong type
           import.cards_of_type 'cardtype'
+          import.items_of :codenames
           import.cards_of_type 'year'
           Card.search(type_id: Card::SettingID, return: :name).each do |setting|
             import.items_of setting
@@ -66,9 +68,8 @@ namespace :wikirate do
           import.migration_records
         end
         execute_command 'rake wagn:migrate', :test
-        execute_command 'rake wikirate:test:dump_test_db', :test
         execute_command 'rake wikirate:test:add_wikirate_test_data', :test
-        #execute_command 'rake wikirate:test:dump_test_db', :test
+        execute_command 'rake wikirate:test:dump_test_db', :test
         puts 'Happy testing!'
       end
       exit

@@ -1,10 +1,13 @@
 # -*- encoding : utf-8 -*-
 
 describe Card::Set::MetricType::Formula do
-  @metric_name = 'Joe User+researched'
-  @metric_name_1 = 'Joe User+researched number 1'
-  @metric_name_2 = 'Joe User+researched number 2'
-  @metric_name_3 = 'Joe User+researched number 3'
+  before do
+    @metric_name = 'Joe User+researched'
+    @metric_name_1 = 'Joe User+researched number 1'
+    @metric_name_2 = 'Joe User+researched number 2'
+    @metric_name_3 = 'Joe User+researched number 3'
+  end
+
   def build_formula formula
     formula % [@metric_name_1, @metric_name_2, @metric_name_3]
   end
@@ -22,16 +25,18 @@ describe Card::Set::MetricType::Formula do
   end
 
   describe 'formula with year reference' do
-    subject { Card["#{formula_metric.name}+Apple Inc+2015+value"].content}
-    let(:formula_metric) do
-      create_metric(
+    subject do
+      formula_metric = create_metric(
         name: 'rating1', type: :formula,
-        formula: "{{#{@metric_name}|year:#{@year_expr} }}+" \
-                 "{{#{@metric_name_1}}}"
+        formula: formula
       )
+      Card["#{formula_metric.name}+Apple Inc+2015+value"].content
     end
 
     context 'single year' do
+      let(:formula) { "{{#{@metric_name}|year:#{@year_expr} }}+" \
+                      "{{#{@metric_name_1}}}" }
+
       it 'fixed year' do
         @year_expr = '2014'
         is_expected.to eq '114'
@@ -42,22 +47,25 @@ describe Card::Set::MetricType::Formula do
       end
       it 'current year' do
         @year_expr = '0'
-        is_expected.to eq '200'
+        is_expected.to eq '115'
       end
     end
 
     context 'sum of' do
+      let(:formula) { "Sum[{{#{@metric_name}|year:#{@year_expr} }}]+" \
+                      "{{#{@metric_name_1}}}" }
+
       it 'relative range' do
         @year_expr = '-3..-1'
-        is_expected.to eq '136'
+        is_expected.to eq '139'
       end
       it 'relative range with 0' do
         @year_expr = '-3..0'
-        is_expected.to eq '141'
+        is_expected.to eq '154'
       end
       it 'relative range with ?' do
         @year_expr = '-3..?'
-        is_expected.to eq '141'
+        is_expected.to eq '154'
       end
       it 'fixed range' do
         @year_expr = '2012..2013'
@@ -160,7 +168,7 @@ describe Card::Set::MetricType::Formula do
         end
       end
       it 'updates existing calculated value' do
-        update_formula "{{%s}}*4+{{%s}}}*2"
+        update_formula "{{%s}}*4+{{%s}}*2"
         expect(calc_value).to eq '50'
       end
       it 'removes incomplete calculated value' do

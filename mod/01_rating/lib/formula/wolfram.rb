@@ -45,13 +45,15 @@ module Formula
 
       year_str = []
       input_by_year = Hash.new_nested Array
-      @input.each.with_index do |(input_values, year, company), company_index|
+      company_index = 0
+      @input.each do |input_values, company, year|
         @company_index[company] = company_index
         company_str =
           input_values.map.with_index do |value, i|
             @input.type(i) == 'Number' ? value : "\"#{value}\""
           end.join(',')
         input_by_year[year] << "{#{company_str}}"
+        company_index += 1
       end
       input_by_year.each_pair do |year, values|
         year_str << "\"#{year}\" -> {#{values.join ','}}"

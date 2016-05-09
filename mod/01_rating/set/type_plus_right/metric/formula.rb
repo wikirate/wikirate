@@ -130,7 +130,7 @@ end
 
 event :validate_formula_input, :validate,
       on: :save, changed: :content do
-  format.each_nested_chunk do |chunk|
+  input_chunks.each do |chunk|
     case
     when variable_name?(chunk.referee_name)
       errors.add :formula, "invalid variable name: #{chunk.referee_name}"
