@@ -16,15 +16,20 @@ event :import_csv, :prepare_to_store,
 end
 
 def check_duplication name, row_no
-  errors.add "#{row_no}:#{name}", 'Duplicated metric values' if subcards[name]
+  errors.add "Row #{row_no}:#{name}", 'Duplicated metric values' if subcards[name]
+end
+
+def metric_value_args_error_key key, args
+  "Row #{args[:row]}:#{args[:metric]}+#{args[:company]}+#{args[:year]}+#{key}"
 end
 
 def construct_value_args args
   unless (create_args = Card[args[:metric]].create_value_args args)
     Card[args[:metric]].errors.each do |key, value|
-      errors.add "#{args[:row]}:#{args[:metric]}+#{args[:company]}+"\
-                 "#{args[:year]}+#{key}", value
+      errors.add metric_value_args_error_key(key, args), value
     end
+    # clear old errors
+    Card[args[:metric]].errors.clear
     return nil
   end
   create_args
@@ -51,7 +56,7 @@ end
 def finalize_source_card source_card
   Env.params[:sourcebox] = 'true'
   source_card.director.catch_up_to_stage :prepare_to_store
-  unless Card.exists? source_card.name
+  if !Card.exists?(source_card.name) && source_card.errors.empty?
     source_card.director.catch_up_to_stage :finalize
   end
   Env.params[:sourcebox] = nil
@@ -60,7 +65,9 @@ end
 def create_source url
   source_card = add_subcard '', type_id: SourceID, subcards: source_args(url)
   finalize_source_card source_card
-  errors.add(*source_card.errors) unless source_card.errors.empty?
+  unless source_card.errors.empty?
+    source_card.errors.each { |k, v| errors.add k, v }
+  end
   source_card
 end
 
