@@ -16,7 +16,9 @@ event :import_csv, :prepare_to_store,
 end
 
 def check_duplication name, row_no
-  errors.add "Row #{row_no}:#{name}", 'Duplicated metric values' if subcards[name]
+  if subcards[name]
+    errors.add "Row #{row_no}:#{name}", 'Duplicated metric values'
+  end
 end
 
 def metric_value_args_error_key key, args
