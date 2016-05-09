@@ -62,13 +62,13 @@ module Formula
 
       def validate_input input
         input.map do |val|
+          return if val.blank?
           if val.is_a?(Array)
             val.map do |v|
               return if v.blank?
               @input_cast.call v
             end
           else
-            return if val.blank?
             @input_cast.call val
           end
         end
@@ -81,8 +81,13 @@ module Formula
         @metric_values = Hash.new_nested Hash, Hash
         @yearly_values = Hash.new_nested Hash
 
+        # nil as initialization is important here
+        # nil means not yet searched for companies with values
+        # empty means no companies with values for all input cards
         @companies_with_values =
-          opts[:company] ? [opts[:company].to_name.key] : nil
+          opts[:company] ? ::Set.new([opts[:company].to_name.key]) : nil
+
+        @companies_with_missing_values = ::Set.new
         @companies_with_values_by_year = Hash.new_nested ::Set
         @order = []
 
@@ -95,24 +100,35 @@ module Formula
             yearly_value_fetch input_card
             @order << [input_card.key, :yearly_value]
           end
-          if @companies_with_values.empty?
-            @companies_with_values_by_year = {}
+          if @companies_with_values && @companies_with_values.empty?
+            # there are no companies with values for all input cards
+            @companies_with_values_by_year = Hash.new_nested ::Set
             return
           end
         end
+        clean_companies_with_value_by_year
+      end
+
+      # if a company doesn't have at least one value for all input cards
+      # remove it completely
+      def clean_companies_with_value_by_year
+        @companies_with_values_by_year =
+          @companies_with_values_by_year.to_a.each.with_object({}) do |(k, v), h|
+            h[k] = v & @companies_with_values
+          end
       end
 
       def metric_value_fetch input_card, opts={}
         search_restrictions = {
           metrics: input_card.name.to_s,
-          companies: @companies_with_values
+          companies: @companies_with_values.to_a
         }
         if opts[:year] && !@year_options_processor.multi_year
           search_restrictions[:year] = opts[:year]
         end
         v_cards = input_metric_value_cards search_restrictions
 
-        filter_companies v_cards.map(&:company_key)
+        filter_companies ::Set.new(v_cards.map(&:company_key))
 
         v_cards.each do |vc|
           @metric_values[vc.metric_key][vc.company_key][vc.year.to_i] = vc.value
@@ -123,6 +139,9 @@ module Formula
       def filter_companies company_keys
         @companies_with_values =
           if @companies_with_values
+            @companies_with_missing_values.merge(
+              @companies_with_values ^ company_keys
+            )
             @companies_with_values & company_keys
           else
             company_keys
@@ -132,8 +151,7 @@ module Formula
       def yearly_value_fetch input_card
         v_cards = input_yearly_value_cards(variables: input_card.name)
         v_cards.each do |vc|
-          @yearly_values[input_card.key] = vc.content
-          @companies_with_values_by_year[vc.year.to_i] << input_card.key
+          @yearly_values[input_card.key][vc.year.to_i] = vc.content
         end
       end
 
@@ -182,7 +200,8 @@ module Formula
       def yearly_value_cards_query opts={}
         query =  { type_id: Card::YearlyValueID }
         if opts[:variables]
-          query[:left] = { name: ['in'] + Array.wrap(opts[:variables]) }
+          query[:left] =
+            { left: { name: ['in'] + Array.wrap(opts[:variables]) } }
         end
         query
       end

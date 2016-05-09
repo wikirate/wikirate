@@ -16,6 +16,7 @@ class SharedData
       add_companies_and_topics
       add_sources_and_claims
       add_metrics
+      add_yearly_variables
     end
 
     def add_companies_and_topics
@@ -65,7 +66,7 @@ class SharedData
     def add_metrics
       Card::Env[:protocol] = 'http://'
       Card::Env[:host] = 'wikirate.org'
-      Card.create! name: '1977', type_id: Card::YearID
+      #Card.create! name: '1977', type_id: Card::YearID
       Card::Metric.create name: 'Jedi+disturbances in the Force',
                           value_type: 'Category',
                           value_options: %w(yes no) do
@@ -102,39 +103,51 @@ class SharedData
                    'Jedi+disturbances in the Force+Joe User' => 40 }
       )
 
-      Card::Metric.create name: 'Joe User+score1', type: :researched,
+      Card::Metric.create name: 'Joe User+researched number 1',
+                          type: :researched,
                           random_source: true do
         Samsung          '2014' => 10, '2015' => 5
         Sony_Corporation '2014' => 1
         Death_Star       '1977' => 5
         Apple_Inc        '2015' => 100
       end
-      Card::Metric.create name: 'Joe User+score2', type: :researched,
+      Card::Metric.create name: 'Joe User+researched number 2',
+                          type: :researched,
                           random_source: true do
         Samsung          '2014' => 5, '2015' => 2
         Sony_Corporation '2014' => 2
       end
-      Card::Metric.create name: 'Joe User+score3', type: :researched,
+      Card::Metric.create name: 'Joe User+researched number 3',
+                          type: :researched,
                           random_source: true do
         Samsung '2014' => 1, '2015' => 1
       end
 
-      Card::Metric.create name: 'Joe User+researched1',
+      Card::Metric.create name: 'Joe User+researched',
                           type: :researched,
                           random_source: true do
-
         Apple_Inc  '2010' => 10, '2011' => 11, '2012' => 12,
                    '2013' => 13, '2014' => 14
+        Death_Star '1977' => 77
       end
-      # Card::Metric.create name: 'Joe User+score2', type: :score,
-      #                     random_source: true do
-      #   Samsung          '2014' => 5, '2015' => 2
-      #   Sony_Corporation '2014' => 2
-      # end
-      # Card::Metric.create name: 'Joe User+score3', type: :score,
-      #                     random_source: true do
-      #   Samsung '2014' => 1, '2015' => 1
-      # end
+    end
+
+    def add_yearly_variables
+      Card.create! name: 'half year', type_id: Card::YearlyVariableID,
+                   subcards: {
+                     '+2015' => { type_id: Card::YearlyAnswerID,
+                                  '+value' => { type_id: Card::YearlyValueID, content:
+                                    '1007.5' }
+                     },
+                     '+2014' => { type_id: Card::YearlyAnswerID,
+                                  '+value' => { type_id: Card::YearlyValueID, content:
+                                    '1007' }
+                     },
+                     '+2013' => { type_id: Card::YearlyAnswerID,
+                                  '+value' => { type_id: Card::YearlyValueID, content:
+                                    '1006.5' }
+                     }
+                   }
     end
   end
 end

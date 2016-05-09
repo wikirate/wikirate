@@ -4,6 +4,7 @@ module Formula
       class YearOptionsProcessor < Array
         attr_reader :multi_year
         def initialize year_options
+          @fixed_years = ::Set.new
           if year_options.present?
             year_options.each do |year_option|
               self <<
@@ -85,11 +86,11 @@ module Formula
             end
           elsif !year?(start)
             proc do |year|
-              (year+start..stop).to_a
+              (start..year+stop).to_a
             end
-          else
+          else # = !year?(stop)
             proc do |year|
-              (year..year+stop).to_a
+              (start..year+stop).to_a
             end
           end
         end

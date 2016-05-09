@@ -15,7 +15,8 @@ module Formula
 
     class << self
       def valid_formula? formula
-        check_symbols remove_functions(formula)
+        without_nests = remove_nests(formula)
+        check_symbols remove_functions(without_nests)
       end
 
       def remove_functions formula, translated=false
@@ -64,7 +65,7 @@ module Formula
     private
 
     def translate_functions formula
-      formula.gsub(/(?<func>#{FUNC_KEY_MATCHER})\[(?<arg>.+)\]/) do |match|
+      formula.gsub(/(?<func>#{FUNC_KEY_MATCHER})\[(?<arg>[^\]]+)\]/) do |match|
         arg = translate_functions $~[:arg]
         "#{arg}.#{FUNCTIONS[$~[:func]]}"
       end

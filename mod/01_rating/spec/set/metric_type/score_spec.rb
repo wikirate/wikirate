@@ -87,12 +87,14 @@ describe Card::Set::MetricType::Score do
 
   describe 'score for numerical metric' do
     context 'when created with formula' do
+      let(:metric_card) { Card[@metric_name]}
       before do
-        @metric_title = 'score2'
+        @metric_title = 'researched number 2'
+        @metric_name = "Joe User+#{@metric_title}"
         Card::Auth.as_bot do
           @metric = create_metric(
-            name: "Joe User+#{@metric_title}+Big Brother", type: :score,
-            formula: "{{Joe User+#{@metric_title}}}*2"
+            name: "#{@metric_name}+Big Brother", type: :score,
+            formula: "{{#{@metric_name}}}*2"
           )
         end
       end
@@ -110,7 +112,7 @@ describe Card::Set::MetricType::Score do
           end
         end
         it 'updates existing rating value' do
-          update_formula '{{Joe User+score2}}*3'
+          update_formula "{{#{@metric_name}}}*3"
           expect(score_value).to eq '15'
         end
         # it 'fails if basic metric is not used in formula' do
@@ -125,10 +127,10 @@ describe Card::Set::MetricType::Score do
         end
         it "creates score value if missing value is added" do
           Card::Auth.as_bot do
-            Card['Joe User+score2'].create_value company: 'Death Star',
-                                                 year: '1977',
-                                                 value: '2',
-                                                 source: get_a_sample_source
+            metric_card.create_value company: 'Death Star',
+                                     year: '1977',
+                                     value: '2',
+                                     source: get_a_sample_source
           end
           expect(score_value 'Death Star', '1977').to eq('4')
         end
@@ -136,12 +138,12 @@ describe Card::Set::MetricType::Score do
 
       context 'and input metric value changes' do
         it 'updates score value' do
-          Card['Joe User+score2+Samsung+2014+value'].update_attributes! content: '1'
+          Card["#{@metric_name}+Samsung+2014+value"].update_attributes! content: '1'
           expect(score_value).to eq '2'
         end
         it 'removes score value that lost input metric value' do
           Card::Auth.as_bot do
-            Card['Joe User+score2+Samsung+2014+value'].delete
+            Card["#{@metric_name}+Samsung+2014+value"].delete
           end
           expect(score_value_card).to be_falsey
         end
@@ -151,20 +153,20 @@ describe Card::Set::MetricType::Score do
     context 'when created without formula' do
       before do
         Card::Auth.as_bot do
-          @metric_title = 'score1'
+          @metric_title = 'researched number 1'
           @metric = create_metric name: "Joe User+#{@metric_title}+Big Brother",
                                   type: :score
         end
       end
       it 'has basic metric as formula' do
         expect(Card["#{@metric.name}+formula"].content)
-          .to eq '{{Joe User+score1}}'
+          .to eq "{{Joe User+#{@metric_title}}}"
       end
       it 'creates score values if formula updated' do
         Card::Auth.as_bot do
           @metric.formula_card.update_attributes!(
             type_id: Card::PlainTextID,
-            content: '{{Joe User+score1}}*2'
+            content: "{{Joe User+#{@metric_title}}}*2"
           )
         end
         expect(score_value).to eq('20')

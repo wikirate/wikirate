@@ -1,7 +1,6 @@
 module Formula
   class Wolfram < Calculator
     WL_INTERPRETER = 'https://www.wolframcloud.com/objects/92f1e212-7875-49f9-888f-b5b4560b7686'
-
     WL_WHITELIST = ::Set.new ['Boole']
 
 
@@ -18,7 +17,7 @@ module Formula
 
 
     def get_value input, company, year
-      @executed_lambda[year.to_s][i]
+      @executed_lambda[year.to_s][@company_index[company]]
     end
 
     # convert formula to a Wolfram Language expression
@@ -37,6 +36,7 @@ module Formula
     # <|2014 -> {32.28, 34.28}, 2015 -> {32.30, 34.30}|>
 
     def to_lambda
+      @company_index = {}
       wl_formula =
         replace_nests do |i|
           # indices in Wolfram Language start with 1
@@ -45,7 +45,8 @@ module Formula
 
       year_str = []
       input_by_year = Hash.new_nested Array
-      @input.each do |input_values, year, company|
+      @input.each.with_index do |(input_values, year, company), company_index|
+        @company_index[company] = company_index
         company_str =
           input_values.map.with_index do |value, i|
             @input.type(i) == 'Number' ? value : "\"#{value}\""

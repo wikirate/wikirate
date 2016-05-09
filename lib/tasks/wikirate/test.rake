@@ -2,7 +2,7 @@ require 'colorize'
 require 'pry'
 namespace :wikirate do
   namespace :test do
-    db_path = File.join Wagn.root, 'test', 'wikiratetest.db'
+    db_path = File.join Wagn.root, 'test', 'wikiratetest_without_seed.db'
     test_database =
       (t = Wagn.config.database_configuration['test']) && t['database']
     prod_database =
@@ -33,10 +33,13 @@ namespace :wikirate do
     end
 
     desc 'add wikirate test data to test database'
-    task :add_wikirate_test_data do
-      require "#{Wagn.root}/config/environment"
-      require "#{Wagn.root}/test/seed.rb"
-      SharedData.add_wikirate_data
+    task add_wikirate_test_data: :environment do
+      if ENV['RAILS_ENV'] != 'test'
+        execute_command 'rake wikirate:test:add_wikirate_test_data', :test
+      else
+        require "#{Wagn.root}/test/seed.rb"
+        SharedData.add_wikirate_data
+      end
     end
 
     desc 'update seed data using the production database'
@@ -54,7 +57,8 @@ namespace :wikirate do
 
         import_from(location) do |import|
           import.items_of :codenames
-          import.items_of 'cardtype+*type+by_name'
+          import.cards_of_type 'cardtype'
+          import.cards_of_type 'year'
           Card.search(type_id: Card::SettingID, return: :name).each do |setting|
             import.items_of setting
           end
@@ -62,8 +66,9 @@ namespace :wikirate do
           import.migration_records
         end
         execute_command 'rake wagn:migrate', :test
-        execute_command 'rake wikirate:test:add_wikirate_test_data', :test
         execute_command 'rake wikirate:test:dump_test_db', :test
+        execute_command 'rake wikirate:test:add_wikirate_test_data', :test
+        #execute_command 'rake wikirate:test:dump_test_db', :test
         puts 'Happy testing!'
       end
       exit
@@ -103,6 +108,10 @@ class Importer
         end
       end
     import_card_data card_data
+  end
+
+  def cards_of_type type
+    items_of "#{type}+*type+by_update"
   end
 
   def migration_records

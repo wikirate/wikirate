@@ -17,8 +17,8 @@ module Formula
     # @option opts [String] :year
     # @return [Hash] { year => { company => value } }
     def result opts={}
-      compile_formula
       result = Hash.new_nested Hash
+      return result unless compile_formula
       @input.each(opts) do |input, company, year|
         next unless (value = get_value(input, company, year))
         result[year][company] = normalize_value value
@@ -32,6 +32,9 @@ module Formula
     #   @multi_year ? :all : changed_years
     #   #return years unless @multi_year
     # end
+    def self.remove_nests content
+      content.gsub(/{{[^}]*}}/,'')
+    end
 
     private
 
@@ -70,5 +73,3 @@ module Formula
     end
   end
 end
-
-

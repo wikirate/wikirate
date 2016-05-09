@@ -1,17 +1,22 @@
 # -*- encoding : utf-8 -*-
 
-# available scores in test db
-#  Joe User+score1
+# available researched metric values in test db
+#  Joe User+researched number 1
 #   Samsung          2014 => 10, 2015 => 5
 #   Sony_Corporation 2014 => 1
 #   Death_Star       1977 => 5
 #
-#  Joe User+score2
+#  Joe User+researched number 2
 #   Samsung          2014 => 5, 2015 => 2
 #   Sony_Corporation 2014 => 2
 #
-#  Joe User+score3
+#  Joe User+researched number 3
 #   Samsung          2014 => 1, 2015 => 1
+#
+#  Joe User+researched
+#    Apple_Inc       2010 => 10, '2013' => 13, '2011' => 11,
+#                    2012 => 12, '2014' => 14
+#    Death_Star      1977 => 77
 describe Card::Set::MetricType::WikiRating do
   let(:metric_type) { :wiki_rating }
   describe 'formula card' do
@@ -38,7 +43,8 @@ describe Card::Set::MetricType::WikiRating do
       @metric_title = 'rating1'
       @metric = create_metric(
         name: @metric_title, type: :wiki_rating,
-        formula: '{"Joe User+score1":"60","Joe User+score2":"40"}'
+        formula: '{"Joe User+researched number 1":"60",'\
+                  '"Joe User+researched number 2":"40"}'
       )
     end
 
@@ -54,31 +60,34 @@ describe Card::Set::MetricType::WikiRating do
         @metric.formula_card.update_attributes! content: weights.to_json
       end
       it 'updates existing rating value' do
-        update_weights 'Joe User+score1' => 40, 'Joe User+score2' => 60
+        update_weights 'Joe User+researched number 1' => 40,
+                       'Joe User+researched number 2' => 60
         expect(rating_value).to eq '7'
       end
       it 'removes incomplete rating value' do
-        update_weights 'Joe User+score1' => 40, 'Joe User+score2' => 40,
-                       'Joe User+score3' => 20
+        update_weights 'Joe User+researched number 1' => 40,
+                       'Joe User+researched number 2' => 40,
+                       'Joe User+researched number 3' => 20
         expect(rating_value_card 'Sony_Corporation', '2014').to be_falsey
       end
       it 'adds complete rating value' do
-        # Death Star has only a value for +score1
-        # so if we restrict the formula to +score1 values
+        # Death Star has only a value for +researched number 1
+        # so if we restrict the formula to +researched number 1 values
         # Death Star has to get a rating value
-        update_weights 'Joe User+score1' => 100
+        update_weights 'Joe User+researched number 1' => 100
         expect(rating_value 'Death Star', '1977').to eq('5')
       end
     end
 
     context 'and input metric value changes' do
       it 'updates rating value' do
-        Card['Joe User+score1+Samsung+2014+value'].update_attributes! content: '1'
+        Card['Joe User+researched number 1+Samsung+2014+value']
+          .update_attributes! content: '1'
         expect(rating_value).to eq '2.6'
       end
       it 'removes incomplete rating values' do
         Card::Auth.as_bot do
-          Card['Joe User+score1+Samsung+2014+value'].delete
+          Card['Joe User+researched number 1+Samsung+2014+value'].delete
         end
         expect(rating_value_card).to be_falsey
       end
@@ -90,10 +99,12 @@ describe Card::Set::MetricType::WikiRating do
       end
       it "creates rating value if missing value is added" do
         Card::Auth.as_bot do
-          Card['Joe User+score2'].create_value company: 'Death Star',
-                                               year: '1977',
-                                               value: '2',
-                                               source: get_a_sample_source
+          Card['Joe User+researched number 2'].create_value(
+            company: 'Death Star',
+            year: '1977',
+            value: '2',
+            source: get_a_sample_source
+          )
         end
         expect(rating_value 'Death Star', '1977').to eq('3.8')
       end
@@ -112,7 +123,8 @@ describe Card::Set::MetricType::WikiRating do
       Card::Auth.as_bot do
         @metric.formula_card.update_attributes!(
           type_id: Card::PlainTextID,
-          content: '{"Joe User+score1":"60","Joe User+score2":"40"}'
+          content: '{"Joe User+researched number 1":"60",' \
+                    '"Joe User+researched number 2":"40"}'
         )
        end
       expect(rating_value).to eq('8')
