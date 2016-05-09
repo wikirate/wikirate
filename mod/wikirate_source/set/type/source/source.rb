@@ -118,6 +118,11 @@ format :html do
           </a>
         HTML
     end
+    unless year.nil? || year == ''
+      year_helper =
+        content_tag(:small, 'year:' + year[/\d+/], class: 'source-year')
+      original_link << year_helper.html_safe
+    end
     original_link + render_content(structure: 'source_without_note_count')
   end
 
@@ -132,7 +137,7 @@ format :html do
 
   view :source_and_preview do |args|
     wrap_with :div, class: 'source-details',
-                    data: { source_for: card.name } do
+                    data: { source_for: card.name, year: year } do
       url_card = card.fetch(trait: :wikirate_link)
       url = url_card ? url_card.item_names.first : nil
       args[:url] = url
@@ -151,6 +156,11 @@ format :html do
     add_toggle(source)
   end
 
+  def year
+    return card.fetch(trait: :year).content if card.fetch(trait: :year)
+    ''
+  end
+
   def wrap_with_info content
     wrap do
       content_tag(:div, content.html_safe,
@@ -160,7 +170,7 @@ format :html do
 
   def add_toggle content
     wrap_with :div, class: 'source-details-toggle',
-                    data: { source_for: card.name } do
+                    data: { source_for: card.name, year: year } do
       content.html_safe
     end
   end

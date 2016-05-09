@@ -19,15 +19,8 @@ def add_value_source_args args, source
   case source
   when String
     args['+source'] = {
-      subcards: {
-        'new source' => {
-          '+Link' => {
-            content: source,
-            type_id: Card::PhraseID
-          }
-        }
-      }
-      # type_id: PointerID
+      content: "[[#{source}]]",
+      type_id: Card::PointerID
     }
   when Hash
     args['+source'] = source
@@ -179,10 +172,16 @@ format :html do
              active
   end
 
+  view :help_text do |args|
+    return '' unless (help_text_card = Card[card.metric_type + '+description'])
+    subformat(help_text_card).render_content args
+  end
+
   view :new_tab_pane do |args|
     card_form :create, hidden: args.delete(:hidden),
                        'main-success' => 'REDIRECT' do
       output [
+        _render(:help_text, args),
         _render(:new_name_formgroup, args),
         _render(:content_formgroup, args),
         _render(:button_formgroup, args)

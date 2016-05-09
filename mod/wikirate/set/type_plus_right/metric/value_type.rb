@@ -1,11 +1,14 @@
 
-def all_numeric? metric_values
-  metric_values.each do |_key, values|
+def invalid_metric_values metric_values
+  invalid_metric_values = []
+  metric_values.each do |key, values|
     values.each do |mv|
-      return false unless number?(mv['value'])
+      if !number?(mv['value']) && mv['value'].casecmp('unknown') != 0
+        invalid_metric_values.push(mv.merge(company: key))
+      end
     end
   end
-  true
+  invalid_metric_values
 end
 
 def all_values_in_options? metric_values, options_card
@@ -13,7 +16,10 @@ def all_values_in_options? metric_values, options_card
                                     context: :raw
   metric_values.each do |_key, values|
     values.each do |mv|
-      return false unless options.include?(mv['value'].downcase)
+      if !options.include?(mv['value'].downcase) &&
+         mv['value'].casecmp('unknown') != 0
+        return false
+      end
     end
   end
   true
@@ -25,12 +31,19 @@ def show_category_option_errors options_card
     <<-HTML
       <a href='#{url}' target="_blank">add the values to options card</a>
     HTML
-  errors.add :invalid_value, "Please #{anchor} first"
+  errors.add :value, "Please #{anchor} first"
 end
 
 def related_values
   if (all_value_card = left.fetch trait: :all_values)
     all_value_card.cached_values
+  end
+end
+
+def handle_errors invalid_metric_values
+  invalid_metric_values.each do |mv|
+    errors.add "#{cardname.left}+#{mv[:company]}+#{mv[:year]}",
+               "'#{mv[:value]}' is not a numeric value."
   end
 end
 
@@ -42,8 +55,9 @@ event :validate_existing_values_type, :validate, on: :save do
   return unless (mv = related_values)
   case type
   when 'Number', 'Money'
-    unless all_numeric?(mv)
-      errors.add :invalid_value, 'Please check if all values are in number type'
+    if (invalid_metric_values = invalid_metric_values(mv)) &&
+       !invalid_metric_values.empty?
+      handle_errors invalid_metric_values
     end
   when 'Category'
     options_card = Card.fetch "#{metric_name}+value_options", new: {}

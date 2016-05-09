@@ -79,7 +79,15 @@ def contributees res=[], visited=::Set.new
     Card::Cache[Card::Set::Right::YinyangDragItem].delete key
   elsif type_code == :metric_value
     res << company_card
-    Card::Cache[Card::Set::Right::YinyangDragItem].delete key
+    Card::Cache[Card::Set::Right::YinyangDragItem].delete metric_card.key
+  elsif (l = left) && l.type_code == :metric_value && (r = right) &&
+        r.codename == :value.to_s
+    res << company_card
+    Card::Cache[Card::Set::Right::YinyangDragItem].delete metric_card.key
+  elsif (l = left) && l.type_code == :metric_value && (r = right) &&
+        r.codename == :checked_by.to_s
+    res << l.company_card
+    Card::Cache[Card::Set::Right::YinyangDragItem].delete l.metric_card.key
   else
     if left &&
        !visited.include?(left.name) &&

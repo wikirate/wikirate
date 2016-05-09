@@ -31,9 +31,11 @@ format :html do
     end
   end
 
-  view :discussion_tab do |args|
+  view :discussion_tab do |_args|
     tab_wrap do
-      _render_comment_box(args)
+      field_subformat(:discussion).render_titled home_view: 'titled',
+                                                 hide: [:header, :title],
+                                                 show: 'comment_box'
     end
   end
 end

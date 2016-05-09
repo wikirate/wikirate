@@ -269,6 +269,9 @@
         font-size: 14px;
         text-align: left;
     }
+    h5 {
+      color: #666;
+    }
     form > .form-group {
         margin-top: -15px;
         padding-top: 15px;
@@ -290,7 +293,7 @@
         }
     }
     .credit {
-        padding: 10px 5px;
+        padding-top: 6px;
     }
     .year {
         width: 20%;
@@ -685,4 +688,11 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 }
 .card-slot.new-view.TYPE-metric.METRIC_TYPE-researched .nav-pills {
     margin: 0 -15px !important;
+}
+
+.source-year{
+  position: absolute;
+  left: 55px;
+  top: 4px;
+  color: #ccc;
 }

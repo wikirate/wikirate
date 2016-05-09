@@ -12,6 +12,9 @@
         color: inherit;
     }
 }
+.cursor-p{
+  cursor: pointer;
+}
 //Text Colors
 .company-color {
     color: $company-color;
@@ -36,6 +39,9 @@
 }
 .light-grey-color-2 {
     color: #999;
+}
+.verify-blue {
+  color: dodgerblue;
 }
 //Text adjustments
 .text-align-left {

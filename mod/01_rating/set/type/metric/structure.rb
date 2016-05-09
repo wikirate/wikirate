@@ -29,6 +29,8 @@ format :html do
   end
 
   view :title_left_col do
+    metric_url = '/' + card.cardname.url_key
+    metric_title = card.metric_title_card.cardname
     <<-HTML
       <div class="row clearfix ">
         <div class="col-md-1">
@@ -36,7 +38,7 @@ format :html do
         </div>
         <div class="col-md-11">
           <div class="name row">
-            #{card_link card.metric_title_card, class: 'inherit-anchor'}
+            #{link_to metric_title, metric_url, class: 'inherit-anchor'}
           </div>
           <div class="row">
             #{_render_designer_info}
