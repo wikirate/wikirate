@@ -345,26 +345,22 @@ format :html do
   end
 
   def set_hidden_args args
-    if !args[:source]
-      # TODO: add appropriate view to the following condition.
-      # view = (args[:metric] || args[:company]) ? :timeline_data : :timeline_data
-      args[:hidden] = {
-        :success => { id: '_self', soft_redirect: true, view: :timeline_data },
-        'card[subcards][+metric][content]' => args[:metric]
-      }
-    else
-      args[:hidden] = {}
+    args[:hidden] = {
+      success: { id: '_self', soft_redirect: true, view: :timeline_data }
+    }
+    if args[:metric]
+      args[:hidden]['card[subcards][+metric][content]'] = args[:metric]
     end
-  end
-
-  def default_new_args args
-    set_hidden_args args
     if args[:company]
       args[:hidden]['card[subcards][+company][content]'] = args[:company]
     end
     if args[:source]
       args[:hidden]['card[subcards][+source][content]'] = args[:source]
     end
+  end
+
+  def default_new_args args
+    set_hidden_args args
     args[:title] = "Add new value for #{args[:metric]}" if args[:metric]
     btn_class = 'btn btn-default _form_close_button'
     args[:buttons] =

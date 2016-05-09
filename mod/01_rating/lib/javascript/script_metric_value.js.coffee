@@ -53,7 +53,7 @@ $(document).ready ->
                                      metric)
       else
         source = $.urlParam('source')
-        if source != undefined
+        if source != null
           source = '&slot[source]=' + source
         else
           source = ''
@@ -188,7 +188,10 @@ $(document).ready ->
       obj = '&metric[]=' + encodeURIComponent(obj)
       obj
     ).join('')
-    source = '&source=' + source
+    if source != undefined
+      source = '&source=' + source
+    else
+      source = ''
     # metric  = encodeURIComponent(metric)
     if(company&&metric)
       $parent_slot.append($loader_anime)
