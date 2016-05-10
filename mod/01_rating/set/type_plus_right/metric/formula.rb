@@ -81,7 +81,7 @@ end
 
 event :validate_formula, :validate,
       when: proc { |c| c.wolfram_formula? } do
-  valid, errors = @calculator.valid_formula?
+  valid, errors = calculator_class.valid_formula? content
   return if valid
   errors.each do |msg|
     errors.add :formula, msg
@@ -170,7 +170,6 @@ def calculate_values_for opts={}
   end
 end
 
-
 def each_reference_out &block
   return super(&block) unless wiki_rating?
   translation_table.each do |key, _value|
@@ -211,15 +210,15 @@ end
 
 # allow only numbers, whitespace, mathematical operations and args references
 def ruby_formula?
-  @calculator_class == ::Formula::Ruby
+  calculator_class == ::Formula::Ruby
 end
 
 def translate_formula?
-  @calculator_class == ::Formula::Translation
+  calculator_class == ::Formula::Translation
 end
 
 def wolfram_formula?
-  @calculator_class ==  ::Formula::Wolfram
+  calculator_class ==  ::Formula::Wolfram
 end
 
 private

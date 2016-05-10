@@ -1,5 +1,11 @@
 module Formula
   class Calculator
+    # It finds all metric values and yearly values that are related to the
+    # the metrics and yearlys variables of a formula and prepares the values
+    # for calculating the formula values
+    # The key method is #each that iterates over all
+    # company and year combination that could possible get a calculated value
+    # and provides the input data for the calculation
     class Input
       def initialize input_cards, year_options, &input_cast
         @input_cards = input_cards
@@ -8,9 +14,10 @@ module Formula
         @year_options_processor = YearOptionsProcessor.new year_options
       end
 
+      # for every company that
       def each opts={}
         fetch_values opts
-        years = opts[:year] ? Array(opts[:year]) : years_with_values
+        years = opts[:year] ? Array(opts[:year].to_i) : years_with_values
         years.each do |year|
           companies_with_value(year).each do |company_key|
             next unless (value = input_for(year, company_key))

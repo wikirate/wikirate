@@ -3,14 +3,14 @@ module Formula
     WL_INTERPRETER = 'https://www.wolframcloud.com/objects/92f1e212-7875-49f9-888f-b5b4560b7686'
     WL_WHITELIST = ::Set.new ['Boole']
 
-
     def self.valid_formula? formula
       not_on_whitelist =
         formula.gsub(/\{\{([^}])+\}\}/, '').gsub(/"[^"]+"/,'')
           .scan(/[a-zA-Z][a-zA-Z]+/).reject do |word|
           WL_WHITELIST.include? word
         end
-      if not_on_whitelist.present?
+      return true if not_on_whitelist.empty?
+      not_on_whitelist.each do |bad_word|
         errors.add :formula, "#{not_on_whitelist.first} forbidden keyword"
       end
     end

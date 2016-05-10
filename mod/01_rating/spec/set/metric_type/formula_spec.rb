@@ -200,13 +200,14 @@ describe Card::Set::MetricType::Formula do
 
     context 'and input metric value changes' do
       it 'updates calculated value' do
-        Card["#{@metric_value_name_1}+Samsung+2014+value"].update_attributes!
-          # content: '1'
+        Card["#{@metric_name_1}+Samsung+2014+value"].update_attributes!(
+          content: '1'
+        )
         expect(calc_value).to eq '15'
       end
       it 'removes incomplete calculated values' do
         Card::Auth.as_bot do
-          Card["#{@metric_value_name_1}+Samsung+2014+value"].delete
+          Card["#{@metric_name_1}+Samsung+2014+value"].delete
         end
         expect(calc_value_card).to be_falsey
       end
