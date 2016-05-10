@@ -87,7 +87,11 @@ format :html do
   end
 
   def metric_list
-    Card.search(type_id: MetricID, limit: 0).map do |m|
+    wql = { type_id: MetricID, limit: 0 }
+    if card.metric_card.metric_type_codename == :wiki_rating
+      wql[:right_plus] = ['*metric type', { refer_to: 'Score' }]
+    end
+    Card.search(wql).map do |m|
       metric_list_item m
     end.join "\n"
   end

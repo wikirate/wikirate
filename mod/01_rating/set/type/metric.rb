@@ -348,7 +348,7 @@ format :html do
   view :weight_row do |args|
     output(
       [
-        content_tag(:td, _render_thumbnail(args), 'data-key': card.name),
+        content_tag(:td, _render_thumbnail(args), 'data-key' => card.name),
         content_tag(:td, text_field_tag('pair_value', (args[:weight] || 0),
                                         class: 'metric-weight'))
       ]

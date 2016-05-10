@@ -26,7 +26,7 @@ end
 def each_reference_out &block
   return super(&block) unless wiki_rating?
   translation_table.each do |key, _value|
-    block.call(key, Content::Chunk::Link::CODE)
+    yield(key, Content::Chunk::Link::CODE)
   end
 end
 
@@ -42,7 +42,7 @@ def translation_hash
 rescue JSON::ParserError => _e
   content = '{}'
   return {}
-  #fail Card::Error, 'fail to parse formula for categorical input'
+  # fail Card::Error, 'fail to parse formula for categorical input'
 end
 
 def complete_translation_table
@@ -61,9 +61,7 @@ end
 
 def variables_card
   v_card = metric_card.fetch trait: :variables, new: { type: 'session' }
-  if v_card.content.blank?
-    v_card.content = input_metrics.to_pointer_content
-  end
+  v_card.content = input_metrics.to_pointer_content if v_card.content.blank?
   v_card
 end
 
@@ -113,7 +111,7 @@ format :html do
                    data: { toggle: 'modal', target: target },
                    href: path(layout: 'modal', view: :edit,
                               name: card.variables_card.name,
-                              slot: {title: 'Choose Metric'}) do
+                              slot: { title: 'Choose Metric' }) do
           glyphicon('plus') + ' add metric'
         end
       end),
@@ -124,7 +122,7 @@ format :html do
 
   view :categorical_editor do |_args|
     table_content = card.complete_translation_table.map do |key, value|
-      [{ content: key, 'data-key': key }, text_field_tag('pair_value', value)]
+      [{ content: key, 'data-key' => key }, text_field_tag('pair_value', value)]
     end
     table_editor table_content, %w(Option Value)
   end
@@ -142,9 +140,8 @@ format :html do
     "= #{super(args)}"
   end
 
-
   view :categorical_core do |_args|
-    table card.translation_table, header: %w(Metric Weight)
+    table card.translation_table, header: %w(Answer Score)
   end
 
   def get_nest_defaults _nested_card
@@ -154,14 +151,29 @@ end
 
 event :validate_category_translation, :validate,
       when: proc { |c| c.translate_formula? } do
-  # TODO: Check if there is a translation for all value options
+  complete_translation_table.each do |value_pair|
+    unless number?(value_pair[1])
+      errors.add :invalid_value, "Option:#{value_pair[0]}'s value is not a"\
+                                 ' number'
+    end
+  end
+end
+
+event :validate_score_metric_category_translation, :validate,
+      when: proc { |c| !c.wiki_rating? && c.translate_formula? } do
+  complete_translation_table.each do |value_pair|
+    if (value = value_pair[1].to_i) && (value < 0 || value > 10)
+      errors.add :invalid_value, "Option:#{value_pair[0]}'s value is smaller"\
+                                 ' than 0 or bigger than 10'
+    end
+  end
 end
 
 event :validate_formula, :validate,
       when: proc { |c| c.wolfram_formula? } do
   not_on_whitelist =
-    content.gsub(/\{\{([^}])+\}\}/, '').gsub(/"[^"]+"/,'')
-      .scan(/[a-zA-Z][a-zA-Z]+/).reject do |word|
+    content.gsub(/\{\{([^}])+\}\}/, '').gsub(/"[^"]+"/, '')
+           .scan(/[a-zA-Z][a-zA-Z]+/).reject do |word|
       WL_FORMULA_WHITELIST.include? word
     end
   if not_on_whitelist.present?
@@ -203,10 +215,10 @@ end
 
 def add_value company, year, value
   add_subcard metric_card.metric_value_name(company, year),
-               type_id: MetricValueID,
-               subcards: {
-                 '+value' => { type_id: NumberID, content: value }
-               }
+              type_id: MetricValueID,
+              subcards: {
+                '+value' => { type_id: NumberID, content: value }
+              }
 end
 
 event :replace_variables, :prepare_to_validate,
@@ -217,7 +229,6 @@ event :replace_variables, :prepare_to_validate,
     content.gsub! chunk.referee_name.to_s, metric_name if metric_name
   end
 end
-
 
 event :validate_formula_input, :validate,
       on: :save, changed: :content do
@@ -246,7 +257,7 @@ end
 # @option opts [String] :year optional
 def calculate_values_for opts={}
   unless opts[:company]
-    fail Card::Error, '#calculate_values_for: no company given'
+    raise Card::Error, '#calculate_values_for: no company given'
   end
   values = fetch_input_values opts
   values.each_pair do |year, companies|
@@ -254,14 +265,12 @@ def calculate_values_for opts={}
     value = formula_interpreter.evaluate_single_input metrics_with_values
     yield year, value
   end
-  if opts[:year] && values.empty?
-    yield opts[:year], nil
-  end
+  yield opts[:year], nil if opts[:year] && values.empty?
 end
 
 def keyified
   content.gsub(/\{\{\s*([^}]+)\s*\}\}/) do |_match|
-    "{{#{$1.to_name.key}}}"
+    "{{#{Regexp.last_match(1).to_name.key}}}"
   end
 end
 
@@ -283,7 +292,7 @@ end
 
 # allow only numbers, whitespace, mathematical operations and args references
 def ruby_formula?
-  content.gsub(/\{\{([^}])+\}\}/,'').match(/^[\s\d+-\/*\.()]*$/)
+  content.gsub(/\{\{([^}])+\}\}/, '').match(/^[\s\d+-\/*\.()]*$/)
 end
 
 def translate_formula?
