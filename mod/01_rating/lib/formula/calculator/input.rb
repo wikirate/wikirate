@@ -7,6 +7,10 @@ module Formula
     # company and year combination that could possible get a calculated value
     # and provides the input data for the calculation
     class Input
+
+      # @param [Array<Card>] input_cards all cards that are part of the formula
+      # @param [Array<String] year_options for every input card a year option
+      # @param [Proc] input_card a block that is called for every input value
       def initialize input_cards, year_options, &input_cast
         @input_cards = input_cards
         @input_cast = input_cast
@@ -14,18 +18,29 @@ module Formula
         @year_options_processor = YearOptionsProcessor.new year_options
       end
 
-      # for every company that
+      # @param [Hash] opts restrict input values
+      # @option opts [String] :company only yield input for given company
+      # @option opts [String] :year only yield input for given year
       def each opts={}
         fetch_values opts
+        fixed_company = opts[:company] && opts[:company].to_name.key
         years = opts[:year] ? Array(opts[:year].to_i) : years_with_values
         years.each do |year|
-          companies_with_value(year).each do |company_key|
-            next unless (value = input_for(year, company_key))
-            yield(value, company_key, year)
+          if fixed_company
+            next unless companies_with_value(year).include?(fixed_company)
+            next unless (value = input_for(year, fixed_company))
+            yield(value, fixed_company, year)
+          else
+            companies_with_value(year).each do |company_key|
+              next unless (value = input_for(year, company_key))
+              yield(value, company_key, year)
+            end
           end
         end
       end
 
+      # type of input
+      # either :yearly_variable or if it's a metric the value type as string
       def type index
         @order[index][1]
       end
@@ -42,22 +57,6 @@ module Formula
         @companies_with_values_by_year.keys
       end
 
-      # @param [Integer] year the year the value is calculated for
-      # @param [Array] value_data an array with a hash for every metric nest in the
-      # formula in order of appearance. The hashes must have the form
-      # { year => value }
-      # @return an array with the input for every metric in the formula
-      def input year=nil, company=nil
-        if year && company
-          input_for year, company
-        else
-          result = Hash.new_nested Hash
-          each do |ip, company, year|
-            result[year][company] = ip
-          end
-        end
-      end
-
       private
 
       def input_for year, company
@@ -68,6 +67,7 @@ module Formula
       end
 
       def validate_input input
+        return if !input || !input.is_a?(Array)
         input.map do |val|
           return if val.blank?
           if val.is_a?(Array)

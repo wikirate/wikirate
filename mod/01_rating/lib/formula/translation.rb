@@ -24,9 +24,15 @@ module Formula
 
     def exec_lambda expr
       JSON.parse expr
+    rescue JSON::ParserError => _e
+      @errors << "invalid translation formula #{expr}"
     end
 
-    def safe_to_exec? expr
+    def safe_to_convert? expr
+      self.class.valid_formula? expr
+    end
+
+    def safe_to_exec? _expr
       true
     end
   end

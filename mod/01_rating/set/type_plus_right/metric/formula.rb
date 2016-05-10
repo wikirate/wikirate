@@ -81,8 +81,8 @@ end
 
 event :validate_formula, :validate,
       when: proc { |c| c.wolfram_formula? } do
-  valid, errors = calculator_class.valid_formula? content
-  return if valid
+  errors = calculator.validate_formula
+  return if errors.empty?
   errors.each do |msg|
     errors.add :formula, msg
   end

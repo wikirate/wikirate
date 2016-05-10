@@ -3,24 +3,15 @@ module Formula
     WL_INTERPRETER = 'https://www.wolframcloud.com/objects/92f1e212-7875-49f9-888f-b5b4560b7686'
     WL_WHITELIST = ::Set.new ['Boole']
 
-    def self.valid_formula? formula
-      not_on_whitelist =
-        formula.gsub(/\{\{([^}])+\}\}/, '').gsub(/"[^"]+"/,'')
-          .scan(/[a-zA-Z][a-zA-Z]+/).reject do |word|
-          WL_WHITELIST.include? word
-        end
-      return true if not_on_whitelist.empty?
-      not_on_whitelist.each do |bad_word|
-        errors.add :formula, "#{not_on_whitelist.first} forbidden keyword"
-      end
-    end
-
-
-    def get_value input, company, year
+    # To reduce the Wolfram Cloud calls the Wolfram calculator
+    # calculates all values at once when it compiles the formula and saves
+    # the result in @executed_lambda
+    # Getting the value is just fetching the value from a hash
+    def get_value _input, company, year
       @executed_lambda[year.to_s][@company_index[company]]
     end
 
-    # convert formula to a Wolfram Language expression
+    # Converts the formula to a Wolfram Language expression
     # Example:
     # For formula {{metric M1}}+{{metric M2}} and two companies C1 and C1 with
     # values in 2014 and 2015:
@@ -34,7 +25,6 @@ module Formula
     # The result is a Wolfram hash with an array for every year that contains
     # the values for all companies
     # <|2014 -> {32.28, 34.28}, 2015 -> {32.30, 34.30}|>
-
     def to_lambda
       @company_index = {}
       wl_formula =
@@ -64,6 +54,11 @@ module Formula
 
     protected
 
+    # Sends a Wolfram language expression to the Wolfram cloud. Fetches and
+    # validates the result.
+    # @param [String] expr an expression in Wolfram language that returns json
+    #   when evalualed in the Wolfram cloud
+    # @return the parsed response
     def exec_lambda expr
       uri = URI.parse(WL_INTERPRETER)
       # TODO: error handling
@@ -72,16 +67,27 @@ module Formula
       begin
         body = JSON.parse(response.body)
         if body['Success']
-         result = JSON.parse body['Result']
+         JSON.parse body['Result']
         else
-          # TODO: this is a syntax error in the wolfram formula
-          # and shouldn't be fatal
-          # need a way to pass that to errors
-          fail Card::Error, 'wolfram error', body['MessagesText'].join("\n")
+          @errors << "wolfram syntax error: #{body['MessagesText'].join("\n")}"
+          return false
         end
       rescue JSON::ParserError => e
         fail Card::Error, "failed to parse wolfram result: #{expr}"
       end
+    end
+
+    def save_to_convert? expr
+      not_on_whitelist =
+        expr.gsub(/\{\{([^}])+\}\}/, '').gsub(/"[^"]+"/,'')
+          .scan(/[a-zA-Z][a-zA-Z]+/).reject do |word|
+          WL_WHITELIST.include? word
+        end
+      return true if not_on_whitelist.empty?
+      not_on_whitelist.each do |bad_word|
+        @errors << "#{not_on_whitelist.first} forbidden keyword"
+      end
+      return false
     end
 
     def safe_to_exec? expr

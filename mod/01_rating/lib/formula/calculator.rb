@@ -1,15 +1,17 @@
 # encoding: UTF-8
 
 module Formula
+  # Calculates the values of a formula
   class Calculator
     INPUT_CAST = lambda { |val| val }
 
-    attr_reader :formula
+    attr_reader :formula, :errors
 
     def initialize formula_card
       @formula = formula_card
       @input = Input.new(@formula.input_cards, year_options,
                          &self.class::INPUT_CAST)
+      @errors = []
     end
 
     # @param [Hash] opts
@@ -26,12 +28,11 @@ module Formula
       result
     end
 
-    # Returns all years that are affected by changes on the metric values given
-    # by `changed_years`
-    # def update_range changed_years
-    #   @multi_year ? :all : changed_years
-    #   #return years unless @multi_year
-    # end
+    def validate_formula
+      compile_formula
+      return @errors
+    end
+
     def self.remove_nests content
       content.gsub(/{{[^}]*}}/,'')
     end
@@ -39,16 +40,21 @@ module Formula
     private
 
     def safe_execution expr
-      return unless safe_to_exec?(expr)
+      unless safe_to_exec?(expr)
+        @errors << 'invalid formula'
+        return
+      end
       exec_lambda expr
     end
 
     protected
 
-    def compile_formula expr=nil
-      @executed_lambda = safe_execution(expr || to_lambda)
+    def compile_formula
+      return unless safe_to_convert? @formula.content
+      @executed_lambda ||= safe_execution(to_lambda)
     end
 
+    # Extracts all year options from all input nests in the formula
     def year_options
       @formula.input_chunks.map do |chunk|
         chunk.options[:year]
@@ -64,7 +70,11 @@ module Formula
       end
     end
 
-    def safe_to_exec? expr
+    def safe_to_convert? _expr
+      true
+    end
+
+    def safe_to_exec? _expr
       false
     end
 
