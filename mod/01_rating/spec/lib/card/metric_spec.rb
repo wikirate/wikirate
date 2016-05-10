@@ -86,6 +86,9 @@ describe Card::Metric do
 
     it 'creates score' do
       Card::Auth.as_bot do
+        # create a new research metric so that it could create a score metric
+        # based on a categorical metric as we are now checking if all value
+        # options are filled with a score
         researched_metrics
         Card::Metric.create name: 'Jedi+strength in the Force+Joe Camel',
                             type: :score,
