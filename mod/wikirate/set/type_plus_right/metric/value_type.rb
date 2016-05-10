@@ -11,27 +11,29 @@ def invalid_metric_values metric_values
   invalid_metric_values
 end
 
-def all_values_in_options? metric_values, options_card
+def non_existing_values_in_options? metric_values, options_card
   options = options_card.item_names content: options_card.content.downcase,
                                     context: :raw
+  non_existing_values = []
   metric_values.each do |_key, values|
     values.each do |mv|
       if !options.include?(mv['value'].downcase) &&
          mv['value'].casecmp('unknown') != 0
-        return false
+        non_existing_values.push(mv['value'])
       end
     end
   end
-  true
+  non_existing_values
 end
 
-def show_category_option_errors options_card
+def show_category_option_errors options_card, invalid_options
   url = "/#{options_card.cardname.url_key}?view=edit"
   anchor =
     <<-HTML
       <a href='#{url}' target="_blank">add the values to options card</a>
     HTML
-  errors.add :value, "Please #{anchor} first"
+  values = "\"#{invalid_options.uniq.join('\", \"')}\" missing in the options."
+  errors.add :value, "#{values} Please #{anchor} first."
 end
 
 def related_values
@@ -62,8 +64,9 @@ event :validate_existing_values_type, :validate, on: :save do
   when 'Category'
     options_card = Card.fetch "#{metric_name}+value_options", new: {}
     if (!mv.empty? && options_card.new?) ||
-       !all_values_in_options?(mv, options_card)
-      show_category_option_errors options_card
+       (invalid_options = non_existing_values_in_options?(mv, options_card)) &&
+       !invalid_options.empty?
+      show_category_option_errors options_card, invalid_options
     end
   end
 end
