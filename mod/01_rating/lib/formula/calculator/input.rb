@@ -40,7 +40,7 @@ module Formula
       end
 
       # type of input
-      # either :yearly_variable or if it's a metric the value type as string
+      # either :yearly_variable or, if it's a metric, the value type as string
       def type index
         @order[index][1]
       end

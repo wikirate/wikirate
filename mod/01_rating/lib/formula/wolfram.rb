@@ -1,7 +1,7 @@
 module Formula
   class Wolfram < Calculator
-    WL_INTERPRETER = 'https://www.wolframcloud.com/objects/92f1e212-7875-49f9-888f-b5b4560b7686'
-    WL_WHITELIST = ::Set.new ['Boole']
+    INTERPRETER = 'https://www.wolframcloud.com/objects/92f1e212-7875-49f9-888f-b5b4560b7686'
+    WHITELIST = ::Set.new ['Boole']
 
     # To reduce the Wolfram Cloud calls the Wolfram calculator
     # calculates all values at once when it compiles the formula and saves
@@ -60,7 +60,7 @@ module Formula
     #   when evalualed in the Wolfram cloud
     # @return the parsed response
     def exec_lambda expr
-      uri = URI.parse(WL_INTERPRETER)
+      uri = URI.parse(INTERPRETER)
       # TODO: error handling
       response = Net::HTTP.post_form uri, 'expr' => expr
 
@@ -81,7 +81,7 @@ module Formula
       not_on_whitelist =
         expr.gsub(/\{\{([^}])+\}\}/, '').gsub(/"[^"]+"/,'')
           .scan(/[a-zA-Z][a-zA-Z]+/).reject do |word|
-          WL_WHITELIST.include? word
+          WHITELIST.include? word
         end
       return true if not_on_whitelist.empty?
       not_on_whitelist.each do |bad_word|

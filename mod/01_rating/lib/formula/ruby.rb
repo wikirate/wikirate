@@ -3,6 +3,10 @@
 # value in order of appearance in the formula
 
 module Formula
+  # Calculate formula values using Ruby
+  # It converts the formula to a ruby lambda function
+  # The formula may only consist of the numbers and the symbols and functions
+  # listed in SYMBOLS and FUNCTIONS
   class Ruby < Calculator
     SYMBOLS = %w{+ - ( ) [ ] . * /}.freeze
     FUNCTIONS = { 'Sum' => 'sum', 'Max' => 'max', 'Min' => 'min' }.freeze

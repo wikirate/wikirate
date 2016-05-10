@@ -208,7 +208,6 @@ def normalize_value value
   ('%.1f' % value).gsub(/\.0$/, '') if value
 end
 
-# allow only numbers, whitespace, mathematical operations and args references
 def ruby_formula?
   calculator_class == ::Formula::Ruby
 end
