@@ -338,9 +338,9 @@
 .metric-details-company-header,
 .metric-details-header,
 .metric-info {
-    .wiki .row {
-        margin-bottom: 18px;
-    }
+    // .wiki .row {
+    //     margin-bottom: 18px;
+    // }
     .row {
         margin-left: 5px;
         margin-right: 5px;
@@ -606,6 +606,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     border: solid 1px #ebebeb;
     display: inline-block;
     padding: 7px;
+    margin-bottom: 8px;
     img {
         max-width: 35px;
         max-height: 35px;
@@ -695,4 +696,10 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   left: 55px;
   top: 4px;
   color: #ccc;
+}
+
+.metric-details-content {
+  .card-body, .contributing-details, .RIGHT-category_detail {
+      margin: 0px 20px;
+    }
 }

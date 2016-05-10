@@ -24,6 +24,10 @@ def company_card
   Card.fetch company_name
 end
 
+def metric_type
+  metric_card.metric_type.downcase.to_sym
+end
+
 def value_type
   if (value_type_card = Card.fetch "#{metric_card.name}+value type") &&
      !value_type_card.content.empty?
@@ -574,18 +578,55 @@ format :html do
     value << checked_value_flag.html_safe
     value << comment_flag.html_safe
     value << _render_value_details_toggle
-    value << _render_value_details(args)
+    value << value_details(args)
     content_tag(:div, value.html_safe, class: 'td value')
   end
 
-  view :value_details do |args|
-    checked_by = card.fetch trait: :checked_by, new: {}
-    checked_by = nest(checked_by, view: :double_check_view)
+  def value_details args
+    case card.metric_type
+    when :formula, :score
+      _render_formula_value_details(args)
+    when :wikirating
+      _render_wikirating_value_details(args)
+    when :researched
+      _render_research_value_details(args)
+    end
+  end
+
+  def wrap_value_details content, args
     wrap_with :div, class: 'metric-value-details collapse' do
       [
         _optional_render(:credit_name, args, :show),
+        content,
+        content_tag(:div, _render_comments(args), class: 'comments-div')
+      ]
+    end
+  end
+
+  view :research_value_details do |args|
+    checked_by = card.fetch trait: :checked_by, new: {}
+    checked_by = nest(checked_by, view: :double_check_view)
+    content =
+      [
         content_tag(:div, checked_by.html_safe, class: 'double-check'),
-        content_tag(:div, _render_sources, class: 'cited-sources'),
+        content_tag(:div, _render_sources, class: 'cited-sources')
+      ]
+    wrap_value_details(content, args)
+  end
+
+  view :formula_value_details do |args|
+    wrap_with :div, class: 'metric-value-details collapse' do
+      [
+        _optional_render(:credit_name, args, :show),
+        content_tag(:div, _render_comments(args), class: 'comments-div')
+      ]
+    end
+  end
+
+  view :wikirating_value_details do |args|
+    wrap_with :div, class: 'metric-value-details collapse' do
+      [
+        _optional_render(:credit_name, args, :show),
         content_tag(:div, _render_comments(args), class: 'comments-div')
       ]
     end
