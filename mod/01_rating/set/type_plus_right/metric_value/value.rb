@@ -1,18 +1,21 @@
-def year
-  cardname.parts[-2]
-end
+
 
 def metric
   cardname.parts[0..-4].join '+'
+end
+
+def company
+  cardname.parts[-3]
+end
+
+def year
+  cardname.parts[-2]
 end
 
 def metric_plus_company
   cardname.parts[0..-3].join '+'
 end
 
-def company
-  cardname.parts[-3]
-end
 
 def value
   content
@@ -24,6 +27,14 @@ end
 
 def company_card
   Card.fetch company
+end
+
+def metric_key
+  metric.to_name.key
+end
+
+def company_key
+  company.to_name.key
 end
 
 def metric_plus_company_card
@@ -79,21 +90,6 @@ format :html do
   end
 end
 
-def metric
-  cardname.left_name.left_name.left
-end
-
-def company
-  cardname.left_name.left_name.right
-end
-
-def company_key
-  cardname.left_name.left_name.right_name.key
-end
-
-def year
-  cardname.left_name.right
-end
 
 event :update_related_scores, :finalize,
       on: [:create, :update, :delete],

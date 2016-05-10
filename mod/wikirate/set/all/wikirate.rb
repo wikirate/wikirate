@@ -242,7 +242,7 @@ CLAIM_SUBJECT_SQL = %{
   join cards as pointers on claims.id   = pointers.left_id
   join card_references   on pointers.id = referer_id
   join cards as subjects on referee_id  = subjects.id
-  where claims.type_id =    #{Card::ClaimID}
+  where claims.type_id = #{Card::ClaimID}
   and pointers.right_id in
     (#{[Card::WikirateTopicID, Card::WikirateCompanyID].join(', ')})
   and claims.trash   is false
