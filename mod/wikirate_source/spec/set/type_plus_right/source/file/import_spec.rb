@@ -120,7 +120,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
           { company: 'Amazon.com, Inc.', value: '66', row: 2 }
         ]
         trigger_source_file_update source_file, metric
-        err_key = "2:#{metric.name}+Amazon.com, Inc.+2015"
+        err_key = "Row 2:#{metric.name}+Amazon.com, Inc.+2015"
         err_msg = 'Duplicated metric values'
         expect(source_file.errors).to have_key(err_key.to_sym)
         expect(source_file.errors[err_key]).to include(err_msg)
@@ -138,7 +138,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
           { company: 'Amazon.com, Inc.', value: '56', row: 1 }
         ]
         trigger_source_file_update source_file, metric
-        err_key = "1:#{metric.name}+Amazon.com, Inc.+2015+metric value"
+        err_key = "Row 1:#{metric.name}+Amazon.com, Inc.+2015+metric value"
         err_msg = 'value already exists'
         expect(source_file.errors).to have_key(err_key.to_sym)
         expect(source_file.errors[err_key]).to include(err_msg)

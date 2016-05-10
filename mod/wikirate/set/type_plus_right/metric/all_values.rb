@@ -190,7 +190,7 @@ format :html do
 
   view :card_list_item do |args|
     c = args[:item_card]
-    item_view = args[:items][:view] || nest_defaults(c)[:view]
+    item_view = args[:items] && args[:items][:view] || nest_defaults(c)[:view]
     %(
       <div class="search-result-item item-#{item_view}">
         #{nest(c, size: args[:size], view: item_view)}
