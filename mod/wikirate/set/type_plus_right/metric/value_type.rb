@@ -32,7 +32,12 @@ def show_category_option_errors options_card, invalid_options
     <<-HTML
       <a href='#{url}' target="_blank">add the values to options card</a>
     HTML
-  values = "\"#{invalid_options.uniq.join('\", \"')}\" missing in the options."
+  values =
+    if !invalid_options.nil?
+      "\"#{invalid_options.uniq.join('\", \"')}\" missing in the options."
+    else
+      ''
+    end
   errors.add :value, "#{values} Please #{anchor} first."
 end
 
