@@ -27,8 +27,9 @@ format :html do
     end
   end
 
-  view :thumbnail_title do |args|
-    content = content_tag(:div, nest(card.metric_title_card, view: :name))
+  view :thumbnail_title do |_args|
+    content = content_tag(:div, nest(card.metric_title_card, view: :name),
+                          class: 'ellipsis')
     card_link card, text: content
   end
 
