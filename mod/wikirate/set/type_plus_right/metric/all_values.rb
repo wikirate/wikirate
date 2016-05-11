@@ -189,7 +189,6 @@ format :html do
   end
 
   view :card_list_item do |args|
-
     c = args[:item_card]
     item_view = args[:items] && args[:items][:view] || nest_defaults(c)[:view]
     %(

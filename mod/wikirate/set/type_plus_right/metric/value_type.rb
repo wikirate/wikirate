@@ -34,7 +34,8 @@ def show_category_option_errors options_card, invalid_options
     HTML
   values =
     if !invalid_options.nil?
-      "\"#{invalid_options.uniq.join('\", \"')}\" missing in the options."
+      "\"#{invalid_options.uniq.join('\", \"')}\" is not an option for"\
+      ' this Metric.'
     else
       ''
     end
