@@ -117,9 +117,9 @@ end
 
 format :html do
   view :designer_image do |_args|
-    nest card.metric_designer_card.field(:image, new: {}),
-         view: :core,
-         size: :small
+    image = nest card.metric_designer_card.field(:image, new: {}),
+                 view: :core, size: :small
+    card_link card.metric_designer_card, text: image
   end
 
   def css

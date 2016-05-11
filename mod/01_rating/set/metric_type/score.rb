@@ -93,7 +93,7 @@ format :html do
 
   def default_thumbnail_subtitle_args args
     args[:text] ||= 'scored by'
-    args[:author] ||= card.scorer
+    args[:author] ||= card_link card.scorer
   end
 
   view :designer_info do |args|

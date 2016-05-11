@@ -28,7 +28,8 @@ format :html do
   end
 
   view :thumbnail_title do |args|
-    content_tag(:div, nest(card.metric_title_card, view: :name))
+    content = content_tag(:div, nest(card.metric_title_card, view: :name))
+    card_link card, text: content
   end
 
   view :thumbnail_subtitle do |args|
