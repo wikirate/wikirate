@@ -44,7 +44,6 @@ format :html do
   view :score_value_details do |args|
     content = [[base_metric_card(card).name, base_metric_value(card)]]
     table_content = table(content, header: ['Original Metric', 'Value'])
-    binding.pry
     wrap_value_details(table_content.html_safe, args)
   end
 
