@@ -65,6 +65,7 @@ def calculated?
   !researched?
 end
 
+# value between 0 and 10?
 def scored?
   metric_type_codename == :score ||
     metric_type_codename == :wiki_rating

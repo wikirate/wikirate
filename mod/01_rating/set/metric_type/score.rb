@@ -16,7 +16,7 @@ def basic_metric_card
   left
 end
 
-#delegate :question_card, to: :basic_metric_card
+# delegate :question_card, to: :basic_metric_card
 
 def normalize_value value
   return 0 if value < 0
@@ -59,36 +59,29 @@ format :html do
       Card.search type_id: MetricID,
                   right_plus: [
                     '*metric type',
-                    content: ['in', '[[Formula]]','[[Researched]]']
-                  ],
-                  sort: 'name', return: :name
-
-
-      # name_card = Card.new name: 'name', type_id: PointerID,
-      #                        subcards: {
-      #                          '+*input' => '[[select]]',
-      #                          '+*options' => {
-      #                            type_id: SearchTypeID,
-      #                            content: '{"type":"metric"}'
-      #                          }
-      #                        }
+                    content: ['in', '[[Formula]]', '[[Researched]]']
+                  ], sort: 'name', return: :name
     options = [['-- Select --', '']] + option_names.map { |x| [x, x] }
-    help_text =
-      <<-HTML
-      <div class="help-block help-text">
-        <p>Metric name = [Scored Metric name]+[Your username]</p>
-      </div>
-      HTML
+    new_name_editor_wrap(options, option_names)
+  end
+
+  def new_name_editor_wrap options, option_names
     editor_wrap :card do
-      hidden_field_tag('card[subcards][+metric][content]',
-                       option_names.first,
+      hidden_field_tag('card[subcards][+metric][content]', option_names.first,
                        class: 'card-content') +
         select_tag('pointer_select',
                    options_for_select(options, option_names.first),
                    class: 'pointer-select form-control') +
         help_text.html_safe
     end
-    # subformat(name_card)._render_select
+  end
+
+  def help_text
+    <<-HTML
+    <div class="help-block help-text">
+      <p>Metric name = [Scored Metric name]+[Your username]</p>
+    </div>
+    HTML
   end
 
   def default_thumbnail_subtitle_args args
@@ -99,12 +92,15 @@ format :html do
   view :designer_info do |args|
     card_link card.metric_designer_card.cardname.field('contribution'),
               text: author_info(card.metric_designer_card, 'Designed by')
+
     wrap_each_with :div, class: 'metric-designer-info' do
       [
-        card_link(card.metric_designer_card.cardname.field('contribution'),
-                  text: author_info(card.metric_designer_card, 'Designed by', true)),
-        card_link(card.scorer_card.cardname.field('contribution'),
-                  text: author_info(card.scorer_card, 'Scored by', true))
+        card_link(
+          card.metric_designer_card.cardname.field('contribution'),
+          text: author_info(card.metric_designer_card, 'Designed by', true)),
+        card_link(
+          card.scorer_card.cardname.field('contribution'),
+          text: author_info(card.scorer_card, 'Scored by', true))
       ]
     end
   end

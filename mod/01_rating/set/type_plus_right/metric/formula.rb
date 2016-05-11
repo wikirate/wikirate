@@ -238,6 +238,3 @@ end
 def calculator
   @calculator ||= calculator_class.new self
 end
-
-
-
