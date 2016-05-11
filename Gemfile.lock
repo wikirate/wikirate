@@ -22,7 +22,7 @@ PATH
       mini_magick (~> 4.2)
       recaptcha (~> 0.4.0)
       sass (~> 3.2)
-      smartname (= 0.2.3)
+      smartname (= 0.3.0)
       uglifier (~> 3.0)
       uuid (~> 2.3)
 
@@ -312,7 +312,7 @@ GEM
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
-    smartname (0.2.3)
+    smartname (0.3.0)
       activesupport
       htmlentities (~> 4.3.0)
     spork (0.9.2)

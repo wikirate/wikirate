@@ -50,14 +50,14 @@ def cached_values
   @cached_metric_values ||= get_cached_values
 
   if @cached_metric_values && (filter = company_filter)
-    filtered =
-      @cached_metric_values.select do |company, values|
-        filter.include? company
-      end
-
-    if year_filter
-      filtered.map |company, hash|
+    # filtered =
+    @cached_metric_values.select do |company, _values|
+      filter.include? company
     end
+
+    # if year_filter
+    #   filtered.map |company, hash|
+    # end
   else
     @cached_metric_values
   end
@@ -80,19 +80,29 @@ end
 
 def company_wql opts
   wql = { type_id: WikirateCompanyID, return: 'name' }
-  if opts[:company]
-    wql[:name] =  ['match', opts[:company]].flatten
-  end
-  if opts[:industry]
-    wql[:left_plus] = [
-      'IndustryMetric',
-      { refer_to: Array(opts[:industry]).first }
-    ]
-  end
-  if opts[:project]
-    wql[:referred_to_by] =  { left: { name: Array(opts[:project]).first } }
-  end
+  filter_by_company_name wql, opts[:company] if opts[:company].present?
+  filter_by_industry wql, opts[:industry] if opts[:industry].present?
+  filter_by_project wql, opts[:project] if opts[:project].present?
   wql
+end
+
+def filter_by_company_name wql, name
+  wql[:name] = ['match', name]
+end
+
+def filter_by_project wql, project
+  wql[:referred_to_by] = { left: { name: project } }
+end
+
+def filter_by_industry wql, industry
+  filter = left.fetch(trait: :metric_value_filter)
+  wql[:left_plus] = [
+    filter.industry_metric_name,
+    { right_plus: [
+      filter.industry_value_year,
+      { right_plus: ['value', { eq: industry }] }
+    ] }
+  ]
 end
 
 def get_cached_values
