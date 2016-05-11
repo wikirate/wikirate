@@ -25,4 +25,38 @@ describe Card::Set::TypePlusRight::Metric::Formula do
       expect(subject.ruby_formula?).to be_falsey
     end
   end
+  describe '#translate_formula' do
+    subject do
+      Card['jedi+disturbance_in_the_force+joe_user+formula']
+    end
+    context 'invalid values' do
+      it 'blocks empty values' do
+        subject.content = '{"yes":"10","no":""}'
+        subject.save
+        expect(subject.errors).to have_key(:invalid_value)
+        err_msg = "Option:no's value is not a number"
+        expect(subject.errors[:invalid_value]).to include(err_msg)
+      end
+      it 'blocks non numeric values' do
+        subject.content = '{"yes":"10","no":"yo"}'
+        subject.save
+        expect(subject.errors).to have_key(:invalid_value)
+        err_msg = "Option:no's value is not a number"
+        expect(subject.errors[:invalid_value]).to include(err_msg)
+      end
+      it 'blocks values > 10 and < 0' do
+        subject.content = '{"yes":"10","no":"11"}'
+        subject.save
+        expect(subject.errors).to have_key(:invalid_value)
+        err_msg = "Option:no's value is smaller than 0 or bigger than 10"
+        expect(subject.errors[:invalid_value]).to include(err_msg)
+
+        subject.content = '{"yes":"10","no":"-1"}'
+        subject.save
+        expect(subject.errors).to have_key(:invalid_value)
+        err_msg = "Option:no's value is smaller than 0 or bigger than 10"
+        expect(subject.errors[:invalid_value]).to include(err_msg)
+      end
+    end
+  end
 end

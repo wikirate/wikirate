@@ -52,9 +52,14 @@ $(document).ready ->
                                      '?view=new_metric_value&metric[]=' +
                                      metric)
       else
+        source = $.urlParam('source')
+        if source != null
+          source = '&slot[source]=' + source
+        else
+          source = ''
         load_path = wagn.prepUrl(wagn.rootPath +
                                "/new/metric_value?noframe=true&slot[company]="+
-                               company + "&slot[metric]=" + metric)
+                               company + "&slot[metric]=" + metric + source)
 
         $template = $('<div>').addClass('timeline-row new-value-form')
         $template = $template.append($('<div>')
@@ -176,17 +181,22 @@ $(document).ready ->
     $parent_slot = $(this).slot()
     company = $(".RIGHT-company .input-group input").val()
     metric  = $(".RIGHT-metric select").val()
+    source  = $("#card_hidden_source").val()
     company = Array.isArray(company) && company[0] || company
     company = encodeURIComponent(company.replace('.',''))
     metric = metric.map((obj) ->
       obj = '&metric[]=' + encodeURIComponent(obj)
       obj
     ).join('')
+    if source != undefined
+      source = '&source=' + source
+    else
+      source = ''
     # metric  = encodeURIComponent(metric)
     if(company&&metric)
       $parent_slot.append($loader_anime)
       location.href = wagn.prepUrl(wagn.rootPath + '/' + company +
-                                  '?view=new_metric_value' + metric)
+                                  '?view=new_metric_value' + metric + source)
 
   $('body').on 'ajax:success',
   '[data-form-for="new_metric_value"]',

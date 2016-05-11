@@ -9,7 +9,6 @@ event :validate_content, :validate, on: :save do
     @host = nil
     @host = URI(content).host
   rescue
-  ensure
     errors.add :link, "invalid uri #{content}" unless @host
   end
 end
