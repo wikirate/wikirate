@@ -254,7 +254,8 @@ format :html do
 
   view :value_link do
     url = "/#{card.cardname.url_key}"
-    link = link_to card.value, url, target: '_blank'
+    value = card.scored? ? colorify(card.value) : card.value
+    link = link_to value, url, target: '_blank'
     content_tag(:span, link.html_safe, class: 'metric-value')
   end
 

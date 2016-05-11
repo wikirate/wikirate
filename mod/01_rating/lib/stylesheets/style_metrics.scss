@@ -599,6 +599,8 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
         height: 40px;
     }
 }
+
+
 .metric-thumbnail {
     font-size: 0.66em;
     font-weight: normal;
@@ -617,6 +619,18 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
         vertical-align: middle;
     }
 }
+
+.table > tbody > tr > td > .metric-thumbnail {
+    float: left;
+    width: 100%;
+    border: 0px;
+    font-size: 12px;
+}
+
+.metric-value-details table{
+   margin-top: 12px;
+}
+
 .TYPE-metric.new-view {
     ul.nav-tabs li {
         padding: 28px;
@@ -701,5 +715,23 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 .metric-details-content {
   .card-body, .contributing-details, .RIGHT-category_detail {
       margin: 0px 20px;
+    }
+}
+
+.range-value {
+    position: relative;
+    display: inline-block;
+    span {
+      position: absolute;
+      left: 0;
+      font-size: 14px;
+      color: #FFF;
+      text-align: center;
+      width: 25px;
+      padding: 5px 0;
+      font-weight: bold;
+    }
+    i {
+      font-size: 30px;
     }
 }

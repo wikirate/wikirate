@@ -42,7 +42,8 @@ format :html do
   end
 
   view :score_value_details do |args|
-    content = [[base_metric_card(card).name, base_metric_value(card)]]
+    metric_thumbnail = nest(base_metric_card(card), view: :thumbnail)
+    content = [[metric_thumbnail, base_metric_value(card)]]
     table_content = table(content, header: ['Original Metric', 'Value'])
     wrap_value_details(table_content.html_safe, args)
   end
@@ -76,6 +77,7 @@ format :html do
 
   def metric_row_values input_card, value_card, weight
     score_value = ''
+    metric_thumbnail = nest(input_card, view: :thumbnail)
     if value_card.metric_type == :score
       score_value = value_card.value
       raw_value = base_metric_value(value_card)
@@ -83,10 +85,10 @@ format :html do
       raw_value = value_card.value
     end
     if card.metric_type == :formula
-      [input_card.name, raw_value, score_value]
+      [metric_thumbnail, raw_value, colorify(score_value)]
     elsif card.metric_type == :wikirating
-      points = (score_value.to_f * (weight.to_f / 100)).ceil
-      [input_card.name, raw_value, score_value, weight, points]
+      points = (score_value.to_f * (weight.to_f / 100)).round(1)
+      [metric_thumbnail, raw_value, colorify(score_value), weight, points]
     end
   end
 

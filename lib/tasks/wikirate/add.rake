@@ -14,13 +14,13 @@ namespace :wikirate do
     desc 'create folders and files for stylesheet'
     task stylesheet: :environment do
       ENV['type'] ||= 'scss'
-      Rake::Task['wikirate:add_codefile'].invoke
+      Rake::Task['wikirate:add:codefile'].invoke
     end
 
     desc 'create folders and files for script'
     task script: :environment do
       ENV['type'] ||= 'CoffeeScript'
-    Rake::Task['wikirate:add_codefile'].invoke
+    Rake::Task['wikirate:add:codefile'].invoke
     end
   end
 end
