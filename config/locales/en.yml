@@ -16,4 +16,5 @@ en:
     precision:
       format:
         delimiter: ','
+        strip_insignificant_zeros: true
         precision: 1
