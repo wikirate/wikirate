@@ -331,25 +331,38 @@ format :html do
     check_box_tag 'metric_values[]', key_hash.to_json, checked
   end
 
+  def data_correction data
+    if data[:status] == 'exact'
+      ''
+    else
+      company_correction_field data
+    end
+  end
+
+  def data_company data
+    if data[:wikirate_company].empty?
+      data[:file_company]
+    else
+      data[:wikirate_company]
+    end
+  end
+
+  def find_wikirate_company data
+    if data[:file_company].present?
+      matched_company data[:file_company]
+    else
+      ['', :none]
+    end
+  end
+
   def import_row row, table_fields, index
     data = row_to_hash row
     data[:row] = index
-    data[:wikirate_company], data[:status] = matched_company data[:file_company]
+    data[:wikirate_company], data[:status] = find_wikirate_company data
     data[:status] = data[:status].to_s
-    data[:company] =
-      if data[:wikirate_company].empty?
-        data[:file_company]
-      else
-        data[:wikirate_company]
-      end
+    data[:company] = data_company data
     data[:checkbox] = import_checkbox data
-    data[:correction] =
-      if data[:status] == 'exact'
-        ''
-      else
-        company_correction_field data
-      end
-
+    data[:correction] = data_correction data
     table_fields.map { |key| data[key] }
   end
 
