@@ -1,4 +1,17 @@
 describe Card::Set::Type::MetricValueImportFile do
+  let(:discussion) { '50 Nerds of Grey' }
+
+  def fill_env_params with_comment=false
+    Card::Env.params[:metric_values] = []
+    (0..2).each do |i|
+      hash = {
+        metric: @metric.name, company: @companies[i], year: '2015',
+        value: i.to_s, source: 'http://example.com', row: i + 1
+      }
+      hash[:comment] = discussion if with_comment
+      Card::Env.params[:metric_values].push(hash.to_json)
+    end
+  end
   before do
     login_as 'joe_user'
     test_csv = File.open "#{Rails.root}/mod/wikirate/spec/set/" \
@@ -13,23 +26,29 @@ describe Card::Set::Type::MetricValueImportFile do
     @amazon = "#{metric_name}+Amazon.com, Inc.+2015"
     @apple = "#{metric_name}+Apple Inc.+2015"
     @sony = "#{metric_name}+Sony Corporation+2015"
-    Card::Env.params[:metric_values] = []
-    (0..2).each do |i|
-      hash = {
-        metric: @metric.name,
-        company: @companies[i],
-        year: '2015',
-        value: i.to_s,
-        source: 'http://example.com',
-        row: i + 1
-      }
-      Card::Env.params[:metric_values].push(hash.to_json)
-    end
+    fill_env_params true
   end
   describe 'import metric values' do
     it 'adds metric values' do
       @mv_import_file.update_attributes! subcards: {}
 
+      expect(Card.exists?(@amazon)).to be true
+      expect(Card.exists?(@apple)).to be true
+      amazon_2015_metric_value_card = Card["#{@amazon}+value"]
+      apple_2015_metric_value_card = Card["#{@apple}+value"]
+      expect(amazon_2015_metric_value_card.content).to eq('0')
+      expect(apple_2015_metric_value_card.content).to eq('1')
+    end
+    it 'adds the comment' do
+      @mv_import_file.update_attributes! subcards: {}
+      amazon_metric_discussion_card = Card["#{@amazon}+discussion"]
+      apple_metric_discussion_card = Card["#{@apple}+discussion"]
+      expect(amazon_metric_discussion_card.content).to include(discussion)
+      expect(apple_metric_discussion_card.content).to include(discussion)
+    end
+    it 'handles import without comment' do
+      fill_env_params false
+      @mv_import_file.update_attributes! subcards: {}
       expect(Card.exists?(@amazon)).to be true
       expect(Card.exists?(@apple)).to be true
       amazon_2015_metric_value_card = Card["#{@amazon}+value"]

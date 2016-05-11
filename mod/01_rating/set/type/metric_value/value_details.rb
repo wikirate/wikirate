@@ -34,7 +34,14 @@ format :html do
   end
 
   view :formula_value_details do |args|
-    wrap_value_details(_render_formula_table(args), args)
+    content = wrap_with :div do
+    [
+      _render_formula_table(args),
+      content_tag(:h5, 'Formula'),
+      nest(card.metric_card.formula_card, view: :core)
+    ]
+    end
+    wrap_value_details(content, args)
   end
 
   view :wikirating_value_details do |args|
@@ -43,7 +50,9 @@ format :html do
 
   view :score_value_details do |args|
     metric_thumbnail = nest(base_metric_card(card), view: :thumbnail)
-    content = [[metric_thumbnail, base_metric_value(card)]]
+    value =
+      content_tag(:span, base_metric_value(card).value, class: 'metric-value')
+    content = [[metric_thumbnail, value]]
     table_content = table(content, header: ['Original Metric', 'Value'])
     wrap_value_details(table_content.html_safe, args)
   end
@@ -62,7 +71,7 @@ format :html do
         card = Card.fetch(card_name)
         metric_row(card, weight)
       end
-    columns = ['Metric', 'Raw Value', 'Score', 'weight', 'points']
+    columns = ['Metric', 'Raw Value', 'Score', 'Weight', 'Points']
     table(table_content, header: columns)
   end
 
@@ -77,18 +86,24 @@ format :html do
 
   def metric_row_values input_card, value_card, weight
     score_value = ''
-    metric_thumbnail = nest(input_card, view: :thumbnail)
     if value_card.metric_type == :score
       score_value = value_card.value
-      raw_value = base_metric_value(value_card)
+      raw_value = base_metric_value(value_card).value
     else
       raw_value = value_card.value
     end
+    raw_value = content_tag(:span, raw_value, class: 'metric-value')
+    metric_row_content(input_card, weight, raw_value, score_value)
+  end
+
+  def metric_row_content input_card, weight, raw_value, score_value
+    metric_thumbnail = nest(input_card, view: :thumbnail)
+    content_array = [metric_thumbnail, raw_value, colorify(score_value)]
     if card.metric_type == :formula
-      [metric_thumbnail, raw_value, colorify(score_value)]
-    elsif card.metric_type == :wikirating
+      content_array
+    else
       points = (score_value.to_f * (weight.to_f / 100)).round(1)
-      [metric_thumbnail, raw_value, colorify(score_value), weight, points]
+      content_array.push(weight + '%', points)
     end
   end
 
@@ -99,7 +114,7 @@ format :html do
   def base_metric_value score_card
     metric = base_metric_card(score_card)
     with_company = metric.field(card.company_name)
-    with_company.field(card.year).value
+    with_company.field(card.year)
   end
 
   view :value_details_toggle do

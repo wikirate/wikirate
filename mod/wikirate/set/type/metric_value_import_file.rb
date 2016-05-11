@@ -8,10 +8,10 @@ format :html do
     args[:table_header] = ['Select', '#', 'Metric',
                            'Company in File', 'Company in Wikirate', 'Match',
                            'Correction',
-                           'Year', 'Value', 'Source']
+                           'Year', 'Value', 'Source', 'Comment']
     args[:table_fields] = [:checkbox, :row, :metric, :file_company,
                            :wikirate_company, :status, :correction,
-                           :year, :value, :source]
+                           :year, :value, :source, :comment]
   end
 
   def default_import_args args
@@ -41,6 +41,6 @@ format :html do
   end
 
   def import_fields
-    [:metric, :file_company, :year, :value, :source]
+    [:metric, :file_company, :year, :value, :source, :comment]
   end
 end

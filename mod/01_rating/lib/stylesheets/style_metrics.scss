@@ -587,24 +587,24 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
         font-weight: bold;
     }
 }
-.yinyang-row .metric-thumbnail {
-    white-space: nowrap;
-    font-size: inherit;
-    border: none;
-    .thumbnail-text {
-        height: 40px;
-        padding-top: 10px;
-    }
-    .thumbnail-image {
-        height: 40px;
-    }
-}
+// .yinyang-row .metric-thumbnail {
+//     white-space: nowrap;
+//     font-size: inherit;
+//     border: none;
+//     .thumbnail-text {
+//         height: 40px;
+//         padding-top: 10px;
+//     }
+//     .thumbnail-image {
+//         height: 40px;
+//     }
+// }
 
 
 .metric-thumbnail {
     font-size: 0.66em;
     font-weight: normal;
-    white-space: normal;
+    white-space: nowrap;
     border: solid 1px #ebebeb;
     display: inline-block;
     padding: 7px;
@@ -625,10 +625,23 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     width: 100%;
     border: 0px;
     font-size: 12px;
+    padding: 0px;
+    // white-space: normal;
+    >.thumbnail-text {
+      padding-top: 0;
+      >div{
+        max-width: 100%;
+      }
+    }
 }
 
 .metric-value-details table{
    margin-top: 12px;
+   >tbody>tr>td{
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+   }
 }
 
 .TYPE-metric.new-view {

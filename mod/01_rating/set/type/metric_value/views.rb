@@ -199,16 +199,27 @@ format :html do
     span_args = { class: 'metric-value' }
     add_class span_args, grade if card.scored?
     wrap_with :span, span_args do
-      fetch_value.html_safe
+      beautify(fetch_value).html_safe
     end
   end
 
-  def fetch_value
-    if (value_type = card.metric_card.fetch trait: :value_type) &&
-       %w(Number Money).include?(value_type.item_names[0]) &&
-       !card.value_card.unknown_value?
-      big_number = BigDecimal.new(card.value)
+  def show_big_number value
+    big_number = BigDecimal.new(value)
+    if big_number > 1_000_000
       number_to_human(big_number)
+    else
+      number_with_precision(big_number)
+    end
+  end
+
+  def numeric_metric?
+    (value_type = card.metric_card.fetch trait: :value_type) &&
+      %w(Number Money).include?(value_type.item_names[0])
+  end
+
+  def fetch_value
+    if numeric_metric? && !card.value_card.unknown_value?
+      show_big_number card.value
     else
       card.value
     end
@@ -252,10 +263,13 @@ format :html do
     end
   end
 
+  def beautify value
+    card.scored? ? colorify(value) : value
+  end
+
   view :value_link do
     url = "/#{card.cardname.url_key}"
-    value = card.scored? ? colorify(card.value) : card.value
-    link = link_to value, url, target: '_blank'
+    link = link_to beautify(fetch_value), url, target: '_blank'
     content_tag(:span, link.html_safe, class: 'metric-value')
   end
 
