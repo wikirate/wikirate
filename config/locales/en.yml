@@ -13,3 +13,7 @@ en:
       format:
         delimiter: ''
         precision: 3
+    precision:
+      format:
+        delimiter: ','
+        precision: 1
