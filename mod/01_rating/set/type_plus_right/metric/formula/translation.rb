@@ -15,7 +15,7 @@ def translation_hash
 rescue JSON::ParserError => _e
   content = '{}'
   return {}
-  #fail Card::Error, 'fail to parse formula for categorical input'
+  # fail Card::Error, 'fail to parse formula for categorical input'
 end
 
 def complete_translation_table
