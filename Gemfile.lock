@@ -64,6 +64,9 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.8)
+    airbrake (4.3.6)
+      builder
+      multi_json
     airbrussh (1.0.1)
       sshkit (>= 1.6.1, != 1.7.0)
     ansi (1.5.0)
@@ -358,6 +361,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  airbrake (~> 4.1)
   airbrussh
   capistrano
   capistrano-bundler
