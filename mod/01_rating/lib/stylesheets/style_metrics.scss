@@ -587,18 +587,18 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
         font-weight: bold;
     }
 }
-// .yinyang-row .metric-thumbnail {
-//     white-space: nowrap;
-//     font-size: inherit;
-//     border: none;
-//     .thumbnail-text {
-//         height: 40px;
-//         padding-top: 10px;
-//     }
-//     .thumbnail-image {
-//         height: 40px;
-//     }
-// }
+.modal-body .yinyang-row .metric-thumbnail {
+    white-space: nowrap;
+    font-size: inherit;
+    border: none;
+    .thumbnail-text {
+        height: 40px;
+        padding-top: 10px;
+    }
+    .thumbnail-image {
+        height: 40px;
+    }
+}
 
 
 .metric-thumbnail {
