@@ -13,3 +13,8 @@ en:
       format:
         delimiter: ''
         precision: 3
+    precision:
+      format:
+        delimiter: ','
+        strip_insignificant_zeros: true
+        precision: 1

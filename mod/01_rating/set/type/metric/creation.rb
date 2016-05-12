@@ -66,6 +66,9 @@ def create_value_args args
       type_id: (args[:value].is_a?(Integer) ? NumberID : PhraseID)
     }
   }
+  if args[:comment].present?
+    create_args['+discussion'] = { comment: args[:comment] }
+  end
   add_value_source_args create_args, args[:source]
   create_args
 end
