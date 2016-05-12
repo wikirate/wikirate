@@ -75,13 +75,6 @@ format :html do
     end
   end
 
-  view :content_left_col do |args|
-    output [
-      _render_year_select(args),
-      _render_company_list(args)
-    ]
-  end
-
   def add_value_path
     '/new/metric_value?slot[metric]=' + _render_cgi_escape_name
   end
