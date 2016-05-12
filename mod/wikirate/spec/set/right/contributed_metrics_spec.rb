@@ -19,7 +19,7 @@ describe Card::Set::Right::ContributedMetrics do
 
   describe ".contribution_counts" do
     it "returns correct contribution count" do
-      expect(subject.contribution_count).to eq(4)
+      expect(subject.contribution_count).to eq(5)
     end
   end
   describe "header view" do

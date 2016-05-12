@@ -66,7 +66,7 @@ class SharedData
     def add_metrics
       Card::Env[:protocol] = 'http://'
       Card::Env[:host] = 'wikirate.org'
-      #Card.create! name: '1977', type_id: Card::YearID
+      create_or_update '1977', type_id: Card::YearID
       Card::Metric.create name: 'Jedi+disturbances in the Force',
                           value_type: 'Category',
                           value_options: %w(yes no),
