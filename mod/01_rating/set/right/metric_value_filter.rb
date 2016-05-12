@@ -58,7 +58,7 @@ format :html do
       </div>
       <div id="collapseFilter" class="panel-collapse collapse #{'in' if filter_active?}">
 
-        <form action="/#{action}" method="GET">
+        <form action="/#{action}?view=content_left_col" method="GET" data-remote="true" class="slotter">
           <h4>Company</h4>
           #{company_filter_fields(args).join}
            <hr>
