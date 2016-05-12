@@ -4,9 +4,13 @@ format :html do
     Card::Cache[Card::Set::Right::YinyangDragItem]
   end
 
+  def metric_card
+    @metric ||= extract_metric_card
+  end
+
   view :content do |args|
     # cache cleaning refers to  contributions.rb#contributees
-    if (metric = card[1..2]) && metric.type_code == :metric
+    if (metric = metric_card)
       key = "view_content_card_#{card.key}_args_#{Card::Cache.obj_to_key args}"
       cached_items = yycache.read(metric.key) || {}
       unless cached_items[key]

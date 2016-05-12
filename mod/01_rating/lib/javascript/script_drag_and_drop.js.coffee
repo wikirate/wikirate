@@ -76,7 +76,11 @@ $(document).ready ->
       if card_slot.hasClass("LTYPE_RTYPE-metric-company")
         # to re order the card name to get the metric details
         card_names = card_name.split("+")
-        card_name = card_names[2]+"+"+card_names[0]+"+"+card_names[1]+"+yinyang_drag_item"
+        if card_names.length == 4
+          card_name = card_names[3] + "+" + card_names[0] + "+" +
+                      card_names[1] + "+" + card_names[2] + "+yinyang_drag_item"
+        else
+          card_name = card_names[2]+"+"+card_names[0]+"+"+card_names[1]+"+yinyang_drag_item"
       view = $(toggle).data('view') || 'content'
       right_name = $(toggle).data('append')
       load_path = "/#{card_name}+#{right_name}?view=#{view}"
