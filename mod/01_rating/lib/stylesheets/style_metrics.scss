@@ -685,25 +685,25 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
         }
     }
 }
-.LTYPE_RTYPE-metric-company.content-view {
-    span.metric-value {
-        &.low {
-            color: white;
-            padding: 5px;
-            background: red;
-        }
-        &.middle {
-            color: white;
-            padding: 5px;
-            background: darkorange;
-        }
-        &.high {
-            color: white;
-            padding: 5px;
-            background: green;
-        }
-    }
-}
+// .LTYPE_RTYPE-metric-company.content-view {
+//     span.metric-value {
+//         &.low {
+//             color: white;
+//             padding: 5px;
+//             background: red;
+//         }
+//         &.middle {
+//             color: white;
+//             padding: 5px;
+//             background: darkorange;
+//         }
+//         &.high {
+//             color: white;
+//             padding: 5px;
+//             background: green;
+//         }
+//     }
+// }
 .new_metric_value-view .card-body {
     padding: 0;
 }

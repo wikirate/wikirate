@@ -63,7 +63,7 @@ format :html do
                   }
                  )
     return btn_add + btn_methodology if metric_card_type == :researched
-    btn_methodology
+    # btn_methodology
   end
 
   view :timeline_header do |args|
