@@ -45,7 +45,15 @@ format :html do
   end
 
   view :wikirating_value_details do |args|
-    wrap_value_details(_render_wikirating_table, args)
+    total = '= '.html_safe + colorify(card.value)
+    total = content_tag(:div, total, class: 'pull-right')
+    content = wrap_with :div do
+      [
+        _render_wikirating_table,
+        content_tag(:div, total, class: 'col-md-12')
+      ]
+    end
+    wrap_value_details(content, args)
   end
 
   view :score_value_details do |args|
@@ -98,12 +106,12 @@ format :html do
 
   def metric_row_content input_card, weight, raw_value, score_value
     metric_thumbnail = nest(input_card, view: :thumbnail)
-    content_array = [metric_thumbnail, raw_value, colorify(score_value)]
+    content_array = [metric_thumbnail,raw_value, colorify(score_value)]
     if card.metric_type == :formula
       content_array
     else
       points = (score_value.to_f * (weight.to_f / 100)).round(1)
-      content_array.push(weight + '%', points)
+      content_array.push('x ' + weight + '%', '= ' + points.to_s)
     end
   end
 
