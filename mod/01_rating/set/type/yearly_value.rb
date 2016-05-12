@@ -6,7 +6,6 @@ def value
   content
 end
 
-
 format :html do
-  view :editor, :mod=>Type::Phrase::Format
+  view :editor, mod: Type::Phrase::Format
 end
