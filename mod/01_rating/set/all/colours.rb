@@ -2,17 +2,17 @@ format :html do
   def multi_colour
     # Gradient generated from this url
     # https://gka.github.io/palettes
-    # /#colors=red,orange,yellow,lightgreen,green|steps=10|bez=1|coL=0
+    # /#colors=,red,orange,yellow,green|steps=10|bez=1|coL=0
     [
       '#ff0000',
-      '#ff6700',
-      '#ff9800',
-      '#ffc300',
-      '#ffeb00',
-      '#eafa3a',
-      '#bbe957',
-      '#87cf55',
-      '#50ab3c',
+      '#ff5700',
+      '#ff7e00',
+      '#fc9b00',
+      '#f1b000',
+      '#debd00',
+      '#c2c000',
+      '#9ab700',
+      '#65a300',
       '#008000'
     ]
   end
