@@ -96,20 +96,18 @@ format :html do
     select_filter 'year', filter_options, oneline: true
   end
 
-  view :company_formgroup do |_args|
-    # options = Card.search type_id: WikirateCompanyID, return: :name
-    # multiselect_filter 'company', options, title: 'name'
+  view :company_formgroup do
     text_filter 'company', title: 'Name', oneline: true
   end
 
-  view :industry_formgroup do |args|
+  view :industry_formgroup do
     industries = Card[card.industry_metric_name].value_options
     options = options_for_select([['--', '']] + industries,
                                  Env.params[:industry])
     select_filter 'industry', options
   end
 
-  view :project_formgroup do |_args|
+  view :project_formgroup do
     projects = Card.search type_id: CampaignID, return: :name, sort: 'name'
     options = options_for_select([['--', '']] + projects, Env.params[:project])
     select_filter 'project', options
@@ -124,23 +122,21 @@ format :html do
     formgroup type_name.capitalize, select_tag(type_name, options), args
   end
 
-=begin
-  def multiselect_filter type_name, options=nil, args={}
-    options ||=
-      begin
-        options_card = Card.new name: "+#{type_name}"  # codename
-        options_card.option_names
-      end
-    selected_options = params[type_name]
-    opts_for_select = options_for_select(options, selected_options)
-    multiselect_tag = select_tag(
-      type_name,
-      opts_for_select,
-      multiple: true, class: 'pointer-multiselect filter-input'
-    )
-    formgroup(args[:title] || type_name.capitalize,
-              multiselect_tag,
-              class: "filter-input #{type_name}", oneline: true)
-  end
-=end
+  # def multiselect_filter type_name, options=nil, args={}
+  #   options ||=
+  #     begin
+  #       options_card = Card.new name: "+#{type_name}"  # codename
+  #       options_card.option_names
+  #     end
+  #   selected_options = params[type_name]
+  #   opts_for_select = options_for_select(options, selected_options)
+  #   multiselect_tag = select_tag(
+  #     type_name,
+  #     opts_for_select,
+  #     multiple: true, class: 'pointer-multiselect filter-input'
+  #   )
+  #   formgroup(args[:title] || type_name.capitalize,
+  #             multiselect_tag,
+  #             class: "filter-input #{type_name}", oneline: true)
+  # end
 end

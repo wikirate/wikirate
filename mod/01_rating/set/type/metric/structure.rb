@@ -144,11 +144,12 @@ format :html do
   end
 
   view :content_left_col do |args|
-    wrap do [
-      _render_filter(args),
-      _render_year_select(args),
-      _render_company_list(args)
-    ]
+    wrap do
+      [
+        _render_filter(args),
+        _render_year_select(args),
+        _render_company_list(args)
+      ]
     end
   end
 

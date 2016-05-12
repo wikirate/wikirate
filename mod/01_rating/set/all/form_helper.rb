@@ -5,11 +5,11 @@ format :html do
     wrap_with :div, formgroup_div_args(opts[:class]).css_merge(class: 'row') do
       %(
         <div class='col-md-3'>
-        #{ form.label(opts[:editor] || :content, title)}
+          #{form.label(opts[:editor] || :content, title)}
         </div>
         <div class='col-md-9'>
           #{editor_wrap(opts[:editor]) { content }}
-      #{formgroup_help_text opts[:help]}
+          #{formgroup_help_text opts[:help]}
         </div>
       )
     end
