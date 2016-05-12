@@ -58,6 +58,12 @@ format :html do
   end
 
   view :yinyang_row do |args|
+    append_name =
+      if card.left.metric_type_codename == :score
+        'score_metric_details_company_header'
+      else
+        'metric_details_company_header'
+      end
     wrap(args) do
       <<-HTML
       <div class="yinyang-row">
@@ -67,7 +73,7 @@ format :html do
             #{_render_name_link}
           </div>
           <div class="data metric-details-toggle"
-               data-append="metric_details_company_header">
+               data-append="#{append_name}">
             <div class="data-item">
               #{_render_all_values(args)}
             </div>
