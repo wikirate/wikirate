@@ -61,8 +61,18 @@ namespace :wikirate do
           import.cards_of_type 'cardtype'
           import.items_of :codenames
           import.cards_of_type 'year'
+          # import.cards_of_type 'layout'
+          # import.cards_of_type 'scss'
+          # import.cards_of_type 'css'
+          # import.cards_of_type 'coffee_script'
+          # import.cards_of_type 'java_script'
+
           Card.search(type_id: Card::SettingID, return: :name).each do |setting|
-            import.items_of setting
+            # TODO: make export view for setting cards
+            #   then we don't need to import all script and style cards
+            #   we do it via subitems: true
+            with_subitems = %w(*script *style *layout).include? setting
+            import.items_of setting, subitems: with_subitems
           end
           import.items_of :production_export, subitems: true
           import.migration_records
@@ -103,7 +113,7 @@ class Importer
     card_data =
       work_on "getting data from #{cardname} card" do
         if opts[:subitems]
-          json_export cardname, :export
+          json_export cardname, :export_items
         else
           json_export(cardname)['card']['value']
         end

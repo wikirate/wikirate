@@ -5,10 +5,11 @@ format :json do
     # avoid infinit recursive
     return nil if count > 10
     c.item_cards.map do |item_card|
-      if item_card.type_id == Card::PointerID || item_card.type_id == Card::SkinID
+      if item_card.type_id == Card::PointerID ||
+         item_card.type_id == Card::SkinID
         [
           nest(item_card),
-          get_pointer_items(item_card,count)
+          get_pointer_items(item_card, count)
         ]
       else
         nest item_card
@@ -16,23 +17,20 @@ format :json do
     end.flatten
   end
 
-
-
-  view :export do |args|
+  view :export_items do |args|
     card.item_cards.map do |c|
       begin
         case c.type_id
         when Card::SearchTypeID
           # avoid running the search from options and structure that casue a huge result or error
-          if  c.content.empty? || c.name.include?("+*options") ||c.name.include?("+*structure")
+          if c.content.empty? || c.name.include?("+*options") ||
+             c.name.include?("+*structure")
             nest(c)
           else
             # put the search results into the export
             [
               nest(c),
-              c.item_names.map do |cs|
-                nest(cs)
-              end
+              (c.item_names.map { |cs| nest(cs) })
             ]
           end
         when Card::PointerID, Card::SkinID
