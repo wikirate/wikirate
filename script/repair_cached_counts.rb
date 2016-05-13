@@ -14,7 +14,7 @@ Card.search(wql) do |company|
   analname = "#{company.name}+missing analyses"
   Card.fetch(analname).item_cards(limit: 1000).each do |topic|
     puts "....updating #{topic.name}"
-    analysis = Card.fetch "#{company.name}+#{topic.name}",
+    analysis = Card.fetch company, topic,
                           new: { type_id: Card::WikirateAnalysisID }
     analysis.save! if analysis.new_card?
     [:claim, :metric, :source].each do |attrib|

@@ -14,9 +14,9 @@ def formula_card
 end
 
 def extract_metrics_from_formula
-  update_attributes! content: formula_card.input_metrics.to_pointer.content,
+  update_attributes! content: formula_card.input_names.to_pointer.content,
                      type_id: PointerID
-  formula_card.input_metrics
+  formula_card.input_names
 end
 
 def input_metric_name variable
@@ -27,8 +27,6 @@ def input_metric_name variable
           end
   input_metric_name_by_index index if index
 end
-
-
 
 def input_metric_name_by_index index
   item_cards.fetch(index, nil).name
@@ -108,7 +106,7 @@ format :html do
 
   view :missing  do |args|
     if @card.new_card? && (l = @card.left) &&
-       l.respond_to?(:input_metrics)
+       l.respond_to?(:input_names)
       extract_metrics_from_formula
       render(args[:denied_view], args)
     else

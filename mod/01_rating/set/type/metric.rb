@@ -352,6 +352,32 @@ format :html do
       ]
     ).html_safe
   end
+
+  def interpret_year year
+    case year
+    when /^[+-]\d+$/
+      "year#{args[:year]}"
+    when /^\d{4}$/
+      year
+    when '0'
+      'year'
+    end
+  end
+
+  def get_value_str year
+    "data[#{card.key}][#{year}]"
+  end
+
+  view :ruby do |args|
+    if args[:sum]
+      start, stop = args[:sum].split('..').map { |y| interpret_year(y) }
+      "((#{start}..#{stop}).to_a.inject(0) { |r, y| r += #{get_value_str
+      ('y')}; r })"
+    else
+      year = args[:year] ? interpret_year(args[:year]) : 'year'
+      get_value_str year
+    end
+  end
 end
 
 format :json do
