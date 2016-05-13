@@ -66,7 +66,7 @@ class SharedData
     def add_metrics
       Card::Env[:protocol] = 'http://'
       Card::Env[:host] = 'wikirate.org'
-      #Card.create! name: '1977', type_id: Card::YearID
+      # Card.create! name: '1977', type_id: Card::YearID
       Card::Metric.create name: 'Jedi+disturbances in the Force',
                           value_type: 'Category',
                           value_options: %w(yes no),
@@ -76,14 +76,12 @@ class SharedData
       end
       Card::Metric.create name: 'Jedi+deadliness', value_type: 'Number',
                           random_source: true do
-        source_link = 'http://wikiwand.com/en/Return_of_the_Jedi'
-        Death_Star '1977' => { value: 100 } #, source: source_link }
+        Death_Star '1977' => { value: 100 } # , source: source_link }
       end
       Card::Metric.create name: 'Jedi+cost of planets destroyed',
                           value_type: 'Money',
                           random_source: true do
-        source_link = 'http://wikiwand.com/en/Return_of_the_Jedi'
-        Death_Star '1977' => { value: 200 } #, source: source_link }
+        Death_Star '1977' => { value: 200 } # , source: source_link }
       end
       Card::Metric.create name: 'Jedi+Sith Lord in Charge',
                           value_type: 'Free Text'
@@ -139,16 +137,16 @@ class SharedData
       Card.create! name: 'half year', type_id: Card::YearlyVariableID,
                    subcards: {
                      '+2015' => { type_id: Card::YearlyAnswerID,
-                                  '+value' => { type_id: Card::YearlyValueID, content:
-                                    '1007.5' }
+                                  '+value' => { type_id: Card::YearlyValueID,
+                                                content: '1007.5' }
                      },
                      '+2014' => { type_id: Card::YearlyAnswerID,
-                                  '+value' => { type_id: Card::YearlyValueID, content:
-                                    '1007' }
+                                  '+value' => { type_id: Card::YearlyValueID,
+                                                content: '1007' }
                      },
                      '+2013' => { type_id: Card::YearlyAnswerID,
-                                  '+value' => { type_id: Card::YearlyValueID, content:
-                                    '1006.5' }
+                                  '+value' => { type_id: Card::YearlyValueID,
+                                                content: '1006.5' }
                      }
                    }
     end

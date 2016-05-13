@@ -106,7 +106,7 @@ format :html do
 
   def metric_row_content input_card, weight, raw_value, score_value
     metric_thumbnail = nest(input_card, view: :thumbnail)
-    content_array = [metric_thumbnail,raw_value, colorify(score_value)]
+    content_array = [metric_thumbnail, raw_value, colorify(score_value)]
     if card.metric_type == :formula
       content_array
     else
