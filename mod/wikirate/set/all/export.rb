@@ -1,22 +1,39 @@
 format :json do
+
+  def default_export_args args
+    args[:count] ||= 0
+    args[:processed_keys] ||= ::Set.new
+  end
+
   view :export do |args|
+    puts card.name.red
+    # avoid loops
+    return [] if args[:count] > 10 || args[:processed_keys].include?(card.key)
+    args[:processed_keys] << card.key
+    args[:count] += 1
+
     Array.wrap(render_content(args)[:card]).concat(
-      render_export_items(args)
+      render_export_items(count: args[:count])
     ).flatten
   end
 
-  view :export_items do |args|
-    count = args[:count] || 0
-    reference_cards.map do |r_card|
-      subformat(r_card).render_export(count: count + 1)
-    end
+  def default_export_items_args args
+    args[:count] ||= 0
+    args[:processed_keys] ||= ::Set.new
   end
 
-  def reference_cards args={}
-    content_object = Card::Content.new(_render_raw(args), card)
-    content_object.find_chunks(Card::Content::Chunk::Include).map do |chunk|
-      chunk.referee_card
+  view :export_items do |args|
+    result = []
+    each_nested_chunk do |chunk|
+      next if chunk.respond_to?(:options) && chunk.options &&
+              chunk.options[:inc_name] &&
+              chunk.options[:inc_name] == '_main'
+      next unless (r_card = chunk.referee_card)
+      next if r_card.new? || r_card == card
+      next if args[:processed_keys].include?(r_card.key)
+      result << r_card
     end
+    result.compact.uniq.map { |ca| subformat(ca).render_export(args) }
   end
 end
 

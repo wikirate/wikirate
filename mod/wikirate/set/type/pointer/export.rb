@@ -18,6 +18,9 @@ format :json do
   end
 
   view :export_items do |args|
+    args[:count] ||= 0
+    args[:count] += 1
+    return [] if args[:count] > 3
     card.item_cards.map do |c|
       begin
         case c.type_id
@@ -34,13 +37,15 @@ format :json do
             ]
           end
         when Card::PointerID, Card::SkinID
-          [
-            nest(c),
-            # recursively getting pointer items
-            get_pointer_items(c)
-          ]
+          subformat(c).render_export(args)
+        #   # [
+        #   #   nest(c),
+        #   #   # recursively getting pointer items
+        #   #   get_pointer_items(c)
+        #   # ]
         else
-          nest c
+          subformat(c).render_export(count: args[:count])
+           #nest c
         end
       rescue => e
         Rails.logger.info "Fail to get the card #{c} reason:#{e}"
