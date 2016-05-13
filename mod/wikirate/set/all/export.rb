@@ -2,23 +2,20 @@ format :json do
 
   def default_export_args args
     args[:count] ||= 0
+    args[:count] += 1
     args[:processed_keys] ||= ::Set.new
   end
 
   view :export do |args|
-    puts card.name.red
     # avoid loops
-    return [] if args[:count] > 10 || args[:processed_keys].include?(card.key)
+    return [] if args[:count] > 5 || args[:processed_keys].include?(card.key)
     args[:processed_keys] << card.key
-    args[:count] += 1
-
-    Array.wrap(render_content(args)[:card]).concat(
-      render_export_items(count: args[:count])
+    Array.wrap(render_atom(args)).concat(
+      render_export_items(args)
     ).flatten
   end
 
   def default_export_items_args args
-    args[:count] ||= 0
     args[:processed_keys] ||= ::Set.new
   end
 
