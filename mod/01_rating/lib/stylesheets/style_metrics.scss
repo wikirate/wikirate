@@ -193,6 +193,10 @@
     }
 }
 // metric value details
+.metric-year {
+    float: left;
+    padding: 8px 4px 0px 0px;
+}
 .metric-unit,
 .metric-year {
     font-size: 8px;
@@ -750,4 +754,14 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     i {
       font-size: 30px;
     }
+}
+
+.metric-value.small {
+    font-size: 15px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 50%;
+    display: inline-block;
+    float: left;
+    overflow: hidden;
 }

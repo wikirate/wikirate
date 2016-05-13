@@ -198,6 +198,7 @@ format :html do
   view :metric_details do
     span_args = { class: 'metric-value' }
     add_class span_args, grade if card.scored?
+    add_class span_args, :small if fetch_value.length > 5
     wrap_with :span, span_args do
       beautify(fetch_value).html_safe
     end
