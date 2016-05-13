@@ -1,7 +1,7 @@
 module Formula
   class Wolfram < Calculator
     INTERPRETER = 'https://www.wolframcloud.com/objects/92f1e212-7875-49f9-888f-b5b4560b7686'
-    WHITELIST = ::Set.new ['Boole']
+    WHITELIST = ::Set.new(%w(Boole If Switch Map)).freeze
 
     # To reduce the Wolfram Cloud calls the Wolfram calculator
     # calculates all values at once when it compiles the formula and saves
