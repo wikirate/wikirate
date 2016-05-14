@@ -8,7 +8,7 @@ module Formula
   # The formula may only consist of the numbers and the symbols and functions
   # listed in SYMBOLS and FUNCTIONS
   class Ruby < Calculator
-    SYMBOLS = %w{+ - ( ) [ ] . *  ,}.freeze
+    SYMBOLS = %w{+ - ( ) [ ] . *  , /}.freeze
     FUNCTIONS = { 'Sum' => 'sum', 'Max' => 'max', 'Min' => 'min',
                   'Zeros' => 'count(0)', 'Flatten' => 'flatten'
                 }.freeze
