@@ -30,7 +30,7 @@ namespace :wikirate do
       mysql_login = "mysql -u #{user}"
       mysql_login += " -p#{pwd}" if pwd
       cmd =
-        "echo \"create database #{testdb} if not exists\" | #{mysql_login}; " \
+        "echo \"create database if not exists #{testdb}\" | #{mysql_login}; " \
         "#{mysql_login} --database=#{testdb} < #{db_path}"
       puts "cmd = #{cmd}"
       system cmd
