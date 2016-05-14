@@ -25,4 +25,5 @@ describe Card::Set::TypePlusRight::Metric::Formula do
       expect(subject.ruby_formula?).to be_falsey
     end
   end
+
 end

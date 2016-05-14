@@ -9,7 +9,8 @@ format :html do
 end
 
 def populate_website?
-  !subfield('website').present? && subfield(:wikirate_link).present?
+  !subfield('website').present? && subfield(:wikirate_link).present? &&
+    errors.empty?
 end
 
 event :autopopulate_website,
@@ -55,7 +56,7 @@ def duplication_check url
 end
 
 event :process_source_url, after: :check_source,
-      on: :create do
+                           on: :create do
   if !(link_card = subfield(:wikirate_link)) || link_card.content.empty?
     errors.add(:link, 'does not exist.')
     return
@@ -64,7 +65,7 @@ event :process_source_url, after: :check_source,
   handle_source_box_source url if Card::Env.params[:sourcebox] == 'true'
   duplication_check url
   link_card.director.catch_up_to_stage :validate
-  return if errors.present?
+  return if link_card.errors.present?
   file_type, size = file_type_and_size url
   is_file_link = file_link? file_type
   if is_file_link && within_file_size_limit?(size)

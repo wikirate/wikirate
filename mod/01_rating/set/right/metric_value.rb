@@ -41,11 +41,12 @@ format :html do
     btn_add_class = [btn_class, '_add_new_value', 'btn-primary'].join(' ')
     path = card.left.field('metric_details').cardname.url_key
     target_str = ["[id='", path, "'] #methodology-info"].join('')
+    metric_card_type = card.left.trunk.metric_type.downcase.to_sym
     btn_add =
       content_tag(:div, 'Add answer',
                   class: btn_add_class,
                   data: {
-                    company: card.cardname.left_name.tag,
+                    company: card.cardname.left_name.right_name.url_key,
                     metric: card.cardname.left_name.trunk_name.url_key,
                     toggle: 'collapse-next',
                     parent: '.timeline-data',
@@ -54,14 +55,15 @@ format :html do
                  )
     btn_methodology =
       content_tag(:div, 'View Methodology',
-                  class: btn_class,
+                  class: btn_class + ' ' + '_view_methodology',
                   data: {
                     toggle: 'collapse',
                     target: target_str,
                     collapse: '.metric_value_form_container'
                   }
                  )
-    btn_add + btn_methodology
+    return btn_add + btn_methodology if metric_card_type == :researched
+    # btn_methodology
   end
 
   view :timeline_header do |args|

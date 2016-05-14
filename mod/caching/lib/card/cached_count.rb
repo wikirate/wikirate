@@ -19,6 +19,14 @@ class Card
       cached_count_card.content.to_i
     end
 
+    def self.pointer_card_changed_card_names card
+      return card.item_names if card.trash
+      old_changed_card_content = card.last_action.previous_value(:content)
+      old_card = Card.new type_id: PointerID, content: old_changed_card_content
+      (old_card.item_names - card.item_names) +
+        (card.item_names - old_card.item_names)
+    end
+
     module ClassMethods
       def recount_trigger set_of_changed_card, args={}, &block
         if set_of_changed_card

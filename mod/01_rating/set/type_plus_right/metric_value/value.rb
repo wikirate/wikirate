@@ -1,18 +1,21 @@
-def year
-  cardname.parts[-2]
-end
+
 
 def metric
   cardname.parts[0..-4].join '+'
+end
+
+def company
+  cardname.parts[-3]
+end
+
+def year
+  cardname.parts[-2]
 end
 
 def metric_plus_company
   cardname.parts[0..-3].join '+'
 end
 
-def company
-  cardname.parts[-3]
-end
 
 def value
   content
@@ -26,6 +29,14 @@ def company_card
   Card.fetch company
 end
 
+def metric_key
+  metric.to_name.key
+end
+
+def company_key
+  company.to_name.key
+end
+
 def metric_plus_company_card
   Card.fetch metric_plus_company
 end
@@ -36,23 +47,29 @@ end
 
 def option_names metric_name
   # value options
+  metric_name = metric unless metric_name.present?
   option_card = Card.fetch "#{metric_name}+value options", new: {}
   option_card.item_names context: :raw
 end
 
 format :html do
+  def metric_name_from_params
+    Env.params[:slot][:metric] if Env.params[:slot]
+  end
+
   view :select do |args|
     options = [['-- Select --', '']] +
               card.option_names(args[:metric_name]).map { |x| [x, x] }
-    select_tag('card[subcards][+values][content]',
+    select_tag("card#{subcard_input_names}[content]",
                options_for_select(options),
                class: 'pointer-select form-control'
               )
   end
 
   view :editor do |args|
-    if Env.params[:slot] && (metric_name = Env.params[:slot][:metric]) &&
-       (metric_card = Card[metric_name]) && metric_card.value_type == 'Category'
+    if (metric_name = metric_name_from_params || card.metric) &&
+       (metric_card = Card[metric_name]) &&
+       metric_card.value_type == 'Category'
       _render_select(args.merge(metric_name: metric_name))
     else
       super(args)
@@ -73,21 +90,6 @@ format :html do
   end
 end
 
-def metric
-  cardname.left_name.left_name.left
-end
-
-def company
-  cardname.left_name.left_name.right
-end
-
-def company_key
-  cardname.left_name.left_name.right_name.key
-end
-
-def year
-  cardname.left_name.right
-end
 
 event :update_related_scores, :finalize,
       on: [:create, :update, :delete],

@@ -5,22 +5,89 @@ event :import_csv, :prepare_to_store,
       when: proc { Env.params['is_metric_import_update'] == 'true' } do
   return unless (metric_values = Env.params[:metric_values])
   return unless valid_import_format?(metric_values)
+  source_map = {}
   metric_values.each do |metric_value_data|
-    metric_value_card = import_metric_value metric_value_data
+    metric_value_card = parse_metric_value metric_value_data, source_map
     # validate value type
-    metric_value_card.validate_value_type if metric_value_card
+    metric_value_card.director.catch_up_to_stage :validate if metric_value_card
     handle_import_errors metric_value_card
   end
   handle_redirect
 end
 
+def check_duplication name, row_no
+  if subcards[name]
+    errors.add "Row #{row_no}:#{name}", 'Duplicated metric values'
+  end
+end
+
+def metric_value_args_error_key key, args
+  "Row #{args[:row]}:#{args[:metric]}+#{args[:company]}+#{args[:year]}+#{key}"
+end
+
+def construct_value_args args
+  unless (create_args = Card[args[:metric]].create_value_args args)
+    Card[args[:metric]].errors.each do |key, value|
+      errors.add metric_value_args_error_key(key, args), value
+    end
+    # clear old errors
+    Card[args[:metric]].errors.clear
+    return nil
+  end
+  create_args
+end
+
 # @return updated or created metric value card object
-def import_metric_value import_data
+def parse_metric_value import_data, source_map
   args = process_metric_value_data import_data
+  process_source args, source_map
   ensure_company_exists args[:company]
   return unless valid_value_data? args
-  return unless (create_args = Card[args[:metric]].create_value_args args)
+  return unless (create_args = construct_value_args args)
+  check_duplication create_args[:name], args[:row]
   add_subcard create_args.delete(:name), create_args
+end
+
+def source_args url
+  {
+    '+*source_type' => { content: '[[Link]]' },
+    '+Link' => { content: url, type_id: PhraseID }
+  }
+end
+
+def finalize_source_card source_card
+  Env.params[:sourcebox] = 'true'
+  source_card.director.catch_up_to_stage :prepare_to_store
+  if !Card.exists?(source_card.name) && source_card.errors.empty?
+    source_card.director.catch_up_to_stage :finalize
+  end
+  Env.params[:sourcebox] = nil
+end
+
+def create_source url
+  source_card = add_subcard '', type_id: SourceID, subcards: source_args(url)
+  finalize_source_card source_card
+  unless source_card.errors.empty?
+    source_card.errors.each { |k, v| errors.add k, v }
+  end
+  source_card
+end
+
+def process_source metric_value_data, source_map
+  url = metric_value_data[:source]
+  if (source_card = source_map[url])
+    metric_value_data[:source] = source_card
+    return
+  end
+  duplicates = Self::Source.find_duplicates url
+  source_card =
+    if duplicates.any?
+      duplicates.first.left
+    else
+      create_source url
+    end
+  metric_value_data[:source] = source_card
+  source_map[url] = source_card
 end
 
 # @return [Hash] args to create metric value card
@@ -264,25 +331,38 @@ format :html do
     check_box_tag 'metric_values[]', key_hash.to_json, checked
   end
 
+  def data_correction data
+    if data[:status] == 'exact'
+      ''
+    else
+      company_correction_field data
+    end
+  end
+
+  def data_company data
+    if data[:wikirate_company].empty?
+      data[:file_company]
+    else
+      data[:wikirate_company]
+    end
+  end
+
+  def find_wikirate_company data
+    if data[:file_company].present?
+      matched_company data[:file_company]
+    else
+      ['', :none]
+    end
+  end
+
   def import_row row, table_fields, index
     data = row_to_hash row
     data[:row] = index
-    data[:wikirate_company], data[:status] = matched_company data[:file_company]
+    data[:wikirate_company], data[:status] = find_wikirate_company data
     data[:status] = data[:status].to_s
-    data[:company] =
-      if data[:wikirate_company].empty?
-        data[:file_company]
-      else
-        data[:wikirate_company]
-      end
+    data[:company] = data_company data
     data[:checkbox] = import_checkbox data
-    data[:correction] =
-      if data[:status] == 'exact'
-        ''
-      else
-        company_correction_field data
-      end
-
+    data[:correction] = data_correction data
     table_fields.map { |key| data[key] }
   end
 

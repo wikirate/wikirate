@@ -46,17 +46,24 @@ $(document).ready ->
                 else $('.TYPE-metric.open-view')
     if(company && metric)
       $target.append($loader_anime)
+      $('._blank_state_message').remove()
       if ($page.length>0)
         location.href = wagn.prepUrl(wagn.rootPath + '/' + company +
                                      '?view=new_metric_value&metric[]=' +
                                      metric)
       else
+        source = $.urlParam('source')
+        if source != null
+          source = '&slot[source]=' + source
+        else
+          source = ''
         load_path = wagn.prepUrl(wagn.rootPath +
                                "/new/metric_value?noframe=true&slot[company]="+
-                               company + "&slot[metric]=" + metric)
+                               company + "&slot[metric]=" + metric + source)
 
-        $template = $('<div>').addClass('timeline-row')
-        $template = $template.append($('<div>').addClass('card-slot'))
+        $template = $('<div>').addClass('timeline-row new-value-form')
+        $template = $template.append($('<div>')
+                    .addClass('card-slot '))
         $.get(load_path, ((data) ->
           $template.find('.card-slot').append(data)
           # $target.find(".timeline-header").after($template)
@@ -159,6 +166,11 @@ $(document).ready ->
       $parent.html('Error')
     )
 
+  $('body').on 'click','._view_methodology', ->
+    $(this).text (i, old) ->
+      btn_txt = 'View Methodology'
+      if old == btn_txt then 'Hide Methodology' else btn_txt
+
   $('body').on 'click','._value_check_button', ->
     valueChecking($(this), 'checked')
 
@@ -169,17 +181,22 @@ $(document).ready ->
     $parent_slot = $(this).slot()
     company = $(".RIGHT-company .input-group input").val()
     metric  = $(".RIGHT-metric select").val()
+    source  = $("#card_hidden_source").val()
     company = Array.isArray(company) && company[0] || company
     company = encodeURIComponent(company.replace('.',''))
     metric = metric.map((obj) ->
       obj = '&metric[]=' + encodeURIComponent(obj)
       obj
     ).join('')
+    if source != undefined
+      source = '&source=' + source
+    else
+      source = ''
     # metric  = encodeURIComponent(metric)
     if(company&&metric)
       $parent_slot.append($loader_anime)
       location.href = wagn.prepUrl(wagn.rootPath + '/' + company +
-                                  '?view=new_metric_value' + metric)
+                                  '?view=new_metric_value' + metric + source)
 
   $('body').on 'ajax:success',
   '[data-form-for="new_metric_value"]',
@@ -198,7 +215,7 @@ $(document).ready ->
       $('.source-details-toggle').removeClass('active')
       $sourceDetailsToggle = $('<div>')
                             .attr('data-source-for',sourceID)
-                            .attr('data-year', year)
+                            .attr('data-year', sourceYear)
                             .addClass('source-details-toggle active')
       $sourceDetailsToggle.append($(data)
         .find(".source-info-container").parent())
@@ -270,9 +287,21 @@ $(document).ready ->
     appendSourceForm(company)
 
   $('body').on 'click', '._add_new_value', ->
-    appendNewValueForm($(this))
+    $form = $(this).closest('.timeline-row')
+            .siblings('.new-value-form').find('form')
+    if $form.exists() && $form.hasClass('hide')
+      $form.removeClass('hide')
+      $(this).hide()
+    else
+      appendNewValueForm($(this))
 
-  $('._add_new_value:first').trigger 'click'
+  $('._add_new_value:first').trigger 'click' if $('.metric-row').length == 1
+
+  $('body').on 'click', '._form_close_button', ->
+    $form = $(this).closest('.new-value-form')
+    $form.find('form').addClass('hide')
+    $form.closest('.timeline-body')
+          .find('.timeline-header ._add_new_value').show()
 
   $('body').on 'click.collapse-next', '[data-toggle=collapse-next]', ->
     $this     = $(this)

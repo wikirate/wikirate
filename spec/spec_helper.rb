@@ -16,7 +16,7 @@ end
 
 def get_subcards_of_metric_value metric, company, content, year, source
   this_year = year || '2015'
-  this_source = source || 'http://www.google.com/?q=everybodylies'
+  this_source = source || get_a_sample_source.name
   this_content = content || "I'm fine, I'm just not happy."
   {
     '+metric' => { 'content' => metric.name },
@@ -24,12 +24,10 @@ def get_subcards_of_metric_value metric, company, content, year, source
                     :type_id => Card::PointerID },
     '+value' => { 'content' => this_content, :type_id => Card::PhraseID },
     '+year' => { 'content' => this_year, :type_id => Card::PointerID },
-    '+source' => { 'subcards' => {
-      'new source' => {
-        '+Link' => { 'content' => this_source, 'type_id' => Card::PhraseID }
-      }
-    }
-  } }
+    '+source' => { 'content' => "[[#{this_source}]]\n",
+                   :type_id => Card::PointerID }
+
+  }
 end
 
 def create_page iUrl=nil, subcards={}

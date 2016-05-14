@@ -14,17 +14,16 @@ Card.search(wql) do |company|
   analname = "#{company.name}+missing analyses"
   Card.fetch(analname).item_cards(limit: 1000).each do |topic|
     puts "....updating #{topic.name}"
-    analysis = Card.fetch "#{company.name}+#{topic.name}",
+    analysis = Card.fetch company, topic,
                           new: { type_id: Card::WikirateAnalysisID }
     analysis.save! if analysis.new_card?
     [:claim, :metric, :source].each do |attrib|
       attrib_card = analysis.fetch trait: attrib
-      if attrib_card.count > 0
-        begin
-          attrib_card.update_cached_count
-        rescue
-          puts "#{analysis.name} failed on #{attrib}"
-        end
+      next unless attrib_card.count > 0
+      begin
+        attrib_card.update_cached_count
+      rescue
+        puts "#{analysis.name} failed on #{attrib}"
       end
     end
   end

@@ -15,6 +15,7 @@ def search_latest_value_name
     left: name,
     right: { type: 'year' },
     dir: 'desc',
+    sort: 'name',
     limit: 1,
     return: 'name'
   ).first

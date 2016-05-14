@@ -34,7 +34,7 @@ end
 format do
   include Type::SearchType::Format
 
-  alias :super_search_results :search_results
+  alias_method :super_search_results, :search_results
 
   def search_results _args={}
     @search_results ||= enrich_result(get_search_result)
@@ -80,41 +80,37 @@ format do
 end
 
 format :html do
+  METHOD_PREFIX = {
+    WikirateTopicID    => :topic,
+    MetricID           => :metric,
+    WikirateCompanyID  => :company,
+    WikirateAnalysisID => :analysis
+  }.freeze
+
   view :drag_and_drop do |args|
-    res = with_drag_and_drop(args) do
+    with_drag_and_drop(args) do
       search_results.map do |item|
         votee = extract_votee item
         draggable_opts = {
-          :votee_id    => votee.id,
-          :update_path => votee.vote_count_card.format.vote_path,
-          :sort        => { :importance=>votee.vote_count }
+          votee_id:    votee.id,
+          update_path: votee.vote_count_card.format.vote_path,
+          sort: { importance: votee.vote_count }
         }
-        case main_type_id
-        when WikirateTopicID    then topic_draggable_opts(votee, draggable_opts)
-        when MetricID           then metric_draggable_opts(votee, draggable_opts)
-        when WikirateCompanyID  then company_draggable_opts(votee, draggable_opts)
-        when WikirateAnalysisID then analysis_draggable_opts(votee, draggable_opts)
-        end
-        unless draggable_opts[:no_value]
-          draggable nest(item), draggable_opts
-        end
+        method_prefix = METHOD_PREFIX[main_type_id]
+        send "#{method_prefix}_draggable_opts", votee, draggable_opts
+        draggable nest(item), draggable_opts unless draggable_opts[:no_value]
       end.compact.join("\n").html_safe
     end.html_safe
   end
 
   # it is for type_search
   view :filter_and_sort do |args|
-    res = with_filter_and_sort(args) do
+    with_filter_and_sort(args) do
       search_results.map do |item|
         votee = extract_votee item
-        sort_opts = { :sort => {} }
-        case main_type_id
-        when WikirateTopicID    then topic_draggable_opts(votee, sort_opts)
-        when MetricID           then metric_draggable_opts(votee, sort_opts)
-        when WikirateCompanyID  then company_draggable_opts(votee, sort_opts)
-        when WikirateAnalysisID then analysis_draggable_opts(votee, sort_opts)
-        end
-
+        sort_opts = { sort: {} }
+        method_prefix = METHOD_PREFIX[main_type_id]
+        send "#{method_prefix}_draggable_opts", votee, sort_opts
         sortable nest(item), sort_opts
       end.join("\n").html_safe
     end.html_safe
@@ -131,7 +127,8 @@ format :html do
         ''
       end
     if !Card::Auth.signed_in? &&
-       ( unsaved = Card[card.vote_type_codename].fetch(:trait=>:unsaved_list) || Card[:unsaved_list] )
+       ((unsaved = Card[card.vote_type_codename].fetch(trait: :unsaved_list) ||
+       Card[:unsaved_list]))
       args[:unsaved] ||= subformat(unsaved).render_core(args)
     end
   end
@@ -155,13 +152,16 @@ format :html do
   def topic_draggable_opts votee, opts
     case votee.type_id
     when MetricID
-      topic_tags = votee.fetch :trait=>:wikirate_topic
+      topic_tags = votee.fetch trait: :wikirate_topic
       opts[:no_value] = !topic_tags || !topic_tags.include_item?(main_name)
     when WikirateCompanyID
       if (analysis = Card["#{votee.name}+#{main_name}"])
-        claim_cnt = Card.fetch("#{analysis.name}+#{Card[:claim].name}").cached_count.to_i
+        claim_cnt = Card.fetch(
+          "#{analysis.name}+#{Card[:claim].name}"
+        ).cached_count.to_i
         source_cnt = Card.fetch("#{analysis.name}+sources").cached_count.to_i
-        opts[:sort][:contributions] = analysis.direct_contribution_count.to_i + claim_cnt + source_cnt
+        opts[:sort][:contributions] =
+          analysis.direct_contribution_count.to_i + claim_cnt + source_cnt
         opts[:sort][:name] = votee.name.upcase
       end
     end
@@ -170,9 +170,12 @@ format :html do
   def analysis_draggable_opts votee, opts
     case votee.type_id
     when MetricID
-      metric_plus_company = Card.fetch("#{votee.name}+#{main_name.to_name.left}")
-      topic_tags = votee.fetch :trait=>:wikirate_topic
-      opts[:no_value] = (metric_plus_company.new_card? || !topic_tags || !topic_tags.include_item?(main_name.to_name.right))
+      metric_plus_company =
+        Card.fetch("#{votee.name}+#{main_name.to_name.left}")
+      topic_tags = votee.fetch trait: :wikirate_topic
+      opts[:no_value] = (metric_plus_company.new_card? ||
+                        !topic_tags ||
+                        !topic_tags.include_item?(main_name.to_name.right))
       opts[:sort][:recent] = metric_plus_company.updated_at.to_i
     end
   end
@@ -183,22 +186,25 @@ format :html do
       opts[:sort][:recent] = votee.updated_at.to_i
 
       if (analysis = Card["#{main_name}+#{votee.name}"])
-        claim_cnt = Card.fetch("#{analysis.name}+#{Card[:claim].name}").cached_count.to_i
+        claim_cnt =
+          Card.fetch("#{analysis.name}+#{Card[:claim].name}").cached_count.to_i
         source_cnt = Card.fetch("#{analysis.name}+sources").cached_count.to_i
-        opts[:sort][:contributions] = analysis.direct_contribution_count.to_i + claim_cnt + source_cnt
+        opts[:sort][:contributions] =
+          analysis.direct_contribution_count.to_i + claim_cnt + source_cnt
       end
     when MetricID
       metric_plus_company = Card.fetch("#{votee.name}+#{main_name}")
-      opts[:no_value] = metric_plus_company.new_card? || metric_plus_company.latest_value_year == 0
+      opts[:no_value] = metric_plus_company.new_card? ||
+                        metric_plus_company.latest_value_year == 0
       opts[:sort][:recent] = metric_plus_company.updated_at.to_i
     end
   end
 
   def with_filter_and_sort args
-    display_empty_msg = search_results.empty? ? '' : 'display: none;'
-    content_tag :div, :class=>"yinyang-list",
-                      'data-default-sort'=>args[:default_sort] do
-        yield
+    # display_empty_msg = search_results.empty? ? '' : 'display: none;'
+    content_tag :div, class: 'yinyang-list',
+                      'data-default-sort' => args[:default_sort] do
+      yield
     end
   end
 
@@ -212,9 +218,15 @@ format :html do
                 'data-bucket-name'  => args[:vote_type],
                 'data-default-sort' => args[:default_sort] do
       [
-        (content_tag(:h5, :class=>'vote-title') { card.vote_label } if card.vote_label),
-        content_tag(:div,:class=>'empty-message') { args[:empty] },
-        ((content_tag(:div,:class=>'alert alert-info unsaved-message') { args[:unsaved] } ) if show_unsaved_msg ),
+        if card.vote_label
+          content_tag(:h5, class: 'vote-title') { card.vote_label }
+        end,
+        content_tag(:div, class: 'empty-message') { args[:empty] },
+        if show_unsaved_msg
+          content_tag(:div, class: 'alert alert-info unsaved-message') do
+            args[:unsaved]
+          end
+        end,
         yield
       ].compact.join.html_safe
     end
@@ -233,10 +245,9 @@ format :html do
   end
 
   def sortable content, args
-    html_args = { :class => 'yinyang-row' }
+    html_args = { class: 'yinyang-row' }
     html_args[:class] += ' no-metric-value' if args[:no_value]
-    args[:sort].each { |k,v| html_args["data-sort-#{k}"] = v } if args[:sort]
+    args[:sort].each { |k, v| html_args["data-sort-#{k}"] = v } if args[:sort]
     content_tag :div, content.html_safe, html_args
   end
-
 end
