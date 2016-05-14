@@ -99,12 +99,10 @@ class Importer
   def initialize location
     @export_location =
       case location
-      when 'dev'
-        'dev.wikirate.org'
-      when 'local'
-        'localhost:3000'
-      else
-        'wikirate.org'
+      when 'dev'    then 'dev.wikirate.org'
+      when 'demo'   then 'demo.wikirate.org'
+      when 'local'  then 'localhost:3000'
+      else               'wikirate.org'
       end
   end
 
