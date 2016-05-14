@@ -59,7 +59,7 @@ format :html do
                    data: { toggle: 'modal', target: target },
                    href: path(layout: 'modal', view: :edit,
                               name: card.variables_card.name,
-                              slot: {title: 'Choose Metric'}) do
+                              slot: { title: 'Choose Metric' }) do
           glyphicon('plus') + ' add metric'
         end
       end),
@@ -122,10 +122,10 @@ end
 
 def add_value company, year, value
   add_subcard metric_card.metric_value_name(company, year),
-               type_id: MetricValueID,
-               subcards: {
-                 '+value' => { type_id: NumberID, content: value }
-               }
+              type_id: MetricValueID,
+              subcards: {
+                '+value' => { type_id: NumberID, content: value }
+              }
 end
 
 event :validate_formula_input, :validate,
@@ -137,7 +137,7 @@ event :validate_formula_input, :validate,
     when !chunk.referee_card
       errors.add :formula, "input metric #{chunk.referee_name} doesn't exist"
     when chunk.referee_card.type_id != MetricID &&
-         chunk.referee_card.type_id != YearlyVariableID
+      chunk.referee_card.type_id != YearlyVariableID
       errors.add :formula, "#{chunk.referee_name} has invalid type " \
                            "#{chunk.referee_card.type_name}"
     end
@@ -165,9 +165,7 @@ def calculate_values_for opts={}
     value = companies[opts[:company]]
     yield year, value
   end
-  if opts[:year] && no_value
-    yield opts[:year], nil
-  end
+  yield opts[:year], nil if opts[:year] && no_value
 end
 
 def each_reference_out &block
@@ -238,6 +236,3 @@ end
 def calculator
   @calculator ||= calculator_class.new self
 end
-
-
-
