@@ -27,14 +27,16 @@ class AddCsoMetrics < Card::Migration
       89 => ['Maximum Allowable Cumulative CO2 Emissions', '#88'],
 
       91 => ['Annual CO2 Emission Targets', '95*75'],
-      92 => ['Cumulative CO2 Emission Targets','#91'],
+      92 => ['Cumulative CO2 Emission Targets', '#91'],
 
       94 => ['Maximum Allowable Annual CO2 Emissions per C2GDP', '$76/$75*71'],
-      95 => ['Maximum Allowable Annual CO2 Emissions per C2GDP - Adjusted per OECD norm',
-             '(70*1000000000)/(($70*1000000000-$88)/($72-$75)*(72-75)*71+94*75)*94']
+      95 => ['Maximum Allowable Annual CO2 Emissions per C2GDP - ' \
+             'Adjusted per OECD norm',
+             '(70*1000000000)/' \
+             '(($70*1000000000-$88)/($72-$75)*(72-75)*71+94*75)*94'].freeze
     }
 
-  CSO = 'Center for Sustainable Organizations'
+  CSO = 'Center for Sustainable Organizations'.freeze
 
   def up
     add_researched_metrics
@@ -58,7 +60,7 @@ class AddCsoMetrics < Card::Migration
   end
 
   def formula raw_formula
-    raw_formula.gsub(/([#$])?(\d+)/) do |match|
+    raw_formula.gsub(/([#$])?(\d+)/) do
       metric_index = $2.to_i
       if metric_index < 70 || metric_index > 95
         $2
@@ -70,7 +72,7 @@ class AddCsoMetrics < Card::Migration
           else ''
           end
         input_name = DATA[metric_index][0]
-        "{{%s+%s%s}}" % [CSO, input_name, year_expr]
+        format '{{%s+%s%s}}', CSO, input_name, year_expr
       end
     end
   end
