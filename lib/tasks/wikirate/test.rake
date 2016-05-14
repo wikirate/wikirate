@@ -4,7 +4,7 @@ require 'colorize'
 namespace :wikirate do
   namespace :test do
     db_path = File.join Wagn.root, 'test', 'seed.db'
-    test_database = ENV['DATABASE_NAME_TEST'] ||
+    testdb = ENV['DATABASE_NAME_TEST'] ||
                     ((t = Wagn.config.database_configuration['test']) &&
                     t['database'])
     user = ENV['DATABASE_MYSQL_USERNAME'] || ENV['MYSQL_USER'] || 'root'
@@ -27,9 +27,11 @@ namespace :wikirate do
 
     desc 'seed test database'
     task :seed do
-      mysql_args = "-u #{user}"
-      mysql_args += " -p#{pwd}" if pwd
-      cmd = "mysql #{mysql_args} --database=#{test_database} < #{db_path}"
+      mysql_login = "mysql -u #{user}"
+      mysql_login += " -p#{pwd}" if pwd
+      cmd =
+        "echo \"create database #{testdb} if not exists\" | #{mysql_login}; " \
+        "#{mysql_login} --database=#{testdb} < #{db_path}"
       puts "cmd = #{cmd}"
       system cmd
     end
@@ -51,7 +53,7 @@ namespace :wikirate do
         puts 'start task in init_test environment'
         system 'env RAILS_ENV=init_test rake '\
                "wikirate:test:reseed_data #{location}"
-      elsif !test_database
+      elsif !testdb
         puts 'no test database'
       else
         # start with raw wagn db
@@ -91,7 +93,7 @@ namespace :wikirate do
     task :dump_test_db do
       mysql_args = "-u #{user}"
       mysql_args += " -p #{pwd}" if pwd
-      execute_command "mysqldump #{mysql_args} #{test_database} > #{db_path}"
+      execute_command "mysqldump #{mysql_args} #{testdb} > #{db_path}"
     end
   end
 end
