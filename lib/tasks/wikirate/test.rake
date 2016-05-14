@@ -4,12 +4,11 @@ require 'colorize'
 namespace :wikirate do
   namespace :test do
     db_path = File.join Wagn.root, 'test', 'seed.db'
-    test_database =
-      (t = Wagn.config.database_configuration['test']) && t['database']
-    prod_database =
-      (p = Wagn.config.database_configuration['production']) && p['database']
-    user = ENV['MYSQL_USER'] || 'root'
-    pwd  = ENV['MYSQL_PASSWORD']
+    test_database = ENV['DATABASE_NAME_TEST'] ||
+                    ((t = Wagn.config.database_configuration['test']) &&
+                    t['database'])
+    user = ENV['DATABASE_MYSQL_USERNAME'] || ENV['MYSQL_USER'] || 'root'
+    pwd  = ENV['DATABASE_MYSQL_PASSWORD'] || ENV['MYSQL_PASSWORD']
 
     def execute_command cmd, env=nil
       cmd = "RAILS_ENV=#{env} #{cmd}" if env
@@ -29,8 +28,10 @@ namespace :wikirate do
     desc 'seed test database'
     task :seed do
       mysql_args = "-u #{user}"
-      mysql_args += " -p #{pwd}" if pwd
-      system "mysql #{mysql_args} #{test_database} < #{db_path}"
+      mysql_args += " -p#{pwd}" if pwd
+      cmd = "mysql #{mysql_args} --database=#{test_database} < #{db_path}"
+      puts "cmd = #{cmd}"
+      system cmd
     end
 
     desc 'add wikirate test data to test database'
