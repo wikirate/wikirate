@@ -33,8 +33,8 @@ class AddCsoMetrics < Card::Migration
       95 => ['Maximum Allowable Annual CO2 Emissions per C2GDP - ' \
              'Adjusted per OECD norm',
              '(70*1000000000)/' \
-             '(($70*1000000000-$88)/($72-$75)*(72-75)*71+94*75)*94'].freeze
-    }
+             '(($70*1000000000-$88)/($72-$75)*(72-75)*71+94*75)*94']
+    }.freeze
 
   CSO = 'Center for Sustainable Organizations'.freeze
 
@@ -45,6 +45,8 @@ class AddCsoMetrics < Card::Migration
 
   def add_researched_metrics
     [75, 76, 77].each do |row|
+      name = "#{CSO}+#{DATA[row][0]}"
+      next if Card.exist? name
       Card::Metric.create name: "#{CSO}+#{DATA[row][0]}",
                           type: :researched
     end
@@ -60,13 +62,13 @@ class AddCsoMetrics < Card::Migration
   end
 
   def formula raw_formula
-    raw_formula.gsub(/([#$])?(\d+)/) do
-      metric_index = $2.to_i
+    raw_formula.gsub(/(?<year_symbol>[#$])?(?<number>\d+)/) do
+      metric_index = $~[:number].to_i
       if metric_index < 70 || metric_index > 95
-        $2
+        $~[:number]
       else
         year_expr =
-          case $1
+          case $~[:year_symbol]
           when '#' then '|year: 2006..0'
           when '$' then '|year: 2005'
           else ''
