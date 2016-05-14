@@ -48,6 +48,61 @@ end
 #  format: { <company name> => { :year =>  , :value => }}
 def cached_values
   @cached_metric_values ||= get_cached_values
+
+  if @cached_metric_values && (filter = company_filter)
+    # filtered =
+    @cached_metric_values.select do |company, _values|
+      filter.include? company
+    end
+
+    # if year_filter
+    #   filtered.map |company, hash|
+    # end
+  else
+    @cached_metric_values
+  end
+end
+
+def company_filter
+  filter = %w(company industry project).each_with_object({}) do |param, hash|
+    if (val = Env.params[param])
+      hash[param.to_sym] = val
+    end
+  end
+  return unless filter.present?
+  Card.search company_wql(filter)
+end
+
+def year_filter
+  selected_year = Env.params['year']
+  selected_year == 'latest' ? nil : selected_year
+end
+
+def company_wql opts
+  wql = { type_id: WikirateCompanyID, return: 'name' }
+  filter_by_company_name wql, opts[:company] if opts[:company].present?
+  filter_by_industry wql, opts[:industry] if opts[:industry].present?
+  filter_by_project wql, opts[:project] if opts[:project].present?
+  wql
+end
+
+def filter_by_company_name wql, name
+  wql[:name] = ['match', name]
+end
+
+def filter_by_project wql, project
+  wql[:referred_to_by] = { left: { name: project } }
+end
+
+def filter_by_industry wql, industry
+  filter = left.fetch(trait: :metric_value_filter)
+  wql[:left_plus] = [
+    filter.industry_metric_name,
+    { right_plus: [
+      filter.industry_value_year,
+      { right_plus: ['value', { eq: industry }] }
+    ] }
+  ]
 end
 
 def get_cached_values

@@ -204,12 +204,28 @@ format :html do
     end
   end
 
+  def number_to_human_args
+    {
+      units: {
+        unit: '', billion: 'B', million: 'M', quadrillion: 'P', thousand: 'K',
+        trillion: 'T'
+      },
+      format: '%n%u',
+      delimiter: '',
+      precision: 3
+    }
+  end
+
+  def number_with_precision_args
+    { delimiter: ',', strip_insignificant_zeros: true, precision: 1 }
+  end
+
   def show_big_number value
     big_number = BigDecimal.new(value)
     if big_number > 1_000_000
-      number_to_human(big_number)
+      number_to_human(big_number, number_to_human_args)
     else
-      number_with_precision(big_number)
+      number_with_precision(big_number, number_with_precision_args)
     end
   end
 

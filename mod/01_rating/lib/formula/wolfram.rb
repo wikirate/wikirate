@@ -1,8 +1,10 @@
 module Formula
   class Wolfram < Calculator
     INTERPRETER = 'https://www.wolframcloud.com/objects/92f1e212-7875-49f9-888f-b5b4560b7686'
-    WHITELIST = ::Set.new ['Boole']
+    WHITELIST = ::Set.new(%w(Boole If Switch Map)).freeze
 
+
+    #INPUT_CAST = lambda { |val| val == 'Unknown' ? 'Unknown'.to_f }
     # To reduce the Wolfram Cloud calls the Wolfram calculator
     # calculates all values at once when it compiles the formula and saves
     # the result in @executed_lambda
@@ -40,7 +42,11 @@ module Formula
         @company_index[company] = company_index
         company_str =
           input_values.map.with_index do |value, i|
-            @input.type(i) == 'Number' ? value : "\"#{value}\""
+            if value == 'Unknown'
+              "\"#{value}\""
+            else
+              @input.type(i) == 'Number' ? value : "\"#{value}\""
+            end
           end.join(',')
         input_by_year[year] << "{#{company_str}}"
         company_index += 1

@@ -64,7 +64,7 @@ module Formula
     def replace_nests content=nil
       content ||= @formula.content
       index = -1
-      content.gsub!(/{{[^}]*}}/) do |match|
+      content.gsub(/{{[^}]*}}/) do |match|
         index += 1
         yield(index)
       end

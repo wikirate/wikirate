@@ -8,8 +8,10 @@ module Formula
   # The formula may only consist of the numbers and the symbols and functions
   # listed in SYMBOLS and FUNCTIONS
   class Ruby < Calculator
-    SYMBOLS = %w{+ - ( ) [ ] . * /}.freeze
-    FUNCTIONS = { 'Sum' => 'sum', 'Max' => 'max', 'Min' => 'min' }.freeze
+    SYMBOLS = %w{+ - ( ) [ ] . *  , /}.freeze
+    FUNCTIONS = { 'Sum' => 'sum', 'Max' => 'max', 'Min' => 'min',
+                  'Zeros' => 'count(0)', 'Flatten' => 'flatten'
+                }.freeze
     LAMBDA_ARGS_NAME = 'args'.freeze
 
     INPUT_CAST = lambda { |val| val.to_f }
@@ -24,8 +26,14 @@ module Formula
       end
 
       def remove_functions formula, translated=false
-        matcher = translated ? FUNC_VALUE_MATCHER : FUNC_KEY_MATCHER
-        formula.gsub(/#{matcher}/,'')
+        allowed = translated ? FUNCTIONS.values : FUNCTIONS.keys
+        cleaned = formula.clone
+        allowed.each do |word|
+          cleaned = cleaned.gsub(word,'')
+        end
+        cleaned
+        #matcher = translated ? FUNC_VALUE_MATCHER : FUNC_KEY_MATCHER
+        #formula.gsub(/#{matcher}/,'')
       end
 
       def check_symbols formula
@@ -71,7 +79,7 @@ module Formula
     def translate_functions formula
       formula.gsub(/(?<func>#{FUNC_KEY_MATCHER})\[(?<arg>[^\]]+)\]/) do |match|
         arg = translate_functions $~[:arg]
-        "#{arg}.#{FUNCTIONS[$~[:func]]}"
+        "[#{arg}].flatten.#{FUNCTIONS[$~[:func]]}"
       end
     end
 
