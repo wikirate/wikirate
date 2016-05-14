@@ -18,7 +18,7 @@ format :html do
   end
 
   def default_content_args args
-    if metric_card.metric_type_codename == :score
+    if metric_card && metric_card.metric_type_codename == :score
       if card[0].type_code == :wikirate_topic
         args[:structure] = 'topic_score_metric_drag_item'
       elsif card[0].type_code == :wikirate_company
