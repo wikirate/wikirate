@@ -5,7 +5,8 @@ ensure_set { TypePlusRight::Source::WikirateTopic }
 
 # recount sources related to a topic whenever <source>+topic is edited
 recount_trigger TypePlusRight::Source::WikirateTopic do |changed_card|
-  changed_card.item_names.map do |topic|
+  names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
+  names.map do |topic|
     Card.fetch topic.to_name.trait(:source)
   end
 end
