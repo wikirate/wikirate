@@ -17,11 +17,6 @@
         "codename": "research_policy"
       },
       {
-        "name": "Project",
-        "type": "Cardtype",
-        "codename": "projects"
-      },
-      {
         "name": "metric+category details+*type plus right+*structure",
         "type": "HTML",
         "content": "  <h5>Options:</h5>\r\n  <p class=\"margin-8\">{{_l+Value Options|shorter_pointer_content}}</p>\r\n"

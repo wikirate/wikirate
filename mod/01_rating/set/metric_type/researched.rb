@@ -50,7 +50,7 @@ format :html do
         nest(card.research_policy_card, view: :titled,
                                         title: 'Research Policy',
                                         items: { view: :name }),
-        nest(card.projects_card, view: :titled,
+        nest(card.campaign_card, view: :titled,
                                  title: 'Projects',
                                  items: { view: 'content',
                                           structure: 'list item' }),
