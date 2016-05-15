@@ -46,7 +46,7 @@ class AddCsoMetrics < Card::Migration
   def add_researched_metrics
     [75, 76, 77].each do |row|
       name = "#{CSO}+#{DATA[row][0]}"
-      next if Card.exist? name
+      next if Card.exists? name
       Card::Metric.create name: "#{CSO}+#{DATA[row][0]}",
                           type: :researched
     end
