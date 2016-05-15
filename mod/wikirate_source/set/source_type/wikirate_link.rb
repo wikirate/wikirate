@@ -91,7 +91,7 @@ def get_card url
   if wikirate_url?(url)
     # try to convert the link to source card,
     # easier for users to add source in +source editor
-    uri = URI.parse(URI.unescape(url))
+    uri = URI.parse(URI.unescape(url.strip))
     Card[uri.path]
   else
     Card[url]
@@ -124,7 +124,8 @@ end
 def file_type_and_size url
   # just got the header instead of downloading the whole file
   header_str = get_header(url)
-  content_type = header_str[/.*Content-Type: (.*)\r\n/, 1]
+  # error won't give us content type, treat it as a normal link
+  content_type = header_str[/.*Content-Type: (.*)\r\n/, 1] || ''
   content_size = header_str[/.*Content-Length: (.*)\r\n/, 1].to_i
   [content_type, content_size]
 rescue => error
