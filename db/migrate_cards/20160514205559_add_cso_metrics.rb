@@ -48,7 +48,8 @@ class AddCsoMetrics < Card::Migration
       91 => ['Annual CO2 Emission Targets', '95*75'],
       92 => ['Cumulative CO2 Emission Targets', '#91'],
 
-      94 => ['Maximum Allowable Annual CO2 Emissions per C2GDP', '$76/$75*71'],
+      94 => ['Maximum Allowable Annual CO2 Emissions per C2GDP',
+             '($76*71)/$75'],
       95 => ['Maximum Allowable Annual CO2 Emissions per C2GDP - ' \
              'Adjusted per OECD norm',
              '(70*1000000000)/' \
@@ -81,10 +82,9 @@ class AddCsoMetrics < Card::Migration
 
   def create_formula_metrics
     [85, 86, 88, 89, 94, 95, 91, 92, 80, 81, 82, 83].each do |row|
-      name, raw_formula = DATA[row]
-      Card::Metric.create name: input_name(name),
+      Card::Metric.create name: input_name(row),
                           type: :formula,
-                          formula: formula(raw_formula)
+                          formula: formula(DATA[row][1])
     end
   end
 
@@ -103,11 +103,11 @@ class AddCsoMetrics < Card::Migration
 
       year_option, sum =
         case $~[:year_symbol]
-        when '#' then '|year: 2006..0', true
+        when '#' then ['|year: 2006..0', true]
         when '$' then '|year: 2005'
         else ''
         end
-      nest = format '{{%s%s}}', input_name(metric_index), year_option
+      nest = format '{{%s%s}}', input_name(input_row), year_option
       sum ? "Sum[#{nest}]" : nest
     end
   end

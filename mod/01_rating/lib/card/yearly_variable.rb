@@ -37,11 +37,11 @@ class Card
       def value_subcard year, value
         {
           "+#{year}" => {
-              type_id: Card::YearlyAnswerID,
-             "+value" => {
+            type_id: Card::YearlyAnswerID,
+            "+value" => {
               type_id: Card::YearlyValueID,
               content: value
-             }
+            }
           }
         }
       end
