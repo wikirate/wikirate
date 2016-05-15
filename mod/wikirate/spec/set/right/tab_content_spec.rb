@@ -14,12 +14,14 @@ describe Card::Set::Right::TabContent do
       html = company_tab_content.format.render_core
       expect(html).to have_tag('div', with: { id: "#{@key}+note_page" })
     end
+
     it 'renders empty if tab not expected' do
       Card::Env.params['tab'] = 'wagn'
       company_tab_content = Card.fetch "#{@company.name}+tab_content"
       html = company_tab_content.format.render_core
       expect(html).to eq('')
     end
+
     it 'redners metric tab by default' do
       company_tab_content = Card.fetch "#{@company.name}+tab_content"
       html = company_tab_content.format.render_core

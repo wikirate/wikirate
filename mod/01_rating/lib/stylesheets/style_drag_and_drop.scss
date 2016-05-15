@@ -367,8 +367,8 @@ $bright-text-color: #e5e5e5;
     }
 
     .metric-thumbnail {
-      border: none;
-      font-size: inherit;
+      // border: none;
+      // font-size: inherit;
     }
   }
 
@@ -561,7 +561,7 @@ $bright-text-color: #e5e5e5;
     @include box-shadow(0,0px,14px,rgba(0,0,0,.22));
     &.stick{
       position: fixed;
-      z-index: 1;
+      z-index: 3;
       top: 65px;
       left: 50%;
       max-width: 610px;
@@ -682,4 +682,13 @@ $bright-text-color: #e5e5e5;
   .data:hover {
     background: #fafafa;
   }
+}
+
+.modal-body .yinyang-row .details.stick {
+    top: 126px;
+    box-shadow: none;
+}
+
+.modal-dialog.large {
+    width: 60%;
 }

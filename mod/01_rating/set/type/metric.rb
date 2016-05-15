@@ -7,6 +7,8 @@ card_accessor :about
 card_accessor :methodology
 card_accessor :value_type
 card_accessor :report_type
+card_accessor :research_policy
+card_accessor :campaign
 
 def metric_type
   metric_type_card.item_names.first
@@ -63,6 +65,7 @@ def calculated?
   !researched?
 end
 
+# value between 0 and 10?
 def scored?
   metric_type_codename == :score ||
     metric_type_codename == :wiki_rating
@@ -117,9 +120,9 @@ end
 
 format :html do
   view :designer_image do |_args|
-    nest card.metric_designer_card.field(:image, new: {}),
-         view: :core,
-         size: :small
+    image = nest card.metric_designer_card.field(:image, new: {}),
+                 view: :core, size: :small
+    card_link card.metric_designer_card, text: image
   end
 
   def css
@@ -344,19 +347,45 @@ format :html do
   end
 
   view :weight_row do |args|
+    weight = text_field_tag('pair_value', (args[:weight] || 0)) + '%'
     output(
       [
         content_tag(:td, _render_thumbnail(args), 'data-key' => card.name),
-        content_tag(:td, text_field_tag('pair_value', (args[:weight] || 0),
-                                        class: 'metric-weight'))
+        content_tag(:td, weight, class: 'metric-weight')
       ]
     ).html_safe
+  end
+
+  def interpret_year year
+    case year
+    when /^[+-]\d+$/
+      "year#{args[:year]}"
+    when /^\d{4}$/
+      year
+    when '0'
+      'year'
+    end
+  end
+
+  def get_value_str year
+    "data[#{card.key}][#{year}]"
+  end
+
+  view :ruby do |args|
+    if args[:sum]
+      start, stop = args[:sum].split('..').map { |y| interpret_year(y) }
+      "((#{start}..#{stop}).to_a.inject(0) { |r, y| r += #{get_value_str
+      ('y')}; r })"
+    else
+      year = args[:year] ? interpret_year(args[:year]) : 'year'
+      get_value_str year
+    end
   end
 end
 
 format :json do
   view :content do
-    companies_with_years_and_values.to_json
+    card.companies_with_years_and_values.to_json
   end
 end
 

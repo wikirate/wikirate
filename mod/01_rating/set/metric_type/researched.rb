@@ -24,25 +24,52 @@ format :html do
   end
 
   view :details_tab do |args|
-    tab_wrap do
+    content = wrap_with :div, class: 'metric-details-content' do
       [
         _render_add_value_buttons(args),
         nest(card.about_card, view: :titled, title: 'About'),
         nest(card.methodology_card, view: :titled, title: 'Methodology'),
-        _render_value_type_detail(args),
-        nest(card.report_type_card, view: :titled, title: 'Report Type',
+        _render_contributing(args)
+      ]
+    end
+    tab_wrap do
+      content
+    end
+  end
+
+  view :contributing do |args|
+    heading = content_tag(:div, 'Contributing', class: 'heading-content')
+    value_type =
+      content_tag(:div, _render_value_type_detail(args))
+    content = wrap_with :div, class: 'contributing-details' do
+      [
+        value_type,
+        nest(card.report_type_card, view: :titled,
+                                    title: 'Report type',
                                     items: { view: :name }),
+        nest(card.research_policy_card, view: :titled,
+                                        title: 'Research Policy',
+                                        items: { view: :name }),
+        nest(card.campaign_card, view: :titled,
+                                 title: 'Projects',
+                                 items: { view: 'content',
+                                          structure: 'list item' }),
         _render_import_button(args)
       ]
     end
+    heading + content
   end
 
   view :value_type_detail do
     wrap do
       <<-HTML
         <div class="padding-bottom-10">
-          <div class="heading-content">Value Type </div>
-            #{_render_value_type_edit_modal_link}
+          <div class='row nopadding'>
+            <div class="heading-content pull-left">Value Type</div>
+            <div class="margin-8 pull-left">
+              #{_render_value_type_edit_modal_link}
+            </div>
+          </div>
             #{_render_short_view}
         </div>
       HTML

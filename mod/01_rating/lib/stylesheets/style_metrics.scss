@@ -213,6 +213,10 @@
     }
 }
 // metric value details
+.metric-year {
+    float: left;
+    padding: 8px 4px 0px 0px;
+}
 .metric-unit,
 .metric-year {
     font-size: 8px;
@@ -358,9 +362,9 @@
 .metric-details-company-header,
 .metric-details-header,
 .metric-info {
-    .wiki .row {
-        margin-bottom: 18px;
-    }
+    // .wiki .row {
+    //     margin-bottom: 18px;
+    // }
     .row {
         margin-left: 5px;
         margin-right: 5px;
@@ -603,11 +607,11 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 }
 .titled-view.TYPE_PLUS_RIGHT-metric-formula {
     .TYPE_PLUS_RIGHT-metric-formula.card-content {
-        font-size: 1.5em;
+        font-size: 1.2em;
         font-weight: bold;
     }
 }
-.yinyang-row .metric-thumbnail {
+.modal-body .yinyang-row .metric-thumbnail {
     white-space: nowrap;
     font-size: inherit;
     border: none;
@@ -619,13 +623,16 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
         height: 40px;
     }
 }
+
+
 .metric-thumbnail {
     font-size: 0.66em;
     font-weight: normal;
-    white-space: normal;
+    white-space: nowrap;
     border: solid 1px #ebebeb;
     display: inline-block;
     padding: 7px;
+    margin-bottom: 8px;
     img {
         max-width: 35px;
         max-height: 35px;
@@ -634,8 +641,39 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     .thumbnail-text {
         display: inline-block;
         vertical-align: middle;
+        >a {
+           color: #888;
+        }
+        a>div {
+            max-width: 225px;
+        }
     }
 }
+
+.table > tbody > tr > td > .metric-thumbnail {
+    float: left;
+    width: 100%;
+    border: 0px;
+    font-size: 12px;
+    padding: 0px;
+    // white-space: normal;
+    >.thumbnail-text {
+      padding-top: 0;
+      >div{
+        max-width: 100%;
+      }
+    }
+}
+
+.metric-value-details table{
+   margin-top: 12px;
+   >tbody>tr>td{
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+   }
+}
+
 .TYPE-metric.new-view {
     ul.nav-tabs li {
         padding: 28px;
@@ -674,25 +712,25 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
         }
     }
 }
-.LTYPE_RTYPE-metric-company.content-view {
-    span.metric-value {
-        &.low {
-            color: white;
-            padding: 5px;
-            background: red;
-        }
-        &.middle {
-            color: white;
-            padding: 5px;
-            background: darkorange;
-        }
-        &.high {
-            color: white;
-            padding: 5px;
-            background: green;
-        }
-    }
-}
+// .LTYPE_RTYPE-metric-company.content-view {
+//     span.metric-value {
+//         &.low {
+//             color: white;
+//             padding: 5px;
+//             background: red;
+//         }
+//         &.middle {
+//             color: white;
+//             padding: 5px;
+//             background: darkorange;
+//         }
+//         &.high {
+//             color: white;
+//             padding: 5px;
+//             background: green;
+//         }
+//     }
+// }
 .new_metric_value-view .card-body {
     padding: 0;
 }
@@ -715,4 +753,38 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   left: 55px;
   top: 4px;
   color: #ccc;
+}
+
+.metric-details-content {
+  .card-body, .contributing-details, .RIGHT-category_detail {
+      margin: 0px 20px;
+    }
+}
+
+.range-value {
+    position: relative;
+    display: inline-block;
+    span {
+      position: absolute;
+      left: 0;
+      font-size: 14px;
+      color: #FFF;
+      text-align: center;
+      width: 25px;
+      padding: 5px 0;
+      font-weight: bold;
+    }
+    i {
+      font-size: 30px;
+    }
+}
+
+.metric-value.small {
+    font-size: 15px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 50%;
+    display: inline-block;
+    float: left;
+    overflow: hidden;
 }
