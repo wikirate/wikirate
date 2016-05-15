@@ -21,7 +21,7 @@ class AddCsoMetrics < Card::Migration
       83 => ['Cumulative CO2 Emissions Context-Based Absolute Score', '86/92'],
 
       85 => ['CO2 Emissions Relative to Gross Revenue', '76/77'],
-      86 => ['Cumulative CO2 Emissions', '#85'],
+      86 => ['Cumulative CO2 Emissions', '#76'],
 
       88 => ['Maximum Allowable Annual CO2 Emissions', '$76*71'],
       89 => ['Maximum Allowable Cumulative CO2 Emissions', '#88'],
@@ -74,7 +74,8 @@ class AddCsoMetrics < Card::Migration
           else ''
           end
         input_name = DATA[metric_index][0]
-        format '{{%s+%s%s}}', CSO, input_name, year_expr
+        nest = format '{{%s+%s%s}}', CSO, input_name, year_expr
+        $~[:year_symbol] == '#' ? "Sum[#{nest}]" : nest
       end
     end
   end
