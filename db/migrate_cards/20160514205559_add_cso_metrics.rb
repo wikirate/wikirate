@@ -73,7 +73,7 @@ class AddCsoMetrics < Card::Migration
 
   def create_researched_metrics
     [75, 76, 77].each do |row|
-      next if Card.exist? input_name(row)
+      next if Card.exists? input_name(row)
       Card::Metric.create name: input_name(row),
                           type: :researched
     end
