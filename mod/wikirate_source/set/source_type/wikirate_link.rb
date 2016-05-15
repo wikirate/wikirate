@@ -61,6 +61,7 @@ event :process_source_url, after: :check_source,
     errors.add(:link, 'does not exist.')
     return
   end
+  link_card.content.strip!
   url = link_card.content
   handle_source_box_source url if Card::Env.params[:sourcebox] == 'true'
   duplication_check url
@@ -91,7 +92,7 @@ def get_card url
   if wikirate_url?(url)
     # try to convert the link to source card,
     # easier for users to add source in +source editor
-    uri = URI.parse(URI.unescape(url.strip))
+    uri = URI.parse(URI.unescape(url))
     Card[uri.path]
   else
     Card[url]
