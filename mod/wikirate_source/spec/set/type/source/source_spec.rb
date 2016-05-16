@@ -114,6 +114,16 @@ describe Card::Set::Type::Source do
           expect(sourcepage.fetch(trait: :file)).to_not be_nil
           # expect(sourcepage.fetch(trait: :wikirate_link)).to be_nil
         end
+        it 'hanldes file behind cloudfront' do
+          pdf_url = 'http://www.angloamerican.com/~/media/Files/A/Anglo-'\
+                    'American-PLC-V2/documents/aa-sdreport-2015.pdf'
+          sourcepage = create_link_source pdf_url
+          expect(sourcepage.errors).to be_empty
+          expect(sourcepage.fetch(trait: :file)).to be_nil
+          link_card = sourcepage.fetch(trait: :wikirate_link)
+          expect(link_card).to_not be_nil
+          expect(link_card.content).to eq(pdf_url)
+        end
         context "file is bigger than '*upload max'" do
           it "won't create file source" do
             pdf_url = 'http://cartographicperspectives.org/index.php/journal/'\
@@ -130,18 +140,29 @@ describe Card::Set::Type::Source do
     end
     describe 'while creating a source with a wikirate link' do
       context 'a source link' do
-        it 'return the source card' do
+        before do
           Card::Env.params[:sourcebox] = 'true'
           url = 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
-          sourcepage = create_link_source url
-          url_key = sourcepage.cardname.url_key
-          new_source_url = "#{@wikirate_link_prefix}#{url_key}"
+          @sourcepage = create_link_source url
+          @url_key = @sourcepage.cardname.url_key
+        end
+        it 'return the source card' do
+          new_source_url = "#{@wikirate_link_prefix}#{@url_key}"
           new_sourcepage = Card.create type_id: Card::SourceID,
                                        subcards: {
                                          '+Link' => {
                                            content: new_source_url }
                                        }
-          expect(sourcepage.name).to eq(new_sourcepage.name)
+          expect(@sourcepage.name).to eq(new_sourcepage.name)
+        end
+        it 'hanldes extra space in the url' do
+          new_source_url = "#{@wikirate_link_prefix}#{@url_key} "
+          new_sourcepage = Card.create type_id: Card::SourceID,
+                                       subcards: {
+                                         '+Link' => {
+                                           content: new_source_url }
+                                       }
+          expect(@sourcepage.name).to eq(new_sourcepage.name)
         end
       end
       context 'a non source link' do

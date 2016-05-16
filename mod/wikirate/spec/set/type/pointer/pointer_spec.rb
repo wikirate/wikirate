@@ -100,6 +100,21 @@ describe Card::Set::Type::Pointer::Export do
     end
     context 'search card' do
       it 'should contain cards from search card and its children' do
+        Card.create!(
+          name: 'Elbert Hubbard',
+          type_id: Card::BasicID,
+          content: 'Do not take life too seriously.'
+        )
+        Card.create!(
+          name: 'Elbert Hubbard+hello world',
+          type_id: Card::BasicID,
+          content: 'You will never get out of it alive.'
+        )
+        Card.create!(
+          name: 'Elbert Hubbard+quote',
+          type_id: Card::BasicID,
+          content: 'Procrastination is the art of keeping up with yesterday.'
+        )
         @collection_card = Card.create! name: 'search card',
                                         type_id: Card::SearchTypeID,
                                         content: %({"left":"Elbert Hubbard"})

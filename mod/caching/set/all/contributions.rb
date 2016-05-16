@@ -109,19 +109,19 @@ def contribution_card?
     )
 end
 
-event(:new_contributions, #:integrate,
-      :integrate_with_delay,
-      when: proc { |c| !c.supercard && c.current_act && !c.contribution_card? }
-     ) do
-  visited = ::Set.new
-  contr = []
-  @current_act.actions.each do |action|
-    next unless action.card
-    contr, visited = action.card.contributees(contr, visited)
-  end
-
-  contr.uniq.each do |con_card|
-    next unless con_card.respond_to? :update_contribution_count
-    con_card.update_contribution_count
-  end
-end
+# event(:new_contributions, #:integrate,
+#       :integrate_with_delay,
+#       when: proc { |c| !c.supercard && c.current_act && !c.contribution_card? }
+#      ) do
+#   visited = ::Set.new
+#   contr = []
+#   @current_act.actions.each do |action|
+#     next unless action.card
+#     contr, visited = action.card.contributees(contr, visited)
+#   end
+#
+#   contr.uniq.each do |con_card|
+#     next unless con_card.respond_to? :update_contribution_count
+#     con_card.update_contribution_count
+#   end
+# end

@@ -8,7 +8,7 @@ card_accessor :methodology
 card_accessor :value_type
 card_accessor :report_type
 card_accessor :research_policy
-card_accessor :projects
+card_accessor :campaign
 
 def metric_type
   metric_type_card.item_names.first
@@ -385,7 +385,7 @@ end
 
 format :json do
   view :content do
-    companies_with_years_and_values.to_json
+    card.companies_with_years_and_values.to_json
   end
 end
 

@@ -6,13 +6,13 @@ view :core do |args|
       topic = topic_card.key
     end
   end
-  
+
   topics = Card.search :type_id=>WikirateTopicID, :sort=>:name, :return=>:name
   topic_options = topics.map { |t| [t,t.to_name.key] }
   topic_options.unshift [ '-- Select Topic --', '' ]
   topic_select = select_tag "topic", options_for_select(topic_options, topic)
 
-  
+
   all_companies = Card.search :type_id=>WikirateCompanyID, :sort=>:name, :return=>:name
 #  all_company_options = all_companies.map { |c| [c,c.to_name.key] }
 
@@ -35,14 +35,14 @@ view :core do |args|
       end
       [ label, company_name.to_name.key ]
     end
-    
+
     empty_option = [[ "-- Select Company #{i} --", '' ]]
     company_selects << select_tag( "company#{i}", options_for_select(empty_option + company_options, ckey))
   end
-    
+
   analysis_args = { :view=>:titled, :show=>'title_link', :structure=>'analysis comparison'}
-  
-  
+
+
   %{
     <form>
       <table>
@@ -50,7 +50,7 @@ view :core do |args|
         <tr>
           <td>#{ topic_select }</td>
           <td>
-            #{ 
+            #{
               if topic_image
                 card_link topic, :text=>raw( nest topic_image, :view=>:content, :size=>:small )
               end
@@ -69,10 +69,10 @@ view :core do |args|
         </tr>
       </table>
     </form>
-    
+
     <div class="left-side" >#{ nest analyses[0], analysis_args.clone if analyses[0] } </div>
     <div class="right-side">#{ nest analyses[1], analysis_args       if analyses[1] } </div>
-          
+
 
   }
 end

@@ -1,14 +1,14 @@
 require 'colorize'
-require 'pry'
+
+# require 'pry'
 namespace :wikirate do
   namespace :test do
     db_path = File.join Wagn.root, 'test', 'seed.db'
-    test_database =
-      (t = Wagn.config.database_configuration['test']) && t['database']
-    prod_database =
-      (p = Wagn.config.database_configuration['production']) && p['database']
-    user = ENV['MYSQL_USER'] || 'root'
-    pwd  = ENV['MYSQL_PASSWORD']
+    testdb = ENV['DATABASE_NAME_TEST'] ||
+                    ((t = Wagn.config.database_configuration['test']) &&
+                    t['database'])
+    user = ENV['DATABASE_MYSQL_USERNAME'] || ENV['MYSQL_USER'] || 'root'
+    pwd  = ENV['DATABASE_MYSQL_PASSWORD'] || ENV['MYSQL_PASSWORD']
 
     def execute_command cmd, env=nil
       cmd = "RAILS_ENV=#{env} #{cmd}" if env
@@ -27,9 +27,13 @@ namespace :wikirate do
 
     desc 'seed test database'
     task :seed do
-      mysql_args = "-u #{user}"
-      mysql_args += " -p #{pwd}" if pwd
-      system "mysql #{mysql_args} #{test_database} < #{db_path}"
+      mysql_login = "mysql -u #{user}"
+      mysql_login += " -p#{pwd}" if pwd
+      cmd =
+        "echo \"create database if not exists #{testdb}\" | #{mysql_login}; " \
+        "#{mysql_login} --database=#{testdb} < #{db_path}"
+      puts "cmd = #{cmd}"
+      system cmd
     end
 
     desc 'add wikirate test data to test database'
@@ -49,7 +53,7 @@ namespace :wikirate do
         puts 'start task in init_test environment'
         system 'env RAILS_ENV=init_test rake '\
                "wikirate:test:reseed_data #{location}"
-      elsif !test_database
+      elsif !testdb
         puts 'no test database'
       else
         # start with raw wagn db
@@ -61,8 +65,18 @@ namespace :wikirate do
           import.cards_of_type 'cardtype'
           import.items_of :codenames
           import.cards_of_type 'year'
+          # import.cards_of_type 'layout'
+          # import.cards_of_type 'scss'
+          # import.cards_of_type 'css'
+          # import.cards_of_type 'coffee_script'
+          # import.cards_of_type 'java_script'
+
           Card.search(type_id: Card::SettingID, return: :name).each do |setting|
-            import.items_of setting
+            # TODO: make export view for setting cards
+            #   then we don't need to import all script and style cards
+            #   we do it via subitems: true
+            with_subitems = %w(*script *style *layout).include? setting
+            import.items_of setting, subitems: with_subitems
           end
           import.items_of :production_export, subitems: true
           import.migration_records
@@ -79,7 +93,7 @@ namespace :wikirate do
     task :dump_test_db do
       mysql_args = "-u #{user}"
       mysql_args += " -p #{pwd}" if pwd
-      execute_command "mysqldump #{mysql_args} #{test_database} > #{db_path}"
+      execute_command "mysqldump #{mysql_args} #{testdb} > #{db_path}"
     end
   end
 end
@@ -89,12 +103,10 @@ class Importer
   def initialize location
     @export_location =
       case location
-      when 'dev'
-        'dev.wikirate.org'
-      when 'local'
-        'localhost:3000'
-      else
-        'wikirate.org'
+      when 'dev'    then 'dev.wikirate.org'
+      when 'demo'   then 'demo.wikirate.org'
+      when 'local'  then 'localhost:3000'
+      else               'wikirate.org'
       end
   end
 
@@ -103,7 +115,7 @@ class Importer
     card_data =
       work_on "getting data from #{cardname} card" do
         if opts[:subitems]
-          json_export cardname, :export
+          json_export cardname, :export_items
         else
           json_export(cardname)['card']['value']
         end

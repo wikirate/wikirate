@@ -50,7 +50,7 @@ format :html do
         nest(card.research_policy_card, view: :titled,
                                         title: 'Research Policy',
                                         items: { view: :name }),
-        nest(card.projects_card, view: :titled,
+        nest(card.campaign_card, view: :titled,
                                  title: 'Projects',
                                  items: { view: 'content',
                                           structure: 'list item' }),
@@ -100,13 +100,6 @@ format :html do
         end
       end
     end
-  end
-
-  view :content_left_col do |args|
-    output [
-      _render_year_select(args),
-      _render_company_list(args)
-    ]
   end
 
   def add_value_path

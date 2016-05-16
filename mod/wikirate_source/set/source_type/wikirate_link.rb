@@ -61,6 +61,7 @@ event :process_source_url, after: :check_source,
     errors.add(:link, 'does not exist.')
     return
   end
+  link_card.content.strip!
   url = link_card.content
   handle_source_box_source url if Card::Env.params[:sourcebox] == 'true'
   duplication_check url
@@ -124,7 +125,8 @@ end
 def file_type_and_size url
   # just got the header instead of downloading the whole file
   header_str = get_header(url)
-  content_type = header_str[/.*Content-Type: (.*)\r\n/, 1]
+  # error won't give us content type, treat it as a normal link
+  content_type = header_str[/.*Content-Type: (.*)\r\n/, 1] || ''
   content_size = header_str[/.*Content-Length: (.*)\r\n/, 1].to_i
   [content_type, content_size]
 rescue => error
