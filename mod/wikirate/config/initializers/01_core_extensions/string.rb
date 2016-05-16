@@ -1,7 +1,9 @@
 module CoreExtensions
   module String
     def number?
-      self =~ /^[-+]?\d+(?:[,.]\d+)?$/
+      true if Float(self)
+    rescue
+      false
     end
   end
 end
