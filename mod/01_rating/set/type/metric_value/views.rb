@@ -221,13 +221,14 @@ format :html do
       precision: (bigger_precision ? 3 : 1) }
   end
 
-  def show_big_number value
+  def humanized_number value
     big_number = BigDecimal.new(value)
     if big_number > 1_000_000
       number_to_human(big_number, number_to_human_args)
     else
-      number_with_precision(big_number,
-                            number_with_precision_args(big_number < 1))
+      number = number_with_precision(big_number,
+                                     number_with_precision_args(big_number < 1))
+      (number == '0' && big_number > 0) ? '~0' : number
     end
   end
 
@@ -239,7 +240,7 @@ format :html do
   def fetch_value
     if (numeric_metric? || !card.metric_card.researched?) &&
        !card.value_card.unknown_value?
-      show_big_number card.value
+      humanized_number card.value
     else
       card.value
     end
