@@ -39,15 +39,15 @@ describe Card::Set::MetricType::Formula do
 
       it 'fixed year' do
         @year_expr = '2014'
-        is_expected.to eq '114'
+        is_expected.to eq '114.0'
       end
       it 'relative year' do
         @year_expr = '-2'
-        is_expected.to eq '113'
+        is_expected.to eq '113.0'
       end
       it 'current year' do
         @year_expr = '0'
-        is_expected.to eq '115'
+        is_expected.to eq '115.0'
       end
     end
 
@@ -57,27 +57,27 @@ describe Card::Set::MetricType::Formula do
 
       it 'relative range' do
         @year_expr = '-3..-1'
-        is_expected.to eq '139'
+        is_expected.to eq '139.0'
       end
       it 'relative range with 0' do
         @year_expr = '-3..0'
-        is_expected.to eq '154'
+        is_expected.to eq '154.0'
       end
       it 'relative range with ?' do
         @year_expr = '-3..?'
-        is_expected.to eq '154'
+        is_expected.to eq '154.0'
       end
       it 'fixed range' do
         @year_expr = '2012..2013'
-        is_expected.to eq '125'
+        is_expected.to eq '125.0'
       end
       it 'fixed start' do
         @year_expr = '2012..0'
-        is_expected.to eq '154'
+        is_expected.to eq '154.0'
       end
       it 'list of years' do
         @year_expr = '2012, 2014'
-        is_expected.to eq '126'
+        is_expected.to eq '126.0'
       end
     end
   end
@@ -153,9 +153,9 @@ describe Card::Set::MetricType::Formula do
     end
 
     it 'creates calculated values' do
-      expect(calc_value).to eq('60')
-      expect(calc_value 'Samsung', '2015').to eq('29')
-      expect(calc_value 'Sony_Corporation').to eq('9')
+      expect(calc_value).to eq('60.0')
+      expect(calc_value 'Samsung', '2015').to eq('29.0')
+      expect(calc_value 'Sony_Corporation').to eq('9.0')
       expect(calc_value_card 'Death_Star', '1977').to be_falsey
     end
 
@@ -169,7 +169,7 @@ describe Card::Set::MetricType::Formula do
       end
       it 'updates existing calculated value' do
         update_formula "{{%s}}*4+{{%s}}*2"
-        expect(calc_value).to eq '50'
+        expect(calc_value).to eq '50.0'
       end
       it 'removes incomplete calculated value' do
         update_formula '{{%s}}*5+{{%s}}*2+{{%s}}'
@@ -177,7 +177,7 @@ describe Card::Set::MetricType::Formula do
       end
       it 'adds complete calculated value' do
         update_formula '{{%s}}*5'
-        expect(calc_value 'Death Star', '1977').to eq('25')
+        expect(calc_value 'Death Star', '1977').to eq('25.0')
       end
     end
 
@@ -194,7 +194,7 @@ describe Card::Set::MetricType::Formula do
             source: get_a_sample_source
           )
         end
-        expect(calc_value 'Death Star', '1977').to eq('29')
+        expect(calc_value 'Death Star', '1977').to eq('29.0')
       end
     end
 
@@ -203,7 +203,7 @@ describe Card::Set::MetricType::Formula do
         Card["#{@metric_name_1}+Samsung+2014+value"].update_attributes!(
           content: '1'
         )
-        expect(calc_value).to eq '15'
+        expect(calc_value).to eq '15.0'
       end
       it 'removes incomplete calculated values' do
         Card::Auth.as_bot do
@@ -226,9 +226,9 @@ describe Card::Set::MetricType::Formula do
           type_id: Card::PlainTextID,
           content: build_formula('{{%s}}*5+{{%s}}*2')
       end
-      expect(calc_value).to eq('60')
-      expect(calc_value 'Samsung', '2015').to eq('29')
-      expect(calc_value 'Sony_Corporation').to eq('9')
+      expect(calc_value).to eq('60.0')
+      expect(calc_value 'Samsung', '2015').to eq('29.0')
+      expect(calc_value 'Sony_Corporation').to eq('9.0')
       expect(calc_value_card 'Death_Star', '1977').to be_falsey
     end
   end

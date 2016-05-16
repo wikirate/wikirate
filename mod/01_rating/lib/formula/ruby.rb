@@ -14,7 +14,7 @@ module Formula
                 }.freeze
     LAMBDA_ARGS_NAME = 'args'.freeze
 
-    INPUT_CAST = lambda { |val| val.to_f }
+    INPUT_CAST = lambda { |val| val.number? ? val.to_f : val }
 
     FUNC_KEY_MATCHER =  FUNCTIONS.keys.join('|').freeze
     FUNC_VALUE_MATCHER =  FUNCTIONS.values.join('|').freeze
@@ -43,6 +43,16 @@ module Formula
     end
 
     def get_value input, _company, _year
+      input.flatten.each do |i|
+        next if i.is_a?(Float)
+        if i.downcase == 'unknown'
+          return 'Unknown'
+        elsif i.empty?
+          return nil
+        else
+          return 'invalid input'
+        end
+      end
       @executed_lambda.call(input)
     end
 
