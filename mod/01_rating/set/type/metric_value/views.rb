@@ -216,8 +216,9 @@ format :html do
     }
   end
 
-  def number_with_precision_args
-    { delimiter: ',', strip_insignificant_zeros: true, precision: 1 }
+  def number_with_precision_args bigger_precision=false
+    { delimiter: ',', strip_insignificant_zeros: true,
+      precision: (bigger_precision ? 3 : 1) }
   end
 
   def show_big_number value
@@ -225,7 +226,8 @@ format :html do
     if big_number > 1_000_000
       number_to_human(big_number, number_to_human_args)
     else
-      number_with_precision(big_number, number_with_precision_args)
+      number_with_precision(big_number,
+                            number_with_precision_args(big_number < 1))
     end
   end
 
@@ -235,7 +237,8 @@ format :html do
   end
 
   def fetch_value
-    if numeric_metric? && !card.value_card.unknown_value?
+    if (numeric_metric? || !card.metric_card.researched?) &&
+       !card.value_card.unknown_value?
       show_big_number card.value
     else
       card.value

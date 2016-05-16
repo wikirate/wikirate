@@ -14,6 +14,13 @@ module Formula
       @errors = []
     end
 
+    def any_unknown? inputs
+      inputs.each do |input|
+        return true if input.to_s.casecmp('unknown') == 0
+      end
+      false
+    end
+
     # @param [Hash] opts
     # @option opts [String] :company
     # @option opts [String] :year
@@ -22,8 +29,12 @@ module Formula
       result = Hash.new_nested Hash
       return result unless compile_formula
       @input.each(opts) do |input, company, year|
-        next unless (value = get_value(input, company, year))
-        result[year][company] = normalize_value value
+        if any_unknown? input
+          result[year][company] = 'unknown'
+        else
+          next unless (value = get_value(input, company, year))
+          result[year][company] = normalize_value value
+        end
       end
       result
     end
