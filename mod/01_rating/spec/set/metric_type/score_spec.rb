@@ -99,9 +99,9 @@ describe Card::Set::MetricType::Score do
         end
       end
       it 'creates score values' do
-        expect(score_value).to eq('10')
-        expect(score_value 'Samsung', '2015').to eq('4')
-        expect(score_value 'Sony_Corporation').to eq('4')
+        expect(score_value).to eq('10.0')
+        expect(score_value 'Samsung', '2015').to eq('4.0')
+        expect(score_value 'Sony_Corporation').to eq('4.0')
         expect(score_value_card 'Death_Star', '1977').to be_falsey
       end
 
@@ -113,7 +113,7 @@ describe Card::Set::MetricType::Score do
         end
         it 'updates existing rating value' do
           update_formula "{{#{@metric_name}}}*3"
-          expect(score_value).to eq '15'
+          expect(score_value).to eq '15.0'
         end
         # it 'fails if basic metric is not used in formula' do
         #   #update_formula '{{Jedi+deadliness}}'
@@ -132,14 +132,14 @@ describe Card::Set::MetricType::Score do
                                      value: '2',
                                      source: get_a_sample_source
           end
-          expect(score_value 'Death Star', '1977').to eq('4')
+          expect(score_value 'Death Star', '1977').to eq('4.0')
         end
       end
 
       context 'and input metric value changes' do
         it 'updates score value' do
           Card["#{@metric_name}+Samsung+2014+value"].update_attributes! content: '1'
-          expect(score_value).to eq '2'
+          expect(score_value).to eq '2.0'
         end
         it 'removes score value that lost input metric value' do
           Card::Auth.as_bot do
@@ -169,9 +169,9 @@ describe Card::Set::MetricType::Score do
             content: "{{Joe User+#{@metric_title}}}*2"
           )
         end
-        expect(score_value).to eq('20')
-        expect(score_value 'Samsung', '2015').to eq('10')
-        expect(score_value 'Sony_Corporation').to eq('2')
+        expect(score_value).to eq('20.0')
+        expect(score_value 'Samsung', '2015').to eq('10.0')
+        expect(score_value 'Sony_Corporation').to eq('2.0')
       end
     end
   end
@@ -184,7 +184,7 @@ describe Card::Set::MetricType::Score do
     end
     it 'updates scored valued' do
       expect(Card['Jedi+deadliness+Joe User+Death Star+1977+value'].content)
-        .to eq '4'
+        .to eq '4.0'
     end
 
     it 'updates dependent ratings' do
