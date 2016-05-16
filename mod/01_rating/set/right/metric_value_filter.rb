@@ -3,7 +3,7 @@ def virtual?
 end
 
 def industry_metric_name
-  'Richard Mills+Sector Industry'
+  'Global Reporting Institute+Sector Industry'
 end
 
 def industry_value_year
