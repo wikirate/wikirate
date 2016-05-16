@@ -121,11 +121,10 @@ event :create_metric_values, :prepare_to_store,
 end
 
 def add_value company, year, value
-  type_id = value.to_s.casecmp('unknown') == 0 ? PhraseID : NumberID
   add_subcard metric_card.metric_value_name(company, year),
               type_id: MetricValueID,
               subcards: {
-                '+value' => { type_id: type_id, content: value }
+                '+value' => { type_id: NumberID, content: value }
               }
 end
 
@@ -204,11 +203,6 @@ def input_keys
 end
 
 def normalize_value value
-  # if value
-  #   decimal_digits = (value < 1 ? 3 : 1)
-  #   value.round(decimal_digits).to_s
-  # end
-  # ('%.1f' % value).gsub(/\.0$/, '') if value
   value.to_s if value
 end
 
