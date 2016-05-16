@@ -243,7 +243,9 @@ describe Card::Set::All::Wikirate do
         numeric_card = Card.create! :name=>"I am a number",:content=>"3.14159265"
         html = numeric_card.format.render_progress_bar
         expect(html).to have_tag("div", :with=>{:class=>"progress"}) do
-          with_tag "div",:with=>{:class=>"progress-bar","aria-valuenow"=>value},:text=>"#{value}%"
+          with_tag 'div', with: { class: 'progress-bar',
+                                  'aria-valuenow' => value },
+                          text: /#{value}%/
         end
       end
     end
@@ -262,38 +264,46 @@ describe Card::Set::All::Wikirate do
       args = {
         :item=>"content"
       }
-      sample_company = Card.create! :name=>"Steelseries",:type_id=>Card::WikirateCompanyID
+      sample_company = Card.create! :name=>"Steelseries",
+                                    :type_id=>Card::WikirateCompanyID
       
-      metric1 = Card.create! :name=>"Joe User+how many responses",:type_id=>Card::MetricID
-      metric2 = Card.create! :name=>"Joe User+how many types of responses",:type_id=>Card::MetricID
-      metric3 = Card.create! :name=>"Joe User+the unusualness of the responses",:type_id=>Card::MetricID
-      metric4 = Card.create! :name=>"Joe User+the detail of the responses",:type_id=>Card::MetricID
+      metric1 = Card.create! :name=>"Joe User+how many responses",
+                             :type_id=>Card::MetricID
+      metric2 = Card.create! :name=>"Joe User+how many types of responses",
+                             :type_id=>Card::MetricID
+      metric3 = Card.create! :name=>"Joe User+the unusualness of the responses",
+                             :type_id=>Card::MetricID
+      metric4 = Card.create! :name=>"Joe User+the detail of the responses",
+                             :type_id=>Card::MetricID
 
       metrics = [ metric1, metric2, metric3, metric4 ]
       metric_values = Array.new
 
       metrics.each do |metric|
         subcard = {
-          "+metric"=>{"content"=>metric.name},
-          "+company"=>{"content"=>"[[#{sample_company.name}]]",:type_id=>Card::PointerID},
-          "+value"=>{"content"=>"Nature doesn't recongize good or evil. Nature only recongizes balance and imbalance.", :type_id=>Card::PhraseID},
-          "+year"=>{"content"=>"2015", :type_id=>Card::PointerID},
-          "+source"=>{
-            "subcards"=>{
-              "new source"=>{
-                "+Link"=>{
-                  "content"=>"http://www.google.com/?q=fringe",
-                   "type_id"=>Card::PhraseID
+          "+metric" => { content: metric.name},
+          "+company" => { content: "[[#{sample_company.name}]]",
+                          :type_id=>Card::PointerID},
+          "+value" => {
+            content: "Nature doesn't recongize good or evil.",
+            :type_id=>Card::PhraseID
+          },
+          "+year" => { content: "2015", :type_id=>Card::PointerID },
+          "+source" => {
+            "subcards" => {
+              "new source" => {
+                "+Link" => {
+                  content: "http://www.google.com/?q=fringe",
+                  type_id: Card::PhraseID
                 }
               }
             }
           }
         }
-        
-        metric_value = Card.create! :type_id=>Card::MetricValueID,:subcards=>subcard
+        metric_value = Card.create! :type_id=>Card::MetricValueID,
+                                    :subcards=>subcard
         metric_values.push(metric_value)
       end
-
       search_card = Card.fetch "#{sample_company.name}+limited_metric"
       html = search_card.format.render_yinyang_list args
 

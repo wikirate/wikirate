@@ -6,18 +6,21 @@ namespace :git do
     on roles(:all) do
       with fetch(:git_environmental_variables) do
         within repo_path do
-          execute :git, :clone, '-b', fetch(:branch), '--recursive', '.', release_path
+          execute :git, :clone, '-b', fetch(:branch),
+                  '--recursive --depth 1 .', release_path
         end
       end
     end
   end
 end
 
-  
+
 namespace :deploy do
+  before :starting, :backup do
+    invoke 'backup:create'
+  end
 
   after :updated, :migrate do
-    
     #because this creates the log and tmp files, it needs to be executed before the chown,
     # which in turn needs to happen before the restart.  not ideal.
     on roles(:web), in: :groups, limit: 3, wait: 10 do
@@ -29,24 +32,16 @@ namespace :deploy do
       end
     end
   end
-  
+
   desc "Set www-data permissions on config.ru / log"
   after :updated, :deploy_chown do
     on roles(:app) do
       execute :sudo, '/opt/bin/deploy_chown', release_path
     end
   end
-  
-  desc 'Restart application'
-  after :published, :restart_passenger do
-    on roles(:app), in: :sequence, wait: 5 do
-      execute :touch, release_path.join('tmp/restart.txt')
-    end
-    invoke 'deploy:clear_cache'
-  end
 
   desc 'clear cache'
-  task :clear_cache do
+  after :published, :clear_cache do
     on roles(:app) do
       within release_path do
         execute :rake, 'wagn:reset_cache'
@@ -55,4 +50,5 @@ namespace :deploy do
   end
 
   after :finishing, :cleanup
+  after :published, :restart
 end

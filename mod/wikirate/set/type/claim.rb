@@ -10,8 +10,10 @@ def indirect_contributor_search_args
   [{ right_id: VoteCountID, left: name }]
 end
 
-event :vote_on_create_claim,
-      on: :create, after: :store,
+# has to happen before the contributions update (the new_contributions event)
+# so we have to use the finalize stage
+event :vote_on_create_claim, :integrate,
+      on: :create,
       when: proc { Card::Auth.current_id != Card::WagnBotID } do
   Auth.as_bot do
     vc = vote_count_card
@@ -72,7 +74,7 @@ format :html do
     # :core_edit means the new and edit views will render form fields from
     # within the core view (which in this case is defined by
     # Claim+*type+*structure), as opposed to the default behavior,
-    # which is to strip out the inclusions and render them alone.
+    # which is to strip out the nests and render them alone.
     super args.merge(core_edit: true)
   end
 
@@ -92,9 +94,11 @@ format :html do
 
   def next_step_tip
     # FIXME: cardnames
-    if (not topics = Card["#{card.name}+topics"]) || topics.item_names.empty?
+    if (not topics = Card["#{card.name}+topics"]) ||
+       topics.item_names.empty?
       'improve this note by adding a topic.'
-    elsif (not companies = Card["#{card.name}+company"]) || companies.item_names.empty?
+    elsif (not companies = Card["#{card.name}+company"]) ||
+          companies.item_names.empty?
       'improve this note by adding a company.'
     else
       cited_in = Card.search refer_to: card.name,
@@ -161,15 +165,17 @@ def analysis_cards
   analysis_names.map { |aname| Card.fetch aname }
 end
 
-event :reset_claim_counts, after: :store do
+event :reset_claim_counts, :integrate do
   Card.reset_claim_counts
 end
 
-event :validate_note, before: :approve, on: :save do
+# TODO: check if this can be moved to :validate stage
+# (was in before: :approve)
+event :validate_note, :prepare_to_validate, on: :save do
   errors.add :note, 'is too long (100 character maximum)' if name.length > 100
 end
 
-event :validate_source, after: :approve, on: :save do
+event :validate_source, :validate, on: :save do
   # 1. it correctly validates when adding a claim
   # 2. it correctly validates when editing a claim with +source
   # 3. it doesn't break anything when editing a claim without +source
@@ -209,21 +215,3 @@ def default_citation
   "#{name} {{#{name}|cite}}"
 end
 
-=begin
-event :sort_tags, before: :approve_subcards, on: :create do
-  tag_key = '+tags' #FIXME - hardcoded card name
-  if tags_card = subcards[tag_key]
-    tags_card.item_names.each do |tag|
-      if tag_card = Card.fetch(tag)
-        if tagtype = tag_card.type_code and [:wikirate_company, :wikirate_topic].member?(tagtype)
-          type_key = "+#{ Card[tagtype].name }"
-          subcards[type_key] ||= Card.new name: type_key, supercard: self, type_id: Card::PointerID
-          subcards[type_key].add_item tag
-          tags_card.drop_item tag
-        end
-
-      end
-    end
-  end
-end
-=end

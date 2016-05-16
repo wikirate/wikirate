@@ -1,0 +1,47 @@
+.nav-tabs > li {
+    margin-bottom: -7px;
+    &.active > a {
+        border-radius: 0;
+        border: 0 solid #E6E6E6;
+        border-bottom: 4px solid #03998D;
+        &:focus,
+        &:hover {
+            border-radius: 0;
+            border: 0 solid #E6E6E6;
+            border-bottom: 4px solid #03998D;
+        }
+    }
+    > a {
+        background-color: #fff;
+        border-radius: 0;
+        border: 0 solid #E6E6E6;
+        border-bottom: 4px solid #DADADA;
+        margin: 3px -1px;
+        padding: 18px 20px;
+        font-size: 15px;
+        color: #8E8E8E;
+    }
+}
+.tabbable {
+    margin: 1px;
+    .nav-tabs {
+        border-bottom: 4px solid #ddd;
+    }
+}
+.with-item-count {
+    &.nav-tabs > li > a {
+        padding: 18px 4px;
+    }
+    &.nav-tabs > li.active > a > .count-label {
+        font-weight: bold;
+    }
+    .count-number {
+        font-size: 16px;
+    }
+    .count-label {
+        font-size: 14px;
+    }
+}
+.TYPE-source.preview-view .navbar .nav-tabs > li {
+    margin-bottom: 0;
+}

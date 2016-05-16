@@ -11,8 +11,8 @@ end
 
 def indirect_contributor_search_args
   [
-    { type_id: Card::ClaimID, plus: ['topic', link_to: self.name] },
-    { type_id: Card::SourceID, plus: ['topic', link_to: self.name] },
+    { type_id: Card::ClaimID, right_plus: ['topic', link_to: self.name] },
+    { type_id: Card::SourceID, right_plus: ['topic', link_to: self.name] },
     { type_id: Card::WikirateAnalysisID, right: self.name }
   ]
 end

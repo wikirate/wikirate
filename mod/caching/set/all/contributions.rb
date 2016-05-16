@@ -19,6 +19,7 @@ def indirect_contributor
 end
 
 def calculate_indirect_contribution_count
+
   indirect_contributor.inject(0) do |total, c_card|
     more_contributions =
       case
@@ -61,13 +62,14 @@ end
 # contributes
 # FIXME: put into set mods!
 def contributees res=[], visited=::Set.new
+  return [res, visited] if visited.include? name
   visited << name
   if (type_code == :claim) || (type_code == :source)
     # FIXME: - cardnames
     res += [self]
     res += [Card["#{name}+company"],
             Card["#{name}+topic"]
-           ].compact.map(&:item_cards).flatten
+           ].compact.map(&:known_item_cards).flatten
   elsif type_code == :wikirate_analysis
     res += [self, left, right]
   elsif (type_code == :wikirate_company) || (type_code == :wikirate_topic)
@@ -77,7 +79,15 @@ def contributees res=[], visited=::Set.new
     Card::Cache[Card::Set::Right::YinyangDragItem].delete key
   elsif type_code == :metric_value
     res << company_card
-    Card::Cache[Card::Set::Right::YinyangDragItem].delete key
+    Card::Cache[Card::Set::Right::YinyangDragItem].delete metric_card.key
+  elsif (l = left) && l.type_code == :metric_value && (r = right) &&
+        r.codename == :value.to_s
+    res << company_card
+    Card::Cache[Card::Set::Right::YinyangDragItem].delete metric_card.key
+  elsif (l = left) && l.type_code == :metric_value && (r = right) &&
+        r.codename == :checked_by.to_s
+    res << l.company_card
+    Card::Cache[Card::Set::Right::YinyangDragItem].delete l.metric_card.key
   else
     if left &&
        !visited.include?(left.name) &&
@@ -99,14 +109,15 @@ def contribution_card?
     )
 end
 
-event(:new_contributions,
-      before: :extend,
+event(:new_contributions, #:integrate,
+      :integrate_with_delay,
       when: proc { |c| !c.supercard && c.current_act && !c.contribution_card? }
      ) do
   visited = ::Set.new
   contr = []
-  @current_act.actions.each do
-    contr, visited = contributees(contr, visited)
+  @current_act.actions.each do |action|
+    next unless action.card
+    contr, visited = action.card.contributees(contr, visited)
   end
 
   contr.uniq.each do |con_card|

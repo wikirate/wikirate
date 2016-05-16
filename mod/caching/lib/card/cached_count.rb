@@ -16,18 +16,16 @@ class Card
     end
 
     def cached_count
-      count = cached_count_card.content
-      count.present? ? count.to_i : update_cached_count
+      cached_count_card.content.to_i
     end
 
     module ClassMethods
       def recount_trigger set_of_changed_card, args={}, &block
         if set_of_changed_card
           args[:on] ||= [:create, :update, :delete]
-          args[:after] = :extend
           name = event_name set_of_changed_card, args
           set_of_changed_card.class_eval do
-            event name, args do
+            event name, :integrate, args do
               Array.wrap(block.call(self)).compact.each do |expired_count_card|
                 next unless expired_count_card.respond_to?(:update_cached_count)
                 expired_count_card.update_cached_count

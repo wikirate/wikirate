@@ -1,21 +1,23 @@
 @@options = {
-  :junction_only => true,
-  :assigns_type  => true,
-  :index         => 4,
-  :anchor_parts_count=>2
+  junction_only: true,
+  assigns_type: true,
+  index: 4,
+  anchor_parts_count: 2
 }
 
 def label name
-  %{All "#{name.to_name.left_name}" + "#{name.to_name.tag}" cards}
+  %{All "#{name.to_name.left}" + "#{name.to_name.right}" cards}
 end
 
-def prototype_args anchor
-  { }
+def prototype_args _anchor
+  {}
 end
 
 def anchor_name card
-  left, right = card.left, card.right
-  ltype_name = (left && left.type_name) || Card[ Card.default_type_id ].name
-  rtype_name = (right && right.type_name) || Card[ Card.default_type_id ].name
+  left = Card.quick_fetch card.cardname.left
+  right = Card.quick_fetch card.cardname.right
+  ltype_name = left ? left.type_name : 'Basic' # hardcode for speed
+  rtype_name = right ? right.type_name : 'Basic'
+
   "#{ltype_name}+#{rtype_name}"
 end

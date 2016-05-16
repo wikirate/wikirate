@@ -1,13 +1,21 @@
+
 format :html do
+  def yycache
+    Card::Cache[Card::Set::Right::YinyangDragItem]
+  end
+
+  def metric_card
+    @metric ||= extract_metric_card
+  end
+
   view :content do |args|
-    if (metric = card[1..2]) && metric.type_code == :metric
+    # cache cleaning refers to  contributions.rb#contributees
+    if (metric = metric_card)
       key = "view_content_card_#{card.key}_args_#{Card::Cache.obj_to_key args}"
-      cached_items = Card::Cache[Card::Set::Right::YinyangDragItem].fetch metric.key do
-        Hash.new
-      end
-      if !cached_items[key]
+      cached_items = yycache.read(metric.key) || {}
+      unless cached_items[key]
         cached_items[key] = super(args)
-        Card::Cache[Card::Set::Right::YinyangDragItem].write metric.key, cached_items
+        yycache.write metric.key, cached_items
       end
       cached_items[key]
     else
@@ -15,6 +23,3 @@ format :html do
     end
   end
 end
-
-
-

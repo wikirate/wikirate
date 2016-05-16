@@ -1,3 +1,4 @@
+include Card::Set::Abstract::Calculation
 
 format :html do
 

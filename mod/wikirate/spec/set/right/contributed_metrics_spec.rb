@@ -11,22 +11,22 @@ describe Card::Set::Right::ContributedMetrics do
         end
       end
       vote_count_card.vote_up
+      @user_card = Card["joe_user"]
+      @c_card = @user_card.fetch(:trait=>:contributed_metrics)
     end
-    
-    @user_card = Card["joe_user"]
-    @c_card = @user_card.fetch(:trait=>:contributed_metrics)
   end
+  subject { Card["joe_user"].fetch(:trait=>:contributed_metrics) }
+
   describe ".contribution_counts" do
     it "returns correct contribution count" do
-      expect(@c_card.contribution_count).to eq(4)
+      expect(subject.contribution_count).to eq(4)
     end
   end
   describe "header view" do
     it "returns correct contribution analysis" do
-      html = @c_card.format.render_header
-      expect(html).to have_tag("i",:with=>{:class=>"fa fa-bar-chart-o"})
+      html = subject.format.render_header
+      expect(html).to have_tag("i", :with=>{:class=>"fa fa-bar-chart-o"})
 
     end
   end
-  
 end
