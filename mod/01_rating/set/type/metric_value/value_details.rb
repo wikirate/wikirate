@@ -68,8 +68,9 @@ format :html do
   view :formula_table do
     table_content =
       card.metric_card.formula_card.input_cards.map do |item_card|
+        next if item_card.type_id == YearlyVariableID
         metric_row(item_card)
-      end
+      end.compact
     table(table_content, header: ['Metric', 'Raw Value', 'Score'])
   end
 

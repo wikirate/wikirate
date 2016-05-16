@@ -46,6 +46,7 @@ namespace :backup do
       end
     end
   end
+
   task :unzip_local do
     run_locally do
       backup_dir = fetch :local_backups_dir
