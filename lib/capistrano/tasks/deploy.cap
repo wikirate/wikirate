@@ -17,7 +17,7 @@ end
 
 namespace :deploy do
   before :starting, :backup do
-    invoke 'backup:create'
+    # invoke 'backup:create'
   end
 
   after :updated, :migrate do

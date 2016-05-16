@@ -59,6 +59,7 @@ class AddCsoMetrics < Card::Migration
   CSO = 'Center for Sustainable Organizations'.freeze
 
   def up
+    Card.create! name: CSO, type_id: WikirateCompanyID
     create_yearly_variables
     create_researched_metrics
     create_formula_metrics
