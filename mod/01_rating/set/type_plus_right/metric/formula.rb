@@ -121,10 +121,12 @@ event :create_metric_values, :prepare_to_store,
 end
 
 def add_value company, year, value
+  return unless value.present?
+  type_id = value.number? ? NumberID : PhraseID
   add_subcard metric_card.metric_value_name(company, year),
               type_id: MetricValueID,
               subcards: {
-                '+value' => { type_id: NumberID, content: value }
+                '+value' => { type_id: type_id, content: value }
               }
 end
 
