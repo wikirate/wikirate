@@ -41,7 +41,8 @@ format :html do
   def default_core_args args
     args[:buttons] = [
       card_link(card.left, path_opts: { view: :content_left_col },
-                           text: 'Reset', class: 'slotter btn btn-default',
+                           text: 'Reset',
+                           class: 'slotter btn btn-default margin-8',
                            remote: true),
       button_tag('Filter', situation: 'primary', disable_with: 'Filtering')
     ].join
@@ -52,7 +53,7 @@ format :html do
     <<-HTML
     <div class="panel panel-default filter">
       <div class="panel-heading" role="tab" id="headingOne"  data-toggle="collapse" href="#collapseFilter" aria-expanded="true" aria-controls="collapseFilter">
-        <h4 class="panel-title">
+        <h4 class="panel-title accordion-toggle">
             Filter by
         </h4>
       </div>
@@ -60,11 +61,8 @@ format :html do
 
         <form action="/#{action}?view=content_left_col" method="GET" data-remote="true" class="slotter">
           <h4>Company</h4>
-          #{company_filter_fields(args).join}
-           <hr>
-
-          <hr>
-          #{_optional_render :button_formgroup, args}
+          <div class="margin-12"> #{company_filter_fields(args).join} </div>
+          <div class="filter-buttons">#{_optional_render :button_formgroup, args}</div>
         </form>
 
       </div>
@@ -93,11 +91,11 @@ format :html do
     )
     options.unshift 'latest'
     filter_options = options_for_select(options, params[:year] || 'all')
-    select_filter 'year', filter_options, oneline: true
+    select_filter 'year', filter_options
   end
 
   view :company_formgroup do
-    text_filter 'company', title: 'Name', oneline: true
+    text_filter 'company', title: 'Name'
   end
 
   view :industry_formgroup do
@@ -115,11 +113,14 @@ format :html do
 
   def text_filter type_name, args
     formgroup args[:title] || type_name.capitalize,
-              text_field_tag(type_name, params[type_name], args), args
+              text_field_tag(type_name, params[type_name],
+                             args.merge(class: 'form-control')), args
   end
 
   def select_filter type_name, options, args={}
-    formgroup type_name.capitalize, select_tag(type_name, options), args
+    formgroup type_name.capitalize,
+              select_tag(type_name, options, class: 'form-control'),
+              args
   end
 
   # def multiselect_filter type_name, options=nil, args={}
@@ -137,6 +138,6 @@ format :html do
   #   )
   #   formgroup(args[:title] || type_name.capitalize,
   #             multiselect_tag,
-  #             class: "filter-input #{type_name}", oneline: true)
+  #             class: "filter-input #{type_name}")
   # end
 end
