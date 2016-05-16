@@ -3,7 +3,7 @@ def virtual?
 end
 
 def industry_metric_name
-  'Global Reporting Institute+Sector Industry'
+  'Global Reporting Initiative+Sector Industry'
 end
 
 def industry_value_year
