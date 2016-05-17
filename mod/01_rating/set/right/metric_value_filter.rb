@@ -3,11 +3,11 @@ def virtual?
 end
 
 def industry_metric_name
-  'Global Reporting Initiative+Sector Industry'
+  "Global Reporting Initiative+Sector Industry"
 end
 
 def industry_value_year
-  '2015'
+  "2015"
 end
 
 format :html do
@@ -17,7 +17,7 @@ format :html do
     [:sort, :cited, :claimed, :company, :topic, :tag].each do |key|
       filter_args[key] = params[key] if params[key].present?
     end
-    options[:class] = 'card-paging-link slotter'
+    options[:class] = "card-paging-link slotter"
     options[:remote] = true
     link_to raw(text), path(@paging_path_args.merge(filter_args)), options
   end
@@ -41,10 +41,10 @@ format :html do
   def default_core_args args
     args[:buttons] = [
       card_link(card.left, path_opts: { view: :content_left_col },
-                           text: 'Reset',
-                           class: 'slotter btn btn-default margin-8',
+                           text: "Reset",
+                           class: "slotter btn btn-default margin-8",
                            remote: true),
-      button_tag('Filter', situation: 'primary', disable_with: 'Filtering')
+      button_tag("Filter", situation: "primary", disable_with: "Filtering")
     ].join
   end
 
@@ -87,39 +87,39 @@ format :html do
 
   view :year_formgroup do |_args|
     options = Card.search(
-      type_id: YearID, return: :name, sort: 'name', dir: 'desc'
+      type_id: YearID, return: :name, sort: "name", dir: "desc"
     )
-    options.unshift 'latest'
-    filter_options = options_for_select(options, params[:year] || 'all')
-    select_filter 'year', filter_options
+    options.unshift "latest"
+    filter_options = options_for_select(options, params[:year] || "all")
+    select_filter "year", filter_options
   end
 
   view :company_formgroup do
-    text_filter 'company', title: 'Name'
+    text_filter "company", title: "Name"
   end
 
   view :industry_formgroup do
     industries = Card[card.industry_metric_name].value_options
-    options = options_for_select([['--', '']] + industries,
+    options = options_for_select([["--", ""]] + industries,
                                  Env.params[:industry])
-    select_filter 'industry', options
+    select_filter "industry", options
   end
 
   view :project_formgroup do
-    projects = Card.search type_id: CampaignID, return: :name, sort: 'name'
-    options = options_for_select([['--', '']] + projects, Env.params[:project])
-    select_filter 'project', options
+    projects = Card.search type_id: CampaignID, return: :name, sort: "name"
+    options = options_for_select([["--", ""]] + projects, Env.params[:project])
+    select_filter "project", options
   end
 
   def text_filter type_name, args
     formgroup args[:title] || type_name.capitalize,
               text_field_tag(type_name, params[type_name],
-                             args.merge(class: 'form-control')), args
+                             args.merge(class: "form-control")), args
   end
 
   def select_filter type_name, options, args={}
     formgroup type_name.capitalize,
-              select_tag(type_name, options, class: 'form-control'),
+              select_tag(type_name, options, class: "form-control"),
               args
   end
 

@@ -5,7 +5,7 @@ describe Card::Set::Right::DownvoteeSearch do
       it "shows the voted cards in customized order" do
         # lets play with apple's metrics
         # vote 3 metrics related to apple
-        Card::Auth.current_id = Card['Joe User'].id
+        Card::Auth.current_id = Card["Joe User"].id
         apple = Card["Apple Inc"]
         metrics_result = nil
         Card::Auth.as_bot do
@@ -77,7 +77,7 @@ describe Card::Set::Right::DownvoteeSearch do
           topic = Card["Natural Resource Use"]
           @metric.update_attributes! :subcards=>{"+#{Card[:wikirate_topic].name}"=>topic.name}
           # show downvotee 
-          Card::Auth.current_id = Card['Joe User'].id
+          Card::Auth.current_id = Card["Joe User"].id
           Card::Auth.as_bot do
             card_to_be_voted_down = @metric.vote_count_card
             card_to_be_voted_down.vote_down
@@ -102,7 +102,7 @@ describe Card::Set::Right::DownvoteeSearch do
             company = Card["Apple Inc"]
             topic = Card["Force"]
             # show downvotee 
-            Card::Auth.current_id = Card['Joe User'].id
+            Card::Auth.current_id = Card["Joe User"].id
             Card::Auth.as_bot do
               card_to_be_voted_down = topic.vote_count_card
               card_to_be_voted_down.vote_down
@@ -140,7 +140,7 @@ describe Card::Set::Right::DownvoteeSearch do
             }
             Card.create! :type_id=>Card::MetricValueID,:subcards=>subcard
             # show downvotee 
-            Card::Auth.current_id = Card['Joe User'].id
+            Card::Auth.current_id = Card["Joe User"].id
             Card::Auth.as_bot do
               card_to_be_voted_down = @metric.vote_count_card
               card_to_be_voted_down.vote_down
@@ -179,7 +179,7 @@ describe Card::Set::Right::DownvoteeSearch do
             }
             Card.create! :type_id=>Card::MetricValueID,:subcards=>subcard
             # show downvotee 
-            Card::Auth.current_id = Card['Joe User'].id
+            Card::Auth.current_id = Card["Joe User"].id
             Card::Auth.as_bot do
               card_to_be_voted_down = @metric.vote_count_card
               card_to_be_voted_down.vote_down

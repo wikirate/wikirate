@@ -5,7 +5,7 @@ format :html do
 
   view :header do |args|
     icon_card = Card.fetch("#{card.cardname.right}+icon")
-    icon = icon_card ? "<i class='fa fa-#{icon_card.content}></i>" : ''
+    icon = icon_card ? "<i class='fa fa-#{icon_card.content}></i>" : ""
     if args[:home_view] == :open_profile
       %{
         <div class="card-header #{ args[:header_class] }">

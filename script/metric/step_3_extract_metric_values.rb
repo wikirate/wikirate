@@ -1,9 +1,9 @@
-require File.expand_path('../../../config/environment',  __FILE__)
-require 'colorize'
-require 'json'
-require 'byebug'
-require 'rubygems'
-require 'csv'
+require File.expand_path("../../../config/environment",  __FILE__)
+require "colorize"
+require "json"
+require "byebug"
+require "rubygems"
+require "csv"
 accepted_snippet_name = Hash.new
 
 # Please do the clean up after this script
@@ -22,7 +22,7 @@ certh_json = ARGV[1]
 puts "Metric Mapping File Path: #{metric_mapping_file_path}"
 puts "CERTH Json File Path: #{certh_json}"
 
-CSV.foreach(metric_mapping_file_path,:encoding => 'windows-1251:utf-8',:headers => true, :header_converters => :symbol, :converters => :all) do |row|
+CSV.foreach(metric_mapping_file_path,:encoding => "windows-1251:utf-8",:headers => true, :header_converters => :symbol, :converters => :all) do |row|
   if row[:snippet_name] and row[:snippet_provider]
     accepted_snippet_name["#{row[:snippet_provider]}+#{row[:snippet_name]}"] = "#{row[:designer]}+#{row[:name]}"
   end
@@ -110,7 +110,7 @@ Card::Auth.as_bot do
     result.each do |key,value|
       result_str += "#{key},#{value}\n"
     end
-    File.open("script/metric/csv/metric_to_import.csv", 'w') do |file| 
+    File.open("script/metric/csv/metric_to_import.csv", "w") do |file| 
       file.write(result_str) 
     end
   rescue RuntimeError=> bang

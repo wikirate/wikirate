@@ -1,20 +1,20 @@
 # -*- encoding : utf-8 -*-
-require 'link_thumbnailer'
+require "link_thumbnailer"
 
-describe Card::Set::Type::Source, 'source preview' do
+describe Card::Set::Type::Source, "source preview" do
 
   describe "rendering preview view" do
     before do
       @url = "http://existingpage.com"
       @company = "Amazon.com, Inc."
       @topic = "Natural Resource Use"
-      @existing_source = create_page_with_sourcebox @url,{"+Company"=>@company,"+Topic"=>@topic},'false'
+      @existing_source = create_page_with_sourcebox @url,{"+Company"=>@company,"+Topic"=>@topic},"false"
     end
 
     context "text source" do
       before do
-        text = 'There are 2 hard problems in computer science: cache '\
-               'invalidation, naming things, and off-by-1 errors.'
+        text = "There are 2 hard problems in computer science: cache "\
+               "invalidation, naming things, and off-by-1 errors."
         @text_source = create_source text: text
         @result = @text_source.format._render_preview
       end
@@ -84,10 +84,10 @@ describe Card::Set::Type::Source, 'source preview' do
     end
     context "link source" do
       before do
-        @url = 'http://wagn.org'
+        @url = "http://wagn.org"
         @company = "Amazon.com, Inc."
         @topic = "Natural Resource Use"
-        @existing_source = create_page_with_sourcebox @url,{"+Company"=>@company,"+Topic"=>@topic},'false'
+        @existing_source = create_page_with_sourcebox @url,{"+Company"=>@company,"+Topic"=>@topic},"false"
         @result = @existing_source.format._render_preview
       end
       it "shows correction options" do

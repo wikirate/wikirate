@@ -44,7 +44,7 @@ module Formula
         private
 
         def normalize_year_expr expr
-          expr.sub('year:','').tr('?', '0').strip
+          expr.sub("year:","").tr("?", "0").strip
         end
 
         def year? y
@@ -56,10 +56,10 @@ module Formula
           when /^[0?]$/ then 0
           when /^[+-]?\d+$/ then expr.to_i
           when /,/
-            years = expr.split(',').map(&:to_i)
+            years = expr.split(",").map(&:to_i)
             year_list years
           when /\.\./ then
-            start, stop = expr.split('..').map(&:to_i)
+            start, stop = expr.split("..").map(&:to_i)
             year_range(start, stop)
           end
         end

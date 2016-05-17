@@ -1,6 +1,6 @@
 module Formula
   class Wolfram < Calculator
-    INTERPRETER = 'https://www.wolframcloud.com/objects/92f1e212-7875-49f9-888f-b5b4560b7686'
+    INTERPRETER = "https://www.wolframcloud.com/objects/92f1e212-7875-49f9-888f-b5b4560b7686"
     WHITELIST = ::Set.new(%w(Boole If Switch Map)).freeze
 
 
@@ -42,19 +42,19 @@ module Formula
         @company_index[company] = company_index
         company_str =
           input_values.map.with_index do |value, i|
-            if value == 'Unknown'
+            if value == "Unknown"
               "\"#{value}\""
             else
-              @input.type(i) == 'Number' ? value : "\"#{value}\""
+              @input.type(i) == "Number" ? value : "\"#{value}\""
             end
-          end.join(',')
+          end.join(",")
         input_by_year[year] << "{#{company_str}}"
         company_index += 1
       end
       input_by_year.each_pair do |year, values|
         year_str << "\"#{year}\" -> {#{values.join ','}}"
       end
-      wl_input = year_str.join ','
+      wl_input = year_str.join ","
       "Apply[(#{wl_formula})&,<| #{wl_input} |>,{2}]"
     end
 
@@ -68,12 +68,12 @@ module Formula
     def exec_lambda expr
       uri = URI.parse(INTERPRETER)
       # TODO: error handling
-      response = Net::HTTP.post_form uri, 'expr' => expr
+      response = Net::HTTP.post_form uri, "expr" => expr
 
       begin
         body = JSON.parse(response.body)
-        if body['Success']
-         JSON.parse body['Result']
+        if body["Success"]
+         JSON.parse body["Result"]
         else
           @errors << "wolfram syntax error: #{body['MessagesText'].join("\n")}"
           return false
@@ -85,7 +85,7 @@ module Formula
 
     def save_to_convert? expr
       not_on_whitelist =
-        expr.gsub(/\{\{([^}])+\}\}/, '').gsub(/"[^"]+"/,'')
+        expr.gsub(/\{\{([^}])+\}\}/, "").gsub(/"[^"]+"/,"")
           .scan(/[a-zA-Z][a-zA-Z]+/).reject do |word|
           WHITELIST.include? word
         end

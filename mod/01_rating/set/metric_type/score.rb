@@ -25,14 +25,14 @@ def normalize_value value
 end
 
 def value_type
-  'Number'
+  "Number"
 end
 
 view :select do |_args|
-  options = [['-- Select --', '']] + card.option_names.map { |x| [x, x] }
-  select_tag('pointer_select',
+  options = [["-- Select --", ""]] + card.option_names.map { |x| [x, x] }
+  select_tag("pointer_select",
              options_for_select(options, card.item_names.first),
-             class: 'pointer-select form-control'
+             class: "pointer-select form-control"
             )
 end
 
@@ -58,20 +58,20 @@ format :html do
     option_names =
       Card.search type_id: MetricID,
                   right_plus: [
-                    '*metric type',
-                    content: ['in', '[[Formula]]', '[[Researched]]']
-                  ], sort: 'name', return: :name
-    options = [['-- Select --', '']] + option_names.map { |x| [x, x] }
+                    "*metric type",
+                    content: ["in", "[[Formula]]", "[[Researched]]"]
+                  ], sort: "name", return: :name
+    options = [["-- Select --", ""]] + option_names.map { |x| [x, x] }
     new_name_editor_wrap(options, option_names)
   end
 
   def new_name_editor_wrap options, option_names
     editor_wrap :card do
-      hidden_field_tag('card[subcards][+metric][content]', option_names.first,
-                       class: 'card-content') +
-        select_tag('pointer_select',
+      hidden_field_tag("card[subcards][+metric][content]", option_names.first,
+                       class: "card-content") +
+        select_tag("pointer_select",
                    options_for_select(options, option_names.first),
-                   class: 'pointer-select form-control') +
+                   class: "pointer-select form-control") +
         help_text.html_safe
     end
   end
@@ -85,22 +85,22 @@ format :html do
   end
 
   def default_thumbnail_subtitle_args args
-    args[:text] ||= 'scored by'
+    args[:text] ||= "scored by"
     args[:author] ||= card_link card.scorer
   end
 
   view :designer_info do |args|
-    card_link card.metric_designer_card.cardname.field('contribution'),
-              text: author_info(card.metric_designer_card, 'Designed by')
+    card_link card.metric_designer_card.cardname.field("contribution"),
+              text: author_info(card.metric_designer_card, "Designed by")
 
-    wrap_each_with :div, class: 'metric-designer-info' do
+    wrap_each_with :div, class: "metric-designer-info" do
       [
         card_link(
-          card.metric_designer_card.cardname.field('contribution'),
-          text: author_info(card.metric_designer_card, 'Designed by', true)),
+          card.metric_designer_card.cardname.field("contribution"),
+          text: author_info(card.metric_designer_card, "Designed by", true)),
         card_link(
-          card.scorer_card.cardname.field('contribution'),
-          text: author_info(card.scorer_card, 'Scored by', true))
+          card.scorer_card.cardname.field("contribution"),
+          text: author_info(card.scorer_card, "Scored by", true))
       ]
     end
   end
@@ -110,10 +110,10 @@ format :html do
   end
 
   view :score_thumbnail do |args|
-    link_text = author_info card.scorer_card, 'Scored by',
+    link_text = author_info card.scorer_card, "Scored by",
                             "#{time_ago_in_words card.created_at} ago"
-    wrap_with :div, class: 'metric-designer-info' do
-      card_link card, class: 'row list-group-item',
+    wrap_with :div, class: "metric-designer-info" do
+      card_link card, class: "row list-group-item",
                       text: link_text
     end
   end

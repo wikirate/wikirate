@@ -1,7 +1,7 @@
 format :html do
   view :open do |args|
     if (l = card.left) && (Auth.current_id == l.id || l.type_code == :wikirate_company)
-      args.merge! :slot_class=>'editable'
+      args.merge! :slot_class=>"editable"
     end
     super(args)
   end

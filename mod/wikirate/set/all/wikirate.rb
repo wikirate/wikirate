@@ -1,6 +1,6 @@
 
-require 'net/https'
-require 'uri'
+require "net/https"
+require "uri"
 
 def number? str
   true if Float(str)
@@ -10,11 +10,11 @@ end
 
 format do
   view :cite, closed: true do
-    ''
+    ""
   end
 
   view :raw_or_blank, perms: :none, closed: true do |args|
-    _render(:raw, args) || ''
+    _render(:raw, args) || ""
   end
 end
 
@@ -27,7 +27,7 @@ format :html do
     if card.real?
       card.format.render_source
     else
-      Card['*Vertical_Logo'].format.render_source args.merge(size: 'large')
+      Card["*Vertical_Logo"].format.render_source args.merge(size: "large")
     end
   end
 
@@ -50,7 +50,7 @@ format :html do
       HTML
 
     else
-      'Only card with numeric content can be shown as progress bar.'
+      "Only card with numeric content can be shown as progress bar."
     end
   end
 
@@ -81,7 +81,7 @@ format :html do
   attr_accessor :citations
 
   def default_menu_link_args args
-    args[:menu_icon] = 'edit'
+    args[:menu_icon] = "edit"
   end
 
   def default_menu_args args
@@ -99,12 +99,12 @@ format :html do
     total_number = items.size
     fetch_number = [total_number, 4].min
 
-    result = ''
+    result = ""
     if fetch_number > 1
       result += items[0..(fetch_number - 2)].map do |c|
         subformat(c).render(render_view)
-      end.join(' , ')
-      result += ' and '
+      end.join(" , ")
+      result += " and "
     end
 
     result +
@@ -141,12 +141,12 @@ format :html do
       after_card = Card[card_name]
       if !after_card
         Rails.logger.info "Expect #{card_name} exist"
-        '' # otherwise it will return true
+        "" # otherwise it will return true
       else
         "<div class='modal-window'>#{subformat(after_card).render_core} </div>"
       end
     else
-      ''
+      ""
     end
   end
 
@@ -159,7 +159,7 @@ format :html do
   view :showcase_list, tags: :unknown_ok do |args|
     item_type_name = card.cardname.right.split.last
     icon_card = Card.fetch("#{item_type_name}+icon")
-    hidden_class = card.content.empty? ? 'hidden' : ''
+    hidden_class = card.content.empty? ? "hidden" : ""
     wrap args.merge(slot_class: "showcase #{hidden_class}") do
       %(
         #{subformat(icon_card)._render_core}
@@ -197,14 +197,14 @@ format :html do
       view: (args[:item] || (@nest_opts && @nest_opts[:view]) ||
             default_item_view)
     }
-    joint = args[:joint] || ' '
+    joint = args[:joint] || " "
 
     if (type = card.item_type)
       item_args[:type] = type
     end
 
     enrich_result(card.item_names).map do |icard|
-      content_tag :div, class: 'yinyang-row' do
+      content_tag :div, class: "yinyang-row" do
         nest(icard, item_args.clone).html_safe
       end.html_safe
     end.join(joint).html_safe
@@ -220,7 +220,7 @@ format :html do
       # 2) add "yinyang drag item" on the right
       # this way we can make sure that the card always exists with a
       # "yinyang drag item+*right" structure
-      Card.fetch main_name, item_name, 'yinyang drag item'
+      Card.fetch main_name, item_name, "yinyang drag item"
     end
   end
 
@@ -280,14 +280,14 @@ module ClassMethods
 
   def claim_subjects
     ccc = claim_count_cache
-    ccc.read('CLAIM-SUBJECTS') || begin
+    ccc.read("CLAIM-SUBJECTS") || begin
       hash = {}
       connection = ActiveRecord::Base.connection
       connection.select_all(CLAIM_SUBJECT_SQL).each do |row|
-        hash[row['id']] ||= []
-        hash[row['id']] << row['subject']
+        hash[row["id"]] ||= []
+        hash[row["id"]] << row["subject"]
       end
-      ccc.write 'CLAIM-SUBJECTS', hash
+      ccc.write "CLAIM-SUBJECTS", hash
     end
   end
 
@@ -295,17 +295,17 @@ module ClassMethods
     claim_count_cache.reset
   end
 
-  def tag_filter_query filter_words, extra={}, tag_types=['tag']
+  def tag_filter_query filter_words, extra={}, tag_types=["tag"]
     filter_words = [filter_words] unless Array === filter_words
     search_args = filter_words.inject({}) do |res, filter|
       hash = {}
-      hash['and'] = res unless res.empty?
+      hash["and"] = res unless res.empty?
       hash.merge(
-        'right_plus' =>
+        "right_plus" =>
               if tag_types.size > 1
-                [{ 'name' => ['in'] + tag_types }, 'refer_to' => filter]
+                [{ "name" => ["in"] + tag_types }, "refer_to" => filter]
               else
-                [tag_types.first, 'refer_to' => filter]
+                [tag_types.first, "refer_to" => filter]
               end
       )
     end
@@ -329,8 +329,8 @@ format :json do
     result
   end
   view :id_atom do |_args|
-    if !params['start'] || (params['start'] && (start = params['start'].to_i) &&
-       card.updated_at.strftime('%Y%m%d%H%M%S').to_i >= start)
+    if !params["start"] || (params["start"] && (start = params["start"].to_i) &&
+       card.updated_at.strftime("%Y%m%d%H%M%S").to_i >= start)
       h = _render_atom
       h[:id] = card.id  if card.id
       h

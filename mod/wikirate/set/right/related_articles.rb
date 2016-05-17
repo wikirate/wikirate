@@ -1,7 +1,7 @@
 format :html do
 
   view :core do |args|
-    body = ''
+    body = ""
     if claim = card.left and claim.type_id == Card::ClaimID and analysis_names = claim.analysis_names and analysis_names.length > 0
       # unnecessary if we do this as type plus right
       cited, uncited = [], []
@@ -17,14 +17,14 @@ format :html do
       if params[:general_overview] && params[:company]
         body +=
           content_tag :div,
-                      class: 'related-articles cited-articles related-overviews cited-overviews' do
+                      class: "related-articles cited-articles related-overviews cited-overviews" do
             card_link "#{params[:company]}+notes_page",
-                      text: 'Cite in General Overview',
+                      text: "Cite in General Overview",
                       path_opts: {
                         citable: claim.cardname.url_key,
                         edit_general_overview: true
                       },
-                      class: 'cite-button'
+                      class: "cite-button"
           end
       end
       if uncited.any?
@@ -59,7 +59,7 @@ format :html do
     topic_name   = %{<span class="topic">#{  analysis_name.to_name.tag_name  }</span>}
     simple_link  = %{[[#{analysis_name}|#{company_name}#{topic_name}]]}
 
-    citation_link = cited ? '' : citation_link( analysis_name.to_name )
+    citation_link = cited ? "" : citation_link( analysis_name.to_name )
 
     process_content %{<div class=\"analysis-link\">#{simple_link} #{citation_link}</div>}
   end

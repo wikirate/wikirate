@@ -1,12 +1,12 @@
-require File.expand_path('../../config/environment',  __FILE__)
+require File.expand_path("../../config/environment",  __FILE__)
 Card::Auth.as_bot do
   Card.create! :name=>"*upload max",:type_id=>Card::PhraseID,:content=>"20" if not Card.exists?"*upload max"
 end
 # bypass SSL certificate verification in open-uri?
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 # Open-URI has a 10KB limit on StringIO objects, anything above that and it stores it as a temp file.
-OpenURI::Buffer.send :remove_const, 'StringMax' if OpenURI::Buffer.const_defined?('StringMax')
-OpenURI::Buffer.const_set 'StringMax', 0
+OpenURI::Buffer.send :remove_const, "StringMax" if OpenURI::Buffer.const_defined?("StringMax")
+OpenURI::Buffer.const_set "StringMax", 0
 source_cards = Card.search :type_id=>Card::SourceID, :right_plus=>["link",{:content=>["ne",""]}]
 source_cards.each do |source_card|
 
@@ -15,8 +15,8 @@ source_cards.each do |source_card|
     source_link_card = source_card.fetch :trait=>:wikirate_link
     url = source_link_card.content
     original_url = url
-    url.gsub!(/ /, '%20')
-    url.gsub!(/https:/, 'http:')
+    url.gsub!(/ /, "%20")
+    url.gsub!(/https:/, "http:")
     uri = nil
 
     puts "#{source_card.name},#{original_url}"
@@ -35,7 +35,7 @@ source_cards.each do |source_card|
     content_type = uri.meta["content-type"]
      if not content_type.start_with?"text/html" and not content_type.start_with?"image/"
       puts "\t#{url},#{content_type},#{uri.meta['content-disposition']},#{uri.path}"
-      filename = if cd = uri.meta['content-disposition'] and matched = cd.match(/filename=(\"?)(.+)\1/)
+      filename = if cd = uri.meta["content-disposition"] and matched = cd.match(/filename=(\"?)(.+)\1/)
         matched[2]
       else
         File.basename(URI.parse(url).path)

@@ -4,7 +4,7 @@
 #ARGV.unshift '--default-path=/opt/wagn'
 #ARGV.unshift '--'
 #ARGV.unshift '--no-simplecov'
-ARGV.unshift 'cucumber'
-APP_PATH = File.expand_path('../../config/application',  __FILE__)
-require File.expand_path('../../config/boot',  __FILE__)
-require 'wagn/commands'
+ARGV.unshift "cucumber"
+APP_PATH = File.expand_path("../../config/application",  __FILE__)
+require File.expand_path("../../config/boot",  __FILE__)
+require "wagn/commands"

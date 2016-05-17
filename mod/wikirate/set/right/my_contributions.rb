@@ -28,18 +28,18 @@ format :html do
   view :core do |args|
     if card.sections
       card.sections.sort.reverse.map do |count, name, contr_name|
-        section_args = { view: :open, title: name, hide: 'menu' }
+        section_args = { view: :open, title: name, hide: "menu" }
         # FIXME - cardname
-        if name == 'Initiative'
+        if name == "Initiative"
           nest Card.fetch(contr_name), section_args.merge(item: {
-            view: :content, structure: 'initiative item'
+            view: :content, structure: "initiative item"
           })
         else
           nest Card.fetch(contr_name), section_args
         end
       end.join "\n"
     else
-      ''
+      ""
     end
   end
 
@@ -57,7 +57,7 @@ format :html do
   end
 
   view :contribution_counts do |args|
-    content_tag :div, class: 'counts' do
+    content_tag :div, class: "counts" do
       if card.sections
         card.sections.map do |count, name, contr_name|
           content_tag :a, class: "item", href: "##{contr_name}" do
@@ -68,7 +68,7 @@ format :html do
           end
         end.join("\n")
       else
-        ''
+        ""
       end
     end
   end

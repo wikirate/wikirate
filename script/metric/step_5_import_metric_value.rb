@@ -1,6 +1,6 @@
 
-require File.expand_path('../../../config/environment',  __FILE__)
-require 'colorize'
+require File.expand_path("../../../config/environment",  __FILE__)
+require "colorize"
 
 def valid_new_metric? metric_name, company, year
   Card.exists?(metric_name) &&
@@ -25,7 +25,7 @@ Card::Auth.as_bot do
   source_cache = Hash.new
   csv_file_path = ARGV[0]
   puts "CSV file to import : #{csv_file_path}"
-  CSV.foreach(csv_file_path, encoding: 'windows-1251:utf-8', headers: true,
+  CSV.foreach(csv_file_path, encoding: "windows-1251:utf-8", headers: true,
     header_converters: :symbol, converters: :all) do |row|
     
     metric_name = row[:metric]
@@ -91,11 +91,11 @@ Card::Auth.as_bot do
           sources.each do |source|
             sourcepage = source_cache[source]
             if sourcepage == nil
-              Card::Env.params[:sourcebox] = 'true'
+              Card::Env.params[:sourcebox] = "true"
               args = {
                        :type_id=>Card::SourceID,
                        :subcards=>{
-                         '+Link' => {:content=> source}
+                         "+Link" => {:content=> source}
                        }
                      }
               puts "Source Card created #{args}"

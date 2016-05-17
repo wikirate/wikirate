@@ -193,12 +193,12 @@ module Formula
       def metric_value_cards_query opts={}
         left_left = {}
         if opts[:metrics].present?
-          left_left[:left] = { name: ['in'] + Array.wrap(opts[:metrics]) }
+          left_left[:left] = { name: ["in"] + Array.wrap(opts[:metrics]) }
         end
         if opts[:companies].present?
-          left_left[:right] = { name: ['in'] + Array.wrap(opts[:companies]) }
+          left_left[:right] = { name: ["in"] + Array.wrap(opts[:companies]) }
         end
-        query = { right: 'value', left: { type_id: Card::MetricValueID } }
+        query = { right: "value", left: { type_id: Card::MetricValueID } }
         query[:left][:left] = left_left if left_left.present?
         query[:left][:right] = opts[:year].to_s if opts[:year]
         query
@@ -208,7 +208,7 @@ module Formula
         query =  { type_id: Card::YearlyValueID }
         if opts[:variables]
           query[:left] =
-            { left: { name: ['in'] + Array.wrap(opts[:variables]) } }
+            { left: { name: ["in"] + Array.wrap(opts[:variables]) } }
         end
         query
       end

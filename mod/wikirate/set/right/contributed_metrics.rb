@@ -6,7 +6,7 @@ def contribution_count
       edited_by: cardname.left,
       linked_to_by: {
         left: cardname.left,
-        right: ['in', '*upvotes', '*downvotes']
+        right: ["in", "*upvotes", "*downvotes"]
       }
     },
     return: :count

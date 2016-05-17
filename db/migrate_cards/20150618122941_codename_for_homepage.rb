@@ -2,6 +2,6 @@
 
 class CodenameForHomepage < Card::Migration
   def up
-    Card['home'].update_attributes! :codename=>:homepage
+    Card["home"].update_attributes! :codename=>:homepage
   end
 end

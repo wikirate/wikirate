@@ -8,27 +8,27 @@ end
 format :html do
   def default_content_formgroup_args args
     super(args)
-    args[:edit_fields]['+value type'] = { title: 'Value Type' }
-    args[:edit_fields]['+research policy'] = { title: 'Research Policy' }
-    args[:edit_fields]['+report_type'] = { title: 'Report Type' }
+    args[:edit_fields]["+value type"] = { title: "Value Type" }
+    args[:edit_fields]["+research policy"] = { title: "Research Policy" }
+    args[:edit_fields]["+report_type"] = { title: "Report Type" }
   end
 
   def default_tabs_args args
     args[:tabs] = {
-      'Details' => path(view: 'details_tab'),
-      "#{fa_icon :globe} Sources" => path(view: 'source_tab'),
-      "#{fa_icon :comment} Discussion" => path(view: 'discussion_tab'),
-      'Scores' => path(view: 'scores_tab')
+      "Details" => path(view: "details_tab"),
+      "#{fa_icon :globe} Sources" => path(view: "source_tab"),
+      "#{fa_icon :comment} Discussion" => path(view: "discussion_tab"),
+      "Scores" => path(view: "scores_tab")
     }
-    args[:default_tab] = 'Details'
+    args[:default_tab] = "Details"
   end
 
   view :details_tab do |args|
-    content = wrap_with :div, class: 'metric-details-content' do
+    content = wrap_with :div, class: "metric-details-content" do
       [
         _render_add_value_buttons(args),
-        nest(card.about_card, view: :titled, title: 'About'),
-        nest(card.methodology_card, view: :titled, title: 'Methodology'),
+        nest(card.about_card, view: :titled, title: "About"),
+        nest(card.methodology_card, view: :titled, title: "Methodology"),
         _render_contributing(args)
       ]
     end
@@ -38,22 +38,22 @@ format :html do
   end
 
   view :contributing do |args|
-    heading = content_tag(:div, 'Contributing', class: 'heading-content')
+    heading = content_tag(:div, "Contributing", class: "heading-content")
     value_type =
       content_tag(:div, _render_value_type_detail(args))
-    content = wrap_with :div, class: 'contributing-details' do
+    content = wrap_with :div, class: "contributing-details" do
       [
         value_type,
         nest(card.report_type_card, view: :titled,
-                                    title: 'Report type',
+                                    title: "Report type",
                                     items: { view: :name }),
         nest(card.research_policy_card, view: :titled,
-                                        title: 'Research Policy',
+                                        title: "Research Policy",
                                         items: { view: :name }),
         nest(card.campaign_card, view: :titled,
-                                 title: 'Projects',
-                                 items: { view: 'content',
-                                          structure: 'list item' }),
+                                 title: "Projects",
+                                 items: { view: "content",
+                                          structure: "list item" }),
         _render_import_button(args)
       ]
     end
@@ -94,7 +94,7 @@ format :html do
 
   view :scores_tab do |args|
     tab_wrap do
-      wrap_with :div, class: 'list-group' do
+      wrap_with :div, class: "list-group" do
         card.score_cards.map do |item|
           subformat(item)._render_score_thumbnail(args)
         end
@@ -103,7 +103,7 @@ format :html do
   end
 
   def add_value_path
-    '/new/metric_value?slot[metric]=' + _render_cgi_escape_name
+    "/new/metric_value?slot[metric]=" + _render_cgi_escape_name
   end
 
   view :add_value_buttons do |_args|

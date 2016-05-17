@@ -1,10 +1,10 @@
 # changes label of name on claims (should be obviatable)
 
-card_accessor :vote_count, type: :number, default: '0'
-card_accessor :upvote_count, type: :number, default: '0'
-card_accessor :downvote_count, type: :number, default: '0'
-card_accessor :direct_contribution_count, type: :number, default: '0'
-card_accessor :contribution_count, type: :number, default: '0'
+card_accessor :vote_count, type: :number, default: "0"
+card_accessor :upvote_count, type: :number, default: "0"
+card_accessor :downvote_count, type: :number, default: "0"
+card_accessor :direct_contribution_count, type: :number, default: "0"
+card_accessor :contribution_count, type: :number, default: "0"
 
 def indirect_contributor_search_args
   [{ right_id: VoteCountID, left: name }]
@@ -59,9 +59,9 @@ format :html do
       article_name = parent.parent.card.cardname.url_key
       url =
         "/#{article_name}?citable=#{card.cardname.url_key}&edit_article=true"
-      link_to 'Cite!', url, class: 'cite-button'
+      link_to "Cite!", url, class: "cite-button"
     else
-      ''
+      ""
     end
   end
 
@@ -96,22 +96,22 @@ format :html do
     # FIXME: cardnames
     if (not topics = Card["#{card.name}+topics"]) ||
        topics.item_names.empty?
-      'improve this note by adding a topic.'
+      "improve this note by adding a topic."
     elsif (not companies = Card["#{card.name}+company"]) ||
           companies.item_names.empty?
-      'improve this note by adding a company.'
+      "improve this note by adding a company."
     else
       cited_in = Card.search refer_to: card.name,
                              left: {type_id: WikirateAnalysisID},
                              right: {name: Card[:overview].name}
       if card.analysis_names.size > cited_in.size
-        'cite this note in related overviews.'
+        "cite this note in related overviews."
       end
     end
   end
 
   view :sample_citation do |_args|
-    tip = 'easily cite this note by pasting the following:' +
+    tip = "easily cite this note by pasting the following:" +
           text_area_tag(:citable_note, card.default_citation)
     %{ <div class="sample-citation">#{ render :tip, tip: tip }</div> }
   end
@@ -172,7 +172,7 @@ end
 # TODO: check if this can be moved to :validate stage
 # (was in before: :approve)
 event :validate_note, :prepare_to_validate, on: :save do
-  errors.add :note, 'is too long (100 character maximum)' if name.length > 100
+  errors.add :note, "is too long (100 character maximum)" if name.length > 100
 end
 
 event :validate_source, :validate, on: :save do
@@ -182,14 +182,14 @@ event :validate_source, :validate, on: :save do
   #    (eg renaming)
 
   # first, get the source card from request
-  source_card = subcards['+source'] || subcards['+Source']
+  source_card = subcards["+source"] || subcards["+Source"]
   return unless source_card || new_card?
   check_source source_card
 end
 
 def check_source source_card
   if !source_card || !source_card.content.present?
-    errors.add :source, 'is empty'
+    errors.add :source, "is empty"
   else
     source_card.item_cards.each do |item_card|
       if !item_card.real?

@@ -9,7 +9,7 @@ view :core do |args|
 
   topics = Card.search :type_id=>WikirateTopicID, :sort=>:name, :return=>:name
   topic_options = topics.map { |t| [t,t.to_name.key] }
-  topic_options.unshift [ '-- Select Topic --', '' ]
+  topic_options.unshift [ "-- Select Topic --", "" ]
   topic_select = select_tag "topic", options_for_select(topic_options, topic)
 
 
@@ -36,11 +36,11 @@ view :core do |args|
       [ label, company_name.to_name.key ]
     end
 
-    empty_option = [[ "-- Select Company #{i} --", '' ]]
+    empty_option = [[ "-- Select Company #{i} --", "" ]]
     company_selects << select_tag( "company#{i}", options_for_select(empty_option + company_options, ckey))
   end
 
-  analysis_args = { :view=>:titled, :show=>'title_link', :structure=>'analysis comparison'}
+  analysis_args = { :view=>:titled, :show=>"title_link", :structure=>"analysis comparison"}
 
 
   %{

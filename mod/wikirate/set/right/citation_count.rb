@@ -1,6 +1,6 @@
 format :html do
   view :titled do |args|
-    args.merge! slot_class: ('no-citations' if no_citations?(args))
+    args.merge! slot_class: ("no-citations" if no_citations?(args))
     super(args)
   end
 
@@ -13,7 +13,7 @@ format :html do
 
   def default_related_overview_modal_box_args(args)
     link_text = subformat(card).render_titled(
-      args.merge(title: 'Citations', hide: 'menu')
+      args.merge(title: "Citations", hide: "menu")
     )
     link_args = args[:link_args] =
       args.merge(
@@ -35,7 +35,7 @@ format :html do
 
   def no_citations?(args)
     value = _render_core args
-    value == '0' || value == ''
+    value == "0" || value == ""
   end
 
   def related_overview_card

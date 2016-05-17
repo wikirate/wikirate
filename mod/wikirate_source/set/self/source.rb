@@ -9,7 +9,7 @@ format :json do
     metadata = MetaData.new
     url = Card::Env.params[:url]||args[:url] ||""
     if url.empty?
-      metadata.error = 'empty url'
+      metadata.error = "empty url"
       return metadata.to_json
     end
     begin
@@ -17,7 +17,7 @@ format :json do
     rescue
     end
     if !metadata.website
-      metadata.error = 'invalid url'
+      metadata.error = "invalid url"
       return metadata.to_json
     end
     duplicates = Source.find_duplicates url
@@ -40,25 +40,25 @@ format :json do
     metadata.to_json
   end
   def valid_content_type? content_type, user_agent
-    allow_content_type = ['image/png', 'image/jpeg']
+    allow_content_type = ["image/png", "image/jpeg"]
     # for case, "text/html; charset=iso-8859-1"
     allow_content_type.include?(content_type) ||
-      content_type.start_with?('text/html') ||
-      content_type.start_with?('text/plain') ||
+      content_type.start_with?("text/html") ||
+      content_type.start_with?("text/plain") ||
       firefox?(user_agent)
   end
 
   def invalid_x_frame_options? options
     options &&
-      (options.upcase.include?('DENY') ||
-      options.upcase.include?('SAMEORIGIN'))
+      (options.upcase.include?("DENY") ||
+      options.upcase.include?("SAMEORIGIN"))
   end
 
   def iframable_options url
     # escape space in url, eg,
     # http://www.businessweek.com/articles/2014-10-30/
     # tim-cook-im-proud-to-be-gay#r=most popular
-    url.gsub!(/ /, '%20')
+    url.gsub!(/ /, "%20")
     curl = Curl::Easy.new(url)
     curl.follow_location = true
     curl.max_redirects = 5
@@ -90,7 +90,7 @@ format :json do
     url = Card::Env.params[:url]
     if url
       iframe =
-        iframable?(url, request ? request.env['HTTP_USER_AGENT'] : nil)
+        iframable?(url, request ? request.env["HTTP_USER_AGENT"] : nil)
       result = { result: iframe }
     else
       result = { result: false }
@@ -104,11 +104,11 @@ class MetaData
   attr_accessor :title, :description, :image_url, :website, :error
 
   def initialize
-    @title = ''
-    @description = ''
-    @image_url = ''
-    @website = ''
-    @error = ''
+    @title = ""
+    @description = ""
+    @image_url = ""
+    @website = ""
+    @error = ""
   end
 
   def set_meta_data title, desc, image_url

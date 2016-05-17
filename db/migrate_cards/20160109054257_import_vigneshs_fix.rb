@@ -2,6 +2,6 @@
 
 class ImportVigneshsFix < Card::Migration
   def up
-    import_json 'vigneshs_fix.json'
+    import_json "vigneshs_fix.json"
   end
 end

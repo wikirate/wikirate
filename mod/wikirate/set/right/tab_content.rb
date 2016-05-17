@@ -2,7 +2,7 @@ format :html do
   view :core do |_args|
     # show the content based on the url parameter
     # tabs: metric, topic, company, note, reference, overview
-    tab = Env.params['tab']
+    tab = Env.params["tab"]
     left_name = card.cardname.left
     card_tab_name =
       if !tab.nil?
@@ -13,7 +13,7 @@ format :html do
     if (content_card = Card.fetch card_tab_name)
       subformat(content_card).render_content
     else
-      ''
+      ""
     end
   end
 end

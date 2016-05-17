@@ -27,8 +27,8 @@ format :html do
   end
 
   view :tab_containers, tags: :unknown_ok  do |_args|
-    source_structure_args = { structure: 'source_structure', show: 'header' }
-    loading_gif_html = Card['loading gif'].format.render_core
+    source_structure_args = { structure: "source_structure", show: "header" }
+    loading_gif_html = Card["loading gif"].format.render_core
     %{
     <div class="tab-content">
       <span class="close-tab fa fa-times"></span>
@@ -49,8 +49,8 @@ format :html do
   view :iframe_view, tags: :unknown_ok  do |args|
     case card.source_type_codename
     when :text
-      text_args = args.merge home_view: 'open', hide: 'toggle',
-                             title: 'Text Source'
+      text_args = args.merge home_view: "open", hide: "toggle",
+                             title: "Text Source"
       text_card = card.fetch trait: :text
       %{
         <div class="container-fluid">
@@ -64,7 +64,7 @@ format :html do
     when :file
       file_card = card.fetch trait: :file
       if (mime = file_card.file.content_type) && valid_mime_type?(mime)
-        if mime == 'application/pdf'
+        if mime == "application/pdf"
           iframe_html = %{
             <iframe id="source-preview-iframe"
             src="files/viewer.html?file=#{file_card.attachment.url}"
@@ -72,21 +72,21 @@ format :html do
             allow-scripts allow-forms" >
             </iframe>}
           content_tag(:div, iframe_html,
-                      { id: 'pdf-preview', class: 'webpage-preview' },
+                      { id: "pdf-preview", class: "webpage-preview" },
                       false)
         else
           content_tag(:div,
                       %{<img id="source-preview-iframe"
                         src="#{file_card.attachment.url}" />},
-                      { id: 'pdf-preview', class: 'webpage-preview' }, false)
+                      { id: "pdf-preview", class: "webpage-preview" }, false)
         end
       else
-        structure = 'source item preview'
+        structure = "source item preview"
         redirect_content = _render_content args.merge(structure: structure)
         content_tag(:div, content_tag(:div, redirect_content,
-                                      { class: 'redirect-notice' }, false),
-                    { id: 'source-preview-iframe',
-                      class: 'webpage-preview non-previewable' },
+                                      { class: "redirect-notice" }, false),
+                    { id: "source-preview-iframe",
+                      class: "webpage-preview non-previewable" },
                     false)
       end
     when :wikirate_link
@@ -96,13 +96,13 @@ format :html do
          sandbox="allow-same-origin allow-scripts allow-forms" ></iframe>
       }
       content_tag(:div, iframe_html,
-                  { id: 'webpage-preview', class: 'webpage-preview' }, false)
+                  { id: "webpage-preview", class: "webpage-preview" }, false)
 
     end
   end
 
   def valid_mime_type? mime_type
-    mime_type == 'application/pdf' || mime_type.start_with?('image/')
+    mime_type == "application/pdf" || mime_type.start_with?("image/")
   end
 
   view :hidden_information, tags: :unknown_ok do |args|
@@ -172,22 +172,22 @@ format :html do
       left: {
         type_id: Card::ClaimID
       },
-      right: 'source',
+      right: "source",
       link_to: card.name,
-      return: 'count'
+      return: "count"
     }
     related_metric_wql = {
       type_id: Card::MetricID,
       right_plus: [
         { type_id: Card::WikirateCompanyID },
         right_plus: [
-          { type: 'year' },
+          { type: "year" },
           right_plus: [
-            'source', { link_to: card.name }
+            "source", { link_to: card.name }
           ]
         ]
       ],
-      return: 'count'
+      return: "count"
     }
     claim_count = Card.search related_claim_wql
     metric_count = Card.search related_metric_wql

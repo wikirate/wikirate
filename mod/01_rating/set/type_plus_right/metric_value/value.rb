@@ -1,7 +1,7 @@
 
 
 def metric
-  cardname.parts[0..-4].join '+'
+  cardname.parts[0..-4].join "+"
 end
 
 def company
@@ -13,7 +13,7 @@ def year
 end
 
 def metric_plus_company
-  cardname.parts[0..-3].join '+'
+  cardname.parts[0..-3].join "+"
 end
 
 
@@ -42,7 +42,7 @@ def metric_plus_company_card
 end
 
 def unknown_value?
-  content.casecmp('unknown') == 0
+  content.casecmp("unknown") == 0
 end
 
 def option_names metric_name
@@ -58,18 +58,18 @@ format :html do
   end
 
   view :select do |args|
-    options = [['-- Select --', '']] +
+    options = [["-- Select --", ""]] +
               card.option_names(args[:metric_name]).map { |x| [x, x] }
     select_tag("card#{subcard_input_names}[content]",
                options_for_select(options),
-               class: 'pointer-select form-control'
+               class: "pointer-select form-control"
               )
   end
 
   view :editor do |args|
     if (metric_name = metric_name_from_params || card.metric) &&
        (metric_card = Card[metric_name]) &&
-       metric_card.value_type == 'Category'
+       metric_card.value_type == "Category"
       _render_select(args.merge(metric_name: metric_name))
     else
       super(args)
@@ -77,11 +77,11 @@ format :html do
   end
 
   view :timeline_row do |args|
-    args[:hide] = 'timeline_header timeline_add_new_link'
-    wrap_with :div, class: 'timeline container' do
-      wrap_with :div, class: 'timeline-body' do
+    args[:hide] = "timeline_header timeline_add_new_link"
+    wrap_with :div, class: "timeline container" do
+      wrap_with :div, class: "timeline-body" do
         [
-          (wrap_with :div, class: 'pull-left timeline-data' do
+          (wrap_with :div, class: "pull-left timeline-data" do
             subformat(card.left).render_timeline_data(args)
           end)
         ]
@@ -104,7 +104,7 @@ end
 event :update_related_calculations, :finalize,
       on: [:create, :update, :delete] do
   metrics = Card.search type_id: MetricID,
-                        right_plus: ['formula', { refer_to: metric }]
+                        right_plus: ["formula", { refer_to: metric }]
   metrics.each do |metric|
     metric.update_value_for! company: company_key, year: year
   end

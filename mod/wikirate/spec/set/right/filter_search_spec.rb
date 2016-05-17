@@ -3,7 +3,7 @@
 describe Card::Set::Right::FilterSearch do
 
   before do
-    login_as 'joe_user'
+    login_as "joe_user"
   end
   describe "views" do
     context "when rendering filter_form" do
@@ -64,10 +64,10 @@ describe Card::Set::Right::FilterSearch do
             Card::Env.params[:tag] = "thisisatestingtag"
 
             html = Card[:claim].format.render_core
-            expect(html).to have_tag('div',:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do
-              with_tag('div',:class=>"search-result-list") do
-                with_tag('div',:class=>"search-result-item item-content") do
-                  with_tag('div',:with=>{:id=>"whateverclaim"})
+            expect(html).to have_tag("div",:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do
+              with_tag("div",:class=>"search-result-list") do
+                with_tag("div",:class=>"search-result-item item-content") do
+                  with_tag("div",:with=>{:id=>"whateverclaim"})
                 end
               end
             end
@@ -78,29 +78,29 @@ describe Card::Set::Right::FilterSearch do
              Card::Env.params[:tag] = "nonexisitingtag"
 
             html = Card[:claim].format.render_core
-            expect(html).to have_tag('div',:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do
-              without_tag('div',:with=>{:id=>"whateverclaim"})
+            expect(html).to have_tag("div",:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do
+              without_tag("div",:with=>{:id=>"whateverclaim"})
             end
           end
           it "uses non related company" do
              Card::Env.params[:company] = "Iamnoangel"
             html = Card[:claim].format.render_core
-            expect(html).to have_tag('div',:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do
-              without_tag('div',:with=>{:id=>"whateverclaim"})
+            expect(html).to have_tag("div",:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do
+              without_tag("div",:with=>{:id=>"whateverclaim"})
             end
           end
           it "uses non related topic" do
              Card::Env.params[:topic] = "Iamnodemon"
             html = Card[:claim].format.render_core
-            expect(html).to have_tag('div',:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do
-              without_tag('div',:with=>{:id=>"whateverclaim"})
+            expect(html).to have_tag("div",:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do
+              without_tag("div",:with=>{:id=>"whateverclaim"})
             end
           end
           it "is cited" do
             Card::Env.params[:cited] = "yes"
             html = Card[:claim].format.render_core
-            expect(html).to have_tag('div',:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do
-              without_tag('div',:with=>{:id=>"whateverclaim"})
+            expect(html).to have_tag("div",:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do
+              without_tag("div",:with=>{:id=>"whateverclaim"})
             end
           end
           it "is not cited" do
@@ -109,8 +109,8 @@ describe Card::Set::Right::FilterSearch do
             new_article = Card.create :name=>"#{@new_company.name}+#{@new_topic.name}+#{Card[:overview].name}",:type_id=>Card::BasicID,:content=>"asdsad#{@claim_card.default_citation}"
 
             html = Card[:claim].format.render_core
-            expect(html).to have_tag('div',:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do
-              without_tag('div',:with=>{:id=>"whateverclaim"})
+            expect(html).to have_tag("div",:with=>{:id=>"#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}"}) do
+              without_tag("div",:with=>{:id=>"whateverclaim"})
             end
           end
         end
@@ -119,7 +119,7 @@ describe Card::Set::Right::FilterSearch do
             @claim_card1 = create_claim_with_url "whateverclaimrecent","http://www.google.com/yo",{"+company"=>{:content=>"[[#{@new_company.name}]]\r\n[[#{@new_company1.name}]]"},"+topic"=>{:content=>"[[#{@new_topic.name}]]\r\n[[#{@new_topic1.name}]]"},"+tag"=>{:content=>"[[thisisatestingtag]]\r\n[[thisisalsoatestingtag]]"}}
           end
           it "is most recent" do
-            Card::Env.params[:sort] = 'recent'
+            Card::Env.params[:sort] = "recent"
             html = Card[:claim].format.render_core
             expect(html.index("whateverclaimrecent")).to be <= html.index("whateverclaim")
           end
@@ -131,7 +131,7 @@ describe Card::Set::Right::FilterSearch do
               vc.save!
             end
 
-            Card::Env.params[:sort] = 'important'
+            Card::Env.params[:sort] = "important"
             html = Card[:claim].format.render_core
             expect(html.index("whateverclaimrecent")).to be >= html.index("whateverclaim")
           end

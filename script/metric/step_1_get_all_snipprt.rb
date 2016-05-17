@@ -1,6 +1,6 @@
-require 'rubygems'
-require 'json'
-require 'byebug'
+require "rubygems"
+require "json"
+require "byebug"
 require "net/http"
 require "uri"
 
@@ -29,4 +29,4 @@ end
 # remove the last comma
 full_json.sub!(/(.*),/, '\1,')
 full_json += "]"
-File.open("script/metric/data/certh.json", 'w') { |file| file.write(full_json) }
+File.open("script/metric/data/certh.json", "w") { |file| file.write(full_json) }

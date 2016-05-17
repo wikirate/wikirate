@@ -30,5 +30,5 @@ end
 
 def create_value_card name, value
   Card.create! name: name, type_id: MetricValueID,
-               subcards: { '+value' => { type_id: NumberID, content: value } }
+               subcards: { "+value" => { type_id: NumberID, content: value } }
 end

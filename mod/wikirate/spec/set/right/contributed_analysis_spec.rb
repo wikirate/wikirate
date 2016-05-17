@@ -23,7 +23,7 @@ describe Card::Set::Right::ContributedAnalysis do
     it "returns correct contribution analysis" do
       html = @c_card.format.render_header
       expect(html).to have_tag("div",:with=>{:class=>"card-header-title"}) do
-        with_tag "img",:with=>{:src=>Card.fetch('venn icon').format.render_source(:size=>:small)}
+        with_tag "img",:with=>{:src=>Card.fetch("venn icon").format.render_source(:size=>:small)}
         with_tag "span",:witn=>{:class=>"badge"},:text=>"2"
       end
 

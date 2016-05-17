@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require File.expand_path('../../config/environment',  __FILE__)
+require File.expand_path("../../config/environment",  __FILE__)
 Card::Auth.as_bot
 
 card = Card["*read"]
@@ -8,7 +8,7 @@ klasses = Card.set_patterns.reverse.map do |set_class|
   :right => card.id,
           #:sort  => 'content',
           
-          :sort  => ['content', 'name'],
+          :sort  => ["content", "name"],
           :limit => 0
         }
   wql[:left][ (set_class.anchorless? ? :id : :right_id )] = set_class.pattern_id

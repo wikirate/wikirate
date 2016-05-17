@@ -8,7 +8,7 @@ module MigrationHelper
     Rails.logger.info "Change name from '#{cap_old}' to '#{cap_new}'"
     Card[cap_old].update_attributes! :name=>cap_new, :update_referers=>true, :silent_change=>true
     # don't change claim/note names
-    ids = Card.search :name=>['match',down_old], :not=>{:type=>'Note'}, :return=>:id
+    ids = Card.search :name=>["match",down_old], :not=>{:type=>"Note"}, :return=>:id
     Rails.logger.info "Update #{ids.size} cards with '#{cap_old}' in the name"
     count = 0
     ids.each do |id|
@@ -26,7 +26,7 @@ module MigrationHelper
     end
 
     double_check = []
-    ids = Card.search(:content=>['match',down_old], :return=>:id)
+    ids = Card.search(:content=>["match",down_old], :return=>:id)
     Rails.logger.info "Update #{ids.size} cards with '#{cap_old}' in the content"
     ids.each do |id|
       card = Card.fetch(id, :skip_modules=>true)
@@ -37,6 +37,6 @@ module MigrationHelper
         double_check << "[[#{card.name}]]"
       end
     end
-    Card.create! :name=>"used #{cap_old} in content", :type=>'pointer', :content=> double_check.join("\n")
+    Card.create! :name=>"used #{cap_old} in content", :type=>"pointer", :content=> double_check.join("\n")
   end
 end

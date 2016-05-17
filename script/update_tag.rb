@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require File.dirname(__FILE__) + '/../config/environment'
+require File.dirname(__FILE__) + "/../config/environment"
 Card::Auth.as_bot
 
 Card.search(:right=>"tag",:left=>{:type_id=>Card::ClaimID}).each do |card|

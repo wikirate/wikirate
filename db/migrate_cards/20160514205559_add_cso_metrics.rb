@@ -8,19 +8,19 @@ class AddCsoMetrics < Card::Migration
   DATA =
     {
       # Yearly Variables
-      70 => ['Maximum Allowable OECD CO2 Emissions',
+      70 => ["Maximum Allowable OECD CO2 Emissions",
               [
                 11475, 11550, 11625, 11701, 11776, 11851, 11743, 11634, 11525,
                 11417, 1130
               ]
             ],
-      71 => ['Maximum Allowable OECD CO2 Emissions - Ratio to Baseline',
+      71 => ["Maximum Allowable OECD CO2 Emissions - Ratio to Baseline",
               [
                 1.0000, 1.0066, 1.0131, 1.0197, 1.0262, 1.0328, 1.0233, 1.0139,
                 1.0044, 0.9949, 0.9855
               ]
             ],
-      72 => ['GDP of OECD',
+      72 => ["GDP of OECD",
               [
                 36447627200000, 39127218500000, 41294669500000, 42561395200000,
                 41687612000000, 43446674000000, 45324766700000, 46576648200000,
@@ -29,34 +29,34 @@ class AddCsoMetrics < Card::Migration
             ],
 
       # Research Metrics
-      75 => ['Value-added Contributions to GDP (C2GDP)', nil],
-      76 => ['Annual CO2 Emissions', nil],
-      77 => ['Gross Revenue', nil],
+      75 => ["Value-added Contributions to GDP (C2GDP)", nil],
+      76 => ["Annual CO2 Emissions", nil],
+      77 => ["Gross Revenue", nil],
 
       # Formula Metrics
-      80 => ['Cumulative CO2 Emissions Context-Free Score', '86/89'],
-      81 => ['Annual CO2 Emissions Context-Based Relative Score', '(76/75)/95'],
-      82 => ['Annual CO2 Emissions Context-Based Absolute Score', '76/91'],
-      83 => ['Cumulative CO2 Emissions Context-Based Absolute Score', '86/92'],
+      80 => ["Cumulative CO2 Emissions Context-Free Score", "86/89"],
+      81 => ["Annual CO2 Emissions Context-Based Relative Score", "(76/75)/95"],
+      82 => ["Annual CO2 Emissions Context-Based Absolute Score", "76/91"],
+      83 => ["Cumulative CO2 Emissions Context-Based Absolute Score", "86/92"],
 
-      85 => ['CO2 Emissions Relative to Gross Revenue', '76/77'],
-      86 => ['Cumulative CO2 Emissions', '#76'],
+      85 => ["CO2 Emissions Relative to Gross Revenue", "76/77"],
+      86 => ["Cumulative CO2 Emissions", '#76'],
 
-      88 => ['Maximum Allowable Annual CO2 Emissions', '$76*71'],
-      89 => ['Maximum Allowable Cumulative CO2 Emissions', '#88'],
+      88 => ["Maximum Allowable Annual CO2 Emissions", "$76*71"],
+      89 => ["Maximum Allowable Cumulative CO2 Emissions", '#88'],
 
-      91 => ['Annual CO2 Emission Targets', '95*75'],
-      92 => ['Cumulative CO2 Emission Targets', '#91'],
+      91 => ["Annual CO2 Emission Targets", "95*75"],
+      92 => ["Cumulative CO2 Emission Targets", '#91'],
 
-      94 => ['Maximum Allowable Annual CO2 Emissions per C2GDP',
-             '($76*71)/$75'],
-      95 => ['Maximum Allowable Annual CO2 Emissions per C2GDP - ' \
-             'Adjusted per OECD norm',
-             '(70*1000000000)/' \
-             '(($70*1000000000-$88)/($72-$75)*(72-75)*71+94*75)*94']
+      94 => ["Maximum Allowable Annual CO2 Emissions per C2GDP",
+             "($76*71)/$75"],
+      95 => ["Maximum Allowable Annual CO2 Emissions per C2GDP - " \
+             "Adjusted per OECD norm",
+             "(70*1000000000)/" \
+             "(($70*1000000000-$88)/($72-$75)*(72-75)*71+94*75)*94"]
     }.freeze
 
-  CSO = 'Center for Sustainable Organizations'.freeze
+  CSO = "Center for Sustainable Organizations".freeze
 
   def up
     Card.create! name: CSO, type_id: Card::WikirateCompanyID
@@ -104,11 +104,11 @@ class AddCsoMetrics < Card::Migration
 
       year_option, sum =
         case $~[:year_symbol]
-        when '#' then ['|year: 2006..0', true]
-        when '$' then '|year: 2005'
-        else ''
+        when '#' then ["|year: 2006..0", true]
+        when "$" then "|year: 2005"
+        else ""
         end
-      nest = format '{{%s%s}}', input_name(input_row), year_option
+      nest = format "{{%s%s}}", input_name(input_row), year_option
       sum ? "Sum[#{nest}]" : nest
     end
   end

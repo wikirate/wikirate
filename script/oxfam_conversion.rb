@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'roo'
-require 'csv'
+require "roo"
+require "csv"
 
 SPREADSHEET_DIR = "/Users/ethan/Documents/ratings"
 SPREADSHEET_FILENAME = "#{SPREADSHEET_DIR}/oxfam_scorecard.xlsx"
@@ -20,7 +20,7 @@ METRIC_CODE_COL = 0
 METRIC_Q_COL = 1
 
 MAP = {
-  'Land' =>{
+  "Land" =>{
     :header_rows =>6,
     :company_row =>4,
     :intro_columns => 2,          # how many columns before you get to a country section

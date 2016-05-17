@@ -1,6 +1,6 @@
 format :html do
   view :open_content do
-    wrap_with :div, class: 'container-fluid yinyang' do
+    wrap_with :div, class: "container-fluid yinyang" do
       [
         _render_title_row,
         _render_content_row
@@ -29,7 +29,7 @@ format :html do
   end
 
   view :title_left_col do
-    metric_url = '/' + card.cardname.url_key
+    metric_url = "/" + card.cardname.url_key
     metric_title = card.metric_title_card.cardname
     <<-HTML
       <div class="row clearfix ">
@@ -49,15 +49,15 @@ format :html do
   end
 
   view :designer_info do
-    wrap_with :div, class: 'metric-designer-info' do
-      card_link card.metric_designer_card.cardname.field('contribution'),
-                text: author_info(card.metric_designer_card, 'Designed by')
+    wrap_with :div, class: "metric-designer-info" do
+      card_link card.metric_designer_card.cardname.field("contribution"),
+                text: author_info(card.metric_designer_card, "Designed by")
     end
   end
 
   def author_info author_card, text, subtext=nil
     author_content =
-      subformat(author_card.field(:image, new: {}))._render_core size: 'small'
+      subformat(author_card.field(:image, new: {}))._render_core size: "small"
     <<-HTML
       <div>
         <small class="text-muted">#{text}</small>
@@ -79,11 +79,11 @@ format :html do
             </small>
           </span>
         HTML
-    args = subtext ? { class: 'margin-6' } : {}
-    author_args = subtext ? { class: 'nopadding' } : {}
+    args = subtext ? { class: "margin-6" } : {}
+    author_args = subtext ? { class: "nopadding" } : {}
     wrap_with :div, args do
       [
-        content_tag(subtext ? 'h4' : 'h3', author, author_args),
+        content_tag(subtext ? "h4" : "h3", author, author_args),
         subtext
       ]
     end
@@ -174,9 +174,9 @@ format :html do
   end
 
   view :company_list do |_args|
-    wrap_with :div, class: 'yinyang-list' do
+    wrap_with :div, class: "yinyang-list" do
       subformat("#{card.name}+all values")
-        ._render_content(hide: 'title',
+        ._render_content(hide: "title",
                          items: { view: :yinyang_row })
     end
   end

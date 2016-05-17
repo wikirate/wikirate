@@ -1,9 +1,9 @@
-require 'rubygems'
-require 'json'
-require 'byebug'
+require "rubygems"
+require "json"
+require "byebug"
 require "net/http"
 require "uri"
-require 'colorize'
+require "colorize"
 
 #source name, snippet name = value, company name, source link
 json_array = Array.new
@@ -63,7 +63,7 @@ begin
   result.each do |key,array|
     result_str+="#{key},#{array},#{result_count[key]},#{year_exist[key]}\n"
   end
-  File.open("data/sample_metric_values.csv", 'w') { |file| file.write(result_str) }
+  File.open("data/sample_metric_values.csv", "w") { |file| file.write(result_str) }
 rescue RuntimeError=> bang
   raise "JSON parse error! #{bang}"
 end
