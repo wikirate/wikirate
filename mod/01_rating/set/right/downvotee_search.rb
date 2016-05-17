@@ -80,12 +80,16 @@ format do
 end
 
 format :html do
-  METHOD_PREFIX = {
-    WikirateTopicID    => :topic,
-    MetricID           => :metric,
-    WikirateCompanyID  => :company,
-    WikirateAnalysisID => :analysis
-  }.freeze
+  if defined?(WikirateTopicID) # to avoid error msg in some rake task
+    # that operate without wikirate data
+    # e.g. wikirate:test:reseed_data
+    METHOD_PREFIX = {
+      WikirateTopicID    => :topic,
+      MetricID           => :metric,
+      WikirateCompanyID  => :company,
+      WikirateAnalysisID => :analysis
+    }.freeze
+  end
 
   view :drag_and_drop do |args|
     with_drag_and_drop(args) do

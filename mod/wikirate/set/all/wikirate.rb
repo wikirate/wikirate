@@ -237,18 +237,22 @@ format :html do
   end
 end
 
-CLAIM_SUBJECT_SQL = %{
-  select subjects.`key` as subject, claims.id from cards claims
-  join cards as pointers on claims.id   = pointers.left_id
-  join card_references   on pointers.id = referer_id
-  join cards as subjects on referee_id  = subjects.id
-  where claims.type_id = #{Card::ClaimID}
-  and pointers.right_id in
-    (#{[Card::WikirateTopicID, Card::WikirateCompanyID].join(', ')})
-  and claims.trash   is false
-  and pointers.trash is false
-  and subjects.trash is false;
-}
+if defined?(Card::ClaimID) # to avoid error msg in some rake task
+                           # that operate without wikirate data
+                           # e.g. wikirate:test:reseed_data
+  CLAIM_SUBJECT_SQL = %{
+    select subjects.`key` as subject, claims.id from cards claims
+    join cards as pointers on claims.id   = pointers.left_id
+    join card_references   on pointers.id = referer_id
+    join cards as subjects on referee_id  = subjects.id
+    where claims.type_id = #{Card::ClaimID}
+    and pointers.right_id in
+      (#{[Card::WikirateTopicID, Card::WikirateCompanyID].join(', ')})
+    and claims.trash   is false
+    and pointers.trash is false
+    and subjects.trash is false;
+  }
+end
 
 # some wikirate specific methods
 module ClassMethods
