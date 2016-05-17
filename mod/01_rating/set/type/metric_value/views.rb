@@ -222,7 +222,7 @@ format :html do
                                       strip_insignificant_zeros: true,
                                       precision: (less_than_one ? 3 : 1),
                                       significant: less_than_one
-    (humanized == '0' && big_number > 0) ? '~0' : humanized
+    (humanized == '0' && number > 0) ? '~0' : humanized
   end
 
   def humanized_number value
@@ -230,7 +230,7 @@ format :html do
     if number > 1_000_000
       humanized_big_number number
     else
-      humanized_small_number number,
+      humanized_small_number number
     end
   end
 
