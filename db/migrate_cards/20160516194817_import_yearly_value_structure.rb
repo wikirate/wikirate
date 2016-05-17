@@ -2,6 +2,6 @@
 
 class ImportYearlyValueStructure < Card::Migration
   def up
-    import_cards 'yearly_value_structure.json'
+    import_cards "yearly_value_structure.json"
   end
 end

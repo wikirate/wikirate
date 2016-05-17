@@ -3,7 +3,7 @@
 #   before do
 #     @user_card = Card["joe_user"]
 #     campaigns = Card.search :type=>"Campaign", :limit=>5
-    
+
 #     campaign = campaigns[0]
 #     vision = Card[campaign.name+"+vision"] || Card.new(:name=>campaign.name+"+vision")
 #     vision.content = "One of my most productive days was throwing away 1000 lines of code."
@@ -27,5 +27,5 @@
 
 #     end
 #   end
-  
+
 # end

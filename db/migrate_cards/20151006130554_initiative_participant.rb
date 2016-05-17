@@ -2,11 +2,11 @@
 
 class InitiativeParticipant < Card::Migration
   def up
-    cardname = 'Initiative+Participants+*type plus right+*structure'
+    cardname = "Initiative+Participants+*type plus right+*structure"
     participant_search_card = Card.fetch cardname
     participant_search_card.delete if participant_search_card
 
-    card = Card['Participant']
+    card = Card["Participant"]
     card.codename = :participant
     card.save!
 

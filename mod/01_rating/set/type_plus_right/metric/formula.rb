@@ -26,7 +26,7 @@ format :html do
     super(args)
     args[:hidden] = { success: { id:  card.cardname.left } }
     args[:form_opts] = {
-      'data-slot-selector' => '.card-slot.TYPE-metric'
+      "data-slot-selector" => ".card-slot.TYPE-metric"
     }
   end
 
@@ -34,7 +34,7 @@ format :html do
     super(args)
     args[:hidden] = { success: { id:  card.cardname.left } }
     args[:form_opts] = {
-      'data-slot-selector' => '.card-slot.TYPE-metric'
+      "data-slot-selector" => ".card-slot.TYPE-metric"
     }
   end
 
@@ -53,18 +53,18 @@ format :html do
     target = '#modal-add-metric-slot'
     # "#modal-#{card.cardname.safe_key}"
     output [
-      (content_tag :span, class: 'input-group' do
-        button_tag class: 'pointer-item-add btn btn-default slotter',
-                   type: 'button',
-                   data: { toggle: 'modal', target: target },
-                   href: path(layout: 'modal', view: :edit,
+      (content_tag :span, class: "input-group" do
+        button_tag class: "pointer-item-add btn btn-default slotter",
+                   type: "button",
+                   data: { toggle: "modal", target: target },
+                   href: path(layout: "modal", view: :edit,
                               name: card.variables_card.name,
-                              slot: { title: 'Choose Metric' }) do
-          glyphicon('plus') + ' add metric'
+                              slot: { title: "Choose Metric" }) do
+          glyphicon("plus") + " add metric"
         end
       end),
-      _render_modal_slot(modal_id: 'add-metric-slot',
-                         dialog_class: 'large').html_safe
+      _render_modal_slot(modal_id: "add-metric-slot",
+                         dialog_class: "large").html_safe
     ]
   end
 
@@ -126,7 +126,7 @@ def add_value company, year, value
   add_subcard metric_card.metric_value_name(company, year),
               type_id: MetricValueID,
               subcards: {
-                '+value' => { type_id: type_id, content: value }
+                "+value" => { type_id: type_id, content: value }
               }
 end
 
@@ -159,7 +159,7 @@ end
 # @option opts [String] :year optional
 def calculate_values_for opts={}
   unless opts[:company]
-    fail Card::Error, '#calculate_values_for: no company given'
+    raise Card::Error, '#calculate_values_for: no company given'
   end
   no_value = true
   calculator.result(opts).each_pair do |year, companies|
@@ -173,7 +173,7 @@ end
 def each_reference_out &block
   return super(&block) unless wiki_rating?
   translation_table.each do |key, _value|
-    block.call(key, Content::Chunk::Link::CODE)
+    yield(key, Content::Chunk::Link::CODE)
   end
 end
 

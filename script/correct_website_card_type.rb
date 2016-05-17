@@ -1,8 +1,8 @@
-require File.expand_path('../../config/environment',  __FILE__)
-require File.expand_path('../wikirate_import_shared', __FILE__)
+require File.expand_path("../../config/environment",  __FILE__)
+require File.expand_path("../wikirate_import_shared", __FILE__)
 
 def basic_website_card
-  Card.search right: 'website', left: { type_id: Card::SourceID },
+  Card.search right: "website", left: { type_id: Card::SourceID },
               type_id: Card::BasicID
 end
 

@@ -1,7 +1,6 @@
 # require 'roo'
 # require 'csv'
 
-
 # SHEETS = ["Land", "Women", "Transparency", "Farmers", "Water", "Workers", "Climate Change"]
 
 # event :import_sheet, :after=>:store, :on=>:update do
@@ -35,8 +34,6 @@
 #     end
 #   end
 # end
-
-
 
 # class Sheet
 #   attr_reader :metrics, :companies
@@ -114,7 +111,6 @@
 #     end
 #   end
 
-
 #   def each_metric_row_with_index
 #     for row_idx in (@sheet_map[:header_rows]+1)..(@sheet.last_row)
 #       if code(row_idx)
@@ -123,7 +119,6 @@
 #       end
 #     end
 #   end
-
 
 #   def load_metrics year, sourcename
 #     company_offset = {}
@@ -139,7 +134,6 @@
 #              else
 #                description(row_idx)
 #              end
-
 
 #       metric =  OxfamMetric.new(row, company_offset,
 #           :code=>code,
@@ -161,7 +155,6 @@
 #     end
 #   end
 # end
-
 
 # class OxfamMetric
 #   attr_reader :companies, :submetrics
@@ -220,7 +213,6 @@
 #         description
 #       end
 
-
 # #    Rails.logger.info "\n\n\nMetric: #{cardname}, code: #{code}, question: #{question}, desc: #{desc}\n\n\n"
 
 #     Card.create! :name=>cardname, :type=>'metric', :subcards=>{
@@ -259,8 +251,6 @@
 #     @submetrics << metric
 #   end
 # end
-
-
 
 # class Value
 #   attr_reader :company, :measurement, :links
@@ -309,7 +299,3 @@
 #   end
 
 # end
-
-
-
-

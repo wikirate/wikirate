@@ -2,94 +2,97 @@
 
 describe Card::Set::MetricType::Formula do
   before do
-    @metric_name = 'Joe User+researched'
-    @metric_name_1 = 'Joe User+researched number 1'
-    @metric_name_2 = 'Joe User+researched number 2'
-    @metric_name_3 = 'Joe User+researched number 3'
+    @metric_name = "Joe User+researched"
+    @metric_name_1 = "Joe User+researched number 1"
+    @metric_name_2 = "Joe User+researched number 2"
+    @metric_name_3 = "Joe User+researched number 3"
   end
 
   def build_formula formula
     formula % [@metric_name_1, @metric_name_2, @metric_name_3]
   end
 
-
-  describe 'formula card' do
+  describe "formula card" do
     subject { Card[:formula] }
     it { is_expected.to be_instance_of(Card) }
-    it 'has codename' do
-      expect(subject.codename).to eq 'formula'
+    it "has codename" do
+      expect(subject.codename).to eq "formula"
     end
     it 'has type "metric type"' do
-      expect(subject.type_id).to eq Card['metric type'].id
+      expect(subject.type_id).to eq Card["metric type"].id
     end
   end
 
-  describe 'formula with year reference' do
+  describe "formula with year reference" do
     subject do
       formula_metric = create_metric(
-        name: 'rating1', type: :formula,
+        name: "rating1", type: :formula,
         formula: formula
       )
       Card["#{formula_metric.name}+Apple Inc+2015+value"].content
     end
 
-    context 'single year' do
-      let(:formula) { "{{#{@metric_name}|year:#{@year_expr} }}+" \
-                      "{{#{@metric_name_1}}}" }
+    context "single year" do
+      let(:formula) do
+        "{{#{@metric_name}|year:#{@year_expr} }}+" \
+                      "{{#{@metric_name_1}}}"
+      end
 
-      it 'fixed year' do
-        @year_expr = '2014'
-        is_expected.to eq '114.0'
+      it "fixed year" do
+        @year_expr = "2014"
+        is_expected.to eq "114.0"
       end
-      it 'relative year' do
-        @year_expr = '-2'
-        is_expected.to eq '113.0'
+      it "relative year" do
+        @year_expr = "-2"
+        is_expected.to eq "113.0"
       end
-      it 'current year' do
-        @year_expr = '0'
-        is_expected.to eq '115.0'
+      it "current year" do
+        @year_expr = "0"
+        is_expected.to eq "115.0"
       end
     end
 
-    context 'sum of' do
-      let(:formula) { "Sum[{{#{@metric_name}|year:#{@year_expr} }}]+" \
-                      "{{#{@metric_name_1}}}" }
+    context "sum of" do
+      let(:formula) do
+        "Sum[{{#{@metric_name}|year:#{@year_expr} }}]+" \
+                      "{{#{@metric_name_1}}}"
+      end
 
-      it 'relative range' do
-        @year_expr = '-3..-1'
-        is_expected.to eq '139.0'
+      it "relative range" do
+        @year_expr = "-3..-1"
+        is_expected.to eq "139.0"
       end
-      it 'relative range with 0' do
-        @year_expr = '-3..0'
-        is_expected.to eq '154.0'
+      it "relative range with 0" do
+        @year_expr = "-3..0"
+        is_expected.to eq "154.0"
       end
-      it 'relative range with ?' do
-        @year_expr = '-3..?'
-        is_expected.to eq '154.0'
+      it "relative range with ?" do
+        @year_expr = "-3..?"
+        is_expected.to eq "154.0"
       end
-      it 'fixed range' do
-        @year_expr = '2012..2013'
-        is_expected.to eq '125.0'
+      it "fixed range" do
+        @year_expr = "2012..2013"
+        is_expected.to eq "125.0"
       end
-      it 'fixed start' do
-        @year_expr = '2012..0'
-        is_expected.to eq '154.0'
+      it "fixed start" do
+        @year_expr = "2012..0"
+        is_expected.to eq "154.0"
       end
-      it 'list of years' do
-        @year_expr = '2012, 2014'
-        is_expected.to eq '126.0'
+      it "list of years" do
+        @year_expr = "2012, 2014"
+        is_expected.to eq "126.0"
       end
     end
   end
 
-  describe 'basic properties' do
+  describe "basic properties" do
     before do
-      @name = 'Jedi+friendliness'
+      @name = "Jedi+friendliness"
     end
     let(:metric) { Card[@name] }
     describe '#metric_type' do
       subject { metric.metric_type }
-      it { is_expected.to eq 'Formula' }
+      it { is_expected.to eq "Formula" }
     end
     describe '#metric_type_codename' do
       subject { metric.metric_type_codename }
@@ -97,23 +100,23 @@ describe Card::Set::MetricType::Formula do
     end
     describe '#metric_designer' do
       subject { metric.metric_designer }
-      it { is_expected.to eq 'Jedi' }
+      it { is_expected.to eq "Jedi" }
     end
     describe '#metric_designer_card' do
       subject { metric.metric_designer_card }
-      it { is_expected.to eq Card['Jedi'] }
+      it { is_expected.to eq Card["Jedi"] }
     end
     describe '#metric_title' do
       subject { metric.metric_title }
-      it { is_expected.to eq 'friendliness' }
+      it { is_expected.to eq "friendliness" }
     end
     describe '#metric_title_card' do
       subject { metric.metric_title_card }
-      it { is_expected.to eq Card['friendliness'] }
+      it { is_expected.to eq Card["friendliness"] }
     end
     describe '#question_card' do
       subject { metric.question_card.name }
-      it { is_expected.to eq 'Jedi+friendliness+Question'}
+      it { is_expected.to eq "Jedi+friendliness+Question" }
     end
     describe '#value_type' do
       subject { metric.value_type }
@@ -133,33 +136,33 @@ describe Card::Set::MetricType::Formula do
     end
   end
 
-  def calc_value company='Samsung', year='2014'
+  def calc_value company="Samsung", year="2014"
     calc_value_card(company, year).content
   end
 
-  def calc_value_card company='Samsung', year='2014'
+  def calc_value_card company="Samsung", year="2014"
     Card["Joe User+#{@metric_title}+#{company}+#{year}+value"]
   end
 
-  context 'when created with formula' do
+  context "when created with formula" do
     before do
-      @metric_title = 'formula1'
+      @metric_title = "formula1"
       Card::Auth.as_bot do
         @metric = create_metric(
           name: @metric_title, type: :formula,
-          formula: build_formula('{{%s}}*5+{{%s}}*2')
+          formula: build_formula("{{%s}}*5+{{%s}}*2")
         )
       end
     end
 
-    it 'creates calculated values' do
-      expect(calc_value).to eq('60.0')
-      expect(calc_value 'Samsung', '2015').to eq('29.0')
-      expect(calc_value 'Sony_Corporation').to eq('9.0')
-      expect(calc_value_card 'Death_Star', '1977').to be_falsey
+    it "creates calculated values" do
+      expect(calc_value).to eq("60.0")
+      expect(calc_value "Samsung", "2015").to eq("29.0")
+      expect(calc_value "Sony_Corporation").to eq("9.0")
+      expect(calc_value_card "Death_Star", "1977").to be_falsey
     end
 
-    context 'and formula changes' do
+    context "and formula changes" do
       def update_formula new_formula
         Card::Auth.as_bot do
           @metric.formula_card.update_attributes!(
@@ -167,45 +170,45 @@ describe Card::Set::MetricType::Formula do
           )
         end
       end
-      it 'updates existing calculated value' do
+      it "updates existing calculated value" do
         update_formula "{{%s}}*4+{{%s}}*2"
-        expect(calc_value).to eq '50.0'
+        expect(calc_value).to eq "50.0"
       end
-      it 'removes incomplete calculated value' do
-        update_formula '{{%s}}*5+{{%s}}*2+{{%s}}'
-        expect(calc_value_card 'Sony_Corporation', '2014').to be_falsey
+      it "removes incomplete calculated value" do
+        update_formula "{{%s}}*5+{{%s}}*2+{{%s}}"
+        expect(calc_value_card "Sony_Corporation", "2014").to be_falsey
       end
-      it 'adds complete calculated value' do
-        update_formula '{{%s}}*5'
-        expect(calc_value 'Death Star', '1977').to eq('25.0')
+      it "adds complete calculated value" do
+        update_formula "{{%s}}*5"
+        expect(calc_value "Death Star", "1977").to eq("25.0")
       end
     end
 
-    context 'and input metric value is missing' do
+    context "and input metric value is missing" do
       it "doesn't create calculated value" do
-        expect(calc_value_card 'Death Star', '1977').to be_falsey
+        expect(calc_value_card "Death Star", "1977").to be_falsey
       end
       it "creates calculated value if missing value is added" do
         Card::Auth.as_bot do
-          Card['Joe User+researched number 2'].create_value(
-            company: 'Death Star',
-            year: '1977',
-            value: '2',
+          Card["Joe User+researched number 2"].create_value(
+            company: "Death Star",
+            year: "1977",
+            value: "2",
             source: get_a_sample_source
           )
         end
-        expect(calc_value 'Death Star', '1977').to eq('29.0')
+        expect(calc_value "Death Star", "1977").to eq("29.0")
       end
     end
 
-    context 'and input metric value changes' do
-      it 'updates calculated value' do
+    context "and input metric value changes" do
+      it "updates calculated value" do
         Card["#{@metric_name_1}+Samsung+2014+value"].update_attributes!(
-          content: '1'
+          content: "1"
         )
-        expect(calc_value).to eq '15.0'
+        expect(calc_value).to eq "15.0"
       end
-      it 'removes incomplete calculated values' do
+      it "removes incomplete calculated values" do
         Card::Auth.as_bot do
           Card["#{@metric_name_1}+Samsung+2014+value"].delete
         end
@@ -214,34 +217,34 @@ describe Card::Set::MetricType::Formula do
     end
   end
 
-  context 'when created without formula' do
+  context "when created without formula" do
     before do
-      @metric_title = 'formula2'
+      @metric_title = "formula2"
       @metric = create_metric name: @metric_title, type: :formula
     end
 
-    it 'creates calculated values if formula created' do
+    it "creates calculated values if formula created" do
       Card::Auth.as_bot do
         Card.create! name: "#{@metric.name}+formula",
-          type_id: Card::PlainTextID,
-          content: build_formula('{{%s}}*5+{{%s}}*2')
+                     type_id: Card::PlainTextID,
+                     content: build_formula("{{%s}}*5+{{%s}}*2")
       end
-      expect(calc_value).to eq('60.0')
-      expect(calc_value 'Samsung', '2015').to eq('29.0')
-      expect(calc_value 'Sony_Corporation').to eq('9.0')
-      expect(calc_value_card 'Death_Star', '1977').to be_falsey
+      expect(calc_value).to eq("60.0")
+      expect(calc_value "Samsung", "2015").to eq("29.0")
+      expect(calc_value "Sony_Corporation").to eq("9.0")
+      expect(calc_value_card "Death_Star", "1977").to be_falsey
     end
   end
 
-  it 'handles wolfram formula' do
+  it "handles wolfram formula" do
     Card::Auth.as_bot do
       Card::Metric.create(
-        name: 'Jedi+Force formula',
+        name: "Jedi+Force formula",
         type: :formula,
-        formula: '{{Jedi+deadliness}}/10 - 5 + ' \
+        formula: "{{Jedi+deadliness}}/10 - 5 + " \
                'Boole[{{Jedi+disturbances in the Force}} == "yes"]'
       )
     end
-    expect(Card['Jedi+Force formula+Death Star+1977+value'].content).to eq '6'
+    expect(Card["Jedi+Force formula+Death Star+1977+value"].content).to eq "6"
   end
 end

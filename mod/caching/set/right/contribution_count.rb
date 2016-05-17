@@ -8,7 +8,7 @@ end
 
 format :html do
   view :missing  do |args|
-    if @card.new_card? and @card.left
+    if @card.new_card? && @card.left
       Auth.as_bot do
         @card.left.update_contribution_count
 
@@ -25,4 +25,3 @@ format :html do
 
   view :new, :missing
 end
-

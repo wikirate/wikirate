@@ -1,7 +1,7 @@
 event :validate_editor, :validate, on: :save do
   # block not author editing except bot?
   if real? && (creator.id != Auth.current_id || Auth.current_id == WagnBotID)
-    errors.add :text, ' can only be edited by author'
+    errors.add :text, " can only be edited by author"
   end
 end
 

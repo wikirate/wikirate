@@ -2,6 +2,6 @@
 
 class ImportCompanyMetricStructure < Card::Migration
   def up
-    import_json 'company_metric_structure.json'
+    import_json "company_metric_structure.json"
   end
 end

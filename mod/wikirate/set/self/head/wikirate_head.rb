@@ -22,8 +22,8 @@ format :html do
     result = super()
     if request
       user_agent = request.user_agent
-      if user_agent && (user_agent == 'Facebot' ||
-         user_agent.include?('facebookexternalhit/1.1'))
+      if user_agent && (user_agent == "Facebot" ||
+         user_agent.include?("facebookexternalhit/1.1"))
         fb_meta_card = Card.fetch("#{Env.params['id']}+facebook_meta")
         result += subformat(fb_meta_card)._render_core
       end

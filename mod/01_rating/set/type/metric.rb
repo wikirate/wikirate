@@ -1,8 +1,8 @@
-card_accessor :vote_count, type: :number, default: '0'
-card_accessor :upvote_count, type: :number, default: '0'
-card_accessor :downvote_count, type: :number, default: '0'
+card_accessor :vote_count, type: :number, default: "0"
+card_accessor :upvote_count, type: :number, default: "0"
+card_accessor :downvote_count, type: :number, default: "0"
 
-card_accessor :metric_type, type: :pointer, default: '[[Researched]]'
+card_accessor :metric_type, type: :pointer, default: "[[Researched]]"
 card_accessor :about
 card_accessor :methodology
 card_accessor :value_type
@@ -35,26 +35,26 @@ def metric_title_card
 end
 
 def question_card
-  field 'Question', new: {}
+  field "Question", new: {}
 end
 
 def value_type
   # FIXME: value type should have a codename
-  (vt = field('value type')) && vt.item_names.first
+  (vt = field("value type")) && vt.item_names.first
 end
 
 def value_options
-  (vo = field('value options')) && vo.item_names
+  (vo = field("value options")) && vo.item_names
 end
 
 def number_values?
   # FIXME: use codename
-  value_type == 'Number'
+  value_type == "Number"
 end
 
 # TODO: adapt to Henry's value type API
 def categorical?
-  value_type == 'Category'
+  value_type == "Category"
 end
 
 def researched?
@@ -106,7 +106,7 @@ def metric_value_cards opts={}
 end
 
 def value_cards opts={}
-  Card.search({ left: metric_value_query, right: 'value' }.merge(opts))
+  Card.search({ left: metric_value_query, right: "value" }.merge(opts))
 end
 
 def metric_value_name company, year
@@ -126,7 +126,7 @@ format :html do
   end
 
   def css
-    ''
+    ""
     # css = <<-CSS
     # CSS
     # "<style> #{Sass.compile css}</style>"
@@ -139,7 +139,7 @@ format :html do
     elsif (range = Card.fetch("#{card.name}+range"))
       "/#{range.raw_content}"
     else
-      ''
+      ""
     end
   end
 
@@ -164,19 +164,19 @@ format :html do
     subformat_card = subformat(value_type_card)
     text =
       if value_type_card.new?
-        'Update Value Type'
+        "Update Value Type"
       else
         subformat_card.render(:shorter_pointer_content)
       end
     edit_args = {
       path_opts: {
         slot: {
-          hide: 'title,header,menu,help,subheader',
+          hide: "title,header,menu,help,subheader",
           view: :edit, edit_value_type: true
         }
       },
       html_args: {
-        class: 'btn btn-default slotter'
+        class: "btn btn-default slotter"
       },
       text: text
     }
@@ -184,14 +184,14 @@ format :html do
   end
 
   view :short_view do |_args|
-    return '' unless (value_type = Card["#{card.name}+value type"])
+    return "" unless (value_type = Card["#{card.name}+value type"])
     details_field =
       case value_type.item_names[0]
-      when 'Number'   then 'numeric_details'
-      when 'Money'    then 'monetary_details'
-      when 'Category' then 'category_details'
+      when "Number"   then "numeric_details"
+      when "Money"    then "monetary_details"
+      when "Category" then "category_details"
       end
-    return '' if details_field.nil?
+    return "" if details_field.nil?
     detail_card = Card.fetch "#{card.name}+#{details_field}", new: {}
     subformat(detail_card).render_content
   end
@@ -203,7 +203,7 @@ format :html do
 
   def edit_args args
     return unless args[:edit_value_type]
-    args[:structure] = 'metric value type edit structure'
+    args[:structure] = "metric value type edit structure"
   end
 
   def edit_slot args
@@ -215,8 +215,8 @@ format :html do
   end
 
   view :handle do |_args|
-    content_tag :div, class: 'handle' do
-      glyphicon 'option-vertical'
+    content_tag :div, class: "handle" do
+      glyphicon "option-vertical"
     end
   end
 
@@ -225,7 +225,7 @@ format :html do
   end
 
   view :value do |args|
-    return '' unless args[:company]
+    return "" unless args[:company]
     %(
       <div class="data-item hide-with-details">
         {{#{card.name}+#{args[:company]}+latest value|concise}}
@@ -304,15 +304,15 @@ format :html do
   view :metric_info do |_args|
     question = subformat(card.question_card)._render_core.html_safe
     rows = [
-      icon_row('question', question, class: 'metric-details-question'),
-      icon_row('bar-chart', card.metric_type, class: 'text-emphasized'),
-      icon_row('tag', field_nest('+topic', view: :content, item: :link))
+      icon_row("question", question, class: "metric-details-question"),
+      icon_row("bar-chart", card.metric_type, class: "text-emphasized"),
+      icon_row("tag", field_nest("+topic", view: :content, item: :link))
     ]
     if card.researched?
-      rows <<  text_row('Unit', field_nest('Unit'))
-      rows <<  text_row('Range', field_nest('Range'))
+      rows <<  text_row("Unit", field_nest("Unit"))
+      rows <<  text_row("Range", field_nest("Range"))
     end
-    wrap_with :div, class: 'metric-info' do
+    wrap_with :div, class: "metric-info" do
       rows
     end
   end
@@ -347,11 +347,11 @@ format :html do
   end
 
   view :weight_row do |args|
-    weight = text_field_tag('pair_value', (args[:weight] || 0)) + '%'
+    weight = text_field_tag("pair_value", (args[:weight] || 0)) + "%"
     output(
       [
-        content_tag(:td, _render_thumbnail(args), 'data-key' => card.name),
-        content_tag(:td, weight, class: 'metric-weight')
+        content_tag(:td, _render_thumbnail(args), "data-key" => card.name),
+        content_tag(:td, weight, class: "metric-weight")
       ]
     ).html_safe
   end
@@ -362,8 +362,8 @@ format :html do
       "year#{args[:year]}"
     when /^\d{4}$/
       year
-    when '0'
-      'year'
+    when "0"
+      "year"
     end
   end
 
@@ -373,11 +373,10 @@ format :html do
 
   view :ruby do |args|
     if args[:sum]
-      start, stop = args[:sum].split('..').map { |y| interpret_year(y) }
-      "((#{start}..#{stop}).to_a.inject(0) { |r, y| r += #{get_value_str
-      ('y')}; r })"
+      start, stop = args[:sum].split("..").map { |y| interpret_year(y) }
+      "((#{start}..#{stop}).to_a.inject(0) { |r, y| r += #{get_value_str('y')}; r })"
     else
-      year = args[:year] ? interpret_year(args[:year]) : 'year'
+      year = args[:year] ? interpret_year(args[:year]) : "year"
       get_value_str year
     end
   end
@@ -391,5 +390,5 @@ end
 
 def needs_name?
   # score names are handles differently in MetricType::Score
-  !name.present? && metric_type != 'Score'
+  !name.present? && metric_type != "Score"
 end

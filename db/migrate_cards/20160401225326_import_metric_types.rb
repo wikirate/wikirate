@@ -2,24 +2,24 @@
 
 class ImportMetricTypes < Card::Migration
   def up
-    import_json 'metric_types.json'
-    create_or_update name: 'script: drag and drop',
+    import_json "metric_types.json"
+    create_or_update name: "script: drag and drop",
                      type_id: Card::CoffeeScriptID,
-                     codename: 'script_drag_and_drop'
-    create_or_update name: 'script: metrics',
+                     codename: "script_drag_and_drop"
+    create_or_update name: "script: metrics",
                      type_id: Card::CoffeeScriptID,
-                     codename: 'script_metrics'
-    create_or_update name: 'style: drag and drop',
+                     codename: "script_metrics"
+    create_or_update name: "style: drag and drop",
                      type_id: Card::ScssID,
-                     codename: 'style_drag_and_drop'
-    create_or_update name: 'style: metrics',
+                     codename: "style_drag_and_drop"
+    create_or_update name: "style: metrics",
                      type_id: Card::ScssID,
-                     codename: 'style_metrics'
-    create_or_update name: 'style: wikirate bootstrap common',
+                     codename: "style_metrics"
+    create_or_update name: "style: wikirate bootstrap common",
                      type_id: Card::ScssID,
-                     codename: 'style_wikirate_bootstrap_common'
-    create_or_update name: 'style: mixins and variables',
+                     codename: "style_wikirate_bootstrap_common"
+    create_or_update name: "style: mixins and variables",
                      type_id: Card::ScssID,
-                     codename: 'style_mixins_and_variables'
+                     codename: "style_mixins_and_variables"
   end
 end
