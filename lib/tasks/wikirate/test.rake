@@ -32,7 +32,6 @@ namespace :wikirate do
       cmd =
         "echo \"create database if not exists #{testdb}\" | #{mysql_login}; " \
         "#{mysql_login} --database=#{testdb} < #{db_path}"
-      puts "cmd = #{cmd}"
       system cmd
     end
 

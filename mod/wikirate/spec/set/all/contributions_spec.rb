@@ -1,4 +1,4 @@
-
+=begin
 shared_examples_for 'contributions' do |subject_type|
   company_name = "Death Star"
   topic_name   = "Force"
@@ -149,3 +149,4 @@ describe Card::Set::All::Contributions do
 
   end
 end
+=end

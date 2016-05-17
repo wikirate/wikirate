@@ -49,7 +49,7 @@ describe Card::Set::MetricType::WikiRating do
     end
 
     it 'creates rating values' do
-      expect(rating_value).to eq('8')
+      expect(rating_value).to eq('8.0')
       expect(rating_value 'Samsung', '2015').to eq('3.8')
       expect(rating_value 'Sony_Corporation').to eq('1.4')
       expect(rating_value_card 'Death_Star', '1977').to be_falsey
@@ -62,7 +62,7 @@ describe Card::Set::MetricType::WikiRating do
       it 'updates existing rating value' do
         update_weights 'Joe User+researched number 1' => 40,
                        'Joe User+researched number 2' => 60
-        expect(rating_value).to eq '7'
+        expect(rating_value).to eq '7.0'
       end
       it 'removes incomplete rating value' do
         update_weights 'Joe User+researched number 1' => 40,
@@ -75,7 +75,7 @@ describe Card::Set::MetricType::WikiRating do
         # so if we restrict the formula to +researched number 1 values
         # Death Star has to get a rating value
         update_weights 'Joe User+researched number 1' => 100
-        expect(rating_value 'Death Star', '1977').to eq('5')
+        expect(rating_value 'Death Star', '1977').to eq('5.0')
       end
     end
 
@@ -127,7 +127,7 @@ describe Card::Set::MetricType::WikiRating do
                     '"Joe User+researched number 2":"40"}'
         )
        end
-      expect(rating_value).to eq('8')
+      expect(rating_value).to eq('8.0')
       expect(rating_value 'Samsung', '2015').to eq('3.8')
       expect(rating_value 'Sony_Corporation').to eq('1.4')
       expect(rating_value_card 'Death_Star', '1977').to be_falsey

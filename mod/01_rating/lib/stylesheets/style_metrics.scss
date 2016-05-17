@@ -175,8 +175,9 @@
     }
 }
 .filter.panel {
-  background: $gray-background-color;
+  background: #F9F9F9;
   border-radius: 0;
+  margin-top: 10px;
   .panel-heading {
      cursor: pointer;
      color: #ccc !important;
@@ -190,8 +191,23 @@
     color: $dark-text-color;
     label {
         color: $dark-text-color;
+        float: left;
+        width: 15%;
+    }
+    input, select {
+        height: 25px;
+        width:80%
     }
   }
+}
+.filter-buttons{
+    text-align:right;
+    margin:10px;
+    border-top: 1px solid #eee;
+    .form-group{
+       margin: 0px 0px -15px;
+       padding:0px;
+    }
 }
 
 .metric-source .tab-content {
