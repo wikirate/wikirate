@@ -94,11 +94,11 @@ format :html do
 
   def next_step_tip
     # FIXME: cardnames
-    if !topics = Card["#{card.name}+topics"] ||
-                 topics.item_names.empty?
+    if !(topics = card.fetch(trait: :wikirate_topic)) ||
+       topics.item_names.empty?
       "improve this note by adding a topic."
-    elsif !companies = Card["#{card.name}+company"] ||
-                       companies.item_names.empty?
+    elsif !(companies = card.fetch(trait: :wikirate_company)) ||
+          companies.item_names.empty?
       "improve this note by adding a company."
     else
       cited_in = Card.search refer_to: card.name,
