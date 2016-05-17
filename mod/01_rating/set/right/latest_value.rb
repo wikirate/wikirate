@@ -6,7 +6,7 @@ def raw_content
   if metric_value_card
     metric_value_card.raw_content
   else
-    ''
+    ""
   end
 end
 
@@ -18,7 +18,7 @@ format :html do
     if card.metric_value_card
       subformat(card.metric_value_card)._render_concise(args)
     else
-      ''
+      ""
     end
   end
 end

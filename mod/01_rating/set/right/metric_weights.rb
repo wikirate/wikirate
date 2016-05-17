@@ -2,7 +2,7 @@ event :update_formula, :prepare_to_store do
   new_formula = item_names.map do |i_name|
     weight = Env.params[i_name] || 0
     "{{#{i_name}}}*#{weight}"
-  end.join '+'
+  end.join "+"
   add_subcard "#{cardname.left}+#{Card[:formula].name}", content: new_formula
 end
 
@@ -11,8 +11,8 @@ def formula
 end
 
 def metrics_with_weight
-  formula.split('+').map do |summand|
-    metric, weight = summand.split '*'
+  formula.split("+").map do |summand|
+    metric, weight = summand.split "*"
     if weight.match /[^\s\d\.]/
       metric, weight = weight, metric
     end
@@ -47,7 +47,7 @@ format :html do
   view :editor do
     metrics_with_weight.map do |metric, weight|
       metric_slider
-    end.join ''
+    end.join ""
   end
 
   def metric_slider metric_name, weight

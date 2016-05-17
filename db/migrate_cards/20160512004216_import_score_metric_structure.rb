@@ -2,6 +2,6 @@
 
 class ImportScoreMetricStructure < Card::Migration
   def up
-    import_json 'score_metric_structure.json'
+    import_json "score_metric_structure.json"
   end
 end

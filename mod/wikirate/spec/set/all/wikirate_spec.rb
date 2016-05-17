@@ -1,5 +1,5 @@
 
-require File.expand_path('../../self/source_spec',  __FILE__)
+require File.expand_path("../../self/source_spec",  __FILE__)
 
 describe Card::Set::All::Wikirate do
   describe "claim count things" do
@@ -21,28 +21,28 @@ describe Card::Set::All::Wikirate do
       ct3 = Card.create! :name=>"#{company2.name}+#{topic1.name}",:type=>"analysis"
       ct4 = Card.create! :name=>"#{company2.name}+#{topic2.name}",:type=>"analysis"
 
-      sourcepage = create_page_with_sourcebox 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
+      sourcepage = create_page_with_sourcebox "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
 
       #test single source
       claim1 = Card.create! :type_id=>Card::ClaimID, :name=>"claim1" ,:subcards=>{
-        '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID},
-        '+companies' => {:content=>"[[#{company1.name}]]\n[[#{company2.name}]]"},
-        '+topics' => {:content=>"[[#{topic1.name}]]"}
+        "+source" => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID},
+        "+companies" => {:content=>"[[#{company1.name}]]\n[[#{company2.name}]]"},
+        "+topics" => {:content=>"[[#{topic1.name}]]"}
       }
       claim2 = Card.create! :type_id=>Card::ClaimID, :name=>"claim2" ,:subcards=>{
-        '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID},
-        '+companies' => {:content=>"[[#{company2.name}]]"},
-        '+topics' => {:content=>"[[#{topic1.name}]]"}
+        "+source" => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID},
+        "+companies" => {:content=>"[[#{company2.name}]]"},
+        "+topics" => {:content=>"[[#{topic1.name}]]"}
       }
       claim3 = Card.create! :type_id=>Card::ClaimID, :name=>"claim3" ,:subcards=>{
-        '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID},
-        '+companies' => {:content=>"[[#{company1.name}]]"},
-        '+topics' => {:content=>"[[#{topic2.name}]]"}
+        "+source" => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID},
+        "+companies" => {:content=>"[[#{company1.name}]]"},
+        "+topics" => {:content=>"[[#{topic2.name}]]"}
       }
       claim4 = Card.create! :type_id=>Card::ClaimID, :name=>"claim4" ,:subcards=>{
-        '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID},
-        '+companies' => {:content=>"[[#{company1.name}]]\n[[#{company2.name}]]"},
-        '+topics' => {:content=>"[[#{topic1.name}]]\n[[#{topic2.name}]]"}
+        "+source" => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID},
+        "+companies" => {:content=>"[[#{company1.name}]]\n[[#{company2.name}]]"},
+        "+topics" => {:content=>"[[#{topic1.name}]]\n[[#{topic2.name}]]"}
       }
 
       expect(Card.claim_counts "#{ct1.key}").to eq(2)
@@ -108,9 +108,9 @@ describe Card::Set::All::Wikirate do
       #create 2 claims
       #create an card with claim cite contents
       #check the number and the content
-      sourcepage = create_page_with_sourcebox nil,{},'false'
-      claim1 = Card.create! :type_id=>Card::ClaimID, :name=>"test1",:subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}
-      claim2 = Card.create! :type_id=>Card::ClaimID, :name=>"test2",:subcards=>{ '+source' => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}
+      sourcepage = create_page_with_sourcebox nil,{},"false"
+      claim1 = Card.create! :type_id=>Card::ClaimID, :name=>"test1",:subcards=>{ "+source" => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}
+      claim2 = Card.create! :type_id=>Card::ClaimID, :name=>"test2",:subcards=>{ "+source" => {:content=>"[[#{sourcepage.name}]]",:type_id=>Card::PointerID}}
       content=""
       for i in 0..10
         if i%2==0
@@ -132,11 +132,11 @@ describe Card::Set::All::Wikirate do
     end
     it "shows correct html for the menu_link view" do
       html = render_card :menu_link,{:name=>"non-exisiting-card"}
-      expect(html).to include('glyphicon glyphicon-edit')
+      expect(html).to include("glyphicon glyphicon-edit")
     end
     it "shows empty string for not real card for raw_or_blank view" do
       html = render_card :raw_or_blank,{:name=>"non-exisiting-card"}
-      expect(html).to eq('')
+      expect(html).to eq("")
     end
     it "renders raw for real card for raw_or_blank view" do
       html = render_card :raw_or_blank,{:name=>"home"}
@@ -145,9 +145,9 @@ describe Card::Set::All::Wikirate do
   end
   context "while viewing id_atom in json format" do
     it "includes id" do
-      login_as 'WagnBot'
+      login_as "WagnBot"
       search_card = Card.create! :type=>"search",:content=>"{\"type\":\"company\"}",:name=>"id_atom_test"
-      Card::Env.params[:item] = 'id_atom'
+      Card::Env.params[:item] = "id_atom"
       result = search_card.format( :format=>:json)._render(:content)
       card_array = result[:card][:value]
       card_array.each do |card|
@@ -156,10 +156,10 @@ describe Card::Set::All::Wikirate do
 
     end
     it "handles param:start " do
-      login_as 'WagnBot'
+      login_as "WagnBot"
       start = 20140601000000
       search_card = Card.create! :type=>"search",:content=>"{\"type\":\"company\"}",:name=>"id_atom_test"
-      Card::Env.params[:item] = 'id_atom'
+      Card::Env.params[:item] = "id_atom"
       Card::Env.params["start"] = start
       wql = {:type=>"Company"}
       company_cards_list = Card.search wql
@@ -184,10 +184,10 @@ describe Card::Set::All::Wikirate do
         Card.create! :name=>"testcard#{i+1}",:type=>"Basic"
         cards.push "\"testcard#{i+1}\""
       end
-      cards.join(',')
+      cards.join(",")
     end
     before do
-      login_as 'WagnBot'
+      login_as "WagnBot"
       @search_card_name = "_search_test"
     end
     it "handles only 1 result" do
@@ -224,7 +224,7 @@ describe Card::Set::All::Wikirate do
       it "renders source view" do
         file_path = "#{Rails.root}/mod/wikirate/spec/set/all/DeathStar.jpg"
         dump_card = Card.create name: "dump is dump",
-                      type_code: 'image', image: File.new(file_path)
+                      type_code: "image", image: File.new(file_path)
         expect(dump_card.format.render_og_source).to eq(dump_card.format.render_source)
       end
     end
@@ -243,8 +243,8 @@ describe Card::Set::All::Wikirate do
         numeric_card = Card.create! :name=>"I am a number",:content=>"3.14159265"
         html = numeric_card.format.render_progress_bar
         expect(html).to have_tag("div", :with=>{:class=>"progress"}) do
-          with_tag 'div', with: { class: 'progress-bar',
-                                  'aria-valuenow' => value },
+          with_tag "div", with: { class: "progress-bar",
+                                  "aria-valuenow" => value },
                           text: /#{value}%/
         end
       end

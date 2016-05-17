@@ -33,7 +33,7 @@ format :html do
   end
 
   view :citation_tip, tags: :unknown_ok do |_args|
-    tip = ' easily cite this note by pasting the following: '\
+    tip = " easily cite this note by pasting the following: "\
           "#{text_area_tag('sample-citation-textarea')}"
     %( <div class="sample-citation">#{render :tip, tip: tip}</div> )
   end

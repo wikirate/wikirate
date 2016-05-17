@@ -1,12 +1,12 @@
 #!/usr/bin/env ruby
 
-require File.dirname(__FILE__) + '/../config/environment'
+require File.dirname(__FILE__) + "/../config/environment"
 Card::Auth.current_id = Card::WagnBotID
 
 wql = {
   type_id: Card::WikirateCompanyID,
   referred_to_by:
-    'Rating_Companies_on_Responsible_Sourcing_Data_Sprint+companies'
+    "Rating_Companies_on_Responsible_Sourcing_Data_Sprint+companies"
 }
 
 Card.search(wql) do |company|

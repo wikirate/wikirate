@@ -1,7 +1,7 @@
 # handle variables used in a formula card's content
 
 def variables_card
-  v_card = metric_card.fetch trait: :variables, new: { type: 'session' }
+  v_card = metric_card.fetch trait: :variables, new: { type: "session" }
   if v_card.content.blank?
     v_card.content = input_names.to_pointer_content
   end

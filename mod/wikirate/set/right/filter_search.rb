@@ -18,8 +18,8 @@ end
 def cited_query
   yes_query = {:referred_to_by=>{:left=>{:type_id=>WikirateAnalysisID},:right_id=>OverviewID}}
   case Env.params[:cited]
-  when 'yes' then yes_query
-  when 'no'  then {:not=>yes_query}
+  when "yes" then yes_query
+  when "no"  then {:not=>yes_query}
   else            {}
   end
 end
@@ -27,15 +27,15 @@ end
 def claimed_query
   yes_query = {:linked_to_by=>{:left=>{:type_id=>ClaimID}, :right_id=>SourceID }}
   case Env.params[:claimed]
-  when 'yes' then yes_query
-  when 'no'  then {:not=>yes_query}
+  when "yes" then yes_query
+  when "no"  then {:not=>yes_query}
   else            {}
   end
 end
 
 
 def sort_query
-  if Env.params[:sort] == 'recent'
+  if Env.params[:sort] == "recent"
     {:sort => "update" }
   else
     {:sort => {"right"=>"*vote count"}, "sort_as"=>"integer","dir"=>"desc"}
@@ -49,7 +49,7 @@ format :html do
     [:sort, :cited, :claimed, :company, :topic, :tag].each do |key|
       filter_args[key] = params[key] if params[key].present?
     end
-    options.merge!(:class=>'card-paging-link slotter', :remote => true)
+    options.merge!(:class=>"card-paging-link slotter", :remote => true)
     link_to raw(text), path(@paging_path_args.merge(filter_args)), options
   end
 
@@ -78,27 +78,27 @@ format :html do
   end
 
   view :sort_formgroup do |args|
-    select_filter 'sort',  options_for_select({'Most Important'=>'important','Most Recent'=>'recent'}, params[:sort] || 'important')
+    select_filter "sort",  options_for_select({"Most Important"=>"important","Most Recent"=>"recent"}, params[:sort] || "important")
   end
 
   view :cited_formgroup do |args|
-    select_filter 'cited', options_for_select({'All'=>'all', 'Yes'=>'yes', 'No'=>'no'}, params[:cited] || 'all')
+    select_filter "cited", options_for_select({"All"=>"all", "Yes"=>"yes", "No"=>"no"}, params[:cited] || "all")
   end
 
   view :claimed_formgroup do |args|
-    select_filter 'claimed', options_for_select({'All'=>'all', 'Yes'=>'yes', 'No'=>'no'}, params[:claimed] || 'all')
+    select_filter "claimed", options_for_select({"All"=>"all", "Yes"=>"yes", "No"=>"no"}, params[:claimed] || "all")
   end
 
   view :company_formgroup do |args|
-    multiselect_filter 'company', args
+    multiselect_filter "company", args
   end
 
   view :topic_formgroup do |args|
-    multiselect_filter 'topic',args
+    multiselect_filter "topic",args
   end
 
   view :tag_formgroup do |args|
-    multiselect_filter 'tag', args
+    multiselect_filter "tag", args
   end
 
   def select_filter type_name, options
@@ -109,7 +109,7 @@ format :html do
     options_card = Card.new :name=>"+#{type_name}"  #codename
     selected_options = params[type_name]
     options = options_for_select(options_card.option_names, selected_options)
-    multiselect_tag = select_tag(type_name, options, :multiple=>true, :class=>'pointer-multiselect')
+    multiselect_tag = select_tag(type_name, options, :multiple=>true, :class=>"pointer-multiselect")
     formgroup( type_name.capitalize, multiselect_tag, :class=>"filter-input #{type_name}" )
   end
 end

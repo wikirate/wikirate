@@ -1,10 +1,10 @@
-require File.expand_path('../../config/environment',  __FILE__)
-require File.expand_path('../wikirate_import_shared', __FILE__)
+require File.expand_path("../../config/environment",  __FILE__)
+require File.expand_path("../wikirate_import_shared", __FILE__)
 
 def find_metric_company_cached_count
   Card.search left: { type_id: Card::MetricID },
               right: { type_id: Card::WikirateCompanyID },
-              right_plus: '*cached_count'
+              right_plus: "*cached_count"
 end
 
 silent_mode do

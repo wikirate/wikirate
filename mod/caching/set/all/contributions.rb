@@ -104,8 +104,8 @@ end
 
 def contribution_card?
   (r = right) &&
-    (r.codename == 'contribution_count' ||
-     r.codename == 'direct_contribution_count'
+    (r.codename == "contribution_count" ||
+     r.codename == "direct_contribution_count"
     )
 end
 

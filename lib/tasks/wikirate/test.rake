@@ -1,14 +1,14 @@
-require 'colorize'
+require "colorize"
 
 # require 'pry'
 namespace :wikirate do
   namespace :test do
-    db_path = File.join Wagn.root, 'test', 'seed.db'
-    testdb = ENV['DATABASE_NAME_TEST'] ||
-                    ((t = Wagn.config.database_configuration['test']) &&
-                    t['database'])
-    user = ENV['DATABASE_MYSQL_USERNAME'] || ENV['MYSQL_USER'] || 'root'
-    pwd  = ENV['DATABASE_MYSQL_PASSWORD'] || ENV['MYSQL_PASSWORD']
+    db_path = File.join Wagn.root, "test", "seed.db"
+    testdb = ENV["DATABASE_NAME_TEST"] ||
+                    ((t = Wagn.config.database_configuration["test"]) &&
+                    t["database"])
+    user = ENV["DATABASE_MYSQL_USERNAME"] || ENV["MYSQL_USER"] || "root"
+    pwd  = ENV["DATABASE_MYSQL_PASSWORD"] || ENV["MYSQL_PASSWORD"]
 
     def execute_command cmd, env=nil
       cmd = "RAILS_ENV=#{env} #{cmd}" if env
@@ -17,15 +17,15 @@ namespace :wikirate do
     end
 
     def import_from location
-      FileUtils.rm_rf(Dir.glob('tmp/*'))
+      FileUtils.rm_rf(Dir.glob("tmp/*"))
       require "#{Wagn.root}/config/environment"
       importer = Importer.new location
       puts "Source DB: #{importer.export_location}".green
       yield importer
-      FileUtils.rm_rf(Dir.glob('tmp/*'))
+      FileUtils.rm_rf(Dir.glob("tmp/*"))
     end
 
-    desc 'seed test database'
+    desc "seed test database"
     task :seed do
       mysql_login = "mysql -u #{user}"
       mysql_login += " -p#{pwd}" if pwd
@@ -35,35 +35,35 @@ namespace :wikirate do
       system cmd
     end
 
-    desc 'add wikirate test data to test database'
+    desc "add wikirate test data to test database"
     task add_wikirate_test_data: :environment do
-      if ENV['RAILS_ENV'] != 'test'
-        execute_command 'rake wikirate:test:add_wikirate_test_data', :test
+      if ENV["RAILS_ENV"] != "test"
+        execute_command "rake wikirate:test:add_wikirate_test_data", :test
       else
         require "#{Wagn.root}/test/seed.rb"
         SharedData.add_wikirate_data
       end
     end
 
-    desc 'update seed data using the production database'
+    desc "update seed data using the production database"
     task :reseed_data do |_t, _args|
-      location = ARGV.size > 1 ? ARGV.last : 'production'
-      if ENV['RAILS_ENV'] != 'init_test'
-        puts 'start task in init_test environment'
-        system 'env RAILS_ENV=init_test rake '\
+      location = ARGV.size > 1 ? ARGV.last : "production"
+      if ENV["RAILS_ENV"] != "init_test"
+        puts "start task in init_test environment"
+        system "env RAILS_ENV=init_test rake "\
                "wikirate:test:reseed_data #{location}"
       elsif !testdb
-        puts 'no test database'
+        puts "no test database"
       else
         # start with raw wagn db
-        execute_command 'wagn seed', :test
+        execute_command "wagn seed", :test
 
         import_from(location) do |import|
           # cardtype has to be the first
           # otherwise codename cards get tbe wrong type
-          import.cards_of_type 'cardtype'
+          import.cards_of_type "cardtype"
           import.items_of :codenames
-          import.cards_of_type 'year'
+          import.cards_of_type "year"
           # import.cards_of_type 'layout'
           # import.cards_of_type 'scss'
           # import.cards_of_type 'css'
@@ -80,15 +80,15 @@ namespace :wikirate do
           import.items_of :production_export, subitems: true
           import.migration_records
         end
-        execute_command 'rake wagn:migrate', :test
-        execute_command 'rake wikirate:test:add_wikirate_test_data', :test
-        execute_command 'rake wikirate:test:dump_test_db', :test
-        puts 'Happy testing!'
+        execute_command "rake wagn:migrate", :test
+        execute_command "rake wikirate:test:add_wikirate_test_data", :test
+        execute_command "rake wikirate:test:dump_test_db", :test
+        puts "Happy testing!"
       end
       exit
     end
 
-    desc 'dump test database'
+    desc "dump test database"
     task :dump_test_db do
       mysql_args = "-u #{user}"
       mysql_args += " -p #{pwd}" if pwd
@@ -102,10 +102,10 @@ class Importer
   def initialize location
     @export_location =
       case location
-      when 'dev'    then 'dev.wikirate.org'
-      when 'demo'   then 'demo.wikirate.org'
-      when 'local'  then 'localhost:3000'
-      else               'wikirate.org'
+      when "dev"    then "dev.wikirate.org"
+      when "demo"   then "demo.wikirate.org"
+      when "local"  then "localhost:3000"
+      else               "wikirate.org"
       end
   end
 
@@ -116,7 +116,7 @@ class Importer
         if opts[:subitems]
           json_export cardname, :export_items
         else
-          json_export(cardname)['card']['value']
+          json_export(cardname)["card"]["value"]
         end
       end
     import_card_data card_data
@@ -128,10 +128,10 @@ class Importer
 
   def migration_records
     migration_data =
-      work_on 'getting migration records' do
+      work_on "getting migration records" do
         json_export :admin_info, :migrations
       end
-    work_on 'importing migration records' do
+    work_on "importing migration records" do
       import_migration_data migration_data
     end
   end
@@ -141,7 +141,7 @@ class Importer
   def work_on msg
     puts msg.green
     result = yield
-    puts ' ... done'.green
+    puts " ... done".green
     result
   end
 
@@ -153,9 +153,9 @@ class Importer
   end
 
   def update_or_create name, _codename, attr
-    if attr['type'].in? %w(Image File)
-      attr['content'] = ''
-      attr['empty_ok'] = true
+    if attr["type"].in? %w(Image File)
+      attr["content"] = ""
+      attr["empty_ok"] = true
     end
     begin
       # card = codename ? Card.fetch(codename.to_sym) : Card.fetch(name)
@@ -175,7 +175,7 @@ class Importer
     work_on "importing data (#{cards.size} cards)" do
       Card::Auth.as_bot do
         cards.each do |card|
-          update_or_create card['name'], card['codename'], card
+          update_or_create card["name"], card["codename"], card
         end
       end
     end

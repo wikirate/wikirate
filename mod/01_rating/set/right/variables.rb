@@ -44,7 +44,7 @@ format :html do
       items.map.with_index do |item, index|
           variable_row(item, index, args)
       end
-    table(table_content, header: ['Metric', 'Variable', 'Example value'])
+    table(table_content, header: ["Metric", "Variable", "Example value"])
   end
 
   def variable_row item_name, index, args
@@ -87,7 +87,7 @@ format :html do
   def metric_list
     wql = { type_id: MetricID, limit: 0 }
     if card.metric_card.metric_type_codename == :wiki_rating
-      wql[:right_plus] = ['*metric type', { refer_to: 'Score' }]
+      wql[:right_plus] = ["*metric type", { refer_to: "Score" }]
     end
     Card.search(wql).map do |m|
       metric_list_item m

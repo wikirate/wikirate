@@ -1,4 +1,4 @@
-require File.expand_path('../../config/environment',  __FILE__)
+require File.expand_path("../../config/environment",  __FILE__)
 
 
 Card::Auth.as_bot do

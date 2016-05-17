@@ -4,7 +4,7 @@ card_accessor :variables, type_id: Card::SessionID
 
 format :html do
   def value_type
-    'Number'
+    "Number"
   end
 
   def metric_designer_field options={}

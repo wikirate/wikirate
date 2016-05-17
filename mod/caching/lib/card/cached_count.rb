@@ -49,8 +49,8 @@ class Card
       end
 
       def event_name set, args
-        changed_card_set = set.to_s.tr(':', '_').underscore
-        cached_count_set = to_s.tr(':', '_').underscore
+        changed_card_set = set.to_s.tr(":", "_").underscore
+        cached_count_set = to_s.tr(":", "_").underscore
         actions = Array.wrap args[:on]
         "update_#{cached_count_set}_cached_counts_changed_by_" \
         "#{changed_card_set}_on_#{actions.join('_')}".to_sym

@@ -7,7 +7,7 @@ format :html do
 
     with_nest_mode :normal do
 
-      args[:structure] = 'metric value type edit structure'
+      args[:structure] = "metric value type edit structure"
       render_
       %{
         <div class="source-editor nodblclick">

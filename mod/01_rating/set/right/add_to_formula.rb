@@ -28,20 +28,20 @@ format :html do
 
   def add_metric_link input_metric, formula_metric
     variables_card = formula_metric.formula_card.variables_card
-    args = { class: 'button button-primary' }
+    args = { class: "button button-primary" }
     if formula_metric.formula_card.wiki_rating?
-      add_class args, 'add-weight'
-      content_tag :a, 'Add this metric',
-                  args.merge('data-metric-id' => input_metric.id)
+      add_class args, "add-weight"
+      content_tag :a, "Add this metric",
+                  args.merge("data-metric-id" => input_metric.id)
     else
-      args.merge! text: 'Add this metric',
-                 'data-slot-selector' =>
+      args.merge! text: "Add this metric",
+                 "data-slot-selector" =>
                     ".content-editor > .RIGHT-Xvariable[data-card-name='#{variables_card.name}']",
                   remote: true,
                   path_opts: {
                     action: :update, add_item: input_metric.cardname.key,
                   }
-      add_class args, 'close-modal slotter'
+      add_class args, "close-modal slotter"
       card_link variables_card, args
     end
   end

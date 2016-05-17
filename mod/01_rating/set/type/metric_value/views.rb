@@ -42,10 +42,10 @@ def source_subcards new_source_card
 end
 
 def source_in_request?
-  sub_source_card = subfield('source')
+  sub_source_card = subfield("source")
   return false if sub_source_card.nil? ||
-                  sub_source_card.subcard('new_source').nil?
-  new_source_card = sub_source_card.subcard('new_source')
+                  sub_source_card.subcard("new_source").nil?
+  new_source_card = sub_source_card.subcard("new_source")
   source_subcard_exist?(new_source_card)
 end
 
@@ -86,8 +86,8 @@ event :set_metric_value_name,
       errors.add :name, "missing #{part} part"
       next
     end
-    name_part.content.gsub('[[', '').gsub(']]', '')
-  end.join '+'
+    name_part.content.gsub("[[", "").gsub("]]", "")
+  end.join "+"
 end
 
 event :validate_metric_value_fields, before: :set_metric_value_name do
@@ -109,13 +109,13 @@ event :validate_value_type, :validate, on: :save do
   if metric_card && (value_type = metric_card.fetch(trait: :value_type)) &&
      (value_card = subfield(:value))
     value = value_card.content
-    return if value.casecmp('unknown') == 0
+    return if value.casecmp("unknown") == 0
     case value_type.item_names[0]
-    when 'Number', 'Money'
+    when "Number", "Money"
       unless number?(value)
-        errors.add :value, 'Only numeric content is valid for this metric.'
+        errors.add :value, "Only numeric content is valid for this metric."
       end
-    when 'Category'
+    when "Category"
       # check if the value exist in options
       if !(option_card = Card["#{metric_card.name}+value options"]) ||
          !option_card.item_names.include?(value)
@@ -158,7 +158,7 @@ event :process_sources, :prepare_to_validate,
       end
     end
   elsif action == :create
-    errors.add :source, 'does not exist.'
+    errors.add :source, "does not exist."
   end
 end
 
@@ -196,7 +196,7 @@ format :html do
   end
 
   view :metric_details do
-    span_args = { class: 'metric-value' }
+    span_args = { class: "metric-value" }
     add_class span_args, grade if card.scored?
     add_class span_args, :small if fetch_value.length > 5
     wrap_with :span, span_args do
@@ -207,22 +207,22 @@ format :html do
   def humanized_big_number number
     number_to_human number,
                     units: {
-                      unit: '', billion: 'B', million: 'M', quadrillion: 'P',
-                      thousand: 'K', trillion: 'T'
+                      unit: "", billion: "B", million: "M", quadrillion: "P",
+                      thousand: "K", trillion: "T"
                     },
-                    format: '%n%u',
-                    delimiter: '',
+                    format: "%n%u",
+                    delimiter: "",
                     precision: 3
   end
 
   def humanized_small_number number
     less_than_one = number < 1
     humanized = number_with_precision number,
-                                      delimiter: ',',
+                                      delimiter: ",",
                                       strip_insignificant_zeros: true,
                                       precision: (less_than_one ? 3 : 1),
                                       significant: less_than_one
-    (humanized == '0' && number > 0) ? '~0' : humanized
+    (humanized == "0" && number > 0) ? "~0" : humanized
   end
 
   def humanized_number value
@@ -249,26 +249,26 @@ format :html do
   end
 
   def checked_value_flag
-    checked_card = card.field 'checked_by'
+    checked_card = card.field "checked_by"
     if checked_card && !checked_card.item_names.empty?
-      css_class = 'fa fa-lg fa-check-circle verify-blue margin-left-10'
-      content_tag('i', '', class: css_class, title: 'Value checked')
-    else ''
+      css_class = "fa fa-lg fa-check-circle verify-blue margin-left-10"
+      content_tag("i", "", class: css_class, title: "Value checked")
+    else ""
     end
   end
 
   def comment_flag
-    return '' unless Card.exists? card.cardname.field('discussion')
+    return "" unless Card.exists? card.cardname.field("discussion")
     disc = card.fetch(trait: :discussion)
-    if disc.content.include? 'w-comment-author'
-      css_class = 'fa fa-lg fa-commenting margin-left-10'
-      content_tag('i', '', class: css_class, title: 'Has comments')
-    else ''
+    if disc.content.include? "w-comment-author"
+      css_class = "fa fa-lg fa-commenting margin-left-10"
+      content_tag("i", "", class: css_class, title: "Has comments")
+    else ""
     end
   end
 
   view :modal_details do |args|
-    span_args = { class: 'metric-value' }
+    span_args = { class: "metric-value" }
     add_class span_args, grade if card.scored?
     wrap_with :span, span_args do
       subformat(card)._render_modal_link(
@@ -276,10 +276,10 @@ format :html do
           text: fetch_value,
           path_opts: { slot: { show: :menu, optional_horizontal_menu: :hide } },
           html_args: {
-            'data-complete-number' => card.value,
-            'data-tooltip' => 'true',
-            'data-placement' => 'top',
-            'title' => card.value
+            "data-complete-number" => card.value,
+            "data-tooltip" => "true",
+            "data-placement" => "top",
+            "title" => card.value
           }
         )
       )
@@ -292,13 +292,13 @@ format :html do
 
   view :value_link do
     url = "/#{card.cardname.url_key}"
-    link = link_to beautify(fetch_value), url, target: '_blank'
-    content_tag(:span, link.html_safe, class: 'metric-value')
+    link = link_to beautify(fetch_value), url, target: "_blank"
+    content_tag(:span, link.html_safe, class: "metric-value")
   end
 
   # Metric value view for data
   view :timeline_data do
-    wrap_with :div, class: 'timeline-row' do
+    wrap_with :div, class: "timeline-row" do
       [
         _render_year,
         _render_value
@@ -308,43 +308,43 @@ format :html do
 
   view :year do
     year = content_tag(:span, card.cardname.right)
-    year << content_tag(:div, '', class: 'timeline-dot')
-    content_tag(:div, year.html_safe, class: 'td year')
+    year << content_tag(:div, "", class: "timeline-dot")
+    content_tag(:div, year.html_safe, class: "td year")
   end
 
   view :value do |args|
-    value = content_tag(:span, currency, class: 'metric-unit')
+    value = content_tag(:span, currency, class: "metric-unit")
     value << _render_value_link(args)
-    value << content_tag(:span, legend(args), class: 'metric-unit')
+    value << content_tag(:span, legend(args), class: "metric-unit")
     value << checked_value_flag.html_safe
     value << comment_flag.html_safe
     value << _render_value_details_toggle
     value << value_details(args)
-    content_tag(:div, value.html_safe, class: 'td value')
+    content_tag(:div, value.html_safe, class: "td value")
   end
 
   view :sources do
-    heading = content_tag(:h5, 'Cited')
+    heading = content_tag(:h5, "Cited")
     sources = card.fetch trait: :source
     heading << subformat(sources).render_core(item: :cited).html_safe
   end
 
   view :comments do |_args|
     disc_card = card.fetch trait: :discussion, new: {}
-    comments = disc_card.real? ? subformat(disc_card).render_core : ''
+    comments = disc_card.real? ? subformat(disc_card).render_core : ""
     comments += subformat(disc_card).render_comment_box
     wrap do
       [
-        content_tag(:h5, 'Discussion'),
+        content_tag(:h5, "Discussion"),
         comments.html_safe
       ]
     end
   end
 
   view :credit_name do |args|
-    wrap_with :div, class: 'credit' do
+    wrap_with :div, class: "credit" do
       [
-        nest(card, view: :core, structure: 'creator credit'),
+        nest(card, view: :core, structure: "creator credit"),
         _optional_render(:source_link, args, :hide)
       ]
     end
@@ -356,7 +356,7 @@ format :html do
         subformat(i_card).render_original_icon_link
       end.join "\n"
     else
-      ''
+      ""
     end
   end
 end

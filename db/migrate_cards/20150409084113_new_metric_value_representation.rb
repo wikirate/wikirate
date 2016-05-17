@@ -2,11 +2,11 @@
 
 class NewMetricValueRepresentation < Card::Migration
   def up
-    Card.create! :name=>'Metric value', :codename=>'metric_value', :type_code=>:cardtype
-    Card.create! :name=>'Metric value+*type+*structure', :content=>"{{+value}}\n{{+source}}\n{{+discussion}}"
+    Card.create! :name=>"Metric value", :codename=>"metric_value", :type_code=>:cardtype
+    Card.create! :name=>"Metric value+*type+*structure", :content=>"{{+value}}\n{{+source}}\n{{+discussion}}"
     card = Card[:values]
-    card.update_attributes! :codename=>'value', :subcards=>{
-      '+*right+*default'=>{:type_id=>Card::PhraseID}
+    card.update_attributes! :codename=>"value", :subcards=>{
+      "+*right+*default"=>{:type_id=>Card::PhraseID}
     }
     card = Card.fetch "values+*right+*structure"
     card.update_attributes! :name=>"metric values+*right+*structure"
@@ -73,7 +73,7 @@ class NewMetricValueRepresentation < Card::Migration
     Card::Cache.reset_all
     metric_values = Card.search :right=>{:type_id=> Card::YearID}, :left=>{:right=>{:type_id=>Card::WikirateCompanyID}, :left=>{:type_id=>Card::MetricID }}
     metric_values.each do |value_card|
-      value_card.update_attributes! :type_id=>Card::MetricValueID, :subcards=>{'+value'=>{:type_code=>:phrase, :content=>value_card.content}}
+      value_card.update_attributes! :type_id=>Card::MetricValueID, :subcards=>{"+value"=>{:type_code=>:phrase, :content=>value_card.content}}
     end
   end
 end

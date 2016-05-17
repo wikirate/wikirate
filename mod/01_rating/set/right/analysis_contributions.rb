@@ -16,11 +16,11 @@ format :html do
     params = "company[]=#{analysis_name.left}&"\
              "topic[]=#{analysis_name.right}"
     case label
-    when 'Notes', 'Sources'
+    when "Notes", "Sources"
       %{<a href="/#{label}?#{params}">#{text}</a>}
-    when 'Metrics'
+    when "Metrics"
       %{<a href="/#{analysis_name.url_key}+metric">#{text}</a>}
-    when 'Overview'
+    when "Overview"
       card_link analysis_name.s, text: text
     end
   end
@@ -28,10 +28,10 @@ format :html do
   def data_item content, label, type=:default
     extra_class =
       case type
-      when :highlight then 'btn btn-highlight'
-      when :warning   then 'warning'
+      when :highlight then "btn btn-highlight"
+      when :warning   then "warning"
       else
-        'btn btn-default'
+        "btn btn-default"
       end
     content_tag :div, class: "contribution #{extra_class if extra_class}" do
       link content, label
@@ -50,25 +50,25 @@ format :html do
       metric_cnt = (metrics = Card.fetch(analysis_name.trait :metric)) &&
                      metrics.cached_count
     end
-    empty = glyphicon 'plus'
+    empty = glyphicon "plus"
     data = []
-    if claim_cnt == '0'
-      data << ['<i class="fa fa-exclamation-circle"></i>', 'Need Notes',
+    if claim_cnt == "0"
+      data << ['<i class="fa fa-exclamation-circle"></i>', "Need Notes",
                :warning]
-      data << [empty, 'Notes', :highlight]
+      data << [empty, "Notes", :highlight]
     else
       icon =
         if overview_card
-          nest(Card.fetch('venn icon'), view: :content, size: :small)
+          nest(Card.fetch("venn icon"), view: :content, size: :small)
         else
           empty
         end
-      data << [icon, 'Overview', (:highlight if !overview_card)]
-      data << [metric_cnt, 'Metrics']
-      data << [claim_cnt, 'Notes']
+      data << [icon, "Overview", (:highlight if !overview_card)]
+      data << [metric_cnt, "Metrics"]
+      data << [claim_cnt, "Notes"]
     end
-    data << [(source_cnt == '0' ? empty : source_cnt),
-             'Sources', (:highlight if source_cnt == '0')]
+    data << [(source_cnt == "0" ? empty : source_cnt),
+             "Sources", (:highlight if source_cnt == "0")]
     # reverse because of float:right
     data.reverse.map { |opts| data_item(*opts) }.join "\n"
   end

@@ -6,7 +6,7 @@ format :html do
   end
 
   view :more_link do |args|
-    card_link card, :text=> 'more...'
+    card_link card, :text=> "more..."
   end
 
   view :profile, :tags=>:unknown_ok do |args|
@@ -15,7 +15,7 @@ format :html do
         _render_following_list(args)
       end
     else
-      ''
+      ""
     end
   end
 

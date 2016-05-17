@@ -8,7 +8,7 @@ class Card
         Card::Content::Chunk.register_class(
           self, prefix_re: '\\{\\{',
           full_re:    /^\{\{([^\}]*)\}\}/,
-          idx_char:  '{')
+          idx_char:  "{")
       end
 
       register_list :formula, [:FormulaInput]

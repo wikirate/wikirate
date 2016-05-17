@@ -2,6 +2,6 @@
 
 class ImportMetricValueRelated < Card::Migration
   def up
-    import_json 'metric_value_related.json'
+    import_json "metric_value_related.json"
   end
 end

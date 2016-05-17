@@ -1,7 +1,7 @@
 describe Card::Set::All::Base do
   
   before do 
-    login_as 'joe_user'
+    login_as "joe_user"
   end
   it "handles paragraph view" do 
     card = Card.create :name=>"test_basic",:type=>"basic",:content=>"abc "*150

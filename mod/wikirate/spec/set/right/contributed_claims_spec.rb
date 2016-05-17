@@ -8,7 +8,7 @@ describe Card::Set::Right::ContributedClaims do
     Card::Auth.as_bot do
       (0...3).each do |i|
         source = create_page "https://www.google.co.uk/?q=hello#{i}"
-        claim = Card.create! :type_id=>Card::ClaimID, :name=>"claim #{i}" ,:subcards=>{ '+source' => {:content=>"[[#{source.name}]]",:type_id=>Card::PointerID}}
+        claim = Card.create! :type_id=>Card::ClaimID, :name=>"claim #{i}" ,:subcards=>{ "+source" => {:content=>"[[#{source.name}]]",:type_id=>Card::PointerID}}
         claim_list.push claim
 
       end

@@ -2,7 +2,7 @@
 
 describe Card::Set::Right::CitedClaims do
   before do
-    login_as 'joe_user'
+    login_as "joe_user"
     @sample_company = get_a_sample_company
     @sample_topic = get_a_sample_topic
     @sample_analysis = get_a_sample_analysis

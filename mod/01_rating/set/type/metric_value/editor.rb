@@ -1,6 +1,6 @@
 format :html do
   view :new do |args|
-    return _render_no_frame_form args if Env.params[:noframe] == 'true'
+    return _render_no_frame_form args if Env.params[:noframe] == "true"
     @form_root = true
     frame args do # no form!
       [
@@ -11,7 +11,7 @@ format :html do
   end
 
   def edit_slot args
-    args[:edit_fields] = { '+value' => {} } unless special_editor? args
+    args[:edit_fields] = { "+value" => {} } unless special_editor? args
     super(args)
   end
 
@@ -52,7 +52,7 @@ format :html do
 
   view :hidden_source_field do |args|
     if (source = args[:source])
-      hidden_field 'hidden_source', value: source
+      hidden_field "hidden_source", value: source
     end
   end
 
@@ -88,7 +88,7 @@ format :html do
   view :no_frame_form do |args|
     form_opts = args[:form_opts] ? args.delete(:form_opts) : {}
     form_opts[:hidden] = args.delete(:hidden)
-    form_opts['main-success'] = 'REDIRECT'
+    form_opts["main-success"] = "REDIRECT"
     card_form :create, form_opts do
       output [
         _optional_render(:name_formgroup, args),
@@ -142,10 +142,10 @@ format :html do
   def find_potential_sources company, metric
     Card.search(
       type_id: Card::SourceID,
-      right_plus: [['company', { refer_to: company }],
-                   ['report_type', {
+      right_plus: [["company", { refer_to: company }],
+                   ["report_type", {
                      refer_to: {
-                       referred_to_by: metric + '+report_type' } }]]
+                       referred_to_by: metric + "+report_type" } }]]
     )
   end
 
@@ -156,15 +156,15 @@ format :html do
     end
     relevant_sources =
       if sources.empty?
-        'None'
+        "None"
       else
         sources.map do |source|
           with_nest_mode :normal do
             subformat(source).render_relevant
           end
-        end.join('')
+        end.join("")
       end
-    content_tag(:div, relevant_sources.html_safe, class: 'relevant-sources')
+    content_tag(:div, relevant_sources.html_safe, class: "relevant-sources")
   end
 
   view :cited_sources do |_args|
@@ -182,29 +182,29 @@ format :html do
 
   def set_hidden_args args
     args[:hidden] = {
-      success: { id: '_self', soft_redirect: true, view: :timeline_data }
+      success: { id: "_self", soft_redirect: true, view: :timeline_data }
     }
     if args[:metric]
-      args[:hidden]['card[subcards][+metric][content]'] = args[:metric]
+      args[:hidden]["card[subcards][+metric][content]"] = args[:metric]
     end
     if args[:company]
-      args[:hidden]['card[subcards][+company][content]'] = args[:company]
+      args[:hidden]["card[subcards][+company][content]"] = args[:company]
     end
     if args[:source]
-      args[:hidden]['card[subcards][+source][content]'] = args[:source]
+      args[:hidden]["card[subcards][+source][content]"] = args[:source]
     end
   end
 
   def default_new_args args
     set_hidden_args args
     args[:title] = "Add new value for #{args[:metric]}" if args[:metric]
-    btn_class = 'btn btn-default _form_close_button'
+    btn_class = "btn btn-default _form_close_button"
     args[:buttons] =
       wrap_with :div do
         [
-          submit_button(class: 'create-submit-button',
-                        data: { disable_with: 'Adding...' }),
-          content_tag(:button, 'Close', type: 'button', class: btn_class)
+          submit_button(class: "create-submit-button",
+                        data: { disable_with: "Adding..." }),
+          content_tag(:button, "Close", type: "button", class: btn_class)
         ]
       end
     super(args)
@@ -216,7 +216,7 @@ format :html do
 
   def currency
     return unless (value_type = Card["#{card.metric_card.name}+value type"])
-    return unless value_type.item_names[0] == 'Money' &&
+    return unless value_type.item_names[0] == "Money" &&
                   (currency = Card["#{card.metric_card.name}+currency"])
     currency.content
   end

@@ -3,7 +3,7 @@ module Formula
     def get_value input, _company, _year
       if input.size > 1
         fail Card::Error,
-             'translate formula with more than one metric involved'
+             "translate formula with more than one metric involved"
       end
       @executed_lambda[input.first.to_s.downcase]
     end

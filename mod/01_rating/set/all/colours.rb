@@ -36,7 +36,7 @@ format :html do
   end
 
   def colorify value, mono=false
-    return '' if value == ''
+    return "" if value == ""
     colour = pick_colour(value, mono)
     wrap_color_div(value, colour)
   end
@@ -50,10 +50,10 @@ format :html do
   end
 
   def wrap_color_div value, colour
-    color = 'color:' + colour
-    square_icon = content_tag(:i, '', class: 'fa fa-square ', style: color)
+    color = "color:" + colour
+    square_icon = content_tag(:i, "", class: "fa fa-square ", style: color)
     value = content_tag(:span, value)
-    wrap_with :div, class: 'range-value' do
+    wrap_with :div, class: "range-value" do
       [
         value,
         square_icon

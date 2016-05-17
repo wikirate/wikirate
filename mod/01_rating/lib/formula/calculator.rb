@@ -34,14 +34,14 @@ module Formula
     end
 
     def self.remove_nests content
-      content.gsub(/{{[^}]*}}/,'')
+      content.gsub(/{{[^}]*}}/,"")
     end
 
     private
 
     def safe_execution expr
       unless safe_to_exec?(expr)
-        @errors << 'invalid formula'
+        @errors << "invalid formula"
         return
       end
       exec_lambda expr

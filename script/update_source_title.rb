@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require File.dirname(__FILE__) + '../../config/environment'
+require File.dirname(__FILE__) + "../../config/environment"
 
 
 Wagn.config.perform_deliveries = false

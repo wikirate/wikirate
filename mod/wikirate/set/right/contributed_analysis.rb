@@ -7,7 +7,7 @@ end
 format :html do
   def default_header_args args
     with_nest_mode :normal do
-      args[:icon] = nest Card.fetch('venn icon'), :view=>:core, :size=>:small
+      args[:icon] = nest Card.fetch("venn icon"), :view=>:core, :size=>:small
     end
   end
 
@@ -26,7 +26,7 @@ format :html do
       _render_closed(args)
     else
       if (l = card.left) && (Auth.current_id == l.id || l.type_code == :wikirate_company)
-        args.merge! :slot_class=>'editable'
+        args.merge! :slot_class=>"editable"
       end
       super(args)
     end

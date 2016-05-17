@@ -1,4 +1,4 @@
-DEFAULT_METRIC_TYPE = 'Researched'
+DEFAULT_METRIC_TYPE = "Researched"
 
 @@options = {
   junction_only: true,
@@ -17,7 +17,7 @@ def metric_type card_or_name
 end
 
 def label name
-  'metric type'
+  "metric type"
 end
 
 def pattern_applies? card
@@ -26,7 +26,7 @@ end
 
 def prototype_args anchor
   metric_type = metric_type anchor
-  { type: 'metric', '+*metric_type' => "[[#{metric_type}]]"  }
+  { type: "metric", "+*metric_type" => "[[#{metric_type}]]"  }
 end
 
 def anchor_name card
