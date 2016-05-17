@@ -107,7 +107,11 @@ end
 
 def get_cached_values
   cached_json = fetch(trait: :cached_count, new: {}).format.render_raw
-  JSON.parse(cached_json).with_indifferent_access || {}
+  cached_hash = JSON.parse(cached_json).with_indifferent_access || {}
+  cached_hash.keys.each do |key|
+    cached_hash[Card[key.to_i].name] = cached_hash.delete key
+  end
+  cached_hash
 end
 
 # @return # of companies with values

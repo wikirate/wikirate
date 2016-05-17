@@ -32,17 +32,29 @@ def add_value_source_args args, source
   end
 end
 
+def metric_value_name args, error_msg
+  args[:name] || begin
+    missing = [:company, :year, :value].reject { |v| args[v] }
+    if missing.empty?
+      [name, args[:company], args[:year]].join '+'
+    else
+      error_msg.push("missing field(s) #{missing.join(',')}")
+      nil
+    end
+  end
+end
+
+def echk_value_card_exist args, error_msg
+  value_name = metric_value_name(args, error_msg)
+  if (value_card = Card[value_name.to_name.field(:value)])
+    link = format.card_link value_card, text: 'value'
+    error_msg << "#{link} '#{value_card.content}' exists"
+  end
+end
+
 def valid_value_args? args
   error_msg = []
-  metric_value_name =
-    args[:name] || begin
-      missing = [:company, :year, :value].reject { |v| args[v] }
-      error_msg += missing.map { |field| "missing #{field}" }
-      [name, args[:company], args[:year]].join '+'
-    end
-  if Card[metric_value_name.to_name.field(:value)]
-    error_msg << 'value already exists'
-  end
+  echk_value_card_exist args, error_msg
   if metric_type_codename == :researched && !args[:source]
     error_msg << 'missing source'
   end
