@@ -86,7 +86,8 @@ describe Card::Set::Right::DownvoteeSearch do
           voted_down_search_card =
             topic.fetch trait: [:metric, :downvotee_search]
           html = voted_down_search_card.format.render_drag_and_drop
-          expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down","data-update-id"=>"Natural_Resource_Use+metric+downvotee_search","data-bucket-name"=>"down_vote"}) do
+          expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down","data-update-id"=>"Natural_Resource_Use+Metric+downvotee_search",
+                                                 "data-bucket-name"=>"down_vote"}) do
             with_tag "h5",:with=>{:class=>"vote-title"},:text=>"Not Important to Me"  
             with_tag "div",:with=>{:class=>"empty-message"} 
             with_tag("div",:with=>{:class=>"drag-item yinyang-row"}) do
@@ -110,9 +111,10 @@ describe Card::Set::Right::DownvoteeSearch do
             voted_down_search_card =
               company.fetch trait: [:wikirate_topic, :downvotee_search]
             html = voted_down_search_card.format.render_drag_and_drop
-            expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down","data-update-id"=>"Apple_Inc_+topic+downvotee_search","data-bucket-name"=>"down_vote"}) do
+            expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down","data-update-id"=>"Apple_Inc+topic+downvotee_search",
+                                                   "data-bucket-name"=>"down_vote"}) do
               with_tag("div",:with=>{:class=>"drag-item yinyang-row"}) do
-                with_tag "div",:with=>{:id=>"Apple_Inc_+Force+yinyang_drag_item"}
+                with_tag "div",:with=>{:id=>"Apple_Inc+Force+yinyang_drag_item"}
               end
             end
           end
@@ -186,9 +188,11 @@ describe Card::Set::Right::DownvoteeSearch do
             voted_down_search_card =
               analysis.fetch trait: [:metric, :downvotee_search]
             html = voted_down_search_card.format.render_drag_and_drop
-            expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down","data-update-id"=>"Apple_Inc_+Natural_Resource_Use+metric+downvotee_search","data-bucket-name"=>"down_vote"}) do
+            expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down",
+                                                   "data-update-id"=>"Apple_Inc_+Natural_Resource_Use+Metric+downvotee_search","data-bucket-name"=>"down_vote"}) do
               with_tag("div",:with=>{:class=>"drag-item yinyang-row"}) do
-                with_tag "div",:with=>{:id=>"Apple_Inc_+Natural_Resource_Use+Jedi+deadliness+yinyang_drag_item"}
+                with_tag "div",
+                         :with=>{:id=>"Apple_Inc_+Natural_Resource_Use+Jedi+deadliness+yinyang_drag_item"}
               end
             end
           end
