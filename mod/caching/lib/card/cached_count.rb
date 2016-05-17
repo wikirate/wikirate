@@ -9,7 +9,7 @@ class Card
     @@expiry_checks = { delete: [], create: [], update: [], all: [], save: [] }
     mattr_accessor :expiry_checks # accessible in E and M
 
-    def self.included(host_class)
+    def self.included host_class
       host_class.extend ClassMethods
       host_class.card_writer :cached_count, type: :plain_text
       host_class
@@ -34,7 +34,7 @@ class Card
           name = event_name set_of_changed_card, args
           set_of_changed_card.class_eval do
             event name, :integrate, args do
-              Array.wrap(block.call(self)).compact.each do |expired_count_card|
+              Array.wrap(yield(self)).compact.each do |expired_count_card|
                 next unless expired_count_card.respond_to?(:update_cached_count)
                 expired_count_card.update_cached_count
               end
@@ -49,8 +49,8 @@ class Card
       end
 
       def event_name set, args
-        changed_card_set = set.to_s.tr(':', '_').underscore
-        cached_count_set = to_s.tr(':', '_').underscore
+        changed_card_set = set.to_s.tr(":", "_").underscore
+        cached_count_set = to_s.tr(":", "_").underscore
         actions = Array.wrap args[:on]
         "update_#{cached_count_set}_cached_counts_changed_by_" \
         "#{changed_card_set}_on_#{actions.join('_')}".to_sym

@@ -7,7 +7,6 @@ module Formula
     # company and year combination that could possible get a calculated value
     # and provides the input data for the calculation
     class Input
-
       # @param [Array<Card>] input_cards all cards that are part of the formula
       # @param [Array<String] year_options for every input card a year option
       # @param [Proc] input_card a block that is called for every input value
@@ -107,11 +106,10 @@ module Formula
             yearly_value_fetch input_card
             @order << [input_card.key, :yearly_value]
           end
-          if @companies_with_values && @companies_with_values.empty?
-            # there are no companies with values for all input cards
-            @companies_with_values_by_year = Hash.new_nested ::Set
-            return
-          end
+          next unless @companies_with_values && @companies_with_values.empty?
+          # there are no companies with values for all input cards
+          @companies_with_values_by_year = Hash.new_nested ::Set
+          return
         end
         clean_companies_with_value_by_year
       end
@@ -193,22 +191,22 @@ module Formula
       def metric_value_cards_query opts={}
         left_left = {}
         if opts[:metrics].present?
-          left_left[:left] = { name: ['in'] + Array.wrap(opts[:metrics]) }
+          left_left[:left] = { name: ["in"] + Array.wrap(opts[:metrics]) }
         end
         if opts[:companies].present?
-          left_left[:right] = { name: ['in'] + Array.wrap(opts[:companies]) }
+          left_left[:right] = { name: ["in"] + Array.wrap(opts[:companies]) }
         end
-        query = { right: 'value', left: { type_id: Card::MetricValueID } }
+        query = { right: "value", left: { type_id: Card::MetricValueID } }
         query[:left][:left] = left_left if left_left.present?
         query[:left][:right] = opts[:year].to_s if opts[:year]
         query
       end
 
       def yearly_value_cards_query opts={}
-        query =  { type_id: Card::YearlyValueID }
+        query = { type_id: Card::YearlyValueID }
         if opts[:variables]
           query[:left] =
-            { left: { name: ['in'] + Array.wrap(opts[:variables]) } }
+            { left: { name: ["in"] + Array.wrap(opts[:variables]) } }
         end
         query
       end

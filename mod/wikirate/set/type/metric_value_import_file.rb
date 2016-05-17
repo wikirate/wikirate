@@ -5,10 +5,10 @@ attachment :metric_value_import_file, uploader: FileUploader
 
 format :html do
   def default_import_table_args args
-    args[:table_header] = ['Select', '#', 'Metric',
-                           'Company in File', 'Company in Wikirate', 'Match',
-                           'Correction',
-                           'Year', 'Value', 'Source', 'Comment']
+    args[:table_header] = ["Select", '#', "Metric",
+                           "Company in File", "Company in Wikirate", "Match",
+                           "Correction",
+                           "Year", "Value", "Source", "Comment"]
     args[:table_fields] = [:checkbox, :row, :metric, :file_company,
                            :wikirate_company, :status, :correction,
                            :year, :value, :source, :comment]
@@ -21,17 +21,17 @@ format :html do
   end
 
   view :import_success do |args|
-    structure = 'source item preview'
+    structure = "source item preview"
     redirect_content = _render_content args.merge(structure: structure)
     content_tag(:div, content_tag(:div, redirect_content,
-                                  { class: 'redirect-notice' }, false),
-                { id: 'source-preview-iframe',
-                  class: 'webpage-preview non-previewable' },
+                                  { class: "redirect-notice" }, false),
+                { id: "source-preview-iframe",
+                  class: "webpage-preview non-previewable" },
                 false)
   end
 
   view :core do |args|
-    content = args[:success_msg] ? args[:success_msg] : ''
+    content = args[:success_msg] ? args[:success_msg] : ""
     content += handle_source args do |source|
       "<a href=\"#{source}\">Download #{showname args[:title]}</a><br />"
     end

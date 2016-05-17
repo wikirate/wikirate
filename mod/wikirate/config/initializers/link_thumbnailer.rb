@@ -3,7 +3,7 @@
 LinkThumbnailer.configure do |config|
   # Numbers of redirects before raising an exception when trying to parse given url.
   #
-   config.redirect_limit = 100
+  config.redirect_limit = 100
 
   # Set user agent
   #

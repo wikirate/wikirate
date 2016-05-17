@@ -21,8 +21,8 @@ end
 
 def sort_params
   [
-    (Env.params['sort_by'] || 'value'),
-    (Env.params['sort_order'] || 'desc')
+    (Env.params["sort_by"] || "value"),
+    (Env.params["sort_order"] || "desc")
   ]
 end
 
@@ -39,7 +39,7 @@ def query params={}
   @query = super params
   unless default_query
     @query[:limit] = params[:default_limit] || 20
-    @query[:offset] = get_params('offset', 0)
+    @query[:offset] = get_params("offset", 0)
   end
   @query
 end
@@ -74,12 +74,12 @@ def company_filter
 end
 
 def year_filter
-  selected_year = Env.params['year']
-  selected_year == 'latest' ? nil : selected_year
+  selected_year = Env.params["year"]
+  selected_year == "latest" ? nil : selected_year
 end
 
 def company_wql opts
-  wql = { type_id: WikirateCompanyID, return: 'name' }
+  wql = { type_id: WikirateCompanyID, return: "name" }
   filter_by_company_name wql, opts[:company] if opts[:company].present?
   filter_by_industry wql, opts[:industry] if opts[:industry].present?
   filter_by_project wql, opts[:project] if opts[:project].present?
@@ -87,7 +87,7 @@ def company_wql opts
 end
 
 def filter_by_company_name wql, name
-  wql[:name] = ['match', name]
+  wql[:name] = ["match", name]
 end
 
 def filter_by_project wql, project
@@ -100,7 +100,7 @@ def filter_by_industry wql, industry
     filter.industry_metric_name,
     { right_plus: [
       filter.industry_value_year,
-      { right_plus: ['value', { eq: industry }] }
+      { right_plus: ["value", { eq: industry }] }
     ] }
   ]
 end
@@ -118,7 +118,7 @@ end
 format do
   def page_link text, page, _current=false, options={}
     @paging_path_args[:offset] = page * @paging_limit
-    options[:class] = 'card-paging-link slotter'
+    options[:class] = "card-paging-link slotter"
     options[:remote] = true
     sort_by, sort_order = card.sort_params
     paging_args = @paging_path_args.merge(sort_by: sort_by,
@@ -127,7 +127,7 @@ format do
   end
 
   def unknown_value? value
-    value.casecmp('unknown') == 0
+    value.casecmp("unknown") == 0
   end
 
   def compare_content value_a, value_b, is_num
@@ -140,8 +140,8 @@ format do
 
   def sort_value_asc metric_values, is_num
     metric_values.sort do |x, y|
-      value_a = x[1].sort_by { |value| value['year'] }.reverse[0]['value']
-      value_b = y[1].sort_by { |value| value['year'] }.reverse[0]['value']
+      value_a = x[1].sort_by { |value| value["year"] }.reverse[0]["value"]
+      value_b = y[1].sort_by { |value| value["year"] }.reverse[0]["value"]
       compare_content value_a, value_b, is_num
     end
   end
@@ -153,7 +153,7 @@ format do
   end
 
   def offset
-    card.get_params('offset', 0)
+    card.get_params("offset", 0)
   end
 
   def limit
@@ -162,20 +162,20 @@ format do
 
   def sorted_result sort_by, order, is_num=true
     sorted = case sort_by
-             when 'company_name'
+             when "company_name"
                sort_name_asc card.cached_values
-             when 'value'
+             when "value"
                sort_value_asc card.cached_values, is_num
              end
-    return sorted if order == 'asc'
+    return sorted if order == "asc"
     sorted.reverse
   end
 
   def num?
     metric_card = card.left
     metric_value_type = metric_card.value_type_card
-    type = metric_value_type.nil? ? '' : metric_value_type.item_names[0]
-    type == 'Number' || type == 'Money' || !metric_card.researched?
+    type = metric_value_type.nil? ? "" : metric_value_type.item_names[0]
+    type == "Number" || type == "Money" || !metric_card.researched?
   end
 
   def search_results _args={}
@@ -190,27 +190,27 @@ end
 
 format :html do
   def sort_icon_by_state state
-    order = state.empty? ? '' : "-#{state}"
+    order = state.empty? ? "" : "-#{state}"
     %(<i class="fa fa-sort#{order}"></i>)
   end
 
   def toggle_sort_order order
-    order == 'asc' ? 'desc' : 'asc'
+    order == "asc" ? "desc" : "asc"
   end
 
   def sort_order sort_by, sort_order
-    if sort_by == 'company_name'
-      [toggle_sort_order(sort_order), 'asc']
+    if sort_by == "company_name"
+      [toggle_sort_order(sort_order), "asc"]
     else
-      ['asc', toggle_sort_order(sort_order)]
+      ["asc", toggle_sort_order(sort_order)]
     end
   end
 
   def sort_icon sort_by, sort_order
-    if sort_by == 'company_name'
-      [sort_icon_by_state(sort_order), sort_icon_by_state('')]
+    if sort_by == "company_name"
+      [sort_icon_by_state(sort_order), sort_icon_by_state("")]
     else
-      [sort_icon_by_state(''), sort_icon_by_state(sort_order)]
+      [sort_icon_by_state(""), sort_icon_by_state(sort_order)]
     end
   end
 
@@ -220,10 +220,10 @@ format :html do
   # @option args [String] :order
   # @option args [String] :class additional css class
   def sort_link text, args
-    url = path view: 'content', offset: offset, limit: limit,
+    url = path view: "content", offset: offset, limit: limit,
                sort_order: args[:order], sort_by: args[:sort_by]
     link_to text, url, class: "metric-list-header slotter #{args[:class]}",
-                       'data-remote' => true
+                       "data-remote" => true
   end
 
   view :card_list_header do

@@ -2,7 +2,7 @@ event :update_formula, :prepare_to_store do
   new_formula = item_names.map do |i_name|
     weight = Env.params[i_name] || 0
     "{{#{i_name}}}*#{weight}"
-  end.join '+'
+  end.join "+"
   add_subcard "#{cardname.left}+#{Card[:formula].name}", content: new_formula
 end
 
@@ -11,11 +11,9 @@ def formula
 end
 
 def metrics_with_weight
-  formula.split('+').map do |summand|
-    metric, weight = summand.split '*'
-    if weight.match /[^\s\d\.]/
-      metric, weight = weight, metric
-    end
+  formula.split("+").map do |summand|
+    metric, weight = summand.split "*"
+    metric, weight = weight, metric if weight =~ /[^\s\d\.]/
     metric = metric.scan(/\{\{([^}]+)\}\}/).flatten.first
     weight = weight.to_f
     [metric, weight]
@@ -23,20 +21,19 @@ def metrics_with_weight
 end
 
 format :html do
-
   view :list_item do |args|
-   <<-HTML
+    <<-HTML
     <li class="pointer-li">
       <span class="input-group">
         <span class="input-group-addon handle">
-          #{ glyphicon 'option-vertical left' }
-          #{ glyphicon 'option-vertical right'}
+          #{glyphicon 'option-vertical left'}
+          #{glyphicon 'option-vertical right'}
         </span>
-        #{ text_field_tag 'pointer_item', args[:pointer_item], class: 'pointer-item-text form-control' }
+        #{text_field_tag 'pointer_item', args[:pointer_item], class: 'pointer-item-text form-control'}
 
         <span class="input-group-btn">
           <button class="pointer-item-delete btn btn-default" type="button">
-            #{ glyphicon 'remove'}
+            #{glyphicon 'remove'}
           </button>
         </span>
         </span>
@@ -45,15 +42,15 @@ format :html do
   end
 
   view :editor do
-    metrics_with_weight.map do |metric, weight|
+    metrics_with_weight.map do |_metric, _weight|
       metric_slider
-    end.join ''
+    end.join ""
   end
 
   def metric_slider metric_name, weight
-    %{
+    %(
       #{metric_name}
       #{weight}
-    }
+    )
   end
 end

@@ -1,6 +1,6 @@
 format :html do
   view :thumbnail do |args|
-    wrap_with :div, class: 'metric-thumbnail' do
+    wrap_with :div, class: "metric-thumbnail" do
       [
         _render_thumbnail_image(args),
         _render_thumbnail_text(args),
@@ -10,16 +10,16 @@ format :html do
   end
 
   view :thumbnail_image do |args|
-    wrap_with :div, class: 'thumbnail-image' do
+    wrap_with :div, class: "thumbnail-image" do
       [
-        content_tag(:span, '', class: 'img-helper'),
+        content_tag(:span, "", class: "img-helper"),
         _render_designer_image(args)
       ]
     end
   end
 
   view :thumbnail_text do |args|
-    wrap_with :div, class: 'thumbnail-text' do
+    wrap_with :div, class: "thumbnail-text" do
       [
         _render_thumbnail_title(args),
         _optional_render_thumbnail_subtitle(args)
@@ -29,7 +29,7 @@ format :html do
 
   view :thumbnail_title do |_args|
     content = content_tag(:div, nest(card.metric_title_card, view: :name),
-                          class: 'ellipsis')
+                          class: "ellipsis")
     card_link card, text: content, title: card.metric_title_card.name
   end
 
@@ -44,11 +44,11 @@ format :html do
     end
   end
   def default_thumbnail_subtitle_args args
-    args[:text] ||= [card.value_type, 'designed by'].compact.join ' | '
+    args[:text] ||= [card.value_type, "designed by"].compact.join " | "
     args[:author] ||= card_link card.metric_designer
   end
 
   view :score_thumbnail do |_args|
-    ''
+    ""
   end
 end

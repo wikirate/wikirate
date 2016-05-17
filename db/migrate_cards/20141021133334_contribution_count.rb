@@ -2,6 +2,6 @@
 
 class ContributionCount < Card::Migration
   def up
-    Card.create! :name=>"*contribution count", :codename=>:contribution_count, :type_code=>:number, :content=>"0"
+    Card.create! name: "*contribution count", codename: :contribution_count, type_code: :number, content: "0"
   end
 end

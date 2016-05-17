@@ -2,25 +2,25 @@ include Card::CachedCount
 
 def related_topic_from_source_or_note
   Card.search(
-    type: 'Topic',
+    type: "Topic",
     referred_to_by: {
       left: {
         type: %w(in Note Source),
-        right_plus: ['company', refer_to: cardname.left]
+        right_plus: ["company", refer_to: cardname.left]
       },
-      right: 'topic'
+      right: "topic"
     },
-    return: 'id')
+    return: "id")
 end
 
 def related_topic_from_metric
   Card.search(
-    type: 'Topic',
+    type: "Topic",
     referred_to_by: {
-      left: { type: 'Metric', right_plus: cardname.left },
-      right: 'topic'
+      left: { type: "Metric", right_plus: cardname.left },
+      right: "topic"
     },
-    return: 'id')
+    return: "id")
 end
 
 # get all metric values

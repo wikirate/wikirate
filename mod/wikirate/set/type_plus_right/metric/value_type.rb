@@ -3,7 +3,7 @@ def invalid_metric_values metric_values
   invalid_metric_values = []
   metric_values.each do |key, values|
     values.each do |mv|
-      if !number?(mv['value']) && mv['value'].casecmp('unknown') != 0
+      if !number?(mv["value"]) && mv["value"].casecmp("unknown") != 0
         invalid_metric_values.push(mv.merge(company: key))
       end
     end
@@ -17,9 +17,9 @@ def non_existing_values_in_options? metric_values, options_card
   non_existing_values = []
   metric_values.each do |_key, values|
     values.each do |mv|
-      if !options.include?(mv['value'].downcase) &&
-         mv['value'].casecmp('unknown') != 0
-        non_existing_values.push(mv['value'])
+      if !options.include?(mv["value"].downcase) &&
+         mv["value"].casecmp("unknown") != 0
+        non_existing_values.push(mv["value"])
       end
     end
   end
@@ -35,9 +35,9 @@ def show_category_option_errors options_card, invalid_options
   values =
     if !invalid_options.nil?
       "\"#{invalid_options.uniq.join('\", \"')}\" is not an option for"\
-      ' this Metric.'
+      " this Metric."
     else
-      ''
+      ""
     end
   errors.add :value, "#{values} Please #{anchor} first."
 end
@@ -62,12 +62,12 @@ event :validate_existing_values_type, :validate, on: :save do
   type = item_names[0]
   return unless (mv = related_values)
   case type
-  when 'Number', 'Money'
+  when "Number", "Money"
     if (invalid_metric_values = invalid_metric_values(mv)) &&
        !invalid_metric_values.empty?
       handle_errors invalid_metric_values
     end
-  when 'Category'
+  when "Category"
     options_card = Card.fetch "#{metric_name}+value_options", new: {}
     if (!mv.empty? && options_card.new?) ||
        (invalid_options = non_existing_values_in_options?(mv, options_card)) &&

@@ -2,6 +2,6 @@
 
 class MoreVotingCards < Card::Migration
   def up
-    import_json 'voting.json'
+    import_json "voting.json"
   end
 end
