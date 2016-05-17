@@ -1,5 +1,6 @@
 card_accessor :contribution_count, type: :number, default: '0'
 card_accessor :direct_contribution_count, type: :number, default: '0'
+card_accessor :aliases, type: :pointer
 
 view :missing do |args|
   _render_link args
@@ -54,7 +55,5 @@ end
 
 
 def add_alias alias_name
-  alias_card = Card.fetch "#{name}+aliases",
-                          new: { type_id: Card::PointerID }
-  alias_card.insert_item! 0, alias_name
+  aliases_card.insert_item! 0, alias_name
 end

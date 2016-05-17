@@ -119,7 +119,7 @@ describe Card::Set::Right::RelatedArticles do
     context 'when no related overviews' do
       it 'shows no related overviewss' do
         claim_card = create_claim 'whateverclaim', {}
-        related_article_card = Card.fetch "#{claim_card.name}+related overviews"
+        related_article_card = claim_card.fetch trait: :related_articles
         html = related_article_card.format(format: :html)._render_core
         expected_html = '<h4 class="no-article no-overview">'\
                         'No related Overviews yet.</h4>' +

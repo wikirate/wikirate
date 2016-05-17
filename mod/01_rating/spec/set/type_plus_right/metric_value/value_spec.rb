@@ -23,7 +23,7 @@ describe Card::Set::TypePlusRight::MetricValue::Value do
                     } } } }
     @metric_value = Card.create! type_id: Card::MetricValueID,
                                  subcards: subcards
-    @card = Card.fetch "#{@metric_value.name}+value"
+    @card = @metric_value.fetch trait: :value
   end
 
   it 'renders timeline row' do

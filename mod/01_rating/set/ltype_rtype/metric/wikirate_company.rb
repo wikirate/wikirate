@@ -4,7 +4,7 @@ end
 
 def latest_value_card
   return if !(lvy = latest_value_year) || lvy == 0
-  Card.fetch "#{name}+#{latest_value_year}"
+  Card.fetch cardname, lvy
 end
 
 def company_card

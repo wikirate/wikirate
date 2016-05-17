@@ -23,7 +23,8 @@ describe Card::Set::Right::DownvoteeSearch do
           vcc2.vote_down metrics[1].id
           vcc2.save!
         end
-        metric_downvotee_search_card = Card.fetch "#{apple.name}+metric+downvotee search"
+        metric_downvotee_search_card =
+          apple.fetch trait: [:metric, :downvotee_search]
         result = metric_downvotee_search_card.format.get_search_result
         expect(Card[result[0]].id).to eq(metrics_result[0].id)
         expect(Card[result[1]].id).to eq(metrics_result[2].id)
@@ -49,8 +50,8 @@ describe Card::Set::Right::DownvoteeSearch do
           end
         end
         it "lists correct metric vote down cards" do
-          
-          metric_downvotee_search_card = Card.fetch "#{@apple.name}+metric+downvotee search"
+          metric_downvotee_search_card =
+            @apple.fetch trait: [:metric, :downvotee_search]
           search_result = metric_downvotee_search_card.format.get_search_result
           @metrics_result.each do |metric|
             expect(search_result).to include(metric.name)
@@ -58,7 +59,8 @@ describe Card::Set::Right::DownvoteeSearch do
           
         end
         it "lists correct topic vote down cards" do
-          topic_downvotee_search_card = Card.fetch "#{@apple.name}+topic+downvotee search"
+          topic_downvotee_search_card =
+            @apple.fetch trait: [:wikirate_topic, :downvotee_search]
           search_result = topic_downvotee_search_card.format.get_search_result
           expect(search_result).to be_empty
         end
@@ -81,9 +83,11 @@ describe Card::Set::Right::DownvoteeSearch do
             card_to_be_voted_down.vote_down
             card_to_be_voted_down.save!
           end
-          voted_down_search_card = Card.fetch "#{topic.name}+metric+downvotee_search"
+          voted_down_search_card =
+            topic.fetch trait: [:metric, :downvotee_search]
           html = voted_down_search_card.format.render_drag_and_drop
-          expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down","data-update-id"=>"Natural_Resource_Use+metric+downvotee_search","data-bucket-name"=>"down_vote"}) do
+          expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down","data-update-id"=>"Natural_Resource_Use+Metric+downvotee_search",
+                                                 "data-bucket-name"=>"down_vote"}) do
             with_tag "h5",:with=>{:class=>"vote-title"},:text=>"Not Important to Me"  
             with_tag "div",:with=>{:class=>"empty-message"} 
             with_tag("div",:with=>{:class=>"drag-item yinyang-row"}) do
@@ -104,11 +108,13 @@ describe Card::Set::Right::DownvoteeSearch do
               card_to_be_voted_down.vote_down
               card_to_be_voted_down.save!
             end
-            voted_down_search_card = Card.fetch "#{company.name}+topic+downvotee_search"
+            voted_down_search_card =
+              company.fetch trait: [:wikirate_topic, :downvotee_search]
             html = voted_down_search_card.format.render_drag_and_drop
-            expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down","data-update-id"=>"Apple_Inc_+topic+downvotee_search","data-bucket-name"=>"down_vote"}) do
+            expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down","data-update-id"=>"Apple_Inc+topic+downvotee_search",
+                                                   "data-bucket-name"=>"down_vote"}) do
               with_tag("div",:with=>{:class=>"drag-item yinyang-row"}) do
-                with_tag "div",:with=>{:id=>"Apple_Inc_+Force+yinyang_drag_item"}
+                with_tag "div",:with=>{:id=>"Apple_Inc+Force+yinyang_drag_item"}
               end
             end
           end
@@ -140,7 +146,8 @@ describe Card::Set::Right::DownvoteeSearch do
               card_to_be_voted_down.vote_down
               card_to_be_voted_down.save!
             end
-            voted_down_search_card = Card.fetch "#{company.name}+metric+downvotee_search"
+            voted_down_search_card =
+              company.fetch trait: [:metric, :downvotee_search]
             html = voted_down_search_card.format.render_drag_and_drop
             expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down","data-update-id"=>"Apple_Inc_+metric+downvotee_search","data-bucket-name"=>"down_vote"}) do
               with_tag("div",:with=>{:class=>"drag-item yinyang-row"}) do
@@ -178,11 +185,14 @@ describe Card::Set::Right::DownvoteeSearch do
               card_to_be_voted_down.vote_down
               card_to_be_voted_down.save!
             end
-            voted_down_search_card = Card.fetch "#{analysis.name}+metric+downvotee_search"
+            voted_down_search_card =
+              analysis.fetch trait: [:metric, :downvotee_search]
             html = voted_down_search_card.format.render_drag_and_drop
-            expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down","data-update-id"=>"Apple_Inc_+Natural_Resource_Use+metric+downvotee_search","data-bucket-name"=>"down_vote"}) do
+            expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down",
+                                                   "data-update-id"=>"Apple_Inc_+Natural_Resource_Use+Metric+downvotee_search","data-bucket-name"=>"down_vote"}) do
               with_tag("div",:with=>{:class=>"drag-item yinyang-row"}) do
-                with_tag "div",:with=>{:id=>"Apple_Inc_+Natural_Resource_Use+Jedi+deadliness+yinyang_drag_item"}
+                with_tag "div",
+                         :with=>{:id=>"Apple_Inc_+Natural_Resource_Use+Jedi+deadliness+yinyang_drag_item"}
               end
             end
           end

@@ -68,7 +68,7 @@ event :validate_existing_values_type, :validate, on: :save do
       handle_errors invalid_metric_values
     end
   when 'Category'
-    options_card = Card.fetch "#{metric_name}+value_options", new: {}
+    options_card = Card.fetch metric_name, :value_options, new: {}
     if (!mv.empty? && options_card.new?) ||
        (invalid_options = non_existing_values_in_options?(mv, options_card)) &&
        !invalid_options.empty?

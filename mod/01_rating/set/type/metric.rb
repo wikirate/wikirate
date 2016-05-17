@@ -184,15 +184,16 @@ format :html do
   end
 
   view :short_view do |_args|
-    return '' unless (value_type = Card["#{card.name}+value type"])
+    return '' unless (value_type = card.fetch trait: :value_type)
+
     details_field =
       case value_type.item_names[0]
-      when 'Number'   then 'numeric_details'
-      when 'Money'    then 'monetary_details'
-      when 'Category' then 'category_details'
+      when 'Number'   then :numeric_details
+      when 'Money'    then :monetary_details
+      when 'Category' then :category_details
       end
     return '' if details_field.nil?
-    detail_card = Card.fetch "#{card.name}+#{details_field}", new: {}
+    detail_card = Card.fetch card, details_field, new: {}
     subformat(detail_card).render_content
   end
 
