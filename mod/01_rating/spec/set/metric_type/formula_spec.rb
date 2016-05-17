@@ -12,7 +12,6 @@ describe Card::Set::MetricType::Formula do
     formula % [@metric_name_1, @metric_name_2, @metric_name_3]
   end
 
-
   describe "formula card" do
     subject { Card[:formula] }
     it { is_expected.to be_instance_of(Card) }
@@ -34,8 +33,10 @@ describe Card::Set::MetricType::Formula do
     end
 
     context "single year" do
-      let(:formula) { "{{#{@metric_name}|year:#{@year_expr} }}+" \
-                      "{{#{@metric_name_1}}}" }
+      let(:formula) do
+        "{{#{@metric_name}|year:#{@year_expr} }}+" \
+                      "{{#{@metric_name_1}}}"
+      end
 
       it "fixed year" do
         @year_expr = "2014"
@@ -52,8 +53,10 @@ describe Card::Set::MetricType::Formula do
     end
 
     context "sum of" do
-      let(:formula) { "Sum[{{#{@metric_name}|year:#{@year_expr} }}]+" \
-                      "{{#{@metric_name_1}}}" }
+      let(:formula) do
+        "Sum[{{#{@metric_name}|year:#{@year_expr} }}]+" \
+                      "{{#{@metric_name_1}}}"
+      end
 
       it "relative range" do
         @year_expr = "-3..-1"
@@ -113,7 +116,7 @@ describe Card::Set::MetricType::Formula do
     end
     describe '#question_card' do
       subject { metric.question_card.name }
-      it { is_expected.to eq "Jedi+friendliness+Question"}
+      it { is_expected.to eq "Jedi+friendliness+Question" }
     end
     describe '#value_type' do
       subject { metric.value_type }
@@ -223,8 +226,8 @@ describe Card::Set::MetricType::Formula do
     it "creates calculated values if formula created" do
       Card::Auth.as_bot do
         Card.create! name: "#{@metric.name}+formula",
-          type_id: Card::PlainTextID,
-          content: build_formula("{{%s}}*5+{{%s}}*2")
+                     type_id: Card::PlainTextID,
+                     content: build_formula("{{%s}}*5+{{%s}}*2")
       end
       expect(calc_value).to eq("60.0")
       expect(calc_value "Samsung", "2015").to eq("29.0")

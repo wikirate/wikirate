@@ -220,5 +220,4 @@ format :html do
                   (currency = Card["#{card.metric_card.name}+currency"])
     currency.content
   end
-
 end

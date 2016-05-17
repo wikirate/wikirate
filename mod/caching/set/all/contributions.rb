@@ -19,7 +19,6 @@ def indirect_contributor
 end
 
 def calculate_indirect_contribution_count
-
   indirect_contributor.inject(0) do |total, c_card|
     more_contributions =
       case

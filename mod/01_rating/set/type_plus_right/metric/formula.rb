@@ -159,7 +159,7 @@ end
 # @option opts [String] :year optional
 def calculate_values_for opts={}
   unless opts[:company]
-    fail Card::Error, '#calculate_values_for: no company given'
+    raise Card::Error, '#calculate_values_for: no company given'
   end
   no_value = true
   calculator.result(opts).each_pair do |year, companies|
@@ -173,7 +173,7 @@ end
 def each_reference_out &block
   return super(&block) unless wiki_rating?
   translation_table.each do |key, _value|
-    block.call(key, Content::Chunk::Link::CODE)
+    yield(key, Content::Chunk::Link::CODE)
   end
 end
 

@@ -8,18 +8,18 @@ format :html do
   end
 
   def link content, label
-    text = %{
+    text = %(
           <div class="content">
             #{content}<div class="name">#{label}</div>
           </div>
-        }
+        )
     params = "company[]=#{analysis_name.left}&"\
              "topic[]=#{analysis_name.right}"
     case label
     when "Notes", "Sources"
-      %{<a href="/#{label}?#{params}">#{text}</a>}
+      %(<a href="/#{label}?#{params}">#{text}</a>)
     when "Metrics"
-      %{<a href="/#{analysis_name.url_key}+metric">#{text}</a>}
+      %(<a href="/#{analysis_name.url_key}+metric">#{text}</a>)
     when "Overview"
       card_link analysis_name.s, text: text
     end
@@ -44,11 +44,11 @@ format :html do
       claim_cnt = source_cnt = metric_cnt = 0
     else
       claim_cnt = (claims = Card.fetch(analysis_name.trait :claim)) &&
-                    claims.cached_count
+                  claims.cached_count
       source_cnt = (sources = Card.fetch(analysis_name.trait :source)) &&
-                     sources.cached_count
+                   sources.cached_count
       metric_cnt = (metrics = Card.fetch(analysis_name.trait :metric)) &&
-                     metrics.cached_count
+                   metrics.cached_count
     end
     empty = glyphicon "plus"
     data = []
@@ -63,7 +63,7 @@ format :html do
         else
           empty
         end
-      data << [icon, "Overview", (:highlight if !overview_card)]
+      data << [icon, "Overview", (:highlight unless overview_card)]
       data << [metric_cnt, "Metrics"]
       data << [claim_cnt, "Notes"]
     end

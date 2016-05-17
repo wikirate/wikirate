@@ -41,9 +41,9 @@ format :html do
 
   view :citation_and_content do |args|
     output([
-      render_citation_or_cite_button(args),
-      render_content(args)
-    ])
+             render_citation_or_cite_button(args),
+             render_content(args)
+           ])
   end
 
   view :citation_or_clipboard do |args|
@@ -83,27 +83,27 @@ format :html do
     if Auth.signed_in? &&
        (tip = args[:tip] || next_step_tip) &&
        @mode != :closed
-      %{
+      %(
         <div class="note-tip">
           Tip: You can #{tip}
           <span id="close-tip" class="fa fa-times-circle"></span>
         </div>
-      }
+      )
     end.to_s
   end
 
   def next_step_tip
     # FIXME: cardnames
-    if (not topics = Card["#{card.name}+topics"]) ||
-       topics.item_names.empty?
+    if !topics = Card["#{card.name}+topics"] ||
+                 topics.item_names.empty?
       "improve this note by adding a topic."
-    elsif (not companies = Card["#{card.name}+company"]) ||
-          companies.item_names.empty?
+    elsif !companies = Card["#{card.name}+company"] ||
+                       companies.item_names.empty?
       "improve this note by adding a company."
     else
       cited_in = Card.search refer_to: card.name,
-                             left: {type_id: WikirateAnalysisID},
-                             right: {name: Card[:overview].name}
+                             left: { type_id: WikirateAnalysisID },
+                             right: { name: Card[:overview].name }
       if card.analysis_names.size > cited_in.size
         "cite this note in related overviews."
       end
@@ -113,7 +113,7 @@ format :html do
   view :sample_citation do |_args|
     tip = "easily cite this note by pasting the following:" +
           text_area_tag(:citable_note, card.default_citation)
-    %{ <div class="sample-citation">#{ render :tip, tip: tip }</div> }
+    %( <div class="sample-citation">#{render :tip, tip: tip}</div> )
   end
 
   view :titled, tags: :comment do |args|
@@ -206,12 +206,11 @@ view :missing do |args|
 end
 
 view :clipboard do |_args|
-  %{
+  %(
     <i class="fa fa-clipboard claim-clipboard" id="copy-button" title="copy claim citation to clipboard" data-clipboard-text="#{h card.default_citation}"></i>
-  }
+  )
 end
 
 def default_citation
   "#{name} {{#{name}|cite}}"
 end
-

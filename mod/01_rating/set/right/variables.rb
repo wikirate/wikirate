@@ -42,7 +42,7 @@ format :html do
     # items = [''] if items.empty?
     table_content =
       items.map.with_index do |item, index|
-          variable_row(item, index, args)
+        variable_row(item, index, args)
       end
     table(table_content, header: ["Metric", "Variable", "Example value"])
   end
@@ -56,15 +56,15 @@ format :html do
       end
     [
       subformat(item_card)._render_thumbnail(args),
-      "M#{index}", #("A".ord + args[:index]).chr
+      "M#{index}", # ("A".ord + args[:index]).chr
       (example_value.html_safe if example_value)
     ]
   end
 
   view :edit do |args|
     frame args do
-    render_haml metric_list: metric_list do
-      <<-HAML
+      render_haml metric_list: metric_list do
+        <<-HAML
 .yinyang.nodblclick
   .row.yinyang-row
     .col-md-6
@@ -75,7 +75,7 @@ format :html do
         = metric_list
     .col-md-6.metric-details
       HAML
-    end
+      end
     end
   end
 
@@ -98,8 +98,8 @@ format :html do
     # <<-HTML
     #   #{ view_link metric_card.name, :core, path_opts: {action: :update, add_item: metric_card.name }}
     # HTML
-    #{card.key}+add_to_formula
-    #binding.pry
+    # {card.key}+add_to_formula
+    # binding.pry
     args[:append_for_details] = "#{card.metric_card_name.key}+add_to_formula"
     subformat(metric_item_card)._render_item_view(args)
   end

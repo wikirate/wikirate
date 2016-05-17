@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 # used to run cucumber in RubyMine
 
-#ARGV.unshift '--default-path=/opt/wagn'
-#ARGV.unshift '--'
-#ARGV.unshift '--no-simplecov'
+# ARGV.unshift '--default-path=/opt/wagn'
+# ARGV.unshift '--'
+# ARGV.unshift '--no-simplecov'
 ARGV.unshift "cucumber"
 APP_PATH = File.expand_path("../../config/application",  __FILE__)
 require File.expand_path("../../config/boot",  __FILE__)

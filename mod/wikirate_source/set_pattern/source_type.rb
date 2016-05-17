@@ -31,5 +31,5 @@ def anchor_name card
 end
 
 def follow_label name
-  %{all #{source_type name} sources}
+  %(all #{source_type name} sources)
 end

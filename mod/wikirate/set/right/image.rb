@@ -1,5 +1,4 @@
 format :html do
-
   view :missing do |args|
     # try to get type+missing_image_card's image to display
     # EX: user+missing_image_card

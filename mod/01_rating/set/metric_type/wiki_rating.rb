@@ -9,6 +9,5 @@ end
 event :create_formula, :initialize, on: :create do
   add_subfield :formula, content: "{}" unless subfield(:formula) &&
                                               subfield(:formula).content
-                                                .present?
+                                                                .present?
 end
-

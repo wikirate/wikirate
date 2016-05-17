@@ -10,8 +10,8 @@ describe Card::MetricTypeSet do
   it "works with create" do
     Card::Auth.as_bot do
       @new_metric = Card.create! name: "metriy type test",
-                                type_id: Card::MetricID,
-                              "+*metric type" => "[[Formula]]"
+                                 type_id: Card::MetricID,
+                                 "+*metric type" => "[[Formula]]"
     end
     expect(@new_metric.set_modules).to include(Card::Set::MetricType::Formula)
     expect(@new_metric.metric_type).to eq "Formula"

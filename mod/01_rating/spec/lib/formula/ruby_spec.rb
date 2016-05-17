@@ -2,13 +2,11 @@ describe Formula::Ruby do
   let(:formula) do
     formula = double(Card)
     content_obj =
-      Card::Content.new(@formula, Card.new(name:"test"), chunk_list: :formula)
+      Card::Content.new(@formula, Card.new(name: "test"), chunk_list: :formula)
     @chunks = content_obj.find_chunks(Card::Content::Chunk::FormulaInput)
     allow(formula).to receive(:content).and_return @formula
     allow(formula).to receive(:input_cards) do
-      @chunks.map do |chunk|
-        chunk.referee_card
-      end
+      @chunks.map(&:referee_card)
     end
     allow(formula).to receive(:input_chunks).and_return @chunks
     allow(formula).to receive(:normalize_value) do |v|
@@ -51,14 +49,14 @@ describe Formula::Ruby do
   describe "formula with yearly variables" do
     it "with fixed year" do
       @formula = "{{half year|2013}}+{{Joe User+researched}}"
-      expect(subject[2011]["apple_inc"]).to eq 1006.5+11
-      expect(subject[2012]["apple_inc"]).to eq 1006.5+12
-      expect(subject[2013]["apple_inc"]).to eq 1006.5+13
+      expect(subject[2011]["apple_inc"]).to eq 1006.5 + 11
+      expect(subject[2012]["apple_inc"]).to eq 1006.5 + 12
+      expect(subject[2013]["apple_inc"]).to eq 1006.5 + 13
     end
     it "with relative year" do
       @formula = "{{half year}}+{{Joe User+researched}}"
-      expect(subject[2014]["apple_inc"]).to eq 1007+14
-      expect(subject[2013]["apple_inc"]).to eq 1006.5+13
+      expect(subject[2014]["apple_inc"]).to eq 1007 + 14
+      expect(subject[2013]["apple_inc"]).to eq 1006.5 + 13
     end
     it "with sum" do
       @formula = "Sum[{{half year|2013..0}}]+{{Joe User+researched}}"

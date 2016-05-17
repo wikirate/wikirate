@@ -17,13 +17,12 @@ describe Card::Set::TypePlusRight::Metric::Formula do
 
     it "allows nests" do
       subject.content = "5 * {{metric}} + 5"
-      expect(subject.ruby_formula? ).to be_truthy
+      expect(subject.ruby_formula?).to be_truthy
     end
 
     it "denies letters" do
-      subject.content ="5 * 4*a / 2"
+      subject.content = "5 * 4*a / 2"
       expect(subject.ruby_formula?).to be_falsey
     end
   end
-
 end

@@ -3,7 +3,7 @@
 module Formula
   # Calculates the values of a formula
   class Calculator
-    INPUT_CAST = lambda { |val| val }
+    INPUT_CAST = ->(val) { val }
 
     attr_reader :formula, :errors
 
@@ -30,11 +30,11 @@ module Formula
 
     def validate_formula
       compile_formula
-      return @errors
+      @errors
     end
 
     def self.remove_nests content
-      content.gsub(/{{[^}]*}}/,"")
+      content.gsub(/{{[^}]*}}/, "")
     end
 
     private
@@ -64,7 +64,7 @@ module Formula
     def replace_nests content=nil
       content ||= @formula.content
       index = -1
-      content.gsub(/{{[^}]*}}/) do |match|
+      content.gsub(/{{[^}]*}}/) do |_match|
         index += 1
         yield(index)
       end

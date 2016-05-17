@@ -1,5 +1,4 @@
 format :json do
-
   def default_export_args args
     args[:count] ||= 0
     args[:count] += 1
@@ -33,4 +32,3 @@ format :json do
     result.compact.uniq.map { |ca| subformat(ca).render_export(args) }
   end
 end
-

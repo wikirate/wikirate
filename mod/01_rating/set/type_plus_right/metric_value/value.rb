@@ -16,7 +16,6 @@ def metric_plus_company
   cardname.parts[0..-3].join "+"
 end
 
-
 def value
   content
 end
@@ -89,7 +88,6 @@ format :html do
     end
   end
 end
-
 
 event :update_related_scores, :finalize,
       on: [:create, :update, :delete],

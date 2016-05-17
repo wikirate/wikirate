@@ -1,4 +1,4 @@
-card_accessor :direct_contribution_count, :type=>:number, :default=>"0"
+card_accessor :direct_contribution_count, type: :number, default: "0"
 
 format :html do
   def view_caching?

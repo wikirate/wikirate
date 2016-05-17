@@ -18,7 +18,7 @@ def update_value_for! opts
   end
 end
 
-#TODO move these methods to metric_value set ?
+# TODO: move these methods to metric_value set ?
 def update_value_card value_card, value
   if (value_value_card = value_card.fetch trait: :value)
     value_value_card.update_attributes content: value

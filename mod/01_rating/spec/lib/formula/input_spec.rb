@@ -1,9 +1,7 @@
 describe Formula::Calculator::Input do
   subject do
     input_cards = @input.map { |i| Card.fetch i }
-    Formula::Calculator::Input.new(input_cards, @year_options) do |val|
-      val.to_f
-    end
+    Formula::Calculator::Input.new(input_cards, @year_options, &:to_f)
   end
   it "single input" do
     @input = ["Jedi+deadliness"]

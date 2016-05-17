@@ -53,7 +53,6 @@ format :html do
   end
 end
 
-
 def add_alias alias_name
   aliases_card.insert_item! 0, alias_name
 end

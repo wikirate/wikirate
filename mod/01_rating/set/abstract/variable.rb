@@ -4,7 +4,7 @@ end
 
 def variable_index name
   name.to_s =~ /^M?(\d+)$/
-  $1.to_i
+  Regexp.last_match(1).to_i
 end
 
 def variable_name? v_name

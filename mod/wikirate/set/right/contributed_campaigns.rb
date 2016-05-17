@@ -9,5 +9,4 @@ format :html do
     super(args)
     args[:icon] = '<i class="fa fa-bullhorn"></i>'
   end
-
 end

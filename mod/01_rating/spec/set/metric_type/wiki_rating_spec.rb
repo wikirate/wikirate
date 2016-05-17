@@ -126,7 +126,7 @@ describe Card::Set::MetricType::WikiRating do
           content: '{"Joe User+researched number 1":"60",' \
                     '"Joe User+researched number 2":"40"}'
         )
-       end
+      end
       expect(rating_value).to eq("8.0")
       expect(rating_value "Samsung", "2015").to eq("3.8")
       expect(rating_value "Sony_Corporation").to eq("1.4")

@@ -40,7 +40,6 @@ namespace :wikirate do
     end
   end
 
-
   desc "test the performance for a list of pages"
   task benchmark: :environment do
     def wbench_results_to_html results

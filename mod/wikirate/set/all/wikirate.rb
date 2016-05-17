@@ -323,7 +323,7 @@ format :json do
   view :content do |args|
     result = super args
     if result[:card] && result[:card][:value] &&
-      result[:card][:value].is_a?(Array)
+       result[:card][:value].is_a?(Array)
       result[:card][:value].reject!(&:nil?)
     end
     result

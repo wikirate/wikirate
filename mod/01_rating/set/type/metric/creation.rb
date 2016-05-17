@@ -131,7 +131,7 @@ format :html do
 
   def default_content_formgroup_args args
     args[:edit_fields] = { "+question" => { title: "Question" },
-                           "+topic" => { title: "Topic" }}
+                           "+topic" => { title: "Topic" } }
   end
 
   def tab_radio_button id, active=false
@@ -203,7 +203,7 @@ format :html do
 
   view :new_name_formgroup do |args|
     formgroup "Metric Name", raw(new_name_field(form)), editor: "name",
-                                                    help: args[:help]
+                                                        help: args[:help]
   end
 
   def new_name_field form=nil, options={}

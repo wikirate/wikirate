@@ -1,13 +1,13 @@
 
 def self.find_duplicates url
-  duplicate_wql = { :right=>Card[:wikirate_link].name, :content=>url ,:left=>{:type_id=>Card::SourceID}}
+  duplicate_wql = { right: Card[:wikirate_link].name, content: url, left: { type_id: Card::SourceID } }
   duplicates = Card.search duplicate_wql
 end
 
 format :json do
   view :metadata do |args|
     metadata = MetaData.new
-    url = Card::Env.params[:url]||args[:url] ||""
+    url = Card::Env.params[:url] || args[:url] || ""
     if url.empty?
       metadata.error = "empty url"
       return metadata.to_json
@@ -16,23 +16,21 @@ format :json do
       metadata.website = URI(url).host
     rescue
     end
-    if !metadata.website
+    unless metadata.website
       metadata.error = "invalid url"
       return metadata.to_json
     end
     duplicates = Source.find_duplicates url
     if duplicates.any?
       origin_page_card = duplicates.first.left
-      title =  Card["#{origin_page_card.name}+title"] ? Card["#{origin_page_card.name}+title"].content : ""
-      description =  Card["#{origin_page_card.name}+description"] ? Card["#{origin_page_card.name}+description"].content : ""
+      title = Card["#{origin_page_card.name}+title"] ? Card["#{origin_page_card.name}+title"].content : ""
+      description = Card["#{origin_page_card.name}+description"] ? Card["#{origin_page_card.name}+description"].content : ""
       image_url = Card["#{origin_page_card.name}+image_url"] ? Card["#{origin_page_card.name}+image_url"].content : ""
-      metadata.set_meta_data title,description,image_url
+      metadata.set_meta_data title, description, image_url
     else
       begin
         preview = LinkThumbnailer.generate url
-        if preview.images.length > 0
-          image_url = preview.images.first.src.to_s
-        end
+        image_url = preview.images.first.src.to_s unless preview.images.empty?
           metadata.set_meta_data preview.title, preview.description, image_url
       rescue
       end

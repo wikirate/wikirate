@@ -1,4 +1,6 @@
-def virtual?; true end
+def virtual?
+  true
+end
 
 def raw_content
   %({
@@ -33,7 +35,6 @@ end
 format do
   include Right::DownvoteeSearch::Format
 
-
   def get_result_from_session
     list_with_no_session_votes
   end
@@ -41,11 +42,10 @@ format do
   def list_with_no_session_votes
     result = super_search_results
     [:up_vote, :down_vote].each do |bucket|
-      if Env.session[bucket]
-        result.reject! do |votee_plus_drag_item|
-          votee_name = votee_plus_drag_item.to_name
-          (votee_id = Card.fetch_id(votee_name)) && Env.session[bucket].include?(votee_id)
-        end
+      next unless Env.session[bucket]
+      result.reject! do |votee_plus_drag_item|
+        votee_name = votee_plus_drag_item.to_name
+        (votee_id = Card.fetch_id(votee_name)) && Env.session[bucket].include?(votee_id)
       end
     end
     result
@@ -71,5 +71,4 @@ format :html do
     args[:unsaved] = nil
     super(args)
   end
-
 end

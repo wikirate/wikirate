@@ -46,7 +46,7 @@ describe Card::Set::MetricType::Score do
   end
   describe '#question_card' do
     subject { metric.question_card.name }
-    it { is_expected.to eq "Jedi+deadliness+Joe User+Question"}
+    it { is_expected.to eq "Jedi+deadliness+Joe User+Question" }
   end
   describe '#value_type' do
     subject { metric.value_type }
@@ -87,7 +87,7 @@ describe Card::Set::MetricType::Score do
 
   describe "score for numerical metric" do
     context "when created with formula" do
-      let(:metric_card) { Card[@metric_name]}
+      let(:metric_card) { Card[@metric_name] }
       before do
         @metric_title = "researched number 2"
         @metric_name = "Joe User+#{@metric_title}"

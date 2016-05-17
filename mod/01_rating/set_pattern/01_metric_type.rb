@@ -16,7 +16,7 @@ def metric_type card_or_name
   mt_type || DEFAULT_METRIC_TYPE
 end
 
-def label name
+def label _name
   "metric type"
 end
 
@@ -34,5 +34,5 @@ def anchor_name card
 end
 
 def follow_label name
-  %{all #{metric_type name} metrics}
+  %(all #{metric_type name} metrics)
 end

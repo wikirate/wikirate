@@ -19,6 +19,6 @@ describe Card::Set::TypePlusRight::Metric::AllValues, "metric value caching" do
 
     av = Card.fetch("Jedi+deadliness+all values").get_cached_values
     expect(av["Samsung"])
-      .to include(value: "100", year: "2010",)
+      .to include(value: "100", year: "2010")
   end
 end

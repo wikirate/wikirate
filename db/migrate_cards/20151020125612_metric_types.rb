@@ -34,9 +34,8 @@ class MetricTypes < Card::Migration
                  codename: "metric_type_plus_right"
 
     create_card! name: "*metric type plus right+*right+*structure",
-                     type_id: Card::SetID,
-                     content: metric_type_plus_right_query
-
+                 type_id: Card::SetID,
+                 content: metric_type_plus_right_query
 
     create_card! name: "Metric type+*metric type+*type plus right+*structure",
                  type_id: Card::SetID,

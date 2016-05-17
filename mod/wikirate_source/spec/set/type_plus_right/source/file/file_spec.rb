@@ -9,11 +9,10 @@ describe Card::Set::TypePlusRight::Source::File::File do
 
       source = create_source file: file1
       source_file = Card["#{source.name}+File"]
-      source_file.update_attributes :file=>file2
+      source_file.update_attributes file: file2
 
       expect(source_file.errors).to have_key(:file)
       expect(source_file.errors[:file]).to include("is not allowed to be changed.")
-
     end
   end
 end

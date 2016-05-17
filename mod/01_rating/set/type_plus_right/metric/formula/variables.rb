@@ -2,9 +2,7 @@
 
 def variables_card
   v_card = metric_card.fetch trait: :variables, new: { type: "session" }
-  if v_card.content.blank?
-    v_card.content = input_names.to_pointer_content
-  end
+  v_card.content = input_names.to_pointer_content if v_card.content.blank?
   v_card
 end
 

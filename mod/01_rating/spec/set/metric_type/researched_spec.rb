@@ -114,7 +114,7 @@ describe Card::Set::MetricType::Researched do
             end
           end
           with_tag("div", with: { class: "metric-info" }) do
-            #...add more here?
+            # ...add more here?
           end
         end
       )

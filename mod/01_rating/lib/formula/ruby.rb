@@ -14,10 +14,10 @@ module Formula
                 }.freeze
     LAMBDA_ARGS_NAME = "args".freeze
 
-    INPUT_CAST = lambda { |val| val.number? ? val.to_f : val }
+    INPUT_CAST = ->(val) { val.number? ? val.to_f : val }
 
-    FUNC_KEY_MATCHER =  FUNCTIONS.keys.join("|").freeze
-    FUNC_VALUE_MATCHER =  FUNCTIONS.values.join("|").freeze
+    FUNC_KEY_MATCHER = FUNCTIONS.keys.join("|").freeze
+    FUNC_VALUE_MATCHER = FUNCTIONS.values.join("|").freeze
 
     class << self
       def valid_formula? formula
@@ -29,23 +29,23 @@ module Formula
         allowed = translated ? FUNCTIONS.values : FUNCTIONS.keys
         cleaned = formula.clone
         allowed.each do |word|
-          cleaned = cleaned.gsub(word,"")
+          cleaned = cleaned.gsub(word, "")
         end
         cleaned
-        #matcher = translated ? FUNC_VALUE_MATCHER : FUNC_KEY_MATCHER
-        #formula.gsub(/#{matcher}/,'')
+        # matcher = translated ? FUNC_VALUE_MATCHER : FUNC_KEY_MATCHER
+        # formula.gsub(/#{matcher}/,'')
       end
 
       def check_symbols formula
-        symbols = SYMBOLS.map { |s| "\\#{s}"}.join
-        formula =~ (/^[\s\d#{symbols}]*$/)
+        symbols = SYMBOLS.map { |s| "\\#{s}" }.join
+        formula =~ /^[\s\d#{symbols}]*$/
       end
     end
 
     def get_value input, _company, _year
       input.flatten.each do |i|
         next if i.is_a?(Float)
-        if i.downcase == "unknown"
+        if i.casecmp("unknown").zero?
           return "Unknown"
         elsif i.empty?
           return nil
@@ -71,10 +71,10 @@ module Formula
     end
 
     def safe_to_exec? expr
-      cleaned = if expr.match(/^lambda \{ \|args\| (.+)\}$/)
-                $1.gsub(/args\[\d+\]/,"")
-              else
-                expr
+      cleaned = if expr =~ /^lambda \{ \|args\| (.+)\}$/
+                  Regexp.last_match(1).gsub(/args\[\d+\]/, "")
+                else
+                  expr
               end
       ruby_safe? cleaned
     end
@@ -87,9 +87,9 @@ module Formula
     private
 
     def translate_functions formula
-      formula.gsub(/(?<func>#{FUNC_KEY_MATCHER})\[(?<arg>[^\]]+)\]/) do |match|
-        arg = translate_functions $~[:arg]
-        "[#{arg}].flatten.#{FUNCTIONS[$~[:func]]}"
+      formula.gsub(/(?<func>#{FUNC_KEY_MATCHER})\[(?<arg>[^\]]+)\]/) do |_match|
+        arg = translate_functions $LAST_MATCH_INFO[:arg]
+        "[#{arg}].flatten.#{FUNCTIONS[$LAST_MATCH_INFO[:func]]}"
       end
     end
 

@@ -6,7 +6,7 @@
 }
 
 def label name
-  %{All "#{name.to_name.left}" + "#{name.to_name.right}" cards}
+  %(All "#{name.to_name.left}" + "#{name.to_name.right}" cards)
 end
 
 def prototype_args _anchor

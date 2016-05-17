@@ -9,7 +9,7 @@ describe Card::Set::Right::DownvoteeSearch do
         apple = Card["Apple Inc"]
         metrics_result = nil
         Card::Auth.as_bot do
-          metrics = Card.search :type_id=>Card::MetricID, :right_plus=>apple.name, :limit=>3
+          metrics = Card.search type_id: Card::MetricID, right_plus: apple.name, limit: 3
           # just to ensure there are enough metrics to be used
           expect(metrics.length).to eq(3)
           metrics_result = metrics
@@ -33,21 +33,21 @@ describe Card::Set::Right::DownvoteeSearch do
     end
     context "anonymous" do
       context "anonymous" do
-      before do 
+        before do
           Card::Auth.current_id = Card["Anonymous"].id
-          @apple = Card["Apple Inc"]
-          metrics_result = nil
-          Card::Auth.as_bot do
-            metrics = Card.search :type_id=>Card::MetricID, :right_plus=>@apple.name, :limit=>3
-            # just to ensure there are enough metrics to be used
-            expect(metrics.length).to eq(3)
-            @metrics_result = metrics
-            @metrics_result.each do |metric|
-              vcc = metric.vote_count_card
-              vcc.vote_down
-              vcc.save!
+            @apple = Card["Apple Inc"]
+            metrics_result = nil
+            Card::Auth.as_bot do
+              metrics = Card.search type_id: Card::MetricID, right_plus: @apple.name, limit: 3
+              # just to ensure there are enough metrics to be used
+              expect(metrics.length).to eq(3)
+              @metrics_result = metrics
+              @metrics_result.each do |metric|
+                vcc = metric.vote_count_card
+                vcc.vote_down
+                vcc.save!
+              end
             end
-          end
         end
         it "lists correct metric vote down cards" do
           metric_downvotee_search_card =
@@ -55,8 +55,7 @@ describe Card::Set::Right::DownvoteeSearch do
           search_result = metric_downvotee_search_card.format.get_search_result
           @metrics_result.each do |metric|
             expect(search_result).to include(metric.name)
-          end   
-          
+          end
         end
         it "lists correct topic vote down cards" do
           topic_downvotee_search_card =
@@ -75,8 +74,8 @@ describe Card::Set::Right::DownvoteeSearch do
       context "topic" do
         it "show drag and drop items" do
           topic = Card["Natural Resource Use"]
-          @metric.update_attributes! :subcards=>{"+#{Card[:wikirate_topic].name}"=>topic.name}
-          # show downvotee 
+          @metric.update_attributes! subcards: { "+#{Card[:wikirate_topic].name}" => topic.name }
+          # show downvotee
           Card::Auth.current_id = Card["Joe User"].id
           Card::Auth.as_bot do
             card_to_be_voted_down = @metric.vote_count_card
@@ -86,12 +85,12 @@ describe Card::Set::Right::DownvoteeSearch do
           voted_down_search_card =
             topic.fetch trait: [:metric, :downvotee_search]
           html = voted_down_search_card.format.render_drag_and_drop
-          expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down","data-update-id"=>"Natural_Resource_Use+Metric+downvotee_search",
-                                                 "data-bucket-name"=>"down_vote"}) do
-            with_tag "h5",:with=>{:class=>"vote-title"},:text=>"Not Important to Me"  
-            with_tag "div",:with=>{:class=>"empty-message"} 
-            with_tag("div",:with=>{:class=>"drag-item yinyang-row"}) do
-              with_tag "div",:with=>{:id=>"Natural_Resource_Use+Jedi+deadliness+yinyang_drag_item"}
+          expect(html).to have_tag("div", with: { :class => "list-drag-and-drop yinyang-list down_vote-container", "data-query" => "vote=force-down", "data-update-id" => "Natural_Resource_Use+Metric+downvotee_search",
+                                                  "data-bucket-name" => "down_vote" }) do
+            with_tag "h5", with: { class: "vote-title" }, text: "Not Important to Me"
+            with_tag "div", with: { class: "empty-message" }
+            with_tag("div", with: { class: "drag-item yinyang-row" }) do
+              with_tag "div", with: { id: "Natural_Resource_Use+Jedi+deadliness+yinyang_drag_item" }
             end
           end
         end
@@ -101,7 +100,7 @@ describe Card::Set::Right::DownvoteeSearch do
           it "show drag and drop items" do
             company = Card["Apple Inc"]
             topic = Card["Force"]
-            # show downvotee 
+            # show downvotee
             Card::Auth.current_id = Card["Joe User"].id
             Card::Auth.as_bot do
               card_to_be_voted_down = topic.vote_count_card
@@ -111,10 +110,10 @@ describe Card::Set::Right::DownvoteeSearch do
             voted_down_search_card =
               company.fetch trait: [:wikirate_topic, :downvotee_search]
             html = voted_down_search_card.format.render_drag_and_drop
-            expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down","data-update-id"=>"Apple_Inc+topic+downvotee_search",
-                                                   "data-bucket-name"=>"down_vote"}) do
-              with_tag("div",:with=>{:class=>"drag-item yinyang-row"}) do
-                with_tag "div",:with=>{:id=>"Apple_Inc+Force+yinyang_drag_item"}
+            expect(html).to have_tag("div", with: { :class => "list-drag-and-drop yinyang-list down_vote-container", "data-query" => "vote=force-down", "data-update-id" => "Apple_Inc+topic+downvotee_search",
+                                                    "data-bucket-name" => "down_vote" }) do
+              with_tag("div", with: { class: "drag-item yinyang-row" }) do
+                with_tag "div", with: { id: "Apple_Inc+Force+yinyang_drag_item" }
               end
             end
           end
@@ -123,23 +122,23 @@ describe Card::Set::Right::DownvoteeSearch do
           it "show drag and drop items" do
             company = Card["Apple Inc"]
             subcard = {
-              "+metric"=>{"content"=>@metric.name},
-              "+company"=>{"content"=>"[[#{company.name}]]",:type_id=>Card::PointerID},
-              "+value"=>{"content"=>"100", :type_id=>Card::PhraseID},
-              "+year"=>{"content"=>"2015", :type_id=>Card::PointerID},
-              "+source"=>{
-                "subcards"=>{
-                  "new source"=>{
-                    "+Link"=>{
-                      "content"=>"http://www.google.com/?q=fringepeter",
-                       "type_id"=>Card::PhraseID
+              "+metric" => { "content" => @metric.name },
+              "+company" => { "content" => "[[#{company.name}]]", :type_id => Card::PointerID },
+              "+value" => { "content" => "100", :type_id => Card::PhraseID },
+              "+year" => { "content" => "2015", :type_id => Card::PointerID },
+              "+source" => {
+                "subcards" => {
+                  "new source" => {
+                    "+Link" => {
+                      "content" => "http://www.google.com/?q=fringepeter",
+                      "type_id" => Card::PhraseID
                     }
                   }
                 }
               }
             }
-            Card.create! :type_id=>Card::MetricValueID,:subcards=>subcard
-            # show downvotee 
+            Card.create! type_id: Card::MetricValueID, subcards: subcard
+            # show downvotee
             Card::Auth.current_id = Card["Joe User"].id
             Card::Auth.as_bot do
               card_to_be_voted_down = @metric.vote_count_card
@@ -149,9 +148,9 @@ describe Card::Set::Right::DownvoteeSearch do
             voted_down_search_card =
               company.fetch trait: [:metric, :downvotee_search]
             html = voted_down_search_card.format.render_drag_and_drop
-            expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down","data-update-id"=>"Apple_Inc_+metric+downvotee_search","data-bucket-name"=>"down_vote"}) do
-              with_tag("div",:with=>{:class=>"drag-item yinyang-row"}) do
-                with_tag "div",:with=>{:id=>"Apple_Inc_+Jedi+deadliness+yinyang_drag_item"}
+            expect(html).to have_tag("div", with: { :class => "list-drag-and-drop yinyang-list down_vote-container", "data-query" => "vote=force-down", "data-update-id" => "Apple_Inc_+metric+downvotee_search", "data-bucket-name" => "down_vote" }) do
+              with_tag("div", with: { class: "drag-item yinyang-row" }) do
+                with_tag "div", with: { id: "Apple_Inc_+Jedi+deadliness+yinyang_drag_item" }
               end
             end
           end
@@ -159,26 +158,26 @@ describe Card::Set::Right::DownvoteeSearch do
       end
       context "analysis" do
         it "shows metric drag and drop items" do
-            analysis = Card["Apple Inc+Natural_Resource_Use"]
-            @metric.update_attributes! :subcards=>{"+#{Card[:wikirate_topic].name}"=>analysis.cardname.right}
+          analysis = Card["Apple Inc+Natural_Resource_Use"]
+            @metric.update_attributes! subcards: { "+#{Card[:wikirate_topic].name}" => analysis.cardname.right }
             subcard = {
-              "+metric"=>{"content"=>@metric.name},
-              "+company"=>{"content"=>"[[#{analysis.cardname.left}]]",:type_id=>Card::PointerID},
-              "+value"=>{"content"=>"200", :type_id=>Card::PhraseID},
-              "+year"=>{"content"=>"2015", :type_id=>Card::PointerID},
-              "+source"=>{
-                "subcards"=>{
-                  "new source"=>{
-                    "+Link"=>{
-                      "content"=>"http://www.google.com/?q=fringepeter",
-                       "type_id"=>Card::PhraseID
+              "+metric" => { "content" => @metric.name },
+              "+company" => { "content" => "[[#{analysis.cardname.left}]]", :type_id => Card::PointerID },
+              "+value" => { "content" => "200", :type_id => Card::PhraseID },
+              "+year" => { "content" => "2015", :type_id => Card::PointerID },
+              "+source" => {
+                "subcards" => {
+                  "new source" => {
+                    "+Link" => {
+                      "content" => "http://www.google.com/?q=fringepeter",
+                      "type_id" => Card::PhraseID
                     }
                   }
                 }
               }
             }
-            Card.create! :type_id=>Card::MetricValueID,:subcards=>subcard
-            # show downvotee 
+            Card.create! type_id: Card::MetricValueID, subcards: subcard
+            # show downvotee
             Card::Auth.current_id = Card["Joe User"].id
             Card::Auth.as_bot do
               card_to_be_voted_down = @metric.vote_count_card
@@ -188,14 +187,14 @@ describe Card::Set::Right::DownvoteeSearch do
             voted_down_search_card =
               analysis.fetch trait: [:metric, :downvotee_search]
             html = voted_down_search_card.format.render_drag_and_drop
-            expect(html).to have_tag("div",:with=>{:class=>"list-drag-and-drop yinyang-list down_vote-container","data-query"=>"vote=force-down",
-                                                   "data-update-id"=>"Apple_Inc_+Natural_Resource_Use+Metric+downvotee_search","data-bucket-name"=>"down_vote"}) do
-              with_tag("div",:with=>{:class=>"drag-item yinyang-row"}) do
+            expect(html).to have_tag("div", with: { :class => "list-drag-and-drop yinyang-list down_vote-container", "data-query" => "vote=force-down",
+                                                    "data-update-id" => "Apple_Inc_+Natural_Resource_Use+Metric+downvotee_search", "data-bucket-name" => "down_vote" }) do
+              with_tag("div", with: { class: "drag-item yinyang-row" }) do
                 with_tag "div",
-                         :with=>{:id=>"Apple_Inc_+Natural_Resource_Use+Jedi+deadliness+yinyang_drag_item"}
+                         with: { id: "Apple_Inc_+Natural_Resource_Use+Jedi+deadliness+yinyang_drag_item" }
               end
             end
-          end
+        end
       end
     end
   end

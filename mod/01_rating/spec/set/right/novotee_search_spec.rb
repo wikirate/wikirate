@@ -55,7 +55,6 @@ describe Card::Set::Right::NovoteeSearch do
         metric_novotee_search_card.format.list_with_no_session_votes
       expect(search_result).to include(@metrics[0].name)
       expect(search_result).to include(@metrics[1].name)
-
     end
   end
 end

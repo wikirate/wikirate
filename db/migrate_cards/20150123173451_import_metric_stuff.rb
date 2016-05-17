@@ -3,6 +3,5 @@
 class ImportMetricStuff < Card::Migration
   def up
     import_json "metric_stuff.json"
-    
   end
 end

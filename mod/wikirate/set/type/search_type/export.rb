@@ -1,6 +1,6 @@
 format :json do
   view :export do |args|
-    #render_atom(args)
+    # render_atom(args)
     if card.content.empty? || card.name.include?("+*options") ||
        card.name.include?("+*structure")
       render_atom(args)

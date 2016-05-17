@@ -3,8 +3,7 @@ module Formula
     INTERPRETER = "https://www.wolframcloud.com/objects/92f1e212-7875-49f9-888f-b5b4560b7686"
     WHITELIST = ::Set.new(%w(Boole If Switch Map)).freeze
 
-
-    #INPUT_CAST = lambda { |val| val == 'Unknown' ? 'Unknown'.to_f }
+    # INPUT_CAST = lambda { |val| val == 'Unknown' ? 'Unknown'.to_f }
     # To reduce the Wolfram Cloud calls the Wolfram calculator
     # calculates all values at once when it compiles the formula and saves
     # the result in @executed_lambda
@@ -32,7 +31,7 @@ module Formula
       wl_formula =
         replace_nests do |i|
           # indices in Wolfram Language start with 1
-          "##{ i + 1 }"
+          "##{i + 1}"
         end
 
       year_str = []
@@ -73,30 +72,30 @@ module Formula
       begin
         body = JSON.parse(response.body)
         if body["Success"]
-         JSON.parse body["Result"]
+          JSON.parse body["Result"]
         else
           @errors << "wolfram syntax error: #{body['MessagesText'].join("\n")}"
           return false
         end
       rescue JSON::ParserError => e
-        fail Card::Error, "failed to parse wolfram result: #{expr}"
+        raise Card::Error, "failed to parse wolfram result: #{expr}"
       end
     end
 
     def save_to_convert? expr
       not_on_whitelist =
-        expr.gsub(/\{\{([^}])+\}\}/, "").gsub(/"[^"]+"/,"")
-          .scan(/[a-zA-Z][a-zA-Z]+/).reject do |word|
+        expr.gsub(/\{\{([^}])+\}\}/, "").gsub(/"[^"]+"/, "")
+            .scan(/[a-zA-Z][a-zA-Z]+/).reject do |word|
           WHITELIST.include? word
         end
       return true if not_on_whitelist.empty?
-      not_on_whitelist.each do |bad_word|
+      not_on_whitelist.each do |_bad_word|
         @errors << "#{not_on_whitelist.first} forbidden keyword"
       end
-      return false
+      false
     end
 
-    def safe_to_exec? expr
+    def safe_to_exec? _expr
       true
     end
   end

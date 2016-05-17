@@ -1,9 +1,11 @@
-def virtual?; true end
+def virtual?
+  true
+end
 
 def raw_content
   if left.left.type_id == WikirateTopicID && left.right.id == WikirateCompanyID
-    # FIXME this is an ugly hack to get topic pages working (were overwhelmed by company counts)
-    #FIXME - cardnames!!!
+    # FIXME: this is an ugly hack to get topic pages working (were overwhelmed by company counts)
+    # FIXME - cardnames!!!
     %(
       { "type":"Company",
         "referred_to_by":{

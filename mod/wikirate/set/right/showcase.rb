@@ -1,11 +1,10 @@
 format :html do
   view :open do |args|
     if (l = card.left) && (Auth.current_id == l.id || l.type_code == :wikirate_company)
-      args.merge! :slot_class=>"editable"
+      args[:slot_class] = "editable"
     end
     super(args)
   end
-
 
   # view :core do |args|
   # [CampaignID, MetricID, ClaimID, SourceID, OverviewID].map do |type_id|

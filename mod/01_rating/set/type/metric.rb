@@ -375,8 +375,7 @@ format :html do
   view :ruby do |args|
     if args[:sum]
       start, stop = args[:sum].split("..").map { |y| interpret_year(y) }
-      "((#{start}..#{stop}).to_a.inject(0) { |r, y| r += #{get_value_str
-      ('y')}; r })"
+      "((#{start}..#{stop}).to_a.inject(0) { |r, y| r += #{get_value_str('y')}; r })"
     else
       year = args[:year] ? interpret_year(args[:year]) : "year"
       get_value_str year

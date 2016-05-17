@@ -17,7 +17,7 @@ gem "delayed_job_active_record"
 # seems like newrelic should be in :live, but that wasn't working.
 # not sure why -efm
 gem "newrelic_rpm"
-gem "airbrussh", :require => false
+gem "airbrussh", require: false
 
 group :live do
   gem "therubyracer"
@@ -38,12 +38,11 @@ group :test do
   gem "cucumber-rails", require: false
   # feature-driven-development suite
   gem "capybara"
-                                       # used 2.0.1
+  # used 2.0.1
   gem "selenium-webdriver"
   #  gem 'capybara-webkit'
   # lets cucumber launch browser windows
   gem "launchy"
-
 
   gem "email_spec"
   # used by cucumber for db transactions
@@ -72,14 +71,12 @@ end
 
 group :test, :development do
   gem "thin"
-  gem "pry" #, git: 'https://github.com/pry/pry'  # bug in 0.10.3, fixed in
+  gem "pry" # , git: 'https://github.com/pry/pry'  # bug in 0.10.3, fixed in
   # master
   gem "pry-rails"
   gem "pry-rescue"
   gem "pry-stack_explorer"
-  if RUBY_VERSION =~ /^2/
-    gem "pry-byebug"
-  end
+  gem "pry-byebug" if RUBY_VERSION =~ /^2/
 end
 
 Dir.glob("mod/**{,/*/**}/Gemfile").each do |gemfile|

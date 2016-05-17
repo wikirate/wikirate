@@ -6,7 +6,7 @@ def split_metrics
   metric_parts = cardname.parts.size - 1
   (metric_parts - 1).downto(1) do |split|
     next unless (l = self[0..split]) && l.type_id == MetricID &&
-                (r = self[split+1..metric_parts-1]) && r.type_id == MetricID
+                (r = self[split + 1..metric_parts - 1]) && r.type_id == MetricID
     return l, r
   end
 end
@@ -35,11 +35,11 @@ format :html do
                   args.merge("data-metric-id" => input_metric.id)
     else
       args.merge! text: "Add this metric",
-                 "data-slot-selector" =>
+                  "data-slot-selector" =>
                     ".content-editor > .RIGHT-Xvariable[data-card-name='#{variables_card.name}']",
                   remote: true,
                   path_opts: {
-                    action: :update, add_item: input_metric.cardname.key,
+                    action: :update, add_item: input_metric.cardname.key
                   }
       add_class args, "close-modal slotter"
       card_link variables_card, args

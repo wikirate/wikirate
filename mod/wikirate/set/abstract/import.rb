@@ -135,8 +135,8 @@ end
 
 def handle_redirect
   if errors.empty?
-    if (target=redirect_target_after_import)
-      success <<  { name: target, redirect: true, view: :open }
+    if (target = redirect_target_after_import)
+      success << { name: target, redirect: true, view: :open }
     end
   else
     abort :failure
@@ -173,9 +173,7 @@ end
 
 def check_existence_and_type name, type_id, type_name=nil
   return  "#{name} doesn't exist" unless Card[name]
-  if Card[name].type_id != type_id
-    return "#{name} is not a #{type_name}"
-  end
+  return "#{name} is not a #{type_name}" if Card[name].type_id != type_id
 end
 
 def ensure_company_exists company
@@ -205,7 +203,6 @@ format :html do
     }
     super args
   end
-
 
   def default_import_args args
     args[:buttons] = %(

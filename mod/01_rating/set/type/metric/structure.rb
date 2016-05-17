@@ -72,7 +72,7 @@ format :html do
 
   def author_text author, subtext=nil
     subtext &&=
-        <<-HTML
+      <<-HTML
           <span>
             <small class="text-muted">
               #{subtext}
@@ -88,7 +88,6 @@ format :html do
       ]
     end
   end
-
 
   view :title_right_col do
     <<-HTML

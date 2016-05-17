@@ -5,8 +5,8 @@ namespace :wikirate do
   namespace :test do
     db_path = File.join Wagn.root, "test", "seed.db"
     testdb = ENV["DATABASE_NAME_TEST"] ||
-                    ((t = Wagn.config.database_configuration["test"]) &&
-                    t["database"])
+             ((t = Wagn.config.database_configuration["test"]) &&
+             t["database"])
     user = ENV["DATABASE_MYSQL_USERNAME"] || ENV["MYSQL_USER"] || "root"
     pwd  = ENV["DATABASE_MYSQL_PASSWORD"] || ENV["MYSQL_PASSWORD"]
 
@@ -204,4 +204,3 @@ class Importer
     ActiveRecord::Base.connection.execute(sql)
   end
 end
-

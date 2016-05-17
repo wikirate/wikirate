@@ -89,7 +89,7 @@ format :html do
     args[:author] ||= card_link card.scorer
   end
 
-  view :designer_info do |args|
+  view :designer_info do |_args|
     card_link card.metric_designer_card.cardname.field("contribution"),
               text: author_info(card.metric_designer_card, "Designed by")
 
@@ -105,11 +105,11 @@ format :html do
     end
   end
 
-  view :scorer_image do |args|
+  view :scorer_image do |_args|
     nest card.scorer_card.field(:image, new: {}), view: :core, size: :small
   end
 
-  view :score_thumbnail do |args|
+  view :score_thumbnail do |_args|
     link_text = author_info card.scorer_card, "Scored by",
                             "#{time_ago_in_words card.created_at} ago"
     wrap_with :div, class: "metric-designer-info" do

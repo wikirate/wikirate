@@ -35,11 +35,11 @@ format :html do
 
   view :formula_value_details do |args|
     content = wrap_with :div do
-    [
-      _render_formula_table(args),
-      content_tag(:h5, "Formula"),
-      nest(card.metric_card.formula_card, view: :core)
-    ]
+      [
+        _render_formula_table(args),
+        content_tag(:h5, "Formula"),
+        nest(card.metric_card.formula_card, view: :core)
+      ]
     end
     wrap_value_details(content, args)
   end

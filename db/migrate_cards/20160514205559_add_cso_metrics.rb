@@ -9,23 +9,23 @@ class AddCsoMetrics < Card::Migration
     {
       # Yearly Variables
       70 => ["Maximum Allowable OECD CO2 Emissions",
-              [
-                11475, 11550, 11625, 11701, 11776, 11851, 11743, 11634, 11525,
-                11417, 1130
-              ]
+             [
+               11_475, 11_550, 11_625, 11_701, 11_776, 11_851, 11_743, 11_634, 11_525,
+               11_417, 1130
+             ]
             ],
       71 => ["Maximum Allowable OECD CO2 Emissions - Ratio to Baseline",
-              [
-                1.0000, 1.0066, 1.0131, 1.0197, 1.0262, 1.0328, 1.0233, 1.0139,
-                1.0044, 0.9949, 0.9855
-              ]
+             [
+               1.0000, 1.0066, 1.0131, 1.0197, 1.0262, 1.0328, 1.0233, 1.0139,
+               1.0044, 0.9949, 0.9855
+             ]
             ],
       72 => ["GDP of OECD",
-              [
-                36447627200000, 39127218500000, 41294669500000, 42561395200000,
-                41687612000000, 43446674000000, 45324766700000, 46576648200000,
-                47694954500000, 49289717300000, 50521960232500
-              ]
+             [
+               36_447_627_200_000, 39_127_218_500_000, 41_294_669_500_000, 42_561_395_200_000,
+               41_687_612_000_000, 43_446_674_000_000, 45_324_766_700_000, 46_576_648_200_000,
+               47_694_954_500_000, 49_289_717_300_000, 50_521_960_232_500
+             ]
             ],
 
       # Research Metrics
@@ -99,11 +99,11 @@ class AddCsoMetrics < Card::Migration
 
   def formula raw_formula
     raw_formula.gsub(/(?<year_symbol>[#$])?(?<number>\d+)/) do
-      input_row = $~[:number].to_i
-      next $~[:number] unless row_index? input_row
+      input_row = $LAST_MATCH_INFO[:number].to_i
+      next $LAST_MATCH_INFO[:number] unless row_index? input_row
 
       year_option, sum =
-        case $~[:year_symbol]
+        case $LAST_MATCH_INFO[:year_symbol]
         when '#' then ["|year: 2006..0", true]
         when "$" then "|year: 2005"
         else ""

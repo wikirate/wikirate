@@ -37,7 +37,7 @@ def updated_cards cards
 end
 
 def update_card card
-  return unless card.changed? && card.item_names.size > 0
+  return unless card.changed? && !card.item_names.empty?
   puts "\tUpdating #{card.name} to #{card.content}".green
   card.save!
 end

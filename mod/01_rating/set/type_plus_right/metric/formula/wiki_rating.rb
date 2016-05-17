@@ -21,9 +21,9 @@ format :html do
       end
     table_content.push ["", sum]
     output [
-             table_editor(table_content, %w(Metric Weight)),
-             add_metric_button
-           ]
+      table_editor(table_content, %w(Metric Weight)),
+      add_metric_button
+    ]
   end
 
   def sum_field value=100
