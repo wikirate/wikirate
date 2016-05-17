@@ -204,31 +204,33 @@ format :html do
     end
   end
 
-  def number_to_human_args
-    {
-      units: {
-        unit: '', billion: 'B', million: 'M', quadrillion: 'P', thousand: 'K',
-        trillion: 'T'
-      },
-      format: '%n%u',
-      delimiter: '',
-      precision: 3
-    }
+  def humanized_big_number number
+    number_to_human number,
+                    units: {
+                      unit: '', billion: 'B', million: 'M', quadrillion: 'P',
+                      thousand: 'K', trillion: 'T'
+                    },
+                    format: '%n%u',
+                    delimiter: '',
+                    precision: 3
   end
 
-  def number_with_precision_args bigger_precision=false
-    { delimiter: ',', strip_insignificant_zeros: true,
-      precision: (bigger_precision ? 3 : 1) }
+  def humanized_small_number number
+    less_than_one = number < 1
+    humanized = number_with_precision number,
+                                      delimiter: ',',
+                                      strip_insignificant_zeros: true,
+                                      precision: (less_than_one ? 3 : 1),
+                                      significant: less_than_one
+    (humanized == '0' && big_number > 0) ? '~0' : humanized
   end
 
   def humanized_number value
-    big_number = BigDecimal.new(value)
-    if big_number > 1_000_000
-      number_to_human(big_number, number_to_human_args)
+    number = BigDecimal.new(value)
+    if number > 1_000_000
+      humanized_big_number number
     else
-      number = number_with_precision(big_number,
-                                     number_with_precision_args(big_number < 1))
-      (number == '0' && big_number > 0) ? '~0' : number
+      humanized_small_number number,
     end
   end
 
