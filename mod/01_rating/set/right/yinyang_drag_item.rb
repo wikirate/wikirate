@@ -6,7 +6,7 @@ format :html do
     # Target+Amnesty_International+Conflict_Minerals_Report+Henry_Tai
     # +yinyang_drag_item
 
-    # Apple_Inc_+Natural_Resource_Use+Richard_Mills+Publishes_Smelters_Refiners
+    # Apple_Inc+Natural_Resource_Use+Richard_Mills+Publishes_Smelters_Refiners
     # +yinyang_drag_item
 
     # Target+Natural_Resource_Use+Amnesty_International+Conflict_Minerals_Report
