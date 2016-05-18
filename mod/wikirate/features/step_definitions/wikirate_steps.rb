@@ -10,9 +10,7 @@ end
 
 When /^I wait until ajax response$/ do
   Timeout.timeout(Capybara.default_wait_time) do
-    while page.evaluate_script('jQuery.active') != 0
-      sleep(0.5)
-    end
+    sleep(0.5) while page.evaluate_script("jQuery.active") != 0
   end
 end
 
@@ -42,9 +40,9 @@ end
 
 When /^(?:|I )solocomplete "([^"]*)" within "([^"]*)"$/ do |value, scope_selector|
   within(scope_selector) do
-    find('.chosen-single').click
-    find('.chosen-search input').set value
-    find('.chosen-results li').click
+    find(".chosen-single").click
+    find(".chosen-search input").set value
+    find(".chosen-results li").click
   end
 end
 

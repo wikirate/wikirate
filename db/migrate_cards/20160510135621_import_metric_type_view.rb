@@ -2,6 +2,6 @@
 
 class ImportMetricTypeView < Card::Migration
   def up
-    import_json 'metric_type_view.json'
+    import_json "metric_type_view.json"
   end
 end

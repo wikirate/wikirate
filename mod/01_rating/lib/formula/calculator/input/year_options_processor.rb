@@ -13,7 +13,7 @@ module Formula
                 else
                   0
                 end
-              if (cur = self.last) != 0
+              if (cur = last) != 0
                 @multi_year = true
                 @fixed_years << cur if year?(cur)
               end
@@ -36,7 +36,7 @@ module Formula
             when Proc
               ip.call(year).map { |y| value_data[i][y] }
             else
-              fail Card::Error, "illegal input processor type: #{ip.class}"
+              raise Card::Error, "illegal input processor type: #{ip.class}"
             end
           end
         end
@@ -44,7 +44,7 @@ module Formula
         private
 
         def normalize_year_expr expr
-          expr.sub('year:','').tr('?', '0').strip
+          expr.sub("year:", "").tr("?", "0").strip
         end
 
         def year? y
@@ -56,10 +56,10 @@ module Formula
           when /^[0?]$/ then 0
           when /^[+-]?\d+$/ then expr.to_i
           when /,/
-            years = expr.split(',').map(&:to_i)
+            years = expr.split(",").map(&:to_i)
             year_list years
           when /\.\./ then
-            start, stop = expr.split('..').map(&:to_i)
+            start, stop = expr.split("..").map(&:to_i)
             year_range(start, stop)
           end
         end
@@ -82,15 +82,15 @@ module Formula
             (start..stop).to_a
           elsif !year?(start) && !year?(stop)
             proc do |year|
-              (year+start..year+stop).to_a
+              (year + start..year + stop).to_a
             end
           elsif !year?(start)
             proc do |year|
-              (start..year+stop).to_a
+              (start..year + stop).to_a
             end
           else # = !year?(stop)
             proc do |year|
-              (start..year+stop).to_a
+              (start..year + stop).to_a
             end
           end
         end

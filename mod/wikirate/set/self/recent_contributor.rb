@@ -10,7 +10,7 @@ def item_names _args={}
                  "and actor_id <> #{Card['Anonymous'].id}"
 
   Card::Act.select(:actor_id).distinct.where(where_clause)
-    .order('id DESC').limit(limit).map do |act|
+           .order("id DESC").limit(limit).map do |act|
     Card[act.actor_id].name
   end
 end

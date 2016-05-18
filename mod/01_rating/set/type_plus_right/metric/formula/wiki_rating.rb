@@ -2,7 +2,7 @@ format :html do
   view :rating_core do |args|
     table_content =
       card.translation_table.map do |metric, weight|
-        [subformat(metric)._render_thumbnail(args), weight + '%']
+        [subformat(metric)._render_thumbnail(args), weight + "%"]
       end
     table table_content, header: %w(Metric Weight)
   end
@@ -15,18 +15,18 @@ format :html do
     end
     sum =
       if table_content.empty?
-        { content: sum_field, class: 'hidden' }
+        { content: sum_field, class: "hidden" }
       else
         sum_field
       end
-    table_content.push ['', sum]
+    table_content.push ["", sum]
     output [
-             table_editor(table_content, %w(Metric Weight)),
-             add_metric_button
-           ]
+      table_editor(table_content, %w(Metric Weight)),
+      add_metric_button
+    ]
   end
 
   def sum_field value=100
-    text_field_tag 'weight_sum', value, class: 'weight-sum', disabled: true
+    text_field_tag "weight_sum", value, class: "weight-sum", disabled: true
   end
 end

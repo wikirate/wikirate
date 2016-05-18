@@ -1,5 +1,4 @@
 format :json do
-
   def default_export_args args
     args[:count] ||= 0
     args[:count] += 1
@@ -24,7 +23,7 @@ format :json do
     each_nested_chunk do |chunk|
       next if chunk.respond_to?(:options) && chunk.options &&
               chunk.options[:inc_name] &&
-              chunk.options[:inc_name] == '_main'
+              chunk.options[:inc_name] == "_main"
       next unless (r_card = chunk.referee_card)
       next if r_card.new? || r_card == card
       next if args[:processed_keys].include?(r_card.key)
@@ -33,4 +32,3 @@ format :json do
     result.compact.uniq.map { |ca| subformat(ca).render_export(args) }
   end
 end
-

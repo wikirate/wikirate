@@ -1,8 +1,6 @@
 describe Card::Set::Right::ContributedSources do
-
   before do
-    
-    source_list = Array.new
+    source_list = []
     Card::Auth.current_id = Card::WagnBotID
     Card::Auth.as_bot do
       (0...5).each do |i|
@@ -10,19 +8,19 @@ describe Card::Set::Right::ContributedSources do
       end
     end
 
-    login_as "joe_user" 
+    login_as "joe_user"
     source_list.each  do |source|
-      vote_count_card = Card[source.name+"+*vote_count"]
-      if !vote_count_card
+      vote_count_card = Card[source.name + "+*vote_count"]
+      unless vote_count_card
         Card::Auth.as_bot do
-          vote_count_card = Card.create!(:name=>source.name+"+*vote_count")
+          vote_count_card = Card.create!(name: source.name + "+*vote_count")
         end
       end
       vote_count_card.vote_up
     end
-    
+
     @user_card = Card["joe_user"]
-    @c_card = @user_card.fetch(:trait=>:contributed_sources)
+    @c_card = @user_card.fetch(trait: :contributed_sources)
   end
   describe ".contribution_counts" do
     it "returns correct contribution count" do
@@ -32,9 +30,7 @@ describe Card::Set::Right::ContributedSources do
   describe "header view" do
     it "returns correct contribution analysis" do
       html = @c_card.format.render_header
-      expect(html).to have_tag("i",:with=>{:class=>"fa fa-globe"})
-
+      expect(html).to have_tag("i", with: { class: "fa fa-globe" })
     end
   end
-  
 end

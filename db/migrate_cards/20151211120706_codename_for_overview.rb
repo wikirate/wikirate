@@ -2,6 +2,6 @@
 
 class CodenameForOverview < Card::Migration
   def up
-    Card['overview'].update_attributes! codename: 'overview'
+    Card["overview"].update_attributes! codename: "overview"
   end
 end

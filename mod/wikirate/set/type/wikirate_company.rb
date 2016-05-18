@@ -1,5 +1,6 @@
-card_accessor :contribution_count, type: :number, default: '0'
-card_accessor :direct_contribution_count, type: :number, default: '0'
+card_accessor :contribution_count, type: :number, default: "0"
+card_accessor :direct_contribution_count, type: :number, default: "0"
+card_accessor :aliases, type: :pointer
 
 view :missing do |args|
   _render_link args
@@ -7,8 +8,8 @@ end
 
 def indirect_contributor_search_args
   [
-    { type_id: Card::ClaimID,  right_plus: ['company', { link_to: name }] },
-    { type_id: Card::SourceID, right_plus: ['company', { link_to: name }] },
+    { type_id: Card::ClaimID,  right_plus: ["company", { link_to: name }] },
+    { type_id: Card::SourceID, right_plus: ["company", { link_to: name }] },
     { type_id: Card::WikirateAnalysisID, left: name },
     { type_id: Card::MetricValueID, left: { right: name } }
   ]
@@ -20,7 +21,7 @@ format :html do
   end
 
   view :open do |args|
-    if main? && !Env.ajax? && !Env.params['about_company'] &&
+    if main? && !Env.ajax? && !Env.params["about_company"] &&
        !contributions_about? && contributions_made?
 
       link = card_link card, path_opts: { about_company: true }
@@ -40,21 +41,18 @@ format :html do
   end
 
   view :contribution_link do
-    return '' unless contributions_made?
+    return "" unless contributions_made?
     card_link card.cardname.trait(:contribution),
-              text: 'View Contributions',
-              class: 'btn btn-primary company-contribution-link'
+              text: "View Contributions",
+              class: "btn btn-primary company-contribution-link"
   end
 
   def contributions_made?
     # FIXME: need way to figure this out without a search!
-    Card.search(type_id: MetricID, left: card.name, return: 'count') > 0
+    Card.search(type_id: MetricID, left: card.name, return: "count") > 0
   end
 end
 
-
 def add_alias alias_name
-  alias_card = Card.fetch "#{name}+aliases",
-                          new: { type_id: Card::PointerID }
-  alias_card.insert_item! 0, alias_name
+  aliases_card.insert_item! 0, alias_name
 end

@@ -3,6 +3,5 @@
 class ImportFacebookMeta < Card::Migration
   def up
     import_json "facebook_meta.json"
-    
   end
 end

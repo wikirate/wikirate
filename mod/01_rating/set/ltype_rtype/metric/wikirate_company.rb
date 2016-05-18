@@ -4,7 +4,7 @@ end
 
 def latest_value_card
   return if !(lvy = latest_value_year) || lvy == 0
-  Card.fetch "#{name}+#{latest_value_year}"
+  Card.fetch cardname, lvy
 end
 
 def company_card
@@ -27,8 +27,8 @@ format :html do
   view :all_values do |args|
     wql = { left: card.name,
             type: Card::MetricValueID,
-            sort: 'name',
-            dir: 'desc'
+            sort: "name",
+            dir: "desc"
           }
     wql_comment = "all metric values where metric = #{card.name}"
     Card.search(wql, wql_comment).map.with_index do |v, i|
@@ -44,25 +44,25 @@ format :html do
   view :image_link do
     # TODO: change the css so that we don't need the extra logo class here
     #   and we can use a logo_link view on the type/company set
-    text = content_tag :div, class: 'logo' do
-      card.company_card.format.field_nest :image, view: :core, size: 'small'
+    text = content_tag :div, class: "logo" do
+      card.company_card.format.field_nest :image, view: :core, size: "small"
     end
-    card_link card.company_card, class: 'inherit-anchor hidden-xs',
+    card_link card.company_card, class: "inherit-anchor hidden-xs",
                                  text: text
   end
 
   view :name_link do
     card_link card.company_card,
-              class: 'inherit-anchor',
-              text: content_tag(:div, card.company, class: 'name')
+              class: "inherit-anchor",
+              text: content_tag(:div, card.company, class: "name")
   end
 
   view :yinyang_row do |args|
     append_name =
       if card.left.metric_type_codename == :score
-        'score_metric_details_company_header'
+        "score_metric_details_company_header"
       else
-        'metric_details_company_header'
+        "metric_details_company_header"
       end
     wrap(args) do
       <<-HTML

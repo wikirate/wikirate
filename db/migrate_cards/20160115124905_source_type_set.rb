@@ -14,50 +14,50 @@ class SourceTypeSet < Card::Migration
     Card::Cache.reset_global
     update_existing_source_cards
 
-    import_json 'source_set_type.json'
+    import_json "source_set_type.json"
   end
 
   def update_existing_source_cards
     all_source_cards = Card.search type_id: Card::SourceID
     all_source_cards.each do |sc|
       sc_st = sc.fetch(trait: :source_type, new: {})
-      sc_st.content = ''
+      sc_st.content = ""
       type =
         if sc.fetch(trait: :wikirate_link)
-          'Link'
+          "Link"
         elsif sc.fetch(trait: :file)
-          'File'
+          "File"
         elsif sc.fetch(trait: :text)
-          'Text'
+          "Text"
         end
       sc_st.add_item! type
     end
   end
 
   def create_source_type_set_rule
-    create_card! name: 'source type+*source type+*type plus right+*structure',
+    create_card! name: "source type+*source type+*type plus right+*structure",
                  type_id: Card::SetID,
                  content: '{"type":"source",' \
                           '"right_plus":["*source type",{"refer_to":"_left"}]}'
   end
 
   def update_create_rule
-    create_card! name: '*source_type+*right+*create', content: '_left'
+    create_card! name: "*source_type+*right+*create", content: "_left"
   end
 
   def create_source_type_card
-    create_card! name: '*source type', codename: 'source_type',
+    create_card! name: "*source type", codename: "source_type",
                  subcards: {
-                   '+*right+*default' => {
+                   "+*right+*default" => {
                      type_id: Card::PointerID,
-                     content: '[[Link]]'
+                     content: "[[Link]]"
                    },
-                   '+*right+*options' => {
+                   "+*right+*options" => {
                      type_id: Card::PointerID,
                      content: source_types_list
                    },
-                   '+*right+*input' => {
-                     content: 'radio'
+                   "+*right+*input" => {
+                     content: "radio"
                    }
                  }
   end
