@@ -1,5 +1,5 @@
-require File.expand_path('../../config/environment',  __FILE__)
-require 'colorize'
+require File.expand_path("../../config/environment",  __FILE__)
+require "colorize"
 
 def put_things_in_tag_to_correct_position cards, skip_year
   i = 0
@@ -37,14 +37,14 @@ def updated_cards cards
 end
 
 def update_card card
-  return unless card.changed? && card.item_names.size > 0
+  return unless card.changed? && !card.item_names.empty?
   puts "\tUpdating #{card.name} to #{card.content}".green
   card.save!
 end
 
 Card::Auth.as_bot do
   Card::Mailer.perform_deliveries = false
-  puts 'Searching tag cards'.green
+  puts "Searching tag cards".green
   tags_card = Card.search type_id: Card::WikirateTagID, sort: :name
   puts "#{tags_card.size} tag cards found.".green
   tags_card.each do |card|
@@ -53,17 +53,17 @@ Card::Auth.as_bot do
     card.save!
     Card.cache.reset
   end
-  puts 'Finished type updates!'.green
-  puts 'Getting all claim + tag cards'.green
-  note_cards_with_tag = Card.search type_id: Card::ClaimID, right_plus: 'tag'
+  puts "Finished type updates!".green
+  puts "Getting all claim + tag cards".green
+  note_cards_with_tag = Card.search type_id: Card::ClaimID, right_plus: "tag"
   puts "#{note_cards_with_tag.size} claim+tag cards found. Start Praying".green
   put_things_in_tag_to_correct_position note_cards_with_tag, false
-  puts 'Finished claim+tag updates!'.green
-  puts 'Getting all note + tag cards'.green
+  puts "Finished claim+tag updates!".green
+  puts "Getting all note + tag cards".green
   source_cards_with_tag = Card.search type_id: Card::SourceID,
-                                      right_plus: 'tag'
+                                      right_plus: "tag"
   puts "#{source_cards_with_tag.size} note+tag cards found. Start Praying".green
   put_things_in_tag_to_correct_position source_cards_with_tag, true
-  puts 'Finished source+tag updates!'.green
+  puts "Finished source+tag updates!".green
   Card::Mailer.perform_deliveries = true
 end

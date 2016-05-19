@@ -4,20 +4,20 @@
 def item_names _args
   initiative_name = cardname.left
   # find all participant and add to the pointer card
-  editors = Card.search editor_of: { left: initiative_name }, return: 'name'
+  editors = Card.search editor_of: { left: initiative_name }, return: "name"
   editors += Card.search(
     editor_of: { left: { found_by: "#{initiative_name}+project" } },
-    return: 'name'
+    return: "name"
   )
   editors += Card.search(
     editor_of: { right_plus:
       [
-        'Project',
+        "Project",
         {
           refer_to: { found_by: "#{initiative_name}+Project" }
         }
       ]
-    }, return: 'name'
+    }, return: "name"
   )
   editors.delete(Card[WagnBotID].name)
   editors.uniq

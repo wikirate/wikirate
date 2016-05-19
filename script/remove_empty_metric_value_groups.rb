@@ -1,19 +1,19 @@
 #!/usr/bin/env ruby
 
-require File.dirname(__FILE__) + '/../config/environment'
+require File.dirname(__FILE__) + "/../config/environment"
 # Card::Auth.as_bot
 Card::Auth.current_id = Card::WagnBotID
 
-Card.search(type: 'Metric') do |metric|
+Card.search(type: "Metric") do |metric|
   puts "~~~\n\nworking on METRIC: #{metric.name}"
 
   value_groups = Card.search(
     left_id: metric.id,
-    right: { type: 'Company' },
+    right: { type: "Company" },
     not: {
       right_plus: [
-        { type: 'Year' },
-        { type: 'Metric Value' }
+        { type: "Year" },
+        { type: "Metric Value" }
       ]
     }
   )
@@ -29,6 +29,6 @@ Card.search(type: 'Metric') do |metric|
       puts "FAILED TO DELETE: #{group_card.name}"
     end
   end
-  puts 'empty trash'
+  puts "empty trash"
   Card.empty_trash
 end

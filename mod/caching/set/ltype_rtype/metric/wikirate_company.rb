@@ -13,10 +13,10 @@ end
 def search_latest_value_name
   Card.search(
     left: name,
-    right: { type: 'year' },
-    dir: 'desc',
-    sort: 'name',
+    right: { type: "year" },
+    dir: "desc",
+    sort: "name",
     limit: 1,
-    return: 'name'
+    return: "name"
   ).first
 end

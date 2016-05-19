@@ -4,12 +4,12 @@ card_accessor :wikirate_website, type: :pointer
 
 format :html do
   view :original_link do |args|
-    link_to (args[:title] || 'Visit Source'), card.wikirate_link
+    link_to (args[:title] || "Visit Source"), card.wikirate_link
   end
 end
 
 def populate_website?
-  !subfield('website').present? && subfield(:wikirate_link).present? &&
+  !subfield("website").present? && subfield(:wikirate_link).present? &&
     errors.empty?
 end
 
@@ -27,7 +27,7 @@ def handle_source_box_source url
   cite_card = get_card(url)
   if cite_card
     if cite_card.type_code != :source
-      errors.add :source, ' can only be source type or valid URL.'
+      errors.add :source, " can only be source type or valid URL."
     else
       clear_subcards
       self.name = cite_card.name
@@ -36,7 +36,7 @@ def handle_source_box_source url
     # if !wikirate url and is a url
     # if !url
   elsif !url?(url) || wikirate_url?(url)
-    errors.add :source, ' does not exist.'
+    errors.add :source, " does not exist."
   end
 end
 
@@ -44,26 +44,26 @@ def duplication_check url
   duplicates = Self::Source.find_duplicates url
   return unless duplicates.any?
   duplicated_name = duplicates.first.cardname.left
-  if Card::Env.params[:sourcebox] == 'true'
+  if Card::Env.params[:sourcebox] == "true"
     remove_subfield(:wikirate_link)
     self.name = duplicated_name
     abort :success
   else
     errors.add :link,
                "exists already. <a href='/#{duplicated_name}'>"\
-               'Visit the source.</a>'
+               "Visit the source.</a>"
   end
 end
 
 event :process_source_url, after: :check_source,
                            on: :create do
   if !(link_card = subfield(:wikirate_link)) || link_card.content.empty?
-    errors.add(:link, 'does not exist.')
+    errors.add(:link, "does not exist.")
     return
   end
   link_card.content.strip!
   url = link_card.content
-  handle_source_box_source url if Card::Env.params[:sourcebox] == 'true'
+  handle_source_box_source url if Card::Env.params[:sourcebox] == "true"
   duplication_check url
   link_card.director.catch_up_to_stage :validate
   return if link_card.errors.present?
@@ -74,13 +74,13 @@ event :process_source_url, after: :check_source,
     remove_subfield(:wikirate_link)
     reset_patterns
     include_set_modules
-  elsif Card::Env.params[:sourcebox] == 'true' && !is_file_link
+  elsif Card::Env.params[:sourcebox] == "true" && !is_file_link
     parse_source_page url
   end
 end
 
 def url? url
-  url.start_with?('http://', 'https://')
+  url.start_with?("http://", "https://")
 end
 
 def wikirate_url? url
@@ -100,13 +100,13 @@ def get_card url
 end
 
 def download_file_and_add_to_plus_file url
-  url.gsub!(/ /, '%20')
-  add_subfield :file, remote_file_url: url, type_id: FileID, content: 'dummy'
+  url.gsub!(/ /, "%20")
+  add_subfield :file, remote_file_url: url, type_id: FileID, content: "dummy"
   source_type = subfield(:source_type)
   source_type.content = "[[#{Card[:file].name}]]"
   # remove_subfield :wikirate_link
 rescue  # if open raises errors , just treat the source as a normal source
-  Rails.logger.info 'Fail to get the file from link'
+  Rails.logger.info "Fail to get the file from link"
 end
 
 def get_header url
@@ -119,23 +119,23 @@ end
 
 def max_size
   # prevent from showing file too big while users are adding a link source
-  (max = Card['*upload max']) ? max.db_content.to_i : 5
+  (max = Card["*upload max"]) ? max.db_content.to_i : 5
 end
 
 def file_type_and_size url
   # just got the header instead of downloading the whole file
   header_str = get_header(url)
   # error won't give us content type, treat it as a normal link
-  content_type = header_str[/.*Content-Type: (.*)\r\n/, 1] || ''
+  content_type = header_str[/.*Content-Type: (.*)\r\n/, 1] || ""
   content_size = header_str[/.*Content-Length: (.*)\r\n/, 1].to_i
   [content_type, content_size]
 rescue => error
   Rails.logger.info "Fail to extract header from the #{url}, #{error.message}"
-  ['', '']
+  ["", ""]
 end
 
 def file_link? mime_type
-  !mime_type.empty? && !mime_type.start_with?('text/html', 'image/')
+  !mime_type.empty? && !mime_type.start_with?("text/html", "image/")
 end
 
 def within_file_size_limit? size
@@ -147,11 +147,11 @@ def parse_source_page url
   # if preview.images.length > 0
   #   add_subcard '+image url', content: preview.images.first.src.to_s
   # end
-  if !subfield('title') && !preview.title.empty?
-    add_subcard '+title', content: preview.title
+  if !subfield("title") && !preview.title.empty?
+    add_subcard "+title", content: preview.title
   end
-  return if subfield('Description')
-  add_subcard '+description', content: preview.description
+  return if subfield("Description")
+  add_subcard "+description", content: preview.description
 rescue
   Rails.logger.info "Fail to extract information from the #{url}"
 end

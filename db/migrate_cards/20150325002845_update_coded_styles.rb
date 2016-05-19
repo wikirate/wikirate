@@ -2,18 +2,17 @@
 
 class UpdateCodedStyles < Card::Migration
   def up
-
-    #stylesheets
-    Card['style: bootstrap cards'].update_attributes! :codename=>'bootstrap_cards'
-    Card['style: bootstrap compatible'].update_attributes! :codename=>'style_bootstrap_compatible'
-    Card['style: bootstrap theme'].update_attributes!(
-      :name=>'theme: bootstrap default',
-      :codename=>'theme_bootstrap_default'
+    # stylesheets
+    Card["style: bootstrap cards"].update_attributes! codename: "bootstrap_cards"
+    Card["style: bootstrap compatible"].update_attributes! codename: "style_bootstrap_compatible"
+    Card["style: bootstrap theme"].update_attributes!(
+      name: "theme: bootstrap default",
+      codename: "theme_bootstrap_default"
     )
 
-    #skins
-    Card['simple skin'].update_attributes!(
-      :content=>"[[style: jquery-ui-smoothness]]\n[[style: cards]]\n[[style: right sidebar]]\n[[style: common]]\n[[style: traditional]]\n[[style: glyphicons]]\n[[style: bootstrap compatible]]"
+    # skins
+    Card["simple skin"].update_attributes!(
+      content: "[[style: jquery-ui-smoothness]]\n[[style: cards]]\n[[style: right sidebar]]\n[[style: common]]\n[[style: traditional]]\n[[style: glyphicons]]\n[[style: bootstrap compatible]]"
     )
     # Card['raw bootstrap skin'].update_attributes!(
     #   :name=>'themeless bootstrap skin',
@@ -26,11 +25,10 @@ class UpdateCodedStyles < Card::Migration
     # bootstrap_default.update_referers = true
     # bootstrap_default.save!
 
-
     # merge "style: functional" and "style: standard" into "style: cards"
     old_func = Card[:style_functional]
-    old_func.name = 'style: cards'
-    old_func.codename = 'style_cards'
+    old_func.name = "style: cards"
+    old_func.codename = "style_cards"
     old_func.save!
 
     old_stand = Card[:style_standard]

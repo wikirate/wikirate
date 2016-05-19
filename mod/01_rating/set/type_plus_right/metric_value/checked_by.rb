@@ -32,7 +32,7 @@ format :html do
   view :double_check_view do
     wrap_with :div do
       [
-        content_tag(:h5, double_check_icon + 'Double-Check'),
+        content_tag(:h5, double_check_icon + "Double-Check"),
         card.user_checked_before ? checked_content : check_button,
         _render_checked_by_list
       ]
@@ -50,7 +50,7 @@ format :html do
   end
 
   def message
-    'I checked: value accurately represents source'
+    "I checked: value accurately represents source"
   end
 
   def double_check_icon
@@ -66,33 +66,33 @@ format :html do
   end
 
   def check_button
-    button_class = 'btn btn-default btn-sm _value_check_button'
+    button_class = "btn btn-default btn-sm _value_check_button"
     wrap_with :div do
       [
-        content_tag(:span, 'Does the value accurately represent its source?'),
-        content_tag(:a, 'Yes, I checked', class: button_class,
+        content_tag(:span, "Does the value accurately represent its source?"),
+        content_tag(:a, "Yes, I checked", class: button_class,
                                           data: { path: data_path })
       ]
     end
   end
 
   def checked_content
-    icon_class = 'fa fa-times-circle-o fa-lg cursor-p _value_uncheck_button'
-    wrap_with :div, class: 'user-checked' do
+    icon_class = "fa fa-times-circle-o fa-lg cursor-p _value_uncheck_button"
+    wrap_with :div, class: "user-checked" do
       [
         content_tag(:span, '"' + message + '"'),
-        content_tag(:i, '', class: icon_class, data: { path: data_path })
+        content_tag(:i, "", class: icon_class, data: { path: data_path })
       ]
     end
   end
 end
 
 event :user_checked_value, :prepare_to_store,
-      on: :update, when: proc { Env.params['checked'] == 'true' } do
+      on: :update, when: proc { Env.params["checked"] == "true" } do
   add_item! user.name unless user_checked_before
 end
 
 event :user_uncheck_value, :prepare_to_store,
-      on: :update, when: proc { Env.params['uncheck'] == 'true' } do
+      on: :update, when: proc { Env.params["uncheck"] == "true" } do
   drop_item! user.name if user_checked_before
 end

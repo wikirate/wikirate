@@ -1,4 +1,3 @@
-def session_vote?  
+def session_vote?
   true
 end
-  

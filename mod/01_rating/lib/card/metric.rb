@@ -71,7 +71,7 @@ class Card::Metric
 
     def subcard_args opts
       subcards = {
-        '+*metric type' => {
+        "+*metric type" => {
           content: "[[#{Card[opts[:type]].name}]]",
           type_id: Card::PointerID
         }
@@ -79,23 +79,23 @@ class Card::Metric
       if opts[:formula]
         if opts[:formula].is_a?(Hash)
           opts[:formula] = opts[:formula].to_json
-          opts[:value_type] ||= 'Category'
+          opts[:value_type] ||= "Category"
         end
 
-        subcards['+formula'] = {
+        subcards["+formula"] = {
           content: opts[:formula],
           type_id: Card::PhraseID
         }
       end
       if opts[:type] == :researched
-        opts[:value_type] ||= 'Number'
-        subcards['+value type'] = {
+        opts[:value_type] ||= "Number"
+        subcards["+value type"] = {
           content: "[[#{opts[:value_type]}]]",
           type_id: Card::PointerID
         }
       end
       if opts[:value_options]
-        subcards['+value options'] = {
+        subcards["+value options"] = {
           content: opts[:value_options].to_pointer_content,
           type_id: Card::PointerID
         }

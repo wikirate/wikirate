@@ -1,7 +1,7 @@
 format :html do
   view :timeline do |args|
     timeline = output [
-      (wrap_with :div, class: 'pull-left timeline-data' do
+      (wrap_with :div, class: "pull-left timeline-data" do
         [
           _optional_render(:timeline_header, args.merge(column: :data), :show),
           (search_results.map.with_index do |res, i|
@@ -29,37 +29,37 @@ format :html do
               metric: card.cardname.left_name.trunk
             }
     }
-    link = _render_modal_link(args.merge(class: 'btn btn-default btn-sm',
-                                         text: '+ Add New Value',
+    link = _render_modal_link(args.merge(class: "btn btn-default btn-sm",
+                                         text: "+ Add New Value",
                                          path_opts: path_opts
                                         ))
-    timeline_head(link, 'new')
+    timeline_head(link, "new")
   end
 
   view :timeline_header_buttons do
-    btn_class = 'btn btn-sm btn-default margin-12'
-    btn_add_class = [btn_class, '_add_new_value', 'btn-primary'].join(' ')
-    path = card.left.field('metric_details').cardname.url_key
-    target_str = ["[id='", path, "'] #methodology-info"].join('')
+    btn_class = "btn btn-sm btn-default margin-12"
+    btn_add_class = [btn_class, "_add_new_value", "btn-primary"].join(" ")
+    path = card.left.field("metric_details").cardname.url_key
+    target_str = ["[id='", path, "'] #methodology-info"].join("")
     metric_card_type = card.left.trunk.metric_type.downcase.to_sym
     btn_add =
-      content_tag(:div, 'Add answer',
+      content_tag(:div, "Add answer",
                   class: btn_add_class,
                   data: {
                     company: card.cardname.left_name.right_name.url_key,
                     metric: card.cardname.left_name.trunk_name.url_key,
-                    toggle: 'collapse-next',
-                    parent: '.timeline-data',
-                    collapse: '.metric_value_form_container'
+                    toggle: "collapse-next",
+                    parent: ".timeline-data",
+                    collapse: ".metric_value_form_container"
                   }
                  )
     btn_methodology =
-      content_tag(:div, 'View Methodology',
-                  class: btn_class + ' ' + '_view_methodology',
+      content_tag(:div, "View Methodology",
+                  class: btn_class + " " + "_view_methodology",
                   data: {
-                    toggle: 'collapse',
+                    toggle: "collapse",
                     target: target_str,
-                    collapse: '.metric_value_form_container'
+                    collapse: ".metric_value_form_container"
                   }
                  )
     return btn_add + btn_methodology if metric_card_type == :researched
@@ -67,11 +67,11 @@ format :html do
   end
 
   view :timeline_header do |args|
-    wrap_with :div, class: 'timeline-header timeline-row ' do
+    wrap_with :div, class: "timeline-header timeline-row " do
       case args[:column]
       when :data
-        _optional_render(:timeline_header_buttons, args, :show) || ''
-      else ''
+        _optional_render(:timeline_header_buttons, args, :show) || ""
+      else ""
       end
     end
   end

@@ -1,4 +1,4 @@
-require 'wagn/mods_spec_helper'
+require "wagn/mods_spec_helper"
 
 # require File.expand_path(
 #   '../../mod/01_rating/spec/lib/shared_calculation_examples.rb', __FILE__
@@ -8,42 +8,42 @@ Spork.prefork do
   RSpec.configure do |config|
     config.include RSpecHtmlMatchers
     config.before(:each) do
-      Card::Env[:protocol] = 'http://'
-      Card::Env[:host] = 'wikirate.org'
+      Card::Env[:protocol] = "http://"
+      Card::Env[:host] = "wikirate.org"
     end
   end
 end
 
 def get_subcards_of_metric_value metric, company, content, year, source
-  this_year = year || '2015'
+  this_year = year || "2015"
   this_source = source || get_a_sample_source.name
   this_content = content || "I'm fine, I'm just not happy."
   {
-    '+metric' => { 'content' => metric.name },
-    '+company' => { 'content' => "[[#{company.name}]]",
+    "+metric" => { "content" => metric.name },
+    "+company" => { "content" => "[[#{company.name}]]",
                     :type_id => Card::PointerID },
-    '+value' => { 'content' => this_content, :type_id => Card::PhraseID },
-    '+year' => { 'content' => this_year, :type_id => Card::PointerID },
-    '+source' => { 'content' => "[[#{this_source}]]\n",
+    "+value" => { "content" => this_content, :type_id => Card::PhraseID },
+    "+year" => { "content" => this_year, :type_id => Card::PointerID },
+    "+source" => { "content" => "[[#{this_source}]]\n",
                    :type_id => Card::PointerID }
 
   }
 end
 
 def create_page iUrl=nil, subcards={}
-  create_page_with_sourcebox iUrl, subcards, 'true'
+  create_page_with_sourcebox iUrl, subcards, "true"
 end
 
 def create_page_with_sourcebox iUrl=nil, subcards={}, sourcebox=nil
   Card::Auth.as_bot do
-    url = iUrl || 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
-    tmp_sourcebox = sourcebox || 'true'
+    url = iUrl || "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+    tmp_sourcebox = sourcebox || "true"
     Card::Env.params[:sourcebox] = tmp_sourcebox
     sourcepage = Card.create! type_id: Card::SourceID,
                               subcards: {
-                                '+Link' => { content: url }
+                                "+Link" => { content: url }
                               }.merge(subcards)
-    Card::Env.params[:sourcebox] = 'false'
+    Card::Env.params[:sourcebox] = "false"
 
     sourcepage
   end
@@ -61,9 +61,9 @@ def source_args args
   res = {
     type_id: Card::SourceID,
     subcards: {
-      '+Link' => {},
-      '+File' => { type_id: Card::FileID },
-      '+Text' => { type_id: Card::BasicID, content: '' }
+      "+Link" => {},
+      "+File" => { type_id: Card::FileID },
+      "+Text" => { type_id: Card::BasicID, content: "" }
     }
   }
   source_type_name = Card[:source_type].name
@@ -86,7 +86,7 @@ def create_claim_with_url name, url, subcards={}
     sourcepage = create_page url
     Card.create! type_id: Card::ClaimID, name: name,
                  subcards: {
-                   '+source' => {
+                   "+source" => {
                      content: "[[#{sourcepage.name}]]",
                      type_id: Card::PointerID
                    }
@@ -96,10 +96,10 @@ end
 
 def create_claim name, subcards={}
   Card::Auth.as_bot do
-    sourcepage = create_page 'http://www.google.com/?q=wikirateissocoolandawesomeyouknow'
+    sourcepage = create_page "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
     Card.create! type_id: Card::ClaimID, name: name,
                  subcards: {
-                   '+source' => {
+                   "+source" => {
                      content: "[[#{sourcepage.name}]]",
                      type_id: Card::PointerID }
                  }.merge(subcards)
@@ -108,27 +108,27 @@ end
 
 # cards only exist in testing db
 def get_a_sample_note
-  Card['Death Star uses dark side of the Force']
+  Card["Death Star uses dark side of the Force"]
 end
 
 def get_a_sample_company
-  Card['Death Star']
+  Card["Death Star"]
 end
 
 def get_a_sample_topic
-  Card['Force']
+  Card["Force"]
 end
 
 def get_a_sample_analysis
-  Card['Death Star+Force']
+  Card["Death Star+Force"]
 end
 
 def get_a_sample_metric value_type=:free_text
   metric_names = {
-    free_text: 'Jedi+Sith Lord in Charge',
-    number: 'Jedi+deadliness',
-    category: 'Jedi+disturbances in the Force',
-    money: 'Jedi+cost of planets destroyed'
+    free_text: "Jedi+Sith Lord in Charge",
+    number: "Jedi+deadliness",
+    category: "Jedi+disturbances in the Force",
+    money: "Jedi+cost of planets destroyed"
   }
   Card[metric_names[value_type]]
 end
@@ -147,7 +147,7 @@ def create_metric opts={}, &block
     if opts[:name] && opts[:name].to_name.parts.size == 1
       opts[:name] = "#{Card::Auth.current.name}+#{opts[:name]}"
     end
-    opts[:name] ||= 'TestDesigner+TestMetric'
+    opts[:name] ||= "TestDesigner+TestMetric"
     Card::Metric.create opts, &block
   end
 end
@@ -156,6 +156,6 @@ def html_trim str
   s = str.dup
   s.delete!("\r\n")
   s.delete!("\n")
-  s.delete!('  ')
+  s.delete!("  ")
   s
 end

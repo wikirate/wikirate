@@ -6,7 +6,7 @@ format :html do
     # Target+Amnesty_International+Conflict_Minerals_Report+Henry_Tai
     # +yinyang_drag_item
 
-    # Apple_Inc_+Natural_Resource_Use+Richard_Mills+Publishes_Smelters_Refiners
+    # Apple_Inc+Natural_Resource_Use+Richard_Mills+Publishes_Smelters_Refiners
     # +yinyang_drag_item
 
     # Target+Natural_Resource_Use+Amnesty_International+Conflict_Minerals_Report
@@ -20,9 +20,9 @@ format :html do
   def default_content_args args
     if metric_card && metric_card.metric_type_codename == :score
       if card[0].type_code == :wikirate_topic
-        args[:structure] = 'topic_score_metric_drag_item'
+        args[:structure] = "topic_score_metric_drag_item"
       elsif card[0].type_code == :wikirate_company
-        args[:structure] = 'company_score_metric_drag_item'
+        args[:structure] = "company_score_metric_drag_item"
       end
     end
   end

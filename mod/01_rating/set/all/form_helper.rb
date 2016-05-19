@@ -2,7 +2,7 @@
 format :html do
   def formgroup title, content, opts={}
     return super(title, content, opts) unless opts.delete(:oneline)
-    wrap_with :div, formgroup_div_args(opts[:class]).css_merge(class: 'row') do
+    wrap_with :div, formgroup_div_args(opts[:class]).css_merge(class: "row") do
       %(
         <div class='col-md-3'>
           #{form.label(opts[:editor] || :content, title)}

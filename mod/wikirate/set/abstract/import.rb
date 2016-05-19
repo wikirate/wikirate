@@ -2,7 +2,7 @@
 # import file and importing the file
 event :import_csv, :prepare_to_store,
       on: :update,
-      when: proc { Env.params['is_metric_import_update'] == 'true' } do
+      when: proc { Env.params["is_metric_import_update"] == "true" } do
   return unless (metric_values = Env.params[:metric_values])
   return unless valid_import_format?(metric_values)
   source_map = {}
@@ -29,7 +29,7 @@ end
 
 def check_duplication_in_subcards name, row_no
   if subcards[name]
-    errors.add "Row #{row_no}:#{name}", 'Duplicated metric values'
+    errors.add "Row #{row_no}:#{name}", "Duplicated metric values"
   end
 end
 
@@ -79,13 +79,13 @@ end
 
 def source_args url
   {
-    '+*source_type' => { content: '[[Link]]' },
-    '+Link' => { content: url, type_id: PhraseID }
+    "+*source_type" => { content: "[[Link]]" },
+    "+Link" => { content: url, type_id: PhraseID }
   }
 end
 
 def finalize_source_card source_card
-  Env.params[:sourcebox] = 'true'
+  Env.params[:sourcebox] = "true"
   source_card.director.catch_up_to_stage :prepare_to_store
   if !Card.exists?(source_card.name) && source_card.errors.empty?
     source_card.director.catch_up_to_stage :finalize
@@ -94,7 +94,7 @@ def finalize_source_card source_card
 end
 
 def create_source url
-  source_card = add_subcard '', type_id: SourceID, subcards: source_args(url)
+  source_card = add_subcard "", type_id: SourceID, subcards: source_args(url)
   finalize_source_card source_card
   unless source_card.errors.empty?
     source_card.errors.each { |k, v| errors.add k, v }
@@ -136,7 +136,7 @@ end
 
 def valid_value_data? args
   @import_errors = []
-  add_import_error 'metric name missing', args[:row] if args[:metric].blank?
+  add_import_error "metric name missing", args[:row] if args[:metric].blank?
   %w(company year value).each do |field|
     add_import_error "#{field} missing", args[:row] if args[field.to_sym].blank?
   end
@@ -164,8 +164,8 @@ end
 
 def handle_redirect
   if errors.empty?
-    if (target=redirect_target_after_import)
-      success <<  { name: target, redirect: true, view: :open }
+    if (target = redirect_target_after_import)
+      success << { name: target, redirect: true, view: :open }
     end
   else
     abort :failure
@@ -195,16 +195,14 @@ end
 
 def add_import_error msg, row=nil
   return unless msg
-  title = 'import error'
+  title = "import error"
   title += " (row #{row})" if row
   @import_errors << [title, msg]
 end
 
 def check_existence_and_type name, type_id, type_name=nil
   return  "#{name} doesn't exist" unless Card[name]
-  if Card[name].type_id != type_id
-    return "#{name} is not a #{type_name}"
-  end
+  return "#{name} is not a #{type_name}" if Card[name].type_id != type_id
 end
 
 def ensure_company_exists company
@@ -216,7 +214,7 @@ def csv_rows
   # transcode to utf8 before CSV reads it.
   # some users upload files in non utf8 encoding.
   # The microsoft excel may not save a CSV file in utf8 encoding
-  CSV.read(file.path, encoding: 'windows-1251:utf-8')
+  CSV.read(file.path, encoding: "windows-1251:utf-8")
 end
 
 def clean_html? # return always true ;)
@@ -230,11 +228,10 @@ format :html do
 
   def default_new_args args
     args[:hidden] = {
-      success: { id: '_self', soft_redirect: false, view: :import }
+      success: { id: "_self", soft_redirect: false, view: :import }
     }
     super args
   end
-
 
   def default_import_args args
     args[:buttons] = %(
@@ -246,8 +243,8 @@ format :html do
   end
 
   view :import do |args|
-    frame_and_form :update, args.merge(hidden: { success: { id: '_self', view: :open } }),
-                   'notify-success' => 'import successful' do
+    frame_and_form :update, args.merge(hidden: { success: { id: "_self", view: :open } }),
+                   "notify-success" => "import successful" do
       [
         _optional_render(:metric_select, args),
         _optional_render(:year_select, args),
@@ -268,7 +265,7 @@ format :html do
   end
 
   view :metric_import_flag do |_args|
-    hidden_field_tag :is_metric_import_update, 'true'
+    hidden_field_tag :is_metric_import_update, "true"
   end
 
   view :selection_checkbox do |_args|
@@ -280,12 +277,12 @@ format :html do
       #{check_box_tag 'exact', '', false, class: 'checkbox-button'}
       #{label_tag 'Select Exact'}
     )
-    content_tag(:div, content, { class: 'selection_checkboxs' }, false)
+    content_tag(:div, content, { class: "selection_checkboxs" }, false)
   end
 
   def default_import_table_args args
-    args[:table_header] = ['Import', '#', 'Company in File',
-                           'Company in Wikirate', 'Match', 'Correction']
+    args[:table_header] = ["Import", '#', "Company in File",
+                           "Company in Wikirate", "Match", "Correction"]
     args[:table_fields] = [:checkbox, :row, :file_company, :wikirate_company,
                            :status, :correction]
   end
@@ -294,13 +291,13 @@ format :html do
     data = card.csv_rows.map.with_index do |elem, i|
       import_row(elem, args[:table_fields], i + 1)
     end
-    table data, class: 'import_table table-bordered table-hover',
+    table data, class: "import_table table-bordered table-hover",
                 header: args[:table_header]
   end
 
   def aliases_hash
     @aliases_hash ||= begin
-      aliases_cards = Card.search right: 'aliases',
+      aliases_cards = Card.search right: "aliases",
                                   left: { type_id: WikirateCompanyID }
       aliases_cards.each_with_object({}) do |aliases_card, aliases_hash|
         aliases_card.item_names.each do |name|
@@ -311,7 +308,7 @@ format :html do
   end
 
   def get_potential_company name
-    result = Card.search type: 'company', name: ['match', name]
+    result = Card.search type: "company", name: ["match", name]
     return nil if result.empty?
     result
   end
@@ -332,37 +329,37 @@ format :html do
     elsif (company_name = part_of_company(name))
       [company_name, :partial]
     else
-      ['', :none]
+      ["", :none]
     end
   end
 
   def part_of_company name
-    Card.search(type: 'company', return: 'name').each do |comp|
+    Card.search(type: "company", return: "name").each do |comp|
       return comp if name.match comp
     end
     nil
   end
 
   def company_correction_field row_hash
-    text_field_tag("corrected_company_name[#{row_hash[:row]}]", '',
-                   class: 'company_autocomplete')
+    text_field_tag("corrected_company_name[#{row_hash[:row]}]", "",
+                   class: "company_autocomplete")
   end
 
   def import_checkbox row_hash
     checked = %w(partial exact alias).include? row_hash[:status]
     key_hash = row_hash.deep_dup
     key_hash[:company] =
-      if row_hash[:status] == 'none'
+      if row_hash[:status] == "none"
         row_hash[:file_company]
       else
         row_hash[:wikirate_company]
       end
-    check_box_tag 'metric_values[]', key_hash.to_json, checked
+    check_box_tag "metric_values[]", key_hash.to_json, checked
   end
 
   def data_correction data
-    if data[:status] == 'exact'
-      ''
+    if data[:status] == "exact"
+      ""
     else
       company_correction_field data
     end
@@ -380,7 +377,7 @@ format :html do
     if data[:file_company].present?
       matched_company data[:file_company]
     else
-      ['', :none]
+      ["", :none]
     end
   end
 

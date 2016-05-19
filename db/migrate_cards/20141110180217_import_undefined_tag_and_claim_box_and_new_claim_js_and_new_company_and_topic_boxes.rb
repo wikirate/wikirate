@@ -2,6 +2,6 @@
 
 class ImportUndefinedTagAndClaimBoxAndNewClaimJsAndNewCompanyAndTopicBoxes < Card::Migration
   def up
-          import_json "boxes.json"
+    import_json "boxes.json"
       end
 end

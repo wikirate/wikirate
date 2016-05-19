@@ -2,6 +2,6 @@
 
 class ImportValueChecking < Card::Migration
   def up
-    import_json 'value_checking.json'
+    import_json "value_checking.json"
   end
 end

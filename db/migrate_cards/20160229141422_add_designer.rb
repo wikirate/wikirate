@@ -2,6 +2,6 @@
 
 class AddDesigner < Card::Migration
   def up
-    create_or_update! 'Designer', codename: 'designer'
+    create_or_update! "Designer", codename: "designer"
   end
 end

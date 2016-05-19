@@ -1,6 +1,6 @@
 def create_value_options options
   create_args = {
-    name: cardname.field('value options'),
+    name: cardname.field("value options"),
     content: options.to_pointer_content
   }
   Card.create! create_args
@@ -18,14 +18,14 @@ end
 def add_value_source_args args, source
   case source
   when String
-    args['+source'] = {
+    args["+source"] = {
       content: "[[#{source}]]",
       type_id: Card::PointerID
     }
   when Hash
-    args['+source'] = source
+    args["+source"] = source
   when Card
-    args['+source'] = {
+    args["+source"] = {
       content: "[[#{source.name}]]",
       type_id: Card::PointerID
     }
@@ -36,7 +36,7 @@ def extract_metric_value_name args, error_msg
   args[:name] || begin
     missing = [:company, :year, :value].reject { |v| args[v] }
     if missing.empty?
-      [name, args[:company], args[:year]].join '+'
+      [name, args[:company], args[:year]].join "+"
     else
       error_msg.push("missing field(s) #{missing.join(',')}")
       nil
@@ -48,7 +48,7 @@ def check_value_card_exist args, error_msg
   value_name = extract_metric_value_name(args, error_msg)
   if (value_card = Card[value_name.to_name.field(:value)])
     unless value_card.content.casecmp(args[:value]) == 0
-      link = format.card_link value_card.metric_card, text: 'value'
+      link = format.card_link value_card.metric_card, text: "value"
       error_msg << "#{link} '#{value_card.content}' exists"
     end
   end
@@ -58,11 +58,11 @@ def valid_value_args? args
   error_msg = []
   check_value_card_exist args, error_msg
   if metric_type_codename == :researched && !args[:source]
-    error_msg << 'missing source'
+    error_msg << "missing source"
   end
   if error_msg.present?
     error_msg.each do |msg|
-      errors.add 'metric value', msg
+      errors.add "metric value", msg
     end
     return false
   end
@@ -71,17 +71,17 @@ end
 
 def create_value_args args
   return unless valid_value_args? args
-  value_name = [name, args[:company], args[:year]].join '+'
+  value_name = [name, args[:company], args[:year]].join "+"
   create_args = {
     name: value_name,
     type_id: Card::MetricValueID,
-    '+value' => {
+    "+value" => {
       content: args[:value],
       type_id: (args[:value].is_a?(Integer) ? NumberID : PhraseID)
     }
   }
   if args[:comment].present?
-    create_args['+discussion'] = { comment: args[:comment] }
+    create_args["+discussion"] = { comment: args[:comment] }
   end
   add_value_source_args create_args, args[:source]
   create_args
@@ -114,7 +114,7 @@ format :html do
   # FIXME: inline js
   view :new do |args|
     # frame_and_form :create, args, 'main-success' => 'REDIRECT' do
-    frame args.merge(title: 'New Metric') do
+    frame args.merge(title: "New Metric") do
       <<-HTML
       <fieldset class="card-editor editor">
         <div role="tabpanel">
@@ -144,8 +144,8 @@ format :html do
   end
 
   def default_content_formgroup_args args
-    args[:edit_fields] = { '+question' => { title: 'Question' },
-                           '+topic' => { title: 'Topic' }}
+    args[:edit_fields] = { "+question" => { title: "Question" },
+                           "+topic" => { title: "Topic" } }
   end
 
   def tab_radio_button id, active=false
@@ -162,7 +162,7 @@ format :html do
   end
 
   def new_metric_tab_buttons
-    wrap_with :ul, class: 'nav nav-pills grey-nav-tab', role: 'tablist' do
+    wrap_with :ul, class: "nav nav-pills grey-nav-tab", role: "tablist" do
       %w(Researched Formula Score WikiRating).map.with_index do |metric_type, i|
         tab_radio_button metric_type, (i == 0)
       end
@@ -170,7 +170,7 @@ format :html do
   end
 
   def new_metric_tab_content
-    wrap_with :div, class: 'tab-content' do
+    wrap_with :div, class: "tab-content" do
       %w(Researched Formula Score WikiRating).map.with_index do |metric_type, i|
         new_metric_tab_pane metric_type, (i == 0)
       end
@@ -182,7 +182,7 @@ format :html do
   end
 
   def new_metric_tab_pane name, active=false
-    new_metric = Card.new type: MetricID, '+*metric type' => "[[#{name}]]"
+    new_metric = Card.new type: MetricID, "+*metric type" => "[[#{name}]]"
     new_metric.reset_patterns
     new_metric.include_set_modules
     tab_pane tab_pane_id(name), subformat(new_metric)._render_new_tab_pane,
@@ -190,13 +190,13 @@ format :html do
   end
 
   view :help_text do |args|
-    return '' unless (help_text_card = Card[card.metric_type + '+description'])
+    return "" unless (help_text_card = Card[card.metric_type + "+description"])
     subformat(help_text_card).render_content args
   end
 
   view :new_tab_pane do |args|
     card_form :create, hidden: args.delete(:hidden),
-                       'main-success' => 'REDIRECT' do
+                       "main-success" => "REDIRECT" do
       output [
         _render(:help_text, args),
         _render(:new_name_formgroup, args),
@@ -209,15 +209,15 @@ format :html do
   def default_new_tab_pane_args args
     default_new_args_buttons args
     args[:hidden] ||= {
-      'card[subcards][+*metric type][content]' => "[[#{card.metric_type}]]",
-      'card[type_id]' => MetricID,
-      success: '_self'
+      "card[subcards][+*metric type][content]" => "[[#{card.metric_type}]]",
+      "card[type_id]" => MetricID,
+      success: "_self"
     }
   end
 
   view :new_name_formgroup do |args|
-    formgroup 'Metric Name', raw(new_name_field(form)), editor: 'name',
-                                                    help: args[:help]
+    formgroup "Metric Name", raw(new_name_field(form)), editor: "name",
+                                                        help: args[:help]
   end
 
   def new_name_field form=nil, options={}
@@ -243,7 +243,7 @@ format :html do
     designer.reset_patterns
     designer.include_set_modules
     subformat(designer)
-      ._render_edit_in_form(options.merge(title: 'Metric Designer'))
+      ._render_edit_in_form(options.merge(title: "Metric Designer"))
     # end
   end
 
@@ -252,6 +252,6 @@ format :html do
                                       type_id: PhraseID
     title.reset_patterns
     title.include_set_modules
-    subformat(title)._render_edit_in_form(options.merge(title: 'Metric Title'))
+    subformat(title)._render_edit_in_form(options.merge(title: "Metric Title"))
   end
 end

@@ -1,10 +1,9 @@
 def contribution_count
-  @cc ||= Card.search :type_id=>SourceID, :or=>
-                      {
-                       :edited_by=>cardname.left,
-                       :linked_to_by=>{:left=>cardname.left, :right=>["in", "*upvotes", "*downvotes"]}
-                      },
-                      :return=>:count
+  @cc ||= Card.search type_id: SourceID, or:                       {
+    edited_by: cardname.left,
+    linked_to_by: { left: cardname.left, right: ["in", "*upvotes", "*downvotes"] }
+  },
+                      return: :count
 end
 
 format :html do

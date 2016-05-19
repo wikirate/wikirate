@@ -8,37 +8,36 @@ class MetricTypes < Card::Migration
   end
 
   def up
-    create_card! name: 'Metric type', type_id: Card::CardtypeID
+    create_card! name: "Metric type", type_id: Card::CardtypeID
     Card::Cache.reset_all
     create_metric_types %w(Researched WikiRating Formula Score)
 
-    create_card! name: '*metric type', codename: 'metric_type',
+    create_card! name: "*metric type", codename: "metric_type",
                  subcards: {
-                   '+*right+*default' => {
+                   "+*right+*default" => {
                      type_id: Card::PointerID,
-                     content: '[[Researched]]'
+                     content: "[[Researched]]"
                    },
-                   '+*right+*options' => {
+                   "+*right+*options" => {
                      type_id: Card::PointerID,
                      content: metric_types_list
                    },
-                   '+*right+*input' => {
-                     content: 'radio'
+                   "+*right+*input" => {
+                     content: "radio"
                    }
                  }
 
     metric_type_plus_right_query =
       '{"right":"_right", "left":{' \
         '"type":"metric", "right_plus":["*metric type",{"refer_to":"_left"}]}}'
-    create_card! name: '*metric type plus right',
-                 codename: 'metric_type_plus_right'
+    create_card! name: "*metric type plus right",
+                 codename: "metric_type_plus_right"
 
-    create_card! name: '*metric type plus right+*right+*structure',
-                     type_id: Card::SetID,
-                     content: metric_type_plus_right_query
+    create_card! name: "*metric type plus right+*right+*structure",
+                 type_id: Card::SetID,
+                 content: metric_type_plus_right_query
 
-
-    create_card! name: 'Metric type+*metric type+*type plus right+*structure',
+    create_card! name: "Metric type+*metric type+*type plus right+*structure",
                  type_id: Card::SetID,
                  content: '{"type":"metric",' \
                           '"right_plus":["*metric type",{"refer_to":"_left"}]}'
@@ -50,15 +49,15 @@ class MetricTypes < Card::Migration
 
   def create_metric_types names
     names.each do |name|
-      create_card! name: name, codename: name.to_name.key, type: 'Metric type'
+      create_card! name: name, codename: name.to_name.key, type: "Metric type"
     end
   end
 
   def update_existing_metrics
-    Card.search(type_id: Card::MetricID, return: 'name').each do |metric|
+    Card.search(type_id: Card::MetricID, return: "name").each do |metric|
       create_card name: "#{metric}+*metric type",
                   type_id: Card::PointerID,
-                  content: '[[Researched]]',
+                  content: "[[Researched]]",
                   silent_change: true
     end
   end
