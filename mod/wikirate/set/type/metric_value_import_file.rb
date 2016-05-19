@@ -30,14 +30,34 @@ format :html do
                 false)
   end
 
-  view :core do |args|
-    content = args[:success_msg] ? args[:success_msg] : ''
-    content += handle_source args do |source|
-      "<a href=\"#{source}\">Download #{showname args[:title]}</a><br />"
+  def contruct_import_warning_message args
+    msg = ''
+    if (identical_metric_values = args[:identical_metric_value])
+      msg += <<-HTML
+        <h4><b>Metric values exist and are not modified.</b></h4>
+        <ul><li>#{identical_metric_values.join('</li><li>')}</li> <br />
+      HTML
     end
-    content + <<-HTML
+    if (duplicated_metric_values = args[:duplicated_metric_value])
+      msg += <<-HTML
+        <h4><b>Metric values exist with different source and are not modified.</b></h4>
+        <ul><li>#{duplicated_metric_values.join('</li><li>')}</li><br />
+      HTML
+    end
+    alert('warning') { msg }
+  end
+
+  view :core do |args|
+    content = contruct_import_warning_message args
+    content << handle_source(args) do |source|
+      <<-HTML
+        <a href=\"#{source}\">Download #{showname args[:title]}</a><br />
+      HTML
+    end.html_safe
+    import_link = <<-HTML
       <a href=\"/#{card.cardname.url_key}?view=import\">Import ...</a>
     HTML
+    content << import_link.html_safe
   end
 
   def import_fields

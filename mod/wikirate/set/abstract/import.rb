@@ -6,16 +6,28 @@ event :import_csv, :prepare_to_store,
   return unless (metric_values = Env.params[:metric_values])
   return unless valid_import_format?(metric_values)
   source_map = {}
+  success.params[:slot] = {
+    identical_metric_value: [],
+    duplicated_metric_value: []
+  }
   metric_values.each do |metric_value_data|
     metric_value_card = parse_metric_value metric_value_data, source_map
     # validate value type
     metric_value_card.director.catch_up_to_stage :validate if metric_value_card
     handle_import_errors metric_value_card
   end
+  clear_slot_params
   handle_redirect
 end
 
-def check_duplication name, row_no
+def clear_slot_params
+  slot_args = success.params[:slot]
+  slot_args.each do |key, value|
+    slot_args.delete(key) unless value.present?
+  end
+end
+
+def check_duplication_in_subcards name, row_no
   if subcards[name]
     errors.add "Row #{row_no}:#{name}", 'Duplicated metric values'
   end
@@ -37,6 +49,22 @@ def construct_value_args args
   create_args
 end
 
+def same_source_card? metric_value_name, source_card
+  if (source = Card[metric_value_name.to_name.field(:source)])
+    return source.item_cards[0].key == source_card.key
+  end
+  false
+end
+
+def check_duplication_with_existing metric_value_name, args
+  slot_args = success.slot
+  if same_source_card? metric_value_name, args[:source]
+    slot_args[:identical_metric_value].push(metric_value_name)
+  else
+    slot_args[:duplicated_metric_value].push(metric_value_name)
+  end
+end
+
 # @return updated or created metric value card object
 def parse_metric_value import_data, source_map
   args = process_metric_value_data import_data
@@ -44,7 +72,8 @@ def parse_metric_value import_data, source_map
   ensure_company_exists args[:company]
   return unless valid_value_data? args
   return unless (create_args = construct_value_args args)
-  check_duplication create_args[:name], args[:row]
+  check_duplication_in_subcards create_args[:name], args[:row]
+  check_duplication_with_existing create_args[:name], args
   add_subcard create_args.delete(:name), create_args
 end
 
