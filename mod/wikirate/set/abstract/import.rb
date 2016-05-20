@@ -56,13 +56,17 @@ def same_source_card? metric_value_name, source_card
   false
 end
 
-def check_duplication_with_existing metric_value_name, args
+def check_duplication_with_existing metric_value_name, source_card
   slot_args = success.slot
-  if same_source_card? metric_value_name, args[:source]
-    slot_args[:identical_metric_value].push(metric_value_name)
-  else
-    slot_args[:duplicated_metric_value].push(metric_value_name)
+  if (source = Card[metric_value_name.to_name.field(:source)])
+    if source.item_cards[0].key == source_card.key
+      slot_args[:identical_metric_value].push(metric_value_name)
+    else
+      slot_args[:duplicated_metric_value].push(metric_value_name)
+    end
+    return true
   end
+  false
 end
 
 # @return updated or created metric value card object
@@ -73,7 +77,7 @@ def parse_metric_value import_data, source_map
   return unless valid_value_data? args
   return unless (create_args = construct_value_args args)
   check_duplication_in_subcards create_args[:name], args[:row]
-  check_duplication_with_existing create_args[:name], args
+  return if check_duplication_with_existing create_args[:name], args[:source]
   add_subcard create_args.delete(:name), create_args
 end
 

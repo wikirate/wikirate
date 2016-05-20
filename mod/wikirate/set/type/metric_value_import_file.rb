@@ -30,21 +30,26 @@ format :html do
                 false)
   end
 
+  def duplicated_value_warning_message headline, metric_values
+    msg = <<-HTML
+      <h4><b>#{headline}</b></h4>
+      <ul><li>#{metric_values.join('</li><li>')}</li> <br />
+    HTML
+    alert("warning") { msg }
+  end
+
   def contruct_import_warning_message args
     msg = ""
     if (identical_metric_values = args[:identical_metric_value])
-      msg += <<-HTML
-        <h4><b>Metric values exist and are not modified.</b></h4>
-        <ul><li>#{identical_metric_values.join('</li><li>')}</li> <br />
-      HTML
+      headline = "Metric values exist and are not modified."
+      msg += duplicated_value_warning_message headline, identical_metric_values
     end
     if (duplicated_metric_values = args[:duplicated_metric_value])
-      msg += <<-HTML
-        <h4><b>Metric values exist with different source and are not modified.</b></h4>
-        <ul><li>#{duplicated_metric_values.join('</li><li>')}</li><br />
-      HTML
+      headline = "Metric values exist with different source and are not "\
+                 "modified."
+      msg += duplicated_value_warning_message headline, duplicated_metric_values
     end
-    msg.empty? ? "" : alert("warning") { msg }
+    msg
   end
 
   view :core do |args|
