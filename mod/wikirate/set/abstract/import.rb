@@ -49,13 +49,6 @@ def construct_value_args args
   create_args
 end
 
-def same_source_card? metric_value_name, source_card
-  if (source = Card[metric_value_name.to_name.field(:source)])
-    return source.item_cards[0].key == source_card.key
-  end
-  false
-end
-
 def check_duplication_with_existing metric_value_name, source_card
   slot_args = success.slot
   if (source = Card[metric_value_name.to_name.field(:source)])
