@@ -78,7 +78,7 @@ def create_content_file mod, name, type
         when "js", "coffeescript" then "javascript"
         when "css", "scss" then "stylesheets"
         end
-  file_ext = type == "coffeescript" ? ".js.coffee" : "." + type
+  file_ext = type.downcase == "coffeescript" ? ".js.coffee" : "." + type
   content_dir = File.join "lib", dir
   content_file = name + file_ext
   write_to_mod(mod, content_dir, content_file) do |f|
