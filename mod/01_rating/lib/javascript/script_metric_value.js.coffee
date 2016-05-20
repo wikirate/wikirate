@@ -79,12 +79,13 @@ $(document).ready ->
           $template.find('.card-slot').trigger('slotReady')
           $loader.remove()
         )
-        appendSourceForm(company)
+        # appendSourceForm(company)
 
   appendSourceDetails = (sourceID) ->
     load_path = wagn.prepUrl(wagn.rootPath + sourceID +
                                     "?view=source_and_preview")
     $loader = wikirate.loader($source_form_container)
+    $loader.add()
     $.get(load_path, ((data) ->
       $source_form_container.prepend(data)
       resizeIframe($source_form_container)
