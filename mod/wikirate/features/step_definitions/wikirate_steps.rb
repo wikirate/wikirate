@@ -100,3 +100,10 @@ When /^(?:|I )select "([^"]*)" from hidden "([^"]*)"$/ do |value, field|
   # our select list is not a real select list. it is a hidden input
   find(:xpath, "//input[@id='#{field}']", visible: false).set value
 end
+
+When /^(?:|I )upload the mod (.+) "(.+)"$/ do |attachment_name, filename|
+  script = "$('input[type=file]').css('opacity','1');"
+  page.driver.browser.execute_script(script)
+  file = File.join Cardio.root, "mod", "wikirate", "features", "support", filename
+  attach_file "card_#{attachment_name}", file
+end
