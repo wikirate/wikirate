@@ -220,6 +220,10 @@ format :html do
   end
 
   view :creator_credit do |args|
+    content_tag(:div, creator(args).html_safe, class: "last-edit")
+  end
+
+  def creator args
     "added #{_render_created_at(args)} ago by " \
     "#{nest Card.fetch(card.cardname.field('*creator')),
             view: :core,
@@ -253,5 +257,40 @@ format :html do
       content_tag(:i, "", class: "fa fa-long-arrow-right"),
       content_tag(:span, _render_title_link, class: "source-title")
     ].join "\n"
+  end
+
+  view :vote do |args|
+    subformat(Card["#{card.name}+*vote count"]).render_content args
+  end
+
+  view :icon do
+    icon = content_tag(:i, "", class: "fa fa-globe")
+    content_tag(:div, icon, class: "source-icon")
+  end
+
+  view :note_count do
+    note_count = nest(Card.fetch("#{card.name}+Note Count"), view: :core)
+    <<-HTML
+    <a href='/#{card.name}+source note list' class="show-link-in-popup">
+      <span class="note-count">
+      #{note_count}
+      </span>
+      <span class="note-count">
+       Notes
+      </span>
+    </a>
+    HTML
+  end
+
+  view :source_list_item do
+    wrap_with :div, class: "item-content" do
+      [
+        _render_vote,
+        _render_icon,
+        _render_source_link,
+        _render_creator_credit,
+        _render_note_count
+      ]
+    end
   end
 end
