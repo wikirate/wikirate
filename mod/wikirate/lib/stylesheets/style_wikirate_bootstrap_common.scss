@@ -183,6 +183,7 @@
     font-size: 30px;
     color: #868686;
 }
+
 .modal-body > div {
     display: inline-block;
     width: 100%;
@@ -212,7 +213,7 @@
         margin-left: -20px;
     }
 }
-.edits-by {
+.tagline, .edits-by, .last-edit {
     // border-bottom: 1px solid $div-border-color;
     font-size: 0.8em;
     margin-bottom: 5px;
@@ -223,6 +224,13 @@
     }
     a {
         color: #ABABAB;
+        font-weight: bold;
+    }
+    div {
+      display: inline;
+    }
+    .item-link{
+      padding: 0px;
     }
 }
 .panel-default {
