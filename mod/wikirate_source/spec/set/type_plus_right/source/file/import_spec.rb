@@ -126,7 +126,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
         expect(source_file.errors[err_key]).to include(err_msg)
       end
     end
-    context "existing metric value" do
+    context "existing metric value with different value" do
       it "blocks adding" do
         metric = get_a_sample_metric :number
         source_file = @source.fetch trait: :file
@@ -139,9 +139,27 @@ describe Card::Set::TypePlusRight::Source::File::Import do
         ]
         trigger_source_file_update source_file, metric
         err_key = "Row 1:#{metric.name}+Amazon.com, Inc.+2015+metric value"
-        err_msg = "value already exists"
+        err_msg = '<a class="known-card" href="/Jedi+deadliness">value</a>'\
+                  ' \'55\' exists'
         expect(source_file.errors).to have_key(err_key.to_sym)
         expect(source_file.errors[err_key]).to include(err_msg)
+      end
+    end
+    context "existing metric value with same value" do
+      context "with different source" do
+        it "won't update source" do
+          metric = get_a_sample_metric :number
+          source_file = @source.fetch trait: :file
+          Card::Env.params[:metric_values] = [
+            { company: "Amazon.com, Inc.", value: "55", row: 1 }
+          ]
+          trigger_source_file_update source_file, metric
+          another_source = create_source file: csv1
+          trigger_source_file_update another_source, metric
+          source_card_name = "#{metric.name}+Amazon.com, Inc.+2015+source"
+          source_key = Card[source_card_name].item_cards[0].key
+          expect(source_key).to eq(@source.key)
+        end
       end
     end
     context "company correction name is filled" do
