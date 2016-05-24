@@ -1,6 +1,6 @@
 
 
-Capybara.default_wait_time = 60
+Capybara.default_wait_time = 120
 
 When /^I press "([^\"]*)" within "([^\"]*)"$/ do |button, scope_selector|
   within(scope_selector) do
@@ -101,9 +101,66 @@ When /^(?:|I )select "([^"]*)" from hidden "([^"]*)"$/ do |value, field|
   find(:xpath, "//input[@id='#{field}']", visible: false).set value
 end
 
-When /^(?:|I )upload the mod (.+) "(.+)"$/ do |attachment_name, filename|
+When /^(?:|I )upload the (.+) "(.+)" in mod$/ do |attachment_name, filename|
   script = "$('input[type=file]').css('opacity','1');"
   page.driver.browser.execute_script(script)
   file = File.join Cardio.root, "mod", "wikirate", "features", "support", filename
   attach_file "card_#{attachment_name}", file
+end
+
+Then /^I should see a row with "(.+)"$/ do |value|
+  values = value.split("|")
+  html = page.body
+  expect(html).to have_tag("table") do
+    with_tag("tr") do
+      values.each do |v|
+        with_tag("td", text: v)
+      end
+    end
+  end
+end
+
+Then /^I uncheck all checkboxes$/ do
+  all("input[type=checkbox]").each do |checkbox|
+    checkbox.click if checkbox.checked?
+  end
+end
+
+Then /^I check checkbox in row (\d+)$/ do |row|
+  table = find("table")
+  within(table) do
+    row = all("tr")[row.to_i]
+    within(row) do
+      checkbox = find("input[type=checkbox]")
+      checkbox.click unless checkbox.checked?
+    end
+  end
+end
+
+Then /^I fill in "(.*)" in row (\d+)$/ do |text, row|
+  table = find("table")
+  within(table) do
+    row = all("tr")[row.to_i]
+    within(row) do
+      find("input[type=text]").set(text)
+    end
+  end
+end
+
+Then /^I should see a comment icon$/ do
+  html = page.body
+  expect(html).to have_tag("i", with: { class: "fa-commenting", title: 'Has comments' })
+end
+
+Then /^I should not see a comment icon$/ do
+  html = page.body
+  expect(html).to_not have_tag("i", with: { class: "fa-commenting", title: 'Has comments' })
+end
+
+When /^I click the drop down button$/ do
+  find(".fa-caret-right").click
+end
+
+When /^I scroll up$/ do
+  page.execute_script "window.scrollBy(0,-10000)"
 end
