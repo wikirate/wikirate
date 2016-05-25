@@ -323,33 +323,41 @@ Henry, get rid of me!!!
     width: 100%;
     display: inline-block;
     background: #FFFDF3;
+    // padding: 10px;
+    // margin-bottom: 10px;
+    border: 1px solid #FFF1D6;
+    // background: #FFFFFF;
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #FFF1D6;
+    // border: 1px solid #EBEBEB;
+    // box-shadow: 0px 3px 12px -5px rgba(0, 0, 0, 0.25);
+    // @include box-shadow(0px 3px 12px -5px rgba(0, 0, 0, 0.25));
     .vote-button {
-        width: 25px;
-        height: 25px;
+        width: 20px;
+        height: 20px;
     }
     .vote-count {
-        width: 25px;
-        height: 20px;
-        padding-top: 0;
+      width: 20px;
+      height: 18px;
+      padding-top: 0px;
     }
     .source-icon{
       width: 1%;
       margin: 0px 10px;
       float: left;
+      visibility: hidden; //until we find a good icon
     }
     .source-content{
       float: left;
       width: 85%;
     }
     .source-link {
+      color: #9A5F00;
       div {
         display: inline;
       }
       a {
-        color: #BA8A3C;
+        color: inherit;;//#BA8A3C;
       }
     }
     .source-website {
@@ -360,14 +368,17 @@ Henry, get rid of me!!!
     .source-extra {
       float: left;
       margin-left: 32px;
-      font-size: 12px;
-      color: #bbb;
+      font-size: 11px;
+      color: #ABABAB;
       ul{
         margin-bottom: 0px;
       }
       .list-inline>li {
-          margin-top: 8px;
-          margin-right: 20px;
+        margin-top: 8px;
+        margin-right: 10px;
+      }
+      .list-inline>li:last-child{
+        font-weight: bold;
       }
       i {
           padding-right: 4px;
@@ -375,6 +386,78 @@ Henry, get rid of me!!!
       a{
         color: inherit;
       }
+    }
+}
+
+//custom button on source citation
+.c-btn{
+  width: 62px;
+  position: absolute;
+  right: 6px;
+  padding: 2px;
+  bottom: 19%;
+}
+
+#source-form-container{
+  .source-item {
+    margin-bottom: -6px;
+  }
+}
+.source-info-container {
+    margin-bottom: 0;
+    font-size: 12px;
+    // background: #FFFBE6;
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    // padding: 6px;
+    &.with-vote-button .item-content {
+        padding: 16px;
+    }
+    .item-summary {
+        width: 78%;
+    }
+}
+.source-details-toggle {
+    cursor: pointer;
+    position: relative;
+    width: 99%;
+    &.active .source-item{
+        border: 1px solid #ccc;
+        background: #FFF8D5;
+        color: #666;
+    }
+    &:hover .source-item {
+        background: #FFF9DA;
+    }
+    // .item-content {
+    //     background: none!important;
+    // }
+    &.active {
+        &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 25px;
+            left: 99.9%;
+            width: 0;
+            height: 0;
+            border-color: transparent transparent transparent #FFF8D5;
+            border-style: solid;
+            border-width: 11px;
+        }
+        &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 23px;
+            left: 99.9%;
+            width: 0;
+            height: 0;
+            border-color: transparent transparent transparent #C3C3C3;
+            border-style: solid;
+            border-width: 13px;
+        }
     }
 }
 
@@ -439,62 +522,7 @@ Henry, get rid of me!!!
 // }
 
 
-.source-info-container {
-    margin-bottom: 0;
-    font-size: 12px;
-    // background: #FFFBE6;
-    display: inline-block;
-    width: 100%;
-    // padding: 6px;
-    &.with-vote-button .item-content {
-        padding: 16px;
-    }
-    .item-summary {
-        width: 78%;
-    }
-}
-.source-details-toggle {
-    cursor: pointer;
-    position: relative;
-    width: 99%;
-    &.active .source-item{
-        outline: 1px solid #ccc;
-        background: #FFF8D5;
-        color: #666;
-    }
-    &:hover .source-item {
-        background: #FFF9DA;
-    }
-    // .item-content {
-    //     background: none!important;
-    // }
-    &.active {
-        &:after {
-            content: '';
-            display: block;
-            position: absolute;
-            top: 25px;
-            left: 100%;
-            width: 0;
-            height: 0;
-            border-color: transparent transparent transparent #FFF8D5;
-            border-style: solid;
-            border-width: 11px;
-        }
-        &:before {
-            content: '';
-            display: block;
-            position: absolute;
-            top: 23px;
-            left: 100%;
-            width: 0;
-            height: 0;
-            border-color: transparent transparent transparent #C3C3C3;
-            border-style: solid;
-            border-width: 13px;
-        }
-    }
-}
+
 
 
 .STRUCTURE-company_note_item .last-update,

@@ -58,7 +58,10 @@ $(document).ready ->
                                      metric)
       else
         source = $.urlParam('source')
-        source = source != null ? '&slot[source]=' + source : ''
+        if source != null
+          source = '&slot[source]=' + source
+        else
+          source = ''
         load_path = wagn.prepUrl(wagn.rootPath +
                                "/new/metric_value?noframe=true&slot[company]="+
                                company + "&slot[metric]=" + metric + source)
@@ -221,7 +224,7 @@ $(document).ready ->
         .find(".source-info-container").parent())
 
       # TODO: following statement must be handled in the backend.
-      $sourceDetailsToggle.find('.STRUCTURE-source_link')
+      $sourceDetailsToggle.find('.source-link')
         .find('a.known-card, a.source-preview-link').replaceWith ->
           $ '<span>' + $(this).html() + '</span>'
       $container.append($sourceDetailsToggle)
