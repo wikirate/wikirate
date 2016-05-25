@@ -50,6 +50,7 @@ Feature: import metric values from a csv file
     And I check checkbox in row 3
     And I press "Import"
     And I wait until ajax response done
+    And I scroll up
     And I follow "Import ..."
     And I uncheck all checkboxes
     And I check checkbox in row 4
@@ -99,7 +100,7 @@ Feature: import metric values from a csv file
 
   Scenario: Import a metric value with no matching
     When I uncheck all checkboxes
-    And I check checkbox in row 7
+    And I check checkbox in row 8
     And I press "Import"
     And I wait until ajax response done
     And I go to card "Joe User+researched+Hong Kong+2008"
