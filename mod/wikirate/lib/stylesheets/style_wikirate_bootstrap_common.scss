@@ -15,6 +15,12 @@
 .cursor-p{
   cursor: pointer;
 }
+.slab a {
+    text-decoration: none;
+}
+.slab:hover {
+    background: #FBFBFB;
+}
 //Text Colors
 .company-color {
     color: $company-color;

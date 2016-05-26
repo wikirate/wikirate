@@ -98,7 +98,7 @@ format :html do
   end
 
   view :claimed_formgroup do |_args|
-    select_filter "claimed",
+    select_filter "Has Notes?",
                   options_for_select(
                     {
                       "All" => "all", "Yes" => "yes", "No" => "no"

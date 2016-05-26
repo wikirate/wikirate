@@ -123,7 +123,7 @@ format :html do
   end
 
   view :source_link do |args|
-    if args[:source_title] == "text"
+    if args[:source_title] == :text
       website = website_text
       title = title_text
     else
@@ -187,14 +187,21 @@ format :html do
   end
 
   view :relevant do |args|
-    args[:source_title] = "text"
+    args[:source_title] = :text
     add_toggle render_with_cite_button(args).html_safe
   end
 
   view :cited do |args|
-    args[:source_title] = "text"
-    source = wrap_with_info _render_source_list_item(args)
-    add_toggle(source)
+    parent = Card.fetch(Env.params["id"]).cardname.right
+    # check parent structure name has the word header
+    # (i.e check if not metric value page)
+    if !parent.nil? && parent.include?("header")
+      return wrap_with_info _render_source_list_item(args)
+    else
+      args[:source_title] = :text
+      source = wrap_with_info _render_source_list_item(args)
+      add_toggle(source)
+    end
   end
 
   view :metric_import_link do |_args|
