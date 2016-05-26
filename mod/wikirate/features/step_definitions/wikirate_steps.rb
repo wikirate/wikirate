@@ -164,3 +164,26 @@ end
 When /^I scroll up$/ do
   page.execute_script "window.scrollBy(0,-10000)"
 end
+
+def select_from_chosen item_text, selector, within
+  within(within) do
+    field = find_field(selector, visible: false)
+    option_value = page.evaluate_script("$(\"##{field[:id]} option:contains('#{item_text}')\").val()")
+    page.execute_script("value = ['#{option_value}']\; if ($('##{field[:id]}').val()) {$.merge(value, $('##{field[:id]}').val())}")
+    option_value = page.evaluate_script("value")
+    page.execute_script("$('##{field[:id]}').val(#{option_value})")
+    page.execute_script("$('##{field[:id]}').trigger('chosen:updated')")
+  end
+end
+
+When /^I select "(.*)" from choosen within "(.*)"$/ do |item_text, within|
+  select_from_chosen(item_text, "pointer_multiselect", within)
+end
+
+When /^I press link button "(.*)"$/ do |name|
+  find("a", text: name).click
+end
+
+When /^I press div button "(.*)"$/ do |name|
+  find("div", text: name).click
+end

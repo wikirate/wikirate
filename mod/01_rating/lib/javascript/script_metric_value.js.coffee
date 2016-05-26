@@ -229,7 +229,7 @@ $(document).ready ->
       pageName  = $("#source-name").html()
       url       = $("#source_url").html()
 
-      resizeIframe()
+      resizeIframe($("#source-preview-main"))
       testSameOrigin(url, pageName) if (url)
     else
       $citeButton = $sourceInForm.find('._cite_button')

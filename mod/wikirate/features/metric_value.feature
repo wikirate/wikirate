@@ -1,15 +1,34 @@
 @javascript
 Feature: metric value
-   As signed in user I want to be able to add a metric value.
+  As signed in user I want to be able to add a metric value.
 
-#  Background:
-#    Given I am signed in as Joe User
-#    And I wait until ajax response done
-#    And I go to  "/new metric_value"
+  Background:
+    Given I am signed in as Joe User
+    And I wait until ajax response done
+    And I go to  "/new metric_value"
+    And I wait until ajax response done
+
+  Scenario: normal case
+    When I fill in "#pointer_item" field with "Apple Inc" within ".RIGHT-company"
+    And I select "Joe User+researched" from choosen within ".RIGHT-metric"
+    And I wait until ajax response done
+    And I press link button "Next"
+    And I wait until ajax response done
+    And I fill in "card_subcards__Link_content" with "http://example.com"
+    And I press "Add and preview"
+    And I wait until ajax response done
+    And I press div button "Cite!"
+    And I wait until ajax response done
+    And I fill in "pointer_item" with "2015"
+    And I fill in "card_subcards__values_content" with "10"
+    And I press "Submit"
+    And I wait until ajax response done
+    And debug
+
 #
 #  Scenario: create a metric value with a link source on new metric value page
 #    When I fill in "Death Star" for "+Company"
-#    And I fill in "Jedi+disturbances in the Force" for
+#    And I fill in "Jedi+disturbances in the Force" for`
 #    When I opt for "Death Star" as the "company"
 #    And I opt for as the "metric"
 #    And I press "Next"
