@@ -2,6 +2,7 @@ $(document).ready ->
   $loader_anime = $("#ajax_loader").html()
   $source_form_container = $("#source-form-container")
 
+  # stick source preview container when scrolled the page
   stickSourcePreview = () ->
     $previewContainer = $("#source-preview-main")
     if $(document).scrollTop() > 56
@@ -12,41 +13,45 @@ $(document).ready ->
     if($(window).scrollTop() > ($("#main").height()-$(window).height()+300))
       $previewContainer.removeClass("stick-right")
 
+  # add or show source form on the right side
   appendSourceForm = (company) ->
     $sourceForm     = $source_form_container.find('form')
-    $loaderThing    = $source_form_container.find('.loader-anime')
+    $loader         = wikirate.loader($source_form_container)
     $sourceDetails  = $source_form_container.find('.source-details')
-    if(!$sourceForm.exists() && !$loaderThing.exists())
+    if(!$sourceForm.exists() && !$loader.isLoading())
       load_path_source = wagn.prepUrl(wagn.rootPath +
                                       "/new/source?preview=true&slot[company]="+
                                       company)
       $sourceDetails.addClass('hide')
-      $source_form_container.append($loader_anime)
-      $loaderThing  = $source_form_container.find('.loader-anime')
+      $loader.add()
 
       $.get(load_path_source, ((data) ->
         $source_form_container.prepend(data)
         wagn.initializeEditors($source_form_container)
         $sourceForm.trigger('slotReady')
-        $loaderThing.remove()
+        $loader.remove()
         return
       ), 'html').fail((xhr,d,e) ->
-        $loaderThing.remove()
+        $loader.remove()
       )
     else
       $sourceForm.removeClass('hide')
       $sourceDetails.addClass('hide')
 
+  # add or show new metric value form on the left
   appendNewValueForm = ($this) ->
     company   = encodeURIComponent($this.data("company"))
     metric    = encodeURIComponent($this.data("metric"))
     $target   = $this.closest('.timeline-data')
+    $loader   = wikirate.loader($target)
     $page     = if $('.TYPE-company.open-view').exists()
                   $('.TYPE-company.open-view')
                 else $('.TYPE-metric.open-view')
+
     if(company && metric)
-      $target.append($loader_anime)
+      $loader.add()
       $('._blank_state_message').remove()
+      #
       if ($page.length>0)
         location.href = wagn.prepUrl(wagn.rootPath + '/' + company +
                                      '?view=new_metric_value&metric[]=' +
@@ -62,36 +67,35 @@ $(document).ready ->
                                company + "&slot[metric]=" + metric + source)
 
         $template = $('<div>').addClass('timeline-row new-value-form')
-        $template = $template.append($('<div>')
-                    .addClass('card-slot '))
+        $template = $template.append($('<div>').addClass('card-slot '))
+
         $.get(load_path, ((data) ->
           $template.find('.card-slot').append(data)
-          # $target.find(".timeline-header").after($template)
           $this.hide()
           wagn.initializeEditors($target)
-          $target.find(".loader-anime").remove()
-          return
+          $loader.remove()
         ), 'html').fail((xhr,d,e) ->
           $template.find('.card-slot').append(xhr.responseText)
         ).always( ->
           $target.find(".timeline-header").after($template)
           wagn.initializeEditors($target)
           $template.find('.card-slot').trigger('slotReady')
-          $target.find(".loader-anime").remove()
+          $loader.remove()
         )
-        appendSourceForm(company)
+        # appendSourceForm(company)
 
   appendSourceDetails = (sourceID) ->
     load_path = wagn.prepUrl(wagn.rootPath + sourceID +
                                     "?view=source_and_preview")
-    $source_form_container.append($loader_anime)
+    $loader = wikirate.loader($source_form_container)
+    $loader.add()
     $.get(load_path, ((data) ->
       $source_form_container.prepend(data)
       resizeIframe($source_form_container)
-      $source_form_container.find(".loader-anime").remove()
+      $loader.remove()
       return
     ), 'html').fail((xhr,d,e) ->
-      $source_form_container.find(".loader-anime").remove()
+      $loader.remove()
     )
 
   sourceCitation = (ele, action) ->
@@ -213,15 +217,14 @@ $(document).ready ->
     #check if the source already exist in new value form.
     if(!$sourceInForm.exists())
       $('.source-details-toggle').removeClass('active')
-      $sourceDetailsToggle = $('<div>')
-                            .attr('data-source-for',sourceID)
+      $sourceDetailsToggle = $('<div>').attr('data-source-for',sourceID)
                             .attr('data-year', sourceYear)
                             .addClass('source-details-toggle active')
       $sourceDetailsToggle.append($(data)
         .find(".source-info-container").parent())
 
       # TODO: following statement must be handled in the backend.
-      $sourceDetailsToggle.find('.STRUCTURE-source_link')
+      $sourceDetailsToggle.find('.source-link')
         .find('a.known-card, a.source-preview-link').replaceWith ->
           $ '<span>' + $(this).html() + '</span>'
       $container.append($sourceDetailsToggle)
@@ -243,9 +246,10 @@ $(document).ready ->
     sourceYear      = parseInt($this.data("year"))
     sourceSelector  = "[data-source-for='"+sourceID+"']"
     $sourceCntr     = $("#source-form-container")
-    $loaderThing    = $sourceCntr.find('.loader-anime')
+    $loader         = wikirate.loader($sourceCntr)
     $parentForm     = $this.closest('form')
-    if (!$loaderThing.exists())
+
+    if (!$loader.isLoading())
       $('.source-details-toggle').removeClass('active')
       $(sourceSelector+'.source-details-toggle').addClass('active')
       # $this.addClass("active")
@@ -303,38 +307,13 @@ $(document).ready ->
     $form.closest('.timeline-body')
           .find('.timeline-header ._add_new_value').show()
 
-  $('body').on 'click.collapse-next', '[data-toggle=collapse-next]', ->
-    $this     = $(this)
-    parent    = $this.data("parent")
-    collapse  = $this.data("collapse")+".collapse"
-    $target   = $this.closest(parent).find(collapse)
-
-    if !$target.data('collapse')
-      $target.collapse('toggle').on('shown.bs.collapse', ->
-        $this.parent().find('.fa-caret-right ')
-                      .removeClass('fa-caret-right ')
-                      .addClass 'fa-caret-down'
-      ).on 'hidden.bs.collapse', ->
-        $this.parent().find('.fa-caret-down')
-                      .removeClass('fa-caret-right')
-                      .addClass 'fa-caret-right'
 
   $(window).scroll ->
     if($("#source-preview-main").exists())
       stickSourcePreview()
-
-#get url param
-$.urlParam = (name) ->
-  results = new RegExp('[?&]' + name + '=([^&#]*)').exec(window.location.href)
-  if results == null
-    null
-  else
-    results[1] or 0
 
 wagn.slotReady (slot) ->
   add_val_form = slot.find('.timeline-row .card-slot>form').is(':visible')
   if add_val_form then slot.find('._add_new_value').hide()
   else slot.find('._add_new_value').show()
   resizeIframe(slot)
-
-jQuery.fn.exists = -> return this.length>0

@@ -28,12 +28,13 @@
     border-top: 3px solid $topic-color;
     font-size: 14px;
     border-bottom: 1px solid $bright-text-color;
-    padding: 2px 0 0;
+    padding: 10px;
     background: #FDFDFD;
     @include ellipsis();
     .topic-title {
         padding: 0 0 25px 10px;
     }
+
 }
 /*Common styles and classes ENDS*/
 .SELF-homepage_company {
@@ -77,7 +78,7 @@
     margin: 12px;
     @include box-shadow(0,1px,6px,rgba(0,0,0,.13));
     .company-content {
-        height: 281px;
+        height: 175px;
         .left {}
         .right {
             background: #f7f7f7;
@@ -112,6 +113,7 @@
 }
 .STRUCTURE-browse_company_item .company-header {
     @include ellipsis();
+    padding: 10px;
 }
 .STRUCTURE-browse_company_item,
 .STRUCTURE-browse_topic_item,
@@ -151,7 +153,7 @@
     }
 }
 .center-logo {
-    border-right: 1px solid $bright-text-color;
+    // border-right: 1px solid $bright-text-color;
     > div {
         height: 176px;
         width: 100%;
@@ -178,6 +180,7 @@
   background: #F9F9F9;
   border-radius: 0;
   margin-top: 10px;
+  margin-bottom: 0px;
   .panel-heading {
      cursor: pointer;
      color: #ccc !important;
