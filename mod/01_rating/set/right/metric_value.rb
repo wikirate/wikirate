@@ -43,7 +43,7 @@ format :html do
     target_str = ["[id='", path, "'] #methodology-info"].join("")
     metric_card_type = card.left.trunk.metric_type.downcase.to_sym
     btn_add =
-      content_tag(:div, "Add answer",
+      content_tag(:a, "Add answer",
                   class: btn_add_class,
                   data: {
                     company: card.cardname.left_name.right_name.url_key,
@@ -54,7 +54,7 @@ format :html do
                   }
                  )
     btn_methodology =
-      content_tag(:div, "View Methodology",
+      content_tag(:a, "View Methodology",
                   class: btn_class + " " + "_view_methodology",
                   data: {
                     toggle: "collapse",
