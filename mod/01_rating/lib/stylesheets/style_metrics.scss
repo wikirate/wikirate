@@ -34,7 +34,6 @@
     .topic-title {
         padding: 0 0 25px 10px;
     }
-
 }
 /*Common styles and classes ENDS*/
 .SELF-homepage_company {
@@ -164,8 +163,8 @@
     .missing-view {
         padding: 0;
         img {
-            width: 101%;
-            margin-left: -1px;
+            width: 90%;
+            // margin-left: -1px;
         }
     }
     img {
@@ -177,42 +176,42 @@
     }
 }
 .filter.panel {
-  background: #F9F9F9;
-  border-radius: 0;
-  margin-top: 10px;
-  margin-bottom: 0px;
-  .panel-heading {
-     cursor: pointer;
-     color: #ccc !important;
-     padding: 6px 12px;
-     height: 32px;
-     text-decoration: none;
-     background: #fff;
-  }
-  .panel-collapse {
-    padding: 10px;
-    color: $dark-text-color;
-    label {
+    background: #F9F9F9;
+    border-radius: 0;
+    margin-top: 10px;
+    margin-bottom: 0;
+    .panel-heading {
+        cursor: pointer;
+        color: #ccc !important;
+        padding: 6px 12px;
+        height: 32px;
+        text-decoration: none;
+        background: #fff;
+    }
+    .panel-collapse {
+        padding: 10px;
         color: $dark-text-color;
-        float: left;
-        width: 15%;
+        label {
+            color: $dark-text-color;
+            float: left;
+            width: 15%;
+        }
+        input,
+        select {
+            height: 25px;
+            width: 80%;
+        }
     }
-    input, select {
-        height: 25px;
-        width:80%
-    }
-  }
 }
-.filter-buttons{
-    text-align:right;
-    margin:10px;
+.filter-buttons {
+    text-align: right;
+    margin: 10px;
     border-top: 1px solid #eee;
-    .form-group{
-       margin: 0px 0px -15px;
-       padding:0px;
+    .form-group {
+        margin: 0 0 -15px;
+        padding: 0;
     }
 }
-
 .metric-source .tab-content {
     background: #fffefa;
     padding: 30px;
@@ -234,7 +233,7 @@
 // metric value details
 .metric-year {
     float: left;
-    padding: 8px 4px 0px 0px;
+    padding: 8px 4px 0 0;
 }
 .metric-unit,
 .metric-year {
@@ -313,7 +312,7 @@
         text-align: left;
     }
     h5 {
-      color: #666;
+        color: #666;
     }
     form > .form-group {
         margin-top: -15px;
@@ -642,8 +641,6 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
         height: 40px;
     }
 }
-
-
 .metric-thumbnail {
     font-size: 0.66em;
     font-weight: normal;
@@ -660,39 +657,36 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     .thumbnail-text {
         display: inline-block;
         vertical-align: middle;
-        >a {
-           color: #888;
+        > a {
+            color: #888;
         }
-        a>div {
+        a > div {
             max-width: 225px;
         }
     }
 }
-
 .table > tbody > tr > td > .metric-thumbnail {
     float: left;
     width: 100%;
-    border: 0px;
+    border: 0;
     font-size: 12px;
-    padding: 0px;
+    padding: 0;
     // white-space: normal;
-    >.thumbnail-text {
-      padding-top: 0;
-      >div{
-        max-width: 100%;
-      }
+    > .thumbnail-text {
+        padding-top: 0;
+        > div {
+            max-width: 100%;
+        }
     }
 }
-
-.metric-value-details table{
-   margin-top: 12px;
-   >tbody>tr>td{
-      max-width: 200px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-   }
+.metric-value-details table {
+    margin-top: 12px;
+    > tbody > tr > td {
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
-
 .TYPE-metric.new-view {
     ul.nav-tabs li {
         padding: 28px;
@@ -766,38 +760,36 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 .card-slot.new-view.TYPE-metric.METRIC_TYPE-researched .nav-pills {
     margin: 0 -15px !important;
 }
-
-.source-year{
-  position: absolute;
-  left: 55px;
-  top: 4px;
-  color: #ccc;
+.source-year {
+    position: absolute;
+    left: 55px;
+    top: 4px;
+    color: #ccc;
 }
-
 .metric-details-content {
-  .card-body, .contributing-details, .RIGHT-category_detail {
-      margin: 0px 20px;
+    .RIGHT-category_detail,
+    .card-body,
+    .contributing-details {
+        margin: 0 20px;
     }
 }
-
 .range-value {
     position: relative;
     display: inline-block;
     span {
-      position: absolute;
-      left: 0;
-      font-size: 14px;
-      color: #FFF;
-      text-align: center;
-      width: 25px;
-      padding: 5px 0;
-      font-weight: bold;
+        position: absolute;
+        left: 0;
+        font-size: 14px;
+        color: #FFF;
+        text-align: center;
+        width: 25px;
+        padding: 5px 0;
+        font-weight: bold;
     }
     i {
-      font-size: 30px;
+        font-size: 30px;
     }
 }
-
 .metric-value.small {
     font-size: 15px;
     white-space: nowrap;
@@ -806,4 +798,19 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     display: inline-block;
     float: left;
     overflow: hidden;
+}
+//Div alignments
+.stick-right {
+    position: fixed;
+    max-width: 612px;
+    top: 68px;
+    left: 50%;
+    bottom: 10%;
+    z-index: 1;
+    .webpage-preview {
+        height: auto!important;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+    }
 }

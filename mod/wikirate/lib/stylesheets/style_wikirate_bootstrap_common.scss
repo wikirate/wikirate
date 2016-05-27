@@ -120,13 +120,7 @@
 .padding-top-20 {
     padding-top: 20px !important;
 }
-//Div alignments
-.stick-right {
-    position: fixed;
-    max-width: 612px;
-    top: 68px;
-    left: 50%;
-}
+
 //background and borders
 .background-white {
     background-color: #fff;
@@ -239,6 +233,29 @@
       padding: 0px;
     }
 }
+
+// TODO: verify if this class is used anywhere
+#credit,
+#credit a {
+  padding: 0 !important;
+  background: none;
+  border: 0;
+  margin-bottom: 15px;
+  position: relative;
+
+}
+#credit {
+  z-index: -0;
+  left: 8px;
+  display: block;
+  a {
+    right: 16px;
+    position: relative;
+    z-index: -1;
+  }
+
+}
+
 .panel-default {
     border-color: #EFEFEF;
     // margin-bottom: -2px;
