@@ -91,7 +91,7 @@ format :html do
   end
 
   view :vote do |args|
-    vote_item = subformat(Card["#{card.name}+*vote count"]).render_content args
+    vote_item = subformat(card.vote_count_card).render_content args
     content_tag(:div, vote_item, class: "source-vote")
   end
 

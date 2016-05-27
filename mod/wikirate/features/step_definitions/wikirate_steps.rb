@@ -185,5 +185,6 @@ When /^I press link button "(.*)"$/ do |name|
 end
 
 When /^I press div button "(.*)"$/ do |name|
+  binding.pry
   find("div", text: name).click
 end

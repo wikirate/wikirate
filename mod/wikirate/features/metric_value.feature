@@ -14,9 +14,11 @@ Feature: metric value
     And I wait until ajax response done
     And I press link button "Next"
     And I wait until ajax response done
+    And debug
     And I fill in "card_subcards__Link_content" with "http://example.com"
     And I press "Add and preview"
     And I wait until ajax response done
+    And debug
     And I press div button "Cite!"
     And I wait until ajax response done
     And I fill in "pointer_item" with "2015"
