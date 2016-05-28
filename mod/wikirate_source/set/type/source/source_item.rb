@@ -192,7 +192,10 @@ format :html do
   end
 
   view :cited do |args|
-    parent = Card.fetch(Env.params["id"]).cardname.right
+    parent =
+      if (parent_card = Card.fetch(Env.params["id"]))
+        parent_card.cardname.right
+      end
     # check parent structure name has the word header
     # (i.e check if not metric value page)
     if !parent.nil? && parent.include?("header")

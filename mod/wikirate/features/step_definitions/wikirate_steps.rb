@@ -161,8 +161,8 @@ When /^I click the drop down button$/ do
   find(".fa-caret-right").click
 end
 
-When /^I scroll up$/ do
-  page.execute_script "window.scrollBy(0,-10000)"
+When /^I scroll (-?\d+) pixels$/ do |number|
+  page.execute_script "window.scrollBy(0, #{number})"
 end
 
 def select_from_chosen item_text, selector, within
@@ -181,10 +181,9 @@ When /^I select "(.*)" from choosen within "(.*)"$/ do |item_text, within|
 end
 
 When /^I press link button "(.*)"$/ do |name|
-  find("a", text: name).click
+  find("a", text: name, visible: false).click
 end
 
-When /^I press div button "(.*)"$/ do |name|
-  binding.pry
-  find("div", text: name).click
+When /^I maximize the browser$/ do
+  page.driver.browser.manage.window.maximize
 end
