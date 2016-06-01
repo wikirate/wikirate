@@ -212,8 +212,8 @@ format :html do
   end
 
   view :original_icon_link do |args|
-    icon = content_tag(:i, "", class: "fa fa-#{icon}")
-    _render_original_link args.merge(title: icon)
+    title = content_tag(:i, "", class: "fa fa-#{icon}")
+    _render_original_link args.merge(title: title)
   end
 
   view :content do |args|

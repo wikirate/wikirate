@@ -35,7 +35,7 @@ describe Card::Set::Right::MetricValue do
           with_tag("div", with: { class: "timeline-body" }) do
             with_tag("div", with: { class: "pull-left timeline-data" }) do
               with_tag("div", with: { class: "timeline-header" }) do
-                with_tag("div", with: { class: "btn" }) { "Add new value" }
+                with_tag("a", with: { class: "btn" }) { "Add answer" }
               end
               with_tag("div", with: { class: "timeline-row" }) do
                 with_tag("div", with: { class: "timeline-dot" })
