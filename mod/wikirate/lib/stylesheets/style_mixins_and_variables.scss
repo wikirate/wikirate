@@ -28,3 +28,67 @@ $company-header-bg: #d3741c;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+//***ALL COLOR VARS & MIXINS***//
+$heading_color: #555;
+$body_background: #ebebeb;
+$primary_color: #555;
+$anchor_color: #03998d;
+$body-txt-color: #404040; //#4f4f4f;
+$wanted-card-color: #b6060a;
+$closed-content-a-color: #729;
+$infographic-heading: #949494;
+$div-border-color: #f1f1f1;
+
+//button colors
+$button-color: #03998d;
+$button-color-hover: #009185;
+$button-border: #00756c;
+$cancel-button-color: #bebebe;
+$cancel-button-border: #9b9b9b;
+$cancel-button-hover: #b4b4b4;
+
+//note colors
+$note-tag-companybg: #d3741c;
+$note-tag-companybg-hover: #bb5b00;
+$note-tag-topicbg: #2b7ea0;
+$note-tag-topicbg-hover: #01648d;
+$note-tag-notexist: #f0f0f0;
+$note-tag-notexist-hover: #ececec;
+
+$card-header-color: #fff;
+
+//card colors
+@mixin card-txt-color {
+  color: #646464;
+  a {
+    color: #646464;
+  }
+
+}
+//border radius mixin
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;
+  /* stops bg color from leaking outside the border: */
+
+}
+//***COLOR VARS - END***//
+
+//***Shadow***//
+
+@mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0, 0, 0, .4), $inset: "") {
+  @if ($inset != "") {
+    -webkit-box-shadow: $inset $x $y $blur $color;
+    -moz-box-shadow: $inset $x $y $blur $color;
+    box-shadow: $inset $x $y $blur $color;
+  }
+  @else {
+    -webkit-box-shadow: $x $y $blur $color;
+    -moz-box-shadow: $x $y $blur $color;
+    box-shadow: $x $y $blur $color;
+  }
+
+}
+// ***Shadow- END***//

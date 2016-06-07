@@ -11,6 +11,11 @@
   }
 }
 $body_background: #ebebeb;
+
+.preview-view.TYPE-source {
+   overflow: hidden;
+}
+
 #source-preview-page-layout {
   #main {
     padding: 0;
