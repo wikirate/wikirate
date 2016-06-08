@@ -35,7 +35,7 @@ format :html do
   end
 
   def wrap_metric_header
-    metric_list_header = content_tag(:div, "Metrics", class: "heading-label")
+    metric_list_header = content_tag(:div, "Mort etrics", class: "heading-label")
     if project
       metric_list_header << wrap_project
     else

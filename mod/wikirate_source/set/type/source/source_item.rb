@@ -91,7 +91,7 @@ format :html do
   end
 
   view :vote do |args|
-    vote_item = subformat(Card["#{card.name}+*vote count"]).render_content args
+    vote_item = subformat(card.vote_count_card).render_content args
     content_tag(:div, vote_item, class: "source-vote")
   end
 
@@ -192,7 +192,10 @@ format :html do
   end
 
   view :cited do |args|
-    parent = Card.fetch(Env.params["id"]).cardname.right
+    parent =
+      if (parent_card = Card.fetch(Env.params["id"]))
+        parent_card.cardname.right
+      end
     # check parent structure name has the word header
     # (i.e check if not metric value page)
     if !parent.nil? && parent.include?("header")
@@ -209,8 +212,8 @@ format :html do
   end
 
   view :original_icon_link do |args|
-    icon = content_tag(:i, "", class: "fa fa-#{icon}")
-    _render_original_link args.merge(title: icon)
+    title = content_tag(:i, "", class: "fa fa-#{icon}")
+    _render_original_link args.merge(title: title)
   end
 
   view :content do |args|
