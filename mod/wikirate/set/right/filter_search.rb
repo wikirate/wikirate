@@ -17,7 +17,8 @@ def get_query params={}
 end
 
 def cited_query
-  yes_query = { referred_to_by: { left: { type_id: WikirateAnalysisID }, right_id: OverviewID } }
+  yes_query = { referred_to_by: { left: { type_id: WikirateAnalysisID },
+                                  right_id: OverviewID } }
   case Env.params[:cited]
   when "yes" then yes_query
   when "no"  then { not: yes_query }
@@ -26,7 +27,8 @@ def cited_query
 end
 
 def claimed_query
-  yes_query = { linked_to_by: { left: { type_id: ClaimID }, right_id: SourceID } }
+  yes_query = { linked_to_by: { left: { type_id: ClaimID },
+                                right_id: SourceID } }
   case Env.params[:claimed]
   when "yes" then yes_query
   when "no"  then { not: yes_query }
@@ -38,7 +40,8 @@ def sort_query
   if Env.params[:sort] == "recent"
     { sort: "update" }
   else
-    { :sort => { "right" => "*vote count" }, "sort_as" => "integer", "dir" => "desc" }
+    { :sort => { "right" => "*vote count" },
+      "sort_as" => "integer", "dir" => "desc" }
   end
 end
 
@@ -83,15 +86,28 @@ format :html do
   end
 
   view :sort_formgroup do |_args|
-    select_filter "sort",  options_for_select({ "Most Important" => "important", "Most Recent" => "recent" }, params[:sort] || "important")
+    select_filter "sort",
+                  options_for_select(
+                    {
+                      "Most Important" => "important",
+                      "Most Recent" => "recent"
+                    }, params[:sort] || "important")
   end
 
   view :cited_formgroup do |_args|
-    select_filter "cited", options_for_select({ "All" => "all", "Yes" => "yes", "No" => "no" }, params[:cited] || "all")
+    select_filter "cited",
+                  options_for_select(
+                    {
+                      "All" => "all", "Yes" => "yes", "No" => "no"
+                    }, params[:cited] || "all")
   end
 
   view :claimed_formgroup do |_args|
-    select_filter "claimed", options_for_select({ "All" => "all", "Yes" => "yes", "No" => "no" }, params[:claimed] || "all")
+    select_filter "Has Notes?",
+                  options_for_select(
+                    {
+                      "All" => "all", "Yes" => "yes", "No" => "no"
+                    }, params[:claimed] || "all")
   end
 
   view :company_formgroup do |args|
@@ -115,7 +131,10 @@ format :html do
     options_card = Card.new name: "+#{type_name}"  # codename
     selected_options = params[type_name]
     options = options_for_select(options_card.option_names, selected_options)
-    multiselect_tag = select_tag(type_name, options, multiple: true, class: "pointer-multiselect")
-    formgroup(type_name.capitalize, multiselect_tag, class: "filter-input #{type_name}")
+    multiselect_tag = select_tag(type_name, options,
+                                 multiple: true,
+                                 class: "pointer-multiselect")
+    formgroup(type_name.capitalize,
+              multiselect_tag, class: "filter-input #{type_name}")
   end
 end

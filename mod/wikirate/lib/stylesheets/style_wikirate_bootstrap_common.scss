@@ -15,6 +15,12 @@
 .cursor-p{
   cursor: pointer;
 }
+.slab a {
+    text-decoration: none;
+}
+.slab:hover {
+    background: #FBFBFB;
+}
 //Text Colors
 .company-color {
     color: $company-color;
@@ -102,6 +108,9 @@
 .margin-left-20 {
     margin-left: 20px;
 }
+.margin-no-left-15 {
+    margin: 15px 15px 15px 0px;
+}
 .padding-top-10 {
     padding-top: 10px !important;
 }
@@ -114,13 +123,7 @@
 .padding-top-20 {
     padding-top: 20px !important;
 }
-//Div alignments
-.stick-right {
-    position: fixed;
-    max-width: 608px;
-    top: 68px;
-    left: 50%;
-}
+
 //background and borders
 .background-white {
     background-color: #fff;
@@ -183,6 +186,7 @@
     font-size: 30px;
     color: #868686;
 }
+
 .modal-body > div {
     display: inline-block;
     width: 100%;
@@ -208,11 +212,11 @@
     .anime {
         position: absolute;
         left: 50%;
-        top: 30%;
+        top: 12%;
         margin-left: -20px;
     }
 }
-.edits-by {
+.tagline, .edits-by, .last-edit {
     // border-bottom: 1px solid $div-border-color;
     font-size: 0.8em;
     margin-bottom: 5px;
@@ -223,8 +227,38 @@
     }
     a {
         color: #ABABAB;
+        font-weight: bold;
+    }
+    div {
+      display: inline;
+    }
+    .item-link{
+      padding: 0px;
     }
 }
+
+// TODO: verify if this class is used anywhere
+#credit,
+#credit a {
+  padding: 0 !important;
+  background: none;
+  border: 0;
+  margin-bottom: 15px;
+  position: relative;
+
+}
+#credit {
+  z-index: -0;
+  left: 8px;
+  display: block;
+  a {
+    right: 16px;
+    position: relative;
+    z-index: -1;
+  }
+
+}
+
 .panel-default {
     border-color: #EFEFEF;
     // margin-bottom: -2px;
