@@ -1,33 +1,12 @@
+include_set Abstract::Filter
+
 def virtual?
   true
 end
 
-def industry_metric_name
-  "Global Reporting Initiative+Sector Industry"
-end
-
-def industry_value_year
-  "2015"
-end
-
 format :html do
-  def page_link text, page, _current, options={}
-    @paging_path_args[:offset] = page * @paging_limit
-    filter_args = {}
-    [:sort, :cited, :claimed, :company, :topic, :tag].each do |key|
-      filter_args[key] = params[key] if params[key].present?
-    end
-    options[:class] = "card-paging-link slotter"
-    options[:remote] = true
-    link_to raw(text), path(@paging_path_args.merge(filter_args)), options
-  end
-
-  view :no_search_results do |_args|
-    %(
-      <div class="search-no-results">
-        No result
-      </div>
-    )
+  def page_link_params
+    [:sort, :cited, :claimed, :company, :topic, :tag]
   end
 
   def filter_categories
@@ -109,18 +88,6 @@ format :html do
     projects = Card.search type_id: CampaignID, return: :name, sort: "name"
     options = options_for_select([["--", ""]] + projects, Env.params[:project])
     select_filter "project", options
-  end
-
-  def text_filter type_name, args
-    formgroup args[:title] || type_name.capitalize,
-              text_field_tag(type_name, params[type_name],
-                             args.merge(class: "form-control")), args
-  end
-
-  def select_filter type_name, options, args={}
-    formgroup type_name.capitalize,
-              select_tag(type_name, options, class: "form-control"),
-              args
   end
 
   # def multiselect_filter type_name, options=nil, args={}

@@ -1,3 +1,4 @@
+include_set Abstract::Filter
 def get_query params={}
   filter_words =  Array.wrap(Env.params[:company]) || []
   filter_words += Array.wrap(Env.params[:topic]) if Env.params[:topic]

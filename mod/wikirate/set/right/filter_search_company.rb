@@ -1,29 +1,23 @@
-include_set Right::FilterSearch
-include_set Right::MetricValueFilter
-include_set Type::SearchType
+include_set Abstract::Filter
 
-def virtual?
-  true
-end
-
-def raw_content
-  %(
-    {
-      "left":{
-        "type":"metric_value",
-        "left":{
-          "left":"_left"
-        }
-      },
-      "right":"value",
-      "limit":0
-    }
-  )
+def get_query params={}
+  filter = %w(company industry project).each_with_object({}) do |param, hash|
+    if (val = Env.params[param])
+      hash[param.to_sym] = val
+    end
+  end
+  search_args = company_wql filter
+  params[:query] = search_args
+  super(params)
 end
 
 format :html do
   def page_link_params
     [:sort, :company, :industry, :project]
+  end
+
+  view :company_formgroup do
+    text_filter "company", title: "Name"
   end
 
   view :filter_form do |args|
@@ -37,17 +31,23 @@ format :html do
     %( <form action="/#{action}" method="GET">#{content}</form>)
   end
 
+  def select_filter type_name, options, args={}
+    formgroup type_name.capitalize,
+              select_tag(type_name, options, class: "pointer-select"),
+              args
+  end
+
   view :industry_formgroup do
     industries = Card[card.industry_metric_name].value_options
     options = options_for_select([["--", ""]] + industries,
                                  Env.params[:industry])
-    multiselect_filter "industry", options
+    select_filter "industry", options, class: "filter-input"
   end
 
   view :project_formgroup do
     projects = Card.search type_id: CampaignID, return: :name, sort: "name"
     options = options_for_select([["--", ""]] + projects, Env.params[:project])
-    multiselect_filter "project", options
+    select_filter "project", options, class: "filter-input"
   end
 
   def multiselect_filter type_name, options
