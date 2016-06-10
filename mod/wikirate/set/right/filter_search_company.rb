@@ -1,13 +1,22 @@
 include_set Abstract::Filter
 
+def item_cards params={}
+  s = query(params)
+  raise("OH NO.. no limit") unless s[:limit]
+  query = Query.new(s, comment)
+  sort = query.mods[:sort].scan(/c([\d+]).db_content/).last.first.to_i + 1
+  query.mods[:sort] = "c#{sort}.db_content"
+  query.run
+end
+
 def get_query params={}
   filter = params_to_hash %w(company industry project)
   search_args = company_wql filter
   search_args[:sort] = {
-    right_plus: [Env.params["sort"], { right_plus: "*cached count" }] }
+    right: Env.params["sort"], right_plus: "*cached count" }
+  search_args[:sort_as] = "integer"
   search_args[:dir] = "desc"
   params[:query] = search_args
-  puts search_args.to_s.yellow
   super(params)
 end
 
