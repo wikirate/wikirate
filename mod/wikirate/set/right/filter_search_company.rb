@@ -3,7 +3,11 @@ include_set Abstract::Filter
 def get_query params={}
   filter = params_to_hash %w(company industry project)
   search_args = company_wql filter
+  search_args[:sort] = {
+    right_plus: [Env.params["sort"], { right_plus: "*cached count" }] }
+  search_args[:dir] = "desc"
   params[:query] = search_args
+  puts search_args.to_s.yellow
   super(params)
 end
 
@@ -18,7 +22,7 @@ format :html do
 
   view :filter_form do |args|
     content = output([
-                       # optional_render(:sort_formgroup, args),
+                       optional_render(:sort_formgroup, args),
                        optional_render(:company_formgroup, args),
                        optional_render(:industry_formgroup, args),
                        optional_render(:project_formgroup, args)
