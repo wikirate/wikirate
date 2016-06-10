@@ -65,11 +65,7 @@ def cached_values
 end
 
 def company_filter
-  filter = %w(company industry project).each_with_object({}) do |param, hash|
-    if (val = Env.params[param])
-      hash[param.to_sym] = val
-    end
-  end
+  filter = params_to_hash %w(company industry project)
   return unless filter.present?
   Card.search company_wql(filter, "name")
 end
