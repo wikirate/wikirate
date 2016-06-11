@@ -4,6 +4,7 @@ def item_cards params={}
   s = query(params)
   raise("OH NO.. no limit") unless s[:limit]
   query = Query.new(s, comment)
+  # sort table alias always stick to the first table, but I need the next table
   sort = query.mods[:sort].scan(/c([\d+]).db_content/).last.first.to_i + 1
   query.mods[:sort] = "c#{sort}.db_content"
   query.run
