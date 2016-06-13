@@ -13,8 +13,9 @@ end
 def get_query params={}
   filter = params_to_hash %w(company industry project)
   search_args = company_wql filter
+  sort_by = Env.params["sort"] || "metric"
   search_args[:sort] = {
-    right: Env.params["sort"], right_plus: "*cached count" }
+    right: sort_by, right_plus: "*cached count" }
   search_args[:sort_as] = "integer"
   search_args[:dir] = "desc"
   params[:query] = search_args
