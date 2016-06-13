@@ -1,3 +1,4 @@
+include_set Abstract::Filter
 def get_query params={}
   filter_words =  Array.wrap(Env.params[:company]) || []
   filter_words += Array.wrap(Env.params[:topic]) if Env.params[:topic]
@@ -45,10 +46,14 @@ def sort_query
 end
 
 format :html do
+  def page_link_params
+    [:sort, :cited, :claimed, :company, :topic, :tag]
+  end
+
   def page_link text, page, _current=false, options={}
     @paging_path_args[:offset] = page * @paging_limit
     filter_args = {}
-    [:sort, :cited, :claimed, :company, :topic, :tag].each do |key|
+    page_link_params.each do |key|
       filter_args[key] = params[key] if params[key].present?
     end
     options[:class] = "card-paging-link slotter"
@@ -117,8 +122,9 @@ format :html do
     multiselect_filter "tag", args
   end
 
-  def select_filter type_name, options
-    formgroup type_name.capitalize, select_tag(type_name, options)
+  def select_filter type_name, options, args={}
+    formgroup type_name.capitalize,
+              select_tag(type_name, options, class: "pointer-select"), args
   end
 
   def multiselect_filter type_name, _args

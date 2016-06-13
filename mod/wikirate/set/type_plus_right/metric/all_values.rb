@@ -1,4 +1,5 @@
 include_set Type::SearchType
+include_set Abstract::Import
 
 def virtual?
   true
@@ -64,45 +65,14 @@ def cached_values
 end
 
 def company_filter
-  filter = %w(company industry project).each_with_object({}) do |param, hash|
-    if (val = Env.params[param])
-      hash[param.to_sym] = val
-    end
-  end
+  filter = params_to_hash %w(company industry project)
   return unless filter.present?
-  Card.search company_wql(filter)
+  Card.search company_wql(filter, "name")
 end
 
 def year_filter
   selected_year = Env.params["year"]
   selected_year == "latest" ? nil : selected_year
-end
-
-def company_wql opts
-  wql = { type_id: WikirateCompanyID, return: "name" }
-  filter_by_company_name wql, opts[:company] if opts[:company].present?
-  filter_by_industry wql, opts[:industry] if opts[:industry].present?
-  filter_by_project wql, opts[:project] if opts[:project].present?
-  wql
-end
-
-def filter_by_company_name wql, name
-  wql[:name] = ["match", name]
-end
-
-def filter_by_project wql, project
-  wql[:referred_to_by] = { left: { name: project } }
-end
-
-def filter_by_industry wql, industry
-  filter = left.fetch(trait: :metric_value_filter)
-  wql[:left_plus] = [
-    filter.industry_metric_name,
-    { right_plus: [
-      filter.industry_value_year,
-      { right_plus: ["value", { eq: industry }] }
-    ] }
-  ]
 end
 
 def get_cached_values
