@@ -20,13 +20,13 @@ describe Card::Set::Right::FilterSearch do
           end
         end
         expect(html).to have_tag("div", with: { class: "editor" }) do
-          with_tag "select", with: { id: "claimed" } do
+          with_tag "select", with: { id: "Has_Notes_" } do
             with_tag "option", with: { value: "all", selected: "selected" }, text: "All"
             with_tag "option", with: { value: "yes" }, without: { selected: "selected" }, text: "Yes"
             with_tag "option", with: { value: "no" }, without: { selected: "selected" }, text: "No"
           end
         end
-         expect(html).to have_tag("div", with: { class: "editor" }) do
+        expect(html).to have_tag("div", with: { class: "editor" }) do
            with_tag "select", with: { id: "cited" } do
              with_tag "option", with: { value: "all", selected: "selected" }, text: "All"
              with_tag "option", with: { value: "yes" }, without: { selected: "selected" }, text: "Yes"
