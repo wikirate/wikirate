@@ -1,5 +1,5 @@
 include_set Type::SearchType
-include_set Abstract::Import
+include_set Abstract::Filter
 
 def virtual?
   true
