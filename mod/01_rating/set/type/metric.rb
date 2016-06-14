@@ -149,10 +149,11 @@ format :html do
         <<-HTML
         <!--prototype: Company+MetricDesigner+MetricName+yinyang drag item -->
         <div class="yinyang-row">
-          <div class="metric-item value-item">
+          <div class="metric-item value-item metric-details-toggle"
+               data-append="#{card.key}+add_to_formula">
             #{yield}
-            <div class="details"></div>
           </div>
+          <div class="details"></div>
         </div>
         HTML
       end
@@ -268,8 +269,7 @@ format :html do
             #{card_link card, text: metric_title, class: 'inherit-anchor'}
           </div>
         </div>
-        <div class="data metric-details-toggle"
-             data-append="#{card.key}+add_to_formula">
+        <div class="data">
           #{_render_value(args)}
           <div class="data-item show-with-details text-center">
             <span class="label label-metric">

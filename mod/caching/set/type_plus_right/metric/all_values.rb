@@ -22,7 +22,7 @@ end
 def calculate_count
   result = {}
   item_cards(default_query: true).each do |value_card|
-    company = value_card.company
+    company = value_card.company_card.id
     result[company] = [] unless result.key?(company)
     result[company].push year: value_card.year, value: value_card.value
   end

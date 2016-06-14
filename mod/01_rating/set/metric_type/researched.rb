@@ -107,7 +107,7 @@ format :html do
   end
 
   view :add_value_buttons do |_args|
-    policy = card.fetch(trait: :research_policy).item_cards.first.name
+    policy = card.fetch(trait: :research_policy, new: {}).item_cards.first.name
     is_admin = Card::Auth.always_ok?
     is_owner = Auth.current.id == card.creator.id
     is_designer_assessed = policy.casecmp("designer assessed") == 0

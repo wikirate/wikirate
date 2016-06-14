@@ -29,24 +29,25 @@ format :html do
     end
   end
 
-  view :metric_value_landing do |args|
-    render_haml source_container: _render_source_container,
-                metric_field: _render_metric_field(args),
-                hidden_source_field: _render_hidden_source_field(args) do
-      <<-HAML
-.col-md-6.border-right.panel-default
-  = hidden_source_field
-  -# %h4
-  -# Company
-  %hr
-    = field_nest :wikirate_company, title: 'Company'
-  -# %h4
-    -# Metric
-  %hr
-    = metric_field
+  view :metric_value_landing do
+    wrap_with :div do
+      [
+        _render_metric_value_landing_form,
+        _render_source_container
+      ]
+    end
+  end
 
-= source_container
-      HAML
+  view :metric_value_landing_form do |args|
+    html_class = "col-md-6 border-right panel-default height-default"
+    hr = content_tag(:hr, "")
+    wrap_with :div, class: html_class do
+      [
+        _render_hidden_source_field(args), hr,
+        _render_company_field, hr,
+        _render_metric_field(args),
+        _render_next_button
+      ]
     end
   end
 
@@ -56,20 +57,21 @@ format :html do
     end
   end
 
+  view :company_field do
+    field_nest(:wikirate_company, title: "Company")
+  end
+
   view :metric_field do |args|
     metric = args[:metric]
     metric_field =
       Card.fetch(card.cardname.field(:metric), new: { content: metric })
-    render_haml metric: metric,
-                source_container: _render_source_container,
-                metric_field: metric_field do
-      <<-HAML
-= nest metric_field, title: 'Metric'
-.col-md-6.col-centered.text-center
-  %a.btn.btn-primary._new_value_next
-    Next
-      HAML
-    end
+    nest(metric_field, title: "Metric")
+  end
+
+  view :next_button do
+    html_class = "col-md-6 col-centered text-center"
+    button = content_tag(:a, "Next", class: "btn btn-primary _new_value_next")
+    content_tag(:div, button, class: html_class)
   end
 
   view :source_container do |_args|

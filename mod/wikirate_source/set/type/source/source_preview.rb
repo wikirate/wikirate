@@ -201,7 +201,6 @@ format :html do
     end
   end
 
-
   view :preview_options, tags: :unknown_ok  do |args|
     url = args[:url]
     # Source Details tab
@@ -224,7 +223,12 @@ format :html do
     result += %(
       <li role="presentation" >
         <a class='' data-target="#tab_metrics" data-toggle="source_preview_tab_ajax" href='/#{card.cardname.url_key}+metric_search?slot[hide]=header,menu' >
-          <i class="fa fa-bar-chart"><span id="metric-count-number " class="count-number">#{metric_count}</span></i><span>#{Card[MetricID].name.pluralize}</span>
+          <i class="fa fa-bar-chart">
+          <span id="metric-count-number" class="count-number">
+            #{metric_count}
+          </span>
+          </i>
+          <span>#{Card[MetricID].name.pluralize}</span>
         </a>
       </li>
     )
