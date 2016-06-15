@@ -12,6 +12,11 @@ event :import_csv, :prepare_to_store,
     metric_value_card.director.catch_up_to_stage :validate if metric_value_card
     handle_import_errors metric_value_card
   end
+  if errors.empty?
+    # create the metric values
+    subcards.each(&:save!)
+    clear_subcards
+  end
   handle_redirect
 end
 
