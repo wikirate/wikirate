@@ -13,6 +13,11 @@ event :import_csv, :prepare_to_store,
     handle_import_errors metric_value_card
   end
   handle_redirect
+  if errors.empty?
+    # create the metric values
+    subcards.each(&:save!)
+    clear_subcards
+  end
 end
 
 def check_duplication name, row_no
