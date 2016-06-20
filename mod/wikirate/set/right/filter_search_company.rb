@@ -55,12 +55,6 @@ format :html do
     select_filter "industry", options, class: "filter-input"
   end
 
-  view :project_formgroup do
-    projects = Card.search type_id: CampaignID, return: :name, sort: "name"
-    options = options_for_select([["--", ""]] + projects, Env.params[:project])
-    select_filter "project", options, class: "filter-input"
-  end
-
   def multiselect_filter type_name, options
     multiselect_tag = select_tag(type_name, options,
                                  multiple: true, class: "pointer-multiselect")

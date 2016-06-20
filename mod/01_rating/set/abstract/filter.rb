@@ -1,4 +1,12 @@
 
+def raw_content
+  %(
+    {
+      "name":"dummy"
+    }
+  )
+end
+
 def params_to_hash params
   params.each_with_object({}) do |param, hash|
     if (val = Env.params[param])
@@ -18,13 +26,13 @@ end
 def company_wql opts, return_param=nil
   wql = { type_id: WikirateCompanyID }
   wql[:return] = return_param if return_param
-  filter_by_company_name wql, opts[:company] if opts[:company].present?
+  filter_by_name wql, opts[:company] if opts[:company].present?
   filter_by_industry wql, opts[:industry] if opts[:industry].present?
   filter_by_project wql, opts[:project] if opts[:project].present?
   wql
 end
 
-def filter_by_company_name wql, name
+def filter_by_name wql, name
   wql[:name] = ["match", name]
 end
 
@@ -77,6 +85,21 @@ format :html do
     formgroup type_name.capitalize,
               select_tag(type_name, options, class: "form-control"),
               args
+  end
+
+  view :project_formgroup do
+    projects = Card.search type_id: CampaignID, return: :name, sort: "name"
+    options = options_for_select([["--", ""]] + projects, Env.params[:project])
+    select_filter "project", options, class: "filter-input"
+  end
+
+  view :year_formgroup do |_args|
+    options = Card.search(
+      type_id: YearID, return: :name, sort: "name", dir: "desc"
+    )
+    options.unshift "latest"
+    filter_options = options_for_select(options, params[:year] || "all")
+    select_filter "year", filter_options
   end
 end
 

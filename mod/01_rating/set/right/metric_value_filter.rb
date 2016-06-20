@@ -64,15 +64,6 @@ format :html do
     [_optional_render(:year_formgroup, args)]
   end
 
-  view :year_formgroup do |_args|
-    options = Card.search(
-      type_id: YearID, return: :name, sort: "name", dir: "desc"
-    )
-    options.unshift "latest"
-    filter_options = options_for_select(options, params[:year] || "all")
-    select_filter "year", filter_options
-  end
-
   view :company_formgroup do
     text_filter "company", title: "Name"
   end
