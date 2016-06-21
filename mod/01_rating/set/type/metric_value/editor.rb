@@ -39,7 +39,7 @@ format :html do
   end
 
   view :metric_value_landing_form do |args|
-    html_class = "col-md-6 border-right panel-default height-default"
+    html_class = "col-md-5 border-right panel-default min-page-height"
     hr = content_tag(:hr, "")
     wrap_with :div, class: html_class do
       [
@@ -77,7 +77,7 @@ format :html do
   view :source_container do |_args|
     render_haml do
       <<-HAML
-.col-md-6.nopadding.panel-default
+.col-md-7.nopadding.panel-default
   .col-md-6.col-centered.text-center.light-grey-color-2
     %p
       Source Preview Container

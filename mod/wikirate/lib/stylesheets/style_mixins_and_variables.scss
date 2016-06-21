@@ -29,9 +29,18 @@ $company-header-bg: #d3741c;
   text-overflow: ellipsis;
 }
 
+
+//----------- General Variables ---------
+$main-color:#03998d;
+$note-color: #03998d;
+$source-color: #ffc201;
+$overview-color: #666;
+$heading-color: #999;
+
+
 //***ALL COLOR VARS & MIXINS***//
 $heading_color: #555;
-$body_background: #ebebeb;
+$body_background: #fff ;//#ebebeb;
 $primary_color: #555;
 $anchor_color: #03998d;
 $body-txt-color: #404040; //#4f4f4f;
@@ -57,6 +66,9 @@ $note-tag-notexist: #f0f0f0;
 $note-tag-notexist-hover: #ececec;
 
 $card-header-color: #fff;
+
+$max-page-width: 100%; //1660px;
+$min-page-height: 1000px;
 
 //card colors
 @mixin card-txt-color {

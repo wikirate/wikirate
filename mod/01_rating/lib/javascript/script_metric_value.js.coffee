@@ -3,15 +3,26 @@ $(document).ready ->
   $source_form_container = $("#source-form-container")
 
   # stick source preview container when scrolled the page
-  stickSourcePreview = () ->
+  stickContent = () ->
     $previewContainer = $("#source-preview-main")
-    if $(document).scrollTop() > 56
-      $previewContainer.addClass 'stick-right'
+    $metricContainer = $("#metric-container")
+    stickClass = {
+      add : () ->
+        $previewContainer.addClass 'stick-right'
+        $metricContainer.addClass 'stick-left'
+      remove : () ->
+        $previewContainer.removeClass 'stick-right'
+        $metricContainer.removeClass 'stick-left'
+    }
+
+    if $(document).scrollTop() > 60
+      stickClass.add()
     else
-      $previewContainer.removeClass 'stick-right'
+      stickClass.remove()
 
     if($(window).scrollTop() > ($("#main").height()-$(window).height()+300))
-      $previewContainer.removeClass("stick-right")
+      stickClass.remove()
+
 
   # add or show source form on the right side
   appendSourceForm = (company) ->
@@ -19,6 +30,7 @@ $(document).ready ->
     $loader         = wikirate.loader($source_form_container)
     $sourceDetails  = $source_form_container.find('.source-details')
     if(!$sourceForm.exists() && !$loader.isLoading())
+      $('._blank_state_message').remove()
       load_path_source = wagn.prepUrl(wagn.rootPath +
                                       "/new/source?preview=true&slot[company]="+
                                       company)
@@ -50,8 +62,6 @@ $(document).ready ->
 
     if(company && metric)
       $loader.add()
-      $('._blank_state_message').remove()
-      #
       if ($page.length>0)
         location.href = wagn.prepUrl(wagn.rootPath + '/' + company +
                                      '?view=new_metric_value&metric[]=' +
@@ -245,17 +255,18 @@ $(document).ready ->
     sourceID        = $this.data("source-for")
     sourceYear      = parseInt($this.data("year"))
     sourceSelector  = "[data-source-for='"+sourceID+"']"
-    $sourceCntr     = $("#source-form-container")
-    $loader         = wikirate.loader($sourceCntr)
+    # $sourceCntr     = $("#source-form-container")
+    $loader         = wikirate.loader($source_form_container)
     $parentForm     = $this.closest('form')
 
     if (!$loader.isLoading())
+      $('._blank_state_message').remove()
       $('.source-details-toggle').removeClass('active')
       $(sourceSelector+'.source-details-toggle').addClass('active')
       # $this.addClass("active")
-      $sourceCntr.find('.source-details').addClass('hide')
-      $sourcePreview = $sourceCntr.find(sourceSelector)
-      $sourceCntr.find('form').addClass('hide')
+      $source_form_container.find('.source-details').addClass('hide')
+      $sourcePreview =   $source_form_container.find(sourceSelector)
+      $source_form_container.find('form').addClass('hide')
       handleYearData($parentForm, sourceYear)
       if($sourcePreview.exists())
         $sourcePreview.removeClass('hide')
@@ -308,9 +319,9 @@ $(document).ready ->
           .find('.timeline-header ._add_new_value').show()
 
 
-  $(window).scroll ->
-    if($("#source-preview-main").exists())
-      stickSourcePreview()
+  # $(window).scroll ->
+    # if($("#source-preview-main").exists())
+      # stickContent()
 
 wagn.slotReady (slot) ->
   add_val_form = slot.find('.timeline-row .card-slot>form').is(':visible')

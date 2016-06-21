@@ -35,7 +35,7 @@ format :html do
   end
 
   def wrap_metric_header
-    metric_list_header = content_tag(:div, "Mort etrics", class: "heading-label")
+    metric_list_header = content_tag(:div, "Metrics", class: "heading-label")
     if project
       metric_list_header << wrap_project
     else
@@ -60,7 +60,7 @@ format :html do
 
   def wrap_metric_list
     return card.format.render_errors unless error
-    wrap_with :div, class: "row" do
+    wrap_with :div, class: "row background-grey" do
       [
         wrap_metric_header,
         process_metrics
@@ -88,8 +88,9 @@ format :html do
   end
 
   view :metric_side do
-    html_classes = "col-md-6 border-right panel-default nodblclick"
-    wrap_with :div, class: html_classes do
+    # html_classes = "col-md-6 col-lg-5 panel-default nodblclick stick-left"
+    html_classes = "panel-default nodblclick stick-left"
+    wrap_with :div, class: html_classes, id: "metric-container" do
       [
         wrap_company.html_safe,
         wrap_metric_list.html_safe
@@ -99,8 +100,16 @@ format :html do
 
   view :source_side do
     source_side = Card.fetch("source preview main")
+    # html_classes = "col-md-6 col-lg-7 panel-default stick-right"
+    html_classes = "panel-default stick-right"
+
+    blank_content =
+      wrap_with :div, class: html_classes, id: "source-preview-main" do
+        content_tag(:div, subformat(source_side).render_core.html_safe,
+                    id: "source-form-container")
+      end
     wrap do
-      subformat(source_side).render_core
+      blank_content.html_safe
     end
   end
 end

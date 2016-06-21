@@ -184,17 +184,6 @@ $body_background: #ebebeb;
   .non-previewable {
     background-color: $body_background;
   }
-  /*
-
-Henry, get rid of me!!!
-  .new-note-button{
-  .create-submit-button{
-  width: 100%;
-  height: 30px;
-  margin-top: 14px;
-  }
-  }
-*/
 }
 .redirect-notice {
   background-color: white;
@@ -218,7 +207,7 @@ Henry, get rid of me!!!
   float: left;
   background: white;
   width: 100%;
-  @include box-shadow(5px, 6px, 15px, rgba(0, 0, 0, 0.45), inset);
+  //@include box-shadow(5px, 6px, 15px, rgba(0, 0, 0, 0.45), inset);
   border-top: 1px solid #eee;
   iframe {
     width: 100%;
@@ -289,18 +278,6 @@ Henry, get rid of me!!!
       margin: 0 6px;
     }
   }
-  // .nav-tabs>li.active > a,
-  // .nav-tabs>li>a:hover,
-  // .nav-tabs>li>a:focus{
-  //   background-color: #fff;
-  //   border-bottom-color: #fff;
-  // }
-  // .nav-tabs>li>a:hover{
-  //   border-bottom:1px solid #ebebeb;
-  // }
-  // .nav-tabs>li.active>a:hover{
-  //   border-bottom:0px solid #ebebeb;
-  // }
   .col-1 {
     width: 13px;
     padding: 8px;
@@ -354,7 +331,7 @@ Henry, get rid of me!!!
   }
   .source-content{
     float: left;
-    width: 85%;
+    width: 70%;
   }
   .source-link {
     color: #9A5F00;
@@ -395,19 +372,15 @@ Henry, get rid of me!!!
 }
 
 //custom button on source citation
-.c-btn{
-  width: 62px;
+.c-btn {
+  width: 55px;
   position: absolute;
   right: 6px;
   padding: 2px;
-  bottom: 19%;
+  top: 5%;
 }
 
-#source-form-container{
-  .source-item {
-  margin-bottom: -6px;
-  }
-}
+
 .source-info-container {
   margin-bottom: 0;
   font-size: 12px;
@@ -415,6 +388,7 @@ Henry, get rid of me!!!
   display: inline-block;
   width: 100%;
   position: relative;
+  z-index: 1;
   // padding: 6px;
   &.with-vote-button .item-content {
     padding: 16px;
@@ -423,6 +397,16 @@ Henry, get rid of me!!!
     width: 78%;
   }
 }
+
+#source-form-container{
+  .source-item {
+  margin-bottom: -6px;
+  border: 1px solid #ccc;
+  background: #FFF8D5;
+  color: #666;
+  }
+}
+
 .source-details-toggle {
   cursor: pointer;
   position: relative;
@@ -435,9 +419,6 @@ Henry, get rid of me!!!
   &:hover .source-item {
     background: #FFF9DA;
   }
-  // .item-content {
-  //   background: none!important;
-  // }
   &.active {
     &:after {
       content: '';
@@ -465,69 +446,6 @@ Henry, get rid of me!!!
     }
   }
 }
-
-
-// Finally ! working on this.
-// TODO: refactor all source related HTML soon. Its a mess
-/*all source related css classes copied from *css */
-// #note-count,
-// .STRUCTURE-source_item,
-// .STRUCTURE-source_item_preview,
-// .STRUCTURE-source_preview_item,
-// .source-info-container {
-//   margin-bottom: 20px;
-//   // padding: 3px 3% 8px;
-//   .vote-button {
-//     width: 25px;
-//     height: 25px;
-//   }
-//   .source-icon {
-//     padding: 5px;
-//     float: left;
-//   }
-//   .vote-count {
-//     width: 25px;
-//     height: 20px;
-//     padding-top: 0;
-//   }
-//   .item-content {
-//     background: #FFFBE6;
-//     padding: 14px;
-//     color: #BA8A3C;
-//   }
-//   .note-count {
-//     background-color: #fff;
-//     padding: 5px;
-//     float: right;
-//     overflow: hidden;
-//     color: #aaa;
-//     margin-right: 2px;
-//   }
-//   .SELF-source_icon3 {
-//     float: left;
-//   }
-//   .SELF-source_icon3 img {
-//     background-color: inherit;
-//     opacity: 0.5;
-//   }
-//   .item-summary {
-//     margin-left: 40px;
-//     > div {
-//       .show-link-in-popup {
-//         float: right;
-//       }
-//       div {
-//         display: inline;
-//         .pointer-item.item-name {
-//           padding-left: 0;
-//         }
-//       }
-//     }
-//   }
-// }
-
-
-
 
 
 .STRUCTURE-company_note_item .last-update,

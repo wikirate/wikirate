@@ -1,0 +1,373 @@
+$header-bgcolor: #f9f9f9;
+$header-color: #bbb;
+$mycontributions-bgcolor: #f4f4f4;
+$metric-color: #674ea7;
+$note-color: #03998d;
+$source-color: #ffc201;
+$overview-color: #666;
+$initiative-color: #555;
+$overview-color: #555;
+$border-color: #e5e5e5;
+$icon-color: #eee;
+$dark-header-color: #999;
+
+
+.open-view.TYPE-user {
+   > .card-frame > .card-body {
+    padding: 0;
+  }
+}
+
+.content-view.RIGHT-contribution, .open-view.RIGHT-contribution {
+  .contribution-content{
+    background-color:$mycontributions-bgcolor;
+  }
+  > .card-frame > .card-body {
+    padding: 0;
+  }
+  .col-profile {
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color:#fff;
+    .image-box {
+    margin: 12px auto;
+    }
+    .TYPE_PLUS_RIGHT-user-image.content-view img {
+      width: 100%;
+    }
+    .TYPE-image.RIGHT-logo {
+      overflow: hidden;
+      width: 100%;
+      overflow: hidden;
+      padding: 10% 0px;
+      text-align: center;
+    }
+    > .open-view > .card-frame > .card-header, .content-header {
+      background-color: $header-bgcolor;
+      color: $header-color;
+      height: 60px;
+      > .card-header-title > .card-title {
+        font-size: 19px;
+        float: left!important;
+        margin-top: 6px;
+      }
+    }
+    .content-header{
+        border-right: 1px solid rgba(0,0,0,0.05);
+        padding: 10px 10px 4px 10px;
+        border-color: #ddd;
+    }
+  
+    .profile-about-content{
+        .about-content{
+          padding: 5%;
+        }    
+    }
+  }  
+}
+
+.RIGHT-showcase.open-view {
+  .showcase {
+    margin-top: 15px;
+    color: $header-color;
+    > i {
+      color: $header-color;
+    }
+  }  
+}
+
+
+.RIGHT-Xfollow.profile-view {
+  .card-header-title {
+    width: 100%;
+    a {
+      float: right;
+      color: #03998d;
+      font-size: 0.7em;
+    }
+  }
+  .list-group-item {
+    border: none;
+  }
+}
+
+.RIGHT-activity.open-view {
+  color: $header-color;
+  .activity {
+    font-size: 0.7em;
+    white-space: nowrap;
+    overflow-x: hidden;
+    span {
+      vertical-align: top;
+      &.glyphicon {
+        font-size: 0.7em;
+        margin-top: 5px;
+      }
+    }
+    div {
+      display: inline-block;
+    }
+  }
+}
+
+.RIGHT-my_contribution.open-view > .card-frame {
+  > .card-header {
+    color: $dark-header-color;
+    
+    /* every contribution section has an invisible top margin to adjust the inpage links
+    the position: relative ensures that the contribution count links in the header are clickable */
+    position: relative;
+    padding: 0;
+    .card-header-title {
+      > span {
+        padding-left: 10px;
+        padding-top: 10px;
+      }
+      > .pull-right {
+        padding-right: 10px;
+        padding-top: 10px;
+      }
+      width: 100%;
+      text-align: center;
+      .card-title {
+        float: left;
+      }
+      .counts {
+        height: 59px;
+        background: white;
+        display: inline-block;
+        border-left: 1px solid $border-color;
+        .item {
+          // .metrics {
+          //   color: $metric-color;
+          // }
+          // .notes {
+          //   color: $note-color;
+          // }
+          // .sources {
+          //   color: $source-color;
+          // }
+          // .overviews {
+          //   color: $overview-color;
+          // }
+          // .initiatives {
+          //   color: $initiative-color;
+          // }
+          padding: 5px 20px 3px 20px;
+          span {
+            font-size: 20px;
+            // font-weight: bold;
+            color: #737373;
+          }
+          p {
+            font-size: 15px;
+            color: $header-color;
+          }
+          float: left;
+          height: 100%;
+          border-right: 1px solid $border-color;
+          background: white;
+          text-decoration: none;
+          &:hover{
+            background: #fafafa;
+          }
+        }
+      }
+    }
+  }
+  > .card-body {
+    
+    background-color: $mycontributions-bgcolor;
+  
+    .RIGHT-contributed_metric > .card-frame > .card-header {
+      border-left: 5px solid $metric-color;
+    } 
+    .RIGHT-contributed_note > .card-frame > .card-header {
+      border-left: 5px solid $note-color;
+    } 
+    .RIGHT-contributed_source > .card-frame > .card-header {
+      border-left: 5px solid $source-color;
+    } 
+   .RIGHT-contributed_initiative > .card-frame > .card-header {
+      border-left: 5px solid $initiative-color;
+    } 
+    .RIGHT-contributed_analysis > .card-frame > .card-header {
+      border-left: 5px solid $overview-color;
+    } 
+    
+    .open-view.RIGHT-contributed_analysis> .card-frame .nav.nav-pills {
+      width: 139px;
+    }
+    .open-view, .closed-view {
+      margin-bottom: 10px;
+      > .card-frame {
+        > .card-body p {
+          text-align: center;
+        }
+        .nav.nav-pills {
+            margin-left: auto;
+            margin-top: -15px;
+            text-align: center;
+            margin-right: auto;
+            border: 1px solid $border-color;
+            background-color: #F9F9F9;
+            font-size:12px;
+        }
+        > .card-header {
+          background-color: #fff;
+          font-size: 18px;
+          i {
+            color: $icon-color;
+          }
+          span.item-count {
+            font-size: 18px;
+            color: $icon-color;
+            margin-right: 10px;
+          }
+          a.toggler {
+            font-size: 12px;
+            color: $dark-header-color;
+            z-index: 5;
+            &.disabled {
+              color: $icon-color;
+            }
+          }
+        }
+      }
+    }
+    
+  }
+}
+
+.RIGHT-contributed_analysis {
+  &.open-view, &.closed-view {
+    .card-frame > .card-header > .card-header-title > img {
+      width: 20px;
+      opacity: 0.3;
+    }
+  }
+}
+
+.RIGHT-contributed_note, .RIGHT-contributed_source, .RIGHT-contributed_metric, .RIGHT-contributed_initiative, .RIGHT-contributed_analysis{
+  &.open-view > .card-frame > .card-header > .card-header-title {
+    width: 100%;
+  }
+  &.closed-view > .card-frame {
+    padding-right: 0;
+    > .card-header {
+      width: 100%;
+      background-color: #fff;
+      > .card-header-title {
+        width: 100%;
+      }
+    }
+  }
+  &:before { 
+    content: '';
+    display: block; 
+    position: relative; 
+    width: 0; 
+    height: 70px; 
+    margin-top: -70px 
+  }
+}
+
+
+
+.content-view.TYPE_PLUS_RIGHT-html-initiative_edited_by, .showcase {
+  .content-view.TYPE-initiative {
+    display: inline-block;
+    width: 300px;
+    h4 {
+      color: $dark-header-color;
+    }
+    p {
+      font-size: 14px;
+      color: $header-color;
+    }
+  }
+}
+
+.closed-content div.dropzone {
+  display: none !important;
+}
+.dropzone,.removezone {
+  display: none;
+  position: fixed;
+  background: #E7E7E7;
+  border-color: rgb(176, 176, 176);
+  padding: 110px;
+  z-index: 100;
+  min-width: 914px;
+  text-align: center;
+  padding: 54px;
+  left: 34%;
+  color: #838383;
+  border-width: 3px;
+  border-style: dashed;
+}
+
+.dropzone{
+  top: 67px;
+}
+.removezone {
+  bottom: 0;
+
+}
+
+.closed-content div.removezone {
+  display: none !important;
+}
+
+
+.open-view.RIGHT-contributed_metric .yinyang-row .metric-item .header {
+  border: none;
+}
+
+.open-view.RIGHT-contributed_analysis, .showcase {
+  .overview-item {
+    width: 350px;
+    height: 147px;
+  }
+}
+
+
+.contributions-about-link {
+    padding: 14px 12px;
+    position: absolute;
+    color: #A7A5A5;
+    font-size:12px
+}
+
+.open-view.RIGHT-showcase .card-frame {
+    padding-bottom: 40px;
+    margin-bottom: 0px;
+}
+
+
+ /*----------- Media queries ---------*/
+        
+        @media all and (max-width: 1150px) {
+ 
+        }
+        @media all and (max-width: 1205px) {
+    
+        }
+        @media all and (max-width: 990px) {
+          .contributions-about-link {
+              position: relative;
+          }
+        }
+        @media all and (max-width: 48em) {
+        
+        }
+        @media all and (max-width:47em ) {
+    
+        
+        }
+        
+        /*----------- Media queries- For mobile devices ---------*/
+        
+        @media all and (max-width:40em ) {
+        
+        }
