@@ -3,14 +3,14 @@ $(document).ready ->
   $source_form_container = $("#source-form-container")
 
   # stick source preview container when scrolled the page
-  stickContent = () ->
+  stickContent = ->
     $previewContainer = $("#source-preview-main")
     $metricContainer = $("#metric-container")
     stickClass = {
-      add : () ->
+      add : ->
         $previewContainer.addClass 'stick-right'
         $metricContainer.addClass 'stick-left'
-      remove : () ->
+      remove : ->
         $previewContainer.removeClass 'stick-right'
         $metricContainer.removeClass 'stick-left'
     }
