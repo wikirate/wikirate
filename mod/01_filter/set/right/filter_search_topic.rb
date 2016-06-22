@@ -16,32 +16,32 @@ def metric_wql opts, return_param=nil
   wql = { type_id: MetricID }
   wql[:return] = return_param if return_param
   filter_by_name wql, opts[:metric] if opts[:metric].present?
-  filter_by_desinger wql, opts[:desinger]
+  filter_by_designer wql, opts[:designer]
   filter_by_topic wql, opts[:topic]
   filter_by_year wql, opts[:year]
   filter_by_project wql, opts[:project]
   wql
 end
 
-def filter_by_desinger wql, industry
-  return unless desinger.nil?
+def filter_by_designer wql, designer
+  return unless designer.nil?
   filter = left.fetch(trait: :metric_value_filter)
   wql[:left_plus] = [
     filter.industry_metric_name,
     { right_plus: [
       filter.industry_value_year,
-      { right_plus: ["value", { eq: industry }] }
+      { right_plus: ["value", { eq: designer }] }
     ] }
   ]
 end
 
 format :html do
   def page_link_params
-    [:sort, :metric, :designer, :topic, :project, :year]
+    [:sort, :topic, :metric, :wikirate_company, :project, :year]
   end
 
   def default_name_formgroup_args args
-    args[:name] = "metric"
+    args[:name] = "topic"
   end
 
   def default_sort_formgroup_args args
@@ -56,8 +56,8 @@ format :html do
 
   def default_filter_form_args args
     args[:formgroups] = [
-      :sort_formgroup, :metric_formgroup, :designer_formgroup,
-      :topic_formgroup, :project_formgroup, :year_formgroup
+      :sort_formgroup, :name_formgroup, :metric_formgroup,
+      :company_formgroup, :project_formgroup
     ]
   end
 end

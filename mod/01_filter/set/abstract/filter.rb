@@ -142,7 +142,7 @@ format :html do
   end
 
   view :year_formgroup do
-    select_filter :year
+    select_filter :year, "Year"
   end
 
   view :topic_formgroup do
@@ -153,12 +153,16 @@ format :html do
     select_filter :metric
   end
 
+  view :company_formgroup do
+    select_filter :wikirate_company, "Company"
+  end
+
   view :designer_formgroup do
-    metrics = Card.search type_id: MetricID
+    metrics = Card.search type_id: MetricID, return: :name
     designers = metrics.map do |m|
       names = m.to_name.parts
       # score metric?
-      names.length == 3 ? names[2] : names [0]
+      names.length == 3 ? names[2] : names[0]
     end.uniq!
     simple_select_filter "designer", [["--", ""]] + designers,
                          Env.params[:designer]
