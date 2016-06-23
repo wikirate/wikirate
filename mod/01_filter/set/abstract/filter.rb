@@ -38,6 +38,7 @@ def company_wql opts, return_param=nil
 end
 
 def filter_by_name wql, name
+  return unless name.present?
   wql[:name] = ["match", name]
 end
 
