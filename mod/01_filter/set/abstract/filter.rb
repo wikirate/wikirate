@@ -103,7 +103,7 @@ format :html do
   end
 
   def select_filter type_codename, label=nil
-    label ||= type_codename.to_s
+    label ||= type_codename.to_s.capitalize
     options = type_options type_codename
     options.unshift(["--", ""])
     simple_select_filter type_codename.to_s, options, Env.params[type_codename],
@@ -139,11 +139,11 @@ format :html do
   end
 
   view :project_formgroup do
-    select_filter :project, "Project"
+    select_filter :project
   end
 
   view :year_formgroup do
-    select_filter :year, "Year"
+    select_filter :year
   end
 
   view :topic_formgroup do
