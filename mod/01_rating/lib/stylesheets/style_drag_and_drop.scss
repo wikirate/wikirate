@@ -284,7 +284,7 @@ $bright-text-color: #e5e5e5;
 }
 
 .drag-item .value-item .header {
-  cursor: move;
+  // cursor: move;
 }
 
 .drag-item, .yinyang-row{
@@ -343,20 +343,18 @@ $bright-text-color: #e5e5e5;
     .header {
       width: 60%;
       .name {
-        width: 70%;
+        // width: 70%;
       }
     }
 
     .data {
-      width: 38%;
+      width: 40%;
       .data-item {
         float: left;
-        width: 90%;
+        width: 100%;
+        padding-right: 10px;
       }
-      &:hover{
-        background-color: #fafafa;
-        cursor: pointer;
-      }
+
     }
 
     .no-data {
@@ -369,6 +367,10 @@ $bright-text-color: #e5e5e5;
     .metric-thumbnail {
       // border: none;
       // font-size: inherit;
+    }
+    &:hover{
+      background-color: #fafafa;
+      cursor: pointer;
     }
   }
 
@@ -471,7 +473,9 @@ $bright-text-color: #e5e5e5;
       margin-top: 15px;
       padding-left: 15px;
     }
-
+    .fa-commenting, .fa-check-circle{
+      font-size: 15px;
+    }
     .contribution {
       float: right;
       width: 58px;
@@ -674,7 +678,7 @@ $bright-text-color: #e5e5e5;
     }
   }
   .header {
-    width: 62%;
+    width: 60%;
     &:hover {
       background: #fafafa;
     }
