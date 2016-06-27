@@ -39,8 +39,8 @@ def check_option
           wikirate_company+metric
           wikirate_company+topic
           wikirate_company+source
-          wikirate_company+claim
-          wikirate_topic+claim
+          wikirate_company+note
+          wikirate_topic+note
           wikirate_topic+metric
           wikirate_topic+source
           wikirate_topic+company)
