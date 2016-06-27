@@ -107,8 +107,14 @@ format :html do
   end
 
   view :add_value_buttons do |_args|
+    policy = card.fetch(trait: :research_policy, new: {}).item_cards.first.name
+    is_admin = Card::Auth.always_ok?
+    is_owner = Auth.current.id == card.creator.id
+    is_designer_assessed = policy.casecmp("designer assessed") == 0
+    # TODO: add metric designer respresentative logic here
+    return if is_designer_assessed && !(is_admin || is_owner)
     <<-HTML
-    <div class="row padding-top-10">
+    <div class="row margin-no-left-15">
       <a class="btn btn-primary"  href='#{add_value_path}'>
         #{fa_icon 'plus'} Add new value
       </a>

@@ -1,4 +1,39 @@
 format :html do
+  def related_claim_wql
+    {
+      left: {
+        type_id: Card::ClaimID
+      },
+      right: "source",
+      link_to: card.name,
+      return: "count"
+    }
+  end
+
+  def related_metric_wql
+    {
+      type_id: Card::MetricID,
+      right_plus: [
+        { type_id: Card::WikirateCompanyID },
+        right_plus: [
+          { type: "year" },
+          right_plus: [
+            "source", { link_to: card.name }
+          ]
+        ]
+      ],
+      return: "count"
+    }
+  end
+
+  def claim_count
+    Card.search related_claim_wql
+  end
+
+  def metric_count
+    Card.search related_metric_wql
+  end
+
   view :preview, tags: :unknown_ok do |args|
     url_card = card.fetch(trait: :wikirate_link)
     url = url_card ? url_card.item_names.first : nil
@@ -168,30 +203,6 @@ format :html do
 
   view :preview_options, tags: :unknown_ok  do |args|
     url = args[:url]
-    related_claim_wql = {
-      left: {
-        type_id: Card::ClaimID
-      },
-      right: "source",
-      link_to: card.name,
-      return: "count"
-    }
-    related_metric_wql = {
-      type_id: Card::MetricID,
-      right_plus: [
-        { type_id: Card::WikirateCompanyID },
-        right_plus: [
-          { type: "year" },
-          right_plus: [
-            "source", { link_to: card.name }
-          ]
-        ]
-      ],
-      return: "count"
-    }
-    claim_count = Card.search related_claim_wql
-    metric_count = Card.search related_metric_wql
-
     # Source Details tab
     result = %(
       <li role="presentation" class="active" >
@@ -212,7 +223,12 @@ format :html do
     result += %(
       <li role="presentation" >
         <a class='' data-target="#tab_metrics" data-toggle="source_preview_tab_ajax" href='/#{card.cardname.url_key}+metric_search?slot[hide]=header,menu' >
-          <i class="fa fa-glass"><span id="metric-count-number " class="count-number">#{metric_count}</span></i><span>#{Card[MetricID].name.pluralize}</span>
+          <i class="fa fa-bar-chart">
+          <span id="metric-count-number" class="count-number">
+            #{metric_count}
+          </span>
+          </i>
+          <span>#{Card[MetricID].name.pluralize}</span>
         </a>
       </li>
     )
