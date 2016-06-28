@@ -1,27 +1,14 @@
 include_set Abstract::Filter
 
-def get_query params={}
-  filter = params_to_hash %w(metric designer wikirate_topic project year)
-  search_args = metric_wql filter
-  sort_by search_args, Env.params["sort"]
-  puts search_args.to_s.red
-  params[:query] = search_args
-  super(params)
+def default_sort_by_key
+  "upvoted"
 end
 
-def item_cards params={}
-  s = query(params)
-  raise("OH NO.. no limit") unless s[:limit]
-  query = Query.new(s, comment)
-  if %w(company values).include?(Env.params["sort"])
-    # sort table alias always stick to the first table, but I need the next tabl
-    sort = query.mods[:sort].scan(/c([\d+]).db_content/).last.first.to_i + 1
-    query.mods[:sort] = "c#{sort}.db_content"
-  end
-  query.run
+def params_keys
+  %w(metric designer wikirate_topic project year)
 end
 
-def metric_wql opts, return_param=nil
+def search_wql opts, return_param=nil
   wql = { type_id: MetricID }
   wql[:return] = return_param if return_param
   filter_by_name wql, opts[:metric]
@@ -33,8 +20,7 @@ def metric_wql opts, return_param=nil
 end
 
 def sort_by wql, sort_by
-  wql[:sort_as] = "integer"
-  wql[:dir] = "desc"
+  super wql, sort_by
   wql[:sort] =
     case sort_by
     when "values"

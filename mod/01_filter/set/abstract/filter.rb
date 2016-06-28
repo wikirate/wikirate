@@ -1,5 +1,44 @@
 include_set Type::SearchType
 
+def sort?
+  true
+end
+
+def default_sort_by_key
+  "metric"
+end
+
+def params_keys
+  %w(metric designer wikirate_topic project year)
+end
+
+def get_query params={}
+  filter = params_to_hash params_keys
+  search_args = search_wql filter
+  sort_by search_args, Env.params["sort"] if sort?
+  params[:query] = search_args
+  super(params)
+end
+
+def item_cards params={}
+  s = query(params)
+  raise("OH NO.. no limit") unless s[:limit]
+  query = Query.new(s, comment)
+  if sort?
+    # sort table alias always stick to the first table, but I need the next tabl
+    sort = query.mods[:sort].scan(/c([\d+]).db_content/).last.first.to_i + 1
+    query.mods[:sort] = "c#{sort}.db_content"
+  end
+  query.run
+end
+
+def sort_by wql, sort_by
+  wql[:sort_as] = "integer"
+  wql[:dir] = "desc"
+  wql[:sort] = {
+    right: (sort_by || default_sort_by_key), right_plus: "*cached count" }
+end
+
 def virtual?
   true
 end
@@ -28,7 +67,7 @@ def industry_value_year
   "2015"
 end
 
-def company_wql opts, return_param=nil
+def search_wql opts, return_param=nil
   wql = { type_id: WikirateCompanyID }
   wql[:return] = return_param if return_param
   filter_by_name wql, opts[:company] if opts[:company].present?

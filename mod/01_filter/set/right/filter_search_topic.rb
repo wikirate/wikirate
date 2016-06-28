@@ -1,20 +1,20 @@
 include_set Abstract::Filter
 
-def get_query params={}
-  filter = params_to_hash %w(topic metric project wikirate_company)
-  search_args = metric_wql filter
-  params[:query] = search_args
-  super(params)
+def default_sort_by_key
+  "metric"
 end
 
-def metric_wql opts, return_param=nil
+def params_keys
+  %w(topic metric project wikirate_company)
+end
+
+def search_wql opts, return_param=nil
   wql = { type_id: WikirateTopicID }
   wql[:return] = return_param if return_param
   filter_by_name wql, opts[:topic]
   filter_by_metric wql, opts[:metric]
   filter_by_company wql, opts[:wikirate_company]
   filter_by_project wql, opts[:project]
-  puts wql.to_s.red
   wql
 end
 
@@ -46,12 +46,10 @@ format :html do
 
   def default_sort_formgroup_args args
     args[:sort_options] = {
-      "Most Upvoted" => "upvoted",
-      "Most Recent" => "recent",
-      "Most Companies" => "company",
-      "Most Values" => "values"
+      "Most Metrics" => "metric",
+      "Most Companies" => "company"
     }
-    args[:sort_option_default] = "upvoted"
+    args[:sort_option_default] = "metric"
   end
 
   def default_filter_form_args args
