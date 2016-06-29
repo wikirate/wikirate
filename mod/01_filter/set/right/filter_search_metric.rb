@@ -4,6 +4,10 @@ def default_sort_by_key
   "upvoted"
 end
 
+def shift_sort_table?
+  %w(values company).include?(Env.params["sort"] || default_sort_by_key)
+end
+
 def params_keys
   %w(metric designer wikirate_topic project year)
 end

@@ -4,6 +4,10 @@ def sort?
   true
 end
 
+def shift_sort_table?
+  true
+end
+
 def default_sort_by_key
   "metric"
 end
@@ -24,7 +28,7 @@ def item_cards params={}
   s = query(params)
   raise("OH NO.. no limit") unless s[:limit]
   query = Query.new(s, comment)
-  if sort?
+  if sort? && shift_sort_table?
     # sort table alias always stick to the first table, but I need the next tabl
     sort = query.mods[:sort].scan(/c([\d+]).db_content/).last.first.to_i + 1
     query.mods[:sort] = "c#{sort}.db_content"
