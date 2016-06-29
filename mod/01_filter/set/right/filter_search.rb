@@ -1,5 +1,3 @@
-include_set Abstract::Filter
-
 def filter_words
   filter_words = Array.wrap(Env.params[:wikirate_company]) || []
   if Env.params[:wikirate_topic]
@@ -55,6 +53,7 @@ def sort_query
 end
 
 format :html do
+  include Set::Abstract::Filter::HtmlFormat
   def page_link_params
     [:sort, :cited, :claimed, :wikirate_company, :wikirate_topic, :wikirate_tag]
   end

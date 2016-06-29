@@ -1,10 +1,5 @@
-include_set Abstract::Filter
-
-def virtual?
-  true
-end
-
 format :html do
+  include Set::Abstract::Filter::HtmlFormat
   def filter_categories
     %w(company industry project)
   end
