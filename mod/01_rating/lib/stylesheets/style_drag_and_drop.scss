@@ -109,7 +109,7 @@ $bright-text-color: #e5e5e5;
 
 .TYPE-company,.TYPE-topic, .RIGHT-overview_page,.RIGHT-company_page, .RIGHT-reference_page,.RIGHT-note_page, .RIGHT-topic_page{
   &.card-content{
-    padding: 0;
+    //padding: 0;
   }
   &.open-view .company-page-logo-container,   &.open-view .topic-page-logo-container {
     float: left;
@@ -141,8 +141,9 @@ $bright-text-color: #e5e5e5;
     display:inline-block;
     border:0px;
     margin-top: 1px;
+    width: 72%;
     >li{
-      width:82px;
+      width:20%;
     }
   }
 
@@ -568,7 +569,7 @@ $bright-text-color: #e5e5e5;
       z-index: 3;
       top: 65px;
       left: 50%;
-      max-width: 610px;
+      max-width: 935px;
       width:50%;
       height: 100%;
       margin-left: 0px;

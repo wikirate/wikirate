@@ -66,6 +66,9 @@
             margin-right: 15px;
         }
     }
+    .topic-header {
+      padding: 0px;
+    }
 }
 .browse-company-item,
 .browse-topic-item {
@@ -279,6 +282,7 @@
     .timeline-body {
         width: 100%;
         float: left;
+        position: relative; 
         .timeline-data {
             width: 100%;
             // margin-left: -10px;
@@ -604,7 +608,7 @@
     overflow: hidden;
 }
 .SELF-metric .search-result-item.item-content {
-    width: 32%;
+    width: 15%;
     padding: 10px;
     display: inline-block;
     min-width: 350px;
@@ -800,18 +804,48 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     float: left;
     overflow: hidden;
 }
+
+
 //Div alignments
+#metric-container, #source-preview-main {
+  border: 1px solid $div-border-color;
+}
+#metric-container {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 0px 15px;
+}
+#source-preview-main {
+    padding: 1px;
+}
+
+.stick-left, .stick-right{
+  position: fixed;
+  top: 130px; //68px;
+  bottom: 0px;
+  z-index: 1;
+}
+
+.stick-left{
+  overflow-y: scroll;
+  width: 40.8%;
+}
+
 .stick-right {
-    position: fixed;
-    max-width: 612px;
-    top: 68px;
-    left: 50%;
-    bottom: 10%;
-    z-index: 1;
+    width: 57%;
+    left: 41.9%;
+    margin: -1px;
     .webpage-preview {
         height: auto!important;
-        top: 0;
+        top: 81px;
         bottom: 0;
         position: absolute;
     }
 }
+
+//@media (min-width: 1200px){
+//  .stick-right {
+//      max-width: 57%;
+//      left: 41.9%;
+//    }
+//}

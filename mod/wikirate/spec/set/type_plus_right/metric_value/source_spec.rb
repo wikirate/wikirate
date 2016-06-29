@@ -12,7 +12,7 @@ describe Card::Set::TypePlusRight::MetricValue::Source do
         name: "#{@metric.name}+#{@company.name}+new value"
       )
       expect(metric_value_form_card.format.render_core).to(
-        have_tag("div", with: { id: "source-form-container" })
+        have_tag("div", with: { id: "source_preview_main" })
       )
     end
   end
