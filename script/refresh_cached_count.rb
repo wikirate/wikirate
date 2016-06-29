@@ -31,19 +31,12 @@ def check_option
   if ARGV.empty?
     msg =
       %(Please specify what cache should be refreshed.
-        options:
-          all
-          metric+wikirate_company_type
-          metric+value
-          metric+source
-          wikirate_company+metric
-          wikirate_company+topic
-          wikirate_company+source
-          wikirate_company+note
-          wikirate_topic+note
-          wikirate_topic+metric
-          wikirate_topic+source
-          wikirate_topic+company)
+options:
+all\nmetric+wikirate_company_type\nmetric+value\nmetric+source
+wikirate_company+metric\nwikirate_company+topic
+wikirate_company+source\nwikirate_company+note
+wikirate_topic+note\nwikirate_topic+metric
+wikirate_topic+source\nwikirate_topic+company)
     puts msg
     exit
   end
