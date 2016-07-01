@@ -5,7 +5,7 @@
     <div id="fakeLoader"></div>
     {{nav bar|core}}
     {{_main|open}}
-    {{#wikirate footer| content}}
+    {{wikirate footer compact| content}}
     {{ajax loader anime|content}}
     {{_main+google analytics conversion snippet|core}}
 
