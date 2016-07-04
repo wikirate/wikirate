@@ -35,12 +35,62 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
       value_idx = 1
       @companies.each do |company|
         expect(results.key?(company.name)).to be_truthy
-        for i in 0...3
+        0.upto(3) do |i|
           expected_result = { year: (2015 - i).to_s,
                               value: (value_idx * 5 + i).to_s }
           expect(results[company.name]).to include(expected_result)
         end
         value_idx += 1
+      end
+    end
+    context "delete a value" do
+      it "removes deleted cached value" do
+        Card::Auth.as_bot do
+          Card["#{@metric.name}+Apple Inc.+2015"].delete
+        end
+        results = all_values.get_cached_values
+        not_expected_result = {
+          year: "2015", value: "20"
+        }
+        expect(results["Apple Inc."]).not_to include(not_expected_result)
+      end
+    end
+    context "update a value" do
+      it "updates cached value" do
+        card = Card["#{@metric.name}+Apple Inc.+2015+value"]
+        card.content = 25
+        card.save!
+        results = all_values.get_cached_values
+        expected_result = {
+          year: "2015", value: "25"
+        }
+        expect(results["Apple Inc."]).to include(expected_result)
+      end
+    end
+    context "rename a value" do
+      it "updates cached value" do
+        card = Card["#{@metric.name}+Apple Inc.+2015+value"]
+        card.name = "#{@metric.name}+Death Star+2000+value"
+        card.save!
+        results = all_values.get_cached_values
+        expected_result = {
+          year: "2000", value: "20"
+        }
+        expect(results["Death Star"]).to include(expected_result)
+        expect(results["Apple Inc."]).not_to include(expected_result)
+      end
+    end
+    context "rename a metric value" do
+      it "updates cached value" do
+        card = Card["#{@metric.name}+Apple Inc.+2015"]
+        card.name = "#{@metric.name}+Death Star+2000"
+        card.save!
+        results = all_values.get_cached_values
+        expected_result = {
+          year: "2000", value: "20"
+        }
+        expect(results["Death Star"]).to include(expected_result)
+        expect(results["Apple Inc."]).not_to include(expected_result)
       end
     end
   end

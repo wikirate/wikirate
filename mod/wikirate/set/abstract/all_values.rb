@@ -20,6 +20,14 @@ def raw_content
   )
 end
 
+def metric
+  cardname.parts[0..-2].join "+"
+end
+
+def metric_card
+  Card.fetch metric
+end
+
 def sort_params
   [
     (Env.params["sort_by"] || "value"),
@@ -75,9 +83,13 @@ def year_filter
   selected_year == "latest" ? nil : selected_year
 end
 
-def get_cached_values
+def construct_cached_hash
   cached_json = fetch(trait: :cached_count, new: {}).format.render_raw
-  cached_hash = JSON.parse(cached_json).with_indifferent_access || {}
+  JSON.parse(cached_json).with_indifferent_access || {}
+end
+
+def get_cached_values
+  cached_hash = construct_cached_hash
   cached_hash.keys.each do |key|
     cached_hash[Card[key.to_i].name] = cached_hash.delete key
   end
