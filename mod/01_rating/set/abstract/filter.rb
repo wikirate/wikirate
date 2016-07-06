@@ -79,5 +79,3 @@ format :html do
               args
   end
 end
-
-
