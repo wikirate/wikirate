@@ -6,6 +6,8 @@
 //
 // Note: Deprecated `.box-shadow()` as of v3.1.0 since all of Bootstrap's
 // supported browsers that have box shadow capabilities now support it.
+{{style:mixins and variables}}
+
 @mixin box-shadow($shadow...) {
     -webkit-box-shadow: $shadow; // iOS <4.3 & Android <4.1
     box-shadow: $shadow;
