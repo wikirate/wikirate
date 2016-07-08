@@ -1,11 +1,24 @@
 include_set Set::TypePlusRight::Metric::AllValues
 
-def calculate_count changed_card=nil
+def refresh_cache_completely
   result = {}
   item_cards(default_query: true).each do |value_card|
     metric = value_card.metric_card.id
     result[metric] = [] unless result.key?(metric)
-    result[metric].push year: value_card.year, value: value_card.value
+    result[metric].push construct_a_row value_card(value_card)
   end
+  # all metrics
+  fill_metrics result
   result.to_json
+end
+
+def fill_metrics result
+  Card.search(type_id: MetricID, return: :id).each do |metric|
+    result[metric] = [] unless result[metric]
+  end
+end
+
+def construct_a_row value_card
+  { year: value_card.year, value: value_card.value,
+    last_update_time: value_card.updated_at.to_i }
 end

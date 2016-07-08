@@ -1,7 +1,11 @@
+def virtual?
+  true
+end
+
 format :html do
   include Set::Abstract::Filter::HtmlFormat
   def filter_categories
-    %w(company industry project)
+    %w(metric wikirate_topic research_policy metric_type)
   end
 
   def filter_active?
@@ -30,8 +34,9 @@ format :html do
       <div id="collapseFilter" class="panel-collapse collapse #{'in' if filter_active?}">
 
         <form action="/#{action}?view=content_left_col" method="GET" data-remote="true" class="slotter">
-          <h4>Company</h4>
-          <div class="margin-12"> #{company_filter_fields(args).join} </div>
+          <h4>Metric</h4>
+          <div class="margin-12"> #{metric_filter_fields(args).join} </div>
+          #{other_filter_fields(args).join}
           <div class="filter-buttons">#{_optional_render :button_formgroup, args}</div>
         </form>
 
@@ -40,19 +45,34 @@ format :html do
     HTML
   end
 
-  def company_filter_fields args
+  def metric_filter_fields args
     [
       _optional_render(:name_formgroup, args),
       _optional_render(:topic_formgroup, args),
-      _optional_render(:project_formgroup, args)
+      _optional_render(:research_policy_formgroup, args),
+      _optional_render(:importance_formgroup, args),
+      _optional_render(:metric_type_formgroup, args)
     ]
   end
 
-  def answer_filter_fields args
-    [_optional_render(:year_formgroup, args)]
+  def other_filter_fields args
+    [
+      _optional_render(:metric_value_formgroup, args),
+      _optional_render(:year_formgroup, args),
+      _optional_render(:sort_formgroup, args)
+    ]
+  end
+
+  def default_sort_formgroup_args args
+    args[:sort_options] = {
+      "Most Upvoted" => "upvoted",
+      "Most Recent" => "recent",
+      "Most Values" => "value"
+    }
+    args[:sort_option_default] = "upvoted"
   end
 
   def default_name_formgroup_args args
-    args[:name] = "company"
+    args[:name] = "metric"
   end
 end

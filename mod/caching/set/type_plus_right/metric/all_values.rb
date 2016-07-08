@@ -21,7 +21,9 @@ recount_trigger TypePlusRight::MetricValue::Value do |changed_card|
   metric_cache
 end
 
-# ... a Metric Value (type) is renamed, and delete
+# company rename and delete changes should also trigger the update?
+
+# ... a Metric Value (type) is renamed, and deleted
 recount_trigger Type::MetricValue do |changed_card|
   metric_cache = [changed_card.metric_card.fetch(trait: :all_values)]
   # it should also update the cache for the old name
@@ -107,10 +109,14 @@ def add_or_update_value changed_card, cached_hash
   row = get_record_from_year(rows, changed_card.year)
   value_card = get_value_card changed_card
   if rows.empty? || row.nil?
-    rows.push year: value_card.year, value: value_card.value
+    rows.push construct_a_row(value_card)
   else
     row[:value] = value_card.value
   end
+end
+
+def construct_a_row value_card
+  { year: value_card.year, value: value_card.value }
 end
 
 def company_id changed_card, from=:new
@@ -121,8 +127,7 @@ def add_value_to_hash changed_card, cached_hash
   company_id = company_id changed_card
   cached_hash[company_id] = [] unless cached_hash.key?(company_id)
   value_card = get_value_card changed_card
-  cached_hash[company_id].push year: value_card.year,
-                               value: value_card.value
+  cached_hash[company_id].push construct_a_row(value_card)
 end
 
 def remove_value_from_hash changed_card, cached_hash
@@ -137,7 +142,7 @@ def refresh_cache_completely
   item_cards(default_query: true).each do |value_card|
     company = value_card.company_card.id
     result[company] = [] unless result.key?(company)
-    result[company].push year: value_card.year, value: value_card.value
+    result[company].push construct_a_row(value_card)
   end
   result.to_json
 end

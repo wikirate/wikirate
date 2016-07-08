@@ -58,6 +58,10 @@ format :html do
               target: "_blank"
   end
 
+  view :metric_row do |_args|
+    render_content structure: "company_metric_drag_item"
+  end
+
   view :yinyang_row do |args|
     append_name =
       if card.left.metric_type_codename == :score
