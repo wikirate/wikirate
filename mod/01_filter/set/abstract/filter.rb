@@ -221,10 +221,11 @@ format :html do
   view :metric_type_formgroup do
     type_card = Card["metric_type"]
     options = Card.search type_id: type_card.id, return: :name, sort: "name"
-    # binding.pry
     checkboxes = options.map do |option|
+      checked = Env.params["metric_type"].present? &&
+                Env.params["metric_type"].include?(option.downcase)
       %(<label>
-        #{check_box_tag('metric_type[]', option.downcase) + option}
+        #{check_box_tag('metric_type[]', option.downcase, checked) + option}
       </label>)
     end
     formgroup "Type", checkboxes.join("")
@@ -248,10 +249,10 @@ format :html do
   view :importance_formgroup do
     options = {
       "All" => "all",
-      "Upvoted by me" => "upvoted",
-      "Downvoted by me" => "downvoted"
+      "Upvoted by me" => "upvotee",
+      "Downvoted by me" => "downvotee"
     }
-    simple_select_filter "vote", options, "all"
+    simple_select_filter "vote", options, Env.params["vote"] || "all"
   end
 
   view :industry_formgroup do

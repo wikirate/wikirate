@@ -62,7 +62,7 @@ format :html do
   end
 
   view :filter do |args|
-    subformat("#{card.name}+company_metric_filter")._render_content args
+    field_subformat(:company_metric_filter)._render_core args
   end
 
   view :metric_list do

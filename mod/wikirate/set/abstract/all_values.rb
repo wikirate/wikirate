@@ -148,7 +148,7 @@ format do
 
   def sorted_result sort_by, order, is_num=true
     sorted = case sort_by
-             when "company_name"
+             when "name"
                sort_name_asc card.cached_values
              when "value"
                sort_value_asc card.cached_values, is_num
@@ -185,7 +185,7 @@ format :html do
   end
 
   def sort_order sort_by, sort_order
-    if sort_by == "company_name"
+    if sort_by == "name"
       [toggle_sort_order(sort_order), "asc"]
     else
       ["asc", toggle_sort_order(sort_order)]
@@ -193,7 +193,7 @@ format :html do
   end
 
   def sort_icon sort_by, sort_order
-    if sort_by == "company_name"
+    if sort_by == "name"
       [sort_icon_by_state(sort_order), sort_icon_by_state("")]
     else
       [sort_icon_by_state(""), sort_icon_by_state(sort_order)]
@@ -220,7 +220,7 @@ format :html do
       <div class='yinyang-row column-header'>
         <div class='company-item value-item'>
           #{sort_link "Companies #{company_sort_icon}",
-                      sort_by: 'company_name', order: company_sort_order,
+                      sort_by: 'name', order: company_sort_order,
                       class: 'header'}
           #{sort_link "Values #{value_sort_icon}",
                       sort_by: 'value', order: value_sort_order,

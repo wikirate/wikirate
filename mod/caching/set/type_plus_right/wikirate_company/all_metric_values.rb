@@ -5,7 +5,7 @@ def refresh_cache_completely
   item_cards(default_query: true).each do |value_card|
     metric = value_card.metric_card.id
     result[metric] = [] unless result.key?(metric)
-    result[metric].push construct_a_row value_card(value_card)
+    result[metric].push construct_a_row value_card
   end
   # all metrics
   fill_metrics result
