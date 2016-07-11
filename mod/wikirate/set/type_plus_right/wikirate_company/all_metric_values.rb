@@ -20,10 +20,7 @@ def raw_content
 end
 
 def sort_params
-  [
-    (Env.params["sort_by"] || "name"),
-    (Env.params["sort_order"] || "asc")
-  ]
+  [(Env.params["sort"] || "upvoted"), "desc"]
 end
 
 def cached_values
@@ -40,13 +37,17 @@ def cached_values
 end
 
 def filter metric, values
+  filter_by_metric(metric) &&
+    filter_by_value(values) &&
+    filter_by_year(values)
+end
+
+def filter_by_metric metric
   filter_by_name(metric) &&
     filter_by_topic(metric) &&
     filter_by_research_policy(metric) &&
     filter_by_vote(metric) &&
-    filter_by_type(metric) &&
-    filter_by_value(values) &&
-    filter_by_year(values)
+    filter_by_type(metric)
 end
 
 def filter_by_name metric
@@ -114,6 +115,53 @@ format do
   def num?
     false
   end
+
+  def latest_row_value row, key
+    row[1].sort_by { |value| value[key] }.reverse[0][key]
+  end
+
+  def sort_recent_desc metric_values
+    metric_values.sort do |x, y|
+      value_a = latest_row_value x, "last_update_time"
+      value_b = latest_row_value y, "last_update_time"
+      value_b <=> value_a
+    end
+  end
+
+  def metric_vote_count metric_name
+    if (vote_count_card = Card[metric_name].fetch(trait: :vote_count))
+      vote_count_card.content.to_i
+    else
+      0
+    end
+  end
+
+  def sort_upvoted_desc metric_values
+    metric_values.sort do |x, y|
+      value_a = metric_vote_count(x[0])
+      value_b = metric_vote_count(y[0])
+      value_b <=> value_a
+    end
+  end
+
+  def sort_value_count_desc metric_values
+    metric_values.sort do |x, y|
+      y[1].size - x[1].size
+    end
+  end
+
+  def sorted_result sort_by, _order, _is_num=true
+    cached_values = card.cached_values
+    sorted = case sort_by
+             when "value"
+               sort_value_count_desc cached_values
+             when "recent"
+               sort_recent_desc cached_values
+             else # upvoted
+              sort_upvoted_desc cached_values
+             end
+    sorted
+  end
 end
 
 format :html do
@@ -125,21 +173,18 @@ format :html do
   end
 
   view :card_list_header do
-    sort_by, sort_order = card.sort_params
-    company_sort_order, value_sort_order = sort_order sort_by, sort_order
-    company_sort_icon, value_sort_icon = sort_icon sort_by, sort_order
-    %(
+    <<-HTML
       <div class='yinyang-row column-header'>
         <div class='company-item value-item'>
-          #{sort_link "Metrics #{company_sort_icon}",
-                      sort_by: 'company_name', order: company_sort_order,
-                      class: 'header'}
-          #{sort_link "Values #{value_sort_icon}",
-                      sort_by: 'value', order: value_sort_order,
-                      class: 'data'}
+          <div class='metric-list-header slotter header'>
+            Metrics
+          </div>
+          <div class='metric-list-header slotter data'>
+            Values
+          </div>
         </div>
       </div>
-    )
+    HTML
   end
 
   view :metric_list do |_args|
