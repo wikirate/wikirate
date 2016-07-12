@@ -20,7 +20,7 @@
     border-top: 3px solid $company-color;
     font-size: 18px;
     border-bottom: 1px solid $bright-text-color;
-    background: #FDFDFD;
+    background: #fff;
     padding: 2px 0 0;
 }
 .topic-header {
@@ -119,7 +119,7 @@
 }
 .STRUCTURE-browse_company_item,
 .STRUCTURE-browse_topic_item,
-.STRUCTURE-homepage_company_item,
+//.STRUCTURE-homepage_company_item,
 .company-page-logo-container {
     .contribution-details {
         display: none;
