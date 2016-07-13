@@ -1,4 +1,5 @@
 include_set Type::SearchType
+include_set Abstract::Utility
 
 def sort?
   true
@@ -16,14 +17,20 @@ def params_keys
   %w(metric designer wikirate_topic project year)
 end
 
+def target_type_id
+  WikirateCompanyID
+end
+
 def get_query params={}
-  filter = params_to_hash params_keys
-  search_args = search_wql filter
+  filter = fetch_params params_keys
+  search_args = search_wql target_type_id, filter
   sort_by search_args, Env.params["sort"] if sort?
   params[:query] = search_args
   super(params)
 end
 
+# the default sort will take the first table in the join
+# I need to override to shift the sort table to the next one
 def item_cards params={}
   s = query(params)
   raise("OH NO.. no limit") unless s[:limit]
@@ -53,27 +60,17 @@ def virtual?
 end
 
 def raw_content
-  %(
-    {
-      "name":"dummy"
-    }
-  )
+  %({ "name":"dummy" })
 end
 
-def params_to_hash params
-  params.each_with_object({}) do |param, hash|
-    if (val = Env.params[param])
-      hash[param.to_sym] = val
-    end
-  end
-end
-
-def search_wql opts, return_param=nil
-  wql = { type_id: WikirateCompanyID }
+def search_wql type_id, opts, return_param=nil
+  wql = { type_id: type_id }
   wql[:return] = return_param if return_param
-  filter_by_name wql, opts[:company] if opts[:company].present?
-  filter_by_industry wql, opts[:industry] if opts[:industry].present?
-  filter_by_project wql, opts[:project] if opts[:project].present?
+  params_keys.each do |key|
+    # link_to in #page_link with name will override the path
+    method_name = key.include?("_name") ? "name" : key
+    send("filter_by_#{method_name}", wql, opts[key])
+  end
   wql
 end
 
@@ -83,10 +80,12 @@ def filter_by_name wql, name
 end
 
 def filter_by_project wql, project
+  return unless project.present?
   wql[:referred_to_by] = { left: { name: project } }
 end
 
 def filter_by_industry wql, industry
+  return unless industry.present?
   wql[:left_plus] = [
     format.industry_metric_name,
     { right_plus: [
@@ -119,14 +118,15 @@ format :html do
 
   view :filter_form do |args|
     formgroups = args[:formgroups] || [:name_formgroup]
-    html = formgroups.map do |fg|
-      optional_render(fg, args)
-    end
+    html = formgroups.map { |fg| optional_render(fg, args) }
     content = output(html)
     action = card.left.name
     %( <form action="/#{action}" method="GET">#{content}</form>)
   end
 
+  # it was from filter_search.rb
+  # the filter args need to be included in the page link args
+  # otherwise it will lose the filter condition while changing pages
   def page_link text, page, _current=false, options={}
     @paging_path_args[:offset] = page * @paging_limit
     filter_args = {}
@@ -151,7 +151,8 @@ format :html do
   end
 
   def select_filter type_codename, label=nil
-    label ||= type_codename.to_s.capitalize
+    # take the card name as default label
+    label ||= Card[type_codename].name
     options = type_options type_codename
     options.unshift(["--", ""])
     simple_select_filter type_codename.to_s, options, Env.params[type_codename],
@@ -182,7 +183,7 @@ format :html do
   end
 
   view :name_formgroup do |args|
-    name = args[:name] || "Name"
+    name = args[:name] || "name"
     text_filter name, title: "Name"
   end
 
@@ -195,7 +196,7 @@ format :html do
   end
 
   view :topic_formgroup do
-    select_filter :wikirate_topic, "Topic"
+    select_filter :wikirate_topic
   end
 
   view :metric_formgroup do
@@ -203,7 +204,7 @@ format :html do
   end
 
   view :company_formgroup do
-    select_filter :wikirate_company, "Company"
+    select_filter :wikirate_company
   end
 
   view :metric_value_formgroup do
