@@ -90,7 +90,7 @@ format :html do
                 </a>
               </div>
             </div>
-            <div class="data ">
+            <div class="data">
               <div class="data-item hide-with-details">
                 {{_+latest value|concise}}
               </div>

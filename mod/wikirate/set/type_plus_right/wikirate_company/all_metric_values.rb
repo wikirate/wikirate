@@ -167,7 +167,7 @@ end
 format :html do
   view :card_list_items do |args|
     search_results.map do |row|
-      c = Card["#{row[0]}+#{card.cardname.left}"]
+      c = Card.fetch "#{row[0]}+#{card.cardname.left}"
       render :card_list_item, args.clone.merge(item_card: c)
     end.join "\n"
   end
