@@ -9,18 +9,11 @@ def shift_sort_table?
 end
 
 def params_keys
-  %w(metric designer wikirate_topic project year)
+  %w(metric_name designer wikirate_topic project year)
 end
 
-def search_wql opts, return_param=nil
-  wql = { type_id: MetricID }
-  wql[:return] = return_param if return_param
-  filter_by_name wql, opts[:metric]
-  filter_by_designer wql, opts[:designer]
-  filter_by_topic wql, opts[:wikirate_topic]
-  filter_by_year wql, opts[:year]
-  filter_by_project wql, opts[:project]
-  wql
+def target_type_id
+  MetricID
 end
 
 def sort_by wql, sort_by
@@ -40,7 +33,7 @@ def sort_by wql, sort_by
     end
 end
 
-def filter_by_topic wql, topic
+def filter_by_wikirate_topic wql, topic
   return unless topic.present?
   wql[:right_plus] ||= []
   wql[:right_plus].push ["topic", { refer_to: topic }]
@@ -70,11 +63,11 @@ end
 
 format :html do
   def page_link_params
-    [:sort, :metric, :designer, :wikirate_topic, :project, :year]
+    [:sort, :metric_name, :designer, :wikirate_topic, :project, :year]
   end
 
   def default_name_formgroup_args args
-    args[:name] = "metric"
+    args[:name] = "metric_name"
   end
 
   def default_sort_formgroup_args args

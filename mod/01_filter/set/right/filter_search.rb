@@ -58,17 +58,6 @@ format :html do
     [:sort, :cited, :claimed, :wikirate_company, :wikirate_topic, :wikirate_tag]
   end
 
-  def page_link text, page, _current=false, options={}
-    @paging_path_args[:offset] = page * @paging_limit
-    filter_args = {}
-    page_link_params.each do |key|
-      filter_args[key] = params[key] if params[key].present?
-    end
-    options[:class] = "card-paging-link slotter"
-    options[:remote] = true
-    link_to raw(text), path(@paging_path_args.merge(filter_args)), options
-  end
-
   view :no_search_results do |_args|
     %(
       <div class="search-no-results">

@@ -44,12 +44,12 @@ format :html do
     [
       _optional_render(:name_formgroup, args),
       _optional_render(:industry_formgroup, args),
-      _optional_render(:project_formgroup, args)
+      select_filter(:project)
     ]
   end
 
-  def answer_filter_fields args
-    [_optional_render(:year_formgroup, args)]
+  def answer_filter_fields _args
+    [select_filter(:year)]
   end
 
   def default_name_formgroup_args args

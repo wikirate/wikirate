@@ -1,7 +1,7 @@
 include_set Abstract::Filter
 
 def params_keys
-  %w(company industry project)
+  %w(company_name industry project)
 end
 
 def default_sort_by_key
@@ -10,7 +10,7 @@ end
 
 format :html do
   def page_link_params
-    [:sort, :company, :industry, :project]
+    [:sort, :company_name, :industry, :project]
   end
 
   def default_filter_form_args args
@@ -20,7 +20,7 @@ format :html do
   end
 
   def default_name_formgroup_args args
-    args[:name] = "company"
+    args[:name] = "company_name"
   end
 
   def default_sort_formgroup_args args
