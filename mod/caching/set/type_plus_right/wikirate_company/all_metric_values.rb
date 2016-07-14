@@ -7,15 +7,7 @@ def refresh_cache_completely
     result[metric] = [] unless result.key?(metric)
     result[metric].push construct_a_row value_card
   end
-  # all metrics
-  fill_metrics result
   result.to_json
-end
-
-def fill_metrics result
-  Card.search(type_id: MetricID, return: :id).each do |metric|
-    result[metric] = [] unless result[metric]
-  end
 end
 
 def construct_a_row value_card

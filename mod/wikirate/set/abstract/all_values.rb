@@ -75,7 +75,7 @@ end
 def company_filter
   filter = params_to_hash %w(company industry project)
   return unless filter.present?
-  Card.search company_wql(filter, "name")
+  Card.search search_wql(WikirateCompanyID, filter, "name")
 end
 
 def year_filter

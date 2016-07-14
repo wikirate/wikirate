@@ -216,7 +216,7 @@ format :html do
       "Edited this week" => "week",
       "Edited this month" => "month"
     }
-    simple_select_filter "value", options, "exists"
+    simple_select_filter "value", options, (Env.params["value"] || "exists")
   end
 
   view :metric_type_formgroup do

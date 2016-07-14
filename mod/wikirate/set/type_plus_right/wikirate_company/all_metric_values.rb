@@ -23,10 +23,22 @@ def sort_params
   [(Env.params["sort"] || "upvoted"), "desc"]
 end
 
+def fill_metrics existing_cache
+  result = {}
+  Card.search(type_id: MetricID, return: :name).each do |metric|
+    result[metric] = [] unless existing_cache[metric]
+  end
+  result
+end
+
 def cached_values
   @cached_metric_values ||= get_cached_values
 
   if @cached_metric_values
+    # replace the cache with non existing metric if value is none
+    if Env.params["value"] == "none"
+      @cached_metric_values = fill_metrics @cached_metric_values
+    end
     result = @cached_metric_values.select do |metric, values|
       filter metric, values
     end
@@ -158,7 +170,7 @@ format do
              when "recent"
                sort_recent_desc cached_values
              else # upvoted
-              sort_upvoted_desc cached_values
+               sort_upvoted_desc cached_values
              end
     sorted
   end

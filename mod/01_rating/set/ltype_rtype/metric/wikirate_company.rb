@@ -67,6 +67,25 @@ format :html do
   end
 
   view :metric_row do |args|
+    right_box =
+      if Env.params["value"] == "none"
+        url = "/#{card.company.to_name.url_key}?view=new_metric_value&"\
+          "metric[]=#{CGI.escape(card.metric_name.to_name.url_key)}"
+        <<-HTML
+        <a type="button" target="_blank" class="btn btn-primary btn-sm"
+          href="#{url}">Add Value</a>
+        HTML
+      else
+        <<-HTML
+          <div class="data-item hide-with-details">
+            {{_+latest value|concise}}
+          </div>
+          <div class="data-item show-with-details text-center">
+            <span class="label label-metric">[[_l|Metric Details]]
+            </span>
+          </div>
+        HTML
+      end
     wrap(args) do
       process_content <<-HTML
       <div class="drag-item yinyang-row">
@@ -91,13 +110,7 @@ format :html do
               </div>
             </div>
             <div class="data">
-              <div class="data-item hide-with-details">
-                {{_+latest value|concise}}
-              </div>
-              <div class="data-item show-with-details text-center">
-                <span class="label label-metric">[[_l|Metric Details]]
-                </span>
-              </div>
+            #{right_box}
             </div>
           </div>
           <div class="details"></div>
