@@ -10,6 +10,10 @@ def refresh_cache_completely
   result.to_json
 end
 
+def company_id changed_card, from=:new
+  Card[extract_name(changed_card, :metric, from)].id.to_s
+end
+
 def construct_a_row value_card
   { year: value_card.year, value: value_card.value,
     last_update_time: value_card.updated_at.to_i }

@@ -93,9 +93,6 @@ format :html do
           <div class="metric-details-toggle"
             data-append="metric_details_metric_header">
             <div class="header">
-              <div class="handle hidden-xs">
-                <span class="glyphicon glyphicon-option-vertical"></span>
-              </div>
               <div class="">{{_l+*vote count}}</div>
               <a href="{{_1+contributions|linkname}}">
               <div class="logo hidden-xs hidden-md">

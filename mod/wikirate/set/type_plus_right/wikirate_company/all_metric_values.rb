@@ -1,9 +1,5 @@
 include_set Abstract::AllValues
 
-def virtual?
-  true
-end
-
 def raw_content
   %(
     {
@@ -99,13 +95,13 @@ def filter_by_value values
   value = Env.params["value"] || "exists"
   return values.empty? if value == "none"
   return !values.empty? if value == "exists"
-  time_diff = get_second_by_unit value
+  time_diff = second_by_unit value
   values.any? do |v|
     v["last_update_time"] <= time_diff
   end
 end
 
-def get_second_by_unit unit
+def second_by_unit unit
   case unit
   when "last_hour"
     3600
