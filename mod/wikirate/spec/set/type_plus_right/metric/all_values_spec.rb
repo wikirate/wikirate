@@ -130,7 +130,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
     end
     it "sorts by company name asc" do
       results = @format.sorted_result(
-        "company_name", "asc", false
+        "name", "asc", false
       )
       expect(results.map { |x| x[0] }).to eq(
         ["Amazon.com, Inc.",
@@ -142,7 +142,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
     end
     it "sorts by company name desc" do
       results = @format.sorted_result(
-        "company_name", "desc", false
+        "name", "desc", false
       )
       expect(results.map { |x| x[0] }).to eq(
         ["Sony Corporation",
@@ -188,7 +188,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
           with_tag :a, with: {
             class: "header metric-list-header slotter",
             href: "/#{url_key}?limit=20&offset=0"\
-                                      "&sort_by=company_name"\
+                                      "&sort_by=name"\
                                       "&sort_order=asc&view=content"
 
           }

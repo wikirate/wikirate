@@ -14,7 +14,7 @@ recount_trigger TypePlusRight::MetricValue::Value do |changed_card|
   # changed names with nil mean create or delete
   if changed_card.name_changed? && !changed_card.name_change.include?(nil)
     old_metric_name = changed_card.name_change[0].to_name.parts[0..-4].join "+"
-    if old_metric_name != changed_card.metric
+    if !old_metric_name.empty? && old_metric_name != changed_card.metric
       metric_cache.push Card.fetch(old_metric_name).fetch(trait: :all_values)
     end
   end
@@ -27,9 +27,11 @@ end
 recount_trigger Type::MetricValue do |changed_card|
   metric_cache = [changed_card.metric_card.fetch(trait: :all_values)]
   # it should also update the cache for the old name
-  old_metric_name = changed_card.name_change[0].to_name.parts[0..-3].join "+"
-  if old_metric_name != changed_card.metric
-    metric_cache.push Card.fetch(old_metric_name).fetch(trait: :all_values)
+  if changed_card.name_changed?
+    old_metric_name = changed_card.name_change[0].to_name.parts[0..-3].join "+"
+    if !old_metric_name.empty? && old_metric_name != changed_card.metric
+      metric_cache.push Card.fetch(old_metric_name).fetch(trait: :all_values)
+    end
   end
   metric_cache
 end
@@ -83,6 +85,8 @@ end
 def add_or_remove_value changed_card, cached_hash
   new_metric = extract_name(changed_card, :metric)
   if new_metric == metric
+    # remove value from the same cache
+    remove_value_from_hash changed_card, cached_hash
     add_value_to_hash changed_card, cached_hash
   else
     remove_value_from_hash changed_card, cached_hash
@@ -131,7 +135,7 @@ def add_value_to_hash changed_card, cached_hash
 end
 
 def remove_value_from_hash changed_card, cached_hash
-  company_id = company_id changed_card, :old
+  company_id = company_id changed_card, changed_card.trash? ? :new : :old
   values = cached_hash[company_id]
   values.delete_if { |row| row["year"] == changed_card.year }
   cached_hash.delete company_id if values.empty?
