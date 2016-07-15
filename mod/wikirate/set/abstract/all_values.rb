@@ -73,7 +73,7 @@ def cached_values
 end
 
 def company_filter
-  filter = params_to_hash %w(company industry project)
+  filter = fetch_params %w(company industry project)
   return unless filter.present?
   Card.search search_wql(WikirateCompanyID, filter, "name")
 end
