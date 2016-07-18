@@ -629,7 +629,7 @@ $bright-text-color: #e5e5e5;
 .filter-header {
   cursor: pointer;
 }
-.votee-filter {
+.votee-filter, .filter-container {
   background: #f2f2f2;
   color: $dark-text-color;
   padding: 5px;
