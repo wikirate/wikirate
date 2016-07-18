@@ -85,7 +85,7 @@ end
 
 def construct_cached_hash
   cached_json = fetch(trait: :cached_count, new: {}).format.render_raw
-  JSON.parse(cached_json).with_indifferent_access || {}
+  (JSON.parse(cached_json) || {}).with_indifferent_access
 end
 
 def get_cached_values
