@@ -109,7 +109,7 @@ $bright-text-color: #e5e5e5;
 
 .TYPE-company,.TYPE-topic, .RIGHT-overview_page,.RIGHT-company_page, .RIGHT-reference_page,.RIGHT-note_page, .RIGHT-topic_page{
   &.card-content{
-    padding: 0;
+    //padding: 0;
   }
   &.open-view .company-page-logo-container,   &.open-view .topic-page-logo-container {
     float: left;
@@ -141,8 +141,9 @@ $bright-text-color: #e5e5e5;
     display:inline-block;
     border:0px;
     margin-top: 1px;
+    width: 72%;
     >li{
-      width:82px;
+      width:20%;
     }
   }
 
@@ -284,7 +285,7 @@ $bright-text-color: #e5e5e5;
 }
 
 .drag-item .value-item .header {
-  cursor: move;
+  // cursor: move;
 }
 
 .drag-item, .yinyang-row{
@@ -343,20 +344,18 @@ $bright-text-color: #e5e5e5;
     .header {
       width: 60%;
       .name {
-        width: 70%;
+        // width: 70%;
       }
     }
 
     .data {
-      width: 38%;
+      width: 40%;
       .data-item {
         float: left;
-        width: 90%;
+        width: 100%;
+        padding-right: 10px;
       }
-      &:hover{
-        background-color: #fafafa;
-        cursor: pointer;
-      }
+
     }
 
     .no-data {
@@ -369,6 +368,10 @@ $bright-text-color: #e5e5e5;
     .metric-thumbnail {
       // border: none;
       // font-size: inherit;
+    }
+    &:hover{
+      background-color: #fafafa;
+      cursor: pointer;
     }
   }
 
@@ -471,7 +474,9 @@ $bright-text-color: #e5e5e5;
       margin-top: 15px;
       padding-left: 15px;
     }
-
+    .fa-commenting, .fa-check-circle{
+      font-size: 15px;
+    }
     .contribution {
       float: right;
       width: 58px;
@@ -564,7 +569,7 @@ $bright-text-color: #e5e5e5;
       z-index: 3;
       top: 65px;
       left: 50%;
-      max-width: 610px;
+      max-width: 935px;
       width:50%;
       height: 100%;
       margin-left: 0px;
@@ -674,7 +679,7 @@ $bright-text-color: #e5e5e5;
     }
   }
   .header {
-    width: 62%;
+    width: 60%;
     &:hover {
       background: #fafafa;
     }

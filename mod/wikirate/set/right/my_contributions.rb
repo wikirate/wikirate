@@ -12,7 +12,7 @@ def sections
        { name: Card[:overview].name,
          contributions: :contributed_analysis
        },
-       { name: Card[:campaign].name, contributions: :contributed_campaigns }
+       { name: Card[:project].name, contributions: :contributed_campaigns }
       ].map do |args|
         c_card = user_card.fetch(trait: args[:contributions])
         count = c_card && c_card.contribution_count

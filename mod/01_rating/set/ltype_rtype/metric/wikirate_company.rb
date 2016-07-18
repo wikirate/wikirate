@@ -53,8 +53,9 @@ format :html do
 
   view :name_link do
     card_link card.company_card,
-              class: "inherit-anchor",
-              text: content_tag(:div, card.company, class: "name")
+              class: "inherit-anchor name",
+              text: card.company,
+              target: "_blank"
   end
 
   view :yinyang_row do |args|
@@ -68,19 +69,22 @@ format :html do
       <<-HTML
       <div class="yinyang-row">
         <div class="company-item value-item">
-          <div class="header">
-            #{_render_image_link}
-            #{_render_name_link}
-          </div>
-          <div class="data metric-details-toggle"
+          <div class="metric-details-toggle"
                data-append="#{append_name}">
-            <div class="data-item">
-              #{_render_all_values(args)}
+            <div class="header">
+              #{_render_image_link}
+              #{_render_name_link}
             </div>
-          </div>
-          <div class="details">
-          </div>
+            <div class="data ">
+              <div class="data-item">
+                #{_render_all_values(args)}
+              </div>
+            </div>
         </div>
+        <div class="details">
+        </div>
+        </div>
+
       </div>
     HTML
     end

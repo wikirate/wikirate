@@ -26,13 +26,16 @@ describe Card::Set::Right::FilterSearch do
             with_tag "option", with: { value: "no" }, without: { selected: "selected" }, text: "No"
           end
         end
-         expect(html).to have_tag("div", with: { class: "editor" }) do
-           with_tag "select", with: { id: "cited" } do
-             with_tag "option", with: { value: "all", selected: "selected" }, text: "All"
-             with_tag "option", with: { value: "yes" }, without: { selected: "selected" }, text: "Yes"
-             with_tag "option", with: { value: "no" }, without: { selected: "selected" }, text: "No"
-           end
-         end
+        expect(html).to have_tag("div", with: { class: "editor" }) do
+          with_tag "select", with: { id: "cited" } do
+            with_tag "option", with: { value: "all", selected: "selected" },
+                               text: "All"
+            with_tag "option", with: { value: "yes" },
+                               without: { selected: "selected" }, text: "Yes"
+            with_tag "option", with: { value: "no" },
+                               without: { selected: "selected" }, text: "No"
+          end
+        end
 
         expect(html).to have_tag "form", with: { action: "/#{Card[:claim].name}", method: "GET" }
 
@@ -72,7 +75,7 @@ describe Card::Set::Right::FilterSearch do
         end
         context "when condition does not match" do
           it "uses non related tag" do
-            Card::Env.params[:tag] = "nonexisitingtag"
+            Card::Env.params[:wikirate_tag] = "nonexisitingtag"
 
             html = Card[:claim].format.render_core
             expect(html).to have_tag("div", with: { id: "#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}" }) do
@@ -80,14 +83,14 @@ describe Card::Set::Right::FilterSearch do
             end
           end
           it "uses non related company" do
-            Card::Env.params[:company] = "Iamnoangel"
+            Card::Env.params[:wikirate_company] = "Iamnoangel"
             html = Card[:claim].format.render_core
             expect(html).to have_tag("div", with: { id: "#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}" }) do
               without_tag("div", with: { id: "whateverclaim" })
             end
           end
           it "uses non related topic" do
-            Card::Env.params[:topic] = "Iamnodemon"
+            Card::Env.params[:wikirate_topic] = "Iamnodemon"
             html = Card[:claim].format.render_core
             expect(html).to have_tag("div", with: { id: "#{Card[:claim].name}+#{Card[:filter_search].cardname.url_key}" }) do
               without_tag("div", with: { id: "whateverclaim" })

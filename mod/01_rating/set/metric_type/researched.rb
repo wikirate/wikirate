@@ -50,10 +50,10 @@ format :html do
         nest(card.research_policy_card, view: :titled,
                                         title: "Research Policy",
                                         items: { view: :name }),
-        nest(card.campaign_card, view: :titled,
-                                 title: "Projects",
-                                 items: { view: "content",
-                                          structure: "list item" }),
+        nest(card.project_card, view: :titled,
+                                title: "Projects",
+                                items: { view: "content",
+                                         structure: "list item" }),
         _render_import_button(args)
       ]
     end

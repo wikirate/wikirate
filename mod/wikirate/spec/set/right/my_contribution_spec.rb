@@ -24,7 +24,7 @@ describe Card::Set::Right::MyContributions do
         include([0, Card[:overview].name, joe_plus(:contributed_analysis)])
       )
       expect(result).to(
-        include([0, Card[:campaign].name, joe_plus(:contributed_campaigns)])
+        include([0, Card[:project].name, joe_plus(:contributed_campaigns)])
       )
     end
   end
