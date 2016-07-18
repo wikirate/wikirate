@@ -173,6 +173,11 @@ format do
 end
 
 format :html do
+  def page_link_params
+    [:metric, :wikirate_topic, :research_policy, :vote, :value, :metric_type,
+     :year, :sort]
+  end
+
   view :card_list_items do |args|
     search_results.map do |row|
       c = Card.fetch "#{row[0]}+#{card.cardname.left}"

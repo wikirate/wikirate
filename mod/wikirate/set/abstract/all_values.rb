@@ -109,6 +109,11 @@ format do
     sort_by, sort_order = card.sort_params
     paging_args = @paging_path_args.merge(sort_by: sort_by,
                                           sort_order: sort_order)
+    filter_args = {}
+    page_link_params.each do |key|
+      filter_args[key] = params[key] if params[key].present?
+    end
+    paging_args.merge!(filter_args)
     link_to raw(text), path(paging_args), options
   end
 
