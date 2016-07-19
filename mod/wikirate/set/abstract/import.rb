@@ -278,7 +278,7 @@ format :html do
   end
 
   def default_import_table_args args
-    args[:table_header] = ["Import", '#', "Company in File",
+    args[:table_header] = ["Import", "#", "Company in File",
                            "Company in Wikirate", "Match", "Correction"]
     args[:table_fields] = [:checkbox, :row, :file_company, :wikirate_company,
                            :status, :correction]
@@ -380,7 +380,7 @@ format :html do
 
   def import_row row, table_fields, index
     data = row_to_hash row
-    data[:row] = index
+    data[:row] = index.to_s
     data[:wikirate_company], data[:status] = find_wikirate_company data
     data[:status] = data[:status].to_s
     data[:company] = data_company data
