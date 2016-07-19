@@ -265,33 +265,52 @@ body.home-layout #main {
   }
 }
 
-body > .SELF-wikirate_footer {
-  clear: both;
-  display: block;
-  padding: 0;
-  // text-align: center;
-  font-size: 0.9em;
-  // background: #fff;
-  // border: 1px solid #e5e5e5;
-  a.external-link {
-    padding-right: 0 !important;
-    background: inherit !important;
+body {
+  >#wikirate_footer_compact {
+    position: fixed;
+    bottom: 0px;
+    z-index: 9;
+    background: #fff;
+    border-top: 1px solid #eaeaea;
+    width: 100%;
+    color: #999;
+    small {
+      width: 100%;
+      display: inherit;
+      text-align: center;
+    }
+    a {
+      color: #999;
+      text-decoration: underline;
+    }
   }
-  [class*="SELF-logo_"] {
-    display: inline-block;
-  }
-
-}
-
-body > .SELF-wikirate_footer .navbar {
-  margin-bottom: 0px;
-  .wagn-link a {
-    padding: 6px 20px;
-    &:hover {
-      background: none;
+  >.SELF-wikirate_footer, .SELF-wikirate_footer_compact{
+      clear: both;
+      display: block;
+      padding: 0;
+      // text-align: center;
+      font-size: 0.9em;
+      // background: #fff;
+      // border: 1px solid #e5e5e5;
+      a.external-link {
+        padding-right: 0 !important;
+        background: inherit !important;
+      }
+      [class*="SELF-logo_"] {
+        display: inline-block;
+      }
+    .navbar {
+      margin-bottom: 0px;
+      .wagn-link a {
+        padding: 6px 20px;
+        &:hover {
+          background: none;
+        }
+      }
     }
   }
 }
+
 
 #Donate input[type='image'] {
     width: auto;
