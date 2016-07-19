@@ -380,13 +380,13 @@ format :html do
 
   def import_row row, table_fields, index
     data = row_to_hash row
-    data[:row] = index.to_s
+    data[:row] = index
     data[:wikirate_company], data[:status] = find_wikirate_company data
     data[:status] = data[:status].to_s
     data[:company] = data_company data
     data[:checkbox] = import_checkbox data
     data[:correction] = data_correction data
-    table_fields.map { |key| data[key] }
+    table_fields.map { |key| data[key].to_s }
   end
 
   def row_to_hash row
