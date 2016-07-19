@@ -10,7 +10,7 @@ def refresh_cache_completely
   result.to_json
 end
 
-def company_id changed_card, from=:new
+def get_key changed_card, from=:new
   Card[extract_name(changed_card, :metric, from)].id.to_s
 end
 

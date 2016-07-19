@@ -52,7 +52,7 @@ format :html do
     [select_filter(:year)]
   end
 
-  def default_name_formgroup_args args
-    args[:name] = "company"
-  end
+  # def default_name_formgroup_args args
+  #   args[:name] = "company"
+  # end
 end

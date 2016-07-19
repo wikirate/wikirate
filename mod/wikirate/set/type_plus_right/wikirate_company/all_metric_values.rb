@@ -5,9 +5,7 @@ def raw_content
     {
       "left":{
         "type":"metric_value",
-        "left":{
-          "right":"_left"
-        }
+        "left":{ "right":"_left" }
       },
       "right":"value",
       "limit":0
@@ -51,16 +49,16 @@ def filter metric, values
 end
 
 def filter_by_metric metric
-  filter_by_name(metric) &&
+  filter_by_metric_name(metric) &&
     filter_by_topic(metric) &&
     filter_by_research_policy(metric) &&
     filter_by_vote(metric) &&
     filter_by_type(metric)
 end
 
-def filter_by_name metric
-  return true unless Env.params["metric"].present?
-  metric.downcase.include?(Env.params["metric"].downcase)
+def filter_by_metric_name metric
+  return true unless Env.params["name"].present?
+  metric.downcase.include?(Env.params["name"].downcase)
 end
 
 def filter_by_topic metric
@@ -155,6 +153,7 @@ format do
     metric_values.sort do |x, y|
       value_a = latest_row_value x, "last_update_time"
       value_b = latest_row_value y, "last_update_time"
+      # * -1 for desc
       (compare_metric x[0], y[0], value_a, value_b) * -1
     end
   end

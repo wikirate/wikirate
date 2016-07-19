@@ -1,6 +1,6 @@
 include_set Type::SearchType
 include_set Abstract::Utility
-
+include_set Abstract::Filter
 def virtual?
   true
 end
@@ -72,8 +72,12 @@ def cached_values
   end
 end
 
+def params_keys
+  %w(name industry project)
+end
+
 def company_filter
-  filter = fetch_params %w(company industry project)
+  filter = fetch_params params_keys
   return unless filter.present?
   Card.search search_wql(WikirateCompanyID, filter, "name")
 end
@@ -102,6 +106,10 @@ def count _params={}
 end
 
 format do
+  def page_link_params
+    []
+  end
+
   def fill_paging_args
     sort_by, sort_order = card.sort_params
     paging_args = @paging_path_args.merge(sort_by: sort_by,

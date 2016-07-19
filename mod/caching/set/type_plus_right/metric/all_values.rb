@@ -123,19 +123,19 @@ def construct_a_row value_card
   { year: value_card.year, value: value_card.value }
 end
 
-def company_id changed_card, from=:new
+def get_key changed_card, from=:new
   Card[extract_name(changed_card, :company, from)].id.to_s
 end
 
 def add_value_to_hash changed_card, cached_hash
-  company_id = company_id changed_card
+  company_id = get_key changed_card
   cached_hash[company_id] = [] unless cached_hash.key?(company_id)
   value_card = get_value_card changed_card
   cached_hash[company_id].push construct_a_row(value_card)
 end
 
 def remove_value_from_hash changed_card, cached_hash
-  company_id = company_id changed_card, changed_card.trash? ? :new : :old
+  company_id = get_key changed_card, changed_card.trash? ? :new : :old
   values = cached_hash[company_id]
   values.delete_if { |row| row["year"] == changed_card.year }
   cached_hash.delete company_id if values.empty?
