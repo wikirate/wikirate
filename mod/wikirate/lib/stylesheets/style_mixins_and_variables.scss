@@ -1,38 +1,13 @@
 $dark-text-color: #999;
 $bright-text-color: #ededed;
 $muted: #777;
-
 $gray-background-color: #f3f3f3;
-
 $metric-color: #674ea7;
 $company-color: #d3741c;
 $topic-color: #2b7ea0;
 $main-color: #03998d;
-
 $company-header-bg: #d3741c;
-
-@mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,
-0,
-0,
-.4),
-$inset: "") {
-  @if ($inset != "") {
-    -webkit-box-shadow: $inset $x $y $blur $color;
-    -moz-box-shadow:    $inset $x $y $blur $color;
-    box-shadow:         $inset $x $y $blur $color;
-  } @else {
-    -webkit-box-shadow: $x $y $blur $color;
-    -moz-box-shadow:    $x $y $blur $color;
-    box-shadow:         $x $y $blur $color;
-  }
-}
-
-@mixin ellipsis() {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
+$shadow-rgba: rgba(0, 0, 0, .4);
 
 //----------- General Variables ---------
 $main-color:#03998d;
@@ -52,6 +27,7 @@ $wanted-card-color: #b6060a;
 $closed-content-a-color: #729;
 $infographic-heading: #949494;
 $div-border-color: #f1f1f1;
+$card-text-color: #646464;
 
 //button colors
 $button-color: #03998d;
@@ -74,41 +50,46 @@ $card-header-color: #fff;
 $max-page-width: 100%; //1660px;
 $min-page-height: 1000px;
 
+
+@mixin ellipsis() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
 //card colors
 @mixin card-txt-color {
-  color: #646464;
+  color: $card-text-color;
+
   a {
-    color: #646464;
+    color: $card-text-color;
   }
 
 }
+
 //border radius mixin
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
   border-radius: $radius;
   background-clip: padding-box;
-  /* stops bg color from leaking outside the border: */
-
+  // stops bg color from leaking outside the border:
 }
+
 //***COLOR VARS - END***//
 
 //***Shadow***//
 
-@mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,
-0,
-0,
-.4),
-$inset: "") {
-  @if ($inset != "") {
-    -webkit-box-shadow: $inset $x $y $blur $color;
+@mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: $shadow-rgba, $inset: '') {
+  @if ($inset != '') {
     -moz-box-shadow: $inset $x $y $blur $color;
+    -webkit-box-shadow: $inset $x $y $blur $color;
     box-shadow: $inset $x $y $blur $color;
-  }
-  @else {
+  } @else {
     -webkit-box-shadow: $x $y $blur $color;
     -moz-box-shadow: $x $y $blur $color;
     box-shadow: $x $y $blur $color;
   }
-
 }
+
 // ***Shadow- END***//
