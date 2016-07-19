@@ -131,7 +131,7 @@ format :html do
     <<-HTML
       <div class="row metric-info">
         <div class="col-md-6 rate border-right">
-          <div class="row">
+          <div class="row margin-top-10">
             #{_render_content_left_col args}
           </div>
 		    </div>

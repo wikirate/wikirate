@@ -1,4 +1,4 @@
-  <div class=" homepage-topic-item metric-item contribution-item value-item no-hover">
+  <div class=" contribution-item value-item no-hover">
     <div class="header no-hover">
       <div class="logo hidden-xs">
         <a class="inherit-anchor" href="{{_2|linkname}}+contribution"> {{_2+image|core;size:small}} </a>
@@ -15,10 +15,5 @@
           <div class="name">Companies</div>
         </div>
       </a>
-      <div class="contribution metric-details show-with-details text-center">
-        <span class="label label-metric">[[_2+_3|Metric Details]]</span> 
-      </div>
-    </div>
-    <div class="details">
     </div>
   </div>

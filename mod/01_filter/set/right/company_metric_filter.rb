@@ -24,6 +24,7 @@ format :html do
 
   view :core do |args|
     action = card.cardname.left_name.url_key
+    filter_active = filter_active? ? "block" : "none"
     <<-HTML
     <div class="filter-container">
       <div class="filter-header">
@@ -33,10 +34,10 @@ format :html do
         <span class="glyphicon glyphicon-triangle-right"></span>
         </span>
       </div>
-      <div class="filter-details" style="display: none;">
+      <div class="filter-details" style="display: #{filter_active};">
         <form action="/#{action}?view=content_left_col" method="GET" data-remote="true" class="slotter">
           <h4>Metric</h4>
-          <div class="margin-12"> #{metric_filter_fields(args).join} </div>
+          <div class="margin-12 sub-content"> #{metric_filter_fields(args).join} </div>
           #{other_filter_fields(args).join}
           <div class="filter-buttons">#{_optional_render :button_formgroup, args}</div>
         </form>
