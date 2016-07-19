@@ -4,7 +4,7 @@ def year
   cardname.right
 end
 
-def metric_name
+def metric
   cardname.left_name.left
 end
 
@@ -17,7 +17,7 @@ def year_card
 end
 
 def metric_card
-  Card.fetch metric_name
+  Card.fetch metric
 end
 
 def company_card

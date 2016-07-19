@@ -101,9 +101,9 @@ format :html do
     #{field_subformat(:metric_type)._render_content item: :name}
   </div>
                   </div>
-  <div class="row">
+  <div class="row topic-list">
   <div class="col-md-3 nopadding">
-  <h5>Tags:</h5>
+  <h5>Topics:</h5>
             				</div>
   <div class="col-md-9 nopadding">
     #{field_subformat(:wikirate_topic)._render_content item: :link}
@@ -131,7 +131,7 @@ format :html do
     <<-HTML
       <div class="row metric-info">
         <div class="col-md-6 rate border-right">
-          <div class="row">
+          <div class="row margin-top-10">
             #{_render_content_left_col args}
           </div>
 		    </div>

@@ -27,7 +27,7 @@ format :html do
       link = card_link card, path_opts: { about_company: true }
       %(<div class="contributions-about-link">) \
         "showing contributions by #{link}</div>" +
-        subformat(card.fetch trait: :contribution).render_open
+        subformat(card.fetch(trait: :contribution)).render_open
     else
       super args
     end
@@ -50,6 +50,27 @@ format :html do
   def contributions_made?
     # FIXME: need way to figure this out without a search!
     Card.search(type_id: MetricID, left: card.name, return: "count") > 0
+  end
+
+  view :content_left_col do |args|
+    wrap do
+      [
+        _render_filter(args),
+        _render_metric_list(args)
+      ]
+    end
+  end
+
+  view :filter do |args|
+    field_subformat(:company_metric_filter)._render_core args
+  end
+
+  view :metric_list do
+    wrap_with :div, class: "yinyang-list" do
+      subformat("#{card.name}+all metric values")
+        ._render_content(hide: "title",
+                         items: { view: :metric_row })
+    end
   end
 end
 

@@ -29,14 +29,16 @@ class Card
 
     module ClassMethods
       def recount_trigger set_of_changed_card, args={}, &block
+
         if set_of_changed_card
+
           args[:on] ||= [:create, :update, :delete]
           name = event_name set_of_changed_card, args
           set_of_changed_card.class_eval do
             event name, :integrate, args do
               Array.wrap(yield(self)).compact.each do |expired_count_card|
                 next unless expired_count_card.respond_to?(:update_cached_count)
-                expired_count_card.update_cached_count
+                expired_count_card.update_cached_count self
               end
             end
           end
@@ -57,10 +59,10 @@ class Card
       end
     end
 
-    def update_cached_count
+    def update_cached_count changed_card=nil
       return unless respond_to?(:calculate_count) &&
                     respond_to?(:cached_count_card)
-      new_count = calculate_count
+      new_count = calculate_count changed_card
       return unless new_count
       Card::Auth.as_bot do
         if cached_count_card.new_card?
@@ -77,7 +79,7 @@ class Card
     # the default way is hthat the card is a search card and we just
     # count the search result
     # for special calculations override this method in your set
-    def calculate_count
+    def calculate_count changed_card=nil
       count
     end
   end

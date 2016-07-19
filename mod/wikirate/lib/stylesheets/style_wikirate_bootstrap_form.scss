@@ -147,3 +147,17 @@ li > input[type="radio"] {
         }
     }
 }
+
+.sub-content {
+  label{
+    color: $dark-text-color;
+  }
+
+  input[type="checkbox"] {
+    display: inherit;
+    height: auto;
+    width: auto;
+    margin: 0px 5px 0px 35px;
+    cursor: pointer;
+  }
+}

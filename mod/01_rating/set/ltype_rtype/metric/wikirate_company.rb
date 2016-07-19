@@ -19,6 +19,14 @@ def company
   cardname.tag
 end
 
+def metric_name
+  cardname.left
+end
+
+def metric
+  left
+end
+
 format :html do
   def default_menu_args args
     args[:optional_horizontal_menu] = :hide
@@ -56,6 +64,57 @@ format :html do
               class: "inherit-anchor name",
               text: card.company,
               target: "_blank"
+  end
+
+  view :metric_row do |args|
+    right_box =
+      if Env.params["value"] == "none"
+        url = "/#{card.company.to_name.url_key}?view=new_metric_value&"\
+          "metric[]=#{CGI.escape(card.metric_name.to_name.url_key)}"
+        <<-HTML
+        <a type="button" target="_blank" class="btn btn-primary btn-sm"
+          href="#{url}">Add Value</a>
+        HTML
+      else
+        <<-HTML
+          <div class="data-item hide-with-details">
+            {{_+latest value|concise}}
+          </div>
+          <div class="data-item show-with-details text-center">
+            <span class="label label-metric">[[_l|Metric Details]]
+            </span>
+          </div>
+        HTML
+      end
+    wrap(args) do
+      process_content <<-HTML
+      <div class="drag-item yinyang-row">
+        <div class="metric-item value-item">
+          <div class="metric-details-toggle"
+            data-append="metric_details_metric_header">
+            <div class="header">
+              <div class="">{{_l+*vote count}}</div>
+              <a href="{{_1+contributions|linkname}}">
+              <div class="logo hidden-xs hidden-md">
+                {{_1+image|core;size:small}}
+              </div>
+              </a>
+              <div class="name">
+                <a class="inherit-anchor" href="{{_l|linkname}}"
+                  target="_blank">
+                  #{card.metric.metric_title}
+                </a>
+              </div>
+            </div>
+            <div class="data">
+            #{right_box}
+            </div>
+          </div>
+          <div class="details"></div>
+        </div>
+      </div>
+      HTML
+    end
   end
 
   view :yinyang_row do |args|

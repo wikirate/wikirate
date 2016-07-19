@@ -207,6 +207,35 @@ format :html do
     select_filter :wikirate_company
   end
 
+  view :metric_value_formgroup do
+    options = {
+      "Exists" => "exists",
+      "None" => "none",
+      "Edited in last hour" => "last_hour",
+      "Edited today" => "today",
+      "Edited this week" => "week",
+      "Edited this month" => "month"
+    }
+    simple_select_filter "value", options, (Env.params["value"] || "exists")
+  end
+
+  view :metric_type_formgroup do
+    type_card = Card["metric_type"]
+    options = Card.search type_id: type_card.id, return: :name, sort: "name"
+    checkboxes = options.map do |option|
+      checked = Env.params["metric_type"].present? &&
+                Env.params["metric_type"].include?(option.downcase)
+      %(<label>
+        #{check_box_tag('metric_type[]', option.downcase, checked) + option}
+      </label>)
+    end
+    formgroup "Type", checkboxes.join("")
+  end
+
+  view :research_policy_formgroup do
+    select_filter :research_policy, "Research Policy"
+  end
+
   view :designer_formgroup do
     metrics = Card.search type_id: MetricID, return: :name
     designers = metrics.map do |m|
@@ -216,6 +245,15 @@ format :html do
     end.uniq!
     simple_select_filter "designer", [["--", ""]] + designers,
                          Env.params[:designer]
+  end
+
+  view :importance_formgroup do
+    options = {
+      "All" => "all",
+      "Upvoted by me" => "upvotee",
+      "Downvoted by me" => "downvotee"
+    }
+    simple_select_filter "vote", options, Env.params["vote"] || "all"
   end
 
   view :industry_formgroup do

@@ -27,7 +27,7 @@ def metric_designer_card
 end
 
 def metric_title
-  junction? ? cardname.parts[1] : cardname
+  junction? ? cardname.parts[1..-1].join("+") : cardname
 end
 
 def metric_title_card
