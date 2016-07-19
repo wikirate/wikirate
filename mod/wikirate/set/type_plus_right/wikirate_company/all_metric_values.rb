@@ -76,12 +76,15 @@ def filter_by_research_policy metric
     research_policy_card.item_names.include?(Env.params["research_policy"])
 end
 
+def user_voted_metric votee_type
+  votee_search = "#{Auth.current.name}+metric+#{votee_type}_search"
+  Card.fetch(votee_search).item_names
+end
+
 def filter_by_vote metric
   return true unless Env.params["vote"].present? && Env.params["vote"] != "all"
   votee_type = Env.params["vote"]
-  votee_search = "#{Auth.current.name}+metric+#{votee_type}_search"
-  @votee_search ||= Card.fetch(votee_search).item_names
-  @votee_search.include?(metric)
+  user_upvoted_metric(votee_type).include?(metric)
 end
 
 def filter_by_type metric
@@ -120,6 +123,26 @@ def filter_by_year values
 end
 
 format do
+  def vote_status metric
+    @upvoted_metric ||= card.user_voted_metric "upvotee"
+    @downvoted_metric ||= card.user_voted_metric "downvotee"
+    return :upvoted if @upvoted_metric.include?(metric)
+    return :downvoted if @downvoted_metric.include?(metric)
+    :none
+  end
+
+  def compare_metric metric1, metric2, value1, value2
+    metric1_status = vote_status metric1
+    metric2_status = vote_status metric2
+    if metric1_status == metric2_status
+      value1 <=> value2
+    elsif metric1_status == :upvoted || metric2_status == :downvoted
+      1
+    elsif metric2_status == :upvoted || metric1_status == :downvoted
+      -1
+    end
+  end
+
   def num?
     false
   end
@@ -132,7 +155,7 @@ format do
     metric_values.sort do |x, y|
       value_a = latest_row_value x, "last_update_time"
       value_b = latest_row_value y, "last_update_time"
-      value_b <=> value_a
+      (compare_metric x[0], y[0], value_a, value_b) * -1
     end
   end
 
@@ -148,13 +171,13 @@ format do
     metric_values.sort do |x, y|
       value_a = metric_vote_count(x[0])
       value_b = metric_vote_count(y[0])
-      value_b <=> value_a
+      (compare_metric x[0], y[0], value_a, value_b) * -1
     end
   end
 
   def sort_value_count_desc metric_values
     metric_values.sort do |x, y|
-      y[1].size - x[1].size
+      (compare_metric x[0], y[0], x[1].size, y[1].size) * -1
     end
   end
 

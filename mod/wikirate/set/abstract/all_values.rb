@@ -109,6 +109,7 @@ format do
     page_link_params.each do |key|
       paging_args[key] = params[key] if params[key].present?
     end
+    paging_args[:view] = :content
     paging_args
   end
 
