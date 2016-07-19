@@ -12,7 +12,9 @@ $(window).ready ->
     $(this).closest('tbody').find('input.metric-weight').each ->
       result += parseInt($(this).val())
     $(this).closest('tbody').find('.weight-sum').val(result)
-    $(this).closest('form.card-form').find('button[type=submit]').prop('disabled', result != 100)
+    $(this).closest('form.card-form')
+            .find('button[type=submit]')
+            .prop('disabled', result != 100)
 
 
   $('body').on 'click', '.add-weight', (event) ->
@@ -56,6 +58,15 @@ showAndHide = (slot, value) ->
   hideAll(slot)
   showField(div_to_show)
 
+$(document).ready ->
+  $(".topic-list .RIGHT-topic").readmore(
+    {
+      maxHeight: 70,
+      heightMargin: 16,
+      moreLink: '<a href="#" ><small ">View all</small></a>',
+      lessLink: '<a href="#"><small>View less</small></a>'
+    })
+
 wagn.slotReady (slot) ->
   slot.find('[data-tooltip="true"]').tooltip()
   if(slot.hasClass('STRUCTURE-metric_value_type_edit_structure'))
@@ -81,4 +92,3 @@ wagn.slotReady (slot) ->
         spinner: 'spinner1'
         bgColor: 'rgb(255,255,255,0.80)'#Hex, RGB or RGBA colors
       location.reload()
-

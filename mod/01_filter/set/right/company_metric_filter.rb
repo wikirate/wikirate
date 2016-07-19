@@ -24,22 +24,23 @@ format :html do
 
   view :core do |args|
     action = card.cardname.left_name.url_key
+    filter_active = filter_active? ? "block" : "none"
     <<-HTML
-    <div class="panel panel-default filter">
-      <div class="panel-heading" role="tab" id="headingOne"  data-toggle="collapse" href="#collapseFilter" aria-expanded="true" aria-controls="collapseFilter">
-        <h4 class="panel-title accordion-toggle">
-            Filter by
-        </h4>
+    <div class="filter-container">
+      <div class="filter-header">
+        <span class="glyphicon glyphicon-filter"></span>
+        Filter
+        <span class="filter-toggle">
+        <span class="glyphicon glyphicon-triangle-right"></span>
+        </span>
       </div>
-      <div id="collapseFilter" class="panel-collapse collapse #{'in' if filter_active?}">
-
+      <div class="filter-details" style="display: #{filter_active};">
         <form action="/#{action}?view=content_left_col" method="GET" data-remote="true" class="slotter">
           <h4>Metric</h4>
-          <div class="margin-12"> #{metric_filter_fields(args).join} </div>
+          <div class="margin-12 sub-content"> #{metric_filter_fields(args).join} </div>
           #{other_filter_fields(args).join}
           <div class="filter-buttons">#{_optional_render :button_formgroup, args}</div>
         </form>
-
       </div>
     </div>
     HTML
