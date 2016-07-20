@@ -6,6 +6,7 @@ def sort?
 end
 
 def shift_sort_table?
+  return false if Env.params["sort"] == "name"
   true
 end
 
@@ -13,8 +14,16 @@ def default_sort_by_key
   "metric"
 end
 
-def params_keys
+def default_keys
   %w(metric designer wikirate_topic project year)
+end
+
+def advance_keys
+  []
+end
+
+def params_keys
+  default_keys + advance_keys
 end
 
 def target_type_id
@@ -49,11 +58,15 @@ def shift_sort_table query
 end
 
 def sort_by wql, sort_by
-  wql[:sort_as] = "integer"
-  wql[:dir] = "desc"
-  wql[:sort] = {
-    right: (sort_by || default_sort_by_key), right_plus: "*cached count"
-  }
+  if sort_by == "name"
+    wql[:sort] = "name"
+  else
+    wql[:sort_as] = "integer"
+    wql[:dir] = "desc"
+    wql[:sort] = {
+      right: (sort_by || default_sort_by_key), right_plus: "*cached count"
+    }
+  end
 end
 
 def virtual?
@@ -74,7 +87,25 @@ format :html do
   end
 
   def page_link_params
-    []
+    [:sort] + card.params_keys
+  end
+
+  def append_formgroup array
+    array.map do |key|
+      "#{key}_formgroup".to_sym
+    end
+  end
+
+  def default_filter_form_args args
+    args[:formgroups] =
+      append_formgroup(card.default_keys).unshift(:sort_formgroup)
+    args[:advance_formgroups] = append_formgroup(card.advance_keys)
+  end
+
+  def default_sort_formgroup_args args
+    args[:sort_options] = {
+      "Alphabetical" => "name"
+    }
   end
 
   view :no_search_results do |_args|
@@ -85,12 +116,51 @@ format :html do
     )
   end
 
+  def filter_active?
+    Env.params.keys.any? do |key|
+      card.advance_keys.include?(key) && Env.params[key].present?
+    end
+  end
+
+  def wrap_as_collapse title
+    <<-HTML
+     <div class="panel panel-default filter">
+      <div class="panel-heading" role="tab" id="headingOne"  data-toggle="collapse" href="#collapseFilter" aria-expanded="true" aria-controls="collapseFilter">
+        <h4 class="panel-title accordion-toggle">
+            #{title}
+        </h4>
+      </div>
+      <div id="collapseFilter" class="panel-collapse collapse #{'in' if filter_active?}">
+        #{yield}
+      </div>
+    </div>
+    HTML
+  end
+
+  def default_button_formgroup_args args
+    args[:buttons] =
+      card_link(card.left, text: "Reset",
+                           class: "slotter btn btn-default margin-8",)
+  end
+
   view :filter_form do |args|
     formgroups = args[:formgroups] || [:name_formgroup]
+    advance_formgroups = args[:advance_formgroups]
     html = formgroups.map { |fg| optional_render(fg, args) }
-    content = output(html)
+    adv_html = ""
+    if advance_formgroups
+      adv_html = wrap_as_collapse("Advance") do
+        advance_formgroups.map { |fg| optional_render(fg, args) }.join("")
+      end
+    end
+    content = output(html) + adv_html.html_safe
     action = card.left.name
-    %( <form action="/#{action}" method="GET">#{content}</form>)
+    <<-HTML
+      <form action="/#{action}" method="GET">
+        #{content}
+        #{_optional_render :button_formgroup, args}
+      </form>
+    HTML
   end
 
   # it was from filter_search.rb
@@ -165,7 +235,7 @@ format :html do
     select_filter :year, "desc"
   end
 
-  view :topic_formgroup do
+  view :wikirate_topic_formgroup do
     select_filter :wikirate_topic, "asc"
   end
 
@@ -173,7 +243,7 @@ format :html do
     select_filter :metric, "asc"
   end
 
-  view :company_formgroup do
+  view :wikirate_company_formgroup do
     select_filter :wikirate_company, "asc"
   end
 

@@ -8,8 +8,12 @@ def shift_sort_table?
   %w(values company).include?(Env.params["sort"] || default_sort_by_key)
 end
 
-def params_keys
-  %w(metric_name designer wikirate_topic project year)
+def default_keys
+  %w(name)
+end
+
+def advance_keys
+  %w(designer wikirate_topic project year)
 end
 
 def target_type_id
@@ -33,18 +37,18 @@ def sort_by wql, sort_by
     end
 end
 
-def filter_by_wikirate_topic wql, topic
+def wql_by_wikirate_topic wql, topic
   return unless topic.present?
   wql[:right_plus] ||= []
   wql[:right_plus].push ["topic", { refer_to: topic }]
 end
 
-def filter_by_project wql, project
+def wql_by_project wql, project
   return unless project.present?
   wql[:referred_to_by] = { left: { name: project }, right: "metric" }
 end
 
-def filter_by_year wql, year
+def wql_by_year wql, year
   return unless year.present?
   wql[:right_plus] ||= []
   wql[:right_plus].push [
@@ -53,7 +57,7 @@ def filter_by_year wql, year
   ]
 end
 
-def filter_by_designer wql, designer
+def wql_by_designer wql, designer
   return unless designer.present?
   wql[:or] = {
     left: designer,
@@ -62,14 +66,6 @@ def filter_by_designer wql, designer
 end
 
 format :html do
-  def page_link_params
-    [:sort, :metric_name, :designer, :wikirate_topic, :project, :year]
-  end
-
-  def default_name_formgroup_args args
-    args[:name] = "metric_name"
-  end
-
   def default_sort_formgroup_args args
     args[:sort_options] = {
       "Most Upvoted" => "upvoted",
@@ -78,12 +74,5 @@ format :html do
       "Most Values" => "values"
     }
     args[:sort_option_default] = "upvoted"
-  end
-
-  def default_filter_form_args args
-    args[:formgroups] = [
-      :sort_formgroup, :name_formgroup, :designer_formgroup,
-      :topic_formgroup, :project_formgroup, :year_formgroup
-    ]
   end
 end
