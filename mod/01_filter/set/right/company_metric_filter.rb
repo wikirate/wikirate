@@ -72,8 +72,4 @@ format :html do
     }
     args[:sort_option_default] = "upvoted"
   end
-
-  # def default_name_formgroup_args args
-  #   args[:name] = "metric"
-  # end
 end

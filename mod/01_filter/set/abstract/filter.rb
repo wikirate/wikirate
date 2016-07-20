@@ -52,7 +52,8 @@ def sort_by wql, sort_by
   wql[:sort_as] = "integer"
   wql[:dir] = "desc"
   wql[:sort] = {
-    right: (sort_by || default_sort_by_key), right_plus: "*cached count" }
+    right: (sort_by || default_sort_by_key), right_plus: "*cached count"
+  }
 end
 
 def virtual?
@@ -69,22 +70,22 @@ def search_wql type_id, opts, return_param=nil
   params_keys.each do |key|
     # link_to in #page_link with name will override the path
     method_name = key.include?("_name") ? "name" : key
-    send("filter_by_#{method_name}", wql, opts[key])
+    send("wql_by_#{method_name}", wql, opts[key])
   end
   wql
 end
 
-def filter_by_name wql, name
+def wql_by_name wql, name
   return unless name.present?
   wql[:name] = ["match", name]
 end
 
-def filter_by_project wql, project
+def wql_by_project wql, project
   return unless project.present?
   wql[:referred_to_by] = { left: { name: project } }
 end
 
-def filter_by_industry wql, industry
+def wql_by_industry wql, industry
   return unless industry.present?
   wql[:left_plus] = [
     format.industry_metric_name,

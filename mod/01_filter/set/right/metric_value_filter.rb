@@ -52,8 +52,4 @@ format :html do
   def answer_filter_fields _args
     [select_filter(:year)]
   end
-
-  # def default_name_formgroup_args args
-  #   args[:name] = "company"
-  # end
 end

@@ -144,6 +144,7 @@ end
 def refresh_cache_completely
   result = {}
   item_cards(default_query: true).each do |value_card|
+    binding.pry if value_card.company_card.nil?
     company = value_card.company_card.id
     result[company] = [] unless result.key?(company)
     result[company].push construct_a_row(value_card)

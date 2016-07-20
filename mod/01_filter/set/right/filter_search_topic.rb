@@ -12,18 +12,18 @@ def target_type_id
   WikirateTopicID
 end
 
-def filter_by_metric wql, metric
+def wql_by_metric wql, metric
   return unless metric.present?
   wql[:referred_to_by] ||= []
   wql[:referred_to_by].push left: { name: metric }, right: "topic"
 end
 
-def filter_by_wikirate_company wql, company
+def wql_by_wikirate_company wql, company
   return unless company.present?
   wql[:found_by] = "#{company}+topic"
 end
 
-def filter_by_project wql, project
+def wql_by_project wql, project
   return unless project.present?
   wql[:referred_to_by] ||= []
   wql[:referred_to_by].push left: { name: project }, right: "topic"

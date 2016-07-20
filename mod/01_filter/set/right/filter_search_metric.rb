@@ -33,18 +33,18 @@ def sort_by wql, sort_by
     end
 end
 
-def filter_by_wikirate_topic wql, topic
+def wql_by_wikirate_topic wql, topic
   return unless topic.present?
   wql[:right_plus] ||= []
   wql[:right_plus].push ["topic", { refer_to: topic }]
 end
 
-def filter_by_project wql, project
+def wql_by_project wql, project
   return unless project.present?
   wql[:referred_to_by] = { left: { name: project }, right: "metric" }
 end
 
-def filter_by_year wql, year
+def wql_by_year wql, year
   return unless year.present?
   wql[:right_plus] ||= []
   wql[:right_plus].push [
@@ -53,7 +53,7 @@ def filter_by_year wql, year
   ]
 end
 
-def filter_by_designer wql, designer
+def wql_by_designer wql, designer
   return unless designer.present?
   wql[:or] = {
     left: designer,

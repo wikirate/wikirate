@@ -49,14 +49,14 @@ def filter metric, values
 end
 
 def filter_by_metric metric
-  filter_by_metric_name(metric) &&
+  filter_by_name(metric) &&
     filter_by_topic(metric) &&
     filter_by_research_policy(metric) &&
     filter_by_vote(metric) &&
     filter_by_type(metric)
 end
 
-def filter_by_metric_name metric
+def filter_by_name metric
   return true unless Env.params["name"].present?
   metric.downcase.include?(Env.params["name"].downcase)
 end
