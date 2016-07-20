@@ -4,6 +4,7 @@ sortDragItems = (list, key, order='desc') ->
     if $(a).data("sort-#{key}") > $(b).data("sort-#{key}") then -1*order else order
 $(document).ready ->
   # vote buttons
+  # userUpvotedColor()
   drop_list = (votee, vote_type) ->
     $(votee).closest('.voting').find(".list-drag-and-drop[data-bucket-name=#{vote_type}]")
 
@@ -171,6 +172,13 @@ $(document).ready ->
     $(this).find('.filter-toggle .glyphicon').toggleClass('glyphicon-triangle-bottom','glyphicon-triangle-right')
     $(this).next().toggle()
 
+  # $(document).ajaxSuccess ->
+  #   userUpvotedColor()
+  #
+  # userUpvotedColor = () ->
+  #   $(".disabled-vote-link").parent()
+  #                           .siblings(".vote-count")
+  #                           .css("color","#1e90ff")
   ###*
   # jQuery.fn.sortElements
   # --------------
