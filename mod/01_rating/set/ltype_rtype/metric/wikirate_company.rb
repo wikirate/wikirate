@@ -19,17 +19,26 @@ def company
   cardname.tag
 end
 
+def metric_name
+  cardname.left
+end
+
+def metric
+  left
+end
+
 format :html do
   def default_menu_args args
     args[:optional_horizontal_menu] = :hide
   end
 
   view :all_values do |args|
-    wql = { left: card.name,
-            type: Card::MetricValueID,
-            sort: "name",
-            dir: "desc"
-          }
+    wql = {
+      left: card.name,
+      type: Card::MetricValueID,
+      sort: "name",
+      dir: "desc"
+    }
     wql_comment = "all metric values where metric = #{card.name}"
     Card.search(wql, wql_comment).map.with_index do |v, i|
       <<-HTML
@@ -59,6 +68,22 @@ format :html do
   end
 
   view :yinyang_row do |args|
+    right_box =
+      if Env.params["value"] == "none"
+        url = "/#{card.company.to_name.url_key}?view=new_metric_value&"\
+          "metric[]=#{CGI.escape(card.metric_name.to_name.url_key)}"
+        <<-HTML
+        <a type="button" target="_blank" class="btn btn-primary btn-sm"
+          href="#{url}">Add Value</a>
+        HTML
+      else
+        <<-HTML
+          <div class="data-item">
+            #{_render_all_values(args)}
+          </div>
+        HTML
+      end
+
     append_name =
       if card.left.metric_type_codename == :score
         "score_metric_details_company_header"
@@ -76,9 +101,7 @@ format :html do
               #{_render_name_link}
             </div>
             <div class="data ">
-              <div class="data-item">
-                #{_render_all_values(args)}
-              </div>
+              #{right_box}
             </div>
         </div>
         <div class="details">

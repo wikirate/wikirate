@@ -1,6 +1,6 @@
 include_set Type::SearchType
 include_set Abstract::Utility
-
+include_set Abstract::FilterUtility
 def sort?
   true
 end
@@ -23,7 +23,7 @@ end
 
 def get_query params={}
   filter = fetch_params params_keys
-  search_args = search_wql target_type_id, filter
+  search_args = search_wql target_type_id, filter, params_keys
   sort_by search_args, Env.params["sort"] if sort?
   params[:query] = search_args
   super(params)
@@ -52,7 +52,8 @@ def sort_by wql, sort_by
   wql[:sort_as] = "integer"
   wql[:dir] = "desc"
   wql[:sort] = {
-    right: (sort_by || default_sort_by_key), right_plus: "*cached count" }
+    right: (sort_by || default_sort_by_key), right_plus: "*cached count"
+  }
 end
 
 def virtual?
@@ -61,38 +62,6 @@ end
 
 def raw_content
   %({ "name":"dummy" })
-end
-
-def search_wql type_id, opts, return_param=nil
-  wql = { type_id: type_id }
-  wql[:return] = return_param if return_param
-  params_keys.each do |key|
-    # link_to in #page_link with name will override the path
-    method_name = key.include?("_name") ? "name" : key
-    send("filter_by_#{method_name}", wql, opts[key])
-  end
-  wql
-end
-
-def filter_by_name wql, name
-  return unless name.present?
-  wql[:name] = ["match", name]
-end
-
-def filter_by_project wql, project
-  return unless project.present?
-  wql[:referred_to_by] = { left: { name: project } }
-end
-
-def filter_by_industry wql, industry
-  return unless industry.present?
-  wql[:left_plus] = [
-    format.industry_metric_name,
-    { right_plus: [
-      format.industry_value_year,
-      { right_plus: ["value", { eq: industry }] }
-    ] }
-  ]
 end
 
 format :html do
@@ -145,15 +114,16 @@ format :html do
               class: " filter-input"
   end
 
-  def type_options type_codename
+  def type_options type_codename, order
+    order ||= "asc"
     type_card = Card[type_codename]
-    Card.search type_id: type_card.id, return: :name, sort: "name"
+    Card.search type_id: type_card.id, return: :name, sort: "name", dir: order
   end
 
-  def select_filter type_codename, label=nil
+  def select_filter type_codename, order, label=nil
     # take the card name as default label
     label ||= Card[type_codename].name
-    options = type_options type_codename
+    options = type_options type_codename, order
     options.unshift(["--", ""])
     simple_select_filter type_codename.to_s, options, Env.params[type_codename],
                          label
@@ -176,7 +146,7 @@ format :html do
   end
 
   def multiselect_filter type_codename, label=nil
-    options = type_options type_codename
+    options = type_options type_codename, "asc"
     label ||= type_codename.to_s
     simple_multiselect_filter type_codename.to_s, options,
                               Env.params[type_codename], label
@@ -184,27 +154,39 @@ format :html do
 
   view :name_formgroup do |args|
     name = args[:name] || "name"
-    text_filter name, title: "Name"
+    text_filter name, title: "Keyword"
   end
 
   view :project_formgroup do
-    select_filter :project
+    select_filter :project, "asc"
   end
 
   view :year_formgroup do
-    select_filter :year
+    select_filter :year, "desc"
   end
 
   view :topic_formgroup do
-    select_filter :wikirate_topic
+    select_filter :wikirate_topic, "asc"
   end
 
   view :metric_formgroup do
-    select_filter :metric
+    select_filter :metric, "asc"
   end
 
   view :company_formgroup do
-    select_filter :wikirate_company
+    select_filter :wikirate_company, "asc"
+  end
+
+  view :metric_value_formgroup do
+    options = {
+      "Exists" => "exists",
+      "None" => "none",
+      "Edited in last hour" => "last_hour",
+      "Edited today" => "today",
+      "Edited this week" => "week",
+      "Edited this month" => "month"
+    }
+    simple_select_filter "value", options, (Env.params["value"] || "exists")
   end
 
   view :designer_formgroup do

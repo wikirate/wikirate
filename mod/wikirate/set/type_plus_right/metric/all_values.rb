@@ -1,13 +1,13 @@
 include_set Type::SearchType
 include_set Abstract::Utility
+include_set Abstract::FilterUtility
 
 def virtual?
   true
 end
 
 def raw_content
-  %(
-    {
+  %({
       "left":{
         "type":"metric_value",
         "left":{
@@ -16,8 +16,7 @@ def raw_content
       },
       "right":"value",
       "limit":0
-    }
-  )
+    })
 end
 
 def sort_params
@@ -25,6 +24,14 @@ def sort_params
     (Env.params["sort_by"] || "value"),
     (Env.params["sort_order"] || "desc")
   ]
+end
+
+def fill_none_case existing_cache, type_id
+  result = {}
+  Card.search(type_id: type_id, return: :name).each do |card|
+    result[card] = [] unless existing_cache[card]
+  end
+  result
 end
 
 def get_params key, default
@@ -51,28 +58,56 @@ def cached_values
   @cached_metric_values ||= get_cached_values
 
   if @cached_metric_values && (filter = company_filter)
-    # filtered =
-    @cached_metric_values.select do |company, _values|
-      filter.include? company
+    if Env.params["value"] == "none"
+      @cached_metric_values =
+        fill_none_case @cached_metric_values, WikirateCompanyID
     end
-
-    # if year_filter
-    #   filtered.map |company, hash|
-    # end
+    @cached_metric_values.select do |company, values|
+      filter.include?(company) &&
+        filter_by_year(values) &&
+        filter_by_value(values)
+    end
   else
     @cached_metric_values
   end
 end
 
-def company_filter
-  filter = fetch_params %w(company industry project)
-  return unless filter.present?
-  Card.search search_wql(WikirateCompanyID, filter, "name")
+def params_keys
+  %w(name industry project)
 end
 
-def year_filter
-  selected_year = Env.params["year"]
-  selected_year == "latest" ? nil : selected_year
+def company_filter
+  filter = fetch_params params_keys
+  return unless filter.present?
+  Card.search search_wql(WikirateCompanyID, filter, params_keys, "name")
+end
+
+def filter_by_value values
+  value = Env.params["value"] || "exists"
+  return values.empty? if value == "none"
+  return !values.empty? if value == "exists"
+  time_diff = second_by_unit value
+  values.any? do |v|
+    v["last_update_time"] <= time_diff
+  end
+end
+
+def second_by_unit unit
+  case unit
+  when "last_hour"
+    3600
+  when "today"
+    86_400
+  when "week"
+    604_800
+  when "month"
+    18_144_000
+  end
+end
+
+def filter_by_year values
+  return true unless Env.params["year"].present?
+  values.any? { |v| v["year"] == Env.params["year"] }
 end
 
 def get_cached_values
@@ -112,10 +147,15 @@ format do
     end
   end
 
+  def latest_year_value values
+    values.sort_by { |value| value["year"] }.reverse[0]["value"]
+  end
+
   def sort_value_asc metric_values, is_num
+    return metric_values.to_a if Env.params["value"] == "none"
     metric_values.sort do |x, y|
-      value_a = x[1].sort_by { |value| value["year"] }.reverse[0]["value"]
-      value_b = y[1].sort_by { |value| value["year"] }.reverse[0]["value"]
+      value_a = latest_year_value x[1]
+      value_b = latest_year_value y[1]
       compare_content value_a, value_b, is_num
     end
   end
@@ -230,7 +270,7 @@ format :html do
 
   view :card_list_items do |args|
     search_results.map do |row|
-      c = Card["#{card.cardname.left}+#{row[0]}"]
+      c = Card.fetch "#{card.cardname.left}+#{row[0]}"
       render :card_list_item, args.clone.merge(item_card: c)
     end.join "\n"
   end
