@@ -154,15 +154,10 @@ format :html do
     end
   end
 
-  def wrap_as_collapse title
+  def wrap_as_collapse
     <<-HTML
-     <div class="panel panel-default filter">
-      <div class="panel-heading" role="tab" id="headingOne"  data-toggle="collapse" href="#collapseFilter" aria-expanded="true" aria-controls="collapseFilter">
-        <h4 class="panel-title accordion-toggle">
-            #{title}
-        </h4>
-      </div>
-      <div id="collapseFilter" class="panel-collapse collapse #{'in' if filter_active?}">
+     <div class="advanced-options">
+      <div id="collapseFilter" class="collapse #{'in' if filter_active?}">
         #{yield}
       </div>
     </div>
@@ -170,9 +165,17 @@ format :html do
   end
 
   def default_button_formgroup_args args
-    args[:buttons] =
+    toggle_text =  filter_active? ? "Hide Advanced" : "Show Advanced"
+    args[:buttons] = [
+      content_tag(:a,  toggle_text, href: "#collapseFilter",
+                                        class: "btn btn-default",
+                                        data: { toggle: "collapse",
+                                                collapseintext: "Hide Advanced",
+                                                collapseouttext: "Show Advanced"
+                                              }),
       card_link(card.left, text: "Reset",
                            class: "slotter btn btn-default margin-8")
+    ].join
   end
 
   view :filter_form do |args|
@@ -181,7 +184,7 @@ format :html do
     html = formgroups.map { |fg| optional_render(fg, args) }
     adv_html = ""
     if advance_formgroups
-      adv_html = wrap_as_collapse("Advance") do
+      adv_html = wrap_as_collapse do
         advance_formgroups.map { |fg| optional_render(fg, args) }.join("")
       end
     end

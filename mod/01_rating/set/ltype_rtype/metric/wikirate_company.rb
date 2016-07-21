@@ -74,7 +74,7 @@ format :html do
           "metric[]=#{CGI.escape(card.metric_name.to_name.url_key)}"
         <<-HTML
         <a type="button" target="_blank" class="btn btn-primary btn-sm"
-          href="#{url}">Add Value</a>
+          href="#{url}">Add answer</a>
         HTML
       else
         <<-HTML
@@ -125,7 +125,7 @@ format :html do
           "metric[]=#{CGI.escape(card.metric_name.to_name.url_key)}"
         <<-HTML
         <a type="button" target="_blank" class="btn btn-primary btn-sm"
-          href="#{url}">Add Value</a>
+          href="#{url}">Add answer</a>
         HTML
       else
         <<-HTML
