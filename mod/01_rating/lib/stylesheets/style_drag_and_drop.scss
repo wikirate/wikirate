@@ -350,6 +350,9 @@ $bright-text-color: #e5e5e5;
 
     .data {
       width: 40%;
+      >.btn{
+          margin: 10px 40%;
+      }
       .data-item {
         float: left;
         width: 100%;
@@ -427,8 +430,11 @@ $bright-text-color: #e5e5e5;
     .RIGHT-Xvote_count > div {
       line-height: 1em;
     }
+    .RIGHT-Xvote_count.content-view {
+        margin-left: 5px;
+    }
     button.vote-button {
-      color: $dark-text-color;
+      //color: $dark-text-color;
       width: 15px;
       height: 15px;
       padding: 0;
@@ -438,7 +444,6 @@ $bright-text-color: #e5e5e5;
       background: none;
     }
     .vote-count {
-      color: $dark-text-color;
       width: 15px;
       height: 15px;
     }

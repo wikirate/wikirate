@@ -85,7 +85,6 @@ def filter_by_vote metric
   return true if !vote_param.present? || vote_param.size == 3
   upvoted = upvoted_metric?(metric)
   downvoted = downvoted_metric?(metric)
-  puts "@@ #{metric},#{upvoted},#{downvoted}".red
   fit_vote? upvoted, downvoted, vote_param
 end
 
@@ -203,6 +202,18 @@ format do
     end
   end
 
+  def sort_metric_designer metric_values
+    metric_values.sort do |x, y|
+      x[0] <=> y[0]
+    end
+  end
+
+  def sort_metric_title metric_values
+    metric_values.sort do |x, y|
+      x.to_name.parts[1..-1] <=> y.to_name.parts[1..-1]
+    end
+  end
+
   def sorted_result sort_by, _order, _is_num=true
     cached_values = card.cached_values
     sorted = case sort_by
@@ -210,6 +221,10 @@ format do
                sort_value_count_desc cached_values
              when "recent"
                sort_recent_desc cached_values
+             when "metric_designer"
+               sort_metric_designer cached_values
+             when "metric_title"
+               sort_metric_title cached_values
              else # upvoted
                sort_upvoted_desc cached_values
              end

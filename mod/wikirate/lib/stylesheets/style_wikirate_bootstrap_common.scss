@@ -460,3 +460,19 @@ button.pointer-item-delete.btn.btn-default {
    /* symbol for "collapsed" panels */
    content:"\f0d7";
 }
+
+// Voting
+
+.vote-count{
+  color: #999;
+}
+.vote-button {
+  color: #999;
+}
+
+.current-user-up{
+  color: $main-color!important;
+}
+.current-user-down{
+  color: $wanted-card-color!important;
+}

@@ -31,6 +31,14 @@ $.urlParam = (name) ->
 $.fn.exists = -> return this.length>0
 
 $(document).ready ->
+  $('[data-toggle="collapse"]').click ->
+    if typeof $(this).data('collapseintext') != 'undefined'
+      collapseOutText = $(this).data('collapseouttext')
+      collapseInText = $(this).data('collapseintext')
+      $(this).text (i, old) ->
+        if old == collapseOutText then collapseInText else collapseOutText
+    return
+    
   $('body').on 'click.collapse-next', '[data-toggle=collapse-next]', ->
     $this     = $(this)
     parent    = $this.data("parent")
