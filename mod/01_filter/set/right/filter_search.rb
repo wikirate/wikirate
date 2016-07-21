@@ -55,7 +55,7 @@ end
 format :html do
   include Set::Abstract::Filter::HtmlFormat
   def page_link_params
-    [:sort, :cited, :claimed, :wikirate_company, :wikirate_topic, :wikirate_tag]
+    [:sort, :cited, :claimed, :wikirate_company, :wikirate_topic]
   end
 
   view :no_search_results do |_args|
@@ -69,7 +69,7 @@ format :html do
   def default_filter_form_args args
     args[:formgroups] = [
       :sort_formgroup, :claimed_formgroup, :cited_formgroup, :company_formgroup,
-      :topic_formgroup, :tag_formgroup
+      :topic_formgroup
     ]
   end
 

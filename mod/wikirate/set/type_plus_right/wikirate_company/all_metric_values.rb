@@ -68,10 +68,11 @@ def filter_by_topic metric
 end
 
 def filter_by_research_policy metric
-  return true unless Env.params["research_policy"].present?
-  research_policy_card = Card[metric].fetch trait: :research_policy, new: {}
-  research_policy_card &&
-    research_policy_card.item_names.include?(Env.params["research_policy"])
+  research_policy = Env.params["research_policy"]
+  return true if !research_policy.present? || research_policy.size == 2
+  rp_card = Card[metric].fetch trait: :research_policy, new: {}
+  rp_card &&
+    rp_card.item_names.any? { |s| s.casecmp(research_policy[0]) == 0 }
 end
 
 def user_voted_metric votee_type
@@ -86,10 +87,10 @@ def filter_by_vote metric
 end
 
 def filter_by_type metric
-  return true unless Env.params["metric_type"].present?
+  return true unless Env.params["type"].present?
   return false if Card[metric].type_id != MetricID
   mt = Card[metric].metric_type
-  Env.params["metric_type"].any? { |s| s.casecmp(mt) == 0 }
+  Env.params["type"].any? { |s| s.casecmp(mt) == 0 }
 end
 
 def filter_by_value values
@@ -196,7 +197,7 @@ end
 
 format :html do
   def page_link_params
-    [:metric, :wikirate_topic, :research_policy, :vote, :value, :metric_type,
+    [:name, :wikirate_topic, :research_policy, :vote, :value, :type,
      :year, :sort]
   end
 
