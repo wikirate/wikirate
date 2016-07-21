@@ -70,10 +70,13 @@ textarea {
       font-size: 1.2em;
       margin-top: 20px;
     }
+    a.btn {
+        margin: 26px 5px 0px;
+    }
   }
 
   .form-group.filter-input {
-    width: 18%;
+    width: 11%;
     input {
       width: inherit;
     }
@@ -160,4 +163,11 @@ li > input[type="radio"] {
     margin: 0px 5px 0px 35px;
     cursor: pointer;
   }
+}
+
+#collapseFilter.collapsing {
+    -webkit-transition: none;
+    transition: none;
+    height: 0px!important;
+    overflow: inherit;
 }
