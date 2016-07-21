@@ -9,11 +9,11 @@ def shift_sort_table?
 end
 
 def default_keys
-  %w(name)
+  %w(name wikirate_topic)
 end
 
 def advance_keys
-  %w(designer wikirate_topic project year)
+  %w(designer project year)
 end
 
 def target_type_id
