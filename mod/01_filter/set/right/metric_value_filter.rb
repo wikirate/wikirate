@@ -34,7 +34,7 @@ format :html do
         <form action="/#{action}?view=content_left_col" method="GET" data-remote="true" class="slotter">
           <h4>Company</h4>
           <div class="margin-12 sub-content"> #{company_filter_fields(args).join} </div>
-          <h4>Answer</h4>
+          <h4>Metric Answer</h4>
           <div class="margin-12"> #{value_filter_fields(args).join} </div>
           <div class="filter-buttons">#{_optional_render :button_formgroup, args}</div>
         </form>

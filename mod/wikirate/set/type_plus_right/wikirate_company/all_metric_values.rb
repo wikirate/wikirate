@@ -83,7 +83,7 @@ end
 def filter_by_vote metric
   return true unless Env.params["vote"].present? && Env.params["vote"] != "all"
   votee_type = Env.params["vote"]
-  user_upvoted_metric(votee_type).include?(metric)
+  user_voted_metric(votee_type).include?(metric)
 end
 
 def filter_by_type metric

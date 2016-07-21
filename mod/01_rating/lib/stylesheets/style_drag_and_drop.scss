@@ -350,6 +350,9 @@ $bright-text-color: #e5e5e5;
 
     .data {
       width: 40%;
+      >.btn{
+          margin: 10px 40%;
+      }
       .data-item {
         float: left;
         width: 100%;
@@ -411,10 +414,6 @@ $bright-text-color: #e5e5e5;
     }
   }
 
-  .disabled-vote-link {
-      color: #1e90ff;
-  }
-
   .header, .no-data {
     height: $drag-item-height;
     float: left;
@@ -445,7 +444,6 @@ $bright-text-color: #e5e5e5;
       background: none;
     }
     .vote-count {
-      color: $dark-text-color;
       width: 15px;
       height: 15px;
     }
