@@ -140,7 +140,7 @@ format :html do
   def default_button_formgroup_args args
     args[:buttons] =
       card_link(card.left, text: "Reset",
-                           class: "slotter btn btn-default margin-8",)
+                           class: "slotter btn btn-default margin-8")
   end
 
   view :filter_form do |args|
