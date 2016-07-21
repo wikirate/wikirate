@@ -184,8 +184,7 @@ format :html do
               class: " filter-input"
   end
 
-  def type_options type_codename, order
-    order ||= "asc"
+  def type_options type_codename, order="asc"
     type_card = Card[type_codename]
     Card.search type_id: type_card.id, return: :name, sort: "name", dir: order
   end
@@ -265,7 +264,7 @@ format :html do
       names = m.to_name.parts
       # score metric?
       names.length == 3 ? names[2] : names[0]
-    end.uniq!
+    end.uniq!(&:downcase).sort_by!(&:downcase)
     simple_select_filter "designer", [["--", ""]] + designers,
                          Env.params[:designer]
   end
