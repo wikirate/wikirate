@@ -18,7 +18,7 @@ def get_query params={}
   params[:query] = Card.tag_filter_query(
     filter_words,
     search_args,
-    %w( tag company topic )
+    %w(tag company topic)
   )
   super(params)
 end
