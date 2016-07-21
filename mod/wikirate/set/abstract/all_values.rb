@@ -175,6 +175,7 @@ format do
   end
 
   def sort_value_asc metric_values, is_num
+    return metric_values.to_a if Env.params["value"] == "none"
     metric_values.sort do |x, y|
       value_a = latest_year_value x[1]
       value_b = latest_year_value y[1]
