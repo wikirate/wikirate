@@ -18,7 +18,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
     end
   end
 
-  describe '#get_params' do
+  describe "#get_params" do
     it "returns value from params" do
       Card::Env.params["offset"] = "5"
       expect(all_values.get_params("offset", 0)).to eq(5)
@@ -29,29 +29,31 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
     end
   end
 
-  describe '#get_cached_values' do
+  describe "#get_cached_values" do
     it "returns correct cached metric values" do
       results = all_values.get_cached_values
       value_idx = 1
       @companies.each do |company|
         expect(results.key?(company.name)).to be_truthy
-        for i in 0...3
-          expected_result = { year: (2015 - i).to_s,
-                              value: (value_idx * 5 + i).to_s }
-          expect(results[company.name]).to include(expected_result)
+        0.upto(3) do |i|
+          found_expected = results[company.name].any? do |row|
+            row[:year] == (2015 - i).to_s &&
+              row[:value] == (value_idx * 5 + i).to_s
+          end
+          expect(found_expected).to be_truthy
         end
         value_idx += 1
       end
     end
   end
 
-  describe '#count' do
+  describe "#count" do
     it "returns correct cached count" do
       result = all_values.count {}
       expect(result).to eq(4)
     end
   end
-  describe '#num?' do
+  describe "#num?" do
     context "Numeric type" do
       it "returns true" do
         @metric.update_attributes! subcards: { "+value_type" => "[[Number]]" }
@@ -73,7 +75,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
       end
     end
   end
-  describe '#sorted_result' do
+  describe "#sorted_result" do
     before do
       @cached_result = all_values.cached_values
       @format = all_values.format
@@ -86,8 +88,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
         ["Amazon.com, Inc.",
          "Apple Inc.",
          "Death Star",
-         "Sony Corporation"
-        ]
+         "Sony Corporation"]
       )
     end
     it "sorts by company name desc" do
@@ -98,8 +99,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
         ["Sony Corporation",
          "Death Star",
          "Apple Inc.",
-         "Amazon.com, Inc."
-        ]
+         "Amazon.com, Inc."]
       )
     end
 
@@ -109,8 +109,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
         ["Death Star",
          "Sony Corporation",
          "Amazon.com, Inc.",
-         "Apple Inc."
-        ]
+         "Apple Inc."]
       )
     end
 
@@ -120,8 +119,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
         ["Apple Inc.",
          "Amazon.com, Inc.",
          "Sony Corporation",
-         "Death Star"
-        ]
+         "Death Star"]
       )
     end
   end
