@@ -8,7 +8,7 @@ format :html do
     Env.params.keys.any? { |key| filter_categories.include? key }
   end
 
-  def default_core_args args
+  def default_button_formgroup_args args
     args[:buttons] = [
       card_link(card.left, path_opts: { view: :content_left_col },
                            text: "Reset",
