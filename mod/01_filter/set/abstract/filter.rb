@@ -1,6 +1,5 @@
 include_set Type::SearchType
 include_set Abstract::Utility
-include_set Abstract::FilterUtility
 
 def sort?
   true
@@ -59,15 +58,47 @@ def shift_sort_table query
 end
 
 def sort_by wql, sort_by
- if sort_by == "name"
-   wql[:sort] = "name"
- else
-  wql[:sort_as] = "integer"
-  wql[:dir] = "desc"
-  wql[:sort] = {
-    right: (sort_by || default_sort_by_key), right_plus: "*cached count"
-  }
- end
+  if sort_by == "name"
+    wql[:sort] = "name"
+  else
+    wql[:sort_as] = "integer"
+    wql[:dir] = "desc"
+    wql[:sort] = {
+      right: (sort_by || default_sort_by_key), right_plus: "*cached count"
+    }
+  end
+end
+
+def search_wql type_id, opts, params_keys, return_param=nil
+  wql = { type_id: type_id }
+  wql[:return] = return_param if return_param
+  params_keys.each do |key|
+    # link_to in #page_link with name will override the path
+    method_name = key.include?("_name") ? "name" : key
+    send("wql_by_#{method_name}", wql, opts[key])
+  end
+  wql
+end
+
+def wql_by_name wql, name
+  return unless name.present?
+  wql[:name] = ["match", name]
+end
+
+def wql_by_project wql, project
+  return unless project.present?
+  wql[:referred_to_by] = { left: { name: project } }
+end
+
+def wql_by_industry wql, industry
+  return unless industry.present?
+  wql[:left_plus] = [
+    format.industry_metric_name,
+    { right_plus: [
+      format.industry_value_year,
+      { right_plus: ["value", { eq: industry }] }
+    ] }
+  ]
 end
 
 def virtual?
@@ -262,18 +293,36 @@ format :html do
   view :metric_type_formgroup do
     type_card = Card["metric_type"]
     options = Card.search type_id: type_card.id, return: :name, sort: "name"
+    checkbox_formgroup "Type", options
+  end
+
+  def checkbox_formgroup title, options, default=nil
+    key = title.to_name.key
+    param = Env.params[key] || default
     checkboxes = options.map do |option|
-      checked = Env.params["metric_type"].present? &&
-                Env.params["metric_type"].include?(option.downcase)
+      label, value, checked = check_box_params option, param
+
       %(<label>
-        #{check_box_tag('metric_type[]', option.downcase, checked) + option}
+        #{check_box_tag("#{key}[]", value, checked) + label}
       </label>)
     end
-    formgroup "Type", checkboxes.join("")
+    formgroup title, checkboxes.join("")
+  end
+
+  def check_box_params option, param
+    checked = param.present?
+    result =
+      if option.is_a? Array
+        [option[0], option[1]]
+      else
+        [option, option.downcase]
+      end
+    result.push(checked && param.include?(result[1].downcase))
   end
 
   view :research_policy_formgroup do
-    select_filter :research_policy, "Research Policy"
+    options = type_options :research_policy
+    checkbox_formgroup "Research Policy", options
   end
 
   view :metric_value_formgroup do
@@ -301,11 +350,10 @@ format :html do
 
   view :importance_formgroup do
     options = {
-      "All" => "all",
-      "Upvoted by me" => "upvotee",
-      "Downvoted by me" => "downvotee"
+      "Upvoted" => "upvotee",
+      "Downvoted" => "downvotee"
     }
-    simple_select_filter "vote", options, Env.params["vote"] || "all"
+    checkbox_formgroup "Vote", options, ["upvotee"]
   end
 
   view :industry_formgroup do

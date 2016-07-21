@@ -12,7 +12,7 @@ format :html do
     Env.params.keys.any? { |key| filter_categories.include? key }
   end
 
-  def default_core_args args
+  def default_button_formgroup_args args
     args[:buttons] = [
       card_link(card.left, path_opts: { view: :content_left_col },
                            text: "Reset",
@@ -49,7 +49,7 @@ format :html do
   def metric_filter_fields args
     [
       _optional_render(:name_formgroup, args),
-      _optional_render(:topic_formgroup, args),
+      _optional_render(:wikirate_topic_formgroup, args),
       _optional_render(:research_policy_formgroup, args),
       _optional_render(:importance_formgroup, args),
       _optional_render(:metric_type_formgroup, args)

@@ -1,6 +1,6 @@
 include_set Type::SearchType
 include_set Abstract::Utility
-include_set Abstract::FilterUtility
+include_set Abstract::Filter
 def virtual?
   true
 end
