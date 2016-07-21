@@ -81,9 +81,31 @@ def user_voted_metric votee_type
 end
 
 def filter_by_vote metric
-  return true unless Env.params["vote"].present? && Env.params["vote"] != "all"
-  votee_type = Env.params["vote"]
-  user_upvoted_metric(votee_type).include?(metric)
+  vote_param = Env.params["my_vote"]
+  return true if !vote_param.present? || vote_param.size == 3
+  upvoted = upvoted_metric?(metric)
+  downvoted = downvoted_metric?(metric)
+  puts "@@ #{metric},#{upvoted},#{downvoted}".red
+  fit_vote? upvoted, downvoted, vote_param
+end
+
+def fit_vote? upvoted, downvoted, vote_param
+  not_voted = !upvoted && !downvoted
+  result = false
+  result |= upvoted if vote_param.include?("upvoted")
+  result |= downvoted if vote_param.include?("downvoted")
+  result |= not_voted if vote_param.include?("not voted")
+  result
+end
+
+def upvoted_metric? metric
+  @upvoted_metric ||= user_voted_metric("upvotee")
+  @upvoted_metric.include?(metric)
+end
+
+def downvoted_metric? metric
+  @downvoted_metric ||= user_voted_metric("downvotee")
+  @downvoted_metric.include?(metric)
 end
 
 def filter_by_type metric

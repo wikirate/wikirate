@@ -300,25 +300,24 @@ format :html do
     key = title.to_name.key
     param = Env.params[key] || default
     checkboxes = options.map do |option|
-      label, value, checked = check_box_params option, param
-
+      checked = param.present? && param.include?(option.downcase)
       %(<label>
-        #{check_box_tag("#{key}[]", value, checked) + label}
+        #{check_box_tag("#{key}[]", option.downcase, checked) + option}
       </label>)
     end
     formgroup title, checkboxes.join("")
   end
 
-  def check_box_params option, param
-    checked = param.present?
-    result =
-      if option.is_a? Array
-        [option[0], option[1]]
-      else
-        [option, option.downcase]
-      end
-    result.push(checked && param.include?(result[1].downcase))
-  end
+  # def check_box_params option, param
+  #   checked = param.present?
+  #   result =
+  #     if option.is_a? Array
+  #       [option[0], option[1]]
+  #     else
+  #       [option, option.downcase]
+  #     end
+  #   result.push(checked && param.include?(result[1].downcase))
+  # end
 
   view :research_policy_formgroup do
     options = type_options :research_policy
@@ -349,11 +348,8 @@ format :html do
   end
 
   view :importance_formgroup do
-    options = {
-      "Upvoted" => "upvotee",
-      "Downvoted" => "downvotee"
-    }
-    checkbox_formgroup "Vote", options, ["upvotee"]
+    options = ["Not Voted", "Upvoted", "Downvoted"]
+    checkbox_formgroup "My Vote", options, ["upvoted", "not voted"]
   end
 
   view :industry_formgroup do
