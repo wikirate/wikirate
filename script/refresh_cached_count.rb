@@ -47,10 +47,10 @@ def refresh_all
   %w(wikirate_company_type value source).each do |r|
     results += find_left_right_cached_count "metric", r
   end
-  %w(metric topic source claim).each do |r|
+  %w(metric topic source note).each do |r|
     results += find_left_right_cached_count "wikirate_company", r
   end
-  %w(metric company source claim).each do |r|
+  %w(metric company source note).each do |r|
     results += find_left_right_cached_count "wikirate_topic", r
   end
   results

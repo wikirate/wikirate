@@ -8,8 +8,12 @@ def shift_sort_table?
   %w(values company).include?(Env.params["sort"] || default_sort_by_key)
 end
 
-def params_keys
-  %w(metric_name designer wikirate_topic project year)
+def default_keys
+  %w(name wikirate_topic)
+end
+
+def advance_keys
+  %w(designer project year)
 end
 
 def target_type_id
@@ -62,14 +66,6 @@ def wql_by_designer wql, designer
 end
 
 format :html do
-  def page_link_params
-    [:sort, :metric_name, :designer, :wikirate_topic, :project, :year]
-  end
-
-  def default_name_formgroup_args args
-    args[:name] = "metric_name"
-  end
-
   def default_sort_formgroup_args args
     args[:sort_options] = {
       "Most Upvoted" => "upvoted",
@@ -80,10 +76,15 @@ format :html do
     args[:sort_option_default] = "upvoted"
   end
 
-  def default_filter_form_args args
-    args[:formgroups] = [
-      :sort_formgroup, :name_formgroup, :designer_formgroup,
-      :topic_formgroup, :project_formgroup, :year_formgroup
-    ]
+  def type_options type_codename, order="asc"
+    if type_codename == :wikirate_topic
+      Card.search referred_to_by: {
+        left: { type_id: Card::MetricID },
+        right: "topic"
+      }, type_id: Card::WikirateTopicID,
+                  return: :name, sort: "name", dir: order
+    else
+      super type_codename, order
+    end
   end
 end

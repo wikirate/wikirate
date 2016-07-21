@@ -1,32 +1,28 @@
 include_set Abstract::Filter
 
-def params_keys
-  %w(company_name industry project)
+def default_keys
+  %w(name industry)
+end
+
+def advance_keys
+  %w(project wikirate_topic)
 end
 
 def default_sort_by_key
   "metric"
 end
 
+def wql_by_wikirate_topic wql, topic
+  return unless topic.present?
+  wql[:found_by] = "#{topic}+company"
+end
+
 format :html do
-  def page_link_params
-    [:sort, :company_name, :industry, :project]
-  end
-
-  def default_filter_form_args args
-    args[:formgroups] = [
-      :sort_formgroup, :name_formgroup, :industry_formgroup, :project_formgroup
-    ]
-  end
-
-  def default_name_formgroup_args args
-    args[:name] = "company_name"
-  end
-
   def default_sort_formgroup_args args
-    args[:sort_options] = {
+    super args
+    args[:sort_options].merge!(
       "Most Metrics" => "metric", "Most Topics" => "topic"
-    }
+    )
     args[:sort_option_default] = "metric"
   end
 end
