@@ -29,7 +29,7 @@ recount_trigger Type::MetricValue do |changed_card|
   # it should also update the cache for the old name
   if changed_card.name_changed?
     old_metric_name = changed_card.name_change[0].to_name.parts[0..-3].join "+"
-    if !old_metric_name.empty? && old_metric_name != changed_card.metric
+    if !old_metric_name.empty? && old_metric_name != changed_card.metric_name
       metric_cache.push Card.fetch(old_metric_name).fetch(trait: :all_values)
     end
   end
