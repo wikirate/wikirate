@@ -154,17 +154,19 @@ format :html do
   end
 
   def default_button_formgroup_args args
-    toggle_text =  filter_active? ? "Hide Advanced" : "Show Advanced"
-    args[:buttons] = [
-      content_tag(:a,  toggle_text, href: "#collapseFilter",
-                                        class: "btn btn-default",
-                                        data: { toggle: "collapse",
-                                                collapseintext: "Hide Advanced",
-                                                collapseouttext: "Show Advanced"
-                                              }),
-      card_link(card.left, text: "Reset",
-                           class: "slotter btn btn-default margin-8")
-    ].join
+    toggle_text = filter_active? ? "Hide Advanced" : "Show Advanced"
+    buttons = [card_link(card.left, text: "Reset",
+                                    class: "slotter btn btn-default margin-8")]
+    unless card.advance_keys.empty?
+      buttons.unshift(content_tag(:a,
+                                  toggle_text,
+                                  href: "#collapseFilter",
+                                  class: "btn btn-default",
+                                  data: { toggle: "collapse",
+                                          collapseintext: "Hide Advanced",
+                                          collapseouttext: "Show Advanced" }))
+    end
+    args[:buttons] = buttons.join
   end
 
   view :filter_form do |args|

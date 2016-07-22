@@ -1,3 +1,5 @@
+
+include_set Abstract::FilterUtility
 def filter_words
   filter_words = Array.wrap(Env.params[:wikirate_company]) || []
   if Env.params[:wikirate_topic]
@@ -7,6 +9,14 @@ def filter_words
     filter_words += Array.wrap(Env.params[:wikirate_tag])
   end
   filter_words
+end
+
+def params_keys
+  []
+end
+
+def advance_keys
+  []
 end
 
 def get_query params={}
