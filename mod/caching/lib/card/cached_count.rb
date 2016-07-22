@@ -29,9 +29,7 @@ class Card
 
     module ClassMethods
       def recount_trigger set_of_changed_card, args={}, &block
-
         if set_of_changed_card
-
           args[:on] ||= [:create, :update, :delete]
           name = event_name set_of_changed_card, args
           set_of_changed_card.class_eval do
@@ -79,7 +77,7 @@ class Card
     # the default way is hthat the card is a search card and we just
     # count the search result
     # for special calculations override this method in your set
-    def calculate_count changed_card=nil
+    def calculate_count _changed_card=nil
       count
     end
   end
