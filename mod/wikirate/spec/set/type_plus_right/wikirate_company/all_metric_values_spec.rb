@@ -20,7 +20,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       end
     end
   end
-  describe '#get_cached_values' do
+  describe "#get_cached_values" do
     it "returns correct cached metric values" do
       results = all_values.get_cached_values
       value_idx = 1
@@ -37,9 +37,9 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       end
     end
   end
-  describe '#filter' do
+  describe "#filter" do
     it "filters by name" do
-      Card::Env.params["metric"] = "number"
+      Card::Env.params["name"] = "number"
       results = all_values.cached_values
       expect(results.size).to eq(3)
       results.keys.each do |metric|
@@ -59,7 +59,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
     it "filters by research policy" do
       Card.create! name: "Joe User+researched number 1+research_policy",
                    content: "[[Designer Assessed]]\n"
-      Card::Env.params["research_policy"] = "Designer Assessed"
+      Card::Env.params["research_policy"] = ["Designer Assessed"]
       results = all_values.cached_values
       expect(results.size).to eq(1)
       expect(results.keys[0]).to eq("Joe User+researched number 1")
@@ -72,7 +72,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
         vcc.vote_up
         vcc.save!
       end
-      Card::Env.params["vote"] = "upvotee"
+      Card::Env.params["my_vote"] = "upvoted"
       results = all_values.cached_values
       expect(results.size).to eq(1)
       expect(results.keys[0]).to eq("Joe User+researched number 1")
@@ -92,7 +92,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
     end
 
     it "filters by type" do
-      Card::Env.params["metric_type"] = ["wikirating"]
+      Card::Env.params["type"] = ["wikirating"]
       results = all_values.cached_values
       expect(results.size).to eq(1)
       expect(results.keys[0]).to eq("Jedi+darkness rating")

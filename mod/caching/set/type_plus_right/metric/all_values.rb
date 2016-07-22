@@ -107,7 +107,7 @@ def get_value_card changed_card
 end
 
 def add_or_update_value changed_card, cached_hash
-  company_id = company_id changed_card
+  company_id = get_key changed_card
   cached_hash[company_id] = [] unless cached_hash.key?(company_id)
   rows = cached_hash[company_id]
   row = get_record_from_year(rows, changed_card.year)
@@ -121,7 +121,7 @@ end
 
 def construct_a_row value_card
   { year: value_card.year, value: value_card.value,
-    last_update_time: value_card.updated_at.to_i}
+    last_update_time: value_card.updated_at.to_i }
 end
 
 def get_key changed_card, from=:new
