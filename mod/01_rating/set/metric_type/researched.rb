@@ -85,7 +85,7 @@ format :html do
           <i class="fa fa-globe"></i>
         </div>
         <div class="row-data">
-            {{+source|titled;title:Sources;|content;structure:source_item}}
+            {{+source|titled;title:Sources;|content;source_list_item}}
         </div>
       </div>
       HTML

@@ -15,6 +15,9 @@
     background-color: inherit!important;
     cursor: inherit!important;
 }
+.tabbable.company-tabs .tab-content {
+    margin-left: -15px;
+}
 .company-header {
     color: $company-color;
     border-top: 3px solid $company-color;
