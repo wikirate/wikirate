@@ -63,6 +63,7 @@ format :html do
     [
       _optional_render(:metric_value_formgroup, args),
       _optional_render(:year_formgroup, args),
+      content_tag(:hr),
       _optional_render(:sort_formgroup, args)
     ]
   end
