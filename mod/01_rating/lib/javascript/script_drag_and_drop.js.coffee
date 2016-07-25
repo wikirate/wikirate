@@ -4,6 +4,7 @@ sortDragItems = (list, key, order='desc') ->
     if $(a).data("sort-#{key}") > $(b).data("sort-#{key}") then -1*order else order
 $(document).ready ->
   # vote buttons
+  # userUpvotedColor()
   drop_list = (votee, vote_type) ->
     $(votee).closest('.voting').find(".list-drag-and-drop[data-bucket-name=#{vote_type}]")
 
@@ -51,7 +52,7 @@ $(document).ready ->
   $('body').on 'click', '.yinyang-row > .header', ->
     toggleDetails $(this).closest('.yinyang-row').find('.details-toggle')
 
-  activeDetails = null;
+  activeDetails = null
 
   toggleMetricDetails = (toggle) ->
 
@@ -65,11 +66,13 @@ $(document).ready ->
       details.hide()
       row.find(".value-item, .list-item").first().removeClass("active")
     else if !$.trim(details.html()) # empty
-      loader_anime = $("#ajax_loader").html();
-      details.append(loader_anime);
-      activeItem = $(".yinyang-list .value-item:first-child.active, .search-result-list .overview-item:first-child.active")
-      activeItem.find(".details").hide();
-      activeItem.removeClass("active");
+      yinyan_list_name = ".yinyang-list .value-item:first-child.active"
+      loader_anime = $("#ajax_loader").html()
+      details.append(loader_anime)
+      activeItem = $(yinyan_list_name +
+      " .search-result-list .overview-item:first-child.active")
+      activeItem.find(".details").hide()
+      activeItem.removeClass("active")
       row.find(".value-item, .list-item").first().addClass("active")
       card_slot = $(toggle).closest('.card-slot')
       card_name = card_slot.attr('id')
@@ -80,7 +83,8 @@ $(document).ready ->
           card_name = card_names[3] + "+" + card_names[0] + "+" +
                       card_names[1] + "+" + card_names[2] + "+yinyang_drag_item"
         else
-          card_name = card_names[2]+"+"+card_names[0]+"+"+card_names[1]+"+yinyang_drag_item"
+          card_name = card_names[2]+"+"+card_names[0]+"+"+
+                      card_names[1]+"+yinyang_drag_item"
       view = $(toggle).data('view') || 'content'
       right_name = $(toggle).data('append')
       load_path = "/#{card_name}+#{right_name}?view=#{view}"
@@ -92,16 +96,19 @@ $(document).ready ->
       $(details).load load_path, ->
         $(details).trigger('slotReady')
     else
-      activeItem = $(".yinyang-list .value-item:first-child.active, .search-result-list .list-item:first-child.active")
-      activeItem.find(".details").hide();
-      activeItem.removeClass("active");
+      activeItem = $(yinyan_list_name +
+                   ", .search-result-list .list-item:first-child.active")
+      activeItem.find(".details").hide()
+      activeItem.removeClass("active")
       row.find(".value-item, .list-item").first().addClass("active")
       #for hide_with_details in $(row).find('.hide-with-details')
       #$(hide_with_details).hide()
       #for show_with_details in $(row).find('.show-with-details')
       #$(show_with_details).show()
       details.show()
-    activeDetails = $('.yinyang-list .value-item:first-child.active > .details,  .search-result-list .list-item:first-child.active > .details')
+    activeDetails = $(yinyan_list_name +
+                    ' > .details,  .search-result-list' +
+                    ' .list-item:first-child.active > .details')
     stickMetricDetails()
 
   #stick the metric details when scrolling
@@ -112,7 +119,7 @@ $(document).ready ->
       activeDetails.removeClass 'stick'
 
     if($(window).scrollTop() > ($("#main").height()-$(window).height()+300))
-      activeDetails.removeClass("stick");
+      activeDetails.removeClass("stick")
 
     return
 
@@ -122,7 +129,8 @@ $(document).ready ->
 
 
   toggleDetails = (toggle) ->
-    $(toggle).find('.glyphicon').toggleClass('glyphicon-triangle-bottom','glyphicon-triangle-right')
+    $(toggle).find('.glyphicon')
+      .toggleClass('glyphicon-triangle-bottom','glyphicon-triangle-right')
     row = $(toggle).closest('.yinyang-row')
 
 
@@ -139,7 +147,8 @@ $(document).ready ->
       if card_slot.hasClass("LTYPE_RTYPE-metric-company")
         # to re order the card name to get the metric details
         card_names = card_name.split("+")
-        card_name = card_names[2]+"+"+card_names[0]+"+"+card_names[1]+"+yinyang_drag_item"
+        card_name = card_names[2]+ "+"
+        + card_names[0] + "+" + card_names[1] + "+yinyang_drag_item"
       view = $(toggle).data('view') || 'content'
       right_name = $(toggle).data('append')
       load_path = "/#{card_name}+#{right_name}?view=#{view}"
@@ -160,10 +169,19 @@ $(document).ready ->
 
   # filter
 
-  $('body').on 'click','.votee-filter .filter-header', ->
-    $(this).find('.filter-toggle .glyphicon').toggleClass('glyphicon-triangle-bottom','glyphicon-triangle-right')
+  $('body').on 'click','.votee-filter .filter-header, ' +
+                       '.filter-container .filter-header', ->
+    $(this).find('.filter-toggle .glyphicon')
+      .toggleClass('glyphicon-triangle-bottom','glyphicon-triangle-right')
     $(this).next().toggle()
 
+  # $(document).ajaxSuccess ->
+  #   userUpvotedColor()
+  #
+  # userUpvotedColor = () ->
+  #   $(".disabled-vote-link").parent()
+  #                           .siblings(".vote-count")
+  #                           .css("color","#1e90ff")
   ###*
   # jQuery.fn.sortElements
   # --------------
@@ -187,16 +205,19 @@ $(document).ready ->
 
   jQuery.fn.sortElements = do ->
     sort = [].sort
+    err_msg = 'You can\'t sort elements if any one is a descendant of another.'
     (comparator, getSortable) ->
       getSortable = getSortable or ->
           this
       placements = @map(->
         sortElement = getSortable.call(this)
         parentNode = sortElement.parentNode
-        nextSibling = parentNode.insertBefore(document.createTextNode(''), sortElement.nextSibling)
+        nextSibling = parentNode.insertBefore(document.createTextNode(''),
+                                              sortElement.nextSibling)
         ->
           if parentNode == this
-            throw new Error('You can\'t sort elements if any one is a descendant of another.')
+            error =
+            throw new Error(err_msg)
           # Insert before flag:
           parentNode.insertBefore this, nextSibling
           # Remove flag:
@@ -221,7 +242,8 @@ wagn.slotReady (slot) ->
     new_list = drag_item.parent()
     if new_list.parent().is(old_list.parent()) # don't mix topics and metrics
       updateHints(old_list, new_list)
-      update_path = drag_item.data('update-path') + '&' + $(new_list).data('query')
+      update_path = drag_item.data('update-path')
+      + '&' + $(new_list).data('query')
       if next_item = $(drag_item).next('.drag-item')
         update_path += '&insert-before=' + next_item.data('votee-id')
       vote = drag_item.find('.vote-count')
@@ -240,8 +262,6 @@ wagn.slotReady (slot) ->
     old_list = ui.item.parent()
 
 
-  #if slot.hasClass('tab-content')# && (slot.hasClass('RIGHT-metric_sidebar') || slot.hasClass('RIGHT-topic_sidebar'))
-
   updateHints = (old_list, new_list) ->
     if $(old_list).find('.drag-item:visible').length == 0
       $(old_list).find('.unsaved-message').hide()
@@ -251,7 +271,7 @@ wagn.slotReady (slot) ->
 
 
   slot.find('.filter-details .filter').on 'click', ->
-    list = $(this).closest('.votee-filter').next().next() #('.list-drag-and-drop[data-bucket-name=no_vote]')
+    list = $(this).closest('.votee-filter').next().next()
     sortDragItems(list, $(this).data('sort-key'), $(this).data('sort-order'))
 
   slot.find('.voting .list-drag-and-drop').sortable

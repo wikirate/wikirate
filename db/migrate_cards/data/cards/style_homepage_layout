@@ -59,7 +59,8 @@
             border-radius: 0px;
             margin-top: -2px;
             padding-bottom: 6px;
-            height: 150px;
+            height: 154px;
+            border-color: $bright-text-color;
             >div {
                   position: relative;     
                   top: 50%;     
@@ -70,7 +71,7 @@
         }
         
         .homepage-company-item .data-count>div:hover {
-            background-color: #fafafa;
+            //background-color: $gray-background-color;
         }
      
 

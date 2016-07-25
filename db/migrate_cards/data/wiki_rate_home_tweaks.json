@@ -1,0 +1,58 @@
+[
+  {
+    "name": "metric item",
+    "type": "HTML"
+  },
+  {
+    "name": "browse topic item",
+    "type": "HTML"
+  },
+  {
+    "name": "browse company item",
+    "type": "HTML"
+  },
+  {
+    "name": "style wikirate layout",
+    "type": "SCSS"
+  },
+  {
+    "name": "company metric drag item",
+    "type": "HTML"
+  },
+  {
+    "name": "company and topic item scss",
+    "type": "SCSS"
+  },
+  {
+    "name": "style: homepage layout",
+    "type": "SCSS"
+  },
+  {
+    "name": "wikirate layout",
+    "type": "Layout"
+  },
+  {
+    "name": "wikirate footer compact",
+    "type": "HTML"
+  },
+  {
+    "name": "homepage: company and metric",
+    "type": "HTML"
+  },
+  {
+    "name": "homepage company item",
+    "type": "HTML"
+  },
+  {
+    "name": "homepage company metric item",
+    "type": "HTML"
+  },
+  {
+    "name": "homepage topic metric drag item",
+    "type": "HTML"
+  },
+  {
+    "name": "homepage topic item",
+    "type": "HTML"
+  }
+]

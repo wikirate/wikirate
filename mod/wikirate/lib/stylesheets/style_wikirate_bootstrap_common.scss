@@ -239,6 +239,7 @@
     color: #868686;
 }
 
+// Modal
 .modal-body > div {
     display: inline-block;
     width: 100%;
@@ -458,4 +459,20 @@ button.pointer-item-delete.btn.btn-default {
 .panel-heading.collapsed .accordion-toggle:after {
    /* symbol for "collapsed" panels */
    content:"\f0d7";
+}
+
+// Voting
+
+.vote-count{
+  color: #999;
+}
+.vote-button {
+  color: #999;
+}
+
+.current-user-up{
+  color: $main-color!important;
+}
+.current-user-down{
+  color: $wanted-card-color!important;
 }

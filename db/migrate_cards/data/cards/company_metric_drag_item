@@ -20,6 +20,7 @@
       </div>
       <div class="data ">
         <div class="data-item hide-with-details">
+       
           {{_llr+_lr+_1+latest value|concise}}
         </div>
         <div class="data-item show-with-details text-center">

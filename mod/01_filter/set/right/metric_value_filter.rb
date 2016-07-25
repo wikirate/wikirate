@@ -8,7 +8,7 @@ format :html do
     Env.params.keys.any? { |key| filter_categories.include? key }
   end
 
-  def default_core_args args
+  def default_button_formgroup_args args
     args[:buttons] = [
       card_link(card.left, path_opts: { view: :content_left_col },
                            text: "Reset",
@@ -20,21 +20,24 @@ format :html do
 
   view :core do |args|
     action = card.cardname.left_name.url_key
+    filter_active = filter_active? ? "block" : "none"
     <<-HTML
-    <div class="panel panel-default filter">
-      <div class="panel-heading" role="tab" id="headingOne"  data-toggle="collapse" href="#collapseFilter" aria-expanded="true" aria-controls="collapseFilter">
-        <h4 class="panel-title accordion-toggle">
-            Filter by
-        </h4>
+    <div class="filter-container">
+      <div class="filter-header">
+        <span class="glyphicon glyphicon-filter"></span>
+        Filter
+        <span class="filter-toggle">
+        <span class="glyphicon glyphicon-triangle-right"></span>
+        </span>
       </div>
-      <div id="collapseFilter" class="panel-collapse collapse #{'in' if filter_active?}">
-
+      <div class="filter-details" style="display: #{filter_active};">
         <form action="/#{action}?view=content_left_col" method="GET" data-remote="true" class="slotter">
           <h4>Company</h4>
-          <div class="margin-12"> #{company_filter_fields(args).join} </div>
+          <div class="margin-12 sub-content"> #{company_filter_fields(args).join} </div>
+          <h4>Metric Answer</h4>
+          <div class="margin-12"> #{value_filter_fields(args).join} </div>
           <div class="filter-buttons">#{_optional_render :button_formgroup, args}</div>
         </form>
-
       </div>
     </div>
     HTML
@@ -44,15 +47,14 @@ format :html do
     [
       _optional_render(:name_formgroup, args),
       _optional_render(:industry_formgroup, args),
-      select_filter(:project)
+      select_filter(:project, "asc")
     ]
   end
 
-  def answer_filter_fields _args
-    [select_filter(:year)]
-  end
-
-  def default_name_formgroup_args args
-    args[:name] = "company"
+  def value_filter_fields args
+    [
+      _optional_render(:year_formgroup, args),
+      _optional_render(:metric_value_formgroup, args)
+    ]
   end
 end

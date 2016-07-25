@@ -1,0 +1,67 @@
+<div class="row nopadding transparent-background-white nodblclick">
+  <div class="col-md-12">
+      
+    <div class="row margin-top-50 hidden-xs"></div>
+    
+    
+    <!-- COMPANY -->    
+    <div class="row nopadding">
+      <div class="col-md-6 text-center margin-top-50">
+        <div class="row margin-top-80"></div>
+        <p class=" homepage-lead  col-md-8 col-centered">
+          See how <a href="/company" class="company-color" style="font-size:1.2em">Companies</a> you know perform...
+        </p>
+      </div>
+    <div class="col-md-6 homepage-company-list dark-grey-color">
+      {{homepage companies|hide:paging,title;|content;structure: homepage company item}}
+    </div>
+  </div>
+  
+  
+  <!-- TOPIC -->    
+  <div class="row nopadding">
+    <!-- TOPIC messaging on MOBILE -->    
+    <div class="col-md-6 text-center margin-top-50 visible-xs visible-sm">
+      <div class="row margin-top-50"></div>
+      <p class="homepage-lead margin-top-80 col-md-8 col-centered">
+        ...on
+        <a href="/topics" class="topic-color" style="font-size:1.2em">Topics</a>
+        that are important to you...
+      </p>
+    </div>
+    
+    <!-- TOPIC examples -->    
+    <div class="col-md-6 homepage-metric-list">
+      {{homepage topics|hide:paging,title;|content;structure: homepage topic item}}
+    </div>
+    
+    <!-- TOPIC messaging on MOBILE -->    
+    <div class="col-md-6 text-center margin-top-50 visible-lg visible-md">
+      <div class="row margin-top-80"></div>
+      <p class="homepage-lead col-md-8 col-centered">
+        ...on
+        <a href="/topics" class="topic-color" style="font-size:1.2em">Topics</a>
+        that are important to you...
+      </p>
+    </div>
+    
+  </div>
+        
+        
+  <!-- METRIC -->          
+  <div class="row nopadding">
+    <div class="col-md-6 text-center margin-top-50">
+      <div class="row margin-top-80"></div>
+        <p class=" homepage-lead col-md-10 col-centered">
+          ...with  
+          <a href="/metrics" class="metric-color" style="font-size:1.2em">Metrics</a>
+          from nonprofits, academics, and the community at large.
+      	</p>
+      </div>
+      <div class="col-md-6 homepage-metric-list">
+        {{homepage metrics|hide:paging,title;|content;structure: homepage metric item}}
+      </div>
+    </div>
+    <div class="row margin-top-50"></div>
+  </div>
+</div>

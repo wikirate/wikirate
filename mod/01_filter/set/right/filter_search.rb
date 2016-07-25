@@ -1,3 +1,5 @@
+
+include_set Abstract::FilterUtility
 def filter_words
   filter_words = Array.wrap(Env.params[:wikirate_company]) || []
   if Env.params[:wikirate_topic]
@@ -9,6 +11,14 @@ def filter_words
   filter_words
 end
 
+def params_keys
+  []
+end
+
+def advance_keys
+  []
+end
+
 def get_query params={}
   search_args = { limit: 15 }
   search_args.merge! sort_query
@@ -18,7 +28,7 @@ def get_query params={}
   params[:query] = Card.tag_filter_query(
     filter_words,
     search_args,
-    %w( tag company topic )
+    %w(tag company topic)
   )
   super(params)
 end
@@ -55,7 +65,7 @@ end
 format :html do
   include Set::Abstract::Filter::HtmlFormat
   def page_link_params
-    [:sort, :cited, :claimed, :wikirate_company, :wikirate_topic, :wikirate_tag]
+    [:sort, :cited, :claimed, :wikirate_company, :wikirate_topic]
   end
 
   view :no_search_results do |_args|
@@ -69,7 +79,7 @@ format :html do
   def default_filter_form_args args
     args[:formgroups] = [
       :sort_formgroup, :claimed_formgroup, :cited_formgroup, :company_formgroup,
-      :topic_formgroup, :tag_formgroup
+      :topic_formgroup
     ]
   end
 
