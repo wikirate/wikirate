@@ -10,6 +10,11 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
      Card["Joe User+researched number 3"],
      Card["Jedi+darkness rating"]]
   end
+  def initialize_params
+    %w(name industry project year value).each do |param|
+      Card::Env.params[param] = ""
+    end
+  end
   before do
     metrics.each.with_index do |metric, value_idx|
       0.upto(3) do |i|
@@ -19,6 +24,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
                             source: get_a_sample_source.name
       end
     end
+    initialize_params
   end
   describe "#get_cached_values" do
     it "returns correct cached metric values" do
