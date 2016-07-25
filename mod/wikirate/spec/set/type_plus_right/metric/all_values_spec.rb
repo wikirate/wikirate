@@ -10,11 +10,11 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
     ]
     @companies.each.with_index do |company, value_idx|
       0.upto(3) do |i|
-      found_expected = results[company.name].any? do |row|
-        row[:year] == (2015 - i).to_s &&
-          row[:value] == (value_idx * 5 + i).to_s
+        @metric.create_value company: company.name,
+                             value: (value_idx + 1) * 5 + i,
+                             year: 2015 - i,
+                             source: get_a_sample_source.name
       end
-      expect(found_expected).to be_truthy
     end
   end
 
@@ -35,10 +35,13 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
       value_idx = 1
       @companies.each do |company|
         expect(results.key?(company.name)).to be_truthy
+
         0.upto(3) do |i|
-          expected_result = { year: (2015 - i).to_s,
-                              value: (value_idx * 5 + i).to_s }
-          expect(results[company.name]).to include(expected_result)
+          found_expected = results[company.name].any? do |row|
+            row[:year] == (2015 - i).to_s &&
+              row[:value] == (value_idx * 5 + i).to_s
+          end
+          expect(found_expected).to be_truthy
         end
         value_idx += 1
       end
@@ -49,10 +52,10 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
           Card["#{@metric.name}+Apple Inc.+2015"].delete
         end
         results = all_values.get_cached_values
-        not_expected_result = {
-          year: "2015", value: "20"
-        }
-        expect(results["Apple Inc."]).not_to include(not_expected_result)
+        found_unexpected = results["Apple Inc."].any? do |row|
+          row[:year] == "2015" && row[:value] == "20"
+        end
+        expect(found_unexpected).to be_falsey
       end
     end
     context "update a value" do
@@ -61,10 +64,10 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
         card.content = 25
         card.save!
         results = all_values.get_cached_values
-        expected_result = {
-          year: "2015", value: "25"
-        }
-        expect(results["Apple Inc."]).to include(expected_result)
+        found_expected = results["Apple Inc."].any? do |row|
+          row[:year] == "2015" && row[:value] == "25"
+        end
+        expect(found_expected).to be_truthy
       end
     end
     context "rename a value" do
@@ -73,11 +76,14 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
         card.name = "#{@metric.name}+Death Star+2000+value"
         card.save!
         results = all_values.get_cached_values
-        expected_result = {
-          year: "2000", value: "20"
-        }
-        expect(results["Death Star"]).to include(expected_result)
-        expect(results["Apple Inc."]).not_to include(expected_result)
+        found_expected = results["Death Star"].any? do |row|
+          row[:year] == "2000" && row[:value] == "20"
+        end
+        expect(found_expected).to be_truthy
+        found_unexpected = results["Apple Inc."].any? do |row|
+          row[:year] == "2000" && row[:value] == "20"
+        end
+        expect(found_unexpected).to be_falsey
       end
     end
     context "rename a metric value" do
@@ -86,11 +92,14 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
         card.name = "#{@metric.name}+Death Star+2000"
         card.save!
         results = all_values.get_cached_values
-        expected_result = {
-          year: "2000", value: "20"
-        }
-        expect(results["Death Star"]).to include(expected_result)
-        expect(results["Apple Inc."]).not_to include(expected_result)
+        found_expected = results["Death Star"].any? do |row|
+          row[:year] == "2000" && row[:value] == "20"
+        end
+        expect(found_expected).to be_truthy
+        found_unexpected = results["Apple Inc."].any? do |row|
+          row[:year] == "2000" && row[:value] == "20"
+        end
+        expect(found_unexpected).to be_falsey
       end
     end
   end

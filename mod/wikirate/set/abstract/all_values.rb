@@ -1,6 +1,6 @@
 include_set Type::SearchType
 include_set Abstract::Utility
-include_set Abstract::Filter
+include_set Abstract::FilterUtility
 def virtual?
   true
 end
@@ -58,11 +58,11 @@ def query params={}
   end
   @query
 end
+
 # @return [Hash] all companies with year and values
 #  format: { <company name> => { :year =>  , :value => }}
 def cached_values
   @cached_metric_values ||= get_cached_values
-
   if @cached_metric_values && (filter = company_filter)
     if Env.params["value"] == "none"
       @cached_metric_values =

@@ -24,7 +24,7 @@ def related_topic_from_metric
 end
 
 # get all metric values
-def calculate_count changed_card=nil
+def calculate_count _changed_card=nil
   (related_topic_from_source_or_note + related_topic_from_metric).uniq.size
 end
 

@@ -10,7 +10,7 @@ end
 
 def advance_keys
   %w(metric project wikirate_company)
- end
+end
 
 def target_type_id
   WikirateTopicID

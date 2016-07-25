@@ -29,7 +29,7 @@ recount_trigger Type::MetricValue do |changed_card|
   # it should also update the cache for the old name
   if changed_card.name_changed?
     old_metric_name = changed_card.name_change[0].to_name.parts[0..-3].join "+"
-    if !old_metric_name.empty? && old_metric_name != changed_card.metric
+    if !old_metric_name.empty? && old_metric_name != changed_card.metric_name
       metric_cache.push Card.fetch(old_metric_name).fetch(trait: :all_values)
     end
   end
@@ -107,7 +107,7 @@ def get_value_card changed_card
 end
 
 def add_or_update_value changed_card, cached_hash
-  company_id = company_id changed_card
+  company_id = get_key changed_card
   cached_hash[company_id] = [] unless cached_hash.key?(company_id)
   rows = cached_hash[company_id]
   row = get_record_from_year(rows, changed_card.year)
@@ -121,7 +121,7 @@ end
 
 def construct_a_row value_card
   { year: value_card.year, value: value_card.value,
-    last_update_time: value_card.updated_at.to_i}
+    last_update_time: value_card.updated_at.to_i }
 end
 
 def get_key changed_card, from=:new

@@ -69,17 +69,6 @@ def sort_by wql, sort_by
   end
 end
 
-def search_wql type_id, opts, params_keys, return_param=nil
-  wql = { type_id: type_id }
-  wql[:return] = return_param if return_param
-  params_keys.each do |key|
-    # link_to in #page_link with name will override the path
-    method_name = key.include?("_name") ? "name" : key
-    send("wql_by_#{method_name}", wql, opts[key])
-  end
-  wql
-end
-
 def wql_by_name wql, name
   return unless name.present?
   wql[:name] = ["match", name]
@@ -165,17 +154,19 @@ format :html do
   end
 
   def default_button_formgroup_args args
-    toggle_text =  filter_active? ? "Hide Advanced" : "Show Advanced"
-    args[:buttons] = [
-      content_tag(:a,  toggle_text, href: "#collapseFilter",
-                                        class: "btn btn-default",
-                                        data: { toggle: "collapse",
-                                                collapseintext: "Hide Advanced",
-                                                collapseouttext: "Show Advanced"
-                                              }),
-      card_link(card.left, text: "Reset",
-                           class: "slotter btn btn-default margin-8")
-    ].join
+    toggle_text = filter_active? ? "Hide Advanced" : "Show Advanced"
+    buttons = [card_link(card.left, text: "Reset",
+                                    class: "slotter btn btn-default margin-8")]
+    unless card.advance_keys.empty?
+      buttons.unshift(content_tag(:a,
+                                  toggle_text,
+                                  href: "#collapseFilter",
+                                  class: "btn btn-default",
+                                  data: { toggle: "collapse",
+                                          collapseintext: "Hide Advanced",
+                                          collapseouttext: "Show Advanced" }))
+    end
+    args[:buttons] = buttons.join
   end
 
   view :filter_form do |args|
@@ -303,25 +294,24 @@ format :html do
     key = title.to_name.key
     param = Env.params[key] || default
     checkboxes = options.map do |option|
-      label, value, checked = check_box_params option, param
-
+      checked = param.present? && param.include?(option.downcase)
       %(<label>
-        #{check_box_tag("#{key}[]", value, checked) + label}
+        #{check_box_tag("#{key}[]", option.downcase, checked) + option}
       </label>)
     end
     formgroup title, checkboxes.join("")
   end
 
-  def check_box_params option, param
-    checked = param.present?
-    result =
-      if option.is_a? Array
-        [option[0], option[1]]
-      else
-        [option, option.downcase]
-      end
-    result.push(checked && param.include?(result[1].downcase))
-  end
+  # def check_box_params option, param
+  #   checked = param.present?
+  #   result =
+  #     if option.is_a? Array
+  #       [option[0], option[1]]
+  #     else
+  #       [option, option.downcase]
+  #     end
+  #   result.push(checked && param.include?(result[1].downcase))
+  # end
 
   view :research_policy_formgroup do
     options = type_options :research_policy
@@ -352,11 +342,8 @@ format :html do
   end
 
   view :importance_formgroup do
-    options = {
-      "Upvoted" => "upvotee",
-      "Downvoted" => "downvotee"
-    }
-    checkbox_formgroup "Vote", options, ["upvotee"]
+    options = ["Not Voted", "Upvoted", "Downvoted"]
+    checkbox_formgroup "My Vote", options, ["upvoted", "not voted"]
   end
 
   view :industry_formgroup do

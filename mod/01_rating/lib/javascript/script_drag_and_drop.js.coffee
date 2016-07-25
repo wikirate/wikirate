@@ -107,7 +107,8 @@ $(document).ready ->
       #$(show_with_details).show()
       details.show()
     activeDetails = $(yinyan_list_name +
-                    ' > .details,  .search-result-list .list-item:first-child.active > .details')
+                    ' > .details,  .search-result-list' +
+                    ' .list-item:first-child.active > .details')
     stickMetricDetails()
 
   #stick the metric details when scrolling
@@ -168,8 +169,10 @@ $(document).ready ->
 
   # filter
 
-  $('body').on 'click','.votee-filter .filter-header, .filter-container .filter-header', ->
-    $(this).find('.filter-toggle .glyphicon').toggleClass('glyphicon-triangle-bottom','glyphicon-triangle-right')
+  $('body').on 'click','.votee-filter .filter-header, ' +
+                       '.filter-container .filter-header', ->
+    $(this).find('.filter-toggle .glyphicon')
+      .toggleClass('glyphicon-triangle-bottom','glyphicon-triangle-right')
     $(this).next().toggle()
 
   # $(document).ajaxSuccess ->

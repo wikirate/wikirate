@@ -2,6 +2,6 @@
 
 class ImportMetricFilterUi < Card::Migration
   def up
-    import_cards 'metric_filter_ui.json'
+    import_cards "metric_filter_ui.json"
   end
 end

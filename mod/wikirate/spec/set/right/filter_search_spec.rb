@@ -41,7 +41,6 @@ describe Card::Set::Right::FilterSearch do
 
         expect(html).to include(format.render_company_formgroup.squish)
         expect(html).to include(format.render_topic_formgroup.squish)
-        expect(html).to include(format.render_tag_formgroup.squish)
       end
       context "when rendering with parameters" do
         before do

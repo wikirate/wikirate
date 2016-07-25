@@ -61,8 +61,7 @@ format :html do
               card.option_names(args[:metric_name]).map { |x| [x, x] }
     select_tag("card#{subcard_input_names}[content]",
                options_for_select(options),
-               class: "pointer-select form-control"
-              )
+               class: "pointer-select form-control")
   end
 
   view :editor do |args|
@@ -91,7 +90,10 @@ end
 
 event :update_related_scores, :finalize,
       on: [:create, :update, :delete],
-      when: proc { |c| c.metric_card.type_id == MetricID && !c.metric_card.scored? } do
+      when: proc { |c|
+        c.metric_card.type_id == MetricID &&
+          !c.metric_card.scored?
+      } do
   metrics = Card.search type_id: MetricID,
                         left_id: metric_card.id
   metrics.each do |metric|

@@ -81,9 +81,30 @@ def user_voted_metric votee_type
 end
 
 def filter_by_vote metric
-  return true unless Env.params["vote"].present? && Env.params["vote"] != "all"
-  votee_type = Env.params["vote"]
-  user_voted_metric(votee_type).include?(metric)
+  vote_param = Env.params["my_vote"]
+  return true if !vote_param.present? || vote_param.size == 3
+  upvoted = upvoted_metric?(metric)
+  downvoted = downvoted_metric?(metric)
+  fit_vote? upvoted, downvoted, vote_param
+end
+
+def fit_vote? upvoted, downvoted, vote_param
+  not_voted = !upvoted && !downvoted
+  result = false
+  result |= upvoted if vote_param.include?("upvoted")
+  result |= downvoted if vote_param.include?("downvoted")
+  result |= not_voted if vote_param.include?("not voted")
+  result
+end
+
+def upvoted_metric? metric
+  @upvoted_metric ||= user_voted_metric("upvotee")
+  @upvoted_metric.include?(metric)
+end
+
+def downvoted_metric? metric
+  @downvoted_metric ||= user_voted_metric("downvotee")
+  @downvoted_metric.include?(metric)
 end
 
 def filter_by_type metric
@@ -181,6 +202,18 @@ format do
     end
   end
 
+  def sort_metric_designer metric_values
+    metric_values.sort do |x, y|
+      x[0] <=> y[0]
+    end
+  end
+
+  def sort_metric_title metric_values
+    metric_values.sort do |x, y|
+      x.to_name.parts[1..-1] <=> y.to_name.parts[1..-1]
+    end
+  end
+
   def sorted_result sort_by, _order, _is_num=true
     cached_values = card.cached_values
     sorted = case sort_by
@@ -188,6 +221,10 @@ format do
                sort_value_count_desc cached_values
              when "recent"
                sort_recent_desc cached_values
+             when "metric_designer"
+               sort_metric_designer cached_values
+             when "metric_title"
+               sort_metric_title cached_values
              else # upvoted
                sort_upvoted_desc cached_values
              end

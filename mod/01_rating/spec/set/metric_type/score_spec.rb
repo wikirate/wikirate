@@ -20,59 +20,59 @@ describe Card::Set::MetricType::Score do
     @name = "Jedi+deadliness+Joe User"
   end
   let(:metric) { Card[@name] }
-  describe '#metric_type' do
+  describe "#metric_type" do
     subject { metric.metric_type }
     it { is_expected.to eq "Score" }
   end
-  describe '#metric_type_codename' do
+  describe "#metric_type_codename" do
     subject { metric.metric_type_codename }
     it { is_expected.to eq :score }
   end
-  describe '#metric_designer' do
+  describe "#metric_designer" do
     subject { metric.metric_designer }
     it { is_expected.to eq "Jedi" }
   end
-  describe '#metric_designer_card' do
+  describe "#metric_designer_card" do
     subject { metric.metric_designer_card }
     it { is_expected.to eq Card["Jedi"] }
   end
-  describe '#metric_title' do
+  describe "#metric_title" do
     subject { metric.metric_title }
     it { is_expected.to eq "deadliness" }
   end
-  describe '#metric_title_card' do
+  describe "#metric_title_card" do
     subject { metric.metric_title_card }
     it { is_expected.to eq Card["deadliness"] }
   end
-  describe '#question_card' do
+  describe "#question_card" do
     subject { metric.question_card.name }
     it { is_expected.to eq "Jedi+deadliness+Joe User+Question" }
   end
-  describe '#value_type' do
+  describe "#value_type" do
     subject { metric.value_type }
     it { is_expected.to eq "Number" }
   end
-  describe '#categorical?' do
+  describe "#categorical?" do
     subject { metric.categorical? }
     it { is_expected.to be_falsey }
   end
-  describe '#researched?' do
+  describe "#researched?" do
     subject { metric.researched? }
     it { is_expected.to be_falsey }
   end
-  describe '#scored?' do
+  describe "#scored?" do
     subject { metric.scored? }
     it { is_expected.to be_truthy }
   end
-  describe '#scorer' do
+  describe "#scorer" do
     subject { metric.scorer }
     it { is_expected.to eq "Joe User" }
   end
-  describe '#scorer_card' do
+  describe "#scorer_card" do
     subject { metric.scorer_card }
     it { is_expected.to eq Card["Joe User"] }
   end
-  describe '#basic_metric' do
+  describe "#basic_metric" do
     subject { metric.basic_metric }
     it { is_expected.to eq "Jedi+deadliness" }
   end
@@ -100,9 +100,9 @@ describe Card::Set::MetricType::Score do
       end
       it "creates score values" do
         expect(score_value).to eq("10.0")
-        expect(score_value "Samsung", "2015").to eq("4.0")
-        expect(score_value "Sony_Corporation").to eq("4.0")
-        expect(score_value_card "Death_Star", "1977").to be_falsey
+        expect(score_value("Samsung", "2015")).to eq("4.0")
+        expect(score_value("Sony_Corporation")).to eq("4.0")
+        expect(score_value_card("Death_Star", "1977")).to be_falsey
       end
 
       context "and formula changes" do
@@ -123,7 +123,7 @@ describe Card::Set::MetricType::Score do
 
       context "and a input metric value is missing" do
         it "doesn't create score value" do
-          expect(score_value_card "Death Star", "1977").to be_falsey
+          expect(score_value_card("Death Star", "1977")).to be_falsey
         end
         it "creates score value if missing value is added" do
           Card::Auth.as_bot do
@@ -132,7 +132,7 @@ describe Card::Set::MetricType::Score do
                                      value: "2",
                                      source: get_a_sample_source
           end
-          expect(score_value "Death Star", "1977").to eq("4.0")
+          expect(score_value("Death Star", "1977")).to eq("4.0")
         end
       end
 
@@ -170,8 +170,8 @@ describe Card::Set::MetricType::Score do
           )
         end
         expect(score_value).to eq("20.0")
-        expect(score_value "Samsung", "2015").to eq("10.0")
-        expect(score_value "Sony_Corporation").to eq("2.0")
+        expect(score_value("Samsung", "2015")).to eq("10.0")
+        expect(score_value("Sony_Corporation")).to eq("2.0")
       end
     end
   end
