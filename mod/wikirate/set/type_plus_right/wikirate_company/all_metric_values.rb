@@ -1,5 +1,4 @@
 include_set Abstract::AllValues
-
 def raw_content
   %(
     {
@@ -115,7 +114,12 @@ def filter_by_type metric
 end
 
 def filter_by_value values
-  value = Env.params["value"] || "exists"
+  value =
+    if Env.params["value"].present?
+      Env.params["value"]
+    else
+      "exists"
+    end
   return values.empty? if value == "none"
   return !values.empty? if value == "exists"
   time_diff = second_by_unit value

@@ -1,5 +1,6 @@
 include_set Type::SearchType
 include_set Abstract::Utility
+ensure_set { Abstract::FilterUtility }
 
 def sort?
   true
@@ -69,27 +70,6 @@ def sort_by wql, sort_by
   end
 end
 
-def wql_by_name wql, name
-  return unless name.present?
-  wql[:name] = ["match", name]
-end
-
-def wql_by_project wql, project
-  return unless project.present?
-  wql[:referred_to_by] = { left: { name: project } }
-end
-
-def wql_by_industry wql, industry
-  return unless industry.present?
-  wql[:left_plus] = [
-    format.industry_metric_name,
-    { right_plus: [
-      format.industry_value_year,
-      { right_plus: ["value", { eq: industry }] }
-    ] }
-  ]
-end
-
 def virtual?
   true
 end
@@ -99,14 +79,6 @@ def raw_content
 end
 
 format :html do
-  def industry_metric_name
-    "Global Reporting Initiative+Sector Industry"
-  end
-
-  def industry_value_year
-    "2015"
-  end
-
   def page_link_params
     [:sort] + card.params_keys
   end
@@ -347,7 +319,7 @@ format :html do
   end
 
   view :industry_formgroup do
-    industries = Card[industry_metric_name].value_options
+    industries = Card[card.industry_metric_name].value_options
     simple_select_filter "industry", [["--", ""]] + industries,
                          Env.params[:industry]
   end

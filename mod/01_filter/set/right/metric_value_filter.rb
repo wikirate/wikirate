@@ -1,3 +1,4 @@
+include_set Abstract::FilterUtility
 format :html do
   include Set::Abstract::Filter::HtmlFormat
   def filter_categories
