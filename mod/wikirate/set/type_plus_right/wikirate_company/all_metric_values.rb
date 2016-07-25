@@ -1,5 +1,4 @@
 include_set Abstract::AllValues
-
 def raw_content
   %(
     {
