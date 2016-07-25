@@ -73,7 +73,7 @@ format :html do
         url = "/#{card.company.to_name.url_key}?view=new_metric_value&"\
           "metric[]=#{CGI.escape(card.metric_name.to_name.url_key)}"
         <<-HTML
-        <a type="button" target="_blank" class="btn btn-primary btn-sm"
+        <a type="button" target="_blank" class="btn btn-primary btn-sm add-answer"
           href="#{url}">Add answer</a>
         HTML
       else
