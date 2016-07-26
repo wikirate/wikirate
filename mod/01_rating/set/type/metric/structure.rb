@@ -179,4 +179,38 @@ format :html do
                          items: { view: :yinyang_row })
     end
   end
+
+  view :metric_row do |args|
+    wrap(args) do
+      process_content <<-HTML
+      <div class="yinyang-row">
+        <div class="metric-item contribution-item value-item">
+          <div class="header">
+            {{_+*vote count}}
+            <div class="logo">
+             <a class="inherit-anchor" href="/{{_1|name}}+contribution"> {{_1+image|core;size:small}} </a>
+            </div>
+            <div class="name">
+             <a class="inherit-anchor" href="/{{_|linkname}}">  {{_2|name}} </a>
+            </div>
+          </div>
+
+          <div class="data">
+            <div class="contribution company-count btn btn-default metric-details-toggle" data-append="topic_page_metric_details">
+              <div class="content">
+                {{_+company count|core}}
+                <div class="name">Companies</div>
+              </div>
+            </div>
+            <div class="contribution metric-details show-with-details text-center">
+              <span class="label label-metric">[[_|Metric Details]]</span>
+            </div>
+          </div>
+          <div class="details">
+          </div>
+        </div>
+      </div>
+      HTML
+    end
+  end
 end
