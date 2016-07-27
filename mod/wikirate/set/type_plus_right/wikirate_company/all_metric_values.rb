@@ -220,6 +220,7 @@ format do
 
   def sorted_result sort_by, _order, _is_num=true
     cached_values = card.cached_values
+    return cached_values.to_a if %w(value recent).include? sort_by
     sorted = case sort_by
              when "value"
                sort_value_count_desc cached_values
