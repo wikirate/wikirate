@@ -214,12 +214,13 @@ format do
 
   def sort_metric_title metric_values
     metric_values.sort do |x, y|
-      x.to_name.parts[1..-1] <=> y.to_name.parts[1..-1]
+      x[0].to_name.parts[1..-1] <=> y[0].to_name.parts[1..-1]
     end
   end
 
   def sorted_result sort_by, _order, _is_num=true
     cached_values = card.cached_values
+    return cached_values.to_a if %w(value recent).include? sort_by
     sorted = case sort_by
              when "value"
                sort_value_count_desc cached_values
