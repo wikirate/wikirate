@@ -32,6 +32,28 @@ def filter metric
     filter_by_type(metric)
 end
 
+format do
+  def sorted_result sort_by, order, is_num=true
+    cached_values = card.cached_values
+    if sort_by == "company_number"
+      sort_company_number_desc cached_values
+    else
+      super(sort_by, order, is_num)
+    end
+  end
+
+  def metric_company_count metric
+    metric_company = Card[metric].fetch trait: :wikirate_company
+    metric_company_count = metric_company.fetch trait: :cached_count, new: {}
+    metric_company_count.format.render_core.to_i
+  end
+
+  def sort_company_number_desc metrics
+    metrics.sort do |x, y|
+      metric_company_count(y[0]) - metric_company_count(x[0])
+    end
+  end
+end
 format :html do
   def page_link_params
     [:name, :research_policy, :type, :sort]

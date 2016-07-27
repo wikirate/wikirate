@@ -214,7 +214,7 @@ format do
 
   def sort_metric_title metric_values
     metric_values.sort do |x, y|
-      x.to_name.parts[1..-1] <=> y.to_name.parts[1..-1]
+      x[0].to_name.parts[1..-1] <=> y[0].to_name.parts[1..-1]
     end
   end
 
