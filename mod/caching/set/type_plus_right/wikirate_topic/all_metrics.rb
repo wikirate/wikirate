@@ -12,9 +12,8 @@ end
 # get all related metrics
 def calculate_count _changed_card=nil
   result = {}
-  item_cards(default_query: true).each do |metric_card|
-    metric = metric_card.id
-    result[metric] = true unless result.key?(metric)
+  item_cards(default_query: true).each do |metric_id|
+    result[metric_id] = true unless result.key?(metric_id)
   end
   result.to_json
 end
