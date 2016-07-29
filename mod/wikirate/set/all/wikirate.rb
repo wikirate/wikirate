@@ -225,7 +225,9 @@ format :html do
   end
 
   def main_name
-    @main_name ||= card.cardname.left_name.left
+    left_name = card.cardname.left_name
+    left_name = left_name.left unless card.name.include?("limited metric")
+    @main_name ||= left_name
   end
 
   def main_type_id
