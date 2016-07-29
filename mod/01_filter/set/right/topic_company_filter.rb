@@ -5,7 +5,17 @@ end
 format :html do
   include Set::Right::CompanyMetricFilter::HtmlFormat
   def filter_categories
-    %w(name research_policy metric_type)
+    %w(name)
+  end
+
+  def default_button_formgroup_args args
+    args[:buttons] = [
+      card_link(card.left, path_opts: { view: :company_tab },
+                           text: "Reset",
+                           class: "slotter btn btn-default margin-8",
+                           remote: true),
+      button_tag("Filter", situation: "primary", disable_with: "Filtering")
+    ].join
   end
 
   view :core do |args|
@@ -21,7 +31,7 @@ format :html do
           </span>
         </div>
         <div class="filter-details" style="display: #{filter_active};">
-          <form action="/#{action}?view=content_left_col" method="GET" data-remote="true" class="slotter">
+          <form action="/#{action}?view=company_tab" method="GET" data-remote="true" class="slotter">
             <div class="margin-12 sub-content"> #{metric_filter_fields(args).join} </div>
             <div class="filter-buttons">
               #{_optional_render :button_formgroup, args}
@@ -33,25 +43,23 @@ format :html do
   end
 
   def default_name_formgroup_args args
-    args[:title] = "Metric Name"
+    args[:title] = "Company"
   end
 
   def metric_filter_fields args
     [
       _optional_render(:name_formgroup, args),
-      _optional_render(:research_policy_formgroup, args),
-      _optional_render(:metric_type_formgroup, args),
       _optional_render(:sort_formgroup, args)
     ]
   end
 
   def default_sort_formgroup_args args
     args[:sort_options] = {
-      "Importance to Community (up-voted by community)" => "upvoted",
-      "Most Company" => "company_number",
-      "Metric Designer (Alphabetical)" => "metric_designer",
-      "Metric Title (Alphabetical)" => "metric_title"
+      "Most Metrics" => "most_metrics",
+      "Most Notes" => "most_notes",
+      "Most Sources " => "most_sources",
+      "Has Overview" => "has_overview"
     }
-    args[:sort_option_default] = "upvoted"
+    args[:sort_option_default] = "most_metrics"
   end
 end
