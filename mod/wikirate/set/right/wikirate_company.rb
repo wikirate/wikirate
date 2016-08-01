@@ -1,4 +1,6 @@
 event :create_missing_companies, :integrate, on: :save do
+
+    binding.pry
   companies = item_names
   companies.each do |company|
     unless Card.exists? company

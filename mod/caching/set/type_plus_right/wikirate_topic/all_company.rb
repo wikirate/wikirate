@@ -3,7 +3,8 @@ include Card::CachedCount
 # refresh the topic+all company if source's company changed
 ensure_set { TypePlusRight::Source::WikiRateCompany }
 recount_trigger TypePlusRight::Source::WikirateCompany do |changed_card|
-  topics = changed_card.left.fetch trait: :WikirateTopic
+  topics = changed_card.left.fetch trait: :wikirate_topic
+  next unless topics
   topics.item_names.map do |topic|
     Card.fetch topic.to_name.trait(:all_company)
   end
@@ -12,7 +13,8 @@ end
 # refresh the topic+all company if claim's company changed
 ensure_set { TypePlusRight::Claim::WikiRateCompany }
 recount_trigger TypePlusRight::Claim::WikirateCompany do |changed_card|
-  topics = changed_card.left.fetch trait: :WikirateTopic
+  topics = changed_card.left.fetch trait: :wikirate_topic
+  next unless topics
   topics.item_names.map do |topic|
     Card.fetch topic.to_name.trait(:all_company)
   end
@@ -22,6 +24,7 @@ end
 ensure_set { TypePlusRight::Source::WikirateTopic }
 recount_trigger TypePlusRight::Source::WikirateTopic do |changed_card|
   names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
+  next unless names
   names.map do |topic_name|
     Card.fetch topic_name.to_name.trait(:all_company)
   end
@@ -31,6 +34,7 @@ end
 ensure_set { TypePlusRight::Claim::WikirateTopic }
 recount_trigger TypePlusRight::Claim::WikirateTopic do |changed_card|
   names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
+  next unless names
   names.map do |topic_name|
     Card.fetch topic_name.to_name.trait(:all_company)
   end
@@ -40,6 +44,7 @@ end
 ensure_set { TypePlusRight::Metric::WikirateTopic }
 recount_trigger TypePlusRight::Metric::WikirateTopic do |changed_card|
   names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
+  next unless names
   names.map do |topic_name|
     Card.fetch topic_name.to_name.trait(:all_company)
   end
@@ -48,6 +53,7 @@ end
 recount_trigger Type::MetricValue do |changed_card|
   # FIXME: clean the cache cleverly
   topics = changed_card.metric_card.fetch(trait: :wikirate_topic).item_names
+  next unless topics
   topics.map do |topic|
     Card.fetch topic.to_name.trait(:all_company)
   end
