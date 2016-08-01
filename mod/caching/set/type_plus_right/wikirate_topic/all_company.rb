@@ -18,7 +18,7 @@ recount_trigger TypePlusRight::Claim::WikirateCompany do |changed_card|
   end
 end
 
-# recount topics associated with a company whenever <source>+company is edited
+# recount topics associated with a company whenever <source>+topic is edited
 ensure_set { TypePlusRight::Source::WikirateTopic }
 recount_trigger TypePlusRight::Source::WikirateTopic do |changed_card|
   names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
@@ -27,7 +27,7 @@ recount_trigger TypePlusRight::Source::WikirateTopic do |changed_card|
   end
 end
 
-# recount topics associated with a company whenever <note>+company is edited
+# recount topics associated with a company whenever <note>+topic is edited
 ensure_set { TypePlusRight::Claim::WikirateTopic }
 recount_trigger TypePlusRight::Claim::WikirateTopic do |changed_card|
   names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
@@ -36,7 +36,7 @@ recount_trigger TypePlusRight::Claim::WikirateTopic do |changed_card|
   end
 end
 
-# recount topics associated with a company whenever <Metric>+company is edited
+# recount topics associated with a company whenever <Metric>+topic is edited
 ensure_set { TypePlusRight::Metric::WikirateTopic }
 recount_trigger TypePlusRight::Metric::WikirateTopic do |changed_card|
   names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
@@ -44,20 +44,21 @@ recount_trigger TypePlusRight::Metric::WikirateTopic do |changed_card|
     Card.fetch topic_name.to_name.trait(:all_company)
   end
 end
-
+# metric value name change, create or delete may expire the cache
 recount_trigger Type::MetricValue do |changed_card|
-  topics = changed_card.metric_card.fetch(trait: :WikirateTopic).item_names
+  # FIXME: clean the cache cleverly
+  topics = changed_card.metric_card.fetch(trait: :wikirate_topic).item_names
   topics.map do |topic|
     Card.fetch topic.to_name.trait(:all_company)
   end
 end
 
 def related_company_from_source_or_note
-  Card.search(type_id: WikirateCompanyID,
+  Card.search(type_id: Card::WikirateCompanyID,
               referred_to_by: {
                 left: {
                   type: %w(in Note Source),
-                  right_plus: ["topic", refer_to: "Environment"]
+                  right_plus: ["topic", refer_to: cardname.left]
                 },
                 right: "company"
               },
@@ -69,7 +70,7 @@ def related_company_from_metric
               left_plus: [
                 {
                   type_id: Card::MetricID,
-                  right_plus: ["topic", { refer_to: "Environment" }]
+                  right_plus: ["topic", { refer_to: cardname.left }]
                 },
                 {
                   right_plus: ["*cached_count", { content: %w(ne 0) }]

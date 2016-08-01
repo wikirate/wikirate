@@ -1,5 +1,6 @@
 include_set TypePlusRight::WikirateCompany::AllMetricValues
 def raw_content
+  # cannot leave it empty
   %({ "name":"Home" })
 end
 
@@ -10,7 +11,6 @@ end
 def filter metric
   filter_by_name(metric)
 end
-
 
 def cached_values
   @cached_metric_values ||= get_cached_values
@@ -40,7 +40,7 @@ format do
   end
 
   def overview? company
-    Card.exists? "#{company}+#{cardname.left}+overview" ? 1 : 0
+    Card.exists?("#{company}+#{card.cardname.left}+review") ? 1 : 0
   end
 
   def sort_by_overview companies
@@ -50,7 +50,7 @@ format do
       if x_overview == y_overview
         x[0] <=> y[0]
       else
-        x_overview - y_overview
+        y_overview - x_overview
       end
     end
   end
