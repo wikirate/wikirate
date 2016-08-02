@@ -17,6 +17,36 @@ def indirect_contributor_search_args
   ]
 end
 
+def related_company_from_source_or_note
+  Card.search(type_id: Card::WikirateCompanyID,
+              referred_to_by: {
+                left: {
+                  type: %w(in Note Source),
+                  right_plus: ["topic", refer_to: name]
+                },
+                right: "company"
+              },
+              return: "id")
+end
+
+def related_company_from_metric
+  Card.search type_id: Card::WikirateCompanyID,
+              left_plus: [
+                {
+                  type_id: Card::MetricID,
+                  right_plus: ["topic", { refer_to: name }]
+                },
+                {
+                  right_plus: ["*cached_count", { content: %w(ne 0) }]
+                }
+              ],
+              return: :id
+end
+
+def related_companies
+  (related_company_from_source_or_note + related_company_from_metric).uniq
+end
+
 format :html do
   def view_caching?
     true
