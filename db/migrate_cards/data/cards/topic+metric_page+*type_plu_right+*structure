@@ -4,6 +4,6 @@
     {{#metric+definition}}
   </p>
   
-	  {{_l|content_left_col}}
+	  {{_l|metric_tab}}
 
 </div>

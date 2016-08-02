@@ -21,7 +21,7 @@ format :html do
   def view_caching?
     true
   end
-  view :content_left_col do |args|
+  view :metric_tab do |args|
     wrap do
       [
         _render_filter(args),

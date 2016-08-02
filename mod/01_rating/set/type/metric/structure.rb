@@ -158,7 +158,7 @@ format :html do
   end
 
   view :filter do |args|
-    field_subformat(:metric_value_filter)._render_core args
+    field_subformat(:metric_company_filter)._render_core args
   end
 
   view :year_select do

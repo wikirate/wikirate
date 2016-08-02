@@ -1,44 +1,20 @@
-def virtual?
-  true
-end
+include_set Abstract::FilterForm
 
 format :html do
-  include Set::Right::CompanyMetricFilter::HtmlFormat
   def filter_categories
     %w(name)
   end
 
-  def default_button_formgroup_args args
-    args[:buttons] = [
-      card_link(card.left, path_opts: { view: :company_tab },
-                           text: "Reset",
-                           class: "slotter btn btn-default margin-8",
-                           remote: true),
-      button_tag("Filter", situation: "primary", disable_with: "Filtering")
-    ].join
+  def content_view
+    :company_tab
   end
 
-  view :core do |args|
-    action = card.cardname.left_name.url_key
-    filter_active = filter_active? ? "block" : "none"
+  def filter_form_content args
     <<-HTML
-    <div class="filter-container">
-        <div class="filter-header">
-          <span class="glyphicon glyphicon-filter"></span>
-          Filter & Sort
-          <span class="filter-toggle">
-            <span class="glyphicon glyphicon-triangle-right"></span>
-          </span>
-        </div>
-        <div class="filter-details" style="display: #{filter_active};">
-          <form action="/#{action}?view=company_tab" method="GET" data-remote="true" class="slotter">
-            <div class="margin-12 sub-content"> #{metric_filter_fields(args).join} </div>
-            <div class="filter-buttons">
-              #{_optional_render :button_formgroup, args}
-            </div>
-          </form>
-        </div>
-    </div>
+      <div class="margin-12 sub-content"> #{metric_filter_fields(args).join} </div>
+      <div class="filter-buttons">
+        #{_optional_render :button_formgroup, args}
+      </div>
     HTML
   end
 

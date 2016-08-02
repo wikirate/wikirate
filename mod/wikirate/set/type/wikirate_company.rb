@@ -52,7 +52,7 @@ format :html do
     Card.search(type_id: MetricID, left: card.name, return: "count") > 0
   end
 
-  view :content_left_col do |args|
+  view :metric_tab do |args|
     wrap do
       [
         _render_filter(args),
