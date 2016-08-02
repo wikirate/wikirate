@@ -3,23 +3,9 @@ def virtual?
 end
 
 format :html do
-  include Set::Abstract::Filter::HtmlFormat
+  include Set::Right::CompanyMetricFilter::HtmlFormat
   def filter_categories
     %w(name research_policy metric_type)
-  end
-
-  def filter_active?
-    Env.params.keys.any? { |key| filter_categories.include? key }
-  end
-
-  def default_button_formgroup_args args
-    args[:buttons] = [
-      card_link(card.left, path_opts: { view: :content_left_col },
-                           text: "Reset",
-                           class: "slotter btn btn-default margin-8",
-                           remote: true),
-      button_tag("Filter", situation: "primary", disable_with: "Filtering")
-    ].join
   end
 
   view :core do |args|

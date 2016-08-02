@@ -36,7 +36,9 @@ all\nmetric+wikirate_company_type\nmetric+value\nmetric+source
 wikirate_company+metric\nwikirate_company+topic
 wikirate_company+source\nwikirate_company+note
 wikirate_topic+note\nwikirate_topic+metric
-wikirate_topic+source\nwikirate_topic+company)
+wikirate_topic+source\nwikirate_topic+company\n
+wikirate_analysis+metric\nwikirate_analysis+source\n
+wikirate_analysis+note)
     puts msg
     exit
   end

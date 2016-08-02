@@ -44,28 +44,28 @@ describe Card::Set::All::Wikirate do
         "+topics" => { content: "[[#{topic1.name}]]\n[[#{topic2.name}]]" }
       }
 
-      expect(Card.claim_counts ct1.key.to_s).to eq(2)
-      expect(Card.claim_counts ct2.key.to_s).to eq(2)
-      expect(Card.claim_counts ct3.key.to_s).to eq(3)
-      expect(Card.claim_counts ct4.key.to_s).to eq(1)
-      expect(Card.claim_counts company1.key.to_s).to eq(3)
-      expect(Card.claim_counts company2.key.to_s).to eq(3)
-      expect(Card.claim_counts topic1.key.to_s).to eq(3)
-      expect(Card.claim_counts topic2.key.to_s).to eq(2)
+      expect(Card.claim_counts(ct1.key.to_s)).to eq(2)
+      expect(Card.claim_counts(ct2.key.to_s)).to eq(2)
+      expect(Card.claim_counts(ct3.key.to_s)).to eq(3)
+      expect(Card.claim_counts(ct4.key.to_s)).to eq(1)
+      expect(Card.claim_counts(company1.key.to_s)).to eq(3)
+      expect(Card.claim_counts(company2.key.to_s)).to eq(3)
+      expect(Card.claim_counts(topic1.key.to_s)).to eq(3)
+      expect(Card.claim_counts(topic2.key.to_s)).to eq(2)
     end
   end
 
   describe "while showing view" do
     it "renders edits_by view" do
       html = render_card :edits_by, name: get_a_sample_company.name
-      expect(html).to include(render_card_with_args :shorter_search_result, { name: "#{get_a_sample_company.name}+*editor" }, {}, item: :link)
+      expect(html).to include(render_card_with_args(:shorter_search_result, { name: "#{get_a_sample_company.name}+*editor" }, {}, item: :link))
     end
 
     it "renders titled_with_edits view" do
       card_name = get_a_sample_company.name
       html = render_card :titled_with_edits, name: card_name
-      expect(html).to include(render_card :header, name: card_name)
-      expect(html).to include(render_card :edits_by, name: card_name)
+      expect(html).to include(render_card(:header, name: card_name))
+      expect(html).to include(render_card(:edits_by, name: card_name))
     end
 
     it "should always show the help text " do
@@ -74,7 +74,7 @@ describe Card::Set::All::Wikirate do
       login_as "WagnBot"
       basic = Card.create type: "Basic", name: "testhelptext", content: "<p>hello test case</p>"
       help_card = Card.create type: "Basic", name: "testhelptext+*self+*help", content: "Can I help you?"
-      expect(render_card :name_formgroup, name: "testhelptext").to include("Can I help you?")
+      expect(render_card(:name_formgroup, name: "testhelptext")).to include("Can I help you?")
     end
     it "show \"\" when for cite view other than in html format" do
       html = render_card :cite, { name: "test1" }, format: :json
@@ -133,7 +133,7 @@ describe Card::Set::All::Wikirate do
     end
     it "renders raw for real card for raw_or_blank view" do
       html = render_card :raw_or_blank, name: "home"
-      expect(html).to eq(render_card :raw, name: "home")
+      expect(html).to eq(render_card(:raw, name: "home"))
     end
   end
   context "while viewing id_atom in json format" do
@@ -165,7 +165,7 @@ describe Card::Set::All::Wikirate do
       card_array = result[:card][:value]
       card_array.each do |card|
         expect(card).to have_key :id
-        expect(valid_company_cards.key? card[:id]).to be true
+        expect(valid_company_cards.key?(card[:id])).to be true
       end
     end
   end
@@ -186,28 +186,28 @@ describe Card::Set::All::Wikirate do
       cards_name = create_dump_card 1
       search_card = Card.create! name: @search_card_name, type: "search", content: "{\"name\":#{cards_name}}"
       expected_content = search_card.item_cards(limit: 0)[0].format.render(:link)
-      expect(render_card :shorter_search_result, name: @search_card_name).to eq(expected_content)
+      expect(render_card(:shorter_search_result, name: @search_card_name)).to eq(expected_content)
     end
     it "handles only 2 results" do
       cards_name = create_dump_card 2
       search_card = Card.create! name: @search_card_name, type: "search", content: "{\"name\":[\"in\", #{cards_name}]}"
       result_cards = search_card.item_cards(limit: 0)
       expected_content = result_cards[0].format.render(:link) + " and " + result_cards[1].format.render(:link)
-      expect(render_card :shorter_search_result, name: @search_card_name).to eq(expected_content)
+      expect(render_card(:shorter_search_result, name: @search_card_name)).to eq(expected_content)
     end
     it "handles only 3 results" do
       cards_name = create_dump_card 3
       search_card = Card.create! name: @search_card_name, type: "search", content: "{\"name\":[\"in\", #{cards_name}]}"
       result_cards = search_card.item_cards(limit: 0)
       expected_content = result_cards[0].format.render(:link) + " , " + result_cards[1].format.render(:link) + " and " + result_cards[2].format.render(:link)
-      expect(render_card :shorter_search_result, name: @search_card_name).to eq(expected_content)
+      expect(render_card(:shorter_search_result, name: @search_card_name)).to eq(expected_content)
     end
     it "handles more than 3 results" do
       cards_name = create_dump_card 10
       search_card = Card.create! name: @search_card_name, type: "search", content: "{\"name\":[\"in\", #{cards_name}]}"
       result_cards = search_card.item_cards(limit: 0)
       expected_content = result_cards[0].format.render(:link) + " , " + result_cards[1].format.render(:link) + " , " + result_cards[2].format.render(:link)
-      expect(render_card :shorter_search_result, name: @search_card_name).to eq(%(#{expected_content} and <a class=\"known-card\" href=\"#{search_card.format.render(:url)}\"> 7 others</a>))
+      expect(render_card(:shorter_search_result, name: @search_card_name)).to eq(%(#{expected_content} and <a class=\"known-card\" href=\"#{search_card.format.render(:url)}\"> 7 others</a>))
     end
   end
   describe "og_source view" do
@@ -298,17 +298,34 @@ describe Card::Set::All::Wikirate do
       html = search_card.format.render_yinyang_list args
 
       expect(html).to have_tag "div", with: { class: "yinyang-list" } do
-        with_tag "div", with: { id: "+Joe_User+how_many_responses+Steelseries+yinyang_drag_item" }
-        with_tag "div", with: { id: "+Joe_User+how_many_types_of_responses+Steelseries+yinyang_drag_item" }
-        with_tag "div", with: { id: "+Joe_User+the_unusualness_of_the_responses+Steelseries+yinyang_drag_item" }
-        with_tag "div", with: { id: "+Joe_User+the_detail_of_the_responses+Steelseries+yinyang_drag_item" }
+        with_tag "div",
+                 with: {
+                   id: "Steelseries+Joe_User+how_many_responses+"\
+                       "yinyang_drag_item"
+                 }
+        with_tag "div",
+                 with: {
+                   id: "Steelseries+Joe_User+"\
+                   "how_many_types_of_responses+yinyang_drag_item"
+                 }
+        with_tag "div",
+                 with: {
+                   id: "Steelseries+Joe_User+"\
+                   "the_unusualness_of_the_responses+yinyang_drag_item"
+                 }
+        with_tag "div",
+                 with:
+                  { id: "Steelseries+Joe_User+"\
+                    "the_detail_of_the_responses+yinyang_drag_item" }
       end
     end
   end
 
   describe "showcase_list view" do
     it "shows icons, type name and core view" do
-      source_showcast = Card.fetch "joe_user+showcast sources", new: { type_id: Card::PointerID }
+      source_showcast =
+        Card.fetch "joe_user+showcast sources",
+                   new: { type_id: Card::PointerID }
       source_card = create_page_with_sourcebox "http://example.com", {}, "true"
       source_showcast << source_card
       source_showcast.save!

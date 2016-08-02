@@ -69,11 +69,4 @@ format :html do
   view :card_list_header do
     ""
   end
-
-  view :metric_list do |_args|
-    wrap_with :div, class: "yinyang-list" do
-      render_content(hide: "title",
-                     items: { view: :metric_row })
-    end
-  end
 end

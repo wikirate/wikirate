@@ -29,6 +29,28 @@ format :html do
       ]
     end
   end
+
+  view :company_tab do |args|
+    wrap do
+      [
+        _render_company_filter(args),
+        _render_company_list(args)
+      ]
+    end
+  end
+
+  view :company_filter do |args|
+    field_subformat(:topic_company_filter)._render_core args
+  end
+
+  view :company_list do
+    wrap_with :div, class: "yinyang-list" do
+      subformat("#{card.name}+all company")
+        ._render_content(hide: "title",
+                         items: { view: :topic_company_row })
+    end
+  end
+
   view :filter do |args|
     field_subformat(:topic_metric_filter)._render_core args
   end

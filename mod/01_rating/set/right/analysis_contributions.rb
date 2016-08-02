@@ -43,11 +43,11 @@ format :html do
     if !analysis_card
       claim_cnt = source_cnt = metric_cnt = 0
     else
-      claim_cnt = (claims = Card.fetch(analysis_name.trait :claim)) &&
+      claim_cnt = (claims = Card.fetch(analysis_name.trait(:claim))) &&
                   claims.cached_count
-      source_cnt = (sources = Card.fetch(analysis_name.trait :source)) &&
+      source_cnt = (sources = Card.fetch(analysis_name.trait(:source))) &&
                    sources.cached_count
-      metric_cnt = (metrics = Card.fetch(analysis_name.trait :metric)) &&
+      metric_cnt = (metrics = Card.fetch(analysis_name.trait(:metric))) &&
                    metrics.cached_count
     end
     empty = glyphicon "plus"
