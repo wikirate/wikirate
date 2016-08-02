@@ -59,35 +59,17 @@ recount_trigger Type::MetricValue do |changed_card|
   end
 end
 
-def related_company_from_source_or_note
-  Card.search(type_id: Card::WikirateCompanyID,
-              referred_to_by: {
-                left: {
-                  type: %w(in Note Source),
-                  right_plus: ["topic", refer_to: cardname.left]
-                },
-                right: "company"
-              },
-              return: "id")
-end
-
-def related_company_from_metric
-  Card.search type_id: Card::WikirateCompanyID,
-              left_plus: [
-                {
-                  type_id: Card::MetricID,
-                  right_plus: ["topic", { refer_to: cardname.left }]
-                },
-                {
-                  right_plus: ["*cached_count", { content: %w(ne 0) }]
-                }
-              ],
-              return: :id
+def update_topic_company_cached_count size
+  cc_card = left.fetch(trait: :wikirate_company)
+                .fetch(trait: :cached_count, new: {})
+  cc_card.content = size
+  cc_card.save!
 end
 
 # get all related company
 def calculate_count _changed_card=nil
-  ids = (related_company_from_source_or_note + related_company_from_metric).uniq
+  ids = left.related_companies
+  update_topic_company_cached_count ids.size
   result = {}
   ids.each do |company_id|
     result[company_id] = true unless result.key?(company_id)
