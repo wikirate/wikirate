@@ -298,10 +298,10 @@ describe Card::Set::All::Wikirate do
       html = search_card.format.render_yinyang_list args
 
       expect(html).to have_tag "div", with: { class: "yinyang-list" } do
-        with_tag "div", with: { id: "+Joe_User+how_many_responses+Steelseries+yinyang_drag_item" }
-        with_tag "div", with: { id: "+Joe_User+how_many_types_of_responses+Steelseries+yinyang_drag_item" }
-        with_tag "div", with: { id: "+Joe_User+the_unusualness_of_the_responses+Steelseries+yinyang_drag_item" }
-        with_tag "div", with: { id: "+Joe_User+the_detail_of_the_responses+Steelseries+yinyang_drag_item" }
+        with_tag "div", with: { id: "+Joe_User+how_many_responses+yinyang_drag_item" }
+        with_tag "div", with: { id: "+Joe_User+how_many_types_of_responses+yinyang_drag_item" }
+        with_tag "div", with: { id: "+Joe_User+the_unusualness_of_the_responses+yinyang_drag_item" }
+        with_tag "div", with: { id: "+Joe_User+the_detail_of_the_responses+yinyang_drag_item" }
       end
     end
   end
