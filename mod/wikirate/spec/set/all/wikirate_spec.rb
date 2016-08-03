@@ -58,7 +58,11 @@ describe Card::Set::All::Wikirate do
   describe "while showing view" do
     it "renders edits_by view" do
       html = render_card :edits_by, name: get_a_sample_company.name
-      expect(html).to include(render_card_with_args(:shorter_search_result, { name: "#{get_a_sample_company.name}+*editor" }, {}, item: :link))
+      expected =
+        render_card_with_args(:shorter_search_result,
+                              { name: "#{get_a_sample_company.name}+*editor" },
+                              {}, item: :link)
+      expect(html).to include(expected)
     end
 
     it "renders titled_with_edits view" do
@@ -74,7 +78,8 @@ describe Card::Set::All::Wikirate do
       login_as "WagnBot"
       basic = Card.create type: "Basic", name: "testhelptext", content: "<p>hello test case</p>"
       help_card = Card.create type: "Basic", name: "testhelptext+*self+*help", content: "Can I help you?"
-      expect(render_card(:name_formgroup, name: "testhelptext")).to include("Can I help you?")
+      html = render_card(:name_formgroup, name: "testhelptext")
+      expect(html).to include("Can I help you?")
     end
     it "show \"\" when for cite view other than in html format" do
       html = render_card :cite, { name: "test1" }, format: :json
@@ -186,28 +191,35 @@ describe Card::Set::All::Wikirate do
       cards_name = create_dump_card 1
       search_card = Card.create! name: @search_card_name, type: "search", content: "{\"name\":#{cards_name}}"
       expected_content = search_card.item_cards(limit: 0)[0].format.render(:link)
-      expect(render_card(:shorter_search_result, name: @search_card_name)).to eq(expected_content)
+      html = render_card(:shorter_search_result, name: @search_card_name)
+      expect(html).to eq(expected_content)
     end
     it "handles only 2 results" do
       cards_name = create_dump_card 2
       search_card = Card.create! name: @search_card_name, type: "search", content: "{\"name\":[\"in\", #{cards_name}]}"
       result_cards = search_card.item_cards(limit: 0)
       expected_content = result_cards[0].format.render(:link) + " and " + result_cards[1].format.render(:link)
-      expect(render_card(:shorter_search_result, name: @search_card_name)).to eq(expected_content)
+      html = render_card(:shorter_search_result, name: @search_card_name)
+      expect(html).to eq(expected_content)
     end
     it "handles only 3 results" do
       cards_name = create_dump_card 3
       search_card = Card.create! name: @search_card_name, type: "search", content: "{\"name\":[\"in\", #{cards_name}]}"
       result_cards = search_card.item_cards(limit: 0)
       expected_content = result_cards[0].format.render(:link) + " , " + result_cards[1].format.render(:link) + " and " + result_cards[2].format.render(:link)
-      expect(render_card(:shorter_search_result, name: @search_card_name)).to eq(expected_content)
+      html = render_card(:shorter_search_result, name: @search_card_name)
+      expect(html).to eq(expected_content)
     end
     it "handles more than 3 results" do
       cards_name = create_dump_card 10
       search_card = Card.create! name: @search_card_name, type: "search", content: "{\"name\":[\"in\", #{cards_name}]}"
       result_cards = search_card.item_cards(limit: 0)
       expected_content = result_cards[0].format.render(:link) + " , " + result_cards[1].format.render(:link) + " , " + result_cards[2].format.render(:link)
-      expect(render_card(:shorter_search_result, name: @search_card_name)).to eq(%(#{expected_content} and <a class=\"known-card\" href=\"#{search_card.format.render(:url)}\"> 7 others</a>))
+      html = render_card(:shorter_search_result, name: @search_card_name)
+      expected =
+        "#{expected_content} and <a class=\"known-card\" "\
+        "href=\"#{search_card.format.render(:url)}\"> 7 others</a>"
+      expect(html).to eq(expected)
     end
   end
   describe "og_source view" do

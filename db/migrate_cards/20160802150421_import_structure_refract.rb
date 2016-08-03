@@ -2,6 +2,6 @@
 
 class ImportStructureRefract < Card::Migration
   def up
-    import_cards 'structure_refract.json'
+    import_cards "structure_refract.json"
   end
 end
