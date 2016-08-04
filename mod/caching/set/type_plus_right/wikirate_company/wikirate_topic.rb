@@ -10,7 +10,8 @@ def related_topic_from_source_or_note
       },
       right: "topic"
     },
-    return: "id")
+    return: "id"
+  )
 end
 
 def related_topic_from_metric
@@ -20,7 +21,8 @@ def related_topic_from_metric
       left: { type: "Metric", right_plus: cardname.left },
       right: "topic"
     },
-    return: "id")
+    return: "id"
+  )
 end
 
 # get all metric values

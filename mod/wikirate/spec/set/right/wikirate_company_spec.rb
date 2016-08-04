@@ -20,7 +20,9 @@ describe Card::Set::Right::WikirateCompany do
                    },
                    "+source" => {
                      content: "[[#{sourcepage.name}]]",
-                     type_id: Card::PointerID } }
+                     type_id: Card::PointerID
+                   }
+                 }
     expect(Card.exists?("zzz")).to be true
     expect(Card.exists?("xxx")).to be true
     expect(Card["zzz"].type_id).to eq Card::WikirateCompanyID

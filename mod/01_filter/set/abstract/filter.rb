@@ -226,7 +226,8 @@ format :html do
 
   view :name_formgroup do |args|
     name = args[:name] || "name"
-    text_filter name, title: "Keyword"
+    title = args[:title] || "Keyword"
+    text_filter name, title: title
   end
 
   view :project_formgroup do
