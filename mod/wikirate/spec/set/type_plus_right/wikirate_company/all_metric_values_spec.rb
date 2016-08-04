@@ -78,7 +78,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
         vcc.vote_up
         vcc.save!
       end
-      Card::Env.params["my_vote"] = "upvoted"
+      Card::Env.params["my_vote"] = "i voted for"
       results = all_values.cached_values
       expect(results.size).to eq(1)
       expect(results.keys[0]).to eq("Joe User+researched number 1")
