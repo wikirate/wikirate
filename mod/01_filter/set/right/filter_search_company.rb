@@ -4,7 +4,7 @@ def default_keys
   %w(name industry)
 end
 
-def advance_keys
+def advanced_keys
   %w(project wikirate_topic)
 end
 
@@ -14,7 +14,7 @@ end
 
 def wql_by_wikirate_topic wql, topic
   return unless topic.present?
-  wql[:found_by] = "#{topic}+company"
+  wql[:found_by] = "#{topic}+#{Card[:wikirate_company].name}"
 end
 
 format :html do

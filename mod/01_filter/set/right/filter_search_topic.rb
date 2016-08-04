@@ -8,7 +8,7 @@ def default_keys
   %w(name)
 end
 
-def advance_keys
+def advanced_keys
   %w(metric project wikirate_company)
 end
 

@@ -97,7 +97,7 @@ describe Card::Set::MetricType::Researched do
               with_tag("div", with: { class: "metric-info" }) do
                 with_tag "h5", text: "Metric Type:"
                 with_tag("div", with: { class: "RIGHT-Xmetric_type" })
-                with_tag "h5", text: "Topics:"
+                with_tag "h5", text: "Tags:"
                 with_tag("div", with: { class: "RIGHT-topic" })
               end
             end

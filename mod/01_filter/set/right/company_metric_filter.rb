@@ -14,10 +14,10 @@ format :html do
 
   def default_button_formgroup_args args
     args[:buttons] = [
-      card_link(card.left, path_opts: { view: :content_left_col },
-                           text: "Reset",
-                           class: "slotter btn btn-default margin-8",
-                           remote: true),
+      card_link(card.cardname.left, path_opts: { view: :content_left_col },
+                                    text: "Reset",
+                                    class: "slotter btn btn-default margin-8",
+                                    remote: true),
       button_tag("Filter", situation: "primary", disable_with: "Filtering")
     ].join
   end
@@ -29,7 +29,7 @@ format :html do
     <div class="filter-container">
         <div class="filter-header">
           <span class="glyphicon glyphicon-filter"></span>
-          Filter & Sort
+          Filter &amp; Sort
           <span class="filter-toggle">
             <span class="glyphicon glyphicon-triangle-right"></span>
           </span>

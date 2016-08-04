@@ -90,9 +90,9 @@ end
 def fit_vote? upvoted, downvoted, vote_param
   not_voted = !upvoted && !downvoted
   result = false
-  result |= upvoted if vote_param.include?("upvoted")
-  result |= downvoted if vote_param.include?("downvoted")
-  result |= not_voted if vote_param.include?("not voted")
+  result |= upvoted if vote_param.include?("i voted for")
+  result |= downvoted if vote_param.include?("i voted against")
+  result |= not_voted if vote_param.include?("i did not vote")
   result
 end
 
@@ -114,17 +114,22 @@ def filter_by_type metric
 end
 
 def filter_by_value values
-  value =
+  unit =
     if Env.params["value"].present?
       Env.params["value"]
     else
       "exists"
     end
-  return values.empty? if value == "none"
-  return !values.empty? if value == "exists"
-  time_diff = second_by_unit value
+  return values.empty? if unit == "none"
+  return !values.empty? if unit == "exists"
+  within_recent? unit, values
+end
+
+def within_recent? unit, values
+  time_diff = second_by_unit unit
+  time_now = Time.now.to_i
   values.any? do |v|
-    v["last_update_time"] <= time_diff
+    time_now - v["last_update_time"] <= time_diff
   end
 end
 
@@ -137,7 +142,7 @@ def second_by_unit unit
   when "week"
     604_800
   when "month"
-    18_144_000
+    2_592_000
   end
 end
 

@@ -19,12 +19,13 @@ def default_keys
   %w(metric designer wikirate_topic project year)
 end
 
-def advance_keys
+def advanced_keys
   []
 end
 
+# gathre all the params keys from default and advanced
 def params_keys
-  default_keys + advance_keys
+  default_keys + advanced_keys
 end
 
 def target_type_id
@@ -92,7 +93,7 @@ format :html do
   def default_filter_form_args args
     args[:formgroups] =
       append_formgroup(card.default_keys).unshift(:sort_formgroup)
-    args[:advance_formgroups] = append_formgroup(card.advance_keys)
+    args[:advance_formgroups] = append_formgroup(card.advanced_keys)
   end
 
   def default_sort_formgroup_args args
@@ -111,7 +112,7 @@ format :html do
 
   def filter_active?
     Env.params.keys.any? do |key|
-      card.advance_keys.include?(key) && Env.params[key].present?
+      card.advanced_keys.include?(key) && Env.params[key].present?
     end
   end
 
@@ -129,7 +130,7 @@ format :html do
     toggle_text = filter_active? ? "Hide Advanced" : "Show Advanced"
     buttons = [card_link(card.left, text: "Reset",
                                     class: "slotter btn btn-default margin-8")]
-    unless card.advance_keys.empty?
+    unless card.advanced_keys.empty?
       buttons.unshift(content_tag(:a,
                                   toggle_text,
                                   href: "#collapseFilter",
@@ -141,17 +142,21 @@ format :html do
     args[:buttons] = buttons.join
   end
 
-  view :filter_form do |args|
-    formgroups = args[:formgroups] || [:name_formgroup]
+  def advance_formgroups args
     advance_formgroups = args[:advance_formgroups]
-    html = formgroups.map { |fg| optional_render(fg, args) }
     adv_html = ""
     if advance_formgroups
       adv_html = wrap_as_collapse do
         advance_formgroups.map { |fg| optional_render(fg, args) }.join("")
       end
     end
-    content = output(html) + adv_html.html_safe
+    adv_html.html_safe
+  end
+
+  view :filter_form do |args|
+    formgroups = args[:formgroups] || [:name_formgroup]
+    html = formgroups.map { |fg| optional_render(fg, args) }
+    content = output(html) + advance_formgroups(args)
     action = card.left.name
     <<-HTML
       <form action="/#{action}" method="GET">
@@ -244,18 +249,6 @@ format :html do
     select_filter :wikirate_company, "asc"
   end
 
-  view :metric_value_formgroup do
-    options = {
-      "Exists" => "exists",
-      "None" => "none",
-      "Edited in last hour" => "last_hour",
-      "Edited today" => "today",
-      "Edited this week" => "week",
-      "Edited this month" => "month"
-    }
-    simple_select_filter "value", options, (Env.params["value"] || "exists")
-  end
-
   view :metric_type_formgroup do
     type_card = Card["metric_type"]
     options = Card.search type_id: type_card.id, return: :name, sort: "name"
@@ -274,17 +267,6 @@ format :html do
     formgroup title, checkboxes.join("")
   end
 
-  # def check_box_params option, param
-  #   checked = param.present?
-  #   result =
-  #     if option.is_a? Array
-  #       [option[0], option[1]]
-  #     else
-  #       [option, option.downcase]
-  #     end
-  #   result.push(checked && param.include?(result[1].downcase))
-  # end
-
   view :research_policy_formgroup do
     options = type_options :research_policy
     checkbox_formgroup "Research Policy", options
@@ -294,7 +276,6 @@ format :html do
     options = {
       "Exists" => "exists",
       "None" => "none",
-      "Edited in last hour" => "last_hour",
       "Edited today" => "today",
       "Edited this week" => "week",
       "Edited this month" => "month"
@@ -314,8 +295,8 @@ format :html do
   end
 
   view :importance_formgroup do
-    options = ["Not Voted", "Upvoted", "Downvoted"]
-    checkbox_formgroup "My Vote", options, ["upvoted", "not voted"]
+    options = ["I voted FOR", "I voted AGAINST", "I did NOT vote"]
+    checkbox_formgroup "My Vote", options, ["i voted for", "i did not vote"]
   end
 
   view :industry_formgroup do

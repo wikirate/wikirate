@@ -103,7 +103,7 @@ format :html do
                   </div>
   <div class="row topic-list">
   <div class="col-md-3 nopadding">
-  <h5>Topics:</h5>
+  <h5>Tags:</h5>
             				</div>
   <div class="col-md-9 nopadding">
     #{field_subformat(:wikirate_topic)._render_content item: :link}

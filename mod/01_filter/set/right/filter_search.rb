@@ -15,7 +15,11 @@ def params_keys
   []
 end
 
-def advance_keys
+def default_keys
+  %w(claimed cited company topic)
+end
+
+def advanced_keys
   []
 end
 
@@ -74,13 +78,6 @@ format :html do
         No result
       </div>
     )
-  end
-
-  def default_filter_form_args args
-    args[:formgroups] = [
-      :sort_formgroup, :claimed_formgroup, :cited_formgroup, :company_formgroup,
-      :topic_formgroup
-    ]
   end
 
   view :sort_formgroup do |_args|

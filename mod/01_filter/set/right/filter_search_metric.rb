@@ -12,7 +12,7 @@ def default_keys
   %w(name wikirate_topic)
 end
 
-def advance_keys
+def advanced_keys
   %w(designer project year)
 end
 
