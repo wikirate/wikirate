@@ -34,6 +34,8 @@ group :test do
   gem "simplecov"
   # gem 'codeclimate-test-reporter', require: nil
 
+  gem "test_after_commit"
+
   # CUKES see features dir
   gem "cucumber-rails", require: false
   # feature-driven-development suite

@@ -326,6 +326,8 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     systemu (2.6.5)
+    test_after_commit (1.1.0)
+      activerecord (>= 3.2)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
@@ -401,6 +403,7 @@ DEPENDENCIES
   simplecov
   spork (>= 0.9)
   sprockets
+  test_after_commit
   therubyracer
   thin
   timecop
