@@ -13,7 +13,7 @@ format :html do
   end
 
   # tabs for metrics of type formula, score and WikiRating
-  # overriden for researched
+  # overridden for researched
   view :details_tab do
     tab_wrap do
       [

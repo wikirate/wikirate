@@ -96,7 +96,8 @@ end
 
 def create_claim name, subcards={}
   Card::Auth.as_bot do
-    sourcepage = create_page "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+    url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+    sourcepage = create_page url
     Card.create! type_id: Card::ClaimID, name: name,
                  subcards: {
                    "+source" => {
