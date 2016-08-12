@@ -136,14 +136,16 @@ def add_report_type source_name
     report_names = report_type.item_names
     source_card = Card.fetch(source_name).fetch trait: :report_type, new: {}
     report_names.each do |report_name|
-      source_card.add_item! report_name
+      source_card.add_item report_name
     end
+    add_subcard source_card
   end
 end
 
 def add_company source_name
   source_card = Card.fetch(source_name).fetch trait: :wikirate_company, new: {}
-  source_card.add_item! company_name
+  source_card.add_item company_name
+  add_subcard source_card
 end
 
 event :process_sources, :prepare_to_validate,
