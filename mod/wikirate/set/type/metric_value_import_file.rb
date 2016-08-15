@@ -1,7 +1,7 @@
 include_set Type::File
 include_set Abstract::Import
 
-attachment :metric_value_import_file, uploader: FileUploader
+attachment :metric_value_import_file, uploader: CarrierWave::FileCardUploader
 
 format :html do
   def default_import_table_args args

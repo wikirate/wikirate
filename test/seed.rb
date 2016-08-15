@@ -5,7 +5,7 @@ require_dependency "card"
 
 class SharedData
   class << self
-    include Card::ActiveRecordHelper
+    include Card::Model::SaveHelper
     def account_args hash
       { "+*account" => { "+*password" => "joe_pass" }.merge(hash) }
     end

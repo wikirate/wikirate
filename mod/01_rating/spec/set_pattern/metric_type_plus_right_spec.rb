@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-describe Card::MetricTypePlusRightSet do
+describe Card::Set::MetricTypePlusRight do
   # TODO: not implemented yet
   # it 'works' do
   #   Card::Auth.as_bot do
