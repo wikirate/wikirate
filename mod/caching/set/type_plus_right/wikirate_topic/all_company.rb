@@ -52,7 +52,8 @@ end
 # metric value name change, create or delete may expire the cache
 recount_trigger Type::MetricValue do |changed_card|
   # FIXME: clean the cache cleverly
-  topics = changed_card.metric_card.fetch(trait: :wikirate_topic).item_names
+  topics = changed_card.metric_card.fetch(trait: :wikirate_topic, new: {})
+                       .item_names
   next unless topics
   topics.map do |topic|
     Card.fetch topic.to_name.trait(:all_company)

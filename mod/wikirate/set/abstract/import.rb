@@ -13,7 +13,10 @@ event :import_csv, :prepare_to_store,
   metric_values.each do |metric_value_data|
     metric_value_card = parse_metric_value metric_value_data, source_map
     # validate value type
-    metric_value_card.director.catch_up_to_stage :validate if metric_value_card
+    if metric_value_card
+      metric_value_card.director.catch_up_to_stage :validate
+      metric_value_card.director.transact_in_stage = :integrate
+    end
     handle_import_errors metric_value_card
   end
   clear_slot_params
