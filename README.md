@@ -43,6 +43,23 @@ Run `rake wikirate:test:reseed_data` to prepare test database.
 Start rspec with `wagn rspec` and cucumber with `wagn cucumber`.
 Alternatively, you can use the shorter commands `wagn rs` and `wagn cc`
 
+After Updating Test DB (Optional)
+----
+As Wagn updated transaction handling, tables will be truncated after every cucumber test.
+There is rake task to re-import the test db after every test. It is ok to run the cucumebr tests after the reseed the data, but it would be very slow because of regenerating the *all+*script and *all+*style cards.
+
+These steps could help reduce the testing time.
+1. Start the server in test environment
+```ruby
+RAILS_ENV=test bundle exec wagn s
+```
+2. Access the page at http://localhost:3000 (based on your settings)
+3. Stop the server after the page is loaded
+4. Dump the test db
+```ruby
+bundle exec rake wikirate:test:dump_test_db
+```
+
 Site Maintenance
 ================
 
