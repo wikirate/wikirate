@@ -109,7 +109,7 @@ event :validate_value_type, :validate, on: :save do
   if metric_card && (value_type = metric_card.fetch(trait: :value_type)) &&
      (value_card = subfield(:value))
     value = value_card.content
-    return if value.casecmp("unknown") == 0
+    return if value.casecmp("unknown").zero?
     case value_type.item_names[0]
     when "Number", "Money"
       unless number?(value)
@@ -224,7 +224,7 @@ format :html do
                                       strip_insignificant_zeros: true,
                                       precision: (less_than_one ? 3 : 1),
                                       significant: less_than_one
-    (humanized == "0" && number > 0) ? "~0" : humanized
+    humanized == "0" && number > 0 ? "~0" : humanized
   end
 
   def humanized_number value
