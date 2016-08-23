@@ -24,7 +24,7 @@ namespace :wikirate do
       yield importer
       FileUtils.rm_rf(Dir.glob("tmp/*"))
     end
-    
+
     def ensure_env env
       if ENV["RAILS_ENV"] != env
         execute_command "rake #{ARGV.first}", env
@@ -79,7 +79,6 @@ namespace :wikirate do
             with_subitems = %w(*script *style *layout).include? setting
             import.items_of setting, subitems: with_subitems
           end
-          binding.pry
           import.items_of :production_export, subitems: true
           import.migration_records
         end
@@ -92,8 +91,8 @@ namespace :wikirate do
       end
       exit
     end
-    
-    task update_machine_output: :environment do     
+
+    task update_machine_output: :environment do
       ensure_env "test" do
         Card[:all, :script].update_machine_output
         Card[:all, :style].update_machine_output
