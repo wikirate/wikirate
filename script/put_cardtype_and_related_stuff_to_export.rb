@@ -19,7 +19,7 @@ end
 
 card = Card["*read"]
 klasses = Card.set_patterns.reverse.map do |set_class|
-  next unless set_class == Card::TypeSet
+  next unless set_class == Card::Set::Type
   wql = { left: { type: Card::SetID },
           right: card.id,
 
@@ -49,7 +49,7 @@ klasses.map do |klass, rules|
     puts "#{klass}:#{rule.name}(#{rule.item_names} #{Card[rule.left.left.type_id].codename})" unless rule.item_names.include? "Anyone"
     next if rule.name.include? "*email+*right"
     next if rule.item_names.include? "Anyone"
-    next unless klass == Card::TypeSet
+    next unless klass == Card::Set::Type
     # get all related card and put them into export
     wql = { type: rule.left.left.name }
 

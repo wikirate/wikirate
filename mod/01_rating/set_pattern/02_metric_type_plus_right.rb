@@ -26,6 +26,6 @@ end
 
 def pattern_applies? _card
   false
-  #  (mt = Card::MetricTypeSet.metric_type(card.cardname.left)) &&
+  #  (mt = Card::Set::MetricType.metric_type(card.cardname.left)) &&
   #    ['researched', 'Formula', 'wiki_rating', 'score'].include?(mt)
 end
