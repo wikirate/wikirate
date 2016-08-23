@@ -57,6 +57,7 @@ Feature: note
     And I fill in "sourcebox" with "http://google.com/?q=ymca"
     And I press "Submit"
     And I wait until ajax response
+    And I wait until ajax response
     Then I should not see "Problems with"
     And the card "Hello World is a name of a new born baby" should contain "google.com"
 

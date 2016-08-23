@@ -18,11 +18,19 @@ namespace :wikirate do
 
     def import_from location
       FileUtils.rm_rf(Dir.glob("tmp/*"))
-      require "#{Wagn.root}/config/environment"
+      #require "#{Wagn.root}/config/environment"
       importer = Importer.new location
       puts "Source DB: #{importer.export_location}".green
       yield importer
       FileUtils.rm_rf(Dir.glob("tmp/*"))
+    end
+    
+    def ensure_env env
+      if ENV["RAILS_ENV"] != env
+        execute_command "rake #{ARGV.first}", env
+      else
+        yield
+      end
     end
 
     desc "seed test database"
@@ -37,16 +45,14 @@ namespace :wikirate do
 
     desc "add wikirate test data to test database"
     task add_wikirate_test_data: :environment do
-      if ENV["RAILS_ENV"] != "test"
-        execute_command "rake wikirate:test:add_wikirate_test_data", :test
-      else
+      ensure_env "test" do
         require "#{Wagn.root}/test/seed.rb"
         SharedData.add_wikirate_data
       end
     end
 
     desc "update seed data using the production database"
-    task :reseed_data do |_t, _args|
+    task reseed_data: :environment do |_t, _args|
       location = ARGV.size > 1 ? ARGV.last : "production"
       if ENV["RAILS_ENV"] != "init_test"
         puts "start task in init_test environment"
@@ -56,7 +62,8 @@ namespace :wikirate do
         puts "no test database"
       else
         # start with raw wagn db
-        execute_command "wagn seed", :test
+        Rake::Task["wagn:seed"].invoke
+        Card::Cache.reset_all
 
         import_from(location) do |import|
           # cardtype has to be the first
@@ -64,11 +71,6 @@ namespace :wikirate do
           import.cards_of_type "cardtype"
           import.items_of :codenames
           import.cards_of_type "year"
-          # import.cards_of_type 'layout'
-          # import.cards_of_type 'scss'
-          # import.cards_of_type 'css'
-          # import.cards_of_type 'coffee_script'
-          # import.cards_of_type 'java_script'
 
           Card.search(type_id: Card::SettingID, return: :name).each do |setting|
             # TODO: make export view for setting cards
@@ -77,15 +79,26 @@ namespace :wikirate do
             with_subitems = %w(*script *style *layout).include? setting
             import.items_of setting, subitems: with_subitems
           end
+          binding.pry
           import.items_of :production_export, subitems: true
           import.migration_records
         end
-        execute_command "rake wagn:migrate", :test
-        execute_command "rake wikirate:test:add_wikirate_test_data", :test
-        execute_command "rake wikirate:test:dump_test_db", :test
+        Rake::Task["wagn:migrate"].invoke
+        Rake::Task["wikirate:test:add_wikirate_test_data"].invoke
+        Card::Cache.reset_all
+        Rake::Task["wikirate:test:update_machine_output"].invoke
+        Rake::Task["wikirate:test:dump_test_db"].invoke
         puts "Happy testing!"
       end
       exit
+    end
+    
+    task update_machine_output: :environment do     
+      ensure_env "test" do
+        Card[:all, :script].update_machine_output
+        Card[:all, :style].update_machine_output
+        Rake::Task["wikirate:test:dump_test_db"].invoke
+      end
     end
 
     desc "dump test database"
