@@ -1,6 +1,6 @@
 require "colorize"
+require File.expand_path "../importer", __FILE__
 
-# require 'pry'
 namespace :wikirate do
   namespace :test do
     db_path = File.join Wagn.root, "test", "seed.db"
@@ -11,14 +11,14 @@ namespace :wikirate do
     pwd  = ENV["DATABASE_MYSQL_PASSWORD"] || ENV["MYSQL_PASSWORD"]
 
     def execute_command cmd, env=nil
-      cmd = "RAILS_ENV=#{env} #{cmd}" if env
+      cmd = "env RAILS_ENV=#{env} #{cmd}" if env
       puts cmd.green
       system cmd
     end
 
     def import_from location
       FileUtils.rm_rf(Dir.glob("tmp/*"))
-      #require "#{Wagn.root}/config/environment"
+      # require "#{Wagn.root}/config/environment"
       importer = Importer.new location
       puts "Source DB: #{importer.export_location}".green
       yield importer
@@ -26,8 +26,9 @@ namespace :wikirate do
     end
 
     def ensure_env env
-      if ENV["RAILS_ENV"] != env
-        execute_command "rake #{ARGV.first}", env
+      if !ENV["RAILS_ENV"] || ENV["RAILS_ENV"].to_sym != env.to_sym
+        puts "restart task in #{env} environment"
+        execute_command "rake #{ARGV.join(" ")}", env
       else
         yield
       end
@@ -53,18 +54,33 @@ namespace :wikirate do
 
     desc "update seed data using the production database"
     task reseed_data: :environment do |_t, _args|
-      location = ARGV.size > 1 ? ARGV.last : "production"
-      if ENV["RAILS_ENV"] != "init_test"
-        puts "start task in init_test environment"
-        system "env RAILS_ENV=init_test rake "\
-               "wikirate:test:reseed_data #{location}"
-      elsif !testdb
+      unless testdb
         puts "no test database"
-      else
+        exit
+      end
+      ensure_env :init_test do
         # start with raw wagn db
         Rake::Task["wagn:seed"].invoke
-        Card::Cache.reset_all
 
+        location = ARGV.size > 1 ? ARGV.last : "production"
+        Rake::Task["wikirate:test:import_from"].invoke(location)
+        # dump just in case some goes wrong in the next steps
+        # Then we don't have to import everything again
+        Rake::Task["wikirate:test:dump_test_db"].invoke
+        Rake::Task["wagn:migrate"].invoke
+        Card::Cache.reset_all
+        Rake::Task["wikirate:test:add_wikirate_test_data"].invoke
+        Card::Cache.reset_all
+        Rake::Task["wikirate:test:update_machine_output"].invoke
+        Rake::Task["wikirate:test:dump_test_db"].invoke
+        puts "Happy testing!"
+      end
+      exit # don't execute the location argument as second rake task
+    end
+
+    task :import_from, [:location] => :environment do |_t, args|
+      ensure_env :init_test do
+        location = args[:location] || "production"
         import_from(location) do |import|
           # cardtype has to be the first
           # otherwise codename cards get tbe wrong type
@@ -82,21 +98,13 @@ namespace :wikirate do
           import.items_of :production_export, subitems: true
           import.migration_records
         end
-        Rake::Task["wagn:migrate"].invoke
-        Rake::Task["wikirate:test:add_wikirate_test_data"].invoke
-        Card::Cache.reset_all
-        Rake::Task["wikirate:test:update_machine_output"].invoke
-        Rake::Task["wikirate:test:dump_test_db"].invoke
-        puts "Happy testing!"
       end
-      exit
     end
 
     task update_machine_output: :environment do
-      ensure_env "test" do
+      ensure_env :test do
         Card[:all, :script].update_machine_output
         Card[:all, :style].update_machine_output
-        Rake::Task["wikirate:test:dump_test_db"].invoke
       end
     end
 
@@ -106,113 +114,5 @@ namespace :wikirate do
       mysql_args += " -p #{pwd}" if pwd
       execute_command "mysqldump #{mysql_args} #{testdb} > #{db_path}"
     end
-  end
-end
-
-class Importer
-  attr_reader :export_location
-  def initialize location
-    @export_location =
-      case location
-      when "dev"    then "dev.wikirate.org"
-      when "demo"   then "demo.wikirate.org"
-      when "local"  then "localhost:3000"
-      else               "wikirate.org"
-      end
-  end
-
-  # @return [Array<Hash>] each hash contains the attributes for a card
-  def items_of cardname, opts={}
-    card_data =
-      work_on "getting data from #{cardname} card" do
-        if opts[:subitems]
-          json_export cardname, :export_items
-        else
-          json_export(cardname)["card"]["value"]
-        end
-      end
-    import_card_data card_data
-  end
-
-  def cards_of_type type
-    items_of "#{type}+*type+by_update"
-  end
-
-  def migration_records
-    migration_data =
-      work_on "getting migration records" do
-        json_export :admin_info, :migrations
-      end
-    work_on "importing migration records" do
-      import_migration_data migration_data
-    end
-  end
-
-  private
-
-  def work_on msg
-    puts msg.green
-    result = yield
-    puts " ... done".green
-    result
-  end
-
-  def json_export cardname, view=nil
-    name = cardname.is_a?(Symbol) ? ":#{cardname}" : cardname.to_name.key
-    url = "http://#{@export_location}/#{name}.json"
-    url += "?view=#{view}" if view
-    JSON.parse open(url, read_timeout: 50_000).read
-  end
-
-  def update_or_create name, _codename, attr
-    if attr["type"].in? %w(Image File)
-      attr["content"] = ""
-      attr["empty_ok"] = true
-    end
-    begin
-      # card = codename ? Card.fetch(codename.to_sym) : Card.fetch(name)
-      card = Card.fetch(name)
-      if card
-        puts "updating card #{name} "\
-               "#{card.update_attributes!(attr)}".light_blue
-      else
-        puts "creating card #{name} #{Card.create!(attr)}".yellow
-      end
-    rescue => e
-      puts "Error in #{name}\n#{e}".red
-    end
-  end
-
-  def import_card_data cards
-    work_on "importing data (#{cards.size} cards)" do
-      Card::Auth.as_bot do
-        cards.each do |card|
-          update_or_create card["name"], card["codename"], card
-        end
-      end
-    end
-  end
-
-  def import_migration_data data
-    data.each do |table, values|
-      begin
-        truncate table
-        insert_into table, values
-      rescue => e
-        puts "Error in #{table},#{values} #{e}".red
-      end
-    end
-  end
-
-  def truncate table
-    sql = "TRUNCATE  #{table}"
-    ActiveRecord::Base.connection.execute(sql)
-  end
-
-  def insert_into table, values
-    value_string = values.join("'),('")
-    value_string = "('#{value_string}')"
-    sql = "INSERT INTO #{table} (version) VALUES #{value_string}"
-    ActiveRecord::Base.connection.execute(sql)
   end
 end

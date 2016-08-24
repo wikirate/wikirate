@@ -33,7 +33,7 @@ format :html do
 
   view :meta_preview do |args|
     content = _render_core args
-    truncated = Card::Content.truncatewords_with_closing_tags content, 50
+    truncated = Card::Content::Truncate.smart_truncate content, 50
     ActionView::Base.full_sanitizer.sanitize truncated
   end
 
