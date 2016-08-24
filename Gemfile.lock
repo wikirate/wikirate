@@ -343,7 +343,7 @@ GEM
       ansi
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (3.0.1)
+    uglifier (3.0.2)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.1.0)
     uuid (2.3.8)
@@ -412,4 +412,4 @@ DEPENDENCIES
   wbench
 
 BUNDLED WITH
-   1.11.2
+   1.12.5

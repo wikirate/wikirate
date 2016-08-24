@@ -18,17 +18,20 @@ namespace :wikirate do
 
     def import_from location
       FileUtils.rm_rf(Dir.glob("tmp/*"))
-      # require "#{Wagn.root}/config/environment"
+      require "#{Wagn.root}/config/environment"
       importer = Importer.new location
       puts "Source DB: #{importer.export_location}".green
       yield importer
       FileUtils.rm_rf(Dir.glob("tmp/*"))
     end
 
-    def ensure_env env
+    def ensure_env env, task, args=nil
       if !ENV["RAILS_ENV"] || ENV["RAILS_ENV"].to_sym != env.to_sym
         puts "restart task in #{env} environment"
-        execute_command "rake #{ARGV.join(" ")}", env
+        if args.to_a.present?
+          task = "#{task}\\[#{args.to_a.join(',')}\\]"
+        end
+        execute_command "rake #{task}", env
       else
         yield
       end
@@ -45,27 +48,27 @@ namespace :wikirate do
     end
 
     desc "add wikirate test data to test database"
-    task add_wikirate_test_data: :environment do
-      ensure_env "test" do
+    task add_wikirate_test_data: :environment do |task|
+      ensure_env "test", task do
         require "#{Wagn.root}/test/seed.rb"
         SharedData.add_wikirate_data
       end
     end
 
     desc "update seed data using the production database"
-    task reseed_data: :environment do |_t, _args|
+    task :reseed_data, [:location]  do |task, args|
       unless testdb
         puts "no test database"
         exit
       end
-      ensure_env :init_test do
-        # start with raw wagn db
-        Rake::Task["wagn:seed"].invoke
-
-        location = ARGV.size > 1 ? ARGV.last : "production"
-        Rake::Task["wikirate:test:import_from"].invoke(location)
-        # dump just in case some goes wrong in the next steps
-        # Then we don't have to import everything again
+      # init_test env uses the same db as test env
+      # test env triggers stuff on load that breaks the seeding process
+      ensure_env :init_test, task, args do
+        # start with raw wagn test db
+        execute_command "rake wagn:seed", :test
+        Rake::Task["wikirate:test:import_from"].invoke(args[:location])
+        # dump just in case something goes wrong in the next steps
+        # then we don't have to import everything again
         Rake::Task["wikirate:test:dump_test_db"].invoke
         Rake::Task["wagn:migrate"].invoke
         Card::Cache.reset_all
@@ -75,11 +78,10 @@ namespace :wikirate do
         Rake::Task["wikirate:test:dump_test_db"].invoke
         puts "Happy testing!"
       end
-      exit # don't execute the location argument as second rake task
     end
 
-    task :import_from, [:location] => :environment do |_t, args|
-      ensure_env :init_test do
+    task :import_from, [:location] => :environment do |task, args|
+      ensure_env(:init_test, task, args) do
         location = args[:location] || "production"
         import_from(location) do |import|
           # cardtype has to be the first
@@ -101,8 +103,8 @@ namespace :wikirate do
       end
     end
 
-    task update_machine_output: :environment do
-      ensure_env :test do
+    task update_machine_output: :environment do |task|
+      ensure_env :test, task do
         Card[:all, :script].update_machine_output
         Card[:all, :style].update_machine_output
       end
