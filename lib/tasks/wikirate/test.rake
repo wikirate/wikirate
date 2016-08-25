@@ -75,6 +75,7 @@ namespace :wikirate do
         Rake::Task["wikirate:test:add_wikirate_test_data"].invoke
         Card::Cache.reset_all
         Rake::Task["wikirate:test:update_machine_output"].invoke
+        Rake::Task["wikirate:test:dump_test_db"].reenable
         Rake::Task["wikirate:test:dump_test_db"].invoke
         puts "Happy testing!"
       end
