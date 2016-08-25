@@ -101,7 +101,7 @@ describe Card::Metric do
     it "recognizes metric type" do
       metric = Card.new name: "MT+MD", type_id: Card::MetricID,
                         "+*metric type" => "[[Researched]]"
-      expect(metric.set_format_modules(Card::HtmlFormat))
+      expect(metric.set_format_modules(Card::Format::HtmlFormat))
         .to include(Card::Set::MetricType::Researched::HtmlFormat)
     end
   end
