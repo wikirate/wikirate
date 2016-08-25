@@ -3,12 +3,16 @@ require File.expand_path "../importer", __FILE__
 
 namespace :wikirate do
   namespace :test do
-    db_path = File.join Wagn.root, "test", "seed.db"
-    testdb = ENV["DATABASE_NAME_TEST"] ||
-             ((t = Wagn.config.database_configuration["test"]) &&
-             t["database"])
+    full_dump_path = File.join Wagn.root, "test", "seed.db"
+    base_dump_path = File.join Wagn.root, "test", "base_seed.db"
     user = ENV["DATABASE_MYSQL_USERNAME"] || ENV["MYSQL_USER"] || "root"
     pwd  = ENV["DATABASE_MYSQL_PASSWORD"] || ENV["MYSQL_PASSWORD"]
+
+    def testdb
+      @testdb ||= ENV["DATABASE_NAME_TEST"] ||
+                  ((t = Wagn.config.database_configuration["test"]) &&
+                  t["database"])
+    end
 
     def execute_command cmd, env=nil
       cmd = "env RAILS_ENV=#{env} #{cmd}" if env
@@ -37,50 +41,47 @@ namespace :wikirate do
       end
     end
 
-    desc "seed test database"
-    task :seed do
-      mysql_login = "mysql -u #{user}"
-      mysql_login += " -p#{pwd}" if pwd
-      cmd =
-        "echo \"create database if not exists #{testdb}\" | #{mysql_login}; " \
-        "#{mysql_login} --database=#{testdb} < #{db_path}"
-      system cmd
+    def ensure_test_db
+      return if testdb
+      puts "no test database"
+      exit
     end
 
-    desc "add wikirate test data to test database"
-    task add_wikirate_test_data: :environment do |task|
-      ensure_env "test", task do
-        require "#{Wagn.root}/test/seed.rb"
-        SharedData.add_wikirate_data
-      end
-    end
+    desc "seed test database"
+    task seed: :load_test_dump
 
     desc "update seed data using the production database"
-    task :reseed_data, [:location]  do |task, args|
-      unless testdb
-        puts "no test database"
-        exit
-      end
+    task :reseed_data, [:location]  do |_task, args|
+      ensure_test_db
+      Rake::Task["wikirate:test:prepare_seed_data"].invoke(args[:location])
+      Rake::Task["wikirate:test:finalize_seed_data"].invoke
+    end
+
+    desc "seed with raw wagn test db and import cards"
+    task :prepare_seed_data, [:location]  do |task, args|
       # init_test env uses the same db as test env
       # test env triggers stuff on load that breaks the seeding process
       ensure_env :init_test, task, args do
-        # start with raw wagn test db
         execute_command "rake wagn:seed", :test
         Rake::Task["wikirate:test:import_from"].invoke(args[:location])
-        # dump just in case something goes wrong in the next steps
-        # then we don't have to import everything again
-        Rake::Task["wikirate:test:dump_test_db"].invoke
+        Rake::Task["wikirate:test:dump_test_db"].invoke(base_dump_path)
+      end
+    end
+
+    desc "migrate and add wikirate test data"
+    task :finalize_seed_data do |task|
+      ensure_env :test, task do
+        Rake::Task["wikirate:test:load_test_dump"].invoke(base_dump_path)
         Rake::Task["wagn:migrate"].invoke
         Card::Cache.reset_all
         Rake::Task["wikirate:test:add_wikirate_test_data"].invoke
         Card::Cache.reset_all
         Rake::Task["wikirate:test:update_machine_output"].invoke
-        Rake::Task["wikirate:test:dump_test_db"].reenable
-        Rake::Task["wikirate:test:dump_test_db"].invoke
-        puts "Happy testing!"
+        Rake::Task["wikirate:test:dump_test_db"].execute
       end
     end
 
+    desc "import cards from given location"
     task :import_from, [:location] => :environment do |task, args|
       ensure_env(:init_test, task, args) do
         location = args[:location] || "production"
@@ -104,18 +105,46 @@ namespace :wikirate do
       end
     end
 
+    desc "add wikirate test data to test database"
+    task add_wikirate_test_data: :environment do |task|
+      ensure_env "test", task do
+        require "#{Wagn.root}/test/seed.rb"
+        SharedData.add_wikirate_data
+      end
+    end
+
+    desc "update caches for machine output"
     task update_machine_output: :environment do |task|
       ensure_env :test, task do
-        Card[:all, :script].update_machine_output
-        Card[:all, :style].update_machine_output
+        Card::Auth.as_bot do
+          Card[:all, :script].update_machine_output
+          Card[:all, :style].update_machine_output
+          # because we don't copy the files we have to delete the output
+          # but the solid caches for generating the machine output
+          # are updated now
+          Card[:all, :script, :machine_output].delete
+          Card[:all, :style, :machine_output].delete
+        end
       end
     end
 
     desc "dump test database"
-    task :dump_test_db do
+    task :dump_test_db, [:path] do |_task, args|
+      dump_path = args[:path] || full_dump_path
       mysql_args = "-u #{user}"
       mysql_args += " -p #{pwd}" if pwd
-      execute_command "mysqldump #{mysql_args} #{testdb} > #{db_path}"
+      execute_command "mysqldump #{mysql_args} #{testdb} > #{dump_path}"
+    end
+
+    desc "load db dump into test db"
+    task :load_test_dump, [:path] do |_task, args|
+      dump_path = args[:path] || full_dump_path
+      mysql_login = "mysql -u #{user}"
+      mysql_login += " -p#{pwd}" if pwd
+      cmd =
+        "echo \"create database if not exists #{testdb}\" | #{mysql_login}; " \
+        "#{mysql_login} --database=#{testdb} < #{dump_path}"
+      system cmd
     end
   end
 end
