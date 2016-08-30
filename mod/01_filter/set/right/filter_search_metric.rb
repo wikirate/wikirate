@@ -9,7 +9,7 @@ def shift_sort_table?
 end
 
 def default_keys
-  %w(name wikirate_topic)
+  %w(name wikirate_topic wikirate_company)
 end
 
 def advanced_keys
@@ -41,6 +41,12 @@ def wql_by_wikirate_topic wql, topic
   return unless topic.present?
   wql[:right_plus] ||= []
   wql[:right_plus].push ["topic", { refer_to: topic }]
+end
+
+def wql_by_wikirate_company wql, company
+  return unless company.present?
+  wql[:right_plus] ||= []
+  wql[:right_plus].push [company, {}]
 end
 
 def wql_by_project wql, project

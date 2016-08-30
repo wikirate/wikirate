@@ -7,19 +7,27 @@ format :html do
     @analysis_card ||= card.left
   end
 
+  def link_with_params label, analysis_card, text, array
+    company = CGI.escape(analysis_card.left.name)
+    topic = CGI.escape(analysis_card.right.name)
+    sign = array ? "[]" : ""
+    params = "wikirate_company#{sign}=#{company}&wikirate_topic#{sign}=#{topic}"
+    <<-HTML
+      <a href="/#{label}?#{params}">#{text}</a>
+    HTML
+  end
+
   def link content, label
     text = %(
           <div class="content">
             #{content}<div class="name">#{label}</div>
           </div>
         )
-    params = "company[]=#{analysis_name.left}&"\
-             "topic[]=#{analysis_name.right}"
     case label
     when "Notes", "Sources"
-      %(<a href="/#{label}?#{params}">#{text}</a>)
+      link_with_params(label, analysis_card, text, true)
     when "Metrics"
-      %(<a href="/#{analysis_name.url_key}+metric">#{text}</a>)
+      link_with_params(label, analysis_card, text, false)
     when "Overview"
       card_link analysis_name.s, text: text
     end
