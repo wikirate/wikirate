@@ -1,6 +1,10 @@
 include_set Abstract::FilterForm
 include_set Abstract::FilterUtility
 format :html do
+  def view_caching?
+    false
+  end
+
   def filter_categories
     %w(company industry project)
   end

@@ -80,6 +80,10 @@ def raw_content
 end
 
 format :html do
+  def view_caching?
+    false
+  end
+
   def page_link_params
     [:sort] + card.params_keys
   end
