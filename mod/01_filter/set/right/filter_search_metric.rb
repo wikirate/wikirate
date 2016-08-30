@@ -1,5 +1,5 @@
 include_set Abstract::Filter
-
+include_set Abstract::FilterUtility
 def default_sort_by_key
   "upvoted"
 end
