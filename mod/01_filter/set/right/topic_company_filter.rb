@@ -1,6 +1,10 @@
 include_set Abstract::FilterForm
 
 format :html do
+  def view_caching?
+    false
+  end
+
   def filter_categories
     %w(name)
   end

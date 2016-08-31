@@ -68,6 +68,9 @@ end
 
 format :html do
   include Set::Abstract::Filter::HtmlFormat
+  def view_caching?
+    false
+  end
   def page_link_params
     [:sort, :cited, :claimed, :wikirate_company, :wikirate_topic]
   end
