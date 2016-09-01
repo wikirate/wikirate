@@ -54,7 +54,7 @@ def shift_sort_table query
   if sort? && shift_sort_table?
     # sort table alias always stick to the first table,
     # but I need the next table
-    sort = query.mods[:sort].scan(/c([\d+]).db_content/).last.first.to_i + 1
+    sort = query.mods[:sort].scan(/c(\d+).db_content/).last.first.to_i + 1
     query.mods[:sort] = "c#{sort}.db_content"
   end
 end
