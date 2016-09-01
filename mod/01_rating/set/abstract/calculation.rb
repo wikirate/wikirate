@@ -32,3 +32,7 @@ def create_value_card name, value
   Card.create! name: name, type_id: MetricValueID,
                subcards: { "+value" => { type_id: NumberID, content: value } }
 end
+
+def normalize_value value
+  value.to_s if value
+end

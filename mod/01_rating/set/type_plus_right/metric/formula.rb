@@ -205,7 +205,7 @@ def input_keys
 end
 
 def normalize_value value
-  value.to_s if value
+  metric_card.normalize_value value
 end
 
 def ruby_formula?

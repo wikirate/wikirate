@@ -19,9 +19,10 @@ end
 # delegate :question_card, to: :basic_metric_card
 
 def normalize_value value
-  return 0 if value < 0
-  return 10 if value > 10
-  value
+  return value if value.is_a? String
+  return "0" if value < 0
+  return "10" if value > 10
+  value.to_s
 end
 
 def value_type
