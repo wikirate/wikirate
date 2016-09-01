@@ -13,7 +13,7 @@ def default_keys
 end
 
 def advanced_keys
-  %w(designer project year)
+  %w(designer project metric_type research_policy year)
 end
 
 def target_type_id
@@ -71,6 +71,22 @@ def wql_by_designer wql, designer
   }
 end
 
+def wql_by_metric_type wql, metric_type
+  return unless metric_type.present?
+  wql[:right_plus] ||= []
+  wql[:right_plus].push [
+    Card[:metric_type].name, { refer_to: metric_type }
+  ]
+end
+
+def wql_by_research_policy wql, research_policy
+  return unless research_policy.present?
+  wql[:right_plus] ||= []
+  wql[:right_plus].push [
+    Card[:research_policy].name, { refer_to: research_policy }
+  ]
+end
+
 format :html do
   def default_sort_formgroup_args args
     args[:sort_options] = {
@@ -80,6 +96,16 @@ format :html do
       "Most Values" => "values"
     }
     args[:sort_option_default] = "upvoted"
+  end
+
+  def default_metric_type_formgroup_args args
+    # set it to select list
+    args[:select_list] = true
+  end
+
+  def default_research_policy_formgroup_args args
+    # set it to select list
+    args[:select_list] = true
   end
 
   def type_options type_codename, order="asc"

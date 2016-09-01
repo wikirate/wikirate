@@ -254,10 +254,16 @@ format :html do
     select_filter :wikirate_company, "asc"
   end
 
-  view :metric_type_formgroup do
+  view :metric_type_formgroup do |args|
     type_card = Card["metric_type"]
     options = Card.search type_id: type_card.id, return: :name, sort: "name"
-    checkbox_formgroup "Type", options
+    if args[:select_list]
+      options.unshift(["--", ""])
+      simple_select_filter card_name, options,
+                           Env.params[card_name], "Metric Type"
+    else
+      checkbox_formgroup "Type", options
+    end
   end
 
   def checkbox_formgroup title, options, default=nil
@@ -272,9 +278,13 @@ format :html do
     formgroup title, checkboxes.join("")
   end
 
-  view :research_policy_formgroup do
-    options = type_options :research_policy
-    checkbox_formgroup "Research Policy", options
+  view :research_policy_formgroup do |args|
+    if args[:select_list]
+      select_filter :research_policy, "asc"
+    else
+      options = type_options :research_policy
+      checkbox_formgroup "Research Policy", options
+    end
   end
 
   view :metric_value_formgroup do
