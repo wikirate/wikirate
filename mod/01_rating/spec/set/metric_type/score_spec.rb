@@ -113,7 +113,7 @@ describe Card::Set::MetricType::Score do
         end
         it "updates existing rating value" do
           update_formula "{{#{@metric_name}}}*3"
-          expect(score_value).to eq "15.0"
+          expect(score_value).to eq "10"
         end
         # it 'fails if basic metric is not used in formula' do
         #   #update_formula '{{Jedi+deadliness}}'
@@ -169,7 +169,7 @@ describe Card::Set::MetricType::Score do
             content: "{{Joe User+#{@metric_title}}}*2"
           )
         end
-        expect(score_value).to eq("20.0")
+        expect(score_value).to eq("10")
         expect(score_value("Samsung", "2015")).to eq("10.0")
         expect(score_value("Sony_Corporation")).to eq("2.0")
       end
