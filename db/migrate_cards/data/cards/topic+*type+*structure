@@ -11,6 +11,7 @@
         </div>
       </div>
 			<div class="tabbable company-tabs">
+			  <div class="col-md-8"><h2><span class="topic-color">{{_|name}}</span></h2></div>
 				<ul class="nav nav-tabs with-item-count text-center">
 				  
 				  <li>

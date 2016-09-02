@@ -1,6 +1,4 @@
 <p>{{+description}}</p>
-<p>  </p>
-
 
 <div class="filter-search-form">
   {{+filter search company|filter_form}}
@@ -10,4 +8,4 @@
    {{+filter search company||content; structure:browse company item }}
 </div>
 
-<p>{{_|add_button}}</p>
+

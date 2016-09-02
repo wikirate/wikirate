@@ -636,6 +636,17 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
         font-weight: bold;
     }
 }
+
+#modal-add-metric-slot{
+  .modal-dialog {
+      width: 90%;
+  }
+  .modal-body .yinyang>.row>.col-md-6 {
+      height: 1000px;
+      overflow-y: scroll;
+  }
+}
+
 .modal-body .yinyang-row .metric-thumbnail {
     white-space: nowrap;
     font-size: inherit;
@@ -812,6 +823,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 //Div alignments
 #metric-container, #source-preview-main {
   border: 1px solid $div-border-color;
+  background:#fff;
 }
 #metric-container {
     overflow-y: scroll;

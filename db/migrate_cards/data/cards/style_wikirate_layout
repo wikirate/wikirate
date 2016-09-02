@@ -267,7 +267,7 @@ body.home-layout #main {
 
 body {
   >#wikirate_footer_compact {
-    position: fixed;
+    /*position: fixed;*/
     bottom: 0px;
     z-index: 9;
     background: #fff;
@@ -329,4 +329,8 @@ body {
 .TYPE-image.card-content img, .TYPE-image .card-body img {
     max-width: 100%;
     max-height: 100%;
+}
+
+input.navbox {
+    font-family: FontAwesome;
 }
