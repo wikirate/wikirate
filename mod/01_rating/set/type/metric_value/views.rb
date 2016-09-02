@@ -333,14 +333,8 @@ format :html do
 
   view :comments do |_args|
     disc_card = card.fetch trait: :discussion, new: {}
-    comments = disc_card.real? ? subformat(disc_card).render_core : ""
-    comments += subformat(disc_card).render_comment_box
-    wrap do
-      [
-        content_tag(:h5, "Discussion"),
-        comments.html_safe
-      ]
-    end
+    subformat(disc_card)._render_titled title: "Discussion", show: "commentbox",
+                                        home_view: :titled
   end
 
   view :credit_name do |args|
