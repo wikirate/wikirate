@@ -23,7 +23,7 @@
 					<li>
 						<a href="/{{_|linkname}}?tab=overview" data-tab-content-url="/{{_|linkname}}+overview_page" data-tab-name='overview'>
 						  <span class="count-number clearfix">{{_+Review+*count|core}}</span>  
-  						<span class="count-label">Overviews</span>
+  						<span class="count-label">Review</span>
 						</a>
 					</li>
 					
