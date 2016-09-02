@@ -207,7 +207,7 @@ format :html do
   end
 
   def default_new_tab_pane_args args
-    default_new_args_buttons args
+    parent.default_new_args_buttons args
     args[:hidden] ||= {
       "card[subcards][+*metric type][content]" => "[[#{card.metric_type}]]",
       "card[type_id]" => MetricID,
