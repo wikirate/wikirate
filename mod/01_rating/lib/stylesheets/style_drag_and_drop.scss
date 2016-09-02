@@ -332,12 +332,15 @@ $bright-text-color: #e5e5e5;
       color:$dark-text-color;
 
     }
-    >div>.data {
-      width: auto!important;
+    >div{
+      >.data {
+        width: auto!important;
+      }
+      >.header {
+          width: 73%;
+      }
     }
-    div>.header {
-        width: 73%;
-    }
+
   }
   .value-item {
     color: $dark-text-color;
