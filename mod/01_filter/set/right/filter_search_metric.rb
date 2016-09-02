@@ -68,7 +68,7 @@ end
 format :html do
   def default_sort_formgroup_args args
     args[:sort_options] = {
-      "Most Upvoted" => "upvoted",
+      "Highest Voted" => "upvoted",
       "Most Recent" => "recent",
       "Most Companies" => "company",
       "Most Values" => "values"

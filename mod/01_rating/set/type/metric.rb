@@ -149,11 +149,10 @@ format :html do
         <<-HTML
         <!--prototype: Company+MetricDesigner+MetricName+yinyang drag item -->
         <div class="yinyang-row">
-          <div class="metric-item value-item metric-details-toggle"
-               data-append="#{card.key}+add_to_formula">
+          <div class="metric-item value-item ">
             #{yield}
+            <div class="details"></div>
           </div>
-          <div class="details"></div>
         </div>
         HTML
       end

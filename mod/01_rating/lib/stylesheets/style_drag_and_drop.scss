@@ -272,6 +272,7 @@ $bright-text-color: #e5e5e5;
 #Home .yinyang-row {
   .data .contribution.company-count {
     width: 112px;
+    border-left: 1px solid #e5e5e5;
   }
 
   // .value-item .header .name{
@@ -500,6 +501,13 @@ $bright-text-color: #e5e5e5;
       margin-top: -1px;
       margin-right: -1px;
       margin-left: -1px;
+      .name {
+          color: #ccc;
+      }
+      .content {
+        padding-top: 5px;
+        color: #737373;
+      }
       &.company-count {
         width:175px;
       }
@@ -507,17 +515,16 @@ $bright-text-color: #e5e5e5;
         width: 108px;
         padding-top: 15px;
       }
-      &.btn-default {
-        .name {
-          color: #ccc;
-        }
-        .content {
-          color: #737373;
-        }
-      }
       &.btn.btn-highlight {
         background-color: #f29393;
         border-color: #f06464;
+        .name {
+            color: #fff;
+            margin-left: -5px;
+        }
+        .content {
+          color: #fff;
+        }
         a {
           color: #fff;
         }
@@ -712,6 +719,9 @@ $bright-text-color: #e5e5e5;
 .modal-body .yinyang-row .details.stick {
     top: 126px;
     box-shadow: none;
+    width: 48%;
+    height: 80%;
+
 }
 
 .modal-dialog.large {

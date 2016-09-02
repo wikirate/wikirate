@@ -184,7 +184,7 @@ format :html do
     wrap(args) do
       process_content <<-HTML
       <div class="yinyang-row">
-        <div class="metric-item contribution-item value-item">
+        <div class="metric-item contribution-item value-item metric-details-toggle" data-append="topic_page_metric_details">
           <div class="header">
             {{_+*vote count}}
             <div class="logo">
@@ -196,7 +196,7 @@ format :html do
           </div>
 
           <div class="data">
-            <div class="contribution company-count btn btn-default metric-details-toggle" data-append="topic_page_metric_details">
+            <div class="contribution company-count">
               <div class="content">
                 {{_+company count|core}}
                 <div class="name">Companies</div>

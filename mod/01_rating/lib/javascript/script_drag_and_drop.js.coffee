@@ -58,6 +58,7 @@ $(document).ready ->
 
     row = $(toggle).closest('.yinyang-row')
     details = $(row).find('.details')
+    yinyan_list_name = ".yinyang-list .value-item:first-child.active"
     if details.is(':visible')
       # for hide_with_details in $(row).find('.hide-with-details')
       # $(hide_with_details).show()
@@ -66,11 +67,10 @@ $(document).ready ->
       details.hide()
       row.find(".value-item, .list-item").first().removeClass("active")
     else if !$.trim(details.html()) # empty
-      yinyan_list_name = ".yinyang-list .value-item:first-child.active"
       loader_anime = $("#ajax_loader").html()
       details.append(loader_anime)
       activeItem = $(yinyan_list_name +
-      " .search-result-list .overview-item:first-child.active")
+      ", .search-result-list .overview-item:first-child.active")
       activeItem.find(".details").hide()
       activeItem.removeClass("active")
       row.find(".value-item, .list-item").first().addClass("active")
