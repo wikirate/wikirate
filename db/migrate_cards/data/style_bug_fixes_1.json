@@ -1,9 +1,5 @@
 [
   {
-    "name": "export",
-    "type": "Pointer"
-  },
-  {
     "name": "Topic+*type+*structure",
     "type": "HTML"
   },
