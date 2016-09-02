@@ -255,7 +255,8 @@ format :html do
   end
 
   view :metric_type_formgroup do |args|
-    type_card = Card["metric_type"]
+    card_name = "metric_type"
+    type_card = Card[card_name]
     options = Card.search type_id: type_card.id, return: :name, sort: "name"
     if args[:select_list]
       options.unshift(["--", ""])

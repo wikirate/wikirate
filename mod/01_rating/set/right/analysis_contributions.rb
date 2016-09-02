@@ -28,7 +28,7 @@ format :html do
       link_with_params(label, analysis_card, text, true)
     when "Metrics"
       link_with_params(label, analysis_card, text, false)
-    when "Overview"
+    when "Review"
       card_link analysis_name.s, text: text
     end
   end
@@ -71,7 +71,7 @@ format :html do
         else
           empty
         end
-      data << [icon, "Overview", (:highlight unless overview_card)]
+      data << [icon, "Review", (:highlight unless overview_card)]
       data << [metric_cnt, "Metrics"]
       data << [claim_cnt, "Notes"]
     end
