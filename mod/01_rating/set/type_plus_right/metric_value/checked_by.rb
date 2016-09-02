@@ -54,11 +54,7 @@ format :html do
   end
 
   def double_check_icon
-    render_haml do
-      <<-HAML
-%i.fa.fa-check-circle.verify-blue
-      HAML
-    end
+    fa_icon("check-circle", class: "verify-blue").html_safe
   end
 
   def data_path
