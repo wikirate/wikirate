@@ -100,8 +100,12 @@ $(document).ready ->
     $loader = wikirate.loader($source_form_container)
     $loader.add()
     $.get(load_path, ((data) ->
+      $(data).find('#source_url').text()
       $source_form_container.prepend(data)
+      pageName  = $(data).find('#source-name').text()
+      url       = $(data).find('#source_url').text()
       resizeIframe($source_form_container)
+      testSameOrigin(url, pageName) if (url)
       $loader.remove()
       return
     ), 'html').fail((xhr,d,e) ->
@@ -239,8 +243,8 @@ $(document).ready ->
           $ '<span>' + $(this).html() + '</span>'
       $container.append($sourceDetailsToggle)
       handleYearData($parentForm, sourceYear)
-      pageName  = $("#source-name").html()
-      url       = $("#source_url").html()
+      pageName  = $(data).find('#source-name').text()
+      url       = $(data).find('#source_url').text()
 
       resizeIframe($("#source-preview-main"))
       testSameOrigin(url, pageName) if (url)
