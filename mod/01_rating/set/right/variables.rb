@@ -1,4 +1,4 @@
-include Type::Pointer
+include_set Type::Pointer
 include Abstract::Variable
 
 def metric_card
@@ -14,7 +14,7 @@ def formula_card
 end
 
 def extract_metrics_from_formula
-  update_attributes! content: formula_card.input_names.to_pointer.content,
+  update_attributes! content: formula_card.input_names.to_pointer_content,
                      type_id: PointerID
   formula_card.input_names
 end
@@ -33,12 +33,12 @@ def input_metric_name_by_index index
 end
 
 format :html do
-  include Type::Pointer::HtmlFormat
 
   view :core do |args|
     args ||= {}
+    binding.pry
     items = args[:item_list] || card.item_names(context: :raw)
-    items ||= extract_metrics_from_formula if items.empty?
+    items ||= card.extract_metrics_from_formula if items.empty?
     # items = [''] if items.empty?
     table_content =
       items.map.with_index do |item, index|
