@@ -123,7 +123,6 @@ end
 
 def get_cached_values
   cached_hash = construct_cached_hash
-  if cached_hash.keys.present?
   cached_hash.keys.each do |key|
     mark = key.number? ? key.to_i : key
     cached_hash[Card[mark].name] = cached_hash.delete key
