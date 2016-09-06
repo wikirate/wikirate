@@ -33,10 +33,8 @@ def input_metric_name_by_index index
 end
 
 format :html do
-
   view :core do |args|
     args ||= {}
-    binding.pry
     items = args[:item_list] || card.item_names(context: :raw)
     items ||= card.extract_metrics_from_formula if items.empty?
     # items = [''] if items.empty?
