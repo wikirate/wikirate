@@ -53,11 +53,13 @@ format :html do
       if (company = item_card.random_valued_company_card)
         metric_plus_company = Card["#{item_card.name}+#{company.name}"]
         subformat(metric_plus_company)._render_all_values(args)
+      else
+        ""
       end
     [
       subformat(item_card)._render_thumbnail(args),
       "M#{index}", # ("A".ord + args[:index]).chr
-      (example_value.html_safe if example_value)
+      example_value.html_safe
     ]
   end
 
