@@ -78,9 +78,9 @@ format :html do
       %br/
       %br/
       %p
-        Please choose a metric from the list for details
+        Choose a metric to view more details here
       %p
-        and add it to the formula
+        and to add it to the formula
       HAML
       end
     end
