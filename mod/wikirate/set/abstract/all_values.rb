@@ -218,7 +218,6 @@ format do
   def search_results _args={}
     @search_results ||= begin
       sort_by, sort_order = card.sort_params
-      binding.pry
       all_results = sorted_result sort_by, sort_order, num?
       results = all_results[offset, limit]
       results.blank? ? [] : results
