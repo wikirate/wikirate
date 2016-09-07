@@ -1,4 +1,4 @@
-include Type::Pointer
+include_set Type::Pointer
 include Abstract::Variable
 
 def metric_card
@@ -14,7 +14,7 @@ def formula_card
 end
 
 def extract_metrics_from_formula
-  update_attributes! content: formula_card.input_names.to_pointer.content,
+  update_attributes! content: formula_card.input_names.to_pointer_content,
                      type_id: PointerID
   formula_card.input_names
 end
@@ -33,12 +33,10 @@ def input_metric_name_by_index index
 end
 
 format :html do
-  include Type::Pointer::HtmlFormat
-
   view :core do |args|
     args ||= {}
     items = args[:item_list] || card.item_names(context: :raw)
-    items ||= extract_metrics_from_formula if items.empty?
+    items ||= card.extract_metrics_from_formula if items.empty?
     # items = [''] if items.empty?
     table_content =
       items.map.with_index do |item, index|
@@ -53,11 +51,13 @@ format :html do
       if (company = item_card.random_valued_company_card)
         metric_plus_company = Card["#{item_card.name}+#{company.name}"]
         subformat(metric_plus_company)._render_all_values(args)
+      else
+        ""
       end
     [
       subformat(item_card)._render_thumbnail(args),
       "M#{index}", # ("A".ord + args[:index]).chr
-      (example_value.html_safe if example_value)
+      example_value.html_safe
     ]
   end
 
@@ -73,7 +73,14 @@ format :html do
           Metric
       .yinyang-list
         = metric_list
-    .col-md-6.metric-details
+    .col-md-6.metric-details.light-grey-color-2.text-center
+      %br/
+      %br/
+      %br/
+      %p
+        Choose a metric to view more details here
+      %p
+        and to add it to the formula
       HAML
       end
     end

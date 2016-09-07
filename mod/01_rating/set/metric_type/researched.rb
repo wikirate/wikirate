@@ -110,7 +110,7 @@ format :html do
     policy = card.fetch(trait: :research_policy, new: {}).item_cards.first.name
     is_admin = Card::Auth.always_ok?
     is_owner = Auth.current.id == card.creator.id
-    is_designer_assessed = policy.casecmp("designer assessed") == 0
+    is_designer_assessed = policy.casecmp("designer assessed").zero?
     # TODO: add metric designer respresentative logic here
     return if is_designer_assessed && !(is_admin || is_owner)
     <<-HTML

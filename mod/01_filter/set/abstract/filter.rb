@@ -206,9 +206,14 @@ format :html do
   end
 
   def simple_select_filter type_name, options, default, label=nil
+    select_filter_html type_name, options, default, label
+  end
+
+  def select_filter_html type_name, options, default, label, no_chosen=false
     options = options_for_select(options, default)
     label ||= type_name.capitalize
-    formgroup label, select_tag(type_name, options, class: "pointer-select"),
+    css_class = no_chosen ? "" : "pointer-select"
+    formgroup label, select_tag(type_name, options, class: css_class),
               class: "filter-input "
   end
 
@@ -324,7 +329,7 @@ format :html do
   view :sort_formgroup do |args|
     options = args[:sort_options] || {}
     sort_param = Env.params[:sort] || args[:sort_option_default]
-    simple_select_filter "sort", options_for_select(options, sort_param),
-                         class: "filter-input"
+    select_filter_html "sort", options_for_select(options, sort_param),
+                       nil, nil, true
   end
 end

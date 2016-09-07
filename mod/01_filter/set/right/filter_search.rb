@@ -71,6 +71,7 @@ format :html do
   def view_caching?
     false
   end
+
   def page_link_params
     [:sort, :cited, :claimed, :wikirate_company, :wikirate_topic]
   end
@@ -83,9 +84,12 @@ format :html do
     )
   end
 
-  view :sort_formgroup do |_args|
-    options = { "Most Important" => "important", "Most Recent" => "recent" }
-    simple_select_filter "sort", options, (params[:sort] || "important")
+  def default_sort_formgroup_args args
+    super args
+    args[:sort_options] = {
+      "Most Important" => "important", "Most Recent" => "recent"
+    }
+    args[:sort_option_default] = "important"
   end
 
   view :cited_formgroup do |_args|

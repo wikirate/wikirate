@@ -29,10 +29,10 @@ format :html do
     end
   end
 
-  view :metric_value_landing do
+  view :metric_value_landing do |args|
     wrap_with :div do
       [
-        _render_metric_value_landing_form,
+        _render_metric_value_landing_form(args),
         _render_source_container
       ]
     end

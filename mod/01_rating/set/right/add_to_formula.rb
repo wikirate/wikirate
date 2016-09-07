@@ -42,6 +42,7 @@ format :html do
                     action: :update, add_item: input_metric.cardname.key
                   }
       add_class args, "close-modal slotter"
+      args[:known] = true
       card_link variables_card, args
     end
   end
