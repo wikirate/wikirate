@@ -73,7 +73,14 @@ format :html do
           Metric
       .yinyang-list
         = metric_list
-    .col-md-6.metric-details
+    .col-md-6.metric-details.light-grey-color-2.text-center
+      %br/
+      %br/
+      %br/
+      %p
+        Choose a metric to view more details here
+      %p
+        and to add it to the formula
       HAML
       end
     end

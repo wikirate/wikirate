@@ -113,7 +113,8 @@ $(document).ready ->
 
   #stick the metric details when scrolling
   stickMetricDetails = () ->
-    if $(document).scrollTop() > 56
+    isModal = activeDetails.closest('.modal-body').exists()
+    if $(document).scrollTop() > 56 || isModal
       activeDetails.addClass 'stick'
     else
       activeDetails.removeClass 'stick'
