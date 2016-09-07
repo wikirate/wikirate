@@ -43,7 +43,10 @@ format :html do
     return _render_categorical_editor(args) if card.categorical?
     return super(args) if card.score?
     output [
-      super(args),
+      text_area(:content,
+                rows: 5,
+                class: "card-content",
+                "data-card-type-code" => card.type_code),
       _render_variables(args),
       add_metric_button
     ]

@@ -124,7 +124,8 @@ end
 def get_cached_values
   cached_hash = construct_cached_hash
   cached_hash.keys.each do |key|
-    cached_hash[Card[key.to_i].name] = cached_hash.delete key
+    mark = key.number? ? key.to_i : key
+    cached_hash[Card[mark].name] = cached_hash.delete key
   end
   cached_hash
 end
