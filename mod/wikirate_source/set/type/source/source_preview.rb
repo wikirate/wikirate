@@ -197,7 +197,7 @@ format :html do
       url_card = card.fetch(trait: :wikirate_link)
       url = url_card ? url_card.item_names.first : nil
       <<-HTML
-        <a href="#{url}" class="btn btn-primary" role="button">Visit Original Source</a>)
+        <a href="#{url}" class="btn btn-primary" role="button">Visit Original Source</a>
       HTML
     end
   end
