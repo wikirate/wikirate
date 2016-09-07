@@ -4,9 +4,12 @@ format :html do
     option_key = card.option_cards.map do |item|
       [item.cardname, item.cardname.url_key]
     end
+    selected_option = card.item_names.map do |item|
+      item.to_name.url_key
+    end
     select_tag(
       "pointer_multiselect",
-      options_for_select(option_key, card.item_names),
+      options_for_select(option_key, selected_option),
       multiple: true, class: "pointer-multiselect form-control"
     )
   end
