@@ -14,9 +14,12 @@ def formula_card
 end
 
 def extract_metrics_from_formula
-  update_attributes! content: formula_card.input_names.to_pointer_content,
-                     type_id: PointerID
-  formula_card.input_names
+  metrics = formula_card.input_names
+  Auth.as_bot do
+    update_attributes! content: metrics.to_pointer_content,
+                       type_id: PointerID
+  end
+  metrics
 end
 
 def input_metric_name variable
@@ -48,7 +51,7 @@ format :html do
   def variable_row item_name, index, args
     item_card = Card[item_name]
     example_value =
-      if (company = item_card.random_valued_company_card)
+      if (company = item_card.try(:random_valued_company_card))
         metric_plus_company = Card["#{item_card.name}+#{company.name}"]
         subformat(metric_plus_company)._render_all_values(args)
       else
@@ -114,7 +117,7 @@ format :html do
   view :missing  do |args|
     if @card.new_card? && (l = @card.left) &&
        l.respond_to?(:input_names)
-      extract_metrics_from_formula
+      card.extract_metrics_from_formula
       render(args[:denied_view], args)
     else
       super(args)
