@@ -89,10 +89,10 @@ end
 
 event :user_checked_value, :prepare_to_store,
       on: :update, when: proc { Env.params["checked"] == "true" } do
-  add_item! user.name unless user_checked_before
+  add_item user.name unless user_checked_before
 end
 
 event :user_uncheck_value, :prepare_to_store,
       on: :update, when: proc { Env.params["uncheck"] == "true" } do
-  drop_item! user.name if user_checked_before
+  drop_item user.name if user_checked_before
 end
