@@ -1,7 +1,7 @@
 PATH
   remote: ./vendor/wagn/card
   specs:
-    card (1.19.0)
+    card (1.19.1)
       bootstrap-kaminari-views (~> 0)
       coderay (~> 1.0)
       coffee-script (~> 2.2)
@@ -20,8 +20,8 @@ PATH
 PATH
   remote: ./vendor/wagn/wagn
   specs:
-    wagn (1.19.0)
-      card (= 1.19.0)
+    wagn (1.19.1)
+      card (= 1.19.1)
       rails (~> 4.2)
 
 GEM
@@ -197,7 +197,7 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
-    oga (2.3)
+    oga (2.5)
       ast
       ruby-ll (~> 2.1)
     open_uri_redirections (0.2.1)
@@ -261,7 +261,7 @@ GEM
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
       rspec-mocks (~> 3.5.0)
-    rspec-core (3.5.2)
+    rspec-core (3.5.3)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -339,7 +339,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.2)
       execjs (>= 0.3.0, < 3)
-    unicode-display_width (1.1.0)
+    unicode-display_width (1.1.1)
     uuid (2.3.8)
       macaddr (~> 1.0)
     video_info (2.6.1)

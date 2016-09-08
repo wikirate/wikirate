@@ -1,3 +1,5 @@
+include_set Abstract::Pdfjs
+
 format :html do
   def related_claim_wql
     {
@@ -100,12 +102,7 @@ format :html do
       file_card = card.fetch trait: :file
       if (mime = file_card.file.content_type) && valid_mime_type?(mime)
         if mime == "application/pdf"
-          iframe_html = %(
-            <iframe id="source-preview-iframe"
-            src="files/viewer.html?file=#{file_card.attachment.url}"
-            security="restricted" sandbox="allow-same-origin
-            allow-scripts allow-forms" >
-            </iframe>)
+          iframe_html = _render_pdfjs_iframe pdf_url: file_card.attachment.url
           content_tag(:div, iframe_html,
                       { id: "pdf-preview", class: "webpage-preview" },
                       false)
@@ -200,7 +197,7 @@ format :html do
       url_card = card.fetch(trait: :wikirate_link)
       url = url_card ? url_card.item_names.first : nil
       <<-HTML
-        <a href="#{url}" class="btn btn-primary" role="button">Visit Original Source</a>)
+        <a href="#{url}" class="btn btn-primary" role="button">Visit Original Source</a>
       HTML
     end
   end

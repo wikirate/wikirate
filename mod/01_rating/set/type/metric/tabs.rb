@@ -25,7 +25,7 @@ format :html do
 
   def tab_wrap
     wrap_with :div, class: "row" do
-      wrap_with :div, class: "col-md-12" do
+      wrap_with :div, class: "col-md-12 padding-top-10" do
         yield
       end
     end
