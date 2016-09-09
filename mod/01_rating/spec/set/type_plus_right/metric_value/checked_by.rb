@@ -1,6 +1,5 @@
 describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
   let(:metric_value_card) { Card["joe_user+researched+death_star+1977"] }
-  let(:checked_by_card) {  }
   describe "check value" do
     it "checks the metric value" do
       Card::Env.params["checked"] = "true"
@@ -14,7 +13,8 @@ describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
   describe "uncheck value" do
     it "checks the metric value" do
       Card::Env.params["uncheck"] = "true"
-      cb_card = metric_value_card.fetch trait: :checked_by, new: { content: "[[Joe User]]" }
+      cb_card = metric_value_card.fetch trait: :checked_by,
+                                        new: { content: "[[Joe User]]" }
       cb_card.save!
       cb_card.update_attributes! subcards: {}
       expect(cb_card.item_names.size).to eq(0)
