@@ -23,7 +23,7 @@ def advanced_keys
   []
 end
 
-# gathre all the params keys from default and advanced
+# gather all the params keys from default and advanced
 def params_keys
   default_keys + advanced_keys
 end

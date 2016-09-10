@@ -314,6 +314,8 @@ format :html do
 
   def get_potential_company name
     result = Card.search type: "company", name: ["match", name]
+    # do not match companies less than 4 characters
+    result.reject { |r| r.name.length <= 4 }
     return nil if result.empty?
     result
   end
