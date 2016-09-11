@@ -125,7 +125,8 @@ def get_cached_values
   cached_hash = construct_cached_hash
   cached_hash.keys.each do |key|
     mark = key.number? ? key.to_i : key
-    cached_hash[Card[mark].name] = cached_hash.delete key
+    next unless (card = Card.quick_fetch mark)
+    cached_hash[card.name] = cached_hash.delete key
   end
   cached_hash
 end
