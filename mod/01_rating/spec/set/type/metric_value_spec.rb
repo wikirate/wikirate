@@ -68,6 +68,11 @@ describe Card::Set::Type::MetricValue do
     @mv_id = Card::MetricValueID
   end
 
+  describe "#metric_name" do
+
+  end
+
+
   context "value type is Number" do
     it_behaves_like "all_value_type", :number, "33", "hello", @numeric_error_msg
     it_behaves_like "numeric type", :number

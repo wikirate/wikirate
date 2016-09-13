@@ -1,8 +1,5 @@
+include_set Abstract::MetricChild, generation: 3
 
-
-def metric
-  cardname.parts[0..-4].join "+"
-end
 
 def company
   cardname.parts[-3]
@@ -18,10 +15,6 @@ end
 
 def value
   content
-end
-
-def metric_card
-  Card.fetch metric
 end
 
 def company_card

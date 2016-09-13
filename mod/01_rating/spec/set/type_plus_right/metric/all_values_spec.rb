@@ -18,6 +18,33 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
     end
   end
 
+  describe "format :json" do
+    describe "view :core" do
+      subject { JSON.parse @metric.all_values_card.format(:json).render_core }
+
+      it "uses ids as keys" do
+        expect(subject.keys.map(&:to_i).sort).to eq @companies.map(&:id).sort
+      end
+
+      it "finds all companies with values" do
+        create_or_update! 'test', type: :pointer
+        expect(subject.size).to eq 4
+      end
+
+      it "renders hash with all values for a company" do
+        values = subject[Card["Death Star"].id.to_s]
+        expect(values).to be_instance_of Array
+        expect(values.size).to eq 4
+        inspect_hashes = values.all? do |h|
+          h.is_a?(Hash) && h.keys == %w(year value last_update_time)
+        end
+        expect(inspect_hashes).to be_truthy
+        v2014 = values.find { |h| h["year"] == "2014" }
+        expect(v2014["value"]).to eq "6"
+      end
+    end
+  end
+
   describe "#get_params" do
     it "returns value from params" do
       Card::Env.params["offset"] = "5"
@@ -26,81 +53,6 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
 
     it "returns default" do
       expect(all_values.get_params("offset", 0)).to eq(0)
-    end
-  end
-
-  describe "#get_cached_values" do
-    it "returns correct cached metric values" do
-      results = all_values.get_cached_values
-      value_idx = 1
-      @companies.each do |company|
-        expect(results.key?(company.name)).to be_truthy
-
-        0.upto(3) do |i|
-          found_expected = results[company.name].any? do |row|
-            row[:year] == (2015 - i).to_s &&
-              row[:value] == (value_idx * 5 + i).to_s
-          end
-          expect(found_expected).to be_truthy
-        end
-        value_idx += 1
-      end
-    end
-    context "delete a value" do
-      it "removes deleted cached value" do
-        Card::Auth.as_bot do
-          Card["#{@metric.name}+Apple Inc.+2015"].delete
-        end
-        results = all_values.get_cached_values
-        found_unexpected = results["Apple Inc."].any? do |row|
-          row[:year] == "2015" && row[:value] == "20"
-        end
-        expect(found_unexpected).to be_falsey
-      end
-    end
-    context "update a value" do
-      it "updates cached value" do
-        card = Card["#{@metric.name}+Apple Inc.+2015+value"]
-        card.content = 25
-        card.save!
-        results = all_values.get_cached_values
-        found_expected = results["Apple Inc."].any? do |row|
-          row[:year] == "2015" && row[:value] == "25"
-        end
-        expect(found_expected).to be_truthy
-      end
-    end
-    context "rename a value" do
-      it "updates cached value" do
-        card = Card["#{@metric.name}+Apple Inc.+2015+value"]
-        card.name = "#{@metric.name}+Death Star+2000+value"
-        card.save!
-        results = all_values.get_cached_values
-        found_expected = results["Death Star"].any? do |row|
-          row[:year] == "2000" && row[:value] == "20"
-        end
-        expect(found_expected).to be_truthy
-        found_unexpected = results["Apple Inc."].any? do |row|
-          row[:year] == "2000" && row[:value] == "20"
-        end
-        expect(found_unexpected).to be_falsey
-      end
-    end
-    context "rename a metric value" do
-      it "updates cached value" do
-        card = Card["#{@metric.name}+Apple Inc.+2015"]
-        card.name = "#{@metric.name}+Death Star+2000"
-        card.save!
-        results = all_values.get_cached_values
-        found_expected = results["Death Star"].any? do |row|
-          row[:year] == "2000" && row[:value] == "20"
-        end
-        expect(found_expected).to be_truthy
-        found_unexpected = results["Apple Inc."].any? do |row|
-          row[:year] == "2000" && row[:value] == "20"
-        end
-        expect(found_unexpected).to be_falsey
-      end
     end
   end
 
@@ -134,7 +86,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
   end
   describe "#sorted_result" do
     before do
-      @cached_result = all_values.cached_values
+      @cached_result = all_values.filtered_values_by_name
       @format = all_values.format
     end
     it "sorts by company name asc" do

@@ -28,7 +28,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
   end
   describe "#get_cached_values" do
     it "returns correct cached metric values" do
-      results = all_values.get_cached_values
+      results = all_values.values_by_name
       value_idx = 1
       metrics.each do |metric|
         expect(results.key?(metric.name)).to be_truthy
@@ -46,7 +46,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
   describe "#filter" do
     it "filters by name" do
       Card::Env.params["name"] = "number"
-      results = all_values.cached_values
+      results = all_values.filtered_values_by_name
       expect(results.size).to eq(3)
       results.keys.each do |metric|
         expect(metric).to include("number")
@@ -57,7 +57,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       Card.create! name: "Joe User+researched number 1+topic",
                    content: "[[Force]]\n"
       Card::Env.params["wikirate_topic"] = "Force"
-      results = all_values.cached_values
+      results = all_values.filtered_values_by_name
       expect(results.size).to eq(1)
       expect(results.keys[0]).to eq("Joe User+researched number 1")
     end
@@ -66,7 +66,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       Card.create! name: "Joe User+researched number 1+research_policy",
                    content: "[[Designer Assessed]]\n"
       Card::Env.params["research_policy"] = ["Designer Assessed"]
-      results = all_values.cached_values
+      results = all_values.filtered_values_by_name
       expect(results.size).to eq(1)
       expect(results.keys[0]).to eq("Joe User+researched number 1")
     end
@@ -79,14 +79,14 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
         vcc.save!
       end
       Card::Env.params["my_vote"] = "i voted for"
-      results = all_values.cached_values
+      results = all_values.filtered_values_by_name
       expect(results.size).to eq(1)
       expect(results.keys[0]).to eq("Joe User+researched number 1")
     end
 
     it "filters by value" do
       Card::Env.params["value"] = "none"
-      results = all_values.cached_values
+      results = all_values.filtered_values_by_name
       metrics.each do |metric|
         expect(results.keys).not_to include(metric.name)
       end
@@ -99,7 +99,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
 
     it "filters by type" do
       Card::Env.params["type"] = ["wikirating"]
-      results = all_values.cached_values
+      results = all_values.filtered_values_by_name
       expect(results.size).to eq(1)
       expect(results.keys[0]).to eq("Jedi+darkness rating")
     end

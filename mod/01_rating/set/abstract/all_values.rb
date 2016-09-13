@@ -1,29 +1,25 @@
 include_set Type::SearchType
 include_set Abstract::Utility
 include_set Abstract::FilterUtility
+include_set Abstract::MetricChild, generation: 1
+
 def virtual?
   true
+end
+
+def wql_to_identify_related_metric_values
+  '"left": { "left":"_left" }'
 end
 
 def raw_content
   %({
       "left":{
         "type":"metric_value",
-        "left":{
-          "left":"_left"
-        }
+        #{wql_to_identify_related_metric_values}
       },
       "right":"value",
       "limit":0
     })
-end
-
-def metric
-  cardname.parts[0..-2].join "+"
-end
-
-def metric_card
-  Card.fetch metric
 end
 
 def sort_params
@@ -31,14 +27,6 @@ def sort_params
     (Env.params["sort_by"] || "value"),
     (Env.params["sort_order"] || "desc")
   ]
-end
-
-def fill_none_case existing_cache, type_id
-  result = {}
-  Card.search(type_id: type_id, return: :name).each do |card|
-    result[card] = [] unless existing_cache[card]
-  end
-  result
 end
 
 def get_params key, default
@@ -61,79 +49,72 @@ end
 
 # @return [Hash] all companies with year and values
 #  format: { <company name> => { :year =>  , :value => }}
-def cached_values
-  @cached_metric_values ||= get_cached_values
-  if @cached_metric_values && (filter = company_filter)
-    if Env.params["value"] == "none"
-      @cached_metric_values =
-        fill_none_case @cached_metric_values, WikirateCompanyID
-    end
-    @cached_metric_values.select do |company, values|
-      filter.include?(company) &&
-        filter_by_year(values) &&
-        filter_by_value(values)
-    end
-  else
-    @cached_metric_values
-  end
+def filtered_values_by_name
+  @filtered_values_by_name ||= filter values_by_name
 end
 
 def params_keys
   %w(name industry project)
 end
 
-def company_filter
-  filter = fetch_params params_keys
-  return unless filter.present?
-  Card.search search_wql(WikirateCompanyID, filter, params_keys, "name")
+def values_by_id
+  json = format(:json)._render_core
+  (JSON.parse(json) || {}).with_indifferent_access
 end
 
-def filter_by_value values
-  value = Env.params["value"] || "exists"
-  return values.empty? if value == "none"
-  return !values.empty? if value == "exists"
-  time_diff = second_by_unit value
-  values.any? do |v|
-    v["last_update_time"] <= time_diff
-  end
-end
-
-def second_by_unit unit
-  case unit
-  when "last_hour"
-    3600
-  when "today"
-    86_400
-  when "week"
-    604_800
-  when "month"
-    18_144_000
-  end
-end
-
-def filter_by_year values
-  return true unless Env.params["year"].present?
-  values.any? { |v| v["year"] == Env.params["year"] }
-end
-
-def construct_cached_hash
-  cached_json = fetch(trait: :cached_count, new: {}).format.render_raw
-  (JSON.parse(cached_json) || {}).with_indifferent_access
-end
-
-def get_cached_values
-  cached_hash = construct_cached_hash
-  cached_hash.keys.each do |key|
+def values_by_name
+  values_hash = values_by_id
+  values_hash.keys.each do |key|
     mark = key.number? ? key.to_i : key
     next unless (card = Card.quick_fetch mark)
-    cached_hash[card.name] = cached_hash.delete key
+    values_hash[card.name] = values_hash.delete key
   end
-  cached_hash
+  values_hash
 end
 
 # @return # of companies with values
 def count _params={}
-  cached_values.size
+  filtered_values_by_name.size
+end
+
+def construct_a_row value_card
+  { year: value_card.year, value: value_card.value,
+    last_update_time: value_card.updated_at.to_i }
+end
+
+def get_key changed_card, from=:new
+  company_card = changed_card.try("#{key_type}_card") ||
+    Card[extract_name(changed_card, key_type, from)]
+  return unless company_card
+  company_card.id.to_s
+end
+
+def extract_name card, type, from=:new
+  offset = card.type_id == Card::MetricValueID ? 0 : 1
+  cardname = card_name(card, from).parts
+  case type
+  when :metric
+    cardname[0..-3 - offset].join("+")
+  when :year
+    cardname[-1 - offset]
+  when :company
+    cardname[-2 - offset]
+  end
+end
+
+def card_name card, from
+  from == :new ? card.cardname : card.name_was.to_name
+end
+
+format :json do
+  view :core do |_args|
+    card.item_cards(default_query: true).each_with_object({}) do |value_card, result|
+      key = card.get_key value_card
+      next unless key
+      result[key] = [] unless result.key?(key)
+      result[key].push card.construct_a_row(value_card)
+    end.to_json
+  end
 end
 
 format do
@@ -202,9 +183,9 @@ format do
   def sorted_result sort_by, order, is_num=true
     sorted = case sort_by
              when "name", "company_name"
-               sort_name_asc card.cached_values
+               sort_name_asc card.filtered_values_by_name
              else # "value"
-               sort_value_asc card.cached_values, is_num
+               sort_value_asc card.filtered_values_by_name, is_num
              end
     return sorted if order == "asc"
     sorted.reverse

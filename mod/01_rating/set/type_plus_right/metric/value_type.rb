@@ -44,7 +44,7 @@ end
 
 def related_values
   if (all_value_card = left.fetch trait: :all_values)
-    all_value_card.cached_values
+    all_value_card.filtered_values_by_name
   end
 end
 

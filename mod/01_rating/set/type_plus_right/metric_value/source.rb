@@ -1,22 +1,12 @@
 format :html do
-  # view :editor do |args|
-  #   %{
-  #     <div class="btn-group" data-toggle="buttons">
-  #       <label class="btn btn-primary active">
-  #         <input type="radio" name="options" id="option1" autocomplete="off" checked>
-  #         #{glyphicon 'globe'}
-  #       </label>
-  #       <label class="btn btn-primary">
-  #         <input type="radio" name="options" id="option2" autocomplete="off">
-  #         #{glyphicon 'open'}
-  #       </label>
-  #       <label class="btn btn-primary">
-  #         <input type="radio" name="options" id="option3" autocomplete="off">
-  #         #{glyphicon 'pencil'}
-  #       </label>
-  #     </div>
-  #     #{#super(args)
-  #   }
-  #   }
-  # end
+  view :editor do |args|
+    if card.new?
+      source = Card.new type_code: :source, name: "new source"
+      subformat(source)._render_content_formgroup(hide: "header help",
+                                                  buttons: ""
+      )
+    else
+      super args
+    end
+  end
 end

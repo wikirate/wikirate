@@ -1,7 +1,7 @@
 # cache all values in a json hash of the form
-# company => [{ year => ..., value => ...}, ... ]
+# company_id => [{ year => ..., value => ...}, ... ]
 
-include Card::CachedCount
+include_set Abstract::SolidCache, cached_format: :json
 
 # recount # of values for a metric when ...
 
@@ -9,48 +9,68 @@ include Card::CachedCount
 ensure_set { TypePlusRight::MetricValue::Value }
 ensure_set { Type::MetricValue }
 
-recount_trigger TypePlusRight::MetricValue::Value do |changed_card|
-  metric_cache = [changed_card.metric_card.fetch(trait: :all_values)]
-  # changed names with nil mean create or delete
-  if changed_card.name_changed? && !changed_card.name_change.include?(nil)
-    old_metric_name = changed_card.name_change[0].to_name.parts[0..-4].join "+"
-    if !old_metric_name.empty? && old_metric_name != changed_card.metric
-      metric_cache.push Card.fetch(old_metric_name).fetch(trait: :all_values)
-    end
-  end
-  metric_cache
+cache_update_trigger TypePlusRight::MetricValue::Value,
+                     on: :update do |changed_card|
+  value_caches_affected_by_metric_child_update changed_card
 end
 
-# company rename and delete changes should also trigger the update?
+cache_update_trigger Type::MetricValue,
+                     on: :delete do |changed_card|
+  # don't trigger the update if the metric itself was deleted
+  (mc = changed_card.metric_card) && !mc.trash && mc.all_values_card
+end
 
-# ... a Metric Value (type) is renamed, and deleted
-recount_trigger Type::MetricValue do |changed_card|
-  metric_cache = [changed_card.metric_card.fetch(trait: :all_values)]
-  # it should also update the cache for the old name
+cache_update_trigger TypePlusRight::MetricValue::Value,
+                     on: :delete do |changed_card|
+  # don't update if parent dealt with it
+  next if @supercard && @supercard.type_id == MetricValueID &&
+            @supercard.trash
+  # don't trigger the update if the metric itself was deleted
+  (mc = changed_card.metric_card) && !mc.trash && mc.all_values_card
+end
+
+# ... a Metric Value (type) is renamed
+cache_update_trigger Type::MetricValue, on: :update do |changed_card|
+  value_caches_affected_by_metric_child_update changed_card
+end
+
+# ... a Metric Value (type) is renamed
+cache_update_trigger Type::MetricValue, on: :update do |changed_card|
+  value_caches_affected_by_metric_child_update changed_card
+end
+
+# ... a Metric Value (type) is renamed
+# cache_update_trigger TypePlusRight::MetricValue::Company, on: :update do |changed_card|
+#   value_caches_affected_by_metric_child_update changed_card
+# end
+
+
+def value_caches_affected_by_metric_child_update changed_card
+  needs_update = changed_card.metric_card &&
+                 [changed_card.metric_card.all_values_card]
+  needs_update ||= []
   if changed_card.name_changed?
-    old_metric_name = changed_card.name_change[0].to_name.parts[0..-3].join "+"
-    if !old_metric_name.empty? && old_metric_name != changed_card.metric_name
-      metric_cache.push Card.fetch(old_metric_name).fetch(trait: :all_values)
-    end
+    old_metric = changed_card.metric_card_before_name_change
+    needs_update << old_metric.all_values_card if old_metric
   end
-  metric_cache
+  needs_update
 end
+
 
 # get all metric values
-def calculate_count changed_card=nil
-  if changed_card && fetch(trait: :cached_count)
-    cached_hash = construct_cached_hash
-    # name changed?
-    if changed_card.name_changed? && !changed_card.name_change.include?(nil)
-      add_or_remove_value changed_card, cached_hash
-    else
-      cud_value_from_hash changed_card, cached_hash
-    end
-    cached_hash.to_json
+def updated_content_for_cache changed_card=nil
+  return super unless changed_card
+  cached_hash = solid_cache
+  # name changed?
+  if changed_card.name_changed? && !changed_card.name_change.include?(nil)
+    add_or_remove_value changed_card, cached_hash
   else
-    refresh_cache_completely
+    cud_value_from_hash changed_card, cached_hash
   end
+  cached_hash.to_json
 end
+
+private
 
 def cud_value_from_hash changed_card, cached_hash
   if changed_card.trash?
@@ -63,23 +83,6 @@ def cud_value_from_hash changed_card, cached_hash
     # not exist -> add one
     add_or_update_value changed_card, cached_hash
   end
-end
-
-def extract_name card, type, from=:new
-  offset = card.type_id == Card::MetricValueID ? 0 : 1
-  cardname = card_name(card, from).parts
-  case type
-  when :metric
-    cardname[0..-3 - offset].join("+")
-  when :year
-    cardname[-1 - offset]
-  when :company
-    cardname[-2 - offset]
-  end
-end
-
-def card_name card, from
-  from == :new ? card.cardname : card.name_change[0].to_name
 end
 
 def add_or_remove_value changed_card, cached_hash
@@ -112,20 +115,12 @@ def add_or_update_value changed_card, cached_hash
   rows = cached_hash[company_id]
   row = get_record_from_year(rows, changed_card.year)
   value_card = get_value_card changed_card
+
   if rows.empty? || row.nil?
     rows.push construct_a_row(value_card)
   else
     row[:value] = value_card.value
   end
-end
-
-def construct_a_row value_card
-  { year: value_card.year, value: value_card.value,
-    last_update_time: value_card.updated_at.to_i }
-end
-
-def get_key changed_card, from=:new
-  Card[extract_name(changed_card, :company, from)].id.to_s
 end
 
 def add_value_to_hash changed_card, cached_hash
@@ -138,16 +133,7 @@ end
 def remove_value_from_hash changed_card, cached_hash
   company_id = get_key changed_card, changed_card.trash? ? :new : :old
   values = cached_hash[company_id]
+  return unless values
   values.delete_if { |row| row["year"] == changed_card.year }
   cached_hash.delete company_id if values.empty?
-end
-
-def refresh_cache_completely
-  result = {}
-  item_cards(default_query: true).each do |value_card|
-    company = value_card.company_card.id
-    result[company] = [] unless result.key?(company)
-    result[company].push construct_a_row(value_card)
-  end
-  result.to_json
 end

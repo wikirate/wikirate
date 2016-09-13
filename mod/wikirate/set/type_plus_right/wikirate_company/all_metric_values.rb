@@ -1,77 +1,19 @@
 include_set Abstract::AllValues
-def raw_content
-  %(
-    {
-      "left":{
-        "type":"metric_value",
-        "left":{ "right":"_left" }
-      },
-      "right":"value",
-      "limit":0
-    }
-  )
+
+def wql_to_identify_related_metric_values
+  '"left": { "right":"_left" }'
+end
+
+def key_type_id
+  MetricID
+end
+
+def key_type
+  :metric
 end
 
 def sort_params
   [(Env.params["sort"] || "upvoted"), "desc"]
-end
-
-def fill_metrics existing_cache
-  result = {}
-  Card.search(type_id: MetricID, return: :name).each do |metric|
-    result[metric] = [] unless existing_cache[metric]
-  end
-  result
-end
-
-def cached_values
-  @cached_metric_values ||= get_cached_values
-
-  if @cached_metric_values
-    # replace the cache with non existing metric if value is none
-    if Env.params["value"] == "none"
-      @cached_metric_values = fill_metrics @cached_metric_values
-    end
-    result = @cached_metric_values.select do |metric, values|
-      filter metric, values
-    end
-    result
-  else
-    @cached_metric_values
-  end
-end
-
-def filter metric, values
-  filter_by_metric(metric) &&
-    filter_by_value(values) &&
-    filter_by_year(values)
-end
-
-def filter_by_metric metric
-  filter_by_name(metric) &&
-    filter_by_topic(metric) &&
-    filter_by_research_policy(metric) &&
-    filter_by_vote(metric) &&
-    filter_by_type(metric)
-end
-
-def filter_by_name metric
-  return true unless Env.params["name"].present?
-  metric.downcase.include?(Env.params["name"].downcase)
-end
-
-def filter_by_topic metric
-  return true unless Env.params["wikirate_topic"].present?
-  topic_cards = Card[metric].fetch trait: :wikirate_topic
-  topic_cards && topic_cards.item_names.include?(Env.params["wikirate_topic"])
-end
-
-def filter_by_research_policy metric
-  research_policy = Env.params["research_policy"]
-  return true if !research_policy.present? || research_policy.size == 2
-  rp_card = Card[metric].fetch trait: :research_policy, new: {}
-  rp_card &&
-    rp_card.item_names.any? { |s| s.casecmp(research_policy[0]) == 0 }
 end
 
 def user_voted_metric votee_type
@@ -79,77 +21,6 @@ def user_voted_metric votee_type
   Card.fetch(votee_search).item_names
 end
 
-def filter_by_vote metric
-  vote_param = Env.params["my_vote"]
-  return true if !vote_param.present? || vote_param.size == 3
-  upvoted = upvoted_metric?(metric)
-  downvoted = downvoted_metric?(metric)
-  fit_vote? upvoted, downvoted, vote_param
-end
-
-def fit_vote? upvoted, downvoted, vote_param
-  not_voted = !upvoted && !downvoted
-  result = false
-  result |= upvoted if vote_param.include?("i voted for")
-  result |= downvoted if vote_param.include?("i voted against")
-  result |= not_voted if vote_param.include?("i did not vote")
-  result
-end
-
-def upvoted_metric? metric
-  @upvoted_metric ||= user_voted_metric("upvotee")
-  @upvoted_metric.include?(metric)
-end
-
-def downvoted_metric? metric
-  @downvoted_metric ||= user_voted_metric("downvotee")
-  @downvoted_metric.include?(metric)
-end
-
-def filter_by_type metric
-  return true unless Env.params["type"].present?
-  return false if Card[metric].type_id != MetricID
-  mt = Card[metric].metric_type
-  Env.params["type"].any? { |s| s.casecmp(mt) == 0 }
-end
-
-def filter_by_value values
-  unit =
-    if Env.params["value"].present?
-      Env.params["value"]
-    else
-      "exists"
-    end
-  return values.empty? if unit == "none"
-  return !values.empty? if unit == "exists"
-  within_recent? unit, values
-end
-
-def within_recent? unit, values
-  time_diff = second_by_unit unit
-  time_now = Time.now.to_i
-  values.any? do |v|
-    time_now - v["last_update_time"] <= time_diff
-  end
-end
-
-def second_by_unit unit
-  case unit
-  when "last_hour"
-    3600
-  when "today"
-    86_400
-  when "week"
-    604_800
-  when "month"
-    2_592_000
-  end
-end
-
-def filter_by_year values
-  return true unless Env.params["year"].present?
-  values.any? { |v| v["year"] == Env.params["year"] }
-end
 
 format do
   def vote_status metric
@@ -224,7 +95,7 @@ format do
   end
 
   def sorted_result sort_by, _order, _is_num=true
-    cached_values = card.cached_values
+    cached_values = card.filtered_values_by_name
     return cached_values.to_a if %w(value recent).include? sort_by
     sorted = case sort_by
              when "value"
