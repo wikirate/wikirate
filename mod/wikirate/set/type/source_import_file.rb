@@ -225,5 +225,4 @@ format :html do
     key_hash, checked = prepare_import_checkbox row_hash
     check_box_tag "sources[]", key_hash.to_json, checked
   end
-
 end
