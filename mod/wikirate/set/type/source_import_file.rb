@@ -25,6 +25,28 @@ event :import_source_csv, :prepare_to_store,
   handle_redirect
 end
 
+# @return updated or created metric value card object
+def parse_source_card source, source_map
+  args = process_data source
+  return if check_duplication_within_file args, source_map
+  return unless valid_value_data? args
+  return unless ensure_company_exists args[:company], args
+  process_source args, source_map
+end
+
+def process_source source_hash, source_map
+  url = source_hash[:source]
+  duplicates = Self::Source.find_duplicates url
+  source_card =
+    if duplicates.any?
+      handle_duplicated_source duplicates.first.left, source_hash
+      nil
+    else
+      create_source source_hash
+    end
+  source_map[url] = source_card
+end
+
 def source_args source_hash
   args = super source_hash[:source]
   args.merge(
@@ -47,7 +69,8 @@ def create_source source_hash
   source_card
 end
 
-def create_or_update_subcard source_card, trait, content
+def create_or_update_pointer_subcard source_card, trait, content
+  trait = hashkey_to_codename trait
   trait_card = source_card.fetch trait: trait,
                                  new: { content: "[[#{content}]]" }
   if trait_card.new?
@@ -61,27 +84,25 @@ def create_or_update_subcard source_card, trait, content
   true
 end
 
+def hashkey_to_codename hashkey
+  case hashkey
+  when :company
+    :wikirate_company
+  end
+end
+
 def update_existing_source source_card, source_hash
-  report_type = source_hash[:report_type]
-  updated = create_or_update_subcard source_card, :report_type, report_type
-
-  company = source_hash[:company]
-  updated |= create_or_update_subcard source_card, :wikirate_company, company
-
-  year = source_hash[:year]
-  updated |= create_or_update_subcard source_card, :year, year
-  updated
+  [:report_type, :company, :year].inject(false) do |updated, e|
+    create_or_update_pointer_subcard(source_card, e, source_hash[e]) || updated
+  end
 end
 
 def update_title_card source_card, source_hash
   title = Env.params[:title][source_hash[:row].to_s]
   title_card = source_card.fetch trait: :wikirate_title,
                                  new: { content: title }
-  if title_card.new?
-    add_subcard title_card
-    return true
-  end
-  false
+  return unless title_card.new?
+  add_subcard title_card
 end
 
 def handle_duplicated_source source_card, source_hash
@@ -96,19 +117,6 @@ def handle_duplicated_source source_card, source_hash
     msg_array = [source_hash[:row].to_s, source_card.name]
     slot_args[:updated_sources].push(msg_array)
   end
-  nil
-end
-
-def process_source source_hash, source_map
-  url = source_hash[:source]
-  duplicates = Self::Source.find_duplicates url
-  source_card =
-    if duplicates.any?
-      handle_duplicated_source duplicates.first.left, source_hash
-    else
-      create_source source_hash
-    end
-  source_map[url] = source_card
 end
 
 def check_duplication_within_file source_hash, source_map
@@ -130,25 +138,6 @@ def valid_value_data? args
   @import_errors.empty?
 end
 
-# @return updated or created metric value card object
-def parse_source_card source, source_map
-  # check if duplicate in file
-  # if yes, add warning message and next
-  # check if source exists in db
-  # if yes,
-  #   title is missing, then add the title
-  #   add company and report type to the related fields
-  #   add to warning message
-  #   add to subcard
-  # no,
-  #   contruct the create args and add to subcards
-  args = process_data source
-  return if check_duplication_within_file args, source_map
-  return unless valid_value_data? args
-  return unless ensure_company_exists args[:company], args
-  process_source args, source_map
-end
-
 format :html do
   include Type::MetricValueImportFile::HtmlFormat
   def default_import_table_args args
@@ -165,11 +154,12 @@ format :html do
     message = cardnames.map do |err_row|
       "Row #{err_row[0]}: #{err_row[1]}"
     end.join("</li><li>")
-    msg = <<-HTML
-      <h4><b>#{headline}</b></h4>
-      <ul><li>#{message}</li> <br />
-    HTML
-    alert("warning") { msg }
+    alert("warning") do
+      <<-HTML
+        <h4><b>#{headline}</b></h4>
+        <ul><li>#{message}</li> <br />
+      HTML
+    end
   end
 
   def contruct_import_warning_message args
