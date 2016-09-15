@@ -157,11 +157,12 @@ format do
     options[:class] = "card-paging-link slotter"
     options[:remote] = true
     paging_args = fill_paging_args
-    link_to raw(text), path(paging_args), options
+    paging_args[:_name] = paging_args.delete(:name)
+    link_to raw(text), path(paging_args).gsub("&_name", "&name"), options
   end
 
   def unknown_value? value
-    value.casecmp("unknown") == 0
+    value.casecmp("unknown").zero?
   end
 
   def compare_content value_a, value_b, is_num
