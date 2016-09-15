@@ -67,7 +67,7 @@ end
 
 # @return updated or created metric value card object
 def parse_metric_value import_data, source_map
-  args = process_metric_value_data import_data
+  args = process_data import_data
   process_source args, source_map
   return unless valid_value_data? args
   return unless ensure_company_exists args[:company], args
@@ -120,7 +120,7 @@ def process_source metric_value_data, source_map
 end
 
 # @return [Hash] args to create metric value card
-def process_metric_value_data metric_value_data
+def process_data metric_value_data
   mv_hash = if metric_value_data.is_a? Hash
               metric_value_data
             else
@@ -325,12 +325,12 @@ format :html do
   def matched_company name
     if (company = Card.fetch(name)) && company.type_id == WikirateCompanyID
       [name, :exact]
-      # elsif (result = Card.search :right=>"aliases",
-      # :left=>{:type_id=>Card::WikirateCompanyID},
-      # :content=>["match","\\[\\[#{name}\\]\\]"]) && !result.empty?
-      #   [result.first.cardname.left, :alias]
-    elsif (company_name = aliases_hash[name.downcase])
-      [company_name, :alias]
+      elsif (result = Card.search :right=>"aliases",
+      :left=>{:type_id=>Card::WikirateCompanyID},
+      :content=>["match","\\[\\[#{name}\\]\\]"]) && !result.empty?
+        [result.first.cardname.left, :alias]
+    # elsif (company_name = aliases_hash[name.downcase])
+    #   [company_name, :alias]
     elsif (result = get_potential_company(name))
       [result.first.name, :partial]
     elsif (company_name = part_of_company(name))
@@ -352,7 +352,7 @@ format :html do
                    class: "company_autocomplete")
   end
 
-  def import_checkbox row_hash
+  def prepare_import_checkbox row_hash
     checked = %w(partial exact alias).include? row_hash[:status]
     key_hash = row_hash.deep_dup
     key_hash[:company] =
@@ -361,6 +361,11 @@ format :html do
       else
         row_hash[:wikirate_company]
       end
+    [key_hash, checked]
+  end
+
+  def import_checkbox row_hash
+    key_hash, checked = prepare_import_checkbox row_hash
     check_box_tag "metric_values[]", key_hash.to_json, checked
   end
 
@@ -388,7 +393,7 @@ format :html do
     end
   end
 
-  def import_row row, table_fields, index
+  def prepare_import_row_data row, index
     data = row_to_hash row
     data[:row] = index
     data[:wikirate_company], data[:status] = find_wikirate_company data
@@ -396,6 +401,11 @@ format :html do
     data[:company] = data_company data
     data[:checkbox] = import_checkbox data
     data[:correction] = data_correction data
+    data
+  end
+
+  def import_row row, table_fields, index
+    data = prepare_import_row_data row, index
     table_fields.map { |key| data[key].to_s }
   end
 
@@ -403,5 +413,13 @@ format :html do
     import_fields.each_with_object({}).with_index do |(key, hash), i|
       hash[key] = row[i]
     end
+  end
+
+  def duplicated_value_warning_message headline, cardnames
+    msg = <<-HTML
+      <h4><b>#{headline}</b></h4>
+      <ul><li>#{cardnames.join('</li><li>')}</li> <br />
+    HTML
+    alert("warning") { msg }
   end
 end
