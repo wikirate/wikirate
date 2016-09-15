@@ -226,9 +226,4 @@ format :html do
     check_box_tag "sources[]", key_hash.to_json, checked
   end
 
-  view :core do |args|
-    html = super args
-    content = contruct_import_warning_message args
-    content + html
-  end
 end
