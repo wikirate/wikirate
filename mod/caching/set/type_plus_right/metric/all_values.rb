@@ -57,12 +57,10 @@ end
 # end
 
 
-
-
 # get all metric values
 def updated_content_for_cache changed_card=nil
   return super unless changed_card
-  cv = CachedValues.new solid_cache
+  cv = MetricValuesHash.new metric, :company, solid_cache
   cv.update changed_card
   cv.to_json
 end

@@ -1,24 +1,15 @@
 include_set Abstract::MetricChild, generation: 3
 
-
-def company
-  cardname.parts[-3]
-end
-
-def year
-  cardname.parts[-2]
-end
-
-def metric_plus_company
-  cardname.parts[0..-3].join "+"
+def value_card
+  self
 end
 
 def value
   content
 end
 
-def company_card
-  Card.fetch company
+def metric_plus_company
+  cardname.parts[0..-3].join "+"
 end
 
 def metric_key

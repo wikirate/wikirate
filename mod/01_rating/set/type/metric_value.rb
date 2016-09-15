@@ -2,22 +2,6 @@ card_accessor :value, type: :phrase
 
 include_set Abstract::MetricChild, generation: 2
 
-def year
-  cardname.right
-end
-
-def company_name
-  cardname.left_name.right
-end
-
-def year_card
-  Card.fetch year
-end
-
-def company_card
-  Card.fetch company_name
-end
-
 event :set_metric_value_name,
       before: :set_autoname, when: proc { |c| c.cardname.parts.size < 4 } do
   return if valid_value_name?

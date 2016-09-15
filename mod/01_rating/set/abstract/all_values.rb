@@ -77,43 +77,13 @@ def count _params={}
   filtered_values_by_name.size
 end
 
-def construct_a_row value_card
-  { year: value_card.year, value: value_card.value,
-    last_update_time: value_card.updated_at.to_i }
-end
-
-def get_key changed_card, from=:new
-  company_card = changed_card.try("#{key_type}_card") ||
-    Card[extract_name(changed_card, key_type, from)]
-  return unless company_card
-  company_card.id.to_s
-end
-
-def extract_name card, type, from=:new
-  offset = card.type_id == Card::MetricValueID ? 0 : 1
-  cardname = card_name(card, from).parts
-  case type
-  when :metric
-    cardname[0..-3 - offset].join("+")
-  when :year
-    cardname[-1 - offset]
-  when :company
-    cardname[-2 - offset]
-  end
-end
-
-def card_name card, from
-  from == :new ? card.cardname : card.name_was.to_name
-end
-
 format :json do
   view :core do |_args|
-    card.item_cards(default_query: true).each_with_object({}) do |value_card, result|
-      key = card.get_key value_card
-      next unless key
-      result[key] = [] unless result.key?(key)
-      result[key].push card.construct_a_row(value_card)
-    end.to_json
+    mvc = MetricValuesHash.new card.metric, key_type
+    card.item_cards(default_query: true).each do |value_card|
+      mvc.add value_card
+    end
+    mvc.to_json
   end
 end
 
