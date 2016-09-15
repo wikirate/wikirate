@@ -47,7 +47,7 @@ end
 def check_value_card_exist args, error_msg
   return unless (value_name = extract_metric_value_name(args, error_msg))
   if (value_card = Card[value_name.to_name.field(:value)])
-    unless value_card.content.casecmp(args[:value]) == 0
+    unless value_card.content.casecmp(args[:value]).zero?
       link = format.card_link value_card.metric_card, text: "value"
       error_msg << "#{link} '#{value_card.content}' exists"
     end
@@ -164,7 +164,7 @@ format :html do
   def new_metric_tab_buttons
     wrap_with :ul, class: "nav nav-pills grey-nav-tab", role: "tablist" do
       %w(Researched Formula Score WikiRating).map.with_index do |metric_type, i|
-        tab_radio_button metric_type, (i == 0)
+        tab_radio_button metric_type, i.zero?
       end
     end
   end
@@ -172,7 +172,7 @@ format :html do
   def new_metric_tab_content
     wrap_with :div, class: "tab-content" do
       %w(Researched Formula Score WikiRating).map.with_index do |metric_type, i|
-        new_metric_tab_pane metric_type, (i == 0)
+        new_metric_tab_pane metric_type, i.zero?
       end
     end
   end
