@@ -152,13 +152,19 @@ format do
     paging_args
   end
 
+  def path args={}
+    # the filter name cause conflict with the path name
+    return super(args) unless args.delete(:replace_name)
+    args[:_name_] = args.delete(:name)
+    super(args).gsub("_name_=", "name=")
+  end
+
   def page_link text, page, _current=false, options={}
     @paging_path_args[:offset] = page * @paging_limit
     options[:class] = "card-paging-link slotter"
     options[:remote] = true
-    paging_args = fill_paging_args
-    paging_args[:_name] = paging_args.delete(:name)
-    link_to raw(text), path(paging_args).gsub("&_name", "&name"), options
+    paging_args = fill_paging_args.merge(replace_name: true)
+    link_to raw(text), path(paging_args), options
   end
 
   def unknown_value? value
@@ -260,8 +266,11 @@ format :html do
   # @option args [String] :order
   # @option args [String] :class additional css class
   def sort_link text, args
-    url = path view: "content", offset: offset, limit: limit,
-               sort_order: args[:order], sort_by: args[:sort_by]
+    path_args = fill_paging_args.merge(view: "content", offset: offset,
+                                       limit: limit, sort_order: args[:order],
+                                       sort_by: args[:sort_by])
+    # the filter name cause conflict with the path name
+    url = path path_args.merge(replace_name: true)
     link_to text, url, class: "metric-list-header slotter #{args[:class]}",
                        "data-remote" => true
   end
