@@ -88,6 +88,8 @@ def hashkey_to_codename hashkey
   case hashkey
   when :company
     :wikirate_company
+  else
+    hashkey
   end
 end
 
