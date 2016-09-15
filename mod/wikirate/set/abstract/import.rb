@@ -325,12 +325,12 @@ format :html do
   def matched_company name
     if (company = Card.fetch(name)) && company.type_id == WikirateCompanyID
       [name, :exact]
-      elsif (result = Card.search :right=>"aliases",
-      :left=>{:type_id=>Card::WikirateCompanyID},
-      :content=>["match","\\[\\[#{name}\\]\\]"]) && !result.empty?
-        [result.first.cardname.left, :alias]
-    # elsif (company_name = aliases_hash[name.downcase])
-    #   [company_name, :alias]
+      # elsif (result = Card.search :right=>"aliases",
+      # :left=>{:type_id=>Card::WikirateCompanyID},
+      # :content=>["match","\\[\\[#{name}\\]\\]"]) && !result.empty?
+      #   [result.first.cardname.left, :alias]
+    elsif (company_name = aliases_hash[name.downcase])
+      [company_name, :alias]
     elsif (result = get_potential_company(name))
       [result.first.name, :partial]
     elsif (company_name = part_of_company(name))
