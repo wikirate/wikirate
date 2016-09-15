@@ -3,7 +3,7 @@ include_set Abstract::Import
 
 attachment :source_import_file, uploader: CarrierWave::FileCardUploader
 
-event :import_csv, :prepare_to_store,
+event :import_source_csv, :prepare_to_store,
       on: :update,
       when: proc { Env.params["is_source_import_update"] == "true" } do
   return unless (sources = Env.params[:sources])
