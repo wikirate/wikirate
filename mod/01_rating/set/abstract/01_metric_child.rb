@@ -15,6 +15,10 @@ def metric
   metric_parts(cardname).join("+")
 end
 
+def metric_name
+  metric.to_name
+end
+
 def metric_was
   name_was && metric_parts(name_was.to_name).join("+")
 end

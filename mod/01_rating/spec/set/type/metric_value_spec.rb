@@ -3,7 +3,6 @@ shared_examples_for "all_value_type" do |value_type, valid_cnt, invalid_cnt|
     login_as "joe_user"
     @metric = get_a_sample_metric value_type.to_sym
     @company = get_a_sample_company
-    @mv_id = Card::MetricValueID
     @error_msg =
       if value_type == :category
         "Please <a href='/Jedi+disturbances_in_the_Force+value_options?"\
@@ -15,11 +14,14 @@ shared_examples_for "all_value_type" do |value_type, valid_cnt, invalid_cnt|
   end
 
   describe "add a new value" do
+    let(:metric_value) do
+      subcard =
+        get_subcards_of_metric_value @metric, @company, @content
+      Card.create type_id: Card::MetricValueID, subcards: subcard
+    end
     context "value not fit the value type" do
       it "blocks adding a new value" do
-        subcard =
-          get_subcards_of_metric_value @metric, @company, invalid_cnt, nil, nil
-        metric_value = Card.create type_id: @mv_id, subcards: subcard
+        @content = invalid_cnt
         expect(metric_value.errors).to have_key(:value)
         expect(metric_value.errors[:value]).to include(@error_msg)
       end
@@ -27,18 +29,14 @@ shared_examples_for "all_value_type" do |value_type, valid_cnt, invalid_cnt|
 
     context "value fit the value type" do
       it "adds a new value" do
-        subcard =
-          get_subcards_of_metric_value @metric, @company, valid_cnt, nil, nil
-        metric_value = Card.create type_id: @mv_id, subcards: subcard
+        @content = valid_cnt
         expect(metric_value.errors).to be_empty
       end
     end
 
     context 'value is "unknown"' do
       it "passes the validation" do
-        subcard =
-          get_subcards_of_metric_value @metric, @company, "unknown", nil, nil
-        metric_value = Card.create type_id: @mv_id, subcards: subcard
+        @content = "unknown"
         expect(metric_value.errors).to be_empty
       end
     end
@@ -48,12 +46,11 @@ end
 shared_examples_for "numeric type" do |value_type|
   let(:metric) { get_a_sample_metric value_type.to_sym }
   let(:company) { get_a_sample_company }
-  let(:mv_id) { Card::MetricValueID }
   context "unknown value" do
     it "shows unknown instead of 0 in modal_details" do
       subcard =
-        get_subcards_of_metric_value metric, company, "unknown", nil, nil
-      metric_value = Card.create type_id: mv_id, subcards: subcard
+        get_subcards_of_metric_value metric, company, "unknown"
+      metric_value = Card.create type_id: Card::MetricValueID, subcards: subcard
       html = metric_value.format.render_modal_details
       expect(html).to have_tag("a", text: "unknown")
     end
@@ -61,6 +58,12 @@ shared_examples_for "numeric type" do |value_type|
 end
 
 describe Card::Set::Type::MetricValue do
+  let(:a_metric_value) do
+    subcard =
+      get_subcards_of_metric_value @metric, @company, "content"
+    Card.create type_id: @mv_id, subcards: subcard
+  end
+
   before do
     login_as "joe_user"
     @metric = get_a_sample_metric
@@ -68,10 +71,12 @@ describe Card::Set::Type::MetricValue do
     @mv_id = Card::MetricValueID
   end
 
-  describe "#metric_name" do
-
+  describe "#metric" do
+    it "returns metric name" do
+      binding.pry
+      expect(a_metric_value.metric).to eq @metric.name
+    end
   end
-
 
   context "value type is Number" do
     it_behaves_like "all_value_type", :number, "33", "hello", @numeric_error_msg
@@ -84,7 +89,7 @@ describe Card::Set::Type::MetricValue do
     describe "render views" do
       it "shows currency sign" do
         metric = get_a_sample_metric :money
-        subcard = get_subcards_of_metric_value metric, @company, "33", nil, nil
+        subcard = get_subcards_of_metric_value metric, @company, "33"
         metric_value = Card.create type_id: @mv_id, subcards: subcard
         metric.update_attributes! subcards: { "+currency" => "$" }
         html = metric_value.format.render_timeline_data
@@ -135,7 +140,7 @@ describe Card::Set::Type::MetricValue do
         expect(@metric_value.year).to eq("2015")
       end
       it "returns correct metric name" do
-        expect(@metric_value.metric_name).to eq(metric.name)
+        expect(@metric_value.metric).to eq(metric.name)
       end
       it "returns correct company name" do
         expect(@metric_value.company_name).to eq(company.name)

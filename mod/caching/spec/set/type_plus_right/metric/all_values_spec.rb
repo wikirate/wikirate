@@ -1,9 +1,9 @@
 describe Card::Set::TypePlusRight::Metric::AllValues, "metric value caching" do
   let(:all_values) { Card["Jedi+deadliness"].fetch trait: :all_values }
   let(:create_card) { Card.create name: "a card" }
-  it "gets updated if value is created in event" do
+  it "updates if value is created in event" do
     $first = true
-    expect(all_values.values_by_name.keys).to eq ["Death_Star"]
+    expect(all_values.values_by_name.keys).to eq ["Death Star"]
     Card::Auth.as_bot do
       in_stage :prepare_to_store,
                on: :save,
@@ -16,8 +16,9 @@ describe Card::Set::TypePlusRight::Metric::AllValues, "metric value caching" do
                                              source: get_a_sample_source
       end
     end
-
-    av = Card.fetch("Jedi+deadliness+all values").values_by_name
+    #binding.pry
+    av = Card.fetch("Jedi+deadliness").all_values_card.values_by_name
+    expect(av.keys).to include("Samsung")
     expect(av["Samsung"])
       .to include(value: "100", year: "2010")
   end
