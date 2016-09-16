@@ -26,5 +26,5 @@ end
 
 def filter_by_company company
   return true unless (filter = company_filter)
-  company_filter.include? company
+  filter.include? company
 end

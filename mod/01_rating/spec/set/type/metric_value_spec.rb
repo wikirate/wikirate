@@ -73,7 +73,6 @@ describe Card::Set::Type::MetricValue do
 
   describe "#metric" do
     it "returns metric name" do
-      binding.pry
       expect(a_metric_value.metric).to eq @metric.name
     end
   end

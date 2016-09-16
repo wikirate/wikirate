@@ -46,17 +46,16 @@ end
 cache_update_trigger TypePlusRight::MetricValue::Value,
                      on: :delete do |changed_card|
   # don't update if parent dealt with it
-  next if @supercard && @supercard.id = changed_card.left_id &&
-    @supercard.trash
+  next if @supercard && @supercard.id == changed_card.left_id &&
+          @supercard.trash
   related_all_values_card changed_card
 end
 
-
 # ... a Metric Value (type) is renamed
-# cache_update_trigger TypePlusRight::MetricValue::Company, on: :update do |changed_card|
+# cache_update_trigger TypePlusRight::MetricValue::Company,
+#                      on: :update do |changed_card|
 #   value_caches_affected_by_metric_child_update changed_card
 # end
-
 
 # get all metric values
 def updated_content_for_cache changed_card=nil

@@ -16,11 +16,12 @@ describe Card::Set::TypePlusRight::Metric::AllValues, "metric value caching" do
                                              source: get_a_sample_source
       end
     end
-    #binding.pry
     av = Card.fetch("Jedi+deadliness").all_values_card.values_by_name
     expect(av.keys).to include("Samsung")
+    update_time = Card["Jedi+deadliness+Samsung+2010+value"].updated_at.to_i
     expect(av["Samsung"])
-      .to include(value: "100", year: "2010")
+      .to include("value" => "100", "year" => "2010",
+                  "last_update_time" => update_time)
   end
 
   describe "#get_cached_values" do

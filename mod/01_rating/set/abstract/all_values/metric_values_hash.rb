@@ -4,6 +4,11 @@
 # If you select one of those two MetricValuesHash manages all the related
 # metrics values. That's either all metrics with all values for a given company
 # or all companies with values for a given metric.
+#
+# The metric values are saved in the following format
+#   { company_id/metric_id (as string) =>
+#     [{ "year" => , "value" => , "last_update_time => }], ...
+#   }
 class MetricValuesHash < Hash
   # @param primary_card [Card] a metric or company card
   # @param hash_or_json [Hash, String] with format
@@ -27,6 +32,8 @@ class MetricValuesHash < Hash
     update_related
   end
 
+  # @param new_card [Card] a member of Type::MetricValue or
+  #    TypePlusRight::MetricValue::Value
   def add new_card
     @changed_card = new_card
     add_new_record
@@ -34,17 +41,17 @@ class MetricValuesHash < Hash
 
   private
 
+  def update_related
+    return unless @primary_name == @changed_card.send(@primary_type)
+    @changed_card.trash? ? remove : add_or_update
+  end
+
   def update_former_related
     return unless @changed_card.name_changed? &&
                   @primary_name == @changed_card.send("#{@primary_type}_was")
     with_former_key do
       remove @changed_card.year_was
     end
-  end
-
-  def update_related
-    return unless @primary_name == @changed_card.send(@primary_type)
-    @changed_card.trash? ? remove : add_or_update
   end
 
   def add_or_update

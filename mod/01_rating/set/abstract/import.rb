@@ -173,7 +173,7 @@ end
 
 def handle_import_errors metric_value_card
   @import_errors.each do |msg|
-    errors.add *msg
+    errors.add(*msg)
   end
   return unless metric_value_card
   metric_value_card.errors.each do |key, error_value|
@@ -248,7 +248,8 @@ format :html do
   end
 
   view :import do |args|
-    frame_and_form :update, args.merge(hidden: { success: { id: "_self", view: :open } }),
+    success_args = { success: { id: "_self", view: :open } }
+    frame_and_form :update, args.merge(hidden: success_args),
                    "notify-success" => "import successful" do
       [
         _optional_render(:metric_select, args),

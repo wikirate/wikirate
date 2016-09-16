@@ -49,7 +49,7 @@ end
 
 def value_type
   if (value_type_card = Card.fetch "#{metric_card.name}+value type") &&
-    !value_type_card.content.empty?
+     !value_type_card.content.empty?
     return value_type_card.item_names[0]
   end
   nil
@@ -91,7 +91,6 @@ end
 def year_card
   Card.fetch year
 end
-
 
 def company
   company_part

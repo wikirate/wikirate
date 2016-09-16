@@ -112,7 +112,7 @@ format do
   end
 
   def unknown_value? value
-    value.casecmp("unknown") == 0
+    value.casecmp("unknown").zero?
   end
 
   def compare_content value_a, value_b, is_num
