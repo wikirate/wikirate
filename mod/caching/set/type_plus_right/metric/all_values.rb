@@ -10,10 +10,9 @@ ensure_set { TypePlusRight::MetricValue::Value }
 ensure_set { Type::MetricValue }
 
 
-def self.value_caches_affected_by_metric_child_update changed_card
+def self.all_values_caches_affected_by changed_card
   needs_update = changed_card.metric_card &&
-    [changed_card.metric_card.all_values_card]
-  needs_update ||= []
+                 [changed_card.metric_card.all_values_card] || []
   if changed_card.name_changed?
     old_metric = changed_card.metric_card_before_name_change
     needs_update << old_metric.all_values_card if old_metric
@@ -23,7 +22,7 @@ end
 
 cache_update_trigger TypePlusRight::MetricValue::Value,
                      on: :save do |changed_card|
-  value_caches_affected_by_metric_child_update changed_card
+  all_values_caches_affected_by changed_card
 end
 
 cache_update_trigger Type::MetricValue,
@@ -43,12 +42,12 @@ end
 
 # ... a Metric Value (type) is renamed
 cache_update_trigger Type::MetricValue, on: :update do |changed_card|
-  value_caches_affected_by_metric_child_update changed_card
+  all_values_caches_affected_by changed_card
 end
 
 # ... a Metric Value (type) is renamed
 cache_update_trigger Type::MetricValue, on: :update do |changed_card|
-  value_caches_affected_by_metric_child_update changed_card
+  all_values_caches_affected_by changed_card
 end
 
 # ... a Metric Value (type) is renamed
