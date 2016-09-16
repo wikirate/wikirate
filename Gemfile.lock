@@ -1,7 +1,7 @@
 PATH
   remote: ./vendor/wagn/card
   specs:
-    card (1.19.3)
+    card (1.19.4)
       bootstrap-kaminari-views (~> 0)
       carrierwave (= 1.0.0.beta)
       coderay (~> 1.0)
@@ -21,8 +21,8 @@ PATH
 PATH
   remote: ./vendor/wagn/wagn
   specs:
-    wagn (1.19.3)
-      card (= 1.19.3)
+    wagn (1.19.4)
+      card (= 1.19.4)
       rails (~> 4.2)
 
 GEM
