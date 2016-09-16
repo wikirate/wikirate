@@ -28,7 +28,7 @@ event :validate_import, :prepare_to_validate,
 end
 
 # @return [Hash] args to create metric value card
-def process_metric_value_data metric_value_data
+def process_data metric_value_data
   mv_hash = super(metric_value_data)
   mv_hash.merge metric: metric,
                 year: year,
