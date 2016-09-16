@@ -79,7 +79,7 @@ end
 
 format :json do
   view :core do |_args|
-    mvc = MetricValuesHash.new card.metric, key_type
+    mvc = MetricValuesHash.new card.left
     card.item_cards(default_query: true).each do |value_card|
       mvc.add value_card
     end

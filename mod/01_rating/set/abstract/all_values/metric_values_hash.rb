@@ -1,15 +1,20 @@
-# A metric value belongs to a metric and a company.
+#! no set module
+
+# # A metric value belongs to a metric and a company.
 # If you select one of those two MetricValuesHash manages all the related
 # metrics values. That's either all metrics with all values for a given company
 # or all companies with values for a given metric.
 class MetricValuesHash < Hash
-  # @param primary_name [String] the name of a metric or company
-  # @param primary_type [Symbol] the type of the fixed name (:metric or :company)
+  # @param primary_card [Card] a metric or company card
+  # @param hash_or_json [Hash, String] with format
+  #   { company/metric id =>
+  #       [{ "year" => , "value" => , "last_update_time => }], ...
+  #   }
   # @example for a fixed metric
-  def initialize primary_name, secondary_type=:company, hash_or_json={}
-    @primary_name = primary_name
-    @primary_type = secondary_type == :metric ? :company : :metric
-    @secondary_type = secondary_type
+  def initialize primary_card, hash_or_json={}
+    @primary_name = primary_card.name
+    @primary_type = primary_card.type_code
+    @secondary_type = @primary_type == :metric ? :company : :metric
     hash_or_json = JSON.parse(hash_or_json) if hash_or_json.is_a?(String)
     replace hash_or_json
   end
@@ -76,22 +81,22 @@ class MetricValuesHash < Hash
     self[key_id]
   end
 
+  def construct_record
+    value_card = @changed_card.value_card
+    { year: value_card.year,
+      value: value_card.value,
+      last_update_time: value_card.updated_at.to_i }
+  end
+
   def key_id
     @key_id ||= fetch_key_id
   end
 
   def fetch_key_id former_name=false
     name_reader = former_name ? "#{@secondary_type}_was" : @secondary_type
-    key_card_name = changed_card.try(name_reader)
+    key_card_name = @changed_card.try(name_reader)
     return unless (key_card = Card[key_card_name])
     key_card.id.to_s
-  end
-
-  def construct_record
-    value_card = @changed_card.value_card
-    { year: value_card.year,
-      value: value_card.value,
-      last_update_time: value_card.updated_at.to_i }
   end
 
   def with_former_key
