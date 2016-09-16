@@ -77,6 +77,17 @@ def subfield_exist? field_name
   !subfield_card.nil? && subfield_card.content.present?
 end
 
+def year_updated?
+  (year_card = subfield(:year)) && !year_card.item_names.size.zero?
+end
+
+event :update_date, :prepare_to_store,
+      on: :update, when: proc { |c| c.year_updated? } do
+  year_card = subfield(:year)
+  self.name = "#{metric_name}+#{company_name}+#{year_card.item_names[0]}"
+  detach_subfield(:year)
+end
+
 event :set_metric_value_name,
       before: :set_autoname, when: proc { |c| c.cardname.parts.size < 4 } do
   return if valid_value_name?

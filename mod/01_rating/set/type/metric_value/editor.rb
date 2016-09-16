@@ -11,7 +11,14 @@ format :html do
   end
 
   def edit_slot args
-    args[:edit_fields] = { "+value" => {} } unless special_editor? args
+    unless special_editor? args
+      year = card.fetch trait: :year, new: {}
+      year.content = "[[#{card.year}]]"
+      args[:edit_fields] = {
+        "+Value" => {},
+        year => {}
+      }
+    end
     super(args)
   end
 
