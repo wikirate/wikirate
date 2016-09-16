@@ -141,13 +141,17 @@ format do
     []
   end
 
+  def fill_page_link_params paging_args
+    page_link_params.each do |key|
+      paging_args[key] = params[key] if params[key].present?
+    end
+  end
+
   def fill_paging_args
     sort_by, sort_order = card.sort_params
     paging_args = @paging_path_args.merge(sort_by: sort_by,
                                           sort_order: sort_order)
-    page_link_params.each do |key|
-      paging_args[key] = params[key] if params[key].present?
-    end
+    fill_page_link_params paging_args
     paging_args[:view] = :content
     paging_args
   end
@@ -155,7 +159,9 @@ format do
   def path args={}
     # the filter name cause conflict with the path name
     return super(args) unless args.delete(:replace_name)
-    args[:_name_] = args.delete(:name)
+    if (name = args.delete(:name))
+      args[:_name_] = name
+    end
     super(args).gsub("_name_=", "name=")
   end
 
@@ -266,9 +272,10 @@ format :html do
   # @option args [String] :order
   # @option args [String] :class additional css class
   def sort_link text, args
-    path_args = fill_paging_args.merge(view: "content", offset: offset,
-                                       limit: limit, sort_order: args[:order],
-                                       sort_by: args[:sort_by])
+    path_args = { view: "content", offset: offset,
+                  limit: limit, sort_order: args[:order],
+                  sort_by: args[:sort_by] }
+    fill_page_link_params path_args
     # the filter name cause conflict with the path name
     url = path path_args.merge(replace_name: true)
     link_to text, url, class: "metric-list-header slotter #{args[:class]}",
