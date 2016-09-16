@@ -5,7 +5,7 @@ attachment :metric_value_import_file, uploader: CarrierWave::FileCardUploader
 
 format :html do
   def default_import_table_args args
-    args[:table_header] = ["Select", '#', "Metric",
+    args[:table_header] = ["Select", "#", "Metric",
                            "Company in File", "Company in Wikirate", "Match",
                            "Correction",
                            "Year", "Value", "Source", "Comment"]
@@ -28,14 +28,6 @@ format :html do
                 { id: "source-preview-iframe",
                   class: "webpage-preview non-previewable" },
                 false)
-  end
-
-  def duplicated_value_warning_message headline, metric_values
-    msg = <<-HTML
-      <h4><b>#{headline}</b></h4>
-      <ul><li>#{metric_values.join('</li><li>')}</li> <br />
-    HTML
-    alert("warning") { msg }
   end
 
   def contruct_import_warning_message args
