@@ -23,9 +23,8 @@ class MetricValuesHash < Hash
   end
 
   def add new_card
-    return unless key_id
     @changed_card = new_card
-    records << construct_record
+    add_new_record
   end
 
   private
@@ -39,7 +38,6 @@ class MetricValuesHash < Hash
   end
 
   def update_related
-    return unless key_id
     return unless @primary_name == @changed_card.send(@primary_type)
     @changed_card.trash? ? remove : add_or_update
   end
@@ -48,7 +46,7 @@ class MetricValuesHash < Hash
     if changed_record
       changed_record[:value] = @changed_card.value
     else
-      records << construct_record
+      add_new_record
     end
   end
 
@@ -59,12 +57,17 @@ class MetricValuesHash < Hash
   end
 
   def changed_record
+    return unless records?
     @changed_record ||=
       records.find { |row| row["year"] == @changed_card.year }
   end
 
+  def add_new_record
+    return unless key_id
+    records << construct_record
+  end
+
   def records
-    return [] unless key_id
     self[key_id] ||= []
   end
 
