@@ -24,15 +24,33 @@ describe Card::Set::TypePlusRight::Metric::AllValues, "metric value caching" do
                   "last_update_time" => update_time)
   end
 
-  describe "#get_cached_values" do
-    it "returns correct cached metric values" do
-      results = all_values.values_by_name
+  describe "#values_by_name" do
+    before do
+      @metric = get_a_sample_metric
+      @companies = [
+        Card["Death Star"],
+        Card["Sony Corporation"],
+        Card["Amazon.com, Inc."],
+        Card["Apple Inc."]
+      ]
+      @companies.each.with_index do |company, value_idx|
+        0.upto(3) do |i|
+          @metric.create_value company: company.name,
+                               value: (value_idx + 1) * 5 + i,
+                               year: 2015 - i,
+                               source: get_a_sample_source.name
+        end
+      end
+    end
+
+    subject { @metric.all_values_card.values_by_name }
+    it "has correct metric values" do
       value_idx = 1
       @companies.each do |company|
-        expect(results.key?(company.name)).to be_truthy
+        expect(subject.key?(company.name)).to be_truthy
 
         0.upto(3) do |i|
-          found_expected = results[company.name].any? do |row|
+          found_expected = subject[company.name].any? do |row|
             row[:year] == (2015 - i).to_s &&
               row[:value] == (value_idx * 5 + i).to_s
           end
@@ -43,11 +61,8 @@ describe Card::Set::TypePlusRight::Metric::AllValues, "metric value caching" do
     end
     context "delete a value" do
       it "removes deleted cached value" do
-        Card::Auth.as_bot do
-          Card["#{@metric.name}+Apple Inc.+2015"].delete
-        end
-        results = all_values.values_by_name
-        found_unexpected = results["Apple Inc."].any? do |row|
+        delete "#{@metric.name}+Apple Inc.+2015"
+        found_unexpected = subject["Apple Inc."].any? do |row|
           row[:year] == "2015" && row[:value] == "20"
         end
         expect(found_unexpected).to be_falsey
@@ -55,11 +70,8 @@ describe Card::Set::TypePlusRight::Metric::AllValues, "metric value caching" do
     end
     context "update a value" do
       it "updates cached value" do
-        card = Card["#{@metric.name}+Apple Inc.+2015+value"]
-        card.content = 25
-        card.save!
-        results = all_values.values_by_name
-        found_expected = results["Apple Inc."].any? do |row|
+        update "#{@metric.name}+Apple Inc.+2015+value", content: 25
+        found_expected = subject["Apple Inc."].any? do |row|
           row[:year] == "2015" && row[:value] == "25"
         end
         expect(found_expected).to be_truthy
