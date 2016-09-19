@@ -1,9 +1,9 @@
 #! no set module
 
-# # A metric value belongs to a metric and a company.
-# If you select one of those two MetricValuesHash manages all the related
+# A metric value belongs to a metric and a company.
+# If you select one of those two, then  MetricValuesHash manages all the related
 # metrics values. That's either all metrics with all values for a given company
-# or all companies with values for a given metric.
+# or all companies with all values for a given metric.
 #
 # The metric values are saved in the following format
 #   { company_id/metric_id (as string) =>
@@ -17,9 +17,10 @@ class MetricValuesHash < Hash
   #   }
   # @example for a fixed metric
   def initialize primary_card, hash_or_json={}
-    @primary_name = primary_card.name
-    @primary_type = primary_card.type_code
-    @secondary_type = @primary_type == :metric ? :company : :metric
+    @primary_card = primary_card
+    # used to fetch the primary and secondary name of a changed card
+    @name_fetcher = name_fetcher
+    binding.pry if @name_fetcher[:primary] == :company
     hash_or_json = JSON.parse(hash_or_json) if hash_or_json.is_a?(String)
     replace hash_or_json
   end
@@ -42,13 +43,15 @@ class MetricValuesHash < Hash
   private
 
   def update_related
-    return unless @primary_name == @changed_card.send(@primary_type)
+    return unless belongs_to_primary?
     @changed_card.trash? ? remove : add_or_update
   end
 
+  # update values hash if @changed_card was a value of it before its
+  # name changed (eg we collect all values for a metric and the metric
+  # part in @changed_card's name changed)
   def update_former_related
-    return unless @changed_card.name_changed? &&
-                  @primary_name == @changed_card.send("#{@primary_type}_was")
+    return unless belonged_to_primary?
     with_former_key do
       remove @changed_card.year_was
     end
@@ -95,13 +98,14 @@ class MetricValuesHash < Hash
       last_update_time: value_card.updated_at.to_i }
   end
 
+  # the key use in the hash
+  # it's the card id of the secondary part
   def key_id
     @key_id ||= fetch_key_id
   end
 
   def fetch_key_id former_name=false
-    name_reader = former_name ? "#{@secondary_type}_was" : @secondary_type
-    key_card_name = @changed_card.try(name_reader)
+    key_card_name = fetch_name_part :secondary, former_name
     return unless (key_card = Card[key_card_name])
     key_card.id.to_s
   end
@@ -111,5 +115,32 @@ class MetricValuesHash < Hash
     yield
   ensure
     @key_id = nil
+  end
+
+  def belongs_to_primary? former_name=false
+    changed_card_primary_name ||= fetch_name_part(:primary, former_name)
+    @primary_card.name == changed_card_primary_name ||
+      @primary_card.name.to_name.key == changed_card_primary_name.to_name.key
+  end
+
+  def belonged_to_primary?
+    return unless @changed_card.name_changed?
+    belongs_to_primary? true
+  end
+
+  def fetch_name_part which, former_name=false
+    method_name = @name_fetcher[which]
+    method_name += "_was" if former_name
+    @changed_card.send method_name
+  end
+
+  def name_fetcher
+    name_types =
+      if @primary_card.type_code == :wikirate_company
+       [:company, :metric]
+      else
+       [:metric, :company]
+      end
+    [:primary, :secondary].zip(name_types).to_h
   end
 end

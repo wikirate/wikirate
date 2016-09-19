@@ -14,8 +14,7 @@ describe Card::Set::Type::MetricValueImportFile do
   end
   before do
     login_as "joe_user"
-    test_csv = File.open "#{Rails.root}/mod/wikirate/spec/set/" \
-                         "type/import_test.csv"
+    test_csv = File.open File.expand_path "../import_test.csv", __FILE__
     @mv_import_file = Card.create! name: "does it matter?",
                                    metric_value_import_file: test_csv,
                                    type_id: Card::MetricValueImportFileID

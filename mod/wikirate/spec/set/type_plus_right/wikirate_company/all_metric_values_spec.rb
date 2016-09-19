@@ -26,23 +26,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
     end
     initialize_params
   end
-  describe "#get_cached_values" do
-    it "returns correct cached metric values" do
-      results = all_values.values_by_name
-      value_idx = 1
-      metrics.each do |metric|
-        expect(results.key?(metric.name)).to be_truthy
-        0.upto(3) do |i|
-          found_expected = results[metric.name].any? do |row|
-            row[:year] == (2015 - i).to_s &&
-              row[:value] == (value_idx * 5 + i).to_s
-          end
-          expect(found_expected).to be_truthy
-        end
-        value_idx += 1
-      end
-    end
-  end
+
   describe "#filter" do
     it "filters by name" do
       Card::Env.params["name"] = "number"

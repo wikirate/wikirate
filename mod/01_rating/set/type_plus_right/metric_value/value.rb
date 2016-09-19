@@ -93,3 +93,14 @@ event :update_related_calculations, :finalize,
     metric.update_value_for! company: company_key, year: year
   end
 end
+
+event :no_left_name_change, :prepare_to_validate,
+      on: :update, changed: :name do
+  return if @supercard # as part of other changes (probably) ok
+  return unless cardname.right == "value" # ok if not a value anymore
+  return if (metric_value = Card[cardname.left]) &&
+            metric_value.type_id == MetricValueID
+  errors.add :name, "not allowed to change. "
+                    "Change #{name_was.to_name.left} instead"
+end
+
