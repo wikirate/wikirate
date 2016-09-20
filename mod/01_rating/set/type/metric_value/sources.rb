@@ -10,7 +10,7 @@ event :process_sources, :prepare_to_validate,
       end
     end
   elsif action == :create
-    errors.add :source, "does not exist."
+    errors.add :source, "no source cited"
   end
 end
 

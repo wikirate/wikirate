@@ -3,9 +3,9 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
   let(:create_card) { Card.create name: "a card" }
   it "updates if value is created in event" do
     $first = true
-    expect(all_metric_values.values_by_name.keys)
+    expect(all_metric_values.values_by_name.keys.sort)
       .to eq ["Joe User+researched number 3", "Joe User+researched number 2",
-              "Joe User+researched number 1"]
+              "Joe User+researched number 1"].sort
     Card::Auth.as_bot do
       in_stage :prepare_to_store,
                on: :save,
