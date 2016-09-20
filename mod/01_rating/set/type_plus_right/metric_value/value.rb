@@ -25,7 +25,7 @@ def metric_plus_company_card
 end
 
 def unknown_value?
-  content.casecmp("unknown") == 0
+  content.casecmp("unknown").zero?
 end
 
 def option_names metric_name
@@ -100,7 +100,6 @@ event :no_left_name_change, :prepare_to_validate,
   return unless cardname.right == "value" # ok if not a value anymore
   return if (metric_value = Card[cardname.left]) &&
             metric_value.type_id == MetricValueID
-  errors.add :name, "not allowed to change. "
+  errors.add :name, "not allowed to change. " \
                     "Change #{name_was.to_name.left} instead"
 end
-

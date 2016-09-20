@@ -20,14 +20,16 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
 
   describe "format :json" do
     describe "view :core" do
-      subject { JSON.parse @metric.all_metric_values_card.format(:json).render_core }
+      subject do
+        JSON.parse @metric.all_metric_values_card.format(:json).render_core
+      end
 
       it "uses ids as keys" do
         expect(subject.keys.map(&:to_i).sort).to eq @companies.map(&:id).sort
       end
 
       it "finds all companies with values" do
-        create_or_update! 'test', type: :pointer
+        create_or_update! "test", type: :pointer
         expect(subject.size).to eq 4
       end
 
