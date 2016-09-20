@@ -22,7 +22,7 @@ end
 def source_in_request?
   sub_source_card = subfield("source")
   return false if sub_source_card.nil? ||
-    sub_source_card.subcard("new_source").nil?
+                  sub_source_card.subcard("new_source").nil?
   new_source_card = sub_source_card.subcard("new_source")
   source_subcard_exist?(new_source_card)
 end

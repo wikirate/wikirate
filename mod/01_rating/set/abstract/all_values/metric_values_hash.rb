@@ -139,12 +139,10 @@ class MetricValuesHash < Hash
   end
 
   def name_fetcher
-    name_types =
-      if @primary_card.type_code == :wikirate_company
-       [:company, :metric]
-      else
-       [:metric, :company]
-      end
-    [:primary, :secondary].zip(name_types).to_h
+    if @primary_card.type_code == :wikirate_company
+      { primary: :company, secondary: :metric }
+    else
+      { primary: :metric, secondary: :company }
+    end
   end
 end

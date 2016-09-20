@@ -34,6 +34,3 @@ def valid_value_name?
     company_card && company_card.type_id == WikirateCompanyID &&
     year_card && year_card.type_id == YearID
 end
-
-
-

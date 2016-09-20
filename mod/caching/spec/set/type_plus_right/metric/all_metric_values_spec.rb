@@ -1,5 +1,7 @@
-describe Card::Set::TypePlusRight::Metric::AllMetricValues, "metric value caching" do
-  let(:all_metric_values) { Card["Jedi+deadliness"].fetch trait: :all_metric_values }
+describe Card::Set::TypePlusRight::Metric::AllMetricValues do
+  let(:all_metric_values) do
+    Card["Jedi+deadliness"].fetch trait: :all_metric_values
+  end
   let(:create_card) { Card.create name: "a card" }
   it "updates if value is created in event" do
     $first = true
@@ -88,7 +90,8 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues, "metric value cachin
       it "updates cached value" do
         update "#{@metric.name}+Apple Inc.+2015",
                name: "Jedi+deadliness+Death Star+2000"
-        new_values = Card["Jedi+deadliness"].all_metric_values_card.values_by_name
+        new_values =
+          Card["Jedi+deadliness"].all_metric_values_card.values_by_name
         expect(any_value?("Death Star", "2000", "20", new_values)).to be_truthy
         expect(any_value?("Apple Inc.", "2015", "20")).to be_falsey
       end
@@ -97,7 +100,8 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues, "metric value cachin
       it "updates cached value" do
         update "#{@metric.name}+Apple Inc.+2015",
                name: "Jedi+Deadliness+Death Star+2000"
-        new_values = Card["Jedi+deadliness"].all_metric_values_card.values_by_name
+        new_values =
+          Card["Jedi+deadliness"].all_metric_values_card.values_by_name
         expect(any_value?("Death Star", "2000", "20", new_values)).to be_truthy
         expect(any_value?("Apple Inc.", "2015", "20")).to be_falsey
       end

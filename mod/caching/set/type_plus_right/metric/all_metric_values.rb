@@ -32,7 +32,6 @@ cache_update_trigger TypePlusRight::MetricValue::Value,
                      on: :delete do |changed_card|
   # don't update if parent dealt with it
   next if @supercard && @supercard.id == changed_card.left_id &&
-    @supercard.trash
+          @supercard.trash
   related_all_values_card changed_card
 end
-

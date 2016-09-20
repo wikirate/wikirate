@@ -57,7 +57,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
         row[:year] == year && row[:value] == value
       end
     end
-    it  "has correct metric values" do
+    it "has correct metric values" do
       value_idx = 1
       metrics.each do |metric|
         expect(subject.key?(metric.name)).to be_truthy
@@ -87,7 +87,6 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
     end
     context "rename a metric answer" do
       it "updates cached value" do
-        #ensure_card "#{metric_name}+Death Star+2015", type_id: Card::MetricValueID
         update "#{metric_name}+#{company_name}+2015",
                name: "#{metric_name}+Death Star+2000"
         new_values = Card["Death Star"].all_metric_values_card.values_by_name
