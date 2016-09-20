@@ -3,7 +3,9 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
   let(:create_card) { Card.create name: "a card" }
   it "updates if value is created in event" do
     $first = true
-    expect(all_metric_values.values_by_name.keys).to eq ["Death Star"]
+    expect(all_metric_values.values_by_name.keys)
+      .to eq ["Joe User+researched number 3", "Joe User+researched number 2",
+              "Joe User+researched number 1"]
     Card::Auth.as_bot do
       in_stage :prepare_to_store,
                on: :save,
@@ -85,28 +87,29 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
     end
     context "rename a metric answer" do
       it "updates cached value" do
-        update "#{@metric.name}+Apple Inc.+2015",
-               name: "#{@metric.name}+Death Star+2000"
-        expect(any_value?("Death Star", "2000", "20")).to be_truthy
-        expect(any_value?("Apple Inc.", "2015", "20")).to be_falsey
+        #ensure_card "#{metric_name}+Death Star+2015", type_id: Card::MetricValueID
+        update "#{metric_name}+#{company_name}+2015",
+               name: "#{metric_name}+Death Star+2000"
+        new_values = Card["Death Star"].all_metric_values_card.values_by_name
+        expect(any_value?(metric_name, "2000", "5", new_values)).to be_truthy
+        expect(any_value?(metric_name, "2015", "5")).to be_falsey
       end
     end
     context "rename metric in a metric answer" do
       it "updates cached value" do
-        update "#{@metric.name}+Apple Inc.+2015",
-               name: "Jedi+deadliness+Death Star+2000"
-        new_values = Card["Jedi+deadliness"].all_metric_values_card.values_by_name
-        expect(any_value?("Death Star", "2000", "20", new_values)).to be_truthy
-        expect(any_value?("Apple Inc.", "2015", "20")).to be_falsey
+        update "#{metric_name}+#{company_name}+2015",
+               name: "Jedi+deadliness+#{company_name}+2000"
+        expect(any_value?("Jedi+deadliness", "2000", "5")).to be_truthy
+        expect(any_value?(metric_name, "2015", "5")).to be_falsey
       end
     end
-    context "rename metric using name variant in a metric answer" do
+    context "rename company using name variant in a metric answer" do
       it "updates cached value" do
-        update "#{@metric.name}+Apple Inc.+2015",
-               name: "Jedi+Deadliness+Death Star+2000"
-        new_values = Card["Jedi+deadliness"].all_metric_values_card.values_by_name
-        expect(any_value?("Death Star", "2000", "20", new_values)).to be_truthy
-        expect(any_value?("Apple Inc.", "2015", "20")).to be_falsey
+        update "#{metric_name}+#{company_name}+2015",
+               name: "#{metric_name}+death_star+2000"
+        new_values = Card["Death Star"].all_metric_values_card.values_by_name
+        expect(any_value?(metric_name, "2000", "5", new_values)).to be_truthy
+        expect(any_value?(metric_name, "2015", "5")).to be_falsey
       end
     end
   end

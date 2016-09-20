@@ -71,8 +71,8 @@ end
 
 def company_card_before_name_change
   return unless (old_company_name = company_was) && old_company_name.present?
-  return unless old_compay_name != company_name
-  Card.fetch old_companz_name
+  return unless old_company_name != company_name
+  Card.fetch old_company_name
 end
 
 def year
