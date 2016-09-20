@@ -9,7 +9,7 @@ card_accessor :value_type
 card_accessor :report_type
 card_accessor :research_policy
 card_accessor :project
-card_accessor :all_values
+card_accessor :all_metric_values
 
 def metric_type
   metric_type_card.item_names.first

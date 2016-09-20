@@ -1,4 +1,4 @@
-describe Card::Set::TypePlusRight::Metric::AllValues do
+describe Card::Set::TypePlusRight::Metric::AllMetricValues do
   let(:all_metric_values) { @metric.fetch trait: :all_metric_values }
   before do
     @metric = get_a_sample_metric

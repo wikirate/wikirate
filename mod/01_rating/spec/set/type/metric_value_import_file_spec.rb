@@ -14,7 +14,7 @@ describe Card::Set::Type::MetricValueImportFile do
   end
   before do
     login_as "joe_user"
-    test_csv = File.open File.expand_path "../import_test.csv", __FILE__
+    test_csv = File.open File.expand_path("../import_test.csv", __FILE__)
     @mv_import_file = Card.create! name: "does it matter?",
                                    metric_value_import_file: test_csv,
                                    type_id: Card::MetricValueImportFileID
@@ -30,7 +30,6 @@ describe Card::Set::Type::MetricValueImportFile do
   describe "import metric values" do
     it "adds metric values" do
       @mv_import_file.update_attributes! subcards: {}
-
       expect(Card.exists?(@amazon)).to be true
       expect(Card.exists?(@apple)).to be true
       amazon_2015_metric_value_card = Card["#{@amazon}+value"]

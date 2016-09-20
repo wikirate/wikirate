@@ -1,11 +1,11 @@
 include_set Abstract::UpdateAllMetricValuesCache
 include_set Abstract::SolidCache, cached_format: :json
 
-def value_cache_parent changed_card
+def self.value_cache_parent changed_card
   changed_card.metric_card
 end
 
-def value_cache_parent_was changed_card
+def self.value_cache_parent_was changed_card
   changed_card.metric_card_before_name_change
 end
 
@@ -15,12 +15,12 @@ ensure_set { Type::MetricValue }
 
 cache_update_trigger TypePlusRight::MetricValue::Value,
                      on: :save do |changed_card|
-  all_values_caches_affected_by changed_card
+  values_caches_affected_by changed_card
 end
 
 # ... a Metric Value (type) is renamed
 cache_update_trigger Type::MetricValue, on: :update do |changed_card|
-  all_values_caches_affected_by changed_card
+  values_caches_affected_by changed_card
 end
 
 cache_update_trigger Type::MetricValue,

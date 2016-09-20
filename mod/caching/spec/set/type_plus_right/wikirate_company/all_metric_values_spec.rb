@@ -1,9 +1,9 @@
 describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
-  let(:all_values) { Card["Samsung"].fetch trait: :all_values }
+  let(:all_metric_values) { Card["Samsung"].fetch trait: :all_metric_values }
   let(:create_card) { Card.create name: "a card" }
   it "updates if value is created in event" do
     $first = true
-    expect(all_values.values_by_name.keys).to eq ["Death Star"]
+    expect(all_metric_values.values_by_name.keys).to eq ["Death Star"]
     Card::Auth.as_bot do
       in_stage :prepare_to_store,
                on: :save,
@@ -16,7 +16,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
                                              source: get_a_sample_source
       end
     end
-    av = Card.fetch("Samsung").all_values_card.values_by_name
+    av = Card.fetch("Samsung").all_metric_values_card.values_by_name
     expect(av.keys).to include("Jedi+deadliness")
     update_time = Card["Jedi+deadliness+Samsung+2010+value"].updated_at.to_i
     expect(av["Jedi+deadliness"])
@@ -30,7 +30,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
     let(:company) do
       Card.create! name: "new company", type_id: Card::WikirateCompanyID
     end
-    let(:all_values) { company.fetch trait: :all_metric_values }
+    let(:all_metric_values) { company.fetch trait: :all_metric_values }
     let(:metrics) do
       [Card["Jedi+Sith Lord in Charge"],
        Card["Joe User+researched number 1"],
@@ -57,7 +57,6 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
     end
     it  "has correct metric values" do
       value_idx = 1
-      binding.pry
       metrics.each do |metric|
         expect(subject.key?(metric.name)).to be_truthy
         0.upto(3) do |i|
@@ -96,7 +95,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       it "updates cached value" do
         update "#{@metric.name}+Apple Inc.+2015",
                name: "Jedi+deadliness+Death Star+2000"
-        new_values = Card["Jedi+deadliness"].all_values_card.values_by_name
+        new_values = Card["Jedi+deadliness"].all_metric_values_card.values_by_name
         expect(any_value?("Death Star", "2000", "20", new_values)).to be_truthy
         expect(any_value?("Apple Inc.", "2015", "20")).to be_falsey
       end
@@ -105,7 +104,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       it "updates cached value" do
         update "#{@metric.name}+Apple Inc.+2015",
                name: "Jedi+Deadliness+Death Star+2000"
-        new_values = Card["Jedi+deadliness"].all_values_card.values_by_name
+        new_values = Card["Jedi+deadliness"].all_metric_values_card.values_by_name
         expect(any_value?("Death Star", "2000", "20", new_values)).to be_truthy
         expect(any_value?("Apple Inc.", "2015", "20")).to be_falsey
       end

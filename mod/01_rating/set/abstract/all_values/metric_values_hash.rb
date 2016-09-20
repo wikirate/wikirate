@@ -20,7 +20,6 @@ class MetricValuesHash < Hash
     @primary_card = primary_card
     # used to fetch the primary and secondary name of a changed card
     @name_fetcher = name_fetcher
-    binding.pry if @name_fetcher[:primary] == :company
     hash_or_json = JSON.parse(hash_or_json) if hash_or_json.is_a?(String)
     replace hash_or_json
   end
@@ -28,7 +27,7 @@ class MetricValuesHash < Hash
   # @param changed_card [Card] a member of Type::MetricValue or
   #    TypePlusRight::MetricValue::Value
   def update changed_card
-    @changed_card = changed_card
+    prepare_for_change changed_card
     update_former_related
     update_related
   end
@@ -36,11 +35,16 @@ class MetricValuesHash < Hash
   # @param new_card [Card] a member of Type::MetricValue or
   #    TypePlusRight::MetricValue::Value
   def add new_card
-    @changed_card = new_card
+    prepare_for_change new_card
     add_new_record
   end
 
   private
+
+  def prepare_for_change changed_card
+    @key_id = nil
+    @changed_card = changed_card
+  end
 
   def update_related
     return unless belongs_to_primary?

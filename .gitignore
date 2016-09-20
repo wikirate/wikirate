@@ -10,3 +10,4 @@
 /coverage
 /backups
 /script/metric/data/*
+.idea/*

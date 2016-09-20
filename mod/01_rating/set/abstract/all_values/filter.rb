@@ -2,10 +2,6 @@ def key_type_id
   raise Error, "key_type_id not defined"
 end
 
-def key_type
-  raise Error, "key_type not defined"
-end
-
 def filter_by_key key
   raise Error, "filter_by_key not defined"
 end
@@ -58,4 +54,8 @@ def second_by_unit unit
   when "month"
     18_144_000
   end
+end
+
+def params_keys
+  %w(name industry project)
 end

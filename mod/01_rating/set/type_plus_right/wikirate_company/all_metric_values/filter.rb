@@ -1,3 +1,7 @@
+def key_type_id
+  MetricID
+end
+
 def filter_by_key key
   filter_by_metric key
 end
