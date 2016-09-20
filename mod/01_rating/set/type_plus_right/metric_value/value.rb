@@ -1,31 +1,15 @@
+include_set Abstract::MetricChild, generation: 3
 
-
-def metric
-  cardname.parts[0..-4].join "+"
-end
-
-def company
-  cardname.parts[-3]
-end
-
-def year
-  cardname.parts[-2]
-end
-
-def metric_plus_company
-  cardname.parts[0..-3].join "+"
+def value_card
+  self
 end
 
 def value
   content
 end
 
-def metric_card
-  Card.fetch metric
-end
-
-def company_card
-  Card.fetch company
+def metric_plus_company
+  cardname.parts[0..-3].join "+"
 end
 
 def metric_key
@@ -109,3 +93,14 @@ event :update_related_calculations, :finalize,
     metric.update_value_for! company: company_key, year: year
   end
 end
+
+event :no_left_name_change, :prepare_to_validate,
+      on: :update, changed: :name do
+  return if @supercard # as part of other changes (probably) ok
+  return unless cardname.right == "value" # ok if not a value anymore
+  return if (metric_value = Card[cardname.left]) &&
+            metric_value.type_id == MetricValueID
+  errors.add :name, "not allowed to change. "
+                    "Change #{name_was.to_name.left} instead"
+end
+

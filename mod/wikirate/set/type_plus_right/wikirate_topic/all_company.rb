@@ -1,4 +1,5 @@
 include_set TypePlusRight::WikirateCompany::AllMetricValues
+
 def raw_content
   # cannot leave it empty
   %({ "name":"Home" })
@@ -13,7 +14,7 @@ def filter metric
 end
 
 def cached_values
-  @cached_metric_values ||= get_cached_values
+  @cached_metric_values ||= values_by_name
   if @cached_metric_values
     result = @cached_metric_values.select do |metric, _values|
       filter metric
@@ -56,7 +57,7 @@ format do
   end
 
   def sorted_result sort_by, _order, _is_num=true
-    cached_values = card.cached_values
+    cached_values = card.filtered_values_by_name
     case sort_by
     when "most_notes"
       sort_by_desc cached_values, "note"
