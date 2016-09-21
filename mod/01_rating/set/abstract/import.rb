@@ -31,9 +31,8 @@ def clear_slot_params
 end
 
 def check_duplication_in_subcards name, row_no
-  if subcards[name]
-    errors.add "Row #{row_no}:#{name}", "Duplicated metric values"
-  end
+  return unless subcards[name]
+  errors.add "Row #{row_no}:#{name}", "Duplicated metric values"
 end
 
 def metric_value_args_error_key key, args
@@ -134,20 +133,6 @@ def valid_import_format? data
   data.is_a? Array
 end
 
-def valid_value_data? args
-  @import_errors = []
-  add_import_error "metric name missing", args[:row] if args[:metric].blank?
-  %w(company year value).each do |field|
-    add_import_error "#{field} missing", args[:row] if args[field.to_sym].blank?
-  end
-  { metric: MetricID,
-    year: YearID }.each_pair do |type, type_id|
-    msg = check_existence_and_type(args[type], type_id, type)
-    add_import_error msg, args[:row]
-  end
-  @import_errors.empty?
-end
-
 def redirect_target_after_import
   nil
 end
@@ -192,7 +177,34 @@ def get_corrected_company_name params
   corrected
 end
 
-def add_import_error msg, row=nil
+def valid_value_data? args
+  collect_import_errors(args[:row]) do
+    check_if_filled_in :metric, "metric name"
+    %w(company year value).each do |field|
+      check_if_filled_in field
+    end
+    { metric: MetricID, year: YearID }.each_pair do |type, type_id|
+      msg = check_existence_and_type(args[type], type_id, type)
+      add_import_error msg
+    end
+  end
+end
+
+def collect_import_errors row
+  @import_errors = []
+  @current_row = row
+  yield
+  @current_row = nil
+  @import_errors.empty?
+end
+
+def check_if_filled_in field, row, field_name=nil
+  return if args[field.to_sym].present?
+  field_name ||= field
+  add_import_error "#{field_name} missing", row
+end
+
+def add_import_error msg, row=@current_row
   return unless msg
   title = "import error"
   title += " (row #{row})" if row

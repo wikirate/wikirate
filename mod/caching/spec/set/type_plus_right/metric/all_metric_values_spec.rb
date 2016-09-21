@@ -4,14 +4,11 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
   end
   let(:create_card) { Card.create name: "a card" }
   it "updates if value is created in event" do
-    $first = true
     expect(all_metric_values.values_by_name.keys).to eq ["Death Star"]
     Card::Auth.as_bot do
       in_stage :prepare_to_store,
-               on: :save,
+               on: :save, for: "a card",
                trigger: -> { create_card } do
-        return unless $first
-        $first = false
         Card["Jedi+deadliness"].create_value company: "Samsung",
                                              year: "2010",
                                              value: "100",
