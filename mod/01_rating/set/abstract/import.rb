@@ -179,13 +179,10 @@ end
 
 def valid_value_data? args
   collect_import_errors(args[:row]) do
-    check_if_filled_in :metric, "metric name"
-    %w(company year value).each do |field|
-      check_if_filled_in field
-    end
+    check_if_filled_in :metric, args, "metric name"
+    %w(company year value).each { |field| check_if_filled_in field, args }
     { metric: MetricID, year: YearID }.each_pair do |type, type_id|
-      msg = check_existence_and_type(args[type], type_id, type)
-      add_import_error msg
+      check_existence_and_type args[type], type_id, type
     end
   end
 end
@@ -198,10 +195,10 @@ def collect_import_errors row
   @import_errors.empty?
 end
 
-def check_if_filled_in field, row, field_name=nil
+def check_if_filled_in field, args, field_name=nil
   return if args[field.to_sym].present?
   field_name ||= field
-  add_import_error "#{field_name} missing", row
+  add_import_error "#{field_name} missing"
 end
 
 def add_import_error msg, row=@current_row
@@ -212,8 +209,11 @@ def add_import_error msg, row=@current_row
 end
 
 def check_existence_and_type name, type_id, type_name=nil
-  return  "#{name} doesn't exist" unless Card[name]
-  return "#{name} is not a #{type_name}" if Card[name].type_id != type_id
+  if !Card[name]
+    add_import_error "#{name} doesn't exist"
+  elsif Card[name].type_id != type_id
+    add_import_error "#{name} is not a #{type_name}"
+  end
 end
 
 def ensure_company_exists company, args
