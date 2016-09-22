@@ -1,4 +1,4 @@
-include_set Abstract::AllValues
+include_set Abstract::AllMetricValues
 
 format do
   def page_link_params

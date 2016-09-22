@@ -1,4 +1,4 @@
-include_set Abstract::AllValues
+include_set Abstract::AllMetricValues
 
 def wql_to_identify_related_metric_values
   '"left": { "right":"_left" }'
