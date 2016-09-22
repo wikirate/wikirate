@@ -61,9 +61,7 @@ end
 format do
   def search_results _args={}
     @search_results ||= begin
-      sort_by, sort_order = card.sort_params
-      all_results = sorted_result sort_by, sort_order, num?
-      results = all_results[offset, limit]
+      results = sorted_result[offset, limit]
       results.blank? ? [] : results
     end
   end
@@ -93,7 +91,6 @@ format do
   end
 
   def fill_paging_args
-    sort_by, sort_order = card.sort_params
     paging_args = @paging_path_args.merge(sort_by: sort_by,
                                           sort_order: sort_order)
     page_link_params.each do |key|
@@ -128,17 +125,14 @@ end
 
 format :html do
   view :card_list_header do
-    sort_by, sort_order = card.sort_params
-    company_sort_order, value_sort_order = sort_order sort_by, sort_order
-    company_sort_icon, value_sort_icon = sort_icon sort_by, sort_order
     %(
       <div class='yinyang-row column-header'>
         <div class='company-item value-item'>
-          #{sort_link "Companies #{company_sort_icon}",
-                      sort_by: 'name', order: company_sort_order,
+          #{sort_link "Companies #{sort_icon :name}",
+                      sort_by: 'name', order: toggle_sort_order(:name),
                       class: 'header'}
-          #{sort_link "Values #{value_sort_icon}",
-                      sort_by: 'value', order: value_sort_order,
+          #{sort_link "Values #{sort_icon :value}",
+                      sort_by: 'value', order: toggle_sort_order(:value),
                       class: 'data'}
         </div>
       </div>

@@ -5,27 +5,19 @@ def raw_content
   %({ "name":"Home" })
 end
 
-def sort_params
-  [(Env.params["sort"] || "most_metrics"), "desc"]
-end
-
 def filter metric
   filter_by_name(metric)
 end
 
-def cached_values
-  @cached_metric_values ||= values_by_name
-  if @cached_metric_values
-    result = @cached_metric_values.select do |metric, _values|
-      filter metric
-    end
-    result
-  else
-    @cached_metric_values
-  end
-end
-
 format do
+  def sort_by
+    @sort_by ||= Env.params["sort"] || "most_metrics"
+  end
+
+  def sort_order
+    "desc"
+  end
+
   def analysis_cached_count company, type
     search_card = Card.fetch "#{company}+#{card.cardname.left}+#{type}"
     count_card = search_card.fetch trait: :cached_count, new: {}
@@ -56,7 +48,7 @@ format do
     end
   end
 
-  def sorted_result sort_by, _order, _is_num=true
+  def sorted_result
     cached_values = card.filtered_values_by_name
     case sort_by
     when "most_notes"

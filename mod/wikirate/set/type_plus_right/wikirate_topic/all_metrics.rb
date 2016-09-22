@@ -10,22 +10,6 @@ def raw_content
     })
 end
 
-def sort_params
-  [(Env.params["sort"] || "upvoted"), "desc"]
-end
-
-def cached_values
-  @cached_metric_values ||= values_by_name
-  if @cached_metric_values
-    result = @cached_metric_values.select do |metric, _values|
-      filter metric
-    end
-    result
-  else
-    @cached_metric_values
-  end
-end
-
 def filter metric
   filter_by_name(metric) &&
     filter_by_research_policy(metric) &&
@@ -33,12 +17,20 @@ def filter metric
 end
 
 format do
-  def sorted_result sort_by, order, is_num=true
+  def sort_by
+    @sort_by ||= Env.params["sort"] || "upvoted"
+  end
+
+  def sort_order
+    "desc"
+  end
+
+  def sorted_result
     cached_values = card.filtered_values_by_name
     if sort_by == "company_number"
       sort_company_number_desc cached_values
     else
-      super(sort_by, order, is_num)
+      super
     end
   end
 
