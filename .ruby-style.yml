@@ -28,11 +28,11 @@ Style/CollectionMethods:
   Description: Preferred collection methods.
   Enabled: true
   PreferredMethods:
-    collect: map
-    collect!: map!
-    detect: find
-    find_all: select
-    reduce: inject
+    collect: 'map'
+    collect!: 'map!'
+    detect: 'find'
+    find_all: 'select'
+    reduce: 'inject'
 Style/DotPosition:
   EnforcedStyle: leading
 Style/Encoding:
@@ -56,6 +56,8 @@ Style/StringLiterals:
   EnforcedStyle: double_quotes
 Style/SpaceAroundEqualsInParameterDefault:
   EnforcedStyle: no_space
+Style/FrozenStringLiteralComment:
+  Enabled: false
 Metrics/MethodLength:
   Enabled: true
   CountComments: false

@@ -123,5 +123,5 @@ Feature: metric value
     And I press "Submit"
     And I wait until ajax response done
     And I should see "Problems"
-    And I should see "SOURCE: does not exist."
+    And I should see "SOURCE: no source cited"
 
