@@ -40,7 +40,7 @@ end
 
 format :json do
   view :core do
-    related_company_ids_to_json left.related_companies
+    card.related_company_ids_to_json card.left.related_companies
   end
 end
 
