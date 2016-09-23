@@ -48,6 +48,3 @@ def downvoted_metric? metric
   @downvoted_metric ||= user_voted_metric("downvotee")
   @downvoted_metric.include?(metric)
 end
-
-
-
