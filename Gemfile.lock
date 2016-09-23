@@ -1,8 +1,9 @@
 PATH
   remote: ./vendor/wagn/card
   specs:
-    card (1.19.3)
+    card (1.19.4)
       bootstrap-kaminari-views (~> 0)
+      carrierwave (= 1.0.0.beta)
       coderay (~> 1.0)
       coffee-script (~> 2.2)
       diff-lcs (~> 1.2)
@@ -20,8 +21,8 @@ PATH
 PATH
   remote: ./vendor/wagn/wagn
   specs:
-    wagn (1.19.3)
-      card (= 1.19.3)
+    wagn (1.19.4)
+      card (= 1.19.4)
       rails (~> 4.2)
 
 GEM
@@ -102,6 +103,10 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carrierwave (1.0.0.beta)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.1)
