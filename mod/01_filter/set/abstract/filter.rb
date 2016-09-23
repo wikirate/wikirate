@@ -133,7 +133,7 @@ format :html do
   def default_button_formgroup_args args
     toggle_text = filter_active? ? "Hide Advanced" : "Show Advanced"
     buttons = [
-      link_to_card(card.cardname.leftname, "Reset",
+      link_to_card(card.cardname.left_name, "Reset",
                    class: "slotter btn btn-default margin-8")
     ]
     unless card.advanced_keys.empty?

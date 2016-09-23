@@ -23,7 +23,7 @@ format :html do
 
   view :timeline_add_new_link do |args|
     modal_link_args = args.merge(
-      text: "+ Add New Value",
+      link_text: "+ Add New Value",
       link_opts: {
         class: "btn btn-default btn-sm",
         path: { action: :new, type: :metric_value,
