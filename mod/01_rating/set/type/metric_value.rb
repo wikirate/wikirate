@@ -39,11 +39,5 @@ def valid_year?
 end
 
 def year_updated?
- (year_card = subfield(:year)) && !year_card.item_names.size.zero?
+  (year_card = subfield(:year)) && !year_card.item_names.size.zero?
 end
-
-
-
-
-
-
