@@ -1,6 +1,7 @@
 card_accessor :contribution_count, type: :number, default: "0"
 card_accessor :direct_contribution_count, type: :number, default: "0"
 card_accessor :aliases, type: :pointer
+card_accessor :all_metric_values
 
 view :missing do |args|
   _render_link args

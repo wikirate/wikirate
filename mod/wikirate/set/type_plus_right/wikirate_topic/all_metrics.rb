@@ -15,7 +15,7 @@ def sort_params
 end
 
 def cached_values
-  @cached_metric_values ||= get_cached_values
+  @cached_metric_values ||= values_by_name
   if @cached_metric_values
     result = @cached_metric_values.select do |metric, _values|
       filter metric
@@ -34,7 +34,7 @@ end
 
 format do
   def sorted_result sort_by, order, is_num=true
-    cached_values = card.cached_values
+    cached_values = card.filtered_values_by_name
     if sort_by == "company_number"
       sort_company_number_desc cached_values
     else

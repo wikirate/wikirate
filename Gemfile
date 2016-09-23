@@ -18,6 +18,7 @@ gem "delayed_job_active_record"
 # not sure why -efm
 gem "newrelic_rpm"
 gem "airbrussh", require: false
+gem "spring"
 
 group :live do
   gem "therubyracer"
