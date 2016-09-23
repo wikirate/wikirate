@@ -18,12 +18,17 @@ format :html do
 
   def default_button_formgroup_args args
     args[:buttons] = [
-      card_link(card.cardname.left, path_opts: { view: content_view },
-                                    text: "Reset",
-                                    class: "slotter btn btn-default margin-8",
-                                    remote: true),
+      button_formgroup_reset_button,
       button_tag("Filter", situation: "primary", disable_with: "Filtering")
     ].join
+  end
+
+  def button_formgroup_reset_button
+    link_to_card card.cardname.left, "Reset",
+                 path: { view: content_view },
+                 format: { class: "slotter btn btn-default margin-8",
+                           remote: true },
+
   end
 
   view :core do |args|

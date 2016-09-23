@@ -22,18 +22,16 @@ format :html do
   end
 
   view :timeline_add_new_link do |args|
-    path_opts = {
-      action: :new,
-      type: :metric_value,
-      slot: { company: card.cardname.left_name.tag,
-              metric: card.cardname.left_name.trunk
-            }
-    }
-    link = _render_modal_link(args.merge(class: "btn btn-default btn-sm",
-                                         text: "+ Add New Value",
-                                         path_opts: path_opts
-                                        ))
-    timeline_head(link, "new")
+    modal_link_args = args.merge(
+      text: "+ Add New Value",
+      link_opts: {
+        class: "btn btn-default btn-sm",
+        path: { action: :new, type: :metric_value,
+                slot: { company: card.cardname.left_name.tag,
+                        metric: card.cardname.left_name.trunk } }
+      }
+    )
+    timeline_head _render_modal_link(modal_link_args), "new"
   end
 
   view :timeline_header_buttons do

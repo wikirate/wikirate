@@ -122,7 +122,7 @@ format :html do
   view :designer_image do |_args|
     image = nest card.metric_designer_card.field(:image, new: {}),
                  view: :core, size: :small
-    card_link card.metric_designer_card, text: image
+    link_to_card card.metric_designer_card, image
   end
 
   def css
@@ -161,26 +161,20 @@ format :html do
 
   view :value_type_edit_modal_link do |args|
     value_type_card = card.fetch trait: :value_type, new: {}
-    subformat_card = subformat(value_type_card)
-    text =
-      if value_type_card.new?
-        "Update Value Type"
-      else
-        subformat_card.render(:shorter_pointer_content)
-      end
-    edit_args = {
-      path_opts: {
-        slot: {
-          hide: "title,header,menu,help,subheader",
-          view: :edit, edit_value_type: true
-        }
-      },
-      html_args: {
-        class: "btn btn-default slotter"
-      },
-      text: text
-    }
-    render_modal_link(args.merge(edit_args))
+    render_modal_link(
+      text: vtype_edit_modal_link_text(value_type_card),
+      link_opts: { class: "btn btn-default slotter",
+                   path: { slot: { hide: "title,header,menu,help,subheader",
+                                   view: :edit, edit_value_type: true } } }
+    )
+  end
+
+  def vtype_edit_modal_link_text vtype_card
+    if vtype_card.new?
+      "Update Value Type"
+    else
+      subformat(value_type_card).render_shorter_pointer_content
+    end
   end
 
   view :short_view do |_args|
@@ -265,14 +259,14 @@ format :html do
           </div>
           </a>
           <div class="name">
-            #{card_link card, text: metric_title, class: 'inherit-anchor'}
+            #{link_to_card card, metric_title, class: 'inherit-anchor'}
           </div>
         </div>
         <div class="data">
           #{_render_value(args)}
           <div class="data-item show-with-details text-center">
             <span class="label label-metric">
-             #{card_link card, text: 'Metric Details'}
+              #{link_to_card card, 'Metric Details'}
             </span>
           </div>
         </div>
@@ -291,7 +285,7 @@ format :html do
   .row.clearfix
     .col-md-12
       .name.row
-        = card_link card, text: card.metric_title, class: 'inherit-anchor'
+        = link_to_card card, card.metric_title, class: 'inherit-anchor'
       .row
         = _render_designer_info
   %hr

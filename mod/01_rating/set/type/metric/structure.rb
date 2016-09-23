@@ -38,7 +38,7 @@ format :html do
         </div>
         <div class="col-md-11">
           <div class="name row">
-            #{link_to metric_title, metric_url, class: 'inherit-anchor'}
+            #{link_to metric_title, path: metric_url, class: 'inherit-anchor'}
           </div>
           <div class="row">
             #{_render_designer_info}
@@ -50,8 +50,8 @@ format :html do
 
   view :designer_info do
     wrap_with :div, class: "metric-designer-info" do
-      card_link card.metric_designer_card.cardname.field("contribution"),
-                text: author_info(card.metric_designer_card, "Designed by")
+      link_to_card card.metric_designer_card.cardname.field("contribution"),
+                   author_info(card.metric_designer_card, "Designed by")
     end
   end
 

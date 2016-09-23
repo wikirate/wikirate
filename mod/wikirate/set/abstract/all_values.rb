@@ -156,8 +156,8 @@ format do
     @paging_path_args[:offset] = page * @paging_limit
     options[:class] = "card-paging-link slotter"
     options[:remote] = true
-    paging_args = fill_paging_args
-    link_to raw(text), path(paging_args), options
+    options[:path] = fill_paging_args
+    link_to raw(text), options
   end
 
   def unknown_value? value
@@ -259,10 +259,11 @@ format :html do
   # @option args [String] :order
   # @option args [String] :class additional css class
   def sort_link text, args
-    url = path view: "content", offset: offset, limit: limit,
-               sort_order: args[:order], sort_by: args[:sort_by]
-    link_to text, url, class: "metric-list-header slotter #{args[:class]}",
-                       "data-remote" => true
+    link_to text, path: { view: "content", offset: offset, limit: limit,
+                          sort_order: args[:order],
+                          sort_by: args[:sort_by] },
+                  "data-remote" => true,
+                  class: "metric-list-header slotter #{args[:class]}"
   end
 
   view :card_list_header do
