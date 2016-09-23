@@ -14,10 +14,10 @@ end
 
 format :json do
   view :core do |_args|
-    mvc = MetricValuesHash.new card.left
+    mvh = MetricValuesHash.new card.left
     card.item_cards(default_query: true).each do |value_card|
-      mvc.add value_card
+      mvh.add value_card
     end
-    mvc.to_json
+    mvh.to_json
   end
 end

@@ -2,7 +2,7 @@ def key_type_id
   WikirateCompanyID
 end
 
-def filter_by_key key
+def filter_by_key company
   return true unless (filter = company_filter)
   filter.include? company
 end
