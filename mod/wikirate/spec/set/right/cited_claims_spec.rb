@@ -33,7 +33,8 @@ describe Card::Set::Right::CitedClaims do
       expect(html).to have_tag(
         "a[href='/Death_Star+Force?"\
         "citable=Death+Star+uses+dark+side+of+the+Force&edit_article=true']"\
-        "[class='cite-button known-card']", text: "Cite!")
+        "[class='cite-button known-card']", text: "Cite!"
+      )
     end
   end
 end
