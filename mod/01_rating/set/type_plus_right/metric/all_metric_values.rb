@@ -19,8 +19,8 @@ format :html do
                       sort_by: 'name', order: toggle_sort_order(:name),
                       class: 'header'}
           #{sort_link "Values #{sort_icon :value}",
-                sort_by: 'value', order: toggle_sort_order(:value),
-                class: 'data'}
+                      sort_by: 'value', order: toggle_sort_order(:value),
+                      class: 'data'}
         </div>
       </div>
     HTML

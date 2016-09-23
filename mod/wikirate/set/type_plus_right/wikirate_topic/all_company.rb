@@ -1,30 +1,38 @@
 include_set Abstract::SortAndFilter
 
+RELATED_VIA_SOURCE_OR_NOTE =
+  %(
+    "referred_to_by": {
+      "left": {
+        "type": %w(in Note Source),
+        "right_plus": ["topic", "refer_to": #{name}]
+      },
+      "right": "company"
+    },
+    }
+  ).freeze
+RELATED_VIA_METRIC =
+  %(
+    "left_plus": [
+      {
+        "type": "metric",
+        "right_plus": ["topic", { "refer_to": #{name} }]
+      },
+      {
+        "right_plus": ["*cached_count", { "content": ["ne", "0"] }]
+      }
+    ]
+  ).freeze
+
+def related_company_from_metric
+
 def raw_content
   # search looks like this but is not used
   # instead the json core view delivers the search result
   # calling #related_companies of the topic card
   %({
     "type": "company",
-    "or": {
-      "referred_to_by": {
-          "left": {
-            "type": %w(in Note Source),
-            "right_plus": ["topic", "refer_to": #{name}]
-          },
-          "right": "company"
-        },
-      },
-      "left_plus": [
-        {
-          "type": "metric",
-          "right_plus": ["topic", { "refer_to": #{name} }]
-        },
-        {
-          "right_plus": ["*cached_count", { "content": ["ne", "0"] }]
-        }
-      ]
-    }
+    "or": { #{RELATED_VIA_SOURCE_OR_NOTE}, #{RELATED_VIA_METRIC} }
   })
 end
 
