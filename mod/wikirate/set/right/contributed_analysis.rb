@@ -12,20 +12,25 @@ format :html do
   end
 
   view :toggle do |args|
-    verb, adjective, direction = (args[:toggle_mode] == :close ? %w( open open triangle-right ) : %w( close closed triangle-bottom ))
+    verb, adjective, direction =
+      if args[:toggle_mode] == :close
+        %w(open open triangle-right)
+      else
+        %w(close closed triangle-bottom)
+      end
+    disabled = card.contribution_count.zero? ? "disabled" : ""
 
-    link_to  glyphicon(direction),
-             path(view: adjective),
-             remote: true,
-             title: "#{verb} #{card.name}",
-             class: "#{verb}-icon toggler slotter nodblclick #{'disabled' if card.contribution_count == 0}"
+    link_to_view adjective, glyphicon(direction),
+                 title: "#{verb} #{card.name}",
+                 class: "#{verb}-icon toggler slotter nodblclick #{disabled}"
   end
 
   view :open do |args|
-    if card.contribution_count == 0
+    if card.contribution_count.zero?
       _render_closed(args)
     else
-      if (l = card.left) && (Auth.current_id == l.id || l.type_code == :wikirate_company)
+      if (l = card.left) &&
+         (Auth.current_id == l.id || l.type_code == :wikirate_company)
         args[:slot_class] = "editable"
       end
       super(args)

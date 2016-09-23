@@ -132,11 +132,12 @@ format :html do
 
   def default_button_formgroup_args args
     toggle_text = filter_active? ? "Hide Advanced" : "Show Advanced"
-    buttons = [card_link(card.left, text: "Reset",
-                                    class: "slotter btn btn-default margin-8")]
+    buttons = [
+      link_to_card(card.cardname.leftname, "Reset",
+                   class: "slotter btn btn-default margin-8")
+    ]
     unless card.advanced_keys.empty?
-      buttons.unshift(content_tag(:a,
-                                  toggle_text,
+      buttons.unshift(content_tag(:a, toggle_text,
                                   href: "#collapseFilter",
                                   class: "btn btn-default",
                                   data: { toggle: "collapse",
@@ -181,7 +182,8 @@ format :html do
     end
     options[:class] = "card-paging-link slotter"
     options[:remote] = true
-    link_to raw(text), path(@paging_path_args.merge(filter_args)), options
+    options[:path] = @paging_path_args.merge filter_args
+    link_to raw(text), options
   end
 
   def text_filter type_name, args
