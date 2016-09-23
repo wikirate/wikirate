@@ -26,9 +26,7 @@ format :html do
   def button_formgroup_reset_button
     link_to_card card.cardname.left, "Reset",
                  path: { view: content_view },
-                 format: { class: "slotter btn btn-default margin-8",
-                           remote: true },
-
+                 remote: true, class: "slotter btn btn-default margin-8"
   end
 
   view :core do |args|

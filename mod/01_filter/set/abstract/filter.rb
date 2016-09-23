@@ -134,7 +134,7 @@ format :html do
     toggle_text = filter_active? ? "Hide Advanced" : "Show Advanced"
     buttons = [
       link_to_card(card.cardname.leftname, "Reset",
-                   format: { class: "slotter btn btn-default margin-8" })
+                   class: "slotter btn btn-default margin-8")
     ]
     unless card.advanced_keys.empty?
       buttons.unshift(content_tag(:a, toggle_text,
