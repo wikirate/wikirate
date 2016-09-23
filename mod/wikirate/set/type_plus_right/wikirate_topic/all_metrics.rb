@@ -1,4 +1,5 @@
-include_set Abstract::AllMetricValues
+include_set Abstract::SortAndFilter
+
 def raw_content
   %({
       "type_id":#{MetricID},
@@ -53,20 +54,8 @@ format do
       metric_company_count(y[0]) - metric_company_count(x[0])
     end
   end
-end
-format :html do
+
   def page_link_params
     [:name, :research_policy, :type, :sort]
-  end
-
-  view :card_list_items do |args|
-    search_results.map do |row|
-      c = Card.fetch row[0]
-      render :card_list_item, args.clone.merge(item_card: c)
-    end.join "\n"
-  end
-
-  view :card_list_header do
-    ""
   end
 end

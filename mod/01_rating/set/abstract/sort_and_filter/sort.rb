@@ -52,7 +52,9 @@ format do
   def path args={}
     # the filter name cause conflict with the path name
     return super unless args.delete(:replace_name)
-    args[:_name_] = name if (name = args.delete(:name))
+    if (name = args.delete(:name))
+      args[:_name_] = name
+    end
     super(args).gsub("_name_=", "name=")
   end
 end
@@ -70,7 +72,6 @@ format :html do
     fill_page_link_params path
     link_to_view :content, text,
                  class: "metric-list-header slotter #{args[:class]}"
-
   end
 
   def toggle_sort_order field

@@ -18,7 +18,6 @@ def pass_filter? key, values
     filter_by_year(values)
 end
 
-
 def filter_by_name metric
   return true unless Env.params["name"].present?
   metric.downcase.include?(Env.params["name"].downcase)

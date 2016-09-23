@@ -1,8 +1,9 @@
-include_set Abstract::AllMetricValues
+include_set Abstract::SortAndFilter
 
 def raw_content
   # search looks like this but is not used
   # instead the json core view delivers the search result
+  # calling #related_companies of the topic card
   %({
     "type": "company",
     "or": {
@@ -26,7 +27,6 @@ def raw_content
     }
   })
 end
-
 
 def pass_filter? key, _values
   filter_by_name key
@@ -96,20 +96,8 @@ format do
       sort_by_desc cached_values, "metric"
     end
   end
-end
-format :html do
+
   def page_link_params
     [:name, :sort]
-  end
-
-  view :card_list_items do |args|
-    search_results.map do |row|
-      c = Card.fetch row[0]
-      render :card_list_item, args.clone.merge(item_card: c)
-    end.join "\n"
-  end
-
-  view :card_list_header do
-    ""
   end
 end
