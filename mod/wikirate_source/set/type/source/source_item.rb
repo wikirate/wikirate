@@ -105,21 +105,13 @@ format :html do
   end
 
   view :website_link do |_args|
-    card_link(
-      card,
-      text: website_text,
-      class: "source-preview-link",
-      target: "_blank"
-    )
+    link_to_card card, website_text, class: "source-preview-link",
+                                     target: "_blank"
   end
 
   view :title_link do |_args|
-    card_link(
-      card,
-      text: title_text,
-      class: "source-preview-link preview-page-link",
-      target: "_blank"
-    )
+    klass = "source-preview-link preview-page-link"
+    link_to_card card, title_text, target: "_blank", class: klass
   end
 
   view :source_link do |args|

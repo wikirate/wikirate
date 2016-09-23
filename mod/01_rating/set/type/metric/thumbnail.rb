@@ -30,7 +30,7 @@ format :html do
   view :thumbnail_title do |_args|
     content = content_tag(:div, nest(card.metric_title_card, view: :name),
                           class: "ellipsis")
-    card_link card, text: content, title: card.metric_title_card.name
+    link_to_card card, content, title: card.metric_title_card.name
   end
 
   view :thumbnail_subtitle do |args|
@@ -45,7 +45,7 @@ format :html do
   end
   def default_thumbnail_subtitle_args args
     args[:text] ||= [card.value_type, "designed by"].compact.join " | "
-    args[:author] ||= card_link card.metric_designer
+    args[:author] ||= link_to_card card.metric_designer
   end
 
   view :score_thumbnail do |_args|
