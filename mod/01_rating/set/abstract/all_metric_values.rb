@@ -93,11 +93,15 @@ format do
   def fill_paging_args
     paging_args = @paging_path_args.merge(sort_by: sort_by,
                                           sort_order: sort_order)
+    fill_page_link_params paging_args
+    paging_args[:view] = :content
+    paging_args
+  end
+
+  def fill_page_link_params paging_args
     page_link_params.each do |key|
       paging_args[key] = params[key] if params[key].present?
     end
-    paging_args[:view] = :content
-    paging_args
   end
 
   def page_link_params

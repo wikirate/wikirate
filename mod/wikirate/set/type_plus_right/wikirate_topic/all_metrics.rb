@@ -1,4 +1,4 @@
-include_set TypePlusRight::WikirateCompany::AllMetricValues
+include_set Abstract::AllMetricValues
 def raw_content
   %({
       "type_id":#{MetricID},
@@ -10,10 +10,18 @@ def raw_content
     })
 end
 
-def filter metric
+def pass_filter? metric, _values
   filter_by_name(metric) &&
     filter_by_research_policy(metric) &&
     filter_by_type(metric)
+end
+
+format :json do
+  view :core do
+    item_cards(default_query: true).each_with_object({}) do |metric_id, result|
+      result[metric_id] = true unless result.key?(metric_id)
+    end.to_json
+  end
 end
 
 format do

@@ -1,12 +1,47 @@
-include_set TypePlusRight::WikirateCompany::AllMetricValues
+include_set Abstract::AllMetricValues
 
 def raw_content
-  # cannot leave it empty
-  %({ "name":"Home" })
+  # search looks like this but is not used
+  # instead the json core view delivers the search result
+  %({
+    "type": "company",
+    "or": {
+      "referred_to_by": {
+          "left": {
+            "type": %w(in Note Source),
+            "right_plus": ["topic", "refer_to": #{name}]
+          },
+          "right": "company"
+        },
+      },
+      "left_plus": [
+        {
+          "type": "metric",
+          "right_plus": ["topic", { "refer_to": #{name} }]
+        },
+        {
+          "right_plus": ["*cached_count", { "content": ["ne", "0"] }]
+        }
+      ]
+    }
+  })
 end
 
-def filter metric
-  filter_by_name(metric)
+
+def pass_filter? key, _values
+  filter_by_name key
+end
+
+def related_company_ids_to_json ids
+  ids.each_with_object({}) do |company_id, result|
+    result[company_id] = true unless result.key?(company_id)
+  end.to_json
+end
+
+format :json do
+  view :core do
+    related_company_ids_to_json left.related_companies
+  end
 end
 
 format do
