@@ -161,20 +161,22 @@ format :html do
   end
 
   view :value_type_edit_modal_link do |args|
-    value_type_card = card.fetch trait: :value_type, new: {}
     render_modal_link(
-      text: vtype_edit_modal_link_text(value_type_card),
+      text: vtype_edit_modal_link_text,
       link_opts: { class: "btn btn-default slotter",
                    path: { slot: { hide: "title,header,menu,help,subheader",
                                    view: :edit, edit_value_type: true } } }
     )
   end
 
-  def vtype_edit_modal_link_text vtype_card
-    if vtype_card.new?
+  def vtype_edit_modal_link_text
+    # FIXME: why does value_type_card not work although value_type is registered
+    #        as card accessor
+    v_type_card = Card.fetch trait: :value_type, new: {}
+    if v_type_card.new?
       "Update Value Type"
     else
-      subformat(value_type_card).render_shorter_pointer_content
+      subformat(v_type_card).render_shorter_pointer_content
     end
   end
 
