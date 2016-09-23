@@ -2,16 +2,13 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
   let(:all_metric_values) { Card["Samsung"].fetch trait: :all_metric_values }
   let(:create_card) { Card.create name: "a card" }
   it "updates if value is created in event" do
-    $first = true
     expect(all_metric_values.values_by_name.keys.sort)
       .to eq ["Joe User+researched number 3", "Joe User+researched number 2",
               "Joe User+researched number 1"].sort
     Card::Auth.as_bot do
       in_stage :prepare_to_store,
-               on: :save,
+               on: :save, for: "a card",
                trigger: -> { create_card } do
-        return unless $first
-        $first = false
         Card["Jedi+deadliness"].create_value company: "Samsung",
                                              year: "2010",
                                              value: "100",

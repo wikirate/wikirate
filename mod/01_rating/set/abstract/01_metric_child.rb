@@ -1,8 +1,6 @@
 # include with option :generation
-# @example
+# @example including set is grandchild of a metric (eg. name is like metric+a+b)
 #   include_set Abstract::MetricChild, generation: 2
-#   # means the includer is grandchild (e.g. name is like metric+a+b)
-
 def self.included host_class
   host_class.class_eval do
     define_method :metric_parts do |cardname|

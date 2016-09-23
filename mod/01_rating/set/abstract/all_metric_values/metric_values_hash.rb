@@ -11,14 +11,15 @@
 #   }
 class MetricValuesHash < Hash
   # @param primary_card [Card] a metric or company card
-  # @param hash_or_json [Hash, String] with format
-  #   { company/metric id =>
+  # @param hash_or_json [Hash, String] initial value for hash with format
+  #   { company_id/metric id =>
   #       [{ "year" => , "value" => , "last_update_time => }], ...
   #   }
-  # @example for a fixed metric
   def initialize primary_card, hash_or_json={}
     @primary_card = primary_card
     # used to fetch the primary and secondary name of a changed card
+    # if we collect all values for a company then the company name is the
+    # primary name of a metric value and the metric name is the secondary name
     @name_fetcher = name_fetcher
     hash_or_json = JSON.parse(hash_or_json) if hash_or_json.is_a?(String)
     replace hash_or_json
@@ -72,7 +73,7 @@ class MetricValuesHash < Hash
   def remove year=@changed_card.year
     return unless records?
     records.delete_if { |row| row["year"] == year }
-    delete company_id if records.empty?
+    delete key_id if records.empty?
   end
 
   def changed_record

@@ -59,7 +59,7 @@ format :html do
     url = path view: "content", offset: offset, limit: limit,
                sort_order: args[:order], sort_by: args[:sort_by]
     link_to text, url, class: "metric-list-header slotter #{args[:class]}",
-            "data-remote" => true
+                       "data-remote" => true
   end
 
   def toggle_sort_order field

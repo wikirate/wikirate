@@ -16,8 +16,17 @@ event :set_metric_value_name,
 end
 
 def valid_value_name?
-  cardname.parts.size >= 3 &&
-    metric_card && metric_card.type_id == MetricID &&
-    company_card && company_card.type_id == WikirateCompanyID &&
-    year_card && year_card.type_id == YearID
+  cardname.parts.size >= 3 && valid_metric? && valid_company? && valid_year?
+end
+
+def valid_metric?
+  metric_card && metric_card.type_id == MetricID
+end
+
+def valid_company?
+  company_card && company_card.type_id == WikirateCompanyID
+end
+
+def valid_year?
+  year_card && year_card.type_id == YearID
 end
