@@ -1,4 +1,4 @@
-shared_examples_for "viewable metric" do |metric_name, value_type, detail_label|
+shared_examples_for "viewable metric" do |metric_name, _value_type, detail_label|
   before do
     login_as "joe_user"
     @metric = Card[metric_name]
