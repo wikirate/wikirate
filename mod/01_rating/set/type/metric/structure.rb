@@ -1,11 +1,68 @@
 format :html do
   view :open_content do
-    wrap_with :div, class: "container-fluid yinyang" do
-      [
-        _render_title_row,
-        _render_content_row
-      ]
+    # layout do
+    #   row 6, 6, [_render_metric_header_1, _render_title_right_col]
+    # end
+    layout container: true, fluid: true do
+      # binding.pry
+      # row 6, 6, [
+      #   _render_metric_header,
+      #   _render_title_right_col
+      # ]
+      row 6, 6 do
+        column _render_content_left_col, class: "metric-info left-col nopadding"
+        column _render_content_right_col, class: "wiki right-col"
+      end
     end
+    # wrap_with :div, class: "container-fluid yinyang" do
+    #   [
+    #     _render_metric_header_1,
+    #     _render_title_right_col
+    #   ]
+    # end
+  end
+
+  view :metric_title do |_args|
+    metric_url = "/" + card.cardname.url_key
+    metric_title = card.metric_title_card.cardname
+    link = link_to metric_title, metric_url, class: "inherit-anchor"
+    content_tag(:h4, link, class: "metric-color")
+  end
+
+  view :metric_question do
+    question = subformat(card.question_card)._render_content
+    content_tag(:h4, question, class: "question")
+  end
+
+  view :title_and_question do
+    wrap_with :div do
+      [_render_metric_title, _render_metric_question]
+    end
+  end
+
+  view :metric_header do
+    vote = field_subformat(:vote_count)._render_content
+    layout do
+      row 1, 11 do
+        column vote, class: "h4"
+        column render_title_and_question
+      end
+    end
+  end
+
+
+  view :question_row do
+    <<-HTML
+      <div class="row question-container">
+        <div class="row-icon">
+          #{fa_icon 'question'}
+        </div>
+        <div class="row-data">
+          <small>Question</small>
+          #{subformat(card.question_card)._render_content}
+        </div>
+      </div>
+    HTML
   end
 
   view :title_row do |args|
@@ -60,9 +117,9 @@ format :html do
       subformat(author_card.field(:image, new: {}))._render_core size: "small"
     <<-HTML
       <div>
-        <small class="text-muted">#{text}</small>
+        <!-- <small class="text-muted">#{text}</small> -->
       </div>
-      <div class="img-container">
+      <div class="image-box small no-margin">
         <span class="img-helper"></span>
         #{author_content}
       </div>
@@ -113,19 +170,6 @@ format :html do
     HTML
   end
 
-  view :question_row do
-    <<-HTML
-      <div class="row question-container">
-        <div class="row-icon">
-          #{fa_icon 'question'}
-        </div>
-        <div class="row-data">
-          <small>Question</small>
-          #{subformat(card.question_card)._render_content}
-        </div>
-      </div>
-    HTML
-  end
 
   view :content_row do |args|
     <<-HTML
@@ -145,6 +189,7 @@ format :html do
   view :content_left_col do |args|
     wrap do
       [
+        _render_metric_header,
         _render_filter(args),
         _render_year_select(args),
         _render_company_list(args)

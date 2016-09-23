@@ -26,15 +26,37 @@ format :html do
   view :details_tab do |args|
     content = wrap_with :div, class: "metric-details-content" do
       [
-        _render_add_value_buttons(args),
+        _render_metric_properties(args),
+        # _render_add_value_buttons(args),
+        content_tag(:hr, ""),
         nest(card.about_card, view: :titled, title: "About"),
         nest(card.methodology_card, view: :titled, title: "Methodology"),
-        _render_contributing(args)
+        _render_import_button(args)
+        # _render_contributing(args)
       ]
     end
     tab_wrap do
       content
     end
+  end
+
+  view :metric_properties do |args|
+    props = Hash.new
+    props["Designed By"] = _render_designer_info.html_safe
+    # value type refer: http://dev.wikirate.org/Good_Company_Index+Good_Company_Grade+numeric_detail
+    props["Value Type"] = content_tag(:div, _render_value_type_detail(args))
+    props["Research Policy"] = nest(card.research_policy_card,
+                                    view: :content,
+                                    items: { view: :name })
+    props["Metric Type"] = field_subformat(:metric_type)._render_content item: :name
+    props["Report Type"] = nest(card.report_type_card,
+                                view: :content,
+                                items: { view: :name })
+    props["Topics"] = field_subformat(:wikirate_topic)._render_content item: :link
+    props["Projects"] = nest(card.project_card,
+                             view: :content,
+                             items: { view: "content", structure: "list item" })
+    table props, class: 'metric-properties'
   end
 
   view :contributing do |args|
@@ -61,19 +83,25 @@ format :html do
   end
 
   view :value_type_detail do
-    wrap do
-      <<-HTML
-        <div class="padding-bottom-10">
-          <div class='row nopadding'>
-            <div class="heading-content pull-left">Value Type</div>
-            <div class="margin-8 pull-left">
-              #{_render_value_type_edit_modal_link}
-            </div>
-          </div>
-            #{_render_short_view}
-        </div>
-      HTML
-    end
+    # wrap do
+    #   <<-HTML
+    #     <div class="padding-bottom-10">
+    #       <div class='row nopadding'>
+    #         <div class="heading-content pull-left">Value Type</div>
+    #         <div class="margin-8 pull-left">
+    #           #{_render_value_type_edit_modal_link}
+    #         </div>
+    #       </div>
+    #         #{_render_short_view}
+    #     </div>
+    #   HTML
+    # end
+   wrap_with :div do
+     [
+       _render_value_type_edit_modal_link,
+       _render_short_view
+     ]
+   end
   end
 
   view :source_tab do

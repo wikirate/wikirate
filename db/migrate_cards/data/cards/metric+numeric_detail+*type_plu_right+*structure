@@ -1,0 +1,11 @@
+<div class="">
+  <div class="col-md-2 nopadding">
+    <h5 class="pull-left">Unit: </h5>
+    <h5 class="pull-left margin-left-10">{{_l+Unit|content}}</h5>
+  </div>
+  
+  <div class="col-md-4 nopadding">
+    <h5 class="pull-left">Range: </h5>
+    <h5 class="pull-left margin-left-10">{{_l+Range|content}}</h5>
+  </div>
+</div>

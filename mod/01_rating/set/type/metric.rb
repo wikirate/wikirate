@@ -176,14 +176,14 @@ format :html do
         }
       },
       html_args: {
-        class: "btn btn-default slotter"
+        class: "btn btn-default slotter value-type-button"
       },
       text: text
     }
     render_modal_link(args.merge(edit_args))
   end
 
-  view :short_view do |_args|
+    view :short_view do |_args|
     return "" unless (value_type = card.fetch trait: :value_type)
 
     details_field =
