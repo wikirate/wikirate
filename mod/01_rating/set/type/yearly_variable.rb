@@ -14,6 +14,6 @@ format :html do
   view :thumbnail_title do
     content = content_tag(:div, nest(card, view: :name),
                           class: "ellipsis")
-    card_link card, text: content, title: card.name
+    link_to_card card, content, title: card.name
   end
 end

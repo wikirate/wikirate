@@ -1,4 +1,4 @@
-shared_examples_for "viewable metric" do |metric_name, value_type, detail_label|
+shared_examples_for "viewable metric" do |metric_name, _value_type, detail_label|
   before do
     login_as "joe_user"
     @metric = Card[metric_name]
@@ -11,8 +11,7 @@ shared_examples_for "viewable metric" do |metric_name, value_type, detail_label|
 
   it "renders modal links" do
     html = @metric.format.render_value_type_edit_modal_link
-    content = value_type
-    expect(html).to have_tag("a", text: content)
+    expect(html).to have_tag("a", text: "Update Value Type")
   end
 end
 

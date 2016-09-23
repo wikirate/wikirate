@@ -56,15 +56,12 @@ format :html do
     text = content_tag :div, class: "logo" do
       card.company_card.format.field_nest :image, view: :core, size: "small"
     end
-    card_link card.company_card, class: "inherit-anchor hidden-xs",
-                                 text: text
+    link_to_card card.company_card, text, class: "inherit-anchor hidden-xs"
   end
 
   view :name_link do
-    card_link card.company_card,
-              class: "inherit-anchor name",
-              text: card.company,
-              target: "_blank"
+    link_to_card card.company_card, nil, class: "inherit-anchor name",
+                                         target: "_blank"
   end
 
   view :metric_row do |args|

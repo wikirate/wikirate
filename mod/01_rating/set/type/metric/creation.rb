@@ -48,7 +48,7 @@ def check_value_card_exist args, error_msg
   return unless (value_name = extract_metric_value_name(args, error_msg))
   if (value_card = Card[value_name.to_name.field(:value)])
     unless value_card.content.casecmp(args[:value]).zero?
-      link = format.card_link value_card.metric_card, text: "value"
+      link = format.link_to_card value_card.metric_card, "value"
       error_msg << "#{link} '#{value_card.content}' exists"
     end
   end

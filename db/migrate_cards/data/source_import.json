@@ -1,0 +1,16 @@
+[
+  {
+    "name": "export",
+    "type": "Pointer"
+  },
+  {
+    "name": "Source Import File",
+    "type": "Cardtype",
+    "codename": "source_import_file"
+  },
+  {
+    "name": "*new source import file",
+    "type": "Source Import File",
+    "codename": "new_source_import_file"
+  }
+]
