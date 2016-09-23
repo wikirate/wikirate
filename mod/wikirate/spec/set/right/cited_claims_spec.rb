@@ -23,7 +23,7 @@ describe Card::Set::Right::CitedClaims do
           with_tag "div", with: { id: "whateverclaim", class: "SELF-whateverclaim" }
         end
       end
-      expect(html).to have_tag("a[href='/Death_Star+Force?citable=Death_Star_uses_dark_side_of_the_Force&edit_article=true'][class='cite-button']", text: "Cite!")
+      expect(html).to have_tag("a[href='/Death_Star+Force?citable=Death+Star+uses+dark+side+of+the+Force&edit_article=true'][class='cite-button known-card']", text: "Cite!")
     end
   end
 end
