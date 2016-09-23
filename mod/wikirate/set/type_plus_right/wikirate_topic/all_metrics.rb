@@ -11,10 +11,10 @@ def raw_content
     })
 end
 
-def pass_filter? metric, _values
-  filter_by_name(metric) &&
-    filter_by_research_policy(metric) &&
-    filter_by_type(metric)
+def filter_by_key key
+  super &&
+    filter_by_research_policy(key) &&
+    filter_by_metric_type(key)
 end
 
 format :json do

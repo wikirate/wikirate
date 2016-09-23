@@ -6,45 +6,50 @@ def filter_by_key key
   filter_by_metric key
 end
 
+def filter_by_values values
+  filter_by_value(values) &&
+    filter_by_year(values)
+end
+
 def filter_by_metric metric
   filter_by_name(metric) &&
     filter_by_topic(metric) &&
     filter_by_research_policy(metric) &&
     filter_by_vote(metric) &&
-    filter_by_type(metric)
-end
-
-def filter_by_topic metric
-  return true unless Env.params["wikirate_topic"].present?
-  topic_cards = Card[metric].fetch trait: :wikirate_topic
-  topic_cards && topic_cards.item_names.include?(Env.params["wikirate_topic"])
+    filter_by_metric_type(metric)
 end
 
 def filter_by_vote metric
-  vote_param = Env.params["my_vote"]
-  return true if !vote_param.present? || vote_param.size == 3
-  upvoted = upvoted_metric?(metric)
-  downvoted = downvoted_metric?(metric)
-  fit_vote? upvoted, downvoted, vote_param
+  keep_if :my_vote, options: 3 do |filter|
+    case vote_status metric
+    when :upvoted   then filter.include? "i voted for"
+    when :downvoted then filter.include? "i voted against"
+    else filter.include? "i did not vote"
+    end
+  end
 end
 
 private
 
-def fit_vote? upvoted, downvoted, vote_param
-  not_voted = !upvoted && !downvoted
-  result = false
-  result |= upvoted if vote_param.include?("i voted for")
-  result |= downvoted if vote_param.include?("i voted against")
-  result |= not_voted if vote_param.include?("i did not vote")
-  result
+def vote_status metric
+  if upvoted_metric? metric
+    :upvoted
+  elsif downvoted_metric? metric
+    :downvoted
+  end
 end
 
 def upvoted_metric? metric
-  @upvoted_metric ||= user_voted_metric("upvotee")
-  @upvoted_metric.include?(metric)
+  @upvoted_metrics ||= ::Set.new user_voted_metric("upvotee")
+  @upvoted_metrics.include? metric
 end
 
 def downvoted_metric? metric
-  @downvoted_metric ||= user_voted_metric("downvotee")
-  @downvoted_metric.include?(metric)
+  @downvoted_metrics ||= ::Set.new user_voted_metric("downvotee")
+  @downvoted_metrics.include? metric
+end
+
+def user_voted_metric votee_type
+  votee_search = "#{Auth.current.name}+metric+#{votee_type}_search"
+  Card.fetch(votee_search).item_names
 end

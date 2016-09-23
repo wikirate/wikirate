@@ -3,12 +3,13 @@ def key_type_id
 end
 
 def filter_by_key key
-  filter_by_company key
-end
-
-def filter_by_company company
   return true unless (filter = company_filter)
   filter.include? company
+end
+
+def filter_by_values values
+  filter_by_value(values) &&
+    filter_by_year(values)
 end
 
 private

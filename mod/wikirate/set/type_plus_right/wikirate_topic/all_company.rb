@@ -36,10 +36,6 @@ def raw_content
   })
 end
 
-def pass_filter? key, _values
-  filter_by_name key
-end
-
 def related_company_ids_to_json ids
   ids.each_with_object({}) do |company_id, result|
     result[company_id] = true unless result.key?(company_id)

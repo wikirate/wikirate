@@ -4,11 +4,6 @@ def wql_to_identify_related_metric_values
   '"left": { "right":"_left" }'
 end
 
-def user_voted_metric votee_type
-  votee_search = "#{Auth.current.name}+metric+#{votee_type}_search"
-  Card.fetch(votee_search).item_names
-end
-
 format do
   def page_link_params
     [:name, :wikirate_topic, :research_policy, :vote, :value, :type,
