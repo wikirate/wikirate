@@ -29,8 +29,8 @@ end
 def filter_by_value values
   keep_if :value, default: "exists" do |filter|
     case filter
-    when "none" then value.empty?
-    when "exists" then !value.empty?
+    when "none" then values.empty?
+    when "exists" then !values.empty?
     else within_recent? filter, values
     end
   end
