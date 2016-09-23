@@ -15,6 +15,13 @@ event :set_metric_value_name,
   end.join "+"
 end
 
+event :update_date, :prepare_to_store,
+      on: :update, when: proc { |c| c.year_updated? } do
+  year_card = subfield(:year)
+  self.name = "#{metric_name}+#{company_name}+#{year_card.item_names.first}"
+  detach_subfield(:year)
+end
+
 def valid_value_name?
   cardname.parts.size >= 3 && valid_metric? && valid_company? && valid_year?
 end
@@ -29,4 +36,8 @@ end
 
 def valid_year?
   year_card && year_card.type_id == YearID
+end
+
+def year_updated?
+  (year_card = subfield(:year)) && !year_card.item_names.size.zero?
 end
