@@ -11,7 +11,7 @@ format :html do
     if !card.real? || card.creator.id == Auth.current_id
       super(args)
     else
-      link = card_link(card.creator, text: card.creator.name)
+      link = link_to_card card.creator
       %{Only #{link}(author) can edit this text source.}
     end
   end

@@ -1,180 +1,3 @@
-card_accessor :value, type: :phrase
-
-def year
-  cardname.right
-end
-
-def metric_name
-  cardname.left_name.left
-end
-
-def company_name
-  cardname.left_name.right
-end
-
-def year_card
-  Card.fetch year
-end
-
-def metric_card
-  Card.fetch metric_name
-end
-
-def company_card
-  Card.fetch company_name
-end
-
-def metric_type
-  metric_card.metric_type.downcase.to_sym
-end
-
-def value_type
-  if (value_type_card = Card.fetch "#{metric_card.name}+value type") &&
-     !value_type_card.content.empty?
-    return value_type_card.item_names[0]
-  end
-  nil
-end
-
-def source_subcards new_source_card
-  [new_source_card.subfield(:file), new_source_card.subfield(:text),
-   new_source_card.subfield(:wikirate_link)]
-end
-
-def source_in_request?
-  sub_source_card = subfield("source")
-  return false if sub_source_card.nil? ||
-                  sub_source_card.subcard("new_source").nil?
-  new_source_card = sub_source_card.subcard("new_source")
-  source_subcard_exist?(new_source_card)
-end
-
-def source_subcard_exist? new_source_card
-  file_card, text_card, link_card = source_subcards new_source_card
-  (file_card && file_card.attachment.present?) ||
-    (text_card && text_card.content.present?) ||
-    (link_card && link_card.content.present?)
-end
-
-def researched?
-  (mc = metric_card) && mc.researched?
-end
-
-def scored?
-  (mc = metric_card) && mc.scored?
-end
-
-def valid_value_name?
-  cardname.parts.size >= 3 &&
-    metric_card && metric_card.type_id == MetricID &&
-    company_card && company_card.type_id == WikirateCompanyID &&
-    year_card && year_card.type_id == YearID
-end
-
-# TODO: add #subfield_present? method to subcard API
-def subfield_exist? field_name
-  subfield_card = subfield(field_name)
-  !subfield_card.nil? && subfield_card.content.present?
-end
-
-def year_updated?
-  (year_card = subfield(:year)) && !year_card.item_names.size.zero?
-end
-
-event :update_date, :prepare_to_store,
-      on: :update, when: proc { |c| c.year_updated? } do
-  year_card = subfield(:year)
-  self.name = "#{metric_name}+#{company_name}+#{year_card.item_names[0]}"
-  detach_subfield(:year)
-end
-
-event :set_metric_value_name,
-      before: :set_autoname, when: proc { |c| c.cardname.parts.size < 4 } do
-  return if valid_value_name?
-  self.name = %w(metric company year).map do |part|
-    name_part = remove_subfield(part)
-    unless name_part
-      errors.add :name, "missing #{part} part"
-      next
-    end
-    name_part.content.gsub("[[", "").gsub("]]", "")
-  end.join "+"
-end
-
-event :validate_metric_value_fields, before: :set_metric_value_name do
-  %w(metric company year value).each do |name|
-    unless subfield_exist?(name)
-      errors.add :field, "Missing #{name}. Please check before submit."
-    end
-  end
-end
-
-def number? str
-  true if Float(str)
-rescue
-  false
-end
-
-event :validate_value_type, :validate, on: :save do
-  # check if the value fit the value type of metric
-  if metric_card && (value_type = metric_card.fetch(trait: :value_type)) &&
-     (value_card = subfield(:value))
-    value = value_card.content
-    return if value.casecmp("unknown").zero?
-    case value_type.item_names[0]
-    when "Number", "Money"
-      unless number?(value)
-        errors.add :value, "Only numeric content is valid for this metric."
-      end
-    when "Category"
-      # check if the value exist in options
-      if !(option_card = Card["#{metric_card.name}+value options"]) ||
-         !option_card.item_names.include?(value)
-        url = "/#{option_card.cardname.url_key}?view=edit"
-        anchor = %(<a href='#{url}' target="_blank">add options</a>)
-        errors.add :value, "Please #{anchor} before adding metric value."
-      end
-    end
-  end
-end
-
-def report_type
-  metric_card.fetch trait: :report_type
-end
-
-def add_report_type source_name
-  if report_type
-    report_names = report_type.item_names
-    source_card = Card.fetch(source_name).fetch trait: :report_type, new: {}
-    report_names.each do |report_name|
-      source_card.add_item report_name
-    end
-    add_subcard source_card
-  end
-end
-
-def add_company source_name
-  source_card = Card.fetch(source_name).fetch trait: :wikirate_company, new: {}
-  source_card.add_item company_name
-  add_subcard source_card
-end
-
-event :process_sources, :prepare_to_validate,
-      on: :save, when: proc { |c| c.researched? } do
-  if (sources = subfield(:source))
-    sources.item_names.each do |source_name|
-      if Card.exists? source_name
-        add_report_type source_name
-        add_company source_name
-      else
-        errors.add :source, "#{source_name} does not exist."
-      end
-    end
-  elsif action == :create
-    errors.add :source, "does not exist."
-  end
-end
-
 format :html do
   view :open_content do |args|
     _render_timeline_data args
@@ -286,13 +109,11 @@ format :html do
     wrap_with :span, span_args do
       subformat(card)._render_modal_link(
         args.merge(
-          text: fetch_value,
-          path_opts: { slot: { show: :menu, optional_horizontal_menu: :hide } },
-          html_args: {
-            "data-complete-number" => card.value,
-            "data-tooltip" => "true",
-            "data-placement" => "top",
-            "title" => card.value
+          link_text: fetch_value,
+          link_opts: {
+            path: { slot: { show: :menu, optional_horizontal_menu: :hide } },
+            title: card.value,        "data-complete-number" => card.value,
+            "data-tooltip" => "true", "data-placement" => "top",
           }
         )
       )
@@ -305,7 +126,7 @@ format :html do
 
   view :value_link do
     url = "/#{card.cardname.url_key}"
-    link = link_to beautify(fetch_value), url, target: "_blank"
+    link = link_to beautify(fetch_value), path: url, target: "_blank"
     content_tag(:span, link.html_safe, class: "metric-value")
   end
 

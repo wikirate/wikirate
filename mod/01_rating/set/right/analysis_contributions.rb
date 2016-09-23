@@ -29,7 +29,7 @@ format :html do
     when "Metrics"
       link_with_params(label, analysis_card, text, false)
     when "Review"
-      card_link analysis_name.s, text: text
+      link_to_card analysis_name.s, text
     end
   end
 
