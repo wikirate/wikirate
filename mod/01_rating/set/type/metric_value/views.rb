@@ -109,7 +109,7 @@ format :html do
     wrap_with :span, span_args do
       subformat(card)._render_modal_link(
         args.merge(
-          text: fetch_value,
+          link_text: fetch_value,
           link_opts: {
             path: { slot: { show: :menu, optional_horizontal_menu: :hide } },
             title: card.value,        "data-complete-number" => card.value,

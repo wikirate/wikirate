@@ -162,7 +162,7 @@ format :html do
 
   view :value_type_edit_modal_link do |args|
     render_modal_link(
-      text: vtype_edit_modal_link_text,
+      link_text: vtype_edit_modal_link_text,
       link_opts: { class: "btn btn-default slotter",
                    path: { slot: { hide: "title,header,menu,help,subheader",
                                    view: :edit, edit_value_type: true } } }
