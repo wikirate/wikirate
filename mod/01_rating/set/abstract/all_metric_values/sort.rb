@@ -56,10 +56,10 @@ format :html do
   # @option args [String] :order
   # @option args [String] :class additional css class
   def sort_link text, args
-    url = path view: "content", offset: offset, limit: limit,
-               sort_order: args[:order], sort_by: args[:sort_by]
-    link_to text, url, class: "metric-list-header slotter #{args[:class]}",
-                       "data-remote" => true
+    link_to_view :content, text,
+                 class: "metric-list-header slotter #{args[:class]}",
+                 path: { offset: offset, sort_order: args[:order],
+                         limit: limit,   sort_by:    args[:sort_by] }
   end
 
   def toggle_sort_order field

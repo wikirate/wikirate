@@ -2,7 +2,7 @@ card_accessor :file, type: :file
 
 format :html do
   view :original_link do |args|
-    link_to (args[:title] || "Download"), card.file_card.file.url
+    link_to (args[:title] || "Download"), path: card.file_card.file.url
   end
 
   def icon
@@ -11,8 +11,8 @@ format :html do
 
   view :metric_import_link do |_args|
     return "" unless csv?
-    card_link card.file_card, text: "Import to metric values",
-                              path_opts: { view: :import }
+    link_to_card card.file_card, "Import to metric values",
+                 path: { view: :import }
   end
 
   def csv?

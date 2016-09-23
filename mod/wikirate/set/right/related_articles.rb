@@ -15,17 +15,15 @@ format :html do
         end
       end
       if params[:general_overview] && params[:company]
-        body +=
-          content_tag :div,
-                      class: "related-articles cited-articles related-overviews cited-overviews" do
-            card_link "#{params[:company]}+notes_page",
-                      text: "Cite in General Overview",
-                      path_opts: {
-                        citable: claim.cardname.url_key,
-                        edit_general_overview: true
-                      },
-                      class: "cite-button"
-          end
+        content_class = "related-articles cited-articles " \
+                        "related-overviews cited-overviews"
+        body += content_tag :div, class: content_class  do
+          link_to_card "#{params[:company]}+notes_page",
+                       "Cite in General Overview",
+                       path: { citable: claim.cardname.url_key,
+                               edit_general_overview: true },
+                       class: "cite-button"
+        end
       end
       if uncited.any?
         body += %(
