@@ -9,7 +9,7 @@ format :html do
     args[:buttons] = button_tag "Log in"
     if Card.new(type_id: Card::SignupID).ok? :create
       args[:buttons] +=
-        link_to("...or Join!", path: { action: :new, type: :signup })
+        link_to("...or Join!", path: { action: :new, mark: :signup })
     end
     reset_path_opts = { slot: { hide: :toolbar } }
     reset_link = link_to_view :edit, "RESET PASSWORD", path: reset_path_opts

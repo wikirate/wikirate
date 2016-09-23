@@ -26,7 +26,7 @@ format :html do
       link_text: "+ Add New Value",
       link_opts: {
         class: "btn btn-default btn-sm",
-        path: { action: :new, type: :metric_value,
+        path: { action: :new, mark: :metric_value,
                 slot: { company: card.cardname.left_name.tag,
                         metric: card.cardname.left_name.trunk } }
       }
