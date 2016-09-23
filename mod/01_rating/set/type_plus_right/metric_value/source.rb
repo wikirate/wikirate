@@ -3,8 +3,7 @@ format :html do
     if card.new?
       source = Card.new type_code: :source, name: "new source"
       subformat(source)._render_content_formgroup(hide: "header help",
-                                                  buttons: ""
-      )
+                                                  buttons: "")
     else
       super args
     end

@@ -31,9 +31,8 @@ def clear_slot_params
 end
 
 def check_duplication_in_subcards name, row_no
-  if subcards[name]
-    errors.add "Row #{row_no}:#{name}", "Duplicated metric values"
-  end
+  return unless subcards[name]
+  errors.add "Row #{row_no}:#{name}", "Duplicated metric values"
 end
 
 def metric_value_args_error_key key, args
@@ -67,7 +66,7 @@ end
 
 # @return updated or created metric value card object
 def parse_metric_value import_data, source_map
-  args = process_metric_value_data import_data
+  args = process_data import_data
   process_source args, source_map
   return unless valid_value_data? args
   return unless ensure_company_exists args[:company], args
@@ -120,7 +119,7 @@ def process_source metric_value_data, source_map
 end
 
 # @return [Hash] args to create metric value card
-def process_metric_value_data metric_value_data
+def process_data metric_value_data
   mv_hash = if metric_value_data.is_a? Hash
               metric_value_data
             else
@@ -132,20 +131,6 @@ end
 
 def valid_import_format? data
   data.is_a? Array
-end
-
-def valid_value_data? args
-  @import_errors = []
-  add_import_error "metric name missing", args[:row] if args[:metric].blank?
-  %w(company year value).each do |field|
-    add_import_error "#{field} missing", args[:row] if args[field.to_sym].blank?
-  end
-  { metric: MetricID,
-    year: YearID }.each_pair do |type, type_id|
-    msg = check_existence_and_type(args[type], type_id, type)
-    add_import_error msg, args[:row]
-  end
-  @import_errors.empty?
 end
 
 def redirect_target_after_import
@@ -173,7 +158,7 @@ end
 
 def handle_import_errors metric_value_card
   @import_errors.each do |msg|
-    errors.add *msg
+    errors.add(*msg)
   end
   return unless metric_value_card
   metric_value_card.errors.each do |key, error_value|
@@ -192,7 +177,31 @@ def get_corrected_company_name params
   corrected
 end
 
-def add_import_error msg, row=nil
+def valid_value_data? args
+  collect_import_errors(args[:row]) do
+    check_if_filled_in :metric, args, "metric name"
+    %w(company year value).each { |field| check_if_filled_in field, args }
+    { metric: MetricID, year: YearID }.each_pair do |type, type_id|
+      check_existence_and_type args[type], type_id, type
+    end
+  end
+end
+
+def collect_import_errors row
+  @import_errors = []
+  @current_row = row
+  yield
+  @current_row = nil
+  @import_errors.empty?
+end
+
+def check_if_filled_in field, args, field_name=nil
+  return if args[field.to_sym].present?
+  field_name ||= field
+  add_import_error "#{field_name} missing"
+end
+
+def add_import_error msg, row=@current_row
   return unless msg
   title = "import error"
   title += " (row #{row})" if row
@@ -200,8 +209,11 @@ def add_import_error msg, row=nil
 end
 
 def check_existence_and_type name, type_id, type_name=nil
-  return  "#{name} doesn't exist" unless Card[name]
-  return "#{name} is not a #{type_name}" if Card[name].type_id != type_id
+  if !Card[name]
+    add_import_error "#{name} doesn't exist"
+  elsif Card[name].type_id != type_id
+    add_import_error "#{name} is not a #{type_name}"
+  end
 end
 
 def ensure_company_exists company, args
@@ -248,7 +260,8 @@ format :html do
   end
 
   view :import do |args|
-    frame_and_form :update, args.merge(hidden: { success: { id: "_self", view: :open } }),
+    success_args = { success: { id: "_self", view: :open } }
+    frame_and_form :update, args.merge(hidden: success_args),
                    "notify-success" => "import successful" do
       [
         _optional_render(:metric_select, args),
@@ -352,7 +365,7 @@ format :html do
                    class: "company_autocomplete")
   end
 
-  def import_checkbox row_hash
+  def prepare_import_checkbox row_hash
     checked = %w(partial exact alias).include? row_hash[:status]
     key_hash = row_hash.deep_dup
     key_hash[:company] =
@@ -361,6 +374,11 @@ format :html do
       else
         row_hash[:wikirate_company]
       end
+    [key_hash, checked]
+  end
+
+  def import_checkbox row_hash
+    key_hash, checked = prepare_import_checkbox row_hash
     check_box_tag "metric_values[]", key_hash.to_json, checked
   end
 
@@ -388,7 +406,7 @@ format :html do
     end
   end
 
-  def import_row row, table_fields, index
+  def prepare_import_row_data row, index
     data = row_to_hash row
     data[:row] = index
     data[:wikirate_company], data[:status] = find_wikirate_company data
@@ -396,6 +414,11 @@ format :html do
     data[:company] = data_company data
     data[:checkbox] = import_checkbox data
     data[:correction] = data_correction data
+    data
+  end
+
+  def import_row row, table_fields, index
+    data = prepare_import_row_data row, index
     table_fields.map { |key| data[key].to_s }
   end
 
@@ -403,5 +426,13 @@ format :html do
     import_fields.each_with_object({}).with_index do |(key, hash), i|
       hash[key] = row[i]
     end
+  end
+
+  def duplicated_value_warning_message headline, cardnames
+    msg = <<-HTML
+      <h4><b>#{headline}</b></h4>
+      <ul><li>#{cardnames.join('</li><li>')}</li> <br />
+    HTML
+    alert("warning") { msg }
   end
 end

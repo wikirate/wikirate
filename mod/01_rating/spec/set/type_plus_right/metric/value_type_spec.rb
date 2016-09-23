@@ -23,7 +23,8 @@ shared_examples_for "changing type to numeric" do |new_type|
                                               nil
       Card.create! type_id: Card::MetricValueID, subcards: subcards
       metric.update_attributes! subcards: {
-        "+value_type" => "[[#{new_type}]]" }
+        "+value_type" => "[[#{new_type}]]"
+      }
       value_type_card = metric.fetch trait: :value_type
       expect(value_type_card.item_names[0]).to eq(new_type)
     end
@@ -34,7 +35,8 @@ shared_examples_for "changing type to numeric" do |new_type|
                                               nil
       Card.create! type_id: Card::MetricValueID, subcards: subcards
       metric.update_attributes! subcards: {
-        "+value_type" => "[[#{new_type}]]" }
+        "+value_type" => "[[#{new_type}]]"
+      }
       value_type_card = metric.fetch trait: :value_type
       expect(value_type_card.item_names[0]).to eq(new_type)
     end
@@ -72,7 +74,8 @@ describe Card::Set::TypePlusRight::Metric::ValueType do
         end
         it "updates the value type successfully" do
           metric.update_attributes! subcards: {
-            "+value_type" => "[[Category]]" }
+            "+value_type" => "[[Category]]"
+          }
           value_type_card = metric.fetch trait: :value_type
           expect(value_type_card.item_names[0]).to eq("Category")
         end
@@ -82,7 +85,8 @@ describe Card::Set::TypePlusRight::Metric::ValueType do
                                                     nil, nil
             Card.create! type_id: Card::MetricValueID, subcards: subcards
             metric.update_attributes! subcards: {
-              "+value_type" => "[[Category]]" }
+              "+value_type" => "[[Category]]"
+            }
             value_type_card = metric.fetch trait: :value_type
             expect(value_type_card.item_names[0]).to eq("Category")
           end

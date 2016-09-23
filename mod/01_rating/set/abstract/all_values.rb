@@ -7,10 +7,6 @@ def virtual?
   true
 end
 
-def wql_to_identify_related_metric_values
-  '"left": { "left":"_left" }'
-end
-
 def raw_content
   %({
       "left":{
@@ -22,39 +18,14 @@ def raw_content
     })
 end
 
-def sort_params
-  [
-    (Env.params["sort_by"] || "value"),
-    (Env.params["sort_order"] || "desc")
-  ]
-end
-
-def get_params key, default
-  if (value = Env.params[key])
-    value.to_i
-  else
-    default
-  end
-end
-
-def query params={}
-  default_query = params.delete :default_query
-  @query = super params
-  unless default_query
-    @query[:limit] = params[:default_limit] || 20
-    @query[:offset] = get_params("offset", 0)
-  end
-  @query
+def wql_to_identify_related_metric_values
+  '"left": { "left":"_left" }'
 end
 
 # @return [Hash] all companies with year and values
 #  format: { <company name> => { :year =>  , :value => }}
 def filtered_values_by_name
   @filtered_values_by_name ||= filter values_by_name
-end
-
-def params_keys
-  %w(name industry project)
 end
 
 def values_by_id
@@ -77,49 +48,48 @@ def count _params={}
   filtered_values_by_name.size
 end
 
-def construct_a_row value_card
-  { year: value_card.year, value: value_card.value,
-    last_update_time: value_card.updated_at.to_i }
-end
-
-def get_key changed_card, from=:new
-  company_card = changed_card.try("#{key_type}_card") ||
-    Card[extract_name(changed_card, key_type, from)]
-  return unless company_card
-  company_card.id.to_s
-end
-
-def extract_name card, type, from=:new
-  offset = card.type_id == Card::MetricValueID ? 0 : 1
-  cardname = card_name(card, from).parts
-  case type
-  when :metric
-    cardname[0..-3 - offset].join("+")
-  when :year
-    cardname[-1 - offset]
-  when :company
-    cardname[-2 - offset]
-  end
-end
-
-def card_name card, from
-  from == :new ? card.cardname : card.name_was.to_name
-end
-
 format :json do
   view :core do |_args|
-    card.item_cards(default_query: true).each_with_object({}) do |value_card, result|
-      key = card.get_key value_card
-      next unless key
-      result[key] = [] unless result.key?(key)
-      result[key].push card.construct_a_row(value_card)
-    end.to_json
+    mvc = MetricValuesHash.new card.left
+    card.item_cards(default_query: true).each do |value_card|
+      mvc.add value_card
+    end
+    mvc.to_json
   end
 end
 
 format do
-  def page_link_params
-    []
+  def search_results _args={}
+    @search_results ||= begin
+      sort_by, sort_order = card.sort_params
+      all_results = sorted_result sort_by, sort_order, num?
+      results = all_results[offset, limit]
+      results.blank? ? [] : results
+    end
+  end
+
+  def num?
+    metric_card = card.left
+    metric_value_type = metric_card.value_type_card
+    type = metric_value_type.nil? ? "" : metric_value_type.item_names[0]
+    type == "Number" || type == "Money" || !metric_card.researched?
+  end
+
+  def limit
+    card.query(search_params)[:limit]
+  end
+
+  def offset
+    card.get_params("offset", 0)
+  end
+
+  # paging helper methods
+  def page_link text, page, _current=false, options={}
+    @paging_path_args[:offset] = page * @paging_limit
+    options[:class] = "card-paging-link slotter"
+    options[:remote] = true
+    options[:path] = fill_paging_args
+    link_to raw(text), options
   end
 
   def fill_paging_args
@@ -133,119 +103,30 @@ format do
     paging_args
   end
 
-  def page_link text, page, _current=false, options={}
-    @paging_path_args[:offset] = page * @paging_limit
-    options[:class] = "card-paging-link slotter"
-    options[:remote] = true
-    paging_args = fill_paging_args
-    link_to raw(text), path(paging_args), options
+  def page_link_params
+    []
   end
+end
 
-  def unknown_value? value
-    value.casecmp("unknown") == 0
+def query params={}
+  default_query = params.delete :default_query
+  @query = super params
+  unless default_query
+    @query[:limit] = params[:default_limit] || 20
+    @query[:offset] = get_params("offset", 0)
   end
+  @query
+end
 
-  def compare_content value_a, value_b, is_num
-    if is_num && !(unknown_value?(value_a) || unknown_value?(value_b))
-      BigDecimal.new(value_a) - BigDecimal.new(value_b)
-    else
-      value_a <=> value_b
-    end
-  end
-
-  def latest_year_value values
-    values.sort_by { |value| value["year"] }.reverse[0]["value"]
-  end
-
-  def sort_value_asc metric_values, is_num
-    return metric_values.to_a if Env.params["value"] == "none"
-    metric_values.sort do |x, y|
-      value_a = latest_year_value x[1]
-      value_b = latest_year_value y[1]
-      compare_content value_a, value_b, is_num
-    end
-  end
-
-  def sort_name_asc metric_values
-    metric_values.sort do |x, y|
-      x[0].downcase <=> y[0].downcase
-    end
-  end
-
-  def offset
-    card.get_params("offset", 0)
-  end
-
-  def limit
-    card.query(search_params)[:limit]
-  end
-
-  def sorted_result sort_by, order, is_num=true
-    sorted = case sort_by
-             when "name", "company_name"
-               sort_name_asc card.filtered_values_by_name
-             else # "value"
-               sort_value_asc card.filtered_values_by_name, is_num
-             end
-    return sorted if order == "asc"
-    sorted.reverse
-  end
-
-  def num?
-    metric_card = card.left
-    metric_value_type = metric_card.value_type_card
-    type = metric_value_type.nil? ? "" : metric_value_type.item_names[0]
-    type == "Number" || type == "Money" || !metric_card.researched?
-  end
-
-  def search_results _args={}
-    @search_results ||= begin
-      sort_by, sort_order = card.sort_params
-      all_results = sorted_result sort_by, sort_order, num?
-      results = all_results[offset, limit]
-      results.blank? ? [] : results
-    end
+def get_params key, default
+  if (value = Env.params[key])
+    value.to_i
+  else
+    default
   end
 end
 
 format :html do
-  def sort_icon_by_state state
-    order = state.empty? ? "" : "-#{state}"
-    %(<i class="fa fa-sort#{order}"></i>)
-  end
-
-  def toggle_sort_order order
-    order == "asc" ? "desc" : "asc"
-  end
-
-  def sort_order sort_by, sort_order
-    if sort_by == "name"
-      [toggle_sort_order(sort_order), "asc"]
-    else
-      ["asc", toggle_sort_order(sort_order)]
-    end
-  end
-
-  def sort_icon sort_by, sort_order
-    if sort_by == "name"
-      [sort_icon_by_state(sort_order), sort_icon_by_state("")]
-    else
-      [sort_icon_by_state(""), sort_icon_by_state(sort_order)]
-    end
-  end
-
-  # @param [String] text link text
-  # @param [Hash] args sort args
-  # @option args [String] :sort_by
-  # @option args [String] :order
-  # @option args [String] :class additional css class
-  def sort_link text, args
-    url = path view: "content", offset: offset, limit: limit,
-               sort_order: args[:order], sort_by: args[:sort_by]
-    link_to text, url, class: "metric-list-header slotter #{args[:class]}",
-                       "data-remote" => true
-  end
-
   view :card_list_header do
     sort_by, sort_order = card.sort_params
     company_sort_order, value_sort_order = sort_order sort_by, sort_order

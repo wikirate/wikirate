@@ -2,22 +2,6 @@ card_accessor :value, type: :phrase
 
 include_set Abstract::MetricChild, generation: 2
 
-def year
-  cardname.right
-end
-
-def company_name
-  cardname.left_name.right
-end
-
-def year_card
-  Card.fetch year
-end
-
-def company_card
-  Card.fetch company_name
-end
-
 event :set_metric_value_name,
       before: :set_autoname, when: proc { |c| c.cardname.parts.size < 4 } do
   return if valid_value_name?
@@ -32,11 +16,17 @@ event :set_metric_value_name,
 end
 
 def valid_value_name?
-  cardname.parts.size >= 3 &&
-    metric_card && metric_card.type_id == MetricID &&
-    company_card && company_card.type_id == WikirateCompanyID &&
-    year_card && year_card.type_id == YearID
+  cardname.parts.size >= 3 && valid_metric? && valid_company? && valid_year?
 end
 
+def valid_metric?
+  metric_card && metric_card.type_id == MetricID
+end
 
+def valid_company?
+  company_card && company_card.type_id == WikirateCompanyID
+end
 
+def valid_year?
+  year_card && year_card.type_id == YearID
+end

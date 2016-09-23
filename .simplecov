@@ -1,5 +1,5 @@
 unless ENV["COVERAGE"] == "false"
-  require File.expand_path("../vendor/wagn/card/config/simplecov_helper",
+  require File.expand_path("../vendor/wagn/card/spec/support/simplecov_helper",
                            __FILE__)
   SimpleCov.start do
     SimpleCov.merge_timeout 1200

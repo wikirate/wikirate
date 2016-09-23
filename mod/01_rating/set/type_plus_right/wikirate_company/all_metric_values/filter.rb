@@ -1,3 +1,7 @@
+def key_type_id
+  MetricID
+end
+
 def filter_by_key key
   filter_by_metric key
 end
@@ -26,7 +30,7 @@ def filter_by_research_policy metric
   return true if !research_policy.present? || research_policy.size == 2
   rp_card = Card[metric].fetch trait: :research_policy, new: {}
   rp_card &&
-    rp_card.item_names.any? { |s| s.casecmp(research_policy[0]) == 0 }
+    rp_card.item_names.any? { |s| s.casecmp(research_policy[0]).zero? }
 end
 
 def filter_by_vote metric
@@ -41,7 +45,7 @@ def filter_by_type metric
   return true unless Env.params["type"].present?
   return false if Card[metric].type_id != MetricID
   mt = Card[metric].metric_type
-  Env.params["type"].any? { |s| s.casecmp(mt) == 0 }
+  Env.params["type"].any? { |s| s.casecmp(mt).zero? }
 end
 
 def filter_by_value values

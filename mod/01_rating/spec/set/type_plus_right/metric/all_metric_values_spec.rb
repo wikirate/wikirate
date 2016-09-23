@@ -1,5 +1,5 @@
-describe Card::Set::TypePlusRight::Metric::AllValues do
-  let(:all_values) { @metric.fetch trait: :all_values }
+describe Card::Set::TypePlusRight::Metric::AllMetricValues do
+  let(:all_metric_values) { @metric.fetch trait: :all_metric_values }
   before do
     @metric = get_a_sample_metric
     @companies = [
@@ -20,14 +20,16 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
 
   describe "format :json" do
     describe "view :core" do
-      subject { JSON.parse @metric.all_values_card.format(:json).render_core }
+      subject do
+        JSON.parse @metric.all_metric_values_card.format(:json).render_core
+      end
 
       it "uses ids as keys" do
         expect(subject.keys.map(&:to_i).sort).to eq @companies.map(&:id).sort
       end
 
       it "finds all companies with values" do
-        create_or_update! 'test', type: :pointer
+        create_or_update! "test", type: :pointer
         expect(subject.size).to eq 4
       end
 
@@ -48,17 +50,17 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
   describe "#get_params" do
     it "returns value from params" do
       Card::Env.params["offset"] = "5"
-      expect(all_values.get_params("offset", 0)).to eq(5)
+      expect(all_metric_values.get_params("offset", 0)).to eq(5)
     end
 
     it "returns default" do
-      expect(all_values.get_params("offset", 0)).to eq(0)
+      expect(all_metric_values.get_params("offset", 0)).to eq(0)
     end
   end
 
   describe "#count" do
     it "returns correct cached count" do
-      result = all_values.count {}
+      result = all_metric_values.count {}
       expect(result).to eq(4)
     end
   end
@@ -66,7 +68,7 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
     context "Numeric type" do
       it "returns true" do
         @metric.update_attributes! subcards: { "+value_type" => "[[Number]]" }
-        format = all_values.format
+        format = all_metric_values.format
         expect(format.num?).to be true
         @metric.update_attributes! subcards: { "+value_type" => "[[Money]]" }
         expect(format.num?).to be true
@@ -76,8 +78,8 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
       it "return false" do
         metric = Card.create! type_id: Card::MetricID, name: "Totoro+Chinchilla"
         metric.update_attributes! subcards: { "+value_type" => "[[Category]]" }
-        all_values = metric.fetch trait: :all_values
-        format = all_values.format
+        all_metric_values = metric.fetch trait: :all_metric_values
+        format = all_metric_values.format
         expect(format.num?).to be false
         metric.update_attributes! subcards: { "+value_type" => "[[Free Text]]" }
         expect(format.num?).to be false
@@ -86,8 +88,8 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
   end
   describe "#sorted_result" do
     before do
-      @cached_result = all_values.filtered_values_by_name
-      @format = all_values.format
+      @cached_result = all_metric_values.filtered_values_by_name
+      @format = all_metric_values.format
     end
     it "sorts by company name asc" do
       results = @format.sorted_result(
@@ -137,8 +139,8 @@ describe Card::Set::TypePlusRight::Metric::AllValues do
     it "renders card_list_header" do
       Card::Env.params["offset"] = "0"
       Card::Env.params["limit"] = "20"
-      html = all_values.format.render_card_list_header
-      url_key = all_values.cardname.url_key
+      html = all_metric_values.format.render_card_list_header
+      url_key = all_metric_values.cardname.url_key
       expect(html).to have_tag("div",
                                with: { class: "yinyang-row column-header" }) do
         with_tag :div, with: { class: "company-item value-item" } do

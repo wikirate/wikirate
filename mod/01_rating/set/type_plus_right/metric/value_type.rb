@@ -43,7 +43,7 @@ def show_category_option_errors options_card, invalid_options
 end
 
 def related_values
-  if (all_value_card = left.fetch trait: :all_values)
+  if (all_value_card = left.fetch trait: :all_metric_values)
     all_value_card.filtered_values_by_name
   end
 end

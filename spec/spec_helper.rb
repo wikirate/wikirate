@@ -14,7 +14,7 @@ Spork.prefork do
   end
 end
 
-def get_subcards_of_metric_value metric, company, content, year, source
+def get_subcards_of_metric_value metric, company, content, year=nil, source=nil
   this_year = year || "2015"
   this_source = source || get_a_sample_source.name
   this_content = content || "I'm fine, I'm just not happy."

@@ -109,13 +109,11 @@ format :html do
     wrap_with :span, span_args do
       subformat(card)._render_modal_link(
         args.merge(
-          text: fetch_value,
-          path_opts: { slot: { show: :menu, optional_horizontal_menu: :hide } },
-          html_args: {
-            "data-complete-number" => card.value,
-            "data-tooltip" => "true",
-            "data-placement" => "top",
-            "title" => card.value
+          link_text: fetch_value,
+          link_opts: {
+            path: { slot: { show: :menu, optional_horizontal_menu: :hide } },
+            title: card.value,        "data-complete-number" => card.value,
+            "data-tooltip" => "true", "data-placement" => "top",
           }
         )
       )
@@ -128,7 +126,7 @@ format :html do
 
   view :value_link do
     url = "/#{card.cardname.url_key}"
-    link = link_to beautify(fetch_value), url, target: "_blank"
+    link = link_to beautify(fetch_value), path: url, target: "_blank"
     content_tag(:span, link.html_safe, class: "metric-value")
   end
 

@@ -9,7 +9,7 @@ end
 event :validate_value_type, :validate, on: :save do
   # check if the value fit the value type of metric
   if metric_card && (value_type = metric_card.fetch(trait: :value_type)) &&
-    (value_card = subfield(:value))
+     (value_card = subfield(:value))
     value = value_card.content
     return if value.casecmp("unknown").zero?
     case value_type.item_names[0]
@@ -20,7 +20,7 @@ event :validate_value_type, :validate, on: :save do
     when "Category"
       # check if the value exist in options
       if !(option_card = Card["#{metric_card.name}+value options"]) ||
-        !option_card.item_names.include?(value)
+         !option_card.item_names.include?(value)
         url = "/#{option_card.cardname.url_key}?view=edit"
         anchor = %(<a href='#{url}' target="_blank">add options</a>)
         errors.add :value, "Please #{anchor} before adding metric value."

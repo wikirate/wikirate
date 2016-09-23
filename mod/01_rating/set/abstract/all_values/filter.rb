@@ -2,19 +2,13 @@ def key_type_id
   raise Error, "key_type_id not defined"
 end
 
-def key_type
-  raise Error, "key_type not defined"
-end
-
-def filter_by_key key
+def filter_by_key _key
   raise Error, "filter_by_key not defined"
 end
 
 def filter cache
   return unless cache
-  if Env.params["value"] == "none"
-    cache = all_without_values cache
-  end
+  cache = all_without_values cache if Env.params["value"] == "none"
   cache.select { |key, values| pass_filter? key, values }
 end
 
@@ -41,8 +35,8 @@ end
 
 def all_without_values existing_cache
   Card.search(type_id: key_type_id, return: :name)
-    .reject { |name| existing_cache[name] }
-    .each_with_object({}) do |name, res|
+      .reject { |name| existing_cache[name] }
+      .each_with_object({}) do |name, res|
     res[name] = []
   end
 end
@@ -58,4 +52,8 @@ def second_by_unit unit
   when "month"
     18_144_000
   end
+end
+
+def params_keys
+  %w(name industry project)
 end
