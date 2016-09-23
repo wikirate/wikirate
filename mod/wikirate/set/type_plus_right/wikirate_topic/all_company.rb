@@ -1,6 +1,6 @@
 include_set Abstract::SortAndFilter
 
-RELATED_VIA_SOURCE_OR_NOTE =
+def related_via_source_or_note
   %(
     "referred_to_by": {
       "left": {
@@ -8,10 +8,11 @@ RELATED_VIA_SOURCE_OR_NOTE =
         "right_plus": ["topic", "refer_to": #{name}]
       },
       "right": "company"
-    },
     }
-  ).freeze
-RELATED_VIA_METRIC =
+  )
+end
+
+def related_via_metric
   %(
     "left_plus": [
       {
@@ -22,9 +23,8 @@ RELATED_VIA_METRIC =
         "right_plus": ["*cached_count", { "content": ["ne", "0"] }]
       }
     ]
-  ).freeze
-
-def related_company_from_metric
+  )
+end
 
 def raw_content
   # search looks like this but is not used
@@ -32,7 +32,7 @@ def raw_content
   # calling #related_companies of the topic card
   %({
     "type": "company",
-    "or": { #{RELATED_VIA_SOURCE_OR_NOTE}, #{RELATED_VIA_METRIC} }
+    "or": { #{related_via_source_or_note}, #{related_via_metric} }
   })
 end
 

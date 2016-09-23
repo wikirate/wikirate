@@ -71,6 +71,7 @@ format :html do
              replace_name: true }
     fill_page_link_params path
     link_to_view :content, text,
+                 path: path,
                  class: "metric-list-header slotter #{args[:class]}"
   end
 
