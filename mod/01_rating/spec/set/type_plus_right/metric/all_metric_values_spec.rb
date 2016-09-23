@@ -91,11 +91,15 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       @cached_result = all_metric_values.filtered_values_by_name
       @format = all_metric_values.format
     end
+    def sort_params by, order, num=true
+      @format.stub(:sort_by) { by }
+      @format.stub(:sort_order) { order }
+      @format.stub(:num?) { num }
+    end
+    subject { @format.sorted_result.map { |x| x[0] } }
     it "sorts by company name asc" do
-      results = @format.sorted_result(
-        "name", "asc", false
-      )
-      expect(results.map { |x| x[0] }).to eq(
+      sort_params "name", "asc", false
+      is_expected.to eq(
         ["Amazon.com, Inc.",
          "Apple Inc.",
          "Death Star",
@@ -103,10 +107,8 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       )
     end
     it "sorts by company name desc" do
-      results = @format.sorted_result(
-        "name", "desc", false
-      )
-      expect(results.map { |x| x[0] }).to eq(
+      sort_params "name", "desc", false
+      is_expected.to eq(
         ["Sony Corporation",
          "Death Star",
          "Apple Inc.",
@@ -115,8 +117,8 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
     end
 
     it "sorts by value asc" do
-      results = @format.sorted_result "value", "asc"
-      expect(results.map { |x| x[0] }).to eq(
+      sort_params "value", "asc"
+      is_expected.to eq(
         ["Death Star",
          "Sony Corporation",
          "Amazon.com, Inc.",
@@ -125,8 +127,8 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
     end
 
     it "sorts by value desc" do
-      results = @format.sorted_result "value", "desc"
-      expect(results.map { |x| x[0] }).to eq(
+      sort_params "value", "desc"
+      is_expected.to eq(
         ["Apple Inc.",
          "Amazon.com, Inc.",
          "Sony Corporation",
