@@ -14,10 +14,9 @@ class AllValuesUpdate < Card::Migration
   def remove_old_cache_cards
     Card.search(
       left: { right: {
-        codename: %w(in all_values all_metric_values all_company all_metrics) }
-      },
+        codename: %w(in all_values all_metric_values all_company all_metrics)
+      } },
       right: { codename: "cached_count" }
     ).each(&:delete)
-
   end
 end

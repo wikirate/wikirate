@@ -28,7 +28,7 @@ format :html do
       link = link_to_card card, nil, path: { about_company: true }
       %(<div class="contributions-about-link">) \
         "showing contributions by #{link}</div>" +
-        subformat(card.fetch(trait: :contribution)).render_open
+        field_subformat(:contribution).render_open
     else
       super args
     end
@@ -67,7 +67,7 @@ format :html do
 
   view :metric_list do
     wrap_with :div, class: "yinyang-list" do
-      subformat(card, :all_metric_values)
+      field_subformat(:all_metric_values)
         ._render_content(hide: "title",
                          items: { view: :metric_row })
     end
