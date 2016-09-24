@@ -3,7 +3,7 @@ def sort_params
 end
 
 format do
-  def sorted_result sort_by, _order, _is_num=true
+  def sorted_result
     cached_values = card.filtered_values_by_name
     return cached_values.to_a if %w(value recent).include? sort_by
     sorted = case sort_by

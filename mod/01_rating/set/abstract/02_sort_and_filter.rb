@@ -1,25 +1,9 @@
 include_set Type::SearchType
 include_set Abstract::Utility
 include_set Abstract::FilterUtility
-include_set Abstract::MetricChild, generation: 1
 
 def virtual?
   true
-end
-
-def raw_content
-  %({
-      "left":{
-        "type":"metric_value",
-        #{wql_to_identify_related_metric_values}
-      },
-      "right":"value",
-      "limit":0
-    })
-end
-
-def wql_to_identify_related_metric_values
-  '"left": { "left":"_left" }'
 end
 
 # @return [Hash] all companies with year and values
@@ -48,22 +32,10 @@ def count _params={}
   filtered_values_by_name.size
 end
 
-format :json do
-  view :core do |_args|
-    mvc = MetricValuesHash.new card.left
-    card.item_cards(default_query: true).each do |value_card|
-      mvc.add value_card
-    end
-    mvc.to_json
-  end
-end
-
 format do
   def search_results _args={}
     @search_results ||= begin
-      sort_by, sort_order = card.sort_params
-      all_results = sorted_result sort_by, sort_order, num?
-      results = all_results[offset, limit]
+      results = sorted_result[offset, limit]
       results.blank? ? [] : results
     end
   end
@@ -93,14 +65,17 @@ format do
   end
 
   def fill_paging_args
-    sort_by, sort_order = card.sort_params
     paging_args = @paging_path_args.merge(sort_by: sort_by,
                                           sort_order: sort_order)
+    fill_page_link_params paging_args
+    paging_args[:view] = :content
+    paging_args
+  end
+
+  def fill_page_link_params paging_args
     page_link_params.each do |key|
       paging_args[key] = params[key] if params[key].present?
     end
-    paging_args[:view] = :content
-    paging_args
   end
 
   def page_link_params
@@ -127,24 +102,6 @@ def get_params key, default
 end
 
 format :html do
-  view :card_list_header do
-    sort_by, sort_order = card.sort_params
-    company_sort_order, value_sort_order = sort_order sort_by, sort_order
-    company_sort_icon, value_sort_icon = sort_icon sort_by, sort_order
-    %(
-      <div class='yinyang-row column-header'>
-        <div class='company-item value-item'>
-          #{sort_link "Companies #{company_sort_icon}",
-                      sort_by: 'name', order: company_sort_order,
-                      class: 'header'}
-          #{sort_link "Values #{value_sort_icon}",
-                      sort_by: 'value', order: value_sort_order,
-                      class: 'data'}
-        </div>
-      </div>
-    )
-  end
-
   view :card_list_item do |args|
     c = args[:item_card]
     item_view = args[:items] && args[:items][:view] || nest_defaults(c)[:view]
@@ -157,8 +114,8 @@ format :html do
 
   view :card_list_items do |args|
     search_results.map do |row|
-      c = Card.fetch "#{card.cardname.left}+#{row[0]}"
-      render :card_list_item, args.clone.merge(item_card: c)
+      item_card = item_card_from_row row
+      render :card_list_item, args.clone.merge(item_card: item_card)
     end.join "\n"
   end
 
@@ -170,13 +127,21 @@ format :html do
       results = render :card_list_items, args
       header = render :card_list_header, args
       %(
-        #{paging}
-        #{header}
+      #{paging}
+      #{header}
         <div class="search-result-list">
           #{results}
         </div>
         #{paging if search_results.length > 10}
       )
     end
+  end
+
+  view :card_list_header do
+    ""
+  end
+
+  def item_card_from_row row
+    Card.fetch row[0]
   end
 end

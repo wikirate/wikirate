@@ -1,31 +1,62 @@
-include_set TypePlusRight::WikirateCompany::AllMetricValues
+include_set Abstract::SortAndFilter
+
+def related_via_source_or_note
+  %(
+    "referred_to_by": {
+      "left": {
+        "type": %w(in Note Source),
+        "right_plus": ["topic", "refer_to": #{name}]
+      },
+      "right": "company"
+    }
+  )
+end
+
+def related_via_metric
+  %(
+    "left_plus": [
+      {
+        "type": "metric",
+        "right_plus": ["topic", { "refer_to": #{name} }]
+      },
+      {
+        "right_plus": ["*cached_count", { "content": ["ne", "0"] }]
+      }
+    ]
+  )
+end
 
 def raw_content
-  # cannot leave it empty
-  %({ "name":"Home" })
+  # search looks like this but is not used
+  # instead the json core view delivers the search result
+  # calling #related_companies of the topic card
+  %({
+    "type": "company",
+    "or": { #{related_via_source_or_note}, #{related_via_metric} }
+  })
 end
 
-def sort_params
-  [(Env.params["sort"] || "most_metrics"), "desc"]
+def related_company_ids_to_json ids
+  ids.each_with_object({}) do |company_id, result|
+    result[company_id] = true unless result.key?(company_id)
+  end.to_json
 end
 
-def filter metric
-  filter_by_name(metric)
-end
-
-def cached_values
-  @cached_metric_values ||= values_by_name
-  if @cached_metric_values
-    result = @cached_metric_values.select do |metric, _values|
-      filter metric
-    end
-    result
-  else
-    @cached_metric_values
+format :json do
+  view :core do
+    card.related_company_ids_to_json card.left.related_companies
   end
 end
 
 format do
+  def sort_by
+    @sort_by ||= Env.params["sort"] || "most_metrics"
+  end
+
+  def sort_order
+    "desc"
+  end
+
   def analysis_cached_count company, type
     search_card = Card.fetch "#{company}+#{card.cardname.left}+#{type}"
     count_card = search_card.fetch trait: :cached_count, new: {}
@@ -56,7 +87,7 @@ format do
     end
   end
 
-  def sorted_result sort_by, _order, _is_num=true
+  def sorted_result
     cached_values = card.filtered_values_by_name
     case sort_by
     when "most_notes"
@@ -69,20 +100,8 @@ format do
       sort_by_desc cached_values, "metric"
     end
   end
-end
-format :html do
+
   def page_link_params
     [:name, :sort]
-  end
-
-  view :card_list_items do |args|
-    search_results.map do |row|
-      c = Card.fetch row[0]
-      render :card_list_item, args.clone.merge(item_card: c)
-    end.join "\n"
-  end
-
-  view :card_list_header do
-    ""
   end
 end
