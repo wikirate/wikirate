@@ -47,16 +47,6 @@ format do
   def latest_year_value values
     values.sort_by { |value| value["year"] }.reverse[0]["value"]
   end
-
-  # FIXME: hack to use "name" as query param
-  def path args={}
-    # the filter name cause conflict with the path name
-    return super unless args.delete(:replace_name)
-    if (name = args.delete(:name))
-      args[:_name_] = name
-    end
-    super(args).gsub("_name_=", "name=")
-  end
 end
 
 format :html do
@@ -67,8 +57,7 @@ format :html do
   # @option args [String] :class additional css class
   def sort_link text, args
     path = { offset: offset, sort_order: args[:order],
-             limit: limit,   sort_by:    args[:sort_by],
-             replace_name: true }
+             limit: limit,   sort_by:    args[:sort_by] }
     fill_page_link_params path
     link_to_view :content, text,
                  path: path,
