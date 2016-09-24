@@ -67,7 +67,7 @@ format :html do
 
   view :metric_list do
     wrap_with :div, class: "yinyang-list" do
-      subformat("#{card.name}+all metric values")
+      subformat(card, :all_metric_values)
         ._render_content(hide: "title",
                          items: { view: :metric_row })
     end

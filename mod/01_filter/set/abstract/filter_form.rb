@@ -29,18 +29,28 @@ format :html do
                  remote: true, class: "slotter btn btn-default margin-8"
   end
 
+  def default_filter_header args
+    args[:filter_title] ||= "Filter & Sort"
+  end
+
+  view :filter_header do |args|
+    <<-HTML
+      <div class="filter-header">
+        <span class="glyphicon glyphicon-filter"></span>
+          #{args[:filter_title]}
+        <span class="filter-toggle">
+          <span class="glyphicon glyphicon-triangle-right"></span>
+        </span>
+      </div>
+    HTML
+  end
+
   view :core do |args|
     action = card.cardname.left_name.url_key
     filter_active = filter_active? ? "block" : "none"
     <<-HTML
     <div class="filter-container">
-        <div class="filter-header">
-          <span class="glyphicon glyphicon-filter"></span>
-          Filter & Sort
-          <span class="filter-toggle">
-            <span class="glyphicon glyphicon-triangle-right"></span>
-          </span>
-        </div>
+        #{_render_filter_header(args)}
         <div class="filter-details" style="display: #{filter_active};">
           <form action="/#{action}?view=#{content_view}" method="GET" data-remote="true" class="slotter">
             #{filter_form_content(args)}

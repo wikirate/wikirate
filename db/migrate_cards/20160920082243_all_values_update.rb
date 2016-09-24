@@ -8,12 +8,16 @@ class AllValuesUpdate < Card::Migration
     import_cards "all_values_update.json"
     delete_code_card :all_values
     remove_old_cache_cards
+    update_card :all_company, codename: "all_companies", name: "all companies"
   end
 
   def remove_old_cache_cards
     Card.search(
-      left: { right: { codename: %w(in all_values all_metric_values) } },
+      left: { right: {
+        codename: %w(in all_values all_metric_values all_company all_metrics) }
+      },
       right: { codename: "cached_count" }
     ).each(&:delete)
+
   end
 end

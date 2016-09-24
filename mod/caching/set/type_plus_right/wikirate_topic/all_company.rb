@@ -1,22 +1,22 @@
 include_set Abstract::SolidCache, cached_format: :json
 
-# refresh the topic+all company if source's company changed
+# refresh the topic+all companies if source's company changed
 ensure_set { TypePlusRight::Source::WikiRateCompany }
 cache_update_trigger TypePlusRight::Source::WikirateCompany do |changed_card|
   topics = changed_card.left.fetch trait: :wikirate_topic
   next unless topics
   topics.item_names.map do |topic|
-    Card.fetch topic.to_name.trait(:all_company)
+    Card.fetch topic.to_name.trait(:all_companies)
   end
 end
 
-# refresh the topic+all company if claim's company changed
+# refresh the topic+all companies if claim's company changed
 ensure_set { TypePlusRight::Claim::WikiRateCompany }
 cache_update_trigger TypePlusRight::Claim::WikirateCompany do |changed_card|
   topics = changed_card.left.fetch trait: :wikirate_topic
   next unless topics
   topics.item_names.map do |topic|
-    Card.fetch topic.to_name.trait(:all_company)
+    Card.fetch topic.to_name.trait(:all_companies)
   end
 end
 
@@ -26,7 +26,7 @@ cache_update_trigger TypePlusRight::Source::WikirateTopic do |changed_card|
   names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
   next unless names
   names.map do |topic_name|
-    Card.fetch topic_name.to_name.trait(:all_company)
+    Card.fetch topic_name.to_name.trait(:all_companies)
   end
 end
 
@@ -36,7 +36,7 @@ cache_update_trigger TypePlusRight::Claim::WikirateTopic do |changed_card|
   names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
   next unless names
   names.map do |topic_name|
-    Card.fetch topic_name.to_name.trait(:all_company)
+    Card.fetch topic_name.to_name.trait(:all_companies)
   end
 end
 
@@ -46,7 +46,7 @@ cache_update_trigger TypePlusRight::Metric::WikirateTopic do |changed_card|
   names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
   next unless names
   names.map do |topic_name|
-    Card.fetch topic_name.to_name.trait(:all_company)
+    Card.fetch topic_name.to_name.trait(:all_companies)
   end
 end
 # metric value name change, create or delete may expire the cache
@@ -56,7 +56,7 @@ cache_update_trigger Type::MetricValue do |changed_card|
                        .item_names
   next unless topics
   topics.map do |topic|
-    Card.fetch topic.to_name.trait(:all_company)
+    Card.fetch topic.to_name.trait(:all_companies)
   end
 end
 
