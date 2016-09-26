@@ -90,19 +90,26 @@ format :html do
     args[:author] ||= card_link card.scorer
   end
 
-  view :designer_info do |_args|
-    card_link card.metric_designer_card.cardname.field("contribution"),
-              text: author_info(card.metric_designer_card, "Designed by")
+  # view :designer_info do |_args|
+  #   card_link card.metric_designer_card.cardname.field("contribution"),
+  #             text: author_info(card.metric_designer_card, "Designed by")
+  #
+  #   wrap_each_with :div, class: "metric-designer-info" do
+  #     [
+  #       card_link(
+  #         card.metric_designer_card.cardname.field("contribution"),
+  #         text: author_info(card.metric_designer_card, "Designed by", true)),
+  #       card_link(
+  #         card.scorer_card.cardname.field("contribution"),
+  #         text: author_info(card.scorer_card, "Scored by", true))
+  #     ]
+  #   end
+  # end
 
-    wrap_each_with :div, class: "metric-designer-info" do
-      [
-        card_link(
-          card.metric_designer_card.cardname.field("contribution"),
-          text: author_info(card.metric_designer_card, "Designed by", true)),
-        card_link(
-          card.scorer_card.cardname.field("contribution"),
-          text: author_info(card.scorer_card, "Scored by", true))
-      ]
+  view :scorer_info do |_args|
+    wrap_with :div, class: "metric-designer-info" do
+      card_link card.scorer_card.cardname.field("contribution"),
+                text: author_info(card.scorer_card, "Scored by")
     end
   end
 

@@ -405,6 +405,11 @@
         }
     }
 }
+
+.wiki.right-col .nav-tabs {
+    margin: 0px -15px;
+}
+
 .metric-designer-info {
     a {
         color: inherit;
@@ -425,8 +430,9 @@
     //}
     img {
         //display: inline-block;
-        max-height: 50px;
-        max-width: 50px;
+        max-height: 100%;
+        max-width: 100%;
+        vertical-align: middle;
         //vertical-align: middle;
         // TODO: verify if something breaks without this
         // float: left;
@@ -840,8 +846,11 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     padding: 0;
 }
 
+
 //metric properties
 .metric-properties {
+  margin: 0px 15px;
+
   .pointer-list {
     padding: 0;
   }
@@ -853,15 +862,29 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     border: 0;
   }
   td:first-child {
-    vertical-align: inherit;
+    min-width: 125px;
+    width: 20%;
   }
   td {
     border: 0!important;
     padding: 2px 0px !important;
     height: 40px;
+    vertical-align: middle!important;
+    color: #555;
+
     &:last-child {
-      color: #909090;
+      font-weight:bold;
     }
   }
-  margin: 0px 15px;
+  .numerical-type-info {
+      font-size: 10px;
+      padding: 2px;
+  }
+  .list-group-item{
+    width: 80%;
+    font-weight: normal;
+    .ellipsis {
+      white-space: inherit;
+    }
+  }
 }
