@@ -158,7 +158,8 @@ format :html do
   end
 
   view :filter do |args|
-    field_subformat(:metric_company_filter)._render_core args
+    field_subformat(:metric_company_filter)
+      ._render_core args.merge(filter_title: "Filter")
   end
 
   view :year_select do
@@ -174,7 +175,7 @@ format :html do
 
   view :company_list do |_args|
     wrap_with :div, class: "yinyang-list" do
-      subformat("#{card.name}+all values")
+      field_subformat(:all_metric_values)
         ._render_content(hide: "title",
                          items: { view: :yinyang_row })
     end
