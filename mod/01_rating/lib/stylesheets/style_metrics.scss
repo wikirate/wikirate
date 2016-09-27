@@ -806,6 +806,11 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   border: 1px solid $div-border-color;
   background:#fff;
 }
+
+.metric-header-container {
+    margin: 0px 0px 10px 0px;
+}
+
 #metric-container {
     overflow-y: scroll;
     overflow-x: hidden;

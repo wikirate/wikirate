@@ -26,7 +26,7 @@ format :html do
     metric_url = "/" + card.cardname.url_key
     metric_title = card.metric_title_card.cardname
     link = link_to metric_title, metric_url, class: "inherit-anchor"
-    content_tag(:h4, link, class: "metric-color")
+    content_tag(:h3, link, class: "metric-color")
   end
 
   view :metric_question do
@@ -43,8 +43,8 @@ format :html do
   view :metric_header do
     vote = field_subformat(:vote_count)._render_content
     layout do
-      row 1, 11 do
-        column vote, class: "h4"
+      row 1, 11, class: "metric-header-container" do
+        column vote, class: "margin-top-20 "
         column render_title_and_question
       end
     end
