@@ -165,6 +165,15 @@ li > input[type="radio"] {
   }
 }
 
+.group-option input[type="checkbox"] {
+  display: inline-block;
+  height: auto;
+  width: auto;
+  margin: 0px 5px 0px 35px;
+  cursor: pointer;
+  margin-left: -20
+}
+
 #collapseFilter.collapsing {
     -webkit-transition: none;
     transition: none;

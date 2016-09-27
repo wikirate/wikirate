@@ -66,6 +66,10 @@ def calculated?
   !researched?
 end
 
+def designer_assessed?
+  reasearch_policy_card.include_item? Card.quick_fetch
+end
+
 # value between 0 and 10?
 def scored?
   metric_type_codename == :score ||
