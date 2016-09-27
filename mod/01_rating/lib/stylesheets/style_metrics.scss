@@ -854,7 +854,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 
 //metric properties
 .metric-properties {
-  margin: 0px 15px;
+  //margin: 0px 15px;
 
   .pointer-list {
     padding: 0;
@@ -869,10 +869,11 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   td:first-child {
     min-width: 125px;
     width: 20%;
+    text-align: right;
   }
   td {
     border: 0!important;
-    padding: 2px 0px !important;
+    padding: 2px 10px !important;
     height: 40px;
     vertical-align: middle!important;
     color: #555;
@@ -885,9 +886,11 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
       font-size: 10px;
       padding: 2px;
   }
+  .list-group-item, .RIGHT-topic .pointer-item, .numerical-type-info{
+    font-weight: normal;
+  }
   .list-group-item{
     width: 80%;
-    font-weight: normal;
     .ellipsis {
       white-space: inherit;
     }
