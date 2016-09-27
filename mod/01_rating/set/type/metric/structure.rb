@@ -51,59 +51,59 @@ format :html do
   end
 
 
-  view :question_row do
-    <<-HTML
-      <div class="row question-container">
-        <div class="row-icon">
-          #{fa_icon 'question'}
-        </div>
-        <div class="row-data">
-          <small>Question</small>
-          #{subformat(card.question_card)._render_content}
-        </div>
-      </div>
-    HTML
-  end
+  # view :question_row do
+  #   <<-HTML
+  #     <div class="row question-container">
+  #       <div class="row-icon">
+  #         #{fa_icon 'question'}
+  #       </div>
+  #       <div class="row-data">
+  #         <small>Question</small>
+  #         #{subformat(card.question_card)._render_content}
+  #       </div>
+  #     </div>
+  #   HTML
+  # end
 
-  view :title_row do |args|
-    <<-HTML
-    <div class="row wiki">
-      <div class="col-md-12 metric-info">
-        <div class="row">
-          <br>
-          <div class="col-md-4 pull-right nopadding">
-            #{_render_title_right_col}
-          </div>
-          <div class="col-md-8 metric-details-header">
-            #{_render_title_left_col}
-          </div>
-        </div>
-        <br>
-        #{_render_question_row(args)}
-		  </div>
-	  </div>
-    HTML
-  end
+  # view :title_row do |args|
+  #   <<-HTML
+  #   <div class="row wiki">
+  #     <div class="col-md-12 metric-info">
+  #       <div class="row">
+  #         <br>
+  #         <div class="col-md-4 pull-right nopadding">
+  #           #{_render_title_right_col}
+  #         </div>
+  #         <div class="col-md-8 metric-details-header">
+  #           #{_render_title_left_col}
+  #         </div>
+  #       </div>
+  #       <br>
+  #       #{_render_question_row(args)}
+	# 	  </div>
+	#   </div>
+  #   HTML
+  # end
 
-  view :title_left_col do
-    metric_url = "/" + card.cardname.url_key
-    metric_title = card.metric_title_card.cardname
-    <<-HTML
-      <div class="row clearfix ">
-        <div class="col-md-1">
-          #{field_subformat(:vote_count)._render_content}
-        </div>
-        <div class="col-md-11">
-          <div class="name row">
-            #{link_to metric_title, metric_url, class: 'inherit-anchor'}
-          </div>
-          <div class="row">
-            #{_render_designer_info}
-          </div>
-        </div>
-      </div>
-    HTML
-  end
+  # view :title_left_col do
+  #   metric_url = "/" + card.cardname.url_key
+  #   metric_title = card.metric_title_card.cardname
+  #   <<-HTML
+  #     <div class="row clearfix ">
+  #       <div class="col-md-1">
+  #         #{field_subformat(:vote_count)._render_content}
+  #       </div>
+  #       <div class="col-md-11">
+  #         <div class="name row">
+  #           #{link_to metric_title, metric_url, class: 'inherit-anchor'}
+  #         </div>
+  #         <div class="row">
+  #           #{_render_designer_info}
+  #         </div>
+  #       </div>
+  #     </div>
+  #   HTML
+  # end
 
   view :designer_info do
     wrap_with :div, class: "metric-designer-info" do
@@ -146,45 +146,45 @@ format :html do
     end
   end
 
-  view :title_right_col do
-    <<-HTML
-        <!--stuff on the right -->
-  <div class="col-md-12 nopadding">
-  <div class="row">
-  <div class="col-md-3 nopadding">
-  <h5>Metric Type:</h5>
-            				</div>
-  <div class="col-md-9 nopadding">
-    #{field_subformat(:metric_type)._render_content item: :name}
-  </div>
-                  </div>
-  <div class="row topic-list">
-  <div class="col-md-3 nopadding">
-  <h5>Topics:</h5>
-            				</div>
-  <div class="col-md-9 nopadding">
-    #{field_subformat(:wikirate_topic)._render_content item: :link}
-  </div>
-                  </div>
-  </div>
-    HTML
-  end
+  # view :title_right_col do
+  #   <<-HTML
+  #       <!--stuff on the right -->
+  # <div class="col-md-12 nopadding">
+  # <div class="row">
+  # <div class="col-md-3 nopadding">
+  # <h5>Metric Type:</h5>
+  #           				</div>
+  # <div class="col-md-9 nopadding">
+  #   #{field_subformat(:metric_type)._render_content item: :name}
+  # </div>
+  #                 </div>
+  # <div class="row topic-list">
+  # <div class="col-md-3 nopadding">
+  # <h5>Topics:</h5>
+  #           				</div>
+  # <div class="col-md-9 nopadding">
+  #   #{field_subformat(:wikirate_topic)._render_content item: :link}
+  # </div>
+  #                 </div>
+  # </div>
+  #   HTML
+  # end
 
 
-  view :content_row do |args|
-    <<-HTML
-      <div class="row metric-info">
-        <div class="col-md-6 rate border-right">
-          <div class="row margin-top-10">
-            #{_render_content_left_col args}
-          </div>
-		    </div>
-        <div class="col-md-6 wiki">
-          #{_render_content_right_col(args)}
-        </div>
-	    </div>
-    HTML
-  end
+  # view :content_row do |args|
+  #   <<-HTML
+  #     <div class="row metric-info">
+  #       <div class="col-md-6 rate border-right">
+  #         <div class="row margin-top-10">
+  #           #{_render_content_left_col args}
+  #         </div>
+	# 	    </div>
+  #       <div class="col-md-6 wiki">
+  #         #{_render_content_right_col(args)}
+  #       </div>
+	#     </div>
+  #   HTML
+  # end
 
   view :content_left_col do |args|
     wrap do
