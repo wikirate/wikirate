@@ -61,7 +61,7 @@ format :html do
                    type: "button",
                    data: { toggle: "modal", target: target },
                    href: path(layout: "modal", view: :edit,
-                              name: card.variables_card.name,
+                              mark: card.variables_card.name,
                               slot: { title: "Choose Metric" }) do
           glyphicon("plus") + " add metric"
         end
