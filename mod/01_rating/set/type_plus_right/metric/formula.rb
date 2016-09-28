@@ -24,7 +24,8 @@ end
 format :html do
   def default_new_args args
     super(args)
-    args[:hidden] = { success: { id:  card.cardname.left } }
+    args[:hidden] ||= {}
+    args[:hidden][:success] = { id:  card.cardname.left }
     args[:form_opts] = {
       "data-slot-selector" => ".card-slot.TYPE-metric"
     }
@@ -32,7 +33,8 @@ format :html do
 
   def default_edit_args args
     super(args)
-    args[:hidden] = { success: { id:  card.cardname.left } }
+    args[:hidden] ||= {}
+    args[:hidden][:success] = { id:  card.cardname.left } 
     args[:form_opts] = {
       "data-slot-selector" => ".card-slot.TYPE-metric"
     }
