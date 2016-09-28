@@ -151,29 +151,31 @@ format :html do
 
   # View: HTML for the navigation bar on preview page
   view :navigation_bar, tags: :unknown_ok  do |args|
+    navbar_brand = nest(Card[:logo], view: :core, size: :original)
     %(
       <nav class="navbar navbar-default  ">
 
         <div class="">
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
             <div id="source-preview-tabs" class="navbar-brand" href="#">
-              #{web_link('/',
-                         text: raw(nest(Card['*logo'],
-                                        view: :core, size: :original)))}
+              #{link_to_resource '/', raw(navbar_brand)}
             </div>
           </div>
 
 
 
           <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <div class="collapse navbar-collapse"
+               id="bs-example-navbar-collapse-1">
             <!-- Navbar Menu -->
             #{subformat(Card['nav_bar_menu']).render_content}
             <ul class="nav nav-tabs navbar-right gray-color ">

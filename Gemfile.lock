@@ -1,7 +1,7 @@
 PATH
   remote: ./vendor/wagn/card
   specs:
-    card (1.19.3)
+    card (1.19.5)
       bootstrap-kaminari-views (~> 0)
       carrierwave (= 1.0.0.beta)
       coderay (~> 1.0)
@@ -21,8 +21,8 @@ PATH
 PATH
   remote: ./vendor/wagn/wagn
   specs:
-    wagn (1.19.3)
-      card (= 1.19.3)
+    wagn (1.19.5)
+      card (= 1.19.5)
       rails (~> 4.2)
 
 GEM
@@ -96,7 +96,7 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
-    capybara (2.8.1)
+    capybara (2.9.1)
       addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -143,6 +143,10 @@ GEM
     delayed_job_active_record (4.1.1)
       activerecord (>= 3.0, < 5.1)
       delayed_job (>= 3.0, < 5)
+    delayed_job_web (1.2.10)
+      activerecord (> 3.0.0)
+      delayed_job (> 2.0.3)
+      sinatra (>= 1.4.4)
     diff-lcs (1.2.5)
     docile (1.1.5)
     email_spec (2.1.0)
@@ -206,7 +210,7 @@ GEM
       ast
       ruby-ll (~> 2.1)
     open_uri_redirections (0.2.1)
-    parser (2.3.1.2)
+    parser (2.3.1.4)
       ast (~> 2.2)
     pkg-config (1.1.7)
     powerpack (0.1.1)
@@ -226,6 +230,8 @@ GEM
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
     rack (1.6.4)
+    rack-protection (1.5.3)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.7.1)
@@ -256,7 +262,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rainbow (2.1.0)
-    rake (11.2.2)
+    rake (11.3.0)
     recaptcha (0.4.0)
     ref (2.0.0)
     roo (2.5.1)
@@ -286,7 +292,7 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
-    rubocop (0.42.0)
+    rubocop (0.43.0)
       parser (>= 2.3.1.1, < 3.0)
       powerpack (~> 0.1)
       rainbow (>= 1.99.1, < 3.0)
@@ -309,11 +315,16 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
+    sinatra (1.4.7)
+      rack (~> 1.5)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
     slop (3.6.0)
     smartname (0.3.1)
       activesupport
       htmlentities (~> 4.3.0)
     spork (0.9.2)
+    spring (1.7.2)
     sprockets (3.7.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -321,7 +332,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sshkit (1.11.2)
+    sshkit (1.11.3)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     systemu (2.6.5)
@@ -379,6 +390,7 @@ DEPENDENCIES
   dalli
   database_cleaner (~> 1.4.1)
   delayed_job_active_record
+  delayed_job_web
   email_spec
   launchy
   link_thumbnailer (= 2.5.2)
@@ -401,6 +413,7 @@ DEPENDENCIES
   selenium-webdriver
   simplecov
   spork (>= 0.9)
+  spring
   sprockets
   test_after_commit
   therubyracer

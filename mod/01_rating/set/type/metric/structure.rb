@@ -25,7 +25,8 @@ format :html do
   view :metric_title do |_args|
     metric_url = "/" + card.cardname.url_key
     metric_title = card.metric_title_card.cardname
-    link = link_to metric_title, metric_url, class: "inherit-anchor"
+# <<<<<<< HEAD
+    link = link_to metric_title, path: metric_url, class: "inherit-anchor"
     content_tag(:h3, link, class: "metric-color")
   end
 
@@ -38,6 +39,23 @@ format :html do
     wrap_with :div do
       [_render_metric_title, _render_metric_question]
     end
+# =======
+#     <<-HTML
+#       <div class="row clearfix ">
+#         <div class="col-md-1">
+#           #{field_subformat(:vote_count)._render_content}
+#         </div>
+#         <div class="col-md-11">
+#           <div class="name row">
+#             #{link_to metric_title, path: metric_url, class: 'inherit-anchor'}
+#           </div>
+#           <div class="row">
+#             #{_render_designer_info}
+#           </div>
+#         </div>
+#       </div>
+#     HTML
+# >>>>>>> 2d61868b0ee01952e7a0c5527436786dc325b42c
   end
 
   view :metric_header do
@@ -107,8 +125,8 @@ format :html do
 
   view :designer_info do
     wrap_with :div, class: "metric-designer-info" do
-      card_link card.metric_designer_card.cardname.field("contribution"),
-                text: author_info(card.metric_designer_card, "Designed by")
+      link_to_card card.metric_designer_card.cardname.field("contribution"),
+                   author_info(card.metric_designer_card, "Designed by")
     end
   end
 
@@ -203,7 +221,8 @@ format :html do
   end
 
   view :filter do |args|
-    field_subformat(:metric_company_filter)._render_core args
+    field_subformat(:metric_company_filter)
+      ._render_core args.merge(filter_title: "Filter")
   end
 
   view :year_select do
@@ -219,7 +238,7 @@ format :html do
 
   view :company_list do |_args|
     wrap_with :div, class: "yinyang-list" do
-      subformat("#{card.name}+all values")
+      field_subformat(:all_metric_values)
         ._render_content(hide: "title",
                          items: { view: :yinyang_row })
     end

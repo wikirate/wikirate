@@ -5,7 +5,7 @@ format :html do
   end
 
   view :more_link do |_args|
-    card_link card, text: "more..."
+    link_to_card card, "more..."
   end
 
   view :profile, tags: :unknown_ok do |args|

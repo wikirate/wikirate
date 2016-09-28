@@ -1,6 +1,7 @@
 card_accessor :contribution_count, type: :number, default: "0"
 card_accessor :direct_contribution_count, type: :number, default: "0"
 card_accessor :aliases, type: :pointer
+card_accessor :all_metric_values
 
 view :missing do |args|
   _render_link args
@@ -24,10 +25,10 @@ format :html do
     if main? && !Env.ajax? && !Env.params["about_company"] &&
        !contributions_about? && contributions_made?
 
-      link = card_link card, path_opts: { about_company: true }
+      link = link_to_card card, nil, path: { about_company: true }
       %(<div class="contributions-about-link">) \
         "showing contributions by #{link}</div>" +
-        subformat(card.fetch(trait: :contribution)).render_open
+        field_subformat(:contribution).render_open
     else
       super args
     end
@@ -42,9 +43,8 @@ format :html do
 
   view :contribution_link do
     return "" unless contributions_made?
-    card_link card.cardname.trait(:contribution),
-              text: "View Contributions",
-              class: "btn btn-primary company-contribution-link"
+    link_to_card card.cardname.trait(:contribution), "View Contributions",
+                 class: "btn btn-primary company-contribution-link"
   end
 
   def contributions_made?
@@ -67,7 +67,7 @@ format :html do
 
   view :metric_list do
     wrap_with :div, class: "yinyang-list" do
-      subformat("#{card.name}+all metric values")
+      field_subformat(:all_metric_values)
         ._render_content(hide: "title",
                          items: { view: :metric_row })
     end

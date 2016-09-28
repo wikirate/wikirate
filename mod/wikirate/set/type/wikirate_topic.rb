@@ -75,7 +75,7 @@ format :html do
 
   view :company_list do
     wrap_with :div, class: "yinyang-list" do
-      subformat("#{card.name}+all company")
+      field_subformat(:all_companies)
         ._render_content(hide: "title",
                          items: { view: :topic_company_row })
     end
@@ -87,7 +87,7 @@ format :html do
 
   view :metric_list do
     wrap_with :div, class: "yinyang-list" do
-      subformat("#{card.name}+all metric")
+      field_subformat(:all_metrics)
         ._render_content(hide: "title",
                          items: { view: :metric_row })
     end

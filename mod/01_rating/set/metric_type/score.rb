@@ -87,9 +87,10 @@ format :html do
 
   def default_thumbnail_subtitle_args args
     args[:text] ||= "scored by"
-    args[:author] ||= card_link card.scorer
+    args[:author] ||= link_to_card card.scorer
   end
 
+# <<<<<<< HEAD
   # view :designer_info do |_args|
   #   card_link card.metric_designer_card.cardname.field("contribution"),
   #             text: author_info(card.metric_designer_card, "Designed by")
@@ -108,8 +109,19 @@ format :html do
 
   view :scorer_info do |_args|
     wrap_with :div, class: "metric-designer-info" do
-      card_link card.scorer_card.cardname.field("contribution"),
-                text: author_info(card.scorer_card, "Scored by")
+      link_to_card card.scorer_card.cardname.field("contribution"),
+                   author_info(card.scorer_card, "Scored by")
+# =======
+#   view :designer_info do |_args|
+#     designer_card = card.metric_designer_card
+#     wrap_each_with :div, class: "metric-designer-info" do
+#       [
+#         link_to_card(designer_card.cardname.field("contribution"),
+#                      author_info(designer_card, "Designed by", true)),
+#         link_to_card(card.scorer_card.cardname.field("contribution"),
+#                      author_info(card.scorer_card, "Scored by", true))
+#       ]
+# >>>>>>> 2d61868b0ee01952e7a0c5527436786dc325b42c
     end
   end
 
@@ -121,8 +133,7 @@ format :html do
     link_text = author_info card.scorer_card, "Scored by",
                             "#{time_ago_in_words card.created_at} ago"
     wrap_with :div, class: "metric-designer-info" do
-      card_link card, class: "row list-group-item",
-                      text: link_text
+      link_to_card card, link_text, class: "row list-group-item"
     end
   end
 end
