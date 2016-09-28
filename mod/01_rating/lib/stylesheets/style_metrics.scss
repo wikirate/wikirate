@@ -712,9 +712,9 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
                 float: left;
                 .card-title {
                     font-size: 0.8em;
-                    margin: 5px 0;
-                    float: left;
-                    color: #bbb;
+                    //margin: 5px 0;
+                    //float: left;
+                    //color: #bbb;
                 }
                 input {
                     width: 100%;
@@ -730,6 +730,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
             top: 16px;
             left: 0;
             width: 10%;
+            margin-top: 30px;
         }
     }
 }
