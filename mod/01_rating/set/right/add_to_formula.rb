@@ -37,7 +37,7 @@ format :html do
       editor_selector =
         ".content-editor > .RIGHT-Xvariable[data-card-name='#{varcard.name}']"
       add_class args, "close-modal slotter"
-      link_to_card variables_card, link_text, args.merge(
+      link_to_card varcard, link_text, args.merge(
         remote: true, known: true, "data-slot-selector" => editor_selector,
         path: { action: :update, add_item: input_metric.cardname.key }
       )

@@ -8,7 +8,7 @@ class AllValuesUpdate < Card::Migration
     import_cards "all_values_update.json"
     delete_code_card :all_values
     remove_old_cache_cards
-    update_card :all_company, codename: "all_companies", name: "all companies"
+    ensure_card :all_company, codename: "all_companies", name: "all companies"
   end
 
   def remove_old_cache_cards
