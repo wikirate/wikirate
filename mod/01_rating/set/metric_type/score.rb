@@ -38,22 +38,6 @@ view :select do |_args|
 end
 
 format :html do
-  # view :methodology_tab do
-  #   <<-HTML
-  #     <div class="row">
-  #           			<div class="row-data">
-  #                   {{+Unit|titled;title:Unit}}
-  #                 </div>
-  #   <div class="row-data">
-  #     {{+Range|titled;title:Range}}
-  #   </div>
-  #                 <div class="row-data">
-  #                   {{+Methodology|titled;title:Methodology}}
-  #                 </div>
-  #   </div>
-  #   HTML
-  # end
-
   def new_name_field form=nil, options={}
     form ||= self.form
     option_names =
@@ -90,38 +74,10 @@ format :html do
     args[:author] ||= link_to_card card.scorer
   end
 
-# <<<<<<< HEAD
-  # view :designer_info do |_args|
-  #   card_link card.metric_designer_card.cardname.field("contribution"),
-  #             text: author_info(card.metric_designer_card, "Designed by")
-  #
-  #   wrap_each_with :div, class: "metric-designer-info" do
-  #     [
-  #       card_link(
-  #         card.metric_designer_card.cardname.field("contribution"),
-  #         text: author_info(card.metric_designer_card, "Designed by", true)),
-  #       card_link(
-  #         card.scorer_card.cardname.field("contribution"),
-  #         text: author_info(card.scorer_card, "Scored by", true))
-  #     ]
-  #   end
-  # end
-
   view :scorer_info do |_args|
     wrap_with :div, class: "metric-designer-info" do
       link_to_card card.scorer_card.cardname.field("contribution"),
                    author_info(card.scorer_card, "Scored by")
-# =======
-#   view :designer_info do |_args|
-#     designer_card = card.metric_designer_card
-#     wrap_each_with :div, class: "metric-designer-info" do
-#       [
-#         link_to_card(designer_card.cardname.field("contribution"),
-#                      author_info(designer_card, "Designed by", true)),
-#         link_to_card(card.scorer_card.cardname.field("contribution"),
-#                      author_info(card.scorer_card, "Scored by", true))
-#       ]
-# >>>>>>> 2d61868b0ee01952e7a0c5527436786dc325b42c
     end
   end
 
