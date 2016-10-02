@@ -1,3 +1,5 @@
+include_set Abstract::WikirateTable
+
 format :html do
   def value_details args
     case card.metric_type

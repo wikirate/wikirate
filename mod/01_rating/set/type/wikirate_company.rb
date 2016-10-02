@@ -1,4 +1,4 @@
-
+include_set Abstract::WikirateTable
 
 format :html do
   def metric_names
@@ -113,25 +113,7 @@ format :html do
     end
   end
 
-  view :topic_company_row do |args|
-    topic = parent.card.cardname.left
-    wrap(args) do
-      process_content <<-HTML
-      <div class="yinyang-row">
-        <div class="company-item contribution-item">
-          <div class="header">
-            <div class="logo">
-              {{_+image|core;size:small}}
-            </div>
-            <a class="name" href="{{_|linkname}}">{{_|name}}</a>
-          </div>
-          <div class="data">
-            {{_1+#{topic}+analysis contributions|core}}
-          </div>
-          <div class="details"></div>
-        </div>
-      </div>
-      HTML
-    end
+  view :company_row_for_topic do |args|
+    company_row_for_topic args
   end
 end

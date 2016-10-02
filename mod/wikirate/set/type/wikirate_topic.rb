@@ -1,3 +1,5 @@
+include_set Abstract::WikirateTable
+
 card_accessor :vote_count, type: :number, default: "0"
 card_accessor :upvote_count, type: :number, default: "0"
 card_accessor :downvote_count, type: :number, default: "0"
@@ -74,22 +76,14 @@ format :html do
   end
 
   view :company_list do
-    wrap_with :div, class: "yinyang-list" do
-      field_subformat(:all_companies)
-        ._render_content(hide: "title",
-                         items: { view: :topic_company_row })
-    end
+    yinyang_list field: :all_companies, row_view: :company_row_for_topic
+  end
+
+  view :metric_list do
+    yinyang_list field: :all_metrics, row_view: :metric_row_for_topic
   end
 
   view :filter do |args|
     field_subformat(:topic_metric_filter)._render_core args
-  end
-
-  view :metric_list do
-    wrap_with :div, class: "yinyang-list" do
-      field_subformat(:all_metrics)
-        ._render_content(hide: "title",
-                         items: { view: :metric_row })
-    end
   end
 end

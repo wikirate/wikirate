@@ -35,10 +35,10 @@ format :html do
     HTML
   end
 
-  view :metric_list do |_args|
-    wrap_with :div, class: "yinyang-list" do
-      render_content(hide: "title",
-                     items: { view: :metric_row })
-    end
-  end
+  # view :metric_list do |_args|
+  #   wrap_with :div, class: "yinyang-list" do
+  #     render_content(hide: "title",
+  #                    items: { view: :metric_row })
+  #   end
+  # end
 end

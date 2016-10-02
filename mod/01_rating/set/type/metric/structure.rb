@@ -1,3 +1,5 @@
+include_set Abstract::WikirateTable
+
 format :html do
   view :open_content do
     wrap_with :div, class: "container-fluid yinyang" do
@@ -174,46 +176,11 @@ format :html do
   end
 
   view :company_list do |_args|
-    wrap_with :div, class: "yinyang-list" do
-      field_subformat(:all_metric_values)
-        ._render_content(hide: "title",
-                         items: { view: :yinyang_row })
-    end
+    # renders yinyang_row view of ltype_rtype/metric/company
+    yinyang_list field: :all_metric_values, row_view: :company_row_for_metric
   end
 
-  view :metric_row do |args|
-    wrap(args) do
-      process_content <<-HTML
-      <div class="yinyang-row">
-        <div class="metric-item contribution-item value-item">
-          <div class="metric-details-toggle" data-append="topic_page_metric_details">
-            <div class="header">
-              {{_+*vote count}}
-              <div class="logo">
-               <a class="inherit-anchor" href="/{{_1|name}}+contribution"> {{_1+image|core;size:small}} </a>
-              </div>
-              <div class="name">
-               <a class="inherit-anchor" href="/{{_|linkname}}">  {{_2|name}} </a>
-              </div>
-            </div>
-
-            <div class="data">
-              <div class="contribution company-count">
-                <div class="content">
-                  {{_+company count|core}}
-                  <div class="name">Companies</div>
-                </div>
-              </div>
-              <div class="contribution metric-details show-with-details text-center">
-                <span class="label label-metric">[[_|Metric Details]]</span>
-              </div>
-            </div>
-          </div>
-          <div class="details">
-          </div>
-        </div>
-      </div>
-      HTML
-    end
+  view :metric_row_for_topic do |args|
+    metric_row_for_topic args
   end
 end

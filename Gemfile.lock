@@ -147,6 +147,7 @@ GEM
       activerecord (> 3.0.0)
       delayed_job (> 2.0.3)
       sinatra (>= 1.4.4)
+    descriptive_statistics (2.5.1)
     diff-lcs (1.2.5)
     docile (1.1.5)
     email_spec (2.1.0)
@@ -306,6 +307,7 @@ GEM
     ruby-progressbar (1.8.1)
     rubyzip (1.2.0)
     sass (3.4.22)
+    savanna-outliers (0.0.1)
     selenium-webdriver (2.53.4)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
@@ -335,6 +337,7 @@ GEM
     sshkit (1.11.3)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    statistics2 (0.54)
     systemu (2.6.5)
     test_after_commit (1.1.0)
       activerecord (>= 3.2)
@@ -391,6 +394,7 @@ DEPENDENCIES
   database_cleaner (~> 1.4.1)
   delayed_job_active_record
   delayed_job_web
+  descriptive_statistics (= 2.5.1)
   email_spec
   launchy
   link_thumbnailer (= 2.5.2)
@@ -410,11 +414,13 @@ DEPENDENCIES
   rspec-rails
   rubocop
   rubocop-rspec
+  savanna-outliers
   selenium-webdriver
   simplecov
   spork (>= 0.9)
   spring
   sprockets
+  statistics2 (= 0.54)
   test_after_commit
   therubyracer
   thin

@@ -66,11 +66,7 @@ format :html do
   end
 
   view :metric_list do
-    wrap_with :div, class: "yinyang-list" do
-      field_subformat(:all_metric_values)
-        ._render_content(hide: "title",
-                         items: { view: :metric_row })
-    end
+    yinyang_list field: :all_metric_values, row_view: :metric_row_for_company
   end
 end
 
