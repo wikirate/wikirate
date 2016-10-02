@@ -7,14 +7,12 @@ format do
     @sort_order ||= Env.params["sort_order"] || "desc"
   end
 
+  def sort values
+    values
+  end
+
   def sorted_result
-    sorted = case sort_by
-             when "name", "company_name"
-               sort_name_asc card.filtered_values_by_name
-             else # "value"
-               sort_value_asc card.filtered_values_by_name, num?
-             end
-    sort_order == "asc" ? sorted : sorted.reverse
+    sort card.filtered_values_by_name
   end
 
   def sort_value_asc metric_values, is_num
