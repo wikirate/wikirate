@@ -301,7 +301,8 @@ format :html do
       "None" => "none",
       "Edited today" => "today",
       "Edited this week" => "week",
-      "Edited this month" => "month"
+      "Edited this month" => "month",
+      "Outliers" => "outliers"
     }
     simple_select_filter "value", options, (Env.params["value"] || "exists")
   end

@@ -6,7 +6,7 @@ def filter_by_key key
   filter_by_metric key
 end
 
-def filter_by_values values
+def filter_by_values _key, values
   filter_by_value(values) &&
     filter_by_year(values)
 end

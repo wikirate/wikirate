@@ -119,7 +119,24 @@ def metric_value_query
   { left: { left: name }, type_id: MetricValueID }
 end
 
+require 'savanna-outliers'
+
 format :html do
+  def prepare_for_outlier_search
+    res = {}
+    card.all_metric_values_card.values_by_name.map do |key, data|
+      data.each do |row|
+        res["#{key}+#{row["year"]}"] = row["value"].to_i
+      end
+    end
+    res
+  end
+
+  view :outliers do |args|
+    outs = Savanna::Outliers.get_outliers prepare_for_outlier_search, :all
+    outs.inspect
+  end
+
   view :designer_image do |_args|
     image = nest card.metric_designer_card.field(:image, new: {}),
                  view: :core, size: :small

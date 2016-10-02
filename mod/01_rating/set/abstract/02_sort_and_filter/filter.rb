@@ -6,18 +6,26 @@ def filter_by_key key
   filter_by_name key
 end
 
-def filter_by_values _values
+def filter_by_values _key, _values
   true
 end
 
 def filter cache
   return unless cache
   cache = all_without_values cache if Env.params["value"] == "none"
-  cache.select { |key, values| pass_filter? key, values }
+  cache.select do |key, values|
+    pass_filter?(key, values) &&
+      (values.select! { |v| pass_single_value_filter?(key, v)} == nil ||
+      values.present?)
+  end
 end
 
 def pass_filter? key, values
-  filter_by_key(key) && filter_by_values(values)
+  filter_by_key(key) && filter_by_values(key, values)
+end
+
+def pass_single_value_filter? _key, _value
+  true
 end
 
 def filter_by_name key
@@ -31,6 +39,7 @@ def filter_by_value values
     case filter
     when "none" then values.empty?
     when "exists" then !values.empty?
+    when "outliers" then true
     else within_recent? filter, values
     end
   end
