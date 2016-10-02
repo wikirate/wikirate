@@ -65,7 +65,6 @@ format :html do
                 <span class="label label-metric">[[_|Metric Details]]</span>
               </div>
     HTML
-    binding.pry
     wrap(args) do
       metric_row header, data, drag_and_drop: false,
                  item_types: [:metric, :contribution, :value],
