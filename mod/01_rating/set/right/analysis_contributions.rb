@@ -3,81 +3,30 @@ format :html do
     @analysis_name ||= card.cardname.left_name
   end
 
-  def analysis_card
-    @analysis_card ||= card.left
+  def link_to_metric_count content, label
+    text = metric_box content, label
+    company = analysis_name.left_name
+    topic = analysis_name.right_name
+    link_to text, path: { mark: company, wikirate_topic: topic }
   end
 
-  def link_with_params label, analysis_card, text, array
-    company = CGI.escape(analysis_card.left.name)
-    topic = CGI.escape(analysis_card.right.name)
-    sign = array ? "[]" : ""
-    params = "wikirate_company#{sign}=#{company}&wikirate_topic#{sign}=#{topic}"
-    <<-HTML
-      <a href="/#{label}?#{params}">#{text}</a>
-    HTML
+  def metric_box content, label
+    %(
+      <div class="content">
+        #{content}<div class="name">#{label}</div>
+      </div>
+    )
   end
 
-  def link content, label
-    text = %(
-          <div class="content">
-            #{content}<div class="name">#{label}</div>
-          </div>
-        )
-    case label
-    when "Notes", "Sources"
-      link_with_params(label, analysis_card, text, true)
-    when "Metrics"
-      link_with_params(label, analysis_card, text, false)
-    when "Review"
-      link_to_card analysis_name.s, text
-    end
-  end
-
-  def data_item content, label, type=:default
-    extra_class =
-      case type
-      when :highlight then "btn btn-highlight"
-      when :warning   then "warning"
-      else
-        "btn btn-default"
-      end
-    content_tag :div, class: "contribution #{extra_class if extra_class}" do
-      link content, label
-    end
+  def metric_count
+    return 0 unless Card.fetch analysis_name
+    metrics = Card.fetch analysis_name.trait(:metric)
+    metrics ? metrics.cached_count : 0
   end
 
   view :core do |_args|
-    overview_card = Card.fetch analysis_name.trait(:overview)
-    if !analysis_card
-      claim_cnt = source_cnt = metric_cnt = 0
-    else
-      claim_cnt = (claims = Card.fetch(analysis_name.trait(:claim))) &&
-                  claims.cached_count
-      source_cnt = (sources = Card.fetch(analysis_name.trait(:source))) &&
-                   sources.cached_count
-      metric_cnt = (metrics = Card.fetch(analysis_name.trait(:metric))) &&
-                   metrics.cached_count
+    content_tag :div, class: "contribution" do
+      link_to_metric_count metric_count, "Metrics"
     end
-    empty = glyphicon "plus"
-    data = []
-    if claim_cnt == "0"
-      data << ['<i class="fa fa-exclamation-circle"></i>', "Need Notes",
-               :warning]
-      data << [empty, "Notes", :highlight]
-    else
-      icon =
-        if overview_card
-          nest(Card.fetch("venn icon"), view: :content, size: :small)
-        else
-          empty
-        end
-      data << [icon, "Review", (:highlight unless overview_card)]
-      data << [metric_cnt, "Metrics"]
-      data << [claim_cnt, "Notes"]
-    end
-    data << [(source_cnt == "0" ? empty : source_cnt),
-             "Sources", (:highlight if source_cnt == "0")]
-    # reverse because of float:right
-    data.reverse.map { |opts| data_item(*opts) }.join "\n"
   end
 end
