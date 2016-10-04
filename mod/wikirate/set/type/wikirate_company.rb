@@ -1,3 +1,6 @@
+include_set Abstract::WikirateTable
+include_set Abstract::WikirateTabs
+
 card_accessor :contribution_count, type: :number, default: "0"
 card_accessor :direct_contribution_count, type: :number, default: "0"
 card_accessor :aliases, type: :pointer

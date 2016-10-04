@@ -8,7 +8,7 @@ def raw_content
     "not":{
       "linked_to_by":{
         "left":"_user",
-        "right_id":["in","#{UpvotesID}","#{Card::DownvotesID}"]
+        "right_id":["in","#{UpvotesID}","#{DownvotesID}"]
       }
     },
     "return":"name",

@@ -1,4 +1,5 @@
 include_set Abstract::WikirateTable
+include_set Abstract::WikirateTabs
 
 card_accessor :vote_count, type: :number, default: "0"
 card_accessor :upvote_count, type: :number, default: "0"

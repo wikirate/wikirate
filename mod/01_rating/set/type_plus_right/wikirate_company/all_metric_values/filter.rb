@@ -7,8 +7,11 @@ def filter_by_key key
 end
 
 def filter_by_values _key, values
-  filter_by_value(values) &&
-    filter_by_year(values)
+  filter_by_value(values) # && filter_by_year(values)
+end
+
+def pass_single_value_filter? key, value
+  filter_by_year(key, value)
 end
 
 def filter_by_metric metric

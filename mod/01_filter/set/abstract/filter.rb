@@ -115,9 +115,7 @@ format :html do
   end
 
   def filter_active?
-    Env.params.keys.any? do |key|
-      card.advanced_keys.include?(key) && Env.params[key].present?
-    end
+    card.advanced_keys.any? { |key| Env.params[key].present? }
   end
 
   def wrap_as_collapse

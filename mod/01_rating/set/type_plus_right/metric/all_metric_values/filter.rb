@@ -8,8 +8,7 @@ def filter_by_key company
 end
 
 def filter_by_values _key, values
-  filter_by_value(values) &&
-    filter_by_year(values)
+  filter_by_value(values) #&& filter_by_year(values)
 end
 
 def filter_by_outliers key, value
@@ -19,7 +18,7 @@ def filter_by_outliers key, value
 end
 
 def pass_single_value_filter? key, value
-  filter_by_outliers key, value
+  filter_by_year(key, value) && filter_by_outliers(key, value)
 end
 
 private
