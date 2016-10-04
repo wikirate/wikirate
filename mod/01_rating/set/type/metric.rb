@@ -67,10 +67,14 @@ def calculated?
 end
 
 # value between 0 and 10?
-def scored?
-  metric_type_codename == :score ||
-    metric_type_codename == :wiki_rating
+def rated?
+  metric_type_codename == :wiki_rating
 end
+
+def scored?
+  metric_type_codename == :score || rated?
+end
+
 
 def analysis_names
   return [] unless (topics = fetch(trait: :wikirate_topic)) &&
@@ -180,7 +184,7 @@ format :html do
   view :value_type_edit_modal_link do |args|
     render_modal_link(
       link_text: vtype_edit_modal_link_text,
-      link_opts: { class: "btn btn-default slotter",
+      link_opts: { class: "btn btn-default slotter value-type-button",
                    path: { slot: { hide: "title,header,menu,help,subheader",
                                    view: :edit, edit_value_type: true } } }
     )

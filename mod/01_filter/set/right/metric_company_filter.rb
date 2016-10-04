@@ -6,16 +6,36 @@ format :html do
   end
 
   def filter_categories
-    %w(company industry project)
+    # name implies 'company' name
+    %w(name industry project)
   end
 
-  def filter_form_content args
+  view :filter_form_header_content do |args|
+    wrap_with :div, class: "input-and-button" do
+      [
+        filter_header_inputs(args),
+        filter_header_buttons(args)
+      ]
+    end
+  end
+
+  def filter_header_inputs args
+    fields = value_filter_fields(args).join.html_safe
+    content_tag(:div, fields, class: "margin-12")
+  end
+
+  def filter_header_buttons args
+    buttons = _optional_render(:button_formgroup, args).html_safe
+    content_tag(:div, buttons, class: "filter-buttons")
+  end
+
+  def filter_form_body_content args
     <<-HTML
-      <h4>Company</h4>
+      <h5>Company Filter</h5>
       <div class="margin-12 sub-content"> #{company_filter_fields(args).join} </div>
-      <h4>Metric Answer</h4>
-      <div class="margin-12"> #{value_filter_fields(args).join} </div>
-      <div class="filter-buttons">#{_optional_render :button_formgroup, args}</div>
+      <h5>Metric Answer</h5>
+      <!-- <div class="margin-12"> #{value_filter_fields(args).join} </div>
+      <div class="filter-buttons">#{_optional_render :button_formgroup, args}</div> -->
     HTML
   end
 

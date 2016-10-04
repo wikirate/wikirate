@@ -92,16 +92,21 @@ $bright-text-color: #e5e5e5;
   }
 }
 
+// TODO: Test if this css has any effect
+
 .list-drag-and-drop, .yinyang-list {
-  clear: both;
-  margin: 0px 0px 10px;
-  padding: 5px 0px;
-  background: none;
-  border: none;
-  box-shadow: none;
-  --webkit-box-shadow: none;
+  //clear: both;
+  //margin: 0px 0px 10px;
+  //padding: 5px 0px;
+  //background: none;
+  //border: none;
+  //box-shadow: none;
+  //--webkit-box-shadow: none;
 }
 
+.yinyang-list > .card-content > .search-result-list{
+  padding: 0px;
+}
 
 .TYPE-company, .TYPE-topic, .TYPE-metric, .RIGHT-overview_page, .RIGHT-reference_page,.RIGHT-note_page {
 
@@ -220,12 +225,16 @@ $bright-text-color: #e5e5e5;
   padding: 0;
 }
 .TYPE-metric{
+  .question{
+    font-weight: normal;
+    line-height: 1.4;
+  }
   .question-container {
-    padding: 0px 30px 30px 22px;
-    margin: 0px -14px;
-    background-color: #F9F9F9;
-    border-top: 1px solid #ebebeb;
-    border-bottom: 1px solid #ebebeb;
+    //padding: 0px 30px 30px 22px;
+    //margin: 0px -14px;
+    //background-color: #F9F9F9;
+    //border-top: 1px solid #ebebeb;
+    //border-bottom: 1px solid #ebebeb;
     .row-data {
       font-size: 18px;
       margin: 10px 25px 10px 10px;
@@ -663,20 +672,24 @@ $bright-text-color: #e5e5e5;
 }
 
 .votee-filter, .filter-container {
-  background: #f2f2f2;
+  background: #f8f9fa;
   color: $dark-text-color;
-  padding: 5px;
+  padding: 10px;
   font-size: 12px;
   font-weight: bold;
+  float: left;
+  width: 100%;
+  border-top: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
 }
 .filter-details {
   //display: none;
   //margin-bottom: -4px;
   //margin-left: -5px;
   //margin-right: -4px;
-  background: #FDFDFD;
-  margin: 5px 10px 10px;
-  padding: 10px;
+  //background: #FDFDFD;
+  //margin: 5px 10px 10px;
+  //padding: 10px;
 }
 .filter-toggle {
   float: right;

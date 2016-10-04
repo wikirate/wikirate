@@ -170,11 +170,11 @@ $(document).ready ->
 
   # filter
 
-  $('body').on 'click','.votee-filter .filter-header, ' +
-                       '.filter-container .filter-header', ->
-    $(this).find('.filter-toggle .glyphicon')
-      .toggleClass('glyphicon-triangle-bottom','glyphicon-triangle-right')
-    $(this).next().toggle()
+  # $('body').on 'click','.votee-filter .filter-header, ' +
+  #                      '.filter-container .filter-header', ->
+  #   $(this).find('.filter-toggle .glyphicon')
+  #     .toggleClass('glyphicon-triangle-bottom','glyphicon-triangle-right')
+  #   $(this).next().toggle()
 
   # $(document).ajaxSuccess ->
   #   userUpvotedColor()

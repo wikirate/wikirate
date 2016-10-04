@@ -11,33 +11,16 @@
         font-size: 13px;
     }
 }
-.no-hover:hover {
-    background-color: inherit!important;
-    cursor: inherit!important;
-}
+
 .tabbable.company-tabs .tab-content {
     margin-left: -15px;
 }
-.company-header {
-    color: $company-color;
-    border-top: 3px solid $company-color;
-    font-size: 18px;
-    border-bottom: 1px solid $bright-text-color;
-    background: #fff;
-    padding: 2px 0 0;
+
+.value-type-button {
+  margin-right: 10px;
+  float: left;
 }
-.topic-header {
-    color: $topic-color;
-    border-top: 3px solid $topic-color;
-    font-size: 14px;
-    border-bottom: 1px solid $bright-text-color;
-    padding: 10px;
-    background: #FDFDFD;
-    @include ellipsis();
-    .topic-title {
-        padding: 0 0 25px 10px;
-    }
-}
+
 /*Common styles and classes ENDS*/
 .SELF-homepage_company {
     .pointer-item {
@@ -181,6 +164,19 @@
         transform: translateY(-50%);
     }
 }
+.input-and-button label, .input-and-button .editor, .input-and-button .btn {
+    float: left;
+    margin: 0 5px;
+}
+.input-and-button label{
+    padding:8px 0px;
+}
+
+.input-and-button .editor{
+    width: 25%
+}
+
+
 .filter.panel {
     background: #F9F9F9;
     border-radius: 0;
@@ -212,7 +208,7 @@
 .filter-buttons {
     text-align: right;
     margin: 10px;
-    border-top: 1px solid #eee;
+    //border-top: 1px solid #eee;
     .form-group {
         margin: 0 0 -15px;
         padding: 0;
@@ -422,6 +418,11 @@
         }
     }
 }
+
+.wiki.right-col .nav-tabs {
+    margin: 0px -15px;
+}
+
 .metric-designer-info {
     a {
         color: inherit;
@@ -436,24 +437,26 @@
             padding-right: 10px;
         }
     }
-    margin: 8px 0;
-    .img-container {
-        height: 50px;
-    }
+    //margin: 8px 0;
+    //.img-container {
+    //    height: 50px;
+    //}
     img {
-        display: inline-block;
-        max-height: 50px;
-        max-width: 50px;
+        //display: inline-block;
+        max-height: 100%;
+        max-width: 100%;
         vertical-align: middle;
+        //vertical-align: middle;
         // TODO: verify if something breaks without this
         // float: left;
         // padding: 8px;
-        border: 1px solid #ebebeb;
-        margin: 0 4px;
+        //border: 1px solid #ebebeb;
+        //margin: 0 4px;
     }
     h3 {
-        margin: 10px 5px;
-        float: left;
+      margin: 18px 5px;
+      float: left;
+      color: $heading-color;
     }
 }
 .metric-details-header {
@@ -722,9 +725,9 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
                 float: left;
                 .card-title {
                     font-size: 0.8em;
-                    margin: 5px 0;
-                    float: left;
-                    color: #bbb;
+                    //margin: 5px 0;
+                    //float: left;
+                    //color: #bbb;
                 }
                 input {
                     width: 100%;
@@ -740,28 +743,11 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
             top: 16px;
             left: 0;
             width: 10%;
+            margin-top: 30px;
         }
     }
 }
-// .LTYPE_RTYPE-metric-company.content-view {
-//     span.metric-value {
-//         &.low {
-//             color: white;
-//             padding: 5px;
-//             background: red;
-//         }
-//         &.middle {
-//             color: white;
-//             padding: 5px;
-//             background: darkorange;
-//         }
-//         &.high {
-//             color: white;
-//             padding: 5px;
-//             background: green;
-//         }
-//     }
-// }
+
 .new_metric_value-view .card-body {
     padding: 0;
 }
@@ -821,10 +807,24 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 
 
 //Div alignments
+.left-col {
+    border-right: 1px solid #ebebeb;
+}
+.right-col {
+    border-left: 1px solid #ebebeb;
+    margin-left: -1px;
+}
+
+// metric value details
 #metric-container, #source-preview-main {
   border: 1px solid $div-border-color;
   background:#fff;
 }
+
+.metric-header-container {
+    margin: 0px 0px 10px 0px;
+}
+
 #metric-container {
     overflow-y: scroll;
     overflow-x: hidden;
@@ -864,9 +864,49 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     display: inline;
     padding: 0;
 }
-//@media (min-width: 1200px){
-//  .stick-right {
-//      max-width: 57%;
-//      left: 41.9%;
-//    }
-//}
+
+
+//metric properties
+.metric-properties {
+  //margin: 0px 15px;
+
+  .pointer-list {
+    padding: 0;
+  }
+  .pointer-item {
+    display: inline;
+    padding: 0px;
+  }
+  &.table {
+    border: 0;
+  }
+  td:first-child {
+    min-width: 125px;
+    width: 20%;
+    text-align: right;
+  }
+  td {
+    border: 0!important;
+    padding: 2px 10px !important;
+    height: 40px;
+    vertical-align: middle!important;
+    color: #555;
+
+    &:last-child {
+      font-weight:bold;
+    }
+  }
+  .numerical-type-info {
+      font-size: 10px;
+      padding: 2px;
+  }
+  .list-group-item, .RIGHT-topic .pointer-item, .numerical-type-info{
+    font-weight: normal;
+  }
+  .list-group-item{
+    width: 80%;
+    .ellipsis {
+      white-space: inherit;
+    }
+  }
+}

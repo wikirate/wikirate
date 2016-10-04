@@ -9,7 +9,11 @@ format :html do
     :metric_tab
   end
 
-  def filter_form_content args
+  def filter_form_header_content args
+
+  end
+
+  def filter_form_body_content args
     <<-HTML
       <h4>Metric</h4>
       <div class="margin-12 sub-content"> #{metric_filter_fields(args).join} </div>
