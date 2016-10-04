@@ -2,14 +2,14 @@
 
 format :html do
   def metric_names
-    return project.field("metric").item_names if project
+    return project.field(:metric).item_names if project
     Env.params["metric"]
   end
 
   def project
     project_name = Env.params["project"]
     return false unless project_name
-    if Card.exists?project_name
+    if Card.exists? project_name
       Card.fetch(project_name)
     else
       card.errors.add :Project, "Project not exist"
@@ -52,10 +52,11 @@ format :html do
   end
 
   def process_metrics
-    (metric_names.map.with_index do |key|
-      metric_company = Card.fetch(key).field(card.name)
-      wrap_metric(metric_company) if Card.exists? key
-    end.join "\n")
+    metric_names.map do |metric_name|
+      next unless Card.exists? metric_name
+      metric_plus_company = Card.fetch metric_name, card.name
+      wrap_metric metric_plus_company
+    end.join "\n"
   end
 
   def wrap_metric_list
