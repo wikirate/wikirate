@@ -2,11 +2,11 @@ format :html do
   view :metric_properties do |args|
     props = {}
     props["Designed By"] = _render_designer_info.html_safe
-    props["Scored By"] = _render_scorer_info.html_safe if card.scored?
+    props["Scored By"] =
+      _render_scorer_info.html_safe if card.metric_type_codename == :score
     props["Metric Type"] =
       field_subformat(:metric_type)._render_content item: :name
     if card.researched?
-    # value type refer: http://dev.wikirate.org/Good_Company_Index+Good_Company_Grade+numeric_detail
       props["Value Type"] = content_tag(:div, _render_value_type_detail(args))
       props["Research Policy"] = nest(card.research_policy_card,
                                       view: :content,

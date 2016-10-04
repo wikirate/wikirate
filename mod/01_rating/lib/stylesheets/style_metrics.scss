@@ -164,6 +164,19 @@
         transform: translateY(-50%);
     }
 }
+.input-and-button label, .input-and-button .editor, .input-and-button .btn {
+    float: left;
+    margin: 0 5px;
+}
+.input-and-button label{
+    padding:8px 0px;
+}
+
+.input-and-button .editor{
+    width: 25%
+}
+
+
 .filter.panel {
     background: #F9F9F9;
     border-radius: 0;
@@ -195,7 +208,7 @@
 .filter-buttons {
     text-align: right;
     margin: 10px;
-    border-top: 1px solid #eee;
+    //border-top: 1px solid #eee;
     .form-group {
         margin: 0 0 -15px;
         padding: 0;

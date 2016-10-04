@@ -104,6 +104,9 @@ $bright-text-color: #e5e5e5;
   //--webkit-box-shadow: none;
 }
 
+.yinyang-list > .card-content > .search-result-list{
+  padding: 0px;
+}
 
 .TYPE-company, .TYPE-topic, .TYPE-metric, .RIGHT-overview_page, .RIGHT-reference_page,.RIGHT-note_page {
 
@@ -669,20 +672,24 @@ $bright-text-color: #e5e5e5;
 }
 
 .votee-filter, .filter-container {
-  background: #f2f2f2;
+  background: #f8f9fa;
   color: $dark-text-color;
-  padding: 5px;
+  padding: 10px;
   font-size: 12px;
   font-weight: bold;
+  float: left;
+  width: 100%;
+  border-top: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
 }
 .filter-details {
   //display: none;
   //margin-bottom: -4px;
   //margin-left: -5px;
   //margin-right: -4px;
-  background: #FDFDFD;
-  margin: 5px 10px 10px;
-  padding: 10px;
+  //background: #FDFDFD;
+  //margin: 5px 10px 10px;
+  //padding: 10px;
 }
 .filter-toggle {
   float: right;
