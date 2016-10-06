@@ -1,5 +1,4 @@
-include_set Abstract::Filter
-include_set Abstract::FilterUtility
+include_set Abstract::BrowseFilter
 def default_sort_by_key
   "metric"
 end

@@ -1,5 +1,4 @@
-
-include_set Abstract::FilterUtility
+include_set Abstract::Filter
 def filter_words
   filter_words = Array.wrap(Env.params[:wikirate_company]) || []
   if Env.params[:wikirate_topic]
@@ -67,21 +66,8 @@ def sort_query
 end
 
 format :html do
-  include Set::Abstract::Filter::HtmlFormat
-  def view_caching?
-    false
-  end
-
   def page_link_params
     [:sort, :cited, :claimed, :wikirate_company, :wikirate_topic]
-  end
-
-  view :no_search_results do |_args|
-    %(
-      <div class="search-no-results">
-        No result
-      </div>
-    )
   end
 
   def default_sort_formgroup_args args
