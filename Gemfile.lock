@@ -1,5 +1,5 @@
 PATH
-  remote: ./vendor/wagn/card
+  remote: /opt/wagn/card
   specs:
     card (1.19.6)
       bootstrap-kaminari-views (~> 0)
@@ -19,7 +19,7 @@ PATH
       uuid (~> 2.3)
 
 PATH
-  remote: ./vendor/wagn/wagn
+  remote: /opt/wagn/wagn
   specs:
     wagn (1.19.6)
       card (= 1.19.6)
@@ -431,4 +431,4 @@ DEPENDENCIES
   wbench
 
 BUNDLED WITH
-   1.12.5
+   1.13.1
