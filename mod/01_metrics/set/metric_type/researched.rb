@@ -13,14 +13,9 @@ format :html do
     args[:edit_fields]["+report_type"] = { title: "Report Type" }
   end
 
-  def default_tabs_args args
-    args[:tabs] = {
-      "Details" => path(view: "details_tab"),
-      "#{fa_icon :globe} Sources" => path(view: "source_tab"),
-      "#{fa_icon :comment} Discussion" => path(view: "discussion_tab"),
-      "Scores" => path(view: "scores_tab")
-    }
-    args[:default_tab] = "Details"
+  def tab_list
+    super.merge source_tab: "#{fa_icon :globe} Sources",
+                scores_tab: "Scores"
   end
 
   view :details_tab do |args|

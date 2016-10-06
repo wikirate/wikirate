@@ -45,7 +45,7 @@ def filter_by_value values
   end
 end
 
-def filter_by_year values
+def filter_by_year key, value #values
   values = Array.wrap(values)
   keep_if :year do |filter|
     values.any? { |v| v["year"] == filter }

@@ -1,25 +1,30 @@
 include_set Abstract::WikirateTable
+include_set Abstract::TwoColumnLayout
 
 format :html do
-  view :open_content do
-    layout container: true, fluid: true do
-      row 6, 6 do
-        column _render_content_left_col, class: "metric-info left-col nopadding"
-        column _render_content_right_col, class: "wiki right-col"
+  def default_open_content_args args
+    super
+    add_class args[:left_class], "metric-info"
+    add_class args[:right_class], "wiki"
+  end
+
+  view :rich_header do
+    vote = field_subformat(:vote_count)._render_content
+    bs_layout do
+      row 1, 11, class: "metric-header-container" do
+        column vote, class: "margin-top-20 "
+        column _render_title_and_question
       end
     end
   end
 
-  view :metric_title do |_args|
-    metric_url = "/" + card.cardname.url_key
-    metric_title = card.metric_title_card.cardname
-    link = link_to metric_title, path: metric_url, class: "inherit-anchor"
-    content_tag(:h3, link, class: "metric-color")
+  view :filter do |args|
+    field_subformat(:metric_company_filter)
+      ._render_core(args.merge(filter_title: "Filter"))
   end
 
-  view :metric_question do
-    question = subformat(card.question_card)._render_content
-    content_tag(:h4, question, class: "question")
+  view :table do |args|
+    _render_company_list args
   end
 
   view :title_and_question do
@@ -28,14 +33,14 @@ format :html do
     end
   end
 
-  view :metric_header do
-    vote = field_subformat(:vote_count)._render_content
-    layout do
-      row 1, 11, class: "metric-header-container" do
-        column vote, class: "margin-top-20 "
-        column render_title_and_question
-      end
-    end
+  view :metric_title do |_args|
+    link = link_to_card card, card.metric_title, class: "inherit-anchor"
+    content_tag :h3, link, class: "metric-color"
+  end
+
+  view :metric_question do
+    question = subformat(card.question_card)._render_content
+    content_tag :h4, question, class: "question"
   end
 
   view :designer_info do
@@ -77,38 +82,6 @@ format :html do
         subtext
       ]
     end
-  end
-
-  view :content_left_col do |args|
-    wrap do
-      [
-        _render_metric_header,
-        _render_filter(args),
-        _render_year_select(args),
-        _render_company_list(args)
-      ]
-    end
-  end
-
-  # ratings and company list
-  view :content_right_col do |args|
-    _render_tabs(args)
-  end
-
-  view :filter do |args|
-    field_subformat(:metric_company_filter)
-      ._render_core args.merge(filter_title: "Filter")
-  end
-
-  view :year_select do
-    # {{#year select|editor}}
-    <<-HTML
-      <div class="col-md-12 form-horizontal" style="display:none">
-        <div class="form-group">
-        <!-- show year once filter is done -->
-        </div>
-      </div>
-    HTML
   end
 
   view :company_list do |_args|
