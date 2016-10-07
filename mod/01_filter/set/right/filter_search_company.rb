@@ -1,5 +1,5 @@
-include_set Abstract::Filter
-include_set Abstract::FilterUtility
+include_set Abstract::BrowseFilter
+
 def default_keys
   %w(name industry)
 end
