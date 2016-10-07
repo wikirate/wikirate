@@ -22,10 +22,6 @@ event :update_date, :prepare_to_store,
   detach_subfield(:year)
 end
 
-event :update_lookup_table, :integrate do
-
-end
-
 def valid_value_name?
   cardname.parts.size >= 3 && valid_metric? && valid_company? && valid_year?
 end

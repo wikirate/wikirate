@@ -55,7 +55,8 @@ class MetricAnswer < ActiveRecord::Base
   end
 
   def fetch_updated_at
-    card.updated_at
+    return card.updated_at unless (vc = card.value_card)
+    [card.update_at, vc.update_at].max
   end
 
   private
