@@ -119,6 +119,10 @@ def metric_value_query
   { left: { left: name }, type_id: MetricValueID }
 end
 
+event :silence_metric_deletions, :initialize, on: :delete do
+  @silent_change = true
+end
+
 format :html do
   view :designer_image do |_args|
     image = nest card.metric_designer_card.field(:image, new: {}),
