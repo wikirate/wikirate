@@ -75,11 +75,9 @@ format do
   end
 
   def metric_vote_count metric_name
-    if (vote_count_card = Card[metric_name].fetch(trait: :vote_count))
-      vote_count_card.content.to_i
-    else
-      0
-    end
+    return 0 unless (metric_card = Card[metric_name])
+    return 0 unless (vote_count_card = metric_card.fetch trait: :vote_count)
+    vote_count_card.content.to_i
   end
 
   def vote_status metric
