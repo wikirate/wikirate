@@ -7,7 +7,7 @@ format :html do
     count_card = card.fetch trait: [count_card_tag, :cached_count]
     count = subformat(count_card)._render_core
     <<-HTML
-      <span class="count-number clearfix">#{count}</span>
+      <span class="count-number badge clearfix">#{count}</span>
       <span class="count-label">#{title}</span>
     HTML
   end
