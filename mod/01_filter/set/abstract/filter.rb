@@ -2,6 +2,7 @@ include_set Type::SearchType
 include_set Abstract::Utility
 ensure_set { Abstract::FilterUtility }
 include_set Abstract::FilterUtility
+
 def sort?
   true
 end

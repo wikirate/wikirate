@@ -21,12 +21,9 @@ format :html do
   def card_list results, _args
     items = results.each_with_index.map do |claim, num|
       citation_number = %(<span class="cited-claim-number">#{num + 1}</span>)
-      item = nest claim, citation_number: citation_number
-      <<-HTML
-        <div class="search-result-item item-#{nest_defaults(claim)[:view]}">
-          #{item}
-        </div>
-      HTML
+      nest claim, citation_number: citation_number do |item_view, rendered|
+        %(<div class="search-result-item item-#{item_view}">#{rendered}</div>)
+      end
     end.join
     %(<div class="search-result-list">#{items}</div>)
   end

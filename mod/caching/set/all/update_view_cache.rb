@@ -10,8 +10,8 @@ def render_views_for_cache
   args = {
     denied_task: nil,
     home_view: :open,
-    inc_name: "_main",
-    inc_syntax: "_main|open"
+    nest_name: "_main",
+    nest_syntax: "_main|open"
   }
   %w(Home Companies Metrics Topics Overviews Notes Sources).each do |name|
     Card.fetch(name).format.render_open(args)
