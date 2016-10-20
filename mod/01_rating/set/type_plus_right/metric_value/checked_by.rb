@@ -41,10 +41,10 @@ format :html do
 
   view :checked_by_list do
     return if card.checked_users.empty?
+    links = subformat(card).render_shorter_search_result items: { view: :link }
     %(
       <div class="padding-top-10">
-        <i>#{subformat(card).render_shorter_search_result item: :link}
-        <span> checked the value </span></i>
+        <i>#{links}<span> checked the value </span></i>
       </div>
     )
   end

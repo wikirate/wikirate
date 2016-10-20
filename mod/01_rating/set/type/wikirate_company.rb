@@ -78,13 +78,9 @@ format :html do
     end
   end
 
-  view :new_metric_value do |args|
-    frame args do
-      output(
-        [
-          _render_metric_side,
-          _render_source_side
-        ])
+  view :new_metric_value do
+    frame do
+      output [_render_metric_side, _render_source_side]
     end
   end
 
@@ -114,9 +110,9 @@ format :html do
     end
   end
 
-  view :topic_company_row do |args|
+  view :topic_company_row do
     topic = parent.card.cardname.left
-    wrap(args) do
+    wrap do
       process_content <<-HTML
       <div class="yinyang-row">
         <div class="company-item contribution-item">

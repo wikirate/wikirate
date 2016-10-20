@@ -131,23 +131,6 @@ format :html do
     HTML
   end
 
-  def default_button_formgroup_args args
-    toggle_text = filter_active? ? "Hide Advanced" : "Show Advanced"
-    buttons = [
-      link_to_card(card.cardname.left_name, "Reset",
-                   class: "slotter btn btn-default margin-8")
-    ]
-    unless card.advanced_keys.empty?
-      buttons.unshift(content_tag(:a, toggle_text,
-                                  href: "#collapseFilter",
-                                  class: "btn btn-default",
-                                  data: { toggle: "collapse",
-                                          collapseintext: "Hide Advanced",
-                                          collapseouttext: "Show Advanced" }))
-    end
-    args[:buttons] = buttons.join
-  end
-
   def advance_formgroups args
     advance_formgroups = args[:advance_formgroups]
     adv_html = ""
@@ -167,9 +150,30 @@ format :html do
     <<-HTML
       <form action="/#{action}" method="GET">
         #{content}
-        #{_optional_render :button_formgroup, args}
+        #{filter_buttons}
       </form>
     HTML
+  end
+
+  def filter_buttons
+    button_formgroup do
+      [advanced_button, reset_button].compact
+    end
+  end
+
+  def advanced_button
+    return if card.advanced_keys.empty?
+    toggle_text = filter_active? ? "Hide Advanced" : "Show Advanced"
+    content_tag :a, toggle_text, href: "#collapseFilter",
+                                 class: "btn btn-default",
+                                 data: { toggle: "collapse",
+                                         collapseintext: "Hide Advanced",
+                                         collapseouttext: "Show Advanced" }
+  end
+
+  def reset_button
+    link_to_card card.cardname.left_name, "Reset",
+                 class: "slotter btn btn-default margin-8"
   end
 
   # it was from filter_search.rb
@@ -188,7 +192,7 @@ format :html do
   end
 
   def text_filter type_name, args
-    formgroup args[:title] || type_name.capitalize,
+    formgroup voo.title || type_name.capitalize,
               text_field_tag(type_name, params[type_name],
                              class: "form-control"),
               class: " filter-input"
@@ -238,7 +242,7 @@ format :html do
 
   view :name_formgroup do |args|
     name = args[:name] || "name"
-    title = args[:title] || "Keyword"
+    title = voo.title || "Keyword"
     text_filter name, title: title
   end
 

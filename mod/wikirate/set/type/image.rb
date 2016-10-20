@@ -3,6 +3,6 @@ view :missing do |args|
   if args[:denied_view] == :core
     core
   else
-    wrap no_slot: true do core end
+    wrap(false) { core }
   end
 end

@@ -79,8 +79,8 @@ format :html do
     "= #{super(args)}"
   end
 
-  def get_nest_defaults
-    { view: :thumbnail }
+  def default_nest_view
+    :thumbnail
   end
 end
 

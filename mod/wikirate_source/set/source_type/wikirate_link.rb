@@ -4,7 +4,7 @@ card_accessor :wikirate_website, type: :pointer
 
 format :html do
   view :original_link do |args|
-    link_to (args[:title] || "Visit Original"), path: card.wikirate_link
+    link_to (voo.title || "Visit Original"), path: card.wikirate_link
   end
 end
 

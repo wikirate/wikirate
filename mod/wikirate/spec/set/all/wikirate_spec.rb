@@ -61,7 +61,7 @@ describe Card::Set::All::Wikirate do
       expected =
         render_card_with_args(:shorter_search_result,
                               { name: "#{get_a_sample_company.name}+*editor" },
-                              {}, item: :link)
+                              {}, items: { view: :link })
       expect(html).to include(expected)
     end
 
@@ -263,9 +263,7 @@ describe Card::Set::All::Wikirate do
 
   describe "yinyang_list" do
     it "renders correct yinyang list items" do
-      args = {
-        item: "content"
-      }
+      args = { items: { view: "content" } }
       sample_company = Card.create! name: "Steelseries",
                                     type_id: Card::WikirateCompanyID
 

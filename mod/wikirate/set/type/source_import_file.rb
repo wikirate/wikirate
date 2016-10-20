@@ -180,7 +180,7 @@ format :html do
 
   view :import do |args|
     new_args = args.merge(hidden: { success: { id: "_self", view: :open } })
-    frame_and_form :update, new_args, "notify-success" => "import successful" do
+    frame_and_form :update, "notify-success" => "import successful" do
       [
         _optional_render(:source_import_flag, args),
         _optional_render(:selection_checkbox, args),

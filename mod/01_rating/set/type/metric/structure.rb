@@ -98,7 +98,7 @@ format :html do
   <h5>Metric Type:</h5>
             				</div>
   <div class="col-md-9 nopadding">
-    #{field_subformat(:metric_type)._render_content item: :name}
+    #{field_subformat(:metric_type)._render_content items: { view: :name }}
   </div>
                   </div>
   <div class="row topic-list">
@@ -106,7 +106,7 @@ format :html do
   <h5>Topics:</h5>
             				</div>
   <div class="col-md-9 nopadding">
-    #{field_subformat(:wikirate_topic)._render_content item: :link}
+    #{field_subformat(:wikirate_topic)._render_content items: { view: :link }}
   </div>
                   </div>
   </div>
@@ -182,7 +182,7 @@ format :html do
   end
 
   view :metric_row do |args|
-    wrap(args) do
+    wrap do
       process_content <<-HTML
       <div class="yinyang-row">
         <div class="metric-item contribution-item value-item">

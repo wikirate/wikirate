@@ -48,7 +48,7 @@ format :html do
     content = contruct_import_warning_message args
     content << handle_source(args) do |source|
       <<-HTML
-        <a href=\"#{source}\">Download #{showname args[:title]}</a><br />
+        <a href=\"#{source}\">Download #{showname voo.title}</a><br />
       HTML
     end.html_safe
     import_link = <<-HTML

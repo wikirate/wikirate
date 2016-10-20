@@ -113,8 +113,8 @@ end
 format :html do
   # FIXME: inline js
   view :new do |args|
-    # frame_and_form :create, args, 'main-success' => 'REDIRECT' do
-    frame args.merge(title: "New Metric") do
+    voo.title = "New Metric"
+    frame do
       <<-HTML
       <fieldset class="card-editor editor">
         <div role="tabpanel">

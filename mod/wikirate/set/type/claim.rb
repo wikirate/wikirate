@@ -30,7 +30,7 @@ format :html do
     %{
       <div class='row'>
         <div class='col-md-12'>
-          #{formgroup 'Note', raw(name_field form), editor: 'name', help: true}
+          #{formgroup 'Note', raw(name_field), editor: 'name', help: true}
           <div class='note-counting'>
             <span class='note-counting-number'>100</span> character(s) left
           </div>

@@ -84,7 +84,7 @@ format :html do
           </div>
         HTML
       end
-    wrap(args) do
+    wrap do
       process_content <<-HTML
       <div class="drag-item yinyang-row">
         <div class="metric-item value-item">
@@ -137,7 +137,7 @@ format :html do
       else
         "metric_details_company_header"
       end
-    wrap(args) do
+    wrap do
       <<-HTML
       <div class="yinyang-row">
         <div class="company-item value-item">

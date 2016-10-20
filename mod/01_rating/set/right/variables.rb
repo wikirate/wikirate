@@ -65,7 +65,7 @@ format :html do
   end
 
   view :edit do |args|
-    frame args do
+    frame do
       render_haml metric_list: metric_list do
         <<-HAML
 .yinyang.nodblclick

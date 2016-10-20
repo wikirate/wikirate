@@ -144,9 +144,9 @@ format :html do
     end
   end
 
-  def item_wrap args
+  def item_wrap
     with_nest_mode :normal do
-      wrap args do
+      wrap do
         <<-HTML
         <!--prototype: Company+MetricDesigner+MetricName+yinyang drag item -->
         <div class="yinyang-row">
@@ -238,7 +238,7 @@ format :html do
   view :item_view do |args|
     append = args[:append_for_details] ||
              "#{card.key}+add_to_formula"
-    item_wrap(args) do
+    item_wrap do
       %(
       <div class="no-data metric-details-toggle"
            data-append="#{append}">
@@ -250,7 +250,7 @@ format :html do
 
   view :item_view_with_value do |args|
     contributions_url = path "#{metric_designer}+contributions"
-    item_wrap args do
+    item_wrap do
       <<-HTML
         <div class="header">
           #{_render_handle if args[:draggable]}
@@ -303,7 +303,8 @@ format :html do
     rows = [
       icon_row("question", question, class: "metric-details-question"),
       icon_row("bar-chart", card.metric_type, class: "text-emphasized"),
-      icon_row("tag", field_nest("+topic", view: :content, item: :link))
+      icon_row("tag", field_nest("+topic", view: :content,
+                                           items: { view: :link }))
     ]
     if card.researched?
       rows <<  text_row("Unit", field_nest("Unit"))

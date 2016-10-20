@@ -11,18 +11,12 @@ format :html do
     end
   end
 
-  view :toggle do |args|
-    verb, adjective, direction =
-      if args[:toggle_mode] == :close
-        %w(open open triangle-right)
-      else
-        %w(close closed triangle-bottom)
-      end
-    disabled = card.contribution_count.zero? ? "disabled" : ""
-
-    link_to_view adjective, glyphicon(direction),
-                 title: "#{verb} #{card.name}",
-                 class: "#{verb}-icon toggler slotter nodblclick #{disabled}"
+  def toggle_verb_adjective_direction
+    if @toggle_mode == :close
+      %w(open open triangle-right)
+    else
+      %w(close closed triangle-bottom)
+    end
   end
 
   view :open do |args|

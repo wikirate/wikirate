@@ -23,7 +23,7 @@ format :html do
   end
 
   def default_name_formgroup_args args
-    args[:title] = "Metric Name"
+    voo.title = "Metric Name"
   end
 
   def metric_filter_fields args

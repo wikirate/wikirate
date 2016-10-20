@@ -261,8 +261,7 @@ format :html do
 
   view :import do |args|
     success_args = { success: { id: "_self", view: :open } }
-    frame_and_form :update, args.merge(hidden: success_args),
-                   "notify-success" => "import successful" do
+    frame_and_form :update, "notify-success" => "import successful" do
       [
         _optional_render(:metric_select, args),
         _optional_render(:year_select, args),

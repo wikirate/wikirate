@@ -2,7 +2,7 @@ format :html do
   view :new do |args|
     return _render_no_frame_form args if Env.params[:noframe] == "true"
     @form_root = true
-    frame args do # no form!
+    frame do # no form!
       [
         _optional_render(:content_formgroup,
                          args.merge(metric_value_landing: true))
@@ -95,7 +95,6 @@ format :html do
   end
 
   view :no_frame_form do |args|
-    form_opts = args[:form_opts] ? args.delete(:form_opts) : {}
     form_opts[:hidden] = args.delete(:hidden)
     form_opts["main-success"] = "REDIRECT"
     card_form :create, form_opts do
@@ -206,7 +205,7 @@ format :html do
 
   def default_new_args args
     set_hidden_args args
-    args[:title] = "Add new value for #{args[:metric]}" if args[:metric]
+    voo.title = "Add new value for #{args[:metric]}" if args[:metric]
     btn_class = "btn btn-default _form_close_button"
     args[:buttons] =
       wrap_with :div do

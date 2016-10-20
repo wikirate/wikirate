@@ -48,25 +48,25 @@ format :html do
                class: "pointer-select form-control")
   end
 
-  view :editor do |args|
+  view :editor do
     if (metric_name = metric_name_from_params || card.metric) &&
        (metric_card = Card[metric_name]) &&
        metric_card.value_type == "Category"
-      _render_select(args.merge(metric_name: metric_name))
+
+      _render_select metric_name: metric_name
     else
-      super(args)
+      super()
     end
   end
 
-  view :timeline_row do |args|
-    args[:hide] = "timeline_header timeline_add_new_link"
+  view :timeline_row do
     wrap_with :div, class: "timeline container" do
       wrap_with :div, class: "timeline-body" do
-        [
-          (wrap_with :div, class: "pull-left timeline-data" do
-            subformat(card.left).render_timeline_data(args)
-          end)
-        ]
+        wrap_with :div, class: "pull-left timeline-data" do
+          subformat(card.left).render_timeline_data(
+            hide: %w(timeline_header timeline_add_new_link)
+          )
+        end
       end
     end
   end

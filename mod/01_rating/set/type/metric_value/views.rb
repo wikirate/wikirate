@@ -160,7 +160,7 @@ format :html do
   view :sources do
     heading = content_tag(:h5, "Cited")
     sources = card.fetch trait: :source
-    heading << subformat(sources).render_core(item: :cited).html_safe
+    heading << subformat(sources).render_core(items: { view: :cited }).html_safe
   end
 
   view :comments do |_args|

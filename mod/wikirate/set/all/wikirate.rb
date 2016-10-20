@@ -54,22 +54,24 @@ format :html do
     end
   end
 
-  view :titled_with_edits do |args|
-    wrap args do
+  view :titled_with_edits do
+    @content_body = true
+    wrap do
       [
-        _render_header(args),
-        render_edits_by(args),
-        wrap_body(content: true) { _render_core args }
+        _render_header,
+        render_edits_by,
+        wrap_body { _render_core }
       ]
     end
   end
 
   view :edits_by do
     editor_card = card.fetch trait: :editors
-    %(
-      <div class="edits-by">
-        <div class='subtitle-header'>Edits by</div>
-        #{subformat(editor_card).render_shorter_search_result item: :link}
+    links = subformat(editor_card).render_shorter_search_result(
+      items: { view: :link }
+    )
+    %(<div class="edits-by">
+        #{links}<div class='subtitle-header'>Edits by</div>
       </div>
     )
   end
@@ -160,7 +162,8 @@ format :html do
     item_type_name = card.cardname.right.split.last
     icon_card = Card.fetch("#{item_type_name}+icon")
     hidden_class = card.content.empty? ? "hidden" : ""
-    wrap args.merge(slot_class: "showcase #{hidden_class}") do
+    class_up "card-body", "showcase #{hidden_class}"
+    wrap do
       %(
         #{subformat(icon_card)._render_core}
         #{item_type_name.capitalize}
@@ -193,19 +196,11 @@ format :html do
   end
 
   view :yinyang_list_items do |args|
-    item_args = {
-      view: (args[:item] || (@nest_opts && @nest_opts[:view]) ||
-            default_item_view)
-    }
     joint = args[:joint] || " "
-
-    if (type = card.item_type)
-      item_args[:type] = type
-    end
 
     enrich_result(card.item_names).map do |icard|
       content_tag :div, class: "yinyang-row" do
-        nest(icard, item_args.clone).html_safe
+        nest_item(icard, view: args[:item]).html_safe
       end.html_safe
     end.join(joint).html_safe
   end
