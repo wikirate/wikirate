@@ -19,6 +19,7 @@ format :html do
                                 items: {  view: "content",
                                           structure: "list item" })
     end
+    # FIXME use labeled view
     props["Topics"] =
       field_subformat(:wikirate_topic)._render_content item: :link
     table props, class: "metric-properties"
