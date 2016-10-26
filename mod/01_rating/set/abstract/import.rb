@@ -7,7 +7,6 @@ event :import_csv, :prepare_to_store,
   return unless valid_import_format?(import_data)
   source_map = {}
   init_success_slot_params
-
   import_data.each do |import_row|
     import_card = parse_import_row import_row, source_map
     # validate value type
@@ -203,7 +202,6 @@ end
 
 def check_if_filled_in field, args, field_name=nil
   return if args[field.to_sym].present?
-  binding.pry
   field_name ||= field
   add_import_error "#{field_name} missing"
 end
@@ -229,7 +227,6 @@ def ensure_company_exists company, args
     msg = "#{company} is not in company type"
     add_import_error msg, args[:row]
   else
-    binding.pry
     add_subcard company, type_id: WikirateCompanyID
   end
   @import_errors.empty?
@@ -314,6 +311,7 @@ format :html do
      <span class="pull-right">
       company match:
       #{row_legend "exact", "success"}
+      #{row_legend "alias", "info"}
       #{row_legend "partial", "warning"}
       #{row_legend "none", "danger"}
       <span>
@@ -351,10 +349,14 @@ format :html do
 
   def reject_header_row import_data
     return unless (first_row = import_data.first)
+    return unless includes_column_header first_row
+    import_data.shift
+  end
+
+  def includes_column_header row
     headers = import_fields
     headers << :company
-    return unless first_row.any? { |item| headers.include? item.downcase.to_sym }
-    import_data.shift
+    row.any? { |item| item && headers.include?(item.downcase.to_sym) }
   end
 
   def aliases_hash
@@ -473,6 +475,7 @@ format :html do
     when "partial" then "warning"
     when "exact" then "success"
     when "none" then "danger"
+    when "alias" then "info"
     end
   end
 
