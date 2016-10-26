@@ -15,9 +15,9 @@ Feature: import metric values from a csv file
     And I scroll -1000 pixels
 
   Scenario: Show import table correctly
-    Then I should see a row with "Jedi+Sith Lord in Charge|Death Star|exact|2015|One country, two systems|https://en.wikipedia.org/wiki/One_country,_two_systems|just kidding"
-    And I should see a row with "Joe User+researched|Apple|partial|2008|11|http://srivigneshwar.com/home/?zs"
-    And I should see a row with "Joe User+researched|Hong Kong|exact|2008|11|http://srivigneshwar.com/home/?q"
+    Then I should see a row with "Jedi+Sith Lord in Charge|Death Star|2015|One country, two systems|https://en.wikipedia.org/wiki/One_country,_two_systems|just kidding"
+    And I should see a row with "Joe User+researched|Apple|2008|11|http://srivigneshwar.com/home/?zs"
+    And I should see a row with "Joe User+researched|Hong Kong|2008|11|http://srivigneshwar.com/home/?q"
 
   Scenario: Import a simple metric value
     When I check checkbox in row 1
