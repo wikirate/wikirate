@@ -6,7 +6,7 @@ describe Card::Set::Type::SourceImportFile do
     @source_import_file = Card.create! name: "does it matter?",
                                        source_import_file: test_csv,
                                        type_id: Card::SourceImportFileID
-    Card::Env.params["is_metric_import_update"] = "true"
+    Card::Env.params["is_data_import"] = "true"
   end
 
   def test_row_content args, input_title
@@ -43,7 +43,7 @@ describe Card::Set::Type::SourceImportFile do
   def trigger_import data, title
     Card::Env.params[:sources] = data
     Card::Env.params[:title] = title
-    Card::Env.params["is_source_import_update"] = "true"
+    Card::Env.params["is_data_import"] = "true"
     @source_import_file.update_attributes subcards: {}
     @source_import_file
   end

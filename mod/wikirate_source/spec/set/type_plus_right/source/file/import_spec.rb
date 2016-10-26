@@ -2,7 +2,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
   before do
     login_as "joe_user"
     @source = create_source file: csv1
-    Card::Env.params["is_metric_import_update"] = "true"
+    Card::Env.params["is_data_import"] = "true"
   end
   let(:csv1) do
     File.open File.expand_path("../import_test.csv", __FILE__)
@@ -293,9 +293,9 @@ describe Card::Set::TypePlusRight::Source::File::Import do
         }
       end
     end
-    it "contains hidden flag is_metric_import_update" do
+    it "contains hidden flag is_data_import" do
       is_expected.to have_tag("input", with: {
-                                id: "is_metric_import_update", value: "true",
+                                id: "is_data_import", value: "true",
                                 type: "hidden"
                               })
     end

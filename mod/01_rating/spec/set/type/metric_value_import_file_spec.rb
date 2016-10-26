@@ -18,7 +18,7 @@ describe Card::Set::Type::MetricValueImportFile do
     @mv_import_file = Card.create! name: "does it matter?",
                                    metric_value_import_file: test_csv,
                                    type_id: Card::MetricValueImportFileID
-    Card::Env.params["is_metric_import_update"] = "true"
+    Card::Env.params["is_data_import"] = "true"
     @metric = get_a_sample_metric
     metric_name = @metric.name
     @companies = ["Amazon.com, Inc.", "Apple Inc.", "Sony Corporation"]
