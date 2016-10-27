@@ -46,7 +46,7 @@ format :html do
 
   view :core do |args|
     content = contruct_import_warning_message args
-    content << handle_source(args) do |source|
+    content << handle_source do |source|
       <<-HTML
         <a href=\"#{source}\">Download #{showname voo.title}</a><br />
       HTML

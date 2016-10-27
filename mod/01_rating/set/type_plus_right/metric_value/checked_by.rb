@@ -19,7 +19,7 @@ format :html do
       Auth.as_bot do
         card.save!
       end
-      render(args[:denied_view], args)
+      render(@denied_view, args)
     else
       super(args)
     end

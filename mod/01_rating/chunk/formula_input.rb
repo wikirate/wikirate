@@ -1,7 +1,7 @@
 class Card
   class Content
     module Chunk
-      class FormulaInput < Include
+      class FormulaInput < Nest
         @@options << :year
         DEFAULT_OPTION = :year
 
