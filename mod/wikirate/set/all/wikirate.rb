@@ -13,8 +13,8 @@ format do
     ""
   end
 
-  view :raw_or_blank, perms: :none, closed: true do |args|
-    _render(:raw, args) || ""
+  view :raw_or_blank, perms: :none, closed: true do
+    _render_raw || ""
   end
 end
 
@@ -74,8 +74,9 @@ format :html do
     )
   end
 
-  view :open do |args|
-    super(args.reverse_merge optional_horizontal_menu: :show)
+  view :open do
+    voo.show :horizontal_menu
+    super()
   end
 
   attr_accessor :citations
@@ -171,25 +172,6 @@ format :html do
 
   view :open_contribution_list do |args|
     _render_open(args.merge(contribution_list: true))
-  end
-
-  view :header do |args|
-    if args.delete(:contribution_list)
-      view :header do |_args|
-        %(
-          <div class="card-header #{args[:header_class]}">
-            <div class="card-header-title #{args[:title_class]}">
-              #{_optional_render :title, args}
-              #{_optional_render :contribution_counts, args}
-              #{_optional_render :toggle, args, :hide}
-            </div>
-          </div>
-          #{_optional_render :toolbar, args, :hide}
-        )
-      end
-    else
-      super(args)
-    end
   end
 
   view :yinyang_list_items do |args|

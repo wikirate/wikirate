@@ -1,8 +1,8 @@
 class Card
   class Content
     module Chunk
-      class FormulaInput < Include
-        @@options << :year
+      class FormulaInput < Nest
+        Card::View::Options.keymap[:nest] << :year
         DEFAULT_OPTION = :year
 
         Card::Content::Chunk.register_class(
