@@ -2,7 +2,7 @@ include_set Abstract::SolidCache, cached_format: :json
 
 # refresh the topic+all companies if source's company changed
 ensure_set { TypePlusRight::Source::WikiRateCompany }
-cache_update_trigger TypePlusRight::Source::WikirateCompany do |changed_card|
+cache_expire_trigger TypePlusRight::Source::WikirateCompany do |changed_card|
   topics = changed_card.left.fetch trait: :wikirate_topic
   next unless topics
   topics.item_names.map do |topic|
@@ -12,7 +12,7 @@ end
 
 # refresh the topic+all companies if claim's company changed
 ensure_set { TypePlusRight::Claim::WikiRateCompany }
-cache_update_trigger TypePlusRight::Claim::WikirateCompany do |changed_card|
+cache_expire_trigger TypePlusRight::Claim::WikirateCompany do |changed_card|
   topics = changed_card.left.fetch trait: :wikirate_topic
   next unless topics
   topics.item_names.map do |topic|
@@ -22,7 +22,7 @@ end
 
 # recount topics associated with a company whenever <source>+topic is edited
 ensure_set { TypePlusRight::Source::WikirateTopic }
-cache_update_trigger TypePlusRight::Source::WikirateTopic do |changed_card|
+cache_expire_trigger TypePlusRight::Source::WikirateTopic do |changed_card|
   names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
   next unless names
   names.map do |topic_name|
@@ -32,7 +32,7 @@ end
 
 # recount topics associated with a company whenever <note>+topic is edited
 ensure_set { TypePlusRight::Claim::WikirateTopic }
-cache_update_trigger TypePlusRight::Claim::WikirateTopic do |changed_card|
+cache_expire_trigger TypePlusRight::Claim::WikirateTopic do |changed_card|
   names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
   next unless names
   names.map do |topic_name|
@@ -42,7 +42,7 @@ end
 
 # recount topics associated with a company whenever <Metric>+topic is edited
 ensure_set { TypePlusRight::Metric::WikirateTopic }
-cache_update_trigger TypePlusRight::Metric::WikirateTopic do |changed_card|
+cache_expire_trigger TypePlusRight::Metric::WikirateTopic do |changed_card|
   names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
   next unless names
   names.map do |topic_name|
@@ -50,7 +50,7 @@ cache_update_trigger TypePlusRight::Metric::WikirateTopic do |changed_card|
   end
 end
 # metric value name change, create or delete may expire the cache
-cache_update_trigger Type::MetricValue do |changed_card|
+cache_expire_trigger Type::MetricValue do |changed_card|
   # FIXME: clean the cache cleverly
   topics = changed_card.metric_card.fetch(trait: :wikirate_topic, new: {})
                        .item_names

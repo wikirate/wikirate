@@ -70,11 +70,11 @@ format :html do
     _render_icon + content
   end
 
-  view :source_list_item do |args|
+  view :source_list_item do
     wrap_with :div, class: "source-item" do
       [
         _render_vote,
-        _render_source_content(args),
+        _render_source_content,
         _render_extras
       ]
     end
@@ -204,13 +204,13 @@ format :html do
   end
 
   view :original_icon_link do |args|
-    title = content_tag(:i, "", class: "fa fa-#{icon}")
-    _render_original_link args.merge(title: title)
+    voo.title = wrap_with :i, "", class: "fa fa-#{icon}"
+    _render_original_link
   end
 
-  view :content do |args|
+  view :content do
     add_name_context
-    super args
+    super()
   end
 
   view :missing do |args|
@@ -221,15 +221,11 @@ format :html do
     render_titled_with_voting args
   end
 
-  view :open do |args|
-    super args.merge(custom_source_header: true)
-  end
-
-  view :header do |args|
-    if args.delete(:custom_source_header)
+  view :header do
+    if voo.parent && voo.parent.ok_view == :open
       render_header_with_voting
     else
-      super(args)
+      super()
     end
   end
 

@@ -6,11 +6,11 @@ attachment :metric_value_import_file, uploader: CarrierWave::FileCardUploader
 format :html do
   def default_import_table_args args
     args[:table_header] = ["Select", "#", "Metric",
-                           "Company in File", "Company in Wikirate", "Match",
+                           "Company in File", "Company in Wikirate",
                            "Correction",
                            "Year", "Value", "Source", "Comment"]
     args[:table_fields] = [:checkbox, :row, :metric, :file_company,
-                           :wikirate_company, :status, :correction,
+                           :wikirate_company, :correction,
                            :year, :value, :source, :comment]
   end
 

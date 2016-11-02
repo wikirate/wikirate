@@ -1,26 +1,31 @@
-# the is_metric_import_update flag distinguishes between an update of the
+# the is_data_import flag distinguishes between an update of the
 # import file and importing the file
 event :import_csv, :prepare_to_store,
       on: :update,
-      when: proc { Env.params["is_metric_import_update"] == "true" } do
-  return unless (metric_values = Env.params[:metric_values])
-  return unless valid_import_format?(metric_values)
+      when: proc { Env.params["is_data_import"] == "true" } do
+  return unless (import_data = Env.params[:import_data])
+  return unless valid_import_format?(import_data)
   source_map = {}
+  init_success_slot_params
+  import_data.each do |import_row|
+    import_card = parse_import_row import_row, source_map
+    # validate value type
+    if import_card
+      import_card.director.catch_up_to_stage :validate
+      import_card.director.transact_in_stage = :integrate
+    end
+    handle_import_errors import_card
+  end
+  clear_slot_params
+  handle_redirect
+end
+
+
+def init_success_slot_params
   success.params[:slot] = {
     identical_metric_value: [],
     duplicated_metric_value: []
   }
-  metric_values.each do |metric_value_data|
-    metric_value_card = parse_metric_value metric_value_data, source_map
-    # validate value type
-    if metric_value_card
-      metric_value_card.director.catch_up_to_stage :validate
-      metric_value_card.director.transact_in_stage = :integrate
-    end
-    handle_import_errors metric_value_card
-  end
-  clear_slot_params
-  handle_redirect
 end
 
 def clear_slot_params
@@ -65,7 +70,7 @@ def check_duplication_with_existing metric_value_name, source_card
 end
 
 # @return updated or created metric value card object
-def parse_metric_value import_data, source_map
+def parse_import_row import_data, source_map
   args = process_data import_data
   process_source args, source_map
   return unless valid_value_data? args
@@ -265,8 +270,8 @@ format :html do
       [
         _optional_render(:metric_select, args),
         _optional_render(:year_select, args),
-        _optional_render(:metric_import_flag, args),
-        _optional_render(:selection_checkbox, args),
+        _optional_render(:import_flag, args),
+        _optional_render(:import_table_helper, args),
         _optional_render(:import_table, args),
         _optional_render(:button_formgroup, args)
       ]
@@ -281,35 +286,76 @@ format :html do
     nest card.left.metric_card, view: :edit_in_form
   end
 
-  view :metric_import_flag do |_args|
-    hidden_field_tag :is_metric_import_update, "true"
+  view :import_flag do |_args|
+    hidden_field_tag :is_data_import, "true"
   end
 
-  view :selection_checkbox do |_args|
-    content = %(
+  view :import_table_helper do |_args|
+    content_tag(:p, selection_checkbox + import_legend)
+  end
+
+  def selection_checkbox
+    <<-HTML.html_safe
       #{check_box_tag 'uncheck_all', '', false, class: 'checkbox-button'}
       #{label_tag 'Uncheck All'}
       #{check_box_tag 'partial', '', false, class: 'checkbox-button'}
       #{label_tag 'Select Partial'}
       #{check_box_tag 'exact', '', false, class: 'checkbox-button'}
       #{label_tag 'Select Exact'}
-    )
-    content_tag(:div, content, { class: "selection_checkboxs" }, false)
+    HTML
+  end
+
+  def import_legend
+    <<-HTML.html_safe
+     <span class="pull-right">
+      company match:
+      #{row_legend "exact", "success"}
+      #{row_legend "alias", "info"}
+      #{row_legend "partial", "warning"}
+      #{row_legend "none", "danger"}
+      <span>
+    HTML
+  end
+
+  def row_legend text, context
+    bs_label text, class: "bg-#{context}",
+                   style: "color: inherit;"
+  end
+
+  def bs_label text, opts={}
+    add_class opts, "label"
+    add_class opts, "label-#{opts.delete(:context)}" if opts[:context]
+    content_tag :span, text, opts
   end
 
   def default_import_table_args args
     args[:table_header] = ["Import", "#", "Company in File",
-                           "Company in Wikirate", "Match", "Correction"]
+                           "Company in Wikirate", "Correction"]
     args[:table_fields] = [:checkbox, :row, :file_company, :wikirate_company,
-                           :status, :correction]
+                           :correction]
   end
 
   view :import_table do |args|
-    data = card.csv_rows.map.with_index do |elem, i|
+    data = card.csv_rows
+    reject_header_row data
+    data = data.map.with_index do |elem, i|
       import_row(elem, args[:table_fields], i + 1)
     end
+
     table data, class: "import_table table-bordered table-hover",
                 header: args[:table_header]
+  end
+
+  def reject_header_row import_data
+    return unless (first_row = import_data.first)
+    return unless includes_column_header first_row
+    import_data.shift
+  end
+
+  def includes_column_header row
+    headers = import_fields
+    headers << :company
+    row.any? { |item| item && headers.include?(item.downcase.to_sym) }
   end
 
   def aliases_hash
@@ -378,7 +424,7 @@ format :html do
 
   def import_checkbox row_hash
     key_hash, checked = prepare_import_checkbox row_hash
-    check_box_tag "metric_values[]", key_hash.to_json, checked
+    check_box_tag "import_data[]", key_hash.to_json, checked
   end
 
   def data_correction data
@@ -418,7 +464,18 @@ format :html do
 
   def import_row row, table_fields, index
     data = prepare_import_row_data row, index
-    table_fields.map { |key| data[key].to_s }
+    content = table_fields.map { |key| data[key].to_s }
+    { content: content,
+      class: row_context(data[:status]) }
+  end
+
+  def row_context status
+    case status
+    when "partial" then "warning"
+    when "exact" then "success"
+    when "none" then "danger"
+    when "alias" then "info"
+    end
   end
 
   def row_to_hash row

@@ -1,7 +1,7 @@
 card_accessor :file, type: :file
 
 format :html do
-  view :original_link do |args|
+  view :original_link do
     link_to (voo.title || "Download"), path: card.file_card.file.url
   end
 
@@ -9,14 +9,15 @@ format :html do
     "upload"
   end
 
-  view :metric_import_link do |_args|
+  view :metric_import_link do
     return "" unless csv?
     link_to_card card.file_card, "Import to metric values",
                  path: { view: :import }
   end
 
   def csv?
-    (mime_type = card.file_card.file.content_type) &&
-      (mime_type == "text/csv" || mime_type == "text/comma-separated-values")
+    ["text/csv", "text/comma-separated-values"].include?(
+      card.file_card.file.content_type
+    )
   end
 end

@@ -22,7 +22,7 @@ end
 
 event :validate_import, :prepare_to_validate,
       on: :update,
-      when: proc { Env.params["is_metric_import_update"] == "true" } do
+      when: proc { Env.params["is_data_import"] == "true" } do
   check_card metric_pointer_card, "Metric", Card::MetricID
   check_card year_pointer_card, "Year", Card::YearID
 end
