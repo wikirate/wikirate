@@ -30,19 +30,19 @@ format :html do
   end
 
   def default_filter_header args
-    args[:filter_title] ||= "Filter & Sort"
+    voo.title ||= "Filter & Sort"
   end
 
-  view :filter_header do |args|
-    <<-HTML
-      <div class="filter-header">
-        <span class="glyphicon glyphicon-filter"></span>
-          #{args[:filter_title]}
-        <span class="filter-toggle">
-          <span class="glyphicon glyphicon-triangle-right"></span>
-        </span>
-      </div>
-    HTML
+  view :filter_header do
+    wrap_with :div, class: "filter-header" do
+      [
+        wrap_with(:span, "", class: "glyphicon glyphicon-filter"),
+        voo.title,
+        wrap_with(:span, class: "filter-toggle") do
+          wrap_with :span, "", class: "glyphicon glyphicon-triangle-right"
+        end
+      ]
+    end
   end
 
   view :core do |args|

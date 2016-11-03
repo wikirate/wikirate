@@ -1,24 +1,17 @@
 format :html do
-  view :timeline do |args|
-    timeline = output [
-      (wrap_with :div, class: "pull-left timeline-data" do
-        [
-          _optional_render(:timeline_header, args.merge(column: :data), :show),
-          (search_results.map.with_index do |res, i|
-            subformat(res).render_timeline_data(
-              args.merge(connect: i < search_results.size - 1)
-            )
-          end.join "\n")
-        ]
-      end)
-    ]
-    <<-HTML
-      <div class="timeline container">
-        <div class="timeline-body">
-          #{timeline}
-        </div>
-      </div>
-      HTML
+  view :timeline do
+    wrap_with :div, class: "timeline container" do
+      wrap_with :div, class: "timeline-body" do
+        wrap_with :div, class: "pull-left timeline-data" do
+          [
+            _optional_render(:timeline_header, column: :data),
+            search_results.map.with_index do |res, _i|
+              subformat(res).render_timeline_data
+            end
+          ].flatten
+        end
+      end
+    end
   end
 
   view :timeline_add_new_link do |args|
@@ -65,20 +58,13 @@ format :html do
   end
 
   view :timeline_header do |args|
+    voo.show :timeline_header_buttons
     wrap_with :div, class: "timeline-header timeline-row " do
-      case args[:column]
-      when :data
-        _optional_render(:timeline_header_buttons, args, :show) || ""
-      else ""
-      end
+      _optional_render_timeline_header_buttons if args[:column] == :data
     end
   end
 
   def timeline_head content, css_class
-    <<-HTML
-      <div class="td #{css_class}">
-        #{content}
-      </div>
-      HTML
+    wrap_with :div, content, class: "td #{css_class}"
   end
 end

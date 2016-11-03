@@ -1,6 +1,6 @@
 format :html do
-  view :open_content do |args|
-    _render_timeline_data args
+  view :open_content do
+    _render_timeline_data
   end
 
   view :concise do |args|
@@ -103,7 +103,7 @@ format :html do
     end
   end
 
-  view :modal_details do |args|
+  view :modal_details, cache: :never do |args|
     span_args = { class: "metric-value" }
     add_class span_args, grade if card.scored?
     wrap_with :span, span_args do

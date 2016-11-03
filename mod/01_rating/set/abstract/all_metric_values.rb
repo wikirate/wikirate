@@ -13,7 +13,7 @@ def raw_content
 end
 
 format :json do
-  view :core do |_args|
+  view :core do
     mvh = MetricValuesHash.new card.left
     card.item_cards(default_query: true).each do |value_card|
       mvh.add value_card

@@ -157,9 +157,9 @@ format :html do
     _render_tabs(args)
   end
 
-  view :filter do |args|
-    field_subformat(:metric_company_filter)
-      ._render_core args.merge(filter_title: "Filter")
+  view :filter do
+    voo.title = "Filter"
+    field_subformat(:metric_company_filter)._render_core
   end
 
   view :year_select do

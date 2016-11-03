@@ -91,13 +91,13 @@ format :html do
     args[:optional_horizontal_menu] ||= :show if main?
   end
 
-  view :shorter_pointer_content do |args|
-    args_content = { render_link: false }
-    subformat(card).render_shorter_search_result args.merge(args_content)
+  view :shorter_pointer_content do
+    voo.hide :link
+    subformat(card).render_shorter_search_result
   end
 
-  view :shorter_search_result do |args|
-    render_view = args[:render_link].nil? || args[:render_link] ? :link : :name
+  view :shorter_search_result do
+    render_view = voo.show?(:link) ? :link : :name
     items = card.item_cards limit: 0
     total_number = items.size
     fetch_number = [total_number, 4].min
