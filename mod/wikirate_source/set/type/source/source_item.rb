@@ -23,13 +23,6 @@ format :html do
     super args.merge(core_edit: true)
   end
 
-  def creator args
-    "added #{_render_created_at(args)} ago by " \
-    "#{nest Card.fetch(card.cardname.field('*creator')),
-            view: :core,
-            item: :link}"
-  end
-
   def flat_list items
     content_tag :ul, class: "list-inline" do
       items.map { |item| concat(content_tag(:li, item)) }
@@ -37,8 +30,8 @@ format :html do
   end
 
   def website_text
-    nest(Card.fetch(card.cardname.field("website"),
-                    new: {}), view: :content, item: :name)
+    website_field = card.field :wikirate_website, new: {}
+    nest website_field, view: :content, items: { view: :name }
   end
 
   def title_text
@@ -100,8 +93,16 @@ format :html do
     content_tag(:div, icon, class: "source-icon")
   end
 
-  view :creator_credit do |args|
-    content_tag(:div, creator(args).html_safe, class: "last-edit")
+  view :creator_credit do
+    wrap_with :div, class: "last-edit" do
+      "added #{_render_created_at} ago by #{creator}"
+    end
+  end
+
+  def creator
+    # FIXME: codename!
+    creator_card = card.field "*creator"
+    nest creator_card, view: :core, items: { view: :link }
   end
 
   view :website_link do |_args|
@@ -124,9 +125,9 @@ format :html do
     end
     wrap_with :div, class: "source-link" do
       [
-        content_tag(:span, website, class: "source-website"),
-        content_tag(:i, "", class: "fa fa-long-arrow-right"),
-        content_tag(:span, title, class: "source-title")
+        wrap_with(:span, website, class: "source-website"),
+        wrap_with(:i, "", class: "fa fa-long-arrow-right"),
+        wrap_with(:span, title, class: "source-title")
       ]
     end
   end
@@ -144,16 +145,10 @@ format :html do
   end
 
   view :direct_link do
-    if card.source_type_codename == :wikirate_link
-      link = card.fetch(trait: :wikirate_link).content
-      <<-HTML
-        <a class="view-original-url" href="#{link}" target="_blank">
-          <i class="fa fa-external-link-square cursor"></i>
-           Original
-        </a>
-      HTML
-    else
-      ""
+    return "" unless card.source_type_codename == :wikirate_link
+    link = card.fetch(trait: :wikirate_link).content
+    wrap_with :a, href: link, target: "_blank" do
+      [wrap_with(:i, class: "fa fa-external-link-square cursor"), "Original"]
     end
   end
 
@@ -199,12 +194,12 @@ format :html do
     end
   end
 
-  view :metric_import_link do |_args|
+  view :metric_import_link do
     ""
   end
 
-  view :original_icon_link do |args|
-    voo.title = wrap_with :i, "", class: "fa fa-#{icon}"
+  view :original_icon_link do
+    voo.title = font_awesome(icon)
     _render_original_link
   end
 
@@ -231,23 +226,26 @@ format :html do
 
   # TODO: reuse the following in source_preview.rb
   view :metric_count do
-    <<-HTML
-
-    <span id="metric-count-number " class="count-number">
-    <i class="fa fa-bar-chart"></i>#{metric_count}</span>
-    <span>#{Card[MetricID].name.pluralize}</span>
-    HTML
+    pretty_count :metric, "bar-chart"
   end
 
   view :note_count do
-    note_count = nest(Card.fetch("#{card.name}+Note Count"), view: :core)
-    <<-HTML
+    pretty_count "note", "quote-left"
+  end
 
-    <!-- <a href='/#{card.name}+source note list' class="show-link-in-popup"> -->
-      <span class="note-count">
-      <i class="fa fa-quote-left"></i>#{note_count}</span>
-      <span class="note-count">Notes</span>
-    <!-- </a> -->
-    HTML
+  def font_awesome icon_name
+    wrap_with :i, "", "fa fa-#{icon_name}"
+  end
+
+  def pretty_count type, icon_name
+    output(
+      [
+        wrap_with(:span, id: "#{type}-count-number", class: "count-number") do
+          count = send "#{type}_count"
+          "#{font_awesome icon_name} #{count} "
+        end,
+        wrap_with(:span, Card.quick_fetch(type).name.pluralize)
+      ]
+    )
   end
 end
