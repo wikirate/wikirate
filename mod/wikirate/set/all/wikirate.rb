@@ -299,14 +299,13 @@ module ClassMethods
 end
 
 format :json do
-  view :content do |args|
-    result = super args
-    if result[:card] && result[:card][:value] &&
-       result[:card][:value].is_a?(Array)
-      result[:card][:value].reject!(&:nil?)
-    end
+  view :content do
+    result = super()
+    result_card_value = result[:card] && result[:card][:value]
+    result_card_value.reject!(&:nil?) if result_card_value.is_a? Array
     result
   end
+
   view :id_atom do |_args|
     if !params["start"] || (params["start"] && (start = params["start"].to_i) &&
        card.updated_at.strftime("%Y%m%d%H%M%S").to_i >= start)

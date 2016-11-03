@@ -209,11 +209,7 @@ format :html do
   end
 
   def edit_slot args
-    if args[:edit_value_type]
-      super args.merge(core_edit: true)
-    else
-      super args
-    end
+    args[:edit_value_type] ? super(true) : super()
   end
 
   view :handle do |_args|

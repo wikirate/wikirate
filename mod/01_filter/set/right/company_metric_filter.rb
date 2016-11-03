@@ -9,25 +9,25 @@ format :html do
     :metric_tab
   end
 
-  def filter_form_content args
+  def filter_form_content
     <<-HTML
       <h4>Metric</h4>
-      <div class="margin-12 sub-content"> #{metric_filter_fields(args).join} </div>
+      <div class="margin-12 sub-content"> #{metric_filter_fields.join} </div>
       <h4>Answer</h4>
-      <div class="margin-12"> #{other_filter_fields(args).join} </div>
+      <div class="margin-12"> #{other_filter_fields.join} </div>
       <div class="filter-buttons">
-        #{_optional_render :button_formgroup, args}
+        #{_optional_render :button_formgroup}
       </div>
     HTML
   end
 
-  def metric_filter_fields args
+  def metric_filter_fields
     [
-      _optional_render(:name_formgroup, args),
-      _optional_render(:wikirate_topic_formgroup, args),
-      _optional_render(:research_policy_formgroup, args),
-      _optional_render(:importance_formgroup, args),
-      _optional_render(:metric_type_formgroup, args)
+      _optional_render(:name_formgroup),
+      _optional_render(:wikirate_topic_formgroup),
+      _optional_render(:research_policy_formgroup),
+      _optional_render(:importance_formgroup),
+      _optional_render(:metric_type_formgroup)
     ]
   end
 

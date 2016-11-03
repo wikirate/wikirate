@@ -192,10 +192,9 @@ format :html do
   end
 
   def text_filter type_name, args
-    formgroup voo.title || type_name.capitalize,
-              text_field_tag(type_name, params[type_name],
-                             class: "form-control"),
-              class: " filter-input"
+    formgroup voo.title || type_name.capitalize, class: " filter-input" do
+      text_field_tag type_name, params[type_name], class: "form-control"
+    end
   end
 
   def type_options type_codename, order="asc"
@@ -220,17 +219,18 @@ format :html do
     options = options_for_select(options, default)
     label ||= type_name.capitalize
     css_class = no_chosen ? "" : "pointer-select"
-    formgroup label, select_tag(type_name, options, class: css_class),
-              class: "filter-input "
+    formgroup label, class: "filter-input" do
+      select_tag(type_name, options, class: css_class)
+    end
   end
 
   def simple_multiselect_filter type_name, options, default, label=nil
-    options = options_for_select(options, default)
     label ||= type_name.capitalize
-    multiselect_tag = select_tag(type_name, options,
-                                 multiple: true,
-                                 class: "pointer-multiselect")
-    formgroup(label, multiselect_tag, class: "filter-input #{type_name}")
+    formgroup label, class: "filter-input #{type_name}" do
+      select_tag type_name,
+                 options_for_select(options, default),
+                 multiple: true, class: "pointer-multiselect"
+    end
   end
 
   def multiselect_filter type_codename, label=nil
@@ -282,13 +282,14 @@ format :html do
   def checkbox_formgroup title, options, default=nil
     key = title.to_name.key
     param = Env.params[key] || default
-    checkboxes = options.map do |option|
-      checked = param.present? && param.include?(option.downcase)
-      %(<label>
-        #{check_box_tag("#{key}[]", option.downcase, checked) + option}
-      </label>)
+    formgroup title do
+      options.map do |option|
+        checked = param.present? && param.include?(option.downcase)
+        wrap_with :label do
+          [check_box_tag("#{key}[]", option.downcase, checked), option]
+        end
+      end.join
     end
-    formgroup title, checkboxes.join("")
   end
 
   view :research_policy_formgroup do |args|

@@ -53,14 +53,14 @@ format :html do
         #{_render_filter_header(args)}
         <div class="filter-details" style="display: #{filter_active};">
           <form action="/#{action}?view=#{content_view}" method="GET" data-remote="true" class="slotter">
-            #{filter_form_content(args)}
+            #{filter_form_content}
           </form>
         </div>
     </div>
     HTML
   end
 
-  def filter_form_content _args
+  def filter_form_content
     "fill me"
   end
 end

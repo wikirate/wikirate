@@ -213,12 +213,12 @@ format :html do
     super()
   end
 
-  view :missing do |args|
-    _view_link args
+  view :missing do
+    _view_link
   end
 
-  view :titled, tags: :comment do |args|
-    render_titled_with_voting args
+  view :titled, tags: :comment do
+    render_titled_with_voting
   end
 
   view :header do
