@@ -77,7 +77,8 @@ format :html do
 
   view :next_button do
     html_class = "col-md-6 col-centered text-center"
-    button = content_tag(:a, "Next", class: "btn btn-primary _new_value_next")
+    button = content_tag(:a, "Next", class: "btn btn-primary _new_value_next",
+    href: "#")
     content_tag(:div, button, class: html_class)
   end
 
@@ -137,7 +138,7 @@ format :html do
     = field_nest :value, title: 'Value'
   %h5
     Choose Sources or
-    %a.btn.btn-sm.btn-default._add_new_source
+    %a.btn.btn-sm.btn-default._add_new_source{href: "#"}
       %small
         %span.icon.icon-wikirate-logo-o.fa-lg
         Add a new source

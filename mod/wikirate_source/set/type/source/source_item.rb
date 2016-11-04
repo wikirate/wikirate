@@ -159,7 +159,8 @@ format :html do
 
   view :with_cite_button do |args|
     cite_button =
-      content_tag(:a, "Cite!", class: "btn btn-highlight _cite_button c-btn")
+      content_tag(:a, "Cite!", class: "btn btn-highlight _cite_button c-btn",
+                               href: "#")
     content =
       _render_source_list_item(args) +
       content_tag(:div, cite_button, class: "pull-right")
