@@ -40,6 +40,7 @@ $(document).ready ->
       $.get(load_path_source, ((data) ->
         $source_form_container.prepend(data)
         wagn.initializeEditors($source_form_container)
+        $sourceForm = $source_form_container.find('form')
         $sourceForm.trigger('slotReady')
         $loader.remove()
         return
