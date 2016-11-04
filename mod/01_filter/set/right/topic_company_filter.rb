@@ -26,20 +26,20 @@ format :html do
     voo.title = "Company"
   end
 
-  def metric_filter_fields args
-    [
-      _optional_render(:name_formgroup, args),
-      _optional_render(:sort_formgroup, args)
-    ]
+  def metric_filter_fields
+    [_optional_render_name_formgroup, _optional_render_sort_formgroup]
   end
 
-  def default_sort_formgroup_args args
-    args[:sort_options] = {
+  def sort_options
+    {
       "Most Metrics" => "most_metrics",
       "Most Notes" => "most_notes",
       "Most Sources " => "most_sources",
       "Has Overview" => "has_overview"
     }
-    args[:sort_option_default] = "most_metrics"
+  end
+
+  def sort_option_default
+    "most_metrics"
   end
 end

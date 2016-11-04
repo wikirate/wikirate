@@ -1,15 +1,15 @@
 format :html do
-  view :missing do |args|
-    handle_edit_general_overview(args) { super args }
+  view :missing do
+    handle_edit_general_overview { super() }
   end
 
-  view :core do |args|
-    handle_edit_general_overview(args) { super args }
+  view :core do
+    handle_edit_general_overview { super() }
   end
 
   # used in analysis page
-  view :titled_with_edits do |args|
-    handle_edit_general_overview(args) { super args }
+  view :titled_with_edits do
+    handle_edit_general_overview { super() }
   end
 
   def default_param_key
@@ -52,9 +52,9 @@ format :html do
     end.to_s
   end
 
-  def handle_edit_general_overview args
+  def handle_edit_general_overview
     if params[default_param_key] && card.ok?(:update)
-      render :edit, args
+      render :edit
     else
       yield
     end

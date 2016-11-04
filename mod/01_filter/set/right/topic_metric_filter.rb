@@ -26,22 +26,25 @@ format :html do
     voo.title = "Metric Name"
   end
 
-  def metric_filter_fields args
+  def metric_filter_fields
     [
-      _optional_render(:name_formgroup, args),
-      _optional_render(:research_policy_formgroup, args),
-      _optional_render(:metric_type_formgroup, args),
-      _optional_render(:sort_formgroup, args)
+      _optional_render_name_formgroup,
+      _optional_render_research_policy_formgroup,
+      _optional_render_metric_type_formgroup,
+      _optional_render_sort_formgroup
     ]
   end
 
-  def default_sort_formgroup_args args
-    args[:sort_options] = {
+  def sort_options
+    {
       "Importance to Community (up-voted by community)" => "upvoted",
       "Most Company" => "company_number",
       "Metric Designer (Alphabetical)" => "metric_designer",
       "Metric Title (Alphabetical)" => "metric_title"
     }
-    args[:sort_option_default] = "upvoted"
+  end
+
+  def sort_option_default
+    "upvoted"
   end
 end

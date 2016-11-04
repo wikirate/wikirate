@@ -86,10 +86,11 @@ describe Card::Set::Abstract::Filter do
       expect(html).to have_tag(:option, with: { value: "Joe Admin" },
                                         text: "Joe Admin")
     end
+
     describe "view research_policy_formgroup" do
       context "select form" do
         it "renders select list" do
-          html = card.format.render_research_policy_formgroup select_list: true
+          html = card.format.research_policy_select
           expect(html).to have_tag(:select, with: { name: "research_policy" })
         end
       end
@@ -101,6 +102,7 @@ describe Card::Set::Abstract::Filter do
         end
       end
     end
+
     describe "view metric_type_formgroup" do
       context "select form" do
         it "renders select list" do

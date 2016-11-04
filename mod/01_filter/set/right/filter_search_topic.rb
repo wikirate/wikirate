@@ -34,12 +34,15 @@ def wql_by_project wql, project
 end
 
 format :html do
-  def default_sort_formgroup_args args
-    super args
-    args[:sort_options].merge!(
+  def sort_options
+    {
+      "Alphabetical" => "name",
       "Most Metrics" => "metric",
       "Most Companies" => "company"
-    )
-    args[:sort_option_default] = "metric"
+    }
+  end
+
+  def sort_option_default
+    "metric"
   end
 end

@@ -15,34 +15,63 @@ describe Card::Set::All::Wikirate do
       topic1 = Card.create! name: "topic1", type: "topic"
       topic2 = Card.create! name: "topic2", type: "topic"
 
-      ct1 = Card.create! name: "#{company1.name}+#{topic1.name}", type: "analysis"
-      ct2 = Card.create! name: "#{company1.name}+#{topic2.name}", type: "analysis"
-      ct3 = Card.create! name: "#{company2.name}+#{topic1.name}", type: "analysis"
-      ct4 = Card.create! name: "#{company2.name}+#{topic2.name}", type: "analysis"
+      ct1 = Card.create! name: "#{company1.name}+#{topic1.name}",
+                         type: "analysis"
+      ct2 = Card.create! name: "#{company1.name}+#{topic2.name}",
+                         type: "analysis"
+      ct3 = Card.create! name: "#{company2.name}+#{topic1.name}",
+                         type: "analysis"
+      ct4 = Card.create! name: "#{company2.name}+#{topic2.name}",
+                         type: "analysis"
 
-      sourcepage = create_page_with_sourcebox "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+      url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+      sourcepage = create_page_with_sourcebox url
 
       # test single source
-      claim1 = Card.create! type_id: Card::ClaimID, name: "claim1", subcards: {
-        "+source" => { content: "[[#{sourcepage.name}]]", type_id: Card::PointerID },
-        "+companies" => { content: "[[#{company1.name}]]\n[[#{company2.name}]]" },
-        "+topics" => { content: "[[#{topic1.name}]]" }
-      }
-      claim2 = Card.create! type_id: Card::ClaimID, name: "claim2", subcards: {
-        "+source" => { content: "[[#{sourcepage.name}]]", type_id: Card::PointerID },
-        "+companies" => { content: "[[#{company2.name}]]" },
-        "+topics" => { content: "[[#{topic1.name}]]" }
-      }
-      claim3 = Card.create! type_id: Card::ClaimID, name: "claim3", subcards: {
-        "+source" => { content: "[[#{sourcepage.name}]]", type_id: Card::PointerID },
-        "+companies" => { content: "[[#{company1.name}]]" },
-        "+topics" => { content: "[[#{topic2.name}]]" }
-      }
-      claim4 = Card.create! type_id: Card::ClaimID, name: "claim4", subcards: {
-        "+source" => { content: "[[#{sourcepage.name}]]", type_id: Card::PointerID },
-        "+companies" => { content: "[[#{company1.name}]]\n[[#{company2.name}]]" },
-        "+topics" => { content: "[[#{topic1.name}]]\n[[#{topic2.name}]]" }
-      }
+      Card.create!(
+        type_id: Card::ClaimID,
+        name: "claim1",
+        subcards: {
+          "+source" => { content: "[[#{sourcepage.name}]]",
+                         type_id: Card::PointerID },
+          "+companies" => {
+            content: "[[#{company1.name}]]\n[[#{company2.name}]]"
+          },
+          "+topics" => { content: "[[#{topic1.name}]]" }
+        }
+      )
+      Card.create!(
+        type_id: Card::ClaimID,
+        name: "claim2",
+        subcards: {
+          "+source" => { content: "[[#{sourcepage.name}]]",
+                         type_id: Card::PointerID },
+          "+companies" => { content: "[[#{company2.name}]]" },
+          "+topics" => { content: "[[#{topic1.name}]]" }
+        }
+      )
+      Card.create!(
+        type_id: Card::ClaimID,
+        name: "claim3",
+        subcards: {
+          "+source" => { content: "[[#{sourcepage.name}]]",
+                         type_id: Card::PointerID },
+          "+companies" => { content: "[[#{company1.name}]]" },
+          "+topics" => { content: "[[#{topic2.name}]]" }
+        }
+      )
+      Card.create!(
+        type_id: Card::ClaimID,
+        name: "claim4",
+        subcards: {
+          "+source" => { content: "[[#{sourcepage.name}]]",
+                         type_id: Card::PointerID },
+          "+companies" => {
+            content: "[[#{company1.name}]]\n[[#{company2.name}]]"
+          },
+          "+topics" => { content: "[[#{topic1.name}]]\n[[#{topic2.name}]]" }
+        }
+      )
 
       expect(Card.claim_counts(ct1.key.to_s)).to eq(2)
       expect(Card.claim_counts(ct2.key.to_s)).to eq(2)

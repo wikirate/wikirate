@@ -95,18 +95,6 @@ format :html do
     end
   end
 
-  def default_filter_form_args args
-    args[:formgroups] =
-      append_formgroup(card.default_keys).unshift(:sort_formgroup)
-    args[:advance_formgroups] = append_formgroup(card.advanced_keys)
-  end
-
-  def default_sort_formgroup_args args
-    args[:sort_options] = {
-      "Alphabetical" => "name"
-    }
-  end
-
   view :no_search_results do |_args|
     %(
       <div class="search-no-results">
@@ -122,13 +110,12 @@ format :html do
   end
 
   def wrap_as_collapse
-    <<-HTML
-     <div class="advanced-options">
-      <div id="collapseFilter" class="collapse #{'in' if filter_active?}">
-        #{yield}
-      </div>
-    </div>
-    HTML
+    wrap_with :div, class: "advanced-options" do
+      wrap_with :div, id: "collapseFilter",
+                      class: "collapse #{'in' if filter_active?}" do
+        yield
+      end
+    end
   end
 
   def advance_formgroups args
@@ -144,16 +131,22 @@ format :html do
 
   view :filter_form do |args|
     formgroups = args[:formgroups] || [:name_formgroup]
-    html = formgroups.map { |fg| optional_render(fg, args) }
-    content = output(html) + advance_formgroups(args)
-    action = card.left.name
-    <<-HTML
-      <form action="/#{action}" method="GET">
-        #{content}
-        #{filter_buttons}
-      </form>
-    HTML
+    wrap_with :form, action: card.left.name, method: "GET" do
+      [
+        output(formgroups.map { |fg| optional_render fg, args }),
+        advance_formgroups,
+        filter_buttons
+      ]
+    end
   end
+
+  def default_filter_form_args args
+    args[:formgroups] =
+      append_formgroup(card.default_keys).unshift(:sort_formgroup)
+    args[:advance_formgroups] = append_formgroup(card.advanced_keys)
+  end
+
+
 
   def filter_buttons
     button_formgroup do
@@ -191,8 +184,8 @@ format :html do
     link_to raw(text), options
   end
 
-  def text_filter type_name, args
-    formgroup voo.title || type_name.capitalize, class: " filter-input" do
+  def text_filter type_name
+    formgroup voo.title, class: "filter-input" do
       text_field_tag type_name, params[type_name], class: "form-control"
     end
   end
@@ -242,8 +235,8 @@ format :html do
 
   view :name_formgroup do |args|
     name = args[:name] || "name"
-    title = voo.title || "Keyword"
-    text_filter name, title: title
+    voo.title ||= "Keyword"
+    text_filter name
   end
 
   view :project_formgroup do
@@ -292,13 +285,12 @@ format :html do
     end
   end
 
-  view :research_policy_formgroup do |args|
-    if args[:select_list]
-      select_filter :research_policy, "asc"
-    else
-      options = type_options :research_policy
-      checkbox_formgroup "Research Policy", options
-    end
+  view :research_policy_formgroup do
+    checkbox_formgroup "Research Policy", type_options(:research_policy)
+  end
+
+  def research_policy_select
+    select_filter :research_policy, "asc"
   end
 
   view :metric_value_formgroup do
@@ -334,10 +326,17 @@ format :html do
                          Env.params[:industry]
   end
 
-  view :sort_formgroup do |args|
-    options = args[:sort_options] || {}
-    sort_param = Env.params[:sort] || args[:sort_option_default]
-    select_filter_html "sort", options_for_select(options, sort_param),
+  view :sort_formgroup do
+    selected = Env.params[:sort] || sort_option_default
+    select_filter_html "sort", options_for_select(sort_options, selected),
                        nil, nil, true
+  end
+
+  def sort_options
+    { "Alphabetical" => "name" }
+  end
+
+  def sort_option_default
+    "name"
   end
 end
