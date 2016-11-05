@@ -20,7 +20,7 @@ format :json do
 
   view :export_items do |args|
     result = []
-    each_nested_chunk do |chunk|
+    card.each_nested_chunk do |chunk|
       next if chunk.respond_to?(:options) && chunk.options &&
               chunk.options[:nest_name] &&
               chunk.options[:nest_name] == "_main"

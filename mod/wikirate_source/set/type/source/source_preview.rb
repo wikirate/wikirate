@@ -36,41 +36,47 @@ format :html do
     Card.search related_metric_wql
   end
 
-  view :preview, tags: :unknown_ok do |args|
-    url_card = card.fetch(trait: :wikirate_link)
-    url = url_card ? url_card.item_names.first : nil
-    args[:url] = url
+  view :preview, tags: :unknown_ok do
     wrap do
       [
         # render in structure source_preview_nav_bar_structure
-        render_navigation_bar(args),
-        render_hidden_information(args),
-        render_source_preview_container(args)
+        render_navigation_bar,
+        render_hidden_information,
+        render_source_preview_container
       ]
     end
   end
 
-  view :source_preview_container, tags: :unknown_ok do |args|
-    %(
-      <div class="row clearfix source-preview-content">
-        <div class="col-md-6 hidden-xs column source-iframe-container">
-          #{render_iframe_view(args)}
-        </div>
-        <div class="col-md-6 column source-right-sidebar">
-          #{render_tab_containers(args)}
-        </div>
-     </div>
-    )
+  def preview_url
+    if @preview_url_loaded
+      @preview_url
+    else
+      url_card = card.fetch(trait: :wikirate_link)
+      @preview_url = url_card ? url_card.item_names.first : nil
+    end
   end
 
-  view :tab_containers, tags: :unknown_ok  do |_args|
-    source_structure_args = { structure: "source_structure", show: "header" }
+  view :source_preview_container, tags: :unknown_ok do
+    wrap_with :div, class: "row clearfix source-preview-content" do
+      [
+        wrap_with(:div, class: "col-md-6 hidden-xs column " \
+                               "source-iframe-container") do
+          render_iframe_view
+        end,
+        wrap_with(:div, class: "col-md-6 column source-right-sidebar") do
+          render_tab_containers
+        end
+      ]
+    end
+  end
+
+  view :tab_containers, tags: :unknown_ok do
     loading_gif_html = Card["loading gif"].format.render_core
     %(
     <div class="tab-content">
       <span class="close-tab fa fa-times"></span>
       <div class="tab-pane active" id="tab_details">
-        #{card.format.render_core source_structure_args}
+        #{render_core structure: 'source_structure', show: 'header'}
       </div>
       <div class="tab-pane" id="tab_claims">
         #{loading_gif_html}
@@ -83,11 +89,10 @@ format :html do
     )
   end
 
-  view :iframe_view, tags: :unknown_ok  do |args|
+  view :iframe_view, tags: :unknown_ok, cache: :never do
     case card.source_type_codename
     when :text
-      text_args = args.merge home_view: "open", hide: "toggle",
-                             title: "Text Source"
+      text_args = { home_view: "open", hide: "toggle", title: "Text Source" }
       text_card = card.fetch trait: :text
       %(
         <div class="container-fluid">
@@ -114,7 +119,7 @@ format :html do
         end
       else
         structure = "source item preview"
-        redirect_content = _render_content args.merge(structure: structure)
+        redirect_content = _render_content structure: structure
         content_tag(:div, content_tag(:div, redirect_content,
                                       { class: "redirect-notice" }, false),
                     { id: "source-preview-iframe",
@@ -122,7 +127,7 @@ format :html do
                     false)
       end
     when :wikirate_link
-      url = args[:url]
+      url = preview_url
       iframe_html = %(
         <iframe id="source-preview-iframe" src="#{url}" security="restricted"
          sandbox="allow-same-origin allow-scripts allow-forms" ></iframe>
@@ -141,8 +146,8 @@ format :html do
     %(
       <div style="display:none">
         #{content_tag(:div, card.cardname.url_key, id: 'source-name')}
-        #{content_tag(:div, args[:url], id: 'source_url')}
-        #{content_tag(:div, args[:url], id: 'source-year')}
+        #{content_tag(:div, preview_url, id: 'source_url')}
+        #{content_tag(:div, args[:year], id: 'source-year')}
         #{content_tag(:div, args[:company], id: 'source_company')}
         #{content_tag(:div, args[:topic], id: 'source_topic')}
       </div>
@@ -199,7 +204,7 @@ format :html do
       url_card = card.fetch(trait: :wikirate_link)
       url = url_card ? url_card.item_names.first : nil
       <<-HTML
-        <a href="#{url}" class="btn btn-primary" role="button">Visit Original Source</a>
+        <a href="#{preview_url}" class="btn btn-primary" role="button">Visit Original Source</a>
       HTML
     end
   end
@@ -260,8 +265,8 @@ format :html do
     HTML
   end
 
-  view :preview_options, tags: :unknown_ok  do |args|
-    url = args[:url]
+  view :preview_options, tags: :unknown_ok do
+    url = preview_url
     result = source_details_html
     result += claim_tab_html
     result += metric_tab_html
