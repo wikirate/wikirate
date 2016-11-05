@@ -130,16 +130,19 @@ describe Card::Set::Type::Claim do
         end
       end
     end
+
     it "shows titled view with voting" do
-      expect(@sample_claim.format.render_titled).to eq(@sample_claim.format.render_titled_with_voting)
+      expect(@sample_claim.format.render_titled).to eq(
+        @sample_claim.format.render_titled_with_voting
+      )
     end
+
     context "when in open views" do
-      it "shows header with voiting" do
-        html = @sample_claim.format.render_open
-        vote_html = @sample_claim.format.subformat(@sample_claim.vote_count_card).render_details
-        expect(html_trim(html)).to include(html_trim(vote_html))
+      it "shows header with voting" do
+        assert_view_select @sample_claim.format.render_open, "div.header-vote"
       end
     end
+
     it "shows the link for view \"missing\"" do
       claim_card = get_a_sample_note
       html = claim_card.format.render_missing

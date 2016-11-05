@@ -71,7 +71,7 @@ format :html do
   end
 end
 
-event :update_related_scores, :finalize, when: :scored_metric do
+event :update_related_scores, :finalize, when: :scored_metric? do
   Card.search type_id: MetricID, left_id: metric_card.id do |metric|
     metric.update_value_for! company: company_key, year: year
   end
