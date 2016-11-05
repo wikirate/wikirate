@@ -33,6 +33,8 @@ def target_type_id
   WikirateCompanyID
 end
 
+# FIXME: HAAAAAAAAACK!
+# FIXME: HAAAAAAAAACK!
 def get_query params={}
   filter = fetch_params params_keys
   search_args = search_wql target_type_id, filter, params_keys
@@ -41,6 +43,8 @@ def get_query params={}
   super(params)
 end
 
+# FIXME: HAAAAAAAAACK!
+# FIXME: HAAAAAAAAACK!
 # the default sort will take the first table in the join
 # I need to override to shift the sort table to the next one
 def item_cards params={}
@@ -51,6 +55,8 @@ def item_cards params={}
   query.run
 end
 
+# FIXME: HAAAAAAAAACK!
+# FIXME: HAAAAAAAAACK!
 def shift_sort_table query
   if sort? && shift_sort_table?
     # sort table alias always stick to the first table,
@@ -60,6 +66,8 @@ def shift_sort_table query
   end
 end
 
+# FIXME: HAAAAAAAAACK!
+# FIXME: HAAAAAAAAACK!
 def sort_by wql, sort_by
   if sort_by == "name"
     wql[:sort] = "name"
@@ -89,12 +97,6 @@ format :html do
     [:sort] + card.params_keys
   end
 
-  def append_formgroup array
-    array.map do |key|
-      "#{key}_formgroup".to_sym
-    end
-  end
-
   view :no_search_results do |_args|
     %(
       <div class="search-no-results">
@@ -118,35 +120,29 @@ format :html do
     end
   end
 
-  def advance_formgroups args
-    advance_formgroups = args[:advance_formgroups]
-    adv_html = ""
-    if advance_formgroups
-      adv_html = wrap_as_collapse do
-        advance_formgroups.map { |fg| optional_render(fg, args) }.join("")
-      end
-    end
-    adv_html.html_safe
-  end
-
-  view :filter_form do |args|
-    formgroups = args[:formgroups] || [:name_formgroup]
-    wrap_with :form, action: card.left.name, method: "GET" do
+  view :filter_form do
+    wrap_with :form, action: "/#{card.left.name}", method: "GET" do
       [
-        output(formgroups.map { |fg| optional_render fg, args }),
-        advance_formgroups,
+        standard_filter_formgroups,
+        advanced_filter_formgroups,
         filter_buttons
       ]
     end
   end
 
-  def default_filter_form_args args
-    args[:formgroups] =
-      append_formgroup(card.default_keys).unshift(:sort_formgroup)
-    args[:advance_formgroups] = append_formgroup(card.advanced_keys)
+  def standard_filter_formgroups
+    build_formgroups card.default_keys.unshift(:sort)
   end
 
+  def advanced_filter_formgroups
+    build_formgroups card.advanced_keys
+  end
 
+  def build_formgroups rootnames
+    rootnames.map do |rootname|
+      _optional_render "#{rootname}_formgroup".to_sym
+    end
+  end
 
   def filter_buttons
     button_formgroup do
@@ -191,8 +187,8 @@ format :html do
   end
 
   def type_options type_codename, order="asc"
-    type_card = Card[type_codename]
-    Card.search type_id: type_card.id, return: :name, sort: "name", dir: order
+    type_id = Card::Codename[type_codename]
+    Card.search type_id: type_id, return: :name, sort: "name", dir: order
   end
 
   def select_filter type_codename, order, label=nil

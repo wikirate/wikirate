@@ -119,10 +119,10 @@ format :html do
       end
   end
 
-  view :name_formgroup do |args|
+  view :name_formgroup do
     # force showing help text
-    args[:help] ||= true
-    super args
+    voo.help ||= true
+    super()
   end
 
   view :cite do
