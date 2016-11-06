@@ -87,7 +87,7 @@ format :html do
     WikirateAnalysisID => :analysis
   }.freeze
 
-  view :drag_and_drop do |args|
+  view :drag_and_drop, cache: :never do |args|
     with_drag_and_drop(args) do
       search_results.map do |item|
         votee = extract_votee item
@@ -122,14 +122,14 @@ format :html do
     args[:empty] ||=
       if (empty = Card[card.vote_type_codename].fetch(trait: :empty_list) ||
                   Card[:empty_list])
-        subformat(empty).render_core(args)
+        empty.format.render_core(args)
       else
         ""
       end
     if !Card::Auth.signed_in? &&
        ((unsaved = Card[card.vote_type_codename].fetch(trait: :unsaved_list) ||
        Card[:unsaved_list]))
-      args[:unsaved] ||= subformat(unsaved).render_core(args)
+      args[:unsaved] ||= unsaved.format.render_core(args)
     end
   end
 

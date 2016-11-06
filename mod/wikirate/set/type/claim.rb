@@ -60,9 +60,9 @@ format :html do
   end
 
   view :cite_button do |_args|
-    return "" unless parent.parent.present? && parent.parent.card.present?
-    article_name = parent.parent.card.cardname
-    link_to_card article_name, "Cite!",
+    article_format = parent.parent.parent
+    return "" unless article_format && (article_card = article_format.card)
+    link_to_card article_card, "Cite!",
                  path: { citable: card.cardname, edit_article: true },
                  class: "cite-button"
   end
