@@ -199,7 +199,7 @@ format :html do
   end
 
   view :original_icon_link do
-    voo.title = font_awesome(icon)
+    voo.title = font_awesome icon
     _render_original_link
   end
 
@@ -234,7 +234,7 @@ format :html do
   end
 
   def font_awesome icon_name
-    wrap_with :i, "", "fa fa-#{icon_name}"
+    wrap_with :i, "", class: "fa fa-#{icon_name}"
   end
 
   def pretty_count type, icon_name
