@@ -13,7 +13,7 @@ format :html do
       </span>
       #{_render_metric_details}
       <span class="metric-unit">
-        #{legend(args)}
+        #{legend}
       </span>
       <div class="pull-right">
         <small>#{checked_value_flag.html_safe}</small>
@@ -147,9 +147,9 @@ format :html do
   end
 
   view :value do |args|
-    value = content_tag(:span, currency, class: "metric-unit")
+    value = wrap_with(:span, currency, class: "metric-unit")
     value << _render_value_link(args)
-    value << content_tag(:span, legend(args), class: "metric-unit")
+    value << wrap_with(:span, legend, class: "metric-unit")
     value << checked_value_flag.html_safe
     value << comment_flag.html_safe
     value << _render_value_details_toggle

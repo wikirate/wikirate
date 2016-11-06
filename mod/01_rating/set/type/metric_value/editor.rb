@@ -219,8 +219,8 @@ format :html do
     super(args)
   end
 
-  def legend args
-    subformat(card.metric_card)._render_legend args
+  def legend
+    subformat(card.metric_card)._render_legend
   end
 
   def currency

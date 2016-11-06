@@ -137,7 +137,7 @@ format :html do
     # "<style> #{Sass.compile css}</style>"
   end
 
-  view :legend do |_args|
+  view :legend do
     # depends on the type
     if (unit = Card.fetch("#{card.name}+unit"))
       unit.raw_content
