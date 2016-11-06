@@ -15,9 +15,7 @@ format :html do
   end
 
   def default_import_args args
-    super args
-    args.merge! optional_metric_select: :hide,
-                optional_year_select: :hide
+    voo.hide :metric_select, :year_select
   end
 
   view :import_success do |args|

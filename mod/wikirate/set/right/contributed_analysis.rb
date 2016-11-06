@@ -1,7 +1,9 @@
 def contribution_count
-  @cc ||= Card.search type_id: WikirateAnalysisID,
-                      right_plus: [Card[:overview].name, { edited_by: cardname.left }],
-                      return: :count
+  @cc ||= Card.search(
+    type_id: WikirateAnalysisID,
+    right_plus: [Card[:overview].name, { edited_by: cardname.left }],
+    return: :count
+  )
 end
 
 format :html do
@@ -21,13 +23,13 @@ format :html do
 
   view :open do |args|
     if card.contribution_count.zero?
-      _render_closed(args)
+      _render_closed
     else
       if (l = card.left) &&
          (Auth.current_id == l.id || l.type_code == :wikirate_company)
         args[:slot_class] = "editable"
       end
-      super(args)
+      super()
     end
   end
 
