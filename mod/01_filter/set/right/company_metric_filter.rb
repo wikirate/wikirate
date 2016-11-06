@@ -16,7 +16,8 @@ format :html do
         wrap_with(:div, metric_filter_fields, class: "margin-12 sub-content"),
         wrap_with(:h4, "Answer"),
         wrap_with(:div, other_filter_fields, class: "margin-12"),
-        wrap_with(:div, _optional_render_button_formgroup, class: "margin-12")
+        wrap_with(:div, _optional_render_filter_button_formgroup,
+                  class: "margin-12")
       ]
     )
   end

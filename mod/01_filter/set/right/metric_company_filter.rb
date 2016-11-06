@@ -15,7 +15,9 @@ format :html do
       <div class="margin-12 sub-content"> #{company_filter_fields.join} </div>
       <h4>Metric Answer</h4>
       <div class="margin-12"> #{value_filter_fields.join} </div>
-      <div class="filter-buttons">#{_optional_render :button_formgroup}</div>
+      <div class="filter-buttons">
+        #{_optional_render_filter_button_formgroup}
+      </div>
     HTML
   end
 

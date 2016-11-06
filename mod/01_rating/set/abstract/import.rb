@@ -1,8 +1,6 @@
 # the is_data_import flag distinguishes between an update of the
 # import file and importing the file
-event :import_csv, :prepare_to_store,
-      on: :update,
-      when: proc { Env.params["is_data_import"] == "true" } do
+event :import_csv, :prepare_to_store, on: :update, when: :data_import? do
   return unless (import_data = Env.params[:import_data])
   return unless valid_import_format?(import_data)
   source_map = {}
@@ -20,6 +18,9 @@ event :import_csv, :prepare_to_store,
   handle_redirect
 end
 
+def data_import?
+  Env.params["is_data_import"] == "true"
+end
 
 def init_success_slot_params
   success.params[:slot] = {
@@ -248,50 +249,51 @@ format :html do
     [:file_company, :value]
   end
 
-  def default_new_args args
-    args[:hidden] = {
-      success: { id: "_self", soft_redirect: false, view: :import }
-    }
-    super args
+  def new_view_standard_hidden
+    hidden_tags success: { id: "_self", soft_redirect: false, view: :import }
   end
 
-  def default_import_args args
-    args[:buttons] = %(
-      #{button_tag 'Import', class: 'submit-button',
-                             data: { disable_with: 'Importing' }}
-      #{button_tag 'Cancel', class: 'cancel-button slotter', href: path,
-                             type: 'button'}
-    )
-  end
-
-  view :import do |args|
-    success_args = { success: { id: "_self", view: :open } }
+  view :import do
     frame_and_form :update, "notify-success" => "import successful" do
       [
-        _optional_render(:metric_select, args),
-        _optional_render(:year_select, args),
-        _optional_render(:import_flag, args),
-        _optional_render(:import_table_helper, args),
-        _optional_render(:import_table, args),
-        _optional_render(:button_formgroup, args)
+        hidden_import_tags,
+        _optional_render(:metric_select),
+        _optional_render(:year_select),
+        _optional_render(:import_flag),
+        _optional_render(:import_table_helper),
+        _optional_render(:import_table),
+        _optional_render(:import_button_formgroup)
       ]
     end
   end
 
-  view :year_select do |_args|
+  def hidden_import_tags
+    hidden_tags success: { id: "_self", view: :open }
+  end
+
+  view :import_button_formgroup do
+    button_formgroup { [import_button, cancel_button(href: path)] }
+  end
+
+  def import_button
+    button_tag "Import", class: "submit-button",
+                         data: { disable_with: "Importing" }
+  end
+
+  view :year_select do
     nest card.left.year_card, view: :edit_in_form
   end
 
-  view :metric_select do |_args|
+  view :metric_select do
     nest card.left.metric_card, view: :edit_in_form
   end
 
-  view :import_flag do |_args|
+  view :import_flag do
     hidden_field_tag :is_data_import, "true"
   end
 
-  view :import_table_helper do |_args|
-    content_tag(:p, selection_checkbox + import_legend)
+  view :import_table_helper do
+    wrap_with :p, (selection_checkbox + import_legend)
   end
 
   def selection_checkbox
@@ -472,9 +474,9 @@ format :html do
   def row_context status
     case status
     when "partial" then "warning"
-    when "exact" then "success"
-    when "none" then "danger"
-    when "alias" then "info"
+    when "exact"   then "success"
+    when "none"    then "danger"
+    when "alias"   then "info"
     end
   end
 
@@ -485,10 +487,7 @@ format :html do
   end
 
   def duplicated_value_warning_message headline, cardnames
-    msg = <<-HTML
-      <h4><b>#{headline}</b></h4>
-      <ul><li>#{cardnames.join('</li><li>')}</li> <br />
-    HTML
-    alert("warning") { msg }
+    items = cardnames.map { |n| "<li>#{n}</li>" }.join
+    alert("warning") { "<h4>#{headline}</h4><ul>#{items}</ul>" }
   end
 end

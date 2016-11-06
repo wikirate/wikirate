@@ -99,10 +99,11 @@ format :html do
     form_opts["main-success"] = "REDIRECT"
     card_form :create, form_opts do
       output [
-        _optional_render(:name_formgroup, args),
-        _optional_render(:type_formgroup, args),
-        _optional_render(:content_formgroup, args),
-        _optional_render(:button_formgroup, args)
+        new_view_standard_hidden,
+        new_view_name,
+        new_view_type,
+        _optional_render_content_formgroup,
+        _optional_render_new_buttons
       ]
     end
   end

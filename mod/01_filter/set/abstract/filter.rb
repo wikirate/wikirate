@@ -34,7 +34,6 @@ def target_type_id
 end
 
 # FIXME: HAAAAAAAAACK!
-# FIXME: HAAAAAAAAACK!
 def get_query params={}
   filter = fetch_params params_keys
   search_args = search_wql target_type_id, filter, params_keys
@@ -43,7 +42,6 @@ def get_query params={}
   super(params)
 end
 
-# FIXME: HAAAAAAAAACK!
 # FIXME: HAAAAAAAAACK!
 # the default sort will take the first table in the join
 # I need to override to shift the sort table to the next one
@@ -56,7 +54,6 @@ def item_cards params={}
 end
 
 # FIXME: HAAAAAAAAACK!
-# FIXME: HAAAAAAAAACK!
 def shift_sort_table query
   if sort? && shift_sort_table?
     # sort table alias always stick to the first table,
@@ -66,7 +63,6 @@ def shift_sort_table query
   end
 end
 
-# FIXME: HAAAAAAAAACK!
 # FIXME: HAAAAAAAAACK!
 def sort_by wql, sort_by
   if sort_by == "name"
@@ -125,7 +121,7 @@ format :html do
       [
         standard_filter_formgroups,
         advanced_filter_formgroups,
-        filter_buttons
+        optional_render_filter_buttons
       ]
     end
   end
@@ -144,7 +140,7 @@ format :html do
     end
   end
 
-  def filter_buttons
+  view :filter_buttons do
     button_formgroup do
       [advanced_button, reset_button].compact
     end

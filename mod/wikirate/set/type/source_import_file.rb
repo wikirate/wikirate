@@ -163,25 +163,12 @@ format :html do
     msg
   end
 
-  def default_import_args args
+  view :import do
+    voo.hide :metric_select, :year_select, :import_table_helper
     super
-    args[:optional_metric_select] = :hide
-    args[:optional_year_select] = :hide
   end
 
-  view :import do |args|
-    new_args = args.merge(hidden: { success: { id: "_self", view: :open } })
-    frame_and_form :update, "notify-success" => "import successful" do
-      [
-        _optional_render(:source_import_flag, args),
-        _optional_render(:selection_checkbox, args),
-        _optional_render(:import_table, args),
-        _optional_render(:button_formgroup, args)
-      ]
-    end
-  end
-
-  view :source_import_flag do |_args|
+  view :import_flag do
     hidden_field_tag :is_source_import_update, "true"
   end
 

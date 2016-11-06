@@ -17,12 +17,12 @@ format :html do
     <<-HTML
       <div class="margin-12 sub-content"> #{metric_filter_fields(args).join} </div>
       <div class="filter-buttons">
-        #{_optional_render :button_formgroup, args}
+        #{_optional_render_filter_button_formgroup}
       </div>
     HTML
   end
 
-  def default_name_formgroup_args args
+  def default_name_formgroup_args _args
     voo.title = "Metric Name"
   end
 

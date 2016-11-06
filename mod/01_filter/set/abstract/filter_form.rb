@@ -16,48 +16,58 @@ format :html do
     :content_left_col
   end
 
-  def default_button_formgroup_args args
-    args[:buttons] = [
-      button_formgroup_reset_button,
-      button_tag("Filter", situation: "primary", disable_with: "Filtering")
-    ].join
+  view :filter_button_formgroup do
+    button_formgroup { [filter_button, reset_filter_button] }
   end
 
-  def button_formgroup_reset_button
+  def filter_button
+    button_tag "Filter", situation: "primary", disable_with: "Filtering"
+  end
+
+  def reset_filter_button
     link_to_card card.cardname.left, "Reset",
                  path: { view: content_view },
                  remote: true, class: "slotter btn btn-default margin-8"
   end
 
-  def default_filter_header args
+  def default_filter_header _args
     voo.title ||= "Filter & Sort"
   end
 
   view :filter_header do
     wrap_with :div, class: "filter-header" do
-      [
-        wrap_with(:span, "", class: "glyphicon glyphicon-filter"),
-        voo.title,
-        wrap_with(:span, class: "filter-toggle") do
-          wrap_with :span, "", class: "glyphicon glyphicon-triangle-right"
-        end
-      ]
+      [filter_icon, voo.title, filter_toggle]
     end
   end
 
-  view :core do |args|
-    action = card.cardname.left_name.url_key
-    filter_active = filter_active? ? "block" : "none"
-    <<-HTML
-    <div class="filter-container">
-        #{_render_filter_header(args)}
-        <div class="filter-details" style="display: #{filter_active};">
-          <form action="/#{action}?view=#{content_view}" method="GET" data-remote="true" class="slotter">
-            #{filter_form_content}
-          </form>
-        </div>
-    </div>
-    HTML
+  def filter_icon
+    wrap_with :span, "", class: "glyphicon glyphicon-filter"
+  end
+
+  def filter_toggle
+    wrap_with(:span, class: "filter-toggle") do
+      wrap_with :span, "", class: "glyphicon glyphicon-triangle-right"
+    end
+  end
+
+  view :core do
+    wrap_with :div, class: "filter-container" do
+      [_render_filter_header, filter_details]
+    end
+  end
+
+  def filter_details
+    display = filter_active? ? "block" : "none" # FIXME: inline css!
+    wrap_with :div, filter_form_tag, class: "filter-details",
+                                     style: "display: #{display};"
+  end
+
+  def filter_form_tag
+    wrap_with(
+      :form, filter_form_content,
+      action: "/#{card.cardname.left_name.url_key}?view=#{content_view}",
+      method: "GET", class: "slotter", "data-remote" => "true"
+    )
   end
 
   def filter_form_content
