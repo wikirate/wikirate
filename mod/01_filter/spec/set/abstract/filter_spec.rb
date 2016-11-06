@@ -5,9 +5,7 @@ describe Card::Set::Abstract::Filter do
   describe "html format" do
     it "#advance_formgroups" do
       advanced_keys = %w(metric project wikirate_company)
-      advanced_keys = card.format.append_formgroup advanced_keys
-      html =
-        card.format.advance_formgroups advance_formgroups: advanced_keys
+      html = card.format.advanced_filter_formgroups(advanced_keys)
       expect(html).to have_tag(:div, with: { class: "advanced-options" }) do
         with_tag :div, with: { id: "collapseFilter", class: "collapse" } do
           with_tag :label, text: "Metric"

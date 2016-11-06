@@ -130,8 +130,9 @@ format :html do
     build_formgroups card.default_keys.unshift(:sort)
   end
 
-  def advanced_filter_formgroups
-    build_formgroups card.advanced_keys
+  def advanced_filter_formgroups keys=nil
+    keys ||= card.advanced_keys
+    wrap_as_collapse { build_formgroups keys }
   end
 
   def build_formgroups rootnames
