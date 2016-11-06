@@ -170,6 +170,7 @@ describe Card::Set::All::Wikirate do
       expect(html).to eq(render_card(:raw, name: "home"))
     end
   end
+
   context "while viewing id_atom in json format" do
     it "includes id" do
       login_as "WagnBot"
@@ -181,6 +182,7 @@ describe Card::Set::All::Wikirate do
         expect(card).to have_key :id
       end
     end
+
     it "handles param:start " do
       login_as "WagnBot"
       start = 20_140_601_000_000

@@ -83,8 +83,8 @@ format :html do
 
   attr_accessor :citations
 
-  def default_menu_link_args args
-    args[:menu_icon] = "edit"
+  def menu_icon
+    glyphicon "edit"
   end
 
   def default_menu_args args
@@ -306,7 +306,7 @@ format :json do
     result
   end
 
-  view :id_atom do |_args|
+  view :id_atom, cache: :never do |_args|
     if !params["start"] || (params["start"] && (start = params["start"].to_i) &&
        card.updated_at.strftime("%Y%m%d%H%M%S").to_i >= start)
       h = _render_atom

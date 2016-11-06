@@ -28,7 +28,7 @@ format :html do
     }
   end
 
-  def claim_count
+  def note_count
     Card.search related_claim_wql
   end
 
@@ -223,7 +223,7 @@ format :html do
     <<-HTML
       <li role="presentation" >
         <a class='' data-target="#tab_claims" data-toggle="source_preview_tab_ajax"  href='/#{card.cardname.url_key}+source_note_list?slot[hide]=header,menu' >
-            <i class='fa fa-quote-left'><span id="claim-count-number " class="count-number">#{claim_count}</span></i><span>#{Card[ClaimID].name.pluralize}</span>
+            <i class='fa fa-quote-left'><span id="claim-count-number " class="count-number">#{note_count}</span></i><span>#{Card[ClaimID].name.pluralize}</span>
         </a>
       </li>
     HTML
