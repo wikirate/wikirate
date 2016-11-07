@@ -125,10 +125,13 @@ format :html do
     super()
   end
 
-  view :cite do
+  view :cite, cache: :never do
     # href_root = parent ? parent.card.cardname.trunk_name.url_key : ''
-    href = "##{card.cardname.url_key}"
-    %(<sup><a class="citation" href="#{href}">#{cite!}</a></sup>)
+    wrap_with :sup do
+      wrap_with :a, class: "citation", href: "##{card.cardname.url_key}" do
+        cite!
+      end
+    end
   end
 
   def cite!
