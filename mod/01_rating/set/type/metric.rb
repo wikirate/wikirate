@@ -164,12 +164,18 @@ format :html do
     end
   end
 
-  view :value_type_edit_modal_link do |args|
+  view :value_type_edit_modal_link do
     render_modal_link(
       link_text: vtype_edit_modal_link_text,
       link_opts: { class: "btn btn-default slotter",
-                   path: { slot: { hide: "title,header,menu,help,subheader",
-                                   view: :edit, edit_value_type: true } } }
+                   path: {
+                     slot: {
+                       hide: "title,header,menu,help,subheader",
+                       view: :edit,
+                       editor: :inline_nests,
+                       structure: "metric value type edit structure"
+                     }
+                   } }
     )
   end
 
@@ -201,15 +207,6 @@ format :html do
   def default_edit_args args
     edit_args args
     super(args)
-  end
-
-  def edit_args args
-    return unless args[:edit_value_type]
-    args[:structure] = "metric value type edit structure"
-  end
-
-  def edit_slot args
-    args[:edit_value_type] ? super(true) : super()
   end
 
   view :handle do |_args|

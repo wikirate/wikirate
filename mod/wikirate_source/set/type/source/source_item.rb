@@ -20,7 +20,7 @@ format :html do
 
   def edit_slot args
     # see claim.rb for explanation of core_edit
-    super args.merge(core_edit: true)
+    super(true)
   end
 
   def flat_list items

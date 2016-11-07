@@ -2,55 +2,54 @@ format :html do
   view :new do |args|
     return _render_no_frame_form args if Env.params[:noframe] == "true"
     @form_root = true
-    frame do # no form!
-      [
-        _optional_render(:content_formgroup,
-                         args.merge(metric_value_landing: true))
-      ]
-    end
+    voo.editor = :metric_value_landing
+    frame { _optional_render :content_formgroup }
   end
 
-  def edit_slot args
-    unless special_editor? args
-      year = card.fetch trait: :year, new: {}
-      year.content = "[[#{card.year}]]"
-      args[:edit_fields] = {
-        "+Value" => {},
-        year => {}
-      }
-    end
-    super(args)
+  view :content_formgroup do
+    prepare_nests_editor unless custom_editor?
+    super()
   end
 
-  def special_editor? args
-    (args[:company] && args[:metric]) || args[:metric_value_landing]
+  def prepare_nests_editor
+    year = card.fetch trait: :year, new: { content: card.year }
+    voo.editor = :nests
+    voo.edit_structure = [[:value, {}], [year, {}]]
   end
 
-  view :editor do |args|
-    if args[:company] && args[:metric]
-      _render_metric_value_editor args
-    elsif args[:metric_value_landing]
-      _render_metric_value_landing args
-    else
-      super args
-    end
+  def custom_editor?
+    metric_value_editor? || metric_value_landing_editor?
   end
 
-  view :metric_value_landing do |args|
+  def metric_value_editor?
+    Env.params[:company] && Env.params[:metric]
+  end
+
+  def metric_value_landing_editor?
+    voo.editor.to_sym == :metric_value_landing
+  end
+
+  view :editor do
+    mv_view = if metric_value_editor?            then :editor
+              elsif metric_value_landing_editor? then :landing
+              end
+    mv_view ? send("_render_metric_value_#{mv_view}") : super()
+  end
+
+  view :metric_value_landing do
     wrap_with :div do
       [
-        _render_metric_value_landing_form(args),
+        _render_metric_value_landing_form,
         _render_source_container
       ]
     end
   end
 
-  view :metric_value_landing_form do |args|
+  view :metric_value_landing_form do
     html_class = "col-md-5 border-right panel-default min-page-height"
-    hr = content_tag(:hr, "")
     wrap_with :div, class: html_class do
       [
-        _render_hidden_source_field(args), hr,
+        _render_hidden_source_field, hr,
         _render_company_field, hr,
         _render_metric_field(args),
         _render_next_button
@@ -58,8 +57,12 @@ format :html do
     end
   end
 
-  view :hidden_source_field do |args|
-    if (source = args[:source])
+  def hr
+    "<hr />"
+  end
+
+  view :hidden_source_field do
+    if (source = Env.params[:source])
       hidden_field "hidden_source", value: source
     end
   end
@@ -68,8 +71,8 @@ format :html do
     field_nest(:wikirate_company, title: "Company")
   end
 
-  view :metric_field do |args|
-    metric = args[:metric]
+  view :metric_field do
+    metric = Env.params[:metric]
     metric_field =
       Card.fetch(card.cardname.field(:metric), new: { content: metric })
     nest(metric_field, title: "Metric")

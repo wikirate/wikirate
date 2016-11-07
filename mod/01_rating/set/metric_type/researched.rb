@@ -6,11 +6,13 @@ def score_cards
 end
 
 format :html do
-  def default_content_formgroup_args args
-    super(args)
-    args[:edit_fields]["+value type"] = { title: "Value Type" }
-    args[:edit_fields]["+research policy"] = { title: "Research Policy" }
-    args[:edit_fields]["+report_type"] = { title: "Report Type" }
+  def default_content_formgroup_args _args
+    super _args
+    voo.edit_structure += [
+      [:value_type,      "Value Type"],
+      [:research_policy, "Research Policy"],
+      [:report_type,     "Report Type"]
+    ]
   end
 
   def default_tabs_args args

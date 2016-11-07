@@ -141,9 +141,9 @@ format :html do
     end
   end
 
-  def default_content_formgroup_args args
-    args[:edit_fields] = { "+question" => { title: "Question" },
-                           "+topic" => { title: "Topic" } }
+  def default_content_formgroup_args _args
+    voo.edit_structure = [["+question", "Question"],
+                          [:wikirate_topic, "Topic"]]
   end
 
   def tab_radio_button id, active=false

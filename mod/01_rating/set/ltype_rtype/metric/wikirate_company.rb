@@ -28,8 +28,8 @@ def metric
 end
 
 format :html do
-  def default_menu_args args
-    args[:optional_horizontal_menu] = :hide
+  def default_menu_args _args
+    voo.hide :optional_horizontal_menu
   end
 
   view :all_values do |args|
