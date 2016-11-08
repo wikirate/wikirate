@@ -27,6 +27,8 @@ end
 
 format :html do
   view :name_formgroup do
+    voo.show! :help
+
     # rename 'name' to 'Claim'
     # add a div for claim word counting
     wrap_with :div, class: "row" do
@@ -127,7 +129,7 @@ format :html do
   end
 
   view :header do
-    voo.show?(:claim_header) ? _render_claim_header : super()
+    voo.viz_hash[:claim_header] == :show ? _render_claim_header : super()
   end
 
   view :claim_header do
