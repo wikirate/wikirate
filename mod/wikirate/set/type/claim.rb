@@ -42,7 +42,7 @@ format :html do
   view :note_counting do
     wrap_with :div, class: "note-counting" do
       [wrap_with(:span, "100", class: "note-counting-number"),
-       " characters(s) left"]
+       " character(s) left"]
     end
   end
 
