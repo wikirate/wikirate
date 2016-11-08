@@ -122,9 +122,11 @@ describe Card::Set::Type::Claim do
           it "shows nothing" do
             new_company_name = "Orange"
             new_topic_name = "Doctor"
-            new_company = Card.create type_id: Card::WikirateCompanyID, name: new_company_name
-            new_topic = Card.create type_id: Card::WikirateTopicID, name: new_topic_name
-            claim_card = create_claim @claim_name, "+company" => new_company_name, "+topic" => new_topic_name
+            Card.create type_id: Card::WikirateCompanyID, name: new_company_name
+            Card.create type_id: Card::WikirateTopicID, name: new_topic_name
+            claim_card = create_claim @claim_name,
+                                      "+company" => new_company_name,
+                                      "+topic" => new_topic_name
             expect(claim_card.format.render_tip).to include("")
           end
         end
@@ -132,9 +134,8 @@ describe Card::Set::Type::Claim do
     end
 
     it "shows titled view with voting" do
-      expect(@sample_claim.format.render_titled).to eq(
-        @sample_claim.format.render_titled_with_voting
-      )
+      assert_view_select @sample_claim.format.render_titled,
+                         "div.titled-with-voting"
     end
 
     context "when in open views" do

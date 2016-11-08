@@ -60,7 +60,7 @@ format :html do
   end
 
   view :cite_button do |_args|
-    article_format = parent.parent.parent
+    article_format = parent.parent
     return "" unless article_format && (article_card = article_format.card)
     link_to_card article_card, "Cite!",
                  path: { citable: card.cardname, edit_article: true },
@@ -74,7 +74,7 @@ format :html do
   end
 
   def edit_slot
-    voo.editor :inline_nests
+    voo.editor = :inline_nests
     super
   end
 

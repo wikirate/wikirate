@@ -26,7 +26,7 @@ format :html do
   end
 
   def metric_value_landing_editor?
-    voo.editor.to_sym == :metric_value_landing
+    voo.editor == :metric_value_landing
   end
 
   view :editor do
