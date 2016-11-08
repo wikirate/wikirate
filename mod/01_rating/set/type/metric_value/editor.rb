@@ -51,7 +51,7 @@ format :html do
       [
         _render_hidden_source_field, hr,
         _render_company_field, hr,
-        _render_metric_field(args),
+        _render_metric_field,
         _render_next_button
       ]
     end
