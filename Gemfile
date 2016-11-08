@@ -44,7 +44,7 @@ group :test do
   # feature-driven-development suite
   gem "capybara"
   # used 2.0.1
-  gem "selenium-webdriver", "~> 2.5"
+  gem "selenium-webdriver"
   #  gem 'capybara-webkit'
   # lets cucumber launch browser windows
   gem "launchy"

@@ -19,7 +19,7 @@ format :html do
   end
 
   def edit_slot
-    voo.editor :inline_nests
+    voo.editor = :inline_nests
     super
   end
 

@@ -42,16 +42,16 @@ format :html do
     new_view_hidden
   end
 
-  view :editor do |args|
-    return _render_rating_editor(args) if card.wiki_rating?
-    return _render_categorical_editor(args) if card.categorical?
-    return super(args) if card.score?
+  view :editor do
+    return _render_rating_editor if card.wiki_rating?
+    return _render_categorical_editor if card.categorical?
+    return super() if card.score?
     output [
       text_area(:content,
                 rows: 5,
                 class: "card-content",
                 "data-card-type-code" => card.type_code),
-      _render_variables(args),
+      _render_variables,
       add_metric_button
     ]
   end
@@ -75,10 +75,10 @@ format :html do
     ]
   end
 
-  view :core do |args|
-    return _render_rating_core(args) if card.wiki_rating?
-    return _render_categorical_core(args) if card.categorical?
-    "= #{super(args)}"
+  view :core do
+    return _render_rating_core if card.wiki_rating?
+    return _render_categorical_core if card.categorical?
+    "= #{super()}"
   end
 
   def default_nest_view

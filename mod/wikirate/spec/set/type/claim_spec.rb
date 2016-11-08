@@ -135,7 +135,11 @@ describe Card::Set::Type::Claim do
 
     it "shows titled view with voting" do
       assert_view_select @sample_claim.format.render_titled,
-                         "div.titled-with-voting"
+                         "div.titled_with_voting-view" do
+        assert_select "div.vote-up"
+        assert_select "div.vote-count"
+        assert_select "div.vote-down"
+      end
     end
 
     context "when in open views" do
