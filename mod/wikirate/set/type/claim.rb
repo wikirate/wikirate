@@ -58,10 +58,10 @@ format :html do
   end
 
   view :citation_or_cite_button do |args|
-    args[:citation_number] || optional_render(:cite_button, args)
+    args[:citation_number] || optional_render(:cite_button)
   end
 
-  view :cite_button do |_args|
+  view :cite_button do
     article_format = parent.parent
     return "" unless article_format && (article_card = article_format.card)
     link_to_card article_card, "Cite!",

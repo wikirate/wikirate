@@ -304,7 +304,7 @@ GEM
     ruby-progressbar (1.8.1)
     rubyzip (1.2.0)
     sass (3.4.22)
-    selenium-webdriver (3.0.1)
+    selenium-webdriver (2.53.4)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
@@ -409,7 +409,7 @@ DEPENDENCIES
   rspec-rails
   rubocop
   rubocop-rspec
-  selenium-webdriver
+  selenium-webdriver (~> 2.3)
   simplecov
   spork (>= 0.9)
   spring
