@@ -1,13 +1,13 @@
-include_set Abstract::BrowseFilter
+include_set Abstract::BrowseFilterForm
 def default_sort_by_key
   "metric"
 end
 
-def default_keys
+def filter_keys
   %w(name)
 end
 
-def advanced_keys
+def advanced_filter_keys
   %w(metric project wikirate_company)
 end
 
@@ -33,12 +33,12 @@ def wql_by_project wql, project
 end
 
 format :html do
-  def default_sort_formgroup_args args
-    super args
-    args[:sort_options].merge!(
-      "Most Metrics" => "metric",
-      "Most Companies" => "company"
-    )
-    args[:sort_option_default] = "metric"
+  def sort_options
+    super.merge "Most Metrics" => "metric",
+                "Most Companies" => "company"
+  end
+
+  def default_sort_option
+    "metric"
   end
 end

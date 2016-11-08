@@ -4,10 +4,9 @@ describe Card::Set::Abstract::Filter do
 
   describe "html format" do
     it "#advanced_formgroups" do
-      advanced_keys = %w(metric project wikirate_company)
-      advanced_keys = card.format.append_formgroup advanced_keys
+      card.stub(:advanced_filter_keys) { %w(metric project wikirate_company) }
       html =
-        card.format.advanced_formgroups advanced_formgroups: advanced_keys
+        card.format.advanced_formgroups advanced_formgroups: advanced_filter_keys
       expect(html).to have_tag(:div, with: { class: "advanced-options" }) do
         with_tag :div, with: { id: "collapseFilter", class: "collapse" } do
           with_tag :label, text: "Metric"
@@ -27,7 +26,7 @@ describe Card::Set::Abstract::Filter do
       end
     end
     it "renders view: filter_form" do
-      # card.stub(:default_keys).and_return(all_filter_fields)
+      # card.stub(:filter_keys).and_return(all_filter_fields)
       html = card.format.render_filter_form
       expect(html).to have_tag(:form) do
         with_tag :div, with: { class: "form-group filter-input",
@@ -164,7 +163,7 @@ describe Card::Set::Abstract::Filter do
     describe "#select_filter_html" do
       it "renders single select list" do
         options = card.format.type_options :wikirate_topic
-        html = card.format.select_filter_html "Topic", options, nil, "Sidan"
+        html = card.format.select_filter_tag "Topic", options, nil, "Sidan"
         expect(html).to have_tag(:div, with: { class: "form-group" }) do
           with_tag :label, text: "Sidan"
           with_tag :select, with: { name: "Topic" }
@@ -174,7 +173,7 @@ describe Card::Set::Abstract::Filter do
     describe "#select_filter" do
       it "renders single select list" do
         options = card.format.select_filter :wikirate_topic, "asc"
-        html = card.format.select_filter_html "Topic", options, nil, "Sidan"
+        html = card.format.select_filter_tag "Topic", options, nil, "Sidan"
         expect(html).to have_tag(:div, with: { class: "form-group" }) do
           with_tag :label, text: "Sidan"
           with_tag :select, with: { name: "Topic" }

@@ -1,4 +1,4 @@
-include_set Abstract::BrowseFilter
+include_set Abstract::BrowseFilterForm
 
 def default_sort_by_key
   "upvoted"
@@ -8,11 +8,11 @@ def shift_sort_table?
   %w(values company).include?(Env.params["sort"] || default_sort_by_key)
 end
 
-def default_keys
+def filter_keys
   %w(name wikirate_topic wikirate_company)
 end
 
-def advanced_keys
+def advanced_filter_keys
   %w(designer project metric_type research_policy year)
 end
 
@@ -88,14 +88,16 @@ def wql_by_research_policy wql, research_policy
 end
 
 format :html do
-  def default_sort_formgroup_args args
-    args[:sort_options] = {
+  def sort_options
+    {
       "Highest Voted" => "upvoted",
       "Most Recent" => "recent",
       "Most Companies" => "company",
       "Most Values" => "values"
     }
-    args[:sort_option_default] = "upvoted"
+  end
+  def default_sort_option
+    "upvoted"
   end
 
   def default_metric_type_formgroup_args args

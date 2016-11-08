@@ -1,20 +1,19 @@
-include_set Abstract::FilterForm
 include_set Abstract::MetricRecordFilter
+
+def filter_keys
+  %w(year metric_value)
+end
+
+def advanced_filter_keys
+  %w(wikirate_company industry project)
+end
+
 format :html do
-  def view_caching?
-    false
+  def filter_labels field
+    field.to_sym == :wikirate_company ? "Keyword" : super
   end
 
-  def filter_categories
-    # name implies 'company' name
-    %w(keyword industry project)
-  end
-
-  def main_filter_categories
-    %w(year metric_value)
-  end
-
-  def keyword_name
+  def filter_body_header
     "Company"
   end
 end

@@ -1,4 +1,4 @@
-include_set Abstract::Filter
+include_set Abstract::BrowseFilterForm
 def filter_words
   filter_words = Array.wrap(Env.params[:wikirate_company]) || []
   if Env.params[:wikirate_topic]
@@ -14,11 +14,11 @@ def params_keys
   []
 end
 
-def default_keys
+def filter_keys
   %w(claimed cited company topic)
 end
 
-def advanced_keys
+def advanced_filter_keys
   []
 end
 
@@ -70,22 +70,23 @@ format :html do
     [:sort, :cited, :claimed, :wikirate_company, :wikirate_topic]
   end
 
-  def default_sort_formgroup_args args
-    super args
-    args[:sort_options] = {
-      "Most Important" => "important", "Most Recent" => "recent"
-    }
-    args[:sort_option_default] = "important"
+  def sort_options
+    super.merge "Most Important" => "important",
+                "Most Recent" => "recent"
+  end
+
+  def default_sort_option
+    "important"
   end
 
   view :cited_formgroup do |_args|
     options = { "All" => "all", "Yes" => "yes", "No" => "no" }
-    simple_select_filter "cited", options, (params[:cited] || "all")
+    simple_select_filter :cited, options, "all", "Cited"
   end
 
   view :claimed_formgroup do |_args|
     options = { "All" => "all", "Yes" => "yes", "No" => "no" }
-    simple_select_filter "Has Notes?", options, (params[:claimed] || "all")
+    simple_select_filter :claimed, options, "all", "Has Notes?"
   end
 
   view :company_formgroup do

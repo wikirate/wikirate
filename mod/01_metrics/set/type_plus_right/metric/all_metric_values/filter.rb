@@ -59,7 +59,6 @@ def outliers
 end
 
 
-
 def company_filter
   filter = fetch_params params_keys
   return unless filter.present?

@@ -56,25 +56,18 @@ format :html do
       "Edited this month" => "month",
       "Outliers" => "outliers"
     }
-    simple_select_filter "value", options, (Env.params["value"] || "exists")
+    simple_select_filter :value, options, "exists"
   end
 
 
   def filter_value_from_params category
-    Env.params[:filter][category]
+    Env.params[:filter] && Env.params[:filter][category]
   end
 
   view :designer_formgroup do
-    metrics = Card.search type_id: MetricID, return: :name
-    designers = metrics.map do |m|
-      names = m.to_name.parts
-      # score metric?
-      names.length == 3 ? names[2] : names[0]
-    end.uniq!(&:downcase).sort_by!(&:downcase)
-    simple_select_filter "designer", [["--", ""]] + designers,
-                         Env.params[:designer]
+    simple_select_filter :designer, [["--", ""]] + all_metric_designers, nil,
+                         "Designer"
   end
-
 
   view :importance_formgroup do
     options = ["I voted FOR", "I voted AGAINST", "I did NOT vote"]
@@ -83,14 +76,28 @@ format :html do
 
   view :industry_formgroup do
     industries = Card[card.industry_metric_name].value_options
-    simple_select_filter "industry", [["--", ""]] + industries,
-                         Env.params[:industry]
+    simple_select_filter :industry, [["--", ""]] + industries, nil, "Industry"
   end
 
-  view :sort_formgroup do |args|
-    options = args[:sort_options] || {}
-    sort_param = Env.params[:sort] || args[:sort_option_default]
-    select_filter_html "sort", options_for_select(options, sort_param),
-                       nil, nil, true
+  view :sort_formgroup do
+    selected_option = Env.params[:sort] || default_sort_option
+    select_filter_tag "sort",
+                      options_for_select(sort_options, selected_option),
+                      nil, nil, true
+  end
+
+  def sort_options
+    {}
+  end
+
+
+
+  def all_metric_designers
+    metrics = Card.search type_id: MetricID, return: :name
+    metrics.map do |m|
+      names = m.to_name.parts
+      # score metric?
+      names.length == 3 ? names[2] : names[0]
+    end.uniq!(&:downcase).sort_by!(&:downcase)
   end
 end

@@ -17,28 +17,32 @@ format :html do
              class: "filter-container slotter", id: "_filter_container",
              method: "GET", data: { remote: "true" } do
       output [
-               _render_filter_details(args),
-               _render_main_filter(args)
+               _render_advanced_filter,
+               _render_main_filter
              ]
     end
   end
 
-  view :main_filter do |args|
+  view :main_filter do
     wrap_with :div, class: "filter-header" do
       [
-        _render_main_filter_form_content(args),
+        main_filter_form,
         more_filter_options_link
       ]
     end
   end
 
   # style="display: #{filter_active};"
-  view :filter_details do |args|
+  view :advanced_filter do |args|
     html_class = "filter-details collapse"
     html_class += " in" if filter_advanced_active?
     wrap_with :div, class: html_class, id: "_filter_details" do
-      filter_form_body_content(args)
+      advanced_filter_form
     end
+  end
+
+  def advanced_filter_form
+     advanced_filter_formgroups
   end
 
   def more_filter_options_link
@@ -52,24 +56,6 @@ format :html do
                  collapseintext: "fewer filter options",
                  collapseouttext: "more filter options"
                })
-  end
-
-  def filter_fields categories, args
-    categories.map do |cat|
-      _optional_render "#{cat}_formgroup", args
-    end.join.html_safe
-  end
-
-  def filter_categories
-    []
-  end
-
-  def filter_active?
-    Env.params.keys.any? { |key| filter_categories.include? key }
-  end
-
-  def filter_advanced_active?
-    filter_categories.any? { |key| Env.params[key.to_s].present? }
   end
 
   def content_view
@@ -90,13 +76,5 @@ format :html do
     link_to_card card.cardname.left, "Reset",
                  path: { view: content_view },
                  remote: true, class: html_class
-  end
-
-  def default_main_filter args
-    args[:filter_title] ||= "Filter & Sort"
-  end
-
-  def filter_form_content _args
-    "fill me"
   end
 end

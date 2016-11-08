@@ -7,39 +7,35 @@ format :html do
 
   def select_filter type_codename, order, label=nil
     # take the card name as default label
-    label ||= Card[type_codename].name
+    label ||= filter_label type_codename
     options = type_options type_codename, order
     options.unshift(["--", ""])
     simple_select_filter type_codename.to_s, options, Env.params[type_codename],
                          label
   end
 
-  def simple_select_filter type_name, options, default, label=nil
-    select_filter_html type_name, options, default, label
+  def simple_select_filter filter_field, options, default, label=nil
+    default = filter_param(filter_field) || default
+    select_filter_tag filter_field, options, default, label
   end
 
-  def select_filter_html type_name, options, default, label, no_chosen=false
-    options = options_for_select(options, default)
-    label ||= type_name.to_s.capitalize
-    css_class = no_chosen ? "" : "pointer-select"
-    formgroup label, select_tag(type_name, options, class: css_class),
-              class: "filter-input "
-  end
 
   def simple_multiselect_filter type_name, options, default, label=nil
     options = options_for_select(options, default)
     label ||= type_name.capitalize
-    multiselect_tag = select_tag(type_name, options,
+    name = filter_name type_name, true
+    multiselect_tag = select_tag(name, options,
                                  multiple: true,
                                  class: "pointer-multiselect")
     formgroup(label, multiselect_tag, class: "filter-input #{type_name}")
   end
 
-  def multiselect_filter type_codename, label=nil
-    options = type_options type_codename
-    label ||= type_codename.to_s
-    simple_multiselect_filter type_codename.to_s, options,
-                              Env.params[type_codename], label
+  def multiselect_filter filter_field, label=nil
+    options = type_options filter_field
+    label ||= filter_field.to_s
+    default = filter_param(filter_field)
+    simple_multiselect_filter filter_field.to_s, options,
+                              default, label
   end
 
   def checkbox_filter title, options, default=nil
@@ -47,8 +43,9 @@ format :html do
     param = filter_value_from_params(title) || default
     checkboxes = options.map do |option|
       checked = param.present? && param.include?(option.downcase)
+      name = filter_name key, true
       %(<label>
-        #{check_box_tag("#{key}[]", option.downcase, checked) + option}
+        #{check_box_tag(name, option.downcase, checked) + option}
       </label>)
     end
     formgroup title, checkboxes.join("")
@@ -60,15 +57,38 @@ format :html do
   end
 
   def text_filter type_name, args
+    name = filter_name type_name
     formgroup args[:title] || type_name.capitalize,
-              text_field_tag(type_name, params[type_name],
+              text_field_tag(name, params[type_name],
                              class: "form-control"),
               class: " filter-input"
   end
+
   view :name_formgroup do |args|
     name = args[:name] || "name"
     title = args[:title] || "Keyword"
     text_filter name, title: title
   end
 
+
+  def select_filter_tag type_name, options, default, label, no_chosen=false
+    options = options_for_select(options, default)
+    label ||= filter_label type_name
+    css_class = no_chosen ? "" : "pointer-select"
+    name = filter_name type_name
+    formgroup label, select_tag(name, options, class: css_class),
+              class: "filter-input "
+  end
+
+  def filter_name name, multi=false
+    "filter[#{name}]#{'[]' if multi}"
+  end
+
+  def filter_label field
+    Card.fetch_name(field) { field.to_s.capitalize }
+  end
+
+  def filter_param field
+    (filter = params[:filter]) && filter[field]
+  end
 end
