@@ -161,7 +161,7 @@ format :html do
     wrap_with_info content
   end
 
-  view :source_and_preview do |args|
+  view :source_and_preview, cache: :never do |args|
     wrap_with :div, class: "source-details",
                     data: { source_for: card.name, year: year } do
       url_card = card.fetch(trait: :wikirate_link)

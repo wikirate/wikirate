@@ -20,5 +20,5 @@ event :block_url_changing, :validate, on: :update, changed: :content,
 end
 
 def prior_present?
-  db_content_was.empty?
+  !db_content_was.empty?
 end
