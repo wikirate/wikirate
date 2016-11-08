@@ -18,9 +18,9 @@ format :html do
     end
   end
 
-  def edit_slot args
-    # see claim.rb for explanation of core_edit
-    super(true)
+  def edit_slot
+    voo.editor :inline_nests
+    super
   end
 
   def flat_list items

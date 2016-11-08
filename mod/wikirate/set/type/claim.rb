@@ -74,12 +74,8 @@ format :html do
   end
 
   def edit_slot
-    # core_edit means the new and edit views will render form fields from
-    # within the core view (which in this case is defined by
-    # Claim+*type+*structure), as opposed to the default behavior,
-    # which is to strip out the nests and render them alone.
-    core_edit = true
-    super core_edit
+    voo.editor :inline_nests
+    super
   end
 
   view :tip, perms: :none, closed: :blank do |args|
