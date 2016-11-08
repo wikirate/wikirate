@@ -22,22 +22,24 @@ def score?
 end
 
 format :html do
+  def new_view_hidden
+    hidden_field_tag "success[id]", card.cardname.left
+  end
+
   def default_new_args args
-    super(args)
-    args[:hidden] ||= {}
-    args[:hidden][:success] = { id:  card.cardname.left }
     args[:form_opts] = {
       "data-slot-selector" => ".card-slot.TYPE-metric"
     }
   end
 
   def default_edit_args args
-    super(args)
-    args[:hidden] ||= {}
-    args[:hidden][:success] = { id:  card.cardname.left }
     args[:form_opts] = {
       "data-slot-selector" => ".card-slot.TYPE-metric"
     }
+  end
+
+  def edit_view_hidden
+    new_view_hidden
   end
 
   view :editor do |args|

@@ -84,7 +84,7 @@ format :html do
     end
   end
 
-  def new_view_standard_hidden
+  def new_view_hidden
     hidden_tags success: {
       id: "_self", soft_redirect: true, view: :source_and_preview
     }

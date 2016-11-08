@@ -97,12 +97,10 @@ format :html do
     end
   end
 
-  view :no_frame_form do |args|
-    form_opts[:hidden] = args.delete(:hidden)
-    form_opts["main-success"] = "REDIRECT"
-    card_form :create, form_opts do
+  view :no_frame_form do
+    card_form :create, "main-success" => "REDIRECT" do
       output [
-        new_view_standard_hidden,
+        new_view_hidden,
         new_view_name,
         new_view_type,
         _optional_render_content_formgroup,
@@ -192,34 +190,33 @@ format :html do
     end
   end
 
-  def set_hidden_args args
-    args[:hidden] = {
-      success: { id: "_self", soft_redirect: true, view: :timeline_data }
-    }
-    if args[:metric]
-      args[:hidden]["card[subcards][+metric][content]"] = args[:metric]
+  def new_view_hidden
+    tags =
+      { success: { id: "_self", soft_redirect: true, view: :timeline_data } }
+    [:metric, :company, :source].each do |field|
+      next unless (value = Env.params[field])
+      tags["card[subcards][+#{field}][content]"] = value
     end
-    if args[:company]
-      args[:hidden]["card[subcards][+company][content]"] = args[:company]
-    end
-    if args[:source]
-      args[:hidden]["card[subcards][+source][content]"] = args[:source]
-    end
+    hidden_fields tags
   end
 
-  def default_new_args args
-    set_hidden_args args
-    voo.title = "Add new value for #{args[:metric]}" if args[:metric]
-    btn_class = "btn btn-default _form_close_button"
-    args[:buttons] =
+  view :new_buttons do
+    button_formgroup do
       wrap_with :div do
         [
           submit_button(class: "create-submit-button",
                         data: { disable_with: "Adding..." }),
-          content_tag(:button, "Close", type: "button", class: btn_class)
+          wrap_with(:button, "Close",
+                    type: "button",
+                    class: "btn btn-default _form_close_button")
         ]
       end
-    super(args)
+    end
+  end
+
+  def default_new_args _args
+    metric_name = Env.params[:metric]
+    voo.title = "Add new value for #{metric_name}" if metric_name
   end
 
   def legend

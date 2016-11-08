@@ -249,7 +249,7 @@ format :html do
     [:file_company, :value]
   end
 
-  def new_view_standard_hidden
+  def new_view_hidden
     hidden_tags success: { id: "_self", soft_redirect: false, view: :import }
   end
 
