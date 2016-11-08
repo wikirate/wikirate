@@ -197,7 +197,7 @@ format :html do
       next unless (value = Env.params[field])
       tags["card[subcards][+#{field}][content]"] = value
     end
-    hidden_fields tags
+    hidden_tags tags
   end
 
   view :new_buttons do
