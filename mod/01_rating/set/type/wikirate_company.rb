@@ -78,13 +78,13 @@ format :html do
     end
   end
 
-  view :new_metric_value do
+  view :new_metric_value, cache: :never do
     frame do
       output [_render_metric_side, _render_source_side]
     end
   end
 
-  view :metric_side do
+  view :metric_side, cache: :never do
     # html_classes = "col-md-6 col-lg-5 panel-default nodblclick stick-left"
     html_classes = "panel-default nodblclick stick-left"
     wrap_with :div, class: html_classes, id: "metric-container" do

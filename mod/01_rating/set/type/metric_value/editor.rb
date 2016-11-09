@@ -29,7 +29,7 @@ format :html do
     voo.editor == :metric_value_landing
   end
 
-  view :editor do
+  view :editor, cache: :never do
     mv_view = if metric_value_editor?            then :editor
               elsif metric_value_landing_editor? then :landing
               end
@@ -61,7 +61,7 @@ format :html do
     "<hr />"
   end
 
-  view :hidden_source_field do
+  view :hidden_source_field, cache: :never do
     if (source = Env.params[:source])
       hidden_field "hidden_source", value: source
     end
@@ -71,11 +71,10 @@ format :html do
     field_nest(:wikirate_company, title: "Company")
   end
 
-  view :metric_field do
-    metric = Env.params[:metric]
-    metric_field =
-      Card.fetch(card.cardname.field(:metric), new: { content: metric })
-    nest(metric_field, title: "Metric")
+  view :metric_field, cache: :never do
+    metric_field = Card.fetch card.cardname.field(:metric),
+                              new: { content: Env.params[:metric] }
+    nest metric_field, title: "Metric"
   end
 
   view :next_button do
@@ -97,11 +96,10 @@ format :html do
     end
   end
 
-  view :no_frame_form do
+  view :no_frame_form, cache: :never do
     card_form :create, "main-success" => "REDIRECT" do
       output [
         new_view_hidden,
-        new_view_name,
         new_view_type,
         _optional_render_content_formgroup,
         _optional_render_new_buttons
@@ -110,7 +108,7 @@ format :html do
   end
 
   # TODO: please verify if this view used anywhere
-  view :add_value_editor do |_args|
+  view :add_value_editor, cache: :never do |_args|
     render_haml do
       <<-HAML
 = field_nest :metric, title: 'Metric' unless args[:metric]
@@ -127,7 +125,7 @@ format :html do
     end
   end
 
-  view :metric_value_editor do |args|
+  view :metric_value_editor, cache: :never do |args|
     render_haml relevant_sources: _render_relevant_sources(args),
                 cited_sources: _render_cited_sources do
       <<-HAML
@@ -159,9 +157,9 @@ format :html do
     )
   end
 
-  view :relevant_sources do |args|
-    sources = find_potential_sources args[:company], args[:metric]
-    if (source_name = args[:source]) && (source_card = Card[source_name])
+  view :relevant_sources, cache: :never do |args|
+    sources = find_potential_sources Env.params[:company], Env.params[:metric]
+    if (source_name = Env.params[:source]) && (source_card = Card[source_name])
       sources.push(source_card)
     end
     relevant_sources =
