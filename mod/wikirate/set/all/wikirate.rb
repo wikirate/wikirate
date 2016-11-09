@@ -157,7 +157,7 @@ format :html do
   end
 
   view :yinyang_list do |args|
-    content_tag :div, class: "yinyang-list #{args[:yinyang_list_class]}" do
+    wrap_with :div, class: "yinyang-list #{args[:yinyang_list_class]}" do
       _render_yinyang_list_items(args)
     end
   end
@@ -184,7 +184,7 @@ format :html do
     joint = args[:joint] || " "
 
     enrich_result(card.item_names).map do |icard|
-      content_tag :div, class: "yinyang-row" do
+      wrap_with :div, class: "yinyang-row" do
         nest_item(icard, view: args[:item]).html_safe
       end.html_safe
     end.join(joint).html_safe

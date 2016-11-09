@@ -54,10 +54,10 @@ format :html do
   end
 
   view :contribution_counts do |_args|
-    content_tag :div, class: "counts" do
+    wrap_with :div, class: "counts" do
       if card.sections
         card.sections.map do |count, name, contr_name|
-          content_tag :a, class: "item", href: "##{contr_name}" do
+          wrap_with :a, class: "item", href: "##{contr_name}" do
             %(
               <span class="#{name.downcase}">#{count}</span>
               <p class="legend">#{name}</p>

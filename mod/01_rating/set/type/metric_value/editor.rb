@@ -7,6 +7,7 @@ format :html do
   end
 
   view :content_formgroup do
+    voo.hide :name_formgroup, :type_formgroup
     prepare_nests_editor unless custom_editor?
     super()
   end
@@ -79,8 +80,8 @@ format :html do
 
   view :next_button do
     html_class = "col-md-6 col-centered text-center"
-    button = content_tag(:a, "Next", class: "btn btn-primary _new_value_next")
-    content_tag(:div, button, class: html_class)
+    button = wrap_with(:a, "Next", class: "btn btn-primary _new_value_next")
+    wrap_with(:div, button, class: html_class)
   end
 
   view :source_container do |_args|
@@ -172,7 +173,7 @@ format :html do
           end
         end.join("")
       end
-    content_tag(:div, relevant_sources.html_safe, class: "relevant-sources")
+    wrap_with(:div, relevant_sources.html_safe, class: "relevant-sources")
   end
 
   view :cited_sources do |_args|

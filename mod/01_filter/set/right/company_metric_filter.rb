@@ -36,7 +36,7 @@ format :html do
     [
       _optional_render_metric_value_formgroup,
       _optional_render_year_formgroup,
-      content_tag(:hr),
+      wrap_with(:hr),
       _optional_render_sort_formgroup
     ]
   end

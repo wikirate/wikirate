@@ -7,7 +7,7 @@ format :html do
   def wrap_with_info content
     html_class = "source-info-container with-vote-button"
     wrap do
-      content_tag(:div, content.html_safe, class: html_class)
+      wrap_with(:div, content.html_safe, class: html_class)
     end
   end
 
@@ -24,8 +24,8 @@ format :html do
   end
 
   def flat_list items
-    content_tag :ul, class: "list-inline" do
-      items.map { |item| concat(content_tag(:li, item)) }
+    wrap_with :ul, class: "list-inline" do
+      items.map { |item| wrap_with :li, item }
     end
   end
 
@@ -40,8 +40,8 @@ format :html do
 
   def source_item_footer
     items = [
-      _render_note_count.html_safe,
-      _render_metric_count.html_safe,
+      _render_note_count,
+      _render_metric_count,
       _render_original_with_icon
     ]
     items.unshift(_render_year_with_icon) unless year.nil? || year == ""
@@ -74,23 +74,24 @@ format :html do
   end
 
   view :extras do
-    content = flat_list(source_item_footer)
-    content_tag(:div, content.html_safe, class: "source-extra")
+    wrap_with :div, class: "source-extra" do
+      flat_list source_item_footer
+    end
   end
 
   view :original_with_icon do
-    icon = content_tag(:i, " ", class: "fa fa-external-link-square")
+    icon = wrap_with(:i, " ", class: "fa fa-external-link-square")
     icon + _render_original_link
   end
 
   view :vote do |args|
     vote_item = subformat(card.vote_count_card).render_content args
-    content_tag(:div, vote_item, class: "source-vote")
+    wrap_with(:div, vote_item, class: "source-vote")
   end
 
   view :icon do
-    icon = content_tag(:i, " ", class: "fa fa-globe")
-    content_tag(:div, icon, class: "source-icon")
+    icon = wrap_with(:i, " ", class: "fa fa-globe")
+    wrap_with(:div, icon, class: "source-icon")
   end
 
   view :creator_credit do
@@ -134,14 +135,14 @@ format :html do
 
   view :year_helper do
     return "" if year.nil? || year == ""
-    content_tag(:small, "year:" + year[/\d+/], class: "source-year")
+    wrap_with(:small, "year:" + year[/\d+/], class: "source-year")
     # _render_original_link << year_helper.html_safe
   end
 
   view :year_with_icon do
     return "" if year.nil? || year == ""
-    icon = content_tag(:i, "", class: "fa fa-calendar")
-    content_tag(:span, icon + year[/\d+/])
+    icon = wrap_with(:i, "", class: "fa fa-calendar")
+    wrap_with(:span, icon + year[/\d+/])
   end
 
   view :direct_link do
@@ -154,10 +155,10 @@ format :html do
 
   view :with_cite_button do |args|
     cite_button =
-      content_tag(:a, "Cite!", class: "btn btn-highlight _cite_button c-btn")
+      wrap_with(:a, "Cite!", class: "btn btn-highlight _cite_button c-btn")
     content =
       _render_source_list_item(args) +
-      content_tag(:div, cite_button, class: "pull-right")
+      wrap_with(:div, cite_button, class: "pull-right")
     wrap_with_info content
   end
 
@@ -178,7 +179,7 @@ format :html do
     add_toggle render_with_cite_button(args).html_safe
   end
 
-  view :cited do |args|
+  view :cited, cache: :never do |args|
     parent =
       if (parent_card = Card.fetch(Env.params["id"]))
         parent_card.cardname.right

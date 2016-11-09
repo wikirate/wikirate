@@ -18,23 +18,22 @@ format :html do
     voo.hide :metric_select, :year_select
   end
 
-  view :import_success do |args|
-    structure = "source item preview"
-    redirect_content = _render_content args.merge(structure: structure)
-    content_tag(:div, content_tag(:div, redirect_content,
-                                  { class: "redirect-notice" }, false),
-                { id: "source-preview-iframe",
-                  class: "webpage-preview non-previewable" },
-                false)
+  view :import_success do
+    wrap_with :div, id: "source-preview-iframe",
+                    class: "webpage-preview non-previewable" do
+      wrap_with :div, class: "redirect-notice" do
+        _render_content structure: "source item preview"
+      end
+    end
   end
 
   def contruct_import_warning_message args
     msg = ""
-    if (identical_metric_values = args[:identical_metric_value])
+    if (identical_metric_values = Env.params[:identical_metric_value])
       headline = "Metric values exist and are not modified."
       msg += duplicated_value_warning_message headline, identical_metric_values
     end
-    if (duplicated_metric_values = args[:duplicated_metric_value])
+    if (duplicated_metric_values = Env.params[:duplicated_metric_value])
       headline = "Metric values exist with different source and are not "\
                  "modified."
       msg += duplicated_value_warning_message headline, duplicated_metric_values

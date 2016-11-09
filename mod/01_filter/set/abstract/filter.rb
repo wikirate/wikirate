@@ -150,7 +150,7 @@ format :html do
   def advanced_button
     return if card.advanced_keys.empty?
     toggle_text = filter_active? ? "Hide Advanced" : "Show Advanced"
-    content_tag :a, toggle_text, href: "#collapseFilter",
+    wrap_with :a, toggle_text, href: "#collapseFilter",
                                  class: "btn btn-default",
                                  data: { toggle: "collapse",
                                          collapseintext: "Hide Advanced",

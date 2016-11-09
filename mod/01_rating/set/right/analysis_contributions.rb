@@ -25,7 +25,7 @@ format :html do
   end
 
   view :core do |_args|
-    content_tag :div, class: "contribution" do
+    wrap_with :div, class: "contribution" do
       link_to_metric_count metric_count, "Metrics"
     end
   end

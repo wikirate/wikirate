@@ -28,14 +28,14 @@ format :html do
       nest(project, view: :core, structure: "initiative item").html_safe
     wrap_with :div, class: "border-bottom col-md-12 nopadding" do
       [
-        content_tag(:h5, "Project :", class: "col-md-2"),
-        content_tag(:div, project_content, class: "col-md-10")
+        wrap_with(:h5, "Project :", class: "col-md-2"),
+        wrap_with(:div, project_content, class: "col-md-10")
       ]
     end
   end
 
   def wrap_metric_header
-    metric_list_header = content_tag(:div, "Metrics", class: "heading-label")
+    metric_list_header = wrap_with(:div, "Metrics", class: "heading-label")
     if project
       metric_list_header << wrap_project
     else
@@ -72,7 +72,7 @@ format :html do
   def wrap_company
     wrap_with :div, class: "row" do
       [
-        content_tag(:div, "Company", class: "heading-label"),
+        wrap_with(:div, "Company", class: "heading-label"),
         nest(card, view: :core, structure: "metric value company view")
       ]
     end
@@ -102,7 +102,7 @@ format :html do
 
     blank_content =
       wrap_with :div, class: html_classes, id: "source-preview-main" do
-        content_tag(:div, subformat(source_side).render_core.html_safe,
+        wrap_with(:div, subformat(source_side).render_core.html_safe,
                     id: "source-form-container")
       end
     wrap do

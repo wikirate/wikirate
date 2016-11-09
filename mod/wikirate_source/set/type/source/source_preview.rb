@@ -97,7 +97,7 @@ format :html do
       %(
         <div class="container-fluid">
           <div class="row-fluid">
-            #{content_tag(:div, subformat(text_card).render(:open, text_args),
+            #{wrap_with(:div, subformat(text_card).render(:open, text_args),
                           { id: 'text_source', class: 'webpage-preview' },
                           false)}
           </div>
@@ -108,11 +108,11 @@ format :html do
       if (mime = file_card.file.content_type) && valid_mime_type?(mime)
         if mime == "application/pdf"
           iframe_html = _render_pdfjs_iframe pdf_url: file_card.attachment.url
-          content_tag(:div, iframe_html,
+          wrap_with(:div, iframe_html,
                       { id: "pdf-preview", class: "webpage-preview" },
                       false)
         else
-          content_tag(:div,
+          wrap_with(:div,
                       %(<img id="source-preview-iframe"
                         src="#{file_card.attachment.url}" />),
                       { id: "pdf-preview", class: "webpage-preview" }, false)
@@ -120,7 +120,7 @@ format :html do
       else
         structure = "source item preview"
         redirect_content = _render_content structure: structure
-        content_tag(:div, content_tag(:div, redirect_content,
+        wrap_with(:div, wrap_with(:div, redirect_content,
                                       { class: "redirect-notice" }, false),
                     { id: "source-preview-iframe",
                       class: "webpage-preview non-previewable" },
@@ -132,7 +132,7 @@ format :html do
         <iframe id="source-preview-iframe" src="#{url}" security="restricted"
          sandbox="allow-same-origin allow-scripts allow-forms" ></iframe>
       )
-      content_tag(:div, iframe_html,
+      wrap_with(:div, iframe_html,
                   { id: "webpage-preview", class: "webpage-preview" }, false)
 
     end
@@ -145,11 +145,11 @@ format :html do
   view :hidden_information, tags: :unknown_ok do |args|
     %(
       <div style="display:none">
-        #{content_tag(:div, card.cardname.url_key, id: 'source-name')}
-        #{content_tag(:div, preview_url, id: 'source_url')}
-        #{content_tag(:div, args[:year], id: 'source-year')}
-        #{content_tag(:div, args[:company], id: 'source_company')}
-        #{content_tag(:div, args[:topic], id: 'source_topic')}
+        #{wrap_with(:div, card.cardname.url_key, id: 'source-name')}
+        #{wrap_with(:div, preview_url, id: 'source_url')}
+        #{wrap_with(:div, args[:year], id: 'source-year')}
+        #{wrap_with(:div, args[:company], id: 'source_company')}
+        #{wrap_with(:div, args[:topic], id: 'source_topic')}
       </div>
     )
   end

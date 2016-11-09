@@ -53,7 +53,7 @@ format :html do
   view :image_link do
     # TODO: change the css so that we don't need the extra logo class here
     #   and we can use a logo_link view on the type/company set
-    text = content_tag :div, class: "logo" do
+    text = wrap_with :div, class: "logo" do
       card.company_card.format.field_nest :image, view: :core, size: "small"
     end
     link_to_card card.company_card, text, class: "inherit-anchor hidden-xs"

@@ -3,7 +3,7 @@ include_set Abstract::Import
 
 attachment :source_import_file, uploader: CarrierWave::FileCardUploader
 
-def init_success_slot_params
+def init_success_params
   success.params[:slot] = {
     updated_sources: [],
     duplicated_sources: []

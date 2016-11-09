@@ -40,9 +40,9 @@ format :html do
   end
 
   view :contributing do |args|
-    heading = content_tag(:div, "Contributing", class: "heading-content")
+    heading = wrap_with(:div, "Contributing", class: "heading-content")
     value_type =
-      content_tag(:div, _render_value_type_detail(args))
+      wrap_with(:div, _render_value_type_detail(args))
     content = wrap_with :div, class: "contributing-details" do
       [
         value_type,

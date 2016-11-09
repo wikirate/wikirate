@@ -4,7 +4,7 @@ event :import_csv, :prepare_to_store, on: :update, when: :data_import? do
   return unless (import_data = Env.params[:import_data])
   return unless valid_import_format?(import_data)
   source_map = {}
-  init_success_slot_params
+  init_success_params
   import_data.each do |import_row|
     import_card = parse_import_row import_row, source_map
     # validate value type
@@ -14,7 +14,7 @@ event :import_csv, :prepare_to_store, on: :update, when: :data_import? do
     end
     handle_import_errors import_card
   end
-  clear_slot_params
+  clear_success_params
   handle_redirect
 end
 
@@ -22,17 +22,14 @@ def data_import?
   Env.params["is_data_import"] == "true"
 end
 
-def init_success_slot_params
-  success.params[:slot] = {
-    identical_metric_value: [],
-    duplicated_metric_value: []
-  }
+def init_success_params
+  success.params.merge! identical_metric_value: [],
+                        duplicated_metric_value: []
 end
 
-def clear_slot_params
-  slot_args = success.params[:slot]
-  slot_args.each do |key, value|
-    slot_args.delete(key) unless value.present?
+def clear_success_params
+  [:identical_metric_value, :duplicated_metric_value].each do |key|
+    success.params.delete(key) unless success[key].present?
   end
 end
 
@@ -58,16 +55,11 @@ def construct_value_args args
 end
 
 def check_duplication_with_existing metric_value_name, source_card
-  slot_args = success.slot
-  if (source = Card[metric_value_name.to_name.field(:source)])
-    if source.item_cards[0].key == source_card.key
-      slot_args[:identical_metric_value].push(metric_value_name)
-    else
-      slot_args[:duplicated_metric_value].push(metric_value_name)
-    end
-    return true
-  end
-  false
+  return false unless (source = Card[metric_value_name.to_name.field(:source)])
+  bucket =
+    source.item_cards[0].key == source_card.key ? :identical : :duplicated
+  success.params["#{bucket}_metric_value".to_sym].push metric_value_name
+  true
 end
 
 # @return updated or created metric value card object
@@ -253,7 +245,7 @@ format :html do
     hidden_tags success: { id: "_self", soft_redirect: false, view: :import }
   end
 
-  view :import do
+  view :import, cache: :never do
     frame_and_form :update, "notify-success" => "import successful" do
       [
         hidden_import_tags,
@@ -327,7 +319,7 @@ format :html do
   def bs_label text, opts={}
     add_class opts, "label"
     add_class opts, "label-#{opts.delete(:context)}" if opts[:context]
-    content_tag :span, text, opts
+    wrap_with :span, text, opts
   end
 
   def default_import_table_args args
@@ -337,7 +329,7 @@ format :html do
                            :correction]
   end
 
-  view :import_table do |args|
+  view :import_table, cache: :never do |args|
     data = card.csv_rows
     reject_header_row data
     data = data.map.with_index do |elem, i|

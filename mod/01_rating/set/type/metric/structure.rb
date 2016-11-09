@@ -83,7 +83,7 @@ format :html do
     author_args = subtext ? { class: "nopadding" } : {}
     wrap_with :div, args do
       [
-        content_tag(subtext ? "h4" : "h3", author, author_args),
+        wrap_with(subtext ? "h4" : "h3", author, author_args),
         subtext
       ]
     end

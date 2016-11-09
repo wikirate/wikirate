@@ -210,7 +210,7 @@ format :html do
   end
 
   view :handle do |_args|
-    content_tag :div, class: "handle" do
+    wrap_with :div, class: "handle" do
       glyphicon "option-vertical"
     end
   end
@@ -345,8 +345,8 @@ format :html do
     weight = text_field_tag("pair_value", (args[:weight] || 0)) + "%"
     output(
       [
-        content_tag(:td, _render_thumbnail(args), "data-key" => card.name),
-        content_tag(:td, weight, class: "metric-weight")
+        wrap_with(:td, _render_thumbnail(args), "data-key" => card.name),
+        wrap_with(:td, weight, class: "metric-weight")
       ]
     ).html_safe
   end
