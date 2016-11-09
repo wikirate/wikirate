@@ -5,13 +5,6 @@ end
 include_set Set::Abstract::Filter
 
 format :html do
-
-  class FilterForm
-    def initialize categories
-      @categories = categories
-    end
-  end
-
   view :core do |args|
     form_tag path(mark: card.cardname.left, view: content_view),
              class: "filter-container slotter", id: "_filter_container",

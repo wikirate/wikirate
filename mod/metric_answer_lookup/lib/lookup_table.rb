@@ -9,6 +9,17 @@ module LookupTable
       ma.metric_answer_id = card.id
       ma.refresh
     end
+
+    def create_or_update card
+      ma =
+        MetricAnswer.find_by_metric_answer_id(card.id) ||
+        MetricAnswer.new
+      ma.metric_answer_id = card.id
+      ma.refresh
+    rescue
+      binding.pry
+      puts "asdfas"
+    end
   end
 
   def refresh
