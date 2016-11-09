@@ -17,7 +17,7 @@ format :html do
         @card = Card.fetch(card.name) || @card
         @card.save! if @card.new_card?
       end
-      render(args[:denied_view], args)
+      render(@denied_view, args)
     else
       super(args)
     end

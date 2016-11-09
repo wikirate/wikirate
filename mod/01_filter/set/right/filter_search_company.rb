@@ -10,13 +10,16 @@ end
 
 def wql_by_wikirate_topic wql, topic
   return unless topic.present?
-  wql[:found_by] = "#{topic}+#{Card[:wikirate_company].name}"
+  wql[:found_by] = topic.to_name.trait(:wikirate_company)
 end
 
 format :html do
   def sort_options
-    super.merge "Most Metrics" => "metric",
-                "Most Topics" => "topic"
+    {
+      "Alphabetical" => "name",
+      "Most Metrics" => "metric",
+      "Most Topics" => "topic"
+    }
   end
 
   def default_sort_option

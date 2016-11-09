@@ -22,34 +22,36 @@ def score?
 end
 
 format :html do
+  def new_view_hidden
+    hidden_field_tag "success[id]", card.cardname.left
+  end
+
   def default_new_args args
-    super(args)
-    args[:hidden] ||= {}
-    args[:hidden][:success] = { id:  card.cardname.left }
     args[:form_opts] = {
       "data-slot-selector" => ".card-slot.TYPE-metric"
     }
   end
 
   def default_edit_args args
-    super(args)
-    args[:hidden] ||= {}
-    args[:hidden][:success] = { id:  card.cardname.left } 
     args[:form_opts] = {
       "data-slot-selector" => ".card-slot.TYPE-metric"
     }
   end
 
-  view :editor do |args|
-    return _render_rating_editor(args) if card.wiki_rating?
-    return _render_categorical_editor(args) if card.categorical?
-    return super(args) if card.score?
+  def edit_view_hidden
+    new_view_hidden
+  end
+
+  view :editor do
+    return _render_rating_editor if card.wiki_rating?
+    return _render_categorical_editor if card.categorical?
+    return super() if card.score?
     output [
       text_area(:content,
                 rows: 5,
                 class: "card-content",
                 "data-card-type-code" => card.type_code),
-      _render_variables(args),
+      _render_variables,
       add_metric_button
     ]
   end
@@ -58,7 +60,7 @@ format :html do
     target = '#modal-add-metric-slot'
     # "#modal-#{card.cardname.safe_key}"
     output [
-      (content_tag :span, class: "input-group" do
+      (wrap_with :span, class: "input-group" do
         button_tag class: "pointer-item-add btn btn-default slotter",
                    type: "button",
                    data: { toggle: "modal", target: target },
@@ -73,14 +75,14 @@ format :html do
     ]
   end
 
-  view :core do |args|
-    return _render_rating_core(args) if card.wiki_rating?
-    return _render_categorical_core(args) if card.categorical?
-    "= #{super(args)}"
+  view :core do
+    return _render_rating_core if card.wiki_rating?
+    return _render_categorical_core if card.categorical?
+    "= #{super()}"
   end
 
-  def get_nest_defaults _nested_card
-    { view: :thumbnail }
+  def default_nest_view
+    :thumbnail
   end
 end
 

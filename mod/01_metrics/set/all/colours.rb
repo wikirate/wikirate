@@ -51,8 +51,8 @@ format :html do
 
   def wrap_color_div value, colour
     color = "color:" + colour
-    square_icon = content_tag(:i, "", class: "fa fa-square ", style: color)
-    value = content_tag(:span, value)
+    square_icon = wrap_with(:i, "", class: "fa fa-square ", style: color)
+    value = wrap_with(:span, value)
     wrap_with :div, class: "range-value" do
       [
         value,

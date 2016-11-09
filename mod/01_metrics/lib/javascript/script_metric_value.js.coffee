@@ -32,7 +32,7 @@ $(document).ready ->
     if(!$sourceForm.exists() && !$loader.isLoading())
       $('._blank_state_message').remove()
       load_path_source = wagn.prepUrl(wagn.rootPath +
-                                      "/new/source?preview=true&slot[company]="+
+                                      "/new/source?preview=true&company="+
                                       company)
       $sourceDetails.addClass('hide')
       $loader.add()
@@ -69,12 +69,12 @@ $(document).ready ->
       else
         source = $.urlParam('source')
         if source != null
-          source = '&slot[source]=' + source
+          source = '&source=' + source
         else
           source = ''
         load_path = wagn.prepUrl(wagn.rootPath +
-                               "/new/metric_value?noframe=true&slot[company]="+
-                               company + "&slot[metric]=" + metric + source)
+                               "/new/metric_value?noframe=true&company="+
+                               company + "&metric=" + metric + source)
 
         $template = $('<div>').addClass('timeline-row new-value-form')
         $template = $template.append($('<div>').addClass('card-slot '))

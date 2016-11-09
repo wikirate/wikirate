@@ -1,32 +1,35 @@
-# the is_metric_import_update flag distinguishes between an update of the
+# the is_data_import flag distinguishes between an update of the
 # import file and importing the file
-event :import_csv, :prepare_to_store,
-      on: :update,
-      when: proc { Env.params["is_metric_import_update"] == "true" } do
-  return unless (metric_values = Env.params[:metric_values])
-  return unless valid_import_format?(metric_values)
+event :import_csv, :prepare_to_store, on: :update, when: :data_import? do
+  return unless (import_data = Env.params[:import_data])
+  return unless valid_import_format?(import_data)
   source_map = {}
-  success.params[:slot] = {
-    identical_metric_value: [],
-    duplicated_metric_value: []
-  }
-  metric_values.each do |metric_value_data|
-    metric_value_card = parse_metric_value metric_value_data, source_map
+  init_success_params
+  import_data.each do |import_row|
+    import_card = parse_import_row import_row, source_map
     # validate value type
-    if metric_value_card
-      metric_value_card.director.catch_up_to_stage :validate
-      metric_value_card.director.transact_in_stage = :integrate
+    if import_card
+      import_card.director.catch_up_to_stage :validate
+      import_card.director.transact_in_stage = :integrate
     end
-    handle_import_errors metric_value_card
+    handle_import_errors import_card
   end
-  clear_slot_params
+  clear_success_params
   handle_redirect
 end
 
-def clear_slot_params
-  slot_args = success.params[:slot]
-  slot_args.each do |key, value|
-    slot_args.delete(key) unless value.present?
+def data_import?
+  Env.params["is_data_import"] == "true"
+end
+
+def init_success_params
+  success.params.merge! identical_metric_value: [],
+                        duplicated_metric_value: []
+end
+
+def clear_success_params
+  [:identical_metric_value, :duplicated_metric_value].each do |key|
+    success.params.delete(key) unless success[key].present?
   end
 end
 
@@ -52,20 +55,15 @@ def construct_value_args args
 end
 
 def check_duplication_with_existing metric_value_name, source_card
-  slot_args = success.slot
-  if (source = Card[metric_value_name.to_name.field(:source)])
-    if source.item_cards[0].key == source_card.key
-      slot_args[:identical_metric_value].push(metric_value_name)
-    else
-      slot_args[:duplicated_metric_value].push(metric_value_name)
-    end
-    return true
-  end
-  false
+  return false unless (source = Card[metric_value_name.to_name.field(:source)])
+  bucket =
+    source.item_cards[0].key == source_card.key ? :identical : :duplicated
+  success.params["#{bucket}_metric_value".to_sym].push metric_value_name
+  true
 end
 
 # @return updated or created metric value card object
-def parse_metric_value import_data, source_map
+def parse_import_row import_data, source_map
   args = process_data import_data
   process_source args, source_map
   return unless valid_value_data? args
@@ -243,74 +241,115 @@ format :html do
     [:file_company, :value]
   end
 
-  def default_new_args args
-    args[:hidden] = {
-      success: { id: "_self", soft_redirect: false, view: :import }
-    }
-    super args
+  def new_view_hidden
+    hidden_tags success: { id: "_self", soft_redirect: false, view: :import }
   end
 
-  def default_import_args args
-    args[:buttons] = %(
-      #{button_tag 'Import', class: 'submit-button',
-                             data: { disable_with: 'Importing' }}
-      #{button_tag 'Cancel', class: 'cancel-button slotter', href: path,
-                             type: 'button'}
-    )
-  end
-
-  view :import do |args|
-    success_args = { success: { id: "_self", view: :open } }
-    frame_and_form :update, args.merge(hidden: success_args),
-                   "notify-success" => "import successful" do
+  view :import, cache: :never do
+    frame_and_form :update, "notify-success" => "import successful" do
       [
-        _optional_render(:metric_select, args),
-        _optional_render(:year_select, args),
-        _optional_render(:metric_import_flag, args),
-        _optional_render(:selection_checkbox, args),
-        _optional_render(:import_table, args),
-        _optional_render(:button_formgroup, args)
+        hidden_import_tags,
+        _optional_render(:metric_select),
+        _optional_render(:year_select),
+        _optional_render(:import_flag),
+        _optional_render(:import_table_helper),
+        _optional_render(:import_table),
+        _optional_render(:import_button_formgroup)
       ]
     end
   end
 
-  view :year_select do |_args|
+  def hidden_import_tags
+    hidden_tags success: { id: "_self", view: :open }
+  end
+
+  view :import_button_formgroup do
+    button_formgroup { [import_button, cancel_button(href: path)] }
+  end
+
+  def import_button
+    button_tag "Import", class: "submit-button",
+                         data: { disable_with: "Importing" }
+  end
+
+  view :year_select do
     nest card.left.year_card, view: :edit_in_form
   end
 
-  view :metric_select do |_args|
+  view :metric_select do
     nest card.left.metric_card, view: :edit_in_form
   end
 
-  view :metric_import_flag do |_args|
-    hidden_field_tag :is_metric_import_update, "true"
+  view :import_flag do
+    hidden_field_tag :is_data_import, "true"
   end
 
-  view :selection_checkbox do |_args|
-    content = %(
+  view :import_table_helper do
+    wrap_with :p, (selection_checkbox + import_legend)
+  end
+
+  def selection_checkbox
+    <<-HTML.html_safe
       #{check_box_tag 'uncheck_all', '', false, class: 'checkbox-button'}
       #{label_tag 'Uncheck All'}
       #{check_box_tag 'partial', '', false, class: 'checkbox-button'}
       #{label_tag 'Select Partial'}
       #{check_box_tag 'exact', '', false, class: 'checkbox-button'}
       #{label_tag 'Select Exact'}
-    )
-    content_tag(:div, content, { class: "selection_checkboxs" }, false)
+    HTML
+  end
+
+  def import_legend
+    <<-HTML.html_safe
+     <span class="pull-right">
+      company match:
+      #{row_legend "exact", "success"}
+      #{row_legend "alias", "info"}
+      #{row_legend "partial", "warning"}
+      #{row_legend "none", "danger"}
+      <span>
+    HTML
+  end
+
+  def row_legend text, context
+    bs_label text, class: "bg-#{context}",
+                   style: "color: inherit;"
+  end
+
+  def bs_label text, opts={}
+    add_class opts, "label"
+    add_class opts, "label-#{opts.delete(:context)}" if opts[:context]
+    wrap_with :span, text, opts
   end
 
   def default_import_table_args args
     args[:table_header] = ["Import", "#", "Company in File",
-                           "Company in Wikirate", "Match", "Correction"]
+                           "Company in Wikirate", "Correction"]
     args[:table_fields] = [:checkbox, :row, :file_company, :wikirate_company,
-                           :status, :correction]
+                           :correction]
   end
 
-  view :import_table do |args|
-    data = card.csv_rows.map.with_index do |elem, i|
+  view :import_table, cache: :never do |args|
+    data = card.csv_rows
+    reject_header_row data
+    data = data.map.with_index do |elem, i|
       import_row(elem, args[:table_fields], i + 1)
     end
+
     table data, class: "import_table table-bordered table-hover",
                 header: args[:table_header]
+  end
+
+  def reject_header_row import_data
+    return unless (first_row = import_data.first)
+    return unless includes_column_header first_row
+    import_data.shift
+  end
+
+  def includes_column_header row
+    headers = import_fields
+    headers << :company
+    row.any? { |item| item && headers.include?(item.downcase.to_sym) }
   end
 
   def aliases_hash
@@ -379,7 +418,7 @@ format :html do
 
   def import_checkbox row_hash
     key_hash, checked = prepare_import_checkbox row_hash
-    check_box_tag "metric_values[]", key_hash.to_json, checked
+    check_box_tag "import_data[]", key_hash.to_json, checked
   end
 
   def data_correction data
@@ -419,7 +458,18 @@ format :html do
 
   def import_row row, table_fields, index
     data = prepare_import_row_data row, index
-    table_fields.map { |key| data[key].to_s }
+    content = table_fields.map { |key| data[key].to_s }
+    { content: content,
+      class: row_context(data[:status]) }
+  end
+
+  def row_context status
+    case status
+    when "partial" then "warning"
+    when "exact"   then "success"
+    when "none"    then "danger"
+    when "alias"   then "info"
+    end
   end
 
   def row_to_hash row
@@ -429,10 +479,7 @@ format :html do
   end
 
   def duplicated_value_warning_message headline, cardnames
-    msg = <<-HTML
-      <h4><b>#{headline}</b></h4>
-      <ul><li>#{cardnames.join('</li><li>')}</li> <br />
-    HTML
-    alert("warning") { msg }
+    items = cardnames.map { |n| "<li>#{n}</li>" }.join
+    alert("warning") { "<h4>#{headline}</h4><ul>#{items}</ul>" }
   end
 end

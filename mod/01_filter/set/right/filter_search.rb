@@ -1,13 +1,8 @@
 include_set Abstract::BrowseFilterForm
 def filter_words
-  filter_words = Array.wrap(Env.params[:wikirate_company]) || []
-  if Env.params[:wikirate_topic]
-    filter_words += Array.wrap(Env.params[:wikirate_topic])
-  end
-  if Env.params[:wikirate_tag]
-    filter_words += Array.wrap(Env.params[:wikirate_tag])
-  end
-  filter_words
+  [:wikirate_company, :wikirate_topic, :wikirate_tag].map do |field|
+    Env.params[field]
+  end.flatten.compact
 end
 
 def params_keys
@@ -37,11 +32,11 @@ def get_query params={}
 end
 
 def cited_query
-  yes_query = { referred_to_by: { left: { type_id: WikirateAnalysisID },
-                                  right_id: OverviewID } }
+  cited = { referred_to_by: { left: { type_id: WikirateAnalysisID },
+                              right_id: OverviewID } }
   case Env.params[:cited]
-  when "yes" then yes_query
-  when "no"  then { not: yes_query }
+  when "yes" then cited
+  when "no"  then { not: cited }
   else            {}
   end
 end
@@ -60,14 +55,17 @@ def sort_query
   if Env.params[:sort] == "recent"
     { sort: "update" }
   else
-    { :sort => { "right" => "*vote count" },
-      "sort_as" => "integer", "dir" => "desc" }
+    { sort: { "right" => "*vote count" }, sort_as: "integer", dir: "desc" }
   end
 end
 
 format :html do
   def page_link_params
     [:sort, :cited, :claimed, :wikirate_company, :wikirate_topic]
+  end
+
+  view :no_search_results do |_args|
+    wrap_with :div, "No result", class: "search-no-results"
   end
 
   def sort_options

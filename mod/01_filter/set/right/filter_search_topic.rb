@@ -34,8 +34,11 @@ end
 
 format :html do
   def sort_options
-    super.merge "Most Metrics" => "metric",
-                "Most Companies" => "company"
+    {
+      "Alphabetical" => "name",
+      "Most Metrics" => "metric",
+      "Most Companies" => "company"
+    }
   end
 
   def default_sort_option

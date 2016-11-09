@@ -1,3 +1,3 @@
-view :editor do |args|
-  text_field :content, class: "card-content", readonly: args[:readonly]
+view :editor do
+  text_field :content, class: "card-content"
 end

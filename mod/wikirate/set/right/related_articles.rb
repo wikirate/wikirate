@@ -17,7 +17,7 @@ format :html do
       if params[:general_overview] && params[:company]
         content_class = "related-articles cited-articles " \
                         "related-overviews cited-overviews"
-        body += content_tag :div, class: content_class  do
+        body += wrap_with :div, class: content_class  do
           link_to_card "#{params[:company]}+notes_page",
                        "Cite in General Overview",
                        path: { citable: claim.cardname.url_key,

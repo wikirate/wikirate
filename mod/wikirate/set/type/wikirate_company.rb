@@ -15,6 +15,10 @@ format :html do
     false
   end
 
+  view :open, cache: :never do
+    if main? && !Env.ajax? && !Env.params["about_company"] &&
+       !contributions_about? && contributions_made?
+
   view :open do |args|
     if show_contributions_profile?
       link = link_to_card card, nil, path: { about_company: true }

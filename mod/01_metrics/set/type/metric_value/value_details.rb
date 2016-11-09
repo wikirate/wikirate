@@ -1,70 +1,63 @@
 include_set Abstract::WikirateTable
 
 format :html do
-  def value_details args
-    case card.metric_type
-    when :formula
-      _render_formula_value_details(args)
-    when :wikirating
-      _render_wikirating_value_details(args)
-    when :score
-      _render_score_value_details(args)
-    when :researched
-      _render_research_value_details(args)
-    end
+  def value_details
+    send "_render_#{card.metric_type}_value_details"
   end
 
-  def wrap_value_details content, args
+  def wrap_value_details
     wrap_with :div, class: "metric-value-details collapse" do
       [
-        _optional_render(:credit_name, args, :show),
-        content,
-        content_tag(:div, _render_comments(args), class: "comments-div")
+        _optional_render(:credit_name),
+        yield,
+        wrap_with(:div, _render_comments, class: "comments-div")
       ]
     end
   end
 
-  view :research_value_details do |args|
+  view :researched_value_details do
     checked_by = card.fetch trait: :checked_by, new: {}
     checked_by = nest(checked_by, view: :double_check_view)
-    content =
+    wrap_value_details do
       [
-        content_tag(:div, checked_by.html_safe, class: "double-check"),
-        content_tag(:div, _render_sources, class: "cited-sources")
-      ]
-    wrap_value_details(content, args)
-  end
-
-  view :formula_value_details do |args|
-    content = wrap_with :div do
-      [
-        _render_formula_table(args),
-        content_tag(:h5, "Formula"),
-        nest(card.metric_card.formula_card, view: :core)
+        wrap_with(:div, checked_by, class: "double-check"),
+        wrap_with(:div, _render_sources, class: "cited-sources")
       ]
     end
-    wrap_value_details(content, args)
   end
 
-  view :wikirating_value_details do |args|
-    total = "= ".html_safe + colorify(card.value)
-    total = content_tag(:div, total, class: "pull-right")
-    content = wrap_with :div do
-      [
-        _render_wikirating_table,
-        content_tag(:div, total, class: "col-md-12")
-      ]
+  view :formula_value_details do
+    wrap_value_details do
+      wrap_with :div do
+        [
+          _render_formula_table,
+          wrap_with(:h5, "Formula"),
+          nest(card.metric_card.formula_card, view: :core)
+        ]
+      end
     end
-    wrap_value_details(content, args)
   end
 
-  view :score_value_details do |args|
-    metric_thumbnail = nest(base_metric_card(card), view: :thumbnail)
-    value =
-      content_tag(:span, base_metric_value(card).value, class: "metric-value")
-    content = [[metric_thumbnail, value]]
-    table_content = table(content, header: ["Original Metric", "Value"])
-    wrap_value_details(table_content.html_safe, args)
+  view :wikirating_value_details do
+    wrap_value_details do
+      wrap_with :div do
+        [
+          _render_wikirating_table,
+          wrap_with(:div, class: "col-md-12") do
+            wrap_with(:div, class: "pull-right") { "= #{colorify card.value}"}
+          end
+        ]
+      end
+    end
+  end
+
+  view :score_value_details do
+    wrap_value_details do
+      metric_thumbnail = nest(base_metric_card(card), view: :thumbnail)
+      value =
+        wrap_with(:span, base_metric_value(card).value, class: "metric-value")
+      table([[metric_thumbnail, value]], header: ["Original Metric", "Value"])
+    end
   end
 
   view :formula_table do
@@ -103,7 +96,7 @@ format :html do
     else
       raw_value = value_card.value
     end
-    raw_value = content_tag(:span, raw_value, class: "metric-value")
+    raw_value = wrap_with(:span, raw_value, class: "metric-value")
     metric_row_content(input_card, weight, raw_value, score_value)
   end
 
@@ -130,7 +123,7 @@ format :html do
 
   view :value_details_toggle do
     css_class = "fa fa-caret-right fa-lg margin-left-10 btn btn-default btn-sm"
-    content_tag(:i, "", class: css_class,
+    wrap_with(:i, "", class: css_class,
                         data: { toggle: "collapse-next",
                                 parent: ".value",
                                 collapse: ".metric-value-details"

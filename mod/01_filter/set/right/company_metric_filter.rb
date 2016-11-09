@@ -9,6 +9,10 @@ def filter_keys
 end
 
 format :html do
+  def content_view
+    :metric_tab
+  end
+
   def filter_body_header
     "Metric"
   end

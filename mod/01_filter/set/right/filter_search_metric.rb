@@ -96,6 +96,7 @@ format :html do
       "Most Values" => "values"
     }
   end
+
   def default_sort_option
     "upvoted"
   end
@@ -105,9 +106,8 @@ format :html do
     args[:select_list] = true
   end
 
-  def default_research_policy_formgroup_args args
-    # set it to select list
-    args[:select_list] = true
+  view :research_policy_formgroup do
+    research_policy_select
   end
 
   def type_options type_codename, order="asc"

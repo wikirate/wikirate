@@ -87,7 +87,7 @@ format :html do
     WikirateAnalysisID => :analysis
   }.freeze
 
-  view :drag_and_drop do |args|
+  view :drag_and_drop, cache: :never do |args|
     with_drag_and_drop(args) do
       search_results.map do |item|
         votee = extract_votee item
@@ -122,14 +122,14 @@ format :html do
     args[:empty] ||=
       if (empty = Card[card.vote_type_codename].fetch(trait: :empty_list) ||
                   Card[:empty_list])
-        subformat(empty).render_core(args)
+        empty.format.render_core(args)
       else
         ""
       end
     if !Card::Auth.signed_in? &&
        ((unsaved = Card[card.vote_type_codename].fetch(trait: :unsaved_list) ||
        Card[:unsaved_list]))
-      args[:unsaved] ||= subformat(unsaved).render_core(args)
+      args[:unsaved] ||= unsaved.format.render_core(args)
     end
   end
 
@@ -202,7 +202,7 @@ format :html do
 
   def with_filter_and_sort args
     # display_empty_msg = search_results.empty? ? '' : 'display: none;'
-    content_tag :div, class: "yinyang-list",
+    wrap_with :div, class: "yinyang-list",
                       "data-default-sort" => args[:default_sort] do
       yield
     end
@@ -210,7 +210,7 @@ format :html do
 
   def with_drag_and_drop args
     show_unsaved_msg = args[:unsaved].present? && !Auth.signed_in?
-    content_tag :div,
+    wrap_with :div,
                 class: "list-drag-and-drop yinyang-list "\
                        "#{args[:vote_type]}-container",
                 "data-query"        => args[:query],
@@ -219,11 +219,11 @@ format :html do
                 "data-default-sort" => args[:default_sort] do
       [
         if card.vote_label
-          content_tag(:h5, class: "vote-title") { card.vote_label }
+          wrap_with(:h5, class: "vote-title") { card.vote_label }
         end,
-        content_tag(:div, class: "empty-message") { args[:empty] },
+        wrap_with(:div, class: "empty-message") { args[:empty] },
         if show_unsaved_msg
-          content_tag(:div, class: "alert alert-info unsaved-message") do
+          wrap_with(:div, class: "alert alert-info unsaved-message") do
             args[:unsaved]
           end
         end,
@@ -241,13 +241,13 @@ format :html do
     html_args[:class] += " no-metric-value" if args[:no_value]
     args[:sort].each { |k, v| html_args["data-sort-#{k}"] = v } if args[:sort]
 
-    content_tag :div, content.html_safe, html_args
+    wrap_with :div, content.html_safe, html_args
   end
 
   def sortable content, args
     html_args = { class: "yinyang-row" }
     html_args[:class] += " no-metric-value" if args[:no_value]
     args[:sort].each { |k, v| html_args["data-sort-#{k}"] = v } if args[:sort]
-    content_tag :div, content.html_safe, html_args
+    wrap_with :div, content.html_safe, html_args
   end
 end

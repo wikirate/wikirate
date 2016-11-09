@@ -30,12 +30,10 @@ format :html do
         section_args = { view: :open, title: name, hide: "menu" }
         # FIXME: - cardname
         if name == "Initiative"
-          nest Card.fetch(contr_name), section_args.merge(item: {
-                                                            view: :content, structure: "initiative item"
-                                                          })
-        else
-          nest Card.fetch(contr_name), section_args
+          section_args[:items] =
+            { view: :content, structure: "initiative item" }
         end
+        nest Card.fetch(contr_name), section_args
       end.join "\n"
     else
       ""
@@ -56,10 +54,10 @@ format :html do
   end
 
   view :contribution_counts do |_args|
-    content_tag :div, class: "counts" do
+    wrap_with :div, class: "counts" do
       if card.sections
         card.sections.map do |count, name, contr_name|
-          content_tag :a, class: "item", href: "##{contr_name}" do
+          wrap_with :a, class: "item", href: "##{contr_name}" do
             %(
               <span class="#{name.downcase}">#{count}</span>
               <p class="legend">#{name}</p>

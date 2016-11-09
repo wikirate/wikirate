@@ -1,5 +1,5 @@
 format :html do
-  view :title do |args|
-    "<h5>#{super(args)}</h5>"
+  view :title do
+    wrap_with :h5, super()
   end
 end

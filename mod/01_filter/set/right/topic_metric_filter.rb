@@ -22,6 +22,7 @@ format :html do
       "Metric Title (Alphabetical)" => "metric_title"
     }
   end
+
   def default_sort_option
     "upvoted"
   end

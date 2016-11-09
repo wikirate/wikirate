@@ -102,13 +102,11 @@ end
 
 format :html do
   view :card_list_item do |args|
-    c = args[:item_card]
-    item_view = args[:items] && args[:items][:view] || nest_defaults(c)[:view]
-    %(
-      <div class="search-result-item item-#{item_view}">
-        #{nest(c, size: args[:size], view: item_view)}
-      </div>
-    )
+    item_card = args[:item_card]
+    item_view = args[:items] && args[:items][:view]
+    nest(item_card, size: voo.size, view: item_view) do |result, viewname|
+      %(<div class="search-result-item item-#{viewname}">#{result}</div>)
+    end
   end
 
   view :card_list_items do |args|
