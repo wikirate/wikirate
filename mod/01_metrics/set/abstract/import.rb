@@ -22,13 +22,16 @@ def data_import?
   Env.params["is_data_import"] == "true"
 end
 
+def success_params
+  [:identical_metric_value, :duplicated_metric_value]
+end
+
 def init_success_params
-  success.params.merge! identical_metric_value: [],
-                        duplicated_metric_value: []
+  success_params.each { |key| success.params[key] = [] }
 end
 
 def clear_success_params
-  [:identical_metric_value, :duplicated_metric_value].each do |key|
+  success_params.each do |key|
     success.params.delete(key) unless success[key].present?
   end
 end
