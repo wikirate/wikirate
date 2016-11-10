@@ -81,9 +81,10 @@ format :html do
 
   view :sort_formgroup do
     selected_option = Env.params[:sort] || default_sort_option
-    select_filter_tag "sort",
-                      options_for_select(sort_options, selected_option),
-                      nil, nil, true
+    options = options_for_select(sort_options, selected_option)
+    formgroup "sort", class: "filter-input " do
+      select_tag "sort", options
+    end
   end
 
   def sort_options

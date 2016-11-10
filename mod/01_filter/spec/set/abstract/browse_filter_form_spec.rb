@@ -1,4 +1,4 @@
-describe Card::Set::Abstract::FilterForm do
+describe Card::Set::Abstract::BrowseFilterForm do
   # define the sample card to use
   let(:card) { Card["Company"].fetch trait: :metric_company_filter }
 
@@ -16,7 +16,7 @@ describe Card::Set::Abstract::FilterForm do
         end
       end
     end
-    it "has keyword tag" do
+    it "has formgroups" do
       is_expected.to have_tag :form, with: { action: "/Company?view=#{content_view}" } do
         with_tag :h4, text: "Company"
         with_tag :div, with: { class: "form-group filter-input" } do

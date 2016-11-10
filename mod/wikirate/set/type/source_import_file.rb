@@ -98,7 +98,7 @@ def handle_duplicated_source source_card, source_hash
   updated |= update_existing_source source_card, source_hash
   return unless updated
   msg_array = [source_hash[:row].to_s, source_card.name]
-  success.params[:updated_sources].push(msg_array)
+  success[:updated_sources].push(msg_array)
 end
 
 def check_duplication_within_file source_hash, source_map

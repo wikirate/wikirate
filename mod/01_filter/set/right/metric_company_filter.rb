@@ -16,4 +16,8 @@ format :html do
   def filter_body_header
     "Company"
   end
+
+  def filter_title
+    "Filter"
+  end
 end

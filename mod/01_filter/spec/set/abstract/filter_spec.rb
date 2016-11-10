@@ -6,16 +6,16 @@ describe Card::Set::Abstract::Filter do
     it "#advanced_formgroups" do
       card.stub(:advanced_filter_keys) { %w(metric project wikirate_company) }
       html =
-        card.format.advanced_formgroups advanced_formgroups: advanced_filter_keys
+        card.format.advanced_filter_formgroups
       expect(html).to have_tag(:div, with: { class: "advanced-options" }) do
         with_tag :div, with: { id: "collapseFilter", class: "collapse" } do
           with_tag :label, text: "Metric"
           with_tag :div, with: { class: "editor" } do
-            with_tag :select, with: { class: "pointer-select", id: "metric" }
+            with_tag :select, with: { class: "pointer-select", id: "filter_metric" }
           end
           with_tag :label, text: "Project"
           with_tag :div, with: { class: "editor" } do
-            with_tag :select, with: { class: "pointer-select", id: "project" }
+            with_tag :select, with: { class: "pointer-select", id: "filter_project" }
           end
           with_tag :label, text: "Company"
           with_tag :div, with: { class: "editor" } do
@@ -34,7 +34,7 @@ describe Card::Set::Abstract::Filter do
           with_tag :label, text: "Sort"
           with_tag :div do
             with_tag :div, with: { class: "editor" } do
-              with_tag :select, with: { name: "sort" }
+              with_tag :select, with: { name: "filtersort" }
             end
           end
           with_tag :div do

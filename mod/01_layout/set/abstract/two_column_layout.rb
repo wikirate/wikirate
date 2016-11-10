@@ -9,7 +9,8 @@ format :html do
   end
 
   view :open_content do |args|
-    bs_layout container: true, fluid: true do
+    bs_layout container: true, fluid: true,
+              class: @container_class do
       row 6, 6 do #args[:grid_option] do
         column _render_content_left_col, args[:left_class]
         column _render_content_right_col, args[:right_class]

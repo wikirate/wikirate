@@ -10,7 +10,9 @@ format :html do
     label ||= filter_label type_codename
     options = type_options type_codename, order
     options.unshift(["--", ""])
-    simple_select_filter type_codename.to_s, options, Env.params[type_codename],
+    simple_select_filter type_codename.to_s,
+                         options,
+                         filter_param(type_codename),
                          label
   end
 
@@ -27,7 +29,9 @@ format :html do
     multiselect_tag = select_tag(name, options,
                                  multiple: true,
                                  class: "pointer-multiselect")
-    formgroup(label, multiselect_tag, class: "filter-input #{type_name}")
+    formgroup(label, class: "filter-input #{type_name}") do
+      multiselect_tag
+    end
   end
 
   def multiselect_filter filter_field, label=nil
@@ -48,7 +52,7 @@ format :html do
         #{check_box_tag(name, option.downcase, checked) + option}
       </label>)
     end
-    formgroup title, checkboxes.join("")
+    formgroup(title) { checkboxes.join("") }
   end
 
   def type_options type_codename, order="asc"
@@ -58,10 +62,9 @@ format :html do
 
   def text_filter type_name, args
     name = filter_name type_name
-    formgroup args[:title] || type_name.capitalize,
-              text_field_tag(name, params[type_name],
-                             class: "form-control"),
-              class: " filter-input"
+    formgroup args[:title] || type_name.capitalize, class: " filter-input" do
+      text_field_tag name, params[type_name], class: "form-control"
+    end
   end
 
   view :name_formgroup do |args|
@@ -76,8 +79,9 @@ format :html do
     label ||= filter_label type_name
     css_class = no_chosen ? "" : "pointer-select"
     name = filter_name type_name
-    formgroup label, select_tag(name, options, class: css_class),
-              class: "filter-input "
+    formgroup label, class: "filter-input " do
+      select_tag(name, options, class: css_class)
+    end
   end
 
   def filter_name name, multi=false

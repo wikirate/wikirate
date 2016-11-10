@@ -5,7 +5,7 @@ format :html do
     props["Scored By"] =
       _render_scorer_info.html_safe if card.metric_type_codename == :score
     props["Metric Type"] =
-      field_subformat(:metric_type)._render_content item: :name
+      field_subformat(:metric_type)._render_content items: { view: :name }
     if card.researched?
       props["Value Type"] = content_tag(:div, _render_value_type_detail(args))
       props["Research Policy"] = nest(card.research_policy_card,
@@ -20,7 +20,7 @@ format :html do
                                           structure: "list item" })
     end
     props["Topics"] =
-      field_subformat(:wikirate_topic)._render_content item: :link
+      field_subformat(:wikirate_topic)._render_content items: { view: :link }
     table props, class: "metric-properties"
   end
 end
