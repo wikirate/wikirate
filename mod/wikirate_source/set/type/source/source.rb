@@ -66,7 +66,7 @@ end
 
 format :html do
   view :new do
-    preview? ? _optional_render_preview : super()
+    preview? ? _optional_render_new_preview : super()
   end
 
   def preview?
@@ -75,14 +75,14 @@ format :html do
     Env.params[:preview]
   end
 
-  view :preview do
+  view :new_preview do
     voo.structure = "metric value source form"
     card_form :create, "main-success" => "REDIRECT",
                        "data-form-for" => "new_metric_value",
                        class: "card-slot new-view TYPE-source" do
       output [
         preview_hidden,
-        new_view_name,
+        new_view_hidden,
         new_view_type,
         _optional_render_content_formgroup,
         _optional_render_preview_buttons
@@ -103,8 +103,7 @@ format :html do
     end
   end
 
-  def preview_hidden args={}
-    # FIXME: company arg getting lost?
-    hidden_field_tag "card[subcards][+company][content]", args[:company]
+  def preview_hidden
+    hidden_field_tag "card[subcards][+company][content]", Env.params[:company]
   end
 end

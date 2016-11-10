@@ -1,6 +1,6 @@
 
 
-Capybara.default_wait_time = 120
+Capybara.default_wait_time = 20
 
 When(/^I press "([^\"]*)" within "([^\"]*)"$/) do |button, scope_selector|
   within(scope_selector) do
