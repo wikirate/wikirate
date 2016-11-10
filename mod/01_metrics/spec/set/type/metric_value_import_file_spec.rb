@@ -35,7 +35,6 @@ describe Card::Set::Type::MetricValueImportFile do
     it "adds metric values" do
       mv_import_file.update_attributes! subcards: {}
       expect(Card.exists?(amazon)).to be true
-      binding.pry
       expect(Card.exists?(apple)).to be true
       amazon_2015_metric_value_card = Card["#{amazon}+value"]
       apple_2015_metric_value_card = Card["#{apple}+value"]
