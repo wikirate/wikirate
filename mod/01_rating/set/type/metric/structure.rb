@@ -83,7 +83,7 @@ format :html do
     author_args = subtext ? { class: "nopadding" } : {}
     wrap_with :div, args do
       [
-        content_tag(subtext ? "h4" : "h3", author, author_args),
+        wrap_with(subtext ? "h4" : "h3", author, author_args),
         subtext
       ]
     end
@@ -98,7 +98,7 @@ format :html do
   <h5>Metric Type:</h5>
             				</div>
   <div class="col-md-9 nopadding">
-    #{field_subformat(:metric_type)._render_content item: :name}
+    #{field_subformat(:metric_type)._render_content items: { view: :name }}
   </div>
                   </div>
   <div class="row topic-list">
@@ -106,7 +106,7 @@ format :html do
   <h5>Topics:</h5>
             				</div>
   <div class="col-md-9 nopadding">
-    #{field_subformat(:wikirate_topic)._render_content item: :link}
+    #{field_subformat(:wikirate_topic)._render_content items: { view: :link }}
   </div>
                   </div>
   </div>
@@ -157,9 +157,9 @@ format :html do
     _render_tabs(args)
   end
 
-  view :filter do |args|
-    field_subformat(:metric_company_filter)
-      ._render_core args.merge(filter_title: "Filter")
+  view :filter do
+    voo.title = "Filter"
+    field_subformat(:metric_company_filter)._render_core
   end
 
   view :year_select do
@@ -182,7 +182,7 @@ format :html do
   end
 
   view :metric_row do |args|
-    wrap(args) do
+    wrap do
       process_content <<-HTML
       <div class="yinyang-row">
         <div class="metric-item contribution-item value-item">

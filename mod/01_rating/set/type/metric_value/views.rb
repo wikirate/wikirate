@@ -1,6 +1,6 @@
 format :html do
-  view :open_content do |args|
-    _render_timeline_data args
+  view :open_content do
+    _render_timeline_data
   end
 
   view :concise do |args|
@@ -13,7 +13,7 @@ format :html do
       </span>
       #{_render_metric_details}
       <span class="metric-unit">
-        #{legend(args)}
+        #{legend}
       </span>
       <div class="pull-right">
         <small>#{checked_value_flag.html_safe}</small>
@@ -86,24 +86,20 @@ format :html do
 
   def checked_value_flag
     checked_card = card.field "checked_by"
-    if checked_card && !checked_card.item_names.empty?
-      css_class = "fa fa-lg fa-check-circle verify-blue margin-left-10"
-      content_tag("i", "", class: css_class, title: "Value checked")
-    else ""
-    end
+    return "" unless checked_card && !checked_card.item_names.empty?
+    css_class = "fa fa-lg fa-check-circle verify-blue margin-left-10"
+    wrap_with "i", "", class: css_class, title: "Value checked"
   end
 
   def comment_flag
     return "" unless Card.exists? card.cardname.field("discussion")
     disc = card.fetch(trait: :discussion)
-    if disc.content.include? "w-comment-author"
-      css_class = "fa fa-lg fa-commenting margin-left-10"
-      content_tag("i", "", class: css_class, title: "Has comments")
-    else ""
-    end
+    return "" unless disc.content.include? "w-comment-author"
+    css_class = "fa fa-lg fa-commenting margin-left-10"
+    wrap_with "i", "", class: css_class, title: "Has comments"
   end
 
-  view :modal_details do |args|
+  view :modal_details, cache: :never do |args|
     span_args = { class: "metric-value" }
     add_class span_args, grade if card.scored?
     wrap_with :span, span_args do
@@ -125,9 +121,10 @@ format :html do
   end
 
   view :value_link do
-    url = "/#{card.cardname.url_key}"
-    link = link_to beautify(fetch_value), path: url, target: "_blank"
-    content_tag(:span, link.html_safe, class: "metric-value")
+    wrap_with :span, class: "metric-value" do
+      link_to beautify(fetch_value), path: "/#{card.cardname.url_key}",
+                                     target: "_blank"
+    end
   end
 
   # Metric value view for data
@@ -141,26 +138,33 @@ format :html do
   end
 
   view :year do
-    year = content_tag(:span, card.cardname.right)
-    year << content_tag(:div, "", class: "timeline-dot")
-    content_tag(:div, year.html_safe, class: "td year")
+    wrap_with :div, class: "td year" do
+      [
+        wrap_with(:span, card.cardname.right),
+        wrap_with(:div, "", class: "timeline-dot")
+      ]
+    end
   end
 
-  view :value do |args|
-    value = content_tag(:span, currency, class: "metric-unit")
-    value << _render_value_link(args)
-    value << content_tag(:span, legend(args), class: "metric-unit")
-    value << checked_value_flag.html_safe
-    value << comment_flag.html_safe
-    value << _render_value_details_toggle
-    value << value_details(args)
-    content_tag(:div, value.html_safe, class: "td value")
+  view :value do
+    wrap_with :div, class: "td value" do
+      [
+        wrap_with(:span, currency, class: "metric-unit"),
+        _render_value_link,
+        wrap_with(:span, legend, class: "metric-unit"),
+        checked_value_flag,
+        comment_flag,
+        _render_value_details_toggle,
+        value_details
+      ]
+    end
   end
 
   view :sources do
-    heading = content_tag(:h5, "Cited")
-    sources = card.fetch trait: :source
-    heading << subformat(sources).render_core(item: :cited).html_safe
+    output [
+      wrap_with(:h5, "Cited"),
+      subformat(card.fetch(trait: :source)).render_core(items: { view: :cited })
+    ]
   end
 
   view :comments do |_args|

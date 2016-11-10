@@ -2,64 +2,68 @@ format :html do
   view :new do |args|
     return _render_no_frame_form args if Env.params[:noframe] == "true"
     @form_root = true
-    frame args do # no form!
-      [
-        _optional_render(:content_formgroup,
-                         args.merge(metric_value_landing: true))
-      ]
-    end
+    voo.editor = :metric_value_landing
+    frame { _optional_render :content_formgroup }
   end
 
-  def edit_slot args
-    unless special_editor? args
-      year = card.fetch trait: :year, new: {}
-      year.content = "[[#{card.year}]]"
-      args[:edit_fields] = {
-        "+Value" => {},
-        year => {}
-      }
-    end
-    super(args)
+  view :content_formgroup do
+    voo.hide :name_formgroup, :type_formgroup
+    prepare_nests_editor unless custom_editor?
+    super()
   end
 
-  def special_editor? args
-    (args[:company] && args[:metric]) || args[:metric_value_landing]
+  def prepare_nests_editor
+    year = card.fetch trait: :year, new: { content: card.year }
+    voo.editor = :nests
+    voo.edit_structure = [[:value, {}], [year, {}]]
   end
 
-  view :editor do |args|
-    if args[:company] && args[:metric]
-      _render_metric_value_editor args
-    elsif args[:metric_value_landing]
-      _render_metric_value_landing args
-    else
-      super args
-    end
+  def custom_editor?
+    metric_value_editor? || metric_value_landing_editor?
   end
 
-  view :metric_value_landing do |args|
+  def metric_value_editor?
+    Env.params[:company] && Env.params[:metric]
+  end
+
+  def metric_value_landing_editor?
+    voo.editor == :metric_value_landing
+  end
+
+  view :editor, cache: :never do
+    mv_view = if metric_value_editor?            then :editor
+              elsif metric_value_landing_editor? then :landing
+              end
+    mv_view ? send("_render_metric_value_#{mv_view}") : super()
+  end
+
+  view :metric_value_landing do
     wrap_with :div do
       [
-        _render_metric_value_landing_form(args),
+        _render_metric_value_landing_form,
         _render_source_container
       ]
     end
   end
 
-  view :metric_value_landing_form do |args|
+  view :metric_value_landing_form do
     html_class = "col-md-5 border-right panel-default min-page-height"
-    hr = content_tag(:hr, "")
     wrap_with :div, class: html_class do
       [
-        _render_hidden_source_field(args), hr,
+        _render_hidden_source_field, hr,
         _render_company_field, hr,
-        _render_metric_field(args),
+        _render_metric_field,
         _render_next_button
       ]
     end
   end
 
-  view :hidden_source_field do |args|
-    if (source = args[:source])
+  def hr
+    "<hr />"
+  end
+
+  view :hidden_source_field, cache: :never do
+    if (source = Env.params[:source])
       hidden_field "hidden_source", value: source
     end
   end
@@ -68,17 +72,16 @@ format :html do
     field_nest(:wikirate_company, title: "Company")
   end
 
-  view :metric_field do |args|
-    metric = args[:metric]
-    metric_field =
-      Card.fetch(card.cardname.field(:metric), new: { content: metric })
-    nest(metric_field, title: "Metric")
+  view :metric_field, cache: :never do
+    metric_field = Card.fetch card.cardname.field(:metric),
+                              new: { content: Env.params[:metric] }
+    nest metric_field, title: "Metric"
   end
 
   view :next_button do
     html_class = "col-md-6 col-centered text-center"
-    button = content_tag(:a, "Next", class: "btn btn-primary _new_value_next")
-    content_tag(:div, button, class: html_class)
+    button = wrap_with(:a, "Next", class: "btn btn-primary _new_value_next")
+    wrap_with(:div, button, class: html_class)
   end
 
   view :source_container do |_args|
@@ -94,22 +97,19 @@ format :html do
     end
   end
 
-  view :no_frame_form do |args|
-    form_opts = args[:form_opts] ? args.delete(:form_opts) : {}
-    form_opts[:hidden] = args.delete(:hidden)
-    form_opts["main-success"] = "REDIRECT"
-    card_form :create, form_opts do
+  view :no_frame_form, cache: :never do
+    card_form :create, "main-success" => "REDIRECT" do
       output [
-        _optional_render(:name_formgroup, args),
-        _optional_render(:type_formgroup, args),
-        _optional_render(:content_formgroup, args),
-        _optional_render(:button_formgroup, args)
+        new_view_hidden,
+        new_view_type,
+        _optional_render_content_formgroup,
+        _optional_render_new_buttons
       ]
     end
   end
 
   # TODO: please verify if this view used anywhere
-  view :add_value_editor do |_args|
+  view :add_value_editor, cache: :never do |_args|
     render_haml do
       <<-HAML
 = field_nest :metric, title: 'Metric' unless args[:metric]
@@ -126,7 +126,7 @@ format :html do
     end
   end
 
-  view :metric_value_editor do |args|
+  view :metric_value_editor, cache: :never do |args|
     render_haml relevant_sources: _render_relevant_sources(args),
                 cited_sources: _render_cited_sources do
       <<-HAML
@@ -158,9 +158,9 @@ format :html do
     )
   end
 
-  view :relevant_sources do |args|
-    sources = find_potential_sources args[:company], args[:metric]
-    if (source_name = args[:source]) && (source_card = Card[source_name])
+  view :relevant_sources, cache: :never do |args|
+    sources = find_potential_sources Env.params[:company], Env.params[:metric]
+    if (source_name = Env.params[:source]) && (source_card = Card[source_name])
       sources.push(source_card)
     end
     relevant_sources =
@@ -173,7 +173,7 @@ format :html do
           end
         end.join("")
       end
-    content_tag(:div, relevant_sources.html_safe, class: "relevant-sources")
+    wrap_with(:div, relevant_sources.html_safe, class: "relevant-sources")
   end
 
   view :cited_sources do |_args|
@@ -189,38 +189,37 @@ format :html do
     end
   end
 
-  def set_hidden_args args
-    args[:hidden] = {
-      success: { id: "_self", soft_redirect: true, view: :timeline_data }
-    }
-    if args[:metric]
-      args[:hidden]["card[subcards][+metric][content]"] = args[:metric]
+  def new_view_hidden
+    tags =
+      { success: { id: "_self", soft_redirect: true, view: :timeline_data } }
+    [:metric, :company, :source].each do |field|
+      next unless (value = Env.params[field])
+      tags["card[subcards][+#{field}][content]"] = value
     end
-    if args[:company]
-      args[:hidden]["card[subcards][+company][content]"] = args[:company]
-    end
-    if args[:source]
-      args[:hidden]["card[subcards][+source][content]"] = args[:source]
-    end
+    hidden_tags tags
   end
 
-  def default_new_args args
-    set_hidden_args args
-    args[:title] = "Add new value for #{args[:metric]}" if args[:metric]
-    btn_class = "btn btn-default _form_close_button"
-    args[:buttons] =
+  view :new_buttons do
+    button_formgroup do
       wrap_with :div do
         [
           submit_button(class: "create-submit-button",
                         data: { disable_with: "Adding..." }),
-          content_tag(:button, "Close", type: "button", class: btn_class)
+          wrap_with(:button, "Close",
+                    type: "button",
+                    class: "btn btn-default _form_close_button")
         ]
       end
-    super(args)
+    end
   end
 
-  def legend args
-    subformat(card.metric_card)._render_legend args
+  def default_new_args _args
+    metric_name = Env.params[:metric]
+    voo.title = "Add new value for #{metric_name}" if metric_name
+  end
+
+  def legend
+    subformat(card.metric_card)._render_legend
   end
 
   def currency

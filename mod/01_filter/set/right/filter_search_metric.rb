@@ -88,14 +88,17 @@ def wql_by_research_policy wql, research_policy
 end
 
 format :html do
-  def default_sort_formgroup_args args
-    args[:sort_options] = {
+  def sort_options
+    {
       "Highest Voted" => "upvoted",
       "Most Recent" => "recent",
       "Most Companies" => "company",
       "Most Values" => "values"
     }
-    args[:sort_option_default] = "upvoted"
+  end
+
+  def sort_option_default
+    "upvoted"
   end
 
   def default_metric_type_formgroup_args args
@@ -103,9 +106,8 @@ format :html do
     args[:select_list] = true
   end
 
-  def default_research_policy_formgroup_args args
-    # set it to select list
-    args[:select_list] = true
+  view :research_policy_formgroup do
+    research_policy_select
   end
 
   def type_options type_codename, order="asc"

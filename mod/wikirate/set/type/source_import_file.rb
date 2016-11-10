@@ -3,11 +3,8 @@ include_set Abstract::Import
 
 attachment :source_import_file, uploader: CarrierWave::FileCardUploader
 
-def init_success_slot_params
-  success.params[:slot] = {
-    updated_sources: [],
-    duplicated_sources: []
-  }
+def success_params
+  [:updated_sources, :duplicated_sources]
 end
 
 # @return updated or created metric value card object
@@ -99,19 +96,16 @@ def handle_duplicated_source source_card, source_hash
   updated = false
   updated |= update_title_card source_card, source_hash
   updated |= update_existing_source source_card, source_hash
-  if updated
-    slot_args = success.slot
-    msg_array = [source_hash[:row].to_s, source_card.name]
-    slot_args[:updated_sources].push(msg_array)
-  end
+  return unless updated
+  msg_array = [source_hash[:row].to_s, source_card.name]
+  success.params[:updated_sources].push(msg_array)
 end
 
 def check_duplication_within_file source_hash, source_map
-  slot_args = success.slot
   source_url = source_hash[:source]
   if source_map[source_url]
     msg = [source_hash[:row].to_s, source_url]
-    slot_args[:duplicated_sources].push(msg)
+    success.params[:duplicated_sources].push(msg)
     return true
   end
   false
@@ -149,13 +143,13 @@ format :html do
     end
   end
 
-  def contruct_import_warning_message args
+  def construct_import_warning_message
     msg = ""
-    if (updated_sources = args[:updated_sources])
+    if (updated_sources = Env.params[:updated_sources])
       headline = "Existing sources updated"
       msg += duplicated_value_warning_message headline, updated_sources
     end
-    if (duplicated_sources = args[:duplicated_sources])
+    if (duplicated_sources = Env.params[:duplicated_sources])
       headline = "Duplicated sources in import file."\
                  " Only the first one is used."
       msg += duplicated_value_warning_message headline, duplicated_sources
@@ -163,10 +157,13 @@ format :html do
     msg
   end
 
-  def default_import_args args
-    super
-    args[:optional_metric_select] = :hide
-    args[:optional_year_select] = :hide
+  view :import do
+    voo.hide :metric_select, :year_select, :import_table_helper
+    super()
+  end
+
+  view :import_flag do
+    hidden_field_tag :is_source_import_update, "true"
   end
 
   def import_fields

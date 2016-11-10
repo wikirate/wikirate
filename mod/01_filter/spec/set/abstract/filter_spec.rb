@@ -5,9 +5,7 @@ describe Card::Set::Abstract::Filter do
   describe "html format" do
     it "#advance_formgroups" do
       advanced_keys = %w(metric project wikirate_company)
-      advanced_keys = card.format.append_formgroup advanced_keys
-      html =
-        card.format.advance_formgroups advance_formgroups: advanced_keys
+      html = card.format.advanced_filter_formgroups(advanced_keys)
       expect(html).to have_tag(:div, with: { class: "advanced-options" }) do
         with_tag :div, with: { id: "collapseFilter", class: "collapse" } do
           with_tag :label, text: "Metric"
@@ -86,10 +84,11 @@ describe Card::Set::Abstract::Filter do
       expect(html).to have_tag(:option, with: { value: "Joe Admin" },
                                         text: "Joe Admin")
     end
+
     describe "view research_policy_formgroup" do
       context "select form" do
         it "renders select list" do
-          html = card.format.render_research_policy_formgroup select_list: true
+          html = card.format.research_policy_select
           expect(html).to have_tag(:select, with: { name: "research_policy" })
         end
       end
@@ -101,6 +100,7 @@ describe Card::Set::Abstract::Filter do
         end
       end
     end
+
     describe "view metric_type_formgroup" do
       context "select form" do
         it "renders select list" do

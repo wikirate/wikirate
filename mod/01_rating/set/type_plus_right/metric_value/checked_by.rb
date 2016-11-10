@@ -19,7 +19,7 @@ format :html do
       Auth.as_bot do
         card.save!
       end
-      render(args[:denied_view], args)
+      render(@denied_view, args)
     else
       super(args)
     end
@@ -32,7 +32,7 @@ format :html do
   view :double_check_view do
     wrap_with :div do
       [
-        content_tag(:h5, double_check_icon + "Double-Check"),
+        wrap_with(:h5, double_check_icon + "Double-Check"),
         card.user_checked_before ? checked_content : check_button,
         _render_checked_by_list
       ]
@@ -41,10 +41,10 @@ format :html do
 
   view :checked_by_list do
     return if card.checked_users.empty?
+    links = subformat(card).render_shorter_search_result items: { view: :link }
     %(
       <div class="padding-top-10">
-        <i>#{subformat(card).render_shorter_search_result item: :link}
-        <span> checked the value </span></i>
+        <i>#{links}<span> checked the value </span></i>
       </div>
     )
   end
@@ -65,8 +65,8 @@ format :html do
     button_class = "btn btn-default btn-sm _value_check_button"
     wrap_with :div do
       [
-        content_tag(:span, "Does the value accurately represent its source?"),
-        content_tag(:a, "Yes, I checked", class: button_class,
+        wrap_with(:span, "Does the value accurately represent its source?"),
+        wrap_with(:a, "Yes, I checked", class: button_class,
                                           data: { path: data_path })
       ]
     end
@@ -76,8 +76,8 @@ format :html do
     icon_class = "fa fa-times-circle-o fa-lg cursor-p _value_uncheck_button"
     wrap_with :div, class: "user-checked" do
       [
-        content_tag(:span, '"' + message + '"'),
-        content_tag(:i, "", class: icon_class, data: { path: data_path })
+        wrap_with(:span, '"' + message + '"'),
+        wrap_with(:i, "", class: icon_class, data: { path: data_path })
       ]
     end
   end

@@ -102,9 +102,7 @@ end
 
 # The new metric form has a title and a designer field instead of a name field
 # We compose the card's name here
-event :set_metric_name, :initialize,
-      on: :create,
-      when: proc { |c| c.needs_name? } do
+event :set_metric_name, :initialize, on: :create, when: :needs_name? do
   title = (tcard = remove_subfield(:title)) && tcard.content
   designer = (dcard = remove_subfield(:designer)) && dcard.content
   self.name = "#{designer}+#{title}"
@@ -113,8 +111,8 @@ end
 format :html do
   # FIXME: inline js
   view :new do |args|
-    # frame_and_form :create, args, 'main-success' => 'REDIRECT' do
-    frame args.merge(title: "New Metric") do
+    voo.title = "New Metric"
+    frame do
       <<-HTML
       <fieldset class="card-editor editor">
         <div role="tabpanel">
@@ -143,9 +141,9 @@ format :html do
     end
   end
 
-  def default_content_formgroup_args args
-    args[:edit_fields] = { "+question" => { title: "Question" },
-                           "+topic" => { title: "Topic" } }
+  def default_content_formgroup_args _args
+    voo.edit_structure = [["+question", "Question"],
+                          [:wikirate_topic, "Topic"]]
   end
 
   def tab_radio_button id, active=false
@@ -198,26 +196,25 @@ format :html do
     card_form :create, hidden: args.delete(:hidden),
                        "main-success" => "REDIRECT" do
       output [
-        _render(:help_text, args),
-        _render(:new_name_formgroup, args),
-        _render(:content_formgroup, args),
-        _render(:button_formgroup, args)
+        new_tab_pane_hidden,
+        _render(:help_text),
+        _render_new_name_formgroup,
+        _optional_render_content_formgroup,
+        _optional_render_new_buttons
       ]
     end
   end
 
-  def default_new_tab_pane_args args
-    parent.default_new_args_buttons args
-    args[:hidden] ||= {
+  def new_tab_pane_hidden
+    hidden_tags(
       "card[subcards][+*metric type][content]" => "[[#{card.metric_type}]]",
       "card[type_id]" => MetricID,
       success: "_self"
-    }
+    )
   end
 
-  view :new_name_formgroup do |args|
-    formgroup "Metric Name", raw(new_name_field(form)), editor: "name",
-                                                        help: args[:help]
+  view :new_name_formgroup do
+    formgroup "Metric Name", raw(new_name_field(form)), editor: "name"
   end
 
   def new_name_field form=nil, options={}

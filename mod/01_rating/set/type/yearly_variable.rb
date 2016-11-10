@@ -12,7 +12,7 @@ format :html do
     end
   end
   view :thumbnail_title do
-    content = content_tag(:div, nest(card, view: :name),
+    content = wrap_with(:div, nest(card, view: :name),
                           class: "ellipsis")
     link_to_card card, content, title: card.name
   end

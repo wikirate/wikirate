@@ -13,9 +13,9 @@ describe Card::Set::Self::AccountLinks do
 
         expect(rendered_html).to(
           have_tag("span", with: { id: "logging", class: "logged-out" }) do
-            with_tag "a", with: { id: "signup-link", href: "/new/Sign_up" },
+            with_tag "a", with: { class: "signup-link", href: "/new/Sign_up" },
                           text: "Join"
-            with_tag "a", with: { id: "signin-link", href: "/*signin" },
+            with_tag "a", with: { class: "signin-link", href: "/*signin" },
                           text: "Log in"
           end
         )
@@ -27,11 +27,11 @@ describe Card::Set::Self::AccountLinks do
         login_as "joe_user"
         expect(@account_link.format(format: :html).render_core).to(
           have_tag("span", with: { id: "logging", class: "logged-in" }) do
-            with_tag "a", with: { id: "my-card-link", href: "/Joe_User" },
+            with_tag "a", with: { class: "my-card-link", href: "/Joe_User" },
                           text: "Joe User"
-            with_tag "a", text: "Invite", with: { id: "invite-a-friend-link",
+            with_tag "a", text: "Invite", with: { class: "invite-link",
                                                   href: "/new/Sign_up" }
-            with_tag "a", text: "Log out", with: { id: "signout-link",
+            with_tag "a", text: "Log out", with: { class: "signout-link",
                                                    href: "/delete/*signin" }
           end
         )

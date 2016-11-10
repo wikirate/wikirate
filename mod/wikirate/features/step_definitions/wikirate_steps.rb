@@ -178,16 +178,14 @@ end
 
 def select_from_chosen item_text, selector, within
   within(within) do
-    field = find_field(selector, visible: false)
-    get_value =
-      "$(\"##{field[:id]} option:contains('#{item_text}')\").val()"
-    option_value = page.evaluate_script(get_value)
-    add_value =
-      "value = ['#{option_value}']\; if ($('##{field[:id]}').val()) "\
-      "{$.merge(value, $('##{field[:id]}').val())}"
-    page.execute_script(add_value)
-    option_value = page.evaluate_script("value")
-    update_chosen_select_value field[:id], option_value
+    id = find_field(selector, visible: false)[:id]
+    option_value = page.execute_script(%(
+      val1 = $(\"##{id} option:contains('#{item_text}')\").val();
+      value = [val1];
+      if ($('##{id}').val()) {$.merge(value, $('##{id}').val())}
+      return value
+    ))
+    update_chosen_select_value id, option_value
   end
 end
 

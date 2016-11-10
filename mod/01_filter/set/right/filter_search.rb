@@ -1,14 +1,9 @@
 
 include_set Abstract::FilterUtility
 def filter_words
-  filter_words = Array.wrap(Env.params[:wikirate_company]) || []
-  if Env.params[:wikirate_topic]
-    filter_words += Array.wrap(Env.params[:wikirate_topic])
-  end
-  if Env.params[:wikirate_tag]
-    filter_words += Array.wrap(Env.params[:wikirate_tag])
-  end
-  filter_words
+  [:wikirate_company, :wikirate_topic, :wikirate_tag].map do |field|
+    Env.params[field]
+  end.flatten.compact
 end
 
 def params_keys
@@ -38,11 +33,11 @@ def get_query params={}
 end
 
 def cited_query
-  yes_query = { referred_to_by: { left: { type_id: WikirateAnalysisID },
-                                  right_id: OverviewID } }
+  cited = { referred_to_by: { left: { type_id: WikirateAnalysisID },
+                              right_id: OverviewID } }
   case Env.params[:cited]
-  when "yes" then yes_query
-  when "no"  then { not: yes_query }
+  when "yes" then cited
+  when "no"  then { not: cited }
   else            {}
   end
 end
@@ -61,8 +56,7 @@ def sort_query
   if Env.params[:sort] == "recent"
     { sort: "update" }
   else
-    { :sort => { "right" => "*vote count" },
-      "sort_as" => "integer", "dir" => "desc" }
+    { sort: { "right" => "*vote count" }, sort_as: "integer", dir: "desc" }
   end
 end
 
@@ -77,19 +71,15 @@ format :html do
   end
 
   view :no_search_results do |_args|
-    %(
-      <div class="search-no-results">
-        No result
-      </div>
-    )
+    wrap_with :div, "No result", class: "search-no-results"
   end
 
-  def default_sort_formgroup_args args
-    super args
-    args[:sort_options] = {
-      "Most Important" => "important", "Most Recent" => "recent"
-    }
-    args[:sort_option_default] = "important"
+  def sort_options
+    { "Most Important" => "important", "Most Recent" => "recent" }
+  end
+
+  def sort_option_default
+    "important"
   end
 
   view :cited_formgroup do |_args|

@@ -48,41 +48,37 @@ format :html do
                class: "pointer-select form-control")
   end
 
-  view :editor do |args|
+  view :editor do
     if (metric_name = metric_name_from_params || card.metric) &&
        (metric_card = Card[metric_name]) &&
        metric_card.value_type == "Category"
-      _render_select(args.merge(metric_name: metric_name))
+
+      _render_select metric_name: metric_name
     else
-      super(args)
+      super()
     end
   end
 
-  view :timeline_row do |args|
-    args[:hide] = "timeline_header timeline_add_new_link"
+  view :timeline_row do
+    voo.hide :timeline_header, :timeline_add_new_link
     wrap_with :div, class: "timeline container" do
       wrap_with :div, class: "timeline-body" do
-        [
-          (wrap_with :div, class: "pull-left timeline-data" do
-            subformat(card.left).render_timeline_data(args)
-          end)
-        ]
+        wrap_with :div, class: "pull-left timeline-data" do
+          subformat(card.left).render_timeline_data
+        end
       end
     end
   end
 end
 
-event :update_related_scores, :finalize,
-      on: [:create, :update, :delete],
-      when: proc { |c|
-        c.metric_card.type_id == MetricID &&
-          !c.metric_card.scored?
-      } do
-  metrics = Card.search type_id: MetricID,
-                        left_id: metric_card.id
-  metrics.each do |metric|
+event :update_related_scores, :finalize, when: :scored_metric? do
+  Card.search type_id: MetricID, left_id: metric_card.id do |metric|
     metric.update_value_for! company: company_key, year: year
   end
+end
+
+def scored_metric?
+  metric_card.type_id == MetricID && metric_card.scored?
 end
 
 event :update_related_calculations, :finalize,

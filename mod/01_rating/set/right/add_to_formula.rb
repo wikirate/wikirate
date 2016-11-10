@@ -31,7 +31,7 @@ format :html do
     link_text = "Add this metric"
     if formula_metric.formula_card.wiki_rating?
       add_class args, "add-weight"
-      content_tag :a, link_text, args.merge("data-metric-id" => input_metric.id)
+      wrap_with :a, link_text, args.merge("data-metric-id" => input_metric.id)
     else
       varcard = formula_metric.formula_card.variables_card
       editor_selector =

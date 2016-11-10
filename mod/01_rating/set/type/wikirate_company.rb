@@ -2,14 +2,14 @@
 
 format :html do
   def metric_names
-    return project.field("metric").item_names if project
+    return project.field(:metric).item_names if project
     Env.params["metric"]
   end
 
   def project
     project_name = Env.params["project"]
     return false unless project_name
-    if Card.exists?project_name
+    if Card.exists? project_name
       Card.fetch(project_name)
     else
       card.errors.add :Project, "Project not exist"
@@ -28,14 +28,14 @@ format :html do
       nest(project, view: :core, structure: "initiative item").html_safe
     wrap_with :div, class: "border-bottom col-md-12 nopadding" do
       [
-        content_tag(:h5, "Project :", class: "col-md-2"),
-        content_tag(:div, project_content, class: "col-md-10")
+        wrap_with(:h5, "Project :", class: "col-md-2"),
+        wrap_with(:div, project_content, class: "col-md-10")
       ]
     end
   end
 
   def wrap_metric_header
-    metric_list_header = content_tag(:div, "Metrics", class: "heading-label")
+    metric_list_header = wrap_with(:div, "Metrics", class: "heading-label")
     if project
       metric_list_header << wrap_project
     else
@@ -52,10 +52,11 @@ format :html do
   end
 
   def process_metrics
-    (metric_names.map.with_index do |key|
-      metric_company = Card.fetch(key).field(card.name)
-      wrap_metric(metric_company) if Card.exists? key
-    end.join "\n")
+    metric_names.map do |metric_name|
+      next unless Card.exists? metric_name
+      metric_plus_company = Card.fetch metric_name, card.name
+      wrap_metric metric_plus_company
+    end.join "\n"
   end
 
   def wrap_metric_list
@@ -71,23 +72,19 @@ format :html do
   def wrap_company
     wrap_with :div, class: "row" do
       [
-        content_tag(:div, "Company", class: "heading-label"),
+        wrap_with(:div, "Company", class: "heading-label"),
         nest(card, view: :core, structure: "metric value company view")
       ]
     end
   end
 
-  view :new_metric_value do |args|
-    frame args do
-      output(
-        [
-          _render_metric_side,
-          _render_source_side
-        ])
+  view :new_metric_value, cache: :never do
+    frame do
+      output [_render_metric_side, _render_source_side]
     end
   end
 
-  view :metric_side do
+  view :metric_side, cache: :never do
     # html_classes = "col-md-6 col-lg-5 panel-default nodblclick stick-left"
     html_classes = "panel-default nodblclick stick-left"
     wrap_with :div, class: html_classes, id: "metric-container" do
@@ -105,7 +102,7 @@ format :html do
 
     blank_content =
       wrap_with :div, class: html_classes, id: "source-preview-main" do
-        content_tag(:div, subformat(source_side).render_core.html_safe,
+        wrap_with(:div, subformat(source_side).render_core.html_safe,
                     id: "source-form-container")
       end
     wrap do
@@ -113,9 +110,9 @@ format :html do
     end
   end
 
-  view :topic_company_row do |args|
+  view :topic_company_row do
     topic = parent.card.cardname.left
-    wrap(args) do
+    wrap do
       process_content <<-HTML
       <div class="yinyang-row">
         <div class="company-item contribution-item">

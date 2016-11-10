@@ -1,12 +1,10 @@
 # the is_data_import flag distinguishes between an update of the
 # import file and importing the file
-event :import_csv, :prepare_to_store,
-      on: :update,
-      when: proc { Env.params["is_data_import"] == "true" } do
+event :import_csv, :prepare_to_store, on: :update, when: :data_import? do
   return unless (import_data = Env.params[:import_data])
   return unless valid_import_format?(import_data)
   source_map = {}
-  init_success_slot_params
+  init_success_params
   import_data.each do |import_row|
     import_card = parse_import_row import_row, source_map
     # validate value type
@@ -16,22 +14,25 @@ event :import_csv, :prepare_to_store,
     end
     handle_import_errors import_card
   end
-  clear_slot_params
+  clear_success_params
   handle_redirect
 end
 
-
-def init_success_slot_params
-  success.params[:slot] = {
-    identical_metric_value: [],
-    duplicated_metric_value: []
-  }
+def data_import?
+  Env.params["is_data_import"] == "true"
 end
 
-def clear_slot_params
-  slot_args = success.params[:slot]
-  slot_args.each do |key, value|
-    slot_args.delete(key) unless value.present?
+def success_params
+  [:identical_metric_value, :duplicated_metric_value]
+end
+
+def init_success_params
+  success_params.each { |key| success.params[key] = [] }
+end
+
+def clear_success_params
+  success_params.each do |key|
+    success.params.delete(key) unless success[key].present?
   end
 end
 
@@ -57,16 +58,11 @@ def construct_value_args args
 end
 
 def check_duplication_with_existing metric_value_name, source_card
-  slot_args = success.slot
-  if (source = Card[metric_value_name.to_name.field(:source)])
-    if source.item_cards[0].key == source_card.key
-      slot_args[:identical_metric_value].push(metric_value_name)
-    else
-      slot_args[:duplicated_metric_value].push(metric_value_name)
-    end
-    return true
-  end
-  false
+  return false unless (source = Card[metric_value_name.to_name.field(:source)])
+  bucket =
+    source.item_cards[0].key == source_card.key ? :identical : :duplicated
+  success.params["#{bucket}_metric_value".to_sym].push metric_value_name
+  true
 end
 
 # @return updated or created metric value card object
@@ -248,51 +244,51 @@ format :html do
     [:file_company, :value]
   end
 
-  def default_new_args args
-    args[:hidden] = {
-      success: { id: "_self", soft_redirect: false, view: :import }
-    }
-    super args
+  def new_view_hidden
+    hidden_tags success: { id: "_self", soft_redirect: false, view: :import }
   end
 
-  def default_import_args args
-    args[:buttons] = %(
-      #{button_tag 'Import', class: 'submit-button',
-                             data: { disable_with: 'Importing' }}
-      #{button_tag 'Cancel', class: 'cancel-button slotter', href: path,
-                             type: 'button'}
-    )
-  end
-
-  view :import do |args|
-    success_args = { success: { id: "_self", view: :open } }
-    frame_and_form :update, args.merge(hidden: success_args),
-                   "notify-success" => "import successful" do
+  view :import, cache: :never do
+    frame_and_form :update, "notify-success" => "import successful" do
       [
-        _optional_render(:metric_select, args),
-        _optional_render(:year_select, args),
-        _optional_render(:import_flag, args),
-        _optional_render(:import_table_helper, args),
-        _optional_render(:import_table, args),
-        _optional_render(:button_formgroup, args)
+        hidden_import_tags,
+        _optional_render(:metric_select),
+        _optional_render(:year_select),
+        _optional_render(:import_flag),
+        _optional_render(:import_table_helper),
+        _optional_render(:import_table),
+        _optional_render(:import_button_formgroup)
       ]
     end
   end
 
-  view :year_select do |_args|
+  def hidden_import_tags
+    hidden_tags success: { id: "_self", view: :open }
+  end
+
+  view :import_button_formgroup do
+    button_formgroup { [import_button, cancel_button(href: path)] }
+  end
+
+  def import_button
+    button_tag "Import", class: "submit-button",
+                         data: { disable_with: "Importing" }
+  end
+
+  view :year_select do
     nest card.left.year_card, view: :edit_in_form
   end
 
-  view :metric_select do |_args|
+  view :metric_select do
     nest card.left.metric_card, view: :edit_in_form
   end
 
-  view :import_flag do |_args|
+  view :import_flag do
     hidden_field_tag :is_data_import, "true"
   end
 
-  view :import_table_helper do |_args|
-    content_tag(:p, selection_checkbox + import_legend)
+  view :import_table_helper do
+    wrap_with :p, (selection_checkbox + import_legend)
   end
 
   def selection_checkbox
@@ -326,7 +322,7 @@ format :html do
   def bs_label text, opts={}
     add_class opts, "label"
     add_class opts, "label-#{opts.delete(:context)}" if opts[:context]
-    content_tag :span, text, opts
+    wrap_with :span, text, opts
   end
 
   def default_import_table_args args
@@ -336,7 +332,7 @@ format :html do
                            :correction]
   end
 
-  view :import_table do |args|
+  view :import_table, cache: :never do |args|
     data = card.csv_rows
     reject_header_row data
     data = data.map.with_index do |elem, i|
@@ -473,9 +469,9 @@ format :html do
   def row_context status
     case status
     when "partial" then "warning"
-    when "exact" then "success"
-    when "none" then "danger"
-    when "alias" then "info"
+    when "exact"   then "success"
+    when "none"    then "danger"
+    when "alias"   then "info"
     end
   end
 
@@ -486,10 +482,7 @@ format :html do
   end
 
   def duplicated_value_warning_message headline, cardnames
-    msg = <<-HTML
-      <h4><b>#{headline}</b></h4>
-      <ul><li>#{cardnames.join('</li><li>')}</li> <br />
-    HTML
-    alert("warning") { msg }
+    items = cardnames.map { |n| "<li>#{n}</li>" }.join
+    alert("warning") { "<h4>#{headline}</h4><ul>#{items}</ul>" }
   end
 end

@@ -137,7 +137,7 @@ format :html do
     # "<style> #{Sass.compile css}</style>"
   end
 
-  view :legend do |_args|
+  view :legend do
     # depends on the type
     if (unit = Card.fetch("#{card.name}+unit"))
       unit.raw_content
@@ -148,9 +148,9 @@ format :html do
     end
   end
 
-  def item_wrap args
+  def item_wrap
     with_nest_mode :normal do
-      wrap args do
+      wrap do
         <<-HTML
         <!--prototype: Company+MetricDesigner+MetricName+yinyang drag item -->
         <div class="yinyang-row">
@@ -164,12 +164,18 @@ format :html do
     end
   end
 
-  view :value_type_edit_modal_link do |args|
+  view :value_type_edit_modal_link do
     render_modal_link(
       link_text: vtype_edit_modal_link_text,
       link_opts: { class: "btn btn-default slotter",
-                   path: { slot: { hide: "title,header,menu,help,subheader",
-                                   view: :edit, edit_value_type: true } } }
+                   path: {
+                     slot: {
+                       hide: "title,header,menu,help,subheader",
+                       view: :edit,
+                       editor: :inline_nests,
+                       structure: "metric value type edit structure"
+                     }
+                   } }
     )
   end
 
@@ -203,21 +209,8 @@ format :html do
     super(args)
   end
 
-  def edit_args args
-    return unless args[:edit_value_type]
-    args[:structure] = "metric value type edit structure"
-  end
-
-  def edit_slot args
-    if args[:edit_value_type]
-      super args.merge(core_edit: true)
-    else
-      super args
-    end
-  end
-
   view :handle do |_args|
-    content_tag :div, class: "handle" do
+    wrap_with :div, class: "handle" do
       glyphicon "option-vertical"
     end
   end
@@ -242,7 +235,7 @@ format :html do
   view :item_view do |args|
     append = args[:append_for_details] ||
              "#{card.key}+add_to_formula"
-    item_wrap(args) do
+    item_wrap do
       %(
       <div class="no-data metric-details-toggle"
            data-append="#{append}">
@@ -254,7 +247,7 @@ format :html do
 
   view :item_view_with_value do |args|
     contributions_url = path "#{metric_designer}+contributions"
-    item_wrap args do
+    item_wrap do
       <<-HTML
         <div class="header">
           #{_render_handle if args[:draggable]}
@@ -307,7 +300,8 @@ format :html do
     rows = [
       icon_row("question", question, class: "metric-details-question"),
       icon_row("bar-chart", card.metric_type, class: "text-emphasized"),
-      icon_row("tag", field_nest("+topic", view: :content, item: :link))
+      icon_row("tag", field_nest("+topic", view: :content,
+                                           items: { view: :link }))
     ]
     if card.researched?
       rows <<  text_row("Unit", field_nest("Unit"))
@@ -351,8 +345,8 @@ format :html do
     weight = text_field_tag("pair_value", (args[:weight] || 0)) + "%"
     output(
       [
-        content_tag(:td, _render_thumbnail(args), "data-key" => card.name),
-        content_tag(:td, weight, class: "metric-weight")
+        wrap_with(:td, _render_thumbnail(args), "data-key" => card.name),
+        wrap_with(:td, weight, class: "metric-weight")
       ]
     ).html_safe
   end

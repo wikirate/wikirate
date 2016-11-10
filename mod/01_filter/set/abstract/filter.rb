@@ -2,6 +2,7 @@ include_set Type::SearchType
 include_set Abstract::Utility
 ensure_set { Abstract::FilterUtility }
 include_set Abstract::FilterUtility
+
 def sort?
   true
 end
@@ -32,6 +33,7 @@ def target_type_id
   WikirateCompanyID
 end
 
+# FIXME: HAAAAAAAAACK!
 def get_query params={}
   filter = fetch_params params_keys
   search_args = search_wql target_type_id, filter, params_keys
@@ -40,6 +42,7 @@ def get_query params={}
   super(params)
 end
 
+# FIXME: HAAAAAAAAACK!
 # the default sort will take the first table in the join
 # I need to override to shift the sort table to the next one
 def item_cards params={}
@@ -50,6 +53,7 @@ def item_cards params={}
   query.run
 end
 
+# FIXME: HAAAAAAAAACK!
 def shift_sort_table query
   if sort? && shift_sort_table?
     # sort table alias always stick to the first table,
@@ -59,6 +63,7 @@ def shift_sort_table query
   end
 end
 
+# FIXME: HAAAAAAAAACK!
 def sort_by wql, sort_by
   if sort_by == "name"
     wql[:sort] = "name"
@@ -88,24 +93,6 @@ format :html do
     [:sort] + card.params_keys
   end
 
-  def append_formgroup array
-    array.map do |key|
-      "#{key}_formgroup".to_sym
-    end
-  end
-
-  def default_filter_form_args args
-    args[:formgroups] =
-      append_formgroup(card.default_keys).unshift(:sort_formgroup)
-    args[:advance_formgroups] = append_formgroup(card.advanced_keys)
-  end
-
-  def default_sort_formgroup_args args
-    args[:sort_options] = {
-      "Alphabetical" => "name"
-    }
-  end
-
   view :no_search_results do |_args|
     %(
       <div class="search-no-results">
@@ -121,54 +108,58 @@ format :html do
   end
 
   def wrap_as_collapse
-    <<-HTML
-     <div class="advanced-options">
-      <div id="collapseFilter" class="collapse #{'in' if filter_active?}">
-        #{yield}
-      </div>
-    </div>
-    HTML
-  end
-
-  def default_button_formgroup_args args
-    toggle_text = filter_active? ? "Hide Advanced" : "Show Advanced"
-    buttons = [
-      link_to_card(card.cardname.left_name, "Reset",
-                   class: "slotter btn btn-default margin-8")
-    ]
-    unless card.advanced_keys.empty?
-      buttons.unshift(content_tag(:a, toggle_text,
-                                  href: "#collapseFilter",
-                                  class: "btn btn-default",
-                                  data: { toggle: "collapse",
-                                          collapseintext: "Hide Advanced",
-                                          collapseouttext: "Show Advanced" }))
-    end
-    args[:buttons] = buttons.join
-  end
-
-  def advance_formgroups args
-    advance_formgroups = args[:advance_formgroups]
-    adv_html = ""
-    if advance_formgroups
-      adv_html = wrap_as_collapse do
-        advance_formgroups.map { |fg| optional_render(fg, args) }.join("")
+    wrap_with :div, class: "advanced-options" do
+      wrap_with :div, id: "collapseFilter",
+                      class: "collapse #{'in' if filter_active?}" do
+        yield
       end
     end
-    adv_html.html_safe
   end
 
-  view :filter_form do |args|
-    formgroups = args[:formgroups] || [:name_formgroup]
-    html = formgroups.map { |fg| optional_render(fg, args) }
-    content = output(html) + advance_formgroups(args)
-    action = card.left.name
-    <<-HTML
-      <form action="/#{action}" method="GET">
-        #{content}
-        #{_optional_render :button_formgroup, args}
-      </form>
-    HTML
+  view :filter_form do
+    wrap_with :form, action: "/#{card.left.name}", method: "GET" do
+      [
+        standard_filter_formgroups,
+        advanced_filter_formgroups,
+        optional_render_filter_buttons
+      ]
+    end
+  end
+
+  def standard_filter_formgroups
+    build_formgroups card.default_keys.unshift(:sort)
+  end
+
+  def advanced_filter_formgroups keys=nil
+    keys ||= card.advanced_keys
+    wrap_as_collapse { build_formgroups keys }
+  end
+
+  def build_formgroups rootnames
+    rootnames.map do |rootname|
+      _optional_render "#{rootname}_formgroup".to_sym
+    end
+  end
+
+  view :filter_buttons do
+    button_formgroup do
+      [advanced_button, reset_button].compact
+    end
+  end
+
+  def advanced_button
+    return if card.advanced_keys.empty?
+    toggle_text = filter_active? ? "Hide Advanced" : "Show Advanced"
+    wrap_with :a, toggle_text, href: "#collapseFilter",
+                                 class: "btn btn-default",
+                                 data: { toggle: "collapse",
+                                         collapseintext: "Hide Advanced",
+                                         collapseouttext: "Show Advanced" }
+  end
+
+  def reset_button
+    link_to_card card.cardname.left_name, "Reset",
+                 class: "slotter btn btn-default margin-8"
   end
 
   # it was from filter_search.rb
@@ -186,16 +177,15 @@ format :html do
     link_to raw(text), options
   end
 
-  def text_filter type_name, args
-    formgroup args[:title] || type_name.capitalize,
-              text_field_tag(type_name, params[type_name],
-                             class: "form-control"),
-              class: " filter-input"
+  def text_filter type_name
+    formgroup voo.title, class: "filter-input" do
+      text_field_tag type_name, params[type_name], class: "form-control"
+    end
   end
 
   def type_options type_codename, order="asc"
-    type_card = Card[type_codename]
-    Card.search type_id: type_card.id, return: :name, sort: "name", dir: order
+    type_id = Card::Codename[type_codename]
+    Card.search type_id: type_id, return: :name, sort: "name", dir: order
   end
 
   def select_filter type_codename, order, label=nil
@@ -215,17 +205,18 @@ format :html do
     options = options_for_select(options, default)
     label ||= type_name.capitalize
     css_class = no_chosen ? "" : "pointer-select"
-    formgroup label, select_tag(type_name, options, class: css_class),
-              class: "filter-input "
+    formgroup label, class: "filter-input" do
+      select_tag(type_name, options, class: css_class)
+    end
   end
 
   def simple_multiselect_filter type_name, options, default, label=nil
-    options = options_for_select(options, default)
     label ||= type_name.capitalize
-    multiselect_tag = select_tag(type_name, options,
-                                 multiple: true,
-                                 class: "pointer-multiselect")
-    formgroup(label, multiselect_tag, class: "filter-input #{type_name}")
+    formgroup label, class: "filter-input #{type_name}" do
+      select_tag type_name,
+                 options_for_select(options, default),
+                 multiple: true, class: "pointer-multiselect"
+    end
   end
 
   def multiselect_filter type_codename, label=nil
@@ -237,8 +228,8 @@ format :html do
 
   view :name_formgroup do |args|
     name = args[:name] || "name"
-    title = args[:title] || "Keyword"
-    text_filter name, title: title
+    voo.title ||= "Keyword"
+    text_filter name
   end
 
   view :project_formgroup do
@@ -277,22 +268,22 @@ format :html do
   def checkbox_formgroup title, options, default=nil
     key = title.to_name.key
     param = Env.params[key] || default
-    checkboxes = options.map do |option|
-      checked = param.present? && param.include?(option.downcase)
-      %(<label>
-        #{check_box_tag("#{key}[]", option.downcase, checked) + option}
-      </label>)
+    formgroup title do
+      options.map do |option|
+        checked = param.present? && param.include?(option.downcase)
+        wrap_with :label do
+          [check_box_tag("#{key}[]", option.downcase, checked), option]
+        end
+      end.join
     end
-    formgroup title, checkboxes.join("")
   end
 
-  view :research_policy_formgroup do |args|
-    if args[:select_list]
-      select_filter :research_policy, "asc"
-    else
-      options = type_options :research_policy
-      checkbox_formgroup "Research Policy", options
-    end
+  view :research_policy_formgroup do
+    checkbox_formgroup "Research Policy", type_options(:research_policy)
+  end
+
+  def research_policy_select
+    select_filter :research_policy, "asc"
   end
 
   view :metric_value_formgroup do
@@ -328,10 +319,17 @@ format :html do
                          Env.params[:industry]
   end
 
-  view :sort_formgroup do |args|
-    options = args[:sort_options] || {}
-    sort_param = Env.params[:sort] || args[:sort_option_default]
-    select_filter_html "sort", options_for_select(options, sort_param),
+  view :sort_formgroup do
+    selected = Env.params[:sort] || sort_option_default
+    select_filter_html "sort", options_for_select(sort_options, selected),
                        nil, nil, true
+  end
+
+  def sort_options
+    { "Alphabetical" => "name" }
+  end
+
+  def sort_option_default
+    "name"
   end
 end

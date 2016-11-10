@@ -9,45 +9,49 @@ format :html do
     :metric_tab
   end
 
-  def filter_form_content args
-    <<-HTML
-      <h4>Metric</h4>
-      <div class="margin-12 sub-content"> #{metric_filter_fields(args).join} </div>
-      <h4>Answer</h4>
-      <div class="margin-12"> #{other_filter_fields(args).join} </div>
-      <div class="filter-buttons">
-        #{_optional_render :button_formgroup, args}
-      </div>
-    HTML
+  def filter_form_content
+    output(
+      [
+        wrap_with(:h4, "Metric"),
+        wrap_with(:div, metric_filter_fields, class: "margin-12 sub-content"),
+        wrap_with(:h4, "Answer"),
+        wrap_with(:div, other_filter_fields, class: "margin-12"),
+        wrap_with(:div, _optional_render_filter_button_formgroup,
+                  class: "margin-12")
+      ]
+    )
   end
 
-  def metric_filter_fields args
+  def metric_filter_fields
     [
-      _optional_render(:name_formgroup, args),
-      _optional_render(:wikirate_topic_formgroup, args),
-      _optional_render(:research_policy_formgroup, args),
-      _optional_render(:importance_formgroup, args),
-      _optional_render(:metric_type_formgroup, args)
+      _optional_render(:name_formgroup),
+      _optional_render(:wikirate_topic_formgroup),
+      _optional_render(:research_policy_formgroup),
+      _optional_render(:importance_formgroup),
+      _optional_render(:metric_type_formgroup)
     ]
   end
 
-  def other_filter_fields args
+  def other_filter_fields
     [
-      _optional_render(:metric_value_formgroup, args),
-      _optional_render(:year_formgroup, args),
-      content_tag(:hr),
-      _optional_render(:sort_formgroup, args)
+      _optional_render_metric_value_formgroup,
+      _optional_render_year_formgroup,
+      wrap_with(:hr),
+      _optional_render_sort_formgroup
     ]
   end
 
-  def default_sort_formgroup_args args
-    args[:sort_options] = {
+  def sort_options
+    {
       "Importance to Community (up-voted by community)" => "upvoted",
       "Metric Designer (Alphabetical)" => "metric_designer",
       "Metric Title (Alphabetical)" => "metric_title",
       "Recently Updated" => "recent",
       "Most Values" => "value"
     }
-    args[:sort_option_default] = "upvoted"
+  end
+
+  def sort_option_default
+    "upvoted"
   end
 end

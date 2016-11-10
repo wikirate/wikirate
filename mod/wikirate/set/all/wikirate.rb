@@ -13,8 +13,8 @@ format do
     ""
   end
 
-  view :raw_or_blank, perms: :none, closed: true do |args|
-    _render(:raw, args) || ""
+  view :raw_or_blank, perms: :none, closed: true do
+    _render_raw || ""
   end
 end
 
@@ -54,47 +54,50 @@ format :html do
     end
   end
 
-  view :titled_with_edits do |args|
-    wrap args do
+  view :titled_with_edits do
+    @content_body = true
+    wrap do
       [
-        _render_header(args),
-        render_edits_by(args),
-        wrap_body(content: true) { _render_core args }
+        _render_header,
+        render_edits_by,
+        wrap_body { _render_core }
       ]
     end
   end
 
   view :edits_by do
     editor_card = card.fetch trait: :editors
-    %(
-      <div class="edits-by">
-        <div class='subtitle-header'>Edits by</div>
-        #{subformat(editor_card).render_shorter_search_result item: :link}
+    links = subformat(editor_card).render_shorter_search_result(
+      items: { view: :link }
+    )
+    %(<div class="edits-by">
+        #{links}<div class='subtitle-header'>Edits by</div>
       </div>
     )
   end
 
-  view :open do |args|
-    super(args.reverse_merge optional_horizontal_menu: :show)
+  view :open do
+    voo.show :horizontal_menu
+    super()
   end
 
   attr_accessor :citations
 
-  def default_menu_link_args args
-    args[:menu_icon] = "edit"
+  def menu_icon
+    glyphicon "edit"
   end
 
   def default_menu_args args
     args[:optional_horizontal_menu] ||= :show if main?
   end
 
-  view :shorter_pointer_content do |args|
-    args_content = { render_link: false }
-    subformat(card).render_shorter_search_result args.merge(args_content)
+  view :shorter_pointer_content do
+    voo.hide :link
+    subformat(card).render_shorter_search_result
   end
 
-  view :shorter_search_result do |args|
-    render_view = args[:render_link].nil? || args[:render_link] ? :link : :name
+  view :shorter_search_result do
+    render_view = voo.show?(:link) ? :link : :name
     items = card.item_cards limit: 0
     total_number = items.size
     fetch_number = [total_number, 4].min
@@ -116,16 +119,19 @@ format :html do
       end
   end
 
-  view :name_formgroup do |args|
+  view :name_formgroup do
     # force showing help text
-    args[:help] ||= true
-    super args
+    voo.help ||= true
+    super()
   end
 
-  view :cite do
+  view :cite, cache: :never do
     # href_root = parent ? parent.card.cardname.trunk_name.url_key : ''
-    href = "##{card.cardname.url_key}"
-    %(<sup><a class="citation" href="#{href}">#{cite!}</a></sup>)
+    wrap_with :sup do
+      wrap_with :a, class: "citation", href: "##{card.cardname.url_key}" do
+        cite!
+      end
+    end
   end
 
   def cite!
@@ -151,7 +157,7 @@ format :html do
   end
 
   view :yinyang_list do |args|
-    content_tag :div, class: "yinyang-list #{args[:yinyang_list_class]}" do
+    wrap_with :div, class: "yinyang-list #{args[:yinyang_list_class]}" do
       _render_yinyang_list_items(args)
     end
   end
@@ -160,7 +166,8 @@ format :html do
     item_type_name = card.cardname.right.split.last
     icon_card = Card.fetch("#{item_type_name}+icon")
     hidden_class = card.content.empty? ? "hidden" : ""
-    wrap args.merge(slot_class: "showcase #{hidden_class}") do
+    class_up "card-body", "showcase #{hidden_class}"
+    wrap do
       %(
         #{subformat(icon_card)._render_core}
         #{item_type_name.capitalize}
@@ -173,39 +180,12 @@ format :html do
     _render_open(args.merge(contribution_list: true))
   end
 
-  view :header do |args|
-    if args.delete(:contribution_list)
-      view :header do |_args|
-        %(
-          <div class="card-header #{args[:header_class]}">
-            <div class="card-header-title #{args[:title_class]}">
-              #{_optional_render :title, args}
-              #{_optional_render :contribution_counts, args}
-              #{_optional_render :toggle, args, :hide}
-            </div>
-          </div>
-          #{_optional_render :toolbar, args, :hide}
-        )
-      end
-    else
-      super(args)
-    end
-  end
-
   view :yinyang_list_items do |args|
-    item_args = {
-      view: (args[:item] || (@nest_opts && @nest_opts[:view]) ||
-            default_item_view)
-    }
     joint = args[:joint] || " "
 
-    if (type = card.item_type)
-      item_args[:type] = type
-    end
-
     enrich_result(card.item_names).map do |icard|
-      content_tag :div, class: "yinyang-row" do
-        nest(icard, item_args.clone).html_safe
+      wrap_with :div, class: "yinyang-row" do
+        nest_item(icard, view: args[:item]).html_safe
       end.html_safe
     end.join(joint).html_safe
   end
@@ -322,15 +302,14 @@ module ClassMethods
 end
 
 format :json do
-  view :content do |args|
-    result = super args
-    if result[:card] && result[:card][:value] &&
-       result[:card][:value].is_a?(Array)
-      result[:card][:value].reject!(&:nil?)
-    end
+  view :content do
+    result = super()
+    result_card_value = result[:card] && result[:card][:value]
+    result_card_value.reject!(&:nil?) if result_card_value.is_a? Array
     result
   end
-  view :id_atom do |_args|
+
+  view :id_atom, cache: :never do |_args|
     if !params["start"] || (params["start"] && (start = params["start"].to_i) &&
        card.updated_at.strftime("%Y%m%d%H%M%S").to_i >= start)
       h = _render_atom

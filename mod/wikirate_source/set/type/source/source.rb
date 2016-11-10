@@ -10,9 +10,7 @@ card_accessor :year, type: :pointer
 card_accessor :source_type, type: :pointer, default: "[[Link]]"
 
 def indirect_contributor_search_args
-  [
-    { right_id: VoteCountID, left: name }
-  ]
+  [{ right_id: VoteCountID, left: name }]
 end
 
 require "link_thumbnailer"
@@ -67,41 +65,46 @@ end
 # end
 
 format :html do
-  view :new do |args|
-    # return super(args)
-    if Env.params[:preview]
-      form_opts = args[:form_opts] ? args.delete(:form_opts) : {}
-      form_opts.merge! hidden: args.delete(:hidden),
-                       "main-success" => "REDIRECT",
+  view :new do
+    preview? ? _optional_render_preview : super()
+  end
+
+  def preview?
+    return false if @previewed
+    @previewed = true
+    Env.params[:preview]
+  end
+
+  view :preview do
+    voo.structure = "metric value source form"
+    card_form :create, "main-success" => "REDIRECT",
                        "data-form-for" => "new_metric_value",
-                       class: "card-slot new-view TYPE-source"
-      card_form :create, form_opts do
-        output [
-          _optional_render(:name_formgroup, args),
-          _optional_render(:type_formgroup, args),
-          _optional_render(:content_formgroup, args),
-          _optional_render(:button_formgroup, args)
-        ]
-      end
-    else
-      super(args)
+                       class: "card-slot new-view TYPE-source" do
+      output [
+        preview_hidden,
+        new_view_name,
+        new_view_type,
+        _optional_render_content_formgroup,
+        _optional_render_preview_buttons
+      ]
     end
   end
 
-  def default_new_args args
-    if Env.params[:preview]
-      args[:structure] = "metric value source form"
-      args[:buttons] =
-        content_tag :button, "Add and preview",
-                    class: "btn btn-primary pull-right",
-                    data: { disable_with: "Adding" }
-      args[:hidden] = {
-        :success => { id: "_self",
-                      soft_redirect: true,
-                      view: :source_and_preview },
-        "card[subcards][+company][content]" => args[:company]
-      }
+  def new_view_hidden
+    hidden_tags success: {
+      id: "_self", soft_redirect: true, view: :source_and_preview
+    }
+  end
+
+  view :preview_buttons do
+    button_formgroup do
+      wrap_with :button, "Add and preview", class: "btn btn-primary pull-right",
+                                            data: { disable_with: "Adding" }
     end
-    super(args)
+  end
+
+  def preview_hidden args={}
+    # FIXME: company arg getting lost?
+    hidden_field_tag "card[subcards][+company][content]", args[:company]
   end
 end

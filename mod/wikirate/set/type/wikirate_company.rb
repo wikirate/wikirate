@@ -21,7 +21,7 @@ format :html do
     false
   end
 
-  view :open do |args|
+  view :open, cache: :never do
     if main? && !Env.ajax? && !Env.params["about_company"] &&
        !contributions_about? && contributions_made?
 
@@ -30,7 +30,7 @@ format :html do
         "showing contributions by #{link}</div>" +
         field_subformat(:contribution).render_open
     else
-      super args
+      super()
     end
   end
 
