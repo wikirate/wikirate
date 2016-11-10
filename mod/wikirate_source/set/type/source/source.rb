@@ -66,7 +66,13 @@ end
 
 format :html do
   view :new do
-    Env.params[:preview] ? _optional_render_preview : super()
+    preview? ? _optional_render_preview : super()
+  end
+
+  def preview?
+    return false if @previewed
+    @previewed = true
+    Env.params[:preview]
   end
 
   view :preview do
