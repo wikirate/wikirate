@@ -279,29 +279,6 @@ module ClassMethods
   def reset_claim_counts
     claim_count_cache.reset
   end
-
-  def tag_filter_query filter_words, extra={}, tag_types=["tag"]
-    filter_words = [filter_words] unless Array === filter_words
-    search_args = filter_words.inject({}) do |res, filter|
-      hash = {}
-      hash["and"] = res unless res.empty?
-      hash.merge(
-        "right_plus" =>
-              if tag_types.size > 1
-                [{ "name" => ["in"] + tag_types }, "refer_to" => filter]
-              else
-                [tag_types.first, "refer_to" => filter]
-              end
-      )
-    end
-    search_args.merge(extra)
-  end
-
-  def claim_tag_filter_spec filter_words, extra={}
-    tag_filter_spec filter_words,
-                    extra.merge(type_id: ClaimID),
-                    %w(tag company topic)
-  end
 end
 
 format :json do

@@ -29,13 +29,24 @@ def params_keys
   filter_keys + advanced_filter_keys
 end
 
+def filter_class
+  Filter
+end
+
+def filter_wql
+  filter_class.new(filter_keys_with_values, extra_filter_args).to_wql
+end
+
+def extra_filter_args
+  { type_id: target_type_id }
+end
+
 def target_type_id
   WikirateCompanyID
 end
 
 def get_query params={}
-  filter = fetch_params params_keys
-  search_args = search_wql target_type_id, filter, params_keys
+  search_args = filter_wql
   sort_by search_args, Env.params["sort"] if sort?
   params[:query] = search_args
   super(params)
@@ -83,11 +94,7 @@ end
 
 format :html do
   view :no_search_results do |_args|
-    %(
-      <div class="search-no-results">
-        No result
-      </div>
-    )
+    wrap_with :div, "No result", class: "search-no-results"
   end
 
   view :filter_form do |args|
@@ -150,4 +157,23 @@ format :html do
     </div>
     HTML
   end
+
+  view :cited_formgroup do |_args|
+    options = { "All" => "all", "Yes" => "yes", "No" => "no" }
+    simple_select_filter :cited, options, "all", "Cited"
+  end
+
+  view :claimed_formgroup do |_args|
+    options = { "All" => "all", "Yes" => "yes", "No" => "no" }
+    simple_select_filter :claimed, options, "all", "Has Notes?"
+  end
+
+  view :company_formgroup do
+    multiselect_filter :wikirate_company, "Company"
+  end
+
+  view :topic_formgroup do
+    multiselect_filter :wikirate_topic, "Topic"
+  end
+
 end

@@ -1,5 +1,11 @@
 include_set Abstract::BrowseFilterForm
 
+class CompanyFilter < Filter
+  def wikirate_topic_wql value
+    @filter_wql[:found_by] = value.to_name.trait(:wikirate_company)
+  end
+end
+
 def filter_keys
   %w(name industry)
 end
@@ -8,9 +14,9 @@ def advanced_filter_keys
   %w(project wikirate_topic)
 end
 
-def wql_by_wikirate_topic wql, topic
-  return unless topic.present?
-  wql[:found_by] = topic.to_name.trait(:wikirate_company)
+
+def filter_class
+  CompanyFilter
 end
 
 format :html do

@@ -77,16 +77,16 @@ describe Card::Set::Right::FilterSearch do
           it do
             # html = filter_search_card.format.render_filter_form
             Card::Env.params[:filter] = {
-              topic:  [@new_topic.name, @new_topic1.name],
-              company: [@new_company.name, @new_company1.name],
-              tag: "thisisatestingtag"
+              #topic:  [@new_topic.name, @new_topic1.name],
+              #company: [@new_company.name, @new_company1.name],
+              #tag: "thisisatestingtag"
             }
-
+binding.pry
             html = Card[:claim].format.render_core
             expect(html).to have_tag("div", with: { id: div_id }) do
               with_tag("div", class: "search-result-list") do
                 with_tag("div", class: "search-result-item item-content") do
-                  with_tag("div", with: { id: "filter_whateverclaim" })
+                  with_tag("div", with: { id: "whateverclaim" })
                 end
               end
             end

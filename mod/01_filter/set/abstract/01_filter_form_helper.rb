@@ -1,3 +1,7 @@
+def filter_param field
+  (filter = Env.params[:filter]) && filter[field]
+end
+
 format :html do
   def append_formgroup array
     array.map do |key|
@@ -92,7 +96,5 @@ format :html do
     Card.fetch_name(field) { field.to_s.capitalize }
   end
 
-  def filter_param field
-    (filter = params[:filter]) && filter[field]
-  end
+  delegate :filter_param, to: :card
 end

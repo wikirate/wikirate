@@ -21,15 +21,15 @@ def wql_by_metric wql, metric
   wql[:referred_to_by].push left: { name: metric }, right: "topic"
 end
 
-def wql_by_wikirate_company wql, company
-  return unless company.present?
-  wql[:found_by] = "#{company}+topic"
-end
-
 def wql_by_project wql, project
   return unless project.present?
   wql[:referred_to_by] ||= []
   wql[:referred_to_by].push left: { name: project }, right: "topic"
+end
+
+def wql_by_wikirate_company wql, company
+  return unless company.present?
+  wql[:found_by] = "#{company}+topic"
 end
 
 format :html do
