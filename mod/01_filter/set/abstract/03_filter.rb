@@ -1,9 +1,19 @@
 include_set Abstract::FilterFormgroups
 include_set Abstract::FilterQuery
+include_set Abstract::Utility
 
 def advanced_filter_keys
   []
 end
+
+def filter_keys_with_values
+  (filter_keys +  advanced_filter_keys).each do |key|
+    next unless (values = filter_params(key))
+    yield key, values
+  end
+end
+
+
 
 format :html do
   def view_caching?

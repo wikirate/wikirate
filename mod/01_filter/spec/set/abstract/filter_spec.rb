@@ -6,21 +6,21 @@ describe Card::Set::Abstract::Filter do
     it "#advanced_formgroups" do
       card.stub(:advanced_filter_keys) { %w(metric project wikirate_company) }
       html =
-        card.format.advanced_formgroups advanced_formgroups: advanced_filter_keys
+        card.format.advanced_filter_formgroups
       expect(html).to have_tag(:div, with: { class: "advanced-options" }) do
         with_tag :div, with: { id: "collapseFilter", class: "collapse" } do
           with_tag :label, text: "Metric"
           with_tag :div, with: { class: "editor" } do
-            with_tag :select, with: { class: "pointer-select", id: "metric" }
+            with_tag :select, with: { class: "pointer-select", id: "filter_metric" }
           end
           with_tag :label, text: "Project"
           with_tag :div, with: { class: "editor" } do
-            with_tag :select, with: { class: "pointer-select", id: "project" }
+            with_tag :select, with: { class: "pointer-select", id: "filter_project" }
           end
           with_tag :label, text: "Company"
           with_tag :div, with: { class: "editor" } do
             with_tag :select, with: { class: "pointer-select",
-                                      id: "wikirate_company" }
+                                      id: "filter_wikirate_company" }
           end
         end
       end
@@ -34,7 +34,7 @@ describe Card::Set::Abstract::Filter do
           with_tag :label, text: "Sort"
           with_tag :div do
             with_tag :div, with: { class: "editor" } do
-              with_tag :select, with: { name: "sort" }
+              with_tag :select, with: { name: "filtersort" }
             end
           end
           with_tag :div do
@@ -119,7 +119,7 @@ describe Card::Set::Abstract::Filter do
     it "renders view name_formgroup" do
       # predefined name
       html = card.format.render_name_formgroup name: "SiDan"
-      expect(html).to have_tag(:input, with: { name: "SiDan" })
+      expect(html).to have_tag(:input, with: { name: "filter[SiDan]" })
       # pre-defined title
       html = card.format.render_name_formgroup title: "SiDan"
       expect(html).to have_tag(:label, text: "SiDan")
@@ -148,7 +148,7 @@ describe Card::Set::Abstract::Filter do
                                                      nil, "Sidan"
         expect(html).to have_tag(:div, with: { class: "form-group Topic" }) do
           with_tag :label, text: "Sidan"
-          with_tag :select, with: { name: "Topic[]", multiple: "multiple" }
+          with_tag :select, with: { name: "filter[Topic][]", multiple: "multiple" }
         end
       end
     end
@@ -157,18 +157,18 @@ describe Card::Set::Abstract::Filter do
         html = card.format.multiselect_filter :wikirate_topic, "Whatever"
         expect(html).to have_tag(:div, with: { class: "wikirate_topic" }) do
           with_tag :label, text: "Whatever"
-          with_tag :select, with: { name: "wikirate_topic[]",
+          with_tag :select, with: { name: "filter[wikirate_topic][]",
                                     multiple: "multiple" }
         end
       end
     end
-    describe "#select_filter_html" do
+    describe "#select_filter_tag" do
       it "renders single select list" do
         options = card.format.type_options :wikirate_topic
         html = card.format.select_filter_tag "Topic", options, nil, "Sidan"
         expect(html).to have_tag(:div, with: { class: "form-group" }) do
           with_tag :label, text: "Sidan"
-          with_tag :select, with: { name: "Topic" }
+          with_tag :select, with: { name: "filter[Topic]" }
         end
       end
     end
@@ -178,7 +178,7 @@ describe Card::Set::Abstract::Filter do
         html = card.format.select_filter_tag "Topic", options, nil, "Sidan"
         expect(html).to have_tag(:div, with: { class: "form-group" }) do
           with_tag :label, text: "Sidan"
-          with_tag :select, with: { name: "Topic" }
+          with_tag :select, with: { name: "filter[Topic[" }
         end
       end
     end

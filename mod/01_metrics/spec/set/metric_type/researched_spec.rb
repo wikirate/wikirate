@@ -95,27 +95,34 @@ describe Card::Set::MetricType::Researched do
           with_tag("div", with: { class: "wiki" }) do
             with_tag("div", with: { class: "pull-right" }) do
               with_tag("div", with: { class: "metric-info" }) do
-                with_tag "h5", text: "Metric Type:"
-                with_tag("div", with: { class: "RIGHT-Xmetric_type" })
-                with_tag "h5", text: "Topics:"
-                with_tag("div", with: { class: "RIGHT-topic" })
-              end
-            end
-            with_tag("div", with: { class: "metric-details-header" }) do
-              with_tag("div", with: { class: "name" }) do
-                with_tag "a", text: "disturbances in the Force"
-              end
-              with_tag("div", with: { class: "metric-designer-info" }) do
-                with_tag("a", with: { href: "/Jedi+contribution" }) do
-                  with_tag("img")
-                  with_tag("h3", text: "Jedi")
+                with_tag "div", with: { class: "row metric-header-container" } do
+
+                end
+                with_tag "table", with: { class: "metric-properties table" } do
+                  with_tag :td, text: "Designed By"
+                  with_tag :div, with: { class: "metric-designer-info" }
+                  with_tag :td, text: "Metric Type"
+                  with_tag :div, with: { class: "RIGHT-Xmetric_type" }
+                  with_tag :td, text: "Topics"
+                  with_tag :div, with: { class: "RIGHT-topic" }
                 end
               end
             end
+            # with_tag("div", with: { class: "metric-details-header" }) do
+            #   with_tag("div", with: { class: "name" }) do
+            #     with_tag "a", text: "disturbances in the Force"
+            #   end
+            #   with_tag("div", with: { class: "metric-designer-info" }) do
+            #     with_tag("a", with: { href: "/Jedi+contribution" }) do
+            #       with_tag("img")
+            #       with_tag("h3", text: "Jedi")
+            #     end
+            #   end
+            # end
           end
-          with_tag("div", with: { class: "metric-info" }) do
-            # ...add more here?
-          end
+          # with_tag("div", with: { class: "metric-info" }) do
+          #   # ...add more here?
+          # end
         end
       )
     end

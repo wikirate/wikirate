@@ -80,12 +80,15 @@ format do
 end
 
 format :html do
-  METHOD_PREFIX = {
-    WikirateTopicID    => :topic,
-    MetricID           => :metric,
-    WikirateCompanyID  => :company,
-    WikirateAnalysisID => :analysis
-  }.freeze
+
+  if Card::Codename[:wikirate_topic]
+    METHOD_PREFIX = {
+      WikirateTopicID    => :topic,
+      MetricID           => :metric,
+      WikirateCompanyID  => :company,
+      WikirateAnalysisID => :analysis
+    }.freeze
+  end
 
   view :drag_and_drop, cache: :never do |args|
     with_drag_and_drop(args) do

@@ -24,7 +24,7 @@ gem "delayed_job_web"
 gem "newrelic_rpm"
 # gem "ruby-prof"
 gem "airbrussh", require: false
-gem "spring"
+# gem "spring"
 
 group :live do
   gem "therubyracer"

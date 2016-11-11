@@ -27,7 +27,7 @@ format :html do
     end
   end
 
-  def contruct_import_warning_message args
+  def construct_import_warning_message
     msg = ""
     if (identical_metric_values = Env.params[:identical_metric_value])
       headline = "Metric values exist and are not modified."
@@ -41,12 +41,10 @@ format :html do
     msg
   end
 
-  view :core do |args|
-    content = contruct_import_warning_message args
+  view :core do
+    content = construct_import_warning_message
     content << handle_source do |source|
-      <<-HTML
-        <a href=\"#{source}\">Download #{showname voo.title}</a><br />
-      HTML
+      %(<a href=\"#{source}\">Download #{showname voo.title}</a><br />)
     end.html_safe
     import_link = <<-HTML
       <a href=\"/#{card.cardname.url_key}?view=import\">Import ...</a>

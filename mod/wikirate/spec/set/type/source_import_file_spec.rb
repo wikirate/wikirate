@@ -101,7 +101,8 @@ describe Card::Set::Type::SourceImportFile do
           title = { "1" => "SiDan" }
           trigger_import data, title
         end
-        it "won't update exisitng source title" do
+
+        it "won't update existing source title" do
           # to trigger a "clean" update
           data = [{
             file_company: "Samsung", year: "2013",
@@ -113,8 +114,9 @@ describe Card::Set::Type::SourceImportFile do
           title = { "1" => "SiDan" }
           trigger_import data, title
           verify_subcard_content @source_card, :wikirate_title, "hTc"
-          expect(@source_card.success[:slot]).to be_empty
+          expect(@source_card.success.params).to be_empty
         end
+
         it "updates exisitng source" do
           expected_report_type = "Corporate Social Responsibility Report"
           expected_company = "Samsung"
@@ -123,10 +125,11 @@ describe Card::Set::Type::SourceImportFile do
           verify_subcard_content @source_card, :wikirate_company,
                                  expected_company, true
           verify_subcard_content @source_card, :year, "2013", true
-          feedback = @source_import_file.success[:slot][:updated_sources]
+          feedback = @source_import_file.success[:updated_sources]
           expect(feedback).to include(["1", @source_card.name])
         end
       end
+
       context "without title" do
         before do
           @url = "http://wagn.org"
@@ -142,21 +145,23 @@ describe Card::Set::Type::SourceImportFile do
           title = { "1" => expected_title }
           trigger_import data, title
         end
+
         it "updates existing source" do
           verify_subcard_content @source_card, :wikirate_title, "hTc"
-          feedback = @source_import_file.success[:slot][:updated_sources]
+          feedback = @source_import_file.success[:updated_sources]
           expect(feedback).to include(["1", @source_card.name])
         end
+
         it "renders correct feedback html" do
-          args = @source_import_file.success[:slot]
-          html = @source_import_file.format.render_core args
-          css_class = "alert alert-warning"
-          expect(html).to have_tag(:div, with: { class: css_class }) do
-            with_tag :h4, text: "Existing sources updated"
-            with_tag :ul do
-              with_tag :li, text: "Row 1: #{@source_card.name}"
+          Card::Env[:params] = @source_import_file.success.raw_params
+          expect(@source_import_file.format.render_core).to(
+            have_tag(:div, with: { class: "alert alert-warning" }) do
+              with_tag :h4, text: "Existing sources updated"
+              with_tag :ul do
+                with_tag :li, text: "Row 1: #{@source_card.name}"
+              end
             end
-          end
+          )
         end
       end
     end
@@ -180,6 +185,7 @@ describe Card::Set::Type::SourceImportFile do
         title = { "1" => source_title, "2" => "Si L Dan" }
         @source_file = trigger_import data, title
       end
+
       it "only adds the first source" do
         expect(@source_file.subcards.empty?).to be_falsy
         source_card = @source_file.subcards[@source_file.subcards.to_a[0]]
@@ -191,11 +197,13 @@ describe Card::Set::Type::SourceImportFile do
                                "Apple Inc", true
         verify_subcard_content source_card, :year,
                                "2014", true
-        feedback = @source_file.success[:slot][:duplicated_sources]
+        feedback = @source_file.success.params[:duplicated_sources]
         expect(feedback).to include(["2", @url])
       end
+
       it "renders correct feedback html" do
-        html = @source_file.format.render_core @source_file.success[:slot]
+        Card::Env[:params] = @source_file.success.raw_params
+        html = @source_file.format.render_core
         css_class = "alert alert-warning"
         expect(html).to have_tag(:div, with: { class: css_class }) do
           with_tag :h4, text: "Duplicated sources in import file."\

@@ -219,18 +219,21 @@ format :html do
   end
 end
 
-CLAIM_SUBJECT_SQL = %{
-  select subjects.`key` as subject, claims.id from cards claims
-  join cards as pointers on claims.id   = pointers.left_id
-  join card_references   on pointers.id = referer_id
-  join cards as subjects on referee_id  = subjects.id
-  where claims.type_id = #{Card::ClaimID}
-  and pointers.right_id in
-    (#{[Card::WikirateTopicID, Card::WikirateCompanyID].join(', ')})
-  and claims.trash   is false
-  and pointers.trash is false
-  and subjects.trash is false;
-}
+
+if Card::Codename[:claim]
+  CLAIM_SUBJECT_SQL = %{
+    select subjects.`key` as subject, claims.id from cards claims
+    join cards as pointers on claims.id   = pointers.left_id
+    join card_references   on pointers.id = referer_id
+    join cards as subjects on referee_id  = subjects.id
+    where claims.type_id = #{Card::ClaimID}
+    and pointers.right_id in
+      (#{[Card::WikirateTopicID, Card::WikirateCompanyID].join(', ')})
+    and claims.trash   is false
+    and pointers.trash is false
+    and subjects.trash is false;
+  }
+end
 
 # some wikirate specific methods
 module ClassMethods
@@ -275,29 +278,6 @@ module ClassMethods
 
   def reset_claim_counts
     claim_count_cache.reset
-  end
-
-  def tag_filter_query filter_words, extra={}, tag_types=["tag"]
-    filter_words = [filter_words] unless Array === filter_words
-    search_args = filter_words.inject({}) do |res, filter|
-      hash = {}
-      hash["and"] = res unless res.empty?
-      hash.merge(
-        "right_plus" =>
-              if tag_types.size > 1
-                [{ "name" => ["in"] + tag_types }, "refer_to" => filter]
-              else
-                [tag_types.first, "refer_to" => filter]
-              end
-      )
-    end
-    search_args.merge(extra)
-  end
-
-  def claim_tag_filter_spec filter_words, extra={}
-    tag_filter_spec filter_words,
-                    extra.merge(type_id: ClaimID),
-                    %w(tag company topic)
   end
 end
 

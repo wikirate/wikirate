@@ -4,6 +4,7 @@ include_set Abstract::TwoColumnLayout
 format :html do
   def default_open_content_args args
     super
+    @container_class = "yinyang" # TODO: check if still needed
     add_class args[:left_class], "metric-info"
     add_class args[:right_class], "wiki"
   end
@@ -19,8 +20,7 @@ format :html do
   end
 
   view :filter do |args|
-    field_subformat(:metric_company_filter)
-      ._render_core(args.merge(filter_title: "Filter"))
+    field_subformat(:metric_company_filter)._render_core
   end
 
   view :table do |args|

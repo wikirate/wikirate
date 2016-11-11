@@ -16,9 +16,6 @@ module LookupTable
         MetricAnswer.new
       ma.metric_answer_id = card.id
       ma.refresh
-    rescue
-      binding.pry
-      puts "asdfas"
     end
   end
 

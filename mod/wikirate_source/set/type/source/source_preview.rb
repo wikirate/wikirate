@@ -90,51 +90,56 @@ format :html do
   end
 
   view :iframe_view, tags: :unknown_ok, cache: :never do
-    case card.source_type_codename
-    when :text
-      text_args = { home_view: "open", hide: "toggle", title: "Text Source" }
-      text_card = card.fetch trait: :text
-      %(
-        <div class="container-fluid">
-          <div class="row-fluid">
-            #{wrap_with(:div, subformat(text_card).render(:open, text_args),
-                          { id: 'text_source', class: 'webpage-preview' },
-                          false)}
-          </div>
-        </div>
-      )
-    when :file
-      file_card = card.fetch trait: :file
-      if (mime = file_card.file.content_type) && valid_mime_type?(mime)
-        if mime == "application/pdf"
-          iframe_html = _render_pdfjs_iframe pdf_url: file_card.attachment.url
-          wrap_with(:div, iframe_html,
-                      { id: "pdf-preview", class: "webpage-preview" },
-                      false)
-        else
-          wrap_with(:div,
-                      %(<img id="source-preview-iframe"
-                        src="#{file_card.attachment.url}" />),
-                      { id: "pdf-preview", class: "webpage-preview" }, false)
-        end
-      else
-        structure = "source item preview"
-        redirect_content = _render_content structure: structure
-        wrap_with(:div, wrap_with(:div, redirect_content,
-                                      { class: "redirect-notice" }, false),
-                    { id: "source-preview-iframe",
-                      class: "webpage-preview non-previewable" },
-                    false)
-      end
-    when :wikirate_link
-      url = preview_url
-      iframe_html = %(
-        <iframe id="source-preview-iframe" src="#{url}" security="restricted"
-         sandbox="allow-same-origin allow-scripts allow-forms" ></iframe>
-      )
-      wrap_with(:div, iframe_html,
-                  { id: "webpage-preview", class: "webpage-preview" }, false)
+    send "#{card.source_type_codename}_iframe_view"
+  end
 
+  def file_iframe_view
+    file_card = card.fetch trait: :file
+    mime = file_card.file.content_type
+    return nonpreviewable_iframe_view unless mime && valid_mime_type?(mime)
+    method_prefix = mime == "application/pdf" ? :pdf : :standard_file
+    send "#{method_prefix}_iframe_view", file_card
+  end
+
+  def nonpreviewable_iframe_view
+    wrap_with :div, id: "source-preview-iframe",
+                    class: "webpage-preview non-previewable" do
+      wrap_with :div, class: "redirect-notice" do
+        _render_content structure: "source item preview"
+      end
+    end
+  end
+
+  def standard_file_iframe_view file_card
+    wrap_with :div, id: "pdf-preview", class: "webpage-preview" do
+      wrap_with :img, "", id: "source-preview-iframe",
+                          src: file_card.attachment.url
+    end
+  end
+
+  def pdf_iframe_view file_card
+    wrap_with :div, id: "pdf-preview", class: "webpage-preview" do
+      _render_pdfjs_iframe pdf_url: file_card.attachment.url
+    end
+  end
+
+  def wikirate_link_iframe_view
+    wrap_with :div, id: "webpage-preview", class: "webpage-preview" do
+      wrap_with :iframe, "",
+                id: "source-preview-iframe", src: preview_url,
+                sandbox: "allow-same-origin allow-scripts allow-forms",
+                security: "restricted"
+    end
+  end
+
+  def text_iframe_view
+    wrap_with :div, class: "container-fluid" do
+      wrap_with :div, class: "row-fluid" do
+        wrap_with :div, id: "text_source", class: "webpage-preview" do
+          text_card = card.fetch trait: :text
+          nest text_card, view: "open", hide: "toggle", title: "Text Source"
+        end
+      end
     end
   end
 
