@@ -1,7 +1,7 @@
 include_set Abstract::BrowseFilterForm
 
 def filter_keys
-  %w(claimed cited company topic)
+  %w(claimed cited wikirate_company wikirate_topic)
 end
 
 def extra_filter_args
