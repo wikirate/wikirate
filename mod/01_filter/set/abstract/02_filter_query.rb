@@ -5,7 +5,7 @@ class Filter
     @rules ||= {}
     @filter_keys_with_values = filter_keys_with_values
     @extra_wql = extra_wql
-    build_filter_wql
+    prepare_filter_wql
   end
 
   def prepare_filter_wql

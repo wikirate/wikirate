@@ -5,7 +5,7 @@ def filter_keys
 end
 
 def extra_filter_args
-  super.merge{ limit: 15 }
+  super.merge limit: 15
 end
 
 def sort_by wql, sort_by

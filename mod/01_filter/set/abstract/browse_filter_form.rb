@@ -30,7 +30,7 @@ def params_keys
 end
 
 def filter_class
-  Filter
+  Abstract::FilterQuery::Filter
 end
 
 def filter_wql

@@ -1,4 +1,20 @@
 include_set Abstract::BrowseFilterForm
+
+class TopicFilter < Abstract::FilterQuery::Filter
+  def wikirate_company_wql company
+    add_to_wql :found_by, "#{company}+topic"
+  end
+
+  def metric_wql metric
+    wql[:referred_to_by].push left: { name: metric }, right: "topic"
+  end
+
+  def project_wql project
+    return unless project.present?
+    wql[:referred_to_by] ||= []
+    wql[:referred_to_by].push left: { name: project }, right: "topic"
+  end
+end
 def default_sort_by_key
   "metric"
 end
@@ -11,26 +27,14 @@ def advanced_filter_keys
   %w(metric project wikirate_company)
 end
 
+def filter_class
+  TopicFilter
+end
+
 def target_type_id
   WikirateTopicID
 end
 
-def wql_by_metric wql, metric
-  return unless metric.present?
-  wql[:referred_to_by] ||= []
-  wql[:referred_to_by].push left: { name: metric }, right: "topic"
-end
-
-def wql_by_project wql, project
-  return unless project.present?
-  wql[:referred_to_by] ||= []
-  wql[:referred_to_by].push left: { name: project }, right: "topic"
-end
-
-def wql_by_wikirate_company wql, company
-  return unless company.present?
-  wql[:found_by] = "#{company}+topic"
-end
 
 format :html do
   def sort_options
