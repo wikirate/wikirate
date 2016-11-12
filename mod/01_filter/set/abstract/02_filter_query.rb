@@ -8,10 +8,8 @@ class Filter
     prepare_filter_wql
   end
 
-  def prepare_filter_wql
-    @filter_keys_with_values.each  do |key, values|
-      add_rule key, values
-    end
+  def add_to_wql key, value
+    @filter_wql[key] << value
   end
 
   def add_rule key, value
@@ -41,8 +39,15 @@ class Filter
     @wql.merge @extra_wql
   end
 
+  private
 
-  def array_merge key, values
+  def prepare_filter_wql
+    @filter_keys_with_values.each  do |key, values|
+      add_rule key, values
+    end
+  end
+
+  def array_merge wql_key, values
     if values.size.one?
       @wql[wql_key] = values.first
     else
@@ -50,8 +55,7 @@ class Filter
     end
   end
 
-
-  def and_merge key, values
+  def and_merge wql_key, values
     hash = and_merge_hash wql_key, values
     and_cond = hash.delete :and
     if and_cond.present?
@@ -68,7 +72,6 @@ class Filter
       and: and_merge_hash(key, values) }
   end
 
-  private
 
   def name_wql name
     return unless name.present?

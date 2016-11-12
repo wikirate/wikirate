@@ -27,13 +27,29 @@ def advanced_filter_keys
   %w(metric project wikirate_company)
 end
 
+def target_type_id
+  WikirateTopicID
+end
+
 def filter_class
   TopicFilter
 end
 
-def target_type_id
-  WikirateTopicID
+class TopicFilter < Abstract::FilterQuery::Filter
+  def metric_wql metric
+    add_to_wql :referred_to_by, left: { name: metric }, right: "topic"
+  end
+
+  def project_wql project
+    add_to_wql :referred_to_by, left: { name: project }, right: "topic"
 end
+
+  def wikirate_company_wql company
+    add_to_wql :found_by, "#{company}+topic"
+  end
+end
+
+
 
 
 format :html do
