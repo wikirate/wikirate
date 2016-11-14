@@ -1,5 +1,4 @@
 include_set Abstract::FilterFormgroups
-include_set Abstract::FilterQuery
 include_set Abstract::Utility
 
 def advanced_filter_keys

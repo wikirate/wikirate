@@ -30,7 +30,7 @@ def params_keys
 end
 
 def filter_class
-  Abstract::FilterQuery::Filter
+  Card::FilterQuery
 end
 
 def filter_wql

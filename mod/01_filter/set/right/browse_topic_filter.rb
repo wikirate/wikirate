@@ -1,7 +1,7 @@
 include_set Abstract::BrowseFilterForm
 
 
-class TopicFilterQuery < Abstract::FilterQuery
+class TopicFilterQuery < Card::FilterQuery
   def metric_wql metric
     add_to_wql :referred_to_by, left: { name: metric }, right: "topic"
   end

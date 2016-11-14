@@ -37,12 +37,12 @@ describe Card::Set::Abstract::BrowseFilterForm do
           with_tag :label, text: "Sort"
           with_tag :div do
             with_tag :div, with: { class: "editor" } do
-              with_tag :select, with: { name: "filtersort" }
+              with_tag :select, with: { name: "sort" }
             end
           end
           with_tag :div do
             with_tag :div, with: { class: "editor" } do
-              with_tag :input, with: { type: "text", name: "name" }
+              with_tag :input, with: { type: "text", name: "filter[name]" }
             end
           end
           with_tag :div, with: { class: "advanced-options" }

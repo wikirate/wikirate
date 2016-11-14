@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-describe Card::Set::Right::FilterSearch do
+describe Card::Set::Right::BrowseSourceFilter do
   before do
     login_as "joe_user"
   end
@@ -10,7 +10,7 @@ describe Card::Set::Right::FilterSearch do
   describe "views" do
     context "when rendering filter_form" do
       it "includes required formgroups" do
-        filter_search_card = Card[:claim].fetch trait: :filter_search
+        filter_search_card = Card[:claim].fetch trait: :browse_source_filter
         format = filter_search_card.format
         html = format.render_filter_form
 

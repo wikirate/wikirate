@@ -1,6 +1,6 @@
 include_set Abstract::BrowseFilterForm
 
-class CompanyFilterQuery < Abstract::FilterQuery
+class CompanyFilterQuery < Card::FilterQuery
   INDUSTRY_METRIC_NAME = "Global Reporting Initiative+Sector Industry"
   INDUSTRY_VALUE_YEAR = "2015"
   def wikirate_topic_wql value

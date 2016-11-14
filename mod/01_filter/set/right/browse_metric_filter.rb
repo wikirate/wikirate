@@ -1,6 +1,6 @@
 include_set Abstract::BrowseFilterForm
 
-class MetricFilterQuery < Abstract::FilterQuery
+class MetricFilterQuery < Card::FilterQuery
   def wikirate_topic_wql topic
     add_to_wql :right_plus, ["topic", { refer_to: topic }]
   end

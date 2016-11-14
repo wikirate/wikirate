@@ -1,6 +1,6 @@
 include_set Abstract::BrowseFilterForm
 
-class NoteFilterQuery < Abstract::FilterQuery
+class NoteFilterQuery < Card::FilterQuery
   def cited_wql
     case value
     when "yes" then @filter_wql[:referred_to_by] << cited_true_query[:referred_to_by]
@@ -22,7 +22,7 @@ class NoteFilterQuery < Abstract::FilterQuery
 end
 
 def filter_keys
-  %(cited wikirate_company wikirate_topic)
+  %w(cited wikirate_company wikirate_topic)
 end
 
 def filter_class
