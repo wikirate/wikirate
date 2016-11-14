@@ -1,7 +1,7 @@
 include_set Abstract::BrowseFilterForm
 
 
-class TopicFilter < Abstract::FilterQuery::Filter
+class TopicFilterQuery < Abstract::FilterQuery
   def metric_wql metric
     add_to_wql :referred_to_by, left: { name: metric }, right: "topic"
   end
@@ -32,7 +32,7 @@ def target_type_id
 end
 
 def filter_class
-  TopicFilter
+  TopicFilterQuery
 end
 
 format :html do

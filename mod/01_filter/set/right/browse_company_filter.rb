@@ -1,6 +1,6 @@
 include_set Abstract::BrowseFilterForm
 
-class CompanyFilter < Abstract::FilterQuery::Filter
+class CompanyFilterQuery < Abstract::FilterQuery
   INDUSTRY_METRIC_NAME = "Global Reporting Initiative+Sector Industry"
   INDUSTRY_VALUE_YEAR = "2015"
   def wikirate_topic_wql value
@@ -10,9 +10,9 @@ class CompanyFilter < Abstract::FilterQuery::Filter
   def industry_wql industry
     return unless industry.present?
     @filter_wql[:left_plus] << [
-        CompanyFilter::INDUSTRY_METRIC_NAME,
+        CompanyFilterQuery::INDUSTRY_METRIC_NAME,
         { right_plus: [
-            CompanyFilter::INDUSTRY_VALUE_YEAR,
+            CompanyFilterQuery::INDUSTRY_VALUE_YEAR,
             { right_plus: ["value", { eq: industry }] }
         ] }
     ]
@@ -28,7 +28,7 @@ def advanced_filter_keys
 end
 
 def filter_class
-  CompanyFilter
+  CompanyFilterQuery
 end
 
 format :html do

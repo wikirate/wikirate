@@ -1,6 +1,6 @@
 include_set Abstract::BrowseFilterForm
 
-class MetricFilter < Abstract::FilterQuery::Filter
+class MetricFilterQuery < Abstract::FilterQuery
   def wikirate_topic_wql topic
     add_to_wql :right_plus, ["topic", { refer_to: topic }]
   end
@@ -55,7 +55,7 @@ def target_type_id
 end
 
 def filter_class
-  MetricFilter
+  MetricFilterQuery
 end
 
 def sort_by wql, sort_by

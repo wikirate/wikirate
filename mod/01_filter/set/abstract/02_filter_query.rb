@@ -1,4 +1,6 @@
-class Filter
+#! no set module
+
+class FilterQuery
   def initialize filter_keys_with_values, extra_wql={}
     @filter_wql = Hash.new { |h, k| h[k] = [] }
     @rules = yield if block_given?
@@ -84,17 +86,3 @@ class Filter
     @filter_wql[:referred_to_by] << { left: { name: project } }
   end
 end
-
-def search_wql type_id, opts, params_keys, return_param=nil, &block
-
-  wql = { type_id: type_id }
-  wql[:return] = return_param if return_param
-  Filter.new(filter_keys_with_values, Env.params[:sort], wql, &wql).to_wql
-  # params_keys.each do |key|
-  #   # link_to in #page_link with name will override the path
-  #   method_name = key.include?("_name") ? "name" : key
-  #   send("wql_by_#{method_name}", wql, opts[key])
-  # end
-  # wql
-end
-
