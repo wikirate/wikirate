@@ -99,15 +99,19 @@ def create_migration_file name, type
   puts "creating migration file...".yellow
   migration_out = `bundle exec wagn generate card:migration #{name}`
   migration_file = migration_out[/db.*/]
-  unless (type_id = Card.fetch_id(type))
+  unless (type_card = Card.fetch(type))
     color_puts "invalid type", :red, type
     return
   end
-  codename_string =
-    <<-RUBY
-    create_or_update name: '#{Card.fetch(name).name}',
+  write_at(migration_file, 5, migration_content(name, type_card)) # 5 is line no.
+end
+
+def migration_content name, type_card
+  type_id = "Card::#{type_card.codename.camelcase}ID"
+  card_name = Card.fetch_name(name) || name
+  <<-RUBY
+    create_or_update name: '#{card_name}',
                      type_id: #{type_id},
                      codename: '#{name}'
   RUBY
-  write_at(migration_file, 5, codename_string) # 5 is line no.
 end

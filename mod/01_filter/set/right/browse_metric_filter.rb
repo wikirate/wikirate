@@ -1,5 +1,39 @@
 include_set Abstract::BrowseFilterForm
 
+class MetricFilter < Abstract::FilterQuery::Filter
+  def wikirate_topic_wql topic
+    add_to_wql :right_plus, ["topic", { refer_to: topic }]
+  end
+
+  def wikirate_company_wql company
+    add_to_wql :right_plus, [company, {}]
+  end
+
+  def project_wql project
+    add_to_wql :referred_to_by, left: { name: project }, right: "metric"
+  end
+
+  def year_wql year
+    add_to_wql :right_plus, [type_id: Card::WikirateCompanyID,
+                          right_plus: [{ name: year }, {}]]
+  end
+
+  def designer_wql designer
+    add_to_wql :or, left: designer,
+                  right: designer
+  end
+
+  def metric_type_wql metric_type
+    add_to_wql :right_plus,
+             [Card[:metric_type].name, { refer_to: metric_type }]
+  end
+
+  def research_policy_wql research_policy
+    add_to_wql :right_plus,
+             [Card[:research_policy].name, { refer_to: research_policy }]
+  end
+end
+
 def default_sort_by_key
   "upvoted"
 end
@@ -20,6 +54,10 @@ def target_type_id
   MetricID
 end
 
+def filter_class
+  MetricFilter
+end
+
 def sort_by wql, sort_by
   super wql, sort_by
   wql[:sort] =
@@ -37,56 +75,6 @@ def sort_by wql, sort_by
     end
 end
 
-def wql_by_wikirate_topic wql, topic
-  return unless topic.present?
-  wql[:right_plus] ||= []
-  wql[:right_plus].push ["topic", { refer_to: topic }]
-end
-
-def wql_by_wikirate_company wql, company
-  return unless company.present?
-  wql[:right_plus] ||= []
-  wql[:right_plus].push [company, {}]
-end
-
-def wql_by_project wql, project
-  return unless project.present?
-  wql[:referred_to_by] = { left: { name: project }, right: "metric" }
-end
-
-def wql_by_year wql, year
-  return unless year.present?
-  wql[:right_plus] ||= []
-  wql[:right_plus].push [
-    { type_id: Card::WikirateCompanyID },
-    { right_plus: [{ name: year }, {}] }
-  ]
-end
-
-def wql_by_designer wql, designer
-  return unless designer.present?
-  wql[:or] = {
-    left: designer,
-    right: designer
-  }
-end
-
-def wql_by_metric_type wql, metric_type
-  return unless metric_type.present?
-  wql[:right_plus] ||= []
-  wql[:right_plus].push [
-    Card[:metric_type].name, { refer_to: metric_type }
-  ]
-end
-
-def wql_by_research_policy wql, research_policy
-  return unless research_policy.present?
-  wql[:right_plus] ||= []
-  wql[:right_plus].push [
-    Card[:research_policy].name, { refer_to: research_policy }
-  ]
-end
-
 format :html do
   def sort_options
     {
@@ -101,9 +89,8 @@ format :html do
     "upvoted"
   end
 
-  def default_metric_type_formgroup_args args
-    # set it to select list
-    args[:select_list] = true
+  view :metric_type_formgroup do
+    metric_type_select
   end
 
   view :research_policy_formgroup do

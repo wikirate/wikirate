@@ -22,15 +22,15 @@ format :html do
   end
 
   view :metric_type_formgroup do |args|
+    checkbox_filter "Type", options
+  end
+
+  def metric_type_select
     options = metric_type_filter_options.map { |n| Card.quick_fetch(n).name }
-    if args[:select_list]
-      options.unshift(["--", ""])
-      simple_select_filter :metric_type, options,
-                           filter_value_from_params(:metric_type),
-                           "Metric Type"
-    else
-      checkbox_filter "Type", options
-    end
+    options.unshift(["--", ""])
+    simple_select_filter :metric_type, options,
+                         filter_value_from_params(:metric_type),
+                         "Metric Type"
   end
 
   def metric_type_filter_options
@@ -44,6 +44,10 @@ format :html do
       options = type_options :research_policy
       checkbox_filter "Research Policy", options
     end
+  end
+
+  def research_policy_select
+    select_filter :research_policy, "asc"
   end
 
   view :metric_value_formgroup do

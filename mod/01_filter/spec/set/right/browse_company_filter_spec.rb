@@ -2,10 +2,10 @@
 
 require File.expand_path("../filter_spec_helper.rb", __FILE__)
 
-describe Card::Set::Right::FilterSearchCompany do
+describe Card::Set::Right::BrowseCompanyFilter do
   let(:card) do
     card = Card.new name: "test card"
-    card.singleton_class.send :include, Card::Set::Right::FilterSearchCompany
+    card.singleton_class.send :include, Card::Set::Right::BrowseCompanyFilter
     card
   end
 
@@ -17,21 +17,22 @@ describe Card::Set::Right::FilterSearchCompany do
     end
 
     context "name argument" do
-      before { filter_args name: "Animal Rights" }
-      it { is_expected.to eq wql(name: ["match", "Animal Rights"]) }
+      before { filter_args name: "Apple" }
+      it { is_expected.to eq wql(name: ["match", "Apple"]) }
     end
 
     context "topic argument" do
-      before { filter_args wikirate_company: "Apple Inc" }
-      it { is_expected.to eq wql(found_by: "Apple Inc+topic") }
+      before { filter_args wikirate_topic: "Animal Rights" }
+      it { is_expected.to eq wql(found_by: "Animal Rights+Company") }
     end
 
     context "industry argument" do
-      before { filter_args metric: "myIndustry" }
+      before { filter_args industry: "myIndustry" }
       it do
         is_expected.to eq wql(
-                              referred_to_by: { left: { name: "myMetric" }, right: "topic" }
-                          )
+          left_plus: ["Global Reporting Initiative+Sector Industry",
+                        { right_plus: ["2015", { right_plus: ["value", { eq: "myIndustry" }] }] }]
+        )
       end
     end
 
@@ -39,27 +40,26 @@ describe Card::Set::Right::FilterSearchCompany do
       before { filter_args project: "myProject" }
       it do
         is_expected.to eq wql(
-                              referred_to_by: { left: { name: "myProject" }, right: "topic" }
+                              referred_to_by: { left: { name: "myProject" } }
                           )
       end
     end
 
     context "multiple filter conditions" do
       before do
-        filter_args name: "Animal Rights",
-                    wikirate_topic: "Apple Inc",
+        filter_args name: "Apple",
+                    wikirate_topic: "Animal Rights",
                     industry: "myIndustry",
                     project: "myProject"
       end
       it "joins filter conditions correctly" do
         is_expected.to eq wql(
-                              name: ["match", "Animal Rights"],
-                              found_by: "Apple Inc+topic",
-                              referred_to_by: [
-                                  { left: { name: "myMetric" }, right: "topic" },
-                                  { left: { name: "myProject" }, right: "topic" }
-                              ]
-                          )
+          name: ["match", "Apple"],
+            found_by: "Animal Rights+Company",
+            left_plus: ["Global Reporting Initiative+Sector Industry",
+                           { right_plus: ["2015", { right_plus: ["value", { eq: "myIndustry" }] }] }],
+            referred_to_by: { left: { name: "myProject" } }
+        )
       end
     end
   end

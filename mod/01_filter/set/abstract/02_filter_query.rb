@@ -13,6 +13,7 @@ class Filter
   end
 
   def add_rule key, value
+    return unless value.present?
     case @rules[key]
     when Symbol
       send("#{@rules[key]}_rule", key, value)
@@ -65,8 +66,8 @@ class Filter
     @wql.merge! hash
   end
 
-  def and_merge_hash
-    return { key: values[0] } if values.size.one?
+  def and_merge_hash key, values
+    return { key => values[0] } if values.one?
     val = values.pop
     { key => val,
       and: and_merge_hash(key, values) }

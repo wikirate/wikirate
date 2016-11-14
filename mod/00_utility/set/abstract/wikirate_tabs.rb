@@ -48,9 +48,9 @@ format :html do
                            class: "inherit-anchor"
             end
           end
-          add_html wikirate_tabs(tabs, type, extra)
+          html wikirate_tabs(tabs, type, extra)
         end
-        add_html field_nest("right sidebar")
+        html field_nest("right sidebar")
       end
     end
     # <<-HTML

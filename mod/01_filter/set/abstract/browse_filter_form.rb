@@ -46,7 +46,6 @@ def target_type_id
 end
 
 def get_query params={}
-  binding.pry
   search_args = filter_wql
   sort_by search_args, Env.params["sort"] if sort?
   params[:query] = search_args
@@ -94,9 +93,9 @@ end
 
 
 format :html do
-  view :no_search_results do |_args|
-    wrap_with :div, "No result", class: "search-no-results"
-  end
+  # view :no_search_results do |_args|
+  #   wrap_with :div, "No result", class: "search-no-results"
+  # end
 
   view :filter_form do |args|
     action = card.left.name
@@ -105,7 +104,7 @@ format :html do
         _optional_render(:sort_formgroup),
         main_filter_formgroups,
         advanced_filter_formgroups,
-        _optional_render(:button_formgroup, args)
+        filter_button_formgroup
       ]
     end
   end
@@ -125,21 +124,25 @@ format :html do
     link_to raw(text), options
   end
 
-  def default_button_formgroup_args args
-    toggle_text = filter_advanced_active? ? "Hide Advanced" : "Show Advanced"
-    buttons = [
-      link_to_card(card.cardname.left_name, "Reset",
-                   class: "slotter btn btn-default margin-8")
-    ]
-    unless card.advanced_filter_keys.empty?
-      buttons.unshift(content_tag(:a, toggle_text,
-                                  href: "#collapseFilter",
-                                  class: "btn btn-default",
-                                  data: { toggle: "collapse",
-                                          collapseintext: "Hide Advanced",
-                                          collapseouttext: "Show Advanced" }))
+  def filter_button_formgroup
+    button_formgroup do
+      [advanced_button, reset_button]
     end
-    args[:buttons] = buttons.join
+  end
+
+  def reset_button
+    link_to_card(card.cardname.left_name, "Reset",
+                 class: "slotter btn btn-default margin-8")
+  end
+
+  def advanced_button
+    toggle_text = filter_advanced_active? ? "Hide Advanced" : "Show Advanced"
+    content_tag :a, toggle_text,
+                 href: "#collapseFilter",
+                 class: "btn btn-default",
+                 data: { toggle: "collapse",
+                         collapseintext: "Hide Advanced",
+                         collapseouttext: "Show Advanced" }
   end
 
   def advanced_filter_formgroups
