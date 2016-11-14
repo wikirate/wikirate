@@ -46,6 +46,7 @@ def target_type_id
 end
 
 def get_query params={}
+  binding.pry
   search_args = filter_wql
   sort_by search_args, Env.params["sort"] if sort?
   params[:query] = search_args

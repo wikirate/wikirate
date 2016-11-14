@@ -75,8 +75,8 @@ format :html do
   end
 
   view :industry_formgroup do
-    industries = Card[card.industry_metric_name].value_options
-    simple_select_filter :industry, [["--", ""]] + industries, nil, "Industry"
+    simple_select_filter :industry, [["--", ""]] + industry_options,
+                         nil, "Industry"
   end
 
   view :sort_formgroup do
@@ -91,7 +91,10 @@ format :html do
     {}
   end
 
-
+  def industry_options
+    card_name = Right::BrowseCompanyFilter::CompanyFilter::INDUSTRY_METRIC_NAME
+    Card[card_name].value_options
+  end
 
   def all_metric_designers
     metrics = Card.search type_id: MetricID, return: :name

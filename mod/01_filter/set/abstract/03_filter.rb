@@ -7,10 +7,10 @@ def advanced_filter_keys
 end
 
 def filter_keys_with_values
-  (filter_keys +  advanced_filter_keys).each do |key|
-    next unless (values = filter_params(key))
-    yield key, values
-  end
+  (filter_keys + advanced_filter_keys).map do |key|
+    next unless (values = filter_param(key))
+    [key, values]
+  end.compact
 end
 
 

@@ -48,7 +48,7 @@ class Filter
   end
 
   def array_merge wql_key, values
-    if values.size.one?
+    if values.one?
       @wql[wql_key] = values.first
     else
       @wql[wql_key] = values
@@ -81,25 +81,6 @@ class Filter
   def project_wql project
     return unless project.present?
     @filter_wql[:referred_to_by] << { left: { name: project } }
-  end
-
-  def industry_wql industry
-    return unless industry.present?
-    @filter_wql[:left_plus] << [
-      industry_metric_name,
-      { right_plus: [
-        industry_value_year,
-        { right_plus: ["value", { eq: industry }] }
-      ] }
-    ]
-  end
-
-  def industry_metric_name
-    "Global Reporting Initiative+Sector Industry"
-  end
-
-  def industry_value_year
-    "2015"
   end
 end
 
