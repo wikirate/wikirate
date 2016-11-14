@@ -81,7 +81,6 @@ describe Card::Set::Right::FilterSearch do
               #company: [@new_company.name, @new_company1.name],
               #tag: "thisisatestingtag"
             }
-binding.pry
             html = Card[:claim].format.render_core
             expect(html).to have_tag("div", with: { id: div_id }) do
               with_tag("div", class: "search-result-list") do

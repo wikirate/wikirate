@@ -1,6 +1,10 @@
 include_set Abstract::FilterFormHelper
 
 format :html do
+  view :name_formgroup do
+    text_filter :name
+  end
+
   view :project_formgroup do
     select_filter :project, "asc"
   end
@@ -21,29 +25,25 @@ format :html do
     select_filter :wikirate_company, "asc"
   end
 
-  view :metric_type_formgroup do |args|
-    checkbox_filter "Type", options
+  view :metric_type_formgroup do
+    checkbox_filter :metric_type, metric_type_filter_options
   end
 
   def metric_type_select
-    options = metric_type_filter_options.map { |n| Card.quick_fetch(n).name }
+    options = metric_type_filter_options
     options.unshift(["--", ""])
     simple_select_filter :metric_type, options,
-                         filter_value_from_params(:metric_type),
+                         filter_param(:metric_type),
                          "Metric Type"
   end
 
   def metric_type_filter_options
-    [:researched, :formula, :wiki_rating]
+    [:researched, :formula, :wiki_rating].map { |n| Card.quick_fetch(n).name }
   end
 
-  view :research_policy_formgroup do |args|
-    if args[:select_list]
-      select_filter :research_policy, "asc"
-    else
-      options = type_options :research_policy
-      checkbox_filter "Research Policy", options
-    end
+  view :research_policy_formgroup do
+    options = type_options :research_policy
+    checkbox_filter "Research Policy", options
   end
 
   def research_policy_select
@@ -61,11 +61,6 @@ format :html do
       "Outliers" => "outliers"
     }
     simple_select_filter :value, options, "exists"
-  end
-
-
-  def filter_value_from_params category
-    Env.params[:filter] && Env.params[:filter][category]
   end
 
   view :designer_formgroup do

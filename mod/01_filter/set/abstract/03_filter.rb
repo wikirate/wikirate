@@ -14,7 +14,6 @@ def filter_keys_with_values
 end
 
 
-
 format :html do
   def view_caching?
     false

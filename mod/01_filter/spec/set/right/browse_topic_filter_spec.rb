@@ -2,10 +2,10 @@
 
 require File.expand_path("../filter_spec_helper.rb", __FILE__)
 
-describe Card::Set::Right::FilterSearchTopic do
+describe Card::Set::Right::BrowseTopicFilter do
   let(:card) do
     card = Card.new name: "test card"
-    card.singleton_class.send :include, Card::Set::Right::FilterSearchTopic
+    card.singleton_class.send :include, Card::Set::Right::BrowseTopicFilter
     card
   end
 

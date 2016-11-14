@@ -25,15 +25,14 @@ format :html do
     select_filter_tag filter_field, options, default, label
   end
 
-
-  def simple_multiselect_filter type_name, options, default, label=nil
+  def simple_multiselect_filter filter_field, options, default, label=nil
     options = options_for_select(options, default)
-    label ||= type_name.capitalize
-    name = filter_name type_name, true
+    label ||= filter_field.capitalize
+    name = filter_name filter_field, true
     multiselect_tag = select_tag(name, options,
                                  multiple: true,
                                  class: "pointer-multiselect")
-    formgroup(label, class: "filter-input #{type_name}") do
+    formgroup(label, class: "filter-input #{filter_field}") do
       multiselect_tag
     end
   end
@@ -48,7 +47,7 @@ format :html do
 
   def checkbox_filter title, options, default=nil
     key = title.to_name.key
-    param = filter_value_from_params(title) || default
+    param = filter_param(title) || default
     checkboxes = options.map do |option|
       checked = param.present? && param.include?(option.downcase)
       name = filter_name key, true
@@ -64,25 +63,18 @@ format :html do
     Card.search type_id: type_card.id, return: :name, sort: "name", dir: order
   end
 
-  def text_filter type_name, args
-    name = filter_name type_name
-    formgroup args[:title] || type_name.capitalize, class: " filter-input" do
-      text_field_tag name, params[type_name], class: "form-control"
+  def text_filter filter_field
+    name = filter_name filter_field
+    formgroup filter_label(filter_field), class: " filter-input" do
+      text_field_tag name, filter_param(filter_field), class: "form-control"
     end
   end
 
-  view :name_formgroup do |args|
-    name = args[:name] || "name"
-    title = args[:title] || "Keyword"
-    text_filter name, title: title
-  end
-
-
-  def select_filter_tag type_name, options, default, label, no_chosen=false
+  def select_filter_tag filter_field, options, default, label, no_chosen=false
     options = options_for_select(options, default)
-    label ||= filter_label type_name
+    label ||= filter_label filter_field
     css_class = no_chosen ? "" : "pointer-select"
-    name = filter_name type_name
+    name = filter_name filter_field
     formgroup label, class: "filter-input " do
       select_tag(name, options, class: css_class)
     end
@@ -93,6 +85,7 @@ format :html do
   end
 
   def filter_label field
+    return "Keyword" if field.to_sym == :name
     Card.fetch_name(field) { field.to_s.capitalize }
   end
 
