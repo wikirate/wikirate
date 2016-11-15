@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-require File.expand_path("../filter_spec_helper.rb", __FILE__)
+require File.expand_path("../../filter_spec_helper.rb", __FILE__)
 
 describe Card::Set::Right::BrowseMetricFilter do
   let(:card) do

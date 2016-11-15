@@ -58,17 +58,34 @@ def item_cards params={}
   s = query(params)
   raise("OH NO.. no limit") unless s[:limit]
   query = Query.new(s, comment)
-  #shift_sort_table query
+  shift_sort_table query
   query.run
 end
 
+# HenryHack® below!
+# My guess is that sort queries like
+# sort: { right: "value", right_plus: "*cached count" }
+# are not supported by wql but the HenryHack® makes it work
+# -pk
+# evolved theory:
+# There are two statements in the sort hash.
+# wql uses the result of the first one for sorting, but we
+# we want to sort by the result of the second statement
+# and this shift stuff ensures that
+# -pk
 def shift_sort_table query
-  if sort? && shift_sort_table?
+  if sort? && shift_sort_table?(query)
     # sort table alias always stick to the first table,
     # but I need the next table
     sort = query.mods[:sort].scan(/c(\d+).db_content/).last.first.to_i + 1
     query.mods[:sort] = "c#{sort}.db_content"
   end
+end
+
+# return value based on the (unproven) theory above
+def shift_sort_table? query
+  return unless (sort_statement = query.statement[:sort])
+  sort_statement.is_a?(Hash) && sort_statement.size > 1
 end
 
 def add_sort_wql wql, sort_by
@@ -162,7 +179,4 @@ format :html do
     </div>
     HTML
   end
-
-
-
 end

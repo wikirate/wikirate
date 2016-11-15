@@ -38,10 +38,6 @@ def default_sort_by_key
   "upvoted"
 end
 
-def shift_sort_table?
-  %w(values company).include?(Env.params["sort"] || default_sort_by_key)
-end
-
 def filter_keys
   %w(name wikirate_topic wikirate_company)
 end
