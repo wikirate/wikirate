@@ -7,72 +7,79 @@ describe Card::Set::Right::BrowseNoteFilter do
 
   let(:div_id) { Card.fetch(:claim, :browse_note_filter).cardname.url_key }
   let(:filter_card) { Card.fetch :claim, :browse_note_filter }
-  let(:item_names) { filter_card.item_names }
+  let(:filtered_item_names) { filter_card.item_names }
+
   describe "filter result" do
-    subject { Card[:claim].format(:html).render_core }
-
-    before do
-      @company_card = get_a_sample_company
-      @topic_card = get_a_sample_topic
-
-      @new_company = Card.create name: "test_company", type_id: Card::WikirateCompanyID
-      @new_topic = Card.create name: "test_topic", type_id: Card::WikirateTopicID
-
-      @new_company1 = Card.create name: "test_company1", type_id: Card::WikirateCompanyID
-      @new_topic1 = Card.create name: "test_topic1", type_id: Card::WikirateTopicID
-      @claim_card = create_claim(
-          "whateverclaim",
-          "+company" => { content: "[[#{@new_company.name}]]\r\n[[#{@new_company1.name}]]" },
-          "+topic" => { content: "[[#{@new_topic.name}]]\r\n[[#{@new_topic1.name}]]" },
-          "+tag" => { content: "[[thisisatestingtag]]\r\n[[thisisalsoatestingtag]]" }
-      )
-    end
-
-    it "filters by company and topic" do
-      add_filter :wikirate_topic, [@new_topic.name, @new_topic1.name]
-      add_filter :wikirate_company, [@new_company.name, @new_company1.name]
-      expect(item_names).to eq ["whateverclaim"]
+    def expect_filter_result
       is_expected.to have_tag("div", with: { id: div_id }) do
         with_tag("div", class: "search-result-list") do
           with_tag("div", class: "search-result-item item-content") do
-            with_tag("div", with: { id: "whateverclaim" })
+            yield
           end
         end
       end
     end
 
-    context "when condition does not match" do
-      it "uses non related company" do
-        add_filter :wikirate_company, "Iamnoangel"
-        is_expected.to have_tag("div", with: { id: div_id }) do
-          without_tag("div", with: { id: "whateverclaim" })
-        end
+    def expect_filter_result_with id
+      expect_filter_result do
+        with_tag("div", with: { id: id })
       end
-      it "uses non related topic" do
-        add_filter :wikirate_topic, "Iamnodemon"
-        is_expected.to have_tag("div", with: { id: div_id }) do
-          without_tag("div", with: { id: "whateverclaim" })
-        end
+    end
+
+    def expect_filter_result_without id
+      expect_filter_result do
+        without_tag("div", with: { id: id })
       end
-      it "is cited" do
+    end
+
+    subject { Card[:claim].format(:html).render_core }
+
+    let(:topics) { sample_topics 2 }
+    let(:topic_names) { topics.map(&:name) }
+    let(:companies) { sample_companies 2 }
+    let(:company_names) { companies.map(&:name) }
+    before do
+      @claim_card = create_claim(
+          "test_note",
+          "+company" => company_names.to_pointer_content,
+          "+topic" => topic_names.to_pointer_content
+      )
+    end
+
+    it "passes company and topic filter" do
+      add_filter :wikirate_topic, topic_names
+      add_filter :wikirate_company, company_names
+      expect(filtered_item_names).to eq ["test_note"]
+      expect_filter_result_with "test_note"
+    end
+
+    it "passes cited filter" do
+      add_filter :cited, "no"
+      expect_filter_result_with "test_note"
+    end
+
+    context "when condition does not match ..." do
+      it "... company" do
+        add_filter :wikirate_company, "no match"
+        expect_filter_result_without "test_note"
+      end
+      it "... topic" do
+        add_filter :wikirate_topic, "no match"
+        expect_filter_result_without "test_note"
+      end
+      it "... cited" do
         add_filter :cited, "yes"
-        is_expected.to have_tag("div", with: { id: div_id }) do
-          without_tag("div", with: { id: "whateverclaim" })
-        end
+        expect_filter_result_without "test_note"
       end
-      it "is not cited" do
+      it "... not cited" do
         add_filter :cited, "no"
-        is_expected.to have_tag("div", with: { id: div_id }) do
-          with_tag("div", with: { id: "whateverclaim" })
-        end
-        Card.create name: "#{@new_company.name}+#{@new_topic.name}",
-                    type_id: Card::WikirateAnalysisID
-        Card.create name: "#{@new_company.name}+#{@new_topic.name}+#{Card[:overview].name}",
-                    type_id: Card::BasicID,
-                    content: "sdafdsf #{@claim_card.default_citation}"
-        is_expected.to have_tag("div", with: { id: div_id }) do
-          without_tag("div", with: { id: "whateverclaim" })
-        end
+        ensure_card "#{company_names.first}+#{topic_names.first}",
+                    type_id: Card::WikirateAnalysisID,
+                    subcards: {
+                      "+#{Card[:overview].name}" => @claim_card.default_citation
+                    }
+
+        expect_filter_result_without "test_note"
       end
     end
 
@@ -97,15 +104,15 @@ describe Card::Set::Right::BrowseNoteFilter do
       it "sorts by most recent" do
         Card::Env.params[:sort] = "recent"
         create_claims
-        expect(item_names[0..2]).to eq %w(important_and_recent claim1 whateverclaim)
-        expect(subject.index("claim1")).to be < subject.index("whateverclaim")
+        expect(filtered_item_names[0..2]).to eq %w(important_and_recent claim1 test_note)
+        expect(subject.index("claim1")).to be < subject.index("test_note")
       end
 
       it "sorts by most important" do
         Card::Env.params[:sort] = "important"
         create_voted_claims
-        expect(item_names[0..2]).to eq %w(important_and_recent whateverclaim claim1)
-        expect(subject.index("whateverclaim")).to be < subject.index("claim1")
+        expect(filtered_item_names[0..2]).to eq %w(important_and_recent test_note claim1)
+        expect(subject.index("test_note")).to be < subject.index("claim1")
       end
     end
   end

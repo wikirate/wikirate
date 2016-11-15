@@ -120,6 +120,14 @@ def get_a_sample_topic
   Card["Force"]
 end
 
+def sample_companies num=1, args={}
+  Card.search args.merge(type_id: Card::WikirateCompanyID, limit: num)
+end
+
+def sample_topics num=1, args={}
+  Card.search args.merge(type_id: Card::WikirateTopicID, limit: num)
+end
+
 def get_a_sample_analysis
   Card["Death Star+Force"]
 end
