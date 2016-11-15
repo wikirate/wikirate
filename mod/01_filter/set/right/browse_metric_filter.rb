@@ -58,7 +58,7 @@ def filter_class
   MetricFilterQuery
 end
 
-def sort_by wql, sort_by
+def add_sort_wql wql, sort_by
   super wql, sort_by
   wql[:sort] =
     case sort_by

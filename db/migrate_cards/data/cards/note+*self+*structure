@@ -1,0 +1,12 @@
+<p>{{+description}}</p>
+<div class="new-note-button">
+  {{Note|add_button}}
+</div>
+<div class="filter-search-form">
+{{_+browse note filter|filter_form}}
+</div>
+{{_+browse note filter||content; structure:note item}}
+<!-- below is a hack for visibility on the "chosen" fields -->
+<p></p>
+<p></p>
+<p></p>

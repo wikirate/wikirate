@@ -47,7 +47,7 @@ end
 
 def get_query params={}
   search_args = filter_wql
-  sort_by search_args, Env.params["sort"] if sort?
+  add_sort_wql search_args, sort_param if sort?
   params[:query] = search_args
   super(params)
 end
@@ -58,7 +58,7 @@ def item_cards params={}
   s = query(params)
   raise("OH NO.. no limit") unless s[:limit]
   query = Query.new(s, comment)
-  shift_sort_table query
+  #shift_sort_table query
   query.run
 end
 
@@ -71,15 +71,16 @@ def shift_sort_table query
   end
 end
 
-def sort_by wql, sort_by
+def add_sort_wql wql, sort_by
   if sort_by == "name"
     wql[:sort] = "name"
   else
-    wql[:sort_as] = "integer"
-    wql[:dir] = "desc"
-    wql[:sort] = {
-      right: (sort_by || default_sort_by_key), right_plus: "*cached count"
-    }
+    wql.merge! sort:  {
+                  right: (sort_by || default_sort_by_key),
+                  right_plus: "*cached count"
+               },
+               sort_as: "integer",
+               dir: "desc"
   end
 end
 
@@ -162,22 +163,6 @@ format :html do
     HTML
   end
 
-  view :cited_formgroup do |_args|
-    options = { "All" => "all", "Yes" => "yes", "No" => "no" }
-    simple_select_filter :cited, options, "all", "Cited"
-  end
 
-  view :claimed_formgroup do |_args|
-    options = { "All" => "all", "Yes" => "yes", "No" => "no" }
-    simple_select_filter :claimed, options, "all", "Has Notes?"
-  end
-
-  view :company_formgroup do
-    multiselect_filter :wikirate_company, "Company"
-  end
-
-  view :topic_formgroup do
-    multiselect_filter :wikirate_topic, "Topic"
-  end
 
 end

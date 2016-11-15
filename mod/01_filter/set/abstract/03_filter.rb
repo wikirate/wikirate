@@ -39,7 +39,7 @@ format :html do
   end
 
   def page_link_params
-    [:sort] + card.params_keys
+    [:sort, filter_keys, advanced_filter_keys].flatten.compact
   end
 
   def sort_options

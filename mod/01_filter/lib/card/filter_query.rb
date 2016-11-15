@@ -33,9 +33,9 @@ class Card
         next if values.empty?
         case wql_key
         when :right_plus, :left_plus, :type
-          and_merge wql_key, values
+          merge_using_and wql_key, values
         else
-          array_merge wql_key, values
+          merge_using_array wql_key, values
         end
       end
       @wql.merge @extra_wql
@@ -49,31 +49,22 @@ class Card
       end
     end
 
-    def array_merge wql_key, values
-      if values.one?
-        @wql[wql_key] = values.first
-      else
-        @wql[wql_key] = values
-      end
+    def merge_using_array wql_key, values
+      @wql[wql_key] = values.one? ? values.first : values
     end
 
-    def and_merge wql_key, values
-      hash = and_merge_hash wql_key, values
-      and_cond = hash.delete :and
-      if and_cond.present?
-        @wql[:and] ||= {}
-        @wql[:and].merge! and_cond
-      end
-      @wql.merge! hash
+    def merge_using_and wql_key, values
+      hash = build_nested_hash wql_key, values
+      @wql.deep_merge! hash
     end
 
-    def and_merge_hash key, values
+    # nest values with the same key using :and
+    def build_nested_hash key, values
       return { key => values[0] } if values.one?
       val = values.pop
       { key => val,
-        and: and_merge_hash(key, values) }
+        and: build_nested_hash(key, values) }
     end
-
 
     def name_wql name
       return unless name.present?

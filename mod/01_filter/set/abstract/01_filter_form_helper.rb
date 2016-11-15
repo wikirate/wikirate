@@ -1,5 +1,9 @@
 def filter_param field
-  (filter = Env.params[:filter]) && filter[field]
+  (filter = Env.params[:filter]) && filter[field.to_sym]
+end
+
+def sort_param
+  Env.params[:sort]
 end
 
 format :html do

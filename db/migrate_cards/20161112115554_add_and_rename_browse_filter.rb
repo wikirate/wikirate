@@ -4,6 +4,7 @@ class AddAndRenameBrowseFilter < Card::Migration
   def up
     update_existing_filter_cards
     create_new_filter_cards
+    import_cards 'import_browse_notes_and_sources.json'
   end
 
   def update_existing_filter_cards
