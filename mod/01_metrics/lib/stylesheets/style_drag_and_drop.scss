@@ -142,15 +142,15 @@ $bright-text-color: #e5e5e5;
     }
   }
 
-  &.open-view  .nav-tabs{
-    display:inline-block;
-    border:0px;
-    margin-top: 1px;
-    width: 72%;
-    >li{
-      width:20%;
-    }
-  }
+  //&.open-view  .nav-tabs{
+  //  display:inline-block;
+  //  border:0px;
+  //  margin-top: 1px;
+  //  width: 72%;
+  //  >li{
+  //    width:20%;
+  //  }
+  //}
 
 }
 
@@ -221,9 +221,7 @@ $bright-text-color: #e5e5e5;
 .discussion-container{
   margin-bottom:100px;
 }
-.TYPE-metric.open-view>.card-frame >.panel-body {
-  padding: 0;
-}
+
 .TYPE-metric{
   .question{
     font-weight: normal;

@@ -65,15 +65,41 @@ format :html do
     # HTML
   end
 
-  view :details_tab do |args|
-    "Details"
+  view :details_tab do |_args|
+    layout do
+      row 12 do
+        column _render_recent_editors
+      end
+      row 12 do
+        column _render_overview_section
+      end
+    end
   end
 
-  view :projects_tab do |args|
-    "projects"
+  view :recent_editors do |_args|
+    process_content <<-HTML
+    <div class="row clearfix company-header-content" >
+ 			  <h5>{{_l+*contribution count|core}} Contributions about {{_l|name}}</h5>
+ 				<div class="col-md-6 column ">
+ 				  <small>Recent Editors</small>
+ 				  {{_l+contributors_3|hide:paging|content ;structure:recent editor item}}
+ 				</div>
+ 			</div>
+    HTML
   end
 
-  view :sources_tab do |args|
+  view :overview_section do |_args|
+    field_nest(:general_overview, view: :titled_with_edits)
+  end
+
+  view :projects_tab do |_args|
+    # FIXME
+    process_content <<-HTML
+    {{_l+initiatives 3|hide:paging|content ;structure:initiative item}}
+    HTML
+  end
+
+  view :sources_tab do |_args|
     field_nest(:source, view: :content, items: { view: :source_list_item })
   end
 
