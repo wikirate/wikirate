@@ -18,6 +18,7 @@ format :html do
   end
 
   view :core do
+    binding.pry
     action = card.cardname.left_name.url_key
     filter_active = filter_active? ? "block" : "none"
     <<-HTML
@@ -36,10 +37,10 @@ format :html do
   <<-HTML
       <div class="margin-12 sub-content">
         #{main_filter_formgroups}
-        #{_optional_render(:sort_formgroup, args)}
+    #{_optional_render_sort_formgroup}
       </div>
       <div class="filter-buttons">
-        #{_render :button_formgroup, args}
+        #{filter_button_formgroup} # FIXME wrong buttons check for view button_formgroup in old code
       </div>
   HTML
   end
