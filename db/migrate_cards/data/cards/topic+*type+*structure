@@ -11,6 +11,7 @@
         </div>
       </div>
 			<div class="tabbable company-tabs">
+			  <div class="col-md-8"><h2><span class="topic-color">{{_|name}}</span></h2></div>
 				<ul class="nav nav-tabs with-item-count text-center">
 				  
 				  <li>
@@ -23,7 +24,7 @@
 					<li>
 						<a href="/{{_|linkname}}?tab=overview" data-tab-content-url="/{{_|linkname}}+overview_page" data-tab-name='overview'>
 						  <span class="count-number clearfix">{{_+Review+*count|core}}</span>  
-  						<span class="count-label">Overviews</span>
+  						<span class="count-label">Review</span>
 						</a>
 					</li>
 					

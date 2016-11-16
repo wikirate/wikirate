@@ -5,13 +5,13 @@ require_dependency "card"
 
 class SharedData
   class << self
-    include Card::ActiveRecordHelper
+    include Card::Model::SaveHelper
     def account_args hash
       { "+*account" => { "+*password" => "joe_pass" }.merge(hash) }
     end
 
     def add_wikirate_data
-      Card::Cache.reset_global
+      Card::Cache.reset_all
       Card::Env.reset
       Card::Auth.as_bot
       add_companies_and_topics

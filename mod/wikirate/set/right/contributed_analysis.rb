@@ -1,7 +1,9 @@
 def contribution_count
-  @cc ||= Card.search type_id: WikirateAnalysisID,
-                      right_plus: [Card[:overview].name, { edited_by: cardname.left }],
-                      return: :count
+  @cc ||= Card.search(
+    type_id: WikirateAnalysisID,
+    right_plus: [Card[:overview].name, { edited_by: cardname.left }],
+    return: :count
+  )
 end
 
 format :html do
@@ -11,24 +13,23 @@ format :html do
     end
   end
 
-  view :toggle do |args|
-    verb, adjective, direction = (args[:toggle_mode] == :close ? %w( open open triangle-right ) : %w( close closed triangle-bottom ))
-
-    link_to  glyphicon(direction),
-             path(view: adjective),
-             remote: true,
-             title: "#{verb} #{card.name}",
-             class: "#{verb}-icon toggler slotter nodblclick #{'disabled' if card.contribution_count == 0}"
+  def toggle_verb_adjective_direction
+    if @toggle_mode == :close
+      %w(open open triangle-right)
+    else
+      %w(close closed triangle-bottom)
+    end
   end
 
   view :open do |args|
-    if card.contribution_count == 0
-      _render_closed(args)
+    if card.contribution_count.zero?
+      _render_closed
     else
-      if (l = card.left) && (Auth.current_id == l.id || l.type_code == :wikirate_company)
+      if (l = card.left) &&
+         (Auth.current_id == l.id || l.type_code == :wikirate_company)
         args[:slot_class] = "editable"
       end
-      super(args)
+      super()
     end
   end
 

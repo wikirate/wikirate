@@ -1,4 +1,4 @@
-# Refer to wikirate_topic/all_company.rb
+# Refer to wikirate_topic/all_companies.rb
 
 include Card::CachedCount
 

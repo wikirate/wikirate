@@ -3,15 +3,14 @@
 require File.expand_path("../../config/environment",  __FILE__)
 require File.expand_path("../wikirate_import_shared", __FILE__)
 
-def find_metric_all_values_cached_count
-  Card.search left: { type_id: Card::MetricID },
-              right: "all_values",
-              right_plus: "*cached_count"
+def find_all_values_caches
+  Card.search right: "all_metric_values",
+              right_plus: { codename: "solid_cache" }
 end
 
 silent_mode do
-  find_metric_all_values_cached_count.each do |card|
-    puts "Refreshing #{card.name}'s cached count".green
-    card.update_cached_count
+  find_all_values_caches.each do |card|
+    puts "Refreshing #{card.name}'s solid cache".green
+    card.update_content_for_cache
   end
 end

@@ -15,34 +15,63 @@ describe Card::Set::All::Wikirate do
       topic1 = Card.create! name: "topic1", type: "topic"
       topic2 = Card.create! name: "topic2", type: "topic"
 
-      ct1 = Card.create! name: "#{company1.name}+#{topic1.name}", type: "analysis"
-      ct2 = Card.create! name: "#{company1.name}+#{topic2.name}", type: "analysis"
-      ct3 = Card.create! name: "#{company2.name}+#{topic1.name}", type: "analysis"
-      ct4 = Card.create! name: "#{company2.name}+#{topic2.name}", type: "analysis"
+      ct1 = Card.create! name: "#{company1.name}+#{topic1.name}",
+                         type: "analysis"
+      ct2 = Card.create! name: "#{company1.name}+#{topic2.name}",
+                         type: "analysis"
+      ct3 = Card.create! name: "#{company2.name}+#{topic1.name}",
+                         type: "analysis"
+      ct4 = Card.create! name: "#{company2.name}+#{topic2.name}",
+                         type: "analysis"
 
-      sourcepage = create_page_with_sourcebox "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+      url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+      sourcepage = create_page_with_sourcebox url
 
       # test single source
-      claim1 = Card.create! type_id: Card::ClaimID, name: "claim1", subcards: {
-        "+source" => { content: "[[#{sourcepage.name}]]", type_id: Card::PointerID },
-        "+companies" => { content: "[[#{company1.name}]]\n[[#{company2.name}]]" },
-        "+topics" => { content: "[[#{topic1.name}]]" }
-      }
-      claim2 = Card.create! type_id: Card::ClaimID, name: "claim2", subcards: {
-        "+source" => { content: "[[#{sourcepage.name}]]", type_id: Card::PointerID },
-        "+companies" => { content: "[[#{company2.name}]]" },
-        "+topics" => { content: "[[#{topic1.name}]]" }
-      }
-      claim3 = Card.create! type_id: Card::ClaimID, name: "claim3", subcards: {
-        "+source" => { content: "[[#{sourcepage.name}]]", type_id: Card::PointerID },
-        "+companies" => { content: "[[#{company1.name}]]" },
-        "+topics" => { content: "[[#{topic2.name}]]" }
-      }
-      claim4 = Card.create! type_id: Card::ClaimID, name: "claim4", subcards: {
-        "+source" => { content: "[[#{sourcepage.name}]]", type_id: Card::PointerID },
-        "+companies" => { content: "[[#{company1.name}]]\n[[#{company2.name}]]" },
-        "+topics" => { content: "[[#{topic1.name}]]\n[[#{topic2.name}]]" }
-      }
+      Card.create!(
+        type_id: Card::ClaimID,
+        name: "claim1",
+        subcards: {
+          "+source" => { content: "[[#{sourcepage.name}]]",
+                         type_id: Card::PointerID },
+          "+companies" => {
+            content: "[[#{company1.name}]]\n[[#{company2.name}]]"
+          },
+          "+topics" => { content: "[[#{topic1.name}]]" }
+        }
+      )
+      Card.create!(
+        type_id: Card::ClaimID,
+        name: "claim2",
+        subcards: {
+          "+source" => { content: "[[#{sourcepage.name}]]",
+                         type_id: Card::PointerID },
+          "+companies" => { content: "[[#{company2.name}]]" },
+          "+topics" => { content: "[[#{topic1.name}]]" }
+        }
+      )
+      Card.create!(
+        type_id: Card::ClaimID,
+        name: "claim3",
+        subcards: {
+          "+source" => { content: "[[#{sourcepage.name}]]",
+                         type_id: Card::PointerID },
+          "+companies" => { content: "[[#{company1.name}]]" },
+          "+topics" => { content: "[[#{topic2.name}]]" }
+        }
+      )
+      Card.create!(
+        type_id: Card::ClaimID,
+        name: "claim4",
+        subcards: {
+          "+source" => { content: "[[#{sourcepage.name}]]",
+                         type_id: Card::PointerID },
+          "+companies" => {
+            content: "[[#{company1.name}]]\n[[#{company2.name}]]"
+          },
+          "+topics" => { content: "[[#{topic1.name}]]\n[[#{topic2.name}]]" }
+        }
+      )
 
       expect(Card.claim_counts(ct1.key.to_s)).to eq(2)
       expect(Card.claim_counts(ct2.key.to_s)).to eq(2)
@@ -58,7 +87,11 @@ describe Card::Set::All::Wikirate do
   describe "while showing view" do
     it "renders edits_by view" do
       html = render_card :edits_by, name: get_a_sample_company.name
-      expect(html).to include(render_card_with_args(:shorter_search_result, { name: "#{get_a_sample_company.name}+*editor" }, {}, item: :link))
+      expected =
+        render_card_with_args(:shorter_search_result,
+                              { name: "#{get_a_sample_company.name}+*editor" },
+                              {}, items: { view: :link })
+      expect(html).to include(expected)
     end
 
     it "renders titled_with_edits view" do
@@ -72,22 +105,30 @@ describe Card::Set::All::Wikirate do
       # render help text of source page
       # create a page with help text
       login_as "WagnBot"
-      basic = Card.create type: "Basic", name: "testhelptext", content: "<p>hello test case</p>"
-      help_card = Card.create type: "Basic", name: "testhelptext+*self+*help", content: "Can I help you?"
-      expect(render_card(:name_formgroup, name: "testhelptext")).to include("Can I help you?")
+      Card.create type: "Basic", name: "testhelptext",
+                  content: "<p>hello test case</p>"
+      Card.create type: "Basic", name: "testhelptext+*self+*help",
+                  content: "Can I help you?"
+      html = render_card :name_formgroup, name: "testhelptext"
+      expect(html).to include("Can I help you?")
     end
+
     it "show \"\" when for cite view other than in html format" do
       html = render_card :cite, { name: "test1" }, format: :json
       expect(html).to eq("")
     end
+
     it "return html for an existing card for modal view" do
       login_as "WagnBot"
-      card = Card.create! name: "test_basic", type: "html", content: "Hello World"
+      card = Card.create! name: "test_basic", type: "html",
+                          content: "Hello World"
       Card::Env.params[:show_modal] = card.name
-      html = render_card :wikirate_modal, name: card.name
-      expect(html).to eq("<div class='modal-window'>#{render_card :core, name: card.name} </div>")
+      expect(render_card(:wikirate_modal, name: card.name)).to eq(
+        "<div class='modal-window'>#{render_card :core, name: card.name} </div>"
+      )
     end
-    it "return \"\" for an non existing card or nil card in arg for modal view" do
+
+    it "return \"\" for a nonexisting card or nil card for modal view" do
       # nil card in arg
       html = render_card :wikirate_modal, name: "test1"
       expect(html).to eq("")
@@ -102,8 +143,20 @@ describe Card::Set::All::Wikirate do
       # create an card with claim cite contents
       # check the number and the content
       sourcepage = create_page_with_sourcebox nil, {}, "false"
-      claim1 = Card.create! type_id: Card::ClaimID, name: "test1", subcards: { "+source" => { content: "[[#{sourcepage.name}]]", type_id: Card::PointerID } }
-      claim2 = Card.create! type_id: Card::ClaimID, name: "test2", subcards: { "+source" => { content: "[[#{sourcepage.name}]]", type_id: Card::PointerID } }
+      Card.create! type_id: Card::ClaimID, name: "test1",
+                   subcards: {
+                     "+source" => {
+                       content: "[[#{sourcepage.name}]]",
+                       type_id: Card::PointerID
+                     }
+                   }
+      Card.create! type_id: Card::ClaimID, name: "test2",
+                   subcards: {
+                     "+source" => {
+                       content: "[[#{sourcepage.name}]]",
+                       type_id: Card::PointerID
+                     }
+                   }
       content = ""
       for i in 0..10
         content += if i.even?
@@ -123,23 +176,29 @@ describe Card::Set::All::Wikirate do
         end
       end
     end
+
     it "shows correct html for the menu_link view" do
       html = render_card :menu_link, name: "non-exisiting-card"
       expect(html).to include("glyphicon glyphicon-edit")
     end
+
     it "shows empty string for not real card for raw_or_blank view" do
       html = render_card :raw_or_blank, name: "non-exisiting-card"
       expect(html).to eq("")
     end
+
     it "renders raw for real card for raw_or_blank view" do
       html = render_card :raw_or_blank, name: "home"
       expect(html).to eq(render_card(:raw, name: "home"))
     end
   end
+
   context "while viewing id_atom in json format" do
     it "includes id" do
       login_as "WagnBot"
-      search_card = Card.create! type: "search", content: "{\"type\":\"company\"}", name: "id_atom_test"
+      search_card = Card.create!(
+        type: "search", content: "{\"type\":\"company\"}", name: "id_atom_test"
+      )
       Card::Env.params[:item] = "id_atom"
       result = search_card.format(format: :json)._render(:content)
       card_array = result[:card][:value]
@@ -147,10 +206,13 @@ describe Card::Set::All::Wikirate do
         expect(card).to have_key :id
       end
     end
+
     it "handles param:start " do
       login_as "WagnBot"
       start = 20_140_601_000_000
-      search_card = Card.create! type: "search", content: "{\"type\":\"company\"}", name: "id_atom_test"
+      search_card = Card.create!(
+        type: "search", content: "{\"type\":\"company\"}", name: "id_atom_test"
+      )
       Card::Env.params[:item] = "id_atom"
       Card::Env.params["start"] = start
       wql = { type: "Company" }
@@ -169,6 +231,7 @@ describe Card::Set::All::Wikirate do
       end
     end
   end
+
   describe "view of shorter_search_result" do
     def create_dump_card number
       cards = []
@@ -186,28 +249,35 @@ describe Card::Set::All::Wikirate do
       cards_name = create_dump_card 1
       search_card = Card.create! name: @search_card_name, type: "search", content: "{\"name\":#{cards_name}}"
       expected_content = search_card.item_cards(limit: 0)[0].format.render(:link)
-      expect(render_card(:shorter_search_result, name: @search_card_name)).to eq(expected_content)
+      html = render_card(:shorter_search_result, name: @search_card_name)
+      expect(html).to eq(expected_content)
     end
     it "handles only 2 results" do
       cards_name = create_dump_card 2
       search_card = Card.create! name: @search_card_name, type: "search", content: "{\"name\":[\"in\", #{cards_name}]}"
       result_cards = search_card.item_cards(limit: 0)
       expected_content = result_cards[0].format.render(:link) + " and " + result_cards[1].format.render(:link)
-      expect(render_card(:shorter_search_result, name: @search_card_name)).to eq(expected_content)
+      html = render_card(:shorter_search_result, name: @search_card_name)
+      expect(html).to eq(expected_content)
     end
     it "handles only 3 results" do
       cards_name = create_dump_card 3
       search_card = Card.create! name: @search_card_name, type: "search", content: "{\"name\":[\"in\", #{cards_name}]}"
       result_cards = search_card.item_cards(limit: 0)
       expected_content = result_cards[0].format.render(:link) + " , " + result_cards[1].format.render(:link) + " and " + result_cards[2].format.render(:link)
-      expect(render_card(:shorter_search_result, name: @search_card_name)).to eq(expected_content)
+      html = render_card(:shorter_search_result, name: @search_card_name)
+      expect(html).to eq(expected_content)
     end
     it "handles more than 3 results" do
       cards_name = create_dump_card 10
       search_card = Card.create! name: @search_card_name, type: "search", content: "{\"name\":[\"in\", #{cards_name}]}"
       result_cards = search_card.item_cards(limit: 0)
       expected_content = result_cards[0].format.render(:link) + " , " + result_cards[1].format.render(:link) + " , " + result_cards[2].format.render(:link)
-      expect(render_card(:shorter_search_result, name: @search_card_name)).to eq(%(#{expected_content} and <a class=\"known-card\" href=\"#{search_card.format.render(:url)}\"> 7 others</a>))
+      html = render_card(:shorter_search_result, name: @search_card_name)
+      expected =
+        "#{expected_content} and <a class=\"known-card\" "\
+        "href=\"#{search_card.format.render(:url)}\"> 7 others</a>"
+      expect(html).to eq(expected)
     end
   end
   describe "og_source view" do
@@ -251,9 +321,7 @@ describe Card::Set::All::Wikirate do
 
   describe "yinyang_list" do
     it "renders correct yinyang list items" do
-      args = {
-        item: "content"
-      }
+      args = { items: { view: "content" } }
       sample_company = Card.create! name: "Steelseries",
                                     type_id: Card::WikirateCompanyID
 

@@ -19,7 +19,7 @@ end
 
 card = Card["*read"]
 klasses = Card.set_patterns.reverse.map do |set_class|
-  next unless set_class != Card::TypeSet
+  next unless set_class != Card::Set::Type
   wql = { left: { type: Card::SetID },
           right: card.id,
           #:sort  => 'content',

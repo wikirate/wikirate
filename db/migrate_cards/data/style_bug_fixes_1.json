@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Topic+*type+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "style wikirate layout",
+    "type": "SCSS"
+  },
+  {
+    "name": "Company+*self+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "Topic+*self+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "Metric+*self+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "Company+description",
+    "type": "Basic"
+  },
+  {
+    "name": "Topic+description",
+    "type": "Basic"
+  },
+  {
+    "name": "Metric+description",
+    "type": "Basic"
+  }
+]

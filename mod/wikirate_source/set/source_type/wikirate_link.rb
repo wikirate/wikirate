@@ -3,8 +3,8 @@ card_accessor :wikirate_link, type: :phrase
 card_accessor :wikirate_website, type: :pointer
 
 format :html do
-  view :original_link do |args|
-    link_to (args[:title] || "Visit Original"), card.wikirate_link
+  view :original_link do
+    link_to (voo.title || "Visit Original"), path: card.wikirate_link
   end
 end
 

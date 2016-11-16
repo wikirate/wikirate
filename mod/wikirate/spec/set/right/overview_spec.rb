@@ -9,6 +9,7 @@ describe Card::Set::Right::Overview do
       @citation = "Death Star uses dark side of the Force "\
                   "{{Death Star uses dark side of the Force|cite}}"
     end
+
     context "missing view" do
       it "render editor with empty content with citation tips" do
         name = "#{@company.name}+#{@topic.name}+#{Card[:overview].name}"
@@ -18,10 +19,10 @@ describe Card::Set::Right::Overview do
         expect(html).to have_tag("div", with: { class: "note-tip" }) do
           with_tag "textarea", with: { id: id }, text: /#{@citation}/
         end
-        expect(html).to have_tag("textarea", with: { class: "tinymce-textarea",
-                                                     name: "card[content]" })
+        expect(html).to have_tag("div", with: { class: "prosemirror-editor" })
       end
     end
+
     context "core and titled_with_edits views" do
       it "render editor with content with citation tips" do
         overview_name = "#{@company.name}+#{@topic.name}+"\
@@ -33,17 +34,20 @@ describe Card::Set::Right::Overview do
         expect(html).to have_tag("div", with: { class: "note-tip" }) do
           with_tag "textarea", with: { id: id }, text: /#{@citation}/
         end
-        expect(html).to have_tag("textarea", with: { class: "tinymce-textarea",
-                                                     name: "card[content]" },
-                                             text: /hello world/)
+        prosemirror_tag = ["div", with: { class: "prosemirror-editor" }]
+        expect(html).to have_tag(*prosemirror_tag) do
+          with_tag "input", with: { name: "card[content]",
+                                    value: "hello world" }
+        end
 
         html = article.format.render_titled_with_edits
         expect(html).to have_tag("div", with: { class: "note-tip" }) do
           with_tag "textarea", with: { id: id }, text: /#{@citation}/
         end
-        expect(html).to have_tag("textarea", with: { class: "tinymce-textarea",
-                                                     name: "card[content]" },
-                                             text: /hello world/)
+        expect(html).to have_tag(*prosemirror_tag) do
+          with_tag "input", with: { name: "card[content]",
+                                    value: "hello world" }
+        end
       end
     end
   end

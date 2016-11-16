@@ -2,6 +2,6 @@
 
 class ImportUpdateTopicStructure < Card::Migration
   def up
-    import_cards 'update_topic_structure.json'
+    import_cards "update_topic_structure.json"
   end
 end

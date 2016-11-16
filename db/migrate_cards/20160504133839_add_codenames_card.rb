@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class AddCodenamesCard < Card::CoreMigration
+class AddCodenamesCard < Card::Migration::Core
   def up
     create_or_update "*codenames",
                      codename: "codenames",

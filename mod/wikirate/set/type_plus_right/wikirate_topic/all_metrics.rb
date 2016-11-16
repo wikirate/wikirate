@@ -1,4 +1,5 @@
-include_set TypePlusRight::WikirateCompany::AllMetricValues
+include_set Abstract::SortAndFilter
+
 def raw_content
   %({
       "type_id":#{MetricID},
@@ -10,63 +11,23 @@ def raw_content
     })
 end
 
-def sort_params
-  [(Env.params["sort"] || "upvoted"), "desc"]
+def filter_by_key key
+  super &&
+    filter_by_research_policy(key) &&
+    filter_by_metric_type(key)
 end
 
-def cached_values
-  @cached_metric_values ||= get_cached_values
-  if @cached_metric_values
-    result = @cached_metric_values.select do |metric, _values|
-      filter metric
-    end
-    result
-  else
-    @cached_metric_values
+format :json do
+  view :core do
+    card.item_cards(default_query: true)
+        .each_with_object({}) do |metric_id, result|
+      result[metric_id] = true unless result.key?(metric_id)
+    end.to_json
   end
-end
-
-def filter metric
-  filter_by_name(metric) &&
-    filter_by_research_policy(metric) &&
-    filter_by_type(metric)
 end
 
 format do
-  def sorted_result sort_by, order, is_num=true
-    cached_values = card.cached_values
-    if sort_by == "company_number"
-      sort_company_number_desc cached_values
-    else
-      super(sort_by, order, is_num)
-    end
-  end
-
-  def metric_company_count metric
-    metric_company = Card[metric].fetch trait: :wikirate_company
-    metric_company_count = metric_company.fetch trait: :cached_count, new: {}
-    metric_company_count.format.render_core.to_i
-  end
-
-  def sort_company_number_desc metrics
-    metrics.sort do |x, y|
-      metric_company_count(y[0]) - metric_company_count(x[0])
-    end
-  end
-end
-format :html do
   def page_link_params
     [:name, :research_policy, :type, :sort]
-  end
-
-  view :card_list_items do |args|
-    search_results.map do |row|
-      c = Card.fetch row[0]
-      render :card_list_item, args.clone.merge(item_card: c)
-    end.join "\n"
-  end
-
-  view :card_list_header do
-    ""
   end
 end

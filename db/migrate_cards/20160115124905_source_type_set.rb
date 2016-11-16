@@ -11,7 +11,7 @@ class SourceTypeSet < Card::Migration
     create_source_type_card
     create_source_type_set_rule
     update_create_rule
-    Card::Cache.reset_global
+    Card::Cache.reset_all
     update_existing_source_cards
 
     import_json "source_set_type.json"

@@ -1,32 +1,23 @@
-include_set Abstract::FilterForm
-include_set Abstract::FilterUtility
+include_set Abstract::MetricRecordFilter
+
+def filter_keys
+  %w(year metric_value)
+end
+
+def advanced_filter_keys
+  %w(wikirate_company industry project)
+end
+
 format :html do
-  def filter_categories
-    %w(company industry project)
+  def filter_labels field
+    field.to_sym == :wikirate_company ? "Keyword" : super
   end
 
-  def filter_form_content args
-    <<-HTML
-      <h4>Company</h4>
-      <div class="margin-12 sub-content"> #{company_filter_fields(args).join} </div>
-      <h4>Metric Answer</h4>
-      <div class="margin-12"> #{value_filter_fields(args).join} </div>
-      <div class="filter-buttons">#{_optional_render :button_formgroup, args}</div>
-    HTML
+  def filter_body_header
+    "Company"
   end
 
-  def company_filter_fields args
-    [
-      _optional_render(:name_formgroup, args),
-      _optional_render(:industry_formgroup, args),
-      select_filter(:project, "asc")
-    ]
-  end
-
-  def value_filter_fields args
-    [
-      _optional_render(:year_formgroup, args),
-      _optional_render(:metric_value_formgroup, args)
-    ]
+  def filter_title
+    "Filter"
   end
 end

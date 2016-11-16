@@ -14,7 +14,7 @@ Spork.prefork do
   end
 end
 
-def get_subcards_of_metric_value metric, company, content, year, source
+def get_subcards_of_metric_value metric, company, content, year=nil, source=nil
   this_year = year || "2015"
   this_source = source || get_a_sample_source.name
   this_content = content || "I'm fine, I'm just not happy."
@@ -96,7 +96,8 @@ end
 
 def create_claim name, subcards={}
   Card::Auth.as_bot do
-    sourcepage = create_page "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+    url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+    sourcepage = create_page url
     Card.create! type_id: Card::ClaimID, name: name,
                  subcards: {
                    "+source" => {
@@ -117,6 +118,14 @@ end
 
 def get_a_sample_topic
   Card["Force"]
+end
+
+def sample_companies num=1, args={}
+  Card.search args.merge(type_id: Card::WikirateCompanyID, limit: num)
+end
+
+def sample_topics num=1, args={}
+  Card.search args.merge(type_id: Card::WikirateTopicID, limit: num)
 end
 
 def get_a_sample_analysis

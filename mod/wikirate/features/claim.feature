@@ -35,7 +35,7 @@ Feature: note
     Then I should not see "Problems with"
     And the card "Hello World is a name of a new born baby" should contain "example.com"
 
-  Scenario: Creating a note with a existing source card's url
+  Scenario: Creating a note with url from existing source card
     When I go to "/new source"
     And I fill in "card_subcards__Link_content" with "http://example.com"
     And I press "Submit"
@@ -56,6 +56,7 @@ Feature: note
     And I wait until ajax response
     And I fill in "sourcebox" with "http://google.com/?q=ymca"
     And I press "Submit"
+    And I wait until ajax response
     And I wait until ajax response
     Then I should not see "Problems with"
     And the card "Hello World is a name of a new born baby" should contain "google.com"

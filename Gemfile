@@ -5,6 +5,10 @@ wagn_gem_path = ENV["WIKIRATE_WAGN_GEM_PATH"] || "./vendor/wagn"
 gem "wagn", path: "#{wagn_gem_path}/wagn"
 gem "card", path: "#{wagn_gem_path}/card", require: false
 
+gem "statistics2", "0.54"
+gem "descriptive_statistics", "2.5.1"
+gem "savanna-outliers"
+
 gem "mysql2", "~> 0.3.18"
 gem "link_thumbnailer", "2.5.2"
 gem "open_uri_redirections"
@@ -13,11 +17,14 @@ gem "wbench"
 gem "curb"
 gem "daemons"
 gem "delayed_job_active_record"
+gem "delayed_job_web"
 
 # seems like newrelic should be in :live, but that wasn't working.
 # not sure why -efm
 gem "newrelic_rpm"
+# gem "ruby-prof"
 gem "airbrussh", require: false
+# gem "spring"
 
 group :live do
   gem "therubyracer"
@@ -34,12 +41,14 @@ group :test do
   gem "simplecov"
   # gem 'codeclimate-test-reporter', require: nil
 
+  gem "test_after_commit"
+
   # CUKES see features dir
   gem "cucumber-rails", require: false
   # feature-driven-development suite
   gem "capybara"
   # used 2.0.1
-  gem "selenium-webdriver"
+  gem "selenium-webdriver", "~> 2.3"
   #  gem 'capybara-webkit'
   # lets cucumber launch browser windows
   gem "launchy"

@@ -1,0 +1,107 @@
+include_set Abstract::BrowseFilterForm
+
+class MetricFilterQuery < Card::FilterQuery
+  def wikirate_topic_wql topic
+    add_to_wql :right_plus, ["topic", { refer_to: topic }]
+  end
+
+  def wikirate_company_wql company
+    add_to_wql :right_plus, [company, {}]
+  end
+
+  def project_wql project
+    add_to_wql :referred_to_by, left: { name: project }, right: "metric"
+  end
+
+  def year_wql year
+    add_to_wql :right_plus, [type_id: Card::WikirateCompanyID,
+                          right_plus: [{ name: year }, {}]]
+  end
+
+  def designer_wql designer
+    add_to_wql :or, left: designer,
+                  right: designer
+  end
+
+  def metric_type_wql metric_type
+    add_to_wql :right_plus,
+             [Card[:metric_type].name, { refer_to: metric_type }]
+  end
+
+  def research_policy_wql research_policy
+    add_to_wql :right_plus,
+             [Card[:research_policy].name, { refer_to: research_policy }]
+  end
+end
+
+def default_sort_by_key
+  "upvoted"
+end
+
+def filter_keys
+  %w(name wikirate_topic wikirate_company)
+end
+
+def advanced_filter_keys
+  %w(designer project metric_type research_policy year)
+end
+
+def target_type_id
+  MetricID
+end
+
+def filter_class
+  MetricFilterQuery
+end
+
+def add_sort_wql wql, sort_by
+  super wql, sort_by
+  wql[:sort] =
+    case sort_by
+    when "values"
+      { right: "value", right_plus: "*cached count" }
+    when "recent"
+      wql.delete :sort_as
+      "update"
+    when "company"
+      { right: "company", right_plus: "*cached count" }
+    else
+      # upvoted as default
+      { right: "*vote count" }
+    end
+end
+
+format :html do
+  def sort_options
+    {
+      "Highest Voted" => "upvoted",
+      "Most Recent" => "recent",
+      "Most Companies" => "company",
+      "Most Values" => "values"
+    }
+  end
+
+  def default_sort_option
+    "upvoted"
+  end
+
+  view :metric_type_formgroup do
+    metric_type_select
+  end
+
+  view :research_policy_formgroup do
+    research_policy_select
+  end
+
+  def type_options type_codename, order="asc"
+    if type_codename == :wikirate_topic
+      Card.search referred_to_by: {
+        left: { type_id: Card::MetricID },
+        right: "topic"
+      }, type_id: Card::WikirateTopicID,
+                  return: :name, sort: "name", dir: order
+    else
+      super type_codename, order
+    end
+  end
+end

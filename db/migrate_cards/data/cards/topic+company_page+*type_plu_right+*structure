@@ -1,8 +1,6 @@
 
 					<div class="tab-pane active" id="company-metrics">
 					   <p>
-				      
-				      {{company+description}}
 				    </p>
 						  {{#_left+company sidebar }}
 						  {{_l|company_tab}}
