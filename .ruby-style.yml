@@ -68,13 +68,11 @@ Style/ExtraSpacing:
 Lint/AssignmentInCondition:
   Enabled: true
   AllowSafeAssignment: true
-#Decko/ViewLength:
-#  Description: Avoid views longer than 15 lines of code.
-#  Enabled: true
-#  CountComments: false
-#  Max: 15
-#Decko/EventLength:
-#  Description: Avoid events longer than 15 lines of code.
-#  Enabled: true
-#  CountComments: false
-#  Max: 15
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+    - '**/*_spec.rb'
+
