@@ -20,10 +20,10 @@ format :json do
 
   view :export_items do |args|
     result = []
-    each_nested_chunk do |chunk|
+    card.each_nested_chunk do |chunk|
       next if chunk.respond_to?(:options) && chunk.options &&
-              chunk.options[:inc_name] &&
-              chunk.options[:inc_name] == "_main"
+              chunk.options[:nest_name] &&
+              chunk.options[:nest_name] == "_main"
       next unless (r_card = chunk.referee_card)
       next if r_card.new? || r_card == card
       next if args[:processed_keys].include?(r_card.key)

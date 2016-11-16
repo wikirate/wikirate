@@ -122,24 +122,32 @@ describe Card::Set::Type::Claim do
           it "shows nothing" do
             new_company_name = "Orange"
             new_topic_name = "Doctor"
-            new_company = Card.create type_id: Card::WikirateCompanyID, name: new_company_name
-            new_topic = Card.create type_id: Card::WikirateTopicID, name: new_topic_name
-            claim_card = create_claim @claim_name, "+company" => new_company_name, "+topic" => new_topic_name
+            Card.create type_id: Card::WikirateCompanyID, name: new_company_name
+            Card.create type_id: Card::WikirateTopicID, name: new_topic_name
+            claim_card = create_claim @claim_name,
+                                      "+company" => new_company_name,
+                                      "+topic" => new_topic_name
             expect(claim_card.format.render_tip).to include("")
           end
         end
       end
     end
+
     it "shows titled view with voting" do
-      expect(@sample_claim.format.render_titled).to eq(@sample_claim.format.render_titled_with_voting)
-    end
-    context "when in open views" do
-      it "shows header with voiting" do
-        html = @sample_claim.format.render_open
-        vote_html = @sample_claim.format.subformat(@sample_claim.vote_count_card).render_details
-        expect(html_trim(html)).to include(html_trim(vote_html))
+      assert_view_select @sample_claim.format.render_titled,
+                         "div.titled_with_voting-view" do
+        assert_select "div.vote-up"
+        assert_select "div.vote-count"
+        assert_select "div.vote-down"
       end
     end
+
+    context "when in open views" do
+      it "shows header with voting" do
+        assert_view_select @sample_claim.format.render_open, "div.header-vote"
+      end
+    end
+
     it "shows the link for view \"missing\"" do
       claim_card = get_a_sample_note
       html = claim_card.format.render_missing

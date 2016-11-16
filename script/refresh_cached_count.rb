@@ -67,7 +67,6 @@ silent_mode do
       left_right = ARGV[0].split("+")
       find_left_right_cached_count left_right[0], left_right[1]
     end
-  # binding.pry
   cards.each do |card|
     puts "Refreshing #{card.name}'s cached count".green
     card.update_cached_count

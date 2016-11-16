@@ -1,5 +1,5 @@
 format :html do
-  view :core do |_args|
+  view :core, cache: :never do
     # show the content based on the url parameter
     # tabs: metric, topic, company, note, reference, overview
     tab = Env.params["tab"]

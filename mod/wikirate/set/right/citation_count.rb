@@ -1,19 +1,15 @@
 format :html do
-  view :titled do |args|
-    args[:slot_class] = ("no-citations" if no_citations?(args))
-    super(args)
+  view :titled do
+    class_up "card-slot", "no-citations" if no_citations?
+    super()
   end
 
-  def on_company_page?
-    return unless parent && (pp = parent.parent) && (ppc = pp.card)
-    return ppc if ppc.type_id == WikirateCompanyID
-    return unless (ppl = ppc.left) && ppl.type_id == WikirateCompanyID
-    ppl
+  def grandparent
+    @grandparent ||= parent && (gp = parent.parent) && gp.card
   end
 
-  def no_citations? args
-    value = _render_core args
-    value == "0" || value == ""
+  def no_citations?
+    _render_core.to_i.zero?
   end
 
   def related_overview_card

@@ -1,3 +1,6 @@
+include_set Abstract::WikirateTable
+include_set Abstract::WikirateTabs
+
 card_accessor :contribution_count, type: :number, default: "0"
 card_accessor :direct_contribution_count, type: :number, default: "0"
 card_accessor :aliases, type: :pointer
@@ -7,69 +10,23 @@ view :missing do |args|
   _render_link args
 end
 
-def indirect_contributor_search_args
-  [
-    { type_id: Card::ClaimID,  right_plus: ["company", { link_to: name }] },
-    { type_id: Card::SourceID, right_plus: ["company", { link_to: name }] },
-    { type_id: Card::WikirateAnalysisID, left: name },
-    { type_id: Card::MetricValueID, left: { right: name } }
-  ]
-end
-
 format :html do
   def view_caching?
     false
   end
 
-  view :open do |args|
-    if main? && !Env.ajax? && !Env.params["about_company"] &&
-       !contributions_about? && contributions_made?
 
+  view :open, cache: :never do |args|
+    if show_contributions_profile?
       link = link_to_card card, nil, path: { about_company: true }
-      %(<div class="contributions-about-link">) \
-        "showing contributions by #{link}</div>" +
+      output [
+        (content_tag(:div, class: "contributions-about-link") do
+          "showing contributions by #{link}"
+        end),
         field_subformat(:contribution).render_open
+      ]
     else
       super args
-    end
-  end
-
-  def contributions_about?
-    count_name =
-      card.cardname.trait_name(:wikirate_topic).trait_name :cached_count
-    return false unless (count = Card.fetch count_name)
-    count.content.to_i > 0
-  end
-
-  view :contribution_link do
-    return "" unless contributions_made?
-    link_to_card card.cardname.trait(:contribution), "View Contributions",
-                 class: "btn btn-primary company-contribution-link"
-  end
-
-  def contributions_made?
-    # FIXME: need way to figure this out without a search!
-    Card.search(type_id: MetricID, left: card.name, return: "count") > 0
-  end
-
-  view :metric_tab do |args|
-    wrap do
-      [
-        _render_filter(args),
-        _render_metric_list(args)
-      ]
-    end
-  end
-
-  view :filter do |args|
-    field_subformat(:company_metric_filter)._render_core args
-  end
-
-  view :metric_list do
-    wrap_with :div, class: "yinyang-list" do
-      field_subformat(:all_metric_values)
-        ._render_content(hide: "title",
-                         items: { view: :metric_row })
     end
   end
 end

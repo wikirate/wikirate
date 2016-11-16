@@ -244,15 +244,15 @@ describe Card::Set::Type::Source do
     end
 
     it "renders open view with :custom_source_header to be true" do
-      expected = @source_page.format.render_header_with_voting
-      expect(@source_page.format.render_open).to include(expected)
+      assert_view_select @source_page.format.render_open,
+                         "div.header-with-vote"
     end
 
     it "renders header view with :custom_source_header to be true" do
-      render = @source_page.format.render_header custom_source_header: true
-      expected = @source_page.format.render_header_with_voting
-      expect(render).to include(expected)
+      assert_view_select @source_page.format.render_header_with_voting,
+                         "div.header-with-vote"
     end
+
     it "renders metric_import_link" do
       sourcepage = create_source file: csv_file
       html = sourcepage.format.render_metric_import_link

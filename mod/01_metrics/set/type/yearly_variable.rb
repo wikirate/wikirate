@@ -1,0 +1,19 @@
+
+format :html do
+  view :thumbnail do |_args|
+    wrap_with :div, class: "metric-thumbnail" do
+      _render_thumbnail_text
+    end
+  end
+
+  view :thumbnail_text do
+    wrap_with :div, class: "thumbnail-text" do
+      _render_thumbnail_title
+    end
+  end
+  view :thumbnail_title do
+    content = wrap_with(:div, nest(card, view: :name),
+                          class: "ellipsis")
+    link_to_card card, content, title: card.name
+  end
+end
