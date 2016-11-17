@@ -18,7 +18,7 @@ format :html do
 
   def main_filter_buttons
     content_tag :div, class: "filter-buttons" do
-      _optional_render(:button_formgroup).html_safe
+      filter_button_formgroup
     end
   end
 

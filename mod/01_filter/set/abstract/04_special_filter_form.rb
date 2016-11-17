@@ -7,7 +7,7 @@ include_set Set::Abstract::Filter
 format :html do
   view :core do |args|
     form_tag path(mark: card.cardname.left, view: content_view),
-             class: "filter-container slotter", id: "_filter_container",
+             class: "filter-container slotter sub-content", id: "_filter_container",
              method: "GET", data: { remote: "true" } do
       output [
                _render_advanced_filter,
@@ -55,15 +55,18 @@ format :html do
     :data
   end
 
-  def default_button_formgroup_args args
-    filter_icon = fa_icon("search").html_safe
-    args[:buttons] = [
-      button_tag(filter_icon, situation: "default", disable_with: "Filtering"),
-      button_formgroup_reset_button
-    ].join
+  def filter_button_formgroup
+    button_formgroup do
+      [filter_submit_button, filter_reset_button]
+    end
   end
 
-  def button_formgroup_reset_button
+  def filter_submit_button
+    filter_icon = fa_icon("search").html_safe
+    button_tag(filter_icon, situation: "default", disable_with: "Filtering")
+  end
+
+  def filter_reset_button
     html_class = "slotter btn btn-default margin-8"
     html_class += filter_active? ? " show" : " hide"
     link_to_card card.cardname.left, "Reset",

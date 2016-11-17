@@ -73,7 +73,6 @@ format :html do
   end
 
   view :company_filter do |args|
-    binding.pry
     field_subformat(:topic_company_filter)._render_core args
   end
 

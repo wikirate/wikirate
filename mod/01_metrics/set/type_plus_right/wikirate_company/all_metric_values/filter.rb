@@ -18,12 +18,12 @@ def filter_by_metric metric
   filter_by_name(metric) &&
     filter_by_topic(metric) &&
     filter_by_research_policy(metric) &&
-    filter_by_vote(metric) &&
+      filter_by_importance(metric) &&
     filter_by_metric_type(metric)
 end
 
-def filter_by_vote metric
-  keep_if :my_vote, options: 3 do |filter|
+def filter_by_importance metric
+  keep_if :importance, options: 3 do |filter|
     case vote_status metric
     when :upvoted   then filter.include? "i voted for"
     when :downvoted then filter.include? "i voted against"

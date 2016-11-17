@@ -34,7 +34,6 @@ format :html do
   end
 
   def wikirate_layout type, tabs, extra=nil
-    binding.pry
     link_text = %(
     <div class="row-data center-logo ">
                     #{field_nest "image"}

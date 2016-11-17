@@ -6,88 +6,91 @@ format :html do
   end
 
   view :project_formgroup do
-    select_filter :project, "asc"
+    select_filter_type_based :project
   end
 
   view :year_formgroup do
-    select_filter :year, "desc"
+    select_filter_type_based :year
   end
 
   view :wikirate_topic_formgroup do
-    select_filter :wikirate_topic, "asc"
+    select_filter_type_based :wikirate_topic
   end
 
   view :metric_formgroup do
-    select_filter :metric, "asc"
+    select_filter_type_based :metric
   end
 
   view :wikirate_company_formgroup do
-    select_filter :wikirate_company, "asc"
-  end
-
-  view :metric_type_formgroup do
-    checkbox_filter :metric_type, metric_type_filter_options
-  end
-
-  def metric_type_select
-    options = metric_type_filter_options
-    options.unshift(["--", ""])
-    simple_select_filter :metric_type, options,
-                         filter_param(:metric_type),
-                         "Metric Type"
-  end
-
-  def metric_type_filter_options
-    [:researched, :formula, :wiki_rating].map { |n| Card.quick_fetch(n).name }
+    select_filter_type_based :wikirate_company
   end
 
   view :research_policy_formgroup do
-    options = type_options :research_policy
-    checkbox_filter "Research Policy", options
+    checkbox_filter :research_policy, "Research Policy"
   end
 
   def research_policy_select
-    select_filter :research_policy, "asc"
+    select_filter_type_based :research_policy
+  end
+
+  view :metric_type_formgroup do
+    checkbox_filter :metric_type, "Metric Type"
+  end
+
+  def metric_type_select
+    select_filter :metric_type, "Metric Type"
   end
 
   view :metric_value_formgroup do
-    options = {
-      "All" => "all",
-      "Researched" => "exists",
-      "Not Researched" => "none",
-      "Edited today" => "today",
-      "Edited this week" => "week",
-      "Edited this month" => "month",
-      "Outliers" => "outliers"
-    }
-    simple_select_filter :value, options, "exists"
+    select_filter :value, "Value", "exists"
   end
 
   view :designer_formgroup do
-    simple_select_filter :designer, [["--", ""]] + all_metric_designers, nil,
-                         "Designer"
+    select_filter :designer, "Designer"
   end
 
   view :importance_formgroup do
-    options = ["I voted FOR", "I voted AGAINST", "I did NOT vote"]
-    checkbox_filter "My Vote", options, ["i voted for", "i did not vote"]
+    checkbox_filter :importance, "My Vote", ["i voted for", "i did not vote"]
   end
 
   view :industry_formgroup do
-    simple_select_filter :industry, [["--", ""]] + industry_options,
-                         nil, "Industry"
+    select_filter :industry, "Industry"
   end
 
   view :sort_formgroup do
-    selected_option = Env.params[:sort] || default_sort_option
+    selected_option = sort_param || default_sort_option
     options = options_for_select(sort_options, selected_option)
     formgroup "Sort", class: "filter-input " do
-      select_tag "sort", options
+      select_tag "sort", options, class: "pointer-select"
     end
   end
 
   def sort_options
     {}
+  end
+
+  def metric_value_options
+    {
+        "All" => "all",
+        "Researched" => "exists",
+        "Not Researched" => "none",
+        "Edited today" => "today",
+        "Edited this week" => "week",
+        "Edited this month" => "month",
+        "Outliers" => "outliers"
+    }
+  end
+
+  def metric_type_options
+    [:researched, :formula, :wiki_rating].map { |n| Card.quick_fetch(n).name }
+  end
+
+  def research_policy_options
+    type_options :research_policy
+  end
+
+  def importance_options
+    ["I voted FOR", "I voted AGAINST", "I did NOT vote"]
   end
 
   def industry_options
@@ -96,7 +99,7 @@ format :html do
     Card[card_name].value_options
   end
 
-  def all_metric_designers
+  def designer_options
     metrics = Card.search type_id: MetricID, return: :name
     metrics.map do |m|
       names = m.to_name.parts
