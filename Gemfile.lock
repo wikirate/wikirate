@@ -1,7 +1,7 @@
 PATH
   remote: ./vendor/wagn/card
   specs:
-    card (1.19.6)
+    card (1.20.0)
       bootstrap-kaminari-views (~> 0)
       carrierwave (= 1.0.0.rc)
       coderay (~> 1.0)
@@ -21,8 +21,8 @@ PATH
 PATH
   remote: ./vendor/wagn/wagn
   specs:
-    wagn (1.19.6)
-      card (= 1.19.6)
+    wagn (1.20.0)
+      card (= 1.20.0)
       rails (~> 4.2)
 
 GEM
@@ -155,7 +155,7 @@ GEM
       launchy (~> 2.1)
       mail (~> 2.6.3)
     erubis (2.7.0)
-    eventmachine (1.2.0.1)
+    eventmachine (1.2.1)
     execjs (2.7.0)
     fastimage (1.9.0)
       addressable (~> 2.3.5)
