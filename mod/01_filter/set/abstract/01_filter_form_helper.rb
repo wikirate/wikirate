@@ -22,11 +22,12 @@ format :html do
   end
 
   def checkbox_filter field, label=nil, default=nil, options=nil
-    options ||= filter_options field
-    default = Array(filter_param(field) || default)
     name = filter_name field, true
+    default = Array(filter_param(field) || default)
+    options ||= filter_options field
+    label ||= filter_label(field)
 
-    formgroup filter_label(field) do
+    formgroup label do
       options.map do |option|
         checked = default.include?(option.downcase)
         wrap_with :label do
@@ -49,13 +50,13 @@ format :html do
     select_filter type_codename, nil, nil, options
   end
 
-  def multiselect_filter_type_based type_codename, label=nil
+  def multiselect_filter_type_based type_codename
     options = type_options type_codename
-    multiselect_filter type_codename, label, nil, options
+    multiselect_filter type_codename, nil, nil, options
   end
 
 
-  def mulitselect_filter_tag field, label, default, options, html_options={}
+  def multiselect_filter_tag field, label, default, options, html_options={}
     html_options[:multiple] = true
     select_filter_tag field, label, default, options, html_options
   end

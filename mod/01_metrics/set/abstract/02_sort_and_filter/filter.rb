@@ -36,7 +36,7 @@ def filter_by_name key
 end
 
 def filter_by_value values
-  keep_if :value, default: "exists" do |filter|
+  keep_if :metric_value, default: "exists" do |filter|
     case filter
     when "none" then values.empty?
     when "exists" then !values.empty?

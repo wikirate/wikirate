@@ -63,15 +63,15 @@ format :html do
   end
 
   view :claimed_formgroup do |_args|
-    select_filter :claimed, "Has Notes?", "all",
+    select_filter :claimed, "Has Notes?", "all"
   end
 
   view :wikirate_company_formgroup do
-    multiselect_filter_type_based :wikirate_company, "Company"
+    multiselect_filter_type_based :wikirate_company
   end
 
   view :wikirate_topic_formgroup do
-    multiselect_filter_type_based :wikirate_topic, "Topic"
+    multiselect_filter_type_based :wikirate_topic
   end
 
   def claimed_options

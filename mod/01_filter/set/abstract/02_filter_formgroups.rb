@@ -42,7 +42,7 @@ format :html do
   end
 
   view :metric_value_formgroup do
-    select_filter :value, "Value", "exists"
+    select_filter :metric_value, "Value", "exists"
   end
 
   view :designer_formgroup do
