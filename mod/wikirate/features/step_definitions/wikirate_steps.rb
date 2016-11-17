@@ -93,7 +93,7 @@ When(regax) do |company, year, value|
 end
 
 def fill_in_pointer_field name, value
-  within "form > fieldset.editor > .RIGHT-#{name}" do
+  within "fieldset.editor .RIGHT-#{name}" do
     fill_in "pointer_item", with: value
   end
 end

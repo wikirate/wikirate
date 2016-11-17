@@ -4,10 +4,11 @@ format :html do
     ""
   end
 
-  def wrap_with_info content
-    html_class = "source-info-container with-vote-button"
+  def wrap_with_info
     wrap do
-      wrap_with(:div, content.html_safe, class: html_class)
+      wrap_with :div, class: "source-info-container with-vote-button" do
+        yield
+      end
     end
   end
 
@@ -154,12 +155,15 @@ format :html do
   end
 
   view :with_cite_button do |args|
-    cite_button =
-      wrap_with(:a, "Cite!", class: "btn btn-highlight _cite_button c-btn")
-    content =
-      _render_source_list_item(args) +
-      wrap_with(:div, cite_button, class: "pull-right")
-    wrap_with_info content
+    wrap_with_info do
+      [
+        _render_source_list_item(args),
+        wrap_with(:div, class: "pull-right") do
+          wrap_with :a, "Cite!", href: "#",
+                                 class: "btn btn-highlight _cite_button c-btn"
+        end
+      ]
+    end
   end
 
   view :source_and_preview, cache: :never do |args|
@@ -187,10 +191,10 @@ format :html do
     # check parent structure name has the word header
     # (i.e check if not metric value page)
     if !parent.nil? && parent.include?("header")
-      return wrap_with_info _render_source_list_item(args)
+      wrap_with_info { _render_source_list_item args }
     else
       args[:source_title] = :text
-      source = wrap_with_info _render_source_list_item(args)
+      source = wrap_with_info { _render_source_list_item args }
       add_toggle(source)
     end
   end
