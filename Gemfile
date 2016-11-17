@@ -18,6 +18,7 @@ gem "curb"
 gem "daemons"
 gem "delayed_job_active_record"
 gem "delayed_job_web"
+gem "rubocop-decko"
 
 # seems like newrelic should be in :live, but that wasn't working.
 # not sure why -efm
