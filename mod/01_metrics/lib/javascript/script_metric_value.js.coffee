@@ -118,8 +118,9 @@ $(document).ready ->
   sourceCitation = (ele, action) ->
     $this                = $(ele)
     $timelineContainer   = $this.closest(".timeline-row .card-slot form")
-    sourceID             = "#"+$this.closest(".TYPE-source")
-                            .attr("id")+".TYPE-source:first"
+    sourceID = "#" + $this.closest(".TYPE-source")
+    .
+    attr("id") + ".TYPE-source:first"
 
     if !$timelineContainer.exists() and
       $(ele).closest('#source-form-container')
