@@ -27,7 +27,7 @@ format :html do
           end
         end
         col do
-          content_tag :h2, _render_title, class: "company-color"
+          wrap_with :h2, _render_title, class: "company-color"
         end
 
       end

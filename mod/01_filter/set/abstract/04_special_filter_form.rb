@@ -5,14 +5,11 @@ end
 include_set Set::Abstract::Filter
 
 format :html do
-  view :core do |args|
+  view :core do
     form_tag path(mark: card.cardname.left, view: content_view),
-             class: "filter-container slotter sub-content", id: "_filter_container",
-             method: "GET", data: { remote: "true" } do
-      output [
-               _render_advanced_filter,
-               _render_main_filter
-             ]
+             class: "filter-container slotter sub-content", method: "GET",
+             id: "_filter_container", data: { remote: "true" } do
+      output [_render_advanced_filter, _render_main_filter]
     end
   end
 
@@ -26,7 +23,7 @@ format :html do
   end
 
   # style="display: #{filter_active};"
-  view :advanced_filter do |args|
+  view :advanced_filter do
     html_class = "filter-details collapse"
     html_class += " in" if filter_advanced_active?
     wrap_with :div, class: html_class, id: "_filter_details" do
@@ -35,20 +32,16 @@ format :html do
   end
 
   def advanced_filter_form
-     advanced_filter_formgroups
+    advanced_filter_formgroups
   end
 
   def more_filter_options_link
-    button_tag("more filter options",
-               situation: "link",
-               class: " filter-toggle btn-sm",
-               type: "button",
-               data: {
-                 toggle: "collapse",
-                 target: "#_filter_details",
-                 collapseintext: "fewer filter options",
-                 collapseouttext: "more filter options"
-               })
+    button_tag "more filter options",
+               situation: "link", type: "button", class: "filter-toggle btn-sm",
+               data: { toggle: "collapse",
+                       target: "#_filter_details",
+                       collapseintext: "fewer filter options",
+                       collapseouttext: "more filter options" }
   end
 
   def content_view

@@ -7,7 +7,7 @@ format :html do
     props["Metric Type"] =
       field_subformat(:metric_type)._render_content items: { view: :name }
     if card.researched?
-      props["Value Type"] = content_tag(:div, _render_value_type_detail(args))
+      props["Value Type"] = wrap_with(:div, _render_value_type_detail(args))
       props["Research Policy"] = nest(card.research_policy_card,
                                       view: :content,
                                       items: { view: :name })

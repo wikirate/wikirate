@@ -79,9 +79,9 @@ format :html do
   end
 
   view :next_button do
-    html_class = "col-md-6 col-centered text-center"
-    button = wrap_with(:a, "Next", class: "btn btn-primary _new_value_next")
-    wrap_with(:div, button, class: html_class)
+    wrap_with :div, class: "col-md-6 col-centered text-center" do
+      wrap_with :a, "Next", href: "#", class: "btn btn-primary _new_value_next"
+    end
   end
 
   view :source_container do |_args|
@@ -137,7 +137,7 @@ format :html do
     = field_nest :value, title: 'Value'
   %h5
     Choose Sources or
-    %a.btn.btn-sm.btn-default._add_new_source
+    %a.btn.btn-sm.btn-default._add_new_source{href: "#"}
       %small
         %span.icon.icon-wikirate-logo-o.fa-lg
         Add a new source

@@ -21,19 +21,17 @@ format :html do
   end
 
   view :details_tab do |args|
-    content = wrap_with :div, class: "metric-details-content" do
-      [
-        _render_metric_properties(args),
-        # _render_add_value_buttons(args),
-        content_tag(:hr, ""),
-        nest(card.about_card, view: :titled, title: "About"),
-        nest(card.methodology_card, view: :titled, title: "Methodology"),
-        _render_import_button(args)
-        # _render_contributing(args)
-      ]
-    end
     tab_wrap do
-      content
+      wrap_with :div, class: "metric-details-content" do
+        [
+          _render_metric_properties(args),
+          wrap_with(:hr, ""),
+          nest(card.about_card, view: :titled, title: "About"),
+          nest(card.methodology_card, view: :titled, title: "Methodology"),
+          _render_import_button(args),
+          _render_add_value_buttons
+        ]
+      end
     end
   end
 
@@ -109,10 +107,10 @@ format :html do
   end
 
   def add_value_path
-    "/new/metric_value?slot[metric]=" + _render_cgi_escape_name
+    "/new/metric_value?metric=" + _render_cgi_escape_name
   end
 
-  view :add_value_buttons do |_args|
+  view :add_value_buttons do
     policy = card.fetch(trait: :research_policy, new: {}).item_cards.first.name
     is_admin = Card::Auth.always_ok?
     is_owner = Auth.current.id == card.creator.id

@@ -5,19 +5,19 @@ format :html do
     item_class = args[:item_types].map do |t|
       "#{t}-item"
     end.join " "
-    inner = content_tag(:div, header.html_safe, class: "header") +
-            content_tag(:div, data.html_safe, class: "data")
+    inner = wrap_with(:div, header.html_safe, class: "header") +
+            wrap_with(:div, data.html_safe, class: "data")
 
     if args[:append_for_details]
-      inner = content_tag :div, class: "metric-details-toggle",
+      inner = wrap_with :div, class: "metric-details-toggle",
                           "data-append" => args[:append_for_details] do
                 inner
               end
     end
 
-    content = content_tag :div, class: row_class do
-      content_tag(:div, inner, class: item_class) +
-        content_tag(:div, "", class: "details")
+    content = wrap_with :div, class: row_class do
+      wrap_with(:div, inner, class: item_class) +
+        wrap_with(:div, "", class: "details")
     end
     process_content content
   end

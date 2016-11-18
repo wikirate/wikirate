@@ -18,7 +18,7 @@ describe Card::Set::Right::BrowseMetricFilter do
 
     context "name argument" do
       before { filter_args name: "CDP" }
-      it { is_expected.to eq wql(name: ["match", "CDP"]) }
+      it { is_expected.to eq(wql(name: %w(match CDP))) }
     end
 
     context "company argument" do
@@ -30,7 +30,7 @@ describe Card::Set::Right::BrowseMetricFilter do
       before { filter_args wikirate_topic: "myTopic" }
       it do
         is_expected.to eq wql(
-          right_plus: ["topic", { refer_to: "myTopic"}]
+          right_plus: ["topic", { refer_to: "myTopic" }]
         )
       end
     end
@@ -48,7 +48,7 @@ describe Card::Set::Right::BrowseMetricFilter do
       before { filter_args metric_type: "researched" }
       it do
         is_expected.to eq wql(
-          right_plus: ["*metric type", {refer_to: "researched"}]
+          right_plus: ["*metric type", { refer_to: "researched" }]
         )
       end
     end
@@ -57,7 +57,7 @@ describe Card::Set::Right::BrowseMetricFilter do
       before { filter_args research_policy: "community assessed" }
       it do
         is_expected.to eq wql(
-          right_plus: ["Research Policy", {refer_to: "community assessed"}]
+          right_plus: ["Research Policy", { refer_to: "community assessed" }]
         )
       end
     end
@@ -66,7 +66,8 @@ describe Card::Set::Right::BrowseMetricFilter do
       before { filter_args year: "2015" }
       it do
         is_expected.to eq wql(
-          right_plus: [{ type_id: 1854, right_plus: [{ name: "2015" }, {}] }]
+          right_plus: [{ type_id: Card::WikirateCompanyID,
+                         right_plus: [{ name: "2015" }, {}] }]
         )
       end
     end
@@ -93,20 +94,21 @@ describe Card::Set::Right::BrowseMetricFilter do
       end
       it "joins filter conditions correctly" do
         is_expected.to eq wql(
-          name: ["match", "CDP"],
+          name: %w(match CDP),
           and: {
             right_plus: ["Research Policy", { refer_to: "community assessed" }],
             and: {
               right_plus: ["*metric type", { refer_to: "researched" }],
               and: {
-                right_plus: ["topic", { refer_to: "myTopic"}],
+                right_plus: ["topic", { refer_to: "myTopic" }],
                 and: {
                   right_plus: ["Apple Inc", {}]
                 }
               }
             }
           },
-          right_plus: [{ type_id: 1854, right_plus: [{ name: "2015" }, {}] }],
+          right_plus: [{ type_id: Card::WikirateCompanyID,
+                         right_plus: [{ name: "2015" }, {}] }],
           or: { left: "myDesigner", right: "myDesigner" },
           referred_to_by: { left: { name: "myProject" }, right: "metric" }
         )
