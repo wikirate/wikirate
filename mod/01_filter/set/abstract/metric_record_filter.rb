@@ -23,12 +23,14 @@ format :html do
   end
 
   def filter_form_body_content
-    <<-HTML
-      <h4>#{filter_body_header}</h4>
-      <div class="margin-12 sub-content">
-          #{filter_fields filter_categories}
-      </div>
-      <h4>Answer</h4>
-    HTML
+    output(
+      [
+        wrap_with(:h4, filter_body_header),
+        wrap_with(:div, class: "margin-12 sub-content") do
+          filter_fields filter_categories
+        end,
+        wrap_with(:h4, "Answer")
+      ]
+    )
   end
 end
