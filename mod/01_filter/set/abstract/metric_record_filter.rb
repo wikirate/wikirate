@@ -18,7 +18,7 @@ format :html do
 
   def main_filter_buttons
     wrap_with :div, class: "filter-buttons" do
-      render_filter_buttons
+      filter_button_formgroup
     end
   end
 

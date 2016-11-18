@@ -15,8 +15,9 @@ def filter cache
   cache = all_without_values cache if Env.params["value"] == "none"
   cache.select do |key, values|
     pass_filter?(key, values) &&
+        (!values.is_a?(Array) ||
       (values.select! { |v| pass_single_value_filter?(key, v)} == nil ||
-      values.present?)
+          values.present?))
   end
 end
 
@@ -35,7 +36,7 @@ def filter_by_name key
 end
 
 def filter_by_value values
-  keep_if :value, default: "exists" do |filter|
+  keep_if :metric_value, default: "exists" do |filter|
     case filter
     when "none" then values.empty?
     when "exists" then !values.empty?

@@ -1,0 +1,34 @@
+{
+{
+  style: mixins and variables
+}
+}
+
+.filter-header {
+  cursor: pointer;
+}
+
+.votee-filter, .filter-header {
+  text-align: center;
+}
+
+.votee-filter, .filter-container {
+  background: #f8f9fa;
+  color: $dark-text-color;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  float: left;
+  width: 100%;
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+}
+
+.filter-details {
+  padding-bottom: 1px;
+}
+
+.filter-toggle {
+  float: right;
+}
+

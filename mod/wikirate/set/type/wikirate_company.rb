@@ -16,7 +16,7 @@ format :html do
   end
 
 
-  view :open, cache: :never do |args|
+  view :open, cache: :never do
     if show_contributions_profile?
       link = link_to_card card, nil, path: { about_company: true }
       output [
@@ -26,7 +26,7 @@ format :html do
         field_subformat(:contribution).render_open
       ]
     else
-      super args
+      super()
     end
   end
 end
