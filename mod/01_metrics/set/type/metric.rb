@@ -224,10 +224,10 @@ format :html do
     subformat(detail_card).render_content
   end
 
-  def default_edit_args args
-    edit_args args
-    super(args)
-  end
+  #def default_edit_args args
+  #  #edit_args args
+  #  super()
+  #end
 
   view :handle do |_args|
     wrap_with :div, class: "handle" do

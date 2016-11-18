@@ -39,7 +39,7 @@ format :html do
         #{_optional_render(:sort_formgroup, args)}
       </div>
       <div class="filter-buttons">
-        #{_render :button_formgroup, args}
+        #{_render :filter_buttons}
       </div>
   HTML
   end

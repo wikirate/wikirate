@@ -39,31 +39,30 @@ format :html do
   end
 
   def more_filter_options_link
-    button_tag("more filter options",
-               situation: "link",
+    button_tag "more filter options",
+               situation: "link", type: "button",
                class: " filter-toggle btn-sm",
-               type: "button",
-               data: {
-                 toggle: "collapse",
-                 target: "#_filter_details",
-                 collapseintext: "fewer filter options",
-                 collapseouttext: "more filter options"
-               })
+               data: { toggle: "collapse",
+                       target: "#_filter_details",
+                       collapseintext: "fewer filter options",
+                       collapseouttext: "more filter options" }
   end
 
   def content_view
     :data
   end
 
-  def default_button_formgroup_args args
-    filter_icon = fa_icon("search").html_safe
-    args[:buttons] = [
-      button_tag(filter_icon, situation: "default", disable_with: "Filtering"),
-      button_formgroup_reset_button
-    ].join
+  view :filter_buttons do
+    [filter_search_button, filter_reset_button].join
   end
 
-  def button_formgroup_reset_button
+  def filter_search_button
+    button_tag fa_icon("search").html_safe, situation: "default",
+                                            disable_with: "Filtering"
+  end
+
+
+  def filter_reset_button
     html_class = "slotter btn btn-default margin-8"
     html_class += filter_active? ? " show" : " hide"
     link_to_card card.cardname.left, "Reset",

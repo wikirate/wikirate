@@ -20,7 +20,7 @@ format :html do
     if show_contributions_profile?
       link = link_to_card card, nil, path: { about_company: true }
       output [
-        (content_tag(:div, class: "contributions-about-link") do
+        (wrap_with(:div, class: "contributions-about-link") do
           "showing contributions by #{link}"
         end),
         field_subformat(:contribution).render_open

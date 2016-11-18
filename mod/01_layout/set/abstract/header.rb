@@ -8,8 +8,8 @@ format :html do
     count = subformat(count_card)._render_core
     wrap_with :div do
       [
-        content_tag(:span, title, class: "count-label"),
-        content_tag(:span, count, class: "count-number badge clearfix")
+        wrap_with(:span, title, class: "count-label"),
+        wrap_with(:span, count, class: "count-number badge clearfix")
       ]
     end
   end

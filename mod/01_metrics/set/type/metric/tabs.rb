@@ -12,7 +12,7 @@ format :html do
     tab_wrap do
       [
         _render_metric_properties,
-        content_tag(:hr, ""),
+        wrap_with(:hr, ""),
         nest(card.formula_card, view: :titled, title: "Formula"),
         nest(card.about_card, view: :titled, title: "About")
       ]

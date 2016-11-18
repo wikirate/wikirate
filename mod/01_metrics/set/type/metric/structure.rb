@@ -35,12 +35,12 @@ format :html do
 
   view :metric_title do |_args|
     link = link_to_card card, card.metric_title, class: "inherit-anchor"
-    content_tag :h3, link, class: "metric-color"
+    wrap_with :h3, link, class: "metric-color"
   end
 
   view :metric_question do
     question = subformat(card.question_card)._render_content
-    content_tag :h4, question, class: "question"
+    wrap_with :h4, question, class: "question"
   end
 
   view :designer_info do
@@ -78,7 +78,7 @@ format :html do
     author_args = subtext ? { class: "nopadding" } : {}
     wrap_with :div, args do
       [
-        content_tag(subtext ? "h4" : "h3", author, author_args),
+        wrap_with(subtext ? "h4" : "h3", author, author_args),
         subtext
       ]
     end

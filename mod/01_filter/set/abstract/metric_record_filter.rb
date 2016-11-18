@@ -11,14 +11,14 @@ format :html do
   end
 
   def main_filter_inputs
-    content_tag :div, class: "margin-12" do
+    wrap_with :div, class: "margin-12" do
       main_filter_formgroups
     end
   end
 
   def main_filter_buttons
-    content_tag :div, class: "filter-buttons" do
-      _optional_render(:button_formgroup).html_safe
+    wrap_with :div, class: "filter-buttons" do
+      render_filter_buttons
     end
   end
 

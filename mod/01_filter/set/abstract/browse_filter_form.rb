@@ -155,7 +155,7 @@ format :html do
 
   def advanced_button
     toggle_text = filter_advanced_active? ? "Hide Advanced" : "Show Advanced"
-    content_tag :a, toggle_text,
+    wrap_with :a, toggle_text,
                  href: "#collapseFilter",
                  class: "btn btn-default",
                  data: { toggle: "collapse",
