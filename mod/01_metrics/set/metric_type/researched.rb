@@ -107,7 +107,7 @@ format :html do
   end
 
   def add_value_path
-    "/new/metric_value?slot[metric]=" + _render_cgi_escape_name
+    "/new/metric_value?metric=" + _render_cgi_escape_name
   end
 
   view :add_value_buttons do
