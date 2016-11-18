@@ -59,21 +59,27 @@ end
 
 format :html do
   view :cited_formgroup do |_args|
-    options = { "All" => "all", "Yes" => "yes", "No" => "no" }
-    simple_select_filter :cited, options, "all", "Cited"
+    select_filter :cited, "Cited", "all"
   end
 
   view :claimed_formgroup do |_args|
-    options = { "All" => "all", "Yes" => "yes", "No" => "no" }
-    simple_select_filter :claimed, options, "all", "Has Notes?"
+    select_filter :claimed, "Has Notes?", "all"
   end
 
   view :wikirate_company_formgroup do
-    multiselect_filter :wikirate_company, "Company"
+    multiselect_filter_type_based :wikirate_company
   end
 
   view :wikirate_topic_formgroup do
-    multiselect_filter :wikirate_topic, "Topic"
+    multiselect_filter_type_based :wikirate_topic
+  end
+
+  def claimed_options
+    { "All" => "all", "Yes" => "yes", "No" => "no" }
+  end
+
+  def cited_options
+    { "All" => "all", "Yes" => "yes", "No" => "no" }
   end
 
   def sort_options

@@ -660,39 +660,6 @@ $bright-text-color: #e5e5e5;
 }
 
 
-// filter
-.filter-header {
-  cursor: pointer;
-}
-
-.votee-filter,.filter-header{
-    text-align: center;
-}
-
-.votee-filter, .filter-container {
-  background: #f8f9fa;
-  color: $dark-text-color;
-  padding: 10px;
-  font-size: 12px;
-  font-weight: bold;
-  float: left;
-  width: 100%;
-  border-top: 1px solid #ebebeb;
-  border-bottom: 1px solid #ebebeb;
-}
-.filter-details {
-  //display: none;
-  //margin-bottom: -4px;
-  //margin-left: -5px;
-  //margin-right: -4px;
-  //background: #FDFDFD;
-  //margin: 5px 10px 10px;
-  //padding: 10px;
-}
-.filter-toggle {
-  float: right;
-}
-
 .TYPE-topic .RIGHT-company_sidebar {
   margin: 22px 10px 10px;
 }
