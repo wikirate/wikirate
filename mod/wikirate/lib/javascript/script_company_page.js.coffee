@@ -1,7 +1,7 @@
 query_string = null
 QueryString = ->
-# This function is anonymous, is executed immediately and
-# the return value is assigned to QueryString!
+  # This function is anonymous, is executed immediately and
+  # the return value is assigned to QueryString!
   if !query_string
     query_string = {}
   else
@@ -16,14 +16,14 @@ QueryString = ->
     # If first entry with this name
     if typeof query_string[key] == 'undefined'
       query_string[key] = value
-# If second entry with this name
+    # If second entry with this name
     else if typeof query_string[key] == 'string'
       arr = [
         query_string[key]
         value
       ]
       query_string[key] = arr
-# If third or later entry with this name
+    # If third or later entry with this name
     else
       query_string[key].push value
     i++
@@ -41,8 +41,7 @@ showFakeLoader = ->
   return
 History = window.History # js include in standard head extras
 wagn.slotReady (slot) ->
-  if (slot.hasClass("TYPE-company") || slot.hasClass("TYPE-topic")) &&
-    slot.hasClass("open-view") && slot.hasClass("ALL")
+  if (slot.hasClass("TYPE-company") || slot.hasClass("TYPE-topic")) && slot.hasClass("open-view") && slot.hasClass("ALL")
     query_string = null
     currentTab = QueryString().tab
     if $("[data-tab-name='" + currentTab + "']").size() == 0
