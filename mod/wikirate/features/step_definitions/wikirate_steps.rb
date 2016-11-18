@@ -69,9 +69,9 @@ When(/^I fill in company with "([^"]*)"$/) do |company|
   fill_in_pointer_field :company, company
 end
 
-When(/^I fill in year with "([^"]*)"$/) do |year|
-  fill_in_pointer_field :year, year
-end
+# When(/^I fill in year with "([^"]*)"$/) do |year|
+#   fill_in_pointer_field :year, year
+# end
 
 When(/^I fill in value with "([^"]*)"$/) do |value|
   fill_in_value value

@@ -18,12 +18,11 @@ format :html do
   end
 
   def default_content_args args
-    if metric_card && metric_card.metric_type_codename == :score
-      if card[0].type_code == :wikirate_topic
-        args[:structure] = "topic_score_metric_drag_item"
-      elsif card[0].type_code == :wikirate_company
-        args[:structure] = "company_score_metric_drag_item"
-      end
-    end
+    return unless metric_card && metric_card.metric_type_codename == :score
+    structure_root = case card[0].type_code
+                     when :wikirate_topic then "topic"
+                     when :wikirate_company then "company"
+                     end
+    voo.structure = "#{structure_root}_score_metric_drag_item" if structure_root
   end
 end

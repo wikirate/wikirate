@@ -11,11 +11,6 @@ view :missing do |args|
 end
 
 format :html do
-  def view_caching?
-    false
-  end
-
-
   view :open, cache: :never do
     if show_contributions_profile?
       link = link_to_card card, nil, path: { about_company: true }
