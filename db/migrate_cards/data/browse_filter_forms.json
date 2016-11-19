@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Company+*self+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "browse company filter",
+    "type": "Basic",
+    "codename": "browse_company_filter"
+  },
+  {
+    "name": "Metric+*self+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "browse metric filter",
+    "type": "Basic",
+    "codename": "browse_metric_filter"
+  },
+  {
+    "name": "Topic+*self+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "browse topic filter",
+    "type": "Basic",
+    "codename": "browse_topic_filter"
+  }
+]

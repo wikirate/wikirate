@@ -23,6 +23,7 @@ namespace :wikirate do
       require "card/migration"
       require "generators/card"
       import_data = yield
+      binding.pry
       card_list = import_data[:card][:value].map do |card_attr|
         dir = File.join "cards", card_attr[:name].to_name.key
         File.open(Card::Migration.data_path(dir), "w") do |f|
