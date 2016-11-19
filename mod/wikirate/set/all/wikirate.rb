@@ -282,7 +282,7 @@ module ClassMethods
 end
 
 format :json do
-  view :content do
+  view :content, cache: :never do
     result = super()
     result_card_value = result[:card] && result[:card][:value]
     result_card_value.reject!(&:nil?) if result_card_value.is_a? Array
