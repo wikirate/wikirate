@@ -39,7 +39,7 @@ format :html do
   end
 
   def sort_options
-      { "Alphabetical" => "name" }
+    { "Alphabetical" => "name" }
   end
 
   def filter_fields categories

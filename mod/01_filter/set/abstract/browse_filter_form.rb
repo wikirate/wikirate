@@ -109,13 +109,12 @@ def raw_content
   %({ "name":"dummy" })
 end
 
-
 format :html do
   # view :no_search_results do |_args|
   #   wrap_with :div, "No result", class: "search-no-results"
   # end
 
-  view :filter_form do |args|
+  view :filter_form, cache: :never do
     action = card.left.name
     wrap_with :form, action: "/#{action}", method: "GET" do
       [
