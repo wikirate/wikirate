@@ -1,31 +1,31 @@
 include_set Abstract::FilterFormHelper
 
 format :html do
-  view :name_formgroup do
+  view :name_formgroup, cache: :never do
     text_filter :name
   end
 
-  view :project_formgroup do
+  view :project_formgroup, cache: :never do
     select_filter_type_based :project
   end
 
-  view :year_formgroup do
+  view :year_formgroup, cache: :never do
     select_filter_type_based :year
   end
 
-  view :wikirate_topic_formgroup do
+  view :wikirate_topic_formgroup, cache: :never do
     select_filter_type_based :wikirate_topic
   end
 
-  view :metric_formgroup do
+  view :metric_formgroup, cache: :never do
     select_filter_type_based :metric
   end
 
-  view :wikirate_company_formgroup do
+  view :wikirate_company_formgroup, cache: :never do
     select_filter_type_based :wikirate_company
   end
 
-  view :research_policy_formgroup do
+  view :research_policy_formgroup, cache: :never do
     checkbox_filter :research_policy, "Research Policy"
   end
 
@@ -33,7 +33,7 @@ format :html do
     select_filter_type_based :research_policy
   end
 
-  view :metric_type_formgroup do
+  view :metric_type_formgroup, cache: :never do
     checkbox_filter :metric_type, "Metric Type"
   end
 
@@ -41,11 +41,11 @@ format :html do
     select_filter :metric_type, "Metric Type"
   end
 
-  view :metric_value_formgroup do
+  view :metric_value_formgroup, cache: :never do
     select_filter :metric_value, "Value", "exists"
   end
 
-  view :designer_formgroup do
+  view :designer_formgroup, cache: :never do
     select_filter :designer, "Designer"
   end
 
