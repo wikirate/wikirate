@@ -1,3 +1,6 @@
+card_reader :projects_organized, type: :search_type
+card_reader :metrics_designed, type: :search_type
+
 format :html do
   def show_contributions_profile?
     main? && !Env.ajax? && !Env.params["about_company"] &&
@@ -21,13 +24,19 @@ format :html do
   end
 
   def metrics_designed?
-    Card.search(type_id: MetricID, left: card.name, return: "count") > 0
+    card.metrics_designed_card.count > 0
   end
 
   def projects_organized?
-    Card.search(type_id: ProjectID,
-                right_plus: ["organizer", { refer_to: card.name }],
-                return: "count") > 0
+    card.projects_organized_card.count > 0
+  end
+
+  view :metric_contributions do
+    field_subformat(:metrics_designed)._render_titled show: :title_badge, items: { view: :metric_row }
+  end
+
+  view :project_contributions do
+    field_subformat(:projects_organized)._render_titled show: :title_badge
   end
 end
 

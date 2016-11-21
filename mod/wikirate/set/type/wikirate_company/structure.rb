@@ -1,16 +1,38 @@
 include_set Abstract::WikirateTable
 include_set Abstract::TwoColumnLayout
 
+card_accessor :wikipedia
 
 format :html do
+  def active_profile_tab
+    if (profile = params[:company_profile])
+      profile.to_sym
+    else
+      @default_profile_tab ||= show_contributions_profile? ? :contributions : :performance
+    end
+  end
+
   def tab_list
+    list = { details_tab: two_line_tab("Details", fa_icon("info")) }
+    list.merge! performance_tabs if active_profile_tab == :performance
+    list
+  end
+
+  def performance_tabs
     {
-      details_tab: "Details",
-      # open_corporates_tab: "OpenCorporates",
-      projects_tab: "Projects",
-      topics_tab: tab_count_title("Topics", :wikirate_topic),
-      sources_tab: tab_count_title("Sources", :source)
+        projects_tab: tab_count_title("Projects", :project),
+        topics_tab: tab_count_title("Topics", :wikirate_topic),
+        sources_tab: tab_count_title("Sources", :source)
     }
+  end
+
+
+  view :data do
+    if active_profile_tab == :performance
+      super()
+    else
+      contribution_data
+    end
   end
 
 
@@ -18,7 +40,7 @@ format :html do
     _render_metric_list(args)
   end
 
-  view :rich_header do |args|
+  view :rich_header do
     bs_layout do
       row sm: [6, 6], xs: [3, 9] do
         col do
@@ -27,12 +49,48 @@ format :html do
           end
         end
         col do
-          wrap_with :h2, _render_title, class: "company-color"
+          html wrap_with(:h2, _render_title, class: "company-color")
+          html _render_header_tabs
         end
-
       end
     end
   end
+
+  view :header_tabs, cache: :never do
+    wrap_with :ul, class: "nav nav-tabs" do
+      [
+          performance_tab_button,
+          contributions_tab_button
+      ]
+    end
+  end
+
+  def contribution_data
+    output [
+               _render_metric_contributions,
+               _render_project_contributions
+           ]
+  end
+
+  def profile_tab key, label, args={}
+    add_class args, :active if active_profile_tab == key
+    wrap_with :li, args do
+      link_to_card card, label, path: { company_profile: key }
+    end
+  end
+
+  def performance_tab_button
+    profile_tab :performance, "Performance"
+  end
+
+  def contributions_tab_button
+    if contributions_made?
+      profile_tab :contributions, "Contributions"
+    else
+      wrap_with :li, "Contributions", class: "disabled"
+    end
+  end
+
 
   # view :core do |args|
   #   tabs = [
@@ -46,34 +104,39 @@ format :html do
   #   wikirate_layout "company", tabs, render_contribution_link(args)
   # end
 
-  view :topics_tab do |args|
+  view :topics_tab do
+    process_content <<-HTML
+      <div class="voting">
 
-    "Ghost"
-    # process_content <<-HTML
-    #   <div class="voting">
-    #
-    #      {{_left+topic+upvotee search|drag_and_drop|content;structure:company topic drag item}}
-    #
-    #     #{nest "topic votee filter", view: :core}
-    #      <div class="header-row">
-    #        <div class="header-header">Topic</div>
-    #         <div class="data-header">Contributions</div>
-    #      </div>
-    #     {{_left+topic+novotee search|drag_and_drop|content;structure:company topic drag item}}
-    #     {{_left+topic+downvotee search|drag_and_drop|content;structure:company topic drag item}}
-    #   </div>
-    # HTML
+         {{_left+topic+upvotee search|drag_and_drop|content;structure:company topic drag item}}
+
+        #{nest "topic votee filter", view: :core}
+         <div class="header-row">
+           <div class="header-header">Topic</div>
+            <div class="data-header">Contributions</div>
+         </div>
+        {{_left+topic+novotee search|drag_and_drop|content;structure:company topic drag item}}
+        {{_left+topic+downvotee search|drag_and_drop|content;structure:company topic drag item}}
+      </div>
+    HTML
   end
 
   view :details_tab do |_args|
     layout do
       row 12 do
-        column _render_recent_editors
+        column wikipedia_extract
       end
-      row 12 do
-        column _render_overview_section
-      end
+      # row 12 do
+      #   column _render_recent_editors
+      # end
+      # row 12 do
+      #   column _render_overview_section
+      # end
     end
+  end
+
+  def wikipedia_extract
+    subformat(card.wikipedia_card)._render_titled
   end
 
   view :recent_editors do |_args|

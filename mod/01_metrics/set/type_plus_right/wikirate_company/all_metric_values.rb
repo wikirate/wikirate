@@ -8,6 +8,10 @@ def item_cards _args={}
   MetricAnswer.fetch(company_id: left.id)
 end
 
+# def filtered_values_by_name
+#   @filtered_values_by_name ||= MetricAnswer.filter filter_keys_with_values
+# end
+
 format do
   def page_link_params
     [:name, :wikirate_topic, :research_policy, :vote, :value, :type,

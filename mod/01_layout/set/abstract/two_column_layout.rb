@@ -18,23 +18,23 @@ format :html do
     end
   end
 
-  view :content_right_col do |args|
-    _render_tabs(args)
+  view :content_right_col do
+    _render_tabs
   end
 
-  view :content_left_col do |args|
+  view :content_left_col do
     # had slot before
     output [
-             _render_rich_header(args),
-             _render_data(args)
+               _render_rich_header,
+               _render_data
            ]
   end
 
-  view :data do |args|
+  view :data do
     wrap do
       [
-        _optional_render_filter(args),
-        _render_table(args)
+          _optional_render_filter,
+          _render_table
       ]
     end
   end
