@@ -42,7 +42,7 @@ showFakeLoader = ->
 History = window.History # js include in standard head extras
 wagn.slotReady (slot) ->
   if (slot.hasClass("TYPE-company") || slot.hasClass("TYPE-topic")) &&
-    slot.hasClass("open-view") && slot.hasClass("ALL")
+      slot.hasClass("open-view") && slot.hasClass("ALL")
     query_string = null
     currentTab = QueryString().tab
     if $("[data-tab-name='" + currentTab + "']").size() == 0

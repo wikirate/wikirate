@@ -21,13 +21,13 @@ format :html do
     end
   end
 
-  view :open do |args|
+  view :open do
     if card.contribution_count.zero?
       _render_closed
     else
       if (l = card.left) &&
          (Auth.current_id == l.id || l.type_code == :wikirate_company)
-        args[:slot_class] = "editable"
+        class_up "card-slot", "editable"
       end
       super()
     end

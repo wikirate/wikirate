@@ -115,7 +115,7 @@ format :html do
   #   wrap_with :div, "No result", class: "search-no-results"
   # end
 
-  view :filter_form do |args|
+  view :filter_form, cache: :never do |args|
     action = card.left.name
     wrap_with :form, action: "/#{action}", method: "GET" do
       [
