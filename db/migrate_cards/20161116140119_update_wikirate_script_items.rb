@@ -25,7 +25,7 @@ class UpdateWikirateScriptItems < Card::Migration
     create_or_update name: 'script: overview page',
                      type_id: Card::CoffeeScriptID,
                      codename: 'script_overview_page'
-    if (card = Card.fetch("import page script"))
+    if (card = Card["import page script"])
       card.update_attributes! name: 'script: import page',
                               type_id: Card::CoffeeScriptID,
                               codename: 'script_import_page',

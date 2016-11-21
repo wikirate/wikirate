@@ -51,9 +51,6 @@ def related_companies
 end
 
 format :html do
-  def view_caching?
-    true
-  end
   view :metric_tab do |args|
     wrap do
       [

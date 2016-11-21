@@ -25,10 +25,6 @@ def search_wql type_id, opts, params_keys, return_param=nil, &block
 end
 
 format :html do
-  def view_caching?
-    false
-  end
-
   def main_filter_formgroups
     filter_fields filter_keys
   end

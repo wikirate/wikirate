@@ -18,6 +18,7 @@ gem "curb"
 gem "daemons"
 gem "delayed_job_active_record"
 gem "delayed_job_web"
+gem "rubocop"
 gem "rubocop-decko"
 
 # seems like newrelic should be in :live, but that wasn't working.
@@ -66,7 +67,6 @@ group :test do
 end
 
 group :development do
-  gem "rubocop"
   gem "rubocop-rspec"
 
   gem "rails-dev-tweaks"

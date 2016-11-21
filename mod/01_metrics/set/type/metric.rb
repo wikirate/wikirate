@@ -248,10 +248,6 @@ format :html do
     )
   end
 
-  def view_caching?
-    true
-  end
-
   view :item_view do |args|
     append = args[:append_for_details] ||
              "#{card.key}+add_to_formula"
