@@ -1,4 +1,5 @@
 include_set Abstract::TwoColumnLayout
+include_set Abstract::KnownAnswers
 
 card_reader :wikirate_company
 card_reader :metric
@@ -35,52 +36,9 @@ def researched_wql
     return: :count }
 end
 
-# currently counts as researched if metric card exists at all
-def researched
-  @researched ||= worth_counting { Card.search(researched_wql) }
-end
-
-# researched and has a value that is not "Unknown"
-def known
-  @known ||= worth_counting do
-    Card.search researched_wql.merge(
-      right_plus: [{ type_id: YearID }, { ne: "Unknown" }]
-    )
-  end
-end
-
 def worth_counting
   return 0 unless metric_ids.any? && company_ids.any?
   yield
-end
-
-def unknown
-  @unknown ||= researched - known
-end
-
-def not_researched
-  @not_researched ||= records - researched
-end
-
-def percent_researched
-  @percent_researched ||= percent_of_records researched
-end
-
-def percent_not_researched
-  @percent_not_researched ||= percent_of_records not_researched
-end
-
-def percent_known
-  @percent_known ||= percent_of_records known
-end
-
-def percent_unknown
-  @percent_unknown ||= percent_of_records unknown
-end
-
-# returns with a tenth (eg 11.1%)
-def percent_of_records value
-  records.zero? ? 0 : (1000 * value / records / 10.0)
 end
 
 format :html do
@@ -195,21 +153,5 @@ format :html do
       { value: card.percent_unknown, class: "progress-bar-info" },
       { value: card.percent_not_researched, class: "progress-bar-warning" }
     )
-  end
-
-  def progress_bar *sections
-    wrap_with :div, class: "progress" do
-      Array.wrap(sections).map do |section_args|
-        progress_bar_section section_args
-      end.join
-    end
-  end
-
-  def progress_bar_section args
-    add_class args, "progress-bar"
-    wrap_with :div, class: args[:class], role: "progressbar",
-                    style: "width: #{args[:value]}%" do
-      args[:body] || "#{args[:value]}%"
-    end
   end
 end
