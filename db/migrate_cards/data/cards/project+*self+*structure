@@ -1,0 +1,5 @@
+{{+description}}
+{{Project|add_button}}
+<div>{{+Active|titled;title:Active Projects|row}}</div>
+<hr/>
+<div>{{+Inactive|titled;title: Inactive Projects|row}}</div>
