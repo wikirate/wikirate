@@ -18,21 +18,10 @@ format :html do
     _render_metric_list(args)
   end
 
-  view :rich_header do |args|
-    bs_layout do
-      row sm: [6, 6], xs: [3, 9] do
-        col do
-          div class: "image-box large-rect" do
-            field_nest(:image, size: :large)
-          end
-        end
-        col do
-          wrap_with :h2, _render_title, class: "company-color"
-        end
-
-      end
-    end
+  def header_right
+    wrap_with :h2, _render_title, class: "company-color"
   end
+
 
   # view :core do |args|
   #   tabs = [

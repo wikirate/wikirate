@@ -2,12 +2,15 @@
 
 class ProjectUpdates < Card::Migration
   def up
-    ensure_card "status", codename: "wikirate_status"
-    ensure_card "Organizer", codename: "organizer"
+    merge_cards [
+      "Project+*self+*structure",
+      "Project+status+*type plus right+*options", "status",
+      "Organizer",
+      "description",
+      "status"
+    ]
 
-    Card.create! name: "Project+status+*type plus right+*options",
-                 type: "Pointer",
-                 content: "[[Active]]\n[[Inactive]]"
+    Card::Codename.reset_cache
 
     Card.search left: { type: "Project" }, right: "status" do |card|
       card.content = card.content =~ /Open/ ? "Active" : "Inactive"
@@ -16,6 +19,5 @@ class ProjectUpdates < Card::Migration
 
     Card["Project+Open"].update_attributes! name: "Project+Active"
     Card["Project+Closed"].update_attributes! name: "Project+Inactive"
-
   end
 end

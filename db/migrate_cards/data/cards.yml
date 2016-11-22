@@ -3,4 +3,19 @@
 - :name: Project+*self+*structure
   :type: HTML
   :key: project+*self+*structure
+- :name: Project+status+*type plus right+*options
+  :type: Pointer
+  :key: project+status+*type_plu_right+*option
+- :name: Status
+  :type: Basic
+  :codename: wikirate_status
+  :key: status
+- :name: Organizer
+  :type: Basic
+  :codename: organizer
+  :key: organizer
+- :name: description
+  :type: Basic
+  :codename: description
+  :key: description
 :remotes: {}

@@ -1,0 +1,5 @@
+def virtual?
+  true
+end
+
+

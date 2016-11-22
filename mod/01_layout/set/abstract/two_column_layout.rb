@@ -5,7 +5,7 @@ format :html do
   def default_open_content_args args
     args[:left_class] ||= { class: "left-col nopadding" }
     args[:right_class] ||= { class: "right-col" }
-    args[:grid_option] ||= { md: [6, 6] }
+    # args[:grid_option] ||= { md: [6, 6] }
   end
 
   view :open_content do |args|
@@ -18,25 +18,37 @@ format :html do
     end
   end
 
-  view :content_right_col do |args|
-    _render_tabs(args)
+  view :rich_header do |args|
+    bs_layout do
+      row sm: [6, 6], xs: [3, 9] do
+        col { header_image }
+        col { header_right }
+      end
+    end
   end
 
-  view :content_left_col do |args|
+  def header_image
+    wrap_with :div, class: "image-box large-rect" do
+      field_nest(:image, size: :large)
+    end
+  end
+
+  def header_right
+    wrap_with :h2, _render_title, class: "header-right"
+  end
+
+  view :content_right_col do
+    _render_tabs
+  end
+
+  view :content_left_col do
     # had slot before
-    output [
-             _render_rich_header(args),
-             _render_data(args)
-           ]
+    output [_render_rich_header, _render_data]
   end
 
-  view :data do |args|
+  view :data do
     wrap do
-      [
-        _optional_render_filter(args),
-        _render_table(args)
-      ]
+      [_optional_render_filter, _render_table]
     end
   end
 end
-
