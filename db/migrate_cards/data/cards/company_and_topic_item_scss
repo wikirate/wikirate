@@ -51,7 +51,7 @@ $note-tag-notexist-hover: #ececec;
       padding: 10px 1%!important;
       float: left;
 }
-#browse-companies,#browse-topics{
+.RIGHT-topic_list, #browse-companies,#browse-topics{
     .item-content,
     .search-result-item {
       display: inline-block;
@@ -63,7 +63,6 @@ $note-tag-notexist-hover: #ececec;
       float: left;
     }
   }
-
 
 .STRUCTURE-company_overview .TYPE-image img {
   max-width: 84%;

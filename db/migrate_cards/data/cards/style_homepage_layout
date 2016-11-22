@@ -506,3 +506,8 @@
             float: left;
           }
         }
+        
+        
+        .name-diff .label-default {
+          background-color: inherit; 
+        }
