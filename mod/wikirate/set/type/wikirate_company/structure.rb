@@ -35,9 +35,8 @@ format :html do
     end
   end
 
-
   view :table do |args|
-    _render_metric_list(args)
+    metric_table
   end
 
   view :rich_header do
@@ -67,9 +66,9 @@ format :html do
 
   def contribution_data
     output [
-               _render_metric_contributions,
-               _render_project_contributions
-           ]
+      _render_metric_contributions,
+      _render_project_contributions
+    ]
   end
 
   def profile_tab key, label, args={}
@@ -168,9 +167,5 @@ format :html do
 
   view :filter do |args|
     field_subformat(:company_metric_filter)._render_core args
-  end
-
-  view :metric_list do
-    yinyang_list field: :all_metric_values, row_view: :metric_row_for_company
   end
 end

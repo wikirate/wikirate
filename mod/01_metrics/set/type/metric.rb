@@ -236,7 +236,9 @@ format :html do
   end
 
   view :vote do |_args|
-    %(<div class="hidden-xs hidden-md">{{#{card.name}+*vote count}}</div>)
+    %(<div class="hidden-xs hidden-md">
+    #{field_nest(:vote_count)}</div>
+    )
   end
 
   view :value do |args|

@@ -1,4 +1,6 @@
 format :html do
+
+
   def metric_row header, data, args={}
     row_class = "yinyang-row"
     row_class = "drag-item #{row_class}" if args[:drag_and_drop]

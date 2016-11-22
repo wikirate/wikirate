@@ -1,8 +1,10 @@
-include_set Abstract::WikirateTable
+include_set Abstract::Table
 
 format :html do
   view :core do
-    yinyang_list
+    wikirate_table :metric,
+                   ["Metric", "Companies"], search_results,
+                   [:simple_item_view, :company_count]
   end
 
   def yinyang_list

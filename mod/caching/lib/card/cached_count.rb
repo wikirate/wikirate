@@ -16,6 +16,7 @@ class Card
     end
 
     def cached_count
+      update_cached_count if cached_count_card.new_card?
       cached_count_card.content.to_i
     end
 

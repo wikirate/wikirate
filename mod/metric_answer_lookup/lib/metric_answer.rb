@@ -1,5 +1,6 @@
 class MetricAnswer < ActiveRecord::Base
   include LookupTable
+  include Filter
   extend LookupTable::ClassMethods
 
   def card_column
