@@ -16,6 +16,7 @@ $slick-opacity-default: .75 !default;
 $slick-opacity-on-hover: 1 !default;
 $slick-opacity-not-active: .25 !default;
 
+
 // @function slick-image-url($url) {
 //   @if function-exists(image-url) {
 //     @return image-url($url, false, false);
@@ -51,7 +52,6 @@ $slick-opacity-not-active: .25 !default;
   touch-action: pan-y;
   -webkit-tap-highlight-color: transparent;
 }
-
 .slick-list {
   position: relative;
   overflow: hidden;
@@ -72,7 +72,6 @@ $slick-opacity-not-active: .25 !default;
     cursor: hand;
   }
 }
-
 .slick-slider .slick-track {
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
@@ -101,7 +100,6 @@ $slick-opacity-not-active: .25 !default;
     visibility: hidden;
   }
 }
-
 .slick-slide {
   float: left;
   height: 100%;
@@ -185,7 +183,6 @@ $slick-opacity-not-active: .25 !default;
     opacity: $slick-opacity-not-active;
   }
 }
-
 .slick-prev:before, .slick-next:before {
   font-family: $slick-font-family;
   font-size: 20px;
@@ -195,7 +192,6 @@ $slick-opacity-not-active: .25 !default;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 .slick-prev {
   left: 0px;
   [dir="rtl"] & {
@@ -209,7 +205,6 @@ $slick-opacity-not-active: .25 !default;
     }
   }
 }
-
 .slick-next {
   right: 0px;
   [dir="rtl"] & {
@@ -229,7 +224,6 @@ $slick-opacity-not-active: .25 !default;
 .slick-slider {
   margin-bottom: 30px;
 }
-
 .slick-dots {
   position: absolute;
   bottom: 20px;

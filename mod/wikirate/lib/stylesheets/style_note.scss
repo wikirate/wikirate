@@ -35,7 +35,6 @@ $card-header-color: #fff;
   }
 
 }
-
 //border radius mixin
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
@@ -44,7 +43,6 @@ $card-header-color: #fff;
   /* stops bg color from leaking outside the border: */
 
 }
-
 //***COLOR VARS - END***//
 
 //***Shadow***//
@@ -61,7 +59,6 @@ $card-header-color: #fff;
   }
 
 }
-
 // ***Shadow- END***//
 .STRUCTURE-note_summary {
   > h1 {
@@ -103,7 +100,6 @@ $card-header-color: #fff;
   }
 
 }
-
 #note-sourcelink .pointer-item a {
   color: $body-txt-color;
   &:hover {
@@ -111,14 +107,12 @@ $card-header-color: #fff;
   }
 
 }
-
 .analysis-link > a,
 .RIGHT-company.titled-view > .card-content .item-link > a,
 .RIGHT-topic.titled-view > .card-content .item-link > a {
   // margin: 3px 10px;
 
 }
-
 .analysis-link > a,
 .RIGHT-company.card-content .item-link > a,
 .RIGHT-topic.card-content .item-link > a,
@@ -132,7 +126,6 @@ $card-header-color: #fff;
   text-decoration: none;
 
 }
-
 .RIGHT-company.card-content .item-link > a,
 .RIGHT-topic.card-content .item-link > a,
 .analysis-link > a > span {
@@ -141,7 +134,6 @@ $card-header-color: #fff;
   margin-bottom: 6px;
 
 }
-
 #company-and-topic {
   .company-name,
   .topic-name {
@@ -153,7 +145,6 @@ $card-header-color: #fff;
   }
 
 }
-
 .RIGHT-company.card-content .item-link > a,
 .analysis-link > a > .company,
 #company-and-topic .company-name {
@@ -161,14 +152,12 @@ $card-header-color: #fff;
   color: $note-tag-companybg;
   border: 1px solid rgba($note-tag-companybg, 0.55);
 }
-
 .RIGHT-company.card-content .item-link > a:hover,
 .analysis-link > a:hover > .company,
 #company-and-topic .company-name:hover {
   background: $note-tag-companybg-hover;
   color: #fff;
 }
-
 .RIGHT-topic.card-content .item-link > a,
 .analysis-link > a > .topic,
 #company-and-topic .topic-name {
@@ -176,14 +165,12 @@ $card-header-color: #fff;
   color: $note-tag-topicbg;
   border: 1px solid rgba($note-tag-topicbg, 0.55);
 }
-
 .RIGHT-topic.card-content .item-link > a:hover,
 .analysis-link > a:hover > .topic,
 #company-and-topic .topic-name:hover {
   background: $note-tag-topicbg-hover;
   color: #fff;
 }
-
 .card-content .item-link > a.wanted-card {
   background: $note-tag-notexist;
   color: $wanted-card-color;
@@ -208,7 +195,6 @@ $card-header-color: #fff;
   }
 
 }
-
 .RIGHT-tag,
 .RIGHT-year {
   &.labeled-view {
@@ -231,11 +217,11 @@ $card-header-color: #fff;
   }
 
 }
-
 .TYPE-note.card-content .source-side > .RIGHT-tag {
   margin-top: 20px;
 
 }
+
 
 //////////
 
@@ -243,17 +229,14 @@ $card-header-color: #fff;
   padding: 5px;
 
 }
-
 .TYPE_PLUS_RIGHT-note-Xvote_count.content-view {
   margin-top: 10px;
 
 }
-
 .RIGHT-Xvote_count.content-view {
   float: left;
   overflow: hidden;
 }
-
 .vote-button {
   width: 30px;
   height: 30px;
@@ -261,19 +244,16 @@ $card-header-color: #fff;
   //override bootstrap .btn padding.
 
 }
-
 .vote-link {
   color: #888;
   background-color: #eee;
 }
-
 .disabled-vote-link,
 .disabled-vote-link:hover {
   color: #fff;
   background-color: #bbb;
 
 }
-
 .vote-count {
   color: #555;
   width: 30px;
@@ -283,13 +263,11 @@ $card-header-color: #fff;
   font-weight: bold;
 
 }
-
 .vote-details {
   color: #bbb;
   font-size: 14px;
   padding-top: 7px;
 }
-
 .vote-number {
   font-weight: bold;
 
@@ -301,7 +279,6 @@ $card-header-color: #fff;
   margin-right: 10px;
   padding: 10px;
 }
-
 .header-citation {
   float: right;
   padding: 10px 1.5% 25px;
@@ -322,18 +299,15 @@ $card-header-color: #fff;
     }
   }
 }
-
 .header-title {
   padding: 0 10px;
   text-align: center;
 }
-
 .clear-line {
   clear: both;
   border-bottom: solid 1px #eee;
 
 }
-
 .item-summary {
   a.source-preview-link {
     color: #ba8a3c;
@@ -388,7 +362,6 @@ $card-header-color: #fff;
     }
   }
 }
-
 .TYPE_PLUS_RIGHT-note-citation_count.no-citations {
   // background-color: #ba5b5b;
   background-color: #EBEBEB;
@@ -401,7 +374,6 @@ $card-header-color: #fff;
 .STRUCTURE-company_note_item .item-content {
   position: relative;
 }
-
 .STRUCTURE-note_item, .STRUCTURE-company_note_item {
   margin: 0 0 5px;
   border-bottom: 1px dotted #eee;
@@ -472,7 +444,6 @@ $card-header-color: #fff;
   }
 
 }
-
 .note-next-action {
   .internal-link {
     color: red;
@@ -481,7 +452,6 @@ $card-header-color: #fff;
   }
 
 }
-
 .TYPE_PLUS_RIGHT-note-related_overview {
   .company {
     color: white;
@@ -491,7 +461,6 @@ $card-header-color: #fff;
   }
 
 }
-
 #citation-popup-window {
   .TYPE_PLUS_RIGHT-note-related_overview {
     width: 100%;
@@ -504,7 +473,6 @@ $card-header-color: #fff;
   }
 
 }
-
 .titled_with_voting-view.STRUCTURE-note_summary {
   > i {
     float: left;
@@ -522,7 +490,6 @@ $card-header-color: #fff;
 */
 
 }
-
 .general_overview_cite_btn {
   padding: 2px 3px !important;
   position: absolute;

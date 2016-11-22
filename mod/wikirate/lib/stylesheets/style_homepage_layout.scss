@@ -12,7 +12,6 @@
 .SELF-about_wiki_rate p {
   font-size: 1.2em;
 }
-
 .consortium-logo-container a {
   display: inline-block;
   text-align: center;
@@ -24,7 +23,6 @@
 .SELF-recent_contributor .recent-editors-container.list-group-item {
   margin: 12px 0px;
 }
-
 /*----------- Top banner ---------*/
 .fa-4 {
   font-size: 7em;
@@ -92,25 +90,21 @@ div#openelectronics_slider_image {
   width: 0;
   opacity: 0;
 }
-
 #page-wrapper {
   background: #fff;
   padding: 20px 12px;
 
 }
-
 #main-content-wrapper {
   margin: 0 5px;
 
 }
-
 .browse-button {
   text-align: center;
   margin-top: 5px;
   margin-left: 16px;
 
 }
-
 /*-----------  Grid  ---------*/
 .grid-row {
   display: inline-block;
@@ -121,20 +115,17 @@ div#openelectronics_slider_image {
   }
 
 }
-
 /*----------- Companies and Topics  ---------*/
 #company-n-topic .grid-column {
   position: relative;
   //for slick-js icon position
 
 }
-
 #company-n-topic .card-header {
   display: none;
   // workaround for carousel
 
 }
-
 #company-n-topic {
   .company-list,
   .topic-list {
@@ -166,7 +157,6 @@ div#openelectronics_slider_image {
   }
 
 }
-
 /*----------- Overviews ---------*/
 
 #overviews {
@@ -178,7 +168,6 @@ div#openelectronics_slider_image {
   }
 
 }
-
 /*----------- Notes and Sources ---------*/
 
 #notes-sources {
@@ -219,7 +208,6 @@ div#openelectronics_slider_image {
   }
 
 }
-
 /*----------- Headings ---------*/
 
 .homepage-heading-h1 {
@@ -247,7 +235,6 @@ div#openelectronics_slider_image {
   }
 
 }
-
 .homepage-heading-h2 {
   font-size: 2em;
   font-weight: normal;
@@ -257,7 +244,6 @@ div#openelectronics_slider_image {
 .homepage-heading-h3 {
   font-weight: normal;
 }
-
 /*----------- Media queries ---------*/
 
 @media screen and (max-width: 1150px) {
@@ -275,7 +261,6 @@ div#openelectronics_slider_image {
   }
 
 }
-
 @media screen and (max-width: 1205px) {
   .homepage-heading-h1 {
     font-size: 1.1em;
@@ -288,7 +273,6 @@ div#openelectronics_slider_image {
   }
 
 }
-
 @media screen and (max-width: 990px) {
   .homepage-heading-h1 {
     font-size: 0.89em;
@@ -304,7 +288,6 @@ div#openelectronics_slider_image {
   }
 
 }
-
 @media screen and (max-width: 48em) {
 
   #notes-sources {
@@ -530,4 +513,8 @@ div#openelectronics_slider_image {
     width: 100%;
     float: left;
   }
+}
+
+.name-diff .label-default {
+  background-color: inherit;
 }

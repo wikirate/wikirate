@@ -11,13 +11,13 @@ $navsbmenu-anchor-color: #00ac9e;
 $anchor_color: #03998d;
 $body-txt-color: #777;
 
+
 /*----------- Mixins ---------*/
 
 @mixin searchbox-color {
   background: $nav-srch-background !important;
   color: $nav-srch-txt-color !important;
 }
-
 @mixin searchbox-color-focus {
   background-color: #f3f4de !important;
   color: #a8a8a8 !important;
@@ -51,7 +51,6 @@ $body-txt-color: #777;
 .account-info-bar .logged-out a {
   margin: 8px;
 }
-
 #top-bar-wrapper {
   background: #fff;
   position: fixed;
@@ -85,7 +84,6 @@ $body-txt-color: #777;
 .slicknav_nav a {
   color: $anchor_color;
 }
-
 a.slicknav_btn {
   float: left;
   margin: 14px 5px;
@@ -99,11 +97,9 @@ a.slicknav_btn {
   background-color: $anchor_color;
   @include box-shadow(0, 0, 0, rgba(0, 0, 0, .13));
 }
-
 #top-bar-wrapper .slicknav_menu {
   display: none;
 }
-
 @media screen and (max-width: 48em) {
   /* #menu is the original menu */
   #top-bar-wrapper > .top-bar-desktop {
@@ -113,6 +109,7 @@ a.slicknav_btn {
     display: block;
   }
 }
+
 
 #top-bar {
   padding: 5px 2%;
@@ -241,7 +238,6 @@ a.slicknav_btn {
 #logging.logged-in a {
   font-size: .8em;
 }
-
 #logging a#my-card-link {
   display: block;
   font-size: 1.2em;

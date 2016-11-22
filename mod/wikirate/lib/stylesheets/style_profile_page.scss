@@ -11,6 +11,7 @@ $border-color: #e5e5e5;
 $icon-color: #eee;
 $dark-header-color: #999;
 
+
 .open-view.TYPE-user {
   > .card-frame > .card-body {
     padding: 0;
@@ -74,6 +75,7 @@ $dark-header-color: #999;
     }
   }
 }
+
 
 .RIGHT-Xfollow.profile-view {
   .card-header-title {
@@ -307,7 +309,6 @@ $dark-header-color: #999;
 .dropzone {
   top: 67px;
 }
-
 .removezone {
   bottom: 0;
 
@@ -316,6 +317,7 @@ $dark-header-color: #999;
 .closed-content div.removezone {
   display: none !important;
 }
+
 
 .open-view.RIGHT-contributed_metric .yinyang-row .metric-item .header {
   border: none;
@@ -345,22 +347,20 @@ $dark-header-color: #999;
 @media all and (max-width: 1150px) {
 
 }
-
 @media all and (max-width: 1205px) {
 
 }
-
 @media all and (max-width: 990px) {
   .contributions-about-link {
     position: relative;
   }
 }
-
 @media all and (max-width: 48em) {
 
 }
 
 @media all and (max-width: 47em) {
+
 
 }
 
