@@ -23,6 +23,12 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
                   "last_update_time" => update_time)
   end
 
+  describe "#item_cards" do
+    it "finds all metric answers with values" do
+      expect(all_metric_values.item_cards.size).to eq 6
+    end
+  end
+
   describe "#values_by_name" do
     let(:company_name) { "new company" }
     let(:metric_name) { "Jedi+Sith Lord in Charge" }
