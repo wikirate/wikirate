@@ -1,6 +1,6 @@
 format :html do
   view :thumbnail do
-    wrap_with :div, class: "thumbnail" do
+    wrap_with :div do
       [
           thumbnail_image_wrap,
           thumbnail_text_wrap
@@ -9,7 +9,7 @@ format :html do
   end
 
   def thumbnail_image_wrap
-    wrap_with :div, class: "thumbnail-image" do
+    wrap_with :div, class: "pull-left image-box icon" do
       [
           wrap_with(:span, "", class: "img-helper"),
           thumbnail_image

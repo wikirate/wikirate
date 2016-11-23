@@ -63,5 +63,3 @@ $(document).ready ->
   $(window).scroll ->
     if activeDetails
       stickDetails()
-
-
