@@ -1,33 +1,15 @@
+include_set Abstract::Thumbnail
+
 format :html do
-  view :thumbnail do |args|
-    wrap_with :div, class: "metric-thumbnail" do
-      [
-        _render_thumbnail_image(args),
-        _render_thumbnail_text(args),
-        css
-      ]
-    end
+  def default_thumbnail_args _args
+    class_up "thumbnail", "metric-thumbnail"
   end
 
-  view :thumbnail_image do |args|
-    wrap_with :div, class: "thumbnail-image" do
-      [
-        wrap_with(:span, "", class: "img-helper"),
-        _render_designer_image(args)
-      ]
-    end
+  def thumbnail_image
+    _render_designer_image(args)
   end
 
-  view :thumbnail_text do |args|
-    wrap_with :div, class: "thumbnail-text" do
-      [
-        _render_thumbnail_title(args),
-        _optional_render_thumbnail_subtitle(args)
-      ]
-    end
-  end
-
-  view :thumbnail_title do |_args|
+  def thumbnail_title
     content = wrap_with(:div, nest(card.metric_title_card, view: :name),
                           class: "ellipsis")
     link_to_card card, content, title: card.metric_title_card.name

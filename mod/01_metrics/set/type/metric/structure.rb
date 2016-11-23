@@ -19,12 +19,12 @@ format :html do
     end
   end
 
-  view :filter do |args|
+  view :filter do
     field_subformat(:metric_company_filter)._render_core
   end
 
-  view :table do |args|
-    _render_company_list args
+  view :table do
+    company_table
   end
 
   view :title_and_question do
@@ -82,11 +82,6 @@ format :html do
         subtext
       ]
     end
-  end
-
-  view :company_list do |_args|
-    # renders yinyang_row view of ltype_rtype/metric/company
-    yinyang_list field: :all_metric_values, row_view: :company_row_for_metric
   end
 
   view :metric_row_for_topic do |args|
