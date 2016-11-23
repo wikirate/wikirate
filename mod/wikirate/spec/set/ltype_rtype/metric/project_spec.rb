@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
 
-describe Card::Set::TypePlusType::Metric::Project do
+describe Card::Set::LtypeRtype::Metric::Project do
 
 end
