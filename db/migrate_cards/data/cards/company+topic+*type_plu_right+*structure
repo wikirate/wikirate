@@ -1,0 +1,10 @@
+{ 
+  "type":"topic",
+  "referred_to_by":{
+    "left": {
+      "type":"Metric",
+      "right_plus":"_1"
+    },
+    "right":"topic"
+  }
+}

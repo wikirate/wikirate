@@ -90,16 +90,7 @@ format :html do
   view :topics_tab do
     process_content <<-HTML
       <div class="voting">
-
-         {{_left+topic+upvotee search|drag_and_drop|content;structure:company topic drag item}}
-
-        #{nest "topic votee filter", view: :core}
-         <div class="header-row">
-           <div class="header-header">Topic</div>
-            <div class="data-header">Contributions</div>
-         </div>
         {{_left+topic+novotee search|drag_and_drop|content;structure:company topic drag item}}
-        {{_left+topic+downvotee search|drag_and_drop|content;structure:company topic drag item}}
       </div>
     HTML
   end

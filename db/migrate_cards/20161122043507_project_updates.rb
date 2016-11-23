@@ -4,7 +4,8 @@ class ProjectUpdates < Card::Migration
   def up
     merge_cards [
       "Project+*self+*structure",
-      "Project+status+*type plus right+*options", "status",
+      "Project+status+*type plus right+*options",
+      "Company+topic+*type_plus_right+*structure",
       "Organizer",
       "description",
       "status"
