@@ -1,5 +1,5 @@
 format :html do
-  view :thumbnail do |args|
+  view :thumbnail do
     wrap_with :div, class: "thumbnail" do
       [
           thumbnail_image_wrap,
@@ -8,7 +8,7 @@ format :html do
     end
   end
 
-  view :thumbnail_image_wrap do |args|
+  def thumbnail_image_wrap
     wrap_with :div, class: "thumbnail-image" do
       [
           wrap_with(:span, "", class: "img-helper"),
@@ -17,11 +17,11 @@ format :html do
     end
   end
 
-  view :thumbnail_text_wrap do |args|
+  def thumbnail_text_wrap
     wrap_with :div, class: "thumbnail-text" do
       [
           thumbnail_title,
-          _optional_render_thumbnail_subtitle(args)
+          _optional_render_thumbnail_subtitle
       ]
     end
   end

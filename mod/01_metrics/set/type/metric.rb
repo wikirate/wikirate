@@ -144,6 +144,19 @@ format :html do
     outs.inspect
   end
 
+  view :designer_image do |_args|
+    image = nest card.metric_designer_card.field(:image, new: {}),
+                 view: :core, size: :small
+    link_to_card card.metric_designer_card, image
+  end
+
+  def css
+    ""
+    # css = <<-CSS
+    # CSS
+    # "<style> #{Sass.compile css}</style>"
+  end
+
   view :legend do
     # depends on the type
     if (unit = Card.fetch("#{card.name}+unit"))

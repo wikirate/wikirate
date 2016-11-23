@@ -6,12 +6,13 @@ format :html do
   end
 
   def thumbnail_image
-    _render_designer_image(args)
+    _render_designer_image
   end
 
   def thumbnail_title
-    content = wrap_with(:div, nest(card.metric_title_card, view: :name),
-                          class: "ellipsis")
+    content = wrap_with(:div, nest(card.metric_title_card,
+                                   view: :name),
+                        class: "ellipsis")
     link_to_card card, content, title: card.metric_title_card.name
   end
 
