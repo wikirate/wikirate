@@ -8,6 +8,11 @@ rescue
   false
 end
 
+# returns with a tenth (eg 11.1%)
+def percent numerator, denominator
+  denominator.zero? ? 0 : (1000 * numerator / denominator / 10.0)
+end
+
 format do
   view :cite, closed: true do
     ""
@@ -40,17 +45,25 @@ format :html do
   view :progress_bar do
     value = card.raw_content
     if card.number? value
-      <<-HTML
-        <div class="progress">
-           <div class="progress-bar" role="progressbar" aria-valuenow="#{value}"
-            aria-valuemin="0" aria-valuemax="100" style="width: #{value}%;">
-            #{value}%
-          </div>
-        </div>
-      HTML
-
+      progress_bar value: value
     else
       "Only card with numeric content can be shown as progress bar."
+    end
+  end
+
+  def progress_bar *sections
+    wrap_with :div, class: "progress" do
+      Array.wrap(sections).map do |section_args|
+        progress_bar_section section_args
+      end.join
+    end
+  end
+
+  def progress_bar_section args
+    add_class args, "progress-bar"
+    wrap_with :div, class: args[:class], role: "progressbar",
+                    style: "width: #{args[:value]}%" do
+      args[:body] || "#{args[:value]}%"
     end
   end
 

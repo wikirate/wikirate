@@ -5,11 +5,12 @@ card_accessor :wikipedia
 
 format :html do
   def active_profile_tab
-    if (profile = params[:company_profile])
-      profile.to_sym
-    else
-      @default_profile_tab ||= show_contributions_profile? ? :contributions : :performance
-    end
+    (profile = params[:company_profile]) ? profile.to_sym : default_profile_tab
+  end
+
+  def default_profile_tab
+    @default_profile_tab ||=
+      show_contributions_profile? ? :contributions : :performance
   end
 
   def tab_list
@@ -20,12 +21,11 @@ format :html do
 
   def performance_tabs
     {
-        projects_tab: tab_count_title("Projects", :project),
-        topics_tab: tab_count_title("Topics", :wikirate_topic),
-        sources_tab: tab_count_title("Sources", :source)
+      projects_tab: tab_count_title("Projects", :project),
+      topics_tab: tab_count_title("Topics", :wikirate_topic),
+      sources_tab: tab_count_title("Sources", :source)
     }
   end
-
 
   view :data do
     if active_profile_tab == :performance
@@ -39,36 +39,21 @@ format :html do
     metric_table
   end
 
-  view :rich_header do
-    bs_layout do
-      row sm: [6, 6], xs: [3, 9] do
-        col do
-          div class: "image-box large-rect" do
-            field_nest(:image, size: :large)
-          end
-        end
-        col do
-          html wrap_with(:h2, _render_title, class: "company-color")
-          html _render_header_tabs
-        end
-      end
-    end
+  def header_right
+    output [
+      wrap_with(:h2, _render_title, class: "company-color"),
+      _render_header_tabs
+    ]
   end
 
   view :header_tabs, cache: :never do
     wrap_with :ul, class: "nav nav-tabs" do
-      [
-          performance_tab_button,
-          contributions_tab_button
-      ]
+      [performance_tab_button, contributions_tab_button]
     end
   end
 
   def contribution_data
-    output [
-      _render_metric_contributions,
-      _render_project_contributions
-    ]
+    output [_render_metric_contributions, _render_project_contributions]
   end
 
   def profile_tab key, label, args={}
@@ -90,7 +75,6 @@ format :html do
     end
   end
 
-
   # view :core do |args|
   #   tabs = [
   #     ["metric", "Metrics", "+metric+*cached count"],
@@ -106,16 +90,7 @@ format :html do
   view :topics_tab do
     process_content <<-HTML
       <div class="voting">
-
-         {{_left+topic+upvotee search|drag_and_drop|content;structure:company topic drag item}}
-
-        #{nest "topic votee filter", view: :core}
-         <div class="header-row">
-           <div class="header-header">Topic</div>
-            <div class="data-header">Contributions</div>
-         </div>
         {{_left+topic+novotee search|drag_and_drop|content;structure:company topic drag item}}
-        {{_left+topic+downvotee search|drag_and_drop|content;structure:company topic drag item}}
       </div>
     HTML
   end
