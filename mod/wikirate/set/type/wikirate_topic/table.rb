@@ -9,11 +9,10 @@ format :html do
   end
 
   def company_table
-    items = card.fetch(trait: :all_companies).item_cards
-    wikirate_table_with_details :company, nil, items,
-                                [:thumbnail, :review_count_with_label,
-                                 :metric_count_with_label, :note_count_with_label,
-                                 :source_count_with_label],
+    items = card.related_companies.map { |id| Card.fetch id }
+    #items = card.fetch(trait: :all_companies, new: { type: :search_type }).item_cards
+    wikirate_table_with_details :company, nil, items.compact,
+                                [:thumbnail],
                                 details_append: "topic_page_company_details"
   end
 end

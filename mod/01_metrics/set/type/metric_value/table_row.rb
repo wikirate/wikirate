@@ -1,4 +1,6 @@
 format :html do
+
+
   view :metric_thumbnail_with_vote do
     subformat(card.metric_card)._render_thumbnail_with_vote
   end
@@ -104,7 +106,7 @@ format :html do
     <<-HTML
 #{close_icon}
         <div class="row clearfix ">
-#{subformat(metric_card)._render_rich_header}
+          #{subformat(metric_card)._render_rich_header}
   <div class="col-md-1">
       {{_lllr+_llr+*vote count}}
   </div>

@@ -1,5 +1,7 @@
 # views used to display a metric in a table row
 
+include_set Abstract::Media
+
 format :html do
   def company_count
     card.fetch(trait: :wikirate_company).cached_count
@@ -17,7 +19,7 @@ format :html do
     voo.hide! :thumbnail_subtitle
     output [
                _render_vote,
-               _render_thumbnail_plain
+               text_with_image(image: card.metric_designer_card.field(:image), size: :small)
            ]
   end
 

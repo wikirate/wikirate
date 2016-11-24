@@ -1,16 +1,19 @@
 format :html do
 
+
   view :thumbnail_plain do
+    voo.hide :thumbnail_link
     wrap_with :div do
       [
           thumbnail_image_wrap,
-          _optional_render_thumbnail_title_plain
+          _optional_render_thumbnail_title
       ]
     end
   end
 
-  view :thumbnail, class: "thumbnail" do
-    wrap_with :div do
+  view :thumbnail do
+    voo.show :thumbnail_link
+    wrap_with :div, class: "thumbnail" do
       [
           thumbnail_image_wrap,
           thumbnail_text_wrap
@@ -39,12 +42,8 @@ format :html do
   view :thumbnail_title do |_args|
     content = wrap_with(:div, nest(card.metric_title_card, view: :name),
                         class: "ellipsis")
+    return content unless voo.show?(:thumbnail_link)
     link_to_card card, content, title: card.metric_title_card.name
-  end
-
-  view :thumbnail_title_plain do |_args|
-    wrap_with(:div, nest(card.metric_title_card, view: :name),
-              class: "ellipsis")
   end
 
   view :thumbnail_subtitle do |args|
