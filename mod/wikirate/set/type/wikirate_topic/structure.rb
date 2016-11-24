@@ -22,10 +22,10 @@ format :html do
   end
 
   def company_filter
-    field_subformat(:topic_company_filter)._render_core args
+    field_subformat(:topic_company_filter)._render_core
   end
 
   def metric_filter
-    field_subformat(:topic_metric_filter)._render_core args
+    field_subformat(:topic_metric_filter)._render_core
   end
 end

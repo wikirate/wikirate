@@ -12,6 +12,8 @@ format :html do
   # @option opts [Hash] :tr
   def wikirate_table table_type, headers, item_cards, cell_views, opts={}
     normalize_opts opts
+    @table_context = self
+
     content =
         item_cards.map do |item|
           opts[:tr].deep_merge(
@@ -20,7 +22,7 @@ format :html do
                 process_cell item, view, opts[:td], i
               end
               ),
-              data: { load_path: load_path(item) }
+              data: { details_url: path(mark: item, view: opts[:details_view]) }
           )
         end
     table_opts = {
@@ -36,6 +38,7 @@ format :html do
   def wikirate_table_with_details table_type, headers, item_cards, cell_views, opts={}
     cell_views << :details_placeholder
     opts.deep_merge! td: { classes: ["header", "data", "details"] }
+    wikirate_table table_type, headers, item_cards, cell_views, opts
   end
 
   def count_with_label_cell count, label

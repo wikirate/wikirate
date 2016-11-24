@@ -74,11 +74,11 @@ def write_to_mod mod, relative_dir, filename
 end
 
 def create_content_file mod, name, type
-  dir = case type.downcase
-        when "js", "coffeescript" then "javascript"
+  dir = case type.underscore
+        when "java_script", "coffee_script" then "javascript"
         when "css", "scss" then "stylesheets"
         end
-  file_ext = type.downcase == "coffeescript" ? ".js.coffee" : "." + type
+  file_ext = type.underscore == "coffee_script" ? ".js.coffee" : "." + type
   content_dir = File.join "lib", dir
   content_file = name + file_ext
   write_to_mod(mod, content_dir, content_file) do |f|
