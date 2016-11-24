@@ -17,7 +17,7 @@ format :html do
     voo.hide! :thumbnail_subtitle
     output [
                _render_vote,
-               _render_thumbnail
+               _render_thumbnail_plain
            ]
   end
 

@@ -40,132 +40,132 @@ $(document).ready ->
     prependDragItem('down_vote', this)
 
 
-  # details toggle
-  $('body').on 'click',' .metric-item .hide-with-details', ->
-    $(this).siblings(".details-toggle").trigger("click")
-  $('body').on 'click',".details-toggle", ->
-    toggleDetails this
-  $('body').on 'click',".metric-details-toggle, .metric-details-close-icon", ->
-    toggleMetricDetails this
-  $('body').on 'click',".overview-details-toggle, .details-close-icon", ->
-    toggleMetricDetails this
-  $('body').on 'click', '.yinyang-row > .header', ->
-    toggleDetails $(this).closest('.yinyang-row').find('.details-toggle')
-
-  activeDetails = null
-
-  toggleMetricDetails = (toggle) ->
-
-    row = $(toggle).closest('.yinyang-row')
-    details = $(row).find('.details')
-    yinyan_list_name = ".yinyang-list .value-item:first-child.active"
-    if details.is(':visible')
-      # for hide_with_details in $(row).find('.hide-with-details')
-      # $(hide_with_details).show()
-      # for show_with_details in $(row).find('.show-with-details')
-      # $(show_with_details).hide()
-      details.hide()
-      row.find(".value-item, .list-item").first().removeClass("active")
-    else if !$.trim(details.html()) # empty
-      loader_anime = $("#ajax_loader").html()
-      details.append(loader_anime)
-      activeItem = $(yinyan_list_name +
-      ", .search-result-list .overview-item:first-child.active")
-      activeItem.find(".details").hide()
-      activeItem.removeClass("active")
-      row.find(".value-item, .list-item").first().addClass("active")
-      card_slot = $(toggle).closest('.card-slot')
-      card_name = card_slot.attr('id')
-      if card_slot.hasClass("LTYPE_RTYPE-metric-company")
-        # to re order the card name to get the metric details
-        card_names = card_name.split("+")
-        if card_names.length == 4
-          card_name = card_names[3] + "+" + card_names[0] + "+" +
-                      card_names[1] + "+" + card_names[2] + "+yinyang_drag_item"
-        else
-          card_name = card_names[2]+"+"+card_names[0]+"+"+
-                      card_names[1]+"+yinyang_drag_item"
-      view = $(toggle).data('view') || 'content'
-      right_name = $(toggle).data('append')
-      load_path = "/#{card_name}+#{right_name}?view=#{view}"
-      details.show()
-      #for hide_with_details in $(row).find('.hide-with-details')
-      #$(hide_with_details).hide()
-      #for show_with_details in $(row).find('.show-with-details')
-      #$(show_with_details).show()
-      $(details).load load_path, ->
-        $(details).trigger('slotReady')
-    else
-      activeItem = $(yinyan_list_name +
-                   ", .search-result-list .list-item:first-child.active")
-      activeItem.find(".details").hide()
-      activeItem.removeClass("active")
-      row.find(".value-item, .list-item").first().addClass("active")
-      #for hide_with_details in $(row).find('.hide-with-details')
-      #$(hide_with_details).hide()
-      #for show_with_details in $(row).find('.show-with-details')
-      #$(show_with_details).show()
-      details.show()
-    activeDetails = $(yinyan_list_name +
-                    ' > .details,  .search-result-list' +
-                    ' .list-item:first-child.active > .details')
-    stickMetricDetails()
-
-  #stick the metric details when scrolling
-  stickMetricDetails = () ->
-    isModal = activeDetails.closest('.modal-body').exists()
-    if $(document).scrollTop() > 56 || isModal
-      activeDetails.addClass 'stick'
-    else
-      activeDetails.removeClass 'stick'
-
-    if($(window).scrollTop() > ($("#main").height()-$(window).height()+300))
-      activeDetails.removeClass("stick")
-
-    return
-
-  $(window).scroll ->
-    if(activeDetails)
-      stickMetricDetails()
-
-
-  toggleDetails = (toggle) ->
-    $(toggle).find('.glyphicon')
-      .toggleClass('glyphicon-triangle-bottom','glyphicon-triangle-right')
-    row = $(toggle).closest('.yinyang-row')
-
-
-    details = $(row).find('.details')
-    if details.is(':visible')
-      for hide_with_details in $(row).find('.hide-with-details')
-        $(hide_with_details).show()
-      for show_with_details in $(row).find('.show-with-details')
-        $(show_with_details).hide()
-      details.hide()
-    else if !$.trim(details.html()) # empty
-      card_slot = $(toggle).closest('.card-slot')
-      card_name = card_slot.attr('id')
-      if card_slot.hasClass("LTYPE_RTYPE-metric-company")
-        # to re order the card name to get the metric details
-        card_names = card_name.split("+")
-        card_name = card_names[2]+ "+"
-        + card_names[0] + "+" + card_names[1] + "+yinyang_drag_item"
-      view = $(toggle).data('view') || 'content'
-      right_name = $(toggle).data('append')
-      load_path = "/#{card_name}+#{right_name}?view=#{view}"
-      details.show()
-      for hide_with_details in $(row).find('.hide-with-details')
-        $(hide_with_details).hide()
-      for show_with_details in $(row).find('.show-with-details')
-        $(show_with_details).show()
-      $(details).load load_path, ->
-        $(details).trigger('slotReady')
-    else
-      for hide_with_details in $(row).find('.hide-with-details')
-        $(hide_with_details).hide()
-      for show_with_details in $(row).find('.show-with-details')
-        $(show_with_details).show()
-      details.show()
+  # # details toggle
+  # $('body').on 'click',' .metric-item .hide-with-details', ->
+  #   $(this).siblings(".details-toggle").trigger("click")
+  # $('body').on 'click',".details-toggle", ->
+  #   toggleDetails this
+  # $('body').on 'click',".metric-details-toggle, .metric-details-close-icon", ->
+  #   toggleMetricDetails this
+  # $('body').on 'click',".overview-details-toggle, .details-close-icon", ->
+  #   toggleMetricDetails this
+  # $('body').on 'click', '.yinyang-row > .header', ->
+  #   toggleDetails $(this).closest('.yinyang-row').find('.details-toggle')
+  #
+  # activeDetails = null
+  #
+  # toggleMetricDetails = (toggle) ->
+  #
+  #   row = $(toggle).closest('.yinyang-row')
+  #   details = $(row).find('.details')
+  #   yinyan_list_name = ".yinyang-list .value-item:first-child.active"
+  #   if details.is(':visible')
+  #     # for hide_with_details in $(row).find('.hide-with-details')
+  #     # $(hide_with_details).show()
+  #     # for show_with_details in $(row).find('.show-with-details')
+  #     # $(show_with_details).hide()
+  #     details.hide()
+  #     row.find(".value-item, .list-item").first().removeClass("active")
+  #   else if !$.trim(details.html()) # empty
+  #     loader_anime = $("#ajax_loader").html()
+  #     details.append(loader_anime)
+  #     activeItem = $(yinyan_list_name +
+  #     ", .search-result-list .overview-item:first-child.active")
+  #     activeItem.find(".details").hide()
+  #     activeItem.removeClass("active")
+  #     row.find(".value-item, .list-item").first().addClass("active")
+  #     card_slot = $(toggle).closest('.card-slot')
+  #     card_name = card_slot.attr('id')
+  #     if card_slot.hasClass("LTYPE_RTYPE-metric-company")
+  #       # to re order the card name to get the metric details
+  #       card_names = card_name.split("+")
+  #       if card_names.length == 4
+  #         card_name = card_names[3] + "+" + card_names[0] + "+" +
+  #                     card_names[1] + "+" + card_names[2] + "+yinyang_drag_item"
+  #       else
+  #         card_name = card_names[2]+"+"+card_names[0]+"+"+
+  #                     card_names[1]+"+yinyang_drag_item"
+  #     view = $(toggle).data('view') || 'content'
+  #     right_name = $(toggle).data('append')
+  #     load_path = "/#{card_name}+#{right_name}?view=#{view}"
+  #     details.show()
+  #     #for hide_with_details in $(row).find('.hide-with-details')
+  #     #$(hide_with_details).hide()
+  #     #for show_with_details in $(row).find('.show-with-details')
+  #     #$(show_with_details).show()
+  #     $(details).load load_path, ->
+  #       $(details).trigger('slotReady')
+  #   else
+  #     activeItem = $(yinyan_list_name +
+  #                  ", .search-result-list .list-item:first-child.active")
+  #     activeItem.find(".details").hide()
+  #     activeItem.removeClass("active")
+  #     row.find(".value-item, .list-item").first().addClass("active")
+  #     #for hide_with_details in $(row).find('.hide-with-details')
+  #     #$(hide_with_details).hide()
+  #     #for show_with_details in $(row).find('.show-with-details')
+  #     #$(show_with_details).show()
+  #     details.show()
+  #   activeDetails = $(yinyan_list_name +
+  #                   ' > .details,  .search-result-list' +
+  #                   ' .list-item:first-child.active > .details')
+  #   stickMetricDetails()
+  #
+  # #stick the metric details when scrolling
+  # stickMetricDetails = () ->
+  #   isModal = activeDetails.closest('.modal-body').exists()
+  #   if $(document).scrollTop() > 56 || isModal
+  #     activeDetails.addClass 'stick'
+  #   else
+  #     activeDetails.removeClass 'stick'
+  #
+  #   if($(window).scrollTop() > ($("#main").height()-$(window).height()+300))
+  #     activeDetails.removeClass("stick")
+  #
+  #   return
+  #
+  # $(window).scroll ->
+  #   if(activeDetails)
+  #     stickMetricDetails()
+  #
+  #
+  # toggleDetails = (toggle) ->
+  #   $(toggle).find('.glyphicon')
+  #     .toggleClass('glyphicon-triangle-bottom','glyphicon-triangle-right')
+  #   row = $(toggle).closest('.yinyang-row')
+  #
+  #
+  #   details = $(row).find('.details')
+  #   if details.is(':visible')
+  #     for hide_with_details in $(row).find('.hide-with-details')
+  #       $(hide_with_details).show()
+  #     for show_with_details in $(row).find('.show-with-details')
+  #       $(show_with_details).hide()
+  #     details.hide()
+  #   else if !$.trim(details.html()) # empty
+  #     card_slot = $(toggle).closest('.card-slot')
+  #     card_name = card_slot.attr('id')
+  #     if card_slot.hasClass("LTYPE_RTYPE-metric-company")
+  #       # to re order the card name to get the metric details
+  #       card_names = card_name.split("+")
+  #       card_name = card_names[2]+ "+"
+  #       + card_names[0] + "+" + card_names[1] + "+yinyang_drag_item"
+  #     view = $(toggle).data('view') || 'content'
+  #     right_name = $(toggle).data('append')
+  #     load_path = "/#{card_name}+#{right_name}?view=#{view}"
+  #     details.show()
+  #     for hide_with_details in $(row).find('.hide-with-details')
+  #       $(hide_with_details).hide()
+  #     for show_with_details in $(row).find('.show-with-details')
+  #       $(show_with_details).show()
+  #     $(details).load load_path, ->
+  #       $(details).trigger('slotReady')
+  #   else
+  #     for hide_with_details in $(row).find('.hide-with-details')
+  #       $(hide_with_details).hide()
+  #     for show_with_details in $(row).find('.show-with-details')
+  #       $(show_with_details).show()
+  #     details.show()
 
 
   # filter

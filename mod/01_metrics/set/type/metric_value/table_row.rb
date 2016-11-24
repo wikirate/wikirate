@@ -8,7 +8,6 @@ format :html do
     subformat(card.company_card)._render_thumbnail
   end
 
-
   view :company_value do
     if filtered_for_no_values?
       add_value_button
@@ -141,6 +140,3 @@ format :html do
     HTML
   end
 end
-
-
-

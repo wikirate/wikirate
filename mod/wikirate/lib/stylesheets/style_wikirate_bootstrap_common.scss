@@ -231,10 +231,6 @@
   &.large-rect{
     width: 305px;
     height: 175px;
-    img{
-      max-height:80% !important;
-      max-width: 80% !important;
-    }
   }
   &.large-2x {
     width: 256px;
@@ -254,6 +250,13 @@
   vertical-align: middle;
   margin-right: 18px;
   text-align: center;
+  img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 
