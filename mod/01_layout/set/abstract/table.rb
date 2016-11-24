@@ -13,18 +13,18 @@ format :html do
   def wikirate_table table_type, headers, item_cards, cell_views, opts={}
     normalize_opts opts
     content =
-        item_cards.map do |item|
-          opts[:tr].deep_merge(
-              content: (
-              cell_views.map.with_index do |view, i|
-                process_cell item, view, opts[:td], i
-              end
-              ),
-              data: { load_path: load_path(item) }
-          )
-        end
+      item_cards.map do |item|
+        opts[:tr].deep_merge(
+          content: (
+            cell_views.map.with_index do |view, i|
+              process_cell item, view, opts[:td], i
+            end
+          ),
+          data: { details_url: path(mark: item, view: opts[:details_view]) }
+        )
+      end
     table_opts = {
-        header: headers, class: "wikirate-table #{table_type}"
+      header: headers, class: "wikirate-table #{table_type}"
     }
     table content, table_opts
   end
@@ -40,9 +40,9 @@ format :html do
 
   def count_with_label_cell count, label
     output [
-               wrap_with(:div, count, class: "count"),
-               wrap_with(:div, label, class: "label"),
-           ]
+      wrap_with(:div, count, class: "count"),
+      wrap_with(:div, label, class: "label")
+    ]
   end
 
   def load_path item

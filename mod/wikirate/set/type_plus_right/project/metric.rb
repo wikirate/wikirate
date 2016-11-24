@@ -1,3 +1,5 @@
+include_set Abstract::Table
+
 def project_name
   cardname.left
 end
@@ -9,10 +11,16 @@ end
 format :html do
   view :core do
     wrap_with :div, class: "progress-bar-table" do
-      card.item_cards.map do |metric|
-        next unless metric.type_id == MetricID
-        nest card.metric_project_card(metric), view: :progress_bar_row
-      end
+      wikirate_table :metric, ["Metric", "Companies Researched"],
+                     all_metric_project_cards,
+                     [:metric_thumbnail, :research_progress_bar]
     end
+  end
+
+  def all_metric_project_cards
+    card.item_cards.map do |metric|
+      next unless metric.type_id == MetricID
+      card.metric_project_card(metric)
+    end.compact
   end
 end

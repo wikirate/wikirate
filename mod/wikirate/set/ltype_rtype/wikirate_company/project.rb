@@ -38,11 +38,24 @@ format :html do
     end
   end
 
+  view :company_thumbnail do
+    nest(card.company_card, view: :link)
+  end
+
+  # TODO link to research page
+  view :research_button do
+    content_tag(:button, "Research", class: "btn btn-default btn-sm")
+  end
+
+  view :research_progress_bar do
+    research_progress_bar
+  end
+
   def research_progress_bar
     progress_bar(
-      { value: card.percent_known, class: "progress-bar-success" },
-      { value: card.percent_unknown, class: "progress-bar-info" },
-      { value: card.percent_not_researched, class: "progress-bar-warning" }
+      { value: card.percent_known, class: "progress-known" },
+      { value: card.percent_unknown, class: "progress-unknown" },
+      { value: card.percent_not_researched, class: "progress-not-researched" }
     )
   end
 end
