@@ -107,15 +107,15 @@ format :html do
 #{close_icon}
         <div class="row clearfix ">
           #{subformat(metric_card)._render_rich_header}
-  <div class="col-md-1">
+          <div class="col-md-1">
       {{_lllr+_llr+*vote count}}
-  </div>
+          </div>
               <div class="col-md-11">
                 <div class="name row">
                   <a class="inherit-anchor" href="{{_lllr+_llr|url}}">
                   {{_llr|name}}
                   </a>
-  </div>
+            </div>
                 <div class="row">
                   <div class="metric-designer-info">
                     <a href="/{{_lllr|name}}+contribution">
