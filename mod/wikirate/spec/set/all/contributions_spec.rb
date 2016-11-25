@@ -95,7 +95,7 @@
 #
 #      context "when +image created" do
 #       before do
-#         @company = get_a_sample_company
+#         @company = sample_company
 #         @initial_count = @company.contribution_count.to_i
 #         Card::Auth.as_bot do
 #           Card.create! name: "#{@company.name}+image",
@@ -114,7 +114,7 @@
 #     it_behaves_like 'contributions', :topic
 #     context "when +image created" do
 #       before do
-#         @topic = get_a_sample_topic
+#         @topic = sample_topic
 #         @initial_count = @topic.contribution_count.to_i
 #
 #         Card::Auth.as_bot do
@@ -133,7 +133,7 @@
 #     # and hence is not recognized as a referenced field
 #     # context "when +about edited" do
 #     #   before do
-#     #     @topic = get_a_sample_topic
+#     #     @topic = sample_topic
 #     #     @initial_count = @topic.contribution_count.to_i
 #     #
 #     #     about = Card.fetch("#{@topic.name}+about")

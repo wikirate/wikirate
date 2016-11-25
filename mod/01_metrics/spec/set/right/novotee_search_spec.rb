@@ -4,12 +4,12 @@ describe Card::Set::Right::NovoteeSearch do
       login_as "joe_user"
 
       @metrics = [
-        get_a_sample_metric,
-        Card.create!(name: "Hello+World", type_id: Card::MetricID),
-        Card.create!(name: "Hello+Boys",  type_id: Card::MetricID)
+          sample_metric,
+          Card.create!(name: "Hello+World", type_id: Card::MetricID),
+          Card.create!(name: "Hello+Boys",  type_id: Card::MetricID)
       ]
 
-      @company = get_a_sample_company
+      @company = sample_company
 
       @metrics.each do |metric|
         subcard = {

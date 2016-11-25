@@ -63,7 +63,7 @@ describe Card::Set::Type::Claim do
       @claim_name = "testing claim"
       @sourcepage = create_page
 
-      @sample_claim = get_a_sample_note
+      @sample_claim = sample_note
     end
 
     it "show help text and note counting for note name when creating claim" do
@@ -149,19 +149,19 @@ describe Card::Set::Type::Claim do
     end
 
     it "shows the link for view \"missing\"" do
-      claim_card = get_a_sample_note
+      claim_card = sample_note
       html = claim_card.format.render_missing
       expect(html).to eq(claim_card.format.render_link)
     end
      it "show clipboard view" do
-       claim_card = get_a_sample_note
+       claim_card = sample_note
       expected_html = %(<i class="fa fa-clipboard claim-clipboard" id="copy-button" title="copy claim citation to clipboard" data-clipboard-text="#{claim_card.name} {{#{claim_card.name}|cite}}"></i>)
       expect(claim_card.format.render_clipboard).to include(expected_html)
      end
   end
   it "returns correct analysis_names " do
-    real_company = get_a_sample_company
-    real_topic = get_a_sample_topic
+    real_company = sample_company
+    real_topic = sample_topic
 
     another_real_company = Card.create name: "CW TV", type_id: Card::WikirateCompanyID
     another_real_topic = Card.create name: "Should we have supernatural season 11?", type_id: Card::WikirateTopicID

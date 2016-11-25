@@ -1,6 +1,6 @@
 describe Card::Set::Type::MetricValueImportFile do
   let(:comment) { "50 Nerds of Grey" }
-  let(:metric) { get_a_sample_metric }
+  let(:metric) { sample_metric }
   let(:amazon) { "#{metric.name}+Amazon.com, Inc.+2015" }
   let(:apple)  { "#{metric.name}+Apple Inc.+2015" }
   let(:sony) { "#{metric.name}+Sony Corporation+2015" }

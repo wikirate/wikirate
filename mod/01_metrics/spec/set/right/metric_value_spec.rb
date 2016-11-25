@@ -2,12 +2,12 @@ describe Card::Set::Right::MetricValue do
   describe "views" do
     before do
       login_as "joe_user"
-      @metric = get_a_sample_metric
+      @metric = sample_metric
       @metric.update_attributes! subcards:
         { "+Unit" => { content: "Imperial military units",
                        type_id: Card::PhraseID }
         }
-      @company = get_a_sample_company
+      @company = sample_company
       subcards = {
         "+metric"  => { content: @metric.name },
         "+company" => { content: "[[#{@company.name}]]",
