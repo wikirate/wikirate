@@ -44,7 +44,7 @@ format :html do
   def count_with_label_cell count, label
     output [
                wrap_with(:div, count, class: "count"),
-               wrap_with(:div, label, class: "label"),
+      wrap_with(:div, label, class: "label")
            ]
   end
 

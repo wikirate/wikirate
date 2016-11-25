@@ -31,18 +31,26 @@ format :html do
   view :progress_bar_row, tags: :unknown_ok do
     wrap_with :div, class: "progress-bar-row" do
       [
-        nest(card.metric_card, view: :link),
+        _render_metric_thumbnail,
         # should be metric view shared with company page
-        research_progress_bar
+        _render_research_progress_bar
       ]
     end
   end
 
+  view :metric_thumbnail do
+    nest(card.metric_card, view: :link)
+  end
+
+  view :research_progress_bar do
+    research_progress_bar
+  end
+
   def research_progress_bar
     progress_bar(
-      { value: card.percent_known, class: "progress-bar-success" },
-      { value: card.percent_unknown, class: "progress-bar-info" },
-      { value: card.percent_not_researched, class: "progress-bar-warning" }
+      { value: card.percent_known, class: "progress-known" },
+      { value: card.percent_unknown, class: "progress-unknown" },
+      { value: card.percent_not_researched, class: "progress-not-researched" }
     )
   end
 end

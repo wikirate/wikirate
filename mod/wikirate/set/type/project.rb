@@ -86,8 +86,29 @@ format :html do
   end
 
   def progress_legend
+    bs_layout do
+      row 12 do
+        column { wrap_legend_items }
+      end
+    end
+  end
+
+  def wrap_legend_items
     wrap_with :div, class: "progress-legend" do
-      "(legend)"
+      [
+        legend_item("known"),
+        legend_item("unknown"),
+        legend_item("not-researched")
+      ]
+    end
+  end
+
+  def legend_item type
+    wrap_with :div, class: "leg" do
+      [
+        progress_bar(value: 100, class: "progress-" + type),
+        content_tag(:span, type.split(/ |\_|\-/).map(&:capitalize).join(" "))
+      ]
     end
   end
 
@@ -149,9 +170,9 @@ format :html do
 
   def overall_progress_bar
     progress_bar(
-      { value: card.percent_known, class: "progress-bar-success" },
-      { value: card.percent_unknown, class: "progress-bar-info" },
-      { value: card.percent_not_researched, class: "progress-bar-warning" }
+      { value: card.percent_known, class: "progress-known" },
+      { value: card.percent_unknown, class: "progress-unknown" },
+      { value: card.percent_not_researched, class: "progress-not-researched" }
     )
   end
 end

@@ -40,9 +40,9 @@ format :html do
 
   def research_progress_bar
     progress_bar(
-      { value: card.percent_known, class: "progress-bar-success" },
-      { value: card.percent_unknown, class: "progress-bar-info" },
-      { value: card.percent_not_researched, class: "progress-bar-warning" }
+      { value: card.percent_known, class: "progress-known" },
+      { value: card.percent_unknown, class: "progress-unknown" },
+      { value: card.percent_not_researched, class: "progress-not-researched" }
     )
   end
 end
