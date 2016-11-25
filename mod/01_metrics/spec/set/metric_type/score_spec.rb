@@ -130,7 +130,7 @@ describe Card::Set::MetricType::Score do
             metric_card.create_value company: "Death Star",
                                      year: "1977",
                                      value: "2",
-                                     source: get_a_sample_source
+                                     source: sample_source
           end
           expect(score_value("Death Star", "1977")).to eq("4.0")
         end

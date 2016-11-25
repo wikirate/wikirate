@@ -27,7 +27,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues::Filter do
         metric.create_value company: company.name,
                             value: (value_idx + 1) * 5 + i,
                             year: 2015 - i,
-                            source: get_a_sample_source.name
+                            source: sample_source.name
       end
     end
     initialize_params

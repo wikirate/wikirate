@@ -16,7 +16,7 @@ end
 
 def get_subcards_of_metric_value metric, company, content, year=nil, source=nil
   this_year = year || "2015"
-  this_source = source || get_a_sample_source.name
+  this_source = source || sample_source.name
   this_content = content || "I'm fine, I'm just not happy."
   {
     "+metric" => { "content" => metric.name },
@@ -108,15 +108,15 @@ def create_claim name, subcards={}
 end
 
 # cards only exist in testing db
-def get_a_sample_note
+def sample_note
   Card["Death Star uses dark side of the Force"]
 end
 
-def get_a_sample_company
+def sample_company
   Card["Death Star"]
 end
 
-def get_a_sample_topic
+def sample_topic
   Card["Force"]
 end
 
@@ -128,11 +128,11 @@ def sample_topics num=1, args={}
   Card.search args.merge(type_id: Card::WikirateTopicID, limit: num)
 end
 
-def get_a_sample_analysis
+def sample_analysis
   Card["Death Star+Force"]
 end
 
-def get_a_sample_metric value_type=:free_text
+def sample_metric value_type=:free_text
   metric_names = {
     free_text: "Jedi+Sith Lord in Charge",
     number: "Jedi+deadliness",
@@ -142,8 +142,12 @@ def get_a_sample_metric value_type=:free_text
   Card[metric_names[value_type]]
 end
 
-def get_a_sample_source
+def sample_source
   Card.search(type_id: Card::SourceID, limit: 1).first
+end
+
+def sample_metric_value
+  Card["Jedi+disturbances_in_the_Force+Death_Star+1977"]
 end
 
 # Usage:

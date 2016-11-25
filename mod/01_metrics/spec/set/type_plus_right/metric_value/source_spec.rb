@@ -1,8 +1,8 @@
 describe Card::Set::TypePlusRight::MetricValue::Source do
   before do
     # create a metric value
-    @metric = get_a_sample_metric
-    @company = get_a_sample_company
+    @metric = sample_metric
+    @company = sample_company
     @metric_value_card_name = "#{@metric.name}+#{@company.name}+2015"
   end
 

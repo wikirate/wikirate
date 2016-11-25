@@ -2,7 +2,7 @@ describe Card::Set::Right::ContributedAnalysis do
   before do
     @user_card = Card["joe_user"]
 
-    analysis = get_a_sample_analysis
+    analysis = sample_analysis
 
     article = Card[analysis.name].fetch trait: :overview, new: {}
     article.content = "One of my most productive days was throwing away 1000 lines of code."

@@ -105,3 +105,11 @@ end
 def company_card
   Card.fetch company
 end
+
+def metric_record
+  metric_name.field(company)
+end
+
+def metric_record_card
+  Card.fetch metric_record
+end

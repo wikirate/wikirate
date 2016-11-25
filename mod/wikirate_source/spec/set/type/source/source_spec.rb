@@ -168,7 +168,7 @@ describe Card::Set::Type::Source do
       context "a non source link" do
         it "return the source card" do
           Card::Env.params[:sourcebox] = "true"
-          company = get_a_sample_company
+          company = sample_company
           url_key = company.cardname.url_key
 
           new_source_url = "#{@wikirate_link_prefix}#{url_key}"
@@ -203,7 +203,7 @@ describe Card::Set::Type::Source do
         it "returns error" do
           Card::Env.params[:sourcebox] = "true"
           return_source_card = Card.new source_args(
-            link: get_a_sample_company.name
+                                            link: sample_company.name
           )
           expect(return_source_card).not_to be_valid
           expect(return_source_card.errors).to have_key :source

@@ -1,6 +1,6 @@
 shared_examples_for "changing type to numeric" do |new_type|
-  let(:metric) { get_a_sample_metric }
-  let(:company) { get_a_sample_company }
+  let(:metric) { sample_metric }
+  let(:company) { sample_company }
   before do
     login_as "joe_user"
   end
@@ -52,8 +52,8 @@ describe Card::Set::TypePlusRight::Metric::ValueType do
       it_behaves_like "changing type to numeric", "Money"
     end
     describe "to Category" do
-      let(:metric) { get_a_sample_metric :number }
-      let(:company) { get_a_sample_company }
+      let(:metric) { sample_metric :number }
+      let(:company) { sample_company }
       before do
         login_as "joe_user"
       end

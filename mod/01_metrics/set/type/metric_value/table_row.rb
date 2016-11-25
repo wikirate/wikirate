@@ -42,10 +42,10 @@ format :html do
 
   def close_icon
     <<-HTML
-        <div class="metric-details-close-icon pull-right	">
-        #{fa_icon "circle", "fa-2x"}
+      <div class="metric-details-close-icon pull-right	">
+        #{fa_icon :circle, class: "fa-2x"}
       </div>
-      <br>
+
     HTML
   end
 
@@ -53,10 +53,10 @@ format :html do
     <<-HTML
       <div class="row discussion-container">
       <div class="row-icon">
-        <i class="fa fa-comment"></i>
+        #{fa_icon :comment}
       </div>
-          <div class="row-data">
-              #{nest "#{card.metric}+discussion", view: :titled, title: "Discussion",
+      <div class="row-data">
+            #{nest "#{card.metric}+discussion", view: :titled, title: "Discussion",
                      show: "commentbox"}
           </div>
       </div>
@@ -64,40 +64,36 @@ format :html do
   end
 
   def metric_details
-    <<-HTML
-      <div class="row clearfix wiki">
-      #{nest "#{card.metric}+metric details", view: :content}
-  </div>
-  <div class="row clearfix wiki">
-      #{nest "#{card.metric}+metric values", view: :timeline}
-  </div>
-    HTML
+    wrap_with :div, class: "row clearfix wiki" do
+      nest "#{card.metric}+metric details", view: :content
+    end
+  end
+
+  def metric_values
+    wrap_with :div, class: "row clearfix wiki" do
+      nest "#{card.metric_record}+metric values", view: :timeline
+    end
   end
 
   # used in metric value list on a metric page
   view :company_details_sidebar do
     <<-HTML
 #{close_icon}
-      <div class="metric-details-company-header">
-        <div class="row clearfix">
-          <div class=" company-logo">
-            <a class="inherit-anchor" href="#{subformat(company_card)._render_url}">
-              #{nest "#{company_card}+image"}
-            </a>
-          </div>
-          <div class="company-name  ">
-            <a class="inherit-anchor" href="#{subformat(company_card)._render_url}">
-              #{subformat(company_card)._render_name}
-            </a>
-          </div>
+      <br>
+      <div class="row clearfix">
+        <div class="company-logo">
+          #{link_to_card card.company_card, nest("#{card.company_card}+image"),
+                         class: "inherit-anchor"}
         </div>
-        <hr>
-        #{metric_details}
-
-          <!--<hr>-->
-        <br>
-        #{discussion}
+        <div class="company-name">
+          #{link_to_card card.company_card, nil, class: "inherit-anchor"}
+        </div>
       </div>
+      <hr>
+      #{metric_details}
+    #{metric_values}
+      <br>
+      #{discussion}
     HTML
   end
 
@@ -105,9 +101,9 @@ format :html do
   view :metric_details_sidebar do
     <<-HTML
 #{close_icon}
-        <div class="row clearfix ">
-          #{subformat(metric_card)._render_rich_header}
-          <div class="col-md-1">
+      <div class="row clearfix ">
+        #{subformat(metric_card)._render_rich_header}
+        <div class="col-md-1">
       {{_lllr+_llr+*vote count}}
           </div>
               <div class="col-md-11">
@@ -129,6 +125,7 @@ format :html do
     </div>
     <hr>
     #{metric_details}
+    #{metric_values}
     <br>
     <div class="row clearfix">
       <div class="data-item text-center">

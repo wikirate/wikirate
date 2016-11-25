@@ -2,10 +2,10 @@
 describe Card::Set::Right::RelatedArticles do
   before do
     login_as "joe_user"
-    @sample_company = get_a_sample_company
-    @sample_topic = get_a_sample_topic
-    @sample_analysis = get_a_sample_analysis
-    @sample_claim = get_a_sample_note
+    @sample_company = sample_company
+    @sample_topic = sample_topic
+    @sample_analysis = sample_analysis
+    @sample_claim = sample_note
     @related_article_card = @sample_claim.fetch trait: :related_articles
   end
 

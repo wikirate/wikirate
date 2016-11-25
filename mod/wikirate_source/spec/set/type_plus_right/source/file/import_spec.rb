@@ -88,7 +88,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
     end
     describe "metric value does not fit value type" do
       it "shows errors" do
-        metric = get_a_sample_metric :number
+        metric = sample_metric :number
         source_file = @source.fetch trait: :file
         Card::Env.params[:import_data] = [
           { company: "Amazon.com, Inc.", value: "hello world", row: 1 }
@@ -113,7 +113,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
     end
     context "duplicated metric value" do
       it "blocks adding" do
-        metric = get_a_sample_metric :number
+        metric = sample_metric :number
         source_file = @source.fetch trait: :file
         Card::Env.params[:import_data] = [
           { company: "Amazon.com, Inc.", value: "55", row: 1 },
@@ -128,7 +128,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
     end
     context "existing metric value with different value" do
       it "blocks adding" do
-        metric = get_a_sample_metric :number
+        metric = sample_metric :number
         source_file = @source.fetch trait: :file
         Card::Env.params[:import_data] = [
           { company: "Amazon.com, Inc.", value: "55", row: 1 }
@@ -148,7 +148,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
     context "existing metric value with same value" do
       context "with different source" do
         it "won't update source" do
-          metric = get_a_sample_metric :number
+          metric = sample_metric :number
           source_file = @source.fetch trait: :file
           Card::Env.params[:import_data] = [
             { company: "Amazon.com, Inc.", value: "55", row: 1 }
