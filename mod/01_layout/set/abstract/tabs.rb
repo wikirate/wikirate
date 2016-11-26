@@ -1,7 +1,7 @@
 format :html do
-  view :tabs do |args|
+  view :tabs do
     lazy_loading_tabs tab_list, default_tab do
-      _render default_tab, args
+      _render default_tab
     end
   end
 

@@ -5,7 +5,7 @@ def virtual?
   true
 end
 
-# @return [Hash] all companies with year and values
+# @return [Hash] all companies/metrics with year and values
 #  format: { <company name> => { :year =>  , :value => }}
 def filtered_values_by_name
   @filtered_values_by_name ||= filter values_by_name
