@@ -78,7 +78,7 @@ format :html do
   # used in metric value list on a metric page
   view :company_details_sidebar do
     <<-HTML
-#{close_icon}
+      #{close_icon}
       <br>
       <div class="row clearfix">
         <div class="company-logo">
@@ -91,7 +91,7 @@ format :html do
       </div>
       <hr>
       #{metric_details}
-    #{metric_values}
+       #{metric_values}
       <br>
       #{discussion}
     HTML
@@ -100,28 +100,27 @@ format :html do
   # used in metric values list on a company page
   view :metric_details_sidebar do
     <<-HTML
-#{close_icon}
+      #{close_icon}
+      <br/>
       <div class="row clearfix ">
         #{subformat(metric_card)._render_rich_header}
         <div class="col-md-1">
-      {{_lllr+_llr+*vote count}}
+          #{nest metric_card.field(:vote_count)}
+        </div>
+        <div class="col-md-11">
+          <div class="name row">
+            #{link_to_card card.metric_card, nil, class: "inherit-anchor"}
           </div>
-              <div class="col-md-11">
-                <div class="name row">
-                  <a class="inherit-anchor" href="{{_lllr+_llr|url}}">
-                  {{_llr|name}}
-                  </a>
+          <div class="row">
+            <div class="metric-designer-info">
+              <a href="/{{_lllr|name}}+contribution">
+                <div><small class="text-muted">Designed by</small></div>
+                <div>{{_lllr+logo|core;size:small}}</div>
+                <div><h3>{{_lllr|name}}</h3></div>
+              </a>
             </div>
-                <div class="row">
-                  <div class="metric-designer-info">
-                    <a href="/{{_lllr|name}}+contribution">
-                      <div><small class="text-muted">Designed by</small></div>
-                      <div>{{_lllr+logo|core;size:small}}</div>
-                      <div><h3>{{_lllr|name}}</h3></div>
-                    </a>
-                  </div>
-                </div>
-              </div>
+          </div>
+        </div>
     </div>
     <hr>
     #{metric_details}
@@ -129,13 +128,15 @@ format :html do
     <br>
     <div class="row clearfix">
       <div class="data-item text-center">
-        <span class="btn label-metric">[[_lllr+_llr|Metric Details]]</span>
+        <span class="btn label-metric">
+          #{link_to_card card.metric_card, "Metric Details"}
+        </span>
       </div>
     </div>
     <hr>
     #{discussion}
 
-</div>
+      </div>
     HTML
   end
 end
