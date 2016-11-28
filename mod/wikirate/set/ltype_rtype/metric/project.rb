@@ -1,4 +1,5 @@
 include_set Abstract::KnownAnswers
+include_set Abstract::Media
 
 def project_card
   @project_card ||= right
@@ -14,6 +15,14 @@ end
 
 def records
   @records ||= company_ids.size
+end
+
+def metric_designer_card
+  metric_card.metric_designer_card
+end
+
+def metric_designer_image
+  metric_designer_card.fetch(trait: :image, new: {})
 end
 
 def researched_wql
@@ -39,7 +48,11 @@ format :html do
   end
 
   view :metric_thumbnail do
-    nest(card.metric_card, view: :link)
+    designer_image = card.metric_designer_image
+    title = card.metric_card.right.name
+    subformat(card.metric_card).text_with_image title: title,
+                                                image: designer_image,
+                                                size: :icon
   end
 
   view :research_progress_bar do

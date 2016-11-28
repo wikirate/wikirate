@@ -1,13 +1,15 @@
-format :html do
+include_set Abstract::Media
 
+format :html do
 
   view :metric_thumbnail_with_vote do
     subformat(card.metric_card)._render_thumbnail_with_vote
   end
 
   view :company_thumbnail do
-    binding.pry
-    subformat(card.company_card)._render_thumbnail
+    company_image = card.company_card.fetch(trait: :image)
+    title = card.company_card.name
+    text_with_image title: title, image: company_image, size: :icon
   end
 
   view :company_value do

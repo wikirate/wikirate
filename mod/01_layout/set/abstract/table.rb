@@ -22,7 +22,7 @@ format :html do
                 process_cell item, view, opts[:td], i
               end
               ),
-              data: { details_url: path(mark: item, view: opts[:details_view]) }
+              data: { details_url: path(mark: item, view: opts[:details_append]) }
           )
         end
     table_opts = {
