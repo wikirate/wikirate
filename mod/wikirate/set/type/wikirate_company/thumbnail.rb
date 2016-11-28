@@ -5,7 +5,7 @@ format :html do
     _render_image_link
   end
 
-  def thumbnail_text
-    _render_name_link
+  def thumbnail_title
+    _render_name
   end
 end

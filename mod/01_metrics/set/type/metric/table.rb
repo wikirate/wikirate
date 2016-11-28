@@ -4,8 +4,9 @@ include_set Abstract::Table
 format :html do
   def company_table
     items = card.fetch(trait: :all_metric_values).item_cards
-    wikirate_table_with_details :metric, ["Company", "Value"], items,
-                                [:metric_thumbnail_with_vote, :concise],
+    wikirate_table_with_details :company, items,
+                                [:company_thumbnail, :concise],
+                                header: ["Company", "Value"],
                                 details_view: :company_details_sidebar
 
   end

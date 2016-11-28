@@ -96,7 +96,7 @@ format :html do
   end
 
   view :details_tab do |_args|
-    layout do
+    bs_layout do
       row 12 do
         column wikipedia_extract
       end
