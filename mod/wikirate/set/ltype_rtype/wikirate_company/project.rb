@@ -1,4 +1,5 @@
 include_set Abstract::KnownAnswers
+include_set Abstract::Media
 
 def project_card
   @project_card ||= right
@@ -6,6 +7,10 @@ end
 
 def company_card
   @company_card ||= left
+end
+
+def company_image
+  company_card.fetch(trait: :image, new: {})
 end
 
 def metric_ids
@@ -39,7 +44,8 @@ format :html do
   end
 
   view :company_thumbnail do
-    nest(card.company_card, view: :link)
+    title = card.company_card.name
+    text_with_image title: title, image: card.company_image, size: :icon
   end
 
   # TODO link to research page

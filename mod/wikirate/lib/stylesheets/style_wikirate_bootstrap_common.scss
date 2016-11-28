@@ -228,8 +228,13 @@
     height: 32px;
     line-height: 16px;
   }
+  &.large{
+    width: 216px;
+    height: 216px;
+  }
+  //FIXME remove large-rect
   &.large-rect{
-    width: 305px;
+    width: 175px;
     height: 175px;
   }
   &.large-2x {
@@ -525,4 +530,10 @@ button.pointer-item-delete.btn.btn-default {
     .topic-title {
         padding: 0 0 25px 10px;
     }
+}
+
+// Bootstrap Tweak
+.media-body {
+    width: inherit;
+    padding-left: 8px;
 }
