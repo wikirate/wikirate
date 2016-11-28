@@ -28,7 +28,10 @@ def created_report_count
 end
 
 def updated_report_count
-  standard_report_count edited_by: user_card.id
+  standard_report_count or: [
+    { edited_by: user_card.id },
+    { right_plus: [{}, edited_by: user_card.id]}
+  ]
 end
 
 def discussed_report_count
