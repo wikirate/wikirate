@@ -1,10 +1,22 @@
 $(document).ready ->
 
 # details toggle
-  $('body').on 'click', ".tr-details-toggle, .details-close-icon", ->
-    trToggleDetails this
-
   active_details = null
+
+  # hack to solve the problem that
+  # if you click somewhere in the details area
+  # it is closed because it is a child of .tr-details-toggle
+  no_toggle = null
+  $('body').on 'click', ".tr-details-toggle  td.details", ->
+    no_toggle = true
+
+  $('body').on 'click', ".details-close-icon", ->
+    trToggleDetails this
+  $('body').on 'click', ".tr-details-toggle", ->
+    if no_toggle
+      no_toggle = null
+    else
+      trToggleDetails this
 
   trToggleDetails = (toggle) ->
     row = $(toggle).closest('tr')

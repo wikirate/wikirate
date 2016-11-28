@@ -6,7 +6,6 @@ format :html do
   end
 
   view :company_thumbnail do
-    binding.pry
     subformat(card.company_card)._render_thumbnail
   end
 
@@ -42,8 +41,8 @@ format :html do
 
   def close_icon
     <<-HTML
-      <div class="metric-details-close-icon pull-right	">
-        #{fa_icon :circle, class: "fa-2x"}
+      <div class="details-close-icon pull-right	">
+        #{fa_icon "times-circle", class: "fa-2x"}
       </div>
 
     HTML
@@ -56,8 +55,8 @@ format :html do
         #{fa_icon :comment}
       </div>
       <div class="row-data">
-            #{nest "#{card.metric}+discussion", view: :titled, title: "Discussion",
-                     show: "commentbox"}
+            #{nest "#{card.metric_record}+discussion", view: :titled, title: "Discussion",
+                   show: "commentbox" }
           </div>
       </div>
     HTML
@@ -65,7 +64,7 @@ format :html do
 
   def metric_details
     wrap_with :div, class: "row clearfix wiki" do
-      nest "#{card.metric}+metric details", view: :content
+      nest "#{card.metric_record}+metric details", view: :content
     end
   end
 
@@ -102,7 +101,7 @@ format :html do
     <<-HTML
 #{close_icon}
       <div class="row clearfix ">
-        #{subformat(metric_card)._render_rich_header}
+        #{subformat(card.metric_card)._render_rich_header}
         <div class="col-md-1">
       {{_lllr+_llr+*vote count}}
           </div>
@@ -110,7 +109,7 @@ format :html do
                 <div class="name row">
                   <a class="inherit-anchor" href="{{_lllr+_llr|url}}">
                   {{_llr|name}}
-                  </a>
+                    </a>
             </div>
                 <div class="row">
                   <div class="metric-designer-info">
