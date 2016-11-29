@@ -89,4 +89,7 @@ h4.contribution-report-title {
 .contribution-report {
     border-left: 4px solid;
     margin-bottom: 15px;
+    border-top: 1px solid $border-color;
+    border-right: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
 }
