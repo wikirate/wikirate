@@ -61,10 +61,12 @@ format :html do
 
   def progress_bar_section args
     add_class args, "progress-bar"
-    wrap_with :div, class: args[:class], role: "progressbar",
-                    style: "width: #{args[:value]}%" do
-      args[:body] || "#{args[:value]}%"
-    end
+    value = args.delete :value
+    body = args.delete(:body) || "#{value}%"
+    wrap_with :div, body, args.reverse_merge(
+      role: "progressbar", style: "width: #{value}%",
+      "aria-valuenow" => value, "aria-valuemin" => 0, "aria-valuemax" => 100
+    )
   end
 
   view :titled_with_edits do

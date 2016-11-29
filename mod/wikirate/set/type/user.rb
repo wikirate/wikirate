@@ -5,7 +5,7 @@ format :html do
     bs_layout container: true, fluid: true, class: @container_class do
       row 5, 7 do
         column _render_content_left_col, args[:left_class]
-        column _render_contributions_col, args[:right_class]
+        column _render_contributions_column, args[:right_class]
       end
     end
   end
@@ -26,11 +26,22 @@ format :html do
     end
   end
 
-  view :contributions_col do
+  view :contributions_column do
     wrap_with :div, class: "contributions-column" do
       [
-        wrap_with(:h4, "Contributions")
+        wrap_with(:h4, "Contributions"),
+        contribution_reports
       ]
     end
   end
+
+  def contribution_reports
+    [
+      :metric_value, :metric, :wikirate_company, :project, :source
+    ].map do |codename|
+      user_and_type = card.fetch trait: codename, new: {}
+      nest user_and_type, view: :contribution_report
+    end
+  end
 end
+
