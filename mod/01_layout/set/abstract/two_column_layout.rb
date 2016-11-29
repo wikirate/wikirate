@@ -1,5 +1,6 @@
 include_set Abstract::Header
 include_set Abstract::Tabs
+include_set Abstract::Media
 
 format :html do
   def default_open_content_args args
@@ -9,20 +10,19 @@ format :html do
   end
 
   view :open_content do |args|
-    bs_layout container: true, fluid: true,
+    bs_layout container: false, fluid: true,
               class: @container_class do
-      row 6, 6 do # args[:grid_option] do
+      row 6, 6, class: "panel-margin-fix" do # args[:grid_option] do
         column _render_content_left_col, args[:left_class]
         column _render_content_right_col, args[:right_class]
       end
     end
   end
 
-  view :rich_header do
-    bs_layout do
-      row sm: [6, 6], xs: [3, 9] do
-        column { header_image }
-        column { header_right }
+  view :rich_header do |args|
+    layout do
+      row 12 do
+        col text_with_image title: "", text: header_right, size: :large
       end
     end
   end
