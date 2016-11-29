@@ -47,7 +47,7 @@ format :html do
   end
 
   view :header_tabs, cache: :never do
-    wrap_with :ul, class: "nav nav-tabs" do
+    wrap_with :ul, class: "nav nav-tabs company-profile-tab" do
       [performance_tab_button, contributions_tab_button]
     end
   end
@@ -68,10 +68,12 @@ format :html do
   end
 
   def contributions_tab_button
+    label_name = "Contributions"
     if contributions_made?
-      profile_tab :contributions, "Contributions"
+      profile_tab :contributions, label_name
     else
-      wrap_with :li, "Contributions", class: "disabled"
+      disabled_tab = wrap_with :span, label_name
+      wrap_with :li, disabled_tab, class: "disabled"
     end
   end
 
@@ -96,7 +98,7 @@ format :html do
   end
 
   view :details_tab do |_args|
-    layout do
+    bs_layout do
       row 12 do
         column wikipedia_extract
       end

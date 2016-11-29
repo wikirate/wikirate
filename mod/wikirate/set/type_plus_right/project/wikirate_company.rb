@@ -34,7 +34,7 @@ format :html do
                      ["Company", "Metrics Researched", "Research Company"],
                      all_company_project_cards,
                      [:company_thumbnail, :research_progress_bar, :research_button],
-                     opts: [class: "company-research"]
+                      class: "company-research"
     end
   end
 

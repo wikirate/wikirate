@@ -4,7 +4,7 @@ describe Card::Set::Right::Overview do
       Card::Env.params[:edit_article] = true
       @company = Card.create name: "company1", type_id: Card::WikirateCompanyID
       @topic = Card.create name: "topic1", type_id: Card::WikirateTopicID
-      @claim = get_a_sample_note
+      @claim = sample_note
       Card::Env.params[:citable] = @claim.name
       @citation = "Death Star uses dark side of the Force "\
                   "{{Death Star uses dark side of the Force|cite}}"

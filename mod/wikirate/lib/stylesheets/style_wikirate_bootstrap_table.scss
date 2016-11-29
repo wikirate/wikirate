@@ -1,19 +1,22 @@
 {{style:mixins and variables}}
 
+
 .table  {
   font-style: normal;
   width: 100%;
   max-width: 100%;
   margin-bottom: 20px;
   border: 1px solid $border-color;
-
-  tr > th, td {
-    padding: 8px;
-    line-height: 1.42857;
-    vertical-align: top;
-    border-top: 1px solid $border-color;
-    border-right: 1px solid $border-color;
+  thead,tbody,tfoot{
+    > tr > th, td {
+      padding: 8px;
+      line-height: 1.42857;
+      vertical-align: top;
+      border-top: 1px solid $border-color;
+      border-right: 1px solid $border-color;
+    }
   }
+
 
   thead > tr > {
     th, td {
@@ -31,6 +34,13 @@
         font-size: $sub-text-size;
         text-align: center;
         color: $heading-color;
+    }
+    td.data {
+      min-width: 180px;
+    }
+    td:first-child .media-body h4 {
+      font-weight: normal;
+      font-size: 100%;
     }
     .details{
         display: none;
@@ -72,11 +82,21 @@
     }
     &.company{
       .header{
-        border-left: 3px solid  rgba(211,116,28,0.14);
+        border-left: 3px solid rgba(211,116,28,0.14);
       }
       tr.tr-details-toggle:hover{
         .header{
           border-left: 3px solid  $company-color;
+        }
+      }
+    }
+    &.topic{
+      .header{
+        border-left: 3px solid  rgba(43,126,160,0.14);
+      }
+      tr.tr-details-toggle:hover{
+        .header{
+          border-left: 3px solid  $topic-color;
         }
       }
     }
@@ -116,6 +136,7 @@
         margin-left: 58px!important;
       }
     }
+
 }
 
 //---Custom Table Properties---//

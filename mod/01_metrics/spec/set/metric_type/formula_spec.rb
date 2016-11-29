@@ -191,10 +191,10 @@ describe Card::Set::MetricType::Formula do
       it "creates calculated value if missing value is added" do
         Card::Auth.as_bot do
           Card["Joe User+researched number 2"].create_value(
-            company: "Death Star",
-            year: "1977",
-            value: "2",
-            source: get_a_sample_source
+              company: "Death Star",
+              year: "1977",
+              value: "2",
+              source: sample_source
           )
         end
         expect(calc_value "Death Star", "1977").to eq("29.0")

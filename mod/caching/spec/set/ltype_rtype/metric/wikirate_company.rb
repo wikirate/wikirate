@@ -1,7 +1,7 @@
 describe Card::Set::LtypeRtype::Metric::WikirateCompany do
   context "metric values updated" do
-    let(:metric) { get_a_sample_metric :number }
-    let(:company) { get_a_sample_company }
+    let(:metric) { sample_metric :number }
+    let(:company) { sample_company }
     let(:mv_id) { Card::MetricValueID }
 
     before do

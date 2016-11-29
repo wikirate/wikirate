@@ -52,7 +52,7 @@ format :html do
   end
 
   view :data do
-    wrap_with :div, class: "progress-column" do
+    wrap_with :div, class: "progress-column border-top" do
       [
         field_nest(:organizer, view: :titled, items: { view: :link }),
         field_nest(:wikirate_topic, view: :titled, items: { view: :link }),

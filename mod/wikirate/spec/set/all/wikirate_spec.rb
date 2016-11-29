@@ -86,16 +86,16 @@ describe Card::Set::All::Wikirate do
 
   describe "while showing view" do
     it "renders edits_by view" do
-      html = render_card :edits_by, name: get_a_sample_company.name
+      html = render_card :edits_by, name: sample_company.name
       expected =
         render_card_with_args(:shorter_search_result,
-                              { name: "#{get_a_sample_company.name}+*editor" },
+                              { name: "#{sample_company.name}+*editor" },
                               {}, items: { view: :link })
       expect(html).to include(expected)
     end
 
     it "renders titled_with_edits view" do
-      card_name = get_a_sample_company.name
+      card_name = sample_company.name
       html = render_card :titled_with_edits, name: card_name
       expect(html).to include(render_card(:header, name: card_name))
       expect(html).to include(render_card(:edits_by, name: card_name))

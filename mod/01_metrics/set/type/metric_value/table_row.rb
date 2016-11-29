@@ -1,13 +1,15 @@
-format :html do
+include_set Abstract::Media
 
+format :html do
 
   view :metric_thumbnail_with_vote do
     subformat(card.metric_card)._render_thumbnail_with_vote
   end
 
   view :company_thumbnail do
-    binding.pry
-    subformat(card.company_card)._render_thumbnail
+    company_image = card.company_card.fetch(trait: :image)
+    title = card.company_card.name
+    text_with_image title: title, image: company_image, size: :icon
   end
 
   view :company_value do
@@ -42,10 +44,10 @@ format :html do
 
   def close_icon
     <<-HTML
-        <div class="metric-details-close-icon pull-right	">
-        #{fa_icon "circle", "fa-2x"}
+      <div class="details-close-icon pull-right	">
+        #{fa_icon "times-circle", class: "fa-2x"}
       </div>
-      <br>
+
     HTML
   end
 
@@ -53,92 +55,90 @@ format :html do
     <<-HTML
       <div class="row discussion-container">
       <div class="row-icon">
-        <i class="fa fa-comment"></i>
+        #{fa_icon :comment}
       </div>
-          <div class="row-data">
-              #{nest "#{card.metric}+discussion", view: :titled, title: "Discussion",
-                     show: "commentbox"}
+      <div class="row-data">
+            #{nest "#{card.metric_record}+discussion", view: :titled, title: "Discussion",
+                   show: "commentbox" }
           </div>
       </div>
     HTML
   end
 
   def metric_details
-    <<-HTML
-      <div class="row clearfix wiki">
-      #{nest "#{card.metric}+metric details", view: :content}
-  </div>
-  <div class="row clearfix wiki">
-      #{nest "#{card.metric}+metric values", view: :timeline}
-  </div>
-    HTML
+    wrap_with :div, class: "row clearfix wiki" do
+      nest "#{card.metric_record}+metric details", view: :content
+    end
+  end
+
+  def metric_values
+    wrap_with :div, class: "row clearfix wiki" do
+      nest "#{card.metric_record}+metric values", view: :timeline
+    end
   end
 
   # used in metric value list on a metric page
   view :company_details_sidebar do
     <<-HTML
-#{close_icon}
-      <div class="metric-details-company-header">
-        <div class="row clearfix">
-          <div class=" company-logo">
-            <a class="inherit-anchor" href="#{subformat(company_card)._render_url}">
-              #{nest "#{company_card}+image"}
-            </a>
-          </div>
-          <div class="company-name  ">
-            <a class="inherit-anchor" href="#{subformat(company_card)._render_url}">
-              #{subformat(company_card)._render_name}
-            </a>
-          </div>
+      #{close_icon}
+      <br>
+      <div class="row clearfix">
+        <div class="company-logo">
+          #{link_to_card card.company_card, nest("#{card.company_card}+image"),
+                         class: "inherit-anchor"}
         </div>
-        <hr>
-        #{metric_details}
-
-          <!--<hr>-->
-        <br>
-        #{discussion}
+        <div class="company-name">
+          #{link_to_card card.company_card, nil, class: "inherit-anchor"}
+        </div>
       </div>
+      <hr>
+      #{metric_details}
+       #{metric_values}
+      <br>
+      #{discussion}
     HTML
   end
 
   # used in metric values list on a company page
   view :metric_details_sidebar do
     <<-HTML
-#{close_icon}
-        <div class="row clearfix ">
-          #{subformat(metric_card)._render_rich_header}
-  <div class="col-md-1">
-      {{_lllr+_llr+*vote count}}
-  </div>
-              <div class="col-md-11">
-                <div class="name row">
-                  <a class="inherit-anchor" href="{{_lllr+_llr|url}}">
-                  {{_llr|name}}
-                  </a>
-  </div>
-                <div class="row">
-                  <div class="metric-designer-info">
-                    <a href="/{{_lllr|name}}+contribution">
-                      <div><small class="text-muted">Designed by</small></div>
-                      <div>{{_lllr+logo|core;size:small}}</div>
-                      <div><h3>{{_lllr|name}}</h3></div>
-                    </a>
-                  </div>
-                </div>
-              </div>
+      #{close_icon}
+      <br/>
+      <div class="row clearfix ">
+        #{subformat(card.metric_card)._render_rich_header}
+        <div class="col-md-1">
+          #{nest metric_card.field(:vote_count)}
+        </div>
+        <div class="col-md-11">
+          <div class="name row">
+            #{link_to_card card.metric_card, nil, class: "inherit-anchor"}
+          </div>
+          <div class="row">
+            <div class="metric-designer-info">
+              <a href="/{{_lllr|name}}+contribution">
+                <div><small class="text-muted">Designed by</small></div>
+                <div>{{_lllr+logo|core;size:small}}</div>
+                <div><h3>{{_lllr|name}}</h3></div>
+              </a>
+            </div>
+          </div>
+        </div>
     </div>
     <hr>
     #{metric_details}
+    #{metric_values}
     <br>
     <div class="row clearfix">
       <div class="data-item text-center">
-        <span class="btn label-metric">[[_lllr+_llr|Metric Details]]</span>
+        <span class="btn label-metric">
+          #{link_to_card card.metric_card, "Metric Details"}
+        </span>
       </div>
     </div>
     <hr>
     #{discussion}
 
-</div>
+      </div>
     HTML
   end
 end

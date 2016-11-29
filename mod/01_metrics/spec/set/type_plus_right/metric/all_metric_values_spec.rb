@@ -1,7 +1,7 @@
 describe Card::Set::TypePlusRight::Metric::AllMetricValues do
   let(:all_metric_values) { @metric.fetch trait: :all_metric_values }
   before do
-    @metric = get_a_sample_metric
+    @metric = sample_metric
     @companies = [
       Card["Death Star"],
       Card["Sony Corporation"],
@@ -13,7 +13,7 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
         @metric.create_value company: company.name,
                              value: (value_idx + 1) * 5 + i,
                              year: 2015 - i,
-                             source: get_a_sample_source.name
+                             source: sample_source.name
       end
     end
   end
