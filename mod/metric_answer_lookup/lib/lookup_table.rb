@@ -51,6 +51,20 @@ module LookupTable
       new_value = send "fetch_#{method_name}"
       send "#{method_name}=", new_value
     end
+    latest_to_false if latest
     save
+  end
+
+  def delete
+    super.tap do
+      latest_year = latest_year_in_db
+      MetricAnswer.where(metric_record_id: metric_record_id, year: latest_year)
+          .update_all(latest: true)
+    end
+  end
+
+  def latest_to_false
+    MetricAnswer.where(metric_record_id: metric_record_id, latest: true)
+        .update_all(latest: false)
   end
 end

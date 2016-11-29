@@ -19,12 +19,20 @@ class MetricAnswer < ActiveRecord::Base
     metric_card.id
   end
 
+  def fetch_metric_record_id
+    card.left_id
+  end
+
   def fetch_metric_name
     card.cardname.left_name.left
   end
 
   def fetch_company_name
     card.cardname.left_name.right
+  end
+
+  def fetch_metric_record_name
+    card.cardname.left
   end
 
   def fetch_year
@@ -58,6 +66,15 @@ class MetricAnswer < ActiveRecord::Base
   def fetch_updated_at
     return card.updated_at unless (vc = card.value_card)
     [card.updated_at, vc.updated_at].compact.max
+  end
+
+  def fetch_latest
+    return true unless (latest_year = latest_year_in_db)
+    latest_year < fetch_year
+  end
+
+  def latest_year_in_db
+    MetricAnswer.where(metric_record_id: fetch_metric_record_id).maximum(:year)
   end
 
   private

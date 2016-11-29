@@ -2,6 +2,6 @@
 
 class ImportStyleProgress < Card::Migration
   def up
-    import_cards 'style_progress.json'
+    #import_cards 'style_progress.json'
   end
 end

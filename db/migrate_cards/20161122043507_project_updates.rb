@@ -18,7 +18,7 @@ class ProjectUpdates < Card::Migration
       card.save!
     end
 
-    Card["Project+Open"].update_attributes! name: "Project+Active"
-    Card["Project+Closed"].update_attributes! name: "Project+Inactive"
+    create_or_update "Project+Open", name: "Project+Active"
+    create_or_update "Project+Closed", name: "Project+Inactive"
   end
 end

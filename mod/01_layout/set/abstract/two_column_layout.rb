@@ -18,11 +18,11 @@ format :html do
     end
   end
 
-  view :rich_header do |args|
+  view :rich_header do
     bs_layout do
       row sm: [6, 6], xs: [3, 9] do
-        col { header_image }
-        col { header_right }
+        column { header_image }
+        column { header_right }
       end
     end
   end
