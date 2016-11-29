@@ -37,7 +37,7 @@ end
 
 format :html do
   def metric_name_from_params
-    Env.params[:slot][:metric] if Env.params[:slot]
+    Env.params[:metric]
   end
 
   view :select do |args|
