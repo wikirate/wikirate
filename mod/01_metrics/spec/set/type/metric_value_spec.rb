@@ -134,6 +134,7 @@ describe Card::Set::Type::MetricValue do
       @metric_value =
         Card.create! type_id: Card::MetricValueID, subcards: subcard
     end
+
     describe "getting related cards" do
       it "returns correct year" do
         expect(@metric_value.year).to eq("2015")
@@ -151,16 +152,19 @@ describe Card::Set::Type::MetricValue do
         expect(@metric_value.metric_card.id).to eq(metric.id)
       end
     end
-    describe '#autoname' do
+
+    describe "#autoname" do
       it "sets a correct autoname" do
         name = "#{metric.name}+#{company.name}+2015"
         expect(@metric_value.name).to eq(name)
       end
     end
+
     it "saving correct value" do
       value_card = Card["#{@metric_value.name}+value"]
       expect(value_card.content).to eq("hoi polloi")
     end
+
     context "update metric value name" do
       it "succeeds" do
         new_name = "#{metric.name}+#{company.name}+2014"
@@ -169,6 +173,7 @@ describe Card::Set::Type::MetricValue do
         expect(@metric_value.name).to eq(new_name)
       end
     end
+
     describe "+source" do
       let(:source_card) { @metric_value.fetch trait: :source }
       it "includes source in +source" do
@@ -217,6 +222,7 @@ describe Card::Set::Type::MetricValue do
         expect(fail_metric_value.errors).to have_key(:source)
       end
     end
+
     describe "update metric value's value" do
       it "updates metric value's value correctly" do
         quote = "if nobody hates you, you're doing something wrong."
@@ -227,6 +233,7 @@ describe Card::Set::Type::MetricValue do
         expect(metric_values_value_card.content).to eq(quote)
       end
     end
+
     describe "views" do
       it "renders timeline data" do
         # url = "/#{@metric_value.cardname.url_key}?layout=modal&"\
@@ -246,6 +253,7 @@ describe Card::Set::Type::MetricValue do
           end
         end
       end
+
       it "renders modal_details" do
         url = "/#{@metric_value.cardname.url_key}?layout=modal&"\
               "slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu"
@@ -255,6 +263,7 @@ describe Card::Set::Type::MetricValue do
                         text: "hoi polloi")
         end
       end
+
       it "renders concise" do
         html = @metric_value.format.render_concise
 
