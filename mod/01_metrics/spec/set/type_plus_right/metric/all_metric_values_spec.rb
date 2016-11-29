@@ -32,11 +32,23 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
         create_or_update! "test", type: :pointer
         expect(subject.size).to eq 4
       end
+      #
+      # it "renders hash with all values for a company" do
+      #   values = subject[Card["Death Star"].id.to_s]
+      #   expect(values).to be_instance_of Array
+      #   expect(values.size).to eq 4
+      #   inspect_hashes = values.all? do |h|
+      #     h.is_a?(Hash) && h.keys == %w(year value last_update_time)
+      #   end
+      #   expect(inspect_hashes).to be_truthy
+      #   v2014 = values.find { |h| h["year"] == "2014" }
+      #   expect(v2014["value"]).to eq "6"
+      # end
 
-      it "renders hash with all values for a company" do
+      it "renders hash with latest values for a company" do
         values = subject[Card["Death Star"].id.to_s]
         expect(values).to be_instance_of Array
-        expect(values.size).to eq 4
+        expect(values.size).to eq 1
         inspect_hashes = values.all? do |h|
           h.is_a?(Hash) && h.keys == %w(year value last_update_time)
         end

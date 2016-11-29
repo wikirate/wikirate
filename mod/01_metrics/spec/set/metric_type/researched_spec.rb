@@ -90,7 +90,7 @@ describe Card::Set::MetricType::Researched do
   describe "structure" do
     it "has necessary components" do
       expect(metric.format(:html)._render_open_content).to(
-        have_tag("div", with: { class: "container-fluid yinyang" }) do
+          have_tag("div", with: { class: "container-fluid" }) do
           # TOP SECTION
           with_tag("div", with: { class: "wiki" }) do
             with_tag("div", with: { class: "pull-right" }) do
