@@ -4,7 +4,7 @@ describe Card::Set::Type::MetricValue::TableRow do
     let(:company_name) { metric_value.company }
     subject { metric_value.format(:html)._render_company_details_sidebar }
     it "has close icon" do
-      is_expected.to have_tag "div.metric-details-close-icon" do
+      is_expected.to have_tag "div.details-close-icon" do
         has_tag :i, with: { class: "fa-circle" }
       end
     end
