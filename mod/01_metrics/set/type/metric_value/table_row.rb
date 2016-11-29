@@ -47,7 +47,6 @@ format :html do
       <div class="details-close-icon pull-right	">
         #{fa_icon "times-circle", class: "fa-2x"}
       </div>
-
     HTML
   end
 
@@ -135,7 +134,7 @@ format :html do
     <<-HTML
     <div class="metric-details-header">
       #{close_icon}
-      <div class="row clearfix ">
+      <div class="row clearfix padding-top-20">
        #{metric_details_sidebar_header}
     </div>
     <hr>

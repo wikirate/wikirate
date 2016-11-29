@@ -1,4 +1,7 @@
 
+include_set Abstract::WikirateTable
+include_set Abstract::TwoColumnLayout
+
 ACTION_LABELS = {
   created: "Created", updated: "Updated",
   discussed: "Discussed", voted_on: "Voted On"
@@ -53,6 +56,15 @@ format :html do
     end
   end
 
+  def process_tabs
+    {
+      created: two_line_tab("Created", 22),
+      updated: two_line_tab("Updated", 33),
+      discussed: two_line_tab("Discussed", 44),
+      voted_on: two_line_tab("Voted On", 33),
+    }
+  end
+
   def contribution_report_header
     wrap_with :div, class: "contribution-report-header" do
       [
@@ -64,23 +76,29 @@ format :html do
   end
 
   def contribution_report_action_boxes
-    [:created, :updated, :discussed, :voted_on].map do |report_action|
-      contribution_report_box report_action
+    wrap_with :ul, class: "nav nav-pills" do
+      [:created, :updated, :discussed, :voted_on].map do |report_action|
+        contribution_report_box report_action
+      end
     end
   end
 
   def contribution_report_box action
-    wrap_with :div, class: "contribution-report-box" do
-      contribution_report_count action
+    wrap_with :li, class: "contribution-report-box" do
+      wrap_with :a do
+        contribution_report_count action
+      end
     end
   end
 
   def contribution_report_count action
     return "" unless card.report_action_applies? action
-    [
-      wrap_with(:label, card.send("#{action}_report_count")),
-      wrap_with(:span, ACTION_LABELS[action])
-    ]
+      two_line_tab(ACTION_LABELS[action], card.send("#{action}_report_count"))
+    #
+    # [
+    #   wrap_with(:label, card.send("#{action}_report_count")),
+    #   wrap_with(:span, ACTION_LABELS[action])
+    # ]
   end
 
   def contribution_report_title
