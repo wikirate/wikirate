@@ -70,7 +70,7 @@ format :html do
       [
         contribution_report_title,
         contribution_report_action_boxes,
-        contribution_report_toggle
+        # contribution_report_toggle
       ]
     end
   end
