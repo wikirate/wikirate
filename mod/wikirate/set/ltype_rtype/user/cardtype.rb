@@ -28,10 +28,11 @@ def created_report_count
 end
 
 def updated_report_count
-  standard_report_count or: [
-    { edited_by: user_card.id },
-    { right_plus: [{}, edited_by: user_card.id]}
-  ]
+  standard_report_count edited_by: user_card.id
+  # standard_report_count or: [
+  #   { edited_by: user_card.id },
+  #   { right_plus: [{}, edited_by: user_card.id]}
+  # ]
 end
 
 def discussed_report_count
@@ -46,11 +47,10 @@ def voted_on_report_count
 end
 
 format :html do
-  view :contribution_report, tags: :unknown_ok do
-    wrap_with :div, class: "contribution-report " \
-                           "#{card.codename}-contribution-report" do
-      [contribution_report_header, contribution_report_body]
-    end
+  view :contribution_report, tags: :unknown_ok, cache: :never do
+    class_up "card-slot", "contribution-report " \
+                          "#{card.codename}-contribution-report"
+    wrap { [contribution_report_header, contribution_report_body] }
   end
 
   def contribution_report_header
@@ -90,9 +90,21 @@ format :html do
   end
 
   def contribution_report_toggle
-    ">"
+    toggle_status = Env.params[:report_tab] ? :open : :closed
+    send "contribution_report_toggle_#{toggle_status}"
+  end
+
+  def contribution_report_toggle_open
+    link_to_view :contribution_report, "v", class: "slotter"
+  end
+
+  def contribution_report_toggle_closed
+    link_to_view :contribution_report, ">", class: "slotter",
+                                            path: { report_tab: :created }
   end
 
   def contribution_report_body
+    return "" unless (body = Env.params[:report_tab])
+    "body = #{body}"
   end
 end
