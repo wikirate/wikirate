@@ -11,6 +11,7 @@ format :html do
   end
 
   view :data do
+    return "deleteme"
     wrap_with :div, class: "profile-data" do
       [
         field_nest(:activity, view: :titled, title: "Activity", hide: :menu),

@@ -33,4 +33,25 @@ format :html do
       HAML
     end
   end
+
+
+  def text_with_media media, title, text, opts={}
+    @image_card = Card.cardish(opts[:image]) if opts[:image]
+    text_with_image_args opts
+
+
+    render_haml opts do
+      <<-HAML.strip_heredoc
+        .media
+          .media-left.image-box
+
+            %a{href: "#"}
+              %img{class:"media-object #{opts[:size]}", src: src, alt: alt}
+          .media-body
+            %h4.media-heading
+              = title
+            = text
+      HAML
+    end
+  end
 end

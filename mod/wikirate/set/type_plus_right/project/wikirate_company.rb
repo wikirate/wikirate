@@ -31,10 +31,10 @@ format :html do
   view :core do
     wrap_with :div, class: "progress-bar-table" do
       wikirate_table :company,
-                     ["Company", "Metrics Researched", "Research Company"],
                      all_company_project_cards,
                      [:company_thumbnail, :research_progress_bar, :research_button],
-                      class: "company-research"
+                     header: ["Company", "Metrics Researched", "Research Company"],
+                     table: { class: "company-research" }
     end
   end
 

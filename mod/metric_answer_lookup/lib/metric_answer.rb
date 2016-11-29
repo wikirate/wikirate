@@ -69,7 +69,7 @@ class MetricAnswer < ActiveRecord::Base
   end
 
   def fetch_latest
-    return true unless (latest_year = latest_year_in_db)
+    return true unless (latest_year = latest_year_in_db) && latest_year.present?
     latest_year < fetch_year
   end
 

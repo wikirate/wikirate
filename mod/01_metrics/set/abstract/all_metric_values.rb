@@ -15,7 +15,11 @@ include_set Abstract::MetricChild, generation: 1
 #     })
 # end
 
-
+format :html do
+  def limit
+    20
+  end
+end
 
 format :json do
   view :core do

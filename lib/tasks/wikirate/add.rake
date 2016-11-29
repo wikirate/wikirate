@@ -109,9 +109,20 @@ end
 def migration_content name, type_card
   type_id = "Card::#{type_card.codename.camelcase}ID"
   card_name = Card.fetch_name(name) || name
+  type, target = style_or_script type_card
+
   <<-RUBY
-    create_or_update name: '#{card_name}',
-                     type_id: #{type_id},
-                     codename: '#{name}'
+    add_#{type} '#{card_name}',
+                type_id: #{type_id},
+                to: '#{target}'
   RUBY
+end
+
+def style_or_script type_card
+  case type_card.codename
+  when :scss, :css then
+    ["style", "customized classic skin"]
+  when :java_script, :coffee_script then
+    ["script", "script: wikirate scripts"]
+  end
 end
