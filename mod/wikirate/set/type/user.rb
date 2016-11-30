@@ -38,11 +38,11 @@ format :html do
 
   def contribution_reports
     [
-      :metric_value, :metric, :wikirate_company, :project, :source
+      :metric_value, :metric, :wikirate_company, :project, :source,
+      :wikirate_topic, :claim
     ].map do |codename|
       user_and_type = card.fetch trait: codename, new: {}
       nest user_and_type, view: :contribution_report
     end
   end
 end
-

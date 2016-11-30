@@ -18,33 +18,21 @@ def report_action_applies? action
   Card.new(type_id: cont_type_card.id).respond_to? :vote_count
 end
 
-def standard_report_count args
-  wql = { type_id: cont_type_card.id, return: :count }.merge args
-  Card.search wql
+def report_card action
+  @report_cards ||= {}
+  @report_cards[action] ||= build_report_card(action)
 end
 
-def created_report_count
-  standard_report_count created_by: user_card.id
+def build_report_card action
+  # tcard = cont_type_card
+  # tmethod = "#{action}_report_type_id"
+  # type_id = tcard.respond_to?(tmethod) ? tcard.send(tmethod) : SearchTypeID
+  Card.new type_id: SearchTypeID,
+           content: cont_type_card.send("#{action}_report_content",
+                                        user_card.id)
 end
 
-def updated_report_count
-  standard_report_count edited_by: user_card.id
-  # standard_report_count or: [
-  #   { edited_by: user_card.id },
-  #   { right_plus: [{}, edited_by: user_card.id]}
-  # ]
-end
 
-def discussed_report_count
-  standard_report_count right_plus: [Card::DiscussionID,
-                                     { edited_by: user_card.id }]
-end
-
-def voted_on_report_count
-  standard_report_count linked_to_by: {
-    left_id: user_card.id, right_id: [:in, UpvotesID, DownvotesID]
-  }
-end
 
 format :html do
   view :contribution_report, tags: :unknown_ok, cache: :never do
@@ -78,7 +66,7 @@ format :html do
   def contribution_report_count action
     return "" unless card.report_action_applies? action
     [
-      wrap_with(:label, card.send("#{action}_report_count")),
+      wrap_with(:label, card.report_card(action).count),
       wrap_with(:span, ACTION_LABELS[action])
     ]
   end
@@ -104,7 +92,11 @@ format :html do
   end
 
   def contribution_report_body
-    return "" unless (body = Env.params[:report_tab])
-    "body = #{body}"
+    return "" unless (action = Env.params[:report_tab])
+    report_card = card.report_card action
+    item_view = card.cont_type_card.contribution_listing_view
+    nest report_card, view: :content,
+                      items: { view: item_view },
+                      skip_perms: true
   end
 end
