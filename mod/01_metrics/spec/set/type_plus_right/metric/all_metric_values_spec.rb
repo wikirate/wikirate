@@ -1,22 +1,101 @@
 describe Card::Set::TypePlusRight::Metric::AllMetricValues do
-  let(:all_metric_values) { @metric.fetch trait: :all_metric_values }
-  before do
-    @metric = sample_metric
-    @companies = [
-      Card["Death Star"],
-      Card["Sony Corporation"],
-      Card["Amazon.com, Inc."],
-      Card["Apple Inc."]
-    ]
-    @companies.each.with_index do |company, value_idx|
-      0.upto(3) do |i|
-        @metric.create_value company: company.name,
-                             value: (value_idx + 1) * 5 + i,
-                             year: 2015 - i,
-                             source: sample_source.name
-      end
+  let(:metric) { Card["Jedi+disturbances in the Force"] }
+  let(:all_metric_values) { metric.fetch trait: :all_metric_values }
+  let(:latest_answers) { %w(Death_Star+2001 Monster_Inc+2000 Slate_Rock_and_Gravel_Company+2005) }
+
+  # return company+year
+  def answers list
+    list.map do |c|
+      c.cardname.parts[2..3].join "+"
     end
   end
+
+  describe "#item_cards" do
+    subject do
+      answers all_metric_values.item_cards
+    end
+    it "returns the latest values" do
+      is_expected.to eq(latest_answers)
+    end
+  end
+
+  describe "#filtered_item_cards" do
+    def filter_by args
+      answers all_metric_values.filtered_item_cards(args)
+    end
+
+    context "single filter condition" do
+      context "keyword" do
+        it "finds exact match" do
+          expect(filter_by(name: "Death")).to eq ["Death_Star+2001"]
+        end
+
+        it "finds partial match" do
+          expect(filter_by(name: "at"))
+              .to eq %w(Death_Star+2001 Slate_Rock_and_Gravel_Company+2005)
+        end
+
+        it "ignores case" do
+          expect(filter_by(name: "death"))
+              .to eq ["Death_Star+2001"]
+        end
+      end
+      context "year" do
+        it "finds exact match" do
+          expect(filter_by(year: "2000"))
+              .to eq %w(Death_Star+2000 Monster_Inc+2000)
+        end
+      end
+      context "project" do
+        it "finds exact match" do
+          expect(filter_by(project: "Star Wars Project"))
+              .to eq %w(Death_Star+2001)
+        end
+      end
+      context "industry" do
+        it "finds exact match" do
+          expect(filter_by(industry: "Technology Hardware"))
+              .to eq %w(Death_Star+2001)
+        end
+      end
+      context "value" do
+        context "filter by update date" do
+          before do
+            Timecop.freeze(Time.utc(2100, 2, 5, 12, 0, 0))
+          end
+          after do
+            Timecop.return
+          end
+          it "finds today's edits" do
+            expect(filter_by(metric_value: :today))
+                .to eq %w(Death_Star+1990)
+          end
+
+          it "finds this week's edits" do
+            expect(filter_by(metric_value: :week))
+                .to eq %w(Death_Star+1990 Death_Star+1991)
+          end
+
+          it "finds this months's edits" do
+            # wrong only one company
+            expect(filter_by(metric_value: :month))
+                .to eq %w(Death_Star+1990 Death_Star+1991 Death_Star+1992)
+          end
+        end
+      end
+      context "invalid filter key" do
+        it "doesn't matter" do
+          expect(filter_by(not_a_filter: "Death"))
+              .to eq latest_answers
+        end
+      end
+    end
+    subject { answers all_metric_values.item_cards }
+    it "returns the latest values" do
+      is_expected.to eq(latest_answers)
+    end
+  end
+
 
   describe "format :json" do
     describe "view :core" do

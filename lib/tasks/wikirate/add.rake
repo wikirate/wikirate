@@ -4,10 +4,10 @@ namespace :wikirate do
   namespace :add do
     desc "create folders and files for scripts or styles"
     task codefile: :environment do
-      with_params(:mod, :name, :type) do |mod, name, type|
+      with_params(:mod, :name, :type) do |mod, name, type, type_codename|
         create_content_file mod, name, type
         create_rb_file mod, name
-        create_migration_file name, type
+        create_migration_file name, type_codename
       end
     end
 
@@ -28,7 +28,8 @@ end
 def with_params *keys
   return unless parameters_present?(*keys)
   values = keys.map { |k| ENV[k.to_s] }
-  yield(*values)
+  mod, name, type = values
+  yield(mod, name, type, type_codename(type))
 end
 
 def parameters_present? *env_keys
@@ -73,15 +74,20 @@ def write_to_mod mod, relative_dir, filename
   end
 end
 
+def type_codename type
+  case type
+  when "js" then :java_script
+  when "coffee" then :coffee_script
+  when "css", "scss" then type.to_sym
+  else
+    color_puts  "'#{type}' is not a valid type. "\
+                 "Choose between js, coffee, css and scss.", :red
+    exit
+  end
+end
+
 def create_content_file mod, name, type
-  dir = case type.underscore
-        when "java_script", "coffee_script" then "javascript"
-        when "css", "scss" then "stylesheets"
-        end
-  file_ext = type.underscore == "coffee_script" ? ".js.coffee" : "." + type
-  content_dir = File.join "lib", dir
-  content_file = name + file_ext
-  write_to_mod(mod, content_dir, content_file) do |f|
+  write_to_mod(mod, content_dir(type), content_filename(name, type)) do |f|
     content = (card = Card.fetch(name)) ? card.content : ""
     f.puts content
   end
@@ -95,21 +101,17 @@ def create_rb_file mod, name
   end
 end
 
-def create_migration_file name, type
+def create_migration_file name, type_codename
   puts "creating migration file...".yellow
   migration_out = `bundle exec wagn generate card:migration #{name}`
   migration_file = migration_out[/db.*/]
-  unless (type_card = Card.fetch(type))
-    color_puts "invalid type", :red, type
-    return
-  end
-  write_at(migration_file, 5, migration_content(name, type_card)) # 5 is line no.
+  write_at(migration_file, 5, migration_content(name, type_codename)) # 5 is line no.
 end
 
-def migration_content name, type_card
-  type_id = "Card::#{type_card.codename.camelcase}ID"
+def migration_content name, type_codename
+  type_id = "Card::#{type_codename.to_s.camelcase}ID"
   card_name = Card.fetch_name(name) || name
-  type, target = style_or_script type_card
+  type, target = style_or_script type_codename
 
   <<-RUBY
     add_#{type} '#{card_name}',
@@ -118,8 +120,21 @@ def migration_content name, type_card
   RUBY
 end
 
-def style_or_script type_card
-  case type_card.codename
+def content_dir type
+  dir = case type
+        when "js", "coffee" then "javascript"
+        when "css", "scss" then "stylesheets"
+        end
+  File.join "lib", dir
+end
+
+def content_filename(name, type)
+  file_ext = type == "coffee" ? ".js.coffee" : "." + type
+  name + file_ext
+end
+
+def style_or_script type_codename
+  case type_codename
   when :scss, :css then
     ["style", "customized classic skin"]
   when :java_script, :coffee_script then

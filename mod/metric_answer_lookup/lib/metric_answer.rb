@@ -69,12 +69,32 @@ class MetricAnswer < ActiveRecord::Base
   end
 
   def fetch_latest
-    return true unless (latest_year = latest_year_in_db) && latest_year.present?
-    latest_year < fetch_year
+    return true unless (latest_year = latest_year_in_db)
+    @new_latest = (latest_year < fetch_year)
+    latest_year <= fetch_year
   end
 
   def latest_year_in_db
     MetricAnswer.where(metric_record_id: fetch_metric_record_id).maximum(:year)
+  end
+
+  def delete
+    super.tap do
+      if (latest_year = latest_year_in_db)
+        MetricAnswer.where(metric_record_id: metric_record_id, year: latest_year)
+            .update_all(latest: true)
+      end
+    end
+  end
+
+  def latest_to_false
+    MetricAnswer.where(metric_record_id: metric_record_id, latest: true)
+        .update_all(latest: false)
+  end
+
+  def latest= value
+    latest_to_false if @new_latest
+    super
   end
 
   private

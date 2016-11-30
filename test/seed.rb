@@ -18,25 +18,30 @@ class SharedData
       add_sources_and_claims
       add_metrics
       add_yearly_variables
+      add_projects
+      add_industry
       MetricAnswer.refresh
     end
 
     def add_companies_and_topics
-      Card.create! name: "Death Star", type: "company",
-                   subcards: {
-                     "+about" => { content: "Judge me by my size, do you?" }
-                   }
-      Card.create! name: "Force", type: "topic",
-                   subcards: {
-                     "+about" => {
-                       content: "A Jedi uses the Force for " \
-                                "knowledge and defense, never for attack."
-                     }
-                   }
-      Card.create! name: "Death Star+Force", type: "analysis",
-                   subcards: {
-                     "+article" => { content: "I'm your father!" }
-                   }
+      create "Death Star",
+             type: "company",
+             subcards: { "+about" => "Kuuuhhh Shhhhhh Kuuuhhhh Shhhhh" }
+      create "Monster Inc",
+             type: "company",
+             subcards: { "+about" => "We scare because we care." }
+      create "Slate Rock and Gravel Company",
+             type: "company",
+             subcards: { "+about" => "Yabba Dabba Doo!" }
+      create "Force",
+             type: "topic",
+             subcards: {
+                 "+about" => "A Jedi uses the Force for " \
+                           "knowledge and defense, never for attack."
+             }
+      create "Death Star+Force",
+             type: "analysis",
+             subcards: { "+article" => { content: "I'm your father!" } }
     end
 
     def add_sources_and_claims
@@ -69,18 +74,53 @@ class SharedData
       Card::Env[:protocol] = "http://"
       Card::Env[:host] = "wikirate.org"
       create_or_update "1977", type_id: Card::YearID
-      Card::Metric.create name: "Jedi+disturbances in the Force",
+      metric =
+          Card::Metric.create name: "Jedi+disturbances in the Force",
+                              value_type: "Category",
+                              value_options: %w(yes no),
+                              random_source: true do
+            Death_Star "1977" => "yes", "2000" => "yes", "2001" => "yes"
+            Monster_Inc "1977" => "no", "2000" => "yes"
+            Slate_Rock_and_Gravel_Company "1977" => "no", "2005" => "no"
+          end
+
+      fixed_time = Time.utc(2035, 5, 25, 12, 0, 0)
+      # gift to Ethan's 60th birthday:
+      # on the date above 3 tests will fail
+      # (if you reseed the test database)
+
+      Timecop.freeze(fixed_time) do
+        metric.create_values true do
+          Death_Star "1990" => "yes"
+        end
+      end
+      Timecop.freeze(fixed_time - 1.day) do
+        metric.create_values true do
+          Death_Star "1991" => "yes"
+        end
+      end
+      Timecop.freeze(fixed_time - 2.weeks) do
+        metric.create_values true do
+          Death_Star "1992" => "yes"
+        end
+      end
+
+      Card::Metric.create name: "Fred+dinosaurlabor",
                           value_type: "Category",
                           value_options: %w(yes no),
                           random_source: true do
-        Death_Star "1977" => { value: "yes" }
-        #                       source: 'http://wikiwand.com/en/Death_Star' }
+        Slate_Rock_and_Gravel_Company "1977" => "yes", "2000" => "yes"
+        Monster_Inc "1977" => "no", "2000" => "no"
+        Death_Star "1977" => "no", "2000" => "yes"
       end
+
       Card::Metric.create name: "Jedi+deadliness",
                           random_source: true,
                           value_type: "Number" do
         Death_Star "1977" => { value: 100 }
+        Slate_Rock_and_Gravel_Company "1977" => { value: "20" }
       end
+
       Card::Metric.create name: "Jedi+cost of planets destroyed",
                           random_source: true,
                           value_type: "Money" do
@@ -152,6 +192,22 @@ class SharedData
                                     "1006.5" }
                      }
                    }
+    end
+
+    def add_projects
+      create "Star Wars Project", type: :project,
+             subfields: {
+                 metric:
+                     { type: :pointer, content: "[[Jedi+disturbances in the Force]]" },
+                 wikirate_company:
+                     { type: :pointer, content: "[[Death Star]]" }
+             }
+    end
+
+    def add_industry
+      create "Global_Reporting_Initiative+Sector_Industry+Death Star+2015+value",
+             type: :phrase,
+             content: "Technology Hardware"
     end
   end
 end
