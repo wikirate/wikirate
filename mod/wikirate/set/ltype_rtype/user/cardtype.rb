@@ -1,4 +1,3 @@
-
 include_set Abstract::WikirateTable
 include_set Abstract::TwoColumnLayout
 
@@ -21,56 +20,34 @@ def report_action_applies? action
   Card.new(type_id: cont_type_card.id).respond_to? :vote_count
 end
 
-def standard_report_count args
-  wql = { type_id: cont_type_card.id, return: :count }.merge args
-  Card.search wql
-end
-
-def created_report_count
-  standard_report_count created_by: user_card.id
-end
-
-def updated_report_count
-  standard_report_count or: [
-    { edited_by: user_card.id },
-    { right_plus: [{}, edited_by: user_card.id]}
-  ]
-end
-
-def discussed_report_count
-  standard_report_count right_plus: [Card::DiscussionID,
-                                     { edited_by: user_card.id }]
-end
-
-def voted_on_report_count
-  standard_report_count linked_to_by: {
-    left_id: user_card.id, right_id: [:in, UpvotesID, DownvotesID]
-  }
+def report_card action
+  @report_cards ||= {}
+  @report_cards[action] ||= begin
+    rcard = Card.new name: "#{name}+#{Card[:report_search].name}"
+    rcard.variant = action
+    rcard
+  end
 end
 
 format :html do
-  view :contribution_report, tags: :unknown_ok do
-    wrap_with :div, class: "contribution-report " \
-                           "#{card.codename}-contribution-report" do
-      [contribution_report_header, contribution_report_body]
-    end
+  view :contribution_report, tags: :unknown_ok, cache: :never do
+    return "" unless show_contribution_report?
+    class_up "card-slot", "contribution-report " \
+                          "#{card.codename}-contribution-report"
+    wrap { [contribution_report_header, contribution_report_body] }
   end
 
-  def process_tabs
-    {
-      created: two_line_tab("Created", 22),
-      updated: two_line_tab("Updated", 33),
-      discussed: two_line_tab("Discussed", 44),
-      voted_on: two_line_tab("Voted On", 33),
-    }
+  def show_contribution_report?
+    [:created, :updated, :discussed, :voted_on].find do |action|
+      report_count(action) > 0
+    end
   end
 
   def contribution_report_header
     wrap_with :div, class: "contribution-report-header" do
       [
         contribution_report_title,
-        contribution_report_action_boxes,
-        # contribution_report_toggle
+        contribution_report_action_boxes
       ]
     end
   end
@@ -79,26 +56,26 @@ format :html do
     wrap_with :ul, class: "nav nav-tabs" do
       [:created, :updated, :discussed, :voted_on].map do |report_action|
         contribution_report_box report_action
-      end
+      end << contribution_report_toggle
     end
   end
 
   def contribution_report_box action
     wrap_with :li, class: "contribution-report-box" do
-      wrap_with :a do
-        contribution_report_count action
-      end
+      contribution_report_count_tab action
     end
   end
 
-  def contribution_report_count action
+  def contribution_report_count_tab action
     return "" unless card.report_action_applies? action
-      two_line_tab(ACTION_LABELS[action], card.send("#{action}_report_count"))
-    #
-    # [
-    #   wrap_with(:label, card.send("#{action}_report_count")),
-    #   wrap_with(:span, ACTION_LABELS[action])
-    # ]
+    link_to_view :contribution_report,
+                 two_line_tab(ACTION_LABELS[action], report_count(action)),
+                 path: { report_tab: action }, class: "slotter"
+  end
+
+  def report_count action
+    @report_count ||= {}
+    @report_count[action] ||= card.report_card(action).count
   end
 
   def contribution_report_title
@@ -108,9 +85,27 @@ format :html do
   end
 
   def contribution_report_toggle
-    ">"
+    toggle_status = Env.params[:report_tab] ? :open : :closed
+    wrap_with :li do
+      send "contribution_report_toggle_#{toggle_status}"
+    end
+  end
+
+  def contribution_report_toggle_closed
+    link_to_view :contribution_report, glyphicon("triangle-right"),
+                 class: "slotter", path: { report_tab: :created }
+  end
+
+  def contribution_report_toggle_open
+    link_to_view :contribution_report, glyphicon("triangle-bottom"),
+                 class: "slotter"
   end
 
   def contribution_report_body
+    return "" unless (action = Env.params[:report_tab])
+    report_card = card.report_card action
+    item_view = card.cont_type_card.contribution_listing_view
+    nest report_card, view: :content, structure: action, skip_perms: true,
+                      items: { view: item_view }
   end
 end

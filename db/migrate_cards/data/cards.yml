@@ -155,5 +155,12 @@
 - :name: company+topic+*type plus right+*structure
   :type: Search
   :key: company+topic+*type_plu_right+*structure
+- :name: report search
+  :type: Basic
+  :codename: report_search
+  :key: report_search
+- :name: report search+*right+*structure
+  :type: Search
+  :key: report_search+*right+*structure
 :remotes:
   :live: http://wikirate.org

@@ -90,8 +90,6 @@ def query params={}
     @query[:offset] = get_params("offset", 0)
   end
   @query
-rescue
-  binding.pry
 end
 
 def get_params key, default
