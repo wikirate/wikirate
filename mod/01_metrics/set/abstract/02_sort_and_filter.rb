@@ -1,5 +1,7 @@
 include_set Type::SearchType
 include_set Abstract::Utility
+include_set Abstract::Filter
+
 
 def virtual?
   true
@@ -31,10 +33,14 @@ def count _params={}
   filtered_values_by_name.size
 end
 
+def limit
+  20
+end
+
 format do
   def search_results _args={}
     @search_results ||= begin
-      results = sorted_result[offset, limit]
+      results = sorted_result
       results.blank? ? [] : results
     end
   end
@@ -46,39 +52,14 @@ format do
     type == "Number" || type == "Money" || !metric_card.researched?
   end
 
-  def limit
-    card.query(search_params)[:limit]
-  end
-
-  def offset
-    card.get_params("offset", 0)
-  end
-
   # paging helper methods
   def page_link text, page, _current=false, options={}
     @paging_path_args[:offset] = page * @paging_limit
+    @paging_path_args[:view] = :content
     options[:class] = "card-paging-link slotter"
     options[:remote] = true
-    options[:path] = fill_paging_args
+    options[:path] = paging_path_args @paging_path_args
     link_to raw(text), options
-  end
-
-  def fill_paging_args
-    paging_args = @paging_path_args.merge(sort_by: sort_by,
-                                          sort_order: sort_order)
-    fill_page_link_params paging_args
-    paging_args[:view] = :content
-    paging_args
-  end
-
-  def fill_page_link_params paging_args
-    page_link_params.each do |key|
-      paging_args[key] = params[key] if params[key].present?
-    end
-  end
-
-  def page_link_params
-    []
   end
 end
 
@@ -87,12 +68,12 @@ def query params={}
   @query = super params
   unless default_query
     @query[:limit] = params[:default_limit] || 20
-    @query[:offset] = get_params("offset", 0)
+    @query[:offset] = param_to_i("offset", 0)
   end
   @query
 end
 
-def get_params key, default
+def param_to_i key, default
   if (value = Env.params[key])
     value.to_i
   else

@@ -1,7 +1,29 @@
 class Card
-  class CompanyBasedMetricAnswerQuery < MetricAnswerQuery
+  class CompanyBasedAnswerQuery < MetricAnswerQuery
     SIMPLE_FILTERS = ::Set.new([:metric_id, :latest, :year]).freeze
     LIKE_FILTERS = ::Set.new([:name]).freeze
+
+    def self.default metric_id
+      MetricAnswer.fetch metric_id: metric_id, latest: true
+    end
+
+    def initialize metric_id, *args
+      @metric_card = Card.fetch metric_id
+      super *args
+
+    end
+
+    def prepare_filter_args filter
+      super
+      @filter_args[:metric_id] = @metric_card.id
+    end
+
+    def prepare_sort_args sort
+      super
+      if @sort_args[:sort_by].to_sym == :value && @metric_card.number_values?
+        @sort_args[:cast] = "decimal(20,10)"
+      end
+    end
 
     def project_query value
       company_ids =

@@ -12,15 +12,24 @@ module LookupTable
 
     def create_or_update cardish
       ma_card_id = card_id(cardish)
-      ma =
-          MetricAnswer.find_by_metric_answer_id(ma_card_id) ||
+      ma = MetricAnswer.find_by_metric_answer_id(ma_card_id) ||
         MetricAnswer.new
       ma.metric_answer_id = ma_card_id
       ma.refresh
     end
 
-    def fetch *args
-      MetricAnswer.where(*args).pluck(:metric_answer_id).map do |id|
+    def fetch where, sort={}, paging={}
+      where = Array.wrap where
+      mas = MetricAnswer.where(*where)
+      if sort.present?
+        sort_by = sort[:sort_by]
+        sort_by = "CAST(#{sort_by} AS #{sort[:cast]})" if sort[:cast]
+        mas = mas.order "#{sort_by} #{sort[:sort_order]}"
+      end
+      if paging.present?
+        mas = mas.limit(paging[:limit]).offset(paging[:offset])
+      end
+      mas.pluck(:metric_answer_id).map do |id|
         Card.fetch id
       end
     end

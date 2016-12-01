@@ -1,7 +1,7 @@
 require './test/seed'
 
 describe Card::Set::TypePlusRight::Metric::AllMetricValues do
-  let(:metric) { Card["Jedi+disturbances in the Force"] }
+  let(:metric) { @metric || Card["Jedi+disturbances in the Force"] }
   let(:all_metric_values) { metric.fetch trait: :all_metric_values }
   let(:latest_answers) do
     %w(Death_Star+2001 Monster_Inc+2000 Slate_Rock_and_Gravel_Company+2005
@@ -166,6 +166,52 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
         end
       end
     end
+
+    context "with sort conditions" do
+      def sort_by key, order="asc"
+        allow(all_metric_values).to receive(:sort_by) { key }
+        allow(all_metric_values).to receive(:sort_order) { order }
+        answers all_metric_values.item_cards
+      end
+
+      it "sorts by company name (asc)" do
+        expect(sort_by(:company_name)).to eq(
+                                            ["Death_Star+2001", "Monster_Inc+2000",
+                                             "Slate_Rock_and_Gravel_Company+2005", "SPECTRE+2000"]
+                                          )
+      end
+
+      it "sorts by company name (desc)" do
+        expect(sort_by(:company_name, "desc")).to eq(
+                                                    ["Death_Star+2001", "Monster_Inc+2000",
+                                                     "Slate_Rock_and_Gravel_Company+2005", "SPECTRE+2000"].reverse
+                                                  )
+      end
+
+      it "sorts categories by value" do
+        res = sort_by(:value)
+        yes_index = res.index "Death_Star+2001"
+        no_index = res.index "Slate_Rock_and_Gravel_Company+2005"
+        expect(no_index).to > yes_index
+      end
+
+      it "sorts numberics by value" do
+        @metric = Card["Jedi+deadliness"]
+        expect(sort_by(:value)).to eq(
+                                     with_year(["Samsung", "Slate_Rock_and_Gravel_Company",
+                                                "Los_Pollos_Hermanos",
+                                                "SPECTRE", "Death_Star"], 1977)
+                                   )
+      end
+
+      it "sorts floats by value" do
+        @metric = Card["Jedi+Victims by Employees"]
+        expect(sort_by(:value)).to eq(
+                                     with_year(["Slate_Rock_and_Gravel_Company", "Samsung", "Monster_Inc",
+                                                "Los_Pollos_Hermanos", "Death_Star", "SPECTRE"], 1977)
+                                   )
+      end
+    end
   end
 
   describe "format :json" do
@@ -212,11 +258,11 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
   describe "#get_params" do
     it "returns value from params" do
       Card::Env.params["offset"] = "5"
-      expect(all_metric_values.get_params("offset", 0)).to eq(5)
+      expect(all_metric_values.param_to_i("offset", 0)).to eq(5)
     end
 
     it "returns default" do
-      expect(all_metric_values.get_params("offset", 0)).to eq(0)
+      expect(all_metric_values.param_to_i("offset", 0)).to eq(0)
     end
   end
 

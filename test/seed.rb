@@ -132,7 +132,18 @@ class SharedData
         SPECTRE "1977" => 50
         Los_Pollos_Hermanos "1977" => 40
         Slate_Rock_and_Gravel_Company "1977" => 20
+        Samsung "1977" => "Unknown"
+      end
 
+      Card::Metric.create name: "Jedi+Victims by Employees",
+                          random_source: true,
+                          value_type: "Number" do
+        SPECTRE "1977" => 5.30
+        Death_Star "1977" => 0.31
+        Los_Pollos_Hermanos "1977" => 0.002
+        Monster_Inc "1977" => 0.001
+        Slate_Rock_and_Gravel_Company "1977" => -0.01
+        Samsung "1977" => "Unknown"
       end
 
       Card::Metric.create name: "Jedi+cost of planets destroyed",

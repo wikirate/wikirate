@@ -71,6 +71,10 @@ def add_sort_wql wql, sort_by
     end
 end
 
+def default_sort_option
+  "upvoted"
+end
+
 format :html do
   def sort_options
     {
@@ -81,9 +85,7 @@ format :html do
     }
   end
 
-  def default_sort_option
-    "upvoted"
-  end
+
 
   view :metric_type_formgroup do
     metric_type_select

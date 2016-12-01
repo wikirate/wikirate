@@ -57,6 +57,10 @@ def add_sort_wql wql, sort_by
   end
 end
 
+def default_sort_option
+  "important"
+end
+
 format :html do
   view :cited_formgroup do |_args|
     select_filter :cited, "Cited", "all"
@@ -85,9 +89,5 @@ format :html do
   def sort_options
     super.merge "Most Important" => "important",
                 "Most Recent" => "recent"
-  end
-
-  def default_sort_option
-    "important"
   end
 end

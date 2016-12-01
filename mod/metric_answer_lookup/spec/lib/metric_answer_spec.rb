@@ -101,7 +101,6 @@ describe MetricAnswer do
   end
 
   describe "fetch" do
-    MetricAnswer.fetch(company_id: Card.fetch_id("Apple Inc"))
+    MetricAnswer.fetch company_id: Card.fetch_id("Apple Inc")
   end
-
 end

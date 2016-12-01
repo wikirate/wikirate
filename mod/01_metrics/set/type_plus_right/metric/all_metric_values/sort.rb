@@ -1,6 +1,6 @@
 format do
   def sort values
-    sorted = case sort_by
+    sorted = case card.sort_by
              when "name", "company_name"
                sort_name_asc values
              when "value"
@@ -8,6 +8,6 @@ format do
              else
                values
              end
-    sort_order == "asc" ? sorted : sorted.reverse
+    card.sort_order == "asc" ? sorted : sorted.reverse
   end
 end

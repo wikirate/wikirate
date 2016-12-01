@@ -8,6 +8,10 @@ def filter_keys
   %w(metric_value year)
 end
 
+def default_sort_option
+  "upvoted"
+end
+
 format :html do
   def content_view
     :metric_tab
@@ -37,9 +41,5 @@ format :html do
       "Recently Updated" => "recent",
       "Most Values" => "value"
     }
-  end
-
-  def default_sort_option
-    "upvoted"
   end
 end

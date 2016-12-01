@@ -1,7 +1,5 @@
 include_set Abstract::BrowseFilterForm
 
-
-
 def filter_keys
   %w(name industry)
 end
@@ -14,6 +12,10 @@ def filter_class
   CompanyFilterQuery
 end
 
+def default_sort_option
+  "metric"
+end
+
 format :html do
   def sort_options
     {
@@ -21,9 +23,5 @@ format :html do
       "Most Metrics" => "metric",
       "Most Topics" => "topic"
     }
-  end
-
-  def default_sort_option
-    "metric"
   end
 end

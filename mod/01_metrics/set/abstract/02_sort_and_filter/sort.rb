@@ -1,12 +1,16 @@
+def sort_hash
+  { sort_by: sort_by, sort_order: sort_order }
+end
+
+def sort_by
+  @sort_by ||= Env.params["sort_by"] || :value
+end
+
+def sort_order
+  @sort_order ||= Env.params["sort_order"] || :desc
+end
+
 format do
-  def sort_by
-    @sort_by ||= Env.params["sort_by"] || "value"
-  end
-
-  def sort_order
-    @sort_order ||= Env.params["sort_order"] || "desc"
-  end
-
   def sort values
     values
   end
@@ -54,9 +58,8 @@ format :html do
   # @option args [String] :order
   # @option args [String] :class additional css class
   def sort_link text, args
-    path = { offset: offset, sort_order: args[:order],
-             limit: limit,   sort_by:    args[:sort_by] }
-    fill_page_link_params path
+    path = paging_path_args sort_order: args[:sort_order],
+                            sort_by: args[:sort_by]
     link_to_view :content, text,
                  path: path,
                  class: "metric-list-header slotter #{args[:class]}"

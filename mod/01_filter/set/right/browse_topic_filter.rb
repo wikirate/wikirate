@@ -35,6 +35,10 @@ def filter_class
   TopicFilterQuery
 end
 
+def default_sort_option
+  "metric"
+end
+
 format :html do
   def sort_options
     {
@@ -42,9 +46,5 @@ format :html do
       "Most Metrics" => "metric",
       "Most Companies" => "company"
     }
-  end
-
-  def default_sort_option
-    "metric"
   end
 end

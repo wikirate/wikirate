@@ -1,7 +1,9 @@
 class Card
   class MetricAnswerQuery
-    def initialize filter_args
-      @filter_args = filter_args
+    def initialize filter, sort, paging
+      prepare_filter_args filter
+      prepare_sort_args sort
+      @paging_args = paging
       @conditions = []
       @values = []
       @restrict_to_ids = Hash.new { |h, k| h[k] = [] }
@@ -22,7 +24,16 @@ class Card
     end
 
     def run_filter_query
-      MetricAnswer.fetch(*where_args)
+      MetricAnswer.fetch(where_args, @sort_args, @paging_args)
+    end
+
+    def prepare_filter_args filter
+      @filter_args = filter
+      @filter_args[:latest] = true unless filter[:year] || filter[:metric_value]
+    end
+
+    def prepare_sort_args args
+      @sort_args = args
     end
 
     # @return args for AR's where method
