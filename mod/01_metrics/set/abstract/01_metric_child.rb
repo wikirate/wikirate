@@ -113,3 +113,5 @@ end
 def metric_record_card
   Card.fetch metric_record
 end
+
+delegate :value_options, :value_options_card, :value_type, to: :metric_card

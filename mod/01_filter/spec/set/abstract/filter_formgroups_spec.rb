@@ -24,11 +24,13 @@ describe Card::Set::Abstract::FilterFormgroups do
   describe "industry formgroup" do
     subject { card.format.render_industry_formgroup }
     it "renders select form" do
-      industries = Card[CompanyFilterQuery::INDUSTRY_METRIC_NAME].value_options
+      industries =
+        Card[Card::CompanyFilterQuery::INDUSTRY_METRIC_NAME].value_options
       is_expected.to have_tag(:div,
                                with: { class: "form-group filter-input" }) do
         with_tag :label, text: "Industry"
-        with_tag :select, with: { name: "filter[industry]", class: "pointer-select" } do
+        with_tag :select,
+                 with: { name: "filter[industry]", class: "pointer-select" } do
           industries.each do |i|
             with_tag :option, with: { value: i }, text: i
           end

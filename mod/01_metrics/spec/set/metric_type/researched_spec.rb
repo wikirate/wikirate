@@ -72,14 +72,20 @@ describe Card::Set::MetricType::Researched do
           Card.create! name: "Jedi+disturbances in the Force+topics",
                        content: "Star Wars"
         end
-        is_expected.to eq ["Death_Star+Star Wars"]
+        is_expected.to eq ["Slate_Rock_and_Gravel_Company+Star Wars",
+                           "SPECTRE+Star Wars", "Monster_Inc+Star Wars",
+                           "Death_Star+Star Wars"]
       end
     end
   end
 
   describe "#companies_with_years_and_values" do
-    subject { metric.companies_with_years_and_values }
-    it { is_expected.to eq [%w(Death_Star 1977 yes)] }
+    subject do
+      Card["Jedi+cost of planets destroyed"].companies_with_years_and_values
+    end
+    it do
+      is_expected.to eq [["Death_Star", "1977", "200"]]
+    end
   end
 
   describe "#random_valued_company_card" do

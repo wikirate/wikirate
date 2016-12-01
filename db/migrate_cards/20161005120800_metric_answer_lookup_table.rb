@@ -6,13 +6,13 @@ class MetricAnswerLookupTable < ActiveRecord::Migration
       t.integer  :metric_id
       t.integer  :designer_id
       t.integer  :company_id
-      t.integer :metric_record_id
+      t.integer  :metric_record_id
       t.integer  :policy_id
       t.integer  :metric_type_id
       t.integer  :year
       t.string   :metric_name
       t.string   :company_name
-      t.string :metric_record_name
+      t.string   :metric_record_name
       t.string   :value
       t.datetime :updated_at
       t.boolean  :imported

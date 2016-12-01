@@ -1,5 +1,5 @@
 class Card
-  class CompanyFilterQuery < Card::FilterQuery
+  class CompanyFilterQuery < FilterQuery
     INDUSTRY_METRIC_NAME = "Global Reporting Initiative+Sector Industry"
     INDUSTRY_VALUE_YEAR = "2015"
 
