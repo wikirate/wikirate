@@ -122,7 +122,7 @@ format :html do
     "(nest editable card with description text)"
   end
 
-  view :row do
+  view :listing do
     bs_layout do
       row 2, 10 do
         column { field_nest :image, size: :small }

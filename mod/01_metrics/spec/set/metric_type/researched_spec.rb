@@ -105,16 +105,16 @@ describe Card::Set::MetricType::Researched do
       expect(open_content).to(
         have_tag("div", with: { class: "metric-info" }) do
           with_tag "div", with: { class: "row metric-header-container" }
-        end
+                end
       )
       expect(open_content).to(
         have_tag("table", with: { class: "metric-properties table" }) do
-          with_tag :td, text: "Designed By"
-          with_tag :div, with: { class: "metric-designer-info" }
-          with_tag :td, text: "Metric Type"
-          with_tag :div, with: { class: "RIGHT-Xmetric_type" }
-          with_tag :td, text: "Topics"
-          with_tag :div, with: { class: "RIGHT-topic" }
+                  with_tag :td, text: "Designed By"
+                  with_tag :div, with: { class: "metric-designer-info" }
+                  with_tag :td, text: "Metric Type"
+                  with_tag :div, with: { class: "RIGHT-Xmetric_type" }
+                  with_tag :td, text: "Topics"
+                  with_tag :div, with: { class: "RIGHT-topic" }
         end
       )
     end

@@ -20,7 +20,7 @@ format :html do
   end
 
   view :rich_header do |args|
-    layout do
+    bs_layout do
       row 12 do
         col text_with_image title: "", text: header_right, size: :large
       end

@@ -22,7 +22,7 @@ def voted_on_report_content user_id
 end
 
 def standard_report_wql args
-  JSON.generate({ type_id: id }.merge(args))
+  JSON.generate({ type_id: id, limit: 5 }.merge(args))
 end
 
 def contribution_listing_view

@@ -1,3 +1,5 @@
+include_set Abstract::WikirateTable
+include_set Abstract::TwoColumnLayout
 
 ACTION_LABELS = {
   created: "Created", updated: "Updated",
@@ -20,55 +22,60 @@ end
 
 def report_card action
   @report_cards ||= {}
-  @report_cards[action] ||= build_report_card(action)
+  @report_cards[action] ||= begin
+    rcard = Card.new name: "#{name}+#{Card[:report_search].name}"
+    rcard.variant = action
+    rcard
+  end
 end
-
-def build_report_card action
-  # tcard = cont_type_card
-  # tmethod = "#{action}_report_type_id"
-  # type_id = tcard.respond_to?(tmethod) ? tcard.send(tmethod) : SearchTypeID
-  Card.new type_id: SearchTypeID,
-           content: cont_type_card.send("#{action}_report_content",
-                                        user_card.id)
-end
-
-
 
 format :html do
   view :contribution_report, tags: :unknown_ok, cache: :never do
+    return "" unless show_contribution_report?
     class_up "card-slot", "contribution-report " \
                           "#{card.codename}-contribution-report"
     wrap { [contribution_report_header, contribution_report_body] }
+  end
+
+  def show_contribution_report?
+    [:created, :updated, :discussed, :voted_on].find do |action|
+      report_count(action) > 0
+    end
   end
 
   def contribution_report_header
     wrap_with :div, class: "contribution-report-header" do
       [
         contribution_report_title,
-        contribution_report_action_boxes,
-        contribution_report_toggle
+        contribution_report_action_boxes
       ]
     end
   end
 
   def contribution_report_action_boxes
-    [:created, :updated, :discussed, :voted_on].map do |report_action|
-      contribution_report_box report_action
+    wrap_with :ul, class: "nav nav-tabs" do
+      [:created, :updated, :discussed, :voted_on].map do |report_action|
+        contribution_report_box report_action
+      end << contribution_report_toggle
     end
   end
 
   def contribution_report_box action
-    wrap_with :div, class: "contribution-report-box" do
-      contribution_report_count action
+    wrap_with :li, class: "contribution-report-box" do
+      contribution_report_count_tab action
     end
   end
 
-  def contribution_report_count action
+  def contribution_report_count_tab action
     return "" unless card.report_action_applies? action
-    [
-      wrap_with(:label, card.report_card(action).count),
-      wrap_with(:span, ACTION_LABELS[action])
-    ]
+    link_to_view :contribution_report,
+                 two_line_tab(ACTION_LABELS[action], report_count(action)),
+                 path: { report_tab: action }, class: "slotter"
+  end
+
+  def report_count action
+    @report_count ||= {}
+    @report_count[action] ||= card.report_card(action).count
   end
 
   def contribution_report_title
@@ -79,24 +86,26 @@ format :html do
 
   def contribution_report_toggle
     toggle_status = Env.params[:report_tab] ? :open : :closed
-    send "contribution_report_toggle_#{toggle_status}"
-  end
-
-  def contribution_report_toggle_open
-    link_to_view :contribution_report, "v", class: "slotter"
+    wrap_with :li do
+      send "contribution_report_toggle_#{toggle_status}"
+    end
   end
 
   def contribution_report_toggle_closed
-    link_to_view :contribution_report, ">", class: "slotter",
-                                            path: { report_tab: :created }
+    link_to_view :contribution_report, glyphicon("triangle-right"),
+                 class: "slotter", path: { report_tab: :created }
+  end
+
+  def contribution_report_toggle_open
+    link_to_view :contribution_report, glyphicon("triangle-bottom"),
+                 class: "slotter"
   end
 
   def contribution_report_body
     return "" unless (action = Env.params[:report_tab])
     report_card = card.report_card action
     item_view = card.cont_type_card.contribution_listing_view
-    nest report_card, view: :content,
-                      items: { view: item_view },
-                      skip_perms: true
+    nest report_card, view: :content, structure: action, skip_perms: true,
+                      items: { view: item_view }
   end
 end
