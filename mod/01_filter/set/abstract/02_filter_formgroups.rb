@@ -94,8 +94,7 @@ format :html do
   end
 
   def industry_options
-    card_name =
-      Right::BrowseCompanyFilter::CompanyFilterQuery::INDUSTRY_METRIC_NAME
+    card_name = CompanyFilterQuery::INDUSTRY_METRIC_NAME
     Card[card_name].value_options
   end
 

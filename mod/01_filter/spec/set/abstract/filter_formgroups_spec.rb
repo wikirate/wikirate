@@ -24,7 +24,7 @@ describe Card::Set::Abstract::FilterFormgroups do
   describe "industry formgroup" do
     subject { card.format.render_industry_formgroup }
     it "renders select form" do
-    industries = Card[Card::Set::Right::BrowseCompanyFilter::CompanyFilterQuery::INDUSTRY_METRIC_NAME].value_options
+      industries = Card[CompanyFilterQuery::INDUSTRY_METRIC_NAME].value_options
       is_expected.to have_tag(:div,
                                with: { class: "form-group filter-input" }) do
         with_tag :label, text: "Industry"
