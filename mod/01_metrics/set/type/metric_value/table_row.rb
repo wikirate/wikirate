@@ -47,7 +47,6 @@ format :html do
       <div class="details-close-icon pull-right	">
         #{fa_icon "times-circle", class: "fa-2x"}
       </div>
-
     HTML
   end
 
@@ -80,7 +79,8 @@ format :html do
   # used in metric value list on a metric page
   view :company_details_sidebar do
     <<-HTML
-      #{close_icon}
+    <div class="metric-details-company-header">
+#{close_icon}
       <br>
       <div class="row clearfix">
         <div class="company-logo">
@@ -93,36 +93,49 @@ format :html do
       </div>
       <hr>
       #{metric_details}
-       #{metric_values}
+    #{metric_values}
       <br>
       #{discussion}
+      </div>
     HTML
   end
+
+  def metric_details_sidebar_header
+    bs do
+      layout do
+        row 1, 11 do
+          column nest(card.metric_card.vote_count_card)
+          column do
+            row link_to_card(card.metric_card, card.metric_card.cardname.right,
+                             class: "inherit-anchor"),
+                class: "name"
+            row designer_info
+          end
+        end
+      end
+    end
+  end
+
+  def designer_info
+    <<-HTML
+      <div class="metric-designer-info">
+        <a href="/{{_lllr|name}}+contribution">
+          <div><small class="text-muted">Designed by</small></div>
+          <div>#{nest card.metric_card, view: :designer_info}</div>
+        </a>
+      </div>
+    HTML
+  end
+
+  #lllr+logo|core;size:small}}
 
   # used in metric values list on a company page
   view :metric_details_sidebar do
     <<-HTML
+    <div class="metric-details-header">
       #{close_icon}
-      <br/>
-      <div class="row clearfix ">
-        #{subformat(card.metric_card)._render_rich_header}
-        <div class="col-md-1">
-          #{nest metric_card.field(:vote_count)}
-        </div>
-        <div class="col-md-11">
-          <div class="name row">
-            #{link_to_card card.metric_card, nil, class: "inherit-anchor"}
-          </div>
-          <div class="row">
-            <div class="metric-designer-info">
-              <a href="/{{_lllr|name}}+contribution">
-                <div><small class="text-muted">Designed by</small></div>
-                <div>{{_lllr+logo|core;size:small}}</div>
-                <div><h3>{{_lllr|name}}</h3></div>
-              </a>
-            </div>
-          </div>
-        </div>
+      <div class="row clearfix padding-top-20">
+       #{metric_details_sidebar_header}
     </div>
     <hr>
     #{metric_details}
@@ -131,14 +144,15 @@ format :html do
     <div class="row clearfix">
       <div class="data-item text-center">
         <span class="btn label-metric">
-          #{link_to_card card.metric_card, "Metric Details"}
+            #{link_to_card card.metric_card, "Metric Details"}
         </span>
       </div>
     </div>
     <hr>
     #{discussion}
 
-      </div>
+</div>
+</div>
     HTML
   end
 end

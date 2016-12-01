@@ -26,7 +26,7 @@
   }
 }
 
-.wikirate-table {
+table.wikirate-table {
     background: #fff;
     thead > tr > th {
         background: #fff;
@@ -46,11 +46,12 @@
         display: none;
     }
 
+  td.header {
     .RIGHT-Xvote_count > div {
       line-height: 1em;
     }
     .RIGHT-Xvote_count.content-view {
-        margin-left: 5px;
+      margin-left: 5px;
     }
     button.vote-button {
       width: 15px;
@@ -64,6 +65,7 @@
     .vote-count {
       width: 15px;
       height: 15px;
+    }
     }
 
     tr.tr-details-toggle:hover {
@@ -101,7 +103,7 @@
       }
     }
 
-    .details {
+  tbody > tr > td.details {
       background-color: #fff;
       border-top: 1px solid $bright-text-color;
       border: 1px solid #EAEAEA;

@@ -77,3 +77,19 @@
   position: absolute;
   bottom: 0px;
 }
+
+//Custom Tabs
+
+h4.contribution-report-title {
+    float: left;
+    padding: 20px;
+}
+
+// TODO add border-left colours to each card type
+.contribution-report {
+    border-left: 4px solid;
+    margin-bottom: 15px;
+    border-top: 1px solid $border-color;
+    border-right: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+}

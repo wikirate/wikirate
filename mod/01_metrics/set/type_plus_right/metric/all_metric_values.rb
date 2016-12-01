@@ -6,7 +6,7 @@ end
 
 
 def item_cards _args={}
-  MetricAnswer.fetch(metric_id: left.id)
+  MetricAnswer.fetch(metric_id: left.id, latest: true)
 end
 
 format do

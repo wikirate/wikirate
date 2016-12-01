@@ -139,7 +139,7 @@ format :html do
   end
 
   view :sources_tab do |_args|
-    field_nest(:source, view: :content, items: { view: :source_list_item })
+    field_nest(:source, view: :content, items: { view: :listing })
   end
 
   view :filter do |args|

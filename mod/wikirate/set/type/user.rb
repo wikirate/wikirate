@@ -11,7 +11,7 @@ format :html do
   end
 
   view :data do
-    return "deleteme"
+    # return "deleteme"
     wrap_with :div, class: "profile-data" do
       [
         field_nest(:activity, view: :titled, title: "Activity", hide: :menu),
@@ -36,13 +36,17 @@ format :html do
     end
   end
 
-  def contribution_reports
+  def contribution_types
     [
-      :metric_value, :metric, :wikirate_company, :project, :source
-    ].map do |codename|
+      :metric_value, :metric, :wikirate_company, :project, :source,
+      :wikirate_topic, :claim
+    ]
+  end
+
+  def contribution_reports
+    contribution_types.map do |codename|
       user_and_type = card.fetch trait: codename, new: {}
       nest user_and_type, view: :contribution_report
     end
   end
 end
-

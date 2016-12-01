@@ -64,7 +64,7 @@ format :html do
     _render_icon + content
   end
 
-  view :source_list_item do
+  view :listing do
     wrap_with :div, class: "source-item" do
       [
         _render_vote,
@@ -157,7 +157,7 @@ format :html do
   view :with_cite_button do |args|
     wrap_with_info do
       [
-        _render_source_list_item(args),
+        _render_listing(args),
         wrap_with(:div, class: "pull-right") do
           wrap_with :a, "Cite!", href: "#",
                                  class: "btn btn-highlight _cite_button c-btn"
@@ -191,10 +191,10 @@ format :html do
     # check parent structure name has the word header
     # (i.e check if not metric value page)
     if !parent.nil? && parent.include?("header")
-      wrap_with_info { _render_source_list_item args }
+      wrap_with_info { _render_listing args }
     else
       args[:source_title] = :text
-      source = wrap_with_info { _render_source_list_item args }
+      source = wrap_with_info { _render_listing args }
       add_toggle(source)
     end
   end

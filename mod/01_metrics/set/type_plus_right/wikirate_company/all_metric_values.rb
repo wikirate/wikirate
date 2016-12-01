@@ -5,7 +5,7 @@ include_set Abstract::AllMetricValues
 # end
 
 def item_cards _args={}
-  MetricAnswer.fetch(company_id: left.id)
+  MetricAnswer.fetch(company_id: left.id, latest: true)
 end
 
 # def filtered_values_by_name

@@ -11,9 +11,10 @@ end
 format :html do
   view :core do
     wrap_with :div, class: "progress-bar-table" do
-      wikirate_table :metric, ["Metric", "Companies Researched"],
+      wikirate_table :metric,
                      all_metric_project_cards,
-                     [:metric_thumbnail, :research_progress_bar]
+                     [:metric_thumbnail, :research_progress_bar],
+                     header: ["Metric", "Companies Researched"]
     end
   end
 
