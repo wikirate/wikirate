@@ -51,6 +51,7 @@ $card-header-color: #fff;
 $max-page-width: 100%; //1660px;
 $min-page-height: 1000px;
 
+$sub-text-size: 0.8em;
 
 @mixin ellipsis() {
   white-space: nowrap;
@@ -94,3 +95,14 @@ $min-page-height: 1000px;
 }
 
 // ***Shadow- END***//
+
+
+//***Opacity***//
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+//***Opacity- END***//

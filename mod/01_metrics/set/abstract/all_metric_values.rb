@@ -1,15 +1,24 @@
 include_set Abstract::SortAndFilter
 include_set Abstract::MetricChild, generation: 1
 
-def raw_content
-  %({
-      "left":{
-        "type":"metric_value",
-        #{wql_to_identify_related_metric_values}
-      },
-      "right":"value",
-      "limit":0
-    })
+# deprecated
+# we use the MetricAnswer lookup table instead
+# by overriding item_cards
+# def raw_content
+#   %({
+#       "left":{
+#         "type":"metric_value",
+#         #{wql_to_identify_related_metric_values}
+#       },
+#       "right":"value",
+#       "limit":0
+#     })
+# end
+
+format :html do
+  def limit
+    20
+  end
 end
 
 format :json do

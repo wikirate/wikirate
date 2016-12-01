@@ -18,6 +18,7 @@ class SharedData
       add_sources_and_claims
       add_metrics
       add_yearly_variables
+      MetricAnswer.refresh
     end
 
     def add_companies_and_topics

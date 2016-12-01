@@ -236,7 +236,9 @@ format :html do
   end
 
   view :vote do |_args|
-    %(<div class="hidden-xs hidden-md">{{#{card.name}+*vote count}}</div>)
+    %(<div class="hidden-xs hidden-md">
+    #{field_nest(:vote_count)}</div>
+    )
   end
 
   view :value do |args|
@@ -392,6 +394,31 @@ format :html do
       get_value_str year
     end
   end
+
+  view :metric_row do
+    header = <<-HTML
+      {{_+*vote count}}
+      <div class="logo">
+      <a class="inherit-anchor" href="/{{_1|name}}+contribution"> {{_1+image|core;size:small}} </a>
+              </div>
+      <div class="name">
+        {{_2|name}}
+      </div>
+    HTML
+    data = <<-HTML
+    <div class="contribution company-count">
+                <div class="content">
+                  {{_+company count|core}}
+                  <div class="name">Companies</div>
+                </div>
+              </div>
+    HTML
+    wrap do
+      metric_row header, data, drag_and_drop: false,
+                 item_types: [:metric, :contribution, :value]
+    end
+  end
+
 end
 
 format :json do

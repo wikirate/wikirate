@@ -4,6 +4,11 @@ def wql_to_identify_related_metric_values
   '"left": { "left":"_left" }'
 end
 
+
+def item_cards _args={}
+  MetricAnswer.fetch(metric_id: left.id, latest: true)
+end
+
 format do
   def page_link_params
     [:name, :industry, :project, :year, :value]

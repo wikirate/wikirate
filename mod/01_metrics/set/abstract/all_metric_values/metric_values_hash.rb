@@ -2,7 +2,7 @@
 
 # A metric value belongs to a metric and a company.
 # If you select one of those two, then  MetricValuesHash manages all the related
-# metrics values. That's either all metrics with all values for a given company
+# metric values. That's either all metrics with all values for a given company
 # or all companies with all values for a given metric.
 #
 # The metric values are saved in the following format

@@ -41,8 +41,8 @@ body#tinymce {
   margin-right: 18px;
 }
 
-.TYPE-image{
-  overflow: hidden; 
+.homepage-logo-container .TYPE-image {
+    overflow: hidden;
 }
 
 sup {

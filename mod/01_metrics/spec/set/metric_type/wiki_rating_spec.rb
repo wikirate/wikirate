@@ -103,7 +103,7 @@ describe Card::Set::MetricType::WikiRating do
             company: "Death Star",
             year: "1977",
             value: "2",
-            source: get_a_sample_source
+            source: sample_source
           )
         end
         expect(rating_value "Death Star", "1977").to eq("3.8")

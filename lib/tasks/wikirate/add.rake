@@ -74,11 +74,11 @@ def write_to_mod mod, relative_dir, filename
 end
 
 def create_content_file mod, name, type
-  dir = case type.downcase
-        when "js", "coffeescript" then "javascript"
+  dir = case type.underscore
+        when "java_script", "coffee_script" then "javascript"
         when "css", "scss" then "stylesheets"
         end
-  file_ext = type.downcase == "coffeescript" ? ".js.coffee" : "." + type
+  file_ext = type.underscore == "coffee_script" ? ".js.coffee" : "." + type
   content_dir = File.join "lib", dir
   content_file = name + file_ext
   write_to_mod(mod, content_dir, content_file) do |f|
@@ -109,9 +109,20 @@ end
 def migration_content name, type_card
   type_id = "Card::#{type_card.codename.camelcase}ID"
   card_name = Card.fetch_name(name) || name
+  type, target = style_or_script type_card
+
   <<-RUBY
-    create_or_update name: '#{card_name}',
-                     type_id: #{type_id},
-                     codename: '#{name}'
+    add_#{type} '#{card_name}',
+                type_id: #{type_id},
+                to: '#{target}'
   RUBY
+end
+
+def style_or_script type_card
+  case type_card.codename
+  when :scss, :css then
+    ["style", "customized classic skin"]
+  when :java_script, :coffee_script then
+    ["script", "script: wikirate scripts"]
+  end
 end

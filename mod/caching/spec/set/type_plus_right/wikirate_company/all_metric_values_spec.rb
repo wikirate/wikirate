@@ -12,7 +12,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
         Card["Jedi+deadliness"].create_value company: "Samsung",
                                              year: "2010",
                                              value: "100",
-                                             source: get_a_sample_source
+                                             source: sample_source
       end
     end
     av = Card.fetch("Samsung").all_metric_values_card.values_by_name
@@ -21,6 +21,12 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
     expect(av["Jedi+deadliness"])
       .to include("value" => "100", "year" => "2010",
                   "last_update_time" => update_time)
+  end
+
+  describe "#item_cards" do
+    it "finds all metric answers with values" do
+      expect(all_metric_values.item_cards.size).to eq 6
+    end
   end
 
   describe "#values_by_name" do
@@ -43,7 +49,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
           metric.create_value company: company.name,
                               value: (value_idx + 1) * 5 + i,
                               year: 2015 - i,
-                              source: get_a_sample_source.name
+                              source: sample_source.name
         end
       end
     end

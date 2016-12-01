@@ -228,13 +228,14 @@
     height: 32px;
     line-height: 16px;
   }
+  &.large{
+    width: 216px;
+    height: 216px;
+  }
+  //FIXME remove large-rect
   &.large-rect{
-    width: 305px;
+    width: 175px;
     height: 175px;
-    img{
-      max-height:80% !important;
-      max-width: 80% !important;
-    }
   }
   &.large-2x {
     width: 256px;
@@ -254,6 +255,13 @@
   vertical-align: middle;
   margin-right: 18px;
   text-align: center;
+  img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 
@@ -522,4 +530,10 @@ button.pointer-item-delete.btn.btn-default {
     .topic-title {
         padding: 0 0 25px 10px;
     }
+}
+
+// Bootstrap Tweak
+.media-body {
+    width: inherit;
+    padding-left: 8px;
 }

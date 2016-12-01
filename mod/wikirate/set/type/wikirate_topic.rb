@@ -50,38 +50,3 @@ def related_companies
   (related_company_from_source_or_note + related_company_from_metric).uniq
 end
 
-format :html do
-  view :metric_tab do |args|
-    wrap do
-      [
-        _render_filter(args),
-        _render_metric_list(args)
-      ]
-    end
-  end
-
-  view :company_tab do |args|
-    wrap do
-      [
-        _render_company_filter(args),
-        _render_company_list(args)
-      ]
-    end
-  end
-
-  view :company_filter do |args|
-    field_subformat(:topic_company_filter)._render_core args
-  end
-
-  view :company_list do
-    yinyang_list field: :all_companies, row_view: :company_row_for_topic
-  end
-
-  view :metric_list do
-    yinyang_list field: :all_metrics, row_view: :metric_row_for_topic
-  end
-
-  view :filter do |args|
-    field_subformat(:topic_metric_filter)._render_core args
-  end
-end

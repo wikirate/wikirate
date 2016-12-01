@@ -8,6 +8,11 @@ rescue
   false
 end
 
+# returns with a tenth (eg 11.1%)
+def percent numerator, denominator
+  denominator.zero? ? 0 : (1000 * numerator / denominator / 10.0)
+end
+
 format do
   view :cite, closed: true do
     ""
@@ -40,18 +45,28 @@ format :html do
   view :progress_bar do
     value = card.raw_content
     if card.number? value
-      <<-HTML
-        <div class="progress">
-           <div class="progress-bar" role="progressbar" aria-valuenow="#{value}"
-            aria-valuemin="0" aria-valuemax="100" style="width: #{value}%;">
-            #{value}%
-          </div>
-        </div>
-      HTML
-
+      progress_bar value: value
     else
       "Only card with numeric content can be shown as progress bar."
     end
+  end
+
+  def progress_bar *sections
+    wrap_with :div, class: "progress" do
+      Array.wrap(sections).map do |section_args|
+        progress_bar_section section_args
+      end.join
+    end
+  end
+
+  def progress_bar_section args
+    add_class args, "progress-bar"
+    value = args.delete :value
+    body = args.delete(:body) || "#{value}%"
+    wrap_with :div, body, args.reverse_merge(
+      role: "progressbar", style: "width: #{value}%",
+      "aria-valuenow" => value, "aria-valuemin" => 0, "aria-valuemax" => 100
+    )
   end
 
   view :titled_with_edits do
@@ -188,6 +203,19 @@ format :html do
         nest_item(icard, view: args[:item]).html_safe
       end.html_safe
     end.join(joint).html_safe
+  end
+
+  def header_title_elements
+    voo.hide :title_badge
+    [super, _optional_render_title_badge]
+  end
+
+  view :title_badge do
+    wrap_with :span, title_badge_count, class: "badge"
+  end
+
+  def title_badge_count
+    card.count
   end
 
   def enrich_result result

@@ -1,12 +1,14 @@
 format :html do
+
+
   def metric_row header, data, args={}
     row_class = "yinyang-row"
     row_class = "drag-item #{row_class}" if args[:drag_and_drop]
     item_class = args[:item_types].map do |t|
       "#{t}-item"
     end.join " "
-    inner = wrap_with(:div, header.html_safe, class: "header") +
-            wrap_with(:div, data.html_safe, class: "data")
+    inner = wrap_with(:div, header, class: "header") +
+            wrap_with(:div, data, class: "data")
 
     if args[:append_for_details]
       inner = wrap_with :div, class: "metric-details-toggle",

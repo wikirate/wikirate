@@ -5,7 +5,7 @@ def related_via_source_or_note
     "referred_to_by": {
       "left": {
         "type": ["in", "Note", "Source"],
-        "right_plus": ["topic", { "refer_to": "#{name}" } ]
+        "right_plus": ["topic", { "refer_to": "#{left.name}" } ]
       },
       "right": "company"
     }
@@ -17,7 +17,7 @@ def related_via_metric
     "left_plus": [
       {
         "type": "metric",
-        "right_plus": ["topic", { "refer_to": "#{name}" }]
+        "right_plus": ["topic", { "refer_to": "#{left.name}" }]
       },
       {
         "right_plus": ["*cached_count", { "content": ["ne", "0"] }]

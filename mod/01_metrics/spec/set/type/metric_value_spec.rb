@@ -1,8 +1,8 @@
 shared_examples_for "all_value_type" do |value_type, valid_cnt, invalid_cnt|
   before do
     login_as "joe_user"
-    @metric = get_a_sample_metric value_type.to_sym
-    @company = get_a_sample_company
+    @metric = sample_metric value_type.to_sym
+    @company = sample_company
     @error_msg =
       if value_type == :category
         "Please <a href='/Jedi+disturbances_in_the_Force+value_options?"\
@@ -44,8 +44,8 @@ shared_examples_for "all_value_type" do |value_type, valid_cnt, invalid_cnt|
 end
 
 shared_examples_for "numeric type" do |value_type|
-  let(:metric) { get_a_sample_metric value_type.to_sym }
-  let(:company) { get_a_sample_company }
+  let(:metric) { sample_metric value_type.to_sym }
+  let(:company) { sample_company }
   context "unknown value" do
     it "shows unknown instead of 0 in modal_details" do
       subcard =
@@ -66,8 +66,8 @@ describe Card::Set::Type::MetricValue do
 
   before do
     login_as "joe_user"
-    @metric = get_a_sample_metric
-    @company = get_a_sample_company
+    @metric = sample_metric
+    @company = sample_company
     @mv_id = Card::MetricValueID
   end
 
@@ -87,7 +87,7 @@ describe Card::Set::Type::MetricValue do
 
     describe "render views" do
       it "shows currency sign" do
-        metric = get_a_sample_metric :money
+        metric = sample_metric :money
         subcard = get_subcards_of_metric_value metric, @company, "33"
         metric_value = Card.create type_id: @mv_id, subcards: subcard
         metric.update_attributes! subcards: { "+currency" => "$" }
@@ -116,12 +116,12 @@ describe Card::Set::Type::MetricValue do
   end
 
   context "value type is free text" do
-    let(:metric) { get_a_sample_metric }
-    let(:company) { get_a_sample_company }
-    let(:source) { get_a_sample_source }
+    let(:metric) { sample_metric }
+    let(:company) { sample_company }
+    let(:source) { sample_source }
     before do
       login_as "joe_user"
-      @metric = get_a_sample_metric
+      @metric = sample_metric
       subcards_args = {
         "+Unit" => { "content" => "Imperial military units",
                      "type_id" => Card::PhraseID },
@@ -134,6 +134,7 @@ describe Card::Set::Type::MetricValue do
       @metric_value =
         Card.create! type_id: Card::MetricValueID, subcards: subcard
     end
+
     describe "getting related cards" do
       it "returns correct year" do
         expect(@metric_value.year).to eq("2015")
@@ -151,16 +152,19 @@ describe Card::Set::Type::MetricValue do
         expect(@metric_value.metric_card.id).to eq(metric.id)
       end
     end
-    describe '#autoname' do
+
+    describe "#autoname" do
       it "sets a correct autoname" do
         name = "#{metric.name}+#{company.name}+2015"
         expect(@metric_value.name).to eq(name)
       end
     end
+
     it "saving correct value" do
       value_card = Card["#{@metric_value.name}+value"]
       expect(value_card.content).to eq("hoi polloi")
     end
+
     context "update metric value name" do
       it "succeeds" do
         new_name = "#{metric.name}+#{company.name}+2014"
@@ -169,6 +173,7 @@ describe Card::Set::Type::MetricValue do
         expect(@metric_value.name).to eq(new_name)
       end
     end
+
     describe "+source" do
       let(:source_card) { @metric_value.fetch trait: :source }
       it "includes source in +source" do
@@ -217,6 +222,7 @@ describe Card::Set::Type::MetricValue do
         expect(fail_metric_value.errors).to have_key(:source)
       end
     end
+
     describe "update metric value's value" do
       it "updates metric value's value correctly" do
         quote = "if nobody hates you, you're doing something wrong."
@@ -227,6 +233,7 @@ describe Card::Set::Type::MetricValue do
         expect(metric_values_value_card.content).to eq(quote)
       end
     end
+
     describe "views" do
       it "renders timeline data" do
         # url = "/#{@metric_value.cardname.url_key}?layout=modal&"\
@@ -246,6 +253,7 @@ describe Card::Set::Type::MetricValue do
           end
         end
       end
+
       it "renders modal_details" do
         url = "/#{@metric_value.cardname.url_key}?layout=modal&"\
               "slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu"
@@ -255,6 +263,7 @@ describe Card::Set::Type::MetricValue do
                         text: "hoi polloi")
         end
       end
+
       it "renders concise" do
         html = @metric_value.format.render_concise
 
