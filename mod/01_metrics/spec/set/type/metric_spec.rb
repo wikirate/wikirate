@@ -28,4 +28,29 @@ describe Card::Set::Type::Metric do
     it_behaves_like "viewable metric", "Jedi+disturbances in the Force",
                     "Category", "category_detail"
   end
+
+  describe "#numeric?" do
+    let(:metric) { sample_metric }
+    subject { metric.numeric? }
+
+    it "returns true for number" do
+      metric.value_type_card.update_attributes! content: "Number"
+      is_expected.to be true
+    end
+
+    it "returns true for money" do
+      metric.value_type_card.update_attributes! content: "Money"
+      is_expected.to be true
+    end
+
+    it "returns false for category" do
+      metric.value_type_card.update_attributes! content: "Category"
+      is_expected.to be false
+    end
+
+    it "returns false for free text" do
+      metric.value_type_card.update_attributes! content: "Free Text"
+      is_expected.to be false
+    end
+  end
 end

@@ -20,7 +20,7 @@ class Card
 
     def prepare_sort_args sort
       super
-      if @sort_args[:sort_by].to_sym == :value && @metric_card.number_values?
+      if @sort_args[:sort_by].to_sym == :value && @metric_card.numeric?
         @sort_args[:cast] = "decimal(20,10)"
       end
     end

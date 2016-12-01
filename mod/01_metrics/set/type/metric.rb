@@ -6,6 +6,7 @@ card_accessor :metric_type, type: :pointer, default: "[[Researched]]"
 card_accessor :about
 card_accessor :methodology
 card_accessor :value_type
+card_accessor :value_options
 card_accessor :report_type
 card_accessor :research_policy
 card_accessor :project
@@ -40,17 +41,16 @@ def question_card
 end
 
 def value_type
-  # FIXME: value type should have a codename
-  (vt = field("value type")) && vt.item_names.first
+  value_type_card.item_names.first
 end
 
 def value_options
-  (vo = field("value options")) && vo.item_names
+  value_options_card.item_names
 end
 
-def number_values?
-  # FIXME: use codename
-  value_type == "Number"
+def numeric?
+  # FIXME: value type options should have a codename
+  value_type.in?(%(Number Money)) || !researched?
 end
 
 # TODO: adapt to Henry's value type API
@@ -74,7 +74,6 @@ end
 def scored?
   metric_type_codename == :score || rated?
 end
-
 
 def analysis_names
   return [] unless (topics = fetch(trait: :wikirate_topic)) &&

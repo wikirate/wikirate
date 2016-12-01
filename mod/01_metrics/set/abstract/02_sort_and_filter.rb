@@ -2,35 +2,13 @@ include_set Type::SearchType
 include_set Abstract::Utility
 include_set Abstract::Filter
 
-
 def virtual?
   true
 end
 
-# @return [Hash] all companies/metrics with year and values
-#  format: { <company name> => { :year =>  , :value => }}
-def filtered_values_by_name
-  @filtered_values_by_name ||= filter values_by_name
-end
-
-def values_by_id
-  json = format(:json)._render_core
-  (JSON.parse(json) || {}).with_indifferent_access
-end
-
-def values_by_name
-  values_hash = values_by_id
-  values_hash.keys.each do |key|
-    mark = key.number? ? key.to_i : key
-    next unless (card = Card.quick_fetch mark)
-    values_hash[card.name] = values_hash.delete key
-  end
-  values_hash
-end
-
 # @return # of companies with values
 def count _params={}
-  filtered_values_by_name.size
+  item_cards.size
 end
 
 def limit
@@ -38,20 +16,6 @@ def limit
 end
 
 format do
-  def search_results _args={}
-    @search_results ||= begin
-      results = sorted_result
-      results.blank? ? [] : results
-    end
-  end
-
-  def num?
-    metric_card = card.left
-    metric_value_type = metric_card.value_type_card
-    type = metric_value_type.nil? ? "" : metric_value_type.item_names[0]
-    type == "Number" || type == "Money" || !metric_card.researched?
-  end
-
   # paging helper methods
   def page_link text, page, _current=false, options={}
     @paging_path_args[:offset] = page * @paging_limit
@@ -60,24 +24,6 @@ format do
     options[:remote] = true
     options[:path] = paging_path_args @paging_path_args
     link_to raw(text), options
-  end
-end
-
-def query params={}
-  default_query = params.delete :default_query
-  @query = super params
-  unless default_query
-    @query[:limit] = params[:default_limit] || 20
-    @query[:offset] = param_to_i("offset", 0)
-  end
-  @query
-end
-
-def param_to_i key, default
-  if (value = Env.params[key])
-    value.to_i
-  else
-    default
   end
 end
 

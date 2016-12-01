@@ -1,7 +1,7 @@
 include_set Abstract::AllMetricValues
 
 def item_cards _args={}
-  filtered_item_cards filter_hash, sort_hash, paging_hash
+  @item_cards ||= filtered_item_cards filter_hash, sort_hash, paging_hash
 end
 
 def filtered_item_cards filter={}, sort={}, paging={}

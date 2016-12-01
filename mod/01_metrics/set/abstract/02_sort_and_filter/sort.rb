@@ -58,16 +58,16 @@ format :html do
   # @option args [String] :order
   # @option args [String] :class additional css class
   def sort_link text, args
-    path = paging_path_args sort_order: args[:sort_order],
-                            sort_by: args[:sort_by]
+    path = card.paging_path_args sort_order: args[:sort_order],
+                                 sort_by: args[:sort_by]
     link_to_view :content, text,
                  path: path,
                  class: "metric-list-header slotter #{args[:class]}"
   end
 
   def toggle_sort_order field
-    if field.to_sym == sort_by.to_sym
-      sort_order == "asc" ? "desc" : "asc"
+    if field.to_sym == card.sort_by.to_sym
+      card.sort_order == "asc" ? "desc" : "asc"
     else
       "asc"
     end
@@ -75,7 +75,7 @@ format :html do
 
   def sort_icon field
     icon = "sort"
-    icon += "-#{sort_order}" if field.to_sym == sort_by.to_sym
+    icon += "-#{card.sort_order}" if field.to_sym == card.sort_by.to_sym
     fa_icon icon
   end
 end
