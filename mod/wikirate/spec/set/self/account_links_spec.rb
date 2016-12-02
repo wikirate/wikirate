@@ -27,8 +27,8 @@ describe Card::Set::Self::AccountLinks do
         login_as "joe_user"
         expect(@account_link.format(format: :html).render_core).to(
           have_tag("span", with: { id: "logging", class: "logged-in" }) do
-            with_tag "a", with: { class: "my-card-link", href: "/Joe_User" },
-                          text: "Joe User"
+            with_tag "a", text: "Joe User", with: { id: "my-card-link",
+                                                    href: "/Joe_User" }
             with_tag "a", text: "Invite", with: { class: "invite-link",
                                                   href: "/new/Sign_up" }
             with_tag "a", text: "Log out", with: { class: "signout-link",
