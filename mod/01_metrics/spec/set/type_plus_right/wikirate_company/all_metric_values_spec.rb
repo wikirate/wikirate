@@ -1,21 +1,39 @@
 require './test/seed'
 
-describe Card::Set::TypePlusRight::Metric::AllMetricValues do
+describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
   let(:company) { @company || Card["Death_Star"] }
   let(:all_metric_values) { company.fetch trait: :all_metric_values }
-  let(:latest_answers) do
-    ["disturbances in the Force+2001",
-     "dinosaurlabor+2000",
-     "researched+1977",
-     "deadliness+Joe Camel+1977",
-     "researched number 1+1977",
-     "cost of planets destroyed+1977",
-     "deadliness+1977",
-     "deadliness+Joe User+1977",
-     "darkness rating+1977",
-     "disturbances in the Force+Joe User+2001",
-     "Victims by Employees+1977",
-     "friendliness+1977"]
+  let(:latest_answers_by_importance) do
+    [
+      "disturbances in the Force+2001",
+      "Victims by Employees+1977",
+      "dinosaurlabor+2010",
+      "cost of planets destroyed+1977",
+      "friendliness+1977",
+      "deadliness+Joe User+1977",
+      "deadliness+Joe Camel+1977",
+      "disturbances in the Force+Joe User+2001",
+      "darkness rating+1977",
+      "researched number 1+1977",
+      "researched+1977",
+      "deadliness+1977"
+    ]
+  end
+  let(:latest_answers) do # by metric name
+    [
+      "dinosaurlabor+2010",
+      "cost of planets destroyed+1977",
+      "darkness rating+1977",
+      "deadliness+1977",
+      "deadliness+Joe Camel+1977",
+      "deadliness+Joe User+1977",
+      "disturbances in the Force+2001",
+      "disturbances in the Force+Joe User+2001",
+      "friendliness+1977",
+      "Victims by Employees+1977",
+      "researched+1977",
+      "researched number 1+1977",
+    ]
   end
   let(:latest_metric_keys) do
     ::Set.new(latest_answers.map { |n| n.to_name.left_name.key })
@@ -38,8 +56,14 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
 
   # return company+year
   def answers list
-    list.map do |c|
-      [c.metric_name.parts[1..-1], c.year].flatten.join "+"
+    answer_names list.map(&:answer_name)
+  end
+
+  # return company+year
+  def answer_names names
+    names.map do |n|
+      name = n.to_name
+      [name.parts[1..-3], name.parts.last].flatten.join "+"
     end
   end
 
@@ -48,11 +72,11 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       answers all_metric_values.item_cards
     end
     it "returns the latest values" do
-      puts subject
-      is_expected.to eq(latest_answers)
+      is_expected.to eq(latest_answers_by_importance)
     end
 
     def filter_by args
+      allow(all_metric_values).to receive(:sort_by) { :metric_name }
       allow(all_metric_values).to receive(:filter_hash) { args }
       answers all_metric_values.item_cards
     end
@@ -66,27 +90,27 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
 
         it "finds partial match" do
           expect(filter_by(name: "dead"))
-            .to eq with_year(["deadliness+Joe Camel", "deadliness",
+            .to eq with_year(["deadliness", "deadliness+Joe Camel",
                               "deadliness+Joe User"], 1977)
         end
 
         it "ignores case" do
           expect(filter_by(name: "DeAd"))
-            .to eq with_year(["deadliness+Joe Camel", "deadliness",
+            .to eq with_year(["deadliness", "deadliness+Joe Camel",
                               "deadliness+Joe User"], 1977)
         end
       end
       context "year" do
         it "finds exact match" do
           expect(filter_by(year: "2000"))
-            .to eq with_year(["disturbances in the Force", "dinosaurlabor",
+            .to eq with_year(["dinosaurlabor", "disturbances in the Force",
                               "disturbances in the Force+Joe User"], 2000)
         end
       end
       context "research policy" do
         it "finds exact match" do
           expect(filter_by(research_policy: "Designer Assessed"))
-            .to eq %w("dinosaurlabor+2000")
+            .to eq ["dinosaurlabor+2010"]
         end
       end
       context "metric type" do
@@ -105,10 +129,10 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
         end
         it "finds researched" do
           expect(filter_by(metric_type: "Researched"))
-            .to eq ["disturbances in the Force+2001", "dinosaurlabor+2000",
-                    "researched+1977", "researched number 1+1977",
-                    "cost of planets destroyed+1977",
-                    "deadliness+1977", "Victims by Employees+1977"]
+            .to eq ["dinosaurlabor+2010", "cost of planets destroyed+1977",
+                    "deadliness+1977", "disturbances in the Force+2001",
+                    "Victims by Employees+1977", "researched+1977",
+                    "researched number 1+1977"]
         end
         it "finds combinations" do
           expect(filter_by(metric_type: ["Score", "Formula"]))
@@ -143,7 +167,7 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
 
         it "finds voted" do
           expect(filter_by(importance: [:upvotes, :downvotes]))
-            .to eq ["disturbances in the Force+2001", "deadliness+1977"]
+            .to eq ["deadliness+1977", "disturbances in the Force+2001"]
         end
 
         it "finds upvoted and notvoted" do
@@ -160,9 +184,8 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
 
         let(:unknown_answers) do
           with_year(
-            ["deadliness", "Victims by Employees", "friendliness",
-             "deadliness+Joe User", "deadliness+Joe Camel"],
-            1977
+            ["deadliness", "deadliness+Joe Camel", "deadliness+Joe User",
+             "friendliness", "Victims by Employees"], 1977
           )
         end
         it "finds unknown values" do
@@ -199,7 +222,8 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
 
           it "finds this months's edits" do
             expect(filter_by(metric_value: :month))
-              .to eq ["disturbances in the Force+1990",
+              .to eq ["dinosaurlabor+2010",
+                      "disturbances in the Force+1990",
                       "disturbances in the Force+1991",
                       "disturbances in the Force+1992"]
           end
@@ -207,8 +231,8 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       end
       context "invalid filter key" do
         it "doesn't matter" do
-          expect(filter_by(not_a_filter: "Death"))
-            .to eq latest_answers
+          expect(filter_by(not_a_filter: "Death").sort)
+            .to eq latest_answers.sort
         end
       end
 
@@ -288,21 +312,21 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
     end
 
     context "with sort conditions" do
-      def sort_by key, order="asc"
+      def sort_by key, order=nil
         allow(all_metric_values).to receive(:sort_by) { key }
-        allow(all_metric_values).to receive(:sort_order) { order }
+        allow(all_metric_values).to receive(:sort_order) { order } if order
         all_metric_values.item_cards.map &:name
       end
 
       let(:sorted_designer) { ["Fred", "Jedi", "Joe User"] }
       it "sorts by designer name (asc)" do
-        sorted = sort_by(:metric_name).map { |n| n.to_name.parts.first }.uniq
+        sorted = sort_by(:metric_name, :asc).map { |n| n.to_name.parts.first }.uniq
         expect(sorted).to eq(sorted_designer)
       end
 
       it "sorts by designer name (desc)" do
         sorted =
-          sort_by(:metric_name, "desc").map { |n| n.to_name.parts.first }.uniq
+          sort_by(:metric_name, :desc).map { |n| n.to_name.parts.first }.uniq
         expect(sorted).to eq(sorted_designer.reverse)
       end
 
@@ -317,16 +341,13 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       end
 
       it "sorts by recently updated" do
-        expect(answers(sort_by(:updated_at)[0..1]))
-          .to eq ["dinosaurlabor+2010", "disturbances in the Force+2001"]
+        expect(sort_by(:updated_at).first)
+          .to eq "Fred+dinosaurlabor+Death_Star+2010"
       end
 
       it "sorts by importance" do
-        expect(sort_by(:importance)).to eq(
-                                          with_year(["Samsung", "Slate_Rock_and_Gravel_Company",
-                                                     "Los_Pollos_Hermanos",
-                                                     "SPECTRE", "Death_Star"], 1977)
-                                        )
+        expect(answer_names(sort_by(:importance)))
+          .to eq(latest_answers_by_importance)
       end
 
     end
@@ -334,32 +355,18 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
 
   describe "#count" do
     it "returns correct count" do
-      expect(all_metric_values.count).to eq(4)
+      expect(all_metric_values.count).to eq(12)
     end
   end
 
   describe "view" do
     it "renders card_list_header" do
-      Card::Env.params["offset"] = "0"
-      Card::Env.params["limit"] = "20"
       html = all_metric_values.format.render_card_list_header
-      url_key = all_metric_values.cardname.url_key
       expect(html).to have_tag("div",
                                with: { class: "yinyang-row column-header" }) do
         with_tag :div, with: { class: "company-item value-item" } do
-          with_tag :a, with: {
-            class: "header metric-list-header slotter",
-            href: "/#{url_key}?limit=20&offset=0"\
-                                      "&sort_by=name"\
-                                      "&sort_order=asc&view=content"
-
-          }
-          with_tag :a, with: {
-            class: "data metric-list-header slotter",
-            href: "/#{url_key}?limit=20&offset=0"\
-                                      "&sort_by=value&sort_order=asc"\
-                                      "&view=content"
-          }
+          with_tag :div, with: { class: "header metric-list-header slotter" }
+          with_tag :div, with: { class: "data metric-list-header slotter" }
         end
       end
     end

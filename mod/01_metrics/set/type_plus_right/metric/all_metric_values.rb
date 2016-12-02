@@ -4,6 +4,10 @@ def query_class
   FixedMetricAnswerQuery
 end
 
+def default_sort_option
+  :value
+end
+
 format :html do
   view :card_list_header do
     <<-HTML

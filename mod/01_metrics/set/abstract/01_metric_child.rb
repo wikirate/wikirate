@@ -107,6 +107,10 @@ def company_card
   Card.fetch company
 end
 
+def answer_name
+  "#{metric_name}+#{company_name}+#{year}"
+end
+
 def metric_record
   metric_name.field(company)
 end

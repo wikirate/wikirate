@@ -4,6 +4,10 @@ def query_class
   FixedCompanyAnswerQuery
 end
 
+def default_sort_option
+  :importance
+end
+
 format do
   def page_link_params
     [:wikirate_topic, :vote, :value,]
