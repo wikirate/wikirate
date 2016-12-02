@@ -5,10 +5,7 @@ end
 def raw_content
   %({
     "type":"_lr",
-    "linked_to_by":{
-      "left":"_user",
-      "right":{"codename":"#{vote_type_codename}"}
-    },
+    "linked_to_by":"_user+#{Card.fetch_name vote_type_codename}",
     "limit":0,
     "return":"name"
   })

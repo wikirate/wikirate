@@ -38,7 +38,8 @@ def metric_was
 end
 
 def metric_card
-  Card.fetch metric
+  Card.fetch(metric) || (generation == 1 && left)
+  # FIXME: hack to make it work on new cards
 end
 
 def metric_type

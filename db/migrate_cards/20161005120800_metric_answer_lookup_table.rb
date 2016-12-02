@@ -12,6 +12,8 @@ class MetricAnswerLookupTable < ActiveRecord::Migration
       t.integer  :year
       t.string   :metric_name
       t.string   :company_name
+      t.string :designer_name
+      t.string :title_name
       t.string   :metric_record_name
       t.string   :value
       t.datetime :updated_at

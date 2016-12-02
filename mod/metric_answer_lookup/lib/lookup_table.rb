@@ -18,14 +18,10 @@ module LookupTable
       ma.refresh
     end
 
-    def fetch where, sort={}, paging={}
+    def fetch where, sort_args={}, paging={}
       where = Array.wrap where
       mas = MetricAnswer.where(*where)
-      if sort.present?
-        sort_by = sort[:sort_by]
-        sort_by = "CAST(#{sort_by} AS #{sort[:cast]})" if sort[:cast]
-        mas = mas.order "#{sort_by} #{sort[:sort_order]}"
-      end
+      mas = sort mas, sort_args if sort_args.present?
       if paging.present?
         mas = mas.limit(paging[:limit]).offset(paging[:offset])
       end
@@ -33,6 +29,22 @@ module LookupTable
         Card.fetch id
       end
     end
+
+    def sort mas, args
+      mas = importance_sort mas, args if args[:sort_by] == :importance
+      sort_by = args[:sort_by]
+      sort_by = "CAST(#{sort_by} AS #{args[:cast]})" if args[:cast]
+      mas.order "#{sort_by} #{args[:sort_order]}"
+    end
+
+    def importance_sort mas, args
+      mas = mas.joins "LEFT JOIN cards AS c " \
+                      "ON metric_answers.metric_id = c.left_id " \
+                      "AND c.right_id = #{Card::VoteCountID}"
+      args.merge! sort_by: "COALESCE(c.db_content, 0)", cast: "signed"
+      mas
+    end
+
 
     def refresh ids=nil
       ids ||= Card.search(type_id: Card::MetricValueID, return: :id)

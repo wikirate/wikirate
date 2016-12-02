@@ -32,6 +32,7 @@ class SharedData
       add_topics_and_analysis
       add_sources_and_claims
       add_metrics
+      vote_on_metrics
       add_yearly_variables
       add_projects
       add_industry
@@ -93,12 +94,24 @@ class SharedData
         Card::Metric.create name: "Jedi+disturbances in the Force",
                             value_type: "Category",
                             value_options: %w(yes no),
+                            topic: "Force",
+                            research_policy: "Community Assessed",
                             random_source: true do
           Death_Star "1977" => "yes", "2000" => "yes", "2001" => "yes"
           Monster_Inc "1977" => "no", "2000" => "yes"
           Slate_Rock_and_Gravel_Company "1977" => "no", "2005" => "no"
           SPECTRE "2000" => "no"
         end
+
+      Card::Metric.create name: "Fred+dinosaurlabor",
+                          value_type: "Category",
+                          value_options: %w(yes no),
+                          research_policy: "Designer Assessed",
+                          random_source: true do
+        Slate_Rock_and_Gravel_Company "1977" => "yes", "2000" => "yes"
+        Monster_Inc "1977" => "no", "2000" => "no"
+        Death_Star "1977" => "no", "2000" => "yes"
+      end
 
       Timecop.freeze(HAPPY_BIRTHDAY) do
         metric.create_values true do
@@ -114,15 +127,9 @@ class SharedData
         metric.create_values true do
           Death_Star "1992" => "yes"
         end
-      end
-
-      Card::Metric.create name: "Fred+dinosaurlabor",
-                          value_type: "Category",
-                          value_options: %w(yes no),
-                          random_source: true do
-        Slate_Rock_and_Gravel_Company "1977" => "yes", "2000" => "yes"
-        Monster_Inc "1977" => "no", "2000" => "no"
-        Death_Star "1977" => "no", "2000" => "yes"
+        Card["Fred+dinosaurlabor"].create_values true do
+          Death_Star "2010" => "yes"
+        end
       end
 
       Card::Metric.create name: "Jedi+deadliness",
@@ -201,6 +208,23 @@ class SharedData
       end
     end
 
+    def vote_on_metrics
+      Card::Auth.current_id = Card.fetch_id "Joe Admin"
+      vote "Jedi+disturbances in the Force", :up
+      vote "Jedi+Victims by Employees", :up
+      Card::Auth.current_id = Card.fetch_id "Joe User"
+      vote "Jedi+disturbances in the Force", :up
+      vote "Jedi+deadliness", :down
+    end
+
+    def vote name, direction
+      Card::Auth.as_bot do
+        vcc = Card[name].vote_count_card
+        vcc.send "vote_#{direction}"
+        vcc.save!
+      end
+    end
+
     def add_yearly_variables
       Card.create!(
         name: "half year", type_id: Card::YearlyVariableID,
@@ -225,7 +249,7 @@ class SharedData
       create "Evil Project", type: :project,
              subfields: {
                metric:
-                 { type: :pointer, content: "[[Jedi+disturbances in the Force]]" },
+                 { type: :pointer, content: "[[Jedi+disturbances in the Force]]\n[[Joe User+researched number 2]]" },
                wikirate_company:
                  { type: :pointer,
                    content: "[[Death Star]]\n[[SPECTRE]]\n[[Los Pollos Hermanos]]" }

@@ -8,6 +8,9 @@ def advanced_filter_keys
   %w(wikirate_company industry project)
 end
 
+# no sort options because sorting is done by links
+# in the header of the table
+
 format :html do
   def filter_labels field
     field.to_sym == :wikirate_company ? "Keyword" : super

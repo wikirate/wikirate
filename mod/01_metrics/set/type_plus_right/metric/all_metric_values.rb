@@ -1,12 +1,7 @@
 include_set Abstract::AllMetricValues
 
-def item_cards _args={}
-  @item_cards ||= filtered_item_cards filter_hash, sort_hash, paging_hash
-end
-
-def filtered_item_cards filter={}, sort={}, paging={}
-  CompanyBasedAnswerQuery.default left.id unless filter.present?
-  CompanyBasedAnswerQuery.new(left.id, filter, sort, paging).run
+def query_class
+  FixedMetricAnswerQuery
 end
 
 format :html do
