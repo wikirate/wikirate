@@ -64,11 +64,11 @@ describe Card::Set::MetricType::Researched do
   end
 
   describe "#analysis_names" do
-    subject { metric.analysis_names }
+    subject { metric.analysis_names.sort }
     it "finds related Analysis" do
       is_expected.to eq ["SPECTRE+Force", "Monster_Inc+Force",
                          "Slate_Rock_and_Gravel_Company+Force",
-                         "Death_Star+Force"]
+                         "Death_Star+Force"].sort
     end
   end
 
