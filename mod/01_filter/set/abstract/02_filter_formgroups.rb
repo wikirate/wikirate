@@ -71,13 +71,15 @@ format :html do
 
   def metric_value_options
     {
-        "All" => "all",
-        "Researched" => "exists",
-        "Not Researched" => "none",
-        "Edited today" => "today",
-        "Edited this week" => "week",
+        "All"               => "all",
+        "Researched"        => "exists",
+        "Known"             => "known",
+        "Unknown"           => "unknown",
+        "Not Researched"    => "none",
+        "Edited today"      => "today",
+        "Edited this week"  => "week",
         "Edited this month" => "month",
-        "Outliers" => "outliers"
+        "Outliers"          => "outliers"
     }
   end
 
@@ -90,7 +92,9 @@ format :html do
   end
 
   def importance_options
-    ["I voted FOR", "I voted AGAINST", "I did NOT vote"]
+    { "I voted FOR" => :upvotes,
+      "I voted AGAINST" => :downvotes,
+      "I did NOT vote" => :novotes }
   end
 
   def industry_options

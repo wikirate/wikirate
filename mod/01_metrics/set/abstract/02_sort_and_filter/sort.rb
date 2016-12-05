@@ -2,12 +2,23 @@ def sort_hash
   { sort_by: sort_by, sort_order: sort_order }
 end
 
+def default_desc_sort_order
+  ::Set.new [:updated_at, :importance]
+end
+
 def sort_by
-  @sort_by ||= Env.params["sort_by"] || :value
+  @sort_by ||= Env.params["sort_by"] || default_sort_option
+end
+
+# override
+def default_sort_option
+  nil
 end
 
 def sort_order
-  @sort_order ||= Env.params["sort_order"] || :desc
+  return unless sort_by
+  @sort_order ||= Env.params["sort_order"]
+  @sort_order ||= default_desc_sort_order.include?(sort_by) ? :desc : :asc
 end
 
 format do

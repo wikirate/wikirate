@@ -1,25 +1,15 @@
 include_set Abstract::SortAndFilter
 include_set Abstract::MetricChild, generation: 1
 
-# deprecated
-# we use the MetricAnswer lookup table instead
-# by overriding item_cards
-# def raw_content
-#   %({
-#       "left":{
-#         "type":"metric_value",
-#         #{wql_to_identify_related_metric_values}
-#       },
-#       "right":"value",
-#       "limit":0
-#     })
-# end
-
-format :html do
-  def limit
-    20
-  end
+def item_cards _args={}
+  @item_cards ||= filtered_item_cards filter_hash, sort_hash, paging_hash
 end
+
+def filtered_item_cards filter={}, sort={}, paging={}
+  query_class.default left.id unless filter.present?
+  query_class.new(left.id, filter, sort, paging).run
+end
+
 
 format :json do
   view :core do

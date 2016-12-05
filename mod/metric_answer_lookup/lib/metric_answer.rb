@@ -31,6 +31,10 @@ class MetricAnswer < ActiveRecord::Base
     card.cardname.left_name.right
   end
 
+  def fetch_title_name
+    card.cardname.parts.second
+  end
+
   def fetch_metric_record_name
     card.cardname.left
   end
@@ -45,6 +49,10 @@ class MetricAnswer < ActiveRecord::Base
 
   def fetch_designer_id
     metric_card.left_id
+  end
+
+  def fetch_designer_name
+    card.cardname.parts.first
   end
 
   def fetch_policy_id

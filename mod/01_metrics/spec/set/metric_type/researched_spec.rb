@@ -65,17 +65,10 @@ describe Card::Set::MetricType::Researched do
 
   describe "#analysis_names" do
     subject { metric.analysis_names }
-    it { is_expected.to be_empty }
-    context "when tagged with topic" do
-      it "finds related Analysis" do
-        Card::Auth.as_bot do
-          Card.create! name: "Jedi+disturbances in the Force+topics",
-                       content: "Star Wars"
-        end
-        is_expected.to eq ["Slate_Rock_and_Gravel_Company+Star Wars",
-                           "SPECTRE+Star Wars", "Monster_Inc+Star Wars",
-                           "Death_Star+Star Wars"]
-      end
+    it "finds related Analysis" do
+      is_expected.to eq ["SPECTRE+Force", "Monster_Inc+Force",
+                         "Slate_Rock_and_Gravel_Company+Force",
+                         "Death_Star+Force"]
     end
   end
 

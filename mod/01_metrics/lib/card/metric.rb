@@ -58,6 +58,9 @@ class Card::Metric
     #   formula is a hash then it defaults to 'Category'
     # @option opts [Array] :value_options the options that you can choose of
     #   for a metric value
+    # @option opts [Array, String] :research_policy research policy
+    #   (designer or community assessed)
+    # @option opts [Array, String] :topic tag with topics
     # @option opts [Boolean] :random_source (false) pick a random source for
     #   each value
     def create opts, &block
@@ -87,20 +90,19 @@ class Card::Metric
           type_id: Card::PhraseID
         }
       end
-      if opts[:type] == :researched
-        opts[:value_type] ||= "Number"
-        subcards["+value type"] = {
-          content: "[[#{opts[:value_type]}]]",
-          type_id: Card::PointerID
-        }
-      end
-      if opts[:value_options]
-        subcards["+value options"] = {
-          content: opts[:value_options].to_pointer_content,
-          type_id: Card::PointerID
-        }
-      end
+      opts[:value_type] ||= "Number" if opts[:type] == :researched
+      add_pointer_subcards subcards, opts
       subcards
+    end
+
+    def add_pointer_subcards subcards, opts
+      [:value_type, :value_options, :research_policy, :topic].each do |name|
+        next unless opts[name]
+        subcards["+#{name}"] = {
+          content: Array(opts[name]).to_pointer_content,
+          type_id: Card::PointerID
+        }
+      end
     end
   end
 end
