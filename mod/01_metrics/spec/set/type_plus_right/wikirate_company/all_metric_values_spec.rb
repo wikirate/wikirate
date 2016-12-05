@@ -1,4 +1,4 @@
-require './test/seed'
+require "./test/seed"
 
 describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
   let(:company) { @company || Card["Death_Star"] }
@@ -32,7 +32,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       "friendliness+1977",
       "Victims by Employees+1977",
       "researched+1977",
-      "researched number 1+1977",
+      "researched number 1+1977"
     ]
   end
   let(:latest_metric_keys) do
@@ -71,7 +71,17 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
     subject do
       answers all_metric_values.item_cards
     end
+
     it "returns the latest values" do
+      expected = latest_answers_by_importance
+
+      upvoted = (0..1)
+      notvoted = (2..-3)
+      downvoted = (-2..-1)
+
+      expect(subject[upvoted].sort).to eq(expected[upvoted].sort)
+      expect(subject[notvoted].sort).to eq(expected[notvoted].sort)
+      expect(subject[downvoted].sort).to eq(expected[downvoted].sort)
       is_expected.to eq(latest_answers_by_importance)
     end
 
@@ -135,7 +145,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
                     "researched number 1+1977"]
         end
         it "finds combinations" do
-          expect(filter_by(metric_type: ["Score", "Formula"]))
+          expect(filter_by(metric_type: %w(Score Formula)))
             .to eq ["deadliness+Joe Camel+1977", "deadliness+Joe User+1977",
                     "disturbances in the Force+Joe User+2001",
                     "friendliness+1977"]
@@ -161,8 +171,8 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
 
         it "finds notvoted" do
           expect(filter_by(importance: :novotes))
-            .to eq latest_answers -
-                     ["disturbances in the Force+2001", "deadliness+1977"]
+            .to eq latest_answers - ["disturbances in the Force+2001",
+                                     "deadliness+1977"]
         end
 
         it "finds voted" do
@@ -247,30 +257,35 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
     context "with multiple filter conditions" do
       context "filter for missing values and ..." do
         it "... year" do
-          missing_2001 = missing_answers(2001) +
-            with_year(["Victims by Employees", "cost of planets destroyed",
-                       "darkness rating", "deadliness", "deadliness+Joe Camel",
-                       "deadliness+Joe User", "dinosaurlabor", "friendliness",
-                       "researched number 1", "researched"], 2001)
-          missing_2001.delete "disturbances in the Force+2001"
+          missing2001 = missing_answers(2001) + with_year(
+            ["Victims by Employees", "cost of planets destroyed",
+             "darkness rating", "deadliness", "deadliness+Joe Camel",
+             "deadliness+Joe User", "dinosaurlabor", "friendliness",
+             "researched number 1", "researched"], 2001
+          )
+          missing2001.delete "disturbances in the Force+2001"
           filtered = filter_by(metric_value: :none, year: "2001").sort
           expect(filtered)
-            .to eq(missing_2001.sort)
+            .to eq(missing2001.sort)
         end
+
         it "... keyword" do
           expect(filter_by(metric_value: :none, name: "number 2").sort)
             .to eq(with_year(["researched number 2"]))
         end
+
         it "... project" do
           expect(filter_by(metric_value: :none, project: "Evil Project").sort)
             .to eq(with_year(["researched number 2"]))
         end
+
         it "... metric_type" do
           expect(filter_by(metric_value: :none,
                            metric_type: "Researched"))
             .to eq with_year(["researched number 3", "researched number 2",
                               "Sith Lord in Charge"])
         end
+
         it "... policy and year" do
           expect(filter_by(metric_value: :none,
                            research_policy: "Designer Assessed",
@@ -290,8 +305,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
           expect(filter_by(year: "1991",
                            topic: "Force",
                            importance: :upvotes,
-                           metric_value: :week
-                 ))
+                           metric_value: :week))
             .to eq(with_year("disturbances in the Force", 1991))
         end
       end
@@ -315,12 +329,14 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       def sort_by key, order=nil
         allow(all_metric_values).to receive(:sort_by) { key }
         allow(all_metric_values).to receive(:sort_order) { order } if order
-        all_metric_values.item_cards.map &:name
+        all_metric_values.item_cards.map(&:name)
       end
 
       let(:sorted_designer) { ["Fred", "Jedi", "Joe User"] }
       it "sorts by designer name (asc)" do
-        sorted = sort_by(:metric_name, :asc).map { |n| n.to_name.parts.first }.uniq
+        sorted = sort_by(:metric_name, :asc).map do |n|
+          n.to_name.parts.first
+        end.uniq
         expect(sorted).to eq(sorted_designer)
       end
 
@@ -346,10 +362,17 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       end
 
       it "sorts by importance" do
-        expect(answer_names(sort_by(:importance)))
-          .to eq(latest_answers_by_importance)
-      end
+        actual = answer_names sort_by(:importance)
+        expected = latest_answers_by_importance
 
+        upvoted = (0..1)
+        notvoted = (2..-3)
+        downvoted = (-2..-1)
+
+        expect(actual[upvoted].sort).to eq(expected[upvoted].sort)
+        expect(actual[notvoted].sort).to eq(expected[notvoted].sort)
+        expect(actual[downvoted].sort).to eq(expected[downvoted].sort)
+      end
     end
   end
 

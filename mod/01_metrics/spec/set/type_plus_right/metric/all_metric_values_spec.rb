@@ -1,4 +1,4 @@
-require './test/seed'
+require "./test/seed"
 
 describe Card::Set::TypePlusRight::Metric::AllMetricValues do
   let(:metric) { @metric || Card["Jedi+disturbances in the Force"] }
@@ -11,7 +11,8 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
     ::Set.new(latest_answers.map { |n| n.to_name.left_name.key })
   end
   let(:missing_companies) do
-    Card.search(type_id: Card::WikirateCompanyID, return: :name).reject do |name|
+    company_names_wql = { type_id: Card::WikirateCompanyID, return: :name }
+    Card.search(company_names_wql).reject do |name|
       latest_answer_keys.include? name.to_name.key
     end
   end
@@ -69,13 +70,13 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       context "project" do
         it "finds exact match" do
           expect(filter_by(project: "Evil Project"))
-            .to eq %w(SPECTRE+2000 Death_Star+2001 )
+            .to eq %w(SPECTRE+2000 Death_Star+2001)
         end
       end
       context "industry" do
         it "finds exact match" do
           expect(filter_by(industry: "Technology Hardware"))
-            .to eq %w(SPECTRE+2000 Death_Star+2001 )
+            .to eq %w(SPECTRE+2000 Death_Star+2001)
         end
       end
       context "value" do
@@ -106,7 +107,6 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
             expect(filter_by(metric_value: :month))
               .to eq %w(Death_Star+1990 Death_Star+1991 Death_Star+1992)
           end
-
         end
       end
       context "invalid filter key" do
@@ -120,24 +120,28 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
     context "with multiple filter conditions" do
       context "filter for missing values and ..." do
         it "... year" do
-          missing_2000 = missing_answers(2000)
-          missing_2000 << "Slate Rock and Gravel Company+2000"
+          missing2000 = missing_answers(2000)
+          missing2000 << "Slate Rock and Gravel Company+2000"
           expect(filter_by(metric_value: :none, year: "2000").sort)
-            .to eq(missing_2000.sort)
+            .to eq(missing2000.sort)
         end
+
         it "... keyword" do
           expect(filter_by(metric_value: :none, name: "Inc").sort)
             .to eq(with_year(["Amazon.com, Inc.", "Apple Inc.", "Google Inc."]))
         end
+
         it "... project" do
           expect(filter_by(metric_value: :none, project: "Evil Project").sort)
             .to eq(with_year(["Los Pollos Hermanos"]))
         end
+
         it "... industry" do
           expect(filter_by(metric_value: :none,
                            industry: "Technology Hardware"))
             .to eq []
         end
+
         it "... industry and year" do
           expect(filter_by(metric_value: :none,
                            industry: "Technology Hardware",
