@@ -50,7 +50,7 @@ format :html do
   end
 
   view :importance_formgroup do
-    checkbox_filter :importance, "My Vote", [:upvotes, :novotes]
+    checkbox_filter :importance, "My Vote", ["upvotes", "novotes"]
   end
 
   view :industry_formgroup do

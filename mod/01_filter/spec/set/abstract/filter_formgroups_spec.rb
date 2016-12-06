@@ -46,7 +46,7 @@ describe Card::Set::Abstract::FilterFormgroups do
       html = card.format.render_designer_formgroup
       # ensure score metric is return the third part as designer name
       expect(html).to have_tag(:option, with: { value: "Joe Admin" },
-                               text: "Joe Admin")
+                                        text: "Joe Admin")
     end
   end
 
@@ -54,13 +54,17 @@ describe Card::Set::Abstract::FilterFormgroups do
     context "select form" do
       subject { card.format.research_policy_select }
       it "renders select list" do
-        is_expected.to have_tag(:select, with: { name: "filter[research_policy]" })
+        is_expected.to have_tag(
+          :select, with: { name: "filter[research_policy]" }
+        )
       end
     end
     context "checkbox form" do
       subject { card.format.render_research_policy_formgroup }
       it "renders checkboxes" do
-        is_expected.to have_tag(:input, with: { name: "filter[research_policy][]" })
+        is_expected.to have_tag(
+          :input, with: { name: "filter[research_policy][]" }
+        )
       end
     end
   end

@@ -28,7 +28,9 @@ format :html do
     label ||= filter_label(field)
 
     formgroup label do
-      options.map do |option_name, option_value|
+      options.map do |option|
+        option_name, option_value =
+          option.is_a?(Array) ? option : [option, option.downcase]
         checked = default.include?(option_value)
         wrap_with :label do
           [check_box_tag(name, option_value, checked), option_name]
@@ -87,11 +89,7 @@ format :html do
 
   def filter_options field
     raw = send("#{field}_options")
-    case raw
-    when Array then raw.map { |i| i.is_a?(Array) ? i : [i, i.to_s.downcase] }
-    when Hash  then option_hash_to_array raw
-    else raise "invalid filter options: #{raw}"
-    end
+    raw.is_a?(Array) ? raw : option_hash_to_array(raw)
   end
 
   def option_hash_to_array hash
