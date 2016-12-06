@@ -81,8 +81,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
 
       expect(subject[upvoted].sort).to eq(expected[upvoted].sort)
       expect(subject[notvoted].sort).to eq(expected[notvoted].sort)
-      expect(subject[downvoted].sort).to eq(expected[downvoted].sort)
-      is_expected.to eq(latest_answers_by_importance)
+      expect(subject[downvoted]).to eq(expected[downvoted])
     end
 
     def filter_by args
@@ -371,7 +370,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
 
         expect(actual[upvoted].sort).to eq(expected[upvoted].sort)
         expect(actual[notvoted].sort).to eq(expected[notvoted].sort)
-        expect(actual[downvoted].sort).to eq(expected[downvoted].sort)
+        expect(actual[downvoted]).to eq(expected[downvoted])
       end
     end
   end
