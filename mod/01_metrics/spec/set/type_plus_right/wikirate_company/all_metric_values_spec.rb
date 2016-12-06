@@ -75,8 +75,8 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
     it "returns the latest values" do
       expected = latest_answers_by_importance
 
-      upvoted = (0..2)
-      notvoted = (3..-2)
+      upvoted = (0..1)
+      notvoted = (2..-2)
       downvoted = -1
 
       expect(subject[upvoted].sort).to eq(expected[upvoted].sort)
@@ -365,8 +365,8 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
         actual = answer_names sort_by(:importance)
         expected = latest_answers_by_importance
 
-        upvoted = (0..2)
-        notvoted = (3..-2)
+        upvoted = (0..1)
+        notvoted = (2..-2)
         downvoted = -1
 
         expect(actual[upvoted].sort).to eq(expected[upvoted].sort)
