@@ -29,13 +29,20 @@ format :html do
 
     formgroup label do
       options.map do |option|
-        option_name, option_value =
-          option.is_a?(Array) ? option : [option, option.downcase]
-        checked = default.include?(option_value)
-        wrap_with :label do
-          [check_box_tag(name, option_value, checked), option_name]
-        end
+        checkbox_filter_option option, name, default
       end.join
+    end
+  end
+
+  def checkbox_filter_option option, tagname, default
+    option_name, option_value =
+      option.is_a?(Array) ? option : [option, option.downcase]
+    checked = default.include?(option_value)
+    wrap_with :label do
+      [
+        check_box_tag(tagname, option_value, checked),
+        option_name
+      ]
     end
   end
 
