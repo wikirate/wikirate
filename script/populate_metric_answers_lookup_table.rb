@@ -1,6 +1,6 @@
-# -*- encoding : utf-8 -*-
+#!/usr/bin/env ruby
 
-require File.expand_path("../../config/environment",  __FILE__)
+require File.expand_path("../../config/environment", __FILE__)
 
 Card.search(type_id: Card::MetricID, return: :id).each do |metric_id|
   Card.search(type_id: Card::MetricValueID,

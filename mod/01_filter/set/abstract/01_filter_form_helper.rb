@@ -28,12 +28,13 @@ format :html do
     label ||= filter_label(field)
 
     formgroup label do
-      options.map do |option|
-        checked = default.include?(option.downcase)
+      binding.pry
+      options.map do |option_name, option_value|
+        checked = default.include?(option_value)
         wrap_with :label do
-          [check_box_tag(name, option.downcase, checked), option]
+          [check_box_tag(name, option_value, checked), option_name]
         end
-      end
+      end.join
     end
   end
 
@@ -55,7 +56,6 @@ format :html do
     multiselect_filter type_codename, nil, nil, options
   end
 
-
   def multiselect_filter_tag field, label, default, options, html_options={}
     html_options[:multiple] = true
     select_filter_tag field, label, default, options, html_options
@@ -68,7 +68,8 @@ format :html do
     options = options_for_select(options, default)
 
     # these classes make the select field a jquery chosen select field
-    css_class = html_options[:multiple] ? "pointer-multiselect" : "pointer-select"
+    css_class =
+      html_options[:multiple] ? "pointer-multiselect" : "pointer-select"
     add_class html_options, css_class
 
     formgroup label, class: "filter-input #{field}" do
@@ -86,7 +87,19 @@ format :html do
   end
 
   def filter_options field
-    send("#{field}_options")
+    raw = send("#{field}_options")
+    case raw
+    when Array then raw.map { |i| i.is_a?(Array) ? i : [i, i.to_s.downcase] }
+    when Hash  then option_hash_to_array raw
+    else raise "invalid filter options: #{raw}"
+    end
+  end
+
+  def option_hash_to_array hash
+    hash.each_with_object([]) do |(key, value), array|
+      array << [key, value.to_s.downcase]
+      array
+    end
   end
 
   def type_options type_codename, order="asc"
