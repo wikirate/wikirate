@@ -54,7 +54,6 @@ $(document).ready ->
     collapseText($this)
     if !$target.data('collapse')
       collapseIcon($this, $target, "fa-caret-right", "fa-caret-down")
-      $target.collapse("toggle")
 
 
 wagn.slotReady (slot) ->
@@ -86,7 +85,7 @@ collapseIcon = ($this, $target, inClass = null, outClass = null) ->
   if $this.data('collapse-icon-in')?
     inClass ||= $this.data('collapse-icon-in')
     outClass ||= $this.data('collapse-icon-out')
-    $target.on('shown.bs.collapse', ->
+    $target.collapse("toggle").on('shown.bs.collapse', ->
       $parent.find("." + inClass).addClass(outClass).removeClass(inClass)
     ).on 'hidden.bs.collapse', ->
       $parent.find("." + outClass).addClass(inClass).removeClass(outClass)
