@@ -537,3 +537,10 @@ button.pointer-item-delete.btn.btn-default {
     width: inherit;
     padding-left: 8px;
 }
+
+.horizontal-list {
+  .pointer-item{
+    display: inline;
+    padding: 0;
+  }
+}

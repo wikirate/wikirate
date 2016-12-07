@@ -123,49 +123,64 @@ format :html do
   end
 
   view :row do
+    image = card.field(:image)
+    title = _render_link
+    text = row_details
     bs_layout do
-      row 2, 10 do
-        column { field_nest :image, size: :small }
-        column { row_details }
+      # row 2, 10 do
+      #   column { field_nest :image, size: :small }
+      #   column { row_details }
+      # end
+      row 12, class: "project-summary" do
+        col text_with_image(image: image, size: :medium, title: title, text: text)
       end
     end
   end
 
   def row_details
-    output [
-      wrap_with(:h4, _render_link),
-      wrap_with(:div, organizational_details),
-      wrap_with(:div, stats_details),
-      wrap_with(:div, topics_details)
-    ]
+    wrap_with :div, class: "project-details-info" do
+      [
+        wrap_with(:div, organizational_details, class: "organizational-details"),
+        wrap_with(:div, stats_details, class: "stat-details overall-progress-box"),
+        wrap_with(:div, topics_details, class: "topic-details ")
+      ]
+    end
   end
 
   def organizational_details
-    [
-      field_nest(:wikirate_status, items: { view: :name }),
-      "organized by #{field_nest :organizer, items: { view: :link }}"
-    ].join " | "
+    organized_by = wrap_with :div, class: "organized-by horizontal-list" do
+      [
+        wrap_with(:span, " | organized by "),
+        field_nest(:organizer, items: { view: :link })
+      ]
+    end
+    status = field_nest(:wikirate_status, items: { view: :name })
+    [status, organized_by]
   end
 
   def stats_details
-    "#{count_stats} | #{percent_researched} #{overall_progress_bar}"
+    "#{count_stats} #{percent_researched} #{overall_progress_bar}"
   end
 
   def percent_researched
     wrap_with :div, class: "percent-researched" do
       [
-        wrap_with(:span, "#{card.percent_researched}%"),
+        wrap_with(:span, " #{card.percent_researched}%"),
         "Researched"
       ]
     end
   end
 
   def count_stats
-    "#{card.num_companies} Companies, #{card.num_metrics} Metrics"
+    wrap_with :span do
+      "#{card.num_companies} Companies, #{card.num_metrics} Metrics | "
+    end
   end
 
   def topics_details
-    field_nest :wikirate_topic, items: { view: :link, type: "Topic" }
+    wrap_with :div, class: "horizontal-list" do
+      field_nest :wikirate_topic, items: { view: :link, type: "Topic" }
+    end
   end
 
   def overall_progress_bar
