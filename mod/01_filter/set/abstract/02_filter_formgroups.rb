@@ -50,7 +50,7 @@ format :html do
   end
 
   view :importance_formgroup do
-    checkbox_filter :importance, "My Vote", ["i voted for", "i did not vote"]
+    checkbox_filter :importance, "My Vote", ["upvotes", "novotes"]
   end
 
   view :industry_formgroup do
@@ -58,7 +58,7 @@ format :html do
   end
 
   view :sort_formgroup do
-    selected_option = sort_param || default_sort_option
+    selected_option = sort_param || card.default_sort_option
     options = options_for_select(sort_options, selected_option)
     formgroup "Sort", class: "filter-input " do
       select_tag "sort", options, class: "pointer-select"
@@ -71,13 +71,15 @@ format :html do
 
   def metric_value_options
     {
-        "All" => "all",
-        "Researched" => "exists",
-        "Not Researched" => "none",
-        "Edited today" => "today",
-        "Edited this week" => "week",
+        "All"               => "all",
+        "Researched"        => "exists",
+        "Known"             => "known",
+        "Unknown"           => "unknown",
+        "Not Researched"    => "none",
+        "Edited today"      => "today",
+        "Edited this week"  => "week",
         "Edited this month" => "month",
-        "Outliers" => "outliers"
+        "Outliers"          => "outliers"
     }
   end
 
@@ -90,12 +92,13 @@ format :html do
   end
 
   def importance_options
-    ["I voted FOR", "I voted AGAINST", "I did NOT vote"]
+    { "I voted FOR" => :upvotes,
+      "I voted AGAINST" => :downvotes,
+      "I did NOT vote" => :novotes }
   end
 
   def industry_options
-    card_name =
-      Right::BrowseCompanyFilter::CompanyFilterQuery::INDUSTRY_METRIC_NAME
+    card_name = CompanyFilterQuery::INDUSTRY_METRIC_NAME
     Card[card_name].value_options
   end
 

@@ -1,11 +1,15 @@
 include_set Abstract::MetricRecordFilter
 
 def advanced_filter_keys
-  %w(metric wikirate_topic research_policy importance metric_type)
+  %w(metric wikirate_topic project research_policy importance metric_type)
 end
 
 def filter_keys
   %w(metric_value year)
+end
+
+def default_sort_option
+  :importance
 end
 
 format :html do
@@ -31,15 +35,10 @@ format :html do
 
   def sort_options
     {
-      "Importance to Community (up-voted by community)" => "upvoted",
-      "Metric Designer (Alphabetical)" => "metric_designer",
-      "Metric Title (Alphabetical)" => "metric_title",
-      "Recently Updated" => "recent",
-      "Most Values" => "value"
+      "Importance to Community (net votes)" => :importance,
+      "Metric Designer (Alphabetical)" => :metric_name,
+      "Metric Title (Alphabetical)" => :title_name,
+      "Recently Updated" => :updated_at
     }
-  end
-
-  def default_sort_option
-    "upvoted"
   end
 end

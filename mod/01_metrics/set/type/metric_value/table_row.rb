@@ -1,7 +1,6 @@
 include_set Abstract::Media
 
 format :html do
-
   view :metric_thumbnail_with_vote do
     subformat(card.metric_card)._render_thumbnail_with_vote
   end
@@ -12,19 +11,12 @@ format :html do
     text_with_image title: title, image: company_image, size: :icon
   end
 
-  view :company_value do
+  view :value_cell do
     if filtered_for_no_values?
       add_value_button
     else
-      _render_all_values(args)
+      _render_concise
     end
-  end
-
-  def missing_company_value
-    <<-HTML
-      <a type="button" target="_blank" class="btn btn-primary btn-sm"
-        href="#{add_value_url}">Add answer</a>
-    HTML
   end
 
   def add_value_url
@@ -32,8 +24,17 @@ format :html do
             "metric[]=#{CGI.escape(card.metric_name.to_name.url_key)}"
   end
 
+  def add_value_button
+    <<-HTML
+        <a type="button" target="_blank" class="btn btn-primary btn-sm"
+          href="#{add_value_url}">Add answer</a>
+    HTML
+  end
+
   def filtered_for_no_values?
-    # FIXME: should need to know anything about filter param details here
+    return card.new_card?
+    # FIXME: wrong place.
+    # should not need to know anything about filter param details here
     params["filter"] && params["filter"]["value"] == "none"
   end
 

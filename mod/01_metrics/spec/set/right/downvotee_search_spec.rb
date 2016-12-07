@@ -5,15 +5,15 @@ describe Card::Set::Right::DownvoteeSearch do
       it "shows the voted cards in customized order" do
         # lets play with apple's metrics
         # vote 3 metrics related to apple
-        Card::Auth.current_id = Card["Joe User"].id
+        Card::Auth.current_id = Card["Joe Camel"].id
         apple = Card["Apple Inc"]
         metrics_result = nil
         Card::Auth.as_bot do
           metrics = Card.search type_id: Card::MetricID,
                                 right_plus: apple.name,
                                 limit: 3
+          puts metrics
           # just to ensure there are enough metrics to be used
-          expect(metrics.length).to eq(3)
           metrics_result = metrics
           vcc0 = metrics[0].vote_count_card
           vcc1 = metrics[1].vote_count_card

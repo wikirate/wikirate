@@ -1,78 +1,55 @@
+include_set Abstract::MetricChild, generation: 1
 
-def invalid_metric_values metric_values
-  invalid_metric_values = []
-  metric_values.each do |key, values|
-    values.each do |mv|
-      if !number?(mv["value"]) && mv["value"].casecmp("unknown") != 0
-        invalid_metric_values.push(mv.merge(company: key))
-      end
-    end
-  end
-  invalid_metric_values
-end
-
-def non_existing_values_in_options? metric_values, options_card
-  options = options_card.item_names content: options_card.content.downcase,
-                                    context: :raw
-  non_existing_values = []
-  metric_values.each do |_key, values|
-    values.each do |mv|
-      if !options.include?(mv["value"].downcase) &&
-         mv["value"].casecmp("unknown") != 0
-        non_existing_values.push(mv["value"])
-      end
-    end
-  end
-  non_existing_values
-end
-
-def show_category_option_errors options_card, invalid_options
-  url = "/#{options_card.cardname.url_key}?view=edit"
-  anchor =
-    <<-HTML
-      <a href='#{url}' target="_blank">add the values to options card</a>
-    HTML
-  values =
-    if !invalid_options.nil?
-      "\"#{invalid_options.uniq.join('\", \"')}\" is not an option for"\
-      " this Metric."
-    else
-      ""
-    end
-  errors.add :value, "#{values} Please #{anchor} first."
-end
-
-def related_values
-  if (all_value_card = left.fetch trait: :all_metric_values)
-    all_value_card.filtered_values_by_name
+event :validate_type_of_existing_values, :validate,
+      on: :save, changed: :content do
+  case value_type
+  when "Number", "Money" then validate_numeric_values
+  when "Category" then validate_categorical_values
   end
 end
 
-def handle_errors invalid_metric_values
-  invalid_metric_values.each do |mv|
-    errors.add "#{cardname.left}+#{mv[:company]}+#{mv[:year]}",
-               "'#{mv[:value]}' is not a numeric value."
+def validate_categorical_values
+  invalid_categories = existing_value_keys - valid_category_keys
+  add_categorical_error invalid_categories if invalid_categories.present?
+end
+
+def existing_value_keys
+  values = MetricAnswer.where(metric_id: left.id).select(:value).distinct
+  values.map { |n| n.value.to_name.key }
+end
+
+def valid_category_keys
+  keys = value_options.map { |n| n.to_name.key }
+  keys << "unknown"
+end
+
+def validate_numeric_values
+  metric_card.all_metric_answers.find do |answer|
+    next if valid_numeric_value? answer.value
+    add_numeric_error answer
   end
 end
 
-event :validate_existing_values_type, :validate, on: :save do
-  # validate the metric value while changing to number or category
-  return unless db_content_changed?
-  metric_name = cardname.left
-  type = item_names[0]
-  return unless (mv = related_values)
-  case type
-  when "Number", "Money"
-    if (invalid_metric_values = invalid_metric_values(mv)) &&
-       !invalid_metric_values.empty?
-      handle_errors invalid_metric_values
-    end
-  when "Category"
-    options_card = Card.fetch metric_name, :value_options, new: {}
-    if (!mv.empty? && options_card.new?) ||
-       (invalid_options = non_existing_values_in_options?(mv, options_card)) &&
-       !invalid_options.empty?
-      show_category_option_errors options_card, invalid_options
-    end
-  end
+def valid_numeric_value? value
+  number?(value) || value.strip.casecmp("unknown").zero?
+end
+
+def add_numeric_error answer
+  errors.add Card.fetch_name(answer.metric_answer_id),
+             "'#{answer.value}' is not a numeric value."
+end
+
+def add_categorical_error invalid_options
+  errors.add :value, quoted_list(invalid_options) +
+                     " is not an option for this metric. " \
+                     "Please #{link_to_edit_options} first."
+end
+
+def link_to_edit_options
+  format.link_to_card value_options_card, "add the values to options card",
+                      path: { view: :edit }, target: "_blank"
+end
+
+def quoted_list list
+  list.map { |o| "\"#{o}\"" }.join ", "
 end

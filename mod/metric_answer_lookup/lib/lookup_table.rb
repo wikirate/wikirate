@@ -12,18 +12,39 @@ module LookupTable
 
     def create_or_update cardish
       ma_card_id = card_id(cardish)
-      ma =
-          MetricAnswer.find_by_metric_answer_id(ma_card_id) ||
+      ma = MetricAnswer.find_by_metric_answer_id(ma_card_id) ||
         MetricAnswer.new
       ma.metric_answer_id = ma_card_id
       ma.refresh
     end
 
-    def fetch args
-      MetricAnswer.where(args).pluck(:metric_answer_id).map do |id|
+    def fetch where, sort_args={}, paging={}
+      where = Array.wrap where
+      mas = MetricAnswer.where(*where)
+      mas = sort mas, sort_args if sort_args.present?
+      if paging.present?
+        mas = mas.limit(paging[:limit]).offset(paging[:offset])
+      end
+      mas.pluck(:metric_answer_id).map do |id|
         Card.fetch id
       end
     end
+
+    def sort mas, args
+      mas = importance_sort mas, args if args[:sort_by] == :importance
+      sort_by = args[:sort_by]
+      sort_by = "CAST(#{sort_by} AS #{args[:cast]})" if args[:cast]
+      mas.order "#{sort_by} #{args[:sort_order]}"
+    end
+
+    def importance_sort mas, args
+      mas = mas.joins "LEFT JOIN cards AS c " \
+                      "ON metric_answers.metric_id = c.left_id " \
+                      "AND c.right_id = #{Card::VoteCountID}"
+      args.merge! sort_by: "COALESCE(c.db_content, 0)", cast: "signed"
+      mas
+    end
+
 
     def refresh ids=nil
       ids ||= Card.search(type_id: Card::MetricValueID, return: :id)
@@ -51,20 +72,6 @@ module LookupTable
       new_value = send "fetch_#{method_name}"
       send "#{method_name}=", new_value
     end
-    latest_to_false if latest
     save
-  end
-
-  def delete
-    super.tap do
-      latest_year = latest_year_in_db
-      MetricAnswer.where(metric_record_id: metric_record_id, year: latest_year)
-          .update_all(latest: true)
-    end
-  end
-
-  def latest_to_false
-    MetricAnswer.where(metric_record_id: metric_record_id, latest: true)
-        .update_all(latest: false)
   end
 end

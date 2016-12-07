@@ -1,8 +1,11 @@
 include_set Abstract::CollapsedFilterForm
 
-
 def filter_keys
   %w(metric research_policy metric_type)
+end
+
+def default_sort_option
+  "upvoted"
 end
 
 format :html do
@@ -21,9 +24,5 @@ format :html do
       "Metric Designer (Alphabetical)" => "metric_designer",
       "Metric Title (Alphabetical)" => "metric_title"
     }
-  end
-
-  def default_sort_option
-    "upvoted"
   end
 end

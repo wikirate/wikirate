@@ -128,15 +128,11 @@ format :html do
     "(nest editable card with description text)"
   end
 
-  view :row do
+  view :listing do
     image = card.field(:image)
     title = _render_link
     text = row_details
     bs_layout do
-      # row 2, 10 do
-      #   column { field_nest :image, size: :small }
-      #   column { row_details }
-      # end
       row 12, class: "project-summary" do
         col text_with_image(image: image, size: :medium, title: title, text: text)
       end

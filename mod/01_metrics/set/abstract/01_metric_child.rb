@@ -38,7 +38,8 @@ def metric_was
 end
 
 def metric_card
-  Card.fetch metric
+  Card.fetch(metric) || (generation == 1 && left)
+  # FIXME: hack to make it work on new cards
 end
 
 def metric_type
@@ -106,6 +107,10 @@ def company_card
   Card.fetch company
 end
 
+def answer_name
+  "#{metric_name}+#{company_name}+#{year}"
+end
+
 def metric_record
   metric_name.field(company)
 end
@@ -113,3 +118,5 @@ end
 def metric_record_card
   Card.fetch metric_record
 end
+
+delegate :value_options, :value_options_card, :value_type, to: :metric_card

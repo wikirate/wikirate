@@ -4,6 +4,10 @@ def filter_keys
   %w(wikirate_company)
 end
 
+def default_sort_option
+  "most_metrics"
+end
+
 format :html do
   def content_view
     :company_tab
@@ -16,10 +20,6 @@ format :html do
       "Most Sources " => "most_sources",
       "Has Overview" => "has_overview"
     }
-  end
-
-  def default_sort_option
-    "most_metrics"
   end
 end
 

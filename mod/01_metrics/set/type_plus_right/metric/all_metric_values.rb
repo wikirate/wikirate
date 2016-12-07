@@ -1,18 +1,11 @@
 include_set Abstract::AllMetricValues
 
-def wql_to_identify_related_metric_values
-  '"left": { "left":"_left" }'
+def query_class
+  FixedMetricAnswerQuery
 end
 
-
-def item_cards _args={}
-  MetricAnswer.fetch(metric_id: left.id, latest: true)
-end
-
-format do
-  def page_link_params
-    [:name, :industry, :project, :year, :value]
-  end
+def default_sort_option
+  :value
 end
 
 format :html do
@@ -21,10 +14,10 @@ format :html do
       <div class='yinyang-row column-header'>
         <div class='company-item value-item'>
           #{sort_link "Companies #{sort_icon :name}",
-                      sort_by: 'name', order: toggle_sort_order(:name),
+                      sort_by: 'name', sort_order: toggle_sort_order(:name),
                       class: 'header'}
           #{sort_link "Values #{sort_icon :value}",
-                      sort_by: 'value', order: toggle_sort_order(:value),
+                      sort_by: 'value', sort_order: toggle_sort_order(:value),
                       class: 'data'}
         </div>
       </div>
