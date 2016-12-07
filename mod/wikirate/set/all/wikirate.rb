@@ -247,68 +247,6 @@ format :html do
   end
 end
 
-
-if Card::Codename[:claim]
-  CLAIM_SUBJECT_SQL = %{
-    select subjects.`key` as subject, claims.id from cards claims
-    join cards as pointers on claims.id   = pointers.left_id
-    join card_references   on pointers.id = referer_id
-    join cards as subjects on referee_id  = subjects.id
-    where claims.type_id = #{Card::ClaimID}
-    and pointers.right_id in
-      (#{[Card::WikirateTopicID, Card::WikirateCompanyID].join(', ')})
-    and claims.trash   is false
-    and pointers.trash is false
-    and subjects.trash is false;
-  }
-end
-
-# some wikirate specific methods
-module ClassMethods
-  def claim_count_cache
-    Card::Cache[Card::Set::Right::WikirateClaimCount]
-  end
-
-  def claim_counts subj
-    ccc = claim_count_cache
-    ccc.read(subj) || begin
-      subjname = subj.to_name
-      count = claim_subjects.count do |_id, subjects|
-        if subjname.simple?
-          subjects_apply? subjects, subj
-        else
-          subjects_apply?(subjects, subjname.left) &&
-            subjects_apply?(subjects, subjname.right)
-        end
-      end
-      ccc.write subj, count
-    end
-  end
-
-  def subjects_apply? references, test_list
-    !!Array.wrap(test_list).find do |subject|
-      references.member? subject
-    end
-  end
-
-  def claim_subjects
-    ccc = claim_count_cache
-    ccc.read("CLAIM-SUBJECTS") || begin
-      hash = {}
-      connection = ActiveRecord::Base.connection
-      connection.select_all(CLAIM_SUBJECT_SQL).each do |row|
-        hash[row["id"]] ||= []
-        hash[row["id"]] << row["subject"]
-      end
-      ccc.write "CLAIM-SUBJECTS", hash
-    end
-  end
-
-  def reset_claim_counts
-    claim_count_cache.reset
-  end
-end
-
 format :json do
   view :content do
     result = super()

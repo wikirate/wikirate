@@ -32,19 +32,12 @@ format :html do
   end
 
   view :metric_contributions do
-    field_subformat(:metrics_designed)._render_titled show: :title_badge, items: { view: :metric_row }
+    field_subformat(:metrics_designed)._render_titled(
+      show: :title_badge, items: { view: :metric_row }
+    )
   end
 
   view :project_contributions do
     field_subformat(:projects_organized)._render_titled show: :title_badge
   end
-end
-
-def indirect_contributor_search_args
-  [
-    { type_id: Card::ClaimID,  right_plus: ["company", { link_to: name }] },
-    { type_id: Card::SourceID, right_plus: ["company", { link_to: name }] },
-    { type_id: Card::WikirateAnalysisID, left: name },
-    { type_id: Card::MetricValueID, left: { right: name } }
-  ]
 end
