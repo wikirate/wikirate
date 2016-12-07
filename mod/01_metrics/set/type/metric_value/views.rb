@@ -39,29 +39,6 @@ format :html do
     end
   end
 
-  def humanized_big_number number
-    number_to_human(
-      number, format: "%n%u", delimiter: "", precision: 3,
-              units: { unit: "", thousand: "K", million: "M", billion: "B",
-                       trillion: "T", quadrillion: "P" }
-    )
-  end
-
-  def humanized_small_number number
-    less_than_one = number < 1
-    humanized = number_with_precision(
-      number, delimiter: ",", strip_insignificant_zeros: true,
-              precision: (less_than_one ? 3 : 1), significant: less_than_one
-    )
-    humanized == "0" && number > 0 ? "~0" : humanized
-  end
-
-  def humanized_number value
-    number = BigDecimal.new(value)
-    size = number > 1_000_000 ? :big : :small
-    send "humanized_#{size}_number", number
-  end
-
   def numeric_metric?
     (value_type = card.metric_card.fetch trait: :value_type) &&
       %w(Number Money).include?(value_type.item_names[0])

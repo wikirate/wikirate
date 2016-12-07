@@ -2,30 +2,36 @@
 require "net/https"
 require "uri"
 
-def number? str
-  true if Float(str)
-rescue
-  false
-end
-
-# returns with a tenth (eg 11.1%)
-def percent numerator, denominator
-  denominator.zero? ? 0 : (1000 * numerator / denominator / 10.0)
-end
-
 format do
-  view :cite, closed: true do
-    ""
-  end
-
   view :raw_or_blank, perms: :none, closed: true do
     _render_raw || ""
+  end
+
+  view :cgi_escape_name do
+    CGI.escape card.name
   end
 end
 
 format :html do
-  view :cgi_escape_name do
-    CGI.escape card.name
+  def default_open_args _args
+    voo.show :horizontal_menu if main?
+  end
+
+  def menu_icon
+    glyphicon "edit"
+  end
+
+  def header_title_elements
+    voo.hide :title_badge
+    [super, _optional_render_title_badge]
+  end
+
+  view :title_badge do
+    wrap_with :span, title_badge_count, class: "badge"
+  end
+
+  def title_badge_count
+    card.count
   end
 
   view :og_source, tags: :unknown_ok do |args|
@@ -40,33 +46,6 @@ format :html do
     content = _render_core args
     truncated = Card::Content.smart_truncate content, 50
     ActionView::Base.full_sanitizer.sanitize truncated
-  end
-
-  view :progress_bar do
-    value = card.raw_content
-    if card.number? value
-      progress_bar value: value
-    else
-      "Only card with numeric content can be shown as progress bar."
-    end
-  end
-
-  def progress_bar *sections
-    wrap_with :div, class: "progress" do
-      Array.wrap(sections).map do |section_args|
-        progress_bar_section section_args
-      end.join
-    end
-  end
-
-  def progress_bar_section args
-    add_class args, "progress-bar"
-    value = args.delete :value
-    body = args.delete(:body) || "#{value}%"
-    wrap_with :div, body, args.reverse_merge(
-      role: "progressbar", style: "width: #{value}%",
-      "aria-valuenow" => value, "aria-valuemin" => 0, "aria-valuemax" => 100
-    )
   end
 
   view :titled_with_edits do
@@ -89,21 +68,6 @@ format :html do
         #{links}<div class='subtitle-header'>Edits by</div>
       </div>
     )
-  end
-
-  view :open do
-    voo.show :horizontal_menu
-    super()
-  end
-
-  attr_accessor :citations
-
-  def menu_icon
-    glyphicon "edit"
-  end
-
-  def default_menu_args args
-    args[:optional_horizontal_menu] ||= :show if main?
   end
 
   view :shorter_pointer_content do
@@ -140,22 +104,6 @@ format :html do
     super()
   end
 
-  view :cite, cache: :never do
-    # href_root = parent ? parent.card.cardname.trunk_name.url_key : ''
-    wrap_with :sup do
-      wrap_with :a, class: "citation", href: "##{card.cardname.url_key}" do
-        cite!
-      end
-    end
-  end
-
-  def cite!
-    holder = parent.parent || parent || self
-    holder.citations ||= []
-    holder.citations << card.key
-    holder.citations.size
-  end
-
   view :wikirate_modal do
     card_name = Card::Env.params[:show_modal]
     if card_name.present?
@@ -171,12 +119,6 @@ format :html do
     end
   end
 
-  view :yinyang_list do |args|
-    wrap_with :div, class: "yinyang-list #{args[:yinyang_list_class]}" do
-      _render_yinyang_list_items(args)
-    end
-  end
-
   view :showcase_list, tags: :unknown_ok do |args|
     item_type_name = card.cardname.right.split.last
     icon_card = Card.fetch("#{item_type_name}+icon")
@@ -188,47 +130,6 @@ format :html do
         #{item_type_name.capitalize}
         #{_render_core(args)}
       )
-    end
-  end
-
-  view :open_contribution_list do |args|
-    _render_open(args.merge(contribution_list: true))
-  end
-
-  view :yinyang_list_items do |args|
-    joint = args[:joint] || " "
-
-    enrich_result(card.item_names).map do |icard|
-      wrap_with :div, class: "yinyang-row" do
-        nest_item(icard, view: args[:item]).html_safe
-      end.html_safe
-    end.join(joint).html_safe
-  end
-
-  def header_title_elements
-    voo.hide :title_badge
-    [super, _optional_render_title_badge]
-  end
-
-  view :title_badge do
-    wrap_with :span, title_badge_count, class: "badge"
-  end
-
-  def title_badge_count
-    card.count
-  end
-
-  def enrich_result result
-    result.map do |item_name|
-      # 1) add the main card name on the left
-      # for example if "Apple+metric+*upvotes+votee search" finds "a metric"
-      # we add "Apple" to the left
-      # because we need it to show the metric values of "a metric+apple"
-      # in the view of that item
-      # 2) add "yinyang drag item" on the right
-      # this way we can make sure that the card always exists with a
-      # "yinyang drag item+*right" structure
-      Card.fetch main_name, item_name, "yinyang drag item"
     end
   end
 
