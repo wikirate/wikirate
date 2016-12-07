@@ -164,5 +164,9 @@
   :type: Search
   :key: report_search+*right+*structure
   :merged: 2016-12-07 02:37:39 UTC
+- :name: Research Group
+  :type: Cardtype
+  :codename: research_group
+  :key: research_group
 :remotes:
   :live: http://wikirate.org
