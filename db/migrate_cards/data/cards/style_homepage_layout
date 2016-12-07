@@ -1,6 +1,6 @@
-{{style: mixins and variables}}
-        
-        
+{{style: mixins and variables|raw}}
+
+
         #Home{
           background: url({{topics collage|source; size:original}});
           margin-bottom: 20px;
@@ -16,7 +16,7 @@
             padding:13px;
         }
         .SELF-recent_contributor .recent-editors-container.list-group-item{
-         margin: 12px 0px;   
+         margin: 12px 0px;
         }
         /*----------- Top banner ---------*/
         .fa-4 {
@@ -38,9 +38,9 @@
             .navbar-right {
               margin-right: 15px;
             }
-          
+
         }
-        
+
        .btn-banner-info, .btn-banner-join {
           padding: 3px 33px!important;
           font-size: 1.2em!important;
@@ -50,11 +50,11 @@
           padding: 12px 25px;
           font-size: 14px;
         }
-          
+
         .metric-header {
             border-top: 3px solid #674EA7;
         }
-        
+
         .homepage-logo-container {
             border-radius: 0px;
             margin-top: -2px;
@@ -62,20 +62,20 @@
             height: 154px;
             border-color: $bright-text-color;
             >div {
-                  position: relative;     
-                  top: 50%;     
-                  -webkit-transform: translateY(-50%);     
-                  -ms-transform: translateY(-50%);     
+                  position: relative;
+                  top: 50%;
+                  -webkit-transform: translateY(-50%);
+                  -ms-transform: translateY(-50%);
                   transform: translateY(-50%);
               }
         }
-        
+
         .homepage-company-item .data-count>div:hover {
             //background-color: $gray-background-color;
         }
-     
 
-        
+
+
 
         /*----------- Content Wrapper --------------*/
         #main .video-container {
@@ -87,17 +87,17 @@
         #page-wrapper {
           background: #fff;
           padding: 20px 12px;
-        
+
         }
         #main-content-wrapper {
           margin: 0 5px;
-        
+
         }
         .browse-button {
           text-align: center;
           margin-top: 5px;
           margin-left: 16px;
-        
+
         }
         /*-----------  Grid  ---------*/
         .grid-row {
@@ -107,18 +107,18 @@
             width: 49%;
             // background: green;
           }
-        
+
         }
         /*----------- Companies and Topics  ---------*/
         #company-n-topic .grid-column {
           position: relative;
           //for slick-js icon position
-        
+
         }
         #company-n-topic .card-header {
           display: none;
           // workaround for carousel
-        
+
         }
         #company-n-topic {
           .company-list,
@@ -138,7 +138,7 @@
               padding: 10px 0;
               margin-left: 11px;
             }
-        
+
           }
           .company-list {
             float: left;
@@ -149,10 +149,10 @@
           .browse-button {
             margin-top: 35px;
           }
-        
+
         }
         /*----------- Overviews ---------*/
-        
+
         #overviews {
           .search-result-item {
             display: inline-block;
@@ -160,12 +160,12 @@
             width: 30%;
             float:left;
           }
-        
+
         }
         /*----------- Notes and Sources ---------*/
-        
+
         #notes-sources {
-        
+
           .card-content.SELF-homepage_note_list,
           .card-content.SELF-homepage_source_list {
             padding: 5px 0;
@@ -189,7 +189,7 @@
               //same height workaround.
            //   margin-bottom: -1000px;
             }
-        
+
           }
           .note-list {
             float: left;
@@ -200,10 +200,10 @@
           .browse-button {
             margin-top: 25px;
           }
-        
+
         }
         /*----------- Headings ---------*/
-        
+
         .homepage-heading-h1 {
           text-align: center;
           font-size: 1.6em;
@@ -227,7 +227,7 @@
           .source-color {
             color: $source-color;
           }
-        
+
         }
         .homepage-heading-h2 {
         font-size: 2em;
@@ -238,7 +238,7 @@
         font-weight: normal;
         }
         /*----------- Media queries ---------*/
-        
+
         @media screen and (max-width: 1150px) {
           .homepage-heading-h1 {
             font-size: 1.2em;
@@ -252,7 +252,7 @@
           #top-banner-wrapper .column-2 .wikirate-message .homepage-heading-h1 {
             font-size: 1.2em;
           }
-        
+
         }
         @media screen and (max-width: 1205px) {
           .homepage-heading-h1 {
@@ -264,7 +264,7 @@
           #top-banner-wrapper .column-2 .wikirate-message .homepage-heading-h1 {
             font-size: 1.1em;
           }
-        
+
         }
         @media screen and (max-width: 990px) {
           .homepage-heading-h1 {
@@ -279,10 +279,10 @@
           #top-banner-wrapper .column-2 .wikirate-message .homepage-heading-h1 {
             font-size: 0.9em;
           }
-        
+
         }
         @media screen and (max-width: 48em) {
-        
+
           #notes-sources {
             .note-list,
             .source-list {
@@ -295,10 +295,10 @@
               height: auto;
             }
           }
-        
+
         }
         @media screen and (max-width:47em ) {
-        
+
           .homepage-heading-h1 {
             //        font-size:0.9em;
           }
@@ -311,13 +311,13 @@
               .homepage-heading-h1 {
                 font-size: 1.5em;
               }
-        
+
             }
             .SELF-wikirate_globe.card-content {
               padding: 1%;
               max-width: 16%;
             }
-        
+
           }
           #top-banner-wrapper {
             .column-1,
@@ -328,16 +328,16 @@
               width: 100%;
             }
           }
-        
+
         }
-        
+
         /*----------- Media queries- For mobile devices ---------*/
-        
+
         @media screen and (max-width:40em ) {
           h4 {
               font-size: medium;
           }
-          
+
           .metric-value {
               font-size: 12px!important;
           }
@@ -350,7 +350,7 @@
           .grid-row,.grid-column{
             margin-bottom:24px;
           }
-        
+
           .homepage-heading-h1 {
                    font-size:1em;
           }
@@ -358,45 +358,45 @@
             font-size: 1em;
           }
           #top-banner-wrapper {
-        
+
             .column-2 {
               .wikirate-message {
                 padding: 1%;
                 .homepage-heading-h1 {
                   font-size: 0.9em;
                 }
-        
+
               }
               .SELF-wikirate_globe.card-content {
                 padding: 1%;
                 max-width: 16%;
               }
             }
-        
+
           }
           #overviews .search-result-item {
             display: inline-block;
             margin: 1.4%;
             width: 97%;
-        
+
           }
           #company-n-topic {
             .company-list,
             .topic-list {
               width: 100%;
             }
-        
+
           }
           body#wagn {
             min-width: 325px;
-        
+
           }
           #notes-sources {
             .card-content.SELF-homepage_note_list,
             .card-content.SELF-homepage_source_list {
               margin: 15px 0;
             }
-        
+
           }
           #top-bar {
             .logo-bar img {
@@ -423,30 +423,30 @@
               width: 92%;
               display: none;
             }
-        
+
           }
           a.slicknav_btn {
             float: left;
             margin: 6px 0px 0 -6px;
-        
+
           }
           #page-wrapper {
             padding: 6px 4px;
           }
-        
+
           #main{
             padding: 80px 1%;
           }
-        
+
           #top-bar-wrapper .slicknav_menu .slicknav_nav .account-info-bar .logged-out {
             display: none;
-        
+
           }
-        
+
           #top-banner-wrapper .column-2 .SELF-wikirate_globe.card-content {
             display:none;
           }
-        
+
           .TYPE-note .source-side,
           .TYPE-page .source-side,
           .TYPE-note .meta-side,
@@ -465,26 +465,26 @@
           .TYPE-company .TYPE_PLUS_RIGHT-topic-analysis_with_overview .analysis-blurb-content,
           .TYPE-company .TYPE_PLUS_RIGHT-company-analysis_with_overview .analysis-blurb-content {
             width: 100%;
-        
+
           }
           .ui-tabs .ui-tabs-panel {
             padding: 0;
-        
+
           }
           .TYPE_PLUS_RIGHT-user-Xfollowing {
             display: none;
-        
+
           }
           .TYPE-user .user-profile-left,
           .TYPE-user .user-profile-right,
           .TYPE-user .user-profile-right-bottom-contribution,
           .TYPE-user .TYPE_PLUS_RIGHT-user-discussion.titled-view {
             width: 100%;
-        
+
           }
           .card-slot>.card-header .card-menu-link {
             margin: -40px -3px;
-        
+
           }
           .header-vote {
             float: left;
@@ -506,8 +506,8 @@
             float: left;
           }
         }
-        
-        
+
+
         .name-diff .label-default {
-          background-color: inherit; 
+          background-color: inherit;
         }
