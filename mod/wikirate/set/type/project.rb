@@ -53,6 +53,12 @@ format :html do
 
   view :data do
     wrap_with :div, class: "progress-column border-top" do
+      left_col_content
+    end
+  end
+
+  def left_col_content
+    wrap_with :div, class: "margin-15" do
       [
         field_nest(:organizer, view: :titled, items: { view: :link }),
         field_nest(:wikirate_topic, view: :titled, items: { view: :link }),
