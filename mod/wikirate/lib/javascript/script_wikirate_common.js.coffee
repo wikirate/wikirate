@@ -85,7 +85,7 @@ collapseIcon = ($this, $target, inClass = null, outClass = null) ->
   if $this.data('collapse-icon-in')?
     inClass ||= $this.data('collapse-icon-in')
     outClass ||= $this.data('collapse-icon-out')
-    $target.collapse("toggle").on('shown.bs.collapse', ->
-      $parent.find("." + inClass).addClass(outClass).removeClass(inClass)
-    ).on 'hidden.bs.collapse', ->
-      $parent.find("." + outClass).addClass(inClass).removeClass(outClass)
+  $target.collapse("toggle").on('shown.bs.collapse', ->
+    $parent.find("." + inClass).addClass(outClass).removeClass(inClass)
+  ).on 'hidden.bs.collapse', ->
+    $parent.find("." + outClass).addClass(inClass).removeClass(outClass)
