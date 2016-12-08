@@ -16,7 +16,7 @@ class MetricAnswerLookupTable < ActiveRecord::Migration
       t.string :title_name
       t.string   :metric_record_name
       t.string   :value
-      t.decimal :numeric_value
+      t.float :numeric_value
       t.datetime :updated_at
       t.boolean  :imported
       t.boolean :latest
