@@ -1,3 +1,5 @@
+include_set Abstract::Chart
+
 format :html do
   view :open_content do
     _render_timeline_data
@@ -132,7 +134,8 @@ format :html do
     wrap_with :div, class: "timeline-row" do
       [
         _render_year,
-        _render_value
+        _render_value,
+        _render_chart
       ]
     end
   end
@@ -158,6 +161,10 @@ format :html do
         value_details
       ]
     end
+  end
+
+  view :chart do
+
   end
 
   view :sources do

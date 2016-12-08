@@ -71,6 +71,11 @@ class MetricAnswer < ActiveRecord::Base
     card.value
   end
 
+  def fetch_numeric_value
+    return unless metric_card.numeric?
+    fetch_value.to_f
+  end
+
   def fetch_updated_at
     return card.updated_at unless (vc = card.value_card)
     [card.updated_at, vc.updated_at].compact.max

@@ -1,11 +1,15 @@
+
 format :html do
+  def fast_search_results
+    MetricAnswer.fetch metric_record_id: card.left_id
+  end
   view :timeline, cache: :never do
     wrap_with :div, class: "timeline container" do
       wrap_with :div, class: "timeline-body" do
         wrap_with :div, class: "pull-left timeline-data" do
           [
             _optional_render(:timeline_header, column: :data),
-            search_results.map.with_index do |res, _i|
+            fast_search_results.map.with_index do |res, _i|
               subformat(res).render_timeline_data
             end
           ].flatten

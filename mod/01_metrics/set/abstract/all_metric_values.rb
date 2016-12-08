@@ -2,12 +2,14 @@ include_set Abstract::SortAndFilter
 include_set Abstract::MetricChild, generation: 1
 
 def item_cards _args={}
-  @item_cards ||= filtered_item_cards filter_hash, sort_hash, paging_hash
+  @item_cards ||= filtered_item_query(
+    filter_hash, sort_hash, paging_hash
+  ).run
 end
 
-def filtered_item_cards filter={}, sort={}, paging={}
-  query_class.default left.id unless filter.present?
-  query_class.new(left.id, filter, sort, paging).run
+def filtered_item_query filter={}, sort={}, paging={}
+  return query_class.default left.id, sort, paging unless filter.present?
+  query_class.new left.id, filter, sort, paging
 end
 
 

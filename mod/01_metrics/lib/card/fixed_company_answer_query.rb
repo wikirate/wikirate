@@ -11,10 +11,6 @@ class Card
                       metric_type: :metric_type_id }.freeze
     # translate filter key to db column
 
-    def self.default company_id
-      MetricAnswer.fetch company_id: company_id, latest: true
-    end
-
     def initialize company_id, *args
       @company_card = Card.fetch company_id
       super *args

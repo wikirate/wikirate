@@ -81,11 +81,12 @@ format :html do
   view :company_details_sidebar do
     <<-HTML
     <div class="metric-details-company-header">
-#{close_icon}
+      #{close_icon}
       <br>
       <div class="row clearfix">
         <div class="company-logo">
-          #{link_to_card card.company_card, nest("#{card.company_card}+image"),
+          #{link_to_card card.company_card,
+                         nest(card.company_card.fetch(trait: :image)),
                          class: "inherit-anchor"}
         </div>
         <div class="company-name">
@@ -97,7 +98,7 @@ format :html do
     #{metric_values}
       <br>
       #{discussion}
-      </div>
+    </div>
     HTML
   end
 
@@ -136,24 +137,22 @@ format :html do
     <div class="metric-details-header">
       #{close_icon}
       <div class="row clearfix padding-top-20">
-       #{metric_details_sidebar_header}
-    </div>
-    <hr>
-    #{metric_details}
-    #{metric_values}
-    <br>
-    <div class="row clearfix">
-      <div class="data-item text-center">
-        <span class="btn label-metric">
-            #{link_to_card card.metric_card, "Metric Details"}
-        </span>
+        #{metric_details_sidebar_header}
       </div>
+      <hr>
+      #{metric_details}
+    #{metric_values}
+      <br>
+      <div class="row clearfix">
+        <div class="data-item text-center">
+          <span class="btn label-metric">
+            #{link_to_card card.metric_card, "Metric Details"}
+          </span>
+        </div>
+      </div>
+      <hr>
+      #{discussion}
     </div>
-    <hr>
-    #{discussion}
-
-</div>
-</div>
     HTML
   end
 end

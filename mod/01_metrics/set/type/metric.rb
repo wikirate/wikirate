@@ -46,7 +46,7 @@ def question_card
 end
 
 def value_type
-  value_type_card.item_names.first
+  value_type_card.item_names.first || "Free Text"
 end
 
 def value_options

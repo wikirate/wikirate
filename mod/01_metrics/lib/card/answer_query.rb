@@ -11,12 +11,20 @@ class Card
       @restrict_to_ids = Hash.new { |h, k| h[k] = [] }
     end
 
+    def self.default fixed_id, sort={}, paging={}
+      new fixed_id, { latest: true }, sort, paging
+    end
+
     # @return array of metric answer card objects
     #   if filtered by missing values then the card objects
     #   are newly instantiated and not in the database
     def run
       return missing_answers if find_missing?
       run_filter_query
+    end
+
+    def count
+      MetricAnswer.where(where_args).count
     end
 
     def metric_value_query value
@@ -32,6 +40,18 @@ class Card
           filter :updated_at, Time.now - period, ">"
         end
       end
+    end
+
+    def range_query value
+      filter :numeric_value, value[:from], ">"
+      filter :numeric_value, value[:to, "<"]
+    end
+
+    def filter key, value, operator=nil
+      operator ||= value.is_a?(Array) ? "IN" : "="
+      db_column = filter_key_to_db_column key
+      @conditions << "#{db_column} #{operator} (?)"
+      @values << value
     end
 
     private
@@ -86,13 +106,6 @@ class Card
 
     def card_id_filters
       self.class::CARD_ID_FILTERS
-    end
-
-    def filter key, value, operator=nil
-      operator ||= value.is_a?(Array) ? "IN" : "="
-      db_column = filter_key_to_db_column key
-      @conditions << "#{db_column} #{operator} (?)"
-      @values << value
     end
 
     def to_card_id value

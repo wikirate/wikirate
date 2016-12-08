@@ -22,6 +22,11 @@ event :update_date, :prepare_to_store,
   detach_subfield(:year)
 end
 
+def filtered_item_query filter={}, sort={}, paging={}
+  filter[:year] = year.to_i
+  FixedMetricAnswerQuery.new metric_card.id, filter, sort, paging
+end
+
 def valid_value_name?
   cardname.parts.size >= 3 && valid_metric? && valid_company? && valid_year?
 end

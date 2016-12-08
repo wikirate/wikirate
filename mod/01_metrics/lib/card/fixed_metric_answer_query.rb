@@ -6,10 +6,6 @@ class Card
     # filter values are card names and have to be translated to card ids
     CARD_ID_FILTERS = ::Set.new().freeze
 
-    def self.default metric_id
-      MetricAnswer.fetch metric_id: metric_id, latest: true
-    end
-
     def initialize metric_id, *args
       @metric_card = Card.fetch metric_id
       super *args
@@ -24,7 +20,7 @@ class Card
     def prepare_sort_args sort
       super
       if @sort_args[:sort_by].to_sym == :value && @metric_card.numeric?
-        @sort_args[:cast] = "decimal(20,10)"
+        @sort_args[:sort_by] = :numeric_value
       end
     end
 
