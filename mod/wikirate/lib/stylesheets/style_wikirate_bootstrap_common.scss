@@ -119,6 +119,10 @@
     margin: 12px;
 }
 
+.margin-15{
+  margin: 15px; 
+}
+
 .margin-top-10 {
     margin-top: 10px;
 }
@@ -536,4 +540,11 @@ button.pointer-item-delete.btn.btn-default {
 .media-body {
     width: inherit;
     padding-left: 8px;
+}
+
+.horizontal-list {
+  .pointer-item{
+    display: inline;
+    padding: 0;
+  }
 }
