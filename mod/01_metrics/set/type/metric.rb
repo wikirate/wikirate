@@ -161,6 +161,10 @@ format :html do
     # "<style> #{Sass.compile css}</style>"
   end
 
+  view :listing do
+    _render_content structure: "profile metric item"
+  end
+
   view :legend do
     # depends on the type
     if (unit = Card.fetch("#{card.name}+unit"))

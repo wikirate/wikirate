@@ -239,8 +239,12 @@ describe Card::Set::Type::Source do
       @source_page = create_page @url, {}
     end
     it "renders titled view with voting" do
-      expected = @source_page.format.render_titled_with_voting
-      expect(@source_page.format.render_titled).to eq(expected)
+      rendered = @source_page.format.render_titled_with_voting
+      expect(rendered).to(
+        have_tag(:div, class: "titled_with_voting-view") do
+          with_tag(:div, class: "vote-up")
+        end
+      )
     end
 
     it "renders open view with :custom_source_header to be true" do

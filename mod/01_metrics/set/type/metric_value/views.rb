@@ -5,18 +5,16 @@ format :html do
     _render_timeline_data
   end
 
-  view :concise do |args|
+  view :listing do
+    _render_titled
+  end
+
+  view :concise do
     %(
-      <span class="metric-year">
-        #{card.year} =
-      </span>
-      <span class="metric-unit">
-        #{currency}
-      </span>
+      <span class="metric-year">#{card.year} = </span>
+      <span class="metric-unit"> #{currency} </span>
       #{_render_metric_details}
-      <span class="metric-unit">
-        #{legend}
-      </span>
+      <span class="metric-unit"> #{legend} </span>
       <div class="pull-right">
         <small>#{checked_value_flag.html_safe}</small>
         <small>#{comment_flag.html_safe}</small>
@@ -33,42 +31,13 @@ format :html do
     end
   end
 
+  # FIXME: need better name
   view :metric_details do
     span_args = { class: "metric-value" }
     add_class span_args, grade if card.scored?
     add_class span_args, :small if fetch_value.length > 5
     wrap_with :span, span_args do
       beautify(fetch_value).html_safe
-    end
-  end
-
-  def humanized_big_number number
-    number_to_human number,
-                    units: {
-                      unit: "", billion: "B", million: "M", quadrillion: "P",
-                      thousand: "K", trillion: "T"
-                    },
-                    format: "%n%u",
-                    delimiter: "",
-                    precision: 3
-  end
-
-  def humanized_small_number number
-    less_than_one = number < 1
-    humanized = number_with_precision number,
-                                      delimiter: ",",
-                                      strip_insignificant_zeros: true,
-                                      precision: (less_than_one ? 3 : 1),
-                                      significant: less_than_one
-    humanized == "0" && number > 0 ? "~0" : humanized
-  end
-
-  def humanized_number value
-    number = BigDecimal.new(value)
-    if number > 1_000_000
-      humanized_big_number number
-    else
-      humanized_small_number number
     end
   end
 
@@ -111,7 +80,7 @@ format :html do
           link_opts: {
             path: { slot: { show: :menu, optional_horizontal_menu: :hide } },
             title: card.value,        "data-complete-number" => card.value,
-            "data-tooltip" => "true", "data-placement" => "top",
+            "data-tooltip" => "true", "data-placement" => "top"
           }
         )
       )

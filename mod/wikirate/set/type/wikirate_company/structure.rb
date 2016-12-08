@@ -127,9 +127,9 @@ format :html do
     HTML
   end
 
-  view :overview_section do |_args|
-    field_nest(:general_overview, view: :titled_with_edits)
-  end
+  # view :overview_section do |_args|
+  #   field_nest(:general_overview, view: :titled)
+  # end
 
   view :projects_tab do |_args|
     # FIXME

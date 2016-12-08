@@ -1,4 +1,4 @@
-{{style: mixins and variables}}
+{{style: mixins and variables|raw}}
 
 .progress {
   border-radius: 0;
@@ -75,5 +75,66 @@
     float: left;
     font-size: $sub-text-size;
     color: $heading-color;
+  }
+}
+
+
+.organizational-details {
+  > .RIGHT-status {
+    float: left;
+    padding: 0;
+  }
+  div {
+    padding: 0px;
+  }
+  width: 100%;
+  float: left;
+}
+
+.organized-by, .stat-details {
+  float: left;
+  span {
+    margin-right: 4px;
+  }
+  div, span {
+    float: left;
+    margin:0;
+  }
+}
+.topic-details{
+  clear:both;
+}
+
+.project-summary {
+  .media{
+    border: 1px solid $border-color;
+    margin: 5px 0px;
+    padding: 10px;
+  }
+  .progress {
+    min-width: 250px;
+    margin: 0px 10px;
+  }
+  .percent-researched{
+    padding-left: 4px;
+  }
+}
+.project-details-info {
+    font-size: 85%;
+    color: $overview-color;
+}
+
+//TODO make this generic
+.organized-by .pointer-item {
+  padding-right: 5px;
+  padding-left: 15px;
+  &:after {
+    content: ",";
+  }
+  &:last-child:after {
+    content: "";
+  }
+  &:first-child{
+    margin-left: 4px;
   }
 }
