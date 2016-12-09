@@ -1,5 +1,5 @@
 $header-bgcolor: #f9f9f9;
-$header-color: #bbb;
+$header-color: #666;
 $mycontributions-bgcolor: #f4f4f4;
 $metric-color: #674ea7;
 $note-color: #03998d;
@@ -91,22 +91,18 @@ $dark-header-color: #999;
   }
 }
 
-.RIGHT-activity.open-view {
+.RIGHT-activity.titled-view .activity {
   color: $header-color;
-  .activity {
-    font-size: 0.7em;
-    white-space: nowrap;
-    overflow-x: hidden;
-    span {
-      vertical-align: top;
-      &.glyphicon {
-        font-size: 0.7em;
-        margin-top: 5px;
-      }
-    }
-    div {
-      display: inline-block;
-    }
+  font-size: 85%;
+  white-space: nowrap;
+  overflow-x: hidden;
+  .glyphicon {
+    font-size: 8px;
+    vertical-align: middle;
+    margin-top: -3px;
+  }
+  div {
+    display: inline-block;
   }
 }
 
