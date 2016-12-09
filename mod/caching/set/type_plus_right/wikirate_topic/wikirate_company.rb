@@ -24,5 +24,5 @@ include Card::CachedCount
 
 # in case sth trigger refresh manually
 def calculate_count _changed_card=nil
-  left.related_companies.size
+  left.related_companies_count
 end

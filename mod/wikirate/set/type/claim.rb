@@ -6,10 +6,6 @@ card_accessor :downvote_count, type: :number, default: "0"
 card_accessor :direct_contribution_count, type: :number, default: "0"
 card_accessor :contribution_count, type: :number, default: "0"
 
-def indirect_contributor_search_args
-  [{ right_id: VoteCountID, left: name }]
-end
-
 # has to happen before the contributions update (the new_contributions event)
 # so we have to use the finalize stage
 event :vote_on_create_claim, :integrate, on: :create, when: :not_bot? do
@@ -59,6 +55,10 @@ format :html do
 
   view :citation_or_cite_button do |args|
     args[:citation_number] || optional_render(:cite_button)
+  end
+
+  view :listing do
+    _render_content structure: "note item"
   end
 
   view :cite_button do
@@ -168,10 +168,6 @@ end
 
 def analysis_cards
   analysis_names.map { |aname| Card.fetch aname }
-end
-
-event :reset_claim_counts, :integrate do
-  Card.reset_claim_counts
 end
 
 # TODO: check if this can be moved to :validate stage

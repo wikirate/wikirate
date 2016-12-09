@@ -10,6 +10,10 @@ view :missing do |args|
   _render_link args
 end
 
+view :listing do
+  _render_content structure: "browse company item"
+end
+
 def add_alias alias_name
   aliases_card.insert_item! 0, alias_name
 end

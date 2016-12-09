@@ -9,17 +9,11 @@ card_accessor :metric, type: :pointer
 card_accessor :year, type: :pointer
 card_accessor :source_type, type: :pointer, default: "[[Link]]"
 
-def indirect_contributor_search_args
-  [{ right_id: VoteCountID, left: name }]
-end
-
 require "link_thumbnailer"
 
 # has to happen before the contributions update (the new_contributions event)
 # so we have to use the finalize stage
-event :vote_on_create_source, :integrate,
-      on: :create,
-      when: proc { Card::Auth.current_id != Card::WagnBotID } do
+event :vote_on_create_source, :integrate, on: :create, when: :not_bot? do
   Auth.as_bot do
     vc = vote_count_card
     vc.supercard = self
@@ -28,10 +22,22 @@ event :vote_on_create_source, :integrate,
   end
 end
 
+def not_bot?
+  Card::Auth.current_id == Card::WagnBotID
+end
+
 event :check_source, :validate, on: :create do
-  source_cards = [subfield(:wikirate_link),
-                  subfield(:file),
-                  subfield(:text)].compact
+  source_cards = assemble_source_subfields
+  validate_source_subfields source_cards
+end
+
+def assemble_source_subfields
+  [:wikirate_link, :file, :text].map do |fieldname|
+    subfield fieldname
+  end.compact
+end
+
+def validate_source_subfields source_cards
   if source_cards.length > 1
     errors.add :source, "Only one type of content is allowed"
   elsif source_cards.empty?
@@ -44,10 +50,9 @@ def source_type_codename
 end
 
 def analysis_names
-  return [] unless (topics = fetch(trait: :wikirate_topic)) &&
-                   (companies = fetch(trait: :wikirate_company))
-  companies.item_names.map do |company|
-    topics.item_names.map do |topic|
+  return [] unless topic_list && company_list
+  company_list.item_names.map do |company|
+    topic_list.item_names.map do |topic|
       "#{company}+#{topic}"
     end
   end.flatten
@@ -57,12 +62,13 @@ def analysis_cards
   analysis_names.map { |aname| Card.fetch aname }
 end
 
-# event :source_present, :validate, on: :create,
-#       when: { Env.params[:preview] } do
-#   if ...
-#     errors.add :source, ''
-#   end
-# end
+def topic_list
+  @topic_list ||= fetch trait: :wikirate_topic
+end
+
+def company_list
+  @company_list ||= fetch trait: :wikirate_company
+end
 
 format :html do
   view :new do
