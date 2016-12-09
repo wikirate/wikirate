@@ -168,5 +168,11 @@
   :type: Cardtype
   :codename: research_group
   :key: research_group
+  :merged: 2016-12-09 20:09:50 UTC
+- :name: researcher
+  :type: Basic
+  :codename: researcher
+  :key: researcher
+  :merged: 2016-12-09 20:09:50 UTC
 :remotes:
   :live: http://wikirate.org
