@@ -10,7 +10,7 @@ format :html do
   end
 
   view :year_formgroup, cache: :never do
-    select_filter_type_based :year
+    select_filter :year, "Year", "most recent"
   end
 
   view :wikirate_topic_formgroup, cache: :never do
@@ -69,8 +69,14 @@ format :html do
     {}
   end
 
+  def year_options
+    type_options(:year).each_with_object({ "Most Recent" => "latest" }) do |v, h|
+      h[v] = v
+    end
+  end
+
   def metric_value_options
-    {
+    opts = {
         "All"               => "all",
         "Researched"        => "exists",
         "Known"             => "known",
@@ -81,6 +87,21 @@ format :html do
         "Edited this month" => "month",
         "Outliers"          => "outliers"
     }
+    return opts unless filter_param(:range)
+    opts.each_with_object({}) do |(k, v), h|
+      h[add_range(k, v)] = v
+    end
+  end
+
+  def add_range key, value
+    return key unless selected_value?(value)
+    range = filter_param :range
+    "#{range[:from]} <= #{key} < #{range[:to]}"
+  end
+
+  def selected_value? value
+    (filter_param(:metric_value) && value == filter_param(:metric_value)) ||
+      value == "exists"
   end
 
   def metric_type_options

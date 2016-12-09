@@ -14,6 +14,7 @@ class WikirateTable
 
   def initialize_opts opts, table_type
     @table_opts = opts.delete(:table) || {}
+    @table_opts[:header] = opts.delete(:header)
     add_class @table_opts, "wikirate-table #{table_type}"
     @tr_opts = opts.delete(:tr) || {}
     @td_opts = opts.delete(:td) || {}

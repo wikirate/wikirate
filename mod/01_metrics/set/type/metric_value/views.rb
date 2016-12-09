@@ -1,5 +1,24 @@
 include_set Abstract::Chart
 
+format :json do
+  def chart_metric_id
+    card.metric_card.id
+  end
+
+  def vega_chart_config
+    @data ||= chart_class.new(self,
+                              highlight: card.value,
+                              layout: { height: 70, width: 300 },
+                              link: false,
+                              axes: :light)
+  end
+
+  def chart_filter_query
+    FixedMetricAnswerQuery.new chart_metric_id,
+                               card.filter_hash.merge(year: card.year)
+  end
+end
+
 format :html do
   view :open_content do
     _render_timeline_data
@@ -130,10 +149,6 @@ format :html do
         value_details
       ]
     end
-  end
-
-  view :chart do
-
   end
 
   view :sources do

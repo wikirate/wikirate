@@ -15,13 +15,13 @@ format :html do
     count_with_label_cell company_count, "Companies"
   end
 
-  view :thumbnail_with_vote do
+  view :thumbnail do
     voo.hide! :thumbnail_subtitle
     image = card.metric_designer_card.field(:image)
     title = card.right.name
     output [
-      _render_vote,
-      text_with_image(title: title, image: image, size: :icon)
+             _optional_render_vote,
+             text_with_image(title: title, image: image, size: :icon)
     ]
   end
 

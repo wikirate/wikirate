@@ -104,8 +104,17 @@ format :html do
   def contribution_report_body
     return "" unless (action = Env.params[:report_tab])
     report_card = card.report_card action
-    item_view = card.cont_type_card.contribution_listing_view
-    nest report_card, view: :content, structure: action, skip_perms: true,
-                      items: { view: item_view }
+    _render_contribution_list report_card: report_card
+  end
+
+  view :contribution_list, cache: :never do |args|
+    report_card = args[:report_card]
+    nest report_card, view: contribution_list_view,
+         structure: report_card.variant,
+         skip_perms: true
+  end
+
+  def contribution_list_view
+    "#{card.right.codename}_list"
   end
 end

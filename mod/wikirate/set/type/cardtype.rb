@@ -25,6 +25,3 @@ def standard_report_wql args
   JSON.generate({ type_id: id, limit: 5 }.merge(args))
 end
 
-def contribution_listing_view
-  :listing
-end

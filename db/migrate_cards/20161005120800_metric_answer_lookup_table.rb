@@ -12,14 +12,14 @@ class MetricAnswerLookupTable < ActiveRecord::Migration
       t.integer  :year
       t.string   :metric_name
       t.string   :company_name
-      t.string :designer_name
-      t.string :title_name
+      t.string   :designer_name
+      t.string   :title_name
       t.string   :metric_record_name
       t.string   :value
-      t.float :numeric_value
+      t.float    :numeric_value
       t.datetime :updated_at
       t.boolean  :imported
-      t.boolean :latest
+      t.boolean  :latest
     end
 
     add_index :metric_answers, :metric_answer_id,

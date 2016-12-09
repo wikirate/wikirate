@@ -2,13 +2,20 @@ class Card
   class AnswerQuery
     DB_COLUMN_MAP = {}.freeze
 
-    def initialize filter, sort, paging
+    def initialize filter, sort={}, paging={}
       prepare_filter_args filter
       prepare_sort_args sort
       @paging_args = paging
+
       @conditions = []
       @values = []
       @restrict_to_ids = Hash.new { |h, k| h[k] = [] }
+
+      @temp_conditions = []
+      @temp_values = []
+      @temp_restrict_to_ids = Hash.new { |h, k| h[k] = [] }
+
+      add_filter @filter_args
     end
 
     def self.default fixed_id, sort={}, paging={}
@@ -23,8 +30,18 @@ class Card
       run_filter_query
     end
 
-    def count
-      MetricAnswer.where(where_args).count
+    def add_filter opts={}
+      opts.each do |k, v|
+        process_filter_option k, v
+      end
+    end
+
+    def where additional_filter={}
+      MetricAnswer.where where_args(additional_filter)
+    end
+
+    def count additional_filter={}
+      where(additional_filter).count
     end
 
     def metric_value_query value
@@ -42,9 +59,21 @@ class Card
       end
     end
 
+    def category_query value
+      filter :value, value
+    end
+
     def range_query value
-      filter :numeric_value, value[:from], ">"
-      filter :numeric_value, value[:to, "<"]
+      filter :numeric_value, value[:from], ">="
+      filter :numeric_value, value[:to], "<"
+    end
+
+    def year_query value
+      if value.to_sym == :latest
+        filter :latest, true
+      else
+        filter :year, value
+      end
     end
 
     def filter key, value, operator=nil
@@ -73,23 +102,43 @@ class Card
       @sort_args = args
     end
 
-    # @return args for AR's where method
-    def where_args
-      @filter_args.each do |key, value|
-        if exact_match_filters.include? key
-          filter key, value
-        elsif like_filters.include? key
-          filter key, "%#{value}%", "LIKE"
-        elsif card_id_filters.include? key
-          filter key, to_card_id(value)
-        elsif respond_to? "#{key}_query"
-          send "#{key}_query", value
-        end
-      end
+    def set_temp_filter opts
+      return unless opts.present?
+
+      c, v, r = @conditions, @values, @restrict_to_ids
+      @conditions = []
+      @values = []
+      @restrict_to_ids = Hash.new { |h, k| h[k] = [] }
+
+      add_filter opts
       @restrict_to_ids.each do |key, values|
         filter key, values
       end
-      [@conditions.join(" AND ")] + @values
+
+      @temp_conditions, @temp_values, @temp_restrict_to_ids =
+        @conditions, @values, @restrict_to_ids
+      @conditions, @values, @restrict_to_ids = c, v, r
+    end
+
+    # @return args for AR's where method
+    def where_args temp_filter_opts={}
+      set_temp_filter temp_filter_opts
+      @restrict_to_ids.each do |key, values|
+        filter key, values
+      end
+      [(@conditions+@temp_conditions).join(" AND ")] + @values + @temp_values
+    end
+
+    def process_filter_option key, value
+      if exact_match_filters.include? key
+        filter key, value
+      elsif like_filters.include? key
+        filter key, "%#{value}%", "LIKE"
+      elsif card_id_filters.include? key
+        filter key, to_card_id(value)
+      elsif respond_to? "#{key}_query"
+        send "#{key}_query", value
+      end
     end
 
     def filter_key_to_db_column key

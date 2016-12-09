@@ -40,7 +40,7 @@ $(document).ready ->
     loader_anime = $("#ajax_loader").html()
     active_details.append(loader_anime)
     $(active_details).load detailsUrl(toggle), ->
-      $(active_details).trigger('slotReady')
+      $(active_details).find('.card-slot').trigger('slotReady')
 
   detailsUrl = (toggle) ->
     if $(toggle).data('details-url')
