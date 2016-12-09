@@ -87,9 +87,39 @@ h4.contribution-report-title {
 
 // TODO add border-left colours to each card type
 .contribution-report {
-    border-left: 4px solid;
     margin-bottom: 15px;
-    border-top: 1px solid $border-color;
-    border-right: 1px solid $border-color;
-    border-bottom: 1px solid $border-color;
+    border: 1px solid $border-color;
+}
+
+
+
+.RIGHT-metric, .RIGHT-metric_value{
+  .contribution-report-header {
+      border-left: 4px solid $metric-color;
+  }
+}
+.RIGHT-company{
+  .contribution-report-header {
+      border-left: 4px solid $company-color;
+  }
+}
+.RIGHT-project{
+  .contribution-report-header {
+      border-left: 4px solid $card-text-color;
+  }
+}
+.RIGHT-source{
+  .contribution-report-header {
+      border-left: 4px solid $source-color;
+  }
+}
+.RIGHT-topic{
+  .contribution-report-header {
+      border-left: 4px solid $topic-color;
+  }
+}
+.RIGHT-note{
+  .contribution-report-header {
+      border-left: 4px solid $note-color;
+  }
 }
