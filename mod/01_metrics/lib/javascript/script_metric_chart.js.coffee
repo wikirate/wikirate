@@ -3,11 +3,11 @@ wagn.slotReady (slot) ->
     $.ajax
       url: $(vis).data "url"
       type: "GET"
-      success: (data) -> metric_chart(data)
+      success: (data) -> metric_chart(data, $(vis).attr('id'))
 
-metric_chart = (spec) ->
+metric_chart = (spec, id) ->
   vg.parse.spec spec, (error, chart) ->
-    chart({el: ".vis"}).on "click", (event, item) ->
+    chart({el: "##{id}"}).on "click", (event, item) ->
       if item.datum.link
         $.ajax item.datum.link,
           success: (data) -> $(event.target).setSlotContent(data)

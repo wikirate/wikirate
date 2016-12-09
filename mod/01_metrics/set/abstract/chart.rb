@@ -10,8 +10,9 @@ format :html do
   end
 
   def vega_chart
-    content_tag :div, "", class: "vis",
-                data: { url: path(view: :vega, format: :json) }
+    url = path view: :vega, format: :json
+    id = unique_id.tr "+", "-"
+    wrap_with :div, "", id: id, class: "vis", data: { url: url }
   end
 
   def show_chart?
@@ -22,8 +23,7 @@ end
 format :json do
   # views requested by ajax to load chart
   view :vega do
-    ve = JSON.pretty_generate vega_chart_config.to_hash
-    binding.pry
+    # ve = JSON.pretty_generate vega_chart_config.to_hash
     vega_chart_config.to_json
   end
 
