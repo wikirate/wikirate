@@ -215,7 +215,7 @@ format :html do
 
   view :new_name_formgroup do
     formgroup "Metric Name", editor: "name" do
-      raw new_name_field(form)
+      new_name_field
     end
   end
 

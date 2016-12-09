@@ -14,7 +14,7 @@ format :html do
         card: act.card,
         action: act.main_action.action_type
       }
-      wrap_with :div, class: "activity" do
+      wrap_with :div, class: "activity margin-15" do
         activity_item(item)
       end
     end.join "\n"
@@ -33,10 +33,10 @@ format :html do
     %(
       <span class="time">#{item[:time]} ago</span>
       #{glyphicon 'stop'}
-      <div>
-        #{action_info item[:card], item[:action]}
-        <p>#{link_to_card item[:card]}</p>
-      </div>
+      <span class="activity-action">#{action_info item[:card], item[:action]}
+      </span>
+      <span>#{link_to_card item[:card]}</span>
+
     ).html_safe
   end
 

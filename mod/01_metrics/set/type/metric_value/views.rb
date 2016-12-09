@@ -41,6 +41,30 @@ format :html do
     )
   end
 
+  view :value do
+    wrap_with :div, class: "td value" do
+      [
+        wrap_with(:span, currency, class: "metric-unit"),
+        _render_value_link,
+        wrap_with(:span, legend, class: "metric-unit"),
+        checked_value_flag,
+        comment_flag,
+        _render_value_details_toggle,
+        value_details
+      ]
+    end
+  end
+
+  # FIXME: need better name
+  view :metric_details do
+    span_args = { class: "metric-value" }
+    add_class span_args, grade if card.scored?
+    add_class span_args, :small if pretty_value.length > 5
+    wrap_with :span, span_args do
+      beautify(pretty_value).html_safe
+    end
+  end
+
   def grade
     return unless (value = (card.value && card.value.to_i))
     case value
@@ -50,28 +74,18 @@ format :html do
     end
   end
 
-  # FIXME: need better name
-  view :metric_details do
-    span_args = { class: "metric-value" }
-    add_class span_args, grade if card.scored?
-    add_class span_args, :small if fetch_value.length > 5
-    wrap_with :span, span_args do
-      beautify(fetch_value).html_safe
-    end
-  end
-
   def numeric_metric?
     (value_type = card.metric_card.fetch trait: :value_type) &&
       %w(Number Money).include?(value_type.item_names[0])
   end
 
-  def fetch_value
-    if (numeric_metric? || !card.metric_card.researched?) &&
-       !card.value_card.unknown_value?
-      humanized_number card.value
-    else
-      card.value
-    end
+  def numeric_value?
+    return false unless numeric_metric? || !card.metric_card.researched?
+    !card.value_card.unknown_value?
+  end
+
+  def pretty_value
+    @pretty_value ||= numeric_value? ? humanized_number(card.value) : card.value
   end
 
   def checked_value_flag
@@ -95,7 +109,7 @@ format :html do
     wrap_with :span, span_args do
       subformat(card)._render_modal_link(
         args.merge(
-          link_text: fetch_value,
+          link_text: pretty_value,
           link_opts: {
             path: { slot: { show: :menu, optional_horizontal_menu: :hide } },
             title: card.value,        "data-complete-number" => card.value,
@@ -112,8 +126,8 @@ format :html do
 
   view :value_link do
     wrap_with :span, class: "metric-value" do
-      link_to beautify(fetch_value), path: "/#{card.cardname.url_key}",
-                                     target: "_blank"
+      link_to beautify(pretty_value), path: "/#{card.cardname.url_key}",
+                                      target: "_blank"
     end
   end
 
@@ -133,20 +147,6 @@ format :html do
       [
         wrap_with(:span, card.cardname.right),
         wrap_with(:div, "", class: "timeline-dot")
-      ]
-    end
-  end
-
-  view :value do
-    wrap_with :div, class: "td value" do
-      [
-        wrap_with(:span, currency, class: "metric-unit"),
-        _render_value_link,
-        wrap_with(:span, legend, class: "metric-unit"),
-        checked_value_flag,
-        comment_flag,
-        _render_value_details_toggle,
-        value_details
       ]
     end
   end
