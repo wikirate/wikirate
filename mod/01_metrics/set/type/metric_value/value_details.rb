@@ -2,7 +2,7 @@ include_set Abstract::WikirateTable
 
 format :html do
   def value_details
-    send "_render_#{card.metric_type}_value_details"
+    _render "#{card.metric_type}_value_details"
   end
 
   def wrap_value_details

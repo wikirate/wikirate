@@ -1,5 +1,5 @@
 format :html do
-  view :core do
+  view :open_content do
     _render_timeline_data
   end
 
@@ -106,7 +106,7 @@ format :html do
   view :value_link do
     wrap_with :span, class: "metric-value" do
       link_to beautify(pretty_value), path: "/#{card.cardname.url_key}",
-                                     target: "_blank"
+                                      target: "_blank"
     end
   end
 
