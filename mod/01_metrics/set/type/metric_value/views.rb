@@ -7,6 +7,7 @@ format :html do
     _render_titled
   end
 
+  # year, value, unit and flags
   view :concise do
     %(
       <span class="metric-year">#{card.year} = </span>
@@ -20,6 +21,7 @@ format :html do
     )
   end
 
+  # value, unit, and flags
   view :value do
     wrap_with :div, class: "td value" do
       [
@@ -34,6 +36,7 @@ format :html do
     end
   end
 
+  # styled pretty value
   # FIXME: need better name
   view :metric_details do
     span_args = { class: "metric-value" }
