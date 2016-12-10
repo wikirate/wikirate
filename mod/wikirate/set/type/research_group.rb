@@ -31,7 +31,22 @@ format :html do
   end
 
   view :contributions_column do
+    output [group_contributions, member_contributions]
+  end
+
+  def group_contributions
     with_header "Group Contributions" do
+      [
+        # metrics designed
+        # projects organized
+      ]
+    end
+  end
+
+  def member_contributions
+    with_header "Member Contributions" do
+      # all_user_members.map do |user|
+      #   nest user, view: :contribution_summary
     end
   end
 end
