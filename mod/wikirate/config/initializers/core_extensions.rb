@@ -9,7 +9,7 @@ module CoreExtensions
     end
   end
 
-  ::String.include String
+  ::String.include_extension String
 
   # methods for codenames and numerical ids
   module PersistentIdentifier
@@ -26,6 +26,6 @@ module CoreExtensions
     end
   end
 
-  ::Symbol.include PersistentIdentifier
-  ::Integer.include PersistentIdentifier
+  ::Symbol.include_extension PersistentIdentifier
+  ::Integer.include_extension PersistentIdentifier
 end
