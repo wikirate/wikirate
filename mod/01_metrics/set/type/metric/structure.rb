@@ -20,10 +20,25 @@ format :html do
     end
   end
 
+  view :data do
+    wrap do
+      bs_layout do
+        row do
+          _optional_render_filter
+        end
+        row do
+          _render_chart
+        end
+        row do
+          _render_table
+        end
+      end
+    end
+  end
+
 
   view :filter do
-    field_subformat(:metric_company_filter)._render_core +
-      _render_chart
+    field_subformat(:metric_company_filter)._render_core
   end
 
   view :table do

@@ -6,13 +6,11 @@ format :html do
   end
 
   def wrap_value_details
-    wrap_with :div, class: "metric-value-details collapse" do
-      [
+    output [
         _optional_render(:credit_name),
         yield,
         wrap_with(:div, _render_comments, class: "comments-div")
       ]
-    end
   end
 
   view :researched_value_details do

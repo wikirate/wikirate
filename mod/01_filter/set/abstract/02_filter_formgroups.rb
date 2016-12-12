@@ -94,7 +94,7 @@ format :html do
   end
 
   def add_range key, value
-    return key unless selected_value?(value)
+    return key # unless selected_value?(value)
     range = filter_param :range
     "#{range[:from]} <= #{key} < #{range[:to]}"
   end

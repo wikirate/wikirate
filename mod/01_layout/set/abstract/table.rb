@@ -24,8 +24,21 @@ format :html do
   #   - adds :details_placeholder to cell_views
   def wikirate_table_with_details table_type, item_cards, cell_views, opts={}
     cell_views << :details_placeholder
-    opts.deep_merge! td: { classes: ["header", "data", "details"] }
+    add_td_classes opts, ["header", "data", "details"]
     wikirate_table table_type, item_cards, cell_views, opts
+  end
+
+  def add_td_classes opts, new_classes
+    opts[:td] ||= {}
+    opts[:td][:classes] ||= []
+    classes = opts[:td][:classes]
+    new_classes.each_with_index do |cl, i|
+      if classes[i]
+        classes[i] += " #{cl}"
+      else
+        classes[i] = cl
+      end
+    end
   end
 
   def count_with_label_cell count, label

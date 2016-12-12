@@ -1,18 +1,10 @@
+# this set is no longer used for the metric value sidebar views on metric
+# company page (replaced with metric_record_list view).
+# probably not needed any more but I'm not sure if it is used somewhere else
+
 include_set Abstract::Table
 
 format :html do
-  def fast_search_results
-    MetricAnswer.fetch metric_record_id: card.left.id
-  end
-
-  view :metric_record_list do
-    wikirate_table_with_details :plain, fast_search_results,
-                                [:plain_year, :closed_answer],
-                                header: ["Year", "Answer"],
-                                details_view: :answer_details
-
-  end
-
   view :timeline, cache: :never do
     wrap_with :div, class: "timeline container" do
       wrap_with :div, class: "timeline-body" do

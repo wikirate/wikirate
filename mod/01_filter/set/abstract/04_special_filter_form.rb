@@ -9,7 +9,7 @@ format :html do
     form_tag path(mark: card.cardname.left, view: content_view),
              class: "filter-container slotter sub-content", method: "GET",
              id: "_filter_container", data: { remote: "true" } do
-      output [_render_advanced_filter, _render_main_filter]
+      output [advanced_filter, _render_main_filter]
     end
   end
 
@@ -22,16 +22,26 @@ format :html do
     end
   end
 
+
   # style="display: #{filter_active};"
-  view :advanced_filter do
+  def advanced_filter
+    filter_advanced_active? ? advanced_filter_form_wrap : advanced_filter_placeholder
+  end
+
+  def advanced_filter_placeholder
+    content_tag :div, "", id: "_filter_details",
+                          class: "filter-details collapse"
+  end
+
+  def advanced_filter_form_wrap
     html_class = "filter-details collapse"
     html_class += " in" if filter_advanced_active?
     wrap_with :div, class: html_class, id: "_filter_details" do
-      advanced_filter_form
+      _render_advanced_filter_form
     end
   end
 
-  def advanced_filter_form
+  view :advanced_filter_form do
     advanced_filter_formgroups
   end
 
@@ -39,9 +49,10 @@ format :html do
     button_tag "more filter options",
                situation: "link", type: "button", class: "filter-toggle btn-sm",
                data: { toggle: "collapse",
+                       url: path(view: :advanced_filter_form),
                        target: "#_filter_details",
-                       collapseintext: "fewer filter options",
-                       collapseouttext: "more filter options" }
+                       collapse_text_in: "fewer filter options",
+                       collapse_text_out: "more filter options" }
   end
 
   def content_view

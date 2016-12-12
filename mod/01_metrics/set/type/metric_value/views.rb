@@ -8,7 +8,9 @@ format :json do
   def vega_chart_config
     @data ||= chart_class.new(self,
                               highlight: card.value,
-                              layout: { height: 70, width: 300 },
+                              layout: { height: 70, width: 300,
+                                        padding: { top: 10, left: 40,
+                                                   bottom: 20, right: 30 } },
                               link: false,
                               axes: :light)
   end
@@ -21,7 +23,21 @@ end
 
 format :html do
   view :open_content do
-    _render_timeline_data
+    bs do
+      layout do
+        row 3, 9 do
+          column value_field
+          column do
+            row 12 do
+              column _render_chart
+            end
+            row 12 do
+              column_render_answer_details
+            end
+          end
+        end
+      end
+    end
   end
 
   view :listing do

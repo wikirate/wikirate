@@ -1,4 +1,5 @@
 include_set Abstract::Media
+include_set Abstract::Table
 
 format :html do
   view :metric_thumbnail_with_vote do
@@ -76,9 +77,22 @@ format :html do
     end
   end
 
+
+  def fast_search_results
+    MetricAnswer.fetch metric_record_id: card.left.id
+  end
+
+  view :metric_record_list do
+    wikirate_table :plain, fast_search_results,
+                   [:plain_year, :closed_answer],
+                   header: ["Year", "Answer"],
+                   td: { classes: ["text-center"] }
+
+  end
+
   def metric_values
     wrap_with :div, class: "row clearfix wiki" do
-      nest "#{card.metric_record}+metric values", view: :timeline
+      _render_metric_record_list
     end
   end
 
@@ -101,10 +115,10 @@ format :html do
           </div>
           <hr>
           #{metric_details}
-      #{metric_values}
+          #{metric_values}
           <br>
           #{discussion}
-        </div>§
+        </div>
       HTML
     end
   end
@@ -149,7 +163,7 @@ format :html do
           </div>
           <hr>
           #{metric_details}
-      #{metric_values}
+           #{metric_values}
           <br>
           <div class="row clearfix">
             <div class="data-item text-center">

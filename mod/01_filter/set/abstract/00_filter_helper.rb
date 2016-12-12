@@ -1,5 +1,6 @@
 def filter_hash
-  ((filter = Env.params[:filter]) && filter.is_a?(Hash) && filter) || {}
+  ((filter = Env.params[:filter]) && filter.is_a?(Hash) && filter) ||
+    default_filter_option
 end
 
 def sort_hash
@@ -8,6 +9,10 @@ end
 
 def paging_hash
   { limit: limit, offset: offset }
+end
+
+def default_filter_option
+  { year: :latest, value: :exist }
 end
 
 def limit
