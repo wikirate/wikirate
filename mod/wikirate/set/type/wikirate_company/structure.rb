@@ -4,6 +4,10 @@ include_set Abstract::TwoColumnLayout
 card_accessor :wikipedia
 
 format :html do
+  def default_content_formgroup_args _args
+    voo.edit_structure = [:image, :wikipedia]
+  end
+
   def active_profile_tab
     (profile = params[:company_profile]) ? profile.to_sym : default_profile_tab
   end
@@ -78,6 +82,9 @@ format :html do
   end
 
   view :topics_tab do
+    # TODO: convert to ruby, get rid of "novotee" stuff
+    # wrap_with :div, class: "voting" do
+    #   nest card.cardname.left
     process_content <<-HTML
       <div class="voting">
         {{_left+topic+novotee search|drag_and_drop|content;structure:company topic drag item}}
@@ -99,7 +106,7 @@ format :html do
 
 
   view :projects_tab do |_args|
-
+    # TODO: convert to ruby, get rid of "initiative" language
     # FIXME
     process_content <<-HTML
     {{_l+initiatives 3|hide:paging|content ;structure:initiative item}}
@@ -114,17 +121,19 @@ format :html do
     field_subformat(:company_metric_filter)._render_core args
   end
 
-  #view :recent_editors do |_args|
-  #  process_content <<-HTML
-  #  <div class="row clearfix company-header-content" >
- 	#		  <h5>{{_l+*contribution count|core}} Contributions about {{_l|name}}</h5>
- 	#			<div class="col-md-6 column ">
- 	#			  <small>Recent Editors</small>
- 	#			  {{_l+contributors_3|hide:paging|content ;structure:recent editor item}}
- 	#			</div>
- 	#		</div>
-  #  HTML
-  #end
+  # view :recent_editors do |_args|
+  #   process_content <<-HTML
+  #   <div class="row clearfix company-header-content" >
+  #       <h5>
+  #         {{_l+*contribution count|core}} Contributions about {{_l|name}}
+  #       </h5>
+  # 			<div class="col-md-6 column ">
+  # 			  <small>Recent Editors</small>
+  # 			  {{_l+contributors_3|hide:paging|content;structure:recent editor item}}
+  # 			</div>
+  # 		</div>
+  #   HTML
+  # end
 
   # view :core do |args|
   #   tabs = [
@@ -141,5 +150,4 @@ format :html do
   # view :overview_section do |_args|
   #   field_nest(:general_overview, view: :titled)
   # end
-
 end
