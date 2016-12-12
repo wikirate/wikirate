@@ -14,15 +14,15 @@ format :html do
     # return "deleteme"
     wrap_with :div, class: "profile-data" do
       [
-        field_nest(:activity, view: :titled, title: "Activity", hide: :menu),
-        # what is this craziness? shouldn't this just be a view?
-        field_nest(:follow, view: :profile,
-                            hide: [:menu, :toggle],
-                            title: "Following",
-                            items: {
-                              view: :content,
-                              structure: "User following result row"
-                            })
+        field_nest(:activity, view: :titled, title: "Activity", hide: :menu)
+        # FIXME: restore following soon
+        #field_nest(:follow, view: :profile,
+        #                    hide: [:menu, :toggle],
+        #                    title: "Following",
+        #                    items: {
+        #                      view: :content,
+        #                      structure: "User following result row"
+        #                    })
       ]
     end
   end
