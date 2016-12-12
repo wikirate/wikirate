@@ -9,8 +9,6 @@ module CoreExtensions
     end
   end
 
-  ::String.include_extension String
-
   # methods for codenames and numerical ids
   module PersistentIdentifier
     def card
@@ -25,7 +23,16 @@ module CoreExtensions
       Card.quick_fetch(self).name
     end
   end
+end
 
-  ::Symbol.include_extension PersistentIdentifier
-  ::Integer.include_extension PersistentIdentifier
+class String
+  include CoreExtensions::String
+end
+
+class Symbol
+  include CoreExtensions::PersistentIdentifier
+end
+
+class Integer
+  include CoreExtensions::PersistentIdentifier
 end
