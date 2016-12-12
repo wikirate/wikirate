@@ -1,3 +1,9 @@
+# Set pattern: User+Cardtype
+#
+# used for the generation of contribution reports.
+# Eg, Richard+Metrics is used to generate reports about Richard's metric-related
+# contributions.
+#
 include_set Abstract::WikirateTable
 include_set Abstract::TwoColumnLayout
 
@@ -14,19 +20,34 @@ def cont_type_card
   @cont_type_card ||= right
 end
 
+# returns [User]+[Cardtype]+report_search, a search card that finds cards
+# for the given user/cardtype combination.
+#
+# raw_content for each variant can be set with a method following this pattern
+# on the cardtype card:
+#
+#   def (variant)_report_content user_id
+#     (generate and return WQL in JSON form)
+#   end
+#
+# default methods for the standard four action variants (created, updated,
+# discussed, and voted_on) are defined on the type/cardtype set.
+
+def report_card variant
+  @report_cards ||= {}
+  @report_cards[variant] ||= begin
+    rcard = Card.new name: cardname.trait(:report_search)
+    # note: #new is important here, because we want different cards
+    # for different variants
+    rcard.variant = variant
+    rcard
+  end
+end
+
 def report_action_applies? action
   return true unless action == :voted_on
   # probably a faster way?
   Card.new(type_id: cont_type_card.id).respond_to? :vote_count
-end
-
-def report_card action
-  @report_cards ||= {}
-  @report_cards[action] ||= begin
-    rcard = Card.new name: "#{name}+#{Card[:report_search].name}"
-    rcard.variant = action
-    rcard
-  end
 end
 
 format :html do
@@ -54,20 +75,29 @@ format :html do
 
   def contribution_report_action_boxes
     wrap_with :ul, class: "nav nav-tabs" do
-      [:created, :updated, :discussed, :voted_on].map do |report_action|
+      [:created, :updated, :discussed, :voted_on].reverse.map do |report_action|
         contribution_report_box report_action
-      end << contribution_report_toggle
+      end.unshift contribution_report_toggle
     end
   end
 
   def contribution_report_box action
-    wrap_with :li, class: "contribution-report-box" do
+    active_tab = current_tab?(action) ? "active" : nil
+    wrap_with :li, class: css_classes("contribution-report-box", active_tab) do
       contribution_report_count_tab action
     end
   end
 
+  def current_tab
+    @current_tab ||= Env.params[:report_tab]
+  end
+
+  def current_tab? action
+    action.to_s == current_tab
+  end
+
   def contribution_report_count_tab action
-    return "" unless card.report_action_applies? action
+    return "&nbsp;" unless card.report_action_applies? action
     link_to_view :contribution_report,
                  two_line_tab(ACTION_LABELS[action], report_count(action)),
                  path: { report_tab: action }, class: "slotter"
@@ -86,7 +116,7 @@ format :html do
 
   def contribution_report_toggle
     toggle_status = Env.params[:report_tab] ? :open : :closed
-    wrap_with :li do
+    wrap_with :li, class: "contribution-report-toggle" do
       send "contribution_report_toggle_#{toggle_status}"
     end
   end
@@ -102,7 +132,7 @@ format :html do
   end
 
   def contribution_report_body
-    return "" unless (action = Env.params[:report_tab])
+    return "" unless (action = current_tab)
     report_card = card.report_card action
     item_view = card.cont_type_card.contribution_listing_view
     nest report_card, view: :content, structure: action, skip_perms: true,
