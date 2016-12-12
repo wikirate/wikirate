@@ -4,6 +4,10 @@ include_set Abstract::TwoColumnLayout
 card_accessor :wikipedia
 
 format :html do
+  def default_content_formgroup_args args
+    voo.edit_structure = [:image, :wikipedia]
+  end
+
   def active_profile_tab
     (profile = params[:company_profile]) ? profile.to_sym : default_profile_tab
   end

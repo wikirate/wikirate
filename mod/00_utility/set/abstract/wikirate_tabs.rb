@@ -34,42 +34,31 @@ format :html do
   end
 
   def wikirate_layout type, tabs, extra=nil
-    link_text = %(
-    <div class="row-data center-logo ">
-                    #{field_nest "image"}
-                  </div>)
-    layout container: true, fluid: true, class: "yinyang nodblclick" do
-      row 6 do
-        col class: "border-right" do
-          row md: 12, xs: 12,
-              class: "clearfix #{type}-content #{type}-page-logo-container" do
-            col class: "nopadding left" do
-              link_to_card card.cardname.trunk, link_text,
-                           class: "inherit-anchor"
+    bs do
+      layout container: true, fluid: true, class: "yinyang nodblclick" do
+        row 6 do
+          col class: "border-right" do
+            row md: 12, xs: 12,
+                class: "clearfix #{type}-content #{type}-page-logo-container" do
+              col class: "nopadding left" do
+                wikirate_layout_link
+              end
             end
+            html wikirate_tabs(tabs, type, extra)
           end
-          html wikirate_tabs(tabs, type, extra)
+          html field_nest("right sidebar")
         end
-        html field_nest("right sidebar")
       end
     end
-    # <<-HTML
-    #   <div class="container-fluid ">
-    #     <div class="row">
-    #       <div class="col-md-6 border-right">
-    #         <div class="row clearfix #{type}-content #{type}-page-logo-container ">
-    #           <div class="col-md-12 col-xs-12 nopadding left">
-    #             #{link_to_card card.left, link_text, class: "inherit-anchor"}
-    #           </div>
-    #         </div>
-    #           #{wikirate_tabs tabs, type, extra}
-    #         </div>
-    #         #{field_nest "right sidebar"}
-    #       </div>
-    #      </div>
-    #   </div>
-    # HTML
   end
+
+  def wikirate_layout_link
+    link_text = wrap_with :div, class: "row-data center-logo" do
+      field_nest "image"
+    end
+    link_to_card card.cardname.trunk, link_text, class: "inherit-anchor"
+  end
+
 
   def wikirate_tabs tabs, color, additional=nil
   <<-HTML

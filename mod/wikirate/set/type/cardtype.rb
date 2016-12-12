@@ -1,3 +1,9 @@
+format do
+  def default_header_args _args
+    voo.variant = :plural
+  end
+end
+
 def created_report_content user_id
   standard_report_wql created_by: user_id
 end
