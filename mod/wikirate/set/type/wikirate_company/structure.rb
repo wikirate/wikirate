@@ -4,7 +4,7 @@ include_set Abstract::TwoColumnLayout
 card_accessor :wikipedia
 
 format :html do
-  def default_content_formgroup_args args
+  def default_content_formgroup_args _args
     voo.edit_structure = [:image, :wikipedia]
   end
 
@@ -94,6 +94,9 @@ format :html do
   # end
 
   view :topics_tab do
+    # TODO: convert to ruby, get rid of "novotee" stuff
+    # wrap_with :div, class: "voting" do
+    #   nest card.cardname.left
     process_content <<-HTML
       <div class="voting">
         {{_left+topic+novotee search|drag_and_drop|content;structure:company topic drag item}}
@@ -136,6 +139,7 @@ format :html do
   # end
 
   view :projects_tab do |_args|
+    # TODO: convert to ruby, get rid of "initiative" language
     # FIXME
     process_content <<-HTML
     {{_l+initiatives 3|hide:paging|content ;structure:initiative item}}

@@ -1,5 +1,5 @@
 format :html do
-  def default_content_formgroup_args args
+  def default_content_formgroup_args _args
     voo.edit_structure = [:image]
   end
 
