@@ -1,4 +1,5 @@
 include_set Abstract::Table
+include_set Abstract::SortAndFilter
 
 # tables used on a metric page
 format :html do
