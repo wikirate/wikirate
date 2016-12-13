@@ -66,7 +66,7 @@ format :json do
   end
 
   def chart_class
-    card.numeric? ? Card::Chart::NumericChart : Chart::CategoryChart
+    card.numeric? ? Card::Chart::NumericChart : Card::Chart::CategoryChart
   end
 
   def chart_metric_id
