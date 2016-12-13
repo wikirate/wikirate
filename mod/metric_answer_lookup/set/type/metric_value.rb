@@ -1,3 +1,3 @@
-event :update_metric_answer_lookup_table_due_to_metric_answer_change, :finalize do
-  refresh_metric_answer_lookup_entry id
+event :update_answer_lookup_table_due_to_answer_change, :finalize do
+  refresh_answer_lookup_entry id
 end

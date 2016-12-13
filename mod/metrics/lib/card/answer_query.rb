@@ -37,7 +37,7 @@ class Card
     end
 
     def where additional_filter={}
-      MetricAnswer.where where_args(additional_filter)
+      Answer.where where_args(additional_filter)
     end
 
     def count additional_filter={}
@@ -90,7 +90,7 @@ class Card
     end
 
     def run_filter_query
-      MetricAnswer.fetch(where_args, @sort_args, @paging_args)
+      Answer.fetch(where_args, @sort_args, @paging_args)
     end
 
     def prepare_filter_args filter

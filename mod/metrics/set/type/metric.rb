@@ -37,8 +37,8 @@ def metric_title_card
 end
 
 # @return array of metric answer lookup table
-def all_metric_answers
-  MetricAnswer.where(metric_id: id)
+def all_answers
+  Answer.where(metric_id: id)
 end
 
 def question_card

@@ -12,19 +12,19 @@ describe Card::Set::TypePlusRight::Source::File::Import do
   end
   let(:metric) { "Access to Nutrition Index+Marketing Score" }
 
-  def metric_answer_exists? company
-    Card.exists?(metric_answer_name(company))
+  def answer_exists? company
+    Card.exists?(answer_name(company))
   end
 
   def metric_value company
-    Card[metric_answer_name(company) + "+value"].content
+    Card[answer_name(company) + "+value"].content
   end
 
-  def metric_answer_card company
-    Card[metric_answer_name(company)]
+  def answer_card company
+    Card[answer_name(company)]
   end
 
-  def metric_answer_name company
+  def answer_name company
     metric + "+" + company_name(company) + "+2015"
   end
 
@@ -105,8 +105,8 @@ describe Card::Set::TypePlusRight::Source::File::Import do
         { company: "Amazon.com, Inc.", value: "9" },
         { company: "Apple Inc.",  value: "62" }
       ]
-      expect(metric_answer_exists?(:amazon)).to be true
-      expect(metric_answer_exists?(:apple)).to be true
+      expect(answer_exists?(:amazon)).to be true
+      expect(answer_exists?(:apple)).to be true
 
       expect(metric_value(:amazon)).to eq("9")
       expect(metric_value(:apple)).to eq("62")
@@ -178,9 +178,9 @@ describe Card::Set::TypePlusRight::Source::File::Import do
       end
 
       it "uses the correction name as company names" do
-        expect(metric_answer_exists?(:amazon)).to be true
-        expect(metric_answer_exists?(:apple)).to be true
-        expect(metric_answer_exists?(:sony)).to be true
+        expect(answer_exists?(:amazon)).to be true
+        expect(answer_exists?(:apple)).to be true
+        expect(answer_exists?(:sony)).to be true
 
         expect(metric_value(:amazon)).to eq("13")
         expect(metric_value(:apple)).to eq("9")
@@ -203,7 +203,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
             "1" => "Cambridge University" }
           trigger_import [{ company: "Cambridge", value: "800", row: 1 }]
           expect(Card.exists?("Cambridge University")).to be true
-          expect(metric_answer_exists?(:cambridge_university)).to be true
+          expect(answer_exists?(:cambridge_university)).to be true
           expect(metric_value(:cambridge_university)).to eq("800")
         end
       end
@@ -213,7 +213,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
         it "creates company and the value" do
           trigger_import [{ company: "Cambridge", value: "800" }]
           expect(Card.exists?("Cambridge")).to be true
-          expect(metric_answer_exists?(:cambridge)).to be true
+          expect(answer_exists?(:cambridge)).to be true
           expect(metric_value(:cambridge)).to eq("800")
         end
       end
@@ -222,7 +222,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
     # context 'metric value exists' do
     #   it 'updates metric values' do
     #     trigger_import [{ company: "Amazon.com, Inc.", value:'9' }]
-    #     expect(metric_answer_exists?(:amazon)).to be true
+    #     expect(answer_exists?(:amazon)).to be true
     #     expect(metric_value(:amazon)).to eq('9')
     #
     #     trigger_import [{ company: "Amazon.com, Inc.", value: '999' }]
@@ -235,8 +235,8 @@ describe Card::Set::TypePlusRight::Source::File::Import do
   #   it 'updates correct metric values' do
   #     trigger_import [{ company: 'Amazon.com, Inc.', value: '9' },
   #                     { company: 'Apple Inc.', value: '62' }]
-  #     expect(metric_answer_exists?(:amazon)).to be true
-  #     expect(metric_answer_exists?(:apple)).to be true
+  #     expect(answer_exists?(:amazon)).to be true
+  #     expect(answer_exists?(:apple)).to be true
   #
   #     expect(metric_value(:amazon)).to eq('9')
   #     expect(metric_value(:apple)).to eq('62')

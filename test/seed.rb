@@ -36,7 +36,7 @@ class SharedData
       add_yearly_variables
       add_projects
       add_industry
-      MetricAnswer.refresh
+      Answer.refresh
     end
 
     def add_companies

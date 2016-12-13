@@ -57,7 +57,7 @@ format :json do
   end
 
   view :chartkick do
-    MetricAnswer.where(metric_id: card.id, latest: true)
+    Answer.where(metric_id: card.id, latest: true)
       .group("CAST(value AS decimal)").count.chart_json
   end
 

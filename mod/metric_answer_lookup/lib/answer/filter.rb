@@ -1,4 +1,4 @@
-class MetricAnswer
+class Answer
   module Filter
     def filter filter_args
       @filter_args = filter_args

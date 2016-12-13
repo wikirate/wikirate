@@ -1,13 +1,13 @@
-class MetricAnswer < ActiveRecord::Base
+class Answer < ActiveRecord::Base
   include LookupTable
   include Filter
   extend LookupTable::ClassMethods
 
   def card_column
-    :metric_answer_id
+    :answer_id
   end
 
-  def fetch_metric_answer_id
+  def fetch_answer_id
     card.id
   end
 
@@ -88,13 +88,13 @@ class MetricAnswer < ActiveRecord::Base
   end
 
   def latest_year_in_db
-    MetricAnswer.where(record_id: fetch_record_id).maximum(:year)
+    Answer.where(record_id: fetch_record_id).maximum(:year)
   end
 
   def delete
     super.tap do
       if (latest_year = latest_year_in_db)
-        MetricAnswer.where(
+        Answer.where(
           record_id: record_id, year: latest_year
         ).update_all(latest: true)
       end
@@ -102,7 +102,7 @@ class MetricAnswer < ActiveRecord::Base
   end
 
   def latest_to_false
-    MetricAnswer.where(
+    Answer.where(
       record_id: record_id, latest: true
     ).update_all(latest: false)
   end

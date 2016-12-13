@@ -14,12 +14,12 @@ class Card
     private
 
     # @return [Array<String]
-    def subjects_without_metric_answers
+    def subjects_without_answers
       Card.search(missing_wql.merge(return: :name))
     end
 
     def all_missing
-      subjects_without_metric_answers.map do |subject_name|
+      subjects_without_answers.map do |subject_name|
         Card.new name: new_name(subject_name), type_id: MetricValueID
       end
     end
@@ -44,7 +44,7 @@ class Card
       else
         where_args[:latest] = true
       end
-      MetricAnswer.where(where_args).pluck(subject_key)
+      Answer.where(where_args).pluck(subject_key)
     end
 
     def year

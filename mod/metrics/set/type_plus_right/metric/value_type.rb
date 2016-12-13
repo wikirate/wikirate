@@ -14,7 +14,7 @@ def validate_categorical_values
 end
 
 def existing_value_keys
-  values = MetricAnswer.where(metric_id: left.id).select(:value).distinct
+  values = Answer.where(metric_id: left.id).select(:value).distinct
   values.map { |n| n.value.to_name.key }
 end
 
@@ -24,7 +24,7 @@ def valid_category_keys
 end
 
 def validate_numeric_values
-  metric_card.all_metric_answers.find do |answer|
+  metric_card.all_answers.find do |answer|
     next if valid_numeric_value? answer.value
     add_numeric_error answer
   end
@@ -35,7 +35,7 @@ def valid_numeric_value? value
 end
 
 def add_numeric_error answer
-  errors.add Card.fetch_name(answer.metric_answer_id),
+  errors.add Card.fetch_name(answer.answer_id),
              "'#{answer.value}' is not a numeric value."
 end
 

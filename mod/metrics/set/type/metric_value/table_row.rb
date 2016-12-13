@@ -77,7 +77,7 @@ format :html do
   end
 
   def fast_search_results
-    MetricAnswer.fetch record_id: card.left.id
+    Answer.fetch record_id: card.left.id
   end
 
   view :metric_record_list do

@@ -1,8 +1,8 @@
-describe MetricAnswer do
+describe Answer do
   let(:metric) { "Joe User+researched" }
-  let(:metric_answer) { "#{metric}+Apple_Inc+2013" }
-  let(:metric_answer_id) { Card.fetch_id metric_answer }
-  subject { MetricAnswer.find_by_metric_answer_id metric_answer_id }
+  let(:answer) { "#{metric}+Apple_Inc+2013" }
+  let(:answer_id) { Card.fetch_id answer }
+  subject { Answer.find_by_answer_id answer_id }
 
   describe "seeded metric answer table" do
     it "has correct count" do
@@ -11,7 +11,7 @@ describe MetricAnswer do
 
     context "random example" do
       it "exists" do
-        is_expected.to be_instance_of(MetricAnswer)
+        is_expected.to be_instance_of(Answer)
       end
       it "has company_id" do
         expect(subject.company_id).to eq Card.fetch_id("Apple Inc")
@@ -48,36 +48,36 @@ describe MetricAnswer do
 
   describe "delete" do
     it "removes entry" do
-      metric_answer_id
-      delete metric_answer
+      answer_id
+      delete answer
       expect(subject).to be_nil
     end
   end
 
   describe "updates" do
     before do
-      # fetch metric_answer_id before the change
-      metric_answer_id
+      # fetch answer_id before the change
+      answer_id
     end
     it "updates company" do
-      update metric_answer, name: "Joe User+researched+Samsung+2013"
+      update answer, name: "Joe User+researched+Samsung+2013"
       expect(subject.company_id).to eq Card.fetch_id("Samsung")
       expect(subject.company_name).to eq "Samsung"
     end
 
     it "updates metric" do
-      update metric_answer, name: "Joe User+researched number 2+Apple_Inc+2013"
+      update answer, name: "Joe User+researched number 2+Apple_Inc+2013"
       expect(subject.metric_id).to eq Card.fetch_id("Joe User+researched number 2")
       expect(subject.metric_name).to eq "Joe User+researched number 2"
     end
 
     it "updates year" do
-      update metric_answer, name: "Joe User+researched+Apple_Inc+1999"
+      update answer, name: "Joe User+researched+Apple_Inc+1999"
       expect(subject.year).to eq 1999
     end
 
     it "updates value" do
-      update "#{metric_answer}+value", content: "85"
+      update "#{answer}+value", content: "85"
       expect(subject.value).to eq "85"
     end
 
@@ -101,6 +101,6 @@ describe MetricAnswer do
   end
 
   describe "fetch" do
-    MetricAnswer.fetch company_id: Card.fetch_id("Apple Inc")
+    Answer.fetch company_id: Card.fetch_id("Apple Inc")
   end
 end

@@ -5,27 +5,27 @@ module LookupTable
 
   module ClassMethods
     def create card
-      ma = MetricAnswer.new
-      ma.metric_answer_id = card.id
+      ma = Answer.new
+      ma.answer_id = card.id
       ma.refresh
     end
 
     def create_or_update cardish
       ma_card_id = card_id(cardish)
-      ma = MetricAnswer.find_by_metric_answer_id(ma_card_id) ||
-        MetricAnswer.new
-      ma.metric_answer_id = ma_card_id
+      ma = Answer.find_by_answer_id(ma_card_id) ||
+        Answer.new
+      ma.answer_id = ma_card_id
       ma.refresh
     end
 
     def fetch where, sort_args={}, paging={}
       where = Array.wrap where
-      mas = MetricAnswer.where(*where)
+      mas = Answer.where(*where)
       mas = sort mas, sort_args if sort_args.present?
       if paging.present?
         mas = mas.limit(paging[:limit]).offset(paging[:offset])
       end
-      mas.pluck(:metric_answer_id).map do |id|
+      mas.pluck(:answer_id).map do |id|
         Card.fetch id
       end
     end
@@ -39,7 +39,7 @@ module LookupTable
 
     def importance_sort mas, args
       mas = mas.joins "LEFT JOIN cards AS c " \
-                      "ON metric_answers.metric_id = c.left_id " \
+                      "ON answers.metric_id = c.left_id " \
                       "AND c.right_id = #{Card::VoteCountID}"
       args.merge! sort_by: "COALESCE(c.db_content, 0)", cast: "signed"
       mas

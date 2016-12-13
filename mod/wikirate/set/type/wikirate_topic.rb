@@ -32,7 +32,7 @@ def companies_related_by_metric
   metric_ids =
     Card.search right_plus: [Card::WikirateTopicID, { refer_to: value }],
                 return: :id
-  MetricAnswer.select(:company_id).where(metric_id: metric_ids).uniq
+  Answer.select(:company_id).where(metric_id: metric_ids).uniq
 end
 
 def related_companies_count
