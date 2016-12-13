@@ -1,4 +1,8 @@
 format :html do
+  def default_content_formgroup_args _args
+    voo.edit_structure = [:image]
+  end
+
   view :core do
     return super() if voo.structure
     wikirate_layout "topic",

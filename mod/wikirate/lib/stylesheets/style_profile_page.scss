@@ -344,16 +344,13 @@ $dark-header-color: #999;
   .count-label {
     white-space: nowrap;
   }
-  &.contribution-report-toggle {
-    a > span {
-      padding: 14px;
-    }
-  }
 }
 
-
-
-
+.contribution-report-toggle {
+  a > span {
+    padding: 14px;
+  }
+}
 
 /*----------- Media queries ---------*/
 
