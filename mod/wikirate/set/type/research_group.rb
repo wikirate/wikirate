@@ -47,6 +47,7 @@ format :html do
     with_header "Member Contributions" do
       # all_user_members.map do |user|
       #   nest user, view: :contribution_summary
+      # user
     end
   end
 end
