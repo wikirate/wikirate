@@ -4,10 +4,10 @@ namespace :wikirate do
   namespace :add do
     desc "create folders and files for scripts or styles"
     task codefile: :environment do
-      with_params(:mod, :name, :type) do |mod, name, type, type_codename|
+      with_params(:mod, :name, :type) do |mod, name, category, type, type_codename|
         create_content_file mod, name, type
         create_rb_file mod, name
-        create_migration_file name, type_codename
+        create_migration_file name, cat, type_codename
       end
     end
 
@@ -29,12 +29,23 @@ def with_params *keys
   return unless parameters_present?(*keys)
   values = keys.map { |k| ENV[k.to_s] }
   mod, name, type = values
-  name = standardize_name name
-  yield(mod, name, type, type_codename(type))
+  typecode = type_codename type
+  cat = category typecode
+  name = remove_prefix name
+  yield(mod, name, cat, type, typecode)
 end
 
-def standardize_name name
+def remove_prefix name
   name.sub(/^(?:script|style):?_?\s*/, '')
+end
+
+def category typecode
+  case typecode
+  when :java_script, :coffee_script then
+    :script
+  when :css, :scss then
+    :style
+  end
 end
 
 def parameters_present? *env_keys
@@ -106,22 +117,19 @@ def create_rb_file mod, name
   end
 end
 
-def create_migration_file name, type_codename
+def create_migration_file name, category, type_codename
   puts "creating migration file...".yellow
   migration_out = `bundle exec wagn generate card:migration #{name}`
   migration_file = migration_out[/db.*/]
-  write_at(migration_file, 5, migration_content(name, type_codename)) # 5 is line no.
+  content = migration_content name, category, type_codename
+  write_at migration_file, 5, content # 5 is line no.
 end
 
-def migration_content name, type_codename
-  type_id = "Card::#{type_codename.to_s.camelcase}ID"
-  card_name = Card.fetch_name(name) || name
-  type, target = style_or_script type_codename
-
+def migration_content name, category, type_codename
   <<-RUBY
-    add_#{type} '#{card_name}',
-                type_id: #{type_id},
-                to: '#{target}'
+    add_#{category} '#{name}',
+                type_id: #{type_id type_codename},
+                to: '#{rule_card_name category}'
   RUBY
 end
 
@@ -138,11 +146,15 @@ def content_filename(name, type)
   name + file_ext
 end
 
-def style_or_script type_codename
-  case type_codename
-  when :scss, :css then
-    ["style", "customized classic skin"]
-  when :java_script, :coffee_script then
-    ["script", "script: wikirate scripts"]
+def type_id type_codename
+  "Card::#{type_codename.to_s.camelcase}ID"
+end
+
+def rule_card_name category
+  case category
+  when :style then
+    "customized classic skin"
+  when :script then
+    "script: wikirate scripts"
   end
 end
