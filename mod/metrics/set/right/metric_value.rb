@@ -4,6 +4,22 @@
 
 include_set Abstract::Table
 
+def record_name
+  card.cardname.left_name
+end
+
+def company_name
+  record_name.right_name
+end
+
+def metric_name
+  record_name.left_name
+end
+
+def metric_card
+  Card[metric_name]
+end
+
 format :html do
   def fast_search_results
     Answer.fetch record_id: card.left.id
@@ -30,41 +46,42 @@ format :html do
       link_opts: {
         class: "btn btn-default btn-sm",
         path: { action: :new, mark: :metric_value,
-                slot: { company: card.cardname.left_name.tag,
-                        metric: card.cardname.left_name.trunk } }
+                slot: { company: company_name.s,
+                        metric: metric_name.s } }
       }
     )
     timeline_head _render_modal_link(modal_link_args), "new"
   end
 
   view :timeline_header_buttons do
-    btn_class = "btn btn-sm btn-default margin-12"
-    btn_add_class = [btn_class, "_add_new_value", "btn-primary"].join(" ")
-    path = card.left.field("metric_details").cardname.url_key
-    target_str = ["[id='", path, "'] #methodology-info"].join("")
-    metric_card_type = card.left.trunk.metric_type.downcase.to_sym
-    btn_add =
-      wrap_with(:a, "Add answer",
-                  class: btn_add_class,
-                  data: {
-                    company: card.cardname.left_name.right_name.url_key,
-                    metric: card.cardname.left_name.trunk_name.url_key,
-                    toggle: "collapse-next",
-                    parent: ".timeline-data",
-                    collapse: ".metric_value_form_container"
-                  }
-                 )
-    btn_methodology =
-      wrap_with(:a, "View Methodology",
-                  class: btn_class + " " + "_view_methodology",
-                  data: {
-                    toggle: "collapse",
-                    target: target_str,
-                    collapse: ".metric_value_form_container"
-                  }
-                 )
-    return btn_add + btn_methodology if metric_card_type == :researched
-    # btn_methodology
+    return unless metric_card.metric_type_codename == :researched
+    output [add_answer_button, methodology_button]
+  end
+
+  def timeline_header_button text, klasses, data
+    shared_data = { collapse: ".metric_value_form_container" }
+    shared_classes = "btn btn-sm btn-default margin-12"
+    wrap_with :a, text, class: css_classes(shared_classes, klasses),
+                        data: shared_data.merge(data)
+  end
+
+  def add_answer_button
+    timeline_header_button "Add answer",
+                           "_add_new_value btn-primary",
+                           company: company_name.url_key,
+                           metric: metric_name.url_key,
+                           toggle: "collapse-next",
+                           parent: ".timeline-data"
+  end
+
+  def methodology_button
+    target_id = record_name.field_name("metric_details").key
+    # TODO: add codename for "metric details" and convert to trait
+    timeline_header_button "View Methodology",
+                           "_view_methodology",
+                           toggle: "collapse",
+                           target: "[id='#{target_id}'] #methodology-info",
+                           collapse: ".metric_value_form_container"
   end
 
   view :timeline_header do |args|
