@@ -112,7 +112,11 @@ def answer_name
 end
 
 def metric_record
-  metric_name.field(company)
+  record_name.s
+end
+
+def record_name
+  metric_name.field_name(company)
 end
 
 def metric_record_card

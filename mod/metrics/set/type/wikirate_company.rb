@@ -17,9 +17,9 @@ format :html do
     end
   end
 
-  def wrap_metric metric_card
+  def wrap_record record_card
     wrap do
-      nest(metric_card, view: :core, structure: "metric short view")
+      nest(record_card, view: :core, structure: "metric short view")
     end
   end
 
@@ -55,7 +55,7 @@ format :html do
     metric_names.map do |metric_name|
       next unless Card.exists? metric_name
       metric_plus_company = Card.fetch metric_name, card.name
-      wrap_metric metric_plus_company
+      wrap_record metric_plus_company
     end.join "\n"
   end
 

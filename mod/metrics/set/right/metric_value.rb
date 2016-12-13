@@ -3,22 +3,7 @@
 # probably not needed any more but I'm not sure if it is used somewhere else
 
 include_set Abstract::Table
-
-def record_name
-  card.cardname.left_name
-end
-
-def company_name
-  record_name.right_name
-end
-
-def metric_name
-  record_name.left_name
-end
-
-def metric_card
-  Card[metric_name]
-end
+include_set Abstract::MetricChild, generation: 2
 
 format :html do
   def fast_search_results
