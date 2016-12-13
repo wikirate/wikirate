@@ -31,7 +31,7 @@ format :html do
   end
 
   view :contributions_column do
-    output [group_contributions, member_contributions]
+    output [group_contributions, members_contribution_section]
   end
 
   def group_contributions
@@ -43,11 +43,28 @@ format :html do
     end
   end
 
-  def member_contributions
+  def all_members
+    # organizers and researchers  / uniq
+  end
+
+  def all_user_members
+    # all_members, filter out for users only
+  end
+
+  def member_contribution_section
     with_header "Member Contributions" do
       # all_user_members.map do |user|
+      #   member_contribution_table
       #   nest user, view: :contribution_summary
       # user
     end
+  end
+
+  def member_contribution_types
+    [:metric_value, :metric, :wikirate_company, :project]
+    # TODO: consider adding source, which is connected via metric_value
+  end
+
+  def member_contribution_table member
   end
 end
