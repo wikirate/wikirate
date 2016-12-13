@@ -12,7 +12,7 @@ end
 
 # override
 def default_sort_option
-  nil
+  :value
 end
 
 def sort_order
