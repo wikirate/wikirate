@@ -77,7 +77,7 @@ format :html do
   end
 
   def fast_search_results
-    MetricAnswer.fetch metric_record_id: card.left.id
+    MetricAnswer.fetch record_id: card.left.id
   end
 
   view :metric_record_list do
@@ -157,7 +157,7 @@ format :html do
   def details_sidebar type, &block
     wrap do
       <<-HTML
-        <div class="#{type}-details-headder">
+        <div class="#{type}-details-header">
           #{close_icon}
           <div class="row clearfix padding-top-20">
             #{send "#{type}_details_sidebar_header" }

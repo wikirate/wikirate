@@ -120,7 +120,7 @@ describe Card::Set::MetricType::Formula do
     end
     describe "#value_type" do
       subject { metric.value_type }
-      it { is_expected.to eq nil }
+      it { is_expected.to eq "Free Text" }
     end
     describe "#categorical?" do
       subject { metric.categorical? }

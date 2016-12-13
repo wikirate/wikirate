@@ -5,6 +5,10 @@
 include_set Abstract::Table
 
 format :html do
+  def fast_search_results
+    MetricAnswer.fetch record_id: card.left.id
+  end
+
   view :timeline, cache: :never do
     wrap_with :div, class: "timeline container" do
       wrap_with :div, class: "timeline-body" do

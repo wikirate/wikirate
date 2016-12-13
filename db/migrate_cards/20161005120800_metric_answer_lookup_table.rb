@@ -6,7 +6,7 @@ class MetricAnswerLookupTable < ActiveRecord::Migration
       t.integer  :metric_id
       t.integer  :designer_id
       t.integer  :company_id
-      t.integer  :metric_record_id
+      t.integer  :record_id
       t.integer  :policy_id
       t.integer  :metric_type_id
       t.integer  :year
@@ -14,7 +14,7 @@ class MetricAnswerLookupTable < ActiveRecord::Migration
       t.string   :company_name
       t.string   :designer_name
       t.string   :title_name
-      t.string   :metric_record_name
+      t.string   :record_name
       t.string   :value
       t.float    :numeric_value
       t.datetime :updated_at
@@ -26,7 +26,7 @@ class MetricAnswerLookupTable < ActiveRecord::Migration
               name: "metric_answer_id_index",
               unique: true
     add_index :metric_answers, :metric_id, name: "metric_id_index"
-    add_index :metric_answers, :metric_record_id, name: "metric_record_id_index"
+    add_index :metric_answers, :record_id, name: "record_id_index"
     add_index :metric_answers, :designer_id, name: "designer_id_index"
     add_index :metric_answers, :company_id, name: "company_id_index"
     add_index :metric_answers, :policy_id, name: "policy_id_index"

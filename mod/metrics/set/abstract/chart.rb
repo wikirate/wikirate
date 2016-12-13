@@ -45,7 +45,6 @@ format :json do
   end
 
   def chart_filter_query
-    binding.pry
     FixedMetricAnswerQuery.new chart_metric_id, card.filter_hash
   end
 end

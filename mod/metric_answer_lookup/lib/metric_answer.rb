@@ -19,7 +19,7 @@ class MetricAnswer < ActiveRecord::Base
     metric_card.id
   end
 
-  def fetch_metric_record_id
+  def fetch_record_id
     card.left_id
   end
 
@@ -35,7 +35,7 @@ class MetricAnswer < ActiveRecord::Base
     card.cardname.parts.second
   end
 
-  def fetch_metric_record_name
+  def fetch_record_name
     card.cardname.left
   end
 
@@ -88,14 +88,14 @@ class MetricAnswer < ActiveRecord::Base
   end
 
   def latest_year_in_db
-    MetricAnswer.where(metric_record_id: fetch_metric_record_id).maximum(:year)
+    MetricAnswer.where(record_id: fetch_record_id).maximum(:year)
   end
 
   def delete
     super.tap do
       if (latest_year = latest_year_in_db)
         MetricAnswer.where(
-          metric_record_id: metric_record_id, year: latest_year
+          record_id: record_id, year: latest_year
         ).update_all(latest: true)
       end
     end
@@ -103,7 +103,7 @@ class MetricAnswer < ActiveRecord::Base
 
   def latest_to_false
     MetricAnswer.where(
-      metric_record_id: metric_record_id, latest: true
+      record_id: record_id, latest: true
     ).update_all(latest: false)
   end
 

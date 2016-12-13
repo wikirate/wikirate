@@ -288,7 +288,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
         it "... policy and year" do
           expect(filter_by(metric_value: :none,
                            research_policy: "Designer Assessed",
-                           year: 2001))
+                           year: "2001"))
             .to eq ["dinosaurlabor+2001"]
         end
       end
