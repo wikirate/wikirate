@@ -26,7 +26,7 @@ end
 # raw_content for each variant can be set with a method following this pattern
 # on the cardtype card:
 #
-#   def (variant)_report_content user_id
+#   def (variant)_report_query user_id
 #     (generate and return WQL in JSON form)
 #   end
 #

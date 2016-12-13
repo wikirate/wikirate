@@ -38,16 +38,16 @@ def project_card
   @project_card ||= Card.fetch project_name if project?
 end
 
-def raw_content
-  project? ? project_report_content : standard_report_content
+def raw_ruby_query _overide={}
+  project? ? project_report_query : standard_report_query
 end
 
-def standard_report_content
-  cardtype_card.send "#{variant}_report_content", user_card.id
+def standard_report_query
+  cardtype_card.send "#{variant}_report_query", user_card.id
 end
 
-def project_report_content
-  method = "#{variant}_project_report_content"
+def project_report_query
+  method = "#{variant}_project_report_query"
   cardtype_card.send method, user_card.id, project_card.id
 end
 
