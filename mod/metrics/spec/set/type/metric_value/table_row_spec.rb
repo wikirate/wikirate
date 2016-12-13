@@ -11,9 +11,7 @@ describe Card::Set::Type::MetricValue::TableRow do
     it "renders header row with links" do
       is_expected.to have_tag "div.row.clearfix" do
         with_tag "div.company-logo" do
-          with_tag "a.inherit-anchor", with: { href: "/#{company_name}" } do
-            with_tag :img
-          end
+          with_tag "a.inherit-anchor", with: { href: "/#{company_name}" }
         end
         with_tag "div.company-name" do
           with_tag "a.inherit-anchor", with: { href: "/#{company_name}" } do
