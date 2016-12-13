@@ -18,7 +18,7 @@ end
 
 def discussed_report_query user_id
   standard_report_query right_plus: [Card::DiscussionID,
-                                     { edited_by: user_id }]
+                                   { edited_by: user_id }]
 end
 
 def voted_on_report_query user_id
@@ -29,10 +29,6 @@ end
 
 def standard_report_query args
   { type_id: id, limit: 5 }.merge(args)
-end
-
-def contribution_listing_view
-  :listing
 end
 
 def standard_project_report_query args

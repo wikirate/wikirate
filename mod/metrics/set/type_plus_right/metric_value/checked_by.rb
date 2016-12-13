@@ -1,0 +1,94 @@
+def user
+  Card.fetch(Auth.current_id)
+end
+
+def user_checked_before
+  return true if checked_users.include?user.name
+end
+
+def checked_users
+  item_names
+end
+
+format :html do
+  # view :new do
+  #   return _render_double_check_view
+  # end
+  view :missing do |args|
+    if card.new_card? && card.left
+      Auth.as_bot do
+        card.save!
+      end
+      render(@denied_view, args)
+    else
+      super(args)
+    end
+  end
+
+  view :open_content do
+    _render_double_check_view
+  end
+
+  view :double_check_view do
+    wrap_with :div do
+      [
+        wrap_with(:h5, double_check_icon + "Double-Check"),
+        card.user_checked_before ? checked_content : check_button,
+        _render_checked_by_list
+      ]
+    end
+  end
+
+  view :checked_by_list do
+    return if card.checked_users.empty?
+    links = subformat(card).render_shorter_search_result items: { view: :link }
+    %(
+      <div class="padding-top-10">
+        <i>#{links}<span> checked the value </span></i>
+      </div>
+    )
+  end
+
+  def message
+    "I checked: value accurately represents source"
+  end
+
+  def double_check_icon
+    fa_icon("check-circle", class: "verify-blue").html_safe
+  end
+
+  def data_path
+    card.cardname.url_key
+  end
+
+  def check_button
+    button_class = "btn btn-default btn-sm _value_check_button"
+    wrap_with :div do
+      [
+        wrap_with(:span, "Does the value accurately represent its source?"),
+        wrap_with(:a, "Yes, I checked", class: button_class,
+                                          data: { path: data_path })
+      ]
+    end
+  end
+
+  def checked_content
+    icon_class = "fa fa-times-circle-o fa-lg cursor-p _value_uncheck_button"
+    wrap_with :div, class: "user-checked" do
+      [
+        wrap_with(:span, '"' + message + '"'),
+        wrap_with(:i, "", class: icon_class, data: { path: data_path })
+      ]
+    end
+  end
+end
+
+event :user_checked_value, :prepare_to_store,
+      on: :update, when: proc { Env.params["checked"] == "true" } do
+  add_item user.name unless user_checked_before
+end
+
+event :user_uncheck_value, :prepare_to_store,
+      on: :update, when: proc { Env.params["uncheck"] == "true" } do
+  drop_item user.name if user_checked_before
+end

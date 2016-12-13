@@ -1,11 +1,13 @@
 describe CoreExtensions do
   describe String do
-    it "may be a valid number" do
-      expect("6".number?).to eq(true)
-    end
+    describe "#number?" do
+      it "true for a valid number" do
+        expect("6".number?).to eq(true)
+      end
 
-    it "may not be a valid number" do
-      expect("Yomama".number?).to eq(false)
+      it "false for an invalid number" do
+        expect("Yomama".number?).to eq(false)
+      end
     end
   end
 end
