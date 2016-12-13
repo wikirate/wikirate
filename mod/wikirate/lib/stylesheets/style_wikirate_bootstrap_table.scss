@@ -1,16 +1,150 @@
-{{style:mixins and variables}}
+{{style: mixins and variables|raw}}
 
-.table {
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 20px;
-    border: 1px solid #eee;
-    > thead > tr > th {
-        vertical-align: bottom;
-        border-bottom: 1px solid #eee;
-        background: #fafafa;
-        border-top: 1px solid #eee;
-        font-style: normal;
-        padding: 5px 6px;
+
+.table  {
+  font-style: normal;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid $border-color;
+  thead,tbody,tfoot{
+    > tr > th, td {
+      padding: 8px;
+      line-height: 1.42857;
+      vertical-align: top;
+      border-top: 1px solid $border-color;
+      border-right: 1px solid $border-color;
     }
+  }
+
+
+  thead > tr > {
+    th, td {
+      font-style: normal;
+      border-bottom: 1px solid $border-color;
+    }
+  }
+}
+
+table.wikirate-table {
+    background: #fff;
+    thead > tr > th {
+        background: #fff;
+        padding: 2px;
+        font-size: $sub-text-size;
+        text-align: center;
+        color: $heading-color;
+    }
+    td.data {
+      min-width: 180px;
+    }
+    td:first-child .media-body h4 {
+      font-weight: normal;
+      font-size: 100%;
+    }
+    .details{
+        display: none;
+    }
+
+  td.header {
+    .RIGHT-Xvote_count > div {
+      line-height: 1em;
+    }
+    .RIGHT-Xvote_count.content-view {
+      margin-left: 5px;
+    }
+    button.vote-button {
+      width: 15px;
+      height: 15px;
+      padding: 0;
+      border: none;
+      box-shadow: none;
+      --webkit-box-shadow: none;
+      background: none;
+    }
+    .vote-count {
+      width: 15px;
+      height: 15px;
+    }
+    }
+
+    tr.tr-details-toggle:hover {
+      background-color: #fafafa;
+      cursor: pointer;
+    }
+    &.metric{
+      .header{
+        border-left: 3px solid rgba(103, 78, 167, 0.14);
+      }
+      tr.tr-details-toggle:hover{
+        .header {
+          border-left: 3px solid $metric-color;
+        }
+      }
+    }
+    &.company{
+      .header{
+        border-left: 3px solid rgba(211,116,28,0.14);
+      }
+      tr.tr-details-toggle:hover{
+        .header{
+          border-left: 3px solid  $company-color;
+        }
+      }
+    }
+    &.topic{
+      .header{
+        border-left: 3px solid  rgba(43,126,160,0.14);
+      }
+      tr.tr-details-toggle:hover{
+        .header{
+          border-left: 3px solid  $topic-color;
+        }
+      }
+    }
+
+  tbody > tr > td.details {
+      background-color: #fff;
+      border-top: 1px solid $bright-text-color;
+      border: 1px solid #EAEAEA;
+      clear: both;
+      color: $dark-text-color;
+      cursor: auto;
+      display: none;
+      font-size: 12px;
+      height: 100%;
+      left: 100%;
+      margin-left: 1px;
+      overflow-y: auto;
+      padding-bottom:100px;
+      padding: 0px;
+      position: absolute;
+      top: 0px;
+      width: 100%;
+      z-index: 1;
+      @include box-shadow(0,0px,14px,rgba(0,0,0,.22));
+      &.stick{
+        position: fixed;
+        z-index: 3;
+        top: 65px;
+        left: 50%;
+        max-width: 935px;
+        width:50%;
+        height: 100%;
+        margin-left: 0px;
+        @include box-shadow(0,0px,14px,rgba(0,0,0,.22));
+      }
+      .row-data {
+        margin-left: 58px!important;
+      }
+    }
+
+}
+
+//---Custom Table Properties---//
+
+//Project Page
+.progress-bar-table .wikirate-table.company td:last-child {
+    width: 22%;
+    text-align: center;
 }

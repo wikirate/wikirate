@@ -3,10 +3,10 @@
 describe Card::Set::Right::CitedClaims do
   before do
     login_as "joe_user"
-    @sample_company = get_a_sample_company
-    @sample_topic = get_a_sample_topic
-    @sample_analysis = get_a_sample_analysis
-    @sample_claim = get_a_sample_note
+    @sample_company = sample_company
+    @sample_topic = sample_topic
+    @sample_analysis = sample_analysis
+    @sample_claim = sample_note
   end
   describe "core view" do
     it do

@@ -168,7 +168,7 @@ describe Card::Set::Type::Source do
       context "a non source link" do
         it "return the source card" do
           Card::Env.params[:sourcebox] = "true"
-          company = get_a_sample_company
+          company = sample_company
           url_key = company.cardname.url_key
 
           new_source_url = "#{@wikirate_link_prefix}#{url_key}"
@@ -203,7 +203,7 @@ describe Card::Set::Type::Source do
         it "returns error" do
           Card::Env.params[:sourcebox] = "true"
           return_source_card = Card.new source_args(
-            link: get_a_sample_company.name
+                                            link: sample_company.name
           )
           expect(return_source_card).not_to be_valid
           expect(return_source_card.errors).to have_key :source
@@ -239,20 +239,24 @@ describe Card::Set::Type::Source do
       @source_page = create_page @url, {}
     end
     it "renders titled view with voting" do
-      expected = @source_page.format.render_titled_with_voting
-      expect(@source_page.format.render_titled).to eq(expected)
+      rendered = @source_page.format.render_titled_with_voting
+      expect(rendered).to(
+        have_tag(:div, class: "titled_with_voting-view") do
+          with_tag(:div, class: "vote-up")
+        end
+      )
     end
 
     it "renders open view with :custom_source_header to be true" do
-      expected = @source_page.format.render_header_with_voting
-      expect(@source_page.format.render_open).to include(expected)
+      assert_view_select @source_page.format.render_open,
+                         "div.header-with-vote"
     end
 
     it "renders header view with :custom_source_header to be true" do
-      render = @source_page.format.render_header custom_source_header: true
-      expected = @source_page.format.render_header_with_voting
-      expect(render).to include(expected)
+      assert_view_select @source_page.format.render_header_with_voting,
+                         "div.header-with-vote"
     end
+
     it "renders metric_import_link" do
       sourcepage = create_source file: csv_file
       html = sourcepage.format.render_metric_import_link

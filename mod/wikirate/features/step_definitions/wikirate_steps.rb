@@ -1,6 +1,6 @@
 
 
-Capybara.default_wait_time = 120
+Capybara.default_wait_time = 20
 
 When(/^I press "([^\"]*)" within "([^\"]*)"$/) do |button, scope_selector|
   within(scope_selector) do
@@ -69,9 +69,9 @@ When(/^I fill in company with "([^"]*)"$/) do |company|
   fill_in_pointer_field :company, company
 end
 
-When(/^I fill in year with "([^"]*)"$/) do |year|
-  fill_in_pointer_field :year, year
-end
+# When(/^I fill in year with "([^"]*)"$/) do |year|
+#   fill_in_pointer_field :year, year
+# end
 
 When(/^I fill in value with "([^"]*)"$/) do |value|
   fill_in_value value
@@ -93,7 +93,7 @@ When(regax) do |company, year, value|
 end
 
 def fill_in_pointer_field name, value
-  within "form > fieldset.editor > .RIGHT-#{name}" do
+  within "fieldset.editor .RIGHT-#{name}" do
     fill_in "pointer_item", with: value
   end
 end
@@ -178,16 +178,14 @@ end
 
 def select_from_chosen item_text, selector, within
   within(within) do
-    field = find_field(selector, visible: false)
-    get_value =
-      "$(\"##{field[:id]} option:contains('#{item_text}')\").val()"
-    option_value = page.evaluate_script(get_value)
-    add_value =
-      "value = ['#{option_value}']\; if ($('##{field[:id]}').val()) "\
-      "{$.merge(value, $('##{field[:id]}').val())}"
-    page.execute_script(add_value)
-    option_value = page.evaluate_script("value")
-    update_chosen_select_value field[:id], option_value
+    id = find_field(selector, visible: false)[:id]
+    option_value = page.execute_script(%(
+      val1 = $(\"##{id} option:contains('#{item_text}')\").val();
+      value = [val1];
+      if ($('##{id}').val()) {$.merge(value, $('##{id}').val())}
+      return value
+    ))
+    update_chosen_select_value id, option_value
   end
 end
 

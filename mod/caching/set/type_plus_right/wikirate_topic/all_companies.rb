@@ -49,6 +49,7 @@ cache_expire_trigger TypePlusRight::Metric::WikirateTopic do |changed_card|
     Card.fetch topic_name.to_name.trait(:all_companies)
   end
 end
+
 # metric value name change, create or delete may expire the cache
 cache_expire_trigger Type::MetricValue do |changed_card|
   # FIXME: clean the cache cleverly

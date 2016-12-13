@@ -1,8 +1,6 @@
 format :html do
   def fa_icon icon, opts={}
-    add_class opts, "fa fa-#{icon}"
-    <<-HTML
-      <i class="#{opts[:class]}"></i>
-    HTML
+    prepend_class opts, "fa fa-#{icon}"
+    %(<i class="#{opts[:class]}"></i>)
   end
 end

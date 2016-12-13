@@ -1,4 +1,4 @@
-{{style: mixins and variables}}
+{{style: mixins and variables|raw}}
 
 body {
   // override bootstrap font 
@@ -41,8 +41,8 @@ body#tinymce {
   margin-right: 18px;
 }
 
-.TYPE-image{
-  overflow: hidden; 
+.homepage-logo-container .TYPE-image {
+    overflow: hidden;
 }
 
 sup {

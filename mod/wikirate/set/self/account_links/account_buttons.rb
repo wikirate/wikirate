@@ -1,18 +1,15 @@
 format :html do
-  def default_sign_up_args args
-    super
-    args[:link_opts][:class] = "btn btn-highlight"
-    args[:link_text] = "Join"
+  def default_sign_up_args _args
+    class_up "signup-link", "btn btn-highlight"
+    voo.title = "Join"
   end
 
-  def default_sign_in_args args
-    super
-    args[:link_opts][:class] = "btn btn-default"
-    args[:link_text] = "Log in"
+  def default_sign_in_args _args
+    class_up "signin_link", "btn btn-default"
+    voo.title = "Log in"
   end
 
-  def default_sign_out_args args
-    super
-    args[:link_text] = "Log out"
+  def default_sign_out_args _args
+    voo.title = "Log out"
   end
 end

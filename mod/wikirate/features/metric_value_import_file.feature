@@ -27,7 +27,6 @@ Feature: import metric values from a csv file
     Then I should see "2015"
     Then I should see "One country, two systems"
     Then I should see a comment icon
-    And I click the drop down button
     Then I should see "just kidding"
 
   Scenario: Import simple metric values with same source
@@ -39,7 +38,6 @@ Feature: import metric values from a csv file
     Then I should see "2015"
     Then I should see "One country, two systems"
     Then I should see a comment icon
-    And I click the drop down button
     Then I should see "just kidding"
     And I go to card "Jedi+Sith Lord in Charge+Death Star+2014"
     Then I should see "2014"

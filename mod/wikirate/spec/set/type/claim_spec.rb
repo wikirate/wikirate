@@ -63,7 +63,7 @@ describe Card::Set::Type::Claim do
       @claim_name = "testing claim"
       @sourcepage = create_page
 
-      @sample_claim = get_a_sample_note
+      @sample_claim = sample_note
     end
 
     it "show help text and note counting for note name when creating claim" do
@@ -122,38 +122,46 @@ describe Card::Set::Type::Claim do
           it "shows nothing" do
             new_company_name = "Orange"
             new_topic_name = "Doctor"
-            new_company = Card.create type_id: Card::WikirateCompanyID, name: new_company_name
-            new_topic = Card.create type_id: Card::WikirateTopicID, name: new_topic_name
-            claim_card = create_claim @claim_name, "+company" => new_company_name, "+topic" => new_topic_name
+            Card.create type_id: Card::WikirateCompanyID, name: new_company_name
+            Card.create type_id: Card::WikirateTopicID, name: new_topic_name
+            claim_card = create_claim @claim_name,
+                                      "+company" => new_company_name,
+                                      "+topic" => new_topic_name
             expect(claim_card.format.render_tip).to include("")
           end
         end
       end
     end
+
     it "shows titled view with voting" do
-      expect(@sample_claim.format.render_titled).to eq(@sample_claim.format.render_titled_with_voting)
-    end
-    context "when in open views" do
-      it "shows header with voiting" do
-        html = @sample_claim.format.render_open
-        vote_html = @sample_claim.format.subformat(@sample_claim.vote_count_card).render_details
-        expect(html_trim(html)).to include(html_trim(vote_html))
+      assert_view_select @sample_claim.format.render_titled,
+                         "div.titled_with_voting-view" do
+        assert_select "div.vote-up"
+        assert_select "div.vote-count"
+        assert_select "div.vote-down"
       end
     end
+
+    context "when in open views" do
+      it "shows header with voting" do
+        assert_view_select @sample_claim.format.render_open, "div.header-vote"
+      end
+    end
+
     it "shows the link for view \"missing\"" do
-      claim_card = get_a_sample_note
+      claim_card = sample_note
       html = claim_card.format.render_missing
       expect(html).to eq(claim_card.format.render_link)
     end
      it "show clipboard view" do
-       claim_card = get_a_sample_note
+       claim_card = sample_note
       expected_html = %(<i class="fa fa-clipboard claim-clipboard" id="copy-button" title="copy claim citation to clipboard" data-clipboard-text="#{claim_card.name} {{#{claim_card.name}|cite}}"></i>)
       expect(claim_card.format.render_clipboard).to include(expected_html)
      end
   end
   it "returns correct analysis_names " do
-    real_company = get_a_sample_company
-    real_topic = get_a_sample_topic
+    real_company = sample_company
+    real_topic = sample_topic
 
     another_real_company = Card.create name: "CW TV", type_id: Card::WikirateCompanyID
     another_real_topic = Card.create name: "Should we have supernatural season 11?", type_id: Card::WikirateTopicID

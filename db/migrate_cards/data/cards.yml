@@ -1,0 +1,178 @@
+---
+:cards:
+- :name: Note+*self+*structure
+  :type: HTML
+  :key: note+*self+*structure
+- :name: Source+*self+*structure
+  :type: HTML
+  :key: source+*self+*structure
+- :name: customized classic skin
+  :type: Skin
+  :key: customized_classic_skin
+  :merged: 2016-12-13 18:04:33 UTC
+- :name: "*css"
+  :type: SCSS
+  :key: "*css"
+- :name: 'style: layout with sidebar'
+  :type: SCSS
+  :key: style_layout_with_sidebar
+  :codename: style_layout_with_sidebar
+  :merged: 2016-12-13 18:04:33 UTC
+- :name: chosen style
+  :type: SCSS
+  :codename: chosen_style
+  :key: chosen_style
+- :name: 'style: top bar'
+  :type: SCSS
+  :key: style_top_bar
+  :codename: style_top_bar
+  :merged: 2016-12-13 18:04:33 UTC
+- :name: 'style: slick'
+  :type: SCSS
+  :key: style_slick
+  :codename: style_slick
+  :merged: 2016-12-13 18:04:33 UTC
+- :name: 'style: overview item'
+  :type: SCSS
+  :key: style_overview_item
+  :codename: style_overview_item
+  :merged: 2016-12-13 18:04:33 UTC
+- :name: 'style: company and topic item'
+  :type: SCSS
+  :key: style_company_and_topic_item
+  :codename: style_company_and_topic_item
+  :merged: 2016-12-13 18:04:33 UTC
+- :name: 'style: homepage layout'
+  :type: SCSS
+  :key: style_homepage_layout
+  :codename: style_homepage_layout
+  :merged: 2016-12-13 18:04:33 UTC
+- :name: 'style: notes'
+  :type: SCSS
+  :key: style_note
+  :codename: style_note
+  :merged: 2016-12-13 18:04:33 UTC
+- :name: 'style: wikirate bootstrap buttons'
+  :type: SCSS
+  :codename: style_wikirate_bootstrap_buttons
+  :key: style_wikirate_bootstrap_button
+- :name: style user following list
+  :type: SCSS
+  :key: style_user_following_list
+  :codename: style_user_following_list
+  :merged: 2016-12-13 18:04:33 UTC
+- :name: 'style: wikirate bootstrap navbar'
+  :type: SCSS
+  :key: style_wikirate_bootstrap_navbar
+  :codename: style_wikirate_bootstrap_navbar
+  :merged: 2016-12-13 18:04:33 UTC
+- :name: 'style: wikirate bootstrap form'
+  :type: SCSS
+  :codename: style_wikirate_bootstrap_form
+  :key: style_wikirate_bootstrap_form
+- :name: 'style: wikirate bootstrap common'
+  :type: SCSS
+  :codename: style_wikirate_bootstrap_common
+  :key: style_wikirate_bootstrap_common
+- :name: 'style: metrics'
+  :type: SCSS
+  :codename: style_metrics
+  :key: style_metric
+- :name: 'style: drag and drop'
+  :type: SCSS
+  :codename: style_drag_and_drop
+  :key: style_drag_and_drop
+- :name: style profile page
+  :type: SCSS
+  :key: style_profile_page
+  :codename: style_profile_page
+  :merged: 2016-12-13 18:04:33 UTC
+- :name: 'style: company header'
+  :type: SCSS
+  :key: style_company_header
+  :codename: style_company_header
+  :merged: 2016-12-13 18:04:33 UTC
+- :name: 'style: source preview'
+  :type: SCSS
+  :codename: style_source_preview
+  :key: style_source_preview
+- :name: style wikirate layout
+  :type: SCSS
+  :key: style_wikirate_layout
+  :codename: style_wikirate_layout
+  :merged: 2016-12-13 18:04:33 UTC
+- :name: 'style: wikirate responsiveness'
+  :type: SCSS
+  :key: style_wikirate_responsiveness
+  :codename: style_wikirate_responsiveness
+  :merged: 2016-12-13 18:04:33 UTC
+- :name: style wikirate bootstrap tabs
+  :type: SCSS
+  :codename: style_wikirate_bootstrap_tabs
+  :key: style_wikirate_bootstrap_tab
+- :name: style fakeloader
+  :type: SCSS
+  :key: style_fakeloader
+  :codename: style_fakeloader
+  :merged: 2016-12-13 18:04:33 UTC
+- :name: style wikirate font icon
+  :type: SCSS
+  :key: style_wikirate_font_icon
+  :codename: style_wikirate_font_icon
+  :merged: 2016-12-13 18:04:33 UTC
+- :name: 'style: bootstrap modal fix'
+  :type: SCSS
+  :key: style_bootstrap_modal_fix
+  :codename: style_bootstrap_modal_fix
+  :merged: 2016-12-13 18:04:33 UTC
+- :name: style wikirate bootstrap table
+  :type: SCSS
+  :codename: style_wikirate_bootstrap_table
+  :key: style_wikirate_bootstrap_table
+- :name: Project+*self+*structure
+  :type: HTML
+  :key: project+*self+*structure
+  :merged: 2016-12-13 18:04:32 UTC
+- :name: Project+status+*type plus right+*options
+  :type: Pointer
+  :key: project+status+*type_plu_right+*option
+  :merged: 2016-12-13 18:04:32 UTC
+- :name: Status
+  :type: Basic
+  :codename: wikirate_status
+  :key: status
+  :merged: 2016-12-13 18:04:32 UTC
+- :name: Organizer
+  :type: Basic
+  :codename: organizer
+  :key: organizer
+  :merged: 2016-12-13 18:04:32 UTC
+- :name: description
+  :type: Basic
+  :codename: description
+  :key: description
+  :merged: 2016-12-13 18:04:32 UTC
+- :name: company+topic+*type plus right+*structure
+  :type: Search
+  :key: company+topic+*type_plu_right+*structure
+- :name: report search
+  :type: Basic
+  :codename: report_search
+  :key: report_search
+  :merged: 2016-12-13 18:04:34 UTC
+- :name: report search+*right+*structure
+  :type: Search
+  :key: report_search+*right+*structure
+  :merged: 2016-12-13 18:04:34 UTC
+- :name: Research Group
+  :type: Cardtype
+  :codename: research_group
+  :key: research_group
+  :merged: 2016-12-13 18:04:35 UTC
+- :name: researcher
+  :type: Basic
+  :codename: researcher
+  :key: researcher
+  :merged: 2016-12-13 18:04:35 UTC
+:remotes:
+  :live: http://wikirate.org

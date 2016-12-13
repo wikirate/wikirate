@@ -1,7 +1,7 @@
 describe Card::Set::Right::TabContent do
   before do
     login_as "joe_user"
-    @company = get_a_sample_company
+    @company = sample_company
     @key = @company.cardname.url_key
   end
   describe "core view" do
