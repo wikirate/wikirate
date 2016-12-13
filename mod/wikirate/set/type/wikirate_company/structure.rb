@@ -81,18 +81,6 @@ format :html do
     end
   end
 
-  # view :core do |args|
-  #   tabs = [
-  #     ["metric", "Metrics", "+metric+*cached count"],
-  #     ["topic", "Topics", "+topic+*cached count"],
-  #     #["topic", "Projects", "+topic+*cached count"],
-  #     #["overview", "Reviews", "+analyses with overview+*cached count"],
-  #     #["note", "Notes", "+Note+*cached count"],
-  #     ["reference", "Sources", "+sources+*cached count"]
-  #   ]
-  #   wikirate_layout "company", tabs, render_contribution_link(args)
-  # end
-
   view :topics_tab do
     # TODO: convert to ruby, get rid of "novotee" stuff
     # wrap_with :div, class: "voting" do
@@ -109,12 +97,6 @@ format :html do
       row 12 do
         column wikipedia_extract
       end
-      # row 12 do
-      #   column _render_recent_editors
-      # end
-      # row 12 do
-      #   column _render_overview_section
-      # end
     end
   end
 
@@ -122,21 +104,6 @@ format :html do
     subformat(card.wikipedia_card)._render_titled
   end
 
-  view :recent_editors do |_args|
-    process_content <<-HTML
-    <div class="row clearfix company-header-content" >
- 			  <h5>{{_l+*contribution count|core}} Contributions about {{_l|name}}</h5>
- 				<div class="col-md-6 column ">
- 				  <small>Recent Editors</small>
- 				  {{_l+contributors_3|hide:paging|content ;structure:recent editor item}}
- 				</div>
- 			</div>
-    HTML
-  end
-
-  # view :overview_section do |_args|
-  #   field_nest(:general_overview, view: :titled)
-  # end
 
   view :projects_tab do |_args|
     # TODO: convert to ruby, get rid of "initiative" language
@@ -153,4 +120,34 @@ format :html do
   view :filter do |args|
     field_subformat(:company_metric_filter)._render_core args
   end
+
+  # view :recent_editors do |_args|
+  #   process_content <<-HTML
+  #   <div class="row clearfix company-header-content" >
+  #       <h5>
+  #         {{_l+*contribution count|core}} Contributions about {{_l|name}}
+  #       </h5>
+  # 			<div class="col-md-6 column ">
+  # 			  <small>Recent Editors</small>
+  # 			  {{_l+contributors_3|hide:paging|content;structure:recent editor item}}
+  # 			</div>
+  # 		</div>
+  #   HTML
+  # end
+
+  # view :core do |args|
+  #   tabs = [
+  #     ["metric", "Metrics", "+metric+*cached count"],
+  #     ["topic", "Topics", "+topic+*cached count"],
+  #     #["topic", "Projects", "+topic+*cached count"],
+  #     #["overview", "Reviews", "+analyses with overview+*cached count"],
+  #     #["note", "Notes", "+Note+*cached count"],
+  #     ["reference", "Sources", "+sources+*cached count"]
+  #   ]
+  #   wikirate_layout "company", tabs, render_contribution_link(args)
+  # end
+
+  # view :overview_section do |_args|
+  #   field_nest(:general_overview, view: :titled)
+  # end
 end

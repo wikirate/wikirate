@@ -14,7 +14,7 @@ format :html do
   # view :new do
   #   return _render_double_check_view
   # end
-  view :missing  do |args|
+  view :missing do |args|
     if card.new_card? && card.left
       Auth.as_bot do
         card.save!

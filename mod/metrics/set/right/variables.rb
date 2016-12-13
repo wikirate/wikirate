@@ -109,7 +109,7 @@ format :html do
     subformat(metric_item_card)._render_item_view(args)
   end
 
-  view :missing  do |args|
+  view :missing do |args|
     if @card.new_card? && (l = @card.left) &&
        l.respond_to?(:input_names)
       card.extract_metrics_from_formula

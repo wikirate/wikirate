@@ -16,8 +16,8 @@ def user_card
   @user_card ||= left
 end
 
-def cont_type_card
-  @cont_type_card ||= right
+def cardtype_card
+  @cardtype_card ||= right
 end
 
 # returns [User]+[Cardtype]+report_search, a search card that finds cards
@@ -26,7 +26,7 @@ end
 # raw_content for each variant can be set with a method following this pattern
 # on the cardtype card:
 #
-#   def (variant)_report_content user_id
+#   def (variant)_report_query user_id
 #     (generate and return WQL in JSON form)
 #   end
 #
@@ -46,8 +46,8 @@ end
 
 def report_action_applies? action
   return true unless action == :voted_on
-  # probably a faster way?
-  Card.new(type_id: cont_type_card.id).respond_to? :vote_count
+  # TODO: optimize by adding a test method on the cardtype card itself
+  Card.new(type_id: cardtype_card.id).respond_to? :vote_count
 end
 
 format :html do
@@ -110,7 +110,7 @@ format :html do
 
   def contribution_report_title
     wrap_with :h4, class: "contribution-report-title" do
-      card.cont_type_card.cardname.vary :plural
+      card.cardtype_card.cardname.vary :plural
     end
   end
 
