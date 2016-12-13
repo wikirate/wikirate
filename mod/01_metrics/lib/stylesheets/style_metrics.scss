@@ -379,12 +379,10 @@
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
-.metric-details-company-header,
+
+.company-details-header,
 .metric-details-header,
 .metric-info {
-    // .wiki .row {
-    //     margin-bottom: 18px;
-    // }
     .row {
         margin-left: 5px;
         margin-right: 5px;
@@ -466,7 +464,8 @@
     font-size: 18px;
     padding: 5px 0;
 }
-.metric-details-company-header {
+
+.company-details-header {
     .company-logo {
         width: 100px;
         float: left;

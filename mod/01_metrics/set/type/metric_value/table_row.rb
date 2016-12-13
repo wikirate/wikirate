@@ -48,11 +48,10 @@ format :html do
     ""
   end
 
-
   def close_icon
     <<-HTML
       <div class="details-close-icon pull-right	">
-        #{fa_icon "times-circle", class: "fa-2x"}
+        #{fa_icon 'times-circle', class: 'fa-2x'}
       </div>
     HTML
   end
@@ -64,8 +63,8 @@ format :html do
         #{fa_icon :comment}
       </div>
       <div class="row-data">
-            #{nest "#{card.metric_record}+discussion", view: :titled, title: "Discussion",
-                   show: "commentbox" }
+            #{nest "#{card.metric_record}+discussion", view: :titled, title: 'Discussion',
+                   show: 'commentbox'}
           </div>
       </div>
     HTML
@@ -77,7 +76,6 @@ format :html do
     end
   end
 
-
   def fast_search_results
     MetricAnswer.fetch metric_record_id: card.left.id
   end
@@ -85,9 +83,8 @@ format :html do
   view :metric_record_list do
     wikirate_table :plain, fast_search_results,
                    [:plain_year, :closed_answer],
-                   header: ["Year", "Answer"],
+                   header: %w(Year Answer),
                    td: { classes: ["text-center"] }
-
   end
 
   def metric_values
@@ -98,42 +95,48 @@ format :html do
 
   # used in metric value list on a metric page
   view :company_details_sidebar do
-    wrap do
+    details_sidebar :company
+  end
+
+  # used in metric values list on a company page
+  view :metric_details_sidebar do
+    details_sidebar :metric do
       <<-HTML
-        <div class="metric-details-company-header">
-          #{close_icon}
-          <br>
-          <div class="row clearfix">
-            <div class="company-logo">
-              #{link_to_card card.company_card,
-                             nest(card.company_card.fetch(trait: :image)),
-                             class: "inherit-anchor"}
-            </div>
-            <div class="company-name">
-              #{link_to_card card.company_card, nil, class: "inherit-anchor"}
-            </div>
+        <div class="row clearfix">
+          <div class="data-item text-center">
+            <span class="btn label-metric">
+              #{link_to_card card.metric_card, 'Metric Details'}
+            </span>
           </div>
-          <hr>
-          #{metric_details}
-          #{metric_values}
-          <br>
-          #{discussion}
         </div>
+        <hr>
       HTML
     end
   end
 
+  def company_details_sidebar_header
+    <<-HTML
+      <div class="company-logo">
+        #{link_to_card card.company_card,
+                       nest(card.company_card.fetch(trait: :image)),
+                       class: 'inherit-anchor'}
+      </div>
+      <div class="company-name">
+        #{link_to_card card.company_card, nil, class: 'inherit-anchor'}
+      </div>
+    HTML
+  end
+
+
   def metric_details_sidebar_header
-    bs do
-      layout do
-        row 1, 11 do
-          column nest(card.metric_card.vote_count_card)
-          column do
-            row link_to_card(card.metric_card, card.metric_card.cardname.right,
-                             class: "inherit-anchor"),
-                class: "name"
-            row designer_info
-          end
+    bs_layout do
+      row 1, 11 do
+        column nest(card.metric_card.vote_count_card)
+        column do
+          row link_to_card(card.metric_card, card.metric_card.cardname.right,
+                           class: "inherit-anchor"),
+              class: "name"
+          row designer_info
         end
       end
     end
@@ -150,29 +153,20 @@ format :html do
     HTML
   end
 
-  #lllr+logo|core;size:small}}
 
-  # used in metric values list on a company page
-  view :metric_details_sidebar do
+  def details_sidebar type, &block
     wrap do
       <<-HTML
-        <div class="metric-details-header">
+        <div class="#{type}-details-headder">
           #{close_icon}
           <div class="row clearfix padding-top-20">
-            #{metric_details_sidebar_header}
+            #{send "#{type}_details_sidebar_header" }
           </div>
           <hr>
           #{metric_details}
-           #{metric_values}
+      #{metric_values}
           <br>
-          <div class="row clearfix">
-            <div class="data-item text-center">
-              <span class="btn label-metric">
-                #{link_to_card card.metric_card, "Metric Details"}
-              </span>
-            </div>
-          </div>
-          <hr>
+          #{block.call if block_given?}
           #{discussion}
         </div>
       HTML
