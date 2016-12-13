@@ -19,7 +19,7 @@ namespace :wikirate do
 
     desc "create folders and files for script"
     task script: :environment do
-      ENV["type"] ||= "CoffeeScript"
+      ENV["type"] ||= "coffee"
     Rake::Task["wikirate:add:codefile"].invoke
     end
   end
@@ -29,7 +29,12 @@ def with_params *keys
   return unless parameters_present?(*keys)
   values = keys.map { |k| ENV[k.to_s] }
   mod, name, type = values
+  name = standardize_name name
   yield(mod, name, type, type_codename(type))
+end
+
+def standardize_name name
+  name.sub(/^(?:script|style):?_?\s*/, '')
 end
 
 def parameters_present? *env_keys

@@ -9,7 +9,7 @@ format :json do
     @data ||= chart_class.new(self,
                               highlight: card.value,
                               layout: { height: 70, width: 300,
-                                        padding: { top: 10, left: 40,
+                                        padding: { top: 10, left: 50,
                                                    bottom: 20, right: 30 } },
                               link: false,
                               axes: :light)
