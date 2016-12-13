@@ -127,9 +127,9 @@ end
 
 def migration_content name, category, type_codename
   <<-RUBY
-    add_#{category} '#{name}',
+    add_#{category} "#{name}",
                 type_id: #{type_id type_codename},
-                to: '#{rule_card_name category}'
+                to: "#{rule_card_name category}"
   RUBY
 end
 
