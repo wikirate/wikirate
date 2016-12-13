@@ -7,7 +7,7 @@ namespace :wikirate do
       with_params(:mod, :name, :type) do |mod, name, category, type, type_codename|
         create_content_file mod, name, type
         create_rb_file mod, name
-        create_migration_file name, cat, type_codename
+        create_migration_file name, category, type_codename
       end
     end
 
@@ -20,7 +20,7 @@ namespace :wikirate do
     desc "create folders and files for script"
     task script: :environment do
       ENV["type"] ||= "coffee"
-    Rake::Task["wikirate:add:codefile"].invoke
+      Rake::Task["wikirate:add:codefile"].invoke
     end
   end
 end
@@ -36,7 +36,7 @@ def with_params *keys
 end
 
 def remove_prefix name
-  name.sub(/^(?:script|style):?_?\s*/, '')
+  name.sub(/^(?:script|style):?_?\s*/, "")
 end
 
 def category typecode
@@ -96,7 +96,7 @@ def type_codename type
   when "coffee" then :coffee_script
   when "css", "scss" then type.to_sym
   else
-    color_puts  "'#{type}' is not a valid type. "\
+    color_puts "'#{type}' is not a valid type. "\
                  "Choose between js, coffee, css and scss.", :red
     exit
   end
@@ -141,7 +141,7 @@ def content_dir type
   File.join "lib", dir
 end
 
-def content_filename(name, type)
+def content_filename name, type
   file_ext = type == "coffee" ? ".js.coffee" : "." + type
   name + file_ext
 end
