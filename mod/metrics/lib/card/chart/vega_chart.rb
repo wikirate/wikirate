@@ -72,7 +72,7 @@ class Card
       def data_item_hash filter
         hash = { y: count(filter),
                  highlight: highlight?(filter) }
-        hash[:link] = filter_link filter if @opts[:link]
+        hash[:link] = filter_link(filter) if @opts[:link]
         hash
       end
 
@@ -170,8 +170,16 @@ class Card
         }
       end
 
+      # return the url to the link target of a bar in the chart
+      # :filter has the filter options for the table
+      # :chart[:filter] the filter options for the chart
       def filter_link filter_opts
-        @format.path view: :data, filter: filter_opts.merge(@format.filter_hash)
+        @format.path view: :data,
+                     chart: {
+                       filter: filter_opts,
+                       highlight: highlight_value_from_filter_opts(filter_opts)
+                     },
+                     filter: @format.filter_hash(false)
       end
     end
   end

@@ -69,7 +69,7 @@ class Card
     end
 
     def year_query value
-      if value.to_sym == :latest
+      if value == :latest || value == "latest"
         filter :latest, true
       else
         filter :year, value
@@ -94,7 +94,7 @@ class Card
     end
 
     def prepare_filter_args filter
-      @filter_args = filter
+      @filter_args = filter.deep_symbolize_keys
       @filter_args[:latest] = true unless filter[:year] || filter[:metric_value]
     end
 

@@ -9,7 +9,6 @@ class Card
     def initialize metric_id, *args
       @metric_card = Card.fetch metric_id
       super *args
-
     end
 
     def prepare_filter_args filter

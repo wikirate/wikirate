@@ -22,6 +22,10 @@ class Card
         return true unless @highlight_value
         @highlight_value == filter[:category]
       end
+
+      def highlight_value_from_filter_opts filter_opts
+        filter_opts[:category]
+      end
     end
   end
 end

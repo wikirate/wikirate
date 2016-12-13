@@ -1,5 +1,6 @@
 include_set Abstract::SortAndFilter
 include_set Abstract::MetricChild, generation: 1
+include_set Abstract::Chart
 
 def item_cards _args={}
   @item_cards ||= filtered_item_query(
@@ -11,7 +12,6 @@ def filtered_item_query filter={}, sort={}, paging={}
   return query_class.default left.id, sort, paging unless filter.present?
   query_class.new left.id, filter, sort, paging
 end
-
 
 format :json do
   view :core do

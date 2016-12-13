@@ -81,6 +81,10 @@ class Card
         from, to = filter[:range][:from], filter[:range][:to]
         @highlight_value >= from && @highlight_value < to
       end
+
+      def highlight_value_from_filter_opts filter_opts
+        filter_opts[:range][:from]
+      end
     end
   end
 end

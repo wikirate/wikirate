@@ -17,7 +17,7 @@ format :json do
 
   def chart_filter_query
     FixedMetricAnswerQuery.new chart_metric_id,
-                               card.filter_hash.merge(year: card.year)
+                               card.filter_hash(false).merge(year: card.year)
   end
 end
 
