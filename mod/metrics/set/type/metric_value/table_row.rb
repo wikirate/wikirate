@@ -127,7 +127,6 @@ format :html do
     HTML
   end
 
-
   def metric_details_sidebar_header
     bs_layout do
       row 1, 11 do
