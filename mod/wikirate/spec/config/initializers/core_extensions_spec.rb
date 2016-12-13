@@ -7,14 +7,28 @@ describe CoreExtensions do
   end
 
   context CoreExtensions::PersistentIdentifier do
-    it "converts into a cardname" do
-      expect(:wagn_bot.name).to eq("WikiRate Bot")
+    describe "#cardname" do
+      subject { :wagn_bot.cardname }
+      it "converts into a cardname" do
+        is_expected.to be_instance_of Card::Name
+        expect(subject.name).to eq "WikiRate Bot"
+      end
     end
 
-    it "converts into a card" do
-      expect(Card::ClaimID.card.id).to eq(Card::ClaimID)
-      expect(:claim.card.id).to eq(Card::ClaimID)
-      expect(:claim.card.key).to eq(:claim.cardname.key)
+    describe "#card" do
+      context "called on Integer" do
+        subject { Card::ClaimID.card }
+        it "converts into a card" do
+          is_expected.to be_instance_of Card
+          expect(subject.id).to eq Card::ClaimID
+        end
+      end
+
+      context "called on Symbol" do
+        subject { :claim.card }
+        is_expected.to be_instance_of Card
+        expect(subject.card.key).to eq(:claim.cardname.key)
+      end
     end
   end
 end
