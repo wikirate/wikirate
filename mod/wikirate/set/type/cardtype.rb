@@ -34,3 +34,7 @@ end
 def contribution_listing_view
   :listing
 end
+
+def standard_project_report_wql args
+end
+

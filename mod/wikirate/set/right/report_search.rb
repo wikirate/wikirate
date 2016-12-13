@@ -9,7 +9,7 @@
 
 # In both cases, the report queries can only vary structurally by cardtype
 # (not by user or project), so the query methods are defined on the cardtype
-# set modules.
+# set modules (eg self/metric).
 
 attr_accessor :variant
 
@@ -52,6 +52,8 @@ def project_report_content
 end
 
 format :html do
+  # uses structure to hold variant
+  # (so that it can be passed around via slot options)
   view :core do
     card.variant = voo.structure if voo.structure
     super()

@@ -16,8 +16,8 @@ def user_card
   @user_card ||= left
 end
 
-def cont_type_card
-  @cont_type_card ||= right
+def cardtype_card
+  @cardtype_card ||= right
 end
 
 # returns [User]+[Cardtype]+report_search, a search card that finds cards
@@ -46,8 +46,8 @@ end
 
 def report_action_applies? action
   return true unless action == :voted_on
-  # probably a faster way?
-  Card.new(type_id: cont_type_card.id).respond_to? :vote_count
+  # TODO: optimize by adding a test method on the cardtype card itself
+  Card.new(type_id: cardtype_card.id).respond_to? :vote_count
 end
 
 format :html do
@@ -110,7 +110,7 @@ format :html do
 
   def contribution_report_title
     wrap_with :h4, class: "contribution-report-title" do
-      card.cont_type_card.cardname.vary :plural
+      card.cardtype_card.cardname.vary :plural
     end
   end
 
@@ -134,7 +134,7 @@ format :html do
   def contribution_report_body
     return "" unless (action = current_tab)
     report_card = card.report_card action
-    item_view = card.cont_type_card.contribution_listing_view
+    item_view = card.cardtype_card.contribution_listing_view
     nest report_card, view: :content, structure: action, skip_perms: true,
                       items: { view: item_view }
   end
