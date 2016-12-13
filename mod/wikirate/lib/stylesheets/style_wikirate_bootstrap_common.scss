@@ -120,7 +120,7 @@
 }
 
 .margin-15{
-  margin: 15px; 
+  margin: 15px;
 }
 
 .margin-top-10 {
@@ -295,6 +295,7 @@
     display: none;
 }
 
+
 .loader-anime {
     position: absolute;
     width: 100%;
@@ -310,6 +311,13 @@
         margin-left: -20px;
     }
 }
+
+.loader-anime.relative {
+  position: relative;
+}
+
+
+
 .tagline, .edits-by, .last-edit {
     // border-bottom: 1px solid $div-border-color;
     font-size: 0.8em;
