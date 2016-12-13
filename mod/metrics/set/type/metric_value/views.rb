@@ -5,7 +5,7 @@ format :json do
     card.metric_card.id
   end
 
-  def vega_chart_config
+  def vega_chart_config highlight=nil
     @data ||= chart_class.new(self,
                               highlight: card.value,
                               layout: { height: 70, width: 300,
