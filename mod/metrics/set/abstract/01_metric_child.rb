@@ -111,7 +111,7 @@ def answer_name
   "#{metric_name}+#{company_name}+#{year}"
 end
 
-def metric_record
+def record
   record_name.s
 end
 
@@ -119,8 +119,14 @@ def record_name
   metric_name.field_name(company)
 end
 
-def metric_record_card
-  Card.fetch metric_record
+def record_card
+  Card.fetch record
+end
+
+format do
+  delegate :metric_name, :company_name, :record_name, :year_name,
+           :metric_card, :company_card, :record_card, :year_card,
+           to: :card
 end
 
 delegate :value_options, :value_options_card, :value_type,

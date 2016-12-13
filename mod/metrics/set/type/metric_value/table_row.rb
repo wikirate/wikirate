@@ -63,7 +63,7 @@ format :html do
         #{fa_icon :comment}
       </div>
       <div class="row-data">
-            #{nest "#{card.metric_record}+discussion", view: :titled, title: 'Discussion',
+            #{nest "#{card.record}+discussion", view: :titled, title: 'Discussion',
                    show: 'commentbox'}
           </div>
       </div>
@@ -72,7 +72,7 @@ format :html do
 
   def metric_details
     wrap_with :div, class: "row clearfix wiki" do
-      nest "#{card.metric_record}+metric details", view: :content
+      nest "#{card.record}+metric details", view: :content
     end
   end
 
@@ -80,7 +80,7 @@ format :html do
     Answer.fetch record_id: card.left.id
   end
 
-  view :metric_record_list do
+  view :record_list do
     wikirate_table :plain, fast_search_results,
                    [:plain_year, :closed_answer],
                    header: %w(Year Answer),
@@ -89,7 +89,7 @@ format :html do
 
   def metric_values
     wrap_with :div, class: "row clearfix wiki" do
-      _render_metric_record_list
+      _render_record_list
     end
   end
 
