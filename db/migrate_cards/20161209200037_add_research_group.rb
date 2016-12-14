@@ -5,8 +5,8 @@ class AddResearchGroup < Card::Migration
     merge_cards [
       "research_group",
       "researcher",
-      "research group+Project+*type_plus_right+*default",
-      "research group+Metric+*type_plus_right+*default"
+      "research_group+project+*type_plu_right+*default",
+      "research_group+metric+*type_plu_right+*default"
     ]
   end
 end

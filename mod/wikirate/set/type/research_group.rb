@@ -4,6 +4,7 @@ include_set Abstract::Table
 
 card_accessor :organizer
 card_accessor :researcher
+card_accessor :project
 
 def all_members
   (organizer_card.item_cards + researcher_card.item_cards).uniq
@@ -25,6 +26,10 @@ def contribution_count member, cardtype, category
   report_card(member, cardtype, category).count
 end
 
+def projects
+  @projects ||= project_card.item_cards limit: 0
+end
+
 format :html do
   view :open_content do |args|
     bs_layout container: true, fluid: true, class: @container_class do
@@ -39,15 +44,16 @@ format :html do
     output [
       _render_rich_header,
       field_nest(:description, view: :titled),
-      _render_members
+      member_list,
+      field_nest(:discussion, view: :titled, show: :comment_box)
     ]
   end
 
-  view :members do
+  def member_list
     with_header "Members" do
       [:organizer, :researcher].map do |fieldname|
         field_nest fieldname, view: :titled,
-                              title: fieldname.cardname,
+                              title: fieldname.cardname.s,
                               variant: "plural capitalized",
                               type: "Pointer",
                               items: { view: :thumbnail }
@@ -105,12 +111,12 @@ format :html do
   end
 
   def contribution_cardtypes
-    [:metric_value, :metric, :wikirate_company, :project]
+    [:metric_value, :metric, :wikirate_company]
     # TODO: consider adding source, which is connected via metric_value
   end
 
   def contribution_categories
-    [:created, :updated, :discussed, :voted_on]
+    [:created, :updated, :discussed]
   end
 
   def member_contribution_content member

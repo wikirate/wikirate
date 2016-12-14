@@ -36,8 +36,9 @@ def research_group?
   end
 end
 
+# part 3 of U+C+R
 def research_group_name
-  cardname.right_name
+  cardname.left_name.right_name
 end
 
 def research_group_card
@@ -53,9 +54,9 @@ def standard_report_query
 end
 
 def research_group_report_query
-  cardtype_card.research_group_report_query(
-    variant, user_card.id, research_group_card.id
-  )
+  type_ids = cardtype_card.ids_related_to_research_group research_group_card
+  type_ids = [-1] if type_ids.empty? # TODO: cleaner way to force 0 result
+  standard_report_query.merge id: [:in, type_ids]
 end
 
 format :html do

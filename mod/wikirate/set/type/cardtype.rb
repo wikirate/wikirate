@@ -8,8 +8,8 @@ def report_query action, user_id
   standard_report_query.merge send("#{action}_query", user_id)
 end
 
-def research_group_report_query action, user_id, _project_id
-  report_query action, user_id
+def standard_report_query
+  { type_id: id, limit: 5 }
 end
 
 def created_query user_id
@@ -33,11 +33,6 @@ def voted_on_query user_id
   { linked_to_by: { left_id: user_id,
                     right_id: [:in, UpvotesID, DownvotesID] } }
 end
-
-def standard_report_query
-  { type_id: id, limit: 5 }
-end
-
 
 =begin
 [ :metric_value, :metric, :wikirate_company, :project ]
