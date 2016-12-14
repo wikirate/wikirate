@@ -131,13 +131,9 @@ format :html do
   # otherwise it will lose the filter condition while changing pages
   def page_link text, page, _current=false, options={}
     @paging_path_args[:offset] = page * @paging_limit
-    filter_args = {}
-    page_link_params.each do |key|
-      filter_args[key] = params[key] if params[key].present?
-    end
     options[:class] = "card-paging-link slotter"
     options[:remote] = true
-    options[:path] = @paging_path_args.merge filter_args
+    options[:path] = @paging_path_args.merge card.filter_hash
     link_to raw(text), options
   end
 

@@ -382,15 +382,5 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
   end
 
   describe "view" do
-    it "renders card_list_header" do
-      html = all_metric_values.format.render_card_list_header
-      expect(html).to have_tag("div",
-                               with: { class: "yinyang-row column-header" }) do
-        with_tag :div, with: { class: "company-item value-item" } do
-          with_tag :div, with: { class: "header metric-list-header slotter" }
-          with_tag :div, with: { class: "data metric-list-header slotter" }
-        end
-      end
-    end
   end
 end

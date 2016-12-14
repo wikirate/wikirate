@@ -38,6 +38,8 @@ class Card
         @data = []
         @labels = []
         @max_count = 0
+        @layout = opts.delete(:layout) || {}
+        @ticks = @layout.delete(:ticks)
         @opts = opts
         generate_data
       end
@@ -62,7 +64,7 @@ class Card
       end
 
       def layout
-        @opts[:layout] ? DEFAULT_LAYOUT.merge(@opts[:layout]) : DEFAULT_LAYOUT
+        DEFAULT_LAYOUT.merge @layout
       end
 
       def add_data filter
@@ -72,7 +74,7 @@ class Card
       def data_item_hash filter
         hash = { y: count(filter),
                  highlight: highlight?(filter) }
-        hash[:link] = filter_link(filter) if @opts[:link]
+        hash[:link] = filter_link(filter) if link?
         hash
       end
 
@@ -148,8 +150,10 @@ class Card
       end
 
       def y_axis
-        { type: "y", scale: "y", title: "Companies",
-          properties: axes_properties }
+        hash = { type: "y", scale: "y", title: "Companies",
+                 properties: axes_properties }
+        hash[:ticks] = @ticks if @ticks
+        hash
       end
 
       def axes_properties

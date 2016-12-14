@@ -225,30 +225,5 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
   end
 
   describe "view" do
-    describe "card_list_header" do
-      subject { all_metric_values.format.render_card_list_header }
-      let(:url) do
-        url_key = all_metric_values.cardname.url_key
-        "/#{url_key}?filter%5Bvalue%5D=exist&amp;filter%5Byear%5D=latest&amp;"\
-        "limit=20&amp;offset=0&amp;sort_by=name&amp;sort_order=asc&amp;"\
-        "view=content"
-      end
-
-      it "renders card_list_header" do
-        Card::Env.params["offset"] = "0"
-        Card::Env.params["limit"] = "20"
-        is_expected.to have_tag("div",
-                                with: { class: "yinyang-row column-header" }) do
-          with_tag :div, with: { class: "company-item value-item" } do
-            with_tag :a, with: {
-              class: "metric-list-header slotter header" #, href: url
-            }
-            with_tag :a, with: {
-              class: "metric-list-header slotter data" #, href: url
-            }
-          end
-        end
-      end
-    end
   end
 end

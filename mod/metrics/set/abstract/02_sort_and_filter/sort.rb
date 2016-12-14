@@ -63,6 +63,13 @@ format do
 end
 
 format :html do
+  def table_sort_link name, key, css_class=""
+    sort_link "#{name} #{sort_icon key}",
+              sort_by: key,
+              sort_order: toggle_sort_order(key),
+              class: css_class
+  end
+
   # @param [String] text link text
   # @param [Hash] args sort args
   # @option args [String] :sort_by
@@ -71,7 +78,7 @@ format :html do
   def sort_link text, args
     path = card.paging_path_args sort_order: args[:sort_order],
                                  sort_by: args[:sort_by]
-    link_to_view :content, text,
+    link_to_view :data, text,
                  path: path,
                  class: "metric-list-header slotter #{args[:class]}"
   end
