@@ -1,4 +1,5 @@
 include_set Abstract::TwoColumnLayout
+include_set Abstract::Thumbnail
 
 format :html do
   view :open_content do |args|
@@ -15,7 +16,7 @@ format :html do
     wrap_with :div, class: "profile-data" do
       [
         field_nest(:activity, view: :titled, title: "Activity", hide: :menu)
-        # FIXME: restore following soon
+        # TODO: restore following soon
         #field_nest(:follow, view: :profile,
         #                    hide: [:menu, :toggle],
         #                    title: "Following",
@@ -29,18 +30,13 @@ format :html do
 
   view :contributions_column do
     wrap_with :div, class: "contributions-column" do
-      [
-        wrap_with(:h4, "Contributions"),
-        contribution_reports
-      ]
+      [wrap_with(:h4, "Contributions"), contribution_reports]
     end
   end
 
   def contribution_types
-    [
-      :metric_value, :metric, :wikirate_company, :project, :source,
-      :wikirate_topic, :claim
-    ]
+    [:metric_value, :metric, :wikirate_company, :project, :source,
+     :wikirate_topic, :research_group, :claim]
   end
 
   def contribution_reports
