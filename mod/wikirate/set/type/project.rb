@@ -60,9 +60,9 @@ format :html do
   def left_col_content
     wrap_with :div, class: "margin-15" do
       [
-        field_nest(:organizer, view: :titled, items: { view: :link }),
+        field_nest(:organizer, view: :titled, items: { view: :thumbnail }),
         field_nest(:wikirate_topic, view: :titled, items: { view: :link }),
-        field_nest(:description, view: :titled, items: { view: :link })
+        field_nest(:description, view: :titled)
       ]
     end
   end
@@ -134,7 +134,8 @@ format :html do
     text = row_details
     bs_layout do
       row 12, class: "project-summary" do
-        col text_with_image(image: image, size: :medium, title: title, text: text)
+        col text_with_image(image: image, size: :medium,
+                            title: title, text: text)
       end
     end
   end
@@ -142,9 +143,13 @@ format :html do
   def row_details
     wrap_with :div, class: "project-details-info" do
       [
-        wrap_with(:div, organizational_details, class: "organizational-details"),
-        wrap_with(:div, stats_details, class: "stat-details overall-progress-box"),
-        wrap_with(:div, topics_details, class: "topic-details ")
+        wrap_with(:div, class: "organizational-details") do
+          organizational_details
+        end,
+        wrap_with(:div, class: "stat-details overall-progress-box") do
+          stats_details
+        end,
+        wrap_with(:div, topics_details, class: "topic-details")
       ]
     end
   end

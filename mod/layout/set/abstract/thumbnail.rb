@@ -39,11 +39,14 @@ format :html do
     end
   end
 
-  view :thumbnail_title do |_args|
-    content = wrap_with(:div, nest(card.metric_title_card, view: :name),
-                        class: "ellipsis")
-    return content unless voo.show?(:thumbnail_link)
-    link_to_card card, content, title: card.metric_title_card.name
+  def thumbnail_image
+    link_to_card card, field_nest(:image, view: :core, size: :small)
+  end
+
+  def thumbnail_title
+    wrap_with :div, class: "ellipsis" do
+      _render_link
+    end
   end
 
   view :thumbnail_subtitle do |args|

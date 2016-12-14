@@ -8,12 +8,13 @@ format :html do
 
   view :thumbnail_text do
     wrap_with :div, class: "thumbnail-text" do
-      _render_thumbnail_title
+      thumbnail_title
     end
   end
-  view :thumbnail_title do
-    content = wrap_with(:div, nest(card, view: :name),
-                          class: "ellipsis")
-    link_to_card card, content, title: card.name
+
+  def thumbnail_title
+    wrap_with :div, class: "ellipsis" do
+      _render_link
+    end
   end
 end

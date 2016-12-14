@@ -1,6 +1,4 @@
 format :html do
-
-
   def metric_row header, data, args={}
     row_class = "yinyang-row"
     row_class = "drag-item #{row_class}" if args[:drag_and_drop]
@@ -12,9 +10,9 @@ format :html do
 
     if args[:append_for_details]
       inner = wrap_with :div, class: "metric-details-toggle",
-                          "data-append" => args[:append_for_details] do
-                inner
-              end
+                              "data-append" => args[:append_for_details] do
+        inner
+      end
     end
 
     content = wrap_with :div, class: row_class do
@@ -25,11 +23,9 @@ format :html do
   end
 
   def item_wrap args
-
   end
 
   def wikirate_list
-
   end
 
   def company_row_for_topic args
@@ -50,8 +46,10 @@ format :html do
     header = <<-HTML
       {{_+*vote count}}
       <div class="logo">
-      <a class="inherit-anchor" href="/{{_1|name}}+contribution"> {{_1+image|core;size:small}} </a>
-              </div>
+        <a class="inherit-anchor" href="/{{_1|name}}+contribution">
+          {{_1+image|core;size:small}}
+        </a>
+      </div>
       <div class="name">
         {{_2|name}}
       </div>
@@ -162,7 +160,7 @@ format :html do
     wrap_with :div, class: "yinyang-list" do
       field_subformat(args[:field])
         ._render_content(hide: "title",
-                         items: { view: args[:row_view]})
+                         items: { view: args[:row_view] })
     end
   end
 end

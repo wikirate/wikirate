@@ -48,11 +48,9 @@ class WikirateTable
     tr = @tr_opts.clone
     return tr unless @opts[:details_view]
     add_class tr, "tr-details-toggle"
-    tr.deep_merge!(
-        data: {
-            details_url: @format.path(mark: row_card, view: @opts[:details_view])
-        }
-    )
+    tr.deep_merge! data: {
+      details_url: @format.path(mark: row_card, view: @opts[:details_view])
+    }
   end
 
   def td_data row_card, view, col_index
