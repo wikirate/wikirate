@@ -6,8 +6,8 @@ card_reader :metric
 card_reader :organizer
 
 # the space of possible metric records
-def records
-  @records ||= num_companies * num_metrics
+def num_records
+  @num_records ||= num_companies * num_metrics
 end
 
 def num_companies
@@ -30,10 +30,8 @@ def company_ids
   end.compact
 end
 
-def researched_wql
-  { left_id: [:in] + metric_ids,
-    right_id: [:in] + company_ids,
-    return: :count }
+def where_answer
+  { metric_id: metric_ids, company_id: company_ids }
 end
 
 def worth_counting
@@ -69,12 +67,16 @@ format :html do
 
   view :content_right_col do
     wrap_with :div, class: "progress-column" do
-      [
-        overall_progress_box,
-        field_nest(:metric, view: :titled, items: { view: :link }),
-        field_nest(:wikirate_company, view: :titled, items: { view: :link })
-      ]
+      [overall_progress_box, metric_list, company_list]
     end
+  end
+
+  def metric_list
+    standard_pointer_nest :metric
+  end
+
+  def company_list
+    standard_pointer_nest :wikirate_company
   end
 
   def overall_progress_box
@@ -125,7 +127,13 @@ format :html do
   end
 
   def progress_description
-    "(nest editable card with description text)"
+    %(
+      <span class="light-grey-color-2 tagline small">
+        Out of <strong>#{card.num_records} potential records</strong>
+        (#{card.num_metrics} Metrics x #{card.num_companies} Companies),
+        researchers have added #{card.num_researched} so far.
+      </span>
+    )
   end
 
   view :listing do

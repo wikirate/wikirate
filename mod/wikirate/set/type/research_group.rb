@@ -23,6 +23,7 @@ def report_card member, cardtype, variant
 end
 
 def contribution_count member, cardtype, category
+  return 0 if projects.empty?
   report_card(member, cardtype, category).count
 end
 
