@@ -26,7 +26,7 @@ format :html do
         row do
           _optional_render_filter
         end
-        row do
+        row class: "text-center" do
           _render_chart
         end
         row do
