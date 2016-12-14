@@ -55,6 +55,10 @@ format :html do
     end
   end
 
+  view :listing do
+    _render_thumbnail
+  end
+
   def with_header header
     output [wrap_with(:h2, header), yield]
   end
