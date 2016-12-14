@@ -13,14 +13,10 @@ format :html do
   end
 
   def company_sort_link
-    sort_link "Companies #{sort_icon :name}",
-              sort_by: 'name', sort_order: toggle_sort_order(:name),
-              class: 'header'
+    table_sort_link "Companies", :company_name
   end
 
   def value_sort_link
-    sort_link "Values #{sort_icon :value}",
-              sort_by: 'value', sort_order: toggle_sort_order(:value),
-              class: 'data'
+    table_sort_link "Values", :value
   end
 end

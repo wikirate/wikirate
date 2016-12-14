@@ -26,8 +26,4 @@ format do
     count_card = search_card.fetch trait: :cached_count, new: {}
     count_card.format.render_core.to_i
   end
-
-  def page_link_params
-    [:name, :sort]
-  end
 end

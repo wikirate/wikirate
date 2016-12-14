@@ -31,7 +31,7 @@ module LookupTable
     end
 
     def sort mas, args
-      mas = importance_sort mas, args if args[:sort_by] == :importance
+      mas = importance_sort mas, args if args[:sort_by].to_sym == :importance
       sort_by = args[:sort_by]
       sort_by = "CAST(#{sort_by} AS #{args[:cast]})" if args[:cast]
       mas.order "#{sort_by} #{args[:sort_order]}"

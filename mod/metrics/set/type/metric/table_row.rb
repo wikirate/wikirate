@@ -17,12 +17,26 @@ format :html do
 
   view :thumbnail do
     voo.hide! :thumbnail_subtitle
-    image = card.metric_designer_card.field(:image)
     title = card.right.name
     output [
              _optional_render_vote,
-             text_with_image(title: title, image: image, size: :icon)
+             text_with_image(title: title,
+                             image: desinger_image_card, size: :icon)
     ]
+  end
+
+  def designer_image_card
+    card.metric_designer_card.field(:image)
+  end
+
+  view :thumbnail_with_vote do
+    voo.hide! :thumbnail_subtitle
+    title = card.right.name
+    output [
+             _render_vote,
+             text_with_image(title: title,
+                             image: designer_image_card, size: :icon)
+           ]
   end
 
   view :latest_value do

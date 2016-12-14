@@ -26,8 +26,3 @@ format :json do
   end
 end
 
-format do
-  def page_link_params
-    [:name, :research_policy, :type, :sort]
-  end
-end

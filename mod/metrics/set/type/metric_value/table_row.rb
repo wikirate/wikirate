@@ -3,7 +3,7 @@ include_set Abstract::Table
 
 format :html do
   view :metric_thumbnail_with_vote do
-    nest card.metric_card, view: :thumbnail
+    nest card.metric_card, view: :thumbnail_with_vote
   end
 
   view :metric_thumbnail do
