@@ -4,34 +4,38 @@ format do
   end
 end
 
-def created_report_query user_id
-  standard_report_query created_by: user_id
+def report_query action, user_id
+  standard_report_query.merge send("#{action}_query", user_id)
 end
 
-def updated_report_query user_id
-  standard_report_query edited_by: user_id
+def research_group_report_query action, user_id, _project_id
+  report_query action, user_id
+end
+
+def created_query user_id
+  { created_by: user_id }
+end
+
+def updated_query user_id
+  { edited_by: user_id }
   # standard_report_count or: [
   #   { edited_by: user_id },
   #   { right_plus: [{}, edited_by: user_id]}
   # ]
 end
 
-def discussed_report_query user_id
-  standard_report_query right_plus: [Card::DiscussionID,
-                                   { edited_by: user_id }]
+def discussed_query user_id
+  { right_plus: [Card::DiscussionID,
+                 { edited_by: user_id }] }
 end
 
-def voted_on_report_query user_id
-  standard_report_query linked_to_by: {
-    left_id: user_id, right_id: [:in, UpvotesID, DownvotesID]
-  }
+def voted_on_query user_id
+  { linked_to_by: { left_id: user_id,
+                    right_id: [:in, UpvotesID, DownvotesID] } }
 end
 
-def standard_report_query args
-  { type_id: id, limit: 5 }.merge(args)
-end
-
-def standard_project_report_query args
+def standard_report_query
+  { type_id: id, limit: 5 }
 end
 
 
