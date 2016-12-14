@@ -23,7 +23,7 @@ format do
 end
 
 format :html do
-  view :chart do
+  view :chart, cache: :never do
     vega_chart if show_chart?
   end
 
