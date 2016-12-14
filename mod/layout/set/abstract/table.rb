@@ -24,7 +24,7 @@ format :html do
   #   - adds :details_placeholder to cell_views
   def wikirate_table_with_details table_type, item_cards, cell_views, opts={}
     cell_views << :details_placeholder
-    add_td_classes opts, ["header", "data", "details"]
+    add_td_classes opts, %w(header data details)
     wikirate_table table_type, item_cards, cell_views, opts
   end
 
@@ -33,18 +33,14 @@ format :html do
     opts[:td][:classes] ||= []
     classes = opts[:td][:classes]
     new_classes.each_with_index do |cl, i|
-      if classes[i]
-        classes[i] += " #{cl}"
-      else
-        classes[i] = cl
-      end
+      classes[i] = css_classes classes[i], cl
     end
   end
 
   def count_with_label_cell count, label
     output [
-               wrap_with(:div, count, class: "count"),
-               wrap_with(:div, label, class: "label")
-           ]
+      wrap_with(:div, count, class: "count"),
+      wrap_with(:div, label, class: "label")
+    ]
   end
 end

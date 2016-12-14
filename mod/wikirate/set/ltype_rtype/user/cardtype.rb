@@ -22,17 +22,7 @@ end
 
 # returns [User]+[Cardtype]+report_search, a search card that finds cards
 # for the given user/cardtype combination.
-#
-# raw_content for each variant can be set with a method following this pattern
-# on the cardtype card:
-#
-#   def (variant)_report_query user_id
-#     (generate and return WQL in JSON form)
-#   end
-#
-# default methods for the standard four action variants (created, updated,
-# discussed, and voted_on) are defined on the type/cardtype set.
-
+# See right/report_search for further information
 def report_card variant
   @report_cards ||= {}
   @report_cards[variant] ||= begin

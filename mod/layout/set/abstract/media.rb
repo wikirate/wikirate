@@ -4,7 +4,7 @@ format :html do
   end
 
   def image_src opts
-    image_card && subformat(image_card).render_source(size: opts[:size])
+    image_card && image_card.format.render_source(size: opts[:size])
   end
 
   def image_alt
