@@ -27,33 +27,43 @@
 }
 
 table.wikirate-table {
+  background: #fff;
+  thead > tr > th {
     background: #fff;
-    thead > tr > th {
-        background: #fff;
-        padding: 2px;
-        font-size: $sub-text-size;
-        text-align: center;
-        color: $heading-color;
-    }
-    td.data {
-      min-width: 180px;
-    }
-    td:first-child .media-body h4 {
-      font-weight: normal;
-      font-size: 100%;
-    }
-    .details{
-        display: none;
-    }
+    padding: 2px;
+    font-size: $sub-text-size;
+    text-align: center;
+    color: $heading-color;
+  }
+  td.data {
+    min-width: 180px;
+  }
+  td:first-child .media-body h4 {
+    font-weight: normal;
+    font-size: 100%;
+  }
+  .details {
+    display: none;
+  }
+
+  .credit .search-result-list {
+    display: inline-block;
+  }
 
   td.header {
+    .media {
+      margin-top: 8px;
+    }
     .RIGHT-Xvote_count > div {
       line-height: 1em;
+      font-size: 11px;
+      margin-right: 5px;
     }
     .RIGHT-Xvote_count.content-view {
       margin-left: 5px;
     }
     button.vote-button {
+      font-size: 11px;
       width: 15px;
       height: 15px;
       padding: 0;
@@ -66,42 +76,42 @@ table.wikirate-table {
       width: 15px;
       height: 15px;
     }
-    }
+  }
 
+  tr.tr-details-toggle:hover {
+    background-color: #fafafa;
+    cursor: pointer;
+  }
+  &.metric {
+    .header {
+      border-left: 3px solid rgba(103, 78, 167, 0.14);
+    }
     tr.tr-details-toggle:hover {
-      background-color: #fafafa;
-      cursor: pointer;
+      .header {
+        border-left: 3px solid $metric-color;
+      }
     }
-    &.metric{
+  }
+  &.company {
+    .header {
+      border-left: 3px solid rgba(211, 116, 28, 0.14);
+    }
+    tr.tr-details-toggle:hover {
       .header{
-        border-left: 3px solid rgba(103, 78, 167, 0.14);
-      }
-      tr.tr-details-toggle:hover{
-        .header {
-          border-left: 3px solid $metric-color;
-        }
+        border-left: 3px solid $company-color;
       }
     }
-    &.company{
+  }
+  &.topic {
+    .header {
+      border-left: 3px solid rgba(43, 126, 160, 0.14);
+    }
+    tr.tr-details-toggle:hover {
       .header{
-        border-left: 3px solid rgba(211,116,28,0.14);
-      }
-      tr.tr-details-toggle:hover{
-        .header{
-          border-left: 3px solid  $company-color;
-        }
+        border-left: 3px solid $topic-color;
       }
     }
-    &.topic{
-      .header{
-        border-left: 3px solid  rgba(43,126,160,0.14);
-      }
-      tr.tr-details-toggle:hover{
-        .header{
-          border-left: 3px solid  $topic-color;
-        }
-      }
-    }
+  }
 
   tbody > tr > td.details {
       background-color: #fff;
