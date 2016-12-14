@@ -17,7 +17,7 @@ format :html do
       [
         field_nest(:activity, view: :titled, title: "Activity", hide: :menu)
         # TODO: restore following soon
-        #field_nest(:follow, view: :profile,
+        # field_nest(:follow, view: :profile,
         #                    hide: [:menu, :toggle],
         #                    title: "Following",
         #                    items: {

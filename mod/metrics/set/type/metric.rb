@@ -165,6 +165,12 @@ format :html do
     _render_content structure: "profile metric item"
   end
 
+  # the base version of :core is overridden because of inclusion of
+  # Type::SearchType.  re-overriding here to fix listing.
+  view :core do
+    process_content _render_raw, content_opts: { chunk_list: :default }
+  end
+
   view :legend do
     # depends on the type
     if (unit = Card.fetch("#{card.name}+unit"))

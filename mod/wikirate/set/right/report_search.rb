@@ -74,28 +74,23 @@ format :html do
         wikirate_table :metric,
                        search_results,
                        [:metric_thumbnail, :company_thumbnail, :concise],
-                       header: %(Metric Company Answer)
+                       header: %w(Metric Company Answer)
       end
     end
   end
 
-  view :metric_list do
-    default_listing
-  end
-  view :wikirate_company_list do
-    default_listing
-  end
-  view :project_list do
-    default_listing
-  end
-  view :wikirate_topic_list do
-    default_listing
-  end
-  view :source_list do
-    default_listing
-  end
-  view :claim_list do
-    default_listing
+  [
+    :claim,
+    :metric,
+    :project,
+    :research_group,
+    :source,
+    :wikirate_company,
+    :wikirate_topic
+  ].each do |cardtype|
+    view "#{cardtype}_list" do
+      default_listing
+    end
   end
 
   def default_listing item_view=:listing
