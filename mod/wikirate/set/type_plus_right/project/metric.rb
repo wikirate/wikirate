@@ -15,7 +15,7 @@ format :html do
                      all_metric_project_cards,
                      [:metric_thumbnail, :research_progress_bar],
                      header: ["Metric", "Companies Researched"],
-                     td: { class: ["company"] }
+                     td: { classes: ["company"] }
     end
   end
 

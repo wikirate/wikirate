@@ -36,9 +36,10 @@ format :html do
   end
 
   view :research_button do
-    url = path mark: card.company_card,
-               view: :new_metric_value,
-               project: card.project_card.cardname.url_key
-    button_tag "Research", href: url, class: "btn btn-default btn-sm"
+    link_to "Research",
+            class: "btn btn-default btn-sm",
+            path: { mark: card.company_card,
+                    view: :new_metric_value,
+                    project: card.project_card.cardname.url_key }
   end
 end
