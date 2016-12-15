@@ -168,17 +168,19 @@
   :type: Cardtype
   :codename: research_group
   :key: research_group
-  :merged: 2016-12-13 22:45:35 UTC
+  :merged: 2016-12-15 03:30:48 UTC
 - :name: Researcher
   :type: Basic
   :codename: researcher
   :key: researcher
-  :merged: 2016-12-13 19:58:11 UTC
+  :merged: 2016-12-15 03:30:48 UTC
 - :name: Research Group+Metric+*type plus right+*default
   :type: Search
   :key: research_group+metric+*type_plu_right+*default
+  :merged: 2016-12-15 03:30:48 UTC
 - :name: Research Group+Project+*type plus right+*default
   :type: Search
   :key: research_group+project+*type_plu_right+*default
+  :merged: 2016-12-15 03:30:48 UTC
 :remotes:
   :live: http://wikirate.org

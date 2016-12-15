@@ -8,5 +8,8 @@ class AddResearchGroup < Card::Migration
       "research_group+project+*type_plu_right+*default",
       "research_group+metric+*type_plu_right+*default"
     ]
+
+    Card["Conversation"].update_attributes! codename: "conversation"
+    Card::Codename.reset_cache
   end
 end

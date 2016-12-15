@@ -14,7 +14,8 @@ format :html do
       wikirate_table :metric,
                      all_metric_project_cards,
                      [:metric_thumbnail, :research_progress_bar],
-                     header: ["Metric", "Companies Researched"]
+                     header: ["Metric", "Companies Researched"],
+                     td: { class: ["company"] }
     end
   end
 

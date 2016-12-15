@@ -2,10 +2,9 @@ format :html do
   view :closed_answer do
     class_up "vis", "pull-left"
     output [
-             row,
-             content_tag(:div, "",
-                         class: "card-slot collapse answer-details text-muted")
-           ]
+      row,
+      wrap_with(:div, "", class: "card-slot collapse answer-details text-muted")
+    ]
   end
 
   def row
@@ -30,10 +29,7 @@ format :html do
   end
 
   view :flags do
-    output [
-             checked_value_flag,
-             comment_flag
-           ]
+    output [checked_value_flag, comment_flag]
   end
 
   view :answer_details do
@@ -43,7 +39,8 @@ format :html do
   view :answer_details_toggle do
     css_class = "fa fa-caret-right fa-lg margin-left-10 "\
                 "btn btn-default btn-sm pull-right"
-    wrap_with(:i, "", class: css_class,
+    wrap_with(:i, "",
+              class: css_class,
               data: { toggle: "collapse",
                       url: path(view: :answer_details),
                       target: ".answer-details",

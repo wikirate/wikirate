@@ -22,7 +22,8 @@ format :html do
         :company, card.all_company_project_cards,
         [:company_thumbnail, :research_progress_bar, :research_button],
         header: ["Company", "Metrics Researched", "Research Company"],
-        table: { class: "company-research" }
+        table: { class: "company-research" },
+        td: { class: ["metric"] }
       )
     end
   end

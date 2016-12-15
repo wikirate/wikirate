@@ -60,7 +60,8 @@ format :html do
       [
         field_nest(:organizer, view: :titled, items: { view: :thumbnail }),
         field_nest(:wikirate_topic, view: :titled, items: { view: :link }),
-        field_nest(:description, view: :titled)
+        field_nest(:description, view: :titled),
+        field_nest(:conversation, view: :project_conversation)
       ]
     end
   end
@@ -84,7 +85,7 @@ format :html do
       [
         progress_legend,
         bs_layout do
-          row 3, 9 do
+          row 2, 10 do
             column { percent_researched }
             column { main_progress_bar }
           end
@@ -103,11 +104,7 @@ format :html do
 
   def wrap_legend_items
     wrap_with :div, class: "progress-legend" do
-      [
-        legend_item("known"),
-        legend_item("unknown"),
-        legend_item("not-researched")
-      ]
+      ["known", "unknown", "not-researched"].map { |i| legend_item i }
     end
   end
 
@@ -120,6 +117,17 @@ format :html do
     end
   end
 
+  def percent_researched
+    wrap_with :div, class: "percent-researched text-center" do
+      [
+        wrap_with(:div, class: "lead") do
+          "<strong>#{card.percent_researched}%</strong>"
+        end,
+        "Researched"
+      ]
+    end
+  end
+
   def main_progress_bar
     wrap_with :div, class: "main-progress-bar" do
       [overall_progress_bar, progress_description]
@@ -128,11 +136,11 @@ format :html do
 
   def progress_description
     %(
-      <span class="light-grey-color-2 tagline small">
-        Out of <strong>#{card.num_records} potential records</strong>
+      <div class="text-muted small text-center">
+        Of <strong>#{card.num_records} potential records</strong>
         (#{card.num_metrics} Metrics x #{card.num_companies} Companies),
-        researchers have added #{card.num_researched} so far.
-      </span>
+        #{card.num_researched} have been added so far.
+      </div>
     )
   end
 
@@ -175,15 +183,6 @@ format :html do
 
   def stats_details
     "#{count_stats} #{percent_researched} #{overall_progress_bar}"
-  end
-
-  def percent_researched
-    wrap_with :div, class: "percent-researched" do
-      [
-        wrap_with(:span, " #{card.percent_researched}%"),
-        "Researched"
-      ]
-    end
   end
 
   def count_stats

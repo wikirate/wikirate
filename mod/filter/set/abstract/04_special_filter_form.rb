@@ -22,15 +22,18 @@ format :html do
     end
   end
 
-
   # style="display: #{filter_active};"
   def advanced_filter
-    filter_advanced_active? ? advanced_filter_form_wrap : advanced_filter_placeholder
+    if filter_advanced_active?
+      advanced_filter_form_wrap
+    else
+      advanced_filter_placeholder
+    end
   end
 
   def advanced_filter_placeholder
-    content_tag :div, "", id: "_filter_details",
-                          class: "filter-details collapse"
+    wrap_with :div, "", id: "_filter_details",
+                        class: "filter-details collapse"
   end
 
   def advanced_filter_form_wrap

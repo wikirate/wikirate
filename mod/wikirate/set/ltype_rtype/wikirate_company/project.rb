@@ -35,8 +35,10 @@ format :html do
     nest card.company_card, view: :thumbnail
   end
 
-  # TODO link to research page
   view :research_button do
-    content_tag(:button, "Research", class: "btn btn-default btn-sm")
+    url = path mark: card.company_card,
+               view: :new_metric_value,
+               project: card.project_card.cardname.url_key
+    button_tag "Research", href: url, class: "btn btn-default btn-sm"
   end
 end
