@@ -17,7 +17,10 @@
   border: 0;
 }
 
-table.company td.metric,
+table.company td.metric {
+  width: 50%
+}
+
 table.metric td.company {
-  width: 50%;
+  width: 70%;
 }
