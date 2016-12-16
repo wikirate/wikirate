@@ -1,4 +1,4 @@
-include_set Type::SearchType
+include_set Abstract::Search
 include_set Abstract::Utility
 include_set Abstract::Filter
 
