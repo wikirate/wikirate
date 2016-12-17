@@ -33,8 +33,8 @@ format :html do
 
   def vega_chart
     id = unique_id.tr "+", "-"
-    wrap_with :div, "", id: id, class: classy("vis"),
-              data: { url: chart_load_url }
+    wrap_with(:div, "", id: id, class: classy("vis"),
+              data: { url: chart_load_url }) + zoom_out_link
   end
 
   def chart_load_url
@@ -47,13 +47,31 @@ format :html do
   def show_chart?
     card.numeric? || card.categorical?
   end
+
+  def zoom_out_link
+    return unless zoomed_in?
+    link_to_view :data, fa_icon("search-minus"),
+                 path: zoom_out_path_opts,
+                 class: "slotter"
+  end
+
+  def zoom_out_path_opts
+    { view: :data,
+      chart: chart_params[:zoom_out],
+      filter: filter_hash(false)
+    }
+  end
+
+  def zoomed_in?
+    chart_params.present?
+  end
 end
 
 format :json do
   # views requested by ajax to load chart
   view :vega, cache: :never do
-    # ve = JSON.pretty_generate vega_chart_config.to_hash
-    # puts ve
+    ve = JSON.pretty_generate vega_chart_config.to_hash
+    puts ve
     vega_chart_config(value_to_highlight).to_json
   end
 
@@ -63,18 +81,31 @@ format :json do
   end
 
   def vega_chart_config highlight=nil
-    @data ||= chart_class.new(self, link: true, highlight: highlight)
+    @data ||= chart_class.new self, link: true, highlight: highlight
   end
 
   def chart_class
-    card.numeric? ? Card::Chart::NumericChart : Card::Chart::CategoryChart
+    if card.numeric?
+      Card::Chart::NumericChart
+    else
+      Card::Chart::CategoryChart
+    end
+  end
+
+  def zoom_in?
+    card.numeric?
+  end
+
+  def chart_filter_query
+    FixedMetricAnswerQuery.new chart_metric_id,
+                               chart_filter_hash
   end
 
   def chart_metric_id
     card.id
   end
 
-  def chart_filter_query
-    FixedMetricAnswerQuery.new chart_metric_id, card.filter_hash(false)
+  def chart_filter_hash
+    card.filter_hash(zoom_in?)
   end
 end

@@ -46,7 +46,7 @@ format :html do
     output [_render_rich_header, _render_data]
   end
 
-  view :data do
+  view :data, cache: :never do
     wrap do
       [_optional_render_filter, _render_table]
     end

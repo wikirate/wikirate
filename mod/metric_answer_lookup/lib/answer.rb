@@ -73,7 +73,9 @@ class Answer < ActiveRecord::Base
 
   def fetch_numeric_value
     return unless metric_card.numeric?
-    fetch_value.to_f
+    val = fetch_value
+    return if unknown? val
+    val.to_f
   end
 
   def fetch_updated_at
@@ -113,6 +115,10 @@ class Answer < ActiveRecord::Base
   end
 
   private
+
+  def unknown? val
+    val.casecmp("unknown") == 0
+  end
 
   def metric_card
     @metric_card ||= Card.quick_fetch(fetch_metric_name)

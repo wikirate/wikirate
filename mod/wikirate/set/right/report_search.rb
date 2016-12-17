@@ -45,7 +45,7 @@ def research_group_card
   @research_group_card ||= Card.fetch research_group_name if research_group?
 end
 
-def raw_ruby_query _overide={}
+def raw_ruby_query
   research_group? ? research_group_report_query : standard_report_query
 end
 
@@ -73,7 +73,7 @@ format :html do
     wrap do
       with_paging do
         wikirate_table :metric,
-                       search_results,
+                       search_with_params,
                        [:metric_thumbnail, :company_thumbnail, :concise],
                        header: %w(Metric Company Answer)
       end

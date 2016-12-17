@@ -2,7 +2,8 @@
 format :html do
   # @param table_type [Symbol] eg. metric, company or topic.
   #   added as html class to the table tag
-  # @param [Array<Card>] row_cards one card for every row
+  # @param [Array<Card>] row_cards one card for every row or a search card
+  #                      whose html format reponds to :search_result
   # @param [Array<Symbol>] cell_views one view for every column. Is rendered
   #   for every row card
   # @param [Hash] opts add additional classes and other attributes to your table
@@ -15,7 +16,10 @@ format :html do
   # @option opts [Hash] :table html options for table tags
   def wikirate_table table_type, row_cards, cell_views, opts={}
     @table_context = self
-    WikirateTable.new(self, table_type, row_cards, cell_views, opts).render
+    row_cards, format = normalize_args row_cards
+    rendered_table = WikirateTable.new(self, table_type, row_cards,
+                                       cell_views, opts).render
+    format ? format.with_paging { rendered_table } : rendered_table
   end
 
   # see #wikirate_table
@@ -26,6 +30,14 @@ format :html do
     cell_views << :details_placeholder
     add_td_classes opts, %w(header data details)
     wikirate_table table_type, item_cards, cell_views, opts
+  end
+
+  def normalize_args row_cards
+    if row_cards.is_a? Card::Format
+      [row_cards.search_with_params, row_cards]
+    else
+      [row_cards, false]
+    end
   end
 
   def add_td_classes opts, new_classes

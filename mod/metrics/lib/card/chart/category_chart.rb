@@ -7,6 +7,10 @@ class Card
         end
       end
 
+      def click_action
+        :select
+      end
+
       private
 
       def x_axis

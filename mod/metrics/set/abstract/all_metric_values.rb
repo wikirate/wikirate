@@ -1,16 +1,53 @@
 include_set Abstract::SortAndFilter
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::Chart
+include_set Abstract::Table
 
-def item_cards _args={}
-  @item_cards ||= filtered_item_query(
-    filter_hash, sort_hash, paging_hash
-  ).run
+def search args={}
+  return_type = args.delete :return
+  q = query(args)
+  case return_type
+  when :name then
+    q.run.map(&:name)
+  when :count then
+    q.count
+  else
+    q.run
+  end
 end
 
-def filtered_item_query filter={}, sort={}, paging={}
-  return query_class.default left.id, sort, paging unless filter.present?
-  query_class.new left.id, filter, sort, paging
+format :html do
+  def search_results
+    card.item_cards
+  end
+
+  view :core do
+    bs_layout do
+      row do
+        _optional_render_filter
+      end
+      row class: "text-center" do
+        _render_chart
+      end
+      row do
+        _render_table
+      end
+    end
+  end
+end
+
+def query args={}
+  if filter_hash.present?
+    query_class.new left.id, filter_hash, sort_hash, args
+  else
+    query_class.default left.id, sort_hash, args
+  end
+end
+
+format do
+  def extra_paging_path_args
+    { filter: filter_hash }.merge sort_hash
+  end
 end
 
 format :json do

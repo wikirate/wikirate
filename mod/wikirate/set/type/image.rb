@@ -6,10 +6,3 @@ view :missing do |args|
     wrap(false) { core }
   end
 end
-
-format :email_html do
-  view :raw do |args|
-    args[:attachments].inline[card.key] = card.attachment.path
-    image_tag args[:attachments][card.key].url
-  end
-end

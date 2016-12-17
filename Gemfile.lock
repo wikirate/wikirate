@@ -72,6 +72,10 @@ GEM
     ansi (1.5.0)
     arel (6.0.3)
     ast (2.3.0)
+    better_errors (2.1.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bootstrap-kaminari-views (0.0.5)
@@ -79,7 +83,7 @@ GEM
       rails (>= 3.1)
     builder (3.2.2)
     byebug (9.0.6)
-    capistrano (3.6.1)
+    capistrano (3.7.1)
       airbrussh (>= 1.0.0)
       capistrano-harrow
       i18n
@@ -113,7 +117,7 @@ GEM
     coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.11.1)
+    coffee-script-source (1.12.2)
     colorize (0.8.1)
     concurrent-ruby (1.0.2)
     cucumber (2.4.0)
@@ -203,7 +207,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (3.2.0)
     net_http_timeout_errors (0.3.0)
-    newrelic_rpm (3.17.1.326)
+    newrelic_rpm (3.17.2.327)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
     oga (2.7)
@@ -276,7 +280,7 @@ GEM
     rspec-expectations (3.5.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.5.0)
-    rspec-html-matchers (0.8.1)
+    rspec-html-matchers (0.8.2)
       nokogiri (~> 1)
       rspec (>= 3.0.0.a, < 4)
     rspec-mocks (3.5.0)
@@ -356,7 +360,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
-    unicode-display_width (1.1.1)
+    unicode-display_width (1.1.2)
     uuid (2.3.8)
       macaddr (~> 1.0)
     video_info (2.6.1)
@@ -378,6 +382,8 @@ PLATFORMS
 DEPENDENCIES
   airbrake (~> 4.1)
   airbrussh
+  better_errors
+  binding_of_caller
   capistrano
   capistrano-bundler
   capistrano-maintenance

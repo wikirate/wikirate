@@ -45,7 +45,7 @@ def target_type_id
   WikirateCompanyID
 end
 
-def get_query params={}
+def build_query params={}
   search_args = filter_wql
   add_sort_wql search_args, sort_param if sort?
   params[:query] = search_args
@@ -55,7 +55,7 @@ end
 # the default sort will take the first table in the join
 # I need to override to shift the sort table to the next one
 def item_cards params={}
-  s = query(params)
+  s = fetch_query(params)
   raise("OH NO.. no limit") unless s[:limit]
   query = Query.new(s, comment)
   shift_sort_table query

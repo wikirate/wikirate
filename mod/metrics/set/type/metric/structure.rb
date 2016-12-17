@@ -1,6 +1,4 @@
-include_set Abstract::WikirateTable
 include_set Abstract::TwoColumnLayout
-include_set Abstract::Chart
 
 format :html do
   def default_open_content_args args
@@ -20,29 +18,8 @@ format :html do
     end
   end
 
-  view :data do
-    wrap do
-      bs_layout do
-        row do
-          _optional_render_filter
-        end
-        row class: "text-center" do
-          _render_chart
-        end
-        row do
-          _render_table
-        end
-      end
-    end
-  end
-
-
-  view :filter do
-    field_subformat(:metric_company_filter)._render_core
-  end
-
-  view :table do
-    company_table
+  view :data, cache: :never do
+    field_nest :all_metric_values
   end
 
   view :title_and_question do

@@ -3,7 +3,7 @@ include_set Abstract::Table
 format :html do
   view :core do
     wikirate_table :metric,
-                   ["Metric", "Companies"], search_results,
+                   ["Metric", "Companies"], search_with_params,
                    [:simple_item_view, :company_count]
   end
 

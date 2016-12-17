@@ -31,10 +31,10 @@ end
 format do
   include Type::SearchType::Format
 
-  alias_method :super_search_results, :search_results
+  alias_method :super_search_results, :search_with_params
 
-  def search_results _args={}
-    @search_results ||= enrich_result(get_search_result)
+  def search_with_params _args={}
+    @search_results ||= enrich_result get_search_result
   end
 
   def get_search_result
@@ -77,7 +77,6 @@ format do
 end
 
 format :html do
-
   if Card::Codename[:wikirate_topic]
     METHOD_PREFIX = {
       WikirateTopicID    => :topic,
