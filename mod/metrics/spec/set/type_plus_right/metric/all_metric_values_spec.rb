@@ -225,5 +225,18 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
   end
 
   describe "view" do
+    let(:metric) { "Jedi+disturbances_in_the_Force" }
+    let(:metric_value) { "Jedi+disturbances_in_the_Force+Death_Star+2001" }
+
+    describe ":table" do
+      subject { Card.fetch([metric, :all_metric_values]).format(:html)._render_table }
+
+      it "has a bootstrap table" do
+        is_expected.to have_tag "table" do
+          with_tag :tr, with: { "data-details-url" =>
+                                  "/#{metric_value}?view=company_details_sidebar" }
+        end
+      end
+    end
   end
 end
