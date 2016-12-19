@@ -1,20 +1,40 @@
-def search args={}
-  return_type = args.delete :return
-  q = query(args)
-  case return_type
-  when :name then
-    q.run.map(&:name)
-  when :count then
-    q.count
-  else
-    q.run
+include Card::CachedCount
+include_set Abstract::WqlSearch
+
+# when metric value is edited
+recount_trigger Type::MetricValue do |changed_card|
+  next unless (metric_card = changed_card.metric_card)
+  company_plus_topic_cards_for_metric metric_card
+end
+
+# ... when <metric>+topic is edited
+ensure_set { TypePlusRight::Metric::WikirateTopic }
+recount_trigger TypePlusRight::Metric::WikirateTopic do |changed_card|
+  metric_card = changed_card.left
+  company_plus_topic_cards_for_metric metric_card
+end
+
+def company_plus_topic_cards_for_metric metric_card
+  return [] unless (topic_pointer = metric_card.fetch trait :wikirate_topic)
+  topic_names =
+    Card::CachedCount.pointer_card_changed_card_names(topic_pointer)
+  topic_names.map do |topic_name|
+    Card.fetch topic_name.to_name.trait(:wikirate_company)
   end
 end
 
-def query
-  metric_ids = Card.search right_plus: [Card::WikirateTopicID,
-                                        { refer_to: cardname.left }],
-                           return: :id
+def wql_hash
+  { id: relation.pluck(:company_id).unshift(:in) }
+end
+
+def ids_of_metrics_tagged_with_topic
+  Card.search type_id: MetricID,
+              right_plus: [WikirateTopicID, { refer_to: cardname.left }],
+              return: :id
+end
+
+def relation
+  metric_ids = ids_of_metrics_tagged_with_topic
   Answer.select(:company_id).where(metric_id: metric_ids).uniq
 end
 

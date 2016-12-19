@@ -12,7 +12,8 @@ format :html do
     end
   end
 
-  def tab_count_title label, count_card_tag
-    two_line_tab label, card.fetch(trait: count_card_tag).cached_count
+  def tab_count_title count_card_tag
+    two_line_tab count_card_tag.cardname.vary(:plural),
+                 card.fetch(trait: count_card_tag).cached_count
   end
 end

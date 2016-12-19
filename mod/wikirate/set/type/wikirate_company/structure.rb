@@ -25,9 +25,9 @@ format :html do
 
   def performance_tabs
     {
-      topics_tab: tab_count_title("Topics", :wikirate_topic),
-      sources_tab: tab_count_title("Sources", :source),
-      projects_tab: tab_count_title("Projects", :project)
+      topics_tab: tab_count_title(:wikirate_topic),
+      sources_tab: tab_count_title(:source),
+      projects_tab: tab_count_title(:project)
     }
   end
 
@@ -81,7 +81,6 @@ format :html do
     end
   end
 
-
   view :details_tab do |_args|
     bs_layout do
       row 12 do
@@ -110,33 +109,4 @@ format :html do
     field_subformat(:company_metric_filter)._render_core args
   end
 
-  # view :recent_editors do |_args|
-  #   process_content <<-HTML
-  #   <div class="row clearfix company-header-content" >
-  #       <h5>
-  #         {{_l+*contribution count|core}} Contributions about {{_l|name}}
-  #       </h5>
-  # 			<div class="col-md-6 column ">
-  # 			  <small>Recent Editors</small>
-  # 			  {{_l+contributors_3|hide:paging|content;structure:recent editor item}}
-  # 			</div>
-  # 		</div>
-  #   HTML
-  # end
-
-  # view :core do |args|
-  #   tabs = [
-  #     ["metric", "Metrics", "+metric+*cached count"],
-  #     ["topic", "Topics", "+topic+*cached count"],
-  #     #["topic", "Projects", "+topic+*cached count"],
-  #     #["overview", "Reviews", "+analyses with overview+*cached count"],
-  #     #["note", "Notes", "+Note+*cached count"],
-  #     ["reference", "Sources", "+sources+*cached count"]
-  #   ]
-  #   wikirate_layout "company", tabs, render_contribution_link(args)
-  # end
-
-  # view :overview_section do |_args|
-  #   field_nest(:general_overview, view: :titled)
-  # end
 end

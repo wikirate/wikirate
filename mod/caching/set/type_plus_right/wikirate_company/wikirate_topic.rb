@@ -38,10 +38,12 @@ def unique_metric_ids
 end
 
 def topics_by_metric_count
-  item_cards(limit: 0).each_with_object({}) do |topic_card, count_hash|
-    count_hash[topic_card] = topic_card.metric_card.cached_count
-    count_hash
-  end.sort_by { |_card, count| count }.reverse
+  topic_count_hash =
+    item_cards(limit: 0).each_with_object({}) do |topic_card, count_hash|
+      count_hash[topic_card] = topic_card.metric_card.cached_count
+      count_hash
+    end
+  topic_count_hash.sort_by { |_card, count| count }.reverse
 end
 
 format :html do
