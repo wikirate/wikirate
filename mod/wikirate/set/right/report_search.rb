@@ -45,7 +45,7 @@ def research_group_card
   @research_group_card ||= Card.fetch research_group_name if research_group?
 end
 
-def raw_ruby_query
+def wql_hash
   research_group? ? research_group_report_query : standard_report_query
 end
 

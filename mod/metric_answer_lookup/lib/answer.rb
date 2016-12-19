@@ -117,7 +117,7 @@ class Answer < ActiveRecord::Base
   private
 
   def unknown? val
-    val.casecmp("unknown") == 0
+    val.casecmp("unknown").zero?
   end
 
   def metric_card

@@ -34,7 +34,7 @@ format :html do
   def vega_chart
     id = unique_id.tr "+", "-"
     wrap_with(:div, "", id: id, class: classy("vis"),
-              data: { url: chart_load_url }) + zoom_out_link
+                        data: { url: chart_load_url }) + zoom_out_link
   end
 
   def chart_load_url
@@ -58,8 +58,7 @@ format :html do
   def zoom_out_path_opts
     { view: :data,
       chart: chart_params[:zoom_out],
-      filter: filter_hash(false)
-    }
+      filter: filter_hash(false) }
   end
 
   def zoomed_in?
@@ -77,7 +76,7 @@ format :json do
 
   view :chartkick do
     Answer.where(metric_id: card.id, latest: true)
-      .group("CAST(value AS decimal)").count.chart_json
+          .group("CAST(value AS decimal)").count.chart_json
   end
 
   def vega_chart_config highlight=nil

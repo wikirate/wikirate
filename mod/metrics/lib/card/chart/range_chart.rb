@@ -83,12 +83,13 @@ class Card
 
       def highlight? filter
         return true unless @highlight_value
-        from, to = filter[:range][:from], filter[:range][:to]
+        from = filter[:range][:from]
+        to = filter[:range][:to]
         @highlight_value >= from && @highlight_value < to
       end
 
       def highlight_value_from_filter_opts _filter_opts
-        return # zoom instead of higlight
+        nil # zoom instead of higlight
         # filter_opts[:range][:from]
       end
     end

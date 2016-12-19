@@ -15,7 +15,6 @@ format :html do
                                 [:company_thumbnail, :value_cell],
                                 header: [company_sort_link, value_sort_link],
                                 details_view: :company_details_sidebar
-
   end
 
   def company_sort_link
@@ -30,4 +29,3 @@ format :html do
     field_subformat(:metric_company_filter)._render_core
   end
 end
-

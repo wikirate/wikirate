@@ -202,17 +202,17 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       it "sorts numberics by value" do
         @metric = Card["Jedi+deadliness"]
         expect(sort_by(:value)).to eq(
-                                     with_year(["Samsung", "Slate_Rock_and_Gravel_Company",
-                                                "Los_Pollos_Hermanos",
-                                                "SPECTRE", "Death_Star"], 1977)
+                                     with_year(%w(Samsung Slate_Rock_and_Gravel_Company
+                       Los_Pollos_Hermanos
+                       SPECTRE Death_Star), 1977)
                                    )
       end
 
       it "sorts floats by value" do
         @metric = Card["Jedi+Victims by Employees"]
         expect(sort_by(:value)).to eq(
-                                     with_year(["Slate_Rock_and_Gravel_Company", "Samsung", "Monster_Inc",
-                                                "Los_Pollos_Hermanos", "Death_Star", "SPECTRE"], 1977)
+                                     with_year(%w(Slate_Rock_and_Gravel_Company Samsung Monster_Inc
+                       Los_Pollos_Hermanos Death_Star SPECTRE), 1977)
                                    )
       end
     end
@@ -229,7 +229,9 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
     let(:metric_value) { "Jedi+disturbances_in_the_Force+Death_Star+2001" }
 
     describe ":table" do
-      subject { Card.fetch([metric, :all_metric_values]).format(:html)._render_table }
+      subject do
+        Card.fetch([metric, :all_metric_values]).format(:html)._render_table
+      end
 
       it "has a bootstrap table" do
         is_expected.to have_tag "table" do
