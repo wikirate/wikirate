@@ -44,6 +44,10 @@ class Card
       where(additional_filter).count
     end
 
+    def value_count additional_filter={}
+      where(additional_filter).select(:value).uniq.count
+    end
+
     def metric_value_query value
       case value.to_sym
       when :none

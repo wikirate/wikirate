@@ -7,26 +7,12 @@ def sort?
   true
 end
 
-def shift_sort_table?
-  return false if Env.params["sort"] == "name"
-  true
-end
-
 def default_sort_by_key
   "metric"
 end
 
 def filter_keys
   %w(metric designer wikirate_topic project year)
-end
-
-def advanced_filter_keys
-  []
-end
-
-# gather all the params keys from default and advanced
-def params_keys
-  filter_keys + advanced_filter_keys
 end
 
 def filter_class
@@ -45,19 +31,17 @@ def target_type_id
   WikirateCompanyID
 end
 
-def get_query params={}
-  search_args = filter_wql
-  add_sort_wql search_args, sort_param if sort?
-  params[:query] = search_args
-  super(params)
+def wql_hash
+  wql = filter_wql
+  wql[:limit] = 20
+  add_sort_wql wql, sort_param if sort?
+  wql
 end
 
-# the default sort will take the first table in the join
+# the default search will take the first table in the join
 # I need to override to shift the sort table to the next one
-def item_cards params={}
-  s = query(params)
-  raise("OH NO.. no limit") unless s[:limit]
-  query = Query.new(s, comment)
+def search args={}
+  query = fetch_query args
   shift_sort_table query
   query.run
 end
@@ -70,7 +54,7 @@ end
 # evolved theory:
 # There are two statements in the sort hash.
 # wql uses the result of the first one for sorting, but we
-# we want to sort by the result of the second statement
+# want to sort by the result of the second statement
 # and this shift stuff ensures that
 # -pk
 def shift_sort_table query
@@ -105,8 +89,10 @@ def virtual?
   true
 end
 
-def raw_content
-  %({ "name":"dummy" })
+format do
+  def extra_paging_path_args
+    { filter: filter_hash }.merge sort_hash
+  end
 end
 
 format :html do
@@ -126,16 +112,6 @@ format :html do
     end
   end
 
-  # it was from filter_search.rb
-  # the filter args need to be included in the page link args
-  # otherwise it will lose the filter condition while changing pages
-  def page_link text, page, _current=false, options={}
-    @paging_path_args[:offset] = page * @paging_limit
-    options[:class] = "card-paging-link slotter"
-    options[:remote] = true
-    options[:path] = @paging_path_args.merge card.filter_hash
-    link_to raw(text), options
-  end
 
   def filter_button_formgroup
     button_formgroup do

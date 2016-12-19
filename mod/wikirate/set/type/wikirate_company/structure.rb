@@ -31,7 +31,7 @@ format :html do
     }
   end
 
-  view :data do
+  view :data, cache: :never do
     if active_profile_tab == :performance
       super()
     else

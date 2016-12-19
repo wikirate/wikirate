@@ -55,6 +55,16 @@ class Card
                      axes: axes)
       end
 
+      # determines what happens if you click on a bar in the chart
+      # @return :zoom, :select or false (= no action)
+      #   :select highlights the clicked bar and restrict the shown result
+      #           to the companies of that bar
+      #   :zoom restrict the shown result but also regenerate the
+      #         chart for the restricted domain
+      def click_action
+        false
+      end
+
       private
 
       def count filter
@@ -74,7 +84,7 @@ class Card
       def data_item_hash filter
         hash = { y: count(filter),
                  highlight: highlight?(filter) }
-        hash[:link] = filter_link(filter) if link?
+        hash[:link] = bar_link(filter) if link?
         hash
       end
 
@@ -124,8 +134,17 @@ class Card
       def marks
         hash = DEFAULT_MARKS.clone
         hash[:properties][:update] = { fill: fill_color }
-        hash[:properties][:hover] = { fill: { value: HOVER_COLOR } } if link?
+        if link?
+          hash[:properties][:hover] = {
+            fill: { value: HOVER_COLOR },
+            cursor: { value: hover_cursor }
+          }
+        end
         [hash]
+      end
+
+      def hover_cursor
+        click_action == :zoom ? "zoom-in" : "pointer"
       end
 
       def link?
@@ -177,13 +196,21 @@ class Card
       # return the url to the link target of a bar in the chart
       # :filter has the filter options for the table
       # :chart[:filter] the filter options for the chart
-      def filter_link filter_opts
+      def bar_link filter_opts
         @format.path view: :data,
-                     chart: {
-                       filter: filter_opts,
-                       highlight: highlight_value_from_filter_opts(filter_opts)
-                     },
+                     chart: bar_link_chart_params(filter_opts),
                      filter: @format.filter_hash(false)
+      end
+
+      def bar_link_chart_params filter_opts
+        hash = { filter: filter_opts }
+        case click_action
+        when :select
+          hash[:highlight] = highlight_value_from_filter_opts filter_opts
+        when :zoom
+          hash[:zoom_out] = @format.chart_params
+        end
+        hash
       end
     end
   end

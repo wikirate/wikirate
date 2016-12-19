@@ -15,9 +15,6 @@ def default_filter_option
   { year: :latest, value: :exist }
 end
 
-def limit
-  card.query(search_params)[:limit]
-end
 
 def offset
   param_to_i :offset, 0
@@ -32,5 +29,9 @@ def paging_path_args args={}
 end
 
 format do
+  def limit
+    query_with_params[:limit]
+  end
+
   delegate :filter_hash, :sort_hash, :paging_hash, to: :card
 end

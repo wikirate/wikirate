@@ -1,10 +1,6 @@
 include_set Abstract::Chart
 
 format :json do
-  def chart_metric_id
-    card.metric_card.id
-  end
-
   def vega_chart_config highlight=nil
     @data ||= chart_class.new(self,
                               highlight: card.value,
@@ -16,9 +12,12 @@ format :json do
                               axes: :light)
   end
 
-  def chart_filter_query
-    FixedMetricAnswerQuery.new chart_metric_id,
-                               card.filter_hash(false).merge(year: card.year)
+  def chart_metric_id
+    card.metric_card.id
+  end
+
+  def chart_filter_hash
+    super.merge year: card.year
   end
 end
 

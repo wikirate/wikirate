@@ -37,7 +37,7 @@ format :html do
   end
 
   view :card_list_items do |args|
-    search_results.map do |row|
+    search_with_params.map do |row|
       item_card = item_card_from_row row
       render :card_list_item, args.clone.merge(item_card: item_card)
     end.join "\n"
@@ -45,7 +45,7 @@ format :html do
 
   view :card_list do |args|
     paging = _optional_render :paging, args
-    if search_results.blank?
+    if search_with_params.blank?
       render_no_search_results(args)
     else
       results = render :card_list_items, args
@@ -56,7 +56,7 @@ format :html do
         <div class="search-result-list">
           #{results}
         </div>
-        #{paging if search_results.length > 10}
+        #{paging if search_with_params.length > 10}
       )
     end
   end

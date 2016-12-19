@@ -1,24 +1,8 @@
-def key_type_id
-  WikirateCompanyID
-end
-
-def filter_by_key company
-  return true unless (filter = company_filter)
-  filter.include? company
-end
-
-def filter_by_values _key, values
-  filter_by_value(values) #&& filter_by_year(values)
-end
 
 def filter_by_outliers key, value
   keep_if :value do |filter|
     filter != "outliers" || outliers.key?(outlier_key(key, value))
   end
-end
-
-def pass_single_value_filter? key, value
-  filter_by_year(key, value) && filter_by_outliers(key, value)
 end
 
 private
@@ -59,8 +43,3 @@ def outliers
 end
 
 
-def company_filter
-  filter = fetch_params params_keys
-  return unless filter.present?
-  Card.search search_wql(WikirateCompanyID, filter, params_keys, "name")
-end
