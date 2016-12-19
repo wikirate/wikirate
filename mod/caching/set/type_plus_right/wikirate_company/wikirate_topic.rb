@@ -1,52 +1,74 @@
 include Card::CachedCount
+include_set Abstract::WqlSearch
 
-def related_topic_from_source_or_note
-  Card.search(
-    type: "Topic",
-    referred_to_by: {
-      left: {
-        type: %w(in Note Source),
-        right_plus: ["company", refer_to: cardname.left]
-      },
-      right: "topic"
-    },
-    return: "id"
-  )
+def company_name
+  cardname.left_name
 end
 
-def related_topic_from_metric
-  Card.search(
-    type: "Topic",
-    referred_to_by: {
-      left: { type: "Metric", right_plus: cardname.left },
-      right: "topic"
-    },
-    return: "id"
-  )
+# when metric value is edited
+recount_trigger Type::MetricValue do |changed_card|
+  if (company_name = changed_card.company_name)
+    Card.fetch company_name.to_name.trait(:wikirate_topic)
+  end
 end
 
-# get all metric values
-def calculate_count _changed_card=nil
-  (related_topic_from_source_or_note + related_topic_from_metric).uniq.size
+# ... when <metric>+topic is edited
+ensure_set { TypePlusRight::Metric::WikirateTopic }
+recount_trigger TypePlusRight::Metric::WikirateTopic do |changed_card|
+  metric_id = changed_card.left_id
+  Answer.select(:company_id).where(metric_id: metric_id).uniq
+        .pluck(:company_id).map do |company_id|
+    # faster way to get this from company+topic?
+    Card.fetch company_id.cardname.trait(:wikirate_topic)
+  end
 end
 
-# FIXME
-# # recount topics associated with a company whenever <source>+company is edited
-# ensure_set { TypePlusRight::Source::WikiRateCompany }
-# recount_trigger TypePlusRight::Source::WikirateCompany do |changed_card|
-#   names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
-#   names.map do |company_name|
-#     Card.fetch company_name.to_name.trait(:wikirate_topic)
-#   end
-# end
-#
-# # recount topics associated with a company whenever <note>+company is edited
-# ensure_set { TypePlusRight::Claim::WikiRateCompany }
-# recount_trigger TypePlusRight::Claim::WikirateCompany do |changed_card|
-#   names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
-#   names.map do |company_name|
-#     Card.fetch company_name.to_name.trait(:wikirate_topic)
-#   end
-# end
+def wql_hash
+  {
+    type_id: WikirateTopicID,
+    referred_to_by: { left_id: unique_metric_ids.unshift(:in),
+                      right_id: WikirateTopicID }
+  }
+end
 
-# FIXME: should also count connections via metrics.
+# faster way to get this from company+metric?
+def unique_metric_ids
+  Answer.select(:metric_id).where(company_id: left.id).uniq.pluck :metric_id
+  # pluck seems dumb here, but .all isn't working (returns *all card)
+end
+
+def topics_by_metric_count
+  item_cards(limit: 0).each_with_object({}) do |topic_card, count_hash|
+    count_hash[topic_card] = topic_card.metric_card.cached_count
+    count_hash
+  end.sort_by { |_card, count| count }.reverse
+end
+
+format :html do
+  view :topic_list_with_metric_counts do
+    wrap do
+      card.topics_by_metric_count.map do |topic_card, metric_count|
+        wrap_with :div, class: "topic-item contribution-item" do
+          [wrap_with(:div, topic_detail(topic_card), class: "header"),
+           wrap_with(:div, class: "data") do
+             metric_count_detail(topic_card, metric_count)
+           end]
+        end
+      end
+    end
+  end
+
+  def topic_detail topic_card
+    nest topic_card, view: :thumbnail
+  end
+
+  def metric_count_detail topic_card, metric_count
+    wrap_with :span, class: "metric-count-link" do
+      link_to_card(
+        card.company_name,
+        "#{metric_count} #{:metric.cardname.vary :plural}",
+        path: { filter: { wikirate_topic: topic_card.cardname.url_key } }
+      )
+    end
+  end
+end

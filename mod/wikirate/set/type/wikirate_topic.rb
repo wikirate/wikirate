@@ -1,5 +1,6 @@
 include_set Abstract::WikirateTable
 include_set Abstract::WikirateTabs
+include_set Abstract::Thumbnail
 
 card_accessor :vote_count, type: :number, default: "0"
 card_accessor :upvote_count, type: :number, default: "0"
@@ -16,30 +17,10 @@ view :listing do
   _render_content structure: "browse topic item"
 end
 
-# def related_company_from_source_or_note
-#   Card.search(type_id: Card::WikirateCompanyID,
-#               referred_to_by: {
-#                 left: {
-#                   type: %w(in Note Source),
-#                   right_plus: ["topic", refer_to: name]
-#                 },
-#                 right: "company"
-#               },
-#               return: "id")
-# end
-
-def companies_related_by_metric
-  metric_ids =
-    Card.search right_plus: [Card::WikirateTopicID, { refer_to: name }],
-                return: :id
-  Answer.select(:company_id).where(metric_id: metric_ids).uniq
+def company_card
+  fetch(trait: :wikirate_company, new: {})
 end
 
-def related_companies_count
-  companies_related_by_metric.count
-end
-
-# returns array of ids
-def related_companies
-  companies_related_by_metric.all
+def metric_card
+  fetch(trait: :metric, new: {})
 end
