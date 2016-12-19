@@ -40,9 +40,9 @@ describe Card::Set::Right::BrowseNoteFilter do
     let(:company_names) { companies.map(&:name) }
     before do
       @claim_card = create_claim(
-          "test_note",
-          "+company" => company_names.to_pointer_content,
-          "+topic" => topic_names.to_pointer_content
+        "test_note",
+        "+company" => company_names.to_pointer_content,
+        "+topic" => topic_names.to_pointer_content
       )
     end
 
@@ -85,10 +85,10 @@ describe Card::Set::Right::BrowseNoteFilter do
 
     context "when sorting" do
       def create_claims
-        [
-            create_claim("claim1"),
-            (Timecop.travel(Time.now + 10) { create_claim "important_and_recent" }),
-        ]
+        [create_claim("claim1"),
+         (Timecop.travel(Time.now + 10) do
+           create_claim "important_and_recent"
+         end)]
       end
 
       def create_voted_claims
@@ -104,14 +104,16 @@ describe Card::Set::Right::BrowseNoteFilter do
       it "sorts by most recent" do
         Card::Env.params[:sort] = "recent"
         create_claims
-        expect(filtered_item_names[0..2]).to eq %w(important_and_recent claim1 test_note)
+        expect(filtered_item_names[0..2])
+          .to eq %w(important_and_recent claim1 test_note)
         expect(subject.index("claim1")).to be < subject.index("test_note")
       end
 
       it "sorts by most important" do
         Card::Env.params[:sort] = "important"
         create_voted_claims
-        expect(filtered_item_names[0..2]).to eq %w(important_and_recent test_note claim1)
+        expect(filtered_item_names[0..2])
+          .to eq %w(important_and_recent test_note claim1)
         expect(subject.index("test_note")).to be < subject.index("claim1")
       end
     end
