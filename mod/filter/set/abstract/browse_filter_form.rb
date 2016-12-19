@@ -46,7 +46,6 @@ def search args={}
   query.run
 end
 
-
 # HenryHack® below!
 # My guess is that sort queries like
 # sort: { right: "value", right_plus: "*cached count" }

@@ -44,7 +44,7 @@ describe Card::Set::Type::SourceImportFile do
     Card::Env.params[:import_data] = data
     Card::Env.params[:title] = title
     Card::Env.params["is_data_import"] = "true"
-    @source_import_file.update_attributes subcards: {}
+    @source_import_file.update_attributes! subcards: {}
     @source_import_file
   end
 
@@ -68,7 +68,7 @@ describe Card::Set::Type::SourceImportFile do
           company: "Apple Inc"
         }]
         source_file = trigger_import data, "1" => source_title
-        expect(source_file.subcards.empty?).to be_falsy
+        expect(source_file.subcards.empty?).to be_falsey
         source_card = source_file.subcards[source_file.subcards.to_a[0]]
 
         verify_subcard_content source_card, :wikirate_title, source_title

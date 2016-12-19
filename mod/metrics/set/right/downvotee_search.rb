@@ -1,3 +1,5 @@
+include_set Abstract::WqlSearch
+
 def virtual?
   true
 end
@@ -88,7 +90,7 @@ format :html do
 
   view :drag_and_drop, cache: :never do |args|
     with_drag_and_drop(args) do
-      search_results.map do |item|
+      search_with_params.map do |item|
         votee = extract_votee item
         draggable_opts = {
           votee_id:    votee.id,
@@ -105,7 +107,7 @@ format :html do
   # it is for type_search
   view :filter_and_sort do |args|
     with_filter_and_sort(args) do
-      search_results.map do |item|
+      search_with_params.map do |item|
         votee = extract_votee item
         sort_opts = { sort: {} }
         method_prefix = METHOD_PREFIX[main_type_id]
