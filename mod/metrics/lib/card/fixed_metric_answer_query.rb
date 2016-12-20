@@ -7,13 +7,14 @@ class Card
     CARD_ID_FILTERS = ::Set.new().freeze
 
     def initialize metric_id, *args
+      @metric_id = metric_id
       @metric_card = Card.fetch metric_id
       super *args
     end
 
     def prepare_filter_args filter
       super
-      @filter_args[:metric_id] = @metric_card.id
+      @filter_args[:metric_id] = @metric_id
     end
 
     def prepare_sort_args sort

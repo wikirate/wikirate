@@ -33,14 +33,10 @@ format :html do
 
   view :data, cache: :never do
     if active_profile_tab == :performance
-      super()
+      field_nest :all_metric_values
     else
       contribution_data
     end
-  end
-
-  view :table do |args|
-    metric_table
   end
 
   def header_right

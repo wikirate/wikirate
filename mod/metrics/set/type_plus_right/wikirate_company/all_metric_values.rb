@@ -9,9 +9,19 @@ def default_sort_option
 end
 
 format :html do
+  view :core, cache: :never do
+    bs_layout do
+      row do
+        _optional_render_filter
+      end
+      row do
+        _render_table
+      end
+    end
+  end
+
   view :table, cache: :never do
-    items = card.fetch(trait: :all_metric_values).item_cards
-    wikirate_table_with_details :metric, items,
+    wikirate_table_with_details :metric, self,
                                 [:metric_thumbnail_with_vote, :value_cell],
                                 header: [name_sort_links, "Value"],
                                 details_view: :metric_details_sidebar
@@ -32,5 +42,4 @@ format :html do
   def importance_sort_link
     table_sort_link "", :importance, "pull-left  margin-left-15"
   end
-
 end
