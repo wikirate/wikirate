@@ -34,15 +34,11 @@ class Card
       end
 
       def add_label number
-        @labels << { text: @format.number_to_human(number.to_f).to_f }
+        @labels << @format.number_to_human(number.to_f).to_f
       end
 
       def data_item_hash filter
         super(filter).merge x: filter[:range][:to]
-      end
-
-      def data
-        super << { name: "x_labels", values: @labels }
       end
 
       def x_axis
@@ -57,7 +53,7 @@ class Card
         { name: "x_label",
           type: "ordinal",
           range: "width",
-          domain: { data: "x_labels", field: "text", sort: true },
+          domain: @labels,
           points: true }
       end
 

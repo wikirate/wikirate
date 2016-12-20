@@ -1,6 +1,4 @@
 include_set Abstract::SortAndFilter
-include_set Abstract::MetricChild, generation: 1
-include_set Abstract::Chart
 include_set Abstract::Table
 
 def search args={}
@@ -17,17 +15,10 @@ def search args={}
 end
 
 format :html do
-  def search_results
-    card.item_cards
-  end
-
   view :core do
     bs_layout do
       row do
         _optional_render_filter
-      end
-      row class: "text-center" do
-        _render_chart
       end
       row do
         _render_table
@@ -46,7 +37,7 @@ end
 
 format do
   def extra_paging_path_args
-    { filter: filter_hash }.merge sort_hash
+    { view: :table, filter: filter_hash }.merge sort_hash
   end
 end
 

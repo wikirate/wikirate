@@ -1,4 +1,6 @@
 include_set Abstract::AllMetricValues
+include_set Abstract::MetricChild, generation: 1
+include_set Abstract::Chart
 
 def query_class
   FixedMetricAnswerQuery
@@ -8,14 +10,37 @@ def default_sort_option
   :value
 end
 
+format :json do
+  def chart_metric_id
+    card.left.id
+  end
+end
+
 # tables used on a metric page
 format :html do
-  view :table, cache: :never do
-    wikirate_table_with_details :company, self,
-                                [:company_thumbnail, :value_cell],
-                                header: [company_sort_link, value_sort_link],
-                                details_view: :company_details_sidebar
+  view :core do
+    bs_layout do
+      row do
+        _optional_render_filter
+      end
+      row class: "text-center" do
+        _render_chart
+      end
+      row do
+        _render_table
+      end
+    end
   end
+
+  view :table, cache: :never do
+    wrap do # slot for paging links
+      wikirate_table_with_details :company, self,
+                                  [:company_thumbnail, :value_cell],
+                                  header: [company_sort_link, value_sort_link],
+                                  details_view: :company_details_sidebar
+    end
+  end
+
 
   def company_sort_link
     table_sort_link "Companies", :company_name
