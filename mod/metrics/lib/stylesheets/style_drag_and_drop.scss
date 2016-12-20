@@ -6,9 +6,42 @@ $dark-text-color2: #bebebe;
 $bright-text-color: #e5e5e5;
 
 
+
+.contribution-item {
+    overflow: hidden;
+    cursor: move;
+}
+
 .contribution-item {
   overflow: hidden;
   cursor: move;
+  border: 1px solid #eee;
+
+  .thumbnail {
+    border: 0;
+    margin: 2px
+  }
+  .header {
+    width: 70%;
+    cursor: pointer;
+    float: left;
+    border-right: 1px solid #eee;
+    color: #ccc !important;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+  .data {
+    width: 28%;
+    text-align: center;
+    cursor: pointer;
+    float: left;
+    color: #ccc !important;
+    padding: 6px 12px;
+    text-decoration: none;
+    &:hover {
+      background: #fff;
+    }
+  }
   &.metric-item .header .name {
     color:$dark-text-color;
   }
@@ -19,26 +52,6 @@ $bright-text-color: #e5e5e5;
   &.topic-item .header .name {
     color:$dark-text-color;
 
-  }
-  .header {
-    width: 72%;
-    cursor: pointer;
-    float: left;
-    color: #ccc !important;
-    padding: 6px 12px;
-    text-decoration: none;
-  }
-  .data {
-    width: auto!important;
-
-    cursor: pointer;
-    float: left;
-    color: #ccc !important;
-    padding: 6px 12px;
-    text-decoration: none;
-    &:hover {
-      background: #fff;
-    }
   }
 }
 

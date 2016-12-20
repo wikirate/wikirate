@@ -66,10 +66,6 @@ format :html do
     _render_thumbnail
   end
 
-  def with_header header
-    output [wrap_with(:h2, header), yield]
-  end
-
   view :contributions_column do
     output [group_contributions, member_contribution_section]
   end
