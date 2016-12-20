@@ -14,6 +14,7 @@ class Card
     # translate filter key to db column
 
     def initialize company_id, *args
+      @company_id = company_id
       @company_card = Card.fetch company_id
       super *args
     end
