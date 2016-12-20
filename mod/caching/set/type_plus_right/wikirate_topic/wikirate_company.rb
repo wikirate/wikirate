@@ -28,8 +28,21 @@ def self.company_plus_topic_cards_for_metric metric_card
   end
 end
 
+def search args={}
+  # TODO: Support paging
+  case args.delete(:return)
+  when :id    then company_ids
+  when :name  then company_ids.map(&:cardname)
+  when :count then count
+  else             company_ids.map(&:card)
+  end
+end
+
+def company_ids
+  @company_ids ||= relation.pluck(:company_id)
+end
+
 def wql_hash
-  company_ids = relation.pluck(:company_id)
   if company_ids.any?
     { id: company_ids.unshift(:in) }
   else
@@ -58,11 +71,6 @@ end
 
 def count
   relation.count
-end
-
-# returns array of ids
-def all
-  relation.all
 end
 
 format :html do

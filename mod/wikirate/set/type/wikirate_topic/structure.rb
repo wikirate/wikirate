@@ -15,17 +15,10 @@ format :html do
   end
 
   view :data, cache: :never do
-    metric_tab
-  end
-
-  def metric_tab
-    wrap do
-      [metric_filter, metric_table]
+    with_header "Metrics" do
+      field_nest :metric, view: :metric_by_company_count,
+                          items: { view: :listing }
     end
-  end
-
-  def metric_filter
-    field_subformat(:topic_metric_filter)._render_core
   end
 
   view :details_tab do
@@ -39,5 +32,4 @@ format :html do
   view :projects_tab do
     field_nest :project, items: { view: :listing }
   end
-
 end

@@ -1,3 +1,5 @@
+require 'savanna-outliers'
+
 card_accessor :vote_count, type: :number, default: "0"
 card_accessor :upvote_count, type: :number, default: "0"
 card_accessor :downvote_count, type: :number, default: "0"
@@ -130,7 +132,6 @@ end
 event :silence_metric_deletions, :initialize, on: :delete do
   @silent_change = true
 end
-require 'savanna-outliers'
 
 format :html do
   def prepare_for_outlier_search
@@ -162,14 +163,36 @@ format :html do
   end
 
   view :listing do
-    _render_content structure: "profile metric item"
+    wrap_with :div, class: "contribution-item value-item no-hover" do
+      [
+        wrap_with(:div, class: "header no-hover") do
+          _render_thumbnail
+        end,
+        wrap_with(:div, class: "data no-hover") do
+          listing_data
+        end
+      ]
+    end
+  end
+
+  def listing_data
+    wrap_with :div, class: "contribution company-count" do
+      [
+        company_count,
+        wrap_with(:div, "Companies", class: "name")
+      ]
+    end
+  end
+
+  def company_count
+    card.fetch(trait: :wikirate_company).cached_count
   end
 
   # the base version of :core is overridden because of inclusion of
   # Type::SearchType.  re-overriding here to fix listing.
-  view :core do
-    process_content _render_raw, content_opts: { chunk_list: :default }
-  end
+  # view :core do
+  #   process_content _render_raw, content_opts: { chunk_list: :default }
+  # end
 
   view :legend do
     # depends on the type

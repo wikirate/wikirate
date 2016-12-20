@@ -6,13 +6,12 @@ format do
   end
 
   view :yinyang_list_items do |args|
-    joint = args[:joint] || " "
-
-    enrich_result(card.item_names).map do |icard|
+    card.item_cards(prepend: main_name,
+                    append: "yinyang drag item").map do |icard|
       wrap_with :div, class: "yinyang-row" do
-        nest_item(icard, view: args[:item]).html_safe
-      end.html_safe
-    end.join(joint).html_safe
+        nest_item icard
+      end
+    end.join(args[:joint] || " ")
   end
 
   def enrich_result result
