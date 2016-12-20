@@ -24,11 +24,16 @@ recount_trigger TypePlusRight::Metric::WikirateTopic do |changed_card|
 end
 
 def wql_hash
-  {
-    type_id: WikirateTopicID,
-    referred_to_by: { left_id: unique_metric_ids.unshift(:in),
-                      right_id: WikirateTopicID }
-  }
+  metric_ids = unique_metric_ids
+  if metric_ids.any?
+    {
+      type_id: WikirateTopicID,
+      referred_to_by: { left_id: metric_ids.unshift(:in),
+                        right_id: WikirateTopicID }
+    }
+  else
+    { id: -1 } # HACK: ensure no results
+  end
 end
 
 # faster way to get this from company+metric?

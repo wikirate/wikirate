@@ -18,8 +18,9 @@ recount_trigger TypePlusRight::Metric::WikirateTopic do |changed_card|
   company_plus_topic_cards_for_metric metric_card
 end
 
-def company_plus_topic_cards_for_metric metric_card
-  return [] unless (topic_pointer = metric_card.fetch trait :wikirate_topic)
+def self.company_plus_topic_cards_for_metric metric_card
+  topic_pointer = metric_card.fetch trait: :wikirate_topic
+  return [] unless topic_pointer
   topic_names =
     Card::CachedCount.pointer_card_changed_card_names(topic_pointer)
   topic_names.map do |topic_name|
@@ -28,7 +29,12 @@ def company_plus_topic_cards_for_metric metric_card
 end
 
 def wql_hash
-  { id: relation.pluck(:company_id).unshift(:in) }
+  company_ids = relation.pluck(:company_id)
+  if company_ids.any?
+    { id: company_ids.unshift(:in) }
+  else
+    { id: -1 } # HACK: ensure no results
+  end
 end
 
 def ids_of_metrics_tagged_with_topic
