@@ -1,11 +1,11 @@
 include_set Abstract::MetricRecordFilter
 
-def advanced_filter_keys
-  %w(metric wikirate_topic project research_policy importance metric_type)
-end
-
 def filter_keys
   %w(metric_value year)
+end
+
+def advanced_filter_keys
+  %w(metric wikirate_topic project research_policy importance metric_type)
 end
 
 def default_sort_option
@@ -13,16 +13,12 @@ def default_sort_option
 end
 
 format :html do
-  def content_view
-    :metric_tab
+  def filter_labels field
+    field.to_sym == :metric ? "Keyword" : super
   end
 
   def filter_body_header
     "Metric"
-  end
-
-  def filter_labels field
-    field.to_sym == :metric ? "Keyword" : super
   end
 
   def advanced_filter_form
