@@ -6,6 +6,45 @@ $dark-text-color2: #bebebe;
 $bright-text-color: #e5e5e5;
 
 
+.contribution-item {
+  overflow: hidden;
+  cursor: move;
+  &.metric-item .header .name {
+    color:$dark-text-color;
+  }
+  &.company-item .header .name {
+    color:$dark-text-color;
+
+  }
+  &.topic-item .header .name {
+    color:$dark-text-color;
+
+  }
+  .header {
+    width: 72%;
+    cursor: pointer;
+    float: left;
+    color: #ccc !important;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+  .data {
+    width: auto!important;
+
+    cursor: pointer;
+    float: left;
+    color: #ccc !important;
+    padding: 6px 12px;
+    text-decoration: none;
+    &:hover {
+      background: #fff;
+    }
+  }
+}
+
+
+
+
 .TYPE-analysis > .card-frame > .card-body.panel-body >.yinyang {
   border :0
 }
@@ -325,30 +364,7 @@ $bright-text-color: #e5e5e5;
     }
   }
 
-  .contribution-item {
-    overflow: hidden;
-    cursor: move;
-    &.metric-item .header .name {
-      color:$dark-text-color;
-    }
-    &.company-item .header .name {
-      color:$dark-text-color;
 
-    }
-    &.topic-item .header .name {
-      color:$dark-text-color;
-
-    }
-    >div{
-      >.data {
-        width: auto!important;
-      }
-      >.header {
-          width: 72%;
-      }
-    }
-
-  }
   .value-item {
     color: $dark-text-color;
     width: 100%;

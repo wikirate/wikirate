@@ -1,7 +1,7 @@
 # use for the filters on the "browse ..." pages
 
 include_set Abstract::Filter
-include_set Abstract::Search
+include_set Type::SearchType
 
 def sort?
   true
