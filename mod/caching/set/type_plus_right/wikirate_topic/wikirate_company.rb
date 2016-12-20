@@ -1,6 +1,10 @@
 include Card::CachedCount
 include_set Abstract::WqlSearch
 
+def topic_name
+  cardname.left_name
+end
+
 # when metric value is edited
 recount_trigger Type::MetricValue do |changed_card|
   next unless (metric_card = changed_card.metric_card)
@@ -34,8 +38,16 @@ def ids_of_metrics_tagged_with_topic
 end
 
 def relation
-  metric_ids = ids_of_metrics_tagged_with_topic
-  Answer.select(:company_id).where(metric_id: metric_ids).uniq
+  Answer.select(:company_id)
+        .where(metric_id: ids_of_metrics_tagged_with_topic).uniq
+end
+
+def company_ids_by_metric_count
+  Answer.group(:company_id)
+        .where(metric_id: ids_of_metrics_tagged_with_topic)
+        .order("count_all desc")
+        .limit(100)
+        .count
 end
 
 def count
@@ -47,28 +59,58 @@ def all
   relation.all
 end
 
-#include_set Abstract::SolidCache, cached_format: :json
+format :html do
+  view :company_list_with_metric_counts do
+    wrap do
+      card.company_ids_by_metric_count.map do |company_id, metric_count|
+        company_card = Card.fetch company_id
+        wrap_with :div, class: "company-item contribution-item" do
+          [wrap_with(:div, company_detail(company_card), class: "header"),
+           wrap_with(:div, class: "data") do
+             metric_count_detail(company_card, metric_count)
+           end]
+        end
+      end
+    end
+  end
+
+  def company_detail company_card
+    nest company_card, view: :thumbnail
+  end
+
+  def metric_count_detail company_card, metric_count
+    wrap_with :span, class: "metric-count-link" do
+      link_to_card(
+        card.topic_name,
+        "#{metric_count} #{:metric.cardname.vary :plural}",
+        path: { filter: { wikirate_company: company_card.cardname.url_key } }
+      )
+    end
+  end
+end
+
+# include_set Abstract::SolidCache, cached_format: :json
 #
-## recount topics associated with a company whenever <Metric>+topic is edited
-#ensure_set { TypePlusRight::Metric::WikirateTopic }
-#cache_expire_trigger TypePlusRight::Metric::WikirateTopic do |changed_card|
-#  names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
-#  next unless names
-#  names.map do |topic_name|
-#    Card.fetch topic_name.to_name.trait(:all_companies)
-#  end
-#end
+# # recount topics associated with a company whenever <Metric>+topic is edited
+# ensure_set { TypePlusRight::Metric::WikirateTopic }
+# cache_expire_trigger TypePlusRight::Metric::WikirateTopic do |changed_card|
+#   names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
+#   next unless names
+#   names.map do |topic_name|
+#     Card.fetch topic_name.to_name.trait(:all_companies)
+#   end
+# end
 #
-## metric value name change, create or delete may expire the cache
-#cache_expire_trigger Type::MetricValue do |changed_card|
-#  # FIXME: clean the cache cleverl
-#  topic_list = changed_card.metric_card.fetch trait: :wikirate_topic, new: {}
-#  topics = topic_list.item_names
-#  next unless topics
-#  topics.map do |topic|
-#    Card.fetch topic.to_name.trait(:wikirate_company)
-#  end
-#end
+# # metric value name change, create or delete may expire the cache
+# cache_expire_trigger Type::MetricValue do |changed_card|
+#   # FIXME: clean the cache cleverl
+#   topic_list = changed_card.metric_card.fetch trait: :wikirate_topic, new: {}
+#   topics = topic_list.item_names
+#   next unless topics
+#   topics.map do |topic|
+#     Card.fetch topic.to_name.trait(:wikirate_company)
+#   end
+# end
 
 # # refresh the topic+all companies if source's company changed
 # ensure_set { TypePlusRight::Source::WikiRateCompany }
