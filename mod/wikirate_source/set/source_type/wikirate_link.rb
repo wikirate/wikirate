@@ -68,13 +68,9 @@ event :process_source_url, after: :check_source,
   link_card.director.catch_up_to_stage :validate
   return if link_card.errors.present?
   file_type, size = file_type_and_size url
-  is_file_link = file_link? file_type
-  if is_file_link && within_file_size_limit?(size)
-    download_file_and_add_to_plus_file url
-    remove_subfield(:wikirate_link)
-    reset_patterns
-    include_set_modules
-  elsif Card::Env.params[:sourcebox] == "true" && !is_file_link
+  if file_link? file_type
+    download_and_add_file url if within_file_size_limit?(size)
+  elsif Card::Env.params[:sourcebox] == "true"
     parse_source_page url
   end
 end
@@ -99,12 +95,14 @@ def get_card url
   end
 end
 
-def download_file_and_add_to_plus_file url
+def download_and_add_file url
   url.gsub!(/ /, "%20")
   add_subfield :file, remote_file_url: url, type_id: FileID, content: "dummy"
   source_type = subfield(:source_type)
   source_type.content = "[[#{Card[:file].name}]]"
-  # remove_subfield :wikirate_link
+  remove_subfield :wikirate_link
+  reset_patterns
+  include_set_modules
 rescue  # if open raises errors , just treat the source as a normal source
   Rails.logger.info "Fail to get the file from link"
 end
@@ -135,7 +133,7 @@ rescue => error
 end
 
 def file_link? mime_type
-  !mime_type.empty? && !mime_type.start_with?("text/html", "image/")
+  mime_type.present? && !mime_type.start_with?("text/html", "image/", "*/*")
 end
 
 def within_file_size_limit? size

@@ -61,11 +61,11 @@ describe Card::Set::Type::SourceImportFile do
     context "correct info" do
       it "adds a correct source" do
         data = [{
-          file_company: "Apple Inc", year: "2014",
-          report_type: "Conflict Minerals Report",
-          source: "http://example.com/12333214",
-          title: nil, row: 1, wikirate_company: "Apple Inc", status: "exact",
-          company: "Apple Inc"
+                  file_company: "Apple Inc", year: "2014",
+                  report_type: "Conflict Minerals Report",
+                  source: "http://placehold.it/100x100",
+                  title: nil, row: 1, wikirate_company: "Apple Inc", status: "exact",
+                  company: "Apple Inc"
         }]
         source_file = trigger_import data, "1" => source_title
         expect(source_file.subcards.empty?).to be_falsey

@@ -6,24 +6,14 @@ def virtual?
   true
 end
 
-# @return # of companies with values
-def count _params={}
-  item_cards.size
-end
-
 def limit
   20
 end
 
 format do
   # paging helper methods
-  def page_link text, page, _current=false, options={}
-    @paging_path_args[:offset] = page * @paging_limit
-    @paging_path_args[:view] = :content
-    options[:class] = "card-paging-link slotter"
-    options[:remote] = true
-    options[:path] = paging_path_args @paging_path_args
-    link_to raw(text), options
+  def extra_paging_path_args
+    { view: :content }
   end
 end
 

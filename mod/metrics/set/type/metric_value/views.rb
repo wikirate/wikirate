@@ -7,7 +7,7 @@ format :json do
                               layout: { height: 70, width: 300,
                                         padding: { top: 10, left: 50,
                                                    bottom: 20, right: 30 },
-                                        ticks: 5 },
+                                        max_ticks: 5 },
                               link: false,
                               axes: :light)
   end

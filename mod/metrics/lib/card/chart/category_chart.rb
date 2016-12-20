@@ -1,5 +1,7 @@
 class Card
   module Chart
+    # chart for categorical metrics
+    # shows companies   per category
     class CategoryChart < VegaChart
       def generate_data
         Card[@metric_id].value_options.each do |category|
