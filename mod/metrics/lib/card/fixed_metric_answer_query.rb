@@ -1,6 +1,6 @@
 class Card
   class FixedMetricAnswerQuery < AnswerQuery
-    SIMPLE_FILTERS = ::Set.new([:metric_id, :latest]).freeze
+    SIMPLE_FILTERS = ::Set.new([:metric_id, :latest, :numeric_value]).freeze
     LIKE_FILTERS = ::Set.new([:name]).freeze
     DB_COLUMN_MAP = { name: :company_name }.freeze
     # filter values are card names and have to be translated to card ids

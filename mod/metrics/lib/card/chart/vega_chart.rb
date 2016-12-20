@@ -39,7 +39,7 @@ class Card
         @labels = []
         @max_count = 0
         @layout = opts.delete(:layout) || {}
-        @ticks = @layout.delete(:ticks)
+        @max_ticks = @layout.delete(:max_ticks)
         @opts = opts
         generate_data
       end
@@ -109,12 +109,16 @@ class Card
                   range: "height",
                   domain: { data: "table", field: "y" },
                   round: true }
-
-        # vega shows non-integer labels on the y-axis if
-        # the counts are not big enough
-        # (that doesn't make sense for a company count)
-        scale[:domainMax] = 8 if @max_count < 8
         scale
+      end
+
+      # If the maximal value is less than 8 vega shows
+      # non-integers labels. We have to reduce the number of ticks
+      # to the maximal value to avoid that
+      # @max_ticks is a config option
+      def y_ticks
+        return @max_ticks if @max_count >= 8
+        [@max_count, @max_ticks].compact.min
       end
 
       #  used for highlighting
@@ -169,9 +173,10 @@ class Card
       end
 
       def y_axis
-        hash = { type: "y", scale: "y", title: "Companies",
+        hash = { type: "y", scale: "y",
+                 title: "Companies",
                  properties: axes_properties }
-        hash[:ticks] = @ticks if @ticks
+        hash[:ticks] = y_ticks if y_ticks
         hash
       end
 
@@ -197,7 +202,7 @@ class Card
       # :filter has the filter options for the table
       # :chart[:filter] the filter options for the chart
       def bar_link filter_opts
-        @format.path view: :data,
+        @format.path view: :content,
                      chart: bar_link_chart_params(filter_opts),
                      filter: @format.filter_hash(false)
       end

@@ -37,7 +37,7 @@ end
 
 format do
   def extra_paging_path_args
-    { filter: filter_hash }.merge sort_hash
+    { view: :table, filter: filter_hash }.merge sort_hash
   end
 end
 

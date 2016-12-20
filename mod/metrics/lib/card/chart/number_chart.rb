@@ -1,4 +1,6 @@
 class Card
+  # chart for numeric metrics
+  # one bar per value
   module Chart
     # generates chart with one bar per (numeric)value
     class NumberChart < CategoryChart

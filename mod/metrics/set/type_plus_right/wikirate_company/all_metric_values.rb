@@ -21,10 +21,12 @@ format :html do
   end
 
   view :table, cache: :never do
-    wikirate_table_with_details :metric, self,
-                                [:metric_thumbnail_with_vote, :value_cell],
-                                header: [name_sort_links, "Value"],
-                                details_view: :metric_details_sidebar
+    wrap do # slot for paging links
+      wikirate_table_with_details :metric, self,
+                                  [:metric_thumbnail_with_vote, :value_cell],
+                                  header: [name_sort_links, "Value"],
+                                  details_view: :metric_details_sidebar
+    end
   end
 
   def name_sort_links

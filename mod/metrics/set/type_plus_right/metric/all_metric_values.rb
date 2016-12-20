@@ -33,10 +33,12 @@ format :html do
   end
 
   view :table, cache: :never do
-    wikirate_table_with_details :company, self,
-                                [:company_thumbnail, :value_cell],
-                                header: [company_sort_link, value_sort_link],
-                                details_view: :company_details_sidebar
+    wrap do # slot for paging links
+      wikirate_table_with_details :company, self,
+                                  [:company_thumbnail, :value_cell],
+                                  header: [company_sort_link, value_sort_link],
+                                  details_view: :company_details_sidebar
+    end
   end
 
 

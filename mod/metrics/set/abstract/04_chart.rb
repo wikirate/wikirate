@@ -33,8 +33,11 @@ format :html do
 
   def vega_chart
     id = unique_id.tr "+", "-"
-    wrap_with(:div, "", id: id, class: classy("vis"),
-                        data: { url: chart_load_url }) + zoom_out_link
+    output [
+             zoom_out_link,
+             wrap_with(:div, "", id: id, class: classy("vis"),
+                       data: { url: chart_load_url })
+           ]
   end
 
   def chart_load_url
@@ -50,14 +53,13 @@ format :html do
 
   def zoom_out_link
     return unless zoomed_in?
-    link_to_view :data, fa_icon("search-minus"),
+    link_to_view :content, fa_icon("search-minus"),
                  path: zoom_out_path_opts,
-                 class: "slotter"
+                 class: "slotter chart-zoom-out"
   end
 
   def zoom_out_path_opts
-    { view: :data,
-      chart: chart_params[:zoom_out],
+    { chart: chart_params[:zoom_out],
       filter: filter_hash(false) }
   end
 
@@ -69,8 +71,8 @@ end
 format :json do
   # views requested by ajax to load chart
   view :vega, cache: :never do
-    #ve = JSON.pretty_generate vega_chart_config.to_hash
-    #puts ve
+    ve = JSON.pretty_generate vega_chart_config.to_hash
+    puts ve
     vega_chart_config(value_to_highlight).to_json
   end
 
