@@ -29,6 +29,10 @@ format :html do
     end
   end
 
+  view :filter do
+    field_subformat(:company_metric_filter)._render_core
+  end
+
   def name_sort_links
     "#{importance_sort_link}#{designer_sort_link}#{title_sort_link}"
   end

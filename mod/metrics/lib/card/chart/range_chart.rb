@@ -34,7 +34,7 @@ class Card
       end
 
       def add_label number
-        @labels << @format.number_to_human(number.to_f).to_f
+        @labels << @format.number_to_human(number.to_f)
       end
 
       def data_item_hash filter

@@ -1,6 +1,10 @@
 include_set Abstract::SpecialFilterForm
 
 format :html do
+  def content_view
+    :content
+  end
+
   def main_filter_form
     wrap_with :div, class: "input-and-button" do
       [

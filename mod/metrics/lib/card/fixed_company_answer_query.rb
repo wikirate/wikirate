@@ -7,8 +7,10 @@ class Card
     CARD_ID_FILTERS = ::Set.new([:metric_type, :research_policy]).freeze
 
     DB_COLUMN_MAP = { name: :metric_name,
+                      metric: :metric_name,
                       research_policy: :policy_id,
-                      metric_type: :metric_type_id }.freeze
+                      metric_type: :metric_type_id,
+                      wikirate_topic: :topic }.freeze
     # translate filter key to db column
 
     def initialize company_id, *args
@@ -27,6 +29,8 @@ class Card
                     return: :id
       @restrict_to_ids[:metric_id] += metric_ids
     end
+
+    alias_method :wikirate_topic_query, :topic_query
 
     def project_query value
       metric_ids =

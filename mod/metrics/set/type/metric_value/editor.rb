@@ -219,6 +219,7 @@ format :html do
   end
 
   def legend
+    return if currency.present?
     subformat(card.metric_card)._render_legend
   end
 

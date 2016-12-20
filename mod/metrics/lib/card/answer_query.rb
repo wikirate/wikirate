@@ -32,7 +32,7 @@ class Card
 
     def add_filter opts={}
       opts.each do |k, v|
-        process_filter_option k, v
+        process_filter_option k, v if v.present?
       end
     end
 
@@ -134,6 +134,7 @@ class Card
     end
 
     def process_filter_option key, value
+      #binding.pry
       if exact_match_filters.include? key
         filter key, value
       elsif like_filters.include? key
