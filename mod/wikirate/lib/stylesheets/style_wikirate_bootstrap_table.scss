@@ -33,7 +33,8 @@ table.wikirate-table {
     padding: 2px;
     font-size: $sub-text-size;
     text-align: center;
-    color: $heading-color;
+    // color: $heading-color;
+    color: $dark-text-color;
     a {
       color: $dark-text-color;
     }

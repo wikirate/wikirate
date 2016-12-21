@@ -78,7 +78,7 @@ format :html do
   def sort_link text, args
     path = card.paging_path_args sort_order: args[:sort_order],
                                  sort_by: args[:sort_by]
-    link_to_view :data, text,
+    link_to_view :table, text,
                  path: path,
                  class: "metric-list-header slotter #{args[:class]}"
   end

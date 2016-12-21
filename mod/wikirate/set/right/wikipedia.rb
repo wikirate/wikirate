@@ -3,7 +3,8 @@ def unknown?
 end
 
 def wikipedia_query_uri args={}
-  uri = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&" \
+  uri = "https://en.wikipedia.org/w/api.php?format=json&action=query&"\
+            "prop=extracts&exintro=&explaintext=&" \
             "&redirects=1&titles=#{wikipedia_title}"
   uri += extract_api_options args
   URI.parse uri
@@ -29,6 +30,12 @@ rescue Exception => e
 end
 
 format :html do
+  view :edit do
+    binding.pry
+    Card.exists?(card.name) ? super() : _render_new
+    super()
+  end
+
   def unknown_disqualifies_view? view
     false
   end

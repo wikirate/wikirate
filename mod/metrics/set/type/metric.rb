@@ -13,6 +13,8 @@ card_accessor :report_type
 card_accessor :research_policy
 card_accessor :project
 card_accessor :all_metric_values
+card_accessor :unit
+card_accessor :range
 
 def metric_type
   metric_type_card.item_names.first
@@ -188,21 +190,21 @@ format :html do
     card.fetch(trait: :wikirate_company).cached_count
   end
 
-  # the base version of :core is overridden because of inclusion of
-  # Type::SearchType.  re-overriding here to fix listing.
-  # view :core do
-  #   process_content _render_raw, content_opts: { chunk_list: :default }
-  # end
-
   view :legend do
     # depends on the type
-    if (unit = Card.fetch("#{card.name}+unit"))
-      unit.raw_content
-    elsif (range = Card.fetch("#{card.name}+range"))
-      "/#{range.raw_content}"
+    if card.unit.present?
+      card.unit
+    elsif card.range.present?
+      "/#{card.range}"
+    elsif card.categorical?
+      "/#{category_legend}"
     else
       ""
     end
+  end
+
+  def category_legend
+    card.value_options.reject { |o| o == "Unknown" }.join ","
   end
 
   def item_wrap

@@ -1,6 +1,8 @@
 class Card
   module Chart
     class RangeChart < VegaChart
+      include Buckets
+
       DEFAULT_BAR_CNT = 10
 
       def initialize format, opts
@@ -10,7 +12,7 @@ class Card
       end
 
       def generate_data
-        calculate_ranges
+        calculate_buckets
         add_label min
         each_bucket do |lower, upper|
           add_data range: { from: lower, to: upper }
@@ -22,15 +24,6 @@ class Card
 
       def click_action
         :zoom
-      end
-
-      def each_bucket
-        lower = min
-        @buckets.times do
-          upper = lower + bucket_size
-          yield lower, upper
-          lower = upper
-        end
       end
 
       def add_label number
@@ -55,26 +48,6 @@ class Card
           range: "width",
           domain: @labels,
           points: true }
-      end
-
-      def calculate_ranges
-        if bucket_size > 2
-          @bucket_size = (@bucket_size + 1).to_i
-          @min = @min.to_i
-          @max = @min + @bucket_size * @buckets
-        end
-      end
-
-      def bucket_size
-        @bucket_size ||= (max - min).to_f / @buckets
-      end
-
-      def max
-        @max ||= @filter_query.where.maximum(:numeric_value).to_f
-      end
-
-      def min
-        @min ||= @filter_query.where.minimum(:numeric_value).to_f
       end
 
       def highlight? filter
