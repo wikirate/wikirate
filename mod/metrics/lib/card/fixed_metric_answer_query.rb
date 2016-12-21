@@ -14,6 +14,11 @@ class Card
       super *args
     end
 
+    def run
+      return outliers if outliers?
+      super
+    end
+
     def prepare_filter_args filter
       super
       @filter_args[:metric_id] = @metric_id
@@ -47,6 +52,46 @@ class Card
 
     def missing_answers
       FixedMetricMissingAnswerQuery.new(@filter_args).run
+    end
+
+    def outliers
+      @restrict_to_ids[:answer_id] += savanna_outliers.keys
+    end
+
+    private
+
+    def outliers?
+      @filter_args[:metric_value] == :outliers
+    end
+
+    def id_value_map
+      all_related_answers.each_with_object({}) do |answer, h|
+        next unless answer.numeric_value
+        h[answer.id] = answer.numeric_value
+      end
+    end
+
+    def all_related_answers
+      Answer.where(metric_id: @metric_id)
+    end
+
+    # alternative method to determine outliers; not finished
+    def turkey_outliers
+      res = []
+      all_related_answers.map do |answer|
+        next unless answer.numeric_value
+        res << [answer.numeric_value, answer.id]
+      end
+      res.sort!
+      return if res.size < 3
+      quarter = res.size/3
+      q1 = res[quarter]
+      q3 = res[-quarter]
+      res
+    end
+
+    def savanna_outliers
+      @outliers ||= Savanna::Outliers.get_outliers id_value_map, :all
     end
   end
 end
