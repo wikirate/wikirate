@@ -182,5 +182,9 @@
   :type: Search
   :key: research_group+project+*type_plu_right+*default
   :merged: 2016-12-21 19:19:46 UTC
+- :name: homepage topic item
+  :type: HTML
+  :key: homepage_topic_item
 :remotes:
   :live: http://wikirate.org
+  :dev: http://dev.wikirate.org

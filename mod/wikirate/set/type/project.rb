@@ -40,6 +40,19 @@ def worth_counting
 end
 
 format :html do
+  def default_content_formgroup_args _args
+    voo.edit_structure =
+      [
+        :image,
+        :status,
+        :organizer,
+        :wikirate_topic,
+        :description,
+        :metric,
+        :wikirate_company
+      ]
+  end
+
   def header_right
     wrap_with :div, class: "header-right" do
       [
