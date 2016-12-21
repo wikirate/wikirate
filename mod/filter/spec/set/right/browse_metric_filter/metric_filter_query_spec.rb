@@ -23,14 +23,14 @@ describe Card::Set::Right::BrowseMetricFilter do
 
     context "company argument" do
       before { filter_args wikirate_company: "Apple Inc" }
-      it { is_expected.to eq wql(right_plus: ["Apple Inc", {}]) }
+      it { is_expected.to eq wql(right_plus: "Apple Inc") }
     end
 
     context "topic argument" do
       before { filter_args wikirate_topic: "myTopic" }
       it do
         is_expected.to eq wql(
-          right_plus: ["topic", { refer_to: "myTopic" }]
+          right_plus: [Card::WikirateTopicID, { refer_to: "myTopic" }]
         )
       end
     end
@@ -38,9 +38,7 @@ describe Card::Set::Right::BrowseMetricFilter do
     context "designer argument" do
       before { filter_args designer: "myDesigner" }
       it do
-        is_expected.to eq wql(
-          or: { left: "myDesigner", right: "myDesigner" }
-        )
+        is_expected.to eq wql(part: "myDesigner")
       end
     end
 
@@ -48,7 +46,7 @@ describe Card::Set::Right::BrowseMetricFilter do
       before { filter_args metric_type: "researched" }
       it do
         is_expected.to eq wql(
-          right_plus: ["*metric type", { refer_to: "researched" }]
+          right_plus: [Card::MetricTypeID, { refer_to: "researched" }]
         )
       end
     end
@@ -56,9 +54,8 @@ describe Card::Set::Right::BrowseMetricFilter do
     context "research policy" do
       before { filter_args research_policy: "community assessed" }
       it do
-        is_expected.to eq wql(
-          right_plus: ["Research Policy", { refer_to: "community assessed" }]
-        )
+        is_expected.to eq wql(right_plus: [Card::ResearchPolicyID,
+                                           { refer_to: "community assessed" }])
       end
     end
 
@@ -67,7 +64,7 @@ describe Card::Set::Right::BrowseMetricFilter do
       it do
         is_expected.to eq wql(
           right_plus: { type_id: Card::WikirateCompanyID,
-                        right_plus: [{ name: "2015" }, {}] }
+                        right_plus: "2015" }
         )
       end
     end
@@ -76,7 +73,7 @@ describe Card::Set::Right::BrowseMetricFilter do
       before { filter_args project: "myProject" }
       it do
         is_expected.to eq wql(
-          referred_to_by: { left: { name: "myProject" }, right: "metric" }
+          referred_to_by: { left: "myProject", right_id: Card::MetricID }
         )
       end
     end
@@ -96,21 +93,21 @@ describe Card::Set::Right::BrowseMetricFilter do
         is_expected.to eq wql(
           name: %w(match CDP),
           and: {
-            right_plus: ["Research Policy", { refer_to: "community assessed" }],
+            right_plus: [Card::ResearchPolicyID,
+                         { refer_to: "community assessed" }],
             and: {
-              right_plus: ["*metric type", { refer_to: "researched" }],
+              right_plus: [Card::MetricTypeID, { refer_to: "researched" }],
               and: {
-                right_plus: ["topic", { refer_to: "myTopic" }],
+                right_plus: [Card::WikirateTopicID, { refer_to: "myTopic" }],
                 and: {
-                  right_plus: ["Apple Inc", {}]
+                  right_plus: "Apple Inc"
                 }
               }
             }
           },
-          right_plus: { type_id: Card::WikirateCompanyID,
-                        right_plus: [{ name: "2015" }, {}] },
-          or: { left: "myDesigner", right: "myDesigner" },
-          referred_to_by: { left: { name: "myProject" }, right: "metric" }
+          right_plus: { type_id: Card::WikirateCompanyID, right_plus: "2015" },
+          part: "myDesigner",
+          referred_to_by: { left: "myProject", right_id: Card::MetricID }
         )
       end
     end
