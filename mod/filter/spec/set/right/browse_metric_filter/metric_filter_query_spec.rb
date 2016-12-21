@@ -66,8 +66,8 @@ describe Card::Set::Right::BrowseMetricFilter do
       before { filter_args year: "2015" }
       it do
         is_expected.to eq wql(
-          right_plus: [{ type_id: Card::WikirateCompanyID,
-                         right_plus: [{ name: "2015" }, {}] }]
+          right_plus: { type_id: Card::WikirateCompanyID,
+                        right_plus: [{ name: "2015" }, {}] }
         )
       end
     end
@@ -107,8 +107,8 @@ describe Card::Set::Right::BrowseMetricFilter do
               }
             }
           },
-          right_plus: [{ type_id: Card::WikirateCompanyID,
-                         right_plus: [{ name: "2015" }, {}] }],
+          right_plus: { type_id: Card::WikirateCompanyID,
+                        right_plus: [{ name: "2015" }, {}] },
           or: { left: "myDesigner", right: "myDesigner" },
           referred_to_by: { left: { name: "myProject" }, right: "metric" }
         )

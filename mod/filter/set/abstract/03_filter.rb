@@ -8,22 +8,17 @@ end
 
 def filter_keys_with_values
   (filter_keys + advanced_filter_keys).map do |key|
-    next unless (values = filter_param(key))
+    values = filter_param(key)
+    next unless values.present?
     [key, values]
   end.compact
 end
 
-def search_wql type_id, opts, params_keys, return_param=nil, &block
-  wql = { type_id: type_id }
-  wql[:return] = return_param if return_param
-  Filter.new(filter_keys_with_values, Env.params[:sort], wql, &wql).to_wql
-  # params_keys.each do |key|
-  #   # link_to in #page_link with name will override the path
-  #   method_name = key.include?("_name") ? "name" : key
-  #   send("wql_by_#{method_name}", wql, opts[key])
-  # end
-  # wql
-end
+# def search_wql type_id, opts, params_keys, return_param=nil, &block
+#   wql = { type_id: type_id }
+#   wql[:return] = return_param if return_param
+#   Filter.new(filter_keys_with_values, Env.params[:sort], wql, &wql).to_wql
+# end
 
 format :html do
   def main_filter_formgroups
