@@ -48,10 +48,9 @@ class Card
       where(additional_filter).select(:value).uniq.count
     end
 
+    # :none and :outliers are handled in #run
     def metric_value_query value
       case value.to_sym
-      when :none
-        missing_answers
       when :unknown
         filter :value, "Unknown"
       when :known
@@ -79,6 +78,7 @@ class Card
         filter :year, value
       end
     end
+
 
     def filter key, value, operator=nil
       operator ||= value.is_a?(Array) ? "IN" : "="
