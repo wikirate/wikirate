@@ -56,11 +56,11 @@ format :html do
     }
   end
 
-  view :metric_type_formgroup do
+  view :metric_type_formgroup, cache: :never do
     metric_type_select
   end
 
-  view :research_policy_formgroup do
+  view :research_policy_formgroup, cache: :never do
     research_policy_select
   end
 

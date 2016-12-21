@@ -22,7 +22,8 @@ format :html do
   end
 
   view :wikirate_company_formgroup, cache: :never do
-    select_filter_type_based :wikirate_company
+    #select_filter_type_based :wikirate_company
+    autocomplete_filter :wikirate_company
   end
 
   view :research_policy_formgroup, cache: :never do
@@ -49,15 +50,15 @@ format :html do
     select_filter :designer, "Designer"
   end
 
-  view :importance_formgroup do
+  view :importance_formgroup, cache: :never do
     checkbox_filter :importance, "My Vote", ["upvotes", "novotes"]
   end
 
-  view :industry_formgroup do
+  view :industry_formgroup, cache: :never do
     select_filter :industry, "Industry"
   end
 
-  view :sort_formgroup do
+  view :sort_formgroup, cache: :never do
     selected_option = sort_param || card.default_sort_option
     options = options_for_select(sort_options, selected_option)
     formgroup "Sort", class: "filter-input " do

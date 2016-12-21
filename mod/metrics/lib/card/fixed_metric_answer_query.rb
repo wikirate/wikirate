@@ -14,11 +14,6 @@ class Card
       super *args
     end
 
-    def run
-      return outliers if outliers?
-      super
-    end
-
     def prepare_filter_args filter
       super
       @filter_args[:metric_id] = @metric_id
@@ -54,15 +49,19 @@ class Card
       FixedMetricMissingAnswerQuery.new(@filter_args).run
     end
 
-    def outliers
-      @restrict_to_ids[:answer_id] += savanna_outliers.keys
+    def outliers_query
+      @restrict_to_ids[:id] += savanna_outliers.keys
+    end
+
+    def metric_value_query value
+      if value.to_sym == :outliers
+        outliers_query
+      else
+        super
+      end
     end
 
     private
-
-    def outliers?
-      @filter_args[:metric_value] == :outliers
-    end
 
     def id_value_map
       all_related_answers.each_with_object({}) do |answer, h|

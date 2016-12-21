@@ -32,6 +32,7 @@ class Card
         end
 
         def span
+          return 0 unless max && min
           max - min
         end
       end
@@ -134,7 +135,7 @@ class Card
       # to the maximal value to avoid that
       # @max_ticks is a config option
       def y_ticks
-        return @max_ticks if @y_range.max >= 8
+        return @max_ticks if @y_range.max && @y_range.max >= 8
         [@y_range.max, @max_ticks].compact.min
       end
 
