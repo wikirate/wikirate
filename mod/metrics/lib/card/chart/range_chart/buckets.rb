@@ -1,6 +1,7 @@
 class Card
   module Chart
     class RangeChart
+      # calculate the grouping for a range chart
       module Buckets
         def each_bucket
           lower = log_bucket? ? Math.log(min) : min

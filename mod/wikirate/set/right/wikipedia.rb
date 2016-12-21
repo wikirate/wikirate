@@ -25,18 +25,16 @@ def wikipedia_extract
   return unless response["query"] && response["query"]["pages"]
   first_page = response["query"]["pages"].to_a.first
   first_page[1]["extract"]
-rescue Exception => e
+rescue Exception => _e
   ""
 end
 
 format :html do
   view :edit do
-    binding.pry
     Card.exists?(card.name) ? super() : _render_new
-    super()
   end
 
-  def unknown_disqualifies_view? view
+  def unknown_disqualifies_view? _view
     false
   end
 
