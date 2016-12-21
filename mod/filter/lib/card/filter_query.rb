@@ -44,7 +44,7 @@ class Card
     private
 
     def prepare_filter_wql
-      @filter_keys_with_values.each  do |key, values|
+      @filter_keys_with_values.each do |key, values|
         add_rule key, values
       end
     end
