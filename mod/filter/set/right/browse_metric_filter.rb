@@ -20,6 +20,10 @@ def filter_class
   MetricFilterQuery
 end
 
+def default_year_option
+  { "Any Year" => "" }
+end
+
 def add_sort_wql wql, sort_by
   super wql, sort_by
   wql[:sort] =

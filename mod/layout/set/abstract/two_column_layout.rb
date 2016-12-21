@@ -4,7 +4,7 @@ include_set Abstract::Media
 
 format :html do
   def default_open_content_args args
-    args[:left_class] ||= { class: "left-col nopadding" }
+    args[:left_class] ||= { class: "left-col" }
     args[:right_class] ||= { class: "right-col" }
     # args[:grid_option] ||= { md: [6, 6] }
   end

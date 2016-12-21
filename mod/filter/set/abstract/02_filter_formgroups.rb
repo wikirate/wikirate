@@ -69,8 +69,12 @@ format :html do
     {}
   end
 
+  def default_year_option
+    { "Most Recent" => "latest" }
+  end
+
   def year_options
-    type_options(:year).each_with_object({ "Most Recent" => "latest" }) do |v, h|
+    type_options(:year).each_with_object(default_year_option) do |v, h|
       h[v] = v
     end
   end

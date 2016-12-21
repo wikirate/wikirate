@@ -73,16 +73,20 @@ def shift_sort_table? query
 end
 
 def add_sort_wql wql, sort_by
-  if sort_by == "name"
-    wql[:sort] = "name"
-  else
-    wql.merge! sort:  {
-                  right: (sort_by || default_sort_by_key),
-                  right_plus: "*cached count"
-               },
-               sort_as: "integer",
-               dir: "desc"
-  end
+  wql.merge!(
+    if sort_by == "name"
+      { sort: "name" }
+    else
+      cached_count_sort_wql(sort_by)
+    end
+  )
+end
+
+def cached_count_sort_wql sort_by
+  { sort: { right: (sort_by || default_sort_by_key),
+            right_plus: "*cached count" },
+    sort_as: "integer",
+    dir: "desc" }
 end
 
 def virtual?
@@ -112,7 +116,6 @@ format :html do
     end
   end
 
-
   def filter_button_formgroup
     button_formgroup do
       [advanced_button, reset_button]
@@ -127,11 +130,11 @@ format :html do
   def advanced_button
     toggle_text = filter_advanced_active? ? "Hide Advanced" : "Show Advanced"
     wrap_with :a, toggle_text,
-                 href: "#collapseFilter",
-                 class: "btn btn-default",
-                 data: { toggle: "collapse",
-                         collapseintext: "Hide Advanced",
-                         collapseouttext: "Show Advanced" }
+              href: "#collapseFilter",
+              class: "btn btn-default",
+              data: { toggle: "collapse",
+                      collapseintext: "Hide Advanced",
+                      collapseouttext: "Show Advanced" }
   end
 
   def advanced_filter_formgroups

@@ -8,7 +8,8 @@ end
 
 def filter_keys_with_values
   (filter_keys + advanced_filter_keys).map do |key|
-    next unless (values = filter_param(key))
+    values = filter_param(key)
+    next unless values.present?
     [key, values]
   end.compact
 end
