@@ -3,7 +3,7 @@
 - :name: Note+*self+*structure
   :type: HTML
   :key: note+*self+*structure
-- :name: Source+*self+*structure
+- :name: source+*self+*structure
   :type: HTML
   :key: source+*self+*structure
 - :name: customized classic skin
@@ -188,3 +188,4 @@
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org
+  :staging: http://staging.wikirate.org
