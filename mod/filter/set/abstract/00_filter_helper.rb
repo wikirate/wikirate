@@ -29,9 +29,5 @@ def paging_path_args args={}
 end
 
 format do
-  def limit
-    query_with_params[:limit]
-  end
-
   delegate :filter_hash, :sort_hash, :paging_hash, to: :card
 end

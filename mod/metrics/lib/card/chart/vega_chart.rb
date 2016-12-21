@@ -25,6 +25,18 @@ class Card
           }
       }.freeze
 
+      Range = Struct.new(:min, :max) do
+        def add value
+          self.min = [min, value].compact.min
+          self.max = [max, value].compact.max
+        end
+
+        def span
+          return 0 unless max && min
+          max - min
+        end
+      end
+
       # @param opts [Hash] config options
       # @option opts [Boolean] :link make bars clickable
       # @option opts [String] :highlight highlight the bar for the given value
@@ -37,7 +49,8 @@ class Card
         @highlight_value = opts[:highlight]
         @data = []
         @labels = []
-        @max_count = 0
+
+        @y_range = Range.new
         @layout = opts.delete(:layout) || {}
         @max_ticks = @layout.delete(:max_ticks)
         @opts = opts
@@ -69,7 +82,6 @@ class Card
 
       def count filter
         count = @filter_query.count filter
-        @max_count = count if count > @max_count
         count
       end
 
@@ -79,6 +91,8 @@ class Card
 
       def add_data filter
         @data << data_item_hash(filter)
+        @y_range.add @data.last[:y]
+        @data
       end
 
       def data_item_hash filter
@@ -105,11 +119,15 @@ class Card
 
       def y_scale
         scale = { name: "y",
-                  type: "linear",
+                  type: y_type,
                   range: "height",
                   domain: { data: "table", field: "y" },
                   round: true }
         scale
+      end
+
+      def y_type
+        @y_range.span > 100 ? "sqrt" : "linear"
       end
 
       # If the maximal value is less than 8 vega shows
@@ -117,8 +135,8 @@ class Card
       # to the maximal value to avoid that
       # @max_ticks is a config option
       def y_ticks
-        return @max_ticks if @max_count >= 8
-        [@max_count, @max_ticks].compact.min
+        return @max_ticks if @y_range.max && @y_range.max >= 8
+        [@y_range.max, @max_ticks].compact.min
       end
 
       #  used for highlighting

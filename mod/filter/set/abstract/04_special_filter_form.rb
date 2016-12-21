@@ -5,7 +5,7 @@ end
 include_set Set::Abstract::Filter
 
 format :html do
-  view :core do
+  view :core, cache: :never do
     form_tag path(mark: card.cardname.left, view: content_view),
              class: "filter-container slotter sub-content", method: "GET",
              id: "_filter_container", data: { remote: "true" } do
@@ -13,7 +13,7 @@ format :html do
     end
   end
 
-  view :main_filter do
+  view :main_filter, cache: :never do
     wrap_with :div, class: "filter-header" do
       [
         main_filter_form,
@@ -44,7 +44,7 @@ format :html do
     end
   end
 
-  view :advanced_filter_form do
+  view :advanced_filter_form, cache: :never do
     advanced_filter_formgroups
   end
 

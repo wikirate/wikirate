@@ -2,6 +2,15 @@ wagn.slotReady (slot) ->
   slot.find('.company_autocomplete').autocomplete
     source: '/Companies+*right+*options.json?view=name_complete'
     minLength: 2
+  slot.find('.wikirate_company_autocomplete').autocomplete
+    source: '/Companies+*right+*options.json?view=name_complete'
+    minLength: 2
+  slot.find('.wikirate_topic_autocomplete').autocomplete
+    source: '/Topic+*right+*options.json?view=name_complete'
+    minLength: 2
+  slot.find('.metric_autocomplete').autocomplete
+    source: '/Topic+*right+*options.json?view=name_complete'
+    minLength: 2
   slot.find('#uncheck_all').change (eventObject) ->
     if $(this).is(':checked')
       $('#partial').removeAttr 'checked'

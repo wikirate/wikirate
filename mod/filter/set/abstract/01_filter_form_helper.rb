@@ -59,6 +59,11 @@ format :html do
     select_filter type_codename, nil, nil, options
   end
 
+  def autocomplete_filter type
+    text_field_tag(type_codename, "",
+                   class: "#{type_codename}_autocomplete")
+  end
+
   def multiselect_filter_type_based type_codename
     options = type_options type_codename
     multiselect_filter type_codename, nil, nil, options
