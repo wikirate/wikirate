@@ -95,9 +95,9 @@ format :html do
   def metric_count_detail company_card, metric_count
     wrap_with :span, class: "metric-count-link" do
       link_to_card(
-        card.topic_name,
+        company_card,
         "#{metric_count} #{:metric.cardname.vary :plural}",
-        path: { filter: { wikirate_company: company_card.cardname.url_key } }
+        path: { filter: { wikirate_topic: card.topic_name.url_key } }
       )
     end
   end
