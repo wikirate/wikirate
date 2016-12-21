@@ -13,9 +13,8 @@ class Card
     end
 
     def year_wql year
-      add_to_wql :right_plus, [{ type_id: Card::WikirateCompanyID,
-                                 right_plus: [{ name: year }, {}] },
-                               {}]
+      add_to_wql :right_plus, { type_id: Card::WikirateCompanyID,
+                                right_plus: [{ name: year }, {}] }
     end
 
     def designer_wql designer
