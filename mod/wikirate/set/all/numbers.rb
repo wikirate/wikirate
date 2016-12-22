@@ -12,7 +12,7 @@ end
 format do
   def humanized_number value
     number = BigDecimal.new(value)
-    size = number > 1_000_000 ? :big : :small
+    size = number.abs > 1_000_000 ? :big : :small
     send "humanized_#{size}_number", number
   end
 
@@ -25,7 +25,7 @@ format do
   end
 
   def humanized_small_number number
-    less_than_one = number < 1
+    less_than_one = number.abs < 1
     humanized = number_with_precision(
       number, delimiter: ",", strip_insignificant_zeros: true,
               precision: (less_than_one ? 3 : 1), significant: less_than_one
