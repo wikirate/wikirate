@@ -77,7 +77,7 @@ format :html do
   end
 
   def fast_search_results
-    Answer.fetch record_id: card.left.id
+    Answer.fetch({ record_id: card.left.id }, sort_by: :year, sort_order: :desc)
   end
 
   view :record_list do
