@@ -1,10 +1,16 @@
 include_set Abstract::Table
 
 format :html do
+  def default_search_params
+    super.merge(return: :card)
+  end
+
+
   view :core do
     wikirate_table :metric,
-                   %w(Metric Companies), search_with_params,
-                   [:simple_item_view, :company_count]
+                   search_with_params,
+                   [:thumbnail, :company_count],
+                   header: %w(Metric Companies)
   end
 
   def yinyang_list
