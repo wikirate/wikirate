@@ -45,8 +45,8 @@ class Card
       @restrict_to_ids[:company_id] += company_ids
     end
 
-    def missing_answers
-      FixedMetricMissingAnswerQuery.new(@filter_args).run
+    def missing_answer_query_class
+      FixedMetricMissingAnswerQuery
     end
 
     def outliers_query

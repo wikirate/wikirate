@@ -1,7 +1,8 @@
 class Card
   class MissingAnswerQuery
-    def initialize filter
+    def initialize filter, paging
       @filter = filter.clone
+      @paging = paging
       @filter.delete :metric_value # if we are here this is "none"
       @base_card = Card[@filter.delete(base_key)]
       @year = @filter.delete :year
@@ -25,7 +26,7 @@ class Card
     end
 
     def missing_wql
-      wql = { type_id: subject_type_id }
+      wql = @paging.merge type_id: subject_type_id
       not_ids = subject_ids_of_existing_answers
       wql[:not] = { id: not_ids.unshift("in") } if not_ids.present?
       return wql unless @filter
