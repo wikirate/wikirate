@@ -40,19 +40,20 @@ format :html do
 
   view :designer_info do
     wrap_with :div, class: "metric-designer-info" do
-      link_to_card card.metric_designer_card.cardname.field("contribution"),
+      link_to_card card.metric_designer_card,
                    author_info(card.metric_designer_card, "Designed by")
     end
   end
 
   def author_info author_card, text, subtext=nil
+    output [
+      author_image(author_card),
+      author_text(author_card.name, subtext)
+    ]
     author_content =
       subformat(author_card.field(:image, new: {}))._render_core size: "small"
     <<-HTML
-      <div>
-        <!-- <small class="text-muted">#{text}</small> -->
-      </div>
-      <div class="image-box small no-margin">
+      <div class=>
         <span class="img-helper"></span>
         #{author_content}
       </div>
@@ -60,26 +61,34 @@ format :html do
     HTML
   end
 
-  def author_text author, subtext=nil
-    subtext &&=
-      <<-HTML
-          <span>
-            <small class="text-muted">
-              #{subtext}
-            </small>
-          </span>
-        HTML
-    args = subtext ? { class: "margin-6" } : {}
-    author_args = subtext ? { class: "nopadding" } : {}
-    wrap_with :div, args do
-      [
-        wrap_with(subtext ? "h4" : "h3", author, author_args),
-        subtext
-      ]
+  def author_image
+    wrap_with :div, class: "image-box small no-margin" do
+      wrap_with :span, class: "img-helper" do
+      end
     end
   end
 
-  view :metric_row_for_topic do |args|
-    metric_row_for_topic args
+  def author_text author, subtext=nil
+    if subtext
+      author_text_with_subtext author, subtext
+    else
+      author_text_without_subtext author
+    end
+  end
+
+  def author_text_with_subtext author, subtext
+    wrap_with :div, class: "margin-6" do
+      [
+        wrap_with(:h4, author, class: "nopadding"),
+        %(<span><small class="text-muted">#{subtext}</small></span>)
+      ]
+      end
+    end
+  end
+
+  def author_text_without_subtext author
+    wrap_with :div do
+      wrap_with :h3, author
+    end
   end
 end

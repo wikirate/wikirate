@@ -35,43 +35,7 @@ format :html do
     end
   end
 
-  view :contributing do |args|
-    heading = wrap_with(:div, "Contributing", class: "heading-content")
-    value_type =
-      wrap_with(:div, _render_value_type_detail(args))
-    content = wrap_with :div, class: "contributing-details" do
-      [
-        value_type,
-        nest(card.report_type_card, view: :titled,
-                                    title: "Report type",
-                                    items: { view: :name }),
-        nest(card.research_policy_card, view: :titled,
-                                        title: "Research Policy",
-                                        items: { view: :name }),
-        nest(card.project_card, view: :titled,
-                                title: "Projects",
-                                items: { view: "content",
-                                         structure: "list item" }),
-        _render_import_button(args)
-      ]
-    end
-    heading + content
-  end
-
   view :value_type_detail do
-    # wrap do
-    #   <<-HTML
-    #     <div class="padding-bottom-10">
-    #       <div class='row nopadding'>
-    #         <div class="heading-content pull-left">Value Type</div>
-    #         <div class="margin-8 pull-left">
-    #           #{_render_value_type_edit_modal_link}
-    #         </div>
-    #       </div>
-    #         #{_render_short_view}
-    #     </div>
-    #   HTML
-    # end
    wrap_with :div do
      [
        _render_value_type_edit_modal_link,
@@ -82,21 +46,14 @@ format :html do
 
   view :source_tab do
     tab_wrap do
-      # TODO: get rid of process content
-      process_content <<-HTML
-      <div class="row">
-        <div class="row-icon">
-          <i class="fa fa-globe"></i>
-        </div>
-        <div class="row-data">
-            {{+source|titled;title:Sources;|content;listing}}
-        </div>
-      </div>
-      HTML
+      field_nest :source, view: :titled,
+                          title: "#{fa_icon 'globe'} Sources",
+                          items: { view: :listing }
     end
   end
 
   view :scores_tab do |args|
+    # TODO: move +scores to a separate card
     tab_wrap do
       wrap_with :div, class: "list-group" do
         card.score_cards.map do |item|

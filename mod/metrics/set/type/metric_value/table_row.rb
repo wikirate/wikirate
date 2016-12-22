@@ -7,8 +7,7 @@ format :html do
   end
 
   view :metric_thumbnail do
-    nest card.metric_card, view: :thumbnail,
-         hide: [:vote, :thumbnail_subtitle]
+    nest card.metric_card, view: :thumbnail, hide: [:vote, :thumbnail_subtitle]
   end
 
   view :company_thumbnail do
@@ -144,7 +143,7 @@ format :html do
   def designer_info
     <<-HTML
       <div class="metric-designer-info">
-        <a href="/{{_lllr|name}}+contribution">
+        <a href="/{{_lllr|name}}">
           <div><small class="text-muted">Designed by</small></div>
           <div>#{nest card.metric_card, view: :designer_info}</div>
         </a>

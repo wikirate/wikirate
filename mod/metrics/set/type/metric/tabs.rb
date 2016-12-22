@@ -2,7 +2,8 @@ format :html do
   def tab_list
     {
       details_tab: "Details",
-      discussion_tab: "#{fa_icon :comment} Discussion"
+      discussion_tab: "#{fa_icon :comment} Discussion",
+      project_tab: "Projects"
     }
   end
 
@@ -19,11 +20,19 @@ format :html do
     end
   end
 
-  view :discussion_tab do |_args|
+  view :discussion_tab do
     tab_wrap do
-      field_subformat(:discussion).render_titled home_view: "titled",
-                                                 hide: [:header, :title],
-                                                 show: "comment_box"
+      field_nest :discussion, view: :titled,
+                              hide: [:header, :title],
+                              show: "comment_box"
+    end
+  end
+
+  view :project_tab do
+    tab_wrap do
+      field_nest :project, view: :titled,
+                           title: "Projects",
+                           items: { view: :listing }
     end
   end
 end

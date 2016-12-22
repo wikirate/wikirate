@@ -1,11 +1,11 @@
-  
+
   <!--prototype: Company+MetricDesigner+MetricName+yinyang drag item -->
   <div class="metric-item value-item">
     <div>
       <div class="header">
-        <a href="{{_llr+contributions|linkname}}">
+        <a href="{{_llr|linkname}}">
         <div class="logo hidden-xs hidden-md">
-          {{_llr+image|core;size:small}} 
+          {{_llr+image|core;size:small}}
         </div>
         </a>
         <div class="name">
@@ -16,7 +16,7 @@
       </div>
       <div class="data ">
         <div class="data-item">
-       
+
           {{_llr+_lr+_1+latest value|concise}}
         </div>
 

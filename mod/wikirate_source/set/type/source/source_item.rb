@@ -204,7 +204,7 @@ format :html do
   end
 
   view :original_icon_link do
-    voo.title = font_awesome icon
+    voo.title = fa_icon icon
     _render_original_link
   end
 
@@ -238,16 +238,12 @@ format :html do
     pretty_count "note", "quote-left"
   end
 
-  def font_awesome icon_name
-    wrap_with :i, "", class: "fa fa-#{icon_name}"
-  end
-
   def pretty_count type, icon_name
     output(
       [
         wrap_with(:span, id: "#{type}-count-number", class: "count-number") do
           count = send "#{type}_count"
-          "#{font_awesome icon_name} #{count} "
+          "#{fa_icon icon_name} #{count} "
         end,
         wrap_with(:span, Card.quick_fetch(type).name.pluralize)
       ]

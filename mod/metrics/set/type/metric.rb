@@ -263,11 +263,6 @@ format :html do
     subformat(detail_card).render_content
   end
 
-  #def default_edit_args args
-  #  #edit_args args
-  #  super()
-  #end
-
   view :handle do |_args|
     wrap_with :div, class: "handle" do
       glyphicon "option-vertical"
@@ -289,6 +284,7 @@ format :html do
     )
   end
 
+  # USED?
   view :item_view do |args|
     append = args[:append_for_details] ||
              "#{card.key}+add_to_formula"
@@ -299,35 +295,6 @@ format :html do
         #{_render_thumbnail(optional_thumbnail_subtitle: :hide)}
       </div>
       )
-    end
-  end
-
-  view :item_view_with_value do |args|
-    contributions_url = path "#{metric_designer}+contributions"
-    item_wrap do
-      <<-HTML
-        <div class="header">
-          #{_render_handle if args[:draggable]}
-          #{_render_vote if args[:vote]}
-          <a href="#{contributions_url}">
-          <div class="logo hidden-xs hidden-md">
-             #{nest card.metric_designer_card.fetch(trait: :image),
-                    view: :core, size: 'small'}
-          </div>
-          </a>
-          <div class="name">
-            #{link_to_card card, metric_title, class: 'inherit-anchor'}
-          </div>
-        </div>
-        <div class="data">
-          #{_render_value(args)}
-          <div class="data-item show-with-details text-center">
-            <span class="label label-metric">
-              #{link_to_card card, 'Metric Details'}
-            </span>
-          </div>
-        </div>
-      HTML
     end
   end
 
@@ -438,7 +405,7 @@ format :html do
     header = <<-HTML
       {{_+*vote count}}
       <div class="logo">
-      <a class="inherit-anchor" href="/{{_1|name}}+contribution"> {{_1+image|core;size:small}} </a>
+      <a class="inherit-anchor" href="/{{_1|name}}"> {{_1+image|core;size:small}} </a>
               </div>
       <div class="name">
         {{_2|name}}

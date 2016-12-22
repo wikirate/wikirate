@@ -57,8 +57,8 @@ def ids_of_metrics_tagged_with_topic
 end
 
 def relation
-  Answer.select(:company_id)
-        .where(metric_id: ids_of_metrics_tagged_with_topic).uniq
+  Answer.select(:company_id).uniq
+        .where(metric_id: ids_of_metrics_tagged_with_topic)
 end
 
 def company_ids_by_metric_count
