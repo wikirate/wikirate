@@ -16,18 +16,18 @@ format :html do
     super()
   end
 
-  view :core, cache: :never do |args|
+  view :core, cache: :never do
     if citations.present?
       results = citations.map do |name|
         Card.fetch name, new: { type_id: Card::ClaimID }
       end
-      card_list results, args
+      card_list results
     else
-      super args
+      super()
     end
   end
 
-  def card_list results, _args
+  def card_list results
     items = results.each_with_index.map do |claim, num|
       citation_number = %(<span class="cited-claim-number">#{num + 1}</span>)
       nest claim, citation_number: citation_number do |rendered, item_view|
