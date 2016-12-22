@@ -11,9 +11,8 @@ def limit
 end
 
 format do
-  # paging helper methods
-  def extra_paging_path_args
-    { view: :content }
+  def paging_view
+    :content
   end
 end
 

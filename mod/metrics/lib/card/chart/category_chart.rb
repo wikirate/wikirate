@@ -23,7 +23,8 @@ class Card
         super.merge x: filter[:category]
       end
 
-      # @return true if the given category is supposed to be highlighted
+      # @return true if the bar given by its filter
+      #   is supposed to be highlighted
       def highlight? filter
         return true unless @highlight_value
         @highlight_value == filter[:category]

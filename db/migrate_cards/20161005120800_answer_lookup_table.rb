@@ -15,7 +15,7 @@ class AnswerLookupTable < ActiveRecord::Migration
       t.string :title_name
       t.string :record_name
       t.string :value
-      t.float :numeric_value
+      t.decimal :numeric_value, precision: 30, scale: 5
       t.datetime :updated_at
       t.boolean :imported
       t.boolean :latest

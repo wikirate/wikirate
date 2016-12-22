@@ -1,9 +1,10 @@
-include_set Abstract::WikirateTable
+include_set Abstract::WikirateTable # deprecated but maybe still used somewhere
+include_set Abstract::Table
 
 format :html do
   def metric_names
     return project.field(:metric).item_names if project
-    Env.params["metric"]
+    Env.params["metric"] || []
   end
 
   def project
@@ -19,11 +20,83 @@ format :html do
 
   def wrap_record record_card
     wrap do
-      nest(record_card, view: :core, structure: "metric short view")
+      wrap_with :div, id: record_card.cardname.url_key, class: "metric-row" do
+        [
+          subformat(record_card).process_content(metric_header_small),
+          subformat(record_card).process_content(metric_details),
+          nest(record_card.fetch(trait: :metric_value), view: :record_list_header),
+          record_list(record_card)
+        ]
+      end
+      #nest(record_card, view: :core, structure: "metric short view")
     end
   end
 
+  def record_list record_card
+    items = Answer.fetch({ record_id: record_card.id },
+                         sort_by: :year,
+                         sort_order: "desc")
+    wikirate_table :plain, items,
+                   [:plain_year, :closed_answer_without_chart],
+                   header: %w(Year Answer),
+                   td: { classes: ["text-center"] }
+  end
+
+  # FIXME
+  def metric_header_small
+    <<-HTML
+        <div class="metric-details-header col-md-12 col-xs-12 padding-top-10">
+  <div class="row">
+    <div class="row-icon no-icon-bg padding-top-10">
+      	<a class="pull-left editor-image inherit-anchor" href="{{_llr+_lr|url}}">
+            {{_llr+image|size:small}}
+        </a>
+    </div>
+    <div class="row-data">
+      	<h4 class="metric-color">
+  					<a class="inherit-anchor" href="{{_llr+_lr|url}}">{{_lr|name}}</a>
+  			</h4>
+    </div>
+  </div>
+</div>
+    HTML
+  end
+
+  # FIXME
+  def metric_details
+    <<-HTML
+
+<div class="metric-info">
+  <div class="col-md-12 padding-bottom-10">
+    <div class="row metric-details-question">
+      <div class="row-icon padding-top-10">
+        <i class="fa fa-question-circle fa-lg"></i>
+      </div>
+      <div class="row-data padding-top-10">
+        {{_llr+_lr+question|core}}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div id="methodology-info" class="collapse">
+        <div class="row"><small><strong>Methodology </strong>{{_llr+_lr+Methodology|content;|link}}</small></div>
+        <div class="row">
+          <div class="row-icon">
+            <i class="fa fa-tag"></i>
+          </div>
+          <div class="row-data">
+            {{_llr+_lr+topics|content|link}}
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+    HTML
+  end
+
   def wrap_project
+    return unless project
     project_content =
       nest(project, view: :core, structure: "initiative item").html_safe
     wrap_with :div, class: "border-bottom col-md-12 nopadding" do
@@ -35,38 +108,36 @@ format :html do
   end
 
   def wrap_metric_header
-    metric_list_header = wrap_with(:div, "Metrics", class: "heading-label")
-    if project
-      metric_list_header << wrap_project
-    else
-      metric_list_header
+    wrap_with(:div, "Metrics", class: "heading-label")
+  end
+
+  def wrap_metric_list
+    wrap_with :div, class: "row background-grey" do
+      [
+        wrap_metric_header,
+        wrap_project,
+        process_metrics
+      ]
     end
   end
 
-  def error
-    process_metrics
-  rescue
+  def not_a_metric name
     card.errors.add :Metrics,
-                    "Incorrect Metric name or Metric not available."
-    return false
+                    "Incorrect Metric name or Metric not available: "\
+                   "#{name}"
+    card.format.render_errors
+  end
+
+  def existing_metric? name
+    (m = Card.quick_fetch(name)) && m.type_id == MetricID
   end
 
   def process_metrics
     metric_names.map do |metric_name|
-      next unless Card.exists? metric_name
+      next not_a_metric(metric_name) unless existing_metric? metric_name
       metric_plus_company = Card.fetch metric_name, card.name
       wrap_record metric_plus_company
     end.join "\n"
-  end
-
-  def wrap_metric_list
-    return card.format.render_errors unless error
-    wrap_with :div, class: "row background-grey" do
-      [
-        wrap_metric_header,
-        process_metrics
-      ]
-    end
   end
 
   def wrap_company

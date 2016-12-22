@@ -60,19 +60,28 @@ format :html do
   end
 
   def methodology_button
-    target_id = record_name.field_name("metric_details").key
+    target_id = record_name.to_name.url_key
     # TODO: add codename for "metric details" and convert to trait
     timeline_header_button "View Methodology",
                            "_view_methodology",
                            toggle: "collapse",
                            target: "[id='#{target_id}'] #methodology-info",
                            collapse: ".metric_value_form_container"
+
+    #target: "[id='#{target_id}'] #methodology-info",
   end
 
   view :timeline_header do |args|
     voo.show :timeline_header_buttons
     wrap_with :div, class: "timeline-header timeline-row " do
       _optional_render_timeline_header_buttons if args[:column] == :data
+    end
+  end
+
+  view :record_list_header do
+    voo.show :timeline_header_buttons
+    wrap_with :div, class: "timeline-header timeline-row " do
+      _optional_render_timeline_header_buttons
     end
   end
 

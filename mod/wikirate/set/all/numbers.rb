@@ -17,11 +17,7 @@ format do
   end
 
   def humanized_big_number number
-    number_to_human(
-      number, format: "%n%u", delimiter: "", precision: 3,
-              units: { unit: "", thousand: "K", million: "M", billion: "B",
-                       trillion: "T", quadrillion: "P" }
-    )
+    number_to_human number, format: "%n%u", delimiter: "", precision: 3
   end
 
   def humanized_small_number number

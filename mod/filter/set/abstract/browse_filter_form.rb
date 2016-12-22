@@ -93,12 +93,6 @@ def virtual?
   true
 end
 
-format do
-  def extra_paging_path_args
-    { filter: filter_hash }.merge sort_hash
-  end
-end
-
 format :html do
   # view :no_search_results do |_args|
   #   wrap_with :div, "No result", class: "search-no-results"

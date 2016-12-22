@@ -75,10 +75,9 @@ class Card
       if value == :latest || value == "latest"
         filter :latest, true
       else
-        filter :year, value
+        filter :year, value.to_i
       end
     end
-
 
     def filter key, value, operator=nil
       operator ||= value.is_a?(Array) ? "IN" : "="
@@ -89,8 +88,12 @@ class Card
 
     private
 
+    def missing_answers
+      missing_answer_query_class.new(@filter_args, @paging_args).run
+    end
+
     def find_missing?
-      @filter_args[:metric_value] == :none
+      @filter_args[:metric_value] && @filter_args[:metric_value].to_sym == :none
     end
 
     def run_filter_query

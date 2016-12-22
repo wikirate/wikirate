@@ -7,12 +7,21 @@ format :html do
     ]
   end
 
+  # used for new_metric_value of a company
+  # TODO merge with closed_answer view;
+  view :closed_answer_without_chart do
+    output [
+             wrap_with(:div, [_render_answer_details_toggle, value_field]),
+             wrap_with(:div, "", class: "card-slot collapse answer-details text-muted")
+           ]
+  end
+
   def row
     wrap_with :div, class: "row" do
       [
         _render_answer_details_toggle,
         value_field,
-        _render_chart
+        _optional_render_chart
       ]
     end
   end

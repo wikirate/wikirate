@@ -76,8 +76,8 @@ class Card
       [:upvotes, :downvotes, :novotes] - directions
     end
 
-    def missing_answers
-      FixedCompanyMissingAnswerQuery.new(@filter_args).run
+    def missing_answer_query_class
+      FixedCompanyMissingAnswerQuery
     end
   end
 end

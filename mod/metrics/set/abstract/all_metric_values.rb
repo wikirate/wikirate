@@ -35,18 +35,10 @@ def query args={}
   end
 end
 
-format do
-  def extra_paging_path_args
-    { view: :table, filter: filter_hash }.merge sort_hash
+format :html do
+  def paging_view
+    :table
   end
 end
 
-format :json do
-  view :core do
-    mvh = MetricValuesHash.new card.left
-    card.item_cards(default_query: true).each do |value_card|
-      mvh.add value_card
-    end
-    mvh.to_json
-  end
-end
+
