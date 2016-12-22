@@ -38,6 +38,7 @@ format :html do
                          sort_order: "desc")
     wikirate_table :plain, items,
                    [:plain_year, :closed_answer_without_chart],
+                   div_table: true,
                    header: %w(Year Answer),
                    td: { classes: ["text-center"] }
   end

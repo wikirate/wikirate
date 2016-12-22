@@ -1,5 +1,30 @@
 {{style: mixins and variables|raw}}
 
+.table {
+  display: table;
+}
+
+.tr {
+  display: table-row;
+}
+
+.td {
+  display: table-cell;
+}
+
+.thead {
+  display: table-header-group;
+}
+
+.tbody {
+  display: table-row-group;
+}
+
+.tfooter {
+  display: table-footer-group;
+}
+
+
 
 .table  {
   font-style: normal;
