@@ -74,10 +74,9 @@ format :html do
     args[:author] ||= link_to_card card.scorer
   end
 
-  view :scorer_info do |_args|
+  view :scorer_info do
     wrap_with :div, class: "metric-designer-info" do
-      link_to_card card.scorer_card.cardname.field("contribution"),
-                   author_info(card.scorer_card, "Scored by")
+      link_to_card card.scorer_card, author_info(card.scorer_card)
     end
   end
 
@@ -86,7 +85,7 @@ format :html do
   end
 
   view :score_thumbnail do |_args|
-    link_text = author_info card.scorer_card, "Scored by",
+    link_text = author_info card.scorer_card,
                             "#{time_ago_in_words card.created_at} ago"
     wrap_with :div, class: "metric-designer-info" do
       link_to_card card, link_text, class: "row list-group-item"

@@ -65,12 +65,4 @@ format :html do
     link_to_card card.company_card, nil, class: "inherit-anchor name",
                                          target: "_blank"
   end
-
-  view :metric_row_for_company do |args|
-    metric_row_for_company args
-  end
-
-  view :company_row_for_metric do |args|
-    company_row_for_metric args
-  end
 end

@@ -792,6 +792,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 .metric-value.small {
     font-size: 15px;
     white-space: nowrap;
+    max-width: 100px;
     text-overflow: ellipsis;
     // width: 50%;
     padding-right: 5px;

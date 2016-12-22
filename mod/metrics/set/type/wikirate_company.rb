@@ -109,8 +109,4 @@ format :html do
       blank_content.html_safe
     end
   end
-
-  view :company_row_for_topic do |args|
-    company_row_for_topic args
-  end
 end
