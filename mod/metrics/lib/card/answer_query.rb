@@ -75,7 +75,7 @@ class Card
       if value == :latest || value == "latest"
         filter :latest, true
       else
-        filter :year, value
+        filter :year, value.to_i
       end
     end
 

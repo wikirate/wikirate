@@ -77,7 +77,7 @@ format :json do
   end
 
   # alternative library to vega
-  view :chartkick do
+  view :chartkick, cache: :never do
     Answer.where(metric_id: card.id, latest: true)
           .group("CAST(value AS decimal)").count.chart_json
   end

@@ -15,6 +15,7 @@ card_accessor :project
 card_accessor :all_metric_values
 card_accessor :unit
 card_accessor :range
+card_accessor :currency
 
 def metric_type
   metric_type_card.item_names.first
@@ -43,6 +44,10 @@ end
 # @return array of metric answer lookup table
 def all_answers
   Answer.where(metric_id: id)
+end
+
+def distinct_values
+  all_answers.select(:value).distinct.pluck(:value)
 end
 
 def question_card

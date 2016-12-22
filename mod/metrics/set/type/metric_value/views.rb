@@ -17,7 +17,7 @@ format :json do
   end
 
   def chart_filter_hash
-    super.merge year: card.year
+    super.merge year: card.year.to_i
   end
 end
 

@@ -60,7 +60,7 @@ format :html do
   end
 
   def methodology_button
-    target_id = record_name.field_name("metric_details").key
+    target_id = record_name.field_name("metric_details").url_key
     # TODO: add codename for "metric details" and convert to trait
     timeline_header_button "View Methodology",
                            "_view_methodology",
