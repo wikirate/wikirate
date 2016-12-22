@@ -2,6 +2,6 @@
 
 class ReleasePolish < Card::Migration
   def up
-    merge %(homepage_topic_item source+*self+*structure)
+    merge_cards %(homepage_topic_item source+*self+*structure)
   end
 end
