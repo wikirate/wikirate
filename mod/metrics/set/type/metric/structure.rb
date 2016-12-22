@@ -41,29 +41,21 @@ format :html do
   view :designer_info do
     wrap_with :div, class: "metric-designer-info" do
       link_to_card card.metric_designer_card,
-                   author_info(card.metric_designer_card, "Designed by")
+                   author_info(card.metric_designer_card)
     end
   end
 
-  def author_info author_card, text, subtext=nil
+  def author_info author_card
     output [
       author_image(author_card),
-      author_text(author_card.name, subtext)
+      author_text(author_card.name)
     ]
-    author_content =
-      subformat(author_card.field(:image, new: {}))._render_core size: "small"
-    <<-HTML
-      <div class=>
-        <span class="img-helper"></span>
-        #{author_content}
-      </div>
-      #{author_text author_card.name, subtext}
-    HTML
   end
 
   def author_image
     wrap_with :div, class: "image-box small no-margin" do
       wrap_with :span, class: "img-helper" do
+        subformat(author_card.field(:image, new: {}))._render_core size: "small"
       end
     end
   end
@@ -82,7 +74,6 @@ format :html do
         wrap_with(:h4, author, class: "nopadding"),
         %(<span><small class="text-muted">#{subtext}</small></span>)
       ]
-      end
     end
   end
 
