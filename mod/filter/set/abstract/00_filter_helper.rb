@@ -7,27 +7,20 @@ def sort_hash
   { sort: (Env.params[:sort].present? ? Env.params[:sort] : default_sort_option) }
 end
 
-def paging_hash
-  { limit: limit, offset: offset }
-end
-
 def default_filter_option
   { year: :latest, value: :exist }
 end
-
 
 def offset
   param_to_i :offset, 0
 end
 
-def paging_path_args args={}
-  args.reverse_merge! paging_hash
-  args[:filter] ||= {}
-  args[:filter].reverse_merge! filter_hash
-  args.reverse_merge! sort_hash
-  args
+format do
+  delegate :filter_hash, :sort_hash, to: :card
 end
 
-format do
-  delegate :filter_hash, :sort_hash, :paging_hash, to: :card
+format :html do
+  def extra_paging_path_args
+    { filter: filter_hash }.merge sort_hash
+  end
 end

@@ -36,8 +36,9 @@ def query args={}
 end
 
 format :html do
-  def extra_paging_path_args
-    { view: :table, filter: filter_hash }.merge sort_hash
+  def paging_view
+    :table
   end
 end
+
 
