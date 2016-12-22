@@ -52,10 +52,12 @@ $(document).ready ->
       $sourceDetails.addClass('hide')
 
   # add or show new metric value form on the left
+  # $this is the add value button
   appendNewValueForm = ($this) ->
     company   = encodeURIComponent($this.data("company"))
     metric    = encodeURIComponent($this.data("metric"))
-    $target   = $this.closest('.timeline-data')
+    #$target   = $this.closest('.timeline-data')
+    $target = $this.slot().find('.wikirate-table tbody')
     $loader   = wikirate.loader($target)
     $page     = if $('.TYPE-company.open-view').exists()
                   $('.TYPE-company.open-view')
@@ -73,27 +75,37 @@ $(document).ready ->
           source = '&source=' + source
         else
           source = ''
+
         load_path = wagn.prepUrl(wagn.rootPath +
-                               "/new/metric_value?noframe=true&company="+
-                               company + "&metric=" + metric + source)
+            "/new/metric_value?table_form=true&company=" +
+            company + "&metric=" + metric + source)
+        #"/new/metric_value?noframe=true&company="+
+        #company + "&metric=" + metric + source)
 
-        $template = $('<div>').addClass('timeline-row new-value-form')
-        $template = $template.append($('<div>').addClass('card-slot '))
-
-        $.get(load_path, ((data) ->
-          $template.find('.card-slot').append(data)
-          $this.hide()
-          wagn.initializeEditors($target)
-          $loader.remove()
-        ), 'html').fail((xhr,d,e) ->
-          $template.find('.card-slot').append(xhr.responseText)
-        ).always( ->
-          $target.find(".timeline-header").after($template)
+        #$template = $('<div>').addClass('timeline-row new-value-form')
+        #$template = $template.append($('<div>').addClass('card-slot '))
+        $template = $('<tr>').addClass('new-value-form')
+        $target.prepend $template
+        $this.hide()
+        $template.load load_path, (responseText, textStatus, jqXHR) ->
           wagn.initializeEditors($target)
           $template.find('.card-slot').trigger('slotReady')
           $loader.remove()
-        )
-        # appendSourceForm(company)
+
+  #$.get(load_path, ((data) ->
+  #  $template.find('.card-slot').append(data)
+  #  $this.hide()
+  #  wagn.initializeEditors($target)
+  #  $loader.remove()
+  #), 'html').fail((xhr,d,e) ->
+  #  $template.find('.card-slot').append(xhr.responseText)
+  #).always( ->
+  #  $target.find(".timeline-header").after($template)
+  #  wagn.initializeEditors($target)
+  #  $template.find('.card-slot').trigger('slotReady')
+  #  $loader.remove()
+  #)
+  ## appendSourceForm(company)
 
   appendSourceDetails = (sourceID) ->
     load_path = wagn.prepUrl(wagn.rootPath + sourceID +
@@ -313,7 +325,7 @@ $(document).ready ->
     else
       appendNewValueForm($(this))
 
-  $('._add_new_value:first').trigger 'click' if $('.metric-row').length == 1
+  $('._add_new_value:first').trigger 'click' if $('.wikirate-table tbody').length == 1
 
   $('body').on 'click', '._form_close_button', ->
     $form = $(this).closest('.new-value-form')
@@ -327,7 +339,7 @@ $(document).ready ->
       # stickContent()
 
 wagn.slotReady (slot) ->
-  add_val_form = slot.find('.timeline-row .card-slot>form').is(':visible')
+  add_val_form = slot.find('.wikirate-table tr>form').is(':visible')
   if add_val_form then slot.find('._add_new_value').hide()
   else slot.find('._add_new_value').show()
   resizeIframe(slot)

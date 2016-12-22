@@ -1,5 +1,6 @@
 format :html do
   view :new do |args|
+    return _render_table_form args if Env.params[:table_form]
     return _render_no_frame_form args if Env.params[:noframe] == "true"
     @form_root = true
     voo.editor = :metric_value_landing
@@ -105,6 +106,19 @@ format :html do
         _optional_render_content_formgroup,
         _optional_render_new_buttons
       ]
+    end
+  end
+
+  view :table_form, cache: :never do
+    wrap do
+      card_form :create, "main-success" => "REDIRECT" do
+        output [
+                 new_view_hidden,
+                 new_view_type,
+                 _optional_render_content_formgroup,
+                 _optional_render_new_buttons
+               ]
+      end
     end
   end
 
