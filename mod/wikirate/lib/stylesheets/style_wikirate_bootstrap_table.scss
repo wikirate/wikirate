@@ -4,6 +4,10 @@
   display: table;
 }
 
+.th {
+  display: table-cell;
+}
+
 .tr {
   display: table-row;
 }
@@ -25,6 +29,18 @@
 }
 
 
+@mixin left-color($regular, $hover) {
+  .header {
+    border-left: 3px solid $regular;
+  }
+  tr, .tr {
+    &.tr-details-toggle:hover {
+      .header {
+        border-left: 3px solid $hover;
+      }
+    }
+  }
+}
 
 .table  {
   font-style: normal;
@@ -32,8 +48,8 @@
   max-width: 100%;
   margin-bottom: 20px;
   border: 1px solid $border-color;
-  thead,tbody,tfoot{
-    > tr > th, td {
+  thead,tbody,tfoot,.thead,.tbody,.tfoot {
+    > tr > th, > .tr > .th, td, .td {
       padding: 8px;
       line-height: 1.42857;
       vertical-align: top;
@@ -43,17 +59,17 @@
   }
 
 
-  thead > tr > {
-    th, td {
+  thead > tr >, .thead > .tr {
+    th, td, .th, .td {
       font-style: normal;
       border-bottom: 1px solid $border-color;
     }
   }
 }
 
-table.wikirate-table {
+table.wikirate-table, .table.wikirate-table {
   background: #fff;
-  thead > tr > th {
+  thead > tr > th, .thead > .tr > .th {
     background: #fff;
     padding: 2px;
     font-size: $sub-text-size;
@@ -64,81 +80,67 @@ table.wikirate-table {
       color: $dark-text-color;
     }
   }
-  td.data {
-    min-width: 180px;
+  td, .td {
+    &.data {
+      min-width: 180px;
+    }
+
+    &:first-child .media-body h4 {
+      font-weight: normal;
+      font-size: 100%;
+    }
+    &.header {
+      .media {
+        margin-top: 8px;
+      }
+      .RIGHT-Xvote_count > div {
+        line-height: 1em;
+        font-size: 11px;
+        margin-right: 5px;
+      }
+      .RIGHT-Xvote_count.content-view {
+        margin-left: 5px;
+      }
+      button.vote-button {
+        font-size: 11px;
+        width: 15px;
+        height: 15px;
+        padding: 0;
+        border: none;
+        box-shadow: none;
+        --webkit-box-shadow: none;
+        background: none;
+      }
+      .vote-count {
+        width: 15px;
+        height: 15px;
+      }
+    }
   }
-  td:first-child .media-body h4 {
-    font-weight: normal;
-    font-size: 100%;
-  }
+
   .details {
     display: none;
   }
 
-  td.header {
-    .media {
-      margin-top: 8px;
-    }
-    .RIGHT-Xvote_count > div {
-      line-height: 1em;
-      font-size: 11px;
-      margin-right: 5px;
-    }
-    .RIGHT-Xvote_count.content-view {
-      margin-left: 5px;
-    }
-    button.vote-button {
-      font-size: 11px;
-      width: 15px;
-      height: 15px;
-      padding: 0;
-      border: none;
-      box-shadow: none;
-      --webkit-box-shadow: none;
-      background: none;
-    }
-    .vote-count {
-      width: 15px;
-      height: 15px;
+
+  tr, .tr {
+    &.tr-details-toggle:hover {
+      background-color: #fafafa;
+      cursor: pointer;
     }
   }
 
-  tr.tr-details-toggle:hover {
-    background-color: #fafafa;
-    cursor: pointer;
-  }
   &.metric {
-    .header {
-      border-left: 3px solid rgba(103, 78, 167, 0.14);
-    }
-    tr.tr-details-toggle:hover {
-      .header {
-        border-left: 3px solid $metric-color;
-      }
-    }
+    @include left-color(rgba(103, 78, 167, 0.14), $metric-color);
   }
   &.company {
-    .header {
-      border-left: 3px solid rgba(211, 116, 28, 0.14);
-    }
-    tr.tr-details-toggle:hover {
-      .header{
-        border-left: 3px solid $company-color;
-      }
-    }
+    @include left-color(rgba(211, 116, 28, 0.14), $company-color);
   }
   &.topic {
-    .header {
-      border-left: 3px solid rgba(43, 126, 160, 0.14);
-    }
-    tr.tr-details-toggle:hover {
-      .header{
-        border-left: 3px solid $topic-color;
-      }
-    }
+    @include left-color(rgba(43, 126, 160, 0.14), $topic-color);
   }
 
-  tbody > tr > td.details {
+  tbody > tr > td.details, .tbody > .tr > .td.details {
       background-color: #fff;
       border-top: 1px solid $bright-text-color;
       border: 1px solid #EAEAEA;
@@ -179,7 +181,8 @@ table.wikirate-table {
 //---Custom Table Properties---//
 
 //Project Page
-.progress-bar-table .wikirate-table.company td:last-child {
+.progress-bar-table .wikirate-table.company td:last-child,
+.progress-bar-table .wikirate-table.company .td:last-child{
     width: 22%;
     text-align: center;
 }

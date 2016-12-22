@@ -110,16 +110,20 @@ format :html do
   end
 
   view :table_form, cache: :never do
-    wrap do
-      card_form :create, "main-success" => "REDIRECT" do
-        output [
-                 new_view_hidden,
-                 new_view_type,
-                 _optional_render_content_formgroup,
-                 _optional_render_new_buttons
-               ]
-      end
+    voo.editor = :inline_nests
+    voo.show! :new_buttons
+    card_form :create, "main-success" => "REDIRECT", class: "tr card-slot new-value-form" do
+      output [
+               new_view_hidden,
+               new_view_type,
+               _optional_render_td_content_formgroup,
+             ]
     end
+  end
+
+  view :td_content_formgroup, cache: :never do
+    voo.show! :new_buttons
+    _render_metric_value_editor no_title: true
   end
 
   # TODO: please verify if this view used anywhere
@@ -141,14 +145,16 @@ format :html do
   end
 
   view :metric_value_editor, cache: :never do |args|
+    voo.hide :new_buttons
     render_haml relevant_sources: _render_relevant_sources(args),
-                cited_sources: _render_cited_sources do
+                cited_sources: _render_cited_sources,
+                no_title: args[:no_title] do
       <<-HAML
 .td.year
-  = field_nest :year, title: 'Year'
+  = field_nest :year, title: (no_title ? "" : 'Year')
 .td.value
   %span.metric-value
-    = field_nest :value, title: 'Value'
+    = field_nest :value, title: (no_title ? "" : 'Value')
   %h5
     Choose Sources or
     %a.btn.btn-sm.btn-default._add_new_source{href: "#"}
@@ -158,6 +164,7 @@ format :html do
   = relevant_sources
   = cited_sources
   = field_nest :discussion, title: 'Comment'
+  = _optional_render_new_buttons
       HAML
     end
   end

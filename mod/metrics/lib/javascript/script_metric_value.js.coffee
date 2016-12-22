@@ -57,13 +57,14 @@ $(document).ready ->
     company   = encodeURIComponent($this.data("company"))
     metric    = encodeURIComponent($this.data("metric"))
     #$target   = $this.closest('.timeline-data')
-    $target = $this.slot().find('.wikirate-table tbody')
-    $loader   = wikirate.loader($target)
+    $target = $this.slot().find('.wikirate-table .tbody')
     $page     = if $('.TYPE-company.open-view').exists()
                   $('.TYPE-company.open-view')
                 else $('.TYPE-metric.open-view')
+    $loader   = wikirate.loader($target, true)
 
     if(company && metric)
+
       $loader.add()
       if ($page.length>0)
         location.href = wagn.prepUrl(wagn.rootPath + '/' + company +
@@ -84,12 +85,13 @@ $(document).ready ->
 
         #$template = $('<div>').addClass('timeline-row new-value-form')
         #$template = $template.append($('<div>').addClass('card-slot '))
-        $template = $('<tr>').addClass('new-value-form')
-        $target.prepend $template
+        #$template = $('<div>').addClass('tr new-value-form')
+        #$target.prepend $template
         $this.hide()
-        $template.load load_path, (responseText, textStatus, jqXHR) ->
+        $.get load_path, (data) ->
+          $target.prepend data
           wagn.initializeEditors($target)
-          $template.find('.card-slot').trigger('slotReady')
+          $target.find('.card-slot').trigger('slotReady')
           $loader.remove()
 
   #$.get(load_path, ((data) ->
@@ -325,7 +327,7 @@ $(document).ready ->
     else
       appendNewValueForm($(this))
 
-  $('._add_new_value:first').trigger 'click' if $('.wikirate-table tbody').length == 1
+  $('._add_new_value:first').trigger 'click' if $('.wikirate-table .tbody').length == 1
 
   $('body').on 'click', '._form_close_button', ->
     $form = $(this).closest('.new-value-form')
@@ -339,7 +341,7 @@ $(document).ready ->
       # stickContent()
 
 wagn.slotReady (slot) ->
-  add_val_form = slot.find('.wikirate-table tr>form').is(':visible')
+  add_val_form = slot.find('.wikirate-table form').is(':visible')
   if add_val_form then slot.find('._add_new_value').hide()
   else slot.find('._add_new_value').show()
   resizeIframe(slot)
