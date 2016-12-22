@@ -52,7 +52,7 @@ format :html do
     ]
   end
 
-  def author_image
+  def author_image author_card
     wrap_with :div, class: "image-box small no-margin" do
       wrap_with :span, class: "img-helper" do
         subformat(author_card.field(:image, new: {}))._render_core size: "small"
