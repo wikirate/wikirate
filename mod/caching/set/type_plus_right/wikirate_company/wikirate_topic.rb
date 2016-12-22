@@ -74,7 +74,7 @@ format :html do
       link_to_card(
         card.company_name,
         "#{metric_count} #{:metric.cardname.vary :plural}",
-        path: { filter: { wikirate_topic: topic_card.cardname.url_key } }
+        path: { filter: { wikirate_topic: topic_card.name } }
       )
     end
   end

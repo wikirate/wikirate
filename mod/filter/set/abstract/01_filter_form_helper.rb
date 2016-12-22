@@ -59,7 +59,7 @@ format :html do
     select_filter type_codename, nil, nil, options
   end
 
-  def autocomplete_filter type
+  def autocomplete_filter type_codename
     text_field_tag(type_codename, "",
                    class: "#{type_codename}_autocomplete")
   end

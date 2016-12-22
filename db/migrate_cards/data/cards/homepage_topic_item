@@ -23,7 +23,7 @@
             </div>
             <div class="col-md-6 slab">
               <a href="Working_Conditions_and_Benefits?tab=company" class="inherit-anchor">  
-                <div class="number">{{_+company+type search+*count|core}}</div><div class="number-label">Companies</div>
+                <div class="number">{{_+company+*cached count|core}}</div><div class="number-label">Companies</div>
               </a>
             </div>
           </div>
@@ -42,7 +42,7 @@
           Value
         </div>
       </div>
-      {{_left+limited metric|yinyang list|content; structure: homepage topic metric drag item}}
+      {{_left+limited metric||listing; hide:thumbnail_subtitle}}
     </div>
   </div>
 

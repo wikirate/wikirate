@@ -8,4 +8,4 @@
 <div class="filter-search-form">
   {{+browse source filter|filter_form}}
 </div>
-{{+browse source filter||source list item}}
+{{+browse source filter||listing}}
