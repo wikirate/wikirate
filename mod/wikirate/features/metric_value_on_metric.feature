@@ -13,7 +13,7 @@ Background:
     And I fill in company with "Death Star"
     And I click on "Next"
     And I fill in "pointer_item" with "2015"
-    And I single-select "yes" from "Value"
+    And I single-select "yes" as value
     And I click on "Add a new source"
     And I fill in "URL" with "http://example.com"
     And I click on "Add and preview"
@@ -36,7 +36,7 @@ Scenario: Adding a metric value with a file source on metric page
   And I fill in company with "Death Star"
   And I click on "Next"
   And I fill in "pointer_item" with "2015"
-  And I single-select "yes" from "Value"
+  And I single-select "yes" as value
   And I click on "Add a new source"
   And I click on "File"
   And I upload the file "file.txt"

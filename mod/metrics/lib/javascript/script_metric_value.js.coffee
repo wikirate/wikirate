@@ -97,7 +97,7 @@ $(document).ready ->
           $form.append $table
           $row.append $form
           wagn.initializeEditors($table)
-          $form.find('.card-slot').trigger('slotReady')
+          $form.slot().trigger('slotReady')
           $loader.remove()
         ), "html").fail((xhr, d, e) ->
           $loader.remove()

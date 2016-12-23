@@ -2,7 +2,7 @@ format :html do
   view :table_form, cache: :never do
     voo.editor = :inline_nests
     card_form :create, "main-success" => "REDIRECT",
-              class: "card-slot new-value-form" do
+              class: "new-value-form" do
       output [
                new_view_hidden,
                new_view_type,

@@ -107,6 +107,12 @@ When(/^(?:|I )select "([^"]*)" from hidden "([^"]*)"$/) do |value, field|
   find(:xpath, "//input[@id='#{field}']", visible: false).set value
 end
 
+
+When /^(?:|I )single-select "([^"]*)" as value$/ do |value
+  find ("#card_subcards__values_content_chosen a.chosen-single").clic
+  find ("li", text : value).click
+end
+
 When(/^(?:|I )upload the (.+) "(.+)" in mod$/) do |attachment_name, filename|
   script = "$('input[type=file]').css('opacity','1');"
   page.driver.browser.execute_script(script)
