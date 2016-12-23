@@ -123,7 +123,7 @@ format :html do
 
   view :td_content_formgroup, cache: :never do
     voo.show! :new_buttons
-    _render_metric_value_editor no_title: true
+    _render_metric_value_editor # no_title: true
   end
 
   # TODO: please verify if this view used anywhere
@@ -151,10 +151,10 @@ format :html do
                 no_title: args[:no_title] do
       <<-HAML
 .td.year
-  = field_nest :year, title: (no_title ? "" : 'Year')
+  = field_nest :year, title: (no_title ? " " : 'Year')
 .td.value
   %span.metric-value
-    = field_nest :value, title: (no_title ? "" : 'Value')
+    = field_nest :value, title: (no_title ? " " : 'Value')
   %h5
     Choose Sources or
     %a.btn.btn-sm.btn-default._add_new_source{href: "#"}

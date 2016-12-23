@@ -132,7 +132,7 @@ $(document).ready ->
 
   sourceCitation = (ele, action) ->
     $this                = $(ele)
-    $timelineContainer   = $this.closest(".timeline-row .card-slot form")
+    $timelineContainer   = $this.closest("form")
     sourceID = "#" + $this.closest(".TYPE-source").attr("id") + ".TYPE-source:first"
 
     if !$timelineContainer.exists() and
@@ -236,13 +236,13 @@ $(document).ready ->
   $('body').on 'ajax:success',
   '[data-form-for="new_metric_value"]',
   (event, data) ->
-    $parentForm     = $(".timeline-row .card-slot form")
+    $parentForm     = $("form.new-value-form")
     $container      = $parentForm.find(".relevant-sources")
     $container      = $container.empty() if $container.text().search("None") >-1
     sourceID        = $(data).data('source-for')
     sourceYear      = parseInt($(data).data('year'))
     sourceInList    = "[data-source-for='"+sourceID+"']"
-    $sourceInForm   = $('.timeline-row form')
+    $sourceInForm   = $('form.new-value-form')
                       .find(sourceInList+'.source-details-toggle')
 
     #check if the source already exist in new value form.
