@@ -108,9 +108,9 @@ When(/^(?:|I )select "([^"]*)" from hidden "([^"]*)"$/) do |value, field|
 end
 
 
-When /^(?:|I )single-select "([^"]*)" as value$/ do |value
-  find ("#card_subcards__values_content_chosen a.chosen-single").clic
-  find ("li", text : value).click
+When /^(?:|I )single-select "([^"]*)" as value$/ do |value|
+  find("#card_subcards__values_content_chosen a.chosen-single").click
+  find("li", text: value).click
 end
 
 When(/^(?:|I )upload the (.+) "(.+)" in mod$/) do |attachment_name, filename|
