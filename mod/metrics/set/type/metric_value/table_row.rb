@@ -86,6 +86,15 @@ format :html do
                    td: { classes: ["text-center"] }
   end
 
+  view :thin_record_list do
+    wrap do
+      wikirate_table :plain, fast_search_results,
+                     [:plain_year, :closed_answer_without_chart],
+                     header: %w(Year Answer),
+                     td: { classes: ["text-center"] }
+    end
+  end
+
   def metric_values
     wrap_with :div, class: "row clearfix wiki" do
       _render_record_list

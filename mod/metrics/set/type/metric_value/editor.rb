@@ -109,22 +109,6 @@ format :html do
     end
   end
 
-  view :table_form, cache: :never do
-    voo.editor = :inline_nests
-    voo.show! :new_buttons
-    card_form :create, "main-success" => "REDIRECT", class: "tr card-slot new-value-form" do
-      output [
-               new_view_hidden,
-               new_view_type,
-               _optional_render_td_content_formgroup,
-             ]
-    end
-  end
-
-  view :td_content_formgroup, cache: :never do
-    voo.show! :new_buttons
-    _render_metric_value_editor # no_title: true
-  end
 
   # TODO: please verify if this view used anywhere
   view :add_value_editor, cache: :never do |_args|
@@ -145,7 +129,6 @@ format :html do
   end
 
   view :metric_value_editor, cache: :never do |args|
-    voo.hide :new_buttons
     render_haml relevant_sources: _render_relevant_sources(args),
                 cited_sources: _render_cited_sources,
                 no_title: args[:no_title] do
@@ -164,7 +147,6 @@ format :html do
   = relevant_sources
   = cited_sources
   = field_nest :discussion, title: 'Comment'
-  = _optional_render_new_buttons
       HAML
     end
   end
@@ -212,7 +194,7 @@ format :html do
 
   def new_view_hidden
     tags =
-      { success: { id: "_self", soft_redirect: true, view: :timeline_data } }
+      { success: { id: "_self", soft_redirect: true, view: :thin_record_list } }
     [:metric, :company, :source].each do |field|
       next unless (value = Env.params[field])
       tags["card[subcards][+#{field}][content]"] = value

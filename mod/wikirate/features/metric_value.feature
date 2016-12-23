@@ -32,7 +32,7 @@ Feature: metric value
     Then I should see "2009"
     And I should see "10"
     And I should see a comment icon
-    And I click the drop down button
+    And I click the drop down button for "2009"
     Then I should see "example.com"
     And I should see "Do not take life too seriously. You will never get out of it alive."
 
@@ -59,7 +59,7 @@ Feature: metric value
     Then I should see "2009"
     And I should see "10"
     And I should see a comment icon
-    And I click the drop down button
+    And I click the drop down button for "2009"
     Then I should see "www.wikiwand.com"
     And I should see "Do not take life too seriously. You will never get out of it alive."
 

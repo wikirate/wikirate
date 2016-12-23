@@ -57,11 +57,11 @@ $(document).ready ->
     company   = encodeURIComponent($this.data("company"))
     metric    = encodeURIComponent($this.data("metric"))
     #$target   = $this.closest('.timeline-data')
-    $target = $this.slot().find('.wikirate-table .tbody')
+    $table = $this.slot().find('.wikirate-table')
     $page     = if $('.TYPE-company.open-view').exists()
                   $('.TYPE-company.open-view')
                 else $('.TYPE-metric.open-view')
-    $loader   = wikirate.loader($target, true)
+    $loader = wikirate.loader($table, true)
 
     if(company && metric)
 
@@ -88,11 +88,21 @@ $(document).ready ->
         #$template = $('<div>').addClass('tr new-value-form')
         #$target.prepend $template
         $this.hide()
-        $.get load_path, (data) ->
-          $target.prepend data
-          wagn.initializeEditors($target)
-          $target.find('.card-slot').trigger('slotReady')
+        $.get(load_path, ((data) ->
+          $form = $(data)
+          $tr = $form.find('tr').detach()
+          $form.find('table').remove()
+          $table.prepend($tr)
+          $row = $table.parent()
+          $form.append $table
+          $row.append $form
+          wagn.initializeEditors($table)
+          $form.find('.card-slot').trigger('slotReady')
           $loader.remove()
+        ), "html").fail((xhr, d, e) ->
+          $loader.remove()
+          $table.parent().append(xhr.responseText)
+        )
 
   #$.get(load_path, ((data) ->
   #  $template.find('.card-slot').append(data)
@@ -319,21 +329,21 @@ $(document).ready ->
     appendSourceForm(company)
 
   $('body').on 'click', '._add_new_value', ->
-    $form = $(this).closest('.timeline-row')
-            .siblings('.new-value-form').find('form')
-    if $form.exists() && $form.hasClass('hide')
-      $form.removeClass('hide')
+    $editor = $(this).closest('.metric-row').find('tr.editor, tr.buttons')
+    if $editor.exists() && $editor.hasClass('hide')
+      $editor.removeClass('hide')
+      $editor.removeClass('hide')
       $(this).hide()
     else
       appendNewValueForm($(this))
 
-  $('._add_new_value:first').trigger 'click' if $('.wikirate-table .tbody').length == 1
+  $('._add_new_value:first').trigger 'click' if $('.wikirate-table .tbody').length == 0
 
   $('body').on 'click', '._form_close_button', ->
-    $form = $(this).closest('.new-value-form')
-    $form.find('form').addClass('hide')
-    $form.closest('.timeline-body')
-          .find('.timeline-header ._add_new_value').show()
+    $table = $(this).closest('table')
+    $table.find('tr.editor').addClass('hide')
+    $table.find('tr.buttons').addClass('hide')
+    $table.closest('.metric-row').find('._add_new_value').show()
 
 
   # $(window).scroll ->

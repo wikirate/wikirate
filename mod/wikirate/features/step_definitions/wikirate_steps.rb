@@ -172,6 +172,11 @@ When(/^I click the drop down button$/) do
   find(".fa-caret-right").click
 end
 
+When(/^I click the drop down button for "(.*)"$/) do |text|
+  find("td", text: text).find(:xpath, "..")
+    .find(".fa-caret-right").click
+end
+
 When(/^I scroll (-?\d+) pixels$/) do |number|
   page.execute_script "window.scrollBy(0, #{number})"
 end
