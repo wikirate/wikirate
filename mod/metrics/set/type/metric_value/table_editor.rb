@@ -20,8 +20,7 @@ format :html do
     %td.year
       = field_nest :year, hide: :title
     %td.value
-      %span.metric-value
-        = field_nest :value, hide: :title
+      = field_nest :value, hide: :title
       %h5
         Choose Sources or
         %a.btn.btn-sm.btn-default._add_new_source{href: "#"}
@@ -34,6 +33,7 @@ format :html do
   %tr.buttons
     %td{colspan: 2}
       = _render_new_buttons
+      .card-notice
       HAML
     end
   end
