@@ -82,16 +82,16 @@ format :html do
   view :record_list do
     wikirate_table :plain, fast_search_results,
                    [:plain_year, :closed_answer],
-                   header: %w(Year Answer),
-                   td: { classes: ["text-center"] }
+                   header: %w(Year Answer)
+    # td: { classes: ["text-center"] }
   end
 
   view :thin_record_list do
     wrap do
       wikirate_table :plain, fast_search_results,
                      [:plain_year, :closed_answer_without_chart],
-                     header: %w(Year Answer),
-                     td: { classes: ["text-center"] }
+                     header: %w(Year Answer)
+      # td: { classes: ["text-center"] }
     end
   end
 
