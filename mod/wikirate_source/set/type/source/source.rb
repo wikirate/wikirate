@@ -1,26 +1,10 @@
 require "curb"
-card_accessor :vote_count, type: :number, default: "0"
-card_accessor :upvote_count, type: :number, default: "0"
-card_accessor :downvote_count, type: :number, default: "0"
-card_accessor :direct_contribution_count, type: :number, default: "0"
-card_accessor :contribution_count, type: :number, default: "0"
 
 card_accessor :metric, type: :pointer
 card_accessor :year, type: :pointer
 card_accessor :source_type, type: :pointer, default: "[[Link]]"
 
 require "link_thumbnailer"
-
-# has to happen before the contributions update (the new_contributions event)
-# so we have to use the finalize stage
-event :vote_on_create_source, :integrate, on: :create, when: :not_bot? do
-  Auth.as_bot do
-    vc = vote_count_card
-    vc.supercard = self
-    vc.vote_up
-    vc.save!
-  end
-end
 
 def not_bot?
   Card::Auth.current_id == Card::WagnBotID

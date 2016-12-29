@@ -238,24 +238,6 @@ describe Card::Set::Type::Source do
       @url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
       @source_page = create_page @url, {}
     end
-    it "renders titled view with voting" do
-      rendered = @source_page.format.render_titled_with_voting
-      expect(rendered).to(
-        have_tag(:div, class: "titled_with_voting-view") do
-          with_tag(:div, class: "vote-up")
-        end
-      )
-    end
-
-    it "renders open view with :custom_source_header to be true" do
-      assert_view_select @source_page.format.render_open,
-                         "div.header-with-vote"
-    end
-
-    it "renders header view with :custom_source_header to be true" do
-      assert_view_select @source_page.format.render_header_with_voting,
-                         "div.header-with-vote"
-    end
 
     it "renders metric_import_link" do
       sourcepage = create_source file: csv_file
