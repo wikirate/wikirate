@@ -44,7 +44,6 @@ format :html do
     voo.edit_structure =
       [
         :image,
-        :status,
         :organizer,
         :wikirate_topic,
         :description,
