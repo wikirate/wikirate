@@ -1,9 +1,14 @@
 include_set Abstract::BrowseNotesAndSourcesFilterForm
 
 def filter_keys
-  %w(name cited wikirate_company wikirate_topic)
+  %w(name wikirate_company wikirate_topic)
 end
 
 def target_type_id
   ClaimID
+end
+
+def sort_options
+  super.merge "Most Important" => "important",
+              "Most Recent" => "recent"
 end
