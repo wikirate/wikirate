@@ -67,20 +67,24 @@ describe Card::Set::Right::BrowseNoteFilter do
         add_filter :wikirate_topic, "no match"
         expect_filter_result_without "test_note"
       end
-      it "... cited" do
-        add_filter :cited, "yes"
-        expect_filter_result_without "test_note"
-      end
-      it "... not cited" do
-        add_filter :cited, "no"
-        ensure_card "#{company_names.first}+#{topic_names.first}",
-                    type_id: Card::WikirateAnalysisID,
-                    subcards: {
-                      "+#{Card[:overview].name}" => @claim_card.default_citation
-                    }
-
-        expect_filter_result_without "test_note"
-      end
+      # NOTE: temporarily(?) removed "cited" from filter_keys on browse
+      # notes page, because of (a) reports that it wasn't working well on
+      # tickets, and (b) we're de-emphasizing Reviews/Overviews/Analyses
+      #
+      # it "... cited" do
+      #   add_filter :cited, "yes"
+      #   expect_filter_result_without "test_note"
+      # end
+      # it "... not cited" do
+      #   add_filter :cited, "no"
+      #   ensure_card "#{company_names.first}+#{topic_names.first}",
+      #               type_id: Card::WikirateAnalysisID,
+      #               subcards: {
+      #                 "+#{Card[:overview].name}" => @claim_card.default_citation
+      #               }
+      #
+      #   expect_filter_result_without "test_note"
+      # end
     end
 
     context "when sorting" do

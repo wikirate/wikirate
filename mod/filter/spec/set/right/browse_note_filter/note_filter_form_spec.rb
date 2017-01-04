@@ -7,7 +7,9 @@ describe Card::Set::Right::BrowseNoteFilter do
     subject { filter_card.format(:html).render_filter_form.squish }
 
     it "has correct form tag" do
-      is_expected.to have_tag "form", with: { action: "/#{Card[:claim].name}", method: "GET" }
+      is_expected.to have_tag(
+        "form", with: { action: "/#{Card[:claim].name}", method: "GET" }
+      )
     end
 
     it "has sort formgroup" do
@@ -24,25 +26,32 @@ describe Card::Set::Right::BrowseNoteFilter do
       end
     end
 
-    it "has cited formgroup" do
-      is_expected.to have_tag("div", with: { class: "editor" }) do
-        with_tag "select", with: { id: "filter_cited" } do
-          with_tag "option", with: { value: "all", selected: "selected" },
-                   text: "All"
-          with_tag "option", with: { value: "yes" },
-                   without: { selected: "selected" }, text: "Yes"
-          with_tag "option", with: { value: "no" },
-                   without: { selected: "selected" }, text: "No"
-        end
-      end
-    end
+    # NOTE: temporarily(?) removed cited formgroup
+    # it "has cited formgroup" do
+    #   is_expected.to have_tag("div", with: { class: "editor" }) do
+    #     with_tag "select", with: { id: "filter_cited" } do
+    #       with_tag "option", text: "All",
+    #                          with: { value: "all", selected: "selected" }
+    #       with_tag "option", text: "Yes",
+    #                          with: { value: "yes" },
+    #                          without: { selected: "selected" }
+    #       with_tag "option", text: "No",
+    #                          with: { value: "no" },
+    #                          without: { selected: "selected" }
+    #     end
+    #   end
+    # end
 
     it "has company formgroup" do
-      is_expected.to include(filter_card.format(:html).render_wikirate_company_formgroup.squish)
+      is_expected.to include(
+        filter_card.format(:html).render_wikirate_company_formgroup.squish
+      )
     end
 
     it "has topic formgroup" do
-      is_expected.to include(filter_card.format(:html).render_wikirate_topic_formgroup.squish)
+      is_expected.to include(
+        filter_card.format(:html).render_wikirate_topic_formgroup.squish
+      )
     end
   end
 end
