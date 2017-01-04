@@ -3,11 +3,13 @@
 <a href="https://www.facebook.com/wikirate/">{{facebook link icon|core; size:icon}}</a> 
 </span>
 <span style="font-size: 12px; font-family: 'arial'; color: rgb(154 , 154 , 154); background-color: transparent; vertical-align: baseline;"> 
-<a href="https://twitter.com/wikirate">{{twitter link icon|core;size: icon}}</a> 
+<a href="https://twitter.com/wikirate">{{twitter link icon|core; size: icon}}</a>
 </span>
-<span style="font-size: 12px; font-family: 'arial'; color: rgb(154 , 154 , 154); background-color: transparent; vertical-align: baseline;">
-<a href="http://creativecommons.org/licenses/by-sa/4.0/">{{creative commons link icon|core;size: icon}}</a>
+<span style="font-size: 12px; fon
+t-family: 'arial'; color: rgb(154 , 154 , 154); background-color: transparent; vertical-align: baseline;">
+<a href="http://creativecommons.org/licenses/by-sa/4.0/">{{creative commons link icon|core; size: icon}}</a>
 </span>
+<br/>
+<span style="font-size: 12px; width: 100%; text-align: center; font-family: 'arial'; color: rgb(3 , 153 , 141); background-color: transparent; vertical-align: baseline;">WikiRate is a registered Trademark of The Wikirate Project e.V., a non-profit organization based in Berlin, Germany</span>
 </p>
 
-<span style="font-size: 12px; text-align: center; font-family: 'arial'; color: rgb(3 , 153 , 141); background-color: transparent; vertical-align: baseline; white-space: pre-wrap">WikiRate is a registered Trademark of The Wikirate Project e.V., a non-profit organization based in Berlin, Germany</span>
