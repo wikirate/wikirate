@@ -3,7 +3,7 @@ PATH
   specs:
     card (1.20.0)
       bootstrap-kaminari-views (~> 0)
-      carrierwave (= 1.0.0)
+      carrierwave (= 1.0.0.rc)
       coderay (~> 1.0)
       coffee-script (~> 2.2)
       diff-lcs (~> 1.2)
@@ -68,7 +68,7 @@ GEM
     airbrake (4.3.8)
       builder
       multi_json
-    airbrussh (1.1.1)
+    airbrussh (1.1.2)
       sshkit (>= 1.6.1, != 1.7.0)
     ansi (1.5.0)
     arel (6.0.4)
@@ -108,7 +108,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    carrierwave (1.0.0)
+    carrierwave (1.0.0.rc)
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
@@ -269,7 +269,7 @@ GEM
     rake (12.0.0)
     recaptcha (0.4.0)
     ref (2.0.0)
-    roo (2.6.0)
+    roo (2.7.1)
       nokogiri (~> 1)
       rubyzip (~> 1.1, < 2.0.0)
     rspec (3.5.0)
@@ -303,7 +303,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     rubocop-decko (0.2)
-    rubocop-rspec (1.9.0)
+    rubocop-rspec (1.9.1)
       rubocop (>= 0.42.0)
     ruby-ll (2.1.2)
       ansi
@@ -435,4 +435,4 @@ DEPENDENCIES
   wbench
 
 BUNDLED WITH
-   1.13.7
+   1.13.6

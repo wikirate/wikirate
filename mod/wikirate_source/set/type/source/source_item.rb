@@ -6,7 +6,7 @@ format :html do
 
   def wrap_with_info
     wrap do
-      wrap_with :div, class: "source-info-container with-vote-button" do
+      wrap_with :div, class: "source-info-container" do
         yield
       end
     end
@@ -67,7 +67,6 @@ format :html do
   view :listing do
     wrap_with :div, class: "source-item" do
       [
-        _render_vote,
         _render_source_content,
         _render_extras
       ]
@@ -83,11 +82,6 @@ format :html do
   view :original_with_icon do
     icon = wrap_with(:i, " ", class: "fa fa-external-link-square")
     icon + _render_original_link
-  end
-
-  view :vote do |args|
-    vote_item = subformat(card.vote_count_card).render_content args
-    wrap_with(:div, vote_item, class: "source-vote")
   end
 
   view :icon do
@@ -215,18 +209,6 @@ format :html do
 
   view :missing do
     _view_link
-  end
-
-  view :titled, tags: :comment do
-    render_titled_with_voting
-  end
-
-  view :header do
-    if voo.parent && voo.parent.ok_view == :open
-      render_header_with_voting
-    else
-      super()
-    end
   end
 
   # TODO: reuse the following in source_preview.rb
