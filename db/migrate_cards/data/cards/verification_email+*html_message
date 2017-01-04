@@ -1,32 +1,59 @@
-<div dir="ltr">
+<div dir="ltr" style="font-size: 14.6667px; font-family: 'arial'; background-color: transparent;">
   {{email header|core}}
-  <pre style="word-wrap: break-word; white-space: pre-wrap">
-    <span id="inbox-inbox-docs-internal-guid-75d0a237-4bef-943f-ecc5-f0954c558a75">
-	
-<h2 dir="ltr" style="line-height: 1.38; margin-top: 24pt; margin-bottom: 0pt"><span style="font-size: 21.3333px; font-family: 'source sans pro'; color: rgb(67 , 67 , 67); background-color: transparent; vertical-align: baseline">Welcome to </span><span style="font-size: 21.3333px; font-family: 'source sans pro'; color: rgb(67 , 67 , 67); background-color: transparent; font-weight: 400; vertical-align: baseline">Wiki</span><span style="font-size: 21.3333px; font-family: 'source sans pro'; color: rgb(67 , 67 , 67); background-color: transparent; vertical-align: baseline">Rate!</span></h2>
-<p dir="ltr" style="line-height: 1.38; margin-top: 10pt; margin-bottom: 0pt"><span style="font-size: 14.6667px; font-family: 'arial'; color: rgb(235 , 235 , 235); background-color: transparent; vertical-align: baseline">____________________________________________________________________________</span>
-</p>
-<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt">
-	<span style="font-size: 14.6667px; font-family: 'arial'; color: rgb(85 , 85 , 85); background-color: transparent; vertical-align: baseline">Thank you for joining </span><a href="http://wikirate.org/" style="text-decoration: none">
-	  <span style="font-size: 14.6667px; font-family: 'arial'; color: rgb(3 , 153 , 141); background-color: transparent; vertical-align: baseline">WikiRate</span></a>
-	<span style="font-size: 14.6667px; font-family: 'arial'; color: rgb(85 , 85 , 85); background-color: transparent; vertical-align: baseline">, the open research platform that aims to connect people across the world interested in corporate environmental, social, and governance data.</span></p><p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt">
-		<span style="font-size: 14.6667px; font-family: 'arial'; color: rgb(85 , 85 , 85); background-color: transparent; vertical-align: baseline">
-		<br class="inbox-inbox-kix-line-break">
-		</span>
-		<span style="font-size: 14.6667px; font-family: 'arial'; color: rgb(85 , 85 , 85); background-color: transparent; vertical-align: baseline">Please follow </span>
-		<span style="font-size: 14.6667px; font-family: 'arial'; color: rgb(3 , 153 , 141); background-color: transparent; vertical-align: baseline">this link</span>
-		<span style="font-size: 14.6667px; font-family: 'arial'; color: rgb(85 , 85 , 85); background-color: transparent; vertical-align: baseline"> to verify your email address and activate your account. </span>
-		<span style="font-size: 14.6667px; font-family: 'arial'; color: rgb(85 , 85 , 85); background-color: transparent; vertical-align: baseline">
-			<br class="inbox-inbox-kix-line-break"></span><span style="font-size: 14.6667px; font-family: 'arial'; color: rgb(85 , 85 , 85); background-color: transparent; vertical-align: baseline">
-			<br class="inbox-inbox-kix-line-break"></span><span style="font-size: 14.6667px; font-family: 'arial'; color: rgb(85 , 85 , 85); background-color: transparent; vertical-align: baseline">Link will remain valid for 7 days.</span>
-</p>
-<p dir="ltr" style="line-height: 1.38; margin-top: 10pt; margin-bottom: 0pt; text-align: justify">
-		  <span style="font-size: 14.6667px; font-family: 'arial'; color: rgb(85 , 85 , 85); background-color: transparent; vertical-align: baseline">Thanks,</span>
-</p>
-		<span style="font-size: 14.6667px; font-family: 'arial'; color: rgb(85 , 85 , 85); background-color: transparent; vertical-align: baseline">The Wiki</span>
-		<span style="font-size: 14.6667px; font-family: 'arial'; color: rgb(85 , 85 , 85); background-color: transparent; font-weight: 700; vertical-align: baseline">Rate</span>
-		<span style="font-size: 14.6667px; font-family: 'arial'; color: rgb(85 , 85 , 85); background-color: transparent; vertical-align: baseline"> Team</span>
-		</span><br>
-</pre>
-{{email footer|core}}
+  <h2 dir="ltr" style=
+  "line-height: 1.38; margin-top: 24pt; margin-bottom: 0pt">
+    <span style=
+    "font-size: 21.3333px; font-family: 'source sans pro'; color: rgb(67 , 67 , 67); vertical-align: baseline">
+    Welcome to</span> <span style=
+    "font-size: 21.3333px; font-family: 'source sans pro'; color: rgb(67 , 67 , 67); font-weight: 400; vertical-align: baseline">
+    Wiki</span><span style=
+    "font-size: 21.3333px; font-family: 'source sans pro'; color: rgb(67 , 67 , 67); vertical-align: baseline">Rate!</span>
+  </h2>
+  <p dir="ltr" style="line-height: 1.38; margin-top: 10pt; margin-bottom: 0pt">
+    <span style=
+    "color: rgb(235 , 235 , 235); vertical-align: baseline">
+    ____________________________________________________________________________</span>
+  </p>
+  <p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt">
+    <span style=
+    "color: rgb(85 , 85 , 85); vertical-align: baseline">
+    Thank you for joining</span> <a href="http://wikirate.org/" style=
+    "text-decoration: none"><span style=
+    "color: rgb(3 , 153 , 141); vertical-align: baseline">
+    WikiRate</span></a> <span style=
+    "color: rgb(85 , 85 , 85); vertical-align: baseline">
+    , the open research platform that aims to connect people across the world
+    interested in corporate environmental, social, and governance data.</span>
+  </p>
+  <p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt">
+    <span style=
+    "color: rgb(85 , 85 , 85); vertical-align: baseline">
+    <br class="inbox-inbox-kix-line-break"></span> <span style=
+    "color: rgb(85 , 85 , 85); vertical-align: baseline">
+    Please follow</span> <a href="{{_|verify_url}}" style=
+          "text-decoration: none"><span style=
+    "color: rgb(3 , 153 , 141); vertical-align: baseline">
+    this link</span></a> <span style=
+    "color: rgb(85 , 85 , 85); vertical-align: baseline">
+    to verify your email address and activate your account.</span> <span style=
+    "color: rgb(85 , 85 , 85); vertical-align: baseline">
+    <br class="inbox-inbox-kix-line-break"></span> <span style=
+    "color: rgb(85 , 85 , 85); vertical-align: baseline">
+    <br class="inbox-inbox-kix-line-break"></span><span style=
+    "color: rgb(85 , 85 , 85); vertical-align: baseline">Link
+    will remain valid for {{_|verify_days}} days.</span>
+  </p>
+  <p dir="ltr" style=
+  "line-height: 1.38; margin-top: 10pt; margin-bottom: 0pt; text-align: justify">
+    <span style=
+    "color: rgb(85 , 85 , 85); vertical-align: baseline">
+    Thanks,</span>
+  </p><span style=
+  "color: rgb(85 , 85 , 85); vertical-align: baseline">The
+  Wiki</span> <span style=
+  "color: rgb(85 , 85 , 85); font-weight: 700; vertical-align: baseline">
+  Rate</span> <span style=
+  "color: rgb(85 , 85 , 85); vertical-align: baseline">
+  Team</span><br/><br/>
+  {{email footer|core}}
 </div>
