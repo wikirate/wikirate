@@ -8,10 +8,12 @@ def target_type_id
   SourceID
 end
 
-def sort_options
-  super.merge "Most Recent" => "recent"
-end
-
 def default_sort_option
   "recent"
+end
+
+format :html do
+  def sort_options
+    super.merge "Most Recent" => "recent"
+  end
 end
