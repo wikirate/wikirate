@@ -12,3 +12,7 @@ def sort_options
   super.merge "Most Important" => "important",
               "Most Recent" => "recent"
 end
+
+def default_sort_option
+  "important"
+end

@@ -61,10 +61,6 @@ def add_sort_wql wql, sort_by
   end
 end
 
-def default_sort_option
-  "important"
-end
-
 format :html do
   view :cited_formgroup, cache: :never do |_args|
     select_filter :cited, "Cited", "all"
