@@ -32,15 +32,16 @@
   
   </div>
   <div class="row clearfix company-content background-white ">
-    <div class="col-md-12 col-xs-12 ">
-      <div class="header-row">
-        <div class="header-header">
-          Metric
-        </div>
-        <div class="data-header">
-          Value
-        </div>
+    <div class="header-row">
+      <div class="header-header">
+        Metric
       </div>
+      <div class="data-header">
+        Value
+      </div>
+    </div>
+    <div class="col-md-12 col-xs-12 ">
+
       {{_left+limited metric|yinyang list|content; structure: homepage company metric item}}
     </div>
   </div>
