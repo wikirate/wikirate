@@ -72,10 +72,11 @@
         margin-bottom: 0;
     }
 
-// FIXME later please! shouldn't be like this.
 .company-profile-tab{
   position: absolute;
   bottom: 0px;
+  min-width: 60%;
+  text-align: center;
 }
 
 //Custom Tabs

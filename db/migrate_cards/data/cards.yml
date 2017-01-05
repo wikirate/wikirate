@@ -159,44 +159,48 @@
   :type: Basic
   :codename: report_search
   :key: report_search
-  :merged: 2016-12-23 14:22:01 UTC
+  :merged: 2017-01-04 12:15:54 UTC
 - :name: report search+*right+*structure
   :type: Search
   :key: report_search+*right+*structure
-  :merged: 2016-12-23 14:22:01 UTC
+  :merged: 2017-01-04 12:15:54 UTC
 - :name: Research Group
   :type: Cardtype
   :codename: research_group
   :key: research_group
-  :merged: 2016-12-23 14:22:01 UTC
+  :merged: 2017-01-04 12:15:57 UTC
 - :name: Researcher
   :type: Basic
   :codename: researcher
   :key: researcher
-  :merged: 2016-12-23 14:22:01 UTC
+  :merged: 2017-01-04 12:15:57 UTC
 - :name: Research Group+Metric+*type plus right+*default
   :type: Search
   :key: research_group+metric+*type_plu_right+*default
-  :merged: 2016-12-23 14:22:01 UTC
+  :merged: 2017-01-04 12:15:57 UTC
 - :name: Research Group+Project+*type plus right+*default
   :type: Search
   :key: research_group+project+*type_plu_right+*default
-  :merged: 2016-12-23 14:22:01 UTC
+  :merged: 2017-01-04 12:15:57 UTC
 - :name: homepage topic item
   :type: HTML
   :key: homepage_topic_item
 - :name: welcome email+*html message
   :type: HTML
   :key: welcome_email+*html_message
+  :merged: 2017-01-04 12:16:07 UTC
 - :name: verification email+*html message
   :type: HTML
   :key: verification_email+*html_message
+  :merged: 2017-01-04 12:16:07 UTC
 - :name: email header
   :type: HTML
   :key: email_header
+  :merged: 2017-01-04 12:16:07 UTC
 - :name: email footer
   :type: HTML
   :key: email_footer
+  :merged: 2017-01-04 12:16:07 UTC
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org
