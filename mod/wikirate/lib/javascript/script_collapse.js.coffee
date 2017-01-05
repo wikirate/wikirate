@@ -60,15 +60,15 @@ registerTextToggle = ($this, inText = null, outText = null) ->
 
 
 registerIconToggle = ($this, inClass = null, outClass = null) ->
-  $parent = $this.parent()
+#$parent = $this.parent()
   $target = $(findCollapseTarget($this))
   if $this.data('collapse-icon-in')?
     inClass ||= $this.data('collapse-icon-in') || "fa-caret-right"
     outClass ||= $this.data('collapse-icon-out') || "fa-caret-down"
-  $target.on 'hide.bs.collapse', ->
-    $parent.find("." + inClass).removeClass(inClass).addClass(outClass)
-  $target.on 'show.bs.collapse', ->
-    $parent.find("." + outClass).removeClass(outClass).addClass(inClass)
+  $target.on 'hide.bs.collapse', (e) ->
+    $this.parent().find("." + inClass).removeClass(inClass).addClass(outClass)
+  $target.on 'show.bs.collapse', (e) ->
+    $this.parent().find("." + outClass).removeClass(outClass).addClass(inClass)
 
 
 loadCollapseTarget = ($target, url) ->

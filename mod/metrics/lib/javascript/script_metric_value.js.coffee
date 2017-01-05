@@ -332,12 +332,9 @@ $(document).ready ->
     $editor = $(this).closest('.metric-row').find('tr.editor, tr.buttons')
     if $editor.exists() && $editor.hasClass('hide')
       $editor.removeClass('hide')
-      $editor.removeClass('hide')
       $(this).hide()
     else
       appendNewValueForm($(this))
-
-  $('._add_new_value:first').trigger 'click' if $('.wikirate-table .tbody').length == 0
 
   $('body').on 'click', '._form_close_button', ->
     $table = $(this).closest('table')
@@ -355,3 +352,11 @@ wagn.slotReady (slot) ->
   if add_val_form then slot.find('._add_new_value').hide()
   else slot.find('._add_new_value').show()
   resizeIframe(slot)
+
+  if slot.hasClass("_show_add_new_value_button")
+    slot.parent().find("._add_new_value").show()
+
+  if slot.hasClass("_append_new_value_form")
+    button = slot.parent().find("._add_new_values")
+    button.show()
+    appendNewValueForm($(button))

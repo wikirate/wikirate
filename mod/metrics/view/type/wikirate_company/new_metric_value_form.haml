@@ -1,0 +1,21 @@
+#metric-container.panel-default.nodblclick.stick-left
+  .row
+    .heading-label
+      Company
+    = _render_thumbnail
+
+  .row.background-grey
+    .heading-label
+      Metrics
+    - if project?
+      .border-bottom.col-md-12.nopadding
+        %h5.col-md-2
+          Project:
+        .col-md-10
+          nest project, view: :core, structure: "initiative item"
+    = process_metrics
+
+- haml_wrap do
+  #source-preview-main.panel-default.stick-right
+    #source-form-container
+      = nest "source preview main", view: :core

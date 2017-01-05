@@ -1,65 +1,14 @@
-include_set Abstract::Table
-
 format :html do
   view :new_metric_value, cache: :never do
     frame do
-      output [_render_metric_side, _render_source_side]
+      haml_view :new_metric_value_form
     end
   end
+end
 
-  view :metric_side, cache: :never do
-    wrap_with :div, class: "panel-default nodblclick stick-left",
-              id: "metric-container" do
-      [
-        wrap_company.html_safe,
-        wrap_metric_list.html_safe
-      ]
-    end
-  end
+include_set Abstract::Table
 
-  view :source_side do
-    source_side = Card.fetch("source preview main")
-    # html_classes = "col-md-6 col-lg-7 panel-default stick-right"
-    html_classes = "panel-default stick-right"
-    wrap do
-      wrap_with :div, class: html_classes, id: "source-preview-main" do
-        wrap_with(:div, subformat(source_side).render_core.html_safe,
-                  id: "source-form-container")
-      end
-    end
-  end
-
-  def wrap_company
-    wrap_with :div, class: "row" do
-      [
-        wrap_with(:div, "Company", class: "heading-label"),
-        nest(card, view: :core, structure: "metric value company view")
-      ]
-    end
-  end
-
-  def wrap_metric_list
-    wrap_with :div, class: "row background-grey" do
-      [
-        wrap_with(:div, "Metrics", class: "heading-label"),
-        wrap_project,
-        process_metrics
-      ]
-    end
-  end
-
-  def wrap_project
-    return unless project
-    project_content =
-      nest(project, view: :core, structure: "initiative item").html_safe
-    wrap_with :div, class: "border-bottom col-md-12 nopadding" do
-      [
-        wrap_with(:h5, "Project :", class: "col-md-2"),
-        wrap_with(:div, project_content, class: "col-md-10")
-      ]
-    end
-  end
-
+format :html do
   def process_metrics
     metric_names.map do |metric_name|
       next not_a_metric(metric_name) unless existing_metric? metric_name
@@ -74,12 +23,31 @@ format :html do
         [
           subformat(record_card).process_content(metric_header_small),
           subformat(record_card).process_content(metric_details),
-          nest(record_card.fetch(trait: :metric_value), view: :record_list_header),
+          nest(record_card.fetch(trait: :metric_value),
+               view: :record_list_header),
           _render_record_list(record: record_card)
         ]
       end
-      #nest(record_card, view: :core, structure: "metric short view")
     end
+  end
+
+  view :record_list_header do
+    voo.show :timeline_header_buttons
+    wrap_with :div, class: "timeline-header timeline-row " do
+      _optional_render_timeline_header_buttons
+    end
+  end
+
+  def timeline_header_button text, klasses, data
+    shared_data = { collapse: ".metric_value_form_container" }
+    shared_classes = "btn btn-sm btn-default margin-12"
+    wrap_with :a, text, class: css_classes(shared_classes, klasses),
+              data: shared_data.merge(data)
+  end
+
+  view :timeline_header_buttons do
+    return unless metric_card.metric_type_codename == :researched
+    output [add_answer_button, methodology_button]
   end
 
   view :record_list, cache: :never do |args|
@@ -87,6 +55,7 @@ format :html do
     items = Answer.fetch({ record_id: record_card.id },
                          sort_by: :year,
                          sort_order: "desc")
+    class_up "card_slot", "_append_new_value_form" if items.empty?
     wrap do
       wikirate_table :plain, items,
                      [:plain_year, :closed_answer_without_chart],
@@ -95,21 +64,28 @@ format :html do
     end
   end
 
+  def project?
+    project_name.present?
+  end
+
+  def project_name
+    Env.params["project"]
+  end
+
   def project
-    project_name = Env.params["project"]
-    return false unless project_name
-    if Card.exists? project_name
-      Card.fetch(project_name)
-    else
-      card.errors.add :Project, "Project not exist"
+    return unless project?
+    unless Card.exists? project_name
+      card.errors.add :Project, "Project does not exist"
       return false
     end
+    Card.fetch(project_name)
   end
 
   def metric_names
     return project.field(:metric).item_names if project
     Env.params["metric"] || []
   end
+
 
   def not_a_metric name
     card.errors.add :Metrics,
@@ -173,5 +149,14 @@ format :html do
   </div>
 </div>
     HTML
+  end
+
+  def view_path view
+    ::File.expand_path("../#{view}.haml", __FILE__)
+      .gsub(%r{/tmp/set/mod\d+-([^/]+)/}, '/mod/\1/view/')
+  end
+
+  def haml_view view, locals={}
+    render_haml locals, ::File.read(view_path(view))
   end
 end

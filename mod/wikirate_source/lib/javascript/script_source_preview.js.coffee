@@ -27,7 +27,6 @@
 @resizeIframe = (slot) ->
   height = $(window).height() - $('.navbar').height() - 1
   slot.find('.webpage-preview').height height
-  return
 
 $(document).ready ->
   if $('body').attr('id') == 'source-preview-page-layout'
