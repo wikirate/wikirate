@@ -1,10 +1,11 @@
 format :html do
   view :closed_answer do
     class_up "vis", "pull-left"
-    output [
-      row,
-      wrap_with(:div, "", class: "card-slot collapse answer-details text-muted")
-    ]
+    output [row, empty_details_slot]
+  end
+
+  def collapse_id
+    "#{card.cardname.safe_key}-answer-details"
   end
 
   # used for new_metric_value of a company
@@ -12,8 +13,13 @@ format :html do
   view :closed_answer_without_chart do
     output [
              wrap_with(:div, [_render_answer_details_toggle, value_field]),
-             wrap_with(:div, "", class: "card-slot collapse answer-details text-muted")
+             empty_details_slot
            ]
+  end
+
+  def empty_details_slot
+    wrap_with(:div, "", id: collapse_id,
+              class: "card-slot collapse answer-details text-muted")
   end
 
   def row
@@ -27,7 +33,7 @@ format :html do
   end
 
   def value_field
-    wrap_with :div, class: "value pull-left" do
+    wrap_with :div, class: "value text-align-left" do
       [
         wrap_with(:span, currency, class: "metric-unit"),
         _render_value_link,
@@ -52,7 +58,7 @@ format :html do
               class: css_class,
               data: { toggle: "collapse",
                       url: path(view: :answer_details),
-                      target: ".answer-details",
+                      target: "##{collapse_id}.answer-details",
                       collapse_icon_in: "fa-caret-down",
                       collapse_icon_out: "fa-caret-right" })
   end

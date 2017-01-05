@@ -15,7 +15,7 @@ $bright-text-color: #e5e5e5;
 .contribution-item {
   overflow: hidden;
   cursor: move;
-  border: 1px solid #eee;
+  //border: 1px solid #eee;
   clear: both;
 
   .thumbnail {
@@ -27,7 +27,7 @@ $bright-text-color: #e5e5e5;
     cursor: pointer;
     float: left;
     border-right: 1px solid #eee;
-    color: #ccc !important;
+    //color: #ccc !important;
     padding: 6px 12px;
     text-decoration: none;
   }
@@ -40,7 +40,7 @@ $bright-text-color: #e5e5e5;
     padding: 6px 12px;
     text-decoration: none;
     &:hover {
-      background: #fff;
+      //background: #fff;
     }
   }
   &.metric-item .header .name {
@@ -328,17 +328,17 @@ $bright-text-color: #e5e5e5;
 
 .TYPE-topic .RIGHT-metric_detail .metric-values-container{display:none;}
 
-
-#Home .yinyang-row {
-  .data .contribution.company-count {
-    width: 112px;
-    border-left: 1px solid #e5e5e5;
-  }
-
-  // .value-item .header .name{
-  //       width:60%;
-  // }
-}
+//
+//#Home .yinyang-row {
+//  .data .contribution.company-count {
+//    width: 112px;
+//    border-left: 1px solid #e5e5e5;
+//  }
+//
+//  // .value-item .header .name{
+//  //       width:60%;
+//  // }
+//}
 
 
 .metric-info #metric-details > .row .row-data {

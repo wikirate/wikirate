@@ -175,7 +175,11 @@ table.wikirate-table, .table.wikirate-table {
         margin-left: 58px!important;
       }
     }
-
+  .thumbnail {
+        border: 0;
+        margin: 0;
+        padding: 0;
+  }
 }
 
 //---Custom Table Properties---//

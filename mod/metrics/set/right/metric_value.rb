@@ -43,6 +43,14 @@ format :html do
     output [add_answer_button, methodology_button]
   end
 
+
+  view :record_list_header do
+    voo.show :timeline_header_buttons
+    wrap_with :div, class: "timeline-header timeline-row " do
+      _optional_render_timeline_header_buttons
+    end
+  end
+
   def timeline_header_button text, klasses, data
     shared_data = { collapse: ".metric_value_form_container" }
     shared_classes = "btn btn-sm btn-default margin-12"
@@ -78,12 +86,7 @@ format :html do
     end
   end
 
-  view :record_list_header do
-    voo.show :timeline_header_buttons
-    wrap_with :div, class: "timeline-header timeline-row " do
-      _optional_render_timeline_header_buttons
-    end
-  end
+
 
   def timeline_head content, css_class
     wrap_with :div, content, class: "td #{css_class}"
