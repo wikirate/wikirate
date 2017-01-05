@@ -156,6 +156,17 @@ format :html do
       .gsub(%r{/tmp/set/mod\d+-([^/]+)/}, '/mod/\1/view/')
   end
 
+  def haml_wrap slot=true
+    @slot_view = @current_view
+    debug_slot do
+      haml_tag :div, id: card.cardname.url_key,
+               class: wrap_classes(slot),
+               data: wrap_data do
+        yield
+      end
+    end
+  end
+
   def haml_view view, locals={}
     render_haml locals, ::File.read(view_path(view))
   end
