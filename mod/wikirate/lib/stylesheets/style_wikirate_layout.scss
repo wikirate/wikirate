@@ -293,8 +293,11 @@ body {
     // background: #fff;
     // border: 1px solid #e5e5e5;
     a.external-link {
-      padding-right: 0 !important;
+      //padding-right: 0 !important;
       background: inherit !important;
+      &:before{
+        display: none; 
+      }
     }
     [class*="SELF-logo_"] {
       display: inline-block;
