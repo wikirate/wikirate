@@ -14,9 +14,11 @@ format :html do
   end
 
   def prepare_nests_editor
-    year = card.fetch trait: :year, new: { content: card.year }
+    #year = card.fetch trait: :year, new: { content: card.year }
+
     voo.editor = :nests
-    voo.edit_structure = [[:value, {}], [year, {}]]
+    card.add_subfield :year, content: card.year
+    voo.edit_structure = [[:value, "Value"], [:year, "Year"]]
   end
 
   def custom_editor?
