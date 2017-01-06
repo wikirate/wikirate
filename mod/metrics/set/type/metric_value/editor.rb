@@ -16,7 +16,7 @@ format :html do
   def prepare_nests_editor
     year = card.fetch trait: :year, new: { content: card.year }
     voo.editor = :nests
-    voo.edit_structure = [[:value, {}], [year, {}]]
+    voo.edit_structure = [[:value, {title: "Value"}], [year, {title: "Year"}]]
   end
 
   def custom_editor?

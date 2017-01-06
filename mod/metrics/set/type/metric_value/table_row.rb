@@ -87,6 +87,7 @@ format :html do
   end
 
   view :thin_record_list do
+    class_up "card-slot", "_show_add_new_value_button"
     wrap do
       wikirate_table :plain, fast_search_results,
                      [:plain_year, :closed_answer_without_chart],

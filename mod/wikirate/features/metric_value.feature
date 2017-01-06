@@ -105,7 +105,7 @@ Feature: metric value
     And I should see "Problems"
     And I should see "Missing value. Please check before submit."
 
-  Scenario: Missing value
+  Scenario: Missing source
     When I fill in "#pointer_item" field with "Apple Inc" within ".RIGHT-company"
     And I select "Joe User+researched" from choosen within ".RIGHT-metric"
     And I wait until ajax response done

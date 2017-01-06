@@ -32,7 +32,7 @@ format :html do
               column _render_chart
             end
             row 12 do
-              column_render_answer_details
+              column _render_answer_details
             end
           end
         end

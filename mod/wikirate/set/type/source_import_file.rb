@@ -163,7 +163,7 @@ format :html do
   end
 
   view :import_flag do
-    hidden_field_tag :is_source_import_update, "true"
+    hidden_field_tag :is_data_import, "true"
   end
 
   def import_fields

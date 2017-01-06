@@ -562,7 +562,13 @@ button.pointer-item-delete.btn.btn-default {
 }
 
 .credit .search-result-list {
-  display: inline-block;
+  display: inline;
+  .search-result-item {
+    display: inline;
+    margin-left: 0;
+    padding-left: 0;
+    text-indent: 0;
+  }
 }
 
 .card-notice .alert {

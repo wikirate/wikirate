@@ -1,6 +1,4 @@
 format :html do
-
-
   view :thumbnail_plain do
     voo.hide :thumbnail_link
     wrap_with :div do
