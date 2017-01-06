@@ -14,7 +14,7 @@ format :html do
   end
 
   def prepare_nests_editor
-    #year = card.fetch trait: :year, new: { content: card.year }
+    # year = card.fetch trait: :year, new: { content: card.year }
 
     voo.editor = :nests
     card.add_subfield :year, content: card.year

@@ -1,5 +1,4 @@
 describe Card::Set::Type::WikirateCompany::NewAnswerForm do
-
   describe "view :new_metric+value" do
     subject { sample_company.format(:html)._render_new_metric_value }
 
@@ -18,7 +17,7 @@ describe Card::Set::Type::WikirateCompany::NewAnswerForm do
         with_tag "div#source-preview-main.stick-right" do
           with_tag "div#source-form-container" do
             with_tag "div._blank_state_message" do
-              with_tag :p #text: "You can add or preview source here."
+              with_tag :p
             end
           end
         end

@@ -42,7 +42,7 @@ format :html do
     shared_data = { collapse: ".metric_value_form_container" }
     shared_classes = "btn btn-sm btn-default margin-12"
     wrap_with :a, text, class: css_classes(shared_classes, klasses),
-              data: shared_data.merge(data)
+                        data: shared_data.merge(data)
   end
 
   view :timeline_header_buttons do
@@ -85,7 +85,6 @@ format :html do
     return project.field(:metric).item_names if project
     Env.params["metric"] || []
   end
-
 
   def not_a_metric name
     card.errors.add :Metrics,
@@ -153,15 +152,15 @@ format :html do
 
   def view_path view
     ::File.expand_path("../#{view}.haml", __FILE__)
-      .gsub(%r{/tmp/set/mod\d+-([^/]+)/}, '/mod/\1/view/')
+          .gsub(%r{/tmp/set/mod\d+-([^/]+)/}, '/mod/\1/view/')
   end
 
   def haml_wrap slot=true
     @slot_view = @current_view
     debug_slot do
       haml_tag :div, id: card.cardname.url_key,
-               class: wrap_classes(slot),
-               data: wrap_data do
+                     class: wrap_classes(slot),
+                     data: wrap_data do
         yield
       end
     end
