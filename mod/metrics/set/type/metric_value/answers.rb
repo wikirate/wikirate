@@ -23,7 +23,7 @@ format :html do
   end
 
   def row
-    wrap_with :div, class: "row" do
+    wrap_with :div do
       [
         _render_answer_details_toggle,
         value_field,

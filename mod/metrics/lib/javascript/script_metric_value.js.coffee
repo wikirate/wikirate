@@ -56,7 +56,6 @@ $(document).ready ->
   appendNewValueForm = ($this) ->
     company   = encodeURIComponent($this.data("company"))
     metric    = encodeURIComponent($this.data("metric"))
-    #$target   = $this.closest('.timeline-data')
     $table = $this.slot().find('.wikirate-table')
     $page     = if $('.TYPE-company.open-view').exists()
                   $('.TYPE-company.open-view')
@@ -80,13 +79,7 @@ $(document).ready ->
         load_path = wagn.prepUrl(wagn.rootPath +
             "/new/metric_value?table_form=true&company=" +
             company + "&metric=" + metric + source)
-        #"/new/metric_value?noframe=true&company="+
-        #company + "&metric=" + metric + source)
 
-        #$template = $('<div>').addClass('timeline-row new-value-form')
-        #$template = $template.append($('<div>').addClass('card-slot '))
-        #$template = $('<div>').addClass('tr new-value-form')
-        #$target.prepend $template
         $this.hide()
         $.get(load_path, ((data) ->
           $form = $(data)

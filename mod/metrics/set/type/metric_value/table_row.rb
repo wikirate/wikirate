@@ -62,7 +62,9 @@ format :html do
         #{fa_icon :comment}
       </div>
       <div class="row-data">
-            #{nest "#{card.record}+discussion", view: :titled, title: 'Discussion',
+            #{nest "#{card.record}+discussion",
+                   view: :titled,
+                   title: 'Discussion',
                    show: 'commentbox'}
           </div>
       </div>
@@ -75,30 +77,15 @@ format :html do
     end
   end
 
-  def fast_search_results
-    Answer.fetch({ record_id: card.left.id }, sort_by: :year, sort_order: :desc)
-  end
-
   view :record_list do
-    wikirate_table :plain, fast_search_results,
-                   [:plain_year, :closed_answer],
-                   header: %w(Year Answer)
-    # td: { classes: ["text-center"] }
-  end
-
-  view :thin_record_list do
-    class_up "card-slot", "_show_add_new_value_button"
-    wrap do
-      wikirate_table :plain, fast_search_results,
-                     [:plain_year, :closed_answer_without_chart],
-                     header: %w(Year Answer)
-      # td: { classes: ["text-center"] }
-    end
+    nest card.record_card, view: :value_table,
+         hide: :chart,
+         show: :add_answer_button
   end
 
   def metric_values
     wrap_with :div, class: "row clearfix wiki" do
-      _render_record_list
+      nest(card.left, view: :core, show: :chart)
     end
   end
 

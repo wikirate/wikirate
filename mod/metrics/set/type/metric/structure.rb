@@ -45,6 +45,19 @@ format :html do
     end
   end
 
+  view :question_row do
+    <<-HTML
+      <div class="row metric-details-question">
+        <div class="row-icon padding-top-10">
+          #{fa_icon "question-circle", class: "fa-lg"}
+        </div>
+        <div class="row-data padding-top-10">
+          #{nest card.question_card, view: :core}
+        </div>
+      </div>
+    HTML
+  end
+
   def author_info author_card
     output [
       author_image(author_card),
