@@ -115,11 +115,10 @@ format :html do
   end
 
   def comment_flag
-    return "" unless Card.exists? card.cardname.field("discussion")
-    disc = card.fetch(trait: :discussion)
-    return "" unless disc.content.include? "w-comment-author"
-    css_class = "fa fa-lg fa-commenting margin-left-10"
-    wrap_with "i", "", class: css_class, title: "Has comments"
+    disc = card.fetch trait: :discussion
+    return "" unless disc.real? && disc.content.strip_tags.present?
+    wrap_with "i", "", title: "Has comments",
+                       class: "fa fa-lg fa-commenting margin-left-10"
   end
 
   view :modal_details, cache: :never do |args|
