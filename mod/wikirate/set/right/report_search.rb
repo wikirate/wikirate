@@ -99,4 +99,14 @@ format :html do
                     skip_perms: true,
                     items: { view: item_view }
   end
+
+  # this is a bit of a hack but a reasonably safe one
+  # +report search cards use voo.structure to carry the variant around
+  # that same voo.structure flags to the nest mechanism that there could be
+  # a recursion risk and makes it use a new subformat, which is a problem
+  # here because that kills the paging.
+  # as these cards are narrowly used, there is not much risk of recursion
+  def nest_recursion_risk? view
+    false
+  end
 end

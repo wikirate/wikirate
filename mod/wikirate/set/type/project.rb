@@ -98,7 +98,7 @@ format :html do
         progress_legend,
         bs_layout do
           row 2, 10 do
-            column { percent_researched }
+            column { _render_percent_researched }
             column { main_progress_bar }
           end
         end
@@ -129,7 +129,7 @@ format :html do
     end
   end
 
-  def percent_researched
+  view :percent_researched do
     wrap_with :div, class: "percent-researched text-center" do
       [
         wrap_with(:div, class: "lead") do
@@ -142,11 +142,11 @@ format :html do
 
   def main_progress_bar
     wrap_with :div, class: "main-progress-bar" do
-      [overall_progress_bar, progress_description]
+      [_render_research_progress_bar, _render_progress_description]
     end
   end
 
-  def progress_description
+  view :progress_description do
     %(
       <div class="text-muted small text-center">
         Of <strong>#{card.num_records} potential records</strong>
