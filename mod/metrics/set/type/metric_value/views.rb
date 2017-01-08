@@ -116,7 +116,7 @@ format :html do
 
   def comment_flag
     disc = card.fetch trait: :discussion
-    return "" unless disc.real? && disc.content.strip_tags.present?
+    return "" unless disc.real? && disc.content.present?
     wrap_with "i", "", title: "Has comments",
                        class: "fa fa-lg fa-commenting margin-left-10"
   end
