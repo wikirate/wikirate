@@ -79,8 +79,9 @@ format :html do
     render_view = voo.show?(:link) ? :link : :name
     items = card.item_cards limit: 0
     total_number = items.size
-    fetch_number = [total_number, 4].min
+    return "" if total_number.zero?
 
+    fetch_number = [total_number, 4].min
     result = ""
     if fetch_number > 1
       result += items[0..(fetch_number - 2)].map do |c|

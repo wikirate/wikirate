@@ -11,7 +11,7 @@ format :html do
   # overridden for researched
   view :details_tab do
     tab_wrap do
-      [
+      output [
         _render_metric_properties,
         wrap_with(:hr, ""),
         nest(card.formula_card, view: :titled, title: "Formula"),
