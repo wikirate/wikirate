@@ -51,7 +51,7 @@ def researched_relation
   Answer.select(:record_id).distinct.where where_answer
 end
 
-view :research_progress_bar, cache: :none do
+view :research_progress_bar, cache: :never do
   progress_bar(
     { value: card.percent_known, class: "progress-known" },
     { value: card.percent_unknown, class: "progress-unknown" },
