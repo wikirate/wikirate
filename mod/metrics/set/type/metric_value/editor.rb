@@ -34,10 +34,12 @@ format :html do
   end
 
   view :editor, cache: :never do
-    mv_view = if metric_value_editor?            then :editor
-              elsif metric_value_landing_editor? then :landing
-              end
-    mv_view ? send("_render_metric_value_#{mv_view}") : super()
+    with_nest_mode :edit do
+      mv_view = if metric_value_editor?            then :editor
+                elsif metric_value_landing_editor? then :landing
+                end
+      mv_view ? send("_render_metric_value_#{mv_view}") : super()
+    end
   end
 
   view :metric_value_landing do
