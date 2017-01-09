@@ -15,10 +15,15 @@ event :set_metric_value_name,
   end.join "+"
 end
 
-event :update_date, :prepare_to_store,
+event :validate_update_date, :validate,
       on: :update, when: proc { |c| c.year_updated? } do
-  year_card = subfield(:year)
-  self.name = "#{metric_name}+#{company_name}+#{year_card.item_names.first}"
+  year = subfield(:year).item_names.first
+  new_name = "#{metric_name}+#{company_name}+#{year}"
+  self.name = new_name
+  if Card.exists? new_name
+    errors.add :year, "value for year #{year} already exists"
+    abort :failure
+  end
   detach_subfield(:year)
 end
 

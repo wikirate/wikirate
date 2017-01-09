@@ -574,3 +574,21 @@ button.pointer-item-delete.btn.btn-default {
 .card-notice .alert {
   margin-bottom: 0; // no spacing between error messages
 }
+
+//External links
+//override wagn default
+a.external-link, .closed-content a.external-link {
+    color: #03998d!important;
+    background: none;
+    padding-right: 13px !important;
+    position: relative;
+}
+
+a.external-link:before, .closed-content a.external-link:before {
+    content: "\f08e";
+    right: 2px;
+    position: absolute;
+    top: 1px;
+    font-family: fontAwesome;
+    font-size: 8px;
+}

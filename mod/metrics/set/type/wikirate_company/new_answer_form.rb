@@ -52,7 +52,6 @@ format :html do
     Env.params["metric"] || []
   end
 
-
   def not_a_metric name
     card.errors.add :Metrics,
                     "Incorrect Metric name or Metric not available: "\
