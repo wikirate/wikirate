@@ -22,7 +22,9 @@ format :html do
       wrap_with :div, id: record_card.cardname.url_key, class: "metric-row" do
         [
           subformat(record_card).process_content(metric_header_small),
-          nest(record_card, view: :content, hide: :chart, show: :metric_info)
+          nest(record_card, view: :content, hide: :chart, show:
+            [:metric_info, :source_preview]
+          )
         ]
       end
     end

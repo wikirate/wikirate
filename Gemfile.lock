@@ -211,7 +211,7 @@ GEM
     newrelic_rpm (3.17.2.327)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
-    oga (2.7)
+    oga (2.8)
       ast
       ruby-ll (~> 2.1)
     open_uri_redirections (0.2.1)
@@ -344,8 +344,8 @@ GEM
     systemu (2.6.5)
     test_after_commit (1.1.0)
       activerecord (>= 3.2)
-    therubyracer (0.12.2)
-      libv8 (~> 3.16.14.0)
+    therubyracer (0.12.3)
+      libv8 (~> 3.16.14.15)
       ref
     thin (1.7.0)
       daemons (~> 1.0, >= 1.0.9)
@@ -435,4 +435,4 @@ DEPENDENCIES
   wbench
 
 BUNDLED WITH
-   1.13.6
+   1.13.7

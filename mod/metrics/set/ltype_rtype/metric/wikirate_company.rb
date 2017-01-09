@@ -23,7 +23,7 @@ format :html do
 
   # used in four places:
   # 1) metric page -> company table -> item -> table on right side
-  # 2) company page -> metric table -> teim ->  table on right side
+  # 2) company page -> metric table -> item -> table on right side
   # 3) metric record page
   # 4) add new value page (new_metric_value view for company)
 
@@ -41,10 +41,10 @@ format :html do
   end
 
   view :buttons do
-    return "" unless metric_card.metric_type_codename == :researched
     voo.show :timeline_header_buttons
     wrap_with :div, class: "timeline-header timeline-row " do
-      output [add_answer_button, methodology_button]
+      output [add_answer_button, methodology_button,
+              _optional_render_metric_page_button]
     end
   end
 
@@ -119,12 +119,18 @@ format :html do
   end
 
   def add_answer_button
-    header_button "Add answer",
-                  "_add_new_value btn-primary",
-                  company: company_name.url_key,
-                  metric: metric_name.url_key,
-                  toggle: "collapse-next",
-                  parent: ".timeline-data"
+    return "" unless metric_card.metric_type_codename == :researched
+    voo.hide :source_preview
+    if voo.show? :source_preview
+      header_button "Add answer",
+                    "_add_new_value btn-primary",
+                    company: company_name.url_key,
+                    metric: metric_name.url_key,
+                    toggle: "collapse-next",
+                    parent: ".timeline-data"
+    else
+      nest card.metric_card, view: :add_value_buttons
+    end
   end
 
   def methodology_button
@@ -136,8 +142,9 @@ format :html do
                   collapse: ".metric_value_form_container"
   end
 
-  def metric_page_button
-    link_to_card card.metric_card, "#{fa_icon "page"} Metric Page", class: button_classes
+  view :metric_page_button do
+    link_to_card card.metric_card, "#{fa_icon "external-link"} Metric Page",
+                 class: button_classes
   end
 
 

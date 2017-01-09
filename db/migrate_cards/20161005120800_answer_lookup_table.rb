@@ -1,5 +1,6 @@
 class AnswerLookupTable < ActiveRecord::Migration
   def up
+    drop_table :answers
     create_table :answers do |t|
       t.integer :answer_id
       t.integer :metric_id
