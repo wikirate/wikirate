@@ -194,7 +194,7 @@ format :html do
   end
 
   def stats_details
-    "#{count_stats} #{percent_researched} #{overall_progress_bar}"
+    "#{count_stats} #{card.percent_researched}% #{overall_progress_bar}"
   end
 
   def count_stats
