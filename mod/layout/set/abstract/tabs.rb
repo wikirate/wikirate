@@ -10,7 +10,12 @@ format :html do
   end
 
   def default_tab
-    tab_list.keys.first
+    tab_from_params || tab_list.keys.first
+  end
+
+  def tab_from_params
+    return unless Env.params[:tab]
+    "#{Env.params[:tab]}_tab".to_sym
   end
 
   def tab_wrap
