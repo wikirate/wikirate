@@ -10,6 +10,7 @@ format :html do
     Answer.fetch record_id: card.left.id
   end
 
+  # TODO - this should be a view on type/Metric_Record (which we don't yet have)
   view :timeline, cache: :never do
     wrap_with :div, class: "timeline container" do
       wrap_with :div, class: "timeline-body" do
