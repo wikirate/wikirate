@@ -1,13 +1,13 @@
 format :html do
-  view :new do |args|
-    return _render_table_form args if Env.params[:table_form]
-    return _render_no_frame_form args if Env.params[:noframe] == "true"
+  view :new, cache: :never do
+    return _render_table_form if Env.params[:table_form]
+    return _render_no_frame_form if Env.params[:noframe] == "true"
     @form_root = true
     voo.editor = :metric_value_landing
     frame { _optional_render :content_formgroup }
   end
 
-  view :content_formgroup do
+  view :content_formgroup, cache: :never do
     voo.hide :name_formgroup, :type_formgroup
     prepare_nests_editor unless custom_editor?
     super()
