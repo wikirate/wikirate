@@ -33,12 +33,16 @@ format :html do
     voo.editor == :metric_value_landing
   end
 
+  def special_editor
+    @special_editor ||=
+      if metric_value_editor?            then :editor
+      elsif metric_value_landing_editor? then :landing
+      end
+  end
+
   view :editor, cache: :never do
     with_nest_mode :edit do
-      mv_view = if metric_value_editor?            then :editor
-                elsif metric_value_landing_editor? then :landing
-                end
-      mv_view ? send("_render_metric_value_#{mv_view}") : super()
+      special_editor ? send("_render_metric_value_#{special_editor}") : super()
     end
   end
 
