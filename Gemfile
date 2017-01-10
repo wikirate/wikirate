@@ -33,7 +33,7 @@ group :live do
   gem "dalli"
 end
 
-#group :test do
+group :test do
   gem "rspec-rails" # behavior-driven-development suite
   gem "rspec", "~> 3.4"
   gem "rspec-html-matchers" # 0.7.0 broke stuff!
@@ -64,7 +64,7 @@ gem "simplecov", require: false
   gem "turn", "~>0.8.3", require: false
 
   gem "minitest"
-#end
+end
 
 group :development do
   gem "rubocop-rspec"
@@ -81,7 +81,7 @@ group :development do
   gem 'binding_of_caller'
 end
 
-#group :test, :development do
+group :test, :development do
   gem "thin"
   gem "pry" # , git: 'https://github.com/pry/pry'  # bug in 0.10.3, fixed in
 # master
@@ -89,7 +89,7 @@ end
   gem "pry-rescue"
   gem "pry-stack_explorer"
   gem "pry-byebug" if RUBY_VERSION =~ /^2/
-#end
+end
 
 Dir.glob("mod/**{,/*/**}/Gemfile").each do |gemfile|
   instance_eval(File.read(gemfile))
