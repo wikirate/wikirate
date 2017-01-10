@@ -1,13 +1,13 @@
 format :html do
-  view :new do |args|
-    return _render_table_form args if Env.params[:table_form]
-    return _render_no_frame_form args if Env.params[:noframe] == "true"
+  view :new, cache: :never do
+    return _render_table_form if Env.params[:table_form]
+    return _render_no_frame_form if Env.params[:noframe] == "true"
     @form_root = true
     voo.editor = :metric_value_landing
     frame { _optional_render :content_formgroup }
   end
 
-  view :content_formgroup do
+  view :content_formgroup, cache: :never do
     voo.hide :name_formgroup, :type_formgroup
     prepare_nests_editor unless custom_editor?
     super()
@@ -33,11 +33,17 @@ format :html do
     voo.editor == :metric_value_landing
   end
 
+  def special_editor
+    @special_editor ||=
+      if metric_value_editor?            then :editor
+      elsif metric_value_landing_editor? then :landing
+      end
+  end
+
   view :editor, cache: :never do
-    mv_view = if metric_value_editor?            then :editor
-              elsif metric_value_landing_editor? then :landing
-              end
-    mv_view ? send("_render_metric_value_#{mv_view}") : super()
+    with_nest_mode :edit do
+      special_editor ? send("_render_metric_value_#{special_editor}") : super()
+    end
   end
 
   view :metric_value_landing do

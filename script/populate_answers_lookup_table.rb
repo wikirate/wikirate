@@ -2,7 +2,7 @@
 
 require File.expand_path("../../config/environment", __FILE__)
 
-load File.expand_path("./correct_value_types", __FILE__)
+load File.expand_path("../correct_value_types.rb", __FILE__)
 
 Card.search(type_id: Card::MetricID, return: :id).each do |metric_id|
   Card.search(type_id: Card::MetricValueID,

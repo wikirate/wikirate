@@ -1,8 +1,12 @@
-view :missing do |args|
-  core = subformat(Card["missing image"])._render_core args
-  if @denied_view == :core
-    core
-  else
-    wrap(false) { core }
+
+format do
+  view :missing, cache: :never do
+    wrap_missing do
+      nest Card["missing image"], view: :core, size: voo.size
+    end
+  end
+
+  def wrap_missing
+    @denied_view == :core ? yield : wrap(false) { yield }
   end
 end
