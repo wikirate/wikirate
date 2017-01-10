@@ -119,7 +119,8 @@ format :html do
   end
 
   def add_answer_button
-    return "" unless metric_card.metric_type_codename == :researched
+    return "" unless metric_card.metric_type_codename == :researched &&
+      metric_card.user_can_answer?
     voo.hide :source_preview
     if voo.show? :source_preview
       header_button "Add answer",
@@ -128,8 +129,10 @@ format :html do
                     metric: metric_name.url_key,
                     toggle: "collapse-next",
                     parent: ".timeline-data"
-    else
-      nest card.metric_card, view: :add_value_buttons
+    else # TODO: ugly
+      link_to_card company_card, "Add answer",
+                   class: "btn btn-primary",
+                   path: { view: "new_metric_value", metric: [card.metric] }
     end
   end
 
@@ -145,25 +148,6 @@ format :html do
   view :metric_page_button do
     link_to_card card.metric_card, "#{fa_icon "external-link"} Metric Page",
                  class: button_classes
-  end
-
-
-  view :all_values do |args|
-    wql = {
-      left: card.name,
-      type: Card::MetricValueID,
-      sort: "name",
-      dir: "desc"
-    }
-    wql_comment = "all metric values where metric = #{card.name}"
-    Card.search(wql, wql_comment).map.with_index do |v, i|
-      <<-HTML
-        <span data-year="#{v.year}" data-value="#{v.value}"
-              #{'style="display: none;"' if i > 0}>
-          #{subformat(v).render_concise(args)}
-        </span>
-      HTML
-    end.join("\n")
   end
 
   view :image_link do

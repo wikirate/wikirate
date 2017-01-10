@@ -74,7 +74,7 @@ class Answer < ActiveRecord::Base
   def fetch_numeric_value
     return unless metric_card.numeric?
     val = fetch_value
-    return if unknown? val
+    return if unknown?(val) || !val.number?
     val.to_d
   end
 
