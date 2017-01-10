@@ -8,10 +8,10 @@ format :html do
       if missing_image_card
         subformat(missing_image_card)._render voo.home_view, args
       else
-        super args
+        super()
       end
     else
-      super args
+      super()
     end
   end
 end
