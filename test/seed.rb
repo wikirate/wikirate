@@ -68,7 +68,8 @@ class SharedData
             "+Link" => { content: "http://www.wikiwand.com/en/Space_opera" },
             "+company" => { content: "[[Death Star]]", type_id: Card::PointerID },
             "+topic" => { content: "[[Force]]", type_id: Card::PointerID },
-            "+title" => { content: "Space Opera" }
+            "+title" => { content: "Space Opera" },
+            "+description" => { content: "Space Opera Wikipedia article" }
           }
         )
       end
@@ -78,7 +79,8 @@ class SharedData
           type_id: Card::SourceID,
           subcards: {
             "+Link" => { content: "http://www.wikiwand.com/en/Opera" },
-            "+title" => { content: "Opera" }
+            "+title" => { content: "Opera" },
+            "+description" => { content: "Opera Wikipedia article" }
           }
         )
       end
@@ -89,7 +91,8 @@ class SharedData
           "+Link" => { content: "http://www.wikiwand.com/en/Star_Wars" },
           "+company" => { content: "[[Death Star]]", type_id: Card::PointerID },
           "+topic" => { content: "[[Force]]", type_id: Card::PointerID },
-          "+title" => { content: "Star Wars" }
+          "+title" => { content: "Star Wars" },
+          "+description" => { content: "Star Wars Wikipedia article" }
         }
       )
 
