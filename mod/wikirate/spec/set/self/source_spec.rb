@@ -5,6 +5,55 @@ describe Card::Set::Self::Source do
   before do
     @page_card = Card["Source"]
   end
+
+  describe "browse sources page" do
+    subject do
+      render_card :core, name: :source
+    end
+
+    it "has 'add source' button" do
+      is_expected.to have_tag "div.new-source-button" do
+        with_text "Add a new Source"
+        with_tag "a", with: { href: "/new/Source?layout=wikirate%20layout" }
+      end
+    end
+
+    it "has 'most recent' selected as sort option" do
+      is_expected.to have_tag "option", with: { selected: "selected" } do
+        with_text "Most Recent"
+      end
+    end
+
+    it "has list of sources" do
+      is_expected.to have_tag "div.search-result-list" do
+        with_tag "div.search-result-item" do
+          with_text /wikiwand\.com/
+          with_text /Star Wars/
+        end
+        with_tag "div.search-result-item" do
+          with_text /wikiwand\.com/
+          with_text /Space Opera/
+        end
+      end
+    end
+
+    it "has sources ordered by 'most recent'" do
+      is_expected.to have_tag "div.search-result-list" do
+        with_text /Star Wars.+Space Opera.+Opera/m
+      end
+    end
+
+
+#
+#
+#
+#     <div class="new-source-button">
+#     <a href="/new/Source?layout=wikirate%20layout" class="button-primary">Add a new Source</a>
+# </div>
+
+
+  end
+
   describe "while check iframable" do
     it "should return true for a iframable website" do
       url = "http://example.org"

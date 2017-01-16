@@ -32,10 +32,12 @@ def target_type_id
 end
 
 def wql_hash
-  wql = filter_wql
-  wql[:limit] = 20
-  add_sort_wql wql, sort_param if sort?
-  wql
+  @wql = begin
+    wql = filter_wql
+    wql[:limit] = 20
+    add_sort_wql wql, sort_param if sort?
+    wql
+  end
 end
 
 # the default search will take the first table in the join
