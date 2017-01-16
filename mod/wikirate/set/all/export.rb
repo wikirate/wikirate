@@ -28,7 +28,7 @@ format :json do
     items = []
     card.each_nested_chunk do |chunk|
       next unless valid_export_chunk? chunk, processed_keys
-      items << r_card
+      items << chunk.referee_card
     end
     items.compact.uniq
   end
