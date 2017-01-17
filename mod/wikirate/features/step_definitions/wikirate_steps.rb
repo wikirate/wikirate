@@ -8,19 +8,19 @@ When(/^I press "([^\"]*)" within "([^\"]*)"$/) do |button, scope_selector|
   end
 end
 
-When(/^I wait until ajax response$/) do
-  Timeout.timeout(Capybara.default_wait_time) do
-    sleep(0.5) while page.evaluate_script("jQuery.active") != 0
-  end
-end
+#When(/^I wait for ajax response$/) do
+#  Timeout.timeout(Capybara.default_wait_time) do
+#    sleep(0.5) while page.evaluate_script("jQuery.active") != 0
+#  end
+#end
 
 When(/^I print html of the page$/) do
   puts page.html
 end
 
-regax =
+When(
   /^(?:|I )fill in "([^"]*)" with card path of source with link "([^"]*)"$/
-When(regax) do |field, value|
+) do |field, value|
   duplicates = Card::Set::Self::Source.find_duplicates value
   duplicated_card = duplicates.first.left if duplicates.any?
 
