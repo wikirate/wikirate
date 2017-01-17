@@ -49,7 +49,7 @@ format :html do
     <<-HTML
       <div class="row metric-details-question">
         <div class="row-icon padding-top-10">
-          #{fa_icon "question", class: "fa-lg"}
+          #{fa_icon 'question', class: 'fa-lg'}
         </div>
         <div class="row-data padding-top-10">
           #{nest card.question_card, view: :core}

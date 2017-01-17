@@ -49,8 +49,7 @@ format :json do
     allow_content_type = ["image/png", "image/jpeg"]
     # for case, "text/html; charset=iso-8859-1"
     allow_content_type.include?(content_type) ||
-      content_type.start_with?("text/html") ||
-      content_type.start_with?("text/plain") ||
+      content_type.start_with?("text/html", "text/plain") ||
       firefox?(user_agent)
   end
 
@@ -90,7 +89,7 @@ format :json do
 
   view :check_iframable do |_args|
     user_agent = request ? request.env["HTTP_USER_AGENT"] : nil
-    { result: iframable?(params[:url], user_agent) }
+    { result: !!(iframable?(params[:url], user_agent)) }
   end
 end
 

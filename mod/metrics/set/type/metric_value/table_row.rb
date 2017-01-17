@@ -79,8 +79,8 @@ format :html do
 
   view :record_list do
     nest card.record_card, view: :value_table,
-         hide: :chart,
-         show: :add_answer_button
+                           hide: :chart,
+                           show: :add_answer_button
   end
 
   def metric_values
@@ -148,20 +148,19 @@ format :html do
     HTML
   end
 
-
-  def details_sidebar type, &block
+  def details_sidebar type
     wrap do
       <<-HTML
         <div class="#{type}-details-header">
           #{close_icon}
           <div class="row clearfix padding-top-20">
-            #{send "#{type}_details_sidebar_header" }
+            #{send "#{type}_details_sidebar_header"}
           </div>
           <hr>
           #{metric_details}
       #{metric_values}
           <br>
-          #{block.call if block_given?}
+          #{yield if block_given?}
           #{discussion}
         </div>
       HTML

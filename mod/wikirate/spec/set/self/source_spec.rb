@@ -53,14 +53,14 @@ describe Card::Set::Self::Source do
     context "user agent is Firefox" do
       let(:user_agent) { "Firefox" }
       it "returns true" do
-        is_expected.to be true
+        is_expected.to be_truthy
       end
     end
 
     context "user agent is not Firefox" do
       let(:user_agent) { "Chrome" }
       it "returns false" do
-        is_expected.to be false
+        is_expected.to be_falsey
       end
     end
   end
