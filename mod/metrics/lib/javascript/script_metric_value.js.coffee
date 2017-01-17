@@ -1,3 +1,48 @@
+$.extend wikirate,
+  appendNewValueForm: ($this) ->
+    company = encodeURIComponent($this.data("company"))
+    metric = encodeURIComponent($this.data("metric"))
+    $table = $this.slot().find('.wikirate-table')
+    $page = if $('.TYPE-company.open-view').exists()
+      $('.TYPE-company.open-view')
+    else $('.TYPE-metric.open-view')
+    $loader = wikirate.loader($table, true)
+
+    if(company && metric)
+
+      $loader.add()
+      if ($page.length > 0)
+        location.href = wagn.prepUrl(wagn.rootPath + '/' + company +
+            '?view=new_metric_value&metric[]=' +
+            metric)
+      else
+        source = $.urlParam('source')
+        if source != null
+          source = '&source=' + source
+        else
+          source = ''
+
+        load_path = wagn.prepUrl(wagn.rootPath +
+            "/new/metric_value?table_form=true&company=" +
+            company + "&metric=" + metric + source)
+
+        $this.hide()
+        $.get(load_path, ((data) ->
+          $form = $(data)
+          $tr = $form.find('tr').detach()
+          $form.find('table').remove()
+          $table.prepend($tr)
+          $row = $table.parent()
+          $form.append $table
+          $row.append $form
+          wagn.initializeEditors($table)
+          $form.slot().trigger('slotReady')
+          $loader.remove()
+        ), "html").fail((xhr, d, e) ->
+          $loader.remove()
+          $table.parent().append(xhr.responseText)
+        )
+
 $(document).ready ->
   $loader_anime = $("#ajax_loader").html()
   $source_form_container = $("#source-form-container")
@@ -50,52 +95,6 @@ $(document).ready ->
     else
       $sourceForm.removeClass('hide')
       $sourceDetails.addClass('hide')
-
-  # add or show new metric value form on the left
-  # $this is the add value button
-  appendNewValueForm = ($this) ->
-    company   = encodeURIComponent($this.data("company"))
-    metric    = encodeURIComponent($this.data("metric"))
-    $table = $this.slot().find('.wikirate-table')
-    $page     = if $('.TYPE-company.open-view').exists()
-                  $('.TYPE-company.open-view')
-                else $('.TYPE-metric.open-view')
-    $loader = wikirate.loader($table, true)
-
-    if(company && metric)
-
-      $loader.add()
-      if ($page.length>0)
-        location.href = wagn.prepUrl(wagn.rootPath + '/' + company +
-                                     '?view=new_metric_value&metric[]=' +
-                                     metric)
-      else
-        source = $.urlParam('source')
-        if source != null
-          source = '&source=' + source
-        else
-          source = ''
-
-        load_path = wagn.prepUrl(wagn.rootPath +
-            "/new/metric_value?table_form=true&company=" +
-            company + "&metric=" + metric + source)
-
-        $this.hide()
-        $.get(load_path, ((data) ->
-          $form = $(data)
-          $tr = $form.find('tr').detach()
-          $form.find('table').remove()
-          $table.prepend($tr)
-          $row = $table.parent()
-          $form.append $table
-          $row.append $form
-          wagn.initializeEditors($table)
-          $form.slot().trigger('slotReady')
-          $loader.remove()
-        ), "html").fail((xhr, d, e) ->
-          $loader.remove()
-          $table.parent().append(xhr.responseText)
-        )
 
   #$.get(load_path, ((data) ->
   #  $template.find('.card-slot').append(data)
@@ -327,7 +326,7 @@ $(document).ready ->
       $editor.removeClass('hide')
       $(this).hide()
     else
-      appendNewValueForm($(this))
+      wikirate.appendNewValueForm($(this))
 
   $('body').on 'click', '._form_close_button', ->
     $table = $(this).closest('table')
@@ -341,15 +340,20 @@ $(document).ready ->
       # stickContent()
 
 wagn.slotReady (slot) ->
-  add_val_form = slot.find('.wikirate-table form').is(':visible')
-  if add_val_form then slot.find('._add_new_value').hide()
-  else slot.find('._add_new_value').show()
+  add_val_form = slot.find('form.new-value-form').is(':visible')
+  if add_val_form
+    slot.find('._add_new_value').hide()
+  else if slot.hasClass("_append_new_value_form")
+# slot.removeClass("_append_new_value_form")
+    button = slot.parent().find("._add_new_value")
+    button.hide()
+    wikirate.appendNewValueForm($(button))
+  else
+    slot.find('._add_new_value').show()
+
   resizeIframe(slot)
 
   if slot.hasClass("_show_add_new_value_button")
     slot.parent().find("._add_new_value").show()
 
-  if slot.hasClass("_append_new_value_form")
-    button = slot.parent().find("._add_new_values")
-    button.show()
-    appendNewValueForm($(button))
+

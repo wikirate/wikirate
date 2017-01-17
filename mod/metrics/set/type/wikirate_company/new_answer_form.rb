@@ -1,3 +1,18 @@
+# How the views for adding answers currently work:
+# The starting point is Type::Company#new_metric_value.
+# The "Add answer" button fetches the form from Type::MetricValue#new using
+# params for metric and company and the additional param table_form is
+# set to true to get the right new view.
+# The table and the form are merged in
+# script_metric_value.js.coffee#wikirate.appendNewValueForm.
+# If the form is needed on load an "_append_new_value_form" class is added
+# to the slot to trigger the ajax request for the form and merge it with
+# the table.
+# The table with the existing values is just the content view of a
+# metric record. Since there is no MetricRecord type it's handled in
+# LtypeRtype::Metric::WikirateCompany
+
+
 format :html do
   view :new_metric_value, cache: :never do
     frame do

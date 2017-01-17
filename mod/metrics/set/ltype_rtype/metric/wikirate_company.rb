@@ -36,7 +36,7 @@ format :html do
   end
 
   view :content do
-    class_up "card_slot", "_append_new_value_form" if all_answers.empty?
+    class_up "card-slot", "_append_new_value_form" if all_answers.empty? || voo.show?(:source_preview)
     super()
   end
 
@@ -88,19 +88,22 @@ format :html do
   end
 
   view :value_table do
-    answer_view =
-      voo.show?(:chart) ? :closed_answer : :closed_answer_without_chart
-
-    # add answer button is above this view so we need
-    # js to show it
-    if voo.show? :add_answer_button
-      class_up "card-slot", "_show_add_new_value_button"
-    end
-    wrap do
-      wikirate_table :plain, all_answers,
-                     [:plain_year, answer_view],
-                     header: %w(Year Answer),
-                     td: { classes: ["text-center"] }
+    # get rid of "_append_new_value_form" class
+    # otherwise child slot will append the form again
+    without_upped_class "card-slot" do |up_class|
+      # add answer button is above this view so we need
+      # js to show it
+      if voo.show?(:add_answer_button) && !up_class
+        class_up "card-slot", "_show_add_new_value_button"
+      end
+      answer_view =
+        voo.show?(:chart) ? :closed_answer : :closed_answer_without_chart
+      wrap do
+        wikirate_table :plain, all_answers,
+                       [:plain_year, answer_view],
+                       header: %w(Year Answer),
+                       td: { classes: ["text-center"] }
+      end
     end
   end
 
@@ -163,4 +166,6 @@ format :html do
     link_to_card card.company_card, nil, class: "inherit-anchor name",
                                          target: "_blank"
   end
+
+
 end
