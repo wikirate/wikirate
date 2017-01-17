@@ -15,7 +15,7 @@ Feature: metric value
     And I click on "Next"
     And I wait 3 seconds
     And I press link button "Add answer"
-    And I wait for ajax response
+    And I wait 2 seconds
     And I press link button "Add a new source"
     And I wait for ajax response
     And I fill in "card_subcards__Link_content" with "http://example.com"
@@ -44,7 +44,7 @@ Feature: metric value
     And I click on "Next"
     And I wait 3 seconds
     And I press link button "Add answer"
-    And I wait for ajax response
+    And I wait 2 seconds
     And I press link button "Add a new source"
     And I wait for ajax response
     And I fill in "card_subcards__Link_content" with "http://www.wikiwand.com/en/Star_Wars"
@@ -72,7 +72,7 @@ Feature: metric value
     And I click on "Next"
     And I wait 3 seconds
     And I press link button "Add answer"
-    And I wait for ajax response
+    And I wait 2 seconds
     And I press link button "Add a new source"
     And I wait for ajax response
     And I fill in "card_subcards__Link_content" with "http://example.com"
@@ -94,7 +94,7 @@ Feature: metric value
     And I click on "Next"
     And I wait 3 seconds
     And I press link button "Add answer"
-    And I wait for ajax response
+    And I wait 2 seconds
     And I press link button "Add a new source"
     And I wait for ajax response
     And I fill in "card_subcards__Link_content" with "http://example.com"
@@ -116,7 +116,7 @@ Feature: metric value
     And I click on "Next"
     And I wait 3 seconds
     And I press link button "Add answer"
-    And I wait for ajax response
+    And I wait 2 seconds
     And I press link button "Add a new source"
     And I wait for ajax response
     And I fill in "card_subcards__Link_content" with "http://example.com"
