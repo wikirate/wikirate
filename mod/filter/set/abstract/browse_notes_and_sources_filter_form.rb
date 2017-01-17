@@ -54,7 +54,7 @@ end
 def add_sort_wql wql, sort_by
   if sort_by == "recent"
     wql[:sort] = "update"
-    wql[:dir] = "asc"
+    wql[:dir] = "desc"
   else
     wql.merge! sort: { right: "*vote count" },
                sort_as: "integer",

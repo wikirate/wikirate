@@ -38,7 +38,7 @@ describe Card::Set::Self::Source do
 
     it "has sources ordered by 'most recent'" do
       is_expected.to have_tag "div.search-result-list" do
-        with_text(/Star Wars.+Space Opera.+Opera/m)
+        with_text(/Opera.+Space Opera.+Star Wars/m)
       end
     end
   end

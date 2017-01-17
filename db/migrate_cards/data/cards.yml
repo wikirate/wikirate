@@ -9,7 +9,7 @@
 - :name: customized classic skin
   :type: Skin
   :key: customized_classic_skin
-  :merged: 2016-12-23 14:22:00 UTC
+  :merged: 2017-01-16 18:12:00 UTC
 - :name: "*css"
   :type: SCSS
   :key: "*css"
@@ -17,7 +17,7 @@
   :type: SCSS
   :key: style_layout_with_sidebar
   :codename: style_layout_with_sidebar
-  :merged: 2016-12-23 14:22:00 UTC
+  :merged: 2017-01-16 18:12:00 UTC
 - :name: chosen style
   :type: SCSS
   :codename: chosen_style
@@ -26,32 +26,32 @@
   :type: SCSS
   :key: style_top_bar
   :codename: style_top_bar
-  :merged: 2016-12-23 14:22:00 UTC
+  :merged: 2017-01-16 18:12:00 UTC
 - :name: 'style: slick'
   :type: SCSS
   :key: style_slick
   :codename: style_slick
-  :merged: 2016-12-23 14:22:00 UTC
+  :merged: 2017-01-16 18:12:00 UTC
 - :name: 'style: overview item'
   :type: SCSS
   :key: style_overview_item
   :codename: style_overview_item
-  :merged: 2016-12-23 14:22:00 UTC
+  :merged: 2017-01-16 18:12:00 UTC
 - :name: 'style: company and topic item'
   :type: SCSS
   :key: style_company_and_topic_item
   :codename: style_company_and_topic_item
-  :merged: 2016-12-23 14:22:00 UTC
+  :merged: 2017-01-16 18:12:00 UTC
 - :name: 'style: homepage layout'
   :type: SCSS
   :key: style_homepage_layout
   :codename: style_homepage_layout
-  :merged: 2016-12-23 14:22:00 UTC
+  :merged: 2017-01-16 18:12:00 UTC
 - :name: 'style: notes'
   :type: SCSS
   :key: style_note
   :codename: style_note
-  :merged: 2016-12-23 14:22:00 UTC
+  :merged: 2017-01-16 18:12:00 UTC
 - :name: 'style: wikirate bootstrap buttons'
   :type: SCSS
   :codename: style_wikirate_bootstrap_buttons
@@ -60,12 +60,12 @@
   :type: SCSS
   :key: style_user_following_list
   :codename: style_user_following_list
-  :merged: 2016-12-23 14:22:00 UTC
+  :merged: 2017-01-16 18:12:00 UTC
 - :name: 'style: wikirate bootstrap navbar'
   :type: SCSS
   :key: style_wikirate_bootstrap_navbar
   :codename: style_wikirate_bootstrap_navbar
-  :merged: 2016-12-23 14:22:00 UTC
+  :merged: 2017-01-16 18:12:00 UTC
 - :name: 'style: wikirate bootstrap form'
   :type: SCSS
   :codename: style_wikirate_bootstrap_form
@@ -86,12 +86,12 @@
   :type: SCSS
   :key: style_profile_page
   :codename: style_profile_page
-  :merged: 2016-12-23 14:22:00 UTC
+  :merged: 2017-01-16 18:12:00 UTC
 - :name: 'style: company header'
   :type: SCSS
   :key: style_company_header
   :codename: style_company_header
-  :merged: 2016-12-23 14:22:00 UTC
+  :merged: 2017-01-16 18:12:00 UTC
 - :name: 'style: source preview'
   :type: SCSS
   :codename: style_source_preview
@@ -100,12 +100,12 @@
   :type: SCSS
   :key: style_wikirate_layout
   :codename: style_wikirate_layout
-  :merged: 2016-12-23 14:22:00 UTC
+  :merged: 2017-01-16 18:12:00 UTC
 - :name: 'style: wikirate responsiveness'
   :type: SCSS
   :key: style_wikirate_responsiveness
   :codename: style_wikirate_responsiveness
-  :merged: 2016-12-23 14:22:00 UTC
+  :merged: 2017-01-16 18:12:00 UTC
 - :name: style wikirate bootstrap tabs
   :type: SCSS
   :codename: style_wikirate_bootstrap_tabs
@@ -114,17 +114,17 @@
   :type: SCSS
   :key: style_fakeloader
   :codename: style_fakeloader
-  :merged: 2016-12-23 14:22:00 UTC
+  :merged: 2017-01-16 18:12:00 UTC
 - :name: style wikirate font icon
   :type: SCSS
   :key: style_wikirate_font_icon
   :codename: style_wikirate_font_icon
-  :merged: 2016-12-23 14:22:00 UTC
+  :merged: 2017-01-16 18:12:00 UTC
 - :name: 'style: bootstrap modal fix'
   :type: SCSS
   :key: style_bootstrap_modal_fix
   :codename: style_bootstrap_modal_fix
-  :merged: 2016-12-23 14:22:00 UTC
+  :merged: 2017-01-16 18:12:00 UTC
 - :name: style wikirate bootstrap table
   :type: SCSS
   :codename: style_wikirate_bootstrap_table
@@ -132,26 +132,26 @@
 - :name: Project+*self+*structure
   :type: HTML
   :key: project+*self+*structure
-  :merged: 2016-12-23 14:21:59 UTC
+  :merged: 2017-01-16 18:11:59 UTC
 - :name: Project+status+*type plus right+*options
   :type: Pointer
   :key: project+status+*type_plu_right+*option
-  :merged: 2016-12-23 14:21:59 UTC
+  :merged: 2017-01-16 18:11:59 UTC
 - :name: Status
   :type: Basic
   :codename: wikirate_status
   :key: status
-  :merged: 2016-12-23 14:21:59 UTC
+  :merged: 2017-01-16 18:11:59 UTC
 - :name: Organizer
   :type: Basic
   :codename: organizer
   :key: organizer
-  :merged: 2016-12-23 14:21:59 UTC
+  :merged: 2017-01-16 18:11:59 UTC
 - :name: description
   :type: Basic
   :codename: description
   :key: description
-  :merged: 2016-12-23 14:21:59 UTC
+  :merged: 2017-01-16 18:11:59 UTC
 - :name: company+topic+*type plus right+*structure
   :type: Search
   :key: company+topic+*type_plu_right+*structure
@@ -159,48 +159,48 @@
   :type: Basic
   :codename: report_search
   :key: report_search
-  :merged: 2017-01-04 12:15:54 UTC
+  :merged: 2017-01-16 18:12:01 UTC
 - :name: report search+*right+*structure
   :type: Search
   :key: report_search+*right+*structure
-  :merged: 2017-01-04 12:15:54 UTC
+  :merged: 2017-01-16 18:12:01 UTC
 - :name: Research Group
   :type: Cardtype
   :codename: research_group
   :key: research_group
-  :merged: 2017-01-04 12:15:57 UTC
+  :merged: 2017-01-16 18:12:01 UTC
 - :name: Researcher
   :type: Basic
   :codename: researcher
   :key: researcher
-  :merged: 2017-01-04 12:15:57 UTC
+  :merged: 2017-01-16 18:12:01 UTC
 - :name: Research Group+Metric+*type plus right+*default
   :type: Search
   :key: research_group+metric+*type_plu_right+*default
-  :merged: 2017-01-04 12:15:57 UTC
+  :merged: 2017-01-16 18:12:01 UTC
 - :name: Research Group+Project+*type plus right+*default
   :type: Search
   :key: research_group+project+*type_plu_right+*default
-  :merged: 2017-01-04 12:15:57 UTC
+  :merged: 2017-01-16 18:12:01 UTC
 - :name: homepage topic item
   :type: HTML
   :key: homepage_topic_item
 - :name: welcome email+*html message
   :type: HTML
   :key: welcome_email+*html_message
-  :merged: 2017-01-05 15:39:33 UTC
+  :merged: 2017-01-16 18:12:02 UTC
 - :name: verification email+*html message
   :type: HTML
   :key: verification_email+*html_message
-  :merged: 2017-01-05 15:39:33 UTC
+  :merged: 2017-01-16 18:12:02 UTC
 - :name: email header
   :type: HTML
   :key: email_header
-  :merged: 2017-01-05 15:39:33 UTC
+  :merged: 2017-01-16 18:12:02 UTC
 - :name: email footer
   :type: HTML
   :key: email_footer
-  :merged: 2017-01-05 15:39:33 UTC
+  :merged: 2017-01-16 18:12:02 UTC
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org
