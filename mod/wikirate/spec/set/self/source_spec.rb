@@ -44,13 +44,10 @@ describe Card::Set::Self::Source do
   end
 
   describe "#iframable?" do
+    subject { json_format.iframable? pdf_url, user_agent }
     let(:pdf_url) do
       "http://www.adobe.com/content/dam/Adobe/en/devnet"\
       "/acrobat/pdfs/pdf_open_parameters.pdf"
-    end
-
-    subject do
-      json_format.iframable? pdf_url, user_agent
     end
 
     context "user agent is Firefox" do
@@ -100,7 +97,6 @@ describe Card::Set::Self::Source do
     end
   end
 
-
   describe "view :metadata" do
     let(:result_hash) do
       Card::Env.params[:url] = url
@@ -136,7 +132,9 @@ describe Card::Set::Self::Source do
     context "existing url" do
       let(:source_card) { sample_source }
       let(:source_title) { Card.fetch("#{source_card.name}+title").content }
-      let(:source_desc) { Card.fetch("#{source_card.name}+description").content }
+      let(:source_desc) do
+        Card.fetch("#{source_card.name}+description").content
+      end
       let(:url) do
         source_card.fetch(trait: :wikirate_link).content
       end
@@ -172,8 +170,8 @@ describe Card::Set::Self::Source do
   end
 
   describe "view :missing" do
-    let(:source_card) { sample_source }
     subject { render_card :missing, name: source_card.name }
+    let(:source_card) { sample_source }
 
     it "shows the link" do
       is_expected.to eq render_card(:link, name: source_card.name)

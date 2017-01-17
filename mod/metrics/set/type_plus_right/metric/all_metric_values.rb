@@ -38,10 +38,9 @@ format :html do
                                   [:company_thumbnail, :value_cell],
                                   header: [company_sort_link, value_sort_link],
                                   details_view: :company_details_sidebar
-      #td: { classes: [nil, "text-center"] }
+      # td: { classes: [nil, "text-center"] }
     end
   end
-
 
   def company_sort_link
     table_sort_link "Companies", :company_name

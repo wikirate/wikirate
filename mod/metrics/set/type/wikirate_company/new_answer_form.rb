@@ -12,7 +12,6 @@
 # metric record. Since there is no MetricRecord type it's handled in
 # LtypeRtype::Metric::WikirateCompany
 
-
 format :html do
   view :new_metric_value, cache: :never do
     frame do
@@ -38,8 +37,7 @@ format :html do
         [
           subformat(record_card).process_content(metric_header_small),
           nest(record_card, view: :content, hide: :chart, show:
-            [:metric_info, :source_preview]
-          )
+            [:metric_info, :source_preview])
         ]
       end
     end
