@@ -1,0 +1,49 @@
+@javascript
+Feature: company feature
+  As user I can use the company page to get information about a company.
+
+  Background:
+    Given I go to card "Death Star"
+    And I maximize the browser
+
+  Scenario: Browse through tabs
+    Then I should see "disturbances in the Force"
+    And I should see "dinosaurlabor"
+    And I should see "The Death Star refers to any of several fictional mobile space stations"
+    Then I click on "Topics"
+    And I should see "Force"
+    Then I click on "Projects"
+    And I should see "Evil Project"
+    And I should see "3 Companies, 2 Metrics"
+    Then I click on "Sources"
+    And I should see "www.wikiwand.com"
+    And I should see "Visit Original"
+
+  Scenario: Filter by metric
+    When I click on "more filter options"
+    And I wait for ajax response
+    And I single-select "Jedi+deadliness" from "Metric"
+    And I submit form
+    Then I should not see "disturbances in the Force"
+    And I should see "deadliness"
+
+  Scenario: Filter by topic
+    When I click on "more filter options"
+    And I wait for ajax response
+    And I single-select "Force" from "Topic"
+    And I submit form
+    Then I should not see "dinosaurlabor"
+    And I should see "disturbances in the Force"
+
+  Scenario: Filter by year
+    And I single-select "2001" from "Year"
+    And I submit form
+    Then I should not see "dinosaurlabor"
+    And I should see "disturbances in the Force"
+
+  Scenario: Search for not researched values
+    And I single-select "Not Researched" from "Value"
+    And I submit form
+    Then I should not see "disturbances in the Force"
+    And I should see "Sith Lord in Charge"
+

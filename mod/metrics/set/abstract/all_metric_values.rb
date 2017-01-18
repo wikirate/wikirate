@@ -15,7 +15,7 @@ def search args={}
 end
 
 format :html do
-  view :core do
+  view :core, cache: :never do
     bs_layout do
       row do
         _optional_render_filter
@@ -23,6 +23,12 @@ format :html do
       row do
         _render_table
       end
+    end
+  end
+
+  view :table, cache: :never do
+    wrap do # slot for paging links
+      wikirate_table_with_details *table_args
     end
   end
 end

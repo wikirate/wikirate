@@ -9,24 +9,13 @@ def default_sort_option
 end
 
 format :html do
-  view :core, cache: :never do
-    bs_layout do
-      row do
-        _optional_render_filter
-      end
-      row do
-        _render_table
-      end
-    end
-  end
-
-  view :table, cache: :never do
-    wrap do # slot for paging links
-      wikirate_table_with_details :metric, self,
-                                  [:metric_thumbnail_with_vote, :value_cell],
-                                  header: [name_sort_links, "Value"],
-                                  details_view: :metric_details_sidebar
-    end
+  def table_args
+    [:metric,
+     self, # call search_with_params on self to get items
+     [:metric_thumbnail_with_vote, :value_cell],
+     header: [name_sort_links, "Value"],
+     details_view: :metric_details_sidebar
+    ]
   end
 
   view :filter do
