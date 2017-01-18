@@ -37,8 +37,7 @@ format :html do
      self,
      [:company_thumbnail, :value_cell],
      header: [company_sort_link, value_sort_link],
-     details_view: :company_details_sidebar
-    ]
+     details_view: :company_details_sidebar]
   end
 
   def company_sort_link
@@ -57,10 +56,12 @@ format :html do
     wikirate_table(
       :company, search_with_params(limit: 4),
       [:company_thumbnail, :value_cell],
-      header: ["Company", "Value"],
+      header: %w(Company Value),
       td: { classes: ["header", nil] },
-      tr_link: -> (item) { path mark: item.metric_card,
-                                filter: { wikirate_company: item.company } }
+      tr_link: lambda do |item|
+        path mark: item.metric_card,
+             filter: { wikirate_company: item.company }
+      end
     )
   end
 end
