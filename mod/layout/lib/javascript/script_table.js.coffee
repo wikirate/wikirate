@@ -18,6 +18,9 @@ $(document).ready ->
     else
       trToggleDetails this
 
+  $('body').on 'click', ".tr-link", ->
+    window.location.href = $(this).data("link-url")
+
   trToggleDetails = (toggle) ->
     row = $(toggle).closest('tr')
     active_details = $(row).find('.details')

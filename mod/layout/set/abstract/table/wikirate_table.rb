@@ -46,11 +46,27 @@ class WikirateTable
 
   def tr_opts row_card
     tr = @tr_opts.clone
-    return tr unless @opts[:details_view]
+    if @opts[:details_view]
+      details_tr tr, row_card
+    elsif @opts[:tr_link]
+      link_tr tr, row_card
+    else
+      tr
+    end
+  end
+
+  def details_tr tr, row_card
     add_class tr, "tr-details-toggle"
     tr.deep_merge! data: {
       details_url: @format.path(mark: row_card, view: @opts[:details_view])
     }
+    tr
+  end
+
+  def link_tr tr, row_card
+    add_class tr, "tr-link"
+    tr.deep_merge! data: { link_url: @opts[:tr_link].call(row_card) }
+    tr
   end
 
   def td_data row_card, view, col_index

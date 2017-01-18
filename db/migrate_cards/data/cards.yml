@@ -201,6 +201,9 @@
   :type: HTML
   :key: email_footer
   :merged: 2017-01-17 13:37:57 UTC
+- :name: homepage metric item
+  :type: HTML
+  :key: homepage_metric_item
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org

@@ -52,4 +52,15 @@ format :html do
   view :filter do
     field_subformat(:metric_company_filter)._render_core
   end
+
+  view :homepage_table do
+    wikirate_table(
+      :company, search_with_params(limit: 4),
+      [:company_thumbnail, :value_cell],
+      header: ["Company", "Value"],
+      td: { classes: ["header", nil] },
+      tr_link: -> (item) { path mark: item.metric_card,
+                                filter: { wikirate_company: item.company } }
+    )
+  end
 end
