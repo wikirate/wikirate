@@ -12,17 +12,16 @@ Feature: metric value
   Scenario: Create a metric value
     When I fill in "#pointer_item" field with "Apple Inc" within ".RIGHT-company"
     And I select "Joe User+researched" from choosen within ".RIGHT-metric"
-    And I click on "Next"
-    And I wait 3 seconds
-    And I press link button "Add answer"
-    And I wait 2 seconds
+    And I wait for ajax response
+    And I press link button "Next"
+    And I wait for ajax response
     And I press link button "Add a new source"
     And I wait for ajax response
     And I fill in "card_subcards__Link_content" with "http://example.com"
     And I press "Add and preview"
     And I wait for ajax response
     And I scroll 200 pixels
-    And I click on "Cite!"
+    And I press link button "Cite!"
     And I wait for ajax response
     And I fill in "pointer_item" with "2009"
     And I fill in "card_subcards__values_content" with "10"
@@ -41,17 +40,15 @@ Feature: metric value
     When I fill in "#pointer_item" field with "Apple Inc" within ".RIGHT-company"
     And I select "Joe User+researched" from choosen within ".RIGHT-metric"
     And I wait for ajax response
-    And I click on "Next"
-    And I wait 3 seconds
-    And I press link button "Add answer"
-    And I wait 2 seconds
+    And I press link button "Next"
+    And I wait for ajax response
     And I press link button "Add a new source"
     And I wait for ajax response
     And I fill in "card_subcards__Link_content" with "http://www.wikiwand.com/en/Star_Wars"
     And I press "Add and preview"
     And I wait for ajax response
     And I scroll 200 pixels
-    And I click on "Cite!"
+    And I press link button "Cite!"
     And I wait for ajax response
     And I fill in "pointer_item" with "2009"
     And I fill in "card_subcards__values_content" with "10"
@@ -69,17 +66,16 @@ Feature: metric value
   Scenario: Missing year
     When I fill in "#pointer_item" field with "Apple Inc" within ".RIGHT-company"
     And I select "Joe User+researched" from choosen within ".RIGHT-metric"
-    And I click on "Next"
-    And I wait 3 seconds
-    And I press link button "Add answer"
-    And I wait 2 seconds
+    And I wait for ajax response
+    And I press link button "Next"
+    And I wait for ajax response
     And I press link button "Add a new source"
     And I wait for ajax response
     And I fill in "card_subcards__Link_content" with "http://example.com"
     And I press "Add and preview"
     And I wait for ajax response
     And I scroll 200 pixels
-    And I click on "Cite!"
+    And I press link button "Cite!"
     And I wait for ajax response
     And I fill in "card_subcards__values_content" with "10"
     And I fill in "card_subcards__Discussion_comment" with "Do not take life too seriously. You will never get out of it alive."
@@ -91,17 +87,16 @@ Feature: metric value
   Scenario: Missing value
     When I fill in "#pointer_item" field with "Apple Inc" within ".RIGHT-company"
     And I select "Joe User+researched" from choosen within ".RIGHT-metric"
-    And I click on "Next"
-    And I wait 3 seconds
-    And I press link button "Add answer"
-    And I wait 2 seconds
+    And I wait for ajax response
+    And I press link button "Next"
+    And I wait for ajax response
     And I press link button "Add a new source"
     And I wait for ajax response
     And I fill in "card_subcards__Link_content" with "http://example.com"
     And I press "Add and preview"
     And I wait for ajax response
     And I scroll 200 pixels
-    And I click on "Cite!"
+    And I press link button "Cite!"
     And I wait for ajax response
     And I fill in "pointer_item" with "2009"
     And I fill in "card_subcards__Discussion_comment" with "Do not take life too seriously. You will never get out of it alive."
@@ -113,10 +108,9 @@ Feature: metric value
   Scenario: Missing source
     When I fill in "#pointer_item" field with "Apple Inc" within ".RIGHT-company"
     And I select "Joe User+researched" from choosen within ".RIGHT-metric"
-    And I click on "Next"
-    And I wait 3 seconds
-    And I press link button "Add answer"
-    And I wait 2 seconds
+    And I wait for ajax response
+    And I press link button "Next"
+    And I wait for ajax response
     And I press link button "Add a new source"
     And I wait for ajax response
     And I fill in "card_subcards__Link_content" with "http://example.com"

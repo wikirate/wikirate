@@ -12,7 +12,6 @@ Background:
     And In the main card content I click "Add new value"
     And I fill in company with "Death Star"
     And I click on "Next"
-    And I wait 3 seconds
     And I fill in "pointer_item" with "2015"
     And I single-select "yes" as value
     And I click on "Add a new source"
@@ -23,7 +22,7 @@ Background:
     And I should see "added less than a minute ago"
     And I click on "Cite!"
     And I click on "Submit"
-    # FIXME the new metric should appear witjout reloading the page
+    # FIXME the new metric should appear witout reloading the page
     And I go to card "Jedi+disturbances in the Force"
     Then I should see "Death Star"
     When I go to card "Death Star"
@@ -36,7 +35,6 @@ Scenario: Adding a metric value with a file source on metric page
   And In the main card content I click "Add new value"
   And I fill in company with "Death Star"
   And I click on "Next"
-  And I wait 3 seconds
   And I fill in "pointer_item" with "2015"
   And I single-select "yes" as value
   And I click on "Add a new source"
