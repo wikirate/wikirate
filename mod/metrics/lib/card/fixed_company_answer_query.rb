@@ -1,7 +1,6 @@
 class Card
   class FixedCompanyAnswerQuery < AnswerQuery
-    SIMPLE_FILTERS = ::Set.new([:company_id, :latest, :metric,
-                                :wikirate_topic]).freeze
+    SIMPLE_FILTERS = ::Set.new([:company_id, :latest, :metric]).freeze
     LIKE_FILTERS = ::Set.new([:name]).freeze
 
     # filter values are card names and have to be translated to card ids
