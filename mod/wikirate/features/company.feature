@@ -4,7 +4,6 @@ Feature: company feature
 
   Background:
     Given I go to card "Death Star"
-    And I maximize the browser
 
   Scenario: Browse through tabs
     Then I should see "disturbances in the Force"
