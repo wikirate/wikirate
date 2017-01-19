@@ -108,4 +108,3 @@ describe Card::Set::Type::MetricValueImportFile do
     end
   end
 end
-

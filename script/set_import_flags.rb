@@ -5,8 +5,8 @@ require File.expand_path("../../config/environment", __FILE__)
 # updates import flag in action and lookup table entries
 class ImportFlagUpdate
   class << self
-    JOIN_SQL = "LEFT JOIN cards ON cards.id = card_id"
-    WHERE_SQL = "card_act_id IN (?) AND cards.right_id = ?"
+    JOIN_SQL = "LEFT JOIN cards ON cards.id = card_id".freeze
+    WHERE_SQL = "card_act_id IN (?) AND cards.right_id = ?".freeze
 
     def action_table
       puts "updating #{action_count} import actions of "\
@@ -19,7 +19,7 @@ class ImportFlagUpdate
       puts "updating #{answer_ids.size} answers in lookup table ..."
 
       missing = answer_ids - Answer.pluck(:answer_id)
-      #missing.select! { |c| Card.exists? c }
+      # missing.select! { |c| Card.exists? c }
 
       # puts missing.size.to_s
       # missing.reject { |c| !Card[c].metric_card }
