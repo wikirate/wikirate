@@ -32,18 +32,22 @@ describe Card::Set::Type::MetricValueImportFile do
     fill_env_params true
   end
   describe "import metric values" do
-    it "adds metric values" do
+    def run_import
       mv_import_file.update_attributes! subcards: {}
+    end
+
+    let(:amazon_2015_metric_value_card) { Card["#{amazon}+value"] }
+    let(:apple_2015_metric_value_card) { Card["#{apple}+value"] }
+    it "adds metric values" do
+      run_import
       expect(Card.exists?(amazon)).to be true
       expect(Card.exists?(apple)).to be true
-      amazon_2015_metric_value_card = Card["#{amazon}+value"]
-      apple_2015_metric_value_card = Card["#{apple}+value"]
       expect(amazon_2015_metric_value_card.content).to eq("0")
       expect(apple_2015_metric_value_card.content).to eq("1")
     end
 
     it "adds the comment" do
-      mv_import_file.update_attributes! subcards: {}
+      run_import
       amazon_metric_discussion_card = Card["#{amazon}+discussion"]
       apple_metric_discussion_card = Card["#{apple}+discussion"]
       expect(amazon_metric_discussion_card.content).to include(comment)
@@ -52,13 +56,24 @@ describe Card::Set::Type::MetricValueImportFile do
 
     it "handles import without comment" do
       fill_env_params false
-      mv_import_file.update_attributes! subcards: {}
+      run_import
       expect(Card.exists?(amazon)).to be true
       expect(Card.exists?(apple)).to be true
-      amazon_2015_metric_value_card = Card["#{amazon}+value"]
-      apple_2015_metric_value_card = Card["#{apple}+value"]
       expect(amazon_2015_metric_value_card.content).to eq("0")
       expect(apple_2015_metric_value_card.content).to eq("1")
+    end
+
+    it "marks value in action as imported" do
+      run_import
+      action_comment = amazon_2015_metric_value_card.actions.last.comment
+      expect(action_comment).to eq "imported"
+    end
+
+    it "marks value in answer table as imported" do
+      run_import
+      answer_id = amazon_2015_metric_value_card.left_id
+      answer = Answer.find_by_answer_id(answer_id)
+      expect(answer.imported).to eq true
     end
 
     context "company correction name is filled" do
@@ -93,3 +108,4 @@ describe Card::Set::Type::MetricValueImportFile do
     end
   end
 end
+

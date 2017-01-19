@@ -145,13 +145,13 @@ format :html do
     res = {}
     card.all_metric_values_card.values_by_name.map do |key, data|
       data.each do |row|
-        res["#{key}+#{row["year"]}"] = row["value"].to_i
+        res["#{key}+#{row['year']}"] = row["value"].to_i
       end
     end
     res
   end
 
-  view :outliers do |args|
+  view :outliers do
     outs = Savanna::Outliers.get_outliers prepare_for_outlier_search, :all
     outs.inspect
   end
@@ -426,10 +426,9 @@ format :html do
     HTML
     wrap do
       metric_row header, data, drag_and_drop: false,
-                 item_types: [:metric, :contribution, :value]
+                               item_types: [:metric, :contribution, :value]
     end
   end
-
 end
 
 format :json do
