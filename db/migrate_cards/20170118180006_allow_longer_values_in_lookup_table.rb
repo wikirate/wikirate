@@ -2,6 +2,8 @@
 
 class AllowLongerValuesInLookupTable < ActiveRecord::Migration
   def up
-    change_column :answers, :value, :string, limit: 1000
+    remove_index :answers, column: :value
+    add_index :answers, :value, name: "value_index", length: 100
+    change_column :answers, :value, :string, limit: 1024
   end
 end
