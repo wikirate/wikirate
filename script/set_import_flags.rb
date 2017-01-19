@@ -2,31 +2,71 @@
 
 require File.expand_path("../../config/environment", __FILE__)
 
-JOIN_SQL = "LEFT JOIN cards ON cards.id = card_id"
-WHERE_SQL = "card_act_id IN (?) AND cards.right_id = ?"
+# updates import flag in action and lookup table entries
+class ImportFlagUpdate
+  class << self
+    JOIN_SQL = "LEFT JOIN cards ON cards.id = card_id"
+    WHERE_SQL = "card_act_id IN (?) AND cards.right_id = ?"
 
-import_card_ids = Card.search type_id: Card::MetricValueImportFileID,
-                              return: :id
-import_act_ids = Card::Act.where("card_id IN (?)", import_card_ids)
-  .pluck(:id)
-value_id = Card.fetch_id :value
+    def action_table
+      puts "updating #{action_count} import actions of "\
+           "#{import_card_ids.size} import cards ..."
 
-answer_ids =
-  Card::Action.joins(JOIN_SQL)
-    .where(WHERE_SQL, import_act_ids, value_id)
-    .pluck("cards.left_id")
+      action_relation.update_all(comment: "imported")
+    end
 
-puts "updating #{answer_ids.size} import actions of "\
-     "#{import_card_ids.size} import cards ..."
-Card::Action.joins(JOIN_SQL)
-  .where(WHERE_SQL, import_act_ids, value_id)
-  .update_all(comment: "imported")
+    def answer_table
+      puts "updating #{answer_ids.size} answers in lookup table ..."
 
-answer_ids.uniq!
-missing = answer_ids - Answer.pluck(:id)
-puts "updating #{answer_ids.size} answers in lookup table ..."
-Answer.refresh missing
-Answer.where("id IN (?)", uniq_answer_ids).update_all(imported: true)
+      missing = answer_ids - Answer.pluck(:answer_id)
+      #missing.select! { |c| Card.exists? c }
+
+      # puts missing.size.to_s
+      # missing.reject { |c| !Card[c].metric_card }
+      # puts missing.size.to_s
+      Answer.refresh missing
+      Answer.where("id IN (?)", answer_ids).update_all(imported: true)
+    end
+
+    private
+
+    def action_count
+      answer_ids_with_duplicates.size
+    end
+
+    def answer_ids
+      @answer_ids ||= answer_ids_with_duplicates.uniq
+    end
+
+    def answer_ids_with_duplicates
+      @answer_ids_with_duplicates ||=
+        action_relation.pluck("cards.left_id")
+    end
+
+    def import_card_ids
+      @import_card_ids ||=
+        Card.search type_id: Card::MetricValueImportFileID,
+                    return: :id
+    end
+
+    def import_act_ids
+      Card::Act.where("card_id IN (?)", import_card_ids)
+        .pluck(:id)
+    end
+
+    def action_relation
+      Card::Action.joins(JOIN_SQL)
+        .where(WHERE_SQL, import_act_ids, value_id)
+    end
+
+    def value_id
+      Card.fetch_id :value
+    end
+  end
+end
+
+ImportFlagUpdate.action_table
+ImportFlagUpdate.answer_table
 
 # Card::Action.find_by_sql(
 #   "SELECT `card_actions`.*, COUNT(*) "\FROM `card_actions`" \
@@ -34,4 +74,3 @@ Answer.where("id IN (?)", uniq_answer_ids).update_all(imported: true)
 #   "WHERE (card_act_id IN (#{import_act_ids.join(',')}) "\
 #   "       AND cards.right_id = 43591) "\
 #   "GROUP BY card_id HAVING COUNT(*) > 1"
-
