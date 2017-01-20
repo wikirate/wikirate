@@ -71,12 +71,6 @@ format :html do
     HTML
   end
 
-  def metric_details
-    wrap_with :div, class: "row clearfix wiki" do
-      nest "#{card.record}+metric details", view: :content
-    end
-  end
-
   view :record_list do
     nest card.record_card, view: :value_table,
                            hide: :chart,
@@ -157,8 +151,7 @@ format :html do
             #{send "#{type}_details_sidebar_header"}
           </div>
           <hr>
-          #{metric_details}
-      #{metric_values}
+          #{metric_values}
           <br>
           #{yield if block_given?}
           #{discussion}
