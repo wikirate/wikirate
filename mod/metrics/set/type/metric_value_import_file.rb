@@ -14,7 +14,7 @@ format :html do
                            :year, :value, :source, :comment]
   end
 
-  def default_import_args args
+  def default_import_args _args
     voo.hide :metric_select, :year_select
   end
 
