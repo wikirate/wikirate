@@ -83,9 +83,9 @@ format :html do
   end
 
   def projects_organized
-    field_nest :projects_organized, view: :titled,
-                                    title: "Projects Organized",
-                                    items: { view: :listing }
+    field_nest :project, view: :titled,
+                         title: "Projects Organized",
+                         items: { view: :listing }
   end
 
   def member_contribution_section
