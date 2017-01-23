@@ -44,7 +44,7 @@ end
 
 def wql_hash
   if company_ids.any?
-    { id: company_ids.unshift(:in) }
+    { id: [:in] + company_ids }
   else
     { id: -1 } # HACK: ensure no results
   end

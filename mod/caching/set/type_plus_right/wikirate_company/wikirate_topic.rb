@@ -28,7 +28,7 @@ def wql_hash
   if metric_ids.any?
     {
       type_id: WikirateTopicID,
-      referred_to_by: { left_id: metric_ids.unshift(:in),
+      referred_to_by: { left_id: [:in] + metric_ids,
                         right_id: WikirateTopicID }
     }
   else

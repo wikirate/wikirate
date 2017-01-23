@@ -64,8 +64,8 @@ class Card
     end
 
     def linked_to_by_vote_wql array
-      in_array = array.map { |v| vote_pointer_name(v) }.unshift :in
-      { linked_to_by: in_array }
+      vote_pointers = array.map { |v| vote_pointer_name(v) }
+      { linked_to_by: [:in] + vote_pointers }
     end
 
     def vote_pointer_name direction
