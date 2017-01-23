@@ -26,7 +26,6 @@ format :html do
   # 2) company page -> metric table -> item -> table on right side
   # 3) metric record page
   # 4) add new value page (new_metric_value view for company)
-
   view :core, unknown_ok: true do
     output [
              _optional_render_metric_info,
@@ -144,8 +143,8 @@ format :html do
     header_button "View Methodology",
                   "_view_methodology",
                   toggle: "collapse",
-                  target: "[id='#{target_id}'] #methodology-info",
-                  collapse: ".metric_value_form_container"
+                  parent: ".card-content",
+                  target: "#methodology-info"
   end
 
   view :metric_page_button do
