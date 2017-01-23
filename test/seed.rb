@@ -61,14 +61,41 @@ class SharedData
     end
 
     def add_sources_and_claims
+      Timecop.freeze(Time.now + 1.day) do
+        Card.create!(
+          type_id: Card::SourceID,
+          subcards: {
+            "+Link" => { content: "http://www.wikiwand.com/en/Space_opera" },
+            "+company" => { content: "[[Death Star]]", type_id: Card::PointerID },
+            "+topic" => { content: "[[Force]]", type_id: Card::PointerID },
+            "+title" => { content: "Space Opera" },
+            "+description" => { content: "Space Opera Wikipedia article" }
+          }
+        )
+      end
+
+      Timecop.freeze(Time.now + 2.days) do
+        Card.create!(
+          type_id: Card::SourceID,
+          subcards: {
+            "+Link" => { content: "http://www.wikiwand.com/en/Opera" },
+            "+title" => { content: "Opera" },
+            "+description" => { content: "Opera Wikipedia article" }
+          }
+        )
+      end
+
       sourcepage = Card.create!(
         type_id: Card::SourceID,
         subcards: {
           "+Link" => { content: "http://www.wikiwand.com/en/Star_Wars" },
           "+company" => { content: "[[Death Star]]", type_id: Card::PointerID },
-          "+topic" => { content: "[[Force]]", type_id: Card::PointerID }
+          "+topic" => { content: "[[Force]]", type_id: Card::PointerID },
+          "+title" => { content: "Star Wars" },
+          "+description" => { content: "Star Wars Wikipedia article" }
         }
       )
+
       Card.create!(
         name: "Death Star uses dark side of the Force",
         type_id: Card::ClaimID,

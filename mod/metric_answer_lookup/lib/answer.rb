@@ -44,7 +44,7 @@ class Answer < ActiveRecord::Base
   end
 
   def fetch_imported
-    false
+    card.value_card.actions.last.comment == "imported"
   end
 
   def fetch_designer_id
@@ -74,7 +74,7 @@ class Answer < ActiveRecord::Base
   def fetch_numeric_value
     return unless metric_card.numeric?
     val = fetch_value
-    return if unknown? val
+    return if unknown?(val) || !val.number?
     val.to_d
   end
 

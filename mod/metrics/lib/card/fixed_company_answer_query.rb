@@ -1,6 +1,6 @@
 class Card
   class FixedCompanyAnswerQuery < AnswerQuery
-    SIMPLE_FILTERS = ::Set.new([:company_id, :latest]).freeze
+    SIMPLE_FILTERS = ::Set.new([:company_id, :latest, :metric]).freeze
     LIKE_FILTERS = ::Set.new([:name]).freeze
 
     # filter values are card names and have to be translated to card ids
@@ -64,8 +64,8 @@ class Card
     end
 
     def linked_to_by_vote_wql array
-      in_array = array.map { |v| vote_pointer_name(v) }.unshift :in
-      { linked_to_by: in_array }
+      vote_pointers = array.map { |v| vote_pointer_name(v) }
+      { linked_to_by: [:in] + vote_pointers }
     end
 
     def vote_pointer_name direction

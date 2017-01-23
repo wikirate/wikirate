@@ -279,10 +279,13 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
         end
 
         it "... metric_type" do
-          expect(filter_by(metric_value: :none,
-                           metric_type: "Researched"))
-            .to eq with_year(["researched number 3", "researched number 2",
-                              "Sith Lord in Charge"])
+          expect(
+            filter_by(metric_value: :none, metric_type: "Researched").sort
+          ).to eq(
+            with_year(["Sith Lord in Charge",
+                       "researched number 2",
+                       "researched number 3"])
+          )
         end
 
         it "... policy and year" do

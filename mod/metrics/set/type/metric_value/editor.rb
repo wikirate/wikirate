@@ -202,7 +202,7 @@ format :html do
 
   def new_view_hidden
     tags =
-      { success: { id: "_self", soft_redirect: true, view: :thin_record_list } }
+      { success: { id: "_self", soft_redirect: true, view: :record_list } }
     [:metric, :company, :source].each do |field|
       next unless (value = Env.params[field])
       tags["card[subcards][+#{field}][content]"] = value

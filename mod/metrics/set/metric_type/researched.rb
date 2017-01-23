@@ -68,12 +68,7 @@ format :html do
   end
 
   view :add_value_buttons do
-    policy = card.fetch(trait: :research_policy, new: {}).item_cards.first.name
-    is_admin = Card::Auth.always_ok?
-    is_owner = Auth.current.id == card.creator.id
-    is_designer_assessed = policy.casecmp("designer assessed").zero?
-    # TODO: add metric designer respresentative logic here
-    return if is_designer_assessed && !(is_admin || is_owner)
+    return unless card.user_can_answer?
     <<-HTML
     <div class="row margin-no-left-15">
       <a class="btn btn-primary"  href='#{add_value_path}'>
@@ -99,4 +94,13 @@ format :html do
         </div>
     HTML
   end
+end
+
+def user_can_answer?
+  policy = fetch(trait: :research_policy, new: {}).item_cards.first.name
+  is_admin = Auth.always_ok?
+  is_owner = Auth.current.id == creator.id
+  is_designer_assessed = policy.casecmp("designer assessed").zero?
+  # TODO: add metric designer respresentative logic here
+  !is_designer_assessed || (is_admin || is_owner)
 end

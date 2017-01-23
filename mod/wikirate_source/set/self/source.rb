@@ -1,7 +1,7 @@
 
 def self.find_duplicates url
   duplicate_wql = { right: Card[:wikirate_link].name, content: url, left: { type_id: Card::SourceID } }
-  duplicates = Card.search duplicate_wql
+  Card.search duplicate_wql
 end
 
 format :json do
@@ -23,9 +23,9 @@ format :json do
     duplicates = Source.find_duplicates url
     if duplicates.any?
       origin_page_card = duplicates.first.left
-      title = Card["#{origin_page_card.name}+title"] ? Card["#{origin_page_card.name}+title"].content : ""
-      description = Card["#{origin_page_card.name}+description"] ? Card["#{origin_page_card.name}+description"].content : ""
-      image_url = Card["#{origin_page_card.name}+image_url"] ? Card["#{origin_page_card.name}+image_url"].content : ""
+      title = fetch_field_content origin_page_card, "title"
+      description = fetch_field_content origin_page_card, "description"
+      image_url = fetch_field_content origin_page_card, "image_url"
       metadata.set_meta_data title, description, image_url
     else
       begin
@@ -37,19 +37,26 @@ format :json do
     end
     metadata.to_json
   end
+
+  def fetch_field_content card, field
+    unless (field_card = Card["#{card.name}+#{field}"])
+      return block_given? ? yield : ""
+    end
+    field_card.content
+  end
+
   def valid_content_type? content_type, user_agent
     allow_content_type = ["image/png", "image/jpeg"]
     # for case, "text/html; charset=iso-8859-1"
     allow_content_type.include?(content_type) ||
-      content_type.start_with?("text/html") ||
-      content_type.start_with?("text/plain") ||
+      content_type.start_with?("text/html", "text/plain") ||
       firefox?(user_agent)
   end
 
-  def invalid_x_frame_options? options
-    options &&
-      (options.upcase.include?("DENY") ||
-      options.upcase.include?("SAMEORIGIN"))
+  def valid_x_frame_options? options
+    return true unless options
+    !options.upcase.include?("DENY") &&
+      !options.upcase.include?("SAMEORIGIN")
   end
 
   def iframable_options url
@@ -71,29 +78,18 @@ format :json do
   end
 
   def iframable? url, user_agent
-    return false if !url || url.empty?
-    begin
-      x_frame_options, content_type = iframable_options url
-      if invalid_x_frame_options?(x_frame_options) ||
-         !valid_content_type?(content_type, user_agent)
-        return false
-      end
-    rescue => error
-      Rails.logger.error error.message
-      return false
-    end
-    true
+    return false unless url.present?
+    x_frame_options, content_type = iframable_options url
+    valid_x_frame_options?(x_frame_options) &&
+      valid_content_type?(content_type, user_agent)
+  rescue => error
+    Rails.logger.error error.message
+    return false
   end
+
   view :check_iframable do |_args|
-    url = Card::Env.params[:url]
-    if url
-      iframe =
-        iframable?(url, request ? request.env["HTTP_USER_AGENT"] : nil)
-      result = { result: iframe }
-    else
-      result = { result: false }
-    end
-    result
+    user_agent = request ? request.env["HTTP_USER_AGENT"] : nil
+    { result: !!(iframable?(params[:url], user_agent)) }
   end
 end
 

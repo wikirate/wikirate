@@ -32,9 +32,7 @@ namespace :wikirate do
     def ensure_env env, task, args=nil
       if !ENV["RAILS_ENV"] || ENV["RAILS_ENV"].to_sym != env.to_sym
         puts "restart task in #{env} environment"
-        if args.to_a.present?
-          task = "#{task}\\[#{args.to_a.join(',')}\\]"
-        end
+        task = "#{task}\\[#{args.to_a.join(',')}\\]" if args.to_a.present?
         execute_command "rake #{task}", env
       else
         yield

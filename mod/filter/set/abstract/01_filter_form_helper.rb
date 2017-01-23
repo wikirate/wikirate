@@ -3,7 +3,7 @@ def filter_param field
 end
 
 def sort_param
-  Env.params[:sort]
+  Env.params[:sort] || default_sort_option
 end
 
 format :html do

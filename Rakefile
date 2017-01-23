@@ -6,4 +6,5 @@ require File.expand_path("../config/application", __FILE__)
 
 Wikirate::Application.load_tasks
 
-Dir.glob("vendor/**/lib/tasks/*.rake").each { |r| load r }
+Dir.glob("vendor/mods/lib/tasks/*.rake").each { |r| load r }
+Dir.glob("vendor/wagn/lib/tasks/*.rake").each { |r| load r }
