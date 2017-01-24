@@ -90,6 +90,11 @@ event :update_related_calculations, :finalize,
   end
 end
 
+event :update_double_check_flag, :validate, on: [:update, :delete] do
+  return unless left.fetch trait: :checked_by
+  attach_subcard cardname.left_name.field_name(:checked_by), content: ""
+end
+
 event :no_left_name_change, :prepare_to_validate,
       on: :update, changed: :name do
   return if @supercard # as part of other changes (probably) ok

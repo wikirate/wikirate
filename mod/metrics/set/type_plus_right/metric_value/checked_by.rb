@@ -1,13 +1,29 @@
 def user
-  Card.fetch(Auth.current_id)
+  Auth.current
 end
 
-def user_checked_before
-  return true if checked_users.include?user.name
+def user_checked?
+  !check_requested? && checkers.include?(user.name)
 end
 
-def checked_users
+def checkers
   item_names
+end
+
+def checked?
+  !check_requested? && checkers.present?
+end
+
+def check_requested?
+  item_names.first == "request"
+end
+
+def check_requester
+  item_names.last
+end
+
+def option_names
+  ["request"]
 end
 
 format :html do
@@ -16,31 +32,51 @@ format :html do
   # end
   view :missing do |args|
     if card.new_card? && card.left
-      Auth.as_bot do
-        card.save!
-      end
-      render(@denied_view, args)
+      Auth.as_bot { card.save! }
+      render @denied_view, args
     else
       super(args)
     end
+  end
+
+  def part_view
+    :checkbox
+  end
+
+  def option_label *_args
+    "#{request_icon} Request that another researcher double checks this value"
   end
 
   view :open_content do
     _render_double_check_view
   end
 
+  view :editor do |args|
+    hidden_field_tag(:set_flag, "please-check") + super(args)
+  end
+
   view :double_check_view do
     wrap_with :div do
       [
-        wrap_with(:h5, double_check_icon + "Double-Check"),
-        card.user_checked_before ? checked_content : check_button,
-        _render_checked_by_list
+        wrap_with(:span, "Does the value accurately represent its source?"),
+        check_interaction
       ]
     end
   end
 
+
+  def check_interaction
+    if card.user_checked?
+      user_checked_text
+    elsif card.checked?
+      _render_checked_by_list
+    else
+      check_button
+    end
+  end
+
   view :checked_by_list do
-    return if card.checked_users.empty?
+    return if card.checkers.empty?
     links = subformat(card).render_shorter_search_result items: { view: :link }
     %(
       <div class="padding-top-10">
@@ -49,46 +85,76 @@ format :html do
     )
   end
 
-  def message
-    "I checked: value accurately represents source"
+  def double_check_icon color="verify-blue"
+    fa_icon("check-circle", class: color).html_safe
   end
 
-  def double_check_icon
-    fa_icon("check-circle", class: "verify-blue").html_safe
+  def request_icon
+    fa_icon("check-circle-o", class: "request-red").html_safe
   end
 
   def data_path
     card.cardname.url_key
   end
 
+  def check_button_text
+    text = "Double check"
+    return text unless card.check_requested?
+    text << " #{request_icon} requested by #{card.requester}"
+    text
+  end
+
   def check_button
     button_class = "btn btn-default btn-sm _value_check_button"
-    wrap_with :div do
-      [
-        wrap_with(:span, "Does the value accurately represent its source?"),
-        wrap_with(:a, "Yes, I checked", class: button_class,
-                                          data: { path: data_path })
-      ]
+    wrap_with(:button, class: button_class,
+              data: { path: data_path }) do
+      output [
+               wrap_with(:span, check_button_text, class: "text"),
+               wrap_with(:span, "Yes, I checked", class: "hover-text"),
+             ]
     end
   end
 
-  def checked_content
+  def user_checked_text
     icon_class = "fa fa-times-circle-o fa-lg cursor-p _value_uncheck_button"
-    wrap_with :div, class: "user-checked" do
+    output
       [
-        wrap_with(:span, '"' + message + '"'),
+        wrap_with(:i, '"Yes, I checked"'),
         wrap_with(:i, "", class: icon_class, data: { path: data_path })
       ]
-    end
   end
+end
+
+def update_user_check_log
+  add_subcard Auth.current.cardname.field_name(:double_checked),
+              type_id: PointerID
 end
 
 event :user_checked_value, :prepare_to_store,
-      on: :update, when: proc { Env.params["checked"] == "true" } do
-  add_item user.name unless user_checked_before
+      on: :update, when: :add_checked_flag? do
+  add_item user.name unless user_checked?
+  update_user_check_log.add_id left_id
 end
 
-event :user_uncheck_value, :prepare_to_store,
-      on: :update, when: proc { Env.params["uncheck"] == "true" } do
-  drop_item user.name if user_checked_before
+event :user_unchecked_value, :prepare_to_store,
+      on: :update, when: :remove_checked_flag? do
+  drop_item user.name if user_checked?
+  update_user_check_log.drop_id left_id
+end
+
+event :user_requests_check, :prepare_to_store,
+      on: :update, when: :add_needs_check_flag? do
+  self.content = ["request", user.name].to_pointer_content
+end
+
+def add_checked_flag?
+  Env.params["set_flag"] == "checked"
+end
+
+def remove_checked_flag?
+  Env.params["set_flag"] == "not-checked"
+end
+
+def add_needs_check_flag?
+  Env.params["set_flag"] == "please-check"
 end

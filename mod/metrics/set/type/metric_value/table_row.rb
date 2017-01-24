@@ -24,16 +24,23 @@ format :html do
     end
   end
 
-  def add_value_url
-    "/#{card.company.to_name.url_key}?view=new_metric_value&"\
-            "metric[]=#{CGI.escape(card.metric_name.to_name.url_key)}"
-  end
+  # def add_value_url
+  #   "/#{card.company.to_name.url_key}?view=new_metric_value&"\
+  #           "metric[]=#{CGI.escape(card.metric_name.to_name.url_key)}"
+  #
+  # end
 
   def add_value_button
-    <<-HTML
-        <a type="button" target="_blank" class="btn btn-primary btn-sm"
-          href="#{add_value_url}">Add answer</a>
-    HTML
+    card_link card.company_card, "Add nswer",
+              type: "button",
+              target: "_blank",
+              class: "btn btn-primary btn-sm",
+              path: { view: :new_metric_value,
+                      metric: [CGI.escape(card.metric_name.to_name.url_key)] }
+    # <<-HTML
+    #     <a type="button" target="_blank" class="btn btn-primary btn-sm"
+    #       href="#{add_value_url}">Add answer</a>
+    # HTML
   end
 
   def filtered_for_no_values?

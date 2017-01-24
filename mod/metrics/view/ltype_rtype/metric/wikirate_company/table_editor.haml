@@ -1,0 +1,20 @@
+%table
+  %tr.editor
+    %td.year
+      = field_nest :year, hide: :title
+    %td.value
+      = field_nest :value, hide: :title
+      %h5
+        Choose Sources or
+        %a.btn.btn-sm.btn-default._add_new_source{href: "#"}
+          %small
+            %span.icon.icon-wikirate-logo-o.fa-lg
+            Add a new source
+      = _render_relevant_sources
+      = haml_view(:cited_sources)
+      = field_nest :discussion, title: 'Comment'
+
+  %tr.buttons
+    %td{colspan: 2}
+      = _render_new_buttons
+      .card-notice

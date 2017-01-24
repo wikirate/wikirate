@@ -1,18 +1,19 @@
 .panel-default.nodblclick.stick-left#metric-container
-  .row
-    .heading-label
-      Company
-    = _render_thumbnail
-
-  .row.background-grey
-    .heading-label
-      Metrics
-    - if project?
+  - if project?
+    .row
       .border-bottom.col-md-12.nopadding
         %h5.col-md-2
           Project:
         .col-md-10
           = nest project, view: :link
+  .row
+    .heading-label
+      Company
+    = _render_company
+
+  .row.background-grey
+    .heading-label
+      Metrics
     = process_metrics
 
 - haml_wrap do

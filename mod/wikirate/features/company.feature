@@ -46,3 +46,9 @@ Feature: company feature
     Then I should not see "disturbances in the Force"
     And I should see "Sith Lord in Charge"
 
+  Scenario: Paging
+    Then I should not see "deadliness"
+    Then I click on "2"
+    Then I should see "deadliness"
+    And I should not see "disturbances in the Force"
+

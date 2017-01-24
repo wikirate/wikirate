@@ -28,6 +28,11 @@ textarea {
     }
 }
 
+.content-editor > input.short-input[type=text] {
+  display: inline-block;
+  width: 200px;
+}
+
 input[type="checkbox"], input[type="radio"] {
   height: inherit;
   border: none;

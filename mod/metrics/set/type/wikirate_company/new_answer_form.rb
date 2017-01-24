@@ -12,17 +12,15 @@
 # metric record. Since there is no MetricRecord type it's handled in
 # LtypeRtype::Metric::WikirateCompany
 
+include_set Abstract::Table
+
 format :html do
   view :new_metric_value, cache: :never do
     frame do
       haml_view :new_metric_value_form
     end
   end
-end
 
-include_set Abstract::Table
-
-format :html do
   def process_metrics
     metric_names.map do |metric_name|
       next not_a_metric(metric_name) unless existing_metric? metric_name
@@ -31,13 +29,13 @@ format :html do
   end
 
   def wrap_record metric_name
-    record_card = Card.fetch metric_name, card.name
+    record_card = Card.fetch metric_name, card.name, new: {}
     wrap do
       wrap_with :div, id: record_card.cardname.url_key, class: "metric-row" do
         [
           subformat(record_card).process_content(metric_header_small),
           nest(record_card, view: :content, hide: :chart, show:
-            [:metric_info, :source_preview])
+            [:metric_info])
         ]
       end
     end
@@ -96,23 +94,7 @@ format :html do
     HTML
   end
 
-  def view_path view
-    ::File.expand_path("../#{view}.haml", __FILE__)
-      .gsub(%r{/tmp/set/mod\d+-([^/]+)/}, '/mod/\1/view/')
-  end
-
-  def haml_wrap slot=true
-    @slot_view = @current_view
-    debug_slot do
-      haml_tag :div, id: card.cardname.url_key,
-               class: wrap_classes(slot),
-               data: wrap_data do
-        yield
-      end
-    end
-  end
-
-  def haml_view view, locals={}
-    render_haml locals, ::File.read(view_path(view))
+  def view_template_path view
+    super(view, __FILE__)
   end
 end

@@ -1,47 +1,33 @@
 $.extend wikirate,
   appendNewValueForm: ($this) ->
-    company = encodeURIComponent($this.data("company"))
-    metric = encodeURIComponent($this.data("metric"))
     $table = $this.slot().find('.wikirate-table')
-    $page = if $('.TYPE-company.open-view').exists()
-      $('.TYPE-company.open-view')
-    else $('.TYPE-metric.open-view')
     $loader = wikirate.loader($table, true)
+    $loader.add()
 
-    if(company && metric)
+    source = $.urlParam('source')
+    if source != null
+      source = '&source=' + source
+    else
+      source = ''
 
-      $loader.add()
-      if ($page.length > 0)
-        location.href = wagn.prepUrl(wagn.rootPath + '/' + company +
-            '?view=new_metric_value&metric[]=' +
-            metric)
-      else
-        source = $.urlParam('source')
-        if source != null
-          source = '&source=' + source
-        else
-          source = ''
+    load_path = wagn.prepUrl($this.data("url") + source)
+    $this.hide()
 
-        load_path = wagn.prepUrl(wagn.rootPath +
-            "/new/metric_value?table_form=true&company=" +
-            company + "&metric=" + metric + source)
-
-        $this.hide()
-        $.get(load_path, ((data) ->
-          $form = $(data)
-          $tr = $form.find('tr').detach()
-          $form.find('table').remove()
-          $table.prepend($tr)
-          $row = $table.parent()
-          $form.append $table
-          $row.append $form
-          wagn.initializeEditors($table)
-          $form.slot().trigger('slotReady')
-          $loader.remove()
-        ), "html").fail((xhr, d, e) ->
-          $loader.remove()
-          $table.parent().append(xhr.responseText)
-        )
+    $.get(load_path, ((data) ->
+      $form = $(data)
+      $tr = $form.find('tr').detach()
+      $form.find('table').remove()
+      $table.prepend($tr)
+      $row = $table.parent()
+      $form.append $table
+      $row.append $form
+      wagn.initializeEditors($table)
+      $form.slot().trigger('slotReady')
+      $loader.remove()
+    ), "html").fail((xhr, d, e) ->
+      $loader.remove()
+      $table.parent().append(xhr.responseText)
+    )
 
 $(document).ready ->
   $loader_anime = $("#ajax_loader").html()
@@ -191,7 +177,7 @@ $(document).ready ->
 
   valueChecking = (ele, action) ->
     path = encodeURIComponent(ele.data('path'))
-    action = '?' + action + '=true'
+    action = '?set_flag=' + action
     load_path = wagn.prepUrl(wagn.rootPath + '/update/' + path + action )
     $parent = ele.closest('.double-check')
     $parent = ele.closest('.RIGHT-checked_by') unless $parent.exists()
@@ -200,7 +186,7 @@ $(document).ready ->
       content = $(data).find('.card-body').html()
       $parent.empty().html(content)
     ), 'html').fail((xhr,d,e) ->
-      $parent.html('Error')
+      $parent.html('please <a href=/*signin>sign in</a>')
     )
 
   $('body').on 'click','._view_methodology', ->
@@ -212,28 +198,7 @@ $(document).ready ->
     valueChecking($(this), 'checked')
 
   $('body').on 'click','._value_uncheck_button', ->
-    valueChecking($(this), 'uncheck')
-
-  $('body').on 'click','._new_value_next', ->
-    $parent_slot = $(this).slot()
-    company = $(".RIGHT-company .input-group input").val()
-    metric  = $(".RIGHT-metric select").val()
-    source  = $("#card_hidden_source").val()
-    company = Array.isArray(company) && company[0] || company
-    company = encodeURIComponent(company.replace('.',''))
-    metric = metric.map((obj) ->
-      obj = '&metric[]=' + encodeURIComponent(obj)
-      obj
-    ).join('')
-    if source != undefined
-      source = '&source=' + source
-    else
-      source = ''
-    # metric  = encodeURIComponent(metric)
-    if(company&&metric)
-      $parent_slot.append($loader_anime)
-      location.href = wagn.prepUrl(wagn.rootPath + '/' + company +
-                                  '?view=new_metric_value' + metric + source)
+    valueChecking($(this), 'not-checked')
 
   $('body').on 'ajax:success',
   '[data-form-for="new_metric_value"]',
@@ -321,7 +286,7 @@ $(document).ready ->
     appendSourceForm(company)
 
   $('body').on 'click', '._add_new_value', ->
-    $editor = $(this).closest('.metric-row').find('tr.editor, tr.buttons')
+    $editor = $(this).closest('.record-row').find('tr.editor, tr.buttons')
     if $editor.exists() && $editor.hasClass('hide')
       $editor.removeClass('hide')
       $(this).hide()
@@ -332,7 +297,7 @@ $(document).ready ->
     $table = $(this).closest('table')
     $table.find('tr.editor').addClass('hide')
     $table.find('tr.buttons').addClass('hide')
-    $table.closest('.metric-row').find('._add_new_value').show()
+    $table.closest('.record-row').find('._add_new_value').show()
 
 
   # $(window).scroll ->
