@@ -36,7 +36,7 @@ end
 group :test do
   gem "rspec-rails" # behavior-driven-development suite
   gem "rspec", "~> 3.4"
-  gem "rspec-html-matchers" # 0.7.0 broke stuff!
+  gem "rspec-html-matchers"
 # gem 'wagn-rspec-formatter',  git: 'https://github.com/xithan/wagn-rspec-formatter.git'
   gem "spork", ">=0.9"
   gem "timecop"
