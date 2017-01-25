@@ -2,6 +2,7 @@
 
 describe Card::Set::Right::Source do
   # now allowing these edits (leaving as comment until decision becomes permanent)
+  #
   # before do
   #   login_as "joe_user"
   # end
@@ -13,9 +14,7 @@ describe Card::Set::Right::Source do
   #   Card::Env.params[:sourcebox] = "false"
   #   # link card
   #   link_card = Card["#{sourcepage.name}+link"]
-#
   #   link_card.content = "http://www.google.com/"
-#
   #   expect(link_card.save).to be false
   #   expect(link_card.errors).to have_key(:link)
   #   expect(link_card.errors[:link]).to include("is not allowed to be changed.")
