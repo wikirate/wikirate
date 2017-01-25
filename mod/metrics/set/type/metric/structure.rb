@@ -4,7 +4,7 @@ format :html do
   def default_open_content_args args
     super
     @container_class = "yinyang" # TODO: check if still needed
-    add_class args[:left_class], "metric-info"
+    add_class args[:left_class], "metric-info nopadding"
     add_class args[:right_class], "wiki"
   end
 
