@@ -1,0 +1,3 @@
+<dataSource name="MySQL - wikirate@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6" />
+</dataSource>
