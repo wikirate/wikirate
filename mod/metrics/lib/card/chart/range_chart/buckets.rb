@@ -18,7 +18,8 @@ class Card
         def calculate_buckets
           return unless bucket_size > 2
           if log_bucket?
-            exp_range = Math.log(max - min) - Math.log(min)
+            log_min = min == 0 ? 0 : Math.log(min)
+            exp_range = Math.log(max - min) - log_min
             @bucket_size = exp_range / @buckets
           else
             round_bucket_size
@@ -32,6 +33,7 @@ class Card
         end
 
         def log_bucket?
+          return false if min < 0
           # FIXME: not a reasonable condition for using log
           @use_log = bucket_size > 1000 if @use_log.nil?
           @use_log
