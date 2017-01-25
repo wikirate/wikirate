@@ -17,7 +17,7 @@ include_set Abstract::Table
 format :html do
   view :new_metric_value, cache: :never do
     frame do
-      haml_view :new_metric_value_form
+      render_haml :new_metric_value_form
     end
   end
 

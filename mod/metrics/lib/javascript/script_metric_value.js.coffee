@@ -1,7 +1,7 @@
 $.extend wikirate,
   appendNewValueForm: ($this) ->
-    $table = $this.slot().find('.wikirate-table')
-    $loader = wikirate.loader($table, true)
+    $form_slot = $this.slot().find('.card-slot.new_answer_form-view')
+    $loader = wikirate.loader($form_slot, true)
     $loader.add()
 
     source = $.urlParam('source')
@@ -14,19 +14,13 @@ $.extend wikirate,
     $this.hide()
 
     $.get(load_path, ((data) ->
-      $form = $(data)
-      $tr = $form.find('tr').detach()
-      $form.find('table').remove()
-      $table.prepend($tr)
-      $row = $table.parent()
-      $form.append $table
-      $row.append $form
-      wagn.initializeEditors($table)
-      $form.slot().trigger('slotReady')
+      $form_slot.append data
+      wagn.initializeEditors($form_slot)
+      $form_slot.trigger('slotReady')
       $loader.remove()
     ), "html").fail((xhr, d, e) ->
       $loader.remove()
-      $table.parent().append(xhr.responseText)
+      $form_slot.parent().append(xhr.responseText)
     )
 
 $(document).ready ->
@@ -286,18 +280,17 @@ $(document).ready ->
     appendSourceForm(company)
 
   $('body').on 'click', '._add_new_value', ->
-    $editor = $(this).closest('.record-row').find('tr.editor, tr.buttons')
-    if $editor.exists() && $editor.hasClass('hide')
-      $editor.removeClass('hide')
+    $form = $(this).closest('.record-row')
+      .find('.card-slott.new_answer_form-view form')
+    if $form.exists() && $form.hasClass('hide')
+      $form.removeClass('hide')
       $(this).hide()
     else
       wikirate.appendNewValueForm($(this))
 
   $('body').on 'click', '._form_close_button', ->
-    $table = $(this).closest('table')
-    $table.find('tr.editor').addClass('hide')
-    $table.find('tr.buttons').addClass('hide')
-    $table.closest('.record-row').find('._add_new_value').show()
+    $(this).closest('form').addClass('hide')
+    $(this).closest('.record-row').find('._add_new_value').show()
 
 
   # $(window).scroll ->

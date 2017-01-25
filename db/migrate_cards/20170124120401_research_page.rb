@@ -16,5 +16,6 @@ class ResearchPage < Card::Migration
                 type_id: Card::SessionID
     ensure_card "Session+#{field}+*type plus right+*input",
                 content: "select"
+    ensure_card "value+*right+*default", type_id: Card::PhraseID
   end
 end

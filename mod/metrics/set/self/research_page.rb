@@ -3,10 +3,11 @@ card_accessor :wikirate_company
 
 format :html do
   view :new do
-    wrap do
+    voo.hide :menu
+    frame do
       [
         _render_landing_form,
-        haml_view(:source_container)
+        render_haml(:source_container)
       ]
     end
   end
@@ -14,7 +15,7 @@ format :html do
   view :core, cache: :never do
     return _render_new unless companies && metrics
     wrap do
-      haml_view :new_metric_value_form
+      render_haml :new_metric_value_form
     end
   end
 
@@ -34,13 +35,17 @@ format :html do
     end
   end
 
+  view :source_side do
+    render_haml :source_side
+  end
+
 
   view :landing_form, cache: :never do
     html_class = "col-md-5 border-right panel-default min-page-height"
     wrap_with :div, class: html_class do
       card_form :update, success: { view: :core } do
         [
-          hidden_source_field, hr,
+          hidden_source_field,
           company_field, hr,
           metric_field,
           next_button

@@ -6,8 +6,8 @@ format :html do
       output [
                new_view_hidden,
                new_view_type,
-               haml_view(relevant_sources: _render_relevant_sources(args),
-                         cited_sources: _render_cited_sources)
+               render_haml(relevant_sources: _render_relevant_sources(args),
+                           cited_sources: _render_cited_sources)
              ]
     end
   end

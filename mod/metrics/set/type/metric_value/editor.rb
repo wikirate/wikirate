@@ -1,6 +1,5 @@
 format :html do
   view :new, cache: :never do
-    return _render_table_form if Env.params[:table_form]
     return _render_no_frame_form if Env.params[:noframe] == "true"
     @form_root = true
     voo.editor = :metric_value_landing
@@ -15,8 +14,6 @@ format :html do
   end
 
   def prepare_nests_editor
-    # year = card.fetch trait: :year, new: { content: card.year }
-
     voo.editor = :nests
     card.add_subfield :year, content: card.year
     voo.edit_structure = [[:value, "Value"], [:year, "Year"]]
