@@ -70,6 +70,7 @@ describe Card::Set::Type::MetricValueImportFile do
     end
 
     it "marks value in answer table as imported" do
+      pending "test data regeneration"
       run_import
       answer_id = amazon_2015_metric_value_card.left_id
       answer = Answer.find_by_answer_id(answer_id)
