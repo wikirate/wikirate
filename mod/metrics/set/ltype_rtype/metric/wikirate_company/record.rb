@@ -39,7 +39,6 @@ format :html do
   # end
 
   view :buttons do
-    binding.pry
     wrap_with :div do
       [
         add_answer_button,
@@ -74,7 +73,7 @@ format :html do
     classes = "_add_new_value btn-primary"
     classes << "hide" if voo.show?(:answer_form)
     wrap_with :a, "Add answer", class: css_classes(button_classes, classes),
-              data: { url: path(view: :table_form) }
+              data: { url: path(view: :answer_form) }
 
   end
 

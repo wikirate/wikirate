@@ -16,7 +16,7 @@ Feature: metric value
     And I wait for ajax response
     And I press link button "Add a new source"
     And I wait for ajax response
-    And I fill in "card_subcards__Link_content" with "http://example.com"
+    And I fill in "http://example.com" for "URL"
     And I press "Add and preview"
     And I wait for ajax response
     And I scroll 200 pixels

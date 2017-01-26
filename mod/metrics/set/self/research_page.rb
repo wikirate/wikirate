@@ -12,10 +12,15 @@ format :html do
     end
   end
 
+  view :open do
+    voo.hide :menu
+    super()
+  end
+
   view :core, cache: :never do
     return _render_new unless companies && metrics
     wrap do
-      render_haml :new_metric_value_form
+      render_haml :research_form
     end
   end
 
@@ -39,11 +44,10 @@ format :html do
     render_haml :source_side
   end
 
-
   view :landing_form, cache: :never do
     html_class = "col-md-5 border-right panel-default min-page-height"
     wrap_with :div, class: html_class do
-      card_form :update, success: { view: :core } do
+      card_form :update, success: { view: :open } do
         [
           hidden_source_field,
           company_field, hr,
@@ -83,15 +87,11 @@ format :html do
     card.errors.add :Metrics,
                     "Incorrect Metric name or Metric not available: "\
                    "#{name}"
-    card.format.render_errors
+    _render_errors
   end
 
   def existing_metric? name
-    (m = Card.quick_fetch(name)) && m.type_id == MetricID
-  end
-
-  def view_template_path view
-    super(view, __FILE__)
+    Card.fetch_type_id(name) == MetricID
   end
 
   def hr
@@ -116,7 +116,11 @@ format :html do
 
   def next_button
     wrap_with :div, class: "col-md-6 col-centered text-center" do
-      wrap_with :button, "Next", href: "#", class: "btn btn-primary", type: "submit"
+      submit_button text: "Next"
     end
+  end
+
+  def view_template_path view
+    super(view, __FILE__)
   end
 end

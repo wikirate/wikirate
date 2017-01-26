@@ -7,9 +7,11 @@ module Capybara
               options
       end
 
+      alias_method :original_fill_in, :fill_in
       def fill_in locator, options={}
+        binding.pry
         el = labeled_field :input, locator
-        el ? el.set(options[:with]) : super(locator, options)
+        el ? el.set(options[:with]) : original_fill_in(locator, options)
       end
 
       def select value, options={}

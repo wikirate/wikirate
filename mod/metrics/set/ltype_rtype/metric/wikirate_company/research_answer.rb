@@ -1,11 +1,11 @@
 format :html do
   # table with existing values
   # and source side for adding new values
-  view :research do
+  view :research_answer do
     #voo.show! :answer_form
     voo.editor = :inline_nests
     frame do
-      render_haml :new_answer
+      render_haml :research_answer
     end
   end
 
@@ -18,7 +18,7 @@ format :html do
 
   view :answer_form do
     voo.editor = :inline_nests
-    with_nest_mode :edit do
+    with_nest_mode :new do
       card_form :create, "main-success" => "REDIRECT",
                 class: "new-value-form",
                 success: { id: "_self",

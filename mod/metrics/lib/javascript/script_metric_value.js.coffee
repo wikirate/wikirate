@@ -1,17 +1,19 @@
 $.extend wikirate,
-  appendNewValueForm: ($this) ->
-    $form_slot = $this.slot().find('.card-slot.new_answer_form-view')
+
+# Hides the "Add answer" button and loads the form.
+# don't know what the source stuff is doing -pk
+  appendNewValueForm: ($button) ->
+    $form_slot = $button.slot().find('.card-slot.new_answer-view')
     $loader = wikirate.loader($form_slot, true)
     $loader.add()
+    $button.hide()
 
     source = $.urlParam('source')
     if source != null
       source = '&source=' + source
     else
       source = ''
-
-    load_path = wagn.prepUrl($this.data("url") + source)
-    $this.hide()
+    load_path = wagn.prepUrl($button.data("url") + source)
 
     $.get(load_path, ((data) ->
       $form_slot.append data
