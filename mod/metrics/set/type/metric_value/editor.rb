@@ -108,7 +108,7 @@ format :html do
     = field_nest :value, title: (no_title ? " " : 'Value')
   %h5
     Choose Sources or
-    %a.btn.btn-sm.btn-default._add_new_source{href: "#"}
+    %a.btn.btn-sm.btn-default._add_new_source{href: "#", data: {url: "test"}}
       %small
         %span.icon.icon-wikirate-logo-o.fa-lg
         Add a new source

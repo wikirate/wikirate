@@ -29,6 +29,10 @@ format :html do
     end
   end
 
+  def source_form_url
+    path action: :new, mark: :source, preview: true, company: card.company
+  end
+
   def new_buttons
     button_formgroup do
       [

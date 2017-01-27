@@ -72,7 +72,9 @@ format :html do
   def show_form_button
     classes = "_add_new_value btn-primary"
     classes << "hide" if voo.show?(:answer_form)
-    wrap_with :a, "Add answer", class: css_classes(button_classes, classes),
+    wrap_with :a, "Add answer",
+              href: "#",
+              class: css_classes(button_classes, classes),
               data: { url: path(view: :answer_form) }
 
   end

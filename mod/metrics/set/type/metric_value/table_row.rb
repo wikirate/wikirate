@@ -79,9 +79,9 @@ format :html do
   end
 
   view :record_list do
-    nest card.record_card, view: :value_table,
-                           hide: :chart,
-                           show: :add_answer_button
+    nest card.record_card, view: :answer_table,
+         hide: :chart,
+         show: :add_answer_button
   end
 
   def metric_values

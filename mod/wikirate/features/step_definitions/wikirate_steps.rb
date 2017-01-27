@@ -2,40 +2,35 @@ module Capybara
   module Node
     module Actions
       def labeled_field type, label, options={}
-        first :xpath,
-              "//label[descendant-or-self::text()='#{label}']/..//#{type}",
-              options
+        first :xpath, "//label[descendant-or-self::text()='#{label}']/..//#{type}", options
       end
 
       alias_method :original_fill_in, :fill_in
       def fill_in locator, options={}
-        binding.pry
-        el = labeled_field :input, locator
+        el = labeled_field(:input, locator) || labeled_field(:textarea, locator)
         el ? el.set(options[:with]) : original_fill_in(locator, options)
       end
 
       def select value, options={}
         el = labeled_field :select, options[:from], visible: false
         return super(value, options) unless el
-        if el
-          value = el.find("option", text: value, visible: false)["value"]
-          session.execute_script("$('##{el['id']}').val('#{value}')")
-          session.execute_script("$('##{el['id']}').trigger('chosen:updated')")
-          session.execute_script("$('##{el['id']}').change()")
+        value = el.find("option", text: value, visible: false)["value"]
+        session.execute_script("$('##{el['id']}').val('#{value}')")
+        session.execute_script("$('##{el['id']}').trigger('chosen:updated')")
+        session.execute_script("$('##{el['id']}').change()")
 
-          # code below doesn't work on wikirate because if you select an item in
-          # a very long list the list gets pushed below the navigation bar
-          # find("label", text: field).find(:xpath, "..//a[@class='chosen-single']")
-          #                           .click
-          # li = find("li", text: value, visible: false)
-          # li.click
-          # # If the list element is too far down the list then the first click
-          # # scrolls it up but doesn't select it. It needs another click.
-          # # A selected item is no longer visible (because the list disappears)
-          # if li.visible?
-          #   li.click
-          # end
-        end
+        # code below doesn't work on wikirate because if you select an item in
+        # a very long list the list gets pushed below the navigation bar
+        # find("label", text: field).find(:xpath, "..//a[@class='chosen-single']")
+        #                           .click
+        # li = find("li", text: value, visible: false)
+        # li.click
+        # # If the list element is too far down the list then the first click
+        # # scrolls it up but doesn't select it. It needs another click.
+        # # A selected item is no longer visible (because the list disappears)
+        # if li.visible?
+        #   li.click
+        # end
       end
     end
   end
