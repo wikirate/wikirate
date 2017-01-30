@@ -31,12 +31,12 @@ format :html do
   # end
 
   def add_value_button
-    card_link card.company_card, "Add nswer",
-              type: "button",
-              target: "_blank",
-              class: "btn btn-primary btn-sm",
-              path: { view: :new_metric_value,
-                      metric: [CGI.escape(card.metric_name.to_name.url_key)] }
+    link_to_card card.company_card, "Add answer",
+                 type: "button",
+                 target: "_blank",
+                 class: "btn btn-primary btn-sm",
+                 path: { view: :new_metric_value,
+                         metric: [CGI.escape(card.metric_name.to_name.url_key)] }
     # <<-HTML
     #     <a type="button" target="_blank" class="btn btn-primary btn-sm"
     #       href="#{add_value_url}">Add answer</a>
