@@ -2,7 +2,7 @@ $.extend wikirate,
 # Hides the "Add answer" button and loads the form.
 # don't know what the source stuff is doing -pk
   appendNewValueForm: ($button) ->
-    $form_slot = $button.slot().find('.card-slot.new_answer-view')
+    $form_slot = $button.slot().find('.card-slot.answer_table-view')
     $loader = wikirate.loader($form_slot, true)
     $loader.add()
     $button.hide()
@@ -12,24 +12,56 @@ $.extend wikirate,
       source = '&source=' + source
     else
       source = ''
+
     load_path = wagn.prepUrl($button.data("url") + source)
 
     $.get(load_path, ((data) ->
-      $form_slot.append data
+      $form_slot.prepend(data)
       wagn.initializeEditors($form_slot)
       $form_slot.trigger('slotReady')
       $loader.remove()
     ), "html").fail((xhr, d, e) ->
       $loader.remove()
-      $form_slot.parent().append(xhr.responseText)
+      $form_slot.prepend(xhr.responseText)
+    )
+
+  handleYearData: (ele, sourceYear) ->
+    $input = ele.find('.year input#pointer_item')
+    return unless $input.exists()
+    inputYear = $input.val()
+    NaNi = !isNaN(sourceYear)
+    updateInput = ->
+      ele.find('.year input#pointer_item').val(sourceYear) if NaNi
+    updateInput() if inputYear.trim() == ""
+    if inputYear.trim() != "" && NaNi && (parseInt(inputYear) != sourceYear)
+      message = 'Note: This source is for ' + inputYear +
+        ' Would you like to change the year of this' +
+        ' answer to ' + sourceYear + '?'
+      response = window.confirm(message)
+      if response
+        updateInput()
+
+
+  valueChecking: (ele, action) ->
+    path = encodeURIComponent(ele.data('path'))
+    action = '?set_flag=' + action
+    load_path = wagn.prepUrl(wagn.rootPath + '/update/' + path + action)
+    $parent = ele.closest('.double-check')
+    $parent = ele.closest('.RIGHT-checked_by') unless $parent.exists()
+    $parent.html('loading...')
+    $.get(load_path, ((data) ->
+      content = $(data).find('.card-body').html()
+      $parent.empty().html(content)
+    ), 'html').fail((xhr, d, e) ->
+      $parent.html('please <a href=/*signin>sign in</a>')
     )
 
 $(document).ready ->
   $loader_anime = $("#ajax_loader").html()
 
   # $(window).scroll ->
-  # if($("#source-preview-main").exists())
-  # stickContent()
+  #   if($("#source-preview-main").exists())
+  #     stickContent()
 
   $('body').on 'click','._view_methodology', ->
     $(this).text (i, old) ->
@@ -37,10 +69,10 @@ $(document).ready ->
       if old == btn_txt then 'Hide Methodology' else btn_txt
 
   $('body').on 'click','._value_check_button', ->
-    valueChecking($(this), 'checked')
+    wikirate.valueChecking($(this), 'checked')
 
   $('body').on 'click','._value_uncheck_button', ->
-    valueChecking($(this), 'not-checked')
+    wikirate.valueChecking($(this), 'not-checked')
 
   $('body').on 'click', '._add_new_value', ->
     $form = $(this).closest('.record-row')
@@ -81,43 +113,13 @@ $(document).ready ->
         .find('a.known-card, a.source-preview-link').replaceWith ->
           $ '<span>' + $(this).html() + '</span>'
       $container.append($sourceDetailsToggle)
-      handleYearData($parentForm, sourceYear)
+      wikirate.handleYearData($parentForm, sourceYear)
       wikirate.prepareSourceAppend(data)
     else
       $citeButton = $sourceInForm.find('._cite_button')
       if(!$citeButton.exists())
         $citeButton   = $(sourceInList+'.source-details').find('._cite_button')
         wikirate.sourceCiteButtons($citeButton, 'cite')
-
-  handleYearData = (ele, sourceYear) ->
-    $input = ele.find('.year input#pointer_item')
-    return unless $input.exists()
-    inputYear = $input.val()
-    NaNi = !isNaN(sourceYear)
-    updateInput = ->
-      ele.find('.year input#pointer_item').val(sourceYear) if NaNi
-    updateInput() if inputYear.trim() == ""
-    if inputYear.trim() != "" && NaNi && (parseInt(inputYear) != sourceYear)
-      message = 'Note: This source is for ' + inputYear +
-                ' Would you like to change the year of this' +
-                ' answer to ' + sourceYear + '?'
-      response = window.confirm(message)
-      if response
-        updateInput()
-
-  valueChecking = (ele, action) ->
-    path = encodeURIComponent(ele.data('path'))
-    action = '?set_flag=' + action
-    load_path = wagn.prepUrl(wagn.rootPath + '/update/' + path + action)
-    $parent = ele.closest('.double-check')
-    $parent = ele.closest('.RIGHT-checked_by') unless $parent.exists()
-    $parent.html('loading...')
-    $.get(load_path, ((data) ->
-      content = $(data).find('.card-body').html()
-      $parent.empty().html(content)
-    ), 'html').fail((xhr, d, e) ->
-      $parent.html('please <a href=/*signin>sign in</a>')
-    )
 
   # stick source preview container when scrolled the page
   stickContent = ->

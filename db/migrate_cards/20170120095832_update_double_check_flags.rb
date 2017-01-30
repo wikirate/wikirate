@@ -10,14 +10,15 @@ class UpdateDoubleCheckFlags < Card::Migration
 
     Card::Cache.reset_all
 
-    #update_existing_flags
+    # update_existing_flags
   end
 
   def update_existing_flags
     checked_ids = Hash.new { |h, k| h[k] = [] }
 
     puts "collecting double checks"
-    Card.search(right: { codename: "checked_by" }, return: :id).each do |card_id|
+    Card.search(right: { codename: "checked_by" },
+                return: :id).each do |card_id|
       Card.fetch(card_id).item_names.each do |user|
         checked_ids[user] << "~#{card_id}"
       end

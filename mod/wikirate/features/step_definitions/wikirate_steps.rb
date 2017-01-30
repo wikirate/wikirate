@@ -2,7 +2,9 @@ module Capybara
   module Node
     module Actions
       def labeled_field type, label, options={}
-        first :xpath, "//label[descendant-or-self::text()='#{label}']/..//#{type}", options
+        first :xpath,
+              "//label[descendant-or-self::text()='#{label}']/..//#{type}",
+              options
       end
 
       alias_method :original_fill_in, :fill_in
@@ -21,8 +23,9 @@ module Capybara
 
         # code below doesn't work on wikirate because if you select an item in
         # a very long list the list gets pushed below the navigation bar
-        # find("label", text: field).find(:xpath, "..//a[@class='chosen-single']")
-        #                           .click
+        # find("label", text: field)
+        #   .find(:xpath,"..//a[@class='chosen-single']")
+        #   .click
         # li = find("li", text: value, visible: false)
         # li.click
         # # If the list element is too far down the list then the first click
@@ -40,11 +43,7 @@ end
 # When /^(?:|I )single-select "([^"]*)" from "([^"]*)"$/ do |value, field|
 #   select =
 #     find("label", text: field).find(:xpath, "..//select", visible: false)
-#
-#
-#
 # end
-
 
 Capybara.default_wait_time = 5
 
@@ -54,11 +53,11 @@ When(/^I press "([^\"]*)" within "([^\"]*)"$/) do |button, scope_selector|
   end
 end
 
-#When(/^I wait for ajax response$/) do
+# When(/^I wait for ajax response$/) do
 #  Timeout.timeout(Capybara.default_wait_time) do
 #    sleep(0.5) while page.evaluate_script("jQuery.active") != 0
 #  end
-#end
+# end
 
 When(/^I print html of the page$/) do
   puts page.html
@@ -152,7 +151,6 @@ When(/^(?:|I )select "([^"]*)" from hidden "([^"]*)"$/) do |value, field|
   # our select list is not a real select list. it is a hidden input
   find(:xpath, "//input[@id='#{field}']", visible: false).set value
 end
-
 
 When /^(?:|I )single-select "([^"]*)" as value$/ do |value|
   find("#card_subcards__values_content_chosen a.chosen-single").click

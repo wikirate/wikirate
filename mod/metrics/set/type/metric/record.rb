@@ -20,12 +20,11 @@ format :html do
     <div class="row-icon no-icon-bg padding-top-10">
         #{link_to_card card,
                        nest(card.designer_image_card, view: :content, size: :small),
-                       class: "editor-image inherit-anchor"
-    }
+                       class: 'editor-image inherit-anchor'}
     </div>
     <div class="row-data">
       	<h4 class="metric-color">
-           #{link_to_card card, card.metric_title, class: "inherit-anchor"}
+           #{link_to_card card, card.metric_title, class: 'inherit-anchor'}
   			</h4>
     </div>
   </div>
@@ -47,7 +46,7 @@ format :html do
         <div id="methodology-info" class="collapse">
             <div class="row"><small><strong>Methodology </strong>
               #{nest card.methodology_card, view: :content,
-                     items: { view: :link } }
+                     items: { view: :link }}
             </small></div>
             <div class="row">
               <div class="row-icon">
@@ -81,7 +80,7 @@ format :html do
   end
 
   view :page_link_button do
-    link_to_card card, "#{fa_icon "external-link"} Metric Page",
+    link_to_card card, "#{fa_icon 'external-link'} Metric Page",
                  class: button_classes
   end
 end

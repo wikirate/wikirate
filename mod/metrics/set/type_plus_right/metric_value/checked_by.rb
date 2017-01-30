@@ -64,7 +64,6 @@ format :html do
     end
   end
 
-
   def check_interaction
     if card.user_checked?
       user_checked_text
@@ -110,7 +109,7 @@ format :html do
               data: { path: data_path }) do
       output [
                wrap_with(:span, check_button_text, class: "text"),
-               wrap_with(:span, "Yes, I checked", class: "hover-text"),
+               wrap_with(:span, "Yes, I checked", class: "hover-text")
              ]
     end
   end

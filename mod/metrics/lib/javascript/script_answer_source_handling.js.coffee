@@ -6,19 +6,27 @@ $.extend wikirate,
     resizeIframe($source_form_container)
     testSameOrigin(url, pageName) if (url)
 
-  sourceCiteButtons: (ele, action) ->
-    if(action == 'cite')
-      $citedButton = ele.removeClass("_cite_button btn-highlight")
-        .addClass("_cited_button btn-success").text("Cited!")
-      $citedButton.hover ( ->
-        $(this).text('Uncite!').addClass('btn-default')
-      ), ->
-        $(this).text('Cited!').removeClass('btn-default')
-    else
-      $citedButton = ele.removeClass("_cited_button btn-success")
-        .addClass("_cite_button btn-highlight").text("Cite!")
-      $citedButton.unbind('mouseenter mouseleave')
+  sourceCitation: (ele, action) ->
+    $source_form_container = $("#source-form-container")
+    $this = $(ele)
+    $timelineContainer = $this.closest("form")
+    sourceID = "#" + $this.closest(".TYPE-source").attr("id") + ".TYPE-source:first"
 
+    if !$timelineContainer.exists() and $(ele).closest('#source-form-container')
+      $timelineContainer = $('.record-row .card-slot>form')
+    args =
+      $relSource: $timelineContainer.find(".relevant-sources")
+      $citedSource: $timelineContainer.find(".cited-sources")
+      sourceName: $this.closest(".TYPE-source").data("card-name")
+      $sourceContainer: $timelineContainer.find(sourceID).parent().detach()
+      $sourceFormContr: $source_form_container.find(sourceID)
+      $hiddenInput: $('<input>').attr('type', 'hidden')
+        .addClass('pointer-select')
+    # .attr('name','card[subcards][+source][content]')
+    if(action == 'cite')
+      citeSource(args)
+    if(action == 'uncite')
+      unciteSource(args)
 
   appendSourceDetails: (sourceID) ->
     $source_form_container = $("#source-form-container")
@@ -35,6 +43,40 @@ $.extend wikirate,
     ), 'html').fail((xhr, d, e) ->
       $loader.remove()
     )
+
+  citeSource = (args) ->
+    $([args.$sourceFormContr.find("._cite_button"),
+      args.$sourceContainer.find("._cite_button"),]).each ->
+      sourceCiteButtons($(this), 'cite')
+
+    args.$citedSource.empty() if args.$citedSource.text().search("None") > -1
+    args.$hiddenInput.attr('value', args.sourceName)
+    args.$sourceContainer.append(args.$hiddenInput)
+    args.$citedSource.append(args.$sourceContainer.first())
+    args.$relSource.text("None") if args.$relSource.is(':empty')
+
+  unciteSource = (args) ->
+    $([args.$sourceFormContr.find("._cited_button"),
+      args.$sourceContainer.find("._cited_button"),]).each ->
+      sourceCiteButtons($(this), 'uncite')
+
+    args.$sourceContainer.find('input').remove()
+    args.$relSource.empty() if args.$relSource.text().search("None") > -1
+    args.$relSource.append(args.$sourceContainer.first())
+    args.$citedSource.text("None") if args.$citedSource.is(':empty')
+
+  sourceCiteButtons = (ele, action) ->
+    if(action == 'cite')
+      $citedButton = ele.removeClass("_cite_button btn-highlight")
+        .addClass("_cited_button btn-success").text("Cited!")
+      $citedButton.hover ( ->
+        $(this).text('Uncite!').addClass('btn-default')
+      ), ->
+        $(this).text('Cited!').removeClass('btn-default')
+    else
+      $citedButton = ele.removeClass("_cited_button btn-success")
+        .addClass("_cite_button btn-highlight").text("Cite!")
+      $citedButton.unbind('mouseenter mouseleave')
 
 # add or show source form on the right side
   appendSourceForm: ($button) ->
@@ -64,10 +106,10 @@ $.extend wikirate,
 
 $(document).ready ->
   $('body').on 'click', '._cite_button', ->
-    sourceCitation(this, 'cite')
+    wikirate.sourceCitation(this, 'cite')
 
   $('body').on 'click', '._cited_button', ->
-    sourceCitation(this, 'uncite')
+    wikirate.sourceCitation(this, 'uncite')
 
   $('body').on 'click', '._add_new_source', ->
     wikirate.appendSourceForm($(this))
@@ -90,53 +132,9 @@ $(document).ready ->
       $source_form_container.find('.source-details').addClass('hide')
       $sourcePreview = $source_form_container.find(sourceSelector)
       $source_form_container.find('form').addClass('hide')
-      handleYearData($parentForm, sourceYear)
+      wikirate.handleYearData($parentForm, sourceYear)
       if($sourcePreview.exists())
         $sourcePreview.removeClass('hide')
       else
         wikirate.appendSourceDetails(sourceID)
-
-  sourceCitation = (ele, action) ->
-    $source_form_container = $("#source-form-container")
-    $this = $(ele)
-    $timelineContainer = $this.closest("form")
-    sourceID = "#" + $this.closest(".TYPE-source").attr("id") + ".TYPE-source:first"
-
-    if !$timelineContainer.exists() and
-      $(ele).closest('#source-form-container')
-      $timelineContainer = $('.timeline-row .card-slot>form')
-    args =
-      $relSource: $timelineContainer.find(".relevant-sources")
-      $citedSource: $timelineContainer.find(".cited-sources")
-      sourceName: $this.closest(".TYPE-source").data("card-name")
-      $sourceContainer: $timelineContainer.find(sourceID).parent().detach()
-      $sourceFormContr: $source_form_container.find(sourceID)
-      $hiddenInput: $('<input>').attr('type', 'hidden')
-        .addClass('pointer-select')
-    # .attr('name','card[subcards][+source][content]')
-    if(action == 'cite')
-      citeSource(args)
-    if(action == 'uncite')
-      unciteSource(args)
-
-  citeSource = (args) ->
-    $([args.$sourceFormContr.find("._cite_button"),
-      args.$sourceContainer.find("._cite_button"),]).each ->
-      sourceCiteButtons($(this), 'cite')
-
-    args.$citedSource.empty() if args.$citedSource.text().search("None") > -1
-    args.$hiddenInput.attr('value', args.sourceName)
-    args.$sourceContainer.append(args.$hiddenInput)
-    args.$citedSource.append(args.$sourceContainer.first())
-    args.$relSource.text("None") if args.$relSource.is(':empty')
-
-  unciteSource = (args) ->
-    $([args.$sourceFormContr.find("._cited_button"),
-      args.$sourceContainer.find("._cited_button"),]).each ->
-      sourceCiteButtons($(this), 'uncite')
-
-    args.$sourceContainer.find('input').remove()
-    args.$relSource.empty() if args.$relSource.text().search("None") > -1
-    args.$relSource.append(args.$sourceContainer.first())
-    args.$citedSource.text("None") if args.$citedSource.is(':empty')
 
