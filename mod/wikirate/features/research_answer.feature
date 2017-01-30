@@ -31,6 +31,7 @@ Feature: Research answer
     And I click the drop down button for "2009"
     Then I should see "example.com"
     And I should see "Baam!"
+    And I should see "Add answer"
 
   Scenario: Create a metric value with duplicated source
     When I fill in "http://www.wikiwand.com/en/Star_Wars" for "URL"

@@ -65,6 +65,12 @@ format :html do
     end
   end
 
+  view :new_answer_success do
+    class_up "card-slot", "_show_add_new_value_button"
+    voo.hide! :chart
+    _render_answer_table
+  end
+
   def default_menu_args args
     args[:optional_horizontal_menu] = :hide
   end
