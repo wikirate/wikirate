@@ -62,7 +62,7 @@ Feature: Research answer from metric page
   Scenario: Adding a answer from record details on metric page
     When I go to card "Jedi+disturbances in the Force"
     And I click on item "Death Star"
-    And I click on "Add new answer"
+    And I click on "Add answer"
     And I wait for ajax response
     And I select "2015" from "Year"
     And I fill in "yes" for "Answer"
@@ -71,9 +71,5 @@ Feature: Research answer from metric page
     And I click on "Add and preview"
     And I click on "Cite!"
     And I click on "Submit"
-    # FIXME the new metric should appear witout reloading the page
-    # And I go to card "Jedi+disturbances in the Force"
-    #Then I should see "Death Star"
-    #When I go to card "Death Star"
     Then I should see "disturbances in the Force"
     And I should see "yes"

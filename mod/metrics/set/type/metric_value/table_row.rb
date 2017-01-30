@@ -81,7 +81,7 @@ format :html do
   def metric_values
     wrap_with :div, class: "row clearfix wiki" do
       nest(card.left, view: :core,
-           show: [:chart, :add_answer_redirect, :answer_form])
+           show: [:chart, :add_answer_redirect])
     end
   end
 

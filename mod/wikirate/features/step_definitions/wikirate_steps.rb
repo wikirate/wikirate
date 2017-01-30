@@ -71,8 +71,7 @@ end
 
 
 And(/^I click on item "([^"]*)"$/) do |item|
-  binding.pry
-  find("td", with: item).click
+  find("td", text: item).click
 end
 
 When(

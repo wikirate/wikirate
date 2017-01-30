@@ -94,7 +94,7 @@ format :html do
   def redirect_form_button
     link_to_card card, "Add answer",
                  class: "btn btn-sm btn-primary margin-12",
-                 path: { view: "research_page" }
+                 path: { view: "research_page", slot: { show: :answer_form } }
   end
 
 
