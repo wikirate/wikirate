@@ -3,8 +3,8 @@ format :html do
     voo.hide :thumbnail_link
     wrap_with :div do
       [
-          thumbnail_image_wrap,
-          _optional_render_thumbnail_title
+        thumbnail_image_wrap,
+        _optional_render_thumbnail_title
       ]
     end
   end
@@ -13,8 +13,8 @@ format :html do
     voo.show :thumbnail_link
     wrap_with :div, class: "thumbnail" do
       [
-          thumbnail_image_wrap,
-          thumbnail_text_wrap
+        thumbnail_image_wrap,
+        thumbnail_text_wrap
       ]
     end
   end
@@ -22,8 +22,8 @@ format :html do
   def thumbnail_image_wrap
     wrap_with :div, class: "pull-left image-box icon" do
       [
-          wrap_with(:span, "", class: "img-helper"),
-          thumbnail_image
+        wrap_with(:span, "", class: "img-helper"),
+        thumbnail_image
       ]
     end
   end
@@ -31,8 +31,8 @@ format :html do
   def thumbnail_text_wrap
     wrap_with :div, class: "thumbnail-text" do
       [
-          thumbnail_title,
-          _optional_render_thumbnail_subtitle
+        thumbnail_title,
+        _optional_render_thumbnail_subtitle
       ]
     end
   end

@@ -380,6 +380,15 @@
     border-bottom-left-radius: 0;
 }
 
+//delete with new homepage design
+.homepage-company-item .metric-info {
+    margin: 0;
+}
+.homepage-company-item .question-container {
+    border-top:1px solid $border-color;
+}
+
+
 .company-details-header,
 .metric-details-header,
 .metric-info {

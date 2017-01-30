@@ -1,7 +1,7 @@
 PATH
-  remote: ./vendor/wagn/card
+  remote: vendor/wagn/card
   specs:
-    card (1.20.0)
+    card (1.20.1)
       bootstrap-kaminari-views (~> 0)
       carrierwave (= 1.0.0.rc)
       coderay (~> 1.0)
@@ -20,10 +20,10 @@ PATH
       uuid (~> 2.3)
 
 PATH
-  remote: ./vendor/wagn/wagn
+  remote: vendor/wagn/wagn
   specs:
-    wagn (1.20.0)
-      card (= 1.20.0)
+    wagn (1.20.1)
+      card (= 1.20.1)
       rails (~> 4.2)
 
 GEM
@@ -435,4 +435,4 @@ DEPENDENCIES
   wbench
 
 BUNDLED WITH
-   1.13.7
+   1.14.3
