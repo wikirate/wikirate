@@ -24,12 +24,6 @@ format :html do
     end
   end
 
-  # def add_value_url
-  #   "/#{card.company.to_name.url_key}?view=new_metric_value&"\
-  #           "metric[]=#{CGI.escape(card.metric_name.to_name.url_key)}"
-  #
-  # end
-
   def add_value_button
     link_to_card card.company_card, "Add answer",
                  type: "button",
@@ -86,7 +80,8 @@ format :html do
 
   def metric_values
     wrap_with :div, class: "row clearfix wiki" do
-      nest(card.left, view: :core, show: :chart)
+      nest(card.left, view: :core,
+           show: [:chart, :add_answer_redirect, :answer_form])
     end
   end
 

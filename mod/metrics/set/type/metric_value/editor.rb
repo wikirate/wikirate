@@ -2,8 +2,6 @@ format :html do
   view :new, cache: :never do
     return _render_no_frame_form if Env.params[:noframe] == "true"
     @form_root = true
-    voo.editor = :metric_value_landing
-    frame { _optional_render :content_formgroup }
     subformat(Card[:research_page])._render_new
   end
 

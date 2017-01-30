@@ -8,8 +8,11 @@ format :html do
     voo.hide! :chart
     voo.show! :compact_header
     voo.hide! :add_answer_redirect
-    wrap do
-      _render_content
+    frame do
+      [
+        _render_content,
+        nest(:research_page, view: :source_side)
+      ]
     end
   end
 
@@ -30,13 +33,6 @@ format :html do
       ]
     end
   end
-
-  # view :content do
-  #   if all_answers.empty? || voo.show?(:source_preview)
-  #     #class_up "card-slot", "_append_new_value_form"
-  #   end
-  #   super()
-  # end
 
   view :buttons do
     wrap_with :div do
@@ -71,6 +67,16 @@ format :html do
     _render_answer_table
   end
 
+  def add_answer_button
+    return "" unless metric_card.metric_type_codename == :researched &&
+      metric_card.user_can_answer?
+    if voo.show?(:add_answer_redirect) && voo.hide?(:answer_form)
+      redirect_form_button
+    else
+      show_form_button
+    end
+  end
+
   def default_menu_args args
     args[:optional_horizontal_menu] = :hide
   end
@@ -85,17 +91,12 @@ format :html do
 
   end
 
-  def add_answer_button
-    return "" unless metric_card.metric_type_codename == :researched &&
-      metric_card.user_can_answer?
-    if voo.show?(:add_answer_redirect) && voo.hide?(:answer_form)
-      link_to_card card, "Add answer",
-                   class: "btn btn-sm btn-primary margin-12",
-                   path: { view: "research" }
-    else
-      show_form_button
-    end
+  def redirect_form_button
+    link_to_card card, "Add answer",
+                 class: "btn btn-sm btn-primary margin-12",
+                 path: { view: "research_page" }
   end
+
 
   view :image_link do
     # TODO: change the css so that we don't need the extra logo class here

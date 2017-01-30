@@ -36,7 +36,7 @@ format :html do
     if project
       project.field(:metric).item_names
     else
-      params[:metric] || card.metric_card.item_names
+      Array(params[:metric] || card.metric_card.item_names)
     end
   end
 
@@ -45,6 +45,7 @@ format :html do
   end
 
   view :landing_form, cache: :never do
+    field_content_from_params
     html_class = "col-md-5 border-right panel-default min-page-height"
     wrap_with :div, class: html_class do
       card_form :update, success: { view: :open } do
@@ -55,6 +56,15 @@ format :html do
           next_button
         ]
       end
+    end
+  end
+
+  def field_content_from_params
+    if params[:metric] || project
+      card.metric_card.update_attributes! content: metrics.to_pointer_content
+    end
+    if params[:company]
+      card.company_card.content.update_attributes! content: params[:company]
     end
   end
 
@@ -105,13 +115,11 @@ format :html do
   end
 
   def company_field
-    field_nest(:wikirate_company, title: "Company")
+    field_nest :wikirate_company, title: "Company"
   end
 
   def metric_field
-    metric_field = Card.fetch card.cardname.field(:metric),
-                              new: { content: Env.params[:metric] }
-    nest metric_field, title: "Metrics"
+    field_nest :metric, title: "Metrics"
   end
 
   def next_button

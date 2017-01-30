@@ -8,6 +8,7 @@ module Capybara
       end
 
       alias_method :original_fill_in, :fill_in
+      alias_method :original_select, :select
       def fill_in locator, options={}
         el = labeled_field(:input, locator) || labeled_field(:textarea, locator)
         el ? el.set(options[:with]) : original_fill_in(locator, options)
@@ -15,11 +16,16 @@ module Capybara
 
       def select value, options={}
         el = labeled_field :select, options[:from], visible: false
-        return super(value, options) unless el
-        value = el.find("option", text: value, visible: false)["value"]
-        session.execute_script("$('##{el['id']}').val('#{value}')")
-        session.execute_script("$('##{el['id']}').trigger('chosen:updated')")
-        session.execute_script("$('##{el['id']}').change()")
+        el ? chosen_select(el, value) : original_select(value, options)
+      end
+
+      def chosen_select select_element, value
+        value =
+          select_element.find("option", text: value, visible: false)["value"]
+        id = select_element["id"]
+        session.execute_script("$('##{id}').val('#{value}')")
+        session.execute_script("$('##{id}').trigger('chosen:updated')")
+        session.execute_script("$('##{id}').change()")
 
         # code below doesn't work on wikirate because if you select an item in
         # a very long list the list gets pushed below the navigation bar
@@ -61,6 +67,12 @@ end
 
 When(/^I print html of the page$/) do
   puts page.html
+end
+
+
+And(/^I click on item "([^"]*)"$/) do |item|
+  binding.pry
+  find("td", with: item).click
 end
 
 When(
