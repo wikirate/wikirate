@@ -1,13 +1,17 @@
+# a pointer hack:
+# If the first item is "request" then the second item is the requester
+# and all users after that are checkers
+
 def user
   Auth.current
 end
 
 def user_checked?
-  !check_requested? && checkers.include?(user.name)
+  checked? && checkers.include?(user.name)
 end
 
 def checkers
-  item_names
+  check_requested? ? items[2..-1] : items
 end
 
 def checked?
@@ -15,11 +19,15 @@ def checked?
 end
 
 def check_requested?
-  item_names.first == "request"
+  items.first == "request" || items.size <= 2
 end
 
 def check_requester
-  item_names.last
+  items.second
+end
+
+def items
+  @items ||= item_names
 end
 
 def option_names
@@ -99,7 +107,7 @@ format :html do
   def check_button_text
     text = "Double check"
     return text unless card.check_requested?
-    text << " #{request_icon} requested by #{card.requester}"
+    text << " #{request_icon} requested by #{card.check_requester}"
     text
   end
 
@@ -131,19 +139,27 @@ end
 
 event :user_checked_value, :prepare_to_store,
       on: :update, when: :add_checked_flag? do
-  add_item user.name unless user_checked?
+  add_item user.name, true unless user_checked?
   update_user_check_log.add_id left_id
 end
 
 event :user_unchecked_value, :prepare_to_store,
       on: :update, when: :remove_checked_flag? do
-  drop_item user.name if user_checked?
+  drop_checker user.name if user_checked?
   update_user_check_log.drop_id left_id
 end
 
 event :user_requests_check, :prepare_to_store,
       on: :update, when: :add_needs_check_flag? do
   self.content = ["request", user.name].to_pointer_content
+end
+
+def drop_checker user
+  if check_requested? && requester == user
+    insert_item user, 1 # deletes all other occurences
+  else
+    drop_item user
+  end
 end
 
 def add_checked_flag?

@@ -1,3 +1,5 @@
+card_accessor :unknown
+
 event :update_answer_lookup_table_due_to_value_change, :finalize do
   answer_id = left ? left.id : director.parent.card.id
   # FIXME: director.parent thing fixes case where metric answer is renamed.
@@ -9,6 +11,15 @@ event :mark_as_imported, before: :finalize_action do
   @current_action.comment = "imported"
 end
 
+event :unknown_value, :prepare_to_validate do
+  self.content = "Unknown" if unknown.present?
+  remove_subfield :unknown
+end
+
+def unknown?
+  content == "Unknown"
+end
+
 format :html do
   view :editor do
     super() if metric_card && metric_card.value_type == "Free Text"
@@ -18,8 +29,17 @@ format :html do
   end
 
   view :edit_in_form, cache: :never, perms: :update, tags: :unknown_ok do
-    super() +
-      field_nest(card.left.fetch(trait: :checked_by),
-                 hide: :title, view: :edit_in_form)
+    super() + unknown_checkbox + check_request_checkbox
+  end
+
+  def unknown_checkbox
+    field = unknown_card
+    field.content =  unknown? ? "[[Unknown]]" : ""
+    nest field, hide: :title, view: :edit_in_form
+  end
+
+  def check_request_checkbox
+    nest card.left.fetch(trait: :checked_by),
+         hide: :title, view: :edit_in_form
   end
 end
