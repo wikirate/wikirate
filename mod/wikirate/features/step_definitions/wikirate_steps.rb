@@ -1,28 +1,8 @@
 module Capybara
   module Node
     module Actions
-      def labeled_field type, label, options={}
-        first :xpath,
-              "//label[descendant-or-self::text()='#{label}']/..//#{type}",
-              options
-      end
-
-      alias_method :original_fill_in, :fill_in
-      alias_method :original_select, :select
-      def fill_in locator, options={}
-        el = labeled_field(:input, locator) || labeled_field(:textarea, locator)
-        el ? el.set(options[:with]) : original_fill_in(locator, options)
-      end
-
-      def select value, options={}
-        el = labeled_field :select, options[:from], visible: false
-        el ? chosen_select(el, value) : original_select(value, options)
-      end
-
-      def chosen_select select_element, value
-        value =
-          select_element.find("option", text: value, visible: false)["value"]
-        id = select_element["id"]
+      def choose_value el, value
+        id = el["id"]
         session.execute_script("$('##{id}').val('#{value}')")
         session.execute_script("$('##{id}').trigger('chosen:updated')")
         session.execute_script("$('##{id}').change()")

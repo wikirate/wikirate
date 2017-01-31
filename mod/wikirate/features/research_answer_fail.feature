@@ -29,7 +29,7 @@ Feature: Research answer fail
 
   Scenario: Missing value
     When I click on "Cite!"
-    And I fill in "2009" for "Year"
+    And I select "2009" from "Year"
     And I fill in "Baam!" for "Comment"
     And I press "Submit"
     And I should see "Problems"
