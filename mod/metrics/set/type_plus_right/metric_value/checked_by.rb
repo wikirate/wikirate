@@ -128,11 +128,10 @@ format :html do
 
   def user_checked_text
     icon_class = "fa fa-times-circle-o fa-lg cursor-p _value_uncheck_button"
-    output
-      [
-        wrap_with(:i, '"Yes, I checked the value"'),
-        wrap_with(:i, "", class: icon_class, data: { path: data_path })
-      ]
+    output [
+             wrap_with(:i, '"Yes, I checked the value"'),
+             wrap_with(:i, "", class: icon_class, data: { path: data_path })
+           ]
   end
 end
 
@@ -174,4 +173,3 @@ end
 def remove_checked_flag?
   Env.params["set_flag"] == "not-checked"
 end
-

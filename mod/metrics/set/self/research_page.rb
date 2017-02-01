@@ -109,9 +109,8 @@ format :html do
   end
 
   def hidden_source_field
-    if (source = Env.params[:source])
-      hidden_field "hidden_source", value: source
-    end
+    return unless (source = Env.params[:source])
+    hidden_field "hidden_source", value: source
   end
 
   def company_field

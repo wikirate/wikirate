@@ -25,6 +25,7 @@ class Card
     end
 
     def topic_query value
+      binding.pry
       metric_ids =
         Card.search right_plus: [Card::WikirateTopicID, { refer_to: value }],
                     return: :id

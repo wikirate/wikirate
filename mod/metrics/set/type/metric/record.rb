@@ -15,20 +15,20 @@ format :html do
 
   view :compact_header do
     <<-HTML
-        <div class="metric-details-header col-md-12 col-xs-12 padding-top-10">
-  <div class="row">
-    <div class="row-icon no-icon-bg padding-top-10">
-        #{link_to_card card,
-                       nest(card.designer_image_card, view: :content, size: :small),
-                       class: 'editor-image inherit-anchor'}
-    </div>
-    <div class="row-data">
-      	<h4 class="metric-color">
-           #{link_to_card card, card.metric_title, class: 'inherit-anchor'}
-  			</h4>
-    </div>
-  </div>
-</div>
+      <div class="metric-details-header col-md-12 col-xs-12 padding-top-10">
+        <div class="row">
+          <div class="row-icon no-icon-bg padding-top-10">
+              #{link_to_card card,
+                             nest(card.designer_image_card, view: :content, size: :small),
+                             class: 'editor-image inherit-anchor'}
+          </div>
+          <div class="row-data">
+            	<h4 class="metric-color">
+                 #{link_to_card card, card.metric_title, class: 'inherit-anchor'}
+        			</h4>
+          </div>
+        </div>
+      </div>
     HTML
   end
 

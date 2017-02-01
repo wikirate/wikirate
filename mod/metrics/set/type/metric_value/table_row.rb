@@ -29,8 +29,10 @@ format :html do
                  type: "button",
                  target: "_blank",
                  class: "btn btn-primary btn-sm",
-                 path: { view: :new_metric_value,
-                         metric: [CGI.escape(card.metric_name.to_name.url_key)] }
+                 path: {
+                   view: :new_metric_value,
+                   metric: [CGI.escape(card.metric_name.to_name.url_key)]
+                 }
     # <<-HTML
     #     <a type="button" target="_blank" class="btn btn-primary btn-sm"
     #       href="#{add_value_url}">Add answer</a>

@@ -137,4 +137,3 @@ $(document).ready ->
         $sourcePreview.removeClass('hide')
       else
         wikirate.appendSourceDetails(sourceID)
-
