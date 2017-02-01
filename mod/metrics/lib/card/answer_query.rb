@@ -95,7 +95,6 @@ class Card
     def restrict_to_ids col, ids
       ids = Array(ids)
       if @restrict_to_ids[col]
-        binding.pry
         @restrict_to_ids[col] &= ids
       else
         @restrict_to_ids[col] = ids
@@ -147,7 +146,6 @@ class Card
     end
 
     def process_filter_option key, value
-      #binding.pry
       if exact_match_filters.include? key
         filter key, value
       elsif like_filters.include? key
