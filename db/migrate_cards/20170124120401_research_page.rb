@@ -7,6 +7,16 @@ class ResearchPage < Card::Migration
 
     ensure_field_rules "Company"
     ensure_field_rules "Metric"
+
+    ensure_card "Unknown", codename: "unknown"
+    ensure_card "Unknown+*right+*input", content: "checkbox"
+    ensure_card "Unknown+*right+*add help",
+                content: "When you cannot find an answer in the relevant documents, select <em>'Unknown'</em>"
+    ensure_card "Unknown+*right+*default", type_id: Card::PointerID
+    ensure_card "Unknown+*right+*options",
+                type_id: Card::PointerID,
+                content: "[[Unknown]]"
+
     # ensure_card "Metric value+company+*type plus right+*input",
     #             content: "select"
   end
