@@ -251,3 +251,8 @@ end
 When(/^I maximize the browser$/) do
   page.driver.browser.manage.window.maximize
 end
+
+
+When(/^I click on icon "(.*)"$/) do |icon|
+  find(:css, "i.fa.fa-#{icon}").click
+end

@@ -33,8 +33,8 @@ format :html do
   end
 
   def unknown_checkbox
-    field = unknown_card
-    field.content =  unknown? ? "[[Unknown]]" : ""
+    field = card.unknown_card
+    field.content = card.unknown? ? "[[Unknown]]" : ""
     nest field, hide: :title, view: :edit_in_form
   end
 

@@ -19,7 +19,7 @@ def checked?
 end
 
 def check_requested?
-  items.first == "request" || items.size <= 2
+  items.first == "request" && items.size <= 2
 end
 
 def check_requester

@@ -6,13 +6,24 @@ Background:
   Given I am signed in as Joe User
 
 Scenario: Double check source
-  When I go to "Jedi+disturbances in the Force+Death Star+2000"
+  When I go to card "Jedi+disturbances in the Force+Death Star+2000"
   Then I should see "Double check"
   When I click on "Double check"
-  Then I should see "I double checked"
+  Then I should see "Yes, I checked"
+  When I click on icon "times-circle"
+  Then I should see "Double check"
 
-  And I select "Apple Inc" from "Company"
-  And I select "Joe User+researched" from "Metrics"
-  And I click on "Next"
-  And I click on "Add answer"
-  And I click on "Add a new source"
+  Scenario: Request double check
+    When edit "Jedi+disturbances in the Force+Death Star+2000"
+    And I check "Request that another researcher double checks this value"
+    And I submit
+    Then I should see "Double check requested by Joe User"
+    When I click on "Double check requested by Joe User"
+  Then I should see "I double checked"
+    When I click on icon "times-circle"
+    Then I should see "Double check requested by Joe User"
+    When I click on "edit"
+    And I uncheck  "Request that another researcher double checks this value"
+    And I submit
+    Then I should see "Double check"
+    And I should not see "requested by Joe User"
