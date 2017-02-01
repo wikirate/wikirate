@@ -252,7 +252,10 @@ When(/^I maximize the browser$/) do
   page.driver.browser.manage.window.maximize
 end
 
+ICONS = {
+  "remove" => "times-circle-o"
+}.freeze
 
-When(/^I click on icon "(.*)"$/) do |icon|
-  find(:css, "i.fa.fa-#{icon}").click
+When(/^I click on the "(.*)" icon$/) do |icon|
+  find(:css, "i.fa.fa-#{ICONS[icon]}").click
 end

@@ -23,6 +23,7 @@ end
 
 format :html do
   view :open_content do
+    voo.hide! :chart # hide it in value_field
     bs do
       layout do
         row 3, 9 do

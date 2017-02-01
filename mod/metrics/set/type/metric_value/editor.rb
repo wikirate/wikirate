@@ -42,7 +42,6 @@ format :html do
     end
   end
 
-
   def hr
     "<hr />"
   end

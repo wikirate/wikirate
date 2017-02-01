@@ -35,6 +35,12 @@ def option_names metric_name
   option_card.item_names context: :raw
 end
 
+event :check_length, :validate, on: :save, changed: :content do
+  if content.size >= 1000
+    errors.add :value, "too long (not more than 1000 characters)"
+  end
+end
+
 format :html do
   def metric_name_from_params
     Env.params[:metric]
@@ -90,7 +96,8 @@ event :update_related_calculations, :finalize,
   end
 end
 
-event :update_double_check_flag, :validate, on: [:update, :delete] do
+event :update_double_check_flag, :validate, on: [:update, :delete],
+      changed: :content do
   return unless left.fetch trait: :checked_by
   attach_subcard cardname.left_name.field_name(:checked_by), content: ""
 end

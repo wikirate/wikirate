@@ -10,8 +10,8 @@ def user_checked?
   checked? && checkers.include?(user.name)
 end
 
-def checkers
-  check_requested? ? items[2..-1] : items
+def other_user_requested_check?
+  check_requested? && check_requester != user.name
 end
 
 def checked?
@@ -20,6 +20,10 @@ end
 
 def check_requested?
   items.first == "request" && items.size <= 2
+end
+
+def checkers
+  check_requested? ? items[2..-1] : items
 end
 
 def check_requester
@@ -47,20 +51,20 @@ format :html do
     end
   end
 
+  view :edit_in_form do
+    card.other_user_requested_check? ? "" : super()
+  end
+
   def part_view
     :checkbox
   end
 
-  def option_label *_args
+  def option_label_text _option_name
     "#{request_icon} Request that another researcher double checks this value"
   end
 
   view :open_content do
     _render_double_check_view
-  end
-
-  view :editor do |args|
-    hidden_field_tag(:set_flag, "please-check") + super(args)
   end
 
   view :double_check_view do
@@ -87,7 +91,7 @@ format :html do
     links = subformat(card).render_shorter_search_result items: { view: :link }
     %(
       <div class="padding-top-10">
-        <i>#{links}<span> checked the value </span></i>
+        <i>#{links} <span>checked the value</span></i>
       </div>
     )
   end
@@ -117,7 +121,7 @@ format :html do
               data: { path: data_path }) do
       output [
                wrap_with(:span, check_button_text, class: "text"),
-               wrap_with(:span, "Yes, I checked", class: "hover-text")
+               wrap_with(:span, "Yes, I checked the value", class: "hover-text")
              ]
     end
   end
@@ -126,7 +130,7 @@ format :html do
     icon_class = "fa fa-times-circle-o fa-lg cursor-p _value_uncheck_button"
     output
       [
-        wrap_with(:i, '"Yes, I checked"'),
+        wrap_with(:i, '"Yes, I checked the value"'),
         wrap_with(:i, "", class: icon_class, data: { path: data_path })
       ]
   end
@@ -149,9 +153,10 @@ event :user_unchecked_value, :prepare_to_store,
   update_user_check_log.drop_id left_id
 end
 
-event :user_requests_check, :prepare_to_store,
-      on: :update, when: :add_needs_check_flag? do
-  self.content = ["request", user.name].to_pointer_content
+event :user_requests_check, :prepare_to_store do
+  if content == "[[request]]"
+    self.content = ["request", user.name].to_pointer_content
+  end
 end
 
 def drop_checker user
@@ -170,6 +175,3 @@ def remove_checked_flag?
   Env.params["set_flag"] == "not-checked"
 end
 
-def add_needs_check_flag?
-  Env.params["set_flag"] == "please-check"
-end
