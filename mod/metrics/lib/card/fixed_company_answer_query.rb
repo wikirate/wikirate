@@ -37,7 +37,7 @@ class Card
       metric_ids =
         Card.search referred_to_by: "#{value}+#{Card.fetch_name :metric}",
                     return: :id
-      restrict_to_ids metric_id, metric_ids
+      restrict_to_ids :metric_id, metric_ids
     end
 
     def importance_query value

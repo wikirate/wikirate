@@ -69,7 +69,8 @@ Feature: Research answer from metric page
     And I click on "Add a new source"
     And I fill in "http://example.com" for "URL"
     And I click on "Add and preview"
-    And I click on "Cite!"
+    # if window is to small cite is hidden under the iframe
+    And I click! on "Cite!"
     And I click on "Submit"
     Then I should see "disturbances in the Force"
     And I should see "yes"

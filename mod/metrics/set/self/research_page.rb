@@ -29,7 +29,7 @@ format :html do
   end
 
   def companies
-    params[:company] || card.wikirate_company_card.item_names
+    Array(params[:company] || card.wikirate_company_card.item_names)
   end
 
   def metrics

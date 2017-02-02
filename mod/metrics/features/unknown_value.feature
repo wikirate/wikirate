@@ -1,5 +1,5 @@
 @javascript
-Feature: Double check
+Feature: Unknown value
   As signed in user I can mark a value as unknown
 
   Background:
@@ -7,7 +7,7 @@ Feature: Double check
 
   Scenario: Mark answer as unknown
     When I go to card "Jedi+disturbances in the Force+Death Star+2000"
-    Then I should see "Yes"
+    Then I should see "yes"
     When I edit "Jedi+disturbances in the Force+Death Star+2000"
     And I check "Unknown"
     And I submit

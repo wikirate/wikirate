@@ -248,6 +248,10 @@ When(/^I press link button "(.*)"$/) do |name|
   find("a", text: name, visible: false).click
 end
 
+When /^(?:|I )click! on "([^"]*)"$/ do |link|
+  click_link_or_button(link, visible: false)
+end
+
 When(/^I maximize the browser$/) do
   page.driver.browser.manage.window.maximize
 end
@@ -258,4 +262,8 @@ ICONS = {
 
 When(/^I click on the "(.*)" icon$/) do |icon|
   find(:css, "i.fa.fa-#{ICONS[icon]}").click
+end
+
+And(/^I hover over link "([^"]*)"$/) do |text|
+  find("a", text: text).hover
 end

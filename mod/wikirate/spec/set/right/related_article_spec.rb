@@ -83,9 +83,9 @@ describe Card::Set::Right::RelatedArticles do
           with_tag "a", with: { href: "/test_company+test_topic" } do
             with_tag "span", text: "test_company"
             with_tag "span", text: "test_topic"
-            with_tag "span", with: { class: "claim-next-action" } do
+          end
+          with_tag "span", with: { class: "claim-next-action" } do
               with_tag "a", with: { href: claim_action_link }, text: "Cite!"
-            end
           end
         end
 
@@ -93,12 +93,12 @@ describe Card::Set::Right::RelatedArticles do
           with_tag "a", with: { href: "/test_company+Force" } do
             with_tag "span", text: "test_company"
             with_tag "span", text: "Force"
-            with_tag "span", with: { class: "claim-next-action" } do
-              with_tag "a", with: { href: "/test_company+Force?"\
-                                          "citable=whateverclaim&"\
-                                          "edit_article=true"
-                                  }, text: "Cite!"
-            end
+          end
+          with_tag "span", with: { class: "claim-next-action" } do
+            with_tag "a", with: { href: "/test_company+Force?"\
+                                        "citable=whateverclaim&"\
+                                        "edit_article=true"
+            }, text: "Cite!"
           end
         end
 
@@ -106,11 +106,11 @@ describe Card::Set::Right::RelatedArticles do
           with_tag "a", with: { href: "/Death_Star+test_topic" } do
             with_tag "span", text: "Death Star"
             with_tag "span", text: "test_topic"
-            with_tag "span", with: { class: "claim-next-action" } do
-              with_tag "a", with: { href: "/Death_Star+test_topic?"\
-                                          "citable=whateverclaim"\
-                                          "&edit_article=true" }, text: "Cite!"
-            end
+          end
+          with_tag "span", with: { class: "claim-next-action" } do
+            with_tag "a", with: { href: "/Death_Star+test_topic?"\
+                                        "citable=whateverclaim"\
+                                        "&edit_article=true" }, text: "Cite!"
           end
         end
       end

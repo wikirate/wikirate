@@ -34,7 +34,10 @@ Feature: Double check
     And I go to card "Jedi+disturbances in the Force+Death Star+2000"
     And I click on "Double check requested by Joe User"
     Then I should see "Yes, I checked the value"
+
     When I click on the "remove" icon
+    # move focuse away from double check button
+    And I hover over link "Joe Admin"
     Then I should see "Double check requested by Joe User"
     When I edit "Jedi+disturbances in the Force+Death Star+2000"
     Then I should not see "Request that another researcher double checks this value"
