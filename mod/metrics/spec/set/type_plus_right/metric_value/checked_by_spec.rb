@@ -39,12 +39,18 @@ describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
   end
 
   describe "uncheck value" do
-    it "checks the metric value" do
+    before do
       Card::Env.params["set_flag"] = "not-checked"
+    end
+
+    subject(:cb_card) do
       cb_card = answer_card.fetch trait: :checked_by,
                                   new: { content: "[[Joe User]]" }
       cb_card.save!
       cb_card.update_attributes! subcards: {}
+    end
+
+    it "checks the metric value" do
       expect(cb_card.item_names.size).to eq(0)
     end
   end

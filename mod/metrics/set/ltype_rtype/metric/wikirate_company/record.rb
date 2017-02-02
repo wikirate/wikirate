@@ -17,9 +17,9 @@ format :html do
   end
 
   view :answer_side do
-    #wrap_with :div, class: "stick-left" do
+    # wrap_with :div, class: "stick-left" do
     _render_content
-    #end
+    # end
   end
 
   # used in four places:
@@ -94,7 +94,6 @@ format :html do
               href: "#",
               class: css_classes(button_classes, classes),
               data: { url: path(view: :answer_form) }
-
   end
 
   def redirect_form_button
@@ -102,7 +101,6 @@ format :html do
                  class: "btn btn-sm btn-primary margin-12",
                  path: { view: "research_page", slot: { show: :answer_form } }
   end
-
 
   view :image_link do
     # TODO: change the css so that we don't need the extra logo class here

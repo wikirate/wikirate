@@ -2,7 +2,7 @@ format :html do
   # table with existing values
   # and source side for adding new values
   view :research_answer do
-    #voo.show! :answer_form
+    # voo.show! :answer_form
     voo.editor = :inline_nests
     frame do
       render_haml :research_answer
@@ -82,7 +82,9 @@ format :html do
       right_plus: [["company", { refer_to: card.company }],
                    ["report_type", {
                      refer_to: {
-                       referred_to_by: card.metric + "+report_type" } }]]
+                       referred_to_by: card.metric + "+report_type"
+                     }
+                   }]]
     )
   end
 

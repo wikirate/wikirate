@@ -1,10 +1,20 @@
 
 describe Card::Set::Right::RelatedArticles do
+  let :analysis_card do
+    @sample_analysis = sample_analysis
+  end
+
+  let :topic do
+    sample_topic.name
+  end
+
+  let :company do
+    sample_company.name
+  end
+
   before do
     login_as "joe_user"
-    @sample_company = sample_company
-    @sample_topic = sample_topic
-    @sample_analysis = sample_analysis
+    analysis_card
     @sample_claim = sample_note
     @related_article_card = @sample_claim.fetch trait: :related_articles
   end
@@ -31,10 +41,10 @@ describe Card::Set::Right::RelatedArticles do
       claim_card = create_claim(
         "whateverclaim",
         "+company" => {
-          content: "[[#{new_company.name}]]\r\n[[#{@sample_company.name}]]"
+          content: "[[#{new_company.name}]]\r\n[[#{company}]]"
         },
         "+topic" => {
-          content: "[[#{new_topic.name}]]\r\n[[#{@sample_topic.name}]]"
+          content: "[[#{new_topic.name}]]\r\n[[#{topic}]]"
         }
       )
 
@@ -43,18 +53,18 @@ describe Card::Set::Right::RelatedArticles do
         "I need some kitkat.#{claim_card.default_citation}"
       sample_article.save
 
-      Card.create name: "#{new_company.name}+#{@sample_topic.name}",
+      Card.create name: "#{new_company.name}+#{topic}",
                   type_id: Card::WikirateAnalysisID
 
-      Card.create name: "#{new_company.name}+#{@sample_topic.name}+"\
+      Card.create name: "#{new_company.name}+#{topic}+"\
                         "#{Card[:overview].name}",
                   type_id: Card::BasicID,
                   content: "Today is Friday."
 
-      Card.create name: "#{@sample_company.name}+#{new_topic.name}",
+      Card.create name: "#{company}+#{new_topic.name}",
                   type_id: Card::WikirateAnalysisID
 
-      Card.create name: "#{@sample_company.name}+#{new_topic.name}+"\
+      Card.create name: "#{company}+#{new_topic.name}+"\
                         "#{Card[:overview].name}",
                   type_id: Card::BasicID,
                   content: "Today is Friday."
@@ -85,7 +95,7 @@ describe Card::Set::Right::RelatedArticles do
             with_tag "span", text: "test_topic"
           end
           with_tag "span", with: { class: "claim-next-action" } do
-              with_tag "a", with: { href: claim_action_link }, text: "Cite!"
+            with_tag "a", with: { href: claim_action_link }, text: "Cite!"
           end
         end
 
@@ -97,8 +107,7 @@ describe Card::Set::Right::RelatedArticles do
           with_tag "span", with: { class: "claim-next-action" } do
             with_tag "a", with: { href: "/test_company+Force?"\
                                         "citable=whateverclaim&"\
-                                        "edit_article=true"
-            }, text: "Cite!"
+                                        "edit_article=true" }, text: "Cite!"
           end
         end
 
@@ -135,14 +144,17 @@ describe Card::Set::Right::RelatedArticles do
       html = format.analysis_links @sample_analysis.name, true
 
       expect(html).to have_tag(
-        "span", with: { class: "company" },
-                text: @sample_analysis.name.to_name.trunk_name)
+                        "span", with: { class: "company" },
+                        text: @sample_analysis.name.to_name.trunk_name
+                      )
       expect(html).to have_tag(
-        "span", with: { class: "topic" },
-                text: @sample_analysis.name.to_name.tag_name)
+                        "span", with: { class: "topic" },
+                        text: @sample_analysis.name.to_name.tag_name
+                      )
       expect(html).to have_tag(
         "a", with: { class: "known-card",
-                     href: "/#{@sample_analysis.name.to_name.url_key}" })
+                     href: "/#{@sample_analysis.name.to_name.url_key}" }
+                      )
     end
 
     it "shows the view with the citation name" do
@@ -151,14 +163,17 @@ describe Card::Set::Right::RelatedArticles do
       citation_html = format.citation_link @sample_analysis.name.to_name
 
       expect(html).to have_tag(
-        "span", with: { class: "company" },
-                text: @sample_analysis.name.to_name.trunk_name)
+                        "span", with: { class: "company" },
+                        text: @sample_analysis.name.to_name.trunk_name
+                      )
       expect(html).to have_tag(
-        "span", with: { class: "topic" },
-                text: @sample_analysis.name.to_name.tag_name)
+                        "span", with: { class: "topic" },
+                        text: @sample_analysis.name.to_name.tag_name
+                      )
       expect(html).to have_tag(
         "a", with: { class: "known-card",
-                     href: "/#{@sample_analysis.name.to_name.url_key}" })
+                     href: "/#{@sample_analysis.name.to_name.url_key}" }
+                      )
 
       expect(html).to include(format.process_content(citation_html))
     end

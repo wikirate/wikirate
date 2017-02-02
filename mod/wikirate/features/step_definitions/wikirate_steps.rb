@@ -49,7 +49,6 @@ When(/^I print html of the page$/) do
   puts page.html
 end
 
-
 And(/^I click on item "([^"]*)"$/) do |item|
   find("td", text: item).click
 end
@@ -248,7 +247,7 @@ When(/^I press link button "(.*)"$/) do |name|
   find("a", text: name, visible: false).click
 end
 
-When /^(?:|I )click! on "([^"]*)"$/ do |link|
+When(/^(?:|I )click! on "([^"]*)"$/) do |link|
   click_link_or_button(link, visible: false)
 end
 

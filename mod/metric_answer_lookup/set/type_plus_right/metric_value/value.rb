@@ -25,7 +25,6 @@ format :html do
     super() if metric_card && metric_card.value_type == "Free Text"
     text_field(:content, class: "card-content short-input") + " " +
       nest(card.metric_card, view: :legend)
-
   end
 
   view :edit_in_form, cache: :never, perms: :update, tags: :unknown_ok do
