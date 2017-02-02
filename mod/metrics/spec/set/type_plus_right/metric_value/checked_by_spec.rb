@@ -1,4 +1,5 @@
-Rspec.describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
+
+describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
   let(:answer_card) { Card["joe_user+researched+death_star+1977"] }
 
   describe "check value" do
@@ -49,7 +50,7 @@ Rspec.describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
       cb_card.update_attributes! subcards: {}
     end
 
-    it "checks the metric value" do
+    it 'checks the metric value' do
       expect(cb_card.item_names.size).to eq(0)
     end
   end
