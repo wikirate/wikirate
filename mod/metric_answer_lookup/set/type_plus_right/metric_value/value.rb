@@ -16,7 +16,7 @@ event :unknown_value, :prepare_to_validate do
   remove_subfield :unknown
 end
 
-def unknown?
+def value_unknown?
   content == "Unknown"
 end
 
@@ -33,7 +33,7 @@ format :html do
 
   def unknown_checkbox
     field = card.unknown_card
-    field.content = card.unknown? ? "[[Unknown]]" : ""
+    field.content = card.value_unknown? ? "[[Unknown]]" : ""
     nest field, hide: :title, view: :edit_in_form
   end
 

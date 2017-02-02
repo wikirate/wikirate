@@ -1,20 +1,19 @@
-describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
+Rspec.describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
   let(:answer_card) { Card["joe_user+researched+death_star+1977"] }
 
   describe "check value" do
     before do
       Card::Env.params["set_flag"] = "checked"
+      cb_card = answer_card.fetch trait: :checked_by, new: {}
       cb_card.save!
       cb_card.update_attributes! subcards: {}
       Card::Env.params.delete "set_flag"
     end
-    let(:cb_card) do
-      answer_card.fetch trait: :checked_by, new: {}
-    end
+
 
     it "checks the metric value" do
-      expect(cb_card.item_names.size).to eq(1)
-      expect(cb_card.item_names).to include("Joe User")
+      expect(checked_by.item_names.size).to eq(1)
+      expect(checked_by.item_names).to include("Joe User")
     end
 
     let(:checked_by) do
