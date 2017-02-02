@@ -2,7 +2,7 @@ $.extend wikirate,
 # Hides the "Add answer" button and loads the form.
 # don't know what the source stuff is doing -pk
   appendNewValueForm: ($button) ->
-    $form_slot = $button.slot().find('.card-slot.answer_table-view')
+    $form_slot = $button.parent().parent().find('.card-slot.answer_table-view')
     $loader = wikirate.loader($form_slot, true)
     $loader.add()
     $button.hide()

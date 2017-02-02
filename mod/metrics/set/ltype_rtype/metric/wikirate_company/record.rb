@@ -10,10 +10,16 @@ format :html do
     voo.hide! :add_answer_redirect
     frame do
       [
-        _render_content,
+        _render_answer_side,
         nest(:research_page, view: :source_side)
       ]
     end
+  end
+
+  view :answer_side do
+    #wrap_with :div, class: "stick-left" do
+    _render_content
+    #end
   end
 
   # used in four places:
@@ -50,10 +56,10 @@ format :html do
   end
 
   view :answer_table do
-    return "" unless all_answers.present?
     answer_view =
       voo.show?(:chart) ? :closed_answer : :closed_answer_without_chart
     wrap do
+      next "" unless all_answers.present?
       wikirate_table :plain, all_answers,
                      [:plain_year, answer_view],
                      header: %w(Year Answer),
