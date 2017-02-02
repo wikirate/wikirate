@@ -129,16 +129,6 @@ describe Card::Set::Right::RelatedArticles do
     end
   end
 
-  it "returns citation link" do
-    citation = { citable: @related_article_card.cardname.trunk_name }
-    format = @related_article_card.format(format: :html)
-    html = format.citation_link @sample_analysis.to_name
-    expect(html).to have_tag(
-      "span", with: { class: "claim-next-action" },
-              text: "[[/#{@sample_analysis.to_name.url_key}?"\
-                    "#{citation.to_param}&edit_article=true | Cite!]]")
-  end
-
   context "when calling analysis_links" do
     it "show the view without the citation name" do
       format = @related_article_card.format(format: :html)

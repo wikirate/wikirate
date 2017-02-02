@@ -1,5 +1,5 @@
 describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
-  let(:metric_answer_card) { Card["joe_user+researched+death_star+1977"] }
+  let(:answer_card) { Card["joe_user+researched+death_star+1977"] }
 
   describe "check value" do
     before do
