@@ -17,6 +17,10 @@ format :html do
     super()
   end
 
+  view :content do
+    _render_core
+  end
+
   view :core, cache: :never do
     return _render_new unless companies && metrics
     wrap do
@@ -73,7 +77,7 @@ format :html do
       next not_a_metric(metric_name) unless existing_metric? metric_name
       record_card = Card.fetch metric_name, companies.first, new: {}
       nest record_card, view: :core, hide: :chart
-    end.join "\n"
+    end.join "<hr/>"
   end
 
   def project?

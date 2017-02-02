@@ -2,16 +2,17 @@
   - if project?
     .row
       .border-bottom.col-md-12.nopadding
-        %h5.col-md-2
-          Project:
-        .col-md-10
+        .heading-label
+          Project
+        .padding-20
           = nest project, view: :link
   .row
-    .heading-label
-      Company
-    = _render_company
+    .border-bottom.col-md-12.nopadding
+      .heading-label
+        Company
+      = _render_company
 
-  .row.background-grey
+  .row
     .heading-label
       Metrics
     = process_metrics

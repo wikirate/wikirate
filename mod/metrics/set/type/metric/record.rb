@@ -43,7 +43,7 @@ format :html do
   view :compact_methodology do
     <<-HTML
       <div class="col-md-12">
-        <div id="methodology-info" class="collapse">
+        <div class="methodology-info collapse">
             <div class="row"><small><strong>Methodology </strong>
               #{nest card.methodology_card, view: :content,
                      items: { view: :link }}
@@ -73,9 +73,9 @@ format :html do
     wrap_with :a, "View Methodology",
               class: css_classes(button_classes, "_view_methodology"),
               data: {
-                toggle: "collapse",
-                parent: ".card-content",
-                target: "#methodology-info"
+                toggle: "collapse-next",
+                parent: ".record-row",
+                target: ".methodology-info"
               }
   end
 
