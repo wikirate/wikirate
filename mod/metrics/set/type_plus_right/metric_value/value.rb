@@ -41,40 +41,9 @@ event :check_length, :validate, on: :save, changed: :content do
   end
 end
 
-format :html do
-  def metric_name_from_params
-    Env.params[:metric]
-  end
-
-  view :select do |args|
-    options = [["-- Select --", ""]] +
-              card.option_names(args[:metric_name]).map { |x| [x, x] }
-    select_tag("card#{subcard_input_names}[content]",
-               options_for_select(options),
-               class: "pointer-select form-control")
-  end
-
-  view :editor do
-    if (metric_name = metric_name_from_params || card.metric) &&
-       (metric_card = Card[metric_name]) &&
-       metric_card.value_type == "Category"
-
-      _render_select metric_name: metric_name
-    else
-      super()
-    end
-  end
-
-  view :timeline_row do
-    voo.hide :timeline_header, :timeline_add_new_link
-    wrap_with :div, class: "timeline container" do
-      wrap_with :div, class: "timeline-body" do
-        wrap_with :div, class: "pull-left timeline-data" do
-          subformat(card.left).render_timeline_data
-        end
-      end
-    end
-  end
+event :mark_as_imported, before: :finalize_action do
+  return unless ActManager.act_card.type_id == MetricValueImportFileID
+  @current_action.comment = "imported"
 end
 
 event :update_related_scores, :finalize, when: :scored_metric? do

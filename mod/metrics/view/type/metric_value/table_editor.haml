@@ -1,0 +1,21 @@
+= answer_form_hidden_tags
+%table
+  %tr.editor
+    %td.year
+      = field_nest :year, title: "Year"
+    %td.value
+      = field_nest :value, title: "Answer", view: :editor
+      %h5
+        Choose Sources or
+        %a.btn.btn-sm.btn-default._add_new_source{href: "#", data: {url: source_form_url}}
+          %small
+            %span.icon.icon-wikirate-logo-o.fa-lg
+            Add a new source
+      = _render_relevant_sources
+      = render_haml :cited_sources
+      = field_nest :discussion, title: 'Comment'
+
+  %tr.buttons
+    %td{colspan: 2}
+      = new_buttons
+      .card-notice

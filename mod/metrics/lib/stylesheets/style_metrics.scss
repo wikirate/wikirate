@@ -820,3 +820,20 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     width: 110px;
   }
 }
+
+.form-group.card-editor {
+  &.RIGHT-value {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  &.RIGHT-unknown {
+    margin-bottom: 5px;
+    padding-bottom: 0;
+    .label {
+      margin-bottom: 0;
+    }
+    .help-text.help-block {
+      margin-top: -5px;
+    }
+  }
+}
