@@ -34,7 +34,7 @@ format :html do
   end
 
   def unknown_checkbox
-    field = card.unknown_card
+    field = card.attach_subfield :unknown
     field.content = card.value_unknown? ? "1" : "0"
     nest field, hide: :title, view: :edit_in_form
   end
