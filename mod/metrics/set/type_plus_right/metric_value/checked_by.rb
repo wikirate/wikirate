@@ -2,6 +2,10 @@
 # If the first item is "request" then the second item is the requester
 # and all users after that are checkers
 
+def unknown?
+  false
+end
+
 def user
   Auth.current
 end
@@ -39,18 +43,6 @@ def option_names
 end
 
 format :html do
-  # view :new do
-  #   return _render_double_check_view
-  # end
-  view :missing do |args|
-    if card.new_card? && card.left
-      Auth.as_bot { card.save! }
-      render @denied_view, args
-    else
-      super(args)
-    end
-  end
-
   view :edit_in_form do
     card.other_user_requested_check? ? "" : super()
   end
@@ -63,11 +55,7 @@ format :html do
     "#{request_icon} Request that another researcher double checks this value"
   end
 
-  view :open_content do
-    _render_double_check_view
-  end
-
-  view :double_check_view do
+  view :core do
     wrap_with :div do
       [
         wrap_with(:span, "Does the value accurately represent its source?"),
@@ -124,6 +112,15 @@ format :html do
                wrap_with(:span, "Yes, I checked the value", class: "hover-text")
              ]
     end
+  end
+
+  def check_button_text
+    output ["Double check", check_button_request_credit]
+  end
+
+  def check_button_request_credit
+    return unless card.check_requested?
+    " #{request_icon} requested by #{card.requester}"
   end
 
   def user_checked_text
