@@ -1,5 +1,7 @@
 card_accessor :unknown
 
+UNKNOWN = "Unknown".freeze
+
 event :update_answer_lookup_table_due_to_value_change, :finalize do
   answer_id = left ? left.id : director.parent.card.id
   # FIXME: director.parent thing fixes case where metric answer is renamed.
@@ -12,12 +14,12 @@ event :mark_as_imported, before: :finalize_action do
 end
 
 event :unknown_value, :prepare_to_validate do
-  self.content = "Unknown" if unknown.present?
+  self.content = UNKNOWN if unknown_card.checked?
   remove_subfield :unknown
 end
 
-def unknown?
-  content == "Unknown"
+def value_unknown?
+  content == UNKNOWN
 end
 
 format :html do
@@ -33,7 +35,7 @@ format :html do
 
   def unknown_checkbox
     field = card.unknown_card
-    field.content = card.unknown? ? "[[Unknown]]" : ""
+    field.content = card.value_unknown? ? "1" : "0"
     nest field, hide: :title, view: :edit_in_form
   end
 

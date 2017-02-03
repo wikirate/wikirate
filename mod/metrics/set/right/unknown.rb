@@ -1,9 +1,6 @@
-def option_names
-  ["Unknown"]
-end
 
 format :html do
-  def part_view
-    :checkbox
+  view :editor do
+    check_box(:content) + label(:content, "Unknown")
   end
 end
