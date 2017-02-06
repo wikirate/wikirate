@@ -1,3 +1,6 @@
+# FIXME: this is supposed to be in type_plus_right/metric_value/value
+#   but wagn doesn't load that set module for new cards
+
 include_set Abstract::MetricChild, generation: 3
 
 def value_card
@@ -76,7 +79,7 @@ event :no_left_name_change, :prepare_to_validate,
   return if @supercard # as part of other changes (probably) ok
   return unless cardname.right == "value" # ok if not a value anymore
   return if (metric_value = Card[cardname.left]) &&
-            metric_value.type_id == MetricValueID
+    metric_value.type_id == MetricValueID
   errors.add :name, "not allowed to change. " \
                     "Change #{name_was.to_name.left} instead"
 end

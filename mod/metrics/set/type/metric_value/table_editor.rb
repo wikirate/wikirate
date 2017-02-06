@@ -1,6 +1,7 @@
 format :html do
   view :table_form, cache: :never, perms: :update, tags: :unknown_ok do
     voo.editor = :inline_nests
+    card.attach_subfield :value
     with_nest_mode :edit do
       relative_card_form :create, "main-success" => "REDIRECT",
                          class: "new-value-form",

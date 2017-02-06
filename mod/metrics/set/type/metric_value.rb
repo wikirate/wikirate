@@ -36,7 +36,7 @@ def invalid_value_name?
 end
 
 def fetch_name_part part
-  name_part = name_part_from_name(part) || name_part_from_field(part)
+  name_part = name_part_from_field(part) || name_part_from_name(part)
   check_name_part name_part
 end
 
@@ -53,18 +53,22 @@ end
 
 def check_name_part name
   unless name
-    errors.add :name, "missing #{part} part"
+    errors.add :name, "missing #{name} part"
     return
   end
   name
 end
 
 def valid_metric?
-  metric_card && metric_card.type_id == MetricID
+  # TODO: need better way to check if metric is part of the same act
+  #       this doesn't check the type
+  (metric_card && metric_card.type_id == MetricID) ||
+    ActManager.include?(metric)
 end
 
 def valid_company?
-  company_card && company_card.type_id == WikirateCompanyID
+  (company_card && company_card.type_id == WikirateCompanyID) ||
+    ActManager.include?(company)
 end
 
 def valid_year?

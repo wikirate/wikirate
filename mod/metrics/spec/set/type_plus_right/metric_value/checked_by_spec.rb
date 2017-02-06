@@ -48,6 +48,7 @@ describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
                                   new: { content: "[[Joe User]]" }
       cb_card.save!
       cb_card.update_attributes! subcards: {}
+      cb_card
     end
 
     it 'checks the metric value' do

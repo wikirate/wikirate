@@ -4,7 +4,8 @@
     %td.year
       = field_nest :year, title: "Year"
     %td.value
-      = field_nest :value, title: "Answer", view: :editor
+      = nest card.subfield(:value), title: "Answer"
+      = field_nest :value, title: "Answer"
       %h5
         Choose Sources or
         %a.btn.btn-sm.btn-default._add_new_source{href: "#", data: {url: source_form_url}}
