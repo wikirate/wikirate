@@ -4,7 +4,7 @@ require File.expand_path "../importer", __FILE__
 namespace :wikirate do
   namespace :test do
     full_dump_path = File.join Wagn.root, "test", "seed.db"
-    base_dump_path = File.join Wagn.root, "test", "base_seed.db"
+
     user = ENV["DATABASE_MYSQL_USERNAME"] || ENV["MYSQL_USER"] || "root"
     pwd  = ENV["DATABASE_MYSQL_PASSWORD"] || ENV["MYSQL_PASSWORD"]
 
@@ -48,37 +48,6 @@ namespace :wikirate do
     desc "seed test database"
     task seed: :load_test_dump
 
-    desc "update seed data using the production database"
-    task :reseed_data, [:location]  do |_task, args|
-      ensure_test_db
-      Rake::Task["wikirate:test:prepare_seed_data"].invoke(args[:location])
-      Rake::Task["wikirate:test:finalize_seed_data"].invoke
-    end
-
-    desc "seed with raw wagn test db and import cards"
-    task :prepare_seed_data, [:location]  do |task, args|
-      # init_test env uses the same db as test env
-      # test env triggers stuff on load that breaks the seeding process
-      ensure_env :init_test, task, args do
-        execute_command "rake wagn:seed", :test
-        Rake::Task["wikirate:test:import_from"].invoke(args[:location])
-        Rake::Task["wikirate:test:dump_test_db"].invoke(base_dump_path)
-      end
-    end
-
-    desc "migrate and add wikirate test data"
-    task :finalize_seed_data do |task|
-      ensure_env :test, task do
-        Rake::Task["wikirate:test:load_test_dump"].invoke(base_dump_path)
-        Rake::Task["wagn:migrate"].invoke
-        Card::Cache.reset_all
-        Rake::Task["wikirate:test:add_wikirate_test_data"].invoke
-        Card::Cache.reset_all
-        Rake::Task["wikirate:test:update_machine_output"].invoke
-        Rake::Task["wikirate:test:dump_test_db"].execute
-      end
-    end
-
     desc "import cards from given location"
     task :import_from, [:location] => :environment do |task, args|
       ensure_env(:init_test, task, args) do
@@ -100,14 +69,6 @@ namespace :wikirate do
           import.items_of :production_export, subitems: true
           import.migration_records
         end
-      end
-    end
-
-    desc "add wikirate test data to test database"
-    task add_wikirate_test_data: :environment do |task|
-      ensure_env "test", task do
-        require "#{Wagn.root}/test/seed.rb"
-        SharedData.add_wikirate_data
       end
     end
 
