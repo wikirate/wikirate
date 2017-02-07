@@ -1,8 +1,8 @@
 # cache year of latest metric value
 include Card::CachedCount
 
-ensure_set { Right::Value }
-recount_trigger Right::Value, &:metric_plus_company_card
+ensure_set { TypePlusRight::MetricValue::Value }
+recount_trigger TypePlusRight::MetricValue::Value, &:metric_plus_company_card
 
 # returns year of latest metric value
 def calculate_count _changed_card=nil

@@ -1,3 +1,9 @@
+def option_names
+  # value options
+  option_card = Card.fetch "#{metric}+value options", new: {}
+  option_card.item_names context: :raw
+end
+
 format :html do
   view :content_formgroup do
     voo.editor = :nests
@@ -5,15 +11,14 @@ format :html do
   end
 
   view :edit_in_form, cache: :never, perms: :update, tags: :unknown_ok do
+    @form_root = true
     voo.editor ||= :nests
     super()
   end
 
   view :editor do
-    if free_text_metric?
+    if free_text_metric? || categorical_metric?
       super()
-    elsif categorical_metric?
-      select_editor
     else
       editor_with_unit
     end
@@ -23,7 +28,7 @@ format :html do
     [
       [card, { title: "Answer", editor: :standard }],
       [unknown_field_card, { hide: :title }],
-      [card.left.fetch(trait: :checked_by), { hide: :title }]
+      [card.left.fetch(trait: :checked_by, new: {}), { hide: :title }]
     ]
   end
 
@@ -58,13 +63,5 @@ format :html do
 
   def categorical_metric?
     metric_card && metric_card.categorical?
-  end
-
-  def select_editor
-    options = [["-- Select --", ""]] +
-      card.option_names(metric_card.name).map { |x| [x, x] }
-    select_tag "card#{subcard_input_names}[content]",
-               options_for_select(options),
-               class: "pointer-select form-control"
   end
 end

@@ -31,13 +31,6 @@ def unknown_value?
   content.casecmp("unknown").zero?
 end
 
-def option_names metric_name
-  # value options
-  metric_name = metric unless metric_name.present?
-  option_card = Card.fetch "#{metric_name}+value options", new: {}
-  option_card.item_names context: :raw
-end
-
 event :check_length, :validate, on: :save, changed: :content do
   if content.size >= 1000
     errors.add :value, "too long (not more than 1000 characters)"

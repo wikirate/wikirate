@@ -120,7 +120,7 @@ format :html do
 
   def check_button_request_credit
     return unless card.check_requested?
-    " #{request_icon} requested by #{card.requester}"
+    " #{request_icon} requested by #{card.check_requester}"
   end
 
   def user_checked_text

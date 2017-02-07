@@ -263,6 +263,6 @@ When(/^I click on the "(.*)" icon$/) do |icon|
   find(:css, "i.fa.fa-#{ICONS[icon]}").click
 end
 
-And(/^I hover over link "([^"]*)"$/) do |text|
-  find("a", text: text).hover
+And(/^I hover over "([^"]*)"$/) do |text|
+  find(:link_or_button, text: text).hover
 end

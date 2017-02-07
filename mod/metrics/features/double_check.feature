@@ -5,8 +5,10 @@ Feature: Double check
   Scenario: Check and undo
     When I am signed in as Joe User
     And I go to card "Jedi+disturbances in the Force+Death Star+2000"
-  Then I should see "Double check"
-  When I click on "Double check"
+    Then I should see "Double check"
+    When I hover over "Double check"
+    And I click on "Yes, I checked the value"
+    And I click on "Yes, I checked the value"
     Then I should see "Yes, I checked the value"
 
     When I am signed in as Joe Admin
@@ -37,7 +39,7 @@ Feature: Double check
 
     When I click on the "remove" icon
     # move focuse away from double check button
-    And I hover over link "Joe Admin"
+    And I hover over "Joe Admin"
     Then I should see "Double check requested by Joe User"
     When I edit "Jedi+disturbances in the Force+Death Star+2000"
     Then I should not see "Request that another researcher double checks this value"
