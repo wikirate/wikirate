@@ -29,14 +29,14 @@ Feature: Research answer fail
 
   Scenario: Missing value
     When I click on "Cite!"
-    And I select "2009" from "Year"
+    And I fill in "2009" from "Year"
     And I fill in "Baam!" for "Comment"
     And I press "Submit"
     And I should see "Problems"
     And I should see "Missing value. Please check before submit."
 
   Scenario: Missing source
-    When I select "2009" from "Year"
+    When I fill in "2009" for "Year"
     And I fill in "10" for "Answer"
     And I fill in "Baam!" for "Comment"
     And I press "Submit"

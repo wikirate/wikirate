@@ -19,7 +19,7 @@ Feature: Research answer
     And I wait for ajax response
     And I scroll 200 pixels
     And I click on "Cite!"
-    And I select "2009" from "Year"
+    And I fill in "2009" for "Year"
     And I fill in "10" for "Answer"
     And I fill in "Baam!" for "Comment"
     And I press "Submit"
@@ -39,7 +39,7 @@ Feature: Research answer
     And I wait for ajax response
     And I scroll 200 pixels
     And I click on "Cite!"
-    And I select "2009" from "Year"
+    And I fill in "2009" for "Year"
     And I fill in "10" for "Answer"
     And I fill in "Baam!" for "Comment"
     And I press "Submit"
