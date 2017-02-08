@@ -445,3 +445,11 @@ def needs_name?
   # score names are handles differently in MetricType::Score
   !name.present? && metric_type != "Score"
 end
+
+format :csv do
+  view :core do
+    Answer.where(metric_id: card.id).map do |a|
+      CSV.generate_line [a.company, a.year, a.value]
+    end.join
+  end
+end

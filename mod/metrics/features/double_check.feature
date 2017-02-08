@@ -57,7 +57,7 @@ Feature: Double check
     When I click on "Double check"
     Then I should see "Yes, I checked the value"
     When I edit "Jedi+disturbances in the Force+Death Star+2000"
-    And I fill in "no" for "Value"
+    And I fill in "no" for "Answer"
     And I submit
     Then I should not see "Yes, I checked the value"
     And I should see "Double check"

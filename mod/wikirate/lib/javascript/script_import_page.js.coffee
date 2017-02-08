@@ -9,7 +9,7 @@ wagn.slotReady (slot) ->
     source: '/Topic+*right+*options.json?view=name_complete'
     minLength: 2
   slot.find('.metric_autocomplete').autocomplete
-    source: '/Topic+*right+*options.json?view=name_complete'
+    source: '/Metric+*right+*options.json?view=name_complete'
     minLength: 2
   slot.find('#uncheck_all').change (eventObject) ->
     if $(this).is(':checked')

@@ -11,7 +11,6 @@ format :html do
   end
 
   view :edit_in_form, cache: :never, perms: :update, tags: :unknown_ok do
-    @form_root = true
     voo.editor ||= :nests
     super()
   end

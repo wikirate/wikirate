@@ -1,8 +1,10 @@
+def all_answers
+  @result ||=
+    Answer.fetch({ record_id: id }, sort_by: :year, sort_order: :desc)
+end
+
 format :html do
-  def all_answers
-    @result ||=
-      Answer.fetch({ record_id: card.id }, sort_by: :year, sort_order: :desc)
-  end
+  delegate :all_answers, to: :card
 
   view :research_page, unknown_ok: true do
     voo.hide! :chart
@@ -114,5 +116,16 @@ format :html do
   view :name_link do
     link_to_card card.company_card, nil, class: "inherit-anchor name",
                  target: "_blank"
+  end
+end
+
+
+format :csv do
+  view :core do
+    res = ''
+    all_answers.each do |a|
+      res += CSV.generate_line [a.company, a.year, a.value]
+    end
+    res
   end
 end
