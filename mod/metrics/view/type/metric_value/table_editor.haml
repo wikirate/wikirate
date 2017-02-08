@@ -1,14 +1,14 @@
-= answer_form_hidden_tags
-%table
-  %tr.editor
-    %td.year
+%div
+  = answer_form_hidden_tags
+  .row.editor
+    .col-md-3.year
       = field_nest :year, title: "Year"
-    %td.value
-      = nest card.subfield(:value), title: "Answer"
+    .col-md-9.value
       = field_nest :value, title: "Answer"
       %h5
         Choose Sources or
-        %a.btn.btn-sm.btn-default._add_new_source{href: "#", data: {url: source_form_url}}
+        %a.btn.btn-sm.btn-default._add_new_source{ href: "#",
+                                                   data: {url: source_form_url} }
           %small
             %span.icon.icon-wikirate-logo-o.fa-lg
             Add a new source
@@ -16,7 +16,7 @@
       = render_haml :cited_sources
       = field_nest :discussion, title: 'Comment'
 
-  %tr.buttons
-    %td{colspan: 2}
+  .row.buttons
+    .col-md-12
       = new_buttons
       .card-notice

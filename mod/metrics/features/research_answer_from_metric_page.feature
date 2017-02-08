@@ -8,14 +8,13 @@ Feature: Research answer from metric page
     And I go to card "Jedi+disturbances in the Force"
     And I maximize the browser
 
-
   Scenario: Adding a metric value with a link source on metric page
     When In the main card content I click "Add new value"
     And I select "Death Star" from "Company"
     And I click on "Next"
     And I click on "Add answer"
     And I wait for ajax response
-    And I select "2015" from "Year"
+    And I fill in "2015" for "Year"
     And I fill in "yes" for "Answer"
     And I click on "Add a new source"
     And I fill in "http://example.com" for "URL"
@@ -38,7 +37,7 @@ Feature: Research answer from metric page
     And I click on "Next"
     And I click on "Add answer"
     And I wait for ajax response
-    And I select "2015" from "Year"
+    And I fill in "2015" for "Year"
     And I fill in "yes" for "Answer"
     And I click on "Add a new source"
     And I click on "File"
@@ -64,7 +63,7 @@ Feature: Research answer from metric page
     And I click on item "Death Star"
     And I click on "Add answer"
     And I wait for ajax response
-    And I select "2015" from "Year"
+    And I fill in "2015" for "Year"
     And I fill in "yes" for "Answer"
     And I click on "Add a new source"
     And I fill in "http://example.com" for "URL"

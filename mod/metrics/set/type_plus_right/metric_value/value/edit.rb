@@ -27,7 +27,7 @@ format :html do
     [
       [card, { title: "Answer", editor: :standard }],
       [unknown_field_card, { hide: :title }],
-      [card.left.fetch(trait: :checked_by, new: {}), { hide: :title }]
+      [card.left(new: {}).fetch(trait: :checked_by, new: {}), { hide: :title }]
     ]
   end
 
