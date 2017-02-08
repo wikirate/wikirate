@@ -19,9 +19,9 @@ format :html do
   end
 
   view :answer_side do
-    # wrap_with :div, class: "stick-left" do
-    _render_content
-    # end
+    wrap_with :div, class: "research-left" do
+      _render_content
+    end
   end
 
   # used in four places:
