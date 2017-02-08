@@ -312,6 +312,11 @@ $cursor-disabled: not-allowed !default; // Button variants
     line-height: 1.5;
     border-radius: 3px;
 }
+
+.btn-group-vertical .btn {
+    border-bottom-left-radius: 0!important;
+    border-top-right-radius: 0!important;
+}
 /***** Nav Pills *****/
 .nav {
     > li {

@@ -204,6 +204,7 @@
 - :name: homepage metric item
   :type: HTML
   :key: homepage_metric_item
+  :merged: 2017-01-23 13:18:10 UTC
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org

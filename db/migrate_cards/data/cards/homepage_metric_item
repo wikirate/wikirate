@@ -1,3 +1,4 @@
+<div class="">
 <div class="container  homepage-company-item background-white">
 
 <div class="row wiki">
@@ -55,4 +56,5 @@
 	  <!--Ratings and company list -->
 	  {{+all_metric_values|homepage_table}}
 	</div>
+</div>
 </div>

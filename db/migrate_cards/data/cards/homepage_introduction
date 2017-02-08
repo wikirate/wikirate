@@ -1,0 +1,21 @@
+<div class="row nopadding transparent-background-white nodblclick">
+  <div class="col-md-12 nopadding">
+      
+        <!-- tabs -->
+      <div class="tabbable tabs-left">
+        <ul class="nav nav-tabs intro-tabs">
+          <li class="company-tab active"><a data-target="#company-tab" data-toggle="tab" href="#">{{homepage: company intro|core}}</a></li>
+          <li class="topic-tab" ><a data-target="#topic-tab" data-toggle="tab" href="#">{{homepage: topic intro|core}}</a></li>
+          <li class="metric-tab" ><a data-target="#metric-tab" data-toggle="tab" href="#">{{homepage: metric intro|core}}</a></li>
+        </ul>
+        
+        <div class="tab-content">
+         <div class="tab-pane active" id="company-tab"><div class="carousal">{{homepage companies|hide:paging,title;|content;structure: homepage company item}}</div></div>
+         <div class="tab-pane" id="topic-tab"><div class="carousal">{{homepage topics|hide:paging,title;|content;structure: homepage topic item}}</div></div>
+         <div class="tab-pane" id="metric-tab"><div class="carousal">{{homepage metrics|hide:paging,title;|content;structure: homepage metric item}}</div></div>
+        </div>
+      </div>
+      <!-- /tabs -->
+      
+  </div>
+</div>

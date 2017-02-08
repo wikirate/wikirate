@@ -24,11 +24,11 @@ wagn.slotReady (slot) ->
     dots: true
     autoplay: true
     autoplaySpeed: 15000
-  slot.find('.homepage-company-list .pointer-list, .homepage-metric-list .pointer-list').slick
+  slot.find('.carousal .pointer-list').slick
     dots: true,
     autoplay: true,
     autoplaySpeed: 15000,
-    adaptiveHeight: true,
+    adaptiveHeight: false,
     fade: true,
     cssEase: 'linear',
   slot.find('#top-banner-wrapper .column-1 .SELF-video_image').click ->

@@ -33,7 +33,7 @@
 .homepage-company-item,
 .homepage-topic-item {
     max-width: 520px;
-    @include box-shadow(0,1px,6px,rgba(0,0,0,.13));
+    @include box-shadow(0,2px,23px,rgba(0,0,0,0.06));
     border: 1px solid $bright-text-color;
     padding-bottom: 40px;
     background-color: #fff;

@@ -23,20 +23,46 @@
   margin: 12px 0px;
 }
 /*----------- Top banner ---------*/
+.wikirate-logo-title {
+  font-weight: normal;
+  font-family: Droid Sans;
+  font-size: 50px;
+  color: #fff;
+}
+
+.banner-buttons .btn {
+  text-align: left!important;
+  background: none;
+  color: #fff;
+  font-size: 1.1em;
+}
+
+.banner-image{
+  padding: 15px;
+}
+.banner-image img{
+  max-width: 100%;
+  max-height: 110px;
+  float: right;
+}
+.banner-buttons .btn>i {
+  float: right;
+}
+
 .fa-4 {
   font-size: 7em;
 }
 
 .banner-background {
-  background: rgba($main-color, 0.95);
+  background: rgba(0, 74, 68, 0.95);
 }
 
 .transparent-background-white {
-  background: rgba(#fff, 0.95);
+  background: rgba(#fff, 0.96);
 }
 
 .transparent-background-black {
-  background: rgba(#000, 0.85);
+  background: rgba(22, 6, 35, 0.9);
 }
 
 .container-topbar {
