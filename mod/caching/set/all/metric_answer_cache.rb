@@ -12,7 +12,7 @@ def act_based_refresh_of_answer_lookup_entry answer_id
   @updated_answers << answer_id
 end
 
-event :refresh_updated_answers, :integrate do
+event :refresh_updated_answers, :integrate, after_subcards: true do
   return unless @updated_answers
   Answer.refresh @updated_answers
 end

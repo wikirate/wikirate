@@ -21,7 +21,7 @@ Feature: company feature
   Scenario: Filter by metric
     When I click on "more filter options"
     And I wait for ajax response
-    And I single-select "Jedi+deadliness" from "Metric"
+    And I select "Jedi+deadliness" from "Metric"
     And I submit form
     Then I should not see "disturbances in the Force"
     And I should see "deadliness"
@@ -29,20 +29,26 @@ Feature: company feature
   Scenario: Filter by topic
     When I click on "more filter options"
     And I wait for ajax response
-    And I single-select "Force" from "Topic"
+    And I select "Force" from "Topic"
     And I submit form
     Then I should not see "dinosaurlabor"
     And I should see "disturbances in the Force"
 
   Scenario: Filter by year
-    And I single-select "2001" from "Year"
+    And I select "2001" from "Year"
     And I submit form
     Then I should not see "dinosaurlabor"
     And I should see "disturbances in the Force"
 
   Scenario: Search for not researched values
-    And I single-select "Not Researched" from "Value"
+    And I select "Not Researched" from "Value"
     And I submit form
     Then I should not see "disturbances in the Force"
     And I should see "Sith Lord in Charge"
+
+  Scenario: Paging
+    Then I should not see "deadliness"
+    Then I click on "2"
+    Then I should see "deadliness"
+    And I should not see "disturbances in the Force"
 

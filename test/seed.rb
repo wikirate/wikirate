@@ -58,6 +58,8 @@ class SharedData
       create "Death Star+Force",
              type: "analysis",
              subcards: { "+article" => { content: "I'm your father!" } }
+
+
     end
 
     def add_sources_and_claims

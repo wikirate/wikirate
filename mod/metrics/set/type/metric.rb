@@ -33,6 +33,10 @@ def metric_designer_card
   junction? ? self[0] : creator
 end
 
+def designer_image_card
+  metric_designer_card.fetch(trait: :image, new: { type_id: ImageID })
+end
+
 def metric_title
   junction? ? cardname.parts[1] : cardname
 end
@@ -440,4 +444,12 @@ end
 def needs_name?
   # score names are handles differently in MetricType::Score
   !name.present? && metric_type != "Score"
+end
+
+format :csv do
+  view :core do
+    Answer.where(metric_id: card.id).map do |a|
+      CSV.generate_line [a.company, a.year, a.value]
+    end.join
+  end
 end

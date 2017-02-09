@@ -24,16 +24,19 @@ format :html do
     end
   end
 
-  def add_value_url
-    "/#{card.company.to_name.url_key}?view=new_metric_value&"\
-            "metric[]=#{CGI.escape(card.metric_name.to_name.url_key)}"
-  end
-
   def add_value_button
-    <<-HTML
-        <a type="button" target="_blank" class="btn btn-primary btn-sm"
-          href="#{add_value_url}">Add answer</a>
-    HTML
+    link_to_card card.company_card, "Add answer",
+                 type: "button",
+                 target: "_blank",
+                 class: "btn btn-primary btn-sm",
+                 path: {
+                   view: :new_metric_value,
+                   metric: [CGI.escape(card.metric_name.to_name.url_key)]
+                 }
+    # <<-HTML
+    #     <a type="button" target="_blank" class="btn btn-primary btn-sm"
+    #       href="#{add_value_url}">Add answer</a>
+    # HTML
   end
 
   def filtered_for_no_values?
@@ -72,14 +75,15 @@ format :html do
   end
 
   view :record_list do
-    nest card.record_card, view: :value_table,
+    nest card.record_card, view: :answer_table,
                            hide: :chart,
                            show: :add_answer_button
   end
 
   def metric_values
     wrap_with :div, class: "row clearfix wiki" do
-      nest(card.left, view: :core, show: :chart)
+      nest(card.left, view: :core,
+                      show: [:chart, :add_answer_redirect])
     end
   end
 

@@ -19,3 +19,11 @@ end
 def add_alias alias_name
   aliases_card.insert_item! 0, alias_name
 end
+
+format :csv do
+  view :core do
+    Answer.where(company_id: card.id).map do |a|
+      CSV.generate_line [a.metric_name, a.year, a.value]
+    end.join
+  end
+end

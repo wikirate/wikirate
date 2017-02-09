@@ -1,10 +1,8 @@
 format :html do
   view :new, cache: :never do
-    return _render_table_form if Env.params[:table_form]
     return _render_no_frame_form if Env.params[:noframe] == "true"
     @form_root = true
-    voo.editor = :metric_value_landing
-    frame { _optional_render :content_formgroup }
+    subformat(Card[:research_page])._render_new
   end
 
   view :content_formgroup, cache: :never do
@@ -14,8 +12,6 @@ format :html do
   end
 
   def prepare_nests_editor
-    # year = card.fetch trait: :year, new: { content: card.year }
-
     voo.editor = :nests
     card.add_subfield :year, content: card.year
     voo.edit_structure = [[:value, "Value"], [:year, "Year"]]
@@ -46,48 +42,27 @@ format :html do
     end
   end
 
-  view :metric_value_landing do
-    wrap_with :div do
-      [
-        _render_metric_value_landing_form,
-        _render_source_container
-      ]
-    end
-  end
-
-  view :metric_value_landing_form do
-    html_class = "col-md-5 border-right panel-default min-page-height"
-    wrap_with :div, class: html_class do
-      [
-        _render_hidden_source_field, hr,
-        _render_company_field, hr,
-        _render_metric_field,
-        _render_next_button
-      ]
-    end
-  end
-
   def hr
     "<hr />"
   end
 
-  view :hidden_source_field, cache: :never do
+  def hidden_source_field
     if (source = Env.params[:source])
-      hidden_field "hidden_source", value: source
+      hikdden_field "hidden_source", value: source
     end
   end
 
-  view :company_field do
+  def company_field
     field_nest(:wikirate_company, title: "Company")
   end
 
-  view :metric_field, cache: :never do
+  def metric_field
     metric_field = Card.fetch card.cardname.field(:metric),
                               new: { content: Env.params[:metric] }
-    nest metric_field, title: "Metric"
+    nest metric_field, title: "Metrics"
   end
 
-  view :next_button do
+  def next_button
     wrap_with :div, class: "col-md-6 col-centered text-center" do
       wrap_with :a, "Next", href: "#", class: "btn btn-primary _new_value_next"
     end
@@ -118,24 +93,6 @@ format :html do
   end
 
 
-  # TODO: please verify if this view used anywhere
-  view :add_value_editor, cache: :never do |_args|
-    render_haml do
-      <<-HAML
-= field_nest :metric, title: 'Metric' unless args[:metric]
-= field_nest :wikirate_company, title: 'Company'
-.fluid-container
-  .row
-    .col-xs-2
-      = field_nest :year, title: 'Year'
-    .col-xs-10
-      = field_nest :value, title: 'Value'
-    end
-= field_nest :wikirate_source, title: 'Source' if args[:metric]
-      HAML
-    end
-  end
-
   view :metric_value_editor, cache: :never do |args|
     render_haml relevant_sources: _render_relevant_sources(args),
                 cited_sources: _render_cited_sources,
@@ -148,7 +105,7 @@ format :html do
     = field_nest :value, title: (no_title ? " " : 'Value')
   %h5
     Choose Sources or
-    %a.btn.btn-sm.btn-default._add_new_source{href: "#"}
+    %a.btn.btn-sm.btn-default._add_new_source{href: "#", data: {url: "test"}}
       %small
         %span.icon.icon-wikirate-logo-o.fa-lg
         Add a new source
@@ -170,7 +127,9 @@ format :html do
   end
 
   view :relevant_sources, cache: :never do |args|
-    sources = find_potential_sources Env.params[:company], Env.params[:metric]
+    sources =
+      find_potential_sources(Env.params[:company] || card.company,
+                             Env.params[:metric] || card.metric)
     if (source_name = Env.params[:source]) && (source_card = Card[source_name])
       sources.push(source_card)
     end
