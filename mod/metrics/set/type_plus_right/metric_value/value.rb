@@ -62,7 +62,7 @@ event :update_related_calculations, :finalize,
 end
 
 event :update_double_check_flag, :validate, on: [:update, :delete],
-      changed: :content do
+                                            changed: :content do
   return unless left.fetch trait: :checked_by
   attach_subcard cardname.left_name.field_name(:checked_by), content: ""
 end
@@ -72,7 +72,7 @@ event :no_left_name_change, :prepare_to_validate,
   return if @supercard # as part of other changes (probably) ok
   return unless cardname.right == "value" # ok if not a value anymore
   return if (metric_value = Card[cardname.left]) &&
-    metric_value.type_id == MetricValueID
+            metric_value.type_id == MetricValueID
   errors.add :name, "not allowed to change. " \
                     "Change #{name_was.to_name.left} instead"
 end

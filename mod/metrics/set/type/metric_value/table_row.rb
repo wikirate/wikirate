@@ -76,14 +76,14 @@ format :html do
 
   view :record_list do
     nest card.record_card, view: :answer_table,
-         hide: :chart,
-         show: :add_answer_button
+                           hide: :chart,
+                           show: :add_answer_button
   end
 
   def metric_values
     wrap_with :div, class: "row clearfix wiki" do
       nest(card.left, view: :core,
-           show: [:chart, :add_answer_redirect])
+                      show: [:chart, :add_answer_redirect])
     end
   end
 

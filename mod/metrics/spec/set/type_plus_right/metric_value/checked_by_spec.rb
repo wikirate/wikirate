@@ -11,7 +11,6 @@ describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
       Card::Env.params.delete "set_flag"
     end
 
-
     it "checks the metric value" do
       expect(checked_by.item_names.size).to eq(1)
       expect(checked_by.item_names).to include("Joe User")
@@ -51,7 +50,7 @@ describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
       cb_card
     end
 
-    it 'checks the metric value' do
+    it "checks the metric value" do
       expect(cb_card.item_names.size).to eq(0)
     end
   end

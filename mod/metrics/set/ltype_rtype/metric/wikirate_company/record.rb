@@ -77,7 +77,7 @@ format :html do
 
   def add_answer_button
     return "" unless metric_card.metric_type_codename == :researched &&
-      metric_card.user_can_answer?
+                     metric_card.user_can_answer?
     if voo.show?(:add_answer_redirect) && voo.hide?(:answer_form)
       redirect_form_button
     else
@@ -115,14 +115,13 @@ format :html do
 
   view :name_link do
     link_to_card card.company_card, nil, class: "inherit-anchor name",
-                 target: "_blank"
+                                         target: "_blank"
   end
 end
 
-
 format :csv do
   view :core do
-    res = ''
+    res = ""
     all_answers.each do |a|
       res += CSV.generate_line [a.company, a.year, a.value]
     end
