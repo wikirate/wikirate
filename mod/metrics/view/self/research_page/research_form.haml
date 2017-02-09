@@ -10,7 +10,7 @@
     .border-bottom.col-md-12.nopadding
       .heading-label
         Company
-      = _render_company
+      = nest companies.first, view: :thumbnail
 
   .row
     .heading-label

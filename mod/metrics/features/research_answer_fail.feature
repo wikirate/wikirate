@@ -25,15 +25,15 @@ Feature: Research answer fail
     And I fill in "Baam!" for "Comment"
     And I press "Submit"
     And I should see "Problems"
-    And I should see "Missing year. Please check before submit."
+    And I should see "YEAR: No year given."
 
   Scenario: Missing value
     When I click on "Cite!"
-    And I fill in "2009" from "Year"
+    And I fill in "2009" for "Year"
     And I fill in "Baam!" for "Comment"
     And I press "Submit"
     And I should see "Problems"
-    And I should see "Missing value. Please check before submit."
+    And I should see "ANSWER: No answer given."
 
   Scenario: Missing source
     When I fill in "2009" for "Year"

@@ -28,10 +28,8 @@ format :html do
     end
   end
 
-  view :company do
-    nest companies.first, view: :thumbnail
-  end
-
+  # TODO: support more than one company
+  #   research_form.haml picks the first one
   def companies
     Array(params[:company] || card.wikirate_company_card.item_names)
   end
