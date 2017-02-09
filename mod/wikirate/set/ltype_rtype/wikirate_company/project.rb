@@ -38,8 +38,8 @@ format :html do
   view :research_button do
     link_to "Research",
             class: "btn btn-default btn-sm",
-            path: { mark: card.company_card,
-                    view: :new_metric_value,
+            path: { mark: :research_page,
+                    company: card.company_card.name,
                     project: card.project_card.cardname.url_key }
   end
 end

@@ -1,4 +1,35 @@
+module Capybara
+  module Node
+    module Actions
+      def choose_value el, value
+        id = el["id"]
+        session.execute_script("$('##{id}').val('#{value}')")
+        session.execute_script("$('##{id}').trigger('chosen:updated')")
+        session.execute_script("$('##{id}').change()")
 
+        # code below doesn't work on wikirate because if you select an item in
+        # a very long list the list gets pushed below the navigation bar
+        # find("label", text: field)
+        #   .find(:xpath,"..//a[@class='chosen-single']")
+        #   .click
+        # li = find("li", text: value, visible: false)
+        # li.click
+        # # If the list element is too far down the list then the first click
+        # # scrolls it up but doesn't select it. It needs another click.
+        # # A selected item is no longer visible (because the list disappears)
+        # if li.visible?
+        #   li.click
+        # end
+      end
+    end
+  end
+end
+
+#
+# When /^(?:|I )single-select "([^"]*)" from "([^"]*)"$/ do |value, field|
+#   select =
+#     find("label", text: field).find(:xpath, "..//select", visible: false)
+# end
 
 Capybara.default_wait_time = 20
 
@@ -8,14 +39,18 @@ When(/^I press "([^\"]*)" within "([^\"]*)"$/) do |button, scope_selector|
   end
 end
 
-#When(/^I wait for ajax response$/) do
+# When(/^I wait for ajax response$/) do
 #  Timeout.timeout(Capybara.default_wait_time) do
 #    sleep(0.5) while page.evaluate_script("jQuery.active") != 0
 #  end
-#end
+# end
 
 When(/^I print html of the page$/) do
   puts page.html
+end
+
+And(/^I click on item "([^"]*)"$/) do |item|
+  find("td", text: item).click
 end
 
 When(
@@ -106,7 +141,6 @@ When(/^(?:|I )select "([^"]*)" from hidden "([^"]*)"$/) do |value, field|
   # our select list is not a real select list. it is a hidden input
   find(:xpath, "//input[@id='#{field}']", visible: false).set value
 end
-
 
 When /^(?:|I )single-select "([^"]*)" as value$/ do |value|
   find("#card_subcards__values_content_chosen a.chosen-single").click
@@ -213,6 +247,22 @@ When(/^I press link button "(.*)"$/) do |name|
   find("a", text: name, visible: false).click
 end
 
+When(/^(?:|I )click! on "([^"]*)"$/) do |link|
+  click_link_or_button(link, visible: false)
+end
+
 When(/^I maximize the browser$/) do
   page.driver.browser.manage.window.maximize
+end
+
+ICONS = {
+  "remove" => "times-circle-o"
+}.freeze
+
+When(/^I click on the "(.*)" icon$/) do |icon|
+  find(:css, "i.fa.fa-#{ICONS[icon]}").click
+end
+
+And(/^I hover over "([^"]*)"$/) do |text|
+  find(:link_or_button, text: text).hover
 end

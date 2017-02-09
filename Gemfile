@@ -48,7 +48,7 @@ gem "simplecov", require: false
 # CUKES see features dir
   gem "cucumber-rails", require: false
 # feature-driven-development suite
-  gem "capybara"
+  gem "capybara", "2.11.0"
 # used 2.0.1
   gem "selenium-webdriver", "~> 2.3"
 #  gem 'capybara-webkit'

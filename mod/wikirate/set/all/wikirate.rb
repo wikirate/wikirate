@@ -147,6 +147,10 @@ format :html do
   def searched_type_id
     @searched_type_id ||= Card.fetch_id card.cardname.left_name.right
   end
+
+  def button_classes
+    "btn btn-sm btn-default margin-12"
+  end
 end
 
 format :json do

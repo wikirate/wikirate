@@ -45,8 +45,8 @@ describe Card::Set::Abstract::BrowseFilterForm do
               with_tag :input, with: { type: "text", name: "filter[name]" }
             end
           end
-          with_tag :div, with: { class: "advanced-options" }
         end
+        with_tag :div, with: { class: "advanced-options" }
       end
     end
 

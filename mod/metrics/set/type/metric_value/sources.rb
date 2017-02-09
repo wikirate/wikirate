@@ -34,12 +34,6 @@ def source_subcard_exist? new_source_card
     (link_card && link_card.content.present?)
 end
 
-# TODO: add #subfield_present? method to subcard API
-def subfield_exist? field_name
-  subfield_card = subfield(field_name)
-  !subfield_card.nil? && subfield_card.content.present?
-end
-
 def add_report_type source_name
   if report_type
     report_names = report_type.item_names

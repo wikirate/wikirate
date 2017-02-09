@@ -28,7 +28,7 @@ class Card
       metric_ids =
         Card.search right_plus: [Card::WikirateTopicID, { refer_to: value }],
                     return: :id
-      @restrict_to_ids[:metric_id] += metric_ids
+      restrict_to_ids :metric_id, metric_ids
     end
 
     alias_method :wikirate_topic_query, :topic_query
@@ -37,7 +37,7 @@ class Card
       metric_ids =
         Card.search referred_to_by: "#{value}+#{Card.fetch_name :metric}",
                     return: :id
-      @restrict_to_ids[:metric_id] += metric_ids
+      restrict_to_ids :metric_id, metric_ids
     end
 
     def importance_query value
@@ -47,7 +47,7 @@ class Card
 
       wql = { type_id: MetricID, limit: 0, return: :id }
       wql.merge! vote_wql(values)
-      @restrict_to_ids[:metric_id] = Card.search wql
+      restrict_to_ids :metric_id, Card.search(wql)
     end
 
     # @param values [Array<Symbol>] has to contains one or two of the symbols
