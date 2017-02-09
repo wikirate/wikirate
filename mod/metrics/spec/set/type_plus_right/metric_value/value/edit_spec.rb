@@ -1,7 +1,8 @@
 describe Card::Set::TypePlusRight::MetricValue::Value::Edit do
   describe "editor" do
     def editor metric
-      render_view :editor, name: "Joe User+#{metric}+Samsung+2010+value"
+      render_view :editor,
+                  name: "Joe User+#{metric}+Sony_Corporation+2010+value"
     end
 
     context "multi-category with not more than 10 options" do

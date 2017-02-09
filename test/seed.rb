@@ -241,7 +241,7 @@ class SharedData
                           value_type: "Multi-Category",
                           value_options: %w(1 2 3),
                           random_source: true do
-        Samsung "2010" => [1, 2].to_pointer_content
+        Sony_Corporation "2010" => [1, 2].to_pointer_content
       end
 
       Card::Metric.create name: "Joe User+big multi",
@@ -249,7 +249,7 @@ class SharedData
                           value_type: "Multi-Category",
                           value_options: %w(1 2 3 4 5 6 7 8 9 10 11),
                           random_source: true do
-        Samsung "2010" => [1, 2].to_pointer_content
+        Sony_Corporation "2010" => [1, 2].to_pointer_content
       end
 
       Card::Metric.create name: "Joe User+small single",
@@ -257,7 +257,7 @@ class SharedData
                           value_type: "Category",
                           value_options: %w(1 2 3),
                           random_source: true do
-        Samsung "2010" => 1
+        Sony_Corporation "2010" => 1
       end
 
       Card::Metric.create name: "Joe User+big single",
@@ -265,7 +265,7 @@ class SharedData
                           value_type: "Category",
                           value_options: %w(1 2 3 4 5 6 7 8 9 10 11),
                           random_source: true do
-        Samsung "2010" => 1
+        Sony_Corporation "2010" => 1
       end
     end
 
