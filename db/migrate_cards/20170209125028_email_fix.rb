@@ -2,6 +2,6 @@
 
 class EmailFix < Card::Migration
   def up
-    merge_cards "email header",
+    merge_cards "email header"
   end
 end
