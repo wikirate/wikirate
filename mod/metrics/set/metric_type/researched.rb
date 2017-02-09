@@ -63,19 +63,18 @@ format :html do
     end
   end
 
-  def add_value_path
-    "/new/metric_value?metric=" + _render_cgi_escape_name
+  def add_value_link
+    link_to_card :research_page, "#{fa_icon 'plus'} Add new value",
+                 path: { metric: card.name, view: :new },
+                 class: "btn btn-primary"
+    #"/new/metric_value?metric=" + _render_cgi_escape_name
   end
 
   view :add_value_buttons do
     return unless card.user_can_answer?
-    <<-HTML
-    <div class="row margin-no-left-15">
-      <a class="btn btn-primary"  href='#{add_value_path}'>
-        #{fa_icon 'plus'} Add new value
-      </a>
-    </div>
-    HTML
+    wrap_with :div, class: "row margin-no-left-15" do
+      add_value_link
+    end
   end
 
   view :import_button do

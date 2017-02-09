@@ -9,11 +9,11 @@ class Card
 
       @conditions = []
       @values = []
-      @restrict_to_ids = Hash.new { |h, k| h[k] = [] }
+      @restrict_to_ids = {}
 
       @temp_conditions = []
       @temp_values = []
-      @temp_restrict_to_ids = Hash.new { |h, k| h[k] = [] }
+      @temp_restrict_to_ids = {}
 
       add_filter @filter_args
     end
@@ -92,6 +92,15 @@ class Card
       missing_answer_query_class.new(@filter_args, @paging_args).run
     end
 
+    def restrict_to_ids col, ids
+      ids = Array(ids)
+      if @restrict_to_ids[col]
+        @restrict_to_ids[col] &= ids
+      else
+        @restrict_to_ids[col] = ids
+      end
+    end
+
     def find_missing?
       @filter_args[:metric_value] && @filter_args[:metric_value].to_sym == :none
     end
@@ -115,7 +124,7 @@ class Card
       c, v, r = @conditions, @values, @restrict_to_ids
       @conditions = []
       @values = []
-      @restrict_to_ids = Hash.new { |h, k| h[k] = [] }
+      @restrict_to_ids = {}
 
       add_filter opts
       @restrict_to_ids.each do |key, values|
@@ -137,7 +146,6 @@ class Card
     end
 
     def process_filter_option key, value
-      #binding.pry
       if exact_match_filters.include? key
         filter key, value
       elsif like_filters.include? key

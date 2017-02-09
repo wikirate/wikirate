@@ -36,13 +36,13 @@ class Card
         referred_to_by: "#{value}+#{Card.fetch_name :wikirate_company}",
         return: :id
       )
-      @restrict_to_ids[:company_id] += company_ids
+      restrict_to_ids :company_id, company_ids
     end
 
     def industry_query value
       company_ids =
         Card.search CompanyFilterQuery.industry_wql(value).merge(return: :id)
-      @restrict_to_ids[:company_id] += company_ids
+      restrict_to_ids :company_id, company_ids
     end
 
     def missing_answer_query_class
@@ -50,7 +50,7 @@ class Card
     end
 
     def outliers_query
-      @restrict_to_ids[:id] += savanna_outliers.keys
+      restrict_to_ids :id, savanna_outliers.keys
     end
 
     def metric_value_query value

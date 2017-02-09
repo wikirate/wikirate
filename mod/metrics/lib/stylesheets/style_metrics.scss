@@ -253,127 +253,7 @@
 .no-metric-value {
     display: none;
 }
-.timeline {
-    &.container {
-        width: auto!important; //remove container class from the code
-        padding: 0;
-    }
-    .year {
-        width: 35px;
-    }
-    .timeline-header {
-        border-top: 1px solid #eee;
-        .th {
-            float: left;
-            margin: 0 10px;
-            font-weight: bold;
-            color: $dark-text-color;
-        }
-        .new a {
-            // color: $dark-text-color;
-            // background-color: $bright-text-color;
-            // border: 1px solid #cdcdcd;
-            // font-weight: normal;
-            // font-size: 0.8em;
-            // padding: 2px 5px 2px 5px;
-        }
-    }
-    .timeline-body {
-        width: 100%;
-        float: left;
-        position: relative;
-        .timeline-data {
-            width: 100%;
-            // margin-left: -10px;
-        }
-        .metric-unit,
-        .metric-year {
-            font-size: 12px;
-        }
-    }
-    .timeline-line {
-        // position: absolute;
-        // top: 21px;
-        // left: 48px;
-        // height: 53px;
-        // width: 1px;
-        // border-left: 1px solid #CCCCCC;
-        // z-index: 9;
-    }
-}
-.timeline-row {
-    clear: both;
-    font-size: 12px;
-    width: 100%;
-    color: $dark-text-color;
-    float: left;
-    border-bottom: 1px solid #eee;
-    border-top: 1px solid #eee;
-    margin-top: -1px; //double border fix
-    .form-group {
-        font-size: 14px;
-        text-align: left;
-    }
-    h5 {
-        color: #666;
-    }
-    form > .form-group {
-        margin-top: -15px;
-        padding-top: 15px;
-        padding-bottom: 32px;
-        border-top: 1px solid #eee;
-        button {
-            float: right;
-            margin-right: 14px;
-        }
-    }
-    &:hover {
-        // background-color: #F3F3F3;
-    }
-    .td {
-        float: left;
-        padding: 15px 10px 10px;
-        .metric-value {
-            font-size: 20px;
-        }
-    }
-    .credit {
-        padding-top: 6px;
-    }
-    .year {
-        width: 20%;
-        text-align: center;
-        position: relative;
-        > span {
-            padding: 6px;
-            display: inline-block;
-        }
-    }
-    .value {
-        border-left: 1px solid #eee;
-        padding-left: 20px;
-    }
-    // .year, .credit {
-    //   padding-top: 2px;
-    // }
-    .search-result-list {
-        display: inline-block;
-        padding: 0;
-        .search-result-item {
-            display: inline;
-            padding-left: 0;
-        }
-    }
-    .timeline-dot {
-        position: absolute;
-        top: 30px;
-        right: -3px;
-        height: 5px;
-        width: 5px;
-        background: #444;
-        z-index: 10;
-    }
-}
+
 .RIGHT-company.card-content .company-item .item-link > a {
     background: #03998d;
     border-top-left-radius: 0;
@@ -424,7 +304,6 @@
         }
     }
 }
-
 
 .metric-designer-info {
     a {
@@ -824,6 +703,11 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 #metric-container, #source-preview-main {
   border: 1px solid $div-border-color;
   background:#fff;
+
+  .thumbnail {
+    border: none;
+    background: inherit;
+  }
 }
 
 .metric-header-container {
@@ -914,4 +798,46 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
       white-space: inherit;
     }
   }
+}
+
+.core-view.SELF-research_page {
+  .stick-left {
+    left: 0px;
+    top: 66px;
+  }
+  .stick-right {
+    top: 66px;
+    left: 40%;
+    width: 60%;
+  }
+
+  .answer_table-view.LTYPE_RTYPE-metric-company {
+    margin: 20px;
+  }
+
+  td.year {
+    padding-right: 10px;
+    width: 110px;
+  }
+}
+
+.form-group.card-editor {
+  &.RIGHT-value {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  &.RIGHT-unknown {
+    margin-bottom: 5px;
+    padding-bottom: 0;
+    .label {
+      margin-bottom: 0;
+    }
+    .help-text.help-block {
+      margin-top: -5px;
+    }
+  }
+}
+
+.research-left {
+    width: 40%;
 }
