@@ -55,6 +55,7 @@ format :html do
       <div class="pull-right">
         <small>#{checked_value_flag.html_safe}</small>
         <small>#{comment_flag.html_safe}</small>
+        <small>#{import_flag.html_safe}</small>
       </div>
     )
   end
@@ -109,17 +110,18 @@ format :html do
   end
 
   def checked_value_flag
-    checked_card = card.field "checked_by"
-    return "" unless checked_card && !checked_card.item_names.empty?
-    css_class = "fa fa-lg fa-check-circle verify-blue margin-left-10"
-    wrap_with "i", "", class: css_class, title: "Value checked"
+    return "" unless card.checked?
+    nest card.field(:checked_by), view: :icon, class: "fa-lg margin-left-10"
   end
 
   def comment_flag
-    disc = card.fetch trait: :discussion
-    return "" unless disc && disc.content.present?
-    wrap_with "i", "", title: "Has comments",
-                       class: "fa fa-lg fa-commenting margin-left-10"
+    return "" unless card.commented?
+    icon "commenting", title: "Has comments", class: "fa-lg margin-left-10"
+  end
+
+  def import_flag
+    return "" unless card.imported?
+    icon "import", library: :glyphicon
   end
 
   view :modal_details, cache: :never do |args|

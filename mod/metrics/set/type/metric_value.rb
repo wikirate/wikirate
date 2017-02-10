@@ -31,3 +31,20 @@ def name_part_from_field part
   return unless field && field.content.present?
   field.content.gsub("[[", "").gsub("]]", "")
 end
+
+def imported?
+  answer.imported
+end
+
+def checked?
+  answer.checkers.present? || answer.check_requester.present?
+end
+
+def commented?
+  disc = card.fetch trait: :discussion
+  disc && disc.content.present?
+end
+
+def answer
+  @answer ||= Answer.find_by_answer_id id
+end

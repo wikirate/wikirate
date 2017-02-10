@@ -64,6 +64,16 @@ format :html do
     end
   end
 
+  view :icon do |args|
+    if card.checked?
+      double_check_icon args
+    elsif card.check_requested?
+      request_icon args
+    else
+      ""
+    end
+  end
+
   def check_interaction
     if card.user_checked?
       user_checked_text
@@ -84,11 +94,13 @@ format :html do
     )
   end
 
-  def double_check_icon color="verify-blue"
-    fa_icon("check-circle", class: color).html_safe
+  def double_check_icon opts={}
+    add_class opts, "verify-blue"
+    opts[:title] = "Value checked"
+    fa_icon("check-circle", opts).html_safe
   end
 
-  def request_icon
+  def request_icon opts={}
     fa_icon("check-circle-o", class: "request-red").html_safe
   end
 
@@ -135,6 +147,11 @@ end
 def update_user_check_log
   add_subcard Auth.current.cardname.field_name(:double_checked),
               type_id: PointerID
+end
+
+event :update_answer_lookup_table_due_to_check_change, :finalize,
+      changed: :content do
+  refresh_answer_lookup_entry left_id
 end
 
 event :user_checked_value, :prepare_to_store,
