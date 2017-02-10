@@ -1,9 +1,5 @@
 event :validate_answer_field, before: :set_metric_value_name do
-  missing_part :answer unless subfield_present?(:value) || unknown_present?
-end
-
-def unknown_present?
-  (field = subfield(:unknown)) && field.checked?
+  missing_part :answer unless subfield_present?(:value)
 end
 
 event :validate_value_type, :validate, on: :save do

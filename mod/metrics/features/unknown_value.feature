@@ -9,6 +9,7 @@ Feature: Unknown value
     When I go to card "Jedi+disturbances in the Force+Death Star+2000"
     Then I should see "yes"
     When I edit "Jedi+disturbances in the Force+Death Star+2000"
+    And I fill in "" for "Answer"
     And I check "Unknown"
     And I submit
     Then I should see "Unknown"
