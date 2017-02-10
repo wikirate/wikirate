@@ -41,7 +41,7 @@ def checked?
 end
 
 def commented?
-  disc = card.fetch trait: :discussion
+  disc = fetch trait: :discussion
   disc && disc.content.present?
 end
 

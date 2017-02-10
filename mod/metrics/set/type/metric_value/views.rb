@@ -116,12 +116,12 @@ format :html do
 
   def comment_flag
     return "" unless card.commented?
-    icon "commenting", title: "Has comments", class: "fa-lg margin-left-10"
+    icon_tag "commenting", title: "Has comments", class: "fa-lg margin-left-10"
   end
 
   def import_flag
     return "" unless card.imported?
-    icon "import", library: :glyphicon
+    icon_tag "import", library: :glyphicon
   end
 
   view :modal_details, cache: :never do |args|
