@@ -1,8 +1,8 @@
 <div class="nodblclick row nopadding transparent-background-black">
-		<div class="col-md-12 " >
-		    <h2 class="text-center white-text">Community</h2><br>
+		<div class="col-md-12 banner-buttons" >
+		    <h2 class="text-center white-text">Community</h2>
   			<div class="row margin-top-50"></div>
-  			<div class="row nopadding  white-text text-center">
+  			<div class="row white-text text-center">
   			  
   				<div class="col-md-3">
   				{{community: section 1|core}}
@@ -21,8 +21,8 @@
   				</div>
 
   			</div>
-  			<br><br>
-  			<h2 class="text-center white-text">Inspire companies to perform better on topics and metrics important to you</h2><br>
+  		
+  			<h2 class="text-center white-text no-bold-text">Inspire companies to perform better on topics and metrics important to you</h2><br>
   			<div class="text-center">
   			 <a href="#" class="btn btn-default btn-banner-info"><strong>Join us</strong></a>
          <a href="#" class="btn btn-default btn-banner-info">Receive Updates</a>

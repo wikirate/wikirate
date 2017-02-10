@@ -41,6 +41,10 @@ wagn.slotReady (slot) ->
     return
 
 $(document).ready ->
+  $('a[data-toggle="tab"]').on 'shown.bs.tab', (e) ->
+    targetTab = $(e.target).data('target')
+    console.log targetTab
+    $(targetTab).find('.slick-next').trigger 'click'
   if $('.logged-in').length
     $('#top-banner-wrapper .join-us-button').text 'Invite a friend'
   return

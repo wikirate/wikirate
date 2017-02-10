@@ -226,7 +226,7 @@ $slick-opacity-not-active: .25 !default;
 }
 .slick-dots {
   position: absolute;
-  bottom: 20px;
+  bottom: 0px;
   list-style: none;
   display: block;
   text-align: center;
@@ -286,4 +286,12 @@ $slick-opacity-not-active: .25 !default;
       opacity: $slick-opacity-default;
     }
   }
+}
+
+.slick-slide{
+    -webkit-transition: all 0.7s ease-out;
+    -moz-transition: all 0.7s ease-out;
+    -ms-transition: all 0.7s ease-out;
+    -o-transition: all 0.7s ease-out;
+    transition: all 0.7s ease-out;
 }

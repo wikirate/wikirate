@@ -56,6 +56,9 @@
       border-top: 1px solid $border-color;
       border-right: 1px solid $border-color;
     }
+   td {
+     max-width: 400px;
+   }
   }
 
 
