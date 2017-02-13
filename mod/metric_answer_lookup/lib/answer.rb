@@ -30,7 +30,7 @@ class Answer < ActiveRecord::Base
     def create! card
       ma = Answer.new
       ma.answer_id = card.id
-      raise ActiveRecord::RecordInvalid.new(ma) if ma.invalid?
+      raise ActiveRecord::RecordInvalid, ma if ma.invalid?
       ma.refresh
     end
 
@@ -47,9 +47,7 @@ class Answer < ActiveRecord::Base
       where = Array.wrap where
       mas = Answer.where(*where)
       mas = sort mas, sort_args if sort_args.present?
-      if paging.present?
-        mas = mas.limit(paging[:limit]).offset(paging[:offset])
-      end
+      mas = mas.limit(paging[:limit]).offset(paging[:offset]) if paging.present?
       mas.pluck(:answer_id).map do |id|
         Card.fetch id
       end
@@ -66,7 +64,8 @@ class Answer < ActiveRecord::Base
       mas = mas.joins "LEFT JOIN cards AS c " \
                       "ON answers.metric_id = c.left_id " \
                       "AND c.right_id = #{Card::VoteCountID}"
-      args.merge! sort_by: "COALESCE(c.db_content, 0)", cast: "signed"
+      args[:sort_by] = "COALESCE(c.db_content, 0)"
+      args[:cast] = "signed"
       mas
     end
 
@@ -81,7 +80,7 @@ class Answer < ActiveRecord::Base
 
     def card_id cardish
       case cardish
-      when Fixnum then
+      when Integer then
         cardish
       when Card then
         cardish.id

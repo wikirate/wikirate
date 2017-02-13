@@ -100,7 +100,7 @@ format :html do
     icon_tag("check-circle", opts).html_safe
   end
 
-  def request_icon opts={}
+  def request_icon _opts={}
     icon_tag("check-circle-o", class: "request-red").html_safe
   end
 

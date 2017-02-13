@@ -106,7 +106,15 @@ format :html do
   end
 
   def pretty_value
-    @pretty_value ||= numeric_value? ? humanized_number(card.value) : card.value
+    @pretty_value ||= numeric_value? ? humanized_value : value
+  end
+
+  def value
+    card.value_card.item_names.join ", "
+  end
+
+  def humanized_value
+    card.item_names.map { |n| humanized_number n }.join ", "
   end
 
   def checked_value_flag
@@ -133,7 +141,7 @@ format :html do
           link_text: pretty_value,
           link_opts: {
             path: { slot: { show: :menu, optional_horizontal_menu: :hide } },
-            title: card.value,        "data-complete-number" => card.value,
+            title: value, "data-complete-number" => value,
             "data-tooltip" => "true", "data-placement" => "top"
           }
         )
