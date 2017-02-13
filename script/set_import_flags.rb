@@ -25,7 +25,7 @@ class ImportFlagUpdate
       # missing.reject { |c| !Card[c].metric_card }
       # puts missing.size.to_s
       Answer.refresh missing
-      Answer.where("id IN (?)", answer_ids).update_all(imported: true)
+      Answer.where("answer_id IN (?)", answer_ids).update_all(imported: true)
     end
 
     private
