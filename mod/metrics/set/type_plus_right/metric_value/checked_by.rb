@@ -126,10 +126,6 @@ format :html do
     end
   end
 
-  def check_button_text
-    output ["Double check", check_button_request_credit]
-  end
-
   def check_button_request_credit
     return unless card.check_requested?
     " #{request_icon} requested by #{card.check_requester}"
