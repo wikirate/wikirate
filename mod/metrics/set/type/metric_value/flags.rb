@@ -17,9 +17,11 @@ format :html do
   end
 
   view :small_flags do
-    [:checked_value, :comment, :imported].map do |flag_name|
-      flag = send "#{flag_name}_flag"
-      "<small>#{flag}</small>"
+    output do
+      [:checked_value, :comment, :imported].map do |flag_name|
+        flag = send "#{flag_name}_flag"
+        "<small>#{flag}</small>"
+      end
     end
   end
 
