@@ -8,7 +8,7 @@ def value_card
 end
 
 def value
-  item_names.join ","
+  item_names.join ", "
 end
 
 def metric_plus_company

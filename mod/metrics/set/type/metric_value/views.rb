@@ -53,9 +53,7 @@ format :html do
       #{_render_metric_details}
       <span class="metric-unit"> #{legend} </span>
       <div class="pull-right">
-        <small>#{checked_value_flag.html_safe}</small>
-        <small>#{comment_flag.html_safe}</small>
-        <small>#{import_flag.html_safe}</small>
+        #{_render_small_flags}
       </div>
     )
   end
@@ -115,21 +113,6 @@ format :html do
 
   def humanized_value
     card.value_card.item_names.map { |n| humanized_number n }.join ", "
-  end
-
-  def checked_value_flag
-    return "" unless card.checked?
-    nest card.field(:checked_by), view: :icon, class: "fa-lg margin-left-10"
-  end
-
-  def comment_flag
-    return "" unless card.commented?
-    icon_tag "commenting", title: "Has comments", class: "fa-lg margin-left-10"
-  end
-
-  def import_flag
-    return "" unless card.imported?
-    icon_tag "import", library: :glyphicon
   end
 
   view :modal_details, cache: :never do |args|

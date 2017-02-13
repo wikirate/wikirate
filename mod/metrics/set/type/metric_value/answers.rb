@@ -41,10 +41,6 @@ format :html do
     "#{card.cardname.safe_key}-answer-details"
   end
 
-  view :flags do
-    output [checked_value_flag, comment_flag]
-  end
-
   view :answer_details do
     value_details
   end
