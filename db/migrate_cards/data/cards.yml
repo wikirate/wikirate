@@ -196,7 +196,7 @@
 - :name: email header
   :type: HTML
   :key: email_header
-  :merged: 2017-01-30 11:59:07 UTC
+  :merged: 2017-02-13 15:35:16 UTC
 - :name: email footer
   :type: HTML
   :key: email_footer
