@@ -457,7 +457,7 @@ end
 format :csv do
   view :core do
     Answer.where(metric_id: card.id).map do |a|
-      CSV.generate_line [a.company, a.year, a.value]
+      a.csv_line
     end.join
   end
 end

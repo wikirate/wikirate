@@ -211,6 +211,10 @@ class Answer < ActiveRecord::Base
     super
   end
 
+  def csv_line
+    CSV.generate_line [metric_name, company_name, year, value]
+  end
+
   private
 
   def unknown? val
