@@ -1,9 +1,5 @@
-event :validate_metric_value_fields, before: :set_metric_value_name do
-  %w(metric company year value).each do |name|
-    unless subfield_exist?(name)
-      errors.add :field, "Missing #{name}. Please check before submit."
-    end
-  end
+event :validate_answer_field, before: :set_metric_value_name do
+  missing_part :answer unless subfield_present?(:value)
 end
 
 event :validate_value_type, :validate, on: :save do
@@ -27,6 +23,58 @@ event :validate_value_type, :validate, on: :save do
       end
     end
   end
+end
+
+event :validate_update_date, :validate,
+      on: :update, when: proc { |c| c.year_updated? } do
+  new_year = subfield(:year).item_names.first
+  new_name = "#{metric_name}+#{company_name}+#{new_year}"
+  if new_year != year && Card.exists?(new_name)
+    errors.add :year, "value for year #{year} already exists"
+    abort :failure
+  end
+  self.name = new_name
+  detach_subfield(:year)
+end
+
+def valid_value_name?
+  cardname.parts.size >= 3 && valid_metric? && valid_company? && valid_year?
+end
+
+def invalid_value_name?
+  !valid_value_name?
+end
+
+def check_name_part part, name
+  unless name
+    missing_part part
+    return
+  end
+  name
+end
+
+def missing_part part
+  errors.add part, "No #{part} given."
+end
+
+def valid_metric?
+  # TODO: need better way to check if metric is part of the same act
+  #       this doesn't check the type
+  (metric_card && metric_card.type_id == MetricID) ||
+    ActManager.include?(metric)
+end
+
+def valid_company?
+  (company_card && company_card.type_id == WikirateCompanyID) ||
+    ActManager.include?(company)
+end
+
+def valid_year?
+  year_card && year_card.type_id == YearID
+end
+
+def year_updated?
+  (year_card = subfield(:year)) && !year_card.item_names.size.zero?
 end
 
 def number? str

@@ -1,6 +1,10 @@
-describe Card::Set::Type::WikirateCompany::NewAnswerForm do
-  describe "view :new_metric+value" do
-    subject { sample_company.format(:html)._render_new_metric_value }
+describe Card::Set::Self::ResearchPage do
+  describe "view :core" do
+    before do
+      Card::Env.params[:company] = "Death Star"
+      Card::Env.params[:metric] = "Jedi+disturbance of the force"
+    end
+    subject { Card[:research_page].format(:html)._render_core }
 
     it "renders metric side" do
       is_expected.to have_tag "div#metric-container.stick-left" do

@@ -1,3 +1,6 @@
+# FIXME: this is supposed to be in type_plus_right/metric_value/value
+#   but wagn doesn't load that set module for new cards
+
 include_set Abstract::MetricChild, generation: 3
 
 def value_card
@@ -28,47 +31,15 @@ def unknown_value?
   content.casecmp("unknown").zero?
 end
 
-def option_names metric_name
-  # value options
-  metric_name = metric unless metric_name.present?
-  option_card = Card.fetch "#{metric_name}+value options", new: {}
-  option_card.item_names context: :raw
+event :check_length, :validate, on: :save, changed: :content do
+  if content.size >= 1000
+    errors.add :value, "too long (not more than 1000 characters)"
+  end
 end
 
-format :html do
-  def metric_name_from_params
-    Env.params[:metric]
-  end
-
-  view :select do |args|
-    options = [["-- Select --", ""]] +
-              card.option_names(args[:metric_name]).map { |x| [x, x] }
-    select_tag("card#{subcard_input_names}[content]",
-               options_for_select(options),
-               class: "pointer-select form-control")
-  end
-
-  view :editor do
-    if (metric_name = metric_name_from_params || card.metric) &&
-       (metric_card = Card[metric_name]) &&
-       metric_card.value_type == "Category"
-
-      _render_select metric_name: metric_name
-    else
-      super()
-    end
-  end
-
-  view :timeline_row do
-    voo.hide :timeline_header, :timeline_add_new_link
-    wrap_with :div, class: "timeline container" do
-      wrap_with :div, class: "timeline-body" do
-        wrap_with :div, class: "pull-left timeline-data" do
-          subformat(card.left).render_timeline_data
-        end
-      end
-    end
-  end
+event :mark_as_imported, before: :finalize_action do
+  return unless ActManager.act_card.type_id == MetricValueImportFileID
+  @current_action.comment = "imported"
 end
 
 event :update_related_scores, :finalize, when: :scored_metric? do
@@ -88,6 +59,12 @@ event :update_related_calculations, :finalize,
   metrics.each do |metric|
     metric.update_value_for! company: company_key, year: year
   end
+end
+
+event :update_double_check_flag, :validate, on: [:update, :delete],
+                                            changed: :content do
+  return unless left.fetch trait: :checked_by
+  attach_subcard cardname.left_name.field_name(:checked_by), content: ""
 end
 
 event :no_left_name_change, :prepare_to_validate,

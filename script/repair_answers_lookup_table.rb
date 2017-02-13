@@ -12,7 +12,7 @@ Card.search(type_id: Card::MetricID, return: :id).each do |m_id|
   # assuming that if the count is correct the ids are correct
   next if db_ids.size == cached_ids.size
 
-  puts "#{Card.fetch_name m_id}: #{answer_count}/#{a_ids.size}  updating ..."
+  puts "#{Card.fetch_name m_id}: #{cached_ids.size}/#{db_ids.size} updating ..."
   outdated_ids = (::Set.new(db_ids) ^ ::Set.new(cached_ids)).to_a
   Answer.refresh outdated_ids
 end

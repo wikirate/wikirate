@@ -54,8 +54,8 @@ describe Card::Metric do
         url = "http://example.com"
         source = create_page_with_sourcebox url
         Card::Metric.create name: "MD+MT", formula: "1", random_source: true do
-          MyCompany 2000 => 50, 2001 => 100
-          WithSource 2000 => { value: 50, source: "[[#{source.name}]]" }
+          SPECTRE 2000 => 50, 2001 => 100
+          Death_Star 2000 => { value: 50, source: "[[#{source.name}]]" }
         end
       end
       is_expected.to be_truthy
@@ -63,15 +63,15 @@ describe Card::Metric do
       expect(subject.field(:formula).content).to eq "1"
       expect(subject.metric_type).to eq "Researched"
 
-      value = subject.field("MyCompany").field("2000")
+      value = subject.field("SPECTRE").field("2000")
       expect(value).to be_truthy
       expect(value.type_id).to eq Card::MetricValueID
       expect(value.field("value").content).to eq "50"
-      expect(Card["MD+MT+MyCompany+2001+value"].content).to eq "100"
+      expect(Card["MD+MT+SPECTRE+2001+value"].content).to eq "100"
 
-      sl = Card["MD+MT+WithSource+2000+source"].item_cards.first.field("link")
+      sl = Card["MD+MT+Death Star+2000+source"].item_cards.first.field("link")
       expect(sl.content).to eq("http://example.com")
-      expect(Card["MD+MT+WithSource+2000+value"].content).to eq "50"
+      expect(Card["MD+MT+Death Star+2000+value"].content).to eq "50"
     end
 
     it "creates value options" do
