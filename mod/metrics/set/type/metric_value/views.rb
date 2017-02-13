@@ -110,11 +110,11 @@ format :html do
   end
 
   def value
-    card.value_card.item_names.join ", "
+    card.value_card.value
   end
 
   def humanized_value
-    card.item_names.map { |n| humanized_number n }.join ", "
+    card.value_card.item_names.map { |n| humanized_number n }.join ", "
   end
 
   def checked_value_flag
