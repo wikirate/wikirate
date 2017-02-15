@@ -48,8 +48,8 @@ Feature: Research answer
     And I scroll -10000 pixels
     Then I should see "2009"
     And I should see "10"
-    And I should see a "comment" icon
-    And I should see a "check request" icon
+    And I should see a "comment" icon with tooltip "Has comments"
+    And I should see a "check request" icon with tooltip "check requested"
     And I click the drop down button for "2009"
     Then I should see "example.com"
     And I should see "Baam!"

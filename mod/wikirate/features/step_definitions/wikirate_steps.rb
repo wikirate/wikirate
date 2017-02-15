@@ -195,17 +195,16 @@ Then(/^I fill in "(.*)" in row (\d+)$/) do |text, row|
 end
 
 Then(/^I should see a "(.*)" icon$/) do |icon|
-  html = page.body
-  expect(html).to have_tag("i",
-                           with: { class: "fa-#{ICONS[icon]}",
-                                   title: "Has comments" })
+  expect(page.body).to have_tag "i.fa-#{ICONS[icon]}"
+end
+
+Then(/^I should see a "(.*)" icon with tooltip "(.*)"$/) do |icon, title|
+  expect(page.body)
+    .to have_tag("i", with: { class: "fa-#{ICONS[icon]}", title: title })
 end
 
 Then(/^I should not see a "(.*)" icon$/) do |icon|
-  html = page.body
-  expect(html).to_not have_tag("i",
-                               with: { class: "fa-#{ICONS[icon]}",
-                                       title: "Has comments" })
+  expect(page.body).to_not have_tag "i.fa-#{ICONS[icon]}"
 end
 
 When(/^I click the drop down button$/) do

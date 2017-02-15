@@ -44,7 +44,9 @@ end
 
 format :html do
   view :edit_in_form do
-    card.other_user_requested_check? ? "" : super()
+    with_relative_names_in_form do
+      card.other_user_requested_check? ? "" : super()
+    end
   end
 
   def part_view
@@ -101,7 +103,7 @@ format :html do
   end
 
   def request_icon _opts={}
-    icon_tag("check-circle-o", class: "request-red").html_safe
+    icon_tag("check-circle-o", class: "request-red", title: "check requested").html_safe
   end
 
   def data_path
