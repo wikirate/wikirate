@@ -1,39 +1,37 @@
-class RelationshipMetric
-  include Card::Model::SaveHelper
+require_relative "csv_row"
 
-  REQUIRED = [:designer, :title, :value_type, :inverse]
+class RelationshipMetric < CSVRow
+  @required = [:designer, :title, :value_type, :inverse]
 
   def initialize row
-    @row = row
-    REQUIRED.each do |key|
-      raise Error, "value for #{key} missing" unless row[key].present?
-    end
-    @name = "#{row[:designer]}+#{row[:title]}"
-    @inverse_name = "#{row[:designer]}+#{row[:inverse]}"
+    super
+    @designer = @row[:designer]
+    @name = "#{@designer}+#{@row[:title]}"
+    @inverse_name = "#{@designer}+#{@row[:inverse]}"
+    normalize_value_options
   end
-
 
   def create
     ensure_designer
     create_card @name, type: Card::MetricID,
-                subcards: subcards
+                subfields: subfields
   end
 
   def create_inverse
     create_card @inverse_name,
                 type: Card::MetricID,
-                subcards: { "+metric type" => "Inverse Relationship",
-                            "+inverse" => @name }
+                subfields: { metric_type: "Inverse Relationship",
+                             inverse: @name }
     create_title_inverse_pointer
   end
 
   private
 
-  def subcards
-    subs = { "+metric_type" => "Relationship", "+inverse" => @inverse_name }
-    [:value_type, :options, :unit].each_with_obj(subs) do |fld, hash|
-      next unless @row[fld]
-      hash["+#{fld}"] = @row[fld]
+  def subfields
+    subs = { metric_type: "Relationship", inverse: @inverse_name }
+    [:value_type, :value_options, :unit].each_with_object(subs) do |field, hash|
+      next unless @row[field]
+      hash[field] = @row[field]
     end
   end
 
@@ -45,5 +43,11 @@ class RelationshipMetric
 
   def ensure_designer
     ensure_card @designer, type_id: Card::ResearchGroupID
+  end
+
+  def normalize_value_options
+    return unless @row[:value_options]
+    @row[:value_options] =
+      @row[:value_options].split("/").map { |o| o.strip }.to_pointer_content
   end
 end

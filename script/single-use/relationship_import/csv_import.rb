@@ -1,13 +1,15 @@
 class CSVImport
+  @columns= []
+
   def initialize path
-    raise Error, "file does not exist: #{path}" unless File.exists? path
-    @rows = CSV.read card.csv_path
-    @headers = rows.shift
+    raise StandardError, "file does not exist: #{path}" unless File.exists? path
+    @rows = CSV.read path
+    @headers = @rows.shift.map { |h| h.downcase.tr(" ", "_") }
     map_headers
   end
 
-  def headers
-    []
+  class << self
+    attr_reader :columns
   end
 
   def import!
@@ -18,46 +20,27 @@ class CSVImport
 
   private
 
+  def each_row
+    @rows.each do |row|
+      next if row.compact.empty?
+      yield row_to_hash(row)
+    end
+  end
+
   def map_headers
     @col_map = {}
-    headers.each do |key|
+    self.class.columns.each do |key|
       index = @headers.index key.to_s
-      raise Error, "column #{key} is missing" unless index
+      raise StandardError, "column #{key} is missing" unless index
       @col_map[key] = index
     end
   end
 
   def row_to_hash row
     @col_map.each_with_object({}) do |(k, v), h|
-      h[k] = row[v]
-    end
-  end
-
-  def each_row
-    @rows.each do |row|
-      yield row_to_hash(row)
+      h[k] = row[v].strip if row[v].present?
     end
   end
 end
 
-class RelationshipMetricCSV < CSVImport
-  def headers
-    [:designer, :title, :inverse, :value_type, :options, :unit]
-  end
 
-  def process_row row
-    rm = RelationshipMetric.new row
-    rm.create
-    rm.create_inverse
-  end
-end
-
-class RelationshipMetricAnswersCSV
-  def headers
-    []
-  end
-
-  def process_row row
-    RelationshipMetricAnswer.new(row).create
-  end
-end

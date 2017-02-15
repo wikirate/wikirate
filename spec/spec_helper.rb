@@ -1,5 +1,5 @@
 require "wagn/mods_spec_helper"
-require File.expand_path('../source_helper', __FILE__)
+require_relative "source_helper"
 
 # require File.expand_path(
 #   '../../mod/01_rating/spec/lib/shared_calculation_examples.rb', __FILE__
