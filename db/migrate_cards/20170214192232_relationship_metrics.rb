@@ -11,6 +11,7 @@ class RelationshipMetrics < Card::Migration
     Card.create! name: "Relationship Answer",
                  type: "Cardtype",
                  codename: :relationship_answer
+    Card.create! name: "inverse", codename: :inverse
     Card.create! name: "Metric+inverse+*default", type: "Pointer"
     Card.create! name: "Metric Title+inverse+*default", type: "Pointer"
   end
