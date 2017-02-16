@@ -24,8 +24,8 @@
   		
   			<h2 class="text-center white-text no-bold-text">Inspire companies to perform better on topics and metrics important to you</h2><br>
   			<div class="text-center">
-  			 <a href="#" class="btn btn-default btn-banner-info"><strong>Join us</strong></a>
-         <a href="#" class="btn btn-default btn-banner-info">Receive Updates</a>
+  			 <a href="/new/:signup" class="btn btn-default btn-banner-info"><strong>Join us</strong></a>
+         <a href="http://eepurl.com/LPHur" class="btn btn-default btn-banner-info" target="_blank">Receive Updates</a>
         </div>
 		 <div class="row margin-top-50"></div>
 		</div>
