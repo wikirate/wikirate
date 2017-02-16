@@ -48,6 +48,7 @@ format :html do
   end
 
   def show_chart?
+    return if card.relationship?
     card.numeric? || card.categorical?
   end
 
