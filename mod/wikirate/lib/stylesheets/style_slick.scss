@@ -133,6 +133,11 @@ $slick-opacity-not-active: .25 !default;
     height: auto;
     border: 1px solid transparent;
   }
+  -webkit-transition: all 0.7s ease-out;
+  -moz-transition: all 0.7s ease-out;
+  -ms-transition: all 0.7s ease-out;
+  -o-transition: all 0.7s ease-out;
+  transition: all 0.7s ease-out;
 }
 
 /* Icons */
@@ -226,7 +231,7 @@ $slick-opacity-not-active: .25 !default;
 }
 .slick-dots {
   position: absolute;
-  bottom: 20px;
+  bottom: 0;
   list-style: none;
   display: block;
   text-align: center;
