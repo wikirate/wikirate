@@ -215,10 +215,10 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (4.0.1)
     net_http_timeout_errors (0.3.0)
-    newrelic_rpm (3.18.0.329)
+    newrelic_rpm (3.18.1.330)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
-    oga (2.8)
+    oga (2.9)
       ast
       ruby-ll (~> 2.1)
     open_uri_redirections (0.2.1)
@@ -316,7 +316,7 @@ GEM
       ansi
       ast
     ruby-progressbar (1.8.1)
-    rubyzip (1.2.0)
+    rubyzip (1.2.1)
     sass (3.4.23)
     savanna-outliers (0.0.1)
     selenium-webdriver (2.53.4)
@@ -341,7 +341,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sshkit (1.11.5)
+    sshkit (1.12.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     statistics2 (0.54)
@@ -440,4 +440,4 @@ DEPENDENCIES
   wbench
 
 BUNDLED WITH
-   1.14.3
+   1.12.5

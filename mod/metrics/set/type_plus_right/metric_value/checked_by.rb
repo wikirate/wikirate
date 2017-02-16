@@ -44,7 +44,9 @@ end
 
 format :html do
   view :edit_in_form do
-    card.other_user_requested_check? ? "" : super()
+    with_relative_names_in_form do
+      card.other_user_requested_check? ? "" : super()
+    end
   end
 
   def part_view
@@ -61,6 +63,16 @@ format :html do
         wrap_with(:span, "Does the value accurately represent its source?"),
         check_interaction
       ]
+    end
+  end
+
+  view :icon do |args|
+    if card.checked?
+      double_check_icon args
+    elsif card.check_requested?
+      request_icon args
+    else
+      ""
     end
   end
 
@@ -84,12 +96,14 @@ format :html do
     )
   end
 
-  def double_check_icon color="verify-blue"
-    fa_icon("check-circle", class: color).html_safe
+  def double_check_icon opts={}
+    add_class opts, "verify-blue"
+    opts[:title] = "Value checked"
+    icon_tag("check-circle", opts).html_safe
   end
 
-  def request_icon
-    fa_icon("check-circle-o", class: "request-red").html_safe
+  def request_icon _opts={}
+    icon_tag("check-circle-o", class: "request-red", title: "check requested").html_safe
   end
 
   def data_path
@@ -114,10 +128,6 @@ format :html do
     end
   end
 
-  def check_button_text
-    output ["Double check", check_button_request_credit]
-  end
-
   def check_button_request_credit
     return unless card.check_requested?
     " #{request_icon} requested by #{card.check_requester}"
@@ -135,6 +145,11 @@ end
 def update_user_check_log
   add_subcard Auth.current.cardname.field_name(:double_checked),
               type_id: PointerID
+end
+
+event :update_answer_lookup_table_due_to_check_change, :finalize,
+      changed: :content do
+  refresh_answer_lookup_entry left_id
 end
 
 event :user_checked_value, :prepare_to_store,

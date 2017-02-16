@@ -218,13 +218,13 @@ format :html do
   end
 end
 
-
 format :csv do
   view :core do
     res = ''
     card.metric_ids.each do |m_id|
-      Answer.where(metric_id: m_id).each do |a|
-        res += CSV.generate_line [a.metric_name, a.company_name, a.year, a.value]
+      Answer.where("metric_id = ? AND company_id IN (?)",
+                   m_id, card.company_ids).each do |a|
+        res += a.csv_line
       end
     end
     res

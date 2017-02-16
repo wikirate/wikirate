@@ -6,7 +6,7 @@ require File.expand_path("../../config/environment", __FILE__)
 class ImportFlagUpdate
   class << self
     JOIN_SQL = "LEFT JOIN cards ON cards.id = card_id".freeze
-    WHERE_SQL = "card_act_id IN (?) AND cards.right_id = ?".freeze
+    WHERE_SQL = "card_act_id IN (?) AND cards.type_id = ?".freeze
 
     def action_table
       puts "updating #{action_count} import actions of "\
@@ -25,7 +25,7 @@ class ImportFlagUpdate
       # missing.reject { |c| !Card[c].metric_card }
       # puts missing.size.to_s
       Answer.refresh missing
-      Answer.where("id IN (?)", answer_ids).update_all(imported: true)
+      Answer.where("answer_id IN (?)", answer_ids).update_all(imported: true)
     end
 
     private
@@ -40,7 +40,7 @@ class ImportFlagUpdate
 
     def answer_ids_with_duplicates
       @answer_ids_with_duplicates ||=
-        action_relation.pluck("cards.left_id")
+        action_relation.pluck("cards.id")
     end
 
     def import_card_ids
@@ -56,11 +56,7 @@ class ImportFlagUpdate
 
     def action_relation
       Card::Action.joins(JOIN_SQL)
-        .where(WHERE_SQL, import_act_ids, value_id)
-    end
-
-    def value_id
-      Card.fetch_id :value
+        .where(WHERE_SQL, import_act_ids, Card::MetricValueID)
     end
   end
 end

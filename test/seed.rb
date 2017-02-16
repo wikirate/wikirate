@@ -235,6 +235,38 @@ class SharedData
                   "2013" => 13, "2014" => 14, "2015" => 15
         Death_Star "1977" => 77
       end
+
+      Card::Metric.create name: "Joe User+small multi",
+                          type: :researched,
+                          value_type: "Multi-Category",
+                          value_options: %w(1 2 3),
+                          random_source: true do
+        Sony_Corporation "2010" => [1, 2].to_pointer_content
+      end
+
+      Card::Metric.create name: "Joe User+big multi",
+                          type: :researched,
+                          value_type: "Multi-Category",
+                          value_options: %w(1 2 3 4 5 6 7 8 9 10 11),
+                          random_source: true do
+        Sony_Corporation "2010" => [1, 2].to_pointer_content
+      end
+
+      Card::Metric.create name: "Joe User+small single",
+                          type: :researched,
+                          value_type: "Category",
+                          value_options: %w(1 2 3),
+                          random_source: true do
+        Sony_Corporation "2010" => 1
+      end
+
+      Card::Metric.create name: "Joe User+big single",
+                          type: :researched,
+                          value_type: "Category",
+                          value_options: %w(1 2 3 4 5 6 7 8 9 10 11),
+                          random_source: true do
+        Sony_Corporation "2010" => 1
+      end
     end
 
     def vote_on_metrics

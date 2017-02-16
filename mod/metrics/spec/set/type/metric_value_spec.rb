@@ -86,25 +86,28 @@ describe Card::Set::Type::MetricValue do
     it_behaves_like "all_value_type", :money, "33", "hello", @numeric_error_msg
 
     describe "render views" do
-      it "shows currency sign" do
+      subject do
         metric = sample_metric :money
         subcard = get_subcards_of_metric_value metric, @company, "33"
         metric_value = Card.create type_id: @mv_id, subcards: subcard
         metric.update_attributes! subcards: { "+currency" => "$" }
-        html = metric_value.format.render_timeline_data
-        # url = "/#{metric_value.cardname.url_key}?layout=modal&"\
-        #       'slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu'
-        expect(html).to have_tag("div", with: { class: "timeline-row" }) do
-          with_tag("div", with: { class: "timeline-dot" })
-          with_tag("div", with: { class: "td year" }) do
-            with_tag("span", text: "2015")
-          end
-          with_tag("div", with: { class: "td value" }) do
-            with_tag("span", with: { class: "metric-value" }) do
-              with_tag("a", text: "33")
-            end
-            with_tag("span", with: { class: "metric-unit" }, text: "$")
-          end
+        metric_value.format.render_concise
+      end
+      it "shows currency sign" do
+        is_expected.to have_tag "span.metric-unit" do
+          with_text " $ "
+        end
+      end
+
+      it "shows year" do
+        is_expected.to have_tag "span.metric-year" do
+          with_text "2015 = "
+        end
+      end
+
+      it "shows value" do
+        is_expected.to have_tag "span.metric-value" do
+          with_text "33"
         end
       end
     end

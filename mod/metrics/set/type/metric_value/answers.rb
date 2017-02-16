@@ -41,10 +41,6 @@ format :html do
     "#{card.cardname.safe_key}-answer-details"
   end
 
-  view :flags do
-    output [checked_value_flag, comment_flag]
-  end
-
   view :answer_details do
     value_details
   end
@@ -63,5 +59,17 @@ format :html do
 
   view :plain_year do
     card.cardname.right
+  end
+
+  def legend
+    return if currency.present?
+    subformat(card.metric_card)._render_legend
+  end
+
+  def currency
+    return unless (value_type = Card["#{card.metric_card.name}+value type"])
+    return unless value_type.item_names[0] == "Money" &&
+      (currency = Card["#{card.metric_card.name}+currency"])
+    currency.content
   end
 end
