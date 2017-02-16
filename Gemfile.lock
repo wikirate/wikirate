@@ -1,4 +1,11 @@
 PATH
+  remote: ./vendor/smartname
+  specs:
+    smartname (0.4.0)
+      activesupport
+      htmlentities
+
+PATH
   remote: ./vendor/wagn/card
   specs:
     card (1.20.1)
@@ -25,13 +32,6 @@ PATH
     wagn (1.20.1)
       card (= 1.20.1)
       rails (~> 4.2)
-
-PATH
-  remote: /opt/smartname
-  specs:
-    smartname (0.4.0)
-      activesupport
-      htmlentities
 
 GEM
   remote: http://rubygems.org/
@@ -232,9 +232,9 @@ GEM
     pry-byebug (3.4.2)
       byebug (~> 9.0)
       pry (~> 0.10)
-    pry-rails (0.3.4)
+    pry-rails (0.3.5)
       pry (>= 0.9.10)
-    pry-rescue (1.4.4)
+    pry-rescue (1.4.5)
       interception (>= 0.5)
       pry
     pry-stack_explorer (0.4.9.2)
