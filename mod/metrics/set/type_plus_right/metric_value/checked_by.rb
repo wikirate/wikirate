@@ -88,12 +88,36 @@ format :html do
 
   view :checked_by_list do
     return if card.checkers.empty?
-    links = subformat(card).render_shorter_search_result items: { view: :link }
+    links = _render_shorter_search_result items: { view: :link }
     %(
       <div class="padding-top-10">
         <i>#{links} <span>checked the value</span></i>
       </div>
     )
+  end
+
+  view :shorter_search_result do
+    render_view = voo.show?(:link) ? :link : :name
+    items = card.checkers
+    total_number = items.size
+    return "" if total_number.zero?
+
+    fetch_number = [total_number, 4].min
+    result = ""
+    if fetch_number > 1
+      result += items[0..(fetch_number - 2)].map do |c|
+        subformat(c).render(render_view)
+      end.join(" , ")
+      result += " and "
+    end
+
+    result +
+      if total_number > fetch_number
+        %(<a class="known-card" href="#{card.format.render :url}"> ) \
+          "#{total_number - 3} others</a>"
+      else
+        subformat(items[fetch_number - 1]).render(render_view)
+      end
   end
 
   def double_check_icon opts={}
