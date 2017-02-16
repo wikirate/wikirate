@@ -80,6 +80,10 @@ def categorical?
   value_type == "Category"
 end
 
+def relationship?
+  metric_type_codename.in? [:relationship, :inverse_relationship]
+end
+
 def multi_categorical?
   value_type_code == :multi_category
 end
