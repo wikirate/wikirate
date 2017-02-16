@@ -62,6 +62,10 @@ def value_type
   value_type_card.item_names.first || "Free Text"
 end
 
+def value_type_code
+  ((vc = value_type_card.item_cards.first) && vc.codename.to_sym) || :free_text
+end
+
 def value_options
   value_options_card.item_names
 end
@@ -74,6 +78,10 @@ end
 # TODO: adapt to Henry's value type API
 def categorical?
   value_type == "Category"
+end
+
+def multi_categorical?
+  value_type_code == :multi_category
 end
 
 def researched?
@@ -449,7 +457,7 @@ end
 format :csv do
   view :core do
     Answer.where(metric_id: card.id).map do |a|
-      CSV.generate_line [a.company, a.year, a.value]
+      a.csv_line
     end.join
   end
 end

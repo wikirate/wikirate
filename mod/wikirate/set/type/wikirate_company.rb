@@ -23,7 +23,7 @@ end
 format :csv do
   view :core do
     Answer.where(company_id: card.id).map do |a|
-      CSV.generate_line [a.metric_name, a.year, a.value]
+      a.csv_line
     end.join
   end
 end
