@@ -60,7 +60,7 @@ format :html do
   view :core do
     wrap_with :div do
       [
-        wrap_with(:span, "Does the value accurately represent its source?"),
+        wrap_with(:p, "Does the value accurately represent its source?"),
         check_interaction
       ]
     end
@@ -118,7 +118,7 @@ format :html do
   end
 
   def check_button
-    button_class = "btn btn-default btn-sm _value_check_button"
+    button_class = "btn btn-default btn-sm _value_check_button hover-button"
     wrap_with(:button, class: button_class,
               data: { path: data_path }) do
       output [
