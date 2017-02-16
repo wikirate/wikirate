@@ -27,7 +27,7 @@ def check_requested?
 end
 
 def checkers
-  check_requested? ? items[2..-1] : items
+  items.first == "request" ? items[2..-1] : items
 end
 
 def check_requester
