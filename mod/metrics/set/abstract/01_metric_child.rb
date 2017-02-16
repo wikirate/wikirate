@@ -130,5 +130,5 @@ format do
 end
 
 delegate :value_options, :value_options_card, :value_type,
-         :numeric?, :categorical?,
+         :numeric?, :categorical?, :relationship?,
          to: :metric_card

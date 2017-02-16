@@ -283,8 +283,9 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
             filter_by(metric_value: :none, metric_type: "Researched").sort
           ).to eq(
             with_year(["Sith Lord in Charge",
-                       "researched number 2",
-                       "researched number 3"])
+                       "big multi", "big single",
+                       "researched number 2", "researched number 3",
+                       "small multi", "small single"])
           )
         end
 

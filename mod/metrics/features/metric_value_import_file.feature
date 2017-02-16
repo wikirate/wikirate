@@ -26,7 +26,7 @@ Feature: import metric values from a csv file
     And I go to card "Jedi+Sith Lord in Charge+Death Star+2015"
     Then I should see "2015"
     Then I should see "One country, two systems"
-    Then I should see a comment icon
+    Then I should see a "comment" icon
     Then I should see "just kidding"
 
   Scenario: Import simple metric values with same source
@@ -37,12 +37,12 @@ Feature: import metric values from a csv file
     And I go to card "Jedi+Sith Lord in Charge+Death Star+2015"
     Then I should see "2015"
     Then I should see "One country, two systems"
-    Then I should see a comment icon
+    Then I should see a "comment" icon
     Then I should see "just kidding"
     And I go to card "Jedi+Sith Lord in Charge+Death Star+2014"
     Then I should see "2014"
     And I should see "HKSAR?"
-    And I should not see a comment icon
+    And I should not see a "comment" icon
 
   Scenario: Import duplicated metric values with a same source
     When I check checkbox in row 3
@@ -91,7 +91,7 @@ Feature: import metric values from a csv file
     And I go to card "Joe User+researched+Apple_Inc+2008"
     Then I should see "2008"
     And I should see "11"
-    And I should not see a comment icon
+    And I should not see a "comment" icon
 
   Scenario: Import a metric value with no matching
     When I check checkbox in row 8
@@ -100,7 +100,7 @@ Feature: import metric values from a csv file
     And I go to card "Joe User+researched+Hong Kong+2008"
     Then I should see "2008"
     And I should see "11"
-    And I should not see a comment icon
+    And I should not see a "comment" icon
 
   Scenario: Import a metric value with corrected company name
     When I check checkbox in row 7
@@ -110,6 +110,6 @@ Feature: import metric values from a csv file
     And I go to card "Joe User+researched+Samsung+2008"
     Then I should see "2008"
     And I should see "11"
-    And I should not see a comment icon
+    And I should not see a "comment" icon
     When I go to card "Samsung+aliases"
     And I should see "Apple"
