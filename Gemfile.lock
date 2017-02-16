@@ -1,11 +1,4 @@
 PATH
-  remote: ./vendor/smartname
-  specs:
-    smartname (0.4.0)
-      activesupport
-      htmlentities
-
-PATH
   remote: ./vendor/wagn/card
   specs:
     card (1.20.1)
@@ -32,6 +25,13 @@ PATH
     wagn (1.20.1)
       card (= 1.20.1)
       rails (~> 4.2)
+
+PATH
+  remote: /opt/smartname
+  specs:
+    smartname (0.4.0)
+      activesupport
+      htmlentities
 
 GEM
   remote: http://rubygems.org/

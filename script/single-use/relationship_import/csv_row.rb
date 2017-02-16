@@ -1,5 +1,5 @@
 class CSVRow
-  include Card::Model::SaveHelper
+  include ::Card::Model::SaveHelper
 
   @required = []
 

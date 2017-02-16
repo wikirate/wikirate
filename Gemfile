@@ -2,7 +2,7 @@ source "http://rubygems.org"
 
 wagn_gem_path = ENV["WIKIRATE_WAGN_GEM_PATH"] || "./vendor/wagn"
 
-gem "smartname", path: "./vendor/smartname"
+gem "smartname", path: "/opt/smartname" #./vendor/smartname"
 gem "wagn", path: "#{wagn_gem_path}/wagn"
 gem "card", path: "#{wagn_gem_path}/card", require: false
 
