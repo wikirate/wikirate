@@ -24,11 +24,11 @@ wagn.slotReady (slot) ->
     dots: true
     autoplay: true
     autoplaySpeed: 15000
-  slot.find('.homepage-company-list .pointer-list, .homepage-metric-list .pointer-list').slick
+  slot.find('.carousal .pointer-list').slick
     dots: true,
     autoplay: true,
     autoplaySpeed: 15000,
-    adaptiveHeight: true,
+    adaptiveHeight: false,
     fade: true,
     cssEase: 'linear',
   slot.find('#top-banner-wrapper .column-1 .SELF-video_image').click ->
@@ -41,6 +41,10 @@ wagn.slotReady (slot) ->
     return
 
 $(document).ready ->
+  $('a[data-toggle="tab"]').on 'shown.bs.tab', (e) ->
+    targetTab = $(e.target).data('target')
+    console.log targetTab
+    $(targetTab).find('.slick-next').trigger 'click'
   if $('.logged-in').length
     $('#top-banner-wrapper .join-us-button').text 'Invite a friend'
   return
