@@ -31,3 +31,7 @@ def name_part_from_field part
   return unless field && field.content.present?
   field.content.gsub("[[", "").gsub("]]", "")
 end
+
+def answer
+  @answer ||= Answer.find_by_answer_id id
+end

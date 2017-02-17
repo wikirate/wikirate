@@ -1,3 +1,5 @@
+include_set Abstract::Pointer
+
 def option_names
   # value options
   option_card = Card.fetch "#{metric}+value options", new: {}
@@ -16,10 +18,29 @@ format :html do
   end
 
   view :editor do
-    if free_text_metric? || categorical_metric?
-      super()
+    if free_text_metric?
+      text_field :content, class: "card-content"
+    elsif categorical_metric? || multi_categorical_metric?
+      super({})
     else
       editor_with_unit
+    end
+  end
+
+
+  def part_view
+    if multi_select?
+      if options_count > 10
+        :multiselect
+      else
+        :checkbox
+      end
+    else
+      if options_count > 10
+        :select
+      else
+        :radio
+      end
     end
   end
 
@@ -60,7 +81,21 @@ format :html do
     metric_card && metric_card.value_type == "Free Text"
   end
 
+  def multi_select?
+    multi_categorical_metric?
+  end
+
+  def options_count
+    card.option_names.size
+  end
+
   def categorical_metric?
     metric_card && metric_card.categorical?
   end
+
+  def multi_categorical_metric?
+    metric_card && metric_card.multi_categorical?
+  end
+
+
 end
