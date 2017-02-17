@@ -205,7 +205,24 @@
   :type: HTML
   :key: homepage_metric_item
   :merged: 2017-01-30 11:59:07 UTC
+- :name: Home
+  :type: HTML
+  :codename: homepage
+  :key: home
+- :name: homepage company item
+  :type: HTML
+  :key: homepage_company_item
+- :name: nav bar menu
+  :type: HTML
+  :key: nav_bar_menu
+- :name: 'homepage: wikirate gets it right'
+  :type: HTML
+  :key: homepage_wikirate_get_it_right
+- :name: 'homepage: top banner'
+  :type: HTML
+  :key: homepage_top_banner
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org
   :staging: http://staging.wikirate.org
+  :demo: http://demo.wikirate.org
