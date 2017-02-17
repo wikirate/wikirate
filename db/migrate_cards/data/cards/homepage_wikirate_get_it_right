@@ -1,0 +1,52 @@
+<div class="nodblclick row nopadding transparent-background-black">
+		<div class="col-md-12 " >
+		    <h2 class="text-center white-text">A collaborative approach to company metrics</h2>
+  			<br>
+  			<div class="row margin-top-50"></div>
+  			<div class="row nopadding  white-text text-center">
+  				<div class="col-md-3">
+  				  <p><i class="fa fa-database fa-4x"></i></p>
+  				  
+  				  <h4>Open Data</h4>
+  				  <p>
+  				    Easy for anyone to review, contribute, and correct information
+  				  </p>
+  				</div>
+  				<div class="col-md-3">
+  				  <p><i class="fa fa-recycle fa-4x"></i></p>
+  				  <h4>Research Re-Use</h4>
+  				  <p>
+  				    Metrics structured to be shared, improved and recombined
+  				  </p>
+  				</div>
+  				<div class="col-md-3">
+  				  <p><i class="fa fa-file-o fa-4x"></i></p>
+  				  <h4>Fully Sourced</h4>
+  				  <p>
+  				    Every Note and Value cites a source you can review
+  				  </p>
+  				</div>
+  				<div class="col-md-3">
+  				  <p><i class="fa fa-globe fa-4x"></i></p>
+  				  <h4>One-Stop</h4>
+  				  <p>
+  				    New and old metrics from diverse sources brought together
+  				  </p>
+  				</div>
+
+  			</div>
+  			<br><br>
+  			  			
+
+  			<div class="col-md-8 col-centered text-center">
+    		  <a href='/About_WikiRate' class="btn btn-default btn-banner-info">
+    				Learn More
+    			</a>
+    			<div class="row padding-top-20 visible-xs"></div>
+    			<a  class="btn btn-default btn-banner-info slotter" href='/homepage: video container?layout=modal' data-toggle='modal' data-target='#modal-main-slot'>
+    				<i class="fa fa-play-circle"></i>&nbsp;Watch How WikiRate Works
+    			</a>
+			</div>
+			<div class="row margin-top-50"></div>
+		</div>
+	</div>

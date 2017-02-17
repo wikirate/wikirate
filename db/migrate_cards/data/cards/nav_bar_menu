@@ -1,0 +1,27 @@
+<ul class="nav navbar-nav">
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Browse <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li>[[Companies]]</li>
+            <li>[[Topics]]</li>
+            <li>[[Metrics]]<hr/></li>
+            <li>[[Projects]]</li>
+            <li>[[Sources]]</li>
+            <li>[[/:recent|Recent Changes]]</li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Get Started <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li>[[About WikiRate|About WikiRate]]</li>
+            <li>[[Using WikiRate]]</li>
+            <li>[[Donate]]</li>
+            <li>[[Frequently_Asked_Questions|FAQs]]</li>
+            <li>[[Tickets|Help]]</li>
+          </ul>
+        </li>
+</ul>
+<a type="button" class="btn btn-primary btn-sm navbar-left margin-top-10 margin-left-10" href="/new/source?layout=wikirate_layout">
+          <span class="icon icon-wikirate-logo-o fa-lg" aria-hidden="true"></span>
+          Add Source
+</a>
