@@ -3,7 +3,6 @@
 		    <h2 class="text-center white-text">Community</h2>
   			<div class="row margin-top-50"></div>
   			<div class="row white-text text-center">
-  			  
   				<div class="col-md-3">
   				{{community: section 1|core}}
   				</div>
@@ -19,7 +18,24 @@
   				<div class="col-md-3">
   				{{community: section 4|core}}
   				</div>
-
+  			</div>
+  			<br><br>
+  			<div class="row white-text text-center">
+  				<div class="col-md-3">
+  				{{community: section 5|core}}
+  				</div>
+  				
+  				<div class="col-md-3">
+  				{{community: section 6|core}}
+  				</div>
+  				
+  				<div class="col-md-3">
+  				{{community: section 7|core}}
+  				</div>
+  				
+  				<div class="col-md-3">
+  				{{community: section 8|core}}
+  				</div>
   			</div>
   		
   			<h2 class="text-center white-text no-bold-text">Inspire companies to perform better on topics and metrics important to you</h2><br>
