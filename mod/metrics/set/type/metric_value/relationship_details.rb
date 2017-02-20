@@ -3,7 +3,7 @@ include_set Abstract::Table
 format :html do
 
   def companies
-    Card.search left: card.id, right: { type_id: WikirateCompanyID }
+    Card.search left_id: card.id, right: { type_id: WikirateCompanyID }
   end
 
   view :relationship_value_details do
