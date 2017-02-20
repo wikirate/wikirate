@@ -6,6 +6,3 @@ answers_path = File.expand_path "../relationship_import/data/answers.csv"
 
 RelationshipMetricsCSV.new(metrics_path).import!
 RelationshipAnswersCSV.new(answers_path).import!
-
-
-

@@ -1,8 +1,8 @@
 class CSVImport
-  @columns= []
+  @columns = []
 
   def initialize path
-    raise StandardError, "file does not exist: #{path}" unless File.exists? path
+    raise StandardError, "file does not exist: #{path}" unless File.exist? path
     @rows = CSV.read path
     @headers = @rows.shift.map { |h| h.downcase.tr(" ", "_") }
     map_headers
@@ -42,5 +42,3 @@ class CSVImport
     end
   end
 end
-
-

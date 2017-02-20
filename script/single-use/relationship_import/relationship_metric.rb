@@ -48,6 +48,6 @@ class RelationshipMetric < CSVRow
   def normalize_value_options
     return unless @row[:value_options]
     @row[:value_options] =
-      @row[:value_options].split("/").map { |o| o.strip }.to_pointer_content
+      @row[:value_options].split("/").map(&:strip).to_pointer_content
   end
 end
