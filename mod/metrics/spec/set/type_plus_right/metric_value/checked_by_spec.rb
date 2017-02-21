@@ -1,5 +1,4 @@
-
-describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
+RSpec.describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
   let(:answer_card) { Card["joe_user+researched+death_star+1977"] }
 
   describe "check value" do

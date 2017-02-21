@@ -38,6 +38,11 @@ def items
   @items ||= item_names
 end
 
+def db_content= content
+  @items = nil
+  super
+end
+
 def option_names
   ["request"]
 end
@@ -179,13 +184,13 @@ end
 event :user_checked_value, :prepare_to_store,
       on: :save, when: :add_checked_flag? do
   add_item user.name, true unless user_checked?
-  update_user_check_log.add_id left_id
+  update_user_check_log.add_id left.id
 end
 
 event :user_unchecked_value, :prepare_to_store,
       on: :update, when: :remove_checked_flag? do
   drop_checker user.name if user_checked?
-  update_user_check_log.drop_id left_id
+  update_user_check_log.drop_id left.id
 end
 
 event :user_requests_check, :prepare_to_store do
