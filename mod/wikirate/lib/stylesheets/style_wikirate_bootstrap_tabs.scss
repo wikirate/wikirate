@@ -84,18 +84,21 @@
 
 //Custom Tabs
 
+.contribution-report-header {
+    .nav-tabs>li>a{
+      margin: 0px;
+    }
+}
+
 h4.contribution-report-title {
     float: left;
     padding: 20px;
 }
 
-// TODO add border-left colours to each card type
 .contribution-report {
     margin-bottom: 15px;
     border: 1px solid $border-color;
 }
-
-
 
 .RIGHT-metric, .RIGHT-metric_value{
   .contribution-report-header {
@@ -127,7 +130,19 @@ h4.contribution-report-title {
       border-left: 4px solid $note-color;
   }
 }
+.RIGHT-research_group {
+  .contribution-report-header {
+    border-left: 4px solid $card-text-color;
+  }
+}
 
+.contribution-report-toggle a {
+    padding: 18px 0px!important;
+}
+.contribution-report-toggle {
+    width: 6%!important;
+    border-left: 1px solid #ebebeb;
+}
 
 //Custom tab positions
 .tabs-left > .nav-tabs > li{

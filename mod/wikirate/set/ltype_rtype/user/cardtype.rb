@@ -67,7 +67,7 @@ format :html do
   def contribution_report_action_boxes
     wrap_with :ul, class: "nav nav-tabs" do
       [:created, :updated, :discussed, :voted_on].reverse.map do |report_action|
-        contribution_report_box report_action
+        contribution_report_box report_action  if card.report_action_applies? report_action
       end.unshift contribution_report_toggle
     end
   end
@@ -107,7 +107,7 @@ format :html do
 
   def contribution_report_toggle
     toggle_status = Env.params[:report_tab] ? :open : :closed
-    wrap_with :li, class: "contribution-report-toggle" do
+    wrap_with :li, class: "contribution-report-toggle text-center" do
       send "contribution_report_toggle_#{toggle_status}"
     end
   end
