@@ -67,7 +67,9 @@ format :html do
   def contribution_report_action_boxes
     wrap_with :ul, class: "nav nav-tabs" do
       [:created, :updated, :discussed, :voted_on].reverse.map do |report_action|
-        contribution_report_box report_action  if card.report_action_applies? report_action
+        if card.report_action_applies? report_action
+          contribution_report_box report_action
+        end
       end.unshift contribution_report_toggle
     end
   end
