@@ -171,13 +171,13 @@ class Answer < ActiveRecord::Base
   end
 
   def fetch_checkers
-    return unless (cb = card.field(:checked_by))
-    cb.checked? && cb.checkers.join(", ")
+    return unless (cb = card.field(:checked_by)) && cb.checked?
+    cb.checkers.join(", ")
   end
 
   def fetch_check_requester
-    return unless (cb = card.field(:checked_by))
-    cb.check_requested? && cb.check_requester
+    return unless (cb = card.field(:checked_by)) && cb.check_requested?
+    cb.check_requester
   end
 
   def fetch_latest

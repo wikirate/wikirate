@@ -8,7 +8,7 @@ Feature: Double check
     Then I should see "Double check"
     When I hover over "Double check"
     And I click on "Yes, I checked the value"
-    And I click on "Yes, I checked the value"
+    #And I click on "Yes, I checked the value"
     # FIXME: It used to work with a single click
         #   but at some point I had to introduce a second
         #   click to click the button once.

@@ -1,4 +1,4 @@
-class CSVImport
+class CSVFile
   @columns= []
 
   def initialize path
