@@ -143,8 +143,17 @@
   //padding: 40px;
 }
 .metric-carousal-fix{
-  margin-top: 1%;
+  margin-top: 0%;
+}
 
+.carousal .browse-button {
+    position: absolute;
+    width: 100%;
+    bottom: -40px;
+}
+
+.metric-carousal-fix .browse-button {
+    bottom: -32px;
 }
 
 #company-n-topic .grid-column {
