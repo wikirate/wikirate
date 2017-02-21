@@ -203,7 +203,6 @@ def drop_checker user
 end
 
 def add_checked_flag?
-  binding.pry
   Env.params["set_flag"] == "checked"
 end
 
