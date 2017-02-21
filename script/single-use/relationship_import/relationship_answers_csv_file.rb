@@ -1,10 +1,10 @@
-require_relative "csv_import"
+require_relative "../../csv_import/csv_import"
 require_relative "relationship_answer"
 
-class RelationshipAnswersCSV < CSVImport
+class RelationshipAnswersCSVFile < CSVFile
   @columns = [:designer, :title, :company_1, :company_2, :year, :value, :source]
 
   def process_row row
-    RelationshipAnswer.new(row).create
+    RelationshipAnswerCSVRow.new(row).create
   end
 end

@@ -177,7 +177,7 @@ event :update_answer_lookup_table_due_to_check_change, :finalize,
 end
 
 event :user_checked_value, :prepare_to_store,
-      on: :update, when: :add_checked_flag? do
+      on: :save, when: :add_checked_flag? do
   add_item user.name, true unless user_checked?
   update_user_check_log.add_id left_id
 end
