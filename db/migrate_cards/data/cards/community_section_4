@@ -1,3 +1,3 @@
-<p><i class="fa  fa-check fa-4x"></i></p><br>
-<a href='/{{section 4 info|linkname}}' class="btn btn-default btn-banner-info">Companies & Standards</a><br><br><br>
+<p><i class="fa  fa-industry fa-3x"></i></p>
+<h3>Companies</h3>
 {{+info|content}}

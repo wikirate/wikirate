@@ -33,7 +33,7 @@
 .homepage-company-item,
 .homepage-topic-item {
     max-width: 520px;
-    @include box-shadow(0,2px,32px,rgba(0,0,0,0.24));
+    @include box-shadow(0,2px,32px,rgba(0,0,0,0.14));
     border: 1px solid $bright-text-color;
     padding-bottom: 40px;
     background-color: #fff;
@@ -717,14 +717,16 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 }
 
 #metric-container {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    padding: 0px 15px;
-    margin-bottom: 30px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 0px 15px;
+  margin-bottom: 30px;
 }
 #source-preview-main {
-    padding: 1px;
-    margin-bottom: 30px;
+  padding: 1px;
+  margin-bottom: 30px;
+  padding-right: 15px;
+  margin-left: 15px;
 }
 
 .stick-left, .stick-right{
