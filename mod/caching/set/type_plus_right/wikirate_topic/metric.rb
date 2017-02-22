@@ -20,11 +20,19 @@ format :html do
             .count("distinct company_id")
             .map do |metric_id, _count|
         nest metric_id, view: :listing
-      end
+      end + no_answers
     end
+  end
+
+  def no_answers
+    all_metric_ids.map do |id|
+      next if Answer.exists? id
+      nest id, view: :listing
+    end.compact
   end
 
   def all_metric_ids
     @all_metric_ids ||= card.search return: :id, limit: 0
   end
 end
+

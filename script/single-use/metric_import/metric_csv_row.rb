@@ -1,7 +1,7 @@
 require_relative "../../csv_import/csv_row"
 
 class MetricCSVRow < CSVRow
-  @required = [:metric_designer, :metric_title, :value_type]
+  @required = [:metric_designer, :metric_title, :value_type, :metric_type]
 
   @normalize = { topics: :comma_list_to_pointer,
                  value_type: :process_value_type,
@@ -22,7 +22,7 @@ class MetricCSVRow < CSVRow
   end
 
   def to_html value
-    value.gsub("/n", "<br\>")
+    value.gsub("\n", "<br\>")
   end
 
   def process_value_type value
@@ -43,7 +43,6 @@ class MetricCSVRow < CSVRow
   def create
     create_card @designer, type: Card::ResearchGroupID unless Card.exists?(@designer)
     create_card @title, type: Card::MetricTitleID unless Card.exists?(@title)
-    return if Card.exists?(@name)
-    create_card @name, type: Card::MetricID, subfields: @row.merge(@value_details)
+    ensure_card @name, type: Card::MetricID, subfields: @row.merge(@value_details)
   end
 end
