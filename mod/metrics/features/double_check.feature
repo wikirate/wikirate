@@ -25,7 +25,8 @@ Feature: Double check
     When I am signed in as Joe User
     And I go to card "Jedi+disturbances in the Force+Death Star+2000"
     And I click on the "remove" icon
-  Then I should see "Double check"
+    And I hover over "Joe User"
+    Then I should see "Double check"
 
   Scenario: Request check, check and undo
     When I am signed in as Joe User
