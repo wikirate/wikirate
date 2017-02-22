@@ -4,7 +4,9 @@ class MetricCSVRow < CSVRow
   @required = [:metric_designer, :metric_title, :value_type]
 
   @normalize = { topics: :comma_list_to_pointer,
-                 value_type: :process_value_type }
+                 value_type: :process_value_type,
+                 about: :to_html,
+                 methodology: :to_html }
 
   def initialize row
     super
@@ -18,6 +20,10 @@ class MetricCSVRow < CSVRow
 
   def comma_list_to_pointer str
     str.split(',').map(&:strip).to_pointer_content
+  end
+
+  def to_html value
+    value.gsub("/n", "<br\>")
   end
 
   def process_value_type value
