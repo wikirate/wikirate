@@ -20,7 +20,9 @@ format :html do
         <div class="row">
           <div class="row-icon no-icon-bg padding-top-10">
               #{link_to_card card,
-                             nest(card.designer_image_card, view: :content, size: :small),
+                             nest(card.designer_image_card,
+                                  view: :content,
+                                  size: :small),
                              class: 'editor-image inherit-anchor'}
           </div>
           <div class="row-data">
@@ -34,7 +36,7 @@ format :html do
   end
 
   def collapsed_sections
-    voo.hide :compact_example_answers unless card.field(:example_answers)
+    return unless card.field(:example_answers)
     output [
              _optional_render_compact_methodology,
              _optional_render_compact_about,
@@ -62,10 +64,10 @@ format :html do
     HTML
   end
 
-  view :compact_answers do
+  view :compact_example_answers do
     <<-HTML
       <div class="col-md-12">
-        <div class="about-info collapse">
+        <div class="example_answers-info collapse">
             <div class="row"><small><strong>Example Answers</strong>
               #{field_nest :example_answers, view: :content}
             </small></div>
@@ -98,10 +100,17 @@ format :html do
 
   view :compact_buttons do
     output [
-             toggle_button("Methodolgy", ".methodolgoy_info"),
-             toggle_button("About", ".about_info"),
+             toggle_button("Methodolgy", ".methodology-info"),
+             toggle_button("About", ".about-info"),
+             toggle_example_answers,
              _optional_render_page_link_button
            ]
+  end
+
+
+  def toggle_example_answers
+    return unless card.field(:example_answers)
+    toggle_button("Example Answers", ".example_answers-info")
   end
 
   def toggle_button text, target
