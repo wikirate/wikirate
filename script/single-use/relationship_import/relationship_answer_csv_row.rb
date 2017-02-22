@@ -1,7 +1,7 @@
 require_relative "../../../spec/source_helper"
-require_relative "csv_row"
+require_relative "../../csv_import/csv_row"
 
-class RelationshipAnswer < CSVRow
+class RelationshipAnswerCSVRow < CSVRow
   include SourceHelper
 
   @required =

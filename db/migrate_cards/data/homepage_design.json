@@ -1,5 +1,9 @@
 [
   {
+    "name": "homepage: wikirate gets it right",
+    "type": "HTML"
+  },
+  {
     "name": "homepage: company intro",
     "type": "HTML"
   },
@@ -57,6 +61,22 @@
     "type": "HTML"
   },
   {
+    "name": "community: section 5",
+    "type": "HTML"
+  },
+  {
+    "name": "community: section 6",
+    "type": "HTML"
+  },
+  {
+    "name": "community: section 7",
+    "type": "HTML"
+  },
+  {
+    "name": "community: section 8",
+    "type": "HTML"
+  },
+  {
     "name": "community: section 1+info",
     "type": "Basic"
   },
@@ -71,6 +91,26 @@
   {
     "name": "community: section 4+info",
     "type": "Basic"
+  },
+  {
+    "name": "community: section 5+info",
+    "type": "Basic"
+  },
+  {
+    "name": "community: section 6+info",
+    "type": "Basic"
+  },
+  {
+    "name": "community: section 7+info",
+    "type": "Basic"
+  },
+  {
+    "name": "community: section 8+info",
+    "type": "Basic"
+  },
+  {
+    "name": "homepage: introductions",
+    "type": "HTML"
   },
   {
     "name": "nav bar menu",

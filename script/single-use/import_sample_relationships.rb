@@ -8,7 +8,8 @@ answers_path = File.expand_path "../relationship_import/data/answers.csv", __FIL
 
 Card::Auth.current_id = Card.fetch_id("Philipp Kuehl")
 
-RelationshipMetricsCSV.new(metrics_path).import!
-RelationshipAnswersCSV.new(answers_path).import!
+RelationshipMetricsCSVFile.new(metrics_path).import!
+RelationshipAnswersCSVFile.new(answers_path).import!
+
 
 

@@ -8,7 +8,7 @@ Feature: Double check
     Then I should see "Double check"
     When I hover over "Double check"
     And I click on "Yes, I checked the value"
-    And I click on "Yes, I checked the value"
+    #And I click on "Yes, I checked the value"
     # FIXME: It used to work with a single click
         #   but at some point I had to introduce a second
         #   click to click the button once.
@@ -25,7 +25,8 @@ Feature: Double check
     When I am signed in as Joe User
     And I go to card "Jedi+disturbances in the Force+Death Star+2000"
     And I click on the "remove" icon
-  Then I should see "Double check"
+    And I hover over "Joe User"
+    Then I should see "Double check"
 
   Scenario: Request check, check and undo
     When I am signed in as Joe User

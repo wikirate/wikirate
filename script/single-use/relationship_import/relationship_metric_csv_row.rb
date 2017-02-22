@@ -1,6 +1,6 @@
-require_relative "csv_row"
+require_relative "../../csv_import/csv_row"
 
-class RelationshipMetric < CSVRow
+class RelationshipMetricCSVRow < CSVRow
   @required = [:designer, :title, :value_type, :inverse]
 
   def initialize row
