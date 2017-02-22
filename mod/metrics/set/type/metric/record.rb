@@ -4,11 +4,12 @@
 format :html do
   view :compact do
     voo.hide :compact_header
+
     wrap_with :div, class: "metric-info" do
       [
         _optional_render_compact_header,
         _optional_render_compact_question,
-        _optional_render_compact_methodology
+        collapsed_sections
       ]
     end
   end
@@ -19,7 +20,9 @@ format :html do
         <div class="row">
           <div class="row-icon no-icon-bg padding-top-10">
               #{link_to_card card,
-                             nest(card.designer_image_card, view: :content, size: :small),
+                             nest(card.designer_image_card,
+                                  view: :content,
+                                  size: :small),
                              class: 'editor-image inherit-anchor'}
           </div>
           <div class="row-data">
@@ -32,10 +35,43 @@ format :html do
     HTML
   end
 
+  def collapsed_sections
+    return unless card.field(:example_answers)
+    output [
+             _optional_render_compact_methodology,
+             _optional_render_compact_about,
+             _optional_render_compact_example_answers
+           ]
+  end
+
   view :compact_question do
     <<-HTML
       <div class="col-md-12 padding-bottom-10">
         #{_render_question_row}
+      </div>
+    HTML
+  end
+
+  view :compact_about do
+    <<-HTML
+      <div class="col-md-12">
+        <div class="about-info collapse">
+            <div class="row"><small><strong>About</strong>
+              #{nest card.about_card, view: :content}
+            </small></div>
+        </div>
+      </div>
+    HTML
+  end
+
+  view :compact_example_answers do
+    <<-HTML
+      <div class="col-md-12">
+        <div class="example_answers-info collapse">
+            <div class="row"><small><strong>Example Answers</strong>
+              #{field_nest :example_answers, view: :content}
+            </small></div>
+        </div>
       </div>
     HTML
   end
@@ -64,20 +100,30 @@ format :html do
 
   view :compact_buttons do
     output [
-             _optional_render_methodology_button,
+             toggle_button("Methodolgy", ".methodology-info"),
+             toggle_button("About", ".about-info"),
+             toggle_example_answers,
              _optional_render_page_link_button
            ]
   end
 
-  view :methodology_button do
-    wrap_with :a, "View Methodology",
-              class: css_classes(button_classes, "_view_methodology"),
+
+  def toggle_example_answers
+    return unless card.field(:example_answers)
+    toggle_button("Example Answers", ".example_answers-info")
+  end
+
+  def toggle_button text, target
+    wrap_with :a, "View #{text}",
+              class: css_classes(button_classes, "_toggle_button_text"),
               data: {
+                toggle_text: "Hide #{text}",
                 toggle: "collapse-next",
                 parent: ".record-row",
-                target: ".methodology-info"
+                target: target
               }
   end
+
 
   view :page_link_button do
     link_to_card card, "#{fa_icon 'external-link'} Metric Page",
