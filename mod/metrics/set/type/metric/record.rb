@@ -36,7 +36,6 @@ format :html do
   end
 
   def collapsed_sections
-    return unless card.field(:example_answers)
     output [
              _optional_render_compact_methodology,
              _optional_render_compact_about,
@@ -65,6 +64,7 @@ format :html do
   end
 
   view :compact_example_answers do
+    return unless card.field(:example_answers)
     <<-HTML
       <div class="col-md-12">
         <div class="example_answers-info collapse">
