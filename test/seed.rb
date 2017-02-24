@@ -277,9 +277,16 @@ class SharedData
                             value_type: "Category",
                             value_options: %w(1 2 3 4 5 6 7 8 9 10 11),
                             random_source: true do
-          Sony_Corporation "2010" => 1
+          Sony_Corporation "2010" => 1,
+                           "2009" => 2
         end
 
+        update_card "Joe User+big single+Sony Corporation+2010+value",
+                    content: "4"
+        ensure_card "Joe User+small single+Sony Corporation+2010+discussion",
+                    content: "comment"
+        ensure_card "Joe User+big multi+Sony Corporation+2010+checked by",
+                    content: "[[Joe User]]"
         create_card "Joe User+small single+about", {}
         update_card "Joe User+small single+about", content: "changed"
       end

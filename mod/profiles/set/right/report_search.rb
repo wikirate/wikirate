@@ -66,10 +66,6 @@ end
 
 format :html do
   SUBVARIANTS = {
-    metric_value: {
-      created: [:checked_by_others, :updated_by_others, :discussed_by_others],
-      updated: [:checked]
-    },
     wikirate_topic: {
       created: [:submitted, :organized],
       voted_on: [:voted_for, :voted_against]
