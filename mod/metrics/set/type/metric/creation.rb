@@ -6,6 +6,26 @@ def create_value_options options
   Card.create! create_args
 end
 
+event :ensure_designer, :prepare_to_store, on: :save, changed: :name do
+  return if valid_designer?
+  if (card = Card[metric_designer])
+    errors.add :metric_designer, "invalid type #{card.type_name}"
+  else
+    attach_subcard metric_designer, type_id: ResearchGroupID
+  end
+end
+
+event :ensure_title, :prepare_to_store, on: :save, changed: :name do
+  return if Card.fetch_type_id(metric_title) == MetricTitleID
+  attach_subcard metric_title, type_id: MetricTitleID
+end
+
+def valid_designer?
+  Card.fetch_type_id(metric_designer).in? [ResearchGroupID, UserID,
+                                           WikirateCompanyID]
+end
+
+
 # @example
 # create_values do
 #   Siemens 2015 => 4, 2014 => 3

@@ -20,6 +20,13 @@ class SharedData
   class << self
     include Card::Model::SaveHelper
 
+    def as_joe_user
+      current = Card::Auth.current_id
+      Card::Auth.current_id = Card.fetch_id "Joe User"
+      yield
+      Card::Auth.current_id = current
+    end
+
     def account_args hash
       { "+*account" => { "+*password" => "joe_pass" }.merge(hash) }
     end
@@ -198,9 +205,13 @@ class SharedData
       Card::Metric.create name: "Jedi+deadliness+Joe Camel",
                           type: :score,
                           formula: "{{Jedi+deadliness}}/20"
+
+      as_joe_user do
       Card::Metric.create name: "Jedi+disturbances in the Force+Joe User",
                           type: :score,
                           formula: { yes: 10, no: 0 }
+      end
+
       Card::Metric.create(
         name: "Jedi+darkness rating",
         type: :wiki_rating,
@@ -260,12 +271,17 @@ class SharedData
         Sony_Corporation "2010" => 1
       end
 
-      Card::Metric.create name: "Joe User+big single",
-                          type: :researched,
-                          value_type: "Category",
-                          value_options: %w(1 2 3 4 5 6 7 8 9 10 11),
-                          random_source: true do
-        Sony_Corporation "2010" => 1
+      as_joe_user do
+        Card::Metric.create name: "Joe User+big single",
+                            type: :researched,
+                            value_type: "Category",
+                            value_options: %w(1 2 3 4 5 6 7 8 9 10 11),
+                            random_source: true do
+          Sony_Corporation "2010" => 1
+        end
+
+        create_card "Joe User+small single+about", {}
+        update_card "Joe User+small single+about", content: "changed"
       end
     end
 
