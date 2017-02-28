@@ -65,16 +65,6 @@ end
 
 
 format :html do
-  SUBVARIANTS = {
-    wikirate_topic: {
-      created: [:submitted, :organized],
-      voted_on: [:voted_for, :voted_against]
-    },
-    projects: {
-      created: [:submitted, :organized]
-    }
-  }
-
   # uses structure to hold variant
   # (so that it can be passed around via slot options)
 
@@ -85,7 +75,7 @@ format :html do
   end
 
   def subvariants
-    card.cardtype_card.subvariants
+    card.cardtype_card.subvariants[@category]
   end
 
   def subvariant_tabs
@@ -132,7 +122,7 @@ format :html do
       binding.pry
       card.variant = voo.structure if voo.structure
       @category = cardtype
-      return listing unless subvariants
+      return listing if research_group? || !subvariants
       tab_listing listing
     end
   end

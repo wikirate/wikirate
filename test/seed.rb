@@ -20,9 +20,13 @@ class SharedData
   class << self
     include Card::Model::SaveHelper
 
-    def as_joe_user
+    def as_joe_user &block
+      as_user "Joe User", &block
+    end
+
+    def as_user user_name
       current = Card::Auth.current_id
-      Card::Auth.current_id = Card.fetch_id "Joe User"
+      Card::Auth.current_id = Card.fetch_id user_name
       yield
       Card::Auth.current_id = current
     end
@@ -278,17 +282,34 @@ class SharedData
                             value_options: %w(1 2 3 4 5 6 7 8 9 10 11),
                             random_source: true do
           Sony_Corporation "2010" => 1,
-                           "2009" => 2
+                           "2009" => 9,
+                           "2008" => 8,
+                           "2007" => 7,
+                           "2006" => 6,
+                           "2005" => 5
         end
 
         update_card "Joe User+big single+Sony Corporation+2010+value",
                     content: "4"
         ensure_card "Joe User+small single+Sony Corporation+2010+discussion",
                     content: "comment"
-        ensure_card "Joe User+big multi+Sony Corporation+2010+checked by",
+        ensure_card "Joe User+big single+Sony Corporation+2005+checked by",
                     content: "[[Joe User]]"
+
         create_card "Joe User+small single+about", {}
         update_card "Joe User+small single+about", content: "changed"
+
+
+        create_card "Created Company", type_id: Wikirate::Company
+      end
+
+      as_user "Joe Admin" do
+        ensure_card "Joe User+small multi+Sony Corporation+2008+checked by",
+                    content: "[[Joe Admin]]"
+        ensure_card "Joe User+big single+Sony Corporation+2006+discussion",
+                    content: "comment"
+        ensure_card "Joe User+big single+Sony Corporation+2009+value",
+                    content: "5"
       end
     end
 

@@ -22,32 +22,27 @@ end
 
 def updated_query user_id, variant=nil
   if variant == :checked
-    { or: {
-      changed_by: user_id,
-      right_plus: [
-        { name: ["in", "methodology", "about", "topics", "*metric type",
-                 "research policy", "report type",
-                 "value type", "value options", "unit", "range", "currency"] },
-        { changed_by: user_id }
-      ]
-    }
-    }
+    { right_plus: [CheckedByID, { refer_to: user_id }] }
+  else
+    { changed_by: user_id }
   end
-
-  def created_query user_id, variant=nil
-    super.merge(created_query_variant(user_id, variant))
-  end
+end
 
 
-  def created_query_variant user_id, variant=nil
-    case variant
-    when :checked_by_others
-      { checkers }
-    when :updated_by_others
-      { right_plus: [:value, { changed_by: user_id }] }
-    when :discussed_by_others
-      { right_plus: [:discussion, { not: { edited_by: user_id } }] }
-    else
-      {}
-    end
+def created_query user_id, variant=nil
+  super.merge(created_query_variant(user_id, variant))
+end
+
+
+def created_query_variant user_id, variant=nil
+  case variant
+  when :checked_by_others
+    { right_plus: [CheckedByID, { not: {content: ""}}] }
+  when :updated_by_others
+    { right_plus: [:value, { changed_by: user_id }] }
+  when :discussed_by_others
+    { right_plus: [DiscussionID, { not: { edited_by: user_id } }] }
+  else
+    {}
   end
+end

@@ -39,24 +39,6 @@ def vote_type_matcher variant
   end
 end
 
-def metric_created_query user_id, variant=nil
-  case variant
-  when :submitted
-  end
-end
-
-def project_created_query user_id, variant=nil
-  case variant
-  when :organized
-    { right_plus: [OrganizerID, { refer_to: user_id }] }
-  when :submitted
-    { created_by: user_id }
-  else
-    { right_plus: [OrganizerID, { refer_to: user_id }],
-      or: { created_by: user_id } }
-  end
-end
-
 def subvariants
   {}
 end
