@@ -24,7 +24,7 @@ def updated_query user_id, variant=nil
   if variant == :checked
     { right_plus: [CheckedByID, { refer_to: user_id }] }
   else
-    { right_plus: [ValueID, { changed_by: user_id }] }
+    { right_plus: [ValueID, { updated_by: user_id }] }
   end
 end
 
@@ -37,7 +37,7 @@ def created_query_variant user_id, variant=nil
   when :checked_by_others
     { right_plus: [CheckedByID, { not: {content: ""}}] }
   when :updated_by_others
-    { right_plus: [ValueID, { changed_by: { not: { id: user_id } } }] }
+    { right_plus: [ValueID, { updated_by: { not: { id: user_id } } }] }
   when :discussed_by_others
     { right_plus: [DiscussionID, { edited_by: { not: { id: user_id } } }] }
   else

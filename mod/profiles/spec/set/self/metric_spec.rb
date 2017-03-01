@@ -1,10 +1,6 @@
 require_relative "../../support/report_query_shared_examples"
-require_relative "../../../../../test/seed"
 
 RSpec.describe Card::Set::Self::Metric, "metric report queries" do
-  before(:context) do
-    #SharedData.add_profile_sections
-  end
   describe "created query" do
     include_context "report query", :metric, :created
     variants submitted: ["Joe User+big single",

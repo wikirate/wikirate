@@ -1,6 +1,7 @@
 # a pointer hack:
-# If the first item is "request" then the second item is the requester
-# and all users after that are checkers
+# If the first item is "request" then
+# somebody requested a double check
+# The requester is +check requested by
 
 def unknown?
   false
@@ -19,19 +20,28 @@ def other_user_requested_check?
 end
 
 def checked?
-  !check_requested? && checkers.present?
+  checkers.present?
 end
 
 def check_requested?
-  items.first == "request" && items.size <= 2
+  items.first == "request"
 end
 
 def checkers
-  items.first == "request" ? items[2..-1] : items
+  check_requested? ? [] : items
 end
 
 def check_requester
-  items.second
+  check_requested_by_card && check_requested_by_card.item_names.first
+end
+
+def check_requested_by_card
+  @check_requested_by_card ||=
+    left && left.fetch(trait: :check_requested_by, new: {})
+end
+
+def allowed_to_check?
+  left.value_card.updater_id != Auth.current_id
 end
 
 def items
@@ -63,6 +73,7 @@ format :html do
   end
 
   view :core do
+    return "" unless card.check_requested? || card.checked? || card.allowed_to_check?
     wrap_with :div do
       [
         wrap_with(:p, "Does the value accurately represent its source?"),
@@ -171,11 +182,6 @@ format :html do
   end
 end
 
-def update_user_check_log
-  add_subcard Auth.current.cardname.field_name(:double_checked),
-              type_id: PointerID
-end
-
 event :update_answer_lookup_table_due_to_check_change, :finalize,
       changed: :content do
   refresh_answer_lookup_entry left_id
@@ -189,21 +195,34 @@ end
 
 event :user_unchecked_value, :prepare_to_store,
       on: :update, when: :remove_checked_flag? do
-  drop_checker user.name if user_checked?
+  drop_checker user.name
   update_user_check_log.drop_id left.id
 end
 
 event :user_requests_check, :prepare_to_store do
-  if content == "[[request]]"
-    self.content = ["request", user.name].to_pointer_content
-  end
+  return unless content == "[[#{request_tag}]]"
+  attach_subcard check_requested_by_card,
+                 content: "[[#{user.name}]]",
+                 type_id: PointerID
+end
+
+def request_tag
+  @request_tag ||= Card.fetch_name(:request)
+end
+
+def mark_as_requested
+  content == "[[#{request_tag}]]"
+end
+
+def update_user_check_log
+  add_subcard Auth.current.cardname.field_name(:double_checked),
+              type_id: PointerID
 end
 
 def drop_checker user
-  if check_requested? && requester == user
-    insert_item user, 1 # deletes all other occurences
-  else
-    drop_item user
+  drop_item user
+  if item_names.empty? && check_requester.present?
+    mark_as_requested
   end
 end
 

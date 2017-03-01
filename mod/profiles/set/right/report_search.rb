@@ -60,11 +60,32 @@ def research_group_report_query
 end
 
 def selected_subvariant
-  (Env.params["subvariant"] && Env.params["subvariant"].to_sym) || :all
+  @subvariant ||=
+    (Env.params["subvariant"] && Env.params["subvariant"].to_sym) || :all
 end
 
+def variant
+  @variant ||=
+    (Env.params["variant"] && Env.params["variant"].to_sym) || :created
+end
+
+def subvariant_count subvariant
+  selected = @subvariant
+  @subvariant = subvariant
+  result = Card.search wql_hash.merge(return: :count)
+  @subvariant = selected
+  result
+end
 
 format :html do
+  def extra_paging_path_args
+    {
+      variant: variant,
+      subvariant: card.selected_subvariant,
+      view: sublist_view
+    }
+  end
+
   # uses structure to hold variant
   # (so that it can be passed around via slot options)
 
@@ -75,13 +96,28 @@ format :html do
   end
 
   def subvariants
-    card.cardtype_card.subvariants[@category]
+    return unless variant
+    card.cardtype_card.subvariants[variant]
   end
 
   def subvariant_tabs
     subvariants.unshift(:all).each_with_object({}) do |key, h|
-      h[key] = { title: key, path: path(subvariant: key) }
+      h[key] = { title: subvariant_tab_title(key),
+                 path: subvariant_tab_path(key) }
     end
+  end
+
+  def subvariant_tab_title key
+    "#{key} <span class='badge'>#{card.subvariant_count(key)}</span>"
+  end
+
+  def subvariant_tab_path key
+    path subvariant: key, variant: variant,
+         view: sublist_view
+  end
+
+  def sublist_view
+    "#{card.cardtype_card.codename}_sublist"
   end
 
   view :core do
@@ -90,7 +126,6 @@ format :html do
   end
 
   view :metric_value_list do
-    @category = :metric_value
     card.variant = voo.structure if voo.structure
     wrap do
       with_paging do
@@ -105,7 +140,7 @@ format :html do
   def tab_listing content
     card.variant = voo.structure if voo.structure
     lazy_loading_tabs subvariant_tabs, selected_subvariant, content,
-                      tab_type: "pills"
+                      type: "pills"
   end
 
   [
@@ -118,14 +153,16 @@ format :html do
     :wikirate_topic
   ].each do |cardtype|
     view "#{cardtype}_list" do
-      listing = default_listing
-      card.variant = voo.structure if voo.structure
-      @category = cardtype
-      return listing if research_group? || !subvariants
+      listing = render("#{cardtype}_sublist".to_sym)
+      return listing if card.research_group? || !subvariants
       tab_listing listing
     end
-  end
 
+    view "#{cardtype}_sublist" do
+      card.variant = voo.structure if voo.structure
+      default_listing
+    end
+  end
 
   def default_listing item_view=:listing
     _render_content structure: card.variant,

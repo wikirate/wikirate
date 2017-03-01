@@ -11,15 +11,14 @@ end
 
 def updated_query user_id, variant=nil
   { or: {
-    changed_by: user_id,
+    updated_by: user_id,
     right_plus: [
       { name: ["in", "methodology", "about", "topics", "*metric type",
                "research policy", "report type",
                "value type", "value options", "unit", "range", "currency"] },
-      { changed_by: user_id }
+      { updated_by: user_id }
     ]
-  }
-  }
+  } }
 end
 
 def created_query user_id, variant=nil
@@ -34,4 +33,3 @@ def created_query user_id, variant=nil
     } }
   end
 end
-

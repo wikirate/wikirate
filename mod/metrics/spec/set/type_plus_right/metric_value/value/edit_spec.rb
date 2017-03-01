@@ -48,7 +48,7 @@ describe Card::Set::TypePlusRight::MetricValue::Value::Edit do
       subject { editor "big single" }
       it "has single select input" do
         is_expected.to have_tag :select, without: { multiple: "multiple" } do
-          with_tag :option, with: { value: "1", selected: "selected" }
+          with_tag :option, with: { value: "4", selected: "selected" }
           with_tag :option, with: { value: "2" },
                    without: { selected: "selected" }
         end
