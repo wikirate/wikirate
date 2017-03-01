@@ -9,7 +9,7 @@ def subvariants
   }
 end
 
-def updated_query user_id, variant=nil
+def updated_query user_id, _variant=nil
   { or: {
     updated_by: user_id,
     right_plus: [
@@ -29,7 +29,6 @@ def created_query user_id, variant=nil
     { left_id: user_id, type_id: MetricID }
   else
     { or: { created_by: user_id,
-            and: created_query(user_id, :designed)
-    } }
+            and: created_query(user_id, :designed) } }
   end
 end

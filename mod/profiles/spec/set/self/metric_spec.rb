@@ -3,8 +3,8 @@ require_relative "../../support/report_query_shared_examples"
 RSpec.describe Card::Set::Self::Metric, "metric report queries" do
   describe "created query" do
     include_context "report query", :metric, :created
-    variants submitted: ["Joe User+big single",
-                         "Jedi+disturbances in the Force+Joe User"],
+    variants submitted: ["Jedi+disturbances in the Force+Joe User",
+                         "Joe User+big single"],
              designed: 8,
              all: 9
   end

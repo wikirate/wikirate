@@ -15,6 +15,6 @@ RSpec.describe Card::Set::Self::Project, "project report queries" do
 
   describe "discussed query" do
     include_context "report query", :project, :discussed
-    variants all: ["discussed project", "conversation project"]
+    variants all: ["conversation project", "discussed project"]
   end
 end
