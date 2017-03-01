@@ -14,7 +14,6 @@ def created_query user_id, variant=nil
     { or:
         created_query(user_id, :submitted).merge(
           created_query(user_id, :organized)
-        )
-    }
+        ) }
   end
 end

@@ -35,7 +35,8 @@ end
 def created_query_variant user_id, variant=nil
   case variant
   when :checked_by_others
-    { right_plus: [CheckedByID, { not: {content: ""}}] }
+    { right_plus: [CheckedByID,
+                   { refer_to: { not: { id: ["in", RequestID, user_id] } } }] }
   when :updated_by_others
     { right_plus: [ValueID, { updated_by: { not: { id: user_id } } }] }
   when :discussed_by_others

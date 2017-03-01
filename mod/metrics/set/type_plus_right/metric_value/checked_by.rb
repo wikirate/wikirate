@@ -73,7 +73,9 @@ format :html do
   end
 
   view :core do
-    return "" unless card.check_requested? || card.checked? || card.allowed_to_check?
+    unless card.check_requested? || card.checked? || card.allowed_to_check?
+      return ""
+    end
     wrap_with :div do
       [
         wrap_with(:p, "Does the value accurately represent its source?"),
@@ -143,7 +145,8 @@ format :html do
   end
 
   def request_icon _opts={}
-    icon_tag("check-circle-o", class: "request-red", title: "check requested").html_safe
+    icon_tag("check-circle-o", class: "request-red", title: "check requested")
+      .html_safe
   end
 
   def data_path
@@ -221,9 +224,7 @@ end
 
 def drop_checker user
   drop_item user
-  if item_names.empty? && check_requester.present?
-    mark_as_requested
-  end
+  mark_as_requested if item_names.empty? && check_requester.present?
 end
 
 def add_checked_flag?

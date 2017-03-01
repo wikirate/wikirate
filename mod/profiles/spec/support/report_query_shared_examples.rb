@@ -2,8 +2,7 @@ RSpec.shared_context "report query" do |type, action|
   let(:user_id) { Card.fetch_id "Joe User" }
   let(:type_card) { Card[type] }
   let(:action) { action }
-  #let(:variants) { variant_specs }
-  #describe "#{action} query" do
+
   def wql variant
     type_card.report_query(action, user_id, variant)
   end
@@ -22,7 +21,7 @@ RSpec.shared_examples "variant" do |variant, result|
     if result.is_a?(Integer)
       expect(count(variant)).to eq result
     else
-      expect(names(variant)).to eq Array(result)
+      expect(names(variant).sort).to eq Array(result)
     end
   end
 end

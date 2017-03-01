@@ -6,11 +6,11 @@ def standard_report_query
   { type_id: id, limit: 5 }
 end
 
-def created_query user_id, variant=nil
+def created_query user_id, _variant=nil
   { created_by: user_id }
 end
 
-def updated_query user_id, variant=nil
+def updated_query user_id, _variant=nil
   { updated_by: user_id }
   # standard_report_count or: [
   #   { edited_by: user_id },
@@ -18,7 +18,7 @@ def updated_query user_id, variant=nil
   # ]
 end
 
-def discussed_query user_id, variant=nil
+def discussed_query user_id, _variant=nil
   { right_plus: [Card::DiscussionID,
                  { edited_by: user_id }] }
 end
@@ -71,4 +71,3 @@ metric value
 
 
 =end
-

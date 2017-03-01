@@ -24,6 +24,10 @@ class SharedData
                     content: "comment"
         ensure_card answer_field(2005, :checked_by),
                     content: "[[Joe User]]"
+        ensure_card answer_field(2003, :checked_by),
+                    content: "[[request]]"
+        ensure_card answer_field(2003, :check_requested_by),
+                    content: "[[Joe User]]"
       end
 
       as_user "Joe Admin" do
@@ -65,7 +69,6 @@ class SharedData
         create_card ["organized project", :organizer],
                     content: "[[Joe User]]"
       end
-
     end
 
     def research_group_section
@@ -98,9 +101,12 @@ class SharedData
         create_card "conversation project", type: :project
       end
       as_joe_user do
-        Card.create! name: "discuss conversation project 2", type: :conversation,
-                     subfields: { project: { content: "[[conversation project]]" },
-                                  discussion: { content: "comment" } }
+        Card.create! name: "discuss conversation project 2",
+                     type: :conversation,
+                     subfields: {
+                       project: { content: "[[conversation project]]" },
+                       discussion: { content: "comment" }
+                     }
       end
     end
   end

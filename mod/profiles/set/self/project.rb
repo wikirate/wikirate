@@ -14,20 +14,18 @@ def created_query user_id, variant=nil
     { or:
         created_query(user_id, :submitted).merge(
           created_query(user_id, :organized)
-        )
-    }
+        ) }
   end
 end
 
-def discussed_query user_id, variant=nil
+def discussed_query user_id, _variant=nil
   {
     or: super(user_id).merge(
       referred_to_by: { right_id: ProjectID,
                         left: {
                           type_id: ConversationID,
                           right_plus: [DiscussionID, { edited_by: user_id }]
-                        }
-      }
+                        } }
     )
   }
 end

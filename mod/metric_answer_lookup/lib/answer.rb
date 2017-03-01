@@ -176,7 +176,7 @@ class Answer < ActiveRecord::Base
   end
 
   def fetch_check_requester
-    return unless (cb = card.field(:check_requested_by)) && cb.check_requested?
+    return unless (cb = card.field(:checked_by)) && cb.check_requested?
     cb.check_requester
   end
 
