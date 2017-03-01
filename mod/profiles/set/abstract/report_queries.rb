@@ -11,7 +11,7 @@ def created_query user_id, variant=nil
 end
 
 def updated_query user_id, variant=nil
-  { changed_by: user_id }
+  { updated_by: user_id }
   # standard_report_count or: [
   #   { edited_by: user_id },
   #   { right_plus: [{}, edited_by: user_id]}
