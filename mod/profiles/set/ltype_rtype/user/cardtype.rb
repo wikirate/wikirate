@@ -131,7 +131,6 @@ format :html do
   end
 
   view :contribution_list, cache: :never do |args|
-    binding.pry
     report_card = args[:report_card]
     nest report_card, view: contribution_list_view,
          structure: report_card.variant,

@@ -119,7 +119,6 @@ format :html do
   ].each do |cardtype|
     view "#{cardtype}_list" do
       listing = default_listing
-      binding.pry
       card.variant = voo.structure if voo.structure
       @category = cardtype
       return listing if research_group? || !subvariants

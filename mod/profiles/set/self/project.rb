@@ -18,3 +18,16 @@ def created_query user_id, variant=nil
     }
   end
 end
+
+def discussed_query user_id, variant=nil
+  {
+    or: super(user_id).merge(
+      referred_to_by: { right_id: ProjectID,
+                        left: {
+                          type_id: ConversationID,
+                          right_plus: [DiscussionID, { edited_by: user_id }]
+                        }
+      }
+    )
+  }
+end

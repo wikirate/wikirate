@@ -1,25 +1,21 @@
 require_relative "../../support/report_query_shared_examples"
 
-RSpec.describe Card::Set::Self::MetricValue, "metric value report queries" do
+RSpec.describe Card::Set::Self::WikirateCompany, "company report queries" do
   def answer year, title="big single"
     ["Joe User+#{title}+Sony Corporation+#{year}"]
   end
   describe "created query" do
-    include_context "report query", :metric_value, :created
-    variants checked_by_others: answer(2008),
-             updated_by_others: answer(2009),
-             discussed_by_others: answer(2006),
-             all: 5
+    include_context "report query", :wikirate_company, :created
+    variants all: "created company"
   end
 
   describe "updated query" do
-    include_context "report query", :metric_value, :updated
-    variants all: answer(2010),
-             checked: answer(2005)
+    include_context "report query", :wikirate_company, :updated
+    variants all: "updated company"
   end
 
   describe "discussed query" do
-    include_context "report query", :metric_value, :discussed
-    variants all: answer(2010, "small single")
+    include_context "report query", :wikirate_company, :discussed
+    variants all: "discussed company"
   end
 end

@@ -22,7 +22,7 @@ RSpec.shared_examples "variant" do |variant, result|
     if result.is_a?(Integer)
       expect(count(variant)).to eq result
     else
-      expect(names(variant)).to eq result
+      expect(names(variant)).to eq Array(result)
     end
   end
 end

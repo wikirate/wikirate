@@ -7,11 +7,11 @@ def ids_related_to_research_group research_group
   end.flatten
 end
 
-def report_query action, user_id, subvariant
-  answer_query = send("#{action}_query", user_id, subvariant)
-  answer_ids = Answer.where(answer_query).pluck(:answer_id)
-  { id: ["in"] + answer_ids, limit: 5 }
-end
+# def report_query action, user_id, subvariant
+#   answer_query = send("#{action}_query", user_id, subvariant)
+#   #answer_ids = Answer.where(answer_query).pluck(:answer_id)
+#   #{ id: ["in"] + answer_ids, limit: 5 }
+# end
 
 def subvariants
   {
@@ -24,24 +24,22 @@ def updated_query user_id, variant=nil
   if variant == :checked
     { right_plus: [CheckedByID, { refer_to: user_id }] }
   else
-    { changed_by: user_id }
+    { right_plus: [ValueID, { changed_by: user_id }] }
   end
 end
-
 
 def created_query user_id, variant=nil
   super.merge(created_query_variant(user_id, variant))
 end
-
 
 def created_query_variant user_id, variant=nil
   case variant
   when :checked_by_others
     { right_plus: [CheckedByID, { not: {content: ""}}] }
   when :updated_by_others
-    { right_plus: [:value, { changed_by: user_id }] }
+    { right_plus: [ValueID, { changed_by: { not: { id: user_id } } }] }
   when :discussed_by_others
-    { right_plus: [DiscussionID, { not: { edited_by: user_id } }] }
+    { right_plus: [DiscussionID, { edited_by: { not: { id: user_id } } }] }
   else
     {}
   end
