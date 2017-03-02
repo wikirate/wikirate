@@ -125,7 +125,7 @@ format :html do
     super()
   end
 
-  view :metric_value_list do
+  view :metric_value_sublist do
     card.variant = voo.structure if voo.structure
     wrap do
       with_paging do
@@ -150,7 +150,8 @@ format :html do
     :research_group,
     :source,
     :wikirate_company,
-    :wikirate_topic
+    :wikirate_topic,
+    :metric_value
   ].each do |cardtype|
     view "#{cardtype}_list" do
       listing = render("#{cardtype}_sublist".to_sym)
