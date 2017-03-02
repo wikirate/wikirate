@@ -108,7 +108,7 @@ format :html do
   end
 
   def subvariant_tab_title key
-    "#{key} <span class='badge'>#{card.subvariant_count(key)}</span>"
+    "#{key.tr("_", " ")} <span class='badge'>#{card.subvariant_count(key)}</span>"
   end
 
   def subvariant_tab_path key
@@ -158,6 +158,8 @@ format :html do
       return listing if card.research_group? || !subvariants
       tab_listing listing
     end
+
+    next if cardtype == :metric_value
 
     view "#{cardtype}_sublist" do
       card.variant = voo.structure if voo.structure
