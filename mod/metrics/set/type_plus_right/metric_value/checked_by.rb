@@ -44,6 +44,10 @@ def allowed_to_check?
   left.value_card.updater_id != Auth.current_id
 end
 
+def check_was_requested_before_double_check?
+  check_requester.present?
+end
+
 def items
   @items ||= item_names
 end
@@ -192,20 +196,28 @@ end
 
 event :user_checked_value, :prepare_to_store,
       on: :save, when: :add_checked_flag? do
-  add_item user.name, true unless user_checked?
+  add_checker unless user_checked?
   update_user_check_log.add_id left.id
 end
 
 event :user_unchecked_value, :prepare_to_store,
       on: :update, when: :remove_checked_flag? do
-  drop_checker user.name
+  drop_checker
   update_user_check_log.drop_id left.id
 end
 
-event :user_requests_check, :prepare_to_store do
-  return unless content == "[[#{request_tag}]]"
+event :user_requests_check, :prepare_to_store,
+      when: :request_check_flag_update? do
+  requested_by_content =
+    if content == "[[#{request_tag}]]"
+      return if check_requester.present?
+      "[[#{user.name}]]"
+    else
+      ""
+    end
+
   attach_subcard check_requested_by_card.name,
-                 content: "[[#{user.name}]]",
+                 content: requested_by_content,
                  type_id: PointerID
 end
 
@@ -214,7 +226,7 @@ def request_tag
 end
 
 def mark_as_requested
-  content == "[[#{request_tag}]]"
+  self.content = "[[#{request_tag}]]"
 end
 
 def update_user_check_log
@@ -222,9 +234,18 @@ def update_user_check_log
               type_id: PointerID
 end
 
-def drop_checker user
-  drop_item user
-  mark_as_requested if item_names.empty? && check_requester.present?
+def add_checker
+  if check_requested? # override request flag
+    self.content = "[[#{user.name}]]"
+  else
+    add_item user.name
+  end
+end
+
+def drop_checker
+  drop_item user.name
+  mark_as_requested if item_names.empty? &&
+    check_was_requested_before_double_check?
 end
 
 def add_checked_flag?
@@ -234,3 +255,9 @@ end
 def remove_checked_flag?
   Env.params["set_flag"] == "not-checked"
 end
+
+def request_check_flag_update?
+  !add_checked_flag? && !remove_checked_flag?
+end
+
+
