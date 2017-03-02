@@ -108,7 +108,7 @@ format :html do
   end
 
   def subvariant_tab_title key
-    "#{key.tr("_", " ")} <span class='badge'>#{card.subvariant_count(key)}</span>"
+    "#{key.to_s.tr("_", " ")} <span class='badge'>#{card.subvariant_count(key)}</span>"
   end
 
   def subvariant_tab_path key
