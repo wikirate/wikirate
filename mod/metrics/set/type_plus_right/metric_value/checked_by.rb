@@ -37,7 +37,7 @@ end
 
 def check_requested_by_card
   @check_requested_by_card ||=
-    left && left.fetch(trait: :check_requested_by, new: {})
+    left(new: {}).fetch(trait: :check_requested_by, new: {})
 end
 
 def allowed_to_check?
@@ -204,7 +204,7 @@ end
 
 event :user_requests_check, :prepare_to_store do
   return unless content == "[[#{request_tag}]]"
-  attach_subcard check_requested_by_card,
+  attach_subcard check_requested_by_card.name,
                  content: "[[#{user.name}]]",
                  type_id: PointerID
 end

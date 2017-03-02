@@ -16,7 +16,7 @@ class DoubleCheckOverhaul < Card::Migration
         create_card [card, :check_requested_by],
                     content: "[[#{card.item_names.second}]]",
                     type_id: Card::PointerID
-        card.update_attributes! content: item_names[2..-1].to_pointer_content
+        card.update_attributes! content: card.item_names[2..-1].to_pointer_content
       end
     end
   end
