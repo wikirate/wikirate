@@ -171,9 +171,9 @@ describe Card::Set::TypePlusRight::Source::File::Import do
           "3" => "Amazon.com, Inc."
         }
         trigger_import [
-          { company: "Amazon.com, Inc.", value: "9", row: 1 },
-          { company: "Apple Inc.",       value: "62", row: 2 },
-          { company: "Sony Corporation", value: "13", row: 3 }
+          { file_company: "Amazon.com, Inc.", value: "9", row: 1 },
+          { file_company: "Apple Inc.",       value: "62", row: 2 },
+          { file_company: "Sony Corporation", value: "13", row: 3 }
         ]
       end
 
