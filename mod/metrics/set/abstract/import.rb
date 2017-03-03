@@ -302,21 +302,21 @@ format :html do
     <<-HTML.html_safe
       Select:
       <span class="padding-20 background-grey">
-      #{check_box_tag '_check_all', '', false, class: 'checkbox-button'}
-      #{label_tag 'all'}
+        #{check_box_tag '_check_all', '', false, class: 'checkbox-button'}
+    #{label_tag 'all'}
       </span>
-      #{group_selection_checkbox('exact', 'exact matches', :success)}
-    #{group_selection_checkbox('alias', 'alias matches', :info)}
-    #{group_selection_checkbox('partial', 'partial matches', :warning)}
+      #{group_selection_checkbox('exact', 'exact matches', :success, true)}
+    #{group_selection_checkbox('alias', 'alias matches', :info, true)}
+    #{group_selection_checkbox('partial', 'partial matches', :warning, true)}
     #{group_selection_checkbox('none', 'no matches', :danger)}
     HTML
   end
 
-  def group_selection_checkbox name, label, identifier
+  def group_selection_checkbox name, label, identifier, checked=false
     wrap_with :span, class: "padding-20 bg-#{identifier}" do
       [
         check_box_tag(
-          name, "", false,
+          name, "", checked,
           class: "checkbox-button _group_check",
           data: { group: identifier }
         ),
