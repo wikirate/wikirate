@@ -17,6 +17,8 @@ end
 
 event :ensure_title, :prepare_to_store, on: :save, changed: :name do
   return if Card.fetch_type_id(metric_title) == MetricTitleID
+  # TODO: deal with existing card that isn't a metric title
+  #       (i.e. fail or correct it)
   attach_subcard metric_title, type_id: MetricTitleID
 end
 

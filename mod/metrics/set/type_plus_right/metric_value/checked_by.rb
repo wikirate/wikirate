@@ -1,7 +1,17 @@
-# a pointer hack:
-# If the first item is "request" then
-# somebody requested a double check
-# The requester is +check requested by
+# +checked_by stores the current check state as follows:
+# empty/non-existent: no check
+# refer to "request": double check is requested
+# refer to one or more users: the users checked the value
+#
+# We have to distinguish between
+# "double check currently requested" and
+# "double check was requested before it was double checked"
+# so that the value can get its "requested" state back if somebody
+# removes his double check. We use the +check_requested_by card for that.
+# If the double check is requested the requester is
+# stored (permanently) in +check_requested_by and +checked_by is set
+# to "request". A double check removes the "request" and adds the checker to
+# +checked_by but the requester stays in +check_requested_by.
 
 def unknown?
   false
