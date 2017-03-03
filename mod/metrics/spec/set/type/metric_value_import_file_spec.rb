@@ -1,4 +1,4 @@
-describe Card::Set::Type::MetricValueImportFile do
+RSpec.describe Card::Set::Type::MetricValueImportFile do
   let(:comment) { "50 Nerds of Grey" }
   let(:metric) { sample_metric }
   let(:amazon) { "#{metric.name}+Amazon.com, Inc.+2015" }
@@ -92,10 +92,10 @@ describe Card::Set::Type::MetricValueImportFile do
 
         amazon_2015_metric_value_card =
           Card["#{metric.name}+#{amazon_corrected}+2015+value"]
-        expect(amazon_2015_metric_value_card.content).to eq("2")
+        expect(amazon_2015_metric_value_card.content).to eq("0")
       end
       it "updates companies's aliases" do
-        amazon_aliases = Card["#{amazon_correcte}+aliases"]
+        amazon_aliases = Card["#{amazon_corrected}+aliases"]
         expect(amazon_aliases.item_names).to include("Amazon.com, Inc.")
       end
     end
