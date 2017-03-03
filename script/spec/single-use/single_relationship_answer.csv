@@ -1,0 +1,3 @@
+Designer,Title,Value Type,Company 1,Company 2,Year,Value,Source
+Relationship Metric Folk,is Supplied By ,(Tier 1 Supplier / Tier 2 Supplier),Adidas,Dhakarea Limited,2016,Tier 1 Supplier,http://www.adidas-group.com/media/filer_public/ac/94/ac941cae-7b76-4fc3-9209-f851744bca19/primary_suppliers_july_2016.pdf
+Relationship Metric Folk,is Supplied By ,(Tier 1 Supplier / Tier 2 Supplier),Adidas,Ust Mamiya,2016,Tier 2 Supplier,http://www.adidas-group.com/media/filer_public/a6/01/a601b0b9-d119-4ba9-9748-0228e7fb8505/subcontractors_july_2016.pdf

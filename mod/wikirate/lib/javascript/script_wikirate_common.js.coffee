@@ -49,3 +49,11 @@ wagn.slotReady (slot) ->
       disable_search_threshold: 10
       skip_no_results: true
       width: '100%'
+
+# destory modal content after closing modal window (On homepage only)
+$(document).ready ->
+  if $('#Home').exists()
+    $('#modal-main-slot').on 'hidden.bs.modal', ->
+      $(this).data 'bs.modal', null
+      $(this).find('.modal-body').empty()
+  

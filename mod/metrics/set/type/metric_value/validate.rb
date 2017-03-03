@@ -1,16 +1,12 @@
 event :validate_answer_field, before: :set_metric_value_name do
-  missing_part :answer unless subfield_present?(:value) || unknown_present?
-end
-
-def unknown_present?
-  (field = subfield(:unknown)) && field.checked?
+  missing_part :answer unless subfield_present?(:value)
 end
 
 event :validate_value_type, :validate, on: :save do
   # check if the value fit the value type of metric
-  if metric_card && (value_type = metric_card.fetch(trait: :value_type)) &&
+  if metric_card && metric_card.researched? && (value_type = metric_card.fetch(trait: :value_type)) &&
      (value_card = subfield(:value))
-    value = value_card.content
+    value = value_card.value
     return if value.casecmp("unknown").zero?
     case value_type.item_names[0]
     when "Number", "Money"

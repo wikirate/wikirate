@@ -194,18 +194,17 @@ Then(/^I fill in "(.*)" in row (\d+)$/) do |text, row|
   end
 end
 
-Then(/^I should see a comment icon$/) do
-  html = page.body
-  expect(html).to have_tag("i",
-                           with: { class: "fa-commenting",
-                                   title: "Has comments" })
+Then(/^I should see a "(.*)" icon$/) do |icon|
+  expect(page.body).to have_tag "i.fa-#{ICONS[icon]}"
 end
 
-Then(/^I should not see a comment icon$/) do
-  html = page.body
-  expect(html).to_not have_tag("i",
-                               with: { class: "fa-commenting",
-                                       title: "Has comments" })
+Then(/^I should see a "(.*)" icon with tooltip "(.*)"$/) do |icon, title|
+  expect(page.body)
+    .to have_tag("i", with: { class: "fa-#{ICONS[icon]}", title: title })
+end
+
+Then(/^I should not see a "(.*)" icon$/) do |icon|
+  expect(page.body).to_not have_tag "i.fa-#{ICONS[icon]}"
 end
 
 When(/^I click the drop down button$/) do
@@ -256,6 +255,8 @@ When(/^I maximize the browser$/) do
 end
 
 ICONS = {
+  "check request" => "check-circle-o",
+  "comment" => "commenting",
   "remove" => "times-circle-o"
 }.freeze
 

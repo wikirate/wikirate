@@ -8,7 +8,7 @@ def value_card
 end
 
 def value
-  content
+  item_names.join ", "
 end
 
 def metric_plus_company
@@ -75,4 +75,10 @@ event :no_left_name_change, :prepare_to_validate,
             metric_value.type_id == MetricValueID
   errors.add :name, "not allowed to change. " \
                     "Change #{name_was.to_name.left} instead"
+end
+
+format :html do
+  view :core do
+    card.item_names.join(",")
+  end
 end

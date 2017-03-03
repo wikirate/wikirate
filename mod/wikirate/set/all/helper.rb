@@ -3,9 +3,14 @@ format :html do
     output [wrap_with(:h2, header), yield]
   end
 
-  def fa_icon icon, opts={}
-    prepend_class opts, "fa fa-#{icon}"
-    %(<i class="#{opts[:class]}"></i>)
+  def icon_tag type, opts={}
+    lib = opts.delete(:library) || :fa
+    prepend_class opts, "#{lib} #{lib}-#{type}"
+    %(<i #{tag_options opts}></i>)
+  end
+
+  def fa_icon type, opts={}
+    icon_tag type, opts
   end
 
   def standard_pointer_nest codename
