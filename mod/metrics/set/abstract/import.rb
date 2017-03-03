@@ -170,7 +170,7 @@ end
 def get_corrected_company_name params
   corrected = company_corrections[params[:row].to_s]
   if corrected.blank?
-    if params[:status].to_sym == :partial &&
+    if params[:status] && params[:status].to_sym == :partial &&
        (original = Card[params[:wikirate_company]])
       original.add_alias params[:file_company]
     end
@@ -179,7 +179,9 @@ def get_corrected_company_name params
   unless Card.exists?(corrected)
     Card.create! name: corrected, type_id: WikirateCompanyID
   end
-  Card[corrected].add_alias params[:file_company] if corrected != params[:file_company]
+  if corrected != params[:file_company]
+    Card[corrected].add_alias params[:file_company]
+  end
   corrected
 end
 
@@ -303,10 +305,10 @@ format :html do
       #{check_box_tag '_check_all', '', false, class: 'checkbox-button'}
       #{label_tag 'all'}
       </span>
-      #{group_selection_checkbox( "exact",  "exact matches",:success)}
-      #{group_selection_checkbox( "alias",  "alias matches",:info)}
-      #{group_selection_checkbox( "partial", "partial matches",:warning)}
-      #{group_selection_checkbox( "none", "no matches", :danger)}
+      #{group_selection_checkbox('exact', 'exact matches', :success)}
+    #{group_selection_checkbox('alias', 'alias matches', :info)}
+    #{group_selection_checkbox('partial', 'partial matches', :warning)}
+    #{group_selection_checkbox('none', 'no matches', :danger)}
     HTML
   end
 
@@ -314,23 +316,23 @@ format :html do
     wrap_with :span, class: "padding-20 bg-#{identifier}" do
       [
         check_box_tag(
-          name, '', false,
-          class: 'checkbox-button _group_check',
-          data: { group: identifier }),
+          name, "", false,
+          class: "checkbox-button _group_check",
+          data: { group: identifier }
+        ),
         label_tag(label)
       ]
     end
   end
 
-
   def import_legend
     <<-HTML.html_safe
      <span class="pull-right">
       company match:
-      #{row_legend "exact", "success"}
-      #{row_legend "alias", "info"}
-      #{row_legend "partial", "warning"}
-      #{row_legend "none", "danger"}
+      #{row_legend 'exact', 'success'}
+    #{row_legend 'alias', 'info'}
+    #{row_legend 'partial', 'warning'}
+    #{row_legend 'none', 'danger'}
       <span>
     HTML
   end

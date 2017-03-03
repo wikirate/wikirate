@@ -83,14 +83,15 @@ describe Card::Set::Type::MetricValueImportFile do
         Card::Env.params[:corrected_company_name] = {
           "1" => amazon_corrected,
           "2" => "",
-          "3" => "",
+          "3" => ""
         }
         mv_import_file.update_attributes! subcards: {}
       end
       it "uses the input company name" do
         expect(Card.exists?(amazon_corrected)).to be true
 
-        amazon_2015_metric_value_card = Card["#{metric.name}+#{amazon_corrected}+2015+value"]
+        amazon_2015_metric_value_card =
+          Card["#{metric.name}+#{amazon_corrected}+2015+value"]
         expect(amazon_2015_metric_value_card.content).to eq("2")
       end
       it "updates companies's aliases" do
