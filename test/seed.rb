@@ -28,13 +28,6 @@ class SharedData
       as_user "Joe User", &block
     end
 
-    def as_user user_name
-      current = Card::Auth.current_id
-      Card::Auth.current_id = Card.fetch_id user_name
-      yield
-      Card::Auth.current_id = current
-    end
-
     def account_args hash
       { "+*account" => { "+*password" => "joe_pass" }.merge(hash) }
     end

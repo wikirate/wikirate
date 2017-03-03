@@ -138,6 +138,10 @@ class Answer < ActiveRecord::Base
     metric_card.left_id
   end
 
+  def fetch_creator_id
+    card.creator_id
+  end
+
   def fetch_designer_name
     card.cardname.parts.first
   end
