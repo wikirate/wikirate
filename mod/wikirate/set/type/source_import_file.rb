@@ -158,7 +158,7 @@ format :html do
   end
 
   view :import do
-    voo.hide :metric_select, :year_select, :import_table_helper
+    voo.hide :metric_select, :year_select
     super()
   end
 
