@@ -1,4 +1,4 @@
-include_set Abstract::Badge
+include_set Abstract::AwardBadge
 
 # The answer table refresh happens on the act card.
 # That can cause problem if this is not the act card.
@@ -6,22 +6,24 @@ include_set Abstract::Badge
 event :award_metric_value_create_badges, before: :refresh_updated_answers,
       on: :create do
   [:general, :designer, :company].each do |type|
-    count = send "#{type}_count"
-    next unless (badge = Thresholds.badge(:create, type, count + 1))
+    count = send("#{type}_count") + 1
+    next unless (badge = earns_badge(:create, type, count))
     add_badge full_badge_name(badge, type), :metric_value
   end
   award_project_badges
 end
 
-
 def award_project_badges
   project_cards.each do |pc|
     count = project_count(pc) + 1
-    next unless (badge = Thresholds.badge(:create, :project, count))
+    next unless (badge = earns_badge(:create, :project, count))
     add_badge full_badge_name(badge, :project, pc.name)
   end
 end
 
+def earns_badge action, affinity_type, count
+  Type::MetricValue::Badges.earns_badge action, affinity_type, count
+end
 
 def action_count action, restriction={}
   case action

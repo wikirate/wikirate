@@ -14,7 +14,8 @@ class Badges < Card::Migration
      "Answer Advancer", "Answer Enhancer", "Answer Romancer",
      "Commentator", "Uncommon Commentator", "High Commentations",
     ].each do |name|
-      ensure_card name, type_id: Card::BadgeID
+      ensure_card name, type_id: Card::BadgeID,
+                  codename: name.to_name.key
     end
 
 
