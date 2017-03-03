@@ -18,6 +18,7 @@ describe Card::Set::Type::MetricValueImportFile do
       hash = {
         row: i + 1,
         metric: metric.name, company: company, year: "2015",
+        file_company: company,
         value: i.to_s,
         source: "http://example.com"
       }
@@ -77,33 +78,24 @@ describe Card::Set::Type::MetricValueImportFile do
     end
 
     context "company correction name is filled" do
+      let(:amazon_corrected) { "Amazon.com, Inc. Corrected" }
       before do
         Card::Env.params[:corrected_company_name] = {
-          "1" => "Apple Inc.",
-          "2" => "Sony Corporation",
-          "3" => "Amazon.com, Inc."
+          "1" => amazon_corrected,
+          "2" => "",
+          "3" => "",
         }
         mv_import_file.update_attributes! subcards: {}
       end
       it "uses the input company name" do
-        expect(Card.exists?(amazon)).to be true
-        expect(Card.exists?(apple)).to be true
-        expect(Card.exists?(sony)).to be true
+        expect(Card.exists?(amazon_corrected)).to be true
 
-        amazon_2015_metric_value_card = Card["#{amazon}+value"]
-        apple_2015_metric_value_card = Card["#{apple}+value"]
-        sony_2015_metric_value_card = Card["#{sony}+value"]
+        amazon_2015_metric_value_card = Card["#{metric.name}+#{amazon_corrected}+2015+value"]
         expect(amazon_2015_metric_value_card.content).to eq("2")
-        expect(apple_2015_metric_value_card.content).to eq("0")
-        expect(sony_2015_metric_value_card.content).to eq("1")
       end
       it "updates companies's aliases" do
-        amazon_aliases = Card["Amazon.com, Inc+aliases"]
-        apple_aliases = Card["Apple Inc+aliases"]
-        sony_aliases = Card["Sony Corporation+aliases"]
-        expect(amazon_aliases.item_names).to include("Sony Corporation")
-        expect(apple_aliases.item_names).to include("Amazon.com, Inc.")
-        expect(sony_aliases.item_names).to include("Apple Inc.")
+        amazon_aliases = Card["#{amazon_correcte}+aliases"]
+        expect(amazon_aliases.item_names).to include("Amazon.com, Inc.")
       end
     end
   end
