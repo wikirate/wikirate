@@ -159,8 +159,11 @@ format :html do
       tab_listing listing
     end
 
-    next if cardtype == :metric_value
+    define_tab_listing_where_applicable cardtype
+  end
 
+  def define_tab_listing_where_applicable cardtype
+    return if cardtype == :metric_value
     view "#{cardtype}_sublist" do
       card.variant = voo.structure if voo.structure
       default_listing
