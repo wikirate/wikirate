@@ -222,3 +222,7 @@ table.wikirate-table, .table.wikirate-table {
 .TYPE-research_group table thead tr>th{
     vertical-align:middle;
 }
+
+.import_table td {
+  text-overflow: ellipsis;
+}
