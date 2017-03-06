@@ -1,4 +1,4 @@
-include_set Abstract::AffinityBadge
+include_set Abstract::AnswerCreateAffinityBadge
 
 format :html do
   view :description do

@@ -1,7 +1,7 @@
 # name pattern assumed:
 # [user]+[cardtype card]+badges earned
 
-include_set Abstract::WikirateTable
+include_set Abstract::Table
 
 attr_accessor :auto_content
 
@@ -17,18 +17,22 @@ def cardtype_code
   left.right.codename
 end
 
+
 def badge_class
   @badge_class ||=
-    self.class.const_get "Type::#{cardtype_code.to_s.camelcase}::Badges"
+    Card::Set::Type.const_get "#{cardtype_code.to_s.camelcase}::Badges"
 end
 
-def items
-  badge_class.new(self).items
+# @return badge cards in descending order and simple badges before
+# affinity badges
+def ordered_badge_cards
+  item_cards.sort.reverse
 end
 
 format :html do
   view :core do
-    wikirate_table :plain, card.items, [:level, :badge, :description],
+    wikirate_table :plain, card.ordered_badge_cards,
+                   [:level, :badge, :description],
                    header: %w(Level Badge Description)
   end
 end

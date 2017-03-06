@@ -45,6 +45,7 @@ class SharedData
       add_projects
       add_industry
       add_profile_sections
+      add_badges
       Answer.refresh
     end
 
@@ -169,6 +170,27 @@ class SharedData
                type: :phrase,
                content: "Technology Hardware"
       end
+    end
+
+    def add_badges
+      create ["Joe Camel", :metric_value, :badges_earned],
+             type: "Pointer",
+             content: ["Researcher",
+                       "Death Star+Researcher+company badge",
+                       "Death Star+Research Engine+company badge",
+                       "Research Engine",
+                       "Evil Project+Researcher+project badge",
+                       "Research Fellow"].to_pointer_content
+
+      Card.create! name: ["Philipp Kuehl", :metric_value, :badges_earned],
+                   type: "Pointer",
+                   content: ["Researcher",
+                             "Death Star+Researcher+company badge",
+                             "Death Star+Research Engine+company badge",
+                             "Research Engine",
+                             "Evil Project+Researcher+project badge",
+                             "Research Fellow"].to_pointer_content
+
     end
   end
 end

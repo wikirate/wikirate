@@ -1,0 +1,32 @@
+{
+{
+  style: mixins and variables | raw
+}
+}
+
+.gold {
+  color: yellow;
+}
+
+td.badge-certificate {
+  padding: 2px;
+}
+
+.affinity-certificate {
+  margin-left:
+}
+
+div.badge-certificate {
+  height: 100%;
+  border-left: 1px solid $gray-background-color;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+
+  hr {
+    border-color: $gray-background-color;
+    width: 15px;
+    margin: 0;
+  }
+}

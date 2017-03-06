@@ -6,12 +6,20 @@ include_set Abstract::AwardBadge
 event :award_metric_value_create_badges, before: :refresh_updated_answers,
       on: :create do
   [:general, :designer, :company].each do |type|
-    count = send("#{type}_count") + 1
-    next unless (badge = earns_badge(:create, type, count))
+    count = send("create_count_general") + 1
+    next unless (badge = earns_badge(count, :create, type))
     add_badge full_badge_name(badge, type), :metric_value
   end
   award_project_badges
 end
+
+event :award_metric_value_update_badges, before: :refresh_updated_answers,
+      on: :update do
+  count = update_count + 1
+  next unless (badge = earns_badge(count, :update))
+  add_badge badge
+end
+
 
 def award_project_badges
   project_cards.each do |pc|
@@ -21,8 +29,8 @@ def award_project_badges
   end
 end
 
-def earns_badge action, affinity_type, count
-  Type::MetricValue::Badges.earns_badge action, affinity_type, count
+def earns_badge count, action, affinity_type=nil
+  Type::MetricValue::BadgeHierarchy.earns_badge count, action, affinity_type
 end
 
 def action_count action, restriction={}
@@ -36,19 +44,23 @@ def create_count restriction={}
   Answer.where(restriction.merge(creator_id: Auth.current_id)).count
 end
 
-def general_count
+def update_count restriction={}
+  Answer.where(restriction.merge(creator_id: Auth.current_id)).count
+end
+
+def create_count_general
   create_count
 end
 
-def designer_count
+def create_count_designer
   create_count designer_id: metric_card.metric_designer_card.id
 end
 
-def company_count
+def create_count_company
   create_count company_id: company_card.id
 end
 
-def project_count project_card
+def create_count_project project_card
   create_count metric_id: project_card.metric_ids,
                company_id: project_card.company_ids
 end
