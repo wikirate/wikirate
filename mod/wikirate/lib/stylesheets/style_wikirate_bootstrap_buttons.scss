@@ -389,3 +389,19 @@ $cursor-disabled: not-allowed !default; // Button variants
 .btn-banner-info, .btn-banner-join {
     font-size: 1.2em !important;
 }
+
+
+button.hover-button{
+  width: 320px;
+}
+button .hover-text {
+  display: none;
+}
+
+button:hover .text {
+  display: none;
+}
+
+button:hover .hover-text {
+  display: inline;
+}

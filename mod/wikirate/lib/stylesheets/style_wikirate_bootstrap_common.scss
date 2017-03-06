@@ -603,17 +603,9 @@ a.external-link:before, .closed-content a.external-link:before {
     font-size: 8px;
 }
 
-button.hover-button{
-  width: 320px;
-}
-button .hover-text {
-  display: none;
-}
 
-button:hover .text {
-  display: none;
-}
+// Fix for tiny radio button issue
 
-button:hover .hover-text {
-  display: inline;
+li>input[type="radio"] {
+  width: inherit!important;
 }

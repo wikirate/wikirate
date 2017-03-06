@@ -304,7 +304,22 @@
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
-
+  .vega canvas {
+      width: 100%!important;
+      height: 100%!important;
+  }
+  .details {
+      top: 65px!important;
+      position: fixed!important;
+      left: 0%!important;
+      width: 100%!important;
+  }
+  table.wikirate-table td.data{
+    min-width: 100%!important;
+  }
+  select{
+    width: 100%;
+  }
 }
 
 /* Extra Small Devices, Phones */
