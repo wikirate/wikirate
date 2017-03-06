@@ -169,12 +169,19 @@ end
 
 def get_corrected_company_name params
   corrected = company_corrections[params[:row].to_s]
-  return params[:company] unless corrected.present?
-
+  if corrected.blank?
+    if params[:status] && params[:status].to_sym == :partial &&
+       (original = Card[params[:wikirate_company]])
+      original.add_alias params[:file_company]
+    end
+    return params[:company] unless corrected.present?
+  end
   unless Card.exists?(corrected)
     Card.create! name: corrected, type_id: WikirateCompanyID
   end
-  Card[corrected].add_alias params[:company] if corrected != params[:company]
+  if corrected != params[:file_company]
+    Card[corrected].add_alias params[:file_company]
+  end
   corrected
 end
 
@@ -220,7 +227,7 @@ end
 def ensure_company_exists company, args
   if Card.exists?(company)
     return true if Card[company].type_id == WikirateCompanyID
-    msg = "#{company} is not in company type"
+    msg = "#{company} is not a company"
     add_import_error msg, args[:row]
   else
     add_subcard company, type_id: WikirateCompanyID
@@ -288,28 +295,44 @@ format :html do
   end
 
   view :import_table_helper do
-    wrap_with :p, (selection_checkbox + import_legend)
+    wrap_with :p, group_selection_checkboxes #+ import_legend)
   end
 
-  def selection_checkbox
+  def group_selection_checkboxes
     <<-HTML.html_safe
-      #{check_box_tag 'uncheck_all', '', false, class: 'checkbox-button'}
-      #{label_tag 'Uncheck All'}
-      #{check_box_tag 'partial', '', false, class: 'checkbox-button'}
-      #{label_tag 'Select Partial'}
-      #{check_box_tag 'exact', '', false, class: 'checkbox-button'}
-      #{label_tag 'Select Exact'}
+      Select:
+      <span class="padding-20 background-grey">
+        #{check_box_tag '_check_all', '', false, class: 'checkbox-button'}
+    #{label_tag 'all'}
+      </span>
+      #{group_selection_checkbox('exact', 'exact matches', :success, true)}
+    #{group_selection_checkbox('alias', 'alias matches', :info, true)}
+    #{group_selection_checkbox('partial', 'partial matches', :warning, true)}
+    #{group_selection_checkbox('none', 'no matches', :danger)}
     HTML
+  end
+
+  def group_selection_checkbox name, label, identifier, checked=false
+    wrap_with :span, class: "padding-20 bg-#{identifier}" do
+      [
+        check_box_tag(
+          name, "", checked,
+          class: "checkbox-button _group_check",
+          data: { group: identifier }
+        ),
+        label_tag(label)
+      ]
+    end
   end
 
   def import_legend
     <<-HTML.html_safe
      <span class="pull-right">
       company match:
-      #{row_legend "exact", "success"}
-      #{row_legend "alias", "info"}
-      #{row_legend "partial", "warning"}
-      #{row_legend "none", "danger"}
+      #{row_legend 'exact', 'success'}
+    #{row_legend 'alias', 'info'}
+    #{row_legend 'partial', 'warning'}
+    #{row_legend 'none', 'danger'}
       <span>
     HTML
   end
@@ -378,21 +401,23 @@ format :html do
   # @return name of company in db that matches the given name and
   # the what kind of match
   def matched_company name
-    if (company = Card.fetch(name)) && company.type_id == WikirateCompanyID
-      [name, :exact]
-      # elsif (result = Card.search :right=>"aliases",
-      # :left=>{:type_id=>Card::WikirateCompanyID},
-      # :content=>["match","\\[\\[#{name}\\]\\]"]) && !result.empty?
-      #   [result.first.cardname.left, :alias]
-    elsif (company_name = aliases_hash[name.downcase])
-      [company_name, :alias]
-    elsif (result = get_potential_company(name))
-      [result.first.name, :partial]
-    elsif (company_name = part_of_company(name))
-      [company_name, :partial]
-    else
-      ["", :none]
-    end
+    @company_map ||= {}
+    @company_map[name] ||=
+      if (company = Card.fetch(name)) && company.type_id == WikirateCompanyID
+        [name, :exact]
+        # elsif (result = Card.search :right=>"aliases",
+        # :left=>{:type_id=>Card::WikirateCompanyID},
+        # :content=>["match","\\[\\[#{name}\\]\\]"]) && !result.empty?
+        #   [result.first.cardname.left, :alias]
+      elsif (company_name = aliases_hash[name.downcase])
+        [company_name, :alias]
+      elsif (result = get_potential_company(name))
+        [result.first.name, :partial]
+      elsif (company_name = part_of_company(name))
+        [company_name, :partial]
+      else
+        ["", :none]
+      end
   end
 
   def part_of_company name
