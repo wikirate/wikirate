@@ -13,7 +13,8 @@ class Badges < Card::Migration
     ["Researcher", "Research Engine", "Research Fellow", "Checker",
      "Check Mate", "Checksquisite",
      "Answer Advancer", "Answer Enhancer", "Answer Romancer",
-     "Commentator", "Uncommon Commentator", "High Commentations",
+     "Commentator", "Uncommon Commentator",
+     ["High Commentations", "high_commentations"],
      "Projected Voice", "Project Launcher",
      "Inside Source", "A Cite to Behold", "A Source of Inspiration",
      "Company Register", "The Company Store", "Inc Slinger",
@@ -21,8 +22,10 @@ class Badges < Card::Migration
      "Metric Creator", "I So Metric", "Helio Metric",
      "Metric Voter", "Metric Critic", "Metric Voting Machine"
     ].each do |name|
-      ensure_card name, type_id: Card::BadgeID,
-                  codename: name.to_name.key
+      name, codename =
+        name.is_a?(Array) ? name : [name, name.to_name.key]
+
+      ensure_card name, type_id: Card::BadgeID, codename: codename
     end
 
     add_style "badges", type_id: Card::ScssID,

@@ -5,19 +5,19 @@ include_set Abstract::AwardBadge
 # To be safe we count before the update
 event :award_metric_value_create_badges, before: :refresh_updated_answers,
       on: :create do
-  [:general, :designer, :company].each do |type|
+  [:general, :designer, :company].each do |affinity|
     count = send("create_count_general") + 1
-    next unless (badge = earns_badge(count, :create, type))
-    add_badge full_badge_name(badge, type), :metric_value
+    next unless (badge = earns_badge(count, :create, affinity))
+    award_badge badge, affinity
   end
-  award_project_badges
+
 end
 
 event :award_metric_value_update_badges, before: :refresh_updated_answers,
       on: :update do
   count = update_count + 1
   next unless (badge = earns_badge(count, :update))
-  add_badge badge
+  award_badge badge
 end
 
 
@@ -25,7 +25,7 @@ def award_project_badges
   project_cards.each do |pc|
     count = project_count(pc) + 1
     next unless (badge = earns_badge(:create, :project, count))
-    add_badge full_badge_name(badge, :project, pc.name)
+    award_badge badge, :project, pc.name
   end
 end
 
@@ -74,10 +74,17 @@ def project_cards
               }
 end
 
-def full_badge_name badge_name, type, project=nil
-  return badge_name if type == :general
+def award_badge badge_name, affinity=nil, project=nil
+  if affinity
+    badge_name = affinity_badge_name badge_name, affinity, project
+  end
+  Card[badge_name].award_to_current
+end
+
+def affinity_badge_name badge_name, affinity, project=nil
+  return badge_name if affinity == :general
   prefix =
-    case type
+    case affinity
     when :designer
       metric_card.metric_designer
     when :company
@@ -85,7 +92,7 @@ def full_badge_name badge_name, type, project=nil
     when :project
       project
     end
-  "#{prefix}+#{badge_name}+#{type} badge"
+  "#{prefix}+#{badge_name}+#{affinity} badge"
 end
 
 

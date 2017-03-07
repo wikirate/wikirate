@@ -4,6 +4,7 @@ module BadgeHierarchy
   attr_reader :badge_level, :levels, :levels_descending, :badge_action
 
   def hierarchy map
+    @map = {}
     map.each do |action, badge_set|
       if badge_set.values.first.is_a? Hash
         @map[action] = {}
@@ -33,7 +34,7 @@ module BadgeHierarchy
   end
 
   def validate_badge_args action, affinity_type
-    unless @map[action].is_a? Hash
+    unless @map[action]
       raise StandardError, "not supported action: #{action}"
     end
     if affinity_type && !@map[action][affinity_type].is_a?(Abstract::BadgeSet)
@@ -51,7 +52,7 @@ module BadgeHierarchy
   end
 
   def change_thresholds action, affinity_type, *thresholds
-    if action == :create
+    if affinity_type
       @map[action][affinity_type].change_thresholds(*thresholds)
     else
       @map[action].change_thresholds(*thresholds)
