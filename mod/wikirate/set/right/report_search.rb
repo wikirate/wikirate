@@ -68,6 +68,30 @@ format :html do
     super()
   end
 
+  view :wikirate_company_list do
+    card.variant = voo.structure if voo.structure
+    wrap do
+      with_paging do
+        wikirate_table :company,
+                       search_with_params,
+                       [:listing_compact],
+                       header: %w(Company)
+      end
+    end
+  end
+
+  view :wikirate_topic_list do
+    card.variant = voo.structure if voo.structure
+    wrap do
+      with_paging do
+        wikirate_table :company,
+                       search_with_params,
+                       [:listing_compact],
+                       header: %w(Topic)
+      end
+    end
+  end
+
   view :metric_value_list do
     card.variant = voo.structure if voo.structure
     wrap do
@@ -86,8 +110,8 @@ format :html do
     :project,
     :research_group,
     :source,
-    :wikirate_company,
-    :wikirate_topic
+    # :wikirate_company,
+    # :wikirate_topic
   ].each do |cardtype|
     view "#{cardtype}_list" do
       default_listing
