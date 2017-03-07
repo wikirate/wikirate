@@ -6,7 +6,7 @@ format :html do
   end
 
   def valued_object
-    "company"
+    "metric"
   end
 end
 
@@ -15,5 +15,5 @@ def badge_action
 end
 
 def badge_type
-  :wikirate_company
+  :metric
 end

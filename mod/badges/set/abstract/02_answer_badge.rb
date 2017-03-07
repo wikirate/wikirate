@@ -1,4 +1,4 @@
-include_set Abstract::BadgeShowroom
+include_set Abstract::Badge
 
 format :html do
   def valued_object
@@ -6,6 +6,6 @@ format :html do
   end
 end
 
-def badge_class
-  Type::MetricValue::BadgeHierarchy
+def badge_type
+  :metric_value
 end

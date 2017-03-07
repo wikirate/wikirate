@@ -23,7 +23,7 @@ format :html do
     if threshold == 1
       "your first #{valued_object}"
     else
-      "#{threshold} #{valued_object}s"
+      "#{threshold} #{valued_object.pluralize}"
     end
   end
 end
@@ -52,8 +52,13 @@ def badge_action
   raise StandardError, "badge_action not overridden"
 end
 
-def badge_class
+def badge_type
   raise StandardError, "badge_class not overridden"
+end
+
+def badge_class
+  @badge_class ||=
+    Card::Set::Type.const_get "#{badge_type.to_s.camelcase}::BadgeHierarchy"
 end
 
 def <=> other

@@ -1,19 +1,12 @@
-include_set Abstract::Badge
+include_set Abstract::CompanyBadge
 
 format :html do
-  def valued_action
-    "adding"
-  end
-
   def valued_object
-    "company"
+    "company logo"
   end
 end
 
 def badge_action
-  :create
+  :logo
 end
 
-def badge_type
-  :wikirate_company
-end

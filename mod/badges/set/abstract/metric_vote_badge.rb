@@ -1,19 +1,12 @@
-include_set Abstract::Badge
+include_set Abstract::MetricBadge
 
 format :html do
   def valued_action
-    "adding"
-  end
-
-  def valued_object
-    "metric"
+    "voting"
   end
 end
 
 def badge_action
-  :create
+  :vote
 end
 
-def badge_type
-  :metric
-end

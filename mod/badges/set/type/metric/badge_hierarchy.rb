@@ -5,14 +5,14 @@ class BadgeHierarchy
 
   hierarchy(
     create: {
-      company_register: 1,
-      the_company_store: 5,
-      inc_slinger: 25
+      metric_creator: 1,
+      i_so_metric: 4,
+      helio_metric: 16
     },
-    logo: {
-      logo_brick: 1,
-      how_lo_can_you_go: 10,
-      logo_and_behold: 100
+    vote: {
+      metric_voter: 1,
+      metric_critic: 5,
+      metric_voting_machine: 25
     }
   )
 end
