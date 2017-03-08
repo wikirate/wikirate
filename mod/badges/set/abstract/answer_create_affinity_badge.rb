@@ -12,7 +12,6 @@ format :html do
   delegate :affinity, :affinity_card, to: :card
 
   view :badge do
-    binding.pry
     nest affinity_card, view: :thumbnail
   end
 end

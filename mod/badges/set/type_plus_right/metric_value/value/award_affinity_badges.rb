@@ -1,50 +1,27 @@
-include_set Abstract::AwardBadge
-
 # The answer table refresh happens on the act card.
 # That can cause problem if this is not the act card.
 # To be safe we count before the update
-event :award_metric_value_create_badges, before: :refresh_updated_answers,
+event :award_answer_create_badges, before: :refresh_updated_answers,
       on: :create do
   [:general, :designer, :company].each do |affinity|
-    count = send("create_count_general") + 1
-    next unless (badge = earns_badge(count, :create, affinity))
-    award_badge badge, affinity
+    award_create_badge_if_earned affinity
   end
-
-end
-
-event :award_metric_value_update_badges, before: :refresh_updated_answers,
-      on: :update do
-  count = update_count + 1
-  next unless (badge = earns_badge(count, :update))
-  award_badge badge
-end
-
-
-def award_project_badges
   project_cards.each do |pc|
-    count = project_count(pc) + 1
-    next unless (badge = earns_badge(:create, :project, count))
-    award_badge badge, :project, pc.name
+    award_create_badge_if_earned :project, pc
   end
 end
 
-def earns_badge count, action, affinity_type=nil
-  Type::MetricValue::BadgeHierarchy.earns_badge count, action, affinity_type
-end
 
-def action_count action, restriction={}
-  case action
-  when :create
-    create_count restriction
-  end
+def award_create_badge_if_earned affinity, project_card=nil
+  # + 1 because the current action is not included
+  # we do this search before the answer table update
+  count = action_count(:create, affinity, project_card) + 1
+  return unless (badge = earns_badge(count, :create, affinity))
+  badge_card = fetch_badge_card badge, affinity, project_card
+  award_badge badge_card
 end
 
 def create_count restriction={}
-  Answer.where(restriction.merge(creator_id: Auth.current_id)).count
-end
-
-def update_count restriction={}
   Answer.where(restriction.merge(creator_id: Auth.current_id)).count
 end
 
@@ -74,14 +51,28 @@ def project_cards
               }
 end
 
-def award_badge badge_name, affinity=nil, project=nil
-  if affinity
-    badge_name = affinity_badge_name badge_name, affinity, project
+def action_count action, affinity=nil, project_card=nil
+  method_name = [action, "count", affinity].compact.join "_"
+  if project_card
+    send method_name, project_card
+  else
+    send method_name
   end
-  Card[badge_name].award_to_current
 end
 
-def affinity_badge_name badge_name, affinity, project=nil
+# @return badge name if count equals its threshold
+def earns_badge count, action, affinity_type=nil
+  badge_hierarchy.earns_badge count, action, affinity_type
+end
+
+def fetch_badge_card badge_name, affinity=nil, project_card=nil
+  if affinity
+    badge_name = affinity_badge_name badge_name, affinity, project_card
+  end
+  super badge_name
+end
+
+def affinity_badge_name badge_name, affinity, project_card=nil
   return badge_name if affinity == :general
   prefix =
     case affinity
@@ -90,9 +81,7 @@ def affinity_badge_name badge_name, affinity, project=nil
     when :company
       company
     when :project
-      project
+      project_card.name
     end
   "#{prefix}+#{badge_name}+#{affinity} badge"
 end
-
-

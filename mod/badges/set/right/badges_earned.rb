@@ -17,6 +17,10 @@ def cardtype_code
   left.right.codename
 end
 
+def add_badge badge_name
+  self.auto_content = true
+  add_item badge_name
+end
 
 def badge_class
   @badge_class ||=

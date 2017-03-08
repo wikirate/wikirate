@@ -18,8 +18,9 @@ event :validate_value_type, :validate, on: :save do
       if !(option_card = Card["#{metric_card.name}+value options"]) ||
          !option_card.item_names.include?(value)
         url = "/#{option_card.cardname.url_key}?view=edit"
-        anchor = %(<a href='#{url}' target="_blank">add options</a>)
-        errors.add :value, "Please #{anchor} before adding metric value."
+        anchor = %(<a href='#{url}' target="_blank">add that option</a>)
+        errors.add :value, "#{value} is not a valid option. "\
+                           "Please #{anchor} before adding this metric value."
       end
     end
   end

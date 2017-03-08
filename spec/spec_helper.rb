@@ -12,6 +12,7 @@ Spork.prefork do
       Card::Env[:protocol] = "http://"
       Card::Env[:host] = "wikirate.org"
     end
+    config.example_status_persistence_file_path = 'spec/examples.txt'
   end
 end
 
@@ -92,6 +93,10 @@ def sample_metric value_type=:free_text
     money: "Jedi+cost of planets destroyed"
   }
   Card[metric_names[value_type]]
+end
+
+def sample_project
+  Card["Evil Project"]
 end
 
 def sample_source

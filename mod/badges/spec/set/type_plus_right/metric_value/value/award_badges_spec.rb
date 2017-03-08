@@ -1,22 +1,52 @@
 # -*- encoding : utf-8 -*-
 
-require_relative "../../../../support/answer_create_shared_examples"
+require_relative "../../../../support/award_answer_create_badges_shared_examples"
+require_relative "../../../../support/award_answer_badges_shared_examples"
 
 describe Card::Set::TypePlusRight::MetricValue::Value::AwardBadges do
-  START_YEAR = 1990
-  METRIC_NAME = "Joe User+researched number 2"
-  let(:metric_card) { Card[METRIC_NAME] }
-  let(:badge_type) { :metric_value }
+  let(:sample_acting_card) { sample_metric_value.value_card }
 
-  context "reached bronze create threshold" do
-    it_behaves_like "create badges", 1, "Researcher"
+  describe "create badges" do
+    let(:start_year) { 1990 }
+    let(:metric_card) { Card["Joe User+researched number 2"] }
+
+    def execute_awarded_action count
+      year = start_year + count
+      metric_card.create_values true do
+        Death_Star year => count
+      end
+    end
+
+    context "reached bronze create threshold" do
+      it_behaves_like "create badges", 1, "Researcher"
+    end
+
+    context "reached silver create threshold" do
+      it_behaves_like "create badges", 2, "Research Engine"
+    end
+
+    context "reached gold create threshold" do
+      it_behaves_like "create badges", 3, "Research Fellow"
+    end
   end
 
-  context "reached silver create threshold" do
-    it_behaves_like "create badges", 2, "Research Engine"
-  end
+  describe "update badges" do
+    let(:badge_action) { :update }
 
-  context "reached gold create threshold" do
-    it_behaves_like "create badges", 3, "Research Fellow"
+    def execute_awarded_action count
+      answer_card(count).value_card.update_attributes! content: count
+    end
+
+    context "reached bronze update threshold" do
+      it_behaves_like "answer badges", 1, "Answer Advancer"
+    end
+
+    context "reached silver create threshold" do
+      it_behaves_like "answer badges", 2, "Answer Enhancer"
+    end
+
+    context "reached gold create threshold" do
+      it_behaves_like "answer badges", 3, "Answer Romancer"
+    end
   end
 end

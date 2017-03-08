@@ -10,7 +10,7 @@ class BadgeSet
     @badge = {}
     map.each.with_index do |(codename, threshold), i|
       badge = initialize_badge codename, threshold, i
-      validate_threshold threshold
+      validate_threshold badge.threshold
 
       @badge_names << badge.name
       @badge[badge.name] = badge
@@ -35,8 +35,8 @@ class BadgeSet
   end
 
   def validate_threshold threshold
-    return unless @badge[threshold]
-    raise ArgumentError, "thresholds have to be unique"
+    raise ArgumentError, "thresholds have to be positive" if threshold < 1
+    raise ArgumentError, "thresholds have to be unique" if @badge[threshold]
   end
 
   def earns_badge count
@@ -57,7 +57,6 @@ class BadgeSet
 
   def badge mark
     @badge.fetch(mark) do
-      binding.pry
       raise ArgumentError, "badge #{mark} doesn't exist"
     end
   end
@@ -65,10 +64,10 @@ class BadgeSet
   # list of thresholds or hash that sets thresholds explicitly
   def change_thresholds *thresholds
     unless thresholds.first.is_a? Hash
-      return change_thresholds LEVELS.zip(thresholds).to_h
+      return change_thresholds LEVELS[0, thresholds.size].zip(thresholds).to_h
     end
     thresholds.first.each do |k, new_threshold|
-      badge = @badge[k]
+      next unless (badge = @badge[k])
       @badge.delete badge.threshold
       badge.threshold = new_threshold
       @badge[new_threshold] = badge
