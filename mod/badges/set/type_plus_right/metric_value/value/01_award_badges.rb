@@ -15,7 +15,3 @@ def update_count
               updated_by: Auth.current_id,
               return: :count
 end
-
-
-
-

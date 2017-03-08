@@ -11,7 +11,7 @@ shared_examples "answer badges" do |threshold, badge_name|
   def trigger_awarded_action count=0
     as_user "John" do
       count.times do |i|
-        execute_awarded_action i+1
+        execute_awarded_action i + 1
       end
     end
   end

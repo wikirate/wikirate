@@ -131,7 +131,8 @@ class Answer < ActiveRecord::Base
   end
 
   def fetch_imported
-    card.value_card.actions.last.comment == "imported"
+    return unless (action = card.value_card.actions.last)
+    action.comment == "imported"
   end
 
   def fetch_designer_id

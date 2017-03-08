@@ -17,6 +17,3 @@ end
 def badge_type
   :project
 end
-
-
-

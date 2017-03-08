@@ -25,4 +25,3 @@ describe Card::Set::TypePlusRight::MetricValue::CheckedBy::AwardBadges do
     end
   end
 end
-
