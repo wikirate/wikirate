@@ -72,6 +72,8 @@
         margin-bottom: 0;
     }
 
+//Custom Tabs
+
 .company-profile-tab{
   position: absolute;
   bottom: 0px;
@@ -81,8 +83,11 @@
     width: 50%;
   }
 }
-
-//Custom Tabs
+.company-profile-tab.visible-xs {
+    position: relative;
+    border-top: 1px solid #ebebeb;
+    margin: 0px -15px;
+}
 
 .contribution-report-header {
     .nav-tabs>li>a{
