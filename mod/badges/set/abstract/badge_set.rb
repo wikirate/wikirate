@@ -5,6 +5,7 @@ class BadgeSet
 
   Badge =
     Struct.new("Badge", :name, :codename, :threshold, :level, :level_index)
+
   def initialize map
     @badge_names = []
     @badge = {}
@@ -61,7 +62,7 @@ class BadgeSet
     end
   end
 
-  # list of thresholds or hash that sets thresholds explicitly
+  # pass a list of thresholds or a hash that sets thresholds explicitly
   def change_thresholds *thresholds
     unless thresholds.first.is_a? Hash
       return change_thresholds LEVELS[0, thresholds.size].zip(thresholds).to_h
@@ -87,10 +88,8 @@ class BadgeSet
       end
   end
 
-
   def name_from_codename codename
     id = Card::Codename[codename]
-    # raise ArgumentError, "not a codename: #{codename}" unless id
     # Card.fetch not defined at this point
     Card.where(id: id).pluck(:name).first
   end

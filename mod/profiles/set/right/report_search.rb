@@ -108,7 +108,7 @@ format :html do
   end
 
   def subvariant_tab_title key
-    "#{key.to_s.tr("_", " ")} <span class='badge'>#{card.subvariant_count(key)}</span>"
+    "#{key.to_s.tr('_', ' ')} <span class='badge'>#{card.subvariant_count(key)}</span>"
   end
 
   def subvariant_tab_path key
@@ -179,7 +179,7 @@ format :html do
   # a recursion risk and makes it use a new subformat, which is a problem
   # here because that kills the paging.
   # as these cards are narrowly used, there is not much risk of recursion
-  def nest_recursion_risk? view
+  def nest_recursion_risk? _view
     false
   end
 end

@@ -68,8 +68,6 @@ class SharedData
       create "Death Star+Force",
              type: "analysis",
              subcards: { "+article" => { content: "I'm your father!" } }
-
-
     end
 
     def add_sources_and_claims
@@ -78,8 +76,10 @@ class SharedData
           type_id: Card::SourceID,
           subcards: {
             "+Link" => { content: "http://www.wikiwand.com/en/Space_opera" },
-            "+company" => { content: "[[Death Star]]", type_id: Card::PointerID },
-            "+topic" => { content: "[[Force]]", type_id: Card::PointerID },
+            "+company" => { content: "[[Death Star]]",
+                            type_id: Card::PointerID },
+            "+topic" => { content: "[[Force]]",
+                          type_id: Card::PointerID },
             "+title" => { content: "Space Opera" },
             "+description" => { content: "Space Opera Wikipedia article" }
           }
@@ -138,29 +138,31 @@ class SharedData
         name: "half year", type_id: Card::YearlyVariableID,
         subcards: {
           "+2015" => { type_id: Card::YearlyAnswerID,
-                       "+value" => { type_id: Card::YearlyValueID, content:
-                         "1007.5" }
-          },
+                       "+value" => { type_id: Card::YearlyValueID,
+                                     content: "1007.5" } },
           "+2014" => { type_id: Card::YearlyAnswerID,
-                       "+value" => { type_id: Card::YearlyValueID, content:
-                         "1007" }
-          },
+                       "+value" => { type_id: Card::YearlyValueID,
+                                     content: "1007" } },
           "+2013" => { type_id: Card::YearlyAnswerID,
-                       "+value" => { type_id: Card::YearlyValueID, content:
-                         "1006.5" }
-          }
+                       "+value" => { type_id: Card::YearlyValueID,
+                                     content: "1006.5" } }
         }
       )
     end
 
     def add_projects
-      create "Evil Project", type: :project,
+      create "Evil Project",
+             type: :project,
              subfields: {
-               metric:
-                 { type: :pointer, content: "[[Jedi+disturbances in the Force]]\n[[Joe User+researched number 2]]" },
-               wikirate_company:
-                 { type: :pointer,
-                   content: "[[Death Star]]\n[[SPECTRE]]\n[[Los Pollos Hermanos]]" }
+               metric: {
+                 type: :pointer,
+                 content: "[[Jedi+disturbances in the Force]]\n"\
+                          "[[Joe User+researched number 2]]"
+               },
+               wikirate_company: {
+                 type: :pointer,
+                 content: "[[Death Star]]\n[[SPECTRE]]\n[[Los Pollos Hermanos]]"
+               }
              }
     end
 
@@ -190,7 +192,6 @@ class SharedData
                              "Research Engine",
                              "Evil Project+Researcher+project badge",
                              "Research Fellow"].to_pointer_content
-
     end
   end
 end

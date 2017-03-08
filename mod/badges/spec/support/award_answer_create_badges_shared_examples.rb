@@ -1,5 +1,4 @@
 shared_examples "create badges" do |threshold, badge_name|
-
   let(:badge_type) { :metric_value }
   let(:badge) { badge_name }
 
@@ -32,7 +31,6 @@ shared_examples "create badges" do |threshold, badge_name|
     end
   end
 
-
   def answer number
     year = start_year + number - 1
     "#{metric_card.name}+Death Star+#{year}"
@@ -51,4 +49,3 @@ shared_examples "create badges" do |threshold, badge_name|
     end
   end
 end
-

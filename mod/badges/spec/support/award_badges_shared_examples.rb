@@ -12,18 +12,18 @@ RSpec.shared_context "award badges context" do |threshold|
   def trigger_awarded_action count=1
     as_user "John" do
       count.times do |i|
-        execute_awarded_action i+1
+        execute_awarded_action i + 1
       end
     end
   end
 
   # reduce thresholds to 1,2,3
   def adjust_thresholds
-    th_class = Card::Set::Type.const_get "#{badge_type.to_s.camelcase}::BadgeHierarchy"
+    th_class =
+      Card::Set::Type.const_get "#{badge_type.to_s.camelcase}::BadgeHierarchy"
     th_class.change_thresholds(badge_action, nil, 1, 2, 3)
   end
 end
-
 
 RSpec.shared_examples "award badges" do |threshold, badge_name|
   let(:badge) { badge_name }
