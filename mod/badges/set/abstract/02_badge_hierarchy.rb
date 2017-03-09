@@ -1,5 +1,7 @@
 #! no set module
 
+# A BadgeHierarchy manages BadgeSets for one badge cardtype, for example
+# all badges related to metric answers
 module BadgeHierarchy
   attr_reader :badge_level, :levels, :levels_descending, :badge_action
 
@@ -45,6 +47,14 @@ module BadgeHierarchy
 
   def map
     @map
+  end
+
+  def badge_names
+    @map.values.map do |badge_set|
+      # handle affinity badges
+      badge_set = badge_set[:general] if badge_set.is_a? Hash
+      badge_set.badge_names
+    end.compact.flatten
   end
 
   def badge_actions

@@ -1,3 +1,5 @@
+include_set Abstract::Certificate
+
 format :html do
   delegate :badge_level, :threshold, to: :card
 
@@ -7,7 +9,7 @@ format :html do
 
   view :level do
     wrap_with :div, class: "badge-certificate" do
-      certificate
+      certificate(badge_level)
     end
   end
 
@@ -15,9 +17,6 @@ format :html do
     card.name
   end
 
-  def certificate
-    glyphicon :certificate, badge_level
-  end
 
   def humanized_threshold
     if threshold == 1

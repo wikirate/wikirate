@@ -1,10 +1,14 @@
 #! no set module
 
+# a BadgeSet is a ranking of badges for one category, i.e. it has one
+# bagdge for every level
 class BadgeSet
   LEVELS = [:bronze, :silver, :gold]
 
   Badge =
     Struct.new("Badge", :name, :codename, :threshold, :level, :level_index)
+
+  attr_reader :badge_names
 
   def initialize map
     @badge_names = []

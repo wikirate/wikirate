@@ -1,22 +1,26 @@
 # -*- encoding : utf-8 -*-
 
+require_relative "../../support/badge_count_shared_examples.rb"
+
 describe Card::Set::Right::BadgesEarned do
   let(:card) do
-    Card.fetch "John User", :metric_value, :badges_earned,
-               new: { type: "Pointer" }
+    Card.fetch "Joe Camel", :metric_value, :badges_earned, new: {}
   end
+
   before do
+    Card::Auth.as_bot do
     card.update_attributes!(
-      content: ["Researcher",
-                "Commentator",
-                "Death Star+Researcher+company badge",
-                "Death Star+Research Engine+company badge",
-                "Answer Advancer",
-                "Answer Enhancer",
+      content: ["Research Fellow",
                 "Research Engine",
+                "Death Star+Research Engine+company badge",
+                "Researcher",
                 "Evil Project+Researcher+project badge",
-                "Research Fellow"].to_pointer_content
+                "Death Star+Researcher+company badge",
+                "Answer Enhancer",
+                "Answer Advancer",
+                "Commentator"].to_pointer_content
     )
+    end
   end
 
   describe "#ordered_badge_cards" do
@@ -37,6 +41,12 @@ describe Card::Set::Right::BadgesEarned do
   describe "html format" do
     describe "view :core" do
       #it
+    end
+  end
+
+  it_behaves_like "badge count", 9, 5, 3, 1 do
+    def badge_count level=nil
+      card.badge_count level
     end
   end
 end

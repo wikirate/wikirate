@@ -38,6 +38,16 @@ event :validate_update_date, :validate,
   detach_subfield(:year)
 end
 
+event :validate_answer_name,
+      after: :validate_update_date, on: :save, changed: :name do
+  if Card.fetch_type_id(cardname.tag) != YearID
+    errors.add :name, "right part must be a year"
+  end
+  if cardname.length < 4
+    errors.add :name, "must have at least a metric, a company, and a year part"
+  end
+end
+
 def valid_value_name?
   cardname.parts.size >= 3 && valid_metric? && valid_company? && valid_year?
 end

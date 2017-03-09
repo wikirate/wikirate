@@ -23,6 +23,7 @@ class SharedData
     include Card::Model::SaveHelper
     include ProfileSections
     include Metrics
+    include Badges
 
     def as_joe_user &block
       as_user "Joe User", &block
@@ -172,26 +173,6 @@ class SharedData
                type: :phrase,
                content: "Technology Hardware"
       end
-    end
-
-    def add_badges
-      create ["Joe Camel", :metric_value, :badges_earned],
-             type: "Pointer",
-             content: ["Researcher",
-                       "Death Star+Researcher+company badge",
-                       "Death Star+Research Engine+company badge",
-                       "Research Engine",
-                       "Evil Project+Researcher+project badge",
-                       "Research Fellow"].to_pointer_content
-
-      Card.create! name: ["Philipp Kuehl", :metric_value, :badges_earned],
-                   type: "Pointer",
-                   content: ["Researcher",
-                             "Death Star+Researcher+company badge",
-                             "Death Star+Research Engine+company badge",
-                             "Research Engine",
-                             "Evil Project+Researcher+project badge",
-                             "Research Fellow"].to_pointer_content
     end
   end
 end

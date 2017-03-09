@@ -2,6 +2,7 @@
 # [user]+[cardtype card]+badges earned
 
 include_set Abstract::Table
+include_set Abstract::Certificate
 
 attr_accessor :auto_content
 
@@ -27,6 +28,11 @@ def badge_class
     Card::Set::Type.const_get "#{cardtype_code.to_s.camelcase}::Badges"
 end
 
+def badge_count level=nil
+  return item_names.count unless level
+  item_cards.count { |badge| badge.badge_level == level }
+end
+
 # @return badge cards in descending order and simple badges before
 # affinity badges
 def ordered_badge_cards
@@ -34,9 +40,19 @@ def ordered_badge_cards
 end
 
 format :html do
+  delegate badge_count, to: :card
+
   view :core do
     wikirate_table :plain, card.ordered_badge_cards,
                    [:level, :badge, :description],
                    header: %w(Level Badge Description)
+  end
+
+  view :count do
+    list_tag [:gold, :silver, :bronze].map { |level| level_count level }
+  end
+
+  def level_count level
+    certificate(level) + badge_count(level)
   end
 end

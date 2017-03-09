@@ -5,4 +5,16 @@ describe Card::Set::Type::MetricValue::BadgeHierarchy do
         .to eq "Researcher"
     end
   end
+
+  describe "#badge_names" do
+    it "returns all non-affinity badge names" do
+      expect(described_class.badge_names)
+        .to contain_exactly(
+              "Researcher", "Research Engine", "Research Fellow",
+              "Answer Advancer", "Answer Enhancer", "Answer Romancer",
+              "Check Mate", "Checker", "Checksquisite",
+              "Commentator", "High Commentations", "Uncommon Commentator"
+            )
+    end
+  end
 end
