@@ -9,9 +9,9 @@ def badge_hierarchy
   Type::Metric::BadgeHierarchy
 end
 
-def create_count
+def create_count user_id=nil
   Card.search type_id: MetricID,
-              created_by: Auth.current_id,
+              created_by: user_id || Auth.current_id,
               return: :count
 end
 

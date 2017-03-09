@@ -24,6 +24,10 @@ module BadgeHierarchy
     badge_set(action, affinity_type).earns_badge count
   end
 
+  def all_earned_badges count, action, affinity_type=nil
+    badge_set(action, affinity_type).all_earned_badges count
+  end
+
   [:threshold, :level, :level_index].each do |method_name|
     define_method method_name do |action, affinity_type, badge_key|
       badge_set(action, affinity_type).send method_name, badge_key

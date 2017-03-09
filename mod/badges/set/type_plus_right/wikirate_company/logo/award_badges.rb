@@ -9,9 +9,9 @@ def badge_hierarchy
   Type::WikirateCompany::BadgeHierarchy
 end
 
-def logo_count
+def logo_count user_id=nil
   Card.search left: { type_id: WikirateCompanyID },
               right_id: LogoID,
-              edited_by: Auth.current_id,
+              edited_by: user_id || Auth.current_id,
               return: :count
 end

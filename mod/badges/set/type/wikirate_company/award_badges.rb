@@ -9,9 +9,9 @@ def badge_hierarchy
   Type::WikirateCompany::BadgeHierarchy
 end
 
-def create_count
+def create_count user_id=nil
   Card.search type_id: WikirateCompanyID,
-              created_by: Auth.current_id,
+              created_by: user_id || Auth.current_id,
               return: :count
 end
 

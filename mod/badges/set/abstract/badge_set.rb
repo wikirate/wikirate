@@ -48,6 +48,13 @@ class BadgeSet
     @badge[count] && @badge[count].name
   end
 
+  def all_earned_badges count
+    LEVELS.map do |level|
+      next unless @badge[level] && @badge[level].threshold <= count
+      @badge[level].name
+    end.compact
+  end
+
   def threshold badge_mark
     badge(badge_mark).threshold
   end

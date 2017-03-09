@@ -9,9 +9,10 @@ event :award_metric_vote_badges, before: :refresh_updated_answers,
   award_badge_if_earned :vote
 end
 
-def vote_count
+def vote_count user_id=nil
+  user = user_id ? Card[user_id] : Auth.current
   vote_card_ids =
-    [Auth.current.upvotes_card.id, Auth.current.downvotes_card.id].compact
+    [user.upvotes_card.id, user.downvotes_card.id].compact
   return 0 unless vote_card_ids.present?
 
   Card.search type_id: Card::MetricID,

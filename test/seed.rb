@@ -2,6 +2,7 @@
 require "timecop"
 require_relative "shared_data/profile_sections"
 require_relative "shared_data/metrics"
+require_relative "shared_data/badges"
 
 require_dependency "card"
 

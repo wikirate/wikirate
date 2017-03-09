@@ -3,9 +3,9 @@ describe Card::Set::Abstract::BadgeHierarchy do
     class TestHierarchy
       extend Card::Set::Abstract::BadgeHierarchy
       hierarchy(
-        create: { third: 10, second: 20, first: 30 },
+        create: { basic: 10, pointer: 20, phrase: 30 },
         update: {
-          designer: { third: 10, second: 20 }
+          designer: { basic: 10, pointer: 20 }
         }
       )
     end
@@ -18,7 +18,19 @@ describe Card::Set::Abstract::BadgeHierarchy do
     end
     it "has correct affinitiy thresholds" do
       expect(hierarchy.map[:update][:designer].to_h(:threshold))
-        .to eq(third: 10, second: 20)
+        .to eq(basic: 10, pointer: 20)
+    end
+  end
+
+  describe "#all_earned_badges" do
+    it "returns all earned badges for simple hierarchy" do
+      expect(hierarchy.all_earned_badges(25, :create))
+        .to contain_exactly "Basic", "Pointer"
+    end
+
+    it "returns all earned badges for affinity hierarhcy" do
+      expect(hierarchy.all_earned_badges(20, :update, :designer))
+        .to contain_exactly "Basic", "Pointer"
     end
   end
 
@@ -26,14 +38,14 @@ describe Card::Set::Abstract::BadgeHierarchy do
     it "changes thresholds" do
       hierarchy.change_thresholds :create, nil, 1, 2, 3
       expect(hierarchy.map[:create].to_h(:threshold))
-        .to eq(third: 1, second: 2, first: 3)
+        .to eq(basic: 1, pointer: 2, phrase: 3)
     end
 
     it "changes affinity thresholds" do
       hierarchy.change_thresholds :update, :designer, 1, 2
 
       expect(hierarchy.map[:update][:designer].to_h(:threshold))
-        .to eq(third: 1, second: 2)
+        .to eq(basic: 1, pointer: 2)
     end
   end
 end

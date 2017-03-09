@@ -16,19 +16,20 @@ class SharedData
 
       [:metric, :project, :metric_value,
        :source, :wikirate_company].each do |type|
-        hierarchy =
+        content =
           Card::Set::Type.const_get("#{type.to_s.camelcase}::BadgeHierarchy")
+            .badge_names
+        if type == :metric_value
+          content += [
+            "Death Star+Research Engine+company badge",
+            "Evil Project+Researcher+project badge",
+            "Death Star+Researcher+company badge"
+          ]
+        end
         create! name: ["Big Brother", type, :badges_earned],
                 type: "Pointer",
-                content: hierarchy.badge_names.to_pointer_content
+                content: content.to_pointer_content
       end
-      create ["Big Brother", :metric_value, :badges_earned],
-             type: "Pointer",
-             content: [
-               "Death Star+Research Engine+company badge",
-               "Evil Project+Researcher+project badge",
-               "Death Star+Researcher+company badge"
-             ].to_pointer_content
     end
   end
 end

@@ -4,6 +4,10 @@ def award_badge_if_earned badge_type
   award_badge fetch_badge_card(badge)
 end
 
+def update_badges_for user
+
+end
+
 # @return badge name if count equals its threshold
 def earns_badge count, action
   badge_hierarchy.earns_badge count, action
@@ -23,6 +27,7 @@ def fetch_badge_card badge_name
   badge_card
 end
 
-def action_count action
-  send "#{action}_count"
+def action_count action, user=nil
+  send "#{action}_count_wql", user
 end
+

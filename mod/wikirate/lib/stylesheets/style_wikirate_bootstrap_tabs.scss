@@ -90,14 +90,26 @@
     }
 }
 
-h4.contribution-report-title {
+.contribution-report-title {
     float: left;
-    padding: 20px;
+  padding: 0 20px;
+  color: inherit;
 }
 
 .contribution-report {
     margin-bottom: 15px;
     border: 1px solid $border-color;
+}
+
+li.contribution-report-title-box {
+  float: left !important;
+  width: 30% !important;
+}
+
+li.contribution-report-title-box > a {
+  padding-bottom: 39px;
+  padding-left: 0px;
+  padding-top: 10px;
 }
 
 .RIGHT-metric, .RIGHT-metric_value{

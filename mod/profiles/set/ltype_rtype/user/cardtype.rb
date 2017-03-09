@@ -55,10 +55,15 @@ format :html do
     end
   end
 
+  def has_badges?
+    true
+  end
+
+
   def contribution_report_header
     wrap_with :div, class: "contribution-report-header" do
       [
-        contribution_report_title,
+        (contribution_report_title unless has_badges?),
         contribution_report_action_boxes
       ]
     end
@@ -66,17 +71,34 @@ format :html do
 
   def contribution_report_action_boxes
     wrap_with :ul, class: "nav nav-tabs" do
-      [:created, :updated, :discussed, :voted_on].reverse.map do |report_action|
-        if card.report_action_applies? report_action
-          contribution_report_box report_action
-        end
-      end.unshift contribution_report_toggle
+      contribution_report_action_boxes_list
     end
   end
 
-  def contribution_report_box action
+  def contribution_report_action_boxes_list
+    list = has_badges? ? [contribution_report_title_with_badges] : []
+    list += [:created, :updated, :discussed, :voted_on].reverse.map do |report_action|
+      if card.report_action_applies? report_action
+        contribution_report_box report_action
+      end
+    end.unshift(contribution_report_toggle)
+  end
+
+  def contribution_report_title_with_badges
+    #
+    wrap_with :li, class: "contribution-report-title-box" do
+      wrap_with :a do
+        [
+          contribution_report_title,
+          contribution_report_badges
+        ]
+      end
+    end
+  end
+
+  def contribution_report_box action, extra_class=nil
     active_tab = current_tab?(action) ? "active" : nil
-    wrap_with :li, class: css_classes("contribution-report-box", active_tab) do
+    wrap_with :li, class: css_classes("contribution-report-box", extra_class, active_tab) do
       contribution_report_count_tab action
     end
   end
@@ -105,6 +127,11 @@ format :html do
     wrap_with :h4, class: "contribution-report-title" do
       card.cardtype_card.cardname.vary :plural
     end
+  end
+
+  def contribution_report_badges
+    return unless (badges = card.field(:badges_earned))
+    nest badges, view: :count
   end
 
   def contribution_report_toggle

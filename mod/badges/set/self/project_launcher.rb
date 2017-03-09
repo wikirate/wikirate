@@ -11,7 +11,7 @@ format :html do
 end
 
 def badge_action
-  :discuss
+  :create
 end
 
 def badge_type

@@ -52,6 +52,13 @@ describe Card::Set::Abstract::BadgeSet do
     end
   end
 
+  describe "#all_earned_badges" do
+    subject { set.all_earned_badges(4) }
+    it "returns all earned badges" do
+      is_expected.to contain_exactly "Researcher", "Research Engine"
+    end
+  end
+
   describe "#threshold" do
     it "takes key argument" do
       expect(set.threshold(:researcher)).to eq 1

@@ -30,7 +30,9 @@ end
 
 def badge_count level=nil
   return item_names.count unless level
-  item_cards.count { |badge| badge.badge_level == level }
+  item_cards.count do |badge|
+    badge.badge_level == level
+  end
 end
 
 # @return badge cards in descending order and simple badges before
@@ -40,19 +42,11 @@ def ordered_badge_cards
 end
 
 format :html do
-  delegate badge_count, to: :card
+  delegate :badge_count, to: :card
 
   view :core do
     wikirate_table :plain, card.ordered_badge_cards,
                    [:level, :badge, :description],
                    header: %w(Level Badge Description)
-  end
-
-  view :count do
-    list_tag [:gold, :silver, :bronze].map { |level| level_count level }
-  end
-
-  def level_count level
-    certificate(level) + badge_count(level)
   end
 end
