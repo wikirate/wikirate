@@ -1,23 +1,23 @@
-{
-{
-  style: mixins and variables | raw
-}
-}
+{{style: mixins and variables | raw}}
 
-.gold {
-  color: gold;
-}
+.gold { color: gold; }
 
-.silver {
-  color: silver;
-}
+.silver { color: silver; }
 
-.bronze {
-  color: #CD7F32;
-}
+.bronze { color: #cd7f32; }
 
 td.badge-certificate {
-  padding: 2px;
+  padding: 0px!important;
+  height: 100%;
+  min-width: 65px;
+
+  span.glyphicon-certificate {
+    font-size: 1.5em;
+    z-index: 5;
+    &.bronze, &.gold, &.silver {
+      text-shadow: 2px 2px #ebebeb;
+    }
+  }
 }
 
 .affinity-certificate {
@@ -26,17 +26,37 @@ td.badge-certificate {
 
 div.badge-certificate {
   height: 100%;
-  border-left: 1px solid $gray-background-color;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 
-  hr {
-    border-color: $gray-background-color;
-    width: 15px;
-    margin: 0;
+  .affinity-badge-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0px;
+    position: relative;
+    left: 16px;
+    padding: 0;
+
+    .affinity-line {
+      height: 100%;
+      border-left: solid 1px #ebebeb;
+      position: relative;
+      bottom: 50%;
+    }
+
+    hr {
+      border-color: $border-color;
+      width: 10px;
+      margin: 0;
+    }
   }
 }
+
+
+
 
 

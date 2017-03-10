@@ -44,9 +44,11 @@ end
 format :html do
   delegate :badge_count, to: :card
 
+
   view :core do
     wikirate_table :plain, card.ordered_badge_cards,
                    [:level, :badge, :description],
-                   header: %w(Level Badge Description)
+                   header: %w(Level Badge Description),
+                   td: { classes: ["badge-certificate", nil, nil] }
   end
 end

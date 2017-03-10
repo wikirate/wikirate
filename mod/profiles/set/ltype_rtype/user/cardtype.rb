@@ -56,7 +56,7 @@ format :html do
   end
 
   def has_badges?
-    true
+    card.cardtype_card.codename.to_sym.in? Abstract::BadgeHierarchy::BADGE_TYPES
   end
 
 
@@ -86,13 +86,19 @@ format :html do
 
   def contribution_report_title_with_badges
     #
+    # wrap_with :li, class: "contribution-report-title-box" do
+    #   wrap_with :a do
+    #     [
+    #       contribution_report_title,
+    #       contribution_report_badges
+    #     ]
+    #   end
+    # end
+    content =  contribution_report_title + contribution_report_badges
     wrap_with :li, class: "contribution-report-title-box" do
-      wrap_with :a do
-        [
-          contribution_report_title,
-          contribution_report_badges
-        ]
-      end
+    link_to_view :contribution_report,
+                 content,
+                 path: { report_tab: :badges }, class: "slotter"
     end
   end
 
@@ -130,8 +136,13 @@ format :html do
   end
 
   def contribution_report_badges
-    return unless (badges = card.field(:badges_earned))
+    return "" unless (badges = card.field(:badges_earned))
     nest badges, view: :count
+  end
+
+  def contribution_report_badges_body
+    return unless (badges = card.field(:badges_earned, new: {}))
+    nest badges, view: :content
   end
 
   def contribution_report_toggle
@@ -153,6 +164,7 @@ format :html do
 
   def contribution_report_body
     return "" unless (action = current_tab)
+    return contribution_report_badges_body if action.to_sym == :badges
     report_card = card.report_card action
     _render_contribution_list report_card: report_card
   end

@@ -104,12 +104,14 @@
 li.contribution-report-title-box {
   float: left !important;
   width: 30% !important;
+
 }
 
 li.contribution-report-title-box > a {
-  padding-bottom: 39px;
+  padding-bottom: 27px;
   padding-left: 0px;
   padding-top: 10px;
+  color: inherit;
 }
 
 .RIGHT-metric, .RIGHT-metric_value{

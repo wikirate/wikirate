@@ -9,11 +9,25 @@ def virtual?
 end
 
 format :html do
-  delegate :affinity, :affinity_card, to: :card
+  delegate :affinity, :affinity_card, :affinity_type, to: :card
 
-  view :badge do
-    nest affinity_card, view: :thumbnail
+  view :badge, tags: :unknown_ok do
+    type_name =
+      affinity_type == :designer ? "Metric Designer" : affinity_type.to_s.capitalize
+    nest affinity_card, view: :thumbnail, text: type_name
   end
+
+  view :level do
+    wrap_with :div, class: "badge-certificate" do
+      wrap_with :div, class: "affinity-badge-container" do
+        [
+          "<div class='affinity-line'></div><hr/>",
+          certificate(badge_level)
+        ]
+      end
+    end
+  end
+
 end
 
 def badge_key
@@ -25,5 +39,5 @@ def affinity
 end
 
 def affinity_card
-  self[0]
+  Card[affinity]
 end

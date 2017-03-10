@@ -13,8 +13,8 @@ format :html do
     end
   end
 
-  view :badge do
-    card.name
+  view :badge, tags: :unknown_ok do
+    wrap_with :strong, card.name
   end
 
 

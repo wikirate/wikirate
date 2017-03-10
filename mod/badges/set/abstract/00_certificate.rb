@@ -3,9 +3,10 @@ format :html do
     glyphicon :certificate, level
   end
 
-  view :count do
+
+  view :count do |args|
     content = [:gold, :silver, :bronze].map { |level| level_count level }
-    list_tag content, class: "horizontal"
+    list_tag content, class: args[:class] || "horizontal"
   end
 
   def level_count level

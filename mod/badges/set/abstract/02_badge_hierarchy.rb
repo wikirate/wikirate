@@ -3,6 +3,8 @@
 # A BadgeHierarchy manages BadgeSets for one badge cardtype, for example
 # all badges related to metric answers
 module BadgeHierarchy
+  BADGE_TYPES = [:metric, :project, :metric_value, :source, :wikirate_company]
+
   attr_reader :badge_level, :levels, :levels_descending, :badge_action
 
   def hierarchy map

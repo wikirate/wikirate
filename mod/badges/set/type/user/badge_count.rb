@@ -1,28 +1,24 @@
 include_set Abstract::Certificate
 
-BADGE_TYPES = [:metric, :project, :metric_value, :source, :wikirate_company]
+
 
 def badge_count level=nil
-  BADGE_TYPES.each_with_object(0) do |badge_type, count|
+  count = 0
+  Abstract::BadgeHierarchy::BADGE_TYPES.each do |badge_type|
     next unless (badge_pointer = field(badge_type, :badges_earned))
-    count += badge_pointer.badge_count level
+    count += badge_pointer.badge_count(level)
   end
+  count
 end
 
 
 format :html do
   delegate :badge_count, to: :card
 
-  view :rich_header do |args|
-    bs_layout do
-      row 12 do
-        col class: "nopadding" do
-          text_with_image title: "", text: header_right, size: :large
-        end
-      end
-      row 12 do
-        col _render_count
-      end
-    end
+  def header_right
+    output [
+      wrap_with(:h2, _render_title, class: "header-right"),
+      content_tag(:h3, _render_count(class: "vertical"))
+    ]
   end
 end

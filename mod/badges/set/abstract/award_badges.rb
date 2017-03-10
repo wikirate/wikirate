@@ -28,6 +28,6 @@ def fetch_badge_card badge_name
 end
 
 def action_count action, user=nil
-  send "#{action}_count_wql", user
+  send "#{action}_count", user
 end
 
