@@ -330,10 +330,10 @@ format :html do
     <<-HTML.html_safe
      <span class="pull-right">
       company match:
-      #{row_legend 'exact', 'success'}
-    #{row_legend 'alias', 'info'}
-    #{row_legend 'partial', 'warning'}
-    #{row_legend 'none', 'danger'}
+      #{row_legend "exact", "success"}
+      #{row_legend "alias", "info"}
+      #{row_legend "partial", "warning"}
+      #{row_legend "none", "danger"}
       <span>
     HTML
   end
@@ -402,21 +402,23 @@ format :html do
   # @return name of company in db that matches the given name and
   # the what kind of match
   def matched_company name
-    if (company = Card.fetch(name)) && company.type_id == WikirateCompanyID
-      [name, :exact]
-      # elsif (result = Card.search :right=>"aliases",
-      # :left=>{:type_id=>Card::WikirateCompanyID},
-      # :content=>["match","\\[\\[#{name}\\]\\]"]) && !result.empty?
-      #   [result.first.cardname.left, :alias]
-    elsif (company_name = aliases_hash[name.downcase])
-      [company_name, :alias]
-    elsif (result = get_potential_company(name))
-      [result.first.name, :partial]
-    elsif (company_name = part_of_company(name))
-      [company_name, :partial]
-    else
-      ["", :none]
-    end
+    @company_map ||= {}
+    @company_map[name] ||=
+      if (company = Card.fetch(name)) && company.type_id == WikirateCompanyID
+        [name, :exact]
+        # elsif (result = Card.search :right=>"aliases",
+        # :left=>{:type_id=>Card::WikirateCompanyID},
+        # :content=>["match","\\[\\[#{name}\\]\\]"]) && !result.empty?
+        #   [result.first.cardname.left, :alias]
+      elsif (company_name = aliases_hash[name.downcase])
+        [company_name, :alias]
+      elsif (result = get_potential_company(name))
+        [result.first.name, :partial]
+      elsif (company_name = part_of_company(name))
+        [company_name, :partial]
+      else
+        ["", :none]
+      end
   end
 
   def part_of_company name

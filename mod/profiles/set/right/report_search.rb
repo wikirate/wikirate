@@ -143,6 +143,14 @@ format :html do
                       type: "pills"
   end
 
+  def self.define_tab_listing_where_applicable cardtype
+    return if cardtype == :metric_value
+    view "#{cardtype}_sublist" do
+      card.variant = voo.structure if voo.structure
+      default_listing
+    end
+  end
+
   [
     :claim,
     :metric,
@@ -159,12 +167,7 @@ format :html do
       tab_listing listing
     end
 
-    next if cardtype == :metric_value
-
-    view "#{cardtype}_sublist" do
-      card.variant = voo.structure if voo.structure
-      default_listing
-    end
+    define_tab_listing_where_applicable cardtype
   end
 
   def default_listing item_view=:listing

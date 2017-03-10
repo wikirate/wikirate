@@ -12,7 +12,7 @@ class MetricCSVRow < CSVRow
     @value_details = {}
     super
     @designer = @row.delete :metric_designer
-    @title = @row.delete :metric_title
+    @title = @row.delete(:metric_title).gsub("/", "&#47;")
     @name = "#{@designer}+#{@title}"
     @row[:wikirate_topic] = @row.delete :topics if @row[:topics]
   end
@@ -29,7 +29,7 @@ class MetricCSVRow < CSVRow
     value.match /(?<type>[^(]+)\((?<options>[^)]+)/ do |match|
       new_value = match[:type].strip
       new_value == "Category" if new_value == "Categorical"
-      if new_value == "Category"
+      if new_value == "Category" || new_value == "Multi-Category"
         @value_details[:value_options] = comma_list_to_pointer match[:options]
       elsif new_value == "Money"
         @value_details[:currency] = match[:options].strip
