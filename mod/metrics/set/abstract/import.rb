@@ -325,6 +325,7 @@ format :html do
     end
   end
 
+
   def import_legend
     <<-HTML.html_safe
      <span class="pull-right">
