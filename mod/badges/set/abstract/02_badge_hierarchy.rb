@@ -5,6 +5,10 @@
 module BadgeHierarchy
   BADGE_TYPES = [:metric, :project, :metric_value, :source, :wikirate_company]
 
+  def self.for_type type_code
+    Card::Set::Type.const_get("#{type_code.to_s.camelcase}::BadgeHierarchy")
+  end
+
   attr_reader :badge_level, :levels, :levels_descending, :badge_action
 
   def hierarchy map

@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
 class DoubleCheckOverhaul < Card::Migration
+  disable_ddl_transaction!
   def up
     ensure_card "check requested by", codename: "check_requested_by"
     ensure_card "request", codename: "request"
