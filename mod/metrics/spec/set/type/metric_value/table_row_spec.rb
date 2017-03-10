@@ -1,4 +1,4 @@
-describe Card::Set::Type::MetricValue::TableRow do
+RSpec.describe Card::Set::Type::MetricValue::TableRow do
   describe "#company_details_sidebar" do
     let(:metric_value) { sample_metric_value }
     let(:company_name) { metric_value.company }

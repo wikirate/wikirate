@@ -1,6 +1,17 @@
-# a pointer hack:
-# If the first item is "request" then the second item is the requester
-# and all users after that are checkers
+# +checked_by stores the current check state as follows:
+# empty/non-existent: no check
+# refer to "request": double check is requested
+# refer to one or more users: the users checked the value
+#
+# We have to distinguish between
+# "double check currently requested" and
+# "double check was requested before it was double checked"
+# so that the value can get its "requested" state back if somebody
+# removes his double check. We use the +check_requested_by card for that.
+# If the double check is requested the requester is
+# stored (permanently) in +check_requested_by and +checked_by is set
+# to "request". A double check removes the "request" and adds the checker to
+# +checked_by but the requester stays in +check_requested_by.
 
 def unknown?
   false
@@ -19,19 +30,32 @@ def other_user_requested_check?
 end
 
 def checked?
-  !check_requested? && checkers.present?
+  checkers.present?
 end
 
 def check_requested?
-  items.first == "request" && items.size <= 2
+  items.first == "request"
 end
 
 def checkers
-  items.first == "request" ? items[2..-1] : items
+  check_requested? ? [] : items
 end
 
 def check_requester
-  items.second
+  check_requested_by_card && check_requested_by_card.item_names.first
+end
+
+def check_requested_by_card
+  @check_requested_by_card ||=
+    left(new: {}).fetch(trait: :check_requested_by, new: {})
+end
+
+def allowed_to_check?
+  left.value_card.updater_id != Auth.current_id
+end
+
+def check_was_requested_before_double_check?
+  check_requester.present?
 end
 
 def items
@@ -63,6 +87,9 @@ format :html do
   end
 
   view :core do
+    unless card.check_requested? || card.checked? || card.allowed_to_check?
+      return ""
+    end
     wrap_with :div do
       [
         wrap_with(:p, "Does the value accurately represent its source?"),
@@ -132,7 +159,8 @@ format :html do
   end
 
   def request_icon _opts={}
-    icon_tag("check-circle-o", class: "request-red", title: "check requested").html_safe
+    icon_tag("check-circle-o", class: "request-red", title: "check requested")
+      .html_safe
   end
 
   def data_path
@@ -171,11 +199,6 @@ format :html do
   end
 end
 
-def update_user_check_log
-  add_subcard Auth.current.cardname.field_name(:double_checked),
-              type_id: PointerID
-end
-
 event :update_answer_lookup_table_due_to_check_change, :finalize,
       changed: :content do
   refresh_answer_lookup_entry left_id
@@ -183,28 +206,56 @@ end
 
 event :user_checked_value, :prepare_to_store,
       on: :save, when: :add_checked_flag? do
-  add_item user.name, true unless user_checked?
+  add_checker unless user_checked?
   update_user_check_log.add_id left.id
 end
 
 event :user_unchecked_value, :prepare_to_store,
       on: :update, when: :remove_checked_flag? do
-  drop_checker user.name if user_checked?
+  drop_checker
   update_user_check_log.drop_id left.id
 end
 
-event :user_requests_check, :prepare_to_store do
-  if content == "[[request]]"
-    self.content = ["request", user.name].to_pointer_content
+event :user_requests_check, :prepare_to_store,
+      when: :request_check_flag_update? do
+  requested_by_content =
+    if content == "[[#{request_tag}]]"
+      return if check_requester.present?
+      "[[#{user.name}]]"
+    else
+      ""
+    end
+
+  attach_subcard check_requested_by_card.name,
+                 content: requested_by_content,
+                 type_id: PointerID
+end
+
+def request_tag
+  @request_tag ||= Card.fetch_name(:request)
+end
+
+def mark_as_requested
+  self.content = "[[#{request_tag}]]"
+end
+
+def update_user_check_log
+  add_subcard Auth.current.cardname.field_name(:double_checked),
+              type_id: PointerID
+end
+
+def add_checker
+  if check_requested? # override request flag
+    self.content = "[[#{user.name}]]"
+  else
+    add_item user.name
   end
 end
 
-def drop_checker user
-  if check_requested? && requester == user
-    insert_item user, 1 # deletes all other occurences
-  else
-    drop_item user
-  end
+def drop_checker
+  drop_item user.name
+  mark_as_requested if item_names.empty? &&
+    check_was_requested_before_double_check?
 end
 
 def add_checked_flag?
@@ -213,4 +264,8 @@ end
 
 def remove_checked_flag?
   Env.params["set_flag"] == "not-checked"
+end
+
+def request_check_flag_update?
+  !add_checked_flag? && !remove_checked_flag?
 end

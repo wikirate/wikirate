@@ -6,6 +6,27 @@ def create_value_options options
   Card.create! create_args
 end
 
+event :ensure_designer, :prepare_to_store, on: :save, changed: :name do
+  return if valid_designer?
+  if (card = Card[metric_designer])
+    errors.add :metric_designer, "invalid type #{card.type_name}"
+  else
+    attach_subcard metric_designer, type_id: ResearchGroupID
+  end
+end
+
+event :ensure_title, :prepare_to_store, on: :save, changed: :name do
+  return if Card.fetch_type_id(metric_title) == MetricTitleID
+  # TODO: deal with existing card that isn't a metric title
+  #       (i.e. fail or correct it)
+  attach_subcard metric_title, type_id: MetricTitleID
+end
+
+def valid_designer?
+  Card.fetch_type_id(metric_designer).in? [ResearchGroupID, UserID,
+                                           WikirateCompanyID]
+end
+
 # @example
 # create_values do
 #   Siemens 2015 => 4, 2014 => 3
@@ -46,12 +67,10 @@ end
 
 def check_value_card_exist args, error_msg
   return unless (value_name = extract_metric_value_name(args, error_msg))
-  if (value_card = Card[value_name.to_name.field(:value)])
-    unless value_card.content.casecmp(args[:value]).zero?
-      link = format.link_to_card value_card.metric_card, "value"
-      error_msg << "#{link} '#{value_card.content}' exists"
-    end
-  end
+  return if !(value_card = Card[value_name.to_name.field(:value)]) ||
+    value_card.content.casecmp(args[:value]).zero?
+  link = format.link_to_card value_card.metric_card, "value"
+  error_msg << "#{link} '#{value_card.content}' exists"
 end
 
 def valid_value_args? args
@@ -93,11 +112,10 @@ end
 # @option args [String] :value
 # @option args [String] :source source url
 def create_value args
-  if (valid_args = create_value_args args)
-    Card.create! valid_args
-  else
+  unless (valid_args = create_value_args args)
     raise "invalid value args: #{args}"
   end
+  Card.create! valid_args
 end
 
 # The new metric form has a title and a designer field instead of a name field
@@ -110,7 +128,7 @@ end
 
 format :html do
   # FIXME: inline js
-  view :new do |args|
+  view :new do |_args|
     voo.title = "New Metric"
     frame do
       <<-HTML
