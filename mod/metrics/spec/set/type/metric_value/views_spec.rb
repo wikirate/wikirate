@@ -1,4 +1,4 @@
-describe Card::Set::Type::MetricValue::Views do
+RSpec.describe Card::Set::Type::MetricValue::Views do
   # FIXME: not the right rspec syntax
   # humanized_number doesn't change anything
   describe '#humanized_number' do
@@ -54,9 +54,9 @@ describe Card::Set::Type::MetricValue::Views do
                     name: "Joe User+big single+Sony Corporation+2010"
       end
 
-      it "has valuye" do
+      it "has value" do
         is_expected.to have_tag "span.metric-value" do
-          with_text "1"
+          with_text "4"
         end
       end
       it "has correct year" do

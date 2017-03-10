@@ -325,14 +325,15 @@ format :html do
     end
   end
 
+
   def import_legend
     <<-HTML.html_safe
      <span class="pull-right">
       company match:
-      #{row_legend 'exact', 'success'}
-    #{row_legend 'alias', 'info'}
-    #{row_legend 'partial', 'warning'}
-    #{row_legend 'none', 'danger'}
+      #{row_legend "exact", "success"}
+      #{row_legend "alias", "info"}
+      #{row_legend "partial", "warning"}
+      #{row_legend "none", "danger"}
       <span>
     HTML
   end

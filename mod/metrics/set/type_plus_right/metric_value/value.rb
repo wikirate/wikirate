@@ -63,8 +63,10 @@ end
 
 event :update_double_check_flag, :validate, on: [:update, :delete],
                                             changed: :content do
-  return unless left.fetch trait: :checked_by
-  attach_subcard cardname.left_name.field_name(:checked_by), content: ""
+  [:checked_by, :check_requested_by].each do |trait|
+    next unless left.fetch trait: trait
+    attach_subcard cardname.left_name.field_name(trait), content: ""
+  end
 end
 
 event :no_left_name_change, :prepare_to_validate,

@@ -77,7 +77,7 @@ end
 
 # TODO: adapt to Henry's value type API
 def categorical?
-  value_type == "Category"
+  value_type == "Category" || value_type == "Multi-Category"
 end
 
 def relationship?
@@ -277,7 +277,8 @@ format :html do
       case value_type.item_names[0]
       when "Number"   then :numeric_details
       when "Money"    then :monetary_details
-      when "Category" then :category_details
+      when "Category", "Multi-Category" then
+        :category_details
       end
     return "" if details_field.nil?
     detail_card = Card.fetch card, details_field, new: {}
