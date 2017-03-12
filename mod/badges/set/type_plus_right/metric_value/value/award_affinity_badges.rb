@@ -16,7 +16,7 @@ def award_create_badge_if_earned affinity, project_card=nil
   # + 1 because the current action is not included
   # we do this search before the answer table update
   count = action_count(:create, affinity, project_card) + 1
-  return unless (badge = earns_badge(count, :create, affinity))
+  return unless (badge = earns_badge(:create, affinity, count))
   badge_card = fetch_badge_card badge, affinity, project_card
   award_badge badge_card
 end
@@ -61,8 +61,8 @@ def action_count action, affinity=nil, project_card=nil
 end
 
 # @return badge name if count equals its threshold
-def earns_badge count, action, affinity_type=nil
-  badge_hierarchy.earns_badge count, action, affinity_type
+def earns_badge action, affinity_type=nil, count=nil
+  badge_hierarchy.earns_badge action, affinity_type, count
 end
 
 def fetch_badge_card badge_name, affinity=nil, project_card=nil

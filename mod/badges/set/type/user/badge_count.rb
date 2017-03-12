@@ -1,7 +1,5 @@
 include_set Abstract::Certificate
 
-
-
 def badge_count level=nil
   count = 0
   Abstract::BadgeHierarchy::BADGE_TYPES.each do |badge_type|
@@ -10,7 +8,6 @@ def badge_count level=nil
   end
   count
 end
-
 
 format :html do
   delegate :badge_count, to: :card

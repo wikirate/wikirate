@@ -11,22 +11,56 @@ module BadgeHierarchy
 
   attr_reader :badge_level, :levels, :levels_descending, :badge_action
 
-  def hierarchy map
-    @map = {}
-    map.each do |action, badge_set|
-      if badge_set.values.first.is_a? Hash
-        @map[action] = {}
-        badge_set.each do |affinity, affinity_badge_set|
-          @map[action][affinity] = Abstract::BadgeSet.new affinity_badge_set
-        end
-      else
-        @map[action] = Abstract::BadgeSet.new badge_set
-      end
+  def add_badge_set action, badge_set, &count_wql
+    @map ||= {}
+    @map[action] = Abstract::BadgeSet.new badge_set, &count_wql
+  end
+
+  def add_affinity_badge_set action, map
+    @map ||= {}
+    @map[action] = {}
+    map.each do |affinity, affinity_badge_set|
+      @map[action][affinity] = Abstract::BadgeSet.new affinity_badge_set
     end
   end
 
-  # returns a badge if the threshold is reached
-  def earns_badge count, action, affinity_type=nil
+  def create_type_count type_id
+    -> (user_id) do
+      {
+        type_id: type_id,
+        created_by: user_id
+      }
+    end
+  end
+
+  def type_plus_right_count type_id, right_id, relation_to_user
+    -> (user_id) do
+      {
+        left: { type_id: type_id },
+        right_id: right_id,
+        relation_to_user => user_id
+      }
+    end
+  end
+
+  def type_plus_right_edited_count type_id, right_id
+    type_plus_right_count(type_id, right_id, :edited_by)
+  end
+
+  def vote_count type_id
+    -> (user_id) do
+      user = user_id ? Card[user_id] : Auth.current
+      vote_card_ids = [user.upvotes_card.id, user.downvotes_card.id].compact
+      next nil unless vote_card_ids.present?
+      {
+        type_id: type_id,
+        referred_to_by: { id: ["in"] + vote_card_ids }
+      }
+    end
+  end
+
+# returns a badge if the threshold is reached
+  def earns_badge action, affinity_type=nil, count=nil
     badge_set(action, affinity_type).earns_badge count
   end
 
@@ -38,6 +72,10 @@ module BadgeHierarchy
     define_method method_name do |action, affinity_type, badge_key|
       badge_set(action, affinity_type).send method_name, badge_key
     end
+  end
+
+  def count action
+    badge_set(action, nil).count_valued_actions
   end
 
   def badge_set action, affinity_type

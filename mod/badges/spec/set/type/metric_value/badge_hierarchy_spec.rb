@@ -1,7 +1,7 @@
 describe Card::Set::Type::MetricValue::BadgeHierarchy do
   describe "#earns_badge" do
     it "returns badge name if threshold is reached" do
-      expect(described_class.earns_badge(1, :create, :general))
+      expect(described_class.earns_badge(:create, :general, 1))
         .to eq "Researcher"
     end
   end

@@ -7,14 +7,21 @@ class AwardBadges < Card::Migration
       award_create_badges type_code
     end
     award_answer_badges
+    award_badges_by_user
   end
 
-  def award_right_badge right_id, left_type_id
-    ActiveRecord::Base.connection.exec_query(
-      "SELECT creator_id, COUNT(*) FROM cards c1 #{where} JOIN cards c2 ON c1.left_id = c2.id
-       WHERE c2.type_id = #{left_type_id} AND c1.right_id = #{right_id} GROUP BY c1.creator_id"
-    )
+  def award_badges_by_user
+    Card.search(type_id: Card::UserID).each do
+
+    end
   end
+
+  # def award_right_badge right_id, left_type_id
+  #   ActiveRecord::Base.connection.exec_query(
+  #     "SELECT creator_id, COUNT(*) FROM cards c1 #{where} JOIN cards c2 ON c1.left_id = c2.id
+  #      WHERE c2.type_id = #{left_type_id} AND c1.right_id = #{right_id} GROUP BY c1.creator_id"
+  #   )
+  # end
 
   def award_create_badges type_code, opts={}
     type_id = Card::Codename[type_code]
@@ -66,7 +73,6 @@ class AwardBadges < Card::Migration
     end
     award_badges! user_id, :metric_value, badge_names
   end
-
 
   def award_badges_if_earned! count, user_id, type_code
     badge_names = Card::Set::Abstract::BadgeHierarchy

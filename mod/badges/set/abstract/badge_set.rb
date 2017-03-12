@@ -10,7 +10,7 @@ class BadgeSet
 
   attr_reader :badge_names
 
-  def initialize map
+  def initialize map, &block
     @badge_names = []
     @badge = {}
     map.each.with_index do |(codename, threshold), i|
@@ -24,6 +24,7 @@ class BadgeSet
       @badge[badge.threshold] = badge
       @badge[badge.level] = badge
     end
+    @count_wql = block
   end
 
   def initialize_badge codename, threshold, index
@@ -44,8 +45,21 @@ class BadgeSet
     raise ArgumentError, "thresholds have to be unique" if @badge[threshold]
   end
 
-  def earns_badge count
+  def earns_badge count=nil
+    count ||= count_valued_actions
     @badge[count] && @badge[count].name
+  end
+
+  def count_valued_actions user_id=nil
+    wql = count_wql user_id || Card::Auth.current_id
+    return 0 unless wql
+    Card.search wql
+  end
+
+  def count_wql user_id
+    wql = @count_wql.call(user_id)
+    return unless wql.present? && wql.is_a?(Hash)
+    wql.merge return: :count
   end
 
   def all_earned_badges count
