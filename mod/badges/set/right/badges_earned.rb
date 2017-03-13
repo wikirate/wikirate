@@ -25,6 +25,20 @@ def add_badge_card badge_card
   self.content = item_names.insert(index, badge_card.name).to_pointer_content
 end
 
+# used for award_badges migration
+# assumes that all elements in badge_names are of the same level
+# so that they belong in the same spot
+def add_batch_of_badges badge_names
+  self.auto_content = true
+  sample_badge_card = Card.fetch badge_names.first
+  # for performance reason we check only one card
+  # and assume the whole batch has already been added if it's already there
+  return if include_item? sample_badge_card
+  index = bsearch_index(sample_badge_card)
+  self.content = item_names.insert(index, badge_names)
+                   .flatten.to_pointer_content
+end
+
 def bsearch_index badge_card
   # ruby 2.3 has bsearch_index
   items = item_cards
