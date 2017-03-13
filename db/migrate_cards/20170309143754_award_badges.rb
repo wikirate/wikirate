@@ -12,12 +12,11 @@ class AwardBadges < Card::Migration
   end
 
   def user_ids
-    @user_ids ||= Card.search type_id: Card::UserID, return: :id
+    @user_ids ||= [6314] + Card.search(type_id: Card::UserID, return: :id)
   end
 
-
   def award_answer_create_badges
-    [:company, :metric, :project].each do |affinity_type|
+    [:company, :designer, :project].each do |affinity_type|
       puts "answer create #{affinity_type} badges"
       award_affinity_answer_badges affinity_type
     end

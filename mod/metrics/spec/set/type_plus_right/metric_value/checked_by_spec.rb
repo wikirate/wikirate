@@ -45,6 +45,7 @@ RSpec.describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
       cb_card = answer_card.fetch trait: :checked_by,
                                   new: { content: "[[Joe User]]" }
       cb_card.save!
+      cb_card.clear_subcards
       cb_card.update_attributes! subcards: {}
       cb_card
     end

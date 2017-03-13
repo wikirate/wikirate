@@ -7,21 +7,23 @@ describe Card::Set::Right::BadgesEarned do
     Card.fetch "Joe Camel", :metric_value, :badges_earned, new: {}
   end
 
+  let(:badges) do
+    ["Evil Project+Researcher+project badge",
+     "Answer Enhancer",
+     "Research Fellow",
+     "Commentator",
+     "Death Star+Research Engine+company badge",
+     "Researcher",
+     "Death Star+Researcher+company badge",
+     "Answer Advancer",
+     "Research Engine"]
+  end
 
   describe "#ordered_badge_cards" do
     before do
       Card::Auth.as_bot do
         card.update_attributes!(
-          content: ["Evil Project+Researcher+project badge",
-                    "Commentator",
-                    "Research Fellow",
-                    "Commentator",
-                    "Death Star+Research Engine+company badge",
-                    "Researcher",
-                    "Death Star+Researcher+company badge",
-                    "Answer Advancer",
-                    "Research Engine"
-          ].to_pointer_content
+          content: badges.to_pointer_content
         )
       end
     end
@@ -51,17 +53,7 @@ describe Card::Set::Right::BadgesEarned do
     before do
       Card::Auth.as_bot do
         card.db_content = ""
-        ["Evil Project+Researcher+project badge",
-         "Answer Enhancer",
-         "Commentator",
-         "Research Fellow",
-         "Commentator",
-         "Death Star+Research Engine+company badge",
-         "Researcher",
-         "Death Star+Researcher+company badge",
-         "Answer Advancer",
-         "Research Engine"
-        ].each do |name|
+        badges.each do |name|
           card.add_badge_card Card.fetch(name)
           card.save!
         end

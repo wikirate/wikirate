@@ -27,11 +27,10 @@ end
 
 def bsearch_index badge_card
   # ruby 2.3 has bsearch_index
-  return 0 if item_cards.empty?
-  index = [*item_cards.each_with_index].bsearch do |x, _index|
-    x < badge_card
-  end
-  index ? index.last : item_names.size
+  items = item_cards
+  return 0 if items.empty?
+  el = items.bsearch { |x| x < badge_card }
+  el ? items.index(el) : items.size
 end
 
 def badge_class
