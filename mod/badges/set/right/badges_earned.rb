@@ -18,9 +18,20 @@ def cardtype_code
   left.right.codename
 end
 
-def add_badge badge_name
+def add_badge_card badge_card
   self.auto_content = true
-  add_item badge_name
+  return if include_item? badge_card
+  index = bsearch_index(badge_card)
+  self.content = item_names.insert(index, badge_card.name).to_pointer_content
+end
+
+def bsearch_index badge_card
+  # ruby 2.3 has bsearch_index
+  return 0 if item_cards.empty?
+  index = [*item_cards.each_with_index].bsearch do |x, _index|
+    x < badge_card
+  end
+  index ? index.last : item_names.size
 end
 
 def badge_class
@@ -46,7 +57,7 @@ format :html do
 
 
   view :core do
-    wikirate_table :plain, card.ordered_badge_cards,
+    wikirate_table :plain, card.item_cards,
                    [:level, :badge, :description],
                    header: %w(Level Badge Description),
                    td: { classes: ["badge-certificate", nil, nil] }

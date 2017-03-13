@@ -7,25 +7,69 @@ describe Card::Set::Right::BadgesEarned do
     Card.fetch "Joe Camel", :metric_value, :badges_earned, new: {}
   end
 
-  before do
-    Card::Auth.as_bot do
-    card.update_attributes!(
-      content: ["Research Fellow",
-                "Research Engine",
-                "Death Star+Research Engine+company badge",
-                "Researcher",
-                "Evil Project+Researcher+project badge",
-                "Death Star+Researcher+company badge",
-                "Answer Enhancer",
-                "Answer Advancer",
-                "Commentator"].to_pointer_content
-    )
+
+  describe "#ordered_badge_cards" do
+    before do
+      Card::Auth.as_bot do
+        card.update_attributes!(
+          content: ["Evil Project+Researcher+project badge",
+                    "Commentator",
+                    "Research Fellow",
+                    "Commentator",
+                    "Death Star+Research Engine+company badge",
+                    "Researcher",
+                    "Death Star+Researcher+company badge",
+                    "Answer Advancer",
+                    "Research Engine"
+          ].to_pointer_content
+        )
+      end
+    end
+
+    subject { card.ordered_badge_cards.map(&:name) }
+    it "has correct order" do
+      expect([subject.delete_at(4), subject.delete_at(4)])
+        .to contain_exactly "Evil Project+Researcher+project badge",
+                            "Death Star+Researcher+company badge"
+      is_expected.to eq ["Research Fellow",
+                         "Research Engine",
+                         "Death Star+Research Engine+company badge",
+                         "Researcher",
+                         "Answer Enhancer",
+                         "Answer Advancer",
+                         "Commentator"]
+    end
+
+    it_behaves_like "badge count", 9, 5, 3, 1 do
+      def badge_count level=nil
+        card.badge_count level
+      end
     end
   end
 
-  describe "#ordered_badge_cards" do
-    subject { card.ordered_badge_cards.map(&:name) }
-    it "has correct order" do
+  describe "#add_badge" do
+    before do
+      Card::Auth.as_bot do
+        card.db_content = ""
+        ["Evil Project+Researcher+project badge",
+         "Answer Enhancer",
+         "Commentator",
+         "Research Fellow",
+         "Commentator",
+         "Death Star+Research Engine+company badge",
+         "Researcher",
+         "Death Star+Researcher+company badge",
+         "Answer Advancer",
+         "Research Engine"
+        ].each do |name|
+          card.add_badge_card Card.fetch(name)
+          card.save!
+        end
+      end
+    end
+
+    subject { card.item_names }
+    it "adds badge in the right order order" do
       expect([subject.delete_at(4), subject.delete_at(4)])
         .to contain_exactly "Evil Project+Researcher+project badge",
                             "Death Star+Researcher+company badge"
@@ -42,12 +86,6 @@ describe Card::Set::Right::BadgesEarned do
   describe "html format" do
     describe "view :core" do
       #it
-    end
-  end
-
-  it_behaves_like "badge count", 9, 5, 3, 1 do
-    def badge_count level=nil
-      card.badge_count level
     end
   end
 end

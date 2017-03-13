@@ -22,7 +22,7 @@ shared_examples_for "all_value_type" do |value_type, valid_cnt, invalid_cnt|
       it "blocks adding a new value" do
         @content = invalid_cnt
         expect(metric_value.errors).to have_key(:value)
-        expect(metric_value.errors[:value]).to include(@error_msg)
+        expect(metric_value.errors[:value].first).to include(@error_msg)
       end
     end
 

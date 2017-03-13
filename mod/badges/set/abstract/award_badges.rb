@@ -24,7 +24,7 @@ def award_badge badge_card
   badge_pointer =
     subcard(name_parts) ||
       attach_subcard(Card.fetch(name_parts, new: { type_id: PointerID }))
-  badge_pointer.add_badge badge_card.name
+  badge_pointer.add_badge_card badge_card
 end
 
 def fetch_badge_card badge_name

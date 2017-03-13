@@ -11,6 +11,10 @@ class AwardBadges < Card::Migration
     award_badges_by_user
   end
 
+  def user_ids
+    @user_ids ||= Card.search type_id: Card::UserID, return: :id
+  end
+
 
   def award_answer_create_badges
     [:company, :metric, :project].each do |affinity_type|
@@ -41,7 +45,7 @@ class AwardBadges < Card::Migration
 
   def award_badges_by_user
     puts "rest"
-    Card.search(type_id: Card::UserID, return: :id).each do |user_id|
+    user_ids.each do |user_id|
       award_badges_for_user user_id
     end
   end
@@ -58,14 +62,35 @@ class AwardBadges < Card::Migration
 
   def award_affinity_answer_badges affinity_type
     return award_project_affinity_answer_badges if affinity_type == :project
-    column_name = affinity_type == :wikirate_company ? :company : affinity_type
-    query("SELECT creator_id, #{column_name}_name, COUNT(*) FROM answers "\
-                    "GROUP BY creator_id, #{column_name}_id")
-      .each do |user_id, affinity_name, count|
-      next unless user_id
-      award_affinity_answer_badges_if_earned! count, user_id,
-                                              affinity_type, affinity_name
+    badge_set = Card::Set::Type::MetricValue::BadgeHierarchy
+                  .badge_set(:create, affinity_type)
+    badge_names = [:bronze, :silver, :gold].map do |level, h|
+      [badge_set.badge(level).threshold, badge_set.badge(level).name]
     end
+    min_thresh = badge_set.threshold(:bronze)
+
+    user_ids.each do |user_id|
+      affinity_names =
+        query("SELECT #{affinity_type}_name, COUNT(*) FROM answers "\
+                "WHERE creator_id = #{user_id} "\
+                "GROUP BY #{affinity_type}_id HAVING COUNT(*) >= #{min_thresh}")
+
+      full_badge_names =
+        affinity_names.map do |an, count|
+          badge_names.map do |threshold, name|
+            next if count < threshold
+            "#{an}+#{name}+#{affinity_type} badge"
+          end.compact
+        end.flatten
+      award_badges! user_id, :metric_value, full_badge_names
+    end
+    # query("SELECT creator_id, #{affinity_type}_name, COUNT(*) FROM answers "\
+    #                 "GROUP BY creator_id, #{affinity_type}_id")
+    #   .each do |user_id, affinity_name, count|
+    #   next unless user_id
+    #   award_affinity_answer_badges_if_earned! count, user_id,
+    #                                           affinity_type, affinity_name
+    # end
   end
 
   def award_project_affinity_answer_badges
@@ -102,8 +127,9 @@ class AwardBadges < Card::Migration
     name_parts = [Card.fetch_name(user_id), type_code, :badges_earned]
     card = Card.fetch name_parts, new: { type_id: Card::PointerID }
     puts "award to #{card.name} badges #{badge_names}"
-    badge_names.each do |name|
-      card.add_item name
+
+    badge_names.each do |badge_name|
+      card.add_badge_card Card.fetch(badge_name)
     end
     card.save!
   end

@@ -1,7 +1,7 @@
 # The answer table refresh happens on the act card.
 # That can cause problem if this is not the act card.
 # To be safe we count before the update
-event :award_answer_create_badges, before: :refresh_updated_answers,
+event :award_answer_create_badges, :finalize,
       on: :create do
   [:general, :designer, :company].each do |affinity|
     award_create_badge_if_earned affinity

@@ -1,4 +1,5 @@
 include_set Abstract::Certificate
+include Comparable
 
 format :html do
   delegate :badge_level, :threshold, to: :card
