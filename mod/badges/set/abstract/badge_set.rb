@@ -3,7 +3,7 @@
 # a BadgeSet is a ranking of badges for one category, i.e. it has one
 # bagdge for every level
 class BadgeSet
-  LEVELS = [:bronze, :silver, :gold]
+  LEVELS = [:bronze, :silver, :gold].freeze
 
   Badge =
     Struct.new("Badge", :name, :codename, :threshold, :level, :level_index)
@@ -14,15 +14,7 @@ class BadgeSet
     @badge_names = []
     @badge = {}
     map.each.with_index do |(codename, threshold), i|
-      badge = initialize_badge codename, threshold, i
-      validate_threshold badge.threshold
-
-      @badge_names << badge.name
-      @badge[badge.name] = badge
-      @badge[badge.codename] = badge
-      @badge[badge.codename.to_s] = badge
-      @badge[badge.threshold] = badge
-      @badge[badge.level] = badge
+      initialize_badge codename, threshold, i
     end
     @count_wql = block
   end
@@ -37,7 +29,18 @@ class BadgeSet
       level = LEVELS[index]
     end
 
-    Badge.new name, codename, threshold, level, level_index
+    badge = Badge.new name, codename, threshold, level, level_index
+    validate_threshold badge.threshold
+    add_badge badge
+  end
+
+  def add_badge badge
+    @badge_names << badge.name
+    @badge[badge.name] = badge
+    @badge[badge.codename] = badge
+    @badge[badge.codename.to_s] = badge
+    @badge[badge.threshold] = badge
+    @badge[badge.level] = badge
   end
 
   def validate_threshold threshold

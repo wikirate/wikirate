@@ -7,7 +7,7 @@ describe Card::Set::Abstract::BadgeSet do
 
   describe "#initialize" do
     context "levels defined explicitly" do
-      let(:set) { set = described_class.new researcher: [3, :silver] }
+      let(:set) { described_class.new researcher: [3, :silver] }
       it "initializes correcly" do
         expect(set.threshold(:researcher)).to eq 3
         expect(set.level(:researcher)).to eq :silver
@@ -16,7 +16,7 @@ describe Card::Set::Abstract::BadgeSet do
     end
 
     context "not all levels defined" do
-      let(:set) { set = described_class.new researcher: 3 }
+      let(:set) { described_class.new researcher: 3 }
       it "initializes correcly" do
         expect(set.threshold(:researcher)).to eq 3
         expect(set.level(:researcher)).to eq :bronze

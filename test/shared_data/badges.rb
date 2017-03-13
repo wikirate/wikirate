@@ -1,8 +1,19 @@
 class SharedData
   module Badges
-    def add_badges
+    SAMPLE_AFFINITY_BADGES =
+      [
+        "Death Star+Research Engine+company badge",
+        "Evil Project+Researcher+project badge",
+        "Death Star+Researcher+company badge"
+      ].freeze
 
-      create ["Joe Camel", :metric_value, :badges_earned],
+    def add_badges
+      some_badges_for "Joe Camel"
+      all_badges_for "Big Brother"
+    end
+
+    def some_badges_for user
+      create [user, :metric_value, :badges_earned],
              type: "Pointer",
              content: ["Research Fellow",
                        "Research Engine",
@@ -13,20 +24,16 @@ class SharedData
                        "Answer Enhancer",
                        "Answer Advancer",
                        "Commentator"].to_pointer_content
+    end
 
+    def all_badges_for user
       [:metric, :project, :metric_value,
        :source, :wikirate_company].each do |type|
         content =
           Card::Set::Type.const_get("#{type.to_s.camelcase}::BadgeHierarchy")
             .badge_names
-        if type == :metric_value
-          content += [
-            "Death Star+Research Engine+company badge",
-            "Evil Project+Researcher+project badge",
-            "Death Star+Researcher+company badge"
-          ]
-        end
-        create! name: ["Big Brother", type, :badges_earned],
+        content += SAMPLE_AFFINITY_BADGES if type == :metric_value
+        create! name: [user, type, :badges_earned],
                 type: "Pointer",
                 content: content.to_pointer_content
       end
@@ -37,7 +44,8 @@ end
 # [:metric, :project, :metric_value,
 #  :source, :wikirate_company].each do |type|
 #   content =
-#     Card::Set::Type.const_get("#{type.to_s.camelcase}::BadgeHierarchy").badge_names
+#     Card::Set::Type.const_get("#{type.to_s.camelcase}::BadgeHierarchy")
+#       .badge_names
 #   if type == :metric_value
 #     content += [
 #       "Death Star+Research Engine+company badge",

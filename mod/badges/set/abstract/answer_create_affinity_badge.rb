@@ -13,7 +13,11 @@ format :html do
 
   view :badge, tags: :unknown_ok do
     type_name =
-      affinity_type == :designer ? "Metric Designer" : affinity_type.to_s.capitalize
+      if affinity_type == :designer
+        "Metric Designer"
+      else
+        affinity_type.to_s.capitalize
+      end
     nest affinity_card, view: :thumbnail, text: type_name
   end
 
@@ -27,7 +31,6 @@ format :html do
       end
     end
   end
-
 end
 
 def badge_key

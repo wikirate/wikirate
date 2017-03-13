@@ -8,7 +8,6 @@ def self.included host_class
   end
 end
 
-
 def award_badge_if_earned badge_type
   return unless (badge = earns_badge(badge_type))
   award_badge fetch_badge_card(badge)
@@ -36,4 +35,3 @@ end
 def action_count action, user=nil
   send "#{action}_count", user
 end
-

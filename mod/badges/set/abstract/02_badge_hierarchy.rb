@@ -3,7 +3,8 @@
 # A BadgeHierarchy manages BadgeSets for one badge cardtype, for example
 # all badges related to metric answers
 module BadgeHierarchy
-  BADGE_TYPES = [:metric, :project, :metric_value, :source, :wikirate_company]
+  BADGE_TYPES =
+    [:metric, :project, :metric_value, :source, :wikirate_company].freeze
 
   def self.for_type type_code
     Card::Set::Type.const_get("#{type_code.to_s.camelcase}::BadgeHierarchy")
@@ -25,7 +26,7 @@ module BadgeHierarchy
   end
 
   def create_type_count type_id
-    -> (user_id) do
+    lambda do |user_id|
       {
         type_id: type_id,
         created_by: user_id
@@ -34,7 +35,7 @@ module BadgeHierarchy
   end
 
   def type_plus_right_count type_id, right_id, relation_to_user
-    -> (user_id) do
+    lambda do |user_id|
       {
         left: { type_id: type_id },
         right_id: right_id,
@@ -48,7 +49,7 @@ module BadgeHierarchy
   end
 
   def vote_count type_id
-    -> (user_id) do
+    lambda do |user_id|
       user = user_id ? Card[user_id] : Auth.current
       vote_card_ids = [user.upvotes_card.id, user.downvotes_card.id].compact
       next nil unless vote_card_ids.present?
@@ -59,7 +60,7 @@ module BadgeHierarchy
     end
   end
 
-# returns a badge if the threshold is reached
+  # returns a badge if the threshold is reached
   def earns_badge action, affinity_type=nil, count=nil
     badge_set(action, affinity_type).earns_badge count
   end
@@ -85,9 +86,7 @@ module BadgeHierarchy
   end
 
   def validate_badge_args action, affinity_type
-    unless @map[action]
-      raise StandardError, "not supported action: #{action}"
-    end
+    raise StandardError, "not supported action: #{action}" unless @map[action]
     if affinity_type && !@map[action][affinity_type].is_a?(Abstract::BadgeSet)
       raise StandardError,
             "affinity type #{affinity_type} not supported for action #{action}"

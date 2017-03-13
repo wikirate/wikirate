@@ -9,4 +9,3 @@ end
 def badge_action
   :update
 end
-
