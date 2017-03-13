@@ -25,12 +25,12 @@ describe Card::Set::Abstract::BadgeHierarchy do
 
   describe "#all_earned_badges" do
     it "returns all earned badges for simple hierarchy" do
-      expect(hierarchy.all_earned_badges(25, :create))
+      expect(hierarchy.all_earned_badges(:create, nil, 25))
         .to contain_exactly "Basic", "Pointer"
     end
 
     it "returns all earned badges for affinity hierarhcy" do
-      expect(hierarchy.all_earned_badges(20, :update, :designer))
+      expect(hierarchy.all_earned_badges(:update, :designer, 20))
         .to contain_exactly "Basic", "Pointer"
     end
   end

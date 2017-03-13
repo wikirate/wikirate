@@ -64,8 +64,9 @@ module BadgeHierarchy
     badge_set(action, affinity_type).earns_badge count
   end
 
-  def all_earned_badges count, action, affinity_type=nil
-    badge_set(action, affinity_type).all_earned_badges count
+  def all_earned_badges action, affinity_type=nil, count=nil, user_id=nil
+    badge_set(action, affinity_type)
+      .all_earned_badges count, user_id || Card::Auth.current_id
   end
 
   [:threshold, :level, :level_index].each do |method_name|

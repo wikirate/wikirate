@@ -26,12 +26,13 @@ describe Card::Set::Right::BadgesEarned do
   describe "#ordered_badge_cards" do
     subject { card.ordered_badge_cards.map(&:name) }
     it "has correct order" do
+      expect([subject.delete_at(4), subject.delete_at(4)])
+        .to contain_exactly "Evil Project+Researcher+project badge",
+                            "Death Star+Researcher+company badge"
       is_expected.to eq ["Research Fellow",
                          "Research Engine",
                          "Death Star+Research Engine+company badge",
                          "Researcher",
-                         "Evil Project+Researcher+project badge",
-                         "Death Star+Researcher+company badge",
                          "Answer Enhancer",
                          "Answer Advancer",
                          "Commentator"]
