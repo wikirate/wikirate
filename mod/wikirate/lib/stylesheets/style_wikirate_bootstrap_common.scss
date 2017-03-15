@@ -617,3 +617,19 @@ button:hover .text {
 button:hover .hover-text {
   display: inline;
 }
+
+ul {
+  &.horizontal, &.vertical {
+    clear: both;
+    display: block;
+    content: "";
+    list-style-type: none;
+    margin: 0;
+    padding-left: 20px;
+  }
+}
+
+ul.horizontal > li {
+  float: left;
+  margin-right: 5px;
+}

@@ -18,8 +18,9 @@ event :validate_value_type, :validate, on: :save do
       if !(option_card = Card["#{metric_card.name}+value options"]) ||
          !option_card.item_names.include?(value)
         url = "/#{option_card.cardname.url_key}?view=edit"
-        anchor = %(<a href='#{url}' target="_blank">add options</a>)
-        errors.add :value, "Please #{anchor} before adding metric value."
+        anchor = %(<a href='#{url}' target="_blank">add that option</a>)
+        errors.add :value, "#{value} is not a valid option. "\
+                           "Please #{anchor} before adding this metric value."
       end
     end
   end
@@ -35,6 +36,16 @@ event :validate_update_date, :validate,
   end
   self.name = new_name
   detach_subfield(:year)
+end
+
+event :validate_answer_name,
+      after: :validate_update_date, on: :save, changed: :name do
+  if Card.fetch_type_id(cardname.tag) != YearID
+    errors.add :name, "right part must be a year"
+  end
+  if cardname.length < 4
+    errors.add :name, "must have at least a metric, a company, and a year part"
+  end
 end
 
 def valid_value_name?

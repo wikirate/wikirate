@@ -1,5 +1,6 @@
 include_set Abstract::TwoColumnLayout
 include_set Abstract::KnownAnswers
+include_set Abstract::Thumbnail
 
 card_reader :wikirate_company
 card_reader :metric

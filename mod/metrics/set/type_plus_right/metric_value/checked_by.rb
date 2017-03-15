@@ -269,5 +269,3 @@ end
 def request_check_flag_update?
   !add_checked_flag? && !remove_checked_flag?
 end
-
-

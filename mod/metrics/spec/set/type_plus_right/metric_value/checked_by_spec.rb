@@ -1,11 +1,11 @@
 RSpec.describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
   let(:answer_card) { Card["joe_user+researched+death_star+1977"] }
-
   describe "check value" do
     before do
       Card::Env.params["set_flag"] = "checked"
       cb_card = answer_card.fetch trait: :checked_by, new: {}
       cb_card.save!
+      cb_card.clear_subcards
       cb_card.update_attributes! subcards: {}
       Card::Env.params.delete "set_flag"
     end
@@ -45,6 +45,7 @@ RSpec.describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
       cb_card = answer_card.fetch trait: :checked_by,
                                   new: { content: "[[Joe User]]" }
       cb_card.save!
+      cb_card.clear_subcards
       cb_card.update_attributes! subcards: {}
       cb_card
     end
