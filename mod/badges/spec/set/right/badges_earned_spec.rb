@@ -30,16 +30,17 @@ describe Card::Set::Right::BadgesEarned do
 
     subject { card.ordered_badge_cards.map(&:name) }
     it "has correct order" do
-      expect([subject.delete_at(4), subject.delete_at(4)])
+      expect([subject.delete_at(7), subject.delete_at(7)])
         .to contain_exactly "Evil Project+Researcher+project badge",
                             "Death Star+Researcher+company badge"
       is_expected.to eq ["Research Fellow",
+                         "Answer Enhancer",
                          "Research Engine",
                          "Death Star+Research Engine+company badge",
-                         "Researcher",
-                         "Answer Enhancer",
                          "Answer Advancer",
-                         "Commentator"]
+                         "Commentator",
+                         "Researcher"
+                        ]
     end
 
     it_behaves_like "badge count", 9, 5, 3, 1 do
@@ -62,16 +63,16 @@ describe Card::Set::Right::BadgesEarned do
 
     subject { card.item_names }
     it "adds badge in the right order order" do
-      expect([subject.delete_at(4), subject.delete_at(4)])
+      expect([subject.delete_at(7), subject.delete_at(7)])
         .to contain_exactly "Evil Project+Researcher+project badge",
                             "Death Star+Researcher+company badge"
       is_expected.to eq ["Research Fellow",
+                         "Answer Enhancer",
                          "Research Engine",
                          "Death Star+Research Engine+company badge",
-                         "Researcher",
-                         "Answer Enhancer",
                          "Answer Advancer",
-                         "Commentator"]
+                         "Commentator",
+                         "Researcher"]
     end
   end
 

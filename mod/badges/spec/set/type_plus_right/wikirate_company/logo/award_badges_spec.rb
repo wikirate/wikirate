@@ -9,9 +9,13 @@ describe Card::Set::TypePlusRight::WikirateCompany::Logo::AwardBadges do
     let(:sample_acting_card) { sample_company.field(:logo, new: {}) }
 
     def execute_awarded_action number
+      #binding.pry
+      company = nil
       Card::Auth.as_bot do
         company = Card.create! type_id: Card::WikirateCompanyID,
                                name: "Company #{number}"
+      end
+      Card::Auth.as_bot do
         Card.create! name: "#{company.name}+*logo", type_id: Card::BasicID
       end
     end

@@ -9,12 +9,6 @@ class BadgeHierarchy
       research_fellow: gold }
   end
 
-  add_affinity_badge_set :create,
-                         general: research_badges(1, 50, 100),
-                         designer: research_badges(10, 100, 250),
-                         company: research_badges(3, 50, 100),
-                         project: research_badges(5, 75, 150)
-
   add_badge_set :check,
                 checker: 1,
                 check_mate: 50,
@@ -32,4 +26,10 @@ class BadgeHierarchy
                 uncommon_commentator: 50,
                 high_commentations: 250,
                 &type_plus_right_edited_count(MetricValueID, DiscussionID)
+
+  add_affinity_badge_set :create,
+                         general: research_badges(1, 50, 100),
+                         designer: research_badges(10, 100, 250),
+                         company: research_badges(3, 50, 100),
+                         project: research_badges(5, 75, 150)
 end

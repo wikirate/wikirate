@@ -19,6 +19,16 @@ format :html do
   end
 
 
+  view :notify do
+    class_up "alert", "text-center"
+    alert :success, true, false do
+      [
+        "<h4>#{certificate(badge_level)} #{card.name}</h4>",
+        _render_description
+      ]
+    end
+  end
+
   def humanized_threshold
     if threshold == 1
       "your first #{valued_object}"
@@ -26,6 +36,10 @@ format :html do
       "#{threshold} #{valued_object.pluralize}"
     end
   end
+end
+
+def flash_message
+  format(:html)._render_notify
 end
 
 def threshold
@@ -63,9 +77,11 @@ end
 
 def <=> other
   valid_to_compare? other
-  action_order = compare_actions other
-  return action_order unless action_order == 0
-  compare_levels other
+  level_order = compare_levels other
+  return level_order unless level_order == 0
+  actions_order = compare_actions other
+  return actions_order unless actions_order == 0
+  affinity_type == :general ? 1 : -1
 end
 
 def compare_actions other
@@ -74,11 +90,12 @@ def compare_actions other
 end
 
 def compare_levels other
-  if badge_level == other.badge_level
-    affinity_type == :general ? 1 : -1
-  else
-    badge_level_index <=> other.badge_level_index
-  end
+  badge_level_index <=> other.badge_level_index
+  # if badge_level == other.badge_level
+  #   affinity_type == :general ? 1 : -1
+  # else
+  #   badge_level_index <=> other.badge_level_index
+  # end
 end
 
 def valid_to_compare? other
