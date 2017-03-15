@@ -6,6 +6,7 @@ PATH
       carrierwave (= 1.0.0)
       coderay (~> 1.0)
       coffee-script (~> 2.2)
+      colorize (= 0.8.1)
       diff-lcs (~> 1.2)
       haml (~> 4.0)
       htmlentities (~> 4.3)
@@ -16,7 +17,7 @@ PATH
       recaptcha (~> 0.4.0)
       sass (~> 3.2)
       smartname (= 0.5.1)
-      twitter
+      twitter (= 6.1.0)
       uglifier (~> 3.0)
       uuid (~> 2.3)
 
