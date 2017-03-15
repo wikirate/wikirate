@@ -18,7 +18,6 @@ format :html do
     wrap_with :strong, card.name
   end
 
-
   view :notify do
     class_up "alert", "text-center"
     alert :success, true, false do
@@ -78,9 +77,9 @@ end
 def <=> other
   valid_to_compare? other
   level_order = compare_levels other
-  return level_order unless level_order == 0
+  return level_order unless level_order.zero?
   actions_order = compare_actions other
-  return actions_order unless actions_order == 0
+  return actions_order unless actions_order.zero?
   affinity_type == :general ? 1 : -1
 end
 
@@ -107,4 +106,3 @@ def valid_to_compare? other
   end
   true
 end
-

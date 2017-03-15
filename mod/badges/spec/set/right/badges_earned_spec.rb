@@ -19,6 +19,16 @@ describe Card::Set::Right::BadgesEarned do
      "Research Engine"]
   end
 
+  let(:ordered_badges) do
+    ["Research Fellow",
+     "Answer Enhancer",
+     "Research Engine",
+     "Death Star+Research Engine+company badge",
+     "Answer Advancer",
+     "Commentator",
+     "Researcher"]
+  end
+
   describe "#ordered_badge_cards" do
     before do
       Card::Auth.as_bot do
@@ -33,14 +43,7 @@ describe Card::Set::Right::BadgesEarned do
       expect([subject.delete_at(7), subject.delete_at(7)])
         .to contain_exactly "Evil Project+Researcher+project badge",
                             "Death Star+Researcher+company badge"
-      is_expected.to eq ["Research Fellow",
-                         "Answer Enhancer",
-                         "Research Engine",
-                         "Death Star+Research Engine+company badge",
-                         "Answer Advancer",
-                         "Commentator",
-                         "Researcher"
-                        ]
+      is_expected.to eq ordered_badges
     end
 
     it_behaves_like "badge count", 9, 5, 3, 1 do
@@ -66,19 +69,13 @@ describe Card::Set::Right::BadgesEarned do
       expect([subject.delete_at(7), subject.delete_at(7)])
         .to contain_exactly "Evil Project+Researcher+project badge",
                             "Death Star+Researcher+company badge"
-      is_expected.to eq ["Research Fellow",
-                         "Answer Enhancer",
-                         "Research Engine",
-                         "Death Star+Research Engine+company badge",
-                         "Answer Advancer",
-                         "Commentator",
-                         "Researcher"]
+      is_expected.to eq ordered_badges
     end
   end
 
   describe "html format" do
     describe "view :core" do
-      #it
+      # it
     end
   end
 end

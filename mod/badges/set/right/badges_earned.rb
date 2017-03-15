@@ -8,18 +8,17 @@ include_set Abstract::Paging
 attr_accessor :auto_content
 
 def ok_to_update
-  auto_content or super
+  auto_content || super
 end
 
 def ok_to_create
-  auto_content or super
+  auto_content || super
 end
 
 def cardtype_code
   left.right.codename
 end
 
-c
 def add_badge_card badge_card
   self.auto_content = true
   return if include_item? badge_card
