@@ -199,28 +199,27 @@ table.wikirate-table, .table.wikirate-table {
 
 // Research Page table tweaks //
 
-.TYPE-research_group table thead {
+.TYPE-research_group table {
+  thead {
     border-bottom: 4px solid $border-color;
     border-left: 4px solid #646464;
-}
-
-.TYPE-research_group table thead .thumbnail {
-    border: 0;
-    font-size: 18px;
-    margin: 0;
-}
-
-.TYPE-research_group table tbody tr> td{
+    .thumbnail {
+      border: 0;
+      font-size: 18px;
+      margin: 0;
+    }
+  }
+  tbody tr > td {
     font-weight: bold;
     font-size: 12px;
-}
-.TYPE-research_group table tbody tr> td:first-child{
-    text-align: right;
-    font-weight: normal;
-}
-
-.TYPE-research_group table thead tr>th{
-    vertical-align:middle;
+    &:first-child {
+      text-align: right;
+      font-weight: normal;
+    }
+  }
+  thead tr > th {
+    vertical-align: middle;
+  }
 }
 
 .import_table td {

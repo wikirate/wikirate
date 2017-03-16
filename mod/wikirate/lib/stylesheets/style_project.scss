@@ -18,7 +18,11 @@
 }
 
 table.company td.metric {
-  width: 50%
+  max-width: 250px;
+}
+
+table.company td.progress-column {
+  width: 30%;
 }
 
 table.metric td.company {
@@ -27,6 +31,19 @@ table.metric td.company {
 
 .project-details-info .lead {
     font-size: 1em;
-    padding-right: 3px;
     line-height: 1.3em;
+    padding-right: 3px;
+}
+
+.progress-bar-table {
+  .metric tr,
+  .company tr {
+      span.progress-value {
+        display: none;
+      }
+
+      &:hover span.progress-value{
+        display: block;
+      }
+  }
 }

@@ -40,6 +40,15 @@ def worth_counting
 end
 
 format :html do
+  view :open_content do |args|
+    bs_layout container: false, fluid: true, class: @container_class do
+      row 5, 7, class: "panel-margin-fix" do
+        column _optional_render_content_left_col, args[:left_class]
+        column _optional_render_content_right_col, args[:right_class]
+      end
+    end
+  end
+
   def default_content_formgroup_args _args
     voo.edit_structure =
       [
@@ -62,18 +71,25 @@ format :html do
   end
 
   view :data do
-    wrap_with :div, class: "progress-column border-top" do
+    wrap_with :div, class: "progress-column" do
       left_col_content
     end
   end
 
   def left_col_content
-    wrap_with :div, class: "margin-15" do
+    wrap_with :div do
       [
-        field_nest(:organizer, view: :titled, items: { view: :thumbnail }),
-        field_nest(:wikirate_topic, view: :titled, items: { view: :link }),
-        field_nest(:description, view: :titled),
-        field_nest(:conversation, view: :project_conversation)
+        field_nest(:organizer,
+                   view: :titled,
+                   title: "Organizer",
+                   items: { view: :thumbnail_plain }),
+        field_nest(:wikirate_topic,
+                   view: :titled,
+                   title: "Topics",
+                   items: { view: :link }),
+        field_nest(:description, view: :titled, title: "Description"),
+        field_nest(:conversation,
+                   view: :project_conversation, title: "Conversation")
       ]
     end
   end

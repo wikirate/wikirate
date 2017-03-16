@@ -4,7 +4,7 @@ format :html do
     wrap_with :div do
       [
         thumbnail_image_wrap,
-        _optional_render_thumbnail_title
+        thumbnail_text_wrap
       ]
     end
   end

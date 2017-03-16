@@ -289,12 +289,8 @@ body {
     clear: both;
     display: block;
     padding: 0;
-    // text-align: center;
     font-size: 0.9em;
-    // background: #fff;
-    // border: 1px solid #e5e5e5;
     a.external-link {
-      //padding-right: 0 !important;
       background: inherit !important;
       &:before{
         display: none;
@@ -336,7 +332,7 @@ body {
 }
 
 input.navbox {
-  font-family: FontAwesome;
+  font-family: FontAwesome, sans-serif;
 }
 
 //FOR ALL 2 column layout

@@ -44,7 +44,7 @@ format :html do
 
   def header_right
     output [
-      wrap_with(:h2, _render_title, class: "company-color"),
+      wrap_with(:h3, _render_title, class: "company-color"),
       _render_header_tabs
     ]
   end

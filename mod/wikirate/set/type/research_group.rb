@@ -33,8 +33,8 @@ end
 
 format :html do
   view :open_content do |args|
-    bs_layout container: true, fluid: true, class: @container_class do
-      row 5, 7 do
+    bs_layout container: false, fluid: true, class: @container_class do
+      row 5, 7, class: "panel-margin-fix" do
         column _optional_render_about_column, args[:left_class]
         column _optional_render_contributions_column, args[:right_class]
       end
@@ -44,12 +44,16 @@ format :html do
   view :about_column do
     output [
       _render_rich_header,
-      field_nest(:description, view: :titled),
+      field_nest(:description, view: :titled, title: "Description"),
       member_list,
-      field_nest(:discussion, view: :titled, show: :comment_box)
+      field_nest(:discussion, view: :titled, show: :comment_box, title: "Discussion")
     ]
   end
-
+  # wikirate_table :metric,
+  #                all_metric_project_cards,
+  #                [:metric_thumbnail, :research_progress_bar],
+  #                header: ["Metric", "Companies Researched"],
+  #                td: { classes: ["company"] }
   def member_list
     with_header "Members" do
       [:organizer, :researcher].map do |fieldname|
@@ -57,7 +61,7 @@ format :html do
                               title: fieldname.cardname.s,
                               variant: "plural capitalized",
                               type: "Pointer",
-                              items: { view: :thumbnail }
+                              items: { view: :thumbnail_plain }
       end
     end
   end
