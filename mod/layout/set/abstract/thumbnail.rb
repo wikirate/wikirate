@@ -1,20 +1,20 @@
 format :html do
-  view :thumbnail_plain do
+  view :thumbnail_plain do |args|
     voo.hide :thumbnail_link
     wrap_with :div do
       [
         thumbnail_image_wrap,
-        thumbnail_text_wrap
+        thumbnail_text_wrap(args)
       ]
     end
   end
 
-  view :thumbnail do
+  view :thumbnail do |args|
     voo.show :thumbnail_link
     wrap_with :div, class: "thumbnail" do
       [
         thumbnail_image_wrap,
-        thumbnail_text_wrap
+        thumbnail_text_wrap(args)
       ]
     end
   end
@@ -28,11 +28,11 @@ format :html do
     end
   end
 
-  def thumbnail_text_wrap
+  def thumbnail_text_wrap args
     wrap_with :div, class: "thumbnail-text" do
       [
         thumbnail_title,
-        _optional_render_thumbnail_subtitle
+        _optional_render_thumbnail_subtitle(args)
       ]
     end
   end

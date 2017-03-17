@@ -77,7 +77,7 @@ end
 
 # TODO: adapt to Henry's value type API
 def categorical?
-  value_type == "Category"
+  value_type == "Category" || value_type == "Multi-Category"
 end
 
 def relationship?
@@ -188,10 +188,10 @@ format :html do
   view :listing do
     wrap_with :div, class: "contribution-item value-item no-hover" do
       [
-        wrap_with(:div, class: "header no-hover") do
+        wrap_with(:div, class: "header") do
           _render_thumbnail
         end,
-        wrap_with(:div, class: "data no-hover") do
+        wrap_with(:div, class: "text-center margin-15") do
           listing_data
         end
       ]
@@ -201,8 +201,8 @@ format :html do
   def listing_data
     wrap_with :div, class: "contribution company-count" do
       [
-        company_count,
-        wrap_with(:div, "Companies", class: "name")
+        wrap_with(:div, company_count, class: "h5"),
+        wrap_with(:div, "Companies", class: "light-grey-color")
       ]
     end
   end
@@ -277,7 +277,8 @@ format :html do
       case value_type.item_names[0]
       when "Number"   then :numeric_details
       when "Money"    then :monetary_details
-      when "Category" then :category_details
+      when "Category", "Multi-Category" then
+        :category_details
       end
     return "" if details_field.nil?
     detail_card = Card.fetch card, details_field, new: {}
