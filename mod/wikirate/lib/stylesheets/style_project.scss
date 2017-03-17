@@ -30,20 +30,20 @@ table.metric td.company {
 }
 
 .project-details-info .lead {
-    font-size: 1em;
-    line-height: 1.3em;
-    padding-right: 3px;
+  font-size: 1em;
+  line-height: 1.3em;
+  padding-right: 3px;
 }
 
 .progress-bar-table {
   .metric tr,
   .company tr {
-      span.progress-value {
-        display: none;
-      }
+    span.progress-value {
+      display: none;
+    }
 
-      &:hover span.progress-value{
-        display: block;
-      }
+    &:hover span.progress-value{
+      display: block;
+    }
   }
 }

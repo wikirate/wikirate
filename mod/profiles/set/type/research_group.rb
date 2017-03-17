@@ -46,14 +46,11 @@ format :html do
       _render_rich_header,
       field_nest(:description, view: :titled, title: "Description"),
       member_list,
-      field_nest(:discussion, view: :titled, show: :comment_box, title: "Discussion")
+      field_nest(:discussion, view: :titled, show: :comment_box,
+                              title: "Discussion")
     ]
   end
-  # wikirate_table :metric,
-  #                all_metric_project_cards,
-  #                [:metric_thumbnail, :research_progress_bar],
-  #                header: ["Metric", "Companies Researched"],
-  #                td: { classes: ["company"] }
+
   def member_list
     with_header "Members" do
       [:organizer, :researcher].map do |fieldname|

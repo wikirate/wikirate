@@ -3,6 +3,7 @@ $bgHighlight: #03998D;
 $colDefault: #8E8E8E;
 $colHighlight: #fff;
 $dropDown: true;
+$navInverseBorder: #038076;
 .navbar-default {
   background: $bgDefault;
   // border-color: $bgHighlight;
@@ -104,7 +105,8 @@ $dropDown: true;
 }
 
 .navbar-inverse {
-  .navbar-collapse,.navbar-form{
-    border-color: #038076;
+  .navbar-collapse,
+  .navbar-form{
+    border-color: $navInverseBorder;
   }
 }
