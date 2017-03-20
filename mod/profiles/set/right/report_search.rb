@@ -137,7 +137,7 @@ format :html do
     end
   end
 
-  view :wikirate_topic_list do
+  view :wikirate_topic_sublist do
     card.variant = voo.structure if voo.structure
     wrap do
       with_paging do
@@ -149,7 +149,7 @@ format :html do
     end
   end
 
-  view :metric_value_list do
+  view :metric_value_sublist do
     card.variant = voo.structure if voo.structure
     wrap do
       with_paging do
