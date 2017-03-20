@@ -107,7 +107,6 @@ describe Card::Set::Type::SourceImportFile do
         it "won't update existing source title" do
           # to trigger a "clean" update
           title = { "1" => "SiDan" }
-          binding.pry
           trigger_import samsung_data, title
           @source_card.success.params.clear
           verify_subcard_content @source_card, :wikirate_title, "hTc"
