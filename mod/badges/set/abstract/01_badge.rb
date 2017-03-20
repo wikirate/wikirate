@@ -2,7 +2,11 @@ include_set Abstract::Certificate
 include Comparable
 
 format :html do
-  delegate :badge_level, :threshold, to: :card
+  delegate :badge_level, :threshold, :awarded_to, :awarded_count, to: :card
+
+  view :core do
+    "#{_render_description}<h3>Awarded to #{awarded_count} users</h3>#{list_group awarded_to}"
+  end
 
   view :description do
     "Awarded for #{valued_action} #{humanized_threshold}."
@@ -14,6 +18,10 @@ format :html do
     end
   end
 
+  view :name_with_certificate do
+    "#{certificate(badge_level)} #{card.name}"
+  end
+
   view :badge, tags: :unknown_ok do
     wrap_with :strong, card.name
   end
@@ -22,10 +30,14 @@ format :html do
     class_up "alert", "text-center"
     alert :success, true, false do
       [
-        "<h4>#{certificate(badge_level)} #{card.name}</h4>",
+        "<h4>#{_render :name_with_certificate}</h4>",
         _render_description
       ]
     end
+  end
+
+  view :awarded do
+    "#{humanized_number awarded_count} awarded"
   end
 
   def humanized_threshold
@@ -35,6 +47,15 @@ format :html do
       "#{threshold} #{valued_object.pluralize}"
     end
   end
+end
+
+def awarded_to
+  Card.search right_plus: [{ id: BadgesEarnedID }, { refer_to: id }],
+              return: "_left", sort: :name
+end
+
+def awarded_count
+  Card.search right_id: BadgesEarnedID, refer_to: id, return: :count
 end
 
 def flash_message
