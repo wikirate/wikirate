@@ -11,20 +11,20 @@ class BadgeHierarchy
 
   add_badge_set :check,
                 checker: 1,
-                check_mate: 50,
-                checksquisite: 250,
+                check_pro: 50,
+                check_mate: 250,
                 &type_plus_right_count(MetricValueID, CheckedByID, :refer_to)
 
   add_badge_set :update,
-                answer_advancer: 1,
+                answer_chancer: 1,
                 answer_enhancer: 25,
-                answer_romancer: 100,
+                answer_advancer: 100,
                 &type_plus_right_count(MetricValueID, ValueID, :updated_by)
 
   add_badge_set :discuss,
                 commentator: 1,
-                uncommon_commentator: 50,
-                high_commentations: 250,
+                commentatry_team: 50,
+                expert_commentary: 250,
                 &type_plus_right_edited_count(MetricValueID, DiscussionID)
 
   add_affinity_badge_set :create,

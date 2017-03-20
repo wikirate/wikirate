@@ -8,6 +8,6 @@ class BadgeHierarchy
                 &create_type_count(ProjectID)
 
   add_badge_set :discuss,
-                projected_voice: [1, :silver],
+                project_q_a: [1, :silver],
                 &type_plus_right_edited_count(ProjectID, DiscussionID)
 end
