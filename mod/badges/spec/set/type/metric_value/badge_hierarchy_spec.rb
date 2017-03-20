@@ -1,4 +1,4 @@
-describe Card::Set::Type::MetricValue::BadgeHierarchy do
+describe Card::Set::Type::MetricValue::BadgeSquad do
   describe "#earns_badge" do
     it "returns badge name if threshold is reached" do
       expect(described_class.earns_badge(:create, :general, 1))

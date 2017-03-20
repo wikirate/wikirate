@@ -20,7 +20,7 @@ RSpec.shared_context "award badges context" do |threshold|
   # reduce thresholds to 1,2,3
   def adjust_thresholds
     th_class =
-      Card::Set::Type.const_get "#{badge_type.to_s.camelcase}::BadgeHierarchy"
+      Card::Set::Type.const_get "#{badge_type.to_s.camelcase}::BadgeSquad"
     th_class.change_thresholds(badge_action, nil, 1, 2, 3)
   end
 end

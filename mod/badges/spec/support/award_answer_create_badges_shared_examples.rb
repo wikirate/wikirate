@@ -43,7 +43,7 @@ shared_examples "create badges" do |threshold, badge_name|
   # reduce thresholds to 1,2,3,...
   def adjust_thresholds
     th_class =
-      Card::Set::Type.const_get "#{badge_type.to_s.camelcase}::BadgeHierarchy"
+      Card::Set::Type.const_get "#{badge_type.to_s.camelcase}::BadgeSquad"
     [:general, :designer, :company, :project].each do |affinity|
       th_class.change_thresholds(:create, affinity, 1, 2, 3)
     end

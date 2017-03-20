@@ -92,7 +92,7 @@ end
 
 def badge_class
   @badge_class ||=
-    Card::Set::Type.const_get "#{badge_type.to_s.camelcase}::BadgeHierarchy"
+    Card::Set::Type.const_get "#{badge_type.to_s.camelcase}::BadgeSquad"
 end
 
 def <=> other

@@ -1,14 +1,14 @@
-describe Card::Set::Abstract::BadgeHierarchy do
+describe Card::Set::Abstract::BadgeSquad do
   let(:hierarchy) do
     class TestHierarchy
-      extend Card::Set::Abstract::BadgeHierarchy
-      add_badge_set :create,
-                    basic: 10, pointer: 20, phrase: 30,
-                    &create_type_count(1)
+      extend Card::Set::Abstract::BadgeSquad
+      add_badge_line :create,
+                     basic: 10, pointer: 20, phrase: 30,
+                     &create_type_count(1)
 
-      add_affinity_badge_set :update,
-                             designer: { basic: 10, pointer: 20 },
-                             &create_type_count(1)
+      add_affinity_badge_line :update,
+                              designer: { basic: 10, pointer: 20 },
+                              &create_type_count(1)
     end
     TestHierarchy
   end

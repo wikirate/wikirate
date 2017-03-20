@@ -1,0 +1,11 @@
+#! no set module
+
+class BadgeSquad
+  extend Abstract::BadgeSquad
+
+  add_badge_line :create,
+                 inside_source: 1,
+                 a_cite_to_behold: 20,
+                 a_source_of_inspiration: 50,
+                 &create_type_count(SourceID)
+end

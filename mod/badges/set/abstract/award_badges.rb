@@ -3,7 +3,7 @@ def self.included host_class
   host_class.class_eval do
     define_method :badge_hierarchy do
       @badge_hierarchy ||=
-        Card::Set::Abstract::BadgeHierarchy.for_type host_class.hierarchy_type
+        Card::Set::Abstract::BadgeSquad.for_type host_class.hierarchy_type
     end
   end
 end
@@ -34,4 +34,10 @@ end
 
 def action_count action, user=nil
   send "#{action}_count", user
+end
+
+format :html do
+  view :overview do
+
+  end
 end

@@ -29,9 +29,7 @@ class SharedData
     def all_badges_for user
       [:metric, :project, :metric_value,
        :source, :wikirate_company].each do |type|
-        content =
-          Card::Set::Type.const_get("#{type.to_s.camelcase}::BadgeHierarchy")
-            .badge_names
+        content = Card::Set::Abstract::BadgeSquad.for_type(type).badge_names
         content += SAMPLE_AFFINITY_BADGES if type == :metric_value
         create! name: [user, type, :badges_earned],
                 type: "Pointer",
@@ -44,7 +42,7 @@ end
 # [:metric, :project, :metric_value,
 #  :source, :wikirate_company].each do |type|
 #   content =
-#     Card::Set::Type.const_get("#{type.to_s.camelcase}::BadgeHierarchy")
+#     Card::Set::Type.const_get("#{type.to_s.camelcase}::BadgeSquad")
 #       .badge_names
 #   if type == :metric_value
 #     content += [

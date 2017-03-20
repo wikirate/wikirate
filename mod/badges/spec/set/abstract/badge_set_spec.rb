@@ -1,4 +1,4 @@
-describe Card::Set::Abstract::BadgeSet do
+describe Card::Set::Abstract::BadgeLine do
   let(:set) do
     described_class.new researcher: 1,
                         research_engine: 2,
