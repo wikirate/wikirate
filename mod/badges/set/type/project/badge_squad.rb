@@ -1,5 +1,6 @@
 #! no set module
 
+# all badges related to projects
 class BadgeSquad
   extend Abstract::BadgeSquad
 
