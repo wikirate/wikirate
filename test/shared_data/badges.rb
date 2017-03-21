@@ -31,7 +31,6 @@ class SharedData
        :source, :wikirate_company].each do |type|
         content = Card::Set::Abstract::BadgeSquad.for_type(type).badge_names
         content += SAMPLE_AFFINITY_BADGES if type == :metric_value
-        binding.pry
         create! name: [user, type, :badges_earned],
                 type: "Pointer",
                 content: content.to_pointer_content
