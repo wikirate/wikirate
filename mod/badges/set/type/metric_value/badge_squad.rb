@@ -5,8 +5,8 @@ class BadgeSquad
 
   def self.research_badges bronze, silver, gold
     { researcher: bronze,
-      research_engine: silver,
-      research_fellow: gold }
+      research_pro: silver,
+      research_master: gold }
   end
 
   add_badge_line :check,
@@ -23,7 +23,7 @@ class BadgeSquad
 
   add_badge_line :discuss,
                  commentator: 1,
-                 commentatry_team: 50,
+                 commentary_team: 50,
                  expert_commentary: 250,
                  &type_plus_right_edited_count(MetricValueID, DiscussionID)
 

@@ -10,21 +10,21 @@ describe Card::Set::Right::BadgesEarned do
   let(:badges) do
     ["Evil Project+Researcher+project badge",
      "Answer Enhancer",
-     "Research Fellow",
+     "Research Master",
      "Commentator",
-     "Death Star+Research Engine+company badge",
+     "Death Star+Research Pro+company badge",
      "Researcher",
      "Death Star+Researcher+company badge",
      "Answer Advancer",
-     "Research Engine"]
+     "Research Pro"]
   end
 
   let(:ordered_badges) do
-    ["Research Fellow",
+    ["Answer Advancer",
+     "Research Master",
      "Answer Enhancer",
-     "Research Engine",
-     "Death Star+Research Engine+company badge",
-     "Answer Advancer",
+     "Research Pro",
+     "Death Star+Research Pro+company badge",
      "Commentator",
      "Researcher"]
   end
@@ -46,7 +46,7 @@ describe Card::Set::Right::BadgesEarned do
       is_expected.to eq ordered_badges
     end
 
-    it_behaves_like "badge count", 9, 5, 3, 1 do
+    it_behaves_like "badge count", 9, 4, 3, 2 do
       def badge_count level=nil
         card.badge_count level
       end

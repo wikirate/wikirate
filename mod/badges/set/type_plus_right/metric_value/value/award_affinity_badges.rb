@@ -11,7 +11,6 @@ event :award_answer_create_badges, :finalize,
   end
 end
 
-
 def award_create_badge_if_earned affinity, project_card=nil
   # + 1 because the current action is not included
   # we do this search before the answer table update

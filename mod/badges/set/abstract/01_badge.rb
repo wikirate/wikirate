@@ -22,6 +22,10 @@ format :html do
     "#{certificate(badge_level)} #{card.name}"
   end
 
+  view :link_with_certificate do
+    "#{certificate(badge_level)} #{_render_link}"
+  end
+
   view :badge, tags: :unknown_ok do
     wrap_with :strong, card.name
   end

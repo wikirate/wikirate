@@ -22,11 +22,11 @@ describe Card::Set::TypePlusRight::MetricValue::Value::AwardBadges do
     end
 
     context "reached silver create threshold" do
-      it_behaves_like "create badges", 2, "Research Engine"
+      it_behaves_like "create badges", 2, "Research Pro"
     end
 
     context "reached gold create threshold" do
-      it_behaves_like "create badges", 3, "Research Fellow"
+      it_behaves_like "create badges", 3, "Research Master"
     end
   end
 
@@ -38,7 +38,7 @@ describe Card::Set::TypePlusRight::MetricValue::Value::AwardBadges do
     end
 
     context "reached bronze update threshold" do
-      it_behaves_like "answer badges", 1, "Answer Advancer"
+      it_behaves_like "answer badges", 1, "Answer Chancer"
     end
 
     context "reached silver create threshold" do
@@ -46,7 +46,7 @@ describe Card::Set::TypePlusRight::MetricValue::Value::AwardBadges do
     end
 
     context "reached gold create threshold" do
-      it_behaves_like "answer badges", 3, "Answer Romancer"
+      it_behaves_like "answer badges", 3, "Answer Advancer"
     end
   end
 end

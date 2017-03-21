@@ -1,6 +1,6 @@
 # abstract set used for affinity badges like
 # [Designer]+Researcher+designer_badge or
-# [Company]+Research Engine+company_badge
+# [Company]+Research Pro+company_badge
 
 include_set Abstract::AnswerCreateBadge
 

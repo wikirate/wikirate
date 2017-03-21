@@ -27,7 +27,7 @@ describe Card::Set::TypePlusRight::Metric::VoteCount::AwardBadges do
       it_behaves_like "award badges", 2, "Metric Critic"
     end
     context "reached gold threshold" do
-      it_behaves_like "award badges", 3, "Metric Voting Machine"
+      it_behaves_like "award badges", 3, "Metric Connoisseur"
     end
   end
 end

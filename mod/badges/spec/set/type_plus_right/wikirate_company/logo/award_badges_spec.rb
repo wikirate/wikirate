@@ -20,7 +20,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::Logo::AwardBadges do
     end
 
     context "reached bronze threshold" do
-      it_behaves_like "award badges", 1, "Logo Brick"
+      it_behaves_like "award badges", 1, "Logo Adder"
     end
 
     context "reached silver threshold" do
