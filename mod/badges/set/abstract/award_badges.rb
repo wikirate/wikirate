@@ -35,9 +35,3 @@ end
 def action_count action, user=nil
   send "#{action}_count", user
 end
-
-format :html do
-  view :overview do
-
-  end
-end

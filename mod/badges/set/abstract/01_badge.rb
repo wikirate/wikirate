@@ -6,8 +6,8 @@ format :html do
 
   view :core do
     <<-HTML
-      <h3>#{certificate(badge_level)} #{badge_level} badge</h3> 
-      #{_render_description} 
+      <h3>#{certificate(badge_level)} #{badge_level} badge</h3>
+      #{_render_description}
       <h4>Awarded to #{awarded_count} users</h4>
       #{awarded_to_list}
     HTML
@@ -85,7 +85,8 @@ def badge_level
 end
 
 def badge_level_index
-  @level_index ||= badge_class.level_index badge_action, affinity_type, badge_key
+  @level_index ||=
+    badge_class.level_index badge_action, affinity_type, badge_key
 end
 
 def affinity_type

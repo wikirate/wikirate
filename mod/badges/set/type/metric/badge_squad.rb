@@ -1,5 +1,6 @@
 #! no set module
 
+# all badges related to metrics
 class BadgeSquad
   extend Abstract::BadgeSquad
 
@@ -8,7 +9,6 @@ class BadgeSquad
                  metric_tonnes: 4,
                  research_agenda_setter: 16,
                  &create_type_count(MetricID)
-
 
   add_badge_line :vote,
                  metric_voter: 1,
