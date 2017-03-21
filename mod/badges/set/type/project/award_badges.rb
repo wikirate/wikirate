@@ -1,4 +1,4 @@
-include_set Abstract::AwardBadges, hierarchy_type: :project
+include_set Abstract::AwardBadges, squad_type: :project
 
 event :award_project_create_badges, :finalize,
       on: :create do

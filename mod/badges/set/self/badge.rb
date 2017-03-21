@@ -2,7 +2,7 @@ include_set Abstract::Table
 
 format :html do
   view :core do
-    field_nest(:description) + badge_tables.html_safe
+    field_nest(:description).sub("your first", "1") + badge_tables.html_safe
   end
 
   def badge_tables
@@ -16,7 +16,10 @@ format :html do
 
   def squad_overview type
     wikirate_table :plain, badge_cards(type),
-                   [:link_with_certificate, :description, :awarded]
+                   [:link_with_certificate, :description, :awarded],
+                   td: {
+                     classes: ["badge-name", "badge-description", "badge-count"]
+                   }
   end
 
   def badge_cards squad_type

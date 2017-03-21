@@ -61,7 +61,7 @@ end
 
 # @return badge name if count equals its threshold
 def earns_badge action, affinity_type=nil, count=nil
-  badge_hierarchy.earns_badge action, affinity_type, count
+  badge_squad.earns_badge action, affinity_type, count
 end
 
 def fetch_badge_card badge_name, affinity=nil, project_card=nil

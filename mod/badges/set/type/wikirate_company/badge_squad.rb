@@ -14,5 +14,5 @@ class BadgeSquad
                  logo_adder: 1,
                  how_lo_can_you_go: 10,
                  logo_and_behold: 100,
-                 &type_plus_right_edited_count(WikirateCompanyID, LogoID)
+                 &type_plus_right_edited_count(WikirateCompanyID, ImageID)
 end

@@ -1,4 +1,4 @@
-include_set Abstract::AwardBadges, hierarchy_type: :wikirate_company
+include_set Abstract::AwardBadges, squad_type: :wikirate_company
 
 event :award_company_logo_badges, :finalize,
       on: :save do
