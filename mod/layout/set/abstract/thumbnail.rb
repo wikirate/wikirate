@@ -19,6 +19,16 @@ format :html do
     end
   end
 
+  view :list_thumbnail do |args|
+    voo.show :thumbnail_link
+    wrap_with :div, class: "wikirate-thumbnail" do
+      [
+        thumbnail_image_wrap,
+        thumbnail_text_wrap(args)
+      ]
+    end
+  end
+
   def thumbnail_image_wrap
     wrap_with :div, class: "pull-left image-box icon" do
       [

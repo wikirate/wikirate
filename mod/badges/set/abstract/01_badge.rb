@@ -5,7 +5,12 @@ format :html do
   delegate :badge_level, :threshold, :awarded_to, :awarded_count, to: :card
 
   view :core do
-    "#{_render_description}<h3>Awarded to #{awarded_count} users</h3>#{list_group awarded_to}"
+    <<-HTML
+      <h3>#{certificate(badge_level)} #{badge_level} badge</h3> 
+      #{_render_description} 
+      <h4>Awarded to #{awarded_count} users</h4>
+      #{awarded_to_list}
+    HTML
   end
 
   view :description do
@@ -50,6 +55,11 @@ format :html do
     else
       "#{threshold} #{valued_object.pluralize}"
     end
+  end
+
+  def awarded_to_list
+    user_list = awarded_to.map { |ca| nest(ca, view: :list_thumbnail) }
+    list_group user_list
   end
 end
 
