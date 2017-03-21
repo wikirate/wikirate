@@ -121,6 +121,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     colorize (0.8.1)
+    company-mapping (0.2.3)
     concurrent-ruby (1.0.5)
     cucumber (2.4.0)
       builder (>= 2.1.2)
@@ -426,6 +427,7 @@ DEPENDENCIES
   capistrano-rvm
   capybara (= 2.11.0)
   card!
+  company-mapping
   cucumber-rails
   curb
   daemons
@@ -469,4 +471,4 @@ DEPENDENCIES
   wbench
 
 BUNDLED WITH
-   1.12.5
+   1.14.6
