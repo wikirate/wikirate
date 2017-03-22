@@ -1,5 +1,7 @@
 COMPANY_MAPPER_THRESHOLD = 0.5
 
+STATUS_ORDER = { none: 1, partial: 2, alias: 3, exact: 4 }
+
 # the is_data_import flag distinguishes between an update of the
 # import file and importing the file
 event :import_csv, :prepare_to_store, on: :update, when: :data_import? do
@@ -360,8 +362,9 @@ format :html do
   view :import_table, cache: :never do |args|
     data = card.csv_rows
     reject_header_row data
+    data = prepare_and_sort_rows data, args
     data = data.map.with_index do |elem, i|
-      import_row(elem, args[:table_fields], i + 1)
+      import_table_row(elem, args[:table_fields], i + 1)
     end
 
     table data, class: "import_table table-bordered table-hover",
@@ -472,6 +475,15 @@ format :html do
     end
   end
 
+
+  def prepare_and_sort_rows rows, args
+    rows.map.with_index do |row, index|
+      prepare_import_row_data row, index + 1
+    end.sort do |a, b|
+      compare_status a, b
+    end
+  end
+
   def prepare_import_row_data row, index
     data = row_to_hash row
     data[:row] = index
@@ -483,11 +495,17 @@ format :html do
     data
   end
 
-  def import_row row, table_fields, index
-    data = prepare_import_row_data row, index
-    content = table_fields.map { |key| data[key].to_s }
+  def compare_status a, b
+    a = STATUS_ORDER[a[:status].to_sym] || 0
+    b = STATUS_ORDER[b[:status].to_sym] || 0
+    a <=> b
+  end
+
+  def import_table_row row, table_fields, index
+    row[:row] = index
+    content = table_fields.map { |key| row[key].to_s }
     { content: content,
-      class: row_context(data[:status]) }
+      class: row_context(row[:status]) }
   end
 
   def row_context status

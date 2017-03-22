@@ -322,7 +322,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
                  status: "exact",
                  company: "Apple Inc."
         with_row true, "warning",
-                 file_company: "Sony C",
+                 file_company: "Sony",
                  value: "33",
                  row: 4,
                  wikirate_company: "Sony Corporation",
