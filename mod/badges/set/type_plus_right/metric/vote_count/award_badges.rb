@@ -1,4 +1,4 @@
-include_set Abstract::AwardBadges, hierarchy_type: :metric
+include_set Abstract::AwardBadges, squad_type: :metric
 
 event :award_metric_vote_badges, :finalize,
       on: :save, when: -> (_c) { Card::Auth.signed_in? } do

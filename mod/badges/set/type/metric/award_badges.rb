@@ -1,4 +1,4 @@
-include_set Abstract::AwardBadges, hierarchy_type: :metric
+include_set Abstract::AwardBadges, squad_type: :metric
 
 event :award_metric_create_badges, :finalize,
       on: :create do

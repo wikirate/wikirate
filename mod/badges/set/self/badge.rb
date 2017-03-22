@@ -16,7 +16,10 @@ format :html do
 
   def squad_overview type
     wikirate_table :plain, badge_cards(type),
-                   [:link_with_certificate, :description, :awarded]
+                   [:link_with_certificate, :description, :awarded],
+                   td: {
+                     classes: ["badge-name", "badge-description", "badge-count"]
+                   }
   end
 
   def badge_cards squad_type

@@ -1,9 +1,9 @@
 # include with option :type_class
 def self.included host_class
   host_class.class_eval do
-    define_method :badge_hierarchy do
-      @badge_hierarchy ||=
-        Card::Set::Abstract::BadgeSquad.for_type host_class.hierarchy_type
+    define_method :badge_squad do
+      @badge_squad ||=
+        Card::Set::Abstract::BadgeSquad.for_type host_class.squad_type
     end
   end
 end
@@ -15,7 +15,7 @@ end
 
 # @return badge name if count equals its threshold
 def earns_badge action
-  badge_hierarchy.earns_badge action
+  badge_squad.earns_badge action
 end
 
 def award_badge badge_card
