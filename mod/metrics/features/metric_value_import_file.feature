@@ -20,7 +20,7 @@ Feature: import metric values from a csv file
     And I should see a row with "Joe User+researched|Hong Kong|2008|11|http://srivigneshwar.com/home/?q"
 
   Scenario: Import a simple metric value
-    When I check checkbox in row 1
+    When I check checkbox in row 5
     And I press "Import"
     And I wait for ajax response
     And I go to card "Jedi+Sith Lord in Charge+Death Star+2015"
@@ -30,8 +30,8 @@ Feature: import metric values from a csv file
     Then I should see "just kidding"
 
   Scenario: Import simple metric values with same source
-    When  I check checkbox in row 1
-    And I check checkbox in row 2
+    When  I check checkbox in row 8
+    And I check checkbox in row 5
     And I press "Import"
     And I wait for ajax response
     And I go to card "Jedi+Sith Lord in Charge+Death Star+2015"
@@ -64,14 +64,14 @@ Feature: import metric values from a csv file
     And I scroll -10000 pixels
     And I follow "Import ..."
     And I uncheck all checkboxes
-    And I check checkbox in row 5
+    And I check checkbox in row 7
     And I press "Import"
     And I wait for ajax response
     Then I should see "Metric values exist with different source and are not modified."
     And I should see "Joe User+researched+Apple_Inc+2009"
 
   Scenario: Import metric values conflict with existing value
-    When I check checkbox in row 3
+    When I check checkbox in row 7
     And I press "Import"
     And I wait for ajax response
     And I scroll -10000 pixels
@@ -85,7 +85,7 @@ Feature: import metric values from a csv file
     And I should see "ROW 6:JOE USER+RESEARCHED+APPLE_INC+2009+METRIC VALUE: value '10' exists"
 
   Scenario: Import a metric value with partial matching company
-    When I check checkbox in row 7
+    When I check checkbox in row 2
     And I press "Import"
     And I wait for ajax response
     And I go to card "Joe User+researched+Apple_Inc+2008"
@@ -94,7 +94,7 @@ Feature: import metric values from a csv file
     And I should not see a "comment" icon
 
   Scenario: Import a metric value with no matching
-    When I check checkbox in row 8
+    When I check checkbox in row 1
     And I press "Import"
     And I wait for ajax response
     And I go to card "Joe User+researched+Hong Kong+2008"
@@ -103,8 +103,8 @@ Feature: import metric values from a csv file
     And I should not see a "comment" icon
 
   Scenario: Import a metric value with corrected company name
-    When I check checkbox in row 7
-    And I fill in "Samsung" in row 7
+    When I check checkbox in row 2
+    And I fill in "Samsung" in row 2
     And I press "Import"
     And I wait for ajax response
     And I go to card "Joe User+researched+Samsung+2008"
