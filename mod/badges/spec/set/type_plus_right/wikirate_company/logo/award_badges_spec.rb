@@ -2,7 +2,7 @@
 
 require_relative "../../../../support/award_badges_shared_examples"
 
-describe Card::Set::TypePlusRight::WikirateCompany::Logo::AwardBadges do
+describe Card::Set::TypePlusRight::WikirateCompany::Image::AwardBadges do
   describe "logo badges" do
     let(:badge_action) { :logo }
     let(:badge_type) { :wikirate_company }
