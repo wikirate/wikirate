@@ -73,6 +73,8 @@ GEM
     airbrussh (1.1.2)
       sshkit (>= 1.6.1, != 1.7.0)
     ansi (1.5.0)
+    archive-zip (0.7.0)
+      io-like (~> 0.3.0)
     arel (6.0.4)
     ast (2.3.0)
     better_errors (2.1.1)
@@ -115,6 +117,9 @@ GEM
       mime-types (>= 1.16)
     childprocess (0.6.2)
       ffi (~> 1.0, >= 1.0.11)
+    chromedriver-helper (1.1.0)
+      archive-zip (~> 0.7.0)
+      nokogiri (~> 1.6)
     coderay (1.1.1)
     coffee-script (2.4.1)
       coffee-script-source
@@ -189,6 +194,7 @@ GEM
     http_parser.rb (0.6.0)
     i18n (0.8.1)
     interception (0.5)
+    io-like (0.3.0)
     iso8601 (0.9.1)
     json (1.8.6)
     kaminari (0.17.0)
@@ -427,6 +433,7 @@ DEPENDENCIES
   capistrano-rvm
   capybara (= 2.11.0)
   card!
+  chromedriver-helper
   company-mapping
   cucumber-rails
   curb

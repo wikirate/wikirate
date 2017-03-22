@@ -6,7 +6,7 @@ Feature: import metric values from a csv file
     Given I am signed in as Joe User
     And I go to new Metric Value Import File
     And I fill in "card_name" with "Strikes tmr?"
-    And I upload the metric_value_import_file "metric_values_import.csv" in mod
+    And I upload the metric_value_import_file "metric_values_import.csv"
     And I wait for ajax response
     And I press "Submit"
     And I wait for ajax response

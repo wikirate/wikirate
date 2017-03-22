@@ -53,6 +53,7 @@ gem "simplecov", require: false
   gem "capybara", "2.11.0"
 # used 2.0.1
   gem "selenium-webdriver", "~> 2.3"
+  gem 'chromedriver-helper'
 #  gem 'capybara-webkit'
 # lets cucumber launch browser windows
   gem "launchy"
