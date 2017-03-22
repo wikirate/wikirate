@@ -58,7 +58,7 @@ def badge_count level=nil
   return item_names.count unless level
   item_cards.count do |badge|
     badge.badge_level == level
-    end
+  end
 end
 
 # @return badge cards in descending order and simple badges before
