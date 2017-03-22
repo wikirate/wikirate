@@ -486,7 +486,7 @@ format :html do
 
   def prepare_import_row_data row, index
     data = row_to_hash row
-    data[:row] = index
+    data[:csv_row_index] = index
     data[:wikirate_company], data[:status] = find_wikirate_company data
     data[:status] = data[:status].to_s
     data[:company] = data_company data
@@ -505,7 +505,8 @@ format :html do
     row[:row] = index
     content = table_fields.map { |key| row[key].to_s }
     { content: content,
-      class: row_context(row[:status]) }
+      class: row_context(row[:status]),
+      data: { csv_row_index: row[:csv_row_index] } }
   end
 
   def row_context status
