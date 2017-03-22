@@ -1,3 +1,5 @@
+COMPANY_MAPPER_THRESHOLD = 0.5
+
 # the is_data_import flag distinguishes between an update of the
 # import file and importing the file
 event :import_csv, :prepare_to_store, on: :update, when: :data_import? do
@@ -171,7 +173,7 @@ def get_corrected_company_name params
   corrected = company_corrections[params[:row].to_s]
   if corrected.blank?
     if params[:status] && params[:status].to_sym == :partial &&
-       (original = Card[params[:wikirate_company]])
+      (original = Card[params[:wikirate_company]])
       original.add_alias params[:file_company]
     end
     return params[:company] unless corrected.present?
@@ -391,12 +393,22 @@ format :html do
     end
   end
 
-  def get_potential_company name
-    result = Card.search type: "company", name: ["match", name]
-    # do not match companies less than 4 characters
-    result.reject { |r| r.name.length <= 4 }
-    return nil if result.empty?
-    result
+  def company_mapper
+    @mapper ||=
+      begin
+        corpus = Company::Mapping::CompanyCorpus.new
+        Card.search(type_id: WikirateCompanyID, return: :id).each do |company_id|
+          company_name = Card.fetch_name(company_id)
+          aliases = (a_card = Card[company_name, :aliases]) && a_card.item_names
+          corpus.add company_id, company_name, (aliases || [])
+        end
+        Company::Mapping::CompanyMapper.new corpus
+      end
+  end
+
+  def map_company name
+    id = company_mapper.map(name, COMPANY_MAPPER_THRESHOLD)
+    Card.fetch_name id
   end
 
   # @return name of company in db that matches the given name and
@@ -406,26 +418,13 @@ format :html do
     @company_map[name] ||=
       if (company = Card.fetch(name)) && company.type_id == WikirateCompanyID
         [name, :exact]
-        # elsif (result = Card.search :right=>"aliases",
-        # :left=>{:type_id=>Card::WikirateCompanyID},
-        # :content=>["match","\\[\\[#{name}\\]\\]"]) && !result.empty?
-        #   [result.first.cardname.left, :alias]
       elsif (company_name = aliases_hash[name.downcase])
         [company_name, :alias]
-      elsif (result = get_potential_company(name))
-        [result.first.name, :partial]
-      elsif (company_name = part_of_company(name))
-        [company_name, :partial]
+      elsif (result = map_company(name))
+        [result, :partial]
       else
         ["", :none]
       end
-  end
-
-  def part_of_company name
-    Card.search(type: "company", return: "name").each do |comp|
-      return comp if name.match comp
-    end
-    nil
   end
 
   def company_correction_field row_hash
