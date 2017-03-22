@@ -448,7 +448,8 @@ format :html do
 
   def import_checkbox row_hash
     key_hash, checked = prepare_import_checkbox row_hash
-    check_box_tag "import_data[]", key_hash.to_json, checked
+    tag = check_box_tag "import_data[]", key_hash.to_json, checked
+    tag
   end
 
   def data_correction data
@@ -490,8 +491,6 @@ format :html do
     data[:wikirate_company], data[:status] = find_wikirate_company data
     data[:status] = data[:status].to_s
     data[:company] = data_company data
-    data[:checkbox] = import_checkbox data
-    data[:correction] = data_correction data
     data
   end
 
@@ -501,9 +500,17 @@ format :html do
     a <=> b
   end
 
-  def import_table_row row, table_fields, index
+  def finalize_row row, index
     row[:row] = index
-    content = table_fields.map { |key| row[key].to_s }
+    row[:checkbox] = import_checkbox row
+    row[:correction] = data_correction row
+    row
+  end
+
+  def import_table_row row, table_fields, index
+    row = finalize_row row, index
+    content =
+      table_fields.map { |key| row[key].to_s }
     { content: content,
       class: row_context(row[:status]),
       data: { csv_row_index: row[:csv_row_index] } }
