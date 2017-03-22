@@ -22,7 +22,7 @@ format :html do
 
     render_haml opts do
       <<-HAML.strip_heredoc
-        .media
+        .media{media_opts}
           .media-left.image-box.#{opts[:size]}
             %a{href: "#"}
               %img{class:"media-object #{opts[:size]}", src: src, alt: alt}

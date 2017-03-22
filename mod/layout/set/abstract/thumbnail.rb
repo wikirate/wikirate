@@ -1,6 +1,6 @@
 format :html do
   view :thumbnail_plain do |args|
-    voo.hide :thumbnail_link
+    voo.hide! :thumbnail_link
     wrap_with :div do
       [
         thumbnail_image_wrap,
@@ -38,12 +38,14 @@ format :html do
   end
 
   def thumbnail_image
-    link_to_card card, field_nest(:image, view: :core, size: :small)
+    image = field_nest(:image, view: :core, size: :small)
+    return image unless voo.show?(:thumbnail_link)
+    link_to_card card, image
   end
 
   def thumbnail_title
     wrap_with :div, class: "ellipsis" do
-      _render_link
+      voo.show?(:thumbnail_link) ? _render_link : _render_name
     end
   end
 
@@ -52,7 +54,7 @@ format :html do
       <<-HTML
       <small class="text-muted">
         #{args[:text]}
-      #{args[:author]}
+        #{args[:author]}
       </small>
       HTML
     end

@@ -13,6 +13,7 @@ format :html do
     content = wrap_with(:div, nest(card.metric_title_card,
                                    view: :name),
                         class: "ellipsis")
+    return content unless voo.show?(:thumbnail_link)
     link_to_card card, content, title: card.metric_title_card.name
   end
 
