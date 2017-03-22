@@ -31,7 +31,7 @@ end
 #     find("label", text: field).find(:xpath, "..//select", visible: false)
 # end
 
-Capybara.default_wait_time = 20
+Capybara.default_max_wait_time = 20
 
 When(/^I press "([^\"]*)" within "([^\"]*)"$/) do |button, scope_selector|
   within(scope_selector) do
@@ -145,14 +145,6 @@ end
 When /^(?:|I )single-select "([^"]*)" as value$/ do |value|
   find("#card_subcards__values_content_chosen a.chosen-single").click
   find("li", text: value).click
-end
-
-When(/^(?:|I )upload the (.+) "(.+)" in mod$/) do |attachment_name, filename|
-  script = "$('input[type=file]').css('opacity','1');"
-  page.driver.browser.execute_script(script)
-  file =
-    File.join Cardio.root, "mod", "wikirate", "features", "support", filename
-  attach_file "card_#{attachment_name}", file
 end
 
 Then(/^I should see a row with "(.+)"$/) do |value|
