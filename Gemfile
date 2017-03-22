@@ -21,6 +21,7 @@ gem "delayed_job_active_record"
 gem "delayed_job_web"
 gem "rubocop"
 gem "rubocop-decko"
+gem "company-mapping"
 
 # seems like newrelic should be in :live, but that wasn't working.
 # not sure why -efm
@@ -52,6 +53,7 @@ gem "simplecov", require: false
   gem "capybara", "2.11.0"
 # used 2.0.1
   gem "selenium-webdriver", "~> 2.3"
+  gem 'chromedriver-helper'
 #  gem 'capybara-webkit'
 # lets cucumber launch browser windows
   gem "launchy"
