@@ -1,8 +1,8 @@
 #! no set module
 
-# a BadgeSet is a ranking of badges for one category, i.e. it has one
+# a BadgeLine is a ranking of badges for one category, i.e. it has one
 # bagdge for every level
-class BadgeSet
+class BadgeLine
   LEVELS = [:bronze, :silver, :gold].freeze
 
   Badge =

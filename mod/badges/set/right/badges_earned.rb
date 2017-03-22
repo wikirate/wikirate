@@ -3,15 +3,16 @@
 
 include_set Abstract::Table
 include_set Abstract::Certificate
+include_set Abstract::Paging
 
 attr_accessor :auto_content
 
 def ok_to_update
-  auto_content or super
+  auto_content || super
 end
 
 def ok_to_create
-  auto_content or super
+  auto_content || super
 end
 
 def cardtype_code
@@ -21,6 +22,7 @@ end
 def add_badge_card badge_card
   self.auto_content = true
   return if include_item? badge_card
+  success.flash badge_card.flash_message
   index = bsearch_index(badge_card)
   self.content = item_names.insert(index, badge_card.name).to_pointer_content
 end
@@ -36,7 +38,7 @@ def add_batch_of_badges badge_names
   return if include_item? sample_badge_card
   index = bsearch_index(sample_badge_card)
   self.content = item_names.insert(index, badge_names)
-                   .flatten.to_pointer_content
+                           .flatten.to_pointer_content
 end
 
 def bsearch_index badge_card
@@ -68,11 +70,16 @@ end
 format :html do
   delegate :badge_count, to: :card
 
+  def limit
+    20
+  end
 
   view :core do
-    wikirate_table :plain, card.item_cards,
-                   [:level, :badge, :description],
-                   header: %w(Level Badge Description),
-                   td: { classes: ["badge-certificate", nil, nil] }
+    with_paging do
+      wikirate_table :plain, card.item_cards(limit: limit, offset: offset),
+                     [:level, :badge, :description],
+                     header: %w(Level Badge Description),
+                     td: { classes: ["badge-certificate", nil, nil] }
+    end
   end
 end

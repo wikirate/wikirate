@@ -11,7 +11,6 @@ event :award_answer_create_badges, :finalize,
   end
 end
 
-
 def award_create_badge_if_earned affinity, project_card=nil
   # + 1 because the current action is not included
   # we do this search before the answer table update
@@ -62,7 +61,7 @@ end
 
 # @return badge name if count equals its threshold
 def earns_badge action, affinity_type=nil, count=nil
-  badge_hierarchy.earns_badge action, affinity_type, count
+  badge_squad.earns_badge action, affinity_type, count
 end
 
 def fetch_badge_card badge_name, affinity=nil, project_card=nil

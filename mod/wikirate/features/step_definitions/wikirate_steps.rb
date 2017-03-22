@@ -216,10 +216,6 @@ When(/^I click the drop down button for "(.*)"$/) do |text|
     .find(".fa-caret-right").click
 end
 
-When(/^I scroll (-?\d+) pixels$/) do |number|
-  page.execute_script "window.scrollBy(0, #{number})"
-end
-
 def select_from_chosen item_text, selector, within
   within(within) do
     id = find_field(selector, visible: false)[:id]

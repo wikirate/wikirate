@@ -56,7 +56,7 @@ format :html do
   end
 
   def has_badges?
-    card.cardtype_card.codename.to_sym.in? Abstract::BadgeHierarchy::BADGE_TYPES
+    card.cardtype_card.codename.to_sym.in? Abstract::BadgeSquad::BADGE_TYPES
   end
 
 

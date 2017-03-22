@@ -1,27 +1,27 @@
 #! no set module
 
-# A BadgeHierarchy manages BadgeSets for one badge cardtype, for example
+# A BadgeSquad manages BadgeLines for one badge cardtype, for example
 # all badges related to metric answers
-module BadgeHierarchy
+module BadgeSquad
   BADGE_TYPES =
     [:metric, :project, :metric_value, :source, :wikirate_company].freeze
 
   def self.for_type type_code
-    Card::Set::Type.const_get("#{type_code.to_s.camelcase}::BadgeHierarchy")
+    Card::Set::Type.const_get("#{type_code.to_s.camelcase}::BadgeSquad")
   end
 
   attr_reader :badge_level, :levels, :levels_descending, :badge_action
 
-  def add_badge_set action, badge_set, &count_wql
+  def add_badge_line action, badge_line, &count_wql
     @map ||= {}
-    @map[action] = Abstract::BadgeSet.new badge_set, &count_wql
+    @map[action] = Abstract::BadgeLine.new badge_line, &count_wql
   end
 
-  def add_affinity_badge_set action, map
+  def add_affinity_badge_line action, map
     @map ||= {}
     @map[action] = {}
-    map.each do |affinity, affinity_badge_set|
-      @map[action][affinity] = Abstract::BadgeSet.new affinity_badge_set
+    map.each do |affinity, affinity_badge_line|
+      @map[action][affinity] = Abstract::BadgeLine.new affinity_badge_line
     end
   end
 
@@ -62,35 +62,38 @@ module BadgeHierarchy
 
   # returns a badge if the threshold is reached
   def earns_badge action, affinity_type=nil, count=nil
-    badge_set(action, affinity_type).earns_badge count
+    badge_line(action, affinity_type).earns_badge count
   end
 
   def all_earned_badges action, affinity_type=nil, count=nil, user_id=nil
-    badge_set(action, affinity_type)
+    badge_line(action, affinity_type)
       .all_earned_badges count, user_id || Card::Auth.current_id
   end
 
   [:threshold, :level, :level_index].each do |method_name|
     define_method method_name do |action, affinity_type, badge_key|
-      badge_set(action, affinity_type).send method_name, badge_key
+      badge_line(action, affinity_type).send method_name, badge_key
     end
   end
 
   def count action
-    badge_set(action, nil).count_valued_actions
+    badge_line(action, nil).count_valued_actions
   end
 
-  def badge_set action, affinity_type
+  def badge_line action, affinity_type
     validate_badge_args action, affinity_type
     affinity_type ? @map[action][affinity_type] : @map[action]
   end
 
   def validate_badge_args action, affinity_type
-    raise StandardError, "not supported action: #{action}" unless @map[action]
-    if affinity_type && !@map[action][affinity_type].is_a?(Abstract::BadgeSet)
-      raise StandardError,
-            "affinity type #{affinity_type} not supported for action #{action}"
-    end
+    error =
+      if !@map[action]
+        "not supported action: #{action}"
+      elsif affinity_type &&
+        !@map[action][affinity_type].is_a?(Abstract::BadgeLine)
+        "affinity type #{affinity_type} not supported for action #{action}"
+      end
+    raise StandardError, error if error
   end
 
   def map
@@ -98,10 +101,10 @@ module BadgeHierarchy
   end
 
   def badge_names
-    @map.values.map do |badge_set|
+    @map.values.map do |badge_line|
       # handle affinity badges
-      badge_set = badge_set[:general] if badge_set.is_a? Hash
-      badge_set.badge_names
+      badge_line = badge_line[:general] if badge_line.is_a? Hash
+      badge_line.badge_names
     end.compact.flatten
   end
 

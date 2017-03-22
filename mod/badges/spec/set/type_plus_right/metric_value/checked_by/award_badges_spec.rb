@@ -17,11 +17,11 @@ describe Card::Set::TypePlusRight::MetricValue::CheckedBy::AwardBadges do
     end
 
     context "reached silver threshold" do
-      it_behaves_like "answer badges", 2, "Check Mate"
+      it_behaves_like "answer badges", 2, "Check Pro"
     end
 
     context "reached gold threshold" do
-      it_behaves_like "answer badges", 3, "Checksquisite"
+      it_behaves_like "answer badges", 3, "Check Mate"
     end
   end
 end
