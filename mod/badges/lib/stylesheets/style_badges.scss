@@ -7,7 +7,7 @@
 .bronze { color: #cd7f32; }
 
 td {
-  .badge-certificate {
+  &.badge-certificate {
     padding: 0px !important;
     height: 100%;
     min-width: 65px;
@@ -20,16 +20,16 @@ td {
       }
     }
   }
-  .badge-name {
+  &.badge-name {
     width: 25%;
     border-right: none!important;
   }
 
-  .badge-description {
+  &.badge-description {
     border-right: none!important;
   }
 
-  .badge-count {
+  &.badge-count {
     width: 20%;
     text-align: right;
   }

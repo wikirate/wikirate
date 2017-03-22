@@ -2,7 +2,7 @@ include_set Abstract::Table
 
 format :html do
   view :core do
-    field_nest(:description).sub("your first", "1") + badge_tables.html_safe
+    field_nest(:description) + badge_tables.html_safe
   end
 
   def badge_tables

@@ -15,7 +15,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::Logo::AwardBadges do
                                name: "Company #{number}"
       end
       Card::Auth.as_bot do
-        Card.create! name: "#{company.name}+*logo", type_id: Card::BasicID
+        Card.create! name: "#{company.name}+image", type_id: Card::BasicID
       end
     end
 
