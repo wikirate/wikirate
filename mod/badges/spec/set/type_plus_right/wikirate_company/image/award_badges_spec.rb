@@ -6,7 +6,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::Image::AwardBadges do
   describe "logo badges" do
     let(:badge_action) { :logo }
     let(:badge_type) { :wikirate_company }
-    let(:sample_acting_card) { sample_company.field(:logo, new: {}) }
+    let(:sample_acting_card) { sample_company.field(:image, new: {}) }
 
     def execute_awarded_action number
       company = nil
