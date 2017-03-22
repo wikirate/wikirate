@@ -2,11 +2,11 @@
 
 require_relative "../../../../support/award_badges_shared_examples"
 
-describe Card::Set::TypePlusRight::WikirateCompany::Logo::AwardBadges do
+describe Card::Set::TypePlusRight::WikirateCompany::Image::AwardBadges do
   describe "logo badges" do
     let(:badge_action) { :logo }
     let(:badge_type) { :wikirate_company }
-    let(:sample_acting_card) { sample_company.field(:logo, new: {}) }
+    let(:sample_acting_card) { sample_company.field(:image, new: {}) }
 
     def execute_awarded_action number
       company = nil
@@ -15,7 +15,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::Logo::AwardBadges do
                                name: "Company #{number}"
       end
       Card::Auth.as_bot do
-        Card.create! name: "#{company.name}+*logo", type_id: Card::BasicID
+        Card.create! name: "#{company.name}+image", type_id: Card::BasicID
       end
     end
 

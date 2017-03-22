@@ -1,5 +1,8 @@
 describe Card::Set::Type::SourceImportFile do
-  let(:source_title) { "Apple Inc.-Corporate Social Responsibility Report-2013" }
+  let(:source_title) do
+    "Apple Inc.-Corporate Social Responsibility Report-2013"
+  end
+
   before do
     login_as "joe_user"
     test_csv = File.open "#{Rails.root}/mod/wikirate/spec/set/" \

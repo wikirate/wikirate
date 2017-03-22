@@ -33,7 +33,7 @@ RSpec.shared_examples "award badges" do |threshold, badge_name|
   describe "#count" do
     subject do
       as_user "John" do
-        sample_acting_card.badge_hierarchy.count(badge_action)
+        sample_acting_card.badge_squad.count(badge_action)
       end
     end
     it { is_expected.to eq threshold }

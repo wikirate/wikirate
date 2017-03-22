@@ -58,7 +58,8 @@ format :html do
   end
 
   def awarded_to_list
-    user_list = awarded_to.map { |ca| nest(ca, view: :list_thumbnail) }
+    voo.show! :thumbnail_link
+    user_list = awarded_to.map { |ca| nest(ca, view: :thumbnail_plain) }
     list_group user_list
   end
 end

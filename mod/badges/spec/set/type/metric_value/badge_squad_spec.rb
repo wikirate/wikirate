@@ -10,11 +10,11 @@ describe Card::Set::Type::MetricValue::BadgeSquad do
     it "returns all non-affinity badge names" do
       expect(described_class.badge_names)
         .to contain_exactly(
-              "Researcher", "Research Pro", "Research Master",
-              "Answer Advancer", "Answer Enhancer", "Answer Chancer",
-              "Checker", "Check Pro", "Check Mate",
-              "Commentator", "Commentary Team", "Expert Commentary"
-            )
+          "Researcher", "Research Pro", "Research Master",
+          "Answer Advancer", "Answer Enhancer", "Answer Chancer",
+          "Checker", "Check Pro", "Check Mate",
+          "Commentator", "Commentary Team", "Expert Commentary"
+        )
     end
   end
 end

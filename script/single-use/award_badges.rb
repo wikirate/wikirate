@@ -4,15 +4,17 @@ class AwardBadges
   #disable_ddl_transaction!
   class << self
     def up
-      award_badges_by_user
-      award_answer_create_badges
-      [:project, :source, :metric, :wikirate_company].each do |type_code|
-        award_create_badges type_code
+      Card::Auth.as_bot do
+        award_badges_by_user
+        award_answer_create_badges
+        [:project, :source, :metric, :wikirate_company].each do |type_code|
+          award_create_badges type_code
+        end
       end
     end
 
     def user_ids
-      @user_ids ||= [6314] + Card.search(type_id: Card::UserID, return: :id)
+      @user_ids ||= Card.search(type_id: Card::UserID, return: :id)
     end
 
     def award_answer_create_badges

@@ -86,11 +86,14 @@ module BadgeSquad
   end
 
   def validate_badge_args action, affinity_type
-    raise StandardError, "not supported action: #{action}" unless @map[action]
-    if affinity_type && !@map[action][affinity_type].is_a?(Abstract::BadgeLine)
-      raise StandardError,
-            "affinity type #{affinity_type} not supported for action #{action}"
-    end
+    error =
+      if !@map[action]
+        "not supported action: #{action}"
+      elsif affinity_type &&
+        !@map[action][affinity_type].is_a?(Abstract::BadgeLine)
+        "affinity type #{affinity_type} not supported for action #{action}"
+      end
+    raise StandardError, error if error
   end
 
   def map
