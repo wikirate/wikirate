@@ -198,6 +198,16 @@ Then(/^I fill in "(.*)" in row (\d+)$/) do |text, row|
   end
 end
 
+Then(/^I fill in "(.*)" for csv row (\d+)$/) do |text, row|
+  table = find("table")
+  within(table) do
+    row = find("tr[data-csv-row-index='#{row}'")
+    within(row) do
+      find("input[type=text]").set(text)
+    end
+  end
+end
+
 Then(/^I should see a "(.*)" icon$/) do |icon|
   expect(page.body).to have_tag "i.fa-#{ICONS[icon]}"
 end

@@ -104,7 +104,7 @@ Feature: import metric values from a csv file
 
   Scenario: Import a metric value with corrected company name
     When I check checkbox for csv row 7
-    And I fill in "Samsung" in row 7
+    And I fill in "Samsung" for csv row 7
     And I press "Import"
     And I wait for ajax response
     And I go to card "Joe User+researched+Samsung+2008"
