@@ -31,7 +31,7 @@ end
 #     find("label", text: field).find(:xpath, "..//select", visible: false)
 # end
 
-Capybara.default_wait_time = 20
+Capybara.default_max_wait_time = 20
 
 When(/^I press "([^\"]*)" within "([^\"]*)"$/) do |button, scope_selector|
   within(scope_selector) do
@@ -147,14 +147,6 @@ When /^(?:|I )single-select "([^"]*)" as value$/ do |value|
   find("li", text: value).click
 end
 
-When(/^(?:|I )upload the (.+) "(.+)" in mod$/) do |attachment_name, filename|
-  script = "$('input[type=file]').css('opacity','1');"
-  page.driver.browser.execute_script(script)
-  file =
-    File.join Cardio.root, "mod", "wikirate", "features", "support", filename
-  attach_file "card_#{attachment_name}", file
-end
-
 Then(/^I should see a row with "(.+)"$/) do |value|
   values = value.split("|")
   html = page.body
@@ -184,10 +176,32 @@ Then(/^I check checkbox in row (\d+)$/) do |row|
   end
 end
 
+Then(/^I check checkbox for csv row (\d+)$/) do |row|
+  table = find("table")
+  within(table) do
+    row = find("tr[data-csv-row-index='#{row}'")
+    #row = all("tr")[row.to_i]
+    within(row) do
+      checkbox = find("input[type=checkbox]")
+      checkbox.click unless checkbox.checked?
+    end
+  end
+end
+
 Then(/^I fill in "(.*)" in row (\d+)$/) do |text, row|
   table = find("table")
   within(table) do
     row = all("tr")[row.to_i]
+    within(row) do
+      find("input[type=text]").set(text)
+    end
+  end
+end
+
+Then(/^I fill in "(.*)" for csv row (\d+)$/) do |text, row|
+  table = find("table")
+  within(table) do
+    row = find("tr[data-csv-row-index='#{row}'")
     within(row) do
       find("input[type=text]").set(text)
     end

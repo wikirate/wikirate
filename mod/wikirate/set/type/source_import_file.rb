@@ -180,9 +180,16 @@ format :html do
                    class: "min-width-300")
   end
 
-  def prepare_import_row_data row, index
-    data = super row, index
-    data[:title] = title_field data
-    data
+  def finalize_row row, index
+    row[:row] = index
+    row[:checkbox] = import_checkbox row
+    row[:correction] = data_correction row
+    row[:title] = title_field row
+    row
   end
+  # def prepare_import_row_data row, index
+  #   data = super row, index
+  #   data[:title] = title_field data
+  #   data
+  # end
 end

@@ -278,33 +278,36 @@ describe Card::Set::Type::SourceImportFile do
                  report_type: "Corporate Social Responsibility Report",
                  source: "http://example.com/1233213",
                  title: nil,
-                 row: 1,
+                 csv_row_index: 1,
                  wikirate_company: "Apple Inc.",
                  status: "exact",
                  company: "Apple Inc.",
-                 input_title: source_title
+                 input_title: source_title,
+                 row: 2
         with_row true, "success",
                  file_company: "Apple Inc",
                  year: "2014",
                  report_type: "Conflict Minerals Report",
                  source: "http://example.com/12333214",
                  title: "hello world",
-                 row: 2,
+                 csv_row_index: 2,
                  wikirate_company: "Apple Inc",
                  status: "exact",
                  company: "Apple Inc",
-                 input_title: "hello world"
+                 input_title: "hello world",
+                 row: 3
         with_row true, "warning",
                  file_company: "Apple",
                  year: "2012",
                  report_type: "Conflict Minerals Report",
                  source: "http://example.com/123332345",
                  title: "hello world1",
-                 row: 3,
+                 csv_row_index: 3,
                  wikirate_company: "Apple Inc.",
                  status: "partial",
                  company: "Apple Inc.",
-                 input_title: "hello world1"
+                 input_title: "hello world1",
+                 row: 1
       end
     end
   end

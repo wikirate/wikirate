@@ -63,6 +63,7 @@ Feature: Double check
     When I am signed in as Joe User
     And I go to card "Jedi+disturbances in the Force+Death Star+2000"
     When I click on "Double check"
+    And I wait for ajax response
     Then I should see "Yes, I checked the value"
     When I edit "Jedi+disturbances in the Force+Death Star+2000"
     And I fill in "no" for "Answer"
