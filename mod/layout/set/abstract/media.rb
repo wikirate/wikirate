@@ -18,6 +18,7 @@ format :html do
 
   def text_with_image opts={}
     @image_card = Card.cardish(opts[:image]) if opts[:image]
+    opts[:media_opts] = {} unless opts[:media_opts]
     text_with_image_args opts
 
     render_haml opts do
