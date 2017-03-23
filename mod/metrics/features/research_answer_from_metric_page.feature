@@ -9,7 +9,7 @@ Feature: Research answer from metric page
     And I maximize the browser
 
   Scenario: Adding a metric value with a link source on metric page
-    When In the main card content I click "Add new value"
+    When In the main card content I click "Add answer"
     And I select "Death Star" from "Company"
     And I click on "Next"
     And I click on "Add answer"
@@ -32,7 +32,7 @@ Feature: Research answer from metric page
     And I should see "yes"
 
   Scenario: Adding a metric value with a file source on metric page
-    When In the main card content I click "Add new value"
+    When In the main card content I click "Add answer"
     And I select "Death Star" from "Company"
     And I click on "Next"
     And I click on "Add answer"
