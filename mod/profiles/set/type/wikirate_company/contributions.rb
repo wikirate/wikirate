@@ -38,6 +38,7 @@ format :html do
   end
 
   view :project_contributions do
-    field_subformat(:projects_organized)._render_titled show: :title_badge
+    field_nest :projects_organized, view: :titled, show: :title_badge,
+                                    items: { view: :listing }
   end
 end

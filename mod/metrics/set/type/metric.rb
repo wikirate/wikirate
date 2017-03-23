@@ -185,13 +185,32 @@ format :html do
     # "<style> #{Sass.compile css}</style>"
   end
 
+  # USED?
+
+
+  view :item_view do |args|
+    title = card.metric_title.to_s
+    subtext = card.metric_designer.to_s
+    subtext = wrap_with :small, "Scored by " + subtext
+    append = "#{card.key}+add_to_formula"
+    url = path mark: card.cardname.field(append), view: :content
+    text_with_image image: designer_image_card,
+                    text: subtext, title: title, size: :icon,
+                    media_opts: { class: "tr-details-toggle",
+                                  data: { details_url: url } }
+  end
+
+  view :details_placeholder do
+    ""
+  end
+
   view :listing do
     wrap_with :div, class: "contribution-item value-item no-hover" do
       [
-        wrap_with(:div, class: "header no-hover") do
+        wrap_with(:div, class: "header") do
           _render_thumbnail
         end,
-        wrap_with(:div, class: "data no-hover") do
+        wrap_with(:div, class: "text-center margin-15") do
           listing_data
         end
       ]
@@ -201,8 +220,8 @@ format :html do
   def listing_data
     wrap_with :div, class: "contribution company-count" do
       [
-        company_count,
-        wrap_with(:div, "Companies", class: "name")
+        wrap_with(:div, company_count, class: "h5"),
+        wrap_with(:div, "Companies", class: "light-grey-color")
       ]
     end
   end
@@ -304,20 +323,6 @@ format :html do
         {{#{card.name}+#{args[:company]}+latest value|concise}}
       </div>
     )
-  end
-
-  # USED?
-  view :item_view do |args|
-    append = args[:append_for_details] ||
-             "#{card.key}+add_to_formula"
-    item_wrap do
-      %(
-      <div class="no-data metric-details-toggle"
-           data-append="#{append}">
-        #{_render_thumbnail(optional_thumbnail_subtitle: :hide)}
-      </div>
-      )
-    end
   end
 
   view :add_to_formula do |_args|

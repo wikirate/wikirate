@@ -58,4 +58,3 @@ view :research_progress_bar, cache: :never do
     { value: card.percent_not_researched, class: "progress-not-researched" }
   )
 end
-
