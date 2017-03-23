@@ -22,6 +22,8 @@ gem "delayed_job_web"
 gem "rubocop"
 gem "rubocop-decko"
 gem "company-mapping"
+gem "fog"
+gem "fog-aws"
 
 # seems like newrelic should be in :live, but that wasn't working.
 # not sure why -efm
