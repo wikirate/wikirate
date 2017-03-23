@@ -1,17 +1,21 @@
 require_relative "../../config/environment"
 
-def type_id_from_argv
-  type = ARGV.pop
-  return Card::FileID unless type
+
+def search_args
+  type, limit = ARGV
+  return { type_id: Card::FileID } unless type
   unless type.in? %w(file image)
     raise ArgumentError, "not a valid file type. pass 'file' or 'image'"
   end
-  Card.fetch_id type.to_sym
+  hash = { type_id: Card.fetch_id(type.to_sym) }
+  hash[:limit] = limit.to_i if limit
+  hash
 end
 
 Card::Auth.as_bot do
-  Card.search(type_id: type_id_from_argv, limit: 10).each do |card|
+  Card.search(search_args).each do |card|
     next if card.cloud?
+    puts card.name
     card.update_attributes! storage_type: :cloud, # bucket: aws_bucket,
                             silent_change: true
   end
