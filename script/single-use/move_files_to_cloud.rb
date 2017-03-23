@@ -16,8 +16,12 @@ Card::Auth.as_bot do
   Card.search(search_args).each do |card|
     next if card.cloud?
     puts card.name
-    card.update_attributes! storage_type: :cloud, # bucket: aws_bucket,
-                            silent_change: true
+    begin
+      card.update_attributes! storage_type: :cloud, # bucket: aws_bucket,
+                              silent_change: true
+    rescue ActiveRecord::RecordInvalid => e
+      puts e.message
+    end
   end
 end
 
