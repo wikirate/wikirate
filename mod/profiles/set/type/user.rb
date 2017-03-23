@@ -3,8 +3,8 @@ include_set Abstract::Thumbnail
 
 format :html do
   view :open_content do |args|
-    bs_layout container: true, fluid: true, class: @container_class do
-      row 5, 7 do
+    bs_layout container: false, fluid: false, class: @container_class do
+      row 5, 7, class: "panel-margin-fix" do
         column _render_content_left_col, args[:left_class]
         column _render_contributions_column, args[:right_class]
       end
