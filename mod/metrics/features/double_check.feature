@@ -25,6 +25,7 @@ Feature: Double check
     When I am signed in as Joe User
     And I go to card "Jedi+disturbances in the Force+Death Star+2000"
     And I click on the "remove" icon
+    And I wait for ajax response
     And I hover over "Joe User"
     Then I should see "Double check"
 
