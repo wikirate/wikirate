@@ -80,7 +80,6 @@ Feature: import metric values from a csv file
     And I check checkbox for csv row 6
     And I press "Import"
     And I wait for ajax response
-    # And debug
     Then I should see "Problems with Strikes tmr?"
     And I should see "JOE USER+RESEARCHED+APPLE_INC+2009+METRIC VALUE: value '10' exists"
 
