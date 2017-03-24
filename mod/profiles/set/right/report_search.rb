@@ -182,7 +182,8 @@ format :html do
     :research_group,
     :source,
     :wikirate_company,
-    :wikirate_topic
+    :wikirate_topic,
+    :metric_value
   ].each do |cardtype|
     view "#{cardtype}_list" do
       listing = render("#{cardtype}_sublist".to_sym)
