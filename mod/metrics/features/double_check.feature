@@ -79,4 +79,5 @@ Feature: Double check
   Scenario: Can't check if not signed in
     When I go to card "Jedi+disturbances in the Force+Death Star+2000"
     And I click on "Double check"
+    And I wait for ajax response
     Then I should see "please sign in"
