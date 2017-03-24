@@ -15,9 +15,9 @@ format :html do
 
   def thumbnail_content args
     output [
-             thumbnail_image_wrap,
-             thumbnail_text_wrap(args)
-            ]
+      thumbnail_image_wrap,
+      thumbnail_text_wrap(args)
+    ]
   end
 
   def thumbnail_image_wrap
