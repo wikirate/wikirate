@@ -80,6 +80,8 @@ format :html do
     list += [:created, :updated, :discussed, :voted_on].reverse.map do |report_action|
       if card.report_action_applies? report_action
         contribution_report_box report_action
+      else
+        contribution_null_box
       end
     end.unshift(contribution_report_toggle)
   end
@@ -99,6 +101,12 @@ format :html do
     link_to_view :contribution_report,
                  content,
                  path: { report_tab: :badges }, class: "slotter"
+    end
+  end
+
+  def contribution_null_box
+    wrap_with :li, class:  "contribution-report-box" do
+      content_tag(:p, "")
     end
   end
 
