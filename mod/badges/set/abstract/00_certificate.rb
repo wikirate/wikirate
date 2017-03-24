@@ -4,7 +4,7 @@ format :html do
   end
 
 
-  view :count do |args|
+  view :count, tags: :unknown_ok do |args|
     content = [:gold, :silver, :bronze].map { |level| level_count level }
     list_tag content, class: args[:class] || "horizontal"
   end

@@ -100,7 +100,8 @@ format :html do
       wql[:right_plus] = ["*metric type", { refer_to: "Score" }]
     end
     items = Card.search(wql)
-    wikirate_table_with_details :metric, items, [:item_view],
+    params[:formula_metric_key] = card.cardname.left_key
+    wikirate_table_with_details :metric, items, [:add_to_formula_item_view],
                                 td: {classes: ["score", "details"]}
   end
 
