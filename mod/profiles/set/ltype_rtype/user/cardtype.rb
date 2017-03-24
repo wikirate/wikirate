@@ -144,7 +144,7 @@ format :html do
   end
 
   def contribution_report_badges
-    return "" unless (badges = card.field(:badges_earned))
+    badges = card.field(:badges_earned, new: { type_id: PointerID })
     nest badges, view: :count
   end
 
