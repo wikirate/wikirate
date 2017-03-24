@@ -304,7 +304,22 @@
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
-
+  .vega canvas {
+      width: 100%!important;
+      height: 100%!important;
+  }
+  .details {
+      top: 65px!important;
+      position: fixed!important;
+      left: 0%!important;
+      width: 100%!important;
+  }
+  table.wikirate-table td.data{
+    min-width: 100%!important;
+  }
+  select{
+    width: 100%;
+  }
 }
 
 /* Extra Small Devices, Phones */
@@ -435,26 +450,6 @@
     display: none;
   }
 
-  .TYPE-note .source-side,
-  .TYPE-page .source-side,
-  .TYPE-note .meta-side,
-  .TYPE-page .meta-side,
-  .TYPE-analysis .meta-side,
-  .TYPE-company .meta-side,
-  .TYPE-topic .meta-side,
-  .TYPE-analysis .source-side,
-  .TYPE-company .source-side,
-  .TYPE-topic .source-side {
-    width: 100% !important;
-    margin-left: 0;
-  }
-  .TYPE-topic .TYPE_PLUS_RIGHT-topic-analysis_with_overview .analysis-blurb-content,
-  .TYPE-topic .TYPE_PLUS_RIGHT-company-analysis_with_overview .analysis-blurb-content,
-  .TYPE-company .TYPE_PLUS_RIGHT-topic-analysis_with_overview .analysis-blurb-content,
-  .TYPE-company .TYPE_PLUS_RIGHT-company-analysis_with_overview .analysis-blurb-content {
-    width: 100%;
-
-  }
   .ui-tabs .ui-tabs-panel {
     padding: 0;
 
@@ -463,13 +458,7 @@
     display: none;
 
   }
-  .TYPE-user .user-profile-left,
-  .TYPE-user .user-profile-right,
-  .TYPE-user .user-profile-right-bottom-contribution,
-  .TYPE-user .TYPE_PLUS_RIGHT-user-discussion.titled-view {
-    width: 100%;
 
-  }
   .card-slot > .card-header .card-menu-link {
     margin: -40px -3px;
 

@@ -1,3 +1,5 @@
+//TODO: refactor
+
 //note colors
 $note-tag-companybg: #d3741c;
 $note-tag-companybg-hover: #bb5b00;
@@ -187,10 +189,6 @@ $card-header-color: #dbdbdb;
 }
 
 .overview-item.view-2, #main > div > .card-frame > .RIGHT-overview_detail_container {
-  height: auto;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
   width: 100%;
   .overview-images {
     .venn-icon-pos {
@@ -245,37 +243,25 @@ $card-header-color: #dbdbdb;
   height: auto;
   text-align: center;
   border: 0px solid #ddd;
-  box-shadow: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  &:hover {
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-  }
   a {
     color: #fff;
   }
-  .mouse-hover {
-    @include opacity(1);
-    &:hover + .company-n-topic-title {
-      font-weight: bold;
-    }
-  }
-  &:hover {
-    border: 0px solid #B6B6B6;
-  }
-  &:hover .mouse-hover {
-    @include opacity(1);
-  }
+  //.mouse-hover {
+  //  @include opacity(1);
+  //  &:hover + .company-n-topic-title {
+  //    font-weight: bold;
+  //  }
+  //}
+  //&:hover {
+  //  border: 0px solid #B6B6B6;
+  //}
+  //&:hover .mouse-hover {
+  //  @include opacity(1);
+  //}
   .venn-icon-pos {
     left: 45.3% !important;
     top: 36px !important;
     width: 65px;
     color: #fafafa;
-    .SELF-venn_icon {
-      margin-top: -73px !important;
-      display: inherit !important;
-    }
   }
 }

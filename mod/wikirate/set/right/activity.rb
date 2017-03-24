@@ -14,7 +14,7 @@ format :html do
         card: act.card,
         action: act.main_action.action_type
       }
-      wrap_with :div, class: "activity margin-15" do
+      wrap_with :div, class: "activity" do
         activity_item(item)
       end
     end.join "\n"
