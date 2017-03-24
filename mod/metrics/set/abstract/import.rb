@@ -243,7 +243,7 @@ def csv_rows
   # transcode to utf8 before CSV reads it.
   # some users upload files in non utf8 encoding.
   # The microsoft excel may not save a CSV file in utf8 encoding
-  CSV.read(file.path, encoding: "windows-1251:utf-8")
+  CSV.parse(file.read, encoding: "windows-1251:utf-8")
 end
 
 def clean_html? # return always true ;)
