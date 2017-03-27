@@ -27,13 +27,19 @@ class Importer
     items_of "#{type}+*type+by_update"
   end
 
-  def migration_records
+  def migration_records *exclude
     migration_data =
       work_on "getting migration records" do
         json_export :admin_info, :migrations
       end
     work_on "importing migration records" do
-      import_migration_data migration_data
+      import_migration_data migration_data, exclude.flatten
+    end
+  end
+
+  def rerun_migrations *versions
+    versions.flatten.each do |version|
+      system "bundle exec rake wagn:migrate:redo VERSION=#{version}"
     end
   end
 
@@ -82,11 +88,12 @@ class Importer
     end
   end
 
-  def import_migration_data data
+  def import_migration_data data, exclude
+    exclude = Array(exclude).flatten.map(&:to_s)
     data.each do |table, values|
       begin
         truncate table
-        insert_into table, values
+        insert_into table, (values - exclude)
       rescue => e
         puts "Error in #{table},#{values} #{e}".red
       end

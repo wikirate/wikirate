@@ -1,4 +1,1 @@
-
-format do
-  include Self::Search::Format
-end
+include_set Abstract::Search

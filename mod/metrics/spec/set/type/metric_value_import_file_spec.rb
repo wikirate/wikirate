@@ -112,8 +112,8 @@ RSpec.describe Card::Set::Type::MetricValueImportFile do
       expect(format.map_company("Sony")).to eq "Sony Corporation"
     end
 
-    it "does not map Amazon" do
-      expect(format.map_company("Amazon")).not_to eq "Amazon.com, Inc."
+    it "maps Amazon" do
+      expect(format.map_company("Amazon")).to eq "Amazon.com, Inc."
     end
   end
 end

@@ -2,26 +2,29 @@ source "http://rubygems.org"
 
 wagn_gem_path = ENV["WIKIRATE_WAGN_GEM_PATH"] || "./vendor/wagn"
 
-#gem "smartname", path: "./vendor/smartname"
-gem "wagn", path: "#{wagn_gem_path}/wagn"
+# gem "smartname", path: "./vendor/smartname"
 gem "card", path: "#{wagn_gem_path}/card", require: false
-
-gem "statistics2", "0.54"
-gem "descriptive_statistics", "2.5.1"
-gem "savanna-outliers"
+gem "wagn", path: "#{wagn_gem_path}/wagn"
 
 gem "mysql2", "~> 0.3.18"
-gem "link_thumbnailer", "2.5.2"
-gem "open_uri_redirections"
-gem "roo"
-gem "wbench"
+
+gem "descriptive_statistics", "2.5.1"
+gem "savanna-outliers"
+gem "statistics2", "0.54"
+
 gem "curb"
 gem "daemons"
 gem "delayed_job_active_record"
 gem "delayed_job_web"
+
+gem "company-mapping"
+gem "link_thumbnailer", "2.5.2"
+gem "open_uri_redirections"
+gem "roo"
 gem "rubocop"
 gem "rubocop-decko"
-gem "company-mapping"
+gem "wbench"
+
 gem "fog"
 gem "fog-aws"
 
@@ -33,39 +36,39 @@ gem "airbrussh", require: false
 # gem "spring"
 
 group :live do
-  gem "therubyracer"
   gem "dalli"
+  gem "therubyracer"
 end
 
 group :test do
-  gem "rspec-rails" # behavior-driven-development suite
   gem "rspec", "~> 3.4"
   gem "rspec-html-matchers" # 0.7.0 broke stuff!
-# gem 'wagn-rspec-formatter',  git: 'https://github.com/xithan/wagn-rspec-formatter.git'
+  gem "rspec-rails" # behavior-driven-development suite
+  # gem 'wagn-rspec-formatter',  git: 'https://github.com/xithan/wagn-rspec-formatter.git'
+
+  gem "simplecov", require: false
   gem "spork", ">=0.9"
-  gem "timecop"
-gem "simplecov", require: false
-# gem 'codeclimate-test-reporter', require: nil
-
   gem "test_after_commit"
+  gem "timecop"
+  # gem 'codeclimate-test-reporter', require: nil
 
-# CUKES see features dir
+  # CUKES see features dir
+  gem "chromedriver-helper"
   gem "cucumber-rails", require: false
-# feature-driven-development suite
+  # feature-driven-development suite
   gem "capybara", "2.11.0"
-# used 2.0.1
+  # used 2.0.1
   gem "selenium-webdriver", "~> 2.3"
-  gem 'chromedriver-helper'
-#  gem 'capybara-webkit'
-# lets cucumber launch browser windows
+  #  gem 'capybara-webkit'
+  # lets cucumber launch browser windows
   gem "launchy"
 
   gem "email_spec"
-# used by cucumber for db transactions
+  # used by cucumber for db transactions
   gem "database_cleaner", "~> 1.4.1"
 
-# Pretty printed test output.
-# (version constraint is to avoid minitest requirement)
+  # Pretty printed test output.
+  # (version constraint is to avoid minitest requirement)
   gem "turn", "~>0.8.3", require: false
 
   gem "minitest"
@@ -79,21 +82,21 @@ group :development do
 
   gem "capistrano"
   gem "capistrano-bundler"
-  gem "capistrano-rvm"
   gem "capistrano-maintenance", require: false
   gem "capistrano-passenger"
-  gem 'better_errors'
-  gem 'binding_of_caller'
+  gem "capistrano-rvm"
+
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 group :test, :development do
-  gem "thin"
-  gem "pry" # , git: 'https://github.com/pry/pry'  # bug in 0.10.3, fixed in
-# master
+  gem "pry"
+  gem "pry-byebug" if RUBY_VERSION =~ /^2/
   gem "pry-rails"
   gem "pry-rescue"
   gem "pry-stack_explorer"
-  gem "pry-byebug" if RUBY_VERSION =~ /^2/
+  gem "thin"
 end
 
 Dir.glob("mod/**{,/*/**}/Gemfile").each do |gemfile|
