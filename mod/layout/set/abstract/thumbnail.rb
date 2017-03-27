@@ -1,22 +1,23 @@
 format :html do
   view :thumbnail_plain do |args|
-    voo.hide! :thumbnail_link
-    wrap_with :div do
-      [
-        thumbnail_image_wrap,
-        thumbnail_text_wrap(args)
-      ]
-    end
+    wrap_with :div, thumbnail_content(args)
   end
 
   view :thumbnail do |args|
     voo.show :thumbnail_link
-    wrap_with :div, class: "thumbnail" do
-      [
-        thumbnail_image_wrap,
-        thumbnail_text_wrap(args)
-      ]
-    end
+    wrap_with :div, thumbnail_content(args), class: "thumbnail"
+  end
+
+  view :thumbnail_no_link do |args|
+    voo.show :thumbnail_link
+    wrap_with :div, thumbnail_content(args)
+  end
+
+  def thumbnail_content args
+    output [
+      thumbnail_image_wrap,
+      thumbnail_text_wrap(args)
+    ]
   end
 
   def thumbnail_image_wrap
