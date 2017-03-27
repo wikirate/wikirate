@@ -281,11 +281,11 @@ format :html do
   def vtype_edit_modal_link_text
     # FIXME: why does value_type_card not work although value_type is registered
     #        as card accessor
-    v_type_card = Card.fetch trait: :value_type, new: {}
+    v_type_card = card.fetch trait: :value_type, new: {}
     if v_type_card.new?
       "Update Value Type"
     else
-      subformat(v_type_card).render_shorter_pointer_content
+      nest v_type_card, view: :shorter_pointer_content, hide: :link
     end
   end
 
