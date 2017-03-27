@@ -27,7 +27,7 @@ class Card
     #   are newly instantiated and not in the database
     def run
       return missing_answers if find_missing?
-      run_filter_query
+      run_filter_query.compact
     end
 
     def add_filter opts={}
@@ -41,6 +41,7 @@ class Card
     end
 
     def count additional_filter={}
+      return missing_answer_query.count if find_missing?
       where(additional_filter).count
     end
 
@@ -88,8 +89,13 @@ class Card
 
     private
 
+    def missing_answer_query
+     @missing_answer_query ||=
+       missing_answer_query_class.new(@filter_args, @paging_args)
+    end
+
     def missing_answers
-      missing_answer_query_class.new(@filter_args, @paging_args).run
+      missing_answer_query.run
     end
 
     def restrict_to_ids col, ids

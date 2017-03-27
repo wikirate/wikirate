@@ -17,26 +17,39 @@ namespace :wikirate do
   end
 
   def import_cards
+    return unless (filename = import_data_filename)
+    require "card/migration"
+    require "generators/card"
+    import_data = yield
+    write_card_content! import_data
+    write_card_attributes filename, import_data
+    system "bundle exec wagn generate card:migration #{ENV['name']}"
+  end
+
+  def write_card_attributes filename, card_attributes
+    path = Card::Migration.data_path("#{filename}.json")
+    File.open(path, "w") do |f|
+      f.print JSON.pretty_generate(card_attributes)
+    end
+  end
+
+  # removes and writes the content field
+  def write_card_content! import_data
+    import_data[:card][:value].each do |card_attr|
+      path = File.join "cards", card_attr[:name].to_name.key
+      File.open(Card::Migration.data_path(path), "w") do |f|
+        f.puts card_attr.delete :content
+      end
+    end
+  end
+
+  def import_data_filename
     if !ENV["name"]
       puts "pass a name for the migration 'name=...'"
-    elsif ENV["name"] =~ /^(?:import)_(.*)(?:\.json)?/
-      require "card/migration"
-      require "generators/card"
-      import_data = yield
-      card_list = import_data[:card][:value].map do |card_attr|
-        dir = File.join "cards", card_attr[:name].to_name.key
-        File.open(Card::Migration.data_path(dir), "w") do |f|
-          f.puts card_attr.delete :content
-        end
-        card_attr
-      end
-      path = Card::Migration.data_path("#{Regexp.last_match(1)}.json")
-      File.open(path, "w") do |f|
-        f.print JSON.pretty_generate(card_list)
-      end
-      system "bundle exec wagn generate card:migration #{ENV['name']}"
-    else
+    elsif !ENV["name"] =~ /^(?:import)_(.*)(?:\.json)?/
       puts "invalid format: name must match /import_(.*)/"
+    else
+      Regexp.last_match(1)
     end
   end
 
@@ -70,9 +83,10 @@ namespace :wikirate do
 
       log_args = { performance_log: {
         output: :card, output_card: page,
-        methods: [
-          :execute, :rule, :fetch, :view
-        ], details: true, min_time: 1 } }
+        methods: %i(
+          execute rule fetch view
+        ), details: true, min_time: 1
+      } }
       url = "#{host}/#{page}"
       open "#{url}?#{log_args.to_param}"
       benchmark = WBench::Benchmark.new(url) { "" }

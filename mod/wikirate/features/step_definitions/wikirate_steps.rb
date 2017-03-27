@@ -53,6 +53,11 @@ And(/^I click on item "([^"]*)"$/) do |item|
   find("td", text: item).click
 end
 
+When(/^I click on metric "([^"]*)"$/) do |metric|
+  find(:css, ".add-formula").find("h4", text: metric).click
+end
+
+
 When(
   /^(?:|I )fill in "([^"]*)" with card path of source with link "([^"]*)"$/
 ) do |field, value|
