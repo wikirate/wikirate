@@ -54,7 +54,7 @@ namespace :wikirate do
         location = args[:location] || "production"
         import_from(location) do |import|
           # cardtype has to be the first
-          # otherwise codename cards get tbe wrong type
+          # otherwise codename cards get the wrong type
           import.cards_of_type "cardtype"
           import.items_of :codenames
           import.cards_of_type "year"
@@ -67,7 +67,9 @@ namespace :wikirate do
             import.items_of setting, subitems: with_subitems
           end
           import.items_of :production_export, subitems: true
-          import.migration_records
+          exclude = ["20161005120800", "20170118180006", "20170210153241",
+                     "20170303130557"]
+          import.migration_records exclude
         end
       end
     end
