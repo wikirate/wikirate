@@ -39,6 +39,7 @@ RSpec.describe Card::Set::Type::MetricValueImportFile do
 
     let(:amazon_2015_metric_value_card) { Card["#{amazon}+value"] }
     let(:apple_2015_metric_value_card) { Card["#{apple}+value"] }
+
     it "adds metric values" do
       run_import
       expect(Card.exists?(amazon)).to be true

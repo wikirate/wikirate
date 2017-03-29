@@ -22,10 +22,6 @@ format :html do
     end
   end
 
-
-
-
-
   def filter_header
     <<-HTML
       <div class="filter-header" data-toggle="collapse"
@@ -59,7 +55,7 @@ format :html do
   end
 
   def filter_form
-  <<-HTML
+    <<-HTML
       <div class="margin-12 sub-content">
         #{main_filter_formgroups}
         #{_optional_render_sort_formgroup}
@@ -68,6 +64,6 @@ format :html do
       <div class="filter-buttons">
         #{filter_button_formgroup}
       </div>
-  HTML
+    HTML
   end
 end

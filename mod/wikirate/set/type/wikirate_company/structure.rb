@@ -117,5 +117,4 @@ format :html do
   view :filter do |args|
     field_subformat(:company_metric_filter)._render_core args
   end
-
 end

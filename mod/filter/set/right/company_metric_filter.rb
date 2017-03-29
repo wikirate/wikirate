@@ -23,10 +23,10 @@ format :html do
 
   def advanced_filter_form
     output [
-             advanced_filter_formgroups,
-             "<hr/>",
-             _render_sort_formgroup
-           ]
+      advanced_filter_formgroups,
+      "<hr/>",
+      _render_sort_formgroup
+    ]
   end
 
   def sort_options

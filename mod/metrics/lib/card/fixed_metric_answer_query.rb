@@ -6,7 +6,7 @@ class Card
     DB_COLUMN_MAP = { name: :company_name,
                       wikirate_company: :company_name }.freeze
     # filter values are card names and have to be translated to card ids
-    CARD_ID_FILTERS = ::Set.new().freeze
+    CARD_ID_FILTERS = ::Set.new.freeze
 
     def initialize metric_id, *args
       @metric_id = metric_id
@@ -83,7 +83,7 @@ class Card
       end
       res.sort!
       return if res.size < 3
-      quarter = res.size/3
+      quarter = res.size / 3
       _q1 = res[quarter]
       _q3 = res[-quarter]
       res

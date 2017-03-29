@@ -19,7 +19,7 @@ describe Card::Set::All::Wikirate do
       expect(html).to include(render_card(:edits_by, name: card_name))
     end
 
-    it "should always show the help text " do
+    it "alwayses show the help text" do
       # render help text of source page
       # create a page with help text
       login_as "WagnBot"

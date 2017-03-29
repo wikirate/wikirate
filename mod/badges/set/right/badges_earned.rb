@@ -38,7 +38,7 @@ def add_batch_of_badges badge_names
   return if include_item? sample_badge_card
   index = bsearch_index(sample_badge_card)
   self.content = item_names.insert(index, badge_names)
-                   .flatten.to_pointer_content
+                           .flatten.to_pointer_content
 end
 
 def bsearch_index badge_card

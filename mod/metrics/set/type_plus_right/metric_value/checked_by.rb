@@ -177,11 +177,11 @@ format :html do
   def check_button
     button_class = "btn btn-default btn-sm _value_check_button hover-button"
     wrap_with(:button, class: button_class,
-              data: { path: data_path }) do
+                       data: { path: data_path }) do
       output [
-               wrap_with(:span, check_button_text, class: "text"),
-               wrap_with(:span, "Yes, I checked the value", class: "hover-text")
-             ]
+        wrap_with(:span, check_button_text, class: "text"),
+        wrap_with(:span, "Yes, I checked the value", class: "hover-text")
+      ]
     end
   end
 
@@ -193,9 +193,9 @@ format :html do
   def user_checked_text
     icon_class = "fa fa-times-circle-o fa-lg cursor-p _value_uncheck_button"
     output [
-             wrap_with(:i, '"Yes, I checked the value"'),
-             wrap_with(:i, "", class: icon_class, data: { path: data_path })
-           ]
+      wrap_with(:i, '"Yes, I checked the value"'),
+      wrap_with(:i, "", class: icon_class, data: { path: data_path })
+    ]
   end
 end
 
@@ -255,7 +255,7 @@ end
 def drop_checker
   drop_item user.name
   mark_as_requested if item_names.empty? &&
-    check_was_requested_before_double_check?
+                       check_was_requested_before_double_check?
 end
 
 def add_checked_flag?

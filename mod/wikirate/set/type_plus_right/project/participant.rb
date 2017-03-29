@@ -16,8 +16,7 @@ def item_names _args
         {
           refer_to: { found_by: "#{initiative_name}+Project" }
         }
-      ]
-    }, return: "name"
+      ] }, return: "name"
   )
   editors.delete(Card[WagnBotID].name)
   editors.uniq

@@ -51,7 +51,7 @@ format :html do
   end
 
   view :importance_formgroup, cache: :never do
-    checkbox_filter :importance, "My Vote", ["upvotes", "novotes"]
+    checkbox_filter :importance, "My Vote", %w(upvotes novotes)
   end
 
   view :industry_formgroup, cache: :never do

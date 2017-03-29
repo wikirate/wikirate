@@ -9,7 +9,7 @@ describe Card::Set::Type::Claim do
     create_page_with_sourcebox url, {}, "true"
   end
 
-  it "should handle too long claim" do
+  it "handles too long claim" do
     card = Card.new(type_id: Card::ClaimID, name: "2" * 101)
     expect(card).not_to be_valid
     expect(card.errors).to have_key(:note)

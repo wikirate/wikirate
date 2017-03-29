@@ -30,8 +30,9 @@ RSpec.describe Card::Set::Type::Metric do
   end
 
   describe "#numeric?" do
-    let(:metric) { sample_metric }
     subject { metric.numeric? }
+
+    let(:metric) { sample_metric }
 
     it "returns true for number" do
       metric.value_type_card.update_attributes! content: "Number"

@@ -53,8 +53,6 @@ end
 
 format :csv do
   view :core do
-    Answer.where(company_id: card.id).map do |a|
-      a.csv_line
-    end.join
+    Answer.where(company_id: card.id).map(&:csv_line).join
   end
 end

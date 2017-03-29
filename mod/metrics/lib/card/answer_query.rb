@@ -127,7 +127,9 @@ class Card
     def set_temp_filter opts
       return unless opts.present?
 
-      c, v, r = @conditions, @values, @restrict_to_ids
+      c = @conditions
+      v = @values
+      r = @restrict_to_ids
       @conditions = []
       @values = []
       @restrict_to_ids = {}
@@ -137,9 +139,12 @@ class Card
         filter key, values
       end
 
-      @temp_conditions, @temp_values, @temp_restrict_to_ids =
-        @conditions, @values, @restrict_to_ids
-      @conditions, @values, @restrict_to_ids = c, v, r
+      @temp_conditions = @conditions
+      @temp_values = @values
+      @temp_restrict_to_ids = @restrict_to_ids
+      @conditions = c
+      @values = v
+      @restrict_to_ids = r
     end
 
     # @return args for AR's where method

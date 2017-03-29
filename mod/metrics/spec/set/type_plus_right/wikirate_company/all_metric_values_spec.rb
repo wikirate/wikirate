@@ -197,6 +197,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
              "friendliness", "Victims by Employees"], 1977
           )
         end
+
         it "finds unknown values" do
           @company = Card["Samsung"]
           expect(filter_by(metric_value: :unknown))
@@ -336,6 +337,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       end
 
       let(:sorted_designer) { ["Fred", "Jedi", "Joe User"] }
+
       it "sorts by designer name (asc)" do
         sorted = sort_by(:metric_name, :asc).map do |n|
           n.to_name.parts.first

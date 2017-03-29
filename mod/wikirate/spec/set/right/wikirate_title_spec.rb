@@ -4,7 +4,7 @@ describe Card::Set::Right::WikirateTitle do
   before do
     login_as "joe_user"
   end
-  it "should show title if title exist" do
+  it "shows title if title exist" do
     # create the page with source with title
     url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknowsigh"
     Card::Env.params[:sourcebox] = "true"
@@ -16,7 +16,7 @@ describe Card::Set::Right::WikirateTitle do
 
     expect(html).to eq(title_card.content)
   end
-  it "should show \"title needed\" if title doesnt exist" do
+  it "shows \"title needed\" if title doesnt exist" do
     # create the page with source
     url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknowsigh"
 

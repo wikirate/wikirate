@@ -38,6 +38,7 @@ describe Card::Set::Right::BrowseNoteFilter do
     let(:topic_names) { topics.map(&:name) }
     let(:companies) { sample_companies 2 }
     let(:company_names) { companies.map(&:name) }
+
     before do
       @claim_card = create_claim(
         "test_note",

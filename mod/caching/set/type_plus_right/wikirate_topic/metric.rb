@@ -35,4 +35,3 @@ format :html do
     @all_metric_ids ||= card.search return: :id, limit: 0
   end
 end
-

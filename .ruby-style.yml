@@ -94,7 +94,7 @@ RSpec/NestedGroups:
 Metrics/LineLength:
   Enabled: true
   Max: 90
-RSpec/MultipleExpectzations:
+RSpec/MultipleExpectations:
   Enabled: false
 Style/Documentation:
   Exclude:

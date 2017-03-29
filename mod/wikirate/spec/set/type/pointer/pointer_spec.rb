@@ -11,8 +11,9 @@ describe Card::Set::Type::Pointer::Export do
                                content: "[[#{@collection_card.name}]]"
       big_blind.format(:json).render_export
     end
+
     context "pointer card" do
-      it "should contain cards in the pointer card and its children" do
+      it "contains cards in the pointer card and its children" do
         small_blind = Card.create! name: "Elbert Hubbard",
                                    type_id: Card::BasicID,
                                    content: "Do not take life too seriously."
@@ -76,7 +77,7 @@ describe Card::Set::Type::Pointer::Export do
       end
     end
     context "Skin card" do
-      it "should contain cards in the pointer card and its children" do
+      it "contains cards in the pointer card and its children" do
         Card::Auth.as_bot do
           small_blind =
             Card.create! name: "Elbert Hubbard",
@@ -99,7 +100,7 @@ describe Card::Set::Type::Pointer::Export do
       end
     end
     context "search card" do
-      it "should contain cards from search card and its children" do
+      it "contains cards from search card and its children" do
         Card.create!(
           name: "Elbert Hubbard",
           type_id: Card::BasicID,

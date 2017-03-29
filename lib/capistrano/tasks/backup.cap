@@ -26,9 +26,11 @@ namespace :backup do
   end
 
   task :refresh_local do
-    run_locally do
-      execute :pull_wikirate
-    end
+    invoke "backup:unzip_local"
+    invoke "backup:update_db"
+    # run_locally do
+    #   execute :pull_wikirate
+    # end
   end
 
   task :unzip do

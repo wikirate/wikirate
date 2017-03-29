@@ -10,6 +10,7 @@ shared_examples "create badges" do |threshold, badge_name|
         sample_acting_card.create_count
       end
     end
+
     it { is_expected.to eq threshold }
   end
 

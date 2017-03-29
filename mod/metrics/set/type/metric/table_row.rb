@@ -19,9 +19,9 @@ format :html do
     voo.hide! :thumbnail_subtitle
     title = card.right.name
     output [
-             _optional_render_vote,
-             text_with_image(title: title,
-                             image: desinger_image_card, size: :icon)
+      _optional_render_vote,
+      text_with_image(title: title,
+                      image: desinger_image_card, size: :icon)
     ]
   end
 
@@ -33,10 +33,10 @@ format :html do
     voo.hide! :thumbnail_subtitle
     title = card.right.name
     output [
-             _render_vote,
-             text_with_image(title: title,
-                             image: designer_image_card, size: :icon)
-           ]
+      _render_vote,
+      text_with_image(title: title,
+                      image: designer_image_card, size: :icon)
+    ]
   end
 
   view :latest_value do

@@ -1,12 +1,12 @@
 describe Card::Set::Right::NovoteeSearch do
-  describe '#get_result_from_session' do
+  describe "#get_result_from_session" do
     before do
       login_as "joe_user"
 
       @metrics = [
-          sample_metric,
-          Card.create!(name: "Hello+World", type_id: Card::MetricID),
-          Card.create!(name: "Hello+Boys",  type_id: Card::MetricID)
+        sample_metric,
+        Card.create!(name: "Hello+World", type_id: Card::MetricID),
+        Card.create!(name: "Hello+Boys",  type_id: Card::MetricID)
       ]
 
       @company = sample_company
@@ -18,8 +18,7 @@ describe Card::Set::Right::NovoteeSearch do
             "content" => "[[#{@company.name}]]", type_id: Card::PointerID
           },
           "+value" => { "content" => "I'm fine, I'm just not happy.",
-                        type_id: Card::PhraseID
-                      },
+                        type_id: Card::PhraseID },
           "+year" => { "content" => "2015", type_id: Card::PointerID },
           "+source" => {
             "subcards" => {

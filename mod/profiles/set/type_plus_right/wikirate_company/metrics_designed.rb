@@ -5,7 +5,6 @@ format :html do
     super.merge(return: :card)
   end
 
-
   view :core do
     wikirate_table :metric,
                    search_with_params,
