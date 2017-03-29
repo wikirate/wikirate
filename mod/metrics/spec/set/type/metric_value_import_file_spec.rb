@@ -103,8 +103,8 @@ RSpec.describe Card::Set::Type::MetricValueImportFile do
       add_three_answers "Samsung"
       run_import
 
-      expect(badges_names).to include "Apple Inc.+Researcher+company badge"
-      expect(badges_names).to include "Samsung+Researcher+company badge"
+      expect(badge_names).to include "Apple Inc.+Researcher+company badge"
+      expect(badge_names).to include "Samsung+Researcher+company badge"
     end
 
     context "company correction name is filled" do
