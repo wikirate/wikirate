@@ -4,7 +4,7 @@ class Card
       # calculate the grouping for a range chart
       module Buckets
         def each_bucket
-          lower = (log_bucket? && min > 0) ? Math.log(min) : min
+          lower = log_bucket? && min.positive? ? Math.log(min) : min
           real_lower = min
           @buckets.times do
             upper = lower + bucket_size

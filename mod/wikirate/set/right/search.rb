@@ -1,1 +1,1 @@
-include_set Abstract::Search
+include_set Self::Search
