@@ -6,6 +6,6 @@ Feature: search feature
     Given I go to the homepage
     And I fill in "_keyword" with "Jedi"
     And I press enter to search
-    Then I should see "created company"
+    Then I should see "darkness rating"
     When I click on "2"
-    Then I should see "Death Star"
+    Then I should see "deadliness"
