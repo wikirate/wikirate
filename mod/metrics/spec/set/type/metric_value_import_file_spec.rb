@@ -77,6 +77,41 @@ RSpec.describe Card::Set::Type::MetricValueImportFile do
       expect(answer.imported).to eq true
     end
 
+    def add_three_answers company
+      Card::Env.params[:import_data] ||= []
+      3.times do |i|
+        hash = {
+          row: i + 1,
+          metric: metric.name, company: company, year: (2015 + i).to_s,
+          file_company: company,
+          value: i.to_s,
+          source: "http://example.com"
+        }
+        Card::Env.params[:import_data].push hash.to_json
+      end
+      Card::Env.params["is_data_import"] = "true"
+    end
+
+    let(:badges) do
+
+    end
+    def badge_names
+      badges = Card.fetch "Joe User", :metric_value, :badges_earned
+      badge.item_names
+    end
+
+    it "awards badges" do
+      expect(badge_names).not_to include "Apple Inc.+Researcher+company badge"
+      add_three_answers "Apple Inc."
+      add_three_answers "Samsung"
+      run_import
+
+      expect(badges_names).to include "Apple Inc.+Researcher+company badge"
+      expect(badges_names).to include "Samsung+Researcher+company badge"
+    end
+
+
+
     context "company correction name is filled" do
       let(:amazon_corrected) { "Amazon.com, Inc. Corrected" }
       before do

@@ -20,10 +20,14 @@ end
 
 def award_badge badge_card
   name_parts = [Auth.current, badge_card.badge_type, :badges_earned]
-  badge_pointer =
-    subcard(name_parts) ||
-      attach_subcard(Card.fetch(name_parts, new: { type_id: PointerID }))
+  badge_pointer = Card.fetch(name_parts, new: { type_id: PointerID })
+  if ActManager.include? badge_pointer.name
+    director = ActManager.fetch(badge_pointer)
+    director.reset_stage
+    badge_pointer = director.card
+  end
   badge_pointer.add_badge_card badge_card
+  attach_subcard(badge_pointer)
 end
 
 def fetch_badge_card badge_name
