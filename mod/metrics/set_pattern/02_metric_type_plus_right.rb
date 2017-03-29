@@ -11,7 +11,10 @@ def label name
 end
 
 def prototype_args anchor
-  { name: "+#{anchor.tag}", supercard: Card.new(name: "*dummy", type: Card::MetricID, "+*metric_type" => "[[#{anchor.trunk}]]") }
+  { name: "+#{anchor.tag}",
+    supercard: Card.new(name: "*dummy",
+                        type: Card::MetricID,
+                        "+*metric_type" => "[[#{anchor.trunk}]]") }
 end
 
 def anchor_name card

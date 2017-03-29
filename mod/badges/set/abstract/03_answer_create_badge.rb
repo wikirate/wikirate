@@ -2,7 +2,7 @@ include_set Abstract::AnswerBadge
 
 format :html do
   view :level do
-    super()# + "<div class='badge-affinity-connection'>&nbsp;</div>".html_safe
+    super() # + "<div class='badge-affinity-connection'>&nbsp;</div>".html_safe
   end
 
   def valued_action

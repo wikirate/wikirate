@@ -84,8 +84,8 @@ class Card
       res.sort!
       return if res.size < 3
       quarter = res.size/3
-      q1 = res[quarter]
-      q3 = res[-quarter]
+      _q1 = res[quarter]
+      _q3 = res[-quarter]
       res
     end
 

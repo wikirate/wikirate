@@ -6,7 +6,7 @@ class Answer
     end
 
     def to_name
-      #[:wikirate_company, : ]
+      # [:wikirate_company, : ]
     end
 
     def prepare_filter

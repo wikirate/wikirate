@@ -90,7 +90,7 @@ module BadgeSquad
       if !@map[action]
         "not supported action: #{action}"
       elsif affinity_type &&
-        !@map[action][affinity_type].is_a?(Abstract::BadgeLine)
+            !@map[action][affinity_type].is_a?(Abstract::BadgeLine)
         "affinity type #{affinity_type} not supported for action #{action}"
       end
     raise StandardError, error if error

@@ -74,22 +74,27 @@ class Answer < ActiveRecord::Base
     end
 
     def refresh ids=nil, *fields
-      ids &&= Array(ids)
       if ids
-        ids.each do |ma_id|
-          begin
-            create_or_update ma_id, *fields
-          rescue => e
-            puts "failed: #{ma_id}"
-          end
+        Array(ids).each do |ma_id|
+          refresh_entry fields, ma_id
         end
       else
-        count = 0
-        Card.where(type_id: Card::MetricValueID).pluck_in_batches(:id) do |batch|
-          count += batch.size
-          puts "#{batch.first} - #{count}"
-          refresh(batch, *fields)
-        end
+        refresh_all fields
+      end
+    end
+
+    def refresh_entry fields, ma_id
+      create_or_update ma_id, *fields
+    rescue => _e
+      puts "failed: #{ma_id}"
+    end
+
+    def refresh_all fields
+      count = 0
+      Card.where(type_id: Card::MetricValueID).pluck_in_batches(:id) do |batch|
+        count += batch.size
+        puts "#{batch.first} - #{count}"
+        refresh(batch, *fields)
       end
     end
 

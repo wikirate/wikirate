@@ -92,12 +92,9 @@ RSpec.describe Card::Set::Type::MetricValueImportFile do
       Card::Env.params["is_data_import"] = "true"
     end
 
-    let(:badges) do
-
-    end
     def badge_names
       badges = Card.fetch "Joe User", :metric_value, :badges_earned
-      badge.item_names
+      badges.item_names
     end
 
     it "awards badges" do
@@ -110,10 +107,9 @@ RSpec.describe Card::Set::Type::MetricValueImportFile do
       expect(badges_names).to include "Samsung+Researcher+company badge"
     end
 
-
-
     context "company correction name is filled" do
       let(:amazon_corrected) { "Amazon.com, Inc. Corrected" }
+
       before do
         Card::Env.params[:corrected_company_name] = {
           "1" => amazon_corrected,
@@ -122,6 +118,7 @@ RSpec.describe Card::Set::Type::MetricValueImportFile do
         }
         mv_import_file.update_attributes! subcards: {}
       end
+
       it "uses the input company name" do
         expect(Card.exists?(amazon_corrected)).to be true
 
@@ -129,6 +126,7 @@ RSpec.describe Card::Set::Type::MetricValueImportFile do
           Card["#{metric.name}+#{amazon_corrected}+2015+value"]
         expect(amazon_2015_metric_value_card.content).to eq("0")
       end
+
       it "updates companies's aliases" do
         amazon_aliases = Card["#{amazon_corrected}+aliases"]
         expect(amazon_aliases.item_names).to include("Amazon.com, Inc.")
@@ -138,6 +136,7 @@ RSpec.describe Card::Set::Type::MetricValueImportFile do
 
   describe "#map_company" do
     let(:format) { mv_import_file.format(:html) }
+
     it "maps Samsung" do
       expect(format.map_company("Samsung"))
         .to eq "Samsung"

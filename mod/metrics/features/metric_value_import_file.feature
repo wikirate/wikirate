@@ -122,8 +122,8 @@ Feature: import metric values from a csv file
     And I check checkbox for csv row 14
     And I press "Import"
     And I wait for ajax response
-    Then I should see "company affinity badge for SPECTRE: Researcher"
-    And I should see "company affinity badge for Samsung: Researcher"
+    Then I should see "SPECTRE Researcher"
+    And I should see "Samsung Researcher"
     And I should see "Inside Source"
     And I wait 5 seconds
     And I go to card "Joe Camel+metric values+badges earned"

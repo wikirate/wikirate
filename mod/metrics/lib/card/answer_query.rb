@@ -90,8 +90,8 @@ class Card
     private
 
     def missing_answer_query
-     @missing_answer_query ||=
-       missing_answer_query_class.new(@filter_args, @paging_args)
+      @missing_answer_query ||=
+        missing_answer_query_class.new(@filter_args, @paging_args)
     end
 
     def missing_answers
@@ -148,7 +148,7 @@ class Card
       @restrict_to_ids.each do |key, values|
         filter key, values
       end
-      [(@conditions+@temp_conditions).join(" AND ")] + @values + @temp_values
+      [(@conditions + @temp_conditions).join(" AND ")] + @values + @temp_values
     end
 
     def process_filter_option key, value

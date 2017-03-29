@@ -35,9 +35,10 @@ format :html do
     id = unique_id.tr "+", "-"
     output [
              zoom_out_link,
-             wrap_with(:div, "", id: id, class: classy("vis"),
+             wrap_with(:div, "",
+                       id: id, class: classy("vis"),
                        data: { url: chart_load_url })
-           ]
+    ]
   end
 
   def chart_load_url

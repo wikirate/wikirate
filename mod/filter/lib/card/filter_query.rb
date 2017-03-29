@@ -19,8 +19,8 @@ class Card
       when Symbol
         send("#{@rules[key]}_rule", key, value)
       when Proc
-        @rules[key].call(key, value).each do |wql_key, value|
-          @filter_wql[wql_key] << value
+        @rules[key].call(key, value).each do |wql_key, val|
+          @filter_wql[wql_key] << val
         end
       else
         send("#{key}_wql", value)

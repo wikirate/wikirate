@@ -94,3 +94,10 @@ RSpec/NestedGroups:
 Metrics/LineLength:
   Enabled: true
   Max: 90
+RSpec/MultipleExpectzations:
+  Enabled: false
+Style/Documentation:
+  Exclude:
+    - db/migrate_cards/*.rb
+Style/SymbolArray:
+  Enabled: false
