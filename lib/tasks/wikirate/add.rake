@@ -49,7 +49,7 @@ def category typecode
 end
 
 def parameters_present? *env_keys
-  missing = env_keys.inject { |k| !ENV[k.to_s] }
+  missing = env_keys.select { |k| !ENV[k.to_s] }
   return true if missing.empty?
   missing.each do |key|
     color_puts "missing parameter:", :red, key

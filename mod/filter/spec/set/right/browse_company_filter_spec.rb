@@ -31,9 +31,8 @@ describe Card::Set::Right::BrowseCompanyFilter do
       it do
         is_expected.to eq wql(
           left_plus: ["Global Reporting Initiative+Sector Industry",
-                      { right_plus:
-                          ["2015", { right_plus: ["value", { eq: "myIndustry" }] }]
-                      }]
+                      { right_plus: ["2015",
+                                     { right_plus: ["value", { eq: "myIndustry" }] }] }]
         )
       end
     end
@@ -59,7 +58,8 @@ describe Card::Set::Right::BrowseCompanyFilter do
           name: %w(match Apple),
           found_by: "Animal Rights+Company",
           left_plus: ["Global Reporting Initiative+Sector Industry",
-                      { right_plus: ["2015", { right_plus: ["value", { eq: "myIndustry" }] }] }],
+                      { right_plus: ["2015",
+                                     { right_plus: ["value", { eq: "myIndustry" }] }] }],
           referred_to_by: { left: { name: "myProject" } }
         )
       end

@@ -1,4 +1,5 @@
 class SharedData
+  # test data for badges
   module Badges
     SAMPLE_AFFINITY_BADGES =
       [

@@ -21,7 +21,9 @@ source_cards.each do |source_card|
     puts "#{source_card.name},#{original_url}"
     begin
       uri = open(url, :allow_redirections => :safe,
-                      "User-Agent" => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.65 Safari/537.36")
+                      "User-Agent" => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) "\
+                                      "AppleWebKit/537.36 (KHTML, like Gecko) "\
+                                      "Chrome/43.0.2357.65 Safari/537.36")
     rescue OpenURI::HTTPError => error
       puts error
       next

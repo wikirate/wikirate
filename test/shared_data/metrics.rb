@@ -1,4 +1,5 @@
 class SharedData
+  # test data for metrics
   module Metrics
     def add_metrics
       Card::Env[:protocol] = "http://"
