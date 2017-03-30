@@ -100,6 +100,7 @@ RSpec.describe Card::Set::Type::MetricValueImportFile do
 
     it "awards badges" do
       expect(badge_names).not_to include "Apple Inc.+Researcher+company badge"
+      Card::Env.params[:import_data] = []
       add_three_answers "Apple Inc."
       add_three_answers "Samsung"
       run_import
