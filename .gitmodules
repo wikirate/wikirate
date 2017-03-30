@@ -4,3 +4,6 @@
 [submodule "vendor/mods"]
 	path = vendor/mods
 	url = https://github.com/wagn/mods.git
+[submodule "vendor/smartname"]
+	path = vendor/smartname
+	url = https://github.com/xithan/smartname

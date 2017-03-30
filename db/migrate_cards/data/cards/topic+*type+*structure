@@ -1,0 +1,68 @@
+
+<div class="container-fluid yinyang nodblclick">
+	<div class="row">
+		<div class="col-md-6 border-right">
+		  <div class="row clearfix topic-content topic-page-logo-container">
+        <div class="col-md-12 col-xs-12 nopadding left">
+          <a class="inherit-anchor" href="{{_l|url}}">
+            <div class="row-data center-logo ">{{_l+image}}</div>
+            
+          </a>
+        </div>
+      </div>
+			<div class="tabbable company-tabs">
+			  <div class="col-md-8"><h2><span class="topic-color">{{_|name}}</span></h2></div>
+				<ul class="nav nav-tabs with-item-count text-center">
+				  
+				  <li>
+						<a href="/{{_|linkname}}?tab=company" data-tab-content-url="/{{_|linkname}}+company_page" data-tab-name='company' >
+						  <span class="count-number clearfix">{{_+company+*cached count|core}}</span>  
+  						<span class="count-label">Companies</span>
+						</a>
+					</li>
+					
+					<li>
+						<a href="/{{_|linkname}}?tab=overview" data-tab-content-url="/{{_|linkname}}+overview_page" data-tab-name='overview'>
+						  <span class="count-number clearfix">{{_+Review+*count|core}}</span>  
+  						<span class="count-label">Review</span>
+						</a>
+					</li>
+					
+					<li>
+						<a href="/{{_|linkname}}?tab=metric" data-tab-content-url="/{{_|linkname}}+metric_page" data-tab-name='metric' >
+  						<span class="count-number clearfix">{{_+metric count|core}}</span>  
+  						<span class="count-label">Metrics</span>
+						</a>
+					</li>
+					
+					<li>
+						<a  href="/{{_|linkname}}?tab=note" data-tab-content-url="/{{_|linkname}}+note_page" data-tab-name='note'>
+						  <span class="count-number clearfix">{{_+note+*count|core}}</span>  
+  						<span class="count-label">Notes</span>
+						</a>
+					</li>
+					
+					<li>
+						<a  href="/{{_|linkname}}?tab=reference" data-tab-content-url="/{{_|linkname}}+reference_page"  data-tab-name='reference'>
+						  <span class="count-number clearfix">{{_+source+*count|core}}</span>  
+  						<span class="count-label">Sources</span>
+						</a>
+					</li>
+					
+					<li class="hidden-md hidden-lg">
+						<a href="#company-about" >
+						  <span class="count-number clearfix">&nbsp;</span>  
+  						<span class="count-label">About</span>
+						</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+          {{_l+tab_content|content}}
+				
+				
+				</div>
+			</div>
+		</div>
+		 {{_l+right sidebar}}
+		</div>
+</div>

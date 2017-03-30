@@ -1,0 +1,9 @@
+
+					<div class="tab-pane active" id="company-metrics">
+					  <p>
+				      
+				      
+				    </p>
+					  {{_left+Note||content;structure: note item }}
+					</div>
+				

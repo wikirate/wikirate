@@ -27,7 +27,6 @@
 @resizeIframe = (slot) ->
   height = $(window).height() - $('.navbar').height() - 1
   slot.find('.webpage-preview').height height
-  return
 
 $(document).ready ->
   if $('body').attr('id') == 'source-preview-page-layout'
@@ -48,5 +47,5 @@ $(document).ready ->
     url = $('#source_url').html()
     if url
       testSameOrigin url, pageName
-    resizeIframe($('body'))
     # $('[data-target="#tab_claims"]').trigger 'click'
+    resizeIframe($('body'))

@@ -22,13 +22,13 @@ end
 
 event :validate_import, :prepare_to_validate,
       on: :update,
-      when: proc { Env.params['is_metric_import_update'] == 'true' } do
-  check_card metric_pointer_card, 'Metric', Card::MetricID
-  check_card year_pointer_card, 'Year', Card::YearID
+      when: proc { Env.params["is_data_import"] == "true" } do
+  check_card metric_pointer_card, "Metric", Card::MetricID
+  check_card year_pointer_card, "Year", Card::YearID
 end
 
 # @return [Hash] args to create metric value card
-def process_metric_value_data metric_value_data
+def process_data metric_value_data
   mv_hash = super(metric_value_data)
   mv_hash.merge metric: metric,
                 year: year,

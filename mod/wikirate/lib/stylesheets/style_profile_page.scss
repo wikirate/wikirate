@@ -1,0 +1,65 @@
+//$header-bgcolor: #f9f9f9;
+$header-color: #666;
+.RIGHT-activity.titled-view .activity {
+  color: $header-color;
+  font-size: 85%;
+  margin-bottom: 15px;
+  overflow-x: hidden;
+  .glyphicon {
+    font-size: 8px;
+    vertical-align: middle;
+    margin-top: -3px;
+  }
+  div {
+    display: inline-block;
+  }
+}
+
+.contributions-about-link {
+  padding: 14px 12px;
+  position: absolute;
+  color: #A7A5A5;
+  font-size: 12px
+}
+
+.open-view.RIGHT-showcase .card-frame {
+  padding-bottom: 40px;
+  margin-bottom: 0px;
+}
+
+.contribution-report-toggle {
+  a > span {
+    padding: 14px;
+  }
+}
+
+/*----------- Media queries ---------*/
+
+@media all and (max-width: 1150px) {
+
+}
+
+@media all and (max-width: 1205px) {
+
+}
+
+@media all and (max-width: 990px) {
+  .contributions-about-link {
+    position: relative;
+  }
+}
+
+@media all and (max-width: 48em) {
+
+}
+
+@media all and (max-width: 47em) {
+
+
+}
+
+/*----------- Media queries- For mobile devices ---------*/
+
+@media all and (max-width: 40em) {
+
+}

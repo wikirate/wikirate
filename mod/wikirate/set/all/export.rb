@@ -1,5 +1,4 @@
 format :json do
-
   def default_export_args args
     args[:count] ||= 0
     args[:count] += 1
@@ -20,17 +19,32 @@ format :json do
   end
 
   view :export_items do |args|
-    result = []
-    each_nested_chunk do |chunk|
-      next if chunk.respond_to?(:options) && chunk.options &&
-              chunk.options[:inc_name] &&
-              chunk.options[:inc_name] == '_main'
-      next unless (r_card = chunk.referee_card)
-      next if r_card.new? || r_card == card
-      next if args[:processed_keys].include?(r_card.key)
-      result << r_card
+    items_for_export(args[:processed_keys]).map do |item|
+      subformat(item).render_export args
     end
-    result.compact.uniq.map { |ca| subformat(ca).render_export(args) }
+  end
+
+  def items_for_export processed_keys
+    items = []
+    card.each_nested_chunk do |chunk|
+      next unless valid_export_chunk? chunk, processed_keys
+      items << chunk.referee_card
+    end
+    items.compact.uniq
+  end
+
+  def valid_export_chunk? chunk, processed_keys
+    return false if main_nest_chunk? chunk
+    return false unless (r_card = chunk.referee_card)
+    return false if r_card.new? || r_card == card
+    return false if processed_keys.include? r_card.key
+    true
+  end
+
+  def main_nest_chunk? chunk
+    chunk.respond_to?(:options) &&
+      chunk.options &&
+      chunk.options[:nest_name] &&
+      chunk.options[:nest_name] == "_main"
   end
 end
-

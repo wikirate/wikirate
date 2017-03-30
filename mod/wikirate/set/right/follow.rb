@@ -1,22 +1,17 @@
 format :html do
-
-  view :title do |args|
-    res = super(args)
-    res += optional_render :more_link, args, :hide
+  view :title do
+    voo.hide :more_link
+    res = super()
+    res + optional_render_more_link
   end
 
-  view :more_link do |args|
-    card_link card, :text=> 'more...'
+  view :more_link do
+    link_to_card card, "more..."
   end
 
-  view :profile, :tags=>:unknown_ok do |args|
-    if card.left.present? && card.left.account
-      frame args.merge(:optional_more_link=>:show) do
-        _render_following_list(args)
-      end
-    else
-      ''
-    end
+  view :profile, tags: :unknown_ok do
+    voo.show :more_link
+    return "" unless card.left.present? && card.left.account
+    frame { _render_following_list }
   end
-
 end

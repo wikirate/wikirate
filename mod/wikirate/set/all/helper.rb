@@ -1,7 +1,23 @@
 format :html do
-  def fa_icon icon, opts={}
-    <<-HTML
-      <i class="fa fa-#{icon} #{opts[:class]}"></i>
-    HTML
+  def with_header header
+    output [wrap_with(:h3, header), yield]
+  end
+
+  def icon_tag type, opts={}
+    lib = opts.delete(:library) || :fa
+    prepend_class opts, "#{lib} #{lib}-#{type}"
+    %(<i #{tag_options opts}></i>)
+  end
+
+  def fa_icon type, opts={}
+    icon_tag type, opts
+  end
+
+  def standard_pointer_nest codename
+    field_nest codename, view: :titled,
+                         cache: :never,
+                         title: codename.cardname.s,
+                         variant: "plural capitalized",
+                         items: { view: :link }
   end
 end

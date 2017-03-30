@@ -1,50 +1,49 @@
-require 'colorize'
+require "colorize"
 
 namespace :wikirate do
-  desc 'fetch json from export card on dev site and generate migration'
+  desc "fetch json from export card on dev site and generate migration"
   task import_from_dev: :environment do
     import_cards do
-      json = open('http://dev.wikirate.org/export.json').read
+      json = open("http://dev.wikirate.org/export.json").read
       JSON.parse(json).deep_symbolize_keys
     end
   end
 
-  desc 'fetch json from local export card and generate migration'
+  desc "fetch json from local export card and generate migration"
   task import_from_local: :environment do
     import_cards do
-      Card['export'].format(format: :json).render_content
+      Card["export"].format(format: :json).render_content
     end
   end
 
   def import_cards
-    if !ENV['name']
+    if !ENV["name"]
       puts "pass a name for the migration 'name=...'"
-    elsif ENV['name'] =~ /^(?:import)_(.*)(?:\.json)?/
-      require 'card/migration'
-      require 'generators/card'
+    elsif ENV["name"] =~ /^(?:import)_(.*)(?:\.json)?/
+      require "card/migration"
+      require "generators/card"
       import_data = yield
       card_list = import_data[:card][:value].map do |card_attr|
-        dir = File.join 'cards', card_attr[:name].to_name.key
-        File.open(Card::Migration.data_path(dir), 'w') do |f|
+        dir = File.join "cards", card_attr[:name].to_name.key
+        File.open(Card::Migration.data_path(dir), "w") do |f|
           f.puts card_attr.delete :content
         end
         card_attr
       end
       path = Card::Migration.data_path("#{Regexp.last_match(1)}.json")
-      File.open(path, 'w') do |f|
+      File.open(path, "w") do |f|
         f.print JSON.pretty_generate(card_list)
       end
       system "bundle exec wagn generate card:migration #{ENV['name']}"
     else
-      puts 'invalid format: name must match /import_(.*)/'
+      puts "invalid format: name must match /import_(.*)/"
     end
   end
 
-
-  desc 'test the performance for a list of pages'
+  desc "test the performance for a list of pages"
   task benchmark: :environment do
     def wbench_results_to_html results
-      list = ''
+      list = ""
       results.browser.each do |key, value|
         list += %(
                 <li class="list-group-item">
@@ -61,11 +60,11 @@ namespace :wikirate do
     end
 
     # host = 'http://dev.wikirate.org'
-    host = 'http://localhost:3000'
+    host = "http://localhost:3000"
 
-    test_pages = ENV['page'] ? [ENV['page']] : ['Home']
+    test_pages = ENV["page"] ? [ENV["page"]] : ["Home"]
     # test_pages = ENV['name'] ? [ENV['name']] : ['Home']
-    runs = ENV['run'] || 1
+    runs = ENV["run"] || 1
     test_pages.each do |page|
       puts page
 
@@ -76,7 +75,7 @@ namespace :wikirate do
         ], details: true, min_time: 1 } }
       url = "#{host}/#{page}"
       open "#{url}?#{log_args.to_param}"
-      benchmark = WBench::Benchmark.new(url) { '' }
+      benchmark = WBench::Benchmark.new(url) { "" }
       results   = benchmark.run(runs) # => WBench::Results
       card = Card.fetch "#{page}+#{Card[:performance_log].name}",
                         new: { type_id: Card::PointerID }
@@ -109,22 +108,22 @@ namespace :wikirate do
   end
 
   namespace :task do
-    desc 'remove empty metric value cards'
+    desc "remove empty metric value cards"
     task remove_empty_metric_value_cards: :environment do
       # require File.dirname(__FILE__) + '/../config/environment'
       # Card::Auth.as_bot
       Card::Auth.current_id = Card::WagnBotID
 
-      Card.search(type: 'Metric') do |metric|
+      Card.search(type: "Metric") do |metric|
         puts "~~~\n\nworking on METRIC: #{metric.name}"
 
         value_groups = Card.search(
           left_id: metric.id,
-          right: { type: 'Company' },
+          right: { type: "Company" },
           not: {
             right_plus: [
-              { type: 'Year' },
-              { type: 'Metric Value' }
+              { type: "Year" },
+              { type: "Metric Value" }
             ]
           }
         )
@@ -141,12 +140,12 @@ namespace :wikirate do
           end
         end
       end
-      puts 'empty trash'
+      puts "empty trash"
       Card.empty_trash
     end
 
-    desc 'delete all cards that are marked as trash'
-    task 'empty_trash' => :environment do
+    desc "delete all cards that are marked as trash"
+    task "empty_trash" => :environment do
       Card.empty_trash
     end
   end

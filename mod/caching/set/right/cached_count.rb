@@ -13,9 +13,9 @@ format :html do
        l.respond_to?(:update_cached_count)
       l.update_cached_count
       @card = Card.fetch(card.name)
-      render(args[:denied_view], args)
+      render @denied_view, args
     else
-      super(args)
+      super()
     end
   end
 
