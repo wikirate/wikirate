@@ -22,6 +22,7 @@ class SharedData
                           value_type: "Category",
                           value_options: %w(yes no),
                           research_policy: "Designer Assessed",
+                          topic: "Taming",
                           random_source: true do
         Slate_Rock_and_Gravel_Company "1977" => "yes", "2000" => "yes"
         Monster_Inc "1977" => "no", "2000" => "no"

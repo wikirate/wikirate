@@ -1,5 +1,5 @@
 class Card
-  class FilterQuery
+  class  FilterQuery
     def initialize filter_keys_with_values, extra_wql={}
       @filter_wql = Hash.new { |h, k| h[k] = [] }
       @rules = yield if block_given?

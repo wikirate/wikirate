@@ -1,4 +1,4 @@
-include Card::CachedCount
+include_set Abstract::CachedCount
 
 def self.notes_for_analyses_applicable_to note
   note.analysis_names.map do |analysis_name|

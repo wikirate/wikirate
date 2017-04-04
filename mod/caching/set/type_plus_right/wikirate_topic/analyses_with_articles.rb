@@ -1,5 +1,5 @@
 # cache # of articles for the topic (=_right)
-include Card::CachedCount
+include_set Abstract::CachedCount
 
 # recount overviews associated with a topic
 # whenever article gets created or deleted

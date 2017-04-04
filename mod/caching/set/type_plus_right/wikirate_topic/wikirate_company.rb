@@ -1,4 +1,4 @@
-include Card::CachedCount
+include_set Abstract::CachedCount
 include_set Abstract::WqlSearch
 
 def topic_name
@@ -22,7 +22,7 @@ def self.company_plus_topic_cards_for_metric metric_card
   topic_pointer = metric_card.fetch trait: :wikirate_topic
   return [] unless topic_pointer
   topic_names =
-    Card::CachedCount.pointer_card_changed_card_names(topic_pointer)
+    Abstract::CachedCount.pointer_card_changed_card_names(topic_pointer)
   topic_names.map do |topic_name|
     Card.fetch topic_name.to_name.trait(:wikirate_company)
   end
@@ -108,7 +108,7 @@ end
 # # recount topics associated with a company whenever <Metric>+topic is edited
 # ensure_set { TypePlusRight::Metric::WikirateTopic }
 # cache_expire_trigger TypePlusRight::Metric::WikirateTopic do |changed_card|
-#   names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
+#   names = Abstract::CachedCount.pointer_card_changed_card_names(changed_card)
 #   next unless names
 #   names.map do |topic_name|
 #     Card.fetch topic_name.to_name.trait(:all_companies)
@@ -149,7 +149,7 @@ end
 # # recount topics associated with a company whenever <source>+topic is edited
 # ensure_set { TypePlusRight::Source::WikirateTopic }
 # cache_expire_trigger TypePlusRight::Source::WikirateTopic do |changed_card|
-#   names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
+#   names = Abstract::CachedCount.pointer_card_changed_card_names(changed_card)
 #   next unless names
 #   names.map do |topic_name|
 #     Card.fetch topic_name.to_name.trait(:all_companies)
@@ -159,7 +159,7 @@ end
 # # recount topics associated with a company whenever <note>+topic is edited
 # ensure_set { TypePlusRight::Claim::WikirateTopic }
 # cache_expire_trigger TypePlusRight::Claim::WikirateTopic do |changed_card|
-#   names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
+#   names = Abstract::CachedCount.pointer_card_changed_card_names(changed_card)
 #   next unless names
 #   names.map do |topic_name|
 #     Card.fetch topic_name.to_name.trait(:all_companies)

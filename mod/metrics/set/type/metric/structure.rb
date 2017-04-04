@@ -58,6 +58,16 @@ format :html do
     HTML
   end
 
+  # view :browse_item do
+  #   render_haml :browse_item
+  # end
+
+  view :browse_item, template: :haml
+
+  def view_template_path view
+    super(view, __FILE__)
+  end
+
   def author_info author_card
     output [
       author_image(author_card),

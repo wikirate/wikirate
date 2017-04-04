@@ -4,7 +4,7 @@
 # (analysis+source+*type_plus_right+*structure):
 #  "type":"Source",
 #  "right_plus":[["Company", {"refer_to":"_1"}],["Topic",{"refer_to":"_2"}]]
-include Card::CachedCount
+include_set Abstract::CachedCount
 
 def self.notes_for_analyses_applicable_to source
   source.analysis_names.map do |analysis_name|

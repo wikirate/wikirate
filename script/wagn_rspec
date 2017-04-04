@@ -1,7 +1,11 @@
 #!/usr/bin/env ruby
 # used to run rspec in RubyMine
 
-ARGV = ["rspec", "--no-simplecov", "--", "--default-path=/opt/wagn"] + ARGV
+
+rspec_args = ["rspec", "--no-simplecov", "--", "--default-path=/opt/wagn"] + ARGV
+Object.send(:remove_const, :ARGV)
+ARGV = rspec_args
+
 APP_PATH = File.expand_path("../../config/application",  __FILE__)
 require File.expand_path("../../config/boot",  __FILE__)
 require "wagn/commands"

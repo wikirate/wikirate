@@ -67,7 +67,8 @@ namespace :wikirate do
             import.items_of setting, subitems: with_subitems
           end
           import.items_of :production_export, subitems: true
-          exclude %w(20161005120800 20170118180006 20170210153241 20170303130557)
+          exclude %w(20161005120800 20170118180006 20170210153241 20170303130557
+                     20170330102819)
           import.migration_records exclude
         end
       end

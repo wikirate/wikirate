@@ -67,6 +67,8 @@ class SharedData
                            "knowledge and defense, never for attack."
              }
 
+      create "Taming", type: "topic"
+
       create "Death Star+Force",
              type: "analysis",
              subcards: { "+article" => { content: "I'm your father!" } }
@@ -164,6 +166,19 @@ class SharedData
                wikirate_company: {
                  type: :pointer,
                  content: "[[Death Star]]\n[[SPECTRE]]\n[[Los Pollos Hermanos]]"
+               }
+             }
+
+      create "Empty Project",
+             type: :project,
+             subfields: {
+               metric: {
+                 type: :pointer,
+                 content: ""
+               },
+               wikirate_company: {
+                 type: :pointer,
+                 content: ""
                }
              }
     end

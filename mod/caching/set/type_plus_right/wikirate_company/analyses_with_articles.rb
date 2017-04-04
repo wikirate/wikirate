@@ -1,5 +1,5 @@
 # cache # of articles for this company (=_left)
-include Card::CachedCount
+include_set Abstract::CachedCount
 
 # recount overviews associated with a company
 # whenever article gets created or deleted

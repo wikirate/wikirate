@@ -1,5 +1,5 @@
 
-include Card::CachedCount
+include_set Abstract::CachedCount
 
 def self.notes_for_analyses_applicable_to metric
   metric.analysis_names.map do |analysis_name|

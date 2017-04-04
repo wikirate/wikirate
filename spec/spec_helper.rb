@@ -100,8 +100,8 @@ def sample_project
   Card["Evil Project"]
 end
 
-def sample_source
-  Card.search(type_id: Card::SourceID, limit: 1).first
+def sample_source num=1
+  Card.search(type_id: Card::SourceID, limit: num)[num-1]
 end
 
 def sample_metric_value

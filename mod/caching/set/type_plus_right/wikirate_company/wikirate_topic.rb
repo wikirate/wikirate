@@ -1,4 +1,4 @@
-include Card::CachedCount
+include_set Abstract::CachedCount
 include_set Abstract::WqlSearch
 
 def company_name
