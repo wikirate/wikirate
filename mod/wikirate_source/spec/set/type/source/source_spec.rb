@@ -13,7 +13,7 @@ describe Card::Set::Type::Source do
     end
 
     it "adds title and description" do
-      url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+      url = "http://www.google.com/?q=wikirate"
       Card::Env.params[:sourcebox] = "true"
       sourcepage = Card.create! type_id: Card::SourceID,
                                 subcards: {
@@ -43,7 +43,7 @@ describe Card::Set::Type::Source do
     end
 
     it "creates website card with actions" do
-      url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+      url = "http://www.google.com/?q=wikirate"
       Card::Env.params[:sourcebox] = "true"
       sourcepage = create_link_source url
       website_card = sourcepage.fetch trait: :wikirate_website
@@ -52,7 +52,7 @@ describe Card::Set::Type::Source do
 
     describe "while creating duplicated source on claim page" do
       it "returns exisiting url" do
-        url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+        url = "http://www.google.com/?q=wikirate"
         Card::Env.params[:sourcebox] = "true"
         firstsourcepage = create_link_source url
         secondsourcepage = create_link_source url
@@ -61,7 +61,7 @@ describe Card::Set::Type::Source do
     end
     describe "while creating duplicated source on source page" do
       it "shows error" do
-        url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+        url = "http://www.google.com/?q=wikirate"
 
         firstsourcepage = create_link_source url
         secondsourcepage = create_link_source url
@@ -84,7 +84,7 @@ describe Card::Set::Type::Source do
     end
     context "while creating with more than one source type " do
       it do
-        url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+        url = "http://www.google.com/?q=wikirate"
 
         sourcepage = Card.new source_args(link: url, text: "Hello boys!")
         expect(sourcepage).not_to be_valid
@@ -144,7 +144,7 @@ describe Card::Set::Type::Source do
       context "a source link" do
         before do
           Card::Env.params[:sourcebox] = "true"
-          url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+          url = "http://www.google.com/?q=wikirate"
           @sourcepage = create_link_source url
           @url_key = @sourcepage.cardname.url_key
         end
@@ -240,7 +240,7 @@ describe Card::Set::Type::Source do
 
     before do
       login_as "joe_user"
-      @url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+      @url = "http://www.google.com/?q=wikirate"
       @source_page = create_page @url, {}
     end
 

@@ -5,6 +5,11 @@ class SharedData
       Card::Env[:protocol] = "http://"
       Card::Env[:host] = "wikirate.org"
       create_or_update "1977", type_id: Card::YearID
+      create_metrics
+      vote_on_metrics
+    end
+
+    def create_metrics
       metric =
         Card::Metric.create name: "Jedi+disturbances in the Force",
                             value_type: "Category",
@@ -30,8 +35,8 @@ class SharedData
       end
 
       Timecop.freeze(HAPPY_BIRTHDAY) do
-        metric.create_values true do
-          Death_Star "1990" => "yes"
+        metric.create_values do
+          Death_Star "1990" => { value: "yes", source: sample_source("Opera") }
         end
       end
       Timecop.freeze(HAPPY_BIRTHDAY - 1.day) do
@@ -76,6 +81,13 @@ class SharedData
       end
       Card::Metric.create name: "Jedi+Sith Lord in Charge",
                           value_type: "Free Text"
+
+      create_formula_metrics
+      create_researched_metrics
+      create_category_metrics
+    end
+
+    def create_formula_metrics
       Card::Metric.create name: "Jedi+friendliness",
                           type: :formula,
                           formula: "1/{{Jedi+deadliness}}"
@@ -98,7 +110,9 @@ class SharedData
         formula: { "Jedi+deadliness+Joe User" => 60,
                    "Jedi+disturbances in the Force+Joe User" => 40 }
       )
+    end
 
+    def create_researched_metrics
       Card::Metric.create name: "Joe User+researched number 1",
                           type: :researched,
                           random_source: true do
@@ -126,7 +140,9 @@ class SharedData
                   "2013" => 13, "2014" => 14, "2015" => 15
         Death_Star "1977" => 77
       end
+    end
 
+    def create_category_metrics
       Card::Metric.create name: "Joe User+small multi",
                           type: :researched,
                           value_type: "Multi-Category",

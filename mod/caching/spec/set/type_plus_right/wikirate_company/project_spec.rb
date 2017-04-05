@@ -3,12 +3,9 @@
 require_relative "../../../support/cached_count_shared_examples"
 
 RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Project do
-  it_behaves_like "cached count", 1 do
-    let :card do
-      Card["Death Star+projects"]
-    end
+  it_behaves_like "cached count", ["Death Star", :project], 1 do
     let :add_one do
-      Card["Empty Project", :wikirate_company].add_item! "Death Star"
+      Card.fetch("Empty Project", :wikirate_company, new: {}).add_item! "Death Star"
     end
   end
 end

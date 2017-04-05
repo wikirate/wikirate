@@ -7,7 +7,7 @@ def virtual?
 end
 
 def search args={}
-  metric_ids = Answer.select(:metric_id).where(company_id: left_id).uniq.pluck(:metric_id)
+  metric_ids = Answer.where(company_id: left.id).pluck(:metric_id).uniq
   case args[:return]
   when :id
     metric_ids

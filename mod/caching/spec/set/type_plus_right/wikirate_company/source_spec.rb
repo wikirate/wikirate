@@ -13,16 +13,9 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Source do
     expect(apple_sources.cached_count).to eq 1
   end
 
-  it_behaves_like "cached count", 3 do
-    let :card do
-      Card["Death Star+source"]
-    end
+  it_behaves_like "cached count", ["Death Star", :source], 3 do
     let :add_one do
-      source = Card.create!(
-        type_id: Card::SourceID,
-        subcards: { "+Link" => { content: "http://www.wikiwand.com/en/Apple" } }
-      )
-      Card.fetch(source, :wikirate_company, new:{}).add_item! "Death Star"
+      Card.fetch(sample_source("Apple"), :wikirate_company, new: {}).add_item! "Death Star"
     end
   end
 end

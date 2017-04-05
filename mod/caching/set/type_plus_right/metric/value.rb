@@ -2,13 +2,12 @@
 include_set Abstract::CachedCount
 include_set Type::SearchType
 
-
 def virtual?
   true
 end
 
 def search args={}
-  answer_rel = Answer.where(metric_id: left_id)
+  answer_rel = Answer.where(metric_id: left.id)
   case args[:return]
   when :id
     answer_rel.pluck(:answer_id)

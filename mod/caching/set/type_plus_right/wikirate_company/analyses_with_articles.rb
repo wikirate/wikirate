@@ -1,5 +1,17 @@
 # cache # of articles for this company (=_left)
 include_set Abstract::CachedCount
+include_set Abstract::WqlSearch
+
+def virtual?
+  true
+end
+
+def wql_search
+  { left_id: left.id,
+    right: { type_id: WikirateTopicID },
+    right_plus: ["Review", { refer_to: { type_id: ClaimID } }],
+    sort: "name" }
+end
 
 # recount overviews associated with a company
 # whenever article gets created or deleted

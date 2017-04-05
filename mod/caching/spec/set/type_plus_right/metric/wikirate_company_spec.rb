@@ -3,10 +3,7 @@
 require_relative "../../../support/cached_count_shared_examples"
 
 RSpec.describe Card::Set::TypePlusRight::Metric::WikirateCompany do
-  it_behaves_like "cached count", 4 do
-    let :card do
-      Card["Jedi+disturbances in the force+companies"]
-    end
+  it_behaves_like "cached count", "Jedi+disturbances in the force+companies", 4 do
     let :add_one do
       Card["Jedi+disturbances in the force"].create_values true do
         Samsung "1977" => "yes"

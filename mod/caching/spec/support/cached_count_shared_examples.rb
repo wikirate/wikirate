@@ -1,4 +1,5 @@
-shared_examples "cached count" do |count|
+shared_examples "cached count" do |name, count|
+  let(:card) { Card.fetch name }
   it "has correct count" do
     expect(card.count).to eq count
   end
@@ -7,9 +8,15 @@ shared_examples "cached count" do |count|
     expect(card.cached_count).to eq count
   end
 
-  it "updates count" do
+  it "increases count" do
     add_one
     expect(card.count).to eq count + 1
     expect(card.cached_count).to eq count + 1
+  end
+
+  it "decreases count" do
+    delete_one
+    expect(card.count).to eq count - 1
+    expect(card.cached_count).to eq count - 1
   end
 end

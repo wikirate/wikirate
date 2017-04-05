@@ -32,4 +32,6 @@ format :html do
   view :projects_tab do
     field_nest :project, items: { view: :listing }
   end
+
+  view :browse_item, template: :haml
 end

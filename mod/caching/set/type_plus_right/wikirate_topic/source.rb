@@ -1,5 +1,10 @@
 # cache # of sources tagged with this topic (=_left)
 include_set Abstract::CachedCount
+include_set Abstract::WqlSearch
+
+def wql_hash
+  { type_id: SourceID, right_plus: [WikirateTopicID, { refer_to: left.id }] }
+end
 
 ensure_set { TypePlusRight::Source::WikirateTopic }
 

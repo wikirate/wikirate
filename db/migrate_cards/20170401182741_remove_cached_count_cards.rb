@@ -11,6 +11,9 @@ class RemoveCachedCountCards < Card::Migration
     remove type: :wikirate_company, plus_right: :wikirate_topic
     remove type: :wikirate_company, plus_right: :source
     remove type: :wikirate_company, plus_right: :project
+    remove type: :wikirate_company, plus_right: :claim
+    remove type: :wikirate_company, plus_right: :analyses_with_articles
+    remove type: :wikirate_topic, plus_right: :source
   end
 
   def remove type: , plus_right:
