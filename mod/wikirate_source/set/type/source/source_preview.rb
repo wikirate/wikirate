@@ -57,6 +57,10 @@ format :html do
     end
   end
 
+  def file_card
+    card.fetch trait: :file
+  end
+
   view :source_preview_container, tags: :unknown_ok do
     wrap_with :div, class: "row clearfix source-preview-content" do
       [
