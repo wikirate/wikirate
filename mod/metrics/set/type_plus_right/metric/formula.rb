@@ -78,7 +78,7 @@ format :html do
   view :core do
     return _render_rating_core if card.wiki_rating?
     return _render_categorical_core if card.categorical?
-    "<span>=</span><span>#{super()}"
+    "<span>=</span><span>#{super()}</span>"
   end
 
   def default_nest_view

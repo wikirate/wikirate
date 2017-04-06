@@ -527,8 +527,9 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 .titled-view.TYPE_PLUS_RIGHT-metric-formula .TYPE_PLUS_RIGHT-metric-formula.card-content {
   white-space: inherit;
   display: inline-block;
+  width: 100%;
   .thumbnail {
-    width: 400px;
+    width: 40%;
     float: left;
   }
   span {
