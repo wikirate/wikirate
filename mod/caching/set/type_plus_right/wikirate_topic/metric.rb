@@ -1,5 +1,15 @@
 # cache # of metrics tagged with this topic (=_left)
 include_set Abstract::CachedCount
+include_set Abstract::WqlSearch
+
+def virtual?
+  true
+end
+
+def wql_hash
+  { type_id: MetricID, right_plus: [WikirateTopicID, { refer_to: left.id }] }
+end
+
 
 # recount metrics associated with a topic when <metric>+topic is edited
 ensure_set { TypePlusRight::Metric::WikirateTopic }

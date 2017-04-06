@@ -9,5 +9,8 @@ RSpec.describe Card::Set::TypePlusRight::Metric::WikirateCompany do
         Samsung "1977" => "yes"
       end
     end
+    let :delete_one do
+      Card["Jedi+disturbances in the Force+SPECTRE+2000"].delete
+    end
   end
 end

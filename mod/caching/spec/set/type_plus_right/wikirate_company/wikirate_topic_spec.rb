@@ -7,6 +7,9 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::WikirateTopic do
     let :add_one do
       Card["Jedi+disturbances in the force+topics"].add_item! "Animal Welfare"
     end
+    let :delete_one do
+      Card["Jedi+disturbances in the force+topics"].drop_item! "Force"
+    end
   end
 
   it_behaves_like "cached count", "SPECTRE+topics", 1 do
@@ -14,6 +17,9 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::WikirateTopic do
       Card["Fred+dinosaurlabor"].create_values true do
         SPECTRE "1977" => "no"
       end
+    end
+    let :delete_one do
+      Card["Jedi+disturbances in the Force+SPECTRE+2000"].delete
     end
   end
 end

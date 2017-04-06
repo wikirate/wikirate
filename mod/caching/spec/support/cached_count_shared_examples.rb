@@ -15,7 +15,7 @@ shared_examples "cached count" do |name, count|
   end
 
   it "decreases count" do
-    delete_one
+    Card::Auth.as_bot { delete_one }
     expect(card.count).to eq count - 1
     expect(card.cached_count).to eq count - 1
   end

@@ -1,6 +1,10 @@
+require_relative "samples"
+
 class SharedData
   # test data for metrics
   module Metrics
+    include Samples
+
     def add_metrics
       Card::Env[:protocol] = "http://"
       Card::Env[:host] = "wikirate.org"
@@ -35,8 +39,9 @@ class SharedData
       end
 
       Timecop.freeze(HAPPY_BIRTHDAY) do
+        source = sample_source("Star_Wars").name
         metric.create_values do
-          Death_Star "1990" => { value: "yes", source: sample_source("Opera") }
+          Death_Star "1990" => { value: "yes", source: source }
         end
       end
       Timecop.freeze(HAPPY_BIRTHDAY - 1.day) do
@@ -129,6 +134,7 @@ class SharedData
       end
       Card::Metric.create name: "Joe User+researched number 3",
                           type: :researched,
+                          topic: "Taming",
                           random_source: true do
         Samsung "2014" => 1, "2015" => 1
       end

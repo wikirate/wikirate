@@ -6,7 +6,7 @@ def virtual?
   true
 end
 
-def wql_search
+def wql_hash
   { type_id: SourceID, right_plus: [WikirateCompanyID, { refer_to: left.id }] }
 end
 

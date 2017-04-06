@@ -8,11 +8,11 @@ class SharedData
     end
 
     def sample_company index=0
-      Card[SharedData::COMPANIES[index]]
+      Card[SharedData::COMPANIES.keys[index]]
     end
 
     def sample_topic index=0
-      Card[SharedData::TOPICS[index]]
+      Card[SharedData::TOPICS.keys[index]]
     end
 
     def sample_companies num=1, args={}

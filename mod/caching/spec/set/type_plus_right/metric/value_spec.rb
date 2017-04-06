@@ -9,5 +9,8 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Value do
         Samsung "1977" => "yes"
       end
     end
+    let :delete_one do
+      Card["Jedi+disturbances in the force+Death Star+1990"].delete
+    end
   end
 end

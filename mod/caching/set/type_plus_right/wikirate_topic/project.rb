@@ -1,4 +1,13 @@
 include_set Abstract::CachedCount
+include_set Abstract::WqlSearch
+
+def virtual?
+  true
+end
+
+def wql_hash
+  { type_id: ProjectID, right_plus:[WikirateTopicID, { refer_to: left.id }] }
+end
 
 # update count when <Project>+topic is changed
 ensure_set { TypePlusRight::Project::WikirateTopic }

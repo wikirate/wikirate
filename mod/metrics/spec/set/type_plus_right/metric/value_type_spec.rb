@@ -1,6 +1,6 @@
 describe Card::Set::TypePlusRight::Metric::ValueType do
   def type_change_for_value value, new_type, subject
-    subcards = get_subcards_of_metric_value metric, company, value, nil, nil
+    subcards = subcards_of_metric_value metric, company, value, nil, nil
     Card.create! type_id: Card::MetricValueID, subcards: subcards
     subject.update_attributes content: new_type
   end

@@ -1,5 +1,14 @@
 # cache # of claims tagged with this topic (=_left)
 include_set Abstract::CachedCount
+include_set Abstract::WqlSearch
+
+def virtual?
+  true
+end
+
+def wql_hash
+  { type_id: ClaimID, right_plus: [WikirateTopicID, {refer_to: left.id }] }
+end
 
 # recount notes associated with a topic whenever <note>+topic is edited
 ensure_set { TypePlusRight::Claim::WikirateTopic }

@@ -82,7 +82,9 @@ class SharedData
     def add_analysis
       create "Death Star+Force",
              type: "analysis",
-             subcards: { "+article" => { content: "I'm your father!" } }
+             subfields: { overview: {
+               content: "I'm your father! {{Death Star uses dark side of the Force|cite}}"
+             } }
     end
 
     def vote name, direction
@@ -121,7 +123,11 @@ class SharedData
                },
                wikirate_company: {
                  type: :pointer,
-                 content: "[[Death Star]]\n[[SPECTRE]]\n[[Los Pollos Hermanos]]"
+                 content: ["Death Star", "SPECTRE", "Los Pollos Hermanos"]
+               },
+               wikirate_topic: {
+                 type: :pointer,
+                 content: "Force"
                }
              }
 

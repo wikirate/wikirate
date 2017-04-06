@@ -1,5 +1,17 @@
 # cache # of articles for the topic (=_right)
 include_set Abstract::CachedCount
+include_set Abstract::WqlSearch
+
+def virtual?
+  true
+end
+
+def wql_hash
+  { right_id: left.id,
+    left: { type_id: WikirateCompanyID },
+    right_plus: ["Review", { refer_to: { type_id: ClaimID } }],
+    sort: "name" }
+end
 
 # recount overviews associated with a topic
 # whenever article gets created or deleted

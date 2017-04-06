@@ -1,5 +1,5 @@
 
-describe Card::Set::Right::RelatedArticles do
+RSpec.describe Card::Set::Right::RelatedArticles do
   let :analysis_card do
     @sample_analysis = sample_analysis
   end
@@ -33,19 +33,14 @@ describe Card::Set::Right::RelatedArticles do
       Card.create name: "#{new_company.name}+#{new_topic.name}",
                   type_id: Card::WikirateAnalysisID
       # new_article  =
-      Card.create name: "#{new_company.name}+#{new_topic.name}"\
-                        "+#{Card[:overview].name}",
+      Card.create name: [new_company.name, new_topic.name, :overview],
                   type_id: Card::BasicID,
                   content: "Today is Wednesday."
 
       claim_card = create_claim(
         "whateverclaim",
-        "+company" => {
-          content: "[[#{new_company.name}]]\r\n[[#{company}]]"
-        },
-        "+topic" => {
-          content: "[[#{new_topic.name}]]\r\n[[#{topic}]]"
-        }
+        "+company" => { content: [new_company.name, company] },
+        "+topic" => { content: [new_topic.name, topic] }
       )
 
       sample_article = @sample_analysis.fetch trait: :overview, new: {}
