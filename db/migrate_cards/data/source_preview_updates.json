@@ -1,31 +1,22 @@
-{
-  "url": null,
-  "timestamp": "2017-04-06 14:31:08 +0100",
-  "card": {
+[
+  {
     "name": "export",
-    "type": "Pointer",
-    "content": "[[export]]\n[[source+*type+*layout]]\n[[source+metric_search+*type_plus_right+*structure]]\n[[source+source_note_list+*type_plus_right+*structure]]\n[[source structure]]",
-    "value": [
-      {
-        "name": "export",
-        "type": "Pointer"
-      },
-      {
-        "name": "Source+*type+*layout",
-        "type": "Pointer"
-      },
-      {
-        "name": "source+metric search+*type plus right+*structure",
-        "type": "HTML"
-      },
-      {
-        "name": "Source+source note list+*type plus right+*structure",
-        "type": "HTML"
-      },
-      {
-        "name": "source structure",
-        "type": "HTML"
-      }
-    ]
+    "type": "Pointer"
+  },
+  {
+    "name": "Source+*type+*layout",
+    "type": "Pointer"
+  },
+  {
+    "name": "source+metric search+*type plus right+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "Source+source note list+*type plus right+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "source structure",
+    "type": "HTML"
   }
-}
+]

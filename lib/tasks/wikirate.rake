@@ -22,7 +22,7 @@ namespace :wikirate do
     require "generators/card"
     import_data = yield
     write_card_content! import_data
-    write_card_attributes filename, import_data
+    write_card_attributes filename, import_data[:card][:value]
     system "bundle exec wagn generate card:migration #{ENV['name']}"
   end
 
