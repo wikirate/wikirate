@@ -46,7 +46,7 @@ namespace :wikirate do
   def import_data_filename
     if !ENV["name"]
       puts "pass a name for the migration 'name=...'"
-    elsif !ENV["name"] =~ /^(?:import)_(.*)(?:\.json)?/
+    elsif !(ENV["name"] =~ /^(?:import)_(.*)(?:\.json)?/)
       puts "invalid format: name must match /import_(.*)/"
     else
       Regexp.last_match(1)
