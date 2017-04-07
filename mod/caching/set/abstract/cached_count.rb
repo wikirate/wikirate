@@ -1,6 +1,5 @@
 # -*- encoding : utf-8 -*-
 
-
 def self.included host_class
   host_class.extend ClassMethods
   # host_class.card_writer :cached_count, type: :plain_text
@@ -32,22 +31,18 @@ def self.pointer_card_changed_card_names card
 end
 
 module ClassMethods
-  def recount_trigger set_of_changed_card, args={}, &block
-    if set_of_changed_card
-      args[:on] ||= [:create, :update, :delete]
-      name = event_name set_of_changed_card, args
-      set_of_changed_card.class_eval do
-        event name, :integrate, args.merge(after: :refresh_updated_answers) do
-          Array.wrap(yield(self)).compact.each do |expired_count_card|
-            next unless expired_count_card.respond_to?(:recount)
-            expired_count_card.update_cached_count self
-          end
+  def recount_trigger *set_parts_of_changed_card, &block
+    args =
+      set_parts_of_changed_card.last.is_a?(Hash) ? set_parts_of_changed_card.pop : {}
+    set_of_changed_card = ensure_set { set_parts_of_changed_card }
+    args[:on] ||= [:create, :update, :delete]
+    name = event_name set_of_changed_card, args
+    set_of_changed_card.class_eval do
+      event name, :integrate, args.merge(after: :refresh_updated_answers) do
+        Array.wrap(yield(self)).compact.each do |expired_count_card|
+          next unless expired_count_card.respond_to?(:recount)
+          expired_count_card.update_cached_count self
         end
-      end
-    else
-      on_actions = args[:on] || :all
-      Array.wrap(on_actions).each do |a|
-        Card::CachedCount.expiry_checks[a] << block
       end
     end
   end

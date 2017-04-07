@@ -1,10 +1,5 @@
-# cache # of metrics with values for this company (=_left)
-include_set Abstract::CachedCount
-include_set Type::SearchType
-
-def virtual?
-  true
-end
+# cache # of metrics with answers for this company (=left)
+include_set Abstract::SearchCachedCount
 
 def search args={}
   metric_ids = Answer.where(company_id: left.id).pluck(:metric_id).uniq
@@ -21,7 +16,7 @@ def search args={}
 end
 
 # recount metrics related to company whenever a value is created or deleted
-recount_trigger Type::MetricValue, on: [:create, :delete] do |changed_card|
+recount_trigger :type, :metric_value, on: [:create, :delete] do |changed_card|
   if (company_name = changed_card.company_name)
     Card.fetch company_name.to_name.trait(:metric)
   end

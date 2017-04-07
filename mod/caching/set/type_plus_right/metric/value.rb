@@ -1,10 +1,5 @@
 # cache # of values for left metric
-include_set Abstract::CachedCount
-include_set Type::SearchType
-
-def virtual?
-  true
-end
+include_set Abstract::SearchCachedCount
 
 def search args={}
   answer_rel = Answer.where(metric_id: left.id)
@@ -20,10 +15,8 @@ def search args={}
   end
 end
 
-ensure_set { Type::MetricValue }
-
 # recount number of answers for a given metric when a Metric Value card is
 # created or deleted
-recount_trigger Type::MetricValue, on: [:create, :delete] do |changed_card|
+recount_trigger :type, :metric_value, on: [:create, :delete] do |changed_card|
   changed_card.metric_card.fetch(trait: :value)
 end

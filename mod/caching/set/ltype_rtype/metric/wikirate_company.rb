@@ -1,8 +1,7 @@
 # cache year of latest metric value
 include_set Abstract::CachedCount
 
-ensure_set { TypePlusRight::MetricValue::Value }
-recount_trigger TypePlusRight::MetricValue::Value, &:metric_plus_company_card
+recount_trigger :type_plus_right, :metric_value, :value, &:metric_plus_company_card
 
 # returns year of latest metric value
 def recount

@@ -1,19 +1,19 @@
-include_set Abstract::CachedCount
-include_set Abstract::WqlSearch
+# cache # of companies related to this topic (=left) via answers for metrics that
+# are tagged with this topic
+include_set Abstract::SearchCachedCount
 
 def topic_name
   cardname.left_name
 end
 
 # when metric value is edited
-recount_trigger Type::MetricValue do |changed_card|
+recount_trigger :type, :metric_value do |changed_card|
   next unless (metric_card = changed_card.metric_card)
   company_plus_topic_cards_for_metric metric_card
 end
 
 # ... when <metric>+topic is edited
-ensure_set { TypePlusRight::Metric::WikirateTopic }
-recount_trigger TypePlusRight::Metric::WikirateTopic do |changed_card|
+recount_trigger :type_plus_right, :metric, :wikirate_topic do |changed_card|
   metric_card = changed_card.left
   company_plus_topic_cards_for_metric metric_card
 end

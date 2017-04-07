@@ -9,7 +9,7 @@ def count
   cached_count
 end
 
-recount_trigger Metric::WikirateTopic do |changed_card|
+recount_trigger :type_plus_right, :metric, :wikirate_topic do |changed_card|
   changed_card
 end
 

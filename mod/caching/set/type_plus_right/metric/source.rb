@@ -1,10 +1,5 @@
-# cache # of sources on which values for metric (=_left) are based on
-include_set Abstract::CachedCount
-include_set Type::SearchType
-
-def virtual?
-  true
-end
+# cache # of sources on which answers for this metric (=left) are based on
+include_set Abstract::SearchCachedCount
 
 def wql_hash
   { referred_to_by: {
@@ -18,7 +13,6 @@ def wql_hash
 end
 
 # recount no. of sources on metric
-ensure_set { TypePlusRight::MetricValue::Source }
-recount_trigger MetricValue::Source do |changed_card|
+recount_trigger :type_plus_right, :metric_value, :source do |changed_card|
   changed_card.left.metric_card.fetch trait: :source
 end
