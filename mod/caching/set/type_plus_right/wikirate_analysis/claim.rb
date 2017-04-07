@@ -2,8 +2,8 @@ include_set Abstract::SearchCachedCount
 
 def wql_hash
   { type_id: ClaimID,
-    right_plus: [[WikirateCompanyID, { refer_to: "_1" }],
-                 [WikriateTopicID, { refer_to: "_2" }]]
+    right_plus: [[WikirateCompanyID, { refer_to: cardname.parts[0] }],
+                 [WikirateTopicID, { refer_to: cardname.parts[1] }]]
   }
 end
 

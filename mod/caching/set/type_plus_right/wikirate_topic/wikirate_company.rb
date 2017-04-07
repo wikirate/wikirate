@@ -2,6 +2,10 @@
 # are tagged with this topic
 include_set Abstract::SearchCachedCount
 
+def virtual?
+  true
+end
+
 def topic_name
   cardname.left_name
 end

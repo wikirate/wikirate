@@ -8,7 +8,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateTopic::Source do
       Card.fetch(sample_source("Apple"), :wikirate_topic, new: {}).add_item! "Force"
     end
     let :delete_one do
-      
+      Card.fetch(sample_source("Space_opera"), :wikirate_topic).drop_item! "Force"
     end
   end
 end

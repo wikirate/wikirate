@@ -7,9 +7,9 @@ class SharedData
           type_id: Card::SourceID,
           subcards: {
             "+Link" => { content: "http://www.wikiwand.com/en/Space_opera" },
-            "+company" => { content: "[[Death Star]]",
+            "+company" => { content: "Death Star",
                             type_id: Card::PointerID },
-            "+topic" => { content: "[[Force]]",
+            "+topic" => { content: "Force",
                           type_id: Card::PointerID },
             "+title" => { content: "Space Opera" },
             "+description" => { content: "Space Opera Wikipedia article" }
@@ -32,8 +32,8 @@ class SharedData
         type_id: Card::SourceID,
         subcards: {
           "+Link" =>        { content: "http://www.wikiwand.com/en/Star_Wars" },
-          "+company" =>     { content: "[[Death Star]]", type_id: Card::PointerID },
-          "+topic" =>       { content: "[[Force]]", type_id: Card::PointerID },
+          "+company" =>     { content: "Death Star", type_id: Card::PointerID },
+          "+topic" =>       { content: "Force", type_id: Card::PointerID },
           "+title" =>       { content: "Star Wars" },
           "+description" => { content: "Star Wars Wikipedia article" }
         }

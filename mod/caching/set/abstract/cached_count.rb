@@ -51,7 +51,7 @@ module ClassMethods
     changed_card_set = set.to_s.tr(":", "_").underscore
     cached_count_set = to_s.tr(":", "_").underscore
     actions = Array.wrap args[:on]
-    "update_#{cached_count_set}_cached_counts_changed_by_" \
+    "update_cached_count_for_#{cached_count_set}_due_to_change_in_" \
         "#{changed_card_set}_on_#{actions.join('_')}".to_sym
   end
 end
