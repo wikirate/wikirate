@@ -15,7 +15,7 @@ def search args={}
   metric_ids = topic_card.fetch(trait: :metric, new: {}).metric_ids
 
   metric_ids =
-    Answer.where(company_id: company_card.id, metric_id: metric_ids )
+    Answer.where(company_id: company_card.id, metric_id: metric_ids)
           .pluck(:metric_id).uniq
   case args[:return]
   when :id

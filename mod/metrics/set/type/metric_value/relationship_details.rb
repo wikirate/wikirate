@@ -20,6 +20,6 @@ format :html do
 
   def relations_table
     wikirate_table :company, companies, [:company_name, :value],
-                   header: %w(Company Answer)
+                   header: %w[Company Answer]
   end
 end

@@ -5,7 +5,7 @@ require_relative "../../../support/cached_count_shared_examples"
 RSpec.describe Card::Set::TypePlusRight::WikirateTopic::WikirateCompany do
   it_behaves_like "cached count", ["Taming", :wikirate_company], 4 do
     let :add_one do
-      Card.fetch("Joe User+researched+topics", new:{}).add_item! "Taming"
+      Card.fetch("Joe User+researched+topics", new: {}).add_item! "Taming"
     end
     let :delete_one do
       Card["Joe User+researched number 3+topics"].drop_item! "Taming"
@@ -23,4 +23,3 @@ RSpec.describe Card::Set::TypePlusRight::WikirateTopic::WikirateCompany do
     end
   end
 end
-

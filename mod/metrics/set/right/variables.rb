@@ -102,7 +102,7 @@ format :html do
     items = Card.search(wql)
     params[:formula_metric_key] = card.cardname.left_key
     wikirate_table_with_details :metric, items, [:add_to_formula_item_view],
-                                td: { classes: %w(score details) }
+                                td: { classes: %w[score details] }
   end
 
   view :missing do |args|

@@ -24,7 +24,7 @@ def add_badge_card badge_card
   return if include_item? badge_card
   success.flash badge_card.flash_message
   index = bsearch_index(badge_card)
-  #update_attributes content: item_names.insert(index, badge_card.name).to_pointer_content
+  # update_attributes content: item_names.insert(index, badge_card.name).to_pointer_content
   self.content = item_names.insert(index, badge_card.name).to_pointer_content
 end
 
@@ -80,7 +80,7 @@ format :html do
     with_paging do
       wikirate_table :plain, card.item_cards(limit: limit, offset: offset),
                      [:level, :badge, :description],
-                     header: %w(Level Badge Description),
+                     header: %w[Level Badge Description],
                      td: { classes: ["badge-certificate", nil, nil] }
     end
   end

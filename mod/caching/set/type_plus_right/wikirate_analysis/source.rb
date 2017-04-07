@@ -7,8 +7,8 @@
 include_set Abstract::SearchCachedCount
 
 def wql_hash
-  { type_id: SourceID, right_plus: [[WikirateCompanyID, {refer_to: "_1"}],
-                                    [WikirateTopicID, {refer_to: "_2"}]]}
+  { type_id: SourceID, right_plus: [[WikirateCompanyID, { refer_to: "_1" }],
+                                    [WikirateTopicID, { refer_to: "_2" }]] }
 end
 
 def self.notes_for_analyses_applicable_to source

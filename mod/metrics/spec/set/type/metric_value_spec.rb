@@ -136,7 +136,7 @@ describe Card::Set::Type::MetricValue do
       }
       @metric.update_attributes! subcards: subcards_args
       subcard = subcards_of_metric_value metric, company, "hoi polloi",
-                                             "2015", source.name
+                                         "2015", source.name
       @metric_value =
         Card.create! type_id: Card::MetricValueID, subcards: subcard
     end

@@ -31,7 +31,7 @@ def self.pointer_card_changed_card_names card
 end
 
 module ClassMethods
-  def recount_trigger *set_parts_of_changed_card, &block
+  def recount_trigger *set_parts_of_changed_card
     args =
       set_parts_of_changed_card.last.is_a?(Hash) ? set_parts_of_changed_card.pop : {}
     set_of_changed_card = ensure_set { set_parts_of_changed_card }
@@ -55,7 +55,6 @@ module ClassMethods
         "#{changed_card_set}_on_#{actions.join('_')}".to_sym
   end
 end
-
 
 format :html do
   view :count do

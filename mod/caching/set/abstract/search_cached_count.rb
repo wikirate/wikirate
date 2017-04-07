@@ -7,5 +7,3 @@ end
 def virtual?
   true
 end
-
-

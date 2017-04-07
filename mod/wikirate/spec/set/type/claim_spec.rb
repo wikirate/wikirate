@@ -42,7 +42,8 @@ RSpec.describe Card::Set::Type::Claim do
       card = Card.new(type_id: Card::ClaimID, name: "2" * 100,
                       subcards: { "+source" => {
                         content: fake_pagename,
-                        type_id: Card::PointerID } })
+                        type_id: Card::PointerID
+                      } })
       expect(card).not_to be_valid
       expect(card.errors).to have_key :source
       expect(card.errors[:source]).to include("#{fake_pagename} does not exist")
@@ -51,7 +52,8 @@ RSpec.describe Card::Set::Type::Claim do
     it "fails if given source is not a source" do
       card = Card.new(type_id: Card::ClaimID, name: "2" * 100,
                       subcards: { "+source" => {
-                        content: "[[Home]]", type_id: Card::PointerID } })
+                        content: "[[Home]]", type_id: Card::PointerID
+                      } })
       expect(card).not_to be_valid
       expect(card.errors).to have_key :source
       expect(card.errors[:source]).to include("Home is not a valid Source Page")
@@ -67,6 +69,7 @@ RSpec.describe Card::Set::Type::Claim do
 
     describe "view :name_formgroup" do
       subject { render_view :name_formgroup, type_id: Card::ClaimID }
+
       it "has note counting" do
         is_expected.to include(
           "Notes are short (up to 100 characters) statements that summarise some aspect "\
@@ -82,6 +85,7 @@ RSpec.describe Card::Set::Type::Claim do
 
     describe "view :sample_citation" do
       subject { note.format.render_sample_citation }
+
       it "has cite nest" do
         is_expected.to have_tag "div.sample-citation" do
           with_text /#{note.name} {{#{note.name}|cite}}/
@@ -91,11 +95,11 @@ RSpec.describe Card::Set::Type::Claim do
 
     describe "view :tip" do
       let(:cited_claim) { sample_note }
+
       def claim_tip subcards={}
         claim_card = create_claim "test claim", subcards
         claim_card.format.render_tip
       end
-
 
       context "when the user did not sign in" do
         it "shows nothing" do

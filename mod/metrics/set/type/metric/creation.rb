@@ -16,10 +16,15 @@ event :ensure_designer, :prepare_to_store, on: :save, changed: :name do
 end
 
 event :ensure_title, :prepare_to_store, on: :save, changed: :name do
-  return if Card.fetch_type_id(metric_title) == MetricTitleID
-  # TODO: deal with existing card that isn't a metric title
-  #       (i.e. fail or correct it)
-  attach_subcard metric_title, type_id: MetricTitleID
+  case Card.fetch_type_id(metric_title)
+  when MetricTitleID
+    return
+  when nil
+    attach_subcard metric_title, type_id: MetricTitleID
+  else
+    errors.add :metric_title, "#{metric_title} is a #{Card[metric_title].type_name} "\
+                              "card and can be use as metric title"
+  end
 end
 
 def valid_designer?
@@ -179,7 +184,7 @@ format :html do
 
   def new_metric_tab_buttons
     wrap_with :ul, class: "nav nav-pills grey-nav-tab", role: "tablist" do
-      %w(Researched Formula Score WikiRating).map.with_index do |metric_type, i|
+      %w[Researched Formula Score WikiRating].map.with_index do |metric_type, i|
         tab_radio_button metric_type, i.zero?
       end
     end
@@ -187,7 +192,7 @@ format :html do
 
   def new_metric_tab_content
     wrap_with :div, class: "tab-content" do
-      %w(Researched Formula Score WikiRating).map.with_index do |metric_type, i|
+      %w[Researched Formula Score WikiRating].map.with_index do |metric_type, i|
         new_metric_tab_pane metric_type, i.zero?
       end
     end

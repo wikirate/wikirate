@@ -9,12 +9,12 @@ RSpec.describe Card::Query::CachedCountSorting do
 
   describe "sql" do
     subject { sort(right: "company", item: "cached_count", return: "count").sql }
+
     it "joins with cached counts table" do
       is_expected.to include(
         "JOIN counts counts_table ON c1.id = counts_table.left_id AND "\
         "counts_table.right_id = #{Card::WikirateCompanyID}"
       )
-
     end
     it "orders by cached counts" do
       is_expected.to include("ORDER BY CAST(counts_table.value AS signed) asc")

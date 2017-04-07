@@ -27,7 +27,7 @@ Feature: Double check
     And I click on the "remove" icon
     And I wait for ajax response
     And I hover over "Joe User"
-    Then I should see "Double check"
+    Then I should see "Double check" or "Yes, I checked"
 
   Scenario: Request check, check and undo
     When I am signed in as Joe User

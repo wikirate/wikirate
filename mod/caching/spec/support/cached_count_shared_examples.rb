@@ -19,10 +19,10 @@ shared_examples "cached count" do |name, count|
     include_examples "check count", count + 1
   end
 
-  # context "when item deleted" do
-  #   before do
-  #     Card::Auth.as_bot { delete_one }
-  #   end
-  #   include_examples "check count", count - 1
-  # end
+  context "when item deleted" do
+    before do
+      Card::Auth.as_bot { delete_one }
+    end
+    include_examples "check count", count - 1
+  end
 end

@@ -35,7 +35,7 @@ format :html do
     end
   end
 
-  def text_with_media media, title, text, opts={}
+  def text_with_media _media, _title, _text, opts={}
     @image_card = Card.cardish(opts[:image]) if opts[:image]
     text_with_image_args opts
 

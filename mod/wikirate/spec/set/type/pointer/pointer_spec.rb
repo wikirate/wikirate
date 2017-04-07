@@ -43,16 +43,16 @@ RSpec.describe Card::Set::Type::Pointer::Export do
 
         expect(json_export)
           .to include(
-                { name: "normal pointer",
-                  type: "Pointer",
-                  content: "[[Elbert Hubbard]]\n[[Elbert Hubbard+punchline]]" },
-                { name: "Elbert Hubbard",
-                  type: "Basic",
-                  content: "Do not take life too seriously." },
-                { name: "Elbert Hubbard+punchline",
-                  type: "Basic",
-                  content: "You will never get out of it alive." }
-              )
+            { name: "normal pointer",
+              type: "Pointer",
+              content: "[[Elbert Hubbard]]\n[[Elbert Hubbard+punchline]]" },
+            { name: "Elbert Hubbard",
+              type: "Basic",
+              content: "Do not take life too seriously." },
+            name: "Elbert Hubbard+punchline",
+            type: "Basic",
+            content: "You will never get out of it alive."
+          )
       end
 
       it "handles multi level pointer cards" do
@@ -61,19 +61,19 @@ RSpec.describe Card::Set::Type::Pointer::Export do
 
         expect(json_export)
           .to include(
-                { name: "normal pointer",
-                  type: "Pointer",
-                  content: "[[elbert container]]\n[[Elbert Hubbard+punchline]]" },
-                { name: "elbert container",
-                  type: "Pointer",
-                  content: "[[Elbert Hubbard]]" },
-                { name: "Elbert Hubbard",
-                  type: "Basic",
-                  content: "Do not take life too seriously." },
-                { name: "Elbert Hubbard+punchline",
-                  type: "Basic",
-                  content: "You will never get out of it alive." }
-              )
+            { name: "normal pointer",
+              type: "Pointer",
+              content: "[[elbert container]]\n[[Elbert Hubbard+punchline]]" },
+            { name: "elbert container",
+              type: "Pointer",
+              content: "[[Elbert Hubbard]]" },
+            { name: "Elbert Hubbard",
+              type: "Basic",
+              content: "Do not take life too seriously." },
+            name: "Elbert Hubbard+punchline",
+            type: "Basic",
+            content: "You will never get out of it alive."
+          )
       end
 
       it "stops if the depth count > 10" do
@@ -87,13 +87,13 @@ RSpec.describe Card::Set::Type::Pointer::Export do
       it "contains cards in the pointer card and its children" do
         expect(json_export(type: :skin, content: [elbert.name]))
           .to include(
-                { name: "normal pointer",
-                  type: "Skin",
-                  content: "[[Elbert Hubbard]]" },
-                { name: "Elbert Hubbard",
-                  type: "Basic",
-                  content: "Do not take life too seriously." }
-              )
+            { name: "normal pointer",
+              type: "Skin",
+              content: "[[Elbert Hubbard]]" },
+            name: "Elbert Hubbard",
+            type: "Basic",
+            content: "Do not take life too seriously."
+          )
       end
     end
 
@@ -107,16 +107,16 @@ RSpec.describe Card::Set::Type::Pointer::Export do
                     content: %({"left":"Elbert Hubbard"}))
         expect(json_export)
           .to include(
-                { name: "search card",
-                  type: "Search",
-                  content: %({"left":"Elbert Hubbard"}) },
-                { name: "Elbert Hubbard+punchline",
-                  type: "Basic",
-                  content: "You will never get out of it alive." },
-                { name: "Elbert Hubbard+quote",
-                  type: "Basic",
-                  content: "Procrastination is the art of keeping up with yesterday." }
-              )
+            { name: "search card",
+              type: "Search",
+              content: %({"left":"Elbert Hubbard"}) },
+            { name: "Elbert Hubbard+punchline",
+              type: "Basic",
+              content: "You will never get out of it alive." },
+            name: "Elbert Hubbard+quote",
+            type: "Basic",
+            content: "Procrastination is the art of keeping up with yesterday."
+          )
       end
     end
   end
