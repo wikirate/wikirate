@@ -212,6 +212,14 @@ Then(/^I fill in "(.*)" for csv row (\d+)$/) do |text, row|
   end
 end
 
+Then /^(?:|I )should see "([^"]*)" or "([^"]*)"$/ do |text1, text2|
+  begin
+    expect(page).to have_content(text1)
+  rescue
+    expect(page).to have_content(text2)
+  end
+end
+
 Then(/^I should see a "(.*)" icon$/) do |icon|
   expect(page.body).to have_tag "i.fa-#{ICONS[icon]}"
 end
