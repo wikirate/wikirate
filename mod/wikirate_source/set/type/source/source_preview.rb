@@ -60,16 +60,11 @@ format :html do
   end
 
   view :source_preview_container, tags: :unknown_ok do
-    wrap_with :div, class: "row clearfix source-preview-content" do
-      [
-        wrap_with(:div, class: "col-md-6 hidden-xs column " \
-                               "source-iframe-container") do
-          render_iframe_view
-        end,
-        wrap_with(:div, class: "col-md-6 column source-right-sidebar") do
-          render_tab_containers
-        end
-      ]
+    bs_layout container: false, fluid: true do
+      row 7, 5, class: "source-preview-content" do
+        column _render_iframe_view, class: "source-iframe-container"
+        column _render_tab_containers, class: "source-right-sidebar"
+      end
     end
   end
 

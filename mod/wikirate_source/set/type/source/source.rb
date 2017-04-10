@@ -59,6 +59,10 @@ format :html do
     preview? ? _optional_render_new_preview : super()
   end
 
+  view :open do
+    _render_preview
+  end
+
   def preview?
     return false if @previewed
     @previewed = true
