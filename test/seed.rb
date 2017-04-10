@@ -36,7 +36,6 @@ class SharedData
     include Badges
     include NotesAndSources
 
-
     def add_wikirate_data
       Card::Cache.reset_all
       Card::Env.reset
@@ -45,6 +44,7 @@ class SharedData
           :metrics, :yearly_variables,
           :projects, :industry,
           :profile_sections, :badges
+
       Card::Cache.reset_all
       Answer.refresh
     end

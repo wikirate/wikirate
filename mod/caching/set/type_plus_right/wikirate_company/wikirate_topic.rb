@@ -34,6 +34,12 @@ def wql_hash
   end
 end
 
+# turn query caching off because wql_hash varies and fetch_query doesn't recognizes
+# changes in wql_hash
+def fetch_query args={}
+  query(args.clone)
+end
+
 # faster way to get this from company+metric?
 def unique_metric_ids
   Answer.select(:metric_id).where(company_id: left.id).uniq.pluck :metric_id
@@ -51,7 +57,8 @@ end
 
 format :html do
   view :topic_list_with_metric_counts do
-    wrap do
+
+     wrap do
       card.topics_by_metric_count.map do |topic_card, metric_count|
         wrap_with :div, class: "topic-item contribution-item" do
           [wrap_with(:div, topic_detail(topic_card), class: "header"),
