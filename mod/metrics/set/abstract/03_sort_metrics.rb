@@ -8,7 +8,7 @@ format do
   end
 
   def sort values
-    return values.to_a if %w[value recent].include? sort_by
+    return values.to_a if %w(value recent).include? sort_by
     case sort_by
     when "value"
       sort_value_count_desc values

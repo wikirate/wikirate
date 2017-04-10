@@ -95,7 +95,7 @@ format :html do
 
   def numeric_metric?
     (value_type = card.metric_card.fetch trait: :value_type) &&
-      %w[Number Money].include?(value_type.item_names[0])
+      %w(Number Money).include?(value_type.item_names[0])
   end
 
   def numeric_value?

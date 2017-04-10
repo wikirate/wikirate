@@ -144,7 +144,7 @@ describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
                     "researched number 1+1977"]
         end
         it "finds combinations" do
-          expect(filter_by(metric_type: %w[Score Formula]))
+          expect(filter_by(metric_type: %w(Score Formula)))
             .to eq ["deadliness+Joe Camel+1977", "deadliness+Joe User+1977",
                     "disturbances in the Force+Joe User+2001",
                     "friendliness+1977"]

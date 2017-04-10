@@ -26,7 +26,7 @@ describe Card::Metric do
     source = create_page_with_sourcebox url
     described_class.create name: "Jedi+strength in the Force",
                            value_type: "Category",
-                           value_options: %w[yes no] do
+                           value_options: %w(yes no) do
       Death_Star "1977" => { value: "yes",
                              source: "[[#{source.name}]]" }
     end
@@ -82,7 +82,7 @@ describe Card::Metric do
       expect(Card["Jedi+strength in the Force+value type"].content)
         .to eq "[[Category]]"
       expect(Card["Jedi+strength in the Force+value options"].content)
-        .to eq %w[yes no].to_pointer_content
+        .to eq %w(yes no).to_pointer_content
     end
 
     it "creates score" do

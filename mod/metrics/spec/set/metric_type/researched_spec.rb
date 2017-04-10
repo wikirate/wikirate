@@ -54,7 +54,7 @@ describe Card::Set::MetricType::Researched do
   describe "#value_options" do
     subject { metric.value_options }
 
-    it { is_expected.to eq %w[yes no] }
+    it { is_expected.to eq %w(yes no) }
   end
 
   describe "#categorical?" do
@@ -91,7 +91,7 @@ describe Card::Set::MetricType::Researched do
     end
 
     it do
-      is_expected.to eq [%w[Death_Star 1977 200]]
+      is_expected.to eq [%w(Death_Star 1977 200)]
     end
   end
 
