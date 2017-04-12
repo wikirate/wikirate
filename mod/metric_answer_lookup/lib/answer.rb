@@ -76,8 +76,8 @@ class Answer < ActiveRecord::Base
 
     def valid_sort_args? args
       return unless args.present? && args[:sort_by]
-      return true if args[:sort_by] == :importance
-      Answer.column_names.include? args[:sort_by]
+      return true if args[:sort_by].to_sym == :importance
+      Answer.column_names.include? args[:sort_by].to_s
     end
 
     def refresh ids=nil, *fields
