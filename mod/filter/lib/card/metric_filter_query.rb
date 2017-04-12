@@ -13,6 +13,7 @@ class Card
     end
 
     def year_wql year
+      return if year == "latest"
       add_to_wql :right_plus, type_id: WikirateCompanyID, right_plus: year
     end
 
