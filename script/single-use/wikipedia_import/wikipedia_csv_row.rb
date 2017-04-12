@@ -5,7 +5,8 @@ class WikipediaCSVRow < CSVRow
                :wikipedia_company_page]
 
   def create
-    ensure_card [@row[:wikirate_id], :wikipedia],
+    puts @row[:wikirate_company_name]
+    ensure_card [@row[:wikirate_id].to_i, :wikipedia],
                 content: @row[:wikipedia_company_page],
                 type_id: Card::PhraseID
   end

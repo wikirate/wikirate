@@ -12,6 +12,6 @@ format :json do
         name: Card.fetch_name(id),
         alias: (alias_card && alias_card.item_names || [])
       }
-    end.to_json
+    end
   end
 end
