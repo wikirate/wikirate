@@ -50,7 +50,7 @@ class Answer < ActiveRecord::Base
     def fetch where, sort_args={}, paging={}
       where = Array.wrap where
       mas = Answer.where(*where)
-      mas = sort mas, sort_args if sort_args.present?
+      mas = sort mas, sort_args
       mas = mas.limit(paging[:limit]).offset(paging[:offset]) if paging.present?
       mas.pluck(:answer_id).map do |id|
         Card.fetch id
@@ -58,6 +58,7 @@ class Answer < ActiveRecord::Base
     end
 
     def sort mas, args
+      return mas unless valid_sort_args? args
       mas = importance_sort mas, args if args[:sort_by].to_sym == :importance
       sort_by = args[:sort_by]
       sort_by = "CAST(#{sort_by} AS #{args[:cast]})" if args[:cast]
@@ -71,6 +72,12 @@ class Answer < ActiveRecord::Base
       args[:sort_by] = "COALESCE(c.db_content, 0)"
       args[:cast] = "signed"
       mas
+    end
+
+    def valid_sort_args? args
+      return unless args.present? && args[:sort_by]
+      return true if args[:sort_by].to_sym == :importance
+      Answer.column_names.include? args[:sort_by].to_s
     end
 
     def refresh ids=nil, *fields
