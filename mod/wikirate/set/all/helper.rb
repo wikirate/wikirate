@@ -1,6 +1,6 @@
 format :html do
   def with_header header
-    output [wrap_with(:h2, header), yield]
+    output [wrap_with(:h3, header), yield]
   end
 
   def icon_tag type, opts={}

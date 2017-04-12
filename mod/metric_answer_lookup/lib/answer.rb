@@ -16,8 +16,12 @@ class Answer < ActiveRecord::Base
   end
 
   def metric_must_exit
-    return if metric_card
-    errors.add :metric_id, "#{fetch_metric_name} does not exist"
+    unless metric_card
+      errors.add :metric_id, "#{fetch_metric_name} does not exist"
+      return
+    end
+    return if metric_card.type_id == Card::MetricID
+    errors.add :metric_id, "#{fetch_metric_name} is not a metric"
   end
 
   module ClassMethods
@@ -70,11 +74,22 @@ class Answer < ActiveRecord::Base
     end
 
     def refresh ids=nil, *fields
-      ids ||= Card.search(type_id: Card::MetricValueID, return: :id)
-      ids = Array(ids)
-      ids.each do |ma_id|
-        # puts ma_id
-        create_or_update ma_id, *fields
+      ids &&= Array(ids)
+      if ids
+        ids.each do |ma_id|
+          begin
+            create_or_update ma_id, *fields
+          rescue => e
+            puts "failed: #{ma_id}"
+          end
+        end
+      else
+        count = 0
+        Card.where(type_id: Card::MetricValueID).pluck_in_batches(:id) do |batch|
+          count += batch.size
+          puts "#{batch.first} - #{count}"
+          refresh(batch, *fields)
+        end
       end
     end
 
@@ -131,11 +146,16 @@ class Answer < ActiveRecord::Base
   end
 
   def fetch_imported
-    card.value_card.actions.last.comment == "imported"
+    return unless (action = card.value_card.actions.last)
+    action.comment == "imported"
   end
 
   def fetch_designer_id
     metric_card.left_id
+  end
+
+  def fetch_creator_id
+    card.creator_id
   end
 
   def fetch_designer_name

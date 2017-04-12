@@ -1,4 +1,4 @@
-describe Card::Set::Type::MetricValueImportFile do
+RSpec.describe Card::Set::Type::MetricValueImportFile do
   let(:comment) { "50 Nerds of Grey" }
   let(:metric) { sample_metric }
   let(:amazon) { "#{metric.name}+Amazon.com, Inc.+2015" }
@@ -83,20 +83,37 @@ describe Card::Set::Type::MetricValueImportFile do
         Card::Env.params[:corrected_company_name] = {
           "1" => amazon_corrected,
           "2" => "",
-          "3" => "",
+          "3" => ""
         }
         mv_import_file.update_attributes! subcards: {}
       end
       it "uses the input company name" do
         expect(Card.exists?(amazon_corrected)).to be true
 
-        amazon_2015_metric_value_card = Card["#{metric.name}+#{amazon_corrected}+2015+value"]
-        expect(amazon_2015_metric_value_card.content).to eq("2")
+        amazon_2015_metric_value_card =
+          Card["#{metric.name}+#{amazon_corrected}+2015+value"]
+        expect(amazon_2015_metric_value_card.content).to eq("0")
       end
       it "updates companies's aliases" do
-        amazon_aliases = Card["#{amazon_correcte}+aliases"]
+        amazon_aliases = Card["#{amazon_corrected}+aliases"]
         expect(amazon_aliases.item_names).to include("Amazon.com, Inc.")
       end
+    end
+  end
+
+  describe "#map_company" do
+    let(:format) { mv_import_file.format(:html) }
+    it "maps Samsung" do
+      expect(format.map_company("Samsung"))
+        .to eq "Samsung"
+    end
+
+    it "maps Sony to Sony Corporation" do
+      expect(format.map_company("Sony")).to eq "Sony Corporation"
+    end
+
+    it "maps Amazon" do
+      expect(format.map_company("Amazon")).to eq "Amazon.com, Inc."
     end
   end
 end

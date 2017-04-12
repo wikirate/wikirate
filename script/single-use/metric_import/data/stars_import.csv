@@ -1,0 +1,659 @@
+Metric designer,Metric title,Question,About,Methodology,Topics,Value Type,Research Policy,Metric Type,Report Type
+"Sustainability Tracking, Assessment & Rating System (STARS)",Institutional Control,Which type of control mechanism applies to the institution?,,,"Institutional Characteristics, Institutional Boundary, University Metrics, SDG4: Quality Education (universities)","Category (Public, Private for profit, Private non-profit)",Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",IECC Climate Region,In which type of IECC climate region is the institution located?,"Operational characteristics, like the type of IECC climate region, are variables that provide information about the context in which the institution operates. Institutions should report the most recent data available within the three years prior to the anticipated date of submission.","Climate zones are consistent with the climate designations used by the International Energy Conservation Code (IECC) and the American Society of Heating, Refrigerating and Air-Conditioning Engineers (ASHRAE). 
+The zones correspond to these generalized climate categories:
+1 - Very Hot
+2 - Hot
+3 - Warm
+4 - Mixed
+5 - Cool
+6 - Cold
+7 - Very Cold
+8 - Subarctic
+
+For further guidance, see [[http://www.arcgis.com/home/webmap/viewer.html?webmap=6e486986ceed4c048c4ec1b0de894db6|IECC/ASHRAE Climate Zones]] (U.S) and [[http://www.aashe.org/files/documents/STARS/20081111_cztables.pdf|ANSI/ASHRAE/IESNA Standard 90.1-2007]]
+(international).","Institutional Characteristics, Operational Characteristics, University Metrics, SDG7: Affordable and Clean Energy (universities)","Category (Very Hot, Hot, Warm, Mixed, Cool, Cold, Very Cold, Subarctic)",Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Electricity from Geothermal (%),What pecentage (%) electricity used by the institution is generated from geothermal?,"For most institutions, energy consumption is the largest source of greenhouse gas emissions, which cause global climate change. Global climate change is having myriad negative impacts throughout the world, including increased frequency and potency of extreme weather events, sea level rise, species extinction, water shortages, declining agricultural production, ocean acidification, and spread of diseases. The impacts are particularly pronounced for vulnerable and poor communities and countries. In addition to causing global climate change, energy generation from fossil fuels, especially coal, produces air pollutants such as sulfur dioxide, nitrogen oxides, mercury, dioxins, arsenic, cadmium and lead. These pollutants contribute to acid rain as well as health problems such as heart and respiratory diseases and cancer. Coal mining and oil and gas drilling can also damage environmentally and/or culturally significant ecosystems. Nuclear power creates highly toxic and long-lasting radioactive waste. Large-scale hydropower projects flood habitats and disrupt fish migration and can involve the relocation of entire communities.
+
+Implementing conservation measures and switching to renewable sources of energy can help institutions save money and protect them from utility rate volatility. Renewable energy may be generated locally and allow campuses to support local economic development. Furthermore, institutions can help shape markets by creating demand for cleaner, renewable sources of energy.","Timeframe
+Institutions should report the most recent data available from within the three years prior to the anticipated date of submission. Institutions may choose the annual start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month period.
+
+Sampling and Data Standards
+Report all on-site, stationary energy that was consumed by the institution (as the institution is defined in the overall STARS institutional boundary). Transportation fuels are excluded. Reporting on a sample or subset of energy generation and consumption is not allowed for this credit.
+
+All reported energy figures should be based on site energy (the amount of energy consumed on campus) rather than source energy (the amount of energy consumed on campus plus the energy used off-site to generate and transport the energy to the institution).
+
+Institutions that convert fuel on-site (e.g., on-campus cogeneration facilities and boilers) should report only the amount of fuel purchased/converted toward the total energy consumption figure, not the resulting heat, steam, hot/chilled water or electricity.
+
+To aggregate energy consumption data from multiple sources, figures should be converted into MMBtu (one million British thermal units—a standard measure of energy) using the following equivalents:
+
+---- insert conversion table ----
+
+A unit conversion tool that includes more detailed conversion factors (e.g., for liquid fuels) is available in the online STARS Reporting Tool (.xls).","Institutional Characteristics, Operational Characteristics, University Metrics, SDG7: Affordable and Clean Energy (universities)",Number (%),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Electricity from Hydro (%),What pecentage (%) electricity used by the institution is generated from hydro?,"For most institutions, energy consumption is the largest source of greenhouse gas emissions, which cause global climate change. Global climate change is having myriad negative impacts throughout the world, including increased frequency and potency of extreme weather events, sea level rise, species extinction, water shortages, declining agricultural production, ocean acidification, and spread of diseases. The impacts are particularly pronounced for vulnerable and poor communities and countries. In addition to causing global climate change, energy generation from fossil fuels, especially coal, produces air pollutants such as sulfur dioxide, nitrogen oxides, mercury, dioxins, arsenic, cadmium and lead. These pollutants contribute to acid rain as well as health problems such as heart and respiratory diseases and cancer. Coal mining and oil and gas drilling can also damage environmentally and/or culturally significant ecosystems. Nuclear power creates highly toxic and long-lasting radioactive waste. Large-scale hydropower projects flood habitats and disrupt fish migration and can involve the relocation of entire communities.
+
+Implementing conservation measures and switching to renewable sources of energy can help institutions save money and protect them from utility rate volatility. Renewable energy may be generated locally and allow campuses to support local economic development. Furthermore, institutions can help shape markets by creating demand for cleaner, renewable sources of energy.","Timeframe
+Institutions should report the most recent data available from within the three years prior to the anticipated date of submission. Institutions may choose the annual start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month period.
+
+Sampling and Data Standards
+Report all on-site, stationary energy that was consumed by the institution (as the institution is defined in the overall STARS institutional boundary). Transportation fuels are excluded. Reporting on a sample or subset of energy generation and consumption is not allowed for this credit.
+
+All reported energy figures should be based on site energy (the amount of energy consumed on campus) rather than source energy (the amount of energy consumed on campus plus the energy used off-site to generate and transport the energy to the institution).
+
+Institutions that convert fuel on-site (e.g., on-campus cogeneration facilities and boilers) should report only the amount of fuel purchased/converted toward the total energy consumption figure, not the resulting heat, steam, hot/chilled water or electricity.
+
+To aggregate energy consumption data from multiple sources, figures should be converted into MMBtu (one million British thermal units—a standard measure of energy) using the following equivalents:
+
+---- insert conversion table ----
+
+A unit conversion tool that includes more detailed conversion factors (e.g., for liquid fuels) is available in the online STARS Reporting Tool (.xls).","Institutional Characteristics, Operational Characteristics, University Metrics, SDG7: Affordable and Clean Energy (universities)",Number (%),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Electricity from Natural Gas (%),What pecentage (%) electricity used by the institution is generated from natural gas?,"For most institutions, energy consumption is the largest source of greenhouse gas emissions, which cause global climate change. Global climate change is having myriad negative impacts throughout the world, including increased frequency and potency of extreme weather events, sea level rise, species extinction, water shortages, declining agricultural production, ocean acidification, and spread of diseases. The impacts are particularly pronounced for vulnerable and poor communities and countries. In addition to causing global climate change, energy generation from fossil fuels, especially coal, produces air pollutants such as sulfur dioxide, nitrogen oxides, mercury, dioxins, arsenic, cadmium and lead. These pollutants contribute to acid rain as well as health problems such as heart and respiratory diseases and cancer. Coal mining and oil and gas drilling can also damage environmentally and/or culturally significant ecosystems. Nuclear power creates highly toxic and long-lasting radioactive waste. Large-scale hydropower projects flood habitats and disrupt fish migration and can involve the relocation of entire communities.
+
+Implementing conservation measures and switching to renewable sources of energy can help institutions save money and protect them from utility rate volatility. Renewable energy may be generated locally and allow campuses to support local economic development. Furthermore, institutions can help shape markets by creating demand for cleaner, renewable sources of energy.","Timeframe
+Institutions should report the most recent data available from within the three years prior to the anticipated date of submission. Institutions may choose the annual start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month period.
+
+Sampling and Data Standards
+Report all on-site, stationary energy that was consumed by the institution (as the institution is defined in the overall STARS institutional boundary). Transportation fuels are excluded. Reporting on a sample or subset of energy generation and consumption is not allowed for this credit.
+
+All reported energy figures should be based on site energy (the amount of energy consumed on campus) rather than source energy (the amount of energy consumed on campus plus the energy used off-site to generate and transport the energy to the institution).
+
+Institutions that convert fuel on-site (e.g., on-campus cogeneration facilities and boilers) should report only the amount of fuel purchased/converted toward the total energy consumption figure, not the resulting heat, steam, hot/chilled water or electricity.
+
+To aggregate energy consumption data from multiple sources, figures should be converted into MMBtu (one million British thermal units—a standard measure of energy) using the following equivalents:
+
+---- insert conversion table ----
+
+A unit conversion tool that includes more detailed conversion factors (e.g., for liquid fuels) is available in the online STARS Reporting Tool (.xls).","Institutional Characteristics, Operational Characteristics, University Metrics, SDG7: Affordable and Clean Energy (universities)",Number (%),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Electricity from Nuclear (%),What pecentage (%) electricity used by the institution is generated from nuclear?,"For most institutions, energy consumption is the largest source of greenhouse gas emissions, which cause global climate change. Global climate change is having myriad negative impacts throughout the world, including increased frequency and potency of extreme weather events, sea level rise, species extinction, water shortages, declining agricultural production, ocean acidification, and spread of diseases. The impacts are particularly pronounced for vulnerable and poor communities and countries. In addition to causing global climate change, energy generation from fossil fuels, especially coal, produces air pollutants such as sulfur dioxide, nitrogen oxides, mercury, dioxins, arsenic, cadmium and lead. These pollutants contribute to acid rain as well as health problems such as heart and respiratory diseases and cancer. Coal mining and oil and gas drilling can also damage environmentally and/or culturally significant ecosystems. Nuclear power creates highly toxic and long-lasting radioactive waste. Large-scale hydropower projects flood habitats and disrupt fish migration and can involve the relocation of entire communities.","Timeframe
+Institutions should report the most recent data available from within the three years prior to the anticipated date of submission. Institutions may choose the annual start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month period.
+
+Sampling and Data Standards
+Report all on-site, stationary energy that was consumed by the institution (as the institution is defined in the overall STARS institutional boundary). Transportation fuels are excluded. Reporting on a sample or subset of energy generation and consumption is not allowed for this credit.
+
+All reported energy figures should be based on site energy (the amount of energy consumed on campus) rather than source energy (the amount of energy consumed on campus plus the energy used off-site to generate and transport the energy to the institution).
+
+Institutions that convert fuel on-site (e.g., on-campus cogeneration facilities and boilers) should report only the amount of fuel purchased/converted toward the total energy consumption figure, not the resulting heat, steam, hot/chilled water or electricity.
+
+To aggregate energy consumption data from multiple sources, figures should be converted into MMBtu (one million British thermal units—a standard measure of energy) using the following equivalents:
+
+---- insert conversion table ----
+
+A unit conversion tool that includes more detailed conversion factors (e.g., for liquid fuels) is available in the online STARS Reporting Tool (.xls).","Institutional Characteristics, Operational Characteristics, University Metrics, SDG7: Affordable and Clean Energy (universities)",Number (%),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Electricity from Solar Photovoltaic (%),What pecentage (%) electricity used by the institution is generated from solar photovoltaic?,"For most institutions, energy consumption is the largest source of greenhouse gas emissions, which cause global climate change. Global climate change is having myriad negative impacts throughout the world, including increased frequency and potency of extreme weather events, sea level rise, species extinction, water shortages, declining agricultural production, ocean acidification, and spread of diseases. The impacts are particularly pronounced for vulnerable and poor communities and countries. In addition to causing global climate change, energy generation from fossil fuels, especially coal, produces air pollutants such as sulfur dioxide, nitrogen oxides, mercury, dioxins, arsenic, cadmium and lead. These pollutants contribute to acid rain as well as health problems such as heart and respiratory diseases and cancer. Coal mining and oil and gas drilling can also damage environmentally and/or culturally significant ecosystems. Nuclear power creates highly toxic and long-lasting radioactive waste. Large-scale hydropower projects flood habitats and disrupt fish migration and can involve the relocation of entire communities.
+
+Implementing conservation measures and switching to renewable sources of energy can help institutions save money and protect them from utility rate volatility. Renewable energy may be generated locally and allow campuses to support local economic development. Furthermore, institutions can help shape markets by creating demand for cleaner, renewable sources of energy.","Timeframe
+Institutions should report the most recent data available from within the three years prior to the anticipated date of submission. Institutions may choose the annual start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month period.
+
+Sampling and Data Standards
+Report all on-site, stationary energy that was consumed by the institution (as the institution is defined in the overall STARS institutional boundary). Transportation fuels are excluded. Reporting on a sample or subset of energy generation and consumption is not allowed for this credit.
+
+All reported energy figures should be based on site energy (the amount of energy consumed on campus) rather than source energy (the amount of energy consumed on campus plus the energy used off-site to generate and transport the energy to the institution).
+
+Institutions that convert fuel on-site (e.g., on-campus cogeneration facilities and boilers) should report only the amount of fuel purchased/converted toward the total energy consumption figure, not the resulting heat, steam, hot/chilled water or electricity.
+
+To aggregate energy consumption data from multiple sources, figures should be converted into MMBtu (one million British thermal units—a standard measure of energy) using the following equivalents:
+
+---- insert conversion table ----
+
+A unit conversion tool that includes more detailed conversion factors (e.g., for liquid fuels) is available in the online STARS Reporting Tool (.xls).","Institutional Characteristics, Operational Characteristics, University Metrics, SDG7: Affordable and Clean Energy (universities)",Number (%),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Electricity from Wind (%),What pecentage (%) electricity used by the institution is generated from wind?,"For most institutions, energy consumption is the largest source of greenhouse gas emissions, which cause global climate change. Global climate change is having myriad negative impacts throughout the world, including increased frequency and potency of extreme weather events, sea level rise, species extinction, water shortages, declining agricultural production, ocean acidification, and spread of diseases. The impacts are particularly pronounced for vulnerable and poor communities and countries. In addition to causing global climate change, energy generation from fossil fuels, especially coal, produces air pollutants such as sulfur dioxide, nitrogen oxides, mercury, dioxins, arsenic, cadmium and lead. These pollutants contribute to acid rain as well as health problems such as heart and respiratory diseases and cancer. Coal mining and oil and gas drilling can also damage environmentally and/or culturally significant ecosystems. Nuclear power creates highly toxic and long-lasting radioactive waste. Large-scale hydropower projects flood habitats and disrupt fish migration and can involve the relocation of entire communities.
+
+Implementing conservation measures and switching to renewable sources of energy can help institutions save money and protect them from utility rate volatility. Renewable energy may be generated locally and allow campuses to support local economic development. Furthermore, institutions can help shape markets by creating demand for cleaner, renewable sources of energy.","Timeframe
+Institutions should report the most recent data available from within the three years prior to the anticipated date of submission. Institutions may choose the annual start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month period.
+
+Sampling and Data Standards
+Report all on-site, stationary energy that was consumed by the institution (as the institution is defined in the overall STARS institutional boundary). Transportation fuels are excluded. Reporting on a sample or subset of energy generation and consumption is not allowed for this credit.
+
+All reported energy figures should be based on site energy (the amount of energy consumed on campus) rather than source energy (the amount of energy consumed on campus plus the energy used off-site to generate and transport the energy to the institution).
+
+Institutions that convert fuel on-site (e.g., on-campus cogeneration facilities and boilers) should report only the amount of fuel purchased/converted toward the total energy consumption figure, not the resulting heat, steam, hot/chilled water or electricity.
+
+To aggregate energy consumption data from multiple sources, figures should be converted into MMBtu (one million British thermal units—a standard measure of energy) using the following equivalents:
+
+---- insert conversion table ----
+
+A unit conversion tool that includes more detailed conversion factors (e.g., for liquid fuels) is available in the online STARS Reporting Tool (.xls).","Institutional Characteristics, Operational Characteristics, University Metrics, SDG7: Affordable and Clean Energy (universities)",Number (%),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Electricity from Other Sources (%),What pecentage (%) electricity used by the institution is generated from other sources?,"Since this credit is intended to recognize institutions that are actively supporting the development and use of clean and renewable energy, neither the electric grid mix for the region in which the institution is located nor the grid mix reported by the electric utility that serves the institution (i.e., the utility’s standard or default product) count for this credit.
+
+The following renewable systems are eligible for this credit:
+- Concentrated solar thermal
+- Geothermal systems that generate electricity
+- Low-impact hydroelectric power
+- Solar photovoltaic
+- Wave and tidal power
+- Wind
+
+Biofuels from the following sources are eligible: 
+- Agricultural crops
+- Agricultural waste
+- Animal waste
+- Landfill gas
+- Untreated wood waste
+- Other organic waste
+
+Technologies that reduce the amount of energy used but do not generate renewable energy do not count for this credit (e.g., daylighting, passive solar design, ground-source heat pumps). The benefits of such strategies, as well as the improved efficiencies achieved through using cogeneration technologies, are captured by the Greenhouse Gas Emissions and Building Energy Consumption credits.
+
+Transportation fuels, which are covered by the Greenhouse Gas Emissions and Campus Fleet credits, are not included.","Timeframe
+Institutions should report the most recent data available from within the three years prior to the anticipated date of submission. Institutions may choose the annual start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month period.
+
+Sampling and Data Standards
+Report all on-site, stationary energy that was consumed by the institution (as the institution is defined in the overall STARS institutional boundary). Transportation fuels are excluded. Reporting on a sample or subset of energy generation and consumption is not allowed for this credit.
+
+All reported energy figures should be based on site energy (the amount of energy consumed on campus) rather than source energy (the amount of energy consumed on campus plus the energy used off-site to generate and transport the energy to the institution).
+
+Institutions that convert fuel on-site (e.g., on-campus cogeneration facilities and boilers) should report only the amount of fuel purchased/converted toward the total energy consumption figure, not the resulting heat, steam, hot/chilled water or electricity.
+
+To aggregate energy consumption data from multiple sources, figures should be converted into MMBtu (one million British thermal units—a standard measure of energy) using the following equivalents:
+
+---- insert conversion table ----
+
+A unit conversion tool that includes more detailed conversion factors (e.g., for liquid fuels) is available in the online STARS Reporting Tool (.xls).""
+
+The following contextual information should be added as a comment to the metric value:
+- A description of the other sources of electricity","Institutional Characteristics, Operational Characteristics, University Metrics, SDG7: Affordable and Clean Energy (universities)",Number (%),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Number of Degree-seeking Students,What is the total number of degree-seeking students registered with the institution?,"Definition: Degree-seeking students / students enrolled for credit
+Consistent with U.S. IPEDS, students enrolled for credit include all students enrolled in courses or programs that can be applied towards the requirements for a postsecondary degree, diploma, certificate, or other formal award, regardless of whether or not they are seeking a degree or certificate. This includes:
+- Students enrolled for credit in off-campus centers
+- High school students taking regular college courses for credit
+- Students taking remedial courses if the student is degree-seeking for the purpose of student financial aid determination
+- Students from overseas enrolled in U.S. courses for credit (e.g., online students)
+- Graduate students enrolled for thesis credits, even when zero credits are awarded as these students are still enrolled and seeking their degree.","Sampling and Data Standards
+Include all students enrolled for credit (undergraduate and graduate); reporting on a sample or subset of students is not allowed.","Institutional Characteristics, Academics & Demographics, University Metrics, SDG4: Quality Education (universities)",Number (Students),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)","Institution-catalyzed carbon offsets generated, performance year",How many metric tonnes of CO2 equivalent emissions did the instution manage to reduce through their institution-catalyzed carbon offsets (i.e. local offsets) program (performance year)?,"Definition: Institution-catalyzed carbon offsets
+Institution-catalyzed carbon offsets are generated by what are commonly referred to as “local offsets” programs. In such programs, institutions offset their greenhouse gas emissions by implementing projects that reduce greenhouse gas emissions in the local community. For example, a local offsets program may engage students in weatherizing homes in the surrounding community. As part of the arrangement with the homeowner, the institution would “own” the emissions reductions that result from the program. Local projects that are to be used as offsets must be third party verified or, at minimum, quantified using a method that is consistent with the World Resources Institute’s [[http://www.ghgprotocol.org/standards/project-protocol|GHG Protocol for Project Accounting]].
+","Timeframe
+Performance Year
+Institutions should report the most recent data available from the three years prior to the anticipated date of submission. Institutions may use the most recent single year for which data is available or an average from throughout the period. Institutions may choose the annual start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month (or 3-year) period.
+
+Institutions may choose the start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month (or 3-year) period.
+
+Sampling and Data Standards
+Institution-catalyzed offsets that are to be counted as offsets must be third party verified or, at minimum, quantified using a method that addresses all of the following accounting issues:
+- Selection of a baseline scenario (i.e, what would have happened in the absence of the project?);
+- Demonstration of additionality (i.e., the project has resulted in emission reductions or removals in addition to what would have happened in the absence of the project);
+- Identification and quantification of relevant secondary effects (i.e., small, unintended GHG consequences of a project, include leakage and changes in GHG emissions up- and downstream of the project);
+- Consideration of reversibility (i.e., assessing the risk of reversibility, together with any mitigation or compensation measures included in the project design);
+- Avoidance of double-counting (i.e., the reductions giving rise to the offset must occur at sources or sinks not included in the target or cap for which the offset is used).
+
+To account for Institution-catalyzed offsets institutions may pursue third party verification or else use a credible methodology that addresses all of the accounting issues outlined in B. Criteria. 
+Examples include:
+- GHG Protocol for Project Accounting (World Resources Institute)
+- Land Use, Land Change and Forestry (IPCC)
+- Forest Project Protocol (Climate Action Reserve),
+- Framework for Forest Management Offset Protocols (Canadian Council of Forest Ministers)
+- The Compliance Offset Protocols (COP) adopted by the California Air Resources Board (CARB).
+
+The following contextual information should be included as a comment to the metric value:
+- The start and end date of the performance year.","Operations, Air & Climate, Greenhouse Gas Emissions, University Metrics, SDG12: Responsible Consumption and Production (universities)",Number (MtCO2e),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Scope 3 from Business Travel (performance year) ,What is the amount of greenhouse gas (GHG) emissions (in metric tons of CO2 equivalent) generated from business travel that the institution is indirectly responsible for? (performance year),"Scope 3 GHG emissions are all indirect emissions not covered in Scope 2. Consistent with the [[http://www.ghgprotocol.org/standards/scope-3-standard|WRI Corporate Value Chain (Scope 3) Standard]], Scope 3 GHG emissions sources include:
+Upstream Scope 3 emissions
+- Purchased goods and services
+- Capital goods
+- Fuel- and energy-related activities (not included in scope 1 or scope 2)
+- Upstream transportation and distribution
+- Waste generated in operations
+- Business travel
+- Commuting (employee and student)
+- Upstream leased assets
+Downstream Scope 3 emissions
+- Downstream transportation and distribution
+- Processing of sold products
+- Use of sold products
+- End-of-life treatment of sold products
+- Downstream leased assets
+- Franchises
+- Investments","Timeframe
+Performance Year
+Institutions should report the most recent data available from the three years prior to the anticipated date of submission. Institutions may use the most recent single year for which data is available or an average from throughout the period. Institutions may choose the annual start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month (or 3-year) period.
+
+Institutions may choose the start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month (or 3-year) period.
+
+Sampling and Data Standards
+To conduct a GHG emissions inventory, campuses may use the [[http://sustainableunh.unh.edu/calculator|Campus Carbon Calculator/CarbonMAP]], the [[https://quantis-suite.com/Scope-3-Evaluator/|Scope 3 Evaluator]] tool, and/or any methodology or calculator that is consistent with the World Resources Institute (WRI) Greenhouse Gas Protocol Corporate Standard and the [[http://www.ghgprotocol.org/feature/scope-3-calculation-guidancehttp://www.ghgprotocol.org/feature/scope-3-calculation-guidance|Scope 3 calculation guidance]] provided by WRI.
+
+The following contextual information should be included as a comment to the metric value:
+- The start and end date of the performance year.","Operations, Air & Climate, Greenhouse Gas Emissions, University Metrics, SDG12: Responsible Consumption and Production (universities)",Number (MtCO2e),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Scope 3 from Commuting (performance year) ,What is the amount of greenhouse gas (GHG) emissions (in metric tons of CO2 equivalent) generated from commuting that the institution is indirectly responsible for? (performance year),"Scope 3 GHG emissions are all indirect emissions not covered in Scope 2. Consistent with the [[http://www.ghgprotocol.org/standards/scope-3-standard|WRI Corporate Value Chain (Scope 3) Standard]], Scope 3 GHG emissions sources include:
+Upstream Scope 3 emissions
+- Purchased goods and services
+- Capital goods
+- Fuel- and energy-related activities (not included in scope 1 or scope 2)
+- Upstream transportation and distribution
+- Waste generated in operations
+- Business travel
+- Commuting (employee and student)
+- Upstream leased assets
+Downstream Scope 3 emissions
+- Downstream transportation and distribution
+- Processing of sold products
+- Use of sold products
+- End-of-life treatment of sold products
+- Downstream leased assets
+- Franchises
+- Investments","Timeframe
+Performance Year
+Institutions should report the most recent data available from the three years prior to the anticipated date of submission. Institutions may use the most recent single year for which data is available or an average from throughout the period. Institutions may choose the annual start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month (or 3-year) period.
+
+Institutions may choose the start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month (or 3-year) period.
+
+Sampling and Data Standards
+To conduct a GHG emissions inventory, campuses may use the [[http://sustainableunh.unh.edu/calculator|Campus Carbon Calculator/CarbonMAP]], the [[https://quantis-suite.com/Scope-3-Evaluator/|Scope 3 Evaluator]] tool, and/or any methodology or calculator that is consistent with the World Resources Institute (WRI) Greenhouse Gas Protocol Corporate Standard and the [[http://www.ghgprotocol.org/feature/scope-3-calculation-guidancehttp://www.ghgprotocol.org/feature/scope-3-calculation-guidance|Scope 3 calculation guidance]] provided by WRI.
+
+The following contextual information should be included as a comment to the metric value:
+- The start and end date of the performance year.","Operations, Air & Climate, Greenhouse Gas Emissions, University Metrics, SDG12: Responsible Consumption and Production (universities)",Number (MtCO2e),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Scope 3 from Purchased Goods and Services (performance year) ,What is the amount of greenhouse gas (GHG) emissions (in metric tons of CO2 equivalent) generated from purchased goods and services that the institution is indirectly responsible for? (performance year),"Scope 3 GHG emissions are all indirect emissions not covered in Scope 2. Consistent with the [[http://www.ghgprotocol.org/standards/scope-3-standard|WRI Corporate Value Chain (Scope 3) Standard]], Scope 3 GHG emissions sources include:
+Upstream Scope 3 emissions
+- Purchased goods and services
+- Capital goods
+- Fuel- and energy-related activities (not included in scope 1 or scope 2)
+- Upstream transportation and distribution
+- Waste generated in operations
+- Business travel
+- Commuting (employee and student)
+- Upstream leased assets
+Downstream Scope 3 emissions
+- Downstream transportation and distribution
+- Processing of sold products
+- Use of sold products
+- End-of-life treatment of sold products
+- Downstream leased assets
+- Franchises
+- Investments","Timeframe
+Performance Year
+Institutions should report the most recent data available from the three years prior to the anticipated date of submission. Institutions may use the most recent single year for which data is available or an average from throughout the period. Institutions may choose the annual start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month (or 3-year) period.
+
+Institutions may choose the start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month (or 3-year) period.
+
+Sampling and Data Standards
+To conduct a GHG emissions inventory, campuses may use the [[http://sustainableunh.unh.edu/calculator|Campus Carbon Calculator/CarbonMAP]], the [[https://quantis-suite.com/Scope-3-Evaluator/|Scope 3 Evaluator]] tool, and/or any methodology or calculator that is consistent with the World Resources Institute (WRI) Greenhouse Gas Protocol Corporate Standard and the [[http://www.ghgprotocol.org/feature/scope-3-calculation-guidancehttp://www.ghgprotocol.org/feature/scope-3-calculation-guidance|Scope 3 calculation guidance]] provided by WRI.
+
+The following contextual information should be included as a comment to the metric value:
+- The start and end date of the performance year.","Operations, Air & Climate, Greenhouse Gas Emissions, University Metrics, SDG12: Responsible Consumption and Production (universities)",Number (MtCO2e),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Scope 3 from Capital Goods (performance year) ,What is the amount of greenhouse gas (GHG) emissions (in metric tons of CO2 equivalent) generated from capital goods that the institution is indirectly responsible for? (performance year),"Scope 3 GHG emissions are all indirect emissions not covered in Scope 2. Consistent with the [[http://www.ghgprotocol.org/standards/scope-3-standard|WRI Corporate Value Chain (Scope 3) Standard]], Scope 3 GHG emissions sources include:
+Upstream Scope 3 emissions
+- Purchased goods and services
+- Capital goods
+- Fuel- and energy-related activities (not included in scope 1 or scope 2)
+- Upstream transportation and distribution
+- Waste generated in operations
+- Business travel
+- Commuting (employee and student)
+- Upstream leased assets
+Downstream Scope 3 emissions
+- Downstream transportation and distribution
+- Processing of sold products
+- Use of sold products
+- End-of-life treatment of sold products
+- Downstream leased assets
+- Franchises
+- Investments","Timeframe
+Performance Year
+Institutions should report the most recent data available from the three years prior to the anticipated date of submission. Institutions may use the most recent single year for which data is available or an average from throughout the period. Institutions may choose the annual start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month (or 3-year) period.
+
+Institutions may choose the start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month (or 3-year) period.
+
+Sampling and Data Standards
+To conduct a GHG emissions inventory, campuses may use the [[http://sustainableunh.unh.edu/calculator|Campus Carbon Calculator/CarbonMAP]], the [[https://quantis-suite.com/Scope-3-Evaluator/|Scope 3 Evaluator]] tool, and/or any methodology or calculator that is consistent with the World Resources Institute (WRI) Greenhouse Gas Protocol Corporate Standard and the [[http://www.ghgprotocol.org/feature/scope-3-calculation-guidancehttp://www.ghgprotocol.org/feature/scope-3-calculation-guidance|Scope 3 calculation guidance]] provided by WRI.
+
+The following contextual information should be included as a comment to the metric value:
+- The start and end date of the performance year.","Operations, Air & Climate, Greenhouse Gas Emissions, University Metrics, SDG12: Responsible Consumption and Production (universities)",Number (MtCO2e),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Scope 3 from Fuel- and Energy-related Activities Not Included in Scope 1 or Scope 2 (performance year) ,What is the amount of greenhouse gas (GHG) emissions (in metric tons of CO2 equivalent) generated from fuel- and energy-related activities (not included in scope 1 or scope 2) that the institution is indirectly responsible for? (performance year),"Scope 3 GHG emissions are all indirect emissions not covered in Scope 2. Consistent with the [[http://www.ghgprotocol.org/standards/scope-3-standard|WRI Corporate Value Chain (Scope 3) Standard]], Scope 3 GHG emissions sources include:
+Upstream Scope 3 emissions
+- Purchased goods and services
+- Capital goods
+- Fuel- and energy-related activities (not included in scope 1 or scope 2)
+- Upstream transportation and distribution
+- Waste generated in operations
+- Business travel
+- Commuting (employee and student)
+- Upstream leased assets
+Downstream Scope 3 emissions
+- Downstream transportation and distribution
+- Processing of sold products
+- Use of sold products
+- End-of-life treatment of sold products
+- Downstream leased assets
+- Franchises
+- Investments","Timeframe
+Performance Year
+Institutions should report the most recent data available from the three years prior to the anticipated date of submission. Institutions may use the most recent single year for which data is available or an average from throughout the period. Institutions may choose the annual start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month (or 3-year) period.
+
+Institutions may choose the start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month (or 3-year) period.
+
+Sampling and Data Standards
+To conduct a GHG emissions inventory, campuses may use the [[http://sustainableunh.unh.edu/calculator|Campus Carbon Calculator/CarbonMAP]], the [[https://quantis-suite.com/Scope-3-Evaluator/|Scope 3 Evaluator]] tool, and/or any methodology or calculator that is consistent with the World Resources Institute (WRI) Greenhouse Gas Protocol Corporate Standard and the [[http://www.ghgprotocol.org/feature/scope-3-calculation-guidancehttp://www.ghgprotocol.org/feature/scope-3-calculation-guidance|Scope 3 calculation guidance]] provided by WRI.
+
+The following contextual information should be included as a comment to the metric value:
+- The start and end date of the performance year.","Operations, Air & Climate, Greenhouse Gas Emissions, University Metrics, SDG12: Responsible Consumption and Production (universities)",Number (MtCO2e),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Scope 3 from Waste Generated in Operations (performance year) ,What is the amount of greenhouse gas (GHG) emissions (in metric tons of CO2 equivalent) resulting from waste generated in operations that the institution is indirectly responsible for? (performance year),"Scope 3 GHG emissions are all indirect emissions not covered in Scope 2. Consistent with the [[http://www.ghgprotocol.org/standards/scope-3-standard|WRI Corporate Value Chain (Scope 3) Standard]], Scope 3 GHG emissions sources include:
+Upstream Scope 3 emissions
+- Purchased goods and services
+- Capital goods
+- Fuel- and energy-related activities (not included in scope 1 or scope 2)
+- Upstream transportation and distribution
+- Waste generated in operations
+- Business travel
+- Commuting (employee and student)
+- Upstream leased assets
+Downstream Scope 3 emissions
+- Downstream transportation and distribution
+- Processing of sold products
+- Use of sold products
+- End-of-life treatment of sold products
+- Downstream leased assets
+- Franchises
+- Investments","Timeframe
+Performance Year
+Institutions should report the most recent data available from the three years prior to the anticipated date of submission. Institutions may use the most recent single year for which data is available or an average from throughout the period. Institutions may choose the annual start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month (or 3-year) period.
+
+Institutions may choose the start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month (or 3-year) period.
+
+Sampling and Data Standards
+To conduct a GHG emissions inventory, campuses may use the [[http://sustainableunh.unh.edu/calculator|Campus Carbon Calculator/CarbonMAP]], the [[https://quantis-suite.com/Scope-3-Evaluator/|Scope 3 Evaluator]] tool, and/or any methodology or calculator that is consistent with the World Resources Institute (WRI) Greenhouse Gas Protocol Corporate Standard and the [[http://www.ghgprotocol.org/feature/scope-3-calculation-guidancehttp://www.ghgprotocol.org/feature/scope-3-calculation-guidance|Scope 3 calculation guidance]] provided by WRI.
+
+The following contextual information should be included as a comment to the metric value:
+- The start and end date of the performance year.","Operations, Air & Climate, Greenhouse Gas Emissions, University Metrics, SDG12: Responsible Consumption and Production (universities)",Number (MtCO2e),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Scope 3 from Other Categories (performance year) ,What is the amount of greenhouse gas (GHG) emissions (in metric tons of CO2 equivalent) generated from other categories that the institution is indirectly responsible for? (performance year),"Scope 3 GHG emissions are all indirect emissions not covered in Scope 2. Consistent with the [[http://www.ghgprotocol.org/standards/scope-3-standard|WRI Corporate Value Chain (Scope 3) Standard]], Scope 3 GHG emissions sources include:
+Upstream Scope 3 emissions
+- Purchased goods and services
+- Capital goods
+- Fuel- and energy-related activities (not included in scope 1 or scope 2)
+- Upstream transportation and distribution
+- Waste generated in operations
+- Business travel
+- Commuting (employee and student)
+- Upstream leased assets
+Downstream Scope 3 emissions
+- Downstream transportation and distribution
+- Processing of sold products
+- Use of sold products
+- End-of-life treatment of sold products
+- Downstream leased assets
+- Franchises
+- Investments","Timeframe
+Performance Year
+Institutions should report the most recent data available from the three years prior to the anticipated date of submission. Institutions may use the most recent single year for which data is available or an average from throughout the period. Institutions may choose the annual start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month (or 3-year) period.
+
+Institutions may choose the start and end dates that work best with the data they have (e.g., fiscal or calendar year), as long as data are reported from a consecutive 12-month (or 3-year) period.
+
+Sampling and Data Standards
+To conduct a GHG emissions inventory, campuses may use the [[http://sustainableunh.unh.edu/calculator|Campus Carbon Calculator/CarbonMAP]], the [[https://quantis-suite.com/Scope-3-Evaluator/|Scope 3 Evaluator]] tool, and/or any methodology or calculator that is consistent with the World Resources Institute (WRI) Greenhouse Gas Protocol Corporate Standard and the [[http://www.ghgprotocol.org/feature/scope-3-calculation-guidancehttp://www.ghgprotocol.org/feature/scope-3-calculation-guidance|Scope 3 calculation guidance]] provided by WRI.
+
+The following contextual information should be included as a comment to the metric value:
+- The start and end date of the performance year.","Operations, Air & Climate, Greenhouse Gas Emissions, University Metrics, SDG12: Responsible Consumption and Production (universities)",Number (MtCO2e),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Dining Service Expenditures Allocated to Locally Sourced Food and Beverage (%),How much (%) of the institution's dining services expenditures on food and beverage is local and community-based and/or third party verified?,"This credit recognizes institutions that are supporting sustainable food systems through their food and beverage purchases. Institutions can do this by prioritizing the purchase of environmentally and socially preferable food and beverage items. These actions reduce the social and environmental impacts of food production and help foster robust local economies and food security; improved conditions for farm workers; healthier animals, soils and waterways; and secure livelihoods for farmers.
+
+1) Third Party Verified. 
+The product is ecologically sound, fair and/or humane as determined by one or more recognized food and beverage sustainability standards (see G. Standards and Terms).
+For example: Certified Organic, Fair Trade, and Humane products (irrespective of geographic origin).
+ Manufactured products that carry a recognized third party label (irrespective of the percentage of ingredients that are certified).
+
+2) Both Local and Community-Based. 
+The product does not meet the criteria outlined above, but is grown, raised or caught by a community-based producer within 250 miles (400 kilometres) of the institution. All production, processing and distribution occur within 250 miles.
+This category provides a path for campus farms and gardens and small local producers to be recognized in the absence of third party certification. Products from intensive livestock operations (e.g., CAFO- permitted facilities), large producers ($5 million or more in annual sales), and geographically dispersed producers are excluded from this category.
+Distributors, bottlers and packers are not considered to be producers.
+For example: Single ingredient products from on-campus gardens and farms and owner-operated farms and fisheries (and cooperatives of owner-operators) for which all facilities are within 250 miles.Multi-ingredient and multi-source products (e.g., baked goods, dairy products, jams, sauces) from local producers for which 50 percent or more of the ingredients (by weight, excluding water) are both local and community-based (or else third party verified).Local products sourced through a food value chain or food hub, farmers’ market, farm-to-institution program, or equivalent program that aims to support a sustainable local food system.
+","Timeframe
+Institutions should report the most recent data available from within the three years prior to the anticipated date of their STARS submission.
+
+Sampling and Data Standards
+Institutions may choose to track food and beverage purchases for a 12-month consecutive period or use a representative sample that includes data from at least two full months during a 12-month consecutive period (e.g., fiscal or academic year). When using samples, institutions must accommodate seasonal and other variations in sustainable food and beverage availability and purchasing. For example, an institution could select one month in the autumn when seasonal produce is still available (e.g., September or October) and one month in the winter or early spring that falls outside the normal growing season (e.g., February or March).
+
+This credit is based on total food and beverage expenditures in the following categories:
+- Dairy - fluid milk, cheese, yogurt, ice cream
+- Meat - beef, lamb, pork, game; including frozen or canned meat products
+- Poultry - chicken, turkey, other fowl
+- Eggs - shelled eggs, liquid egg product, powdered egg
+- Fish/Seafood - all fish or seafood products, including frozen or canned products
+- Produce - fresh, cut, or frozen fruits and vegetables
+- Grocery/Staple - grains; staples; vegetarian/vegan meat alternatives; most boxed, bottled, jarred, and canned products
+- Tea/Coffee - hot and cold coffee and tea products including bottled beverages, coffee beans, loose and bagged tea
+- Other Beverages (non-dairy) - soft drinks, sports drinks, milk alternatives
+- Baked Goods - baked products (pastries, breads, sweets)
+
+Institutions may not exclude any of the product types or categories outlined above from the total food and beverage expenditures figure.
+
+The following contextual information should be included as a comment to the metric value:
+- An inventory list or sample of sustainable food and beverage purchases","Operations, Dining Services, Food and Beverage Purchasing, University Metrics, SDG2: No Hunger (universities), SDG12: Responsible Consumption and Production (universities)",Number (%),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Vegan Dining Option,"Does the institution offer diverse, complete-protein vegan dining options at all meals in at least one dining facility on campus?","This credit recognizes institutions that are supporting sustainable food systems and minimizing the impacts of their dining service operations. An institution can operate its dining services sustainably through its procurement policies and decisions, by preventing food waste and diverting food materials from the waste stream, by making low impact dining options available, and by educating its customers about more sustainable options and practices.
+
+Definition: Complete-protein vegan options
+Recognizing that variety is a critical component of a nutritionally sound vegan diet, a “complete protein” vegan option must include, at minimum, two or more of the following food types: soy, whole grains, nuts and seeds, legumes.","The following contextual information should be included as a comment to the metric value:
+- A brief description of the vegan dining program, including availability, sample menus, signage and any promotional activities (e.g. “Meatless Mondays”) 
+- A brief description of other efforts the institution has made to reduce the impact of its animal-derived food purchases
+- The website URL where information about the vegan dining program is available","Operations, Dining Services, Low Impact Dining, University Metrics, SDG2: No Hunger (universities), SDG12: Responsible Consumption and Production (universities)","Category (Yes, No)",Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",EPEAT Registered Electronics Preference,Does the institution have an institution-wide stated preference to purchase computers and/or other electronic products that are EPEAT registered or meet similar multi-criteria sustainability standards for electronic products?,"This credit recognizes institutions that are supporting markets for environmentally preferable computers and other electronic products.
+
+Definition: EPEAT
+[[http://www.epeat.net|
+EPEAT]] is a certification for computers and other electronic products. The standard’s evaluation criteria include: energy efficiency, reduction and elimination of environmentally sensitive materials, materials selection, design for end-of-life, product longevity and life cycle extension, end-of-life management, corporate performance, and packaging characteristics. EPEAT currently registers products in 41 countries and regions.","Timeframe
+Institutions should report the most recent data available from within the three years prior to the anticipated date of submission.
+
+Sampling and Data Standards
+Institutions may track purchases over a one-year time period or take a representative sample to determine the EPEAT level of electronic equipment purchases. When using a sample, institutions should strive to ensure that the sample recognizes seasonal and other variations that influence purchasing behavior.
+
+The following contextual information should be included as a comment to the metric value:
+- The electronics purchasing policy, directive, or guidelines 
+- A brief description of steps the institution has taken to ensure that the purchasing policy, directives, or guidelines are followed
+-The website URL where information about the institution's electronics purchasing policy, directive, or guidelines is  available","Operations, Purchasing, Electronics Purchasing, University Metrics, SDG12: Responsible Consumption and Production (universities)","Category (Yes, No)",Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Students Using Sustainable Commuting Options (%),What is the total percentage of students that use more sustainable communiting options?,"This credit recognizes institutions where students use preferable modes of transportation to travel to and from the institution. Commute modal split is a common measure used to evaluate the sustainability performance of a transportation system. Using alternative modes of transportation helps reduce local air pollution and GHG emissions. Walking and biking offer health benefits as well.
+
+Institution's students commute to and from campus using more sustainable commuting options such as walking, bicycling, vanpooling or carpooling, taking public transportation, riding motorcycles or scooters, riding a campus shuttle, or a combination of these options.
+
+Students who live on campus should be included in the calculation based on how they get to and from their classes.","Timeframe
+Institutions should report the most recent data available from within the three years prior to the anticipated date of submission.
+
+Sampling and Data Standards
+Institutions may use a representative sample to gather data about student commuting behavior. For information about how to measure commuting behavior, see the guidance provided by the Massachusetts Rideshare Program and the South Coast Air Quality Management District.
+
+This credit is scored based on the percentage of students (graduate and undergraduate) using alternatives to single-occupancy vehicle commuting (i.e., more sustainable commuting options). Students who do not regularly attend the physical campus (i.e., distance education students) may be excluded.
+
+The following contextual information should be included as a comment to the metric value:
+- A brief description of the method(s) used to gather data about student commuting
+- The website URL where information about sustainable transportation for students is available","Operations, Transportation, Student Commute Modal Split, University Metrics, SDG11: Sustainable Cities and Communities (universities)",Number (%),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Employees Using Sustainable Commuting Options (%),What is the total percentage of the institution’s employees that use more sustainable commuting options?,"This credit recognizes institutions where employees use preferable modes of transportation to travel to and from the institution. Commute modal split is a common measure used to evaluate the sustainability performance of a transportation system. Using alternative modes of transportation reduces local air pollution and GHG emissions. Walking and biking offer health benefits as well.
+
+Institution's employees (faculty, staff, and administrators) get to and from campus using more sustainable commuting options such as walking, bicycling, vanpooling or carpooling, taking public transportation, riding motorcycles or scooters, riding a campus shuttle, telecommuting, or a combination of these options.
+
+Employees who live on campus should be included in the calculation based on how they get to and from their workplace.
+","Timeframe
+Institutions should report the most recent data available from within the three years prior to the anticipated date of submission.
+
+Sampling and Data Standards
+Institutions may use a representative sample to gather data about employee commuting behavior. For information about how to measure commuting behavior, see the guidance provided by the [[http://www.mass.gov/eea/docs/dep/air/approvals/guiddata.pdf|Massachusetts Rideshare Program]] and the [[http://www.aashe.org/files/documents/STARS/avr-survey-support-guide.pdf|South Coast Air Quality Management District]].
+
+This credit is scored based on the percentage of employees using alternatives to single-occupancy vehicle commuting (i.e., more sustainable commuting options).
+
+The following contextual information should be included as a comment to the metric value:
+- A brief description of the method(s) used to gather data about employee commuting
+- The website URL where information about sustainable transportation for employees is available","Operations, Transportation, Employee Commute Modal Split, University Metrics, SDG11: Sustainable Cities and Communities (universities)",Number (%),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Institution-wide Electronic Waste Recycling Program,"Does the institution have or participate in a program to responsibly recycle, reuse, and/or refurbish all electronic waste generated by the institution?","This credit recognizes institutions that seek to minimize and safely dispose of all hazardous, universal, and non- regulated chemical waste and that have electronic waste (“e-waste”) recycling and/or reuse programs. Hazardous waste typically contains toxic components such as lead and mercury that can contaminate soil and groundwater and have detrimental human health impacts if handled improperly. At the same time, e-waste contains components that can be recycled. Likewise, computers, cellular phones, and other electronic materials can be donated or re-sold at reduced cost to non-profit organizations and community groups. Given the environmental and workplace health hazards that arise from hazardous waste disposal and e-waste recycling, this credit is reserved for programs that take steps to ensure that workers’ basic safety is protected and environmental standards are met.
+
+Part 1
+Institution has strategies in place to safely dispose of all hazardous, special (e.g., coal ash), universal, and non- regulated chemical waste and seeks to minimize the presence of these materials on campus.
+
+Part 2
+Institution has a program in place to recycle, reuse, and/or refurbish electronic waste generated by the institution and/or its students. Institution ensures that the electronic waste is recycled responsibly by using a recycler certified under the e-Stewards® and/or Responsible Recycling (R2) standards.","Timeframe
+Institutions should report on current programs at the time of submission.
+
+The following contextual information should be included as a comment to the metric value:
+- A brief description of the electronic waste recycling program(s)
+- A brief description of steps taken to ensure that e-waste is recycled responsibly, workers’ basic safety is protected, and environmental standards are met
+- The website URL where information about the institution’s  electronic-waste recycling programs is available","Operations, Waste, Hazardous Waste Management, University Metrics, SDG12: Responsible Consumption and Production (universities)","Category (Yes, No)",Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Mechanism for Broad Sustainability Coordination,Does the institution have a mechanism for broad sustainability coordination for the entire institution?,"This credit recognizes institutions with active committees, offices, or officers charged by the administration or board of trustees to coordinate sustainability work on campus. Institution-wide coordination helps institutions organize, implement, and publicize sustainability initiatives.
+
+Institutions should have at least one sustainability committee, office, and/or officer tasked by the administration or governing body to advise on and implement policies and programs related to sustainability on campus. The committee, office, and/or officer focuses on sustainability broadly (i.e., not just one sustainability issue, such as climate change) and covers the entire institution.
+
+An institution that has multiple committees, offices and/or staff with responsibility for subsets of the institution (e.g., schools or departments) may earn points for this credit if it has a mechanism for broad sustainability coordination for the entire campus (e.g., a coordinating committee or the equivalent). A committee, office, and/or officer that focuses on one aspect of sustainability (e.g., an energy efficiency committee) or has jurisdiction over only a part of the institution (e.g., “Academic Affairs Sustainability Taskforce”) does not count toward scoring in the absence of institution-wide coordination.","E.g. a campus-wide committee or an officer/office responsible for the entire campus
+
+If yes,  the following information should be included as a comment to the metric value:
+- A brief description of the activities and substantive accomplishments of the institution-wide coordinating body or officer during the previous three years
+- The website URL where information about the programs or initiatives is available (optional)","Planning & Administration, Coordination Planning & Governance, Sustainability Coordination, University Metrics, SDG13: Climate Action (universities)","Category (Yes, No)",Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Role for Students in Decision-making,Do students have a formal role in decision-making in regard to the following?,"This credit recognizes institutions that engage students, staff, faculty and local community members in the ongoing governance of the college or university. Governance includes a variety of organizational functions and decision-making processes, from financial oversight and personnel management to goal-setting and strategic planning. Sustainability requires participatory processes and structures that empower stakeholder groups to come together and work collaboratively to address sustainability challenges through access to and involvement in institutional governance. Without transformed governance structures, many sustainability gains cannot be realized.
+
+Part 1
+Institution has adopted a framework for engaging internal stakeholders (i.e., students, staff, faculty) in governance. The framework includes:
+- Representative bodies through which students, staff and/or faculty can each participate in governance (e.g., student council, staff council, faculty senate);
+And/or
+- Elected student, staff and/or faculty representatives on the institution’s highest governing body. To count, representatives must be elected by their peers or appointed by a representative student, staff or faculty body or organization.","The following contextual information should be included as a comment to the metric value:
+- A brief description of the formal student role in regard to each area indicated, including examples from the previous three years","Planning & Administration, Coordination Planning & Governance, Governance, University Metrics, SDG16: Peace, Justice and Strong Institutions (universities)","Multi-Category (Establishing organizational mission vision and goals, Establishing new policies programs and initiatives, Strategic and long-term planning, Existing or prospective physical resources, Budgeting staffing and financial planning, Communications processes and transparency practices, Prioritization of programs and projects)",Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Role for Non-supervisory Staff in Decision-making,Do non-supervisory staff have a formal role in decision-making in regard to the following? ,"This credit recognizes institutions that engage students, staff, faculty and local community members in the ongoing governance of the college or university. Governance includes a variety of organizational functions and decision-making processes, from financial oversight and personnel management to goal-setting and strategic planning. Sustainability requires participatory processes and structures that empower stakeholder groups to come together and work collaboratively to address sustainability challenges through access to and involvement in institutional governance. Without transformed governance structures, many sustainability gains cannot be realized.
+
+Part 1
+Institution has adopted a framework for engaging internal stakeholders (i.e., students, staff, faculty) in governance. The framework includes:
+- Representative bodies through which students, staff and/or faculty can each participate in governance (e.g., student council, staff council, faculty senate);
+And/or
+- Elected student, staff and/or faculty representatives on the institution’s highest governing body. To count, representatives must be elected by their peers or appointed by a representative student, staff or faculty body or organization.","The following contextual information should be included as a comment to the metric value:
+- A brief description of the formal staff role in regard to each area indicated, including examples from the previous three years","Planning & Administration, Coordination Planning & Governance, Governance, University Metrics, SDG16: Peace, Justice and Strong Institutions (universities)","Multi-Category (Establishing organizational mission vision and goals, Establishing new policies programs and initiatives, Strategic and long-term planning, Existing or prospective physical resources, Budgeting staffing and financial planning, Communications processes and transparency practices, Prioritization of programs and projects)",Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Role for Faculty in Decision-making,Do faculty have a formal role in decision-making in regard to the following?,"This credit recognizes institutions that engage students, staff, faculty and local community members in the ongoing governance of the college or university. Governance includes a variety of organizational functions and decision-making processes, from financial oversight and personnel management to goal-setting and strategic planning. Sustainability requires participatory processes and structures that empower stakeholder groups to come together and work collaboratively to address sustainability challenges through access to and involvement in institutional governance. Without transformed governance structures, many sustainability gains cannot be realized.
+
+Part 1
+Institution has adopted a framework for engaging internal stakeholders (i.e., students, staff, faculty) in governance. The framework includes:
+- Representative bodies through which students, staff and/or faculty can each participate in governance (e.g., student council, staff council, faculty senate);
+And/or
+- Elected student, staff and/or faculty representatives on the institution’s highest governing body. To count, representatives must be elected by their peers or appointed by a representative student, staff or faculty body or organization.","The following contextual information should be included as a comment to the metric value:
+- A brief description of the formal faculty role in regard to each area indicated, including examples from the previous three years","Planning & Administration, Coordination Planning & Governance, Governance, University Metrics, SDG16: Peace, Justice and Strong Institutions (universities)","Multi-Category (Establishing organizational mission vision and goals, Establishing new policies programs and initiatives, Strategic and long-term planning, Existing or prospective physical resources, Budgeting staffing and financial planning, Communications processes and transparency practices, Prioritization of programs and projects)",Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Diversity and Equity Post,"Does the institution have a diversity and equity committee, office, and/or officer tasked by the administration or governing body to advise on and implement policies, programs, and trainings related to diversity and equity on campus?","This credit recognizes institutions with active committees, offices, or officers charged by the administration or governing body to coordinate diversity, equity, inclusion and human rights work on campus. Diversity and equity coordination increases the ability of an institution to more effectively address these issues.
+
+Part 1
+Institution has a diversity and equity committee, office and/or officer (or the equivalent) tasked by the administration or governing body to advise on and implement policies, programs, and trainings related to diversity, equity, inclusion and human rights on campus. The committee, office and/or officer may focus on students and/or employees.
+","The following contextual information should be included as a comment to the metric value:
+- A brief description of the diversity and equity committee, office and/or officer, including purview and activities
+- the website URL where information about the diversity and equity committee, office and/or officer is available.","Planning & Administration, Diversity & Affordability, Diversity and Equity Coordination, University Metrics, SDG10: Reduced Inequalities (universities)","Category (Yes, No)",Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Cultural Competence Trainings and Activities - for Students,Does the institution make cultural competence trainings and activities available to all students?,"This credit recognizes institutions with active committees, offices, or officers charged by the administration or governing body to coordinate diversity, equity, inclusion and human rights work on campus. Diversity and equity coordination increases the ability of an institution to more effectively address these issues.
+
+Part 2
+Institution makes cultural competence trainings and activities available to students, staff, and/or faculty.
+
+The trainings and activities help participants build the awareness, knowledge, and skills necessary to work effectively in cross-cultural situations. Trainings and activities that focus exclusively on awareness, knowledge, or skills do not count.","The following contextual information should be included as a comment to the metric: 
+- A brief description of the cultural competence trainings and activities
+- The website URL where information about the cultural competence trainings is available","Planning & Administration, Diversity & Affordability, Diversity and Equity Coordination, University Metrics, SDG10: Reduced Inequalities (universities)","Category (Yes, No)",Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Cultural Competence Trainings and Activities - for Staff,Does the institution make cultural competence trainings and activities available to all staff?,"This credit recognizes institutions with active committees, offices, or officers charged by the administration or governing body to coordinate diversity, equity, inclusion and human rights work on campus. Diversity and equity coordination increases the ability of an institution to more effectively address these issues.
+
+Part 2
+Institution makes cultural competence trainings and activities available to students, staff, and/or faculty.
+
+The trainings and activities help participants build the awareness, knowledge, and skills necessary to work effectively in cross-cultural situations. Trainings and activities that focus exclusively on awareness, knowledge, or skills do not count.","The following information should be included as a comment to the metric: 
+- A brief description of the cultural competence trainings and activities
+- The website URL where information about the cultural competence trainings is available","Planning & Administration, Diversity & Affordability, Diversity and Equity Coordination, University Metrics, SDG10: Reduced Inequalities (universities)","Category (Yes, No)",Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Cultural Competence Trainings and Activities - for Faculties,Does the institution make cultural competence trainings and activities available to all faculty?,"This credit recognizes institutions with active committees, offices, or officers charged by the administration or governing body to coordinate diversity, equity, inclusion and human rights work on campus. Diversity and equity coordination increases the ability of an institution to more effectively address these issues.
+
+Part 2
+Institution makes cultural competence trainings and activities available to students, staff, and/or faculty.
+
+The trainings and activities help participants build the awareness, knowledge, and skills necessary to work effectively in cross-cultural situations. Trainings and activities that focus exclusively on awareness, knowledge, or skills do not count.","The following contextual information should be included as a comment to the metric: 
+- A brief description of the cultural competence trainings and activities
+- The website URL where information about the cultural competence trainings is available","Planning & Administration, Diversity & Affordability, Diversity and Equity Coordination, University Metrics, SDG10: Reduced Inequalities (universities)","Category (Yes, No)",Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Cultural Competence Trainings and Activities - for Administrators,Does the institution make cultural competence training and activities available to all administrators?,"This credit recognizes institutions with active committees, offices, or officers charged by the administration or governing body to coordinate diversity, equity, inclusion and human rights work on campus. Diversity and equity coordination increases the ability of an institution to more effectively address these issues.
+
+Part 2
+Institution makes cultural competence trainings and activities available to students, staff, and/or faculty.
+
+The trainings and activities help participants build the awareness, knowledge, and skills necessary to work effectively in cross-cultural situations. Trainings and activities that focus exclusively on awareness, knowledge, or skills do not count.","The following information should be included as a comment to the metric: 
+- A brief description of the cultural competence trainings and activities
+- The website URL where information about the cultural competence trainings is available","Planning & Administration, Diversity & Affordability, Diversity and Equity Coordination, University Metrics, SDG10: Reduced Inequalities (universities)","Category (Yes, No)",Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Housing Options to Accommodate Transgender Students,Does the institution offer housing options to accommodate the special needs of transgender and transitioning students?,This credit recognizes institutions that have programs in place to support underrepresented groups and foster a more diverse and inclusive campus community. Certain challenges accompany being a minority on campus. Schools can help create and maintain a diverse student body and help build diversity within academic disciplines and across higher education broadly by offering support programs to help individuals in underrepresented groups thrive academically and socially.,,"Planning & Administration, Diversity & Affordability, Support for Underrepresented Groups, University Metrics, SDG10: Reduced Inequalities (universities)","Category (Yes, No)",Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Entering Students from Low-income (%),What is the percentage of entering students that come from lower income backgrounds?,"This credit recognizes institutions that are implementing strategies to improve their accessibility and affordability. Achieving a college degree is a valuable tool in addressing inequity, but in order for higher education to help society move toward greater equity, schools must be accessible to low-income populations and non-traditional students.","Timeframe
+Institutions should report the most recent data available from within the three years prior to the anticipated date of submission.
+
+Sampling and Data Standards
+Report on the institution’s largest admissions group or student cohort (e.g., undergraduate students). Institutions may choose to include or omit smaller schools or departments within the institution.
+
+Institutions may meet student financial need in a variety of ways, for example:
+- Scholarships and grants
+- Self-help (e.g., work study, employment)
+- Tuition waivers or not requiring tuition
+- Subsidized or no-interest loans
+- Athletic awards
+
+Exclude non-need-based aid, any aid awarded in excess of need, and unsubsidized or interest-bearing loans. Institutions that do not assess student need as a matter of standard practice may report the percentage of cost met, on average, for low-income students.
+","Planning & Administration, Diversity & Affordability, Affordability and Access, University Metrics, SDG4: Quality Education (universities)",Number (%),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Graduation / Success Rate for Low-income Students,What is the institution's graduation/success rate for low-income students?,"This credit recognizes institutions that are implementing strategies to improve their accessibility and affordability. Achieving a college degree is a valuable tool in addressing inequity, but in order for higher education to help society move toward greater equity, schools must be accessible to low-income populations and non-traditional students.","Timeframe
+Institutions should report the most recent data available from within the three years prior to the anticipated date of submission.
+
+Sampling and Data Standards
+Report on the institution’s largest admissions group or student cohort (e.g., undergraduate students). Institutions may choose to include or omit smaller schools or departments within the institution.
+
+Institutions may report graduation rates, success rates and/or combined graduation/success rates as appropriate to their particular context and types of programs offered.
+
+Institutions may meet student financial need in a variety of ways, for example:
+- Scholarships and grants
+- Self-help (e.g., work study, employment)
+- Tuition waivers or not requiring tuition
+- Subsidized or no-interest loans
+- Athletic awards
+
+Exclude non-need-based aid, any aid awarded in excess of need, and unsubsidized or interest-bearing loans. Institutions that do not assess student need as a matter of standard practice may report the percentage of cost met, on average, for low-income students.
+","Planning & Administration, Diversity & Affordability, Affordability and Access, University Metrics, SDG4: Quality Education (universities)",Number (%),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Students Graduating with No Interest-bearing Student Loan Debt (%),What is the percentage of students graduating with no interest-bearing student loan debt?,"This credit recognizes institutions that are implementing strategies to improve their accessibility and affordability. Achieving a college degree is a valuable tool in addressing inequity, but in order for higher education to help society move toward greater equity, schools must be accessible to low-income populations and non-traditional students.","Timeframe
+Institutions should report the most recent data available from within the three years prior to the anticipated date of submission.
+
+Sampling and Data Standards
+Report on the institution’s largest admissions group or student cohort (e.g., undergraduate students). Institutions may choose to include or omit smaller schools or departments within the institution.
+
+Institutions may report graduation rates, success rates and/or combined graduation/success rates as appropriate to their particular context and types of programs offered.
+
+Institutions may meet student financial need in a variety of ways, for example:
+- Scholarships and grants
+- Self-help (e.g., work study, employment)
+- Tuition waivers or not requiring tuition
+- Subsidized or no-interest loans
+- Athletic awards
+
+Exclude non-need-based aid, any aid awarded in excess of need, and unsubsidized or interest-bearing loans. Institutions that do not assess student need as a matter of standard practice may report the percentage of cost met, on average, for low-income students.
+","Planning & Administration, Diversity & Affordability, Affordability and Access, University Metrics, SDG4: Quality Education (universities)",Number (%),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Total Value of Investment Pool,What is the total value ($) of the institution's investment pool?,"This credit recognizes institutions that use their investment power to promote sustainability. There are a variety of approaches an institution can take toward sustainable investment, including making positive investments that promote sustainability and engaging with companies in which they already hold investments. Positive investing supports socially and environmentally responsible practices and the development of sustainable products and services. Active investor engagement can help align an institution’s investments with its values, protect the institution from the financial consequences of fines, lawsuits, customer boycotts and damages to a company’s reputation that may result from unsustainable corporate behavior, and improve the sustainability performance of the businesses it invests in. Both types of activities contribute toward a more just and sustainable financial system.","Timeframe
+Institutions should report on current policies and actions taken within the three years prior to the anticipated date of submission.
+
+Sampling and Data Standards
+Option 1
+Report on a snapshot of the entire investment portfolio. Reporting on a sample of the endowment or a special fund of the endowment is not allowed for this credit. Institutions should strive to report on a representative snapshot. Institutions for which investments are handled by the university system, a separate foundation of the institution and/or a management company contracted by the institution should report on the combined activities of those entities to the extent possible and document any anomalies under “Notes about the submission”.
+
+Option 2
+Institutions for which investments are handled by the university system, a separate foundation of the institution and/or a management company contracted by the institution should report on the combined activities of those entities.","Planning & Administration, Investment, Sustainable Investment, University Metrics, SDG17: Partnerships for the Goals (universities)",Money ($ US/Canadian),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Holdings in Sustainable Industries,What is the value ($) of the institution's holdings in sustainable industries (e.g. renewable energy or sustainable forestry)?,"This credit recognizes institutions that use their investment power to promote sustainability. There are a variety of approaches an institution can take toward sustainable investment, including making positive investments that promote sustainability and engaging with companies in which they already hold investments. Positive investing supports socially and environmentally responsible practices and the development of sustainable products and services. Active investor engagement can help align an institution’s investments with its values, protect the institution from the financial consequences of fines, lawsuits, customer boycotts and damages to a company’s reputation that may result from unsustainable corporate behavior, and improve the sustainability performance of the businesses it invests in. Both types of activities contribute toward a more just and sustainable financial system.
+","Timeframe
+Institutions should report on current policies and actions taken within the three years prior to the anticipated date of submission.
+
+Sampling and Data Standards
+Option 1
+Report on a snapshot of the entire investment portfolio. Reporting on a sample of the endowment or a special fund of the endowment is not allowed for this credit. Institutions should strive to report on a representative snapshot. Institutions for which investments are handled by the university system, a separate foundation of the institution and/or a management company contracted by the institution should report on the combined activities of those entities to the extent possible and document any anomalies under “Notes about the submission”.
+
+Option 2
+Institutions for which investments are handled by the university system, a separate foundation of the institution and/or a management company contracted by the institution should report on the combined activities of those entities.
+
+Sustainable industries (e.g., renewable energy or sustainable forestry). 
+This may include any investment directly in an entire industry sector as well as holdings of companies whose entire business is sustainable (e.g., a manufacturer of wind turbines).
+
+The following contextual information should be included as a comment to the metric value:
+- A brief description of the companies, funds, and/or institutions. Specific disclosure of holdings (e.g., fund or company names) is not required; general information about the industries or fund types represented by the holdings is sufficient.","Planning & Administration, Investment, Sustainable Investment, University Metrics, SDG17: Partnerships for the Goals (universities)",Money ($ US/Canadian),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Holdings in Exemplary Sustainability Performance Businesses,What is the value ($) of the institution's holdings in businesses selected for exemplary sustainability performance (e.g. using criteria specified in a sustainable investment policy)?,"This credit recognizes institutions that use their investment power to promote sustainability. There are a variety of approaches an institution can take toward sustainable investment, including making positive investments that promote sustainability and engaging with companies in which they already hold investments. Positive investing supports socially and environmentally responsible practices and the development of sustainable products and services. Active investor engagement can help align an institution’s investments with its values, protect the institution from the financial consequences of fines, lawsuits, customer boycotts and damages to a company’s reputation that may result from unsustainable corporate behavior, and improve the sustainability performance of the businesses it invests in. Both types of activities contribute toward a more just and sustainable financial system.","Timeframe
+Institutions should report on current policies and actions taken within the three years prior to the anticipated date of submission.
+
+Sampling and Data Standards
+Option 1
+Report on a snapshot of the entire investment portfolio. Reporting on a sample of the endowment or a special fund of the endowment is not allowed for this credit. Institutions should strive to report on a representative snapshot. Institutions for which investments are handled by the university system, a separate foundation of the institution and/or a management company contracted by the institution should report on the combined activities of those entities to the extent possible and document any anomalies under “Notes about the submission”.
+
+Option 2
+Institutions for which investments are handled by the university system, a separate foundation of the institution and/or a management company contracted by the institution should report on the combined activities of those entities.
+
+Businesses selected for exemplary sustainability performance (e.g., using criteria specified in a sustainable investment policy). This includes investments made, at least in part, because of a company's social or environmental performance. Existing stock in a company that happens to have socially or environmentally responsible practices should not be included unless the investment decision was based, at least in part, on the company's sustainability performance.
+
+The following contextual information should be included as a comment to the metric value:
+- A brief description of the companies, funds, and/or institutions. Specific disclosure of holdings (e.g., fund or company names) is not required; general information about the industries or fund types represented by the holdings is sufficient.","Planning & Administration, Investment, Sustainable Investment, University Metrics, SDG17: Partnerships for the Goals (universities)",Money ($ US/Canadian),Community,Researched,Corporate Social Responsibility Report
+"Sustainability Tracking, Assessment & Rating System (STARS)",Negative Screens Included in Sustainable Investment Policy,Does the institution's sustainable investment policy include negative screens?,"This credit recognizes institutions that use their investment power to promote sustainability. There are a variety of approaches an institution can take toward sustainable investment, including making positive investments that promote sustainability and engaging with companies in which they already hold investments. Positive investing supports socially and environmentally responsible practices and the development of sustainable products and services. Active investor engagement can help align an institution’s investments with its values, protect the institution from the financial consequences of fines, lawsuits, customer boycotts and damages to a company’s reputation that may result from unsustainable corporate behavior, and improve the sustainability performance of the businesses it invests in. Both types of activities contribute toward a more just and sustainable financial system.","Timeframe
+Institutions should report on current policies and actions taken within the three years prior to the anticipated date of submission.
+
+Sampling and Data Standards
+Option 1
+Report on a snapshot of the entire investment portfolio. Reporting on a sample of the endowment or a special fund of the endowment is not allowed for this credit. Institutions should strive to report on a representative snapshot. Institutions for which investments are handled by the university system, a separate foundation of the institution and/or a management company contracted by the institution should report on the combined activities of those entities to the extent possible and document any anomalies under “Notes about the submission”.
+
+Option 2
+Institutions for which investments are handled by the university system, a separate foundation of the institution and/or a management company contracted by the institution should report on the combined activities of those entities.
+
+This metrics assesses whether the institution has a publicly available investment policy with negative screens, for example to prohibit investment in an industry (e.g., tobacco or weapons manufacturing) or participate in a divestment effort (e.g., targeting fossil fuel production or human rights violations)
+
+The following contextual information should be included as a comment to the metric value:
+- A brief description of the negative screens and how they have been implemented
+- Approximate percentage of endowment that the negative screens apply to (0-100)
+- The website URL where information about the institution's sustainable investment efforts is available.","Planning & Administration, Investment, Sustainable Investment, University Metrics, SDG17: Partnerships for the Goals (universities)","Category (Yes, No)",Community,Researched,Corporate Social Responsibility Report

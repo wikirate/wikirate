@@ -77,7 +77,7 @@ end
 
 # TODO: adapt to Henry's value type API
 def categorical?
-  value_type == "Category"
+  value_type == "Category" || value_type == "Multi-Category"
 end
 
 def relationship?
@@ -185,13 +185,32 @@ format :html do
     # "<style> #{Sass.compile css}</style>"
   end
 
+  # USED?
+
+
+  view :add_to_formula_item_view do |args|
+    title = card.metric_title.to_s
+    subtext = card.metric_designer.to_s
+    subtext = wrap_with :small, "Scored by " + subtext
+    append = "#{params[:formula_metric_key]}+add_to_formula"
+    url = path mark: card.cardname.field(append), view: :content
+    text_with_image image: designer_image_card,
+                    text: subtext, title: title, size: :icon,
+                    media_opts: { class: "tr-details-toggle",
+                                  data: { details_url: url } }
+  end
+
+  view :details_placeholder do
+    ""
+  end
+
   view :listing do
     wrap_with :div, class: "contribution-item value-item no-hover" do
       [
-        wrap_with(:div, class: "header no-hover") do
+        wrap_with(:div, class: "header") do
           _render_thumbnail
         end,
-        wrap_with(:div, class: "data no-hover") do
+        wrap_with(:div, class: "text-center margin-15") do
           listing_data
         end
       ]
@@ -201,8 +220,8 @@ format :html do
   def listing_data
     wrap_with :div, class: "contribution company-count" do
       [
-        company_count,
-        wrap_with(:div, "Companies", class: "name")
+        wrap_with(:div, company_count, class: "h5"),
+        wrap_with(:div, "Companies", class: "light-grey-color")
       ]
     end
   end
@@ -262,11 +281,11 @@ format :html do
   def vtype_edit_modal_link_text
     # FIXME: why does value_type_card not work although value_type is registered
     #        as card accessor
-    v_type_card = Card.fetch trait: :value_type, new: {}
+    v_type_card = card.fetch trait: :value_type, new: {}
     if v_type_card.new?
       "Update Value Type"
     else
-      subformat(v_type_card).render_shorter_pointer_content
+      nest v_type_card, view: :shorter_pointer_content, hide: :link
     end
   end
 
@@ -277,7 +296,8 @@ format :html do
       case value_type.item_names[0]
       when "Number"   then :numeric_details
       when "Money"    then :monetary_details
-      when "Category" then :category_details
+      when "Category", "Multi-Category" then
+        :category_details
       end
     return "" if details_field.nil?
     detail_card = Card.fetch card, details_field, new: {}
@@ -303,20 +323,6 @@ format :html do
         {{#{card.name}+#{args[:company]}+latest value|concise}}
       </div>
     )
-  end
-
-  # USED?
-  view :item_view do |args|
-    append = args[:append_for_details] ||
-             "#{card.key}+add_to_formula"
-    item_wrap do
-      %(
-      <div class="no-data metric-details-toggle"
-           data-append="#{append}">
-        #{_render_thumbnail(optional_thumbnail_subtitle: :hide)}
-      </div>
-      )
-    end
   end
 
   view :add_to_formula do |_args|

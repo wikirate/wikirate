@@ -25,6 +25,7 @@ Feature: Double check
     When I am signed in as Joe User
     And I go to card "Jedi+disturbances in the Force+Death Star+2000"
     And I click on the "remove" icon
+    And I wait for ajax response
     And I hover over "Joe User"
     Then I should see "Double check"
 
@@ -63,6 +64,7 @@ Feature: Double check
     When I am signed in as Joe User
     And I go to card "Jedi+disturbances in the Force+Death Star+2000"
     When I click on "Double check"
+    And I wait for ajax response
     Then I should see "Yes, I checked the value"
     When I edit "Jedi+disturbances in the Force+Death Star+2000"
     And I fill in "no" for "Answer"
@@ -76,5 +78,7 @@ Feature: Double check
 
   Scenario: Can't check if not signed in
     When I go to card "Jedi+disturbances in the Force+Death Star+2000"
-    And I click on "Double check"
+    And I hover over "Double check"
+    And I click on "Yes, I checked the value"
+    And I wait for ajax response
     Then I should see "please sign in"

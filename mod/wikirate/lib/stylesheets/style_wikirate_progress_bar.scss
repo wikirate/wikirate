@@ -76,6 +76,9 @@
     font-size: $sub-text-size;
     color: $heading-color;
   }
+  span.progress-value{
+    display: none; 
+  }
 }
 
 

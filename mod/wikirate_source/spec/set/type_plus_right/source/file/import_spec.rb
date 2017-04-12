@@ -303,31 +303,35 @@ describe Card::Set::TypePlusRight::Source::File::Import do
         with_row false, "danger",
                  file_company: "Cambridge",
                  value: "43",
-                 row: 1,
+                 csv_row_index: 1,
                  wikirate_company: "",
                  status: "none",
-                 company: "Cambridge"
+                 company: "Cambridge",
+                 row: 1
         with_row true, "info",
                  file_company: "amazon.com",
                  value: "9",
-                 row: 2,
+                 csv_row_index: 2,
                  wikirate_company: "Amazon.com, Inc.",
                  status: "alias",
-                 company: "Amazon.com, Inc."
+                 company: "Amazon.com, Inc.",
+                 row: 3
         with_row true, "success",
                  file_company: "Apple Inc.",
                  value: "62",
-                 row: 3,
+                 csv_row_index: 3,
                  wikirate_company: "Apple Inc.",
                  status: "exact",
-                 company: "Apple Inc."
+                 company: "Apple Inc.",
+                 row: 4
         with_row true, "warning",
-                 file_company: "Sony C",
+                 file_company: "Sony",
                  value: "33",
-                 row: 4,
+                 csv_row_index: 4,
                  wikirate_company: "Sony Corporation",
                  status: "partial",
-                 company: "Sony Corporation"
+                 company: "Sony Corporation",
+                 row: 2
       end
     end
   end

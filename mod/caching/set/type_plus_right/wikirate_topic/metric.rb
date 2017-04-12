@@ -26,7 +26,7 @@ format :html do
 
   def no_answers
     all_metric_ids.map do |id|
-      next if Answer.exists? id
+      next if Answer.exists?(metric_id: id)
       nest id, view: :listing
     end.compact
   end

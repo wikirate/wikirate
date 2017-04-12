@@ -23,7 +23,7 @@ format :html do
         [:company_thumbnail, :research_progress_bar, :research_button],
         header: ["Company", "Metrics Researched", "Research Company"],
         table: { class: "company-research" },
-        td: { classes: ["metric"] }
+        td: { classes: ["metric", "progress-column", "button-column"] }
       )
     end
   end
