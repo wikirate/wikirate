@@ -6,7 +6,7 @@ class WikipediaCSVRow < CSVRow
 
   def initialize row
     super
-    @row[:wikipedia_company_page].match(%r{/([^/]+)$})
+    @row[:wikipedia_company_page] =~ %r{/([^/]+)$}
     @wikipedia_name = Regexp.last_match(1)
   end
 
