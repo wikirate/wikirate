@@ -1,6 +1,12 @@
 # Loader animation
 $.extend wikirate:
   ajaxLoader: { head: '#ajax_loader', child: '.loader-anime'}
+  initRowRemove: ($button) ->
+    $button =  $("._remove_row") unless $button
+    $button.each () ->
+      $this = $(this)
+      $this.on 'click', ->
+        $this.closest('tr').remove()
   isString: (val) ->
     typeof val == 'string' ? true : false
   jObj: (ele) ->
@@ -50,10 +56,11 @@ wagn.slotReady (slot) ->
       skip_no_results: true
       width: '100%'
 
+  wikirate.initRowRemove(slot.find("._remove_row"))
+
 # destory modal content after closing modal window (On homepage only)
 $(document).ready ->
   if $('#Home').exists()
     $('#modal-main-slot').on 'hidden.bs.modal', ->
       $(this).data 'bs.modal', null
       $(this).find('.modal-body').empty()
-  

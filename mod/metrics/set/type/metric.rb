@@ -392,11 +392,21 @@ format :html do
     metric_info_row left, content, opts
   end
 
+  def weight_content args
+    icon_class = "pull-right _remove_row btn btn-default btn-sm"
+    wrap_with :div do
+      [
+        text_field_tag("pair_value", (args[:weight] || 0)) + "%",
+        content_tag(:span, fa_icon(:remove).html_safe, class: icon_class)
+      ]
+    end
+  end
+
   view :weight_row do |args|
-    weight = text_field_tag("pair_value", (args[:weight] || 0)) + "%"
+    weight = weight_content args
     output(
       [
-        wrap_with(:td, _render_thumbnail(args), "data-key" => card.name),
+        wrap_with(:td, _render_thumbnail_plain(args), "data-key" => card.name),
         wrap_with(:td, weight, class: "metric-weight")
       ]
     ).html_safe
