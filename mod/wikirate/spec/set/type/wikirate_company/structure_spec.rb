@@ -26,7 +26,7 @@ RSpec.describe Card::Set::Type::WikirateCompany::Structure do
         end
         with_tag "div.col-md-6.slab" do
           with_tag :a, with: { href: "/Death_Star?tab=topic" } do
-            with_text /1\s*Topics/
+            with_text /2\s*Topics/
           end
         end
       end
