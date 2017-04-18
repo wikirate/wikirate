@@ -59,7 +59,7 @@ format :html do
     preview? ? _optional_render_new_preview : super()
   end
 
-  view :open do
+  view :open_content do
     _render_preview
   end
 
