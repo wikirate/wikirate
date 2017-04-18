@@ -99,10 +99,8 @@ format :html do
 end
 
 def user_can_answer?
-  policy = fetch(trait: :research_policy, new: {}).item_cards.first.name
+  # TODO: add metric designer respresentative logic here
   is_admin = Auth.always_ok?
   is_owner = Auth.current.id == creator.id
-  is_designer_assessed = policy.casecmp("designer assessed").zero?
-  # TODO: add metric designer respresentative logic here
-  !is_designer_assessed || (is_admin || is_owner)
+  (is_admin || is_owner) || !designer_assessed?
 end

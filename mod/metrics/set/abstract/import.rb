@@ -360,6 +360,8 @@ format :html do
   end
 
   view :import_table, cache: :never do |args|
+    return alert(:warning) { "no import file attached" } if card.file.blank?
+
     data = card.csv_rows
     reject_header_row data
     data = prepare_and_sort_rows data, args

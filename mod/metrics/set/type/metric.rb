@@ -105,6 +105,10 @@ def scored?
   metric_type_codename == :score || rated?
 end
 
+def designer_assessed?
+  research_policy.casecmp("designer assessed").zero?
+end
+
 def analysis_names
   return [] unless (topics = fetch(trait: :wikirate_topic)) &&
                    (companies = fetch(trait: :wikirate_company))
