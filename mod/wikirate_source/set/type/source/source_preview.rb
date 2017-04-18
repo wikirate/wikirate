@@ -132,26 +132,22 @@ format :html do
   end
 
   view :hidden_information, tags: :unknown_ok do |args|
-    %(
-      <div style="display:none">
-        #{wrap_with(:div, card.cardname.url_key, id: 'source-name')}
-        #{wrap_with(:div, preview_url, id: 'source_url')}
-        #{wrap_with(:div, args[:year], id: 'source-year')}
-        #{wrap_with(:div, args[:company], id: 'source_company')}
-        #{wrap_with(:div, args[:topic], id: 'source_topic')}
-      </div>
-    )
+    wrap_with :div, class: "hidden" do
+      [
+        wrap_with(:div, card.cardname.url_key, id: "source-name"),
+        wrap_with(:div, preview_url, id: "source_url"),
+        wrap_with(:div, args[:year], id: "source-year"),
+        wrap_with(:div, args[:company], id: "source_company"),
+        wrap_with(:div, args[:topic], id: "source_topic")
+      ]
+    end
   end
 
   view :non_previewable, tags: :unknown_ok do |_args|
-    if file_card = Card[card.name + "+File"]
-      <<-HTML
-        <a href="#{file_card.attachment.url}" class="btn btn-primary" role="button">Download</a>
-      HTML
-    else
-      <<-HTML
-        <a href="#{preview_url}" class="btn btn-primary" role="button">Visit Original Source</a>
-      HTML
-    end
+    file_card = card.fetch trait: :file
+    url, text = if file_card [file_card.attachment.url, "Download"]
+                else [preview_url, "Visit Original Source"]
+                end
+    link_to text, href: url, class: "btn btn-primary", role: "button"
   end
 end
