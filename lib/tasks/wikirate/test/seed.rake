@@ -18,7 +18,7 @@ namespace :wikirate do
         ensure_env :init_test, task, args do
           execute_command "rake wagn:seed", :test
           Rake::Task["wikirate:test:import_from"].invoke(args[:location])
-          Rake::Task["wikirate:test:dump_test_db"].invoke(base_dump_path)
+          Rake::Task["wikirate:test:seed:dump"].invoke(base_dump_path)
         end
       end
 
@@ -40,7 +40,7 @@ namespace :wikirate do
           Rake::Task["wikirate:test:seed:add_wikirate_test_data"].invoke
           Card::Cache.reset_all
           Rake::Task["wikirate:test:update_machine_output"].invoke
-          Rake::Task["wikirate:test:dump_test_db"].execute
+          Rake::Task["wikirate:test:seed:dump"].execute
         end
       end
 
@@ -51,6 +51,7 @@ namespace :wikirate do
           SharedData.add_wikirate_data
         end
       end
+
     end
   end
 end

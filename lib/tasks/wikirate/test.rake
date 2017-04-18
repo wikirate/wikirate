@@ -46,7 +46,7 @@ namespace :wikirate do
     end
 
     desc "seed test database"
-    task seed: :load_test_dump
+    task seed: :load_dump
 
     desc "import cards from given location"
     task :import_from, [:location] => :environment do |task, args|
@@ -78,27 +78,27 @@ namespace :wikirate do
     task update_machine_output: :environment do |task|
       ensure_env :test, task do
         Card::Auth.as_bot do
-          Card[:all, :script].update_machine_output
-          Card[:all, :style].update_machine_output
+          [[:all, :script],
+           [:all, :style],
+           [:script_html5shiv_printshiv]].each do |name_parts|
+            Card[*name_parts].update_machine_output
+            codename = "#{name_parts.join('_')}_output"
+            Card[*name_parts, :machine_output].update_attributes!(
+              codename: codename, storage_type: :coded, mod: :test
+            )
+          end
+
           # because we don't copy the files we have to delete the output
           # but the solid caches for generating the machine output
           # are updated now
-          Card[:all, :script, :machine_output].delete
-          Card[:all, :style, :machine_output].delete
+          #Card[:all, :script, :machine_output].delete
+          #Card[:all, :style, :machine_output].delete
         end
       end
     end
 
-    desc "dump test database"
-    task :dump_test_db, [:path] do |_task, args|
-      dump_path = args[:path] || full_dump_path
-      mysql_args = "-u #{user}"
-      mysql_args += " -p #{pwd}" if pwd
-      execute_command "mysqldump #{mysql_args} #{testdb} > #{dump_path}"
-    end
-
     desc "load db dump into test db"
-    task :load_test_dump, [:path] do |_task, args|
+    task :load_dump, [:path] do |_task, args|
       dump_path = args[:path] || full_dump_path
       mysql_login = "mysql -u #{user}"
       mysql_login += " -p#{pwd}" if pwd
@@ -106,6 +106,15 @@ namespace :wikirate do
         "echo \"create database if not exists #{testdb}\" | #{mysql_login}; " \
         "#{mysql_login} --database=#{testdb} < #{dump_path}"
       system cmd
+    end
+
+
+    desc "dump test database"
+    task :dump, [:path] do |_task, args|
+      dump_path = args[:path] || full_dump_path
+      mysql_args = "-u #{user}"
+      mysql_args += " -p #{pwd}" if pwd
+      execute_command "mysqldump #{mysql_args} #{testdb} > #{dump_path}"
     end
   end
 end

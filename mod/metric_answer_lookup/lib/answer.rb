@@ -113,6 +113,23 @@ class Answer < ActiveRecord::Base
         cardish.id
       end
     end
+
+    def latest_answer_card metric_id, company_id
+      return unless a_id = where(metric_id: metric_id,
+                                 company_id: company_id,
+                                 latest: true).pluck(:answer_id)
+      Card.fetch(a_id)
+    end
+
+    def latest_year metric_id, company_id
+      where(metric_id: metric_id,
+                                 company_id: company_id,
+                                 latest: true).pluck(:year)
+    end
+
+    def answered? metric_id, company_id
+      where(metric_id: metric_id, company_id: company_id).exist?
+    end
   end
 
   extend ClassMethods

@@ -16,11 +16,15 @@ class SharedData
     end
 
     def sample_companies num=1, args={}
-      Card.search args.merge(type_id: Card::WikirateCompanyID, limit: num)
+      search_samples  Card::WikirateCompanyID, num, args
     end
 
     def sample_topics num=1, args={}
-      Card.search args.merge(type_id: Card::WikirateTopicID, limit: num)
+      search_samples Card::WikirateTopicID, num, args
+    end
+
+    def sample_metrics num=1, args={}
+      search_samples Card::MetricID, num, args
     end
 
     def sample_analysis
@@ -50,6 +54,12 @@ class SharedData
 
     def sample_metric_value
       Card["Jedi+disturbances_in_the_Force+Death_Star+1977"]
+    end
+
+    private
+
+    def search_samples type_id, num, args={}
+      Card.search args.merge(type_id: type_id, limit: num)
     end
   end
 end
