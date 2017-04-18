@@ -25,6 +25,10 @@ gem "rubocop"
 gem "rubocop-decko"
 gem "wbench"
 
+
+gem "wkhtmltopdf-binary"
+gem "pdfkit"
+
 gem "fog"
 gem "fog-aws"
 
