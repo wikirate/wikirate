@@ -18,6 +18,7 @@ class CSVRow
   end
 
   def normalize
+    return unless self.class.normalize
     @row.each do |k, v|
       next unless (method = self.class.normalize[k])
       @row[k] = send method, v

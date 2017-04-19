@@ -22,7 +22,7 @@ format :html do
   view :rich_header do |args|
     bs_layout do
       row 12 do
-        col class: "nopadding" do
+        col class: "nopadding rich-header" do
           text_with_image title: "", text: header_right, size: :large
         end
       end
@@ -36,7 +36,7 @@ format :html do
   end
 
   def header_right
-    wrap_with :h2, _render_title, class: "header-right"
+    wrap_with :h3, _render_title, class: "header-right"
   end
 
   view :content_right_col do

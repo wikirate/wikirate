@@ -16,8 +16,12 @@ class Answer < ActiveRecord::Base
   end
 
   def metric_must_exit
-    return if metric_card
-    errors.add :metric_id, "#{fetch_metric_name} does not exist"
+    unless metric_card
+      errors.add :metric_id, "#{fetch_metric_name} does not exist"
+      return
+    end
+    return if metric_card.type_id == Card::MetricID
+    errors.add :metric_id, "#{fetch_metric_name} is not a metric"
   end
 
   module ClassMethods
@@ -46,7 +50,7 @@ class Answer < ActiveRecord::Base
     def fetch where, sort_args={}, paging={}
       where = Array.wrap where
       mas = Answer.where(*where)
-      mas = sort mas, sort_args if sort_args.present?
+      mas = sort mas, sort_args
       mas = mas.limit(paging[:limit]).offset(paging[:offset]) if paging.present?
       mas.pluck(:answer_id).map do |id|
         Card.fetch id
@@ -54,6 +58,7 @@ class Answer < ActiveRecord::Base
     end
 
     def sort mas, args
+      return mas unless valid_sort_args? args
       mas = importance_sort mas, args if args[:sort_by].to_sym == :importance
       sort_by = args[:sort_by]
       sort_by = "CAST(#{sort_by} AS #{args[:cast]})" if args[:cast]
@@ -69,12 +74,29 @@ class Answer < ActiveRecord::Base
       mas
     end
 
+    def valid_sort_args? args
+      return unless args.present? && args[:sort_by]
+      return true if args[:sort_by].to_sym == :importance
+      Answer.column_names.include? args[:sort_by].to_s
+    end
+
     def refresh ids=nil, *fields
-      ids ||= Card.search(type_id: Card::MetricValueID, return: :id)
-      ids = Array(ids)
-      ids.each do |ma_id|
-        # puts ma_id
-        create_or_update ma_id, *fields
+      ids &&= Array(ids)
+      if ids
+        ids.each do |ma_id|
+          begin
+            create_or_update ma_id, *fields
+          rescue => e
+            puts "failed: #{ma_id}"
+          end
+        end
+      else
+        count = 0
+        Card.where(type_id: Card::MetricValueID).pluck_in_batches(:id) do |batch|
+          count += batch.size
+          puts "#{batch.first} - #{count}"
+          refresh(batch, *fields)
+        end
       end
     end
 
@@ -131,11 +153,16 @@ class Answer < ActiveRecord::Base
   end
 
   def fetch_imported
-    card.value_card.actions.last.comment == "imported"
+    return unless (action = card.value_card.actions.last)
+    action.comment == "imported"
   end
 
   def fetch_designer_id
     metric_card.left_id
+  end
+
+  def fetch_creator_id
+    card.creator_id
   end
 
   def fetch_designer_name

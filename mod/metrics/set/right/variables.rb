@@ -1,5 +1,6 @@
 include_set Type::Pointer
-include Abstract::Variable
+include_set Abstract::Variable
+include_set Abstract::Table
 
 def metric_card
   left
@@ -69,21 +70,20 @@ format :html do
       render_haml metric_list: metric_list do
         <<-HAML
 .yinyang.nodblclick
-  .row.yinyang-row
-    .col-md-6
-      .header-row
-        .header-header
-          Metric
-      .yinyang-list
-        = metric_list
-    .col-md-6.metric-details.light-grey-color-2.text-center
-      %br/
-      %br/
-      %br/
-      %p
-        Choose a metric to view more details here
-      %p
-        and to add it to the formula
+  .col-md-6
+    .header-row
+      .header-header
+        Metric
+    .yinyang-list.add-formula
+      = metric_list
+  .col-md-6.metric-details.light-grey-color-2.text-center
+    %br/
+    %br/
+    %br/
+    %p
+      Choose a metric to view more details here
+    %p
+      and to add it to the formula
       HAML
       end
     end
@@ -99,14 +99,10 @@ format :html do
     if card.metric_card.metric_type_codename == :wiki_rating
       wql[:right_plus] = ["*metric type", { refer_to: "Score" }]
     end
-    Card.search(wql).map do |m|
-      metric_list_item m
-    end.join "\n"
-  end
-
-  def metric_list_item metric_item_card, args={}
-    args[:append_for_details] = "#{card.metric_card_name.key}+add_to_formula"
-    subformat(metric_item_card)._render_item_view(args)
+    items = Card.search(wql)
+    params[:formula_metric_key] = card.cardname.left_key
+    wikirate_table_with_details :metric, items, [:add_to_formula_item_view],
+                                td: {classes: ["score", "details"]}
   end
 
   view :missing do |args|

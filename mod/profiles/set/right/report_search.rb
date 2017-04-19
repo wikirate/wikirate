@@ -108,7 +108,7 @@ format :html do
   end
 
   def subvariant_tab_title key
-    "#{key.to_s.tr("_", " ")} <span class='badge'>#{card.subvariant_count(key)}</span>"
+    "#{key.to_s.tr('_', ' ')} <span class='badge'>#{card.subvariant_count(key)}</span>"
   end
 
   def subvariant_tab_path key
@@ -123,6 +123,30 @@ format :html do
   view :core do
     card.variant = voo.structure if voo.structure
     super()
+  end
+
+  view :wikirate_company_sublist do
+    card.variant = voo.structure if voo.structure
+    wrap do
+      with_paging do
+        wikirate_table :company,
+                       search_with_params,
+                       [:listing_compact],
+                       header: %w(Company)
+      end
+    end
+  end
+
+  view :wikirate_topic_sublist do
+    card.variant = voo.structure if voo.structure
+    wrap do
+      with_paging do
+        wikirate_table :company,
+                       search_with_params,
+                       [:listing_compact],
+                       header: %w(Topic)
+      end
+    end
   end
 
   view :metric_value_sublist do
@@ -143,6 +167,14 @@ format :html do
                       type: "pills"
   end
 
+  def self.define_tab_listing_where_applicable cardtype
+    return if cardtype.in? [:metric_value, :wikirate_company, :wikirate_topic]
+    view "#{cardtype}_sublist" do
+      card.variant = voo.structure if voo.structure
+      default_listing
+    end
+  end
+
   [
     :claim,
     :metric,
@@ -159,12 +191,7 @@ format :html do
       tab_listing listing
     end
 
-    next if cardtype == :metric_value
-
-    view "#{cardtype}_sublist" do
-      card.variant = voo.structure if voo.structure
-      default_listing
-    end
+    define_tab_listing_where_applicable cardtype
   end
 
   def default_listing item_view=:listing
@@ -179,7 +206,7 @@ format :html do
   # a recursion risk and makes it use a new subformat, which is a problem
   # here because that kills the paging.
   # as these cards are narrowly used, there is not much risk of recursion
-  def nest_recursion_risk? view
+  def nest_recursion_risk? _view
     false
   end
 end

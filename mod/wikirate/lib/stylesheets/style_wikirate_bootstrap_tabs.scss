@@ -72,32 +72,62 @@
         margin-bottom: 0;
     }
 
+//Custom Tabs
+
 .company-profile-tab{
   position: absolute;
-  bottom: 0px;
+  bottom: 10px;
   min-width: 60%;
   text-align: center;
   li{
     width: 50%;
   }
 }
-
-//Custom Tabs
+.company-profile-tab.visible-xs {
+    position: relative;
+    border-top: 1px solid #ebebeb;
+    margin: 0px -15px;
+}
 
 .contribution-report-header {
+    .nav-tabs{
+      padding-bottom: 2px; 
+    }
     .nav-tabs>li>a{
       margin: 0px;
     }
 }
 
-h4.contribution-report-title {
+.contribution_report-view .contribution-report-header > .nav > li {
+  float: right;
+  width: 15%;
+  .count-label {
+    white-space: nowrap;
+  }
+}
+
+.contribution-report-title {
     float: left;
-    padding: 20px;
+  padding: 0 20px;
+  color: inherit;
 }
 
 .contribution-report {
     margin-bottom: 15px;
     border: 1px solid $border-color;
+}
+
+li.contribution-report-title-box {
+  float: left !important;
+  width: 30% !important;
+
+}
+
+li.contribution-report-title-box > a {
+  padding-bottom: 27px;
+  padding-left: 0px;
+  padding-top: 12px;
+  color: inherit;
 }
 
 .RIGHT-metric, .RIGHT-metric_value{

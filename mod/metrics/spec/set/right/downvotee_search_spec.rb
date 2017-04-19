@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
-describe Card::Set::Right::DownvoteeSearch do
+RSpec.describe Card::Set::Right::DownvoteeSearch do
   describe "#get_search_result" do
     context "signed in" do
       it "shows the voted cards in customized order" do
@@ -130,7 +130,7 @@ describe Card::Set::Right::DownvoteeSearch do
             expect(html).to have_tag("div", with:
               { class: "list-drag-and-drop yinyang-list down_vote-container",
                 "data-query" => "vote=force-down",
-                "data-update-id" => "Apple_Inc+topic+downvotee_search",
+                "data-update-id" => "Apple_Inc+Topic+downvotee_search",
                 "data-bucket-name" => "down_vote" }
                                     ) do
               with_tag("div", with: { class: "drag-item yinyang-row" }) do
@@ -178,7 +178,7 @@ describe Card::Set::Right::DownvoteeSearch do
                 with: {
                   class: "list-drag-and-drop yinyang-list down_vote-container",
                   "data-query" => "vote=force-down",
-                  "data-update-id" => "Apple_Inc+metric+downvotee_search",
+                  "data-update-id" => "Apple_Inc+Metric+downvotee_search",
                   "data-bucket-name" => "down_vote" }
               ) do
                 with_tag("div", with: { class: "drag-item yinyang-row" }) do

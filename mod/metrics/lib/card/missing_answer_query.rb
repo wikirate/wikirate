@@ -12,11 +12,15 @@ class Card
       all_missing
     end
 
+    def count
+      Card.search(missing_wql.merge(return: :count))
+    end
+
     private
 
     # @return [Array<String]
     def subjects_without_answers
-      Card.search(missing_wql.merge(return: :name))
+      Card.search(missing_wql.merge(return: :name, sort: :name))
     end
 
     def all_missing

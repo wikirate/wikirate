@@ -25,11 +25,11 @@ format :html do
       wrap_with :div, class: "metric-details-content" do
         [
           _render_metric_properties,
+          _render_add_value_buttons,
           wrap_with(:hr, ""),
           nest(card.about_card, view: :titled, title: "About"),
           nest(card.methodology_card, view: :titled, title: "Methodology"),
-          _render_import_button,
-          _render_add_value_buttons
+          _render_import_button
         ]
       end
     end
@@ -64,7 +64,7 @@ format :html do
   end
 
   def add_value_link
-    link_to_card :research_page, "#{fa_icon 'plus'} Add new value",
+    link_to_card :research_page, "#{fa_icon 'plus'} Add answer",
                  path: { metric: card.name, view: :new },
                  class: "btn btn-primary"
     #"/new/metric_value?metric=" + _render_cgi_escape_name
@@ -73,7 +73,10 @@ format :html do
   view :add_value_buttons do
     return unless card.user_can_answer?
     wrap_with :div, class: "row margin-no-left-15" do
-      add_value_link
+      [
+        content_tag(:hr),
+        add_value_link
+      ]
     end
   end
 
@@ -96,10 +99,8 @@ format :html do
 end
 
 def user_can_answer?
-  policy = fetch(trait: :research_policy, new: {}).item_cards.first.name
+  # TODO: add metric designer respresentative logic here
   is_admin = Auth.always_ok?
   is_owner = Auth.current.id == creator.id
-  is_designer_assessed = policy.casecmp("designer assessed").zero?
-  # TODO: add metric designer respresentative logic here
-  !is_designer_assessed || (is_admin || is_owner)
+  (is_admin || is_owner) || !designer_assessed?
 end

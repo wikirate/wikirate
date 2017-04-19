@@ -25,13 +25,13 @@ format :html do
   end
 
   def add_value_button
-    link_to_card card.company_card, "Add answer",
+    link_to_card :research_page, "Add answer",
                  type: "button",
                  target: "_blank",
                  class: "btn btn-primary btn-sm",
                  path: {
-                   view: :new_metric_value,
-                   metric: [CGI.escape(card.metric_name.to_name.url_key)]
+                   metric: [card.metric],
+                   company: card.company
                  }
     # <<-HTML
     #     <a type="button" target="_blank" class="btn btn-primary btn-sm"

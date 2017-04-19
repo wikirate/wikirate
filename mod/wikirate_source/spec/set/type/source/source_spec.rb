@@ -95,7 +95,8 @@ describe Card::Set::Type::Source do
     describe "while creating a source with a file link" do
       context "link points to a file" do
         it "downloads it and saves as a file source" do
-          pdf_url = "http://wikirate.org/Page-000003962+File.pdf"
+          pdf_url = "http://wikirate.s3.amazonaws.com/files/175839/12677809.pdf"
+          # "http://wikirate.org/Page-000003962+File.pdf"
           sourcepage = create_link_source pdf_url
           expect(sourcepage.errors).to be_empty
           source_file = sourcepage.fetch(trait: :file)

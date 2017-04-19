@@ -75,4 +75,22 @@ Metrics/BlockLength:
     - '**/*.rake'
     - 'spec/**/*.rb'
     - '**/*_spec.rb'
-
+RSpec/ExampleLength:
+  Description: Checks for long examples.
+  Enabled: true
+  Max: 10
+RSpec/FilePath:
+  Description: Checks that spec file paths are consistent with the test subject.
+  Enabled: true
+  CustomTransform:
+    RuboCop: rubocop
+    RSpec: rspec
+    Card: spec
+  IgnoreMethods: false
+RSpec/NestedGroups:
+  Description: Checks for nested example groups.
+  Enabled: false
+  Max: 5
+Metrics/LineLength:
+  Enabled: true
+  Max: 90

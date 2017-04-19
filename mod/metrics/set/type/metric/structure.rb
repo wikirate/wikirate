@@ -58,10 +58,10 @@ format :html do
     HTML
   end
 
-  def author_info author_card
+  def author_info author_card, subtext=nil
     output [
       author_image(author_card),
-      author_text(author_card.name)
+      author_text(author_card.name, subtext)
     ]
   end
 

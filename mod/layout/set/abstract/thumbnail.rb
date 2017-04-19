@@ -1,22 +1,23 @@
 format :html do
-  view :thumbnail_plain do
-    voo.hide :thumbnail_link
-    wrap_with :div do
-      [
-        thumbnail_image_wrap,
-        _optional_render_thumbnail_title
-      ]
-    end
+  view :thumbnail_plain do |args|
+    wrap_with :div, thumbnail_content(args)
   end
 
-  view :thumbnail do
+  view :thumbnail do |args|
     voo.show :thumbnail_link
-    wrap_with :div, class: "thumbnail" do
-      [
-        thumbnail_image_wrap,
-        thumbnail_text_wrap
-      ]
-    end
+    wrap_with :div, thumbnail_content(args), class: "thumbnail"
+  end
+
+  view :thumbnail_no_link do |args|
+    voo.show :thumbnail_link
+    wrap_with :div, thumbnail_content(args)
+  end
+
+  def thumbnail_content args
+    output [
+      thumbnail_image_wrap,
+      thumbnail_text_wrap(args)
+    ]
   end
 
   def thumbnail_image_wrap
@@ -28,22 +29,24 @@ format :html do
     end
   end
 
-  def thumbnail_text_wrap
+  def thumbnail_text_wrap args
     wrap_with :div, class: "thumbnail-text" do
       [
         thumbnail_title,
-        _optional_render_thumbnail_subtitle
+        _optional_render_thumbnail_subtitle(args)
       ]
     end
   end
 
   def thumbnail_image
-    link_to_card card, field_nest(:image, view: :core, size: :small)
+    image = field_nest(:image, view: :core, size: :small)
+    return image unless voo.show?(:thumbnail_link)
+    link_to_card card, image
   end
 
   def thumbnail_title
     wrap_with :div, class: "ellipsis" do
-      _render_link
+      voo.show?(:thumbnail_link) ? _render_link : _render_name
     end
   end
 
@@ -52,7 +55,7 @@ format :html do
       <<-HTML
       <small class="text-muted">
         #{args[:text]}
-      #{args[:author]}
+        #{args[:author]}
       </small>
       HTML
     end
