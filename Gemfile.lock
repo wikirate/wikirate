@@ -550,7 +550,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.3)
+    unf_ext (0.0.7.4)
     unicode-display_width (1.2.1)
     uuid (2.3.8)
       macaddr (~> 1.0)

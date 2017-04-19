@@ -7,3 +7,7 @@ end
 def virtual?
   true
 end
+
+def type_id
+  SearchTypeID
+end

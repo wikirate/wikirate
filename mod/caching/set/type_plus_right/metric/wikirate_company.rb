@@ -2,7 +2,7 @@
 include_set Abstract::SearchCachedCount
 
 def search args={}
-  company_ids = Answer.where(metric_id: left.id).pluck(:company_id).uniq
+  company_ids = unique_company_ids
   case args[:return]
   when :id
     company_ids
@@ -13,6 +13,25 @@ def search args={}
   else
     company_ids.map { |id| Card.fetch id }
   end
+end
+
+def unique_company_ids
+  Answer.where(metric_id: left.id).pluck(:company_id).uniq
+end
+
+def wql_hash
+  company_ids = unique_company_ids
+  if company_ids.any?
+    { id: [:in] + company_ids }
+  else
+    { id: -1 } # HACK: ensure no results
+  end
+end
+
+# turn query caching off because wql_hash varies and fetch_query
+# doesn't recognizes changes in wql_hash
+def fetch_query args={}
+  query(args.clone)
 end
 
 # recount number of companies for a given metric when a Metric Value card is

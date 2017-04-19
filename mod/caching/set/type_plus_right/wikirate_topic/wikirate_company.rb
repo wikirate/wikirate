@@ -54,6 +54,12 @@ def wql_hash
   end
 end
 
+# turn query caching off because wql_hash varies and fetch_query
+# doesn't recognizes changes in wql_hash
+def fetch_query args={}
+  query(args.clone)
+end
+
 def ids_of_metrics_tagged_with_topic
   Card.search type_id: MetricID,
               right_plus: [WikirateTopicID, { refer_to: cardname.left }],

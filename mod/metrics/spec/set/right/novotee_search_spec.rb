@@ -1,10 +1,15 @@
 describe Card::Set::Right::NovoteeSearch do
   describe "#get_result_from_session" do
     subject do
-      Card.fetch(company, :metric, :novotee_search).format.list_with_no_session_votes
+      Card.fetch(company, :metric, :novotee_search).format
+          .list_with_no_session_votes
     end
-    let(:company) { sample_company }
-    let(:metrics) { sample_metrics(2) }
+
+    let(:company) { Card["Death Star"] }
+    let(:metrics) do
+      [Card["Jedi+disturbances in the Force"],
+       Card["Fred+dinosaurlabor"]]
+    end
 
     def vote_down metric
       Card::Auth.as_bot do
