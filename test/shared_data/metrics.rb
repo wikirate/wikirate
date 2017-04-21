@@ -11,6 +11,7 @@ class SharedData
       create_or_update "1977", type_id: Card::YearID
       create_metrics
       vote_on_metrics
+      update_vote_counts
     end
 
     def create_metrics
@@ -199,6 +200,16 @@ class SharedData
       as_user "Joe User" do
         vote "Jedi+disturbances in the Force", :up
         vote "Jedi+deadliness", :down
+      end
+    end
+
+    def update_vote_counts
+      Card::Auth.as_bot do
+        Card.search(type_id: Card::MetricID).each do |card|
+          vc = card.vote_count_card
+          vc.update_votecount
+          vc.save!
+        end
       end
     end
   end

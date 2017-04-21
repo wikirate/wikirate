@@ -21,4 +21,5 @@ exclude_paths:
 - mod/pdfjs/files/**/*
 - mod/wikirate_source/files/**/*
 - mod/**/lib/javascript/**/*.js
+- mod/test/**/*.js
 - db/**/*
