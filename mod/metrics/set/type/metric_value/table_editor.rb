@@ -24,7 +24,7 @@ format :html do
   def answer_form_hidden_tags
     tags = {}
     tags["card[name]"] = card.name
-    #tags["card[subcards][+metric][content]"] = card.metric
+    # tags["card[subcards][+metric][content]"] = card.metric
     tags["card[type_id]"] = MetricValueID
     tags["card[subcards][+source][content]"] = source if source.present?
     hidden_tags tags

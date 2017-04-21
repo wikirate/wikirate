@@ -4,7 +4,7 @@ describe Card::Set::Right::WikirateTopic do
   before do
     login_as "joe_user"
   end
-  it "should create topic card(s) while creating +topics card(s)" do
+  it "creates topic card(s) while creating +topics card(s)" do
     # create the webpage first
     url = "http://www.google.com/?q=newpage"
     Card::Env.params[:sourcebox] = "true"
@@ -20,7 +20,9 @@ describe Card::Set::Right::WikirateTopic do
                    },
                    "+source" => {
                      content: "[[#{sourcepage.name}]]",
-                     type_id: Card::PointerID } }
+                     type_id: Card::PointerID
+                   }
+                 }
     expect(Card.exists?("zzz")).to be true
     expect(Card.exists?("xxx")).to be true
     expect(Card["zzz"].type_id).to eq Card::WikirateTopicID

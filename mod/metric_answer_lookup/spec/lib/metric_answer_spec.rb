@@ -1,8 +1,9 @@
 describe Answer do
+  subject { described_class.find_by_answer_id answer_id }
+
   let(:metric) { "Joe User+researched" }
   let(:answer) { "#{metric}+Apple_Inc+2013" }
   let(:answer_id) { Card.fetch_id answer }
-  subject { Answer.find_by_answer_id answer_id }
 
   describe "seeded metric answer table" do
     it "has correct count" do
@@ -11,7 +12,7 @@ describe Answer do
 
     context "random example" do
       it "exists" do
-        is_expected.to be_instance_of(Answer)
+        is_expected.to be_instance_of(described_class)
       end
       it "has company_id" do
         expect(subject.company_id).to eq Card.fetch_id("Apple Inc")
@@ -96,11 +97,10 @@ describe Answer do
     end
 
     it "updates updated_at" do
-
     end
   end
 
   describe "fetch" do
-    Answer.fetch company_id: Card.fetch_id("Apple Inc")
+    described_class.fetch company_id: Card.fetch_id("Apple Inc")
   end
 end

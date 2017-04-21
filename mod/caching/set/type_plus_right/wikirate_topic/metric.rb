@@ -1,13 +1,9 @@
-# cache # of metrics tagged with this topic (=_left)
-include Card::CachedCount
+# cache # of metrics tagged with this topic (=_left) via <metric>+topic
+include_set Abstract::TaggedByCachedCount, type_to_count: :metric,
+                                           tag_pointer: :wikirate_topic
 
-# recount metrics associated with a topic when <metric>+topic is edited
-ensure_set { TypePlusRight::Metric::WikirateTopic }
-recount_trigger TypePlusRight::Metric::WikirateTopic do |changed_card|
-  names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
-  names.map do |topic|
-    Card.fetch topic.to_name.trait(:metric)
-  end
+def metric_ids
+  search return: :id, limit: 0
 end
 
 format :html do
@@ -32,7 +28,6 @@ format :html do
   end
 
   def all_metric_ids
-    @all_metric_ids ||= card.search return: :id, limit: 0
+    @all_metric_ids ||= card.metric_ids
   end
 end
-

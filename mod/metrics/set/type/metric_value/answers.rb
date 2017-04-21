@@ -13,7 +13,7 @@ format :html do
 
   def empty_details_slot
     wrap_with(:div, "", id: collapse_id,
-              class: "card-slot collapse answer-details text-muted")
+                        class: "card-slot collapse answer-details text-muted")
   end
 
   def row
@@ -69,7 +69,7 @@ format :html do
   def currency
     return unless (value_type = Card["#{card.metric_card.name}+value type"])
     return unless value_type.item_names[0] == "Money" &&
-      (currency = Card["#{card.metric_card.name}+currency"])
+                  (currency = Card["#{card.metric_card.name}+currency"])
     currency.content
   end
 end

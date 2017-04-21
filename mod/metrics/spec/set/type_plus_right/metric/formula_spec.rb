@@ -1,10 +1,11 @@
 # encoding: UTF-8
 
 describe Card::Set::TypePlusRight::Metric::Formula do
-  describe '#ruby_formula?' do
+  describe "#ruby_formula?" do
     subject do
       Card["Jedi+friendliness+formula"]
     end
+
     it "allows math operations" do
       subject.content = "5 * 4 / 2 - 2.3 + 5"
       expect(subject.ruby_formula?).to be_truthy

@@ -37,10 +37,10 @@ format :html do
 
   def collapsed_sections
     output [
-             _optional_render_compact_methodology,
-             _optional_render_compact_about,
-             _optional_render_compact_example_answers
-           ]
+      _optional_render_compact_methodology,
+      _optional_render_compact_about,
+      _optional_render_compact_example_answers
+    ]
   end
 
   view :compact_question do
@@ -82,7 +82,7 @@ format :html do
         <div class="methodology-info collapse">
             <div class="row"><small><strong>Methodology </strong>
               #{nest card.methodology_card, view: :content,
-                     items: { view: :link }}
+                                            items: { view: :link }}
             </small></div>
             <div class="row">
               <div class="row-icon">
@@ -100,13 +100,12 @@ format :html do
 
   view :compact_buttons do
     output [
-             toggle_button("Methodolgy", ".methodology-info"),
-             toggle_button("About", ".about-info"),
-             toggle_example_answers,
-             _optional_render_page_link_button
-           ]
+      toggle_button("Methodolgy", ".methodology-info"),
+      toggle_button("About", ".about-info"),
+      toggle_example_answers,
+      _optional_render_page_link_button
+    ]
   end
-
 
   def toggle_example_answers
     return unless card.field(:example_answers)
@@ -123,7 +122,6 @@ format :html do
                 target: target
               }
   end
-
 
   view :page_link_button do
     link_to_card card, "#{fa_icon 'external-link'} Metric Page",

@@ -15,9 +15,10 @@ shared_examples_for "all_value_type" do |value_type, valid_cnt, invalid_cnt|
   describe "add a new value" do
     let(:metric_value) do
       subcard =
-        get_subcards_of_metric_value @metric, @company, @content
+        subcards_of_metric_value @metric, @company, @content
       Card.create type_id: Card::MetricValueID, subcards: subcard
     end
+
     context "value not fit the value type" do
       it "blocks adding a new value" do
         @content = invalid_cnt
@@ -45,10 +46,11 @@ end
 shared_examples_for "numeric type" do |value_type|
   let(:metric) { sample_metric value_type.to_sym }
   let(:company) { sample_company }
+
   context "unknown value" do
     it "shows unknown instead of 0 in modal_details" do
       subcard =
-        get_subcards_of_metric_value metric, company, "unknown"
+        subcards_of_metric_value metric, company, "unknown"
       metric_value = Card.create type_id: Card::MetricValueID, subcards: subcard
       html = metric_value.format.render_modal_details
       expect(html).to have_tag("a", text: "unknown")
@@ -59,7 +61,7 @@ end
 describe Card::Set::Type::MetricValue do
   let(:a_metric_value) do
     subcard =
-      get_subcards_of_metric_value @metric, @company, "content"
+      subcards_of_metric_value @metric, @company, "content"
     Card.create type_id: @mv_id, subcards: subcard
   end
 
@@ -87,11 +89,12 @@ describe Card::Set::Type::MetricValue do
     describe "render views" do
       subject do
         metric = sample_metric :money
-        subcard = get_subcards_of_metric_value metric, @company, "33"
+        subcard = subcards_of_metric_value metric, @company, "33"
         metric_value = Card.create type_id: @mv_id, subcards: subcard
         metric.update_attributes! subcards: { "+currency" => "$" }
         metric_value.format.render_concise
       end
+
       it "shows currency sign" do
         is_expected.to have_tag "span.metric-unit" do
           with_text " $ "
@@ -121,6 +124,7 @@ describe Card::Set::Type::MetricValue do
     let(:metric) { sample_metric }
     let(:company) { sample_company }
     let(:source) { sample_source }
+
     before do
       login_as "joe_user"
       @metric = sample_metric
@@ -131,8 +135,8 @@ describe Card::Set::Type::MetricValue do
                             "type_id" => Card::PointerID }
       }
       @metric.update_attributes! subcards: subcards_args
-      subcard = get_subcards_of_metric_value metric, company, "hoi polloi",
-                                             "2015", source.name
+      subcard = subcards_of_metric_value metric, company, "hoi polloi",
+                                         "2015", source.name
       @metric_value =
         Card.create! type_id: Card::MetricValueID, subcards: subcard
     end
@@ -178,6 +182,7 @@ describe Card::Set::Type::MetricValue do
 
     describe "+source" do
       let(:source_card) { @metric_value.fetch trait: :source }
+
       it "includes source in +source" do
         expect(source_card.item_names).to include(source.name)
       end

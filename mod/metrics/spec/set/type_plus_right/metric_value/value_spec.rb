@@ -5,8 +5,7 @@ describe Card::Set::TypePlusRight::MetricValue::Value do
     @metric = sample_metric
     @metric.update_attributes! subcards:
       { "+Unit" => { content: "Imperial military units",
-                     type_id: Card::PhraseID }
-      }
+                     type_id: Card::PhraseID } }
     @company = sample_company
     subcards = {
       "+metric"  => { content: @metric.name },
@@ -18,26 +17,28 @@ describe Card::Set::TypePlusRight::MetricValue::Value do
                       type_id: Card::PointerID },
       "+source"  => { subcards: { "new source" => { "+Link" =>
                       { content: "http://www.google.com/?q=everybodylies",
-                        type_id: Card::PhraseID
-                      }
-                    } } } }
+                        type_id: Card::PhraseID } } } }
+    }
     @metric_value = Card.create! type_id: Card::MetricValueID,
                                  subcards: subcards
     @card = @metric_value.fetch trait: :value
   end
 
-  describe '#metric' do
+  describe "#metric" do
     subject { @metric_value.fetch(trait: :value).metric }
+
     it { is_expected.to eq @metric.name }
   end
 
-  describe '#company' do
+  describe "#company" do
     subject { @metric_value.fetch(trait: :value).company }
+
     it { is_expected.to eq @company.name }
   end
 
-  describe '#year' do
+  describe "#year" do
     subject { @metric_value.fetch(trait: :value).year }
+
     it { is_expected.to eq "2015" }
   end
 end

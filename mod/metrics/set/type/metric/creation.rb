@@ -16,10 +16,15 @@ event :ensure_designer, :prepare_to_store, on: :save, changed: :name do
 end
 
 event :ensure_title, :prepare_to_store, on: :save, changed: :name do
-  return if Card.fetch_type_id(metric_title) == MetricTitleID
-  # TODO: deal with existing card that isn't a metric title
-  #       (i.e. fail or correct it)
-  attach_subcard metric_title, type_id: MetricTitleID
+  case Card.fetch_type_id(metric_title)
+  when MetricTitleID
+    return
+  when nil
+    attach_subcard metric_title, type_id: MetricTitleID
+  else
+    errors.add :metric_title, "#{metric_title} is a #{Card[metric_title].type_name} "\
+                              "card and can be use as metric title"
+  end
 end
 
 def valid_designer?
@@ -68,7 +73,7 @@ end
 def check_value_card_exist args, error_msg
   return unless (value_name = extract_metric_value_name(args, error_msg))
   return if !(value_card = Card[value_name.to_name.field(:value)]) ||
-    value_card.content.casecmp(args[:value]).zero?
+            value_card.content.casecmp(args[:value]).zero?
   link = format.link_to_card value_card.metric_card, "value"
   error_msg << "#{link} '#{value_card.content}' exists"
 end

@@ -57,7 +57,6 @@ When(/^I click on metric "([^"]*)"$/) do |metric|
   find(:css, ".add-formula").find("h4", text: metric).click
 end
 
-
 When(
   /^(?:|I )fill in "([^"]*)" with card path of source with link "([^"]*)"$/
 ) do |field, value|
@@ -185,7 +184,7 @@ Then(/^I check checkbox for csv row (\d+)$/) do |row|
   table = find("table")
   within(table) do
     row = find("tr[data-csv-row-index='#{row}'")
-    #row = all("tr")[row.to_i]
+    # row = all("tr")[row.to_i]
     within(row) do
       checkbox = find("input[type=checkbox]")
       checkbox.click unless checkbox.checked?
@@ -213,6 +212,14 @@ Then(/^I fill in "(.*)" for csv row (\d+)$/) do |text, row|
   end
 end
 
+Then /^(?:|I )should see "([^"]*)" or "([^"]*)"$/ do |text1, text2|
+  begin
+    expect(page).to have_content(text1)
+  rescue
+    expect(page).to have_content(text2)
+  end
+end
+
 Then(/^I should see a "(.*)" icon$/) do |icon|
   expect(page.body).to have_tag "i.fa-#{ICONS[icon]}"
 end
@@ -232,7 +239,7 @@ end
 
 When(/^I click the drop down button for "(.*)"$/) do |text|
   find("td", text: text).find(:xpath, "..")
-    .find(".fa-caret-right").click
+                        .find(".fa-caret-right").click
 end
 
 def select_from_chosen item_text, selector, within

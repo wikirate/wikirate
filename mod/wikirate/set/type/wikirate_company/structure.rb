@@ -118,4 +118,5 @@ format :html do
     field_subformat(:company_metric_filter)._render_core args
   end
 
+  view :browse_item, template: :haml
 end

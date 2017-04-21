@@ -1,20 +1,18 @@
-include Card::CachedCount
-include_set Abstract::WqlSearch
+include_set Abstract::SearchCachedCount
 
 def company_name
   cardname.left_name
 end
 
 # when metric value is edited
-recount_trigger Type::MetricValue do |changed_card|
+recount_trigger :type, :metric_value do |changed_card|
   if (company_name = changed_card.company_name)
     Card.fetch company_name.to_name.trait(:wikirate_topic)
   end
 end
 
 # ... when <metric>+topic is edited
-ensure_set { TypePlusRight::Metric::WikirateTopic }
-recount_trigger TypePlusRight::Metric::WikirateTopic do |changed_card|
+recount_trigger :type_plus_right, :metric, :wikirate_topic do |changed_card|
   metric_id = changed_card.left_id
   Answer.select(:company_id).where(metric_id: metric_id).uniq
         .pluck(:company_id).map do |company_id|
@@ -36,6 +34,12 @@ def wql_hash
   end
 end
 
+# turn query caching off because wql_hash varies and fetch_query doesn't recognizes
+# changes in wql_hash
+def fetch_query args={}
+  query(args.clone)
+end
+
 # faster way to get this from company+metric?
 def unique_metric_ids
   Answer.select(:metric_id).where(company_id: left.id).uniq.pluck :metric_id
@@ -53,7 +57,8 @@ end
 
 format :html do
   view :topic_list_with_metric_counts do
-    wrap do
+
+     wrap do
       card.topics_by_metric_count.map do |topic_card, metric_count|
         wrap_with :div, class: "topic-item contribution-item" do
           [wrap_with(:div, topic_detail(topic_card), class: "header"),

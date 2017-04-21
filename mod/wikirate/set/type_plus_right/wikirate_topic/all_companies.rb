@@ -23,7 +23,7 @@ end
 format do
   def analysis_cached_count company, type
     search_card = Card.fetch "#{company}+#{card.cardname.left}+#{type}"
-    count_card = search_card.fetch trait: :cached_count, new: {}
-    count_card.format.render_core.to_i
+    return 0 unless search_card
+    search_card.cached_count
   end
 end

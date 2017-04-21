@@ -191,8 +191,7 @@ format :html do
 
   # USED?
 
-
-  view :add_to_formula_item_view do |args|
+  view :add_to_formula_item_view do |_args|
     title = card.metric_title.to_s
     subtext = card.metric_designer.to_s
     subtext = wrap_with :small, "Scored by " + subtext
@@ -470,8 +469,6 @@ end
 
 format :csv do
   view :core do
-    Answer.where(metric_id: card.id).map do |a|
-      a.csv_line
-    end.join
+    Answer.where(metric_id: card.id).map(&:csv_line).join
   end
 end
