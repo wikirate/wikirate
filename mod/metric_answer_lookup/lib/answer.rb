@@ -51,10 +51,14 @@ class Answer < ActiveRecord::Base
       where = Array.wrap where
       mas = Answer.where(*where)
       mas = sort mas, sort_args
-      mas = mas.limit(paging[:limit]).offset(paging[:offset]) if paging.present?
+      mas = mas.limit(paging[:limit]).offset(paging[:offset]) if paging?(paging)
       mas.pluck(:answer_id).map do |id|
         Card.fetch id
       end
+    end
+
+    def paging? paging_args
+      paging_args.present? && paging_args[:limit].to_i > 0
     end
 
     def sort mas, args
