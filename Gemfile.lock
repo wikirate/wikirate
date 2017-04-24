@@ -274,7 +274,7 @@ GEM
     fog-profitbricks (3.0.0)
       fog-core (~> 1.42)
       fog-json (~> 1.0)
-    fog-rackspace (0.1.4)
+    fog-rackspace (0.1.5)
       fog-core (>= 1.35)
       fog-json (>= 1.0)
       fog-xml (>= 0.1)
@@ -380,7 +380,7 @@ GEM
     newrelic_rpm (4.1.0.333)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
-    oga (2.9)
+    oga (2.10)
       ast
       ruby-ll (~> 2.1)
     open_uri_redirections (0.2.1)
@@ -551,7 +551,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.3)
+    unf_ext (0.0.7.4)
     unicode-display_width (1.2.1)
     uuid (2.3.8)
       macaddr (~> 1.0)

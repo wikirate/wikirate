@@ -12,11 +12,8 @@ def topic_card
 end
 
 def search args={}
-  metric_ids = topic_card.fetch(trait: :metric, new: {}).metric_ids
+  metric_ids = unique_metric_ids
 
-  metric_ids =
-    Answer.where(company_id: company_card.id, metric_id: metric_ids)
-          .pluck(:metric_id).uniq
   case args[:return]
   when :id
     metric_ids
@@ -27,6 +24,29 @@ def search args={}
   else
     metric_ids.map { |id| Card.fetch id }
   end
+end
+
+def unique_metric_ids
+  metric_ids = topic_card.fetch(trait: :metric, new: {}).metric_ids
+  Answer.where(company_id: company_card.id, metric_id: metric_ids)
+        .pluck(:metric_id).uniq
+end
+
+# needed for "found_by" wql searches that refer to search results
+# of these cards
+def wql_hash
+  metric_ids = unique_metric_ids
+  if metric_ids.any?
+    { id: ["in"] + metric_ids }
+  else
+    { id: -1 } # HACK: ensure no results
+  end
+end
+
+# turn query caching off because wql_hash varies and fetch_query doesn't recognizes
+# changes in wql_hash
+def fetch_query args={}
+  query(args.clone)
 end
 
 def self.notes_for_analyses_applicable_to metric
