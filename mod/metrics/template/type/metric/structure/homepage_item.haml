@@ -1,0 +1,35 @@
+%div
+  .container.homepage-company-item.background-white
+    .row.wiki
+      .col-md-12.col-xs-12.metric-info.metric-header.nopadding
+        .row
+          %br/
+          / Main title and stuff
+          .col-md-12.col-xs-12.nopadding.metric-details-header
+            .row.clearfix
+              .col-md-1.col-xs-1
+                {{+*vote count}}
+              .col-md-11.col-xs-11
+                .name.row
+                  %a.inherit-anchor{:href => "{{_l+_r|url}}"}
+                    {{_r|name}}
+                %br/
+                .row
+                  .metric-designer-info
+                    %a{:href => "/{{_l|name}}+contribution"}
+                      .image-box.icon {{_l+image|core;size:small}}
+                      %div
+                        %h5.text-muted.nopadding.no-bold-text Designed by
+                        %h5.nopadding {{_l|name}}
+        %br/
+        / Question container
+        .row.question-container.nopadding
+          .col-md-1.col-xs-11
+            .row-icon
+              %i.fa.fa-question
+          .col-md-11.col-xs-11
+            .row-data
+              {{+Question|content}}
+    .row.metric-info
+      / Ratings and company list
+      {{+all_metric_values|homepage_table}}
