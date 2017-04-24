@@ -3,11 +3,13 @@
     .row.text-center.topic-header
       .col-md-4.col-xs-4.nopadding
         %a.inherit-anchor{:href => path}
-          .row.img-thumbnail.homepage-logo-container {{_+image}}
+          .row.img-thumbnail.homepage-logo-container
+            = field_nest :image
       .col-md-8.col-xs-8
         .row.topic-title.text-left
           %a.inherit-anchor{:href => path}
-            %h3.pull-left.ellipsis {{_|title}}
+            %h3.pull-left.ellipsis
+              = _render_title
           %br/
         .row.contribution-details.dark-grey-color.remove-text-decoration
           .col-md-12.data-count
@@ -22,10 +24,4 @@
                   = field_nest :wikirate_company, view: :count
                 .number-label Companies
     .row.clearfix.company-content.background-white
-      .header-row
-        .header-header
-          Metric
-        .data-header
-          \# Records
-      .col-md-12.col-xs-12
-        {{_left+limited metric|yinyang list|content; structure: homepage topic metric drag item}}
+      = field_nest :metric, view: :homepage_table

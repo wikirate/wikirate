@@ -25,11 +25,5 @@
                   = field_nest :analyses_with_articles, view: :count
                 .number-label Topics
     .row.clearfix.company-content.background-white
-      .header-row
-        .header-header
-          Metric
-        .data-header
-          Value
-      .col-md-12.col-xs-12e
-        {{_left+limited metric|yinyang list|content; structure: homepage company metric item}}
+      = field_nest :all_metric_values, view: :homepage_table
 

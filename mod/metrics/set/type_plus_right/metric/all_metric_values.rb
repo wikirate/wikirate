@@ -53,15 +53,6 @@ format :html do
   end
 
   view :homepage_table do
-    wikirate_table(
-      :company, search_with_params(limit: 4),
-      [:company_thumbnail, :value_cell],
-      header: %w(Company Value),
-      td: { classes: ["header", nil] },
-      tr_link: lambda do |item|
-        path mark: item.metric_card,
-             filter: { wikirate_company: item.company }
-      end
-    )
+    homepage_table :company
   end
 end
