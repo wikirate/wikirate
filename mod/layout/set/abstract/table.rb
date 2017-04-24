@@ -22,7 +22,7 @@ format :html do
     format ? format.with_paging { rendered_table } : rendered_table
   end
 
-  # see #wikirate_table
+  # see #wikirdate_table
   # differences:
   #   - adds td classes "header", "data", and "details"
   #   - adds :details_placeholder to cell_views

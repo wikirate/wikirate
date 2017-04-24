@@ -60,15 +60,12 @@ end
 
 def generate_pdf
   kit = PDFKit.newurl
-  binding.pry
   Dir::Tmpname.create(["source", ".pdf"]) do |path|
     kit.to_file(path)
-    binding.pry
     file_card.update_attributes! file: File.open(path)
   end
 rescue Error => e
-  binding.pry
-  Rails.logger.info "failed to convert source page tos pdf"
+  Rails.logger.info "failed to convert source page to pdf"
 end
 
 event :process_source_url, after: :check_source,
