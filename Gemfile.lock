@@ -386,6 +386,7 @@ GEM
     open_uri_redirections (0.2.1)
     parser (2.4.0.0)
       ast (~> 2.2)
+    pdfkit (0.8.2)
     powerpack (0.1.1)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -564,6 +565,7 @@ GEM
       colorize
       selenium-webdriver
     websocket (1.2.4)
+    wkhtmltopdf-binary (0.12.3.1)
     xml-simple (1.1.5)
     xpath (2.0.0)
       nokogiri (~> 1.3)
@@ -602,6 +604,7 @@ DEPENDENCIES
   mysql2 (~> 0.3.18)
   newrelic_rpm
   open_uri_redirections
+  pdfkit
   pry
   pry-byebug
   pry-rails
@@ -628,6 +631,7 @@ DEPENDENCIES
   turn (~> 0.8.3)
   wagn!
   wbench
+  wkhtmltopdf-binary
 
 BUNDLED WITH
    1.14.6

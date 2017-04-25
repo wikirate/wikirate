@@ -36,10 +36,11 @@ format :html do
   view :homepage_table do
     wikirate_table(
       :metric, card.search(limit: 4),
-      [:thumbnail, :company_count_with_label],
+      [:thumbnail_minimal, :company_count_with_label],
+      table: { class: "homepage-table"},
       header: ["Metric", "# Records"],
       td: { classes: ["header", nil] },
-      tr_link: ->(item) { path mark: item.metric_card }
+      tr_link: ->(item) { path mark: item }
     )
   end
 end

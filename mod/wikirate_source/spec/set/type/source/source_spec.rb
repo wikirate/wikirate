@@ -179,7 +179,7 @@ describe Card::Set::Type::Source do
           new_sourcepage = Card.new source_args(link: new_source_url)
           expect(new_sourcepage).not_to be_valid
           expect(new_sourcepage.errors).to have_key :source
-          expected = " can only be source type or valid URL."
+          expected = "can only be source type or valid URL."
           expect(new_sourcepage.errors[:source]).to include(expected)
         end
       end
@@ -192,7 +192,7 @@ describe Card::Set::Type::Source do
           new_sourcepage = Card.new source_args(link: new_source_url)
           expect(new_sourcepage).not_to be_valid
           expect(new_sourcepage.errors).to have_key :source
-          expect(new_sourcepage.errors[:source]).to include(" does not exist.")
+          expect(new_sourcepage.errors[:source]).to include("does not exist.")
         end
       end
     end
@@ -212,7 +212,7 @@ describe Card::Set::Type::Source do
           expect(return_source_card).not_to be_valid
           expect(return_source_card.errors).to have_key :source
           expect(return_source_card.errors[:source])
-            .to include(" can only be source type or valid URL.")
+            .to include("can only be source type or valid URL.")
         end
       end
       context "while link is a non existing card" do
@@ -225,7 +225,7 @@ describe Card::Set::Type::Source do
           expect(return_source_card).not_to be_valid
           expect(return_source_card.errors).to have_key :source
           expect(return_source_card.errors[:source])
-            .to include(" does not exist.")
+            .to include("does not exist.")
         end
       end
     end
