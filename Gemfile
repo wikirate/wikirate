@@ -21,13 +21,13 @@ gem "company-mapping"
 gem "link_thumbnailer", "2.5.2"
 gem "open_uri_redirections"
 gem "roo"
-gem "rubocop"
-gem "rubocop-decko"
 gem "wbench"
 
+gem "rubocop"
+gem "rubocop-decko"
 
-gem "wkhtmltopdf-binary"
 gem "pdfkit"
+gem "wkhtmltopdf-binary"
 
 gem "fog"
 gem "fog-aws"

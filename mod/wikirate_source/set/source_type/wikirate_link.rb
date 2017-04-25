@@ -23,17 +23,23 @@ end
 
 def handle_source_box_source
   if url_card
-    if url_card.type_code != :source
-      errors.add :source, "can only be source type or valid URL."
-    else
-      clear_subcards
-      self.name = url_card.name
-      abort :success
-    end
+    replace_with_url_card if valid_url_card?
   elsif !url? || wikirate_url?
     errors.add :source, "does not exist."
   end
 end
+
+def valid_url_card?
+  return true if url_card.type_code == :source
+  errors.add :source, "can only be source type or valid URL."
+end
+
+def replace_with_url_card
+  clear_subcards
+  self.name = url_card.name
+  abort :success
+end
+
 
 def duplication_check
   return unless duplicates.any?
@@ -64,7 +70,7 @@ def generate_pdf
     kit.to_file(path)
     file_card.update_attributes! file: File.open(path)
   end
-rescue Error => e
+rescue Error
   Rails.logger.info "failed to convert source page to pdf"
 end
 
