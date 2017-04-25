@@ -38,10 +38,10 @@ format :html do
       ["#{table_type}_thumbnail", :value_cell],
       header: ["#{table_type.to_s.capitalize}", "Value"],
       td: { classes: ["header", nil] },
-            tr_link: lambda do |item|
-              path mark: item.metric_card,
-                   filter: { wikirate_company: item.company }
-            end
+      tr_link: lambda do |item|
+        path mark: item.metric_card,
+             filter: { wikirate_company: item.company }
+      end
     )
   end
 
