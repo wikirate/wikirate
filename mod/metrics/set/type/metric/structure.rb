@@ -63,6 +63,7 @@ format :html do
   # end
 
   view :browse_item, template: :haml
+  view :homepage_item, template: :haml
 
   def view_template_path view
     super(view, __FILE__)

@@ -31,7 +31,7 @@ end
 #     find("label", text: field).find(:xpath, "..//select", visible: false)
 # end
 
-Capybara.default_max_wait_time = 30
+Capybara.default_max_wait_time = 60
 
 When(/^I press "([^\"]*)" within "([^\"]*)"$/) do |button, scope_selector|
   within(scope_selector) do
