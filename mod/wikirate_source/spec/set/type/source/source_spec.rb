@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+
 require "link_thumbnailer"
 
 describe Card::Set::Type::Source do
@@ -12,7 +13,7 @@ describe Card::Set::Type::Source do
     end
 
     it "adds title and description" do
-      url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+      url = "http://www.google.com/?q=wikirate"
       Card::Env.params[:sourcebox] = "true"
       sourcepage = Card.create! type_id: Card::SourceID,
                                 subcards: {
@@ -42,7 +43,7 @@ describe Card::Set::Type::Source do
     end
 
     it "creates website card with actions" do
-      url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+      url = "http://www.google.com/?q=wikirate"
       Card::Env.params[:sourcebox] = "true"
       sourcepage = create_link_source url
       website_card = sourcepage.fetch trait: :wikirate_website
@@ -51,7 +52,7 @@ describe Card::Set::Type::Source do
 
     describe "while creating duplicated source on claim page" do
       it "returns exisiting url" do
-        url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+        url = "http://www.google.com/?q=wikirate"
         Card::Env.params[:sourcebox] = "true"
         firstsourcepage = create_link_source url
         secondsourcepage = create_link_source url
@@ -60,7 +61,7 @@ describe Card::Set::Type::Source do
     end
     describe "while creating duplicated source on source page" do
       it "shows error" do
-        url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+        url = "http://www.google.com/?q=wikirate"
 
         firstsourcepage = create_link_source url
         secondsourcepage = create_link_source url
@@ -83,7 +84,7 @@ describe Card::Set::Type::Source do
     end
     context "while creating with more than one source type " do
       it do
-        url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+        url = "http://www.google.com/?q=wikirate"
 
         sourcepage = Card.new source_args(link: url, text: "Hello boys!")
         expect(sourcepage).not_to be_valid
@@ -100,7 +101,7 @@ describe Card::Set::Type::Source do
           sourcepage = create_link_source pdf_url
           expect(sourcepage.errors).to be_empty
           source_file = sourcepage.fetch(trait: :file)
-          expect(source_file).to_not be_nil
+          expect(source_file).not_to be_nil
           # expect(sourcepage.fetch(trait: :wikirate_link)).to be_nil
           expect(Card.exists?("#{sourcepage.name}+title")).to eq(false)
           expect(Card.exists?("#{sourcepage.name}+description")).to eq(false)
@@ -112,7 +113,7 @@ describe Card::Set::Type::Source do
                     "1302508855"
           sourcepage = create_link_source pdf_url
           expect(sourcepage.errors).to be_empty
-          expect(sourcepage.fetch(trait: :file)).to_not be_nil
+          expect(sourcepage.fetch(trait: :file)).not_to be_nil
           # expect(sourcepage.fetch(trait: :wikirate_link)).to be_nil
         end
         it "hanldes file behind cloudfront" do
@@ -122,7 +123,7 @@ describe Card::Set::Type::Source do
           expect(sourcepage.errors).to be_empty
           expect(sourcepage.fetch(trait: :file)).to be_nil
           link_card = sourcepage.fetch(trait: :wikirate_link)
-          expect(link_card).to_not be_nil
+          expect(link_card).not_to be_nil
           expect(link_card.content).to eq(pdf_url)
         end
         context "file is bigger than '*upload max'" do
@@ -131,7 +132,7 @@ describe Card::Set::Type::Source do
                       "article/download/cp49-issue/489"
             sourcepage = create_link_source pdf_url
             expect(sourcepage.errors).to be_empty
-            expect(sourcepage.fetch(trait: :wikirate_link)).to_not be_nil
+            expect(sourcepage.fetch(trait: :wikirate_link)).not_to be_nil
             expect(sourcepage.fetch(trait: :file)).to be_nil
             expect(Card["#{sourcepage.name}+title"]).to be_nil
             expect(Card["#{sourcepage.name}+description"]).to be_nil
@@ -143,7 +144,7 @@ describe Card::Set::Type::Source do
       context "a source link" do
         before do
           Card::Env.params[:sourcebox] = "true"
-          url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+          url = "http://www.google.com/?q=wikirate"
           @sourcepage = create_link_source url
           @url_key = @sourcepage.cardname.url_key
         end
@@ -152,7 +153,8 @@ describe Card::Set::Type::Source do
           new_sourcepage = Card.create type_id: Card::SourceID,
                                        subcards: {
                                          "+Link" => {
-                                           content: new_source_url }
+                                           content: new_source_url
+                                         }
                                        }
           expect(@sourcepage.name).to eq(new_sourcepage.name)
         end
@@ -161,7 +163,8 @@ describe Card::Set::Type::Source do
           new_sourcepage = Card.create type_id: Card::SourceID,
                                        subcards: {
                                          "+Link" => {
-                                           content: new_source_url }
+                                           content: new_source_url
+                                         }
                                        }
           expect(@sourcepage.name).to eq(new_sourcepage.name)
         end
@@ -176,7 +179,7 @@ describe Card::Set::Type::Source do
           new_sourcepage = Card.new source_args(link: new_source_url)
           expect(new_sourcepage).not_to be_valid
           expect(new_sourcepage.errors).to have_key :source
-          expected = " can only be source type or valid URL."
+          expected = "can only be source type or valid URL."
           expect(new_sourcepage.errors[:source]).to include(expected)
         end
       end
@@ -189,7 +192,7 @@ describe Card::Set::Type::Source do
           new_sourcepage = Card.new source_args(link: new_source_url)
           expect(new_sourcepage).not_to be_valid
           expect(new_sourcepage.errors).to have_key :source
-          expect(new_sourcepage.errors[:source]).to include(" does not exist.")
+          expect(new_sourcepage.errors[:source]).to include("does not exist.")
         end
       end
     end
@@ -204,12 +207,12 @@ describe Card::Set::Type::Source do
         it "returns error" do
           Card::Env.params[:sourcebox] = "true"
           return_source_card = Card.new source_args(
-                                            link: sample_company.name
+            link: sample_company.name
           )
           expect(return_source_card).not_to be_valid
           expect(return_source_card.errors).to have_key :source
           expect(return_source_card.errors[:source])
-            .to include(" can only be source type or valid URL.")
+            .to include("can only be source type or valid URL.")
         end
       end
       context "while link is a non existing card" do
@@ -222,7 +225,7 @@ describe Card::Set::Type::Source do
           expect(return_source_card).not_to be_valid
           expect(return_source_card.errors).to have_key :source
           expect(return_source_card.errors[:source])
-            .to include(" does not exist.")
+            .to include("does not exist.")
         end
       end
     end
@@ -234,9 +237,10 @@ describe Card::Set::Type::Source do
       )
       File.open(path)
     end
+
     before do
       login_as "joe_user"
-      @url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
+      @url = "http://www.google.com/?q=wikirate"
       @source_page = create_page @url, {}
     end
 
@@ -247,7 +251,8 @@ describe Card::Set::Type::Source do
       expected_url = "/#{source_file.cardname.url_key}?view=import"
       expect(html).to have_tag("a",
                                with: {
-                                 href: expected_url },
+                                 href: expected_url
+                               },
                                text: "Import to metric values")
     end
     describe "original_icon_link" do
@@ -276,7 +281,8 @@ describe Card::Set::Type::Source do
           text_source = new_sourcepage.fetch trait: :text
           expected_url = "/#{text_source.cardname.url_key}"
           expect(html).to have_tag("a", with: {
-                                     href: expected_url }) do
+                                     href: expected_url
+                                   }) do
             with_tag "i", with: { class: "fa fa-pencil" }
           end
         end

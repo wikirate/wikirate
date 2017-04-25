@@ -1,7 +1,7 @@
 include_set Abstract::Chart
 
 format :json do
-  def vega_chart_config highlight=nil
+  def vega_chart_config _highlight=nil
     @data ||= chart_class.new(self,
                               highlight: card.value,
                               layout: { height: 70, width: 300,

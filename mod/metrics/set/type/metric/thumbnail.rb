@@ -6,7 +6,11 @@ format :html do
   end
 
   def thumbnail_image
-    _render_designer_image
+    if voo.show? :thumbnail_link
+      designer_image_link
+    else
+      designer_image
+    end
   end
 
   def thumbnail_title

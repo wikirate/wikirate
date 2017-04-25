@@ -9,7 +9,7 @@ describe Card::Set::TypePlusRight::MetricValue::CheckedBy::AwardBadges do
 
     def execute_awarded_action count
       answer_card(count).field(:checked_by, new: {})
-        .update_attributes! content: "[[John]]"
+                        .update_attributes! content: "[[John]]"
     end
 
     context "reached bronze threshold" do

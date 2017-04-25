@@ -19,7 +19,7 @@ format :html do
     end
   end
 
-  view :rich_header do |args|
+  view :rich_header do |_args|
     bs_layout do
       row 12 do
         col class: "nopadding rich-header" do

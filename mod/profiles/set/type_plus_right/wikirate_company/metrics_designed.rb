@@ -6,7 +6,6 @@ format :html do
     super.merge(return: :card)
   end
 
-
   view :core do
     with_paging do
       wikirate_table :metric,

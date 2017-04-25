@@ -59,7 +59,6 @@ format :html do
     card.cardtype_card.codename.to_sym.in? Abstract::BadgeSquad::BADGE_TYPES
   end
 
-
   def contribution_report_header
     wrap_with :div, class: "contribution-report-header" do
       [
@@ -96,11 +95,11 @@ format :html do
     #     ]
     #   end
     # end
-    content =  contribution_report_title + contribution_report_badges
+    content = contribution_report_title + contribution_report_badges
     wrap_with :li, class: "contribution-report-title-box" do
-    link_to_view :contribution_report,
-                 content,
-                 path: { report_tab: :badges }, class: "slotter"
+      link_to_view :contribution_report,
+                   content,
+                   path: { report_tab: :badges }, class: "slotter"
     end
   end
 
@@ -180,8 +179,8 @@ format :html do
   view :contribution_list, cache: :never do |args|
     report_card = args[:report_card]
     nest report_card, view: contribution_list_view,
-         structure: report_card.variant,
-         skip_perms: true
+                      structure: report_card.variant,
+                      skip_perms: true
   end
 
   def contribution_list_view

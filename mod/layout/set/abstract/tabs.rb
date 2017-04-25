@@ -25,4 +25,8 @@ format :html do
       end
     end
   end
+
+  def tab_url tab
+    path tab: tab
+  end
 end

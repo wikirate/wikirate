@@ -3,6 +3,8 @@ require "timecop"
 require_relative "shared_data/profile_sections"
 require_relative "shared_data/metrics"
 require_relative "shared_data/badges"
+require_relative "shared_data/notes_and_sources"
+require_relative "shared_data/samples"
 
 require_dependency "card"
 
@@ -20,11 +22,38 @@ class SharedData
     "SPECTRE" => "shaken not stirred"
   }.freeze
 
+  TOPICS = {
+    "Force" => "A Jedi uses the Force for knowledge and defense, never for attack.",
+    "Taming" => "What a cute animal"
+  }.freeze
+
   class << self
     include Card::Model::SaveHelper
+    include Samples
+
     include ProfileSections
     include Metrics
     include Badges
+    include NotesAndSources
+
+    def add_wikirate_data
+      Card::Cache.reset_all
+      Card::Env.reset
+      Card::Auth.as_bot
+      add :companies, :topics, :analysis, :notes_and_sources,
+          :metrics, :yearly_variables,
+          :projects, :industry,
+          :profile_sections, :badges
+
+      Card::Cache.reset_all
+      Answer.refresh
+    end
+
+    def add *categories
+      categories.each do |cat|
+        send "add_#{cat}"
+      end
+    end
 
     def as_joe_user &block
       as_user "Joe User", &block
@@ -32,23 +61,6 @@ class SharedData
 
     def account_args hash
       { "+*account" => { "+*password" => "joe_pass" }.merge(hash) }
-    end
-
-    def add_wikirate_data
-      Card::Cache.reset_all
-      Card::Env.reset
-      Card::Auth.as_bot
-      add_companies
-      add_topics_and_analysis
-      add_sources_and_claims
-      add_metrics
-      vote_on_metrics
-      add_yearly_variables
-      add_projects
-      add_industry
-      add_profile_sections
-      add_badges
-      Answer.refresh
     end
 
     def add_companies
@@ -59,72 +71,20 @@ class SharedData
       end
     end
 
-    def add_topics_and_analysis
-      create "Force",
-             type: "topic",
-             subcards: {
-               "+about" => "A Jedi uses the Force for " \
-                           "knowledge and defense, never for attack."
-             }
-
-      create "Death Star+Force",
-             type: "analysis",
-             subcards: { "+article" => { content: "I'm your father!" } }
+    def add_topics
+      TOPICS.each do |topic, about|
+        create topic,
+               type: "topic",
+               subcards: { "+about" => about }
+      end
     end
 
-    def add_sources_and_claims
-      Timecop.freeze(Time.now + 1.day) do
-        Card.create!(
-          type_id: Card::SourceID,
-          subcards: {
-            "+Link" => { content: "http://www.wikiwand.com/en/Space_opera" },
-            "+company" => { content: "[[Death Star]]",
-                            type_id: Card::PointerID },
-            "+topic" => { content: "[[Force]]",
-                          type_id: Card::PointerID },
-            "+title" => { content: "Space Opera" },
-            "+description" => { content: "Space Opera Wikipedia article" }
-          }
-        )
-      end
-
-      Timecop.freeze(Time.now + 2.days) do
-        Card.create!(
-          type_id: Card::SourceID,
-          subcards: {
-            "+Link" => { content: "http://www.wikiwand.com/en/Opera" },
-            "+title" => { content: "Opera" },
-            "+description" => { content: "Opera Wikipedia article" }
-          }
-        )
-      end
-
-      sourcepage = Card.create!(
-        type_id: Card::SourceID,
-        subcards: {
-          "+Link" => { content: "http://www.wikiwand.com/en/Star_Wars" },
-          "+company" => { content: "[[Death Star]]", type_id: Card::PointerID },
-          "+topic" => { content: "[[Force]]", type_id: Card::PointerID },
-          "+title" => { content: "Star Wars" },
-          "+description" => { content: "Star Wars Wikipedia article" }
-        }
-      )
-
-      Card.create!(
-        name: "Death Star uses dark side of the Force",
-        type_id: Card::ClaimID,
-        subcards: {
-          "+source" => {
-            content: "[[#{sourcepage.name}]]", type_id: Card::PointerID
-          },
-          "+company" => {
-            content: "[[Death Star]]", type_id: Card::PointerID
-          },
-          "+topic" => {
-            content: "[[Force]]", type_id: Card::PointerID
-          }
-        }
-      )
+    def add_analysis
+      create "Death Star+Force",
+             type: "analysis",
+             subfields: { overview: {
+               content: "I'm your father! {{Death Star uses dark side of the Force|cite}}"
+             } }
     end
 
     def vote name, direction
@@ -163,7 +123,24 @@ class SharedData
                },
                wikirate_company: {
                  type: :pointer,
-                 content: "[[Death Star]]\n[[SPECTRE]]\n[[Los Pollos Hermanos]]"
+                 content: ["Death Star", "SPECTRE", "Los Pollos Hermanos"]
+               },
+               wikirate_topic: {
+                 type: :pointer,
+                 content: "Force"
+               }
+             }
+
+      create "Empty Project",
+             type: :project,
+             subfields: {
+               metric: {
+                 type: :pointer,
+                 content: ""
+               },
+               wikirate_company: {
+                 type: :pointer,
+                 content: ""
                }
              }
     end

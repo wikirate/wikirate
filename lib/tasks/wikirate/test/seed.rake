@@ -18,16 +18,16 @@ namespace :wikirate do
         ensure_env :init_test, task, args do
           execute_command "rake wagn:seed", :test
           Rake::Task["wikirate:test:import_from"].invoke(args[:location])
-          Rake::Task["wikirate:test:dump_test_db"].invoke(base_dump_path)
+          Rake::Task["wikirate:test:dump"].invoke(base_dump_path)
         end
       end
 
       desc "migrate test data"
       task :migrate do |task|
         ensure_env :test, task do
-          Rake::Task["wikirate:test:load_test_dump"].invoke(base_dump_path)
+          Rake::Task["wikirate:test:load_dump"].invoke(base_dump_path)
           Rake::Task["wagn:migrate"].invoke
-          Rake::Task["wikirate:test:dump_test_db"].invoke(migrated_dump_path)
+          Rake::Task["wikirate:test:dump"].invoke(migrated_dump_path)
           Card::Cache.reset_all
           Rake::Task["wikirate:test:seed:update"].invoke
         end
@@ -36,11 +36,11 @@ namespace :wikirate do
       desc "add updated seed data"
       task :update do |task|
         ensure_env :test, task do
-          Rake::Task["wikirate:test:load_test_dump"].invoke(migrated_dump_path)
+          Rake::Task["wikirate:test:load_dump"].invoke(migrated_dump_path)
           Rake::Task["wikirate:test:seed:add_wikirate_test_data"].invoke
           Card::Cache.reset_all
           Rake::Task["wikirate:test:update_machine_output"].invoke
-          Rake::Task["wikirate:test:dump_test_db"].execute
+          Rake::Task["wikirate:test:dump"].execute
         end
       end
 
@@ -51,6 +51,7 @@ namespace :wikirate do
           SharedData.add_wikirate_data
         end
       end
+
     end
   end
 end

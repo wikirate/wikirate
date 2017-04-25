@@ -175,7 +175,7 @@ def get_corrected_company_name params
   corrected = company_corrections[params[:row].to_s]
   if corrected.blank?
     if params[:status] && params[:status].to_sym == :partial &&
-      (original = Card[params[:wikirate_company]])
+       (original = Card[params[:wikirate_company]])
       original.add_alias params[:file_company]
     end
     return params[:company] unless corrected.present?
@@ -478,8 +478,7 @@ format :html do
     end
   end
 
-
-  def prepare_and_sort_rows rows, args
+  def prepare_and_sort_rows rows, _args
     rows.map.with_index do |row, index|
       prepare_import_row_data row, index + 1
     end.sort do |a, b|

@@ -3,13 +3,19 @@ format :html do
     wrap_with :div, thumbnail_content(args)
   end
 
+  view :thumbnail_minimal do |args|
+    voo.hide! :thumbnail_subtitle
+    voo.hide! :thumbnail_link
+    _render_thumbnail_plain args
+  end
+
   view :thumbnail do |args|
     voo.show :thumbnail_link
     wrap_with :div, thumbnail_content(args), class: "thumbnail"
   end
 
   view :thumbnail_no_link do |args|
-    voo.show :thumbnail_link
+    voo.hide :thumbnail_link
     wrap_with :div, thumbnail_content(args)
   end
 

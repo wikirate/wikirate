@@ -1,22 +1,22 @@
 describe Card::Metric do
   let :formula_metric do
     researched_metrics
-    Card::Metric.create name: "Jedi+friendliness",
-                        type: :formula,
-                        formula: "1/{{Jedi+darksidiness}}"
+    described_class.create name: "Jedi+friendliness",
+                           type: :formula,
+                           formula: "1/{{Jedi+darksidiness}}"
   end
 
   let :score_metrics do
     researched_metrics
-    Card::Metric.create name: "Jedi+strength in the Force+Joe Camel",
-                        type: :score,
-                        formula: { yes: 10, no: 0 }
-    Card::Metric.create name: "Jedi+darksidiness+Joe User",
-                        type: :score,
-                        formula: "{{Jedi+darksidiness}}/10"
-    Card::Metric.create name: "Jedi+darksidiness+Joe Camel",
-                        type: :score,
-                        formula: "{{Jedi+darksidiness}}/20"
+    described_class.create name: "Jedi+strength in the Force+Joe Camel",
+                           type: :score,
+                           formula: { yes: 10, no: 0 }
+    described_class.create name: "Jedi+darksidiness+Joe User",
+                           type: :score,
+                           formula: "{{Jedi+darksidiness}}/10"
+    described_class.create name: "Jedi+darksidiness+Joe Camel",
+                           type: :score,
+                           formula: "{{Jedi+darksidiness}}/20"
   end
 
   let :researched_metrics do
@@ -24,13 +24,13 @@ describe Card::Metric do
     Card::Env[:host] = "wikirate.org"
     url = "http://wikiwand.com/en/Death_Star"
     source = create_page_with_sourcebox url
-    Card::Metric.create name: "Jedi+strength in the Force",
-                        value_type: "Category",
-                        value_options: %w(yes no) do
+    described_class.create name: "Jedi+strength in the Force",
+                           value_type: "Category",
+                           value_options: %w(yes no) do
       Death_Star "1977" => { value: "yes",
                              source: "[[#{source.name}]]" }
     end
-    Card::Metric.create name: "Jedi+darksidiness" do
+    described_class.create name: "Jedi+darksidiness" do
       url = "http://wikiwand.com/en/Return_of_the_Jedi"
       source = create_page_with_sourcebox url
       Death_Star "1977" => { value: 100, source: "[[#{source.name}]]" }
@@ -39,7 +39,7 @@ describe Card::Metric do
 
   let :wikirate_rating_metric do
     score_metrics
-    Card::Metric.create(
+    described_class.create(
       name: "Jedi+darkness rating",
       type: :wiki_rating,
       formula: "({{Jedi+darksidiness+Joe User}}+" \
@@ -47,13 +47,14 @@ describe Card::Metric do
     )
   end
 
-  describe '#create' do
+  describe "#create" do
     subject { Card["MD+MT"] }
+
     it "small API test" do
       Card::Auth.as_bot do
         url = "http://example.com"
         source = create_page_with_sourcebox url
-        Card::Metric.create name: "MD+MT", formula: "1", random_source: true do
+        described_class.create name: "MD+MT", formula: "1", random_source: true do
           SPECTRE 2000 => 50, 2001 => 100
           Death_Star 2000 => { value: 50, source: "[[#{source.name}]]" }
         end
@@ -90,14 +91,14 @@ describe Card::Metric do
         # based on a categorical metric as we are now checking if all value
         # options are filled with a score
         researched_metrics
-        Card::Metric.create name: "Jedi+strength in the Force+Joe Camel",
-                            type: :score,
-                            formula: { yes: 10, no: 0 }
+        described_class.create name: "Jedi+strength in the Force+Joe Camel",
+                               type: :score,
+                               formula: { yes: 10, no: 0 }
       end
     end
   end
 
-  describe 'Card#new' do
+  describe "Card#new" do
     it "recognizes metric type" do
       metric = Card.new name: "MT+MD", type_id: Card::MetricID,
                         "+*metric type" => "[[Researched]]"
