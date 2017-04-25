@@ -87,7 +87,7 @@ def generate_pdf
   kit = PDFKit.new url
   Dir::Tmpname.create(["source", ".pdf"]) do |path|
     kit.to_file(path)
-    file_card.update_attributes! file: ::File.open(path)
+    file_card.update_attributes!(file: ::File.open(path)) if ::File.exist?(path)
   end
 rescue Error
   Rails.logger.info "failed to convert source page to pdf"
