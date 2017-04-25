@@ -1,6 +1,8 @@
 require_relative "../../csv_row"
 
 class RelationshipMetricCSVRow < CSVRow
+  @columns = [:designer, :title, :inverse, :value_type, :value_options, :unit]
+
   @required = [:designer, :title, :value_type, :inverse]
 
   def initialize row
@@ -15,6 +17,7 @@ class RelationshipMetricCSVRow < CSVRow
     ensure_designer
     create_card @name, type: Card::MetricID,
                 subfields: subfields
+    create_inverse
   end
 
   def create_inverse

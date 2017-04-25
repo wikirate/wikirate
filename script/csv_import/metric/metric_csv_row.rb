@@ -1,10 +1,13 @@
 require_relative "../../csv_row"
 
+# create a metric described by a row in a csv file
 class MetricCSVRow < CSVRow
-  @required = [:metric_designer, :metric_title, :value_type, :metric_type]
+  @columns =
+    [:metric_designer, :metric_title, :question, :about, :methodology,
+     :topics, :value_type, :research_policy, :metric_type, :report_type]
 
+  @required = [:metric_designer, :metric_title, :value_type, :metric_type]
   @normalize = { topics: :comma_list_to_pointer,
-                 value_type: :process_value_type,
                  about: :to_html,
                  methodology: :to_html }
 
@@ -17,16 +20,21 @@ class MetricCSVRow < CSVRow
     @row[:wikirate_topic] = @row.delete :topics if @row[:topics]
   end
 
-  def comma_list_to_pointer str
-    str.split(',').map(&:strip).to_pointer_content
+  def normalize_research_policy value
+    policy =
+      case value
+      when /community/i
+        "Community Assessed"
+      when /designer/i
+        "Designer Assessed"
+      else
+        value
+      end
+    @row[:research_policy] = { content: policy, type_id: Card::PointerID }
   end
 
-  def to_html value
-    value.gsub("\n", "<br\>")
-  end
-
-  def process_value_type value
-    value.match /(?<type>[^(]+)\((?<options>[^)]+)/ do |match|
+  def normalize_value_type value
+    value.match(/(?<type>[^(]+)\((?<options>[^)]+)/) do |match|
       new_value = match[:type].strip
       new_value == "Category" if new_value == "Categorical"
       if new_value == "Category" || new_value == "Multi-Category"

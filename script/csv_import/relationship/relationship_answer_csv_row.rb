@@ -4,6 +4,7 @@ require_relative "../../csv_row"
 class RelationshipAnswerCSVRow < CSVRow
   include SourceHelper
 
+  @columns = [:designer, :title, :company_1, :company_2, :year, :value, :source]
   @required =
     [:designer, :title, :company_1, :company_2, :year, :value, :source]
 

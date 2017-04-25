@@ -1,7 +1,8 @@
 require_relative "../../csv_row"
 
 class WikipediaCSVRow < CSVRow
-  @required = [:wikirate_company_name, :wikirate_id, :wikipedia_company_page]
+  @columns = [:wikirate_company_name, :wikirate_id, :wikipedia_company_page]
+  @required = :all
 
   def initialize row
     super
