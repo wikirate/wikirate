@@ -1,4 +1,4 @@
-require_relative "../../csv_import/csv_file"
+require_relative "../../csv_file"
 require_relative "metric_csv_row"
 
 class MetricsCSVFile < CSVFile

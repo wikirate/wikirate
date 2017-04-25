@@ -1,4 +1,4 @@
-require_relative "../../csv_import/csv_row"
+require_relative "../../csv_row"
 
 class MetricCSVRow < CSVRow
   @required = [:metric_designer, :metric_title, :value_type, :metric_type]

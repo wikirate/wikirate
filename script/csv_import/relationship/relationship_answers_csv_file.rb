@@ -1,4 +1,4 @@
-require_relative "../../csv_import/csv_import"
+require_relative "../.."
 require_relative "relationship_answer"
 
 class RelationshipAnswersCSVFile < CSVFile
