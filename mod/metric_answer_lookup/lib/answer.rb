@@ -96,8 +96,9 @@ class Answer < ActiveRecord::Base
 
     def refresh_entry fields, ma_id
       create_or_update ma_id, *fields
-    rescue => _e
-      puts "failed: #{ma_id}"
+    rescue => e
+      puts "failed to refresh metric answer: #{ma_id}"
+      puts e.message
     end
 
     def refresh_all fields
