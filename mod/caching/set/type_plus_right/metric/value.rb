@@ -19,7 +19,7 @@ end
 # of these cards
 def wql_hash
   answer_ids = Answer.where(metric_id: left.id).pluck(:answer_id)
-  if metric_ids.any?
+  if answer_ids.any?
     { id: [:in] + answer_ids }
   else
     { id: -1 } # HACK: ensure no results
