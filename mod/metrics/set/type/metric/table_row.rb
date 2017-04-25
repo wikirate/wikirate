@@ -1,6 +1,7 @@
 # views used to display a metric in a table row
 
 include_set Abstract::Media
+include_set Abstract::Table
 
 format :html do
   def company_count

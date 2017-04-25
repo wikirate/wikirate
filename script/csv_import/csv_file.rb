@@ -4,29 +4,31 @@ require_relative "csv_row"
 class CSVFile
   def initialize path, row_class
     raise StandardError, "file does not exist: #{path}" unless File.exist? path
-    raise ArgumentError, "#{row_class} must inherit from CSVRow" unless row_class.is_a? CSVRow
+    raise ArgumentError, "#{row_class} must inherit from CSVRow" unless row_class < CSVRow
     @row_class = row_class
-    @rows = CSV.read path
+    @rows = CSV.read path, col_sep: ";"
     @headers = @rows.shift.map { |h| h.downcase.tr(" ", "_") }
     map_headers
   end
 
-  def import!
-    each_row do |row|
-      process_row row
+  def import! error_policy: :fail
+    each_row do |row, index|
+      process_row row, index, error_policy
     end
   end
 
   private
 
-  def process_row row
-    @row_class.new(row).create
+  def process_row row, index, error_policy=:fail
+    @row_class.new(row, index).create
+  rescue StandardError => e
+    raise e if error_policy == :fail
   end
 
   def each_row
-    @rows.each do |row|
+    @rows.each.with_index do |row, i|
       next if row.compact.empty?
-      yield row_to_hash(row)
+      yield row_to_hash(row), i
     end
   end
 

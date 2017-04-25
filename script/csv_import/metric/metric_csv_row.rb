@@ -1,4 +1,4 @@
-require_relative "../../csv_row"
+require_relative "../csv_row"
 
 # create a metric described by a row in a csv file
 class MetricCSVRow < CSVRow
@@ -36,7 +36,7 @@ class MetricCSVRow < CSVRow
   def normalize_value_type value
     value.match(/(?<type>[^(]+)\((?<options>[^)]+)/) do |match|
       new_value = match[:type].strip
-      new_value == "Category" if new_value == "Categorical"
+      new_value = "Category" if new_value == "Categorical"
       if new_value == "Category" || new_value == "Multi-Category"
         @value_details[:value_options] = comma_list_to_pointer match[:options]
       elsif new_value == "Money"

@@ -39,7 +39,7 @@ format :html do
       [:thumbnail, :company_count_with_label],
       header: ["Metric", "# Records"],
       td: { classes: ["header", nil] },
-      tr_link: ->(item) { path mark: item.metric_card }
+      tr_link: ->(item) { path mark: item }
     )
   end
 end
