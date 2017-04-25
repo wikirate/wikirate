@@ -40,7 +40,6 @@ def replace_with_url_card
   abort :success
 end
 
-
 def duplication_check
   return unless duplicates.any?
   duplicated_name = duplicates.first.cardname.left
@@ -75,7 +74,7 @@ rescue Error
 end
 
 event :process_source_url, after: :check_source,
-      on: :create do
+                           on: :create do
   if !(link_card = subfield(:wikirate_link)) || link_card.content.empty?
     errors.add(:link, "does not exist.")
     return
