@@ -16,15 +16,17 @@ format :html do
     count_with_label_cell company_count, "Companies"
   end
 
+  # probably overriden by Abstract::Thumbnail
   view :thumbnail do
     voo.hide! :thumbnail_subtitle
     title = card.right.name
     output [
       _optional_render_vote,
       text_with_image(title: title,
-                      image: desinger_image_card, size: :icon)
+                      image: designer_image_card, size: :icon)
     ]
   end
+
 
   def designer_image_card
     card.metric_designer_card.field(:image)

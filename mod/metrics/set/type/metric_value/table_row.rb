@@ -10,6 +10,17 @@ format :html do
     nest card.metric_card, view: :thumbnail, hide: [:vote, :thumbnail_subtitle]
   end
 
+  view :metric_thumbnail_minimal do
+    nest card.metric_card, view: :thumbnail_minimal,
+                           hide: [:thumbnail_subtitle, :vote]
+  end
+
+  view :company_thumbnail_minimal do
+    nest card.company_card, view: :thumbnail_minimal,
+                            hide: [:thumbnail_subtitle, :vote]
+    #_render_company_thumbnail
+  end
+
   view :company_thumbnail do
     company_image = card.company_card.fetch(trait: :image)
     title = card.company_card.name

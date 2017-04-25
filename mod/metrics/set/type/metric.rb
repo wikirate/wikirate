@@ -177,11 +177,15 @@ format :html do
     outs.inspect
   end
 
-  view :designer_image do |_args|
-    image = nest card.metric_designer_card.field(:image, new: {}),
-                 view: :core, size: :small
-    link_to_card card.metric_designer_card, image
+  def designer_image
+    nest card.metric_designer_card.field(:image, new: {}),
+                     view: :core, size: :small
   end
+
+  def designer_image_link
+    link_to_card card.metric_designer_card, designer_image
+  end
+
 
   def css
     ""

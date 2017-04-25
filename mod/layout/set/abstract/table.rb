@@ -35,7 +35,8 @@ format :html do
   def homepage_table table_type
     wikirate_table(
       table_type,  search_with_params(limit: 4),
-      ["#{table_type}_thumbnail", :value_cell],
+      ["#{table_type}_thumbnail_minimal", :value_cell],
+      table: { class: "homepage-table" },
       header: [table_type.to_s.capitalize, "Value"],
       td: { classes: ["header", nil] },
       tr_link: lambda do |item|
