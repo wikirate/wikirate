@@ -36,7 +36,7 @@ format :html do
     wikirate_table(
       table_type,  search_with_params(limit: 4),
       ["#{table_type}_thumbnail", :value_cell],
-      header: ["#{table_type.to_s.capitalize}", "Value"],
+      header: [table_type.to_s.capitalize, "Value"],
       td: { classes: ["header", nil] },
       tr_link: lambda do |item|
         path mark: item.metric_card,
