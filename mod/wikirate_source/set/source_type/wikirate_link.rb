@@ -17,11 +17,35 @@ event :autopopulate_website,
   add_subcard host, type_id: Card::WikirateWebsiteID
 end
 
-def populate_website?
-  !subfield("website").present? && subfield(:wikirate_link).present? && errors.empty?
+event :import_linked_source, :integrate_with_delay do
+  generate_pdf unless file_link?
 end
 
-def handle_source_box_source
+event :process_source_url, after: :check_source,
+                           on: :create do
+  if !(link_card = subfield(:wikirate_link)) || link_card.content.empty?
+    errors.add(:link, "does not exist.")
+    return
+  end
+  link_card.content.strip!
+  @url = link_card.content
+  handle_sourcebox_source if sourcebox?
+  duplication_check
+  link_card.director.catch_up_to_stage :validate
+  return if link_card.errors.present?
+  if file_link?
+    download_and_add_file
+  elsif sourcebox?
+    populate_title_and_description
+  end
+end
+
+def populate_website?
+  !subfield("website").present? && subfield(:wikirate_link).present? &&
+    errors.empty?
+end
+
+def handle_sourcebox_source
   if url_card
     replace_with_url_card if valid_url_card?
   elsif !url? || wikirate_url?
@@ -32,6 +56,7 @@ end
 def valid_url_card?
   return true if url_card.type_code == :source
   errors.add :source, "can only be source type or valid URL."
+  false
 end
 
 def replace_with_url_card
@@ -54,42 +79,18 @@ def duplication_check
   end
 end
 
-event :import_linked_source, :integrate_with_delay do
-  return if file_link?
-  generate_pdf
-end
-
 def duplicates
   @duplicates ||= Self::Source.find_duplicates url
 end
 
 def generate_pdf
-  kit = PDFKit.newurl
+  kit = PDFKit.new url
   Dir::Tmpname.create(["source", ".pdf"]) do |path|
     kit.to_file(path)
-    file_card.update_attributes! file: File.open(path)
+    file_card.update_attributes! file: ::File.open(path)
   end
 rescue Error
   Rails.logger.info "failed to convert source page to pdf"
-end
-
-event :process_source_url, after: :check_source,
-                           on: :create do
-  if !(link_card = subfield(:wikirate_link)) || link_card.content.empty?
-    errors.add(:link, "does not exist.")
-    return
-  end
-  link_card.content.strip!
-  @url = link_card.content
-  handle_source_box_source if Card::Env.params[:sourcebox] == "true"
-  duplication_check
-  link_card.director.catch_up_to_stage :validate
-  return if link_card.errors.present?
-  if file_link?
-    download_and_add_file
-  elsif Card::Env.params[:sourcebox] == "true"
-    populate_title_and_description
-  end
 end
 
 def url
@@ -163,6 +164,10 @@ end
 
 def within_file_size_limit?
   file_size.to_i <= max_size.megabytes
+end
+
+def sourcebox?
+  Card::Env.params[:sourcebox] == "true"
 end
 
 def populate_title_and_description

@@ -63,7 +63,8 @@ def value_type
 end
 
 def value_type_code
-  ((vc = value_type_card.item_cards.first) && vc.codename.to_sym) || :free_text
+  ((vc = value_type_card.item_cards.first) &&
+   vc.codename && vc.codename.to_sym) || :free_text
 end
 
 def value_options
