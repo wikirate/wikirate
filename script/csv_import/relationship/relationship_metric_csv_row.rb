@@ -1,6 +1,6 @@
 require_relative "../../csv_row"
 
-
+# This class provides an interface to import relationship metrics
 class RelationshipMetricCSVRow < CSVRow
   @columns = [:designer, :title, :inverse, :value_type, :value_options, :unit]
   @required = [:designer, :title, :value_type, :inverse]
@@ -16,7 +16,7 @@ class RelationshipMetricCSVRow < CSVRow
   def create
     ensure_designer
     create_card @name, type: Card::MetricID,
-                subfields: subfields
+                       subfields: subfields
     create_inverse
   end
 

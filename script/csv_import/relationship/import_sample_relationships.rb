@@ -11,6 +11,3 @@ Card::Auth.current_id = Card.fetch_id("Philipp Kuehl")
 
 CSVFile.new(metrics_path, RelationshipMetricsCSVRow).import!
 CSVFile.new(answers_path, RelationshipAnswersCSVRow).import!
-
-
-

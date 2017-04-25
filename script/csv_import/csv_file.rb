@@ -11,6 +11,7 @@ class CSVFile
     map_headers
   end
 
+  # @param error_policy [:fail, :skip, :report]
   def import! error_policy: :fail
     each_row do |row, index|
       process_row row, index, error_policy
@@ -20,9 +21,14 @@ class CSVFile
   private
 
   def process_row row, index, error_policy=:fail
-    @row_class.new(row, index).create
+    row = @row_class.new(row, index)
+    row.create
   rescue StandardError => e
-    raise e if error_policy == :fail
+    case error_policy
+    when :fail then raise e
+    when :report then puts row.errors.join("\n")
+    when :skip then nil
+    end
   end
 
   def each_row

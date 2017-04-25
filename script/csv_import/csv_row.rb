@@ -8,7 +8,6 @@ class CSVRow
 
   @columns = []
   @required = [] # array of required fields or :all
-  @error_policy = :skip # :skip or :fail
 
   # Use column names as keys and method names as values to define normalization
   # and validation methods.
@@ -20,7 +19,7 @@ class CSVRow
   @validate = {}
 
   class << self
-    attr_reader :columns, :required, :error_policy
+    attr_reader :columns, :required
 
     def normalize key
       @normalize && @normalize[key]
@@ -31,14 +30,23 @@ class CSVRow
     end
   end
 
+  attr_reader :errors
+
   def initialize row, index
     @row = row
     @index = index
+    @errors = []
     required.each do |key|
-      raise StandardError, "value for #{key} missing" unless row[key].present?
+      error "value for #{key} missing" unless row[key].present?
     end
     normalize
     validate
+
+  end
+
+  def error msg
+    @errors << msg
+    raise StandardError, msg
   end
 
   def required
@@ -69,7 +77,7 @@ class CSVRow
   def validate_field field, value
     return unless (method_name = method_name(field, :validate))
     return if send method_name, value
-    fail StandardError, "row #{@index}: invalid value for #{field}: #{value}"
+    error "row #{@index}: invalid value for #{field}: #{value}"
   end
 
   # @param type [:normalize, :validate]
