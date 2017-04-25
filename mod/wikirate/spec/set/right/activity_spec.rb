@@ -8,7 +8,7 @@ describe Card::Set::Right::Activity do
   end
 
   describe "core view" do
-    subject { render_view :core, name: "joe_user+activity"
+    subject { render_view :core, name: "joe_user+activity" }
 
     it "renders view" do
       is_expected.to have_tag("div.activity") do
