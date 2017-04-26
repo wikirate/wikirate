@@ -5,7 +5,7 @@ include_set Abstract::MetricChild, generation: 2
 event :set_metric_value_name,
       before: :set_autoname, when: :invalid_value_name? do
   new_name = %w(metric company year).map do |part|
-      fetch_name_part part
+    fetch_name_part part
   end.join "+"
   abort :failure if errors.any?
   self.name = new_name

@@ -3,7 +3,7 @@ Feature: import metric values from a csv file
   A user can create metric values from a CSV file
 
   Background:
-    Given I am signed in as Joe User
+    Given I am signed in as Joe Camel
     And I go to new Metric Value Import File
     And I fill in "card_name" with "Strikes tmr?"
     And I upload the metric_value_import_file "metric_values_import.csv"
@@ -112,3 +112,23 @@ Feature: import metric values from a csv file
     And I should not see a "comment" icon
     When I go to card "Samsung+aliases"
     And I should see "Apple"
+
+  Scenario: Award badges
+    And I check checkbox for csv row 9
+    And I check checkbox for csv row 10
+    And I check checkbox for csv row 11
+    And I check checkbox for csv row 12
+    And I check checkbox for csv row 13
+    And I check checkbox for csv row 14
+    And I press "Import"
+    And I wait for ajax response
+    Then I should see "SPECTRE Researcher"
+    And I should see "Samsung Researcher"
+    And I should see "Inside Source"
+    And I wait 5 seconds
+    And I go to card "Joe Camel+metric values+badges earned"
+    Then I should see "SPECTRE Company Awarded for adding 3 answers about SPECTRE"
+    And I should see "Samsung Company Awarded for adding 3 answers about Samsung"
+    And I go to card "Joe Camel+source+badges earned"
+    And I should see "Inside Source"
+

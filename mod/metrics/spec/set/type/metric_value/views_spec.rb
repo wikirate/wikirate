@@ -1,11 +1,12 @@
 RSpec.describe Card::Set::Type::MetricValue::Views do
   # FIXME: not the right rspec syntax
   # humanized_number doesn't change anything
-  describe '#humanized_number' do
+  describe "#humanized_number" do
     subject do
       @number = Card["Jedi+deadliness+Death Star+1977"].format
                                                        .humanized_number(@number)
     end
+
     specify do
       @number = "1_000_001"
       expect { subject }.to change { @number }.from("1_000_001").to("1M")
@@ -70,6 +71,5 @@ RSpec.describe Card::Set::Type::MetricValue::Views do
         end
       end
     end
-
   end
 end

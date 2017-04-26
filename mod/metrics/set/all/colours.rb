@@ -4,16 +4,16 @@ format :html do
     # https://gka.github.io/palettes
     # /#colors=,red,orange,yellow,green|steps=10|bez=1|coL=0
     [
-      '#ff0000',
-      '#ff5700',
-      '#ff7e00',
-      '#fc9b00',
-      '#f1b000',
-      '#debd00',
-      '#c2c000',
-      '#9ab700',
-      '#65a300',
-      '#008000'
+      "#ff0000",
+      "#ff5700",
+      "#ff7e00",
+      "#fc9b00",
+      "#f1b000",
+      "#debd00",
+      "#c2c000",
+      "#9ab700",
+      "#65a300",
+      "#008000"
     ]
   end
 
@@ -22,16 +22,16 @@ format :html do
     # https://gka.github.io/palettes/
     # #colors=CornflowerBlue,LightSteelBlue|steps=10|bez=1|coL=1
     [
-      '#6495ed',
-      '#6f9aeb',
-      '#799fea',
-      '#82a4e8',
-      '#8aa9e7',
-      '#93afe5',
-      '#9ab4e3',
-      '#a2b9e2',
-      '#a9bfe0',
-      '#b0c4de'
+      "#6495ed",
+      "#6f9aeb",
+      "#799fea",
+      "#82a4e8",
+      "#8aa9e7",
+      "#93afe5",
+      "#9ab4e3",
+      "#a2b9e2",
+      "#a9bfe0",
+      "#b0c4de"
     ]
   end
 

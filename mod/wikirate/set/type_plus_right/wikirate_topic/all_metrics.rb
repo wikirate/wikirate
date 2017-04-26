@@ -25,4 +25,3 @@ format :json do
     end.to_json
   end
 end
-

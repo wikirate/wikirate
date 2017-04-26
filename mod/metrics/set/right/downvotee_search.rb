@@ -204,7 +204,7 @@ format :html do
   def with_filter_and_sort args
     # display_empty_msg = search_results.empty? ? '' : 'display: none;'
     wrap_with :div, class: "yinyang-list",
-                      "data-default-sort" => args[:default_sort] do
+                    "data-default-sort" => args[:default_sort] do
       yield
     end
   end
@@ -212,12 +212,12 @@ format :html do
   def with_drag_and_drop args
     show_unsaved_msg = args[:unsaved].present? && !Auth.signed_in?
     wrap_with :div,
-                class: "list-drag-and-drop yinyang-list "\
-                       "#{args[:vote_type]}-container",
-                "data-query"        => args[:query],
-                "data-update-id"    => card.cardname.url_key,
-                "data-bucket-name"  => args[:vote_type],
-                "data-default-sort" => args[:default_sort] do
+              class: "list-drag-and-drop yinyang-list "\
+                     "#{args[:vote_type]}-container",
+              "data-query"        => args[:query],
+              "data-update-id"    => card.cardname.url_key,
+              "data-bucket-name"  => args[:vote_type],
+              "data-default-sort" => args[:default_sort] do
       [
         if card.vote_label
           wrap_with(:h5, class: "vote-title") { card.vote_label }

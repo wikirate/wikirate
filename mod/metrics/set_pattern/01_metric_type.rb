@@ -1,4 +1,4 @@
-DEFAULT_METRIC_TYPE = "Researched"
+DEFAULT_METRIC_TYPE = "Researched".freeze
 
 @@options = {
   junction_only: true,

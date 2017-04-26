@@ -51,6 +51,7 @@ module BadgeSquad
   def vote_count type_id
     lambda do |user_id|
       user = user_id ? Card[user_id] : Auth.current
+      next nil unless user.respond_to?(:upvotes_card)
       vote_card_ids = [user.upvotes_card.id, user.downvotes_card.id].compact
       next nil unless vote_card_ids.present?
       {
@@ -90,7 +91,7 @@ module BadgeSquad
       if !@map[action]
         "not supported action: #{action}"
       elsif affinity_type &&
-        !@map[action][affinity_type].is_a?(Abstract::BadgeLine)
+            !@map[action][affinity_type].is_a?(Abstract::BadgeLine)
         "affinity type #{affinity_type} not supported for action #{action}"
       end
     raise StandardError, error if error

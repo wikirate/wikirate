@@ -57,7 +57,7 @@ format :html do
   end
 
   def add_metric_button
-    target = '#modal-add-metric-slot'
+    target = "#modal-add-metric-slot"
     # "#modal-#{card.cardname.safe_key}"
     output [
       (wrap_with :span, class: "input-group" do
@@ -140,13 +140,12 @@ end
 event :validate_formula_input, :validate,
       on: :save, changed: :content do
   input_chunks.each do |chunk|
-    case
-    when variable_name?(chunk.referee_name)
+    if variable_name?(chunk.referee_name)
       errors.add :formula, "invalid variable name: #{chunk.referee_name}"
-    when !chunk.referee_card
+    elsif !chunk.referee_card
       errors.add :formula, "input metric #{chunk.referee_name} doesn't exist"
-    when chunk.referee_card.type_id != MetricID &&
-      chunk.referee_card.type_id != YearlyVariableID
+    elsif chunk.referee_card.type_id != MetricID &&
+          chunk.referee_card.type_id != YearlyVariableID
       errors.add :formula, "#{chunk.referee_name} has invalid type " \
                            "#{chunk.referee_card.type_name}"
     end
@@ -166,7 +165,7 @@ end
 # @option opts [String] :year optional
 def calculate_values_for opts={}
   unless opts[:company]
-    raise Card::Error, '#calculate_values_for: no company given'
+    raise Card::Error, "#calculate_values_for: no company given"
   end
   no_value = true
   calculator.result(opts).each_pair do |year, companies|

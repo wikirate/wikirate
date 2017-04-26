@@ -200,7 +200,8 @@ describe Card::Set::TypePlusRight::Source::File::Import do
       context "input company doesn't exist in wikirate" do
         it "creates company and the value" do
           Card::Env.params[:corrected_company_name] = {
-            "1" => "Cambridge University" }
+            "1" => "Cambridge University"
+          }
           trigger_import [{ company: "Cambridge", value: "800", row: 1 }]
           expect(Card.exists?("Cambridge University")).to be true
           expect(answer_exists?(:cambridge_university)).to be true
@@ -272,6 +273,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
 
   describe "while rendering import view" do
     subject { @source.fetch(trait: :file).format.render_import }
+
     it "shows metric select list correctly" do
       is_expected.to have_tag("div", with: {
                                 card_name: "#{@source.name}+Metric"

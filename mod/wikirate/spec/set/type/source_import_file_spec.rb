@@ -64,12 +64,12 @@ describe Card::Set::Type::SourceImportFile do
     context "correct info" do
       it "adds a correct source" do
         data = [{
-                  file_company: "Apple Inc", year: "2014",
-                  report_type: "Conflict Minerals Report",
-                  source: "http://placehold.it/100x100",
-                  title: nil, row: 1, wikirate_company: "Apple Inc", status: "exact",
-                  company: "Apple Inc"
-                }]
+          file_company: "Apple Inc", year: "2014",
+          report_type: "Conflict Minerals Report",
+          source: "http://placehold.it/100x100",
+          title: nil, row: 1, wikirate_company: "Apple Inc", status: "exact",
+          company: "Apple Inc"
+        }]
         source_file = trigger_import data, "1" => source_title
         expect(source_file.subcards.empty?).to be_falsey
         source_card = source_file.subcards[source_file.subcards.to_a[0]]
@@ -88,13 +88,14 @@ describe Card::Set::Type::SourceImportFile do
       context "with fields" do
         let(:samsung_data) do
           [{
-             file_company: "Samsung", year: "2013",
-             report_type: "Corporate Social Responsibility Report",
-             source: "http://wagn.org",
-             title: nil, row: 1, wikirate_company: "Samsung", status: "exact",
-             company: "Samsung"
-           }]
+            file_company: "Samsung", year: "2013",
+            report_type: "Corporate Social Responsibility Report",
+            source: "http://wagn.org",
+            title: nil, row: 1, wikirate_company: "Samsung", status: "exact",
+            company: "Samsung"
+          }]
         end
+
         before do
           source_args = {
             "+title" => "hTc",
@@ -134,12 +135,12 @@ describe Card::Set::Type::SourceImportFile do
           @url = "http://wagn.org"
           @source_card = create_link_source @url
           data = [{
-                    file_company: "Apple Inc", year: "2014",
-                    report_type: "Conflict Minerals Report",
-                    source: "http://wagn.org",
-                    title: nil, row: 1, wikirate_company: "Apple Inc", status: "exact",
-                    company: "Apple Inc"
-                  }]
+            file_company: "Apple Inc", year: "2014",
+            report_type: "Conflict Minerals Report",
+            source: "http://wagn.org",
+            title: nil, row: 1, wikirate_company: "Apple Inc", status: "exact",
+            company: "Apple Inc"
+          }]
           expected_title = "hTc"
           title = { "1" => expected_title }
           trigger_import data, title
@@ -169,18 +170,18 @@ describe Card::Set::Type::SourceImportFile do
       before do
         @url = "http://example.com/12333214"
         data = [{
-                  file_company: "Apple Inc", year: "2014",
-                  report_type: "Conflict Minerals Report",
-                  source: @url,
-                  title: nil, row: 1, wikirate_company: "Apple Inc", status: "exact",
-                  company: "Apple Inc"
-                }, {
-                  file_company: "Samsung", year: "2013",
-                  report_type: "Conflict Minerals Report",
-                  source: @url,
-                  title: nil, row: 2, wikirate_company: "Samsung", status: "exact",
-                  company: "Samsung"
-                }]
+          file_company: "Apple Inc", year: "2014",
+          report_type: "Conflict Minerals Report",
+          source: @url,
+          title: nil, row: 1, wikirate_company: "Apple Inc", status: "exact",
+          company: "Apple Inc"
+        }, {
+          file_company: "Samsung", year: "2013",
+          report_type: "Conflict Minerals Report",
+          source: @url,
+          title: nil, row: 2, wikirate_company: "Samsung", status: "exact",
+          company: "Samsung"
+        }]
         title = { "1" => source_title, "2" => "Si L Dan" }
         @source_file = trigger_import data, title
       end
@@ -217,12 +218,12 @@ describe Card::Set::Type::SourceImportFile do
     context "missing fields" do
       def sample_data
         [{
-           file_company: "Apple Inc", year: "2014",
-           source: "http://wagn.org",
-           report_type: "Conflict Minerals Report",
-           title: nil, row: 1, wikirate_company: "Apple Inc", status: "exact",
-           company: "Apple Inc"
-         }]
+          file_company: "Apple Inc", year: "2014",
+          source: "http://wagn.org",
+          report_type: "Conflict Minerals Report",
+          title: nil, row: 1, wikirate_company: "Apple Inc", status: "exact",
+          company: "Apple Inc"
+        }]
       end
 
       def sample_title
@@ -270,6 +271,7 @@ describe Card::Set::Type::SourceImportFile do
 
   describe "import table" do
     subject { @source_import_file.format.render_import }
+
     it "shows correctly import table" do
       is_expected.to have_tag("table", with: { class: "import_table" }) do
         with_row true, "success",

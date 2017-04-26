@@ -10,7 +10,7 @@ format :html do
   end
 
   def analysis_card
-    Card.fetch [self.name, topic_card.name]
+    Card.fetch [name, topic_card.name]
   end
 
   def link_to_metric_count count, label

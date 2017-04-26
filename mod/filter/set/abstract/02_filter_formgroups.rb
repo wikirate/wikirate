@@ -23,7 +23,7 @@ format :html do
 
   view :wikirate_company_formgroup, cache: :never do
     select_filter_type_based :wikirate_company
-    #autocomplete_filter :wikirate_company
+    # autocomplete_filter :wikirate_company
   end
 
   view :research_policy_formgroup, cache: :never do
@@ -51,7 +51,7 @@ format :html do
   end
 
   view :importance_formgroup, cache: :never do
-    checkbox_filter :importance, "My Vote", ["upvotes", "novotes"]
+    checkbox_filter :importance, "My Vote", %w(upvotes novotes)
   end
 
   view :industry_formgroup, cache: :never do
@@ -82,15 +82,15 @@ format :html do
 
   def metric_value_options
     opts = {
-        "All"               => "all",
-        "Researched"        => "exists",
-        "Known"             => "known",
-        "Unknown"           => "unknown",
-        "Not Researched"    => "none",
-        "Edited today"      => "today",
-        "Edited this week"  => "week",
-        "Edited this month" => "month",
-        "Outliers"          => "outliers"
+      "All" => "all",
+      "Researched" => "exists",
+      "Known" => "known",
+      "Unknown" => "unknown",
+      "Not Researched" => "none",
+      "Edited today" => "today",
+      "Edited this week" => "week",
+      "Edited this month" => "month",
+      "Outliers" => "outliers"
     }
     return opts unless filter_param(:range)
     opts.each_with_object({}) do |(k, v), h|
@@ -98,7 +98,7 @@ format :html do
     end
   end
 
-  def add_range key, value
+  def add_range key, _value
     return key # unless selected_value?(value)
     range = filter_param :range
     "#{range[:from]} <= #{key} < #{range[:to]}"

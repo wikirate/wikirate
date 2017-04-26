@@ -55,7 +55,6 @@ def report_type
   metric_card.fetch trait: :report_type
 end
 
-
 format :html do
   def source_form_url
     path action: :new, mark: :source, preview: true, company: card.company
@@ -98,4 +97,3 @@ format :html do
     end.join("")
   end
 end
-

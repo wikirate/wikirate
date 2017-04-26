@@ -7,10 +7,10 @@ format :html do
 
   def wrap_value_details
     output [
-        _optional_render(:credit_name),
-        yield,
-        wrap_with(:div, _render_comments, class: "comments-div")
-      ]
+      _optional_render(:credit_name),
+      yield,
+      wrap_with(:div, _render_comments, class: "comments-div")
+    ]
   end
 
   view :researched_value_details do
@@ -42,7 +42,7 @@ format :html do
         [
           _render_wikirating_table,
           wrap_with(:div, class: "col-md-12") do
-            wrap_with(:div, class: "pull-right") { "= #{colorify card.value}"}
+            wrap_with(:div, class: "pull-right") { "= #{colorify card.value}" }
           end
         ]
       end
@@ -122,10 +122,8 @@ format :html do
   view :value_details_toggle do
     css_class = "fa fa-caret-right fa-lg margin-left-10 btn btn-default btn-sm"
     wrap_with(:i, "", class: css_class,
-                        data: { toggle: "collapse-next",
-                                parent: ".value",
-                                collapse: ".metric-value-details"
-                              }
-               )
+                      data: { toggle: "collapse-next",
+                              parent: ".value",
+                              collapse: ".metric-value-details" })
   end
 end

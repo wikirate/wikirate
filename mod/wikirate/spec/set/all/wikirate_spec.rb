@@ -19,7 +19,7 @@ describe Card::Set::All::Wikirate do
       expect(html).to include(render_card(:edits_by, name: card_name))
     end
 
-    it "should always show the help text " do
+    it "alwayses show the help text" do
       # render help text of source page
       # create a page with help text
       login_as "WagnBot"
@@ -233,76 +233,6 @@ describe Card::Set::All::Wikirate do
         non_numeric_card = Card.create! name: "I am not a number", content: "There are 2 hard problems in computer science: cache invalidation, naming things, and off-by-1 errors."
         html = non_numeric_card.format.render_progress_bar
         expect(html).to eq("Only card with numeric content can be shown as progress bar.")
-      end
-    end
-  end
-
-  describe "yinyang_list" do
-    it "renders correct yinyang list items" do
-      args = { items: { view: "content" } }
-      sample_company = Card.create! name: "Steelseries",
-                                    type_id: Card::WikirateCompanyID
-
-      metric1 = Card.create! name: "Joe User+how many responses",
-                             type_id: Card::MetricID
-      metric2 = Card.create! name: "Joe User+how many types of responses",
-                             type_id: Card::MetricID
-      metric3 = Card.create! name: "Joe User+the unusualness of the responses",
-                             type_id: Card::MetricID
-      metric4 = Card.create! name: "Joe User+the detail of the responses",
-                             type_id: Card::MetricID
-
-      metrics = [metric1, metric2, metric3, metric4]
-      metric_values = []
-
-      metrics.each do |metric|
-        subcard = {
-          "+metric" => { content: metric.name },
-          "+company" => { content: "[[#{sample_company.name}]]",
-                          type_id: Card::PointerID },
-          "+value" => {
-            content: "Nature doesn't recongize good or evil.",
-            type_id: Card::PhraseID
-          },
-          "+year" => { content: "2015", type_id: Card::PointerID },
-          "+source" => {
-            "subcards" => {
-              "new source" => {
-                "+Link" => {
-                  content: "http://www.google.com/?q=fringe",
-                  type_id: Card::PhraseID
-                }
-              }
-            }
-          }
-        }
-        metric_value = Card.create! type_id: Card::MetricValueID,
-                                    subcards: subcard
-        metric_values.push(metric_value)
-      end
-      search_card = Card.fetch "#{sample_company.name}+limited_metric"
-      html = search_card.format.render_yinyang_list args
-
-      expect(html).to have_tag "div", with: { class: "yinyang-list" } do
-        with_tag "div",
-                 with: {
-                   id: "Steelseries+Joe_User+how_many_responses+"\
-                       "yinyang_drag_item"
-                 }
-        with_tag "div",
-                 with: {
-                   id: "Steelseries+Joe_User+"\
-                   "how_many_types_of_responses+yinyang_drag_item"
-                 }
-        with_tag "div",
-                 with: {
-                   id: "Steelseries+Joe_User+"\
-                   "the_unusualness_of_the_responses+yinyang_drag_item"
-                 }
-        with_tag "div",
-                 with:
-                  { id: "Steelseries+Joe_User+"\
-                    "the_detail_of_the_responses+yinyang_drag_item" }
       end
     end
   end

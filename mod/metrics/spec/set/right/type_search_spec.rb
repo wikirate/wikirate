@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+
 describe Card::Set::Right::TypeSearch do
   describe "filter_and_sort view" do
     context "topic" do

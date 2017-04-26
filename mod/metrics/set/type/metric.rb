@@ -63,7 +63,8 @@ def value_type
 end
 
 def value_type_code
-  ((vc = value_type_card.item_cards.first) && vc.codename.to_sym) || :free_text
+  ((vc = value_type_card.item_cards.first) &&
+   vc.codename && vc.codename.to_sym) || :free_text
 end
 
 def value_options
@@ -103,6 +104,10 @@ end
 
 def scored?
   metric_type_codename == :score || rated?
+end
+
+def designer_assessed?
+  research_policy.casecmp("designer assessed").zero?
 end
 
 def analysis_names
@@ -172,11 +177,15 @@ format :html do
     outs.inspect
   end
 
-  view :designer_image do |_args|
-    image = nest card.metric_designer_card.field(:image, new: {}),
-                 view: :core, size: :small
-    link_to_card card.metric_designer_card, image
+  def designer_image
+    nest card.metric_designer_card.field(:image, new: {}),
+                     view: :core, size: :small
   end
+
+  def designer_image_link
+    link_to_card card.metric_designer_card, designer_image
+  end
+
 
   def css
     ""
@@ -187,8 +196,7 @@ format :html do
 
   # USED?
 
-
-  view :add_to_formula_item_view do |args|
+  view :add_to_formula_item_view do |_args|
     title = card.metric_title.to_s
     subtext = card.metric_designer.to_s
     subtext = wrap_with :small, "Scored by " + subtext
@@ -476,8 +484,6 @@ end
 
 format :csv do
   view :core do
-    Answer.where(metric_id: card.id).map do |a|
-      a.csv_line
-    end.join
+    Answer.where(metric_id: card.id).map(&:csv_line).join
   end
 end

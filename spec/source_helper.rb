@@ -1,20 +1,17 @@
 module SourceHelper
-  def create_page iUrl=nil, subcards={}
-    create_page_with_sourcebox iUrl, subcards, "true"
+  def create_page url=nil, subcards={}
+    create_page_with_sourcebox url, subcards, "true"
   end
 
-  def create_page_with_sourcebox iUrl=nil, subcards={}, sourcebox=nil
+  def create_page_with_sourcebox url=nil, subcards={}, sourcebox=nil
     Card::Auth.as_bot do
-      url = iUrl || "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
-      tmp_sourcebox = sourcebox || "true"
-      Card::Env.params[:sourcebox] = tmp_sourcebox
-      sourcepage = Card.create! type_id: Card::SourceID,
-                                subcards: {
-                                  "+Link" => { content: url }
-                                }.merge(subcards)
-      Card::Env.params[:sourcebox] = "false"
-
-      sourcepage
+      url ||= "http://www.google.com/?q=wikirate"
+      with_sourcebox sourcebox do
+        Card.create! type_id: Card::SourceID,
+                     subcards: {
+                       "+Link" => { content: url }
+                     }.merge(subcards)
+      end
     end
   end
 
@@ -24,6 +21,13 @@ module SourceHelper
 
   def create_source args
     Card.create source_args(args)
+  end
+
+  def with_sourcebox sourcebox=nil
+    Card::Env.params[:sourcebox] = sourcebox || "true"
+    result = yield
+    Card::Env.params[:sourcebox] = "false"
+    result
   end
 
   def source_args args

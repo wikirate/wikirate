@@ -59,9 +59,8 @@ format :html do
     link_to_card card.cardname.trunk, link_text, class: "inherit-anchor"
   end
 
-
   def wikirate_tabs tabs, color, additional=nil
-  <<-HTML
+    <<-HTML
       <div class="tabbable company-tabs">
         #{additional}
         <div class="col-md-8">

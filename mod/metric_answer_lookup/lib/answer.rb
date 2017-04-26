@@ -50,14 +50,19 @@ class Answer < ActiveRecord::Base
     def fetch where, sort_args={}, paging={}
       where = Array.wrap where
       mas = Answer.where(*where)
-      mas = sort mas, sort_args if sort_args.present?
-      mas = mas.limit(paging[:limit]).offset(paging[:offset]) if paging.present?
+      mas = sort mas, sort_args
+      mas = mas.limit(paging[:limit]).offset(paging[:offset]) if paging?(paging)
       mas.pluck(:answer_id).map do |id|
         Card.fetch id
       end
     end
 
+    def paging? paging_args
+      paging_args.present? && paging_args[:limit].to_i > 0
+    end
+
     def sort mas, args
+      return mas unless valid_sort_args? args
       mas = importance_sort mas, args if args[:sort_by].to_sym == :importance
       sort_by = args[:sort_by]
       sort_by = "CAST(#{sort_by} AS #{args[:cast]})" if args[:cast]
@@ -73,23 +78,35 @@ class Answer < ActiveRecord::Base
       mas
     end
 
+    def valid_sort_args? args
+      return unless args.present? && args[:sort_by]
+      return true if args[:sort_by].to_sym == :importance
+      Answer.column_names.include? args[:sort_by].to_s
+    end
+
     def refresh ids=nil, *fields
-      ids &&= Array(ids)
       if ids
-        ids.each do |ma_id|
-          begin
-            create_or_update ma_id, *fields
-          rescue => e
-            puts "failed: #{ma_id}"
-          end
+        Array(ids).each do |ma_id|
+          refresh_entry fields, ma_id
         end
       else
-        count = 0
-        Card.where(type_id: Card::MetricValueID).pluck_in_batches(:id) do |batch|
-          count += batch.size
-          puts "#{batch.first} - #{count}"
-          refresh(batch, *fields)
-        end
+        refresh_all fields
+      end
+    end
+
+    def refresh_entry fields, ma_id
+      create_or_update ma_id, *fields
+    rescue => e
+      puts "failed to refresh metric answer: #{ma_id}"
+      puts e.message
+    end
+
+    def refresh_all fields
+      count = 0
+      Card.where(type_id: Card::MetricValueID).pluck_in_batches(:id) do |batch|
+        count += batch.size
+        puts "#{batch.first} - #{count}"
+        refresh(batch, *fields)
       end
     end
 
@@ -100,6 +117,23 @@ class Answer < ActiveRecord::Base
       when Card then
         cardish.id
       end
+    end
+
+    def latest_answer_card metric_id, company_id
+      return unless a_id = where(metric_id: metric_id,
+                                 company_id: company_id,
+                                 latest: true).pluck(:answer_id)
+      Card.fetch(a_id)
+    end
+
+    def latest_year metric_id, company_id
+      where(metric_id: metric_id,
+                                 company_id: company_id,
+                                 latest: true).pluck(:year)
+    end
+
+    def answered? metric_id, company_id
+      where(metric_id: metric_id, company_id: company_id).exist?
     end
   end
 

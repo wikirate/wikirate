@@ -39,6 +39,7 @@ describe Card::Set::Right::BadgesEarned do
     end
 
     subject { card.ordered_badge_cards.map(&:name) }
+
     it "has correct order" do
       expect([subject.delete_at(7), subject.delete_at(7)])
         .to contain_exactly "Evil Project+Researcher+project badge",
@@ -65,6 +66,7 @@ describe Card::Set::Right::BadgesEarned do
     end
 
     subject { card.item_names }
+
     it "adds badge in the right order order" do
       expect([subject.delete_at(7), subject.delete_at(7)])
         .to contain_exactly "Evil Project+Researcher+project badge",
