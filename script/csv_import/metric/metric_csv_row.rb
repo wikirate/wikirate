@@ -48,7 +48,7 @@ class MetricCSVRow < CSVRow
     end
   end
 
-  def create
+  def import
     create_card @designer, type: Card::ResearchGroupID unless Card.exists?(@designer)
     create_card @title, type: Card::MetricTitleID unless Card.exists?(@title)
     ensure_card @name, type: Card::MetricID, subfields: @row.merge(@value_details)

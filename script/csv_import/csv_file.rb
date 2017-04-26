@@ -12,7 +12,7 @@ class CSVFile
   end
 
   # @param error_policy [:fail, :skip, :report]
-  def import! error_policy: :fail
+  def import error_policy: :fail
     each_row do |row, index|
       process_row row, index, error_policy
     end
@@ -21,12 +21,12 @@ class CSVFile
   private
 
   def process_row row, index, error_policy=:fail
-    row = @row_class.new(row, index)
-    row.create
+    csv_row = @row_class.new(row, index)
+    csv_row.execute_import
   rescue StandardError => e
     case error_policy
     when :fail then raise e
-    when :report then puts row.errors.join("\n")
+    when :report then puts csv_row.errors.join("\n")
     when :skip then nil
     end
   end

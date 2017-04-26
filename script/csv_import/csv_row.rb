@@ -1,7 +1,7 @@
 require_relative "csv_row/normalizer"
 
 # Use CSVRow to process a csv row.
-# CSVFile creates an instance of CSVRow for every row and calls #create
+# CSVFile creates an instance of CSVRow for every row and calls #import on it
 class CSVRow
   include ::Card::Model::SaveHelper
   include Normalizer
@@ -34,19 +34,26 @@ class CSVRow
 
   def initialize row, index
     @row = row
-    @index = index
+    @row_index = index # 0-based, not counting the header line
     @errors = []
+  end
+
+  def execute_import
+    prepare_import
+    import
+  end
+
+  def prepare_import
     required.each do |key|
-      error "value for #{key} missing" unless row[key].present?
+      error "value for #{key} missing" unless @row[key].present?
     end
     normalize
     validate
-
   end
 
   def error msg
     @errors << msg
-    raise StandardError, msg
+    raise StandardError, msg, caller
   end
 
   def required
@@ -77,7 +84,7 @@ class CSVRow
   def validate_field field, value
     return unless (method_name = method_name(field, :validate))
     return if send method_name, value
-    error "row #{@index}: invalid value for #{field}: #{value}"
+    error "row #{@row_index + 1}: invalid value for #{field}: #{value}"
   end
 
   # @param type [:normalize, :validate]

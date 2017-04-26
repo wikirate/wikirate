@@ -17,7 +17,7 @@ class WikipediaCSVRow < CSVRow
     Regexp.last_match(1)
   end
 
-  def create
+  def import
     puts wikirate_name
     ensure_card [wikirate_id, :wikipedia],
                 content: wikipedia_url,

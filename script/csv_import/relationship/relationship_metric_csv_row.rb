@@ -13,7 +13,7 @@ class RelationshipMetricCSVRow < CSVRow
     normalize_value_options
   end
 
-  def create
+  def import
     ensure_designer
     create_card @name, type: Card::MetricID,
                        subfields: subfields
