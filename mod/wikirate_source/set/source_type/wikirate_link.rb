@@ -126,8 +126,8 @@ def download_and_add_file
   remove_subfield :wikirate_link
   reset_patterns
   include_set_modules
-rescue # if open raises errors , just treat the source as a normal source
-  Rails.logger.info "Fail to get the file from link"
+rescue # if open raises errors just treat the source as a normal source
+  Rails.logger.info "failed to get the file from link"
 end
 
 def header
@@ -159,7 +159,8 @@ def file_size
 end
 
 def file_link?
-  file_type.present? && !file_type.start_with?("text/html", "image/", "*/*")
+  (file_type.present? && !file_type.start_with?("text/html", "image/", "*/*")) ||
+    (url.present? && ::File.extname(url) =~ /^\.pdf/)
 end
 
 def within_file_size_limit?
