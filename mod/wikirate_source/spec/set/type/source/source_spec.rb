@@ -123,8 +123,7 @@ describe Card::Set::Type::Source do
           expect(sourcepage.errors).to be_empty
           expect(sourcepage.fetch(trait: :file)).not_to be_nil
           link_card = sourcepage.fetch(trait: :wikirate_link)
-          expect(link_card).not_to be_nil
-          expect(link_card.content).to eq(pdf_url)
+          expect(link_card).to be_nil
         end
         context "file is bigger than '*upload max'" do
           it "won't create file source" do
