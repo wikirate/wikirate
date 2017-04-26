@@ -230,14 +230,14 @@ format :html do
     progress_bar(
       { value: card.percent_known, class: "progress-known" },
       { value: card.percent_unknown, class: "progress-unknown" },
-      { value: card.percent_not_researched, class: "progress-not-researched" }
+      value: card.percent_not_researched, class: "progress-not-researched"
     )
   end
 end
 
 format :csv do
   view :core do
-    res = ''
+    res = ""
     card.metric_ids.each do |m_id|
       Answer.where("metric_id = ? AND company_id IN (?)",
                    m_id, card.company_ids).each do |a|

@@ -9,7 +9,7 @@ describe Card::Set::TypePlusRight::MetricValue::Value::AwardBadges do
 
     def execute_awarded_action count
       answer_card(count).field(:discussion, new: {})
-        .update_attributes! content: "comment"
+                        .update_attributes! content: "comment"
     end
 
     context "reached bronze threshold" do
@@ -17,11 +17,11 @@ describe Card::Set::TypePlusRight::MetricValue::Value::AwardBadges do
     end
 
     context "reached silver threshold" do
-      it_behaves_like "answer badges", 2, "Uncommon Commentator"
+      it_behaves_like "answer badges", 2, "Commentary Team"
     end
 
     context "reached gold threshold" do
-      it_behaves_like "answer badges", 3, "High Commentations"
+      it_behaves_like "answer badges", 3, "Expert Commentary"
     end
   end
 end

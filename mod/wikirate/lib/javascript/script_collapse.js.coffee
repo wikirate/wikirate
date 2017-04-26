@@ -88,11 +88,12 @@ findCollapseTarget = (toggle) ->
     else
       $toggle.parent()
 
-  target = $toggle.data('target') || '.collapse'
+  if $toggle.attr("href") != null
+    return $($toggle.attr("href"))
+  target = $toggle.attr("href") || $toggle.data('target') || '.collapse'
   if $toggle.data("collapse")?
     target += $toggle.data("collapse")
-
-  if $toggle.find(target).length
+  else if $toggle.find(target).length
     $toggle.find(target)
   else if $toggle.siblings(target).length
     $toggle.siblings(target)
@@ -100,4 +101,3 @@ findCollapseTarget = (toggle) ->
     parent.find(target)
   else
     parent.siblings(target)
-

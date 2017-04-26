@@ -1,4 +1,5 @@
 include_set Abstract::Pdfjs
+include_set Abstract::Tabs
 
 format :html do
   def related_claim_wql
@@ -39,8 +40,6 @@ format :html do
   view :preview, tags: :unknown_ok do
     wrap do
       [
-        # render in structure source_preview_nav_bar_structure
-        render_navigation_bar,
         render_hidden_information,
         render_source_preview_container
       ]
@@ -56,37 +55,22 @@ format :html do
     end
   end
 
+  def file_card
+    card.fetch trait: :file
+  end
+
   view :source_preview_container, tags: :unknown_ok do
-    wrap_with :div, class: "row clearfix source-preview-content" do
-      [
-        wrap_with(:div, class: "col-md-6 hidden-xs column " \
-                               "source-iframe-container") do
-          render_iframe_view
-        end,
-        wrap_with(:div, class: "col-md-6 column source-right-sidebar") do
-          render_tab_containers
-        end
-      ]
+    bs_layout container: false, fluid: true do
+      row 7, 5, class: "source-preview-content" do
+        column _render_iframe_view, class: "source-iframe-container"
+        column _render_tab_containers, class: "source-right-sidebar"
+      end
     end
   end
 
   view :tab_containers, tags: :unknown_ok do
-    loading_gif_html = Card["loading gif"].format.render_core
-    %(
-    <div class="tab-content">
-      <span class="close-tab fa fa-times"></span>
-      <div class="tab-pane active" id="tab_details">
-        #{render_core structure: 'source_structure', show: 'header'}
-      </div>
-      <div class="tab-pane" id="tab_claims">
-        #{loading_gif_html}
-      </div>
-      <div class="tab-pane" id="tab_metrics">
-        #{loading_gif_html}
-      </div>
-      <div class="tab-pane" id="tab_view_original"></div>
-    </div>
-    )
+    # loading_gif_html = Card["loading gif"].format.render_core
+    _render_tabs
   end
 
   view :iframe_view, tags: :unknown_ok, cache: :never do
@@ -148,142 +132,22 @@ format :html do
   end
 
   view :hidden_information, tags: :unknown_ok do |args|
-    %(
-      <div style="display:none">
-        #{wrap_with(:div, card.cardname.url_key, id: 'source-name')}
-        #{wrap_with(:div, preview_url, id: 'source_url')}
-        #{wrap_with(:div, args[:year], id: 'source-year')}
-        #{wrap_with(:div, args[:company], id: 'source_company')}
-        #{wrap_with(:div, args[:topic], id: 'source_topic')}
-      </div>
-    )
-  end
-
-  # View: HTML for the navigation bar on preview page
-  view :navigation_bar, tags: :unknown_ok  do |args|
-    navbar_brand = nest(Card[:logo], view: :core, size: :original)
-    %(
-      <nav class="navbar navbar-default  ">
-
-        <div class="">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed"
-                    data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <div id="source-preview-tabs" class="navbar-brand" href="#">
-              #{link_to_resource '/', raw(navbar_brand)}
-            </div>
-          </div>
-
-
-
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse"
-               id="bs-example-navbar-collapse-1">
-            <!-- Navbar Menu -->
-            #{subformat(Card['nav_bar_menu']).render_content}
-            <ul class="nav nav-tabs navbar-right gray-color ">
-               #{render_preview_options(args)}
-            </ul>
-          </div>
-          <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-      </nav>
-
-    )
-  end
-
-  view :non_previewable, tags: :unknown_ok do |_args|
-    if file_card = Card[card.name + "+File"]
-      <<-HTML
-        <a href="#{file_card.attachment.url}" class="btn btn-primary" role="button">Download</a>
-      HTML
-    else
-      url_card = card.fetch(trait: :wikirate_link)
-      url = url_card ? url_card.item_names.first : nil
-      <<-HTML
-        <a href="#{preview_url}" class="btn btn-primary" role="button">Visit Original Source</a>
-      HTML
+    wrap_with :div, class: "hidden" do
+      [
+        wrap_with(:div, card.cardname.url_key, id: "source-name"),
+        wrap_with(:div, preview_url, id: "source_url"),
+        wrap_with(:div, args[:year], id: "source-year"),
+        wrap_with(:div, args[:company], id: "source_company"),
+        wrap_with(:div, args[:topic], id: "source_topic")
+      ]
     end
   end
 
-  def source_details_html
-    <<-HTML
-      <li role="presentation" class="active" >
-        <a class='' data-target="#tab_details" data-toggle="source_preview_tab_ajax">
-          <i class="fa fa-info-circle"></i> <span>Source Details</span>
-        </a>
-      </li>
-    HTML
-  end
-
-  def claim_tab_html
-    <<-HTML
-      <li role="presentation" >
-        <a class='' data-target="#tab_claims" data-toggle="source_preview_tab_ajax"  href='/#{card.cardname.url_key}+source_note_list?slot[hide]=header,menu' >
-            <i class='fa fa-quote-left'><span id="claim-count-number " class="count-number">#{note_count}</span></i><span>#{Card[ClaimID].name.pluralize}</span>
-        </a>
-      </li>
-    HTML
-  end
-
-  def metric_tab_html
-    <<-HTML
-       <li role="presentation" >
-        <a class='' data-target="#tab_metrics" data-toggle="source_preview_tab_ajax" href='/#{card.cardname.url_key}+metric_search?slot[hide]=header,menu' >
-          <i class="fa fa-bar-chart">
-          <span id="metric-count-number" class="count-number">
-            #{metric_count}
-          </span>
-          </i>
-          <span>#{Card[MetricID].name.pluralize}</span>
-        </a>
-      </li>
-    HTML
-  end
-
-  def link_button url
-    <<-HTML
-      <li role="presentation" >
-        <a class='' href='#{url}' target="_blank">
-          <i class="fa fa-external-link-square"></i> Visit Original
-        </a>
-      </li>
-    HTML
-  end
-
-  def file_download_button
+  view :non_previewable, tags: :unknown_ok do |_args|
     file_card = card.fetch trait: :file
-    <<-HTML
-      <li role="presentation" >
-        <a class='' href='#{file_card.attachment.url}' download>
-          <i class="fa fa-download" aria-hidden="true"></i> Download
-        </a>
-      </li>
-    HTML
-  end
-
-  view :preview_options, tags: :unknown_ok do
-    url = preview_url
-    result = source_details_html
-    result += claim_tab_html
-    result += metric_tab_html
-    result +=
-      case card.source_type_codename
-      when :wikirate_link
-        link_button url
-      when :file
-        file_download_button
-      else
-        ""
-      end
-    result
+    url, text = if file_card [file_card.attachment.url, "Download"]
+                else [preview_url, "Visit Original Source"]
+                end
+    link_to text, href: url, class: "btn btn-primary", role: "button"
   end
 end

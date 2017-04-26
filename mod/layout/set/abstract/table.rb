@@ -22,7 +22,7 @@ format :html do
     format ? format.with_paging { rendered_table } : rendered_table
   end
 
-  # see #wikirate_table
+  # see #wikirdate_table
   # differences:
   #   - adds td classes "header", "data", and "details"
   #   - adds :details_placeholder to cell_views
@@ -30,6 +30,20 @@ format :html do
     cell_views << :details_placeholder
     add_td_classes opts, %w(header data details)
     wikirate_table table_type, item_cards, cell_views, opts
+  end
+
+  def homepage_table table_type
+    wikirate_table(
+      table_type,  search_with_params(limit: 4),
+      ["#{table_type}_thumbnail_minimal", :value_cell],
+      table: { class: "homepage-table" },
+      header: [table_type.to_s.capitalize, "Value"],
+      td: { classes: ["header", nil] },
+      tr_link: lambda do |item|
+        path mark: item.metric_card,
+             filter: { wikirate_company: item.company }
+      end
+    )
   end
 
   def normalize_args row_cards

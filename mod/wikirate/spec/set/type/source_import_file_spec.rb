@@ -1,5 +1,8 @@
 describe Card::Set::Type::SourceImportFile do
-  let(:source_title) { "Apple Inc.-Corporate Social Responsibility Report-2013" }
+  let(:source_title) do
+    "Apple Inc.-Corporate Social Responsibility Report-2013"
+  end
+
   before do
     login_as "joe_user"
     test_csv = File.open "#{Rails.root}/mod/wikirate/spec/set/" \
@@ -61,11 +64,11 @@ describe Card::Set::Type::SourceImportFile do
     context "correct info" do
       it "adds a correct source" do
         data = [{
-                  file_company: "Apple Inc", year: "2014",
-                  report_type: "Conflict Minerals Report",
-                  source: "http://placehold.it/100x100",
-                  title: nil, row: 1, wikirate_company: "Apple Inc", status: "exact",
-                  company: "Apple Inc"
+          file_company: "Apple Inc", year: "2014",
+          report_type: "Conflict Minerals Report",
+          source: "http://placehold.it/100x100",
+          title: nil, row: 1, wikirate_company: "Apple Inc", status: "exact",
+          company: "Apple Inc"
         }]
         source_file = trigger_import data, "1" => source_title
         expect(source_file.subcards.empty?).to be_falsey
@@ -83,6 +86,16 @@ describe Card::Set::Type::SourceImportFile do
 
     context "existing sources" do
       context "with fields" do
+        let(:samsung_data) do
+          [{
+            file_company: "Samsung", year: "2013",
+            report_type: "Corporate Social Responsibility Report",
+            source: "http://wagn.org",
+            title: nil, row: 1, wikirate_company: "Samsung", status: "exact",
+            company: "Samsung"
+          }]
+        end
+
         before do
           source_args = {
             "+title" => "hTc",
@@ -91,28 +104,15 @@ describe Card::Set::Type::SourceImportFile do
             "+year" => "[[2014]]"
           }
           @source_card = create_page "http://wagn.org", source_args
-          data = [{
-            file_company: "Samsung", year: "2013",
-            report_type: "Corporate Social Responsibility Report",
-            source: "http://wagn.org",
-            title: nil, row: 1, wikirate_company: "Samsung", status: "exact",
-            company: "Samsung"
-          }]
           title = { "1" => "SiDan" }
-          trigger_import data, title
+          trigger_import samsung_data, title
         end
 
         it "won't update existing source title" do
           # to trigger a "clean" update
-          data = [{
-            file_company: "Samsung", year: "2013",
-            report_type: "Corporate Social Responsibility Report",
-            source: "http://wagn.org",
-            title: nil, row: 1, wikirate_company: "Samsung", status: "exact",
-            company: "Samsung"
-          }]
           title = { "1" => "SiDan" }
-          trigger_import data, title
+          trigger_import samsung_data, title
+          @source_card.success.params.clear
           verify_subcard_content @source_card, :wikirate_title, "hTc"
           expect(@source_card.success.params).to be_empty
         end
@@ -271,6 +271,7 @@ describe Card::Set::Type::SourceImportFile do
 
   describe "import table" do
     subject { @source_import_file.format.render_import }
+
     it "shows correctly import table" do
       is_expected.to have_tag("table", with: { class: "import_table" }) do
         with_row true, "success",
@@ -279,33 +280,36 @@ describe Card::Set::Type::SourceImportFile do
                  report_type: "Corporate Social Responsibility Report",
                  source: "http://example.com/1233213",
                  title: nil,
-                 row: 1,
+                 csv_row_index: 1,
                  wikirate_company: "Apple Inc.",
                  status: "exact",
                  company: "Apple Inc.",
-                 input_title: source_title
+                 input_title: source_title,
+                 row: 2
         with_row true, "success",
                  file_company: "Apple Inc",
                  year: "2014",
                  report_type: "Conflict Minerals Report",
                  source: "http://example.com/12333214",
                  title: "hello world",
-                 row: 2,
+                 csv_row_index: 2,
                  wikirate_company: "Apple Inc",
                  status: "exact",
                  company: "Apple Inc",
-                 input_title: "hello world"
+                 input_title: "hello world",
+                 row: 3
         with_row true, "warning",
                  file_company: "Apple",
                  year: "2012",
                  report_type: "Conflict Minerals Report",
                  source: "http://example.com/123332345",
                  title: "hello world1",
-                 row: 3,
+                 csv_row_index: 3,
                  wikirate_company: "Apple Inc.",
                  status: "partial",
                  company: "Apple Inc.",
-                 input_title: "hello world1"
+                 input_title: "hello world1",
+                 row: 1
       end
     end
   end

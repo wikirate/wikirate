@@ -1,0 +1,36 @@
+%div
+  .container.homepage-company-item.background-white
+    .row.wiki
+      .col-md-12.col-xs-12.metric-info.metric-header.nopadding
+        .row
+          %br/
+          / Main title and stuff
+          .col-md-12.col-xs-12.nopadding.metric-details-header
+            .row.clearfix
+              .col-md-1.col-xs-1
+                = field_nest :vote_count
+              .col-md-11.col-xs-11
+                .name.row
+                  = link_to_card card, card.metric_title, class: "inherit-anchor"
+                %br/
+                .row
+                  .metric-designer-info
+                    %a{:href => nest(card.metric_designer, view: :url)}
+                      .image-box.icon
+                        = nest(card.designer_image_card, view: :core, size: :small)
+                      %div
+                        %h5.text-muted.nopadding.no-bold-text Designed by
+                        %h5.nopadding
+                          = card.metric_designer
+        %br/
+        / Question container
+        .row.question-container.nopadding
+          .col-md-1.col-xs-11
+            .row-icon
+              %i.fa.fa-question
+          .col-md-11.col-xs-11
+            .row-data
+              = field_nest :question, view: :content
+    .row.metric-info
+      / Ratings and company list
+      = field_nest :all_metric_values, view: :homepage_table

@@ -1,3 +1,7 @@
+COMPANY_MAPPER_THRESHOLD = 0.5
+
+STATUS_ORDER = { none: 1, partial: 2, alias: 3, exact: 4 }
+
 # the is_data_import flag distinguishes between an update of the
 # import file and importing the file
 event :import_csv, :prepare_to_store, on: :update, when: :data_import? do
@@ -239,7 +243,7 @@ def csv_rows
   # transcode to utf8 before CSV reads it.
   # some users upload files in non utf8 encoding.
   # The microsoft excel may not save a CSV file in utf8 encoding
-  CSV.read(file.path, encoding: "windows-1251:utf-8")
+  CSV.parse(file.read, encoding: "windows-1251:utf-8")
 end
 
 def clean_html? # return always true ;)
@@ -325,15 +329,14 @@ format :html do
     end
   end
 
-
   def import_legend
     <<-HTML.html_safe
      <span class="pull-right">
       company match:
-      #{row_legend "exact", "success"}
-      #{row_legend "alias", "info"}
-      #{row_legend "partial", "warning"}
-      #{row_legend "none", "danger"}
+      #{row_legend 'exact', 'success'}
+    #{row_legend 'alias', 'info'}
+    #{row_legend 'partial', 'warning'}
+    #{row_legend 'none', 'danger'}
       <span>
     HTML
   end
@@ -357,10 +360,13 @@ format :html do
   end
 
   view :import_table, cache: :never do |args|
+    return alert(:warning) { "no import file attached" } if card.file.blank?
+
     data = card.csv_rows
     reject_header_row data
+    data = prepare_and_sort_rows data, args
     data = data.map.with_index do |elem, i|
-      import_row(elem, args[:table_fields], i + 1)
+      import_table_row(elem, args[:table_fields], i + 1)
     end
 
     table data, class: "import_table table-bordered table-hover",
@@ -391,12 +397,22 @@ format :html do
     end
   end
 
-  def get_potential_company name
-    result = Card.search type: "company", name: ["match", name]
-    # do not match companies less than 4 characters
-    result.reject { |r| r.name.length <= 4 }
-    return nil if result.empty?
-    result
+  def company_mapper
+    @mapper ||=
+      begin
+        corpus = Company::Mapping::CompanyCorpus.new
+        Card.search(type_id: WikirateCompanyID, return: :id).each do |company_id|
+          company_name = Card.fetch_name(company_id)
+          aliases = (a_card = Card[company_name, :aliases]) && a_card.item_names
+          corpus.add company_id, company_name, (aliases || [])
+        end
+        Company::Mapping::CompanyMapper.new corpus
+      end
+  end
+
+  def map_company name
+    id = company_mapper.map(name, COMPANY_MAPPER_THRESHOLD)
+    Card.fetch_name id
   end
 
   # @return name of company in db that matches the given name and
@@ -406,26 +422,13 @@ format :html do
     @company_map[name] ||=
       if (company = Card.fetch(name)) && company.type_id == WikirateCompanyID
         [name, :exact]
-        # elsif (result = Card.search :right=>"aliases",
-        # :left=>{:type_id=>Card::WikirateCompanyID},
-        # :content=>["match","\\[\\[#{name}\\]\\]"]) && !result.empty?
-        #   [result.first.cardname.left, :alias]
       elsif (company_name = aliases_hash[name.downcase])
         [company_name, :alias]
-      elsif (result = get_potential_company(name))
-        [result.first.name, :partial]
-      elsif (company_name = part_of_company(name))
-        [company_name, :partial]
+      elsif (result = map_company(name))
+        [result, :partial]
       else
         ["", :none]
       end
-  end
-
-  def part_of_company name
-    Card.search(type: "company", return: "name").each do |comp|
-      return comp if name.match comp
-    end
-    nil
   end
 
   def company_correction_field row_hash
@@ -447,7 +450,8 @@ format :html do
 
   def import_checkbox row_hash
     key_hash, checked = prepare_import_checkbox row_hash
-    check_box_tag "import_data[]", key_hash.to_json, checked
+    tag = check_box_tag "import_data[]", key_hash.to_json, checked
+    tag
   end
 
   def data_correction data
@@ -474,22 +478,43 @@ format :html do
     end
   end
 
+  def prepare_and_sort_rows rows, _args
+    rows.map.with_index do |row, index|
+      prepare_import_row_data row, index + 1
+    end.sort do |a, b|
+      compare_status a, b
+    end
+  end
+
   def prepare_import_row_data row, index
     data = row_to_hash row
-    data[:row] = index
+    data[:csv_row_index] = index
     data[:wikirate_company], data[:status] = find_wikirate_company data
     data[:status] = data[:status].to_s
     data[:company] = data_company data
-    data[:checkbox] = import_checkbox data
-    data[:correction] = data_correction data
     data
   end
 
-  def import_row row, table_fields, index
-    data = prepare_import_row_data row, index
-    content = table_fields.map { |key| data[key].to_s }
+  def compare_status a, b
+    a = STATUS_ORDER[a[:status].to_sym] || 0
+    b = STATUS_ORDER[b[:status].to_sym] || 0
+    a <=> b
+  end
+
+  def finalize_row row, index
+    row[:row] = index
+    row[:checkbox] = import_checkbox row
+    row[:correction] = data_correction row
+    row
+  end
+
+  def import_table_row row, table_fields, index
+    row = finalize_row row, index
+    content =
+      table_fields.map { |key| row[key].to_s }
     { content: content,
-      class: row_context(data[:status]) }
+      class: row_context(row[:status]),
+      data: { csv_row_index: row[:csv_row_index] } }
   end
 
   def row_context status

@@ -1,9 +1,6 @@
 require "wagn/mods_spec_helper"
 require_relative "source_helper"
-
-# require File.expand_path(
-#   '../../mod/01_rating/spec/lib/shared_calculation_examples.rb', __FILE__
-# )
+require_relative "../test/seed"
 
 Spork.prefork do
   RSpec.configure do |config|
@@ -17,95 +14,33 @@ Spork.prefork do
 end
 
 include SourceHelper
-
-def get_subcards_of_metric_value metric, company, content, year=nil, source=nil
-  this_year = year || "2015"
-  this_source = source || sample_source.name
-  this_content = content || "I'm fine, I'm just not happy."
-  {
-    "+metric" => { "content" => metric.name },
-    "+company" => { "content" => "[[#{company.name}]]",
-                    :type_id => Card::PointerID },
-    "+value" => { "content" => this_content, :type_id => Card::PhraseID },
-    "+year" => { "content" => this_year, :type_id => Card::PointerID },
-    "+source" => { "content" => "[[#{this_source}]]\n",
-                   :type_id => Card::PointerID }
-
-  }
-end
-
-def create_claim_with_url name, url, subcards={}
-  Card::Auth.as_bot do
-    sourcepage = create_page url
-    Card.create! type_id: Card::ClaimID, name: name,
-                 subcards: {
-                   "+source" => {
-                     content: "[[#{sourcepage.name}]]",
-                     type_id: Card::PointerID
-                   }
-                 }.merge(subcards)
-  end
-end
+include SharedData::Samples
 
 def create_claim name, subcards={}
   Card::Auth.as_bot do
-    url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknow"
-    sourcepage = create_page url
+    # url = "http://www.google.com/?q=wikirate"
+    # sourcepage = create_page url
     Card.create! type_id: Card::ClaimID, name: name,
                  subcards: {
                    "+source" => {
-                     content: "[[#{sourcepage.name}]]",
+                     content: sample_source.name,
                      type_id: Card::PointerID
                    }
                  }.merge(subcards)
   end
 end
 
-# cards only exist in testing db
-def sample_note
-  Card["Death Star uses dark side of the Force"]
-end
-
-def sample_company
-  Card["Death Star"]
-end
-
-def sample_topic
-  Card["Force"]
-end
-
-def sample_companies num=1, args={}
-  Card.search args.merge(type_id: Card::WikirateCompanyID, limit: num)
-end
-
-def sample_topics num=1, args={}
-  Card.search args.merge(type_id: Card::WikirateTopicID, limit: num)
-end
-
-def sample_analysis
-  Card["Death Star+Force"]
-end
-
-def sample_metric value_type=:free_text
-  metric_names = {
-    free_text: "Jedi+Sith Lord in Charge",
-    number: "Jedi+deadliness",
-    category: "Jedi+disturbances in the Force",
-    money: "Jedi+cost of planets destroyed"
+def subcards_of_metric_value metric, company, content, year=nil, source=nil
+  year ||= "2015"
+  source ||= sample_source.name
+  content ||= "I'm fine, I'm just not happy."
+  {
+    "+metric" => { "content" => metric.name },
+    "+company" => { "content" => "[[#{company.name}]]", :type_id => Card::PointerID },
+    "+value" => { "content" => content, :type_id => Card::PhraseID },
+    "+year" => { "content" => year, :type_id => Card::PointerID },
+    "+source" => { "content" => "[[#{source}]]\n", :type_id => Card::PointerID }
   }
-  Card[metric_names[value_type]]
-end
-
-def sample_project
-  Card["Evil Project"]
-end
-
-def sample_source
-  Card.search(type_id: Card::SourceID, limit: 1).first
-end
-
-def sample_metric_value
-  Card["Jedi+disturbances_in_the_Force+Death_Star+1977"]
 end
 
 # Usage:

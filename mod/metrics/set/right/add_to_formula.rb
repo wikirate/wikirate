@@ -30,7 +30,7 @@ format :html do
     args = { class: "button button-primary" }
     link_text = "Add this metric"
     if formula_metric.formula_card.wiki_rating?
-      add_class args, "add-weight"
+      add_class args, "_add-weight"
       wrap_with :a, link_text, args.merge("data-metric-id" => input_metric.id)
     else
       varcard = formula_metric.formula_card.variables_card

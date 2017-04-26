@@ -11,6 +11,8 @@ Feature: Research answer
     And I select "Joe User+researched" from "Metrics"
     And I click on "Next"
     And I click on "Add answer"
+    And I wait 10 seconds
+    # And I wait for ajax response
     And I click on "Add a new source"
 
   Scenario: Create a metric value

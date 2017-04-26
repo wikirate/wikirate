@@ -1,9 +1,9 @@
 # include with option :type_class
 def self.included host_class
   host_class.class_eval do
-    define_method :badge_hierarchy do
-      @badge_hierarchy ||=
-        Card::Set::Abstract::BadgeHierarchy.for_type host_class.hierarchy_type
+    define_method :badge_squad do
+      @badge_squad ||=
+        Card::Set::Abstract::BadgeSquad.for_type host_class.squad_type
     end
   end
 end
@@ -15,15 +15,19 @@ end
 
 # @return badge name if count equals its threshold
 def earns_badge action
-  badge_hierarchy.earns_badge action
+  badge_squad.earns_badge action
 end
 
 def award_badge badge_card
   name_parts = [Auth.current, badge_card.badge_type, :badges_earned]
-  badge_pointer =
-    subcard(name_parts) ||
-      attach_subcard(Card.fetch(name_parts, new: { type_id: PointerID }))
+  badge_pointer = Card.fetch(name_parts, new: { type_id: PointerID })
+  if ActManager.include? badge_pointer.name
+    director = ActManager.fetch(badge_pointer)
+    director.reset_stage
+    badge_pointer = director.card
+  end
   badge_pointer.add_badge_card badge_card
+  attach_subcard(badge_pointer)
 end
 
 def fetch_badge_card badge_name

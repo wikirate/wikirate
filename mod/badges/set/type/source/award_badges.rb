@@ -1,4 +1,4 @@
-include_set Abstract::AwardBadges, hierarchy_type: :source
+include_set Abstract::AwardBadges, squad_type: :source
 
 event :award_source_create_badges, :finalize,
       on: :create do

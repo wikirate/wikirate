@@ -1,4 +1,4 @@
-shared_examples_for "viewable metric" do |metric_name, _value_type, detail_label|
+shared_examples_for "viewable metric" do |metric_name, value_type, detail_label|
   before do
     login_as "joe_user"
     @metric = Card[metric_name]
@@ -11,11 +11,11 @@ shared_examples_for "viewable metric" do |metric_name, _value_type, detail_label
 
   it "renders modal links" do
     html = @metric.format.render_value_type_edit_modal_link
-    expect(html).to have_tag("a", text: "Update Value Type")
+    expect(html).to have_tag("a", text: value_type)
   end
 end
 
-describe Card::Set::Type::Metric do
+RSpec.describe Card::Set::Type::Metric do
   context "Numeric type metric" do
     it_behaves_like "viewable metric", "Jedi+deadliness",
                     "Number", "numeric_detail"
@@ -30,8 +30,9 @@ describe Card::Set::Type::Metric do
   end
 
   describe "#numeric?" do
-    let(:metric) { sample_metric }
     subject { metric.numeric? }
+
+    let(:metric) { sample_metric }
 
     it "returns true for number" do
       metric.value_type_card.update_attributes! content: "Number"

@@ -22,9 +22,7 @@ describe Card::Set::Type::WikirateCompany::AwardBadges do
     end
 
     context "reached gold threshold" do
-      it_behaves_like "award badges", 3, "Inc Slinger"
+      it_behaves_like "award badges", 3, "Companies (in the) House"
     end
   end
-
-
 end

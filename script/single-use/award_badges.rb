@@ -4,15 +4,17 @@ class AwardBadges
   #disable_ddl_transaction!
   class << self
     def up
-      award_badges_by_user
-      award_answer_create_badges
-      [:project, :source, :metric, :wikirate_company].each do |type_code|
-        award_create_badges type_code
+      Card::Auth.as_bot do
+        award_badges_by_user
+        award_answer_create_badges
+        [:project, :source, :metric, :wikirate_company].each do |type_code|
+          award_create_badges type_code
+        end
       end
     end
 
     def user_ids
-      @user_ids ||= [6314] + Card.search(type_id: Card::UserID, return: :id)
+      @user_ids ||= Card.search(type_id: Card::UserID, return: :id)
     end
 
     def award_answer_create_badges
@@ -53,7 +55,7 @@ class AwardBadges
       { metric: :vote, metric_value: [:check, :discuss, :update],
         project: :discuss, wikirate_company: :logo }.each do |type, actions|
         Array(actions).each do |action|
-          badge_names = Card::Set::Abstract::BadgeHierarchy
+          badge_names = Card::Set::Abstract::BadgeSquad
                           .for_type(type)
                           .all_earned_badges action, nil, nil, user_id
           award_badges! user_id, type, badge_names
@@ -63,12 +65,12 @@ class AwardBadges
 
     def award_affinity_answer_badges affinity_type
       return award_project_affinity_answer_badges if affinity_type == :project
-      badge_set = Card::Set::Type::MetricValue::BadgeHierarchy
-                    .badge_set(:create, affinity_type)
+      badge_line = Card::Set::Type::MetricValue::BadgeSquad
+                     .badge_line(:create, affinity_type)
       badge_levels = [:bronze, :silver, :gold].map do |level, h|
-        [badge_set.badge(level).threshold, badge_set.badge(level).name]
+        [badge_line.badge(level).threshold, badge_line.badge(level).name]
       end
-      min_thresh = badge_set.threshold(:bronze)
+      min_thresh = badge_line.threshold(:bronze)
 
       user_ids.each do |user_id|
         affinity_names =
@@ -110,7 +112,7 @@ class AwardBadges
 
     def award_affinity_answer_badges_if_earned! count, user_id,
                                                 affinity_type, affinity_name
-      hierarchy = Card::Set::Abstract::BadgeHierarchy.for_type(:metric_value)
+      hierarchy = Card::Set::Abstract::BadgeSquad.for_type(:metric_value)
       badge_names = hierarchy.all_earned_badges(:create, affinity_type, count)
                       .map do |badge_name|
         "#{affinity_name}+#{badge_name}+#{affinity_type} badge"
@@ -119,7 +121,7 @@ class AwardBadges
     end
 
     def award_badges_if_earned! count, user_id, type_code, affinity=nil
-      badge_names = Card::Set::Abstract::BadgeHierarchy
+      badge_names = Card::Set::Abstract::BadgeSquad
                       .for_type(type_code).all_earned_badges :create, affinity, count
       award_badges! user_id, type_code, badge_names
     end

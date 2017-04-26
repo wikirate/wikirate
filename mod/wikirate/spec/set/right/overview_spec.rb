@@ -1,5 +1,5 @@
 describe Card::Set::Right::Overview do
-  describe '#handle_edit_article' do
+  describe "#handle_edit_article" do
     before do
       Card::Env.params[:edit_article] = true
       @company = Card.create name: "company1", type_id: Card::WikirateCompanyID

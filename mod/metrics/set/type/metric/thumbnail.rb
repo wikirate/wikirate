@@ -6,7 +6,11 @@ format :html do
   end
 
   def thumbnail_image
-    _render_designer_image
+    if voo.show? :thumbnail_link
+      designer_image_link
+    else
+      designer_image
+    end
   end
 
   def thumbnail_title
@@ -31,6 +35,10 @@ format :html do
   def default_thumbnail_subtitle_args args
     args[:text] ||= [card.value_type, "designed by"].compact.join " | "
     args[:author] ||= link_to_card card.metric_designer
+  end
+
+  view :formula_thumbnail do
+    "</span>#{_render_thumbnail}<span>"
   end
 
   view :score_thumbnail do |_args|

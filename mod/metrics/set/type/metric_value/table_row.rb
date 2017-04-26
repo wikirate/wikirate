@@ -10,6 +10,17 @@ format :html do
     nest card.metric_card, view: :thumbnail, hide: [:vote, :thumbnail_subtitle]
   end
 
+  view :metric_thumbnail_minimal do
+    nest card.metric_card, view: :thumbnail_minimal,
+                           hide: [:thumbnail_subtitle, :vote]
+  end
+
+  view :company_thumbnail_minimal do
+    nest card.company_card, view: :thumbnail_minimal,
+                            hide: [:thumbnail_subtitle, :vote]
+    #_render_company_thumbnail
+  end
+
   view :company_thumbnail do
     company_image = card.company_card.fetch(trait: :image)
     title = card.company_card.name
@@ -25,13 +36,13 @@ format :html do
   end
 
   def add_value_button
-    link_to_card card.company_card, "Add answer",
+    link_to_card :research_page, "Add answer",
                  type: "button",
                  target: "_blank",
                  class: "btn btn-primary btn-sm",
                  path: {
-                   view: :new_metric_value,
-                   metric: [CGI.escape(card.metric_name.to_name.url_key)]
+                   metric: [card.metric],
+                   company: card.company
                  }
     # <<-HTML
     #     <a type="button" target="_blank" class="btn btn-primary btn-sm"

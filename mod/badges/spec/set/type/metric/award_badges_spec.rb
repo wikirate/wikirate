@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+
 require_relative "../../../support/award_badges_shared_examples"
 
 describe Card::Set::Type::Metric::AwardBadges do
@@ -17,11 +18,11 @@ describe Card::Set::Type::Metric::AwardBadges do
     end
 
     context "reached silver threshold" do
-      it_behaves_like "award badges", 2, "I So Metric"
+      it_behaves_like "award badges", 2, "Metric Tonnes"
     end
 
     context "reached gold threshold" do
-      it_behaves_like "award badges", 3, "Helio Metric"
+      it_behaves_like "award badges", 3, "Research Agenda-Setter"
     end
   end
 end

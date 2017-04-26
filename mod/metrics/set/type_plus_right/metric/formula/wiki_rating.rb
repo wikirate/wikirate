@@ -2,17 +2,21 @@ format :html do
   view :rating_core do |args|
     table_content =
       card.translation_table.map do |metric, weight|
-        [subformat(metric)._render_thumbnail(args), weight + "%"]
+        [subformat(metric)._render_thumbnail_plain(args), weight + "%"]
       end
     table table_content, header: %w(Metric Weight)
   end
 
-  view :rating_editor do |args|
-    table_content = card.translation_table.map do |metric, weight|
+  def editor_table_content args
+    card.translation_table.map do |metric, weight|
       with_nest_mode :normal do
         subformat(metric)._render_weight_row(args.merge(weight: weight))
       end
     end
+  end
+
+  view :rating_editor do |args|
+    table_content = editor_table_content(args)
     sum =
       if table_content.empty?
         { content: sum_field, class: "hidden" }

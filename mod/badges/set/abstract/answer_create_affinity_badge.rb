@@ -1,6 +1,6 @@
 # abstract set used for affinity badges like
 # [Designer]+Researcher+designer_badge or
-# [Company]+Research Engine+company_badge
+# [Company]+Research Pro+company_badge
 
 include_set Abstract::AnswerCreateBadge
 
@@ -9,7 +9,7 @@ def virtual?
 end
 
 format :html do
-  delegate :affinity, :affinity_card, :affinity_type, to: :card
+  delegate :affinity, :affinity_card, :affinity_type, :badge, to: :card
 
   view :badge, tags: :unknown_ok do
     type_name =
@@ -31,6 +31,14 @@ format :html do
       end
     end
   end
+
+  view :name_with_certificate do
+    "#{certificate(badge_level)} <strong>#{affinity}</strong> #{badge}"
+  end
+end
+
+def badge
+  cardname.parts[1]
 end
 
 def badge_key

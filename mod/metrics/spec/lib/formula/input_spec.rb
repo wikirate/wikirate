@@ -1,8 +1,9 @@
 describe Formula::Calculator::Input do
   subject do
     input_cards = @input.map { |i| Card.fetch i }
-    Formula::Calculator::Input.new(input_cards, @year_options, &:to_f)
+    described_class.new(input_cards, @year_options, &:to_f)
   end
+
   it "single input" do
     @input = ["Jedi+deadliness"]
     expect { |b| subject.each(year: 1977, company: "Death Star", &b) }

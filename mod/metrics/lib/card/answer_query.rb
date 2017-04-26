@@ -27,7 +27,7 @@ class Card
     #   are newly instantiated and not in the database
     def run
       return missing_answers if find_missing?
-      run_filter_query
+      run_filter_query.compact
     end
 
     def add_filter opts={}
@@ -41,6 +41,7 @@ class Card
     end
 
     def count additional_filter={}
+      return missing_answer_query.count if find_missing?
       where(additional_filter).count
     end
 
@@ -88,8 +89,13 @@ class Card
 
     private
 
+    def missing_answer_query
+      @missing_answer_query ||=
+        missing_answer_query_class.new(@filter_args, @paging_args)
+    end
+
     def missing_answers
-      missing_answer_query_class.new(@filter_args, @paging_args).run
+      missing_answer_query.run
     end
 
     def restrict_to_ids col, ids
@@ -121,7 +127,9 @@ class Card
     def set_temp_filter opts
       return unless opts.present?
 
-      c, v, r = @conditions, @values, @restrict_to_ids
+      c = @conditions
+      v = @values
+      r = @restrict_to_ids
       @conditions = []
       @values = []
       @restrict_to_ids = {}
@@ -131,9 +139,12 @@ class Card
         filter key, values
       end
 
-      @temp_conditions, @temp_values, @temp_restrict_to_ids =
-        @conditions, @values, @restrict_to_ids
-      @conditions, @values, @restrict_to_ids = c, v, r
+      @temp_conditions = @conditions
+      @temp_values = @values
+      @temp_restrict_to_ids = @restrict_to_ids
+      @conditions = c
+      @values = v
+      @restrict_to_ids = r
     end
 
     # @return args for AR's where method
@@ -142,7 +153,7 @@ class Card
       @restrict_to_ids.each do |key, values|
         filter key, values
       end
-      [(@conditions+@temp_conditions).join(" AND ")] + @values + @temp_values
+      [(@conditions + @temp_conditions).join(" AND ")] + @values + @temp_values
     end
 
     def process_filter_option key, value

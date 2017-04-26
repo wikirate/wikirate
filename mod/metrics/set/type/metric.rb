@@ -63,7 +63,8 @@ def value_type
 end
 
 def value_type_code
-  ((vc = value_type_card.item_cards.first) && vc.codename.to_sym) || :free_text
+  ((vc = value_type_card.item_cards.first) &&
+   vc.codename && vc.codename.to_sym) || :free_text
 end
 
 def value_options
@@ -103,6 +104,10 @@ end
 
 def scored?
   metric_type_codename == :score || rated?
+end
+
+def designer_assessed?
+  research_policy.casecmp("designer assessed").zero?
 end
 
 def analysis_names
@@ -172,11 +177,15 @@ format :html do
     outs.inspect
   end
 
-  view :designer_image do |_args|
-    image = nest card.metric_designer_card.field(:image, new: {}),
-                 view: :core, size: :small
-    link_to_card card.metric_designer_card, image
+  def designer_image
+    nest card.metric_designer_card.field(:image, new: {}),
+                     view: :core, size: :small
   end
+
+  def designer_image_link
+    link_to_card card.metric_designer_card, designer_image
+  end
+
 
   def css
     ""
@@ -187,12 +196,11 @@ format :html do
 
   # USED?
 
-
-  view :item_view do |args|
+  view :add_to_formula_item_view do |_args|
     title = card.metric_title.to_s
     subtext = card.metric_designer.to_s
     subtext = wrap_with :small, "Scored by " + subtext
-    append = "#{card.key}+add_to_formula"
+    append = "#{params[:formula_metric_key]}+add_to_formula"
     url = path mark: card.cardname.field(append), view: :content
     text_with_image image: designer_image_card,
                     text: subtext, title: title, size: :icon,
@@ -281,11 +289,11 @@ format :html do
   def vtype_edit_modal_link_text
     # FIXME: why does value_type_card not work although value_type is registered
     #        as card accessor
-    v_type_card = Card.fetch trait: :value_type, new: {}
+    v_type_card = card.fetch trait: :value_type, new: {}
     if v_type_card.new?
       "Update Value Type"
     else
-      subformat(v_type_card).render_shorter_pointer_content
+      nest v_type_card, view: :shorter_pointer_content, hide: :link
     end
   end
 
@@ -392,11 +400,21 @@ format :html do
     metric_info_row left, content, opts
   end
 
+  def weight_content args
+    icon_class = "pull-right _remove_row btn btn-default btn-sm"
+    wrap_with :div do
+      [
+        text_field_tag("pair_value", (args[:weight] || 0)) + "%",
+        content_tag(:span, fa_icon(:remove).html_safe, class: icon_class)
+      ]
+    end
+  end
+
   view :weight_row do |args|
-    weight = text_field_tag("pair_value", (args[:weight] || 0)) + "%"
+    weight = weight_content args
     output(
       [
-        wrap_with(:td, _render_thumbnail(args), "data-key" => card.name),
+        wrap_with(:td, _render_thumbnail_plain(args), "data-key" => card.name),
         wrap_with(:td, weight, class: "metric-weight")
       ]
     ).html_safe
@@ -466,8 +484,6 @@ end
 
 format :csv do
   view :core do
-    Answer.where(metric_id: card.id).map do |a|
-      a.csv_line
-    end.join
+    Answer.where(metric_id: card.id).map(&:csv_line).join
   end
 end

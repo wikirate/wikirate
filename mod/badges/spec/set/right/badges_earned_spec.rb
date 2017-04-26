@@ -10,13 +10,23 @@ describe Card::Set::Right::BadgesEarned do
   let(:badges) do
     ["Evil Project+Researcher+project badge",
      "Answer Enhancer",
-     "Research Fellow",
+     "Research Master",
      "Commentator",
-     "Death Star+Research Engine+company badge",
+     "Death Star+Research Pro+company badge",
      "Researcher",
      "Death Star+Researcher+company badge",
      "Answer Advancer",
-     "Research Engine"]
+     "Research Pro"]
+  end
+
+  let(:ordered_badges) do
+    ["Answer Advancer",
+     "Research Master",
+     "Answer Enhancer",
+     "Research Pro",
+     "Death Star+Research Pro+company badge",
+     "Commentator",
+     "Researcher"]
   end
 
   describe "#ordered_badge_cards" do
@@ -29,20 +39,15 @@ describe Card::Set::Right::BadgesEarned do
     end
 
     subject { card.ordered_badge_cards.map(&:name) }
+
     it "has correct order" do
-      expect([subject.delete_at(4), subject.delete_at(4)])
+      expect([subject.delete_at(7), subject.delete_at(7)])
         .to contain_exactly "Evil Project+Researcher+project badge",
                             "Death Star+Researcher+company badge"
-      is_expected.to eq ["Research Fellow",
-                         "Research Engine",
-                         "Death Star+Research Engine+company badge",
-                         "Researcher",
-                         "Answer Enhancer",
-                         "Answer Advancer",
-                         "Commentator"]
+      is_expected.to eq ordered_badges
     end
 
-    it_behaves_like "badge count", 9, 5, 3, 1 do
+    it_behaves_like "badge count", 9, 4, 3, 2 do
       def badge_count level=nil
         card.badge_count level
       end
@@ -61,23 +66,18 @@ describe Card::Set::Right::BadgesEarned do
     end
 
     subject { card.item_names }
+
     it "adds badge in the right order order" do
-      expect([subject.delete_at(4), subject.delete_at(4)])
+      expect([subject.delete_at(7), subject.delete_at(7)])
         .to contain_exactly "Evil Project+Researcher+project badge",
                             "Death Star+Researcher+company badge"
-      is_expected.to eq ["Research Fellow",
-                         "Research Engine",
-                         "Death Star+Research Engine+company badge",
-                         "Researcher",
-                         "Answer Enhancer",
-                         "Answer Advancer",
-                         "Commentator"]
+      is_expected.to eq ordered_badges
     end
   end
 
   describe "html format" do
     describe "view :core" do
-      #it
+      # it
     end
   end
 end

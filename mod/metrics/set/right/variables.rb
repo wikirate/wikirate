@@ -65,7 +65,7 @@ format :html do
     ]
   end
 
-  view :edit do |args|
+  view :edit do |_args|
     frame do
       render_haml metric_list: metric_list do
         <<-HAML
@@ -100,8 +100,9 @@ format :html do
       wql[:right_plus] = ["*metric type", { refer_to: "Score" }]
     end
     items = Card.search(wql)
-    wikirate_table_with_details :metric, items, [:item_view],
-                                td: {classes: ["score", "details"]}
+    params[:formula_metric_key] = card.cardname.left_key
+    wikirate_table_with_details :metric, items, [:add_to_formula_item_view],
+                                td: { classes: %w(score details) }
   end
 
   view :missing do |args|

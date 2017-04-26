@@ -89,7 +89,7 @@ format :json do
 
   view :check_iframable do |_args|
     user_agent = request ? request.env["HTTP_USER_AGENT"] : nil
-    { result: !!(iframable?(params[:url], user_agent)) }
+    { result: !!iframable?(params[:url], user_agent) }
   end
 end
 

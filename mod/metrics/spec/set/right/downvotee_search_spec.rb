@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
-describe Card::Set::Right::DownvoteeSearch do
+
+RSpec.describe Card::Set::Right::DownvoteeSearch do
   describe "#get_search_result" do
     context "signed in" do
       it "shows the voted cards in customized order" do
@@ -99,8 +100,7 @@ describe Card::Set::Right::DownvoteeSearch do
               "data-query" => "vote=force-down",
               "data-update-id" => "Natural_Resource_Use+Metric" \
                                   "+downvotee_search",
-              "data-bucket-name" => "down_vote" }
-                                  ) do
+              "data-bucket-name" => "down_vote" }) do
             with_tag "h5", with: { class: "vote-title" },
                            text: "Not Important to Me"
             with_tag "div", with: { class: "empty-message" }
@@ -130,9 +130,8 @@ describe Card::Set::Right::DownvoteeSearch do
             expect(html).to have_tag("div", with:
               { class: "list-drag-and-drop yinyang-list down_vote-container",
                 "data-query" => "vote=force-down",
-                "data-update-id" => "Apple_Inc+topic+downvotee_search",
-                "data-bucket-name" => "down_vote" }
-                                    ) do
+                "data-update-id" => "Apple_Inc+Topic+downvotee_search",
+                "data-bucket-name" => "down_vote" }) do
               with_tag("div", with: { class: "drag-item yinyang-row" }) do
                 with_tag "div", with:
                   { id: "Apple_Inc+Force+yinyang_drag_item" }
@@ -178,8 +177,9 @@ describe Card::Set::Right::DownvoteeSearch do
                 with: {
                   class: "list-drag-and-drop yinyang-list down_vote-container",
                   "data-query" => "vote=force-down",
-                  "data-update-id" => "Apple_Inc+metric+downvotee_search",
-                  "data-bucket-name" => "down_vote" }
+                  "data-update-id" => "Apple_Inc+Metric+downvotee_search",
+                  "data-bucket-name" => "down_vote"
+                }
               ) do
                 with_tag("div", with: { class: "drag-item yinyang-row" }) do
                   with_tag "div",
@@ -234,7 +234,8 @@ describe Card::Set::Right::DownvoteeSearch do
                 "data-query" => "vote=force-down",
                 "data-update-id" => "Apple_Inc+Natural_Resource_Use+Metric" \
                                     "+downvotee_search",
-                "data-bucket-name" => "down_vote" }
+                "data-bucket-name" => "down_vote"
+              }
             ) do
               with_tag("div", with: { class: "drag-item yinyang-row" }) do
                 with_tag "div", with: { id: "Apple_Inc+Natural_Resource_Use" \

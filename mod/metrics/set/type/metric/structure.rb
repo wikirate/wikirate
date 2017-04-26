@@ -58,10 +58,21 @@ format :html do
     HTML
   end
 
-  def author_info author_card
+  # view :browse_item do
+  #   render_haml :browse_item
+  # end
+
+  view :browse_item, template: :haml
+  view :homepage_item, template: :haml
+
+  def view_template_path view
+    super(view, __FILE__)
+  end
+
+  def author_info author_card, subtext=nil
     output [
       author_image(author_card),
-      author_text(author_card.name)
+      author_text(author_card.name, subtext)
     ]
   end
 
