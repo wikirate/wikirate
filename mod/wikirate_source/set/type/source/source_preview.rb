@@ -145,7 +145,7 @@ format :html do
 
   view :non_previewable, tags: :unknown_ok do |_args|
     file_card = card.fetch trait: :file
-    url, text = if file_card [file_card.attachment.url, "Download"]
+    url, text = if file_card then [file_card.attachment.url, "Download"]
                 else [preview_url, "Visit Original Source"]
                 end
     link_to text, href: url, class: "btn btn-primary", role: "button"
