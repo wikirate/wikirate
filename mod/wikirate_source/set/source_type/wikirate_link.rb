@@ -17,7 +17,8 @@ event :autopopulate_website,
   add_subcard host, type_id: Card::WikirateWebsiteID
 end
 
-event :import_linked_source, :integrate_with_delay do
+event :import_linked_source, :integrate_with_delay,
+      when: proc { |c| !Rails.env.test? } do
   generate_pdf unless file_link?
 end
 
