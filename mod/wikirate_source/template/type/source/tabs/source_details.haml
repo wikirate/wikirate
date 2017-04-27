@@ -1,0 +1,10 @@
+.col-md-12.column
+  .row.clearfix
+    = nest(card, view: :listing)
+  .row.clearfix
+    = field_nest :description, view: :titled, title: "Description"
+    = field_nest :year, view: :titled, title: "Year", items: { view: :name}
+    = field_nest "Report type", view: :titled, title: "Report Type", items: { view: :name}
+    = field_nest :wikirate_company, view: :titled, title: "Companies", items: { view: :link}
+    = field_nest :wikirate_topic, view: :titled, title: "Topics", items: { view: :link}
+    = field_nest :discussion, view: :titled, title: "Discussion", show: :comment_box
