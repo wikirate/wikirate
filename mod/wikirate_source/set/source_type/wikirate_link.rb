@@ -18,7 +18,7 @@ event :autopopulate_website,
 end
 
 event :import_linked_source, :integrate_with_delay, on: :save do
-  generate_pdf unless html_link?
+  generate_pdf if html_link?
 end
 
 event :process_source_url, after: :check_source,
@@ -90,7 +90,7 @@ def generate_pdf
     file_card.update_attributes!(file: ::File.open(path)) if ::File.exist?(path)
   end
 rescue => e
-  Rails.logger.info "failed to convert source page to pdf"
+  Rails.logger.info "failed to convert source page to pdf #{e.message}"
 end
 
 def url
