@@ -121,7 +121,7 @@ describe Card::Set::Type::Source do
                     "American-PLC-V2/documents/aa-sdreport-2015.pdf"
           sourcepage = create_link_source pdf_url
           expect(sourcepage.errors).to be_empty
-          expect(sourcepage.fetch(trait: :file)).not_to be_nil
+          expect(sourcepage.fetch(trait: :file)).to be_nil
           link_card = sourcepage.fetch(trait: :wikirate_link)
           expect(link_card).to be_nil
         end
