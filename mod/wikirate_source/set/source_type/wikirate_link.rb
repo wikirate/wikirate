@@ -33,7 +33,6 @@ event :process_source_url, after: :check_source,
   duplication_check
   link_card.director.catch_up_to_stage :validate
   return if link_card.errors.present?
-  binding.pry
   if file_link?
     download_and_add_file
   elsif sourcebox?
