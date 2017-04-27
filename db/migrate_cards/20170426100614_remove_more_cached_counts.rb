@@ -14,6 +14,7 @@ class RemoveMoreCachedCounts < Card::Migration
                 right: { codename: "cached_count" }).each do |card|
       card.delete
     end
+
     Card::Cache.reset_all
     Card.empty_trash
   end
