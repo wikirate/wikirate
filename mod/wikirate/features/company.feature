@@ -7,7 +7,9 @@ Feature: company feature
 
   Scenario: Browse through tabs
     Then I should see "disturbances in the Force"
-    And I should see "A number of fictional mobile space stations"
+    And I should see "+Wikipedia"
+    And I wait for ajax response
+    Then I should see "A number of fictional mobile space stations"
     Then I click on "Topics"
     And I should see "Force"
     Then I click on "Projects"
