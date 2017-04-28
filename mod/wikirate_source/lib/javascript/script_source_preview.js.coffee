@@ -29,7 +29,7 @@
   slot.find('.webpage-preview').height height
 
 $(document).ready ->
-  if $('body').attr('id') == 'source-preview-page-layout'
+  if $('.preview-view.TYPE-source').exists
     # closeTabContent()
     $('[data-toggle="source_preview_tab_ajax"]').click (e) ->
       $this = $(this)
@@ -45,7 +45,6 @@ $(document).ready ->
       false
     pageName = $('#source-name').html()
     url = $('#source_url').html()
-    if url
-      testSameOrigin url, pageName
+    testSameOrigin(url, pageName) if (url)
     # $('[data-target="#tab_claims"]').trigger 'click'
     resizeIframe($('body'))

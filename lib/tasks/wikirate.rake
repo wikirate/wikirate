@@ -22,7 +22,7 @@ namespace :wikirate do
     require "generators/card"
     import_data = yield
     write_card_content! import_data
-    write_card_attributes filename, import_data
+    write_card_attributes filename, import_data[:card][:value]
     system "bundle exec wagn generate card:migration #{ENV['name']}"
   end
 
@@ -46,7 +46,7 @@ namespace :wikirate do
   def import_data_filename
     if !ENV["name"]
       puts "pass a name for the migration 'name=...'"
-    elsif !ENV["name"] =~ /^(?:import)_(.*)(?:\.json)?/
+    elsif  ENV["name"] !~ /^(?:import)_(.*)(?:\.json)?/
       puts "invalid format: name must match /import_(.*)/"
     else
       Regexp.last_match(1)
