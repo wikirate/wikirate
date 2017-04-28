@@ -96,8 +96,8 @@ format :html do
               href: "#collapseFilter",
               class: "btn btn-default",
               data: { toggle: "collapse",
-                      collapseintext: "Hide Advanced",
-                      collapseouttext: "Show Advanced" }
+                      collapse_text_in: "Hide Advanced",
+                      collapse_text_out: "Show Advanced" }
   end
 
   def advanced_filter_formgroups

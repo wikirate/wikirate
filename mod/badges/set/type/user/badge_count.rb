@@ -15,7 +15,16 @@ format :html do
   def header_right
     output [
       wrap_with(:h2, _render_title, class: "header-right"),
-      content_tag(:h3, _render_count(class: "vertical"))
+      wrap_badge
     ]
+  end
+
+  def wrap_badge
+    wrap_with :div, class: "badges-earned" do
+      [
+        content_tag(:h4, "Badges earned"),
+        content_tag(:h3, _render_count(class: "vertical"))
+      ]
+    end
   end
 end

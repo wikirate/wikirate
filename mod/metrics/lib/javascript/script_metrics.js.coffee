@@ -31,9 +31,10 @@ $(window).ready ->
         rows = $(".TYPE_PLUS_RIGHT-metric-formula.edit-view table.pairs-editor > tbody > tr")
         new_row = $(rows[rows.length - 2])
         $(new_row).html(data)
+        wikirate.initRowRemove()
         if rows.size() == 2
           rows.first().find('input').val(100)
-          sum_row.find('td').removeClass('hidden')
+          $sum_row.find('td').removeClass('hidden')
 
     }
     add_metric_modal = $(this).closest('.modal')

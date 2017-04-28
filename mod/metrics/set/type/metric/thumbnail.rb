@@ -37,6 +37,10 @@ format :html do
     args[:author] ||= link_to_card card.metric_designer
   end
 
+  view :formula_thumbnail do
+    "</span>#{_render_thumbnail}<span>"
+  end
+
   view :score_thumbnail do |_args|
     ""
   end
