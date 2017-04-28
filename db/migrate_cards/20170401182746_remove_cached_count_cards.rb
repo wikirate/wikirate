@@ -24,6 +24,7 @@ class RemoveCachedCountCards < Card::Migration
     remove type: :wikirate_analysis, plus_right: :claim
     remove type: :wikirate_analysis, plus_right: :metric
     remove_ltype_rtype :metric, :wikirate_company
+    remove_counts_with_missing_left_parts
     remove_contribution_counts
     Card::Cache.reset_all
     Card.empty_trash
@@ -70,11 +71,41 @@ class RemoveCachedCountCards < Card::Migration
               not: { right_plus: [{ not: { id: 1 } }, {}]}
   end
 
+  def remove_counts_with_missing_left_parts
+    # no left_id
+    ids = Card.where(left_id: nil, right_id: Card::CachedCountID)
+              .pluck(:id)
+    update_and_trash ids
+
+    # left_id doesn't exist
+    left_join = "LEFT JOIN cards AS left_cards ON left_cards.id = cards.left_id"
+    ids = Card.joins(left_join)
+              .where("left_cards.id IS NULL AND cards.right_id = ?", Card::CachedCountID)
+              .pluck(:id)
+    update_and_trash ids
+
+    # left.left_id doesn't exist
+    ll_join = "LEFT JOIN cards AS ll_cards ON ll_cards.id = left_cards.left_id"
+    Card.joins(left_join).joins(ll_join)
+        .where("ll_cards.id IS NULL AND cards.right_id = ?", Card::CachedCountID)
+        .update_all(trash: true)
+  end
+
   def trash_all wql
     trash_ids Card.search wql.merge(return: :id)
+  end
+
+  def update_and_trash ids
+    ids.each do |id|
+      next unless (card = Card.fetch(Card.fetch_name(id).to_name.left))
+      card.try :update_cached_count
+    end
+    trash_ids ids
   end
 
   def trash_ids ids
     Card.where(id: ids).update_all trash: true
   end
 end
+
+
