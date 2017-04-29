@@ -116,7 +116,7 @@ describe Card::Set::Type::Source do
           expect(sourcepage.fetch(trait: :file)).not_to be_nil
           # expect(sourcepage.fetch(trait: :wikirate_link)).to be_nil
         end
-        it "hanldes file behind cloudfront" do
+        it "handles file behind cloudfront" do
           pdf_url = "http://www.angloamerican.com/~/media/Files/A/Anglo-"\
                     "American-PLC-V2/documents/aa-sdreport-2015.pdf"
           sourcepage = create_link_source pdf_url
@@ -124,7 +124,6 @@ describe Card::Set::Type::Source do
           expect(sourcepage.fetch(trait: :file)).to be_nil
           link_card = sourcepage.fetch(trait: :wikirate_link)
           expect(link_card).not_to be_nil
-          expect(link_card.content).to eq(pdf_url)
         end
         context "file is bigger than '*upload max'" do
           it "won't create file source" do

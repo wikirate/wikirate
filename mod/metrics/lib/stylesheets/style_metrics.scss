@@ -518,11 +518,26 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     background-color: $gray-background-color;
     padding: 10px;
 }
-.titled-view.TYPE_PLUS_RIGHT-metric-formula {
-    .TYPE_PLUS_RIGHT-metric-formula.card-content {
-        font-size: 1.2em;
-        font-weight: bold;
-    }
+
+//workaround
+.edit-view.TYPE_PLUS_RIGHT-metric-formula .btn {
+    z-index: 0!important;
+}
+
+.titled-view.TYPE_PLUS_RIGHT-metric-formula .TYPE_PLUS_RIGHT-metric-formula.card-content {
+  white-space: inherit;
+  display: inline-block;
+  width: 100%;
+  .thumbnail {
+    width: 40%;
+    float: left;
+  }
+  span {
+    font-size: 1.5em;
+    font-weight: bold;
+    float: left;
+    padding: 10px;
+  }
 }
 
 #modal-add-metric-slot{

@@ -100,4 +100,3 @@ findCollapseTarget = (toggle) ->
     parent.find(target)
   else
     parent.siblings(target)
-

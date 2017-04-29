@@ -14,16 +14,18 @@ format :html do
   end
 
   view :wikirate_topic_formgroup, cache: :never do
-    select_filter_type_based :wikirate_topic
+    # select_filter_type_based :wikirate_topic
+    autocomplete_filter :wikirate_topic
   end
 
   view :metric_formgroup, cache: :never do
-    select_filter_type_based :metric
+    # select_filter_type_based :metric
+    autocomplete_filter :metric
   end
 
   view :wikirate_company_formgroup, cache: :never do
-    select_filter_type_based :wikirate_company
-    # autocomplete_filter :wikirate_company
+    # select_filter_type_based :wikirate_company
+    autocomplete_filter :wikirate_company
   end
 
   view :research_policy_formgroup, cache: :never do
@@ -51,7 +53,7 @@ format :html do
   end
 
   view :importance_formgroup, cache: :never do
-    checkbox_filter :importance, "My Vote", %w(upvotes novotes)
+    checkbox_filter :importance, "My Vote", %w[upvotes novotes]
   end
 
   view :industry_formgroup, cache: :never do
@@ -100,8 +102,8 @@ format :html do
 
   def add_range key, _value
     return key # unless selected_value?(value)
-    range = filter_param :range
-    "#{range[:from]} <= #{key} < #{range[:to]}"
+    # range = filter_param :range
+    # "#{range[:from]} <= #{key} < #{range[:to]}"
   end
 
   def selected_value? value

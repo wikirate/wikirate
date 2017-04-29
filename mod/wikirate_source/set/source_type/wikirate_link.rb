@@ -17,8 +17,8 @@ event :autopopulate_website,
   add_subcard host, type_id: Card::WikirateWebsiteID
 end
 
-event :import_linked_source, :integrate_with_delay do
-  generate_pdf unless file_link?
+event :import_linked_source, :integrate_with_delay, on: :save do
+  generate_pdf if html_link?
 end
 
 event :process_source_url, after: :check_source,
@@ -89,8 +89,8 @@ def generate_pdf
     kit.to_file(path)
     file_card.update_attributes!(file: ::File.open(path)) if ::File.exist?(path)
   end
-rescue Error
-  Rails.logger.info "failed to convert source page to pdf"
+rescue => e
+  Rails.logger.info "failed to convert source page to pdf #{e.message}"
 end
 
 def url
@@ -126,8 +126,8 @@ def download_and_add_file
   remove_subfield :wikirate_link
   reset_patterns
   include_set_modules
-rescue # if open raises errors , just treat the source as a normal source
-  Rails.logger.info "Fail to get the file from link"
+rescue # if open raises errors just treat the source as a normal source
+  Rails.logger.info "failed to get the file from link"
 end
 
 def header
@@ -160,6 +160,10 @@ end
 
 def file_link?
   file_type.present? && !file_type.start_with?("text/html", "image/", "*/*")
+end
+
+def html_link?
+  file_type.present? && file_type.start_with?("text/html")
 end
 
 def within_file_size_limit?
