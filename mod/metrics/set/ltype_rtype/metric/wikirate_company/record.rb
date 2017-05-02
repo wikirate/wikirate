@@ -46,10 +46,16 @@ format :html do
     wrap_with :div do
       [
         add_answer_button,
-        nest(metric_card, view: :compact_buttons)
+        more_buttons
       ]
     end
   end
+
+  def more_buttons
+    return "" unless voo.show? :metric_buttons
+    nest metric_card, view: :compact_buttons
+  end
+
 
   view :metric_info do
     opts = { view: :compact }
