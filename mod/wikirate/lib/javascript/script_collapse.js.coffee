@@ -9,6 +9,8 @@
 #                             Can be narrowed down with further attributes.
 #
 # Specify target element:
+# href = <(id-)selector>
+#      collapse element that matches selector
 # target = <selector>
 #     collapse element that matches <selector>.
 #     Search order is:
@@ -82,13 +84,17 @@ loadCollapseTarget = ($target, url) ->
 
 findCollapseTarget = (toggle) ->
   $toggle = $(toggle)
+
+  if $toggle.attr("href") != null
+    return $($toggle.attr("href"))
+
   parent =
     if $toggle.data("parent")?
       $toggle.closest($toggle.data("parent"))
     else
       $toggle.parent()
 
-  target = $toggle.data('target') || '.collapse'
+  target = $toggle.attr("href") || $toggle.data('target') || '.collapse'
   if $toggle.data("collapse")?
     target += $toggle.data("collapse")
 
