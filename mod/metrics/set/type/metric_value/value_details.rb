@@ -30,10 +30,14 @@ format :html do
         [
           _render_formula_table,
           wrap_with(:h5, "Formula"),
-          nest(card.metric_card.formula_card, view: :core)
+          nest(card.metric_card.formula_card, view: :core, params: company_year, items: { view: :fixed_value })
         ]
       end
     end
+  end
+
+  def company_year
+    "#{card.company}+#{card.year}"
   end
 
   view :wikirating_value_details do

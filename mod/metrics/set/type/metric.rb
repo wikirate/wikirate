@@ -132,7 +132,7 @@ def companies_with_years_and_values
 end
 
 def random_value_card
-  if (answer_id = Answer.where(metric_id: id, limit: 1).pluck(:answer_id))
+  if (answer_id = Answer.where(metric_id: id).limit(1).pluck(:answer_id))
     Card.fetch answer_id
   end
 end
