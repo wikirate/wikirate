@@ -1,0 +1,9 @@
+= nest "Company+*search", view: :titled, title: "Companies", items: { view: "browse item" }
+%br
+.clearfix
+  %span
+= nest "Metric+*search", view: :titled, title: "Metrics", items: { view: "browse item", hide: :vote_count  }
+%br
+.clearfix
+  %span
+= nest "Topic+*search", view: :titled, title: "Topic", items: { view: "browse item"}

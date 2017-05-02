@@ -48,7 +48,7 @@ format :html do
   # year, value, unit and flags
   view :concise do
     %(
-      <span class="metric-year">#{card.year} = </span>
+      #{"<span class=\"metric-year\">#{card.year} = </span>" if voo.show? :year}
       <span class="metric-unit"> #{currency} </span>
       #{_render_metric_details}
       <span class="metric-unit"> #{legend} </span>
