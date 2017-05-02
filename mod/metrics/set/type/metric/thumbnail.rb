@@ -42,7 +42,7 @@ format :html do
   end
 
   view :fixed_value do
-    nest [card, voo.closest_live_option(:params)] , view: :value_link
+    nest [card, voo.closest_live_option(:params)], view: :value_link
   end
 
   view :score_thumbnail do |_args|
