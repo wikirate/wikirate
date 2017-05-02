@@ -52,9 +52,8 @@ format :html do
   def variable_row item_name, index, args
     item_card = Card[item_name]
     example_value =
-      if (company = item_card.try(:random_valued_company_card))
-        metric_plus_company = Card["#{item_card.name}+#{company.name}"]
-        subformat(metric_plus_company)._render_all_values(args)
+      if (value = item_card.try(:random_value_card))
+        nest value, view: :concise, hide: :year
       else
         ""
       end
