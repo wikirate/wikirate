@@ -13,18 +13,16 @@ describe Card::Set::Type::Source do
     end
 
     it "adds title and description" do
-      url = "http://www.google.com/?q=wikirate"
+      url = "http://www.google.com/?q=wikiratetest"
       Card::Env.params[:sourcebox] = "true"
       sourcepage = Card.create! type_id: Card::SourceID,
                                 subcards: {
                                   "+Link" => { content: url },
                                   "+File" => { type_id: Card::FileID },
-                                  "+Text" => {
-                                    type_id: Card::BasicID,
-                                    content: ""
-                                  }
+                                  "+Text" => { type_id: Card::BasicID,
+                                               content: "" }
                                 }
-      #      sourcepage = create_link_source url
+      # sourcepage = create_link_source url
       preview = LinkThumbnailer.generate(url)
 
       expect(Card.fetch("#{sourcepage.name}+title").content)

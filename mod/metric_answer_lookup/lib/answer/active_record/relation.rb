@@ -30,12 +30,14 @@ class Answer::ActiveRecord::Relation
   def return args={}
     return answer_cards unless args.present?
     val = args.is_a?(Hash) ? args[:return] : args
-    multi_return if val.is_a? Array
+    return multi_return val if val.is_a? Array
 
     val = val.to_s
     case val
     when "value_card"
-      Card.search left_id: ["in"] + pluck(:answer_id), right_id: Card::ValueID
+      left_ids = pluck(:answer_id)
+      return [] unless left_ids.present?
+      Card.search left_id: ["in"] + left_ids, right_id: Card::ValueID
     when /^(\w+)_card/
       cards Regexp.last_match(1)
     when "count"
@@ -58,7 +60,7 @@ class Answer::ActiveRecord::Relation
   private
 
   def multi_return cols
-    cols.map { |col| col.to_sym.in?(NAME_COLUMNS) ? "#{col}_name" : col }
+    cols.map! { |col| col.to_sym.in?(NAME_COLUMNS) ? "#{col}_name" : col }
     pluck(*cols)
   end
 
