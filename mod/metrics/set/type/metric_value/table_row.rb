@@ -91,9 +91,10 @@ format :html do
                            show: :add_answer_button
   end
 
-  def metric_values
+  def metric_values type
+    view = type == :company ? :metric_info_compact : :core
     wrap_with :div, class: "row clearfix wiki" do
-      nest(card.left, view: :core,
+      nest(card.left, view: view,
                       show: [:chart, :add_answer_redirect])
     end
   end
@@ -166,7 +167,7 @@ format :html do
             #{send "#{type}_details_sidebar_header"}
           </div>
           <hr>
-          #{metric_values}
+          #{metric_values(type)}
           <br>
           #{yield if block_given?}
           #{discussion}

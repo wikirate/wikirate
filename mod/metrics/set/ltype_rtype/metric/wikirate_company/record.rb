@@ -42,6 +42,17 @@ format :html do
     end
   end
 
+  view :metric_info_compact do
+    voo.hide :answer_form
+    voo.hide :add_answer_redirect
+    wrap_with :div, id: card.cardname.url_key, class: "record-row" do
+      [
+        add_answer_button,
+        _render_answer_table
+      ]
+    end
+  end
+
   view :buttons do
     wrap_with :div do
       [

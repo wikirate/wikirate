@@ -83,3 +83,16 @@
     }
   }
 }
+
+.SELF-Xsearch {
+  .search-result-item.item-browse_item {
+      float: left;
+      display: inline-block;
+      min-width: 260px;
+      width: 18%;
+      padding: 10px 1%;
+  }
+  .pagination{
+    width: 100%;
+  }
+}

@@ -88,7 +88,11 @@ findCollapseTarget = (toggle) ->
     else
       $toggle.parent()
 
-  target = $toggle.data('target') || '.collapse'
+  href_attr = $toggle.attr("href")
+  if typeof href_attr != typeof undefined && href_attr != false
+    return $($toggle.attr("href"))
+
+  target = $toggle.attr("href") || $toggle.data('target') || '.collapse'
   if $toggle.data("collapse")?
     target += $toggle.data("collapse")
 
