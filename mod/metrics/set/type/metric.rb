@@ -120,34 +120,26 @@ def analysis_names
   end.flatten
 end
 
-# def value company, year
-#   (value_card = Card["#{name}+#{company}+#{year}+#{value}"]) &&
-#     value_card.content
-# end
-
 def companies_with_years_and_values
-  value_cards.map do |mv_card|
-    [mv_card.company, mv_card.year, mv_card.value]
+  Answer.search(metric_id: id, return: [:company, :year, :value]).map do |c, y, v|
+    [c, y.to_s, v]
   end
 end
 
 def random_value_card
-  if (answer_id = Answer.where(metric_id: id).limit(1).pluck(:answer_id))
-    Card.fetch answer_id
-  end
+  Answer.search(metric_id: id, limit: 1).first
 end
 
 def random_valued_company_card
-  return unless (rvc = random_value_card)
-  rvc.company_card
+  Answer.search(metric_id: id, return: :company_card, limit: 1).first
 end
 
-def metric_value_cards opts={}
-  Card.search metric_value_query.merge(opts)
+def metric_value_cards cached: true
+  cached ? Answer.search(metric_id: id) : Card.search(metric_value_query)
 end
 
 def value_cards opts={}
-  Card.search({ left: metric_value_query, right: "value" }.merge(opts))
+  Answer.search metric_id: id, return: :value_card
 end
 
 def metric_value_name company, year
@@ -156,7 +148,7 @@ def metric_value_name company, year
 end
 
 def metric_value_query
-  { left: { left: name }, type_id: MetricValueID }
+  { left: { left_id: id }, type_id: MetricValueID }
 end
 
 event :silence_metric_deletions, :initialize, on: :delete do
@@ -181,13 +173,12 @@ format :html do
 
   def designer_image
     nest card.metric_designer_card.field(:image, new: {}),
-                     view: :core, size: :small
+         view: :core, size: :small
   end
 
   def designer_image_link
     link_to_card card.metric_designer_card, designer_image
   end
-
 
   def css
     ""
@@ -335,26 +326,7 @@ format :html do
     )
   end
 
-  view :add_to_formula do |_args|
-    # .metric-details-close-icon.pull-right
-    # i.fa.fa-times-circle.fa-2x
-    # %br
-    render_haml do
-      <<-HAML
-%br
-.metric-details-header
-  .row.clearfix
-    .col-md-12
-      .name.row
-        = link_to_card card, card.metric_title, class: 'inherit-anchor'
-      .row
-        = _render_designer_info
-  %hr
-  .row.clearfix.wiki
-    = _render_metric_info
-      HAML
-    end
-  end
+  view :add_to_formula, template: :haml
 
   view :metric_info do |_args|
     question = subformat(card.question_card)._render_core.html_safe
@@ -449,7 +421,14 @@ format :html do
   end
 
   view :metric_row do
-    header = <<-HTML
+    wrap do
+      metric_row metric_row_header, metric_row_data,
+                 drag_and_drop: false, item_types: [:metric, :contribution, :value]
+    end
+  end
+
+  def metric_row_header
+    <<-HTML
       {{_+*vote count}}
       <div class="logo">
       <a class="inherit-anchor" href="/{{_1|name}}"> {{_1+image|core;size:small}} </a>
@@ -458,18 +437,17 @@ format :html do
         {{_2|name}}
       </div>
     HTML
-    data = <<-HTML
-    <div class="contribution company-count">
-                <div class="content">
-                  {{_+company count|core}}
-                  <div class="name">Companies</div>
-                </div>
-              </div>
+  end
+
+  def metric_row_data
+    <<-HTML
+      <div class="contribution company-count">
+        <div class="content">
+          {{_+company count|core}}
+          <div class="name">Companies</div>
+        </div>
+      </div>
     HTML
-    wrap do
-      metric_row header, data, drag_and_drop: false,
-                               item_types: [:metric, :contribution, :value]
-    end
   end
 end
 
