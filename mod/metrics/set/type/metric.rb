@@ -173,7 +173,7 @@ format :html do
 
   def designer_image
     nest card.metric_designer_card.field(:image, new: {}),
-                     view: :core, size: :small
+         view: :core, size: :small
   end
 
   def designer_image_link
@@ -326,26 +326,7 @@ format :html do
     )
   end
 
-  view :add_to_formula do |_args|
-    # .metric-details-close-icon.pull-right
-    # i.fa.fa-times-circle.fa-2x
-    # %br
-    render_haml do
-      <<-HAML
-%br
-.metric-details-header
-  .row.clearfix
-    .col-md-12
-      .name.row
-        = link_to_card card, card.metric_title, class: 'inherit-anchor'
-      .row
-        = _render_designer_info
-  %hr
-  .row.clearfix.wiki
-    = _render_metric_info
-      HAML
-    end
-  end
+  view :add_to_formula, template: :haml
 
   view :metric_info do |_args|
     question = subformat(card.question_card)._render_core.html_safe
@@ -440,7 +421,14 @@ format :html do
   end
 
   view :metric_row do
-    header = <<-HTML
+    wrap do
+      metric_row metric_row_header, metric_row_data,
+                 drag_and_drop: false, item_types: [:metric, :contribution, :value]
+    end
+  end
+
+  def metric_row_header
+    <<-HTML
       {{_+*vote count}}
       <div class="logo">
       <a class="inherit-anchor" href="/{{_1|name}}"> {{_1+image|core;size:small}} </a>
@@ -449,18 +437,17 @@ format :html do
         {{_2|name}}
       </div>
     HTML
-    data = <<-HTML
-    <div class="contribution company-count">
-                <div class="content">
-                  {{_+company count|core}}
-                  <div class="name">Companies</div>
-                </div>
-              </div>
+  end
+
+  def metric_row_data
+    <<-HTML
+      <div class="contribution company-count">
+        <div class="content">
+          {{_+company count|core}}
+          <div class="name">Companies</div>
+        </div>
+      </div>
     HTML
-    wrap do
-      metric_row header, data, drag_and_drop: false,
-                               item_types: [:metric, :contribution, :value]
-    end
   end
 end
 

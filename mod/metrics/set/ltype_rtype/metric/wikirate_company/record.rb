@@ -56,7 +56,6 @@ format :html do
     nest metric_card, view: :compact_buttons
   end
 
-
   view :metric_info do
     opts = { view: :compact }
     opts[:show] = :compact_header if voo.show?(:compact_header)
@@ -70,7 +69,7 @@ format :html do
       next "" unless all_answers.present?
       wikirate_table :plain, all_answers,
                      [:plain_year, answer_view],
-                     header: %w(Year Answer),
+                     header: %w[Year Answer],
                      td: { classes: ["text-center"] }
     end
   end

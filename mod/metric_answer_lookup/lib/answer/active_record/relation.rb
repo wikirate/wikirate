@@ -1,8 +1,14 @@
 class Answer::ActiveRecord::Relation
-  NAME_COLUMNS = [:metric, :company, :designer, :title, :record]
+  NAME_COLUMNS = [:metric, :company, :designer, :title, :record].freeze
 
   def answer_cards
-    pluck(:answer_id).map { |id| Card.fetch id }
+    pluck(:answer_id).map { |id| Card.fetch id }.compact
+  end
+
+  def value_cards
+    left_ids = pluck :answer_id
+    return [] unless left_ids.present?
+    Card.search left_id: ["in"] + left_ids, right_id: Card::ValueID
   end
 
   def cards type
@@ -32,12 +38,9 @@ class Answer::ActiveRecord::Relation
     val = args.is_a?(Hash) ? args[:return] : args
     return multi_return val if val.is_a? Array
 
-    val = val.to_s
-    case val
+    case val.to_s
     when "value_card"
-      left_ids = pluck(:answer_id)
-      return [] unless left_ids.present?
-      Card.search left_id: ["in"] + left_ids, right_id: Card::ValueID
+      value_cards
     when /^(\w+)_card/
       cards Regexp.last_match(1)
     when "count"

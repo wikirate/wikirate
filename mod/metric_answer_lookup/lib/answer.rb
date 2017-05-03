@@ -1,5 +1,5 @@
+# lookup table for metric answers
 class Answer < ActiveRecord::Base
-
   include LookupTable
   include Filter
 
@@ -53,7 +53,6 @@ class Answer < ActiveRecord::Base
       where_opts = Array.wrap(where_args)
       where(*where_opts).sort(sort_args).page(page_args).answer_cards
     end
-
 
     # @param opts [Hash] search options
     # If the :where option is used then its value is passed as argument list to AR's where
@@ -115,10 +114,9 @@ class Answer < ActiveRecord::Base
     end
 
     def latest_answer_card metric_id, company_id
-      return unless a_id = where(metric_id: metric_id,
-                                 company_id: company_id,
-                                 latest: true).pluck(:answer_id)
-      Card.fetch(a_id)
+      a_id = where(metric_id: metric_id, company_id: company_id,
+                   latest: true).pluck(:answer_id)
+      a_id && Card.fetch(a_id)
     end
 
     def latest_year metric_id, company_id
