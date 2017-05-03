@@ -1,6 +1,6 @@
 def all_answers
   @result ||=
-    Answer.fetch({ record_id: id }, sort_by: :year, sort_order: :desc)
+    Answer.search(record_id: id, sort_by: :year, sort_order: :desc)
 end
 
 format :html do

@@ -96,13 +96,13 @@ format :html do
   end
 
   def metric_answers
-    metric_values
+    metric_values hide: [:compact_header]
   end
 
   def metric_values args={}
     wrap_with :div, class: "row clearfix wiki" do
-      nest(card.left, args.merge(view: :core,
-                      show: [:chart, :add_answer_redirect]))
+      nest(card.record_card, args.merge(view: :core,
+                                        show: [:chart, :add_answer_redirect]))
     end
   end
 

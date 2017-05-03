@@ -112,7 +112,7 @@ class Card
     end
 
     def run_filter_query
-      Answer.fetch(where_args, @sort_args, @paging_args)
+      Answer.fetch where_args, @sort_args, @paging_args
     end
 
     def prepare_filter_args filter

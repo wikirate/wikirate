@@ -120,34 +120,24 @@ def analysis_names
   end.flatten
 end
 
-# def value company, year
-#   (value_card = Card["#{name}+#{company}+#{year}+#{value}"]) &&
-#     value_card.content
-# end
-
 def companies_with_years_and_values
-  value_cards.map do |mv_card|
-    [mv_card.company, mv_card.year, mv_card.value]
-  end
+  Answer.search metric_id: id, return: [:company, :year, :value]
 end
 
 def random_value_card
-  if (answer_id = Answer.where(metric_id: id).limit(1).pluck(:answer_id))
-    Card.fetch answer_id
-  end
+  Answer.search(metric_id: id, limit: 1).first
 end
 
 def random_valued_company_card
-  return unless (rvc = random_value_card)
-  rvc.company_card
+  Answer.search(metric_id: id, return: :company_card, limit: 1).first
 end
 
-def metric_value_cards opts={}
-  Card.search metric_value_query.merge(opts)
+def metric_value_cards cached: true
+  cached ? Answer.search(metric_id: id) : Card.search(metric_value_query)
 end
 
 def value_cards opts={}
-  Card.search({ left: metric_value_query, right: "value" }.merge(opts))
+  Answer.search metric_id: id, return: :value_card
 end
 
 def metric_value_name company, year
@@ -156,7 +146,7 @@ def metric_value_name company, year
 end
 
 def metric_value_query
-  { left: { left: name }, type_id: MetricValueID }
+  { left: { left_id: id }, type_id: MetricValueID }
 end
 
 event :silence_metric_deletions, :initialize, on: :delete do
@@ -187,7 +177,6 @@ format :html do
   def designer_image_link
     link_to_card card.metric_designer_card, designer_image
   end
-
 
   def css
     ""
