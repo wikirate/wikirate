@@ -50,7 +50,8 @@ class Answer < ActiveRecord::Base
 
     # @return answer card objects
     def fetch where_args, sort_args={}, page_args={}
-      Answer.where(*where_args).sort(sort_args).page(page_args).answer_cards
+      where_opts = Array.wrap(where_args)
+      where(*where_opts).sort(sort_args).page(page_args).answer_cards
     end
 
 
@@ -66,7 +67,8 @@ class Answer < ActiveRecord::Base
     # @return answer card objects
     def search opts={}
       where_args, sort_args, page_args, return_args = split_search_args opts
-      Answer.where(where_args).sort(sort_args).page(page_args).return(return_args)
+      where_args = Array.wrap(where_args)
+      where(*where_args).sort(sort_args).page(page_args).return(return_args)
     end
 
     def split_search_args args

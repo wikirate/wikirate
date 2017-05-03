@@ -27,7 +27,7 @@ class Answer::ActiveRecord::Relation
     spawn.limit(args[:limit]).offset(args[:offset])
   end
 
-  def return args
+  def return args={}
     return answer_cards unless args.present?
     val = args.is_a?(Hash) ? args[:return] : args
     multi_return if val.is_a? Array
