@@ -1,3 +1,4 @@
+# lookup table for metric answers
 class Answer < ActiveRecord::Base
   include LookupTable
   include Filter
@@ -47,41 +48,34 @@ class Answer < ActiveRecord::Base
       ma.refresh *fields
     end
 
-    def fetch where, sort_args={}, paging={}
-      where = Array.wrap where
-      mas = Answer.where(*where)
-      mas = sort mas, sort_args
-      mas = mas.limit(paging[:limit]).offset(paging[:offset]) if paging?(paging)
-      mas.pluck(:answer_id).map do |id|
-        Card.fetch id
-      end
+    # @return answer card objects
+    def fetch where_args, sort_args={}, page_args={}
+      where_opts = Array.wrap(where_args)
+      where(*where_opts).sort(sort_args).page(page_args).answer_cards
     end
 
-    def paging? paging_args
-      paging_args.present? && paging_args[:limit].to_i > 0
+    # @param opts [Hash] search options
+    # If the :where option is used then its value is passed as argument list to AR's where
+    # method. Otherwise all remaining values that are not sort or page options are
+    # passed as hash to `where`.
+    # @option opts [Array] :where
+    # @option opts [Symbol] :sort_by column name or :importance
+    # @option opts [Symbol] :sort_order :asc or :desc
+    # @option opts [Integer] :limit
+    # @option opts [Integer] :offset
+    # @return answer card objects
+    def search opts={}
+      where_args, sort_args, page_args, return_args = split_search_args opts
+      where_args = Array.wrap(where_args)
+      where(*where_args).sort(sort_args).page(page_args).return(return_args)
     end
 
-    def sort mas, args
-      return mas unless valid_sort_args? args
-      mas = importance_sort mas, args if args[:sort_by].to_sym == :importance
-      sort_by = args[:sort_by]
-      sort_by = "CAST(#{sort_by} AS #{args[:cast]})" if args[:cast]
-      mas.order "#{sort_by} #{args[:sort_order]}"
-    end
-
-    def importance_sort mas, args
-      mas = mas.joins "LEFT JOIN cards AS c " \
-                      "ON answers.metric_id = c.left_id " \
-                      "AND c.right_id = #{Card::VoteCountID}"
-      args[:sort_by] = "COALESCE(c.db_content, 0)"
-      args[:cast] = "signed"
-      mas
-    end
-
-    def valid_sort_args? args
-      return unless args.present? && args[:sort_by]
-      return true if args[:sort_by].to_sym == :importance
-      Answer.column_names.include? args[:sort_by].to_s
+    def split_search_args args
+      sort_args = args.extract! :sort_by, :sort_order, :cast
+      paging_args = args.extract! :limit, :offset
+      return_val = args.delete :return
+      where_args = args[:where] || args
+      [where_args, sort_args, paging_args, return_val]
     end
 
     def refresh ids=nil, *fields
@@ -120,16 +114,15 @@ class Answer < ActiveRecord::Base
     end
 
     def latest_answer_card metric_id, company_id
-      return unless a_id = where(metric_id: metric_id,
-                                 company_id: company_id,
-                                 latest: true).pluck(:answer_id)
-      Card.fetch(a_id)
+      a_id = where(metric_id: metric_id, company_id: company_id,
+                   latest: true).pluck(:answer_id)
+      a_id && Card.fetch(a_id)
     end
 
     def latest_year metric_id, company_id
       where(metric_id: metric_id,
-                                 company_id: company_id,
-                                 latest: true).pluck(:year)
+            company_id: company_id,
+            latest: true).pluck(:year)
     end
 
     def answered? metric_id, company_id
@@ -279,3 +272,5 @@ class Answer < ActiveRecord::Base
     @metric_card ||= Card.quick_fetch(fetch_metric_name)
   end
 end
+
+require_relative "answer/active_record/relation"

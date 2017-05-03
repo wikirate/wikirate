@@ -85,9 +85,6 @@ loadCollapseTarget = ($target, url) ->
 findCollapseTarget = (toggle) ->
   $toggle = $(toggle)
 
-  if $toggle.attr("href") != null
-    return $($toggle.attr("href"))
-
   parent =
     if $toggle.data("parent")?
       $toggle.closest($toggle.data("parent"))
