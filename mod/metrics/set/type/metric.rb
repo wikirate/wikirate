@@ -121,7 +121,9 @@ def analysis_names
 end
 
 def companies_with_years_and_values
-  Answer.search metric_id: id, return: [:company, :year, :value]
+  Answer.search(metric_id: id, return: [:company, :year, :value]).map do |c, y, v|
+    [c, y.to_s, v]
+  end
 end
 
 def random_value_card
