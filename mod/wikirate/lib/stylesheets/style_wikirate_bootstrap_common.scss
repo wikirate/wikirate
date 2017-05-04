@@ -557,7 +557,13 @@ button.pointer-item-delete.btn.btn-default {
         padding: 0 0 25px 10px;
     }
 }
-
+.ellipsis,
+.ellipsis .known-card {
+    max-width: 94%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
 // Bootstrap Tweak
 .media-body {
     width: inherit;
