@@ -101,7 +101,7 @@ findCollapseTarget = (toggle) ->
     $toggle.siblings(target)
   else if parent.find(target).length
     parent.find(target)
-  else if parent.siblings(target)
+  else if parent.siblings(target).length
     parent.siblings(target)
   else
     $(target)
