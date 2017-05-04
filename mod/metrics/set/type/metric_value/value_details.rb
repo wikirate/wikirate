@@ -30,10 +30,16 @@ format :html do
         [
           _render_formula_table,
           wrap_with(:h5, "Formula"),
-          nest(card.metric_card.formula_card, view: :core)
+          nest(card.metric_card.formula_card,
+               view: :core, params: company_year,
+               items: { view: :fixed_value })
         ]
       end
     end
+  end
+
+  def company_year
+    "#{card.company}+#{card.year}"
   end
 
   view :wikirating_value_details do
@@ -81,9 +87,8 @@ format :html do
     wql = input_card.metric_value_query
     wql[:left][:right] = card.company_name
     wql[:right] = card.year
-    if (value_card = Card.search(wql).first)
-      metric_row_values(input_card, value_card, weight)
-    end
+    return unless  (value_card = Card.search(wql).first)
+    metric_row_values(input_card, value_card, weight)
   end
 
   def metric_row_values input_card, value_card, weight

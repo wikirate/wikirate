@@ -41,6 +41,10 @@ class SharedData
       Card[metric_names[value_type]]
     end
 
+    def sample_answer value_type=:free_text
+      sample_metric(value_type).random_value_card
+    end
+
     def sample_project
       Card["Evil Project"]
     end

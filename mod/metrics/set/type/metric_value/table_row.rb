@@ -91,16 +91,25 @@ format :html do
                            show: :add_answer_button
   end
 
-  def metric_values type
-    view = type == :company ? :metric_info_compact : :core
+  def company_answers
+    metric_values hide: [:metric_info, :metric_buttons]
+  end
+
+  def metric_answers
+    metric_values hide: [:compact_header]
+  end
+
+  def metric_values args={}
     wrap_with :div, class: "row clearfix wiki" do
-      nest(card.left, view: view,
-                      show: [:chart, :add_answer_redirect])
+      nest(card.record_card, args.merge(view: :core,
+                                        show: [:chart, :add_answer_redirect]))
     end
   end
 
   # used in metric value list on a metric page
   view :company_details_sidebar do
+    voo.hide! :metric_info
+    voo.hide! :metric_buttons
     details_sidebar :company
   end
 
@@ -167,7 +176,7 @@ format :html do
             #{send "#{type}_details_sidebar_header"}
           </div>
           <hr>
-          #{metric_values(type)}
+          #{send "#{type}_answers"}
           <br>
           #{yield if block_given?}
           #{discussion}
