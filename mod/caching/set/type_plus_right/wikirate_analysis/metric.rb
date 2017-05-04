@@ -12,8 +12,7 @@ def topic_card
 end
 
 def search args={}
-  metric_ids = unique_metric_ids
-
+  metric_ids = unique_metric_ids args
   case args[:return]
   when :id
     metric_ids
@@ -26,11 +25,11 @@ def search args={}
   end
 end
 
-def unique_metric_ids
+def unique_metric_ids args={}
   return [] unless topic_card.type_id == WikirateTopicID
   metric_ids = topic_card.fetch(trait: :metric, new: {}).metric_ids
-  Answer.where(company_id: company_card.id, metric_id: metric_ids)
-        .pluck(:metric_id).uniq
+  Answer.select(:metric_id).where(company_id: company_card.id, metric_id: metric_ids)
+        .uniq.page(args).pluck(:metric_id)
 end
 
 # needed for "found_by" wql searches that refer to search results

@@ -2,25 +2,32 @@
 include_set Abstract::SearchCachedCount
 
 def search args={}
-  company_ids = unique_company_ids
-  case args[:return]
-  when :id
-    company_ids
-  when :count
-    company_ids.count
-  when :name
-    company_ids.map { |id| Card.fetch_name id }
-  else
-    company_ids.map { |id| Card.fetch id }
+  Answer.search metric_id: left.id, uniq: :company_id,
+                return: companyify_return_arg(args[:return])
+end
+
+def companyify_return_arg val
+  case val
+  when :id, :company_id     then :company_id
+  when :count               then :count
+  when :name, :company_name then :company_name
+  else                           :company_card
   end
 end
 
-def unique_company_ids
-  Answer.where(metric_id: left.id).pluck(:company_id).uniq
+# needed for "found_by" wql searches that refer to search results
+# of these cards
+def wql_hash
+  company_ids = search return: :company_id
+  if company_ids.any?
+    { id: [:in] + company_ids }
+  else
+    { id: -1 } # HACK: ensure no results
+  end
 end
 
 def wql_hash
-  company_ids = unique_company_ids
+  company_ids = search return: :company_id
   if company_ids.any?
     { id: [:in] + company_ids }
   else

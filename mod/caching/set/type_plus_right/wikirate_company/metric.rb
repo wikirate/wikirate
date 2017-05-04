@@ -2,27 +2,19 @@
 include_set Abstract::SearchCachedCount
 
 def search args={}
-  metric_ids = unique_metric_ids
-  case args[:return]
-  when :id
-    metric_ids
-  when :count
-    metric_ids.count
-  when :name
-    metric_ids.map { |id| Card.fetch_name id }
-  else
-    metric_ids.map { |id| Card.fetch id }
-  end
-end
-
-def unique_metric_ids
-  Answer.where(company_id: left.id).pluck(:metric_id).uniq
+  retrn = case args[:return]
+          when :id, :metric_id     then :metric_id
+          when :count              then :count
+          when :name, :metric_name then :metric_name
+          else                          :metric_card
+          end
+  Answer.search company_id: left.id, uniq: :metric_id, return: retrn
 end
 
 # needed for "found_by" wql searches that refer to search results
 # of these cards
 def wql_hash
-  metric_ids = unique_metric_ids
+  metric_ids = search return: :metric_id
   if metric_ids.any?
     { id: [:in] + metric_ids }
   else
@@ -35,7 +27,6 @@ end
 def fetch_query args={}
   query(args.clone)
 end
-
 
 # recount metrics related to company whenever a value is created or deleted
 recount_trigger :type, :metric_value, on: [:create, :delete] do |changed_card|

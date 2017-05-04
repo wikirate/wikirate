@@ -26,6 +26,13 @@ class Answer < ActiveRecord::Base
   end
 
   module ClassMethods
+    SEARCH_OPTS = { sort: [:sort_by, :sort_order, :cast] ,
+                    page: [:limit, :offset],
+                    return: [:return],
+                    uniq: [:uniq],
+                    where: [:where]
+                   }.freeze
+
     def create card
       ma = Answer.new
       ma.answer_id = card.id
@@ -65,17 +72,20 @@ class Answer < ActiveRecord::Base
     # @option opts [Integer] :offset
     # @return answer card objects
     def search opts={}
-      where_args, sort_args, page_args, return_args = split_search_args opts
-      where_args = Array.wrap(where_args)
-      where(*where_args).sort(sort_args).page(page_args).return(return_args)
+      args = split_search_args opts
+      where(*args[:where]).uniq_select(args[:uniq])
+        .sort(args[:sort]).page(args[:page]).return(args[:return])
     end
 
     def split_search_args args
-      sort_args = args.extract! :sort_by, :sort_order, :cast
-      paging_args = args.extract! :limit, :offset
-      return_val = args.delete :return
-      where_args = args[:where] || args
-      [where_args, sort_args, paging_args, return_val]
+      hash = {}
+      SEARCH_OPTS.each do |cat, keys|
+        hash[cat] = args.extract!(*keys)
+      end
+      hash[:uniq].merge! hash[:return] if hash[:uniq] && hash[:return]
+      hash[:where] ||= args
+      hash[:where] = Array.wrap(hash[:where])
+      hash
     end
 
     def refresh ids=nil, *fields

@@ -2,23 +2,13 @@
 include_set Abstract::SearchCachedCount
 
 def search args={}
-  answer_rel = Answer.where(metric_id: left.id)
-  case args[:return]
-  when :id
-    answer_rel.pluck(:answer_id)
-  when :count
-    answer_rel.count
-  when :name
-    answer_rel.pluck(:answer_id).map { |id| Card.fetch_name id }
-  else
-    answer_rel.pluck(:answer_id).map { |id| Card.fetch id }
-  end
+  Answer.search args.merge(metric_id: left.id)
 end
 
 # needed for "found_by" wql searches that refer to search results
 # of these cards
 def wql_hash
-  answer_ids = Answer.where(metric_id: left.id).pluck(:answer_id)
+  answer_ids = search return: :answer_id
   if answer_ids.any?
     { id: [:in] + answer_ids }
   else

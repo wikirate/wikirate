@@ -33,17 +33,19 @@ def self.company_plus_topic_cards_for_metric metric_card
 end
 
 def search args={}
-  # TODO: Support paging
-  case args.delete(:return)
-  when :id    then company_ids
-  when :name  then company_ids.map(&:cardname)
-  when :count then count
-  else             company_ids.map(&:card)
+  ret = args.delete(:return)
+  return count if ret == :count
+  ids = company_ids args
+  case ret
+  when :id    then ids
+  when :name  then ids.map(&:cardname)
+  else             ids.map(&:card)
   end
 end
 
-def company_ids
-  @company_ids ||= relation.pluck(:company_id)
+def company_ids args={}
+  @company_ids ||= {}
+  @company_ids[args] ||= relation.page(args).pluck(:company_id)
 end
 
 def wql_hash
@@ -66,7 +68,7 @@ def ids_of_metrics_tagged_with_topic
               return: :id
 end
 
-def relation
+def relation args={}
   Answer.select(:company_id).uniq
         .where(metric_id: ids_of_metrics_tagged_with_topic)
 end
