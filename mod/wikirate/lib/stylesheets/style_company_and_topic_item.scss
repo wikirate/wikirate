@@ -5,6 +5,8 @@ $note-tag-topicbg-hover: #01648d;
 $note-tag-notexist: #f0f0f0;
 $note-tag-notexist-hover: #ececec;
 
+// TODO: delete after the review and further testing
+
 @mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,.4), $inset: "") {
   @if ($inset != "") {
     -webkit-box-shadow: $inset $x $y $blur $color;
@@ -32,36 +34,6 @@ $note-tag-notexist-hover: #ececec;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 
-}
-
-.RIGHT-Xsearch .STRUCTURE-metric_item {
-  width: 32%;
-  padding: 10px;
-  display: inline-block;
-  min-width: 350px;
-  float: left;
-}
-
-.SELF-company-Xsearch .STRUCTURE-browse_company_item,
-.RIGHT-Xsearch .STRUCTURE-browse_topic_item {
-  display: inline-block;
-  min-width: 260px;
-  width: 22%;
-  padding: 10px 1% !important;
-  float: left;
-}
-
-.RIGHT-topic_list, #browse-companies, #browse-topics {
-  .item-content,
-  .search-result-item {
-    display: inline-block;
-    min-width: 260px;
-    width: 15%;
-    padding: 10px 1%;
-  }
-  > div {
-    float: left;
-  }
 }
 
 .STRUCTURE-company_overview .TYPE-image img {
@@ -175,4 +147,3 @@ $note-tag-notexist-hover: #ececec;
     }
   }
 }
-
