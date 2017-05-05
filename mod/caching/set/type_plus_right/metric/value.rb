@@ -1,25 +1,8 @@
 # cache # of values for left metric
-include_set Abstract::SearchCachedCount
+include_set Abstract::AnswerTableCachedCount, target_type: :answer
 
-def search args={}
-  Answer.search args.merge(metric_id: left.id)
-end
-
-# needed for "found_by" wql searches that refer to search results
-# of these cards
-def wql_hash
-  answer_ids = search return: :answer_id
-  if answer_ids.any?
-    { id: [:in] + answer_ids }
-  else
-    { id: -1 } # HACK: ensure no results
-  end
-end
-
-# turn query caching off because wql_hash varies and fetch_query doesn't
-# recognizes changes in wql_hash
-def fetch_query args={}
-  query(args.clone)
+def search_anchor
+  { metric_id: left.id }
 end
 
 # recount number of answers for a given metric when a Metric Value card is

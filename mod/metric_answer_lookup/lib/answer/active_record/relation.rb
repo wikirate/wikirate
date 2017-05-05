@@ -46,7 +46,7 @@ class Answer
         cards Regexp.last_match(1)
       when "count"
         count
-      when "name"
+      when "name", "answer_name"
         pluck(:record_name, :year).map { |parts| parts.join "+" }
       when "id"
         pluck(:answer_id)
