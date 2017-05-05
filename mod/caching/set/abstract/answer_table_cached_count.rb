@@ -5,7 +5,11 @@
 # Valid values have an id and a name column in the lookup table like
 # :metric, :company, :record, or :designer. :answer works too although it has
 # no name column.
-include_set Abstract::SearchCachedCount
+
+def self.included host_class
+  host_class.include_set Abstract::SearchCachedCount
+  host_class
+end
 
 # override this to restrict the search result
 def search_anchor

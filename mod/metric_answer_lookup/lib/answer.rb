@@ -83,7 +83,7 @@ class Answer < ActiveRecord::Base
         hash[cat] = args.extract!(*keys)
       end
       hash[:uniq].merge! hash[:return] if hash[:uniq] && hash[:return]
-      hash[:where] ||= args
+      hash[:where] = args unless hash[:where].present?
       hash[:where] = Array.wrap(hash[:where])
       hash
     end

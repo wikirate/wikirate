@@ -10,7 +10,7 @@ RSpec.describe Answer, "Answer.search" do
   end
 
   it "can sort by year" do
-    expect(search(title_name: "darkness rating", return: :record, sort_by: :year))
+    expect(search(title_name: "darkness rating", return: :recrd, sort_by: :year))
       .to eq ["Jedi+darkness rating+Death Star",
               "Jedi+darkness rating+Slate Rock and Gravel Company"]
   end
