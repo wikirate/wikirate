@@ -7,6 +7,7 @@ describe Card::Set::TypePlusRight::MetricValue::Value::Edit do
 
     context "multi-category with not more than 10 options" do
       subject { editor "small multi" }
+
       it "has check boxes input" do
         is_expected.to have_tag :input,
                                 with: { type: "checkbox", value: "1",
@@ -21,19 +22,21 @@ describe Card::Set::TypePlusRight::MetricValue::Value::Edit do
 
     context "multi-category with more than 10 options" do
       subject { editor "big multi" }
+
       it "has multi select input" do
         is_expected.to have_tag :select,
                                 with: { multiple: "multiple" } do
           with_tag :option, with: { value: "1", selected: "selected" }
           with_tag :option, with: { value: "2", selected: "selected" }
           with_tag :option, with: { value: "3" },
-                   without: { selected: "selected" }
+                            without: { selected: "selected" }
         end
       end
     end
 
     context "category with not more than 10 options" do
       subject { editor "small single" }
+
       it "has radio buttons input" do
         is_expected.to have_tag :input,
                                 with: { type: "radio", value: "1",
@@ -46,11 +49,12 @@ describe Card::Set::TypePlusRight::MetricValue::Value::Edit do
 
     context "category with more than 10 options" do
       subject { editor "big single" }
+
       it "has single select input" do
         is_expected.to have_tag :select, without: { multiple: "multiple" } do
           with_tag :option, with: { value: "4", selected: "selected" }
           with_tag :option, with: { value: "2" },
-                   without: { selected: "selected" }
+                            without: { selected: "selected" }
         end
       end
     end

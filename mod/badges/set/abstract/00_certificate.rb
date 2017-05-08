@@ -3,7 +3,6 @@ format :html do
     glyphicon :certificate, level
   end
 
-
   view :count, tags: :unknown_ok do |args|
     content = [:gold, :silver, :bronze].map { |level| level_count level }
     list_tag content, class: args[:class] || "horizontal"

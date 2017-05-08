@@ -35,6 +35,7 @@ describe Card::Set::Abstract::FilterFormHelper do
 
   describe "#multiselect_filter_type_based" do
     subject { card.format.multiselect_filter_type_based :wikirate_topic }
+
     it "renders multi select list" do
       is_expected.to have_tag(:div, with: { class: "wikirate_topic" }) do
         with_tag :label, text: "Topic"

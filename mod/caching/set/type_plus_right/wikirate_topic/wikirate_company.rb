@@ -1,19 +1,23 @@
-include Card::CachedCount
-include_set Abstract::WqlSearch
+# cache # of companies related to this topic (=left) via answers for metrics that
+# are tagged with this topic
+include_set Abstract::SearchCachedCount
+
+def virtual?
+  true
+end
 
 def topic_name
   cardname.left_name
 end
 
 # when metric value is edited
-recount_trigger Type::MetricValue do |changed_card|
+recount_trigger :type, :metric_value do |changed_card|
   next unless (metric_card = changed_card.metric_card)
   company_plus_topic_cards_for_metric metric_card
 end
 
 # ... when <metric>+topic is edited
-ensure_set { TypePlusRight::Metric::WikirateTopic }
-recount_trigger TypePlusRight::Metric::WikirateTopic do |changed_card|
+recount_trigger :type_plus_right, :metric, :wikirate_topic do |changed_card|
   metric_card = changed_card.left
   company_plus_topic_cards_for_metric metric_card
 end
@@ -22,7 +26,7 @@ def self.company_plus_topic_cards_for_metric metric_card
   topic_pointer = metric_card.fetch trait: :wikirate_topic
   return [] unless topic_pointer
   topic_names =
-    Card::CachedCount.pointer_card_changed_card_names(topic_pointer)
+    Abstract::CachedCount.pointer_card_changed_card_names(topic_pointer)
   topic_names.map do |topic_name|
     Card.fetch topic_name.to_name.trait(:wikirate_company)
   end
@@ -48,6 +52,12 @@ def wql_hash
   else
     { id: -1 } # HACK: ensure no results
   end
+end
+
+# turn query caching off because wql_hash varies and fetch_query
+# doesn't recognizes changes in wql_hash
+def fetch_query args={}
+  query(args.clone)
 end
 
 def ids_of_metrics_tagged_with_topic
@@ -108,7 +118,7 @@ end
 # # recount topics associated with a company whenever <Metric>+topic is edited
 # ensure_set { TypePlusRight::Metric::WikirateTopic }
 # cache_expire_trigger TypePlusRight::Metric::WikirateTopic do |changed_card|
-#   names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
+#   names = Abstract::CachedCount.pointer_card_changed_card_names(changed_card)
 #   next unless names
 #   names.map do |topic_name|
 #     Card.fetch topic_name.to_name.trait(:all_companies)
@@ -149,7 +159,7 @@ end
 # # recount topics associated with a company whenever <source>+topic is edited
 # ensure_set { TypePlusRight::Source::WikirateTopic }
 # cache_expire_trigger TypePlusRight::Source::WikirateTopic do |changed_card|
-#   names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
+#   names = Abstract::CachedCount.pointer_card_changed_card_names(changed_card)
 #   next unless names
 #   names.map do |topic_name|
 #     Card.fetch topic_name.to_name.trait(:all_companies)
@@ -159,7 +169,7 @@ end
 # # recount topics associated with a company whenever <note>+topic is edited
 # ensure_set { TypePlusRight::Claim::WikirateTopic }
 # cache_expire_trigger TypePlusRight::Claim::WikirateTopic do |changed_card|
-#   names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
+#   names = Abstract::CachedCount.pointer_card_changed_card_names(changed_card)
 #   next unless names
 #   names.map do |topic_name|
 #     Card.fetch topic_name.to_name.trait(:all_companies)

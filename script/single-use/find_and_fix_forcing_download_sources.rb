@@ -20,7 +20,10 @@ source_cards.each do |source_card|
 
     puts "#{source_card.name},#{original_url}"
     begin
-      uri = open(url, :allow_redirections => :safe,  "User-Agent" => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.65 Safari/537.36")
+      uri = open(url, :allow_redirections => :safe,
+                      "User-Agent" => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) "\
+                                      "AppleWebKit/537.36 (KHTML, like Gecko) "\
+                                      "Chrome/43.0.2357.65 Safari/537.36")
     rescue OpenURI::HTTPError => error
       puts error
       next
@@ -34,14 +37,20 @@ source_cards.each do |source_card|
     content_type = uri.meta["content-type"]
      if (!content_type.start_with?"text/html") && (!content_type.start_with?"image/")
        puts "\t#{url},#{content_type},#{uri.meta['content-disposition']},#{uri.path}"
-      filename = if (cd = uri.meta["content-disposition"]) && (matched = cd.match(/filename=(\"?)(.+)\1/))
+      filename = if (cd = uri.meta["content-disposition"]) &&
+                    (matched = cd.match(/filename=(\"?)(.+)\1/))
                    matched[2]
                  else
                    File.basename(URI.parse(url).path)
       end
 
-      file_uploaded = ActionDispatch::Http::UploadedFile.new(tempfile: uri, filename: filename)
-      result = source_card.update_attributes subcards: { "+File" => { file: file_uploaded, content: "CHOSEN", type_id: Card::FileID } }
+      file_uploaded = ActionDispatch::Http::UploadedFile.new(tempfile: uri,
+                                                             filename: filename)
+      result = source_card.update_attributes subcards: {
+                                               "+File" => { file: file_uploaded,
+                                                            content: "CHOSEN",
+                                                            type_id: Card::FileID }
+                                             }
       if !result
         puts "Fail : #{source_card.errors.messages}\t#{file_uploaded.size / 1024}"
       else

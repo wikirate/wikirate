@@ -68,6 +68,9 @@ Style/ExtraSpacing:
 Lint/AssignmentInCondition:
   Enabled: true
   AllowSafeAssignment: true
+Lint/AmbiguousRegexpLiteral:
+  Exclude:
+    - '**/*_spec.rb'
 Metrics/BlockLength:
   Enabled: true
   Exclude:
@@ -94,3 +97,10 @@ RSpec/NestedGroups:
 Metrics/LineLength:
   Enabled: true
   Max: 90
+RSpec/MultipleExpectations:
+  Enabled: false
+Style/Documentation:
+  Exclude:
+    - db/migrate_cards/*.rb
+Style/SymbolArray:
+  Enabled: false

@@ -42,7 +42,6 @@ def default_sort_option
 end
 
 format :html do
-
   def default_year_option
     { "Any Year" => "" }
   end
@@ -62,6 +61,10 @@ format :html do
 
   view :research_policy_formgroup, cache: :never do
     research_policy_select
+  end
+
+  view :wikirate_topic_formgroup, cache: :never do
+    autocomplete_filter :wikirate_topic
   end
 
   def type_options type_codename, order="asc"

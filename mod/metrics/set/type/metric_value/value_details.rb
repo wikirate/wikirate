@@ -7,10 +7,10 @@ format :html do
 
   def wrap_value_details
     output [
-        _optional_render(:credit_name),
-        yield,
-        wrap_with(:div, _render_comments, class: "comments-div")
-      ]
+      _optional_render(:credit_name),
+      yield,
+      wrap_with(:div, _render_comments, class: "comments-div")
+    ]
   end
 
   view :researched_value_details do
@@ -30,10 +30,16 @@ format :html do
         [
           _render_formula_table,
           wrap_with(:h5, "Formula"),
-          nest(card.metric_card.formula_card, view: :core)
+          nest(card.metric_card.formula_card,
+               view: :core, params: company_year,
+               items: { view: :fixed_value })
         ]
       end
     end
+  end
+
+  def company_year
+    "#{card.company}+#{card.year}"
   end
 
   view :wikirating_value_details do
@@ -42,7 +48,7 @@ format :html do
         [
           _render_wikirating_table,
           wrap_with(:div, class: "col-md-12") do
-            wrap_with(:div, class: "pull-right") { "= #{colorify card.value}"}
+            wrap_with(:div, class: "pull-right") { "= #{colorify card.value}" }
           end
         ]
       end
@@ -81,9 +87,8 @@ format :html do
     wql = input_card.metric_value_query
     wql[:left][:right] = card.company_name
     wql[:right] = card.year
-    if (value_card = Card.search(wql).first)
-      metric_row_values(input_card, value_card, weight)
-    end
+    return unless  (value_card = Card.search(wql).first)
+    metric_row_values(input_card, value_card, weight)
   end
 
   def metric_row_values input_card, value_card, weight
@@ -122,10 +127,8 @@ format :html do
   view :value_details_toggle do
     css_class = "fa fa-caret-right fa-lg margin-left-10 btn btn-default btn-sm"
     wrap_with(:i, "", class: css_class,
-                        data: { toggle: "collapse-next",
-                                parent: ".value",
-                                collapse: ".metric-value-details"
-                              }
-               )
+                      data: { toggle: "collapse-next",
+                              parent: ".value",
+                              collapse: ".metric-value-details" })
   end
 end

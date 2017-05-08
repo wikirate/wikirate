@@ -40,40 +40,6 @@ def wql_hash
   end
 end
 
-# the default search will take the first table in the join
-# I need to override to shift the sort table to the next one
-def search args={}
-  query = fetch_query args
-  shift_sort_table query
-  query.run
-end
-
-# HenryHack® below!
-# My guess is that sort queries like
-# sort: { right: "value", right_plus: "*cached count" }
-# are not supported by wql but the HenryHack® makes it work
-# -pk
-# evolved theory:
-# There are two statements in the sort hash.
-# wql uses the result of the first one for sorting, but we
-# want to sort by the result of the second statement
-# and this shift stuff ensures that
-# -pk
-def shift_sort_table query
-  if sort? && shift_sort_table?(query)
-    # sort table alias always stick to the first table,
-    # but I need the next table
-    sort = query.mods[:sort].scan(/c(\d+).db_content/).last.first.to_i + 1
-    query.mods[:sort] = "c#{sort}.db_content"
-  end
-end
-
-# return value based on the (unproven) theory above
-def shift_sort_table? query
-  return unless (sort_statement = query.statement[:sort])
-  sort_statement.is_a?(Hash) && sort_statement.size > 1
-end
-
 def add_sort_wql wql, sort_by
   wql.merge!(
     if sort_by == "name"
@@ -86,7 +52,8 @@ end
 
 def cached_count_sort_wql sort_by
   { sort: { right: (sort_by || default_sort_by_key),
-            right_plus: "*cached count" },
+            item: "cached_count",
+            return: "count" },
     sort_as: "integer",
     dir: "desc" }
 end
@@ -129,8 +96,8 @@ format :html do
               href: "#collapseFilter",
               class: "btn btn-default",
               data: { toggle: "collapse",
-                      collapseintext: "Hide Advanced",
-                      collapseouttext: "Show Advanced" }
+                      collapse_text_in: "Hide Advanced",
+                      collapse_text_out: "Show Advanced" }
   end
 
   def advanced_filter_formgroups
@@ -143,7 +110,7 @@ format :html do
   def wrap_as_collapse
     <<-HTML
      <div class="advanced-options">
-      <div id="collapseFilter" class="collapse #{'in' if filter_active?}">
+      <div id="collapseFilter" class="collapse #{'in' if filter_advanced_active?}">
         #{yield}
       </div>
     </div>

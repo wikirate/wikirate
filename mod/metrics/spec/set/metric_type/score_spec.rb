@@ -7,6 +7,7 @@
 describe Card::Set::MetricType::Score do
   describe "score card" do
     subject { Card[:score] }
+
     it { is_expected.to be_truthy }
     it "has codename" do
       expect(subject.codename).to eq "score"
@@ -20,60 +21,75 @@ describe Card::Set::MetricType::Score do
     @name = "Jedi+deadliness+Joe User"
   end
   let(:metric) { Card[@name] }
+
   describe "#metric_type" do
     subject { metric.metric_type }
+
     it { is_expected.to eq "Score" }
   end
   describe "#metric_type_codename" do
     subject { metric.metric_type_codename }
+
     it { is_expected.to eq :score }
   end
   describe "#metric_designer" do
     subject { metric.metric_designer }
+
     it { is_expected.to eq "Jedi" }
   end
   describe "#metric_designer_card" do
     subject { metric.metric_designer_card }
+
     it { is_expected.to eq Card["Jedi"] }
   end
   describe "#metric_title" do
     subject { metric.metric_title }
+
     it { is_expected.to eq "deadliness" }
   end
   describe "#metric_title_card" do
     subject { metric.metric_title_card }
+
     it { is_expected.to eq Card["deadliness"] }
   end
   describe "#question_card" do
     subject { metric.question_card.name }
+
     it { is_expected.to eq "Jedi+deadliness+Joe User+Question" }
   end
   describe "#value_type" do
     subject { metric.value_type }
+
     it { is_expected.to eq "Number" }
   end
   describe "#categorical?" do
     subject { metric.categorical? }
+
     it { is_expected.to be_falsey }
   end
   describe "#researched?" do
     subject { metric.researched? }
+
     it { is_expected.to be_falsey }
   end
   describe "#scored?" do
     subject { metric.scored? }
+
     it { is_expected.to be_truthy }
   end
   describe "#scorer" do
     subject { metric.scorer }
+
     it { is_expected.to eq "Joe User" }
   end
   describe "#scorer_card" do
     subject { metric.scorer_card }
+
     it { is_expected.to eq Card["Joe User"] }
   end
   describe "#basic_metric" do
     subject { metric.basic_metric }
+
     it { is_expected.to eq "Jedi+deadliness" }
   end
 
@@ -88,6 +104,7 @@ describe Card::Set::MetricType::Score do
   describe "score for numerical metric" do
     context "when created with formula" do
       let(:metric_card) { Card[@metric_name] }
+
       before do
         @metric_title = "researched number 2"
         @metric_name = "Joe User+#{@metric_title}"

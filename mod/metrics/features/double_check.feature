@@ -2,6 +2,13 @@
 Feature: Double check
   As signed in user I can double check and request checks for metric values
 
+  Scenario: Can't check if not signed in
+    When I go to card "Jedi+disturbances in the Force+Death Star+2000"
+    And I hover over "Double check"
+    And I click on "Yes, I checked the value"
+    And I wait for ajax response
+    Then I should see "please sign in"
+
   Scenario: Check and undo
     When I am signed in as Joe User
     And I go to card "Jedi+disturbances in the Force+Death Star+2000"
@@ -27,7 +34,8 @@ Feature: Double check
     And I click on the "remove" icon
     And I wait for ajax response
     And I hover over "Joe User"
-    Then I should see "Double check"
+    And I wait a sec
+    Then I should see "Double check" or "Yes, I checked"
 
   Scenario: Request check, check and undo
     When I am signed in as Joe User
@@ -75,10 +83,3 @@ Feature: Double check
     When I am signed in as Joe Admin
     And I go to card "Jedi+disturbances in the Force+Death Star+2000"
     Then I should see "Double check"
-
-  Scenario: Can't check if not signed in
-    When I go to card "Jedi+disturbances in the Force+Death Star+2000"
-    And I hover over "Double check"
-    And I click on "Yes, I checked the value"
-    And I wait for ajax response
-    Then I should see "please sign in"

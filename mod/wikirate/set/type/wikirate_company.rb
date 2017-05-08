@@ -6,6 +6,7 @@ card_accessor :contribution_count, type: :number, default: "0"
 card_accessor :direct_contribution_count, type: :number, default: "0"
 card_accessor :aliases, type: :pointer
 card_accessor :all_metric_values
+card_accessor :image
 
 view :missing do |args|
   _render_link args
@@ -34,11 +35,11 @@ end
 # end
 
 view :metric_count do
-  content_tag(:div, nest(card, trait: :metric, view: :count), class: "number")
+  wrap_with(:div, nest(card, trait: :metric, view: :count), class: "number")
 end
 
 view :topic_count do
-  content_tag(:div, nest(card, trait: :topic, view: :count), class: "number")
+  wrap_with(:div, nest(card, trait: :topic, view: :count), class: "number")
 end
 
 view :listing_compact do
@@ -53,8 +54,6 @@ end
 
 format :csv do
   view :core do
-    Answer.where(company_id: card.id).map do |a|
-      a.csv_line
-    end.join
+    Answer.where(company_id: card.id).map(&:csv_line).join
   end
 end

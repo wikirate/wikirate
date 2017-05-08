@@ -36,6 +36,7 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
     subject do
       answers all_metric_values.item_cards
     end
+
     it "returns the latest values in default order" do
       is_expected.to eq(latest_answers)
     end

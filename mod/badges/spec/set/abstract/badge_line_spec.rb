@@ -8,6 +8,7 @@ describe Card::Set::Abstract::BadgeLine do
   describe "#initialize" do
     context "levels defined explicitly" do
       let(:set) { described_class.new researcher: [3, :silver] }
+
       it "initializes correcly" do
         expect(set.threshold(:researcher)).to eq 3
         expect(set.level(:researcher)).to eq :silver
@@ -17,6 +18,7 @@ describe Card::Set::Abstract::BadgeLine do
 
     context "not all levels defined" do
       let(:set) { described_class.new researcher: 3 }
+
       it "initializes correcly" do
         expect(set.threshold(:researcher)).to eq 3
         expect(set.level(:researcher)).to eq :bronze
@@ -39,6 +41,7 @@ describe Card::Set::Abstract::BadgeLine do
   describe "#earns_badge" do
     context "threshold reached" do
       subject { set.earns_badge(5) }
+
       it "returns earned badge name" do
         is_expected.to eq "Research Master"
       end
@@ -46,6 +49,7 @@ describe Card::Set::Abstract::BadgeLine do
 
     context "threshold not reached" do
       subject { set.earns_badge(4) }
+
       it "returns earned badge name" do
         is_expected.to eq nil
       end
@@ -54,6 +58,7 @@ describe Card::Set::Abstract::BadgeLine do
 
   describe "#all_earned_badges" do
     subject { set.all_earned_badges(4) }
+
     it "returns all earned badges" do
       is_expected.to contain_exactly "Researcher", "Research Pro"
     end

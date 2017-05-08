@@ -52,9 +52,8 @@ format :html do
   def variable_row item_name, index, args
     item_card = Card[item_name]
     example_value =
-      if (company = item_card.try(:random_valued_company_card))
-        metric_plus_company = Card["#{item_card.name}+#{company.name}"]
-        subformat(metric_plus_company)._render_all_values(args)
+      if (value = item_card.try(:random_value_card))
+        nest value, view: :concise, hide: :year
       else
         ""
       end
@@ -65,7 +64,7 @@ format :html do
     ]
   end
 
-  view :edit do |args|
+  view :edit do |_args|
     frame do
       render_haml metric_list: metric_list do
         <<-HAML
@@ -102,7 +101,7 @@ format :html do
     items = Card.search(wql)
     params[:formula_metric_key] = card.cardname.left_key
     wikirate_table_with_details :metric, items, [:add_to_formula_item_view],
-                                td: {classes: ["score", "details"]}
+                                td: { classes: %w(score details) }
   end
 
   view :missing do |args|

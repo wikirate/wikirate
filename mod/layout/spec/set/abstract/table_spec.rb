@@ -6,14 +6,14 @@ describe Card::Set::Abstract::Table do
   describe "#wikirate_table" do
     it "renders correctly" do
       table =
-          subject.wikirate_table :top_class,
-                                 [Card["A"], Card["r1"]],
-                                 [:name, :type],
-                                 header: ["header1", "header2"],
-                                 table: { class: "table_class" },
-                                 tr: { class: "tr_class" },
-                                 td: { class: "td_all",
-                                       classes: ["td_1", "td_2"] }
+        subject.wikirate_table :top_class,
+                               [Card["A"], Card["r1"]],
+                               [:name, :type],
+                               header: %w(header1 header2),
+                               table: { class: "table_class" },
+                               tr: { class: "tr_class" },
+                               td: { class: "td_all",
+                                     classes: %w(td_1 td_2) }
 
       expect(table).to have_tag :table,
                                 with: { class: "top_class table_class" } do

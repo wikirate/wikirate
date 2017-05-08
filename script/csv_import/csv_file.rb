@@ -1,35 +1,46 @@
-class CSVFile
-  @columns= []
+require_relative "csv_row"
 
-  def initialize path
-    raise StandardError, "file does not exist: #{path}" unless File.exists? path
-    @rows = CSV.read path
+# Use CSVFile to describe the structure of a csv file and import its content
+class CSVFile
+  def initialize path, row_class
+    raise StandardError, "file does not exist: #{path}" unless File.exist? path
+    raise ArgumentError, "#{row_class} must inherit from CSVRow" unless row_class < CSVRow
+    @row_class = row_class
+    @rows = CSV.read path, col_sep: ";"
     @headers = @rows.shift.map { |h| h.downcase.tr(" ", "_") }
     map_headers
   end
 
-  class << self
-    attr_reader :columns
-  end
-
-  def import!
-    each_row do |row|
-      process_row row
+  # @param error_policy [:fail, :skip, :report]
+  def import error_policy: :fail
+    each_row do |row, index|
+      process_row row, index, error_policy
     end
   end
 
   private
 
+  def process_row row, index, error_policy=:fail
+    csv_row = @row_class.new(row, index)
+    csv_row.execute_import
+  rescue StandardError => e
+    case error_policy
+    when :fail then raise e
+    when :report then puts csv_row.errors.join("\n")
+    when :skip then nil
+    end
+  end
+
   def each_row
-    @rows.each do |row|
+    @rows.each.with_index do |row, i|
       next if row.compact.empty?
-      yield row_to_hash(row)
+      yield row_to_hash(row), i
     end
   end
 
   def map_headers
     @col_map = {}
-    self.class.columns.each do |key|
+    @row_class.columns.each do |key|
       index = @headers.index key.to_s
       raise StandardError, "column #{key} is missing" unless index
       @col_map[key] = index
@@ -42,5 +53,3 @@ class CSVFile
     end
   end
 end
-
-

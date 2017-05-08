@@ -31,7 +31,7 @@ class Card
       restrict_to_ids :metric_id, metric_ids
     end
 
-    alias_method :wikirate_topic_query, :topic_query
+    alias wikirate_topic_query topic_query
 
     def project_query value
       metric_ids =

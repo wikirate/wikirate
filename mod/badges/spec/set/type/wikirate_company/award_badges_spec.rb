@@ -25,6 +25,4 @@ describe Card::Set::Type::WikirateCompany::AwardBadges do
       it_behaves_like "award badges", 3, "Companies (in the) House"
     end
   end
-
-
 end

@@ -1,7 +1,7 @@
 include Card::Set::Abstract::Calculation
 
 format :html do
-  def default_title_args args
+  def default_title_args _args
     voo.title ||= "Log in"
   end
 

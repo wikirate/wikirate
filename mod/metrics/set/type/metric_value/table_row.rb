@@ -10,6 +10,17 @@ format :html do
     nest card.metric_card, view: :thumbnail, hide: [:vote, :thumbnail_subtitle]
   end
 
+  view :metric_thumbnail_minimal do
+    nest card.metric_card, view: :thumbnail_minimal,
+                           hide: [:thumbnail_subtitle, :vote]
+  end
+
+  view :company_thumbnail_minimal do
+    nest card.company_card, view: :thumbnail_minimal,
+                            hide: [:thumbnail_subtitle, :vote]
+    #_render_company_thumbnail
+  end
+
   view :company_thumbnail do
     company_image = card.company_card.fetch(trait: :image)
     title = card.company_card.name
@@ -80,15 +91,25 @@ format :html do
                            show: :add_answer_button
   end
 
-  def metric_values
+  def company_answers
+    metric_values hide: [:metric_info, :metric_buttons]
+  end
+
+  def metric_answers
+    metric_values hide: [:compact_header]
+  end
+
+  def metric_values args={}
     wrap_with :div, class: "row clearfix wiki" do
-      nest(card.left, view: :core,
-                      show: [:chart, :add_answer_redirect])
+      nest(card.record_card, args.merge(view: :core,
+                                        show: [:chart, :add_answer_redirect]))
     end
   end
 
   # used in metric value list on a metric page
   view :company_details_sidebar do
+    voo.hide! :metric_info
+    voo.hide! :metric_buttons
     details_sidebar :company
   end
 
@@ -155,7 +176,7 @@ format :html do
             #{send "#{type}_details_sidebar_header"}
           </div>
           <hr>
-          #{metric_values}
+          #{send "#{type}_answers"}
           <br>
           #{yield if block_given?}
           #{discussion}

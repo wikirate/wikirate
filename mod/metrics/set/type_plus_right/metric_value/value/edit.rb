@@ -27,7 +27,6 @@ format :html do
     end
   end
 
-
   def part_view
     if multi_select?
       if options_count > 10
@@ -74,7 +73,7 @@ format :html do
 
   def metric_card
     @metric_card = (metric_name = metric_name_from_params || card.metric) &&
-      Card[metric_name]
+                   Card[metric_name]
   end
 
   def free_text_metric?
@@ -96,6 +95,4 @@ format :html do
   def multi_categorical_metric?
     metric_card && metric_card.multi_categorical?
   end
-
-
 end

@@ -15,9 +15,9 @@ def filter cache
   cache = all_without_values cache if Env.params["value"] == "none"
   cache.select do |key, values|
     pass_filter?(key, values) &&
-        (!values.is_a?(Array) ||
-      (values.select! { |v| pass_single_value_filter?(key, v)} == nil ||
-          values.present?))
+      (!values.is_a?(Array) ||
+        (values.select! { |v| pass_single_value_filter?(key, v) }.nil? ||
+         values.present?))
   end
 end
 
@@ -46,7 +46,7 @@ def filter_by_value values
   end
 end
 
-def filter_by_year key, value #values
+def filter_by_year _key, _value # values
   values = Array.wrap(values)
   keep_if :year do |filter|
     values.any? { |v| v["year"] == filter }

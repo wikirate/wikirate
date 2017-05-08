@@ -1,17 +1,17 @@
 describe Card::Set::TypePlusRight::Metric::ValueType do
   def type_change_for_value value, new_type, subject
-    subcards = get_subcards_of_metric_value metric, company, value, nil, nil
+    subcards = subcards_of_metric_value metric, company, value, nil, nil
     Card.create! type_id: Card::MetricValueID, subcards: subcards
     subject.update_attributes content: new_type
   end
 
   shared_examples_for "changing type to numeric" do |new_type|
+    subject { metric.value_type_card }
+
     let(:metric) { sample_metric }
     let(:company) { sample_company }
 
     before { login_as "joe_user" }
-
-    subject { metric.value_type_card }
 
     context "some values do not fit the numeric type" do
       it "blocks type changing" do
@@ -50,12 +50,12 @@ describe Card::Set::TypePlusRight::Metric::ValueType do
     end
 
     describe "to Category" do
+      subject { metric.value_type_card }
+
       let(:metric) { sample_metric :number }
       let(:company) { sample_company }
 
       before { login_as "joe_user" }
-      subject { metric.value_type_card }
-
       context "some values are not in the options" do
         it "blocks type changing" do
           subject.update_attributes content:  "Category"
