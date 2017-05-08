@@ -217,7 +217,7 @@ describe Card::Set::Type::Source do
     before do
       login_as "joe_user"
       @url = "http://www.google.com/?q=wikirate"
-      @source_page = create_page @url, {}
+      @source_page = create_page url: @url
     end
 
     it "renders metric_import_link" do

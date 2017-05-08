@@ -5,14 +5,14 @@ RSpec.describe Card::Set::SourceType::WikirateLink do
             "pdf_open_parameters.pdf".freeze
   HTML_URL = "http://www.loremipsum.net".freeze
   it "imports pdf link" do
-    page = create_link_source PDF_URL
+    page = create_page url: PDF_URL, no_upload: false
     file = page.fetch(trait: :file).file
     expect(file).to be_truthy
     expect(file.size).to eq 131_821
   end
 
   it "imports html link as pdf" do
-    page = create_link_source HTML_URL
+    page = create_page url: HTML_URL, no_upload: false
     file = page.fetch(trait: :file).file
     expect(file).to be_truthy
     expect(file.size).to be > 100

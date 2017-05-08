@@ -4,6 +4,13 @@ card_accessor :metric, type: :pointer
 card_accessor :year, type: :pointer
 card_accessor :source_type, type: :pointer, default: "[[Link]]"
 
+add_attributes :no_upload
+attr_accessor :no_upload
+
+def no_upload?
+  @no_upload
+end
+
 require "link_thumbnailer"
 
 def not_bot?
