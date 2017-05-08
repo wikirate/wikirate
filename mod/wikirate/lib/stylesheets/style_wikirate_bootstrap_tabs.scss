@@ -91,7 +91,7 @@
 
 .contribution-report-header {
     .nav-tabs{
-      padding-bottom: 2px; 
+      padding-bottom: 2px;
     }
     .nav-tabs>li>a{
       margin: 0px;
@@ -205,10 +205,15 @@ li.contribution-report-title-box > a {
       padding: 90px 60px 90px 40px;
       text-align: center;
       background: none;
+      -webkit-transition: all 0.3s ease-out;
+      -moz-transition: all 0.3s ease-out;
+      -ms-transition: all 0.3s ease-out;
+      -o-transition: all 0.3s ease-out;
+      transition: all 0.3s ease-out;
       &:hover, &:focus,&:active,&.active {
         border-left: 1px solid $border-color;
         border-bottom: 1px solid $border-color;
-        @include box-shadow(-4px, 0px, 20px, rgba(0,0,0,0.12));
+        @include box-shadow(-11px, 0px, 20px, rgba(0,0,0,0.12));
         background: none;
         position: relative;
         z-index: 2;
@@ -220,7 +225,7 @@ li.contribution-report-title-box > a {
     }
     &.active > a {
         border-right: 3px solid $border-color;
-        @include box-shadow(-4px, 0px, 20px, rgba(0,0,0,0.12));
+        @include box-shadow(-11px, 0px, 20px, rgba(0,0,0,0.12));
         position: relative;
         z-index: 2;
     }
