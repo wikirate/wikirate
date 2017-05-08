@@ -1,11 +1,12 @@
 # lookup table for metric answers
+
 class Answer < ActiveRecord::Base
   include LookupTable
+  extend AnswerClassMethods
 
   include Filter
   include Validations
   include EntryFetch
-  extend ClassMethods
 
   validates :answer_id, numericality: { only_integer: true }, presence: true
   validate :must_be_an_answer, :card_must_exist, :metric_must_exit
@@ -25,7 +26,7 @@ class Answer < ActiveRecord::Base
   end
 
   def latest_year_in_db
-      Answer.where(record_id: fetch_record_id).maximum(:year)
+    Answer.where(record_id: fetch_record_id).maximum(:year)
   end
 
   def latest_to_false

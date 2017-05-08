@@ -18,7 +18,7 @@ describe Card::Set::Right::BrowseCompanyFilter do
 
     context "name argument" do
       before { filter_args name: "Apple" }
-      it { is_expected.to eq wql(name: %w(match Apple)) }
+      it { is_expected.to eq wql(name: %w[match Apple]) }
     end
 
     context "topic argument" do
@@ -55,7 +55,7 @@ describe Card::Set::Right::BrowseCompanyFilter do
       end
       it "joins filter conditions correctly" do
         is_expected.to eq wql(
-          name: %w(match Apple),
+          name: %w[match Apple],
           found_by: "Animal Rights+Company",
           left_plus: ["Global Reporting Initiative+Sector Industry",
                       { right_plus: ["2015",

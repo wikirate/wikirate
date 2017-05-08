@@ -8,5 +8,5 @@ recount_trigger :type, :metric_value, on: [:create, :delete] do |changed_card|
 end
 
 def search_anchor
-  { metric_id: left.id,}
+  { metric_id: left.id }
 end

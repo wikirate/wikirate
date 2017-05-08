@@ -1,4 +1,4 @@
-require 'ruby-jmeter'
+require "ruby-jmeter"
 
 namespace :wikirate do
   namespace :flood do
@@ -9,13 +9,10 @@ namespace :wikirate do
       test do
         defaults domain: uri.host, duration: duration, rampup: rampup
         threads count: count do
-          instance_exec &block
+          instance_exec(&block)
         end
-      end.flood(ENV["FLOOD_API_TOKEN"],
-                grid: ENV["FLOOD_GRID"],
-                name: name)
+      end.flood(ENV["FLOOD_API_TOKEN"], grid: ENV["FLOOD_GRID"], name: name)
     end
-
 
     desc "stress test of main pages "
     task :main_pages do
@@ -23,7 +20,8 @@ namespace :wikirate do
         visit name: "Homepage", url: "/"
         visit name: "Company page (Apple)", url: "/Apple_Inc"
         visit name: "Topic page (Environment)", url: "/Environment"
-        visit name: "Metric page (RDR Total Score)", url: "/Ranking_Digital_Rights+RDR_Total_Score"
+        visit name: "Metric page (RDR Total Score)",
+              url: "/Ranking_Digital_Rights+RDR_Total_Score"
       end
     end
 
@@ -46,8 +44,8 @@ namespace :wikirate do
                  "card[subcards][*signin+*email][content]" => "flooder@mailinator.com",
                  "card[subcards][*signin+*email][type_id]" => "52",
                  "card[subcards][*signin+*password][content]" => "flooder_pass",
-                 "card[subcards][*signin+*password][type_id]" => "52"#,
-                 #success: "REDIRECT: *previous"
+                 "card[subcards][*signin+*password][type_id]" => "52",
+                 success: "REDIRECT: *previous"
                }
       end
     end

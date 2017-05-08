@@ -18,7 +18,7 @@ describe Card::Set::Right::BrowseNoteFilter do
 
     context "name argument" do
       before { filter_args name: "claim" }
-      it { is_expected.to eq wql(name: %w(match claim)) }
+      it { is_expected.to eq wql(name: %w[match claim]) }
     end
 
     context "company argument" do
@@ -63,7 +63,7 @@ describe Card::Set::Right::BrowseNoteFilter do
       end
       it "joins filter conditions correctly" do
         is_expected.to eq wql(
-          name: %w(match CDP),
+          name: %w[match CDP],
           right_plus: [{ id: Card::WikirateTopicID },
                        { refer_to: "myTopic" }],
           and: {

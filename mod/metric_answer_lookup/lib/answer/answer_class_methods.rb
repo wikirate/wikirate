@@ -1,11 +1,10 @@
 class Answer
-  module ClassMethods
-    SEARCH_OPTS = { sort: [:sort_by, :sort_order, :cast] ,
+  module AnswerClassMethods
+    SEARCH_OPTS = { sort: [:sort_by, :sort_order, :cast],
                     page: [:limit, :offset],
                     return: [:return],
                     uniq: [:uniq],
-                    where: [:where]
-                   }.freeze
+                    where: [:where] }.freeze
 
     def create card
       ma = Answer.new
@@ -48,7 +47,9 @@ class Answer
     def search opts={}
       args = split_search_args opts
       where(*args[:where]).uniq_select(args[:uniq])
-        .sort(args[:sort]).page(args[:page]).return(args[:return])
+                          .sort(args[:sort])
+                          .page(args[:page])
+                          .return(args[:return])
     end
 
     def split_search_args args

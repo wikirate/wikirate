@@ -1,4 +1,5 @@
 class Answer
+  # Methods to fetch the data needed to initialize a new answer lookup table entry.
   module EntryFetch
     def fetch_answer_id
       card.id

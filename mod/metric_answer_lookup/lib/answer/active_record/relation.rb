@@ -112,7 +112,7 @@ class Answer
 
     def group_necessary? args
       (!args[:return] && args[:uniq] != :answer_id) ||
-      (args[:return] != :count && args[:uniq] != args[:return])
+        (args[:return] != :count && args[:uniq] != args[:return])
     end
   end
 end

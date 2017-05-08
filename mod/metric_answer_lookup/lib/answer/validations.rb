@@ -1,4 +1,5 @@
 class Answer
+  # Methods to validate a new lookup entry
   module Validations
     def card_must_exist
       return if card

@@ -2,7 +2,7 @@
 include_set Abstract::AnswerTableCachedCount, target_type: :metric
 
 def search_anchor
- { company_id: left.id }
+  { company_id: left.id }
 end
 
 # recount metrics related to company whenever a value is created or deleted
