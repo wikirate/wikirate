@@ -30,6 +30,7 @@ def self.pointer_card_changed_card_names card
     (card.item_names - old_card.item_names)
 end
 
+
 module ClassMethods
   def recount_trigger *set_parts_of_changed_card
     args =

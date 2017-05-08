@@ -6,9 +6,19 @@
 # :metric, :company, :record, or :designer. :answer works too although it has
 # no name column.
 
+include_set Abstract::WqlSearch
+
 def self.included host_class
-  host_class.include_set Abstract::SearchCachedCount
+  host_class.include_set Abstract::CachedCount
   host_class
+end
+
+def virtual?
+  true
+end
+
+def type_id
+  SearchTypeID
 end
 
 # override this to restrict the search result

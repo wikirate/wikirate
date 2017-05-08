@@ -37,7 +37,7 @@ gem "fog-aws"
 gem "newrelic_rpm"
 # gem "ruby-prof"
 gem "airbrussh", require: false
-# gem "spring"
+gem "spring"
 
 group :live do
   gem "dalli"
@@ -76,6 +76,8 @@ group :test do
   gem "turn", "~>0.8.3", require: false
 
   gem "minitest"
+
+  gem "ruby-jmeter"
 end
 
 group :development do

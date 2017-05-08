@@ -10,7 +10,7 @@ RSpec.describe Answer, "Answer.search" do
   end
 
   it "can sort by year" do
-    expect(search(title_name: "darkness rating", return: :recrd, sort_by: :year))
+    expect(search(title_name: "darkness rating", return: :record, sort_by: :year))
       .to eq ["Jedi+darkness rating+Death Star",
               "Jedi+darkness rating+Slate Rock and Gravel Company"]
   end
@@ -34,19 +34,17 @@ RSpec.describe Answer, "Answer.search" do
   end
 
   it "can count" do
-    result =
-    expect(search year: "2000", return: :count).to eq 12
+    expect(search year: "2000", return: :count).to eq 9
   end
 
   it "can uniquify and return count" do
     result = search year: "2000", uniq: :company_id, return: :count
-    expect(result).to eq 8
+    expect(result).to eq 4
   end
 
   it "can uniquify and return different column" do
     result = search year: "2000", uniq: :company_id, return: :company_name
-    expect(result).to eq ["Apple_Inc", "Samsung", "Sony_Corporation",
-                          "Death_Star", "Monster_Inc", "Slate_Rock_and_Gravel_Company",
-                          "Los_Pollos_Hermanos", "SPECTRE"]
+    expect(result).to eq ["Death_Star", "Monster_Inc",
+                                  "Slate_Rock_and_Gravel_Company", "SPECTRE"]
   end
 end
