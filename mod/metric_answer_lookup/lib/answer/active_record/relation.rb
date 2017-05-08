@@ -1,5 +1,5 @@
 class Answer
-  class ActiveRecord_Relation
+  class ActiveRecord::Relation
     NAME_COLUMNS = [:metric, :company, :designer, :title, :record].freeze
 
     def answer_cards

@@ -50,7 +50,7 @@ describe Card::Metric do
 
     it "small API test" do
       Card::Auth.as_bot do
-        source = create_page_with_sourcebox url: "http://example.com"
+        source = create_page url: "http://example.com"
         described_class.create name: "MD+MT", formula: "1", random_source: true do
           SPECTRE 2000 => 50, 2001 => 100
           Death_Star 2000 => { value: 50, source: "[[#{source.name}]]" }
