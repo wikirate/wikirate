@@ -37,7 +37,9 @@ gem "fog-aws"
 gem "newrelic_rpm"
 # gem "ruby-prof"
 gem "airbrussh", require: false
+
 gem "spring"
+gem 'spring-commands-rspec'
 
 group :live do
   gem "dalli"
