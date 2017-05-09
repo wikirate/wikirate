@@ -107,6 +107,7 @@ def url?
 end
 
 def wikirate_url?
+  return false unless Card::Env[:protocol] && Card::Env[:host]
   url.start_with? "#{Card::Env[:protocol]}#{Card::Env[:host]}"
 end
 

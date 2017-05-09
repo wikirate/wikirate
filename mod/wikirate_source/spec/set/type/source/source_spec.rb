@@ -159,7 +159,7 @@ describe Card::Set::Type::Source do
           new_sourcepage = new_source source_url(sample_company.cardname.url_key)
           expect(new_sourcepage).not_to be_valid
           expect(new_sourcepage.errors).to have_key :source
-          expected = "can only be source type or valid URL."
+          expected = "must be a valid URL or a WikiRate source"
           expect(new_sourcepage.errors[:source]).to include(expected)
         end
       end
@@ -188,7 +188,7 @@ describe Card::Set::Type::Source do
           expect(return_source_card).not_to be_valid
           expect(return_source_card.errors).to have_key :source
           expect(return_source_card.errors[:source])
-            .to include("can only be source type or valid URL.")
+            .to include("must be a valid URL or a WikiRate source")
         end
       end
       context "while link is a non existing card" do
