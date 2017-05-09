@@ -1,7 +1,7 @@
+# require "ruby-jmeter"
+
 namespace :wikirate do
   namespace :flood do
-    require "ruby-jmeter"
-
     def jmeter_flood name, count: 100, host: "http://staging.wikirate.org", duration: 300,
                      rampup: 10,
                      &block
