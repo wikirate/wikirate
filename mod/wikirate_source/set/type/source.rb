@@ -4,11 +4,12 @@ card_accessor :metric, type: :pointer
 card_accessor :year, type: :pointer
 card_accessor :source_type, type: :pointer, default: "[[Link]]"
 
-add_attributes :no_upload
-attr_accessor :no_upload
+add_attributes :import
+attr_accessor :import
 
-def no_upload?
-  @no_upload
+def import?
+  # default (=nil) means true
+  @import != false
 end
 
 require "link_thumbnailer"
