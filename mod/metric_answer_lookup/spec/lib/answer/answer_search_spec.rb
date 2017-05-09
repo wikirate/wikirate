@@ -31,6 +31,20 @@ RSpec.describe Answer, "Answer.search" do
               ["Los_Pollos_Hermanos", 1977, "40"],
               ["Slate_Rock_and_Gravel_Company", 1977, "20"],
               ["Samsung", 1977, "Unknown"]]
-    # [answer.company, answer.year, answer.value]
+  end
+
+  it "can count" do
+    expect(search(year: "2000", return: :count)).to eq 9
+  end
+
+  it "can uniquify and return count" do
+    result = search year: "2000", uniq: :company_id, return: :count
+    expect(result).to eq 4
+  end
+
+  it "can uniquify and return different column" do
+    result = search year: "2000", uniq: :company_id, return: :company_name
+    expect(result).to eq %w[Death_Star Monster_Inc
+                            Slate_Rock_and_Gravel_Company SPECTRE]
   end
 end

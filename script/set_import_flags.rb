@@ -51,12 +51,12 @@ class ImportFlagUpdate
 
     def import_act_ids
       Card::Act.where("card_id IN (?)", import_card_ids)
-        .pluck(:id)
+               .pluck(:id)
     end
 
     def action_relation
       Card::Action.joins(JOIN_SQL)
-        .where(WHERE_SQL, import_act_ids, Card::MetricValueID)
+                  .where(WHERE_SQL, import_act_ids, Card::MetricValueID)
     end
   end
 end

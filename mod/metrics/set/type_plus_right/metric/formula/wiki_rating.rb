@@ -4,7 +4,7 @@ format :html do
       card.translation_table.map do |metric, weight|
         [subformat(metric)._render_thumbnail_plain(args), weight + "%"]
       end
-    table table_content, header: %w(Metric Weight)
+    table table_content, header: %w[Metric Weight]
   end
 
   def editor_table_content args
@@ -25,7 +25,7 @@ format :html do
       end
     table_content.push ["", sum]
     output [
-      table_editor(table_content, %w(Metric Weight)),
+      table_editor(table_content, %w[Metric Weight]),
       add_metric_button
     ]
   end

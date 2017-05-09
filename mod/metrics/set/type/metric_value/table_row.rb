@@ -18,7 +18,7 @@ format :html do
   view :company_thumbnail_minimal do
     nest card.company_card, view: :thumbnail_minimal,
                             hide: [:thumbnail_subtitle, :vote]
-    #_render_company_thumbnail
+    # _render_company_thumbnail
   end
 
   view :company_thumbnail do
