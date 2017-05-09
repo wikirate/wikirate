@@ -55,3 +55,4 @@ class Answer < ActiveRecord::Base
 end
 
 require_relative "answer/active_record/relation"
+Answer::ActiveRecord_Relation.send :include, Answer::ActiveRecordExtension
