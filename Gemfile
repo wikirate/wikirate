@@ -38,8 +38,8 @@ gem "newrelic_rpm"
 # gem "ruby-prof"
 gem "airbrussh", require: false
 
-gem "spring"
-gem 'spring-commands-rspec'
+# gem "spring"
+# gem 'spring-commands-rspec'
 
 group :live do
   gem "dalli"
