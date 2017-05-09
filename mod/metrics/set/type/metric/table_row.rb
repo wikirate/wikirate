@@ -27,7 +27,6 @@ format :html do
     ]
   end
 
-
   def designer_image_card
     card.metric_designer_card.field(:image)
   end

@@ -12,7 +12,7 @@ def default_sort_by_key
 end
 
 def filter_keys
-  %w(metric designer wikirate_topic project year)
+  %w[metric designer wikirate_topic project year]
 end
 
 def filter_class
@@ -110,7 +110,7 @@ format :html do
   def wrap_as_collapse
     <<-HTML
      <div class="advanced-options">
-      <div id="collapseFilter" class="collapse #{'in' if filter_active?}">
+      <div id="collapseFilter" class="collapse #{'in' if filter_advanced_active?}">
         #{yield}
       </div>
     </div>

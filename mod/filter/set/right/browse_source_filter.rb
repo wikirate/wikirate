@@ -1,7 +1,7 @@
 include_set Abstract::BrowseNotesAndSourcesFilterForm
 
 def filter_keys
-  %w(wikirate_company wikirate_topic)
+  %w[wikirate_company wikirate_topic]
 end
 
 def target_type_id

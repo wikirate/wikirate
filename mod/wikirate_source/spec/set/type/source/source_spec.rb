@@ -157,10 +157,9 @@ describe Card::Set::Type::Source do
       context "a non source link" do
         it "return the source card" do
           new_sourcepage = new_source source_url(sample_company.cardname.url_key)
-          expect(new_sourcepage).not_to be_valid
-          expect(new_sourcepage.errors).to have_key :source
-          expected = "can only be source type or valid URL."
-          expect(new_sourcepage.errors[:source]).to include(expected)
+          expect(new_sourcepage)
+            .to be_invalid
+            .because_of(source: include("must be a valid URL or a WikiRate source"))
         end
       end
       context "a non exisiting card link" do
@@ -188,7 +187,7 @@ describe Card::Set::Type::Source do
           expect(return_source_card).not_to be_valid
           expect(return_source_card.errors).to have_key :source
           expect(return_source_card.errors[:source])
-            .to include("can only be source type or valid URL.")
+            .to include("must be a valid URL or a WikiRate source")
         end
       end
       context "while link is a non existing card" do
@@ -217,7 +216,7 @@ describe Card::Set::Type::Source do
     before do
       login_as "joe_user"
       @url = "http://www.google.com/?q=wikirate"
-      @source_page = create_page @url, {}
+      @source_page = create_page url: @url
     end
 
     it "renders metric_import_link" do

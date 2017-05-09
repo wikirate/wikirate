@@ -12,6 +12,7 @@ RSpec.describe "metric import" do
     let :metric do
       Card["Higher Education Statistics Agency (HESA)+Total income (£)"]
     end
+
     it "creates metric" do
       expect(metric).to be_instance_of Card
     end
@@ -53,6 +54,7 @@ RSpec.describe "metric import" do
     let :metric do
       Card["Fairtrade Foundation+Fairtrade Status"]
     end
+
     it "creates metric" do
       expect(metric).to be_instance_of Card
     end
@@ -79,5 +81,4 @@ RSpec.describe "metric import" do
         .to eq ["Fairtrade", "supply chain"].to_pointer_content
     end
   end
-
 end

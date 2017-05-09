@@ -219,6 +219,10 @@ table.wikirate-table, .table.wikirate-table {
   }
   thead tr > th {
     vertical-align: middle;
+    &:first-child {
+      width: 40%;
+    }
+    width: 20%;
   }
 }
 

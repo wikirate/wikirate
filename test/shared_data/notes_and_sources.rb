@@ -5,6 +5,7 @@ class SharedData
       Timecop.freeze(Time.now + 1.day) do
         Card.create!(
           type_id: Card::SourceID,
+          import: false,
           subcards: {
             "+Link" => { content: "http://www.wikiwand.com/en/Space_opera" },
             "+company" => { content: "Death Star",
@@ -20,6 +21,7 @@ class SharedData
       Timecop.freeze(Time.now + 2.days) do
         Card.create!(
           type_id: Card::SourceID,
+          import: false,
           subcards: {
             "+Link" => { content: "http://www.wikiwand.com/en/Opera" },
             "+title" => { content: "Opera" },
@@ -30,6 +32,7 @@ class SharedData
 
       source1 = Card.create!(
         type_id: Card::SourceID,
+        import: false,
         subcards: {
           "+Link" =>        { content: "http://www.wikiwand.com/en/Star_Wars" },
           "+company" =>     { content: "Death Star", type_id: Card::PointerID },
@@ -41,6 +44,7 @@ class SharedData
 
       source2 = Card.create!(
         type_id: Card::SourceID,
+        import: false,
         subcards: {
           "+Link" => { content: "http://www.wikiwand.com/en/Apple" },
           "+company" => { content: "", type_id: Card::PointerID },
