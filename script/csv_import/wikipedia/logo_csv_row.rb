@@ -9,8 +9,8 @@ class LogoCSVRow < WikipediaCSVRow
   end
 
   def import
-    puts wikirate_name
     return if Card[wikirate_id, :image]
+    puts wikirate_name
     ensure_card [wikirate_id, :image], remote_image_url: logo,
                                        type_id: Card::ImageID
   end
