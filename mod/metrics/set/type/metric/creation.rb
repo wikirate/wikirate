@@ -184,7 +184,7 @@ format :html do
 
   def new_metric_tab_buttons
     wrap_with :ul, class: "nav nav-pills grey-nav-tab", role: "tablist" do
-      %w(Researched Formula Score WikiRating).map.with_index do |metric_type, i|
+      %w[Researched Formula Score WikiRating].map.with_index do |metric_type, i|
         tab_radio_button metric_type, i.zero?
       end
     end
@@ -192,7 +192,7 @@ format :html do
 
   def new_metric_tab_content
     wrap_with :div, class: "tab-content" do
-      %w(Researched Formula Score WikiRating).map.with_index do |metric_type, i|
+      %w[Researched Formula Score WikiRating].map.with_index do |metric_type, i|
         new_metric_tab_pane metric_type, i.zero?
       end
     end

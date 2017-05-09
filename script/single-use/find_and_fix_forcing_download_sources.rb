@@ -47,10 +47,10 @@ source_cards.each do |source_card|
       file_uploaded = ActionDispatch::Http::UploadedFile.new(tempfile: uri,
                                                              filename: filename)
       result = source_card.update_attributes subcards: {
-                                               "+File" => { file: file_uploaded,
-                                                            content: "CHOSEN",
-                                                            type_id: Card::FileID }
-                                             }
+        "+File" => { file: file_uploaded,
+                     content: "CHOSEN",
+                     type_id: Card::FileID }
+      }
       if !result
         puts "Fail : #{source_card.errors.messages}\t#{file_uploaded.size / 1024}"
       else

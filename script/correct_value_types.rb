@@ -11,7 +11,7 @@ def change_value_type wrong_name, opts={}
   value_type_cards(wrong_name).each do |card|
     metric_card = card.left
     puts "changing #{metric_card.name} to '#{correct_name}'"
-    if opts[:to].in? ["Number", "Money"]
+    if opts[:to].in? %w[Number Money]
       sanitize_number_values metric_card
       Card::Cache.reset_all
     end
@@ -39,8 +39,8 @@ end
 
 def correct_zeros number
   number.gsub(/^0?(\d*)(?:\.(\d+))?\s*([KMBTP])/) do
-    zeros = "0" * zero_cnt($3, $2)
-    "#{$1}#{$2}#{zeros}"
+    zeros = "0" * zero_cnt(Regexp.last_match(3), Regexp.last_match(2))
+    "#{Regexp.last_match(1)}#{Regexp.last_match(2)}#{zeros}"
   end
 end
 
@@ -60,7 +60,7 @@ def change_value_type_to_category wrong_name
     puts "  with options #{options.join ','}"
 
     metric_card.value_options_card
-      .update_attributes! content: options.to_pointer_content
+               .update_attributes! content: options.to_pointer_content
     Card::Cache.reset_all
   end
 end

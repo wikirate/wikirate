@@ -17,7 +17,6 @@ file_name = "data/certh.json"
 text = File.open(file_name).read
 
 begin
-
   snippets_names = []
 
   json_array = JSON.parse(text)

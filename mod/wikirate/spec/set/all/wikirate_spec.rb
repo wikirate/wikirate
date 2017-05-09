@@ -60,7 +60,7 @@ describe Card::Set::All::Wikirate do
       # create 2 claims
       # create an card with claim cite contents
       # check the number and the content
-      sourcepage = create_page_with_sourcebox nil, {}, "false"
+      sourcepage = create_page box: false
       Card.create! type_id: Card::ClaimID, name: "test1",
                    subcards: {
                      "+source" => {
@@ -242,7 +242,7 @@ describe Card::Set::All::Wikirate do
       source_showcast =
         Card.fetch "joe_user+showcast sources",
                    new: { type_id: Card::PointerID }
-      source_card = create_page_with_sourcebox "http://example.com", {}, "true"
+      source_card = create_page url: "http://example.com", box: true
       source_showcast << source_card
       source_showcast.save!
 

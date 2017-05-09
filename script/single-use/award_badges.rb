@@ -1,7 +1,7 @@
 require File.expand_path("../../../config/environment", __FILE__)
 
 class AwardBadges
-  #disable_ddl_transaction!
+  # disable_ddl_transaction!
   class << self
     def up
       Card::Auth.as_bot do
@@ -56,8 +56,8 @@ class AwardBadges
         project: :discuss, wikirate_company: :logo }.each do |type, actions|
         Array(actions).each do |action|
           badge_names = Card::Set::Abstract::BadgeSquad
-                          .for_type(type)
-                          .all_earned_badges action, nil, nil, user_id
+                        .for_type(type)
+                        .all_earned_badges action, nil, nil, user_id
           award_badges! user_id, type, badge_names
         end
       end
@@ -66,8 +66,8 @@ class AwardBadges
     def award_affinity_answer_badges affinity_type
       return award_project_affinity_answer_badges if affinity_type == :project
       badge_line = Card::Set::Type::MetricValue::BadgeSquad
-                     .badge_line(:create, affinity_type)
-      badge_levels = [:bronze, :silver, :gold].map do |level, h|
+                   .badge_line(:create, affinity_type)
+      badge_levels = [:bronze, :silver, :gold].map do |level, _h|
         [badge_line.badge(level).threshold, badge_line.badge(level).name]
       end
       min_thresh = badge_line.threshold(:bronze)
@@ -77,7 +77,6 @@ class AwardBadges
           query("SELECT #{affinity_type}_name, COUNT(*) FROM answers "\
                 "WHERE creator_id = #{user_id} "\
                 "GROUP BY #{affinity_type}_id HAVING COUNT(*) >= #{min_thresh}")
-
 
         badge_levels.each do |threshold, name|
           badge_names = affinity_names.map do |an, count|
@@ -100,8 +99,8 @@ class AwardBadges
       Card.search(type_id: Card::ProjectID).each do |project|
         next if project.company_ids.empty? || project.metric_ids.empty?
         query("SELECT creator_id, COUNT(*) FROM answers "\
-      "WHERE company_id IN (#{project.company_ids.join(",")}) AND"\
-      "       metric_id IN (#{project.metric_ids.join(",")})"\
+      "WHERE company_id IN (#{project.company_ids.join(',')}) AND"\
+      "       metric_id IN (#{project.metric_ids.join(',')})"\
       "GROUP BY creator_id").each do |user_id, count|
           next unless user_id
           award_affinity_answer_badges_if_earned! count, user_id,
@@ -114,7 +113,7 @@ class AwardBadges
                                                 affinity_type, affinity_name
       hierarchy = Card::Set::Abstract::BadgeSquad.for_type(:metric_value)
       badge_names = hierarchy.all_earned_badges(:create, affinity_type, count)
-                      .map do |badge_name|
+                             .map do |badge_name|
         "#{affinity_name}+#{badge_name}+#{affinity_type} badge"
       end
       award_badges! user_id, :metric_value, badge_names
@@ -122,7 +121,7 @@ class AwardBadges
 
     def award_badges_if_earned! count, user_id, type_code, affinity=nil
       badge_names = Card::Set::Abstract::BadgeSquad
-                      .for_type(type_code).all_earned_badges :create, affinity, count
+                    .for_type(type_code).all_earned_badges :create, affinity, count
       award_badges! user_id, type_code, badge_names
     end
 

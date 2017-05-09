@@ -28,7 +28,7 @@ CSV.foreach(metric_mapping_file_path, encoding: "windows-1251:utf-8", headers: t
   end
 end
 
-headers = %w(metric  company_name  year  value source).compact
+headers = %w[metric company_name year value source].compact
 result = {}
 
 Card::Auth.current_id = Card.fetch_id "Richard Mills"

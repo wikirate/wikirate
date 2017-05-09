@@ -57,8 +57,7 @@ end
 
 format :html do
   view :topic_list_with_metric_counts do
-
-     wrap do
+    wrap do
       card.topics_by_metric_count.map do |topic_card, metric_count|
         wrap_with :div, class: "topic-item contribution-item" do
           [wrap_with(:div, topic_detail(topic_card), class: "header"),

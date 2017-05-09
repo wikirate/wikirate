@@ -192,7 +192,7 @@ end
 def valid_value_data? args
   collect_import_errors(args[:row]) do
     check_if_filled_in :metric, args, "metric name"
-    %w(company year value).each { |field| check_if_filled_in field, args }
+    %w[company year value].each { |field| check_if_filled_in field, args }
     { metric: MetricID, year: YearID }.each_pair do |type, type_id|
       check_existence_and_type args[type], type_id, type
     end
@@ -437,7 +437,7 @@ format :html do
   end
 
   def prepare_import_checkbox row_hash
-    checked = %w(partial exact alias).include? row_hash[:status]
+    checked = %w[partial exact alias].include? row_hash[:status]
     key_hash = row_hash.deep_dup
     key_hash[:company] =
       if row_hash[:status] == "none"
