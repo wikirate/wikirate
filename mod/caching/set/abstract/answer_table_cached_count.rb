@@ -1,4 +1,4 @@
-# This set makes its card members virtual search card that uses
+# This set makes its card members virtual search cards that uses
 # the answer lookup table to get the search result and caches the search count
 # in the cache count table.
 # You have to include it with a :target_type option.
@@ -27,8 +27,8 @@ def search_anchor
 end
 
 def search args={}
-  Answer.search search_anchor.merge(uniq: target_id,
-                                    return: return_arg(args[:return]))
+  return [] unless (anchor = search_anchor)
+  Answer.search anchor.merge(uniq: target_id, return: return_arg(args[:return]))
 end
 
 def target_id
