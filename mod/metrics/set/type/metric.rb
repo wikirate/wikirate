@@ -232,6 +232,10 @@ format :html do
   end
 
   view :legend do
+    wrap_with :span, legend_text, class: "answer-unit"
+  end
+
+  def legend_text
     # depends on the type
     if card.unit.present?
       card.unit
