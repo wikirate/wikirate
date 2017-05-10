@@ -52,8 +52,9 @@ format :html do
   end
 
   def editor_with_unit
-    text_field(:content, class: "card-content short-input") + " " +
-      nest(card.metric_card, view: :legend)
+    unit_text = wrap_with :span, nest(card.metric_card, view: :legend),
+                          class: "metric-unit"
+    text_field(:content, class: "card-content short-input") + " " + unit_text
   end
 
   def unknown_field_card
