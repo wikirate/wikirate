@@ -87,6 +87,10 @@ class Card
       @values << value
     end
 
+    def limit
+      @paging_args[:limit]
+    end
+
     private
 
     def missing_answer_query

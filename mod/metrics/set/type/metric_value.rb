@@ -33,5 +33,8 @@ def name_part_from_field part
 end
 
 def answer
-  @answer ||= Answer.find_by_answer_id id
+  @answer ||=
+    Answer.find_by_answer_id(id) ||
+      (Answer.refresh(id) && Answer.find_by_answer_id(id)) ||
+      Answer.new
 end
