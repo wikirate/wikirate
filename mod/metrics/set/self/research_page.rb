@@ -36,7 +36,7 @@ format :html do
 
   def metrics
     if project
-      project.field(:metric).item_names
+      project.metric_card.item_names
     else
       Array(params[:metric] || card.metric_card.item_names)
     end
