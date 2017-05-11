@@ -31,7 +31,7 @@ class Answer
     # @return answer card objects
     def fetch where_args, sort_args={}, page_args={}
       where_opts = Array.wrap(where_args)
-      where(*where_opts).sort(sort_args).page(page_args).answer_cards
+      where(*where_opts).sort(sort_args).paging(page_args).answer_cards
     end
 
     # @param opts [Hash] search options
@@ -48,7 +48,7 @@ class Answer
       args = split_search_args opts
       where(*args[:where]).uniq_select(args[:uniq])
                           .sort(args[:sort])
-                          .page(args[:page])
+                          .paging(args[:page])
                           .return(args[:return])
     end
 

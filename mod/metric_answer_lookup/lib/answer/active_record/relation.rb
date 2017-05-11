@@ -1,5 +1,5 @@
 class Answer
-  class ActiveRecord::Relation
+  module ActiveRecordExtension
     NAME_COLUMNS = [:metric, :company, :designer, :title, :record].freeze
 
     def answer_cards
@@ -29,7 +29,7 @@ class Answer
       end
     end
 
-    def page args
+    def paging args
       return self unless valid_page_args? args
       limit(args[:limit]).offset(args[:offset])
     end
