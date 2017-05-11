@@ -15,6 +15,10 @@ format :html do
     # return "deleteme"
     wrap_with :div, class: "profile-data" do
       [
+        field_nest("+about me", view: :titled, title: "About me", hide: :menu),
+        content_tag(:hr),
+        field_nest(:discussion, view: :titled, title: "Discussion", show: :comment_box),
+        content_tag(:hr),
         field_nest(:activity, view: :titled, title: "Activity", hide: :menu)
         # TODO: restore following soon
         # field_nest(:follow, view: :profile,

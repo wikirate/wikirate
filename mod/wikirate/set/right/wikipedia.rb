@@ -42,7 +42,7 @@ format :html do
     true
   end
 
-  view :core do
+  view :core, async: true do
     card.wikipedia_extract
   end
 end

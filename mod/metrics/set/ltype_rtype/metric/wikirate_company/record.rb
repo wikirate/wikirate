@@ -1,6 +1,6 @@
 def all_answers
   @result ||=
-    Answer.fetch({ record_id: id }, sort_by: :year, sort_order: :desc)
+    Answer.search(record_id: id, sort_by: :year, sort_order: :desc)
 end
 
 format :html do
@@ -46,9 +46,14 @@ format :html do
     wrap_with :div do
       [
         add_answer_button,
-        nest(metric_card, view: :compact_buttons)
+        more_buttons
       ]
     end
+  end
+
+  def more_buttons
+    return "" unless voo.show? :metric_buttons
+    nest metric_card, view: :compact_buttons
   end
 
   view :metric_info do
@@ -64,7 +69,7 @@ format :html do
       next "" unless all_answers.present?
       wikirate_table :plain, all_answers,
                      [:plain_year, answer_view],
-                     header: %w(Year Answer),
+                     header: %w[Year Answer],
                      td: { classes: ["text-center"] }
     end
   end

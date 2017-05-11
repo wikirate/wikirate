@@ -110,7 +110,7 @@ format :html do
   def wrap_as_collapse
     <<-HTML
      <div class="advanced-options">
-      <div id="collapseFilter" class="collapse #{'in' if filter_active?}">
+      <div id="collapseFilter" class="collapse #{'in' if filter_advanced_active?}">
         #{yield}
       </div>
     </div>

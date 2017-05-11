@@ -101,8 +101,46 @@
   margin-bottom: 0;
 }
 
+.homepage-company-item,
+.homepage-topic-item {
+    max-width: 520px;
+    @include box-shadow(0,2px,32px,rgba(0,0,0,0.14));
+    border: 1px solid $bright-text-color;
+    padding-bottom: 40px;
+    background-color: #fff;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    .header-row {
+        font-size: 10px;
+        color: #bebebe;
+        text-align: center;
+        margin-top: 10px;
+        .header-header {
+            float: left;
+            margin-left: 80px;
+        }
+        .data-header {
+            width: 146px;
+            float: right;
+            margin-right: 15px;
+        }
+    }
+    .topic-header {
+      padding: 0px;
+    }
+}
+
 .homepage-company-item .data-count > div:hover {
   //background-color: $gray-background-color;
+}
+
+.homepage-company-item .metric-info .row .row-data {
+    margin: 0px;
+    padding-top: 5px;
+}
+
+#homepage_introductions ul.slick-dots {
+    bottom: 35px;
 }
 
 /*----------- Content Wrapper --------------*/

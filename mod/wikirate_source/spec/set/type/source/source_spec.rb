@@ -7,24 +7,19 @@ describe Card::Set::Type::Source do
     @wikirate_link_prefix = "#{Card::Env[:protocol]}#{Card::Env[:host]}/"
   end
 
+  def source_url url
+    "#{Card::Env[:protocol]}#{Card::Env[:host]}/#{url}"
+  end
+
   describe "while creating a Source" do
     before do
       login_as "joe_user"
     end
 
     it "adds title and description" do
-      url = "http://www.google.com/?q=wikirate"
+      url = "http://www.google.com/?q=wikiratetest"
       Card::Env.params[:sourcebox] = "true"
-      sourcepage = Card.create! type_id: Card::SourceID,
-                                subcards: {
-                                  "+Link" => { content: url },
-                                  "+File" => { type_id: Card::FileID },
-                                  "+Text" => {
-                                    type_id: Card::BasicID,
-                                    content: ""
-                                  }
-                                }
-      #      sourcepage = create_link_source url
+      sourcepage = create_link_source url
       preview = LinkThumbnailer.generate(url)
 
       expect(Card.fetch("#{sourcepage.name}+title").content)
@@ -116,7 +111,7 @@ describe Card::Set::Type::Source do
           expect(sourcepage.fetch(trait: :file)).not_to be_nil
           # expect(sourcepage.fetch(trait: :wikirate_link)).to be_nil
         end
-        it "hanldes file behind cloudfront" do
+        it "handles file behind cloudfront" do
           pdf_url = "http://www.angloamerican.com/~/media/Files/A/Anglo-"\
                     "American-PLC-V2/documents/aa-sdreport-2015.pdf"
           sourcepage = create_link_source pdf_url
@@ -124,7 +119,6 @@ describe Card::Set::Type::Source do
           expect(sourcepage.fetch(trait: :file)).to be_nil
           link_card = sourcepage.fetch(trait: :wikirate_link)
           expect(link_card).not_to be_nil
-          expect(link_card.content).to eq(pdf_url)
         end
         context "file is bigger than '*upload max'" do
           it "won't create file source" do
@@ -142,41 +136,27 @@ describe Card::Set::Type::Source do
     end
     describe "while creating a source with a wikirate link" do
       context "a source link" do
-        before do
-          Card::Env.params[:sourcebox] = "true"
-          url = "http://www.google.com/?q=wikirate"
-          @sourcepage = create_link_source url
-          @url_key = @sourcepage.cardname.url_key
-        end
         it "return the source card" do
-          new_source_url = "#{@wikirate_link_prefix}#{@url_key}"
-          new_sourcepage = Card.create type_id: Card::SourceID,
-                                       subcards: {
-                                         "+Link" => {
-                                           content: new_source_url
-                                         }
-                                       }
-          expect(@sourcepage.name).to eq(new_sourcepage.name)
+          url = source_url(sample_source.cardname.url_key)
+          new_source = create_link_source url
+          expect(new_source.name).to eq sample_source.name
         end
-        it "hanldes extra space in the url" do
-          new_source_url = "#{@wikirate_link_prefix}#{@url_key} "
-          new_sourcepage = Card.create type_id: Card::SourceID,
-                                       subcards: {
-                                         "+Link" => {
-                                           content: new_source_url
-                                         }
-                                       }
-          expect(@sourcepage.name).to eq(new_sourcepage.name)
+
+        it "handles extra space in the url" do
+          url = "#{source_url(sample_source.cardname.url_key)} "
+          new_source = create_link_source url
+          expect(new_source.name).to eq sample_source.name
         end
       end
+
+      def new_source url
+        Card::Env.params[:sourcebox] = "true"
+        Card.new source_args(link: url)
+      end
+
       context "a non source link" do
         it "return the source card" do
-          Card::Env.params[:sourcebox] = "true"
-          company = sample_company
-          url_key = company.cardname.url_key
-
-          new_source_url = "#{@wikirate_link_prefix}#{url_key}"
-          new_sourcepage = Card.new source_args(link: new_source_url)
+          new_sourcepage = new_source source_url(sample_company.cardname.url_key)
           expect(new_sourcepage).not_to be_valid
           expect(new_sourcepage.errors).to have_key :source
           expected = "can only be source type or valid URL."
@@ -185,11 +165,7 @@ describe Card::Set::Type::Source do
       end
       context "a non exisiting card link" do
         it "return errors" do
-          Card::Env.params[:sourcebox] = "true"
-
-          new_source_url = "#{@wikirate_link_prefix}/non_exisiting_card_1"
-
-          new_sourcepage = Card.new source_args(link: new_source_url)
+          new_sourcepage = new_source source_url("non_exisiting_card_1")
           expect(new_sourcepage).not_to be_valid
           expect(new_sourcepage.errors).to have_key :source
           expect(new_sourcepage.errors[:source]).to include("does not exist.")

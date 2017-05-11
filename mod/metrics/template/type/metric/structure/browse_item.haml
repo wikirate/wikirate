@@ -1,8 +1,8 @@
 .browse-metric-item
   .metric-info
     .row.header
-      = field_nest :vote_count
-      .name
+      = vote_count
+      .name{:title => card.metric_title}
         = link_to_card card, card.metric_title
     .row
       .row-icon

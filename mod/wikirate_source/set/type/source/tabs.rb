@@ -7,9 +7,10 @@ format :html do
       download_tab: { html: download_tab_link }
     }
   end
+  view :source_details, template: :haml
   view :details_tab do
     tab_wrap do
-      render_core structure: "source_structure", show: "header"
+      _render_source_details
     end
   end
   view :metrics_tab do

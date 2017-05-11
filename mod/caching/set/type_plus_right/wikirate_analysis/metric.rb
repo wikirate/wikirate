@@ -8,7 +8,7 @@ def company_card
 end
 
 def topic_card
-  left.right
+  @topic_card ||= left.right
 end
 
 def search args={}
@@ -27,6 +27,7 @@ def search args={}
 end
 
 def unique_metric_ids
+  return [] unless topic_card.type_id == WikirateTopicID
   metric_ids = topic_card.fetch(trait: :metric, new: {}).metric_ids
   Answer.where(company_id: company_card.id, metric_id: metric_ids)
         .pluck(:metric_id).uniq

@@ -63,6 +63,10 @@ format :html do
     research_policy_select
   end
 
+  view :wikirate_topic_formgroup, cache: :never do
+    autocomplete_filter :wikirate_topic
+  end
+
   def type_options type_codename, order="asc"
     if type_codename == :wikirate_topic
       Card.search referred_to_by: {

@@ -13,7 +13,7 @@ describe Card::Set::Abstract::BrowseFilterForm do
         with_tag :div, with: { id: "collapseFilter", class: "collapse" } do
           with_tag :label, text: "Metric"
           with_tag :div, with: { class: "editor" } do
-            with_tag :select, with: { class: "pointer-select", id: "filter_metric" }
+            with_tag :input, with: { class: "metric_autocomplete", id: "filter_metric" }
           end
           with_tag :label, text: "Project"
           with_tag :div, with: { class: "editor" } do
@@ -21,7 +21,7 @@ describe Card::Set::Abstract::BrowseFilterForm do
           end
           with_tag :label, text: "Company"
           with_tag :div, with: { class: "editor" } do
-            with_tag :select, with: { class: "pointer-select",
+            with_tag :input, with: { class: "wikirate_company_autocomplete",
                                       id: "filter_wikirate_company" }
           end
         end
