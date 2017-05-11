@@ -104,3 +104,11 @@ Style/Documentation:
     - db/migrate_cards/*.rb
 Style/SymbolArray:
   Enabled: false
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: ()
+    '%i': '[]'
+    '%I': '[]'
+    '%r': '{}'
+    '%w': '[]'
+    '%W': '[]'

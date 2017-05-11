@@ -54,7 +54,7 @@ describe Card::Set::MetricType::Researched do
   describe "#value_options" do
     subject { metric.value_options }
 
-    it { is_expected.to eq %w(yes no) }
+    it { is_expected.to eq %w[yes no] }
   end
 
   describe "#categorical?" do
@@ -79,9 +79,9 @@ describe Card::Set::MetricType::Researched do
     subject { metric.analysis_names.sort }
 
     it "finds related Analysis" do
-      is_expected.to eq ["SPECTRE+Force", "Monster Inc+Force",
-                         "Slate Rock and Gravel Company+Force",
-                         "Death Star+Force"].sort
+      is_expected.to eq ["SPECTRE+Force", "Monster_Inc+Force",
+                         "Slate_Rock_and_Gravel_Company+Force",
+                         "Death_Star+Force"].sort
     end
   end
 
@@ -91,7 +91,7 @@ describe Card::Set::MetricType::Researched do
     end
 
     it do
-      is_expected.to eq [%w(Death_Star 1977 200)]
+      is_expected.to eq [%w[Death_Star 1977 200]]
     end
   end
 

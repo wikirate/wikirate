@@ -113,7 +113,7 @@ end
 
 def valid_value_data? args
   collect_import_errors(args[:row]) do
-    %w(company year report_type source).each do |field|
+    %w[company year report_type source].each do |field|
       check_if_filled_in field, args
     end
   end

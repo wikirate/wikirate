@@ -11,7 +11,7 @@ file_name = "script/metric/data/certh.json"
 text = File.open(file_name).read
 
 def company_skip_list
-  %w(BROO Off ACE SAS WPS)
+  %w[BROO Off ACE SAS WPS]
 end
 
 def snippet_information json_obj

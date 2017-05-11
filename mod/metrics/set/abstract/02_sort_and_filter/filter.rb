@@ -105,7 +105,7 @@ def second_by_unit unit
 end
 
 def params_keys
-  %w(name industry project)
+  %w[name industry project]
 end
 
 def keep_if field, args={}
