@@ -115,5 +115,3 @@ class Answer
     end
   end
 end
-
-require_relative "active_record/relation"
