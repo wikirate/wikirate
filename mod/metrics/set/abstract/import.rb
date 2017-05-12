@@ -240,10 +240,11 @@ def ensure_company_exists company, args
 end
 
 def csv_rows
-  # transcode to utf8 before CSV reads it.
-  # some users upload files in non utf8 encoding.
-  # The microsoft excel may not save a CSV file in utf8 encoding
-  CSV.parse(file.read, encoding: "windows-1251:utf-8")
+  CSV.parse file.read, encoding: "utf-8"
+rescue ArgumentError
+  # if parsing with utf-8 encoding fails, assume it's iso-8859-1 encoding
+  # and convert to utf-8
+  CSV.parse file.read, encoding: "iso-8859-1:utf-8"
 end
 
 def clean_html? # return always true ;)
