@@ -1,0 +1,8 @@
+
+					<div class="tab-pane active" id="company-metrics">
+					   <p>
+				    </p>
+						  {{#_left+company sidebar }}
+						  {{_l|company_tab}}
+					</div>
+				

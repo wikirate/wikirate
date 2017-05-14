@@ -1,81 +1,123 @@
 # -*- encoding : utf-8 -*-
 
-describe Card::Set::Type::Pointer::Export do
-  before do
-    login_as 'joe_user'
-    Card::Env::params["export"] = "true"
-  end
+RSpec.describe Card::Set::Type::Pointer::Export do
   describe "rendering json in export mode" do
-    context "pointer card" do
-      it "should contain cards in the pointer card and its children" do
-        small_blind = Card.create! :name => "Elbert Hubbard", :type_id => Card::BasicID, :content => "Do not take life too seriously."
-        small_blind_1 = Card.create! :name => "Elbert Hubbard+hello world", :type_id => Card::BasicID, :content => "You will never get out of it alive."
-        pointer_card = Card.create! :name=>"normal pointer",:type_id=>Card::PointerID, :content =>"[[#{small_blind.name}]]\r\n[[#{small_blind_1.name}]]"
-
-        big_blind = Card.create! :name => "special means special", :type_id => Card::PointerID, :content=>"[[#{pointer_card.name}]]"
-        array = big_blind.format(:json).render_core
-
-        expect(array).to include(:name=>"normal pointer",:type=>"Pointer",:content=>"[[Elbert Hubbard]]\n[[Elbert Hubbard+hello world]]")
-        expect(array).to include(:name=>"Elbert Hubbard",:type=>"Basic",:content=>"Do not take life too seriously.")
-        expect(array).to include(:name=>"Elbert Hubbard+hello world",:type=>"Basic",:content=>"You will never get out of it alive.")
-      end
-      it "handles multi levels pointer cards" do
-        small_blind = Card.create! :name => "Elbert Hubbard", :type_id => Card::BasicID, :content => "Do not take life too seriously."
-        inner_pointer_card = Card.create! :name =>"inner pointer",:type_id=>Card::PointerID, :content =>"[[#{small_blind.name}]]"
-        small_blind_1 = Card.create! :name => "Elbert Hubbard+hello world", :type_id => Card::BasicID, :content => "You will never get out of it alive."
-
-        pointer_card = Card.create! :name=>"normal pointer",:type_id=>Card::PointerID, :content =>"[[#{inner_pointer_card.name}]]\r\n[[#{small_blind_1.name}]]"
-
-        big_blind = Card.create! :name => "special means special", :type_id => Card::PointerID, :content=>"[[#{pointer_card.name}]]"
-        array = big_blind.format(:json).render_core
-
-
-        expect(array).to include(:name=>"normal pointer",:type=>"Pointer",:content=>"[[inner pointer]]\n[[Elbert Hubbard+hello world]]")
-        expect(array).to include(:name=>"inner pointer",:type=>"Pointer",:content=>"[[Elbert Hubbard]]")
-        expect(array).to include(:name=>"Elbert Hubbard",:type=>"Basic",:content=>"Do not take life too seriously.")
-        expect(array).to include(:name=>"Elbert Hubbard+hello world",:type=>"Basic",:content=>"You will never get out of it alive.")
-
-      end
-      it "stops while the depth count > 10" do
-        pointer_card = Card.create! :name=>"normal pointer",:type_id=>Card::PointerID, :content =>"[[normal pointer]]"
-        big_blind = Card.create! :name => "special means special", :type_id => Card::PointerID, :content=>"[[#{pointer_card.name}]]"
-        array = big_blind.format(:json).render_core
-
-        expect(array).to include(:name=>"normal pointer",:type=>"Pointer",:content=>"[[normal pointer]]")
- 
-      end
+    let(:elbert) do
+      create "Elbert Hubbard",
+             content: "Do not take life too seriously."
     end
-    context "Skin card" do
-      it "should contain cards in the pointer card and its children" do
-        Card::Auth.as_bot do
-          small_blind = Card.create! :name => "Elbert Hubbard", :type_id => Card::BasicID, :content => "The best thing about a boolean is even if you are wrong, you are only off by a bit"
+    let(:elbert_punchline) do
+      create "Elbert Hubbard+punchline",
+             content: "You will never get out of it alive."
+    end
+    let(:elbert_quote) do
+      create "Elbert Hubbard+quote",
+             content: "Procrastination is the art of keeping up with yesterday."
+    end
+    let(:elbert_container) do
+      create "elbert container",
+             type_id: Card::PointerID,
+             content: "[[#{elbert.name}]]"
+    end
 
-          pointer_card = Card.create! :name=>"normal pointer",:type_id=>Card::SkinID, :content =>"[[#{small_blind.name}]]"
-
-          big_blind = Card.create! :name => "special means special", :type_id => Card::PointerID, :content=>"[[#{pointer_card.name}]]"
-          array = big_blind.format(:json).render_core
-
-          expect(array).to include(:name=>"normal pointer",:type=>"Skin",:content=>"[[Elbert Hubbard]]")
-          expect(array).to include(:name=>"Elbert Hubbard",:type=>"Basic",:content=>"The best thing about a boolean is even if you are wrong, you are only off by a bit")
+    def json_export args={}
+      @json ||= begin
+        args[:name] ||= "normal pointer"
+        args[:type] ||= :pointer
+        if args[:content].is_a?(Array)
+          args[:content] = args[:content].to_pointer_content
         end
-
+        Card::Auth.as_bot do
+          collection_card = Card.create! args
+          card = Card.create! name: "export card",
+                              type_id: Card::PointerID,
+                              content: "[[#{collection_card.name}]]"
+          card.format(:json).render_export
+        end
       end
     end
-    context "search card" do
-      it "should contain cards from search card and its children" do
-        small_blind = Card.create! :name => "Elbert Hubbard", :type_id => Card::BasicID, :content => "Do not take life too seriously."
-        small_blind_1 = Card.create! :name => "Elbert Hubbard+hello world", :type_id => Card::BasicID, :content => "You will never get out of it alive."
-        small_blind_2 = Card.create! :name => "Elbert Hubbard+quote", :type_id => Card::BasicID, :content => "Procrastination is the art of keeping up with yesterday."
-        search_card = Card.create! :name=>"search card",:type_id=>Card::SearchTypeID, :content =>%{{"left":"Elbert Hubbard"}}
 
-        big_blind = Card.create! :name => "special means special", :type_id => Card::PointerID, :content=>"[[#{search_card.name}]]"
-        array = big_blind.format(:json).render_core
-        
-        expect(array).to include(:name=>"search card",:type=>"Search",:content=>%{{"left":"Elbert Hubbard"}})
-        expect(array).to include(:name=>"Elbert Hubbard+hello world",:type=>"Basic",:content=>"You will never get out of it alive.")
-        expect(array).to include(:name=>"Elbert Hubbard+quote",:type=>"Basic",:content=>"Procrastination is the art of keeping up with yesterday.")
+    context "pointer card" do
+      it "contains cards in the pointer card and its children" do
+        json_export type: :pointer, content: [elbert.name, elbert_punchline.name]
+
+        expect(json_export)
+          .to include(
+            { name: "normal pointer",
+              type: "Pointer",
+              content: "[[Elbert Hubbard]]\n[[Elbert Hubbard+punchline]]" },
+            { name: "Elbert Hubbard",
+              type: "Basic",
+              content: "Do not take life too seriously." },
+            name: "Elbert Hubbard+punchline",
+            type: "Basic",
+            content: "You will never get out of it alive."
+          )
+      end
+
+      it "handles multi level pointer cards" do
+        json_export type: :pointer,
+                    content: [elbert_container.name, elbert_punchline.name]
+
+        expect(json_export)
+          .to include(
+            { name: "normal pointer",
+              type: "Pointer",
+              content: "[[elbert container]]\n[[Elbert Hubbard+punchline]]" },
+            { name: "elbert container",
+              type: "Pointer",
+              content: "[[Elbert Hubbard]]" },
+            { name: "Elbert Hubbard",
+              type: "Basic",
+              content: "Do not take life too seriously." },
+            name: "Elbert Hubbard+punchline",
+            type: "Basic",
+            content: "You will never get out of it alive."
+          )
+      end
+
+      it "stops if the depth count > 10" do
+        json_export type: :pointer, name: "normal pointer", content: ["normal pointer"]
+        expect(json_export).to include(name: "normal pointer", type: "Pointer",
+                                       content: "[[normal pointer]]")
+      end
+    end
+
+    context "Skin card" do
+      it "contains cards in the pointer card and its children" do
+        expect(json_export(type: :skin, content: [elbert.name]))
+          .to include(
+            { name: "normal pointer",
+              type: "Skin",
+              content: "[[Elbert Hubbard]]" },
+            name: "Elbert Hubbard",
+            type: "Basic",
+            content: "Do not take life too seriously."
+          )
+      end
+    end
+
+    context "search card" do
+      it "contains cards from search card and its children" do
+        elbert
+        elbert_punchline
+        elbert_quote
+
+        json_export(name: "search card", type: :search_type,
+                    content: %({"left":"Elbert Hubbard"}))
+        expect(json_export)
+          .to include(
+            { name: "search card",
+              type: "Search",
+              content: %({"left":"Elbert Hubbard"}) },
+            { name: "Elbert Hubbard+punchline",
+              type: "Basic",
+              content: "You will never get out of it alive." },
+            name: "Elbert Hubbard+quote",
+            type: "Basic",
+            content: "Procrastination is the art of keeping up with yesterday."
+          )
       end
     end
   end
 end
-

@@ -1,0 +1,51 @@
+<div class="">
+<div class="container homepage-company-item">
+  <div class="row text-center company-header">
+   <div class="col-md-4 col-xs-4 nopadding">
+           <a class="inherit-anchor" href="{{_|url}}"><div class="row img-thumbnail homepage-logo-container">{{_+image}}</div></a>
+   </div>
+  
+   <div class="col-md-8 col-xs-8">
+        <div class="col-md-12 col-xs-12 text-left">
+          <a class="inherit-anchor" href="{{_|url}}">
+            <h3>{{_|title}}</h3>
+          </a>
+          <br>
+        </div>
+        <div class="row contribution-details dark-grey-color remove-text-decoration">
+          
+          <div class="row col-md-12 data-count">
+            <div class="col-md-6 slab">
+              <a href="{{_|url}}" class="inherit-anchor">  
+                <div class="number">{{_+metric+*cached count|core}}</div><div class="number-label">Metrics</div>
+              </a>
+            </div>
+            <div class="col-md-6 slab">
+              <a href="{{_|url}}?tab=topics" class="inherit-anchor">  
+                <div class="number">{{_+Analyses with Overviews+*cached count|core}}</div><div class="number-label">Topics</div>
+              </a>
+            </div>
+        </div>
+        
+      </div>
+     
+   </div>
+  
+  </div>
+  <div class="row clearfix company-content background-white ">
+    <div class="header-row">
+      <div class="header-header">
+        Metric
+      </div>
+      <div class="data-header">
+        Value
+      </div>
+    </div>
+    <div class="col-md-12 col-xs-12 ">
+
+      {{_left+limited metric|yinyang list|content; structure: homepage company metric item}}
+    </div>
+  </div>
+
+</div>
+</div>

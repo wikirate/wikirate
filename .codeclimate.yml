@@ -20,4 +20,6 @@ exclude_paths:
 - vendor/**/*
 - mod/pdfjs/files/**/*
 - mod/wikirate_source/files/**/*
-- mod/wikirate_source/lib/javascript/**/*
+- mod/**/lib/javascript/**/*.js
+- test/**/*
+- db/**/*

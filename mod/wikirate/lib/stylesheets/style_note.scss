@@ -1,0 +1,456 @@
+//***ALL COLOR VARS & MIXINS***//
+$anchor_color: #03998d;
+$body-txt-color: #404040; //#4f4f4f;
+$wanted-card-color: #b6060a;
+$infographic-heading: #949494;
+$div-border-color: #f1f1f1;
+
+//note colors
+$note-tag-companybg: #d3741c;
+$note-tag-companybg-hover: #bb5b00;
+$note-tag-topicbg: #2b7ea0;
+$note-tag-topicbg-hover: #01648d;
+$note-tag-notexist: #f0f0f0;
+$note-tag-notexist-hover: #ececec;
+
+$card-header-color: #fff;
+
+
+//***COLOR VARS - END***//
+
+.STRUCTURE-note_summary {
+  > h1 {
+    font-size: 1.1em;
+    padding-bottom: 0;
+  }
+  > .card-body {
+    padding: 5px 0 18px 5%;
+    margin: 0 0 5px;
+    border-bottom: 1px solid #eee;
+    font-size: 0.8em;
+    .fa {
+      padding-right: 5px;
+    }
+    > div {
+      margin-left: 5%;
+      padding: 2px 0;
+      text-indent: -3%;
+      div {
+        display: inline;
+      }
+
+    }
+    .missing-view {
+      display: none;
+    }
+    .RIGHT-source .source-title {
+      font-style: italic;
+    }
+    .pointer-item,
+    .search-result-item {
+      text-indent: 10px;
+      margin: 0;
+      padding: 2px;
+      :after {
+        content: ' ';
+      }
+    }
+  }
+
+}
+#note-sourcelink .pointer-item a {
+  color: $body-txt-color;
+  &:hover {
+    color: $anchor_color;
+  }
+
+}
+.analysis-link > a,
+.RIGHT-company.titled-view > .card-content .item-link > a,
+.RIGHT-topic.titled-view > .card-content .item-link > a {
+  // margin: 3px 10px;
+
+}
+.analysis-link > a,
+.RIGHT-company.card-content .item-link > a,
+.RIGHT-topic.card-content .item-link > a,
+#company-and-topic .company-name,
+#company-and-topic .topic-name {
+  display: inline-block;
+  text-indent: 0;
+  border-radius: 0px;
+  font-size: 0.9em;
+  color: #fff;
+  text-decoration: none;
+
+}
+.RIGHT-company.card-content .item-link > a,
+.RIGHT-topic.card-content .item-link > a,
+.analysis-link > a > span {
+  display: inline-block;
+  padding: 3px 8px !important;
+  margin-bottom: 6px;
+
+}
+#company-and-topic {
+  .company-name,
+  .topic-name {
+    padding: 1px 3px !important;
+  }
+  .company-name.no-content,
+  .topic-name.no-content {
+    background: none !important;
+  }
+
+}
+.RIGHT-company.card-content .item-link > a,
+.analysis-link > a > .company,
+#company-and-topic .company-name {
+  background: rgba($note-tag-companybg, 0.02);
+  color: $note-tag-companybg;
+  border: 1px solid rgba($note-tag-companybg, 0.55);
+}
+.RIGHT-company.card-content .item-link > a:hover,
+.analysis-link > a:hover > .company,
+#company-and-topic .company-name:hover {
+  background: $note-tag-companybg-hover;
+  color: #fff;
+}
+.RIGHT-topic.card-content .item-link > a,
+.analysis-link > a > .topic,
+#company-and-topic .topic-name {
+  background: rgba($note-tag-topicbg, 0.02);
+  color: $note-tag-topicbg;
+  border: 1px solid rgba($note-tag-topicbg, 0.55);
+}
+.RIGHT-topic.card-content .item-link > a:hover,
+.analysis-link > a:hover > .topic,
+#company-and-topic .topic-name:hover {
+  background: $note-tag-topicbg-hover;
+  color: #fff;
+}
+.card-content .item-link > a.wanted-card {
+  background: $note-tag-notexist;
+  color: $wanted-card-color;
+  &:hover {
+    background: $note-tag-notexist-hover;
+  }
+
+}
+
+#main > .TYPE-note {
+  > .card-header {
+    background-color: #fff;
+  }
+  .header-title > .card-header > i {
+    font-size: 22px;
+  }
+  .header-with-vote .panel-title {
+    font-size: 26px;
+  }
+  .source-side {
+    border-right: 1px solid $div-border-color;
+  }
+
+}
+.RIGHT-tag,
+.RIGHT-year {
+  &.labeled-view {
+    font-size: 0.9em;
+    color: #aaa;
+    .card-content a {
+      color: #aaa;
+      font-style: italic;
+    }
+
+  }
+  &.missing-view,
+  &.labeled-view {
+    label,
+    .card-content a,
+    a.missing-labeled {
+      text-align: left;
+      min-width: 30px;
+    }
+  }
+
+}
+.TYPE-note.card-content .source-side > .RIGHT-tag {
+  margin-top: 20px;
+
+}
+
+
+//////////
+
+.TYPE_PLUS_RIGHT-note-Xvote_count {
+  padding: 5px;
+
+}
+.TYPE_PLUS_RIGHT-note-Xvote_count.content-view {
+  margin-top: 10px;
+
+}
+.RIGHT-Xvote_count.content-view {
+  float: left;
+  overflow: hidden;
+}
+.vote-button {
+  width: 30px;
+  height: 30px;
+  padding: 0 !important;
+  //override bootstrap .btn padding.
+
+}
+.vote-link {
+  color: #888;
+  background-color: #eee;
+}
+.disabled-vote-link,
+.disabled-vote-link:hover {
+  color: #fff;
+  background-color: #bbb;
+
+}
+.vote-count {
+  color: #555;
+  width: 30px;
+  height: 25px;
+  text-align: center;
+  padding-top: 4px;
+  font-weight: bold;
+
+}
+.vote-details {
+  color: #bbb;
+  font-size: 14px;
+  padding-top: 7px;
+}
+.vote-number {
+  font-weight: bold;
+
+}
+
+.header-vote {
+  border-right: solid 1px #eee;
+  float: left;
+  margin-right: 10px;
+  padding: 10px;
+}
+.header-citation {
+  float: right;
+  padding: 10px 1.5% 25px;
+  border-left: 1px solid #eee;
+  margin-left: 1%;
+  .TYPE_PLUS_RIGHT-note-citation_count {
+    &.titled-view, &.search_count-view {
+      cursor: pointer;
+      .card-header {
+        font-size: 1.2em;
+        // padding: 5px 10px;
+        line-height: 1.2em;
+      }
+      .card-body {
+        padding: 0px;
+        font-size: 2em;
+      }
+    }
+  }
+}
+.header-title {
+  padding: 0 10px;
+  text-align: center;
+}
+.clear-line {
+  clear: both;
+  border-bottom: solid 1px #eee;
+
+}
+.item-summary {
+  a.source-preview-link {
+    color: #ba8a3c;
+  }
+  i.fa-long-arrow-right {
+    color: #ffcf66;
+  }
+  .TYPE-source {
+    overflow: inherit;
+  }
+
+}
+
+///////////
+
+.TYPE_PLUS_RIGHT-note-citation_count {
+  &.titled-view, &.search_count-view {
+    float: right;
+    cursor: pointer;
+    margin-top: 15px;
+    color: #fff;
+    text-align: center;
+    background-color: #03998d;
+    &:hover {
+      background-color: #018479;
+    }
+    .card-header {
+      margin-top: 0.5em;
+      border-bottom: solid 1px #fff;
+      .card-header-title {
+        margin: -4px 4px;
+        font-size: 0.7em;
+      }
+    }
+    h3 {
+      padding: 0 5px 4px;
+      font-size: 11px;
+      // border-bottom: solid 1px #fff;
+      margin-top: 0;
+      line-height: 0.9em;
+      color: #fff;
+
+    }
+
+    .card-header.panel-heading {
+      padding: 0;
+      margin: 6px 0 -6px;
+    }
+    .card-body {
+      padding: 3px;
+      font-size: 1.4em;
+    }
+  }
+}
+.TYPE_PLUS_RIGHT-note-citation_count.no-citations {
+  // background-color: #ba5b5b;
+  background-color: #EBEBEB;
+  color: #565656;
+  &:hover {
+    background: #e0e0e0;
+  }
+}
+
+.STRUCTURE-company_note_item .item-content {
+  position: relative;
+}
+.STRUCTURE-note_item, .STRUCTURE-company_note_item {
+  margin: 0 0 5px;
+  border-bottom: 1px dotted #eee;
+  font-size: 0.8em;
+  padding: 0 3%;
+
+  /* hack for hash jump */
+  padding-top: 60px;
+  margin-top: -60px;
+
+  div.last-edit {
+    margin-left: 18px;
+    margin-bottom: 10px;
+    color: #adadad;
+    font-size: 12px;
+    .item-link {
+      padding-left: 0;
+    }
+
+  }
+  .item-summary {
+    h4 {
+      font-size: 1.5em;
+      line-height: 1.4em;
+      font-weight: normal;
+      margin-top: 0px;
+      margin-bottom: 2px;
+    }
+    > div {
+
+      .fa {
+        padding-right: 5px;
+      }
+      #margin-left: 5%;
+      padding: 2px 0;
+      #text-indent: -3%;
+      div {
+        display: inline;
+      }
+      .RIGHT-source .source-title {
+        font-style: italic;
+      }
+    }
+
+  }
+  .note-sourcelink {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    .card-content {
+      white-space: nowrap;
+    }
+    .pointer-item.item-name {
+      padding-left: 0;
+    }
+
+  }
+  .note-tag {
+    .pointer-item,
+    .search-result-item {
+      text-indent: 10px;
+      margin: 0;
+      padding: 2px;
+      :after {
+        content: ' ';
+      }
+    }
+  }
+
+}
+.note-next-action {
+  .internal-link {
+    color: red;
+    float: right;
+    text-decoration: underline;
+  }
+
+}
+.TYPE_PLUS_RIGHT-note-related_overview {
+  .company {
+    color: white;
+  }
+  .topic {
+    color: white;
+  }
+
+}
+#citation-popup-window {
+  .TYPE_PLUS_RIGHT-note-related_overview {
+    width: 100%;
+    .analysis-link {
+      width: 100%;
+      .note-next-action {
+        float: right;
+      }
+    }
+  }
+
+}
+.titled_with_voting-view.STRUCTURE-note_summary {
+  > i {
+    float: left;
+    padding-top: 2%;
+    padding-right: 6px;
+
+  }
+
+}
+.general_overview_cite_btn {
+  padding: 2px 3px !important;
+  position: absolute;
+  right: 17px;
+  top: 88px;
+  font-size: 11px !important;
+}
+
+.cited-claim-number {
+  float: left;
+  margin-top: 75px;
+  padding: 3px;
+  font-size: 13px;
+}

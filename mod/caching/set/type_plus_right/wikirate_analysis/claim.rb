@@ -1,21 +1,24 @@
-include Card::CachedCount
+include_set Abstract::SearchCachedCount
 
-def self.notes_for_analyses_applicable_to(note)
+def wql_hash
+  { type_id: ClaimID,
+    right_plus: [[WikirateCompanyID, { refer_to: cardname.parts[0] }],
+                 [WikirateTopicID, { refer_to: cardname.parts[1] }]] }
+end
+
+def self.notes_for_analyses_applicable_to note
   note.analysis_names.map do |analysis_name|
     Card.fetch analysis_name.to_name.trait(:claim)
   end
 end
 
-# recount # of Notes associated with Company+Topic (analysis) when ...
-
+# recount # of notes associated with Company+Topic (analysis) when ...
 # ... <note>+company is edited
-ensure_set { TypePlusRight::Claim::WikirateCompany }
-recount_trigger TypePlusRight::Claim::WikirateCompany do |changed_card|
+recount_trigger :type_plus_right, :claim, :wikirate_company do |changed_card|
   notes_for_analyses_applicable_to changed_card.left
 end
 
 # ... <note>+topic is edited
-ensure_set { TypePlusRight::Claim::WikirateTopic }
-recount_trigger TypePlusRight::Claim::WikirateTopic do |changed_card|
+recount_trigger :type_plus_right, :claim, :wikirate_topic do |changed_card|
   notes_for_analyses_applicable_to changed_card.left
 end

@@ -1,0 +1,32 @@
+
+  <!--prototype: Company+MetricDesigner+MetricName+yinyang drag item -->
+  <div class="metric-item value-item">
+    <div class="metric-details-toggle" data-append="metric_details_metric_header">
+      <div class="header">
+        <div class="handle hidden-xs">
+          <span class="glyphicon glyphicon-option-vertical"></span>
+        </div>
+        <div class="">{{_llr+_lr+*vote count}}</div>
+        <a href="{{_llr|linkname}}">
+        <div class="logo hidden-xs hidden-md">
+          {{_llr+image|core;size:small}}
+        </div>
+        </a>
+        <div class="name">
+          <a class="inherit-anchor" href="{{_llr+_lr|linkname}}" target="_blank">
+            {{_lr|name}}
+          </a>
+        </div>
+      </div>
+      <div class="data ">
+        <div class="data-item hide-with-details">
+
+          {{_llr+_lr+_1+latest value|concise}}
+        </div>
+        <div class="data-item show-with-details text-center">
+          <span class="label label-metric">[[_llr+_lr|Metric Details]]</span>
+        </div>
+      </div>
+    </div>
+    <div class="details"></div>
+  </div>

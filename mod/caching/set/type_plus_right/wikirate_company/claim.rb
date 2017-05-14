@@ -1,11 +1,3 @@
-# cache # of claims tagged with this company (=_left)
-include Card::CachedCount
-
-ensure_set { TypePlusRight::Claim::WikirateCompany }
-
-# recount no. of notes associated with a company when <note>+company is edited
-recount_trigger TypePlusRight::Claim::WikirateCompany do |changed_card|
-  changed_card.item_names.map do |company_name|
-    Card.fetch company_name.to_name.trait(:claim)
-  end
-end
+# cache # of notes tagged with this company (=left) via <note>+company
+include_set Abstract::TaggedByCachedCount, type_to_count: :claim,
+                                           tag_pointer: :wikirate_company

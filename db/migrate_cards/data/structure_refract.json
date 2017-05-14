@@ -1,0 +1,19 @@
+[
+  {
+    "name": "export",
+    "type": "Pointer"
+  },
+  {
+    "name": "Company+metric page+*type plus right+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "metric company filter",
+    "type": "Basic",
+    "codename": "metric_company_filter"
+  },
+  {
+    "name": "topic+metric page+*type plus right+*structure",
+    "type": "HTML"
+  }
+]

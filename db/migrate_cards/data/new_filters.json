@@ -1,0 +1,32 @@
+[
+  {
+    "name": "export",
+    "type": "Pointer"
+  },
+  {
+    "name": "filter search metric",
+    "type": "Basic",
+    "codename": "filter_search_metric"
+  },
+  {
+    "name": "filter search metric+*right+*structure",
+    "type": "Search"
+  },
+  {
+    "name": "Metric+*self+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "filter search topic",
+    "type": "Basic",
+    "codename": "filter_search_topic"
+  },
+  {
+    "name": "filter search topic+*right+*structure",
+    "type": "Search"
+  },
+  {
+    "name": "Topic+*self+*structure",
+    "type": "HTML"
+  }
+]

@@ -1,12 +1,12 @@
-require File.expand_path('../../../config/environment',  __FILE__)
-require File.expand_path('../../wikirate_import_shared', __FILE__)
+require File.expand_path("../../../config/environment",  __FILE__)
+require File.expand_path("../../wikirate_import_shared", __FILE__)
 
-require 'colorize'
-require 'json'
-require 'rubygems'
-require 'csv'
+require "colorize"
+require "json"
+require "rubygems"
+require "csv"
 
-file_name = 'script/metric/data/sources.csv'
+file_name = "script/metric/data/sources.csv"
 
 def create_company company
   return if Card.exists? company
@@ -16,10 +16,10 @@ end
 def description company, year
   "This source links to the SD form filed with the SEC by #{company} in "\
   "#{year} - they usually include a Conflict Minerals Report, but may "\
-  'also be a statement of why the company is not required to submit a '\
-  'Conflict Minerals Report. Section 1502 of the Dodd-Frank Act makes '\
-  'submitting a Conflict Minerals Report mandatory for companies that '\
-  'manufacture products requiring Tin, Tantalum, Tungsten or Gold '\
+  "also be a statement of why the company is not required to submit a "\
+  "Conflict Minerals Report. Section 1502 of the Dodd-Frank Act makes "\
+  "submitting a Conflict Minerals Report mandatory for companies that "\
+  "manufacture products requiring Tin, Tantalum, Tungsten or Gold "\
   '(3TG, or "Conflict Minerals").'
 end
 
@@ -28,13 +28,13 @@ def source_args url, report_type, year, company
   {
     type_id: Card::SourceID,
     subcards: {
-      '+Link' => { content: url },
-      '+report_type' => report_type,
-      '+year' => actual_year,
-      '+company' => "[[#{company}]]",
-      '+title' => "#{company} Conflict Minerals Report - #{actual_year}",
-      '+Topics' => "[[Conflict Minerals]]\n[[Dodd-Frank]]\n[[SEC]]\n",
-      '+description' => description(company, year)
+      "+Link" => { content: url },
+      "+report_type" => report_type,
+      "+year" => actual_year,
+      "+company" => "[[#{company}]]",
+      "+title" => "#{company} Conflict Minerals Report - #{actual_year}",
+      "+Topics" => "[[Conflict Minerals]]\n[[Dodd-Frank]]\n[[SEC]]\n",
+      "+description" => description(company, year)
     }
   }
 end
@@ -61,7 +61,7 @@ end
 
 Card::Auth.as_bot do
   silent_mode do
-    CSV.foreach(file_name, encoding: 'windows-1251:utf-8',
+    CSV.foreach(file_name, encoding: "windows-1251:utf-8",
                            headers: false) do |row|
       create_company row[1]
       create_source row
