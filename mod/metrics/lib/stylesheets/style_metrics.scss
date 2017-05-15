@@ -427,13 +427,10 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
         .RIGHT-Xtitle,
         .RIGHT-designer {
             &.card-editor {
-                width: 45%;
+                width: 48%;
                 float: left;
                 .card-title {
-                    font-size: 0.8em;
-                    //margin: 5px 0;
-                    //float: left;
-                    //color: #bbb;
+                    font-size: 12px;
                 }
                 input {
                     width: 100%;
@@ -448,7 +445,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
             position: relative;
             top: 16px;
             left: 0;
-            width: 10%;
+            width: 4%;
             margin-top: 30px;
         }
     }
@@ -636,7 +633,9 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   }
 
   .answer_table-view.LTYPE_RTYPE-metric-company {
-    margin: 20px;
+    margin: 0px;
+    padding: 20px;
+    border: 1px solid #ebebeb;
   }
 
   td.year {
@@ -645,19 +644,24 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   }
 }
 
+.answer-unit {
+    font-size: 13px;
+    color: $help-text;
+    padding: 5px;
+    font-style: italic;
+}
+
 .form-group.card-editor {
   &.RIGHT-value {
     margin-bottom: 0;
     padding-bottom: 0;
   }
   &.RIGHT-unknown {
-    margin-bottom: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     padding-bottom: 0;
     .label {
       margin-bottom: 0;
-    }
-    .help-text.help-block {
-      margin-top: -5px;
     }
   }
 }
