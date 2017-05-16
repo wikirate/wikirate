@@ -6,7 +6,7 @@ format :csv do
   view :core do
     total = [0, 0, 0]
     Card.search(type_id: card.id).map do |pc|
-      cnts = [pc.num_metrics, pc.num_companies, pc.num_users, pc.num_answers]
+      cnts = [pc.num_metrics, pc.num_companies, pc.num_answers, pc.num_users]
       3.times do |i|
         total[i] += cnts[i]
       end
