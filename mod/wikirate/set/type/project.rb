@@ -19,6 +19,23 @@ def num_metrics
   @num_metrics ||= metric_card.item_names.size
 end
 
+def num_users
+  Answer.where(where_answer).where("updated_at > ?", created_at).select(:creator_id).uniq.count
+end
+
+def num_answers
+  Answer.where(where_answer).where("updated_at > ?", created_at).count
+end
+
+def num_policies
+  policies = metric_card.item_cards.map do |mc|
+    mc.try(:research_policy)
+  end.compact
+  d_cnt = policies.count "[[Designer Assessed]]"
+  c_cnt = policies.count "[[Community Assessed]]"
+  "#{d_cnt}/#{c_cnt}"
+end
+
 def metric_ids
   @metric_ids ||= metric_card.item_names.map do |metric|
     Card.fetch_id metric
