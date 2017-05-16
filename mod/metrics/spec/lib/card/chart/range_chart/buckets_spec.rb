@@ -1,6 +1,6 @@
 RSpec.describe Card::Chart::RangeChart::Buckets, "bucket calculation" do
-  MIN = 500_000
-  MAX = 5_600_000
+  MIN = 582_603
+  MAX = 5_613_573
 
   def buckets lower, upper
     buck = Class.new
@@ -31,7 +31,7 @@ RSpec.describe Card::Chart::RangeChart::Buckets, "bucket calculation" do
 
     context "negative values" do
       MIN = -500_000
-      MAX = 5_600_000
+      MAX = 50_600_000
 
       it "calculates correctly" do
         expect { |probe| buckets(MIN, MAX).each_bucket(&probe) }

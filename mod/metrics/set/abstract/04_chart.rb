@@ -45,7 +45,7 @@ format do
   end
 
   def zoom_in?
-    card.numeric? || chart_item_count > 10
+    card.numeric? && chart_item_count > 10
   end
 end
 
