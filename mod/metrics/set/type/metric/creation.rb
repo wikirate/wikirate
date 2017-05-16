@@ -132,70 +132,20 @@ event :set_metric_name, :initialize, on: :create, when: :needs_name? do
 end
 
 format :html do
-  # FIXME: inline js
   view :new do |_args|
     voo.title = "New Metric"
     frame do
-      <<-HTML
-      <fieldset class="card-editor editor">
-        <div role="tabpanel">
-          <input class="card-content form-control" type="hidden" value=""
-                 name="card[subcards][+*metric type][content]"
-                 id="card_subcards___metric_type_content">
-           <h4>Metric Type</h4>
-           <div class="help-block help-text">
-             <p>There are four "metric types."  Choose one to learn more</p>
-           </div>
-          #{new_metric_tab_buttons}
-        </div>
-      </fieldset>
-      <!-- Tab panes -->
-
-      #{new_metric_tab_content}
-      <script>
-        $('input[name="intervaltype"]').click(function () {
-          //jQuery handles UI toggling correctly when we apply "data-target"
-          // attributes and call .tab('show')
-          //on the <li> elements' immediate children, e.g the <label> elements:
-          $(this).closest('label').tab('show');
-        });
-      </script>
-      HTML
+      _render_new_form
     end
+  end
+
+  view :new_form, template: :haml do
+    @tabs = %w[Researched Formula Score WikiRating]
   end
 
   def default_content_formgroup_args _args
     voo.edit_structure = [["+question", "Question"],
                           [:wikirate_topic, "Topic"]]
-  end
-
-  def tab_radio_button id, active=false
-    <<-HTML
-    <li role="tab" class="pointer-radio #{'active' if active}">
-      <label data-target="##{tab_pane_id id}" class="tab-primary">
-        <input id="#{id}"
-               name="intervaltype"
-               value="#{id}"
-               class="pointer-radio-button"
-               type="radio" #{'checked' if active} />#{id}</label>
-    </li>
-    HTML
-  end
-
-  def new_metric_tab_buttons
-    wrap_with :ul, class: "nav nav-pills grey-nav-tab", role: "tablist" do
-      %w[Researched Formula Score WikiRating].map.with_index do |metric_type, i|
-        tab_radio_button metric_type, i.zero?
-      end
-    end
-  end
-
-  def new_metric_tab_content
-    wrap_with :div, class: "tab-content" do
-      %w[Researched Formula Score WikiRating].map.with_index do |metric_type, i|
-        new_metric_tab_pane metric_type, i.zero?
-      end
-    end
   end
 
   def tab_pane_id name
@@ -237,7 +187,7 @@ format :html do
   end
 
   view :new_name_formgroup do
-    formgroup "Metric Name", editor: "name" do
+    formgroup "Metric Name", editor: "name", help: false do
       new_name_field
     end
   end

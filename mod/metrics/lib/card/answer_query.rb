@@ -104,6 +104,7 @@ class Card
 
     def restrict_to_ids col, ids
       ids = Array(ids)
+      @empty_result = ids.empty?
       if @restrict_to_ids[col]
         @restrict_to_ids[col] &= ids
       else
@@ -116,6 +117,7 @@ class Card
     end
 
     def run_filter_query
+      return [] if @empty_result
       Answer.where(where_args).sort(@sort_args).paging(@paging_args).answer_cards
     end
 
