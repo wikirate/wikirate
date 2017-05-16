@@ -79,8 +79,8 @@ format :html do
     return if card.relationship?
     return unless card.numeric? || card.categorical?
 
-    card.filter_hash[:metric_value] != "none" ||
-      card.filter_hash[:metric_value] != "unknown" ||
+    card.filter_hash[:metric_value] != "none" &&
+      card.filter_hash[:metric_value] != "unknown" &&
       chart_item_count > 3
   end
 
