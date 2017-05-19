@@ -64,12 +64,59 @@ class Card::Metric
     # @option opts [Boolean] :random_source (false) pick a random source for
     #   each value
     def create opts, &block
-      opts[:type] ||= :researched
-      metric = Card.create! name: opts[:name],
+      random_source = opts.delete :random_source
+      metric = Card.create! name: opts.delete(:name),
                             type_id: Card::MetricID,
-                            subcards: subcard_args(opts)
-      metric.create_values opts[:random_source], &block if block_given?
+                            subfields: subfield_args(opts)
+      metric.create_values random_source, &block if block_given?
       metric
+    end
+
+    # type is an alias for metric_type
+    VALID_SUBFIELDS =
+      ::Set.new([:metric_type, :currency, :formula, :value_type,
+                 :value_options, :research_policy, :wikirate_topic, :unit, :report_type])
+           .freeze
+    ALIAS_SUBFIELDS = { type: :metric_type, topic: :wikirate_topic }.freeze
+
+    def subfield_args opts
+      resolve_alias opts
+      validate_subfields opts
+      binding.pry
+      if opts[:formula].is_a? Hash
+        opts[:formula] = opts[:formula].to_json
+        opts[:value_type] ||= "Category"
+      end
+
+      opts[:metric_type] ||= :researched
+      if opts[:metric_type] == :researched
+        opts[:value_type] ||= "Number"
+      end
+      opts[:metric_type] = Card.fetch_name opts[:metric_type]
+
+      opts.each_with_object({}) do |(field, content), subfields|
+        subfields[field] = { content: content,
+                             type_id: subfield_type_id(field) }
+      end
+    end
+
+    def subfield_type_id field
+      case field
+      when :formula, :unit, :currency then Card::PhraseID
+      else Card::PointerID
+      end
+    end
+
+    def resolve_alias opts
+      ALIAS_SUBFIELDS.each do |alias_key, key|
+        opts[key] = opts.delete(alias_key) if opts.key? alias_key
+      end
+    end
+
+    def validate_subfields opts
+      invalid = ::Set.new(opts.keys) - VALID_SUBFIELDS
+      return if invalid.empty?
+      raise ArgumentError, "invalid metric subfields: #{invalid.keys}"
     end
 
     def subcard_args opts

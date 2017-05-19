@@ -455,6 +455,13 @@ format :json do
   view :content do
     card.companies_with_years_and_values.to_json
   end
+
+  def essentials
+    {
+      designer: card.designer,
+      title: card.metric_title
+    }
+  end
 end
 
 def needs_name?

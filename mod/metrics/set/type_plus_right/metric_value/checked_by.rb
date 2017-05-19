@@ -269,3 +269,12 @@ end
 def request_check_flag_update?
   !add_checked_flag? && !remove_checked_flag?
 end
+
+format :json do
+  view :essential do
+    {
+      checks: card.checkers.count,
+      check_requested: card.check_requested?
+    }
+  end
+end

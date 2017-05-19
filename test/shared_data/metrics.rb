@@ -82,11 +82,14 @@ class SharedData
 
       Card::Metric.create name: "Jedi+cost of planets destroyed",
                           random_source: true,
-                          value_type: "Money" do
+                          value_type: "Money",
+                          currency: "$" do
         Death_Star "1977" => 200
       end
       Card::Metric.create name: "Jedi+Sith Lord in Charge",
-                          value_type: "Free Text"
+                          value_type: "Free Text",
+                          unit: "Imperial military units",
+                          report_type: "Conflict Mineral Report"
 
       create_formula_metrics
       create_researched_metrics
@@ -94,6 +97,7 @@ class SharedData
     end
 
     def create_formula_metrics
+      binding.pry
       Card::Metric.create name: "Jedi+friendliness",
                           type: :formula,
                           formula: "1/{{Jedi+deadliness}}"

@@ -1,6 +1,13 @@
 
 class SharedData
   module Samples
+    METRIC_NAMES = {
+      free_text: "Jedi+Sith Lord in Charge",
+      number: "Jedi+deadliness",
+      category: "Jedi+disturbances in the Force",
+      money: "Jedi+cost of planets destroyed"
+    }.freeze
+
     # cards only exist in testing db
     def sample_note num=1
       notes = ["Death Star uses dark side of the Force", "Fruits are round"]
@@ -32,13 +39,7 @@ class SharedData
     end
 
     def sample_metric value_type=:free_text
-      metric_names = {
-        free_text: "Jedi+Sith Lord in Charge",
-        number: "Jedi+deadliness",
-        category: "Jedi+disturbances in the Force",
-        money: "Jedi+cost of planets destroyed"
-      }
-      Card[metric_names[value_type]]
+      Card[METRIC_NAMES[value_type]]
     end
 
     def sample_answer value_type=:free_text
@@ -56,8 +57,8 @@ class SharedData
                                { content: "http://www.wikiwand.com/en/#{source}"}]).first
     end
 
-    def sample_metric_value
-      Card["Jedi+disturbances_in_the_Force+Death_Star+1977"]
+    def sample_metric_value value_type=:free_text
+      Card["#{METRIC_NAMES[value_type]}+Death_Star+1977"]
     end
 
     private
