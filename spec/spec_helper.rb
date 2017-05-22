@@ -41,7 +41,7 @@ def create_answer metric: sample_metric, company: sample_company,
   end
 end
 
-def new_answer metric: sample_metric, company: sample_company,
+def build_answer metric: sample_metric, company: sample_company,
                content: "content", year: "2015", source: sample_source.name
   Card.new type_id: Card::MetricValueID,
               subcards: answer_subcards(metric: metric, company: company,

@@ -211,7 +211,6 @@ def input_keys
 end
 
 def normalize_value value
-  binding.pry
   metric_card.normalize_value value
 end
 

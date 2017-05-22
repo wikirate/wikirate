@@ -82,21 +82,20 @@ class Card::Metric
     def subfield_args opts
       resolve_alias opts
       validate_subfields opts
-      binding.pry
       if opts[:formula].is_a? Hash
         opts[:formula] = opts[:formula].to_json
         opts[:value_type] ||= "Category"
       end
 
       opts[:metric_type] ||= :researched
-      if opts[:metric_type] == :researched
-        opts[:value_type] ||= "Number"
-      end
+      opts[:value_type] ||= "Number" if opts[:metric_type] == :researched
       opts[:metric_type] = Card.fetch_name opts[:metric_type]
 
       opts.each_with_object({}) do |(field, content), subfields|
+        type_id = subfield_type_id(field)
+        content = Array.wrap(content).to_pointer_content if type_id == Card::PointerID
         subfields[field] = { content: content,
-                             type_id: subfield_type_id(field) }
+                             type_id: type_id }
       end
     end
 
@@ -116,40 +115,7 @@ class Card::Metric
     def validate_subfields opts
       invalid = ::Set.new(opts.keys) - VALID_SUBFIELDS
       return if invalid.empty?
-      raise ArgumentError, "invalid metric subfields: #{invalid.keys}"
-    end
-
-    def subcard_args opts
-      subcards = {
-        "+*metric type" => {
-          content: "[[#{Card[opts[:type]].name}]]",
-          type_id: Card::PointerID
-        }
-      }
-      if opts[:formula]
-        if opts[:formula].is_a?(Hash)
-          opts[:formula] = opts[:formula].to_json
-          opts[:value_type] ||= "Category"
-        end
-
-        subcards["+formula"] = {
-          content: opts[:formula],
-          type_id: Card::PhraseID
-        }
-      end
-      opts[:value_type] ||= "Number" if opts[:type] == :researched
-      add_pointer_subcards subcards, opts
-      subcards
-    end
-
-    def add_pointer_subcards subcards, opts
-      [:value_type, :value_options, :research_policy, :topic].each do |name|
-        next unless opts[name]
-        subcards["+#{name}"] = {
-          content: Array(opts[name]).to_pointer_content,
-          type_id: Card::PointerID
-        }
-      end
+      raise ArgumentError, "invalid metric subfields: #{invalid.to_a}"
     end
   end
 end

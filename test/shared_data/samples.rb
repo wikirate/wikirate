@@ -43,18 +43,24 @@ class SharedData
     end
 
     def sample_answer value_type=:free_text
-      sample_metric(value_type).random_value_card
+      Card["#{METRIC_NAMES[value_type]}+Death_Star+1977"]
+      #sample_metric(value_type).random_value_card
     end
 
     def sample_project
       Card["Evil Project"]
     end
 
+    # @param source [String] existing examples you can choose from
+    # are "Space_opera", "Opera", "Apple", and "Star_Wars"
     def sample_source source=nil
       return Card.search(type_id: Card::SourceID, limit: 1).first unless source
-      Card.search(type_id: Card::SourceID,
-                  right_plus: ["link",
-                               { content: "http://www.wikiwand.com/en/#{source}"}]).first
+      Card.search(
+        type_id: Card::SourceID,
+        right_plus: ["link",
+                     { content: "http://www.wikiwand.com/en/#{source}" }],
+        limit: 1
+      ).first
     end
 
     def sample_metric_value value_type=:free_text
