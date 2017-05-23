@@ -1,4 +1,4 @@
-describe Card::Set::TypePlusRight::Metric::ValueType do
+RSpec.describe Card::Set::TypePlusRight::Metric::ValueType do
   shared_examples_for "changing type to numeric" do |new_type|
     subject { metric.value_type_card }
 
@@ -15,10 +15,9 @@ describe Card::Set::TypePlusRight::Metric::ValueType do
     context "some values do not fit the numeric type" do
       it "blocks type changing" do
         type_change_for_value "wow", new_type, subject
-        binding.pry
         key = "#{metric.name}+#{sample_company.name}+2015".to_sym
         msg = "'wow' is not a numeric value."
-        expect(subject).to be_invalid .because_of(key => include(msg))
+        is_expected.to be_invalid.because_of(key => include(msg))
       end
     end
 
@@ -52,9 +51,9 @@ describe Card::Set::TypePlusRight::Metric::ValueType do
       subject { metric.value_type_card }
 
       def type_change_for_value value, new_type, subject
-           create_answer metric: metric, company: sample_company, content: value
-           subject.update_attributes content: new_type
-         end
+        create_answer metric: metric, company: sample_company, content: value
+        subject.update_attributes content: new_type
+      end
 
       let(:metric) { sample_metric :number }
 
@@ -62,29 +61,29 @@ describe Card::Set::TypePlusRight::Metric::ValueType do
       context "some values are not in the options" do
         it "blocks type changing" do
           subject.update_attributes content:  "Category"
-          expect(subject.errors).to have_key(:value)
+          is_expected.to be_invalid.because_of value: include("option")
         end
       end
 
       context "all values are in the options" do
         before do
-          metric.value_options_card.update_attributes!(
+          metric.value_options_card.update_attributes(
             content: %w[5 10 20 40 50 100].to_pointer_content
           )
         end
 
         it "updates the value type successfully" do
           subject.update_attributes content: "Category"
-          expect(subject).to be_valid
-          expect(metric.value_type).to eq("Category")
+          expect(metric.value_type).to eq "Category"
+          is_expected.to be_valid
         end
 
         context 'some values are "unknown"' do
           it "updates the value type successfully" do
             type_change_for_value "unknown", "Category", subject
 
-            expect(subject).to be_valid
-            expect(metric.value_type).to eq("Category")
+            is_expected.to be_valid
+            expect(metric.value_type).to eq "Category"
           end
         end
       end
