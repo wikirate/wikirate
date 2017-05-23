@@ -115,7 +115,7 @@ RSpec.describe Card::Set::Type::MetricValue do
         .to eq "#{metric.name}+#{company.name}+2015"
       new_name = "#{metric.name}+#{company.name}+2014"
       new_answer.update_attributes! name: new_name
-      expect(mnew_answer.name).to eq(new_name)
+      expect(new_answer.name).to eq(new_name)
     end
 
     it "updates value correctly" do

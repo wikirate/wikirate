@@ -77,6 +77,9 @@ class SharedData
         Death_Star "1977" => { value: "Darth Sidious",
                                source: source }
       end
+
+      Card::Metric.create name: "Jedi+Weapons",
+                          value_type: "Free Text"
     end
 
     def money_metrics
