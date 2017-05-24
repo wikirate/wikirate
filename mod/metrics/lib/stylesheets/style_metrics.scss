@@ -634,8 +634,8 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 
   .answer_table-view.LTYPE_RTYPE-metric-company {
     margin: 0px;
-    padding: 20px;
-    border: 1px solid #ebebeb;
+    padding: 10px;
+    //border: 1px solid #ebebeb;
   }
 
   td.year {
@@ -643,6 +643,19 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     width: 110px;
   }
 }
+
+
+.row.panel-default.metric-list {
+    background: rgba(103, 78, 167, 0.06);
+}
+
+.row.panel-default.metric-list .record-row {
+    background: #fff;
+    margin-bottom: 30px;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+}
+
 
 .answer-unit {
     font-size: 13px;
@@ -657,9 +670,9 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     padding-bottom: 0;
   }
   &.RIGHT-unknown {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding-bottom: 0;
+    //margin-top: 20px;
+    //margin-bottom: 20px;
+    //padding-bottom: 0;
     .label {
       margin-bottom: 0;
     }

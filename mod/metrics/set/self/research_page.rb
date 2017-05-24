@@ -1,3 +1,5 @@
+include_set Abstract::Media
+
 card_accessor :metric
 card_accessor :wikirate_company
 
@@ -75,7 +77,7 @@ format :html do
       next not_a_metric(metric_name) unless existing_metric? metric_name
       record_card = Card.fetch metric_name, companies.first, new: {}
       nest record_card, view: :core, hide: :chart
-    end.join "<hr/>"
+    end.join
   end
 
   def project?

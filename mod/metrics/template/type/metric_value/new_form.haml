@@ -5,6 +5,7 @@
       = field_nest :year, title: "Year"
     .col-md-9.value
       = field_nest :value, title: "Answer"
+      = render_haml :cited_sources
       %label
         Choose Sources or
         %a.btn.btn-sm.btn-default._add_new_source{ href: "#",
@@ -13,7 +14,6 @@
             %span.icon.icon-wikirate-logo-o.fa-lg
             Add a new source
       = _render_relevant_sources
-      = render_haml :cited_sources
       = field_nest :discussion, title: 'Comment'
 
   .row.buttons

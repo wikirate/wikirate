@@ -36,7 +36,7 @@ format :html do
   end
 
   def add_value_button
-    link_to_card :research_page, "Add answer",
+    link_to_card :research_page, "Research answer",
                  type: "button",
                  target: "_blank",
                  class: "btn btn-primary btn-sm",
@@ -46,7 +46,7 @@ format :html do
                  }
     # <<-HTML
     #     <a type="button" target="_blank" class="btn btn-primary btn-sm"
-    #       href="#{add_value_url}">Add answer</a>
+    #       href="#{add_value_url}">Research answer</a>
     # HTML
   end
 
