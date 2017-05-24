@@ -1,6 +1,7 @@
 include_set Abstract::TwoColumnLayout
 include_set Abstract::KnownAnswers
 include_set Abstract::Thumbnail
+include_set Abstract::Tabs
 
 card_reader :wikirate_company
 card_reader :metric
@@ -114,15 +115,22 @@ format :html do
 
   view :content_right_col do
     wrap_with :div, class: "progress-column" do
-      [overall_progress_box, metric_list, company_list]
+      [overall_progress_box, _render_tabs]
     end
   end
 
-  def metric_list
+  def tab_list
+    {
+      company_list_tab: "#{card.num_companies} Companies",
+      metric_list_tab: "#{fa_icon 'bar-chart'} #{card.num_metrics} Metrics"
+    }
+  end
+
+  view :metric_list_tab do
     standard_pointer_nest :metric
   end
 
-  def company_list
+  view :company_list_tab do
     standard_pointer_nest :wikirate_company
   end
 
