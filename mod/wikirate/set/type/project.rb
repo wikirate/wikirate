@@ -104,17 +104,9 @@ format :html do
 
   def tab_list
     {
-      company_list_tab: "#{company_list_count} Companies",
-      metric_list_tab: "#{fa_icon 'bar-chart'} #{metric_list_count} Metrics"
+      company_list_tab: "#{card.num_companies} Companies",
+      metric_list_tab: "#{fa_icon 'bar-chart'} #{card.num_metrics} Metrics"
     }
-  end
-
-  def metric_list_count
-    card.fetch(trait: :metric).item_names.count
-  end
-
-  def company_list_count
-    card.fetch(trait: :wikirate_company).item_names.count
   end
 
   view :metric_list_tab do
