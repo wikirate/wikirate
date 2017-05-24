@@ -32,7 +32,7 @@ end
 
 format :html do
   view :company_thumbnail do
-    nest card.company_card, view: :thumbnail
+    nest card.company_card, view: :thumbnail_no_link
   end
 
   view :research_button do
