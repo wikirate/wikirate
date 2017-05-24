@@ -6,7 +6,7 @@ RSpec.describe Card::Chart::RangeChart::Buckets, "bucket calculation" do
     buck = Class.new
     buck.extend Card::Chart::RangeChart::Buckets
     buck.instance_eval { @buckets = 10 }
-    buck.define_singleton_method(:max) { upper}
+    buck.define_singleton_method(:max) { upper }
     buck.define_singleton_method(:min) { lower }
     buck.calculate_buckets
     buck

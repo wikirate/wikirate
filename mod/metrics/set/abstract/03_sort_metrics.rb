@@ -47,9 +47,7 @@ format do
   end
 
   def sort_metric_designer metric_values
-    metric_values.sort do |x, y|
-      x[0] <=> y[0]
-    end
+    metric_values.sort_by { |a| a[0] }
   end
 
   def sort_metric_title metric_values

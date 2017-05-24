@@ -191,7 +191,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       context "value" do
         it "finds missing values" do
           expect(filter_by(metric_value: :none))
-            .to contain_exactly  *missing_answers
+            .to contain_exactly *missing_answers
         end
 
         let(:unknown_answers) do
@@ -287,10 +287,10 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
           expect(filter_by(metric_value: :none, metric_type: "Researched"))
             .to contain_exactly(
               *with_year(["Weapons",
-                         "big multi", "big single",
-                         "researched number 2", "researched number 3",
-                         "small multi", "small single"])
-          )
+                          "big multi", "big single",
+                          "researched number 2", "researched number 3",
+                          "small multi", "small single"])
+            )
         end
 
         it "... policy and year" do
@@ -361,7 +361,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
            "researched number 1", "Victims by Employees"].map do |t|
             sorted.index(t)
           end
-        expect(indices).to eq [0, 1, 2, 10, 1]
+        expect(indices).to eq [0, 1, 2, 10, 12]
       end
 
       it "sorts by recently updated" do

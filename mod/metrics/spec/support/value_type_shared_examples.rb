@@ -34,7 +34,7 @@ shared_examples_for "create answer" do |value_type, valid_content, invalid_conte
 
     context 'value is "unknown"' do
       it "passes the validation" do
-        expect(metric_value "unknown").to be_valid
+        expect(metric_value("unknown")).to be_valid
       end
     end
   end

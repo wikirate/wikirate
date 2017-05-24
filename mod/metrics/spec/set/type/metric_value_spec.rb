@@ -56,7 +56,7 @@ RSpec.describe Card::Set::Type::MetricValue do
       expect(html).to have_tag("span.metric-year", text: /1977 =/)
       expect(html).to have_tag("span.metric-value")
       expect(html).to have_tag("span.metric-unit",
-                                       text: /Imperial military units/)
+                               text: /Imperial military units/)
     end
   end
 
@@ -144,12 +144,12 @@ RSpec.describe Card::Set::Type::MetricValue do
       end
 
       it "fails with a non-existing source" do
-        expect(build_answer source: "Page-1")
+        expect(build_answer(source: "Page-1"))
           .to be_invalid.because_of(source: include("does not exist"))
       end
 
       it "fails if source card cannot be created" do
-        expect(build_answer source: nil)
+        expect(build_answer(source: nil))
           .to be_invalid.because_of(source: include("does not exist"))
       end
     end
