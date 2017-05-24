@@ -54,7 +54,7 @@ end
 
 format :csv do
   view :core do
-    Answer.where(company_id: card.id).map(&:csv_line).join
+    Answer.csv_title + Answer.where(company_id: card.id).map(&:csv_line).join
   end
 end
 
