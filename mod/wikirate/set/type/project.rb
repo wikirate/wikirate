@@ -237,13 +237,9 @@ end
 
 format :csv do
   view :core do
-    res = ""
-    card.metric_ids.each do |m_id|
+    Answer.csv_title + card.metric_ids.map do |m_id|
       Answer.where("metric_id = ? AND company_id IN (?)",
-                   m_id, card.company_ids).each do |a|
-        res += a.csv_line
-      end
-    end
-    res
+                   m_id, card.company_ids).map(&:csv_line)
+    end.flatten.join
   end
 end

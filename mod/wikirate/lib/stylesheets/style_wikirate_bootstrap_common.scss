@@ -430,10 +430,10 @@
 }
 
 .help-block {
-    margin-top: 5px;
+    margin-top: 0;
     margin-bottom: 0;
-    color: #939090;
-    font-size: 11px;
+    color: $help-text;
+    font-size: 13px;
     width: 100%;
     display: inline-block;
 }
