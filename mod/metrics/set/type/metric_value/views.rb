@@ -170,6 +170,12 @@ format :html do
     ]
   end
 
+  view :sources_with_cited_button do
+    with_nest_mode :normal do
+      field_nest :source, view: :core, items: { view: :with_cited_button }
+    end
+  end
+
   view :comments do |_args|
     disc_card = card.fetch trait: :discussion, new: {}
     subformat(disc_card)._render_titled title: "Discussion", show: "commentbox",
@@ -179,10 +185,16 @@ format :html do
   view :credit_name do |args|
     wrap_with :div, class: "credit" do
       [
-        nest(card, view: :core, structure: "creator credit"),
+        "#{credit_verb} #{_render_updated_at} ago by ",
+        nest(card.updater, view: :link),
         _optional_render(:source_link, args, :hide)
       ]
     end
+  end
+
+  def credit_verb
+    verb = "updated" # card.answer.editor_id ? "edited" : "added"
+    link_to_card card.value_card, verb, path: { view: :history }
   end
 
   view :source_link do |_args|

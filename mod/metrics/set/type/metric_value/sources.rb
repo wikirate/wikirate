@@ -65,11 +65,15 @@ format :html do
   end
 
   def sources
-    @sources ||= find_potential_sources
+    @sources ||= find_potential_sources - card.source_card.item_cards
     if source && (source_card = Card[source])
       @sources.push(source_card)
     end
     @sources
+  end
+
+  def source_suggestions
+    @potential_sources ||= find_potential_sources
   end
 
   def find_potential_sources
@@ -84,13 +88,20 @@ format :html do
     )
   end
 
+  view :source_suggestions, cache: :never do
+    wrap_with :div, source_list(source_suggestions).html_safe,
+              class: "relevant-sources" do
+
+    end
+  end
+
   view :relevant_sources, cache: :never do
     wrap_with :div, source_list.html_safe, class: "relevant-sources"
   end
 
-  def source_list
-    return "None" if sources.empty?
-    sources.map do |source|
+  def source_list source_cards=sources
+    return "None" if source_cards.empty?
+    source_cards.map do |source|
       with_nest_mode :normal do
         subformat(source).render_relevant
       end
