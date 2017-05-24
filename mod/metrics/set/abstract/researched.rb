@@ -36,10 +36,12 @@ format :html do
   end
 
   view :value_type_detail do
-    wrap_with :div do
+    voo.hide :menu
+    wrap do
       [
         _render_value_type_edit_modal_link,
-        _render_short_view
+        _render_short_view,
+        _optional_render_menu
       ]
     end
   end
