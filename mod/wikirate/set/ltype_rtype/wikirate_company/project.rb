@@ -42,4 +42,10 @@ format :html do
                     company: card.company_card.name,
                     project: card.project_card.cardname.url_key }
   end
+
+  view :research_progress_bar do
+    link_to_card card.company_card, super(),
+                 path: { filter: { project: card.project_card.name,
+                                   metric_value: :all } }
+  end
 end
