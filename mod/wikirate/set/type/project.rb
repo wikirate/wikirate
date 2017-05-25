@@ -6,6 +6,10 @@ card_reader :wikirate_company
 card_reader :metric
 card_reader :organizer
 
+def answers
+  @answers ||= Answer.where(where_answer).where("updated_at > ?", created_at)
+end
+
 # the space of possible metric records
 def num_records
   @num_records ||= num_companies * num_metrics
@@ -20,11 +24,11 @@ def num_metrics
 end
 
 def num_users
-  Answer.where(where_answer).where("updated_at > ?", created_at).select(:creator_id).uniq.count
+  @num_users ||= answers.select(:creator_id).uniq.count
 end
 
 def num_answers
-  Answer.where(where_answer).where("updated_at > ?", created_at).count
+  @num_answers ||= answers.count
 end
 
 def num_policies

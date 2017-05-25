@@ -1,6 +1,7 @@
 format :csv do
   def title_row
-    CSV.generate_line ["PROJECT", "METRICS", "COMPANIES", "ANSWERS", "USERS", "DESIGNER/COMMUNITY-ASSESSED"]
+    CSV.generate_line ["PROJECT", "METRICS", "COMPANIES", "ANSWERS",
+                       "USERS", "DESIGNER/COMMUNITY-ASSESSED"]
   end
 
   view :core do
