@@ -81,7 +81,7 @@ class Card::Metric
            .freeze
     ALIAS_SUBFIELDS = { type: :metric_type, topic: :wikirate_topic }.freeze
 
-    def subfield opts
+    def subfields opts
       resolve_alias opts
       validate_subfields opts
       normalize_subfields opts
