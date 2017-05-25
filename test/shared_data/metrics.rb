@@ -59,6 +59,39 @@ class SharedData
         end
       end
 
+      number_metrics
+      money_metrics
+      free_text_metrics
+      formula_metrics
+      researched_metrics
+      category_metrics
+    end
+
+    def free_text_metrics
+      source = sample_source("Star_Wars").name
+      Card::Metric.create name: "Jedi+Sith Lord in Charge",
+                          value_type: "Free Text",
+                          unit: "Imperial military units",
+                          report_type: "Conflict Mineral Report",
+                          random_source: true do
+        Death_Star "1977" => { value: "Darth Sidious",
+                               source: source }
+      end
+
+      Card::Metric.create name: "Jedi+Weapons",
+                          value_type: "Free Text"
+    end
+
+    def money_metrics
+      Card::Metric.create name: "Jedi+cost of planets destroyed",
+                          random_source: true,
+                          value_type: "Money",
+                          currency: "$" do
+        Death_Star "1977" => 200
+      end
+    end
+
+    def number_metrics
       Card::Metric.create name: "Jedi+deadliness",
                           random_source: true,
                           value_type: "Number" do
@@ -79,21 +112,9 @@ class SharedData
         Slate_Rock_and_Gravel_Company "1977" => -0.01
         Samsung "1977" => "Unknown"
       end
-
-      Card::Metric.create name: "Jedi+cost of planets destroyed",
-                          random_source: true,
-                          value_type: "Money" do
-        Death_Star "1977" => 200
-      end
-      Card::Metric.create name: "Jedi+Sith Lord in Charge",
-                          value_type: "Free Text"
-
-      create_formula_metrics
-      create_researched_metrics
-      create_category_metrics
     end
 
-    def create_formula_metrics
+    def formula_metrics
       Card::Metric.create name: "Jedi+friendliness",
                           type: :formula,
                           formula: "1/{{Jedi+deadliness}}"
@@ -118,7 +139,7 @@ class SharedData
       )
     end
 
-    def create_researched_metrics
+    def researched_metrics
       Card::Metric.create name: "Joe User+researched number 1",
                           type: :researched,
                           random_source: true do
@@ -149,7 +170,7 @@ class SharedData
       end
     end
 
-    def create_category_metrics
+    def category_metrics
       Card::Metric.create name: "Joe User+small multi",
                           type: :researched,
                           value_type: "Multi-Category",

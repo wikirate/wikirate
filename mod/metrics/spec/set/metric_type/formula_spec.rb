@@ -9,7 +9,7 @@ describe Card::Set::MetricType::Formula do
   end
 
   def build_formula formula
-    sprintf formula, @metric_name1, @metric_name2, @metric_name3
+    format formula, @metric_name1, @metric_name2, @metric_name3
   end
 
   describe "formula card" do

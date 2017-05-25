@@ -36,6 +36,6 @@ end
 
 format :html do
   view :metric_thumbnail do
-    nest card.metric_card, view: :thumbnail
+    nest card.metric_card, view: :thumbnail, project: card.right.name
   end
 end

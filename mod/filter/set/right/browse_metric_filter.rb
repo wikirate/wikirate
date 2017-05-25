@@ -50,8 +50,7 @@ format :html do
     {
       "Highest Voted" => "upvoted",
       "Most Recent" => "recent",
-      "Most Companies" => "company",
-      "Most Values" => "values"
+      # "Most Companies" => "wikirate_company" # "company"
     }
   end
 

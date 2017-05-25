@@ -18,7 +18,11 @@ format :html do
                                    view: :name),
                         class: "ellipsis")
     return content unless voo.show?(:thumbnail_link)
-    link_to_card card, content, title: card.metric_title_card.name
+    opts = { title: card.metric_title_card.name }
+    if voo.closest_live_option(:project)
+      opts[:path] = { filter: { project: voo.closest_live_option(:project) } }
+    end
+    link_to_card card, content, opts
   end
 
   view :thumbnail_subtitle do |args|

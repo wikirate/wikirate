@@ -84,7 +84,7 @@ format :html do
 
   def metric_value_options
     opts = {
-      "All" => "all",
+      # "All" => "all",
       "Researched" => "exists",
       "Known" => "known",
       "Unknown" => "unknown",
