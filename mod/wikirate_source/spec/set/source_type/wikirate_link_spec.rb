@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-#require_relative '../../../../../vendor/wagn/card/spec/support/matchers'
+# require_relative '../../../../../vendor/wagn/card/spec/support/matchers'
 
 RSpec.describe Card::Set::SourceType::WikirateLink do
   PDF_URL = "http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/"\

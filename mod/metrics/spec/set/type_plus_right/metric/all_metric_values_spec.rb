@@ -71,13 +71,13 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       context "project" do
         it "finds exact match" do
           expect(filter_by(project: "Evil Project"))
-            .to eq %w[Death_Star+2001 SPECTRE+2000 ]
+            .to eq %w[Death_Star+2001 SPECTRE+2000]
         end
       end
       context "industry" do
         it "finds exact match" do
           expect(filter_by(industry: "Technology Hardware"))
-            .to eq %w[Death_Star+2001 SPECTRE+2000 ]
+            .to eq %w[Death_Star+2001 SPECTRE+2000]
         end
       end
       context "value" do

@@ -61,13 +61,15 @@ class Card::Metric
     # @option opts [Array, String] :research_policy research policy
     #   (designer or community assessed)
     # @option opts [Array, String] :topic tag with topics
+    # @option opts [String] :currency
+    # @option opts [String] :unit
     # @option opts [Boolean] :random_source (false) pick a random source for
     #   each value
     def create opts, &block
       random_source = opts.delete :random_source
       metric = Card.create! name: opts.delete(:name),
                             type_id: Card::MetricID,
-                            subfields: subfield_args(opts)
+                            subfields: subfields(opts)
       metric.create_values random_source, &block if block_given?
       metric
     end
@@ -79,24 +81,22 @@ class Card::Metric
            .freeze
     ALIAS_SUBFIELDS = { type: :metric_type, topic: :wikirate_topic }.freeze
 
-    def subfield_args opts
+    def subfields opts
       resolve_alias opts
       validate_subfields opts
-      if opts[:formula].is_a? Hash
-        opts[:formula] = opts[:formula].to_json
-        opts[:value_type] ||= "Category"
-      end
-
-      opts[:metric_type] ||= :researched
-      opts[:value_type] ||= "Number" if opts[:metric_type] == :researched
-      opts[:metric_type] = Card.fetch_name opts[:metric_type]
+      normalize_subfields opts
 
       opts.each_with_object({}) do |(field, content), subfields|
-        type_id = subfield_type_id(field)
-        content = Array.wrap(content).to_pointer_content if type_id == Card::PointerID
-        subfields[field] = { content: content,
-                             type_id: type_id }
+        subfields[field] = subfield_args field, content
       end
+    end
+
+    def subfield_args field, content
+      type_id = subfield_type_id(field)
+      if type_id == Card::PointerID
+        content = Array.wrap(content).to_pointer_content
+      end
+      { content: content, type_id: type_id }
     end
 
     def subfield_type_id field
@@ -116,6 +116,17 @@ class Card::Metric
       invalid = ::Set.new(opts.keys) - VALID_SUBFIELDS
       return if invalid.empty?
       raise ArgumentError, "invalid metric subfields: #{invalid.to_a}"
+    end
+
+    def normalize_subfields opts
+      if opts[:formula].is_a? Hash
+        opts[:formula] = opts[:formula].to_json
+        opts[:value_type] ||= "Category"
+      end
+
+      opts[:metric_type] ||= :researched
+      opts[:value_type] ||= "Number" if opts[:metric_type] == :researched
+      opts[:metric_type] = Card.fetch_name opts[:metric_type]
     end
   end
 end

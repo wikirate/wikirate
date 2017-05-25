@@ -27,7 +27,7 @@ class Card
         private
 
         def real_bucket_size size
-          log_bucket? ? (Math.exp(size)).to_i + min : size
+          log_bucket? ? Math.exp(size).to_i + min : size
         end
 
         def log_bucket?

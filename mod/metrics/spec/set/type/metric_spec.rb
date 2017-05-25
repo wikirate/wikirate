@@ -19,9 +19,9 @@ RSpec.describe Card::Set::Type::Metric do
     it_behaves_like "viewable metric", "Jedi+deadliness",
                     "Number", "numeric_detail"
   end
-  context 'Money type metric' do
-    it_behaves_like 'viewable metric', "Jedi+cost of planets destroyed",
-                    'Money', 'monetary_detail'
+  context "Money type metric" do
+    it_behaves_like "viewable metric", "Jedi+cost of planets destroyed",
+                    "Money", "monetary_detail"
   end
   context "Category type metric" do
     it_behaves_like "viewable metric", "Jedi+disturbances in the Force",
