@@ -7,6 +7,10 @@ card_reader :wikirate_company
 card_reader :metric
 card_reader :organizer
 
+def answers
+  @answers ||= Answer.where(where_answer).where("updated_at > ?", created_at)
+end
+
 # the space of possible metric records
 def num_records
   @num_records ||= num_companies * num_metrics
@@ -18,6 +22,23 @@ end
 
 def num_metrics
   @num_metrics ||= metric_card.item_names.size
+end
+
+def num_users
+  @num_users ||= answers.select(:creator_id).uniq.count
+end
+
+def num_answers
+  @num_answers ||= answers.count
+end
+
+def num_policies
+  policies = metric_card.item_cards.map do |mc|
+    mc.try(:research_policy)
+  end.compact
+  d_cnt = policies.count "[[Designer Assessed]]"
+  c_cnt = policies.count "[[Community Assessed]]"
+  "#{d_cnt}/#{c_cnt}"
 end
 
 def metric_ids
@@ -245,13 +266,9 @@ end
 
 format :csv do
   view :core do
-    res = ""
-    card.metric_ids.each do |m_id|
+    Answer.csv_title + card.metric_ids.map do |m_id|
       Answer.where("metric_id = ? AND company_id IN (?)",
-                   m_id, card.company_ids).each do |a|
-        res += a.csv_line
-      end
-    end
-    res
+                   m_id, card.company_ids).map(&:csv_line)
+    end.flatten.join
   end
 end

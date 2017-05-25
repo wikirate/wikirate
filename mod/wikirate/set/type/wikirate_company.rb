@@ -54,6 +54,17 @@ end
 
 format :csv do
   view :core do
-    Answer.where(company_id: card.id).map(&:csv_line).join
+    Answer.csv_title + Answer.where(company_id: card.id).map(&:csv_line).join
+  end
+end
+
+format :html do
+  view :link, closed: true, perms: :none do
+    return super() unless voo.closest_live_option(:project)
+    title = showname voo.title
+    opts = { known: card.known? }
+    opts[:path] = { filter: { project: voo.closest_live_option(:project) } }
+    opts[:path][:card] = { type: voo.type } if voo.type && !opts[:known]
+    link_to_card card.name, title, opts
   end
 end

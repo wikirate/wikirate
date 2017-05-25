@@ -2,7 +2,7 @@
 
 require "link_thumbnailer"
 
-describe Card::Set::Type::Source do
+RSpec.describe Card::Set::Type::Source do
   before do
     @wikirate_link_prefix = "#{Card::Env[:protocol]}#{Card::Env[:host]}/"
   end

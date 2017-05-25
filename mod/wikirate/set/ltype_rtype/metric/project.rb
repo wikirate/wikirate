@@ -36,6 +36,12 @@ end
 
 format :html do
   view :metric_thumbnail do
-    nest card.metric_card, view: :thumbnail
+    nest card.metric_card, view: :thumbnail_no_link
+  end
+
+  view :research_progress_bar do
+    link_to_card card.metric_card, super(),
+                 path: { filter: { project: card.project_card.name,
+                                   metric_value: :all} }
   end
 end

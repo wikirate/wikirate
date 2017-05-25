@@ -80,26 +80,27 @@ wagn.slotReady (slot) ->
     #on the <li> elements' immediate children, e.g the <label> elements:
     $(this).closest('label').tab('show')
 
-  if(slot.hasClass('STRUCTURE-metric_value_type_edit_structure'))
-# hide the related field
-# if no type is selected, hide all fields
-    slot.find('.RIGHT-value_type .pointer-radio input:radio').each(->
+  # hide the related field
+  # if no type is selected, hide all fields
+  if slot.find('.card-editor.RIGHT-value_type')
+    hideAll(slot)
+    slot.find('.card-editor.RIGHT-value_type .pointer-radio input:radio').each(->
       if $(this).is(':checked')
         showAndHide(slot, $(this).val())
       $(this).change(->
         showAndHide slot, $(this).val()
-      ).change()
+      )
     )
-    # cancel-button to dismiss the modal
-    slot.find(".cancel-button").data('dismiss','modal')
-    # dismiss and refresh page after submit
-    slot.find('form:first').on 'ajax:success', (_event, data, xhr) ->
-      $('#modal-main-slot').modal('hide')
-      $('#fakeLoader').fakeLoader
-        timeToHide: 1000000 #Time in milliseconds for fakeLoader disappear
-        zIndex: '999' #Default zIndex
-        #Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5',
-        #         'spinner6', 'spinner7'
-        spinner: 'spinner1'
-        bgColor: 'rgb(255,255,255,0.80)'#Hex, RGB or RGBA colors
-      location.reload()
+  # cancel-button to dismiss the modal
+  slot.find(".cancel-button").data('dismiss','modal')
+  # dismiss and refresh page after submit
+  slot.find('form:first').on 'ajax:success', (_event, data, xhr) ->
+    $('#modal-main-slot').modal('hide')
+    $('#fakeLoader').fakeLoader
+      timeToHide: 1000000 #Time in milliseconds for fakeLoader disappear
+      zIndex: '999' #Default zIndex
+      #Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5',
+      #         'spinner6', 'spinner7'
+      spinner: 'spinner1'
+      bgColor: 'rgb(255,255,255,0.80)'#Hex, RGB or RGBA colors
+    location.reload()

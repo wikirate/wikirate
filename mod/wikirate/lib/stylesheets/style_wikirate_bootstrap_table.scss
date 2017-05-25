@@ -237,3 +237,7 @@ table.wikirate-table, .table.wikirate-table {
   height: 78%!important;
   top: 110px!important;
 }
+
+table.import_table td {
+  overflow: hidden;
+}

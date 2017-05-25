@@ -4,16 +4,8 @@ format :html do
     subformat(Card[:research_page])._render_new
   end
 
-  view :content_formgroup, cache: :never do
-    voo.hide :name_formgroup, :type_formgroup
-    prepare_nests_editor
-    super()
-  end
-
-  def prepare_nests_editor
-    voo.editor = :nests
+  view :content_formgroup, template: :haml do
     card.add_subfield :year, content: card.year
-    voo.edit_structure = [[:value, "Value"], [:year, "Year"]]
   end
 
   def default_new_args _args
