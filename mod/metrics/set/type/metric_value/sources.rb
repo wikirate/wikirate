@@ -85,7 +85,7 @@ format :html do
   end
 
   view :relevant_sources, cache: :never do
-    wrap_with :div, source_list.html_safe, class: "relevant-sources"
+    wrap_with :div, source_list.html_safe, class: "relevant-sources form-group"
   end
 
   def source_list

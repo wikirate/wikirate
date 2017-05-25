@@ -632,11 +632,11 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     width: 60%;
   }
 
-  .answer_table-view.LTYPE_RTYPE-metric-company {
-    margin: 0px;
-    padding: 10px;
-    //border: 1px solid #ebebeb;
-  }
+  //.answer_table-view.LTYPE_RTYPE-metric-company {
+  //  margin: 0px;
+  //  padding: 10px;
+  //  //border: 1px solid #ebebeb;
+  //}
 
   td.year {
     padding-right: 10px;
@@ -644,6 +644,11 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   }
 }
 
+.new-value-form {
+    border-top: 1px solid #ebebeb;
+    padding-top: 10px;
+    margin-top: 15px;
+}
 
 .row.panel-default.metric-list {
     background: rgba(103, 78, 167, 0.06);
@@ -664,20 +669,13 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     font-style: italic;
 }
 
-.form-group.card-editor {
-  &.RIGHT-value {
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-  &.RIGHT-unknown {
-    //margin-top: 20px;
-    //margin-bottom: 20px;
-    //padding-bottom: 0;
-    .label {
-      margin-bottom: 0;
-    }
-  }
-}
+//.form-group.card-editor {
+//  &.RIGHT-unknown {
+//    .label {
+//      margin-bottom: 0;
+//    }
+//  }
+//}
 
 .research-left {
     width: 40%;

@@ -39,12 +39,14 @@ format :html do
     nest(Card.fetch(card.cardname.field("title"), new: {}), view: :needed)
   end
 
-  def source_item_footer
-    items = [
+  def source_item_footer args
+    items = []
+    extras = [
       _render_note_count,
       _render_metric_count,
       _render_original_with_icon
     ]
+    items = extras unless args[:source_title] == :text
     items.unshift(_render_year_with_icon) unless year.nil? || year == ""
     items
   end
@@ -55,27 +57,26 @@ format :html do
   end
 
   view :source_content do |args|
-    content = wrap_with :div, class: "source-content" do
+    wrap_with :div, class: "source-content" do
       [
         _render_source_link(args),
         _render_creator_credit
       ]
     end
-    _render_icon + content
   end
 
-  view :listing do
+  view :listing do |args|
     wrap_with :div, class: "source-item" do
       [
-        _render_source_content,
-        _render_extras
+        _render_source_content(args),
+        _render_extras(args)
       ]
     end
   end
 
-  view :extras do
+  view :extras do |args|
     wrap_with :div, class: "source-extra" do
-      flat_list source_item_footer
+      flat_list source_item_footer(args)
     end
   end
 
@@ -85,7 +86,7 @@ format :html do
   end
 
   view :icon do
-    icon = wrap_with(:i, " ", class: "fa fa-globe")
+    icon = wrap_with(:i, " ", class: "glyphicon glyphicon-link")
     wrap_with(:div, icon, class: "source-icon")
   end
 
