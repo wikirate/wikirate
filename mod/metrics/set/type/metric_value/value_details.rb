@@ -15,7 +15,7 @@ format :html do
 
   view :researched_value_details do
     checked_by = card.fetch trait: :checked_by, new: {}
-    checked_by = nest(checked_by, view: :double_check_view)
+    checked_by = nest(checked_by, view: :core)
     wrap_value_details do
       [
         wrap_with(:div, checked_by, class: "double-check"),

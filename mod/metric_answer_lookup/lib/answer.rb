@@ -44,7 +44,7 @@ class Answer < ActiveRecord::Base
   end
 
   def fetch_imported
-    false
+    card.value_card.actions.last.comment == "imported"
   end
 
   def fetch_designer_id

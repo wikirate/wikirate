@@ -32,14 +32,12 @@ format :html do
     end
   end
 
-  view :table, cache: :never do
-    wrap do # slot for paging links
-      wikirate_table_with_details :company, self,
-                                  [:company_thumbnail, :value_cell],
-                                  header: [company_sort_link, value_sort_link],
-                                  details_view: :company_details_sidebar
-      # td: { classes: [nil, "text-center"] }
-    end
+  def table_args
+    [:company,
+     self,
+     [:company_thumbnail, :value_cell],
+     header: [company_sort_link, value_sort_link],
+     details_view: :company_details_sidebar]
   end
 
   def company_sort_link
@@ -52,5 +50,18 @@ format :html do
 
   view :filter do
     field_subformat(:metric_company_filter)._render_core
+  end
+
+  view :homepage_table do
+    wikirate_table(
+      :company, search_with_params(limit: 4),
+      [:company_thumbnail, :value_cell],
+      header: %w(Company Value),
+      td: { classes: ["header", nil] },
+      tr_link: lambda do |item|
+        path mark: item.metric_card,
+             filter: { wikirate_company: item.company }
+      end
+    )
   end
 end

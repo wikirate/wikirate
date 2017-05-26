@@ -2,6 +2,7 @@ source "http://rubygems.org"
 
 wagn_gem_path = ENV["WIKIRATE_WAGN_GEM_PATH"] || "./vendor/wagn"
 
+gem "smartname", path: "./vendor/smartname"
 gem "wagn", path: "#{wagn_gem_path}/wagn"
 gem "card", path: "#{wagn_gem_path}/card", require: false
 
@@ -48,7 +49,7 @@ gem "simplecov", require: false
 # CUKES see features dir
   gem "cucumber-rails", require: false
 # feature-driven-development suite
-  gem "capybara"
+  gem "capybara", "2.11.0"
 # used 2.0.1
   gem "selenium-webdriver", "~> 2.3"
 #  gem 'capybara-webkit'

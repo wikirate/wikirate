@@ -32,7 +32,7 @@
 $(document).ready ->
 # Collapse next element
   $('body').on 'click.collapse-next', '[data-toggle=collapse-next]', ->
-    findCollapseTarget($(this)).collapse()
+    findCollapseTarget($(this)).collapse('toggle')
 
   $('body').on 'click', '[data-toggle="collapse"]', ->
     if $(this).data("url")?
@@ -84,7 +84,7 @@ findCollapseTarget = (toggle) ->
   $toggle = $(toggle)
   parent =
     if $toggle.data("parent")?
-      $toggle.closest(parent)
+      $toggle.closest($toggle.data("parent"))
     else
       $toggle.parent()
 
@@ -96,8 +96,8 @@ findCollapseTarget = (toggle) ->
     $toggle.find(target)
   else if $toggle.siblings(target).length
     $toggle.siblings(target)
-  else if parent.siblings(target).length
-    parent.siblings(target)
-  else
+  else if parent.find(target).length
     parent.find(target)
+  else
+    parent.siblings(target)
 

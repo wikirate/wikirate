@@ -1,20 +1,14 @@
 format :html do
   view :closed_answer do
-    class_up "vis", "pull-left"
+    class_up "vis", "pull-right"
     output [row, empty_details_slot]
-  end
-
-  def collapse_id
-    "#{card.cardname.safe_key}-answer-details"
   end
 
   # used for new_metric_value of a company
   # TODO merge with closed_answer view;
   view :closed_answer_without_chart do
-    output [
-             wrap_with(:div, [_render_answer_details_toggle, value_field]),
-             empty_details_slot
-           ]
+    voo.hide! :chart
+    output [row, empty_details_slot]
   end
 
   def empty_details_slot
@@ -26,8 +20,7 @@ format :html do
     wrap_with :div do
       [
         _render_answer_details_toggle,
-        value_field,
-        _optional_render_chart
+        value_field
       ]
     end
   end
@@ -38,9 +31,14 @@ format :html do
         wrap_with(:span, currency, class: "metric-unit"),
         _render_value_link,
         wrap_with(:span, legend, class: "metric-unit"),
-        _render_flags
+        _render_flags,
+        _optional_render_chart
       ]
     end
+  end
+
+  def collapse_id
+    "#{card.cardname.safe_key}-answer-details"
   end
 
   view :flags do

@@ -34,7 +34,7 @@
     border-left: 3px solid $regular;
   }
   tr, .tr {
-    &.tr-details-toggle:hover {
+    &.tr-details-toggle:hover, &.tr-link:hover {
       .header {
         border-left: 3px solid $hover;
       }
@@ -124,7 +124,7 @@ table.wikirate-table, .table.wikirate-table {
 
 
   tr, .tr {
-    &.tr-details-toggle:hover {
+    &.tr-details-toggle:hover, &.tr-link:hover {
       background-color: #fafafa;
       cursor: pointer;
     }
@@ -191,6 +191,3 @@ table.wikirate-table, .table.wikirate-table {
     text-align: center;
 }
 
-.TYPE-company.new_metric_value-view .metric-row {
-  background-color: #fff;
-}

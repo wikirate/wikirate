@@ -6,17 +6,12 @@ $dark-text-color2: #bebebe;
 $bright-text-color: #e5e5e5;
 
 
-
-.contribution-item {
-    overflow: hidden;
-    cursor: move;
-}
-
 .contribution-item {
   overflow: hidden;
-  cursor: move;
-  //border: 1px solid #eee;
+  //cursor: move;
+  border: 1px solid #ebebeb;
   clear: both;
+  margin-bottom: -1px;
 
   .thumbnail {
     border: 0;
@@ -24,7 +19,7 @@ $bright-text-color: #e5e5e5;
   }
   .header {
     width: 70%;
-    cursor: pointer;
+    //cursor: pointer;
     float: left;
     border-right: 1px solid #eee;
     //color: #ccc !important;

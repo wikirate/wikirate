@@ -50,6 +50,7 @@ module LookupTable
       ids ||= Card.search(type_id: Card::MetricValueID, return: :id)
       ids = Array(ids)
       ids.each do |ma_id|
+        # puts ma_id
         create_or_update ma_id
       end
     end

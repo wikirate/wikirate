@@ -51,7 +51,7 @@ describe Card::Set::Type::Source, "source preview" do
           expect(@result).to have_tag("div", with: { id: "pdf-preview" }) do
             with_tag "iframe", with: {
               id: "source-preview-iframe",
-              src: "pdfjs/web/viewer.html?file=#{file_card.attachment.url}"
+              src: "/pdfjs/web/viewer.html?file=#{file_card.attachment.url}"
             }
           end
         end

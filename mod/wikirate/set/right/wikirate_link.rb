@@ -14,11 +14,11 @@ event :validate_content, :validate, on: :save do
   end
 end
 
-event :block_url_changing, :validate, on: :update, changed: :content,
-                                      when: :prior_present? do
-  errors.add :link, "is not allowed to be changed."
-end
-
-def prior_present?
-  !db_content_was.empty?
-end
+# event :block_url_changing, :validate, on: :update, changed: :content,
+#                                       when: :prior_present? do
+#   errors.add :link, "is not allowed to be changed."
+# end
+#
+# def prior_present?
+#   !db_content_was.empty?
+# end

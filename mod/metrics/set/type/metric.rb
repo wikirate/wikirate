@@ -33,6 +33,10 @@ def metric_designer_card
   junction? ? self[0] : creator
 end
 
+def designer_image_card
+  metric_designer_card.fetch(trait: :image, new: { type_id: ImageID })
+end
+
 def metric_title
   junction? ? cardname.parts[1] : cardname
 end
@@ -58,6 +62,10 @@ def value_type
   value_type_card.item_names.first || "Free Text"
 end
 
+def value_type_code
+  ((vc = value_type_card.item_cards.first) && vc.codename.to_sym) || :free_text
+end
+
 def value_options
   value_options_card.item_names
 end
@@ -70,6 +78,14 @@ end
 # TODO: adapt to Henry's value type API
 def categorical?
   value_type == "Category"
+end
+
+def relationship?
+  metric_type_codename.in? [:relationship, :inverse_relationship]
+end
+
+def multi_categorical?
+  value_type_code == :multi_category
 end
 
 def researched?
@@ -145,13 +161,13 @@ format :html do
     res = {}
     card.all_metric_values_card.values_by_name.map do |key, data|
       data.each do |row|
-        res["#{key}+#{row["year"]}"] = row["value"].to_i
+        res["#{key}+#{row['year']}"] = row["value"].to_i
       end
     end
     res
   end
 
-  view :outliers do |args|
+  view :outliers do
     outs = Savanna::Outliers.get_outliers prepare_for_outlier_search, :all
     outs.inspect
   end
@@ -426,10 +442,9 @@ format :html do
     HTML
     wrap do
       metric_row header, data, drag_and_drop: false,
-                 item_types: [:metric, :contribution, :value]
+                               item_types: [:metric, :contribution, :value]
     end
   end
-
 end
 
 format :json do
@@ -441,4 +456,12 @@ end
 def needs_name?
   # score names are handles differently in MetricType::Score
   !name.present? && metric_type != "Score"
+end
+
+format :csv do
+  view :core do
+    Answer.where(metric_id: card.id).map do |a|
+      a.csv_line
+    end.join
+  end
 end

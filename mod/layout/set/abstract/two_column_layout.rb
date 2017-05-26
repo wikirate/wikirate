@@ -22,7 +22,9 @@ format :html do
   view :rich_header do |args|
     bs_layout do
       row 12 do
-        col text_with_image title: "", text: header_right, size: :large
+        col class: "nopadding" do
+          text_with_image title: "", text: header_right, size: :large
+        end
       end
     end
   end

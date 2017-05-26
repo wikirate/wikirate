@@ -57,8 +57,14 @@
 }
 
 .verify-blue {
-  color: #1e90ff;
+  color: $verify-blue-color;
 }
+
+.request-red {
+  color: $highlight-color;
+}
+
+
 //Text adjustments
 .text-align-left {
     text-align: left;
@@ -169,6 +175,10 @@
 
 .padding-top-20 {
     padding-top: 20px !important;
+}
+
+.padding-20 {
+  padding: 10px !important;
 }
 
 .min-width-300 {
@@ -588,7 +598,19 @@ a.external-link:before, .closed-content a.external-link:before {
     content: "\f08e";
     right: 2px;
     position: absolute;
-    top: 1px;
+    bottom: 4px;
     font-family: fontAwesome;
     font-size: 8px;
+}
+
+button .hover-text {
+  display: none;
+}
+
+button:hover .text {
+  display: none;
+}
+
+button:hover .hover-text {
+  display: inline;
 }
