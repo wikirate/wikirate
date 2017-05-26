@@ -46,10 +46,11 @@ format :html do
     end
   end
 
-  def text_filter field
+  def text_filter field, opts={}
     name = filter_name field
-    formgroup filter_label(field), class: " filter-input" do
-      text_field_tag name, filter_param(field), class: "form-control"
+    add_class opts, "form-control"
+    formgroup filter_label(field), class: "filter-input" do
+      text_field_tag name, filter_param(field), opts
     end
   end
 
@@ -60,8 +61,7 @@ format :html do
   end
 
   def autocomplete_filter type_codename
-    text_field_tag(type_codename, "",
-                   class: "#{type_codename}_autocomplete")
+    text_filter type_codename, class: "#{type_codename}_autocomplete"
   end
 
   def multiselect_filter_type_based type_codename

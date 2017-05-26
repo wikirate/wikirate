@@ -4,9 +4,9 @@ describe Card::Set::Right::WikirateTitle do
   before do
     login_as "joe_user"
   end
-  it "should show title if title exist" do
+  it "shows title if title exist" do
     # create the page with source with title
-    url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknowsigh"
+    url = "http://www.google.com/?q=wikiratesigh"
     Card::Env.params[:sourcebox] = "true"
     sourcepage = Card.create type_id: Card::SourceID, subcards: { "+Link" => { content: url } }
 
@@ -16,9 +16,9 @@ describe Card::Set::Right::WikirateTitle do
 
     expect(html).to eq(title_card.content)
   end
-  it "should show \"title needed\" if title doesnt exist" do
+  it "shows \"title needed\" if title doesnt exist" do
     # create the page with source
-    url = "http://www.google.com/?q=wikirateissocoolandawesomeyouknowsigh"
+    url = "http://www.google.com/?q=wikiratesigh"
 
     sourcepage = Card.create type_id: Card::SourceID, subcards: { "+Link" => { content: url } }
     Card[sourcepage.name + "+Title"].delete! if Card[sourcepage.name + "+Title"]

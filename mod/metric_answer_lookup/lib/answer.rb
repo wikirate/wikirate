@@ -1,96 +1,18 @@
+# lookup table for metric answers
+
 class Answer < ActiveRecord::Base
   include LookupTable
+  extend AnswerClassMethods
+
   include Filter
-  extend LookupTable::ClassMethods
+  include Validations
+  include EntryFetch
+
+  validates :answer_id, numericality: { only_integer: true }, presence: true
+  validate :must_be_an_answer, :card_must_exist, :metric_must_exit
 
   def card_column
     :answer_id
-  end
-
-  def fetch_answer_id
-    card.id
-  end
-
-  def fetch_company_id
-    card.left.right_id
-  end
-
-  def fetch_metric_id
-    metric_card.id
-  end
-
-  def fetch_record_id
-    card.left_id
-  end
-
-  def fetch_metric_name
-    card.cardname.left_name.left
-  end
-
-  def fetch_company_name
-    card.cardname.left_name.right
-  end
-
-  def fetch_title_name
-    card.cardname.parts.second
-  end
-
-  def fetch_record_name
-    card.cardname.left
-  end
-
-  def fetch_year
-    card.cardname.right.to_i
-  end
-
-  def fetch_imported
-    card.value_card.actions.last.comment == "imported"
-  end
-
-  def fetch_designer_id
-    metric_card.left_id
-  end
-
-  def fetch_designer_name
-    card.cardname.parts.first
-  end
-
-  def fetch_policy_id
-    return unless (policy_pointer = metric_card.fetch(trait: :research_policy))
-    policy_name = policy_pointer.item_names.first
-    (pc = Card.quick_fetch(policy_name)) && pc.id
-  end
-
-  def fetch_metric_type_id
-    return unless (metric_type_pointer = metric_card.fetch(trait: :metric_type))
-    metric_type_name = metric_type_pointer.item_names.first
-    (mtc = Card.quick_fetch(metric_type_name)) && mtc.id
-  end
-
-  def fetch_value
-    card.value
-  end
-
-  def fetch_numeric_value
-    return unless metric_card.numeric?
-    val = fetch_value
-    return if unknown?(val) || !val.number?
-    val.to_d
-  end
-
-  def fetch_updated_at
-    return card.updated_at unless (vc = card.value_card)
-    [card.updated_at, vc.updated_at].compact.max
-  end
-
-  def fetch_latest
-    return true unless (latest_year = latest_year_in_db)
-    @new_latest = (latest_year < fetch_year)
-    latest_year <= fetch_year
-  end
-
-  def latest_year_in_db
-    Answer.where(record_id: fetch_record_id).maximum(:year)
   end
 
   def delete
@@ -103,15 +25,27 @@ class Answer < ActiveRecord::Base
     end
   end
 
+  def latest_year_in_db
+    Answer.where(record_id: fetch_record_id).maximum(:year)
+  end
+
   def latest_to_false
-    Answer.where(
-      record_id: record_id, latest: true
-    ).update_all(latest: false)
+    Answer.where(record_id: record_id, latest: true)
+          .update_all(latest: false)
   end
 
   def latest= value
     latest_to_false if @new_latest
     super
+  end
+
+  def self.csv_title
+    CSV.generate_line ["ANSWER ID", "METRIC NAME", "COMPANY NAME", "YEAR",
+                      "VALUE"]
+  end
+
+  def csv_line
+    CSV.generate_line [answer_id, metric_name, company_name, year, value]
   end
 
   private
@@ -124,3 +58,6 @@ class Answer < ActiveRecord::Base
     @metric_card ||= Card.quick_fetch(fetch_metric_name)
   end
 end
+
+require_relative "answer/active_record_extension"
+Answer::ActiveRecord_Relation.send :include, Answer::ActiveRecordExtension

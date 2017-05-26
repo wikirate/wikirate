@@ -58,10 +58,19 @@ format :html do
     HTML
   end
 
-  def author_info author_card
+  view :browse_item, template: :haml do
+    @vote_count = voo.show?(:vote_count) ? field_nest(:vote_count) : ""
+  end
+  view :homepage_item, template: :haml
+
+  def view_template_path view
+    super(view, __FILE__)
+  end
+
+  def author_info author_card, subtext=nil
     output [
       author_image(author_card),
-      author_text(author_card.name)
+      author_text(author_card.name, subtext)
     ]
   end
 

@@ -1,8 +1,9 @@
 describe Formula::Calculator::Input do
   subject do
     input_cards = @input.map { |i| Card.fetch i }
-    Formula::Calculator::Input.new(input_cards, @year_options, &:to_f)
+    described_class.new(input_cards, @year_options, &:to_f)
   end
+
   it "single input" do
     @input = ["Jedi+deadliness"]
     expect { |b| subject.each(year: 1977, company: "Death Star", &b) }
@@ -10,7 +11,7 @@ describe Formula::Calculator::Input do
   end
 
   it "two metrics" do
-    @input = %w(Jedi+deadliness Joe_User+researched)
+    @input = %w[Jedi+deadliness Joe_User+researched]
     expect { |b| subject.each(year: 1977, &b) }
       .to yield_with_args([100.0, 77.0], "death_star", 1977)
   end

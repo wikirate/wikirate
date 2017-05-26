@@ -4,7 +4,7 @@ describe Card::Set::Right::WikirateTag do
   before do
     login_as "joe_user"
   end
-  it "should create tag card(s) while creating +tag card(s)" do
+  it "creates tag card(s) while creating +tag card(s)" do
     # create the webpage first
     url = "http://www.google.com/?q=newpage"
     Card::Env.params[:sourcebox] = "true"

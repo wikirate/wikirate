@@ -1,19 +1,19 @@
 describe Card::Set::Abstract::BrowseFilterForm do
   # define the sample card to use
-  #let(:card) { Card["Company"].fetch trait: :metric_company_filter }
-
+  # let(:card) { Card["Company"].fetch trait: :metric_company_filter }
 
   describe "html format" do
     let(:card) { Card["Company"].fetch trait: :browse_topic_filter }
+
     it "#advanced_formgroups" do
-      card.stub(:advanced_filter_keys) { %w(metric project wikirate_company) }
+      card.stub(:advanced_filter_keys) { %w[metric project wikirate_company] }
       html =
-          card.format.advanced_filter_formgroups
+        card.format.advanced_filter_formgroups
       expect(html).to have_tag(:div, with: { class: "advanced-options" }) do
         with_tag :div, with: { id: "collapseFilter", class: "collapse" } do
           with_tag :label, text: "Metric"
           with_tag :div, with: { class: "editor" } do
-            with_tag :select, with: { class: "pointer-select", id: "filter_metric" }
+            with_tag :input, with: { class: "metric_autocomplete", id: "filter_metric" }
           end
           with_tag :label, text: "Project"
           with_tag :div, with: { class: "editor" } do
@@ -21,8 +21,8 @@ describe Card::Set::Abstract::BrowseFilterForm do
           end
           with_tag :label, text: "Company"
           with_tag :div, with: { class: "editor" } do
-            with_tag :select, with: { class: "pointer-select",
-                                      id: "filter_wikirate_company" }
+            with_tag :input, with: { class: "wikirate_company_autocomplete",
+                                     id: "filter_wikirate_company" }
           end
         end
       end
@@ -49,12 +49,12 @@ describe Card::Set::Abstract::BrowseFilterForm do
         with_tag :div, with: { class: "advanced-options" }
       end
     end
-
   end
   context "render core view" do
     subject { card.format.render_core }
 
     let(:content_view) { card.format.content_view }
+
     it "has frame" do
       # log_html subject
       # is_expected.to have_tag(:form, with: { class: "filter-container",

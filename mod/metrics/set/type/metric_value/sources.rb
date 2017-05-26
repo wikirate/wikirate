@@ -54,3 +54,46 @@ end
 def report_type
   metric_card.fetch trait: :report_type
 end
+
+format :html do
+  def source_form_url
+    path action: :new, mark: :source, preview: true, company: card.company
+  end
+
+  def source
+    Env.params[:source]
+  end
+
+  def sources
+    @sources ||= find_potential_sources
+    if source && (source_card = Card[source])
+      @sources.push(source_card)
+    end
+    @sources
+  end
+
+  def find_potential_sources
+    Card.search(
+      type_id: Card::SourceID,
+      right_plus: [["company", { refer_to: card.company }],
+                   ["report_type", {
+                     refer_to: {
+                       referred_to_by: card.metric + "+report_type"
+                     }
+                   }]]
+    )
+  end
+
+  view :relevant_sources, cache: :never do
+    wrap_with :div, source_list.html_safe, class: "relevant-sources"
+  end
+
+  def source_list
+    return "None" if sources.empty?
+    sources.map do |source|
+      with_nest_mode :normal do
+        subformat(source).render_relevant
+      end
+    end.join("")
+  end
+end

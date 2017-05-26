@@ -4,8 +4,8 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
   let(:metric) { @metric || Card["Jedi+disturbances in the Force"] }
   let(:all_metric_values) { metric.fetch trait: :all_metric_values }
   let(:latest_answers) do
-    ["Slate_Rock_and_Gravel_Company+2005", "SPECTRE+2000", "Death_Star+2001",
-     "Monster_Inc+2000"]
+    ["Death_Star+2001", "Monster_Inc+2000", "Slate_Rock_and_Gravel_Company+2005",
+     "SPECTRE+2000"]
   end
   let(:latest_answer_keys) do
     ::Set.new(latest_answers.map { |n| n.to_name.left_name.key })
@@ -36,6 +36,7 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
     subject do
       answers all_metric_values.item_cards
     end
+
     it "returns the latest values in default order" do
       is_expected.to eq(latest_answers)
     end
@@ -53,7 +54,7 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
 
         it "finds partial match" do
           expect(filter_by(name: "at"))
-            .to eq %w(Slate_Rock_and_Gravel_Company+2005 Death_Star+2001)
+            .to eq %w[Death_Star+2001 Slate_Rock_and_Gravel_Company+2005]
         end
 
         it "ignores case" do
@@ -64,19 +65,19 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       context "year" do
         it "finds exact match" do
           expect(filter_by(year: "2000"))
-            .to eq with_year(%w(SPECTRE Death_Star Monster_Inc), 2000)
+            .to eq with_year(%w[Death_Star Monster_Inc SPECTRE], 2000)
         end
       end
       context "project" do
         it "finds exact match" do
           expect(filter_by(project: "Evil Project"))
-            .to eq %w(SPECTRE+2000 Death_Star+2001)
+            .to eq %w[Death_Star+2001 SPECTRE+2000]
         end
       end
       context "industry" do
         it "finds exact match" do
           expect(filter_by(industry: "Technology Hardware"))
-            .to eq %w(SPECTRE+2000 Death_Star+2001)
+            .to eq %w[Death_Star+2001 SPECTRE+2000]
         end
       end
       context "value" do
@@ -94,18 +95,18 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
           end
           it "finds today's edits" do
             expect(filter_by(metric_value: :today))
-              .to eq %w(Death_Star+1990)
+              .to eq %w[Death_Star+1990]
           end
 
           it "finds this week's edits" do
             expect(filter_by(metric_value: :week))
-              .to eq %w(Death_Star+1990 Death_Star+1991)
+              .to eq %w[Death_Star+1990 Death_Star+1991]
           end
 
           it "finds this months's edits" do
             # wrong only one company
             expect(filter_by(metric_value: :month))
-              .to eq %w(Death_Star+1990 Death_Star+1991 Death_Star+1992)
+              .to eq %w[Death_Star+1990 Death_Star+1991 Death_Star+1992]
           end
         end
       end
@@ -152,7 +153,7 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       it "project and industry" do
         expect(filter_by(project: "Evil Project",
                          industry: "Technology Hardware"))
-          .to eq(["SPECTRE+2000", "Death_Star+2001"])
+          .to eq(["Death_Star+2001", "SPECTRE+2000"])
       end
       it "year and industry" do
         expect(filter_by(year: "1977",
@@ -210,11 +211,11 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       it "sorts numberics by value" do
         @metric = Card["Jedi+deadliness"]
         expect(sort_by(:value)).to eq(
-          with_year(%w(Samsung
+          with_year(%w[Samsung
                        Slate_Rock_and_Gravel_Company
                        Los_Pollos_Hermanos
                        SPECTRE
-                       Death_Star),
+                       Death_Star],
                     1977)
         )
       end
@@ -222,12 +223,12 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       it "sorts floats by value" do
         @metric = Card["Jedi+Victims by Employees"]
         expect(sort_by(:value)).to eq(
-          with_year(%w(Samsung
+          with_year(%w[Samsung
                        Slate_Rock_and_Gravel_Company
                        Monster_Inc
                        Los_Pollos_Hermanos
                        Death_Star
-                       SPECTRE),
+                       SPECTRE],
                     1977)
         )
       end

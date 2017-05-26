@@ -1,6 +1,5 @@
 include_set Abstract::BrowseFilterForm
 
-
 class TopicFilterQuery < Card::FilterQuery
   def metric_wql metric
     add_to_wql :referred_to_by, left: { name: metric }, right: "topic"
@@ -20,11 +19,11 @@ def default_sort_by_key
 end
 
 def filter_keys
-  %w(name)
+  %w[name]
 end
 
 def advanced_filter_keys
-  %w(metric project wikirate_company)
+  %w[metric project wikirate_company]
 end
 
 def target_type_id

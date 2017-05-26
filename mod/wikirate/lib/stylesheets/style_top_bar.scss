@@ -14,15 +14,6 @@ $body-txt-color: #777;
 
 /*----------- Mixins ---------*/
 
-@mixin searchbox-color {
-  background: $nav-srch-background !important;
-  color: $nav-srch-txt-color !important;
-}
-@mixin searchbox-color-focus {
-  background-color: #f3f4de !important;
-  color: #a8a8a8 !important;
-}
-
 @mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,.4), $inset: "") {
   @if ($inset != "") {
     -webkit-box-shadow: $inset $x $y $blur $color;

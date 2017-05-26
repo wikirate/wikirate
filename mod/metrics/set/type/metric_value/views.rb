@@ -1,7 +1,7 @@
 include_set Abstract::Chart
 
 format :json do
-  def vega_chart_config highlight=nil
+  def vega_chart_config _highlight=nil
     @data ||= chart_class.new(self,
                               highlight: card.value,
                               layout: { height: 70, width: 300,
@@ -48,13 +48,12 @@ format :html do
   # year, value, unit and flags
   view :concise do
     %(
-      <span class="metric-year">#{card.year} = </span>
+      #{"<span class=\"metric-year\">#{card.year} = </span>" if voo.show? :year}
       <span class="metric-unit"> #{currency} </span>
       #{_render_metric_details}
       <span class="metric-unit"> #{legend} </span>
       <div class="pull-right">
-        <small>#{checked_value_flag.html_safe}</small>
-        <small>#{comment_flag.html_safe}</small>
+        #{_render_small_flags}
       </div>
     )
   end
@@ -96,7 +95,7 @@ format :html do
 
   def numeric_metric?
     (value_type = card.metric_card.fetch trait: :value_type) &&
-      %w(Number Money).include?(value_type.item_names[0])
+      %w[Number Money].include?(value_type.item_names[0])
   end
 
   def numeric_value?
@@ -105,21 +104,15 @@ format :html do
   end
 
   def pretty_value
-    @pretty_value ||= numeric_value? ? humanized_number(card.value) : card.value
+    @pretty_value ||= numeric_value? ? humanized_value : value
   end
 
-  def checked_value_flag
-    checked_card = card.field "checked_by"
-    return "" unless checked_card && !checked_card.item_names.empty?
-    css_class = "fa fa-lg fa-check-circle verify-blue margin-left-10"
-    wrap_with "i", "", class: css_class, title: "Value checked"
+  def value
+    card.value_card.value
   end
 
-  def comment_flag
-    disc = card.fetch trait: :discussion
-    return "" unless disc && disc.content.present?
-    wrap_with "i", "", title: "Has comments",
-                       class: "fa fa-lg fa-commenting margin-left-10"
+  def humanized_value
+    card.value_card.item_names.map { |n| humanized_number n }.join ", "
   end
 
   view :modal_details, cache: :never do |args|
@@ -131,7 +124,7 @@ format :html do
           link_text: pretty_value,
           link_opts: {
             path: { slot: { show: :menu, optional_horizontal_menu: :hide } },
-            title: card.value,        "data-complete-number" => card.value,
+            title: value, "data-complete-number" => value,
             "data-tooltip" => "true", "data-placement" => "top"
           }
         )

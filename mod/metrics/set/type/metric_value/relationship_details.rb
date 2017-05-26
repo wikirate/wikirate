@@ -14,14 +14,14 @@ format :html do
         wrap_with(:div, checked_by, class: "double-check"),
         "<h5>Relations</h5>",
         relations_table,
-      #wrap_with(:div, _render_sources, class: "cited-sources")
+        # wrap_with(:div, _render_sources, class: "cited-sources")
       ]
     end
   end
 
   def relations_table
     wikirate_table :company, companies, [:company_name, :value],
-                   header: ["Company", "Answer"]
+                   header: %w[Company Answer]
   end
 
 end

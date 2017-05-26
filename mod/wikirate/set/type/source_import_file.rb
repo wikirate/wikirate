@@ -113,7 +113,7 @@ end
 
 def valid_value_data? args
   collect_import_errors(args[:row]) do
-    %w(company year report_type source).each do |field|
+    %w[company year report_type source].each do |field|
       check_if_filled_in field, args
     end
   end
@@ -158,7 +158,7 @@ format :html do
   end
 
   view :import do
-    voo.hide :metric_select, :year_select, :import_table_helper
+    voo.hide :metric_select, :year_select
     super()
   end
 
@@ -180,9 +180,16 @@ format :html do
                    class: "min-width-300")
   end
 
-  def prepare_import_row_data row, index
-    data = super row, index
-    data[:title] = title_field data
-    data
+  def finalize_row row, index
+    row[:row] = index
+    row[:checkbox] = import_checkbox row
+    row[:correction] = data_correction row
+    row[:title] = title_field row
+    row
   end
+  # def prepare_import_row_data row, index
+  #   data = super row, index
+  #   data[:title] = title_field data
+  #   data
+  # end
 end

@@ -28,7 +28,7 @@ format :html do
 
   view :table, cache: :never do
     wrap do # slot for paging links
-      wikirate_table_with_details *table_args
+      wikirate_table_with_details(*table_args)
     end
   end
 end
@@ -46,5 +46,3 @@ format :html do
     :table
   end
 end
-
-

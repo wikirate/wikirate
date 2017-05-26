@@ -1,13 +1,10 @@
-# cache # of metrics tagged with this topic (=_left)
-include Card::CachedCount
+# cache # of metrics tagged with this topic (=_left) via <metric>+topic
+include_set Abstract::TaggedByCachedCount, type_to_count: :metric,
+                                           tag_pointer: :wikirate_topic
+include_set Abstract::Table
 
-# recount metrics associated with a topic when <metric>+topic is edited
-ensure_set { TypePlusRight::Metric::WikirateTopic }
-recount_trigger TypePlusRight::Metric::WikirateTopic do |changed_card|
-  names = Card::CachedCount.pointer_card_changed_card_names(changed_card)
-  names.map do |topic|
-    Card.fetch topic.to_name.trait(:metric)
-  end
+def metric_ids
+  search return: :id, limit: 0
 end
 
 format :html do
@@ -20,11 +17,29 @@ format :html do
             .count("distinct company_id")
             .map do |metric_id, _count|
         nest metric_id, view: :listing
-      end
+      end + no_answers
     end
   end
 
+  def no_answers
+    all_metric_ids.map do |id|
+      next if Answer.exists?(metric_id: id)
+      nest id, view: :listing
+    end.compact
+  end
+
   def all_metric_ids
-    @all_metric_ids ||= card.search return: :id, limit: 0
+    @all_metric_ids ||= card.metric_ids
+  end
+
+  view :homepage_table do
+    wikirate_table(
+      :metric, card.search(limit: 4),
+      [:thumbnail_minimal, :company_count_with_label],
+      table: { class: "homepage-table" },
+      header: ["Metric", "# Records"],
+      td: { classes: ["header", nil] },
+      tr_link: ->(item) { path mark: item }
+    )
   end
 end

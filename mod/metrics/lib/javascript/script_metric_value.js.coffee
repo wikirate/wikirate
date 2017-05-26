@@ -63,10 +63,11 @@ $(document).ready ->
   #   if($("#source-preview-main").exists())
   #     stickContent()
 
-  $('body').on 'click','._view_methodology', ->
-    $(this).text (i, old) ->
-      btn_txt = 'View Methodology'
-      if old == btn_txt then 'Hide Methodology' else btn_txt
+  $('body').on 'click', '._toggle_button_text', ->
+    $(this).text (i, old_txt) ->
+      new_txt = $(this).data("toggle-text")
+      $(this).data("toggle-text", old_txt)
+      new_txt
 
   $('body').on 'click','._value_check_button', ->
     wikirate.valueChecking($(this), 'checked')

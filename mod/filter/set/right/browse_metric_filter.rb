@@ -5,11 +5,11 @@ def default_sort_by_key
 end
 
 def filter_keys
-  %w(name wikirate_topic wikirate_company)
+  %w[name wikirate_topic wikirate_company]
 end
 
 def advanced_filter_keys
-  %w(designer project metric_type research_policy year)
+  %w[designer project metric_type research_policy year]
 end
 
 def target_type_id
@@ -42,7 +42,6 @@ def default_sort_option
 end
 
 format :html do
-
   def default_year_option
     { "Any Year" => "" }
   end
@@ -51,8 +50,7 @@ format :html do
     {
       "Highest Voted" => "upvoted",
       "Most Recent" => "recent",
-      "Most Companies" => "company",
-      "Most Values" => "values"
+      # "Most Companies" => "wikirate_company" # "company"
     }
   end
 
@@ -62,6 +60,10 @@ format :html do
 
   view :research_policy_formgroup, cache: :never do
     research_policy_select
+  end
+
+  view :wikirate_topic_formgroup, cache: :never do
+    autocomplete_filter :wikirate_topic
   end
 
   def type_options type_codename, order="asc"

@@ -3,6 +3,7 @@ describe Card::Set::Abstract::Utility do
     subject do
       Card["A"].with_set(described_class).param_to_i "offset", 0
     end
+
     it "returns value from params" do
       Card::Env.params["offset"] = "5"
       is_expected.to eq(5)

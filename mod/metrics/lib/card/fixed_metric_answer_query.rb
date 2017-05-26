@@ -6,7 +6,7 @@ class Card
     DB_COLUMN_MAP = { name: :company_name,
                       wikirate_company: :company_name }.freeze
     # filter values are card names and have to be translated to card ids
-    CARD_ID_FILTERS = ::Set.new().freeze
+    CARD_ID_FILTERS = ::Set.new.freeze
 
     def initialize metric_id, *args
       @metric_id = metric_id
@@ -50,7 +50,7 @@ class Card
     end
 
     def outliers_query
-      restrict_to_ids :id, savanna_outliers.keys
+      restrict_to_ids :id, outlier_ids
     end
 
     def metric_value_query value
@@ -83,13 +83,18 @@ class Card
       end
       res.sort!
       return if res.size < 3
-      quarter = res.size/3
-      q1 = res[quarter]
-      q3 = res[-quarter]
+      quarter = res.size / 3
+      _q1 = res[quarter]
+      _q3 = res[-quarter]
       res
     end
 
-    def savanna_outliers
+    def outlier_ids
+      return [] unless (value_map = id_value_map).present?
+      savanna_outliers(value_map).keys
+    end
+
+    def savanna_outliers id_value_map
       @outliers ||= Savanna::Outliers.get_outliers id_value_map, :all
     end
   end

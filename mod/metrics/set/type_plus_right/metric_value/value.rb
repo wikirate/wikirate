@@ -8,7 +8,7 @@ def value_card
 end
 
 def value
-  content
+  item_names.join ", "
 end
 
 def metric_plus_company
@@ -63,8 +63,10 @@ end
 
 event :update_double_check_flag, :validate, on: [:update, :delete],
                                             changed: :content do
-  return unless left.fetch trait: :checked_by
-  attach_subcard cardname.left_name.field_name(:checked_by), content: ""
+  [:checked_by, :check_requested_by].each do |trait|
+    next unless left.fetch trait: trait
+    attach_subcard cardname.left_name.field_name(trait), content: ""
+  end
 end
 
 event :no_left_name_change, :prepare_to_validate,
@@ -75,4 +77,10 @@ event :no_left_name_change, :prepare_to_validate,
             metric_value.type_id == MetricValueID
   errors.add :name, "not allowed to change. " \
                     "Change #{name_was.to_name.left} instead"
+end
+
+format :html do
+  view :core do
+    card.item_names.join(",")
+  end
 end

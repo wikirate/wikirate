@@ -1,7 +1,7 @@
 
 require File.expand_path("../../self/source_spec",  __FILE__)
 
-describe Card::Set::All::Wikirate do
+RSpec.describe Card::Set::All::Wikirate do
   describe "while showing view" do
     it "renders edits_by view" do
       html = render_card :edits_by, name: sample_company.name
@@ -19,7 +19,7 @@ describe Card::Set::All::Wikirate do
       expect(html).to include(render_card(:edits_by, name: card_name))
     end
 
-    it "should always show the help text " do
+    it "always shows the help text" do
       # render help text of source page
       # create a page with help text
       login_as "WagnBot"
@@ -27,7 +27,7 @@ describe Card::Set::All::Wikirate do
                   content: "<p>hello test case</p>"
       Card.create type: "Basic", name: "testhelptext+*self+*help",
                   content: "Can I help you?"
-      html = render_card :name_formgroup, name: "testhelptext"
+      html = render_card :edit, name: "testhelptext"
       expect(html).to include("Can I help you?")
     end
 
@@ -60,7 +60,7 @@ describe Card::Set::All::Wikirate do
       # create 2 claims
       # create an card with claim cite contents
       # check the number and the content
-      sourcepage = create_page_with_sourcebox nil, {}, "false"
+      sourcepage = create_page box: false
       Card.create! type_id: Card::ClaimID, name: "test1",
                    subcards: {
                      "+source" => {
@@ -237,82 +237,12 @@ describe Card::Set::All::Wikirate do
     end
   end
 
-  describe "yinyang_list" do
-    it "renders correct yinyang list items" do
-      args = { items: { view: "content" } }
-      sample_company = Card.create! name: "Steelseries",
-                                    type_id: Card::WikirateCompanyID
-
-      metric1 = Card.create! name: "Joe User+how many responses",
-                             type_id: Card::MetricID
-      metric2 = Card.create! name: "Joe User+how many types of responses",
-                             type_id: Card::MetricID
-      metric3 = Card.create! name: "Joe User+the unusualness of the responses",
-                             type_id: Card::MetricID
-      metric4 = Card.create! name: "Joe User+the detail of the responses",
-                             type_id: Card::MetricID
-
-      metrics = [metric1, metric2, metric3, metric4]
-      metric_values = []
-
-      metrics.each do |metric|
-        subcard = {
-          "+metric" => { content: metric.name },
-          "+company" => { content: "[[#{sample_company.name}]]",
-                          type_id: Card::PointerID },
-          "+value" => {
-            content: "Nature doesn't recongize good or evil.",
-            type_id: Card::PhraseID
-          },
-          "+year" => { content: "2015", type_id: Card::PointerID },
-          "+source" => {
-            "subcards" => {
-              "new source" => {
-                "+Link" => {
-                  content: "http://www.google.com/?q=fringe",
-                  type_id: Card::PhraseID
-                }
-              }
-            }
-          }
-        }
-        metric_value = Card.create! type_id: Card::MetricValueID,
-                                    subcards: subcard
-        metric_values.push(metric_value)
-      end
-      search_card = Card.fetch "#{sample_company.name}+limited_metric"
-      html = search_card.format.render_yinyang_list args
-
-      expect(html).to have_tag "div", with: { class: "yinyang-list" } do
-        with_tag "div",
-                 with: {
-                   id: "Steelseries+Joe_User+how_many_responses+"\
-                       "yinyang_drag_item"
-                 }
-        with_tag "div",
-                 with: {
-                   id: "Steelseries+Joe_User+"\
-                   "how_many_types_of_responses+yinyang_drag_item"
-                 }
-        with_tag "div",
-                 with: {
-                   id: "Steelseries+Joe_User+"\
-                   "the_unusualness_of_the_responses+yinyang_drag_item"
-                 }
-        with_tag "div",
-                 with:
-                  { id: "Steelseries+Joe_User+"\
-                    "the_detail_of_the_responses+yinyang_drag_item" }
-      end
-    end
-  end
-
   describe "showcase_list view" do
     it "shows icons, type name and core view" do
       source_showcast =
         Card.fetch "joe_user+showcast sources",
                    new: { type_id: Card::PointerID }
-      source_card = create_page_with_sourcebox "http://example.com", {}, "true"
+      source_card = create_page url: "http://example.com", box: true
       source_showcast << source_card
       source_showcast.save!
 

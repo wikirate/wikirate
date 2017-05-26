@@ -1,4 +1,4 @@
-describe Card::Set::Type::MetricValueImportFile do
+RSpec.describe Card::Set::Type::MetricValueImportFile do
   let(:comment) { "50 Nerds of Grey" }
   let(:metric) { sample_metric }
   let(:amazon) { "#{metric.name}+Amazon.com, Inc.+2015" }
@@ -18,6 +18,7 @@ describe Card::Set::Type::MetricValueImportFile do
       hash = {
         row: i + 1,
         metric: metric.name, company: company, year: "2015",
+        file_company: company,
         value: i.to_s,
         source: "http://example.com"
       }
@@ -38,6 +39,7 @@ describe Card::Set::Type::MetricValueImportFile do
 
     let(:amazon_2015_metric_value_card) { Card["#{amazon}+value"] }
     let(:apple_2015_metric_value_card) { Card["#{apple}+value"] }
+
     it "adds metric values" do
       run_import
       expect(Card.exists?(amazon)).to be true
@@ -76,35 +78,79 @@ describe Card::Set::Type::MetricValueImportFile do
       expect(answer.imported).to eq true
     end
 
+    def add_three_answers company
+      Card::Env.params[:import_data] ||= []
+      3.times do |i|
+        hash = {
+          row: i + 1,
+          metric: metric.name, company: company, year: (2015 + i).to_s,
+          file_company: company,
+          value: i.to_s,
+          source: "http://example.com"
+        }
+        Card::Env.params[:import_data].push hash.to_json
+      end
+      Card::Env.params["is_data_import"] = "true"
+    end
+
+    def badge_names
+      badges = Card.fetch "Joe User", :metric_value, :badges_earned
+      badges.item_names
+    end
+
+    it "awards badges" do
+      expect(badge_names).not_to include "Apple Inc.+Researcher+company badge"
+      Card::Env.params[:import_data] = []
+      add_three_answers "Apple Inc."
+      add_three_answers "Samsung"
+      run_import
+
+      expect(badge_names)
+        .to include "Apple Inc.+Researcher+company badge",
+                    "Samsung+Researcher+company badge"
+    end
+
     context "company correction name is filled" do
+      let(:amazon_corrected) { "Amazon.com, Inc. Corrected" }
+
       before do
         Card::Env.params[:corrected_company_name] = {
-          "1" => "Apple Inc.",
-          "2" => "Sony Corporation",
-          "3" => "Amazon.com, Inc."
+          "1" => amazon_corrected,
+          "2" => "",
+          "3" => ""
         }
         mv_import_file.update_attributes! subcards: {}
       end
-      it "uses the input company name" do
-        expect(Card.exists?(amazon)).to be true
-        expect(Card.exists?(apple)).to be true
-        expect(Card.exists?(sony)).to be true
 
-        amazon_2015_metric_value_card = Card["#{amazon}+value"]
-        apple_2015_metric_value_card = Card["#{apple}+value"]
-        sony_2015_metric_value_card = Card["#{sony}+value"]
-        expect(amazon_2015_metric_value_card.content).to eq("2")
-        expect(apple_2015_metric_value_card.content).to eq("0")
-        expect(sony_2015_metric_value_card.content).to eq("1")
+      it "uses the input company name" do
+        expect(Card.exists?(amazon_corrected)).to be true
+
+        amazon_2015_metric_value_card =
+          Card["#{metric.name}+#{amazon_corrected}+2015+value"]
+        expect(amazon_2015_metric_value_card.content).to eq("0")
       end
+
       it "updates companies's aliases" do
-        amazon_aliases = Card["Amazon.com, Inc+aliases"]
-        apple_aliases = Card["Apple Inc+aliases"]
-        sony_aliases = Card["Sony Corporation+aliases"]
-        expect(amazon_aliases.item_names).to include("Sony Corporation")
-        expect(apple_aliases.item_names).to include("Amazon.com, Inc.")
-        expect(sony_aliases.item_names).to include("Apple Inc.")
+        amazon_aliases = Card["#{amazon_corrected}+aliases"]
+        expect(amazon_aliases.item_names).to include("Amazon.com, Inc.")
       end
+    end
+  end
+
+  describe "#map_company" do
+    let(:format) { mv_import_file.format(:html) }
+
+    it "maps Samsung" do
+      expect(format.map_company("Samsung"))
+        .to eq "Samsung"
+    end
+
+    it "maps Sony to Sony Corporation" do
+      expect(format.map_company("Sony")).to eq "Sony Corporation"
+    end
+
+    it "maps Amazon" do
+      expect(format.map_company("Amazon")).to eq "Amazon.com, Inc."
     end
   end
 end

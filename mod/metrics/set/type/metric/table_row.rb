@@ -1,6 +1,7 @@
 # views used to display a metric in a table row
 
 include_set Abstract::Media
+include_set Abstract::Table
 
 format :html do
   def company_count
@@ -15,13 +16,14 @@ format :html do
     count_with_label_cell company_count, "Companies"
   end
 
+  # probably overriden by Abstract::Thumbnail
   view :thumbnail do
     voo.hide! :thumbnail_subtitle
     title = card.right.name
     output [
-             _optional_render_vote,
-             text_with_image(title: title,
-                             image: desinger_image_card, size: :icon)
+      _optional_render_vote,
+      text_with_image(title: title,
+                      image: designer_image_card, size: :icon)
     ]
   end
 
@@ -33,10 +35,10 @@ format :html do
     voo.hide! :thumbnail_subtitle
     title = card.right.name
     output [
-             _render_vote,
-             text_with_image(title: title,
-                             image: designer_image_card, size: :icon)
-           ]
+      _render_vote,
+      text_with_image(title: title,
+                      image: designer_image_card, size: :icon)
+    ]
   end
 
   view :latest_value do

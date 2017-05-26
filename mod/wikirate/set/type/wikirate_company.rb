@@ -1,10 +1,12 @@
 include_set Abstract::WikirateTable
 include_set Abstract::WikirateTabs
+include_set Abstract::Media
 
 card_accessor :contribution_count, type: :number, default: "0"
 card_accessor :direct_contribution_count, type: :number, default: "0"
 card_accessor :aliases, type: :pointer
 card_accessor :all_metric_values
+card_accessor :image
 
 view :missing do |args|
   _render_link args
@@ -16,14 +18,53 @@ view :listing do
   _render_content structure: "browse company item"
 end
 
+# def subcard_count_number subcard
+#   subcard_count = nest(card, trait: subcard.to_sym, view: :count)
+#   content_tag(:div, subcard_count, class: "number")
+# end
+#
+# def subcard_count_with_label subcard
+#   subcard_label = nest(card, trait: subcard.to_sym, view: :name)
+#   number_label = content_tag(:div, subcard_label, class: "number-label")
+#   wrap_with :div, class: "count-view slab" do
+#     [
+#       subcard_count_number(subcard),
+#       number_label
+#     ]
+#   end
+# end
+
+view :metric_count do
+  wrap_with(:div, nest(card, trait: :metric, view: :count), class: "number")
+end
+
+view :topic_count do
+  wrap_with(:div, nest(card, trait: :topic, view: :count), class: "number")
+end
+
+view :listing_compact do
+  company_image = card.fetch(trait: :image)
+  title = link_to_card card
+  text_with_image title: title, image: company_image, size: :icon
+end
+
 def add_alias alias_name
   aliases_card.insert_item! 0, alias_name
 end
 
 format :csv do
   view :core do
-    Answer.where(company_id: card.id).map do |a|
-      CSV.generate_line [a.metric_name, a.year, a.value]
-    end.join
+    Answer.csv_title + Answer.where(company_id: card.id).map(&:csv_line).join
+  end
+end
+
+format :html do
+  view :link, closed: true, perms: :none do
+    return super() unless voo.closest_live_option(:project)
+    title = showname voo.title
+    opts = { known: card.known? }
+    opts[:path] = { filter: { project: voo.closest_live_option(:project) } }
+    opts[:path][:card] = { type: voo.type } if voo.type && !opts[:known]
+    link_to_card card.name, title, opts
   end
 end

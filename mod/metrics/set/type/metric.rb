@@ -63,7 +63,8 @@ def value_type
 end
 
 def value_type_code
-  ((vc = value_type_card.item_cards.first) && vc.codename.to_sym) || :free_text
+  ((vc = value_type_card.item_cards.first) &&
+   vc.codename && vc.codename.to_sym) || :free_text
 end
 
 def value_options
@@ -77,7 +78,7 @@ end
 
 # TODO: adapt to Henry's value type API
 def categorical?
-  value_type == "Category"
+  value_type == "Category" || value_type == "Multi-Category"
 end
 
 def relationship?
@@ -103,6 +104,10 @@ end
 
 def scored?
   metric_type_codename == :score || rated?
+def designer_assessed?
+end
+
+  research_policy.casecmp("designer assessed").zero?
 end
 
 def analysis_names
@@ -115,32 +120,26 @@ def analysis_names
   end.flatten
 end
 
-# def value company, year
-#   (value_card = Card["#{name}+#{company}+#{year}+#{value}"]) &&
-#     value_card.content
-# end
-
 def companies_with_years_and_values
-  value_cards.map do |mv_card|
-    [mv_card.company, mv_card.year, mv_card.value]
+  Answer.search(metric_id: id, return: [:company, :year, :value]).map do |c, y, v|
+    [c, y.to_s, v]
   end
 end
 
 def random_value_card
-  value_cards(limit: 1).first
+  Answer.search(metric_id: id, limit: 1).first
 end
 
 def random_valued_company_card
-  return unless (rvc = random_value_card)
-  rvc.company_card
+  Answer.search(metric_id: id, return: :company_card, limit: 1).first
 end
 
-def metric_value_cards opts={}
-  Card.search metric_value_query.merge(opts)
+def metric_value_cards cached: true
+  cached ? Answer.search(metric_id: id) : Card.search(metric_value_query)
 end
 
-def value_cards opts={}
-  Card.search({ left: metric_value_query, right: "value" }.merge(opts))
+def value_cards _opts={}
+  Answer.search metric_id: id, return: :value_card
 end
 
 def metric_value_name company, year
@@ -149,7 +148,7 @@ def metric_value_name company, year
 end
 
 def metric_value_query
-  { left: { left: name }, type_id: MetricValueID }
+  { left: { left_id: id }, type_id: MetricValueID }
 end
 
 event :silence_metric_deletions, :initialize, on: :delete do
@@ -172,10 +171,13 @@ format :html do
     outs.inspect
   end
 
-  view :designer_image do |_args|
-    image = nest card.metric_designer_card.field(:image, new: {}),
+  def designer_image
+    nest card.metric_designer_card.field(:image, new: {}),
                  view: :core, size: :small
-    link_to_card card.metric_designer_card, image
+  end
+
+  def designer_image_link
+    link_to_card card.metric_designer_card, designer_image
   end
 
   def css
@@ -185,13 +187,31 @@ format :html do
     # "<style> #{Sass.compile css}</style>"
   end
 
+  # USED?
+
+  view :add_to_formula_item_view do |_args|
+    title = card.metric_title.to_s
+    subtext = card.metric_designer.to_s
+    subtext = wrap_with :small, "Scored by " + subtext
+    append = "#{params[:formula_metric_key]}+add_to_formula"
+    url = path mark: card.cardname.field(append), view: :content
+    text_with_image image: designer_image_card,
+                    text: subtext, title: title, size: :icon,
+                    media_opts: { class: "tr-details-toggle",
+                                  data: { details_url: url } }
+  end
+
+  view :details_placeholder do
+    ""
+  end
+
   view :listing do
     wrap_with :div, class: "contribution-item value-item no-hover" do
       [
-        wrap_with(:div, class: "header no-hover") do
+        wrap_with(:div, class: "header") do
           _render_thumbnail
         end,
-        wrap_with(:div, class: "data no-hover") do
+        wrap_with(:div, class: "text-center margin-15") do
           listing_data
         end
       ]
@@ -201,8 +221,8 @@ format :html do
   def listing_data
     wrap_with :div, class: "contribution company-count" do
       [
-        company_count,
-        wrap_with(:div, "Companies", class: "name")
+        wrap_with(:div, company_count, class: "h5"),
+        wrap_with(:div, "Companies", class: "light-grey-color")
       ]
     end
   end
@@ -262,11 +282,11 @@ format :html do
   def vtype_edit_modal_link_text
     # FIXME: why does value_type_card not work although value_type is registered
     #        as card accessor
-    v_type_card = Card.fetch trait: :value_type, new: {}
+    v_type_card = card.fetch trait: :value_type, new: {}
     if v_type_card.new?
       "Update Value Type"
     else
-      subformat(v_type_card).render_shorter_pointer_content
+      nest v_type_card, view: :shorter_pointer_content, hide: :link
     end
   end
 
@@ -277,7 +297,8 @@ format :html do
       case value_type.item_names[0]
       when "Number"   then :numeric_details
       when "Money"    then :monetary_details
-      when "Category" then :category_details
+      when "Category", "Multi-Category" then
+        :category_details
       end
     return "" if details_field.nil?
     detail_card = Card.fetch card, details_field, new: {}
@@ -305,40 +326,7 @@ format :html do
     )
   end
 
-  # USED?
-  view :item_view do |args|
-    append = args[:append_for_details] ||
-             "#{card.key}+add_to_formula"
-    item_wrap do
-      %(
-      <div class="no-data metric-details-toggle"
-           data-append="#{append}">
-        #{_render_thumbnail(optional_thumbnail_subtitle: :hide)}
-      </div>
-      )
-    end
-  end
-
-  view :add_to_formula do |_args|
-    # .metric-details-close-icon.pull-right
-    # i.fa.fa-times-circle.fa-2x
-    # %br
-    render_haml do
-      <<-HAML
-%br
-.metric-details-header
-  .row.clearfix
-    .col-md-12
-      .name.row
-        = link_to_card card, card.metric_title, class: 'inherit-anchor'
-      .row
-        = _render_designer_info
-  %hr
-  .row.clearfix.wiki
-    = _render_metric_info
-      HAML
-    end
-  end
+  view :add_to_formula, template: :haml
 
   view :metric_info do |_args|
     question = subformat(card.question_card)._render_core.html_safe
@@ -386,11 +374,21 @@ format :html do
     metric_info_row left, content, opts
   end
 
+  def weight_content args
+    icon_class = "pull-right _remove_row btn btn-default btn-sm"
+    wrap_with :div do
+      [
+        text_field_tag("pair_value", (args[:weight] || 0)) + "%",
+        content_tag(:span, fa_icon(:remove).html_safe, class: icon_class)
+      ]
+    end
+  end
+
   view :weight_row do |args|
-    weight = text_field_tag("pair_value", (args[:weight] || 0)) + "%"
+    weight = weight_content args
     output(
       [
-        wrap_with(:td, _render_thumbnail(args), "data-key" => card.name),
+        wrap_with(:td, _render_thumbnail_plain(args), "data-key" => card.name),
         wrap_with(:td, weight, class: "metric-weight")
       ]
     ).html_safe
@@ -423,7 +421,14 @@ format :html do
   end
 
   view :metric_row do
-    header = <<-HTML
+    wrap do
+      metric_row metric_row_header, metric_row_data,
+                 drag_and_drop: false, item_types: [:metric, :contribution, :value]
+    end
+  end
+
+  def metric_row_header
+    <<-HTML
       {{_+*vote count}}
       <div class="logo">
       <a class="inherit-anchor" href="/{{_1|name}}"> {{_1+image|core;size:small}} </a>
@@ -432,7 +437,10 @@ format :html do
         {{_2|name}}
       </div>
     HTML
-    data = <<-HTML
+  end
+
+  def metric_row_data
+    <<-HTML
     <div class="contribution company-count">
                 <div class="content">
                   {{_+company count|core}}
@@ -440,17 +448,20 @@ format :html do
                 </div>
               </div>
     HTML
-    wrap do
-      metric_row header, data, drag_and_drop: false,
-                               item_types: [:metric, :contribution, :value]
     end
   end
-end
 
 format :json do
   view :content do
     card.companies_with_years_and_values.to_json
   end
+
+  def essentials
+    {
+      designer: card.designer,
+      title: card.metric_title
+    }
+end
 end
 
 def needs_name?
@@ -460,8 +471,6 @@ end
 
 format :csv do
   view :core do
-    Answer.where(metric_id: card.id).map do |a|
-      a.csv_line
-    end.join
+    Answer.csv_title + Answer.where(metric_id: card.id).map(&:csv_line).join
   end
 end

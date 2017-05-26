@@ -1,9 +1,14 @@
 include_set Abstract::TwoColumnLayout
 include_set Abstract::KnownAnswers
+include_set Abstract::Thumbnail
 
 card_reader :wikirate_company
 card_reader :metric
 card_reader :organizer
+
+def answers
+  @answers ||= Answer.where(where_answer).where("updated_at > ?", created_at)
+end
 
 # the space of possible metric records
 def num_records
@@ -16,6 +21,23 @@ end
 
 def num_metrics
   @num_metrics ||= metric_card.item_names.size
+end
+
+def num_users
+  @num_users ||= answers.select(:creator_id).uniq.count
+end
+
+def num_answers
+  @num_answers ||= answers.count
+end
+
+def num_policies
+  policies = metric_card.item_cards.map do |mc|
+    mc.try(:research_policy)
+  end.compact
+  d_cnt = policies.count "[[Designer Assessed]]"
+  c_cnt = policies.count "[[Community Assessed]]"
+  "#{d_cnt}/#{c_cnt}"
 end
 
 def metric_ids
@@ -40,6 +62,15 @@ def worth_counting
 end
 
 format :html do
+  view :open_content do |args|
+    bs_layout container: false, fluid: true, class: @container_class do
+      row 5, 7, class: "panel-margin-fix" do
+        column _optional_render_content_left_col, args[:left_class]
+        column _optional_render_content_right_col, args[:right_class]
+      end
+    end
+  end
+
   def default_content_formgroup_args _args
     voo.edit_structure =
       [
@@ -62,18 +93,25 @@ format :html do
   end
 
   view :data do
-    wrap_with :div, class: "progress-column border-top" do
+    wrap_with :div, class: "progress-column" do
       left_col_content
     end
   end
 
   def left_col_content
-    wrap_with :div, class: "margin-15" do
+    wrap_with :div do
       [
-        field_nest(:organizer, view: :titled, items: { view: :thumbnail }),
-        field_nest(:wikirate_topic, view: :titled, items: { view: :link }),
-        field_nest(:description, view: :titled),
-        field_nest(:conversation, view: :project_conversation)
+        field_nest(:organizer,
+                   view: :titled,
+                   title: "Organizer",
+                   items: { view: :thumbnail_plain }),
+        field_nest(:wikirate_topic,
+                   view: :titled,
+                   title: "Topics",
+                   items: { view: :link }),
+        field_nest(:description, view: :titled, title: "Description"),
+        field_nest(:conversation,
+                   view: :project_conversation, title: "Conversation")
       ]
     end
   end
@@ -213,20 +251,16 @@ format :html do
     progress_bar(
       { value: card.percent_known, class: "progress-known" },
       { value: card.percent_unknown, class: "progress-unknown" },
-      { value: card.percent_not_researched, class: "progress-not-researched" }
+      value: card.percent_not_researched, class: "progress-not-researched"
     )
   end
 end
 
-
 format :csv do
   view :core do
-    res = ''
-    card.metric_ids.each do |m_id|
-      Answer.where(metric_id: m_id).each do |a|
-        res += CSV.generate_line [a.metric_name, a.company_name, a.year, a.value]
-      end
-    end
-    res
+    Answer.csv_title + card.metric_ids.map do |m_id|
+      Answer.where("metric_id = ? AND company_id IN (?)",
+                   m_id, card.company_ids).map(&:csv_line)
+    end.flatten.join
   end
 end

@@ -1,6 +1,12 @@
 # Loader animation
 $.extend wikirate:
   ajaxLoader: { head: '#ajax_loader', child: '.loader-anime'}
+  initRowRemove: ($button) ->
+    $button =  $("._remove_row") unless $button
+    $button.each () ->
+      $this = $(this)
+      $this.on 'click', ->
+        $this.closest('tr').remove()
   isString: (val) ->
     typeof val == 'string' ? true : false
   jObj: (ele) ->
@@ -49,3 +55,25 @@ wagn.slotReady (slot) ->
       disable_search_threshold: 10
       skip_no_results: true
       width: '100%'
+
+  slot.find('.company_autocomplete').autocomplete
+    source: '/Companies+*right+*options.json?view=name_match'
+    minLength: 2
+  slot.find('.wikirate_company_autocomplete').autocomplete
+    source: '/Companies+*right+*options.json?view=name_match'
+    minLength: 2
+  slot.find('.wikirate_topic_autocomplete').autocomplete
+    source: '/Topic+*right+*options.json?view=name_match'
+    minLength: 2
+  slot.find('.metric_autocomplete').autocomplete
+    source: '/Metric+*right+*options.json?view=name_match'
+    minLength: 2
+
+  wikirate.initRowRemove(slot.find("._remove_row"))
+
+# destory modal content after closing modal window (On homepage only)
+$(document).ready ->
+  if $('#Home').exists()
+    $('#modal-main-slot').on 'hidden.bs.modal', ->
+      $(this).data 'bs.modal', null
+      $(this).find('.modal-body').empty()

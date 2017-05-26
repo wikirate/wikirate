@@ -7,8 +7,9 @@ Feature: company feature
 
   Scenario: Browse through tabs
     Then I should see "disturbances in the Force"
-    And I should see "dinosaurlabor"
-    And I should see "The Death Star refers to any of several fictional mobile space stations"
+    And I should see "+Wikipedia"
+    And I wait for ajax response
+    Then I should see "A number of fictional mobile space stations"
     Then I click on "Topics"
     And I should see "Force"
     Then I click on "Projects"
@@ -21,7 +22,7 @@ Feature: company feature
   Scenario: Filter by metric
     When I click on "more filter options"
     And I wait for ajax response
-    And I select "Jedi+deadliness" from "Metric"
+    And I fill in "Metric" with "Jedi+deadliness"
     And I submit form
     Then I should not see "disturbances in the Force"
     And I should see "deadliness"
@@ -29,7 +30,7 @@ Feature: company feature
   Scenario: Filter by topic
     When I click on "more filter options"
     And I wait for ajax response
-    And I select "Force" from "Topic"
+    And I fill in "Topic" with "Force"
     And I submit form
     Then I should not see "dinosaurlabor"
     And I should see "disturbances in the Force"

@@ -1,4 +1,4 @@
-def has_migration_script? filename
+def has_migration_script? _filename
   import_script = "import_" + File.basename(file, ".json") + ".rb"
   path = File.expand_path "../*_#{import_script}", Dir.pwd
   Dir.glob(path).present?

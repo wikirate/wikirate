@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+
 require "link_thumbnailer"
 
 describe Card::Set::Type::Source, "source preview" do
@@ -7,7 +8,10 @@ describe Card::Set::Type::Source, "source preview" do
       @url = "http://existingpage.com"
       @company = "Amazon.com, Inc."
       @topic = "Natural Resource Use"
-      @existing_source = create_page_with_sourcebox @url, { "+Company" => @company, "+Topic" => @topic }, "false"
+      @existing_source =
+        create_page url: @url, box: false,
+                    subcards: { "+Company" => @company,
+                                "+Topic" => @topic }
     end
 
     context "text source" do
@@ -19,12 +23,13 @@ describe Card::Set::Type::Source, "source preview" do
       end
 
       it "shows correction options" do
-        expect(@result).to have_tag("ul", with: { class: "navbar-right" }) do
-          with_tag "a",  with: { "data-target" => "#tab_details" }
-          with_tag "a",  with: { "data-target" => "#tab_claims", :href => "/#{@text_source.cardname.url_key}+source_note_list?slot[hide]=header,menu" }
-          with_tag "a",  with: { "data-target" => "#tab_metrics", :href => "/#{@text_source.cardname.url_key}+metric_search?slot[hide]=header,menu" }
+        expect(@result).to have_tag("ul", with: { class: "nav-tabs" }) do
+          with_tag "a",  with: { "data-url" => "/#{@text_source.cardname.url_key}?view=details_tab" }
+          with_tag "a",  with: { "data-url" => "/#{@text_source.cardname.url_key}?view=metrics_tab" }
+          with_tag "a",  with: { "data-url" => "/#{@text_source.cardname.url_key}?view=notes_tab" }
         end
       end
+
       it "shows text source" do
         expect(@result).to have_tag("div", with: { id: "text_source", class: "webpage-preview" }) do
           with_tag "div",  with: { id: "#{@text_source.cardname.url_key}+Text" }
@@ -39,10 +44,10 @@ describe Card::Set::Type::Source, "source preview" do
         @result = @pdf_source.format._render_preview
       end
       it "shows correction options" do
-        expect(@result).to have_tag("ul", with: { class: "navbar-right" }) do
-          with_tag "a",  with: { "data-target" => "#tab_details" }
-          with_tag "a",  with: { "data-target" => "#tab_claims", :href => "/#{@pdf_source.cardname.url_key}+source_note_list?slot[hide]=header,menu" }
-          with_tag "a",  with: { "data-target" => "#tab_metrics", :href => "/#{@pdf_source.cardname.url_key}+metric_search?slot[hide]=header,menu" }
+        expect(@result).to have_tag("ul", with: { class: "nav-tabs" }) do
+          with_tag "a",  with: { "data-url" => "/#{@pdf_source.cardname.url_key}?view=details_tab" }
+          with_tag "a",  with: { "data-url" => "/#{@pdf_source.cardname.url_key}?view=metrics_tab" }
+          with_tag "a",  with: { "data-url" => "/#{@pdf_source.cardname.url_key}?view=notes_tab" }
         end
       end
       context "pdf file" do
@@ -83,14 +88,16 @@ describe Card::Set::Type::Source, "source preview" do
         @url = "http://wagn.org"
         @company = "Amazon.com, Inc."
         @topic = "Natural Resource Use"
-        @existing_source = create_page_with_sourcebox @url, { "+Company" => @company, "+Topic" => @topic }, "false"
+        @existing_source = create_page url: @url, box: false,
+                                       subcards: { "+Company" => @company,
+                                                   "+Topic" => @topic }
         @result = @existing_source.format._render_preview
       end
       it "shows correction options" do
-        expect(@result).to have_tag("ul", with: { class: "navbar-right" }) do
-          with_tag "a",  with: { "data-target" => "#tab_details" }
-          with_tag "a",  with: { "data-target" => "#tab_claims", :href => "/#{@existing_source.cardname.url_key}+source_note_list?slot[hide]=header,menu" }
-          with_tag "a",  with: { "data-target" => "#tab_metrics", :href => "/#{@existing_source.cardname.url_key}+metric_search?slot[hide]=header,menu" }
+        expect(@result).to have_tag("ul", with: { class: "nav-tabs" }) do
+          with_tag "a",  with: { "data-url" => "/#{@existing_source.cardname.url_key}?view=details_tab" }
+          with_tag "a",  with: { "data-url" => "/#{@existing_source.cardname.url_key}?view=metrics_tab" }
+          with_tag "a",  with: { "data-url" => "/#{@existing_source.cardname.url_key}?view=notes_tab" }
           with_tag "a",  with: { href: @existing_source.fetch(trait: :wikirate_link).content }
         end
       end

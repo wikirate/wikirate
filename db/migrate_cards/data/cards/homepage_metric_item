@@ -1,3 +1,4 @@
+<div class="">
 <div class="container  homepage-company-item background-white">
 
 <div class="row wiki">
@@ -17,13 +18,15 @@
                     <a class="inherit-anchor" href="{{_l+_r|url}}">
                     {{_r|name}}
                     </a>
-                  </div>
+                  </div> <br>
                   <div class="row">
                     <div class="metric-designer-info">
                       <a href="/{{_l|name}}+contribution">
-                        <div><small class="text-muted">Designed by</small></div>
-                        <div>{{_l+image|core;size:small}}</div>
-                        <div><h3>{{_l|name}}</h3></div>
+                        <div class="image-box icon">{{_l+image|core;size:small}}</div>
+                        <div>
+                          <h5 class="text-muted nopadding no-bold-text">Designed by</h5>
+                          <h5 class="nopadding">{{_l|name}}</h5>
+                        </div>
                       </a>
                     </div>
                   </div>
@@ -43,7 +46,6 @@
         </div>
         <div class="col-md-11 col-xs-11">
             <div class="row-data">
-            <small>Question</small>
             {{+Question|content}}
           </div>
         </div>
@@ -55,4 +57,5 @@
 	  <!--Ratings and company list -->
 	  {{+all_metric_values|homepage_table}}
 	</div>
+</div>
 </div>
