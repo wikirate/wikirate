@@ -35,11 +35,24 @@ format :html do
     nest(Card.fetch(card.cardname.field("title"), new: {}), view: :needed)
   end
 
+  # TODO: remove after clarifying with PK
+  # def source_item_footer args
+  #   items = []
+  #   extras = [
+  #     _render_note_count,
+  #     _render_metric_count,
+  #     _render_original_with_icon
+  #   ]
+  #   items = extras unless args[:source_title] == :text
+  #   items.unshift(_render_year_with_icon) unless year.nil? || year == ""
+  #   items
+  # end
+
   def source_item_footer
     [
       (_render_year_with_icon if year.present?),
-      _render_metric_count,
-      _render_note_count,
+      (_render_metric_count if with_links?),
+      (_render_note_count if with_links?),
       (_render_original_with_icon if with_links?)
     ].compact
   end
@@ -49,6 +62,32 @@ format :html do
     "globe"
   end
 
+  # TODO: remove after clarifying with PK
+# <<<<<<< HEAD
+#   view :source_content do |args|
+#     wrap_with :div, class: "source-content" do
+#       [
+#         _render_source_link(args),
+#         _render_creator_credit
+#       ]
+#     end
+#   end
+#
+#   view :listing do |args|
+#     wrap_with :div, class: "source-item" do
+#       [
+#         _render_source_content(args),
+#         _render_extras(args)
+#       ]
+#     end
+#   end
+#
+#   view :extras do |args|
+#     wrap_with :div, class: "source-extra" do
+#       flat_list source_item_footer(args)
+#     end
+#   end
+# =======
   view :listing, template: :haml
 
   view :original_with_icon do
@@ -57,7 +96,7 @@ format :html do
   end
 
   view :icon do
-    icon = wrap_with(:i, " ", class: "fa fa-globe")
+    icon = wrap_with(:i, " ", class: "glyphicon glyphicon-link")
     wrap_with(:div, icon, class: "source-icon")
   end
 

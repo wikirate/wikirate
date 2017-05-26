@@ -1,9 +1,10 @@
 %label
   Cited Sources
-.card-editor
+.card-editor.form-group
   = hidden_field_tag 'card[subcards][+source][content]', nil, class: 'card-content'
   .cited-sources.pointer-list-ul
     - if card.source_card.item_names.empty?
-      None
+      %small
+        None
     - else
       = _render_sources_with_cited_button
