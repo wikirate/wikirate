@@ -191,11 +191,11 @@ table.wikirate-table, .table.wikirate-table {
 //---Custom Table Properties---//
 
 //Project Page
-.progress-bar-table .wikirate-table.company td:last-child,
-.progress-bar-table .wikirate-table.company .td:last-child{
-    width: 22%;
-    text-align: center;
-}
+//.progress-bar-table .wikirate-table.company td:last-child,
+//.progress-bar-table .wikirate-table.company .td:last-child{
+//    width: 22%;
+//    text-align: center;
+//}
 
 // Research Page table tweaks //
 
@@ -236,4 +236,8 @@ table.wikirate-table, .table.wikirate-table {
 .add-formula td.details.data.stick {
   height: 78%!important;
   top: 110px!important;
+}
+
+table.import_table td {
+  overflow: hidden;
 }

@@ -81,7 +81,7 @@ format :html do
 
     card.filter_hash[:metric_value] != "none" &&
       card.filter_hash[:metric_value] != "unknown" # &&
-      #chart_item_count > 3
+    # chart_item_count > 3
   end
 
   def zoom_out_link

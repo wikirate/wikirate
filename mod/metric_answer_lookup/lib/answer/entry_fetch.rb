@@ -50,6 +50,10 @@ class Answer
       card.creator_id
     end
 
+    def fetch_editor_id
+      card.updater_id if card.updated_at > card.created_at
+    end
+
     def fetch_designer_name
       card.cardname.parts.first
     end

@@ -114,7 +114,7 @@ format :html do
     elsif card.checked?
       _render_checked_by_list
     else
-      check_button
+      double_check_buttons
     end
   end
 
@@ -174,8 +174,16 @@ format :html do
     text
   end
 
+  def double_check_buttons
+    output [
+      check_button,
+      fix_button
+    ]
+  end
+
   def check_button
-    button_class = "btn btn-default btn-sm _value_check_button hover-button"
+    # button_class = "btn btn-default btn-sm _value_check_button hover-button"
+    button_class = "btn btn-default btn-sm _value_check_button"
     wrap_with(:button, class: button_class,
                        data: { path: data_path }) do
       output [
@@ -183,6 +191,10 @@ format :html do
         wrap_with(:span, "Yes, I checked the value", class: "hover-text")
       ]
     end
+  end
+
+  def fix_button
+    link_to_card card.left, "I fix it", class: "btn btn-default btn-sm", path: { view: :edit }
   end
 
   def check_button_request_credit
@@ -268,4 +280,13 @@ end
 
 def request_check_flag_update?
   !add_checked_flag? && !remove_checked_flag?
+end
+
+format :json do
+  view :essential do
+    {
+      checks: card.checkers.count,
+      check_requested: card.check_requested?
+    }
+  end
 end

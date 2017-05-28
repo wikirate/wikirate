@@ -1,7 +1,7 @@
 
 require File.expand_path("../../self/source_spec",  __FILE__)
 
-describe Card::Set::All::Wikirate do
+RSpec.describe Card::Set::All::Wikirate do
   describe "while showing view" do
     it "renders edits_by view" do
       html = render_card :edits_by, name: sample_company.name
@@ -19,7 +19,7 @@ describe Card::Set::All::Wikirate do
       expect(html).to include(render_card(:edits_by, name: card_name))
     end
 
-    it "alwayses show the help text" do
+    it "always shows the help text" do
       # render help text of source page
       # create a page with help text
       login_as "WagnBot"
@@ -27,7 +27,7 @@ describe Card::Set::All::Wikirate do
                   content: "<p>hello test case</p>"
       Card.create type: "Basic", name: "testhelptext+*self+*help",
                   content: "Can I help you?"
-      html = render_card :name_formgroup, name: "testhelptext"
+      html = render_card :edit, name: "testhelptext"
       expect(html).to include("Can I help you?")
     end
 
