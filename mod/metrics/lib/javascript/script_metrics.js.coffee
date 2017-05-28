@@ -82,7 +82,7 @@ wagn.slotReady (slot) ->
 
   # hide the related field
   # if no type is selected, hide all fields
-  if slot.find('.card-editor.RIGHT-value_type')
+  if !slot.find('.card-editor.RIGHT-value_type').empty()
     hideAll(slot)
     slot.find('.card-editor.RIGHT-value_type .pointer-radio input:radio').each(->
       if $(this).is(':checked')
@@ -91,7 +91,7 @@ wagn.slotReady (slot) ->
         showAndHide slot, $(this).val()
       )
     )
-  if slot.find('.modal-body .card-editor.RIGHT-value_type')
+  if !slot.find('.modal-body .card-editor.RIGHT-value_type').empty()
   # cancel-button to dismiss the modal
     slot.find(".cancel-button").data('dismiss','modal')
     # dismiss and refresh page after submit

@@ -23,7 +23,7 @@ class Card
     end
 
     def subject_wql
-      @paging.merge(type_id: subject_type_id)
+      @paging.merge(type_id: subject_type_id, sort: :name)
     end
 
     def all_subject_ids
