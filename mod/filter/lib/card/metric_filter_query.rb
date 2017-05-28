@@ -5,11 +5,12 @@ class Card
     end
 
     alias topic_wql wikirate_topic_wql
-    alias company_wql wikirate_company_wql
 
     def wikirate_company_wql company
       add_to_wql :right_plus, company
     end
+
+    alias company_wql wikirate_company_wql
 
     def project_wql project
       add_to_wql :referred_to_by, left: project, right_id: MetricID

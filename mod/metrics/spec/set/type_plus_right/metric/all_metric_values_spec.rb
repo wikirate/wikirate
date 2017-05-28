@@ -1,6 +1,6 @@
 require "./test/seed"
 
-describe Card::Set::TypePlusRight::Metric::AllMetricValues do
+RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
   let(:metric) { @metric || Card["Jedi+disturbances in the Force"] }
   let(:all_metric_values) { metric.fetch trait: :all_metric_values }
   let(:latest_answers) do
@@ -10,9 +10,11 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
   let(:latest_answer_keys) do
     ::Set.new(latest_answers.map { |n| n.to_name.left_name.key })
   end
+  let(:all_companies) do
+    Card.search  type_id: Card::WikirateCompanyID, return: :name
+  end
   let(:missing_companies) do
-    company_names_wql = { type_id: Card::WikirateCompanyID, return: :name }
-    Card.search(company_names_wql).reject do |name|
+    all_companies.reject do |name|
       latest_answer_keys.include? name.to_name.key
     end
   end
@@ -81,9 +83,19 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
         end
       end
       context "value" do
+        let(:all_answers) do
+          latest_answers + missing_answers
+        end
+
         it "finds missing values" do
-          expect(filter_by(metric_value: :none).sort)
-            .to eq missing_answers.sort
+          expect(filter_by(metric_value: :none))
+            .to contain_exactly(*missing_answers)
+        end
+
+        it "finds all values" do
+          filtered = filter_by(metric_value: :all)
+          expect(filtered)
+            .to include(*all_answers)
         end
 
         context "filter by update date" do
@@ -150,6 +162,29 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
             .to eq ["SPECTRE+2001"]
         end
       end
+
+      context "filter for all values and ..." do
+        it "... project" do
+          expect(filter_by(metric_value: :all, project: "Evil Project"))
+            .to contain_exactly("Death_Star+2001", "SPECTRE+2000",
+                    *with_year("Los Pollos Hermanos"))
+        end
+
+        it "... year" do
+          i = all_companies.index("Death Star")
+          all_companies[i] = "Death_Star"
+          expect(filter_by(metric_value: :all, year: "2001"))
+            .to contain_exactly(*with_year(all_companies, 2001))
+        end
+
+        it "... industry and year" do
+          expect(filter_by(metric_value: :all,
+                           industry: "Technology Hardware",
+                           year: "2001"))
+            .to contain_exactly(*with_year(["SPECTRE", "Death_Star"], 2001))
+        end
+      end
+
       it "project and industry" do
         expect(filter_by(project: "Evil Project",
                          industry: "Technology Hardware"))

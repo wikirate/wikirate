@@ -49,6 +49,10 @@ class Card
       FixedMetricMissingAnswerQuery
     end
 
+    def all_answer_query_class
+      FixedMetricAllAnswerQuery
+    end
+
     def outliers_query
       restrict_to_ids :id, outlier_ids
     end
