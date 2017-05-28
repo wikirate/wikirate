@@ -1,0 +1,11 @@
+.col-md-12
+  .methodology-info.collapse
+    .row
+      %small
+        %strong Methodology
+        =nest card.methodology_card, view: :content, items: { view: :link }
+    .row
+      .row-icon
+        %i.fa.fa-tag
+      .row-data
+        =nest card.fetch(trait: :wikirate_topic), view: :content, items: { view: :link }

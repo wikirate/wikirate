@@ -43,7 +43,7 @@ format :html do
   end
 
   view :buttons do
-    wrap_with :div do
+    wrap_with :div, class: "margin-12" do
       [
         add_answer_button,
         more_buttons
@@ -97,14 +97,14 @@ format :html do
   def show_form_button
     classes = "_add_new_value btn-primary"
     classes << "hide" if voo.show?(:answer_form)
-    wrap_with :a, "Add answer",
+    wrap_with :a, "Research answer",
               href: "#",
               class: css_classes(button_classes, classes),
               data: { url: path(view: :answer_form) }
   end
 
   def redirect_form_button
-    link_to_card card, "Add answer",
+    link_to_card card, "Research answer",
                  class: "btn btn-sm btn-primary margin-12",
                  path: { view: "research_page", slot: { show: :answer_form } }
   end

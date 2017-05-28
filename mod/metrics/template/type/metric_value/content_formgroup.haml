@@ -1,4 +1,4 @@
-%div
+.panel-default.nodblclick.stick-left#metric-container
   = answer_form_hidden_tags
   .row.editor
     .col-md-11.year.col-centered
@@ -14,9 +14,15 @@
             %span.icon.icon-wikirate-logo-o.fa-lg
             Add a new source
       = _render_relevant_sources
-      = field_nest :discussion, title: 'Comment'
+
+      %p
+        - with_nest_mode :normal do
+          %label
+            Comment
+          = field_subformat(:discussion).comment_box
 
   .row.buttons
     .col-md-11.col-centered
-      = new_buttons
+      = _render_edit_buttons
       .card-notice
+= render_haml :source_side

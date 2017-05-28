@@ -148,7 +148,7 @@ format :html do
   end
 
   def button_classes
-    "btn btn-sm btn-default margin-12"
+    "btn btn-sm btn-default"
   end
 end
 
