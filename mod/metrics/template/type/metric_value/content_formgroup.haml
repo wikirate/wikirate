@@ -1,20 +1,19 @@
 .panel-default.nodblclick.stick-left#metric-container
   = answer_form_hidden_tags
   .row.editor
-    .col-md-3.year
+    .col-md-11.year.col-centered
       = field_nest :year, title: "Year"
-    .col-md-9.value
+    .col-md-11.value.col-centered
       = field_nest :value, title: "Answer"
-      = #render_haml :cited_sources
       = render_haml :cited_sources
       %label
-        Source suggestions
+        Source Suggestions /
+        %a.btn.btn-sm.btn-default._add_new_source{ href: "#",
+                                                   data: {url: source_form_url} }
+          %small
+            %span.icon.icon-wikirate-logo-o.fa-lg
+            Add a new source
       = _render_relevant_sources
-      %a.btn.btn-sm.btn-default._add_new_source{ href: "#",
-                                                 data: {url: source_form_url} }
-        %small
-          %span.icon.icon-wikirate-logo-o.fa-lg
-          Add a new source
 
       %p
         - with_nest_mode :normal do
@@ -23,7 +22,7 @@
           = field_subformat(:discussion).comment_box
 
   .row.buttons
-    .col-md-12
+    .col-md-11.col-centered
       = _render_edit_buttons
       .card-notice
 = render_haml :source_side

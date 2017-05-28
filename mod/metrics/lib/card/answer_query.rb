@@ -93,14 +93,25 @@ class Card
 
     private
 
-    def missing_answer_query
-      @missing_answer_query ||=
-        missing_answer_query_class.new(@filter_args, @paging_args)
+    def all_answers
+      all_answer_query.run
     end
 
     def missing_answers
       missing_answer_query.run
     end
+
+    def all_answer_query
+      @all_answer_query ||=
+        all_answer_query_class.new(@filter_args, @paging_args)
+    end
+
+    def missing_answer_query
+      @missing_answer_query ||=
+        missing_answer_query_class.new(@filter_args, @paging_args)
+    end
+
+
 
     def restrict_to_ids col, ids
       ids = Array(ids)
