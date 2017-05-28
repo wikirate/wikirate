@@ -63,31 +63,31 @@ format :html do
   end
 
   # TODO: remove after clarifying with PK
-# <<<<<<< HEAD
-#   view :source_content do |args|
-#     wrap_with :div, class: "source-content" do
-#       [
-#         _render_source_link(args),
-#         _render_creator_credit
-#       ]
-#     end
-#   end
-#
-#   view :listing do |args|
-#     wrap_with :div, class: "source-item" do
-#       [
-#         _render_source_content(args),
-#         _render_extras(args)
-#       ]
-#     end
-#   end
-#
-#   view :extras do |args|
-#     wrap_with :div, class: "source-extra" do
-#       flat_list source_item_footer(args)
-#     end
-#   end
-# =======
+  # <<<<<<< HEAD
+  #   view :source_content do |args|
+  #     wrap_with :div, class: "source-content" do
+  #       [
+  #         _render_source_link(args),
+  #         _render_creator_credit
+  #       ]
+  #     end
+  #   end
+  #
+  #   view :listing do |args|
+  #     wrap_with :div, class: "source-item" do
+  #       [
+  #         _render_source_content(args),
+  #         _render_extras(args)
+  #       ]
+  #     end
+  #   end
+  #
+  #   view :extras do |args|
+  #     wrap_with :div, class: "source-extra" do
+  #       flat_list source_item_footer(args)
+  #     end
+  #   end
+  # =======
   view :listing, template: :haml
 
   view :original_with_icon do

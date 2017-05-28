@@ -63,7 +63,6 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
      "researched number 1+1977"]
   end
 
-
   def missing_answers year=Time.now.year
     with_year missing_metrics, year
   end
@@ -214,8 +213,8 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
         end
 
         let(:all_answers) do
-         latest_answers + with_year(["researched number 2", "researched number 3",
-                           "small multi", "small single"])
+          latest_answers + with_year(["researched number 2", "researched number 3",
+                                      "small multi", "small single"])
         end
 
         it "finds all values" do
@@ -334,10 +333,10 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
         end
 
         it "... year" do
-            expect(filter_by(metric_value: :all,
-                             year: "2001"))
-              .to contain_exactly(*with_year(all_metric_titles, 2001))
-          end
+          expect(filter_by(metric_value: :all,
+                           year: "2001"))
+            .to contain_exactly(*with_year(all_metric_titles, 2001))
+        end
 
         it "... policy and year" do
           expect(filter_by(metric_value: :all,
@@ -350,9 +349,9 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
           expect(filter_by(metric_value: :all, metric_type: "Researched"))
             .to contain_exactly(
               *(with_year(["Weapons",
-                          "big multi", "big single",
-                          "researched number 2", "researched number 3",
-                          "small multi", "small single"]) + researched)
+                           "big multi", "big single",
+                           "researched number 2", "researched number 3",
+                           "small multi", "small single"]) + researched)
             )
         end
       end

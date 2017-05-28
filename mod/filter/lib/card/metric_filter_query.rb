@@ -67,7 +67,5 @@ class Card
     def missing_directions directions
       [:upvotes, :downvotes, :novotes] - directions
     end
-
-
   end
 end

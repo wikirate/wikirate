@@ -63,5 +63,4 @@ format :html do
   def view_template_path view
     super(view, __FILE__)
   end
-
 end

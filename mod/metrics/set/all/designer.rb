@@ -1,7 +1,7 @@
 format :html do
   view :designer_info do
     wrap_with :div, class: "metric-designer-info" do
-        link_to_card(card, author_info)
+      link_to_card(card, author_info)
     end
   end
 

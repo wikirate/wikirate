@@ -4,6 +4,10 @@ format :html do
     subformat(Card[:research_page])._render_new
   end
 
+  def default_edit_args _args
+    voo.hide! :toolbar
+  end
+
   view :content_formgroup, template: :haml do
     card.add_subfield :year, content: card.year
   end

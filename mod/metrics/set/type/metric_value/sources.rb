@@ -91,7 +91,6 @@ format :html do
   view :source_suggestions, cache: :never do
     wrap_with :div, source_list(source_suggestions).html_safe,
               class: "relevant-sources" do
-
     end
   end
 

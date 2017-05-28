@@ -11,7 +11,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
     ::Set.new(latest_answers.map { |n| n.to_name.left_name.key })
   end
   let(:all_companies) do
-    Card.search  type_id: Card::WikirateCompanyID, return: :name
+    Card.search type_id: Card::WikirateCompanyID, return: :name
   end
   let(:missing_companies) do
     all_companies.reject do |name|
@@ -167,7 +167,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
         it "... project" do
           expect(filter_by(metric_value: :all, project: "Evil Project"))
             .to contain_exactly("Death_Star+2001", "SPECTRE+2000",
-                    *with_year("Los Pollos Hermanos"))
+                                *with_year("Los Pollos Hermanos"))
         end
 
         it "... year" do
@@ -181,7 +181,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
           expect(filter_by(metric_value: :all,
                            industry: "Technology Hardware",
                            year: "2001"))
-            .to contain_exactly(*with_year(["SPECTRE", "Death_Star"], 2001))
+            .to contain_exactly(*with_year(%w[SPECTRE Death_Star], 2001))
         end
       end
 
