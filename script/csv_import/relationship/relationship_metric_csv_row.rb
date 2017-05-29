@@ -39,9 +39,9 @@ class RelationshipMetricCSVRow < CSVRow
   end
 
   def create_title_inverse_pointer
-    ensure_card [@row[:inverse], :inverse], content: @row[:title]
+    ensure_card [@row[:inverse], :inverse], content: @row[:title],
                 type_id: Card::PointerID
-    ensure_card [@row[:title], :inverse], content: @row[:inverse]
+    ensure_card [@row[:title], :inverse], content: @row[:inverse],
                 type_id: Card::PointerID
     # valuable here?
   end

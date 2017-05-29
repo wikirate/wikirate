@@ -1,11 +1,11 @@
-require_relative "../../config/environment"
+require_relative "../../../config/environment"
 
-require_relative "relationship_answer_csv"
-require_relative "relationship_metric_csv"
+require_relative "relationship_answer_csv_row"
+require_relative "relationship_metric_csv_row"
 require_relative "../csv_file"
 
-metrics_path = File.expand_path "../relationship_import/data/metrics.csv", __FILE__
-answers_path = File.expand_path "../relationship_import/data/answers.csv", __FILE__
+metrics_path = File.expand_path "../data/metrics.csv", __FILE__
+answers_path = File.expand_path "../data/answers.csv", __FILE__
 
 Card::Auth.current_id = Card.fetch_id("Philipp Kuehl")
 
