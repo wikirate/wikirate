@@ -11,7 +11,7 @@ Feature: Research answer fail
     And I select "Apple Inc" from "Company"
     And I select "Joe User+researched" from "Metrics"
     And I click on "Next"
-    And I click on "Add answer"
+    And I click on "Research answer"
     And I click on "Add a new source"
     And I fill in "http://example.com" for "URL"
     And I press "Add and preview"
