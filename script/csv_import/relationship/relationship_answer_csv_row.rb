@@ -55,7 +55,7 @@ class RelationshipAnswerCSVRow < CSVRow
   end
 
   def add_relationship_answer source
-    create_card [answer_name, @row[:company_2]],
+    ensure_card [answer_name, @row[:company_2]],
                 type: "Relationship Answer",
                 content: @row[:value],
                 subcards: { "+source" => source.name }

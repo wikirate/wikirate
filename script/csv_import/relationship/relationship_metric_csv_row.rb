@@ -15,16 +15,15 @@ class RelationshipMetricCSVRow < CSVRow
 
   def import
     ensure_designer
-    create_card @name, type: Card::MetricID,
-                subfields: subfields
+    create_or_update_card @name, type: Card::MetricID, subfields: subfields
     create_inverse
   end
 
   def create_inverse
-    create_card @inverse_name,
-                type: Card::MetricID,
-                subfields: { metric_type: "Inverse Relationship",
-                             inverse: @name }
+    create_or_update_card @inverse_name,
+                          type: Card::MetricID,
+                          subfields: { metric_type: "Inverse Relationship",
+                                       inverse: @name }
     create_title_inverse_pointer
   end
 
