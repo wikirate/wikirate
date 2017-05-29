@@ -39,8 +39,6 @@ class CSVFile
   end
 
   def map_headers
-    require 'pry'
-    # binding.pry
     @col_map = {}
     @row_class.columns.each do |key|
       index = @headers.index key.to_s
