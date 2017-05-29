@@ -19,7 +19,7 @@ format :html do
     wrap_with :div, class: "sourcebox" do
       [
         text_field_tag(:sourcebox, nil, placeholder: "source name or http://"),
-        button_tag('Add')
+        button_tag("Add")
       ]
     end
   end

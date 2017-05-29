@@ -1,7 +1,7 @@
 include_set Abstract::CollapsedFilterForm
 
 def filter_keys
-  %w(metric research_policy metric_type)
+  %w[metric research_policy metric_type]
 end
 
 def default_sort_option

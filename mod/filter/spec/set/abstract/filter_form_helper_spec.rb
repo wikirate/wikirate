@@ -35,6 +35,7 @@ describe Card::Set::Abstract::FilterFormHelper do
 
   describe "#multiselect_filter_type_based" do
     subject { card.format.multiselect_filter_type_based :wikirate_topic }
+
     it "renders multi select list" do
       is_expected.to have_tag(:div, with: { class: "wikirate_topic" }) do
         with_tag :label, text: "Topic"
@@ -46,7 +47,7 @@ describe Card::Set::Abstract::FilterFormHelper do
 
   describe "#checkbox_filter" do
     it "renders checkboxes" do
-      options = %w(Fancy A hTc Phone?)
+      options = %w[Fancy A hTc Phone?]
       html = card.format.checkbox_filter "test", "Test", "htc", options
       expect(html).to have_tag(:div, with: { class: "form-group" }) do
         with_tag :label, text: "Test"

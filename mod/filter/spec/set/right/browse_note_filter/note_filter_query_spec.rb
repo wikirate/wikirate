@@ -2,16 +2,15 @@
 
 require File.expand_path("../../filter_spec_helper.rb", __FILE__)
 
-
 describe Card::Set::Right::BrowseNoteFilter do
   describe "filter_wql" do
+    subject { card.filter_wql }
+
     let(:card) do
       card = Card.new name: "test card"
-      card.singleton_class.send :include, Card::Set::Right::BrowseNoteFilter
+      card.singleton_class.send :include, described_class
       card
     end
-
-    subject { card.filter_wql }
 
     def wql args
       args.merge type_id: Card::ClaimID, limit: 15
@@ -19,15 +18,16 @@ describe Card::Set::Right::BrowseNoteFilter do
 
     context "name argument" do
       before { filter_args name: "claim" }
-      it { is_expected.to eq wql(name: ["match", "claim"]) }
+      it { is_expected.to eq wql(name: %w[match claim]) }
     end
 
     context "company argument" do
       before { filter_args wikirate_company: "Apple Inc" }
       it do
         is_expected.to eq wql(
-          right_plus: [ { id: Card::WikirateCompanyID },
-                        { refer_to: "Apple Inc" } ])
+          right_plus: [{ id: Card::WikirateCompanyID },
+                       { refer_to: "Apple Inc" }]
+        )
       end
     end
 
@@ -35,8 +35,9 @@ describe Card::Set::Right::BrowseNoteFilter do
       before { filter_args wikirate_topic: "myTopic" }
       it do
         is_expected.to eq wql(
-          right_plus: [ { id: Card::WikirateTopicID },
-                        { refer_to: "myTopic" } ])
+          right_plus: [{ id: Card::WikirateTopicID },
+                       { refer_to: "myTopic" }]
+        )
       end
     end
 
@@ -45,8 +46,9 @@ describe Card::Set::Right::BrowseNoteFilter do
       it do
         is_expected.to eq wql(
           referred_to_by: {
-              left: { type_id: Card::WikirateAnalysisID },
-              right_id: Card::OverviewID }
+            left: { type_id: Card::WikirateAnalysisID },
+            right_id: Card::OverviewID
+          }
 
         )
       end
@@ -61,17 +63,18 @@ describe Card::Set::Right::BrowseNoteFilter do
       end
       it "joins filter conditions correctly" do
         is_expected.to eq wql(
-          name: ["match", "CDP"],
-          right_plus: [ { id: Card::WikirateTopicID },
-                          { refer_to: "myTopic" } ],
+          name: %w[match CDP],
+          right_plus: [{ id: Card::WikirateTopicID },
+                       { refer_to: "myTopic" }],
           and: {
-              right_plus: [ { id: Card::WikirateCompanyID },
-                            { refer_to: "Apple Inc" } ]
+            right_plus: [{ id: Card::WikirateCompanyID },
+                         { refer_to: "Apple Inc" }]
           },
           referred_to_by: {
             left: { type_id: Card::WikirateAnalysisID },
             right_id: Card::OverviewID
-          } )
+          }
+        )
       end
     end
   end

@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+
 require "link_thumbnailer"
 
 describe Card::Set::Self::Source do
@@ -45,6 +46,7 @@ describe Card::Set::Self::Source do
 
   describe "#iframable?" do
     subject { json_format.iframable? pdf_url, user_agent }
+
     let(:pdf_url) do
       "http://www.adobe.com/content/dam/Adobe/en/devnet"\
       "/acrobat/pdfs/pdf_open_parameters.pdf"
@@ -52,6 +54,7 @@ describe Card::Set::Self::Source do
 
     context "user agent is Firefox" do
       let(:user_agent) { "Firefox" }
+
       it "returns true" do
         is_expected.to be_truthy
       end
@@ -59,6 +62,7 @@ describe Card::Set::Self::Source do
 
     context "user agent is not Firefox" do
       let(:user_agent) { "Chrome" }
+
       it "returns false" do
         is_expected.to be_falsey
       end
@@ -73,6 +77,7 @@ describe Card::Set::Self::Source do
 
     context "iframable website" do
       let(:url) { "http://example.org" }
+
       it { is_expected.to be true }
       # this website need special handle, but it seems the page is down now
       # url = "http://www.peri.umass.edu/toxicair_current/"
@@ -83,16 +88,19 @@ describe Card::Set::Self::Source do
 
     context "non-iframable website" do
       let(:url) { "http://www.google.com" }
+
       it { is_expected.to be false }
     end
 
     context "nonsense website" do
       let(:url) { "helloworld" }
+
       it { is_expected.to be false }
     end
 
     context "empty website" do
       let(:url) { nil }
+
       it { is_expected.to be false }
     end
   end
@@ -105,6 +113,7 @@ describe Card::Set::Self::Source do
 
     context "invalid url" do
       let(:url) { "abcdefg" }
+
       it "has empty title" do
         expect(result_hash["title"]).to eq("")
       end
@@ -118,6 +127,7 @@ describe Card::Set::Self::Source do
 
     context "empty url" do
       let(:url) { nil }
+
       it "has empty title" do
         expect(result_hash["title"]).to eq("")
       end
@@ -171,6 +181,7 @@ describe Card::Set::Self::Source do
 
   describe "view :missing" do
     subject { render_card :missing, name: source_card.name }
+
     let(:source_card) { sample_source }
 
     it "shows the link" do

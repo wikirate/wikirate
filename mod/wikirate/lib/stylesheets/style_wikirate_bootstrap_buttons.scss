@@ -240,13 +240,13 @@ $cursor-disabled: not-allowed !default; // Button variants
     @include button-variant($btn-highlight-color, $btn-highlight-bg, $btn-highlight-border);
 }
 
-.btn-banner-join {
-    @include button-variant($btn-primary-bg, #fff, $btn-primary-color);
-}
-
-.btn-banner-info {
-    @include button-variant(#fff, transparent, #fff);
-}
+//.btn-banner-join {
+//    @include button-variant($btn-primary-bg, #fff, $btn-primary-color);
+//}
+//
+//.btn-banner-info {
+//    @include button-variant(#fff, transparent, #fff);
+//}
 
 .button-secondary {
     @include button-variant($btn-highlight-color, $btn-highlight-bg, $btn-highlight-border);
@@ -311,6 +311,11 @@ $cursor-disabled: not-allowed !default; // Button variants
     font-size: 12px;
     line-height: 1.5;
     border-radius: 3px;
+}
+
+.btn-group-vertical .btn {
+    border-bottom-left-radius: 0!important;
+    border-top-right-radius: 0!important;
 }
 /***** Nav Pills *****/
 .nav {
@@ -379,5 +384,57 @@ $cursor-disabled: not-allowed !default; // Button variants
      > a,
     .tab-primary {
         border-radius: 0;
+    }
+}
+.btn-banner-info, .btn-banner-join {
+    font-size: 1.2em !important;
+}
+
+
+button.hover-button{
+  width: 320px;
+}
+button .hover-text {
+  display: none;
+}
+
+button:hover .text {
+  display: none;
+}
+
+button:hover .hover-text {
+  display: inline;
+}
+
+
+.pagination > {
+    .active > {
+        a,
+        a:focus,
+        a:hover,
+        span,
+        span:focus,
+        span:hover {
+            background-color: $brand-primary;
+            border-color: $brand-primary;
+            color: #fff;
+            cursor: default;
+            z-index: 2;
+        }
+    }
+    li > {
+        a,
+        span {
+            background-color: #fff;
+            border-radius: 0px!important;
+            border: 1px solid #ddd;
+            color: $brand-primary;
+            float: left;
+            line-height: 1.42857143;
+            margin-left: -1px;
+            padding: 6px 12px;
+            position: relative;
+            text-decoration: none;
+        }
     }
 }

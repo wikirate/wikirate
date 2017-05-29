@@ -56,6 +56,12 @@
       border-top: 1px solid $border-color;
       border-right: 1px solid $border-color;
     }
+   td {
+     max-width: 400px;
+   }
+   td.details {
+     max-width: 1000px!important;
+   }
   }
 
 
@@ -185,9 +191,53 @@ table.wikirate-table, .table.wikirate-table {
 //---Custom Table Properties---//
 
 //Project Page
-.progress-bar-table .wikirate-table.company td:last-child,
-.progress-bar-table .wikirate-table.company .td:last-child{
-    width: 22%;
-    text-align: center;
+//.progress-bar-table .wikirate-table.company td:last-child,
+//.progress-bar-table .wikirate-table.company .td:last-child{
+//    width: 22%;
+//    text-align: center;
+//}
+
+// Research Page table tweaks //
+
+.TYPE-research_group table {
+  thead {
+    border-bottom: 4px solid $border-color;
+    border-left: 4px solid #646464;
+    .thumbnail {
+      border: 0;
+      font-size: 18px;
+      margin: 0;
+    }
+  }
+  tbody tr > td {
+    font-weight: bold;
+    font-size: 12px;
+    &:first-child {
+      text-align: right;
+      font-weight: normal;
+    }
+  }
+  thead tr > th {
+    vertical-align: middle;
+    &:first-child {
+      width: 40%;
+    }
+    width: 20%;
+  }
 }
 
+.import_table td {
+  text-overflow: ellipsis;
+}
+.yinyang-list.add-formula {
+  min-height: 500px;
+}
+
+.add-formula td.details.data.stick {
+  height: 78%!important;
+  top: 110px!important;
+}
+
+table.import_table td {
+  overflow: hidden;
+}

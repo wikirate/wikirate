@@ -2,7 +2,7 @@
 # are collected in @updated_meteric_answers and can be executed
 def refresh_answer_lookup_entry answer_id
   ActManager.act_card
-    .act_based_refresh_of_answer_lookup_entry answer_id
+            .act_based_refresh_of_answer_lookup_entry answer_id
 end
 
 def act_based_refresh_of_answer_lookup_entry answer_id

@@ -1,6 +1,17 @@
-# a pointer hack:
-# If the first item is "request" then the second item is the requester
-# and all users after that are checkers
+# +checked_by stores the current check state as follows:
+# empty/non-existent: no check
+# refer to "request": double check is requested
+# refer to one or more users: the users checked the value
+#
+# We have to distinguish between
+# "double check currently requested" and
+# "double check was requested before it was double checked"
+# so that the value can get its "requested" state back if somebody
+# removes his double check. We use the +check_requested_by card for that.
+# If the double check is requested the requester is
+# stored (permanently) in +check_requested_by and +checked_by is set
+# to "request". A double check removes the "request" and adds the checker to
+# +checked_by but the requester stays in +check_requested_by.
 
 def unknown?
   false
@@ -19,23 +30,41 @@ def other_user_requested_check?
 end
 
 def checked?
-  !check_requested? && checkers.present?
+  checkers.present?
 end
 
 def check_requested?
-  items.first == "request" && items.size <= 2
+  items.first == "request"
 end
 
 def checkers
-  check_requested? ? items[2..-1] : items
+  check_requested? ? [] : items
 end
 
 def check_requester
-  items.second
+  check_requested_by_card && check_requested_by_card.item_names.first
+end
+
+def check_requested_by_card
+  @check_requested_by_card ||=
+    left(new: {}).fetch(trait: :check_requested_by, new: {})
+end
+
+def allowed_to_check?
+  left.value_card.updater_id != Auth.current_id
+end
+
+def check_was_requested_before_double_check?
+  check_requester.present?
 end
 
 def items
   @items ||= item_names
+end
+
+def db_content= content
+  @items = nil
+  super
 end
 
 def option_names
@@ -44,7 +73,9 @@ end
 
 format :html do
   view :edit_in_form do
-    card.other_user_requested_check? ? "" : super()
+    with_relative_names_in_form do
+      card.other_user_requested_check? ? "" : super()
+    end
   end
 
   def part_view
@@ -56,11 +87,24 @@ format :html do
   end
 
   view :core do
+    unless card.check_requested? || card.checked? || card.allowed_to_check?
+      return ""
+    end
     wrap_with :div do
       [
-        wrap_with(:span, "Does the value accurately represent its source?"),
+        wrap_with(:p, "Does the value accurately represent its source?"),
         check_interaction
       ]
+    end
+  end
+
+  view :icon do |args|
+    if card.checked?
+      double_check_icon args
+    elsif card.check_requested?
+      request_icon args
+    else
+      ""
     end
   end
 
@@ -70,13 +114,13 @@ format :html do
     elsif card.checked?
       _render_checked_by_list
     else
-      check_button
+      double_check_buttons
     end
   end
 
   view :checked_by_list do
     return if card.checkers.empty?
-    links = subformat(card).render_shorter_search_result items: { view: :link }
+    links = _render_shorter_search_result items: { view: :link }
     %(
       <div class="padding-top-10">
         <i>#{links} <span>checked the value</span></i>
@@ -84,12 +128,39 @@ format :html do
     )
   end
 
-  def double_check_icon color="verify-blue"
-    fa_icon("check-circle", class: color).html_safe
+  view :shorter_search_result do
+    render_view = voo.show?(:link) ? :link : :name
+    items = card.checkers
+    total_number = items.size
+    return "" if total_number.zero?
+
+    fetch_number = [total_number, 4].min
+    result = ""
+    if fetch_number > 1
+      result += items[0..(fetch_number - 2)].map do |c|
+        subformat(c).render(render_view)
+      end.join(" , ")
+      result += " and "
+    end
+
+    result +
+      if total_number > fetch_number
+        %(<a class="known-card" href="#{card.format.render :url}"> ) \
+          "#{total_number - 3} others</a>"
+      else
+        subformat(items[fetch_number - 1]).render(render_view)
+      end
   end
 
-  def request_icon
-    fa_icon("check-circle-o", class: "request-red").html_safe
+  def double_check_icon opts={}
+    add_class opts, "verify-blue"
+    opts[:title] = "Value checked"
+    icon_tag("check-circle", opts).html_safe
+  end
+
+  def request_icon _opts={}
+    icon_tag("check-circle-o", class: "request-red", title: "check requested")
+      .html_safe
   end
 
   def data_path
@@ -103,19 +174,27 @@ format :html do
     text
   end
 
+  def double_check_buttons
+    output [
+      check_button,
+      fix_button
+    ]
+  end
+
   def check_button
+    # button_class = "btn btn-default btn-sm _value_check_button hover-button"
     button_class = "btn btn-default btn-sm _value_check_button"
     wrap_with(:button, class: button_class,
-              data: { path: data_path }) do
+                       data: { path: data_path }) do
       output [
-               wrap_with(:span, check_button_text, class: "text"),
-               wrap_with(:span, "Yes, I checked the value", class: "hover-text")
-             ]
+        wrap_with(:span, check_button_text, class: "text"),
+        wrap_with(:span, "Yes, I checked the value", class: "hover-text")
+      ]
     end
   end
 
-  def check_button_text
-    output ["Double check", check_button_request_credit]
+  def fix_button
+    link_to_card card.left, "I fix it", class: "btn btn-default btn-sm", path: { view: :edit }
   end
 
   def check_button_request_credit
@@ -126,10 +205,50 @@ format :html do
   def user_checked_text
     icon_class = "fa fa-times-circle-o fa-lg cursor-p _value_uncheck_button"
     output [
-             wrap_with(:i, '"Yes, I checked the value"'),
-             wrap_with(:i, "", class: icon_class, data: { path: data_path })
-           ]
+      wrap_with(:i, '"Yes, I checked the value"'),
+      wrap_with(:i, "", class: icon_class, data: { path: data_path })
+    ]
   end
+end
+
+event :update_answer_lookup_table_due_to_check_change, :finalize,
+      changed: :content do
+  refresh_answer_lookup_entry left_id
+end
+
+event :user_checked_value, :prepare_to_store,
+      on: :save, when: :add_checked_flag? do
+  add_checker unless user_checked?
+  update_user_check_log.add_id left.id
+end
+
+event :user_unchecked_value, :prepare_to_store,
+      on: :update, when: :remove_checked_flag? do
+  drop_checker
+  update_user_check_log.drop_id left.id
+end
+
+event :user_requests_check, :prepare_to_store,
+      when: :request_check_flag_update? do
+  requested_by_content =
+    if content == "[[#{request_tag}]]"
+      return if check_requester.present?
+      "[[#{user.name}]]"
+    else
+      ""
+    end
+
+  attach_subcard check_requested_by_card.name,
+                 content: requested_by_content,
+                 type_id: PointerID
+end
+
+def request_tag
+  @request_tag ||= Card.fetch_name(:request)
+end
+
+def mark_as_requested
+  self.content = "[[#{request_tag}]]"
 end
 
 def update_user_check_log
@@ -137,30 +256,18 @@ def update_user_check_log
               type_id: PointerID
 end
 
-event :user_checked_value, :prepare_to_store,
-      on: :update, when: :add_checked_flag? do
-  add_item user.name, true unless user_checked?
-  update_user_check_log.add_id left_id
-end
-
-event :user_unchecked_value, :prepare_to_store,
-      on: :update, when: :remove_checked_flag? do
-  drop_checker user.name if user_checked?
-  update_user_check_log.drop_id left_id
-end
-
-event :user_requests_check, :prepare_to_store do
-  if content == "[[request]]"
-    self.content = ["request", user.name].to_pointer_content
-  end
-end
-
-def drop_checker user
-  if check_requested? && requester == user
-    insert_item user, 1 # deletes all other occurences
+def add_checker
+  if check_requested? # override request flag
+    self.content = "[[#{user.name}]]"
   else
-    drop_item user
+    add_item user.name
   end
+end
+
+def drop_checker
+  drop_item user.name
+  mark_as_requested if item_names.empty? &&
+                       check_was_requested_before_double_check?
 end
 
 def add_checked_flag?
@@ -169,4 +276,17 @@ end
 
 def remove_checked_flag?
   Env.params["set_flag"] == "not-checked"
+end
+
+def request_check_flag_update?
+  !add_checked_flag? && !remove_checked_flag?
+end
+
+format :json do
+  view :essential do
+    {
+      checks: card.checkers.count,
+      check_requested: card.check_requested?
+    }
+  end
 end

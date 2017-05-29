@@ -5,7 +5,7 @@ require File.expand_path("../../filter_spec_helper.rb", __FILE__)
 describe Card::Set::Right::BrowseMetricFilter do
   let(:card) do
     card = Card.new name: "test card"
-    card.singleton_class.send :include, Card::Set::Right::BrowseMetricFilter
+    card.singleton_class.send :include, described_class
     card
   end
 
@@ -18,7 +18,7 @@ describe Card::Set::Right::BrowseMetricFilter do
 
     context "name argument" do
       before { filter_args name: "CDP" }
-      it { is_expected.to eq(wql(name: %w(match CDP))) }
+      it { is_expected.to eq(wql(name: %w[match CDP])) }
     end
 
     context "company argument" do
@@ -91,7 +91,7 @@ describe Card::Set::Right::BrowseMetricFilter do
       end
       it "joins filter conditions correctly" do
         is_expected.to eq wql(
-          name: %w(match CDP),
+          name: %w[match CDP],
           and: {
             right_plus: [Card::ResearchPolicyID,
                          { refer_to: "community assessed" }],

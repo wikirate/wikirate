@@ -6,6 +6,32 @@ def create_value_options options
   Card.create! create_args
 end
 
+event :ensure_designer, :prepare_to_store, on: :save, changed: :name do
+  return if valid_designer?
+  if (card = Card[metric_designer])
+    errors.add :metric_designer, "invalid type #{card.type_name}"
+  else
+    attach_subcard metric_designer, type_id: ResearchGroupID
+  end
+end
+
+event :ensure_title, :prepare_to_store, on: :save, changed: :name do
+  case Card.fetch_type_id(metric_title)
+  when MetricTitleID
+    return
+  when nil
+    attach_subcard metric_title, type_id: MetricTitleID
+  else
+    errors.add :metric_title, "#{metric_title} is a #{Card[metric_title].type_name} "\
+                              "card and can be use as metric title"
+  end
+end
+
+def valid_designer?
+  Card.fetch_type_id(metric_designer).in? [ResearchGroupID, UserID,
+                                           WikirateCompanyID]
+end
+
 # @example
 # create_values do
 #   Siemens 2015 => 4, 2014 => 3
@@ -46,12 +72,10 @@ end
 
 def check_value_card_exist args, error_msg
   return unless (value_name = extract_metric_value_name(args, error_msg))
-  if (value_card = Card[value_name.to_name.field(:value)])
-    unless value_card.content.casecmp(args[:value]).zero?
-      link = format.link_to_card value_card.metric_card, "value"
-      error_msg << "#{link} '#{value_card.content}' exists"
-    end
-  end
+  return if !(value_card = Card[value_name.to_name.field(:value)]) ||
+            value_card.content.casecmp(args[:value]).zero?
+  link = format.link_to_card value_card.metric_card, "value"
+  error_msg << "#{link} '#{value_card.content}' exists"
 end
 
 def valid_value_args? args
@@ -93,11 +117,10 @@ end
 # @option args [String] :value
 # @option args [String] :source source url
 def create_value args
-  if (valid_args = create_value_args args)
-    Card.create! valid_args
-  else
+  unless (valid_args = create_value_args args)
     raise "invalid value args: #{args}"
   end
+  Card.create! valid_args
 end
 
 # The new metric form has a title and a designer field instead of a name field
@@ -109,70 +132,20 @@ event :set_metric_name, :initialize, on: :create, when: :needs_name? do
 end
 
 format :html do
-  # FIXME: inline js
-  view :new do |args|
+  view :new do |_args|
     voo.title = "New Metric"
     frame do
-      <<-HTML
-      <fieldset class="card-editor editor">
-        <div role="tabpanel">
-          <input class="card-content form-control" type="hidden" value=""
-                 name="card[subcards][+*metric type][content]"
-                 id="card_subcards___metric_type_content">
-           <h4>Metric Type</h4>
-           <div class="help-block help-text">
-             <p>There are four "metric types."  Choose one to learn more</p>
-           </div>
-          #{new_metric_tab_buttons}
-        </div>
-      </fieldset>
-      <!-- Tab panes -->
-
-      #{new_metric_tab_content}
-      <script>
-        $('input[name="intervaltype"]').click(function () {
-          //jQuery handles UI toggling correctly when we apply "data-target"
-          // attributes and call .tab('show')
-          //on the <li> elements' immediate children, e.g the <label> elements:
-          $(this).closest('label').tab('show');
-        });
-      </script>
-      HTML
+      _render_new_form
     end
+  end
+
+  view :new_form, template: :haml do
+    @tabs = %w[Researched Formula Score WikiRating]
   end
 
   def default_content_formgroup_args _args
     voo.edit_structure = [["+question", "Question"],
                           [:wikirate_topic, "Topic"]]
-  end
-
-  def tab_radio_button id, active=false
-    <<-HTML
-    <li role="tab" class="pointer-radio #{'active' if active}">
-      <label data-target="##{tab_pane_id id}" class="tab-primary">
-        <input id="#{id}"
-               name="intervaltype"
-               value="#{id}"
-               class="pointer-radio-button"
-               type="radio" #{'checked' if active} />#{id}</label>
-    </li>
-    HTML
-  end
-
-  def new_metric_tab_buttons
-    wrap_with :ul, class: "nav nav-pills grey-nav-tab", role: "tablist" do
-      %w(Researched Formula Score WikiRating).map.with_index do |metric_type, i|
-        tab_radio_button metric_type, i.zero?
-      end
-    end
-  end
-
-  def new_metric_tab_content
-    wrap_with :div, class: "tab-content" do
-      %w(Researched Formula Score WikiRating).map.with_index do |metric_type, i|
-        new_metric_tab_pane metric_type, i.zero?
-      end
-    end
   end
 
   def tab_pane_id name
@@ -214,7 +187,7 @@ format :html do
   end
 
   view :new_name_formgroup do
-    formgroup "Metric Name", editor: "name" do
+    formgroup "Metric Name", editor: "name", help: false do
       new_name_field
     end
   end

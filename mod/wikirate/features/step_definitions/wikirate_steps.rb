@@ -31,7 +31,7 @@ end
 #     find("label", text: field).find(:xpath, "..//select", visible: false)
 # end
 
-Capybara.default_wait_time = 20
+Capybara.default_max_wait_time = 60
 
 When(/^I press "([^\"]*)" within "([^\"]*)"$/) do |button, scope_selector|
   within(scope_selector) do
@@ -51,6 +51,10 @@ end
 
 And(/^I click on item "([^"]*)"$/) do |item|
   find("td", text: item).click
+end
+
+When(/^I click on metric "([^"]*)"$/) do |metric|
+  find(:css, ".add-formula").find("h4", text: metric).click
 end
 
 When(
@@ -147,14 +151,6 @@ When /^(?:|I )single-select "([^"]*)" as value$/ do |value|
   find("li", text: value).click
 end
 
-When(/^(?:|I )upload the (.+) "(.+)" in mod$/) do |attachment_name, filename|
-  script = "$('input[type=file]').css('opacity','1');"
-  page.driver.browser.execute_script(script)
-  file =
-    File.join Cardio.root, "mod", "wikirate", "features", "support", filename
-  attach_file "card_#{attachment_name}", file
-end
-
 Then(/^I should see a row with "(.+)"$/) do |value|
   values = value.split("|")
   html = page.body
@@ -184,6 +180,18 @@ Then(/^I check checkbox in row (\d+)$/) do |row|
   end
 end
 
+Then(/^I check checkbox for csv row (\d+)$/) do |row|
+  table = find("table")
+  within(table) do
+    row = find("tr[data-csv-row-index='#{row}'")
+    # row = all("tr")[row.to_i]
+    within(row) do
+      checkbox = find("input[type=checkbox]")
+      checkbox.click unless checkbox.checked?
+    end
+  end
+end
+
 Then(/^I fill in "(.*)" in row (\d+)$/) do |text, row|
   table = find("table")
   within(table) do
@@ -194,18 +202,35 @@ Then(/^I fill in "(.*)" in row (\d+)$/) do |text, row|
   end
 end
 
-Then(/^I should see a comment icon$/) do
-  html = page.body
-  expect(html).to have_tag("i",
-                           with: { class: "fa-commenting",
-                                   title: "Has comments" })
+Then(/^I fill in "(.*)" for csv row (\d+)$/) do |text, row|
+  table = find("table")
+  within(table) do
+    row = find("tr[data-csv-row-index='#{row}'")
+    within(row) do
+      find("input[type=text]").set(text)
+    end
+  end
 end
 
-Then(/^I should not see a comment icon$/) do
-  html = page.body
-  expect(html).to_not have_tag("i",
-                               with: { class: "fa-commenting",
-                                       title: "Has comments" })
+Then /^(?:|I )should see "([^"]*)" or "([^"]*)"$/ do |text1, text2|
+  begin
+    expect(page).to have_content(text1)
+  rescue
+    expect(page).to have_content(text2)
+  end
+end
+
+Then(/^I should see a "(.*)" icon$/) do |icon|
+  expect(page.body).to have_tag "i.fa-#{ICONS[icon]}"
+end
+
+Then(/^I should see a "(.*)" icon with tooltip "(.*)"$/) do |icon, title|
+  expect(page.body)
+    .to have_tag("i", with: { class: "fa-#{ICONS[icon]}", title: title })
+end
+
+Then(/^I should not see a "(.*)" icon$/) do |icon|
+  expect(page.body).to_not have_tag "i.fa-#{ICONS[icon]}"
 end
 
 When(/^I click the drop down button$/) do
@@ -214,11 +239,7 @@ end
 
 When(/^I click the drop down button for "(.*)"$/) do |text|
   find("td", text: text).find(:xpath, "..")
-    .find(".fa-caret-right").click
-end
-
-When(/^I scroll (-?\d+) pixels$/) do |number|
-  page.execute_script "window.scrollBy(0, #{number})"
+                        .find(".fa-caret-right").click
 end
 
 def select_from_chosen item_text, selector, within
@@ -256,6 +277,8 @@ When(/^I maximize the browser$/) do
 end
 
 ICONS = {
+  "check request" => "check-circle-o",
+  "comment" => "commenting",
   "remove" => "times-circle-o"
 }.freeze
 

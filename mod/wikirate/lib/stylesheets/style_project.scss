@@ -13,20 +13,43 @@
 }
 
 .progress-column .thumbnail {
-  margin: 0;
   border: 0;
+  margin: 0;
 }
 
-table.company td.metric {
-  width: 50%
-}
-
-table.metric td.company {
-  width: 70%;
+table {
+  &.company td {
+    &.metric {
+      max-width: 250px;
+    }
+    &.progress-column {
+      width: 35%;
+    }
+  }
+  &.metric td.company {
+    width: 70%;
+  }
+  &.company td.button-column {
+    border-radius: 0;
+    width: 8%;
+  }
 }
 
 .project-details-info .lead {
-    font-size: 1em;
-    padding-right: 3px;
-    line-height: 1.3em;
+  font-size: 1em;
+  line-height: 1.3em;
+  padding-right: 3px;
+}
+
+.progress-bar-table {
+  .metric tr,
+  .company tr {
+    span.progress-value {
+      display: none;
+    }
+
+    &:hover span.progress-value{
+      display: block;
+    }
+  }
 }

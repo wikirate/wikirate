@@ -18,11 +18,12 @@ format :html do
 
   def text_with_image opts={}
     @image_card = Card.cardish(opts[:image]) if opts[:image]
+    opts[:media_opts] = {} unless opts[:media_opts]
     text_with_image_args opts
 
     render_haml opts do
       <<-HAML.strip_heredoc
-        .media
+        .media{media_opts}
           .media-left.image-box.#{opts[:size]}
             %a{href: "#"}
               %img{class:"media-object #{opts[:size]}", src: src, alt: alt}
@@ -34,11 +35,9 @@ format :html do
     end
   end
 
-
-  def text_with_media media, title, text, opts={}
+  def text_with_media _media, _title, _text, opts={}
     @image_card = Card.cardish(opts[:image]) if opts[:image]
     text_with_image_args opts
-
 
     render_haml opts do
       <<-HAML.strip_heredoc

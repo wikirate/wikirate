@@ -1,5 +1,4 @@
 format :html do
-
   def basic_properties
     {
       designer:    "Designed By",
@@ -29,7 +28,8 @@ format :html do
   end
 
   def designer_property
-    _render_designer_info
+    nest card.metric_designer_card, view: :designer_slot,
+                                    show: :menu, hide: :horizontal_menu
   end
 
   def scorer_property
@@ -37,8 +37,12 @@ format :html do
     _render_scorer_info
   end
 
+  def metric_property_nest field, item_view: :name
+    field_nest field,  view: :content, show: :menu, items: { view: item_view }
+  end
+
   def topic_property
-    field_nest :wikirate_topic, view: :content, items: { view: :link }
+    metric_property_nest :wikirate_topic, item_view: :link
   end
 
   def metric_type_property
@@ -46,14 +50,14 @@ format :html do
   end
 
   def value_type_property
-    wrap_with :div, _render_value_type_detail
+    wrap_with :div, _render_value_type_detail(show: :menu, hide: :horizontal_menu)
   end
 
   def research_policy_property
-    field_nest :research_policy, view: :content, items: { view: :name }
+    metric_property_nest :research_policy
   end
 
   def report_type_property
-    field_nest :report_type, view: :content, items: { view: :name }
+    metric_property_nest :report_type
   end
 end

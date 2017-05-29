@@ -72,30 +72,63 @@
         margin-bottom: 0;
     }
 
+//Custom Tabs
+
 .company-profile-tab{
   position: absolute;
-  bottom: 0px;
+  bottom: 10px;
   min-width: 60%;
   text-align: center;
   li{
     width: 50%;
   }
 }
-
-//Custom Tabs
-
-h4.contribution-report-title {
-    float: left;
-    padding: 20px;
+.company-profile-tab.visible-xs {
+    position: relative;
+    border-top: 1px solid #ebebeb;
+    margin: 0px -15px;
 }
 
-// TODO add border-left colours to each card type
+.contribution-report-header {
+    .nav-tabs{
+      padding-bottom: 2px;
+    }
+    .nav-tabs>li>a{
+      margin: 0px;
+    }
+}
+
+.contribution_report-view .contribution-report-header > .nav > li {
+  float: right;
+  width: 15%;
+  .count-label {
+    white-space: nowrap;
+  }
+}
+
+.contribution-report-title {
+    float: left;
+  padding: 0 20px;
+  color: inherit;
+}
+
 .contribution-report {
     margin-bottom: 15px;
     border: 1px solid $border-color;
 }
 
+li.contribution-report-title-box {
+  float: left !important;
+  width: 30% !important;
 
+}
+
+li.contribution-report-title-box > a {
+  padding-bottom: 27px;
+  padding-left: 0px;
+  padding-top: 12px;
+  color: inherit;
+}
 
 .RIGHT-metric, .RIGHT-metric_value{
   .contribution-report-header {
@@ -125,5 +158,83 @@ h4.contribution-report-title {
 .RIGHT-note{
   .contribution-report-header {
       border-left: 4px solid $note-color;
+  }
+}
+.RIGHT-research_group {
+  .contribution-report-header {
+    border-left: 4px solid $card-text-color;
+  }
+}
+
+.contribution-report-toggle a {
+    padding: 18px 0px!important;
+}
+.contribution-report-toggle {
+    width: 6%!important;
+    border-left: 1px solid #ebebeb;
+}
+
+//Custom tab positions
+.tabs-left > .nav-tabs > li{
+  float: none;
+}
+
+.tabs-left .tab-content{
+  float: left;
+  width: 50%;
+}
+
+.tabs-left > .nav-tabs {
+  float: left;
+  border-bottom: 0;
+  &.intro-tabs > li {
+    &.company-tab > a{
+      border-right: 3px solid $company-color;
+      padding: 80px 60px 80px 40px;
+      line-height: 20px;
+    }
+    &.metric-tab > a{
+      border-right: 3px solid $metric-color;
+    }
+    &.topic-tab > a{
+      border-right: 3px solid $topic-color;
+    }
+    > a{
+      font-size: 24px;
+      //font-weight: 300;
+      padding: 90px 60px 90px 40px;
+      text-align: center;
+      background: none;
+      -webkit-transition: all 0.3s ease-out;
+      -moz-transition: all 0.3s ease-out;
+      -ms-transition: all 0.3s ease-out;
+      -o-transition: all 0.3s ease-out;
+      transition: all 0.3s ease-out;
+      &:hover, &:focus,&:active,&.active {
+        border-left: 1px solid $border-color;
+        border-bottom: 1px solid $border-color;
+        @include box-shadow(-11px, 0px, 20px, rgba(0,0,0,0.12));
+        background: none;
+        position: relative;
+        z-index: 2;
+      }
+      &:hover{
+          background: rgba(255, 255, 255, 0.55);
+          color: inherit;
+      }
+    }
+    &.active > a {
+        border-right: 3px solid $border-color;
+        @include box-shadow(-11px, 0px, 20px, rgba(0,0,0,0.12));
+        position: relative;
+        z-index: 2;
+    }
+  }
+  > li > a {
+    margin-right: 20px;
+    margin-bottom: 8px;
+    border-bottom: 0;
+    border-bottom: 1px solid #ebebeb;
+    border-left: 1px solid #ebebeb;
   }
 }

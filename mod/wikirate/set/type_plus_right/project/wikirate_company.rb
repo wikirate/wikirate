@@ -20,10 +20,10 @@ format :html do
     wrap_with :div, class: "progress-bar-table" do
       wikirate_table(
         :company, card.all_company_project_cards,
-        [:company_thumbnail, :research_progress_bar, :research_button],
-        header: ["Company", "Metrics Researched", "Research Company"],
+        [:company_thumbnail, :research_button, :research_progress_bar],
+        header: ["Company", "", "Metrics Researched"],
         table: { class: "company-research" },
-        td: { classes: ["metric"] }
+        td: { classes: ["metric", "button-column", "progress-column"] }
       )
     end
   end

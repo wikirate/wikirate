@@ -4,14 +4,17 @@
   anchor_parts_count: 2
 }
 
-@@metric_type_keys = ::Set.new(%w(researched formula wiki_rating score))
+@@metric_type_keys = ::Set.new(%w[researched formula wiki_rating score])
 
 def label name
   %(All "+#{name.to_name.tag}" cards on metric cards of type "#{name.to_name.left_name}")
 end
 
 def prototype_args anchor
-  { name: "+#{anchor.tag}", supercard: Card.new(name: "*dummy", type: Card::MetricID, "+*metric_type" => "[[#{anchor.trunk}]]") }
+  { name: "+#{anchor.tag}",
+    supercard: Card.new(name: "*dummy",
+                        type: Card::MetricID,
+                        "+*metric_type" => "[[#{anchor.trunk}]]") }
 end
 
 def anchor_name card

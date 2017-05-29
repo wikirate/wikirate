@@ -9,11 +9,12 @@ describe Card::Set::MetricType::Formula do
   end
 
   def build_formula formula
-    sprintf formula, @metric_name1, @metric_name2, @metric_name3
+    format formula, @metric_name1, @metric_name2, @metric_name3
   end
 
   describe "formula card" do
     subject { Card[:formula] }
+
     it { is_expected.to be_instance_of(Card) }
     it "has codename" do
       expect(subject.codename).to eq "formula"
@@ -90,48 +91,60 @@ describe Card::Set::MetricType::Formula do
       @name = "Jedi+friendliness"
     end
     let(:metric) { Card[@name] }
+
     describe "#metric_type" do
       subject { metric.metric_type }
+
       it { is_expected.to eq "Formula" }
     end
     describe "#metric_type_codename" do
       subject { metric.metric_type_codename }
+
       it { is_expected.to eq :formula }
     end
     describe "#metric_designer" do
       subject { metric.metric_designer }
+
       it { is_expected.to eq "Jedi" }
     end
     describe "#metric_designer_card" do
       subject { metric.metric_designer_card }
+
       it { is_expected.to eq Card["Jedi"] }
     end
     describe "#metric_title" do
       subject { metric.metric_title }
+
       it { is_expected.to eq "friendliness" }
     end
     describe "#metric_title_card" do
       subject { metric.metric_title_card }
+
       it { is_expected.to eq Card["friendliness"] }
     end
     describe "#question_card" do
       subject { metric.question_card.name }
+
       it { is_expected.to eq "Jedi+friendliness+Question" }
     end
     describe "#value_type" do
       subject { metric.value_type }
+
       it { is_expected.to eq "Free Text" }
     end
     describe "#categorical?" do
       subject { metric.categorical? }
+
       it { is_expected.to be_falsey }
     end
     describe "#researched?" do
       subject { metric.researched? }
+
       it { is_expected.to be_falsey }
     end
     describe "#scored?" do
       subject { metric.scored? }
+
       it { is_expected.to be_falsey }
     end
   end
@@ -161,8 +174,8 @@ describe Card::Set::MetricType::Formula do
 
     it "creates calculated values" do
       test_calculation [], "60.0"
-      test_calculation %w(Samsung 2015), "29.0"
-      test_calculation %w(Sony_Corporation), "9.0"
+      test_calculation %w[Samsung 2015], "29.0"
+      test_calculation %w[Sony_Corporation], "9.0"
       not_researched_card = calc_value_card "Death_Star", "1977"
       expect(not_researched_card).to be_falsey
     end
@@ -185,7 +198,7 @@ describe Card::Set::MetricType::Formula do
       end
       it "adds complete calculated value" do
         update_formula "{{%s}}*5"
-        test_calculation %w(Death_Star 1977), "25.0"
+        test_calculation %w[Death_Star 1977], "25.0"
       end
     end
 
@@ -202,7 +215,7 @@ describe Card::Set::MetricType::Formula do
             source: sample_source
           )
         end
-        test_calculation %w(Death_Star 1977), "29.0"
+        test_calculation %w[Death_Star 1977], "29.0"
       end
     end
 
@@ -235,8 +248,8 @@ describe Card::Set::MetricType::Formula do
                      content: build_formula("{{%s}}*5+{{%s}}*2")
       end
       test_calculation [], "60.0"
-      test_calculation %w(Samsung 2015), "29.0"
-      test_calculation %w(Sony_Corporation), "9.0"
+      test_calculation %w[Samsung 2015], "29.0"
+      test_calculation %w[Sony_Corporation], "9.0"
       not_researched_card = calc_value_card "Death_Star", "1977"
       expect(not_researched_card).to be_falsey
     end

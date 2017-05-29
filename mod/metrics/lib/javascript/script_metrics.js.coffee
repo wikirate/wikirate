@@ -17,19 +17,24 @@ $(window).ready ->
             .prop('disabled', result != 100)
 
 
-  $('body').on 'click', '.add-weight', (event) ->
+  $('body').on 'click', '._add-weight', (event) ->
     url  = wagn.rootPath + '/~' + $(this).data('metric-id')
     params = { view: 'weight_row' }
+    $sum_row = $(".TYPE_PLUS_RIGHT-metric-formula.edit-view table.pairs-editor > tbody > tr:last")
+    $new_row = $("<tr></tr>")
+    $sum_row.before($new_row)
+    wikirate.loader($new_row, true).add()
     $.ajax url, {
       type : 'GET'
       data : params
       success : (data) ->
-        sum_row = $(".TYPE_PLUS_RIGHT-metric-formula.edit-view table.pairs-editor > tbody > tr:last")
-        $(sum_row).before("<tr>" + data + "</tr>")
         rows = $(".TYPE_PLUS_RIGHT-metric-formula.edit-view table.pairs-editor > tbody > tr")
+        new_row = $(rows[rows.length - 2])
+        $(new_row).html(data)
+        wikirate.initRowRemove()
         if rows.size() == 2
           rows.first().find('input').val(100)
-          sum_row.find('td').removeClass('hidden')
+          $sum_row.find('td').removeClass('hidden')
 
     }
     add_metric_modal = $(this).closest('.modal')
@@ -51,7 +56,7 @@ showAndHide = (slot, value) ->
         'number_details'
       when 'Money'
         'currency_details'
-      when 'Category'
+      when 'Category', 'Multi-Category'
         'category_details'
       else
         ''
@@ -69,17 +74,25 @@ $(document).ready ->
 
 wagn.slotReady (slot) ->
   slot.find('[data-tooltip="true"]').tooltip()
-  if(slot.hasClass('STRUCTURE-metric_value_type_edit_structure'))
-# hide the related field
-# if no type is selected, hide all fields
-    slot.find('.RIGHT-value_type .pointer-radio input:radio').each(->
+  slot.find('input[name="intervaltype"]').on 'click', () ->
+    #jQuery handles UI toggling correctly when we apply "data-target"
+    #attributes and call .tab('show')
+    #on the <li> elements' immediate children, e.g the <label> elements:
+    $(this).closest('label').tab('show')
+
+  # hide the related field
+  # if no type is selected, hide all fields
+  if slot.find('.card-editor.RIGHT-value_type')
+    hideAll(slot)
+    slot.find('.card-editor.RIGHT-value_type .pointer-radio input:radio').each(->
       if $(this).is(':checked')
         showAndHide(slot, $(this).val())
       $(this).change(->
         showAndHide slot, $(this).val()
-      ).change()
+      )
     )
-    # cancel-button to dismiss the modal
+  if slot.find('.modal-body .card-editor.RIGHT-value_type')
+  # cancel-button to dismiss the modal
     slot.find(".cancel-button").data('dismiss','modal')
     # dismiss and refresh page after submit
     slot.find('form:first').on 'ajax:success', (_event, data, xhr) ->

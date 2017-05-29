@@ -1,6 +1,6 @@
 def all_answers
   @result ||=
-    Answer.fetch({ record_id: id }, sort_by: :year, sort_order: :desc)
+    Answer.search(record_id: id, sort_by: :year, sort_order: :desc)
 end
 
 format :html do
@@ -43,12 +43,17 @@ format :html do
   end
 
   view :buttons do
-    wrap_with :div do
+    wrap_with :div, class: "margin-12" do
       [
         add_answer_button,
-        nest(metric_card, view: :compact_buttons)
+        more_buttons
       ]
     end
+  end
+
+  def more_buttons
+    return "" unless voo.show? :metric_buttons
+    nest metric_card, view: :compact_buttons
   end
 
   view :metric_info do
@@ -64,7 +69,7 @@ format :html do
       next "" unless all_answers.present?
       wikirate_table :plain, all_answers,
                      [:plain_year, answer_view],
-                     header: %w(Year Answer),
+                     header: %w[Year Answer],
                      td: { classes: ["text-center"] }
     end
   end
@@ -92,14 +97,14 @@ format :html do
   def show_form_button
     classes = "_add_new_value btn-primary"
     classes << "hide" if voo.show?(:answer_form)
-    wrap_with :a, "Add answer",
+    wrap_with :a, "Research answer",
               href: "#",
               class: css_classes(button_classes, classes),
               data: { url: path(view: :answer_form) }
   end
 
   def redirect_form_button
-    link_to_card card, "Add answer",
+    link_to_card card, "Research answer",
                  class: "btn btn-sm btn-primary margin-12",
                  path: { view: "research_page", slot: { show: :answer_form } }
   end

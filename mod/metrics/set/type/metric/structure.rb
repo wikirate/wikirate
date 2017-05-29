@@ -39,10 +39,7 @@ format :html do
   end
 
   view :designer_info do
-    wrap_with :div, class: "metric-designer-info" do
-      link_to_card card.metric_designer_card,
-                   author_info(card.metric_designer_card)
-    end
+    nest card.metric_designer_card, view: :designer_info
   end
 
   view :question_row do
@@ -58,41 +55,12 @@ format :html do
     HTML
   end
 
-  def author_info author_card
-    output [
-      author_image(author_card),
-      author_text(author_card.name)
-    ]
+  view :browse_item, template: :haml do
+    @vote_count = voo.show?(:vote_count) ? field_nest(:vote_count) : ""
   end
+  view :homepage_item, template: :haml
 
-  def author_image author_card
-    wrap_with :div, class: "image-box small no-margin" do
-      wrap_with :span, class: "img-helper" do
-        subformat(author_card.field(:image, new: {}))._render_core size: "small"
-      end
-    end
-  end
-
-  def author_text author, subtext=nil
-    if subtext
-      author_text_with_subtext author, subtext
-    else
-      author_text_without_subtext author
-    end
-  end
-
-  def author_text_with_subtext author, subtext
-    wrap_with :div, class: "margin-6" do
-      [
-        wrap_with(:h4, author, class: "nopadding"),
-        %(<span><small class="text-muted">#{subtext}</small></span>)
-      ]
-    end
-  end
-
-  def author_text_without_subtext author
-    wrap_with :div do
-      wrap_with :h3, author
-    end
+  def view_template_path view
+    super(view, __FILE__)
   end
 end

@@ -71,8 +71,7 @@ format :html do
   end
 
   view :shorter_pointer_content do
-    voo.hide :link
-    subformat(card).render_shorter_search_result
+    nest card, view: :shorter_search_result, hide: :link
   end
 
   view :shorter_search_result do
@@ -149,7 +148,7 @@ format :html do
   end
 
   def button_classes
-    "btn btn-sm btn-default margin-12"
+    "btn btn-sm btn-default"
   end
 end
 

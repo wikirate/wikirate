@@ -13,4 +13,3 @@ format :html do
     card.content
   end
 end
-
