@@ -1,11 +1,11 @@
-require_relative "../../csv_row"
+require_relative "../csv_row"
 
 # This class provides an interface to import relationship metrics
 class RelationshipMetricCSVRow < CSVRow
   @columns = [:designer, :title, :inverse, :value_type, :value_options, :unit]
   @required = [:designer, :title, :value_type, :inverse]
 
-  def initialize row
+  def initialize row, index
     super
     @designer = @row[:designer]
     @name = "#{@designer}+#{@row[:title]}"

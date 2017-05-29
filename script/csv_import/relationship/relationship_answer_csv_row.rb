@@ -6,16 +6,15 @@ class RelationshipAnswerCSVRow < CSVRow
   include SourceHelper
 
   @columns = [:designer, :title, :company_1, :company_2, :year, :value, :source]
-  @required =
-    [:designer, :title, :company_1, :company_2, :year, :value, :source]
+  @required = :all
 
-  def initialize row
+  def initialize row, index
     super
     @designer = @row[:designer]
     @title = @row[:title]
   end
 
-  def create
+  def import
     ensure_companies
     source_card = ensure_source
     ensure_metric_answer

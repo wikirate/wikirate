@@ -47,7 +47,8 @@ Feature: Double check
 
     When I am signed in as Joe Admin
     And I go to card "Jedi+disturbances in the Force+Death Star+2000"
-    And I click on "Double check requested by Joe User"
+    # And I click on "Double check requested by Joe User"
+    And I click on "Yes, I checked"
     Then I should see "Yes, I checked the value"
 
     When I click on the "remove" icon

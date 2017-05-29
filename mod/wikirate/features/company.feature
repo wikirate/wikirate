@@ -45,7 +45,7 @@ Feature: company feature
     And I select "Not Researched" from "Value"
     And I submit form
     Then I should not see "disturbances in the Force"
-    And I should see "Sith Lord in Charge"
+    And I should see "Weapons"
 
   Scenario: Paging
     Then I should not see "deadliness"
