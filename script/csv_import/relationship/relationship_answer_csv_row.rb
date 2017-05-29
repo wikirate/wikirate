@@ -46,7 +46,7 @@ class RelationshipAnswerCSVRow < CSVRow
   end
 
   def update_metric_answer answer
-    value = Card.fetch answer, :value
+    value = Card.fetch answer, :value, new: {}
     value.update_attributes! content: (value.content.to_i + 1).to_s
   end
 
