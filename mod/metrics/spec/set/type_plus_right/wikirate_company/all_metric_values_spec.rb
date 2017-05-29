@@ -40,12 +40,27 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
   let(:latest_metric_keys) do
     ::Set.new(latest_answers.map { |n| n.to_name.left_name.key })
   end
+  let(:all_metrics) do
+    Card.search(type_id: Card::MetricID, return: :name)
+  end
+  let(:all_metric_titles) do
+    all_metrics.map do |name|
+      name.to_name[1..-1]
+    end
+  end
   let(:missing_metrics) do
-    Card.search(type_id: Card::MetricID, return: :name).map do |name|
+    all_metrics.map do |name|
       r_name = name.to_name.parts[1..-1].to_name
       next if latest_metric_keys.include? r_name.key
       r_name.to_s
     end.compact
+  end
+  let(:researched) do
+    ["dinosaurlabor+2010", "cost of planets destroyed+1977",
+     "deadliness+1977", "disturbances in the Force+2001",
+     "Sith Lord in Charge+1977",
+     "Victims by Employees+1977", "researched+1977",
+     "researched number 1+1977"]
   end
 
   def missing_answers year=Time.now.year
@@ -140,11 +155,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
         end
         it "finds researched" do
           expect(filter_by(metric_type: "Researched"))
-            .to eq ["dinosaurlabor+2010", "cost of planets destroyed+1977",
-                    "deadliness+1977", "disturbances in the Force+2001",
-                    "Sith Lord in Charge+1977",
-                    "Victims by Employees+1977", "researched+1977",
-                    "researched number 1+1977"]
+            .to contain_exactly(*researched)
         end
         it "finds combinations" do
           expect(filter_by(metric_type: %w[Score Formula]))
@@ -199,6 +210,19 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
             ["deadliness", "deadliness+Joe Camel", "deadliness+Joe User",
              "friendliness", "Victims by Employees"], 1977
           )
+        end
+
+        let(:all_answers) do
+          latest_answers + with_year(["researched number 2", "researched number 3",
+                                      "small multi", "small single"])
+        end
+
+        it "finds all values" do
+          filtered = filter_by(metric_value: :all)
+          expect(filtered)
+            .to include(*all_answers)
+          expect(filtered.size)
+            .to eq Card.search(type_id: Card::MetricID, return: :count)
         end
 
         it "finds unknown values" do
@@ -298,6 +322,37 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
                            research_policy: "Designer Assessed",
                            year: "2001"))
             .to eq ["dinosaurlabor+2001"]
+        end
+      end
+
+      context "filter for all values and ..." do
+        it "... project" do
+          expect(filter_by(metric_value: :all, project: "Evil Project"))
+            .to contain_exactly("disturbances in the Force+2001",
+                                *with_year("researched number 2"))
+        end
+
+        it "... year" do
+          expect(filter_by(metric_value: :all,
+                           year: "2001"))
+            .to contain_exactly(*with_year(all_metric_titles, 2001))
+        end
+
+        it "... policy and year" do
+          expect(filter_by(metric_value: :all,
+                           research_policy: "Designer Assessed",
+                           year: "2001"))
+            .to eq ["dinosaurlabor+2001"]
+        end
+
+        it "... metric_type" do
+          expect(filter_by(metric_value: :all, metric_type: "Researched"))
+            .to contain_exactly(
+              *(with_year(["Weapons",
+                           "big multi", "big single",
+                           "researched number 2", "researched number 3",
+                           "small multi", "small single"]) + researched)
+            )
         end
       end
 

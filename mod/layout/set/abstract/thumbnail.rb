@@ -51,7 +51,8 @@ format :html do
   end
 
   def thumbnail_title
-    wrap_with :div, class: "ellipsis" do
+    title = _render_name
+    wrap_with :div, class: "ellipsis", title: title do
       voo.show?(:thumbnail_link) ? _render_link : _render_name
     end
   end

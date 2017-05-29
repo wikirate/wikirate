@@ -36,10 +36,12 @@ format :html do
   end
 
   view :value_type_detail do
-    wrap_with :div do
+    voo.hide :menu
+    wrap do
       [
         _render_value_type_edit_modal_link,
-        _render_short_view
+        _render_short_view,
+        _optional_render_menu
       ]
     end
   end
@@ -64,7 +66,7 @@ format :html do
   end
 
   def add_value_link
-    link_to_card :research_page, "#{fa_icon 'plus'} Add answer",
+    link_to_card :research_page, "#{fa_icon 'plus'} Research answer",
                  path: { metric: card.name, view: :new },
                  class: "btn btn-primary"
     # "/new/metric_value?metric=" + _render_cgi_escape_name

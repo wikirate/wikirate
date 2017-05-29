@@ -80,6 +80,7 @@ format :html do
     return unless card.numeric? || card.categorical?
 
     card.filter_hash[:metric_value] != "none" &&
+      card.filter_hash[:metric_value] != "all" &&
       card.filter_hash[:metric_value] != "unknown" # &&
     # chart_item_count > 3
   end

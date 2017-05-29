@@ -79,5 +79,9 @@ class Card
     def missing_answer_query_class
       FixedCompanyMissingAnswerQuery
     end
+
+    def all_answer_query_class
+      FixedCompanyAllAnswerQuery
+    end
   end
 end

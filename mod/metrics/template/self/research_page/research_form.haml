@@ -1,19 +1,20 @@
 .panel-default.nodblclick.stick-left#metric-container
   - if project?
     .row
-      .border-bottom.col-md-12.nopadding
-        .heading-label
+      .border-bottom.col-md-12.nopadding.panel-default
+        .heading-label.panel-heading
           Project
-        .padding-20
-          = nest project, view: :link
+        %h4.padding-20
+          = nest project, view: :thumbnail
   .row
-    .border-bottom.col-md-12.nopadding
-      .heading-label
+    .border-bottom.col-md-12.nopadding.panel-default
+      .heading-label.panel-heading
         Company
-      = nest companies.first, view: :thumbnail
+      %h4
+        = nest companies.first, view: :thumbnail
 
-  .row
-    .heading-label
+  .row.panel-default.metric-list
+    .heading-label.panel-heading
       Metrics
     = process_metrics
 
