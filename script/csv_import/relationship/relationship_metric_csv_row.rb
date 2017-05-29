@@ -16,7 +16,7 @@ class RelationshipMetricCSVRow < CSVRow
   def import
     ensure_designer
     create_card @name, type: Card::MetricID,
-                       subfields: subfields
+                subfields: subfields
     create_inverse
   end
 
@@ -40,7 +40,9 @@ class RelationshipMetricCSVRow < CSVRow
 
   def create_title_inverse_pointer
     ensure_card [@row[:inverse], :inverse], content: @row[:title]
+                type_id: Card::PointerID
     ensure_card [@row[:title], :inverse], content: @row[:inverse]
+                type_id: Card::PointerID
     # valuable here?
   end
 

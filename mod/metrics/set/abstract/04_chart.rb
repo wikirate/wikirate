@@ -61,11 +61,11 @@ format :html do
   def vega_chart
     id = unique_id.tr "+", "-"
     output [
-      zoom_out_link,
+             zoom_out_link,
       wrap_with(:div, "",
                 id: id, class: classy("vis"),
-                data: { url: chart_load_url })
-    ]
+                       data: { url: chart_load_url })
+           ]
   end
 
   def chart_load_url
@@ -125,6 +125,6 @@ format :json do
       Card::Chart::NumericChart
     else
       Card::Chart::CategoryChart
-    end
+  end
   end
 end

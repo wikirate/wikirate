@@ -1,8 +1,9 @@
 include_set Abstract::Table
 
 format :html do
+
   def companies
-    Card.search left: card.id, right: { type_id: WikirateCompanyID }
+    Card.search left_id: card.id, right: { type_id: WikirateCompanyID }
   end
 
   view :relationship_value_details do
@@ -22,4 +23,5 @@ format :html do
     wikirate_table :company, companies, [:company_name, :value],
                    header: %w[Company Answer]
   end
+
 end

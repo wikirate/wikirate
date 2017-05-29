@@ -104,9 +104,9 @@ end
 
 def scored?
   metric_type_codename == :score || rated?
+def designer_assessed?
 end
 
-def designer_assessed?
   research_policy.casecmp("designer assessed").zero?
 end
 
@@ -173,7 +173,7 @@ format :html do
 
   def designer_image
     nest card.metric_designer_card.field(:image, new: {}),
-         view: :core, size: :small
+                 view: :core, size: :small
   end
 
   def designer_image_link
@@ -441,15 +441,15 @@ format :html do
 
   def metric_row_data
     <<-HTML
-      <div class="contribution company-count">
-        <div class="content">
-          {{_+company count|core}}
-          <div class="name">Companies</div>
-        </div>
-      </div>
+    <div class="contribution company-count">
+                <div class="content">
+                  {{_+company count|core}}
+                  <div class="name">Companies</div>
+                </div>
+              </div>
     HTML
+    end
   end
-end
 
 format :json do
   view :content do
@@ -461,7 +461,7 @@ format :json do
       designer: card.designer,
       title: card.metric_title
     }
-  end
+end
 end
 
 def needs_name?
