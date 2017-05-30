@@ -26,6 +26,7 @@ class Card
     #   if filtered by missing values then the card objects
     #   are newly instantiated and not in the database
     def run
+      return all_answers if find_all?
       return missing_answers if find_missing?
       run_filter_query.compact
     end
@@ -93,13 +94,22 @@ class Card
 
     private
 
-    def missing_answer_query
-      @missing_answer_query ||=
-        missing_answer_query_class.new(@filter_args, @paging_args)
+    def all_answers
+      all_answer_query.run
     end
 
     def missing_answers
       missing_answer_query.run
+    end
+
+    def all_answer_query
+      @all_answer_query ||=
+        all_answer_query_class.new(@filter_args, @paging_args)
+    end
+
+    def missing_answer_query
+      @missing_answer_query ||=
+        missing_answer_query_class.new(@filter_args, @paging_args)
     end
 
     def restrict_to_ids col, ids
@@ -110,6 +120,10 @@ class Card
       else
         @restrict_to_ids[col] = ids
       end
+    end
+
+    def find_all?
+      @filter_args[:metric_value] && @filter_args[:metric_value].to_sym == :all
     end
 
     def find_missing?

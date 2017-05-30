@@ -94,7 +94,7 @@ format :html do
   end
 
   def with_links?
-    @links
+    @links != false
   end
 
   def source_website

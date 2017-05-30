@@ -41,7 +41,7 @@ class Answer < ActiveRecord::Base
 
   def self.csv_title
     CSV.generate_line ["ANSWER ID", "METRIC NAME", "COMPANY NAME", "YEAR",
-                      "VALUE"]
+                       "VALUE"]
   end
 
   def csv_line

@@ -1,7 +1,7 @@
 format :html do
   view :designer_info do
     wrap_with :div, class: "metric-designer-info" do
-        link_to_card(card, author_info)
+      link_to_card(card, author_info)
     end
   end
 
@@ -42,7 +42,7 @@ format :html do
     card.name
   end
 
-  def author_text_with_subtextsubtext
+  def author_text_with_subtext subtext
     wrap_with :div, class: "margin-6" do
       [
         wrap_with(:h4, author, class: "nopadding"),
