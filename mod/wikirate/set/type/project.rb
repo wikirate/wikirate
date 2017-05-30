@@ -42,7 +42,7 @@ def num_policies
     when "[[Community Assessed]]" then c_cnt += 1
     end
   end
-  [d_cnt, c_cnt]
+  [c_cnt, d_cnt]
 end
 
 def metric_ids
