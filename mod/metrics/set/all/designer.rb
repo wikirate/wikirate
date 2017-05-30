@@ -42,7 +42,7 @@ format :html do
     card.name
   end
 
-  def author_text_with_subtextsubtext
+  def author_text_with_subtext subtext
     wrap_with :div, class: "margin-6" do
       [
         wrap_with(:h4, author, class: "nopadding"),
