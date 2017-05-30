@@ -33,12 +33,16 @@ def num_answers
 end
 
 def num_policies
-  policies = metric_card.item_cards.map do |mc|
-    mc.try(:research_policy)
-  end.compact
-  d_cnt = policies.count "[[Designer Assessed]]"
-  c_cnt = policies.count "[[Community Assessed]]"
-  "#{d_cnt}/#{c_cnt}"
+  d_cnt = 0
+  c_cnt = 0
+  metric_card.item_cards.each do |mc|
+    next unless (policy =  mc.try(:research_policy))
+    case policy
+    when "[[Designer Assessed]]" then d_cnt += 1
+    when "[[Community Assessed]]" then c_cnt += 1
+    end
+  end
+  [d_cnt, c_cnt]
 end
 
 def metric_ids
