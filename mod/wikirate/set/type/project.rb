@@ -36,7 +36,7 @@ def num_policies
   d_cnt = 0
   c_cnt = 0
   metric_card.item_cards.each do |mc|
-    next unless (policy =  mc.try(:research_policy))
+    next unless (policy = mc.try(:research_policy))
     case policy
     when "[[Designer Assessed]]" then d_cnt += 1
     when "[[Community Assessed]]" then c_cnt += 1
