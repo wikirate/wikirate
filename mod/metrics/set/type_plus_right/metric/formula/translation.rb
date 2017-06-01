@@ -37,6 +37,6 @@ format :html do
   # table; first row is the header
   def table_editor table_content, header=nil
     table(table_content, class: "pairs-editor", header: header) +
-      hidden_field(:content, class: "card-content")
+      _render_hidden_content_field
   end
 end
