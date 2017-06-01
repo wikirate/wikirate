@@ -47,7 +47,7 @@ format :json do
       metric: nest(card.metric, view: :essentials),
       company: nest(card.company, view: :marks),
       source: nest(card.source, view: :essentials, hide: :marks)
-    ).merge(nest(card.checked_by_card, view: :essentials, hide: :marks))
+    ).merge(checked_by: nest(card.checked_by_card, view: :essentials, hide: :marks))
   end
 
   def essentials
