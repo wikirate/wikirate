@@ -9,6 +9,20 @@ def default_sort_option
 end
 
 format :html do
+  view :core, cache: :never do
+    bs_layout do
+      row do
+        _optional_render_filter
+      end
+      row do
+        _render_table
+      end
+      row do
+        nest card.left, view: :export_links
+      end
+    end
+  end
+
   def table_args
     [:metric,
      self, # call search_with_params on self to get items

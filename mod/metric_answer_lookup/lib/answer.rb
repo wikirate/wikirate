@@ -57,6 +57,10 @@ class Answer < ActiveRecord::Base
   def metric_card
     @metric_card ||= Card.quick_fetch(fetch_metric_name)
   end
+  
+  def method_missing method_name, *args, &block
+    card.send method_name, *args, &block
+  end
 end
 
 require_relative "answer/active_record_extension"

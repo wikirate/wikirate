@@ -22,19 +22,19 @@ RSpec.describe Card::Set::Type::Metric, 'json export' do
       import: false,
       year: YEAR,
       value: "Darth Sidious",
-      metric: include(
+      metric: {
         id: metric.id,
         name: metric.name,
         url: "/#{METRIC_NAME}",
         designer: "Jedi",
         title: "Sith Lord in Charge"
-      ),
-      source: include(
+      },
+      source: {
         id: source.id,
         name: source.name,
         url: "/#{source.name}",
-        content: instance_of(String)
-      ),
+        title: instance_of(String)
+      },
       company: {
         id: company.id,
         name: company.name,
