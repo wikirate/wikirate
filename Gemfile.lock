@@ -1,5 +1,5 @@
 PATH
-  remote: ./vendor/wagn/card
+  remote: vendor/wagn/card
   specs:
     card (1.20.4)
       bootstrap-kaminari-views (~> 0)
@@ -22,7 +22,7 @@ PATH
       uuid (~> 2.3)
 
 PATH
-  remote: ./vendor/wagn/wagn
+  remote: vendor/wagn/wagn
   specs:
     wagn (1.20.4)
       card (= 1.20.4)
@@ -172,7 +172,7 @@ GEM
     equalizer (0.0.11)
     erubis (2.7.0)
     eventmachine (1.2.3)
-    excon (0.55.0)
+    excon (0.56.0)
     execjs (2.7.0)
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
@@ -263,7 +263,7 @@ GEM
       multi_json (~> 1.10)
     fog-local (0.3.1)
       fog-core (~> 1.27)
-    fog-openstack (0.1.20)
+    fog-openstack (0.1.21)
       fog-core (>= 1.40)
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
@@ -334,7 +334,7 @@ GEM
       domain_name (~> 0.5)
     http-form_data (1.0.3)
     http_parser.rb (0.6.0)
-    i18n (0.8.1)
+    i18n (0.8.4)
     inflecto (0.0.2)
     interception (0.5)
     io-like (0.3.0)
@@ -480,7 +480,7 @@ GEM
       rspec-mocks (~> 3.6.0)
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
-    rubocop (0.49.0)
+    rubocop (0.49.1)
       parallel (~> 1.10)
       parser (>= 2.3.3.1, < 3.0)
       powerpack (~> 0.1)
@@ -648,4 +648,4 @@ DEPENDENCIES
   wkhtmltopdf-binary
 
 BUNDLED WITH
-   1.14.6
+   1.15.0
