@@ -458,7 +458,7 @@ format :json do
 
   def essentials
     {
-      designer: card.designer,
+      designer: card.metric_designer,
       title: card.metric_title
     }
   end
