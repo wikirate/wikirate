@@ -200,6 +200,6 @@ end
 
 format :json do
   def essentials
-    super.merge url: card.url
+    super.merge source_url: card.url
   end
 end

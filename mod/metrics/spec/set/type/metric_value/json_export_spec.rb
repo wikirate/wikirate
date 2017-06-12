@@ -29,12 +29,12 @@ RSpec.describe Card::Set::Type::Metric, 'json export' do
         designer: "Jedi",
         title: "Sith Lord in Charge"
       },
-      source: {
+      source: a_hash_including(
         id: source.id,
         name: source.name,
-        url: "/#{source.name}",
+        source_url: "http://www.wikiwand.com/en/Star_Wars",
         title: instance_of(String)
-      },
+      ),
       company: {
         id: company.id,
         name: company.name,
