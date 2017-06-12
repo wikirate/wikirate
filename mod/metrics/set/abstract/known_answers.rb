@@ -55,6 +55,17 @@ view :research_progress_bar, cache: :never do
   progress_bar(
     { value: card.percent_known, class: "progress-known" },
     { value: card.percent_unknown, class: "progress-unknown" },
-    value: card.percent_not_researched, class: "progress-not-researched"
+    { value: card.percent_not_researched, class: "progress-not-researched" }
+  )
+end
+
+view :absolute_research_progress_bar, cache: :never do
+  progress_bar(
+    { value: card.percent_known, label: card.num_known,
+      class: "progress-known" },
+    { value: card.percent_unknown, label: card.num_unknown,
+      class: "progress-unknown" },
+    { value: card.percent_not_researched, label: card.num_not_researched,
+      class: "progress-not-researched" }
   )
 end
