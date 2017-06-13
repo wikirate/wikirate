@@ -197,3 +197,9 @@ def add_description thumbnail
   return if subfield(:description) || thumbnail.description.empty?
   add_subfield :description, content: thumbnail.description
 end
+
+format :json do
+  def essentials
+    super.merge source_url: card.url
+  end
+end
