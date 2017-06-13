@@ -22,18 +22,18 @@ RSpec.describe Card::Set::Type::Metric, 'json export' do
       import: false,
       year: YEAR,
       value: "Darth Sidious",
-      metric: include(
+      metric: {
         id: metric.id,
         name: metric.name,
         url: "/#{METRIC_NAME}",
         designer: "Jedi",
         title: "Sith Lord in Charge"
-      ),
-      source: include(
+      },
+      source: a_hash_including(
         id: source.id,
         name: source.name,
-        url: "/#{source.name}",
-        content: instance_of(String)
+        source_url: "http://www.wikiwand.com/en/Star_Wars",
+        title: instance_of(String)
       ),
       company: {
         id: company.id,

@@ -29,6 +29,9 @@ format :html do
       row do
         _render_table
       end
+      row do
+        nest card.left, view: :export_links
+      end
     end
   end
 

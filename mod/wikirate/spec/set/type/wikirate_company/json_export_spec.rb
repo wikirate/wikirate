@@ -1,7 +1,7 @@
-RSpec.describe Card::Set::Type::Metric, 'json export' do
-  let(:metric) { Card["Joe User+researched number 2"] }
+RSpec.describe Card::Set::Type::WikirateCompany, 'json export' do
+  let(:company) { Card["Samsung"] }
   subject do
-    render_view :core, { name: "Joe User+researched number 2"}, format: :json
+    render_view :core, { name: "Samsung"}, format: :json
   end
 
   specify "core view" do

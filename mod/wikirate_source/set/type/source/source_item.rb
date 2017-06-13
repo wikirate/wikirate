@@ -32,7 +32,7 @@ format :html do
   end
 
   def title_text
-    nest(Card.fetch(card.cardname.field("title"), new: {}), view: :needed)
+    nest(card.source_title_card, view: :needed)
   end
 
   # TODO: remove after clarifying with PK
