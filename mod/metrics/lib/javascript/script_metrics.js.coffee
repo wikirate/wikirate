@@ -86,7 +86,7 @@ wagn.slotReady (slot) ->
     hideAll(slot)
     slot.find('.card-editor.RIGHT-value_type .pointer-radio input:radio').each(->
       if $(this).is(':checked')
-        showAndHide(slot, $(this).val())
+        showAndHide slot, $(this).val()
       $(this).change(->
         showAndHide slot, $(this).val()
       )

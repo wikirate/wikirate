@@ -55,9 +55,17 @@ def quoted_list list
 end
 
 format :html do
-  view :content_formgroup do
-    nest(card, title: "Value Type", show: :help) + fields_form
+  # view :content_formgroup do
+  #   nest(card, title: "Value Type", show: :help) + fields_form
+  # end
+
+  def single_card_edit_slot
+    super() +  fields_form
   end
+
+  def multi_card_edit_slot
+      super() +  fields_form
+    end
 
   def fields_form
     <<-HTML.html_safe
