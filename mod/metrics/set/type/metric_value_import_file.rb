@@ -56,7 +56,7 @@ format :html do
   end
 
   def import_link
-    link_to_view :import, "Import ...", rel: "nofollow"
+    link_to_view :import, "Import ...", rel: "nofollow", remote: false
   end
 
   def import_fields
