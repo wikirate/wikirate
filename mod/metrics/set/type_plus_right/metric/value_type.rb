@@ -68,7 +68,7 @@ format :html do
   end
 
   def left_field_nest field, opts
-    field_nest card.cardname.left_name.field_name(field), opts
+    nest card.cardname.left_name.field_name(field), opts
   end
 
   def fields_form
