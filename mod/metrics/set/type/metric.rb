@@ -274,7 +274,7 @@ format :html do
                       path: {
                         slot: {
                           hide: "header,menu,help",
-                          view: :edit_in_form,
+                          view: :edit,
                           title: "Value Type"
                         }
                       } }
