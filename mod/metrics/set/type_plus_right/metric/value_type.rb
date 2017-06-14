@@ -55,10 +55,6 @@ def quoted_list list
 end
 
 format :html do
-  # view :content_formgroup do
-  #   nest(card, title: "Value Type", show: :help) + fields_form
-  # end
-
   def single_card_edit_slot
     super() +  fields_form
   end
@@ -70,15 +66,16 @@ format :html do
   def fields_form
     <<-HTML.html_safe
       <div class='value_type_field' id='number_details'>
-        #{parent.field_nest :unit, title: 'Unit', type: :phrase}
-        #{parent.field_nest :range, title: 'Range', type: :phrase}
+        #{parent.field_nest :unit, view: :edit_in_form, title: 'Unit', type: :phrase}
+        #{parent.field_nest :range, view: :edit_in_form, title: 'Range', type: :phrase}
       </div>
       <div class='value_type_field' id='category_details'>
-        #{parent.field_nest :value_options, title: 'Value Options',
+        #{parent.field_nest :value_options, view: :edit_in_form, title: 'Value Options',
                                             type: :pointer}
       </div>
       <div class='value_type_field' id='currency_details'>
-        #{parent.field_nest :currency, title: 'Currency', type: :phrase}
+        #{parent.field_nest :currency, view: :edit_in_form, 
+                                       title: 'Currency', type: :phrase}
       </div>
     HTML
   end
