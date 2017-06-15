@@ -43,7 +43,8 @@ format :html do
                  path: {
                    metric: [card.metric],
                    company: card.company
-                 }
+                 },
+                 title: "Research answer for another year"
     # <<-HTML
     #     <a type="button" target="_blank" class="btn btn-primary btn-sm"
     #       href="#{add_value_url}">Research answer</a>

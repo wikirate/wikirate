@@ -100,13 +100,15 @@ format :html do
     wrap_with :a, "Research answer",
               href: "#",
               class: css_classes(button_classes, classes),
-              data: { url: path(view: :answer_form) }
+              data: { url: path(view: :answer_form) },
+              title: "Research answer for another year"
   end
 
   def redirect_form_button
     link_to_card card, "Research answer",
                  class: "btn btn-sm btn-primary margin-12",
-                 path: { view: "research_page", slot: { show: :answer_form } }
+                 path: { view: "research_page", slot: { show: :answer_form } },
+                 title: "Research answer for another year"
   end
 
   view :image_link do
