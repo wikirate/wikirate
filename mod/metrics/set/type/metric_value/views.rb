@@ -143,17 +143,6 @@ format :html do
     end
   end
 
-  # Metric value view for data
-  view :timeline_data do
-    wrap_with :div, class: "timeline-row" do
-      [
-        _render_year,
-        _render_value,
-        _render_chart
-      ]
-    end
-  end
-
   view :year do
     wrap_with :div, class: "td year" do
       [

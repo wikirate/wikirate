@@ -1,6 +1,7 @@
 include_set Abstract::WikirateTable
 include_set Abstract::WikirateTabs
 include_set Abstract::Media
+include_set Abstract::Export
 
 card_accessor :contribution_count, type: :number, default: "0"
 card_accessor :direct_contribution_count, type: :number, default: "0"
@@ -52,9 +53,13 @@ def add_alias alias_name
   aliases_card.insert_item! 0, alias_name
 end
 
+def all_answers
+  Answer.where company_id: id
+end
+
 format :csv do
   view :core do
-    Answer.csv_title + Answer.where(company_id: card.id).map(&:csv_line).join
+    Answer.csv_title + all_answers.map(&:csv_line).join
   end
 end
 
@@ -66,5 +71,13 @@ format :html do
     opts[:path] = { filter: { project: voo.closest_live_option(:project) } }
     opts[:path][:card] = { type: voo.type } if voo.type && !opts[:known]
     link_to_card card.name, title, opts
+  end
+end
+
+format :json do
+  view :core do
+    card.all_answers.map do |answer|
+      subformat(answer)._render_core
+    end
   end
 end

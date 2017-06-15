@@ -32,7 +32,7 @@ format :html do
   end
 
   def title_text
-    nest(Card.fetch(card.cardname.field("title"), new: {}), view: :needed)
+    nest(card.source_title_card, view: :needed)
   end
 
   def source_item_footer
@@ -126,20 +126,27 @@ format :html do
   end
 
   def with_cite_button cited: false
-    text = cited ? "Cited!" : "Cite!"
     voo.hide :links
     wrap_with_info do
       [
         _render_listing,
-        wrap_with(:div, class: "pull-right") do
-          wrap_with :a, text, href: "#", class: "btn #{cite_class cited} c-btn"
-        end
+        cite_button(cited),
+        (hidden_item_input if cited)
       ]
     end
   end
 
-  def cite_class cited
-    cited ? "btn-success _cited_button" : "btn-highlight _cite_button"
+  def cite_button cited
+    text = cited ? "Cited!" : "Cite!"
+    cite_class =
+      cited ? "btn-success _cited_button" : "btn-highlight _cite_button"
+    wrap_with(:div, class: "pull-right") do
+      wrap_with :a, text, href: "#", class: "btn #{cite_class} c-btn"
+    end
+  end
+
+  def hidden_item_input
+    tag :input, type: "hidden", class: "pointer-select", value: card.name
   end
 
   view :with_cited_button do

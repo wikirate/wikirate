@@ -47,7 +47,8 @@ Feature: Double check
 
     When I am signed in as Joe Admin
     And I go to card "Jedi+disturbances in the Force+Death Star+2000"
-    And I click on "Double check requested by Joe User"
+    # And I click on "Double check requested by Joe User"
+    And I click on "Yes, I checked"
     Then I should see "Yes, I checked the value"
 
     When I click on the "remove" icon
@@ -62,7 +63,7 @@ Feature: Double check
     And I uncheck "Request that another researcher double checks this value"
     And I submit
     # Then I should not see "Double check"
-    Then I should see "Yes, I checked"
+    Then I should not see "Yes, I checked"
     And I should not see "requested by Joe User"
 
     When I am signed in as Joe Admin
@@ -81,10 +82,10 @@ Feature: Double check
     And I fill in "no" for "Answer"
     And I submit
     Then I should not see "Yes, I checked the value"
-    #And I should not see "Double check"
+    # And I should not see "Double check"
     And I should not see "Yes, I checked"
 
     When I am signed in as Joe Admin
     And I go to card "Jedi+disturbances in the Force+Death Star+2000"
     Then I should see "Yes, I checked"
-    #Then I should see "Double check"
+    # Then I should see "Double check"

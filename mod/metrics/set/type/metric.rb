@@ -1,5 +1,7 @@
 require "savanna-outliers"
 
+include_set Abstract::Export
+
 card_accessor :vote_count, type: :number, default: "0"
 card_accessor :upvote_count, type: :number, default: "0"
 card_accessor :downvote_count, type: :number, default: "0"
@@ -452,13 +454,20 @@ format :html do
 end
 
 format :json do
-  view :content do
-    card.companies_with_years_and_values.to_json
+  # view :content do
+  #   card.companies_with_years_and_values.to_json
+  # end
+
+  view :core do
+    card.all_answers.map do |answer|
+      #nest answer, view: :essentials
+      subformat(answer)._render_core
+    end
   end
 
   def essentials
     {
-      designer: card.designer,
+      designer: card.metric_designer,
       title: card.metric_title
     }
   end

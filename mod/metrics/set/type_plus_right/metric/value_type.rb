@@ -55,6 +55,10 @@ def quoted_list list
 end
 
 format :html do
+  view :content_formgroup do
+    nest(card, title: "Value Type", show: :help) + fields_form
+  end
+
   def fields_form
     <<-HTML.html_safe
       <div class='value_type_field' id='number_details'>
@@ -69,13 +73,5 @@ format :html do
         #{parent.field_nest :currency, title: 'Currency', type: :phrase}
       </div>
     HTML
-  end
-
-  view :content_formgroup do
-    nest(card, title: "Value Type", show: :help) + fields_form
-  end
-
-  view :edit_in_form do
-    super() + fields_form
   end
 end
