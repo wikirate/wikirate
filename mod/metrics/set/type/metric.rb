@@ -267,18 +267,17 @@ format :html do
   end
 
   view :value_type_edit_modal_link do
-    render_modal_link(
-      link_text: vtype_edit_modal_link_text,
-      link_opts: { class: "btn btn-default slotter value-type-button",
-                   path: {
-                     slot: {
-                       hide: "title,header,menu,help,subheader",
-                       view: :edit,
-                       editor: :inline_nests,
-                       structure: "metric value type edit structure"
-                     }
-                   } }
-    )
+    nest card.value_type_card,
+         view: :modal_link,
+         link_text: vtype_edit_modal_link_text,
+         link_opts: { class: "btn btn-default slotter value-type-button",
+                      path: {
+                        slot: {
+                          hide: "header,menu,help",
+                          view: :edit,
+                          title: "Value Type"
+                        }
+                      } }
   end
 
   def vtype_edit_modal_link_text

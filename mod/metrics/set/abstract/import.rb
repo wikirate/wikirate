@@ -530,6 +530,7 @@ format :html do
   def row_to_hash row
     import_fields.each_with_object({}).with_index do |(key, hash), i|
       hash[key] = row[i]
+      hash[key] &&= hash[key].force_encoding "utf-8"
     end
   end
 
