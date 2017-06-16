@@ -130,7 +130,7 @@ class Card
         @y_range.span > 100 ? "sqrt" : "linear"
       end
 
-      # If the maximal value is less than 8 vega shows
+      # If the maximal value is less than 8 then vega shows
       # non-integers labels. We have to reduce the number of ticks
       # to the maximal value to avoid that
       # @max_ticks is a config option

@@ -125,7 +125,7 @@ class SharedData
                           type: :score,
                           formula: "{{Jedi+deadliness}}/20"
 
-      as_joe_user do
+      with_joe_user do
         Card::Metric.create name: "Jedi+disturbances in the Force+Joe User",
                             type: :score,
                             formula: { yes: 10, no: 0 }
@@ -195,7 +195,7 @@ class SharedData
         Sony_Corporation "2010" => 1
       end
 
-      as_joe_user do
+      with_joe_user do
         Card::Metric.create name: "Joe User+big single",
                             type: :researched,
                             value_type: "Category",
@@ -214,11 +214,11 @@ class SharedData
     end
 
     def vote_on_metrics
-      as_user "Joe Admin" do
+      with_user "Joe Admin" do
         vote "Jedi+disturbances in the Force", :up
         vote "Jedi+Victims by Employees", :up
       end
-      as_user "Joe User" do
+      with_user "Joe User" do
         vote "Jedi+disturbances in the Force", :up
         vote "Jedi+deadliness", :down
       end
