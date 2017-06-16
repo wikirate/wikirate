@@ -25,23 +25,6 @@ RSpec.describe Card::Set::Type::MetricValue do
   end
 
   describe "views" do
-    specify "timeline_data" do
-      expect(answer.format.render_timeline_data)
-        .to have_tag("div.timeline-row") do
-          with_tag "div.timeline-dot"
-          with_tag "div.td.year" do
-            with_tag "span", text: "1977"
-          end
-          with_tag "div.td.value" do
-            with_tag "span.metric-value" do
-              with_tag "a", text: "Darth Sidious"
-            end
-            with_tag "span.metric-unit",
-                     text: /Imperial military units/
-          end
-        end
-    end
-
     specify "modal_details" do
       url = "/#{answer.cardname.url_key}?layout=modal&"\
             "slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu"

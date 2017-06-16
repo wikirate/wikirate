@@ -4,8 +4,9 @@ format :html do
     subformat(Card[:research_page])._render_new
   end
 
-  def default_edit_args _args
-    voo.hide! :toolbar
+  def default_edit_args args
+    # voo.hide! :toolbar
+    voo.hide! :edit_buttons
   end
 
   view :content_formgroup, template: :haml do
