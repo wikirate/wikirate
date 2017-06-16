@@ -19,7 +19,7 @@ format :html do
   end
 
   view :answer_side do
-    wrap_with :div, class: "research-left" do
+    wrap_with :div, class: "panel-default nodblclick stick-left" do
       _render_content
     end
   end

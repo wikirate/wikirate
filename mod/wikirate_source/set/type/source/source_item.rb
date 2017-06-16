@@ -177,13 +177,7 @@ format :html do
   end
 
   view :cited, cache: :never do |args|
-    parent =
-      if (parent_card = Card.fetch(Env.params["id"]))
-        parent_card.cardname.right
-      end
-    # check parent structure name has the word header
-    # (i.e check if not metric value page)
-    if !parent.nil? && parent.include?("header")
+    if voo.show? :cited_source_links
       wrap_with_info { _render_listing args }
     else
       with_toggle do
