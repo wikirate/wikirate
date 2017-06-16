@@ -199,7 +199,7 @@ format :html do
   end
 
   def fix_button
-    link_to_card card.left, "No, I fix it", class: "btn btn-default btn-sm", path: { view: :edit }
+    link_to_card card.left, "No, I'll fix it", class: "btn btn-default btn-sm", path: { view: :edit }
   end
 
   def check_button_request_credit

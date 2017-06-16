@@ -43,7 +43,8 @@ format :html do
                  path: {
                    metric: [card.metric],
                    company: card.company
-                 }
+                 },
+                 title: "Research answer for another year"
     # <<-HTML
     #     <a type="button" target="_blank" class="btn btn-primary btn-sm"
     #       href="#{add_value_url}">Research answer</a>
@@ -115,6 +116,7 @@ format :html do
 
   # used in metric values list on a company page
   view :metric_details_sidebar do
+    voo.hide! :cited_source_links
     details_sidebar :metric do
       <<-HTML
         <div class="row clearfix">

@@ -68,7 +68,8 @@ format :html do
   def add_value_link
     link_to_card :research_page, "#{fa_icon 'plus'} Research answer",
                  path: { metric: card.name, view: :new },
-                 class: "btn btn-primary"
+                 class: "btn btn-primary",
+                 title: "Research answer for another year"
     # "/new/metric_value?metric=" + _render_cgi_escape_name
   end
 
