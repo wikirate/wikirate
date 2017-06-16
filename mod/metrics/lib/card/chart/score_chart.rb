@@ -34,11 +34,8 @@ class Card
       end
 
       def x_label_scale
-        scale = super
-        scale.delete(:points)
-        scale
+        super().merge(type: "band")
       end
-
     end
   end
 end

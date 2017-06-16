@@ -16,7 +16,7 @@ class Card
       DEFAULT_MARKS = {
         type: "rect",
         from: { data: "table" },
-        properties:
+        encode:
           { enter:
               { x: { scale: "x", field: "x" },
                 width: { scale: "x", band: true, offset: -1 },
@@ -94,7 +94,6 @@ class Card
         @y_range.add @data.last[:y]
         @data
       end
-
       def data_item_hash filter
         hash = { y: count(filter),
                  highlight: highlight?(filter) }
@@ -112,7 +111,7 @@ class Card
 
       def x_scale
         { name: "x",
-          type: "ordinal",
+          type: "band",
           range: "width",
           domain: { data: "table", field: "x" } }
       end
@@ -134,7 +133,7 @@ class Card
       # non-integers labels. We have to reduce the number of ticks
       # to the maximal value to avoid that
       # @max_ticks is a config option
-      def y_ticks
+      def y_tick_count
         return @max_ticks if @y_range.max && @y_range.max >= 8
         [@y_range.max, @max_ticks].compact.min
       end
@@ -142,22 +141,22 @@ class Card
       #  used for highlighting
       def color_scale
         {
-          "name": "color",
-          "type": "ordinal",
-          "domain": {
-            "data": "table",
-            "field": "highlight",
-            "sort": true
+          name: "color",
+          type: "ordinal",
+          domain: {
+            data: "table",
+            field: "highlight",
+            sort: true
           },
-          "range": [BAR_COLOR, HIGHLIGHT_COLOR]
+          range: [BAR_COLOR, HIGHLIGHT_COLOR]
         }
       end
 
       def marks
         hash = DEFAULT_MARKS.clone
-        hash[:properties][:update] = { fill: fill_color }
+        hash[:encode][:update] = { fill: fill_color }
         if link?
-          hash[:properties][:hover] = {
+          hash[:encode][:hover] = {
             fill: { value: HOVER_COLOR },
             cursor: { value: hover_cursor }
           }
@@ -175,7 +174,7 @@ class Card
 
       def fill_color
         if @highlight_value
-          { scale: "color", "field": "highlight" }
+          { scale: "color", field: "highlight" }
         else
           { value: HIGHLIGHT_COLOR }
         end
@@ -186,25 +185,25 @@ class Card
       end
 
       def x_axis
-        { type: "x", scale: "x", title: "Values",
-          properties: axes_properties }
+        { orient: "bottom", scale: "x", title: "Values",
+          encode: axes_encode }
       end
 
       def y_axis
-        hash = { type: "y", scale: "y",
+        hash = { orient: "left", scale: "y",
                  title: "Companies",
-                 properties: axes_properties }
-        hash[:ticks] = y_ticks if y_ticks
+                 encode: axes_encode }
+        hash[:tickCount] = y_tick_count if y_tick_count
         hash
       end
 
-      def axes_properties
+      def axes_encode
         color = @opts[:axes] == :light ? LIGHT_AXES : DARK_AXES
         {
           title: {
             fill: { value: color }
           },
-          axis: {
+          domain: {
             stroke: { value: color }
           },
           ticks: {
