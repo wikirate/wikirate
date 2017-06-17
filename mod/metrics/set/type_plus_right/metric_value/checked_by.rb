@@ -191,10 +191,10 @@ format :html do
     wrap_with(:button, class: button_class,
                        data: { path: data_path }) do
       "Yes, I checked"
-      #output [
-        #wrap_with(:span, "Yes, I checked", class: "text")
-        # wrap_with(:span, "Yes, I checked the value", class: "hover-text")
-      #]
+      # output [
+      # wrap_with(:span, "Yes, I checked", class: "text")
+      # wrap_with(:span, "Yes, I checked the value", class: "hover-text")
+      # ]
     end
   end
 

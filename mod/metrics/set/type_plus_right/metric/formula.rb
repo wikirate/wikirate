@@ -27,7 +27,7 @@ format :html do
   end
 
   def new_form_opts
-    super().merge  "data-slot-selector" => ".card-slot.TYPE-metric"
+    super().merge "data-slot-selector" => ".card-slot.TYPE-metric"
   end
 
   def edit_form_opts

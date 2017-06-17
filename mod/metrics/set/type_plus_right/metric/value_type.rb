@@ -55,7 +55,7 @@ def quoted_list list
 end
 
 format :html do
-  def default_edit_args args
+  def default_edit_args _args
     voo.title = "Value Type"
   end
 
@@ -79,11 +79,11 @@ format :html do
       </div>
       <div class='value_type_field' id='category_details'>
         #{left_field_nest :value_options, view: :edit_in_form, title: 'Value Options',
-                                            type: :pointer}
+                                          type: :pointer}
       </div>
       <div class='value_type_field' id='currency_details'>
-        #{left_field_nest :currency, view: :edit_in_form, 
-                                       title: 'Currency', type: :phrase}
+        #{left_field_nest :currency, view: :edit_in_form,
+                                     title: 'Currency', type: :phrase}
       </div>
     HTML
   end
