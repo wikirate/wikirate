@@ -38,7 +38,6 @@ class Card
         scale.delete(:points)
         scale
       end
-
     end
   end
 end

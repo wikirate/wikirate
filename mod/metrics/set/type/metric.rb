@@ -468,7 +468,7 @@ format :json do
 
   view :core do
     card.all_answers.map do |answer|
-      #nest answer, view: :essentials
+      # nest answer, view: :essentials
       subformat(answer)._render_core
     end
   end

@@ -297,5 +297,3 @@ format :json do
     }
   end
 end
-
-

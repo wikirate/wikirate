@@ -4,7 +4,7 @@ format :html do
     subformat(Card[:research_page])._render_new
   end
 
-  def default_edit_args args
+  def default_edit_args _args
     # voo.hide! :toolbar
     voo.hide! :edit_buttons
   end
