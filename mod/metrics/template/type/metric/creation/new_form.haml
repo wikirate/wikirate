@@ -6,11 +6,11 @@
       %p There are four "metric types."  Choose one to learn more
     %ul.nav.nav-pills.grey-nav-tab{role: "tablist"}
       - tabs.each_with_index do |metric_type, i|
-        %li.pointer-radio.if{:class => "#{'active' if i.zero?}", :role => "tab"}
+        %li.pointer-radio.if{:class => "#{'active' if selected_tab_pane?(metric_type)}", :role => "tab"}
           %label.tab-primary{"data-target" => "##{tab_pane_id metric_type}"}
             %input.pointer-radio-button{:id => metric_type, :name => "intervaltype", :type => "radio", :value => metric_type, :checked => i.zero?}
               = metric_type
 / Tab panes
 .tab-content
-  - tabs.each_with_index do |metric_type, i|
-    = new_metric_tab_pane metric_type, i.zero?
+  - tabs.each do |metric_type|
+    = new_metric_tab_pane metric_type

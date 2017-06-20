@@ -1,6 +1,6 @@
 format :html do
   view :categorical_core do |_args|
-    table card.translation_table, header: %w[Metric Weight]
+    table card.translation_table, header: %w[Value Score]
   end
 
   view :categorical_editor do |_args|

@@ -54,15 +54,21 @@ format :html do
     end
   end
 
-  view :scores_tab do |args|
+  view :scores_tab do |_args|
     # TODO: move +scores to a separate card
     tab_wrap do
-      wrap_with :div, class: "list-group" do
-        card.score_cards.map do |item|
-          subformat(item)._render_score_thumbnail(args)
-        end
-      end
+      output [
+        wikirate_table(:plain, card.score_cards, [:score_thumbnail], header: ["scored by"],
+                                                                     tr_link: ->(item) { path mark: item }),
+        add_score_link
+      ]
     end
+  end
+
+  def add_score_link
+    link_to_card :metric, "Add new score",
+                 path: { action: :new, tab: :score, metric: card.name },
+                 class: "btn btn-primary"
   end
 
   def add_value_link

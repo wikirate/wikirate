@@ -14,7 +14,7 @@ class SharedData
     end
 
     def metric_value_section
-      as_user "Joe User" do
+      with_user "Joe User" do
         update_card answer_field(2010, :value),
                     content: "4"
         update_card answer_field(2008, :value),
@@ -30,7 +30,7 @@ class SharedData
                     content: "[[Joe User]]"
       end
 
-      as_user "Joe Admin" do
+      with_user "Joe Admin" do
         update_card answer_field(2009, :value),
                     content: "5"
         update_card answer_field(2008, :value),
@@ -45,7 +45,7 @@ class SharedData
 
     def metric_section
       # reuse existing metrics
-      as_joe_user do
+      with_joe_user do
         create_card "Joe User+small single+about", {}
         update_card "Joe User+small single+about", content: "changed"
 
@@ -61,10 +61,10 @@ class SharedData
     def project_section
       add_section :project
       add_project_conversation
-      as_user "Joe Admin" do
+      with_user "Joe Admin" do
         create_card "organized project", type: :project
       end
-      as_user "Joe User" do
+      with_user "Joe User" do
         create_card "submitted project", type: :project
         create_card ["organized project", :organizer],
                     content: "[[Joe User]]"
@@ -81,13 +81,13 @@ class SharedData
 
     def add_section type_code, vote=false
       type = Card.fetch_name(type_code).downcase
-      as_user "Joe Admin" do
+      with_user "Joe Admin" do
         create_card "updated #{type}", type: type_code
         create_card "discussed #{type}", type: type_code
         create_card "voted for #{type}", type: type_code
         create_card "voted against #{type}", type: type_code
       end
-      as_user "Joe User" do
+      with_user "Joe User" do
         create_card "created #{type}", type: type_code
         update_card "updated #{type}", content: "updated"
         create_card ["discussed #{type}", :discussion], content: "comment"
@@ -97,10 +97,10 @@ class SharedData
     end
 
     def add_project_conversation
-      as_user "Joe Admin" do
+      with_user "Joe Admin" do
         create_card "conversation project", type: :project
       end
-      as_joe_user do
+      with_joe_user do
         Card.create! name: "discuss conversation project 2",
                      type: :conversation,
                      subfields: {

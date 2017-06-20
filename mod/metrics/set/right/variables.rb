@@ -65,6 +65,7 @@ format :html do
   end
 
   view :edit do |_args|
+    voo.hide! :toolbar, :menu
     frame do
       render_haml metric_list: metric_list do
         <<-HAML
@@ -86,11 +87,6 @@ format :html do
       HAML
       end
     end
-  end
-
-  def default_edit_args args
-    args[:optional_toolbar] = :hide
-    args[:optional_menu] = :hide
   end
 
   def metric_list
