@@ -8,6 +8,8 @@ card_accessor :direct_contribution_count, type: :number, default: "0"
 card_accessor :aliases, type: :pointer
 card_accessor :all_metric_values
 card_accessor :image
+card_accessor :incorporation
+card_accessor :headquarters
 
 view :missing do |args|
   _render_link args

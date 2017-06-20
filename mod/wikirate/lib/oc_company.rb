@@ -1,8 +1,8 @@
 class OCCompany
   BASE_URL = "https://api.opencorporates.com/v0.4/companies"
 
-  def initialize jurisdiction, company_number
-    @jurisdiction = jurisdiction
+  def initialize jurisdiction_code, company_number
+    @jurisdiction_code = jurisdiction_code
     @company_number = company_number
     @json = fetch_json
     validate_json

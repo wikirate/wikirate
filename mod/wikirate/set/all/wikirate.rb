@@ -59,6 +59,15 @@ format :html do
     end
   end
 
+  view :titled_row do
+    <<-HTML
+      <tr>
+        <td class="label">#{_render_title}</td>
+        <td class="value">#{_render_core}</td>
+      <tr>
+    HTML
+  end
+
   view :edits_by do
     editor_card = card.fetch trait: :editors
     links = subformat(editor_card).render_shorter_search_result(

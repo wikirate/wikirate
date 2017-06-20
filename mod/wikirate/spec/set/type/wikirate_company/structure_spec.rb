@@ -1,8 +1,26 @@
 
 RSpec.describe Card::Set::Type::WikirateCompany::Structure do
-  subject { Card["Death Star"].format(:html)._render_browse_item }
+
+
+  describe "details tab" do
+    subject { Card["Samsung"].format(:html)._render_details_tab }
+    it "has jurisdiction table" do
+      is_expected.to have_tag "table" do
+        with_tag :tr do
+          with_tag :td do
+            with_text "Country of headquarters"
+          end
+          with_tag :td do
+            with_text "Korriban"
+          end
+        end
+      end
+    end
+  end
+
 
   describe "view :browse_item" do
+    subject { Card["Death Star"].format(:html)._render_browse_item }
     it "has company title" do
       is_expected.to have_tag "div.company-header" do
         with_text "Death Star"

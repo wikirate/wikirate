@@ -69,6 +69,15 @@ class SharedData
                type: "company",
                subcards: { "+about" => about }
       end
+      create "Delaware (United States)", type_id: Card::JurisdictionID,
+                                         codename: "us_de"
+      create "California (United States)", type_id: Card::JurisdictionID,
+                                           codename: "us_ca"
+      ensure_card ["Google Inc", :headquarters],
+                  type: :pointer, content: "California (United States)"
+      ensure_card ["Google Inc", :incorporation],
+                  type: :pointer, content: "Delaware (United States)"
+      ensure_card ["Google Inc", :open_corporates], content: "3582691"
     end
 
     def add_topics
