@@ -196,7 +196,14 @@
     }
 }
 
+//Show icon on metric properties on mousehover
+.metric-designer-info,.value_type_detail-view.TYPE-metric {
+    width: 100%;
+    float: left;
+}
+
 .metric-designer-info {
+
     a {
         color: inherit;
     }
@@ -270,15 +277,19 @@
     z-index: 1;
 }
 .TYPE-metric_value {
-    .RIGHT-discussion,
-    .TYPE_PLUS_RIGHT-metric_value-source,
-    .timeline {
-        float: left;
-        width: 100%!important;
-        .missing-view {
-            display: none;
-        }
-    }
+  &.LTYPE_RTYPE-html-year >.card-frame >.card-body {
+    padding: 0px;
+    margin-top:1px;
+  }
+  .RIGHT-discussion,
+  .TYPE_PLUS_RIGHT-metric_value-source,
+  .timeline {
+      float: left;
+      width: 100%!important;
+      .missing-view {
+          display: none;
+      }
+  }
 }
 
 .data-count {
