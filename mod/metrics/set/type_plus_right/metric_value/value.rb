@@ -42,21 +42,15 @@ event :mark_as_imported, before: :finalize_action do
   @current_action.comment = "imported"
 end
 
-event :update_related_scores, :finalize, when: :scored_metric? do
-  Card.search type_id: MetricID, left_id: metric_card.id do |metric|
+event :update_related_scores, :finalize do
+  metric_card.related_scores.each do |metric|
     metric.update_value_for! company: company_key, year: year
   end
 end
 
-def scored_metric?
-  metric_card.type_id == MetricID && metric_card.scored?
-end
-
 event :update_related_calculations, :finalize,
       on: [:create, :update, :delete] do
-  metrics = Card.search type_id: MetricID,
-                        right_plus: ["formula", { refer_to: metric }]
-  metrics.each do |metric|
+  metric_card.related_calculations.each do |metric|
     metric.update_value_for! company: company_key, year: year
   end
 end

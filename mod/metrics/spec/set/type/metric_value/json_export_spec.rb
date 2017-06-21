@@ -1,17 +1,17 @@
-RSpec.describe Card::Set::Type::Metric, 'json export' do
-
+RSpec.describe Card::Set::Type::Metric, "json export" do
   YEAR = "1977"
   COMPANY_NAME = "Death_Star"
   METRIC_NAME = "Jedi+Sith_Lord_in_Charge"
   ANSWER_NAME = "#{METRIC_NAME}+#{COMPANY_NAME}+#{YEAR}"
 
-  let(:answer) { Card[ANSWER_NAME] }
-  let(:company) { Card[COMPANY_NAME]}
-  let(:metric) { Card[METRIC_NAME]}
-  let(:source) { sample_source("Star_Wars") }
   subject do
-    render_view :core, { name: ANSWER_NAME}, format: :json
+    render_view :core, { name: ANSWER_NAME }, format: :json
   end
+
+  let(:answer) { Card[ANSWER_NAME] }
+  let(:company) { Card[COMPANY_NAME] }
+  let(:metric) { Card[METRIC_NAME] }
+  let(:source) { sample_source("Star_Wars") }
 
   it "core view" do
     is_expected.to include(

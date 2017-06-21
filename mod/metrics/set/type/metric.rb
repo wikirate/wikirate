@@ -108,6 +108,16 @@ def scored?
   metric_type_codename == :score || rated?
 end
 
+# @return all metric cards that score this metric
+def related_scores
+  Card.search type_id: MetricID, left_id: id
+end
+
+# @return all metrics that use this metric in their formula
+def related_calculations
+  Card.search type_id: MetricID, right_plus: ["formula", { refer_to: id }]
+end
+
 def designer_assessed?
   research_policy.casecmp("designer assessed").zero?
 end
@@ -193,8 +203,7 @@ format :html do
 
   view :add_to_formula_item_view do |_args|
     title = card.metric_title.to_s
-    subtext = card.metric_designer.to_s
-    subtext = wrap_with :small, "Scored by " + subtext
+    subtext = wrap_with :small, "Scored by " + card.scorer
     append = "#{params[:formula_metric_key]}+add_to_formula"
     url = path mark: card.cardname.field(append), view: :content
     text_with_image image: designer_image_card,
@@ -459,7 +468,7 @@ format :json do
 
   view :core do
     card.all_answers.map do |answer|
-      #nest answer, view: :essentials
+      # nest answer, view: :essentials
       subformat(answer)._render_core
     end
   end

@@ -311,6 +311,10 @@
     width: 800px;
 }
 
+div#pdf-preview {
+    margin-top: 10px;
+}
+
 //Ajax loader animation
 #ajax_loader {
     display: none;
@@ -601,13 +605,15 @@ a.external-link, .closed-content a.external-link {
     position: relative;
 }
 
-a.external-link:before, .closed-content a.external-link:before {
-    content: "\f08e";
-    right: 2px;
-    position: absolute;
-    bottom: 4px;
-    font-family: fontAwesome;
-    font-size: 8px;
+a.external-link:after, .closed-content a.external-link:after {
+  content: "\f08e";
+  right: -2px;
+  position: relative;
+  bottom: 4px;
+  font-family: fontAwesome;
+  font-size: 8px;
+  text-decoration: none!important;
+  display: inline;
 }
 
 

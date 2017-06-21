@@ -55,8 +55,8 @@ class SharedData
       end
     end
 
-    def as_joe_user &block
-      as_user "Joe User", &block
+    def with_joe_user &block
+      with_user "Joe User", &block
     end
 
     def account_args hash
