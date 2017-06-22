@@ -1,6 +1,6 @@
 format :html do
   view :core, async: true do
-    oc ? _render_table : _render_oc_error
+    oc.valid? ? _render_table : render_oc_error
   end
 
   view :table, template: :haml
@@ -11,16 +11,12 @@ format :html do
 
   view :oc_error do
     alert :warning, true do
-      @error || "couldn't connect to open corporates"
+      oc.error
     end
   end
 
   def oc
-    binding.pry
-    return unless company_number.present? && jurisdiction_code.present?
-    @oc ||= OCCompany.new jurisdiction_code, company_number
-  rescue ArgumentError, StandardError => e
-    @error = e.message
+    @oc ||= ::OpenCorporates::Company.new jurisdiction_code, company_number
   end
 
   def company_number
@@ -37,7 +33,7 @@ format :html do
       ["Previous Names", oc.previous_names],
       ["Jurisdiction", jurisdiction],
       ["Registered Address", oc.registered_address],
-      ["Incorporation date", oc.incorporation_date],
+      ["Incorporation date", incorporation_date],
       ["Company Type", oc.company_type],
       ["Status", oc.status]
     ]
@@ -45,5 +41,11 @@ format :html do
 
   def jurisdiction
     (jur = Card[jurisdiction_code]) && jur.name
+  end
+
+  def incorporation_date
+    date = oc.incorporation_date
+    return "" unless date
+    "#{date.strftime "%d %B %Y"} (#{time_ago_in_words(date)} ago)}"
   end
 end

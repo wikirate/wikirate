@@ -22,11 +22,12 @@ class AddJurisdiction < Card::Migration
                  options: "Jurisdiction"
 
 
-    #import_jurisdictions
+    import_jurisdictions
   end
 
   def import_jurisdictions
-    jurisdictions_from_open_corporates.each do |_key, data|
+    jurisdictions_from_open_corporates.each do |jur|
+      data = jur["jurisdiction"]
       ensure_card data["full_name"], codename: data["code"],
                   type: :jurisdiction
     end
@@ -41,7 +42,7 @@ class AddJurisdiction < Card::Migration
   #       ...
   #     ] }}
   def jurisdictions_from_open_corporates
-    json = JSON.parse open("https://api.opencorporates.com/v0.4/jurisdictions").read
+    json = OpenCorporates::API.fetch :jurisdictions
     json["results"]["jurisdictions"]
   end
 end

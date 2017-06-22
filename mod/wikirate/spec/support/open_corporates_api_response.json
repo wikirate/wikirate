@@ -1,0 +1,166 @@
+{
+    "api_version": "0.4",
+    "results": {
+        "company": {
+            "branch_status": null,
+            "company_number": "00102498",
+            "company_type": "Public Limited Company",
+            "corporate_groupings": [
+                {
+                    "corporate_grouping": {
+                        "name": "bp",
+                        "opencorporates_url": "https://opencorporates.com/corporate_groupings/bp",
+                        "updated_at": "2014-02-16T11:22:24+00:00",
+                        "wikipedia_id": "BP"
+                    }
+                }
+            ],
+            "created_at": "2010-10-21T18:20:50+01:00",
+            "current_status": "Active",
+            "data": {
+                "most_recent": [
+                    {
+                        "datum": {
+                            "data_type": "WipoTrademark",
+                            "description": null,
+                            "id": 9790033,
+                            "opencorporates_url": "https://opencorporates.com/data/9790033",
+                            "title": "International Trademark Registration"
+                        }
+                    },
+                   {
+                        "datum": {
+                            "data_type": "CompanyAddress",
+                            "description": "1 St James's Square, London SW1Y 4PD, GB",
+                            "id": 9788778,
+                            "opencorporates_url": "https://opencorporates.com/data/9788778",
+                            "title": "Company Address"
+                        }
+                    },
+                    {
+                        "datum": {
+                            "data_type": "Website",
+                            "description": "http://www.bp.com/sectiongenericarticle.do?categoryId=9021231&contentId=7039279",
+                            "id": 8474113,
+                            "opencorporates_url": "https://opencorporates.com/data/8474113",
+                            "title": "Website"
+                        }
+                    },
+                    {
+                        "datum": {
+                            "data_type": "OfficialRegisterEntry",
+                            "description": "register id: 313807",
+                            "id": 2452824,
+                            "opencorporates_url": "https://opencorporates.com/data/2452824",
+                            "title": "SEC Edgar entry"
+                        }
+                    }
+                ],
+                "total_count": 125,
+                "url": "https://opencorporates.com/companies/gb/00102498/data"
+            },
+            "dissolution_date": null,
+            "filings": [
+                {
+                    "filing": {
+                        "date": "2014-02-13",
+                        "id": 199825350,
+                        "opencorporates_url": "https://opencorporates.com/filings/199825350",
+                        "title": "Return of purchase of own shares",
+                        "uid": "284acfeJxjZRd2YnXi4ohPyU9OSS1OBnHYQJzMFCdxfgMDA0djQy9/Cw8TUxMzAycuzvi0/KLcksqCVCdxlmAPA2MnLtb4lOTEEidxRguYMYklQFkOIwNDEwMjQ+MmNef83ILEvMzUYo/80uJUK6sIXx/3cCsrz9zE9FQo5Z1aSaQybgYGBkYgZgJiZiBmAWJWIGYDYnYg5gBiTiDmAmJuANC4NJA="
+                    }
+                },
+                {
+                    "filing": {
+                        "date": "2014-02-13",
+                        "id": 199825349,
+                        "opencorporates_url": "https://opencorporates.com/filings/199825349",
+                        "title": "Notice of cancellation of shares",
+                        "uid": "771a5aeJxjZRd2YnXi4ohPyU9OSS1OBnHYQJzMFCdxfgMDA0djQy9/iwBXUxMzAycuzvi0/KLcksqCVCdxlmAPAzMnLtb4lOTEEidxRkuYMYklQFkOIwNDEwMjQ+MmNef83ILEvMzUYo/80uJUK6sIXx/3cCsrz9zE9FQo5Z1aSaQybgYGBkYgZgJiZiBmAWJWIGYDYnYg5gBiTiDmAmJuAOT2NK0="
+                    }
+                }
+            ],
+            "inactive": false,
+            "incorporation_date": "1909-04-14",
+            "industry_codes": [
+                {
+                    "industry_code": {
+                        "code": "70100",
+                        "description": "Activities of head offices",
+                        "code_scheme_id": "uk_sic_2007",
+                        "code_scheme_name": "UK SIC Classification 2007"
+                    }
+                }
+            ],
+            "jurisdiction_code": "gb",
+            "name": "BP P.L.C.",
+            "officers": [
+                {
+                    "officer": {
+                        "end_date": null,
+                        "id": 32609673,
+                        "name": "DAVID JOHN JACKSON",
+                        "opencorporates_url": "https://opencorporates.com/officers/32609673",
+                        "position": "secretary",
+                        "start_date": "2003-07-24",
+                        "uid": null
+                    }
+                },
+                {
+                    "officer": {
+                        "end_date": "2012-03-30",
+                        "id": 32609674,
+                        "name": "DAVID JOHN PEARL",
+                        "opencorporates_url": "https://opencorporates.com/officers/32609674",
+                        "position": "secretary",
+                        "start_date": "2001-11-01",
+                        "uid": null
+                    }
+                },
+                {
+                    "officer": {
+                        "end_date": null,
+                        "id": 32609675,
+                        "name": "PAUL MILTON ANDERSON",
+                        "opencorporates_url": "https://opencorporates.com/officers/32609675",
+                        "position": "director",
+                        "start_date": "2010-02-01",
+                        "uid": null
+                    }
+                },
+                {
+                    "officer": {
+                        "end_date": null,
+                        "id": 32609676,
+                        "name": "FRANK BOWMAN",
+                        "opencorporates_url": "https://opencorporates.com/officers/32609676",
+                        "position": "director",
+                        "start_date": "2010-11-08",
+                        "uid": null
+                    }
+                }
+            ],
+            "opencorporates_url": "https://opencorporates.com/companies/gb/00102498",
+            "previous_names": [
+                {
+                    "company_name": "BP AMOCO P.L.C.",
+                    "con_date": "2001-05-01"
+                },
+                {
+                    "company_name": "THE BRITISH PETROLEUM COMPANY P.L.C.",
+                    "con_date": "1998-12-31"
+                }
+            ],
+            "registered_address_in_full": "1 ST JAMES'S SQUARE, LONDON, SW1Y 4PD",
+            "registry_url": "http://data.companieshouse.gov.uk/doc/company/00102498",
+            "retrieved_at": "2014-02-16T10:06:59+00:00",
+            "source": {
+                "publisher": "UK Companies House",
+                "retrieved_at": "2014-02-16T10:06:59+00:00",
+                "terms": "UK Crown Copyright",
+                "url": "http://xmlgw.companieshouse.gov.uk/"
+            },
+            "updated_at": "2014-02-16T10:07:06+00:00"
+        }
+    }
+}
