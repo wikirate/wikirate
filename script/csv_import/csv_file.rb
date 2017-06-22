@@ -12,7 +12,7 @@ class CSVFile
   end
 
   # @param error_policy [:fail, :skip, :report]
-  def import error_policy: :fail
+  def import user, error_policy: :fail
     each_row do |row, index|
       process_row row, index, error_policy
     end

@@ -11,6 +11,10 @@ card_accessor :image
 card_accessor :incorporation
 card_accessor :headquarters
 
+def headquarters_jurisdiction_code
+  (hc = headquarters_card) && (jc_card = hc.item_cards.first) && jc_card.codename
+end
+
 view :missing do |args|
   _render_link args
 end

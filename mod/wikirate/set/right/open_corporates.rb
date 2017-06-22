@@ -1,6 +1,6 @@
 format :html do
-  view :core do
-    oc ? _render_table : _render_error
+  view :core, async: true do
+    oc ? _render_table : _render_oc_error
   end
 
   view :table, template: :haml
@@ -9,8 +9,26 @@ format :html do
     original_link oc.url
   end
 
+  view :oc_error do
+    alert :warning, true do
+      @error || "couldn't connect to open corporates"
+    end
+  end
+
   def oc
-    @oc ||= OCCompany.new company_number
+    binding.pry
+    return unless company_number.present? && jurisdiction_code.present?
+    @oc ||= OCCompany.new jurisdiction_code, company_number
+  rescue ArgumentError, StandardError => e
+    @error = e.message
+  end
+
+  def company_number
+    @company_number ||= card.content
+  end
+
+  def jurisdiction_code
+    @jurisdiction_code ||= (left = card.left) && left.headquarters_jurisdiction_code
   end
 
   def table_rows
@@ -26,6 +44,6 @@ format :html do
   end
 
   def jurisdiction
-    (jur = Card[oc.jurisdiction_code]) && jur.name
+    (jur = Card[jurisdiction_code]) && jur.name
   end
 end

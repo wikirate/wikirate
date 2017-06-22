@@ -22,7 +22,7 @@ class AddJurisdiction < Card::Migration
                  options: "Jurisdiction"
 
 
-    import_jurisdictions
+    #import_jurisdictions
   end
 
   def import_jurisdictions
