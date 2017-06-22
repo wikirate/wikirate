@@ -6,7 +6,7 @@ format :html do
   view :table, template: :haml
 
   view :original_link do
-    original_link oc.url
+    original_link oc.opencorporates_url
   end
 
   view :oc_error do
