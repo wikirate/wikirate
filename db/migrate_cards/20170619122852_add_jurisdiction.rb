@@ -21,7 +21,7 @@ class AddJurisdiction < Card::Migration
                  input: "select",
                  options: "Jurisdiction"
 
-
+    Card::Cache.reset_all
     import_jurisdictions
   end
 

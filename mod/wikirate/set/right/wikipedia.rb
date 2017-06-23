@@ -10,6 +10,10 @@ def wikipedia_query_uri args={}
   URI.parse uri
 end
 
+def wikipedia_url
+  "https://en.wikipedia.org/wiki/#{wikipedia_title}"
+end
+
 def wikipedia_title
   db_content.present? ? db_content : left.name
 end
@@ -43,6 +47,6 @@ format :html do
   end
 
   view :core, async: true do
-    card.wikipedia_extract
+    card.wikipedia_extract + original_link(wikipedia_url)
   end
 end

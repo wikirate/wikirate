@@ -2,20 +2,21 @@ require_relative "../csv_row"
 
 class OpenCorporatesCSVRow < CSVRow
   @columns =
-    [:wikirate_id, :wikirate_company_name, :oc_company_number, :country,
-     :headquarters_state, :state_of_incorporation]
+    [:oc_jurisdiction_code, :oc_company_number, :wikirate_number, :company_name,
+     :country, :headquarters_state, :state_of_inc, :inc_jurisdiction_code,
+     :headquarters_address]
 
   @required = :all
 
-  def validate_wikirate_id value
+  def validate_wikirate_number value
     (@company = Card[value]) && @company.type_id == Card::WikirateCompanyID
   end
 
-  def validate_headquarters_jurisdiction_code value
+  def validate_oc_jurisdiction_code value
     validate_jurisdiction value
   end
 
-  def validate_incorporation_jurisdiction_code value
+  def validate_inc_jurisdiction_code value
     validate_jurisdiction value
   end
 
@@ -28,10 +29,10 @@ class OpenCorporatesCSVRow < CSVRow
                 content: oc_company_number,
                 type: :phrase
     ensure_card [@company, :headquarters],
-                content: Card[headquarters_jurisdiction_code].name,
+                content: Card[oc_jurisdiction_code].name,
                 type: :pointer
     ensure_card [@company, :incorporation],
-                content: Card[incorporation_jurisdiction_code].name,
+                content: Card[inc_jurisdiction_code].name,
                 type: :pointer
   end
 end
