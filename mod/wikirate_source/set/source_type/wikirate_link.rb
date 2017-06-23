@@ -4,7 +4,7 @@ card_accessor :wikirate_website, type: :pointer
 
 format :html do
   view :original_link do
-    original_link card.wikirate_link, voo.title
+    original_link card.wikirate_link, text: voo.title
   end
 end
 

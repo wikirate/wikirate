@@ -14,12 +14,12 @@ class AddJurisdiction < Card::Migration
     ensure_trait "Country of Headquarters", :headquarters,
                  default: { type: :pointer },
                  input: "select",
-                 options: "Jurisdiction"
+                 options: { type: :search_type, content: '{ "type" : "Jurisdiction" }' }
 
     ensure_trait "Country of Incorporation", :incorporation,
                  default: { type: :pointer },
                  input: "select",
-                 options: "Jurisdiction"
+                 options: { type: :search_type, content: '{ "type" : "Jurisdiction" }' }
 
     Card::Cache.reset_all
     import_jurisdictions
@@ -34,7 +34,7 @@ class AddJurisdiction < Card::Migration
   end
 
   # json response from OC api:
-  # {"api_version"=>"0.4",
+  # {
   #  "results"=>
   #   {"jurisdictions"=>
   #     [ {"jurisdiction"=>{"code"=>"ad", "name"=>"Andorra",

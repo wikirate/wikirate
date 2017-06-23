@@ -10,18 +10,12 @@ def wikipedia_query_uri args={}
   URI.parse uri
 end
 
-def wikipedia_url
-  "https://en.wikipedia.org/wiki/#{wikipedia_title}"
-end
-
 def wikipedia_title
   db_content.present? ? db_content : left.name
 end
 
-def extract_api_options args
-  [:sentences, :chars].map do |key|
-    "&ex#{key}=#{args[key]}" if args[key]
-  end.compact.join
+def wikipedia_url
+  "https://en.wikipedia.org/wiki/#{wikipedia_title}"
 end
 
 def wikipedia_extract
@@ -33,7 +27,16 @@ rescue Exception => _e
   ""
 end
 
+def extract_api_options args
+  [:sentences, :chars].map do |key|
+    "&ex#{key}=#{args[key]}" if args[key]
+  end.compact.join
+end
+
+
+
 format :html do
+  delegate :wikipedia_extract, :wikipedia_url, to: :card
   view :edit do
     Card.exists?(card.name) ? super() : _render_new
   end
@@ -47,6 +50,10 @@ format :html do
   end
 
   view :core, async: true do
-    card.wikipedia_extract + original_link(wikipedia_url)
+    wikipedia_extract + wrap_with(:p, original_link)
+  end
+
+  def original_link
+    super wikipedia_url, class: "external-link", text: "<small>Visit Original</small>"
   end
 end

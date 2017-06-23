@@ -102,14 +102,20 @@ format :html do
     end
   end
 
-
   def country_table
-    table
+    table country_rows, class: "table-borderless table-condensed"
+  end
+
+  def country_rows
+    [:headquarters, :incorporation].map do |field|
+      [wrap_with(:strong, Card[field].name),
+       field_nest(field, view: :content, show: :menu, items: { view: :name })]
+    end
   end
 
   def integrations
     <<-HTML
-      <h4>Integrations</h4>
+      <h3>Integrations</h3>
       #{wikipedia_extract}
       #{open_corporates_extract}
     HTML
@@ -120,7 +126,7 @@ format :html do
   end
 
   def open_corporates_extract
-    nest card.open_corporates_card, view: :title, title: "OpenCorporates"
+    nest card.open_corporates_card, view: :titled, title: "OpenCorporates"
   end
 
   view :topics_tab do

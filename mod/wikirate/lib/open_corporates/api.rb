@@ -8,15 +8,19 @@ module OpenCorporates
       #  fetch_json :companies, us_ca, 3234234, sparse: true
       # @return the json response converted to a hash
       def fetch *query_args
-        params = query_args.last.is_a?(Hash) ? query_args.pop.to_param : {}
+        json_response = open(query_url(*query_args)).read
+        JSON.parse json_response
+      end
+
+      def query_url *query_args
+        params = query_args.last.is_a?(Hash) ? query_args.pop : {}
         params[:api_key] = api_key if api_key
         oc_url = [BASE_URL, query_args].join "/"
-        oc_url << "?#{params}" if params
-        JSON.parse open(oc_url).read
+        oc_url << "?#{params.to_param}" if params
       end
 
       def api_key
-        Card.config.try :open_corporates_api_key
+        Card.config.try :opencorporates_key
       end
     end
   end

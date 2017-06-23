@@ -21,7 +21,8 @@ format :html do
                          items: { view: :link }
   end
 
-  def original_link url, text = "Visit Original"
-    link_to text, path: url
+  def original_link url, opts={}
+    text = opts.delete(:text) || "Visit Original"
+    link_to text, opts.merge(path: url)
   end
 end

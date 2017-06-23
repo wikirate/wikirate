@@ -1,17 +1,17 @@
 module OpenCorporates
   class Company
-    attr_reader :properties
+    attr_reader :properties, :error
 
     def initialize jurisdiction_code, company_number
       @jurisdiction_code = jurisdiction_code
       @company_number = company_number
       validate_jurisdiction_code
       validate_company_number
-      fetch_properties unless @errors.present?
+      fetch_properties if valid?
     end
 
     def valid?
-      @error.present?
+      @error.blank?
     end
 
     delegate :name, :jurisdiction_code, :company_type, :opencorporates_url,
@@ -21,7 +21,7 @@ module OpenCorporates
       return unless properties.previous_names.is_a? Array
       properties.previous_names.map do |details|
         details["company_name"]
-      end
+      end.join ", "
     end
 
     def registered_address
@@ -52,7 +52,7 @@ module OpenCorporates
 
     def fetch_properties
       validate_response
-      return if @error.present?
+      return unless valid?
       @properties = OpenStruct.new api_response["results"]["company"]
     end
 

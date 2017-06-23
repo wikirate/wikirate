@@ -60,12 +60,10 @@ format :html do
   end
 
   view :titled_row do
-    <<-HTML
-      <tr>
-        <td class="label">#{_render_title}</td>
-        <td class="value">#{_render_core}</td>
-      <tr>
-    HTML
+    [
+      { content: _render_title, class: "title" },
+      { content: _render_core, class: "value" }
+    ]
   end
 
   view :edits_by do

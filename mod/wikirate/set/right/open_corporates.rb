@@ -6,7 +6,8 @@ format :html do
   view :table, template: :haml
 
   view :original_link do
-    original_link oc.opencorporates_url
+    original_link oc.opencorporates_url, class: "external-link",
+                                         text: "<small>Visit Original</small>"
   end
 
   view :oc_error do
@@ -16,7 +17,7 @@ format :html do
   end
 
   def oc
-    @oc ||= ::OpenCorporates::Company.new jurisdiction_code, company_number
+    @oc ||= ::OpenCorporates::Company.new(jurisdiction_code, company_number)
   end
 
   def company_number
@@ -36,7 +37,9 @@ format :html do
       ["Incorporation date", incorporation_date],
       ["Company Type", oc.company_type],
       ["Status", oc.status]
-    ]
+    ].map do |label, value|
+      [wrap_with(:strong, label), value]
+    end
   end
 
   def jurisdiction
@@ -46,6 +49,6 @@ format :html do
   def incorporation_date
     date = oc.incorporation_date
     return "" unless date
-    "#{date.strftime "%d %B %Y"} (#{time_ago_in_words(date)} ago)}"
+    "#{date.strftime "%d %B %Y"} (#{time_ago_in_words(date)} ago)"
   end
 end
