@@ -59,7 +59,7 @@ end
 
 format :csv do
   view :core do
-    Answer.csv_title + all_answers.map(&:csv_line).join
+    Answer.csv_title + card.all_answers.map(&:csv_line).join
   end
 end
 
