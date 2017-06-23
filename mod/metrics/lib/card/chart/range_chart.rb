@@ -44,10 +44,9 @@ class Card
 
       def x_label_scale
         { name: "x_label",
-          type: "ordinal",
+          type: "point",
           range: "width",
-          domain: @labels,
-          points: true }
+          domain: @labels }
       end
 
       def highlight? filter
