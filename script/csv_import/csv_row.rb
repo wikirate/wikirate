@@ -1,5 +1,8 @@
 require_relative "csv_row/normalizer"
 
+class ImportError < StandardError
+end
+
 # Use CSVRow to process a csv row.
 # CSVFile creates an instance of CSVRow for every row and calls #import on it
 class CSVRow

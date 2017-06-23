@@ -94,10 +94,9 @@ format :html do
   view :details_tab do |_args|
     bs_layout do
       row 12 do
-        column country_table
-      end
-      row 12 do
-        column integrations
+        column do
+          output [country_table, integrations]
+        end
       end
     end
   end
@@ -114,11 +113,11 @@ format :html do
   end
 
   def integrations
-    <<-HTML
-      <h3>Integrations</h3>
-      #{wikipedia_extract}
-      #{open_corporates_extract}
-    HTML
+    output [
+      "<h3>Integrations</h3>",
+      wikipedia_extract,
+      open_corporates_extract
+    ]
   end
 
   def wikipedia_extract

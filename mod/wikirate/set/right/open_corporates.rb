@@ -11,9 +11,20 @@ format :html do
   end
 
   view :oc_error do
-    alert :warning, true do
-      oc.error
+    if company_number.blank?
+      "Not yet connected to an #{link_to oc_search_url, "OpenCorporates" } entity"
+    elsif jurisdiction_code.blank?
+      "Country of headquarters needed to connect to OpenCorporates"
+    else
+      alert :warning, true do
+        oc.error
+      end
     end
+  end
+
+  def oc_search_url
+    URI::HTTPS.build host: "opencorporates.com", path: "/companies",
+                     query: { q: card.name }.to_query
   end
 
   def oc
@@ -25,7 +36,9 @@ format :html do
   end
 
   def jurisdiction_code
-    @jurisdiction_code ||= (left = card.left) && left.headquarters_jurisdiction_code
+    @jurisdiction_code ||= (left = card.left) &&
+                           (jc = left.headquarters_jurisdiction_code) &&
+                           jc.to_sym
   end
 
   def table_rows
@@ -38,12 +51,13 @@ format :html do
       ["Company Type", oc.company_type],
       ["Status", oc.status]
     ].map do |label, value|
+      next unless value.present?
       [wrap_with(:strong, label), value]
-    end
+    end.compact
   end
 
   def jurisdiction
-    (jur = Card[jurisdiction_code]) && jur.name
+   jurisdiction_code && (jur = Card[jurisdiction_code]) && jur.name
   end
 
   def incorporation_date

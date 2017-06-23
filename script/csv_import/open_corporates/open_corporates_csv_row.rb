@@ -6,10 +6,11 @@ class OpenCorporatesCSVRow < CSVRow
      :country, :headquarters_state, :state_of_inc, :inc_jurisdiction_code,
      :headquarters_address]
 
-  @required = :all
+  @required = [:oc_jurisdiction_code, :oc_company_number, :wikirate_number]
 
   def validate_wikirate_number value
-    (@company = Card[value]) && @company.type_id == Card::WikirateCompanyID
+    value.number? && (@company = Card[value.to_i]) &&
+      @company.type_id == Card::WikirateCompanyID
   end
 
   def validate_oc_jurisdiction_code value
@@ -17,6 +18,7 @@ class OpenCorporatesCSVRow < CSVRow
   end
 
   def validate_inc_jurisdiction_code value
+    return true if value.blank?
     validate_jurisdiction value
   end
 
@@ -29,10 +31,11 @@ class OpenCorporatesCSVRow < CSVRow
                 content: oc_company_number,
                 type: :phrase
     ensure_card [@company, :headquarters],
-                content: Card[oc_jurisdiction_code].name,
+                content: Card[oc_jurisdiction_code.to_sym].name,
                 type: :pointer
+    return unless inc_jurisdiction_code.present?
     ensure_card [@company, :incorporation],
-                content: Card[inc_jurisdiction_code].name,
+                content: Card[inc_jurisdiction_code.to_sym].name,
                 type: :pointer
   end
 end

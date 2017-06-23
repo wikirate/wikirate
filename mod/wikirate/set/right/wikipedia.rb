@@ -2,12 +2,14 @@ def unknown?
   false
 end
 
+QUERY_ARGS = { format: :json, action: :query, prop: :extracts, redirects: 1,
+               exintro: nil, explaintext: nil }.freeze
+
 def wikipedia_query_uri args={}
-  uri = "https://en.wikipedia.org/w/api.php?format=json&action=query&"\
-            "prop=extracts&exintro=&explaintext=&" \
-            "&redirects=1&titles=#{wikipedia_title}"
-  uri += extract_api_options args
-  URI.parse uri
+  query = args.extract!(:sentences, :chars).transform_keys { |k| "ex#{k}".to_sym }
+              .merge(QUERY_ARGS)
+  query[:titles] = wikipedia_title
+  URI::HTTPS.build host: "en.wikipedia.org", path: "/w/api.php", query: query.to_query
 end
 
 def wikipedia_title
@@ -20,19 +22,12 @@ end
 
 def wikipedia_extract
   response = JSON.parse wikipedia_query_uri(sentences: 5).read
-  return unless response["query"] && response["query"]["pages"]
+  return "" unless response["query"] && response["query"]["pages"]
   first_page = response["query"]["pages"].to_a.first
   first_page[1]["extract"]
 rescue Exception => _e
   ""
 end
-
-def extract_api_options args
-  [:sentences, :chars].map do |key|
-    "&ex#{key}=#{args[key]}" if args[key]
-  end.compact.join
-end
-
 
 
 format :html do
@@ -50,7 +45,9 @@ format :html do
   end
 
   view :core, async: true do
-    wikipedia_extract + wrap_with(:p, original_link)
+    extract = wikipedia_extract
+    extract += wrap_with(:p, original_link) if extract.present?
+    extract
   end
 
   def original_link

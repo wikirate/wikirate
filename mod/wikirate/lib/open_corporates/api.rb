@@ -1,22 +1,30 @@
 module OpenCorporates
   class API
-    VERSION = "0.4"
-    BASE_URL = "https://api.opencorporates.com/v#{VERSION}"
+    HOST = "api.opencorporates.com"
+    OC_API_VERSION = "0.4"
 
     class << self
       # @example
       #  fetch_json :companies, us_ca, 3234234, sparse: true
       # @return the json response converted to a hash
       def fetch *query_args
-        json_response = open(query_url(*query_args)).read
-        JSON.parse json_response
+        JSON.parse json_response(*query_args)
       end
 
-      def query_url *query_args
+      private
+
+      def json_response *query_args
+        query_uri(*query_args).read
+      rescue OpenURI::HTTPError => e
+        e.io.string
+      end
+
+      def query_uri *query_args
         params = query_args.last.is_a?(Hash) ? query_args.pop : {}
-        params[:api_key] = api_key if api_key
-        oc_url = [BASE_URL, query_args].join "/"
-        oc_url << "?#{params.to_param}" if params
+        params[:api_token] = api_key if api_key
+        URI::HTTPS.build host: HOST,
+                         path: ["/v#{OC_API_VERSION}", query_args].join("/"),
+                         query: params.to_query
       end
 
       def api_key

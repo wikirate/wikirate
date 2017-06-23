@@ -8,7 +8,7 @@ class UpdateWikipediaMapping < Card::Migration
 
   def up
     csv_path = data_path "wikirate_to_wikipedia.csv"
-    Card::Auth.current_id = Card.fetch_id "Vasiliki Gkatziaki"
-    CSVFile.new(csv_path, WikipediaCSVRow).import error_policy: :report
+    CSVFile.new(csv_path, WikipediaCSVRow)
+           .import user: "Vasiliki Gkatziaki",  error_policy: :report
   end
 end
