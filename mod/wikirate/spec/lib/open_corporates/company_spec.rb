@@ -51,7 +51,8 @@ describe OpenCorporates::Company do
 
     it "has error" do
       stub_const("OpenCorporates::API::HOST", "open-corporates-is-down.org")
-      expect(oc.error).to eq "service temporarily not available"
+      expect(oc.error)
+        .to eq "couldn't receive open corporates entyr: service temporarily not available"
     end
   end
 

@@ -10,11 +10,6 @@ module OpenCorporates
         pick_nested_item "results", "company" do
           fetch :companies, jurisdiction_code, company_number, opts
         end
-      rescue OpenURI::HTTPError => e
-        error = JSON.parse e.io.string
-        raise APIError, error["error"]["message"]
-      rescue StandardError => _e
-        raise "service temporarily not available"
       end
 
       # The OC API returns an array with a structure like this:
@@ -25,27 +20,33 @@ module OpenCorporates
       # This method removes the additional hash level with the "jurisdiction" key.
       # @return [Array<Hash>]
       def fetch_jurisdictions
-        pick_nested_item "results", "jurisidictions" do
+        pick_nested_item "results", "jurisdictions" do
           fetch :jurisdictions
         end.map do |jur|
           jur["jurisdiction"]
         end
       end
 
-
       # @example
       #  fetch_json :companies, us_ca, 3234234, sparse: true
       # @return the full json response converted to a hash
       def fetch *query_args
         JSON.parse json_response(*query_args)
+      rescue OpenURI::HTTPError => e
+        error = JSON.parse e.io.string
+        raise APIError, error["error"]["message"]
+      rescue StandardError => _e
+        raise APIError, "service temporarily not available"
       end
 
       private
 
-      def pick_nested_item structure
+      def pick_nested_item *structure
         response = yield
+        raise APIError, response["error"]["message"] if response.key?("error")
         structure.each do |key|
           unless response.is_a?(Hash) && response.key?(key)
+            binding.pry
             raise APIError, "unexpected format"
           end
           response = response[key]
