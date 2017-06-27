@@ -44,7 +44,7 @@ module OpenCorporates
 
     def validate_jurisdiction_code
       return fail("no jurisdiction code") unless @jurisdiction_code
-      unless @jurisdiction_code.match(/^\w+$/)
+      unless @jurisdiction_code =~ /^\w+$/
         fail "invalid jurisdiction code: #{@jurisdiction_code}"
       end
     end
@@ -69,7 +69,7 @@ module OpenCorporates
     def validate_response
       if api_response["error"]
         fail "couldn't receive open corporates entry: "\
-             "#{api_response["error"]["message"]}"
+             "#{api_response['error']['message']}"
       elsif !response_has_expected_structure?
         fail "open corporates returned unexpected format for "\
              "#{@jurisdiction_code}/#{@company_number}"
@@ -81,14 +81,13 @@ module OpenCorporates
         api_response["results"]["company"].is_a?(Hash)
     end
 
-
     def api_response
       @api_response ||=
         ::OpenCorporates::API.fetch :companies, @jurisdiction_code, @company_number,
                                     sparse: true
     rescue OpenURI::HTTPError => e
       JSON.parse e.io.string
-    rescue StandardError => e
+    rescue StandardError => _e
       fail "service temporarily not available"
     end
   end

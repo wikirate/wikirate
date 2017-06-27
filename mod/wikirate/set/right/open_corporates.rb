@@ -12,7 +12,7 @@ format :html do
 
   view :oc_error do
     if company_number.blank?
-      "Not yet connected to an #{link_to oc_search_url, "OpenCorporates" } entity"
+      "Not yet connected to an #{link_to oc_search_url, 'OpenCorporates'} entity"
     elsif jurisdiction_code.blank?
       "Country of headquarters needed to connect to OpenCorporates"
     else
@@ -57,7 +57,7 @@ format :html do
   end
 
   def jurisdiction
-   jurisdiction_code && (jur = Card[jurisdiction_code]) && jur.name
+    jurisdiction_code && (jur = Card[jurisdiction_code]) && jur.name
   end
 
   def incorporation_date

@@ -79,4 +79,3 @@ describe OpenCorporates::Company do
     end
   end
 end
-

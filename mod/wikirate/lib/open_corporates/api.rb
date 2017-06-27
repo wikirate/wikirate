@@ -1,7 +1,7 @@
 module OpenCorporates
   class API
-    HOST = "api.opencorporates.com"
-    OC_API_VERSION = "0.4"
+    HOST = "api.opencorporates.com".freeze
+    OC_API_VERSION = "0.4".freeze
 
     class << self
       # @example
