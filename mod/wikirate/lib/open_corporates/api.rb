@@ -20,9 +20,11 @@ module OpenCorporates
       # This method removes the additional hash level with the "jurisdiction" key.
       # @return [Array<Hash>]
       def fetch_jurisdictions
-        pick_nested_item "results", "jurisdictions" do
-          fetch :jurisdictions
-        end.map do |jur|
+        resupt =
+          pick_nested_item "results", "jurisdictions" do
+            fetch :jurisdictions
+          end
+        result.map do |jur|
           jur["jurisdiction"]
         end
       end
@@ -46,7 +48,6 @@ module OpenCorporates
         raise APIError, response["error"]["message"] if response.key?("error")
         structure.each do |key|
           unless response.is_a?(Hash) && response.key?(key)
-            binding.pry
             raise APIError, "unexpected format"
           end
           response = response[key]
