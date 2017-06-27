@@ -3,14 +3,6 @@ include_set Abstract::ValueToggle
 include_set Abstract::ResearchedValueDetails
 include_set Abstract::Answer
 
-def value_card
-  self
-end
-
-def value
-  card.content
-end
-
 format :html do
   view :company_name do
     nest card.cardname.right, view: :thumbnail
@@ -21,7 +13,7 @@ format :html do
   end
 
   view :value do
-    card.value
+    value
   end
 
   view :closed_value do
@@ -29,7 +21,7 @@ format :html do
   end
 
   def value_field
-    card.content
+    _render_value_link
   end
 
   def value_details

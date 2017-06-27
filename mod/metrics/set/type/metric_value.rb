@@ -1,7 +1,3 @@
-card_accessor :value, type: :phrase
-card_accessor :checked_by
-card_accessor :source
-
 include_set Abstract::MetricChild, generation: 2
 include_set Abstract::Answer
 

@@ -55,10 +55,10 @@ class RelationshipAnswerCSVRow < CSVRow
   end
 
   def add_relationship_answer source
-    ensure_card [answer_name, @row[:company_2]],
+    ensure_card [answer_name, company_2],
                 type: "Relationship Answer",
-                content: @row[:value],
-                subcards: { "+source" => source.name }
+                subcards: { "+source" => source.name,
+                            "+value" => { content: value, type_id: Card::PhraseID } }
   end
 
   def ensure_inverse_answer
