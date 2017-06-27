@@ -6,37 +6,41 @@ describe Card::Set::Right::OpenCorporates do
   let(:api_response) do
     path =
       File.expand_path("../../../support/open_corporates_api_response.json", __FILE__)
-    JSON.parse File.read(path)
+    JSON.parse(File.read(path))["results"]["company"]
   end
 
   def stub_oc_api changes={}
     oc_api = class_double("OpenCorporates::API")
-    api_response["results"]["company"].merge! changes if changes.present?
-    allow(oc_api).to receive(:fetch).and_return(api_response)
+    allow(oc_api).to receive(:fetch_companies).and_return(api_response.merge changes)
     stub_const("OpenCorporates::API", oc_api)
   end
 
   describe "view :core" do
     subject { render_view :core_async_content, name: "Google Inc+open corporates" }
 
-    def have_row label, value
+    def have_table rows
       have_tag :table do
-        with_tag :tr do
-          with_tag :td, text: label
-          with_tag :td, text: value
+        rows.each do |cells|
+          with_tag :tr do
+            cells.each do |text|
+              with_tag :td, text: text
+            end
+          end
         end
       end
     end
 
     it "shows all fields" do
       stub_oc_api
-      is_expected.to have_row "Name", "BP P.L.C."
-      is_expected.to have_row "Previous Names", "BP AMOCO P.L.C., THE BRITISH PETROLEUM COMPANY P.L.C."
-      is_expected.to have_row "Jurisdiction", "California (United States)"
-      is_expected.to have_row "Registered Address", "1 ST JAMES'S SQUARE, LONDON, SW1Y 4PD"
-      is_expected.to have_row "Incorporation date", /14 April 1909 \(about \d+ years ago\)/
-      is_expected.to have_row "Company Type", "Public Limited Company"
-      is_expected.to have_row "Status", "Active"
+      is_expected.to have_table [
+        ["Name", "BP P.L.C."],
+        ["Previous Names", "BP AMOCO P.L.C., THE BRITISH PETROLEUM COMPANY P.L.C."],
+        ["Jurisdiction", "California (United States)"],
+        ["Registered Address", "1 ST JAMES'S SQUARE, LONDON, SW1Y 4PD"],
+        ["Incorporation date", /14 April 1909 \(about \d+ years ago\)/],
+        ["Company Type", "Public Limited Company"],
+        ["Status", "Active"]
+      ]
     end
 
     it "hides empty fields" do
