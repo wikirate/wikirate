@@ -81,8 +81,7 @@ format :html do
   end
 
   def add_answer_button
-    return "" unless metric_card.metric_type_codename == :researched &&
-                     metric_card.user_can_answer?
+    return "" unless metric_card.researched? && metric_card.user_can_answer?
     if voo.show?(:add_answer_redirect) && voo.hide?(:answer_form)
       redirect_form_button
     else

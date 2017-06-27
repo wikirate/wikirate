@@ -92,7 +92,7 @@ def multi_categorical?
 end
 
 def researched?
-  metric_type_codename == :researched
+  metric_type_codename == :researched || relationship?
 end
 
 def calculated?
