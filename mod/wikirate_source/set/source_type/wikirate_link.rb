@@ -4,7 +4,7 @@ card_accessor :wikirate_website, type: :pointer
 
 format :html do
   view :original_link do
-    link_to (voo.title || "Visit Original"), path: card.wikirate_link
+    original_link card.wikirate_link, text: voo.title
   end
 end
 
@@ -196,4 +196,10 @@ end
 def add_description thumbnail
   return if subfield(:description) || thumbnail.description.empty?
   add_subfield :description, content: thumbnail.description
+end
+
+format :json do
+  def essentials
+    super.merge source_url: card.url
+  end
 end

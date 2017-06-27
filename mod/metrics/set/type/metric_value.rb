@@ -44,11 +44,12 @@ end
 
 format :json do
   view :core do
-    _render_essentials.merge(
+    data = _render_essentials.merge(
       metric: nest(card.metric, view: :essentials),
-      company: nest(card.company, view: :marks),
-      source: nest(card.source, view: :essentials, hide: :marks)
-    ).merge(nest(card.checked_by_card, view: :essentials, hide: :marks))
+      company: nest(card.company, view: :marks)
+    )
+    data[:source] = nest(card.source, view: :essentials) if card.source.present?
+    data.merge(checked_by: nest(card.checked_by_card, view: :essentials, hide: :marks))
   end
 
   def essentials
@@ -60,24 +61,3 @@ format :json do
     }
   end
 end
-
-#   {
-#     (metric value card marks)
-#   metric: {
-#     (metric cardmarks)
-#   designer: (designer cardmarks)
-#   title: metric title
-#   }
-#   company:  { (company cardmarks) }
-#   year: year
-#   value: value
-#   source: [
-#     {source 1 cardmarks, content },
-#     {source 2 cardmarks, content }
-#   ],
-#     import: Y/N,
-#     designer assessed: Y/N
-#   checks: (count)
-#   comments (text)
-#   }
-# end

@@ -21,6 +21,10 @@
   background: none;
   color: #fff;
   font-size: 1.1em;
+  &:hover {
+      background: rgba(0, 0, 0, 0.33);
+      color: #fff;
+  }
 }
 
 .banner-image{
@@ -99,6 +103,11 @@
 
 .homepage-table {
   margin-bottom: 0;
+}
+
+.homepage-company-item .company-header {
+    padding: 0px;
+    padding-top: 2px;
 }
 
 .homepage-company-item,

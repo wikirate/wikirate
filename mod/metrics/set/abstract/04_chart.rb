@@ -121,7 +121,9 @@ format :json do
   end
 
   def chart_class
-    if card.numeric?
+    if card.scored?
+      Card::Chart::ScoreChart
+    elsif card.numeric?
       Card::Chart::NumericChart
     else
       Card::Chart::CategoryChart

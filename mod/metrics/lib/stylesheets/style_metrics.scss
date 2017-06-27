@@ -196,7 +196,14 @@
     }
 }
 
+//Show icon on metric properties on mousehover
+.metric-designer-info,.value_type_detail-view.TYPE-metric {
+    width: 100%;
+    float: left;
+}
+
 .metric-designer-info {
+
     a {
         color: inherit;
     }
@@ -270,15 +277,19 @@
     z-index: 1;
 }
 .TYPE-metric_value {
-    .RIGHT-discussion,
-    .TYPE_PLUS_RIGHT-metric_value-source,
-    .timeline {
-        float: left;
-        width: 100%!important;
-        .missing-view {
-            display: none;
-        }
-    }
+  &.LTYPE_RTYPE-html-year >.card-frame >.card-body {
+    padding: 0px;
+    margin-top:1px;
+  }
+  .RIGHT-discussion,
+  .TYPE_PLUS_RIGHT-metric_value-source,
+  .timeline {
+      float: left;
+      width: 100%!important;
+      .missing-view {
+          display: none;
+      }
+  }
 }
 
 .data-count {
@@ -621,15 +632,17 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   }
 }
 
-.core-view.SELF-research_page {
+.core-view.SELF-research_page,.research_page-view {
   .stick-left {
     left: 0px;
     top: 66px;
+    background: #fff;
   }
   .stick-right {
     top: 66px;
     left: 40.8%;
     width: 60%;
+    background: #fff;
   }
 
   //.answer_table-view.LTYPE_RTYPE-metric-company {

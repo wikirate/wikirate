@@ -17,7 +17,7 @@ Feature: import metric values from a csv file
   Scenario: Show import table correctly
     Then I should see a row with "Jedi+Sith Lord in Charge|Death Star|2015|One country, two systems|https://en.wikipedia.org/wiki/One_country,_two_systems|just kidding"
     And I should see a row with "Joe User+researched|Apple|2008|11|http://srivigneshwar.com/home/?zs"
-    And I should see a row with "Joe User+researched|Hong Kong|2008|11|http://srivigneshwar.com/home/?q"
+    And I should see a row with "Joe User+researched|A Missing Company|2008|11|http://srivigneshwar.com/home/?q"
 
   Scenario: Import a simple metric value
     When I check checkbox for csv row 1
@@ -96,7 +96,7 @@ Feature: import metric values from a csv file
     When I check checkbox for csv row 8
     And I press "Import"
     And I wait for ajax response
-    And I go to card "Joe User+researched+Hong Kong+2008"
+    And I go to card "Joe User+researched+A Missing Company+2008"
     Then I should see "2008"
     And I should see "11"
     And I should not see a "comment" icon

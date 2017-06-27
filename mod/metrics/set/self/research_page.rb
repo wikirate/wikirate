@@ -1,5 +1,4 @@
 include_set Abstract::Media
-
 card_accessor :metric
 card_accessor :wikirate_company
 

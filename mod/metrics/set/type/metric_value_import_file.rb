@@ -42,14 +42,21 @@ format :html do
   end
 
   view :core do
-    content = construct_import_warning_message
-    content << handle_source do |source|
-      %(<a href=\"#{source}\">Download #{showname voo.title}</a><br />)
+    output [
+      construct_import_warning_message,
+      download_link,
+      import_link.html_safe
+    ]
+  end
+
+  def download_link
+    handle_source do |source|
+      %(<a href="#{source}" rel="nofollow">Download #{showname voo.title}</a><br />)
     end.html_safe
-    import_link = <<-HTML
-      <a href=\"/#{card.cardname.url_key}?view=import\">Import ...</a>
-    HTML
-    content << import_link.html_safe
+  end
+
+  def import_link
+    link_to_view :import, "Import ...", rel: "nofollow", remote: false
   end
 
   def import_fields

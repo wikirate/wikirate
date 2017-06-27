@@ -3,5 +3,5 @@ require_relative "wikipedia_csv_row"
 require_relative "../csv_file"
 
 csv_path = File.expand_path "../data/error.csv", __FILE__
-Card::Auth.current_id = Card.fetch_id "Vasiliki Gkatziaki"
-CSVFile.new(csv_path, WikipediaCSVRow, col_sep: ";").import error_policy: :report
+CSVFile.new(csv_path, WikipediaCSVRow)
+       .import user: "Vasiliki Gkatziaki", error_policy: :report

@@ -285,6 +285,10 @@ body {
       text-decoration: underline;
     }
   }
+  >.SELF-wikirate_footer a.external-link, body .SELF-wikirate_footer_compact a.external-link{
+    padding-right:0px!important;
+  }
+
   >.SELF-wikirate_footer, .SELF-wikirate_footer_compact{
     clear: both;
     display: block;

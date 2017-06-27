@@ -7,5 +7,7 @@ def value
 end
 
 format :html do
-  view :editor, mod: Type::Phrase::Format
+  def editor
+    :text_field
+  end
 end

@@ -2,10 +2,15 @@ include_set Abstract::TwoColumnLayout
 include_set Abstract::KnownAnswers
 include_set Abstract::Thumbnail
 include_set Abstract::Tabs
+include_set Abstract::Export
 
 card_reader :wikirate_company
 card_reader :metric
 card_reader :organizer
+
+def all_related_answers
+  Answer.where where_answer
+end
 
 def answers
   @answers ||= Answer.where(where_answer).where("updated_at > ?", created_at)
@@ -33,12 +38,16 @@ def num_answers
 end
 
 def num_policies
-  policies = metric_card.item_cards.map do |mc|
-    mc.try(:research_policy)
-  end.compact
-  d_cnt = policies.count "[[Designer Assessed]]"
-  c_cnt = policies.count "[[Community Assessed]]"
-  "#{d_cnt}/#{c_cnt}"
+  d_cnt = 0
+  c_cnt = 0
+  metric_card.item_cards.each do |mc|
+    next unless (policy = mc.try(:research_policy))
+    case policy
+    when "[[Designer Assessed]]" then d_cnt += 1
+    when "[[Community Assessed]]" then c_cnt += 1
+    end
+  end
+  [c_cnt, d_cnt]
 end
 
 def metric_ids
@@ -119,7 +128,7 @@ format :html do
 
   view :content_right_col do
     wrap_with :div, class: "progress-column" do
-      [overall_progress_box, _render_tabs]
+      [overall_progress_box, _render_tabs, _render_export_links]
     end
   end
 
@@ -196,7 +205,7 @@ format :html do
     %(
       <div class="text-muted small text-center">
         Of <strong>#{card.num_records} potential records</strong>
-        (#{card.num_metrics} Metrics x #{card.num_companies} Companies),
+        (#{card.num_companies} Companies x #{card.num_metrics} Metrics),
         #{card.num_researched} have been added so far.
       </div>
     )
@@ -266,9 +275,25 @@ end
 
 format :csv do
   view :core do
-    Answer.csv_title + card.metric_ids.map do |m_id|
-      Answer.where("metric_id = ? AND company_id IN (?)",
-                   m_id, card.company_ids).map(&:csv_line)
-    end.flatten.join
+    Answer.csv_title + all_related_answers.map(&:csv_line).flatten.join
+  end
+end
+
+format :json do
+  view :core do
+    _render_essentials.merge(answers: answers)
+  end
+
+  def answers
+    card.all_related_answers.map do |answer|
+      subformat(answer)._render_core
+    end
+  end
+
+  def essentials
+    {
+      metrics: nest(card.metric_card, view: :essentials, hide: :marks),
+      companies: nest(card.wikirate_company_card, view: :essentials, hide: :marks)
+    }
   end
 end

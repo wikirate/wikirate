@@ -55,6 +55,13 @@
   }
 }
 
+.browse-company-item .company-header{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 4px; 
+}
+
 .browse-company-item{
   .company-header
   {
@@ -219,6 +226,14 @@
     display: inline-block;
     min-width: 350px;
   }
+}
+
+.SELF-Xsearch .search-result-item.item-browse_item {
+    float: left;
+    display: inline-block;
+    min-width: 260px;
+    width: 18%;
+    padding: 10px 1%;
 }
 
 .SELF-Xsearch {
