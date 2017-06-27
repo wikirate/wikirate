@@ -20,7 +20,7 @@ module OpenCorporates
       # This method removes the additional hash level with the "jurisdiction" key.
       # @return [Array<Hash>]
       def fetch_jurisdictions
-        resupt =
+        result =
           pick_nested_item "results", "jurisdictions" do
             fetch :jurisdictions
           end
