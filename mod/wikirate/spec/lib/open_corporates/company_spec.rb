@@ -79,4 +79,16 @@ describe OpenCorporates::Company do
       expect(oc.error).to eq "couldn't receive open corporates entry: Record not found"
     end
   end
+
+  context "when jurisdiction code is wrong" do
+    let(:oc)  { described_class.new "ge", "A401954" }
+
+    it "is invalid" do
+      expect(oc.valid?).to eq false
+    end
+
+    it "has error" do
+      expect(oc.error).to eq "couldn't receive open corporates entry: Record not found"
+    end
+  end
 end

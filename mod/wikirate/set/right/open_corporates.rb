@@ -63,6 +63,6 @@ format :html do
   def incorporation_date
     date = oc.incorporation_date
     return "" unless date
-    "#{date.strftime '%d %B %Y'} (#{time_ago_in_words(date)} ago)"
+    "#{date.strftime '%-d %B %Y'} (#{time_ago_in_words(date)} ago)"
   end
 end

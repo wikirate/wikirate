@@ -34,11 +34,6 @@ module OpenCorporates
       # @return the full json response converted to a hash
       def fetch *query_args
         JSON.parse json_response(*query_args)
-      rescue OpenURI::HTTPError => e
-        error = JSON.parse e.io.string
-        raise APIError, error["error"]["message"]
-      rescue StandardError => _e
-        raise APIError, "service temporarily not available"
       end
 
       private
@@ -59,6 +54,8 @@ module OpenCorporates
         query_uri(*query_args).read
       rescue OpenURI::HTTPError => e
         e.io.string
+      rescue SocketError => _e
+        raise APIError, "service temporarily not available"
       end
 
       def query_uri *query_args
