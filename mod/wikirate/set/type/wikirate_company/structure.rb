@@ -2,6 +2,7 @@ include_set Abstract::WikirateTable
 include_set Abstract::TwoColumnLayout
 
 card_accessor :wikipedia
+card_accessor :open_corporates
 
 format :html do
   def default_content_formgroup_args _args
@@ -93,13 +94,38 @@ format :html do
   view :details_tab do |_args|
     bs_layout do
       row 12 do
-        column wikipedia_extract
+        column do
+          output [country_table, integrations]
+        end
       end
     end
   end
 
+  def country_table
+    table country_rows, class: "table-borderless table-condensed"
+  end
+
+  def country_rows
+    [:headquarters, :incorporation].map do |field|
+      [wrap_with(:strong, Card[field].name),
+       field_nest(field, view: :content, show: :menu, items: { view: :name })]
+    end
+  end
+
+  def integrations
+    output [
+      "<h3>Integrations</h3>",
+      wikipedia_extract,
+      open_corporates_extract
+    ]
+  end
+
   def wikipedia_extract
-    subformat(card.wikipedia_card)._render_titled
+    nest card.wikipedia_card, view: :titled, title: "Wikipedia"
+  end
+
+  def open_corporates_extract
+    nest card.open_corporates_card, view: :titled, title: "OpenCorporates"
   end
 
   view :topics_tab do

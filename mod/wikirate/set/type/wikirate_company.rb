@@ -8,6 +8,12 @@ card_accessor :direct_contribution_count, type: :number, default: "0"
 card_accessor :aliases, type: :pointer
 card_accessor :all_metric_values
 card_accessor :image
+card_accessor :incorporation
+card_accessor :headquarters
+
+def headquarters_jurisdiction_code
+  (hc = headquarters_card) && (jc_card = hc.item_cards.first) && jc_card.codename
+end
 
 view :missing do |args|
   _render_link args
