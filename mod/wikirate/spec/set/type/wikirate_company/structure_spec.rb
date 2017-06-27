@@ -8,7 +8,7 @@ RSpec.describe Card::Set::Type::WikirateCompany::Structure do
       is_expected.to have_tag "table" do
         with_tag :tr do
           with_tag :td do
-            with_text "Country of headquarters"
+            with_text "Country of Headquarters"
           end
           with_tag :td do
             with_text "Korriban"
