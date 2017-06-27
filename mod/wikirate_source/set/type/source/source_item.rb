@@ -32,21 +32,8 @@ format :html do
   end
 
   def title_text
-    nest(Card.fetch(card.cardname.field("title"), new: {}), view: :needed)
+    nest(card.source_title_card, view: :needed)
   end
-
-  # TODO: remove after clarifying with PK
-  # def source_item_footer args
-  #   items = []
-  #   extras = [
-  #     _render_note_count,
-  #     _render_metric_count,
-  #     _render_original_with_icon
-  #   ]
-  #   items = extras unless args[:source_title] == :text
-  #   items.unshift(_render_year_with_icon) unless year.nil? || year == ""
-  #   items
-  # end
 
   def source_item_footer
     [
@@ -62,32 +49,6 @@ format :html do
     "globe"
   end
 
-  # TODO: remove after clarifying with PK
-  # <<<<<<< HEAD
-  #   view :source_content do |args|
-  #     wrap_with :div, class: "source-content" do
-  #       [
-  #         _render_source_link(args),
-  #         _render_creator_credit
-  #       ]
-  #     end
-  #   end
-  #
-  #   view :listing do |args|
-  #     wrap_with :div, class: "source-item" do
-  #       [
-  #         _render_source_content(args),
-  #         _render_extras(args)
-  #       ]
-  #     end
-  #   end
-  #
-  #   view :extras do |args|
-  #     wrap_with :div, class: "source-extra" do
-  #       flat_list source_item_footer(args)
-  #     end
-  #   end
-  # =======
   view :listing, template: :haml
 
   view :original_with_icon do
@@ -165,20 +126,27 @@ format :html do
   end
 
   def with_cite_button cited: false
-    text = cited ? "Cited!" : "Cite!"
     voo.hide :links
     wrap_with_info do
       [
         _render_listing,
-        wrap_with(:div, class: "pull-right") do
-          wrap_with :a, text, href: "#", class: "btn #{cite_class cited} c-btn"
-        end
+        cite_button(cited),
+        (hidden_item_input if cited)
       ]
     end
   end
 
-  def cite_class cited
-    cited ? "btn-success _cited_button" : "btn-highlight _cite_button"
+  def cite_button cited
+    text = cited ? "Cited!" : "Cite!"
+    cite_class =
+      cited ? "btn-success _cited_button" : "btn-highlight _cite_button"
+    wrap_with(:div, class: "pull-right") do
+      wrap_with :a, text, href: "#", class: "btn #{cite_class} c-btn"
+    end
+  end
+
+  def hidden_item_input
+    tag :input, type: "hidden", class: "pointer-select", value: card.name
   end
 
   view :with_cited_button do
@@ -209,13 +177,7 @@ format :html do
   end
 
   view :cited, cache: :never do |args|
-    parent =
-      if (parent_card = Card.fetch(Env.params["id"]))
-        parent_card.cardname.right
-      end
-    # check parent structure name has the word header
-    # (i.e check if not metric value page)
-    if !parent.nil? && parent.include?("header")
+    if voo.show? :cited_source_links
       wrap_with_info { _render_listing args }
     else
       with_toggle do

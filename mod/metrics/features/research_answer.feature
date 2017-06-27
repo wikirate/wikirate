@@ -10,7 +10,7 @@ Feature: Research answer
     And I select "Apple Inc" from "Company"
     And I select "Joe User+researched" from "Metrics"
     And I click on "Next"
-    And I click on "Add answer"
+    And I click on "Research answer"
     And I wait 10 seconds
     # And I wait for ajax response
     And I click on "Add a new source"
@@ -33,7 +33,7 @@ Feature: Research answer
     And I click the drop down button for "2009"
     Then I should see "example.com"
     And I should see "Baam!"
-    And I should see "Add answer"
+    And I should see "Research answer"
 
   Scenario: Create a metric value and request check
     When I fill in "http://example.com" for "URL"
@@ -56,7 +56,7 @@ Feature: Research answer
     Then I should see "example.com"
     And I should see "Baam!"
     And I should see "check requested by Joe User"
-    And I should see "Add answer"
+    And I should see "Research answer"
 
   Scenario: Create a metric value with duplicated source
     When I fill in "http://www.wikiwand.com/en/Star_Wars" for "URL"

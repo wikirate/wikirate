@@ -44,7 +44,7 @@ format :html do
   end
 
   view :research_progress_bar do
-    link_to_card card.company_card, super(),
+    link_to_card card.company_card, _render_absolute_research_progress_bar,
                  path: { filter: { project: card.project_card.name,
                                    metric_value: :all } }
   end

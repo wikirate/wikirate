@@ -10,7 +10,7 @@ RSpec.shared_context "award badges context" do |threshold|
   end
 
   def trigger_awarded_action count=1
-    as_user "John" do
+    with_user "John" do
       count.times do |i|
         execute_awarded_action i + 1
       end
@@ -32,7 +32,7 @@ RSpec.shared_examples "award badges" do |threshold, badge_name|
 
   describe "#count" do
     subject do
-      as_user "John" do
+      with_user "John" do
         sample_acting_card.badge_squad.count(badge_action)
       end
     end

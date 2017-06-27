@@ -7,6 +7,11 @@ card_accessor :source_type, type: :pointer, default: "[[Link]]"
 add_attributes :import
 attr_accessor :import
 
+def source_title_card
+  # FIXME: needs codename, but :title is linked to *title
+  Card.fetch cardname.field("title"), new: {}
+end
+
 def import?
   # default (=nil) means true
   @import != false
@@ -107,5 +112,14 @@ format :html do
 
   def preview_hidden
     hidden_field_tag "card[subcards][+company][content]", Env.params[:company]
+  end
+end
+
+format :json do
+  def essentials
+    {
+      type: card.source_type_card.item_names.first,
+      title: card.source_title_card.content
+    }
   end
 end

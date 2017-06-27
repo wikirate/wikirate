@@ -6,7 +6,7 @@ shared_examples "create badges" do |threshold, badge_name|
 
   describe "#create count" do
     subject do
-      as_user "John" do
+      with_user "John" do
         sample_acting_card.create_count
       end
     end

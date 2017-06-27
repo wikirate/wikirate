@@ -152,12 +152,20 @@ format :html do
     "#{name.downcase}Pane"
   end
 
-  def new_metric_tab_pane name, active=false
+  def selected_tab_pane? name
+    if params[:tab]
+      params[:tab].casecmp(name).zero?
+    else
+      name == "Researched"
+    end
+  end
+
+  def new_metric_tab_pane name
     new_metric = Card.new type: MetricID, "+*metric type" => "[[#{name}]]"
     new_metric.reset_patterns
     new_metric.include_set_modules
     tab_pane tab_pane_id(name), subformat(new_metric)._render_new_tab_pane,
-             active
+             selected_tab_pane?(name)
   end
 
   view :help_text do |args|

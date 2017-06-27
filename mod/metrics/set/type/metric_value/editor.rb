@@ -5,7 +5,8 @@ format :html do
   end
 
   def default_edit_args _args
-    voo.hide! :toolbar
+    # voo.hide! :toolbar
+    voo.hide! :edit_buttons
   end
 
   view :content_formgroup, template: :haml do

@@ -119,6 +119,7 @@ describe Card::Set::Right::BrowseNoteFilter do
         create_voted_claims
         expect(filtered_item_names[0..2])
           .to eq %w[important_and_recent test_note claim1]
+
         expect(subject.index("test_note")).to be < subject.index("claim1")
       end
     end

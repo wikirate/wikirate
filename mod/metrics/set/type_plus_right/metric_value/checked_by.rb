@@ -191,15 +191,15 @@ format :html do
     wrap_with(:button, class: button_class,
                        data: { path: data_path }) do
       "Yes, I checked"
-      #output [
-        #wrap_with(:span, "Yes, I checked", class: "text")
-        # wrap_with(:span, "Yes, I checked the value", class: "hover-text")
-      #]
+      # output [
+      # wrap_with(:span, "Yes, I checked", class: "text")
+      # wrap_with(:span, "Yes, I checked the value", class: "hover-text")
+      # ]
     end
   end
 
   def fix_button
-    link_to_card card.left, "No, I fix it", class: "btn btn-default btn-sm", path: { view: :edit }
+    link_to_card card.left, "No, I'll fix it", class: "btn btn-default btn-sm", path: { view: :edit }
   end
 
   def check_button_request_credit
