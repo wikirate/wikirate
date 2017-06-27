@@ -53,7 +53,7 @@ module OpenCorporates
       def json_response *query_args
         query_uri(*query_args).read
       rescue OpenURI::HTTPError => e
-        e.io.string
+        e.io.try(:string) || e.io.try(:read) || raise(e)
       rescue SocketError => _e
         raise APIError, "service temporarily not available"
       end
