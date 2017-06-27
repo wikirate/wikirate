@@ -46,7 +46,7 @@ describe Card::Set::Right::OpenCorporates do
     it "hides empty fields" do
       stub_oc_api "current_status" => ""
       is_expected.not_to include("Status")
-      is_expected.to have_row("Name", "BP P.L.C.")
+      is_expected.to have_table([["Name", "BP P.L.C."]])
     end
 
     context "api not available" do
