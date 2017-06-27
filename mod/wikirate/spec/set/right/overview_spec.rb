@@ -1,52 +1,50 @@
 describe Card::Set::Right::Overview do
-  describe "#handle_edit_article" do
-    before do
-      Card::Env.params[:edit_article] = true
-      Card::Env.params[:citable] = sample_note
-    end
+  before do
+    Card::Env.params[:edit_article] = true
+    Card::Env.params[:citable] = sample_note.name
+  end
 
-    let(:citation) do
-      "Death Star uses dark side of the Force "\
-      "{{Death Star uses dark side of the Force|cite}}"
+  let(:article) { Card["Death Star", "Force", :overview] }
+  let(:content) { "I am your father! {{Death Star uses dark side of the Force|cite}}" }
+  let(:citation) do
+    "Death Star uses dark side of the Force "\
+    "{{Death Star uses dark side of the Force|cite}}"
+  end
+
+
+  def have_citation_tips
+    have_tag("div.note-tip") do
+      with_tag "textarea#citable_note", text: /#{citation}/
     end
-    let(:company) { create "company1", type_id: Card::WikirateCompanyID }
-    let(:topic) { create "topic1", type_id: Card::WikirateTopicID }
-    let(:overview_name) { "#{company.name}+#{topic.name}+#{Card[:overview].name}" }
-    context "missing view" do
-      it "render editor with empty content with citation tips" do
-        article = Card.new name: overview_name, type: "basic"
-        html = article.format.render_missing
-        id = "citable_note"
-        expect(html).to have_tag("div", with: { class: "note-tip" }) do
-          with_tag "textarea", with: { id: id }, text: /#{@citation}/
-        end
-        expect(html).to have_tag("div", with: { class: "prosemirror-editor" })
+  end
+
+  describe "missing view" do
+    subject { article.format.render :missing }
+
+    it "renders editor with empty content and citation tips" do
+      is_expected.to have_citation_tips
+      is_expected.to have_tag "div.prosemirror-editor"
+    end
+  end
+
+  describe "core view" do
+    subject { article.format.render :core }
+
+    it "renders editor with content and citation tips" do
+      is_expected.to have_citation_tips
+      is_expected.to have_tag("div.prosemirror-editor") do
+        with_tag "input", with: { name: "card[content]", value: content }
       end
     end
+  end
 
-    context "core and titled_with_edits views" do
-      it "renders editor with content with citation tips" do
-        article = Card.create name: overview_name, type: "basic",
-                              content: "hello world"
-        html = article.format.render_core
-        id = "citable_note"
-        expect(html).to have_tag("div", with: { class: "note-tip" }) do
-          with_tag "textarea", with: { id: id }, text: /#{@citation}/
-        end
-        prosemirror_tag = ["div", with: { class: "prosemirror-editor" }]
-        expect(html).to have_tag(*prosemirror_tag) do
-          with_tag "input", with: { name: "card[content]",
-                                    value: "hello world" }
-        end
+  describe "titled_with_edits view" do
+    subject { article.format.render :titled_with_edits }
 
-        html = article.format.render_titled_with_edits
-        expect(html).to have_tag("div", with: { class: "note-tip" }) do
-          with_tag "textarea", with: { id: id }, text: /#{@citation}/
-        end
-        expect(html).to have_tag(*prosemirror_tag) do
-          with_tag "input", with: { name: "card[content]",
-                                    value: "hello world" }
-        end
+    it "renders editor with content and citation tips" do
+      is_expected.to have_citation_tips
+      is_expected.to have_tag("div.prosemirror-editor") do
+        with_tag "input", with: { name: "card[content]", value: content }
       end
     end
   end

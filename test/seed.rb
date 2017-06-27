@@ -92,7 +92,7 @@ class SharedData
       create "Death Star+Force",
              type: "analysis",
              subfields: { overview: {
-               content: "I'm your father! {{Death Star uses dark side of the Force|cite}}"
+               content: "I am your father! {{Death Star uses dark side of the Force|cite}}"
              } }
     end
 
