@@ -1,18 +1,17 @@
 
 RSpec.describe Card::Set::Type::WikirateCompany::Structure do
 
-
   describe "details tab" do
-    subject { Card["Samsung"].format(:html)._render_details_tab }
+    subject { Card["Google Inc"].format(:html)._render_details_tab }
     it "has jurisdiction table" do
       is_expected.to have_tag "table" do
         with_tag :tr do
-          with_tag :td do
-            with_text "Country of Headquarters"
-          end
-          with_tag :td do
-            with_text "Korriban"
-          end
+          with_tag :td, text: "Country of Headquarters"
+          with_tag :td, text: "California (United States)"
+        end
+        with_tag :tr do
+          with_tag :td, text: "Country of Incorporation"
+          with_tag :td, text: "Delaware (United States)"
         end
       end
     end
