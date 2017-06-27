@@ -58,37 +58,23 @@ module OpenCorporates
 
     def fetch_properties
       api_response
-      return unless valid?
-      validate_response
-      return unless valid?
-      @properties = OpenStruct.new api_response["results"]["company"]
+      @properties = OpenStruct.new api_response
+    rescue APIError => e
+      msg = if e.message == "unexpected format"
+              "open corporates returned unexpected format for "\
+              "#{@jurisdiction_code}/#{@company_number}"
+            else
+              "couldn't receive open corporates entry: #{e.message}"
+            end
+      fail msg
     ensure
       @properties ||= OpenStruct.new
     end
 
-    def validate_response
-      if api_response["error"]
-        fail "couldn't receive open corporates entry: "\
-             "#{api_response['error']['message']}"
-      elsif !response_has_expected_structure?
-        fail "open corporates returned unexpected format for "\
-             "#{@jurisdiction_code}/#{@company_number}"
-      end
-    end
-
-    def response_has_expected_structure?
-      api_response["results"].is_a?(Hash) &&
-        api_response["results"]["company"].is_a?(Hash)
-    end
-
     def api_response
       @api_response ||=
-        ::OpenCorporates::API.fetch :companies, @jurisdiction_code, @company_number,
-                                    sparse: true
-    rescue OpenURI::HTTPError => e
-      JSON.parse e.io.string
-    rescue StandardError => _e
-      fail "service temporarily not available"
+        ::OpenCorporates::API.fetch_companies @jurisdiction_code, @company_number,
+                                              sparse: true
     end
   end
 end

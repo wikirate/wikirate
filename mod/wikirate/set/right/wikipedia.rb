@@ -29,7 +29,6 @@ rescue Exception => _e
   ""
 end
 
-
 format :html do
   delegate :wikipedia_extract, :wikipedia_url, to: :card
   view :edit do

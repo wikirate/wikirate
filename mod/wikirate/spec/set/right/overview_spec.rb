@@ -11,7 +11,6 @@ describe Card::Set::Right::Overview do
     "{{Death Star uses dark side of the Force|cite}}"
   end
 
-
   def have_citation_tips
     have_tag("div.note-tip") do
       with_tag "textarea#citable_note", text: /#{citation}/
