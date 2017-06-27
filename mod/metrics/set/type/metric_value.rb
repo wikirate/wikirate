@@ -3,6 +3,7 @@ card_accessor :checked_by
 card_accessor :source
 
 include_set Abstract::MetricChild, generation: 2
+include_set Abstract::Answer
 
 event :set_metric_value_name,
       before: :set_autoname, when: :invalid_value_name? do
