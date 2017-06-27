@@ -416,10 +416,11 @@ div#pdf-preview {
 .panel-primary-container > .card-slot > .panel-default {
     border-color: #eaeaea;
     > .panel-heading {
-        color: #fff;
-        background-color: #03998d;
-        border-color: #03998d;
+        color: #404040;
+        background-color: #ffffff;
         padding: 13px;
+        border-top: 3px solid $main-color;
+        border-bottom: 2px solid $border-color;
     }
 }
 .titled-view,
@@ -601,7 +602,7 @@ button.pointer-item-delete.btn.btn-default {
 a.external-link, .closed-content a.external-link {
     color: #03998d!important;
     background: none!important;
-    padding-right: 13px !important;
+    padding-right: 2px !important;
     position: relative;
 }
 
