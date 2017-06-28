@@ -66,6 +66,10 @@ def relationship?
   (mc = metric_card) && mc.relationship?
 end
 
+def standard?
+  (mc = metric_card) && mc.standard?
+end
+
 def metric_card_before_name_change
   return unless (old_metric_name = metric_was) && old_metric_name.present?
   return unless old_metric_name != metric_name

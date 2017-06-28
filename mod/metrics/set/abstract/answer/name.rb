@@ -16,7 +16,6 @@ def compose_and_validate_name
 end
 
 def fetch_name_part part
-  binding.pry
   name_part = name_part_from_field(part) || name_part_from_name(part)
   check_name_part part, name_part
 end

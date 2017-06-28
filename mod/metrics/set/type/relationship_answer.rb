@@ -28,7 +28,8 @@ end
 event :add_count_answer, after: :set_autoname do
   count = company_count
   count += 1 if @action == :create
-  add_subfield [metric, company, year], type_id: MetricValueID, content: count
+  add_subcard [metric, company, year].join("+"),
+              type_id: MetricValueID, content: count
 end
 
 # number of companies that have a relationship answer for this answer

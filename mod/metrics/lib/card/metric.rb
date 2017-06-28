@@ -7,7 +7,6 @@ class Card::Metric
     end
 
     def create_value company, year, value
-      binding.pry
       args = { company: company.to_s, year: year }
       if @metric.researched? && @random_source
         args[:source] ||= Card.search(type_id: Card::SourceID, limit: 1).first

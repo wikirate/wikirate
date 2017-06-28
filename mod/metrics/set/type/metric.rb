@@ -91,8 +91,12 @@ def multi_categorical?
   value_type_code == :multi_category
 end
 
+def standard?
+  metric_type_codename == :researched
+end
+
 def researched?
-  metric_type_codename == :researched || relationship?
+  standard? || relationship?
 end
 
 def calculated?

@@ -1,8 +1,8 @@
-event :validate_answer_field, before: :set_answer_name do
+event :validate_answer_field, before: :set_answer_name, when: :standard? do
   missing_part :answer unless subfield_present?(:value)
 end
 
-event :validate_value_type, :validate, on: :save do
+event :validate_value_type, :validate, on: :save, when: :standard? do
   # check if the value fit the value type of metric
   if metric_card && metric_card.researched? &&
     (value_type = metric_card.fetch(trait: :value_type)) &&
