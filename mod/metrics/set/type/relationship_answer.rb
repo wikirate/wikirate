@@ -6,6 +6,38 @@ def related_company
   cardname.tag
 end
 
+def related_company_card
+  Card[cardname.tag]
+end
+
+def name_parts
+  %w[metric company year related_company]
+end
+
+def valid_related_company?
+  (related_company_card && related_company_card.type_id == WikirateCompanyID) ||
+    ActManager.include?(related_company)
+end
+
+def valid_value_name?
+  super && valid_related_company?
+end
+
+# has to happen after :set_answer_name,
+# but always, also if :set_answer_name is not executed
+event :add_count_answer, after: :set_autoname do
+  count = company_count
+  count += 1 if @action == :create
+  add_subfield [metric, company, year], type_id: MetricValueID, content: count
+end
+
+# number of companies that have a relationship answer for this answer
+def company_count
+  return 0 unless (answer_id = Card.fetch_id(cardname.left))
+  Card.search left_id: answer_id, right: { type_id: WikirateCompanyID },
+              return: :count
+end
+
 format :html do
   def default_value_link_args _args
     voo.show! :link if card.relationship?

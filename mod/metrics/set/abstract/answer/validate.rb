@@ -1,4 +1,4 @@
-event :validate_answer_field, before: :set_metric_value_name do
+event :validate_answer_field, before: :set_answer_name do
   missing_part :answer unless subfield_present?(:value)
 end
 
@@ -41,7 +41,7 @@ end
 
 event :validate_answer_name,
       after: :validate_update_date, on: :save, changed: :name do
-  if Card.fetch_type_id(cardname.tag) != YearID
+  if Card.fetch_type_id(card.year) != YearID
     errors.add :name, "right part must be a year"
   end
   if cardname.length < 4
@@ -50,11 +50,22 @@ event :validate_answer_name,
 end
 
 def valid_value_name?
-  cardname.parts.size >= 3 && valid_metric? && valid_company? && valid_year?
+  cardname.parts.size >= (name_parts.size + 1) && valid_name_parts?
 end
 
 def invalid_value_name?
   !valid_value_name?
+end
+
+def valid_name_parts?
+  name_parts.all? { |part| send "valid_#{part}?" }
+end
+
+def validate_name_parts
+  name_parts.each do |part|
+    next if send "valid_#{part}?"
+    errors.add part, "#{send part} is not a valid #{part}"
+  end
 end
 
 def check_name_part part, name
@@ -66,7 +77,7 @@ def check_name_part part, name
 end
 
 def missing_part part
-  errors.add part, "No #{part} given."
+  errors.add part, "no #{part} given."
 end
 
 def valid_metric?

@@ -25,7 +25,8 @@ format :html do
     tags = {}
     tags["card[name]"] = card.name
     # tags["card[subcards][+metric][content]"] = card.metric
-    tags["card[type_id]"] = MetricValueID
+    tags["card[type_id]"] =
+      card.metric_card.relationship? ? RelationshipAnswerID : MetricValueID
     tags["card[subcards][+source][content]"] = source if source.present?
     hidden_tags tags
   end

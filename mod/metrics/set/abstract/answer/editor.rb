@@ -11,6 +11,9 @@ format :html do
 
   view :content_formgroup, template: :haml do
     card.add_subfield :year, content: card.year
+    if card.metric_card.relationship?
+      card.add_subfield :related_company, content: card.related_company
+    end
   end
 
   def default_new_args _args
