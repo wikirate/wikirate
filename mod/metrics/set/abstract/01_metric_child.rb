@@ -67,6 +67,7 @@ def relationship?
 end
 
 def standard?
+  binding.pry if metric_card.type_id != Card::MetricID
   (mc = metric_card) && mc.standard?
 end
 

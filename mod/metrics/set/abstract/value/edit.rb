@@ -29,17 +29,9 @@ format :html do
 
   def part_view
     if multi_select?
-      if options_count > 10
-        :multiselect
-      else
-        :checkbox
-      end
+      options_count > 10 ? :multiselect : :checkbox
     else
-      if options_count > 10
-        :select
-      else
-        :radio
-      end
+      options_count > 10 ? :select : :radio
     end
   end
 

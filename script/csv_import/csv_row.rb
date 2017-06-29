@@ -56,7 +56,7 @@ class CSVRow
 
   def error msg
     @errors << msg
-    raise StandardError, msg, caller
+    raise ImportError, msg, caller
   end
 
   def required

@@ -37,10 +37,9 @@ class CSVFile
     csv_row.execute_import
   rescue ImportError => e
     case error_policy
-    when :fail then raise e
-    when :report then
-      puts csv_row.errors.join("\n")
-    when :skip then nil
+    when :fail   then raise e
+    when :report then puts csv_row.errors.join("\n")
+    when :skip   then nil
     end
   end
 

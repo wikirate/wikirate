@@ -1,5 +1,5 @@
 include_set Abstract::MetricChild, generation: 3
-include_set Abstract::Answer
+include_set Abstract::MetricAnswer
 
 
 def related_company
@@ -28,8 +28,8 @@ end
 event :add_count_answer, after: :set_autoname do
   count = company_count
   count += 1 if @action == :create
-  add_subcard [metric, company, year].join("+"),
-              type_id: MetricValueID, content: count
+  add_subcard [metric, company, year], type_id: MetricValueID,
+              subfields: { value: { content: count } }
 end
 
 # number of companies that have a relationship answer for this answer

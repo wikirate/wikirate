@@ -1,5 +1,5 @@
 include_set Abstract::MetricChild, generation: 2
-include_set Abstract::Answer
+include_set Abstract::MetricAnswer
 
 def filtered_item_query filter={}, sort={}, paging={}
   filter[:year] = year.to_i

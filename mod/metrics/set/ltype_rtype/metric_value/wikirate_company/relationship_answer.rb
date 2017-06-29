@@ -1,7 +1,7 @@
 include_set Abstract::MetricChild, generation: 3
 include_set Abstract::ValueToggle
 include_set Abstract::ResearchedValueDetails
-include_set Abstract::Answer
+include_set Abstract::MetricAnswer
 
 format :html do
   view :company_name do

@@ -62,7 +62,7 @@ def extract_metric_value_name args, error_msg
   args[:name] || begin
     missing = [:company, :year, :value].reject { |v| args[v] }
     if missing.empty?
-      [name, args[:company], args[:year]].join "+"
+      [name, args[:company], args[:year], args[:related_company]].compact.join "+"
     else
       error_msg.push("missing field(s) #{missing.join(',')}")
       nil

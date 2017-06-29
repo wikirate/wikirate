@@ -1,3 +1,5 @@
+include_set Abstract::MetricChild, generation: 1
+
 def all_answers
   @result ||=
     Answer.search(record_id: id, sort_by: :year, sort_order: :desc)
@@ -31,7 +33,7 @@ format :html do
   # 4) add new value page (new_metric_value view for company)
   view :core, unknown_ok: true do
     voo.hide :answer_form
-    voo.hide :add_answer_redirect
+    voo.show :add_answer_redirect
     wrap_with :div, id: card.cardname.url_key, class: "record-row" do
       [
         _optional_render_metric_info,
