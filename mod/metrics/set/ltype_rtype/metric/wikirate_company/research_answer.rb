@@ -13,6 +13,7 @@ format :html do
   view :new_answer, cache: :never do
     wrap do
       _optional_render :answer_form
+      _render_answer_table
     end
   end
 
@@ -23,7 +24,6 @@ format :html do
   # placeholder
   # that needs the correct number of parts to work
   def new_answer_card
-    binding.pry
     if card.relationship?
       card.attach_subfield "replace with year+replace with company",
                            type_id: RelationshipAnswerID

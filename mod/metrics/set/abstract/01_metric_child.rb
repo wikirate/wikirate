@@ -67,7 +67,6 @@ def relationship?
 end
 
 def standard?
-  binding.pry if metric_card.type_id != Card::MetricID
   (mc = metric_card) && mc.standard?
 end
 
@@ -130,6 +129,14 @@ end
 
 def record_card
   Card.fetch record
+end
+
+def contextual_record_name
+  if generation == 1
+    "_self"
+  else
+    "_#{'L' * (generation - 1)}"
+  end
 end
 
 format do

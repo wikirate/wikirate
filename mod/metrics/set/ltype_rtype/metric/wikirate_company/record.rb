@@ -38,7 +38,7 @@ format :html do
       [
         _optional_render_metric_info,
         _optional_render_buttons,
-        _optional_render_new_answer,
+        # _optional_render_new_answer
         _render_answer_table
       ]
     end
@@ -65,20 +65,22 @@ format :html do
   end
 
   view :answer_table do
-    answer_view =
-      voo.show?(:chart) ? :closed_answer : :closed_answer_without_chart
+    binding.pry
+    class_up "card-slot", "_show_add_new_value_button" if voo.hide? :answer_form
+    answer_view = voo.show?(:chart) ? :closed_answer : :closed_answer_without_chart
     wrap do
       next "" unless all_answers.present?
-      wikirate_table :plain, all_answers,
-                     [:plain_year, answer_view],
-                     header: %w[Year Answer],
-                     td: { classes: ["text-center"] }
+      output [_optional_render_answer_form,
+        wikirate_table(:plain, all_answers,
+                       [:plain_year, answer_view],
+                       header: %w[Year Answer],
+                       td: { classes: ["text-center"] })]
     end
   end
 
   view :new_answer_success do
-    class_up "card-slot", "_show_add_new_value_button"
     voo.hide! :chart
+    voo.hide! :answer_form
     _render_answer_table
   end
 
@@ -97,8 +99,8 @@ format :html do
 
   def show_form_button
     classes = "_add_new_value btn-primary"
-    classes << "hide" if voo.show?(:answer_form)
-    wrap_with :a, "Research answer",
+    classes << " hide" if voo.show?(:answer_form)
+    wrap_with :a, "Research Answer",
               href: "#",
               class: css_classes(button_classes, classes),
               data: { url: path(view: :answer_form) },
