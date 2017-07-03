@@ -69,6 +69,11 @@ class SharedData
                type: "company",
                subcards: { "+about" => about }
       end
+      ensure_card ["Google Inc", :headquarters],
+                  type: :pointer, content: "California (United States)"
+      ensure_card ["Google Inc", :incorporation],
+                  type: :pointer, content: "Delaware (United States)"
+      ensure_card ["Google Inc", :open_corporates], content: "3582691"
     end
 
     def add_topics
@@ -83,7 +88,7 @@ class SharedData
       create "Death Star+Force",
              type: "analysis",
              subfields: { overview: {
-               content: "I'm your father! {{Death Star uses dark side of the Force|cite}}"
+               content: "I am your father! {{Death Star uses dark side of the Force|cite}}"
              } }
     end
 

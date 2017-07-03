@@ -8,6 +8,12 @@ card_accessor :direct_contribution_count, type: :number, default: "0"
 card_accessor :aliases, type: :pointer
 card_accessor :all_metric_values
 card_accessor :image
+card_accessor :incorporation
+card_accessor :headquarters
+
+def headquarters_jurisdiction_code
+  (hc = headquarters_card) && (jc_card = hc.item_cards.first) && jc_card.codename
+end
 
 view :missing do |args|
   _render_link args
@@ -59,7 +65,7 @@ end
 
 format :csv do
   view :core do
-    Answer.csv_title + all_answers.map(&:csv_line).join
+    Answer.csv_title + card.all_answers.map(&:csv_line).join
   end
 end
 

@@ -118,8 +118,7 @@ describe Card::Set::Right::BrowseNoteFilter do
         Card::Env.params[:sort] = "important"
         create_voted_claims
         expect(filtered_item_names[0..2])
-          .to eq ["important_and_recent", "test_note",
-                  "Death Star uses dark side of the Force"]
+          .to eq %w[important_and_recent test_note claim1]
 
         expect(subject.index("test_note")).to be < subject.index("claim1")
       end

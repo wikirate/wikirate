@@ -2,58 +2,61 @@
 
 /*Common Classes*/
 .height-auto {
-    height: auto!important;
+  height: auto !important;
 }
 
 .inherit-anchor {
+  text-decoration: none;
+  color: inherit !important;
+  :hover {
     text-decoration: none;
-    color: inherit!important;
-    :hover {
-        text-decoration: none;
-        color: inherit;
-    }
+    color: inherit;
+  }
 }
-.cursor-p{
+
+.cursor-p {
   cursor: pointer;
 }
+
 .slab a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .slab:hover {
-    background: #fbfbfb;
+  background: #fbfbfb;
 }
+
 //Text Colors
 .company-color {
-    color: $company-color;
+  color: $company-color;
 }
 
 .metric-color {
-    color: $metric-color;
+  color: $metric-color;
 }
 
 .topic-color {
-    color: $topic-color;
+  color: $topic-color;
 }
 
 .main-color {
-    color: $main-color;
+  color: $main-color;
 }
 
 .white-text {
-    color: #fff;
+  color: #fff;
 }
 
 .dark-grey-color {
-    color: #333;
+  color: #333;
 }
 
 .light-grey-color {
-    color: #ccc;
+  color: #ccc;
 }
 
 .light-grey-color-2 {
-    color: #999;
+  color: #999;
 }
 
 .verify-blue {
@@ -64,14 +67,13 @@
   color: $highlight-color;
 }
 
-
 //Text adjustments
 .text-align-left {
-    text-align: left;
+  text-align: left;
 }
 
 .text-align-right {
-    text-align: right;
+  text-align: right;
 }
 
 .text-vertically-centered {
@@ -82,25 +84,25 @@
 }
 
 .no-bold-text {
-    font-weight: normal;
+  font-weight: normal;
 }
+
 .remove-text-decoration a {
-    text-decoration: none!important;
+  text-decoration: none !important;
 }
 
 .heading-label {
-    padding: 15px;
-    border-bottom: 1px solid #eee;
-    font-weight: 500;
-    margin-bottom: -1px;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  font-weight: 500;
+  margin-bottom: -1px;
 }
 
 .heading-content {
-    font-size: 1.3em;
-    line-height: 1.4em;
-    margin: 10px 0;
+  font-size: 1.3em;
+  line-height: 1.4em;
+  margin: 10px 0;
 }
-
 
 //font options
 .normal-weight {
@@ -109,83 +111,85 @@
 
 //Common adjustments
 .float-right {
-    float: right;
+  float: right;
 }
 
 .no-hover:hover {
-    background-color: inherit!important;
-    cursor: inherit!important;
+  background-color: inherit !important;
+  cursor: inherit !important;
 }
 
 .nopadding {
-    padding: 0 !important;
-    margin: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
-.no-margin{
-  margin: 0!important;
+
+.no-margin {
+  margin: 0 !important;
 }
+
 .margin-8 {
-    margin: 8px;
+  margin: 8px;
 }
 
 .margin-12 {
-    margin: 12px;
+  margin: 12px;
 }
 
-.margin-15{
+.margin-15 {
   margin: 15px;
 }
 
 .margin-top-10 {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .margin-top-20 {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .margin-top-50 {
-    margin-top: 50px;
+  margin-top: 50px;
 }
 
 .margin-top-80 {
-    margin-top: 80px;
+  margin-top: 80px;
 }
 
 .margin-left-10 {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .margin-left-15 {
-    margin-left: 15px;
+  margin-left: 15px;
 }
 
 .margin-left-20 {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .margin-no-left-15 {
-    margin: 15px 15px 15px 0px;
+  margin: 15px 15px 15px 0px;
 }
 
 .padding-top-10 {
-    padding-top: 10px !important;
+  padding-top: 10px !important;
 }
 
 .padding-top-15 {
-    padding-top: 15px !important;
+  padding-top: 15px !important;
 }
 
 .padding-bottom-10 {
-    padding-bottom: 10px !important;
+  padding-bottom: 10px !important;
 }
 
 .padding-top-50 {
-    padding-top: 50px !important;
+  padding-top: 50px !important;
 }
 
 .padding-top-20 {
-    padding-top: 20px !important;
+  padding-top: 20px !important;
 }
 
 .padding-20 {
@@ -196,45 +200,56 @@
   min-width: 300px;
 }
 
+.padding-right-30 {
+  padding-right: 30px !important;
+}
+
+.no-stretch {
+  width: 1%;
+  white-space: nowrap;
+}
+
 //background and borders
 .background-white {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 .background-grey {
-    background: #fafafa;
+  background: #fafafa;
 }
 
 .border-left {
-    border-left: 1px solid #e5e5e5;
+  border-left: 1px solid #e5e5e5;
 }
 
 .border-bottom {
-    border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .border-top {
-    border-top: 1px solid #e5e5e5;
+  border-top: 1px solid #e5e5e5;
 }
 
 .double-border-fix-left {
-    margin-left: -1px;
+  margin-left: -1px;
 }
+
 //custom column
 .col-md-3-5 {
-    width: 25.666%;
-    float: left;
+  width: 25.666%;
+  float: left;
 }
 
 .col-centered {
-    float: none;
-    margin: 0 auto;
+  float: none;
+  margin: 0 auto;
 }
 
 //heights
-.min-page-height{
+.min-page-height {
   min-height: $min-page-height;
 }
+
 //images
 .image-box {
   &.medium {
@@ -253,12 +268,12 @@
     height: 32px;
     line-height: 16px;
   }
-  &.large{
+  &.large {
     width: 216px;
     height: 216px;
   }
   //FIXME remove large-rect
-  &.large-rect{
+  &.large-rect {
     width: 175px;
     height: 175px;
   }
@@ -275,12 +290,12 @@
   box-sizing: border-box;
   padding: 5px;
   border: 1px solid #eee;
-  background-color: #f8f9fa ;
+  background-color: #f8f9fa;
   line-height: 80px;
   vertical-align: middle;
   margin-right: 18px;
   text-align: center;
-  img{
+  img {
     display: block;
     max-width: 100%;
     height: auto;
@@ -289,81 +304,77 @@
   }
 }
 
-
 .homepage-lead {
-    font-weight: 300;
-    margin-bottom: 20px;
-    line-height: 1.4;
-    font-size: 30px;
-    color: #868686;
+  font-weight: 300;
+  margin-bottom: 20px;
+  line-height: 1.4;
+  font-size: 30px;
+  color: #868686;
 }
 
 // Modal
 .modal-body > div {
-    display: inline-block;
-    width: 100%;
-    .menu-slot {
-        z-index: 1;
-    }
+  display: inline-block;
+  width: 100%;
+  .menu-slot {
+    z-index: 1;
+  }
 }
 
 .modal-dialog.large {
-    width: 800px;
+  width: 800px;
 }
 
 div#pdf-preview {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 //Ajax loader animation
 #ajax_loader {
-    display: none;
+  display: none;
 }
 
-
 .loader-anime {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background-color: rgba(255, 255, 255, 0.8);
+  .anime {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 999;
-    background-color: rgba(255, 255, 255, 0.8);
-    .anime {
-        position: absolute;
-        left: 50%;
-        top: 12%;
-        margin-left: -20px;
-    }
+    left: 50%;
+    top: 12%;
+    margin-left: -20px;
+  }
 }
 
 .loader-anime.relative {
   position: relative;
 }
 
-
-
 .tagline, .edits-by, .last-edit {
-    // border-bottom: 1px solid $div-border-color;
-    font-size: 0.8em;
-    margin-bottom: 5px;
-    color: #ccc;
-    .subtitle-header {
-        float: left;
-        padding-right: 6px;
-    }
+  // border-bottom: 1px solid $div-border-color;
+  font-size: 0.8em;
+  margin-bottom: 5px;
+  color: #ccc;
+  .subtitle-header {
+    float: left;
+    padding-right: 6px;
+  }
 
-    a {
-        color: #ababab;
-        font-weight: bold;
-    }
+  a {
+    color: #ababab;
+    font-weight: bold;
+  }
 
-    div {
-      display: inline;
-    }
-    .item-link{
-      padding: 0px;
-    }
+  div {
+    display: inline;
+  }
+  .item-link {
+    padding: 0px;
+  }
 }
 
 // TODO: verify if this class is used anywhere
@@ -376,6 +387,7 @@ div#pdf-preview {
   position: relative;
 
 }
+
 #credit {
   z-index: -0;
   left: 8px;
@@ -389,190 +401,201 @@ div#pdf-preview {
 }
 
 .panel-default {
-    border-color: #efefef;
-    // margin-bottom: -2px;
-    > .panel-heading {
-        background-image: none;
-    }
-    > .panel-heading {
-        color: #333;
-        background-color: #f5f5f5;
-        border-right: 1px solid rgba(0, 0, 0, 0.05);
-        padding: 10px;
-    }
+  border-color: #efefef;
+  // margin-bottom: -2px;
+  > .panel-heading {
+    background-image: none;
+  }
+  > .panel-heading {
+    color: #333;
+    background-color: #f5f5f5;
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 10px;
+  }
 }
+
 .panel-primary-container > .card-slot > {
-    .menu-slot > .vertical-card-menu.show-on-hover .btn-group.slotter a {
-        color: #fff;
-        &:hover {
-            color: #fafafa;
-        }
+  .menu-slot > .vertical-card-menu.show-on-hover .btn-group.slotter a {
+    color: #fff;
+    &:hover {
+      color: #fafafa;
     }
-    .panel-default > .panel-heading {
-        padding: 10px !important;
-    }
+  }
+  .panel-default > .panel-heading {
+    padding: 10px !important;
+  }
 }
+
 .panel-primary,
 .panel-primary-container > .card-slot > .panel-default {
-    border-color: #eaeaea;
-    > .panel-heading {
-        color: #fff;
-        background-color: #03998d;
-        border-color: #03998d;
-        padding: 13px;
-    }
+  border-color: #eaeaea;
+  > .panel-heading {
+    color: #404040;
+    background-color: #ffffff;
+    padding: 13px;
+    border-top: 3px solid $main-color;
+    border-bottom: 2px solid $border-color;
+  }
 }
+
 .titled-view,
 .titled_with_edits-view {
-    > .card-header {
-        font-size: 1.3em;
-        margin: 3px 0 !important;
-    }
+  > .card-header {
+    font-size: 1.3em;
+    margin: 3px 0 !important;
+  }
 }
 
 .alert {
-    border-radius: 0;
+  border-radius: 0;
 }
 
 .alert-info {
-    background-color: rgba(3, 153, 141, 0.08);
-    border-color: rgba(3, 153, 141, 0.08);
-    color: #31708f;
+  background-color: rgba(3, 153, 141, 0.08);
+  border-color: rgba(3, 153, 141, 0.08);
+  color: #31708f;
 }
 
 .help-block {
-    margin-top: 0;
-    margin-bottom: 0;
-    color: $help-text;
-    font-size: 13px;
-    width: 100%;
-    display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: $help-text;
+  font-size: 13px;
+  width: 100%;
+  display: inline-block;
 }
 
 .navbar-inverse {
-    background-color: #03998d;
-    border-color: #03998d;
-    .navbar-nav > li > a,
-    .navbar-text {
-        color: #fff;
-    }
+  background-color: #03998d;
+  border-color: #03998d;
+  .navbar-nav > li > a,
+  .navbar-text {
+    color: #fff;
+  }
 }
+
 @media (min-width: 768px) {
-    .navbar {
-        border-radius: 0;
-    }
+  .navbar {
+    border-radius: 0;
+  }
 }
 
 .new-source-widget {
+  background: #fffbe6;
+  border: 1px solid #ebebeb;
+  .tab-content {
     background: #fffbe6;
-    border: 1px solid #ebebeb;
-    .tab-content {
-        background: #fffbe6;
-        padding: 10px 10px 0 12px;
-        float: left;
-        width: 100%;
+    padding: 10px 10px 0 12px;
+    float: left;
+    width: 100%;
+  }
+
+  .row-data.first-meta {
+    margin-top: 15px;
+    float: left;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .first-meta {
+    a {
+      color: #bdbdbd;
     }
 
-    .row-data.first-meta {
-        margin-top: 15px;
-        float: left;
-        width: 100%;
-        margin-bottom: 15px;
+    i {
+      margin-right: 5px;
+      width: 15px;
     }
-
-    .first-meta {
-        a {
-            color: #bdbdbd;
-        }
-
-        i {
-            margin-right: 5px;
-            width: 15px;
-        }
-    }
+  }
 }
+
 .grey-nav-tab,
 .new-source-tab {
-    background: #f5f5f5;
-    border-bottom: 1px solid #ebebeb;
+  background: #f5f5f5;
+  border-bottom: 1px solid #ebebeb;
 }
 
 .closed-content {
-    font-size: 16px!important;
+  font-size: 16px !important;
 }
 
 .drop-shadow {
-    @include box-shadow(0,1px,6px,rgba(0,0,0,.13));
+  @include box-shadow(0, 1px, 6px, rgba(0, 0, 0, .13));
 }
 
 .list-group-item {
-    border-radius: 3px!important;
+  border-radius: 3px !important;
 }
+
 //Close and Pin buttons on edit menu
 a[title='cancel'],
 button[title='pin'] {
-    background: none;
+  background: none;
 }
 
 button.pointer-item-delete.btn.btn-default {
-    height: 34px;
-    border-bottom-right-radius: 4px;
-    border-top-right-radius: 4px;
+  height: 34px;
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
 }
 
 .accordion-toggle:after {
-   /* symbol for "opening" panels */
-   font-family:'FontAwesome';
-   content:"\f0da";
-   float: right;
-   color: inherit;
+  /* symbol for "opening" panels */
+  font-family: 'FontAwesome';
+  content: "\f0da";
+  float: right;
+  color: inherit;
 }
+
 .panel-heading.collapsed .accordion-toggle:after {
-   /* symbol for "collapsed" panels */
-   content:"\f0d7";
+  /* symbol for "collapsed" panels */
+  content: "\f0d7";
 }
 
 // Voting
 
-.vote-count{
+.vote-count {
   color: #999;
 }
+
 .vote-button {
   color: #999;
 }
 
-.current-user-up{
-  color: $main-color!important;
+.current-user-up {
+  color: $main-color !important;
 }
-.current-user-down{
-  color: $wanted-card-color!important;
+
+.current-user-down {
+  color: $wanted-card-color !important;
 }
 
 .ellipsis,
 .ellipsis .known-card {
-    max-width: 94%;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
-// Bootstrap Tweak
-.media-body {
-    width: inherit;
-    padding-left: 8px;
+  max-width: 94%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-.rich-header  {
-  .media{
+// Bootstrap Tweak
+.media-body {
+  width: inherit;
+  padding-left: 8px;
+}
+
+.rich-header {
+  .media {
     border-bottom: 1px solid $border-color;
     margin-bottom: 10px;
   }
   h3 {
-      margin: 10px 8px;
+    margin: 10px 8px;
   }
 }
 
 .horizontal-list {
-  .pointer-item{
+  .pointer-item {
     display: inline;
     padding: 0;
   }
@@ -599,10 +622,10 @@ button.pointer-item-delete.btn.btn-default {
 //External links
 //override wagn default
 a.external-link, .closed-content a.external-link {
-    color: #03998d!important;
-    background: none!important;
-    padding-right: 13px !important;
-    position: relative;
+  color: #03998d !important;
+  background: none !important;
+  padding-right: 2px !important;
+  position: relative;
 }
 
 a.external-link:after, .closed-content a.external-link:after {
@@ -612,17 +635,15 @@ a.external-link:after, .closed-content a.external-link:after {
   bottom: 4px;
   font-family: fontAwesome;
   font-size: 8px;
-  text-decoration: none!important;
+  text-decoration: none !important;
   display: inline;
 }
 
-
 // Fix for tiny radio button issue
 
-li>input[type="radio"] {
-  width: inherit!important;
+li > input[type="radio"] {
+  width: inherit !important;
 }
-
 
 .SELF-about_wiki_rate #wikirate-info-video iframe[src*="vimeo"] {
   width: 640px;
@@ -631,9 +652,9 @@ li>input[type="radio"] {
 
 //All vimeo embeds
 iframe[src*="vimeo"] {
-    box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.11);
-    width: 430px;
-    height: 240px;
+  box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.11);
+  width: 430px;
+  height: 240px;
 }
 
 ul {

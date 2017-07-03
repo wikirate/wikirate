@@ -1,3 +1,5 @@
+
+
 format :html do
   def basic_properties
     {
@@ -17,14 +19,17 @@ format :html do
   end
 
   view :metric_properties do
+    table table_properties, class: "metric-properties"
+  end
+
+  def table_properties
     props = card.researched? ? researched_properties : basic_properties
     # TODO: above should use set pattern
-    table_props = props.each_with_object({}) do |(p_name, p_label), p_hash|
+    props.each_with_object({}) do |(p_name, p_label), p_hash|
       next unless (row_value = send "#{p_name}_property")
       p_hash[p_label] = row_value
       p_hash
     end
-    table table_props, class: "metric-properties"
   end
 
   def designer_property

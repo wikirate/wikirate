@@ -21,8 +21,7 @@ class Card
               { x: { scale: "x", field: "x" },
                 width: { scale: "x", band: true, offset: -1 },
                 y: { scale: "y", field: "y" },
-                y2: { scale: "y", value: 0 } }
-          }
+                y2: { scale: "y", value: 0 } } }
       }.freeze
 
       Range = Struct.new(:min, :max) do
@@ -94,6 +93,7 @@ class Card
         @y_range.add @data.last[:y]
         @data
       end
+
       def data_item_hash filter
         hash = { y: count(filter),
                  highlight: highlight?(filter) }
