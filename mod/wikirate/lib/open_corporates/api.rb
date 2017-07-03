@@ -20,7 +20,7 @@ module OpenCorporates
       # This method removes the additional hash level with the "jurisdiction" key.
       # @return [Array<Hash>]
       def fetch_jurisdictions
-        resupt =
+        result =
           pick_nested_item "results", "jurisdictions" do
             fetch :jurisdictions
           end
@@ -34,11 +34,6 @@ module OpenCorporates
       # @return the full json response converted to a hash
       def fetch *query_args
         JSON.parse json_response(*query_args)
-      rescue OpenURI::HTTPError => e
-        error = JSON.parse e.io.string
-        raise APIError, error["error"]["message"]
-      rescue StandardError => _e
-        raise APIError, "service temporarily not available"
       end
 
       private
@@ -58,7 +53,9 @@ module OpenCorporates
       def json_response *query_args
         query_uri(*query_args).read
       rescue OpenURI::HTTPError => e
-        e.io.string
+        e.io.try(:string) || e.io.try(:read) || raise(e)
+      rescue SocketError => _e
+        raise APIError, "service temporarily not available"
       end
 
       def query_uri *query_args
