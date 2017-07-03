@@ -13,6 +13,7 @@ format :html do
   view :new_answer, cache: :never do
     wrap do
       _optional_render :answer_form
+      _render_answer_table
     end
   end
 
@@ -20,8 +21,18 @@ format :html do
     nest new_answer_card, view: :table_form
   end
 
+  # placeholder
+  # that needs the correct number of parts to work
   def new_answer_card
-    card.attach_subfield "replace with year", type_id: MetricValueID
+    if card.relationship?
+      card.attach_subfield "replace with year+replace with company",
+                           type_id: RelationshipAnswerID
+                           #type_id: MetricValueID
+    else
+      card.attach_subfield "replace with year",
+                           type_id: MetricValueID
+    end
+
   end
 
   def view_template_path view

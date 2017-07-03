@@ -65,6 +65,7 @@ class SharedData
       formula_metrics
       researched_metrics
       category_metrics
+      relationship_metrics
     end
 
     def free_text_metrics
@@ -212,6 +213,18 @@ class SharedData
         end
       end
     end
+
+    def relationship_metrics
+      Card::Metric.create name: "Jedi+more evil",
+                          type: :relationship,
+                          random_source: true,
+                          value_type: "Category",
+                          value_options: %w(yes no) do
+        SPECTRE "1977" => { "Los_Pollos_Hermanos" => "yes" }
+        Death_Star "1977" => { "Los_Pollos_Hermanos" => "yes", "SPECTRE" => "yes" }
+      end
+    end
+
 
     def vote_on_metrics
       with_user "Joe Admin" do

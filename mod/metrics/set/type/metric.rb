@@ -91,8 +91,12 @@ def multi_categorical?
   value_type_code == :multi_category
 end
 
-def researched?
+def standard?
   metric_type_codename == :researched
+end
+
+def researched?
+  standard? || relationship?
 end
 
 def calculated?
@@ -185,7 +189,7 @@ format :html do
 
   def designer_image
     nest card.metric_designer_card.field(:image, new: {}),
-         view: :core, size: :small
+                 view: :core, size: :small
   end
 
   def designer_image_link
@@ -278,15 +282,15 @@ format :html do
   view :value_type_edit_modal_link do
     nest card.value_type_card,
          view: :modal_link,
-         link_text: vtype_edit_modal_link_text,
-         link_opts: { class: "btn btn-default slotter value-type-button",
-                      path: {
-                        slot: {
+      link_text: vtype_edit_modal_link_text,
+      link_opts: { class: "btn btn-default slotter value-type-button",
+                   path: {
+                     slot: {
                           hide: "header,menu,help",
-                          view: :edit,
+                       view: :edit,
                           title: "Value Type"
-                        }
-                      } }
+                     }
+                   } }
   end
 
   def vtype_edit_modal_link_text
@@ -451,15 +455,15 @@ format :html do
 
   def metric_row_data
     <<-HTML
-      <div class="contribution company-count">
-        <div class="content">
-          {{_+company count|core}}
-          <div class="name">Companies</div>
-        </div>
-      </div>
+    <div class="contribution company-count">
+                <div class="content">
+                  {{_+company count|core}}
+                  <div class="name">Companies</div>
+                </div>
+              </div>
     HTML
+    end
   end
-end
 
 format :json do
   # view :content do
@@ -478,7 +482,7 @@ format :json do
       designer: card.metric_designer,
       title: card.metric_title
     }
-  end
+end
 end
 
 def needs_name?

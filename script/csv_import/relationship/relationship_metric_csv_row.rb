@@ -1,11 +1,11 @@
-require_relative "../../csv_row"
+require_relative "../csv_row"
 
 # This class provides an interface to import relationship metrics
 class RelationshipMetricCSVRow < CSVRow
   @columns = [:designer, :title, :inverse, :value_type, :value_options, :unit]
   @required = [:designer, :title, :value_type, :inverse]
 
-  def initialize row
+  def initialize row, index
     super
     @designer = @row[:designer]
     @name = "#{@designer}+#{@row[:title]}"
@@ -15,16 +15,15 @@ class RelationshipMetricCSVRow < CSVRow
 
   def import
     ensure_designer
-    create_card @name, type: Card::MetricID,
-                       subfields: subfields
+    create_or_update_card @name, type: Card::MetricID, subfields: subfields
     create_inverse
   end
 
   def create_inverse
-    create_card @inverse_name,
-                type: Card::MetricID,
-                subfields: { metric_type: "Inverse Relationship",
-                             inverse: @name }
+    create_or_update_card @inverse_name,
+                          type: Card::MetricID,
+                          subfields: { metric_type: "Inverse Relationship",
+                                       inverse: @name }
     create_title_inverse_pointer
   end
 
@@ -39,8 +38,10 @@ class RelationshipMetricCSVRow < CSVRow
   end
 
   def create_title_inverse_pointer
-    ensure_card [@row[:inverse], :inverse], content: @row[:title]
-    ensure_card [@row[:title], :inverse], content: @row[:inverse]
+    ensure_card [@row[:inverse], :inverse], content: @row[:title],
+                type_id: Card::PointerID
+    ensure_card [@row[:title], :inverse], content: @row[:inverse],
+                type_id: Card::PointerID
     # valuable here?
   end
 

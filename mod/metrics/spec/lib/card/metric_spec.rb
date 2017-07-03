@@ -93,6 +93,27 @@ describe Card::Metric do
                                formula: { yes: 10, no: 0 }
       end
     end
+
+    it "creates relationship metric" do
+      Card::Auth.as_bot do
+        described_class.create name: "Jedi+owns",
+                               type: :relationship,
+                               random_source: true do
+          SPECTRE 2000 => { "Los Pollos Hermanos" => "10",
+                            "Death_Star" => "5" }
+        end
+      end
+      expect(Card["Jedi+owns"].type_id)
+        .to eq Card::MetricID
+      expect(Card["Jedi+owns+SPECTRE+2000"].type_name)
+        .to eq  "Metric value"
+      expect(Card["Jedi+owns+SPECTRE+2000+Los Pollos Hermanos"].type_name)
+        .to eq "Relationship Answer"
+      expect(Card["Jedi+owns+SPECTRE+2000+Los Pollos Hermanos+value"].content)
+        .to eq "10"
+      expect(Card["Jedi+owns+SPECTRE+2000+Death Star+value"].content)
+        .to eq "5"
+    end
   end
 
   describe "Card#new" do

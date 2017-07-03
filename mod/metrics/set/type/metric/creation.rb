@@ -62,7 +62,7 @@ def extract_metric_value_name args, error_msg
   args[:name] || begin
     missing = [:company, :year, :value].reject { |v| args[v] }
     if missing.empty?
-      [name, args[:company], args[:year]].join "+"
+      [name, args[:company], args[:year], args[:related_company]].compact.join "+"
     else
       error_msg.push("missing field(s) #{missing.join(',')}")
       nil
@@ -84,21 +84,20 @@ def valid_value_args? args
   if metric_type_codename == :researched && !args[:source]
     error_msg << "missing source"
   end
-  if error_msg.present?
-    error_msg.each do |msg|
-      errors.add "metric value", msg
-    end
-    return false
+  error_msg.each do |msg|
+    errors.add "metric value", msg
   end
-  true
+  error_msg.empty?
 end
 
 def create_value_args args
   return unless valid_value_args? args
-  value_name = [name, args[:company], args[:year]].join "+"
+  value_name =
+    [name, args[:company], args[:year], args[:related_company]].compact.join "+"
+  type_id = args[:related_company] ? Card::RelationshipAnswerID : Card::MetricValueID
   create_args = {
     name: value_name,
-    type_id: Card::MetricValueID,
+    type_id: type_id,
     "+value" => {
       content: args[:value],
       type_id: (args[:value].is_a?(Integer) ? NumberID : PhraseID)

@@ -146,7 +146,7 @@ format :html do
   end
 
   def hidden_item_input
-    tag :input, type: "hidden", class: "pointer-select", value: card.name
+    tag :input, type: "hidden", class: "pointer-select _no-chosen", value: card.name
   end
 
   view :with_cited_button do
@@ -180,7 +180,7 @@ format :html do
     if voo.show? :cited_source_links
       wrap_with_info { _render_listing args }
     else
-      with_toggle do
+      with_toggle do   F
         wrap_with_info { _render_listing args }
       end
     end

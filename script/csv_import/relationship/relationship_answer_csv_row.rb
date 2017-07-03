@@ -6,16 +6,15 @@ class RelationshipAnswerCSVRow < CSVRow
   include SourceHelper
 
   @columns = [:designer, :title, :company_1, :company_2, :year, :value, :source]
-  @required =
-    [:designer, :title, :company_1, :company_2, :year, :value, :source]
+  @required = :all
 
-  def initialize row
+  def initialize row, index
     super
     @designer = @row[:designer]
     @title = @row[:title]
   end
 
-  def create
+  def import
     ensure_companies
     source_card = ensure_source
     ensure_metric_answer
@@ -47,7 +46,7 @@ class RelationshipAnswerCSVRow < CSVRow
   end
 
   def update_metric_answer answer
-    value = Card.fetch answer, :value
+    value = Card.fetch answer, :value, new: {}
     value.update_attributes! content: (value.content.to_i + 1).to_s
   end
 
@@ -56,10 +55,10 @@ class RelationshipAnswerCSVRow < CSVRow
   end
 
   def add_relationship_answer source
-    create_card [answer_name, @row[:company_2]],
+    ensure_card [answer_name, company_2],
                 type: "Relationship Answer",
-                content: @row[:value],
-                subcards: { "+source" => source.name }
+                subcards: { "+source" => source.name,
+                            "+value" => { content: value, type_id: Card::PhraseID } }
   end
 
   def ensure_inverse_answer

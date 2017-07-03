@@ -64,7 +64,7 @@ format :html do
       zoom_out_link,
       wrap_with(:div, "",
                 id: id, class: classy("vis"),
-                data: { url: chart_load_url })
+                       data: { url: chart_load_url })
     ]
   end
 
@@ -127,6 +127,6 @@ format :json do
       Card::Chart::NumericChart
     else
       Card::Chart::CategoryChart
-    end
+  end
   end
 end
