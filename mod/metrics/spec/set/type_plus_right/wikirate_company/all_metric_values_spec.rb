@@ -16,6 +16,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       "disturbances in the Force+Joe User+2001",
       "darkness rating+1977",
       "researched number 1+1977",
+      "more evil+1977",
       "researched+1977",
       "deadliness+1977"
     ]
@@ -31,6 +32,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       "disturbances in the Force+2001",
       "disturbances in the Force+Joe User+2001",
       "friendliness+1977",
+      "more evil+1977",
       "Sith Lord in Charge+1977",
       "Victims by Employees+1977",
       "researched+1977",
@@ -96,8 +98,8 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       notvoted = (2..-2)
       downvoted = -1
 
-      expect(subject[upvoted].sort).to eq(expected[upvoted].sort)
-      expect(subject[notvoted].sort).to eq(expected[notvoted].sort)
+      expect(subject[upvoted]).to contain_exactly(*expected[upvoted])
+      expect(subject[notvoted]).to contain_exactly(*expected[notvoted])
       expect(subject[downvoted]).to eq(expected[downvoted])
     end
 
@@ -289,7 +291,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
              "darkness rating", "deadliness", "deadliness+Joe Camel",
              "deadliness+Joe User", "dinosaurlabor", "friendliness",
              "Sith Lord in Charge",
-             "researched number 1", "researched"], 2001
+             "researched number 1", "researched", "more evil"], 2001
           )
           missing2001.delete "disturbances in the Force+2001"
           filtered = filter_by(metric_value: :none, year: "2001")
@@ -416,7 +418,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
            "researched number 1", "Victims by Employees"].map do |t|
             sorted.index(t)
           end
-        expect(indices).to eq [0, 1, 2, 10, 12]
+        expect(indices).to eq [0, 1, 2, 11, 13]
       end
 
       it "sorts by recently updated" do
@@ -441,7 +443,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
 
   describe "#count" do
     it "returns correct count" do
-      expect(all_metric_values.count).to eq(13)
+      expect(all_metric_values.count).to eq(14)
     end
   end
 

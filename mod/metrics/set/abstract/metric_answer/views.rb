@@ -90,6 +90,10 @@ format :html do
     card.value_card.value
   end
 
+  def raw_value
+    value
+  end
+
   def humanized_value
     card.value_card.item_names.map { |n| humanized_number n }.join ", "
   end

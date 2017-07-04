@@ -1,9 +1,15 @@
+JOINT = ", "
+
 def value_card
   self
 end
 
 def value
-  item_names.join ", "
+  item_names.join JOINT
+end
+
+def raw_value
+  item_names
 end
 
 def metric_plus_company

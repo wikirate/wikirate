@@ -73,7 +73,6 @@ end
 
 format :html do
   view :edit_in_form do
-    binding.pry
     with_relative_names_in_form do
       card.other_user_requested_check? ? "" : super()
     end

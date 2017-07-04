@@ -23,7 +23,6 @@ format :html do
   # placeholder
   # that needs the correct number of parts to work
   def new_answer_card
-    binding.pry
     if card.relationship?
       card.attach_subfield "replace with year+replace with company",
                            type_id: RelationshipAnswerID

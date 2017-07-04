@@ -18,7 +18,7 @@ describe Card::Set::Type::RelationshipAnswer do
 
   context "change relationship answer name" do
     def change_relationship_answer_name
-      Card["Jedi]
+      Card["Jedi"]
     end
   end
 
