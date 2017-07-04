@@ -65,7 +65,6 @@ format :html do
   end
 
   view :answer_table do
-    binding.pry
     class_up "card-slot", "_show_add_new_value_button" if voo.hide? :answer_form
     answer_view = voo.show?(:chart) ? :closed_answer : :closed_answer_without_chart
     wrap do
