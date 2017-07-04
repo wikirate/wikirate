@@ -107,7 +107,8 @@ format :html do
 
   def country_rows
     [:headquarters, :incorporation].map do |field|
-      [wrap_with(:strong, Card[field].name),
+      [{ content: wrap_with(:strong, Card[field].name),
+         class: "no-stretch padding-right-30" },
        field_nest(field, view: :content, show: :menu, items: { view: :name })]
     end
   end
