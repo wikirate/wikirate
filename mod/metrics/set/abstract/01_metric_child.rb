@@ -131,6 +131,14 @@ def record_card
   Card.fetch record
 end
 
+def contextual_record_name
+  if generation == 1
+    "_self"
+  else
+    "_#{'L' * (generation - 1)}"
+  end
+end
+
 format do
   delegate :metric_name, :company_name, :record_name, :year_name,
            :metric_card, :company_card, :record_card, :year_card,

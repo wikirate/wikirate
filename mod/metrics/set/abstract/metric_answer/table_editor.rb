@@ -4,7 +4,7 @@ format :html do
     with_nest_mode :edit do
       relative_card_form :create, "main-success" => "REDIRECT",
                                   class: "new-value-form",
-                                  success: { id: "_left",
+                                  success: { id: card.contextual_record_name,
                                              soft_redirect: true,
                                              view: :new_answer_success } do
         render_haml :new_form
