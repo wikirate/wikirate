@@ -11,7 +11,7 @@ Feature: Research relationship answer from record page
   Scenario: Adding a metric value with a link source
     When In the main card content I click "Research answer"
     And I wait for ajax response
-    And I fill in "2015" for "Year"
+    And I select "2015" from "Year"
     And I fill in "Monster Inc" for "Related Company"
     And I fill in "yes" for "Answer"
     And I click on "Add a new source"

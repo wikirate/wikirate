@@ -426,20 +426,25 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     }
 }
 .TYPE-metric.new-view {
-    ul.nav-tabs li {
-        padding: 28px;
-        background: #eee;
-        margin: 5px;
+    //ul.nav-tabs li {
+    //    padding: 28px;
+    //    background: #eee;
+    //    margin: 5px;
+    //}
+    .help-text p:last-child {
+        margin-bottom: 5px;
     }
     fieldset.card-editor.editor {
         clear: both;
+        ul.nav-tabs {
+            margin: 0 -15px;
+        }
     }
     .name-editor {
         .RIGHT-Xtitle,
-        .RIGHT-designer {
+        .RIGHT-designer,
+        .RIGHT-inverse_title {
             &.card-editor {
-                width: 48%;
-                float: left;
                 .card-title {
                     font-size: 12px;
                 }
@@ -449,14 +454,12 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
             }
         }
         .plus {
-            float: left;
             font-size: 30px;
             font-weight: bold;
             text-align: center;
             position: relative;
             top: 16px;
-            left: 0;
-            width: 4%;
+            width: 100%;
             margin-top: 30px;
         }
     }

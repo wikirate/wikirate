@@ -443,7 +443,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
 
   describe "#count" do
     it "returns correct count" do
-      expect(all_metric_values.count).to eq(13)
+      expect(all_metric_values.count).to eq(14)
     end
   end
 
