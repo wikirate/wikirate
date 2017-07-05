@@ -51,7 +51,7 @@ describe Card::Set::TypePlusRight::MetricValue::Value do
     let(:scored_value_name) { "#{METRIC}+#{SCORER}+#{COMPANY}+#{YEAR}+value" }
 
     it "updates related score" do
-      expect(Card[scored_value_name].content).to eq "10"
+      expect(Card[scored_value_name].content).to eq "10.0"
       Card[researched_value_name].update_attributes! content: "no"
       expect(Card[scored_value_name].content).to eq "0"
     end
