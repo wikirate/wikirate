@@ -68,7 +68,11 @@ format :html do
   end
 
   def left_field_nest field, opts
-    nest card.cardname.left_name.field_name(field), opts
+    if card.cardname.left_name.empty?
+      parent.field_nest field, opts
+    else
+      nest card.cardname.left_name.field_name(field), opts
+    end
   end
 
   def fields_form

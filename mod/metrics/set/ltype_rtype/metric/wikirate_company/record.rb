@@ -65,7 +65,9 @@ format :html do
   end
 
   view :answer_table do
-    class_up "card-slot", "_show_add_new_value_button" if voo.hide? :answer_form
+    if voo.hide?(:answer_form) && voo.show?(:answer_redirect_button)
+      class_up "card-slot", "_show_add_new_value_button"
+    end
     answer_view = voo.show?(:chart) ? :closed_answer : :closed_answer_without_chart
     wrap do
       next "" unless all_answers.present?
