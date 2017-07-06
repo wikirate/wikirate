@@ -24,7 +24,7 @@ describe Card::Set::Type::RelationshipAnswer do
 
     it "first relationship answer increases cached answer count" do
       expect { add_first_relationship_answer }
-        .to change(Card.fetch("Monster Inc+metric"), :cached_count).from(3).to(4)
+        .to change(Card.fetch("Monster Inc+metric"), :cached_count).from(4).to(5)
 
     end
 
