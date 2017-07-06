@@ -4,5 +4,5 @@ require_relative "../csv_file"
 
 csv_path = File.expand_path "../data/ground_truth.csv", __FILE__
 
-CSVFile.new(csv_path, OpenCorporatesCSVRow)
+CSVFile.new(csv_path, OpenCorporatesCSVRow, col_sep: ";")
        .import user: "Philipp Kuehl", error_policy: :report
