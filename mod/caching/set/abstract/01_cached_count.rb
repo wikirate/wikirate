@@ -41,7 +41,6 @@ module ClassMethods
       event name, :after_integrate do #, args.merge(after_all: :refresh_updated_answers) do
         Array.wrap(yield(self)).compact.each do |expired_count_card|
           next unless expired_count_card.respond_to?(:recount)
-          binding.pry
           expired_count_card.update_cached_count self
         end
       end
