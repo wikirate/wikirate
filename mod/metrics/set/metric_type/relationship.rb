@@ -1,7 +1,7 @@
 include_set Abstract::Relationship
 
 event :ensure_inverse, :validate, on: :create do
-  return if new_inverse_title.present? || inverse_title.present
+  return if new_inverse_title.present? || inverse_title.present?
   errors.add :name, "no inverse title given"
 end
 
@@ -12,7 +12,7 @@ end
 
 event :create_inverse, :prepare_to_store, on: :create do
   inverse = new_inverse_title || inverse_title
-  add_subcard "#{metric_title}+#{inverse}", type: MetricID,
+  add_subcard "#{metric_designer}+#{inverse}", type: MetricID,
               subfields: { metric_type: "Inverse Relationship", inverse: name }
   add_title_inverse_pointer metric_title, inverse
 end

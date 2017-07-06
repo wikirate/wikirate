@@ -11,7 +11,6 @@ class AwardBadges < Card::Migration
     # ].each do |type_code|
     #   award_create_badges type_code
     # end
-    # binding.pry
     # card = Card.fetch "some random card", new: {}
     # card.save!
     #card = Card.fetch "Philipp Kuehl+Project+Badges earned", new: { type_id: Card::PointerID }
