@@ -11,9 +11,11 @@ event :validate_inverse, :validate, after: :ensure_inverse do
 end
 
 event :create_inverse, :prepare_to_store, on: :create do
-  inverse = new_inverse_title || inverse_title
-  add_subcard "#{metric_designer}+#{inverse}", type: MetricID,
+  inverse  = new_inverse_title || inverse_title
+  inverse_name = "#{metric_designer}+#{inverse}"
+  add_subcard inverse_name, type: MetricID,
               subfields: { metric_type: "Inverse Relationship", inverse: name }
+  add_subfield :inverse, content: inverse_name, type: :pointer
   add_title_inverse_pointer metric_title, inverse
 end
 

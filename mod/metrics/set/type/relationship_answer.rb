@@ -1,7 +1,6 @@
 include_set Abstract::MetricChild, generation: 3
 include_set Abstract::MetricAnswer
 
-
 def related_company
   cardname.tag
 end
@@ -25,18 +24,53 @@ end
 
 # has to happen after :set_answer_name,
 # but always, also if :set_answer_name is not executed
-event :add_count_answer, after: :set_autoname do
+event :add_count_answer, :prepare_to_store do
   count = company_count
   count += 1 if @action == :create
-  add_subcard [metric, company, year], type_id: MetricValueID,
-              subfields: { value: { content: count } }
+  add_count answer_name, count
+
+end
+
+event :add_inverse_count_answer, :prepare_to_store do
+  count = inverse_company_count
+  count += 1 if @action == :create
+  add_count inverse_answer_name, count
+end
+
+def add_count name, count
+  add_subcard name, type_id: MetricValueID,
+                    subfields: { value: { content: count } }
 end
 
 # number of companies that have a relationship answer for this answer
 def company_count
-  return 0 unless (answer_id = Card.fetch_id(cardname.left))
-  Card.search left_id: answer_id, right: { type_id: WikirateCompanyID },
+  return 0 unless answer_id
+  Card.search left_id: answer_id,
+              right: { type_id: WikirateCompanyID },
               return: :count
+end
+
+def inverse_company_count
+  return 0 unless inverse_answer_id
+  Card.search left_id: inverse_answer_id,
+              right: { type_id: WikirateCompanyID },
+              return: :count
+end
+
+def answer_id
+  @answer_id ||= Card.fetch_id answer_name
+end
+
+def answer_name
+  cardname.left
+end
+
+def inverse_answer_name
+  [metric_card.inverse, related_company, year].join "+"
+end
+
+def inverse_answer_id
+  @inverse_answer_id ||= Card.fetch_id inverse_answer_name
 end
 
 format :html do
