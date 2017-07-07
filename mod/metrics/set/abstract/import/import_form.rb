@@ -7,6 +7,10 @@ format :html do
     hidden_tags success: { id: "_self", soft_redirect: false, view: :import }
   end
 
+  def humanized_attachment_name
+    "csv file"
+  end
+
   view :import, cache: :never do
     frame_and_form :update, "notify-success" => "import successful" do
       [
