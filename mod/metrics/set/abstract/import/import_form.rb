@@ -1,4 +1,14 @@
 format :html do
+  def default_new_args args
+    voo.help = help_text
+    voo.show! :help
+  end
+
+  def help_text
+    rows = import_fields.map { |s| s.to_s.sub("file_", "").humanize }
+    voo.help = "expected csv format: #{rows.join ' | '}"
+  end
+
   def import_fields
     [:file_company, :value]
   end
