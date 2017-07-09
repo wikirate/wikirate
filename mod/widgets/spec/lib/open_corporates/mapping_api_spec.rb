@@ -9,7 +9,7 @@ RSpec.describe OpenCorporates::MappingAPI do
 
   it "new company with headquarters entry" do
     company = create "Wilmar International", type: :wikirate_company,
-                     subfields: { headquarters: Card.fetch_name(:oc_sg) }
+                                             subfields: { headquarters: Card.fetch_name(:oc_sg) }
     expect(company.open_corporates).to eq "199904785Z"
   end
 end

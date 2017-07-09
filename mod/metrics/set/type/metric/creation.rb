@@ -143,7 +143,7 @@ format :html do
       {
         researched: {
           help: "Answer values for <strong>Researched</strong> metrics are "\
-                "directly entered or imported." ,
+                "directly entered or imported.",
           subtabs: %w[Standard Relationship]
         },
         calculated: {
@@ -187,7 +187,7 @@ format :html do
              selected_subtab_pane?(name)
   end
 
-  view :help_text do |args|
+  view :help_text do |_args|
     return "" unless (help_text_card = Card[card.metric_type + "+description"])
     class_up "help-text", "help-block"
     with_nest_mode :normal do
@@ -227,7 +227,7 @@ format :html do
     bs_layout do
       row 5, 1, 6 do
         column do
-           metric_designer_field(options)
+          metric_designer_field(options)
         end
         column do
           '<div class="plus">+</div>'
@@ -237,11 +237,7 @@ format :html do
         end
       end
     end
-  end
-
-
-
-  def title_fields options
+  end  def title_fields options
     metric_title_field(options)
   end
 

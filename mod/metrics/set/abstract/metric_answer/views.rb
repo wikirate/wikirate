@@ -60,8 +60,8 @@ format :html do
   end
 
   def beautify value
-      card.scored? ? colorify(value) : value
-    end
+    card.scored? ? colorify(value) : value
+  end
 
   def pretty_value
     @pretty_value ||= numeric_value? ? humanized_value : value

@@ -59,5 +59,4 @@ describe Card::Set::Type::RelationshipAnswer do
       Card["Jedi"]
     end
   end
-
 end

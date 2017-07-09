@@ -1,7 +1,6 @@
 include_set Abstract::Table
 
 format :html do
-
   def inverse_metric_id
     card.metric_card.inverse_card.id
   end
@@ -28,6 +27,6 @@ format :html do
 
   def inverse_relations_table
     wikirate_table :company, inverse_values, [:inverse_company_name, :value],
-                   header: ["Company", "Answer"]
+                   header: %w[Company Answer]
   end
 end

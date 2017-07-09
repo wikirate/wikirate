@@ -47,8 +47,8 @@ format :html do
   view :source_tab do
     tab_wrap do
       field_nest :source, view: :titled,
-                 title: "#{fa_icon 'globe'} Sources",
-                 items: { view: :listing }
+                          title: "#{fa_icon 'globe'} Sources",
+                          items: { view: :listing }
     end
   end
 
@@ -67,7 +67,7 @@ format :html do
     link_to_card :research_page, "#{fa_icon 'plus'} Add new value",
                  path: { metric: card.name, view: :new },
                  class: "btn btn-primary"
-    #"/new/metric_value?metric=" + _render_cgi_escape_name
+    # "/new/metric_value?metric=" + _render_cgi_escape_name
   end
 
   view :add_value_buttons do

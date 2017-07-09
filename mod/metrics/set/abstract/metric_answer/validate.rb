@@ -5,7 +5,7 @@ end
 event :validate_value_type, :validate, on: :save, when: :standard? do
   # check if the value fit the value type of metric
   if metric_card && metric_card.researched? &&
-    (value_type = metric_card.fetch(trait: :value_type)) &&
+     (value_type = metric_card.fetch(trait: :value_type)) &&
      (value_card = subfield(:value))
     value = value_card.value
     return if value.casecmp("unknown").zero?

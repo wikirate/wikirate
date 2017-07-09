@@ -11,7 +11,7 @@ describe Card::Set::Right::OpenCorporates do
 
   def stub_oc_api changes={}
     oc_api = class_double("OpenCorporates::API")
-    allow(oc_api).to receive(:fetch_companies).and_return(api_response.merge changes)
+    allow(oc_api).to receive(:fetch_companies).and_return(api_response.merge(changes))
     stub_const("OpenCorporates::API", oc_api)
   end
 
@@ -39,7 +39,7 @@ describe Card::Set::Right::OpenCorporates do
         ["Registered Address", "1 ST JAMES'S SQUARE, LONDON, SW1Y 4PD"],
         ["Incorporation date", /14 April 1909 \(about \d+ years ago\)/],
         ["Company Type", "Public Limited Company"],
-        ["Status", "Active"]
+        %w[Status Active]
       ]
     end
 

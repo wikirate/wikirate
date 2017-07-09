@@ -27,12 +27,11 @@ format :html do
     if card.relationship?
       card.attach_subfield "replace with year+replace with company",
                            type_id: RelationshipAnswerID
-                           #type_id: MetricValueID
+    # type_id: MetricValueID
     else
       card.attach_subfield "replace with year",
                            type_id: MetricValueID
     end
-
   end
 
   def view_template_path view

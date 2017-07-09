@@ -28,7 +28,6 @@ event :add_count_answer, :prepare_to_store do
   count = company_count
   count += 1 if @action == :create
   add_count answer_name, count
-
 end
 
 event :add_inverse_count_answer, :prepare_to_store do

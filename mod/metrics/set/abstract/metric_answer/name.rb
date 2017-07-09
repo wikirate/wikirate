@@ -11,8 +11,8 @@ end
 
 def compose_and_validate_name
   name_parts.map do |part|
-      fetch_name_part part
-    end.join "+"
+    fetch_name_part part
+  end.join "+"
 end
 
 def fetch_name_part part

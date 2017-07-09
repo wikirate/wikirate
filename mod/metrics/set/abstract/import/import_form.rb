@@ -1,5 +1,5 @@
 format :html do
-  def default_new_args args
+  def default_new_args _args
     voo.help = help_text
     voo.show! :help
   end
@@ -45,7 +45,7 @@ format :html do
 
   def import_button
     button_tag "Import", class: "submit-button",
-               data: { disable_with: "Importing" }
+                         data: { disable_with: "Importing" }
   end
 
   view :year_select do
@@ -105,7 +105,7 @@ format :html do
 
   def row_legend text, context
     bs_label text, class: "bg-#{context}",
-             style: "color: inherit;"
+                   style: "color: inherit;"
   end
 
   def bs_label text, opts={}
@@ -132,7 +132,7 @@ format :html do
     end
 
     table data, class: "import_table table-bordered table-hover",
-          header: args[:table_header]
+                header: args[:table_header]
   end
 
   def reject_header_row import_data

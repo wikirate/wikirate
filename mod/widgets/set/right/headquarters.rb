@@ -16,9 +16,7 @@ end
 
 # TODO: reduce duplicated code
 def jurisdiction_name oc_code
-  unless oc_code.to_s =~ /^oc_/
-    oc_code = "oc_#{oc_code}"
-  end
+  oc_code = "oc_#{oc_code}" unless oc_code.to_s =~ /^oc_/
   Card.fetch_name oc_code.to_sym
 end
 

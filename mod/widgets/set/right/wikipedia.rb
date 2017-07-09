@@ -29,7 +29,6 @@ rescue Exception => _e
   ""
 end
 
-
 event :update_oc_mapping_due_to_wikipedia_entry, :integrate, on: :save, when: :needs_oc_mapping? do
   oc = ::OpenCorporates::MappingAPI.fetch_oc_company_number wikipedia_url: content
   return unless oc.company_number.present?
@@ -46,9 +45,7 @@ end
 
 # TODO: reduce duplicated code
 def jurisdiction_name oc_code
-  unless oc_code.to_s =~ /^oc_/
-    oc_code = "oc_#{oc_code}"
-  end
+  oc_code = "oc_#{oc_code}" unless oc_code.to_s =~ /^oc_/
   Card.fetch_name oc_code.to_sym
 end
 

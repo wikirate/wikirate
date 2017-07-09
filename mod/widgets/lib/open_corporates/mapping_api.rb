@@ -20,14 +20,14 @@ module OpenCorporates
       def pick_nested_item
         response = yield
         unless response.is_a?(Hash) &&
-          response["oc_company_number"].is_a?(Array) &&
-          response["oc_jurisdiction_code_of_incorporation"].is_a?(Array)
+               response["oc_company_number"].is_a?(Array) &&
+               response["oc_jurisdiction_code_of_incorporation"].is_a?(Array)
           raise APIError, "unexpected format"
         end
         jur_code = response["oc_jurisdiction_code"] && response["oc_jurisdiction_code"].first
         OpenStruct.new company_number: response["oc_company_number"].first,
-                             jurisdiction_code_of_incorporation: response["oc_jurisdiction_code_of_incorporation"].first,
-                             jurisdiction_code: jur_code
+                       jurisdiction_code_of_incorporation: response["oc_jurisdiction_code_of_incorporation"].first,
+                       jurisdiction_code: jur_code
       end
 
       def json_response *query_args
@@ -41,8 +41,8 @@ module OpenCorporates
       def query_uri *query_args
         params = query_args.last.is_a?(Hash) ? query_args.pop : {}
         URI::HTTP.build host: HOST,
-                         path: [PATH, query_args].compact.join("/"),
-                         query: params.to_query
+                        path: [PATH, query_args].compact.join("/"),
+                        query: params.to_query
       end
     end
   end

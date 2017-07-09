@@ -84,7 +84,6 @@ format :html do
     end
   end
 
-
   view :modal_details, cache: :never do |args|
     span_args = { class: "metric-value" }
     add_class span_args, grade if card.scored?

@@ -3,7 +3,6 @@ include_set Abstract::Import
 
 attachment :relationship_answer_import_file, uploader: CarrierWave::FileCardUploader
 
-
 # @return updated or created metric value card object
 def parse_import_row import_data, source_map
   args = process_data import_data
@@ -57,7 +56,7 @@ format :html do
 
   view :import_success do
     wrap_with :div, id: "source-preview-iframe",
-              class: "webpage-preview non-previewable" do
+                    class: "webpage-preview non-previewable" do
       wrap_with :div, class: "redirect-notice" do
         _render_content structure: "source item preview"
       end
@@ -80,10 +79,10 @@ format :html do
 
   view :core do
     output [
-             construct_import_warning_message,
-             download_link,
-             import_link.html_safe
-           ]
+      construct_import_warning_message,
+      download_link,
+      import_link.html_safe
+    ]
   end
 
   def download_link

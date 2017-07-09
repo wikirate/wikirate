@@ -6,15 +6,15 @@ event :ensure_inverse, :validate, on: :create do
 end
 
 event :validate_inverse, :validate, after: :ensure_inverse do
-  return if !inverse_title || inverse_title  == new_inverse_title
+  return if !inverse_title || inverse_title == new_inverse_title
   errors.add :name, "the inverse of '#{metric_title}' is already defined as '#{inverse_title}'"
 end
 
 event :create_inverse, :prepare_to_store, on: :create do
-  inverse  = new_inverse_title || inverse_title
+  inverse = new_inverse_title || inverse_title
   inverse_name = "#{metric_designer}+#{inverse}"
   add_subcard inverse_name, type: MetricID,
-              subfields: { metric_type: "Inverse Relationship", inverse: name }
+                            subfields: { metric_type: "Inverse Relationship", inverse: name }
   add_subfield :inverse, content: inverse_name, type: :pointer
   add_title_inverse_pointer metric_title, inverse
 end
@@ -45,7 +45,7 @@ format :html do
 
   def inverse_title_field options={}
     title = card.add_subfield :inverse_title, content: card.cardname.tag,
-                              type_id: PhraseID
+                                              type_id: PhraseID
     title.reset_patterns
     title.include_set_modules
     subformat(title)._render_edit_in_form(options.merge(title: "Inverse Title"))

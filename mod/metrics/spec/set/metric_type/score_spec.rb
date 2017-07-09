@@ -221,7 +221,7 @@ describe Card::Set::MetricType::Score do
         )
       end
 
-      expect(score_value("Sony Corporation","2010")).to eq "6.0"
+      expect(score_value("Sony Corporation", "2010")).to eq "6.0"
     end
   end
 end
