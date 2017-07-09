@@ -30,7 +30,7 @@ rescue Exception => _e
 end
 
 
-event :update_oc_mapping_due_to_wikipedia_entry, :integrate, on: :create, when: :needs_oc_mapping? do
+event :update_oc_mapping_due_to_wikipedia_entry, :integrate, on: :save, when: :needs_oc_mapping? do
   oc = ::OpenCorporates::MappingAPI.fetch_oc_company_number wikipedia_url: content
   return unless oc.company_number.present?
 

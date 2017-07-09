@@ -2,7 +2,7 @@ def needs_oc_mapping?
   (l = left) && l.open_corporates.blank?
 end
 
-event :update_oc_mapping_due_to_headquarters_entry, :integrate, on: :create, when: :needs_oc_mapping? do
+event :update_oc_mapping_due_to_headquarters_entry, :integrate, on: :save, when: :needs_oc_mapping? do
   oc = ::OpenCorporates::MappingAPI.fetch_oc_company_number company_name: cardname.left,
                                                             jurisdiction_code: oc_code
   return unless oc.company_number.present?

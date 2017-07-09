@@ -24,8 +24,10 @@ module OpenCorporates
           response["oc_jurisdiction_code_of_incorporation"].is_a?(Array)
           raise APIError, "unexpected format"
         end
+        jur_code = response["oc_jurisdiction_code"] && response["oc_jurisdiction_code"].first
         OpenStruct.new company_number: response["oc_company_number"].first,
-                             jurisdiction_code_of_incorporation: response["oc_jurisdiction_code_of_incorporation"].first
+                             jurisdiction_code_of_incorporation: response["oc_jurisdiction_code_of_incorporation"].first,
+                             jurisdiction_code: jur_code
       end
 
       def json_response *query_args
