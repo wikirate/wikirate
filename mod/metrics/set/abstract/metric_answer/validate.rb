@@ -41,7 +41,7 @@ end
 
 event :validate_answer_name,
       after: :validate_update_date, on: :save, changed: :name do
-  if Card.fetch_type_id(card.year) != YearID
+  if Card.fetch_type_id(year) != YearID
     errors.add :name, "right part must be a year"
   end
   if cardname.length < 4

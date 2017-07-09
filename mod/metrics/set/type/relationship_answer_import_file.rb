@@ -98,4 +98,13 @@ format :html do
   def import_fields
     [:metric, :file_company, :file_related_company, :year, :value, :source, :comment]
   end
+
+  def finalize_row row, index
+    super
+    row[:related_correction] =
+    row[:row] = index
+    row[:checkbox] = import_checkbox row
+    row[:correction] = data_correction row
+    row
+  end
 end

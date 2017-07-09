@@ -1,71 +1,71 @@
-Designer,Title,Value Type,Company 1,Company 2,Year,Value,Source
-Relationship Metric Folk,is Supplied By ,,Nike,ANNORA VIETNAM FOOTWEAR,2016,Tier 1 Supplier,http://manufacturingmap.nikeinc.com/
-Relationship Metric Folk,is Supplied By ,(Tier 1 Supplier / Tier 2 Supplier),Adidas,Dhakarea Limited,2016,Tier 1 Supplier,http://www.adidas-group.com/media/filer_public/ac/94/ac941cae-7b76-4fc3-9209-f851744bca19/primary_suppliers_july_2016.pdf
-Relationship Metric Folk,is Supplied By ,(Tier 1 Supplier / Tier 2 Supplier),Adidas,Ust Mamiya,2016,Tier 2 Supplier,http://www.adidas-group.com/media/filer_public/a6/01/a601b0b9-d119-4ba9-9748-0228e7fb8505/subcontractors_july_2016.pdf
-Relationship Metric Folk,is Supplied By ,(Tier 1 Supplier / Tier 2 Supplier),Marks & Spencer,Universal Menswear Ltd,2016,Tier 1 Supplier,https://interactivemap.marksandspencer.com/?&parentFolderPiD=56fa5de072529d3e644d25d1&resultAssetPiD=57ee90087252a00d94aab490
-,,,,,,,
-OpenCorporates,is Controller Of,numeric,CAPITA IT SERVICES LIMITED,SYNETRIX LIMITED,2017,Yes,https://api.opencorporates.com/v0.4.6/companies/gb/SC045439/network
-OpenCorporates,is Controller Of,confidence,Ms Clare Eluka,Premay Skincate Ltd,2017,Yes,https://api.opencorporates.com/v0.4.6/companies/gb/07697347/network
-OpenCorporates,is Controller Of,confidence,Burberry Gropu Plc,Woodrow-Universal Pension Trustee Limited,2017,Yes,https://api.opencorporates.com/v0.4.6/companies/gb/03458224/network
-OpenCorporates,is Controller Of,confidence,Mr Harry Malcom Wells,Arena Group Limited,2017,Yes,https://api.opencorporates.com/v0.4.6/companies/gb/02168309/network
-OpenCorporates,is Controller Of,confidence,Mr Adrian John Fitzpatrick,Arena Group Limited,2017,Yes,https://api.opencorporates.com/v0.4.6/companies/gb/02168309/network
-,,,,,,,
-OpenCorporates,is Subsidiary Of,confidence,"Juniper Networks (US), Inc.","Juniper Networks, Inc.",2017,Yes,https://api.opencorporates.com/v0.4.6/companies/us_de/2794873/network
-OpenCorporates,is Subsidiary Of,confidence,Baker Hughes Limited,Baker Hughes Incorporated,2017,Yes,https://api.opencorporates.com/v0.4.6/companies/us_de/2106297/network
-OpenCorporates,is Subsidiary Of,confidence,Baker Hughes EHO Ltd.,Baker Hughes Incorporated,2017,Yes,https://api.opencorporates.com/v0.4.6/companies/us_de/2106297/network
-OpenCorporates,is Subsidiary Of,confidence,MRC MSD Engineering PTE. LTD.,MRC Global Inc.,2017,Yes,https://api.opencorporates.com/v0.4.6/companies/us_de/4254945/network
-,,,,,,,
-OpenCorporates,has Branch,confidence,Advanced Exteriors LLC (us_ma),Advanced Exteriors LLC (us_pa),2017,Yes,https://api.opencorporates.com/v0.4/statements/2228959
-OpenCorporates,has Branch,confidence,Manacap Corporation (us_nv) ,Manacap Corporation (us_id) ,2017,Yes,https://api.opencorporates.com/v0.4/statements/2622443
-OpenCorporates,has Branch,confidence,Majestic Mortgage Corporation (us_mn),Majestic Mortgage Corporation (us_id),2017,Yes,https://api.opencorporates.com/v0.4/statements/2622340
-,,,,,,,
-Proxy Voting Research Group,has voting authority over,(majority rule vote / advisory vote / no),CBIS,Exxon Mobil,2016,advisory vote,http://www.proxydemocracy.org/data/meetings/72225
-Proxy Voting Research Group,has voting authority over,(majority rule vote / advisory vote / no),Florida SBA,Exxon Mobil,2016,advisory vote,http://www.proxydemocracy.org/data/meetings/72225
-Proxy Voting Research Group,has voting authority over,(majority rule vote / advisory vote / no),Trillium Asset Management,Exxon Mobil,2016,advisory vote,http://www.proxydemocracy.org/data/meetings/72225
-Proxy Voting Research Group,has voting authority over,(majority rule vote / advisory vote / no),CBIS,Exxon Mobil,2015,advisory vote,http://www.proxydemocracy.org/data/meetings/61919
-Proxy Voting Research Group,has voting authority over,(majority rule vote / advisory vote / no),CalPERS,Exxon Mobil,2015,advisory vote,http://www.proxydemocracy.org/data/meetings/61919
-Proxy Voting Research Group,has voting authority over,(majority rule vote / advisory vote / no),Florida SBA,Exxon Mobil,2015,advisory vote,http://www.proxydemocracy.org/data/meetings/61919
-Proxy Voting Research Group,has voting authority over,(majority rule vote / advisory vote / no),Trillium Asset Management,Exxon Mobil,2015,advisory vote,http://www.proxydemocracy.org/data/meetings/61919
-Proxy Voting Research Group,has voting authority over,(majority rule vote / advisory vote / no),CBIS,Inditex,2016,majority rule vote,http://www.proxydemocracy.org/data/meetings/76088
-Proxy Voting Research Group,has voting authority over,(majority rule vote / advisory vote / no),CBIS,Inditex,2015,advisory vote,http://www.proxydemocracy.org/data/meetings/65621
-Proxy Voting Research Group,has voting authority over,(majority rule vote / advisory vote / no),Florida SBA,Inditex,2015,advisory vote,http://www.proxydemocracy.org/data/meetings/65621
-Proxy Voting Research Group,has voting authority over,(majority rule vote / advisory vote / no),CBIS,Nike,2016,majority rule vote,http://www.proxydemocracy.org/data/meetings/76420
-Proxy Voting Research Group,has voting authority over,(majority rule vote / advisory vote / no),Trillium Asset Management,Nike,2016,majority rule vote,http://www.proxydemocracy.org/data/meetings/76420
-Proxy Voting Research Group,has voting authority over,(majority rule vote / advisory vote / no),Calvert Social Index Fund,Nike,2016,majority rule vote,http://www.proxydemocracy.org/data/meetings/76420
-Proxy Voting Research Group,has voting authority over,(majority rule vote / advisory vote / no),Calvert Social Investment Fund,Nike,2016,majority rule vote,http://www.proxydemocracy.org/data/meetings/76420
-Proxy Voting Research Group,has voting authority over,(majority rule vote / advisory vote / no),Domini Social Equity Fund,Nike,2016,majority rule vote,http://www.proxydemocracy.org/data/meetings/76420
-Proxy Voting Research Group,has voting authority over,(majority rule vote / advisory vote / no),CBIS,Nike,2015,majority rule vote,http://www.proxydemocracy.org/data/meetings/66418
-Proxy Voting Research Group,has voting authority over,(majority rule vote / advisory vote / no),Florida SBA,Nike,2015,majority rule vote,http://www.proxydemocracy.org/data/meetings/66418
-Proxy Voting Research Group,has voting authority over,(majority rule vote / advisory vote / no),Trillium Asset Management,Nike,2015,majority rule vote,http://www.proxydemocracy.org/data/meetings/66418
-Proxy Voting Research Group,has voting authority over,(majority rule vote / advisory vote / no),Calvert Social Index Fund,Nike,2015,majority rule vote,http://www.proxydemocracy.org/data/meetings/66418
-Proxy Voting Research Group,has voting authority over,(majority rule vote / advisory vote / no),Calvert Social Investment Fund,Nike,2015,majority rule vote,http://www.proxydemocracy.org/data/meetings/66418
-Proxy Voting Research Group,has voting authority over,(majority rule vote / advisory vote / no),Domini Social Equity Fund,Nike,2015,majority rule vote,http://www.proxydemocracy.org/data/meetings/66418
-,,,,,,,
-Proxy Voting Research Group,has voting authority over (weighted),(percentage) ,CBIS,Exxon Mobil,2016,20,http://www.proxydemocracy.org/data/meetings/72225
-Proxy Voting Research Group,has voting authority over (weighted),(percentage) ,Florida SBA,Exxon Mobil,2016,15,http://www.proxydemocracy.org/data/meetings/72225
-Proxy Voting Research Group,has voting authority over (weighted),(percentage) ,Trillium Asset Management,Exxon Mobil,2016,5,http://www.proxydemocracy.org/data/meetings/72225
-Proxy Voting Research Group,has voting authority over (weighted),(percentage) ,CBIS,Exxon Mobil,2015,15,http://www.proxydemocracy.org/data/meetings/61919
-Proxy Voting Research Group,has voting authority over (weighted),(percentage) ,CalPERS,Exxon Mobil,2015,10,http://www.proxydemocracy.org/data/meetings/61919
-Proxy Voting Research Group,has voting authority over (weighted),(percentage) ,Florida SBA,Exxon Mobil,2015,10,http://www.proxydemocracy.org/data/meetings/61919
-Proxy Voting Research Group,has voting authority over (weighted),(percentage) ,Trillium Asset Management,Exxon Mobil,2015,5,http://www.proxydemocracy.org/data/meetings/61919
-Proxy Voting Research Group,has voting authority over (weighted),(percentage) ,CBIS,Inditex,2016,35,http://www.proxydemocracy.org/data/meetings/76088
-Proxy Voting Research Group,has voting authority over (weighted),(percentage) ,CBIS,Inditex,2015,20,http://www.proxydemocracy.org/data/meetings/65621
-Proxy Voting Research Group,has voting authority over (weighted),(percentage) ,Florida SBA,Inditex,2015,15,http://www.proxydemocracy.org/data/meetings/65621
-Proxy Voting Research Group,has voting authority over (weighted),(percentage) ,CBIS,Nike,2016,5,http://www.proxydemocracy.org/data/meetings/76420
-Proxy Voting Research Group,has voting authority over (weighted),(percentage) ,Trillium Asset Management,Nike,2016,10,http://www.proxydemocracy.org/data/meetings/76420
-Proxy Voting Research Group,has voting authority over (weighted),(percentage) ,Calvert Social Index Fund,Nike,2016,5,http://www.proxydemocracy.org/data/meetings/76420
-Proxy Voting Research Group,has voting authority over (weighted),(percentage) ,Calvert Social Investment Fund,Nike,2016,10,http://www.proxydemocracy.org/data/meetings/76420
-Proxy Voting Research Group,has voting authority over (weighted),(percentage) ,Domini Social Equity Fund,Nike,2016,15,http://www.proxydemocracy.org/data/meetings/76420
-Proxy Voting Research Group,has voting authority over (weighted),(percentage) ,CBIS,Nike,2015,5,http://www.proxydemocracy.org/data/meetings/66418
-Proxy Voting Research Group,has voting authority over (weighted),(percentage) ,Florida SBA,Nike,2015,5,http://www.proxydemocracy.org/data/meetings/66418
-Proxy Voting Research Group,has voting authority over (weighted),(percentage) ,Trillium Asset Management,Nike,2015,10,http://www.proxydemocracy.org/data/meetings/66418
-Proxy Voting Research Group,has voting authority over (weighted),(percentage) ,Calvert Social Index Fund,Nike,2015,5,http://www.proxydemocracy.org/data/meetings/66418
-Proxy Voting Research Group,has voting authority over (weighted),(percentage) ,Calvert Social Investment Fund,Nike,2015,10,http://www.proxydemocracy.org/data/meetings/66418
-Proxy Voting Research Group,has voting authority over (weighted),(percentage) ,Domini Social Equity Fund,Nike,2015,10,http://www.proxydemocracy.org/data/meetings/66418
-,,,,,,,
-Proxy Voting Research Group,voted with management of,management supported by votes of,Vanguard,Nike,2015,4.7,http://www.proxydemocracy.org/data/meetings/18146/funds/62
-,,,,,,,
-OpenCorporates,is Shareholder Of,,Telefonaktiebolaget LM Ericsson,Ericsson Communications Limited,2017,100,https://api.opencorporates.com/v0.4.6/companies/se/556016-0680/network
-OpenCorporates,is Shareholder Of,,Ericsson Communications Limited,Ericsson Synergy Limited,2017,100,https://api.opencorporates.com/v0.4.6/companies/nz/40148/network
-OpenCorporates,is Shareholder Of,,Ericsson Communications Limited,Ericsson Cellular Limited,2017,100,https://api.opencorporates.com/v0.4.6/companies/nz/40148/network
-OpenCorporates,is Shareholder Of,,Fronde Systems Group Limited,Ericsson Synergy Limited,2017,40,https://api.opencorporates.com/v0.4.6/companies/nz/1099706/network
+Designer,Title,Company 1,Company 2,Year,Value,Source,
+Relationship Metric Folk,is Supplied By ,Nike,ANNORA VIETNAM FOOTWEAR,2016,Tier 1 Supplier,http://manufacturingmap.nikeinc.com/
+Relationship Metric Folk,is Supplied By ,Adidas,Dhakarea Limited,2016,Tier 1 Supplier,http://www.adidas-group.com/media/filer_public/ac/94/ac941cae-7b76-4fc3-9209-f851744bca19/primary_suppliers_july_2016.pdf
+Relationship Metric Folk,is Supplied By ,Adidas,Ust Mamiya,2016,Tier 2 Supplier,http://www.adidas-group.com/media/filer_public/a6/01/a601b0b9-d119-4ba9-9748-0228e7fb8505/subcontractors_july_2016.pdf
+Relationship Metric Folk,is Supplied By ,Marks & Spencer,Universal Menswear Ltd,2016,Tier 1 Supplier,https://interactivemap.marksandspencer.com/?&parentFolderPiD=56fa5de072529d3e644d25d1&resultAssetPiD=57ee90087252a00d94aab490
+,,,,,,
+OpenCorporates,is Controller Of,CAPITA IT SERVICES LIMITED,SYNETRIX LIMITED,2017,Yes,https://api.opencorporates.com/v0.4.6/companies/gb/SC045439/network
+OpenCorporates,is Controller Of,Ms Clare Eluka,Premay Skincate Ltd,2017,Yes,https://api.opencorporates.com/v0.4.6/companies/gb/07697347/network
+OpenCorporates,is Controller Of,Burberry Gropu Plc,Woodrow-Universal Pension Trustee Limited,2017,Yes,https://api.opencorporates.com/v0.4.6/companies/gb/03458224/network
+OpenCorporates,is Controller Of,Mr Harry Malcom Wells,Arena Group Limited,2017,Yes,https://api.opencorporates.com/v0.4.6/companies/gb/02168309/network
+OpenCorporates,is Controller Of,Mr Adrian John Fitzpatrick,Arena Group Limited,2017,Yes,https://api.opencorporates.com/v0.4.6/companies/gb/02168309/network
+,,,,,,
+OpenCorporates,is Subsidiary Of,"Juniper Networks (US), Inc.","Juniper Networks, Inc.",2017,Yes,https://api.opencorporates.com/v0.4.6/companies/us_de/2794873/network
+OpenCorporates,is Subsidiary Of,Baker Hughes Limited,Baker Hughes Incorporated,2017,Yes,https://api.opencorporates.com/v0.4.6/companies/us_de/2106297/network
+OpenCorporates,is Subsidiary Of,Baker Hughes EHO Ltd.,Baker Hughes Incorporated,2017,Yes,https://api.opencorporates.com/v0.4.6/companies/us_de/2106297/network
+OpenCorporates,is Subsidiary Of,MRC MSD Engineering PTE. LTD.,MRC Global Inc.,2017,Yes,https://api.opencorporates.com/v0.4.6/companies/us_de/4254945/network
+,,,,,,
+OpenCorporates,has Branch,Advanced Exteriors LLC (us_ma),Advanced Exteriors LLC (us_pa),2017,Yes,https://api.opencorporates.com/v0.4/statements/2228959
+OpenCorporates,has Branch,Manacap Corporation (us_nv) ,Manacap Corporation (us_id) ,2017,Yes,https://api.opencorporates.com/v0.4/statements/2622443
+OpenCorporates,has Branch,Majestic Mortgage Corporation (us_mn),Majestic Mortgage Corporation (us_id),2017,Yes,https://api.opencorporates.com/v0.4/statements/2622340
+,,,,,,
+Proxy Voting Research Group,has voting authority over,CBIS,Exxon Mobil,2016,advisory vote,http://www.proxydemocracy.org/data/meetings/72225
+Proxy Voting Research Group,has voting authority over,Florida SBA,Exxon Mobil,2016,advisory vote,http://www.proxydemocracy.org/data/meetings/72225
+Proxy Voting Research Group,has voting authority over,Trillium Asset Management,Exxon Mobil,2016,advisory vote,http://www.proxydemocracy.org/data/meetings/72225
+Proxy Voting Research Group,has voting authority over,CBIS,Exxon Mobil,2015,advisory vote,http://www.proxydemocracy.org/data/meetings/61919
+Proxy Voting Research Group,has voting authority over,CalPERS,Exxon Mobil,2015,advisory vote,http://www.proxydemocracy.org/data/meetings/61919
+Proxy Voting Research Group,has voting authority over,Florida SBA,Exxon Mobil,2015,advisory vote,http://www.proxydemocracy.org/data/meetings/61919
+Proxy Voting Research Group,has voting authority over,Trillium Asset Management,Exxon Mobil,2015,advisory vote,http://www.proxydemocracy.org/data/meetings/61919
+Proxy Voting Research Group,has voting authority over,CBIS,Inditex,2016,majority rule vote,http://www.proxydemocracy.org/data/meetings/76088
+Proxy Voting Research Group,has voting authority over,CBIS,Inditex,2015,advisory vote,http://www.proxydemocracy.org/data/meetings/65621
+Proxy Voting Research Group,has voting authority over,Florida SBA,Inditex,2015,advisory vote,http://www.proxydemocracy.org/data/meetings/65621
+Proxy Voting Research Group,has voting authority over,CBIS,Nike,2016,majority rule vote,http://www.proxydemocracy.org/data/meetings/76420
+Proxy Voting Research Group,has voting authority over,Trillium Asset Management,Nike,2016,majority rule vote,http://www.proxydemocracy.org/data/meetings/76420
+Proxy Voting Research Group,has voting authority over,Calvert Social Index Fund,Nike,2016,majority rule vote,http://www.proxydemocracy.org/data/meetings/76420
+Proxy Voting Research Group,has voting authority over,Calvert Social Investment Fund,Nike,2016,majority rule vote,http://www.proxydemocracy.org/data/meetings/76420
+Proxy Voting Research Group,has voting authority over,Domini Social Equity Fund,Nike,2016,majority rule vote,http://www.proxydemocracy.org/data/meetings/76420
+Proxy Voting Research Group,has voting authority over,CBIS,Nike,2015,majority rule vote,http://www.proxydemocracy.org/data/meetings/66418
+Proxy Voting Research Group,has voting authority over,Florida SBA,Nike,2015,majority rule vote,http://www.proxydemocracy.org/data/meetings/66418
+Proxy Voting Research Group,has voting authority over,Trillium Asset Management,Nike,2015,majority rule vote,http://www.proxydemocracy.org/data/meetings/66418
+Proxy Voting Research Group,has voting authority over,Calvert Social Index Fund,Nike,2015,majority rule vote,http://www.proxydemocracy.org/data/meetings/66418
+Proxy Voting Research Group,has voting authority over,Calvert Social Investment Fund,Nike,2015,majority rule vote,http://www.proxydemocracy.org/data/meetings/66418
+Proxy Voting Research Group,has voting authority over,Domini Social Equity Fund,Nike,2015,majority rule vote,http://www.proxydemocracy.org/data/meetings/66418
+,,,,,,
+Proxy Voting Research Group,has voting authority over (weighted),CBIS,Exxon Mobil,2016,20,http://www.proxydemocracy.org/data/meetings/72225
+Proxy Voting Research Group,has voting authority over (weighted),Florida SBA,Exxon Mobil,2016,15,http://www.proxydemocracy.org/data/meetings/72225
+Proxy Voting Research Group,has voting authority over (weighted),Trillium Asset Management,Exxon Mobil,2016,5,http://www.proxydemocracy.org/data/meetings/72225
+Proxy Voting Research Group,has voting authority over (weighted),CBIS,Exxon Mobil,2015,15,http://www.proxydemocracy.org/data/meetings/61919
+Proxy Voting Research Group,has voting authority over (weighted),CalPERS,Exxon Mobil,2015,10,http://www.proxydemocracy.org/data/meetings/61919
+Proxy Voting Research Group,has voting authority over (weighted),Florida SBA,Exxon Mobil,2015,10,http://www.proxydemocracy.org/data/meetings/61919
+Proxy Voting Research Group,has voting authority over (weighted),Trillium Asset Management,Exxon Mobil,2015,5,http://www.proxydemocracy.org/data/meetings/61919
+Proxy Voting Research Group,has voting authority over (weighted),CBIS,Inditex,2016,35,http://www.proxydemocracy.org/data/meetings/76088
+Proxy Voting Research Group,has voting authority over (weighted),CBIS,Inditex,2015,20,http://www.proxydemocracy.org/data/meetings/65621
+Proxy Voting Research Group,has voting authority over (weighted),Florida SBA,Inditex,2015,15,http://www.proxydemocracy.org/data/meetings/65621
+Proxy Voting Research Group,has voting authority over (weighted),CBIS,Nike,2016,5,http://www.proxydemocracy.org/data/meetings/76420
+Proxy Voting Research Group,has voting authority over (weighted),Trillium Asset Management,Nike,2016,10,http://www.proxydemocracy.org/data/meetings/76420
+Proxy Voting Research Group,has voting authority over (weighted),Calvert Social Index Fund,Nike,2016,5,http://www.proxydemocracy.org/data/meetings/76420
+Proxy Voting Research Group,has voting authority over (weighted),Calvert Social Investment Fund,Nike,2016,10,http://www.proxydemocracy.org/data/meetings/76420
+Proxy Voting Research Group,has voting authority over (weighted),Domini Social Equity Fund,Nike,2016,15,http://www.proxydemocracy.org/data/meetings/76420
+Proxy Voting Research Group,has voting authority over (weighted),CBIS,Nike,2015,5,http://www.proxydemocracy.org/data/meetings/66418
+Proxy Voting Research Group,has voting authority over (weighted),Florida SBA,Nike,2015,5,http://www.proxydemocracy.org/data/meetings/66418
+Proxy Voting Research Group,has voting authority over (weighted),Trillium Asset Management,Nike,2015,10,http://www.proxydemocracy.org/data/meetings/66418
+Proxy Voting Research Group,has voting authority over (weighted),Calvert Social Index Fund,Nike,2015,5,http://www.proxydemocracy.org/data/meetings/66418
+Proxy Voting Research Group,has voting authority over (weighted),Calvert Social Investment Fund,Nike,2015,10,http://www.proxydemocracy.org/data/meetings/66418
+Proxy Voting Research Group,has voting authority over (weighted),Domini Social Equity Fund,Nike,2015,10,http://www.proxydemocracy.org/data/meetings/66418
+,,,,,,
+Proxy Voting Research Group,voted with management of,Vanguard,Nike,2015,4.7,http://www.proxydemocracy.org/data/meetings/18146/funds/62
+,,,,,,
+OpenCorporates,is Shareholder Of,Telefonaktiebolaget LM Ericsson,Ericsson Communications Limited,2017,100,https://api.opencorporates.com/v0.4.6/companies/se/556016-0680/network
+OpenCorporates,is Shareholder Of,Ericsson Communications Limited,Ericsson Synergy Limited,2017,100,https://api.opencorporates.com/v0.4.6/companies/nz/40148/network
+OpenCorporates,is Shareholder Of,Ericsson Communications Limited,Ericsson Cellular Limited,2017,100,https://api.opencorporates.com/v0.4.6/companies/nz/40148/network
+OpenCorporates,is Shareholder Of,Fronde Systems Group Limited,Ericsson Synergy Limited,2017,40,https://api.opencorporates.com/v0.4.6/companies/nz/1099706/network

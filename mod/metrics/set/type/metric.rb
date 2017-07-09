@@ -247,6 +247,10 @@ format :html do
   end
 
   view :legend do
+    value_legend
+  end
+
+  def value_legend
     # depends on the type
     if card.unit.present?
       card.unit

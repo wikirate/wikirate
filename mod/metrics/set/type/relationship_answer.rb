@@ -96,4 +96,9 @@ format :html do
     card.add_subfield :year, content: card.year
     card.add_subfield :related_company, content: card.related_company
   end
+
+  def legend
+    return if currency.present?
+    subformat(card.metric_card).value_legend
+  end
 end

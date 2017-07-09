@@ -4,7 +4,7 @@ class AddInverseTitleAndHelpText < Card::Migration
   def up
     ensure_card "inverse title", codename: "inverse_title"
     ensure_card "Relationship+description", type: :basic,
-                content: "<p><strong>Relationship</strong? metrics evaluate connections between multiple companies</p>"
+                content: "<p><strong>Relationship</strong> metrics evaluate connections between companies</p>"
     ensure_card "metric+inverse title+*type plus right+*help",
                 content: "<p>How company B relates to company A, e.g. "\
                       "company B is <strong>owned by</strong> company A</p>"
