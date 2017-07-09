@@ -98,6 +98,7 @@ describe Card::Metric do
       Card::Auth.as_bot do
         described_class.create name: "Jedi+owns",
                                type: :relationship,
+                               inverse_title: "owned by",
                                random_source: true do
           SPECTRE 2000 => { "Los Pollos Hermanos" => "10",
                             "Death_Star" => "5" }

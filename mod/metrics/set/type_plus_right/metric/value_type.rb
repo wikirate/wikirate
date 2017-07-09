@@ -77,15 +77,15 @@ format :html do
 
   def fields_form
     <<-HTML.html_safe
-      <div class='value_type_field' id='number_details'>
+      <div class='value_type_field number_details'>
         #{left_field_nest :unit, title: 'Unit', type: :phrase}
         #{left_field_nest :range, title: 'Range', type: :phrase}
       </div>
-      <div class='value_type_field' id='category_details'>
+      <div class='value_type_field category_details'>
         #{left_field_nest :value_options, view: :edit_in_form, title: 'Value Options',
                                           type: :pointer}
       </div>
-      <div class='value_type_field' id='currency_details'>
+      <div class='value_type_field currency_details'>
         #{left_field_nest :currency, view: :edit_in_form,
                                      title: 'Currency', type: :phrase}
       </div>
