@@ -41,7 +41,7 @@ Feature: Double check
     When I am signed in as Joe User
     And I go to card "Jedi+disturbances in the Force+Death Star+2000"
     And I edit "Jedi+disturbances in the Force+Death Star+2000"
-    And I check "Request that another researcher double checks this value"
+    And I check "Request that another researcher double check this value"
     And I submit
     Then I should see "Double check requested by Joe User"
 
@@ -56,11 +56,11 @@ Feature: Double check
     And I hover over "Joe Admin"
     Then I should see "Double check requested by Joe User"
     When I edit "Jedi+disturbances in the Force+Death Star+2000"
-    Then I should not see "Request that another researcher double checks this value"
+    Then I should not see "Request that another researcher double check this value"
 
     When I am signed in as Joe User
     And I edit "Jedi+disturbances in the Force+Death Star+2000"
-    And I uncheck "Request that another researcher double checks this value"
+    And I uncheck "Request that another researcher double check this value"
     And I submit
     # Then I should not see "Double check"
     Then I should not see "Yes, I checked"

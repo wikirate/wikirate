@@ -24,6 +24,7 @@ Feature: Research relationship answer from record page
     And I click on "Submit"
     And I wait for ajax response
     # And I go to card "Jedi+more evil+Death Star"
-    Then I should see "3 companies"
+    Then I should see "1 companies"
+    And I should see "2 companies"
     When I click the drop down button for "2009"
     Then I should see "Monster Inc"

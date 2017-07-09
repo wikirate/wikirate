@@ -1,4 +1,4 @@
-oc_jurisdiction_code;oc_company_number;inc_juristiction_code;wikirate_number;company_name
+oc_jurisdiction_code;oc_company_number;inc_jurisdiction_code;wikirate_number;company_name
 se;556563-4861;se;47758;SEB
 au;169448220;au;56294;ANZ
 ca_qc;1161018453;ca_qc;51677;Arganat Inc.
@@ -361,7 +361,6 @@ gb;09399778;gb;48508;British Sky Broadcasting
 ie;906412;ie;48584;Seagate Technology
 hk;F0005502;bm;57409;Li & Fung
 us_co;20061448836;us_co;48606;Liberty Interactive
-us_a6;0743907;us_a6;48692;Thomson Reuters
 us_md;Z12051652;us_de;48805;Discovery Communications
 us_ny;251042;us_de;48933;Constellation Brands
 sg;199802418D;sg;49314;Sembcorp Industries
@@ -384,7 +383,6 @@ nl;17085815;nl;44435;ASML Holding
 us_ca;C2003533;us_de;859846;Fairchild Semiconductor
 us_ca;C3356937;us_de;47910;Northrop Grumman
 us_oh;1436333;us_ny;47906;American Electric
-us_tx;0001885506;us_p8;56735;Schlumberger
 us_ga;15036864;us_de;56502;Southern Co
 nl;33103545;nl;16873;Heineken International
 gb;04190816;gb;56820;BT Group
@@ -1049,7 +1047,6 @@ hk;0770009;hk;56525;BOC Hong Kong Holdings
 hk;F0004691;bm;56510;Jardine Matheson
 us_nv;C27880-1998;us_nv;56062;Deere & Co
 ie;553157;ie;49867;Xilinx
-us_mi;D90581;us_y9;48473;Delphi Automotive
 sg;196900499K;sg;47566;Aviva
 fr;542051180;fr;3898;Total S.A.
 us_fl;184062;us_fl;2271521;Ryder System Inc.
@@ -1143,7 +1140,6 @@ us_ny;145194;us_ny;2241774;Empire State Building
 us_la;34451598F;us_de;48451;Entergy
 us_ny;2759075;us_ny;48715;Bunge Limited
 us_ny;223833;us_ny;48770;Leucadia National
-us_ga;K214264;us_d0;48874;Invesco
 us_ca;C1642535;us_de;57653;Ross Stores
 us_ny;3186446;us_nv;57681;CIT Group
 us_ok;1900584812;us_ok;49117;Oneok
@@ -1244,13 +1240,11 @@ us_ca;C1950664;us_de;51379;Sun Microsystems Inc.
 us_ny;750335;us_ny;965755;Bloomberg
 us_ca;C1991515;us_ca;56134;Sempra Energy
 us_ny;15772;us_ny;2996;New York Times Company
-us_tx;0008414806;us_d0;48979;Weatherford International
 us_ca;C2936253;us_de;56747;Petco Animal Supplies, Inc.
 us_ca;C1590746;us_de;2262971;LSI Corporation
 us_ma;043284048;us_ma;2262053;Boston Beer Company Inc
 us_mn;528350e8-acd4-e011-a886-001ec94ffe7f;us_de;856179;The Toro Company
 us_nh;10961;us_nh;48203;Hypertherm Inc.
-us_ny;3840716;us_d0;2241795;Multi Packaging Solutions
 us_ma;352015980;us_de;2266090;Endurance International Group
 us_pa;2754189;us_de;870797;Knoll, Inc.
 us_tn;000304375;us_de;61188;Unum Group
@@ -1486,7 +1480,6 @@ us_nj;0100786250;us_nj;2274216;New Jersey Resources Corporation
 us_ca;C0178869;us_nv;871904;Newport Corporation
 us_ca;C2351901;us_de;872462;PDF Solutions, Inc.
 us_pa;270300;us_pa;2647753;Penn Mutual Life Insurance Company
-us_nj;0400647786;us_v8;872500;Pentair PLC
 us_ca;C3748007;us_de;2274178;Performant Financial Corporation
 us_ca;C1518730;us_de;872576;Polycom, Inc.
 us_ca;C2033289;us_ca;872690;Power Integrations, Inc.
@@ -1512,7 +1505,6 @@ us_ca;200826010043;us_ca;1369184;Myspace
 us_ny;694443;us_de;870732;Kate Spade & Company
 us_ca;C2012840;us_md;2270309;Realty Income Corporation
 us_ny;3174674;us_md;2647235;Ares Capital Corporation
-us_ma;000818562;us_a1;2266098;Atlantic Power Corporation
 us_me;19841530D;us_me;2266109;Camden National Corporation
 us_mn;b80a6bf2-aad4-e011-a886-001ec94ffe7f;us_mn;2262981;Capella Education Company
 us_md;F05050000;us_de;2274191;Centrus Energy Corporation
@@ -1647,7 +1639,6 @@ us_ca;201514210411;us_de;2241811;Pharmacyclics Inc.
 us_ca;C1518941;us_de;2241797;CorVel Corporation
 us_fl;132442;us_fl;2241808;St. Joe Company
 us_mn;1abcbbf7-b6d4-e011-a886-001ec94ffe7f;us_de;2241778;HMN Financial Inc.
-us_fl;F12000002488;us_a1;871079;Masonite International
 us_ny;942726;us_ny;56363;Toyota Motor Corporation
 us_nj;0101005391;us_nv;57625;Actavis
 be;0643961818;gb;52784;Ecover
