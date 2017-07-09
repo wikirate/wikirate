@@ -237,7 +237,9 @@ format :html do
         end
       end
     end
-  end  def title_fields options
+  end
+
+  def title_fields options
     metric_title_field(options)
   end
 
