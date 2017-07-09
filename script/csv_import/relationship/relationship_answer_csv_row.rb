@@ -21,6 +21,7 @@ class RelationshipAnswerCSVRow < CSVRow
   private
 
   def ensure_companies
+    binding.pry if company_1 == "2017" || company_2 == "2017"
     ensure_card company_1, type_id: Card::WikirateCompanyID
     ensure_card company_2, type_id: Card::WikirateCompanyID
   end
