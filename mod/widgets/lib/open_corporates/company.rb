@@ -51,7 +51,7 @@ module OpenCorporates
 
     def validate_company_number
       return fail("no company number") unless @company_number
-      unless @company_number.is_a?(Integer) || @company_number.match(/^[\d\w]+$/)
+      unless @company_number.is_a?(Integer) || @company_number.match(/^[\d\w-]+$/)
         fail "invalid jurisdiction code: #{@jurisdiction_code}"
       end
     end

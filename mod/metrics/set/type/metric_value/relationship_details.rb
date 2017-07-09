@@ -10,6 +10,10 @@ format do
                 return: :count
   end
 
+  def limit
+    10
+  end
+
 end
 
 format :html do
