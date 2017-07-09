@@ -29,6 +29,29 @@ rescue Exception => _e
   ""
 end
 
+
+event :update_oc_mapping_due_to_wikipedia_entry, :integrate, on: :create, when: :needs_oc_mapping? do
+  oc = ::OpenCorporates::MappingAPI.fetch_oc_company_number wikipedia_url: content
+  return unless oc.company_number.present?
+
+  add_subcard cardname.left_name.field(:open_corporates),
+              content: oc.company_number, type: :phrase
+  add_subcard cardname.left_name.field(:incorporation),
+              content: jurisdiction_name(oc.jurisdiction_code_of_incorporation),
+              type: :pointer
+  add_subcard cardname.left_name.field(:headquarters),
+              content: jurisdiction_name(oc.jurisdiction_code),
+              type: :pointer
+end
+
+# TODO: reduce duplicated code
+def jurisdiction_name oc_code
+  unless oc_code.to_s =~ /^oc_/
+    oc_code = "oc_#{oc_code}"
+  end
+  Card.fetch_name oc_code.to_sym
+end
+
 format :html do
   delegate :wikipedia_extract, :wikipedia_url, to: :card
   view :edit do
@@ -52,4 +75,8 @@ format :html do
   def original_link
     super wikipedia_url, class: "external-link", text: "<small>Visit Original</small>"
   end
+end
+
+def needs_oc_mapping?
+  (l = left) && l.open_corporates.blank?
 end

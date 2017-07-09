@@ -3,7 +3,7 @@ require_relative "../csv_row"
 class OpenCorporatesCSVRow < CSVRow
   @columns =
     [:oc_jurisdiction_code, :oc_company_number, :wikirate_number, :company_name,
-     :country, :headquarters_state, :state_of_inc, :inc_jurisdiction_code,
+     :country,  :inc_jurisdiction_code,
      :headquarters_address]
 
   @required = [:oc_jurisdiction_code, :oc_company_number, :wikirate_number]
@@ -13,7 +13,7 @@ class OpenCorporatesCSVRow < CSVRow
   end
 
   def normalize_inc_jurisdiction_code value
-    return unless value.present?
+    return if value.blank? || value == "null"
     "oc_#{value}".to_sym
   end
 
