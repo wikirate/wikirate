@@ -2,15 +2,17 @@ require_relative "csv_row"
 
 # Use CSVFile to describe the structure of a csv file and import its content
 class CSVFile
-  # @param enforce_headers [Boolean] (true) if true the import raises an error
+  # @param headers [true, false, :detect] (false) if true the import raises an error
   #    if the csv file has no or wrong errors
-  def initialize path, row_class, col_sep: ",", headers: false
-    raise StandardError, "file does not exist: #{path}" unless File.exist? path
+  def initialize path_or_file, row_class, col_sep: ",", encoding: "utf-8", headers: false
     raise ArgumentError, "#{row_class} must inherit from CSVRow" unless row_class < CSVRow
     @row_class = row_class
-    @rows = CSV.read path, col_sep: col_sep
+    @col_sep = col_sep
+    @encoding = encoding
+
+    read_csv path_or_file
     if header_row?
-      @headers =
+      @headers
     end
     @headers = @rows.shift.map { |h| h.downcase.tr(" ", "_") }
     enforce_headers ? map_headers : reject_headers
@@ -34,6 +36,50 @@ class CSVFile
   end
 
   private
+
+  def read_csv path_or_file
+    @rows =
+      if path_or_file.respond_to?(:read)
+        read_csv_from_file_handle path_or_file
+      else
+        read_csv_from_path path_or_file
+      end
+  end
+
+  def read_csv_from_path path
+    raise StandardError, "file does not exist: #{path}" unless File.exist? path
+    rescue_encoding_error do
+      CSV.read path, csv_options
+    end
+  end
+
+  def read_csv_from_file_handle file
+    rescue_encoding_error do
+      CSV.parse file.read, csv_options
+    end
+  end
+
+  def rescue_encoding_error
+    yield
+  rescue ArgumentError => _e
+    # if parsing with utf-8 encoding fails, assume it's iso-8859-1 encoding
+    # and convert to utf-8
+    with_encoding "iso-8859-1:utf-8" do
+      yield
+    end
+  end
+
+  def csv_options
+    { col_sep: @col_sep, encoding: @encoding }
+  end
+
+  def with_encoding encoding
+    enc = @encoding
+    @encoding = encoding
+    yield
+  ensure
+    @encoding = enc
+  end
 
   def with_user user
     if user
