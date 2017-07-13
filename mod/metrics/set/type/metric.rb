@@ -206,8 +206,12 @@ format :html do
   # USED?
 
   view :add_to_formula_item_view do |_args|
+    subtext = wrap_with :small, "Designed by" + card.metric_designer.to_s
+    add_to_formula_helper subtext
+  end
+
+  def add_to_formula_helper subtext
     title = card.metric_title.to_s
-    subtext = wrap_with :small, "Scored by " + card.scorer
     append = "#{params[:formula_metric_key]}+add_to_formula"
     url = path mark: card.cardname.field(append), view: :content
     text_with_image image: designer_image_card,
