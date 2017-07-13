@@ -69,12 +69,12 @@ format :html do
       Select:
       <span class="padding-20 background-grey">
         #{check_box_tag '_check_all', '', false, class: 'checkbox-button'}
-    #{label_tag 'all'}
+        #{label_tag 'all'}
       </span>
       #{group_selection_checkbox('exact', 'exact matches', :success, true)}
-    #{group_selection_checkbox('alias', 'alias matches', :info, true)}
-    #{group_selection_checkbox('partial', 'partial matches', :warning, true)}
-    #{group_selection_checkbox('none', 'no matches', :danger)}
+      #{group_selection_checkbox('alias', 'alias matches', :info, true)}
+      #{group_selection_checkbox('partial', 'partial matches', :warning, true)}
+      #{group_selection_checkbox('none', 'no matches', :danger)}
     HTML
   end
 
@@ -96,10 +96,10 @@ format :html do
      <span class="pull-right">
       company match:
       #{row_legend 'exact', 'success'}
-    #{row_legend 'alias', 'info'}
-    #{row_legend 'partial', 'warning'}
-    #{row_legend 'none', 'danger'}
-      <span>
+      #{row_legend 'alias', 'info'}
+      #{row_legend 'partial', 'warning'}
+      #{row_legend 'none', 'danger'}
+     <span>
     HTML
   end
 
@@ -135,62 +135,11 @@ format :html do
                 header: args[:table_header]
   end
 
-  def reject_header_row import_data
-    return unless (first_row = import_data.first)
-    return unless includes_column_header first_row
-    import_data.shift
-  end
-
-  def includes_column_header row
-    headers = import_fields
-    headers << :company
-    row.any? { |item| item && headers.include?(item.downcase.to_sym) }
-  end
-
-  def aliases_hash
-    @aliases_hash ||= begin
-      aliases_cards = Card.search right: "aliases",
-                                  left: { type_id: WikirateCompanyID }
-      aliases_cards.each_with_object({}) do |aliases_card, aliases_hash|
-        aliases_card.item_names.each do |name|
-          aliases_hash[name.downcase] = aliases_card.cardname.left
-        end
-      end
-    end
-  end
-
-  def company_mapper
-    @mapper ||=
-      begin
-        corpus = Company::Mapping::CompanyCorpus.new
-        Card.search(type_id: WikirateCompanyID, return: :id).each do |company_id|
-          company_name = Card.fetch_name(company_id)
-          aliases = (a_card = Card[company_name, :aliases]) && a_card.item_names
-          corpus.add company_id, company_name, (aliases || [])
-        end
-        Company::Mapping::CompanyMapper.new corpus
-      end
-  end
-
-  def map_company name
-    id = company_mapper.map(name, COMPANY_MAPPER_THRESHOLD)
-    Card.fetch_name id
-  end
-
   # @return name of company in db that matches the given name and
   # the what kind of match
-  def matched_company name
-    @company_map ||= {}
-    @company_map[name] ||=
-      if (company = Card.fetch(name)) && company.type_id == WikirateCompanyID
-        [name, :exact]
-      elsif (company_name = aliases_hash[name.downcase])
-        [company_name, :alias]
-      elsif (result = map_company(name))
-        [result, :partial]
-      else
-        ["", :none]
-      end
+  def match_company name
+    @company_matcher ||= {}
+    @company_matcher[name] ||= CompanyMatcher.new(name)
   end
 
   def company_correction_field row_hash
@@ -202,7 +151,7 @@ format :html do
     checked = %w[partial exact alias].include? row_hash[:status]
     key_hash = row_hash.deep_dup
     key_hash[:company] =
-      if row_hash[:status] == "none"
+      if row_hash[:match].none?
         row_hash[:file_company]
       else
         row_hash[:wikirate_company]
@@ -212,55 +161,29 @@ format :html do
 
   def import_checkbox row_hash
     key_hash, checked = prepare_import_checkbox row_hash
-    tag = check_box_tag "import_data[]", key_hash.to_json, checked
-    tag
+    check_box_tag "import_data[]", key_hash.to_json, checked
   end
 
   def data_correction data
-    if data[:status] == "exact"
-      ""
-    else
-      company_correction_field data
-    end
-  end
-
-  def data_company data
-    if data[:wikirate_company].empty?
-      data[:file_company]
-    else
-      data[:wikirate_company]
-    end
-  end
-
-  def find_wikirate_company file_company
-    if file_company.present?
-      matched_company file_company
-    else
-      ["", :none]
-    end
+    return "" if data[:match].exact?
+    company_correction_field data
   end
 
   def prepare_and_sort_rows rows, _args
     rows.map.with_index do |row, index|
       prepare_import_row_data row, index + 1
     end.sort do |a, b|
-      compare_status a, b
+      a[:match] <=> b[:match]
     end
   end
 
   def prepare_import_row_data row, index
     data = row_to_hash row
     data[:csv_row_index] = index
-    data[:wikirate_company], data[:status] = find_wikirate_company data[:file_company]
-    data[:status] = data[:status].to_s
-    data[:company] = data_company data
+    data[:match] = match_company data[:file_company]
+    data[:wikirate_company], data[:status] = data[:match].match
+    data[:company] = data[:match].suggestion
     data
-  end
-
-  def compare_status a, b
-    a = STATUS_ORDER[a[:status].to_sym] || 0
-    b = STATUS_ORDER[b[:status].to_sym] || 0
-    a <=> b
   end
 
   def finalize_row row, index
@@ -281,10 +204,10 @@ format :html do
 
   def row_context status
     case status
-    when "partial" then "warning"
-    when "exact"   then "success"
-    when "none"    then "danger"
-    when "alias"   then "info"
+    when :partial then "warning"
+    when :exact   then "success"
+    when :none    then "danger"
+    when :alias   then "info"
     end
   end
 

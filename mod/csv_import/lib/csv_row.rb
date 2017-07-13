@@ -35,8 +35,9 @@ class CSVRow
 
   attr_reader :errors
 
-  def initialize row, index
+  def initialize row, index, corrections=nil
     @row = row
+    @row.merge! corrections if corrections
     @row_index = index # 0-based, not counting the header line
     @errors = []
   end

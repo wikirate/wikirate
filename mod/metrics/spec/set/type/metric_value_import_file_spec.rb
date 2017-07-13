@@ -136,21 +136,4 @@ RSpec.describe Card::Set::Type::MetricValueImportFile do
       end
     end
   end
-
-  describe "#map_company" do
-    let(:format) { mv_import_file.format(:html) }
-
-    it "maps Samsung" do
-      expect(format.map_company("Samsung"))
-        .to eq "Samsung"
-    end
-
-    it "maps Sony to Sony Corporation" do
-      expect(format.map_company("Sony")).to eq "Sony Corporation"
-    end
-
-    it "maps Amazon" do
-      expect(format.map_company("Amazon")).to eq "Amazon.com, Inc."
-    end
-  end
 end

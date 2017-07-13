@@ -1,7 +1,3 @@
-COMPANY_MAPPER_THRESHOLD = 0.5
-
-STATUS_ORDER = { none: 1, partial: 2, alias: 3, exact: 4 }
-
 # the is_data_import flag distinguishes between an update of the
 # import file and importing the file
 event :import_csv, :prepare_to_store, on: :update, when: :data_import? do
@@ -247,6 +243,6 @@ rescue ArgumentError
   CSV.parse file.read, encoding: "iso-8859-1:utf-8"
 end
 
-def clean_html? # return always true ;)
+def clean_html?
   false
 end
