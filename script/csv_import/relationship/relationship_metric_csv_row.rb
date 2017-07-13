@@ -1,47 +1,30 @@
-require_relative "../../csv_row"
+require_relative "../csv_row"
 
 # This class provides an interface to import relationship metrics
 class RelationshipMetricCSVRow < CSVRow
   @columns = [:designer, :title, :inverse, :value_type, :value_options, :unit]
   @required = [:designer, :title, :value_type, :inverse]
 
-  def initialize row
+  def initialize row, index
     super
     @designer = @row[:designer]
     @name = "#{@designer}+#{@row[:title]}"
-    @inverse_name = "#{@designer}+#{@row[:inverse]}"
     normalize_value_options
   end
 
   def import
     ensure_designer
-    create_card @name, type: Card::MetricID,
-                       subfields: subfields
-    create_inverse
-  end
-
-  def create_inverse
-    create_card @inverse_name,
-                type: Card::MetricID,
-                subfields: { metric_type: "Inverse Relationship",
-                             inverse: @name }
-    create_title_inverse_pointer
+    create_or_update_card @name, type: Card::MetricID, subfields: subfields
   end
 
   private
 
   def subfields
-    subs = { metric_type: "Relationship", inverse: @inverse_name }
+    subs = { metric_type: "Relationship", inverse_title: @row[:inverse] }
     [:value_type, :value_options, :unit].each_with_object(subs) do |field, hash|
       next unless @row[field]
       hash[field] = @row[field]
     end
-  end
-
-  def create_title_inverse_pointer
-    ensure_card [@row[:inverse], :inverse], content: @row[:title]
-    ensure_card [@row[:title], :inverse], content: @row[:inverse]
-    # valuable here?
   end
 
   def ensure_designer

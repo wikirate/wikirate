@@ -91,8 +91,12 @@ def multi_categorical?
   value_type_code == :multi_category
 end
 
-def researched?
+def standard?
   metric_type_codename == :researched
+end
+
+def researched?
+  standard? || relationship?
 end
 
 def calculated?
@@ -243,6 +247,10 @@ format :html do
   end
 
   view :legend do
+    value_legend
+  end
+
+  def value_legend
     # depends on the type
     if card.unit.present?
       card.unit

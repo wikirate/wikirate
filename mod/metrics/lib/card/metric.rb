@@ -8,15 +8,22 @@ class Card::Metric
 
     def create_value company, year, value
       args = { company: company.to_s, year: year }
-      if value.is_a?(Hash)
-        args.merge! value
-      else
-        args[:value] = value.to_s
-      end
-      if @metric.metric_type_codename == :researched && @random_source
+      if @metric.researched? && @random_source
         args[:source] ||= Card.search(type_id: Card::SourceID, limit: 1).first
       end
-      @metric.create_value args
+      if @metric.relationship?
+        value.each do |company, relationship_value|
+          @metric.create_value args.merge(related_company: company,
+                                          value: relationship_value)
+        end
+      else
+        if value.is_a?(Hash)
+          args.merge! value
+        else
+          args[:value] = value.to_s
+        end
+        @metric.create_value args
+      end
     end
 
     def method_missing company, *args
@@ -37,7 +44,7 @@ class Card::Metric
     # the syntax
     # `company year => value, year => value`
     # If you want to define more properties of a metric value than just the
-    # value (like a source for example) you can assign a hash the year
+    # value (like a source for example) you can assign a hash to the year
     # @example
     # Metric.create name: 'Jedi+disturbances in the Force',
     #               value_type: 'Category',
@@ -77,9 +84,9 @@ class Card::Metric
     # type is an alias for metric_type
     VALID_SUBFIELDS =
       ::Set.new([:metric_type, :currency, :formula, :value_type,
-                 :value_options, :research_policy, :wikirate_topic, :unit, :report_type])
+                 :value_options, :research_policy, :wikirate_topic, :unit, :report_type, :inverse_title])
            .freeze
-    ALIAS_SUBFIELDS = { type: :metric_type, topic: :wikirate_topic }.freeze
+    ALIAS_SUBFIELDS = { type: :metric_type, topic: :wikirate_topic, inverse: :inverse_title }.freeze
 
     def subfields opts
       resolve_alias opts
@@ -101,7 +108,7 @@ class Card::Metric
 
     def subfield_type_id field
       case field
-      when :formula, :unit, :currency then Card::PhraseID
+      when :formula, :unit, :currency, :inverse_title then Card::PhraseID
       else Card::PointerID
       end
     end

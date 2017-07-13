@@ -83,7 +83,7 @@ format :html do
   end
 
   def option_label_text _option_name
-    "#{request_icon} Request that another researcher double checks this value"
+    "#{request_icon} Request that another researcher double check this value"
   end
 
   view :core do

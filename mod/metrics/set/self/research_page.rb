@@ -75,7 +75,7 @@ format :html do
     metrics.map do |metric_name|
       next not_a_metric(metric_name) unless existing_metric? metric_name
       record_card = Card.fetch metric_name, companies.first, new: {}
-      nest record_card, view: :core, hide: :chart
+      nest record_card, view: :core, hide: [:chart, :add_answer_redirect]
     end.join
   end
 

@@ -1,3 +1,5 @@
+include_set Abstract::MetricChild, generation: 1
+
 def all_answers
   @result ||=
     Answer.search(record_id: id, sort_by: :year, sort_order: :desc)
@@ -31,12 +33,12 @@ format :html do
   # 4) add new value page (new_metric_value view for company)
   view :core, unknown_ok: true do
     voo.hide :answer_form
-    voo.hide :add_answer_redirect
+    voo.show :add_answer_redirect
     wrap_with :div, id: card.cardname.url_key, class: "record-row" do
       [
         _optional_render_metric_info,
         _optional_render_buttons,
-        _optional_render_new_answer,
+        # _optional_render_new_answer
         _render_answer_table
       ]
     end
@@ -63,26 +65,28 @@ format :html do
   end
 
   view :answer_table do
-    answer_view =
-      voo.show?(:chart) ? :closed_answer : :closed_answer_without_chart
+    if voo.hide?(:answer_form) && voo.show?(:answer_redirect_button)
+      class_up "card-slot", "_show_add_new_value_button"
+    end
+    answer_view = voo.show?(:chart) ? :closed_answer : :closed_answer_without_chart
     wrap do
       next "" unless all_answers.present?
-      wikirate_table :plain, all_answers,
-                     [:plain_year, answer_view],
-                     header: %w[Year Answer],
-                     td: { classes: ["text-center"] }
+      output [_optional_render_answer_form,
+              wikirate_table(:plain, all_answers,
+                             [:plain_year, answer_view],
+                             header: %w[Year Answer],
+                             td: { classes: ["text-center"] })]
     end
   end
 
   view :new_answer_success do
-    class_up "card-slot", "_show_add_new_value_button"
     voo.hide! :chart
+    voo.hide! :answer_form
     _render_answer_table
   end
 
   def add_answer_button
-    return "" unless metric_card.metric_type_codename == :researched &&
-                     metric_card.user_can_answer?
+    return "" unless metric_card.researched? && metric_card.user_can_answer?
     if voo.show?(:add_answer_redirect) && voo.hide?(:answer_form)
       redirect_form_button
     else
@@ -96,8 +100,8 @@ format :html do
 
   def show_form_button
     classes = "_add_new_value btn-primary"
-    classes << "hide" if voo.show?(:answer_form)
-    wrap_with :a, "Research answer",
+    classes << " hide" if voo.show?(:answer_form)
+    wrap_with :a, "Research Answer",
               href: "#",
               class: css_classes(button_classes, classes),
               data: { url: path(view: :answer_form) },

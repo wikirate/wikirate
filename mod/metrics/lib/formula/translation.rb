@@ -5,7 +5,9 @@ module Formula
         raise Card::Error,
               "translate formula with more than one metric involved"
       end
-      @executed_lambda[input.first.to_s.downcase]
+      input.first.split(Card::Set::Abstract::Value::JOINT).inject(0.0) do |res, inp|
+        res + @executed_lambda[inp.to_s.downcase].to_f
+      end
     end
 
     def to_lambda

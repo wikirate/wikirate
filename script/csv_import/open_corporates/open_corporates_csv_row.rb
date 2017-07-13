@@ -3,10 +3,19 @@ require_relative "../csv_row"
 class OpenCorporatesCSVRow < CSVRow
   @columns =
     [:oc_jurisdiction_code, :oc_company_number, :wikirate_number, :company_name,
-     :country, :headquarters_state, :state_of_inc, :inc_jurisdiction_code,
+     :country,  :inc_jurisdiction_code,
      :headquarters_address]
 
   @required = [:oc_jurisdiction_code, :oc_company_number, :wikirate_number]
+
+  def normalize_oc_jurisdiction_code value
+    "oc_#{value}".to_sym
+  end
+
+  def normalize_inc_jurisdiction_code value
+    return if value.blank? || value == "null"
+    "oc_#{value}".to_sym
+  end
 
   def validate_wikirate_number value
     value.number? && (@company = Card[value.to_i]) &&
@@ -23,7 +32,7 @@ class OpenCorporatesCSVRow < CSVRow
   end
 
   def validate_jurisdiction value
-    (jc = Card[value.to_sym]) && jc.type_id == Card::JurisdictionID
+    (jc = Card[value]) && jc.type_id == Card::JurisdictionID
   end
 
   def import
@@ -31,11 +40,11 @@ class OpenCorporatesCSVRow < CSVRow
                 content: oc_company_number,
                 type: :phrase
     ensure_card [@company, :headquarters],
-                content: Card[oc_jurisdiction_code.to_sym].name,
+                content: Card[oc_jurisdiction_code].name,
                 type: :pointer
     return unless inc_jurisdiction_code.present?
     ensure_card [@company, :incorporation],
-                content: Card[inc_jurisdiction_code.to_sym].name,
+                content: Card[inc_jurisdiction_code].name,
                 type: :pointer
   end
 end

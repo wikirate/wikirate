@@ -25,7 +25,7 @@ Feature: Research answer fail
     And I fill in "Baam!" for "Comment"
     And I press "Submit"
     And I should see "Problems"
-    And I should see "YEAR: No year given."
+    And I should see "YEAR: no year given."
 
   Scenario: Missing value
     When I click on "Cite!"
@@ -33,7 +33,7 @@ Feature: Research answer fail
     And I fill in "Baam!" for "Comment"
     And I press "Submit"
     And I should see "Problems"
-    And I should see "ANSWER: No answer given."
+    And I should see "ANSWER: no answer given."
 
   Scenario: Missing source
     When I fill in "2009" for "Year"

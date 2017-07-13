@@ -127,6 +127,6 @@ format :json do
       Card::Chart::NumericChart
     else
       Card::Chart::CategoryChart
-    end
+  end
   end
 end

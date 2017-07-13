@@ -6,7 +6,7 @@ card_accessor :open_corporates
 
 format :html do
   def default_content_formgroup_args _args
-    voo.edit_structure = [:image, :wikipedia]
+    voo.edit_structure = [:headquarters, :incorporation, :image, :wikipedia]
   end
 
   def active_profile_tab

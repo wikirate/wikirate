@@ -62,7 +62,7 @@ def extract_metric_value_name args, error_msg
   args[:name] || begin
     missing = [:company, :year, :value].reject { |v| args[v] }
     if missing.empty?
-      [name, args[:company], args[:year]].join "+"
+      [name, args[:company], args[:year], args[:related_company]].compact.join "+"
     else
       error_msg.push("missing field(s) #{missing.join(',')}")
       nil
@@ -84,21 +84,20 @@ def valid_value_args? args
   if metric_type_codename == :researched && !args[:source]
     error_msg << "missing source"
   end
-  if error_msg.present?
-    error_msg.each do |msg|
-      errors.add "metric value", msg
-    end
-    return false
+  error_msg.each do |msg|
+    errors.add "metric value", msg
   end
-  true
+  error_msg.empty?
 end
 
 def create_value_args args
   return unless valid_value_args? args
-  value_name = [name, args[:company], args[:year]].join "+"
+  value_name =
+    [name, args[:company], args[:year], args[:related_company]].compact.join "+"
+  type_id = args[:related_company] ? Card::RelationshipAnswerID : Card::MetricValueID
   create_args = {
     name: value_name,
-    type_id: Card::MetricValueID,
+    type_id: type_id,
     "+value" => {
       content: args[:value],
       type_id: (args[:value].is_a?(Integer) ? NumberID : PhraseID)
@@ -140,7 +139,18 @@ format :html do
   end
 
   view :new_form, template: :haml do
-    @tabs = %w[Researched Formula Score WikiRating]
+    @tabs =
+      {
+        researched: {
+          help: "Answer values for <strong>Researched</strong> metrics are "\
+                "directly entered or imported.",
+          subtabs: %w[Standard Relationship]
+        },
+        calculated: {
+          help: "Answer values for <strong>Calculated</strong> metrics are dynamically calculated.",
+          subtabs: %w[Formula Score WikiRating]
+        }
+      }
   end
 
   def default_content_formgroup_args _args
@@ -152,25 +162,37 @@ format :html do
     "#{name.downcase}Pane"
   end
 
-  def selected_tab_pane? name
+  def selected_tab_pane? tab
+    if params[:tab] && params[:tab].downcase.to_sym.in?([:formula, :score, :wiki_rating])
+      tab == :calculated
+    else
+      tab == :researched
+    end
+  end
+
+  def selected_subtab_pane? name
     if params[:tab]
       params[:tab].casecmp(name).zero?
     else
-      name == "Researched"
+      name == "Standard" || name == "Formula"
     end
   end
 
   def new_metric_tab_pane name
-    new_metric = Card.new type: MetricID, "+*metric type" => "[[#{name}]]"
+    metric_type = name == "Standard" ? "Researched" : name
+    new_metric = Card.new type: MetricID, "+*metric type" => "[[#{metric_type}]]"
     new_metric.reset_patterns
     new_metric.include_set_modules
     tab_pane tab_pane_id(name), subformat(new_metric)._render_new_tab_pane,
-             selected_tab_pane?(name)
+             selected_subtab_pane?(name)
   end
 
-  view :help_text do |args|
+  view :help_text do |_args|
     return "" unless (help_text_card = Card[card.metric_type + "+description"])
-    subformat(help_text_card).render_content args
+    class_up "help-text", "help-block"
+    with_nest_mode :normal do
+      render :help, help: help_text_card.content
+    end
   end
 
   view :new_tab_pane do |args|
@@ -202,11 +224,23 @@ format :html do
 
   def new_name_field form=nil, options={}
     form ||= self.form
-    output [
-      metric_designer_field(options),
-      '<div class="plus">+</div>',
-      metric_title_field(options)
-    ]
+    bs_layout do
+      row 5, 1, 6 do
+        column do
+          metric_designer_field(options)
+        end
+        column do
+          '<div class="plus">+</div>'
+        end
+        column do
+          title_fields(options)
+        end
+      end
+    end
+  end
+
+  def title_fields options
+    metric_title_field(options)
   end
 
   def metric_designer_field options={}

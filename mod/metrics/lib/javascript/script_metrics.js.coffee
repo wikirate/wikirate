@@ -47,7 +47,7 @@ hideAll = (slot)->
 
 showField = (divName) ->
   return if divName == ''
-  $("#" + divName).slideDown(100)
+  $("." + divName).slideDown(100)
 
 showAndHide = (slot, value) ->
   div_to_show =

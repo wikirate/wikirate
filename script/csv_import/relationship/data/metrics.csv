@@ -1,9 +1,8 @@
 designer,title,inverse,value_type,value_options,unit
-Relationship Metric Folk,is Supplied By ,is Supplier of,Category,Tier 1 Supplier / Tier 2 Supplier,
-OpenCorporates,is Controller Of,is Controlled by,Category,Yes/No,
-OpenCorporates,is Subsidiary Of,has Subsidiary,Category,Yes/No,
+OpenCorporates,Controls,is Controlled by,Category,Yes/No,
+OpenCorporates,Subsidiary Of,has Subsidiary,Category,Yes/No,
 OpenCorporates,has Branch,has Parent Company,Category,Yes/No,
-Proxy Voting Research Group,has voting authority over,receives shareholder votes from,Category,Majority rule vote / Advisory vote / No,
-Proxy Voting Research Group,has voting authority over (weighted),receives shareholder votes from (weighted),Numeric,,%
+Proxy Voting Research Group,has Voting Authority over,receives shareholder votes from,Category,Majority rule vote / Advisory vote / No,
+Proxy Voting Research Group,has Voting Authority over (weighted),receives shareholder votes from (weighted),Numeric,,%
 Proxy Voting Research Group,voted with management of,management supported by votes of,Numeric,,%
-OpenCorporates,is Shareholder Of,has Shareholder,Numeric,,%
+OpenCorporates,Shareholder Of,has Shareholder,Numeric,,%
