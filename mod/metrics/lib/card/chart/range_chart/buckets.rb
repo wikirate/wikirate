@@ -36,7 +36,7 @@ class Card
             if min >= 1
               max / min > 100
             else
-              max < 100
+              max > 200
             end
         end
 
