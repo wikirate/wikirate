@@ -94,7 +94,6 @@ end
 # don't update if it's part of scored metric update
 event :update_metric_values, :prepare_to_store,
       on: :update, changed: :content do
-  binding.pry
   metric_card.value_cards.each do |value_card|
     value_card.trash = true
     add_subcard value_card
