@@ -40,7 +40,7 @@ class CompanyMatcher
   private
 
   def find_match
-    return if @match_result ||
+    return if @match_type ||
               find_exact_match || find_alias_match || find_partial_match
     @match_result = ["", :none]
   end
@@ -52,7 +52,7 @@ class CompanyMatcher
   end
 
   def find_alias_match
-    return unless (alias_name = self.class.alias_map[@company_name.downcase])
+    return unless (alias_name = ::Company::Alias[@company_name])
     [alias_name, :alias]
   end
 
@@ -60,20 +60,6 @@ class CompanyMatcher
     id = self.class.mapper.map(@company_name, COMPANY_MAPPER_THRESHOLD)
     return unless id && (name = Card.fetch_name(id))
     [name, :partial]
-  end
-
-  def self.alias_map
-    @aliases_hash ||= begin
-      all_alias_cards.each_with_object({}) do |aliases_card, aliases_hash|
-        aliases_card.item_names.each do |name|
-          aliases_hash[name.downcase] = aliases_card.cardname.left
-        end
-      end
-    end
-  end
-
-  def self.all_alias_cards
-    Card.search right: "aliases", left: { type_id: Card::WikirateCompanyID }
   end
 
   def self.mapper
