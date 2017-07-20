@@ -9,7 +9,7 @@ describe Card::Set::MetricType::Formula do
   end
 
   def build_formula formula
-    sprintf formula, @metric_name1, @metric_name2, @metric_name3
+    format formula, @metric_name1, @metric_name2, @metric_name3
   end
 
   describe "formula card" do
@@ -174,8 +174,8 @@ describe Card::Set::MetricType::Formula do
 
     it "creates calculated values" do
       test_calculation [], "60.0"
-      test_calculation %w(Samsung 2015), "29.0"
-      test_calculation %w(Sony_Corporation), "9.0"
+      test_calculation %w[Samsung 2015], "29.0"
+      test_calculation %w[Sony_Corporation], "9.0"
       not_researched_card = calc_value_card "Death_Star", "1977"
       expect(not_researched_card).to be_falsey
     end
@@ -198,7 +198,7 @@ describe Card::Set::MetricType::Formula do
       end
       it "adds complete calculated value" do
         update_formula "{{%s}}*5"
-        test_calculation %w(Death_Star 1977), "25.0"
+        test_calculation %w[Death_Star 1977], "25.0"
       end
     end
 
@@ -215,7 +215,7 @@ describe Card::Set::MetricType::Formula do
             source: sample_source
           )
         end
-        test_calculation %w(Death_Star 1977), "29.0"
+        test_calculation %w[Death_Star 1977], "29.0"
       end
     end
 
@@ -248,8 +248,8 @@ describe Card::Set::MetricType::Formula do
                      content: build_formula("{{%s}}*5+{{%s}}*2")
       end
       test_calculation [], "60.0"
-      test_calculation %w(Samsung 2015), "29.0"
-      test_calculation %w(Sony_Corporation), "9.0"
+      test_calculation %w[Samsung 2015], "29.0"
+      test_calculation %w[Sony_Corporation], "9.0"
       not_researched_card = calc_value_card "Death_Star", "1977"
       expect(not_researched_card).to be_falsey
     end

@@ -14,26 +14,7 @@ format :html do
     end
   end
 
-  view :compact_header do
-    <<-HTML
-      <div class="metric-details-header col-md-12 col-xs-12 padding-top-10">
-        <div class="row">
-          <div class="row-icon no-icon-bg padding-top-10">
-              #{link_to_card card,
-                             nest(card.designer_image_card,
-                                  view: :content,
-                                  size: :small),
-                             class: 'editor-image inherit-anchor'}
-          </div>
-          <div class="row-data">
-            	<h4 class="metric-color">
-                 #{link_to_card card, card.metric_title, class: 'inherit-anchor'}
-        			</h4>
-          </div>
-        </div>
-      </div>
-    HTML
-  end
+  view :compact_header, template: :haml
 
   def collapsed_sections
     output [
@@ -76,31 +57,11 @@ format :html do
     HTML
   end
 
-  view :compact_methodology do
-    <<-HTML
-      <div class="col-md-12">
-        <div class="methodology-info collapse">
-            <div class="row"><small><strong>Methodology </strong>
-              #{nest card.methodology_card, view: :content,
-                                            items: { view: :link }}
-            </small></div>
-            <div class="row">
-              <div class="row-icon">
-                <i class="fa fa-tag"></i>
-              </div>
-              <div class="row-data">
-                #{nest card.fetch(trait: :wikirate_topic),
-                       view: :content, items: { view: :link }}
-              </div>
-            </div>
-        </div>
-      </div>
-    HTML
-  end
+  view :compact_methodology, template: :haml
 
   view :compact_buttons do
     output [
-      toggle_button("Methodolgy", ".methodology-info"),
+      toggle_button("Methodology", ".methodology-info"),
       toggle_button("About", ".about-info"),
       toggle_example_answers,
       _optional_render_page_link_button

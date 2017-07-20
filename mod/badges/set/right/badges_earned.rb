@@ -80,7 +80,7 @@ format :html do
     with_paging do
       wikirate_table :plain, card.item_cards(limit: limit, offset: offset),
                      [:level, :badge, :description],
-                     header: %w(Level Badge Description),
+                     header: %w[Level Badge Description],
                      td: { classes: ["badge-certificate", nil, nil] }
     end
   end

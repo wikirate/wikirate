@@ -9,8 +9,9 @@ describe Card::Set::Type::Source, "source preview" do
       @company = "Amazon.com, Inc."
       @topic = "Natural Resource Use"
       @existing_source =
-        create_page_with_sourcebox @url, { "+Company" => @company,
-                                           "+Topic" => @topic }, "false"
+        create_page url: @url, box: false,
+                    subcards: { "+Company" => @company,
+                                "+Topic" => @topic }
     end
 
     context "text source" do
@@ -87,7 +88,9 @@ describe Card::Set::Type::Source, "source preview" do
         @url = "http://wagn.org"
         @company = "Amazon.com, Inc."
         @topic = "Natural Resource Use"
-        @existing_source = create_page_with_sourcebox @url, { "+Company" => @company, "+Topic" => @topic }, "false"
+        @existing_source = create_page url: @url, box: false,
+                                       subcards: { "+Company" => @company,
+                                                   "+Topic" => @topic }
         @result = @existing_source.format._render_preview
       end
       it "shows correction options" do

@@ -96,21 +96,23 @@ describe Card::Set::Type::SourceImportFile do
           }]
         end
 
+        let(:title) do
+          { "1" => "SiDan" }
+        end
+
         before do
-          source_args = {
-            "+title" => "hTc",
-            "+company" => "[[Apple Inc]]",
-            "+report_type" => "[[Conflict Minerals Report]]",
-            "+year" => "[[2014]]"
-          }
-          @source_card = create_page "http://wagn.org", source_args
-          title = { "1" => "SiDan" }
+          @source_card =
+            create_page url: "http://wagn.org",
+                        subcards: { "+title" => "hTc",
+                                    "+company" => "[[Apple Inc]]",
+                                    "+report_type" => "[[Conflict Minerals Report]]",
+                                    "+year" => "[[2014]]" }
+
           trigger_import samsung_data, title
         end
 
         it "won't update existing source title" do
           # to trigger a "clean" update
-          title = { "1" => "SiDan" }
           trigger_import samsung_data, title
           @source_card.success.params.clear
           verify_subcard_content @source_card, :wikirate_title, "hTc"

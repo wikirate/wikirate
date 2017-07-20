@@ -62,7 +62,7 @@ def extract_metric_value_name args, error_msg
   args[:name] || begin
     missing = [:company, :year, :value].reject { |v| args[v] }
     if missing.empty?
-      [name, args[:company], args[:year]].join "+"
+      [name, args[:company], args[:year], args[:related_company]].compact.join "+"
     else
       error_msg.push("missing field(s) #{missing.join(',')}")
       nil
@@ -84,21 +84,20 @@ def valid_value_args? args
   if metric_type_codename == :researched && !args[:source]
     error_msg << "missing source"
   end
-  if error_msg.present?
-    error_msg.each do |msg|
-      errors.add "metric value", msg
-    end
-    return false
+  error_msg.each do |msg|
+    errors.add "metric value", msg
   end
-  true
+  error_msg.empty?
 end
 
 def create_value_args args
   return unless valid_value_args? args
-  value_name = [name, args[:company], args[:year]].join "+"
+  value_name =
+    [name, args[:company], args[:year], args[:related_company]].compact.join "+"
+  type_id = args[:related_company] ? Card::RelationshipAnswerID : Card::MetricValueID
   create_args = {
     name: value_name,
-    type_id: Card::MetricValueID,
+    type_id: type_id,
     "+value" => {
       content: args[:value],
       type_id: (args[:value].is_a?(Integer) ? NumberID : PhraseID)
@@ -132,36 +131,26 @@ event :set_metric_name, :initialize, on: :create, when: :needs_name? do
 end
 
 format :html do
-  # FIXME: inline js
   view :new do |_args|
     voo.title = "New Metric"
     frame do
-      <<-HTML
-      <fieldset class="card-editor editor">
-        <div role="tabpanel">
-          <input class="card-content form-control" type="hidden" value=""
-                 name="card[subcards][+*metric type][content]"
-                 id="card_subcards___metric_type_content">
-           <h4>Metric Type</h4>
-           <div class="help-block help-text">
-             <p>There are four "metric types."  Choose one to learn more</p>
-           </div>
-          #{new_metric_tab_buttons}
-        </div>
-      </fieldset>
-      <!-- Tab panes -->
-
-      #{new_metric_tab_content}
-      <script>
-        $('input[name="intervaltype"]').click(function () {
-          //jQuery handles UI toggling correctly when we apply "data-target"
-          // attributes and call .tab('show')
-          //on the <li> elements' immediate children, e.g the <label> elements:
-          $(this).closest('label').tab('show');
-        });
-      </script>
-      HTML
+      _render_new_form
     end
+  end
+
+  view :new_form, template: :haml do
+    @tabs =
+      {
+        researched: {
+          help: "Answer values for <strong>Researched</strong> metrics are "\
+                "directly entered or imported.",
+          subtabs: %w[Standard Relationship]
+        },
+        calculated: {
+          help: "Answer values for <strong>Calculated</strong> metrics are dynamically calculated.",
+          subtabs: %w[Formula Score WikiRating]
+        }
+      }
   end
 
   def default_content_formgroup_args _args
@@ -169,50 +158,41 @@ format :html do
                           [:wikirate_topic, "Topic"]]
   end
 
-  def tab_radio_button id, active=false
-    <<-HTML
-    <li role="tab" class="pointer-radio #{'active' if active}">
-      <label data-target="##{tab_pane_id id}" class="tab-primary">
-        <input id="#{id}"
-               name="intervaltype"
-               value="#{id}"
-               class="pointer-radio-button"
-               type="radio" #{'checked' if active} />#{id}</label>
-    </li>
-    HTML
-  end
-
-  def new_metric_tab_buttons
-    wrap_with :ul, class: "nav nav-pills grey-nav-tab", role: "tablist" do
-      %w(Researched Formula Score WikiRating).map.with_index do |metric_type, i|
-        tab_radio_button metric_type, i.zero?
-      end
-    end
-  end
-
-  def new_metric_tab_content
-    wrap_with :div, class: "tab-content" do
-      %w(Researched Formula Score WikiRating).map.with_index do |metric_type, i|
-        new_metric_tab_pane metric_type, i.zero?
-      end
-    end
-  end
-
   def tab_pane_id name
     "#{name.downcase}Pane"
   end
 
-  def new_metric_tab_pane name, active=false
-    new_metric = Card.new type: MetricID, "+*metric type" => "[[#{name}]]"
+  def selected_tab_pane? tab
+    if params[:tab] && params[:tab].downcase.to_sym.in?([:formula, :score, :wiki_rating])
+      tab == :calculated
+    else
+      tab == :researched
+    end
+  end
+
+  def selected_subtab_pane? name
+    if params[:tab]
+      params[:tab].casecmp(name).zero?
+    else
+      name == "Standard" || name == "Formula"
+    end
+  end
+
+  def new_metric_tab_pane name
+    metric_type = name == "Standard" ? "Researched" : name
+    new_metric = Card.new type: MetricID, "+*metric type" => "[[#{metric_type}]]"
     new_metric.reset_patterns
     new_metric.include_set_modules
     tab_pane tab_pane_id(name), subformat(new_metric)._render_new_tab_pane,
-             active
+             selected_subtab_pane?(name)
   end
 
-  view :help_text do |args|
+  view :help_text do |_args|
     return "" unless (help_text_card = Card[card.metric_type + "+description"])
-    subformat(help_text_card).render_content args
+    class_up "help-text", "help-block"
+    with_nest_mode :normal do
+      render :help, help: help_text_card.content
+    end
   end
 
   view :new_tab_pane do |args|
@@ -237,18 +217,30 @@ format :html do
   end
 
   view :new_name_formgroup do
-    formgroup "Metric Name", editor: "name" do
+    formgroup "Metric Name", editor: "name", help: false do
       new_name_field
     end
   end
 
   def new_name_field form=nil, options={}
     form ||= self.form
-    output [
-      metric_designer_field(options),
-      '<div class="plus">+</div>',
-      metric_title_field(options)
-    ]
+    bs_layout do
+      row 5, 1, 6 do
+        column do
+          metric_designer_field(options)
+        end
+        column do
+          '<div class="plus">+</div>'
+        end
+        column do
+          title_fields(options)
+        end
+      end
+    end
+  end
+
+  def title_fields options
+    metric_title_field(options)
   end
 
   def metric_designer_field options={}

@@ -2,7 +2,7 @@
   .metric-info
     .row.header
       = vote_count
-      .name
+      .name{:title => card.metric_title}
         = link_to_card card, card.metric_title
     .row
       .row-icon

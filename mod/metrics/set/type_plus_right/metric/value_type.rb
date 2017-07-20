@@ -53,3 +53,42 @@ end
 def quoted_list list
   list.map { |o| "\"#{o}\"" }.join ", "
 end
+
+format :html do
+  def default_edit_args _args
+    voo.title = "Value Type"
+  end
+
+  def multi_card_edit_slot
+    super() + fields_form
+  end
+
+  def single_card_edit_slot
+    multi_card_edit_slot
+  end
+
+  def left_field_nest field, opts
+    if card.cardname.left_name.empty?
+      parent.field_nest field, opts
+    else
+      nest card.cardname.left_name.field_name(field), opts
+    end
+  end
+
+  def fields_form
+    <<-HTML.html_safe
+      <div class='value_type_field number_details'>
+        #{left_field_nest :unit, title: 'Unit', type: :phrase}
+        #{left_field_nest :range, title: 'Range', type: :phrase}
+      </div>
+      <div class='value_type_field category_details'>
+        #{left_field_nest :value_options, view: :edit_in_form, title: 'Value Options',
+                                          type: :pointer}
+      </div>
+      <div class='value_type_field currency_details'>
+        #{left_field_nest :currency, view: :edit_in_form,
+                                     title: 'Currency', type: :phrase}
+      </div>
+    HTML
+  end
+end

@@ -26,6 +26,7 @@ class Card
     #   if filtered by missing values then the card objects
     #   are newly instantiated and not in the database
     def run
+      return all_answers if find_all?
       return missing_answers if find_missing?
       run_filter_query.compact
     end
@@ -87,19 +88,33 @@ class Card
       @values << value
     end
 
+    def limit
+      @paging_args[:limit]
+    end
+
     private
 
-    def missing_answer_query
-      @missing_answer_query ||=
-        missing_answer_query_class.new(@filter_args, @paging_args)
+    def all_answers
+      all_answer_query.run
     end
 
     def missing_answers
       missing_answer_query.run
     end
 
+    def all_answer_query
+      @all_answer_query ||=
+        all_answer_query_class.new(@filter_args, @paging_args)
+    end
+
+    def missing_answer_query
+      @missing_answer_query ||=
+        missing_answer_query_class.new(@filter_args, @paging_args)
+    end
+
     def restrict_to_ids col, ids
       ids = Array(ids)
+      @empty_result = ids.empty?
       if @restrict_to_ids[col]
         @restrict_to_ids[col] &= ids
       else
@@ -107,12 +122,17 @@ class Card
       end
     end
 
+    def find_all?
+      @filter_args[:metric_value] && @filter_args[:metric_value].to_sym == :all
+    end
+
     def find_missing?
       @filter_args[:metric_value] && @filter_args[:metric_value].to_sym == :none
     end
 
     def run_filter_query
-      Answer.where(where_args).sort(@sort_args).page(@paging_args).answer_cards
+      return [] if @empty_result
+      Answer.where(where_args).sort(@sort_args).paging(@paging_args).answer_cards
     end
 
     def prepare_filter_args filter

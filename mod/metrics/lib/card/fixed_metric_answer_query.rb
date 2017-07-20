@@ -49,8 +49,12 @@ class Card
       FixedMetricMissingAnswerQuery
     end
 
+    def all_answer_query_class
+      FixedMetricAllAnswerQuery
+    end
+
     def outliers_query
-      restrict_to_ids :id, savanna_outliers.keys
+      restrict_to_ids :id, outlier_ids
     end
 
     def metric_value_query value
@@ -89,7 +93,12 @@ class Card
       res
     end
 
-    def savanna_outliers
+    def outlier_ids
+      return [] unless (value_map = id_value_map).present?
+      savanna_outliers(value_map).keys
+    end
+
+    def savanna_outliers id_value_map
       @outliers ||= Savanna::Outliers.get_outliers id_value_map, :all
     end
   end

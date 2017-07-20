@@ -3,7 +3,7 @@ def sort_hash
 end
 
 def default_desc_sort_order
-  ::Set.new [:updated_at, :importance]
+  ::Set.new [:updated_at, :importance, :value]
 end
 
 def sort_by

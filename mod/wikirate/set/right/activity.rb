@@ -8,10 +8,11 @@ format :html do
       "actor_id=#{card.left.id} and card_id is not NULL"
     ).order("acted_at DESC").limit(10).map do |act|
       next unless (main_action = act.main_action) &&
-                  !main_action.draft && !act.card.trash
+                  !main_action.draft &&
+                  (act_card = act.card) && !act_card.trash
       item = {
         time: time_ago_in_words(act.acted_at),
-        card: act.card,
+        card: act_card,
         action: act.main_action.action_type
       }
       wrap_with :div, class: "activity" do
@@ -26,7 +27,7 @@ format :html do
                 else
                   card.type_name.downcase
                 end
-    "%sd %s%s" % [action_type, ("a new " if action_type == :create), card_type]
+    format("%sd %s%s", action_type, ("a new " if action_type == :create), card_type)
   end
 
   def activity_item item

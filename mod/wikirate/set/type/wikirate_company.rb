@@ -1,12 +1,20 @@
 include_set Abstract::WikirateTable
 include_set Abstract::WikirateTabs
 include_set Abstract::Media
+include_set Abstract::Export
 
 card_accessor :contribution_count, type: :number, default: "0"
 card_accessor :direct_contribution_count, type: :number, default: "0"
 card_accessor :aliases, type: :pointer
 card_accessor :all_metric_values
 card_accessor :image
+card_accessor :incorporation
+card_accessor :headquarters
+
+def headquarters_jurisdiction_code
+  (hc = headquarters_card) && (jc_card = hc.item_cards.first) &&
+    jc_card.oc_code
+end
 
 view :missing do |args|
   _render_link args
@@ -52,8 +60,31 @@ def add_alias alias_name
   aliases_card.insert_item! 0, alias_name
 end
 
+def all_answers
+  Answer.where company_id: id
+end
+
 format :csv do
   view :core do
-    Answer.where(company_id: card.id).map(&:csv_line).join
+    Answer.csv_title + card.all_answers.map(&:csv_line).join
+  end
+end
+
+format :html do
+  view :link, closed: true, perms: :none do
+    return super() unless voo.closest_live_option(:project)
+    title = showname voo.title
+    opts = { known: card.known? }
+    opts[:path] = { filter: { project: voo.closest_live_option(:project) } }
+    opts[:path][:card] = { type: voo.type } if voo.type && !opts[:known]
+    link_to_card card.name, title, opts
+  end
+end
+
+format :json do
+  view :core do
+    card.all_answers.map do |answer|
+      subformat(answer)._render_core
+    end
   end
 end

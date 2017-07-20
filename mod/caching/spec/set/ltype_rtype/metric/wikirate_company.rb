@@ -8,7 +8,7 @@ describe Card::Set::LtypeRtype::Metric::WikirateCompany do
       login_as "joe_admin"
       @metric_value =
         Card.create type_id: mv_id,
-                    subcards: subcards_of_metric_value(metric, company, "33", "2015", nil)
+                    subcards: create_answer(metric, company, "33", "2015", nil)
       @metric_company = Card.fetch "#{metric.name}+#{company.name}"
     end
     describe "creating a metric value" do

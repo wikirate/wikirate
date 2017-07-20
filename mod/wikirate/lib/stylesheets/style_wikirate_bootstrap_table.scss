@@ -191,11 +191,11 @@ table.wikirate-table, .table.wikirate-table {
 //---Custom Table Properties---//
 
 //Project Page
-.progress-bar-table .wikirate-table.company td:last-child,
-.progress-bar-table .wikirate-table.company .td:last-child{
-    width: 22%;
-    text-align: center;
-}
+//.progress-bar-table .wikirate-table.company td:last-child,
+//.progress-bar-table .wikirate-table.company .td:last-child{
+//    width: 22%;
+//    text-align: center;
+//}
 
 // Research Page table tweaks //
 
@@ -219,6 +219,10 @@ table.wikirate-table, .table.wikirate-table {
   }
   thead tr > th {
     vertical-align: middle;
+    &:first-child {
+      width: 40%;
+    }
+    width: 20%;
   }
 }
 
@@ -232,4 +236,36 @@ table.wikirate-table, .table.wikirate-table {
 .add-formula td.details.data.stick {
   height: 78%!important;
   top: 110px!important;
+}
+
+table.import_table td {
+  overflow: hidden;
+}
+
+.table-borderless,
+.table-borderless > tbody > tr > td,
+.table-borderless > tbody > tr > th,
+.table-borderless > tfoot > tr > td,
+.table-borderless > tfoot > tr > th,
+.table-borderless > thead > tr > td,
+.table-borderless > thead > tr > th {
+  border: none;
+}
+
+.table-condensed > thead > tr > th,
+.table-condensed > tbody > tr > th,
+.table-condensed > tfoot > tr > th,
+.table-condensed > thead > tr > td,
+.table-condensed > tbody > tr > td,
+.table-condensed > tfoot > tr > td {
+  padding: 4px;
+}
+
+.table.table-condensed {
+  margin-bottom: 10px;
+}
+
+td .pointer-list {
+  // needed to align on company pages the jurisdictions table
+  padding: 0;
 }

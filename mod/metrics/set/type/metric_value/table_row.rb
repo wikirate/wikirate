@@ -18,7 +18,7 @@ format :html do
   view :company_thumbnail_minimal do
     nest card.company_card, view: :thumbnail_minimal,
                             hide: [:thumbnail_subtitle, :vote]
-    #_render_company_thumbnail
+    # _render_company_thumbnail
   end
 
   view :company_thumbnail do
@@ -36,17 +36,18 @@ format :html do
   end
 
   def add_value_button
-    link_to_card :research_page, "Add answer",
+    link_to_card :research_page, "Research answer",
                  type: "button",
                  target: "_blank",
                  class: "btn btn-primary btn-sm",
                  path: {
                    metric: [card.metric],
                    company: card.company
-                 }
+                 },
+                 title: "Research answer for another year"
     # <<-HTML
     #     <a type="button" target="_blank" class="btn btn-primary btn-sm"
-    #       href="#{add_value_url}">Add answer</a>
+    #       href="#{add_value_url}">Research answer</a>
     # HTML
   end
 
@@ -115,6 +116,7 @@ format :html do
 
   # used in metric values list on a company page
   view :metric_details_sidebar do
+    voo.hide! :cited_source_links
     details_sidebar :metric do
       <<-HTML
         <div class="row clearfix">

@@ -1,0 +1,9 @@
+.source-item
+  .source-content
+    = _render_source_link
+    = _render_creator_credit
+  .source-extra
+    %ul.list-inline
+      - source_item_footer.each do |item|
+        %li
+          = item

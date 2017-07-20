@@ -9,10 +9,10 @@ Feature: Research answer from metric page
     And I maximize the browser
 
   Scenario: Adding a metric value with a link source on metric page
-    When In the main card content I click "Add answer"
+    When In the main card content I click "Research answer"
     And I select "Death Star" from "Company"
     And I click on "Next"
-    And I click on "Add answer"
+    And I click on "Research answer"
     And I wait for ajax response
     And I fill in "2015" for "Year"
     And I fill in "yes" for "Answer"
@@ -32,10 +32,10 @@ Feature: Research answer from metric page
     And I should see "yes"
 
   Scenario: Adding a metric value with a file source on metric page
-    When In the main card content I click "Add answer"
+    When In the main card content I click "Research answer"
     And I select "Death Star" from "Company"
     And I click on "Next"
-    And I click on "Add answer"
+    And I click on "Research answer"
     And I wait for ajax response
     And I fill in "2015" for "Year"
     And I fill in "yes" for "Answer"
@@ -61,7 +61,7 @@ Feature: Research answer from metric page
   Scenario: Adding a answer from record details on metric page
     When I go to card "Jedi+disturbances in the Force"
     And I click on item "Death Star"
-    And I click on "Add answer"
+    And I click on "Research answer"
     And I wait for ajax response
     And I fill in "2015" for "Year"
     And I fill in "yes" for "Answer"

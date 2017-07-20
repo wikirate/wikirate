@@ -10,7 +10,7 @@ RSpec.describe "relationship metric import" do
   end
 
   it "creates designer" do
-    expect(Card.exists? "Relationship Metric Folk").to be true
+    expect(Card.exists?("Relationship Metric Folk")).to be true
   end
 
   describe "relationship metric" do
@@ -36,6 +36,7 @@ RSpec.describe "relationship metric import" do
 
   describe "inverse relationship metric" do
     let(:metric) { Card["Relationship Metric Folk+is Supplier Of"] }
+
     it "exists" do
       expect(metric).to be_instance_of Card
     end

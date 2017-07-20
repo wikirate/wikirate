@@ -11,7 +11,7 @@ Feature: Research answer fail
     And I select "Apple Inc" from "Company"
     And I select "Joe User+researched" from "Metrics"
     And I click on "Next"
-    And I click on "Add answer"
+    And I click on "Research answer"
     And I click on "Add a new source"
     And I fill in "http://example.com" for "URL"
     And I press "Add and preview"
@@ -25,7 +25,7 @@ Feature: Research answer fail
     And I fill in "Baam!" for "Comment"
     And I press "Submit"
     And I should see "Problems"
-    And I should see "YEAR: No year given."
+    And I should see "YEAR: no year given."
 
   Scenario: Missing value
     When I click on "Cite!"
@@ -33,7 +33,7 @@ Feature: Research answer fail
     And I fill in "Baam!" for "Comment"
     And I press "Submit"
     And I should see "Problems"
-    And I should see "ANSWER: No answer given."
+    And I should see "ANSWER: no answer given."
 
   Scenario: Missing source
     When I fill in "2009" for "Year"

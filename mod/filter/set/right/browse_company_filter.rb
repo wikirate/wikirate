@@ -1,11 +1,11 @@
 include_set Abstract::BrowseFilterForm
 
 def filter_keys
-  %w(name industry)
+  %w[name industry]
 end
 
 def advanced_filter_keys
-  %w(project wikirate_topic)
+  %w[project wikirate_topic]
 end
 
 def filter_class

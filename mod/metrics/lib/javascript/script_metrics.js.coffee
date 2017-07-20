@@ -47,7 +47,7 @@ hideAll = (slot)->
 
 showField = (divName) ->
   return if divName == ''
-  $("#" + divName).slideDown(100)
+  $("." + divName).slideDown(100)
 
 showAndHide = (slot, value) ->
   div_to_show =
@@ -74,26 +74,34 @@ $(document).ready ->
 
 wagn.slotReady (slot) ->
   slot.find('[data-tooltip="true"]').tooltip()
-  if(slot.hasClass('STRUCTURE-metric_value_type_edit_structure'))
-# hide the related field
-# if no type is selected, hide all fields
-    slot.find('.RIGHT-value_type .pointer-radio input:radio').each(->
+  slot.find('input[name="intervaltype"]').on 'click', () ->
+    #jQuery handles UI toggling correctly when we apply "data-target"
+    #attributes and call .tab('show')
+    #on the <li> elements' immediate children, e.g the <label> elements:
+    $(this).closest('label').tab('show')
+
+  # hide the related field
+  # if no type is selected, hide all fields
+  if slot.find('.card-editor.RIGHT-value_type').length
+    hideAll(slot)
+    slot.find('.card-editor.RIGHT-value_type .pointer-radio input:radio').each(->
       if $(this).is(':checked')
-        showAndHide(slot, $(this).val())
+        showAndHide slot, $(this).val()
       $(this).change(->
         showAndHide slot, $(this).val()
-      ).change()
+      )
     )
-    # cancel-button to dismiss the modal
-    slot.find(".cancel-button").data('dismiss','modal')
-    # dismiss and refresh page after submit
-    slot.find('form:first').on 'ajax:success', (_event, data, xhr) ->
-      $('#modal-main-slot').modal('hide')
-      $('#fakeLoader').fakeLoader
-        timeToHide: 1000000 #Time in milliseconds for fakeLoader disappear
-        zIndex: '999' #Default zIndex
-        #Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5',
-        #         'spinner6', 'spinner7'
-        spinner: 'spinner1'
-        bgColor: 'rgb(255,255,255,0.80)'#Hex, RGB or RGBA colors
-      location.reload()
+    if slot.parent().hasClass('modal-body')
+      # cancel-button to dismiss the modal
+      slot.find(".cancel-button").data('dismiss','modal')
+      # dismiss and refresh page after submit
+      slot.find('form:first').on 'ajax:success', (_event, data, xhr) ->
+        $('#modal-main-slot').modal('hide')
+        $('#fakeLoader').fakeLoader
+          timeToHide: 1000000 #Time in milliseconds for fakeLoader disappear
+          zIndex: '999' #Default zIndex
+          #Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5',
+          #         'spinner6', 'spinner7'
+          spinner: 'spinner1'
+          bgColor: 'rgb(255,255,255,0.80)'#Hex, RGB or RGBA colors
+        location.reload()

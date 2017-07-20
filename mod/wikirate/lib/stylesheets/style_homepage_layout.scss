@@ -21,6 +21,10 @@
   background: none;
   color: #fff;
   font-size: 1.1em;
+  &:hover {
+      background: rgba(0, 0, 0, 0.33);
+      color: #fff;
+  }
 }
 
 .banner-image{
@@ -99,6 +103,40 @@
 
 .homepage-table {
   margin-bottom: 0;
+}
+
+.homepage-company-item .company-header {
+    padding: 0px;
+    padding-top: 2px;
+}
+
+.homepage-company-item,
+.homepage-topic-item {
+    max-width: 520px;
+    @include box-shadow(0,2px,32px,rgba(0,0,0,0.14));
+    border: 1px solid $bright-text-color;
+    padding-bottom: 40px;
+    background-color: #fff;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    .header-row {
+        font-size: 10px;
+        color: #bebebe;
+        text-align: center;
+        margin-top: 10px;
+        .header-header {
+            float: left;
+            margin-left: 80px;
+        }
+        .data-header {
+            width: 146px;
+            float: right;
+            margin-right: 15px;
+        }
+    }
+    .topic-header {
+      padding: 0px;
+    }
 }
 
 .homepage-company-item .data-count > div:hover {

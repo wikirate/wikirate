@@ -59,6 +59,13 @@ format :html do
     end
   end
 
+  view :titled_row do
+    [
+      { content: _render_title, class: "title" },
+      { content: _render_core, class: "value" }
+    ]
+  end
+
   view :edits_by do
     editor_card = card.fetch trait: :editors
     links = subformat(editor_card).render_shorter_search_result(
@@ -148,7 +155,7 @@ format :html do
   end
 
   def button_classes
-    "btn btn-sm btn-default margin-12"
+    "btn btn-sm btn-default"
   end
 end
 

@@ -19,8 +19,7 @@ def potential_numeric_metrics_wql
     ],
     not: {
       right_plus: [["value_type", {}], ["pending_normalize", {}]]
-    }
-  }
+    } }
 end
 
 def find_potential_numeric_metrics
@@ -99,7 +98,7 @@ def normalize_metric metric, i_value_type_card=nil
   value_type = value_type_card.item_names[0]
   if value_type == "Category"
     update_options [metric]
-  elsif %w(Number Money).include?(value_type)
+  elsif %w[Number Money].include?(value_type)
     normalize_numeric_metric metric_values, value_type_card
   end
 end
@@ -218,7 +217,7 @@ end
 
 def new_type_name content
   number = ["Real"]
-  category = %w(String Boolean)
+  category = %w[String Boolean]
   if number.include?(content)
     "[[Number]]"
   elsif category.include?(content)

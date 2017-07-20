@@ -1,9 +1,9 @@
 describe Card::Set::Right::Activity do
   before do
-    as_user "joe_user" do
-      @source_page = create_page "http://wagn.org"
+    with_user "joe_user" do
+      @source_page = create_page url: "http://wagn.org"
       # the below "create" will make a act without card_id due to the abort :success
-      create_page_with_sourcebox "http://wagn.org"
+      create_page url: "http://wagn.org"
     end
   end
 

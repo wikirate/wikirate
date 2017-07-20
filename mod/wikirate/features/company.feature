@@ -7,7 +7,7 @@ Feature: company feature
 
   Scenario: Browse through tabs
     Then I should see "disturbances in the Force"
-    And I should see "+Wikipedia"
+    And I should see "Wikipedia"
     And I wait for ajax response
     Then I should see "A number of fictional mobile space stations"
     Then I click on "Topics"
@@ -45,7 +45,7 @@ Feature: company feature
     And I select "Not Researched" from "Value"
     And I submit form
     Then I should not see "disturbances in the Force"
-    And I should see "Sith Lord in Charge"
+    And I should see "Weapons"
 
   Scenario: Paging
     Then I should not see "deadliness"

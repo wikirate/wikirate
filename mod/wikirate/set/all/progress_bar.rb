@@ -19,7 +19,8 @@ format :html do
   def progress_bar_section args
     add_class args, "progress-bar"
     value = args.delete :value
-    wrap_value = wrap_with :span, "#{value}%", class: "progress-value"
+    label = args.delete(:label) || "#{value}%"
+    wrap_value = wrap_with :span, label, class: "progress-value"
     body = args.delete(:body) || wrap_value
     wrap_with :div, body, args.reverse_merge(
       role: "progressbar", style: "width: #{value}%",

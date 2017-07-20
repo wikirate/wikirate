@@ -11,7 +11,7 @@ describe Formula::Calculator::Input do
   end
 
   it "two metrics" do
-    @input = %w(Jedi+deadliness Joe_User+researched)
+    @input = %w[Jedi+deadliness Joe_User+researched]
     expect { |b| subject.each(year: 1977, &b) }
       .to yield_with_args([100.0, 77.0], "death_star", 1977)
   end

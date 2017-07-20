@@ -1,7 +1,7 @@
 
 require File.expand_path("../../self/source_spec",  __FILE__)
 
-describe Card::Set::All::Wikirate do
+RSpec.describe Card::Set::All::Wikirate do
   describe "while showing view" do
     it "renders edits_by view" do
       html = render_card :edits_by, name: sample_company.name
@@ -19,7 +19,7 @@ describe Card::Set::All::Wikirate do
       expect(html).to include(render_card(:edits_by, name: card_name))
     end
 
-    it "alwayses show the help text" do
+    it "always shows the help text" do
       # render help text of source page
       # create a page with help text
       login_as "WagnBot"
@@ -27,7 +27,7 @@ describe Card::Set::All::Wikirate do
                   content: "<p>hello test case</p>"
       Card.create type: "Basic", name: "testhelptext+*self+*help",
                   content: "Can I help you?"
-      html = render_card :name_formgroup, name: "testhelptext"
+      html = render_card :edit, name: "testhelptext"
       expect(html).to include("Can I help you?")
     end
 
@@ -60,7 +60,7 @@ describe Card::Set::All::Wikirate do
       # create 2 claims
       # create an card with claim cite contents
       # check the number and the content
-      sourcepage = create_page_with_sourcebox nil, {}, "false"
+      sourcepage = create_page box: false
       Card.create! type_id: Card::ClaimID, name: "test1",
                    subcards: {
                      "+source" => {
@@ -242,7 +242,7 @@ describe Card::Set::All::Wikirate do
       source_showcast =
         Card.fetch "joe_user+showcast sources",
                    new: { type_id: Card::PointerID }
-      source_card = create_page_with_sourcebox "http://example.com", {}, "true"
+      source_card = create_page url: "http://example.com", box: true
       source_showcast << source_card
       source_showcast.save!
 

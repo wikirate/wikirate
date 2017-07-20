@@ -4,7 +4,7 @@ class Card
       # calculate the grouping for a range chart
       module Buckets
         def each_bucket
-          lower = log_bucket? && min.positive? ? Math.log(min) : min
+          lower = log_bucket? ? 0 : min
           real_lower = min
           @buckets.times do
             upper = lower + bucket_size
@@ -18,9 +18,7 @@ class Card
         def calculate_buckets
           return unless bucket_size > 2
           if log_bucket?
-            log_min = min == 0 ? 0 : Math.log(min)
-            exp_range = Math.log(max - min) - log_min
-            @bucket_size = exp_range / @buckets
+            @bucket_size = Math.log(max - min) / @buckets
           else
             round_bucket_size
           end
@@ -29,14 +27,12 @@ class Card
         private
 
         def real_bucket_size size
-          log_bucket? ? Math.exp(size) : size
+          log_bucket? ? Math.exp(size).to_i + min : size
         end
 
         def log_bucket?
-          return false if min < 0
-          # FIXME: not a reasonable condition for using log
-          @use_log = bucket_size > 1000 if @use_log.nil?
-          @use_log
+          return @use_log_scale unless @use_log_scale.nil?
+          @use_log_scale = max / min > 100
         end
 
         def round_bucket_size

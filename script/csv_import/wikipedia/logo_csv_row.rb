@@ -5,12 +5,13 @@ class LogoCSVRow < WikipediaCSVRow
   @required = :all
 
   def normalize_logo val
-    "http:" + val
+    "https:" + val
   end
 
   def import
+    return if Card[wikirate_id, :image]
     puts wikirate_name
-    ensure_card [wikirate_id, :image], remote_url: logo,
-                type_id: Card::ImageID
+    ensure_card [wikirate_id, :image], remote_image_url: logo,
+                                       type_id: Card::ImageID
   end
 end

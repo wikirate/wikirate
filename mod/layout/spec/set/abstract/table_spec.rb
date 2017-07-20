@@ -9,11 +9,11 @@ describe Card::Set::Abstract::Table do
         subject.wikirate_table :top_class,
                                [Card["A"], Card["r1"]],
                                [:name, :type],
-                               header: %w(header1 header2),
+                               header: %w[header1 header2],
                                table: { class: "table_class" },
                                tr: { class: "tr_class" },
                                td: { class: "td_all",
-                                     classes: %w(td_1 td_2) }
+                                     classes: %w[td_1 td_2] }
 
       expect(table).to have_tag :table,
                                 with: { class: "top_class table_class" } do

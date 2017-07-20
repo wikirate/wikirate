@@ -30,118 +30,7 @@
 .custom-child-column-2 > .col-md-2 {
     width: 20.0001%;
 }
-.homepage-company-item,
-.homepage-topic-item {
-    max-width: 520px;
-    @include box-shadow(0,2px,32px,rgba(0,0,0,0.14));
-    border: 1px solid $bright-text-color;
-    padding-bottom: 40px;
-    background-color: #fff;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    .header-row {
-        font-size: 10px;
-        color: #bebebe;
-        text-align: center;
-        margin-top: 10px;
-        .header-header {
-            float: left;
-            margin-left: 80px;
-        }
-        .data-header {
-            width: 146px;
-            float: right;
-            margin-right: 15px;
-        }
-    }
-    .topic-header {
-      padding: 0px;
-    }
-}
-.browse-company-item,
-.browse-topic-item {
-    width: 100%;
-}
-.browse-company-item,
-.browse-topic-item {
-    border: 1px solid $bright-text-color;
-    margin: 12px;
-    @include box-shadow(0,1px,6px,rgba(0,0,0,.13));
-    .company-content {
-        height: 175px;
-        .left {}
-        .right {
-            background: #f7f7f7;
-            height: 100%;
-            overflow: hidden; // remove after limiting
-        }
-    }
-    .yinyang-row .value-item .header {
-        cursor: pointer;
-    }
-    .metric-column-title {
-        width: 100%;
-        float: left;
-        padding-top: 5px;
-        color: #B2B2B2;
-    }
-    .header-row {
-        font-size: 10px;
-        color: #bebebe;
-        text-align: center;
-        margin-top: 10px;
-        .header-header {
-            float: left;
-            margin-left: 80px;
-        }
-        .data-header {
-            width: 146px;
-            float: right;
-            margin-right: 15px;
-        }
-    }
-}
-.STRUCTURE-browse_company_item .company-header {
-    @include ellipsis();
-    padding: 10px;
-}
-.STRUCTURE-browse_company_item,
-.STRUCTURE-browse_topic_item,
-//.STRUCTURE-homepage_company_item,
-.company-page-logo-container {
-    .contribution-details {
-        display: none;
-        position: absolute;
-        width: 100%;
-        bottom: -107px;
-        .number-small {
-            border-right: 1px solid $bright-text-color;
-            border-bottom: 1px solid $bright-text-color;
-        }
-        a {
-            text-decoration: none;
-            &:hover {
-                text-decoration: none;
-            }
-        }
-        .row {
-            padding: 0;
-            margin: 0;
-        }
-        .row > div {
-            padding: 0;
-            &:hover {
-                background: #fafafa;
-            }
-        }
-    }
-    :hover .contribution-details {
-        display: block;
-    }
-    :hover .contribution-count {
-        display: none;
-    }
-}
+
 .center-logo {
     // border-right: 1px solid $bright-text-color;
     > div {
@@ -307,7 +196,14 @@
     }
 }
 
+//Show icon on metric properties on mousehover
+.metric-designer-info,.value_type_detail-view.TYPE-metric {
+    width: 100%;
+    float: left;
+}
+
 .metric-designer-info {
+
     a {
         color: inherit;
     }
@@ -321,21 +217,11 @@
             padding-right: 10px;
         }
     }
-    //margin: 8px 0;
-    //.img-container {
-    //    height: 50px;
-    //}
+
     img {
-        //display: inline-block;
         max-height: 100%;
         max-width: 100%;
         vertical-align: middle;
-        //vertical-align: middle;
-        // TODO: verify if something breaks without this
-        // float: left;
-        // padding: 8px;
-        //border: 1px solid #ebebeb;
-        //margin: 0 4px;
     }
     h3 {
       margin: 18px 5px;
@@ -391,78 +277,21 @@
     z-index: 1;
 }
 .TYPE-metric_value {
-    .RIGHT-discussion,
-    .TYPE_PLUS_RIGHT-metric_value-source,
-    .timeline {
-        float: left;
-        width: 100%!important;
-        .missing-view {
-            display: none;
-        }
-    }
+  &.LTYPE_RTYPE-html-year >.card-frame >.card-body {
+    padding: 0px;
+    margin-top:1px;
+  }
+  .RIGHT-discussion,
+  .TYPE_PLUS_RIGHT-metric_value-source,
+  .timeline {
+      float: left;
+      width: 100%!important;
+      .missing-view {
+          display: none;
+      }
+  }
 }
-//browse metric
-.browse-metric-item {
-    padding: 0;
-    margin-bottom: 6px;
-    outline: 1px solid $bright-text-color;
-    border-top: 3px solid $metric-color;
-    @include box-shadow(0,1px,6px,rgba(0,0,0,.13));
-    font-size: 14px;
-    .RIGHT-Xvote_count > div {
-        line-height: 1em;
-    }
-    button.vote-button {
-        //color: $dark-text-color;
-        width: 15px;
-        height: 15px;
-        padding: 0;
-        border: none;
-        box-shadow: none;
-        --webkit-box-shadow: none;
-        background: none;
-    }
-    .vote-count {
-        //color: $dark-text-color;
-        width: 15px;
-        height: 15px;
-    }
-    .logo {
-        padding-top: 5px;
-        float: left;
-        img {
-            max-width: 35px;
-            max-height: 35px;
-            margin: 0 10px;
-        }
-    }
-    .header {
-        margin: 4px 12px;
-    }
-    .name {
-        padding: 12px 16px;
-        font-size: 21px;
-        float: left;
-        max-width: 94%;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        color: $metric-color;
-        a {
-            color: $metric-color;
-        }
-    }
-    .question {
-        height: 60px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        color: $dark-text-color;
-    }
-    .topic {
-        height: 38px;
-    }
-}
+
 .data-count {
     border-top: 1px solid $bright-text-color;
     padding: 0;
@@ -491,19 +320,7 @@
         padding: 12%;
     }
 }
-.ellipsis,
-.ellipsis .known-card {
-    max-width: 94%;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
-.SELF-metric .search-result-item.item-browse_item {
-    width: 15%;
-    padding: 10px;
-    display: inline-block;
-    min-width: 350px;
-}
+
 .modal-body .LTYPE_RTYPE-metric-company .timeline {
     padding-top: 10px;
     margin-top: 25px;
@@ -609,25 +426,27 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     }
 }
 .TYPE-metric.new-view {
-    ul.nav-tabs li {
-        padding: 28px;
-        background: #eee;
-        margin: 5px;
+    //ul.nav-tabs li {
+    //    padding: 28px;
+    //    background: #eee;
+    //    margin: 5px;
+    //}
+    .help-text p:last-child {
+        margin-bottom: 5px;
     }
     fieldset.card-editor.editor {
         clear: both;
+        ul.nav-tabs {
+            margin: 0 -15px;
+        }
     }
     .name-editor {
         .RIGHT-Xtitle,
-        .RIGHT-designer {
+        .RIGHT-designer,
+        .RIGHT-inverse_title {
             &.card-editor {
-                width: 45%;
-                float: left;
                 .card-title {
-                    font-size: 0.8em;
-                    //margin: 5px 0;
-                    //float: left;
-                    //color: #bbb;
+                    font-size: 12px;
                 }
                 input {
                     width: 100%;
@@ -635,14 +454,12 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
             }
         }
         .plus {
-            float: left;
             font-size: 30px;
             font-weight: bold;
             text-align: center;
             position: relative;
             top: 16px;
-            left: 0;
-            width: 10%;
+            width: 100%;
             margin-top: 30px;
         }
     }
@@ -818,20 +635,24 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   }
 }
 
-.core-view.SELF-research_page {
+.core-view.SELF-research_page,.research_page-view {
   .stick-left {
     left: 0px;
     top: 66px;
+    background: #fff;
   }
   .stick-right {
     top: 66px;
     left: 40.8%;
     width: 60%;
+    background: #fff;
   }
 
-  .answer_table-view.LTYPE_RTYPE-metric-company {
-    margin: 20px;
-  }
+  //.answer_table-view.LTYPE_RTYPE-metric-company {
+  //  margin: 0px;
+  //  padding: 10px;
+  //  //border: 1px solid #ebebeb;
+  //}
 
   td.year {
     padding-right: 10px;
@@ -839,23 +660,43 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   }
 }
 
-.form-group.card-editor {
-  &.RIGHT-value {
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-  &.RIGHT-unknown {
-    margin-bottom: 5px;
-    padding-bottom: 0;
-    .label {
-      margin-bottom: 0;
-    }
-    .help-text.help-block {
-      margin-top: -5px;
-    }
-  }
+.new-value-form {
+    border-top: 1px solid #ebebeb;
+    padding-top: 10px;
+    margin-top: 15px;
 }
+
+.row.panel-default.metric-list {
+    background: rgba(103, 78, 167, 0.06);
+}
+
+.row.panel-default.metric-list .record-row {
+    background: #fff;
+    margin-bottom: 30px;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+}
+
+
+.answer-unit {
+    font-size: 13px;
+    color: $help-text;
+    padding: 5px;
+    font-style: italic;
+}
+
+//.form-group.card-editor {
+//  &.RIGHT-unknown {
+//    .label {
+//      margin-bottom: 0;
+//    }
+//  }
+//}
 
 .research-left {
     width: 40%;
+}
+
+.RIGHT-all_metric_value.content-view {
+    min-height: 800px;
 }

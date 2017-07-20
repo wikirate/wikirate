@@ -1,5 +1,5 @@
 .browse-company-item
-  .text-center.company-header
+  .text-center.company-header.ellipsis{:title => card.name}
     = link_to_card card, nest(card, view: :title), class: "inherit-anchor"
   .row.clearfix.company-content.company-page-logo-container
     .col-md-12.col-xs-12.nopadding.left

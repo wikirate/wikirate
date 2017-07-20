@@ -1,10 +1,9 @@
 require_relative "../../config/environment"
 
-
 def search_args
   type, limit = ARGV
   return { type_id: Card::FileID } unless type
-  unless type.in? %w(file image)
+  unless type.in? %w[file image]
     raise ArgumentError, "not a valid file type. pass 'file' or 'image'"
   end
   hash = { type_id: Card.fetch_id(type.to_sym) }
@@ -24,5 +23,3 @@ Card::Auth.as_bot do
     end
   end
 end
-
-

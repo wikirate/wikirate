@@ -1,11 +1,11 @@
 include_set Abstract::MetricRecordFilter
 
 def filter_keys
-  %w(year metric_value)
+  %w[year metric_value]
 end
 
 def advanced_filter_keys
-  %w(wikirate_company industry project)
+  %w[wikirate_company industry project]
 end
 
 # no sort options because sorting is done by links

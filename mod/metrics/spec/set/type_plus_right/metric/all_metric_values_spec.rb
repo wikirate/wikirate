@@ -1,18 +1,20 @@
 require "./test/seed"
 
-describe Card::Set::TypePlusRight::Metric::AllMetricValues do
+RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
   let(:metric) { @metric || Card["Jedi+disturbances in the Force"] }
   let(:all_metric_values) { metric.fetch trait: :all_metric_values }
   let(:latest_answers) do
-    ["Slate_Rock_and_Gravel_Company+2005", "SPECTRE+2000", "Death_Star+2001",
-     "Monster_Inc+2000"]
+    ["Death_Star+2001", "Monster_Inc+2000", "Slate_Rock_and_Gravel_Company+2005",
+     "SPECTRE+2000"]
   end
   let(:latest_answer_keys) do
     ::Set.new(latest_answers.map { |n| n.to_name.left_name.key })
   end
+  let(:all_companies) do
+    Card.search type_id: Card::WikirateCompanyID, return: :name
+  end
   let(:missing_companies) do
-    company_names_wql = { type_id: Card::WikirateCompanyID, return: :name }
-    Card.search(company_names_wql).reject do |name|
+    all_companies.reject do |name|
       latest_answer_keys.include? name.to_name.key
     end
   end
@@ -54,7 +56,7 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
 
         it "finds partial match" do
           expect(filter_by(name: "at"))
-            .to eq %w(Slate_Rock_and_Gravel_Company+2005 Death_Star+2001)
+            .to eq %w[Death_Star+2001 Slate_Rock_and_Gravel_Company+2005]
         end
 
         it "ignores case" do
@@ -65,25 +67,35 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       context "year" do
         it "finds exact match" do
           expect(filter_by(year: "2000"))
-            .to eq with_year(%w(SPECTRE Death_Star Monster_Inc), 2000)
+            .to eq with_year(%w[Death_Star Monster_Inc SPECTRE], 2000)
         end
       end
       context "project" do
         it "finds exact match" do
           expect(filter_by(project: "Evil Project"))
-            .to eq %w(SPECTRE+2000 Death_Star+2001)
+            .to eq %w[Death_Star+2001 SPECTRE+2000]
         end
       end
       context "industry" do
         it "finds exact match" do
           expect(filter_by(industry: "Technology Hardware"))
-            .to eq %w(SPECTRE+2000 Death_Star+2001)
+            .to eq %w[Death_Star+2001 SPECTRE+2000]
         end
       end
       context "value" do
+        let(:all_answers) do
+          latest_answers + missing_answers
+        end
+
         it "finds missing values" do
-          expect(filter_by(metric_value: :none).sort)
-            .to eq missing_answers.sort
+          expect(filter_by(metric_value: :none))
+            .to contain_exactly(*missing_answers)
+        end
+
+        it "finds all values" do
+          filtered = filter_by(metric_value: :all)
+          expect(filtered)
+            .to include(*all_answers)
         end
 
         context "filter by update date" do
@@ -95,18 +107,18 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
           end
           it "finds today's edits" do
             expect(filter_by(metric_value: :today))
-              .to eq %w(Death_Star+1990)
+              .to eq %w[Death_Star+1990]
           end
 
           it "finds this week's edits" do
             expect(filter_by(metric_value: :week))
-              .to eq %w(Death_Star+1990 Death_Star+1991)
+              .to eq %w[Death_Star+1990 Death_Star+1991]
           end
 
           it "finds this months's edits" do
             # wrong only one company
             expect(filter_by(metric_value: :month))
-              .to eq %w(Death_Star+1990 Death_Star+1991 Death_Star+1992)
+              .to eq %w[Death_Star+1990 Death_Star+1991 Death_Star+1992]
           end
         end
       end
@@ -150,10 +162,33 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
             .to eq ["SPECTRE+2001"]
         end
       end
+
+      context "filter for all values and ..." do
+        it "... project" do
+          expect(filter_by(metric_value: :all, project: "Evil Project"))
+            .to contain_exactly("Death_Star+2001", "SPECTRE+2000",
+                                *with_year("Los Pollos Hermanos"))
+        end
+
+        it "... year" do
+          i = all_companies.index("Death Star")
+          all_companies[i] = "Death_Star"
+          expect(filter_by(metric_value: :all, year: "2001"))
+            .to contain_exactly(*with_year(all_companies, 2001))
+        end
+
+        it "... industry and year" do
+          expect(filter_by(metric_value: :all,
+                           industry: "Technology Hardware",
+                           year: "2001"))
+            .to contain_exactly(*with_year(%w[SPECTRE Death_Star], 2001))
+        end
+      end
+
       it "project and industry" do
         expect(filter_by(project: "Evil Project",
                          industry: "Technology Hardware"))
-          .to eq(["SPECTRE+2000", "Death_Star+2001"])
+          .to eq(["Death_Star+2001", "SPECTRE+2000"])
       end
       it "year and industry" do
         expect(filter_by(year: "1977",
@@ -211,11 +246,11 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       it "sorts numberics by value" do
         @metric = Card["Jedi+deadliness"]
         expect(sort_by(:value)).to eq(
-          with_year(%w(Samsung
+          with_year(%w[Samsung
                        Slate_Rock_and_Gravel_Company
                        Los_Pollos_Hermanos
                        SPECTRE
-                       Death_Star),
+                       Death_Star],
                     1977)
         )
       end
@@ -223,12 +258,12 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       it "sorts floats by value" do
         @metric = Card["Jedi+Victims by Employees"]
         expect(sort_by(:value)).to eq(
-          with_year(%w(Samsung
+          with_year(%w[Samsung
                        Slate_Rock_and_Gravel_Company
                        Monster_Inc
                        Los_Pollos_Hermanos
                        Death_Star
-                       SPECTRE),
+                       SPECTRE],
                     1977)
         )
       end

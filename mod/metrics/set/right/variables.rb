@@ -65,6 +65,7 @@ format :html do
   end
 
   view :edit do |_args|
+    voo.hide! :toolbar, :menu
     frame do
       render_haml metric_list: metric_list do
         <<-HAML
@@ -88,11 +89,6 @@ format :html do
     end
   end
 
-  def default_edit_args args
-    args[:optional_toolbar] = :hide
-    args[:optional_menu] = :hide
-  end
-
   def metric_list
     wql = { type_id: MetricID, limit: 0 }
     if card.metric_card.metric_type_codename == :wiki_rating
@@ -101,7 +97,7 @@ format :html do
     items = Card.search(wql)
     params[:formula_metric_key] = card.cardname.left_key
     wikirate_table_with_details :metric, items, [:add_to_formula_item_view],
-                                td: { classes: %w(score details) }
+                                td: { classes: %w[score details] }
   end
 
   view :missing do |args|

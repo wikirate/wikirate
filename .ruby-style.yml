@@ -94,6 +94,8 @@ RSpec/NestedGroups:
   Description: Checks for nested example groups.
   Enabled: false
   Max: 5
+RSpec/InstanceVariable:
+  Enabled: false
 Metrics/LineLength:
   Enabled: true
   Max: 90
@@ -104,3 +106,11 @@ Style/Documentation:
     - db/migrate_cards/*.rb
 Style/SymbolArray:
   Enabled: false
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: ()
+    '%i': '[]'
+    '%I': '[]'
+    '%r': '{}'
+    '%w': '[]'
+    '%W': '[]'

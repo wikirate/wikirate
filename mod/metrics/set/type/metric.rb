@@ -1,5 +1,7 @@
 require "savanna-outliers"
 
+include_set Abstract::Export
+
 card_accessor :vote_count, type: :number, default: "0"
 card_accessor :upvote_count, type: :number, default: "0"
 card_accessor :downvote_count, type: :number, default: "0"
@@ -89,8 +91,12 @@ def multi_categorical?
   value_type_code == :multi_category
 end
 
-def researched?
+def standard?
   metric_type_codename == :researched
+end
+
+def researched?
+  standard? || relationship?
 end
 
 def calculated?
@@ -104,6 +110,16 @@ end
 
 def scored?
   metric_type_codename == :score || rated?
+end
+
+# @return all metric cards that score this metric
+def related_scores
+  Card.search type_id: MetricID, left_id: id
+end
+
+# @return all metrics that use this metric in their formula
+def related_calculations
+  Card.search type_id: MetricID, right_plus: ["formula", { refer_to: id }]
 end
 
 def designer_assessed?
@@ -138,7 +154,7 @@ def metric_value_cards cached: true
   cached ? Answer.search(metric_id: id) : Card.search(metric_value_query)
 end
 
-def value_cards opts={}
+def value_cards _opts={}
   Answer.search metric_id: id, return: :value_card
 end
 
@@ -191,8 +207,7 @@ format :html do
 
   view :add_to_formula_item_view do |_args|
     title = card.metric_title.to_s
-    subtext = card.metric_designer.to_s
-    subtext = wrap_with :small, "Scored by " + subtext
+    subtext = wrap_with :small, "Scored by " + card.scorer
     append = "#{params[:formula_metric_key]}+add_to_formula"
     url = path mark: card.cardname.field(append), view: :content
     text_with_image image: designer_image_card,
@@ -232,6 +247,10 @@ format :html do
   end
 
   view :legend do
+    value_legend
+  end
+
+  def value_legend
     # depends on the type
     if card.unit.present?
       card.unit
@@ -265,18 +284,17 @@ format :html do
   end
 
   view :value_type_edit_modal_link do
-    render_modal_link(
-      link_text: vtype_edit_modal_link_text,
-      link_opts: { class: "btn btn-default slotter value-type-button",
-                   path: {
-                     slot: {
-                       hide: "title,header,menu,help,subheader",
-                       view: :edit,
-                       editor: :inline_nests,
-                       structure: "metric value type edit structure"
-                     }
-                   } }
-    )
+    nest card.value_type_card,
+         view: :modal_link,
+         link_text: vtype_edit_modal_link_text,
+         link_opts: { class: "btn btn-default slotter value-type-button",
+                      path: {
+                        slot: {
+                          hide: "header,menu,help",
+                          view: :edit,
+                          title: "Value Type"
+                        }
+                      } }
   end
 
   def vtype_edit_modal_link_text
@@ -452,8 +470,22 @@ format :html do
 end
 
 format :json do
-  view :content do
-    card.companies_with_years_and_values.to_json
+  # view :content do
+  #   card.companies_with_years_and_values.to_json
+  # end
+
+  view :core do
+    card.all_answers.map do |answer|
+      # nest answer, view: :essentials
+      subformat(answer)._render_core
+    end
+  end
+
+  def essentials
+    {
+      designer: card.metric_designer,
+      title: card.metric_title
+    }
   end
 end
 
@@ -464,6 +496,6 @@ end
 
 format :csv do
   view :core do
-    Answer.where(metric_id: card.id).map(&:csv_line).join
+    Answer.csv_title + Answer.where(metric_id: card.id).map(&:csv_line).join
   end
 end

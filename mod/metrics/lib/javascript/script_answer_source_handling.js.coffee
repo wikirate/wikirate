@@ -47,7 +47,7 @@ $.extend wikirate,
   citeSource = (args) ->
     $([args.$sourceFormContr.find("._cite_button"),
       args.$sourceContainer.find("._cite_button"),]).each ->
-      sourceCiteButtons($(this), 'cite')
+        sourceCiteButtons($(this), 'cite')
 
     args.$citedSource.empty() if args.$citedSource.text().search("None") > -1
     args.$hiddenInput.attr('value', args.sourceName)

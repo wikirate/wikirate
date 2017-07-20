@@ -12,10 +12,12 @@ format :html do
     end
   end
 
-  def add_toggle content
+  def with_toggle
+    # voo.hide! :links   # doesn't work with voo
+    @links = false
     wrap_with :div, class: "source-details-toggle",
                     data: { source_for: card.name, year: year } do
-      content.html_safe
+      yield.html_safe
     end
   end
 
@@ -24,29 +26,22 @@ format :html do
     super
   end
 
-  def flat_list items
-    wrap_with :ul, class: "list-inline" do
-      items.map { |item| wrap_with :li, item }
-    end
-  end
-
   def website_text
     website_field = card.field :wikirate_website, new: {}
     nest website_field, view: :content, items: { view: :name }
   end
 
   def title_text
-    nest(Card.fetch(card.cardname.field("title"), new: {}), view: :needed)
+    nest(card.source_title_card, view: :needed)
   end
 
   def source_item_footer
-    items = [
-      _render_note_count,
-      _render_metric_count,
-      _render_original_with_icon
-    ]
-    items.unshift(_render_year_with_icon) unless year.nil? || year == ""
-    items
+    [
+      (_render_year_with_icon if year.present?),
+      (_render_metric_count if with_links?),
+      (_render_note_count if with_links?),
+      (_render_original_with_icon if with_links?)
+    ].compact
   end
 
   def icon
@@ -54,30 +49,7 @@ format :html do
     "globe"
   end
 
-  view :source_content do |args|
-    content = wrap_with :div, class: "source-content" do
-      [
-        _render_source_link(args),
-        _render_creator_credit
-      ]
-    end
-    _render_icon + content
-  end
-
-  view :listing do
-    wrap_with :div, class: "source-item" do
-      [
-        _render_source_content,
-        _render_extras
-      ]
-    end
-  end
-
-  view :extras do
-    wrap_with :div, class: "source-extra" do
-      flat_list source_item_footer
-    end
-  end
+  view :listing, template: :haml
 
   view :original_with_icon do
     icon = wrap_with(:i, " ", class: "fa fa-external-link-square")
@@ -85,7 +57,7 @@ format :html do
   end
 
   view :icon do
-    icon = wrap_with(:i, " ", class: "fa fa-globe")
+    icon = wrap_with(:i, " ", class: "glyphicon glyphicon-link")
     wrap_with(:div, icon, class: "source-icon")
   end
 
@@ -97,8 +69,7 @@ format :html do
 
   def creator
     # FIXME: codename!
-    creator_card = card.field "*creator"
-    nest creator_card, view: :core, items: { view: :link }
+    field_nest "*creator", view: :core, items: { view: :link }
   end
 
   view :website_link do |_args|
@@ -107,25 +78,31 @@ format :html do
   end
 
   view :title_link do |_args|
-    klass = "source-preview-link preview-page-link"
-    link_to_card card, title_text, target: "_blank", class: klass
+    link_to_card card, title_text,
+                 target: "_blank",
+                 class: "source-preview-link preview-page-link"
   end
 
-  view :source_link do |args|
-    if args[:source_title] == :text
-      website = website_text
-      title = title_text
-    else
-      website = _render_website_link
-      title = _render_title_link
-    end
+  view :source_link do
     wrap_with :div, class: "source-link" do
       [
-        wrap_with(:span, website, class: "source-website"),
+        wrap_with(:span, source_website, class: "source-website"),
         wrap_with(:i, "", class: "fa fa-long-arrow-right"),
-        wrap_with(:span, title, class: "source-title")
+        wrap_with(:span, source_title, class: "source-title")
       ]
     end
+  end
+
+  def with_links?
+    @links != false
+  end
+
+  def source_website
+    with_links? ? _render_website_link : website_text
+  end
+
+  def source_title
+    with_links? ? _render_title_link : title_text
   end
 
   view :year_helper do
@@ -148,48 +125,64 @@ format :html do
     end
   end
 
-  view :with_cite_button do |args|
+  def with_cite_button cited: false
+    voo.hide :links
     wrap_with_info do
       [
-        _render_listing(args),
-        wrap_with(:div, class: "pull-right") do
-          wrap_with :a, "Cite!", href: "#",
-                                 class: "btn btn-highlight _cite_button c-btn"
-        end
+        _render_listing,
+        cite_button(cited),
+        (hidden_item_input if cited)
       ]
+    end
+  end
+
+  def cite_button cited
+    text = cited ? "Cited!" : "Cite!"
+    cite_class =
+      cited ? "btn-success _cited_button" : "btn-highlight _cite_button"
+    wrap_with(:div, class: "pull-right") do
+      wrap_with :a, text, href: "#", class: "btn #{cite_class} c-btn"
+    end
+  end
+
+  def hidden_item_input
+    tag :input, type: "hidden", class: "pointer-select _no-chosen", value: card.name
+  end
+
+  view :with_cited_button do
+    with_toggle do
+      with_cite_button(cited: true)
     end
   end
 
   view :source_and_preview, cache: :never do |args|
     wrap_with :div, class: "source-details",
                     data: { source_for: card.name, year: year } do
-      url_card = card.fetch(trait: :wikirate_link)
-      url = url_card ? url_card.item_names.first : nil
-      args[:url] = url
-      render_with_cite_button +
-        render_iframe_view(args.merge(url: url)).html_safe +
-        render_hidden_information(args.merge(url: url)).html_safe
+      args[:url] = source_url
+      with_cite_button +
+        render_iframe_view(args).html_safe +
+        render_hidden_information(args).html_safe
     end
   end
 
-  view :relevant do |args|
-    args[:source_title] = :text
-    add_toggle render_with_cite_button(args).html_safe
+  def source_url
+    url_card = card.fetch(trait: :wikirate_link)
+    url_card ? url_card.item_names.first : nil
+  end
+
+  view :relevant do
+    with_toggle do
+      with_cite_button
+    end
   end
 
   view :cited, cache: :never do |args|
-    parent =
-      if (parent_card = Card.fetch(Env.params["id"]))
-        parent_card.cardname.right
-      end
-    # check parent structure name has the word header
-    # (i.e check if not metric value page)
-    if !parent.nil? && parent.include?("header")
+    if voo.show? :cited_source_links
       wrap_with_info { _render_listing args }
     else
-      args[:source_title] = :text
-      source = wrap_with_info { _render_listing args }
-      add_toggle(source)
+      with_toggle do   F
+        wrap_with_info { _render_listing args }
+      end
     end
   end
 

@@ -132,7 +132,7 @@ format :html do
         wikirate_table :company,
                        search_with_params,
                        [:listing_compact],
-                       header: %w(Company)
+                       header: %w[Company]
       end
     end
   end
@@ -144,7 +144,7 @@ format :html do
         wikirate_table :company,
                        search_with_params,
                        [:listing_compact],
-                       header: %w(Topic)
+                       header: %w[Topic]
       end
     end
   end
@@ -156,7 +156,7 @@ format :html do
         wikirate_table :metric,
                        search_with_params,
                        [:metric_thumbnail, :company_thumbnail, :concise],
-                       header: %w(Metric Company Answer)
+                       header: %w[Metric Company Answer]
       end
     end
   end

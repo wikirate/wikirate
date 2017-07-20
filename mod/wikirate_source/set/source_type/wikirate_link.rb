@@ -4,7 +4,7 @@ card_accessor :wikirate_website, type: :pointer
 
 format :html do
   view :original_link do
-    link_to (voo.title || "Visit Original"), path: card.wikirate_link
+    original_link card.wikirate_link, text: voo.title
   end
 end
 
@@ -18,7 +18,7 @@ event :autopopulate_website,
 end
 
 event :import_linked_source, :integrate_with_delay, on: :save do
-  generate_pdf if html_link?
+  generate_pdf if html_link? && import?
 end
 
 event :process_source_url, after: :check_source,
@@ -29,7 +29,11 @@ event :process_source_url, after: :check_source,
   end
   link_card.content.strip!
   @url = link_card.content
-  handle_sourcebox_source if sourcebox?
+
+  # used to be restricted to the sourcebox=true case
+  # I don't see why we shouldn't do this always  -pk
+  validate_url
+
   duplication_check
   link_card.director.catch_up_to_stage :validate
   return if link_card.errors.present?
@@ -45,7 +49,8 @@ def populate_website?
     errors.empty?
 end
 
-def handle_sourcebox_source
+def validate_url
+  # url refers to a wikirate source card
   if url_card
     replace_with_url_card if valid_url_card?
   elsif !url? || wikirate_url?
@@ -55,7 +60,7 @@ end
 
 def valid_url_card?
   return true if url_card.type_code == :source
-  errors.add :source, "can only be source type or valid URL."
+  errors.add :source, "must be a valid URL or a WikiRate source"
   false
 end
 
@@ -68,7 +73,7 @@ end
 def duplication_check
   return unless duplicates.any?
   duplicated_name = duplicates.first.cardname.left
-  if Card::Env.params[:sourcebox] == "true"
+  if sourcebox?
     remove_subfield(:wikirate_link)
     self.name = duplicated_name
     abort :success
@@ -102,6 +107,7 @@ def url?
 end
 
 def wikirate_url?
+  return false unless Card::Env[:protocol] && Card::Env[:host]
   url.start_with? "#{Card::Env[:protocol]}#{Card::Env[:host]}"
 end
 
@@ -190,4 +196,10 @@ end
 def add_description thumbnail
   return if subfield(:description) || thumbnail.description.empty?
   add_subfield :description, content: thumbnail.description
+end
+
+format :json do
+  def essentials
+    super.merge source_url: card.url
+  end
 end

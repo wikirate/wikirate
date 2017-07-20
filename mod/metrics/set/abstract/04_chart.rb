@@ -22,6 +22,33 @@ format do
   delegate :chart_params, :filter_hash, to: :card
 end
 
+format do
+  def chart_item_count
+    @chart_item_count ||= chart_filter_query.count
+  end
+
+  def chart_value_count
+    @chart_value_count ||= chart_filter_query.value_count
+  end
+
+  def chart_filter_query
+    FixedMetricAnswerQuery.new chart_metric_id,
+                               chart_filter_hash
+  end
+
+  def chart_metric_id
+    card.id
+  end
+
+  def chart_filter_hash
+    card.filter_hash(zoom_in?)
+  end
+
+  def zoom_in?
+    card.numeric? # && chart_item_count > 10
+  end
+end
+
 format :html do
   view :chart, cache: :never do
     vega_chart if show_chart?
@@ -50,7 +77,12 @@ format :html do
 
   def show_chart?
     return if card.relationship?
-    card.numeric? || card.categorical?
+    return unless card.numeric? || card.categorical?
+
+    card.filter_hash[:metric_value] != "none" &&
+      card.filter_hash[:metric_value] != "all" &&
+      card.filter_hash[:metric_value] != "unknown" # &&
+    # chart_item_count > 3
   end
 
   def zoom_out_link
@@ -89,27 +121,12 @@ format :json do
   end
 
   def chart_class
-    if card.numeric?
+    if card.scored?
+      Card::Chart::ScoreChart
+    elsif card.numeric?
       Card::Chart::NumericChart
     else
       Card::Chart::CategoryChart
-    end
   end
-
-  def zoom_in?
-    card.numeric?
-  end
-
-  def chart_filter_query
-    FixedMetricAnswerQuery.new chart_metric_id,
-                               chart_filter_hash
-  end
-
-  def chart_metric_id
-    card.id
-  end
-
-  def chart_filter_hash
-    card.filter_hash(zoom_in?)
   end
 end

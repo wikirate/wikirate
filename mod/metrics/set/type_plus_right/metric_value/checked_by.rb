@@ -83,7 +83,7 @@ format :html do
   end
 
   def option_label_text _option_name
-    "#{request_icon} Request that another researcher double checks this value"
+    "#{request_icon} Request that another researcher double check this value"
   end
 
   view :core do
@@ -92,6 +92,7 @@ format :html do
     end
     wrap_with :div do
       [
+        wrap_with(:h5, "Review"),
         wrap_with(:p, "Does the value accurately represent its source?"),
         check_interaction
       ]
@@ -114,7 +115,7 @@ format :html do
     elsif card.checked?
       _render_checked_by_list
     else
-      check_button
+      double_check_buttons
     end
   end
 
@@ -168,21 +169,37 @@ format :html do
   end
 
   def check_button_text
-    text = "Double check"
-    return text unless card.check_requested?
-    text << " #{request_icon} requested by #{card.check_requester}"
-    text
+    card.check_requested? ? request_text : "Double check"
+  end
+
+  def request_text
+    return unless card.check_requested?
+    "Double check #{request_icon} requested by #{card.check_requester}"
+  end
+
+  def double_check_buttons
+    output [
+      request_text,
+      check_button,
+      fix_button
+    ]
   end
 
   def check_button
-    button_class = "btn btn-default btn-sm _value_check_button hover-button"
+    # button_class = "btn btn-default btn-sm _value_check_button hover-button"
+    button_class = "btn btn-default btn-sm _value_check_button"
     wrap_with(:button, class: button_class,
                        data: { path: data_path }) do
-      output [
-        wrap_with(:span, check_button_text, class: "text"),
-        wrap_with(:span, "Yes, I checked the value", class: "hover-text")
-      ]
+      "Yes, I checked"
+      # output [
+      # wrap_with(:span, "Yes, I checked", class: "text")
+      # wrap_with(:span, "Yes, I checked the value", class: "hover-text")
+      # ]
     end
+  end
+
+  def fix_button
+    link_to_card card.left, "No, I'll fix it", class: "btn btn-default btn-sm", path: { view: :edit }
   end
 
   def check_button_request_credit
@@ -268,4 +285,13 @@ end
 
 def request_check_flag_update?
   !add_checked_flag? && !remove_checked_flag?
+end
+
+format :json do
+  view :essential do
+    {
+      checks: card.checkers.count,
+      check_requested: card.check_requested?
+    }
+  end
 end

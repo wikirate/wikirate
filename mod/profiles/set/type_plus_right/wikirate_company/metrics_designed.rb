@@ -11,7 +11,7 @@ format :html do
       wikirate_table :metric,
                      search_with_params,
                      [:thumbnail, :company_count],
-                     header: %w(Metric Companies)
+                     header: %w[Metric Companies]
     end
   end
 

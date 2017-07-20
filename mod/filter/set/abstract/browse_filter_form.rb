@@ -12,7 +12,7 @@ def default_sort_by_key
 end
 
 def filter_keys
-  %w(metric designer wikirate_topic project year)
+  %w[metric designer wikirate_topic project year]
 end
 
 def filter_class

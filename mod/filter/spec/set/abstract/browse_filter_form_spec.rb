@@ -6,7 +6,7 @@ describe Card::Set::Abstract::BrowseFilterForm do
     let(:card) { Card["Company"].fetch trait: :browse_topic_filter }
 
     it "#advanced_formgroups" do
-      card.stub(:advanced_filter_keys) { %w(metric project wikirate_company) }
+      card.stub(:advanced_filter_keys) { %w[metric project wikirate_company] }
       html =
         card.format.advanced_filter_formgroups
       expect(html).to have_tag(:div, with: { class: "advanced-options" }) do
@@ -22,7 +22,7 @@ describe Card::Set::Abstract::BrowseFilterForm do
           with_tag :label, text: "Company"
           with_tag :div, with: { class: "editor" } do
             with_tag :input, with: { class: "wikirate_company_autocomplete",
-                                      id: "filter_wikirate_company" }
+                                     id: "filter_wikirate_company" }
           end
         end
       end

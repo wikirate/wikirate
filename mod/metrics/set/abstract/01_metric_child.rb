@@ -62,6 +62,14 @@ def scored?
   (mc = metric_card) && mc.scored?
 end
 
+def relationship?
+  (mc = metric_card) && mc.relationship?
+end
+
+def standard?
+  (mc = metric_card) && mc.standard?
+end
+
 def metric_card_before_name_change
   return unless (old_metric_name = metric_was) && old_metric_name.present?
   return unless old_metric_name != metric_name
@@ -121,6 +129,14 @@ end
 
 def record_card
   Card.fetch record
+end
+
+def contextual_record_name
+  if generation == 1
+    "_self"
+  else
+    "_#{'L' * (generation - 1)}"
+  end
 end
 
 format do

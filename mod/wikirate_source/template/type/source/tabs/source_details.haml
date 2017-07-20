@@ -1,7 +1,7 @@
 .col-md-12.column
   .row.clearfix
-    = _render :listing
-  .row.clearfix
+    = field_nest "title", view: :titled, title: "Source Title"
+    = _render_creator_credit
     = field_nest :description, view: :titled, title: "Description"
     = field_nest :year, view: :titled, title: "Year", items: { view: :name}
     = field_nest :report_type, view: :titled, title: "Report Type", items: { view: :name}
