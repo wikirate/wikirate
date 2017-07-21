@@ -165,7 +165,8 @@ class SharedData
       Card::Metric.create name: "Joe User+researched",
                           type: :researched,
                           random_source: true do
-        Apple_Inc "2010" => 10, "2011" => 11, "2012" => 12,
+        Apple_Inc "2000" => 0, "2001" => "Unknown", "2002" => "Unknown",
+                  "2010" => 10, "2011" => 11, "2012" => 12,
                   "2013" => 13, "2014" => 14, "2015" => 15
         Death_Star "1977" => 77
       end
@@ -225,7 +226,6 @@ class SharedData
         Death_Star "1977" => { "Los_Pollos_Hermanos" => "yes", "SPECTRE" => "yes" }
       end
     end
-
 
     def vote_on_metrics
       with_user "Joe Admin" do
