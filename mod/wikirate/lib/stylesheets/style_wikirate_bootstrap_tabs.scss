@@ -176,7 +176,7 @@ li.contribution-report-title-box > a {
 }
 
 //Custom tab positions
-.tabs-left > .nav-tabs > li{
+.tabs-left > .nav-tabs .nav-item{
   float: none;
 }
 
@@ -223,17 +223,17 @@ li.contribution-report-title-box > a {
           background: rgba(255, 255, 255, 0.55);
           color: inherit;
       }
-    }
-    &.active > a {
-        border-right: 3px solid $border-color;
-        @include box-shadow(-11px, 0px, 20px, rgba(0,0,0,0.12));
-        position: relative;
-        z-index: 2;
+      &.active > a {
+          border-right: 3px solid $border-color;
+          @include box-shadow(-11px, 0px, 20px, rgba(0,0,0,0.12));
+          position: relative;
+          z-index: 2;
+      }
     }
   }
   > li > a {
     margin-right: 20px;
-    margin-bottom: 8px;
+    //margin-bottom: 8px;
     border-bottom: 0;
     border-bottom: 1px solid #ebebeb;
     border-left: 1px solid #ebebeb;
