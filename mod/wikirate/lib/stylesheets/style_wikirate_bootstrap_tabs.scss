@@ -2,9 +2,11 @@
     .nav-tabs {
       border-bottom: 4px solid $border-color;
     }
-    .nav-tabs > li {
-        margin-bottom: -7px;
-        &.active > a {
+    .nav-tabs .nav-link{
+      &:hover{
+        background:#fafafa;;
+      }
+        &.active {
             border: 0 solid #e6e6e6;
             border-bottom: 4px solid $main-color;
             border-radius: 0;
@@ -32,16 +34,15 @@
                 cursor: not-allowed;
             }
         }
-        > a {
-            background-color: #fff;
-            border-radius: 0;
-            border: 0 solid #e6e6e6;
-            border-bottom: 4px solid $border-color;
-            margin: 3px -1px;
-            padding: 18px 20px;
-            font-size: 15px;
-            color: #8e8e8e;
-        }
+          background-color: #fff;
+          border-radius: 0;
+          border: 0 solid #e6e6e6;
+          border-bottom: 4px solid $border-color;
+          margin: 3px -1px;
+          padding: 18px 20px;
+          font-size: 15px;
+          color: #8e8e8e;
+          margin-bottom: -3px;
     }
 
     .tabbable {
