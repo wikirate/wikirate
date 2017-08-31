@@ -1,8 +1,8 @@
 namespace :wikirate do
   namespace :test do
     namespace :seed do
-      base_dump_path = File.join Wagn.root, "test", "base_seed.db"
-      migrated_dump_path = File.join Wagn.root, "test", "migrated_seed.db"
+      base_dump_path = File.join Decko.root, "test", "base_seed.db"
+      migrated_dump_path = File.join Decko.root, "test", "migrated_seed.db"
 
       desc "update seed data using the production database"
       task :generate, [:location] do |_task, args|
@@ -47,7 +47,7 @@ namespace :wikirate do
       desc "add wikirate test data to test database"
       task add_wikirate_test_data: :environment do |task|
         ensure_env "test", task do
-          require "#{Wagn.root}/test/seed.rb"
+          require "#{Decko.root}/test/seed.rb"
           SharedData.add_wikirate_data
         end
       end

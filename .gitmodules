@@ -7,3 +7,6 @@
 [submodule "vendor/smartname"]
 	path = vendor/smartname
 	url = https://github.com/xithan/smartname
+[submodule "vendor/decko"]
+	path = vendor/decko
+	url = https://github.com/decko-commons/decko

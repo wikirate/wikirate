@@ -64,4 +64,4 @@ class Answer < ActiveRecord::Base
 end
 
 require_relative "answer/active_record_extension"
-Answer::ActiveRecord_Relation.send :include, Answer::ActiveRecordExtension
+Answer.const_get("ActiveRecord_Relation").send :include, Answer::ActiveRecordExtension

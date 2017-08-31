@@ -38,7 +38,7 @@ namespace :deploy do
       within release_path do
         execute :mkdir, 'tmp'
         execute :mkdir, 'log'
-        execute :rake, 'wagn:migrate'
+        execute :rake, 'decko:migrate'
       end
     end
   end
@@ -54,7 +54,7 @@ namespace :deploy do
   after :published, :clear_cache do
     on roles(:app) do
       within release_path do
-        execute :rake, 'wagn:reset_cache'
+        execute :rake, 'decko:reset_cache'
       end
     end
   end
