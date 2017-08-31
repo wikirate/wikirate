@@ -24,7 +24,7 @@ wagn.slotReady (slot) ->
     dots: true
     autoplay: true
     autoplaySpeed: 15000
-  slot.find('.carousal .pointer-list').slick
+  slot.find('.x-carousal .pointer-list').slick
     dots: true,
     autoplay: true,
     autoplaySpeed: 15000,
