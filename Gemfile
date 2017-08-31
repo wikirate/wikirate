@@ -10,9 +10,9 @@ gem "decko", path: "#{decko_gem_path}/decko"
 
 gem "mysql2", "~> 0.3.18"
 
-gem "descriptive_statistics", "2.5.1"
+gem "descriptive_statistics" #, "2.5.1"
 gem "savanna-outliers"
-gem "statistics2", "0.54"
+gem "statistics2" #, "0.54"
 
 gem "curb"
 gem "daemons"
@@ -51,14 +51,14 @@ group :live do
 end
 
 group :test do
-  gem "rspec", "~> 3.4"
+  gem "rspec"
   gem "rspec-html-matchers" # 0.7.0 broke stuff!
   gem "rspec-rails" # behavior-driven-development suite
   # gem 'wagn-rspec-formatter',  git: 'https://github.com/xithan/wagn-rspec-formatter.git'
 
   gem "simplecov", require: false
   gem "spork", ">=0.9"
-  gem "test_after_commit"
+
   gem "timecop"
   # gem 'codeclimate-test-reporter', require: nil
 
@@ -68,7 +68,7 @@ group :test do
   # feature-driven-development suite
   gem "capybara", "2.11.0"
   # used 2.0.1
-  gem "selenium-webdriver", "~> 2.3"
+  gem "selenium-webdriver", "3.3.0"
   #  gem 'capybara-webkit'
   # lets cucumber launch browser windows
   gem "launchy"
