@@ -1,10 +1,12 @@
 source "http://rubygems.org"
 
-wagn_gem_path = ENV["WIKIRATE_WAGN_GEM_PATH"] || "./vendor/wagn"
+decko_gem_path = ENV["WIKIRATE_WAGN_GEM_PATH"] || "./vendor/decko"
 
 # gem "smartname", path: "./vendor/smartname"
-gem "card", path: "#{wagn_gem_path}/card", require: false
-gem "wagn", path: "#{wagn_gem_path}/wagn"
+
+gem "card", path: "#{decko_gem_path}/card", require: false
+gem "cardname", path: "#{decko_gem_path}/cardname", require: false
+gem "decko", path: "#{decko_gem_path}/decko"
 
 gem "mysql2", "~> 0.3.18"
 
