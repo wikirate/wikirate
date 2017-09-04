@@ -39,7 +39,7 @@ $.urlParam = (name) ->
 # Check if container exist
 $.fn.exists = -> return this.length>0
 
-wagn.slotReady (slot) ->
+decko.slotReady (slot) ->
   # use jQuery chosen library for select tags
 #  slot.find('.pointer-multiselect').each (i) ->
 #    $(this).attr 'data-placeholder', '　'
