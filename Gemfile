@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-decko_gem_path = ENV["WIKIRATE_WAGN_GEM_PATH"] || "./vendor/decko"
+decko_gem_path = ENV["WIKIRATE_DECKO_GEM_PATH"] || "./vendor/decko"
 
 # gem "smartname", path: "./vendor/smartname"
 
