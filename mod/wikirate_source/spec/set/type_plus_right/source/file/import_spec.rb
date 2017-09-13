@@ -279,7 +279,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
                                 card_name: "#{@source.name}+Metric"
                               }) do
         with_tag "input", with: {
-          class: "card-content form-control",
+          class: "d0-card-content form-control",
           id: "card_subcards_#{@source.name}_Metric_content"
         }
       end
@@ -289,7 +289,7 @@ describe Card::Set::TypePlusRight::Source::File::Import do
                                 card_name: "#{@source.name}+Year"
                               }) do
         with_tag "input", with: {
-          class: "card-content form-control",
+          class: "d0-card-content form-control",
           id: "card_subcards_#{@source.name}_Year_content"
         }
       end
