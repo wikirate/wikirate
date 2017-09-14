@@ -40,9 +40,6 @@ gem "newrelic_rpm"
 # gem "ruby-prof"
 gem "airbrussh", require: false
 
-# gem "spring"
-# gem 'spring-commands-rspec'
-
 gem "ruby-jmeter"
 
 group :live do
@@ -98,6 +95,9 @@ group :development do
 
   gem "better_errors"
   gem "binding_of_caller"
+
+  gem "spring"
+  gem 'spring-commands-rspec'
 end
 
 group :test, :development do
