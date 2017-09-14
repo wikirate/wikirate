@@ -42,6 +42,9 @@ gem "airbrussh", require: false
 
 gem "ruby-jmeter"
 
+gem "card-mod-airbrake"
+
+
 group :live do
   gem "dalli"
   gem "therubyracer"
