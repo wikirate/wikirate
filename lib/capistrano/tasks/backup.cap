@@ -1,111 +1,90 @@
-require 'YAML'
-#require 'byebug'
+# require "YAML"
+# require "byebug"
+
 namespace :backup do
   task :create do
     on roles(:db) do
-      execute  "/opt/bin/backup_wikirate_local #{fetch :deploy_to} #{fetch :database}"
-      #execute :sudo, "/opt/bin/backup_remote wikirate"
+      backup_script = "/opt/bin/backup_local"
+      execute "#{backup_script} #{fetch :deploy_to} #{fetch :database}"
     end
   end
 
   task :pull do
-    invoke 'backup:download'
-    invoke 'backup:refresh_local'
+    invoke "backup:download"
+    invoke "backup:refresh_local"
   end
 
   task :download do
     backup_dir = fetch :local_backups_dir
     run_locally do
-      execute :rm, "-rf #{ backup_dir }"
-      execute :mkdir, "#{ backup_dir }"
+      execute :rm, "-rf #{backup_dir}"
+      execute :mkdir, backup_dir
     end
     on roles(:db) do
-      download! "#{ fetch :data_backups_dir }/db.gz",     backup_dir
-      unless ENV['BACKUP_MODE'] == 'only_db'
-        download! "#{ fetch :data_backups_dir }/files.tgz", backup_dir
-      end
+      download! "#{fetch :data_backups_dir}/db.gz", backup_dir
     end
   end
 
   task :refresh_local do
-    run_locally do
-      execute :pull_wikirate
-    end
+    invoke "backup:unzip_local"
+    invoke "backup:update_db"
+    # run_locally do
+    #   execute :pull_wikirate
+    # end
   end
 
   task :unzip do
     on roles(:db) do
       backup_dir = fetch :production_data_backups_dir
-      if test( "[ ! -f #{ backup_dir }/db ]")
+      if test("[ ! -f #{backup_dir}/db ]")
         within backup_dir do
-          unless ENV['BACKUP_MODE'] == 'only_db'
-            execute :mkdir, 'files; cd files; tar -xzf ../files.tgz'
-          end
-          execute :zcat, 'db.gz > db'
+          execute :zcat, "db.gz > db"
         end
       end
     end
   end
+
   task :unzip_local do
     run_locally do
       backup_dir = fetch :local_backups_dir
-      if test( "[ ! -f #{ backup_dir }/db ]")
+      if test("[ ! -f #{backup_dir}/db ]")
         within backup_dir do
-          unless ENV['BACKUP_MODE'] == 'only_db'
-            execute :mkdir, 'files; cd files; tar -xzf ../files.tgz'
-          end
-          execute :gunzip, 'db.gz'
+          execute :gunzip, "db.gz"
         end
       end
     end
   end
 
   task :refresh do
-    invoke 'backup:create'
-    invoke 'backup:unzip'
+    invoke "backup:create"
+    invoke "backup:unzip"
     on roles(:db) do
-      db_args = [:database_user, :database_password, :database, :production_data_backups_dir ].map { |x| fetch x }
-      execute :mysql, "-u %s -p%s -e 'drop database %s'"   % db_args
-      execute :mysql, "-u %s -p%s -e 'create database %s'" % db_args
-      execute :mysql, "-u %s -p%s %s < %s/db"              % db_args
-      execute :sudo, "/opt/bin/replace_files #{ fetch :production_data_backups_dir } #{ shared_path }"
-      #custom script for this because file permissions are all www-data.www-data
+      db_args = [
+        :database_user, :database_password, :database,
+        :production_data_backups_dir
+      ].map { |x| fetch x }
+      execute :mysql, format("-u %s -p%s -e 'drop database %s'", *db_args)
+      execute :mysql, format("-u %s -p%s -e 'create database %s'", *db_args)
+      execute :mysql, format("-u %s -p%s %s < %s/db", *db_args)
     end
-    invoke 'deploy:clear_cache'
-
+    invoke "deploy:clear_cache"
   end
 
   task :update_db do
     run_locally do
       backup_dir = fetch :local_backups_dir
-      if test( "[  -f #{ backup_dir }/db ]")
+      if test("[ -f #{backup_dir}/db ]")
         within backup_dir do
+          info = YAML.load IO.read("config/database.yml")
+          local_db = info["development"]
+          mysql_options = "-u #{local_db['username']} #{local_db['database']}"
+          mysql_options << " -p#{local_db['password']}" if local_db["password"]
 
-          info = YAML::load(IO.read("config/database.yml"))
+          # FIXME: local backup should use same task/script as remote
+          dumpfile = "before_importing_#{Time.new.strftime('%Y%m%d%H%M%S')}.sql"
+          execute :mysqldump, "#{mysql_options} > #{dumpfile}"
 
-          local_database = info["development"]["database"]
-          local_database_user =  info["development"]["username"]
-          local_database_password =  info["development"]["password"]
-
-
-          mysql_options = "-u #{local_database_user} #{local_database} "
-          mysql_options << "-p#{local_database_password} " if local_database_password
-          time = Time.new
-          execute :mysqldump, "#{mysql_options} >before_importing_#{time.strftime("%Y%m%d%H%M%S")}.sql"
           execute :mysql, "#{mysql_options} < db"
-        end
-      end
-    end
-  end
-  task :update_files do
-    run_locally do
-      backup_dir = fetch :local_backups_dir
-      if File.exists? "#{ backup_dir }/files"
-        within backup_dir do
-          time = Time.new
-          files_dir = fetch :local_wikirate_file_dir
-          execute :mv, "#{files_dir} #{backup_dir}/before_updating_files_#{time.strftime("%Y%m%d%H%M%S")}"
-          execute :mv, "files #{files_dir}"
         end
       end
     end
@@ -114,22 +93,10 @@ namespace :backup do
   desc "Backup to local /tmp/wikirate"
   task :get do
     on roles(:db) do
-      invoke 'backup:create'
-      invoke 'backup:download'
-      invoke 'backup:unzip_local'
-      invoke 'backup:update_db'
-      invoke 'backup:update_files'
-    end
-  end
-
-  task :pull_db do
-    ENV['BACKUP_MODE'] = 'only_db'
-    on roles(:db) do
-      invoke 'backup:create'
-      invoke 'backup:download'
-      invoke 'backup:unzip_local'
-      invoke 'backup:update_db'
+      invoke "backup:create"
+      invoke "backup:download"
+      invoke "backup:unzip_local"
+      invoke "backup:update_db"
     end
   end
 end
-

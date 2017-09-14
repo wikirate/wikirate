@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="row clearfix">
+    {{#+banner|content}}
+
+    <div class="col-md-8 column">
+      <div class="row nopadding">
+          <div class="col-md-3-5">
+            <div class="thumbnail">
+              {{+image|size:large}}
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="panel panel-default">
+              <div class="panel-body ">
+
+              	<div class="row">
+              	    <div class="col-md-3 cold-sm-3">  <label><span class="card-title">Organizer</span></label></div>
+                    <div class="col-md-9 cold-sm-9">{{+Organizer|show:menu;type:pointer|link}}</div>
+              	</div>
+              	<div class="row">
+              	    <div class="col-md-3 cold-sm-3"> <label><span class="card-title">Status</span></label></div>
+                    <div class="col-md-9 cold-sm-9">{{+status|content;show:menu|name}} </div>
+              	</div>
+              	 <div class="row">
+              	    <div class="col-md-3 cold-sm-3"> <label><span class="card-title">Twitter#</span></label></div>
+                    <div class="col-md-9 cold-sm-9">{{+Hashtag|show:menu}} </div>
+              	</div>
+              	<div class="row">
+                    <div class="col-md-3 cold-sm-3"> <label><span class="card-title">Topics</span></label></div>
+                    <div class="col-md-9 cold-sm-9">{{+Topics|show:menu|link;type:Topic}} </div>
+              	</div>
+              </div>
+            </div>
+          </div>
+      </div>
+      
+
+        <div class="panel-primary-container">
+          {{+Description|title:Description;view:open;hide:horizontal_menu}} 
+        </div>
+
+        <div class="panel-primary-container">
+          {{+Vision|title:Vision;view:open;hide:horizontal_menu}}
+        </div>
+
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+						Conversations
+					</h3>
+        </div>
+        <div class="panel-body list-group">
+          {{+conversation||content;structure: list item }}
+          <br>
+          <a href="/new/Conversation?_Project={{_|name}}" class="btn btn-primary"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i> Add Conversation</a>
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <div class="col-md-4 column">
+        {{+Metrics|title:Metrics;view:open;hide:horizontal_menu;show:help|content; structure: metric list item }}
+        {{+Company search|title:Add Metric value;view:open;hide:horizontal_menu;show:help|content}}
+        {{#+Twitter feed|content}}
+<!-- {{+company|raw}} -->
+      
+      <!--<div class="panel panel-default">-->
+      <!--  <div class="panel-heading">-->
+      <!--    <h3 class="panel-title">Participants</h3> </div>-->
+      <!--  <div class="panel-body list-group">-->
+         {{#+Participants|hide:paging|content ;structure:list item with image}}
+      <!--  </div>-->
+      <!--</div>-->
+    </div>
+
+  </div>
+</div>

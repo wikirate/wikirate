@@ -1,0 +1,7 @@
+.col-md-12
+  .row
+    = nest "Company+*search", view: :titled, title: "Companies", items: { view: "browse item" }
+  .row
+    = nest "Topic+*search", view: :titled, title: "Topics", items: { view: "browse item"}
+  .row
+    = nest "Metric+*search", view: :titled, title: "Metrics", items: { view: "browse item" }

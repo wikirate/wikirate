@@ -1,10 +1,10 @@
 
-Card::Env[:protocol] = 'http://'
-Card::Env[:host] = 'http://wikirate.org'
-Card::Auth.current_id = Card.fetch_id 'Richard Mills'
+Card::Env[:protocol] = "http://"
+Card::Env[:host] = "http://wikirate.org"
+Card::Auth.current_id = Card.fetch_id "Richard Mills"
 
 def potential_company name
-  result = Card.search type: 'company', name: ['match', name]
+  result = Card.search type: "company", name: ["match", name]
   return nil if result.empty?
   result
 end
@@ -28,7 +28,7 @@ def correct_company_name company, aliases, aliases_hash, skip_list
 end
 
 def write_array_to_file file_path, array
-  File.open(file_path, 'w') do |file|
+  File.open(file_path, "w") do |file|
     file.write(array.join("\n"))
   end
 end

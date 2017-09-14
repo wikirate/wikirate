@@ -6,6 +6,8 @@
 //
 // Note: Deprecated `.box-shadow()` as of v3.1.0 since all of Bootstrap's
 // supported browsers that have box shadow capabilities now support it.
+{{style: mixins and variables|raw}}
+
 @mixin box-shadow($shadow...) {
     -webkit-box-shadow: $shadow; // iOS <4.3 & Android <4.1
     box-shadow: $shadow;
@@ -52,13 +54,13 @@ $gray-dark: lighten($gray-base, 20%) !default; // #333
 $gray: lighten($gray-base, 33.5%) !default; // #555
 $gray-light: lighten($gray-base, 46.7%) !default; // #777
 $gray-lighter: lighten($gray-base, 93.5%) !default; // #eee
-$gray-disabled: #ECECEC !default;
-$brand-primary: #03998D !default; // #337ab7
+$gray-disabled: #ececec !default;
+$brand-primary: #03998d !default; // #337ab7
 $brand-success: #5cb85c !default;
 $brand-info: #5bc0de !default;
 $brand-warning: #f0ad4e !default;
 $brand-danger: #d9534f !default;
-$brand-highlight: #F06E6E !default; //== Scaffolding
+$brand-highlight: #f06e6e !default; //== Scaffolding
 //
 //** Global text color on `<body>`.
 $text-color: $gray-dark !default; //** Global textual link color.
@@ -118,9 +120,10 @@ $cursor-disabled: not-allowed !default; // Button variants
     &:focus,
     &:hover,
     .open > &.dropdown-toggle {
-        color: $color;
         background-color: darken($background, 10%);
         border-color: darken($border, 12%);
+        color: $color;
+
     }
     &.active,
     &:active,
@@ -140,6 +143,7 @@ $cursor-disabled: not-allowed !default; // Button variants
             border-color: $border;
         }
     }
+
     .badge {
         color: $background;
         background-color: $color;
@@ -160,18 +164,19 @@ $cursor-disabled: not-allowed !default; // Button variants
 .btn,
 .button-primary,
 .cite-button {
-    display: inline-block;
     margin-bottom: 0; // For input.btn
     font-weight: $btn-font-weight;
     text-align: center;
     vertical-align: middle;
     touch-action: manipulation;
     cursor: pointer;
+    display: inline-block;
     background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
     border: 1px solid transparent;
     white-space: nowrap;
     @include button-size($padding-base-vertical, $padding-base-horizontal, $font-size-base, $line-height-base, $border-radius-base);
     @include user-select(none);
+    @include box-shadow(0 1px 1px rgba(0,0,0,0.075));
     &,
     &.active,
     &:active {
@@ -206,9 +211,11 @@ $cursor-disabled: not-allowed !default; // Button variants
 .btn-default {
     @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
 }
+
 .btn-primary {
     @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
 }
+
 .button-primary {
     @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
 }
@@ -232,15 +239,19 @@ $cursor-disabled: not-allowed !default; // Button variants
 .cite-button {
     @include button-variant($btn-highlight-color, $btn-highlight-bg, $btn-highlight-border);
 }
-.btn-banner-join {
-    @include button-variant($btn-primary-bg, #fff, $btn-primary-color);
-}
-.btn-banner-info {
-    @include button-variant(#fff, transparent, #fff);
-}
+
+//.btn-banner-join {
+//    @include button-variant($btn-primary-bg, #fff, $btn-primary-color);
+//}
+//
+//.btn-banner-info {
+//    @include button-variant(#fff, transparent, #fff);
+//}
+
 .button-secondary {
     @include button-variant($btn-highlight-color, $btn-highlight-bg, $btn-highlight-border);
 }
+
 .btn-yellow {
     @include button-variant($btn-yellow-color, $btn-yellow-bg, $btn-yellow-border);
 }
@@ -285,14 +296,14 @@ $cursor-disabled: not-allowed !default; // Button variants
     padding: 10px 16px;
     font-size: 18px;
     line-height: 1.3333333;
-    border-radius: 6px;
+    border-radius: 0px;
 }
 .btn-group-sm > .btn,
 .btn-sm {
     padding: 5px 10px;
     font-size: 12px;
     line-height: 1.5;
-    border-radius: 3px;
+    border-radius: 0px;
 }
 .btn-group-xs > .btn,
 .btn-xs {
@@ -300,6 +311,11 @@ $cursor-disabled: not-allowed !default; // Button variants
     font-size: 12px;
     line-height: 1.5;
     border-radius: 3px;
+}
+
+.btn-group-vertical .btn {
+    border-bottom-left-radius: 0!important;
+    border-top-right-radius: 0!important;
 }
 /***** Nav Pills *****/
 .nav {
@@ -313,17 +329,17 @@ $cursor-disabled: not-allowed !default; // Button variants
             &:focus,
             &:hover {
                 text-decoration: none;
-                background-color: #eeeeee;
+                background-color: #eee;
             }
             > input[type='radio'] {
                 display: none;
             }
         }
         &.disabled > .tab-primary {
-            color: #777777;
+            color: #777;
             &:focus,
             &:hover {
-                color: #777777;
+                color: #777;
                 text-decoration: none;
                 background-color: transparent;
                 cursor: not-allowed;
@@ -331,18 +347,18 @@ $cursor-disabled: not-allowed !default; // Button variants
         }
     }
     .open > .tab-primary {
-        background-color: #eeeeee;
+        background-color: #eee;
         border-color: #337ab7;
         &:focus,
         &:hover {
-            background-color: #eeeeee;
+            background-color: #eee;
             border-color: #337ab7;
         }
     }
 }
 .nav-pills > li {
     > .tab-primary {
-        border-radius: 4px;
+        border-radius: 0px;
     }
     &.active > .tab-primary {
         color: #fff;
@@ -368,5 +384,57 @@ $cursor-disabled: not-allowed !default; // Button variants
      > a,
     .tab-primary {
         border-radius: 0;
+    }
+}
+.btn-banner-info, .btn-banner-join {
+    font-size: 1.2em !important;
+}
+
+
+button.hover-button{
+  width: 320px;
+}
+button .hover-text {
+  display: none;
+}
+
+button:hover .text {
+  display: none;
+}
+
+button:hover .hover-text {
+  display: inline;
+}
+
+
+.pagination > {
+    .active > {
+        a,
+        a:focus,
+        a:hover,
+        span,
+        span:focus,
+        span:hover {
+            background-color: $brand-primary;
+            border-color: $brand-primary;
+            color: #fff;
+            cursor: default;
+            z-index: 2;
+        }
+    }
+    li > {
+        a,
+        span {
+            background-color: #fff;
+            border-radius: 0px!important;
+            border: 1px solid #ddd;
+            color: $brand-primary;
+            float: left;
+            line-height: 1.42857143;
+            margin-left: -1px;
+            padding: 6px 12px;
+            position: relative;
+            text-decoration: none;
+        }
     }
 }

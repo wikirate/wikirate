@@ -1,0 +1,28 @@
+<ul class="nav navbar-nav">
+  <li class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+       aria-expanded="false">Browse <span class="caret"></span></a>
+    <ul class="dropdown-menu" role="menu">
+      <li class="nav-item">{{Companies|nav_link}}</li>
+      <li class="nav-item">{{Topics|nav_link}}</li>
+      <li class="nav-item">{{Metrics|nav_link}}
+        <hr/>
+      </li>
+      <li class="nav-item">{{Projects|nav_link}}</li>
+      <li class="nav-item">{{Notes|nav_link}}</li>
+      <li class="nav-item">{{Sources|nav_link}}</li>
+      <li class="nav-item">{{:recent|nav_link; title:Recent Changes}}</li>
+    </ul>
+  </li>
+  <li class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+       aria-expanded="false">Get Started <span class="caret"></span></a>
+    <ul class="dropdown-menu" role="menu">
+      <li class="nav-item">{{About WikiRate|nav_link; title: About WikiRate}}</li>
+      <li class="nav-item">{{Using WikiRate|nav_link}}</li>
+      <li class="nav-item">{{Donate|nav_link}}</li>
+      <li class="nav-item">{{Frequently_Asked_Questions|nav_link;title: FAQ}}</li>
+      <li class="nav-item">{{Tickets|nav_link; title: Report Issue}}</li>
+    </ul>
+  </li>
+</ul>

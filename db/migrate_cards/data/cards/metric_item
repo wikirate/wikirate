@@ -1,0 +1,53 @@
+
+
+<div class="browse-metric-item">
+  <div class="metric-info">
+  <div class="row header">
+      {{_+*vote count}}
+      <div class="name">
+      <a href="{{_|linkname}}" title="{{_r|name}}">  {{_r|title}} </a>
+      </div>
+  </div>
+
+  <div class="row">
+
+    <div class="row-icon">
+      <i class="fa fa-building-o"></i>
+    </div>
+
+    <div class="row-data ellipsis rating-designer">
+     <a href="{{_ll|linkname}}" title="{{_ll|name}}">
+      {{_ll+image|core;size:icon}}
+      {{_ll|name}}
+    </a>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="row-icon">
+      <i class="fa fa-tag"></i>
+    </div>
+
+    <div class="row-data ellipsis topic no-data-on-missing-view">
+      {{_+topics|content|link}}
+    </div>
+
+  </div>
+
+  <div class="row question no-data-on-missing-view">
+        <div class="row-icon">
+          <i class="fa fa-question"></i>
+        </div>
+        <div class="row-data ellipsis">
+          {{_+Question|content;hide:menu}}
+        </div>
+  </div>
+  <a href="{{_|linkname}}" class="metric-link inherit-anchor">
+    <div class="row data-count">
+      <div class="col-md-6 slab"><div class="number">{{_+company+*cached count|core}}</div><div class="number-label">Companies</div></div>
+      <div class="col-md-6 slab"><div class="number">{{_+topic count|core}}</div><div class="number-label">Topics</div></div>
+    </div>
+  </a>
+</div>
+</div>

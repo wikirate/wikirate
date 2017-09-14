@@ -1,0 +1,29 @@
+%div
+  .container.homepage-company-item
+    .row.text-center.company-header
+      .col-md-4.col-xs-4.nopadding
+        %a.inherit-anchor{:href => path}
+          .row.img-thumbnail.homepage-logo-container
+            = nest(card.image_card)
+
+      .col-md-8.col-xs-8
+        .col-md-12.col-xs-12.text-left
+          %a.inherit-anchor{:href => path}
+            %h3
+              = nest(card, view: :title)
+          %br/
+        .row.contribution-details.dark-grey-color.remove-text-decoration
+          .row.col-md-12.data-count
+            .col-md-6.slab
+              %a.inherit-anchor{:href => path}
+                .number
+                  = field_nest :metric, view: :count
+                .number-label Metrics
+            .col-md-6.slab
+              %a.inherit-anchor{:href => tab_url(:topic)}
+                .number
+                  = field_nest :analyses_with_articles, view: :count
+                .number-label Topics
+    .row.clearfix.padding-top-15.company-content.background-white
+      = field_nest :all_metric_values, view: :homepage_table
+

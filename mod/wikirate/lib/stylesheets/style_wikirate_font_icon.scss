@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "wikirate-icon-font";
+  src: url("{{wikirate_icon_font_eot|source}}");
+  src: url("{{wikirate_icon_font_eot|source}}?#iefix") format("embedded-opentype"),
+  url("{{wikirate_icon_font_woff|source}}") format("woff"),
+  url("{{wikirate_icon_font_ttf|source}}") format("truetype"),
+  url("{{wikirate_icon_font_svg|source}}#wikirate-icon-font") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "wikirate-icon-font" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "wikirate-icon-font" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-wikirate-logo-o:before {
+  content: "\e000";
+}
+
+.icon-wikirate-logo:before {
+  content: "\e001";
+}
+
+.icon-overview-icon:before {
+  content: "\e002";
+}

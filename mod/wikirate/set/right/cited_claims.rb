@@ -1,33 +1,39 @@
-
 format :html do
-  view :cited_count do
-    if parent.citations.present?
-      parent.citations.size
+  def citations
+    # FIXME: this citation stashing mechanism is a mess
+    parent.citations
+  end
+
+  view :cited_count, cache: :never do
+    if citations.present?
+      citations.size
     else
       0
     end
   end
-  view :core do |args|
-    if parent.citations.present?
-      results = parent.citations.map do |name|
+
+  view :content, cache: :never do
+    super()
+  end
+
+  view :core, cache: :never do
+    if citations.present?
+      results = citations.map do |name|
         Card.fetch name, new: { type_id: Card::ClaimID }
       end
-      card_list results, args
+      card_list results
     else
-      super args
+      super()
     end
   end
 
-  def card_list results, _args
-    items = (results.each_with_index.map do |claim, num|
+  def card_list results
+    items = results.each_with_index.map do |claim, num|
       citation_number = %(<span class="cited-claim-number">#{num + 1}</span>)
-      item = nest claim, citation_number: citation_number
-      <<-HTML
-        <div class="search-result-item item-#{nest_defaults(claim)[:view]}">
-          #{item}
-        </div>
-      HTML
-    end.join)
+      nest claim, citation_number: citation_number do |rendered, item_view|
+        %(<div class="search-result-item item-#{item_view}">#{rendered}</div>)
+      end
+    end.join
     %(<div class="search-result-list">#{items}</div>)
   end
 end

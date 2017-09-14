@@ -1,0 +1,28 @@
+<div class=" browse-company-item">
+  <div class=" text-center company-header">
+    <a class="inherit-anchor" href="{{_|url}}"> {{_|title}}</a>
+  </div>
+  
+  <div class="row clearfix company-content company-page-logo-container">
+    <div class="col-md-12 col-xs-12 nopadding left">
+      <a class="inherit-anchor" href="{{_l|url}}">
+        <div class="row-data center-logo">{{_l+image}}</div>
+      </a>
+    </div>
+  </div>
+ 
+  <div class="row data-count">
+      <div class="col-md-6 slab">
+        <a href="{{_|linkname}}?tab=metric" class="inherit-anchor">  
+          <div class="number">{{_+metric+*cached count|core}}</div><div class="number-label">Metrics</div>
+        </a>
+      </div>
+      <div class="col-md-6 slab">
+        <a href="{{_|linkname}}?tab=topic" class="inherit-anchor">  
+          <div class="number">{{_+topic+*cached count|core}}</div><div class="number-label">Topics</div>
+        </a>
+      </div>
+  </div> 
+  
+  {{#_+company contribution details}}
+</div>

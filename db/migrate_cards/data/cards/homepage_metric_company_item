@@ -1,0 +1,19 @@
+<div class="yinyang-row">
+  <a href="/{{_l|linkname}}?filter[wikirate_company]={{_r|name}}">
+  <div class="company-item value-item">
+    <div class="header no-hover">
+              <div class="logo">
+                      {{_r+image|core;size:small}} 
+              </div>
+          <div class="name">
+              {{_r|name}}
+          </div>
+    </div>
+    <div class="data no-hover" data-append="metric_details_company_header">
+      <div class="data-item ellipsis">
+        {{_self|all_values}} 
+      </div>
+    </div>
+  </div>
+  </a> 
+</div>

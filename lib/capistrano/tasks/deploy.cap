@@ -17,7 +17,17 @@ end
 
 namespace :deploy do
   before :starting, :backup do
-    invoke 'backup:create'
+    next unless fetch(:stage) == :production
+    puts <<-EOF
+
+************************** WARNING ***************************
+            You are about to deploy to production
+**************************************************************
+
+    EOF
+    ask :answer, "Are you sure you want to update wikirate.org? Type 'forgive me, Yoda'"
+    exit unless fetch(:answer) == 'forgive me, Yoda'
+    # invoke 'backup:create'
   end
 
   after :updated, :migrate do
@@ -28,7 +38,7 @@ namespace :deploy do
       within release_path do
         execute :mkdir, 'tmp'
         execute :mkdir, 'log'
-        execute :rake, 'wagn:migrate'
+        execute :rake, 'decko:migrate'
       end
     end
   end
@@ -44,10 +54,19 @@ namespace :deploy do
   after :published, :clear_cache do
     on roles(:app) do
       within release_path do
-        execute :rake, 'wagn:reset_cache'
+        execute :rake, 'decko:reset_cache'
       end
     end
   end
 
   after :finishing, :cleanup
+  after :published, :restart
+
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      execute :touch, release_path.join('tmp/restart.txt')
+    end
+  end
+
 end

@@ -1,0 +1,513 @@
+{{style: mixins and variables|raw}}
+
+
+        #Home{
+          background: url({{topics collage|source; size:original}});
+          margin-bottom: 20px;
+        }
+        .SELF-about_wiki_rate p{
+          font-size:1.2em;
+        }
+        .consortium-logo-container a {
+            display: inline-block;
+            text-align: center;
+            background-image: none!important;
+            width: 144px;
+            padding:13px;
+        }
+        .SELF-recent_contributor .recent-editors-container.list-group-item{
+         margin: 12px 0px;
+        }
+        /*----------- Top banner ---------*/
+        .fa-4 {
+          font-size: 7em;
+        }
+        .banner-background{
+          background: rgba($main-color,0.95);
+        }
+        .transparent-background-white{
+          background: rgba(#fff,0.95);
+        }
+        .transparent-background-black{
+          background: rgba(#000,0.85);
+        }
+        .container-topbar{
+              max-width: $max-page-width;
+              margin: 0 auto;
+              padding: 8px 5px;
+            .navbar-right {
+              margin-right: 15px;
+            }
+
+        }
+
+       .btn-banner-info, .btn-banner-join {
+          padding: 3px 33px!important;
+          font-size: 1.2em!important;
+        }
+
+        div#openelectronics_slider_image {
+          padding: 12px 25px;
+          font-size: 14px;
+        }
+
+        .metric-header {
+            border-top: 3px solid #674EA7;
+        }
+
+        .homepage-logo-container {
+            border-radius: 0px;
+            margin-top: -2px;
+            padding-bottom: 6px;
+            height: 154px;
+            border-color: $bright-text-color;
+            >div {
+                  position: relative;
+                  top: 50%;
+                  -webkit-transform: translateY(-50%);
+                  -ms-transform: translateY(-50%);
+                  transform: translateY(-50%);
+              }
+        }
+
+        .homepage-company-item .data-count>div:hover {
+            //background-color: $gray-background-color;
+        }
+
+
+
+
+        /*----------- Content Wrapper --------------*/
+        #main .video-container {
+          visibility: hidden;
+          height: 0;
+          width: 0;
+          opacity:0;
+        }
+        #page-wrapper {
+          background: #fff;
+          padding: 20px 12px;
+
+        }
+        #main-content-wrapper {
+          margin: 0 5px;
+
+        }
+        .browse-button {
+          text-align: center;
+          margin-top: 5px;
+          margin-left: 16px;
+
+        }
+        /*-----------  Grid  ---------*/
+        .grid-row {
+          display: inline-block;
+          width: 100%;
+          .grid-column {
+            width: 49%;
+            // background: green;
+          }
+
+        }
+        /*----------- Companies and Topics  ---------*/
+        #company-n-topic .grid-column {
+          position: relative;
+          //for slick-js icon position
+
+        }
+        #company-n-topic .card-header {
+          display: none;
+          // workaround for carousel
+
+        }
+        #company-n-topic {
+          .company-list,
+          .topic-list {
+            .search-result-list {
+              // workaround for carousel
+              height: 220px;
+              overflow: hidden;
+              margin-left: 3.8%;
+              width: 94%;
+              max-width: 555px;
+            }
+            .search-result-item {
+              display: inline-block;
+              min-width: 130px;
+              width: 175px;
+              padding: 10px 0;
+              margin-left: 11px;
+            }
+
+          }
+          .company-list {
+            float: left;
+          }
+          .topic-list {
+            float: right;
+          }
+          .browse-button {
+            margin-top: 35px;
+          }
+
+        }
+        /*----------- Overviews ---------*/
+
+        #overviews {
+          .search-result-item {
+            display: inline-block;
+            margin: 1.4%;
+            width: 30%;
+            float:left;
+          }
+
+        }
+        /*----------- Notes and Sources ---------*/
+
+        #notes-sources {
+
+          .card-content.SELF-homepage_note_list,
+          .card-content.SELF-homepage_source_list {
+            padding: 5px 0;
+            margin: 15px 3.5%;
+            border: 1px solid #ddd;
+            @include box-shadow(0,1px,6px,rgba(0,0,0,.13));
+            height: 750px;  // Temporary fix for same height , it should be dynamic at somepoint...
+            overflow: auto;
+          }
+          .card-content.SELF-homepage_note_list {
+            border-top: 8px solid $note-color;
+          }
+          .card-content.SELF-homepage_source_list {
+            border-top: 8px solid $source-color;
+          }
+          .note-list,
+          .source-list {
+            width: 48%;
+            .search-result-list {
+            //  padding: 0 0 1000px;
+              //same height workaround.
+           //   margin-bottom: -1000px;
+            }
+
+          }
+          .note-list {
+            float: left;
+          }
+          .source-list {
+            float: right;
+          }
+          .browse-button {
+            margin-top: 25px;
+          }
+
+        }
+        /*----------- Headings ---------*/
+
+        .homepage-heading-h1 {
+          text-align: center;
+          font-size: 1.6em;
+          color: $heading-color;
+          .count-color {
+            color: $overview-color;
+            /* font-weight: 900;*/
+          }
+          .company-color {
+            color: $note-tag-companybg;
+          }
+          .topic-color {
+            color: $note-tag-topicbg;
+          }
+          .overview-color {
+            color: $overview-color;
+          }
+          .note-color {
+            color: $note-color;
+          }
+          .source-color {
+            color: $source-color;
+          }
+
+        }
+        .homepage-heading-h2 {
+        font-size: 2em;
+        font-weight: normal;
+        padding: 0px 0 0;
+        }
+        .homepage-heading-h3{
+        font-weight: normal;
+        }
+        /*----------- Media queries ---------*/
+
+        @media screen and (max-width: 1150px) {
+          .homepage-heading-h1 {
+            font-size: 1.2em;
+          }
+          .homepage-heading-h2 {
+            font-size: 1.6em;
+          }
+          .homepage-heading-h3 {
+            font-size: 1.1em;
+          }
+          #top-banner-wrapper .column-2 .wikirate-message .homepage-heading-h1 {
+            font-size: 1.2em;
+          }
+
+        }
+        @media screen and (max-width: 1205px) {
+          .homepage-heading-h1 {
+            font-size: 1.1em;
+          }
+          .homepage-heading-h2 {
+            font-size: 1.4em;
+          }
+          #top-banner-wrapper .column-2 .wikirate-message .homepage-heading-h1 {
+            font-size: 1.1em;
+          }
+
+        }
+        @media screen and (max-width: 990px) {
+          .homepage-heading-h1 {
+            font-size: 0.89em;
+          }
+          .homepage-heading-h2 {
+            font-size: 1em;
+          }
+          .homepage-heading-h3 {
+            font-size: 0.9em;
+          }
+          #top-banner-wrapper .column-2 .wikirate-message .homepage-heading-h1 {
+            font-size: 0.9em;
+          }
+
+        }
+        @media screen and (max-width: 48em) {
+
+          #notes-sources {
+            .note-list,
+            .source-list {
+              width: 100%;
+              clear: both;
+              margin-bottom: 30px;
+            }
+            .card-content.SELF-homepage_source_list,
+            .card-content.SELF-homepage_note_list {
+              height: auto;
+            }
+          }
+
+        }
+        @media screen and (max-width:47em ) {
+
+          .homepage-heading-h1 {
+            //        font-size:0.9em;
+          }
+          .homepage-heading-h2 {
+            font-size: 1.8em;
+          }
+          #top-banner-wrapper .column-2 {
+            .wikirate-message {
+              padding: 1%;
+              .homepage-heading-h1 {
+                font-size: 1.5em;
+              }
+
+            }
+            .SELF-wikirate_globe.card-content {
+              padding: 1%;
+              max-width: 16%;
+            }
+
+          }
+          #top-banner-wrapper {
+            .column-1,
+            .column-3 {
+              display: none;
+            }
+            .column-2 {
+              width: 100%;
+            }
+          }
+
+        }
+
+        /*----------- Media queries- For mobile devices ---------*/
+
+        @media screen and (max-width:40em ) {
+          h4 {
+              font-size: medium;
+          }
+
+          .metric-value {
+              font-size: 12px!important;
+          }
+          .yinyang{
+            padding:0px!important;
+          }
+          .drag-item .value-item .header .name, .yinyang-row .value-item .header .name {
+              width: 88%!important;
+          }
+          .grid-row,.grid-column{
+            margin-bottom:24px;
+          }
+
+          .homepage-heading-h1 {
+                   font-size:1em;
+          }
+          .homepage-heading-h2 {
+            font-size: 1em;
+          }
+          #top-banner-wrapper {
+
+            .column-2 {
+              .wikirate-message {
+                padding: 1%;
+                .homepage-heading-h1 {
+                  font-size: 0.9em;
+                }
+
+              }
+              .SELF-wikirate_globe.card-content {
+                padding: 1%;
+                max-width: 16%;
+              }
+            }
+
+          }
+          #overviews .search-result-item {
+            display: inline-block;
+            margin: 1.4%;
+            width: 97%;
+
+          }
+          #company-n-topic {
+            .company-list,
+            .topic-list {
+              width: 100%;
+            }
+
+          }
+          body#wagn {
+            min-width: 325px;
+
+          }
+          #notes-sources {
+            .card-content.SELF-homepage_note_list,
+            .card-content.SELF-homepage_source_list {
+              margin: 15px 0;
+            }
+
+          }
+          #top-bar {
+            .logo-bar img {
+              margin-top: 0;
+              height: 25px;
+              border: none;
+            }
+            .account-info-bar {
+              display: none;
+              float: right;
+              position: absolute;
+              top: 6%;
+              right: 35px;
+              font-size: 0.6em;
+            }
+            #logging a{
+              margin-left:4px;
+            }
+            .search-bar-mobile {
+              display: block;
+              float: right;
+            }
+            .search-bar {
+              width: 92%;
+              display: none;
+            }
+
+          }
+          a.slicknav_btn {
+            float: left;
+            margin: 6px 0px 0 -6px;
+
+          }
+          #page-wrapper {
+            padding: 6px 4px;
+          }
+
+          #main{
+            padding: 80px 1%;
+          }
+
+          #top-bar-wrapper .slicknav_menu .slicknav_nav .account-info-bar .logged-out {
+            display: none;
+
+          }
+
+          #top-banner-wrapper .column-2 .SELF-wikirate_globe.card-content {
+            display:none;
+          }
+
+          .TYPE-note .source-side,
+          .TYPE-page .source-side,
+          .TYPE-note .meta-side,
+          .TYPE-page .meta-side,
+          .TYPE-analysis .meta-side,
+          .TYPE-company .meta-side,
+          .TYPE-topic .meta-side,
+          .TYPE-analysis .source-side,
+          .TYPE-company .source-side,
+          .TYPE-topic .source-side {
+            width: 100%!important;
+            margin-left: 0;
+          }
+          .TYPE-topic .TYPE_PLUS_RIGHT-topic-analysis_with_overview .analysis-blurb-content,
+          .TYPE-topic .TYPE_PLUS_RIGHT-company-analysis_with_overview .analysis-blurb-content,
+          .TYPE-company .TYPE_PLUS_RIGHT-topic-analysis_with_overview .analysis-blurb-content,
+          .TYPE-company .TYPE_PLUS_RIGHT-company-analysis_with_overview .analysis-blurb-content {
+            width: 100%;
+
+          }
+          .ui-tabs .ui-tabs-panel {
+            padding: 0;
+
+          }
+          .TYPE_PLUS_RIGHT-user-Xfollowing {
+            display: none;
+
+          }
+          .TYPE-user .user-profile-left,
+          .TYPE-user .user-profile-right,
+          .TYPE-user .user-profile-right-bottom-contribution,
+          .TYPE-user .TYPE_PLUS_RIGHT-user-discussion.titled-view {
+            width: 100%;
+
+          }
+          .card-slot>.card-header .card-menu-link {
+            margin: -40px -3px;
+
+          }
+          .header-vote {
+            float: left;
+            border-right: 0;
+            margin-right: 0;
+            padding: 0;
+          }
+          .header-citation {
+            float: right;
+            margin-top: -2%;
+            padding: 0;
+            border-left: 0;
+            margin-left: 0;
+          }
+          .header-title {
+            padding: 0 10px;
+            text-align: center;
+            width: 100%;
+            float: left;
+          }
+        }
+
+
+        .name-diff .label-default {
+          background-color: inherit;
+        }

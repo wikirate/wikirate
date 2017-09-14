@@ -1,0 +1,8 @@
+<div class="timeline-row">
+  <div class="td year"><span>{{_r|name}}</span>
+      <div class="timeline-dot"></div>
+  </div>
+  <div class="td value">
+      <span class="metric-value">{{+value}}</span>
+  </div>
+</div>

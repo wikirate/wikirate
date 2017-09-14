@@ -1,0 +1,336 @@
+{{style: mixins and variables|raw}}
+
+body {
+  // override bootstrap font 
+  color: $body-txt-color;
+  //font-family: 'Droid Sans',verdana, arial, helvetica, sans-serif!important;
+  // line-height: 1.5em;
+  // font-size: 0.9em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+body#wagn {
+  min-height: 100%;
+  min-width: 480px;
+  background: $body_background;
+  padding: 0;
+  margin: 0;
+
+}
+body#tinymce {
+  padding: 4px;
+
+}
+
+.card-menu.btn-group {
+  right: 5px;
+  top: 5px;
+}
+
+//Center alignment for all open-view heading
+#main > .open-view> .card-frame > .card-header {
+  text-align: center;
+}
+
+#main>div>.card-frame {
+    // min-height: 1000px;
+    background: #fff;
+}
+
+.card-header .card-header-title {
+  margin-right: 18px;
+}
+
+.homepage-logo-container .TYPE-image {
+    overflow: hidden;
+}
+
+sup {
+  line-height: 0;
+
+}
+a {
+  color: $anchor_color;
+
+}
+a.wanted-card {
+  color: $wanted-card-color;
+
+}
+/* many sites may want this external link behavior; it's here because it's a nuisance to override when not desired */
+a.external-link,
+.closed-content a.external-link {
+  color: $closed-content-a-color;
+  background: url("/assets/external_link.png") center right no-repeat;
+  padding-right: 13px !important;
+
+}
+img {
+  border: 0;
+}
+h1,
+h2 {
+  color: $heading_color;
+
+}
+// h1 {
+//   font-size: 1.2em;
+//   font-weight: normal;
+//   line-height: 1.8em;
+//   padding: 5px 0;
+
+// }
+.more-link {
+  float: right;
+
+}
+.card-header {
+  //font-family: 'Droid Sans';
+}
+.card-content {
+  .titled-view, .titled_with_edits-view {
+    > .card-header {
+      line-height: 1.4em;
+      margin-top: 1em;
+      }
+    
+  }
+  
+}
+
+//Should be moved to Style:Wikirate Metrics once the css are organized 
+.yinyang {
+  float:left;
+  width:100%;
+}
+
+#main>.TYPE-analysis>.card-frame>.card-body {
+  //padding-top: 0px;
+  //margin-top: -1px;
+}
+//end
+
+#main > .card-frame {
+  border-radius: 4px;
+  border: 0 solid #e5e5e5;
+  > .card-header {
+    background: $card-header-color;
+    font-size: 1.1em;
+    // font-weight: bold;
+    @include card-txt-color;
+    border:0;
+  }
+  > .instruction {
+    background: #bbb;
+  }
+
+}
+.RIGHT-logo.card-content img {
+  max-height: 100%;
+
+}
+#Home {
+  overflow: inherit;
+}
+
+
+#main {
+  font-size: 1.1em;
+  clear: both;
+  padding:80px 1% 0px;
+  max-width: $max-page-width;
+  margin: 0 auto;
+  >.card-frame {
+    border-radius: 0;
+    > .card-body {
+      padding: 10px 2%;
+      > .card-header-title {
+        font-size: 2em;
+        font-weight: normal;
+        line-height: 2em;
+        padding: 5px 0 0;
+      }
+      > .titled-view {
+        margin: 15px 0;
+        > .card-body {
+          margin: 5px 0 5px 3%;
+        }
+        > .card-content {
+          padding: 10px 20px 15px;
+        }
+      }
+    }
+  }
+  > .card-slot >.card-header {
+    padding: 2px 2%;
+    > .card-header-title {
+      font-size: 1.5em;
+      padding: 0 5px;
+      text-align:center;
+      display: inline-block;
+      width: 90%;
+      /*text-indent: 10%;*/
+      margin-left: 5%;
+    }
+  }
+
+}
+.card-slot > .card-header .card-menu-link {
+  display: none;
+}
+.card-slot.closed-view,
+.card-slot:hover {
+  > .card-header .card-menu-link {
+    display: inline-block;
+    margin-left: 10px;
+  }
+
+}
+.revision-navigation,
+.current {
+  background: #fff;
+
+}
+body.home-layout #main {
+  padding:66px 0px 0px;
+  > .card-content {
+    .SELF-wikirate_infographic {
+      text-align: center;
+      border-radius: 4px;
+      -moz-border-radius: 4px;
+      float: right;
+      border: 0 solid #e5e5e5;
+      background: #fff;
+      width: 41%;
+      padding-top: 20px;
+      margin-bottom: 12px;
+      > .SELF-infographic {
+        float: left;
+        display: inline-block;
+        width: 68%;
+      }
+      span {
+        font-size: 1.8em;
+        color: $infographic-heading;
+      }
+      p {
+        line-height: 2em;
+        color: #d5d5d5;
+        font-size: 1.3em;
+      }
+      > .wikirate-video-container {
+        position: relative;
+        padding-bottom: 17%;
+        padding-top: 0;
+        height: 0;
+        overflow: hidden;
+        left: 14px;
+        top: -14px;
+        width: 30.2%;
+        margin: 0;
+        iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+    }
+    .SELF-industry_of_the_month.content-view {
+      width: 100%;
+      text-align: center;
+      padding: 0 0 24px;
+      float: left;
+    }
+    .home-left {
+      width: 58%;
+      float: left;
+      .SELF-featured_topic.card-frame {
+        margin-top: 40px;
+      }
+
+    }
+    .home-right {
+      width: 41%;
+      float: right;
+    }
+    > #wikirate_tagline {
+      text-align: center;
+      overflow: visible;
+      font-size: 2em;
+      padding: 1.5em;
+    }
+  }
+}
+
+body {
+  >#wikirate_footer_compact {
+    /*position: fixed;*/
+    bottom: 0px;
+    z-index: 9;
+    background: #fff;
+    border-top: 1px solid #eaeaea;
+    width: 100%;
+    color: #999;
+    small {
+      width: 100%;
+      display: inherit;
+      text-align: center;
+    }
+    a {
+      color: #999;
+      text-decoration: underline;
+    }
+  }
+  >.SELF-wikirate_footer, .SELF-wikirate_footer_compact{
+      clear: both;
+      display: block;
+      padding: 0;
+      // text-align: center;
+      font-size: 0.9em;
+      // background: #fff;
+      // border: 1px solid #e5e5e5;
+      a.external-link {
+        padding-right: 0 !important;
+        background: inherit !important;
+      }
+      [class*="SELF-logo_"] {
+        display: inline-block;
+      }
+    .navbar {
+      margin-bottom: 0px;
+      .wagn-link a {
+        padding: 6px 20px;
+        &:hover {
+          background: none;
+        }
+      }
+    }
+  }
+}
+
+
+#Donate input[type='image'] {
+    width: auto;
+    height: auto;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+}
+
+.TYPE-analysis .item-citation_and_content {
+    float: left;
+    text-align: left;
+    width: 100%;
+}
+
+.TYPE-image.card-content img, .TYPE-image .card-body img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+input.navbox {
+    font-family: FontAwesome;
+}

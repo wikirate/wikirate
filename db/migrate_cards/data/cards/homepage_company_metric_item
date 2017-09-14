@@ -1,0 +1,22 @@
+  
+  <!--prototype: Company+MetricDesigner+MetricName+yinyang drag item -->
+  <div class="metric-item value-item">
+    <div>
+      <a class="inherit-anchor" href= "/{{_1|linkname}}?filter[metric]={{_llr+_lr|linkname}}">
+      <div class="header">
+        <div class="logo hidden-xs hidden-md">
+          {{_llr+image|core;size:small}} 
+        </div>
+        <div class="name">
+            {{_lr|name}}
+        </div>
+      </div>
+      <div class="data ">
+        <div class="data-item">
+          {{_llr+_lr+_1+latest value|concise}}
+        </div>
+
+      </div>
+      </a>
+    </div>
+  </div>

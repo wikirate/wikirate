@@ -4,12 +4,9 @@ en:
       decimal_units:
         format: "%n%u"
         units:
-          billion: B
-          million: M
-          quadrillion: P
+          unit: ""
           thousand: K
+          million: M
+          billion: B
           trillion: T
-          unit: ''
-      format:
-        delimiter: ''
-        precision: 3
+          quadrillion: Q

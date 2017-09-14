@@ -1,0 +1,24 @@
+.row.nopadding.transparent-background-white.nodblclick
+  .col-md-12.nopadding.visible-md.visible-lg
+    / tabs
+    .tabbable.tabs-left
+      %ul.nav.nav-tabs.intro-tabs.flex-column
+        - categories.each do |type|
+          %li{class: "nav-item #{type}-tab #{'active' if type == :company}"}
+            %a{"data-target" => "##{type}-tab", "data-toggle" => "tab", :href => "#", class: "nav-link"}
+              = nest "homepage: #{type} intro", view: :core
+      .tab-content
+        - categories.each do |type|
+          %div{id: "#{type}-tab", class: "tab-pane #{'active' if type == :company}"}
+            .carousal.carousal-position-fix
+              = nest "homepage #{type}", hide: [:paging, :title], items: { view: :homepage_item }
+              .browse-button
+                %a.btn.btn-sm.btn-default{:href => "/#{type}"}
+                  = "Browse #{type.to_s.pluralize.capitalize}"
+  / for medium and mobile devices
+  .col-md-12.nopadding.hidden-md-up
+    - categories.each do |type|
+      %h3.text-center.no-bold-text
+        = nest "homepage: #{type} intro", view: :core
+      .row.carousal
+        = nest "homepage #{type}", hide: [:paging, :title], items: { view: :homepage_item }

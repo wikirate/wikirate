@@ -7,7 +7,10 @@
       if pageN != ''
         #locally
         #Page_000001545?view=content&slot[structure]=source%20item%20preview
-        $.ajax('/' + pageN + '?view=content&slot[structure]=source_item_preview').done((noteFormHtml) ->
+        load_path = '/' + pageN +
+          '?view=content&slot[structure]=source_item_preview'
+        $.ajax(load_path).done((noteFormHtml) ->
+
           $redirectNotice.append noteFormHtml
           $redirectNotice.trigger 'slotReady'
           return
@@ -21,13 +24,12 @@
     return
   return
 
-@resizeIframe = ->
-  $('.webpage-preview').height $(window).height() - $('.navbar').height() - 1
-  return
+@resizeIframe = (slot) ->
+  height = $(window).height() - $('.navbar').height() - 1
+  slot.find('.webpage-preview').height height
 
-
-wagn.slotReady (slot) ->
-  if $('body').attr('id') == 'source-preview-page-layout'
+$(document).ready ->
+  if $('.preview-view.TYPE-source').exists
     # closeTabContent()
     $('[data-toggle="source_preview_tab_ajax"]').click (e) ->
       $this = $(this)
@@ -43,8 +45,6 @@ wagn.slotReady (slot) ->
       false
     pageName = $('#source-name').html()
     url = $('#source_url').html()
-    if url
-      testSameOrigin url, pageName
-    resizeIframe()
-    $('[data-target="#tab_claims"]').trigger 'click'
-  return
+    testSameOrigin(url, pageName) if (url)
+    # $('[data-target="#tab_claims"]').trigger 'click'
+    resizeIframe($('body'))

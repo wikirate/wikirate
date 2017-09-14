@@ -1,10 +1,9 @@
 #!/usr/bin/env ruby
 # used to run rspec in RubyMine
 
-ARGV.unshift '--default-path=/opt/wagn'
-ARGV.unshift '--'
-ARGV.unshift '--no-simplecov'
-ARGV.unshift 'rspec'
-APP_PATH = File.expand_path('../../config/application',  __FILE__)
-require File.expand_path('../../config/boot',  __FILE__)
-require 'wagn/commands'
+ARGV.insert 0,
+            "rspec", "--spring", "--no-simplecov", "--", "--default-path=/opt/wagn"
+
+APP_PATH = File.expand_path("../../config/application",  __FILE__)
+require File.expand_path("../../config/boot",  __FILE__)
+require "decko/commands"

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "homepage topic item",
+    "type": "HTML"
+  },
+  {
+    "name": "homepage topic metric drag item",
+    "type": "HTML"
+  },
+  {
+    "name": "homepage company item",
+    "type": "HTML"
+  },
+  {
+    "name": "homepage company metric item",
+    "type": "HTML"
+  },
+  {
+    "name": "homepage metric company item",
+    "type": "HTML"
+  }
+]

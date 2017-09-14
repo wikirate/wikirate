@@ -28,11 +28,11 @@ Style/CollectionMethods:
   Description: Preferred collection methods.
   Enabled: true
   PreferredMethods:
-    collect: map
-    collect!: map!
-    detect: find
-    find_all: select
-    reduce: inject
+    collect: 'map'
+    collect!: 'map!'
+    detect: 'find'
+    find_all: 'select'
+    reduce: 'inject'
 Style/DotPosition:
   EnforcedStyle: leading
 Style/Encoding:
@@ -53,9 +53,11 @@ Style/RegexpLiteral:
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#percent-r
   Enabled: true
 Style/StringLiterals:
-  EnforcedStyle: single_quotes
+  EnforcedStyle: double_quotes
 Style/SpaceAroundEqualsInParameterDefault:
   EnforcedStyle: no_space
+Style/FrozenStringLiteralComment:
+  Enabled: false
 Metrics/MethodLength:
   Enabled: true
   CountComments: false
@@ -66,13 +68,49 @@ Style/ExtraSpacing:
 Lint/AssignmentInCondition:
   Enabled: true
   AllowSafeAssignment: true
-#Decko/ViewLength:
-#  Description: Avoid views longer than 15 lines of code.
-#  Enabled: true
-#  CountComments: false
-#  Max: 15
-#Decko/EventLength:
-#  Description: Avoid events longer than 15 lines of code.
-#  Enabled: true
-#  CountComments: false
-#  Max: 15
+Lint/AmbiguousRegexpLiteral:
+  Exclude:
+    - '**/*_spec.rb'
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+    - '**/*_spec.rb'
+RSpec/ExampleLength:
+  Description: Checks for long examples.
+  Enabled: true
+  Max: 10
+RSpec/FilePath:
+  Description: Checks that spec file paths are consistent with the test subject.
+  Enabled: true
+  CustomTransform:
+    RuboCop: rubocop
+    RSpec: rspec
+    Card: spec
+  IgnoreMethods: false
+RSpec/NestedGroups:
+  Description: Checks for nested example groups.
+  Enabled: false
+  Max: 5
+RSpec/InstanceVariable:
+  Enabled: false
+Metrics/LineLength:
+  Enabled: true
+  Max: 90
+RSpec/MultipleExpectations:
+  Enabled: false
+Style/Documentation:
+  Exclude:
+    - db/migrate_cards/*.rb
+Style/SymbolArray:
+  Enabled: false
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: ()
+    '%i': '[]'
+    '%I': '[]'
+    '%r': '{}'
+    '%w': '[]'
+    '%W': '[]'

@@ -1,0 +1,34 @@
+[
+  {
+    "name": "export",
+    "type": "Pointer"
+  },
+  {
+    "name": "topic metric filter",
+    "type": "Basic",
+    "codename": "topic_metric_filter"
+  },
+  {
+    "name": "topic+metric page+*type plus right+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "all metrics",
+    "type": "Basic",
+    "codename": "all_metrics"
+  },
+  {
+    "name": "topic company filter",
+    "type": "Basic",
+    "codename": "topic_company_filter"
+  },
+  {
+    "name": "topic+company page+*type plus right+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "All Companies",
+    "type": "Search",
+    "codename": "all_company"
+  }
+]

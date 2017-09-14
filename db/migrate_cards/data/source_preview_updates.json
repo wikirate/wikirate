@@ -1,0 +1,18 @@
+[
+  {
+    "name": "export",
+    "type": "Pointer"
+  },
+  {
+    "name": "Source+*type+*layout",
+    "type": "Pointer"
+  },
+  {
+    "name": "source+metric search+*type plus right+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "Source+source note list+*type plus right+*structure",
+    "type": "HTML"
+  }
+]

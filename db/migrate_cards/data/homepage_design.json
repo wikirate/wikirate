@@ -1,0 +1,119 @@
+[
+  {
+    "name": "homepage: wikirate gets it right",
+    "type": "HTML"
+  },
+  {
+    "name": "homepage: company intro",
+    "type": "HTML"
+  },
+  {
+    "name": "homepage: topic intro",
+    "type": "HTML"
+  },
+  {
+    "name": "homepage: metric intro",
+    "type": "HTML"
+  },
+  {
+    "name": "homepage: introductions",
+    "type": "HTML"
+  },
+  {
+    "name": "homepage company item",
+    "type": "HTML"
+  },
+  {
+    "name": "homepage topic item",
+    "type": "HTML"
+  },
+  {
+    "name": "homepage metric item",
+    "type": "HTML"
+  },
+  {
+    "name": "Home",
+    "type": "HTML",
+    "codename": "homepage"
+  },
+  {
+    "name": "homepage: top banner",
+    "type": "HTML"
+  },
+  {
+    "name": "homepage: wikirate gets it right",
+    "type": "HTML"
+  },
+  {
+    "name": "community: section 1",
+    "type": "HTML"
+  },
+  {
+    "name": "community: section 2",
+    "type": "HTML"
+  },
+  {
+    "name": "community: section 3",
+    "type": "HTML"
+  },
+  {
+    "name": "community: section 4",
+    "type": "HTML"
+  },
+  {
+    "name": "community: section 5",
+    "type": "HTML"
+  },
+  {
+    "name": "community: section 6",
+    "type": "HTML"
+  },
+  {
+    "name": "community: section 7",
+    "type": "HTML"
+  },
+  {
+    "name": "community: section 8",
+    "type": "HTML"
+  },
+  {
+    "name": "community: section 1+info",
+    "type": "Basic"
+  },
+  {
+    "name": "community: section 2+info",
+    "type": "Basic"
+  },
+  {
+    "name": "community: section 3+info",
+    "type": "Basic"
+  },
+  {
+    "name": "community: section 4+info",
+    "type": "Basic"
+  },
+  {
+    "name": "community: section 5+info",
+    "type": "Basic"
+  },
+  {
+    "name": "community: section 6+info",
+    "type": "Basic"
+  },
+  {
+    "name": "community: section 7+info",
+    "type": "Basic"
+  },
+  {
+    "name": "community: section 8+info",
+    "type": "Basic"
+  },
+  {
+    "name": "homepage: introductions",
+    "type": "HTML"
+  },
+  {
+    "name": "nav bar menu",
+    "type": "HTML"
+  }
+]

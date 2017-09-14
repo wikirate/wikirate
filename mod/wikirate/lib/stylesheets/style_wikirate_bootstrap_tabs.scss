@@ -1,47 +1,241 @@
-.nav-tabs > li {
-    margin-bottom: -7px;
-    &.active > a {
-        border-radius: 0;
-        border: 0 solid #E6E6E6;
-        border-bottom: 4px solid #03998D;
-        &:focus,
-        &:hover {
+{{style: mixins and variables|raw}}
+    .nav-tabs {
+      border-bottom: 4px solid $border-color;
+    }
+    .nav-tabs .nav-link{
+      &:hover{
+        background:#fafafa;;
+      }
+        &.active {
+            border: 0 solid #e6e6e6;
+            border-bottom: 4px solid $main-color;
             border-radius: 0;
-            border: 0 solid #E6E6E6;
-            border-bottom: 4px solid #03998D;
+            &:focus,
+            &:hover {
+                border: 0 solid #e6e6e6;
+                border-bottom: 4px solid $main-color;
+                border-radius: 0;
+            }
+        }
+        &.disabled > span {
+            border: 0 solid #e6e6e6;
+            border-bottom: 4px solid $border-color;
+            border-radius: 0;
+            @include opacity(0.3);
+            margin: 3px -1px;
+            padding: 18px 20px;
+            font-size: 15px;
+            color: #8e8e8e;
+            line-height: 1.42857;
+            position: relative;
+            display: block;
+            &:focus,
+            &:hover {
+                cursor: not-allowed;
+            }
+        }
+          background-color: #fff;
+          border-radius: 0;
+          border: 0 solid #e6e6e6;
+          border-bottom: 4px solid $border-color;
+          margin: 3px -1px;
+          padding: 18px 20px;
+          font-size: 15px;
+          color: #8e8e8e;
+          margin-bottom: -3px;
+    }
+
+    .tabbable {
+        margin: 1px;
+        .nav-tabs {
+            border-bottom: 4px solid $border-color;
         }
     }
-    > a {
-        background-color: #fff;
-        border-radius: 0;
-        border: 0 solid #E6E6E6;
-        border-bottom: 4px solid #DADADA;
-        margin: 3px -1px;
-        padding: 18px 20px;
-        font-size: 15px;
-        color: #8E8E8E;
+
+    .with-item-count {
+        &.nav-tabs > li > a {
+            padding: 18px 4px;
+        }
+        &.nav-tabs > li.active > a > .count-label {
+            font-weight: bold;
+        }
+
+        .count-number {
+            font-size: 16px;
+        }
+
+        .count-label {
+            font-size: 14px;
+        }
+    }
+
+    .TYPE-source.preview-view .navbar .nav-tabs > li {
+        margin-bottom: 0;
+    }
+
+//Custom Tabs
+
+.company-profile-tab{
+  position: absolute;
+  bottom: 10px;
+  min-width: 60%;
+  text-align: center;
+  li{
+    width: 50%;
+  }
+}
+.company-profile-tab.visible-xs {
+    position: relative;
+    border-top: 1px solid #ebebeb;
+    margin: 0px -15px;
+}
+
+.contribution-report-header {
+    .nav-tabs{
+      padding-bottom: 2px;
+    }
+    .nav-tabs>li>a{
+      margin: 0px;
     }
 }
-.tabbable {
-    margin: 1px;
-    .nav-tabs {
-        border-bottom: 4px solid #ddd;
-    }
+
+.contribution_report-view .contribution-report-header > .nav > li {
+  float: right;
+  width: 15%;
+  .count-label {
+    white-space: nowrap;
+  }
 }
-.with-item-count {
-    &.nav-tabs > li > a {
-        padding: 18px 4px;
-    }
-    &.nav-tabs > li.active > a > .count-label {
-        font-weight: bold;
-    }
-    .count-number {
-        font-size: 16px;
-    }
-    .count-label {
-        font-size: 14px;
-    }
+
+.contribution-report-title {
+    float: left;
+  padding: 0 20px;
+  color: inherit;
 }
-.TYPE-source.preview-view .navbar .nav-tabs > li {
-    margin-bottom: 0;
+
+.contribution-report {
+    margin-bottom: 15px;
+    border: 1px solid $border-color;
+}
+
+li.contribution-report-title-box {
+  float: left !important;
+  width: 30% !important;
+
+}
+
+li.contribution-report-title-box > a {
+  padding-bottom: 27px;
+  padding-left: 0px;
+  padding-top: 12px;
+  color: inherit;
+}
+
+.RIGHT-metric, .RIGHT-metric_value{
+  .contribution-report-header {
+      border-left: 4px solid $metric-color;
+  }
+}
+.RIGHT-company{
+  .contribution-report-header {
+      border-left: 4px solid $company-color;
+  }
+}
+.RIGHT-project{
+  .contribution-report-header {
+      border-left: 4px solid $card-text-color;
+  }
+}
+.RIGHT-source{
+  .contribution-report-header {
+      border-left: 4px solid $source-color;
+  }
+}
+.RIGHT-topic{
+  .contribution-report-header {
+      border-left: 4px solid $topic-color;
+  }
+}
+.RIGHT-note{
+  .contribution-report-header {
+      border-left: 4px solid $note-color;
+  }
+}
+.RIGHT-research_group {
+  .contribution-report-header {
+    border-left: 4px solid $card-text-color;
+  }
+}
+
+.contribution-report-toggle a {
+    padding: 18px 0px!important;
+}
+.contribution-report-toggle {
+    width: 6%!important;
+    border-left: 1px solid #ebebeb;
+}
+
+//Custom tab positions
+.tabs-left > .nav-tabs .nav-item{
+  float: none;
+}
+
+.tabs-left .tab-content{
+  float: left;
+  width: 50%;
+}
+
+.tabs-left > .nav-tabs {
+  float: left;
+  border-bottom: 0;
+  &.intro-tabs > li {
+    &.company-tab > a{
+      border-right: 3px solid $company-color;
+      padding: 80px 60px 80px 40px;
+      line-height: 20px;
+    }
+    &.metric-tab > a{
+      border-right: 3px solid $metric-color;
+    }
+    &.topic-tab > a{
+      border-right: 3px solid $topic-color;
+    }
+    > a{
+      font-size: 24px;
+      //font-weight: 300;
+      padding: 90px 60px 90px 40px;
+      text-align: center;
+      background: none;
+      -webkit-transition: all 0.3s ease-out;
+      -moz-transition: all 0.3s ease-out;
+      -ms-transition: all 0.3s ease-out;
+      -o-transition: all 0.3s ease-out;
+      transition: all 0.3s ease-out;
+      &:hover, &:focus,&:active,&.active {
+        border-left: 1px solid $border-color;
+        border-bottom: 1px solid $border-color;
+        @include box-shadow(-11px, 0px, 20px, rgba(0,0,0,0.12));
+        background: none;
+        position: relative;
+        z-index: 2;
+      }
+      &:hover{
+          background: rgba(255, 255, 255, 0.55);
+          color: inherit;
+      }
+      &.active > a {
+          border-right: 3px solid $border-color;
+          @include box-shadow(-11px, 0px, 20px, rgba(0,0,0,0.12));
+          position: relative;
+          z-index: 2;
+      }
+    }
+  }
+  > li > a {
+    margin-right: 20px;
+    //margin-bottom: 8px;
+    border-bottom: 0;
+    border-bottom: 1px solid #ebebeb;
+    border-left: 1px solid #ebebeb;
+  }
 }

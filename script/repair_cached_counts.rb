@@ -1,12 +1,12 @@
 #!/usr/bin/env ruby
 
-require File.dirname(__FILE__) + '/../config/environment'
+require File.dirname(__FILE__) + "/../config/environment"
 Card::Auth.current_id = Card::WagnBotID
 
 wql = {
   type_id: Card::WikirateCompanyID,
   referred_to_by:
-    'Rating_Companies_on_Responsible_Sourcing_Data_Sprint+companies'
+    "Rating_Companies_on_Responsible_Sourcing_Data_Sprint+companies"
 }
 
 Card.search(wql) do |company|
@@ -19,12 +19,11 @@ Card.search(wql) do |company|
     analysis.save! if analysis.new_card?
     [:claim, :metric, :source].each do |attrib|
       attrib_card = analysis.fetch trait: attrib
-      if attrib_card.count > 0
-        begin
-          attrib_card.update_cached_count
-        rescue
-          puts "#{analysis.name} failed on #{attrib}"
-        end
+      next unless attrib_card.count > 0
+      begin
+        attrib_card.update_cached_count
+      rescue
+        puts "#{analysis.name} failed on #{attrib}"
       end
     end
   end

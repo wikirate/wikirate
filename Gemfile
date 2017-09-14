@@ -1,86 +1,117 @@
-source 'http://rubygems.org'
+source "http://rubygems.org"
 
-wagn_gem_path = ENV['WIKIRATE_WAGN_GEM_PATH'] || './vendor/wagn'
+decko_gem_path = ENV["WIKIRATE_DECKO_GEM_PATH"] || "./vendor/decko"
 
-gem 'wagn', path: "#{wagn_gem_path}/wagn"
-gem 'card', path: "#{wagn_gem_path}/card", require: false
+# gem "smartname", path: "./vendor/smartname"
 
-gem 'mysql2', '~> 0.3.18'
-gem 'link_thumbnailer', '2.5.2'
-gem 'open_uri_redirections'
-gem 'roo'
-gem 'wbench'
-gem 'curb'
-gem 'daemons'
-gem 'delayed_job_active_record'
+gem "card", path: "#{decko_gem_path}/card", require: false
+gem "cardname", path: "#{decko_gem_path}/cardname", require: false
+gem "decko", path: "#{decko_gem_path}/decko"
+
+gem "mysql2", "~> 0.3.18"
+
+gem "descriptive_statistics" #, "2.5.1"
+gem "savanna-outliers"
+gem "statistics2" #, "0.54"
+
+gem "curb"
+gem "daemons"
+gem "delayed_job_active_record"
+gem "delayed_job_web"
+
+gem "company-mapping"
+gem "link_thumbnailer", "2.5.2"
+gem "open_uri_redirections"
+gem "roo"
+gem "wbench"
+
+gem "rubocop"
+gem "rubocop-decko"
+
+gem "pdfkit"
+gem "wkhtmltopdf-binary"
+
+gem "fog"
+gem "fog-aws"
 
 # seems like newrelic should be in :live, but that wasn't working.
 # not sure why -efm
-gem 'newrelic_rpm'
-gem "airbrussh", :require => false
+gem "newrelic_rpm"
+# gem "ruby-prof"
+gem "airbrussh", require: false
+
+gem "ruby-jmeter"
+
+gem "card-mod-airbrake"
+
 
 group :live do
-  gem 'therubyracer'
-  gem 'dalli'
+  gem "dalli"
+  gem "therubyracer"
 end
 
 group :test do
-  gem 'rspec-rails' # behavior-driven-development suite
-  gem 'rspec', '~> 3.4'
-  gem 'rspec-html-matchers' # 0.7.0 broke stuff!
+  gem "rspec"
+  gem "rspec-html-matchers" # 0.7.0 broke stuff!
+  gem "rspec-rails" # behavior-driven-development suite
   # gem 'wagn-rspec-formatter',  git: 'https://github.com/xithan/wagn-rspec-formatter.git'
-  gem 'spork', '>=0.9'
-  gem 'timecop'
-  gem 'simplecov'
+
+  gem "simplecov", require: false
+  gem "spork", ">=0.9"
+
+  gem "timecop"
   # gem 'codeclimate-test-reporter', require: nil
 
   # CUKES see features dir
-  gem 'cucumber-rails', require: false
+  gem "chromedriver-helper"
+  gem "cucumber-rails", require: false
   # feature-driven-development suite
-  gem 'capybara'
-                                       # used 2.0.1
-  gem 'selenium-webdriver'
+  gem "capybara", "2.11.0"
+  # used 2.0.1
+  gem "selenium-webdriver", "3.3.0"
   #  gem 'capybara-webkit'
   # lets cucumber launch browser windows
-  gem 'launchy'
+  gem "launchy"
 
-
-  gem 'email_spec'
+  gem "email_spec"
   # used by cucumber for db transactions
-  gem 'database_cleaner', '~> 1.4.1'
+  gem "database_cleaner", "~> 1.4.1"
 
   # Pretty printed test output.
   # (version constraint is to avoid minitest requirement)
-  gem 'turn', '~>0.8.3', require: false
+  gem "turn", "~>0.8.3", require: false
 
-  gem 'minitest'
+  gem "minitest"
 end
 
 group :development do
-  gem 'rubocop'
-  gem 'rubocop-rspec'
+  gem "rubocop-rspec"
 
-  gem 'rails-dev-tweaks'
-  gem 'sprockets' # just so above works
+  gem "rails-dev-tweaks"
+  gem "sprockets" # just so above works
 
-  gem 'capistrano'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rvm'
-  gem 'capistrano-maintenance', require: false
-  gem 'capistrano-passenger'
+  gem "capistrano"
+  gem "capistrano-bundler"
+  gem "capistrano-maintenance", require: false
+  gem "capistrano-passenger"
+  gem "capistrano-rvm"
+
+  gem "better_errors"
+  gem "binding_of_caller"
+
+  gem "spring"
+  gem 'spring-commands-rspec'
 end
 
 group :test, :development do
-  gem 'thin'
-  gem 'pry', git: 'https://github.com/pry/pry'  # bug in 0.10.3, fixed in master
-  gem 'pry-rails'
-  gem 'pry-rescue'
-  gem 'pry-stack_explorer'
-  if RUBY_VERSION =~ /^2/
-    gem 'pry-byebug'
-  end
+  gem "pry"
+  gem "pry-byebug" if RUBY_VERSION =~ /^2/
+  gem "pry-rails"
+  gem "pry-rescue"
+  gem "pry-stack_explorer"
+  gem "thin"
 end
 
-Dir.glob('mod/**{,/*/**}/Gemfile').each do |gemfile|
+Dir.glob("mod/**{,/*/**}/Gemfile").each do |gemfile|
   instance_eval(File.read(gemfile))
 end

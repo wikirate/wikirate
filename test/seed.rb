@@ -1,138 +1,161 @@
 # -*- encoding : utf-8 -*-
-require 'timecop'
+require "timecop"
+require_relative "shared_data/profile_sections"
+require_relative "shared_data/metrics"
+require_relative "shared_data/badges"
+require_relative "shared_data/notes_and_sources"
+require_relative "shared_data/samples"
 
-require_dependency 'card'
+require_dependency "card"
 
 class SharedData
+  HAPPY_BIRTHDAY = Time.utc(2035, 2, 5, 12, 0, 0).freeze
+  # gift to Ethan's 60th birthday:
+  # on the date above 3 tests will fail
+  # (if you reseed the test database)
+
+  COMPANIES = {
+    "Death Star" => "Kuuuhhh Shhhhhh Kuuuhhhh Shhhhh",
+    "Monster Inc" => "We scare because we care.",
+    "Slate Rock and Gravel Company" => "Yabba Dabba Doo!",
+    "Los Pollos Hermanos" => "I'm the one who knocks",
+    "SPECTRE" => "shaken not stirred"
+  }.freeze
+
+  TOPICS = {
+    "Force" => "A Jedi uses the Force for knowledge and defense, never for attack.",
+    "Taming" => "What a cute animal"
+  }.freeze
+
   class << self
-    def account_args hash
-      { '+*account' => { '+*password' => 'joe_pass' }.merge(hash) }
-    end
+    include Card::Model::SaveHelper
+    include Samples
+
+    include ProfileSections
+    include Metrics
+    include Badges
+    include NotesAndSources
 
     def add_wikirate_data
-      Card::Cache.reset_global
+      Card::Cache.reset_all
       Card::Env.reset
       Card::Auth.as_bot
-      add_companies_and_topics
-      add_sources_and_claims
-      add_metrics
+      add :companies, :topics, :analysis, :notes_and_sources,
+          :metrics, :yearly_variables,
+          :projects, :industry,
+          :profile_sections, :badges
+
+      Card::Cache.reset_all
+      Answer.refresh
     end
 
-    def add_companies_and_topics
-      Card.create! name: 'Death Star', type: 'company',
-                   subcards: {
-                     '+about' => { content: 'Judge me by my size, do you?' }
-                   }
-      Card.create! name: 'Force', type: 'topic',
-                   subcards: {
-                     '+about' => {
-                       content: 'A Jedi uses the Force for ' \
-                                'knowledge and defense, never for attack.'
-                     }
-                   }
-      Card.create! name: 'Death Star+Force', type: 'analysis',
-                   subcards: {
-                     '+article' => { content: "I'm your father!" }
-                   }
+    def add *categories
+      categories.each do |cat|
+        send "add_#{cat}"
+      end
     end
 
-    def add_sources_and_claims
-      sourcepage = Card.create!(
-        type_id: Card::SourceID,
-        subcards: {
-          '+Link' => { content: 'http://www.wikiwand.com/en/Star_Wars' },
-          '+company' => { content: '[[Death Star]]', type_id: Card::PointerID },
-          '+topic' => { content: '[[Force]]', type_id: Card::PointerID }
-        }
-      )
+    def with_joe_user &block
+      with_user "Joe User", &block
+    end
+
+    def account_args hash
+      { "+*account" => { "+*password" => "joe_pass" }.merge(hash) }
+    end
+
+    def add_companies
+      COMPANIES.each do |company, about|
+        create company,
+               type: "company",
+               subcards: { "+about" => about }
+      end
+      ensure_card ["Google Inc", :headquarters],
+                  type: :pointer, content: "California (United States)"
+      ensure_card ["Google Inc", :incorporation],
+                  type: :pointer, content: "Delaware (United States)"
+      ensure_card ["Google Inc", :open_corporates], content: "3582691"
+    end
+
+    def add_topics
+      TOPICS.each do |topic, about|
+        create topic,
+               type: "topic",
+               subcards: { "+about" => about }
+      end
+    end
+
+    def add_analysis
+      create "Death Star+Force",
+             type: "analysis",
+             subfields: { overview: {
+               content: "I am your father! {{Death Star uses dark side of the Force|cite}}"
+             } }
+    end
+
+    def vote name, direction
+      Card::Auth.as_bot do
+        vcc = Card[name].vote_count_card
+        vcc.send "vote_#{direction}"
+        vcc.save!
+      end
+    end
+
+    def add_yearly_variables
       Card.create!(
-        name: 'Death Star uses dark side of the Force',
-        type_id: Card::ClaimID,
+        name: "half year", type_id: Card::YearlyVariableID,
         subcards: {
-          '+source' => {
-            content: "[[#{sourcepage.name}]]", type_id: Card::PointerID
-          },
-          '+company' => {
-            content: '[[Death Star]]',         type_id: Card::PointerID
-          },
-          '+topic' => {
-            content: '[[Force]]',              type_id: Card::PointerID
-          }
+          "+2015" => { type_id: Card::YearlyAnswerID,
+                       "+value" => { type_id: Card::YearlyValueID,
+                                     content: "1007.5" } },
+          "+2014" => { type_id: Card::YearlyAnswerID,
+                       "+value" => { type_id: Card::YearlyValueID,
+                                     content: "1007" } },
+          "+2013" => { type_id: Card::YearlyAnswerID,
+                       "+value" => { type_id: Card::YearlyValueID,
+                                     content: "1006.5" } }
         }
       )
     end
 
-    def add_metrics
-      Card::Env[:protocol] = 'http://'
-      Card::Env[:host] = 'wikirate.org'
-      Card.create! name: '1977', type_id: Card::YearID
-      Card::Metric.create name: 'Jedi+disturbances in the Force',
-                          value_type: 'Category',
-                          value_options: %w(yes no) do
-        Death_Star '1977' => { value: 'yes',
-                               source: 'http://wikiwand.com/en/Death_Star' }
-      end
-      Card::Metric.create name: 'Jedi+deadliness', value_type: 'Number' do
-        source_link = 'http://wikiwand.com/en/Return_of_the_Jedi'
-        Death_Star '1977' => { value: 100, source: source_link }
-      end
-      Card::Metric.create name: 'Jedi+cost of planets destroyed',
-                          value_type: 'Money' do
-        source_link = 'http://wikiwand.com/en/Return_of_the_Jedi'
-        Death_Star '1977' => { value: 200, source: source_link }
-      end
-      Card::Metric.create name: 'Jedi+Sith Lord in Charge',
-                          value_type: 'Free Text'
-      Card::Metric.create name: 'Jedi+friendliness',
-                          type: :formula,
-                          formula: '1/{{Jedi+deadliness}}'
-      Card::Metric.create name: 'Jedi+deadliness+Joe User',
-                          type: :score,
-                          formula: '{{Jedi+deadliness}}/10'
-      Card::Metric.create name: 'Jedi+deadliness+Joe Camel',
-                          type: :score,
-                          formula: '{{Jedi+deadliness}}/20'
-      Card::Metric.create name: 'Jedi+disturbances in the Force+Joe User',
-                          type: :score,
-                          formula: { yes: 10, no: 0 }
-      Card::Metric.create(
-        name: 'Jedi+darkness rating',
-        type: :wiki_rating,
-        formula: { 'Jedi+deadliness+Joe User' => 60,
-                   'Jedi+disturbances in the Force+Joe User' => 40 }
-      )
+    def add_projects
+      create "Evil Project",
+             type: :project,
+             subfields: {
+               metric: {
+                 type: :pointer,
+                 content: "[[Jedi+disturbances in the Force]]\n"\
+                          "[[Joe User+researched number 2]]"
+               },
+               wikirate_company: {
+                 type: :pointer,
+                 content: ["Death Star", "SPECTRE", "Los Pollos Hermanos"]
+               },
+               wikirate_topic: {
+                 type: :pointer,
+                 content: "Force"
+               }
+             }
 
-      Card::Metric.create name: 'Joe User+score1', type: :researched,
-                          random_source: true do
-        Samsung          '2014' => 10, '2015' => 5
-        Sony_Corporation '2014' => 1
-        Death_Star       '1977' => 5
-      end
-      Card::Metric.create name: 'Joe User+score2', type: :researched,
-                          random_source: true do
-        Samsung          '2014' => 5, '2015' => 2
-        Sony_Corporation '2014' => 2
-      end
-      Card::Metric.create name: 'Joe User+score3', type: :researched,
-                          random_source: true do
-        Samsung '2014' => 1, '2015' => 1
-      end
+      create "Empty Project",
+             type: :project,
+             subfields: {
+               metric: {
+                 type: :pointer,
+                 content: ""
+               },
+               wikirate_company: {
+                 type: :pointer,
+                 content: ""
+               }
+             }
+    end
 
-      # Card::Metric.create name: 'Joe User+score1', type: :score,
-      #                     random_source: true do
-      #   Samsung          '2014' => 10, '2015' => 5
-      #   Sony_Corporation '2014' => 1
-      #   Death_Star       '1977' => 5
-      # end
-      # Card::Metric.create name: 'Joe User+score2', type: :score,
-      #                     random_source: true do
-      #   Samsung          '2014' => 5, '2015' => 2
-      #   Sony_Corporation '2014' => 2
-      # end
-      # Card::Metric.create name: 'Joe User+score3', type: :score,
-      #                     random_source: true do
-      #   Samsung '2014' => 1, '2015' => 1
-      # end
+    def add_industry
+      ["Death Star", "SPECTRE"].each do |name|
+        create "Global_Reporting_Initiative+Sector_Industry+#{name}+2015+value",
+               type: :phrase,
+               content: "Technology Hardware"
+      end
     end
   end
 end

@@ -1,0 +1,15 @@
+[
+  {
+    "name": "Company+*self+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "filter search company+*right+*structure",
+    "type": "Search"
+  },
+  {
+    "name": "filter search company",
+    "type": "Basic",
+    "codename": "filter_search_company"
+  }
+]

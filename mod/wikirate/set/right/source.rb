@@ -2,28 +2,25 @@ format :html do
   # def edit_args args
   #  args[:structure] = 'source+*type+*Structure'
   # end
-  view :editor do |args|
-
-
+  view :editor do
     with_nest_mode :normal do
-
-      args[:structure] = 'metric value type edit structure'
-      render_
-      %{
-        <div class="source-editor nodblclick">
-          #{ form.hidden_field :content, :class=>'card-content' }
-          <div class="sourcebox">
-            #{ text_field_tag :sourcebox, nil, :placeholder=>'source name or http://' }
-            #{ button_tag 'Add' }
-          </div>
-          #{ _render_core args }
-        </div>
-      }
+      voo.structure = "metric value type edit structure"
+      wrap_with :div, class: "source-editor nodblclick" do
+        [
+          form.hidden_field(:content, class: "card-content"),
+          _render_sourcebox,
+          _render_core
+        ]
+      end
     end
-    # source = Card.new type_code: :source, name: 'new source'
-    # subformat(source)._render_content_formgroup(hide: '',
-    #                                               buttons: ''
-    #                                              )
+  end
 
+  view :sourcebox do
+    wrap_with :div, class: "sourcebox" do
+      [
+        text_field_tag(:sourcebox, nil, placeholder: "source name or http://"),
+        button_tag("Add")
+      ]
+    end
   end
 end

@@ -1,0 +1,22 @@
+  <div class=" contribution-item value-item">
+
+    <div class="header">
+      <div class="logo hidden-xs">
+        <a class="inherit-anchor" href="{{_2|linkname}}"> {{_2+image|core;size:small}} </a>
+      </div>
+      <div class="name">
+        <a class="inherit-anchor" href="{{_2+_3|linkname}}"> {{_3|name}}</a>
+      </div>
+    </div>
+
+    <div class="data ">
+      <a class="inherit-anchor" href="{{_2+_3|linkname}}">
+      <span class="contribution company-count">
+        <div class="content">
+          {{_2+_3+company count|core}}
+          <div class="name">Companies</div>
+        </div>
+      </span>
+      </a>
+    </div>
+  </div>

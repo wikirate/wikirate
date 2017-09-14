@@ -1,0 +1,61 @@
+<div class="">
+<div class="container  homepage-company-item background-white">
+
+<div class="row wiki">
+		<div class="col-md-12 col-xs-12 metric-info metric-header nopadding">
+
+		  <div class="row">
+		    <br>
+
+		      <!--Main title and stuff-->
+		      <div class="col-md-12 col-xs-12 nopadding metric-details-header">
+  		      <div class="row clearfix ">
+                <div class="col-md-1 col-xs-1 ">
+                  {{+*vote count}}
+                </div>
+                <div class="col-md-11 col-xs-11">
+                  <div class="name row">
+                    <a class="inherit-anchor" href="{{_l+_r|url}}">
+                    {{_r|name}}
+                    </a>
+                  </div> <br>
+                  <div class="row">
+                    <div class="metric-designer-info">
+                      <a href="/{{_l|name}}+contribution">
+                        <div class="image-box icon">{{_l+image|core;size:small}}</div>
+                        <div>
+                          <h5 class="text-muted nopadding no-bold-text">Designed by</h5>
+                          <h5 class="nopadding">{{_l|name}}</h5>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+      </div>
+         <br>
+          <!--Question container-->
+
+      <div class="row question-container nopadding">
+        <div class="col-md-1 col-xs-11">
+          <div class="row-icon">
+            <i class="fa fa-question"></i>
+          </div>
+        </div>
+        <div class="col-md-11 col-xs-11">
+            <div class="row-data">
+            {{+Question|content}}
+          </div>
+        </div>
+      </div>
+		</div>
+	</div>
+
+	<div class="row metric-info">
+	  <!--Ratings and company list -->
+	  {{+all_metric_values|homepage_table}}
+	</div>
+</div>
+</div>

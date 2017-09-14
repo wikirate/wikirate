@@ -1,0 +1,36 @@
+.browse-metric-item
+  .metric-info
+    .row.header
+      = vote_count
+      .name{:title => card.metric_title}
+        = link_to_card card, card.metric_title
+    .row
+      .row-icon
+        %i.fa.fa-building-o
+      .row-data.ellipsis.rating-designer
+        = link_to_card card.metric_designer_card,
+                       nest(card.designer_image_card, view: :core, size: :icon),
+            class: "image-box icon nopadding pull-left"
+        %a{:href => card.metric_designer_card.cardname.url_key}
+          %span.margin-12
+            = card.metric_designer
+    .row
+      .row-icon
+        %i.fa.fa-tag
+      .row-data.ellipsis.topic.no-data-on-missing-view
+        = field_nest :wikirate_topic, view: :content, items: { view: :link }
+    .row.question.no-data-on-missing-view
+      .row-icon
+        %i.fa.fa-question
+      .row-data.ellipsis
+        = field_nest :question, view: :content, hide: :menu
+    %a.metric-link.inherit-anchor{:href => card.cardname.url_key}
+      .row.data-count
+        .col-md-6.slab
+          .number
+            = field_nest :wikirate_company, view: :count
+          .number-label Companies
+        .col-md-6.slab
+          .number
+            = field_nest :wikirate_topic, view: :count
+          .number-label Topics

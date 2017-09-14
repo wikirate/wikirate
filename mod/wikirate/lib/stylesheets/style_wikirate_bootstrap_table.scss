@@ -1,0 +1,271 @@
+{{style: mixins and variables|raw}}
+
+.table {
+  display: table;
+}
+
+.th {
+  display: table-cell;
+}
+
+.tr {
+  display: table-row;
+}
+
+.td {
+  display: table-cell;
+}
+
+.thead {
+  display: table-header-group;
+}
+
+.tbody {
+  display: table-row-group;
+}
+
+.tfooter {
+  display: table-footer-group;
+}
+
+
+@mixin left-color($regular, $hover) {
+  .header {
+    border-left: 3px solid $regular;
+  }
+  tr, .tr {
+    &.tr-details-toggle:hover, &.tr-link:hover {
+      .header {
+        border-left: 3px solid $hover;
+      }
+    }
+  }
+}
+
+.table  {
+  font-style: normal;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid $border-color;
+  thead,tbody,tfoot,.thead,.tbody,.tfoot {
+    > tr > th, > .tr > .th, td, .td {
+      padding: 8px;
+      line-height: 1.42857;
+      vertical-align: top;
+      border-top: 1px solid $border-color;
+      border-right: 1px solid $border-color;
+    }
+   td {
+     max-width: 400px;
+   }
+   td.details {
+     max-width: 1000px!important;
+   }
+  }
+
+
+  thead > tr >, .thead > .tr {
+    th, td, .th, .td {
+      font-style: normal;
+      border-bottom: 1px solid $border-color;
+    }
+  }
+}
+
+table.wikirate-table, .table.wikirate-table {
+  background: #fff;
+  thead > tr > th, .thead > .tr > .th {
+    background: #fff;
+    padding: 2px;
+    font-size: $sub-text-size;
+    text-align: center;
+    // color: $heading-color;
+    color: $dark-text-color;
+    a {
+      color: $dark-text-color;
+    }
+  }
+  td, .td {
+    &.data {
+      min-width: 180px;
+    }
+
+    &:first-child .media-body h4 {
+      font-weight: normal;
+      font-size: 100%;
+    }
+    &.header {
+      .media {
+        margin-top: 8px;
+      }
+      .RIGHT-Xvote_count > div {
+        line-height: 1em;
+        font-size: 11px;
+        margin-right: 5px;
+      }
+      .RIGHT-Xvote_count.content-view {
+        margin-left: 5px;
+      }
+      button.vote-button {
+        font-size: 11px;
+        width: 15px;
+        height: 15px;
+        padding: 0;
+        border: none;
+        box-shadow: none;
+        --webkit-box-shadow: none;
+        background: none;
+      }
+      .vote-count {
+        width: 15px;
+        height: 15px;
+      }
+    }
+  }
+
+  .details {
+    display: none;
+  }
+
+
+  tr, .tr {
+    &.tr-details-toggle:hover, &.tr-link:hover {
+      background-color: #fafafa;
+      cursor: pointer;
+    }
+  }
+
+  &.metric {
+    @include left-color(rgba(103, 78, 167, 0.14), $metric-color);
+  }
+  &.company {
+    @include left-color(rgba(211, 116, 28, 0.14), $company-color);
+  }
+  &.topic {
+    @include left-color(rgba(43, 126, 160, 0.14), $topic-color);
+  }
+
+  tbody > tr > td.details, .tbody > .tr > .td.details {
+      background-color: #fff;
+      border-top: 1px solid $bright-text-color;
+      border: 1px solid #EAEAEA;
+      clear: both;
+      color: $dark-text-color;
+      cursor: auto;
+      display: none;
+      font-size: 12px;
+      height: 100%;
+      left: 100%;
+      margin-left: 1px;
+      overflow-y: auto;
+      padding-bottom:100px;
+      padding: 0px;
+      position: absolute;
+      top: 0px;
+      width: 100%;
+      z-index: 1;
+      @include box-shadow(0,0px,14px,rgba(0,0,0,.22));
+      &.stick{
+        position: fixed;
+        z-index: 3;
+        top: 65px;
+        left: 50%;
+        max-width: 935px;
+        width:50%;
+        height: 100%;
+        margin-left: 0px;
+        @include box-shadow(0,0px,14px,rgba(0,0,0,.22));
+      }
+      .row-data {
+        margin-left: 58px!important;
+      }
+    }
+  .thumbnail {
+        border: 0;
+        margin: 0;
+        padding: 0;
+  }
+}
+
+//---Custom Table Properties---//
+
+//Project Page
+//.progress-bar-table .wikirate-table.company td:last-child,
+//.progress-bar-table .wikirate-table.company .td:last-child{
+//    width: 22%;
+//    text-align: center;
+//}
+
+// Research Page table tweaks //
+
+.TYPE-research_group table {
+  thead {
+    border-bottom: 4px solid $border-color;
+    border-left: 4px solid #646464;
+    .thumbnail {
+      border: 0;
+      font-size: 18px;
+      margin: 0;
+    }
+  }
+  tbody tr > td {
+    font-weight: bold;
+    font-size: 12px;
+    &:first-child {
+      text-align: right;
+      font-weight: normal;
+    }
+  }
+  thead tr > th {
+    vertical-align: middle;
+    &:first-child {
+      width: 40%;
+    }
+    width: 20%;
+  }
+}
+
+.import_table td {
+  text-overflow: ellipsis;
+}
+.yinyang-list.add-formula {
+  min-height: 500px;
+}
+
+.add-formula td.details.data.stick {
+  height: 78%!important;
+  top: 110px!important;
+}
+
+table.import_table td {
+  overflow: hidden;
+}
+
+.table-borderless,
+.table-borderless > tbody > tr > td,
+.table-borderless > tbody > tr > th,
+.table-borderless > tfoot > tr > td,
+.table-borderless > tfoot > tr > th,
+.table-borderless > thead > tr > td,
+.table-borderless > thead > tr > th {
+  border: none;
+}
+
+.table-condensed > thead > tr > th,
+.table-condensed > tbody > tr > th,
+.table-condensed > tfoot > tr > th,
+.table-condensed > thead > tr > td,
+.table-condensed > tbody > tr > td,
+.table-condensed > tfoot > tr > td {
+  padding: 4px;
+}
+
+.table.table-condensed {
+  margin-bottom: 10px;
+}
+
+td .pointer-list {
+  // needed to align on company pages the jurisdictions table
+  padding: 0;
+}

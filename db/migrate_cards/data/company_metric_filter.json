@@ -1,0 +1,20 @@
+[
+  {
+    "name": "export",
+    "type": "Pointer"
+  },
+  {
+    "name": "all metric values",
+    "type": "Basic",
+    "codename": "all_metric_values"
+  },
+  {
+    "name": "Company+metric sidebar+*type plus right+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "company metric filter",
+    "type": "Basic",
+    "codename": "company_metric_filter"
+  }
+]

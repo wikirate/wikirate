@@ -1,12 +1,14 @@
 # encoding: UTF-8
 
-describe Card::Set::TypePlusRight::WikirateCompany::Source do
-  it 'updates cached count' do
-    samsung_sources = Card.fetch 'Samsung', :wikirate_source
-    expect(samsung_sources.cached_count).to eq 0
-    source = get_a_sample_source
-    company_list = source.fetch trait: :wikirate_company, new: {}
-    company_list.add_item! 'Samsung'
-    expect(samsung_sources.cached_count).to eq 1
+require_relative "../../../support/cached_count_shared_examples"
+
+RSpec.describe Card::Set::TypePlusRight::WikirateCompany::Source do
+  it_behaves_like "cached count", ["Death Star", :source], 3 do
+    let :add_one do
+      Card.fetch(sample_source("Apple"), :wikirate_company, new: {}).add_item! "Death Star"
+    end
+    let :delete_one do
+      Card[sample_source, :wikirate_company].drop_item! "Death Star"
+    end
   end
 end

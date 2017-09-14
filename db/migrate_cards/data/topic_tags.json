@@ -1,0 +1,30 @@
+[
+  {
+    "name": "export",
+    "type": "Pointer"
+  },
+  {
+    "name": "Topic+*type+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "topic+company page+*type plus right+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "Topic+overview page+*type plus right+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "topic+metric page+*type plus right+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "Topic+notes page+*type plus right+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "Topic+references page+*type plus right+*structure",
+    "type": "HTML"
+  }
+]

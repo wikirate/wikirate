@@ -1,0 +1,243 @@
+
+{{style: mixins and variables|raw}}
+
+// TODO: futher cleanup and testing after review
+
+.company-header {
+    color: $company-color;
+    border-top: 3px solid $company-color;
+}
+.topic-header {
+    color: $topic-color;
+    border-top: 3px solid $topic-color;
+    @include ellipsis();
+    .topic-title {
+        padding: 0 0 25px 10px;
+    }
+}
+
+.company-header,
+.topic-header{
+  border-bottom: 1px solid $bright-text-color;
+  padding: 10px;
+  background: #fff;
+  font-size: 20px; //same font size as browse metric item header
+}
+
+.RIGHT-Xsearch .STRUCTURE-metric_item {
+  width: 32%;
+  padding: 10px;
+  display: inline-block;
+  min-width: 350px;
+  float: left;
+}
+
+.SELF-company-Xsearch .STRUCTURE-browse_company_item,
+.RIGHT-Xsearch .STRUCTURE-browse_topic_item {
+  display: inline-block;
+  min-width: 260px;
+  width: 22%;
+  padding: 10px 1% !important;
+  float: left;
+}
+
+.RIGHT-topic_list,
+#browse-companies,
+#browse-topics,
+.SELF-Xsearch div[data-card-name*="Company"],
+.SELF-Xsearch div[data-card-name*="Topic"] {
+  .item-content,
+  .search-result-item {
+    display: inline-block;
+    min-width: 260px;
+    width: 15%;
+    padding: 10px 1%;
+  }
+}
+
+.browse-company-item .company-header{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 4px; 
+}
+
+.browse-company-item{
+  .company-header
+  {
+    &.ellipsis{
+      max-width: 100%!important;
+    }
+  }
+}
+
+.browse-company-item,
+.browse-topic-item {
+    width: 100%;
+    border: 1px solid $bright-text-color;
+    margin: 12px;
+    @include box-shadow(0,1px,6px,rgba(0,0,0,.13));
+    .company-content {
+        height: 175px;
+        .left {}
+        .right {
+            background: #f7f7f7;
+            height: 100%;
+            overflow: hidden; // remove after limiting
+        }
+    }
+    .yinyang-row .value-item .header {
+        cursor: pointer;
+    }
+    .metric-column-title {
+        width: 100%;
+        float: left;
+        padding-top: 5px;
+        color: #B2B2B2;
+    }
+    .header-row {
+        font-size: 10px;
+        color: #bebebe;
+        text-align: center;
+        margin-top: 10px;
+        .header-header {
+            float: left;
+            margin-left: 80px;
+        }
+        .data-header {
+            width: 146px;
+            float: right;
+            margin-right: 15px;
+        }
+    }
+}
+
+.STRUCTURE-browse_company_item .company-header {
+    @include ellipsis();
+    padding: 10px;
+}
+
+.STRUCTURE-browse_company_item,
+.STRUCTURE-browse_topic_item,
+.company-page-logo-container {
+    .contribution-details {
+        display: none;
+        position: absolute;
+        width: 100%;
+        bottom: -107px;
+        .number-small {
+            border-right: 1px solid $bright-text-color;
+            border-bottom: 1px solid $bright-text-color;
+        }
+        a {
+            text-decoration: none;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+        .row {
+            padding: 0;
+            margin: 0;
+        }
+        .row > div {
+            padding: 0;
+            &:hover {
+                background: #fafafa;
+            }
+        }
+    }
+    :hover .contribution-details {
+        display: block;
+    }
+    :hover .contribution-count {
+        display: none;
+    }
+}
+
+//browse metric
+.browse-metric-item {
+    padding: 0;
+    margin-bottom: 6px;
+    outline: 1px solid $bright-text-color;
+    border-top: 3px solid $metric-color;
+    @include box-shadow(0,1px,6px,rgba(0,0,0,.13));
+    font-size: 14px;
+    .RIGHT-Xvote_count > div {
+        line-height: 1em;
+    }
+    button.vote-button {
+        //color: $dark-text-color;
+        width: 15px;
+        height: 15px;
+        padding: 0;
+        border: none;
+        box-shadow: none;
+        --webkit-box-shadow: none;
+        background: none;
+    }
+    .vote-count {
+        //color: $dark-text-color;
+        width: 15px;
+        height: 15px;
+    }
+    .logo {
+        padding-top: 5px;
+        float: left;
+        img {
+            max-width: 35px;
+            max-height: 35px;
+            margin: 0 10px;
+        }
+    }
+    .header {
+        margin: 4px 12px;
+    }
+    .name {
+        padding: 12px 16px;
+        font-size: 20px;
+        float: left;
+        max-width: 94%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        color: $metric-color;
+        a {
+            color: $metric-color;
+        }
+    }
+    .question {
+        height: 60px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        color: $dark-text-color;
+    }
+    .topic {
+        height: 38px;
+    }
+}
+
+
+.SELF-metric,
+.SELF-Xsearch div[data-card-name*="Metric"]{
+  .search-result-item.item-browse_item {
+    width: 15%;
+    padding: 10px;
+    display: inline-block;
+    min-width: 350px;
+  }
+}
+
+.SELF-Xsearch .search-result-item.item-browse_item {
+    float: left;
+    display: inline-block;
+    min-width: 260px;
+    width: 18%;
+    padding: 10px 1%;
+}
+
+.SELF-Xsearch {
+  .pagination{
+    width: 100%;
+  }
+}

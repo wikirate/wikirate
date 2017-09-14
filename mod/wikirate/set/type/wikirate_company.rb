@@ -1,59 +1,90 @@
-card_accessor :contribution_count, type: :number, default: '0'
-card_accessor :direct_contribution_count, type: :number, default: '0'
+include_set Abstract::WikirateTable
+include_set Abstract::WikirateTabs
+include_set Abstract::Media
+include_set Abstract::Export
+
+card_accessor :contribution_count, type: :number, default: "0"
+card_accessor :direct_contribution_count, type: :number, default: "0"
 card_accessor :aliases, type: :pointer
+card_accessor :all_metric_values
+card_accessor :image
+card_accessor :incorporation
+card_accessor :headquarters
+
+def headquarters_jurisdiction_code
+  (hc = headquarters_card) && (jc_card = hc.item_cards.first) &&
+    jc_card.oc_code
+end
 
 view :missing do |args|
   _render_link args
 end
 
-def indirect_contributor_search_args
-  [
-    { type_id: Card::ClaimID,  right_plus: ['company', { link_to: name }] },
-    { type_id: Card::SourceID, right_plus: ['company', { link_to: name }] },
-    { type_id: Card::WikirateAnalysisID, left: name },
-    { type_id: Card::MetricValueID, left: { right: name } }
-  ]
+view :listing do
+  # TODO: 1. move this structure to code under "browse_item" view
+  #       2. create a more appropriate listing structure
+  _render_content structure: "browse company item"
 end
 
-format :html do
-  def view_caching?
-    false
+# def subcard_count_number subcard
+#   subcard_count = nest(card, trait: subcard.to_sym, view: :count)
+#   content_tag(:div, subcard_count, class: "number")
+# end
+#
+# def subcard_count_with_label subcard
+#   subcard_label = nest(card, trait: subcard.to_sym, view: :name)
+#   number_label = content_tag(:div, subcard_label, class: "number-label")
+#   wrap_with :div, class: "count-view slab" do
+#     [
+#       subcard_count_number(subcard),
+#       number_label
+#     ]
+#   end
+# end
+
+view :metric_count do
+  wrap_with(:div, nest(card, trait: :metric, view: :count), class: "number")
   end
 
-  view :open do |args|
-    if main? && !Env.ajax? && !Env.params['about_company'] &&
-       !contributions_about? && contributions_made?
+view :topic_count do
+  wrap_with(:div, nest(card, trait: :topic, view: :count), class: "number")
+end
 
-      link = card_link card, path_opts: { about_company: true }
-      %(<div class="contributions-about-link">) \
-        "showing contributions by #{link}</div>" +
-        subformat(card.fetch trait: :contribution).render_open
-    else
-      super args
+view :listing_compact do
+  company_image = card.fetch(trait: :image)
+  title = link_to_card card
+  text_with_image title: title, image: company_image, size: :icon
     end
-  end
-
-  def contributions_about?
-    count_name =
-      card.cardname.trait_name(:wikirate_topic).trait_name :cached_count
-    return false unless (count = Card.fetch count_name)
-    count.content.to_i > 0
-  end
-
-  view :contribution_link do
-    return '' unless contributions_made?
-    card_link card.cardname.trait(:contribution),
-              text: 'View Contributions',
-              class: 'btn btn-primary company-contribution-link'
-  end
-
-  def contributions_made?
-    # FIXME: need way to figure this out without a search!
-    Card.search(type_id: MetricID, left: card.name, return: 'count') > 0
-  end
-end
-
 
 def add_alias alias_name
   aliases_card.insert_item! 0, alias_name
+  end
+
+def all_answers
+  Answer.where company_id: id
+  end
+
+format :csv do
+  view :core do
+    Answer.csv_title + card.all_answers.map(&:csv_line).join
+  end
+  end
+
+format :html do
+  view :link, closed: true, perms: :none do
+    return super() unless voo.closest_live_option(:project)
+    title = showname voo.title
+    opts = { known: card.known? }
+    opts[:path] = { filter: { project: voo.closest_live_option(:project) } }
+    opts[:path][:card] = { type: voo.type } if voo.type && !opts[:known]
+    link_to_card card.name, title, opts
+  end
+end
+
+format :json do
+  view :core do
+    card.all_answers.map do |answer|
+      subformat(answer)._render_core
+    end
+  end
 end
