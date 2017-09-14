@@ -11,12 +11,12 @@ namespace :wikirate do
         Rake::Task["wikirate:test:seed:migrate"].invoke
       end
 
-      desc "seed with raw wagn test db and import cards"
+      desc "seed with raw decko test db and import cards"
       task :generate_base, [:location] do |task, args|
         # init_test env uses the same db as test env
         # test env triggers stuff on load that breaks the seeding process
         ensure_env :init_test, task, args do
-          execute_command "rake wagn:seed", :test
+          execute_command "rake decko:seed", :test
           Rake::Task["wikirate:test:import_from"].invoke(args[:location])
           Rake::Task["wikirate:test:dump"].invoke(base_dump_path)
         end
@@ -26,7 +26,7 @@ namespace :wikirate do
       task :migrate do |task|
         ensure_env :test, task do
           Rake::Task["wikirate:test:load_dump"].invoke(base_dump_path)
-          Rake::Task["wagn:migrate"].invoke
+          Rake::Task["decko:migrate"].invoke
           Rake::Task["wikirate:test:dump"].invoke(migrated_dump_path)
           Card::Cache.reset_all
           Rake::Task["wikirate:test:seed:update"].invoke
