@@ -1,4 +1,4 @@
-wagn.editorContentFunctionMap['.pairs-editor'] = ->
+decko.editorContentFunctionMap['.pairs-editor'] = ->
   hash = {}
   @find('tbody').first().find('tr').each ->
     cols = $(this).find('td')
@@ -18,7 +18,7 @@ $(window).ready ->
 
 
   $('body').on 'click', '._add-weight', (event) ->
-    url  = wagn.rootPath + '/~' + $(this).data('metric-id')
+    url  = decko.rootPath + '/~' + $(this).data('metric-id')
     params = { view: 'weight_row' }
     $sum_row = $(".TYPE_PLUS_RIGHT-metric-formula.edit-view table.pairs-editor > tbody > tr:last")
     $new_row = $("<tr></tr>")
@@ -72,7 +72,7 @@ $(document).ready ->
       lessLink: '<a href="#"><small>View less</small></a>'
     })
 
-wagn.slotReady (slot) ->
+decko.slotReady (slot) ->
   slot.find('[data-tooltip="true"]').tooltip()
   slot.find('input[name="intervaltype"]').on 'click', () ->
     #jQuery handles UI toggling correctly when we apply "data-target"

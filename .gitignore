@@ -11,3 +11,4 @@
 /backups
 /script/metric/data/*
 /.idea
+spec/examples.txt

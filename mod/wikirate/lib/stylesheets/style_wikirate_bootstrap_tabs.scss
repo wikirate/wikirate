@@ -2,9 +2,11 @@
     .nav-tabs {
       border-bottom: 4px solid $border-color;
     }
-    .nav-tabs > li {
-        margin-bottom: -7px;
-        &.active > a {
+    .nav-tabs .nav-link{
+      &:hover{
+        background:#fafafa;;
+      }
+        &.active {
             border: 0 solid #e6e6e6;
             border-bottom: 4px solid $main-color;
             border-radius: 0;
@@ -32,16 +34,15 @@
                 cursor: not-allowed;
             }
         }
-        > a {
-            background-color: #fff;
-            border-radius: 0;
-            border: 0 solid #e6e6e6;
-            border-bottom: 4px solid $border-color;
-            margin: 3px -1px;
-            padding: 18px 20px;
-            font-size: 15px;
-            color: #8e8e8e;
-        }
+          background-color: #fff;
+          border-radius: 0;
+          border: 0 solid #e6e6e6;
+          border-bottom: 4px solid $border-color;
+          margin: 3px -1px;
+          padding: 18px 20px;
+          font-size: 15px;
+          color: #8e8e8e;
+          margin-bottom: -3px;
     }
 
     .tabbable {
@@ -175,7 +176,7 @@ li.contribution-report-title-box > a {
 }
 
 //Custom tab positions
-.tabs-left > .nav-tabs > li{
+.tabs-left > .nav-tabs .nav-item{
   float: none;
 }
 
@@ -222,17 +223,17 @@ li.contribution-report-title-box > a {
           background: rgba(255, 255, 255, 0.55);
           color: inherit;
       }
-    }
-    &.active > a {
-        border-right: 3px solid $border-color;
-        @include box-shadow(-11px, 0px, 20px, rgba(0,0,0,0.12));
-        position: relative;
-        z-index: 2;
+      &.active > a {
+          border-right: 3px solid $border-color;
+          @include box-shadow(-11px, 0px, 20px, rgba(0,0,0,0.12));
+          position: relative;
+          z-index: 2;
+      }
     }
   }
   > li > a {
     margin-right: 20px;
-    margin-bottom: 8px;
+    //margin-bottom: 8px;
     border-bottom: 0;
     border-bottom: 1px solid #ebebeb;
     border-left: 1px solid #ebebeb;

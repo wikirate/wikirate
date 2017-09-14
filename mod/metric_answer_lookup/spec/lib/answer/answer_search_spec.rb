@@ -44,7 +44,7 @@ RSpec.describe Answer, "Answer.search" do
 
   it "can uniquify and return different column" do
     result = search year: "2000", uniq: :company_id, return: :company_name
-    expect(result).to eq ["Apple_Inc", "Death_Star", "Monster_Inc",
-                          "Slate_Rock_and_Gravel_Company", "SPECTRE"]
+    expect(result).to eq %w[Apple_Inc Death_Star Monster_Inc
+                            Slate_Rock_and_Gravel_Company SPECTRE]
   end
 end

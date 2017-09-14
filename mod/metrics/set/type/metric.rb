@@ -295,7 +295,7 @@ format :html do
     end
   end
 
-  view :value_type_edit_modal_link do
+  view :value_type_edit_modal_link, cache: :never do
     nest card.value_type_card,
          view: :modal_link,
          link_text: vtype_edit_modal_link_text,

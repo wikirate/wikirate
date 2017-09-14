@@ -12,6 +12,8 @@ module SourceHelper
   end
 
   def create_link_source url
+    puts "source: #{url}"
+    # binding.pry
     create_source link: url
   end
 
@@ -35,12 +37,12 @@ module SourceHelper
         "+Text" => { type_id: Card::BasicID, content: "" }
       }
     }
-    source_type_name = Card[:source_type].name
-    add_source_type args, res, source_type_name
+    add_source_type args, res
     res
   end
 
-  def add_source_type args, res, source_type_name
+  def add_source_type args, res
+    source_type_name = Card[:source_type].name
     [:link, :file, :text].each do |key|
       next unless args[key]
       content_key = (key == :file ? :file : :content)

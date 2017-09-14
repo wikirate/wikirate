@@ -6,7 +6,7 @@ format :html do
   def icon_tag type, opts={}
     lib = opts.delete(:library) || :fa
     prepend_class opts, "#{lib} #{lib}-#{type}"
-    %(<i #{tag_options opts}></i>)
+    %(<i #{tag_builder.tag_options opts}></i>)
   end
 
   def fa_icon type, opts={}
@@ -26,3 +26,4 @@ format :html do
     link_to text, opts.merge(path: url)
   end
 end
+
