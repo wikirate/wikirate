@@ -61,12 +61,20 @@ def question_card
 end
 
 def value_type
-  value_type_card.item_names.first || "Free Text"
+  value_type_card.item_names.first || default_value_type
+end
+
+def default_value_type
+  "Free Text"
 end
 
 def value_type_code
   ((vc = value_type_card.item_cards.first) &&
-   vc.codename && vc.codename.to_sym) || :free_text
+   vc.codename && vc.codename.to_sym) || default_value_type_code
+end
+
+def default_value_type_code
+  :free_text
 end
 
 def value_options
@@ -206,8 +214,12 @@ format :html do
   # USED?
 
   view :add_to_formula_item_view do |_args|
+    subtext = wrap_with :small, "Designed by" + card.metric_designer.to_s
+    add_to_formula_helper subtext
+  end
+
+  def add_to_formula_helper subtext
     title = card.metric_title.to_s
-    subtext = wrap_with :small, "Scored by " + card.scorer
     append = "#{params[:formula_metric_key]}+add_to_formula"
     url = path mark: card.cardname.field(append), view: :content
     text_with_image image: designer_image_card,

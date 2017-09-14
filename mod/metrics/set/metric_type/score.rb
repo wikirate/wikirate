@@ -115,6 +115,11 @@ format :html do
                  "#{fa_icon 'external-link'} Original Metric",
                  class: button_classes
   end
+
+  view :add_to_formula_item_view do |_args|
+    subtext = wrap_with :small, "Scored by " + card.scorer
+    add_to_formula_helper subtext
+  end
 end
 
 event :validate_score_name, :validate, changed: :name, on: :save do
