@@ -44,7 +44,7 @@ end
 
 view :metric_count do
   wrap_with(:div, nest(card, trait: :metric, view: :count), class: "number")
-  end
+end
 
 view :topic_count do
   wrap_with(:div, nest(card, trait: :topic, view: :count), class: "number")
@@ -54,21 +54,21 @@ view :listing_compact do
   company_image = card.fetch(trait: :image)
   title = link_to_card card
   text_with_image title: title, image: company_image, size: :icon
-    end
+end
 
 def add_alias alias_name
   aliases_card.insert_item! 0, alias_name
-  end
+end
 
 def all_answers
   Answer.where company_id: id
-  end
+end
 
 format :csv do
   view :core do
     Answer.csv_title + card.all_answers.map(&:csv_line).join
   end
-  end
+end
 
 format :html do
   view :link, closed: true, perms: :none do
