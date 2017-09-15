@@ -29,7 +29,7 @@ RSpec.describe Card::Set::Right::TabContent do
       it "renders topic tab" do
         is_expected.to have_tag("div",
                                 with: { id: "#{company_key}+note_page" })
-  end
+      end
     end
 
     context "invalid tab param" do
@@ -37,7 +37,7 @@ RSpec.describe Card::Set::Right::TabContent do
 
       it "renders empty string" do
         is_expected.to eq("")
-    end
+      end
     end
   end
 end

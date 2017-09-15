@@ -1,4 +1,3 @@
-
 require "net/https"
 require "uri"
 
@@ -15,7 +14,7 @@ end
 format :html do
   def default_open_args _args
     voo.show :horizontal_menu if main?
-end
+  end
 
   def menu_icon
     glyphicon "edit"
@@ -28,7 +27,7 @@ end
 
   view :title_badge do
     wrap_with :span, title_badge_count, class: "badge"
-end
+  end
 
   def title_badge_count
     card.count
@@ -60,10 +59,10 @@ end
   end
 
   view :titled_row do
-      [
+    [
       { content: _render_title, class: "title" },
       { content: _render_core, class: "value" }
-      ]
+    ]
   end
 
   view :edits_by do
@@ -133,12 +132,12 @@ end
     class_up "card-body", "showcase #{hidden_class}"
     wrap do
       %(
-        #{subformat(icon_card)._render_core}
-        #{item_type_name.capitalize}
-        #{_render_core(args)}
-        )
-  end
+      #{subformat(icon_card)._render_core}
+      #{item_type_name.capitalize}
+      #{_render_core(args)}
+      )
     end
+  end
 
   def main_name
     left_name = card.cardname.left_name
@@ -152,7 +151,8 @@ end
 
   def searched_type_id
     @searched_type_id ||= Card.fetch_id card.cardname.left_name.right
-end
+  end
+
   def button_classes
 
     "btn btn-sm btn-default"
@@ -169,9 +169,9 @@ format :json do
 
   view :id_atom, cache: :never do |_args|
     if !params["start"] || (params["start"] && (start = params["start"].to_i) &&
-       card.updated_at.strftime("%Y%m%d%H%M%S").to_i >= start)
+      card.updated_at.strftime("%Y%m%d%H%M%S").to_i >= start)
       h = _render_atom
-      h[:id] = card.id  if card.id
+      h[:id] = card.id if card.id
       h
     end
   end

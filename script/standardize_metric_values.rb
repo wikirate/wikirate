@@ -12,11 +12,9 @@ def potential_numeric_metrics_wql
       { type_id: Card::WikirateCompanyID },
       right_plus: [
         { type: "year" },
-        right_plus: [
-          "value", { content: ["match", "[[:digit:]]+"] }
-    ],
-        ]
+        right_plus: ["value", { content: ["match", "[[:digit:]]+"] }],
       ]
+    ],
     not: {
       right_plus: [["value_type", {}], ["pending_normalize", {}]]
     } }
@@ -94,7 +92,7 @@ end
 def normalize_metric metric, i_value_type_card=nil
   metric_values = metric_values metric.name
   value_type_card = i_value_type_card ||
-                    Card.fetch("#{m.name}+value type", new: {})
+    Card.fetch("#{m.name}+value type", new: {})
   value_type = value_type_card.item_names[0]
   if value_type == "Category"
     update_options [metric]
@@ -118,8 +116,8 @@ def normalize_numeric_metric metric_values, value_type_card
       normalize_number content, mv
       value_type_card.content = "[[Money]]"
       update_unit mv.metric_card, "USD"
-  else
-    puts "unknown format: #{content}\t#{mv.name}".red
+    else
+      puts "unknown format: #{content}\t#{mv.name}".red
     end
   end
 end
@@ -128,7 +126,7 @@ def update_metric_value card, content
   puts "Updating #{card.name} from #{card.content} to #{content}".green
   card.content = content
   card.save!
-  end
+end
 
 def normalize_number content, mv
   content.gsub!(/ [BMK]/, "")
@@ -191,7 +189,7 @@ def convert_monetary_metric_unit
 
     Card["#{metric}+unit"].delete!
   end
-  end
+end
 
 def update_metric_and_value_type new_type_name, metric_value_type, existing_type
   metric_value_type.content = new_type_name

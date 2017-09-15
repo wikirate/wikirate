@@ -1,4 +1,3 @@
-
 RSpec.describe Card::Set::Right::RelatedArticles do
   let :analysis_card do
     @sample_analysis = sample_analysis
@@ -80,15 +79,13 @@ RSpec.describe Card::Set::Right::RelatedArticles do
       claim_action_link = "/test_company+test_topic?"\
                           "citable=whateverclaim&edit_article=true"
 
-      expect(html).to have_tag(
-        "div", with: { class: "related-articles uncited-articles" }
-      ) do
+      expect(html).to have_tag("div.related-articles.uncited-articles") do
         # with_tag 'h3', text: 'Articles that <em>could</em> cite this Claim'
         with_tag "div", with: { class: "analysis-link" } do
           with_tag "a", with: { href: "/test_company+test_topic" } do
             with_tag "span", text: "test_company"
             with_tag "span", text: "test_topic"
-            end
+          end
           with_tag "span", with: { class: "claim-next-action" } do
             with_tag "a", with: { href: claim_action_link }, text: "Cite!"
           end
@@ -98,7 +95,7 @@ RSpec.describe Card::Set::Right::RelatedArticles do
           with_tag "a", with: { href: "/test_company+Force" } do
             with_tag "span", text: "test_company"
             with_tag "span", text: "Force"
-            end
+          end
           with_tag "span", with: { class: "claim-next-action" } do
             with_tag "a", with: { href: "/test_company+Force?"\
                                         "citable=whateverclaim&"\
@@ -110,7 +107,7 @@ RSpec.describe Card::Set::Right::RelatedArticles do
           with_tag "a", with: { href: "/Death_Star+test_topic" } do
             with_tag "span", text: "Death Star"
             with_tag "span", text: "test_topic"
-            end
+          end
           with_tag "span", with: { class: "claim-next-action" } do
             with_tag "a", with: { href: "/Death_Star+test_topic?"\
                                         "citable=whateverclaim"\
@@ -138,18 +135,12 @@ RSpec.describe Card::Set::Right::RelatedArticles do
       format = @related_article_card.format(format: :html)
       html = format.analysis_links @sample_analysis.name, true
 
-      expect(html).to have_tag(
-        "span", with: { class: "company" },
-                text: @sample_analysis.name.to_name.trunk_name
-      )
-      expect(html).to have_tag(
-        "span", with: { class: "topic" },
-                text: @sample_analysis.name.to_name.tag_name
-      )
-      expect(html).to have_tag(
-        "a", with: { class: "known-card",
-                     href: "/#{@sample_analysis.name.to_name.url_key}" }
-      )
+      expect(html)
+        .to have_tag("span.company",
+                     text: @sample_analysis.name.to_name.trunk_name)
+        .and have_tag("span.topic", text: @sample_analysis.name.to_name.tag_name)
+        .and have_tag("a.known-card",
+                      with: { href: "/#{@sample_analysis.name.to_name.url_key}" })
     end
 
     it "shows the view with the citation name" do
@@ -157,18 +148,12 @@ RSpec.describe Card::Set::Right::RelatedArticles do
       html = format.analysis_links @sample_analysis.name, false
       citation_html = format.citation_link @sample_analysis.name.to_name
 
-      expect(html).to have_tag(
-        "span", with: { class: "company" },
-                text: @sample_analysis.name.to_name.trunk_name
-      )
-      expect(html).to have_tag(
-        "span", with: { class: "topic" },
-                text: @sample_analysis.name.to_name.tag_name
-      )
-      expect(html).to have_tag(
-        "a", with: { class: "known-card",
-                     href: "/#{@sample_analysis.name.to_name.url_key}" }
-      )
+      expect(html)
+              .to have_tag("span.company",
+                           text: @sample_analysis.name.to_name.trunk_name)
+              .and have_tag("span.topic", text: @sample_analysis.name.to_name.tag_name)
+              .and have_tag("a.known-card",
+                            with: { href: "/#{@sample_analysis.name.to_name.url_key}" })
 
       expect(html).to include(format.process_content(citation_html))
     end
