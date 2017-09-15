@@ -59,6 +59,10 @@ format :html do
     link_to_view :import, "Import ...", rel: "nofollow", remote: false
   end
 
+  def csv_row_class
+    MetricValueCSVRow
+  end
+
   def import_fields
     [:metric, :file_company, :year, :value, :source, :comment]
   end

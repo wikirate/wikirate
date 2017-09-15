@@ -69,11 +69,13 @@ class SharedData
                type: "company",
                subcards: { "+about" => about }
       end
-      ensure_card ["Google Inc", :headquarters],
+      ensure_card ["Google Inc.", :headquarters],
                   type: :pointer, content: "California (United States)"
-      ensure_card ["Google Inc", :incorporation],
+      ensure_card ["Google Inc.", :aliases],
+                  type: :pointer, content: ["Google", "Alphabet"]
+      ensure_card ["Google Inc.", :incorporation],
                   type: :pointer, content: "Delaware (United States)"
-      ensure_card ["Google Inc", :open_corporates], content: "3582691"
+      ensure_card ["Google Inc.", :open_corporates], content: "3582691"
     end
 
     def add_topics

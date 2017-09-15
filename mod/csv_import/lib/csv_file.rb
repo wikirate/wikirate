@@ -124,11 +124,8 @@ class CSVFile
     end
   end
 
-  def reject_header_row import_data
-    @rows.shift if includes_header?
-    return unless (first_row = import_data.first)
-    return unless includes_column_header first_row
-    import_data.shift
+  def reject_headers
+    @rows.shift if header_row?
   end
 
   def header_row?

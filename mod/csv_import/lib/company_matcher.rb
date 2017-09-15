@@ -9,8 +9,7 @@ class CompanyMatcher
   end
 
   def match
-    find_match
-    @match_result
+    @match_result ||= find_match
   end
 
   def suggestion
@@ -40,15 +39,17 @@ class CompanyMatcher
   private
 
   def find_match
-    return if @match_type ||
-              find_exact_match || find_alias_match || find_partial_match
-    @match_result = ["", :none]
+    find_exact_match || find_alias_match || find_partial_match || no_match
+  end
+
+  def no_match
+    ["", :none]
   end
 
   def find_exact_match
     return unless (company = Card.quick_fetch(@company_name)) &&
                   company.type_id == Card::WikirateCompanyID
-    @match_result = [company.name, :exact]
+    [company.name, :exact]
   end
 
   def find_alias_match
@@ -63,15 +64,16 @@ class CompanyMatcher
   end
 
   def self.mapper
-    @mapper ||=
-      begin
-        corpus = Company::Mapping::CompanyCorpus.new
-        Card.search(type_id: Card::WikirateCompanyID, return: :id).each do |company_id|
-          company_name = Card.fetch_name(company_id)
-          aliases = (a_card = Card[company_name, :aliases]) && a_card.item_names
-          corpus.add company_id, company_name, (aliases || [])
-        end
-        Company::Mapping::CompanyMapper.new corpus
-      end
+    @mapper ||= Company::Mapping::CompanyMapper.new corpus
+  end
+
+  def self.corpus
+    corpus = Company::Mapping::CompanyCorpus.new
+    Card.search(type_id: Card::WikirateCompanyID, return: :id).each do |company_id|
+      company_name = Card.fetch_name(company_id)
+      aliases = (a_card = Card[company_name, :aliases]) && a_card.item_names
+      corpus.add company_id, company_name, (aliases || [])
+    end
+    corpus
   end
 end

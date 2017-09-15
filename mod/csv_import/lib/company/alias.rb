@@ -1,7 +1,11 @@
 # -*- encoding : utf-8 -*-
 require_dependency "card/cache"
 
-class Company
+module Company
+  # Company::Alias caches alias names for companies.
+  # The alias names are taken from the "+aliases" cards on the company cards.
+  # It is used in the import tool to map company names in csv files
+  # to company names in wikirate's database.
   class Alias
     class << self
       CACHE_KEY = "ALIASHASH"
@@ -52,7 +56,7 @@ class Company
           alias_card.item_names.each do |alias_name|
             alias_key = alias_name.to_name.key
             check_duplicates hash, alias_key, true_name
-            hash[alias_name] = true_name
+            hash[alias_key] = true_name
           end
         end
       end

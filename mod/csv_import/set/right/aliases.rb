@@ -1,3 +1,3 @@
 event :reset_alias_hash, :finalize do
-  Company::Aliase.reset_cache
+  Company::Alias.reset_cache
 end

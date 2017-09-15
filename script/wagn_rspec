@@ -2,7 +2,7 @@
 # used to run rspec in RubyMine
 
 ARGV.insert 0,
-            "rspec", "--spring", "--no-simplecov", "--", "--default-path=/opt/wagn"
+            "rspec", "--no-simplecov", "--", "--default-path=/opt/wagn"
 
 APP_PATH = File.expand_path("../../config/application",  __FILE__)
 require File.expand_path("../../config/boot",  __FILE__)
