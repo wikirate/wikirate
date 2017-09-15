@@ -131,11 +131,11 @@ format :html do
     hidden_class = card.content.empty? ? "hidden" : ""
     class_up "card-body", "showcase #{hidden_class}"
     wrap do
-      %(
-      #{subformat(icon_card)._render_core}
-      #{item_type_name.capitalize}
-      #{_render_core(args)}
-      )
+      [
+        subformat(icon_card)._render_core,
+        item_type_name.capitalize,
+        _render_core(args)
+      ]
     end
   end
 
@@ -154,7 +154,6 @@ format :html do
   end
 
   def button_classes
-
     "btn btn-sm btn-default"
   end
 end

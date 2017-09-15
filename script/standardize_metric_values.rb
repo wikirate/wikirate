@@ -91,8 +91,7 @@ end
 
 def normalize_metric metric, i_value_type_card=nil
   metric_values = metric_values metric.name
-  value_type_card = i_value_type_card ||
-    Card.fetch("#{m.name}+value type", new: {})
+  value_type_card = i_value_type_card || m.fetch(trait: :value_type, new: {})
   value_type = value_type_card.item_names[0]
   if value_type == "Category"
     update_options [metric]
