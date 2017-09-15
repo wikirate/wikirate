@@ -1,3 +1,13 @@
+# taken from card "modal window script'
+# I removed that card. Don't know what the code does -pk
+$ ->
+  $('.modal-window').dialog
+    modal: true
+    width: '46%'
+    buttons: Ok: ->
+      $(this).dialog 'close'
+
+
 # Loader animation
 $.extend wikirate:
   ajaxLoader: { head: '#ajax_loader', child: '.loader-anime'}

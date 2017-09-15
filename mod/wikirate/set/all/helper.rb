@@ -4,6 +4,7 @@ format :html do
   end
 
   def icon_tag type, opts={}
+    opts ||= {}
     lib = opts.delete(:library) || :fa
     prepend_class opts, "#{lib} #{lib}-#{type}"
     %(<i #{tag_builder.tag_options opts}></i>)
