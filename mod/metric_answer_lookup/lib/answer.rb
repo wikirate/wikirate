@@ -61,7 +61,15 @@ class Answer < ActiveRecord::Base
   def method_missing method_name, *args, &block
     card.send method_name, *args, &block
   end
+
+  def respond_to_missing? *args
+    card.respond_to?(*args) || super
+  end
+
+  def is_a? klass
+    klass == Card || super
+  end
 end
 
 require_relative "answer/active_record_extension"
-Answer::ActiveRecord_Relation.send :include, Answer::ActiveRecordExtension
+Answer.const_get("ActiveRecord_Relation").send :include, Answer::ActiveRecordExtension

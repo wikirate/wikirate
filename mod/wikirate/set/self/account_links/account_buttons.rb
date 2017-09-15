@@ -12,4 +12,8 @@ format :html do
   def default_sign_out_args _args
     voo.title = "Log out"
   end
+
+  def nav_link_class type
+    classy(type)
+  end
 end

@@ -1,4 +1,4 @@
-class AnswerLookupTable < ActiveRecord::Migration
+class AnswerLookupTable < ActiveRecord::Migration[4.2]
   def up
     drop_table :answers if table_exists? :answers
     create_table :answers do |t|

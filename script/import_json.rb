@@ -2,7 +2,7 @@
 
 require File.dirname(__FILE__) + "../../config/environment"
 
-Wagn.config.action_mailer.perform_deliveries = false
+Decko.config.action_mailer.perform_deliveries = false
 
 Card::Auth.as_bot
 

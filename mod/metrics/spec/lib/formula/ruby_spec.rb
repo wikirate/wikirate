@@ -28,24 +28,35 @@ describe Formula::Ruby do
     before do
       @nest = "{{Joe User+researched|year:-2..0}}"
     end
-    it "sum" do
+    specify "sum" do
       @formula = "Sum[#{@nest}]"
       expect(subject[2011]).to eq({})
       expect(subject[2012]["apple_inc"]).to eq 33.0
       expect(subject[2013]["apple_inc"]).to eq 36.0
     end
-    it "max" do
+    specify "max" do
       @formula = "Max[#{@nest}]"
       expect(subject[2011]).to eq({})
       expect(subject[2012]["apple_inc"]).to eq 12.0
       expect(subject[2013]["apple_inc"]).to eq 13.0
     end
-    it "min" do
+    specify "min" do
       @formula = "Min[#{@nest}]"
       expect(subject[2011]).to eq({})
       expect(subject[2012]["apple_inc"]).to eq 10.0
       expect(subject[2013]["apple_inc"]).to eq 11.0
     end
+    specify "Zeros" do
+      @formula = "Zeros[#{@nest}]"
+      expect(subject[2002]["apple_inc"]).to eq 1
+      expect(subject[2012]["apple_inc"]).to eq 0
+    end
+    specify "Unknowns" do
+      @formula = "Unknowns[#{@nest}]"
+      expect(subject[2002]["apple_inc"]).to eq 2
+      expect(subject[2012]["apple_inc"]).to eq 0
+    end
+
   end
 
   describe "formula with yearly variables" do

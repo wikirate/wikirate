@@ -1,4 +1,4 @@
-wagn.slotReady (slot) ->
+decko.slotReady (slot) ->
   slot.find('#_check_all').change (eventObject) ->
     if $(this).is(':checked')
       $('._group_check').prop 'checked', true

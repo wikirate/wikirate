@@ -2,10 +2,10 @@
   .col-md-12.nopadding.visible-md.visible-lg
     / tabs
     .tabbable.tabs-left
-      %ul.nav.nav-tabs.intro-tabs
+      %ul.nav.nav-tabs.intro-tabs.flex-column
         - categories.each do |type|
-          %li{class: "#{type}-tab #{'active' if type == :company}"}
-            %a{"data-target" => "##{type}-tab", "data-toggle" => "tab", :href => "#"}
+          %li{class: "nav-item #{type}-tab #{'active' if type == :company}"}
+            %a{"data-target" => "##{type}-tab", "data-toggle" => "tab", :href => "#", class: "nav-link"}
               = nest "homepage: #{type} intro", view: :core
       .tab-content
         - categories.each do |type|
@@ -16,7 +16,7 @@
                 %a.btn.btn-sm.btn-default{:href => "/#{type}"}
                   = "Browse #{type.to_s.pluralize.capitalize}"
   / for medium and mobile devices
-  .col-md-12.nopadding.visible-xs.visible-sm
+  .col-md-12.nopadding.hidden-md-up
     - categories.each do |type|
       %h3.text-center.no-bold-text
         = nest "homepage: #{type} intro", view: :core

@@ -61,12 +61,20 @@ def question_card
 end
 
 def value_type
-  value_type_card.item_names.first || "Free Text"
+  value_type_card.item_names.first || default_value_type
+end
+
+def default_value_type
+  "Free Text"
 end
 
 def value_type_code
   ((vc = value_type_card.item_cards.first) &&
-   vc.codename && vc.codename.to_sym) || :free_text
+   vc.codename && vc.codename.to_sym) || default_value_type_code
+end
+
+def default_value_type_code
+  :free_text
 end
 
 def value_options
@@ -287,7 +295,7 @@ format :html do
     end
   end
 
-  view :value_type_edit_modal_link do
+  view :value_type_edit_modal_link, cache: :never do
     nest card.value_type_card,
          view: :modal_link,
          link_text: vtype_edit_modal_link_text,

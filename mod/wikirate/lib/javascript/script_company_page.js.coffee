@@ -40,7 +40,7 @@ showFakeLoader = ->
   #imagePath:"yourPath/customizedImage.gif" //If you want can you insert your custom image
   return
 History = window.History # js include in standard head extras
-wagn.slotReady (slot) ->
+decko.slotReady (slot) ->
   if (slot.hasClass("TYPE-company") || slot.hasClass("TYPE-topic")) &&
       slot.hasClass("open-view") && slot.hasClass("ALL")
     query_string = null

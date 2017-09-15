@@ -198,7 +198,7 @@ format :html do
     content =
       table_fields.map { |key| row[key].to_s }
     { content: content,
-      class: row_context(row[:status]),
+      class: "table-#{row_context(row[:status])}",
       data: { csv_row_index: row[:csv_row_index] } }
   end
 

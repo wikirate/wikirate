@@ -32,7 +32,12 @@ class Card
 
         def log_bucket?
           return @use_log_scale unless @use_log_scale.nil?
-          @use_log_scale = max / min > 100
+          @use_log_scale =
+            if min >= 1
+              max / min > 100
+            else
+              max > 200
+            end
         end
 
         def round_bucket_size

@@ -3,14 +3,14 @@ require File.expand_path "../importer", __FILE__
 
 namespace :wikirate do
   namespace :test do
-    full_dump_path = File.join Wagn.root, "test", "seed.db"
+    full_dump_path = File.join Decko.root, "test", "seed.db"
 
     user = ENV["DATABASE_MYSQL_USERNAME"] || ENV["MYSQL_USER"] || "root"
     pwd  = ENV["DATABASE_MYSQL_PASSWORD"] || ENV["MYSQL_PASSWORD"]
 
     def testdb
       @testdb ||= ENV["DATABASE_NAME_TEST"] ||
-                  ((t = Wagn.config.database_configuration["test"]) &&
+                  ((t = Decko.config.database_configuration["test"]) &&
                   t["database"])
     end
 
@@ -22,7 +22,7 @@ namespace :wikirate do
 
     def import_from location
       FileUtils.rm_rf(Dir.glob("tmp/*"))
-      require "#{Wagn.root}/config/environment"
+      require "#{Decko.root}/config/environment"
       importer = Importer.new location
       puts "Source DB: #{importer.export_location}".green
       yield importer
