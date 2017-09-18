@@ -4,14 +4,19 @@ include_set Abstract::Import
 attachment :metric_value_import_file, uploader: CarrierWave::FileCardUploader
 
 format :html do
-  def default_import_table_args args
-    args[:table_header] = ["Select", "#", "Metric",
-                           "Company in File", "Company in Wikirate",
-                           "Correction",
-                           "Year", "Value", "Source", "Comment"]
-    args[:table_fields] = [:checkbox, :row, :metric, :file_company,
-                           :wikirate_company, :correction,
-                           :year, :value, :source, :comment]
+  COLUMNS = [:checkbox, :row_index, :metric, :file_company,
+                             :wikirate_company, :company_correction,
+                             :year, :value, :source, :comment]
+  COLUMN_TITLES = ["Select", "#", "Metric",
+                             "Company in File", "Company in Wikirate",
+                             "Correction",
+                             "Year", "Value", "Source", "Comment"]
+  def column_keys
+    Card::Set::Type::MetricValueImportFile::COLUMNS
+  end
+
+  def column_titles
+    Card::Set::Type::MetricValueImportFile::COLUMN_TITLES
   end
 
   def default_import_args _args
@@ -49,6 +54,7 @@ format :html do
     ]
   end
 
+
   def download_link
     handle_source do |source|
       %(<a href="#{source}" rel="nofollow">Download #{showname voo.title}</a><br />)
@@ -60,7 +66,7 @@ format :html do
   end
 
   def csv_row_class
-    MetricValueCSVRow
+    MetricAnswerCSVRow
   end
 
   def import_fields

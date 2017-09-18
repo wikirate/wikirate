@@ -33,11 +33,12 @@ class CSVRow
     end
   end
 
-  attr_reader :errors
+  attr_reader :errors, :row_index
 
-  def initialize row, index, corrections=nil
+  def initialize row, index, corrections=nil, extra_data=nil
     @row = row
     @row.merge! corrections if corrections
+    @extra_data = extra_data || {}
     @row_index = index # 0-based, not counting the header line
     @errors = []
   end
@@ -97,8 +98,17 @@ class CSVRow
     respond_to?(method_name) ? method_name : self.class.send(type, field)
   end
 
+  def [] key
+    @row[key]
+  end
+
+  def fields
+    @row
+  end
+
   def method_missing method_name, *args
-    respond_to_missing?(method_name) ? @row[method_name] : super
+    #binding.pry
+     respond_to_missing?(method_name) ? @row[method_name.to_sym] : super
   end
 
   def respond_to_missing? method_name, _include_private=false

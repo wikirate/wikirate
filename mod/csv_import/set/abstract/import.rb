@@ -1,11 +1,14 @@
 # the is_data_import flag distinguishes between an update of the
 # import file and importing the file
 event :import_csv, :prepare_to_store, on: :update, when: :data_import? do
-  return unless (import_data = Env.params[:import_data])
-  return unless valid_import_format?(import_data)
+  return unless valid_import_data?
   source_map = {}
   init_success_params
-  import_data.each do |import_row|
+  each_import_row  do |import_row, index|
+    row = csv_row_class.new import_row, index, import_data
+    row.import_as_subcard self
+
+
     import_card = parse_import_row import_row, source_map
     # validate value type
     if import_card
@@ -36,25 +39,8 @@ def clear_success_params
   end
 end
 
-def check_duplication_in_subcards name, row_no
-  return unless subcards[name]
-  errors.add "Row #{row_no}:#{name}", "Duplicated metric values"
-end
-
 def metric_value_args_error_key key, args
   "Row #{args[:row]}:#{args[:metric]}+#{args[:company]}+#{args[:year]}+#{key}"
-end
-
-def construct_value_args args
-  unless (create_args = Card[args[:metric]].create_value_args args)
-    Card[args[:metric]].errors.each do |key, value|
-      errors.add metric_value_args_error_key(key, args), value
-    end
-    # clear old errors
-    Card[args[:metric]].errors.clear
-    return nil
-  end
-  create_args
 end
 
 def check_duplication_with_existing metric_value_name, source_card
@@ -119,19 +105,10 @@ def process_source metric_value_data, source_map
   source_map[url] = source_card
 end
 
-# @return [Hash] args to create metric value card
-def process_data metric_value_data
-  mv_hash = if metric_value_data.is_a? Hash
-              metric_value_data
-            else
-              JSON.parse(metric_value_data).symbolize_keys
-            end
-  mv_hash[:company] = get_corrected_company_name mv_hash
-  mv_hash
-end
 
-def valid_import_format? data
-  data.is_a? Array
+
+def valid_import_data? data
+  data.is_a? Hash
 end
 
 def redirect_target_after_import
@@ -167,33 +144,6 @@ def handle_import_errors metric_value_card
   end
 end
 
-def get_corrected_company_name params
-  corrected = company_corrections[params[:row].to_s]
-  if corrected.blank?
-    if params[:status] && params[:status].to_sym == :partial &&
-       (original = Card[params[:wikirate_company]])
-      original.add_alias params[:file_company]
-    end
-    return params[:company] unless corrected.present?
-  end
-  unless Card.exists?(corrected)
-    Card.create! name: corrected, type_id: WikirateCompanyID
-  end
-  if corrected != params[:file_company]
-    Card[corrected].add_alias params[:file_company]
-  end
-  corrected
-end
-
-def valid_value_data? args
-  collect_import_errors(args[:row]) do
-    check_if_filled_in :metric, args, "metric name"
-    %w[company year value].each { |field| check_if_filled_in field, args }
-    { metric: MetricID, year: YearID }.each_pair do |type, type_id|
-      check_existence_and_type args[type], type_id, type
-    end
-  end
-end
 
 def collect_import_errors row
   @import_errors = []
@@ -203,25 +153,11 @@ def collect_import_errors row
   @import_errors.empty?
 end
 
-def check_if_filled_in field, args, field_name=nil
-  return if args[field.to_sym].present?
-  field_name ||= field
-  add_import_error "#{field_name} missing"
-end
-
 def add_import_error msg, row=@current_row
   return unless msg
   title = "import error"
   title += " (row #{row})" if row
   @import_errors << [title, msg]
-end
-
-def check_existence_and_type name, type_id, type_name=nil
-  if !Card[name]
-    add_import_error "#{name} doesn't exist"
-  elsif Card[name].type_id != type_id
-    add_import_error "#{name} is not a #{type_name}"
-  end
 end
 
 def ensure_company_exists company, args
@@ -234,6 +170,27 @@ def ensure_company_exists company, args
   end
   @import_errors.empty?
 end
+
+def each_import_row
+  selected_rows =
+    import_data.each_with_object([]) do |(index, data), a|
+      next unless data[:import]
+      a << index
+    end
+  csv_file.each_row selected_rows do |row_data, index|
+    yield row_data, index
+  end
+end
+
+def csv_file
+  CSVFile.new file, csv_row_class
+end
+
+def import_data
+  @import_data ||= Env.params[:import_data]
+end
+
+
 
 def csv_rows
   CSV.parse file.read, encoding: "utf-8"

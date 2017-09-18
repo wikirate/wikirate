@@ -10,7 +10,8 @@ format :html do
 
     rows_by_match_type = { exact: [], partial: [], alias: [], none: [] }
     card.csv_file.each_row do |row, i|
-      row = ImportRow.new row, args[:table_fields], i
+      row_data = csv_row_class.new row, i
+      row = ImportRow.new row_data
       rows_by_match_type[row.match_type] << row.render
     end
 

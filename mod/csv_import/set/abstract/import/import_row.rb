@@ -1,66 +1,87 @@
 #! no set module
 
+# An ImportRow object generates the html for a row in the import table.
+# It needs a format with `column_keys` and a {CSVRow} object.
+# For each value in column_keys in generates a cell. It takes the content from the CSVRow
+# object if it has data for that key.
+# Otherwise it expects a `<missing_key>_field` method to produce the cell content.
 class ImportRow
-  # @param data [Hash] { column_name => column_value }
   attr_reader :match_type
 
-  def initialize data, col_names, index, format
-    @data = data
-    @csv_row_index = index
-    @match = match_company
-    @col_names = col_names
-    @wikirate_company, @match_type = @match.match
-    @company = @match.suggestion
+  # @param csv_row [CSVRow] a CSVRow object
+  # @param format the format of an import file. It has to respond to `column_keys`.
+  #        It is also used to generate form elements.
+  def initialize csv_row, format
+    @csv_row = csv_row
+    @format = format
   end
 
+  # The return value is supposed to be passed to the table helper method.
+  # @return [Hash] the :content value is an array with the text/html for each cell
   def render
-    finalize_row
-    content = @col_names.map { |key| @data[key].to_s }
-    { content: content,
-      class: "table-#{row_context}",
-      data: { csv_row_index: @csv_row_index } }
+    { content: fields, data: { csv_row_index: @csv_row.row_index } }
   end
 
   private
 
-  def finalize_row
-    @data[:row] = @csv_row_index + 1
-    @data[:checkbox] = import_checkbox
-    @data[:correction] = data_correction
-  end
-
-  def import_checkbox
-     key_hash = @data.deep_dup
-     key_hash[:company] = @match.suggestion
-     checked = !@match.none?
-
-     format.check_box_tag "import_data[]", key_hash.to_json, checked
-  end
-
-  def data_correction
-    return "" if @match.exact?
-    company_correction_field
-  end
-
-  def company_correction_field
-    format.text_field_tag("corrected_company_name[#{@csv_row_index + 1}]", "",
-                   class: "company_autocomplete")
-  end
-
-  def row_context
-    case @match_type
-    when :partial then "warning"
-    when :exact   then "success"
-    when :none    then "danger"
-    when :alias   then "info"
+  # @return [Array] values for every cell in the table row
+  def fields
+    @format.column_keys.map do |key|
+      send "#{key}_field"
     end
   end
 
-  # @return name of company in db that matches the given name and
-  # the what kind of match
-  def match_company
-    name = @data[:file_company]
-    @company_matcher ||= {}
-    @company_matcher[name] ||= CompanyMatcher.new(name)
+  def checked?
+    true
+  end
+
+  def extra_data
+    {}
+  end
+
+  def corrections
+    {}
+  end
+
+  def row_index_field
+    @csv_row.row_index + 1
+  end
+
+  def checkbox_field
+     @format.check_box_tag(input_name(:import), true, checked?) +
+       hidden_data
+  end
+
+  def input_name *subfields
+    name = "import_data[#{@csv_row.row_index}]"
+    name << subfields.map { |f| "[#{f}]" }.join("") if subfields.present?
+    name
+  end
+
+  def hidden_data
+    (hidden_data_tags(:corrections) + hidden_data_tags(:extra_data)).join.html_safe
+  end
+
+  def hidden_data_tags name
+    send(name).each_with_object([]) do |(k, v), a|
+      a << @format.hidden_field_tag(input_name(name, k), v)
+    end
+  end
+
+  def method_missing method, *_args, &_block
+    return super unless (field = field_from_method(method))
+    @csv_row[field.to_sym]
+  end
+
+  def respond_to_missing? method, _include_private=false
+    field_method?(method) || super
+  end
+
+  def field_from_method method
+    method =~ /^(\w+)_field$/ ? $1 : nil
+  end
+
+  def field_method? method
+    method =~ /^\w+_field$/
   end
 end

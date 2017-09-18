@@ -111,7 +111,7 @@ class CSVFile
 
   def selected_rows rows
     rows.each do |index|
-      yield row_to_hash @rows[index], index
+      yield row_to_hash(@rows[index]), index
     end
   end
 
