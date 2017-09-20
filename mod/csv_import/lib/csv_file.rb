@@ -94,7 +94,7 @@ class CSVFile
   def process_row row, index, error_policy=:fail, corrections={}
     csv_row = @row_class.new(row, index, corrections[index])
     csv_row.execute_import
-  rescue ImportError => e
+  rescue ImportError, InvalidData => e
     case error_policy
     when :fail   then raise e
     when :report then puts csv_row.errors.join("\n")

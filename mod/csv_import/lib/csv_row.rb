@@ -3,6 +3,10 @@ require_relative "csv_row/normalizer"
 class ImportError < StandardError
 end
 
+class InvalidData < StandardError
+end
+
+
 # Use CSVRow to process a csv row.
 # CSVFile creates an instance of CSVRow for every row and calls #import on it
 class CSVRow
@@ -37,15 +41,27 @@ class CSVRow
 
   def initialize row, index, corrections=nil, extra_data=nil
     @row = row
-    @row.merge! corrections if corrections
+
+    @corrections =
+      if corrections
+        corrections.delete_if { |_k, v| v.blank? }
+        @row.merge! corrections
+        corrections
+      else
+        {}
+      end
+
     @extra_data = extra_data || {}
     @row_index = index # 0-based, not counting the header line
     @errors = []
   end
 
-  def execute_import
-    prepare_import
-    import
+  def execute_import as_subcard_of: nil, duplicates: :skip
+    @act_card = as_subcard_of
+    catch :skip_row do
+      prepare_import
+      import
+    end
   end
 
   def prepare_import
@@ -56,9 +72,28 @@ class CSVRow
     validate
   end
 
-  def error msg
+  def add_card args
+    if @act_card
+      @act_card.add_subcard args.delete(:name), args
+    else
+      pick_up_card_errors do
+        Card.create args
+      end
+    end
+  end
+
+  def import_card card_args
+    import_card = add_card card_args
+    if import_card && @act_card
+      import_card.director.catch_up_to_stage :validate
+      import_card.director.transact_in_stage = :integrate
+    end
+    import_card
+  end
+
+  def error msg, type: :invalid_data
     @errors << msg
-    raise ImportError, msg, caller
+    # raise ImportError, msg, caller
   end
 
   def required
@@ -79,6 +114,7 @@ class CSVRow
     @row.each do |k, v|
       validate_field k, v
     end
+    raise InvalidData, @errors if @errors.present?
   end
 
   def normalize_field field, value
@@ -113,5 +149,16 @@ class CSVRow
 
   def respond_to_missing? method_name, _include_private=false
     @row.keys.include? method_name
+  end
+
+  def pick_up_card_errors card=nil
+    card = yield if block_given?
+    if card
+      card.errors.each do |error_key, msg|
+        error "#{card.name} (#{error_key}): #{msg}"
+      end
+      card.errors.clear
+    end
+    card
   end
 end

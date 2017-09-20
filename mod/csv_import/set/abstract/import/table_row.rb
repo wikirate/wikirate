@@ -5,7 +5,7 @@
 # For each value in column_keys in generates a cell. It takes the content from the CSVRow
 # object if it has data for that key.
 # Otherwise it expects a `<missing_key>_field` method to produce the cell content.
-class ImportRow
+class TableRow
   attr_reader :match_type
 
   # @param csv_row [CSVRow] a CSVRow object
@@ -19,6 +19,7 @@ class ImportRow
   # The return value is supposed to be passed to the table helper method.
   # @return [Hash] the :content value is an array with the text/html for each cell
   def render
+    @csv_row.prepare_import # validates fields
     { content: fields, data: { csv_row_index: @csv_row.row_index } }
   end
 
@@ -48,8 +49,9 @@ class ImportRow
   end
 
   def checkbox_field
-     @format.check_box_tag(input_name(:import), true, checked?) +
-       hidden_data
+    # disable if data is invalid
+     @format.check_box_tag(input_name(:import), true, checked?,
+                           disabled: @csv_row.errors.present?) + hidden_data
   end
 
   def input_name *subfields

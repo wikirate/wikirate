@@ -1,22 +1,4 @@
 format :html do
-  def default_new_args _args
-    voo.help = help_text
-    voo.show! :help
-  end
-
-  def help_text
-    rows = import_fields.map { |s| s.to_s.sub("file_", "").humanize }
-    voo.help = "expected csv format: #{rows.join ' | '}"
-  end
-
-  def import_fields
-    [:file_company, :value]
-  end
-
-  def new_view_hidden
-    hidden_tags success: { id: "_self", soft_redirect: false, view: :import }
-  end
-
   def humanized_attachment_name
     "csv file"
   end
@@ -29,8 +11,8 @@ format :html do
         _optional_render(:year_select),
         _optional_render(:import_flag),
         _optional_render(:import_table_helper),
-        _optional_render(:import_table),
-        _optional_render(:import_button_formgroup)
+        _render(:import_table),
+        _render(:import_button_formgroup)
       ]
     end
   end
@@ -111,10 +93,5 @@ format :html do
     add_class opts, "label"
     add_class opts, "label-#{opts.delete(:context)}" if opts[:context]
     wrap_with :span, text, opts
-  end
-
-  def duplicated_value_warning_message headline, cardnames
-    items = cardnames.map { |n| "<li>#{n}</li>" }.join
-    alert("warning") { "<h4>#{headline}</h4><ul>#{items}</ul>" }
   end
 end

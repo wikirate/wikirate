@@ -24,12 +24,10 @@ class CompanyMatcher
     match[0]
   end
 
-  def exact?
-    match_type == :exact
-  end
-
-  def none?
-    match_type == :none
+  MATCH_TYPE_ORDER.keys.each do |key|
+    define_method "#{key}?" do
+      match_type == key
+    end
   end
 
   def <=> b
@@ -39,6 +37,7 @@ class CompanyMatcher
   private
 
   def find_match
+    return no_match unless @company_name.present?
     find_exact_match || find_alias_match || find_partial_match || no_match
   end
 

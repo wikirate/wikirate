@@ -1,8 +1,10 @@
 #! no set module
 
-# A {ImportRow} variant with an interface to handle the mapping of company entries
+require_relative "table_row"
+
+# A {TableRow} variant with an interface to handle the mapping of company entries
 # to the existing companies in the wikirate database.
-class ImportRowWithCompanyMapping < ImportRow
+class TableRowWithCompanyMapping < TableRow
   # @param data [Hash] { column_name => column_value }
   attr_reader :match_type
 
@@ -31,7 +33,7 @@ class ImportRowWithCompanyMapping < ImportRow
 
   def extra_data
     {
-      status: @match.match_type,
+      match_type: @match.match_type,
       company_suggestion: @match.suggestion
     }
   end
@@ -39,7 +41,7 @@ class ImportRowWithCompanyMapping < ImportRow
   # @return name of company in db that matches the given name and
   # the what kind of match
   def match_company
-    name = @csv_row[:file_company]
+    name = @csv_row[:company]
     @company_matcher ||= {}
     @company_matcher[name] ||= CompanyMatcher.new(name)
   end
