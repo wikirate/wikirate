@@ -3,7 +3,7 @@ require_relative "../../../support/shared_csv_data"
 
 RSpec.describe Card::Set::Abstract::Import::TableRowWithCompanyMapping do
   include_context "csv data"
-  include_context "table_row",  Card::MetricValueImportFileID do
+  include_context "table_row",  Card::AnswerImportFileID do
     let(:csv_data) do
       answer_csv_row
     end

@@ -45,7 +45,7 @@ class ImportFlagUpdate
 
     def import_card_ids
       @import_card_ids ||=
-        Card.search type_id: Card::MetricValueImportFileID,
+        Card.search type_id: Card::AnswerImportFileID,
                     return: :id
     end
 

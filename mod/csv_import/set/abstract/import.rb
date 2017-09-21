@@ -14,7 +14,7 @@ format :html do
   end
 
   def help_text
-    rows = csv_row_class.columns.map { |s| s.humanize }
+    rows = card.csv_row_class.columns.map { |s| s.to_s.humanize }
     "expected csv format: #{rows.join ' | '}"
   end
 

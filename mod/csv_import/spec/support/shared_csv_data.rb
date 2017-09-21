@@ -11,6 +11,11 @@ shared_context "csv data" do
     ANSWER_DATA.merge args
   end
 
+  def answer_csv_file
+    io = StringIO.new ANSWER_DATA.values.join ","
+    CSVFile.new io, AnswerCSVRow
+  end
+
   def answer_card args={}
     Card[answer_name(args)]
   end

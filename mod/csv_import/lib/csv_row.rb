@@ -68,6 +68,7 @@ class CSVRow
     required.each do |key|
       error "value for #{key} missing" unless @row[key].present?
     end
+    raise InvalidData if @errors.present?
     normalize
     validate
   end

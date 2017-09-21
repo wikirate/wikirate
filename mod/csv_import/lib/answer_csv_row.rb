@@ -55,9 +55,9 @@ class AnswerCSVRow < CSVRow
 
   def check_existence_and_type name, type_id, type_name=nil
     if !Card.exists?(name)
-      error "#{name} doesn't exist"
+      error "\"#{name}\" doesn't exist"
     elsif Card[name].type_id != type_id
-      error "#{name} is not a #{type_name}"
+      error "\"#{name}\" is not a #{type_name}"
     end
   end
 

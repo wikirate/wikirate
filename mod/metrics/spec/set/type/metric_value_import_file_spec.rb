@@ -8,7 +8,7 @@ RSpec.describe Card::Set::Type::MetricValueImportFile do
     test_csv = File.open File.expand_path("../import_test.csv", __FILE__)
     Card.create! name: "does it matter?",
                  metric_value_import_file: test_csv,
-                 type_id: Card::MetricValueImportFileID
+                 type_id: Card::AnswerImportFileID
   end
 
   def fill_env_params with_comment=false

@@ -73,6 +73,14 @@
   }
 }
 
+.table.import_table {
+  thead,tbody,tfoot,.thead,.tbody,.tfoot {
+    > tr > th, > .tr > .th, td, .td {
+      border-right-style: none
+    }
+  }
+}
+
 table.wikirate-table, .table.wikirate-table {
   background: #fff;
   thead > tr > th, .thead > .tr > .th {

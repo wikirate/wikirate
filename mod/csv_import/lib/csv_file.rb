@@ -3,7 +3,7 @@ require_relative "csv_row"
 # Use CSVFile to describe the structure of a csv file and import its content
 class CSVFile
   # @param headers [true, false, :detect] (false) if true the import raises an error
-  #    if the csv file has no or wrong errors
+  #    if the csv file has no or wrong headers
   def initialize path_or_file, row_class, col_sep: ",", encoding: "utf-8", headers: false
     raise ArgumentError, "#{row_class} must inherit from CSVRow" unless row_class < CSVRow
     @row_class = row_class
@@ -11,11 +11,17 @@ class CSVFile
     @encoding = encoding
 
     read_csv path_or_file
-    if header_row?
-      @headers
+
+    initialize_col_map headers
+  end
+
+  def initialize_col_map header_line
+    if (header_line == :detect && header_row?) || header_line == true
+      map_headers
+      @rows.shift
+    else
+      @col_map = @row_class.columns.zip((0..@row_class.columns.size)).to_h
     end
-    @headers = @rows.shift.map { |h| h.downcase.tr(" ", "_") }
-    enforce_headers ? map_headers : reject_headers
   end
 
   # @param error_policy [:fail, :skip, :report]

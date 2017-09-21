@@ -54,14 +54,14 @@ format :html do
         #{label_tag 'all'}
       </span>
       #{group_selection_checkbox('exact', 'exact matches', :success, true)}
-      #{group_selection_checkbox('alias', 'alias matches', :info, true)}
-      #{group_selection_checkbox('partial', 'partial matches', :warning, true)}
-      #{group_selection_checkbox('none', 'no matches', :danger)}
+      #{group_selection_checkbox('alias', 'alias matches', :active, true)}
+      #{group_selection_checkbox('partial', 'partial matches', :info, true)}
+      #{group_selection_checkbox('none', 'no matches', :warning)}
     HTML
   end
 
   def group_selection_checkbox name, label, identifier, checked=false
-    wrap_with :span, class: "padding-20 bg-#{identifier}" do
+    wrap_with :span, class: "padding-20 table-#{identifier}" do
       [
         check_box_tag(
           name, "", checked,

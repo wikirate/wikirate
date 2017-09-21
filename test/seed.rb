@@ -37,6 +37,7 @@ class SharedData
     include NotesAndSources
 
     def add_wikirate_data
+      puts "add wikirate data"
       Card::Cache.reset_all
       Card::Env.reset
       Card::Auth.as_bot

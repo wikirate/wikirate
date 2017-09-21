@@ -1,6 +1,6 @@
 #! no set module
 
-require_relative "table_row_with_company_mapping"
+#require_relative "table_row_with_company_mapping"
 
 # A {TableRow} variant with an extra field for the source title.
 class TableRowSource < TableRowWithCompanyMapping

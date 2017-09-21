@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 
 require_relative "../../script/csv_import/wikipedia/wikipedia_csv_row"
-require_relative "../../script/csv_import/csv_file"
+require_relative "../../mod/csv_import/lib/csv_file"
 
 class UpdateWikipediaMapping < Card::Migration
   disable_ddl_transaction!
