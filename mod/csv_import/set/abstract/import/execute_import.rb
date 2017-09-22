@@ -29,8 +29,12 @@ def extra_data index
   import_data[index][:extra_data].merge source_map: source_map
 end
 
+# @return [Hash] of the form { 1: { import: true, extra_data: {}, corrections: {} } }
 def import_data
-  @import_data ||= Env.params[:import_data]
+  @import_data ||=
+    Env.params[:import_data].to_unsafe_h.each_with_object({}) do |(k, v), h|
+      h[k.to_i] = v
+    end
 end
 
 def data_import?
@@ -66,6 +70,6 @@ end
 def selected_row_indices
   import_data.each_with_object([]) do |(index, data), a|
     next unless data[:import]
-    a << index
+    a << index.to_i
   end
 end

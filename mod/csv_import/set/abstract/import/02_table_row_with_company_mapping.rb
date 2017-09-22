@@ -60,7 +60,7 @@ class TableRowWithCompanyMapping < TableRow
     when :partial then "info"
     when :exact   then "success"
     when :none    then "warning"
-    when :alias   then "active"
+    when :alias   then "alias"
     end
   end
 end

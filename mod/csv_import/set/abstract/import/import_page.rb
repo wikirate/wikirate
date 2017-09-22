@@ -43,7 +43,8 @@ format :html do
   end
 
   view :import_table_helper do
-    wrap_with :p, group_selection_checkboxes #+ import_legend)
+    wrap_with(:p, group_selection_checkboxes) +
+      wrap_with(:p, select_conflict_strategy)
   end
 
   def group_selection_checkboxes
@@ -54,7 +55,7 @@ format :html do
         #{label_tag 'all'}
       </span>
       #{group_selection_checkbox('exact', 'exact matches', :success, true)}
-      #{group_selection_checkbox('alias', 'alias matches', :active, true)}
+      #{group_selection_checkbox('alias', 'alias matches', :alias, true)}
       #{group_selection_checkbox('partial', 'partial matches', :info, true)}
       #{group_selection_checkbox('none', 'no matches', :warning)}
     HTML
@@ -73,25 +74,11 @@ format :html do
     end
   end
 
-  def import_legend
+  def select_conflict_strategy
     <<-HTML.html_safe
-     <span class="pull-right">
-      company match:
-      #{row_legend 'exact', 'success'}
-      #{row_legend 'alias', 'info'}
-      #{row_legend 'partial', 'warning'}
-      #{row_legend 'none', 'danger'}
-     <span>
+      Conflicts with existing entries:
+      #{radio_button_tag "conflict", "skip", true} skip
+      #{radio_button_tag "conflict", "override"} override
     HTML
-  end
-
-  def row_legend text, context
-    bs_label text, class: "bg-#{context}", style: "color: inherit;"
-  end
-
-  def bs_label text, opts={}
-    add_class opts, "label"
-    add_class opts, "label-#{opts.delete(:context)}" if opts[:context]
-    wrap_with :span, text, opts
   end
 end
