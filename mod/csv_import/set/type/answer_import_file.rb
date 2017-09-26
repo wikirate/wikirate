@@ -24,6 +24,10 @@ def csv_row_class
   AnswerCSVRow
 end
 
+def item_label
+  "metric answer"
+end
+
 format :html do
   def default_import_args _args
     voo.hide :metric_select, :year_select

@@ -208,11 +208,11 @@
 - :name: nav bar
   :type: HTML
   :key: nav_bar
-  :merged: 2017-09-14 16:52:38 UTC
+  :merged: 2017-09-26 14:04:29 UTC
 - :name: nav bar menu
   :type: HTML
   :key: nav_bar_menu
-  :merged: 2017-09-14 16:52:38 UTC
+  :merged: 2017-09-26 14:04:29 UTC
 - :name: Company
   :type: Cardtype
   :codename: wikirate_company

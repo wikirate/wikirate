@@ -38,10 +38,11 @@ class CSVRow
   end
 
   attr_reader :errors, :row_index
+  delegate :add_card, :import_card, to: :import_manager
 
-  def initialize row, index, corrections=nil, extra_data=nil
+  def initialize row, index, import_manager, corrections=nil, extra_data=nil
     @row = row
-
+    @import_manager = import_manager
     @corrections =
       if corrections
         corrections.delete_if { |_k, v| v.blank? }
@@ -51,6 +52,7 @@ class CSVRow
         {}
       end
 
+    @abort_on_error = true
     @extra_data = extra_data || {}
     @row_index = index # 0-based, not counting the header line
     @errors = []
@@ -65,36 +67,29 @@ class CSVRow
   end
 
   def prepare_import
+    collect_errors { check_required_fields }
+    normalize
+    collect_errors { validate }
+  end
+
+  def check_required_fields
     required.each do |key|
       error "value for #{key} missing" unless @row[key].present?
     end
-    raise InvalidData if @errors.present?
-    normalize
-    validate
   end
 
-  def add_card args
-    if @act_card
-      @act_card.add_subcard args.delete(:name), args
-    else
-      pick_up_card_errors do
-        Card.create args
-      end
-    end
-  end
-
-  def import_card card_args
-    import_card = add_card card_args
-    if import_card && @act_card
-      import_card.director.catch_up_to_stage :validate
-      import_card.director.transact_in_stage = :integrate
-    end
-    import_card
+  def collect_errors
+    @abort_on_error = false
+    yield
+    raise ImportError if @errors.present?
+  ensure
+    @abort_on_error = true
   end
 
   def error msg, type: :invalid_data
     @errors << msg
-    # raise ImportError, msg, caller
+    @import_manager.add_error @row_index, msg, type
+    raise ImportError, msg, caller if @abort_on_error
   end
 
   def required

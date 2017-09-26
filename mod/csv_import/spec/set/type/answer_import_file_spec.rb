@@ -61,7 +61,7 @@ describe Card::Set::Type::AnswerImportFile, type: :controller do
     IMPORT_DATA =
       (%i[exact_match alias_match partial_match no_match] + # valid data
        %i[not_a_metric not_a_company company_missing missing_and_invalid ] + # invalid data
-       %i[conflict_same_value_same_source conflcit_same_value_different_source] + # conflicts with existing data
+       %i[conflict_same_value_same_source conflict_same_value_different_source] + # conflicts with existing data
        %i[conflict_different_value duplicate_with_exact_match] +
        %i[invalid_value]).freeze # failures
 
@@ -107,8 +107,10 @@ describe Card::Set::Type::AnswerImportFile, type: :controller do
                                                                                .and have_db_content("yes")
     end
 
-    example "imports others if one fails" do
-
+    it "imports others if one fails" do
+      post_import :exact_match, :invalid_value
+      expect_card("Jedi+disturbances in the Force+Death Star+2017+value").to exist
+        .and have_db_content("yes")
     end
 
     describe "duplicates" do
@@ -116,9 +118,9 @@ describe Card::Set::Type::AnswerImportFile, type: :controller do
     end
 
 
-    def post_import data
+    def post_import *data
       post :update, xhr: true, params: { id: "~#{import_card.id}",
-                                         import_data: import_params(data) }
+                                         import_data: import_params(*data) }
     end
 
   end
