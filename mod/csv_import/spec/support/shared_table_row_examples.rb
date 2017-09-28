@@ -15,7 +15,7 @@ shared_context "table_row" do |type_id|
   end
 
   def field name
-    index = Card::Set::Type::MetricValueImportFile::COLUMNS.keys.index(name)
+    index = Card::Set::Type::AnswerImportFile::COLUMNS.keys.index(name)
     row[:content][index]
   end
 

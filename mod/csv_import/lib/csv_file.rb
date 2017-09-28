@@ -24,21 +24,24 @@ class CSVFile
     end
   end
 
-  # @param error_policy [:fail, :skip, :report]
-  def import rows: false, error_policy: :fail, user: nil, corrections: {}
-    with_user user do
-      each_row(rows) do |row, index|
-        process_row row, index, error_policy, corrections || {}
-      end
+  # yields the rows of the csv file as CSVRow objects
+  def each_row import_manager, rows=nil &block
+    each_row_hash rows do |row_hash, index|
+      yield @row_class.new(row_hash, index, import_manager)
     end
   end
 
-  def each_row rows=nil, &block
+  # yields the rows of the csv file as simple hashes
+  def each_row_hash rows = nil, &block
     if rows
       selected_rows rows, &block
     else
       all_rows &block
     end
+  end
+
+  def row_count
+    @rows.size
   end
 
   private
@@ -85,27 +88,6 @@ class CSVFile
     yield
   ensure
     @encoding = enc
-  end
-
-  def with_user user
-    if user
-      Card::Auth.with(user) { yield }
-    elsif Card::Auth.signed_in?
-      yield
-    else
-      raise StandardError, "can't import as anonymous"
-    end
-  end
-
-  def process_row row, index, error_policy=:fail, corrections={}
-    csv_row = @row_class.new(row, index, corrections[index])
-    csv_row.execute_import
-  rescue ImportError, InvalidData => e
-    case error_policy
-    when :fail   then raise e
-    when :report then puts csv_row.errors.join("\n")
-    when :skip   then nil
-    end
   end
 
   def all_rows

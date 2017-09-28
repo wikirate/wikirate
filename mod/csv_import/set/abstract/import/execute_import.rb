@@ -1,82 +1,73 @@
-# the is_data_import flag distinguishes between an update of the
-# import file and importing the file
 event :import_csv, :integrate_with_delay, on: :update, when: :data_import? do
-  return unless valid_import_data?
-
-  with_success_params do
-    each_import_row  do |csv_row|
-      process_row csv_row
-    end
-  end
-  handle_redirect
+  binding.pry
+  import_manager.import_rows selected_row_indices
+  redirect_to_import_status
 end
 
-def process_row csv_row
-  csv_row.execute_import as_subcard_of: self, duplicates: :report
-rescue ImportError, InvalidData => _e
-  handle_import_errors csv_row
+event :prepare_import, :prepare_to_store, on: :update, when: :data_import? do
+  binding.pry
+  import_status_card.reset selected_row_count
+end
+
+def import_manager
+  @import_mananger =
+    ActImportManager.new self, csv_file, conflict_strategy, extra_data
+end
+
+# @return [Hash] key is the row index.
+#   example: { 1: { import: true, extra_data: {}, corrections: {} } }
+def import_data
+  @import_data ||=
+    begin
+      params = Env.params[:import_data] || {}
+      params = params.to_unsafe_h if params.respond_to?(:to_unsafe_h)
+      params.each_with_object({}) do |(k, v), h|
+        h[(k.to_s.to_i rescue k)] = v
+      end
+    end
+end
+
+def conflict_strategy
+  Env.params[:confict]&.to_sym || :skip
+end
+
+def extra_data
+  # rearrange extra data hash from
+  #  row_index: { extra_data: { ... } } to
+  #  row_index: { ... }
+  @extra_data ||=
+    import_data.each_with_object({ all: { source_map: source_map } }) do |(key, value), options|
+      options[key] = value[:extra_data]
+    end
 end
 
 def source_map
   @source_map ||= {}
 end
 
-def corrections index
-  @corrections ||= import_data[index][:corrections] || {}
-end
-
-def extra_data index
-  @extra_data ||= (import_data[index][:extra_data] || {}).merge source_map: source_map
-end
-
-# @return [Hash] of the form { 1: { import: true, extra_data: {}, corrections: {} } }
-def import_data
-  @import_data ||=
-    Env.params[:import_data].to_unsafe_h.each_with_object({}) do |(k, v), h|
-      h[k.to_i] = v
-    end
-end
-
-def conflict_strategy
-  Env.params[:confict]&.to_sym | :skip
-end
-
 def data_import?
-  import_data.present?
-end
-
-def valid_import_data?
-  import_data.is_a? Hash
+  import_data.present? && import_data.is_a?(Hash)
 end
 
 def redirect_target_after_import
-  nil
+  import_status_card.name
 end
 
-def handle_redirect
-  abort :failure if errors.present?
+def redirect_to_import_status
+  # abort :failure if errors.present?
   return unless (target = redirect_target_after_import)
   success << { name: target, redirect: true, view: :open }
 end
 
-def handle_import_errors csv_row
-  csv_row.errors.each do |_key, msg|
-    errors.add "import error (row #{csv_row.row_index})", msg
-  end
-end
 
-def each_import_row
-  @import_mananger =
-    ImportManager.new act_card: self, conflict_strategy: conflict_strategy
-  csv_file.each_row selected_row_indices do |row_hash, index|
-    yield csv_row_class.new row_hash, index, @import_manager, corrections(index), extra_data(index)
-  end
-
+def selected_row_count
+  selected_row_indices.size
 end
 
 def selected_row_indices
-  import_data.each_with_object([]) do |(index, data), a|
-    next unless data[:import]
-    a << index.to_i
-  end
+  @selected_row_indices ||=
+    import_data.each_with_object([]) do |(index, data), a|
+      next unless data[:import]
+      a << index.to_i
+    end
 end

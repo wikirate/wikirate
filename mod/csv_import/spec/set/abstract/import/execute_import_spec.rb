@@ -2,8 +2,8 @@ require_relative "../../../support/shared_csv_data"
 
 describe Card::Set::Abstract::Import::ExecuteImport do
   let(:card) { Card["A"].with_set(described_class) }
-  describe "#valid_import_data?" do
-    subject { card.valid_import_data? }
+  describe "#data_import?" do
+    subject { card.data_import? }
 
     example "no data given" do
       is_expected.to be_falsey
@@ -11,6 +11,11 @@ describe Card::Set::Abstract::Import::ExecuteImport do
 
     example "an empty hash given" do
       Card::Env.params[:import_data] = {}
+      is_expected.to be_falsey
+    end
+
+    example "an import value" do
+      Card::Env.params[:import_data] = { 1 => { import: true } }
       is_expected.to be_truthy
     end
   end

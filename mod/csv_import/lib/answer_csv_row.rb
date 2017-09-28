@@ -19,11 +19,14 @@ class AnswerCSVRow < CSVRow
   end
 
   def import
-    @row[:source] = import_source update_existing: false
-    import_company
+    import_manager.with_conflict_strategy :skip_card do
+      @row[:source] = import_source update_existing: false
+      import_company
+    end
     build_answer_create_args
-    check_for_duplicates
-    raise ImportError if errors.any?
+    # TODO: decide what to do with this duplications check
+    #check_for_duplicates
+    throw :skip_row, :failed if errors.any?
     import_card answer_create_args
   end
 
@@ -40,7 +43,6 @@ class AnswerCSVRow < CSVRow
   private
 
   def check_for_duplicates
-    check_duplication_in_subcards
     # TODO: handle return value of check_duplication_with_existing
     check_duplication_with_existing
   end
@@ -73,12 +75,8 @@ class AnswerCSVRow < CSVRow
     return unless (source = Card[answer_name, :source])
     bucket =
       source.item_cards[0].key == @raw[:source].key ? :identical : :duplicated
+    #throw :skip_row
     success.params["#{bucket}_answer".to_sym].push [@row_index, answer_name]
-  end
-
-  def check_duplication_in_subcards
-    return unless @act_card&.subcards[answer_name]
-    error "#{name}: Duplicated answer in this file"
   end
 
   def construct_answer_create_args

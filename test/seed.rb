@@ -1,14 +1,15 @@
 # -*- encoding : utf-8 -*-
 require "timecop"
-require_relative "shared_data/profile_sections"
-require_relative "shared_data/metrics"
-require_relative "shared_data/badges"
-require_relative "shared_data/notes_and_sources"
-require_relative "shared_data/samples"
-
-require_dependency "card"
+require_dependency "shared_data/profile_sections"
+require_dependency "shared_data/metrics"
+require_dependency "shared_data/badges"
+require_dependency "shared_data/notes_and_sources"
+require_dependency "shared_data/samples"
 
 class SharedData
+  require_dependency "card"
+  require_dependency "card/model/save_helper"
+
   HAPPY_BIRTHDAY = Time.utc(2035, 2, 5, 12, 0, 0).freeze
   # gift to Ethan's 60th birthday:
   # on the date above 3 tests will fail

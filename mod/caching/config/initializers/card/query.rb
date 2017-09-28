@@ -1,8 +1,7 @@
-# require_dependency "card"
-require_relative "../../../lib/card/query/cached_count_sorting"
-
 class Card
   class Query
+    require_dependency "card/query/cached_count_sorting"
+
     include CachedCountSorting
   end
 end

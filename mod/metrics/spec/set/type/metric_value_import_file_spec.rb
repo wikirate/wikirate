@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::Type::MetricValueImportFile do
+RSpec.describe Card::Set::Type::AnswerImportFile do
   let(:comment) { "50 Nerds of Grey" }
   let(:metric) { sample_metric }
   let(:amazon) { "#{metric.name}+Amazon.com, Inc.+2015" }

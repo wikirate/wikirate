@@ -5,10 +5,10 @@ class CSVRow
   # corrections[:company].
   # The user correction overrides the suggestion.
   module CompanyImport
-    def initialize row, index, corrections=nil, extra_data=nil
+    def initialize row, *args
       @file_company = row[:company]
       super # overrides company with correction
-      return unless @extra_data
+      return unless @extra_data.present?
       case (@match_type = @extra_data[:match_type]&.to_sym)
       when :alias
         @row[:company] = suggested_company

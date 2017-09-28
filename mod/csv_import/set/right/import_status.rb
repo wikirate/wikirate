@@ -1,30 +1,62 @@
+def followable?
+  false
+end
+
+def history?
+  false
+end
+
+def status
+  @status ||= ::ImportStatus.new content
+end
+
 def import_counts
-  return @ic if @ic
-  @ic = Hash.new 0
-  @ic[:imported], @ic[:failed], @ic[:total] =
-    item_names.first&.split("/")&.map(&:to_i)
-  @ic
+  @import_counts ||= status[:counts]
 end
 
-def percentage key
-  return 0 if count(:total) == 0 || count(key).nil?
-  (count(key) / count(:total).to_f * 100).to_i
+def reset total
+  @status = ::ImportStatus.new act_id: @current_act&.id, counts: { total: total }
+  save_status
 end
 
-def count key
-  import_counts[key]
+def step key
+  import_counts.step key
+  save_status
 end
+
+def save_status
+  update_attributes content: status.to_json
+end
+
+STATUS_HEADER = {
+  failed: "Failed",
+  imported: "Successful",
+  overriden: "Overridden",
+  skipped: "Skipped"
+}.freeze
+
+STATUS_CONTEXT = {
+  failed: :danger,
+  imported: :success,
+  overriden: :warning,
+  skipped: :info
+}.freeze
 
 
 format :html do
-  delegate :percentage, :count, to: :card
+  def import_counts
+    card.import_counts
+  end
+
+  delegate :status, to: :card
+  delegate :percentage, :count, :step, to: :import_counts
 
   def wrap_data
     super.merge "refresh-url" => path(view: @slot_view)
   end
 
   def wrap_classes slot
-    class_up "card-slot", "_refresh-timer", true if importing?
+    class_up "card-slot", "_refresh-timer", true if auto_refresh?
     super
   end
 
@@ -33,37 +65,97 @@ format :html do
   end
 
   def importing?
-    count(:imported) + count(:failed) < count(:total)
+    STATUS_CONTEXT.keys.inject(0) do |sum, key|
+      sum + count(key)
+    end < count(:total)
+  end
+
+  # returns plural if there are more than one card of type `count_type`
+  def item_label count_type=nil
+    label = card.left&.try(:item_label) || "card"
+    count_type && count(count_type) > 0 ? label.pluralize : label
+
   end
 
   def item_count_label count_key
-    label = card.left&.try(:item_label) || "card"
-    label = label.pluralize if count(count_key) > 1
+    label = item_label count_key
     "#{count(count_key)} #{label}"
   end
 
   def progress_header
     if importing?
       "Importing #{item_count_label :total} ..."
+    elsif count(:overridden) > 0
+      "#{item_count_label :imported} created and " \
+      "#{item_count_label :overridden} updated" \
     else
       "Imported #{item_count_label :imported}"
     end
   end
 
   view :core do
-    with_header progress_header, level: 4 do
-      progress_bar progress_section(:imported, :success),
-                   progress_section(:failed, :danger)
+    with_header(progress_header, level: 4) do
+      sections = %i[imported skipped overriden failed].map do |type|
+        progress_section type
+      end
+      progress_bar *sections
+    end + wrap_with(:p, undo_button) + wrap_with(:p, report)
+  end
+
+  def report
+    [:failed, :skipped, :overriden, :imported].map do |key|
+      next unless status[key].present?
+      generate_report_alert key
+    end.compact.join
+  end
+
+
+  def generate_report_alert type
+    binding.pry if status[type].is_a? String
+    alert STATUS_CONTEXT[type], false, false, href: "##{type}" do
+      with_header STATUS_HEADER[type], level: 5 do
+        list = []
+        status[type].each do |index, name|
+          list << report_line(index, name, type)
+        end
+        list_group list
+      end
     end
   end
 
-  def progress_section type, context
-    html_class = "bg-#{context}"
+  def report_line index, name, type
+    if type == :failed
+      text = "##{index + 1}: #{name}"
+      if status[:errors][index].present?
+        text += " - " + status[:errors][index].join("; ")
+      end
+      text
+    else
+      "##{index + 1}: " + link_to_card(name)
+    end
+  end
+
+  def progress_section type
+    html_class = "bg-#{STATUS_CONTEXT[type]}"
     html_class << " progress-bar-striped progress-bar-animated" if importing?
     { value: percentage(type), label: "#{count(type)} #{type}", class: html_class }
   end
 
-  view :errors do
+  def undo_button
+    return if importing?
+    return "" unless status[:act_id] && (act = Card::Act.find(status[:act_id]))
+    ar = Act::ActRenderer.new(self, act, {})
+    link = ar.revert_actions_link "Undo", revert_to: :previous,
+                                  html_args: { class: "btn btn-danger",
+                                               "data-confirm" => undo_confirm_message }
+    wrap_with :div, link, class: "d-flex flex-row-reverse"
+  end
 
+  def undo_confirm_message
+    text = "Do you really want to remove all imported #{item_label :imported}"
+    if count(:overridden) > 0
+      text +=  " and restore the overridden " + item_label(:overriden)
+    end
+    text << "?"
   end
 end

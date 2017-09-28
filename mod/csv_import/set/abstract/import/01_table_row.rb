@@ -8,17 +8,18 @@
 class TableRow
   attr_reader :match_type, :csv_row
 
+  delegate :row_index, :status, to: :csv_row
+
   # @param csv_row [CSVRow] a CSVRow object
   # @param format the format of an import file. It has to respond to `column_keys`.
   #        It is also used to generate form elements.
   def initialize csv_row, format
     @csv_row = csv_row
     @format = format
-    validate
   end
 
   def valid?
-    @csv_row.errors.empty?
+    !@csv_row.errors?
   end
 
   # The return value is supposed to be passed to the table helper method.
@@ -28,12 +29,6 @@ class TableRow
   end
 
   private
-
-  def validate
-    @csv_row.prepare_import # validates fields
-  rescue InvalidData
-
-  end
 
   # @return [Array] values for every cell in the table row
   def fields

@@ -3,10 +3,9 @@ class CSVRow
   # A hash in extra_data[:source_map] is used to handle duplicates sources in
   # the same import act.
   module SourceImport
-    def initialize row, index, corrections=nil, extra_data=nil
+    def initialize row, index, import_manager
       super
-      extra_data ||= {}
-      @source_map = extra_data.delete(:source_map) || {}
+      @source_map = import_manager.extra_data(:global)[:source_map]
     end
 
     def source_args
@@ -53,6 +52,14 @@ class CSVRow
       success[:updated_sources].push([@csv_row.row_index, existing_source.name])
     end
 
+    def create_source
+      pick_up_card_errors do
+        source_card = add_card name: "", type_id: Card::SourceID,
+                               subcards: source_subcard_args
+        finalize_source_card source_card
+      end
+    end
+
     def finalize_source_card source_card
       Card::Env.params[:sourcebox] = "true"
       source_card.director.catch_up_to_stage :prepare_to_store
@@ -63,14 +70,6 @@ class CSVRow
       end
       Card::Env.params[:sourcebox] = nil
       source_card
-    end
-
-    def create_source
-      pick_up_card_errors do
-        source_card = add_card name: "", type_id: Card::SourceID,
-                               subcards: source_subcard_args
-        finalize_source_card source_card
-      end
     end
 
     def update_existing_source source_card, source_hash

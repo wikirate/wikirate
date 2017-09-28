@@ -1,3 +1,5 @@
+card_accessor :import_status
+
 def csv_file
   # maybe we have to use file.read ?
   CSVFile.new file, csv_row_class
@@ -5,6 +7,26 @@ end
 
 def clean_html?
   false
+end
+
+def already_imported? row_index
+  imported_rows.include? row_index
+end
+
+def imported_rows
+  @imported_rows ||= ::Set.new fetch_imported_indices
+end
+
+def fetch_imported_indices
+  return [] unless (ir = fetch(trait: :imported_rows)) || ir.content.blank?
+  JSON.parse ir.content
+rescue JSON::ParserError => e
+  []
+end
+
+def mark_as_imported row_index
+  imported_rows << row_index
+  fetch(trait: :imported_rows, new: {}).update_attributes content: imported_rows.to_json
 end
 
 format :html do
@@ -24,7 +46,6 @@ format :html do
 
   view :core do
     output [
-      success_messages,
       download_link,
       import_link.html_safe
     ]

@@ -10,7 +10,7 @@ describe Card::Set::MetricType::Score do
 
     it { is_expected.to be_truthy }
     it "has codename" do
-      expect(subject.codename).to eq "score"
+      expect(subject.codename).to eq :score
     end
     it 'has type "metric type"' do
       expect(subject.type_id).to eq Card["metric type"].id

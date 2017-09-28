@@ -1,12 +1,5 @@
 require_relative "csv_row/normalizer"
 
-class ImportError < StandardError
-end
-
-class InvalidData < StandardError
-end
-
-
 # Use CSVRow to process a csv row.
 # CSVFile creates an instance of CSVRow for every row and calls #import on it
 class CSVRow
@@ -37,33 +30,39 @@ class CSVRow
     end
   end
 
-  attr_reader :errors, :row_index
-  delegate :add_card, :import_card, to: :import_manager
+  attr_reader :errors, :row_index, :import_manager
+  attr_accessor :status, :name
 
-  def initialize row, index, import_manager, corrections=nil, extra_data=nil
+  delegate :add_card, :import_card, :pick_up_card_errors, to: :import_manager
+
+  def initialize row, index, import_manager
     @row = row
     @import_manager = import_manager
-    @corrections =
-      if corrections
-        corrections.delete_if { |_k, v| v.blank? }
-        @row.merge! corrections
-        corrections
-      else
-        {}
-      end
+
+    @extra_data = import_manager.extra_data(index)
+    @corrections = @extra_data[:corrections]
+    @corrections = {} unless @corrections.is_a? Hash
+    merge_corrections
 
     @abort_on_error = true
-    @extra_data = extra_data || {}
+
     @row_index = index # 0-based, not counting the header line
-    @errors = []
   end
 
-  def execute_import as_subcard_of: nil, duplicates: :skip
-    @act_card = as_subcard_of
-    catch :skip_row do
-      prepare_import
-      import
-    end
+  def label
+    label = "##{@row_index + 1}"
+    label += ": #{@name}" if @name
+    label
+  end
+
+  def merge_corrections
+    @corrections.delete_if { |_k, v| v.blank? }
+    @row.merge! @corrections
+  end
+
+  def execute_import
+    prepare_import
+    import
   end
 
   def prepare_import
@@ -81,15 +80,22 @@ class CSVRow
   def collect_errors
     @abort_on_error = false
     yield
-    raise ImportError if @errors.present?
+    throw :skip_row, :failed if @import_manager.errors?(self)
   ensure
     @abort_on_error = true
   end
 
-  def error msg, type: :invalid_data
-    @errors << msg
-    @import_manager.add_error @row_index, msg, type
-    raise ImportError, msg, caller if @abort_on_error
+  def errors?
+    @import_manager.errors? self
+  end
+
+  def errors
+    @import_manager.errors self
+  end
+
+  def error msg
+    @import_manager.report_error msg
+    throw :skip_row, :failed if @abort_on_error
   end
 
   def required
@@ -110,7 +116,6 @@ class CSVRow
     @row.each do |k, v|
       validate_field k, v
     end
-    raise InvalidData, @errors if @errors.present?
   end
 
   def normalize_field field, value
@@ -140,21 +145,10 @@ class CSVRow
 
   def method_missing method_name, *args
     #binding.pry
-     respond_to_missing?(method_name) ? @row[method_name.to_sym] : super
+    respond_to_missing?(method_name) ? @row[method_name.to_sym] : super
   end
 
-  def respond_to_missing? method_name, _include_private=false
+  def respond_to_missing? method_name, _include_private = false
     @row.keys.include? method_name
-  end
-
-  def pick_up_card_errors card=nil
-    card = yield if block_given?
-    if card
-      card.errors.each do |error_key, msg|
-        error "#{card.name} (#{error_key}): #{msg}"
-      end
-      card.errors.clear
-    end
-    card
   end
 end

@@ -7,7 +7,7 @@ class TableRowSource < TableRowWithCompanyMapping
   def title_field
     default_title = csv_row[:title] ||
         "#{@match.suggestion}-#{csv_row[:report_type]}-#{csv_row[:year]}"
-    @format.text_field_tag(input_name(:corrections, :title), default_title,
+    @format.text_field_tag(input_name(:extra_data, :corrections, :title), default_title,
                            class: "min-width-300")
   end
 end

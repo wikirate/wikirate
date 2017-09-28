@@ -35,7 +35,6 @@ describe Card::Set::Type::AnswerImportFile, type: :controller do
     route_to opts.merge(controller: "card")
   end
 
-
   include_context "csv data"
   let(:card) { Card["A"].with_set(described_class) }
   let(:format) { card.format_with_set(described_class, :html) }
