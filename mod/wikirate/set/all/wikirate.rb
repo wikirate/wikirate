@@ -1,4 +1,3 @@
-
 require "net/https"
 require "uri"
 
@@ -132,11 +131,11 @@ format :html do
     hidden_class = card.content.empty? ? "hidden" : ""
     class_up "card-body", "showcase #{hidden_class}"
     wrap do
-      %(
-        #{subformat(icon_card)._render_core}
-        #{item_type_name.capitalize}
-        #{_render_core(args)}
-      )
+      [
+        subformat(icon_card)._render_core,
+        item_type_name.capitalize,
+        _render_core(args)
+      ]
     end
   end
 
@@ -169,9 +168,9 @@ format :json do
 
   view :id_atom, cache: :never do |_args|
     if !params["start"] || (params["start"] && (start = params["start"].to_i) &&
-       card.updated_at.strftime("%Y%m%d%H%M%S").to_i >= start)
+      card.updated_at.strftime("%Y%m%d%H%M%S").to_i >= start)
       h = _render_atom
-      h[:id] = card.id  if card.id
+      h[:id] = card.id if card.id
       h
     end
   end
