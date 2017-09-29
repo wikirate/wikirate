@@ -84,7 +84,7 @@ end
 format :json do
   view :core do
     card.all_answers.map do |answer|
-      subformat(answer)._render_core
+      subformat(answer.card)._render_core
     end
   end
 end
