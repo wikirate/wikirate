@@ -208,6 +208,10 @@
       justify-content: center;
     }
 
+    .item-title {
+      min-height: 60px;
+    }
+
     a.carousel-control-prev {
       align-items: flex-end;
       margin-bottom: 30px;
