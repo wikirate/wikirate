@@ -1,11 +1,9 @@
 event :import_csv, :integrate_with_delay, on: :update, when: :data_import? do
-  binding.pry
   import_manager.import_rows selected_row_indices
   redirect_to_import_status
 end
 
 event :prepare_import, :prepare_to_store, on: :update, when: :data_import? do
-  binding.pry
   import_status_card.reset selected_row_count
 end
 

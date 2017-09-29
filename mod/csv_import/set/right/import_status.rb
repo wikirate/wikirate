@@ -111,7 +111,6 @@ format :html do
 
 
   def generate_report_alert type
-    binding.pry if status[type].is_a? String
     alert STATUS_CONTEXT[type], false, false, href: "##{type}" do
       with_header STATUS_HEADER[type], level: 5 do
         list = []
