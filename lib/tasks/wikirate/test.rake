@@ -102,9 +102,9 @@ namespace :wikirate do
       dump_path = args[:path] || full_dump_path
       mysql_login = "mysql -u #{user}"
       mysql_login += " -p#{pwd}" if pwd
-      cmd =
-        "echo \"create database if not exists #{testdb}\" | #{mysql_login}; " \
-        "#{mysql_login} --database=#{testdb} < #{dump_path}"
+      cmd = "echo \"create database if not exists #{testdb}\" | #{mysql_login}; " \
+            "#{mysql_login} --database=#{testdb} < #{dump_path}"
+      puts "executing #{cmd}"
       system cmd
     end
 
