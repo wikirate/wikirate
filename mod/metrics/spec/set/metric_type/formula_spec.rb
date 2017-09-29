@@ -17,7 +17,7 @@ describe Card::Set::MetricType::Formula do
 
     it { is_expected.to be_instance_of(Card) }
     it "has codename" do
-      expect(subject.codename).to eq "formula"
+      expect(subject.codename).to eq :formula
     end
     it 'has type "metric type"' do
       expect(subject.type_id).to eq Card["metric type"].id
