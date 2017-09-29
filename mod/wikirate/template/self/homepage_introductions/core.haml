@@ -13,8 +13,6 @@
 
           %div{id: "#{type}-tab", class: "tab-pane #{'active' if type == :company}"}
             = nest "homepage #{type}", view: :carousel, items: { view: :homepage_item }
-        -#    .carousel.carousel-position-fix
-        -#      = nest "homepage #{type}", hide: [:paging, :title], items: { view: :homepage_item }
             .browse-button
               %a.btn.btn-sm.btn-default{:href => "/#{type}"}
                 = "Browse #{type.to_s.pluralize.capitalize}"

@@ -187,74 +187,52 @@
 }
 /*----------- Companies and Topics  ---------*/
 
-.carousel-position-fix {
-  position: relative;
-  min-height: 500px;
-  width: 100%;
-  margin-top: 10%;
-  margin-left: 30%;
-  //padding: 40px;
-}
-.metric-carousel-fix{
-  margin-top: 0%;
-}
-
-.carousel .browse-button {
-    position: absolute;
+.SELF-homepage_introduction {
+  .browse-button {
+    margin-left: 30%;
     width: 100%;
-    bottom: -40px;
-}
-
-.SELF-homepage_introduction .carousel {
-  position: relative;
-  min-height: 500px;
-  width: 100%;
-  margin-top: 10%;
-  margin-left: 30%;
-
-  .img-thumbnail {
-    // max-width: none;
   }
 
-  .carousel-item {
-    justify-content: center;
-  }
+  .carousel {
+    position: relative;
+    min-height: 500px;
+    width: 100%;
+    margin-top: 10%;
+    margin-left: 30%;
 
-  a.carousel-control-prev {
-    align-items: flex-end;
-    margin-bottom: 30px;
-    .carousel-control-prev-icon {
-      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23444' viewBox='0 0 8 8'%3E%3Cpath d='M4 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+    .img-thumbnail {
+      // max-width: none;
+    }
+
+    .carousel-item {
+      justify-content: center;
+    }
+
+    a.carousel-control-prev {
+      align-items: flex-end;
+      margin-bottom: 30px;
+      .carousel-control-prev-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23444' viewBox='0 0 8 8'%3E%3Cpath d='M4 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+      }
+    }
+
+    a.carousel-control-next {
+      align-items: flex-end;
+      margin-bottom: 30px;
+      .carousel-control-next-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23444' viewBox='0 0 8 8'%3E%3Cpath d='M1.5 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+
+      }
+    }
+
+    .carousel-indicators li {
+      background-color: #ccc;
+      &.active {
+        background-color: #333;
+      }
     }
   }
-
-  a.carousel-control-next {
-    align-items: flex-end;
-    margin-bottom: 30px;
-    .carousel-control-next-icon {
-      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23444' viewBox='0 0 8 8'%3E%3Cpath d='M1.5 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
-
-    }
-  }
-
-  .carousel-indicators li {
-    background-color: #ccc;
-    &.active {
-      background-color: #333;
-    }
-  }
 }
-
-
-
-
-
-
-
-.metric-carousel-fix .browse-button {
-    bottom: -32px;
-}
-
 #company-n-topic .grid-column {
   position: relative;
   //for slick-js icon position
