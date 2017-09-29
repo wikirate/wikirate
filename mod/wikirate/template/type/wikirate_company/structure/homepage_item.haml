@@ -3,11 +3,11 @@
     .row.text-center.company-header
       .col-md-4.col-xs-4.nopadding
         %a.inherit-anchor{:href => path}
-          .row.img-thumbnail.homepage-logo-container
+          .img-thumbnail.homepage-logo-container
             = nest(card.image_card)
 
       .col-md-8.col-xs-8
-        .col-md-12.col-xs-12.text-left
+        .col-md-12.col-xs-12.text-left.mt-2
           %a.inherit-anchor{:href => path}
             %h3
               = nest(card, view: :title)
