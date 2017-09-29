@@ -1,8 +1,8 @@
 #! no set module
 
-# ValidateImportManager doesn't import anything. It is used for collecting invalid data
-# to show it in the import table.
-class ValidationImportManager < ImportManager
+# ValidateManager doesn't import anything. It is used for collecting invalid data
+# to show it in the import table interface.
+class ValidationManager < ImportManager
   def validate row_indices=nil, &block
     @after_validation = block
     validate_rows row_indices

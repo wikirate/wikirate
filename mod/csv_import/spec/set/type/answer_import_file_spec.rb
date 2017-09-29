@@ -30,7 +30,6 @@ describe Card::Set::Type::AnswerImportFile, type: :controller do
     @controller = CardController.new
   end
 
-
   def card_route_to opts = {}
     route_to opts.merge(controller: "card")
   end
@@ -38,10 +37,13 @@ describe Card::Set::Type::AnswerImportFile, type: :controller do
   include_context "csv data"
   let(:card) { Card["A"].with_set(described_class) }
   let(:format) { card.format_with_set(described_class, :html) }
-  specify do
+
+  specify "turning 'A' into a import card" do
     allow(card).to receive(:file).and_return true
     allow(card).to receive(:csv_file).and_return answer_csv_file
-    expect(format.render_import_table).to have_tag "table"
+    expect(card).to respond_to(:mark_as_imported)
+    expect(format).to respond_to(:row_buckets)
+    expect(format._render_import_table).to have_tag "table"
   end
 
   describe "import table" do

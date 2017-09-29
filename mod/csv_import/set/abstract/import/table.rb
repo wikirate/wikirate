@@ -8,17 +8,19 @@ format :html do
   end
 
   def row_errors
-    return "" unless vim.errors?
+    return "" unless vm.errors?
     alert(:danger, true) do
       with_header "Invalid data", level: 4 do
-        list_group vim.error_list
+        list_group vm.error_list
       end
     end
   end
 
   def validation_manager
-    @vim ||= ValidationImportManager.new card.csv_file
+    @vm ||= ValidationManager.new card.csv_file
   end
+  alias_method :vm, :validation_manager
+  delegate :already_imported?, to: :card
 
   def row_buckets
     row_buckets = {
@@ -40,24 +42,20 @@ format :html do
 
   def table_rows
     rb = row_buckets
-    vim.validate do |validated_csv_row|
+    vm.validate do |validated_csv_row|
       table_row = import_table_row_class.new validated_csv_row, self
       rb[bucket_key(table_row)] << table_row.render
     end
     rb.values.flatten
   end
-end
 
-def table_with_errors *args
-  row_errors + table(*args)
-end
+  def table_with_errors *args
+    row_errors + table(*args)
+  end
 
-view :import_table, cache: :never do |args|
-  return alert(:warning) { "no import file attached" } if card.file.blank?
-  table_with_errors(table_rows, class: "import_table table-hover",
-                    header: column_titles)
-end
-
-def already_imported? index
-  imported_rows_card.already_imported? index
+  view :import_table, cache: :never do
+    return alert(:warning) { "no import file attached" } if card.file.blank?
+    table_with_errors(table_rows, class: "import_table table-hover",
+                      header: column_titles)
+  end
 end
