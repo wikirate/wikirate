@@ -13,6 +13,7 @@ class ImportStatus < Hash
 
   def init_missing_values
     self[:errors] ||= Hash.new { |h, k| h[k] = [] }
+    self[:reports] ||= Hash.new { |h, k| h[k] = [] }
     %i[imported skipped overriden failed].each do |n|
       self[n] ||= {}
     end

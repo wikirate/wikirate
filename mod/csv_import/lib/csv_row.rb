@@ -35,11 +35,11 @@ class CSVRow
 
   delegate :add_card, :import_card, :pick_up_card_errors, to: :import_manager
 
-  def initialize row, index, import_manager
+  def initialize row, index, import_manager=nil
     @row = row
-    @import_manager = import_manager
+    @import_manager = import_manager || ImportManager.new(nil)
 
-    @extra_data = import_manager.extra_data(index)
+    @extra_data = @import_manager.extra_data(index)
     @corrections = @extra_data[:corrections]
     @corrections = {} unless @corrections.is_a? Hash
     merge_corrections
@@ -61,8 +61,10 @@ class CSVRow
   end
 
   def execute_import
-    prepare_import
-    import
+    @import_manager.handle_import(self) do
+      prepare_import
+      import
+    end
   end
 
   def prepare_import

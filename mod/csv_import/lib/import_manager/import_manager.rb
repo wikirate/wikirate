@@ -1,11 +1,14 @@
 # ImportManager coordinates the import of a CSVFile. It defines the conflict and error
 # policy. It collects all errors and provides extra data like corrections for row fields.
 class ImportManager
+  attr_reader :conflict_strategy
+
   def initialize csv_file, conflict_strategy = :skip, extra_row_data = {}
     @csv_file = csv_file
     @conflict_strategy = conflict_strategy
     @extra_row_data = extra_row_data || {}
     @extra_row_data[:all] ||= {}
+    @import_status = ImportStatus.new(csv_file&.row_count || 0)
   end
 
   def import row_indices = nil
@@ -17,9 +20,9 @@ class ImportManager
     @import_status = ImportStatus.new counts: { total: row_count }
 
     @csv_file.each_row self, row_indices do |csv_row|
-      handle_import csv_row do
+      #handle_import csv_row do
         csv_row.execute_import
-      end
+      #end
     end
   end
 
@@ -41,6 +44,10 @@ class ImportManager
     pick_up_card_errors do
       Card.create args
     end
+  end
+
+  def add_extra_data index, data
+    @extra_row_data[index].merge! data
   end
 
   # add the final import card
@@ -86,8 +93,12 @@ class ImportManager
     @import_status[:errors][@current_row.row_index] << msg
   end
 
+  def report key, msg
+    @import_status[:reports][key] << "##{@current_row.row_index + 1} #{msg}"
+  end
+
   def errors_by_row_index
-    @errors.each do |index, msgs|
+    @import_status[:errors].each do |index, msgs|
       yield index, msgs
     end
   end

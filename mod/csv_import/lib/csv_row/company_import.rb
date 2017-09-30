@@ -5,7 +5,7 @@ class CSVRow
   # corrections[:company].
   # The user correction overrides the suggestion.
   module CompanyImport
-    def initialize row, *args
+    def initialize row, index, import_manager=nil
       @file_company = row[:company]
       super # overrides company with correction
       return unless @extra_data.present?

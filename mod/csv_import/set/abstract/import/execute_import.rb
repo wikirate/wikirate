@@ -3,6 +3,10 @@ event :import_csv, :integrate_with_delay, on: :update, when: :data_import? do
   redirect_to_import_status
 end
 
+event :flag_as_import, :prepare_to_validate, on: :update, when: :data_import? do
+  @empty_ok = true
+end
+
 event :prepare_import, :prepare_to_store, on: :update, when: :data_import? do
   import_status_card.reset selected_row_count
 end

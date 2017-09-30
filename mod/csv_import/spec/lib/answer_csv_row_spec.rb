@@ -23,13 +23,14 @@ describe AnswerCSVRow do
       end
     end
 
-
-
     example "creates answer card with valid data", as_bot: true do
       in_stage :validate, on: :update,
                trigger: -> { update "A", content: "import!" } do
-        row = described_class.new answer_data, 1
-        row.execute_import as_subcard_of: self
+        im = ActImportManager.new self, nil
+        allow(im).to receive(:log_status).and_return(true)
+        allow(im).to receive(:row_finieshed).and_return(true)
+        row = described_class.new answer_data, 1, im
+        row.execute_import
         expect(Card[answer_name]).not_to be_a Card
       end
 
@@ -103,8 +104,9 @@ describe AnswerCSVRow do
     def import data, row_index=1
       with_test_events do
         test_event :validate, on: :update, for: "A"  do
-          row = described_class.new data, row_index
-          row.execute_import as_subcard_of: self
+          im = ActImportManager.new nil, nil
+          row = described_class.new data, row_index, im
+          row.execute_import
         end
         yield -> { update "A", content: "import!" }
       end

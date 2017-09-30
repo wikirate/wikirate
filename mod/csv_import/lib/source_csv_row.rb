@@ -1,21 +1,18 @@
 require_relative "csv_row"
 require_relative "csv_row/source_import"
 
-# create a metric answer described by a row in a csv file
+# Create a source described by a row in a csv file.
 class SourceCSVRow < CSVRow
   include CSVRow::SourceImport
   include CSVRow::CompanyImport
 
-  @columns =
-    [:company, :year, :report_type, :source, :title]
-
-  @required =  [:company, :year, :source, :report_type]
+  @columns = [:company, :year, :report_type, :source, :title]
+  @required = [:company, :year, :report_type, :source]
 
   def finalize_source_card source_card
-      Env.params[:sourcebox] = "true"
+    with_sourcebox do
       source_card.director.catch_up_to_stage :prepare_to_store
-      Env.params[:sourcebox] = nil
-      source_card
+    end
   end
 
   def import

@@ -5,6 +5,7 @@ class CSVFile
   # @param headers [true, false, :detect] (false) if true the import raises an error
   #    if the csv file has no or wrong headers
   def initialize path_or_file, row_class, col_sep: ",", encoding: "utf-8", headers: false
+    raise ArgumentError, "no row class given" unless row_class.is_a?(Class)
     raise ArgumentError, "#{row_class} must inherit from CSVRow" unless row_class < CSVRow
     @row_class = row_class
     @col_sep = col_sep

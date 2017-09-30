@@ -3,41 +3,44 @@ class CSVRow
   # A hash in extra_data[:source_map] is used to handle duplicates sources in
   # the same import act.
   module SourceImport
-    def initialize row, index, import_manager
+    def initialize row, index, import_manager = nil
       super
-      @source_map = import_manager.extra_data(:global)[:source_map]
+      unless @import_manager.extra_data(:all)[:source_map]
+        @import_manager.add_extra_data :all, source_map: {}
+      end
+      @source_map = @import_manager.extra_data(:all)[:source_map]
     end
 
     def source_args
-      @source_args ||= @csv_row
+      @source_args ||= @row
     end
 
     def source_subcard_args
       args = {
         "+*source_type" => { content: "[[Link]]" },
-        "+Link" => { content: @source_args[:source], type_id: Card::PhraseID }
+        "+Link" => { content: source_args[:source], type_id: Card::PhraseID }
       }
-      # args["+title"] = { content: @source_args[:title] } if @source_args.key?(:title)
-      # TODO test if card get right type
+      # args["+title"] = { content: source_args[:title] } if source_args.key?(:title)
+      # TODO: test if card get right type
       # (all pointer except title)
       [:title, :report_type, :company, :year].each do |name|
-        next unless @source_args.key? name
-        args["+#{name}"] = { content: @source_args[name] }
+        next unless source_args.key? name
+        args["+#{name}"] = { content: source_args[name] }
       end
       args
     end
 
-    def import_source update_existing: true
-      @source_map.fetch @source_args[:source] do |url|
-        @source_map[url] = create_or_update_source update_existing
+    def import_source
+      @source_map.fetch source_args[:source] do |url|
+        @source_map[url] = create_or_update_source
       end
     end
 
-    def create_or_update_source update_existing
-      duplicates = Card::Set::Self::Source.find_duplicates @source_args[:source]
+    def create_or_update_source
+      duplicates = Card::Set::Self::Source.find_duplicates source_args[:source]
       if duplicates.empty?
         create_source
-      elsif update_existing
+      elsif @import_manager.conflict_strategy == :override
         resolve_source_duplication duplicates.first.left
       else
         duplicates.first.left
@@ -49,7 +52,7 @@ class CSVRow
       updated |= update_title_card existing_source
       updated |= update_existing_source existing_source
       return unless updated
-      success[:updated_sources].push([@csv_row.row_index, existing_source.name])
+      @import_manager.report :updated_sources, existing_source.name
     end
 
     def create_source
@@ -57,31 +60,30 @@ class CSVRow
         source_card = add_card name: "", type_id: Card::SourceID,
                                subcards: source_subcard_args
         finalize_source_card source_card
+        source_card
       end
     end
 
     def finalize_source_card source_card
-      Card::Env.params[:sourcebox] = "true"
-      source_card.director.catch_up_to_stage :prepare_to_store
+      with_sourcebox do
+        source_card.director.catch_up_to_stage :prepare_to_store
 
-      # the pure source update doesn't finalize, don't know why
-      if !Card.exists?(source_card.name) && source_card.errors.empty?
-        source_card.director.catch_up_to_stage :finalize
+        # the pure source update doesn't finalize, don't know why
+        if !Card.exists?(source_card.name) && source_card.errors.empty?
+          source_card.director.catch_up_to_stage :finalize
+        end
       end
-      Card::Env.params[:sourcebox] = nil
-      source_card
     end
 
-    def update_existing_source source_card, source_hash
+    def update_existing_source source_card
       [:report_type, :company, :year].inject(false) do |updated, e|
-        create_or_update_pointer_subcard(source_card, e, source_hash[e]) || updated
+        create_or_update_pointer_subcard(source_card, e, @row[e]) || updated
       end
     end
 
-    def update_title_card source_card, source_hash
-      title = Card::Env.params[:title][source_hash[:row].to_s]
+    def update_title_card source_card
       title_card = source_card.fetch trait: :wikirate_title,
-                                     new: { content: title }
+                                     new: { content: @row[:title] }
       return unless title_card.new?
       add_subcard title_card
     end
@@ -101,22 +103,14 @@ class CSVRow
       true
     end
 
-    def hashkey_to_codename hashkey
-      case hashkey
-      when :company
-        :wikirate_company
-      else
-        hashkey
-      end
+    def hashkey_to_codename key
+      key == :company ? :wikirate_company : key
     end
   end
 
   def check_duplication_within_file
-    source_url = @source_args[:source]
-    if @source_map[source_url]
-      msg = [@csv_row.row_index, source_url]
-      success.params[:duplicated_sources].push(msg)
-      throw :skip_row
-    end
+    return unless @source_map.key? source_args[:source]
+    @import_manager.report :duplicates_in_file, source_args[:source]
+    throw :skip_row
   end
 end

@@ -11,7 +11,7 @@ class AnswerCSVRow < CSVRow
 
   @required = [:metric, :company, :year, :value, :source]
 
-  def initialize *args
+  def initialize row, index, import_manager=nil
     super
     # use only the source value for creating the source
     # TODO: consider to add company to source args

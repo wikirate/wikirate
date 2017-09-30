@@ -45,7 +45,7 @@ class SharedData
       add :companies, :topics, :analysis, :notes_and_sources,
           :metrics, :yearly_variables,
           :projects, :industry,
-          :profile_sections, :badges
+          :profile_sections, :badges, :import_files
 
       Card::Cache.reset_all
       Answer.refresh
@@ -161,5 +161,12 @@ class SharedData
                content: "Technology Hardware"
       end
     end
+
+    def add_import_files
+      create "answer import test", type: :answer_import_file, empty_ok: true
+      create "source import test", type: :source_import_file, empty_ok: true
+      create "relationship answer import test", type: :relationship_answer_import_file, empty_ok: true
+    end
+
   end
 end
