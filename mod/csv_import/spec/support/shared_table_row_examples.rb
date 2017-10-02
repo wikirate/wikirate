@@ -1,9 +1,17 @@
 shared_context "table_row" do |type_id|
-  def csv_row args={ match_type: "exact" }
-    row_args =csv_data.merge args
+  def csv_row data
+    row_args = csv_data.merge data
+    CSVRow::Structure::AnswerCSV.new row_args, 0
+  end
 
-    CSVRow::Structure::AnswerCSV.new(row_args, 1, {},
-                     match_type: row_args.delete(:match_type))
+  def validated_table_row data
+    row_args = csv_data.merge data
+    io = StringIO.new row_args.values.join(",")
+    file = CSVFile.new io, CSVRow::Structure::AnswerCSV
+    vm = ValidationManager.new file, :skip
+    vm.validate do |csv_row|
+      yield described_class.new(csv_row, format).render
+    end
   end
 
   let(:format) do
@@ -14,13 +22,8 @@ shared_context "table_row" do |type_id|
     described_class.new(row_data, format).render
   end
 
-  def field name
+  def field  name
     index = Card::Set::Type::AnswerImportFile::COLUMNS.keys.index(name)
     row[:content][index]
-  end
-
-  def be_disabled
-    have_tag :input, with: { name: "import_data[1][import]",
-                             value: true, disabled: "disabled" }
   end
 end

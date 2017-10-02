@@ -7,6 +7,7 @@ shared_context "csv data" do
         source: "http://google.com",
         comment: ""
       }
+
   def answer_data args={}
     ANSWER_DATA.merge args
   end

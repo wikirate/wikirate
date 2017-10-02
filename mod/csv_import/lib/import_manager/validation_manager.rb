@@ -1,7 +1,7 @@
 # ValidateManager doesn't import anything. It is used for collecting invalid data
 # to show it in the import table interface.
 class ValidationManager < ImportManager
-  def validate row_indices=nil, &block
+  def validate row_indices = nil, &block
     @after_validation = block
     validate_rows row_indices
   end
@@ -11,9 +11,13 @@ class ValidationManager < ImportManager
     @import_status = Status.new counts: { total: row_count }
 
     @csv_file.each_row self, row_indices do |csv_row|
-      handle_import csv_row do
-        csv_row.prepare_import
-      end
+      validate_row csv_row
+    end
+  end
+
+  def validate_row csv_row
+    handle_import csv_row do
+      csv_row.prepare_import
     end
   end
 
