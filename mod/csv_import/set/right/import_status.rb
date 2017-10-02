@@ -105,7 +105,6 @@ format :html do
     end.compact.join
   end
 
-
   def generate_report_alert type
     alert STATUS_CONTEXT[type], false, false, href: "##{type}" do
       with_header STATUS_HEADER[type], level: 5 do

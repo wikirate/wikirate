@@ -11,6 +11,7 @@ class ImportManager
     @extra_data = extra_data || {}
     @extra_data[:all] ||= {}
     @import_status = ImportManager::Status.new(csv_file&.row_count || 0)
+    @imported_keys = ::Set.new
   end
 
   def import row_indices = nil
@@ -55,7 +56,18 @@ class ImportManager
   # add the final import card
   def import_card card_args
     @current_row.name = card_args[:name]
+    check_for_duplicates card_args[:name]
     add_card card_args
+  end
+
+  def check_for_duplicates name
+    key = name.to_name.key
+    if @imported_keys.include? key
+      report :duplicate_in_file, name
+      throw :skip_row, :skipped
+    else
+      @imported_keys << key
+    end
   end
 
   def with_conflict_strategy strategy
@@ -136,6 +148,10 @@ class ImportManager
     @import_status[:errors].each_with_object([]) do |(index, errors), list|
       list << "##{index + 1}: #{errors.join("; ")}"
     end
+  end
+
+  def override?
+    @conflict_strategy == :override
   end
 
   private

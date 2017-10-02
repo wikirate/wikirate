@@ -3,9 +3,6 @@ class CSVRow
   module AnswerImport
     def import_answer
       build_answer_create_args
-      # TODO: decide what to do with this duplications check
-      #check_for_duplicates
-      throw :skip_row, :failed if errors.any?
       import_card answer_create_args
     end
 
@@ -17,6 +14,7 @@ class CSVRow
 
     def build_answer_create_args
       @answer_create_args = construct_answer_create_args
+      throw :skip_row, :failed if errors.any?
     end
 
     def answer_create_args
@@ -37,7 +35,8 @@ class CSVRow
     end
 
     def construct_answer_create_args
-      create_args = Card[metric].create_value_args @row
+      create_args =
+        Card[metric].create_value_args @row.merge(ok_to_exist: override?)
       pick_up_card_errors Card[metric]
       create_args
     end

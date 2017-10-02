@@ -36,10 +36,8 @@ shared_context "csv import" do
   end
 
   let(:errors) do
-    status[:errors].values
+    status[:errors].values.flatten
   end
-
-
 
   def import_card_with_rows *row_keys
     the_file = CSVFile.new csv_io(row_keys), csv_row_class

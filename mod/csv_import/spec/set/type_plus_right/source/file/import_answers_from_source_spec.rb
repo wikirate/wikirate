@@ -64,13 +64,13 @@ describe Card::Set::TypePlusRight::Source::File::ImportAnswersFromSource do
 
     it "reports error if value type doesn't fit" do
       trigger_import_with_metric_and_year(:wrong_value)
-      expect(errors).to contain_exactly "Only numeric content is valid for this metric."
+      expect(errors).to contain_exactly(/5 is not a valid option/)
     end
 
     it "reports duplicated value in file" do
       trigger_import_with_metric_and_year(:exact_match, :duplicate_in_file)
-      binding.pry
-      expect(status[:reports][:duplicate_in_file]).to contain_exactly /test/
+      expect(status[:reports][:duplicate_in_file])
+        .to contain_exactly "#6 Jedi+disturbances in the Force+Apple Inc.+2001"
     end
 
     it "doesn't update existing value" do

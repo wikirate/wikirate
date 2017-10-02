@@ -31,7 +31,7 @@ class CSVRow
   attr_reader :errors, :row_index, :import_manager
   attr_accessor :status, :name
 
-  delegate :add_card, :import_card, :pick_up_card_errors, to: :import_manager
+  delegate :add_card, :import_card, :override?, :pick_up_card_errors, to: :import_manager
 
   def initialize row, index, import_manager=nil
     @row = row
