@@ -27,6 +27,7 @@ shared_context "csv import" do
     # in was stubbing the CSVFile.new
     allow(CSVFile).to receive(:new).and_return csv_file
     # Card.any_instance.stub(:csv_file).and_return csv_file
+    allow(import_card).to receive(:file).and_return true
     Card.any_instance.stub(:file).and_return true
     import_card
   end
@@ -95,5 +96,28 @@ shared_context "table row matcher" do
         with_tag :td, text: text
       end
     end
+  end
+end
+
+shared_context "answer import" do
+  def answer_card key
+    Card[metric, company_name(key), year]
+  end
+
+  def answer_name key
+    [metric, company_name(key), year].join "+"
+  end
+
+  def company_name key
+    data[key][company_row]
+  end
+
+  def value_card key
+    Card[metric, company_name(key), year, :value]
+  end
+
+  def expect_answer_created key, with_value: nil
+     value = with_value || data[key][value_row]
+     expect(answer_card(key)).to exist.and have_a_field(:value).with_content(value)
   end
 end

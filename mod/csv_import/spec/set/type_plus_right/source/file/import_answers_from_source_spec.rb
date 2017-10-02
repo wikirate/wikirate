@@ -20,19 +20,11 @@ describe Card::Set::TypePlusRight::Source::File::ImportAnswersFromSource do
   let(:metric) { "Jedi+disturbances in the Force" }
   let(:year) { "2001" }
 
-  def expect_answer_created key, with_value: nil
-    company = data[key].first
-    value = with_value || data[key].last
-    expect(answer_card(company)).to exist.and have_a_field(:value).with_content(value)
+  include_context "answer import" do
+    let(:company_row) { 0 }
+    let(:value_row) { 1 }
   end
 
-  def answer_card company
-    Card[metric, company, year]
-  end
-
-  def value_card company
-    Card[metric, company, year, :value]
-  end
 
   def trigger_import_with_metric_and_year *args
     args << { all: { corrections: {
@@ -92,7 +84,7 @@ describe Card::Set::TypePlusRight::Source::File::ImportAnswersFromSource do
           partial_match: { match_type: :partial,
                            corrections: { company: "Sony Corporation" } },
         )
-        expect(value_card("Sony Corporation")).to have_db_content "no"
+        expect(value_card(:partial_match).to have_db_content "no"
       end
 
       it "adds corrected name to company's aliases" do

@@ -10,12 +10,12 @@ describe Card::Set::Abstract::Import::ExecuteImport do
     end
 
     example "an empty hash given" do
-      Card::Env.params[:import_data] = {}
+      Card::Env.params[:import_rows] = {}
       is_expected.to be_falsey
     end
 
     example "an import value" do
-      Card::Env.params[:import_data] = { 1 => { import: true } }
+      Card::Env.params[:import_rows] = { 1 => true  }
       is_expected.to be_truthy
     end
   end

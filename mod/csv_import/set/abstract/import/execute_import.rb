@@ -21,11 +21,22 @@ def conflict_strategy
 end
 
 def extra_data
-  @extra_data ||= Env.params[:extra_data].is_a?(Hash) ? Env.params[:extra_data] : {}
+  @extra_data ||= fetch_hash_from_params(:extra_data)
+end
+
+def fetch_hash_from_params key
+  case Env.params[key]
+    when Hash
+      Env.params[key]
+    when ActionController::Parameters
+      Env.params[key].to_unsafe_h
+    else
+      {}
+    end
 end
 
 def data_import?
-  Env.params[:import_rows].present? && Env.params[:import_rows].is_a?(Hash)
+  Env.params[:import_rows].present?
 end
 
 def selected_row_count
@@ -33,9 +44,8 @@ def selected_row_count
 end
 
 def selected_row_indices
-  return [] unless (rows = Env.params[:import_rows])
   @selected_row_indices ||=
-    rows.each_with_object([]) do |(index, value), a|
+    fetch_hash_from_params(:import_rows).each_with_object([]) do |(index, value), a|
       next unless value == true || value == "true"
       a << index.to_i
     end
