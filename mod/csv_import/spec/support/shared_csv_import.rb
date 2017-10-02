@@ -27,7 +27,7 @@ shared_context "csv import" do
     # in was stubbing the CSVFile.new
     allow(CSVFile).to receive(:new).and_return csv_file
     # Card.any_instance.stub(:csv_file).and_return csv_file
-    allow(import_card).to receive(:file).and_return true
+    #allow(import_card).to receive(:file).and_return true
     Card.any_instance.stub(:file).and_return true
     import_card
   end

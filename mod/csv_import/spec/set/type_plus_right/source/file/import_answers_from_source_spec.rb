@@ -84,7 +84,7 @@ describe Card::Set::TypePlusRight::Source::File::ImportAnswersFromSource do
           partial_match: { match_type: :partial,
                            corrections: { company: "Sony Corporation" } },
         )
-        expect(value_card(:partial_match).to have_db_content "no"
+        expect(value_card(:partial_match)).to have_db_content "no"
       end
 
       it "adds corrected name to company's aliases" do
