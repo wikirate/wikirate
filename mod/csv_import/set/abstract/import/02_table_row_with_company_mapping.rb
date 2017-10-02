@@ -25,8 +25,7 @@ class TableRowWithCompanyMapping < TableRow
 
   def company_correction_field
     return @match.suggestion if @match.exact? || @match.alias?
-    @format.text_field_tag input_name(:extra_data, :corrections, :company),
-                           @match.suggestion,
+    @format.text_field_tag corrections_input_name(:company), @match.suggestion,
                            class: "company_autocomplete"
   end
 

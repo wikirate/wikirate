@@ -13,7 +13,7 @@ shared_context "csv data" do
 
   def answer_csv_file data=ANSWER_DATA
     io = StringIO.new data.values.join ","
-    CSVFile.new io, AnswerCSVRow
+    CSVFile.new io, CSVRow::Structure::AnswerCSV
   end
 
   def answer_card args={}
@@ -21,7 +21,7 @@ shared_context "csv data" do
   end
 
   def csv_row args={}, index=1
-    AnswerCSVRow.new answer_data(args), index
+    CSVRow::Structure::AnswerCSV.new answer_data(args), index
   end
 
   ANSWER_DATA.keys.each do |key|

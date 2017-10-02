@@ -1,7 +1,5 @@
-require_relative "csv_row/normalizer"
-
-# Use CSVRow to process a csv row.
-# CSVFile creates an instance of CSVRow for every row and calls #import on it
+# Inherit from CSVRow to describe and process a csv row.
+# CSVFile creates an instance of CSVRow for every row and calls #execute_import on it
 class CSVRow
   include ::Card::Model::SaveHelper
   include Normalizer

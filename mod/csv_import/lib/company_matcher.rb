@@ -1,3 +1,4 @@
+# Match company names to companies in the database
 class CompanyMatcher
   COMPANY_MAPPER_THRESHOLD = 0.5
 

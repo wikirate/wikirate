@@ -1,6 +1,7 @@
 class CSVRow
+  # To be used by CSVRow classes to handle source imports.
   # Expects an url in row[:source].
-  # A hash in extra_data[:source_map] is used to handle duplicates sources in
+  # A hash in extra_data[:all][:source_map] is used to handle duplicates sources in
   # the same import act.
   module SourceImport
     def initialize row, index, import_manager = nil

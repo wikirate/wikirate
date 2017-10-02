@@ -2,7 +2,7 @@ shared_context "table_row" do |type_id|
   def csv_row args={ match_type: "exact" }
     row_args =csv_data.merge args
 
-    AnswerCSVRow.new(row_args, 1, {},
+    CSVRow::Structure::AnswerCSV.new(row_args, 1, {},
                      match_type: row_args.delete(:match_type))
   end
 

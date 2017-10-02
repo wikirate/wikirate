@@ -21,7 +21,7 @@ SUCCESS_MESSAGES =
   }
 
 def csv_row_class
-  AnswerCSVRow
+  CSVRow::Structure::AnswerCSV
 end
 
 def item_label

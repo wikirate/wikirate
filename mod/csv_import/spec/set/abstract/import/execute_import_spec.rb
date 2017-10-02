@@ -49,10 +49,10 @@ describe Card::Set::Abstract::Import::ExecuteImport do
       csv_rows = import_data.map.with_index do |row_args, index|
         case row_args
         when Hash
-          AnswerCSVRow.new row_args, index
+          CSVRow::Structure::AnswerCSV.new row_args, index
         when Array
           row_hash, correction, extra_data = row_args
-          AnswerCSVRow.new row_hash, index, correction, extra_data
+          CSVRow::Structure::AnswerCSV.new row_hash, index, correction, extra_data
         end
 
       end

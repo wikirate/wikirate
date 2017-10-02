@@ -1,7 +1,7 @@
 require_relative "../csv_row"
 
 # This class provides an interface to import relationship metrics
-class RelationshipMetricCSVRow < CSVRow
+class CSVRow::Structure::RelationshipMetricCSV < CSVRow
   @columns = [:designer, :title, :inverse, :value_type, :value_options, :unit]
   @required = [:designer, :title, :value_type, :inverse]
 

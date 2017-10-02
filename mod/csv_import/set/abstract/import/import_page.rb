@@ -7,12 +7,11 @@ format :html do
     frame_and_form :update, "notify-success" => "import successful" do
       [
         hidden_import_tags,
-        _optional_render(:metric_select),
-        _optional_render(:year_select),
-        _optional_render(:import_flag),
-        _optional_render(:import_table_helper),
-        _render(:import_table),
-        _render(:import_button_formgroup)
+        render(:import_flag),
+        render(:additional_form_fields),
+        render(:import_table_helper),
+        render(:import_table),
+        render(:import_button_formgroup)
       ]
     end
   end
@@ -30,14 +29,6 @@ format :html do
                          data: { disable_with: "Importing" }
   end
 
-  view :year_select do
-    nest card.left.year_card, view: :edit_in_form
-  end
-
-  view :metric_select do
-    nest card.left.metric_card, view: :edit_in_form
-  end
-
   view :import_flag do
     hidden_field_tag :is_data_import, "true"
   end
@@ -45,6 +36,10 @@ format :html do
   view :import_table_helper do
     wrap_with(:p, group_selection_checkboxes) +
       wrap_with(:p, select_conflict_strategy)
+  end
+
+  view :additional_form_fields do
+    ""
   end
 
   def group_selection_checkboxes

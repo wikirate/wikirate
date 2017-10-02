@@ -1,16 +1,12 @@
 require_relative "../../support/shared_csv_import"
 
 describe Card::Set::Type::SourceImportFile do
-  let(:status) do
-    Card["source import test", :import_status].status
-  end
-
   def url name
     "http://www.wikiwand.com/en/#{name.tr(" ","_")}"
   end
 
   include_context "csv import" do
-    let(:csv_row_class) { SourceCSVRow }
+    let(:csv_row_class) { CSVRow::Structure::SourceCSV }
     let(:import_card) { Card["source import test"] }
     let(:data) do
       {
@@ -37,7 +33,6 @@ describe Card::Set::Type::SourceImportFile do
       }
     end
   end
-
 
   before do
     login_as "joe_admin"
@@ -175,22 +170,7 @@ describe Card::Set::Type::SourceImportFile do
   end
 
   describe "view :import_table" do
-    def with_row index:, context:, checked:, fields:, match:, suggestion:
-      checkbox_with = { type: :checkbox, name: "import_data[#{index}][import]", value: "true" }
-      checkbox_with[:checked] = "checked" if checked
-      with_tag :tr, with: {  "data-csv-row-index" => index } do
-        with_tag :td do
-          with_tag :input, with: checkbox_with
-          with_tag :input, with: { type: :hidden, value: match,
-                                   name: "import_data[#{index}][extra_data][match_type]" }
-          with_tag :input, with: { type: :hidden, value: suggestion,
-                                   name: "import_data[#{index}][extra_data][company_suggestion]" }
-        end
-        fields.each do |text|
-          with_tag :td, text: text
-        end
-      end
-    end
+    include_context "table row matcher"
 
     example "shows correctly import table" do
       table = import_card_with_rows(:exact_match, :partial_match, :alias_match)

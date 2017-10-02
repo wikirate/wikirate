@@ -6,9 +6,9 @@ describe Card::Set::Type::AnswerImportFile, type: :controller do
   routes { Decko::Engine.routes }
   before { @controller = CardController.new }
 
-  describe "import table" do
+  describe "view: import_table" do
     include_context "csv import" do
-      let(:csv_row_class) { AnswerCSVRow }
+      let(:csv_row_class) { CSVRow::Structure::AnswerCSV }
       let(:import_card) { Card["answer import test"] }
       let(:data) do
         {
@@ -21,12 +21,9 @@ describe Card::Set::Type::AnswerImportFile, type: :controller do
       end
     end
 
-    let(:format) { import_card_with_data.format(:html) }
-
     it "sorts by match type" do
-      #allow(card).to receive(:file).and_return true
-      #allow(card).to receive(:csv_file).and_return csv_file
-      expect(format.render_import_table).to have_tag :table do
+      table = import_card_with_data.format(:html)._render_import_table
+      expect(table).to have_tag :table do
         with_tag :tbody do
           with_text /Not a metric.+New Company.+Sony.+Google.+Death Star/m
         end
@@ -36,7 +33,7 @@ describe Card::Set::Type::AnswerImportFile, type: :controller do
 
   describe "import csv file" do
     include_context "csv import" do
-      let(:csv_row_class) { AnswerCSVRow }
+      let(:csv_row_class) { CSVRow::Structure::AnswerCSV }
       let(:import_card) { Card["answer import test"] }
       let(:data) do
         {

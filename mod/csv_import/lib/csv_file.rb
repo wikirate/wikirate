@@ -1,6 +1,5 @@
-require_relative "csv_row"
-
-# Use CSVFile to describe the structure of a csv file and import its content
+# CSVFile loads csv data from a given path or file handle and provides methods
+# to iterate over the data.
 class CSVFile
   # @param headers [true, false, :detect] (false) if true the import raises an error
   #    if the csv file has no or wrong headers
@@ -12,17 +11,7 @@ class CSVFile
     @encoding = encoding
 
     read_csv path_or_file
-
     initialize_col_map headers
-  end
-
-  def initialize_col_map header_line
-    if (header_line == :detect && header_row?) || header_line == true
-      map_headers
-      @rows.shift
-    else
-      @col_map = @row_class.columns.zip((0..@row_class.columns.size)).to_h
-    end
   end
 
   # yields the rows of the csv file as CSVRow objects
@@ -126,6 +115,15 @@ class CSVFile
     @col_map.each_with_object({}) do |(k, v), h|
       h[k] = row[v]
       h[k] &&= h[k].strip
+    end
+  end
+
+  def initialize_col_map header_line
+    if (header_line == :detect && header_row?) || header_line == true
+      map_headers
+      @rows.shift
+    else
+      @col_map = @row_class.columns.zip((0..@row_class.columns.size)).to_h
     end
   end
 end

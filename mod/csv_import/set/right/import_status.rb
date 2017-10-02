@@ -7,7 +7,7 @@ def history?
 end
 
 def status
-  @status ||= ::ImportStatus.new content
+  @status ||= ImportManager::Status.new content
 end
 
 def import_counts
@@ -15,7 +15,7 @@ def import_counts
 end
 
 def reset total
-  @status = ::ImportStatus.new act_id: @current_act&.id, counts: { total: total }
+  @status = ImportManager::Status.new act_id: @current_act&.id, counts: { total: total }
   save_status
 end
 
@@ -44,11 +44,7 @@ STATUS_CONTEXT = {
 
 
 format :html do
-  def import_counts
-    card.import_counts
-  end
-
-  delegate :status, to: :card
+  delegate :status, :import_counts, to: :card
   delegate :percentage, :count, :step, to: :import_counts
 
   def wrap_data

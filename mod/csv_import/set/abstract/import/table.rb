@@ -19,6 +19,7 @@ format :html do
   def validation_manager
     @vm ||= ValidationManager.new card.csv_file
   end
+
   alias_method :vm, :validation_manager
   delegate :already_imported?, to: :card
 
@@ -57,5 +58,15 @@ format :html do
     return alert(:warning) { "no import file attached" } if card.file.blank?
     table_with_errors(table_rows, class: "import_table table-hover",
                       header: column_titles)
+  end
+
+  def extra_data_input_name index, *subfields
+    name = "extra_data[#{index}]"
+    name << subfields.map { |f| "[#{f}]" }.join("") if subfields.present?
+    name
+  end
+
+  def corrections_input_name index, key
+    extra_data_input_name index, :corrections, key
   end
 end
