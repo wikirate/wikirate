@@ -4,3 +4,4 @@
 [submodule "vendor/decko"]
 	path = vendor/decko
 	url = https://github.com/decko-commons/decko
+        branch = wikirate
