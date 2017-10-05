@@ -51,7 +51,6 @@ namespace :wikirate do
           SharedData.add_wikirate_data
         end
       end
-
     end
   end
 end

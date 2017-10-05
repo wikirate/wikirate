@@ -4,7 +4,7 @@ Feature: import metric values from a csv file
 
   Background:
     Given I am signed in as Joe Camel
-    And I go to new Metric Value Import File
+    And I go to new Metric Answer Import File
     And I fill in "card_name" with "Strikes tmr?"
     And I upload the metric_value_import_file "metric_values_import.csv"
     And I wait for ajax response

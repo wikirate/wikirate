@@ -9,7 +9,7 @@ module Formula
     class Input
       # @param [Array<Card>] input_cards all cards that are part of the formula
       # @param [Array<String] year_options for every input card a year option
-      # @param [Proc] input_card a block that is called for every input value
+      # @param [Proc] input_cards a block that is called for every input value
       def initialize input_cards, year_options, &input_cast
         @input_cards = input_cards
         @input_cast = input_cast

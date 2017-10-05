@@ -1,4 +1,4 @@
-require_relative "../csv_row"
+require_relative "../../../mod/csv_import/lib/csv_row"
 
 class WikipediaCSVRow < CSVRow
   @columns = [:wikirate_id, :wikirate_name, :wikipedia_url]

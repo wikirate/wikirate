@@ -209,7 +209,7 @@ RSpec.describe Card::Set::Type::Source do
   describe "while rendering views" do
     let(:csv_file) do
       path = File.expand_path(
-        "../../../type_plus_right/source/file/import_test.csv", __FILE__
+        "../test.csv", __FILE__
       )
       File.open(path)
     end
@@ -226,9 +226,7 @@ RSpec.describe Card::Set::Type::Source do
       source_file = sourcepage.fetch trait: :file
       expected_url = "/#{source_file.cardname.url_key}?view=import"
       expect(html).to have_tag("a",
-                               with: {
-                                 href: expected_url
-                               },
+                               with: { href: expected_url },
                                text: "Import to metric values")
     end
     describe "original_icon_link" do

@@ -136,7 +136,7 @@ RSpec.describe Card::Set::Right::RelatedArticles do
       html = format.analysis_links @sample_analysis.name, true
 
       expect(html).to have_tag("span.company", text: @sample_analysis.name.to_name.trunk_name)
-      expect(html).to have_tag("span.topic",   text: @sample_analysis.name.to_name.tag_name)
+      expect(html).to have_tag("span.topic", text: @sample_analysis.name.to_name.tag_name)
       expect(html).to have_tag("a.known-card", with: { href: "/#{@sample_analysis.name.to_name.url_key}" })
     end
 
@@ -146,7 +146,7 @@ RSpec.describe Card::Set::Right::RelatedArticles do
       citation_html = format.citation_link @sample_analysis.name.to_name
 
       expect(html).to have_tag("span.company", text: @sample_analysis.name.to_name.trunk_name)
-      expect(html).to have_tag("span.topic",   text: @sample_analysis.name.to_name.tag_name)
+      expect(html).to have_tag("span.topic", text: @sample_analysis.name.to_name.tag_name)
       expect(html).to have_tag("a.known-card", with: { href: "/#{@sample_analysis.name.to_name.url_key}" })
 
       expect(html).to include(format.process_content(citation_html))
