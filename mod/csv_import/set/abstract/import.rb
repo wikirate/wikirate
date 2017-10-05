@@ -5,7 +5,7 @@ delegate :mark_as_imported, :already_imported?, to: :imported_rows_card
 
 def csv_file
   # maybe we have to use file.read ?
-  CSVFile.new file, csv_row_class
+  CSVFile.new file, csv_row_class, headers: :detect
 end
 
 def clean_html?
