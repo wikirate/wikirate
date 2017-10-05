@@ -1,6 +1,6 @@
 require_relative "../../../support/shared_csv_data"
 
-describe Card::Set::Abstract::Import::ExecuteImport do
+RSpec.xdescribe Card::Set::Abstract::Import::ExecuteImport do
   let(:card) { Card["A"].with_set(described_class) }
   describe "#data_import?" do
     subject { card.data_import? }
@@ -15,12 +15,12 @@ describe Card::Set::Abstract::Import::ExecuteImport do
     end
 
     example "an import value" do
-      Card::Env.params[:import_rows] = { 1 => true  }
+      Card::Env.params[:import_rows] = { 1 => true }
       is_expected.to be_truthy
     end
   end
 
-  describe "event: execute_import" do
+  xdescribe "event: execute_import" do
     include_context "csv data"
 
     before do

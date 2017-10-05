@@ -1,6 +1,6 @@
 require_relative "../../../../support/shared_csv_import"
 
-describe Card::Set::TypePlusRight::Source::File::ImportAnswersFromSource do
+RSpec.xdescribe Card::Set::TypePlusRight::Source::File::ImportAnswersFromSource do
   include_context "csv import" do
     let(:csv_row_class) { CSVRow::Structure::AnswerFromSourceCSV }
     let(:import_card) { Card["answer from source import test+file"] }
