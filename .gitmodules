@@ -1,6 +1,6 @@
 [submodule "vendor/mods"]
 	path = vendor/mods
-	url = https://github.com/wagn/mods.git
+	url = https://github.com/decko-commons/card-mods
 [submodule "vendor/decko"]
 	path = vendor/decko
 	url = https://github.com/decko-commons/decko
