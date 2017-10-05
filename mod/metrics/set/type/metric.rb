@@ -167,7 +167,7 @@ def value_cards _opts={}
 end
 
 def metric_value_name company, year
-  company_name = Card.fetch_real_by_key(company).name
+  company_name = Card[company].name
   "#{name}+#{company_name}+#{year}"
 end
 

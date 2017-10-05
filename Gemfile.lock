@@ -1,5 +1,5 @@
 PATH
-  remote: vendor/decko/card
+  remote: ../../gem/card
   specs:
     card (1.92)
       bootstrap4-kaminari-views (~> 1.0)
@@ -19,14 +19,14 @@ PATH
       uuid (~> 2.3)
 
 PATH
-  remote: vendor/decko/cardname
+  remote: ../../gem/cardname
   specs:
     cardname (0.2)
       activesupport (~> 5.1)
       htmlentities (~> 4.3)
 
 PATH
-  remote: vendor/decko/decko
+  remote: ../../gem/decko
   specs:
     decko (0.2)
       card (= 1.92)
