@@ -38,7 +38,7 @@ def parse_report_source json_array, aliases_hash, skip_list
 end
 
 begin
-  library_card = Card.new type_id: Card::MetricValueImportFileID
+  library_card = Card.new type_id: Card::AnswerImportFileID
   aliases_hash = library_card.format.aliases_hash
   skip_list = company_skip_list
   json_array = JSON.parse(text)

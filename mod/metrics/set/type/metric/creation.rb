@@ -80,7 +80,7 @@ end
 
 def valid_value_args? args
   error_msg = []
-  check_value_card_exist args, error_msg
+  check_value_card_exist args, error_msg unless args.delete(:ok_to_exist)
   if metric_type_codename == :researched && !args[:source]
     error_msg << "missing source"
   end

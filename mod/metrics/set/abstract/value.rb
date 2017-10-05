@@ -39,7 +39,7 @@ event :check_length, :validate, on: :save, changed: :content do
 end
 
 event :mark_as_imported, before: :finalize_action do
-  return unless ActManager.act_card.type_id == MetricValueImportFileID
+  return unless ActManager.act_card.type_id == AnswerImportFileID
   @current_action.comment = "imported"
 end
 
