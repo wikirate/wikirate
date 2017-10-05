@@ -4,14 +4,13 @@
       .col-md-4.col-xs-4.nopadding
         %a.inherit-anchor{:href => path}
           .img-thumbnail.homepage-logo-container
-            = nest(card.image_card)
+            = field_nest :image
 
       .col-md-8.col-xs-8
-        .col-md-12.col-xs-12.text-left.mt-2
+        .col-md-12.col-xs-12.text-left.mt-2.item-title
           %a.inherit-anchor{:href => path}
             %h3
-              = nest(card, view: :title)
-          %br/
+              = _render_title
         .row.contribution-details.dark-grey-color.remove-text-decoration
           .row.col-md-12.data-count
             .col-md-6.slab
