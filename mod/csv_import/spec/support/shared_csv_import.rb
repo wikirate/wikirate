@@ -7,9 +7,13 @@ shared_context "csv import" do
   #    trigger_import :three_letters, :three_numbers
   #    trigger_import three_letters: { match_type: :exact }
   def trigger_import *data
+    trigger_import_with_card import_card_with_data, *data
+  end
+
+  def trigger_import_with_card card, *data
     Card::Env.params.merge! import_params(*data)
-    import_card_with_data.update_attributes! subcards: {}
-    import_card_with_data
+    card.update_attributes! subcards: {}
+    card
   end
 
   def trigger_import_request *data
@@ -41,6 +45,7 @@ shared_context "csv import" do
   end
 
   def import_card_with_rows *row_keys
+    return import_card_with_data unless row_keys.present?
     the_file = CSVFile.new csv_io(row_keys), csv_row_class
     allow(import_card).to receive(:file).and_return csv_io(row_keys)
     allow(import_card).to receive(:csv_file).and_return the_file
@@ -99,6 +104,8 @@ shared_context "table row matcher" do
   end
 end
 
+# define :company_row and :value_row to use
+# the helper to access the original import data
 shared_context "answer import" do
   def answer_card key
     Card[metric, company_name(key), year]
@@ -106,6 +113,10 @@ shared_context "answer import" do
 
   def answer_name key
     [metric, company_name(key), year].join "+"
+  end
+
+  def answer_value key
+    data[key][value_row]
   end
 
   def company_name key

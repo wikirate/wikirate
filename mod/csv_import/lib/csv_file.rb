@@ -11,7 +11,7 @@ class CSVFile
     @encoding = encoding
 
     read_csv path_or_file
-    initialize_col_map headers
+    initialize_column_map headers
   end
 
   # yields the rows of the csv file as CSVRow objects
@@ -95,20 +95,18 @@ class CSVFile
 
   def map_headers
     @col_map = {}
+    headers = @rows.shift.map { |h| h.to_name.key.to_sym }
     @row_class.columns.each do |key|
-      index = @headers.index key.to_s
-      raise StandardError, "column #{key} is missing" unless index
-      @col_map[key] = index
+      @col_map[key] = headers.index key
+      raise StandardError, "column #{key} is missing" unless @col_map[key]
     end
   end
 
-  def reject_headers
-    @rows.shift if header_row?
-  end
-
   def header_row?
-    return unless (first_row = @rows.first)
-    first_row.all? { |item| item && @row_class.columns.include?(item.downcase.to_sym) }
+    return unless first_row = @rows.first.map { |h| h.to_name.key.to_sym }
+    @row_class.columns.all? do |item|
+      first_row.include? item
+    end
   end
 
   def row_to_hash row
@@ -118,10 +116,9 @@ class CSVFile
     end
   end
 
-  def initialize_col_map header_line
+  def initialize_column_map header_line
     if (header_line == :detect && header_row?) || header_line == true
       map_headers
-      @rows.shift
     else
       @col_map = @row_class.columns.zip((0..@row_class.columns.size)).to_h
     end
