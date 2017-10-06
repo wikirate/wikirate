@@ -1,3 +1,5 @@
+# All Answers for a given Company
+
 include_set Abstract::AllMetricValues
 
 def query_class
