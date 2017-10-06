@@ -121,11 +121,16 @@ format :html do
     if type == :failed
       text = "##{index + 1}: #{name}"
       if status[:errors][index].present?
-        text += " - " + status[:errors][index].join("; ")
+        text += " - " if name.present?
+        text += status[:errors][index].join("; ")
       end
       text
     else
-      "##{index + 1}: " + link_to_card(name)
+      text = "##{index + 1}: " + link_to_card(name)
+      if status[:reports][index].present?
+        text += " - " if name.present?
+        text += status[:reports][index].join("; ")
+      end
     end
   end
 

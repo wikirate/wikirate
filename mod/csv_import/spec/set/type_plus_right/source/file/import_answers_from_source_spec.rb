@@ -6,10 +6,10 @@ RSpec.xdescribe Card::Set::TypePlusRight::Source::File::ImportAnswersFromSource 
     let(:import_card) { Card["answer from source import test+file"] }
     let(:data) do
       {
-        wrong_value: ["Monster Inc", "5"],
-        no_match: ["Not a company", "yes"],
-        alias_match: ["amazon.com", "yes"],
-        exact_match: ["Apple Inc.", "yes"],
+        wrong_value:       ["Monster Inc", "5"],
+        no_match:          ["Not a company", "yes"],
+        alias_match:       ["amazon.com", "yes"],
+        exact_match:       ["Apple Inc.", "yes"],
         partial_match: %w[Sony no],
         duplicate_in_file: ["Apple Inc.", "no"],
         existing_value: ["Death Star", "no"]

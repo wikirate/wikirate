@@ -35,7 +35,6 @@ def fetch_hash_from_params key
 end
 
 def data_import?
-  binding.pry
   Env.params[:import_rows].present?
 end
 

@@ -50,7 +50,7 @@ class ImportManager
   end
 
   def add_extra_data index, data
-    @extra_data[index].merge! data
+    @extra_data[index].deep_merge! data
   end
 
   # add the final import card
@@ -82,12 +82,10 @@ class ImportManager
     with_conflict_strategy strategy do
       if (dup = duplicate(name))
         if @conflict_strategy == :skip
-          binding.pry
           throw :skip_row, :skipped
         elsif @conflict_strategy == :skip_card
           return dup
         else
-          binding.pry
           @status = :overridden
         end
       end
@@ -110,7 +108,11 @@ class ImportManager
   end
 
   def report key, msg
-    @import_status[:reports][key] << "##{@current_row.row_index + 1} #{msg}"
+    case key
+    when :duplicate_in_file
+      msg = "#{msg} duplicate in this file"
+    end
+    @import_status[:reports][@current_row.row_index] << msg
   end
 
   def errors_by_row_index

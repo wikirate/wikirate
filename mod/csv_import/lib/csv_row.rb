@@ -80,9 +80,13 @@ class CSVRow
   def collect_errors
     @abort_on_error = false
     yield
-    throw :skip_row, :failed if @import_manager.errors?(self)
+    skip :failed if errors?
   ensure
     @abort_on_error = true
+  end
+
+  def skip status=:skipped
+    throw :skip_row, status
   end
 
   def errors?
@@ -95,7 +99,7 @@ class CSVRow
 
   def error msg
     @import_manager.report_error msg
-    throw :skip_row, :failed if @abort_on_error
+    skip :failed if @abort_on_error
   end
 
   def required

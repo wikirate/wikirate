@@ -1,7 +1,7 @@
-require_relative "../support/shared_csv_data"
+require_relative "../support/shared_answer_csv_row"
 
-RSpec.xdescribe CSVRow::Structure::AnswerCSV do
-  include_context "csv data"
+RSpec.describe CSVRow::Structure::AnswerCSV do
+  include_context "answer csv row"
 
   specify "answer doesn't exist" do
     expect(Card[answer_name]).not_to be_a Card
@@ -9,9 +9,9 @@ RSpec.xdescribe CSVRow::Structure::AnswerCSV do
 
   describe "import directly" do
     example "creates answer card with valid data", as_bot: true do
-      row = described_class.new answer_data, 1
+      row = described_class.new answer_row, 1
       row.execute_import
-      expect(Card[answer_name]).to be_a Card
+      expect_card(answer_name).to exist
     end
   end
 
@@ -24,23 +24,23 @@ RSpec.xdescribe CSVRow::Structure::AnswerCSV do
     end
 
     example "creates answer card with valid data", as_bot: true do
-      in_stage :validate, on: :update,
-               trigger: -> { update "A", content: "import!" } do
-        im = ActImportManager.new self, nil
-        allow(im).to receive(:log_status).and_return(true)
-        allow(im).to receive(:row_finieshed).and_return(true)
-        row = described_class.new answer_data, 1, im
-        row.execute_import
-        expect(Card[answer_name]).not_to be_a Card
+      with_delayed_jobs do
+        in_stage :validate, on: :update,
+                 trigger: -> { update "A", content: "import!" } do
+          im = ActImportManager.new self, nil
+          allow(im).to receive(:log_status).and_return(true)
+          allow(im).to receive(:row_finished).and_return(true)
+          row = described_class.new answer_row, 1, im
+          row.execute_import
+        end
       end
-
       expect(Card[answer_name]).to be_a Card
       expect(Card["A"]).to have_acted_on answer_name
     end
 
 
     example "existing answer" do
-      import existing_answer do |run_import|
+      import existing_answer do |vm|
         run_import.call
         expect(Card[answer_name]).to be_a Card
       end
@@ -53,10 +53,9 @@ RSpec.xdescribe CSVRow::Structure::AnswerCSV do
       end
     end
 
-    example "existing metric" do
-      import existing_source do |run_import|
-        expect { run_import.call }
-          .to raise_invalid_data "Google Inc is not a metric"
+    example "not a metric" do
+      import not_a_metric do |errors|
+        expect(errors).to contain_exactly '"not a metric" doesn\'t exist'
       end
     end
 
@@ -101,14 +100,18 @@ RSpec.xdescribe CSVRow::Structure::AnswerCSV do
       raise_error InvalidData, msg.to_s
     end
 
-    def import data, row_index=1
+    def aim
+      @aim ||= ActImportManager.new nil, nil
+    end
+
+    def import data, row_index = 1
       with_test_events do
-        test_event :validate, on: :update, for: "A"  do
-          im = ActImportManager.new nil, nil
-          row = described_class.new data, row_index, im
+        test_event :validate, on: :update, for: "A" do
+          row = described_class.new data, row_index, aim
           row.execute_import
         end
-        yield -> { update "A", content: "import!" }
+        update "A", content: "import!"
+        yield aim.errors[row_index]
       end
     end
   end

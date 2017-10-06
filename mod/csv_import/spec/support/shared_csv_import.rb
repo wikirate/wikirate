@@ -120,7 +120,8 @@ shared_context "answer import" do
   end
 
   def company_name key
-    data[key][company_row]
+    key.is_a?(Symbol) ? data[key][company_row] : key[:company]
+
   end
 
   def value_card key
