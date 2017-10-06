@@ -162,12 +162,12 @@ def metric_value_cards cached: true
   cached ? Answer.search(metric_id: id) : Card.search(metric_value_query)
 end
 
-def value_cards _opts = {}
+def value_cards _opts={}
   Answer.search metric_id: id, return: :value_card
 end
 
 def metric_value_name company, year
-  company_name = fetch_real_by_key(company).name
+  company_name = Card[company].name
   "#{name}+#{company_name}+#{year}"
 end
 
