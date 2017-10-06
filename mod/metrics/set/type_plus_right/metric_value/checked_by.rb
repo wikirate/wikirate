@@ -78,7 +78,7 @@ format :html do
     end
   end
 
-  def part_view
+  def editor
     :checkbox
   end
 
