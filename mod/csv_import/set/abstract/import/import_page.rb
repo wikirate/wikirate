@@ -4,10 +4,9 @@ format :html do
   end
 
   view :import, cache: :never do
-    frame_and_form :update, "notify-success" => "import successful" do
+    frame_and_form :update do
       [
         hidden_import_tags,
-        render(:import_flag),
         render(:additional_form_fields),
         render(:import_table_helper),
         render(:import_table),
@@ -17,7 +16,7 @@ format :html do
   end
 
   def hidden_import_tags
-    hidden_tags success: { id: "_self", view: :open }
+    hidden_tags success: { name: card.import_status_card.name, view: :open }
   end
 
   view :import_button_formgroup do
@@ -27,10 +26,6 @@ format :html do
   def import_button
     button_tag "Import", class: "submit-button",
                          data: { disable_with: "Importing" }
-  end
-
-  view :import_flag do
-    hidden_field_tag :is_data_import, "true"
   end
 
   view :import_table_helper do

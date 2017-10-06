@@ -12,7 +12,7 @@ class CSVRow
       @required = [:company, :year, :report_type, :source]
 
       def finalize_source_card source_card
-        with_sourcebox do
+        source_card.with_sourcebox do
           source_card.director.catch_up_to_stage :prepare_to_store
         end
       end

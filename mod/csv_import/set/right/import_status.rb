@@ -15,7 +15,7 @@ def import_counts
 end
 
 def reset total
-  @status = ImportManager::Status.new act_id: @current_act&.id, counts: { total: total }
+  @status = ImportManager::Status.new act_id: ActManager.act_card&.id, counts: { total: total }
   save_status
 end
 

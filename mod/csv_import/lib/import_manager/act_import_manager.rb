@@ -1,15 +1,25 @@
 # ActImportManager puts all creates and update actions that are part of the import
 # under one act of a import card
 class ActImportManager < ImportManager
-  def initialize act_card, csv_file, conflict_strategy=:abort, extra_row_data={}
+  def initialize act_card, csv_file, conflict_strategy=:skip, extra_row_data={}
     super(csv_file, conflict_strategy, extra_row_data)
     @act_card = act_card
   end
 
+  def init_import_status
+    @import_status =
+      if @act_card&.import_status_card&.real?
+        import_status_card.status
+      else
+        super
+      end
+  end
+
   def add_card args
     handle_conflict args[:name] do
-      subcard = @act_card&.add_subcard args.delete(:name), args
-      subcard.director.catch_up_to_stage :validate
+      subcard = Card.create args
+      #subcard = @act_card&.add_subcard args.delete(:name), args
+      #subcard.director.catch_up_to_stage :validate
       pick_up_card_errors do
         subcard
       end

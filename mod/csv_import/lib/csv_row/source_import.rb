@@ -107,6 +107,13 @@ class CSVRow
     def hashkey_to_codename key
       key == :company ? :wikirate_company : key
     end
+
+    def with_sourcebox
+      Card::Env.params[:sourcebox] = "true"
+      yield
+    ensure
+      Card::Env.params[:sourcebox] = "false"
+    end
   end
 
   def check_duplication_within_file

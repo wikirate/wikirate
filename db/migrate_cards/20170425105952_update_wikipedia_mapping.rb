@@ -12,7 +12,7 @@ class UpdateWikipediaMapping < Card::Migration
 
   def up
     csv_path = data_path "wikirate_to_wikipedia.csv"
-    CSVFile.new(csv_path, WikipediaCSVRow, col_sep: ";")
-           .import user: user,  error_policy: :report
+    csv_file = CSVFile.new(csv_path, WikipediaCSVRow, col_sep: ";")
+    ScriptImportManager.new(csv_file, error_policy: :report, user: user)
   end
 end

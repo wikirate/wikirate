@@ -10,7 +10,7 @@ class ImportManager
     @conflict_strategy = conflict_strategy
     @extra_data = extra_data || {}
     @extra_data[:all] ||= {}
-    @import_status = ImportManager::Status.new(csv_file&.row_count || 0)
+    init_import_status
     @imported_keys = ::Set.new
   end
 
@@ -81,11 +81,13 @@ class ImportManager
   def handle_conflict name, strategy: nil
     with_conflict_strategy strategy do
       if (dup = duplicate(name))
-        if @conflict_strategy == :abort
+        if @conflict_strategy == :skip
+          binding.pry
           throw :skip_row, :skipped
         elsif @conflict_strategy == :skip_card
           return dup
         else
+          binding.pry
           @status = :overridden
         end
       end
@@ -98,7 +100,7 @@ class ImportManager
   end
 
   def log_status
-    @import_status[@current_row.status][@current_row.row_index] = @current_row.label
+    @import_status[@current_row.status][@current_row.row_index] = @current_row.name
     @import_status[:counts].step @current_row.status
   end
 
@@ -132,11 +134,11 @@ class ImportManager
     if row
       @import_status[:errors][row.row_index].present?
     else
-      @import_status[:errors].present?
+      @import_status[:errors].values.flatten.present?
     end
   end
 
-  def errors row
+  def errors row=nil
     if row
       @import_status[:errors][row.row_index]
     else
@@ -146,6 +148,7 @@ class ImportManager
 
   def error_list
     @import_status[:errors].each_with_object([]) do |(index, errors), list|
+      next if errors.empty?
       list << "##{index + 1}: #{errors.join("; ")}"
     end
   end
@@ -155,6 +158,10 @@ class ImportManager
   end
 
   private
+
+  def init_import_status
+    @import_status = ImportManager::Status.new(@csv_file&.row_count || 0)
+  end
 
   def specify_success_status status
     return status if status.in? %i[failed skipped]

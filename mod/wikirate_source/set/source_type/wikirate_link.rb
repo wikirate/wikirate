@@ -18,7 +18,7 @@ event :autopopulate_website,
 end
 
 event :import_linked_source, :integrate_with_delay, on: :save do
-  generate_pdf if html_link? && import?
+  #generate_pdf if html_link? && import?
 end
 
 event :process_source_url, after: :check_source,

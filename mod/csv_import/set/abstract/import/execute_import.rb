@@ -1,6 +1,5 @@
 event :import_csv, :integrate_with_delay, on: :update, when: :data_import? do
   import_manager.import_rows selected_row_indices
-  redirect_to_import_status
 end
 
 event :flag_as_import, :prepare_to_validate, on: :update, when: :data_import? do
@@ -36,6 +35,7 @@ def fetch_hash_from_params key
 end
 
 def data_import?
+  binding.pry
   Env.params[:import_rows].present?
 end
 
@@ -49,14 +49,4 @@ def selected_row_indices
       next unless value == true || value == "true"
       a << index.to_i
     end
-end
-
-def redirect_target_after_import
-  import_status_card.name
-end
-
-def redirect_to_import_status
-  # abort :failure if errors.present?
-  return unless (target = redirect_target_after_import)
-  success << { name: target, redirect: true, view: :open }
 end
