@@ -186,15 +186,9 @@ format :html do
   end
 
   def check_button
-    # button_class = "btn btn-default btn-sm _value_check_button hover-button"
-    button_class = "btn btn-default btn-sm _value_check_button"
-    wrap_with(:button, class: button_class,
+    wrap_with(:button, class: "btn btn-default btn-sm _value_check_button",
                        data: { path: data_path }) do
       "Yes, I checked"
-      # output [
-      # wrap_with(:span, "Yes, I checked", class: "text")
-      # wrap_with(:span, "Yes, I checked the value", class: "hover-text")
-      # ]
     end
   end
 

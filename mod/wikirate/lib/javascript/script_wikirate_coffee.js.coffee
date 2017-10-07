@@ -13,7 +13,7 @@ decko.editorContentFunctionMap['.source-editor > .pointer-list'] = ->
 
 ###
 FIXME
-The following code is cut and pasted from wagn_mod.js.coffee.  We need to scope
+The following code is cut and pasted from decko_mod.js.coffee.  We need to scope
 it so that we can just refer to it and get rid of it here.
 ###
 
@@ -61,7 +61,7 @@ $(window).ready ->
     button.html 'Adding...'
     button.attr 'disabled', true
 
-    $.ajax wagn.rootPath + '/card/create', {
+    $.ajax decko.rootPath + '/card/create', {
       data : {
         success: { view : 'content' }
         slot: { structure: 'source item' } #fixme -- need codename
@@ -104,7 +104,7 @@ $(window).ready ->
     else
       $.ajax( url: listlink.attr('href') ).done (data)->
         dialogDiv = listlink.slot().find '.wikirate-topic-dialog'
-        wagn.dd = dialogDiv
+        decko.dd = dialogDiv
         dialogDiv.html data
         listlink.data 'dialog', dialogDiv
         dialogDiv.dialog dialogOptions
