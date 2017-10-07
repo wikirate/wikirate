@@ -1,6 +1,11 @@
+
+
 def filter_hash
-  ((filter = Env.params[:filter]) && filter.is_a?(Hash) && filter) ||
-    default_filter_option
+  @filter_hash ||= begin
+    filter = Env.params[:filter]
+    filter = filter.to_unsafe_h if filter&.respond_to?(:to_unsafe_h)
+    filter.is_a?(Hash) ? filter : default_filter_option
+  end
 end
 
 def sort_hash
