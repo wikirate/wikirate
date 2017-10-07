@@ -131,6 +131,7 @@ format :html do
         text += " - " if name.present?
         text += status[:reports][index].join("; ")
       end
+      text
     end
   end
 

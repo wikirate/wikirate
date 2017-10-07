@@ -171,6 +171,7 @@ class SharedData
       create "source import test", type: :source_import_file, empty_ok: true
       create "relationship answer import test", type: :relationship_answer_import_file, empty_ok: true
       create "answer from source import test", type: :source, subfields: { wikirate_link: "http://google.com/source" }
+      create "answer from source import test+file", type: :file, empty_ok: true
     end
 
     def csv_file name

@@ -1,4 +1,4 @@
-require_relative "../support/shared_answer_csv_row"
+require_relative "../../../support/shared_answer_csv_row"
 
 RSpec.describe CSVRow::Structure::AnswerCSV do
   include_context "answer csv row"
@@ -40,64 +40,53 @@ RSpec.describe CSVRow::Structure::AnswerCSV do
 
 
     example "existing answer" do
-      import existing_answer do |vm|
-        run_import.call
-        expect(Card[answer_name]).to be_a Card
+      import existing_answer do
+        expect(Card[answer_name(existing_answer)]).to be_real
       end
     end
 
     example "existing source" do
-      import existing_source do |run_import|
-        run_import.call
-        expect(Card[answer_name]).to be_a Card
+      import existing_source do
+        expect(Card[answer_name(existing_source)]).to be_real
       end
     end
 
     example "not a metric" do
-      import not_a_metric do |errors|
+      import metric_not_existent do |errors|
         expect(errors).to contain_exactly '"not a metric" doesn\'t exist'
       end
     end
 
     example "new company" do
-      import existing_source do |run_import|
-        expect { run_import.call }
-          .to raise_invalid_data "Google Inc is not a metric"
+      import new_company do
+         expect_card(answer_name(new_company)).to exist
       end
     end
 
     example "invalid metric", as_bot: true do
-      import not_a_metric do |run_import|
-        expect { run_import.call }
-          .to raise_invalid_data "Google Inc is not a metric"
+      import not_a_metric do |errors|
+        expect(errors).to contain_exactly '"A" is not a metric'
       end
     end
 
     example "invalid year", as_bot: true do
-      import not_a_year do |run_import|
-        expect { run_import.call }
-          .to raise_invalid_data "Google Inc is not a year"
+      import not_a_year do |errors|
+        expect(errors).to contain_exactly '"A" is not a year'
       end
     end
 
     example "invalid value", as_bot: true do
-      import invalid_value do |run_import|
-        expect { run_import.call }
-          .to raise_error
+      import invalid_value do |errors|
+        expect(errors).to contain_exactly /5 is not a valid option/
       end
     end
 
     it "aggregates errors" do
-      import answer_data year: "Google Inc", metric: "2007", company: nil do |run_import|
-        expect { run_import.call }
-          .to raise_invalid_data "value for company missing",
-                                 "2007 is not a metric",
-                                 "Google Inc is not a year"
+      import answer_row year: "Google Inc", metric: "2007" do |errors|
+        expect(errors)
+          .to contain_exactly '"2007" is not a metric',
+                                 '"Google Inc" is not a year'
       end
-    end
-
-    def raise_invalid_data *msg
-      raise_error InvalidData, msg.to_s
     end
 
     def aim

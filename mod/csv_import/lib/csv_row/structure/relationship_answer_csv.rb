@@ -10,8 +10,10 @@ class CSVRow
 
 
       def import_company
-        CompanyCSV.new(@row, @row_index, @import_manager).import
-        CompanyCSV.new(@row, @row_index, @import_manager, :related_company).import
+        CompanyCSV.new({ company: original_row[:company] },
+                       @row_index, @import_manager).import
+        CompanyCSV.new({ related_company: original_row[:related_company] },
+                       @row_index, @import_manager, :related_company).import
       end
 
     end

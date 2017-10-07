@@ -17,7 +17,13 @@ class ActImportManager < ImportManager
 
   def add_card args
     handle_conflict args[:name] do
-      subcard = Card.create args
+      subcard =
+        if @dup
+          @dup.update_attributes args
+          @dup
+        else
+          Card.create args
+        end
       #subcard = @act_card&.add_subcard args.delete(:name), args
       #subcard.director.catch_up_to_stage :validate
       pick_up_card_errors do

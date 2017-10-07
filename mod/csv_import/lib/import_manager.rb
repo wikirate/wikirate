@@ -8,7 +8,8 @@ class ImportManager
   def initialize csv_file, conflict_strategy = :skip, extra_data = {}
     @csv_file = csv_file
     @conflict_strategy = conflict_strategy
-    @extra_data = extra_data || {}
+    @extra_data = integerfy_keys(extra_data || {})
+
     @extra_data[:all] ||= {}
     init_import_status
     @imported_keys = ::Set.new
@@ -45,7 +46,12 @@ class ImportManager
   # used by csv rows to add additional cards
   def add_card args
     pick_up_card_errors do
-      Card.create args
+      if @dup
+        @dup.update_attributes args
+        @dup
+      else
+        Card.create args
+      end
     end
   end
 
@@ -80,11 +86,11 @@ class ImportManager
 
   def handle_conflict name, strategy: nil
     with_conflict_strategy strategy do
-      if (dup = duplicate(name))
+      if (@dup = duplicate(name))
         if @conflict_strategy == :skip
           throw :skip_row, :skipped
         elsif @conflict_strategy == :skip_card
-          return dup
+          return @dup
         else
           @status = :overridden
         end
@@ -176,5 +182,9 @@ class ImportManager
     row_finished @current_row if respond_to? :row_finished
     hook_name = "row_#{status}".to_sym
     send hook_name, @current_row if respond_to? hook_name
+  end
+
+  def integerfy_keys hash
+    hash.transform_keys { |key| key == :all ? :all : key.to_s.to_i }
   end
 end

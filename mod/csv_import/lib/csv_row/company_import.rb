@@ -8,8 +8,9 @@ class CSVRow
   #    The user correction overrides the suggestion.
   module CompanyImport
     def import_company
+      row_hash = { company: original_row[:company] }
       company_csv  =
-        Structure::CompanyCSV.new company: @row[:company], @row_index, @import_manager
+        Structure::CompanyCSV.new(row_hash, @row_index, @import_manager)
       company_csv.import
     end
   end

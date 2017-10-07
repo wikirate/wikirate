@@ -10,9 +10,9 @@ RSpec.describe Card::Set::TypePlusRight::Source::File::ImportAnswersFromSource d
         no_match:          ["Not a company", "yes"],
         alias_match:       ["amazon.com", "yes"],
         exact_match:       ["Apple Inc.", "yes"],
-        partial_match: %w[Sony no],
+        partial_match:     ["Sony", "no"],
         duplicate_in_file: ["Apple Inc.", "no"],
-        existing_value: ["Death Star", "no"]
+        existing_value:    ["Death Star", "no"]
       }
     end
   end
@@ -61,8 +61,9 @@ RSpec.describe Card::Set::TypePlusRight::Source::File::ImportAnswersFromSource d
 
     it "reports duplicated value in file" do
       trigger_import_with_metric_and_year(:exact_match, :duplicate_in_file)
-      expect(status[:reports][:duplicate_in_file])
-        .to contain_exactly "#6 Jedi+disturbances in the Force+Apple Inc.+2001"
+      # binding.pry
+      expect(status[:reports][5])
+        .to contain_exactly "Jedi+disturbances in the Force+Apple Inc.+2001 duplicate in this file"
     end
 
     it "doesn't update existing value" do
@@ -81,19 +82,21 @@ RSpec.describe Card::Set::TypePlusRight::Source::File::ImportAnswersFromSource d
     context "company correction name is filled" do
       it "uses the corrected name as company name" do
         trigger_import_with_metric_and_year(
-          partial_match: { match_type: :partial,
+          partial_match: { company_match_type: :partial,
                            corrections: { company: "Sony Corporation" } },
         )
-        expect(value_card(:partial_match)).to have_db_content "no"
+        expect_card(answer_name(company: "Sony Corporation")).to exist
+          .and have_a_field(:value).with_content "no"
       end
 
       it "adds corrected name to company's aliases" do
         trigger_import_with_metric_and_year(
-          partial_match: { match_type: :partial,
+          partial_match: { company_match_type: :partial,
                            corrections: { company: "Sony Corporation" } },
         )
 
-        expect(Card["Sony Corporation", :aliases].item_names).to include "Sony"
+        expect_card("Sony Corporation")
+          .to have_a_field(:aliases).pointing_to "Sony"
       end
 
       it "creates non-existent company and the value" do

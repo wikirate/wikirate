@@ -83,7 +83,7 @@ RSpec.describe Card::Set::Type::SourceImportFile do
           is_expected.to have_a_field(:wikirate_title).with_content "Star Wars"
         end
 
-        xit "updates existing source attributes" do
+        it "updates existing source attributes" do
           is_expected
             .to have_a_field(:report_type).pointing_to("Monster Report")
                   .and have_a_field(:wikirate_company).pointing_to("Monster Inc")
@@ -92,8 +92,8 @@ RSpec.describe Card::Set::Type::SourceImportFile do
       end
 
       context "without title" do
-        xit "updates title" do
-          trigger_import existing_without_title: { match_type: :exact,
+        it "updates title" do
+          trigger_import existing_without_title: { company_match_type: :exact,
                                                    corrections: { title: "Anakin" } }
           expect(source_card(:existing_without_title))
                    .to have_a_field(:wikirate_title).with_content "Anakin"
@@ -108,10 +108,10 @@ RSpec.describe Card::Set::Type::SourceImportFile do
 
         expect(source_card(:exact_match))
           .to be_a(Card)
-                .and have_a_field(:wikirate_title).with_content("A")
-                       .and have_a_field(:report_type).pointing_to("Force Report")
-                              .and have_a_field(:wikirate_company).pointing_to("Death Star")
-                                     .and have_a_field(:year).pointing_to "2014"
+          .and have_a_field(:wikirate_title).with_content("A")
+          .and have_a_field(:report_type).pointing_to("Force Report")
+          .and have_a_field(:wikirate_company).pointing_to("Death Star")
+          .and have_a_field(:year).pointing_to "2014"
         expect(status[:reports][1])
           .to contain_exactly "http://www.wikiwand.com/en/Death_Star duplicate in this file"
         expect(status[:counts][:skipped]).to eq 1

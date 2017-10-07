@@ -36,15 +36,14 @@ class CSVRow
   def initialize row, index, import_manager=nil
     @row = row
     @import_manager = import_manager || ImportManager.new(nil)
-
     @extra_data = @import_manager.extra_data(index)
-    @corrections = @extra_data[:corrections]
-    @corrections = {} unless @corrections.is_a? Hash
-    merge_corrections
-
     @abort_on_error = true
-
     @row_index = index # 0-based, not counting the header line
+    merge_corrections
+  end
+
+  def original_row
+    @row.merge @before_corrected
   end
 
   def label
@@ -54,8 +53,14 @@ class CSVRow
   end
 
   def merge_corrections
-    @corrections.delete_if { |_k, v| v.blank? }
-    @row.merge! @corrections
+    @corrections = @extra_data[:corrections]
+    @corrections = {} unless @corrections.is_a? Hash
+    @before_corrected = {}
+    @corrections.each do |k, v|
+      next unless v.present?
+      @before_corrected[k] = @row[k]
+      @row[k] = v
+    end
   end
 
   def execute_import
@@ -148,7 +153,6 @@ class CSVRow
   end
 
   def method_missing method_name, *args
-    #binding.pry
     respond_to_missing?(method_name) ? @row[method_name.to_sym] : super
   end
 

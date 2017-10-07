@@ -7,11 +7,16 @@ class CSVRow
     #    database in extra_data[:suggestion] and possibly a user correction of the mapping
     #    in extra_data[:corrections][:company].
     #    The user correction overrides the suggestion.
-    class CompanyCSV
+    class CompanyCSV < CSVRow
       def initialize row, index, import_manager = nil, company_key=:company
-        @file_company = row[company_key]
+        super(row, index, import_manager)
         @company_key = company_key
-        super # overrides company with correction
+        @file_company = @before_corrected[@company_key] || @row[@company_key]
+        correct_company
+      end
+
+      def merge_corrections
+        super
         correct_company
       end
 
@@ -72,7 +77,7 @@ class CSVRow
 
       def match_type
         return unless @extra_data.present?
-        @match_type ||= @extra_data["#{@company_key}_match_type".to_sym]&.to_sym)
+        @match_type ||= @extra_data["#{@company_key}_match_type".to_sym]&.to_sym
       end
 
       def user_corrected_company?

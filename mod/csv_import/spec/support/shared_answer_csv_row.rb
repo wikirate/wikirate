@@ -37,10 +37,18 @@ shared_context "answer csv row" do
   end
 
   def not_a_metric
-    answer_row metric: "not a metric"
+    answer_row metric: "A"
   end
 
   def not_a_year
+    answer_row year: "A"
+  end
+
+  def metric_not_existent
+    answer_row metric: "not a metric"
+  end
+
+  def year_not_existent
     answer_row year: "not a year"
   end
 
@@ -57,7 +65,12 @@ shared_context "answer csv row" do
   end
 
   def answer_name args={}
-    args.reverse_merge! answer_row
+    if args.is_a? Symbol
+      args = send args
+    else
+      args.reverse_merge! answer_row
+    end
+
     [args[:metric], args[:company], args[:year]].join "+"
   end
 end
