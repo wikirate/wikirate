@@ -38,7 +38,7 @@ class TableRowWithCompanyMapping < TableRow
 
   def extra_data
     {
-      match_type: @match.match_type,
+      company_match_type: @match.match_type,
       company_suggestion: @match.suggestion
     }
   end

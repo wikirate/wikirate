@@ -41,7 +41,6 @@ class TableRowRelationship < TableRowWithCompanyMapping
     colored_small @related_match, super
   end
 
-
   def related_wikirate_company_field
     colored_small @related_match, @related_match.match_name
   end

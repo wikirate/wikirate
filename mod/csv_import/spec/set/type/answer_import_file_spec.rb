@@ -104,7 +104,7 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
       import_card = create_import_card "test"
 
       expect_card("Jedi+disturbances in the Force+Death Star+2017+value").not_to exist
-      params = import_params exact_match: { match_type: :exact }
+      params = import_params exact_match: { company_match_type: :exact }
       post :update, xhr: true, params: params.merge(id: "~#{import_card.id}")
       expect_card("Jedi+disturbances in the Force+Death Star+2017+value").to exist
     end
@@ -162,7 +162,7 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
 
       context "no match" do
         it "creates company" do
-          trigger_import no_match: { match_type: :none,
+          trigger_import no_match: { company_match_type: :none,
                                      corrections: { company: "corrected company" } }
 
           expect_card(answer_name(company: "corrected company")).to exist
@@ -172,14 +172,14 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
 
         it "adds answer to corrected answer and creates new alias card" do
           expect(Card["Monster Inc", :aliases]).not_to exist
-          trigger_import no_match: { match_type: :none,
+          trigger_import no_match: { company_match_type: :none,
                                      corrections: { company: "Monster Inc." } }
           expect(Card["Monster Inc."]).to have_a_field(:aliases).pointing_to company_name(:no_match)
         end
 
 
         it "adds company in file to corrected company's aliases" do
-          trigger_import exact_match: { match_type: :none,
+          trigger_import exact_match: { company_match_type: :none,
                                         corrections: { company: "Google Inc." } }
           expect_card(answer_name(company: "Google Inc.")).to exist
           expect(Card["Google Inc."]).to have_a_field(:aliases).pointing_to company_name(:exact_match)
@@ -188,7 +188,7 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
 
       context "partial match" do
         it "adds company name in file to corrected company's aliases" do
-          trigger_import partial_match: { match_type: :partial,
+          trigger_import partial_match: { company_match_type: :partial,
                                           corrections: { company: "corrected company" },
                                           suggestion: { company: "Sony Corporation" } }
           expect(answer_card(company: "corrected company")).to exist
@@ -197,7 +197,7 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
         end
 
         it "uses suggestion if no correction" do
-          trigger_import partial_match: { match_type: :partial,
+          trigger_import partial_match: { company_match_type: :partial,
                                           suggestion: { company: "Sony Corporation" } }
           expect_card(answer_name(company: "Sony Corporation")).to be_a Card
           expect_card("Sony Corporation")

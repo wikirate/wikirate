@@ -43,6 +43,10 @@ class CSVRow
          end
       end
 
+      def import_company
+        CompanyCSV.new(@row, @row_index, @import_manager).import
+      end
+
       def check_existence_and_type name, type_id, type_name=nil
         if !Card.exists?(name)
           error "\"#{name}\" doesn't exist"
