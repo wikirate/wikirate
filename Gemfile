@@ -2,8 +2,6 @@ source "http://rubygems.org"
 
 decko_gem_path = ENV["WIKIRATE_DECKO_GEM_PATH"] || "./vendor/decko"
 
-# gem "smartname", path: "./vendor/smartname"
-
 gem "card", path: "#{decko_gem_path}/card", require: false
 gem "cardname", path: "#{decko_gem_path}/cardname", require: false
 gem "decko", path: "#{decko_gem_path}/decko"
