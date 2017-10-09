@@ -1,4 +1,36 @@
 PATH
+  remote: vendor/card-mods/airbrake
+  specs:
+    card-mod-airbrake (1.0)
+      airbrake (~> 6.2)
+      card
+
+PATH
+  remote: vendor/card-mods/logger
+  specs:
+    card-mod-logger (1.0)
+      card
+
+PATH
+  remote: vendor/card-mods/new_relic
+  specs:
+    card-mod-new_relic (1.0)
+      decko
+      newrelic_rpm
+
+PATH
+  remote: vendor/card-mods/pdfjs
+  specs:
+    card-mod-pdfjs (1.0)
+      card
+
+PATH
+  remote: vendor/card-mods/voting
+  specs:
+    card-mod-voting (1.0)
+      card
+
+PATH
   remote: vendor/decko/card
   specs:
     card (1.92)
@@ -31,38 +63,6 @@ PATH
     decko (0.2)
       card (= 1.92)
       rails (~> 5.1)
-
-PATH
-  remote: vendor/card-mods/airbrake
-  specs:
-    card-mod-airbrake (1.0)
-      airbrake (~> 6.2)
-      card
-
-PATH
-  remote: vendor/card-mods/logger
-  specs:
-    card-mod-logger (1.0)
-      card
-
-PATH
-  remote: vendor/card-mods/new_relic
-  specs:
-    card-mod-new_relic (1.0)
-      decko
-      newrelic_rpm
-
-PATH
-  remote: vendor/card-mods/pdfjs
-  specs:
-    card-mod-pdfjs (1.0)
-      card
-
-PATH
-  remote: vendor/card-mods/voting
-  specs:
-    card-mod-voting (1.0)
-      card
 
 GEM
   remote: http://rubygems.org/
