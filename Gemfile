@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 source "http://rubygems.org"
 
 decko_gem_path = ENV["WIKIRATE_DECKO_GEM_PATH"] || "./vendor/decko"
