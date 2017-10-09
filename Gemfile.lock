@@ -1,9 +1,41 @@
 PATH
-  remote: vendor/decko/card
+  remote: vendor/card-mods/pdfjs
   specs:
-    card (1.92)
+    card-mod-pdfjs (1.0)
+      card
+
+PATH
+  remote: vendor/card-mods/airbrake
+  specs:
+    card-mod-airbrake (1.0)
+      airbrake (~> 6.2)
+      card
+
+PATH
+  remote: vendor/card-mods/logger
+  specs:
+    card-mod-logger (1.0)
+      card
+
+PATH
+  remote: vendor/card-mods/new_relic
+  specs:
+    card-mod-new_relic (1.0)
+      decko
+      newrelic_rpm
+
+PATH
+  remote: vendor/card-mods/voting
+  specs:
+    card-mod-voting (1.0)
+      card
+
+PATH
+  remote: ../../gem/card
+  specs:
+    card (1.92.1)
       bootstrap4-kaminari-views (~> 1.0)
-      cardname (= 0.2)
+      cardname (= 0.2.1)
       carrierwave (~> 1.1)
       coderay (~> 1.1)
       coffee-script (~> 2.4)
@@ -19,17 +51,17 @@ PATH
       uuid (~> 2.3)
 
 PATH
-  remote: vendor/decko/cardname
+  remote: ../../gem/cardname
   specs:
-    cardname (0.2)
+    cardname (0.2.1)
       activesupport (~> 5.1)
       htmlentities (~> 4.3)
 
 PATH
-  remote: vendor/decko/decko
+  remote: ../../gem/decko
   specs:
-    decko (0.2)
-      card (= 1.92)
+    decko (0.2.1)
+      card (= 1.92.1)
       rails (~> 5.1)
 
 GEM
@@ -85,7 +117,7 @@ GEM
       io-like (~> 0.3.0)
     arel (8.0.0)
     ast (2.3.0)
-    backports (3.8.0)
+    backports (3.9.1)
     better_errors (2.3.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -120,9 +152,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    card-mod-airbrake (1.0)
-      airbrake (~> 6.2)
-      card (~> 1.9)
     carrierwave (1.2.1)
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
@@ -187,7 +216,7 @@ GEM
       launchy (~> 2.1)
       mail (~> 2.6)
     equalizer (0.0.11)
-    erubi (1.6.1)
+    erubi (1.7.0)
     eventmachine (1.2.5)
     excon (0.59.0)
     execjs (2.7.0)
@@ -488,7 +517,7 @@ GEM
       json (>= 1.8)
       nokogiri (~> 1.5)
       trollop (~> 2.1)
-    recaptcha (4.4.1)
+    recaptcha (4.5.0)
       json
     ref (2.0.0)
     rest-client (2.0.2)
@@ -645,7 +674,11 @@ DEPENDENCIES
   capistrano-rvm
   capybara (= 2.11.0)
   card!
-  card-mod-airbrake
+  card-mod-airbrake!
+  card-mod-logger!
+  card-mod-new_relic!
+  card-mod-pdfjs!
+  card-mod-voting!
   cardname!
   chromedriver-helper
   company-mapping
