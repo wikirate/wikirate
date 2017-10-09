@@ -42,7 +42,7 @@ gem "airbrussh", require: false
 
 gem "ruby-jmeter"
 
-gem "card-mod-airbrake"
+#gem "card-mod-airbrake"
 
 
 group :live do
@@ -105,7 +105,7 @@ end
 
 group :test, :development do
   gem "pry"
-  gem "pry-byebug" if RUBY_VERSION =~ /^2/
+  gem "pry-byebug"
   gem "pry-rails"
   gem "pry-rescue"
   gem "pry-stack_explorer"
