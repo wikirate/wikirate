@@ -42,7 +42,7 @@ gem "airbrussh", require: false
 
 gem "ruby-jmeter"
 
-#gem "card-mod-airbrake"
+gem "card-mod-airbrake"
 
 
 group :live do
