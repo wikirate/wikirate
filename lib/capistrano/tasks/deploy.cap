@@ -1,18 +1,19 @@
 
+
 # this overrides the default git:create_release in order to run submodules
-namespace :git do
-  desc 'Copy repo to releases'
-  task create_release: :'git:update' do
-    on roles(:all) do
-      with fetch(:git_environmental_variables) do
-        within repo_path do
-          execute :git, :clone, '-b', fetch(:branch),
-                  '--recursive --depth 1 .', release_path
-        end
-      end
-    end
-  end
-end
+#namespace :git do
+#  desc 'Copy repo to releases'
+#  task create_release: :'git:update' do
+#    on roles(:all) do
+#      with fetch(:git_environmental_variables) do
+#        within repo_path do
+#          execute :git, :clone, '-b', fetch(:branch),
+#                  '--recursive --depth 1 .', release_path
+#        end
+#      end
+#    end
+#  end
+#end
 
 
 namespace :deploy do
@@ -60,13 +61,13 @@ namespace :deploy do
   end
 
   after :finishing, :cleanup
-  after :published, :restart
 
-  desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      execute :touch, release_path.join('tmp/restart.txt')
-    end
-  end
 
+  #after :published, :restart
+  #desc 'Restart application'
+  #task :restart do
+  #  on roles(:app), in: :sequence, wait: 5 do
+  #    execute :touch, release_path.join('tmp/restart.txt')
+  #  end
+  #end
 end
