@@ -33,9 +33,9 @@ PATH
 PATH
   remote: ../../gem/card
   specs:
-    card (1.92.2)
+    card (1.92.1)
       bootstrap4-kaminari-views (~> 1.0)
-      cardname (= 0.2.2)
+      cardname (= 0.2.1)
       carrierwave (~> 1.1)
       coderay (~> 1.1)
       coffee-script (~> 2.4)
@@ -53,15 +53,15 @@ PATH
 PATH
   remote: ../../gem/cardname
   specs:
-    cardname (0.2.2)
+    cardname (0.2.1)
       activesupport (~> 5.1)
       htmlentities (~> 4.3)
 
 PATH
   remote: ../../gem/decko
   specs:
-    decko (0.2.2)
-      card (= 1.92.2)
+    decko (0.2.1)
+      card (= 1.92.1)
       rails (~> 5.1)
 
 GEM
