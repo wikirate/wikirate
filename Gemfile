@@ -1,8 +1,7 @@
+# -*- encoding : utf-8 -*-
 source "http://rubygems.org"
 
 decko_gem_path = ENV["WIKIRATE_DECKO_GEM_PATH"] || "./vendor/decko"
-
-# gem "smartname", path: "./vendor/smartname"
 
 gem "card", path: "#{decko_gem_path}/card", require: false
 gem "cardname", path: "#{decko_gem_path}/cardname", require: false
@@ -42,8 +41,11 @@ gem "airbrussh", require: false
 
 gem "ruby-jmeter"
 
-gem "card-mod-airbrake"
-
+gem "card-mod-airbrake", path: "./vendor/card-mods/airbrake"
+gem "card-mod-voting", path: "./vendor/card-mods/voting"
+gem "card-mod-logger", path: "./vendor/card-mods/logger"
+gem "card-mod-new_relic", path: "./vendor/card-mods/new_relic"
+gem "card-mod-pdfjs", path: "./vendor/card-mods/pdfjs"
 
 group :live do
   gem "dalli"
@@ -105,7 +107,7 @@ end
 
 group :test, :development do
   gem "pry"
-  gem "pry-byebug" if RUBY_VERSION =~ /^2/
+  gem "pry-byebug"
   gem "pry-rails"
   gem "pry-rescue"
   gem "pry-stack_explorer"
