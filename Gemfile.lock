@@ -1,9 +1,9 @@
 PATH
   remote: vendor/decko/card
   specs:
-    card (1.92)
+    card (1.92.2)
       bootstrap4-kaminari-views (~> 1.0)
-      cardname (= 0.2)
+      cardname (= 0.2.2)
       carrierwave (~> 1.1)
       coderay (~> 1.1)
       coffee-script (~> 2.4)
@@ -21,15 +21,15 @@ PATH
 PATH
   remote: vendor/decko/cardname
   specs:
-    cardname (0.2)
+    cardname (0.2.2)
       activesupport (~> 5.1)
       htmlentities (~> 4.3)
 
 PATH
   remote: vendor/decko/decko
   specs:
-    decko (0.2)
-      card (= 1.92)
+    decko (0.2.2)
+      card (= 1.92.2)
       rails (~> 5.1)
 
 GEM
@@ -85,7 +85,7 @@ GEM
       io-like (~> 0.3.0)
     arel (8.0.0)
     ast (2.3.0)
-    backports (3.8.0)
+    backports (3.9.1)
     better_errors (2.3.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -187,7 +187,7 @@ GEM
       launchy (~> 2.1)
       mail (~> 2.6)
     equalizer (0.0.11)
-    erubi (1.6.1)
+    erubi (1.7.0)
     eventmachine (1.2.5)
     excon (0.59.0)
     execjs (2.7.0)
@@ -488,7 +488,7 @@ GEM
       json (>= 1.8)
       nokogiri (~> 1.5)
       trollop (~> 2.1)
-    recaptcha (4.4.1)
+    recaptcha (4.5.0)
       json
     ref (2.0.0)
     rest-client (2.0.2)
