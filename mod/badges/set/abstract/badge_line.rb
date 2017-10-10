@@ -1,12 +1,12 @@
 #! no set module
 
 # a BadgeLine is a ranking of badges for one category, i.e. it has one
-# bagdge for every level
+# badge for every level
 class BadgeLine
   LEVELS = [:bronze, :silver, :gold].freeze
 
-  Badge =
-    Struct.new("Badge", :name, :codename, :threshold, :level, :level_index)
+  Struct.const_remove_if_defined :Badge
+  Badge = Struct.new("Badge", :name, :codename, :threshold, :level, :level_index)
 
   attr_reader :badge_names
 
@@ -118,8 +118,19 @@ class BadgeLine
   end
 
   def name_from_codename codename
-    id = Card::Codename[codename]
-    # Card.fetch not defined at this point
-    Card.where(id: id).pluck(:name).first
+    badge_names_map[codename]
+  end
+
+  def cache
+    Card::Cache[BadgeLine]
+  end
+
+  def badge_names_map
+    @badge_names_map ||= cache.fetch('badge_names_map') do
+      Card.select(:name, :codename).where(type_id:BadgeID).each_with_object({}) do |v,h|
+        h[v.codename] = v.name
+      end
+    end
   end
 end
+
