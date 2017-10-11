@@ -210,19 +210,16 @@ format :html do
   end
 end
 
-event :update_answer_lookup_table_due_to_check_change, :finalize,
-      changed: :content do
+event :update_answer_lookup_table_due_to_check_change, :finalize, changed: :content do
   refresh_answer_lookup_entry left_id
 end
 
-event :user_checked_value, :prepare_to_store,
-      on: :save, when: :add_checked_flag? do
+event :user_checked_value, :prepare_to_store, on: :save, when: :add_checked_flag? do
   add_checker unless user_checked?
   update_user_check_log.add_id left.id
 end
 
-event :user_unchecked_value, :prepare_to_store,
-      on: :update, when: :remove_checked_flag? do
+event :user_unchecked_value, :prepare_to_store, on: :update, when: :remove_checked_flag? do
   drop_checker
   update_user_check_log.drop_id left.id
 end
