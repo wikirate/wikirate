@@ -97,6 +97,7 @@ group :development do
   gem "capistrano-maintenance", require: false
   gem "capistrano-passenger"
   gem "capistrano-rvm"
+  gem 'capistrano-git-with-submodules', '~> 2.0'
 
   gem "better_errors"
   gem "binding_of_caller"
