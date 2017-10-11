@@ -144,7 +144,7 @@ format :html do
         researched: {
           help: "Answer values for <strong>Researched</strong> metrics are "\
                 "directly entered or imported.",
-           subtabs: %w[Standard Relationship]
+          subtabs: %w[Standard Relationship]
         },
         calculated: {
           help: "Answer values for <strong>Calculated</strong> metrics are dynamically calculated.",
