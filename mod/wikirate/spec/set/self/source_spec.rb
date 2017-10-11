@@ -48,8 +48,7 @@ describe Card::Set::Self::Source do
     subject { json_format.iframable? pdf_url, user_agent }
 
     let(:pdf_url) do
-      "http://www.adobe.com/content/dam/Adobe/en/devnet"\
-      "/acrobat/pdfs/pdf_open_parameters.pdf"
+      "https://cdn.mozilla.net/pdfjs/helloworld.pdf"
     end
 
     context "user agent is Firefox" do
