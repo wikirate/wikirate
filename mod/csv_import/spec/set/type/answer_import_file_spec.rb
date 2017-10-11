@@ -64,12 +64,12 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
           company_missing: ["Jedi+disturbances in the Force", "", "2017", "yes", "http://google.com/7", ""],
           missing_and_invalid: ["Not a metric", "", "2017", "yes", "http://google.com/8", ""],
           conflict_same_value_same_source: ["Jedi+disturbances in the Force", "Death Star", "2000", "yes", "http://www.wikiwand.com/en/Opera", ""],
-          conflict_same_value_different_source: ["Jedi+disturbances in the Force", "Death Star", "2000", "yes", "http://google.com/9", ""],
-          conflict_different_value: ["Jedi+disturbances in the Force", "Death Star", "2000", "no", "http://google.com/10", ""],
-          invalid_value: ["Jedi+disturbances in the Force", "Death Star", "2017", "100", "http://google.com/11", ""],
-          monster_badge_1: ["Jedi+disturbances in the Force", "Monster Inc.", "2000", "yes", "http://google.com/12", ""],
-          monster_badge_2: ["Jedi+disturbances in the Force", "Monster Inc.", "2001", "yes", "http://google.com/13", ""],
-          monster_badge_3: ["Jedi+disturbances in the Force", "Monster Inc.", "2002", "yes", "http://google.com/14", ""]
+          conflict_same_value_different_source: ["Jedi+disturbances in the Force", "Death Star", "2000", "yes", "http://google.com/10", ""],
+          conflict_different_value: ["Jedi+disturbances in the Force", "Death Star", "2000", "no", "http://google.com/11", "overriden"],
+          invalid_value: ["Jedi+disturbances in the Force", "Death Star", "2017", "100", "http://google.com/12", ""],
+          monster_badge_1: ["Jedi+disturbances in the Force", "Monster Inc.", "2000", "yes", "http://google.com/13", ""],
+          monster_badge_2: ["Jedi+disturbances in the Force", "Monster Inc.", "2001", "yes", "http://google.com/14", ""],
+          monster_badge_3: ["Jedi+disturbances in the Force", "Monster Inc.", "2002", "yes", "http://google.com/15", ""]
         }
       end
     end

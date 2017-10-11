@@ -1,28 +1,34 @@
-@javascript
+@javascript @delayed-jobs
 Feature: import metric values from a csv file
   A user can create metric values from a CSV file
 
   Background:
-    Given I am signed in as Joe Camel
+    Given I am signed in as Joe Admin
     And I go to card "feature answer import test"
+    And I follow "Import ..."
     And I maximize the browser
     And I uncheck all checkboxes
     And I scroll -1000 pixels
 
   Scenario: Show import table correctly
-    Then I should see a row with "Jedi+Sith Lord in Charge|Death Star|2015|One country, two systems|https://en.wikipedia.org/wiki/One_country,_two_systems|just kidding"
-    And I should see a row with "Joe User+researched|Apple|2008|11|http://srivigneshwar.com/home/?zs"
-    And I should see a row with "Joe User+researched|A Missing Company|2008|11|http://srivigneshwar.com/home/?q"
+
 
   Scenario: Import a simple metric value
     When I check checkbox for csv row 1
     And I press "Import"
+    Then I should see "Importing 1 metric answers ..."
+    When Jobs are dispatched
+    And I wait 2 seconds
     And I wait for ajax response
-    And I go to card "Jedi+Sith Lord in Charge+Death Star+2015"
-    Then I should see "2015"
-    Then I should see "One country, two systems"
-    Then I should see a "comment" icon
-    Then I should see "just kidding"
+    Then I should see "Imported 1 metric answers"
+    And I should see "Successful"
+    And I should see "#1:Jedi+disturbances in the Force+Death Star+2017"
+    Then I follow "Jedi+disturbances in the Force+Death Star+2017"
+    And I should see "2017"
+    And I should see "yes"
+    And I should see a "comment" icon
+    And I should see "chch"
+
 
   Scenario: Import simple metric values with same source
     When  I check checkbox for csv row 1
