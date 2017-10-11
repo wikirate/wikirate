@@ -12,6 +12,14 @@ def clean_html?
   false
 end
 
+event :validate_csv_format, :validate, when: proc { |c| c.save_preliminary_upload? } do
+  begin
+    CSVFile.new upload_cache_card.file, csv_row_class, headers: :detect
+  rescue CSV::MalformedCSVError => e
+    abort :failure, "malformed csv: #{e.message}"
+  end
+end
+
 format :html do
   def default_new_args _args
     voo.help = help_text

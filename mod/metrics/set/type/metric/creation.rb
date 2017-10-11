@@ -133,8 +133,8 @@ end
 format :html do
   view :new do |_args|
     voo.title = "New Metric"
-    frame do
-      _render_new_form
+    with_nest_mode :edit do
+      frame { _render_new_form }
     end
   end
 
@@ -152,7 +152,7 @@ format :html do
         }
       }
   end
-
+#
   def default_content_formgroup_args _args
     voo.edit_structure = [["+question", "Question"],
                           [:wikirate_topic, "Topic"]]

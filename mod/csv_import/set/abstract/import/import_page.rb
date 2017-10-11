@@ -67,8 +67,10 @@ format :html do
   def select_conflict_strategy
     <<-HTML.html_safe
       Conflicts with existing entries:
-      #{radio_button_tag "conflict", "skip", true} skip
-      #{radio_button_tag "conflict", "override"} override
+      #{radio_button_tag "conflict", "skip", true} 
+      #{label_tag "conflict_skip", "skip"}
+      #{radio_button_tag "conflict", "override", false} 
+      #{label_tag "conflict_override", "override"}
     HTML
   end
 end

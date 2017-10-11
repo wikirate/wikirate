@@ -46,9 +46,9 @@ RSpec.describe Card::Set::Type::SourceImportFile do
   let(:csv_path) { File.expand_path "../source_import_test.csv", __FILE__ }
 
   # TODO: do it without controller
-  describe "import action", type: :controller do
-    routes { Decko::Engine.routes }
-    before { @controller = CardController.new }
+  describe "import action" do #, type: :controller do
+    #routes { Decko::Engine.routes }
+    #before { @controller = CardController.new }
 
 
     example "source with exact match" do
@@ -56,25 +56,21 @@ RSpec.describe Card::Set::Type::SourceImportFile do
 
       expect(source_card(:exact_match))
         .to be_a(Card)
-              .and have_a_field(:wikirate_title).with_content("a title")
-                     .and have_a_field(:report_type).pointing_to("Force Report")
-                            .and have_a_field(:wikirate_company).pointing_to("Death Star")
-                                   .and have_a_field(:year).pointing_to "2014"
+        .and have_a_field(:wikirate_title).with_content("a title")
+        .and have_a_field(:report_type).pointing_to("Force Report")
+        .and have_a_field(:wikirate_company).pointing_to("Death Star")
+        .and have_a_field(:year).pointing_to "2014"
     end
 
     context "existing sources" do
-      around do |example|
-        Card::Env.params[:conflict_strategy] = :override
-        example.run
-        Card::Env.params[:conflict_strategy] = nil
-      end
-
       context "with fields" do
         before do
+          Card::Env.params[:conflict_strategy] = :override
           trigger_import existing_url: {
             match_type: :exact,
             corrections: { title: "Obi Wan" }
           }
+          Card::Env.params[:conflict_strategy] = nil
         end
 
         subject { source_card(:existing_url) }
@@ -93,8 +89,10 @@ RSpec.describe Card::Set::Type::SourceImportFile do
 
       context "without title" do
         it "updates title" do
+          Card::Env.params[:conflict_strategy] = :override
           trigger_import existing_without_title: { company_match_type: :exact,
                                                    corrections: { title: "Anakin" } }
+          Card::Env.params[:conflict_strategy] = nil
           expect(source_card(:existing_without_title))
                    .to have_a_field(:wikirate_title).with_content "Anakin"
         end
