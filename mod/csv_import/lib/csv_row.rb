@@ -144,7 +144,6 @@ class CSVRow
   end
 
   def method_missing method_name, *args
-    #binding.pry
     respond_to_missing?(method_name) ? @row[method_name.to_sym] : super
   end
 
