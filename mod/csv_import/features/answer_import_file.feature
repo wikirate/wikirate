@@ -1,6 +1,6 @@
 @javascript @delayed-jobs
-Feature: import metric values from a csv file
-  A user can create metric values from a CSV file
+Feature: import metric answers from a csv file
+  A user can create metric answers from a CSV file
 
   Background:
     Given I am signed in as Joe Admin
@@ -11,18 +11,19 @@ Feature: import metric values from a csv file
     And I scroll -1000 pixels
 
   Scenario: Show import table correctly
-
+    And I should see a row with "1|Jedi+disturbances in the Force|Death Star|Death Star|Death Star|2017|yes|http://google.com/1|chch"
+    And I should see a row with "11|Jedi+disturbances in the Force|Death Star|2000|no|http://google.com/10"
 
   Scenario: Import a simple metric value
     When I check checkbox for csv row 1
+    And I scroll 1000 pixels down
     And I press "Import"
     Then I should see "Importing 1 metric answers ..."
     When Jobs are dispatched
-    And I wait 2 seconds
     And I wait for ajax response
     Then I should see "Imported 1 metric answers"
     And I should see "Successful"
-    And I should see "#1:Jedi+disturbances in the Force+Death Star+2017"
+    And I should see "#1: Jedi+disturbances in the Force+Death Star+2017"
     Then I follow "Jedi+disturbances in the Force+Death Star+2017"
     And I should see "2017"
     And I should see "yes"
@@ -31,7 +32,7 @@ Feature: import metric values from a csv file
 
 
   Scenario: Import simple metric values with same source
-    When  I check checkbox for csv row 1
+    When sI check checkbox for csv row 1
     And I check checkbox for csv row 2
     And I press "Import"
     And I wait for ajax response
@@ -79,8 +80,7 @@ Feature: import metric values from a csv file
     And I follow "Import ..."
     And I uncheck all checkboxes
     And I check checkbox for csv row 6
-    And I press "Import"
-    And I wait for ajax response
+      And I wait for ajax response
     Then I should see "Problems with import answers"
     And I should see "JOE USER+RESEARCHED+APPLE_INC+2009+METRIC VALUE: value '10' exists"
 
@@ -121,6 +121,7 @@ Feature: import metric values from a csv file
     And I check checkbox for csv row 12
     And I check checkbox for csv row 13
     And I check checkbox for csv row 14
+    And I check checkbox for csv row 15
     And I press "Import"
     And I wait for ajax response
     Then I should see "SPECTRE Researcher"

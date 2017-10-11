@@ -1,6 +1,6 @@
 @javascript
-Feature: import#  metric values from a csv file
-  A user can create metric values from a CSV file
+Feature: create new import file card
+  A user can upload a new csv file and use it to import metric answers.
 
  Background:
    Given I am signed in as Joe Camel
@@ -20,7 +20,7 @@ Feature: import#  metric values from a csv file
 
    When I check checkbox for csv row 1
    When I check checkbox for csv row 11
-   And I select "override" from "conflict strategy"
+   And I choose "override"
    And I press "Import"
    And I wait for ajax response
    Then I should see "Importing 1 metric answers ..."
