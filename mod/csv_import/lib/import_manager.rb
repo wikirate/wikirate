@@ -8,9 +8,10 @@ class ImportManager
   def initialize csv_file, conflict_strategy = :skip, extra_data = {}
     @csv_file = csv_file
     @conflict_strategy = conflict_strategy
-    @extra_data = extra_data || {}
+    @extra_data = integerfy_keys(extra_data || {})
+
     @extra_data[:all] ||= {}
-    @import_status = ImportManager::Status.new(csv_file&.row_count || 0)
+    init_import_status
     @imported_keys = ::Set.new
   end
 
@@ -45,12 +46,17 @@ class ImportManager
   # used by csv rows to add additional cards
   def add_card args
     pick_up_card_errors do
-      Card.create args
+      if @dup
+        @dup.update_attributes args
+        @dup
+      else
+        Card.create args
+      end
     end
   end
 
   def add_extra_data index, data
-    @extra_data[index].merge! data
+    @extra_data[index].deep_merge! data
   end
 
   # add the final import card
@@ -80,11 +86,11 @@ class ImportManager
 
   def handle_conflict name, strategy: nil
     with_conflict_strategy strategy do
-      if (dup = duplicate(name))
-        if @conflict_strategy == :abort
+      if (@dup = duplicate(name))
+        if @conflict_strategy == :skip
           throw :skip_row, :skipped
         elsif @conflict_strategy == :skip_card
-          return dup
+          return @dup
         else
           @status = :overridden
         end
@@ -98,7 +104,7 @@ class ImportManager
   end
 
   def log_status
-    @import_status[@current_row.status][@current_row.row_index] = @current_row.label
+    @import_status[@current_row.status][@current_row.row_index] = @current_row.name
     @import_status[:counts].step @current_row.status
   end
 
@@ -108,7 +114,11 @@ class ImportManager
   end
 
   def report key, msg
-    @import_status[:reports][key] << "##{@current_row.row_index + 1} #{msg}"
+    case key
+    when :duplicate_in_file
+      msg = "#{msg} duplicate in this file"
+    end
+    @import_status[:reports][@current_row.row_index] << msg
   end
 
   def errors_by_row_index
@@ -132,11 +142,11 @@ class ImportManager
     if row
       @import_status[:errors][row.row_index].present?
     else
-      @import_status[:errors].present?
+      @import_status[:errors].values.flatten.present?
     end
   end
 
-  def errors row
+  def errors row=nil
     if row
       @import_status[:errors][row.row_index]
     else
@@ -146,6 +156,7 @@ class ImportManager
 
   def error_list
     @import_status[:errors].each_with_object([]) do |(index, errors), list|
+      next if errors.empty?
       list << "##{index + 1}: #{errors.join("; ")}"
     end
   end
@@ -155,6 +166,10 @@ class ImportManager
   end
 
   private
+
+  def init_import_status
+    @import_status = ImportManager::Status.new(@csv_file&.row_count || 0)
+  end
 
   def specify_success_status status
     return status if status.in? %i[failed skipped]
@@ -167,5 +182,9 @@ class ImportManager
     row_finished @current_row if respond_to? :row_finished
     hook_name = "row_#{status}".to_sym
     send hook_name, @current_row if respond_to? hook_name
+  end
+
+  def integerfy_keys hash
+    hash.transform_keys { |key| key == :all ? :all : key.to_s.to_i }
   end
 end

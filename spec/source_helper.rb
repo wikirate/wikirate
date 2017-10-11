@@ -12,8 +12,6 @@ module SourceHelper
   end
 
   def create_link_source url
-    puts "source: #{url}"
-    # binding.pry
     create_source link: url
   end
 

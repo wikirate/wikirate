@@ -24,9 +24,8 @@ class TableRowWithCompanyMapping < TableRow
   end
 
   def company_correction_field
-    return @match.suggestion if @match.exact? || @match.alias?
-    @format.text_field_tag corrections_input_name(:company), @match.suggestion,
-                           class: "company_autocomplete"
+    return @match.suggestion if @match.exact? || @match.alias? || !valid?
+    company_correction_input :company,  @match.suggestion
   end
 
   def wikirate_company_field
@@ -39,23 +38,28 @@ class TableRowWithCompanyMapping < TableRow
 
   def extra_data
     {
-      match_type: @match.match_type,
+      company_match_type: @match.match_type,
       company_suggestion: @match.suggestion
     }
   end
 
+  def company_correction_input field_key, default
+    @format.text_field_tag corrections_input_name(field_key), default,
+                           class: "company_autocomplete"
+  end
+
   # @return name of company in db that matches the given name and
   # the what kind of match
-  def match_company
-    name = @csv_row[:company]
+  def match_company field=:company
+    name = @csv_row[field]
     @company_matcher ||= {}
     @company_matcher[name] ||= CompanyMatcher.new(name)
   end
 
-  def row_context
+  def row_context match=@match
     return "danger" unless valid?
 
-    case @match_type
+    case match.match_type
     when :partial then "info"
     when :exact   then "success"
     when :none    then "warning"

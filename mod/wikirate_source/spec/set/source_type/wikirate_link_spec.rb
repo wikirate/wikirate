@@ -3,18 +3,22 @@
 # require_relative '../../../../../vendor/wagn/card/spec/support/matchers'
 
 RSpec.describe Card::Set::SourceType::WikirateLink do
-  PDF_URL = "http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/"\
-            "pdf_open_parameters.pdf".freeze
+  PDF_URL = "https://cdn.mozilla.net/pdfjs/helloworld.pdf".freeze
   HTML_URL = "http://www.loremipsum.net".freeze
+  before do
+    Cardio.config.import_sources = true
+  end
+
+  after do
+    Cardio.config.import_sources = false
+  end
 
   it "imports pdf link" do
     page = create_page url: PDF_URL, import: true
-    expect(page).to have_file_trait.of_size(131_821)
+    expect(page).to have_file_trait.of_size(678)
   end
 
   it "imports html link as pdf" do
-    skip "needs to be turned via config options of for all other tests;"\
-         "turned of for all tests now"
     page = create_page url: HTML_URL, import: true
     expect(page).to have_file_trait.of_size(be > 100)
   end

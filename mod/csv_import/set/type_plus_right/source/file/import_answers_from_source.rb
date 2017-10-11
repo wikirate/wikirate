@@ -48,7 +48,7 @@ def check_card card_name, type_name, type_id
 end
 
 format :html do
-  view :additional_form_fields do
+  view :additional_form_fields, cache: :never do
     metric_select + year_select
   end
 

@@ -42,6 +42,7 @@ class SharedData
       Card::Cache.reset_all
       Card::Env.reset
       Card::Auth.as_bot
+      Cardio.config.import_sources = false
       add :companies, :topics, :analysis, :notes_and_sources,
           :metrics, :yearly_variables,
           :projects, :industry,
@@ -164,9 +165,19 @@ class SharedData
 
     def add_import_files
       create "answer import test", type: :answer_import_file, empty_ok: true
+      create "feature answer import test", type: :answer_import_file,
+             codename: "answer_import_test_with_file",
+             answer_import_file: csv_file("answer_import"), storage_type: :coded,
+             mod: :test
       create "source import test", type: :source_import_file, empty_ok: true
       create "relationship answer import test", type: :relationship_answer_import_file, empty_ok: true
       create "answer from source import test", type: :source, subfields: { wikirate_link: "http://google.com/source" }
+      create "answer from source import test+file", type: :file, empty_ok: true
+    end
+
+    def csv_file name
+      path = File.expand_path("../shared_data/file/#{name}.csv", __FILE__)
+      File.open path
     end
 
   end

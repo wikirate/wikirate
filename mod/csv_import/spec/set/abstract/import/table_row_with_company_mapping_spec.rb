@@ -1,17 +1,15 @@
 require_relative "../../../support/shared_table_row_examples"
-require_relative "../../../support/shared_csv_data"
+require_relative "../../../support/shared_answer_csv_row"
 
 RSpec.describe Card::Set::Abstract::Import::TableRowWithCompanyMapping do
-  include_context "csv data"
+  include_context "answer csv row"
 
   include_context "table_row", Card::AnswerImportFileID do
-    let(:csv_data) do
-      answer_data
-    end
+    let(:csv_data) {answer_row}
   end
 
   def have_match_type type
-    have_tag :input, with: { type: :hidden, name: "extra_data[0][match_type]",
+    have_tag :input, with: { type: :hidden, name: "extra_data[0][company_match_type]",
                              value: type }
   end
 
@@ -63,8 +61,12 @@ RSpec.describe Card::Set::Abstract::Import::TableRowWithCompanyMapping do
   end
 
   context "exact match" do
-    let(:row_data) do
-      csv_row company: "Google Inc."
+    let(:row_data) {csv_row company: "Google Inc."}
+
+    around do |example|
+      with_row row_data do
+        example.run
+      end
     end
 
     it "has class 'table-success'" do
@@ -77,8 +79,7 @@ RSpec.describe Card::Set::Abstract::Import::TableRowWithCompanyMapping do
 
     specify "content" do
       expect(field(:checkbox))
-        .to have_tag :input, with: { type: "checkbox", name: "import_rows[0]",
-                                     value: "true" }
+        .to have_tag :input, with: { type: "checkbox", name: "import_rows[0]" }
     end
 
     it "has no correction field" do
@@ -88,7 +89,13 @@ RSpec.describe Card::Set::Abstract::Import::TableRowWithCompanyMapping do
   end
 
   context "alias match" do
-    let(:row_data) { csv_row company: "Alphabet" }
+    let(:row_data) {csv_row company: "Alphabet"}
+
+    around do |example|
+      with_row row_data do
+        example.run
+      end
+    end
 
     it "has no correction field" do
       expect(field(:checkbox))
@@ -102,9 +109,14 @@ RSpec.describe Card::Set::Abstract::Import::TableRowWithCompanyMapping do
 
 
   context "partial match" do
-    let(:row_data) do
-      csv_row company: "Sony"
+    let(:row_data) {csv_row company: "Sony"}
+
+    around do |example|
+      with_row row_data do
+        example.run
+      end
     end
+
     it "has correction field" do
       expect(field(:company_correction))
         .to have_tag :input, with: { name: "extra_data[0][corrections][company]",
@@ -114,16 +126,25 @@ RSpec.describe Card::Set::Abstract::Import::TableRowWithCompanyMapping do
     it "has hidden match type field" do
       expect(field(:checkbox)).to have_match_type :partial
     end
+
+    context "invalid data" do
+      let(:row_data) {csv_row company: "Sony", metric: nil}
+      it "has no correction field" do
+        expect(field(:company_correction))
+          .not_to have_tag :input,
+                           with: { name: "extra_data[0][corrections][company]" }
+      end
+    end
   end
 
   context "no match" do
-    let(:row_data) do
-      csv_row company: "Unknown Company"
-    end
+    let(:row_data) {csv_row company: "Unknown Company"}
 
     it "has no correction field" do
-      expect(field(:company_correction))
-        .not_to have_tag :input, with: { name: "extra_data[0][corrections]" }
+      with_row row_data do
+        expect(field(:company_correction))
+          .not_to have_tag :input, with: { name: "extra_data[0][corrections]" }
+      end
     end
   end
 end

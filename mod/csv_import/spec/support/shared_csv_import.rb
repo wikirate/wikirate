@@ -93,7 +93,7 @@ shared_context "table row matcher" do
         with_tag :input, with: checkbox_with
         with_tag :input, with: {
           type: :hidden, value: match,
-                                 name: "extra_data[#{index}][match_type]" }
+                                 name: "extra_data[#{index}][company_match_type]" }
         with_tag :input, with: { type: :hidden, value: suggestion,
                                  name: "extra_data[#{index}][company_suggestion]" }
       end
@@ -120,7 +120,8 @@ shared_context "answer import" do
   end
 
   def company_name key
-    data[key][company_row]
+    key.is_a?(Symbol) ? data[key][company_row] : key[:company]
+
   end
 
   def value_card key

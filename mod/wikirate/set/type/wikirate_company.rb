@@ -73,7 +73,7 @@ end
 format :html do
   view :link, closed: true, perms: :none do
     return super() unless voo.closest_live_option(:project)
-    title = showname voo.title
+    title = title_in_context voo.title
     opts = { known: card.known? }
     opts[:path] = { filter: { project: voo.closest_live_option(:project) } }
     opts[:path][:card] = { type: voo.type } if voo.type && !opts[:known]

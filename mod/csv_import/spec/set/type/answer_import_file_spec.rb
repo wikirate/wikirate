@@ -1,9 +1,7 @@
-require_relative "../../support/shared_csv_data"
+#require_relative "../../support/shared_csv_data"
 require_relative "../../support/shared_csv_import"
 
-
-RSpec.xdescribe Card::Set::Type::AnswerImportFile, type: :controller do
-  pending
+RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
   routes { Decko::Engine.routes }
   before { @controller = CardController.new }
 
@@ -23,7 +21,9 @@ RSpec.xdescribe Card::Set::Type::AnswerImportFile, type: :controller do
     end
 
     it "sorts by match type" do
-      table = import_card_with_data.format(:html)._render_import_table
+      import_card = import_card_with_data
+      allow(import_card).to receive(:file).and_return true
+      table = import_card.format(:html)._render_import_table
       expect(table).to have_tag :table do
         with_tag :tbody do
           with_text /Not a metric.+New Company.+Sony.+Google.+Death Star/m
@@ -41,12 +41,12 @@ RSpec.xdescribe Card::Set::Type::AnswerImportFile, type: :controller do
     end
 
     it "has invalid alert if data is invalid" do
-        expect(table(:not_a_metric))
-          .to have_tag "div.alert.alert-danger" do
-            with_tag :h4, text: "Invalid data"
-            with_tag :ul, text: /Not a metric/
-        end
+      expect(table(:not_a_metric))
+        .to have_tag "div.alert.alert-danger" do
+        with_tag :h4, text: "Invalid data"
+        with_tag :ul, text: /Not a metric/
       end
+    end
   end
 
   describe "import csv file" do
@@ -64,12 +64,12 @@ RSpec.xdescribe Card::Set::Type::AnswerImportFile, type: :controller do
           company_missing: ["Jedi+disturbances in the Force", "", "2017", "yes", "http://google.com/7", ""],
           missing_and_invalid: ["Not a metric", "", "2017", "yes", "http://google.com/8", ""],
           conflict_same_value_same_source: ["Jedi+disturbances in the Force", "Death Star", "2000", "yes", "http://www.wikiwand.com/en/Opera", ""],
-          conflict_same_value_different_source: ["Jedi+disturbances in the Force", "Death Star", "2000", "yes", "http://google.com/9", ""],
-          conflict_different_value: ["Jedi+disturbances in the Force", "Death Star", "2000", "no", "http://google.com/10", ""],
-          invalid_value: ["Jedi+disturbances in the Force", "Death Star", "2017", "100", "http://google.com/11", ""],
-          monster_badge_1: ["Jedi+disturbances in the Force", "Monster Inc.", "2000", "yes", "http://google.com/12", ""],
-          monster_badge_2: ["Jedi+disturbances in the Force", "Monster Inc.", "2001", "yes", "http://google.com/13", ""],
-          monster_badge_3: ["Jedi+disturbances in the Force", "Monster Inc.", "2002", "yes", "http://google.com/14", ""]
+          conflict_same_value_different_source: ["Jedi+disturbances in the Force", "Death Star", "2000", "yes", "http://google.com/10", ""],
+          conflict_different_value: ["Jedi+disturbances in the Force", "Death Star", "2000", "no", "http://google.com/11", "overriden"],
+          invalid_value: ["Jedi+disturbances in the Force", "Death Star", "2017", "100", "http://google.com/12", ""],
+          monster_badge_1: ["Jedi+disturbances in the Force", "Monster Inc.", "2000", "yes", "http://google.com/13", ""],
+          monster_badge_2: ["Jedi+disturbances in the Force", "Monster Inc.", "2001", "yes", "http://google.com/14", ""],
+          monster_badge_3: ["Jedi+disturbances in the Force", "Monster Inc.", "2002", "yes", "http://google.com/15", ""]
         }
       end
     end
@@ -104,7 +104,7 @@ RSpec.xdescribe Card::Set::Type::AnswerImportFile, type: :controller do
       import_card = create_import_card "test"
 
       expect_card("Jedi+disturbances in the Force+Death Star+2017+value").not_to exist
-      params = import_params exact_match: { match_type: :exact }
+      params = import_params exact_match: { company_match_type: :exact }
       post :update, xhr: true, params: params.merge(id: "~#{import_card.id}")
       expect_card("Jedi+disturbances in the Force+Death Star+2017+value").to exist
     end
@@ -137,7 +137,7 @@ RSpec.xdescribe Card::Set::Type::AnswerImportFile, type: :controller do
       badges.item_names
     end
 
-    it "awards badges" do
+    xit "awards badges" do
       expect(badge_names).not_to include "Monster Inc.+Researcher+company badge"
       trigger_import :monster_badge_1, :monster_badge_2, :monster_badge_3
       expect(badge_names).to include "Monster Inc.+Researcher+company badge"
@@ -153,7 +153,7 @@ RSpec.xdescribe Card::Set::Type::AnswerImportFile, type: :controller do
 
     end
 
-    context "company correction name is filled" do
+    xcontext "company correction name is filled" do
       it "uses the corrected company name" do
         trigger_import no_match: { corrections: { company: "corrected company" } }
         expect(Card[metric, "corrected company", year])
@@ -161,19 +161,47 @@ RSpec.xdescribe Card::Set::Type::AnswerImportFile, type: :controller do
       end
 
       context "no match" do
-        it "adds company name in file to corrected company's aliases" do
-          trigger_import no_match: { match_type: :none,
-                                              corrections: { company: "corrected company" } }
+        it "creates company" do
+          trigger_import no_match: { company_match_type: :none,
+                                     corrections: { company: "corrected company" } }
 
-          expect(Card["corrected company", :aliases].item_names).to include "New Company"
+          expect_card(answer_name(company: "corrected company")).to exist
+          expected_answer_created()
+          expect(Card["corrected company"]).to have_type :wikirate_company
+        end
+
+        it "adds answer to corrected answer and creates new alias card" do
+          expect(Card["Monster Inc", :aliases]).not_to exist
+          trigger_import no_match: { company_match_type: :none,
+                                     corrections: { company: "Monster Inc." } }
+          expect(Card["Monster Inc."]).to have_a_field(:aliases).pointing_to company_name(:no_match)
+        end
+
+
+        it "adds company in file to corrected company's aliases" do
+          trigger_import exact_match: { company_match_type: :none,
+                                        corrections: { company: "Google Inc." } }
+          expect_card(answer_name(company: "Google Inc.")).to exist
+          expect(Card["Google Inc."]).to have_a_field(:aliases).pointing_to company_name(:exact_match)
         end
       end
 
       context "partial match" do
         it "adds company name in file to corrected company's aliases" do
-          trigger_import partial_match: { match_type: :partial,
-                                          corrections: { company: "corrected company" } }
-          expect(Card["corrected company", :aliases].item_names).to include "Sony"
+          trigger_import partial_match: { company_match_type: :partial,
+                                          corrections: { company: "corrected company" },
+                                          suggestion: { company: "Sony Corporation" } }
+          expect(answer_card(company: "corrected company")).to exist
+          expect_card("corrected company")
+            .to have_a_field(:aliases).pointing_to company_name(:partial_match)
+        end
+
+        it "uses suggestion if no correction" do
+          trigger_import partial_match: { company_match_type: :partial,
+                                          suggestion: { company: "Sony Corporation" } }
+          expect_card(answer_name(company: "Sony Corporation")).to be_a Card
+          expect_card("Sony Corporation")
+            .to have_a_field(:aliases).pointing_to company_name(:partial_match)
         end
       end
     end

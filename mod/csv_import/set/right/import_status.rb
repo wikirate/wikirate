@@ -15,7 +15,7 @@ def import_counts
 end
 
 def reset total
-  @status = ImportManager::Status.new act_id: @current_act&.id, counts: { total: total }
+  @status = ImportManager::Status.new act_id: ActManager.act_card&.id, counts: { total: total }
   save_status
 end
 
@@ -121,11 +121,17 @@ format :html do
     if type == :failed
       text = "##{index + 1}: #{name}"
       if status[:errors][index].present?
-        text += " - " + status[:errors][index].join("; ")
+        text += " - " if name.present?
+        text += status[:errors][index].join("; ")
       end
       text
     else
-      "##{index + 1}: " + link_to_card(name)
+      text = "##{index + 1}: " + link_to_card(name)
+      if status[:reports][index].present?
+        text += " - " if name.present?
+        text += status[:reports][index].join("; ")
+      end
+      text
     end
   end
 

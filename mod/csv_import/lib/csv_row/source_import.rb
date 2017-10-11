@@ -33,8 +33,14 @@ class CSVRow
 
     def import_source
       @source_map.fetch source_args[:source] do |url|
-        @source_map[url] = create_or_update_source
+        source = create_or_update_source
+        add_to_source_map url, source
+        source
       end
+    end
+
+    def add_to_source_map url, source
+      @import_manager.add_extra_data :all, source_map: { url => source }
     end
 
     def create_or_update_source
@@ -48,12 +54,11 @@ class CSVRow
       end
     end
 
-    def resolve_source_duplicates existing_source
+    def resolve_source_duplication existing_source
       updated = false
       updated |= update_title_card existing_source
       updated |= update_existing_source existing_source
-      return unless updated
-      @import_manager.report :updated_sources, existing_source.name
+      skip(updated ? :overridden : :skipped)
     end
 
     def create_source
@@ -83,10 +88,12 @@ class CSVRow
     end
 
     def update_title_card source_card
-      title_card = source_card.fetch trait: :wikirate_title,
-                                     new: { content: @row[:title] }
-      return unless title_card.new?
-      add_subcard title_card
+      return if (field = source_card.field(:wikirate_title)) && field.content.present?
+      # title_card = source_card.fetch trait: :wikirate_title,
+      #                                new: { content: @row[:title] }
+      # return unless title_card.new?
+      # add_subcard title_card
+      add_card name: [source_card.name, :wikirate_title], content: @row[:title]
     end
 
     def create_or_update_pointer_subcard source_card, trait, content
@@ -94,10 +101,12 @@ class CSVRow
       trait_card = source_card.fetch trait: trait,
                                      new: { content: "[[#{content}]]" }
       if trait_card.new?
-        add_subcard trait_card
+        add_card name: trait_card.name, content: trait_card.content
+        #add_subcard trait_card
       elsif !trait_card.item_names.include?(content)
-        trait_card.add_item content
-        add_subcard trait_card
+        trait_card.add_item! content
+        #trait_card.add_item content
+        # add_subcard trait_card
       else
         return false
       end
@@ -107,11 +116,18 @@ class CSVRow
     def hashkey_to_codename key
       key == :company ? :wikirate_company : key
     end
+
+    def with_sourcebox
+      Card::Env.params[:sourcebox] = "true"
+      yield
+    ensure
+      Card::Env.params[:sourcebox] = "false"
+    end
   end
 
   def check_duplication_within_file
     return unless @source_map.key? source_args[:source]
-    @import_manager.report :duplicates_in_file, source_args[:source]
-    throw :skip_row
+    @import_manager.report :duplicate_in_file, source_args[:source]
+    skip
   end
 end

@@ -4,7 +4,7 @@ include_set Abstract::ImportWithCompanies
 attachment :answer_import_file, uploader: CarrierWave::FileCardUploader
 
 COLUMNS = { checkbox: "Select",
-            row_index: "#",
+            row_index: "Row",
             metric: "Metric",
             company_correction: "Company",
             company: "<small>in file</small>",
@@ -29,10 +29,6 @@ def item_label
 end
 
 format :html do
-  def default_import_args _args
-    voo.hide :metric_select, :year_select
-  end
-
   def import_table_row_class
     TableRowWithCompanyMapping
   end

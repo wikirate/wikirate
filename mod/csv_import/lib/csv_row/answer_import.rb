@@ -14,7 +14,7 @@ class CSVRow
 
     def build_answer_create_args
       @answer_create_args = construct_answer_create_args
-      throw :skip_row, :failed if errors.any?
+      skip :failed if errors.any?
     end
 
     def answer_create_args
@@ -36,7 +36,7 @@ class CSVRow
 
     def construct_answer_create_args
       create_args =
-        Card[metric].create_value_args @row.merge(ok_to_exist: override?)
+        Card[metric].create_value_args @row.merge(ok_to_exist: true)
       pick_up_card_errors Card[metric]
       create_args
     end

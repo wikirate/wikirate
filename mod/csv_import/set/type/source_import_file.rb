@@ -5,7 +5,7 @@ attachment :source_import_file, uploader: CarrierWave::FileCardUploader
 
 COLUMNS = { checkbox: "Select",
             row_index: "#",
-            company_correciton: "Corrected Company",
+            company_correction: "Corrected Company",
             company: "<small>in file</small>",
             wikirate_company: "<small>on WikiRate</small>",
             year: "Year",

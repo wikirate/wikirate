@@ -87,12 +87,6 @@ namespace :wikirate do
               codename: codename, storage_type: :coded, mod: :test
             )
           end
-
-          # because we don't copy the files we have to delete the output
-          # but the solid caches for generating the machine output
-          # are updated now
-          #Card[:all, :script, :machine_output].delete
-          #Card[:all, :style, :machine_output].delete
         end
       end
     end

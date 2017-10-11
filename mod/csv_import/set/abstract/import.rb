@@ -12,6 +12,14 @@ def clean_html?
   false
 end
 
+event :validate_csv_format, :validate, when: proc { |c| c.save_preliminary_upload? } do
+  begin
+    CSVFile.new upload_cache_card.file, csv_row_class, headers: :detect
+  rescue CSV::MalformedCSVError => e
+    abort :failure, "malformed csv: #{e.message}"
+  end
+end
+
 format :html do
   def default_new_args _args
     voo.help = help_text
@@ -30,17 +38,23 @@ format :html do
   view :core do
     output [
       download_link,
-      import_link.html_safe
+      import_link,
+      last_import_status
     ]
   end
 
   def download_link
     handle_source do |source|
-      %(<a href="#{source}" rel="nofollow">Download #{showname voo.title}</a><br />)
+      %(<a href="#{source}" rel="nofollow">Download "#{_render_title}"</a><br />)
     end.html_safe
   end
 
   def import_link
     link_to_view :import, "Import ...", rel: "nofollow", remote: false
+  end
+
+  def last_import_status
+    return unless card.import_status.present?
+    link_to_card card.import_status_card, "Status of last import"
   end
 end
