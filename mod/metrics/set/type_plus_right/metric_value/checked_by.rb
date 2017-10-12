@@ -86,7 +86,7 @@ format :html do
     "#{request_icon} Request that another researcher double check this value"
   end
 
-  view :core do
+  view :core, cache: :never do
     unless card.check_requested? || card.checked? || card.allowed_to_check?
       return ""
     end
@@ -99,7 +99,7 @@ format :html do
     end
   end
 
-  view :icon do |args|
+  view :icon, cache: :never do |args|
     if card.checked?
       double_check_icon args
     elsif card.check_requested?
@@ -119,7 +119,7 @@ format :html do
     end
   end
 
-  view :checked_by_list do
+  view :checked_by_list, cache: :never do
     return if card.checkers.empty?
     links = _render_shorter_search_result items: { view: :link }
     %(
@@ -129,7 +129,7 @@ format :html do
     )
   end
 
-  view :shorter_search_result do
+  view :shorter_search_result, cache: :never do
     render_view = voo.show?(:link) ? :link : :name
     items = card.checkers
     total_number = items.size
