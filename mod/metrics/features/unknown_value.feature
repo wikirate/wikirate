@@ -21,3 +21,4 @@ Feature: Unknown value
     And I fill in "no" for "Answer"
     And I submit
     Then I should see "Unknown"
+

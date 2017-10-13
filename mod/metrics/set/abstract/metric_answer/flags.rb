@@ -12,11 +12,11 @@ def commented?
 end
 
 format :html do
-  view :flags do
+  view :flags, cache: :never do
     output [checked_value_flag, comment_flag, imported_flag]
   end
 
-  view :small_flags do
+  view :small_flags, cache: :never do
     output do
       [:checked_value, :comment, :imported].map do |flag_name|
         flag = send "#{flag_name}_flag"
