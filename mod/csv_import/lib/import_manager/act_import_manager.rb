@@ -2,8 +2,8 @@
 # under one act of a import card
 class ActImportManager < ImportManager
   def initialize act_card, csv_file, conflict_strategy=:skip, extra_row_data={}
-    super(csv_file, conflict_strategy, extra_row_data)
     @act_card = act_card
+    super(csv_file, conflict_strategy, extra_row_data)
   end
 
   def init_import_status
@@ -51,6 +51,12 @@ class ActImportManager < ImportManager
   end
 
   private
+
+  def init_import_status row_count
+    binding.pry
+    isc = @act_card&.import_status_card
+    @import_status = isc&.real? ?  isc.status : super
+  end
 
   def row_finished row
     return if row.status == :failed

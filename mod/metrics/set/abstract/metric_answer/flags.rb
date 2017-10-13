@@ -32,7 +32,7 @@ format :html do
 
   def comment_flag
     return "" unless card.commented?
-    icon_tag "commenting", title: "Has comments", class: "fa-lg margin-left-10"
+    fa_icon :commenting, title: "Has comments", class: "fa-lg margin-left-10"
   end
 
   def imported_flag

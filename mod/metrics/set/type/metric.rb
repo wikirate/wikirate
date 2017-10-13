@@ -464,7 +464,7 @@ format :html do
     wrap_with :div do
       [
         text_field_tag("pair_value", (args[:weight] || 0)) + "%",
-        content_tag(:span, fa_icon(:remove).html_safe, class: icon_class)
+        content_tag(:span, fa_icon(:close).html_safe, class: icon_class)
       ]
     end
   end

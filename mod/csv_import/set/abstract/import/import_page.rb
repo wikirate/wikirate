@@ -37,6 +37,10 @@ format :html do
     ""
   end
 
+  def already_imported?
+    card.already_imported?
+  end
+
   def group_selection_checkboxes
     <<-HTML.html_safe
       Select:
@@ -48,6 +52,7 @@ format :html do
       #{group_selection_checkbox('alias', 'alias matches', :alias, true)}
       #{group_selection_checkbox('partial', 'partial matches', :info, true)}
       #{group_selection_checkbox('none', 'no matches', :warning)}
+      #{group_selection_checkbox('imported', 'already imported', :active) if already_imported?}
     HTML
   end
 
@@ -67,10 +72,10 @@ format :html do
   def select_conflict_strategy
     <<-HTML.html_safe
       Conflicts with existing entries:
-      #{radio_button_tag "conflict", "skip", true} 
-      #{label_tag "conflict_skip", "skip"}
-      #{radio_button_tag "conflict", "override", false} 
-      #{label_tag "conflict_override", "override"}
+      #{radio_button_tag "conflict_strategy", "skip", true} 
+      #{label_tag "conflict_strategy_skip", "skip"}
+      #{radio_button_tag "conflict_strategy", "override", false} 
+      #{label_tag "conflict_strategy_override", "override"}
     HTML
   end
 end

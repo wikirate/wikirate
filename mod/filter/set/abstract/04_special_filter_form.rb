@@ -69,7 +69,7 @@ format :html do
   end
 
   def filter_submit_button
-    filter_icon = fa_icon("search").html_safe
+    filter_icon = fa_icon(:search).html_safe
     button_tag(filter_icon, situation: "default", disable_with: "Filtering")
   end
 

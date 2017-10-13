@@ -11,7 +11,7 @@ class ImportManager
     @extra_data = integerfy_keys(extra_data || {})
 
     @extra_data[:all] ||= {}
-    init_import_status
+    # init_import_status
     @imported_keys = ::Set.new
   end
 
@@ -20,9 +20,8 @@ class ImportManager
   end
 
   def import_rows row_indices
-    row_count = row_indices ? row_indices.size : @csv_file.row_count
-    @import_status = ImportManager::Status.new counts: { total: row_count }
-
+    row_count = row_indices ? row_indices.size : @csv_file&.row_count
+    init_import_status row_count
     @csv_file.each_row self, row_indices do |csv_row|
       #handle_import csv_row do
         csv_row.execute_import
@@ -140,17 +139,17 @@ class ImportManager
 
   def errors? row = nil
     if row
-      @import_status[:errors][row.row_index].present?
+      errors(row).present?
     else
-      @import_status[:errors].values.flatten.present?
+      errors.values.flatten.present?
     end
   end
 
   def errors row=nil
     if row
-      @import_status[:errors][row.row_index]
+      @import_status[:errors][row.row_index] || []
     else
-      @import_status[:errors]
+      @import_status[:errors] || {}
     end
   end
 
@@ -167,8 +166,9 @@ class ImportManager
 
   private
 
-  def init_import_status
-    @import_status = ImportManager::Status.new(@csv_file&.row_count || 0)
+  def init_import_status row_count
+    row_count ||= 0
+    @import_status = ImportManager::Status.new row_count
   end
 
   def specify_success_status status

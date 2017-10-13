@@ -156,12 +156,11 @@ format :html do
   def double_check_icon opts={}
     add_class opts, "verify-blue"
     opts[:title] = "Value checked"
-    icon_tag("check-circle", opts).html_safe
+    icon_tag(:check_circle, opts).html_safe
   end
 
   def request_icon _opts={}
-    icon_tag("check-circle-o", class: "request-red", title: "check requested")
-      .html_safe
+    fa_icon(:check_circle_o, class: "request-red", title: "check requested").html_safe
   end
 
   def data_path

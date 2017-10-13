@@ -31,7 +31,7 @@ end
 #     find("label", text: field).find(:xpath, "..//select", visible: false)
 # end
 
-Capybara.default_max_wait_time = 60
+Capybara.default_max_wait_time = 20
 
 When(/^I press "([^\"]*)" within "([^\"]*)"$/) do |button, scope_selector|
   within(scope_selector) do
@@ -164,7 +164,7 @@ Then(/^I should see a row with "(.+)"$/) do |value|
 end
 
 Then(/^I uncheck all checkboxes$/) do
-  all("input[type=checkbox]").each do |checkbox|
+  all("input[type=checkbox]", visible: false).each do |checkbox|
     checkbox.click if checkbox.checked?
   end
 end
@@ -181,12 +181,12 @@ Then(/^I check checkbox in row (\d+)$/) do |row|
 end
 
 Then(/^I check checkbox for csv row (\d+)$/) do |row|
-  table = find("table")
+  table = find("table", visible: false)
   within(table) do
-    row = find("tr[data-csv-row-index='#{row.to_i - 1}'")
+    row = find("tr[data-csv-row-index='#{row.to_i - 1}'", visible: false)
     # row = all("tr")[row.to_i]
     within(row) do
-      checkbox = find("input[type=checkbox]")
+      checkbox = find("input[type=checkbox]", visible: false)
       checkbox.click unless checkbox.checked?
     end
   end
