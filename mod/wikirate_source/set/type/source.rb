@@ -83,17 +83,19 @@ format :html do
   end
 
   view :new_preview do
-    voo.structure = "metric value source form"
-    card_form :create, "main-success" => "REDIRECT",
-                       "data-form-for" => "new_metric_value",
-                       class: "card-slot new-view TYPE-source" do
-      output [
-        preview_hidden,
-        new_view_hidden,
-        new_view_type,
-        _optional_render_content_formgroup,
-        _optional_render_preview_buttons
-      ]
+    with_nest_mode :edit do
+      voo.structure = "metric value source form"
+      card_form :create, "main-success" => "REDIRECT",
+                         "data-form-for" => "new_metric_value",
+                         class: "card-slot new-view TYPE-source" do
+        output [
+          preview_hidden,
+          new_view_hidden,
+          new_view_type,
+          _optional_render_content_formgroup,
+          _optional_render_preview_buttons
+        ]
+      end
     end
   end
 

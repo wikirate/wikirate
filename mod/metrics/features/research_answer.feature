@@ -12,7 +12,7 @@ Feature: Research answer
     And I click on "Next"
     And I click on "Research answer"
     And I wait 10 seconds
-    # And I wait for ajax response
+    And I wait for ajax response
     And I click on "Add a new source"
 
   Scenario: Create a metric value
