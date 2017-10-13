@@ -5,11 +5,11 @@
   :key: metric_value_source_form
   :merged: 2017-10-13 01:22:25 UTC
 - :name: Research Page+Company
-  :type: Pointer
+  :type: Session
   :key: research_page+company
   :merged: 2017-10-13 01:22:25 UTC
 - :name: Research Page+Metric
-  :type: Pointer
+  :type: Session
   :key: research_page+metric
   :merged: 2017-10-13 01:22:25 UTC
 :remotes:

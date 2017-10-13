@@ -32,7 +32,7 @@ Feature: import metric answers from a csv file
 
 
   Scenario: Import simple metric values with same source
-    When sI check checkbox for csv row 1
+    When I check checkbox for csv row 1
     And I check checkbox for csv row 2
     And I press "Import"
     And I wait for ajax response
