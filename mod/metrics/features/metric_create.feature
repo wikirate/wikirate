@@ -11,6 +11,7 @@ Feature: create metrics
     And I fill in "Metric Title" with "MyResearch"
     # And I fill in "Question" with "my question"
     And I choose "Number"
+    And I scroll 500 pixels down
     And I press "Submit"
     Then I should see "Metric Creator"
     And I should see "Awarded for adding your first metric."
