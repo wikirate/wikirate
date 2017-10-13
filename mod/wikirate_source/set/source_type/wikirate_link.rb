@@ -125,7 +125,7 @@ end
 
 def download_and_add_file
   return unless url.present? && within_file_size_limit?
-  file_url = Addressable::URI.escape url
+  file_url = url.include?("%") ? url : Addressable::URI.escape(url)
   add_subfield :file, remote_file_url: file_url, type_id: FileID, content: "dummy"
   source_type = subfield(:source_type)
   source_type.content = "[[#{Card[:file].name}]]"
