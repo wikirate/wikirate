@@ -1,7 +1,6 @@
 [submodule "vendor/decko"]
 	path = vendor/decko
 	url = https://github.com/decko-commons/decko
-        branch = wikirate
 [submodule "vendor/card-mods"]
 	path = vendor/card-mods
 	url = https://github.com/decko-commons/card-mods
