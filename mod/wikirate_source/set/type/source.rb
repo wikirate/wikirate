@@ -82,7 +82,7 @@ format :html do
     Env.params[:preview]
   end
 
-  view :new_preview do
+  view :new_preview, cache: :never do
     with_nest_mode :edit do
       voo.structure = "metric value source form"
       card_form :create, "main-success" => "REDIRECT",
