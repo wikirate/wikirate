@@ -12,6 +12,15 @@
   :type: Session
   :key: research_page+metric
   :merged: 2017-10-13 01:22:25 UTC
+- :name: Source+*type+*structure
+  :type: HTML
+  :key: source+*type+*structure
+- :name: *metric type+*right+*structure
+  :type: Set
+  :key: *metric_type+*right+*structure
+- :name: *source type+*right+*structure
+  :type: Set
+  :key: *source_type+*right+*structure
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org
