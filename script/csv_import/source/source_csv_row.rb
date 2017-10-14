@@ -13,6 +13,8 @@ class SourceCSVRow < CSVRow
   def create_source
     puts company
     Card.create! name: "", type_id: Card::SourceID, subcards: source_args
+  rescue ActiveRecord::RecordInvalid => e
+    puts "source for #{company} failed because #{e.message}"
   end
 
   def source_args
