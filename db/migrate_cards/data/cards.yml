@@ -3,27 +3,27 @@
 - :name: metric value source form
   :type: HTML
   :key: metric_value_source_form
-  :merged: 2017-10-16 14:26:49 UTC
 - :name: Research Page+Company
   :type: Session
   :key: research_page+company
-  :merged: 2017-10-13 01:22:25 UTC
 - :name: Research Page+Metric
   :type: Session
   :key: research_page+metric
-  :merged: 2017-10-13 01:22:25 UTC
 - :name: Source+*type+*structure
   :type: HTML
   :key: source+*type+*structure
-  :merged: 2017-10-16 14:26:49 UTC
-- :name: "*metric type+*right+*structure"
+- :name: Cardtype+*metric type+*type plus right+*structure"
   :type: Set
-  :key: "*metric_type+*right+*structure"
-  :merged: 2017-10-16 14:26:49 UTC
-- :name: "*source type+*right+*structure"
+  :key: cardtype+*metric_type+*type_plus_right+*structure"
+- :name: Link*source type
   :type: Set
-  :key: "*source_type+*right+*structure"
-  :merged: 2017-10-16 14:26:49 UTC
+  :key: link+*source_type
+- :name: Text*source type
+  :type: Set
+  :key: text+*source_type
+- :name: File*source type
+  :type: Set
+  :key: file+*source_type
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org
