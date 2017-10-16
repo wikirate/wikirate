@@ -158,7 +158,176 @@ format:CP,utcFormat:NP,utcParse:TP,timeFormat:zP,timeParse:OP,monthFormat:jb,mon
 //script: company page
 (function(){var a,t,e,n;e=null,t=function(){var a,t,n,i,s,o,l;if(e)return e;for(e={},s=window.location.search.substring(1),l=s.split("&"),t=0;t<l.length;)i=l[t].split("="),n=i[0].toLowerCase(),o=i[1],"undefined"==typeof e[n]?e[n]=o:"string"==typeof e[n]?(a=[e[n],o],e[n]=a):e[n].push(o),t++;return e},n=function(){$("#fakeLoader").fakeLoader({timeToHide:1e6,zIndex:"999",spinner:"spinner1",bgColor:"rgb(255,255,255,0.80)"})},a=window.History,decko.slotReady(function(i){var s,o;return(i.hasClass("TYPE-company")||i.hasClass("TYPE-topic"))&&i.hasClass("open-view")&&i.hasClass("ALL")&&(e=null,s=t().tab,0===$("[data-tab-name='"+s+"']").size()&&(s="metric"),o=$("[data-tab-name='"+s+"']"),o.closest("li").addClass("active"),n(),$("#fakeLoader").hide()),i.find(".company-tabs .nav-tabs li a").off("click").click(function(t){var e,n,s,o;return!!(t.shiftKey||t.ctrlKey||t.metaKey)||(i.find(".company-tabs .nav-tabs li").removeClass("active"),$(this).closest("li").addClass("active"),e=$(this),n=e.data("tab-content-url"),s=n+"?view=content",o=".tab-content",void 0===n||($("#fakeLoader").fadeIn(),a.pushState(null,null,window.location.pathname+"?tab="+e.data("tab-name")),$.get(s,function(a){$(o).html(a),$(o).trigger("slotReady"),$("#fakeLoader").fadeOut()}),!1))})})}).call(this);
 //script: metric value
-(function(){$.extend(wikirate,{appendNewValueForm:function(e){var t,r,n,i;return t=e.parent().parent().find(".card-slot.answer_table-view"),r=wikirate.loader(t,!0),r.add(),e.hide(),i=$.urlParam("source"),i=null!==i?"&source="+i:"",n=decko.prepUrl(e.data("url")+i),$.get(n,function(e){return t.prepend(e),decko.initializeEditors(t),t.trigger("slotReady"),r.remove()},"html").fail(function(e){return r.remove(),t.prepend(e.responseText)})},handleYearData:function(e,t){var r,n,i,a,o;if(r=e.find(".year input#pointer_item"),r.exists())return i=r.val(),n=!isNaN(t),o=function(){if(n)return e.find(".year input#pointer_item").val(t)},""===i.trim()&&o(),""!==i.trim()&&n&&parseInt(i)!==t&&(a="Note: This source is for "+i+" Would you like to change the year of this answer to "+t+"?",window.confirm(a))?o():void 0},valueChecking:function(e,t){var r,n,i;return i=encodeURIComponent(e.data("path")),t="?set_flag="+t,n=decko.prepUrl(decko.rootPath+"/update/"+i+t),r=e.closest(".double-check"),r.exists()||(r=e.closest(".RIGHT-checked_by")),r.html("loading..."),$.get(n,function(e){var t;return t=$(e).find(".d0-card-body").html(),r.empty().html(t)},"html").fail(function(){return r.html("please <a href=/*signin>sign in</a>")})}}),$(document).ready(function(){return $("#ajax_loader").html(),$("body").on("click","._toggle_button_text",function(){return $(this).text(function(e,t){var r;return r=$(this).data("toggle-text"),$(this).data("toggle-text",t),r})}),$("body").on("click","._value_check_button",function(){return wikirate.valueChecking($(this),"checked")}),$("body").on("click","._value_uncheck_button",function(){return wikirate.valueChecking($(this),"not-checked")}),$("body").on("click","._add_new_value",function(){var e;return e=$(this).closest(".record-row").find(".card-slott.new_answer_form-view form"),e.exists()&&e.hasClass("hide")?(e.removeClass("hide"),$(this).hide()):wikirate.appendNewValueForm($(this))}),$("body").on("click","._form_close_button",function(){return $(this).closest("form").addClass("hide"),$(this).closest(".record-row").find("._add_new_value").show()}),$("body").on("ajax:success",'[data-form-for="new_metric_value"]',function(e,t){var r,n,i,a,o,s,d,c;return i=$("form.new-value-form"),n=i.find(".relevant-sources"),n.text().search("None")>-1&&(n=n.empty()),s=$(t).data("source-for"),c=parseInt($(t).data("year")),d="[data-source-for='"+s+"']",o=$("form.new-value-form").find(d+".source-details-toggle"),o.exists()?(r=o.find("._cite_button"),r.exists()?void 0:(r=$(d+".source-details").find("._cite_button"),wikirate.sourceCiteButtons(r,"cite"))):($(".source-details-toggle").removeClass("active"),a=$("<div>").attr("data-source-for",s).attr("data-year",c).addClass("source-details-toggle active"),a.append($(t).find(".source-info-container").parent()),a.find(".source-link").find("a.known-card, a.source-preview-link").replaceWith(function(){return $("<span>"+$(this).html()+"</span>")}),n.append(a),wikirate.handleYearData(i,c),wikirate.prepareSourceAppend(t))}),function(){var e,t,r;if(t=$("#source-preview-main"),e=$("#metric-container"),r={add:function(){return t.addClass("stick-right"),e.addClass("stick-left")},remove:function(){return t.removeClass("stick-right"),e.removeClass("stick-left")}},$(document).scrollTop()>60?r.add():r.remove(),$(window).scrollTop()>$("#main").height()-$(window).height()+300)return r.remove()}}),decko.slotReady(function(e){var t;if(t=e.find("form.new-value-form").is(":visible"),t?e.find("._add_new_value").hide():e.find("._add_new_value").show(),resizeIframe(e),e.hasClass("_show_add_new_value_button"))return e.parent().find("._add_new_value").show()})}).call(this);
+(function() {
+  $.extend(wikirate, {
+    appendNewValueForm: function($button) {
+      var $form_slot, $loader, load_path, source;
+      $form_slot = $button.parent().parent().find('.card-slot.answer_table-view');
+      $loader = wikirate.loader($form_slot, true);
+      $loader.add();
+      $button.hide();
+      source = $.urlParam('source');
+      if (source !== null) {
+        source = '&source=' + source;
+      } else {
+        source = '';
+      }
+      load_path = decko.prepUrl($button.data("url") + source);
+      return $.get(load_path, (function(data) {
+        $form_slot.prepend(data);
+        decko.initializeEditors($form_slot);
+        $form_slot.trigger('slotReady');
+        return $loader.remove();
+      }), "html").fail(function(xhr, d, e) {
+        $loader.remove();
+        return $form_slot.prepend(xhr.responseText);
+      });
+    },
+    handleYearData: function(ele, sourceYear) {
+      var $input, NaNi, inputYear, message, response, updateInput;
+      $input = ele.find('.year input#pointer_item');
+      if (!$input.exists()) {
+        return;
+      }
+      inputYear = $input.val();
+      NaNi = !isNaN(sourceYear);
+      updateInput = function() {
+        if (NaNi) {
+          return ele.find('.year input#pointer_item').val(sourceYear);
+        }
+      };
+      if (inputYear.trim() === "") {
+        updateInput();
+      }
+      if (inputYear.trim() !== "" && NaNi && (parseInt(inputYear) !== sourceYear)) {
+        message = 'Note: This source is for ' + inputYear + ' Would you like to change the year of this' + ' answer to ' + sourceYear + '?';
+        response = window.confirm(message);
+        if (response) {
+          return updateInput();
+        }
+      }
+    },
+    valueChecking: function(ele, action) {
+      var $parent, load_path, path;
+      path = encodeURIComponent(ele.data('path'));
+      action = '?set_flag=' + action;
+      load_path = decko.prepUrl(decko.rootPath + '/update/' + path + action);
+      $parent = ele.closest('.double-check');
+      if (!$parent.exists()) {
+        $parent = ele.closest('.RIGHT-checked_by');
+      }
+      $parent.html('loading...');
+      return $.get(load_path, (function(data) {
+        var content;
+        content = $(data).find('.d0-card-body').html();
+        return $parent.empty().html(content);
+      }), 'html').fail(function(xhr, d, e) {
+        return $parent.html('please <a href=/*signin>sign in</a>');
+      });
+    }
+  });
+
+  $(document).ready(function() {
+    var $loader_anime, stickContent;
+    $loader_anime = $("#ajax_loader").html();
+    $('body').on('click', '._toggle_button_text', function() {
+      return $(this).text(function(i, old_txt) {
+        var new_txt;
+        new_txt = $(this).data("toggle-text");
+        $(this).data("toggle-text", old_txt);
+        return new_txt;
+      });
+    });
+    $('body').on('click', '._value_check_button', function() {
+      return wikirate.valueChecking($(this), 'checked');
+    });
+    $('body').on('click', '._value_uncheck_button', function() {
+      return wikirate.valueChecking($(this), 'not-checked');
+    });
+    $('body').on('click', '._add_new_value', function() {
+      var $form;
+      $form = $(this).closest('.record-row').find('.card-slott.new_answer_form-view form');
+      if ($form.exists() && $form.hasClass('hide')) {
+        $form.removeClass('hide');
+        return $(this).hide();
+      } else {
+        return wikirate.appendNewValueForm($(this));
+      }
+    });
+    $('body').on('click', '._form_close_button', function() {
+      $(this).closest('form').addClass('hide');
+      return $(this).closest('.record-row').find('._add_new_value').show();
+    });
+    $('body').on('ajax:success', '[data-form-for="new_metric_value"]', function(event, data) {
+      var $citeButton, $container, $parentForm, $sourceDetailsToggle, $sourceInForm, sourceID, sourceInList, sourceYear;
+      $parentForm = $("form.new-value-form");
+      $container = $parentForm.find(".relevant-sources");
+      if ($container.text().search("None") > -1) {
+        $container = $container.empty();
+      }
+      sourceID = $(data).data('source-for');
+      sourceYear = parseInt($(data).data('year'));
+      sourceInList = "[data-source-for='" + sourceID + "']";
+      $sourceInForm = $('form.new-value-form').find(sourceInList + '.source-details-toggle');
+      if (!$sourceInForm.exists()) {
+        $('.source-details-toggle').removeClass('active');
+        $sourceDetailsToggle = $('<div>').attr('data-source-for', sourceID).attr('data-year', sourceYear).addClass('source-details-toggle active');
+        $sourceDetailsToggle.append($(data).find(".source-info-container").parent());
+        $sourceDetailsToggle.find('.source-link').find('a.known-card, a.source-preview-link').replaceWith(function() {
+          return $('<span>' + $(this).html() + '</span>');
+        });
+        $container.append($sourceDetailsToggle);
+        wikirate.handleYearData($parentForm, sourceYear);
+        return wikirate.prepareSourceAppend(data);
+      } else {
+        $citeButton = $sourceInForm.find('._cite_button');
+        if (!$citeButton.exists()) {
+          $citeButton = $(sourceInList + '.source-details').find('._cite_button');
+          return wikirate.sourceCiteButtons($citeButton, 'cite');
+        }
+      }
+    });
+    return stickContent = function() {
+      var $metricContainer, $previewContainer, stickClass;
+      $previewContainer = $("#source-preview-main");
+      $metricContainer = $("#metric-container");
+      stickClass = {
+        add: function() {
+          $previewContainer.addClass('stick-right');
+          return $metricContainer.addClass('stick-left');
+        },
+        remove: function() {
+          $previewContainer.removeClass('stick-right');
+          return $metricContainer.removeClass('stick-left');
+        }
+      };
+      if ($(document).scrollTop() > 60) {
+        stickClass.add();
+      } else {
+        stickClass.remove();
+      }
+      if ($(window).scrollTop() > ($("#main").height() - $(window).height() + 300)) {
+        return stickClass.remove();
+      }
+    };
+  });
+
+  decko.slotReady(function(slot) {
+    var add_val_form;
+    add_val_form = slot.find('form.new-value-form').is(':visible');
+    if (add_val_form) {
+      slot.find('._add_new_value').hide();
+    } else {
+      slot.find('._add_new_value').show();
+    }
+    resizeIframe(slot);
+    if (slot.hasClass("_show_add_new_value_button")) {
+      return slot.parent().find("._add_new_value").show();
+    }
+  });
+
+}).call(this);
+
 //script: table
 (function(){$(document).ready(function(){var t,i,n,e,l,o;return t=null,e=null,$("body").on("click",".tr-details-toggle  td.details",function(){return e=!0}),$("body").on("click",".details-close-icon",function(){return o(this)}),$("body").on("click",".tr-details-toggle",function(){return e?e=null:o(this)}),$("body").on("click",".tr-link",function(){return window.location.href=$(this).data("link-url")}),o=function(i){var e,o;return o=$(i).closest("tr"),t=$(o).find(".details"),t.is(":visible")?(t.hide(),o.removeClass("active")):(e=$(".wikirate-table tr.active"),e.find(".details").hide(),e.removeClass("active"),o.addClass("active"),t.show(),$.trim(t.html())||n(i)),l()},n=function(n){var e;return e=$("#ajax_loader").html(),t.append(e),$(t).load(i(n),function(){return $(t).find(".card-slot").trigger("slotReady")})},i=function(t){var i,n;return $(t).data("details-url")?$(t).data("details-url"):(n=$(t).data("view")||"content",i=$(t).data("append"),"/"+$(t).closest(".card-slot").attr("id")+"+"+i+"?view="+n)},l=function(){var i;if(i=t.closest(".modal-body").exists(),$(document).scrollTop()>56||i?t.addClass("stick"):t.removeClass("stick"),$(window).scrollTop()>$("#main").height()-$(window).height()+300)return t.removeClass("stick")},$(window).scroll(function(){if(t)return l()})})}).call(this);
 //script: metric_chart
