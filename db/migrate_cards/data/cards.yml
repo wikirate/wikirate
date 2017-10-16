@@ -3,6 +3,7 @@
 - :name: metric value source form
   :type: HTML
   :key: metric_value_source_form
+  :merged: 2017-10-16 15:40:22 UTC
 - :name: Research Page+Company
   :type: Session
   :key: research_page+company
@@ -12,6 +13,7 @@
 - :name: Source+*type+*structure
   :type: HTML
   :key: source+*type+*structure
+  :merged: 2017-10-16 15:40:22 UTC
 - :name: Cardtype+*metric type+*type plus right+*structure"
   :type: Set
   :key: cardtype+*metric_type+*type_plus_right+*structure"
