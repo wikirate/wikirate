@@ -27,16 +27,16 @@ Feature: create new import file card
    When Jobs are dispatched
    Then No errors in the job queue
    And I wait 2 seconds
-   Then I should see "Imported 2 metric answers"
+   Then I should see "1 metric answer imported and 1 metric updated answer"
    And I should see "Successful"
-   And I should see "#1:Jedi+disturbances in the Force+Death Star+2017"
+   And I should see "#1: Jedi+disturbances in the Force+Death Star+2017"
    And I should see "Overriden"
-   And I should see "#11:Jedi+disturbances in the Force+Death Star+2000"
+   And I should see "#11: Jedi+disturbances in the Force+Death Star+2000"
 
    Then I click on "Undo"
-   When I go to "#1:Jedi+disturbances in the Force+Death Star+2017"
+   When I go to card "Jedi+disturbances in the Force+Death Star+2017"
    Then I should see "doesn't exist"
-   When I go to "#11:Jedi+disturbances in the Force+Death Star+2000"
+   When I go to card "Jedi+disturbances in the Force+Death Star+2000"
    Then I should see "yes"
 
 

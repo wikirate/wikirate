@@ -184,7 +184,6 @@ Then(/^I check checkbox for csv row (\d+)$/) do |row|
   table = find("table", visible: false)
   within(table) do
     row = find("tr[data-csv-row-index='#{row.to_i - 1}'", visible: false)
-    # row = all("tr")[row.to_i]
     within(row) do
       checkbox = find("input[type=checkbox]", visible: false)
       checkbox.click unless checkbox.checked?
