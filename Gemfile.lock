@@ -31,7 +31,7 @@ PATH
       card
 
 PATH
-  remote: vendor/decko/card
+  remote: ../../gem/card
   specs:
     card (1.92.2)
       bootstrap4-kaminari-views (~> 1.0)
@@ -51,14 +51,14 @@ PATH
       uuid (~> 2.3)
 
 PATH
-  remote: vendor/decko/cardname
+  remote: ../../gem/cardname
   specs:
     cardname (0.2.2)
       activesupport (~> 5.1)
       htmlentities (~> 4.3)
 
 PATH
-  remote: vendor/decko/decko
+  remote: ../../gem/decko
   specs:
     decko (0.2.2)
       card (= 1.92.2)
@@ -117,7 +117,7 @@ GEM
       io-like (~> 0.3.0)
     arel (8.0.0)
     ast (2.3.0)
-    backports (3.10.0)
+    backports (3.10.3)
     better_errors (2.4.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
