@@ -24,7 +24,7 @@ class TableRowWithCompanyMapping < TableRow
   end
 
   def company_correction_field
-    return @match.suggestion if @match.exact? || @match.alias? || !valid?
+    return colored(@match.suggestion) if @match.exact? || @match.alias? || !valid?
     colored company_correction_input(:company,  @match.suggestion)
   end
 
