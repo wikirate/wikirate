@@ -18,7 +18,7 @@ event :autopopulate_website,
 end
 
 event :import_linked_source, :integrate_with_delay, on: :save do
-  generate_pdf if html_link? && import?
+  generate_pdf if import? && html_link?
 end
 
 event :process_source_url, after: :check_source,
@@ -89,6 +89,7 @@ def duplicates
 end
 
 def generate_pdf
+  puts "generating pdf"
   kit = PDFKit.new url, "load-error-handling" => "ignore"
   Dir::Tmpname.create(["source", ".pdf"]) do |path|
     kit.to_file(path)

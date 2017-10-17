@@ -2,7 +2,7 @@
 # used to run rspec in RubyMine
 
 ARGV.insert 0, "rspec", "--no-simplecov", "--",
-            "--default-path=../../gem/"
+            "--default-path=~/dev/decko/gem/"
 
 APP_PATH = File.expand_path("../../config/application",  __FILE__)
 require File.expand_path("../../config/boot",  __FILE__)

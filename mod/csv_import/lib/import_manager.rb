@@ -11,7 +11,7 @@ class ImportManager
     @extra_data = integerfy_keys(extra_data || {})
 
     @extra_data[:all] ||= {}
-    init_import_status
+    # init_import_status
     @imported_keys = ::Set.new
   end
 
@@ -20,9 +20,8 @@ class ImportManager
   end
 
   def import_rows row_indices
-    row_count = row_indices ? row_indices.size : @csv_file.row_count
-    @import_status = ImportManager::Status.new counts: { total: row_count }
-
+    row_count = row_indices ? row_indices.size : @csv_file&.row_count
+    init_import_status row_count
     @csv_file.each_row self, row_indices do |csv_row|
       #handle_import csv_row do
         csv_row.execute_import
@@ -104,13 +103,14 @@ class ImportManager
   end
 
   def log_status
-    @import_status[@current_row.status][@current_row.row_index] = @current_row.name
-    @import_status[:counts].step @current_row.status
+    import_status[@current_row.status][@current_row.row_index] = @current_row.name
+    import_status[:counts].step @current_row.status
   end
 
   # used by {CSVRow} objects
   def report_error msg
-    @import_status[:errors][@current_row.row_index] << msg
+    import_status[:errors][@current_row.row_index] ||= []
+    import_status[:errors][@current_row.row_index] << msg
   end
 
   def report key, msg
@@ -118,7 +118,8 @@ class ImportManager
     when :duplicate_in_file
       msg = "#{msg} duplicate in this file"
     end
-    @import_status[:reports][@current_row.row_index] << msg
+    import_status[:reports][@current_row.row_index] ||= []
+    import_status[:reports][@current_row.row_index] << msg
   end
 
   def errors_by_row_index
@@ -140,17 +141,17 @@ class ImportManager
 
   def errors? row = nil
     if row
-      @import_status[:errors][row.row_index].present?
+      errors(row).present?
     else
-      @import_status[:errors].values.flatten.present?
+      errors.values.flatten.present?
     end
   end
 
   def errors row=nil
     if row
-      @import_status[:errors][row.row_index]
+      import_status.dig(:errors, row.row_index) || []
     else
-      @import_status[:errors]
+      import_status[:errors] || {}
     end
   end
 
@@ -165,10 +166,14 @@ class ImportManager
     @conflict_strategy == :override
   end
 
+  def import_status
+    @import_status || init_import_status
+  end
+
   private
 
-  def init_import_status
-    @import_status = ImportManager::Status.new(@csv_file&.row_count || 0)
+  def init_import_status row_count=nil
+    @import_status = ImportManager::Status.new(row_count || 0)
   end
 
   def specify_success_status status

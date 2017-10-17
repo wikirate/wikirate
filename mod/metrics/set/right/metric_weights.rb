@@ -3,7 +3,7 @@ event :update_formula, :prepare_to_store do
     weight = Env.params[i_name] || 0
     "{{#{i_name}}}*#{weight}"
   end.join "+"
-  add_subcard "#{cardname.left}+#{Card[:formula].name}", content: new_formula
+  add_subcard "#{name.left}+#{Card[:formula].name}", content: new_formula
 end
 
 def formula

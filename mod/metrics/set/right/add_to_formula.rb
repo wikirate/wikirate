@@ -3,7 +3,7 @@ def virtual?
 end
 
 def split_metrics
-  metric_parts = cardname.parts.size - 1
+  metric_parts = name.parts.size - 1
   (metric_parts - 1).downto(1) do |split|
     next unless (l = self[0..split]) && l.type_id == MetricID &&
                 (r = self[split + 1..metric_parts - 1]) && r.type_id == MetricID

@@ -1,6 +1,6 @@
 def create_value_options options
   create_args = {
-    name: cardname.field("value options"),
+    name: name.field("value options"),
     content: options.to_pointer_content
   }
   Card.create! create_args
@@ -152,7 +152,7 @@ format :html do
         }
       }
   end
-#
+
   def default_content_formgroup_args _args
     voo.edit_structure = [["+question", "Question"],
                           [:wikirate_topic, "Topic"]]

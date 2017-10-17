@@ -13,9 +13,9 @@ class TableRowWithCompanyMapping < TableRow
     @company = @match.suggestion
   end
 
-  def render
-    super.merge class: "table-#{row_context}"
-  end
+  # def render
+  #   super.merge class: "table-#{row_context}"
+  # end
 
   private
 
@@ -25,15 +25,15 @@ class TableRowWithCompanyMapping < TableRow
 
   def company_correction_field
     return @match.suggestion if @match.exact? || @match.alias? || !valid?
-    company_correction_input :company,  @match.suggestion
+    colored company_correction_input(:company,  @match.suggestion)
   end
 
   def wikirate_company_field
-    @format.wrap_with :small, @match.match_name
+    colored_small @match.match_name
   end
 
   def company_field
-    @format.wrap_with :small, super
+    colored_small super
   end
 
   def extra_data
@@ -48,6 +48,15 @@ class TableRowWithCompanyMapping < TableRow
                            class: "company_autocomplete"
   end
 
+  def colored_small content, match=@match
+    colored @format.wrap_with(:small, content), match
+  end
+
+  def colored content, match=@match
+    { content: content, class: "table-#{row_context(match)}" }
+  end
+
+
   # @return name of company in db that matches the given name and
   # the what kind of match
   def match_company field=:company
@@ -57,7 +66,8 @@ class TableRowWithCompanyMapping < TableRow
   end
 
   def row_context match=@match
-    return "danger" unless valid?
+    return :danger unless valid?
+    return :active if imported?
 
     case match.match_type
     when :partial then "info"

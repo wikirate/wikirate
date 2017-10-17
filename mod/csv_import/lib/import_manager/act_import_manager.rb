@@ -2,17 +2,8 @@
 # under one act of a import card
 class ActImportManager < ImportManager
   def initialize act_card, csv_file, conflict_strategy=:skip, extra_row_data={}
-    super(csv_file, conflict_strategy, extra_row_data)
     @act_card = act_card
-  end
-
-  def init_import_status
-    @import_status =
-      if @act_card&.import_status_card&.real?
-        import_status_card.status
-      else
-        super
-      end
+    super(csv_file, conflict_strategy, extra_row_data)
   end
 
   def add_card args
@@ -51,6 +42,11 @@ class ActImportManager < ImportManager
   end
 
   private
+
+  def init_import_status row_count=nil
+    isc = @act_card&.try :import_status_card
+    @import_status = isc&.real? ? isc.status : super
+  end
 
   def row_finished row
     return if row.status == :failed
