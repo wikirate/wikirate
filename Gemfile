@@ -22,14 +22,13 @@ gem "delayed_job_web"
 gem "company-mapping"
 gem "link_thumbnailer", "2.5.2"
 gem "open_uri_redirections"
+gem "pdfkit"
 gem "roo"
 gem "wbench"
+gem "wkhtmltopdf-binary"
 
 gem "rubocop"
 gem "rubocop-decko"
-
-gem "pdfkit"
-gem "wkhtmltopdf-binary"
 
 gem "fog"
 gem "fog-aws"
@@ -71,17 +70,12 @@ group :test do
   # feature-driven-development suite
   gem "capybara", "2.11.0"
   gem "selenium-webdriver", "3.6.0"
-  #  gem 'capybara-webkit'
-  # lets cucumber launch browser windows
+  # gem 'capybara-webkit' # lets cucumber launch browser windows
   gem "launchy"
 
   gem "email_spec"
   # used by cucumber for db transactions
   gem "database_cleaner", "~> 1.4.1"
-
-  # Pretty printed test output.
-  # (version constraint is to avoid minitest requirement)
-  gem "turn", "~>0.8.3", require: false
 
   gem "minitest"
 end
