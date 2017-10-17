@@ -152,7 +152,7 @@ format :html do
         }
       }
   end
-#
+
   def default_content_formgroup_args _args
     voo.edit_structure = [["+question", "Question"],
                           [:wikirate_topic, "Topic"]]
