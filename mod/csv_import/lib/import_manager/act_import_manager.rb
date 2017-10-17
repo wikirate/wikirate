@@ -6,15 +6,6 @@ class ActImportManager < ImportManager
     super(csv_file, conflict_strategy, extra_row_data)
   end
 
-  def init_import_status
-    @import_status =
-      if @act_card&.import_status_card&.real?
-        import_status_card.status
-      else
-        super
-      end
-  end
-
   def add_card args
     handle_conflict args[:name] do
       subcard =
@@ -52,9 +43,9 @@ class ActImportManager < ImportManager
 
   private
 
-  def init_import_status row_count
-    isc = @act_card&.import_status_card
-    @import_status = isc&.real? ?  isc.status : super
+  def init_import_status row_count=nil
+    isc = @act_card&.try :import_status_card
+    @import_status = isc&.real? ? isc.status : super
   end
 
   def row_finished row

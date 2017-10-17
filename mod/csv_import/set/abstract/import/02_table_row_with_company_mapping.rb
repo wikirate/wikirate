@@ -53,7 +53,7 @@ class TableRowWithCompanyMapping < TableRow
   end
 
   def colored content, match=@match
-    { content: content, class: row_context(match) }
+    { content: content, class: "table-#{row_context(match)}" }
   end
 
 

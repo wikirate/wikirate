@@ -70,7 +70,7 @@ RSpec.describe Card::Set::Abstract::Import::TableRowWithCompanyMapping do
     end
 
     it "has class 'table-success'" do
-      expect(row[:class]).to eq "table-success"
+      expect(field(:company)[:class]).to eq "table-success"
     end
 
     it "has csv row index as data attribute" do
@@ -96,6 +96,10 @@ RSpec.describe Card::Set::Abstract::Import::TableRowWithCompanyMapping do
         example.run
       end
     end
+
+    it "has class 'table-warning'" do
+       expect(field(:company)[:class]).to eq "table-warning"
+     end
 
     it "has no correction field" do
       expect(field(:checkbox))
