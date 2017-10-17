@@ -78,7 +78,7 @@ $(document).ready ->
 
   $('body').on 'click', '._add_new_value', ->
     $form = $(this).closest('.record-row')
-      .find('.card-slott.new_answer_form-view form')
+      .find('.card-slot.new_answer_form-view form')
     if $form.exists() && $form.hasClass('hide')
       $form.removeClass('hide')
       $(this).hide()

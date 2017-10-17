@@ -14,6 +14,7 @@ end
 
 def import?
   # default (=nil) means true
+  #
   @import != false && Cardio.config.import_sources
 end
 

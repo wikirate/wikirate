@@ -53,7 +53,6 @@ class ActImportManager < ImportManager
   private
 
   def init_import_status row_count
-    binding.pry
     isc = @act_card&.import_status_card
     @import_status = isc&.real? ?  isc.status : super
   end

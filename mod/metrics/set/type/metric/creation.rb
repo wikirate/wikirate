@@ -1,6 +1,6 @@
 def create_value_options options
   create_args = {
-    name: cardname.field("value options"),
+    name: name.field("value options"),
     content: options.to_pointer_content
   }
   Card.create! create_args

@@ -26,7 +26,7 @@ end
 def report_card variant
   @report_cards ||= {}
   @report_cards[variant] ||= begin
-    rcard = Card.new name: cardname.trait(:report_search),
+    rcard = Card.new name: name.trait(:report_search),
                      type_id: SearchTypeID
     # note: #new is important here, because we want different cards
     # for different variants

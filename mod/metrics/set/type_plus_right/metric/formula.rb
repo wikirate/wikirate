@@ -1,7 +1,7 @@
 include Abstract::Variable
 
 def metric_name
-  cardname.left
+  name.left
 end
 
 def metric_card
