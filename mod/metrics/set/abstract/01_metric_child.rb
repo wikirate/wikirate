@@ -13,15 +13,15 @@ def self.included host_class
   end
 end
 
-def metric_part full_name=cardname
+def metric_part full_name=name
   full_name.to_name.parts[0..(-1 - generation)].join("+")
 end
 
-def year_part full_name=cardname
+def year_part full_name=name
   full_name.to_name.parts[1 - generation]
 end
 
-def company_part full_name=cardname
+def company_part full_name=name
   full_name.to_name.parts[-generation]
 end
 

@@ -64,7 +64,7 @@ When(
   duplicated_card = duplicates.first.left if duplicates.any?
 
   url = "#{Card::Env[:protocol]}#{Card::Env[:host]}"\
-        "/#{duplicated_card.cardname.url_key}"
+        "/#{duplicated_card.name.url_key}"
   fill_in(field, with: url)
 end
 

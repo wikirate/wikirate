@@ -34,7 +34,7 @@ format :html do
   view :core, unknown_ok: true do
     voo.hide :answer_form
     voo.show :add_answer_redirect
-    wrap_with :div, id: card.cardname.url_key, class: "record-row" do
+    wrap_with :div, id: card.name.url_key, class: "record-row" do
       [
         _optional_render_metric_info,
         _optional_render_buttons,

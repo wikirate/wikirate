@@ -13,7 +13,7 @@ end
 # whenever article gets created or deleted
 recount_trigger :type_plus_right, :wikirate_analysis, :overview,
                 on: [:create, :delete] do |changed_card|
-  if (company_name = changed_card.cardname.left_name.left)
+  if (company_name = changed_card.name.left_name.left)
     Card.fetch company_name.to_name.trait(:analyses_with_articles)
   end
 end

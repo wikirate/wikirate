@@ -18,23 +18,23 @@ class Answer
     end
 
     def fetch_metric_name
-      card.cardname.left_name.left
+      card.name.left_name.left
     end
 
     def fetch_company_name
-      card.cardname.left_name.right
+      card.name.left_name.right
     end
 
     def fetch_title_name
-      card.cardname.parts.second
+      card.name.parts.second
     end
 
     def fetch_record_name
-      card.cardname.left
+      card.name.left
     end
 
     def fetch_year
-      card.cardname.right.to_i
+      card.name.right.to_i
     end
 
     def fetch_imported
@@ -55,7 +55,7 @@ class Answer
     end
 
     def fetch_designer_name
-      card.cardname.parts.first
+      card.name.parts.first
     end
 
     def fetch_policy_id

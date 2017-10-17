@@ -138,13 +138,13 @@ RSpec.describe Card::Set::Type::Source do
     describe "while creating a source with a wikirate link" do
       context "a source link" do
         it "return the source card" do
-          url = source_url(sample_source.cardname.url_key)
+          url = source_url(sample_source.name.url_key)
           new_source = create_link_source url
           expect(new_source.name).to eq sample_source.name
         end
 
         it "handles extra space in the url" do
-          url = "#{source_url(sample_source.cardname.url_key)} "
+          url = "#{source_url(sample_source.name.url_key)} "
           new_source = create_link_source url
           expect(new_source.name).to eq sample_source.name
         end
@@ -157,7 +157,7 @@ RSpec.describe Card::Set::Type::Source do
 
       context "a non source link" do
         it "return the source card" do
-          new_sourcepage = new_source source_url(sample_company.cardname.url_key)
+          new_sourcepage = new_source source_url(sample_company.name.url_key)
           expect(new_sourcepage)
             .to be_invalid
             .because_of(source: include("must be a valid URL or a WikiRate source"))
@@ -224,7 +224,7 @@ RSpec.describe Card::Set::Type::Source do
       sourcepage = create_source file: csv_file
       html = sourcepage.format.render_metric_import_link
       source_file = sourcepage.fetch trait: :file
-      expected_url = "/#{source_file.cardname.url_key}?view=import"
+      expected_url = "/#{source_file.name.url_key}?view=import"
       expect(html).to have_tag("a",
                                with: { href: expected_url },
                                text: "Import to metric values")
@@ -253,7 +253,7 @@ RSpec.describe Card::Set::Type::Source do
           new_sourcepage = create_source text: "test text report"
           html = new_sourcepage.format.render_original_icon_link
           text_source = new_sourcepage.fetch trait: :text
-          expected_url = "/#{text_source.cardname.url_key}"
+          expected_url = "/#{text_source.name.url_key}"
           expect(html).to have_tag("a", with: {
                                      href: expected_url
                                    }) do

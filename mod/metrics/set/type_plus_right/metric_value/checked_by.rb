@@ -165,7 +165,7 @@ format :html do
   end
 
   def data_path
-    card.cardname.url_key
+    card.name.url_key
   end
 
   def check_button_text
@@ -248,7 +248,7 @@ def mark_as_requested
 end
 
 def update_user_check_log
-  add_subcard Auth.current.cardname.field_name(:double_checked),
+  add_subcard Auth.current.name.field_name(:double_checked),
               type_id: PointerID
 end
 

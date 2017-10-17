@@ -104,7 +104,7 @@ format :html do
   view :year do
     wrap_with :div, class: "td year" do
       [
-        wrap_with(:span, card.cardname.right),
+        wrap_with(:span, card.name.right),
         wrap_with(:div, "", class: "timeline-dot")
       ]
     end

@@ -5,7 +5,7 @@ def item_cards
 end
 
 def item_names
-  left.related_companies.map { |id| id.cardname.s }
+  left.related_companies.map { |id| id.name.s }
 end
 
 def related_company_ids_to_json ids
@@ -22,7 +22,7 @@ end
 
 format do
   def analysis_cached_count company, type
-    search_card = Card.fetch "#{company}+#{card.cardname.left}+#{type}"
+    search_card = Card.fetch "#{company}+#{card.name.left}+#{type}"
     return 0 unless search_card
     search_card.cached_count
   end

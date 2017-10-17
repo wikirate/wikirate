@@ -86,7 +86,7 @@ format :html do
   end
 
   def reset_button
-    link_to_card(card.cardname.left_name, "Reset",
+    link_to_card(card.name.left_name, "Reset",
                  class: "slotter btn btn-default margin-8")
   end
 

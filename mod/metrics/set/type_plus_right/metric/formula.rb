@@ -23,7 +23,7 @@ end
 
 format :html do
   def new_view_hidden
-    hidden_tags success: { id: card.cardname.left }
+    hidden_tags success: { id: card.name.left }
   end
 
   def new_form_opts
@@ -54,7 +54,7 @@ format :html do
 
   def add_metric_button
     target = "#modal-add-metric-slot"
-    # "#modal-#{card.cardname.safe_key}"
+    # "#modal-#{card.name.safe_key}"
     output [
       (wrap_with :span, class: "input-group" do
         button_tag class: "pointer-item-add btn btn-default slotter",

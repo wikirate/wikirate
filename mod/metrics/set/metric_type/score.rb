@@ -1,7 +1,7 @@
 include Set::Abstract::Calculation
 
 def scorer
-  cardname.tag
+  name.tag
 end
 
 def scorer_card
@@ -9,7 +9,7 @@ def scorer_card
 end
 
 def basic_metric
-  cardname.trunk
+  name.trunk
 end
 
 def basic_metric_card
@@ -129,7 +129,7 @@ end
 
 event :set_scored_metric_name, :initialize,
       on: :create do
-  return if cardname.parts.size >= 3
+  return if name.parts.size >= 3
   metric = (mcard = remove_subfield(:metric)) && mcard.item_names.first
   self.name = "#{metric}+#{Auth.current.name}"
 end

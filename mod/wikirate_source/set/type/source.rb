@@ -9,7 +9,7 @@ attr_accessor :import
 
 def source_title_card
   # FIXME: needs codename, but :title is linked to *title
-  Card.fetch cardname.field("title"), new: {}
+  Card.fetch name.field("title"), new: {}
 end
 
 def import?

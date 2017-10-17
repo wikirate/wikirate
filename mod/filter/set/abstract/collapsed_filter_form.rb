@@ -40,7 +40,7 @@ format :html do
   end
 
   view :core do
-    action = card.cardname.left_name.url_key
+    action = card.name.left_name.url_key
     filter_active = filter_active? ? "in" : "out"
     <<-HTML
     <div class="filter-container">
