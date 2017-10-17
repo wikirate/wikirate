@@ -55,7 +55,7 @@ end
 
 group :test do
   gem "rspec"
-  gem "rspec-html-matchers" # 0.7.0 broke stuff!
+  gem "rspec-html-matchers"
   gem "rspec-rails" # behavior-driven-development suite
   # gem 'wagn-rspec-formatter',  git: 'https://github.com/xithan/wagn-rspec-formatter.git'
 
@@ -70,8 +70,7 @@ group :test do
   gem "cucumber-rails", require: false
   # feature-driven-development suite
   gem "capybara", "2.11.0"
-  # used 2.0.1
-  gem "selenium-webdriver", "3.3.0"
+  gem "selenium-webdriver", "3.6.0"
   #  gem 'capybara-webkit'
   # lets cucumber launch browser windows
   gem "launchy"
@@ -103,8 +102,8 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
 
-  gem "spring"
-  gem 'spring-commands-rspec'
+  # gem "spring"
+  # gem 'spring-commands-rspec'
 end
 
 group :test, :development do
