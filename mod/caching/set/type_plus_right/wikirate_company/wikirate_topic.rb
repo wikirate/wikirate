@@ -17,7 +17,7 @@ recount_trigger :type_plus_right, :metric, :wikirate_topic do |changed_card|
   Answer.select(:company_id).where(metric_id: metric_id).uniq
         .pluck(:company_id).map do |company_id|
     # faster way to get this from company+topic?
-    Card.fetch company_id.cardname.trait(:wikirate_topic)
+    Card.fetch(company_id.cardname.trait :wikirate_topic)
   end
 end
 

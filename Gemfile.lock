@@ -708,7 +708,7 @@ DEPENDENCIES
   roo
   rspec
   rspec-html-matchers
-  rspec-rails
+  rspec-rails (~> 3.6.1)
   rubocop
   rubocop-decko
   rubocop-rspec
