@@ -72,7 +72,7 @@ end
 
 def duplication_check
   return unless duplicates.any?
-  duplicated_name = duplicates.first.cardname.left
+  duplicated_name = duplicates.first.name.left
   if sourcebox?
     remove_subfield(:wikirate_link)
     self.name = duplicated_name

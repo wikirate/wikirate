@@ -20,7 +20,7 @@ end
 def anchor_name card
   left = card.left
   type_name = (left && left.type_name) || Card[Card.default_type_id].name
-  "#{type_name}+#{card.cardname.tag}"
+  "#{type_name}+#{card.name.tag}"
 end
 
 def follow_label name
@@ -29,6 +29,6 @@ end
 
 def pattern_applies? _card
   false
-  #  (mt = Card::Set::MetricType.metric_type(card.cardname.left)) &&
+  #  (mt = Card::Set::MetricType.metric_type(card.name.left)) &&
   #    ['researched', 'Formula', 'wiki_rating', 'score'].include?(mt)
 end

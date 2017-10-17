@@ -1,7 +1,7 @@
 include_set Abstract::SearchCachedCount
 
 def company_name
-  cardname.left_name
+  name.left_name
 end
 
 # when metric value is edited
@@ -77,7 +77,7 @@ format :html do
     wrap_with :span, class: "metric-count-link" do
       link_to_card(
         card.company_name,
-        "#{metric_count} #{:metric.cardname.vary :plural}",
+        "#{metric_count} #{:metric.name.vary :plural}",
         path: { filter: { wikirate_topic: topic_card.name } }
       )
     end

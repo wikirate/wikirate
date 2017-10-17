@@ -17,7 +17,7 @@ attr_accessor :variant
 
 def user_plus_cardtype_name
   @user_plus_cardtype_name ||=
-    research_group? ? cardname.left_name.left_name : cardname.left_name
+    research_group? ? name.left_name.left_name : name.left_name
 end
 
 def user_card
@@ -38,7 +38,7 @@ end
 
 # part 3 of U+C+R
 def research_group_name
-  cardname.left_name.right_name
+  name.left_name.right_name
 end
 
 def research_group_card

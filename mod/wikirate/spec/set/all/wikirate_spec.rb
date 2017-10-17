@@ -250,7 +250,7 @@ RSpec.describe Card::Set::All::Wikirate do
       expect(html).to have_tag("i", with: { class: "fa fa-globe" })
       expect(html).to include("Sources")
       expect(html).to have_tag("div", with: { class: "pointer-list" }) do
-        with_tag "div", with: { id: source_card.cardname.url_key }
+        with_tag "div", with: { id: source_card.name.url_key }
       end
     end
   end

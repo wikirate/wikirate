@@ -55,7 +55,7 @@ format :html do
     with_header "Members" do
       [:organizer, :researcher].map do |fieldname|
         field_nest fieldname, view: :titled,
-                              title: fieldname.cardname.s,
+                              title: fieldname.name.s,
                               variant: "plural capitalized",
                               type: "Pointer",
                               items: { view: :thumbnail_plain }
@@ -121,7 +121,7 @@ format :html do
     contribution_cardtypes.map do |cardtype|
       contribution_categories.map do |category|
         card.contribution_count member.name, cardtype, category
-      end.unshift cardtype.cardname.vary "capitalize plural"
+      end.unshift cardtype.name.vary "capitalize plural"
     end
   end
 end

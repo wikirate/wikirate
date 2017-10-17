@@ -262,7 +262,7 @@ format :html do
   end
 
   def metric_title_field options={}
-    title = card.add_subfield :title, content: card.cardname.tag,
+    title = card.add_subfield :title, content: card.name.tag,
                                       type_id: PhraseID
     title.reset_patterns
     title.include_set_modules

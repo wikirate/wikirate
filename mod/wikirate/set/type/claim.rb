@@ -65,7 +65,7 @@ format :html do
     article_format = parent.parent
     return "" unless article_format && (article_card = article_format.card)
     link_to_card article_card, "Cite!",
-                 path: { citable: card.cardname, edit_article: true },
+                 path: { citable: card.name, edit_article: true },
                  class: "cite-button"
   end
 

@@ -13,7 +13,7 @@ format :html do
   end
 
   def tab_count_title count_card_tag
-    two_line_tab count_card_tag.cardname.vary(:plural),
+    two_line_tab count_card_tag.name.vary(:plural),
                  card.fetch(trait: count_card_tag).cached_count
   end
 end

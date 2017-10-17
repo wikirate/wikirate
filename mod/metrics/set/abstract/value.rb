@@ -60,7 +60,7 @@ event :update_double_check_flag, :validate, on: [:update, :delete],
                                             changed: :content do
   [:checked_by, :check_requested_by].each do |trait|
     next unless left.fetch trait: trait
-    attach_subcard cardname.left_name.field_name(trait), content: ""
+    attach_subcard name.left_name.field_name(trait), content: ""
   end
 end
 

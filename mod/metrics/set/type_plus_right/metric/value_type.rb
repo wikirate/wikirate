@@ -68,10 +68,10 @@ format :html do
   end
 
   def left_field_nest field, opts
-    if card.cardname.left_name.empty?
+    if card.name.left_name.empty?
       parent.field_nest field, opts
     else
-      nest card.cardname.left_name.field_name(field), opts
+      nest card.name.left_name.field_name(field), opts
     end
   end
 

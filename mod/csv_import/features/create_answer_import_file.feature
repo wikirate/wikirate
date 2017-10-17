@@ -10,7 +10,7 @@ Feature: create new import file card
    And I wait for ajax response
    And I press "Submit"
    And I wait for ajax response
-   And I maximize the browser
+#    And I maximize the browser
    And I uncheck all checkboxes
 
  Scenario: Import a simple metric value

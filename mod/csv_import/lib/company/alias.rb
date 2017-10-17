@@ -52,7 +52,7 @@ module Company
 
       def generate_aliashash
         all_alias_cards.each_with_object({}) do |alias_card, hash|
-          true_name = alias_card.cardname.left
+          true_name = alias_card.name.left
           alias_card.item_names.each do |alias_name|
             alias_key = alias_name.to_name.key
             check_duplicates hash, alias_key, true_name

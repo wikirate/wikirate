@@ -54,7 +54,7 @@ format :html do
       if voo.hide? :link
         text
       else
-        link_to(text, path: "/#{card.cardname.url_key}", target: "_blank")
+        link_to(text, path: "/#{card.name.url_key}", target: "_blank")
       end
     end
   end

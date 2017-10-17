@@ -6,7 +6,7 @@ include_set Set::Abstract::Filter
 
 format :html do
   view :core, cache: :never do
-    form_tag path(mark: card.cardname.left, view: content_view),
+    form_tag path(mark: card.name.left, view: content_view),
              class: "filter-container slotter sub-content", method: "GET",
              id: "_filter_container", data: { remote: "true" } do
       output [advanced_filter, _render_main_filter]
@@ -76,7 +76,7 @@ format :html do
   def filter_reset_button
     html_class = "slotter btn btn-default margin-8"
     html_class += filter_active? ? " show" : " hide"
-    link_to_card card.cardname.left, "Reset",
+    link_to_card card.name.left, "Reset",
                  path: { view: content_view },
                  remote: true, class: html_class
   end

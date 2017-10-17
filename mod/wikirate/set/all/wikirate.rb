@@ -126,7 +126,7 @@ format :html do
   end
 
   view :showcase_list, tags: :unknown_ok do |args|
-    item_type_name = card.cardname.right.split.last
+    item_type_name = card.name.right.split.last
     icon_card = Card.fetch("#{item_type_name}+icon")
     hidden_class = card.content.empty? ? "hidden" : ""
     class_up "card-body", "showcase #{hidden_class}"
@@ -140,7 +140,7 @@ format :html do
   end
 
   def main_name
-    left_name = card.cardname.left_name
+    left_name = card.name.left_name
     left_name = left_name.left unless card.key.include?("limited_metric")
     @main_name ||= left_name
   end
@@ -150,7 +150,7 @@ format :html do
   end
 
   def searched_type_id
-    @searched_type_id ||= Card.fetch_id card.cardname.left_name.right
+    @searched_type_id ||= Card.fetch_id card.name.left_name.right
   end
 
   def button_classes

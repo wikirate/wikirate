@@ -138,7 +138,7 @@ format :html do
 
   def contribution_report_title
     wrap_with :h4, class: "contribution-report-title" do
-      card.cardtype_card.cardname.vary :plural
+      card.cardtype_card.name.vary :plural
     end
   end
 

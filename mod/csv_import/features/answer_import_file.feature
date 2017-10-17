@@ -6,7 +6,7 @@ Feature: import metric answers from a csv file
     Given I am signed in as Joe Admin
     And I go to card "feature answer import test"
     And I follow "Import ..."
-    And I maximize the browser
+#    And I maximize the browser
     And I uncheck all checkboxes
     And I scroll -1000 pixels
 

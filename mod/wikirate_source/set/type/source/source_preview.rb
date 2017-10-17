@@ -134,7 +134,7 @@ format :html do
   view :hidden_information, tags: :unknown_ok do |args|
     wrap_with :div, class: "hidden" do
       [
-        wrap_with(:div, card.cardname.url_key, id: "source-name"),
+        wrap_with(:div, card.name.url_key, id: "source-name"),
         wrap_with(:div, preview_url, id: "source_url"),
         wrap_with(:div, args[:year], id: "source-year"),
         wrap_with(:div, args[:company], id: "source_company"),

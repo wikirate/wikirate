@@ -29,7 +29,7 @@ format :html do
   end
 
   view :plain_year do
-    card.cardname.right
+    card.name.right
   end
 
   def legend

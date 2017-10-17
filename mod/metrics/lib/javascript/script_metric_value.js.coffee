@@ -1,4 +1,5 @@
 $.extend wikirate,
+
 # Hides the "Add answer" button and loads the form.
 # don't know what the source stuff is doing -pk
   appendNewValueForm: ($button) ->
@@ -50,7 +51,7 @@ $.extend wikirate,
     $parent = ele.closest('.RIGHT-checked_by') unless $parent.exists()
     $parent.html('loading...')
     $.get(load_path, ((data) ->
-      content = $(data).find('.card-body').html()
+      content = $(data).find('.d0-card-body').html()
       $parent.empty().html(content)
     ), 'html').fail((xhr, d, e) ->
       $parent.html('please <a href=/*signin>sign in</a>')
