@@ -520,7 +520,7 @@ GEM
       json (>= 1.8)
       nokogiri (~> 1.5)
       trollop (~> 2.1)
-    recaptcha (4.6.0)
+    recaptcha (4.6.1)
       json
     ref (2.0.0)
     rest-client (2.0.2)

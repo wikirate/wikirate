@@ -1,6 +1,6 @@
 format :html do
   view :progress_bar do
-    value = card.raw_content
+    value = card.content
     if card.number? value
       progress_bar value: value
     else
