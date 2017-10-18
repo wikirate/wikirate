@@ -10,7 +10,7 @@ format :html do
     wrap do
       [
         _render_designer_info,
-        _optional_render_menu
+        _render_menu
       ]
     end
   end

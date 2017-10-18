@@ -71,7 +71,7 @@ format :html do
     action = card.left.name
     wrap_with :form, action: "/#{action}", method: "GET" do
       [
-        _optional_render(:sort_formgroup),
+        _render(:sort_formgroup),
         main_filter_formgroups,
         advanced_filter_formgroups,
         filter_button_formgroup

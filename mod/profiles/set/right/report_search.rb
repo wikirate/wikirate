@@ -186,7 +186,7 @@ format :html do
     :metric_value
   ].each do |cardtype|
     view "#{cardtype}_list" do
-      listing = render("#{cardtype}_sublist".to_sym)
+      listing = render!("#{cardtype}_sublist".to_sym)
       return listing if card.research_group? || !subvariants
       tab_listing listing
     end

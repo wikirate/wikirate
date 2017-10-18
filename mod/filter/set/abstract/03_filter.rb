@@ -37,7 +37,7 @@ format :html do
   def filter_fields categories
     return "".html_safe unless categories.present?
     categories.map do |cat|
-      _optional_render "#{cat}_formgroup"
+      _render "#{cat}_formgroup"
     end.join.html_safe
   end
 

@@ -30,7 +30,7 @@ format :html do
     wrap_with :div, class: "row" do
       wrap_with :div, class: "col-md-12" do
         [formgroup("Note", editor: "name", help: true) { name_field },
-         _optional_render_note_counting]
+         _render_note_counting]
       end
     end
   end
@@ -50,11 +50,11 @@ format :html do
   end
 
   view :citation_or_clipboard do |args|
-    args[:citation_number] || optional_render(:clipboard, args)
+    args[:citation_number] || render(:clipboard, args)
   end
 
   view :citation_or_cite_button do |args|
-    args[:citation_number] || optional_render(:cite_button)
+    args[:citation_number] || render(:cite_button)
   end
 
   view :listing do
@@ -115,7 +115,7 @@ format :html do
   view :sample_citation do
     tip = "easily cite this note by pasting the following:" +
           text_area_tag(:citable_note, card.default_citation)
-    %( <div class="sample-citation">#{render :tip, tip: tip}</div> )
+    %( <div class="sample-citation">#{render! :tip, tip: tip}</div> )
   end
 
   view :open do
@@ -143,9 +143,9 @@ format :html do
     = nest cite_count_card, view: :titled, hide: 'menu', title: 'Citations'
   .header-title
     %h1.card-header
-      = _optional_render :toggle
+      = _render :toggle
       %i.fa.fa-quote-left
-      = _optional_render :title
+      = _render :title
       %i.fa.fa-quote-right
     .creator-credit
       = nest card, structure: 'creator credit'

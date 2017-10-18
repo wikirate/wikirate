@@ -70,7 +70,7 @@ end
 
 format :html do
   view :new do
-    preview? ? _optional_render_new_preview : super()
+    preview? ? _render_new_preview : super()
   end
 
   view :open_content do
@@ -93,8 +93,8 @@ format :html do
           preview_hidden,
           new_view_hidden,
           new_view_type,
-          _optional_render_content_formgroup,
-          _optional_render_preview_buttons
+          _render_content_formgroup,
+          _render_preview_buttons
         ]
       end
     end

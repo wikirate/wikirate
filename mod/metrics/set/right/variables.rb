@@ -104,7 +104,7 @@ format :html do
     if @card.new_card? && (l = @card.left) &&
        l.respond_to?(:input_names)
       card.extract_metrics_from_formula
-      render(@denied_view, args)
+      render!(@denied_view, args)
     else
       super(args)
     end

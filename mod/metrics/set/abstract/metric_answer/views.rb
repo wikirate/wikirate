@@ -10,7 +10,7 @@ format :html do
       [
         "#{credit_verb} #{_render_updated_at} ago by ",
         nest(card.updater, view: :link),
-        _optional_render(:source_link, args, :hide)
+        _render(:source_link, args, :hide)
       ]
     end
   end

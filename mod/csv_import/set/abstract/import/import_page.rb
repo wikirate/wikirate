@@ -7,10 +7,10 @@ format :html do
     frame_and_form :update do
       [
         hidden_import_tags,
-        render(:additional_form_fields),
-        render(:import_table_helper),
-        render(:import_table),
-        render(:import_button_formgroup)
+        render!(:additional_form_fields),
+        render!(:import_table_helper),
+        render!(:import_table),
+        render!(:import_button_formgroup)
       ]
     end
   end
