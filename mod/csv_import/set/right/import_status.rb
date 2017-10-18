@@ -84,7 +84,7 @@ format :html do
       "#{item_count_label :imported} created and " \
       "#{item_count_label :overridden} updated" \
     else
-      "Imported #{item_count_label(:imported, :overridden)}"
+      "Imported #{item_count_label(:imported)}"
     end
   end
 
