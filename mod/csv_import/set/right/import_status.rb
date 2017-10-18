@@ -69,7 +69,6 @@ format :html do
   # returns plural if there are more than one card of type `count_type`
   def item_label count_type=nil
     label = card.left&.try(:item_label) || "card"
-    binding.pry
     count_type && count(count_type) > 1 ? label.pluralize : label
   end
 
