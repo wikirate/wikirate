@@ -42,7 +42,7 @@ class SharedData
       Card::Cache.reset_all
       Card::Env.reset
       Card::Auth.as_bot
-      Cardio.config.import_sources = false
+      Cardio.config.x.import_sources = false
       add :companies, :topics, :analysis, :notes_and_sources,
           :metrics, :yearly_variables,
           :projects, :industry,

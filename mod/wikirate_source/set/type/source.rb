@@ -15,7 +15,7 @@ end
 def import?
   # default (=nil) means true
   #
-  @import != false && Cardio.config.import_sources
+  @import != false && Cardio.config.x.import_sources
 end
 
 require "link_thumbnailer"
