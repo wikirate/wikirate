@@ -1,0 +1,12 @@
+defaults: &defaults
+  import_sources: false
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  import_sources: true
