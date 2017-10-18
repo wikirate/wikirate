@@ -4,7 +4,7 @@ def virtual?
   true
 end
 
-def raw_content
+def content
   %({
     "type":"_lr",
     "linked_to_by":"_user+#{Card.fetch_name vote_type_codename}",
