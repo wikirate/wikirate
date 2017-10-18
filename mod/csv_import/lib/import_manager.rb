@@ -103,6 +103,7 @@ class ImportManager
   end
 
   def log_status
+    import_status[@current_row.status] ||= {}
     import_status[@current_row.status][@current_row.row_index] = @current_row.name
     import_status[:counts].step @current_row.status
   end
@@ -178,7 +179,7 @@ class ImportManager
 
   def specify_success_status status
     return status if status.in? %i[failed skipped]
-    @status == :overridden ? :overriden : :imported
+    @status == :overridden ? :overridden : :imported
   end
 
 

@@ -15,7 +15,7 @@ def import_counts
 end
 
 def reset total
-  @status = ImportManager::Status.new act_id: ActManager.act_card&.id, counts: { total: total }
+  @status = ImportManager::Status.new act_id: ActManager.act_card&.current_act&.id, counts: { total: total }
   save_status
 end
 
@@ -31,14 +31,14 @@ end
 STATUS_HEADER = {
   failed: "Failed",
   imported: "Successful",
-  overriden: "Overridden",
+  overridden: "Overridden",
   skipped: "Skipped"
 }.freeze
 
 STATUS_CONTEXT = {
   failed: :danger,
   imported: :success,
-  overriden: :warning,
+  overridden: :warning,
   skipped: :info
 }.freeze
 
@@ -69,8 +69,7 @@ format :html do
   # returns plural if there are more than one card of type `count_type`
   def item_label count_type=nil
     label = card.left&.try(:item_label) || "card"
-    count_type && count(count_type) > 0 ? label.pluralize : label
-
+    count_type && count(count_type) > 1 ? label.pluralize : label
   end
 
   def item_count_label count_key
@@ -85,13 +84,13 @@ format :html do
       "#{item_count_label :imported} created and " \
       "#{item_count_label :overridden} updated" \
     else
-      "Imported #{item_count_label :imported}"
+      "Imported #{item_count_label(:imported, :overridden)}"
     end
   end
 
   view :core do
     with_header(progress_header, level: 4) do
-      sections = %i[imported skipped overriden failed].map do |type|
+      sections = %i[imported skipped overridden failed].map do |type|
         progress_section type
       end
       progress_bar *sections
@@ -99,7 +98,7 @@ format :html do
   end
 
   def report
-    [:failed, :skipped, :overriden, :imported].map do |key|
+    [:failed, :skipped, :overridden, :imported].map do |key|
       next unless status[key].present?
       generate_report_alert key
     end.compact.join
@@ -154,7 +153,7 @@ format :html do
   def undo_confirm_message
     text = "Do you really want to remove all imported #{item_label :imported}"
     if count(:overridden) > 0
-      text +=  " and restore the overridden " + item_label(:overriden)
+      text +=  " and restore the overridden " + item_label(:overridden)
     end
     text << "?"
   end

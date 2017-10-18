@@ -98,8 +98,8 @@ RSpec.describe Card::Set::Abstract::Import::TableRowWithCompanyMapping do
     end
 
     it "has class 'table-warning'" do
-       expect(field(:company)[:class]).to eq "table-warning"
-     end
+      expect(field(:company)[:class]).to eq "table-alias"
+    end
 
     it "has no correction field" do
       expect(field(:checkbox))
@@ -113,7 +113,7 @@ RSpec.describe Card::Set::Abstract::Import::TableRowWithCompanyMapping do
 
 
   context "partial match" do
-    let(:row_data) {csv_row company: "Sony"}
+    let(:row_data) { csv_row company: "Sony" }
 
     around do |example|
       with_row row_data do
@@ -122,7 +122,7 @@ RSpec.describe Card::Set::Abstract::Import::TableRowWithCompanyMapping do
     end
 
     it "has correction field" do
-      expect(field(:company_correction))
+      expect(field(:company_correction)[:content])
         .to have_tag :input, with: { name: "extra_data[0][corrections][company]",
                                      value: "Sony Corporation" }
     end
@@ -134,7 +134,7 @@ RSpec.describe Card::Set::Abstract::Import::TableRowWithCompanyMapping do
     context "invalid data" do
       let(:row_data) {csv_row company: "Sony", metric: nil}
       it "has no correction field" do
-        expect(field(:company_correction))
+        expect(field(:company_correction)[:content])
           .not_to have_tag :input,
                            with: { name: "extra_data[0][corrections][company]" }
       end
@@ -142,11 +142,11 @@ RSpec.describe Card::Set::Abstract::Import::TableRowWithCompanyMapping do
   end
 
   context "no match" do
-    let(:row_data) {csv_row company: "Unknown Company"}
+    let(:row_data) { csv_row company: "Unknown Company" }
 
     it "has no correction field" do
       with_row row_data do
-        expect(field(:company_correction))
+        expect(field(:company_correction)[:content])
           .not_to have_tag :input, with: { name: "extra_data[0][corrections]" }
       end
     end
