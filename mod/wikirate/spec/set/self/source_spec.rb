@@ -71,7 +71,7 @@ describe Card::Set::Self::Source do
   describe "'result' value of json view check_iframable" do
     subject do
       Card::Env.params[:url] = url
-      json_format._render(:check_iframable)[:result]
+      json_format._render!(:check_iframable)[:result]
     end
 
     context "iframable website" do
@@ -81,7 +81,7 @@ describe Card::Set::Self::Source do
       # this website need special handle, but it seems the page is down now
       # url = "http://www.peri.umass.edu/toxicair_current/"
       # Card::Env.params[:url] = url
-      # result = json_format._render(:check_iframable)
+      # result = json_format._render!(:check_iframable)
       # expect(result[:result]).to be true
     end
 
@@ -107,7 +107,7 @@ describe Card::Set::Self::Source do
   describe "view :metadata" do
     let(:result_hash) do
       Card::Env.params[:url] = url
-      JSON.parse json_format._render(:metadata)
+      JSON.parse json_format._render!(:metadata)
     end
 
     context "invalid url" do

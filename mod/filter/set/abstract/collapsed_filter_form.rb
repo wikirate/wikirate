@@ -58,7 +58,7 @@ format :html do
     <<-HTML
       <div class="margin-12 sub-content">
         #{main_filter_formgroups}
-        #{_optional_render_sort_formgroup}
+        #{_render_sort_formgroup}
       </div>
       <hr/>
       <div class="filter-buttons">

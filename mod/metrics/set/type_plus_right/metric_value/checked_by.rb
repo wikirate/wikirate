@@ -139,17 +139,17 @@ format :html do
     result = ""
     if fetch_number > 1
       result += items[0..(fetch_number - 2)].map do |c|
-        subformat(c).render(render_view)
+        subformat(c).render!(render_view)
       end.join(" , ")
       result += " and "
     end
 
     result +
       if total_number > fetch_number
-        %(<a class="known-card" href="#{card.format.render :url}"> ) \
+        %(<a class="known-card" href="#{card.format.render! :url}"> ) \
           "#{total_number - 3} others</a>"
       else
-        subformat(items[fetch_number - 1]).render(render_view)
+        subformat(items[fetch_number - 1]).render!(render_view)
       end
   end
 

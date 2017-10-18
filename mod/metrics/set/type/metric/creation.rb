@@ -191,7 +191,7 @@ format :html do
     return "" unless (help_text_card = Card[card.metric_type + "+description"])
     class_up "help-text", "help-block"
     with_nest_mode :normal do
-      render :help, help: help_text_card.content
+      render! :help, help: help_text_card.content
     end
   end
 
@@ -200,10 +200,10 @@ format :html do
                        "main-success" => "REDIRECT" do
       output [
         new_tab_pane_hidden,
-        _render(:help_text),
+        _render!(:help_text),
         _render_new_name_formgroup,
-        _optional_render_content_formgroup,
-        _optional_render_new_buttons
+        _render_content_formgroup,
+        _render_new_buttons
       ]
     end
   end

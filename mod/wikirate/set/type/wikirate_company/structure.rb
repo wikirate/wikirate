@@ -37,7 +37,7 @@ format :html do
   end
 
   def performance_data
-    output [_optional_render_header_tabs_mobile, field_nest(:all_metric_values)]
+    output [_render_header_tabs_mobile, field_nest(:all_metric_values)]
   end
 
   def header_right

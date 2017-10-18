@@ -118,7 +118,7 @@ RSpec.describe Card::Set::All::Wikirate do
         type: "search", content: "{\"type\":\"company\"}", name: "id_atom_test"
       )
       Card::Env.params[:item] = "id_atom"
-      result = search_card.format(format: :json)._render(:content)
+      result = search_card.format(format: :json)._render!(:content)
       card_array = result[:card][:value]
       card_array.each do |card|
         expect(card).to have_key :id
@@ -141,7 +141,7 @@ RSpec.describe Card::Set::All::Wikirate do
           valid_company_cards[card.id] = card.name
         end
       end
-      result = search_card.format(format: :json).render(:content)
+      result = search_card.format(format: :json).render!(:content)
       card_array = result[:card][:value]
       card_array.each do |card|
         expect(card).to have_key :id
@@ -166,7 +166,7 @@ RSpec.describe Card::Set::All::Wikirate do
     it "handles only 1 result" do
       cards_name = create_dump_card 1
       search_card = Card.create! name: @search_card_name, type: "search", content: "{\"name\":#{cards_name}}"
-      expected_content = search_card.item_cards(limit: 0)[0].format.render(:link)
+      expected_content = search_card.item_cards(limit: 0)[0].format.render!(:link)
       html = render_card(:shorter_search_result, name: @search_card_name)
       expect(html).to eq(expected_content)
     end
@@ -174,7 +174,7 @@ RSpec.describe Card::Set::All::Wikirate do
       cards_name = create_dump_card 2
       search_card = Card.create! name: @search_card_name, type: "search", content: "{\"name\":[\"in\", #{cards_name}]}"
       result_cards = search_card.item_cards(limit: 0)
-      expected_content = result_cards[0].format.render(:link) + " and " + result_cards[1].format.render(:link)
+      expected_content = result_cards[0].format.render!(:link) + " and " + result_cards[1].format.render!(:link)
       html = render_card(:shorter_search_result, name: @search_card_name)
       expect(html).to eq(expected_content)
     end
@@ -182,7 +182,7 @@ RSpec.describe Card::Set::All::Wikirate do
       cards_name = create_dump_card 3
       search_card = Card.create! name: @search_card_name, type: "search", content: "{\"name\":[\"in\", #{cards_name}]}"
       result_cards = search_card.item_cards(limit: 0)
-      expected_content = result_cards[0].format.render(:link) + " , " + result_cards[1].format.render(:link) + " and " + result_cards[2].format.render(:link)
+      expected_content = result_cards[0].format.render!(:link) + " , " + result_cards[1].format.render!(:link) + " and " + result_cards[2].format.render!(:link)
       html = render_card(:shorter_search_result, name: @search_card_name)
       expect(html).to eq(expected_content)
     end
@@ -190,11 +190,11 @@ RSpec.describe Card::Set::All::Wikirate do
       cards_name = create_dump_card 10
       search_card = Card.create! name: @search_card_name, type: "search", content: "{\"name\":[\"in\", #{cards_name}]}"
       result_cards = search_card.item_cards(limit: 0)
-      expected_content = result_cards[0].format.render(:link) + " , " + result_cards[1].format.render(:link) + " , " + result_cards[2].format.render(:link)
+      expected_content = result_cards[0].format.render!(:link) + " , " + result_cards[1].format.render!(:link) + " , " + result_cards[2].format.render!(:link)
       html = render_card(:shorter_search_result, name: @search_card_name)
       expected =
         "#{expected_content} and <a class=\"known-card\" "\
-        "href=\"#{search_card.format.render(:url)}\"> 7 others</a>"
+        "href=\"#{search_card.format.render!(:url)}\"> 7 others</a>"
       expect(html).to eq(expected)
     end
   end

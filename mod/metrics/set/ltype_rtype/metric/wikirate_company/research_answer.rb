@@ -12,7 +12,7 @@ format :html do
   # slot for the form
   view :new_answer, cache: :never do
     wrap do
-      _optional_render :answer_form
+      _render :answer_form
       _render_answer_table
     end
   end

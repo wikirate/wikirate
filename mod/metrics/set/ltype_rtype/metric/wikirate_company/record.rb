@@ -36,9 +36,9 @@ format :html do
     voo.show :add_answer_redirect
     wrap_with :div, id: card.name.url_key, class: "record-row" do
       [
-        _optional_render_metric_info,
-        _optional_render_buttons,
-        # _optional_render_new_answer
+        _render_metric_info,
+        _render_buttons,
+        # _render_new_answer
         _render_answer_table
       ]
     end
@@ -71,7 +71,7 @@ format :html do
     answer_view = voo.show?(:chart) ? :closed_answer : :closed_answer_without_chart
     wrap do
       next "" unless all_answers.present?
-      output [_optional_render_answer_form,
+      output [_render_answer_form,
               wikirate_table(:plain, all_answers,
                              [:plain_year, answer_view],
                              header: %w[Year Answer],
