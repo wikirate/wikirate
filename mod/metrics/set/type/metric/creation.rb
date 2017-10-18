@@ -202,8 +202,8 @@ format :html do
         new_tab_pane_hidden,
         _render(:help_text),
         _render_new_name_formgroup,
-        _optional_render_content_formgroup,
-        _optional_render_new_buttons
+        _render_content_formgroup,
+        _render_new_buttons
       ]
     end
   end

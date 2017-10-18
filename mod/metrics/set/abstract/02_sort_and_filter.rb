@@ -33,7 +33,7 @@ format :html do
   end
 
   view :card_list do |args|
-    paging = _optional_render :paging, args
+    paging = _render :paging, args
     if search_with_params.blank?
       render_no_search_results(args)
     else

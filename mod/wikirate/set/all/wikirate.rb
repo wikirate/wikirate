@@ -22,7 +22,7 @@ format :html do
 
   def header_title_elements
     voo.hide :title_badge
-    [super, _optional_render_title_badge]
+    [super, _render_title_badge]
   end
 
   view :title_badge do

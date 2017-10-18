@@ -35,8 +35,8 @@ format :html do
   view :open_content do |args|
     bs_layout container: false, fluid: true, class: @container_class do
       row 5, 7, class: "panel-margin-fix" do
-        column _optional_render_about_column, args[:left_class]
-        column _optional_render_contributions_column, args[:right_class]
+        column _render_about_column, args[:left_class]
+        column _render_contributions_column, args[:right_class]
       end
     end
   end

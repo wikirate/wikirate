@@ -7,8 +7,8 @@ format :html do
 
     wrap_with :div, class: "metric-info" do
       [
-        _optional_render_compact_header,
-        _optional_render_compact_question,
+        _render_compact_header,
+        _render_compact_question,
         collapsed_sections
       ]
     end
@@ -18,9 +18,9 @@ format :html do
 
   def collapsed_sections
     output [
-      _optional_render_compact_methodology,
-      _optional_render_compact_about,
-      _optional_render_compact_example_answers
+      _render_compact_methodology,
+      _render_compact_about,
+      _render_compact_example_answers
     ]
   end
 
@@ -64,7 +64,7 @@ format :html do
       toggle_button("Methodology", ".methodology-info"),
       toggle_button("About", ".about-info"),
       toggle_example_answers,
-      _optional_render_page_link_button
+      _render_page_link_button
     ]
   end
 

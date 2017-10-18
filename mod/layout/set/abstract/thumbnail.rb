@@ -39,7 +39,7 @@ format :html do
     wrap_with :div, class: "thumbnail-text" do
       [
         thumbnail_title,
-        _optional_render_thumbnail_subtitle(args)
+        _render_thumbnail_subtitle(args)
       ]
     end
   end
