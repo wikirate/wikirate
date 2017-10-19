@@ -30,7 +30,7 @@ end
 
 def research_group?
   if @research_group.nil?
-    @research_group = cardname.parts.size > 3
+    @research_group = name.parts.size > 3
   else
     @research_group
   end
