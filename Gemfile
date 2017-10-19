@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
 source "http://rubygems.org"
 
-decko_gem_path = ENV["WIKIRATE_DECKO_GEM_PATH"] || "./vendor/decko"
-# decko_gem_path = "./vendor/decko"
+# decko_gem_path = ENV["WIKIRATE_DECKO_GEM_PATH"] || "./vendor/decko"
+decko_gem_path = "./vendor/decko"
 
 gem "card", path: "#{decko_gem_path}/card", require: false
 gem "cardname", path: "#{decko_gem_path}/cardname", require: false
@@ -88,10 +88,10 @@ group :development do
 
   gem "capistrano"
   gem "capistrano-bundler"
+  gem 'capistrano-git-with-submodules', '~> 2.0'
   gem "capistrano-maintenance", require: false
   gem "capistrano-passenger"
   gem "capistrano-rvm"
-  gem 'capistrano-git-with-submodules', '~> 2.0'
 
   gem "better_errors"
   gem "binding_of_caller"

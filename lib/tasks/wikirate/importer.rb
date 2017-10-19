@@ -110,7 +110,7 @@ class Importer
   def adjust_file_attributes attr
     return attr unless attr["type"].in? %w(Image File)
     if bucket_file?(attr)
-      # TODO: check if the bucket is configure and only then keep it as a cloud file?
+      # TODO: check if the bucket is configured and only then keep it as a cloud file?
       attr["storage_type"] = :cloud
     else
       attr["content"] = ""
