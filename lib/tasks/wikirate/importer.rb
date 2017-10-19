@@ -60,22 +60,17 @@ class Importer
   end
 
   def update_or_create name, _codename, attr
-    if attr["type"].in? %w(Image File)
-      attr["content"] = ""
-      attr["empty_ok"] = true
-    end
-    begin
-      # card = codename ? Card.fetch(codename.to_sym) : Card.fetch(name)
-      card = Card.fetch(name)
-      if card
-        puts "updating card #{name} "\
-               "#{card.update_attributes!(attr)}".light_blue
+    attr = adjust_file_attributes attr
+    # card = codename ? Card.fetch(codename.to_sym) : Card.fetch(name)
+    result =
+      if (card = Card.fetch(name))
+        "updating card #{name} #{card.update_attributes!(attr)}".light_blue
       else
-        puts "creating card #{name} #{Card.create!(attr)}".yellow
+        "creating card #{name} #{Card.create!(attr)}".yellow
       end
-    rescue => e
-      puts "Error in #{name}\n#{e}".red
-    end
+    puts result
+  rescue => e
+    puts "Error in #{name}\n#{e}".red
   end
 
   def import_card_data cards
@@ -110,5 +105,21 @@ class Importer
     value_string = "('#{value_string}')"
     sql = "INSERT INTO #{table} (version) VALUES #{value_string}"
     ActiveRecord::Base.connection.execute(sql)
+  end
+
+  def adjust_file_attributes attr
+    return attr unless attr["type"].in? %w(Image File)
+    if bucket_file?(attr)
+      # TODO: check if the bucket is configure and only then keep it as a cloud file?
+      attr["storage_type"] = :cloud
+    else
+      attr["content"] = ""
+    end
+    attr["empty_ok"] = true
+    attr
+  end
+
+  def bucket_file? attr
+    attr["content"].match?(/^\(\w+\)/)
   end
 end
