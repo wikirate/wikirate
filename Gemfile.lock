@@ -562,8 +562,8 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     rubocop-decko (0.2)
-    rubocop-rspec (1.18.0)
-      rubocop (>= 0.50.0)
+    rubocop-rspec (1.19.0)
+      rubocop (>= 0.51.0)
     ruby-jmeter (3.1.08)
       nokogiri
       rest-client
