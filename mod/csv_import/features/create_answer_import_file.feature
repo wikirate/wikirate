@@ -27,7 +27,7 @@ Feature: create new import file card
    When Jobs are dispatched
    Then No errors in the job queue
    And I wait 2 seconds
-   Then I should see "1 metric answer created and 1 metric updated answer"
+   Then I should see "1 metric answer created and 1 metric answer updated"
    And I should see "Successful"
    And I should see "#1: Jedi+disturbances in the Force+Death Star+2017"
    And I should see "Overriden"
