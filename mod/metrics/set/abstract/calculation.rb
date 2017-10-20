@@ -10,6 +10,7 @@ def update_value_for! opts
       if value
         update_value_card metric_value, value
       else
+        # FIXME: this direct validation call should not be necessary!
         metric_value.validate_delete_children
         metric_value.delete
       end
