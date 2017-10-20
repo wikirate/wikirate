@@ -46,7 +46,7 @@ format :html do
       Select:
       <span class="padding-20 background-grey">
         #{check_box_tag '_check_all', '', false, class: 'checkbox-button'}
-        #{label_tag 'all'}
+        #{label_tag '_check_all', 'all'}
       </span>
       #{group_selection_checkbox('exact', 'exact matches', :success, true)}
       #{group_selection_checkbox('alias', 'alias matches', :alias, true)}
@@ -64,7 +64,7 @@ format :html do
           class: "checkbox-button _group_check",
           data: { group: identifier }
         ),
-        label_tag(label)
+        label_tag(name, label)
       ]
     end
   end
