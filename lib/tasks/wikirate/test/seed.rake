@@ -16,7 +16,7 @@ namespace :wikirate do
         # init_test env uses the same db as test env
         # test env triggers stuff on load that breaks the seeding process
         ensure_env :init_test, task, args do
-          execute_command "rake decko:seed", :test
+          execute_command "rake decko:seed_without_reset", :test
           Rake::Task["wikirate:test:import_from"].invoke(args[:location])
           Rake::Task["wikirate:test:dump"].invoke(base_dump_path)
         end
@@ -29,6 +29,7 @@ namespace :wikirate do
           Rake::Task["decko:migrate"].invoke
           Rake::Task["wikirate:test:dump"].invoke(migrated_dump_path)
           Card::Cache.reset_all
+          ActiveRecord::Base.descendants.each{ |c| c.reset_column_information }
           Rake::Task["wikirate:test:seed:update"].invoke
         end
       end

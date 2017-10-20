@@ -17,7 +17,7 @@ format :html do
   end
 
   def menu_icon
-    glyphicon "edit"
+    fa_icon "pencil-square-o"
   end
 
   def header_title_elements

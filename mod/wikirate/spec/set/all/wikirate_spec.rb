@@ -97,7 +97,7 @@ RSpec.describe Card::Set::All::Wikirate do
 
     it "shows correct html for the menu_link view" do
       html = render_card :menu_link, name: "non-exisiting-card"
-      expect(html).to include("glyphicon glyphicon-edit")
+      expect(html).to include("fa fa-pencil-square-o")
     end
 
     it "shows empty string for not real card for raw_or_blank view" do

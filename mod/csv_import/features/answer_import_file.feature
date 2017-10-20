@@ -18,10 +18,10 @@ Feature: import metric answers from a csv file
     When I check checkbox for csv row 1
     And I scroll 1000 pixels down
     And I press "Import"
-    Then I should see "Importing 1 metric answers ..."
+    Then I should see "Importing 1 metric answer ..."
     When Jobs are dispatched
     And I wait for ajax response
-    Then I should see "Imported 1 metric answers"
+    Then I should see "Imported 1 metric answer"
     And I should see "Successful"
     And I should see "#1: Jedi+disturbances in the Force+Death Star+2017"
     Then I follow "Jedi+disturbances in the Force+Death Star+2017"
