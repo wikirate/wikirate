@@ -30,7 +30,7 @@ Feature: create new import file card
    Then I should see "1 metric answer created and 1 metric answer updated"
    And I should see "Successful"
    And I should see "#1: Jedi+disturbances in the Force+Death Star+2017"
-   And I should see "Overriden"
+   And I should see "Overridden"
    And I should see "#11: Jedi+disturbances in the Force+Death Star+2000"
 
    Then I click on "Undo"
