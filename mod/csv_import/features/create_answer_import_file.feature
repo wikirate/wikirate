@@ -40,8 +40,8 @@ Feature: create new import file card
    And I should see "Overridden"
    And I should see "#11: Jedi+disturbances in the Force+Death Star+2000"
 
-   Then I click on "Undo"
-   And I accept alert
+   Then I click on "Undo" and confirm
+
    When I go to card "Jedi+disturbances in the Force+Death Star+2017"
    Then I should see "doesn't exist"
    When I go to card "Jedi+disturbances in the Force+Death Star+2000"
