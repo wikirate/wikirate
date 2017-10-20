@@ -53,6 +53,10 @@ And(/^I click on item "([^"]*)"$/) do |item|
   find("td", text: item).click
 end
 
+And(/^I click on "([^"]*)" and confirm$/) do |link|
+  page.accept_confirm { click_link_or_button(link) }
+end
+
 When(/^I click on metric "([^"]*)"$/) do |metric|
   find(:css, ".add-formula").find("h4", text: metric).click
 end
@@ -287,4 +291,8 @@ end
 
 And(/^I hover over "([^"]*)"$/) do |text|
   find(:link_or_button, text: text).hover
+end
+
+And(/^I accept alert$/) do
+  page.driver.browser.switch_to.alert.accept
 end

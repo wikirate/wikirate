@@ -7,7 +7,9 @@ Feature: import metric answers from a csv file
     And I go to card "feature answer import test"
     And I follow "Import ..."
 #    And I maximize the browser
-    And I uncheck all checkboxes
+    # And I uncheck all checkboxes
+    And I check "all"
+    And I uncheck "all"
     And I scroll -1000 pixels
 
   Scenario: Show import table correctly
