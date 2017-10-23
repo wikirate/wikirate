@@ -1,4 +1,4 @@
-@javascript @delayed-job
+@javascript
 Feature: Double check
   As signed in user I can double check and request checks for metric values
 

@@ -45,8 +45,9 @@ Feature: import metric answers from a csv file
 
     And I scroll 1000 pixels down
     And I press "Import"
+    And I wait 1 second
     When Jobs are dispatched
-    And I wait 2 seconds
+    And I wait 3 seconds
     And I wait for ajax response
     Then I should see "4 imported"
     And I should see "4 skipped"
