@@ -10,22 +10,16 @@ Feature: create new import file card
    And I wait for ajax response
    And I press "Submit"
    And I wait for ajax response
-#    And I maximize the browser
-   #And I uncheck a
-
-   # ll checkboxes
-
-   # the label of the all checkbox has the wrong id for
-  And I check "all"
-  And I uncheck "all"
-
+   And I check "all"
+   And I uncheck "all"
 
  Scenario: Import a simple metric value
    And I should see a row with "1|Jedi+disturbances in the Force|Death Star|Death Star|Death Star|2017|yes|http://google.com/1|chch"
    And I should see a row with "11|Jedi+disturbances in the Force|Death Star|2000|no|http://google.com/10"
-   And I choose "override"
+
+   When I choose "override"
    And I scroll 1000 pixels down
-   When I check checkbox for csv row 1
+   And I check checkbox for csv row 1
    And I check checkbox for csv row 11
    And I press "Import"
    And I wait for ajax response
@@ -39,13 +33,21 @@ Feature: create new import file card
    And I should see "#1: Jedi+disturbances in the Force+Death Star+2017"
    And I should see "Overridden"
    And I should see "#11: Jedi+disturbances in the Force+Death Star+2000"
+   And I should see "Undo"
 
-   Then I click on "Undo" and confirm
-
-   When I go to card "Jedi+disturbances in the Force+Death Star+2017"
-   Then I should see "doesn't exist"
    When I go to card "Jedi+disturbances in the Force+Death Star+2000"
+   Then I should see "no"
+
+   When I am signed in as Joe Admin
+   And I go to card "another import+import status"
+   And I click on "Undo" and confirm
+   And I go to card "Jedi+disturbances in the Force+Death Star+2000"
    Then I should see "yes"
+
+   When I follow "Log out"
+   And I go to card "Jedi+disturbances in the Force+Death Star+2017"
+   Then I should see "Could not find"
+
 
 
 
