@@ -1,4 +1,4 @@
-@javascript
+@javascript @delayed-job
 Feature: Double check
   As signed in user I can double check and request checks for metric values
 
@@ -53,7 +53,7 @@ Feature: Double check
     Then I should see "Yes, I checked the value"
 
     When I click on the "remove" icon
-    # move focuse away from double check button
+    # move focus away from double check button
     And I hover over "Joe Admin"
     Then I should see "Double check requested by Joe User"
     When I edit "Jedi+disturbances in the Force+Death Star+2000"
