@@ -143,7 +143,7 @@ format :html do
   def undo_button
     return if importing?
     return "" unless status[:act_id] && (act = Card::Act.find(status[:act_id]))
-    ar = Act::ActRenderer.new(self, act, {})
+    ar = Act::ActRenderer.new(card.left.format(:html), act, {})
     link = ar.revert_actions_link "Undo", revert_to: :previous,
                                   html_args: { class: "btn btn-danger",
                                                "data-confirm" => undo_confirm_message }
@@ -151,7 +151,7 @@ format :html do
   end
 
   def undo_confirm_message
-    text = "Do you really want to remove all imported #{item_label :imported}"
+    text = "Do you really want to remove the imported #{item_label :imported}"
     if count(:overridden) > 0
       text +=  " and restore the overridden " + item_label(:overridden)
     end

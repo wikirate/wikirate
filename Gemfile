@@ -4,9 +4,18 @@ source "http://rubygems.org"
 # decko_gem_path = ENV["WIKIRATE_DECKO_GEM_PATH"] || "./vendor/decko"
 decko_gem_path = "./vendor/decko"
 
-gem "card", path: "#{decko_gem_path}/card", require: false
-gem "cardname", path: "#{decko_gem_path}/cardname", require: false
-gem "decko", path: "#{decko_gem_path}/decko"
+if ENV["RM_INFO"] && ARGV[0] == 'check'
+  puts "Execution in RubyMine detected in Gemfile. Ignoring decko gem path"
+  # This causes Rubymine and IntelliJ to handle these paths as normal sources rather
+  # than gems or libraries.
+  # That way the files are included as normal project sources in Find and Open.
+else
+  path decko_gem_path do
+    gem "card", require: false
+    gem "cardname", require: false
+    gem "decko"
+  end
+end
 
 gem "mysql2", "~> 0.3.18"
 
