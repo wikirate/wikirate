@@ -104,14 +104,14 @@ format :html do
   end
 
   def contribution_null_box
-    wrap_with :li, class:  "contribution-report-box" do
+    wrap_with :li, class:  "contribution-report-box nav-item" do
       content_tag(:p, "")
     end
   end
 
   def contribution_report_box action, extra_class=nil
     active_tab = current_tab?(action) ? "active" : nil
-    wrap_with :li, class: css_classes("contribution-report-box", extra_class, active_tab) do
+    wrap_with :li, class: css_classes("contribution-report-box nav-item", extra_class, active_tab) do
       contribution_report_count_tab action
     end
   end
@@ -128,7 +128,7 @@ format :html do
     return "&nbsp;" unless card.report_action_applies? action
     link_to_view :contribution_report,
                  two_line_tab(ACTION_LABELS[action], report_count(action)),
-                 path: { report_tab: action }, class: "slotter"
+                 path: { report_tab: action }, class: "slotter nav-link"
   end
 
   def report_count action
@@ -154,19 +154,19 @@ format :html do
 
   def contribution_report_toggle
     toggle_status = Env.params[:report_tab] ? :open : :closed
-    wrap_with :li, class: "contribution-report-toggle text-center" do
+    wrap_with :li, class: "contribution-report-toggle text-center nav-item" do
       send "contribution_report_toggle_#{toggle_status}"
     end
   end
 
   def contribution_report_toggle_closed
-    link_to_view :contribution_report, glyphicon("triangle-right"),
-                 class: "slotter", path: { report_tab: :created }
+    link_to_view :contribution_report, fa_icon("chevron-right"),
+                 class: "slotter nav-link", path: { report_tab: :created }
   end
 
   def contribution_report_toggle_open
-    link_to_view :contribution_report, glyphicon("triangle-bottom"),
-                 class: "slotter"
+    link_to_view :contribution_report, fa_icon("chevron-bottom"),
+                 class: "slotter nav-link"
   end
 
   def contribution_report_body
