@@ -87,7 +87,7 @@ format :html do
 
   def zoom_out_link
     return unless zoomed_in?
-    link_to_view :content, fa_icon("search-minus"),
+    link_to_view :content, fa_icon(:zoom_out),
                  path: zoom_out_path_opts,
                  class: "slotter chart-zoom-out"
   end

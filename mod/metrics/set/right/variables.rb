@@ -7,7 +7,7 @@ def metric_card
 end
 
 def metric_card_name
-  cardname.left_name
+  name.left_name
 end
 
 def formula_card
@@ -95,7 +95,7 @@ format :html do
       wql[:right_plus] = ["*metric type", { refer_to: "Score" }]
     end
     items = Card.search(wql)
-    params[:formula_metric_key] = card.cardname.left_key
+    params[:formula_metric_key] = card.name.left_key
     wikirate_table_with_details :metric, items, [:add_to_formula_item_view],
                                 td: { classes: %w[score details] }
   end
@@ -104,7 +104,7 @@ format :html do
     if @card.new_card? && (l = @card.left) &&
        l.respond_to?(:input_names)
       card.extract_metrics_from_formula
-      render(@denied_view, args)
+      render!(@denied_view, args)
     else
       super(args)
     end

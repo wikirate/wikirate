@@ -10,7 +10,7 @@ format :html do
                  path: { tab: name },
                  "data-tab-name" => name,
                  "data-tab-content-url" =>
-                   path(mark: [card.cardname, "#{name}_page"])
+                   path(mark: [card.name, "#{name}_page"])
     # <<-HTML
     #   <a href="/{{_|linkname}}?tab=#{name}"
     #      data-tab-content-url="/{{_|linkname}}+#{name}_page"
@@ -56,7 +56,7 @@ format :html do
     link_text = wrap_with :div, class: "row-data center-logo" do
       field_nest "image"
     end
-    link_to_card card.cardname.trunk, link_text, class: "inherit-anchor"
+    link_to_card card.name.trunk, link_text, class: "inherit-anchor"
   end
 
   def wikirate_tabs tabs, color, additional=nil
@@ -80,7 +80,7 @@ format :html do
     # show the content based on the url parameter
     # tabs: metric, topic, company, note, reference, overview
     tab = Env.params["tab"]
-    left_name = card.cardname.left
+    left_name = card.name.left
     card_tab_name =
       if !tab.nil?
         "#{left_name}+#{tab}_page"

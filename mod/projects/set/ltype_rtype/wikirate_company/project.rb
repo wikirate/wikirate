@@ -40,7 +40,7 @@ format :html do
             class: "btn btn-default btn-sm",
             path: { mark: :research_page,
                     company: card.company_card.name,
-                    project: card.project_card.cardname.url_key }
+                    project: card.project_card.name.url_key }
   end
 
   view :research_progress_bar do

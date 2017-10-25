@@ -38,7 +38,7 @@ format :html do
 end
 
 def badge
-  cardname.parts[1]
+  name.parts[1]
 end
 
 def badge_key
@@ -46,7 +46,7 @@ def badge_key
 end
 
 def affinity
-  cardname.parts[0]
+  name.parts[0]
 end
 
 def affinity_card

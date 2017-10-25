@@ -186,7 +186,7 @@
 
 #   def save!
 #     formula = @submetrics.map do |submetric|
-#       "(#{submetric.weight}) * [[#{submetric.cardname}]]"
+#       "(#{submetric.weight}) * [[#{submetric.name}]]"
 #     end
 
 #     list = @submetrics.map do |submetric|
@@ -195,7 +195,7 @@
 #         else
 #           "{{%s|closed;title:0-%s %s;hide:toggle,menu;show:title_link}}"
 #         end
-#       text = format % [submetric.cardname, submetric.weight.round(2).to_s.chomp('.0'), submetric.question]
+#       text = format % [submetric.name, submetric.weight.round(2).to_s.chomp('.0'), submetric.question]
 #       "<li>#{text}</li>"
 #     end.join "\n"
 
@@ -221,7 +221,7 @@
 #      '+question'    => question,
 #      '+methodology' => desc,
 #      '+formula'     => {:content=>formula.join("\n"), :type=>'pointer'},
-#      '+submetrics'  => {:content=>@submetrics.map { |sm| "[[#{sm.cardname}]]" }.join("\n"), :type=>'pointer'}
+#      '+submetrics'  => {:content=>@submetrics.map { |sm| "[[#{sm.name}]]" }.join("\n"), :type=>'pointer'}
 #     }
 #   end
 

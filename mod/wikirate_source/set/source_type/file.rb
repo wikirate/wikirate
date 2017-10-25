@@ -16,8 +16,6 @@ format :html do
   end
 
   def csv?
-    ["text/csv", "text/comma-separated-values"].include?(
-      card.file_card.file.content_type
-    )
+    card.file_card.file.content_type.in? ["text/csv", "text/comma-separated-values"]
   end
 end

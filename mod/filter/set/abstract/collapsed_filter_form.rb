@@ -40,7 +40,7 @@ format :html do
   end
 
   view :core do
-    action = card.cardname.left_name.url_key
+    action = card.name.left_name.url_key
     filter_active = filter_active? ? "in" : "out"
     <<-HTML
     <div class="filter-container">
@@ -58,7 +58,7 @@ format :html do
     <<-HTML
       <div class="margin-12 sub-content">
         #{main_filter_formgroups}
-        #{_optional_render_sort_formgroup}
+        #{_render_sort_formgroup}
       </div>
       <hr/>
       <div class="filter-buttons">

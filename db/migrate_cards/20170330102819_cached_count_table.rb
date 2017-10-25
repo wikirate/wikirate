@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class CachedCountTable < ActiveRecord::Migration
+class CachedCountTable < ActiveRecord::Migration[4.2]
   def up
     drop_table :counts if table_exists? :counts
     create_table :counts do |t|

@@ -7,7 +7,7 @@ Feature: Research answer fail
     Given I am signed in as Joe User
     And I go to  "/new metric_value"
     And I wait for ajax response
-    And I maximize the browser
+#     And I maximize the browser
     And I select "Apple Inc" from "Company"
     And I select "Joe User+researched" from "Metrics"
     And I click on "Next"

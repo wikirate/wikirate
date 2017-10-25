@@ -57,8 +57,8 @@ class SharedData
       return Card.search(type_id: Card::SourceID, limit: 1).first unless source
       Card.search(
         type_id: Card::SourceID,
-        right_plus: ["link",
-                     { content: "http://www.wikiwand.com/en/#{source}" }],
+        right_plus: [ {codename: "wikirate_link"},
+                      { content: "http://www.wikiwand.com/en/#{source}" }],
         limit: 1
       ).first
     end

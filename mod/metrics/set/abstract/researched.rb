@@ -41,7 +41,7 @@ format :html do
       [
         _render_value_type_edit_modal_link,
         _render_short_view,
-        _optional_render_menu
+        _render_menu
       ]
     end
   end

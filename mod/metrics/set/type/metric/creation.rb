@@ -1,6 +1,6 @@
 def create_value_options options
   create_args = {
-    name: cardname.field("value options"),
+    name: name.field("value options"),
     content: options.to_pointer_content
   }
   Card.create! create_args
@@ -80,7 +80,7 @@ end
 
 def valid_value_args? args
   error_msg = []
-  check_value_card_exist args, error_msg
+  check_value_card_exist args, error_msg unless args.delete(:ok_to_exist)
   if metric_type_codename == :researched && !args[:source]
     error_msg << "missing source"
   end
@@ -133,8 +133,8 @@ end
 format :html do
   view :new do |_args|
     voo.title = "New Metric"
-    frame do
-      _render_new_form
+    with_nest_mode :edit do
+      frame { _render_new_form }
     end
   end
 
@@ -191,7 +191,7 @@ format :html do
     return "" unless (help_text_card = Card[card.metric_type + "+description"])
     class_up "help-text", "help-block"
     with_nest_mode :normal do
-      render :help, help: help_text_card.content
+      render! :help, help: help_text_card.content
     end
   end
 
@@ -200,10 +200,10 @@ format :html do
                        "main-success" => "REDIRECT" do
       output [
         new_tab_pane_hidden,
-        _render(:help_text),
+        _render!(:help_text),
         _render_new_name_formgroup,
-        _optional_render_content_formgroup,
-        _optional_render_new_buttons
+        _render_content_formgroup,
+        _render_new_buttons
       ]
     end
   end
@@ -262,7 +262,7 @@ format :html do
   end
 
   def metric_title_field options={}
-    title = card.add_subfield :title, content: card.cardname.tag,
+    title = card.add_subfield :title, content: card.name.tag,
                                       type_id: PhraseID
     title.reset_patterns
     title.include_set_modules

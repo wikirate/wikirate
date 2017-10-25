@@ -18,7 +18,7 @@ event :validate_value_type, :validate, on: :save, when: :standard? do
       # check if the value exist in options
       if !(option_card = Card["#{metric_card.name}+value options"]) ||
          !option_card.item_names.include?(value)
-        url = "/#{option_card.cardname.url_key}?view=edit"
+        url = "/#{option_card.name.url_key}?view=edit"
         anchor = %(<a href='#{url}' target="_blank">add that option</a>)
         errors.add :value, "#{value} is not a valid option. "\
                            "Please #{anchor} before adding this metric value."
@@ -39,18 +39,17 @@ event :validate_update_date, :validate,
   detach_subfield(:year)
 end
 
-event :validate_answer_name,
-      after: :validate_update_date, on: :save, changed: :name do
+event :validate_answer_name, after: :validate_update_date, on: :save, changed: :name do
   if Card.fetch_type_id(year) != YearID
     errors.add :name, "right part must be a year"
   end
-  if cardname.length < 4
+  if name.length < 4
     errors.add :name, "must have at least a metric, a company, and a year part"
   end
 end
 
 def valid_value_name?
-  cardname.parts.size >= (name_parts.size + 1) && valid_name_parts?
+  name.parts.size >= (name_parts.size + 1) && valid_name_parts?
 end
 
 def invalid_value_name?

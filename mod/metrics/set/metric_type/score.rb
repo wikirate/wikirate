@@ -1,7 +1,7 @@
 include Set::Abstract::Calculation
 
 def scorer
-  cardname.tag
+  name.tag
 end
 
 def scorer_card
@@ -9,7 +9,7 @@ def scorer_card
 end
 
 def basic_metric
-  cardname.trunk
+  name.trunk
 end
 
 def basic_metric_card
@@ -115,6 +115,11 @@ format :html do
                  "#{fa_icon 'external-link'} Original Metric",
                  class: button_classes
   end
+
+  view :add_to_formula_item_view do |_args|
+    subtext = wrap_with :small, "Scored by " + card.scorer
+    add_to_formula_helper subtext
+  end
 end
 
 event :validate_score_name, :validate, changed: :name, on: :save do
@@ -124,7 +129,7 @@ end
 
 event :set_scored_metric_name, :initialize,
       on: :create do
-  return if cardname.parts.size >= 3
+  return if name.parts.size >= 3
   metric = (mcard = remove_subfield(:metric)) && mcard.item_names.first
   self.name = "#{metric}+#{Auth.current.name}"
 end

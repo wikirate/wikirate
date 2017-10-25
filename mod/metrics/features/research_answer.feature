@@ -6,13 +6,13 @@ Feature: Research answer
     Given I am signed in as Joe User
     And I go to  "/new metric_value"
     And I wait for ajax response
-    And I maximize the browser
+#     And I maximize the browser
     And I select "Apple Inc" from "Company"
     And I select "Joe User+researched" from "Metrics"
     And I click on "Next"
     And I click on "Research answer"
     And I wait 10 seconds
-    # And I wait for ajax response
+    And I wait for ajax response
     And I click on "Add a new source"
 
   Scenario: Create a metric value

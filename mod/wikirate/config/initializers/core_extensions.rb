@@ -8,7 +8,7 @@ module CoreExtensions
       false
     end
   end
-    end
+end
 
 class String
   include CoreExtensions::String

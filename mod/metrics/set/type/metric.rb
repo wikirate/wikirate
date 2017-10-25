@@ -28,7 +28,7 @@ def metric_type_codename
 end
 
 def metric_designer
-  junction? ? cardname.parts[0] : creator.cardname
+  junction? ? name.parts[0] : creator.name
 end
 
 def metric_designer_card
@@ -40,7 +40,7 @@ def designer_image_card
 end
 
 def metric_title
-  junction? ? cardname.parts[1] : cardname
+  junction? ? name.parts[1] : name
 end
 
 def metric_title_card
@@ -61,12 +61,20 @@ def question_card
 end
 
 def value_type
-  value_type_card.item_names.first || "Free Text"
+  value_type_card.item_names.first || default_value_type
+end
+
+def default_value_type
+  "Free Text"
 end
 
 def value_type_code
   ((vc = value_type_card.item_cards.first) &&
-   vc.codename && vc.codename.to_sym) || :free_text
+   vc.codename && vc.codename.to_sym) || default_value_type_code
+end
+
+def default_value_type_code
+  :free_text
 end
 
 def value_options
@@ -128,7 +136,7 @@ end
 
 def analysis_names
   return [] unless (topics = fetch(trait: :wikirate_topic)) &&
-                   (companies = fetch(trait: :wikirate_company))
+    (companies = fetch(trait: :wikirate_company))
   companies.item_names.map do |company|
     topics.item_names.map do |topic|
       "#{company.to_name.tag}+#{topic}"
@@ -159,9 +167,62 @@ def value_cards _opts={}
 end
 
 def metric_value_name company, year
-  company_name = Card.fetch_real_by_key(company).name
+  company_name = Card[company].name
   "#{name}+#{company_name}+#{year}"
 end
+
+module OldFetchMethods
+# This used to be a Card class method defined in All::Fetch.
+# Maybe it's no longer necessary but it was removed in Decko when
+# it was not the right time to mess with it. Putting it back here for now
+# since it's the only place where it is used.
+#
+# #fetch converts String to Card::Name. That can break in some cases.
+# For example if you fetch "Siemens" by its key "siemen", you won't get
+# "Siemens" because "siemen".to_name.key == "sieman"
+# If you have a key of a real card use this method.
+  def fetch_real_by_key key, opts = {}
+    raise Card::Error, "fetch_real_by_key called with new args" if opts[:new]
+
+    # look in cache
+    card = fetch_from_cache_by_key key, opts[:local_only]
+    # look in db if needed
+    if retrieve_from_db?(card, opts)
+      card = fetch_from_db :key, key, opts
+      write_to_cache card, opts if !card.nil? && !card.trash
+    end
+    return if card.nil?
+    card.include_set_modules unless opts[:skip_modules]
+    card
+  end
+
+  def fetch_from_cache_by_key key, local_only = false
+    fetch_from_cache key, local_only
+  end
+
+  def retrieve_from_db? card, opts
+    card.nil? || (opts[:look_in_trash] && card.new_card? && !card.trash)
+  end
+
+  def fetch_from_db mark_type, mark_key, opts
+    query = { mark_type => mark_key }
+    query[:trash] = false unless opts[:look_in_trash]
+    card = Card.where(query).take
+    card
+  end
+
+  def fetch_from_cache cache_key, local_only = false
+    return unless Card.cache
+    if local_only
+      Card.cache.soft.read cache_key
+    else
+      Card.cache.read cache_key
+    end
+  end
+end
+
+include OldFetchMethods
+
 
 def metric_value_query
   { left: { left_id: id }, type_id: MetricValueID }
@@ -206,10 +267,14 @@ format :html do
   # USED?
 
   view :add_to_formula_item_view do |_args|
+    subtext = wrap_with :small, "Designed by" + card.metric_designer.to_s
+    add_to_formula_helper subtext
+  end
+
+  def add_to_formula_helper subtext
     title = card.metric_title.to_s
-    subtext = wrap_with :small, "Scored by " + card.scorer
     append = "#{params[:formula_metric_key]}+add_to_formula"
-    url = path mark: card.cardname.field(append), view: :content
+    url = path mark: card.name.field(append), view: :content
     text_with_image image: designer_image_card,
                     text: subtext, title: title, size: :icon,
                     media_opts: { class: "tr-details-toggle",
@@ -283,7 +348,7 @@ format :html do
     end
   end
 
-  view :value_type_edit_modal_link do
+  view :value_type_edit_modal_link, cache: :never do
     nest card.value_type_card,
          view: :modal_link,
          link_text: vtype_edit_modal_link_text,
@@ -313,8 +378,10 @@ format :html do
 
     details_field =
       case value_type.item_names[0]
-      when "Number"   then :numeric_details
-      when "Money"    then :monetary_details
+      when "Number" then
+        :numeric_details
+      when "Money" then
+        :monetary_details
       when "Category", "Multi-Category" then
         :category_details
       end
@@ -355,8 +422,8 @@ format :html do
                                            items: { view: :link }))
     ]
     if card.researched?
-      rows <<  text_row("Unit", field_nest("Unit"))
-      rows <<  text_row("Range", field_nest("Range"))
+      rows << text_row("Unit", field_nest("Unit"))
+      rows << text_row("Range", field_nest("Range"))
     end
     wrap_with :div, class: "metric-info" do
       rows
@@ -397,7 +464,7 @@ format :html do
     wrap_with :div do
       [
         text_field_tag("pair_value", (args[:weight] || 0)) + "%",
-        content_tag(:span, fa_icon(:remove).html_safe, class: icon_class)
+        content_tag(:span, fa_icon(:close).html_safe, class: icon_class)
       ]
     end
   end

@@ -30,7 +30,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
   # return company+year
   def answers list
     list.map do |c|
-      c.cardname.parts[2..3].join "+"
+      c.name.parts[2..3].join "+"
     end
   end
 

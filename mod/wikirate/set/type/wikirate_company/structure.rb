@@ -33,21 +33,19 @@ format :html do
   end
 
   view :data, cache: :never do
-    if active_profile_tab == :performance
-      output [
-        _optional_render_header_tabs_mobile,
-        field_nest(:all_metric_values)
-      ]
-    else
-      contribution_data
-    end
+    active_profile_tab == :performance ? performance_data : contribution_data
+  end
+
+  def performance_data
+    output [_render_header_tabs_mobile, field_nest(:all_metric_values)]
   end
 
   def header_right
-    output [
-      wrap_with(:h3, _render_title, class: "company-color"),
-      _render_header_tabs
-    ]
+    output [header_title, _render_header_tabs]
+  end
+
+  def header_title
+    wrap_with :h3, _render_title, class: "company-color"
   end
 
   view :header_tabs, cache: :never do
@@ -55,12 +53,12 @@ format :html do
   end
 
   view :header_tabs_mobile, cache: :never do
-    wrap_header_tabs :mobile
+    wrap_header_tabs(:mobile)
   end
 
   def wrap_header_tabs device=""
-    css_class = "nav nav-tabs company-profile-tab"
-    css_class += device.to_sym == :mobile ? " visible-xs" : " hidden-xs"
+    css_class = "nav nav-tabs company-profile-tab "
+    css_class += device.to_sym == :mobile ? "hidden-sm-up" : "hidden-xs"
     wrap_with :ul, class: css_class do
       [performance_tab_button, contributions_tab_button]
     end

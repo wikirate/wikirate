@@ -7,7 +7,7 @@ def search_anchor
 end
 
 def topic_name
-  cardname.left_name
+  name.left_name
 end
 
 # when metric value is edited
@@ -34,7 +34,7 @@ end
 
 def ids_of_metrics_tagged_with_topic
   Card.search type_id: MetricID,
-              right_plus: [WikirateTopicID, { refer_to: cardname.left }],
+              right_plus: [WikirateTopicID, { refer_to: name.left }],
               return: :id
 end
 

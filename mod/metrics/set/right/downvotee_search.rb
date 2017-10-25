@@ -4,7 +4,7 @@ def virtual?
   true
 end
 
-def raw_content
+def content
   %({
     "type":"_lr",
     "linked_to_by":"_user+#{Card.fetch_name vote_type_codename}",
@@ -215,7 +215,7 @@ format :html do
               class: "list-drag-and-drop yinyang-list "\
                      "#{args[:vote_type]}-container",
               "data-query"        => args[:query],
-              "data-update-id"    => card.cardname.url_key,
+              "data-update-id"    => card.name.url_key,
               "data-bucket-name"  => args[:vote_type],
               "data-default-sort" => args[:default_sort] do
       [

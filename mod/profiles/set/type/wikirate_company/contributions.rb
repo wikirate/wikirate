@@ -14,7 +14,7 @@ format :html do
 
   view :contribution_link do
     return "" unless contributions_made?
-    link_to_card card.cardname.trait(:contribution), "View Contributions",
+    link_to_card card.name.trait(:contribution), "View Contributions",
                  class: "btn btn-primary company-contribution-link"
   end
 

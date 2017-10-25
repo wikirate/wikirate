@@ -50,7 +50,7 @@ format :html do
 
   view :data, cache: :never do
     wrap do
-      [_optional_render_filter, _render_table]
+      [_render_filter, _render_table]
     end
   end
 end

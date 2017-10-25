@@ -2,7 +2,7 @@
 
 require File.dirname(__FILE__) + "../../config/environment"
 
-Wagn.config.perform_deliveries = false
+Decko.config.perform_deliveries = false
 Card::Auth.as_bot
 
 Card.search(type: Card::SourceID).each do |card|

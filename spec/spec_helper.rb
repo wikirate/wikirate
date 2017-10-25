@@ -1,6 +1,6 @@
-require "wagn/mods_spec_helper"
+require "decko/mods_spec_helper"
 require_relative "source_helper"
-require_relative "../test/seed"
+require_dependency "seed"
 
 Spork.prefork do
   RSpec.configure do |config|

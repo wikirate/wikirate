@@ -39,9 +39,9 @@ Card::Auth.as_bot do
     aliases_cards = Card.search right: "aliases", left: { type_id: Card::WikirateCompanyID }
     aliases_cards.each do |aliases_card|
       aliases_card.item_names.each do |name|
-        aliases_hash[name.downcase] = aliases_card.cardname.left
+        aliases_hash[name.downcase] = aliases_card.name.left
       end
-      company_array.push(aliases_card.cardname.left.downcase)
+      company_array.push(aliases_card.name.left.downcase)
     end
     [aliases_hash, company_array]
   end
