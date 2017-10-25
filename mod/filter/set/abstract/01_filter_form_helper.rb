@@ -83,11 +83,11 @@ format :html do
     # these classes make the select field a jquery chosen select field
     css_class =
       html_options[:multiple] ? "pointer-multiselect" : "pointer-select"
-    add_class html_options, css_class
+    add_class(html_options, css_class + " filter-input #{field} _filter_input_field")
 
-    formgroup label, class: "filter-input #{field}" do
+    # formgroup label, class: "filter-input #{field} _filter_input_field" do
       select_tag name, options, html_options
-    end
+    # end
   end
 
   def filter_name field, multi=false

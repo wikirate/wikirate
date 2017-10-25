@@ -54,16 +54,16 @@ format :html do
     HTML
   end
 
-  def filter_form
-    <<-HTML
-      <div class="margin-12 sub-content">
-        #{main_filter_formgroups}
-        #{_render_sort_formgroup}
-      </div>
-      <hr/>
-      <div class="filter-buttons">
-        #{filter_button_formgroup}
-      </div>
-    HTML
-  end
+  # def filter_form
+  #   <<-HTML
+  #     <div class="margin-12 sub-content">
+  #       #{main_filter_formgroups}
+  #       #{_render_sort_formgroup}
+  #     </div>
+  #     <hr/>
+  #     <div class="filter-buttons">
+  #       #{filter_button_formgroup}
+  #     </div>
+  #   HTML
+  # end
 end

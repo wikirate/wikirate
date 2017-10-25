@@ -44,8 +44,12 @@ format :html do
   delegate :filter_keys, to: :card
   delegate :advanced_filter_keys, to: :card
 
-  def filter_active?
-    filter_keys.any? { |key| filter_param(key).present? }
+  def filter_active? field=nil
+    if field
+      filter_keys.any? { |key| filter_param(key).present? }
+    else
+      filter_param(field).present?
+    end
   end
 
   def filter_advanced_active?
