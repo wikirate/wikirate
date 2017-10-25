@@ -11,7 +11,7 @@
         = link_to_card card.metric_designer_card,
                        nest(card.designer_image_card, view: :core, size: :icon),
             class: "image-box icon nopadding pull-left"
-        %a{:href => card.metric_designer_card.cardname.url_key}
+        %a{:href => card.metric_designer_card.name.url_key}
           %span.margin-12
             = card.metric_designer
     .row
@@ -24,7 +24,7 @@
         %i.fa.fa-question
       .row-data.ellipsis
         = field_nest :question, view: :content, hide: :menu
-    %a.metric-link.inherit-anchor{:href => card.cardname.url_key}
+    %a.metric-link.inherit-anchor{:href => card.name.url_key}
       .row.data-count
         .col-md-6.slab
           .number

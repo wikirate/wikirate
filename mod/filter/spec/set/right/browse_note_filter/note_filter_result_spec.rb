@@ -5,7 +5,7 @@ require File.expand_path("../../filter_spec_helper.rb", __FILE__)
 describe Card::Set::Right::BrowseNoteFilter do
   before { login_as "joe_user" }
 
-  let(:div_id) { Card.fetch(:claim, :browse_note_filter).cardname.url_key }
+  let(:div_id) { Card.fetch(:claim, :browse_note_filter).name.url_key }
   let(:filter_card) { Card.fetch :claim, :browse_note_filter }
   let(:filtered_item_names) { filter_card.item_names }
 

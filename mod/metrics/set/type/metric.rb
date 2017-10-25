@@ -28,7 +28,7 @@ def metric_type_codename
 end
 
 def metric_designer
-  junction? ? cardname.parts[0] : creator.cardname
+  junction? ? name.parts[0] : creator.name
 end
 
 def metric_designer_card
@@ -40,7 +40,7 @@ def designer_image_card
 end
 
 def metric_title
-  junction? ? cardname.parts[1] : cardname
+  junction? ? name.parts[1] : name
 end
 
 def metric_title_card
@@ -274,7 +274,7 @@ format :html do
   def add_to_formula_helper subtext
     title = card.metric_title.to_s
     append = "#{params[:formula_metric_key]}+add_to_formula"
-    url = path mark: card.cardname.field(append), view: :content
+    url = path mark: card.name.field(append), view: :content
     text_with_image image: designer_image_card,
                     text: subtext, title: title, size: :icon,
                     media_opts: { class: "tr-details-toggle",
@@ -464,7 +464,7 @@ format :html do
     wrap_with :div do
       [
         text_field_tag("pair_value", (args[:weight] || 0)) + "%",
-        content_tag(:span, fa_icon(:remove).html_safe, class: icon_class)
+        content_tag(:span, fa_icon(:close).html_safe, class: icon_class)
       ]
     end
   end

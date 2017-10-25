@@ -3,7 +3,7 @@ def virtual?
 end
 
 def split_metrics
-  metric_parts = cardname.parts.size - 1
+  metric_parts = name.parts.size - 1
   (metric_parts - 1).downto(1) do |split|
     next unless (l = self[0..split]) && l.type_id == MetricID &&
                 (r = self[split + 1..metric_parts - 1]) && r.type_id == MetricID
@@ -39,7 +39,7 @@ format :html do
       add_class args, "close-modal slotter"
       link_to_card varcard, link_text, args.merge(
         remote: true, known: true, "data-slot-selector" => editor_selector,
-        path: { action: :update, add_item: input_metric.cardname.key }
+        path: { action: :update, add_item: input_metric.name.key }
       )
     end
   end

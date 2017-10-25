@@ -10,7 +10,8 @@ def refresh_answer_lookup_entry answer_id
 end
 
 def act_finished_integrate_stage?
-  ActManager.act_card.director.stage > ActManager.act_card.director.stage_index(:integrate)
+  !ActManager.act_card.director.stage ||
+    ActManager.act_card.director.finished_stage?(:integrate)
 end
 
 def act_based_refresh_of_answer_lookup_entry answer_id

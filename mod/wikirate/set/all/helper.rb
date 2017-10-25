@@ -3,21 +3,10 @@ format :html do
     output [wrap_with("h#{level}", header), yield]
   end
 
-  def icon_tag type, opts={}
-    opts ||= {}
-    lib = opts.delete(:library) || :fa
-    prepend_class opts, "#{lib} #{lib}-#{type}"
-    %(<i #{tag_builder.tag_options opts}></i>)
-  end
-
-  def fa_icon type, opts={}
-    icon_tag type, opts
-  end
-
   def standard_pointer_nest codename
     field_nest codename, view: :titled,
                          cache: :never,
-                         title: codename.cardname.s,
+                         title: codename.name.s,
                          variant: "plural capitalized",
                          items: { view: :link }
   end

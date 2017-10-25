@@ -21,7 +21,7 @@ format :html do
   view :core do
     bs_layout do
       row do
-        _optional_render_filter
+        _render_filter
       end
       row class: "text-center" do
         _render_chart

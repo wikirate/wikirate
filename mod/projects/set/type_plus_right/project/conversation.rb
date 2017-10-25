@@ -15,7 +15,7 @@ format :html do
   def conversation_link
     link_to "Add Conversation",
             path: { mark: :conversation, action: :new,
-                    _Project: card.cardname.left },
+                    _Project: card.name.left },
             class: "btn btn-primary"
   end
 end

@@ -11,7 +11,11 @@ class ImportManager
       end
 
       def count key
-        self[key]
+        if key.is_a? Array
+          key.inject(0) { |sum, k| sum + self[k] }
+        else
+          self[key]
+        end
       end
 
       def step key

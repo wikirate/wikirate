@@ -1,7 +1,7 @@
 include_set Abstract::Table
 
 def project_name
-  cardname.left
+  name.left
 end
 
 def metric_project_card metric_card

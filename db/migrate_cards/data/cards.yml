@@ -1,5 +1,37 @@
 ---
 :cards:
+- :name: metric value source form
+  :type: HTML
+  :key: metric_value_source_form
+  :merged: 2017-10-23 20:47:30 UTC
+- :name: Research Page+Company
+  :type: Session
+  :key: research_page+company
+  :merged: 2017-10-23 20:47:30 UTC
+- :name: Research Page+Metric
+  :type: Session
+  :key: research_page+metric
+  :merged: 2017-10-23 20:47:30 UTC
+- :name: Source+*type+*structure
+  :type: HTML
+  :key: source+*type+*structure
+  :merged: 2017-10-23 20:47:30 UTC
+- :name: Cardtype+*metric type+*type plus right+*structure
+  :type: Set
+  :key: cardtype+*metric_type+*type_plu_right+*structure
+  :merged: 2017-10-23 20:47:30 UTC
+- :name: Link+*source type
+  :type: Set
+  :key: link+*source_type
+  :merged: 2017-10-23 20:47:30 UTC
+- :name: Text+*source type
+  :type: Set
+  :key: text+*source_type
+  :merged: 2017-10-23 20:47:30 UTC
+- :name: File+*source type
+  :type: Set
+  :key: file+*source_type
+  :merged: 2017-10-23 20:47:30 UTC
 - :name: Note+*self+*structure
   :type: HTML
   :key: note+*self+*structure
@@ -208,11 +240,11 @@
 - :name: nav bar
   :type: HTML
   :key: nav_bar
-  :merged: 2017-09-27 13:15:58 UTC
+  :merged: 2017-10-23 20:47:27 UTC
 - :name: nav bar menu
   :type: HTML
   :key: nav_bar_menu
-  :merged: 2017-09-27 13:15:58 UTC
+  :merged: 2017-10-23 20:47:27 UTC
 - :name: Company
   :type: Cardtype
   :codename: wikirate_company

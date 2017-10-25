@@ -3,7 +3,7 @@ format :html do
     # show the content based on the url parameter
     # tabs: metric, topic, company, note, reference, overview
     tab = Env.params["tab"]
-    left_name = card.cardname.left
+    left_name = card.name.left
     card_tab_name =
       if !tab.nil?
         "#{left_name}+#{tab}_page"

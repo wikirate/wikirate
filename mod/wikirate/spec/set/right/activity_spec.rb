@@ -14,7 +14,7 @@ describe Card::Set::Right::Activity do
       is_expected.to have_tag("div.activity") do
         with_tag "span", with: { class: "time" }, text: "less than a minute ago"
         with_tag "div", text: /created a new source/ do
-          with_tag "a", with: { href: "/#{@source_page.cardname.url_key}" },
+          with_tag "a", with: { href: "/#{@source_page.name.url_key}" },
                         text: @source_page.name
         end
       end

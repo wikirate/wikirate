@@ -6,7 +6,7 @@ Feature: Research answer from metric page
     Given I am signed in as Joe User
     And I wait for ajax response
     And I go to card "Jedi+disturbances in the Force"
-    And I maximize the browser
+#     And I maximize the browser
 
   Scenario: Adding a metric value with a link source on metric page
     When In the main card content I click "Research answer"

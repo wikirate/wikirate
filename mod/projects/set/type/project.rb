@@ -75,8 +75,8 @@ format :html do
   view :open_content do |args|
     bs_layout container: false, fluid: true, class: @container_class do
       row 5, 7, class: "panel-margin-fix" do
-        column _optional_render_content_left_col, args[:left_class]
-        column _optional_render_content_right_col, args[:right_class]
+        column _render_content_left_col, args[:left_class]
+        column _render_content_right_col, args[:right_class]
       end
     end
   end

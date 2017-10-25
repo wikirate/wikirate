@@ -6,7 +6,7 @@ Feature: Research relationship answer from record page
     Given I am signed in as Joe User
     And I wait for ajax response
     And I go to card "Jedi+more evil+Death Star"
-    And I maximize the browser
+#    And I maximize the browser
 
   Scenario: Adding a metric value with a link source
     When In the main card content I click "Research answer"

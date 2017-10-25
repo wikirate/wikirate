@@ -6,8 +6,8 @@ def history?
   false
 end
 
-def already_imported? index
-  imported_row_indices.include? index
+def already_imported? index=nil
+  index ? imported_row_indices.include?(index) : imported_row_indices.present?
 end
 
 def mark_as_imported row_index

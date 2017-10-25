@@ -3,13 +3,13 @@ def needs_oc_mapping?
 end
 
 event :update_oc_mapping_due_to_headquarters_entry, :integrate, on: :save, when: :needs_oc_mapping? do
-  oc = ::OpenCorporates::MappingAPI.fetch_oc_company_number company_name: cardname.left,
+  oc = ::OpenCorporates::MappingAPI.fetch_oc_company_number company_name: name.left,
                                                             jurisdiction_code: oc_code
   return unless oc.company_number.present?
 
-  add_subcard cardname.left_name.field(:open_corporates),
+  add_subcard name.left_name.field(:open_corporates),
               content: oc.company_number, type: :phrase
-  add_subcard cardname.left_name.field(:incorporation),
+  add_subcard name.left_name.field(:incorporation),
               content: jurisdiction_name(oc.jurisdiction_code_of_incorporation),
               type: :pointer
 end

@@ -61,7 +61,6 @@ RSpec.describe Card::Set::TypePlusRight::Source::File::ImportAnswersFromSource d
 
     it "reports duplicated value in file" do
       trigger_import_with_metric_and_year(:exact_match, :duplicate_in_file)
-      # binding.pry
       expect(status[:reports][5])
         .to contain_exactly "Jedi+disturbances in the Force+Apple Inc.+2001 duplicate in this file"
     end

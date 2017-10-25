@@ -17,12 +17,12 @@ format :html do
   end
 
   def menu_icon
-    glyphicon "edit"
+    fa_icon "pencil-square-o"
   end
 
   def header_title_elements
     voo.hide :title_badge
-    [super, _optional_render_title_badge]
+    [super, _render_title_badge]
   end
 
   view :title_badge do
@@ -90,17 +90,17 @@ format :html do
     result = ""
     if fetch_number > 1
       result += items[0..(fetch_number - 2)].map do |c|
-        subformat(c).render(render_view)
+        subformat(c).render!(render_view)
       end.join(" , ")
       result += " and "
     end
 
     result +
       if total_number > fetch_number
-        %(<a class="known-card" href="#{card.format.render :url}"> ) \
+        %(<a class="known-card" href="#{card.format.render! :url}"> ) \
           "#{total_number - 3} others</a>"
       else
-        subformat(items[fetch_number - 1]).render(render_view)
+        subformat(items[fetch_number - 1]).render!(render_view)
       end
   end
 
@@ -126,7 +126,7 @@ format :html do
   end
 
   view :showcase_list, tags: :unknown_ok do |args|
-    item_type_name = card.cardname.right.split.last
+    item_type_name = card.name.right.split.last
     icon_card = Card.fetch("#{item_type_name}+icon")
     hidden_class = card.content.empty? ? "hidden" : ""
     class_up "card-body", "showcase #{hidden_class}"
@@ -140,7 +140,7 @@ format :html do
   end
 
   def main_name
-    left_name = card.cardname.left_name
+    left_name = card.name.left_name
     left_name = left_name.left unless card.key.include?("limited_metric")
     @main_name ||= left_name
   end
@@ -150,7 +150,7 @@ format :html do
   end
 
   def searched_type_id
-    @searched_type_id ||= Card.fetch_id card.cardname.left_name.right
+    @searched_type_id ||= Card.fetch_id card.name.left_name.right
   end
 
   def button_classes

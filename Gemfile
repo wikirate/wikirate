@@ -1,12 +1,21 @@
 # -*- encoding : utf-8 -*-
 source "http://rubygems.org"
 
-decko_gem_path = ENV["WIKIRATE_DECKO_GEM_PATH"] || "./vendor/decko"
+# decko_gem_path = ENV["WIKIRATE_DECKO_GEM_PATH"] || "./vendor/decko"
 decko_gem_path = "./vendor/decko"
 
-gem "card", path: "#{decko_gem_path}/card", require: false
-gem "cardname", path: "#{decko_gem_path}/cardname", require: false
-gem "decko", path: "#{decko_gem_path}/decko"
+if ENV["RM_INFO"] && ARGV[0] == 'check'
+  puts "Execution in RubyMine detected in Gemfile. Ignoring decko gem path"
+  # This causes Rubymine and IntelliJ to handle these paths as normal sources rather
+  # than gems or libraries.
+  # That way the files are included as normal project sources in Find and Open.
+else
+  path decko_gem_path do
+    gem "card", require: false
+    gem "cardname", require: false
+    gem "decko"
+  end
+end
 
 gem "mysql2", "~> 0.3.18"
 
@@ -22,14 +31,13 @@ gem "delayed_job_web"
 gem "company-mapping"
 gem "link_thumbnailer", "2.5.2"
 gem "open_uri_redirections"
+gem "pdfkit"
 gem "roo"
 gem "wbench"
+gem "wkhtmltopdf-binary"
 
 gem "rubocop"
 gem "rubocop-decko"
-
-gem "pdfkit"
-gem "wkhtmltopdf-binary"
 
 gem "fog"
 gem "fog-aws"
@@ -56,7 +64,7 @@ end
 group :test do
   gem "rspec"
   gem "rspec-html-matchers" # 0.7.0 broke stuff!
-  gem "rspec-rails" # behavior-driven-development suite
+  gem "rspec-rails", "~> 3.6.1" # 3.7.0 broke stuff!
   # gem 'wagn-rspec-formatter',  git: 'https://github.com/xithan/wagn-rspec-formatter.git'
 
   gem "simplecov", require: false
@@ -70,19 +78,13 @@ group :test do
   gem "cucumber-rails", require: false
   # feature-driven-development suite
   gem "capybara", "2.11.0"
-  # used 2.0.1
-  gem "selenium-webdriver", "3.3.0"
-  #  gem 'capybara-webkit'
-  # lets cucumber launch browser windows
+  gem "selenium-webdriver", "3.6.0"
+  # gem 'capybara-webkit' # lets cucumber launch browser windows
   gem "launchy"
 
   gem "email_spec"
   # used by cucumber for db transactions
   gem "database_cleaner", "~> 1.4.1"
-
-  # Pretty printed test output.
-  # (version constraint is to avoid minitest requirement)
-  gem "turn", "~>0.8.3", require: false
 
   gem "minitest"
 end
@@ -95,6 +97,7 @@ group :development do
 
   gem "capistrano"
   gem "capistrano-bundler"
+  gem 'capistrano-git-with-submodules', '~> 2.0'
   gem "capistrano-maintenance", require: false
   gem "capistrano-passenger"
   gem "capistrano-rvm"
@@ -102,8 +105,8 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
 
-  gem "spring"
-  gem 'spring-commands-rspec'
+  # gem "spring"
+  # gem 'spring-commands-rspec'
 end
 
 group :test, :development do

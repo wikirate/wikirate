@@ -23,12 +23,23 @@ class TableRow
     !@csv_row.errors?
   end
 
+  def imported?
+    @format.already_imported? @csv_row.row_index
+  end
+
   # The return value is supposed to be passed to the table helper method.
   # @return [Hash] the :content value is an array with the text/html for each cell
   def render
-    { content: fields, data: { csv_row_index: @csv_row.row_index } }
+    res = { content: fields, data: { csv_row_index: @csv_row.row_index } }
+    res[:class] = "table-danger" unless valid?
+    res
   end
 
+
+  # def render
+  #   super.merge class: "table-#{row_context}"
+  # end
+  #
   private
 
   # @return [Array] values for every cell in the table row
