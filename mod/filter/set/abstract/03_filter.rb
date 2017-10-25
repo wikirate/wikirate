@@ -46,9 +46,9 @@ format :html do
 
   def filter_active? field=nil
     if field
-      filter_keys.any? { |key| filter_param(key).present? }
-    else
       filter_param(field).present?
+    else
+      filter_keys.any? { |key| filter_param(key).present? }
     end
   end
 
