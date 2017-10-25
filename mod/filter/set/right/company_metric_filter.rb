@@ -39,7 +39,7 @@ format :html do
     cats = categories.each_with_object({}) do |cat, h|
       h[cat] = { label: filter_label(cat),
                  input_field: _render("#{cat}_formgroup"),
-                 active: filter_active?(cat) }
+                 active: show_filter_field?(cat) }
     end
     filter_form cats, action: path(mark: card.name.left, view: content_view),
                       class: "filter-container slotter sub-content",
