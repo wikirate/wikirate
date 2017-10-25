@@ -49,9 +49,9 @@ format :html do
   def text_filter field, opts={}
     name = filter_name field
     add_class opts, "form-control"
-    formgroup filter_label(field), class: "filter-input" do
-      text_field_tag name, filter_param(field), opts
-    end
+    #formgroup filter_label(field), class: "filter-input" do
+    text_field_tag name, filter_param(field), opts
+    #end
   end
 
   def select_filter_type_based type_codename, order="asc"

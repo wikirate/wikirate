@@ -29,7 +29,7 @@ format :html do
   end
 
   view :research_policy_formgroup, cache: :never do
-    checkbox_filter :research_policy, "Research Policy"
+    multiselect_filter :research_policy, "Research Policy"
   end
 
   def research_policy_select
@@ -37,7 +37,7 @@ format :html do
   end
 
   view :metric_type_formgroup, cache: :never do
-    checkbox_filter :metric_type, "Metric Type"
+    multiselect_filter :metric_type, "Metric Type"
   end
 
   def metric_type_select
@@ -53,7 +53,7 @@ format :html do
   end
 
   view :importance_formgroup, cache: :never do
-    checkbox_filter :importance, "My Vote", %w[upvotes novotes]
+    multiselect_filter :importance, "My Vote", %w[upvotes novotes]
   end
 
   view :industry_formgroup, cache: :never do
