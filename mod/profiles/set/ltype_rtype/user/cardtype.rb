@@ -76,13 +76,13 @@ format :html do
 
   def contribution_report_action_boxes_list
     list = has_badges? ? [contribution_report_title_with_badges] : []
-    list += [:created, :updated, :discussed, :voted_on].reverse.map do |report_action|
+    list += [:created, :updated, :discussed, :voted_on].map do |report_action|
       if card.report_action_applies? report_action
         contribution_report_box report_action
       else
         contribution_null_box
       end
-    end.unshift(contribution_report_toggle)
+    end.push(contribution_report_toggle)
   end
 
   def contribution_report_title_with_badges
@@ -137,7 +137,7 @@ format :html do
   end
 
   def contribution_report_title
-    wrap_with :h4, class: "contribution-report-title" do
+    wrap_with :h5, class: "contribution-report-title" do
       card.cardtype_card.name.vary :plural
     end
   end
@@ -165,7 +165,7 @@ format :html do
   end
 
   def contribution_report_toggle_open
-    link_to_view :contribution_report, fa_icon("chevron-bottom"),
+    link_to_view :contribution_report, fa_icon("chevron-down"),
                  class: "slotter nav-link"
   end
 

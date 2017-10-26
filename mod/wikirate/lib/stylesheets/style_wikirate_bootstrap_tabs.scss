@@ -82,6 +82,7 @@
   text-align: center;
   li{
     width: 50%;
+    float:left;
   }
 }
 .company-profile-tab.visible-xs {
@@ -92,25 +93,25 @@
 
 .contribution-report-header {
     .nav-tabs{
-      padding-bottom: 2px;
+      padding-bottom: 3px;
     }
-    .nav-tabs>li>a{
+    .nav-link{
       margin: 0px;
+      height: 100%;
     }
-}
-
-.contribution_report-view .contribution-report-header > .nav > li {
-  float: right;
-  width: 15%;
-  margin-bottom: -4px;
-  .count-label {
-    white-space: nowrap;
+  .nav-item {
+    width: 16%;
+    margin-bottom: -7px;
+    .count-label {
+      white-space: nowrap;
+    }
   }
 }
 
 .contribution-report-title {
-    float: left;
   padding: 0 20px;
+  padding-left: 18px;
+  padding-top: 17px;
   color: inherit;
 }
 
@@ -168,12 +169,12 @@ li.contribution-report-title-box > a {
   }
 }
 
-.contribution-report-toggle a {
-    padding: 18px 0px!important;
-}
 .contribution-report-toggle {
     width: 6%!important;
     border-left: 1px solid #ebebeb;
+   i{
+     padding: 14px 0;
+   }
 }
 
 //Custom tab positions
