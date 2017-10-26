@@ -5,11 +5,11 @@ def default_sort_by_key
 end
 
 def filter_keys
-  %w[name wikirate_topic wikirate_company]
+  %i[name wikirate_topic wikirate_company]
 end
 
 def advanced_filter_keys
-  %w[designer project metric_type research_policy year]
+  %i[designer project metric_type research_policy year]
 end
 
 def target_type_id

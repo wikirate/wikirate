@@ -1,4 +1,4 @@
-# use for the filters on the "browse ..." pages
+# used for the filters on the "browse ..." pages
 
 include_set Type::SearchType
 include_set Abstract::Filter
@@ -69,16 +69,12 @@ format :html do
   #
 
   def filter_action_path
-    "/#{card.left.name}"
+    path mark: card.name.left
   end
 
   view :filter_form, cache: :never do
-    action = card.left.name
-    wrap_with :form, action: "/#{action}", method: "GET" do
-      [
-        _render(:sort_formgroup),
-        filter_formgroups,
-      ]
-    end
+    wrap_with(:form, action: filter_action_path, method: "GET") do
+      _render(:sort_formgroup)
+    end + filter_fields
   end
 end

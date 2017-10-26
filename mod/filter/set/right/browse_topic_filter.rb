@@ -19,11 +19,11 @@ def default_sort_by_key
 end
 
 def filter_keys
-  %w[name]
+  %i[name]
 end
 
 def advanced_filter_keys
-  %w[metric project wikirate_company]
+  %i[metric project wikirate_company]
 end
 
 def target_type_id

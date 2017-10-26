@@ -1,20 +1,24 @@
-include_set Abstract::MetricRecordFilter
+include_set Abstract::RightFilterForm
 
 def filter_keys
-  %w[metric_value year]
+  %i[metric_value year]
 end
 
 def advanced_filter_keys
-  %w[metric wikirate_topic project research_policy importance metric_type]
+  %i[metric wikirate_topic project research_policy importance metric_type]
 end
 
 def default_sort_option
   :importance
 end
 
+def default_filter_option
+  { year: :latest, metric_value: :exists }
+end
+
 format :html do
-  view :core, cache: :never do
-    filter_fields true
+  def filter_view
+    :content
   end
 
   def filter_label field

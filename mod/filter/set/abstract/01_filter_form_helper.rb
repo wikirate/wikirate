@@ -1,15 +1,6 @@
-def filter_param field
-  (filter = Env.params[:filter]) && filter[field.to_sym]
-end
-
-def sort_param
-  Env.params[:sort] || default_sort_option
-end
+include_set Abstract::FilterHelper
 
 format :html do
-  delegate :filter_param, to: :card
-  delegate :sort_param, to: :card
-
   def select_filter field, label=nil, default=nil, options=nil
     options ||= filter_options field
     options.unshift(["--", ""]) unless default
