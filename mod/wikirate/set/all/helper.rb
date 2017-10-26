@@ -6,7 +6,7 @@ format :html do
   def standard_pointer_nest codename
     field_nest codename, view: :titled,
                          cache: :never,
-                         title: codename.name.s,
+                         title: codename.cardname,
                          variant: "plural capitalized",
                          items: { view: :link }
   end
