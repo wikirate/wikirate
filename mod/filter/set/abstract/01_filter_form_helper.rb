@@ -21,31 +21,6 @@ format :html do
     multiselect_filter_tag field, label, default, options
   end
 
-  def checkbox_filter field, label=nil, default=nil, options=nil
-    name = filter_name field, true
-    default = Array(filter_param(field) || default)
-    options ||= filter_options field
-    label ||= filter_label(field)
-
-    formgroup label do
-      options.map do |option|
-        checkbox_filter_option option, name, default
-      end.join
-    end
-  end
-
-  def checkbox_filter_option option, tagname, default
-    option_name, option_value =
-      option.is_a?(Array) ? option : [option, option.downcase]
-    checked = default.include?(option_value)
-    wrap_with :label do
-      [
-        check_box_tag(tagname, option_value, checked),
-        option_name
-      ]
-    end
-  end
-
   def text_filter field, opts={}
     name = filter_name field
     add_class opts, "form-control"
