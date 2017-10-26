@@ -275,7 +275,7 @@ end
 
 format :csv do
   view :core do
-    Answer.csv_title + all_related_answers.map(&:csv_line).flatten.join
+    Answer.csv_title + card.all_related_answers.map(&:csv_line).flatten.join
   end
 end
 
