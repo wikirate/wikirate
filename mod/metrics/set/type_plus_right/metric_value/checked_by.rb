@@ -73,9 +73,7 @@ end
 
 format :html do
   view :edit_in_form do
-    with_relative_names_in_form do
-      card.other_user_requested_check? ? "" : super()
-    end
+    card.other_user_requested_check? ? "" : super()
   end
 
   def editor
