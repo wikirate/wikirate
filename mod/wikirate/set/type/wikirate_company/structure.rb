@@ -58,7 +58,7 @@ format :html do
 
   def wrap_header_tabs device=""
     css_class = "nav nav-tabs company-profile-tab "
-    css_class += device.to_sym == :mobile ? "hidden-sm-up" : "hidden-xs"
+    css_class += device.to_sym == :mobile ? "d-md-none d-ls-none" : "d-sm-none d-xs-none d-md-block"
     wrap_with :ul, class: css_class do
       [performance_tab_button, contributions_tab_button]
     end
@@ -70,8 +70,9 @@ format :html do
 
   def profile_tab key, label, args={}
     add_class args, :active if active_profile_tab == key
-    wrap_with :li, args do
-      link_to_card card, label, path: { company_profile: key }
+    wrap_with :li do
+      add_class args, "nav-link"
+      link_to_card card, label, path: { company_profile: key }, class: args[:class]
     end
   end
 
@@ -84,7 +85,7 @@ format :html do
     if contributions_made?
       profile_tab :contributions, label_name
     else
-      disabled_tab = wrap_with :span, label_name
+      disabled_tab = wrap_with :span, label_name, class: "nav-link"
       wrap_with :li, disabled_tab, class: "disabled"
     end
   end

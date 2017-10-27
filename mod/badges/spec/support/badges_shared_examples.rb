@@ -17,12 +17,12 @@ shared_examples "badge card" do |name, level, threshold|
     describe "view :level" do
       subject { render_view :level, name: name }
 
-      it "has glyphicon" do
-        is_expected.to have_tag "span.glyphicon-certificate"
+      it "has fontawesome" do
+        is_expected.to have_tag "i.fa-certificate"
       end
 
       it "has correct level class" do
-        is_expected.to have_tag "span.glyphicon-certificate.#{level}"
+        is_expected.to have_tag "i.fa-certificate.#{level}"
       end
     end
   end

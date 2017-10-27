@@ -35,7 +35,7 @@ format :html do
 
   view :metric_question do
     question = subformat(card.question_card)._render_content
-    wrap_with :h4, question, class: "question"
+    wrap_with :h5, question, class: "question"
   end
 
   view :designer_info do
