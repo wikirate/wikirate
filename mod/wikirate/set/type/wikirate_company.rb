@@ -73,7 +73,7 @@ end
 format :html do
   view :link, closed: true, perms: :none do
     return super() unless voo.closest_live_option(:project)
-    title = showname voo.title
+    title = title_in_context voo.title
     opts = { known: card.known? }
     opts[:path] = { filter: { project: voo.closest_live_option(:project) } }
     opts[:path][:card] = { type: voo.type } if voo.type && !opts[:known]
@@ -84,7 +84,7 @@ end
 format :json do
   view :core do
     card.all_answers.map do |answer|
-      subformat(answer)._render_core
+      subformat(answer.card)._render_core
     end
   end
 end

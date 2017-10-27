@@ -149,7 +149,7 @@ format :html do
       row 1, 11 do
         column nest(card.metric_card.vote_count_card)
         column do
-          row link_to_card(card.metric_card, card.metric_card.cardname.right,
+          row link_to_card(card.metric_card, card.metric_card.name.right,
                            class: "inherit-anchor"),
               class: "name"
           row designer_info

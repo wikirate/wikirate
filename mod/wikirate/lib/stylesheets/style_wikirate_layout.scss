@@ -1,13 +1,13 @@
 {{style: mixins and variables|raw}}
 
 body {
-  // override bootstrap font
   color: $body-txt-color;
-  //font-family: 'Droid Sans',verdana, arial, helvetica, sans-serif!important;
-  // line-height: 1.5em;
-  // font-size: 0.9em;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  // override bootstrap 4 font
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.42857;
+  background-color: #fff;
 }
 body#wagn {
   min-height: 100%;
@@ -15,7 +15,6 @@ body#wagn {
   background: $body_background;
   padding: 0;
   margin: 0;
-
 }
 
 body#tinymce {
@@ -24,8 +23,7 @@ body#tinymce {
 }
 
 .card-menu.btn-group {
-  right: 5px;
-  top: 5px;
+  padding: 0.5rem 0;
 }
 
 //Center alignment for all open-view heading
@@ -74,20 +72,12 @@ h2 {
   color: $heading_color;
 
 }
-// h1 {
-//   font-size: 1.2em;
-//   font-weight: normal;
-//   line-height: 1.8em;
-//   padding: 5px 0;
 
-// }
 .more-link {
   float: right;
 
 }
-.card-header {
-  //font-family: 'Droid Sans';
-}
+
 .card-content {
   .titled-view, .titled_with_edits-view {
     > .card-header {
@@ -105,11 +95,6 @@ h2 {
   width:100%;
 }
 
-#main>.TYPE-analysis>.card-frame>.card-body {
-  //padding-top: 0px;
-  //margin-top: -1px;
-}
-//end
 
 #main > .card-frame {
   border-radius: 4px;
@@ -136,7 +121,6 @@ h2 {
 
 
 #main {
-  font-size: 1.1em;
   clear: both;
   padding:80px 1% 0px;
   max-width: $max-page-width;

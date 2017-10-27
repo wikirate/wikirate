@@ -1,28 +1,28 @@
 <ul class="nav navbar-nav">
-  <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+  <li class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
        aria-expanded="false">Browse <span class="caret"></span></a>
     <ul class="dropdown-menu" role="menu">
-      <li>[[Companies]]</li>
-      <li>[[Topics]]</li>
-      <li>[[Metrics]]
+      <li class="nav-item">{{Companies|nav_link}}</li>
+      <li class="nav-item">{{Topics|nav_link}}</li>
+      <li class="nav-item">{{Metrics|nav_link}}
         <hr/>
       </li>
-      <li>[[Projects]]</li>
-      <li>[[Notes]]</li>
-      <li>[[Sources]]</li>
-      <li>[[/:recent|Recent Changes]]</li>
+      <li class="nav-item">{{Projects|nav_link}}</li>
+      <li class="nav-item">{{Notes|nav_link}}</li>
+      <li class="nav-item">{{Sources|nav_link}}</li>
+      <li class="nav-item">{{:recent|nav_link; title:Recent Changes}}</li>
     </ul>
   </li>
-  <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+  <li class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
        aria-expanded="false">Get Started <span class="caret"></span></a>
     <ul class="dropdown-menu" role="menu">
-      <li>[[About WikiRate|About WikiRate]]</li>
-      <li>[[Using WikiRate]]</li>
-      <li>[[Donate]]</li>
-      <li>[[Frequently_Asked_Questions|FAQ]]</li>
-      <li>[[Tickets|Help]]</li>
+      <li class="nav-item">{{About WikiRate|nav_link; title: About WikiRate}}</li>
+      <li class="nav-item">{{Using WikiRate|nav_link}}</li>
+      <li class="nav-item">{{Donate|nav_link}}</li>
+      <li class="nav-item">{{Frequently_Asked_Questions|nav_link;title: FAQ}}</li>
+      <li class="nav-item">{{Tickets|nav_link; title: Report Issue}}</li>
     </ul>
   </li>
 </ul>

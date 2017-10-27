@@ -1,14 +1,15 @@
 # -*- encoding : utf-8 -*-
 require "timecop"
-require_relative "shared_data/profile_sections"
-require_relative "shared_data/metrics"
-require_relative "shared_data/badges"
-require_relative "shared_data/notes_and_sources"
-require_relative "shared_data/samples"
-
-require_dependency "card"
+require_dependency "shared_data/profile_sections"
+require_dependency "shared_data/metrics"
+require_dependency "shared_data/badges"
+require_dependency "shared_data/notes_and_sources"
+require_dependency "shared_data/samples"
 
 class SharedData
+  require_dependency "card"
+  require_dependency "card/model/save_helper"
+
   HAPPY_BIRTHDAY = Time.utc(2035, 2, 5, 12, 0, 0).freeze
   # gift to Ethan's 60th birthday:
   # on the date above 3 tests will fail
@@ -37,13 +38,15 @@ class SharedData
     include NotesAndSources
 
     def add_wikirate_data
+      puts "add wikirate data"
       Card::Cache.reset_all
       Card::Env.reset
       Card::Auth.as_bot
+      Cardio.config.x.import_sources = false
       add :companies, :topics, :analysis, :notes_and_sources,
           :metrics, :yearly_variables,
           :projects, :industry,
-          :profile_sections, :badges
+          :profile_sections, :badges, :import_files
 
       Card::Cache.reset_all
       Answer.refresh
@@ -69,11 +72,13 @@ class SharedData
                type: "company",
                subcards: { "+about" => about }
       end
-      ensure_card ["Google Inc", :headquarters],
+      ensure_card ["Google Inc.", :headquarters],
                   type: :pointer, content: "California (United States)"
-      ensure_card ["Google Inc", :incorporation],
+      ensure_card ["Google Inc.", :aliases],
+                  type: :pointer, content: ["Google", "Alphabet"]
+      ensure_card ["Google Inc.", :incorporation],
                   type: :pointer, content: "Delaware (United States)"
-      ensure_card ["Google Inc", :open_corporates], content: "3582691"
+      ensure_card ["Google Inc.", :open_corporates], content: "3582691"
     end
 
     def add_topics
@@ -157,5 +162,23 @@ class SharedData
                content: "Technology Hardware"
       end
     end
+
+    def add_import_files
+      create "answer import test", type: :answer_import_file, empty_ok: true
+      create "feature answer import test", type: :answer_import_file,
+             codename: "answer_import_test_with_file",
+             answer_import_file: csv_file("answer_import"), storage_type: :coded,
+             mod: :test
+      create "source import test", type: :source_import_file, empty_ok: true
+      create "relationship answer import test", type: :relationship_answer_import_file, empty_ok: true
+      create "answer from source import test", type: :source, subfields: { wikirate_link: "http://google.com/source" }
+      create "answer from source import test+file", type: :file, empty_ok: true
+    end
+
+    def csv_file name
+      path = File.expand_path("../shared_data/file/#{name}.csv", __FILE__)
+      File.open path
+    end
+
   end
 end

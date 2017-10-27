@@ -1,7 +1,7 @@
 format :html do
   def wrap_value_details
     output [
-      _optional_render(:credit_name),
+      _render(:credit_name),
       yield,
       wrap_with(:div, _render_comments, class: "comments-div")
     ]

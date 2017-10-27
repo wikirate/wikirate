@@ -7,7 +7,7 @@ format :html do
       voo.structure = "metric value type edit structure"
       wrap_with :div, class: "source-editor nodblclick" do
         [
-          form.hidden_field(:content, class: "card-content"),
+          form.hidden_field(:content, class: "d0-card-content"),
           _render_sourcebox,
           _render_core
         ]

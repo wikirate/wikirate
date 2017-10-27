@@ -5,7 +5,7 @@ include_set Abstract::MetricAnswer
 
 format :html do
   view :company_name do
-    nest card.cardname.right, view: :thumbnail
+    nest card.name.right, view: :thumbnail
   end
 
   view :inverse_company_name do

@@ -1,0 +1,57 @@
+<div class="col-md-12 new-source-widget">
+  <div class="row">
+    <div class="new-source-tab">
+      <ul id="myTab" class="nav nav-pills" role="tablist">
+        <li role="presentation" class="nav-item active">
+          <a class="nav-link" href="#url" id="url-tab" role="tab" data-source-type='Link' data-toggle="tab" aria-controls="url" aria-expanded="true"><i class="fa fa-globe"></i> URL</a>
+        </li>
+        <li role="presentation" class="nav-item">
+          <a class="nav-link" href="#file" role="tab" id="file-tab" data-toggle="tab" data-source-type='File' aria-controls="file" aria-expanded="false"><i class="fa fa-upload"></i> File</a>
+        </li>
+        <li role="presentation" class="nav-item">
+          <a class="nav-link" href="#text" role="tab" id="text-tab" data-toggle="tab" data-source-type='Text' aria-controls="text" aria-expanded="false"><i class="fa fa-pencil"></i> Report</a>
+        </li>
+      </ul>
+    </div>
+    <br>
+    <div id="myTabContent" class="tab-content">
+      <div role="tabpanel" class="tab-pane fade active show in" id="url" aria-labelledby="url-tab">
+        {{+Link|titled; title:URL}}
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="file" aria-labelledby="file-tab">
+        {{+File|titled; title:File}}
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="text" aria-labelledby="text-tab">
+        {{+Text|titled; title:Text}}
+      </div>
+    </div>
+  </div>
+  <div class="row" style="display:none">
+    <div class="first-meta tab-content">
+      <button type="button" class="btn btn-default btn-xs" id="suggest_button">Suggest Title and Description</button>
+      {{+Title|titled; title:Title}} {{+Description|titled;title:Description}}
+      <div class="row-data first-meta" >
+        <a id="add-company-and-topic" href="#">
+          <i class="fa fa-building-o"></i>Add Company
+        </a>
+      </div>
+      
+      <div id="company-topic-meta" style="display:none;">
+        {{+Companies|titled; title:Companies|link}}
+      </div>
+      
+      <div class="row-data first-meta" >
+       <a href="#" id="add-tags-other">
+          <i class="fa fa-tag"></i>Add Topic, Date and other
+        </a>
+      </div>
+      
+      
+      <div id="tag-date-others-meta" style="display:none;">
+        {{+Topics|titled; title:Topics|link}} {{#+Tags|titled;title:Tags; item:link}} {{+Date|titled;title:Date}} {{+Website|titled;title:Website|link}}
+      </div>
+    
+    </div>
+  </div>
+  <div style='display:none;'>{{+*source type}}</div>
+</div>

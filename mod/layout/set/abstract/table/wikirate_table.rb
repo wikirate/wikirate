@@ -74,7 +74,7 @@ class WikirateTable
   end
 
   def td_content row_card, view
-    subformat(row_card)._render(view)
+    subformat(row_card)._render!(view)
   end
 
   def td_opts col_index

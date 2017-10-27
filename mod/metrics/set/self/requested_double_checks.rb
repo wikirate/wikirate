@@ -11,7 +11,7 @@ end
 format do
   view :core do
     view :core, cache: :never do
-      _render :card_list
+      _render! :card_list
     end
   end
 end

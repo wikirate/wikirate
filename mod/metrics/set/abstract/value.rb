@@ -13,7 +13,7 @@ def raw_value
 end
 
 def metric_plus_company
-  cardname.parts[0..-3].join "+"
+  name.parts[0..-3].join "+"
 end
 
 def metric_key
@@ -39,7 +39,7 @@ event :check_length, :validate, on: :save, changed: :content do
 end
 
 event :mark_as_imported, before: :finalize_action do
-  return unless ActManager.act_card.type_id == MetricValueImportFileID
+  return unless ActManager.act_card.type_id == AnswerImportFileID
   @current_action.comment = "imported"
 end
 
@@ -60,15 +60,15 @@ event :update_double_check_flag, :validate, on: [:update, :delete],
                                             changed: :content do
   [:checked_by, :check_requested_by].each do |trait|
     next unless left.fetch trait: trait
-    attach_subcard cardname.left_name.field_name(trait), content: ""
+    attach_subcard name.left_name.field_name(trait), content: ""
   end
 end
 
 event :no_left_name_change, :prepare_to_validate,
       on: :update, changed: :name do
   return if @supercard # as part of other changes (probably) ok
-  return unless cardname.right == "value" # ok if not a value anymore
-  return if (metric_value = Card[cardname.left]) &&
+  return unless name.right == "value" # ok if not a value anymore
+  return if (metric_value = Card[name.left]) &&
             metric_value.type_id == MetricValueID
   errors.add :name, "not allowed to change. " \
                     "Change #{name_was.to_name.left} instead"

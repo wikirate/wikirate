@@ -18,7 +18,7 @@ describe Card::Set::Right::Overview do
   end
 
   describe "missing view" do
-    subject { article.format.render :missing }
+    subject { article.format.render! :missing }
 
     it "renders editor with empty content and citation tips" do
       is_expected.to have_citation_tips
@@ -27,7 +27,7 @@ describe Card::Set::Right::Overview do
   end
 
   describe "core view" do
-    subject { article.format.render :core }
+    subject { article.format.render! :core }
 
     it "renders editor with content and citation tips" do
       is_expected.to have_citation_tips
@@ -38,7 +38,7 @@ describe Card::Set::Right::Overview do
   end
 
   describe "titled_with_edits view" do
-    subject { article.format.render :titled_with_edits }
+    subject { article.format.render! :titled_with_edits }
 
     it "renders editor with content and citation tips" do
       is_expected.to have_citation_tips

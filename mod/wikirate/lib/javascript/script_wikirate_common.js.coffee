@@ -1,3 +1,13 @@
+# taken from card "modal window script'
+# I removed that card. Don't know what the code does -pk
+$ ->
+  $('.modal-window').dialog
+    modal: true
+    width: '46%'
+    buttons: Ok: ->
+      $(this).dialog 'close'
+
+
 # Loader animation
 $.extend wikirate:
   ajaxLoader: { head: '#ajax_loader', child: '.loader-anime'}
@@ -39,25 +49,25 @@ $.urlParam = (name) ->
 # Check if container exist
 $.fn.exists = -> return this.length>0
 
-wagn.slotReady (slot) ->
+decko.slotReady (slot) ->
   # use jQuery chosen library for select tags
-  slot.find('.pointer-multiselect').each (i) ->
-    $(this).attr 'data-placeholder', '　'
-    unless $(this).hasClass("_no-chosen")
-      $(this).chosen
-        no_results_text: 'Press Enter to add new'
-        skip_no_results: true
-        width: '100%'
-
-  slot.find('.pointer-select').each (i) ->
-    $(this).attr 'data-placeholder', '　'
-
-    unless $(this).hasClass("_no-chosen")
-      $(this).chosen
-        no_results_text: 'No Result'
-        disable_search_threshold: 10
-        skip_no_results: true
-        width: '100%'
+#  slot.find('.pointer-multiselect').each (i) ->
+#    $(this).attr 'data-placeholder', '　'
+#    unless $(this).hasClass("_no-chosen")
+#      $(this).chosen
+#        no_results_text: 'Press Enter to add new'
+#        skip_no_results: true
+#        width: '100%'
+#
+#  slot.find('.pointer-select').each (i) ->
+#    $(this).attr 'data-placeholder', '　'
+#
+#    unless $(this).hasClass("_no-chosen")
+#      $(this).chosen
+#        no_results_text: 'No Result'
+#        disable_search_threshold: 10
+#        skip_no_results: true
+#        width: '100%'
 
   slot.find('.company_autocomplete').autocomplete
     source: '/Companies+*right+*options.json?view=name_match'

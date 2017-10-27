@@ -5,11 +5,10 @@ card_accessor :wikirate_company
 format :html do
   view :new do
     voo.hide :menu
-    frame do
-      [
-        _render_landing_form,
-        render_haml(:source_container)
-      ]
+    with_nest_mode :edit do
+      frame do
+        [_render_landing_form, render_haml(:source_container)]
+      end
     end
   end
 

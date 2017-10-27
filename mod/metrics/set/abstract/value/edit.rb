@@ -27,7 +27,7 @@ format :html do
     end
   end
 
-  def part_view
+  def editor
     if multi_select?
       options_count > 10 ? :multiselect : :checkbox
     else

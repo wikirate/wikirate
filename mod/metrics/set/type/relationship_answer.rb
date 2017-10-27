@@ -2,11 +2,11 @@ include_set Abstract::MetricChild, generation: 3
 include_set Abstract::MetricAnswer
 
 def related_company
-  cardname.tag
+  name.tag
 end
 
 def related_company_card
-  Card[cardname.tag]
+  Card[related_company]
 end
 
 def name_parts
@@ -61,7 +61,7 @@ def answer_id
 end
 
 def answer_name
-  cardname.left
+  name.left
 end
 
 def inverse_answer_name

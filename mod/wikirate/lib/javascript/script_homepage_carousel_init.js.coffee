@@ -1,4 +1,4 @@
-wagn.slotReady (slot) ->
+decko.slotReady (slot) ->
   slot.find('#company-n-topic .company-list .search-result-list, #company-n-topic .topic-list .search-result-list').slick
     slidesToShow: 3
     slidesToScroll: 3
@@ -24,7 +24,7 @@ wagn.slotReady (slot) ->
     dots: true
     autoplay: true
     autoplaySpeed: 15000
-  slot.find('.carousal .pointer-list').slick
+  slot.find('.x-carousal .pointer-list').slick
     dots: true,
     autoplay: true,
     autoplaySpeed: 15000,

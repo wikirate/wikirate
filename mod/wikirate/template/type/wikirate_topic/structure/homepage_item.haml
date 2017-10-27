@@ -5,14 +5,15 @@
         %a.inherit-anchor{:href => path}
           .row.img-thumbnail.homepage-logo-container
             = field_nest :image
+
       .col-md-8.col-xs-8
-        .row.topic-title.text-left
-          %a.inherit-anchor{:href => path}
+        .row.topic-title.text-left.mt-2.item-title
+          %a.inherit-anchor.w-100{:href => path}
             %h3.pull-left.ellipsis
               = _render_title
-          %br/
+
         .row.contribution-details.dark-grey-color.remove-text-decoration
-          .col-md-12.data-count
+          .row.col-md-12.data-count
             .col-md-6.slab
               %a.inherit-anchor{:href => path}
                 .number

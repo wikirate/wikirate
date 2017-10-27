@@ -1,6 +1,6 @@
 include_set Abstract::SortAndFilter
 
-def raw_content
+def content
   %({
       "type_id":#{MetricID},
       "right_plus":[

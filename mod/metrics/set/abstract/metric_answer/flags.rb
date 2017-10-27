@@ -12,11 +12,11 @@ def commented?
 end
 
 format :html do
-  view :flags do
+  view :flags, cache: :never do
     output [checked_value_flag, comment_flag, imported_flag]
   end
 
-  view :small_flags do
+  view :small_flags, cache: :never do
     output do
       [:checked_value, :comment, :imported].map do |flag_name|
         flag = send "#{flag_name}_flag"
@@ -32,7 +32,7 @@ format :html do
 
   def comment_flag
     return "" unless card.commented?
-    icon_tag "commenting", title: "Has comments", class: "fa-lg margin-left-10"
+    fa_icon :commenting, title: "Has comments", class: "fa-lg margin-left-10"
   end
 
   def imported_flag
