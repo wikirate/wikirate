@@ -151,7 +151,7 @@ $cursor-disabled: not-allowed !default; // Button variants
 }
 
 .badge{
-    background-color: #777;
+    background-color: $muted;
 }
 // Button sizes
 @mixin button-size($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius) {
