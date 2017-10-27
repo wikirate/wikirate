@@ -15,7 +15,7 @@ def import_counts
 end
 
 def reset total
-  @status = ImportManager::Status.new act_id: ActManager.act_card&.current_act&.id, counts: { total: total }
+  @status = ImportManager::Status.new act_id: ActManager.act&.id, counts: { total: total }
   save_status
 end
 
@@ -143,11 +143,13 @@ format :html do
   def undo_button
     return if importing?
     return "" unless status[:act_id] && (act = Card::Act.find(status[:act_id]))
-    ar = Act::ActRenderer.new(card.left.format(:html), act, {})
-    link = ar.revert_actions_link "Undo", revert_to: :previous,
-                                  html_args: { class: "btn btn-danger",
-                                               "data-confirm" => undo_confirm_message }
-    wrap_with :div, link, class: "d-flex flex-row-reverse"
+    wrap_with :div, class: "d-flex flex-row-reverse" do
+      card.left.format(:html)
+        .revert_actions_link act, "Undo",
+                             revert_to: :previous,
+                             html_args: { class: "btn btn-danger",
+                                          "data-confirm" => undo_confirm_message }
+    end
   end
 
   def undo_confirm_message
