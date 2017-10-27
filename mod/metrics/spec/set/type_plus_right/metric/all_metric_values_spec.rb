@@ -292,5 +292,24 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
         end
       end
     end
+
+    describe ":core" do
+      subject do
+        Card.fetch([metric, :all_metric_values]).format(:html)._render_core
+      end
+
+      specify do
+        is_expected.to have_tag "container" do
+          with_tag ".row" do
+            with_tag "._filter_widget"
+          end
+          with_tag ".row.card-slot._filter-result-slot" do
+            with_Tag ".container-fluid" do
+
+            end
+          end
+        end
+      end
+    end
   end
 end

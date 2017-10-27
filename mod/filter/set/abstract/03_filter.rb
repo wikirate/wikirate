@@ -16,8 +16,9 @@ format :html do
     { "Alphabetical" => "name" }
   end
 
-  def filter_fields
+  def filter_fields form_args={}
     filter_form filter_form_data,
+                form_args: form_args,
                 action: filter_action_path,
                 # classes are from the old interface, probably not needed anymore
                 class: "filter-container slotter sub-content",

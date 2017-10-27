@@ -1,6 +1,7 @@
 describe Card::Set::Abstract::BrowseFilterForm do
   # define the sample card to use
   # let(:card) { Card["Company"].fetch trait: :metric_company_filter }
+  let(:card) { Card["Company"].fetch trait: :browse_topic_filter }
 
   describe "html format" do
     let(:card) { Card["Company"].fetch trait: :browse_topic_filter }
@@ -31,77 +32,25 @@ describe Card::Set::Abstract::BrowseFilterForm do
     it "renders view: filter_form" do
       # card.stub(:filter_keys).and_return(all_filter_fields)
       html = card.format.render_filter_form
-      expect(html).to have_tag(:form) do
-        with_tag :div, with: { class: "form-group filter-input",
-                               card_name: "Company+browse topic filter" } do
-          with_tag :label, text: "Sort"
-          with_tag :div do
-            with_tag :div, with: { class: "editor" } do
-              with_tag :select, with: { name: "sort" }
-            end
-          end
-          with_tag :div do
-            with_tag :div, with: { class: "editor" } do
-              with_tag :input, with: { type: "text", name: "filter[name]" }
-            end
-          end
-        end
-        with_tag :div, with: { class: "advanced-options" }
-      end
+      expect(html).to have_tag("_filter_widget")
     end
   end
   context "render core view" do
-    subject { card.format.render_core }
+    subject { card.format.render_content }
 
     let(:content_view) { card.format.content_view }
 
-    it "has frame" do
-      # log_html subject
-      # is_expected.to have_tag(:form, with: { class: "filter-container",
-      #                                        action: "/Company?view=#{content_view}"}) do
-      #   with_tag :div, with: { class: "filter-header" } do
-      #     # with_tag :span, with: { class: "glyphicon glyphicon-filter" }
-      #     with_tag :div, with: { class: "filter-details collapse" }
-      #   end
-      # end
+    it "has filter slot" do
+      is_expected.to have_tag(".card-slot._filter_result_slot")
     end
-    # it "has formgroups" do
-    #   is_expected.to have_tag :form, with: { action: "/Company?view=#{content_view}" } do
-    #     with_tag :h4, text: "Company"
-    #     with_tag :div, with: { class: "form-group filter-input" } do
-    #       with_tag :label, text: "Keyword"
-    #       with_tag :input, with: { type: "text", name: "filter[name]" }
-    #     end
-    #     with_tag :div, with: { class: "form-group filter-input" } do
-    #       with_tag :label, text: "Industry"
-    #       with_tag :select, with: { name: "filter[industry]" }
-    #     end
-    #     with_tag :div, with: { class: "form-group filter-input" } do
-    #       with_tag :label, text: "Project"
-    #       with_tag :select, with: { name: "filter[project]" }
-    #     end
-    #     with_tag :div, with: { class: "form-group filter-input" } do
-    #       with_tag :label, text: "Year"
-    #       with_tag :select, with: { name: "filter[year]" }
-    #     end
-    #     with_tag :div, with: { class: "form-group filter-input" } do
-    #       with_tag :label, text: "Value"
-    #       with_tag :select, with: { name: "filter[value]" }
-    #     end
-    #     with_tag :a, with: { href: "/Company?view=content_left_col" },
-    #                  text: "Reset"
-    #     with_tag :button, with: { name: "button", type: "submit" },
-    #                       text: "Filter"
-    #   end
-    # end
   end
 
   context "Fields are filled" do
-    # it "expand the form" do
-    #   Card::Env.params["company"] = "Apple Inc"
-    #   html = card.format.render_core
-    #   expect(html).to have_tag :div, with: { class: "filter-details",
-    #                                          style: "display: block;" }
-    # end
+    it "expand the form" do
+      Card::Env.params["filter"] = { wikirate_company: "Apple Inc" }
+      html = card.format.render_core
+      expect(html).to have_tag :div, with: { class: "filter-details",
+                                             style: "display: block;" }
+    end
   end
 end

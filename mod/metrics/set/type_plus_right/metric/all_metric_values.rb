@@ -18,21 +18,27 @@ end
 
 # tables used on a metric page
 format :html do
-  view :core do
-    bs_layout do
-      row do
-        _render_filter
-      end
-      row class: "text-center" do
-        _render_chart
-      end
-      row do
-        _render_table
-      end
-      row do
-        nest card.left, view: :export_links
-      end
-    end
+  view :core, template: :haml do
+    class_up "card-slot", "row _filter-result-slot"
+      # bs_layout do
+      #   row do
+      #     _render_filter
+      #   end
+      #   wrap(true) do
+      #     bs_layout do
+      #       row class: "text-center" do
+      #         _render_chart
+      #       end
+      #       row do
+      #         _render_table
+      #       end
+      #       row do
+      #         nest card.left, view: :export_links
+      #       end
+      #     end
+      #   end
+      # end
+    # end
   end
 
   def table_args
