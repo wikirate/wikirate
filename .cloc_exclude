@@ -11,4 +11,4 @@ tmp
 ./mod/wikirate_source/files
 ./mod/wikirate_source/lib/javascript/pdf.js
 ./mod/wikirate_source/lib/javascript/pdf.worker.js
-./vendor/mods/pdfjs/files/build/pdf.js
+./vendor/card-mods/pdfjs/files/build/pdf.js

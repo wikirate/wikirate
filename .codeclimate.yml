@@ -18,7 +18,7 @@ ratings:
 exclude_paths:
 - spec/**/*
 - vendor/**/*
-- mod/pdfjs/files/**/*
+- vmod/pdfjs/files/**/*
 - mod/wikirate_source/files/**/*
 - mod/**/lib/javascript/**/*.js
 - test/**/*
