@@ -6,7 +6,7 @@
 
 def source_type card_or_name
   source_type_card = standard_source_type_card(card_or_name) || source_type_card_from_subfield(card_or_name)
-  source_type_from_card(source_type_card) || "File"
+  source_type_from_card(source_type_card) || "Link"
 end
 
 def source_type_from_card source_type_card
