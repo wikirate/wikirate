@@ -32,7 +32,7 @@ describe Card::Set::Abstract::BrowseFilterForm do
     it "renders view: filter_form" do
       # card.stub(:filter_keys).and_return(all_filter_fields)
       html = card.format.render_filter_form
-      expect(html).to have_tag("_filter_widget")
+      expect(html).to have_tag("_filter-widget")
     end
   end
   context "render core view" do
@@ -41,7 +41,7 @@ describe Card::Set::Abstract::BrowseFilterForm do
     let(:content_view) { card.format.content_view }
 
     it "has filter slot" do
-      is_expected.to have_tag(".card-slot._filter_result_slot")
+      is_expected.to have_tag(".card-slot._filter-result-slot")
     end
   end
 

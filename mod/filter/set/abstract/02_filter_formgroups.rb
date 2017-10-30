@@ -63,9 +63,9 @@ format :html do
   view :sort_formgroup, cache: :never do
     selected_option = sort_param || card.default_sort_option
     options = options_for_select(sort_options, selected_option)
-    formgroup "Sort", class: "filter-input " do
-      select_tag "sort", options, class: "pointer-select"
-    end
+    #formgroup "Sort", class: "filter-input " do
+    select_tag "sort", options, class: "pointer-select"
+    #end
   end
 
   def sort_options

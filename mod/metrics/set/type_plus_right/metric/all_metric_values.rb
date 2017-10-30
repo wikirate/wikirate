@@ -18,9 +18,9 @@ end
 
 # tables used on a metric page
 format :html do
-  view :core, template: :haml do
-    voo.hide! :chart
-    super()
+  view :core do |args|
+    voo.show! :chart
+    super(args)
   end
 
   def table_args

@@ -13,10 +13,10 @@ format :html do
   end
 
   view :core, cache: :never do
-    filter_fields
+    filter_fields "data-slot-selector" => ".RIGHT-all_metric_value.filter_result-view"
   end
 
   def filter_view
-    :data
+    :filter_result
   end
 end

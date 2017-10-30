@@ -52,7 +52,7 @@ format :html do
     add_class(html_options, css_class + " filter-input #{field} _filter_input_field")
 
     # formgroup label, class: "filter-input #{field} _filter_input_field" do
-      select_tag name, options, html_options
+    select_tag name, options, html_options
     # end
   end
 

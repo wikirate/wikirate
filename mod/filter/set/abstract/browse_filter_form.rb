@@ -72,12 +72,10 @@ format :html do
   end
 
   def filter_action_path
-    path mark: card.name.left
+    path
   end
 
   view :filter_form, cache: :never do
-    wrap_with(:form, action: filter_action_path, method: "GET") do
-      _render(:sort_formgroup)
-    end + filter_fields("data-slot-selector" => "._filter_result_slot")
+    filter_fields({ "data-slot-selector" => "._filter_result_slot" }, _render(:sort_formgroup))
   end
 end

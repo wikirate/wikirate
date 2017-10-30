@@ -11,19 +11,9 @@ def default_sort_option
 end
 
 format :html do
-  view :core, cache: :never do
-    class_up "card-slot", "_filter-result-slot"
-    voo.hide :chart
-    # _render_filter + wrap(true) do
-    #   bs_layout do
-    #     row do
-    #       _render_table
-    #     end
-    #     row do
-    #       nest card.left, view: :export_links
-    #     end
-    #   end
-    # end
+  view :core, cache: :never do |args|
+    voo.hide! :chart
+    super(args)
   end
 
   def table_args

@@ -17,10 +17,6 @@ def default_filter_option
 end
 
 format :html do
-  def filter_view
-    :content
-  end
-
   def filter_label field
     field.to_sym == :metric ? "Keyword" : super
   end

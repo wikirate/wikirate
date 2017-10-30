@@ -42,6 +42,10 @@ def default_sort_option
 end
 
 format :html do
+  def filter_label key
+    key == :metric_type ? "Metric type" : super
+  end
+
   def default_year_option
     { "Any Year" => "" }
   end
