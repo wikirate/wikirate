@@ -1,11 +1,11 @@
 {{+description}}
 <div class="filter-search-form">
-  {{+filter search topic|filter_form}}
+  {{+browse topic filter|filter_form}}
 </div>
 <div id="browse-topics">
-   {{+filter search topic||content; structure:browse topic item }}
-  {{#featured topics|titled;title:Featured Topics|content;structure:browse topic item}}
+   {{+browse topic filter||browse_item}}
+  <!-- #featured topics|titled;title:Featured Topics|content;structure:browse topic item -->
   <br/>
-  {{#Other topics|titled;title:Other Topics|content;structure:browse topic item}}
+  <!-- #Other topics|titled;title:Other Topics|content;structure:browse topic item -->
 </div>
 

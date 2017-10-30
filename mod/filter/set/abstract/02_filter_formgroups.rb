@@ -64,7 +64,8 @@ format :html do
     selected_option = sort_param || card.default_sort_option
     options = options_for_select(sort_options, selected_option)
     #formgroup "Sort", class: "filter-input " do
-    select_tag "sort", options, class: "pointer-select"
+    select_tag "sort", options, class: "pointer-select",
+               "data-minimum-results-for-search"=>"Infinity"
     #end
   end
 
