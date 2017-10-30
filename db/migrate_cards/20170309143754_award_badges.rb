@@ -35,7 +35,7 @@ class AwardBadges < Card::Migration
   # def award_create_badges type_code, opts={}
   #   puts "create badges for #{type_code}"
   #
-  #   type_id = Card::Codename[type_code]
+  #   type_id = Card::Codename.id type_code
   #   where ||= opts[:where] || "type_id = #{type_id}"
   #   where = "WHERE (#{where})" unless where.empty?
   #   min = min ? "HAVING COUNT(*) > #{min}" : ""

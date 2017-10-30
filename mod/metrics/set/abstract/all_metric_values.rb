@@ -15,15 +15,8 @@ def search args={}
 end
 
 format :html do
-  view :core, cache: :never do
-    bs_layout do
-      row do
-        _render_filter
-      end
-      row do
-        _render_table
-      end
-    end
+  view :core, template: :haml, cache: :never do
+    class_up "card-slot", "row _filter-result-slot"
   end
 
   view :table, cache: :never do

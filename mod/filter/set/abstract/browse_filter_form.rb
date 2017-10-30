@@ -67,6 +67,9 @@ format :html do
   #   wrap_with :div, "No result", class: "search-no-results"
   # end
   #
+  def default_content_args args
+    class_up "card-slot", "_filter_result_slot"
+  end
 
   def filter_action_path
     path mark: card.name.left
@@ -75,6 +78,6 @@ format :html do
   view :filter_form, cache: :never do
     wrap_with(:form, action: filter_action_path, method: "GET") do
       _render(:sort_formgroup)
-    end + filter_fields
+    end + filter_fields("data-slot-selector" => "._filter_result_slot")
   end
 end
