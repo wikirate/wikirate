@@ -23,7 +23,7 @@ format :html do
       if claim_name && (claim = Card[claim_name])
         nest claim, view: :sample_citation
       else
-        render :citation_tip
+        render! :citation_tip
       end
     end
     %( #{prompt}#{super()} )
@@ -32,7 +32,7 @@ format :html do
   view :citation_tip, tags: :unknown_ok do |_args|
     tip = " easily cite this note by pasting the following: "\
           "#{text_area_tag('sample-citation-textarea')}"
-    %( <div class="sample-citation">#{render :tip, tip: tip}</div> )
+    %( <div class="sample-citation">#{render! :tip, tip: tip}</div> )
   end
 
   view :tip do |args|
@@ -51,7 +51,7 @@ format :html do
 
   def handle_edit_general_overview
     if params[default_param_key] && card.ok?(:update)
-      render :edit
+      render! :edit
     else
       yield
     end

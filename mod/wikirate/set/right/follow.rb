@@ -2,7 +2,7 @@ format :html do
   view :title do
     voo.hide :more_link
     res = super()
-    res + optional_render_more_link
+    res + render_more_link
   end
 
   view :more_link do

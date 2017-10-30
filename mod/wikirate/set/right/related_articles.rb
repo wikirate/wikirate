@@ -20,7 +20,7 @@ format :html do
         body += wrap_with :div, class: content_class  do
           link_to_card "#{params[:company]}+notes_page",
                        "Cite in General Overview",
-                       path: { citable: claim.cardname.url_key,
+                       path: { citable: claim.name.url_key,
                                edit_general_overview: true },
                        class: "cite-button"
         end
@@ -63,7 +63,7 @@ format :html do
 
   def citation_link analysis_name
     opts = { edit_article: true,
-             citable: card.cardname.trunk_name }
+             citable: card.name.trunk_name }
     wrap_with :span, class: "claim-next-action" do
       link_to_card analysis_name, "Cite!", path: opts
     end

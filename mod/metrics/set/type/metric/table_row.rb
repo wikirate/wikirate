@@ -21,7 +21,7 @@ format :html do
     voo.hide! :thumbnail_subtitle
     title = card.right.name
     output [
-      _optional_render_vote,
+      _render_vote,
       text_with_image(title: title,
                       image: designer_image_card, size: :icon)
     ]

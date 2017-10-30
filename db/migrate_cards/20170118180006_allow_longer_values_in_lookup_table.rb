@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class AllowLongerValuesInLookupTable < ActiveRecord::Migration
+class AllowLongerValuesInLookupTable < ActiveRecord::Migration[4.2]
   def up
     remove_index :answers, name: "value_index"
     add_index :answers, :value, name: "value_index", length: 100

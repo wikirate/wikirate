@@ -14,7 +14,7 @@ format :html do
   end
 
   def collapse_id
-    "#{card.cardname.safe_key}-answer-details"
+    "#{card.name.safe_key}-answer-details"
   end
 
   view :answer_details do

@@ -10,7 +10,7 @@ format :html do
       [
         "#{credit_verb} #{_render_updated_at} ago by ",
         nest(card.updater, view: :link),
-        _optional_render(:source_link, args, :hide)
+        _render(:source_link, args, :hide)
       ]
     end
   end
@@ -54,7 +54,7 @@ format :html do
       if voo.hide? :link
         text
       else
-        link_to(text, path: "/#{card.cardname.url_key}", target: "_blank")
+        link_to(text, path: "/#{card.name.url_key}", target: "_blank")
       end
     end
   end

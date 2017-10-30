@@ -2,7 +2,7 @@ def virtual?
   true
 end
 
-def raw_content
+def content
   %({
     "found_by":"_left",
     "not":{

@@ -1,7 +1,7 @@
 include_set Abstract::Table
 
 def project_name
-  cardname.left
+  name.left
 end
 
 def company_project_card company_card

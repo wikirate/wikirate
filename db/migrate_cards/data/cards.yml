@@ -1,5 +1,37 @@
 ---
 :cards:
+- :name: metric value source form
+  :type: HTML
+  :key: metric_value_source_form
+  :merged: 2017-10-23 20:47:30 UTC
+- :name: Research Page+Company
+  :type: Session
+  :key: research_page+company
+  :merged: 2017-10-23 20:47:30 UTC
+- :name: Research Page+Metric
+  :type: Session
+  :key: research_page+metric
+  :merged: 2017-10-23 20:47:30 UTC
+- :name: Source+*type+*structure
+  :type: HTML
+  :key: source+*type+*structure
+  :merged: 2017-10-23 20:47:30 UTC
+- :name: Cardtype+*metric type+*type plus right+*structure
+  :type: Set
+  :key: cardtype+*metric_type+*type_plu_right+*structure
+  :merged: 2017-10-23 20:47:30 UTC
+- :name: Link+*source type
+  :type: Set
+  :key: link+*source_type
+  :merged: 2017-10-23 20:47:30 UTC
+- :name: Text+*source type
+  :type: Set
+  :key: text+*source_type
+  :merged: 2017-10-23 20:47:30 UTC
+- :name: File+*source type
+  :type: Set
+  :key: file+*source_type
+  :merged: 2017-10-23 20:47:30 UTC
 - :name: Note+*self+*structure
   :type: HTML
   :key: note+*self+*structure
@@ -205,6 +237,225 @@
   :type: HTML
   :key: homepage_metric_item
   :merged: 2017-02-15 17:33:31 UTC
+- :name: nav bar
+  :type: HTML
+  :key: nav_bar
+  :merged: 2017-10-23 20:47:27 UTC
+- :name: nav bar menu
+  :type: HTML
+  :key: nav_bar_menu
+  :merged: 2017-10-23 20:47:27 UTC
+- :name: Company
+  :type: Cardtype
+  :codename: wikirate_company
+  :key: company
+- :name: Company+description
+  :type: Basic
+  :key: company+description
+- :name: Topic
+  :type: Cardtype
+  :codename: wikirate_topic
+  :key: topic
+- :name: Topic+description
+  :type: Basic
+  :key: topic+description
+- :name: Metric
+  :type: Cardtype
+  :codename: metric
+  :key: metric
+- :name: Metric+description
+  :type: Basic
+  :key: metric+description
+- :name: Project
+  :type: Cardtype
+  :codename: project
+  :key: project
+- :name: Project+description
+  :type: Basic
+  :key: project+description
+- :name: Project+Active
+  :type: Search
+  :key: project+active
+- :name: 'Group 3: Digital Rights Data Sprint - 2017'
+  :type: Project
+  :key: group_3_digital_right_datum_sprint_2017
+- :name: Universidad EAFIT - Ethics and Corporate Responsability
+  :type: Project
+  :key: universidad_eafit_ethic_and_corporate_responsability
+- :name: 'Group 6: Digital Rights Data Sprint - 2017'
+  :type: Project
+  :key: group_6_digital_right_datum_sprint_2017
+- :name: 'Group 5: Digital Rights Data Sprint - 2017'
+  :type: Project
+  :key: group_5_digital_right_datum_sprint_2017
+- :name: 'Group 4: Digital Rights Data Sprint - 2017'
+  :type: Project
+  :key: group_4_digital_right_datum_sprint_2017
+- :name: Project+Inactive
+  :type: Search
+  :key: project+inactive
+- :name: MANA Environmental Aggregator
+  :type: Project
+  :key: mana_environmental_aggregator
+- :name: adasdasdsad
+  :type: Project
+  :key: adasdasdsad
+- :name: Alpina Eafit
+  :type: Project
+  :key: alpina_eafit
+- :name: Universidad EAFIT [extra] - Researching Corporate Performance - SDGs 8 &
+    16
+  :type: Project
+  :key: universidad_eafit_extra_researching_corporate_performance_sd_g_8_16
+- :name: ARGOS EAFIT
+  :type: Project
+  :key: argo_eafit
+- :name: Note
+  :type: Cardtype
+  :codename: claim
+  :key: note
+- :name: Note+description
+  :type: Basic
+  :key: note+description
+- :name: Source
+  :type: Cardtype
+  :codename: source
+  :key: source
+- :name: Source+description
+  :type: Basic
+  :key: source+description
+- :name: "*recent"
+  :type: Search
+  :codename: recent
+  :key: "*recent"
+- :name: Home+*solid cache
+  :type: HTML
+  :key: home+*solid_cache
+- :name: export
+  :type: Pointer
+  :key: export
+- :name: 'script: pdfjs hosts+*all+*script+*machine cache'
+  :type: PlainText
+  :key: script_pdfj_host+*all+*script+*machine_cache
+- :name: About WikiRate
+  :type: HTML
+  :key: about_wiki_rate
+- :name: wikirate new video
+  :type: HTML
+  :key: wikirate_new_video
+- :name: Using WikiRate
+  :type: HTML
+  :key: using_wiki_rate
+- :name: Introduction to WikiRate
+  :type: Basic
+  :key: introduction_to_wiki_rate
+- :name: User Accounts
+  :type: Basic
+  :key: user_account
+- :name: Researching Metric Values
+  :type: Basic
+  :key: researching_metric_value
+- :name: 'How to: Add data to wikirate'
+  :type: HTML
+  :key: how_to_add_datum_to_wikirate
+- :name: Adding & Tagging New Sources
+  :type: Basic
+  :key: adding_tagging_new_source
+- :name: 'How to: Add a new source'
+  :type: HTML
+  :key: how_to_add_a_new_source
+- :name: Company Profiles
+  :type: Basic
+  :key: company_profile
+- :name: Join a Research Group
+  :type: Basic
+  :key: join_a_research_group
+- :name: How to use Research Groups
+  :type: HTML
+  :key: how_to_use_research_group
+- :name: Project Research
+  :type: Basic
+  :key: project_research
+- :name: How to conduct research through Project pages
+  :type: HTML
+  :key: how_to_conduct_research_through_project_page
+- :name: Exporting data
+  :type: Basic
+  :key: exporting_datum
+- :name: WikiRate Support
+  :type: Basic
+  :key: wiki_rate_support
+- :name: 'How to: Add a Ticket'
+  :type: HTML
+  :key: how_to_add_a_ticket
+- :name: Advanced Features
+  :type: Basic
+  :key: advanced_feature
+- :name: How to create a new Metric (advanced)
+  :type: Basic
+  :key: how_to_create_a_new_metric_advanced
+- :name: Donate
+  :type: HTML
+  :key: donate
+- :name: Where does your donation end up
+  :type: Basic
+  :key: where_do_your_donation_end_up
+- :name: Frequently Asked Questions
+  :type: Basic
+  :key: frequently_asked_question
+- :name: edit icon
+  :type: HTML
+  :key: edit_icon
+- :name: Ticket
+  :type: Cardtype
+  :key: ticket
+- :name: Ticket+description
+  :type: Basic
+  :key: ticket+description
+- :name: Ticket+Open
+  :type: Search
+  :key: ticket+open
+- :name: david_hates_wikirate
+  :type: Ticket
+  :key: david_hate_wikirate
+- :name: Formula metric, selecting metrics interface does not seem to work
+  :type: Ticket
+  :key: formula_metric_selecting_metric_interface_do_not_seem_to_work
+- :name: Metrics not listed on box view
+  :type: Ticket
+  :key: metric_not_listed_on_box_view
+- :name: Incorrect unit type initials
+  :type: Ticket
+  :key: incorrect_unit_type_initial
+- :name: Confusing link to source
+  :type: Ticket
+  :key: confusing_link_to_source
+- :name: Ticket+Closed
+  :type: Search
+  :key: ticket+closed
+- :name: Sources not clickable
+  :type: Ticket
+  :key: source_not_clickable
+- :name: Edit history error
+  :type: Ticket
+  :key: edit_history_error
+- :name: Can't name a source
+  :type: Ticket
+  :key: can_t_name_a_source
+- :name: SDG page not rendering Metric and Company counts
+  :type: Ticket
+  :key: sdg_page_not_rendering_metric_and_company_count
+- :name: Search results view skewed, unclear
+  :type: Ticket
+  :key: search_result_view_skewed_unclear
+- :name: "*navbox"
+  :type: Basic
+  :codename: navbox
+  :key: "*navbox"
+- :name: "*account links"
+  :type: Basic
+  :codename: account_links
+  :key: "*account_link"
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org

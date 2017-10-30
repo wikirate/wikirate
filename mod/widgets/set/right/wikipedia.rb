@@ -33,12 +33,12 @@ event :update_oc_mapping_due_to_wikipedia_entry, :integrate, on: :save, when: :n
   oc = ::OpenCorporates::MappingAPI.fetch_oc_company_number wikipedia_url: content
   return unless oc.company_number.present?
 
-  add_subcard cardname.left_name.field(:open_corporates),
+  add_subcard name.left_name.field(:open_corporates),
               content: oc.company_number, type: :phrase
-  add_subcard cardname.left_name.field(:incorporation),
+  add_subcard name.left_name.field(:incorporation),
               content: jurisdiction_name(oc.jurisdiction_code_of_incorporation),
               type: :pointer
-  add_subcard cardname.left_name.field(:headquarters),
+  add_subcard name.left_name.field(:headquarters),
               content: jurisdiction_name(oc.jurisdiction_code),
               type: :pointer
 end

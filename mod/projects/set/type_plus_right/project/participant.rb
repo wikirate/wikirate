@@ -2,7 +2,7 @@
 
 # this is pretending as a pointer card
 def item_names _args
-  initiative_name = cardname.left
+  initiative_name = name.left
   # find all participant and add to the pointer card
   editors = Card.search editor_of: { left: initiative_name }, return: "name"
   editors += Card.search(

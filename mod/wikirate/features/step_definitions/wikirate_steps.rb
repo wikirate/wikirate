@@ -31,7 +31,7 @@ end
 #     find("label", text: field).find(:xpath, "..//select", visible: false)
 # end
 
-Capybara.default_max_wait_time = 60
+Capybara.default_max_wait_time = 20
 
 When(/^I press "([^\"]*)" within "([^\"]*)"$/) do |button, scope_selector|
   within(scope_selector) do
@@ -53,6 +53,10 @@ And(/^I click on item "([^"]*)"$/) do |item|
   find("td", text: item).click
 end
 
+And(/^I click on "([^"]*)" and confirm$/) do |link|
+  page.accept_confirm { click_link_or_button(link) }
+end
+
 When(/^I click on metric "([^"]*)"$/) do |metric|
   find(:css, ".add-formula").find("h4", text: metric).click
 end
@@ -64,7 +68,7 @@ When(
   duplicated_card = duplicates.first.left if duplicates.any?
 
   url = "#{Card::Env[:protocol]}#{Card::Env[:host]}"\
-        "/#{duplicated_card.cardname.url_key}"
+        "/#{duplicated_card.name.url_key}"
   fill_in(field, with: url)
 end
 
@@ -164,7 +168,7 @@ Then(/^I should see a row with "(.+)"$/) do |value|
 end
 
 Then(/^I uncheck all checkboxes$/) do
-  all("input[type=checkbox]").each do |checkbox|
+  all("input[type=checkbox]", visible: false).each do |checkbox|
     checkbox.click if checkbox.checked?
   end
 end
@@ -181,12 +185,11 @@ Then(/^I check checkbox in row (\d+)$/) do |row|
 end
 
 Then(/^I check checkbox for csv row (\d+)$/) do |row|
-  table = find("table")
+  table = find("table", visible: false)
   within(table) do
-    row = find("tr[data-csv-row-index='#{row}'")
-    # row = all("tr")[row.to_i]
+    row = find("tr[data-csv-row-index='#{row.to_i - 1}'", visible: false)
     within(row) do
-      checkbox = find("input[type=checkbox]")
+      checkbox = find("input[type=checkbox]", visible: false)
       checkbox.click unless checkbox.checked?
     end
   end
@@ -288,4 +291,8 @@ end
 
 And(/^I hover over "([^"]*)"$/) do |text|
   find(:link_or_button, text: text).hover
+end
+
+And(/^I accept alert$/) do
+  page.driver.browser.switch_to.alert.accept
 end

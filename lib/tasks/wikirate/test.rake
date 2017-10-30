@@ -3,14 +3,14 @@ require File.expand_path "../importer", __FILE__
 
 namespace :wikirate do
   namespace :test do
-    full_dump_path = File.join Wagn.root, "test", "seed.db"
+    full_dump_path = File.join Decko.root, "test", "seed.db"
 
     user = ENV["DATABASE_MYSQL_USERNAME"] || ENV["MYSQL_USER"] || "root"
     pwd  = ENV["DATABASE_MYSQL_PASSWORD"] || ENV["MYSQL_PASSWORD"]
 
     def testdb
       @testdb ||= ENV["DATABASE_NAME_TEST"] ||
-                  ((t = Wagn.config.database_configuration["test"]) &&
+                  ((t = Decko.config.database_configuration["test"]) &&
                   t["database"])
     end
 
@@ -22,7 +22,7 @@ namespace :wikirate do
 
     def import_from location
       FileUtils.rm_rf(Dir.glob("tmp/*"))
-      require "#{Wagn.root}/config/environment"
+      require "#{Decko.root}/config/environment"
       importer = Importer.new location
       puts "Source DB: #{importer.export_location}".green
       yield importer
@@ -51,6 +51,7 @@ namespace :wikirate do
     desc "import cards from given location"
     task :import_from, [:location] => :environment do |task, args|
       ensure_env(:init_test, task, args) do
+        Card::Cache.reset_all
         location = args[:location] || "production"
         import_from(location) do |import|
           # cardtype has to be the first
@@ -67,7 +68,9 @@ namespace :wikirate do
             import.items_of setting, subitems: with_subitems
           end
           import.items_of :production_export, subitems: true
-          exclude %w(20161005120800 20170118180006 20170210153241 20170303130557
+
+          # don't import table migrations
+          exclude = %w(20161005120800 20170118180006 20170210153241 20170303130557
                      20170330102819)
           import.migration_records exclude
         end
@@ -87,12 +90,6 @@ namespace :wikirate do
               codename: codename, storage_type: :coded, mod: :test
             )
           end
-
-          # because we don't copy the files we have to delete the output
-          # but the solid caches for generating the machine output
-          # are updated now
-          #Card[:all, :script, :machine_output].delete
-          #Card[:all, :style, :machine_output].delete
         end
       end
     end
@@ -102,9 +99,9 @@ namespace :wikirate do
       dump_path = args[:path] || full_dump_path
       mysql_login = "mysql -u #{user}"
       mysql_login += " -p#{pwd}" if pwd
-      cmd =
-        "echo \"create database if not exists #{testdb}\" | #{mysql_login}; " \
-        "#{mysql_login} --database=#{testdb} < #{dump_path}"
+      cmd = "echo \"create database if not exists #{testdb}\" | #{mysql_login}; " \
+            "#{mysql_login} --database=#{testdb} < #{dump_path}"
+      # puts "executing #{cmd}"
       system cmd
     end
 

@@ -28,17 +28,17 @@ format :html do
   view :card_list_items do |args|
     search_with_params.map do |row|
       item_card = item_card_from_row row
-      render :card_list_item, args.clone.merge(item_card: item_card)
+      render! :card_list_item, args.clone.merge(item_card: item_card)
     end.join "\n"
   end
 
   view :card_list do |args|
-    paging = _optional_render :paging, args
+    paging = _render :paging, args
     if search_with_params.blank?
       render_no_search_results(args)
     else
-      results = render :card_list_items, args
-      header = render :card_list_header, args
+      results = render! :card_list_items, args
+      header = render! :card_list_header, args
       %(
       #{paging}
       #{header}

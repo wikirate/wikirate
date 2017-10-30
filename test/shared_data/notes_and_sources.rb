@@ -30,14 +30,27 @@ class SharedData
         )
       end
 
+      Card.create!(
+        type_id: Card::SourceID,
+        import: false,
+        subcards: {
+          "+Link" => { content: "http://www.wikiwand.com/en/Darth_Vader" },
+          "+company" => { content: "Death Star", type_id: Card::PointerID },
+          "+topic" => { content: "Force", type_id: Card::PointerID },
+          "+report type" => { content: "Force Report" },
+          "+description" => { content: "Darth Vader Wikipedia article" }
+        }
+      )
+
       source1 = Card.create!(
         type_id: Card::SourceID,
         import: false,
         subcards: {
-          "+Link" =>        { content: "http://www.wikiwand.com/en/Star_Wars" },
-          "+company" =>     { content: "Death Star", type_id: Card::PointerID },
-          "+topic" =>       { content: "Force", type_id: Card::PointerID },
-          "+title" =>       { content: "Star Wars" },
+          "+Link" => { content: "http://www.wikiwand.com/en/Star_Wars" },
+          "+company" => { content: "Death Star", type_id: Card::PointerID },
+          "+topic" => { content: "Force", type_id: Card::PointerID },
+          "+report type" => { content: "Force Report" },
+          "+title" => { content: "Star Wars" },
           "+description" => { content: "Star Wars Wikipedia article" }
         }
       )
@@ -58,9 +71,9 @@ class SharedData
         name: "Death Star uses dark side of the Force",
         type_id: Card::ClaimID,
         subcards: {
-          "+source" =>  { content: "[[#{source1.name}]]", type_id: Card::PointerID },
+          "+source" => { content: "[[#{source1.name}]]", type_id: Card::PointerID },
           "+company" => { content: "[[Death Star]]", type_id: Card::PointerID },
-          "+topic" =>   { content: "[[Force]]", type_id: Card::PointerID }
+          "+topic" => { content: "[[Force]]", type_id: Card::PointerID }
         }
       )
 
@@ -68,9 +81,9 @@ class SharedData
         name: "Fruits are round",
         type_id: Card::ClaimID,
         subcards: {
-          "+source" =>  { content: "[[#{source2.name}]]", type_id: Card::PointerID },
+          "+source" => { content: "[[#{source2.name}]]", type_id: Card::PointerID },
           "+company" => { content: "", type_id: Card::PointerID },
-          "+topic" =>   { content: "[[Taming]]", type_id: Card::PointerID }
+          "+topic" => { content: "[[Taming]]", type_id: Card::PointerID }
         }
       )
     end

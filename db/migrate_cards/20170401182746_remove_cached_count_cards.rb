@@ -35,15 +35,15 @@ class RemoveCachedCountCards < Card::Migration
 
   def remove type:, plus_right:
     puts "remove #{type}+#{plus_right}+type_plus_right"
-    remove_cached_counts left: { type_id: Card::Codename[type] },
-                         right_id: Card::Codename[plus_right]
+    remove_cached_counts left: { type_id: Card::Codename.id(type) },
+                         right_id: Card::Codename.id(plus_right)
     card = Card[type, plus_right, :type_plus_right, :structure]
     card.delete! if card
   end
 
   def remove_ltype_rtype ltype, rtype
-    trash_all left: { left: { type_id: Card::Codename[ltype] },
-                          right: { type_id: Card::Codename[rtype] } },
+    trash_all left: { left: { type_id: Card::Codename.id(ltype) },
+                          right: { type_id: Card::Codename.id(rtype) } },
               right: { codename: "cached_count" }
   end
 

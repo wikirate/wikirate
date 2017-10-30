@@ -1,3 +1,5 @@
+# All Answers for a given Company
+
 include_set Abstract::AllMetricValues
 
 def query_class
@@ -12,7 +14,7 @@ format :html do
   view :core, cache: :never do
     bs_layout do
       row do
-        _optional_render_filter
+        _render_filter
       end
       row do
         _render_table

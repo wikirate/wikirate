@@ -1,4 +1,4 @@
-wagn.slotReady (slot) ->
+decko.slotReady (slot) ->
   for vis in slot.find('.vis')
     $.ajax
       url: $(vis).data "url"

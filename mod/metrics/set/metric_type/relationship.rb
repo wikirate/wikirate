@@ -44,7 +44,7 @@ format :html do
   end
 
   def inverse_title_field options={}
-    title = card.add_subfield :inverse_title, content: card.cardname.tag,
+    title = card.add_subfield :inverse_title, content: card.name.tag,
                                               type_id: PhraseID
     title.reset_patterns
     title.include_set_modules

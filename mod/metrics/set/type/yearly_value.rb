@@ -1,5 +1,5 @@
 def year
-  cardname.parts[-2]
+  name.parts[-2]
 end
 
 def value

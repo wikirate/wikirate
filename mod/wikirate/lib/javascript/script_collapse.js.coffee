@@ -42,7 +42,7 @@ $(document).ready ->
       if !$target.text().length
         loadCollapseTarget($target, $(this).data("url"))
 
-wagn.slotReady (slot) ->
+decko.slotReady (slot) ->
 # Extend bootstrap collapse with in and out text
   slot.find('[data-toggle="collapse"], [data-toggle="collapse-next"]').each (i) ->
     if $(this).data('collapse-icon-in')?

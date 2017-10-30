@@ -1,8 +1,8 @@
-wagn.slotReady (slot) ->
+decko.slotReady (slot) ->
   slot.find('#_check_all').change (eventObject) ->
     if $(this).is(':checked')
       $('._group_check').prop 'checked', true
-      slot.find('.import_table input:checkbox').prop 'checked', true
+      slot.find('.import_table input:checkbox[disabled!="disabled"]').prop 'checked', true
     else
       $('._group_check').removeAttr 'checked'
       slot.find('.import_table input:checkbox').removeAttr 'checked'
@@ -10,10 +10,10 @@ wagn.slotReady (slot) ->
   slot.find('._group_check').change (eventObject) ->
     attr = $(this).data("group")
     if $(this).is(':checked')
-      slot.find('.import_table').find('tr.' + attr).each ->
+      slot.find('.import_table').find('tr.table-' + attr).each ->
         $(this).find('input:checkbox').prop 'checked', true
     else
       $('#_check_all').prop 'checked', false
-      slot.find('.import_table').find('tr.' + attr).each ->
+      slot.find('.import_table').find('tr.table-' + attr).each ->
         $(this).find('input:checkbox').prop 'checked', false
 

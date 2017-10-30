@@ -29,7 +29,7 @@ format do
   end
 
   def overview? company
-    Card.exists?("#{company}+#{card.cardname.left}+review") ? 1 : 0
+    Card.exists?("#{company}+#{card.name.left}+review") ? 1 : 0
   end
 
   def sort_by_overview companies

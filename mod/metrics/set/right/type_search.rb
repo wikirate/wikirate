@@ -2,7 +2,7 @@ def virtual?
   true
 end
 
-def raw_content
+def content
   if (ll = left.left) && ll.type_id == WikirateTopicID &&
      left.right.id == WikirateCompanyID
     # FIXME: this is an ugly hack to get topic pages working (were overwhelmed by company counts)

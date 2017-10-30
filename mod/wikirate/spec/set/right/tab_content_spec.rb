@@ -2,7 +2,7 @@ RSpec.describe Card::Set::Right::TabContent do
   subject { company.fetch(trait: :tab_content).format.render_core }
 
   let(:company) { sample_company }
-  let(:company_key) { company.cardname.url_key }
+  let(:company_key) { company.name.url_key }
 
   describe "view :core" do
     def tab_param val

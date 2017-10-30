@@ -26,7 +26,7 @@ RSpec.describe Card::Set::Type::MetricValue do
 
   describe "views" do
     specify "modal_details" do
-      url = "/#{answer.cardname.url_key}?layout=modal&"\
+      url = "/#{answer.name.url_key}?layout=modal&"\
             "slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu"
       html = answer.format.render_modal_details
       expect(html).to have_tag("span.metric-value") do

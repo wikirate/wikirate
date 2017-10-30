@@ -15,7 +15,7 @@ format :html do
     end
   end
 
-  view :rating_editor do |args|
+  view :rating_editor, cache: :never do |args|
     table_content = editor_table_content(args)
     sum =
       if table_content.empty?

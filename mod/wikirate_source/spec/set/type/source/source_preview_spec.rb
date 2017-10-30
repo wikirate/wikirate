@@ -24,15 +24,15 @@ describe Card::Set::Type::Source, "source preview" do
 
       it "shows correction options" do
         expect(@result).to have_tag("ul", with: { class: "nav-tabs" }) do
-          with_tag "a",  with: { "data-url" => "/#{@text_source.cardname.url_key}?view=details_tab" }
-          with_tag "a",  with: { "data-url" => "/#{@text_source.cardname.url_key}?view=metrics_tab" }
-          with_tag "a",  with: { "data-url" => "/#{@text_source.cardname.url_key}?view=notes_tab" }
+          with_tag "a",  with: { "data-url" => "/#{@text_source.name.url_key}?view=details_tab" }
+          with_tag "a",  with: { "data-url" => "/#{@text_source.name.url_key}?view=metrics_tab" }
+          with_tag "a",  with: { "data-url" => "/#{@text_source.name.url_key}?view=notes_tab" }
         end
       end
 
       it "shows text source" do
         expect(@result).to have_tag("div", with: { id: "text_source", class: "webpage-preview" }) do
-          with_tag "div",  with: { id: "#{@text_source.cardname.url_key}+Text" }
+          with_tag "div",  with: { id: "#{@text_source.name.url_key}+Text" }
         end
       end
     end
@@ -45,9 +45,9 @@ describe Card::Set::Type::Source, "source preview" do
       end
       it "shows correction options" do
         expect(@result).to have_tag("ul", with: { class: "nav-tabs" }) do
-          with_tag "a",  with: { "data-url" => "/#{@pdf_source.cardname.url_key}?view=details_tab" }
-          with_tag "a",  with: { "data-url" => "/#{@pdf_source.cardname.url_key}?view=metrics_tab" }
-          with_tag "a",  with: { "data-url" => "/#{@pdf_source.cardname.url_key}?view=notes_tab" }
+          with_tag "a",  with: { "data-url" => "/#{@pdf_source.name.url_key}?view=details_tab" }
+          with_tag "a",  with: { "data-url" => "/#{@pdf_source.name.url_key}?view=metrics_tab" }
+          with_tag "a",  with: { "data-url" => "/#{@pdf_source.name.url_key}?view=notes_tab" }
         end
       end
       context "pdf file" do
@@ -95,9 +95,9 @@ describe Card::Set::Type::Source, "source preview" do
       end
       it "shows correction options" do
         expect(@result).to have_tag("ul", with: { class: "nav-tabs" }) do
-          with_tag "a",  with: { "data-url" => "/#{@existing_source.cardname.url_key}?view=details_tab" }
-          with_tag "a",  with: { "data-url" => "/#{@existing_source.cardname.url_key}?view=metrics_tab" }
-          with_tag "a",  with: { "data-url" => "/#{@existing_source.cardname.url_key}?view=notes_tab" }
+          with_tag "a",  with: { "data-url" => "/#{@existing_source.name.url_key}?view=details_tab" }
+          with_tag "a",  with: { "data-url" => "/#{@existing_source.name.url_key}?view=metrics_tab" }
+          with_tag "a",  with: { "data-url" => "/#{@existing_source.name.url_key}?view=notes_tab" }
           with_tag "a",  with: { href: @existing_source.fetch(trait: :wikirate_link).content }
         end
       end

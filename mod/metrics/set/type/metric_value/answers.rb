@@ -23,13 +23,13 @@ format :html do
         _render_value_link,
         wrap_with(:span, legend, class: "metric-unit"),
         _render_flags,
-        _optional_render_chart
+        _render_chart
       ]
     end
   end
 
   view :plain_year do
-    card.cardname.right
+    card.name.right
   end
 
   def legend

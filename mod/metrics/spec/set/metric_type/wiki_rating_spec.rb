@@ -25,7 +25,7 @@ describe Card::Set::MetricType::WikiRating do
 
     it { is_expected.to be_truthy }
     it "has codename" do
-      expect(subject.codename).to eq "wiki_rating"
+      expect(subject.codename).to eq :wiki_rating
     end
     it 'has type "metric type"' do
       expect(subject.type_id).to eq Card["metric type"].id

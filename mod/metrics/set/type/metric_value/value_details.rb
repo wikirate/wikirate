@@ -3,7 +3,7 @@ include_set Abstract::ResearchedValueDetails
 
 format :html do
   def value_details
-    _render "#{card.metric_type}_value_details"
+    _render! "#{card.metric_type}_value_details"
   end
 
   view :formula_value_details do

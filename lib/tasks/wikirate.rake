@@ -16,6 +16,20 @@ namespace :wikirate do
     end
   end
 
+  desc "pull from decko repository to vendor/decko and commit"
+  task :decko_tick do |branch|
+    _task, branch = ARGV
+    branch ||= "wikirate"
+    psystem "cd vendor/decko && git pull origin #{branch}"
+    psystem "git commit vendor/decko -m 'decko tick'"
+    exit
+  end
+
+  def psystem cmd
+    puts cmd.green
+    system cmd
+  end
+
   def import_cards
     return unless (filename = import_data_filename)
     require "card/migration"
@@ -23,7 +37,7 @@ namespace :wikirate do
     import_data = yield
     write_card_content! import_data
     write_card_attributes filename, import_data[:card][:value]
-    system "bundle exec wagn generate card:migration #{ENV['name']}"
+    system "bundle exec decko generate card:migration #{ENV['name']}"
   end
 
   def write_card_attributes filename, card_attributes
