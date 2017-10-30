@@ -16,15 +16,11 @@ event :autopopulate_website, :prepare_to_store, on: :create, when: :populate_web
   add_subcard host, type_id: Card::WikirateWebsiteID
 end
 
-event :import_linked_source, :integrate_with_delay, on: :save do
-  generate_pdf if import? && html_link?
-end
-
 event :process_source_url, after: :check_source, on: :create do
   if !(link_card = subfield(:wikirate_link)) || link_card.content.empty?
     errors.add(:link, "does not exist.")
     return
-  ends
+  end
   link_card.content.strip!
   @url = link_card.content
 
