@@ -1,93 +1,11 @@
-{{style: mixins and variables|raw}}
-
-._filter_widget {
-  .input-group.sort-input-group, ._filter_container > .input-group {
+._filter-widget {
+  .input-group.sort-input-group, ._filter-container > .input-group {
     width: auto !important;
   }
+}
 
-
-
-  .filter-header {
-    cursor: pointer;
-  }
-
-  .votee-filter, .filter-header {
-    text-align: center;
-  }
-
-  .votee-filter, .filter-container {
-    background: #f8f9fa;
-    color: $dark-text-color;
-    padding: 10px;
-    font-size: 12px;
-    font-weight: bold;
-    float: left;
-    width: 100%;
-    border-top: 1px solid $border-color;
-    border-bottom: 1px solid $border-color;
-  }
-
-  .filter-details {
-    padding-bottom: 1px;
-  }
-
-  .filter-toggle {
-    float: right;
-  }
-
-  .chart-zoom-out {
-    position: relative;
-    top: 20px;
-    z-index: 100;
-  }
-
-  .filter-search-form {
-    border-bottom: 1px solid $border-color;
-    display: inline-block !important;
-    margin: 19px 0 10px 0;
-    padding-bottom: 12px;
-    width: 100%;
-    .chosen-container {
-      display: inline-block;
-    }
-    .editor {
-      width: 100%;
-      padding: 0 5%;
-    }
-    .form-group {
-      margin: 5px 1px;
-      border: 0;
-      font-size: 0.8em;
-      float: left !important;
-      clear: none;
-      label {
-        padding: 0 5%;
-        font-size: 15px;
-        font-weight: inherit;
-      }
-      select {
-        height: 30px;
-        max-width: 100%;
-      }
-      input {
-        height: 34px;
-      }
-      .button-area {
-        font-size: 1.2em;
-        margin-top: 20px;
-      }
-      a.btn {
-        margin: 26px 5px 0px;
-      }
-      &.filter-input {
-        width: 16%;
-        .search-field {
-          height: 23px;
-        }
-        &.tag {
-          width: 20%;
-        }
-      }
-    }
-  }
+.chart-zoom-out {
+  position: relative;
+  top: 20px;
+  z-index: 100;
 }

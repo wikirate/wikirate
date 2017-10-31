@@ -66,9 +66,9 @@ format :html do
   # view :no_search_results do |_args|
   #   wrap_with :div, "No result", class: "search-no-results"
   # end
-  #
+
   def default_content_args args
-    class_up "card-slot", "_filter_result_slot"
+    class_up "card-slot", "_filter-result-slot"
   end
 
   def filter_action_path
@@ -76,6 +76,7 @@ format :html do
   end
 
   view :filter_form, cache: :never do
-    filter_fields({ "data-slot-selector" => "._filter_result_slot" }, _render(:sort_formgroup))
+    filter_fields slot_selector: "._filter-result-slot",
+                  sort_field: _render(:sort_formgroup)
   end
 end

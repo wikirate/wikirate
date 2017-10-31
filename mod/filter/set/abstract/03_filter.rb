@@ -16,15 +16,10 @@ format :html do
     { "Alphabetical" => "name" }
   end
 
-  def filter_fields form_args={}, sort_input_field=nil
-    filter_form filter_form_data,
-                sort_input_field,
-                form_args.merge(
-                action: filter_action_path,
-                # classes are from the old interface, probably not needed anymore
-                class: "slotter", #slotter filter-container sub-content",
-                id: "_filter_container"
-                )
+  def filter_fields slot_selector: nil, sort_field: nil
+    form_args = { action: filter_action_path, class: "slotter" }
+    form_args["data-slot-selector"] = slot_selector if slot_selector
+    filter_form filter_form_data, sort_field, form_args
   end
 
   def filter_form_data

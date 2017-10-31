@@ -1,56 +1,37 @@
 describe Card::Set::Abstract::BrowseFilterForm do
-  # define the sample card to use
-  # let(:card) { Card["Company"].fetch trait: :metric_company_filter }
+  # define the sample card to use that includes the BrowseFilterForm
   let(:card) { Card["Company"].fetch trait: :browse_topic_filter }
 
-  describe "html format" do
-    let(:card) { Card["Company"].fetch trait: :browse_topic_filter }
+  describe "view :filter_form" do
+     subject { card.format.render_filter_form }
 
-    it "#advanced_formgroups" do
-      card.stub(:advanced_filter_keys) { %w[metric project wikirate_company] }
-      html =
-        card.format.advanced_filter_formgroups
-      expect(html).to have_tag(:div, with: { class: "advanced-options" }) do
-        with_tag :div, with: { id: "collapseFilter", class: "collapse" } do
-          with_tag :label, text: "Metric"
-          with_tag :div, with: { class: "editor" } do
-            with_tag :input, with: { class: "metric_autocomplete", id: "filter_metric" }
-          end
-          with_tag :label, text: "Project"
-          with_tag :div, with: { class: "editor" } do
-            with_tag :select, with: { class: "pointer-select", id: "filter_project" }
-          end
-          with_tag :label, text: "Company"
-          with_tag :div, with: { class: "editor" } do
-            with_tag :input, with: { class: "wikirate_company_autocomplete",
-                                     id: "filter_wikirate_company" }
-          end
-        end
-      end
-    end
+     it "has filter widget" do
+       is_expected.to have_tag("._filter-widget") do
+         with_tag "._add-filter-dropdown" do
+           with_tag "a.dropdown-item", text: /Keyword/, with: { "data-category" => "name" }
+           with_tag "a.dropdown-item", text: /Metric/, with: { "data-category" => "metric" }
+           with_tag "a.dropdown-item", text: /Project/, with: { "data-category" => "project" }
+           with_tag "a.dropdown-item", text: /Company/, with: { "data-category" => "wikirate_company" }
+         end
+       end
+     end
 
-    it "renders view: filter_form" do
-      # card.stub(:filter_keys).and_return(all_filter_fields)
-      html = card.format.render_filter_form
-      expect(html).to have_tag("_filter-widget")
-    end
+     it "has sort field" do
+       is_expected.to have_tag(".sort-input-group") do
+         with_select "sort", with: { "data-minimum-results-for-search" => "Infinity" } do
+           with_option "Alphabetical", "name"
+           with_option "Most Metrics", "metric"
+           with_option "Most Companies", "company"
+         end
+       end
+     end
   end
-  context "render core view" do
+
+  describe "view :content" do
     subject { card.format.render_content }
 
-    let(:content_view) { card.format.content_view }
-
-    it "has filter slot" do
+    it "has slot with filter-result-slot class" do
       is_expected.to have_tag(".card-slot._filter-result-slot")
-    end
-  end
-
-  context "Fields are filled" do
-    it "expand the form" do
-      Card::Env.params["filter"] = { wikirate_company: "Apple Inc" }
-      html = card.format.render_core
-      expect(html).to have_tag :div, with: { class: "filter-details",
-                                             style: "display: block;" }
     end
   end
 end
