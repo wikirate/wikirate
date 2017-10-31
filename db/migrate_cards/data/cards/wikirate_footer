@@ -1,0 +1,12 @@
+<nav class="text-center p-2 bg-light" role="navigation">
+	<div class="" id="bs-example-navbar-collapse-1">
+      <small><strong>
+      [[Contact WikiRate]] | [[Projects]] | [[Using_WikiRate|Help]] | [[Privacy Policy]] | [[Legal]] | [[Donate]] | 
+      <div class="d-inline-flex">[[https://twitter.com/wikirate|Twitter]]</div> |  
+      <div class="d-inline-flex">[[https://facebook.com/wikirate|Facebook]]</div> | 
+      <div class="d-inline-flex">[[http://wagn.org/|Powered by Decko]]</div>
+      </strong></small>
+      
+      <small>{{wikirate license|content}}</small>
+	</div>
+</nav>
