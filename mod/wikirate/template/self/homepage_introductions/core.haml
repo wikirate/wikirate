@@ -1,5 +1,5 @@
 .row.nopadding.transparent-background-white.nodblclick
-  .col-md-12.nopadding.visible-md.visible-lg
+  .col-md-12.nopadding.d-md-block.d-lg-block.d-sm-none
     / tabs
     .tabbable.tabs-left
       %ul.nav.nav-tabs.intro-tabs.flex-column
@@ -17,7 +17,7 @@
               %a.btn.btn-sm.btn-default{:href => "/#{type}"}
                 = "Browse #{type.to_s.pluralize.capitalize}"
   / for medium and mobile devices
-  .col-md-12.nopadding.hidden-md-up
+  .col-md-12.nopadding.d-md-none.d-lg-none.d-sm-block
     - categories.each do |type|
       %h3.text-center.no-bold-text
         = nest "homepage: #{type} intro", view: :core
