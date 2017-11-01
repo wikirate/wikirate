@@ -74,7 +74,7 @@ class Answer
     end
 
     def refresh_entry fields, ma_id
-      if !Card[ma_id]
+      if !Card.exists? ma_id
         delete_answer_for_card_id ma_id
       else
         create_or_update ma_id, *fields
@@ -82,7 +82,7 @@ class Answer
     end
 
     def delete_answer_for_card_id card_id
-      find_by_answer_id(card_id).destroy
+      find_by_answer_id(card_id)&.destroy
     end
 
     def refresh_all fields
