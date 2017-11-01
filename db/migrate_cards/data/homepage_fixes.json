@@ -58,5 +58,21 @@
   {
     "name": "Using WikiRate",
     "type": "HTML"
+  },
+  {
+    "name": "homepage: top banner",
+    "type": "HTML"
+  },
+  {
+    "name": "Metric+*self+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "Company+*self+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "Topic+*self+*structure",
+    "type": "HTML"
   }
 ]

@@ -59,7 +59,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  padding: 4px; 
+  padding: 4px;
 }
 
 .browse-company-item{
@@ -177,7 +177,7 @@
     }
     .vote-count {
         //color: $dark-text-color;
-        width: 15px;
+        width: 16px;
         height: 15px;
     }
     .logo {
@@ -211,6 +211,7 @@
         white-space: nowrap;
         overflow: hidden;
         color: $dark-text-color;
+        display: inline-block;
     }
     .topic {
         height: 38px;

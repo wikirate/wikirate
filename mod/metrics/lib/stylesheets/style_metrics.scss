@@ -187,11 +187,14 @@
             height: 35px;
             padding-top: 3px;
         }
+        .record-row{
+          width: 100%;
+        }
         .glyphicon-question-mark {
             font-weight: bold;
         }
         .row-data {
-            margin-left: 50px;
+            //margin-left: 50px;
         }
     }
 }
