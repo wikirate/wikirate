@@ -90,10 +90,11 @@ describe Card::Set::Right::BrowseNoteFilter do
 
     context "when sorting" do
       def create_claims
-        [create_claim("claim1"),
-         (Timecop.travel(Time.now + 10) do
-           create_claim "important_and_recent"
-         end)]
+        [[5, "claim1"], [10, "important_and_recent"]].map do |delay, claim_name|
+          Timecop.travel(Time.now + delay) do
+            create_claim claim_name
+          end
+        end
       end
 
       def create_voted_claims
