@@ -13,7 +13,7 @@ format :html do
   end
 
   view :core, cache: :never do
-    filter_fields "data-slot-selector" => ".RIGHT-all_metric_value.filter_result-view"
+    filter_fields slot_selector: ".RIGHT-all_metric_value.filter_result-view"
   end
 
   def filter_view

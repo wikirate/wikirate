@@ -298,23 +298,20 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
         Card.fetch([metric, :all_metric_values]).format(:html)._render_core
       end
 
-      specify do
-        is_expected.to have_tag ".container" do
-          with_tag ".row" do
-            with_tag "._filter_widget"
-          end
-          with_tag ".row.card-slot._filter-result-slot" do
-            with_tag ".container-fluid" do
-              with_tag ".row.text-center" do
-                with_tag ".vis", with: { "data-url" => "/Jedi+disturbances_in_the_Force+all_metric_values?format=json&view=vega" }
-              end
-              with_tag ".row" do
-                with_tag "table" do
-                  with_text /Death Star\s*2001 =\s*yes/
-                end
-              end
-            end
-          end
+      it "has filter widget" do
+        is_expected.to have_tag ".card" do
+          with_tag "._filter-widget"
+        end
+      end
+      it "has chart" do
+        is_expected.to have_tag ".row.text-center" do
+          with_tag ".vis", with: { "data-url" => "/Jedi+disturbances_in_the_Force+all_metric_values?format=json&view=vega" }
+        end
+      end
+
+      it "has table" do
+        is_expected.to have_tag "table" do
+          with_text /Death Star\s*2001 =\s*yes/
         end
       end
     end
