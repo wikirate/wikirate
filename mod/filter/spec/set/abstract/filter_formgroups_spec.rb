@@ -73,7 +73,8 @@ describe Card::Set::Abstract::FilterFormgroups do
       it "renders checkboxes" do
         is_expected.to have_tag :select, with: { multiple: "multiple" } do
           with_option "Researched"
-          with_option "B"
+          with_option "Formula"
+          with_option "WikiRating"
         end
       end
     end

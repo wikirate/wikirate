@@ -20,7 +20,7 @@ format :html do
     _render_filter_form + _render_filter_result
   end
 
-  view :filter_result,  template: :haml, cache: :never
+  view :filter_result, template: :haml, cache: :never
 
   view :filter_form do
     wrap_with :row, _render_filter

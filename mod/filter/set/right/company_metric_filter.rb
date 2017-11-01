@@ -18,7 +18,7 @@ end
 
 format :html do
   def filter_label field
-    field.to_sym == :metric ? "Keyword" : super
+    field.to_sym == :metric_type ? "Metric type" : super
   end
 
   def sort_options

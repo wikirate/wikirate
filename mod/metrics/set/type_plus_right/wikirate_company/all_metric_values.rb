@@ -11,9 +11,9 @@ def default_sort_option
 end
 
 format :html do
-  view :core, cache: :never do |args|
+  view :filter_result, cache: :never do |_args|
     voo.hide! :chart
-    super(args)
+    super(_args)
   end
 
   def table_args

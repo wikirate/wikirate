@@ -14,9 +14,3 @@ end
 
 # no sort options because sorting is done by links
 # in the header of the table
-
-format :html do
-  def filter_label field
-    field.to_sym == :wikirate_company ? "Keyword" : super
-  end
-end
