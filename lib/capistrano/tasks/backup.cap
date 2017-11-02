@@ -55,6 +55,7 @@ namespace :backup do
     end
   end
 
+  # refresh db from production backup
   task :refresh do
     invoke "backup:create"
     invoke "backup:unzip"
