@@ -1,15 +1,6 @@
-def filter_param field
-  (filter = Env.params[:filter]) && filter[field.to_sym]
-end
-
-def sort_param
-  Env.params[:sort] || default_sort_option
-end
+include_set Abstract::FilterHelper
 
 format :html do
-  delegate :filter_param, to: :card
-  delegate :sort_param, to: :card
-
   def select_filter field, label=nil, default=nil, options=nil
     options ||= filter_options field
     options.unshift(["--", ""]) unless default
@@ -21,37 +12,12 @@ format :html do
     multiselect_filter_tag field, label, default, options
   end
 
-  def checkbox_filter field, label=nil, default=nil, options=nil
-    name = filter_name field, true
-    default = Array(filter_param(field) || default)
-    options ||= filter_options field
-    label ||= filter_label(field)
-
-    formgroup label do
-      options.map do |option|
-        checkbox_filter_option option, name, default
-      end.join
-    end
-  end
-
-  def checkbox_filter_option option, tagname, default
-    option_name, option_value =
-      option.is_a?(Array) ? option : [option, option.downcase]
-    checked = default.include?(option_value)
-    wrap_with :label do
-      [
-        check_box_tag(tagname, option_value, checked),
-        option_name
-      ]
-    end
-  end
-
   def text_filter field, opts={}
     name = filter_name field
     add_class opts, "form-control"
-    formgroup filter_label(field), class: "filter-input" do
-      text_field_tag name, filter_param(field), opts
-    end
+    #formgroup filter_label(field), class: "filter-input" do
+    text_field_tag name, filter_param(field), opts
+    #end
   end
 
   def select_filter_type_based type_codename, order="asc"
@@ -83,11 +49,11 @@ format :html do
     # these classes make the select field a jquery chosen select field
     css_class =
       html_options[:multiple] ? "pointer-multiselect" : "pointer-select"
-    add_class html_options, css_class
+    add_class(html_options, css_class + " filter-input #{field} _filter_input_field")
 
-    formgroup label, class: "filter-input #{field}" do
-      select_tag name, options, html_options
-    end
+    # formgroup label, class: "filter-input #{field} _filter_input_field" do
+    select_tag name, options, html_options
+    # end
   end
 
   def filter_name field, multi=false

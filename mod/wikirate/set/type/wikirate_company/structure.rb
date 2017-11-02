@@ -140,9 +140,12 @@ format :html do
     field_nest :project, items: { view: :listing }
   end
 
-  view :filter do |args|
-    field_subformat(:company_metric_filter)._render_core args
-  end
+  # view :filter do |args|
+  #   binding.pry
+  #   filter_form  a: { input_field: "<input class='a'/>", label: "A" },
+  #                                    b: { input_field: "<select class='b'/>", label: "B" }
+  #   # field_subformat(:company_metric_filter)._render_core args
+  # end
 
   view :browse_item, template: :haml
 
