@@ -1,5 +1,9 @@
 {{style: mixins and variables|raw}}
 
+:root {
+    font-size: 95%;
+}
+
 body {
   color: $body-txt-color;
   text-rendering: optimizeLegibility;
@@ -19,11 +23,10 @@ body#wagn {
 
 body#tinymce {
   padding: 4px;
-
 }
 
 .card-menu.btn-group {
-  padding: 0.5rem 0;
+  padding: 0.4rem 0;
 }
 
 //Center alignment for all open-view heading
@@ -78,7 +81,7 @@ h2 {
 
 }
 
-.card-content {
+.d0-card-content {
   .titled-view, .titled_with_edits-view {
     > .card-header {
       line-height: 1.4em;
@@ -93,6 +96,30 @@ h2 {
 .yinyang {
   float:left;
   width:100%;
+}
+
+@mixin yinyang-header($header-color) {
+  >.card> .card-header  {
+    color: #fff;
+    background:$header-color;
+    text-align:center;
+  }
+
+}
+
+
+#main > .TYPE-metric  {
+  @include yinyang-header($metric-color);
+}
+
+#main > {
+  .TYPE-company,[class*='company-overview'], [class*='company-reference'],[class*='company-note']   {
+    @include yinyang-header($company-color);
+  }
+}
+
+#main > .TYPE-topic,[class*='topic-overview'], [class*='topic-reference'],[class*='topic-note'],[class*='topic-company']      {
+  @include yinyang-header($topic-color);
 }
 
 
@@ -111,7 +138,7 @@ h2 {
   }
 
 }
-.RIGHT-logo.card-content img {
+.RIGHT-logo.d0-card-content img {
   max-height: 100%;
 
 }
@@ -140,7 +167,7 @@ h2 {
         > .card-body {
           margin: 5px 0 5px 3%;
         }
-        > .card-content {
+        > .d0-card-content {
           padding: 10px 20px 15px;
         }
       }
@@ -178,7 +205,7 @@ h2 {
 }
 body.home-layout #main {
   padding:66px 0px 0px;
-  > .card-content {
+  > .d0-card-content {
     .SELF-wikirate_infographic {
       text-align: center;
       border-radius: 4px;
@@ -314,7 +341,7 @@ body {
   width: 100%;
 }
 
-.TYPE-image.card-content img, .TYPE-image .card-body img {
+.TYPE-image.d0-card-content img, .TYPE-image .card-body img {
   max-width: 100%;
   max-height: 100%;
 }

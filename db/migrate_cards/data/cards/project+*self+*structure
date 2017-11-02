@@ -3,11 +3,11 @@
 
 <div class="tabbable" id="project-tabs">
 		<ul class="nav nav-tabs">
-			<li class="active">
-				<a href="#project-active" data-toggle="tab">Active</a>
+			<li class="nav-item">
+				<a href="#project-active" class="active nav-link" data-toggle="tab">Active</a>
 			</li>
-			<li>
-				<a href="#project-inactive" data-toggle="tab">Inactive</a>
+			<li class="nav-item">
+				<a href="#project-inactive" class="nav-link" data-toggle="tab">Inactive</a>
 			</li>
 		</ul>
 	<div class="tab-content">

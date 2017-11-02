@@ -2,6 +2,14 @@ require "colorize"
 
 namespace :wikirate do
   desc "fetch json from export card on dev site and generate migration"
+  task import_from_staging: :environment do
+    import_cards do
+      json = open("http://staging.wikirate.org/export.json").read
+      JSON.parse(json).deep_symbolize_keys
+    end
+  end
+
+  desc "fetch json from export card on dev site and generate migration"
   task import_from_dev: :environment do
     import_cards do
       json = open("http://dev.wikirate.org/export.json").read

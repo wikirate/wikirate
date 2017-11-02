@@ -145,7 +145,7 @@
     display: none;
 }
 
-.RIGHT-company.card-content .company-item .item-link > a {
+.RIGHT-company.d0-card-content .company-item .item-link > a {
     background: #03998d;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
@@ -187,11 +187,14 @@
             height: 35px;
             padding-top: 3px;
         }
+        .record-row{
+          width: 100%;
+        }
         .glyphicon-question-mark {
             font-weight: bold;
         }
         .row-data {
-            margin-left: 50px;
+            //margin-left: 50px;
         }
     }
 }
@@ -341,7 +344,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     z-index: 0!important;
 }
 
-.titled-view.TYPE_PLUS_RIGHT-metric-formula .TYPE_PLUS_RIGHT-metric-formula.card-content {
+.titled-view.TYPE_PLUS_RIGHT-metric-formula .TYPE_PLUS_RIGHT-metric-formula.d0-card-content {
   white-space: inherit;
   display: inline-block;
   width: 100%;

@@ -7,5 +7,3 @@
 <div id="browse-companies">
    {{+browse company filter||browse_item}}
 </div>
-
-

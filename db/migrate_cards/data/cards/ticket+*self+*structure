@@ -1,0 +1,22 @@
+<p>{{+description}}</p>
+<p>{{_|add_button}}</p>
+
+
+<div class="tabbable" id="project-tabs">
+		<ul class="nav nav-tabs">
+			<li class=" nav-item">
+				<a href="#ticket-open" class="active nav-link" data-toggle="tab">Open</a>
+			</li>
+			<li class=" nav-item">
+				<a href="#ticket-closed"  class="nav-link" data-toggle="tab">Closed</a>
+			</li>
+		</ul>
+	<div class="tab-content">
+			<div class="tab-pane active" id="ticket-open">
+			  <br>{{+Open|titled; title: Open Tickets}}
+			</div>
+			<div class="tab-pane" id="ticket-closed">
+			  <br>{{+Closed|titled; title: Closed Tickets}}
+			</div>
+	</div>
+</div>

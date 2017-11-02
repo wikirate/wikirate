@@ -38,6 +38,6 @@ format :html do
   def tab_link url, icon, title
     icon = fa_icon icon
     title = icon + title
-    link_to title, href: url, target: "_blank"
+    link_to title, href: url, target: "_blank", class: "nav-link"
   end
 end

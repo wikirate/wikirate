@@ -1,0 +1,78 @@
+[
+  {
+    "name": "homepage: wikirate gets it right",
+    "type": "HTML"
+  },
+  {
+    "name": "wikirate footer",
+    "type": "HTML"
+  },
+  {
+    "name": "community: section 1+info",
+    "type": "Basic"
+  },
+  {
+    "name": "community: section 2+info",
+    "type": "Basic"
+  },
+  {
+    "name": "community: section 3+info",
+    "type": "Basic"
+  },
+  {
+    "name": "community: section 4+info",
+    "type": "Basic"
+  },
+  {
+    "name": "community: section 5+info",
+    "type": "Basic"
+  },
+  {
+    "name": "community: section 6+info",
+    "type": "Basic"
+  },
+  {
+    "name": "community: section 7+info",
+    "type": "Basic"
+  },
+  {
+    "name": "community: section 8+info",
+    "type": "Basic"
+  },
+  {
+    "name": "wikirate license",
+    "type": "PlainText"
+  },
+  {
+    "name": "Ticket+*self+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "Project+*self+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "export",
+    "type": "Pointer"
+  },
+  {
+    "name": "Using WikiRate",
+    "type": "HTML"
+  },
+  {
+    "name": "homepage: top banner",
+    "type": "HTML"
+  },
+  {
+    "name": "Metric+*self+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "Company+*self+*structure",
+    "type": "HTML"
+  },
+  {
+    "name": "Topic+*self+*structure",
+    "type": "HTML"
+  }
+]
