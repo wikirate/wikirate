@@ -73,15 +73,12 @@ class Answer
       end
     end
 
-    def refresh_entry fields, card_id
-      if Card.exists? card_id
-        create_or_update card_id, *fields
+    def refresh_entry fields, ma_id
+      if !Card.exists? ma_id
+        delete_answer_for_card_id ma_id
       else
-        delete_answer_for_card_id card_id
+        create_or_update ma_id, *fields
       end
-    rescue StandardError => e
-      raise e, "failed to refresh answer lookup table " \
-               "for card id #{card_id}: #{e.message}"
     end
 
     def delete_answer_for_card_id card_id
