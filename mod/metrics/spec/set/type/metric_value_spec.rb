@@ -97,8 +97,11 @@ RSpec.describe Card::Set::Type::MetricValue do
       expect(new_answer.name)
         .to eq "#{metric.name}+#{company.name}+2015"
       new_name = "#{metric.name}+#{company.name}+2014"
-      new_answer.update_attributes! name: new_name
-      expect(new_answer.name).to eq(new_name)
+      newer_answer = new_answer.refresh true
+      # FIXME: this refresh prevents a log error (exception in integrate phase: undefined method `metric_card`)
+      # that error is happening because the director on new_answer is not getting cleared.
+      newer_answer.update_attributes! name: new_name
+      expect(newer_answer.name).to eq(new_name)
     end
 
     it "updates value correctly" do

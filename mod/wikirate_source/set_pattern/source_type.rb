@@ -5,12 +5,23 @@
 }
 
 def source_type card_or_name
-  source_name = card_or_name.is_a?(Card) ? card_or_name.name : card_or_name
-  st_name = "#{source_name}+*source type"
-  st_card = Card.fetch(st_name, skip_modules: true, skip_type_lookup: true)
-  st_card ||= card_or_name.is_a?(Card) && card_or_name.subfield(:source_type)
-  st_type = st_card && st_card.standard_content.scan(/\[\[([^\]]+)\]\]/).flatten.first
-  st_type || "Link"
+  source_type_card = standard_source_type_card(card_or_name) || source_type_card_from_subfield(card_or_name)
+  source_type_from_card(source_type_card) || "Link"
+end
+
+def source_type_from_card source_type_card
+  return unless source_type_card
+  source_type_card.standard_content.scan(/\[\[([^\]]+)\]\]/).flatten.first
+end
+
+def standard_source_type_card card_or_name
+  source_name = card_or_name.is_a?(Card) ? card_or_name.name : card_or_name.to_name
+  Card.fetch source_name.trait(:source_type), skip_modules: true, skip_type_lookup: true
+end
+
+def source_type_card_from_subfield card_or_name
+  return unless card_or_name.is_a? Card
+  card_or_name.subfield :source_type
 end
 
 def label _name
