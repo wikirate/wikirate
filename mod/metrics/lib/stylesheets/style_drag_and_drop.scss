@@ -143,13 +143,13 @@
 //}
 //
 //
-//.yinyang-list > .card-content > .search-result-list{
+//.yinyang-list > .d0-card-content > .search-result-list{
 //  padding: 0px;
 //}
 //
 //
 //.TYPE-company,.TYPE-topic, .RIGHT-overview_page,.RIGHT-company_page, .RIGHT-reference_page,.RIGHT-note_page, .RIGHT-topic_page{
-//  &.card-content{
+//  &.d0-card-content{
 //    //padding: 0;
 //  }
 //  &.open-view .company-page-logo-container,   &.open-view .topic-page-logo-container {
@@ -181,7 +181,7 @@
 //
 //
 //@mixin yinyang-frame($header-color) {
-//  > .card-body.card-content {
+//  > .card-body.d0-card-content {
 //    padding: 0;
 //  }
 //  > .card-header {

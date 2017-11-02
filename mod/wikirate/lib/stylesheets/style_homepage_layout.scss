@@ -293,8 +293,8 @@
 
 #notes-sources {
 
-  .card-content.SELF-homepage_note_list,
-  .card-content.SELF-homepage_source_list {
+  .d0-card-content.SELF-homepage_note_list,
+  .d0-card-content.SELF-homepage_source_list {
     padding: 5px 0;
     margin: 15px 3.5%;
     border: 1px solid #ddd;
@@ -302,10 +302,10 @@
     height: 750px; // Temporary fix for same height , it should be dynamic at somepoint...
     overflow: auto;
   }
-  .card-content.SELF-homepage_note_list {
+  .d0-card-content.SELF-homepage_note_list {
     border-top: 8px solid $note-color;
   }
-  .card-content.SELF-homepage_source_list {
+  .d0-card-content.SELF-homepage_source_list {
     border-top: 8px solid $source-color;
   }
   .note-list,
@@ -429,8 +429,8 @@
       clear: both;
       margin-bottom: 30px;
     }
-    .card-content.SELF-homepage_source_list,
-    .card-content.SELF-homepage_note_list {
+    .d0-card-content.SELF-homepage_source_list,
+    .d0-card-content.SELF-homepage_note_list {
       height: auto;
     }
   }
@@ -476,8 +476,8 @@
 
   }
   #notes-sources {
-    .card-content.SELF-homepage_note_list,
-    .card-content.SELF-homepage_source_list {
+    .d0-card-content.SELF-homepage_note_list,
+    .d0-card-content.SELF-homepage_source_list {
       margin: 15px 0;
     }
 
@@ -527,7 +527,7 @@
 
   }
 
-  #top-banner-wrapper .column-2 .SELF-wikirate_globe.card-content {
+  #top-banner-wrapper .column-2 .SELF-wikirate_globe.d0-card-content {
     display: none;
   }
 
