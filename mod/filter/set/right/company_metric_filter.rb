@@ -1,32 +1,24 @@
-include_set Abstract::MetricRecordFilter
+include_set Abstract::RightFilterForm
 
 def filter_keys
-  %w[metric_value year]
+  %i[metric_value year]
 end
 
 def advanced_filter_keys
-  %w[metric wikirate_topic project research_policy importance metric_type]
+  %i[metric wikirate_topic project research_policy importance metric_type]
 end
 
 def default_sort_option
   :importance
 end
 
+def default_filter_option
+  { year: :latest, metric_value: :exists }
+end
+
 format :html do
-  def filter_labels field
-    field.to_sym == :metric ? "Keyword" : super
-  end
-
-  def filter_body_header
-    "Metric"
-  end
-
-  def advanced_filter_form
-    output [
-      advanced_filter_formgroups,
-      "<hr/>",
-      _render_sort_formgroup
-    ]
+  def filter_label field
+    field.to_sym == :metric_type ? "Metric type" : super
   end
 
   def sort_options

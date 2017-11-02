@@ -5,19 +5,9 @@ describe Card::Set::Abstract::FilterFormgroups do
     subject { card.format.render_sort_formgroup }
 
     it "renders select form" do
-      is_expected.to have_tag(:div,
-                              with: { class: "form-group filter-input" }) do
-        with_tag :label, text: "Sort"
-        with_tag :div do
-          with_tag :div, with: { class: "editor" } do
-            with_tag :select, with: { name: "sort" } do
-              with_tag :option, with: { selected: "selected", value: "metric" },
-                                text: "Most Metrics"
-              with_tag :option, with: { value: "company" },
-                                text: "Most Companies"
-            end
-          end
-        end
+      is_expected.to have_tag :select, with: { name: "sort" } do
+        with_option "Most Metrics", "metric", selected: "selected"
+        with_option "Most Companies", "company"
       end
     end
   end
@@ -26,18 +16,13 @@ describe Card::Set::Abstract::FilterFormgroups do
     subject { card.format.render_industry_formgroup }
 
     it "renders select form" do
-      industries =
-        Card[Card::CompanyFilterQuery::INDUSTRY_METRIC_NAME].value_options
-      is_expected.to have_tag(:div,
-                              with: { class: "form-group filter-input" }) do
-        with_tag :label, text: "Industry"
-        with_tag :select,
-                 with: { name: "filter[industry]", class: "pointer-select" } do
-          industries.each do |i|
-            with_tag :option, with: { value: i }, text: i
-          end
-          with_tag :option, with: { value: "" }, text: "--"
+      industries = Card[Card::CompanyFilterQuery::INDUSTRY_METRIC_NAME].value_options
+      is_expected.to have_tag :select, with: { name: "filter[industry]",
+                                               class: "pointer-select" } do
+        industries.each do |text|
+          with_option text, text
         end
+        with_option "--", ""
       end
     end
   end
@@ -62,13 +47,14 @@ describe Card::Set::Abstract::FilterFormgroups do
         )
       end
     end
-    context "checkbox form" do
+    context "multiselect form" do
       subject { card.format.render_research_policy_formgroup }
 
-      it "renders checkboxes" do
-        is_expected.to have_tag(
-          :input, with: { name: "filter[research_policy][]" }
-        )
+      it "render multiselect list" do
+        is_expected.to have_tag :select, with: { multiple: "multiple" } do
+          with_option "Community Assessed", "Community Assessed"
+          with_option "Designer Assessed", "Designer Assessed"
+        end
       end
     end
   end
@@ -81,11 +67,15 @@ describe Card::Set::Abstract::FilterFormgroups do
         is_expected.to have_tag(:select, with: { name: "filter[metric_type]" })
       end
     end
-    context "checkbox form" do
+    context "multiselect form" do
       subject { card.format.render_metric_type_formgroup }
 
       it "renders checkboxes" do
-        is_expected.to have_tag(:input, with: { name: "filter[metric_type][]" })
+        is_expected.to have_tag :select, with: { multiple: "multiple" } do
+          with_option "Researched"
+          with_option "Formula"
+          with_option "WikiRating"
+        end
       end
     end
   end

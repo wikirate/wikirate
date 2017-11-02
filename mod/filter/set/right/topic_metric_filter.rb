@@ -1,11 +1,15 @@
-include_set Abstract::CollapsedFilterForm
+include_set Abstract::RightFilterForm
 
 def filter_keys
-  %w[metric research_policy metric_type]
+  %i[metric research_policy metric_type]
 end
 
 def default_sort_option
   "upvoted"
+end
+
+def default_filter_option
+  { year: :latest, metric_value: :exists }
 end
 
 format :html do

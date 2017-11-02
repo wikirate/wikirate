@@ -79,7 +79,7 @@ format do
 end
 
 format :html do
-  if Card::Codename[:wikirate_topic]
+  if Card::Codename.exists? :wikirate_topic
     METHOD_PREFIX = {
       WikirateTopicID    => :topic,
       MetricID           => :metric,

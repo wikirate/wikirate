@@ -2,14 +2,18 @@ format :html do
   view :table_form, cache: :never, perms: :update, tags: :unknown_ok do
     voo.editor = :inline_nests
     with_nest_mode :edit do
-      relative_card_form :create, "main-success" => "REDIRECT",
-                                  class: "new-value-form",
-                                  success: { id: card.contextual_record_name,
-                                             soft_redirect: true,
-                                             view: :new_answer_success } do
+      card_form :create, class: "new-value-form",
+                         "main-success" => "REDIRECT",
+                         success: table_form_success  do
         render_haml :new_form
       end
     end
+  end
+
+  def table_form_success
+    { id: card.contextual_record_name,
+      soft_redirect: true,
+      view: :new_answer_success }
   end
 
   def new_buttons

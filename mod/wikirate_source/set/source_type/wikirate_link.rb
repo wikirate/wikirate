@@ -8,8 +8,7 @@ format :html do
   end
 end
 
-event :autopopulate_website,
-      :prepare_to_store, on: :create, when: proc { |c| c.populate_website? } do
+event :autopopulate_website, :prepare_to_store, on: :create, when: :populate_website? do
   link = subfield(:wikirate_link).content
   host = URI.parse(link).host
   add_subfield :wikirate_website, content: "[[#{host}]]", type_id: PointerID
@@ -17,12 +16,7 @@ event :autopopulate_website,
   add_subcard host, type_id: Card::WikirateWebsiteID
 end
 
-event :import_linked_source, :integrate_with_delay, on: :save do
-  generate_pdf if import? && html_link?
-end
-
-event :process_source_url, after: :check_source,
-                           on: :create do
+event :process_source_url, after: :check_source, on: :create do
   if !(link_card = subfield(:wikirate_link)) || link_card.content.empty?
     errors.add(:link, "does not exist.")
     return
@@ -129,7 +123,7 @@ def download_and_add_file
   file_url = Addressable::URI.escape url
   add_subfield :file, remote_file_url: file_url, type_id: FileID, content: "dummy"
   source_type = subfield(:source_type)
-  source_type.content = "[[#{Card[:file].name}]]"
+  source_type.content = "[[#{:file.cardname}]]"
   remove_subfield :wikirate_link
   reset_patterns
   include_set_modules
