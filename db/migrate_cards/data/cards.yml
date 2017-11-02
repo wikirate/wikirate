@@ -3,36 +3,36 @@
 - :name: metric value source form
   :type: HTML
   :key: metric_value_source_form
-  :merged: 2017-10-23 20:47:30 UTC
+  :merged: 2017-10-26 10:34:10 UTC
 - :name: Research Page+Company
   :type: Session
   :key: research_page+company
-  :merged: 2017-10-23 20:47:30 UTC
+  :merged: 2017-10-26 10:34:10 UTC
 - :name: Research Page+Metric
   :type: Session
   :key: research_page+metric
-  :merged: 2017-10-23 20:47:30 UTC
+  :merged: 2017-10-26 10:34:10 UTC
 - :name: Source+*type+*structure
   :type: HTML
   :key: source+*type+*structure
-  :merged: 2017-10-23 20:47:30 UTC
+  :merged: 2017-10-26 10:34:10 UTC
 - :name: Cardtype+*metric type+*type plus right+*structure
   :type: Set
   :key: cardtype+*metric_type+*type_plu_right+*structure
-  :merged: 2017-10-23 20:47:30 UTC
+  :merged: 2017-10-26 10:34:10 UTC
 - :name: Link+*source type
   :type: Set
   :key: link+*source_type
-  :merged: 2017-10-23 20:47:30 UTC
+  :merged: 2017-10-26 10:34:10 UTC
 - :name: Text+*source type
   :type: Set
   :key: text+*source_type
-  :merged: 2017-10-23 20:47:30 UTC
+  :merged: 2017-10-26 10:34:10 UTC
 - :name: File+*source type
   :type: Set
   :key: file+*source_type
-  :merged: 2017-10-23 20:47:30 UTC
-- :name: Note+*self+*structure
+  :merged: 2017-10-26 10:34:10 UTC
+- :name: note+*self+*structure
   :type: HTML
   :key: note+*self+*structure
 - :name: source+*self+*structure
@@ -164,7 +164,6 @@
 - :name: Project+*self+*structure
   :type: HTML
   :key: project+*self+*structure
-  :merged: 2017-02-15 17:33:27 UTC
 - :name: Project+status+*type plus right+*options
   :type: Pointer
   :key: project+status+*type_plu_right+*option
@@ -239,12 +238,11 @@
   :merged: 2017-02-15 17:33:31 UTC
 - :name: nav bar
   :type: HTML
+  :codename: :nav_bar
   :key: nav_bar
-  :merged: 2017-10-23 20:47:27 UTC
 - :name: nav bar menu
   :type: HTML
   :key: nav_bar_menu
-  :merged: 2017-10-23 20:47:27 UTC
 - :name: Company
   :type: Cardtype
   :codename: wikirate_company
@@ -319,7 +317,7 @@
   :key: note+description
 - :name: Source
   :type: Cardtype
-  :codename: source
+  :codename: :source
   :key: source
 - :name: Source+description
   :type: Basic
@@ -450,12 +448,42 @@
   :key: search_result_view_skewed_unclear
 - :name: "*navbox"
   :type: Basic
-  :codename: navbox
+  :codename: :navbox
   :key: "*navbox"
 - :name: "*account links"
   :type: Basic
-  :codename: account_links
+  :codename: :account_links
   :key: "*account_link"
+- :name: Metric+*self+*structure
+  :type: HTML
+  :key: metric+*self+*structure
+  :merged: 2017-10-26 13:04:50 UTC
+- :name: Topic+*self+*structure
+  :type: HTML
+  :key: topic+*self+*structure
+  :merged: 2017-10-26 13:04:50 UTC
+- :name: Company+*self+*structure
+  :type: HTML
+  :key: company+*self+*structure
+  :merged: 2017-10-26 13:04:50 UTC
+- :name: PRME Data collection - core metrics for companies
+  :type: Project
+  :key: prme_datum_collection_core_metric_for_company
+- :name: EAFIT 2017 - further research
+  :type: Project
+  :key: eafit_2017_further_research
+- :name: PRME Data collection - core metrics for universities
+  :type: Project
+  :key: prme_datum_collection_core_metric_for_university
+- :name: Universidad EAFIT - Researching Corporate Performance - SDGs 8 & 16
+  :type: Project
+  :key: universidad_eafit_researching_corporate_performance_sd_g_8_16
+- :name: Company Vetting
+  :type: Project
+  :key: company_vetting
+- :name: 'MANA: Tracking Environmental Incidents'
+  :type: Project
+  :key: mana_tracking_environmental_incident
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org
