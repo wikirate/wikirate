@@ -1,7 +1,11 @@
-# use for the filters on the "browse ..." pages
+# used for the filters on the "browse ..." pages
 
 include_set Type::SearchType
 include_set Abstract::Filter
+
+def filter_keys
+  %i[metric designer wikirate_topic project year]
+end
 
 def sort?
   true
@@ -9,10 +13,6 @@ end
 
 def default_sort_by_key
   "metric"
-end
-
-def filter_keys
-  %w[metric designer wikirate_topic project year]
 end
 
 def filter_class
@@ -67,53 +67,16 @@ format :html do
   #   wrap_with :div, "No result", class: "search-no-results"
   # end
 
+  def default_content_args args
+    class_up "card-slot", "_filter-result-slot"
+  end
+
+  def filter_action_path
+    path
+  end
+
   view :filter_form, cache: :never do
-    action = card.left.name
-    wrap_with :form, action: "/#{action}", method: "GET" do
-      [
-        _render(:sort_formgroup),
-        main_filter_formgroups,
-        advanced_filter_formgroups,
-        filter_button_formgroup
-      ]
-    end
-  end
-
-  def filter_button_formgroup
-    button_formgroup do
-      [advanced_button, reset_button]
-    end
-  end
-
-  def reset_button
-    link_to_card(card.name.left_name, "Reset",
-                 class: "slotter btn btn-default margin-8")
-  end
-
-  def advanced_button
-    toggle_text = filter_advanced_active? ? "Hide Advanced" : "Show Advanced"
-    wrap_with :a, toggle_text,
-              href: "#collapseFilter",
-              class: "btn btn-default",
-              data: { toggle: "collapse",
-                      collapse_text_in: "Hide Advanced",
-                      collapse_text_out: "Show Advanced" }
-  end
-
-  def advanced_filter_formgroups
-    return "".html_safe unless advanced_filter_keys
-    wrap_as_collapse do
-      super
-    end
-  end
-
-  def wrap_as_collapse
-    <<-HTML
-     <div class="advanced-options">
-      <div id="collapseFilter" class="collapse #{'in' if filter_advanced_active?}">
-        #{yield}
-      </div>
-    </div>
-    HTML
+    filter_fields slot_selector: "._filter-result-slot",
+                  sort_field: _render(:sort_formgroup)
   end
 end

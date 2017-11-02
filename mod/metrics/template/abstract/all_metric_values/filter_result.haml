@@ -1,0 +1,8 @@
+- haml_wrap(true) do
+  .row.text-center
+    - if voo.show? :chart
+      = _render_chart
+  .row
+    = _render_table
+  .row
+    = nest card.left, view: :export_links

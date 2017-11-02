@@ -8,20 +8,15 @@ describe Card::Set::Right::BrowseNoteFilter do
 
     it "has correct form tag" do
       is_expected.to have_tag(
-        "form", with: { action: "/#{Card[:claim].name}", method: "GET" }
+        "form", with: { action: "/#{Card[:claim].name}+browse_note_filter", method: "get" }
       )
     end
 
     it "has sort formgroup" do
-      is_expected.to have_tag("div", with: { class: "editor" }) do
-        with_tag "select", with: { id: "sort" } do
-          with_tag "option",
-                   with: { value: "important", selected: "selected" },
-                   text: "Most Important"
-          with_tag "option",
-                   with: { value: "recent" },
-                   without: { selected: "selected" },
-                   text: "Most Recent"
+      is_expected.to have_tag(".sort-input-group") do
+        with_select "sort" do
+          with_option "Most Important", "important", selected: "selected"
+          with_option "Most Recent", "recent"
         end
       end
     end
