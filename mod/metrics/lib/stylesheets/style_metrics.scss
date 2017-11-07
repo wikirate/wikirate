@@ -132,6 +132,11 @@
 .metric-year {
     font-size: 8px;
     color: $dark-text-color;
+    white-space: nowrap;
+    max-width: 300px;
+    text-overflow: ellipsis;
+    display: inline-block;
+    overflow: hidden;
 }
 .metric-value {
     a {
@@ -517,9 +522,8 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 .metric-value.small {
     font-size: 15px;
     white-space: nowrap;
-    max-width: 100px;
+    max-width: 300px;
     text-overflow: ellipsis;
-    // width: 50%;
     padding-right: 5px;
     display: inline-block;
     float: left;

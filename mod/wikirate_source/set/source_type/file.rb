@@ -15,6 +15,10 @@ format :html do
                  path: { view: :import }
   end
 
+  def humanized_attachment_name
+    "source file"
+  end
+
   def csv?
     card.file_card.file.content_type.in? ["text/csv", "text/comma-separated-values"]
   end
