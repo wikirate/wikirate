@@ -67,4 +67,8 @@ format :html do
   def import_table_row_class
     Abstract::Import::TableRowWithCompanyMapping
   end
+
+  def humanized_attachment_name
+    "source file"
+  end
 end
