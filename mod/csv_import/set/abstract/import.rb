@@ -12,12 +12,26 @@ def clean_html?
   false
 end
 
-event :validate_csv_format, :validate, when: proc { |c| c.save_preliminary_upload? } do
-  begin
-    CSVFile.new upload_cache_card.file, csv_row_class, headers: :detect
-  rescue CSV::MalformedCSVError => e
-    abort :failure, "malformed csv: #{e.message}"
+def csv_only? # for override
+  true
+end
+
+def csv?
+  file.content_type.in? ["text/csv", "text/comma-separated-values"]
+end
+
+event :validate_import_format, :validate, when: :save_preliminary_upload? do
+  if csv?
+    validate_csv
+  elsif csv_only?
+    abort :failure, "file must be CSV"
   end
+end
+
+def validate_csv
+  CSVFile.new upload_cache_card.file, csv_row_class, headers: :detect
+rescue CSV::MalformedCSVError => e
+  abort :failure, "malformed csv: #{e.message}"
 end
 
 format :html do
