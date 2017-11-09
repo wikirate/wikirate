@@ -15,6 +15,10 @@ event :validate_import, :prepare_to_validate,
   check_card year, "Year", Card::YearID
 end
 
+def csv_only?
+  false
+end
+
 def csv_row_class
   CSVRow::Structure::AnswerFromSourceCSV
 end
