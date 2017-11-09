@@ -60,14 +60,13 @@ namespace :deploy do
     end
   end
 
+  after :published, :restart
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      execute :touch, release_path.join('tmp/restart.txt')
+    end
+  end
+
   after :finishing, :cleanup
-
-
-  #after :published, :restart
-  #desc 'Restart application'
-  #task :restart do
-  #  on roles(:app), in: :sequence, wait: 5 do
-  #    execute :touch, release_path.join('tmp/restart.txt')
-  #  end
-  #end
 end
