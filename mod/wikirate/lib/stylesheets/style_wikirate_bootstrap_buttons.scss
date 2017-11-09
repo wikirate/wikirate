@@ -420,35 +420,13 @@ button:hover .hover-text {
   display: inline;
 }
 
+.page-item{
+  &.active .page-link {
+      background-color: #03998d;
+      border-color: #03998d;
+  }
 
-.pagination > {
-    .active > {
-        a,
-        a:focus,
-        a:hover,
-        span,
-        span:focus,
-        span:hover {
-            background-color: $brand-primary;
-            border-color: $brand-primary;
-            color: #fff;
-            cursor: default;
-            z-index: 2;
-        }
-    }
-    li > {
-        a,
-        span {
-            background-color: #fff;
-            border-radius: 0px!important;
-            border: 1px solid #ddd;
-            color: $brand-primary;
-            float: left;
-            line-height: 1.42857143;
-            margin-left: -1px;
-            padding: 6px 12px;
-            position: relative;
-            text-decoration: none;
-        }
-    }
+  .page-link{
+      color: #03998d;
+  }
 }
