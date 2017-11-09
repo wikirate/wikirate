@@ -2,13 +2,13 @@
 
 # this overrides the default git:create_release in order to run submodules
 #namespace :git do
-#  desc 'Copy repo to releases'
-#  task create_release: :'git:update' do
+#  desc "Copy repo to releases"
+#  task create_release: :"git:update" do
 #    on roles(:all) do
 #      with fetch(:git_environmental_variables) do
 #        within repo_path do
-#          execute :git, :clone, '-b', fetch(:branch),
-#                  '--recursive --depth 1 .', release_path
+#          execute :git, :clone, "-b", fetch(:branch),
+#                  "--recursive --depth 1 .", release_path
 #        end
 #      end
 #    end
@@ -26,9 +26,9 @@ namespace :deploy do
 **************************************************************
 
     EOF
-    ask :answer, "Are you sure you want to update wikirate.org? Type 'forgive me, Yoda'"
-    exit unless fetch(:answer) == 'forgive me, Yoda'
-    # invoke 'backup:create'
+    ask :answer, "Are you sure you want to update wikirate.org? Type "forgive me, Yoda""
+    exit unless fetch(:answer) == "forgive me, Yoda"
+    # invoke "backup:create"
   end
 
   after :updated, :migrate do
@@ -37,9 +37,9 @@ namespace :deploy do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
       within release_path do
-        # execute :mkdir, 'tmp'
-        execute :mkdir, 'log'
-        execute :rake, 'decko:migrate'
+        # execute :mkdir, "tmp"
+        execute :mkdir, "log"
+        execute :rake, "decko:migrate"
       end
     end
   end
@@ -47,24 +47,24 @@ namespace :deploy do
   desc "Set www-data permissions on config.ru / log"
   after :updated, :deploy_chown do
     on roles(:app) do
-      execute :sudo, '/opt/bin/deploy_chown', release_path
+      execute :sudo, "/opt/bin/deploy_chown", release_path
     end
   end
 
-  desc 'clear cache'
+  desc "clear cache"
   after :published, :clear_cache do
     on roles(:app) do
       within release_path do
-        execute :rake, 'decko:reset_cache'
+        execute :rake, "decko:reset_cache"
       end
     end
   end
 
   after :published, :restart
-  desc 'Restart application'
+  desc "Restart application"
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      execute :touch, release_path.join('tmp/restart.txt')
+      execute :touch, release_path.join("tmp/restart.txt")
     end
   end
 
