@@ -15,7 +15,6 @@
 #  end
 #end
 
-
 namespace :deploy do
   before :starting, :backup do
     next unless fetch(:stage) == :production
@@ -26,7 +25,7 @@ namespace :deploy do
 **************************************************************
 
     EOF
-    ask :answer, "Are you sure you want to update wikirate.org? Type "forgive me, Yoda""
+    ask :answer, 'Are you sure you want to update wikirate.org? Type "forgive me, Yoda"'
     exit unless fetch(:answer) == "forgive me, Yoda"
     # invoke "backup:create"
   end
