@@ -15,6 +15,10 @@ event :validate_import, :prepare_to_validate,
   check_card year, "Year", Card::YearID
 end
 
+def csv_only?
+  false
+end
+
 def csv_row_class
   CSVRow::Structure::AnswerFromSourceCSV
 end
@@ -66,5 +70,9 @@ format :html do
 
   def import_table_row_class
     Abstract::Import::TableRowWithCompanyMapping
+  end
+
+  def humanized_attachment_name
+    "source file"
   end
 end
