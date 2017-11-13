@@ -3,8 +3,8 @@
     %input#card_subcards___metric_type_content.card-content.form-control{:name => "card[subcards][+*metric type][content]", :type => "hidden", :value => ""}
     %ul.nav.nav-tabs{role: "tablist"}
       - tabs.each_key do |category|
-        %li{role: "tab", class: "#{'active' if selected_tab_pane?(category)}"}
-          %a{"data-toggle" => "tab", href: "##{category}"}
+        %li{role: "tab", class: "nav-item #{'active' if selected_tab_pane?(category)}"}
+          %a{"data-toggle" => "tab", href: "##{category}", class: "nav-link"}
             = category.capitalize
 
 / Tab panes
@@ -16,8 +16,8 @@
           = data[:help]
       %ul.nav.nav-pills.grey-nav-tab{role: "tablist"}
         - data[:subtabs].each_with_index do |metric_type, i|
-          %li.pointer-radio{:class => "#{'active' if selected_subtab_pane?(metric_type)}", :role => "tab"}
-            %label.tab-primary{"data-target" => "##{tab_pane_id metric_type}"}
+          %li.pointer-radio{class: "nav-item #{'active' if selected_subtab_pane?(metric_type)}", :role => "tab"}
+            %label.tab-primary{class: "nav-link", "data-target" => "##{tab_pane_id metric_type}"}
               %input.pointer-radio-button{:id => metric_type, :name => "intervaltype", :type => "radio", :value => metric_type, :checked => i.zero?}
                 = metric_type
       .tab-content
