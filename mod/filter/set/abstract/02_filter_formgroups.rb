@@ -76,7 +76,7 @@ format :html do
   end
 
   def year_options
-    type_options(:year).each_with_object(default_year_option) do |v, h|
+    type_options(:year, "desc").each_with_object(default_year_option) do |v, h|
       h[v] = v
     end
   end

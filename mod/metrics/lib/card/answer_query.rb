@@ -84,7 +84,7 @@ class Card
     def filter key, value, operator=nil
       operator ||= value.is_a?(Array) ? "IN" : "="
       db_column = filter_key_to_db_column key
-      @conditions << "#{db_column} #{operator} (?)"
+      @conditions << "answers.#{db_column} #{operator} (?)"
       @values << value
     end
 

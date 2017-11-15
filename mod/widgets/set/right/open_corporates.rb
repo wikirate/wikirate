@@ -12,7 +12,7 @@ format :html do
 
   view :oc_error do
     if company_number.blank?
-      "Not yet connected to an #{link_to oc_search_url, 'OpenCorporates'} entity"
+      "Not yet connected to an #{render :oc_search_link} entity"
     elsif jurisdiction_code.blank?
       "Country of headquarters needed to connect to OpenCorporates"
     else
@@ -22,9 +22,13 @@ format :html do
     end
   end
 
+  view :oc_search_link, tags: :unknown_ok do
+    link_to_resource oc_search_url.to_s, "OpenCorporates"
+  end
+
   def oc_search_url
     URI::HTTPS.build host: "opencorporates.com", path: "/companies",
-                     query: { q: card.name }.to_query
+                     query: { q: card.name.left }.to_query
   end
 
   def oc

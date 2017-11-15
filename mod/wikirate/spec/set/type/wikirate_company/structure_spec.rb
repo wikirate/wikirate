@@ -1,4 +1,4 @@
-
+# 
 RSpec.describe Card::Set::Type::WikirateCompany::Structure do
   describe "details tab" do
     subject { Card["Google Inc"].format(:html)._render_details_tab }
@@ -9,10 +9,10 @@ RSpec.describe Card::Set::Type::WikirateCompany::Structure do
           with_tag :td, text: "Country of Headquarters"
           with_tag :td, text: "California (United States)"
         end
-        with_tag :tr do
-          with_tag :td, text: "Country of Incorporation"
-          with_tag :td, text: "Delaware (United States)"
-        end
+        # with_tag :tr do
+        #   with_tag :td, text: "Country of Incorporation"
+        #   with_tag :td, text: "Delaware (United States)"
+        # end
       end
     end
   end
