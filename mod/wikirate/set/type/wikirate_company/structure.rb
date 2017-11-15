@@ -6,7 +6,7 @@ card_accessor :open_corporates
 
 format :html do
   def default_content_formgroup_args _args
-    voo.edit_structure = [:headquarters, :incorporation, :image, :wikipedia]
+    voo.edit_structure = [:headquarters, :image, :wikipedia]
   end
 
   def active_profile_tab
@@ -105,7 +105,7 @@ format :html do
   end
 
   def country_rows
-    [:headquarters, :incorporation].map do |field|
+    [:headquarters].map do |field|
       [{ content: wrap_with(:strong, Card[field].name),
          class: "no-stretch padding-right-30" },
        field_nest(field, view: :content, show: :menu, items: { view: :name })]
