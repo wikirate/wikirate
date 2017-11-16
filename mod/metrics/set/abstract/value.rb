@@ -5,11 +5,11 @@ def value_card
 end
 
 def value
-  item_names.join JOINT
+  raw_value.join JOINT
 end
 
 def raw_value
-  item_names
+  item_names context: ""
 end
 
 def metric_plus_company

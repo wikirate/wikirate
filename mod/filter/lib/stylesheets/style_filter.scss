@@ -2,7 +2,12 @@
   .input-group.sort-input-group, ._filter-container > .input-group {
     width: auto !important;
   }
+  select {
+    min-width: 30%;
+    max-width: 100%;
+  }
 }
+
 
 .chart-zoom-out {
   position: relative;
