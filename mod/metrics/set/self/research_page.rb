@@ -128,8 +128,4 @@ format :html do
       submit_button text: "Next"
     end
   end
-
-  def view_template_path view
-    super(view, __FILE__)
-  end
 end

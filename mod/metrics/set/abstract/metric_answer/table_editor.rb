@@ -34,8 +34,4 @@ format :html do
     tags["card[subcards][+source][content]"] = source if source.present?
     hidden_tags tags
   end
-
-  def view_template_path view
-    super view, __FILE__
-  end
 end
