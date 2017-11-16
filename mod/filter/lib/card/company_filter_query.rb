@@ -4,7 +4,7 @@ class Card
     INDUSTRY_VALUE_YEAR = "2015"
 
     def wikirate_topic_wql value
-      add_to_wql :found_by, value.to_name.trait(:wikirate_company)
+      add_to_wql :found_by, value.to_name.trait_name(:wikirate_company).trait(:refers_to)
     end
 
     def industry_wql industry
