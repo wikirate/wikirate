@@ -56,6 +56,10 @@ def metric_ids
   end.compact
 end
 
+def metrics
+  metric_card.item_names
+end
+
 def company_ids
   @company_ids ||= wikirate_company_card.item_names.map do |company|
     Card.fetch_id company
