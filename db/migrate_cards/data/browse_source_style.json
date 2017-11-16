@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Source+description",
+    "type": "Basic"
+  },
+  {
+    "name": "source+*self+*structure",
+    "type": "HTML"
+  }
+]
