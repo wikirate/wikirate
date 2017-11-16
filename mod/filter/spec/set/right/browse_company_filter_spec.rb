@@ -23,7 +23,7 @@ describe Card::Set::Right::BrowseCompanyFilter do
 
     context "topic argument" do
       before { filter_args wikirate_topic: "Animal Rights" }
-      it { is_expected.to eq wql(found_by: "Animal Rights+Company") }
+      it { is_expected.to eq wql(found_by: "Animal Rights+Company+*refers to") }
     end
 
     context "industry argument" do
@@ -56,10 +56,12 @@ describe Card::Set::Right::BrowseCompanyFilter do
       it "joins filter conditions correctly" do
         is_expected.to eq wql(
           name: %w[match Apple],
-          found_by: "Animal Rights+Company",
-          left_plus: ["Global Reporting Initiative+Sector Industry",
-                      { right_plus: ["2015",
-                                     { right_plus: ["value", { eq: "myIndustry" }] }] }],
+          found_by: "Animal Rights+Company+*refers to",
+          left_plus: [
+            "Global Reporting Initiative+Sector Industry", {
+              right_plus: ["2015", { right_plus: ["value", { eq: "myIndustry" }] }]
+            }
+          ],
           referred_to_by: { left: { name: "myProject" } }
         )
       end
