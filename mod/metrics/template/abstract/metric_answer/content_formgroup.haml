@@ -8,7 +8,7 @@
         = field_nest :related_company, title: "Related Company"
     .col-md-11.value.col-centered
       = field_nest :value, title: "Answer"
-      = render_haml :cited_sources
+      = haml_partial :cited_sources
       %label
         Source Suggestions /
         %a.btn.btn-sm.btn-default._add_new_source{ href: "#",
@@ -28,4 +28,4 @@
     .col-md-11.col-centered
       = _render_edit_buttons!
       .card-notice
-= render_haml :source_side
+= render :source_side

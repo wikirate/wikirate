@@ -5,7 +5,7 @@ format :html do
     # voo.show! :answer_form
     voo.editor = :inline_nests
     frame do
-      render_haml :research_answer
+      haml :research_answer
     end
   end
 

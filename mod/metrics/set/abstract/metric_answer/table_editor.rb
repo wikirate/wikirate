@@ -5,7 +5,7 @@ format :html do
       card_form :create, class: "new-value-form",
                          "main-success" => "REDIRECT",
                          success: table_form_success  do
-        render_haml :new_form
+        haml :new_form
       end
     end
   end

@@ -7,7 +7,7 @@ format :html do
     voo.hide :menu
     with_nest_mode :edit do
       frame do
-        [_render_landing_form, render_haml(:source_container)]
+        [_render_landing_form, haml(:source_container)]
       end
     end
   end
@@ -24,7 +24,7 @@ format :html do
   view :core, cache: :never do
     return _render_new unless companies && metrics
     wrap do
-      render_haml :research_form
+      haml :research_form
     end
   end
 
@@ -42,9 +42,7 @@ format :html do
     end
   end
 
-  view :source_side do
-    render_haml :source_side
-  end
+  view :source_side, template: :haml
 
   view :landing_form, cache: :never do
     field_content_from_params
