@@ -118,10 +118,10 @@ format :html do
   end
 
   def member_contribution_content member
-    contribution_cardtypes.map do |cardtype|
+    contribution_cardtypes.map do |typecode|
       contribution_categories.map do |category|
         card.contribution_count member.name, cardtype, category
-      end.unshift cardtype.name.vary "capitalize plural"
+      end.unshift typecode.cardname.vary "capitalize plural"
     end
   end
 end
