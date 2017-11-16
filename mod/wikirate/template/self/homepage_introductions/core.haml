@@ -2,20 +2,21 @@
   .col-md-12.nopadding.d-md-block.d-lg-block.d-sm-none
     / tabs
     .tabbable.tabs-left
-      %ul.nav.nav-tabs.intro-tabs.flex-column
+      %ul.nav.nav-tabs.intro-tabs.flex-column{role: "tablist"}
         - categories.each do |type|
-          %li{class: "nav-item #{type}-tab #{'active' if type == :company}"}
-            %a{"data-target" => "##{type}-tab", "data-toggle" => "tab", :href => "#", class: "nav-link"}
+          %li{class: "nav-item #{type}-tab"}
+            %a{"data-target": "##{type}-tab", "data-toggle": "tab", :href => "#",
+               class: "nav-link#{' active' if type == :company}", role: "tab"}
               = nest "homepage: #{type} intro", view: :core
-      .tab-content
-
+      / panels
+      .tab-content.intro-tab-panels
         - categories.each do |type|
-
-          %div{id: "#{type}-tab", class: "tab-pane #{'active' if type == :company}"}
+          %div{id: "#{type}-tab", class: "tab-pane#{' active' if type == :company}", role: "tabpanel"}
             = nest "homepage #{type}", view: :carousel, items: { view: :homepage_item }
             .browse-button
-              %a.btn.btn-sm.btn-default{:href => "/#{type}"}
+              %a.btn.btn-sm.btn-default{href: "/#{type}"}
                 = "Browse #{type.to_s.pluralize.capitalize}"
+
   / for medium and mobile devices
   .col-md-12.nopadding.d-md-none.d-lg-none.d-sm-block
     - categories.each do |type|

@@ -29,7 +29,7 @@ event :validate_import_format, :validate, when: :save_preliminary_upload? do
 end
 
 def validate_csv
-  CSVFile.new upload_cache_card.file, csv_row_class, headers: :detect
+  CSVFile.new upload_cache_card.attachment, csv_row_class, headers: :detect
 rescue CSV::MalformedCSVError => e
   abort :failure, "malformed csv: #{e.message}"
 end
