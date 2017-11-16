@@ -13,7 +13,7 @@ format :html do
     wrap_value_details do
       [
         wrap_with(:div, checked_by, class: "double-check"),
-        wrap_with(:div, _render_sources, class: "cited-sources")
+        wrap_with(:div, _render_sources, class: "cited-sources mt-3")
       ]
     end
   end

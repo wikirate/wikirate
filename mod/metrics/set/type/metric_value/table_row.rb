@@ -37,7 +37,6 @@ format :html do
 
   def add_value_button
     link_to_card :research_page, "Research answer",
-                 type: "button",
                  target: "_blank",
                  class: "btn btn-primary btn-sm",
                  path: {
@@ -146,7 +145,7 @@ format :html do
 
   def metric_details_sidebar_header
     bs_layout do
-      row 1, 11 do
+      row 1, 11, class: "w-100" do
         column nest(card.metric_card.vote_count_card)
         column do
           row link_to_card(card.metric_card, card.metric_card.name.right,
