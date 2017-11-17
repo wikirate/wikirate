@@ -16,10 +16,6 @@ def csv_only? # for override
   true
 end
 
-def csv?
-  file.content_type.in? ["text/csv", "text/comma-separated-values"]
-end
-
 event :validate_import_format, :validate, when: :save_preliminary_upload? do
   if upload_cache_card.csv?
     validate_csv
