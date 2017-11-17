@@ -4,10 +4,9 @@
 # This class provides an interface to import relationship answers
 class CSVRow
   module Structure
-    class RelationshipAnswer < AnswerCSV
+    class RelationshipAnswerCSV < AnswerCSV
       @columns = [:designer, :title, :company, :related_company, :year, :value, :source]
       @required = :all
-
 
       def import_company
         CompanyCSV.new({ company: original_row[:company] },
@@ -15,7 +14,6 @@ class CSVRow
         CompanyCSV.new({ related_company: original_row[:related_company] },
                        @row_index, @import_manager, :related_company).import
       end
-
     end
   end
 end
