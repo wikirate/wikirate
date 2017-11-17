@@ -21,7 +21,7 @@ def csv?
 end
 
 event :validate_import_format, :validate, when: :save_preliminary_upload? do
-  if csv?
+  if upload_cache_card.csv?
     validate_csv
   elsif csv_only?
     abort :failure, "file must be CSV"
