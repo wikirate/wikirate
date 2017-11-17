@@ -5,7 +5,7 @@ format :html do
       card_form :create, class: "new-value-form",
                          "main-success" => "REDIRECT",
                          success: table_form_success  do
-        render_haml :new_form
+        haml :new_form
       end
     end
   end
@@ -33,9 +33,5 @@ format :html do
       card.metric_card.relationship? ? RelationshipAnswerID : MetricValueID
     tags["card[subcards][+source][content]"] = source if source.present?
     hidden_tags tags
-  end
-
-  def view_template_path view
-    super view, __FILE__
   end
 end

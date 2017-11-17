@@ -26,8 +26,9 @@ format :html do
     select_filter type_codename, nil, nil, options
   end
 
-  def autocomplete_filter type_codename
-    text_filter type_codename, class: "#{type_codename}_autocomplete"
+  def autocomplete_filter type_code, options_card=nil
+    options_card ||= Card::Name[type_code, :type, :by_name]
+    text_filter type_code, class: "#{type_code}_autocomplete", "data-options-card": options_card
   end
 
   def multiselect_filter_type_based type_codename

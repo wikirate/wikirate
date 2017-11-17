@@ -134,7 +134,7 @@ format :html do
 
   view :claim_header do
     voo.hide :toggle
-    render_haml cite_count_card: card.fetch(trait: :citation_count) do
+    haml cite_count_card: card.fetch(trait: :citation_count) do
       %{
 .header-with-vote
   .header-vote

@@ -4,7 +4,7 @@ format :html do
   end
 
   view :export_links do
-    render_haml do
+    haml do
       <<-HAML.strip_heredoc
         %p
           Export:
