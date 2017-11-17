@@ -31,6 +31,10 @@ format :html do
       wikirate_table_with_details(*table_args)
     end
   end
+
+  def details_url? row_card
+    !row_card.new_card?
+  end
 end
 
 def query args={}

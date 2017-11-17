@@ -1,9 +1,9 @@
 format :html do
-  view :core do |args|
-    if args[:structure]
-      process_content _render_raw(args)
+  view :core do
+    if voo.structure
+      process_content _render_raw
     else
-      super args
+      super()
     end
   end
 end
