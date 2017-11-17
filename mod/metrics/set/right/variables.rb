@@ -67,7 +67,7 @@ format :html do
   view :edit do |_args|
     voo.hide! :toolbar, :menu
     frame do
-      render_haml metric_list: metric_list do
+      haml metric_list: metric_list do
         <<-HAML
 .yinyang.nodblclick
   .col-md-6

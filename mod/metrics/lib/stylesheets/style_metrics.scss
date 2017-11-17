@@ -709,3 +709,49 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 .RIGHT-all_metric_value.content-view {
     min-height: 800px;
 }
+
+//Contribution section on research group page
+.contribution-item {
+  overflow: hidden;
+  //cursor: move;
+  border: 1px solid #ebebeb;
+  clear: both;
+  margin-bottom: -1px;
+
+  .thumbnail {
+    border: 0;
+    margin: 2px
+  }
+  .header {
+    width: 70%;
+    //cursor: pointer;
+    float: left;
+    border-right: 1px solid #eee;
+    //color: #ccc !important;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+  .data {
+    width: 28%;
+    text-align: center;
+    cursor: pointer;
+    float: left;
+    color: #ccc !important;
+    padding: 6px 12px;
+    text-decoration: none;
+    &:hover {
+      //background: #fff;
+    }
+  }
+  &.metric-item .header .name {
+    color:$muted;
+  }
+  &.company-item .header .name {
+    color:$muted;
+
+  }
+  &.topic-item .header .name {
+    color:$muted;
+
+  }
+}
