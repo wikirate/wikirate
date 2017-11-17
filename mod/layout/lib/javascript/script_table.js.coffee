@@ -1,6 +1,7 @@
 $(document).ready ->
 
 # details toggle
+  # FIXME: risky global variable
   active_details = null
 
   # hack to solve the problem that
@@ -22,48 +23,69 @@ $(document).ready ->
     window.location.href = $(this).data("link-url")
 
   trToggleDetails = (toggle) ->
-    row = $(toggle).closest('tr')
-    active_details = $(row).find('.details')
-    if active_details.is(':visible')
-      active_details.hide()
-      row.removeClass("active")
+    $toggle = $(toggle)
+    row = $toggle.closest('tr')
+    if row.hasClass "active"
+      deactivateRow row
     else
-      active_row = $(".wikirate-table tr.active")
-      active_row.find(".details").hide()
-      active_row.removeClass("active")
-      row.addClass("active")
-      active_details.show()
+      deactivateRow $(".wikirate-table tr.active")
+      activateRow row, $toggle
 
-      if !$.trim(active_details.html()) # empty
-        loadDetails(toggle)
+  deactivateRow = (row) ->
+    active_details = null
+    row.find('.details').hide()
+    row.removeClass "active"
 
+  activateRow = (row, $toggle) ->
+    active_details = row.find('.details')
+    row.addClass "active"
+    showDetails $toggle
+
+  showDetails = ($toggle) ->
+    url = detailsUrl $toggle
+    return unless url
+    loadDetails $toggle, url
+    active_details.show()
     stickDetails()
 
-  loadDetails = (toggle) ->
-    loader_anime = $("#ajax_loader").html()
-    active_details.append(loader_anime)
-    $(active_details).load detailsUrl(toggle), ->
-      $(active_details).find('.card-slot').trigger('slotReady')
+  loadDetails = ($toggle, url) ->
+    return if $.trim(active_details.html()) # already loaded
+    startLoaderAnime
+    loadDetailsUrl url
 
-  detailsUrl = (toggle) ->
-    if $(toggle).data('details-url')
-      $(toggle).data('details-url')
+  startLoaderAnime = () ->
+    active_details.append $("#ajax_loader").html()
+
+  detailsUrl = ($toggle) ->
+    configuredUrl = $toggle.data("details-url")
+    if configuredUrl? # no if undefined or null. yes if false
+      configuredUrl
     else
-      view = $(toggle).data('view') || 'content'
-      right_name = $(toggle).data('append')
-      card_name = $(toggle).closest('.card-slot').attr('id')
-      "/#{card_name}+#{right_name}?view=#{view}"
+      constructDetailsUrl $toggle
+
+  constructDetailsUrl = ($toggle) ->
+    view = $toggle.data('view') || 'content'
+    right_name = $toggle.data 'append'
+    card_name = $toggle.closest('.card-slot').attr 'id'
+    "/#{card_name}+#{right_name}?view=#{view}"
+
+  loadDetailsUrl = (url) ->
+    active_details.load url, ->
+      active_details.find('.card-slot').trigger 'slotReady'
 
   #stick the details when scrolling
   stickDetails = () ->
-    is_modal = active_details.closest('.modal-body').exists()
-    if $(document).scrollTop() > 56 || is_modal
+    if stickableDetails()
       active_details.addClass 'stick'
     else
       active_details.removeClass 'stick'
 
-    if($(window).scrollTop() > ($("#main").height() - $(window).height() + 300))
-      active_details.removeClass("stick")
+  # TODO: move each to well-named function
+  stickableDetails = () ->
+    return false if $(window).scrollTop() > ($("#main").height() - $(window).height() + 300)
+    return true if $(document).scrollTop() > 56
+    return true if active_details.closest('.modal-body').exists() # is modal
+    false
 
   $(window).scroll ->
     if active_details
