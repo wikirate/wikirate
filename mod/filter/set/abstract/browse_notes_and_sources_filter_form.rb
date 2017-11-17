@@ -72,7 +72,7 @@ format :html do
   end
 
   view :wikirate_company_formgroup, cache: :never do
-    autocomplete_filter :wikirate_company
+    autocomplete_filter :wikirate_company, :all_companies
   end
 
   view :wikirate_topic_formgroup, cache: :never do
