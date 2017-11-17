@@ -9,7 +9,7 @@ def value
 end
 
 def raw_value
-  item_names context: ""
+  item_names context: :raw
 end
 
 def metric_plus_company

@@ -55,7 +55,7 @@ format :html do
     with_header "Members" do
       [:organizer, :researcher].map do |fieldname|
         field_nest fieldname, view: :titled,
-                              title: fieldname.name.s,
+                              title: fieldname.cardname,
                               variant: "plural capitalized",
                               type: "Pointer",
                               items: { view: :thumbnail_plain }
