@@ -21,7 +21,7 @@ format :html do
     opts[:media_opts] = {} unless opts[:media_opts]
     text_with_image_args opts
 
-    render_haml opts do
+    haml opts do
       <<-HAML.strip_heredoc
         .media{media_opts}
           .media-left.image-box.#{opts[:size]}
@@ -39,7 +39,7 @@ format :html do
     @image_card = Card.cardish(opts[:image]) if opts[:image]
     text_with_image_args opts
 
-    render_haml opts do
+    haml opts do
       <<-HAML.strip_heredoc
         .media
           .media-left.image-box

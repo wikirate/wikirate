@@ -10,14 +10,14 @@ format :html do
     options_card_name = (oc = card.options_rule_card) ? oc.name.url_key : ":all"
 
     extra_css_class = args[:extra_css_class] || "pointer-list-ul"
+    input = text_field_tag "pointer_item",
+                           items[0],
+                           class: "pointer-item-text form-control",
+                           "data-options-card": options_card_name
 
     %(
-      <ul class="pointer-list-editor #{extra_css_class}" data-options-card="#{options_card_name}">
-        <li class="pointer-li">
-        <span class="input-group">
-          #{text_field_tag 'pointer_item', items[0], class: 'pointer-item-text form-control'}
-        </span>
-        </li>
+      <ul class="pointer-list-editor #{extra_css_class}">
+        <li class="pointer-li"><span class="input-group">#{input}</span></li>
       </ul>
     ).html_safe
   end

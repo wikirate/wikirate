@@ -5,7 +5,7 @@ format :html do
     # voo.show! :answer_form
     voo.editor = :inline_nests
     frame do
-      render_haml :research_answer
+      haml :research_answer
     end
   end
 
@@ -32,9 +32,5 @@ format :html do
       card.attach_subfield "replace with year",
                            type_id: MetricValueID
     end
-  end
-
-  def view_template_path view
-    super(view, __FILE__)
   end
 end

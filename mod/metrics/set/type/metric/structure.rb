@@ -59,8 +59,4 @@ format :html do
     @vote_count = voo.show?(:vote_count) ? field_nest(:vote_count) : ""
   end
   view :homepage_item, template: :haml
-
-  def view_template_path view
-    super(view, __FILE__)
-  end
 end
