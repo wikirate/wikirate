@@ -484,6 +484,9 @@
 - :name: 'MANA: Tracking Environmental Incidents'
   :type: Project
   :key: mana_tracking_environmental_incident
+- :name: bootstrap default skin+bootswatch theme
+  :type: SCSS
+  :key: bootstrap_default_skin+bootswatch_theme
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org
