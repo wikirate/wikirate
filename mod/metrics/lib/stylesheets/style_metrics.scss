@@ -367,9 +367,10 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 
 #modal-add-metric-slot{
   .modal-dialog {
+      max-width: none;
       width: 90%;
   }
-  .modal-body .yinyang>.row>.col-md-6 {
+  .modal-body .d0-card-body > .row >.col-md-6 {
       height: 1000px;
       overflow-y: scroll;
   }
