@@ -1,5 +1,3 @@
-
-
 # this overrides the default git:create_release in order to run submodules
 #namespace :git do
 #  desc "Copy repo to releases"
@@ -59,21 +57,21 @@ namespace :deploy do
     end
   end
 
-  # TODO: obviate this
-  # Thanks to capistrano-passenger (presumably), the deployment is calling `passenger-config restart-app`,
-  # which is supposed to make this old-school restart unnecessary.  However, that command has a permissions error:
-  #
-  #   *** ERROR: You are not authorized to query the status for this Phusion Passenger instance.
-  #   Please try again with 'rvmsudo'.
-  #
-  # If/when we get around to fixing that, we can get rid of this restart task call.
-  after :published, :restart
-  desc "Restart application"
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      execute :touch, release_path.join("tmp/restart.txt")
-    end
-  end
+  # # TODO: obviate this
+  # # Thanks to capistrano-passenger (presumably), the deployment is calling `passenger-config restart-app`,
+  # # which is supposed to make this old-school restart unnecessary.  However, that command has a permissions error:
+  # #
+  # #   *** ERROR: You are not authorized to query the status for this Phusion Passenger instance.
+  # #   Please try again with 'rvmsudo'.
+  # #
+  # # If/when we get around to fixing that, we can get rid of this restart task call.
+  # after :published, :restart
+  # desc "Restart application"
+  # task :restart do
+  #   on roles(:app), in: :sequence, wait: 5 do
+  #     execute :touch, release_path.join("tmp/restart.txt")
+  #   end
+  # end
 
   after :finishing, :cleanup
 end
