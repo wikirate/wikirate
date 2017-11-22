@@ -147,6 +147,6 @@ format :html do
   # end
 
   view :browse_item, template: :haml
-
   view :homepage_item, template: :haml
+  view :homepage_item_sm, template: :haml
 end
