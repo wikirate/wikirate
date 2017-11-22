@@ -52,12 +52,16 @@ format :html do
     ]
   end
 
+  view :edit do
+    super() +
+      _render_modal_slot(modal_id: "add-metric-slot", dialog_class: "large").html_safe
+  end
+
   def add_metric_button
     target = "#modal-add-metric-slot"
     # "#modal-#{card.name.safe_key}"
-    output [
-      (wrap_with :span, class: "input-group" do
-        button_tag class: "pointer-item-add btn btn-default slotter",
+    wrap_with :span, class: "input-group" do
+        button_tag class: "pointer-item-add btn btn-outline-secondary slotter",
                    type: "button",
                    data: { toggle: "modal", target: target },
                    href: path(layout: "modal", view: :edit,
@@ -65,10 +69,7 @@ format :html do
                               slot: { title: "Choose Metric" }) do
           glyphicon("plus") + " add metric"
         end
-      end),
-      _render_modal_slot(modal_id: "add-metric-slot",
-                         dialog_class: "large").html_safe
-    ]
+    end
   end
 
   view :core do

@@ -92,7 +92,7 @@ format :html do
     with_header(progress_header, level: 4) do
       sections = %i[imported skipped overridden failed].map do |type|
         progress_section type
-      end
+      end.compact
       progress_bar *sections
     end + wrap_with(:p, undo_button) + wrap_with(:p, report)
   end
@@ -135,6 +135,7 @@ format :html do
   end
 
   def progress_section type
+    return if count(type).zero?
     html_class = "bg-#{STATUS_CONTEXT[type]}"
     html_class << " progress-bar-striped progress-bar-animated" if importing?
     { value: percentage(type), label: "#{count(type)} #{type}", class: html_class }

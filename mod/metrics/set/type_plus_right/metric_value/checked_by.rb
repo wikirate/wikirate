@@ -183,14 +183,14 @@ format :html do
   end
 
   def check_button
-    wrap_with(:button, class: "btn btn-default btn-sm _value_check_button",
+    wrap_with(:button, class: "btn btn-outline-secondary btn-sm _value_check_button",
                        data: { path: data_path }) do
       "Yes, I checked"
     end
   end
 
   def fix_button
-    link_to_card card.left, "No, I'll fix it", class: "btn btn-default btn-sm", path: { view: :edit }
+    link_to_card card.left, "No, I'll fix it", class: "btn btn-outline-secondary btn-sm", path: { view: :edit }
   end
 
   def check_button_request_credit

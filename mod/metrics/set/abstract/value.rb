@@ -44,14 +44,13 @@ event :mark_as_imported, before: :finalize_action do
 end
 
 event :update_related_scores, :finalize do
-  metric_card.related_scores.each do |metric|
+  ensure_metric(metric_card).related_scores.each do |metric|
     metric.update_value_for! company: company_key, year: year
   end
 end
 
-event :update_related_calculations, :finalize,
-      on: [:create, :update, :delete] do
-  metric_card.related_calculations.each do |metric|
+event :update_related_calculations, :finalize do
+  ensure_metric(metric_card).related_calculations.each do |metric|
     metric.update_value_for! company: company_key, year: year
   end
 end
@@ -78,4 +77,15 @@ format :html do
   view :core do
     card.item_names.join(",")
   end
+end
+
+# in some cases, deleting a metric can lead to its scores getting deleted
+# and losing their metric modules before a save is finalized.
+# This (somewhat hacky) fix is to ensure that such metrics act as metrics.
+# A deeper fix would make sure cards don't lose their set properties until
+# after finalization.
+def ensure_metric metric_card
+  sc = metric_card.singleton_class
+  sc.include Type::Metric unless sc.include? Type::Metric
+  metric_card
 end

@@ -50,15 +50,13 @@ describe Card::Set::Right::ImportStatus do
         end
       end
 
-      it "renders empty progress bar if no content" do
+      it "hides empty parts in progress bar if no content" do
         expect(content_view "")
           .to have_tag "div.card-slot",
                        with: { "data-refresh-url" => "/test+import_status?view=content" } do
           with_tag "div.progress" do
-            with_tag "div.progress-bar.bg-success",
-                     with: { style: "width: 0%" }
-            with_tag "div.progress-bar.bg-danger",
-                     with: { style: "width: 0%" }
+            without_tag "div.progress-bar.bg-success"
+            without_tag "div.progress-bar.bg-danger"
           end
         end
       end
