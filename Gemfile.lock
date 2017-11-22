@@ -1,9 +1,9 @@
 PATH
   remote: vendor/decko
   specs:
-    card (1.93.2)
+    card (1.93.3)
       bootstrap4-kaminari-views (~> 1.0)
-      cardname (= 0.3.2)
+      cardname (= 0.3.3)
       carrierwave (~> 1.1)
       coderay (~> 1.1)
       coffee-script (~> 2.4)
@@ -18,11 +18,11 @@ PATH
       twitter (~> 6.1)
       uglifier (~> 3.2)
       uuid (~> 2.3)
-    cardname (0.3.2)
+    cardname (0.3.3)
       activesupport (~> 5.1)
       htmlentities (~> 4.3)
-    decko (0.3.2)
-      card (= 1.93.2)
+    decko (0.3.3)
+      card (= 1.93.3)
       rails (~> 5.1)
 
 PATH
@@ -163,6 +163,8 @@ GEM
     colorize (0.8.1)
     company-mapping (0.2.3)
     concurrent-ruby (1.0.5)
+    crack (0.4.3)
+      safe_yaml (~> 1.0.0)
     crass (1.0.3)
     cucumber (3.0.2)
       builder (>= 2.1.2)
@@ -445,6 +447,8 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
+    nokogiri-happymapper (0.6.0)
+      nokogiri (~> 1.5)
     oga (2.11)
       ast
       ruby-ll (~> 2.1)
@@ -453,6 +457,12 @@ GEM
     parser (2.4.0.2)
       ast (~> 2.3)
     pdfkit (0.8.2)
+    pivotal-tracker (0.5.13)
+      builder
+      crack
+      nokogiri (>= 1.5.5)
+      nokogiri-happymapper (>= 0.5.4)
+      rest-client (>= 1.8.0)
     powerpack (0.1.1)
     pry (0.11.3)
       coderay (~> 1.1.0)
@@ -562,6 +572,7 @@ GEM
       ast
     ruby-progressbar (1.9.0)
     rubyzip (1.2.1)
+    safe_yaml (1.0.4)
     sass (3.5.3)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -688,6 +699,7 @@ DEPENDENCIES
   newrelic_rpm
   open_uri_redirections
   pdfkit
+  pivotal-tracker
   pry
   pry-byebug
   pry-rails

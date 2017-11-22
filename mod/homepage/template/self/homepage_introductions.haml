@@ -14,7 +14,7 @@
           %div{id: "#{type}-tab", class: "tab-pane#{' active' if type == :company}", role: "tabpanel"}
             = nest "homepage #{type}", view: :carousel, items: { view: :homepage_item }
             .browse-button
-              %a.btn.btn-sm.btn-default{href: "/#{type}"}
+              %a.btn.btn-sm.btn-outline-secondary{href: "/#{type}"}
                 = "Browse #{type.to_s.pluralize.capitalize}"
 
   / for medium and mobile devices
