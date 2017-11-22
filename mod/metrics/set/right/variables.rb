@@ -1,7 +1,6 @@
 include_set Type::Pointer
 include_set Abstract::Variable
 include_set Abstract::Table
-include_set Abstract::BrowseFilterForm
 
 def metric_card
   left
@@ -37,39 +36,9 @@ def input_metric_name_by_index index
   item_cards.fetch(index, nil).name
 end
 
-def filter_keys
-  %i[name wikirate_topic wikirate_company]
-end
 
-def advanced_filter_keys
-  %i[designer project metric_type research_policy year]
-end
-
-def target_type_id
-  MetricID
-end
-
-def filter_class
-  MetricFilterQuery
-end
-
-def sort_hash
-  {}
-end
-
-def default_sort_option
-  nil
-end
 
 format :html do
-  def filter_fields slot_selector: nil, sort_field: nil
-    super slot_selector: ".RIGHT-Xvariable._filter-result-slot.metric_list-view"
-  end
-
-  def filter_action_path
-    path mark: card.name, view: "metric_list"
-  end
-
   view :core do |args|
     args ||= {}
     items = args[:item_list] || card.item_names(context: :raw)
@@ -98,41 +67,11 @@ format :html do
   end
 
   view :edit do |_args|
+    return super() unless card.metric_card
     voo.hide! :toolbar, :menu
     frame do
-      haml do
-        <<-HAML
-
-.row.panel-margin-fix.nodblclick
-  .col-md-6.left-col
-    = render :filter_form
-    = render :metric_list
-  .col-md-6.right-col.metric-details.light-grey-color-2.text-center
-    .details-slot
-      %br/
-      %br/
-      %br/
-      %p
-        Choose a metric on the left to view more details here and to add it to the formula
-        HAML
-        end
-      end
-  end
-
-  view :metric_list, template: :haml do
-    class_up "card-slot", "_filter-result-slot"
-  end
-
-  def metric_list
-    wql = { type_id: MetricID, limit: 0 }
-    if card.metric_card.metric_type_codename == :wiki_rating
-      wql[:right_plus] = ["*metric type", { refer_to: "Score" }]
+      nest [card.metric_card_name, :add_to_formula], view: :select_modal
     end
-    # items = Card.search(wql)
-    items = search_with_params
-    params[:formula_metric_key] = card.name.left_key
-    wikirate_table_with_details :metric, items, [:add_to_formula_item_view],
-                                td: { classes: %w[score details] }
   end
 
   view :missing do |args|

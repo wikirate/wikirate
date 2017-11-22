@@ -277,10 +277,13 @@ format :html do
     url = path mark: card.name.field(append), view: :content
     text_with_image image: designer_image_card,
                     text: subtext, title: title, size: :icon,
-                    media_opts: { class: "slotter clickable-row",
+                    media_opts: { class: "slotter _clickable",
                                   href: url,
-                                  data: { url: url, remote: true,
-                                  "slot-selector": ".details-slot" } }
+                                  data: {
+                                    remote: true,
+                                    "slot-selector": ".metric-details-slot > .card-slot"
+                                  }
+                                 }
   end
 
   view :details_placeholder do

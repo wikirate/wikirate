@@ -1,11 +1,7 @@
-%br
-.metric-details-header
-  .row.clearfix
-    .col-md-12
-      .name.row
-        = link_to_card card, card.metric_title, class: 'inherit-anchor'
-      .row
-        = _render_designer_info
+.metric-details-content
+  = _render_metric_title
   %hr
-  .row.clearfix.wiki
-    = _render_metric_info
+  = _render_metric_properties
+  %hr
+  = nest(card.about_card, view: :titled, title: "About")
+  = nest(card.methodology_card, view: :titled, title: "Methodology")

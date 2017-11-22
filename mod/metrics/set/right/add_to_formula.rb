@@ -1,5 +1,45 @@
+include_set Abstract::HamlFile
+include_set Abstract::Table
+include_set Abstract::BrowseFilterForm
+
+def filter_keys
+  %i[name wikirate_topic wikirate_company]
+end
+
+def advanced_filter_keys
+  %i[designer project metric_type research_policy year]
+end
+
+def target_type_id
+  MetricID
+end
+
+def filter_class
+  MetricFilterQuery
+end
+
+def sort_hash
+  {}
+end
+
+def default_sort_option
+  nil
+end
+
+def default_filter_option
+  { name: "" }
+end
+
 def virtual?
   true
+end
+
+def metric_card
+  left
+end
+
+def metric_card_name
+  name.left_name
 end
 
 def split_metrics
@@ -12,22 +52,22 @@ def split_metrics
 end
 
 format :html do
-  view :core do |args|
+  def filter_label field
+    case field.to_sym
+    when :name then "Name"
+    when :metric_type then "Metric type"
+    else super
+    end
+  end
+
+
+  def haml_locals
     input_metric, formula_metric = card.split_metrics
-    add_metric =
-      <<-HTML
-        <hr>
-         <div class="row clearfix">
-          <div class="data-item text-center">
-            #{add_metric_link(input_metric, formula_metric)}
-          </div>
-        </div>
-      HTML
-    subformat(input_metric).render_add_to_formula(args) + add_metric.html_safe
+    { input_metric: input_metric, formula_metric: formula_metric }
   end
 
   def add_metric_link input_metric, formula_metric
-    args = { class: "button button-primary" }
+    args = { class: "btn btn-primary" }
     link_text = "Add this metric"
     if formula_metric.formula_card.wiki_rating?
       add_class args, "_add-weight"
@@ -39,8 +79,34 @@ format :html do
       add_class args, "close-modal slotter"
       link_to_card varcard, link_text, args.merge(
         remote: true, known: true, "data-slot-selector" => editor_selector,
-        path: { action: :update, add_item: input_metric.name.key }
+        path: { action: :update, add_item: input_metric.name.key },
       )
     end
+  end
+
+  def filter_fields slot_selector: nil, sort_field: nil
+    super slot_selector: ".RIGHT-add_to_formula._filter-result-slot.metric_list-view"
+  end
+
+  def filter_action_path
+    path mark: card.name, view: "metric_list"
+  end
+
+  view :select_modal, template: :haml
+
+  view :metric_list, template: :haml, tags: :unknown_ok do
+    class_up "card-slot", "_filter-result-slot"
+  end
+
+  def metric_list
+    wql = { type_id: MetricID, limit: 0 }
+    if card.metric_card.rated?
+      wql[:right_plus] = ["*metric type", { refer_to: "Score" }]
+    end
+    # items = Card.search(wql)
+    items = search_with_params
+    params[:formula_metric_key] = card.name.left_key
+    wikirate_table_with_details :metric, items, [:add_to_formula_item_view],
+                                td: { classes: %w[score details] }
   end
 end
