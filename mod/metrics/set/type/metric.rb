@@ -277,8 +277,9 @@ format :html do
     url = path mark: card.name.field(append), view: :content
     text_with_image image: designer_image_card,
                     text: subtext, title: title, size: :icon,
-                    media_opts: { class: "slotter tr-details-toggle",
-                                  data: { details_url: url,
+                    media_opts: { class: "slotter clickable-row",
+                                  href: url,
+                                  data: { url: url, remote: true,
                                   "slot-selector": ".details-slot" } }
   end
 
