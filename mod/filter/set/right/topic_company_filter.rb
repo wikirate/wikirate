@@ -34,5 +34,5 @@
 # def button_formgroup_reset_button
 #   link_to_card card.name.left, "Reset",
 #                path: { view: content_view },
-#                remote: true, class: "slotter btn btn-default margin-8"
+#                remote: true, class: "slotter btn btn-outline-secondary margin-8"
 # end

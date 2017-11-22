@@ -37,7 +37,7 @@ format :html do
 
   view :research_button do
     link_to "Research",
-            class: "btn btn-default btn-sm",
+            class: "btn btn-outline-secondary btn-sm",
             path: { mark: :research_page,
                     company: card.company_card.name,
                     project: card.project_card.name.url_key }

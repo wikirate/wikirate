@@ -107,7 +107,7 @@ format :html do
   end
 
   view :value_details_toggle do
-    css_class = "fa fa-caret-right fa-lg margin-left-10 btn btn-default btn-sm"
+    css_class = "fa fa-caret-right fa-lg margin-left-10 btn btn-outline-secondary btn-sm"
     wrap_with(:i, "", class: css_class,
                       data: { toggle: "collapse-next",
                               parent: ".value",

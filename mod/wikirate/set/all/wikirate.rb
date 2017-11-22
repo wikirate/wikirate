@@ -154,7 +154,7 @@ format :html do
   end
 
   def button_classes
-    "btn btn-sm btn-default"
+    "btn btn-sm btn-outline-secondary"
   end
 end
 
