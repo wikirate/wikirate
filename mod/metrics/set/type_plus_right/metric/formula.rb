@@ -61,7 +61,7 @@ format :html do
     target = "#modal-add-metric-slot"
     # "#modal-#{card.name.safe_key}"
     wrap_with :span, class: "input-group" do
-        button_tag class: "pointer-item-add btn btn-default slotter",
+        button_tag class: "pointer-item-add btn btn-outline-secondary slotter",
                    type: "button",
                    data: { toggle: "modal", target: target },
                    href: path(layout: "modal", view: :edit,

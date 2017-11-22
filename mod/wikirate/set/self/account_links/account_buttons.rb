@@ -5,7 +5,7 @@ format :html do
   end
 
   def default_sign_in_args _args
-    class_up "signin_link", "btn btn-default"
+    class_up "signin_link", "btn btn-outline-secondary"
     voo.title = "Log in"
   end
 

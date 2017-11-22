@@ -81,11 +81,11 @@ format :html do
     <<-HTML
       <h5>Bulk Import</h5>
         <div class="btn-group" role="group" aria-label="...">
-          <a class="btn btn-default btn-sm" href='/new/source?layout=wikirate%20layout'>
+          <a class="btn btn-outline-secondary btn-sm" href='/new/source?layout=wikirate%20layout'>
             <span class="fa fa-arrow-circle-o-down"></span>
             Import
           </a>
-          <a class="btn btn-default btn-sm slotter"
+          <a class="btn btn-outline-secondary btn-sm slotter"
              href='/import_metric_values?layout=modal'
              data-toggle='modal' data-target='#modal-main-slot'>
             Help <small>(how to)</small>

@@ -32,7 +32,7 @@ format :html do
         #{text_field_tag 'pointer_item', args[:pointer_item], class: 'pointer-item-text form-control'}
 
         <span class="input-group-btn">
-          <button class="pointer-item-delete btn btn-default" type="button">
+          <button class="pointer-item-delete btn btn-outline-secondary" type="button">
             #{glyphicon 'remove'}
           </button>
         </span>

@@ -353,7 +353,7 @@ format :html do
     nest card.value_type_card,
          view: :modal_link,
          link_text: vtype_edit_modal_link_text,
-         link_opts: { class: "btn btn-default slotter value-type-button",
+         link_opts: { class: "btn btn-outline-secondary slotter value-type-button",
                       path: {
                         slot: {
                           hide: "header,menu,help",
@@ -461,7 +461,7 @@ format :html do
   end
 
   def weight_content args
-    icon_class = "pull-right _remove_row btn btn-default btn-sm"
+    icon_class = "pull-right _remove_row btn btn-outline-secondary btn-sm"
     wrap_with :div do
       [
         text_field_tag("pair_value", (args[:weight] || 0)) + "%",

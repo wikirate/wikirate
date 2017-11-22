@@ -23,7 +23,7 @@ format :html do
 
   view :answer_details_toggle do
     css_class = "fa fa-caret-right fa-lg margin-left-10 "\
-                "btn btn-default btn-sm pull-right"
+                "btn btn-outline-secondary btn-sm pull-right"
     wrap_with(:i, "",
               class: css_class,
               data: { toggle: "collapse",
