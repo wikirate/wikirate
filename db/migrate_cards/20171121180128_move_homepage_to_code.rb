@@ -10,6 +10,7 @@ class MoveHomepageToCode < Card::Migration
     ensure_card "Community", codename: "community"
     ensure_card "info", codename: "info"
     ensure_card "icon", codename: "icon"
+    Card::Cache.reset_all
 
     [
       ["NGOs", "Nonprofits", "building-o", "<h6>Support evidence-based campaigns</h6><h6>Engage volunteers</h6><h6>Develop metrics and ratings</h6>"],
