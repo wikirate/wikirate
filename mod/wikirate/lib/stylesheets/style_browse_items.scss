@@ -10,7 +10,6 @@
 .topic-header {
     color: $topic-color;
     border-top: 3px solid $topic-color;
-    @include ellipsis();
     .topic-title {
         padding: 0 0 25px 10px;
     }
