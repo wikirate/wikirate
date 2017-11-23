@@ -213,6 +213,7 @@ GEM
       mail (~> 2.6)
     equalizer (0.0.11)
     erubi (1.7.0)
+    erubis (2.7.0)
     eventmachine (1.2.5)
     excon (0.59.0)
     execjs (2.7.0)
@@ -373,6 +374,11 @@ GEM
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
+    html2haml (2.2.0)
+      erubis (~> 2.7.0)
+      haml (>= 4.0, < 6)
+      nokogiri (>= 1.6.0)
+      ruby_parser (~> 3.5)
     htmlentities (4.3.4)
     http (3.0.0)
       addressable (~> 2.3)
@@ -571,6 +577,8 @@ GEM
       ansi
       ast
     ruby-progressbar (1.9.0)
+    ruby_parser (3.10.1)
+      sexp_processor (~> 4.9)
     rubyzip (1.2.1)
     safe_yaml (1.0.4)
     sass (3.5.3)
@@ -582,6 +590,7 @@ GEM
     selenium-webdriver (3.6.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
+    sexp_processor (4.10.0)
     simple_oauth (0.3.1)
     simplecov (0.15.1)
       docile (~> 1.1.0)
@@ -692,6 +701,7 @@ DEPENDENCIES
   email_spec
   fog
   fog-aws
+  html2haml
   launchy
   link_thumbnailer (= 2.5.2)
   minitest

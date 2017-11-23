@@ -90,6 +90,7 @@ group :test do
 end
 
 group :development do
+  gem 'html2haml'
   gem "rubocop-rspec"
 
   gem "rails-dev-tweaks"
