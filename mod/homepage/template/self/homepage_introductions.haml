@@ -15,7 +15,7 @@
                                   role: "tabpanel"}
             = nest "homepage #{type}", view: :carousel, items: { view: :homepage_item }
             .browse-button
-              %a.btn.btn-sm.btn-default{href: "/#{type}"}
+              %a.btn.btn-sm.btn-outline-secondary{href: "/#{type}"}
                 = "Browse #{type.to_s.pluralize.capitalize}"
 
   / for medium and mobile devices
@@ -26,5 +26,5 @@
       = nest "homepage #{type}", hide: [:paging, :title],
                                  items: { view: :homepage_item_sm }
       .col-12.text-center
-        %a.btn.btn-sm.btn-default.m-3{href: "/#{type}"}
+        %a.btn.btn-sm.btn-outline-secondary.m-3{href: "/#{type}"}
           = "Browse all #{type.to_s.pluralize.capitalize}"
