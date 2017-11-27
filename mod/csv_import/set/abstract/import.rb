@@ -42,7 +42,7 @@ format :html do
   end
 
   def new_view_hidden
-    hidden_tags success: { id: "_self", soft_redirect: false, view: :import }
+    hidden_tags success: { id: "_self", soft_redirect: false, redirect: true, view: :import }
   end
 
   view :core do
