@@ -77,7 +77,7 @@
   }
 }
 
-.table.import_table {
+.table.import-table {
   thead,tbody,tfoot,.thead,.tbody,.tfoot {
     > tr > th, > .tr > .th, td, .td {
       border-right-style: none
@@ -238,7 +238,7 @@ table.wikirate-table, .table.wikirate-table {
   }
 }
 
-.import_table td {
+.import-table td {
   text-overflow: ellipsis;
 }
 .yinyang-list.add-formula {
@@ -250,7 +250,7 @@ table.wikirate-table, .table.wikirate-table {
   top: 110px!important;
 }
 
-table.import_table td {
+table.import-table td {
   overflow: hidden;
 }
 

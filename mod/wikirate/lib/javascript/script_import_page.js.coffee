@@ -1,19 +1,18 @@
 decko.slotReady (slot) ->
-  slot.find('#_check_all').change (eventObject) ->
-    if $(this).is(':checked')
-      $('._group_check').prop 'checked', true
-      slot.find('.import_table input:checkbox[disabled!="disabled"]').prop 'checked', true
-    else
-      $('._group_check').removeAttr 'checked'
-      slot.find('.import_table input:checkbox').removeAttr 'checked'
+  slot.find('checkbox#_check-all').change (eventObject) ->
+    checked = $(this).is(':checked')
 
-  slot.find('._group_check').change (eventObject) ->
+    $('checkbox._group-check').prop 'checked', checked
+    slot.find('._import-table input:checkbox[disabled!="disabled"]').prop 'checked',
+                                                                          checked
+
+  slot.find('checkbox._group-check').change (eventObject) ->
     match_type = $(this).data("group")
-    if $(this).is(':checked')
-      slot.find('.import_table').find("tr._#{match_type}_match").each ->
-        $(this).find('input:checkbox').prop 'checked', true
-    else
-      $('#_check_all').prop 'checked', false
-      slot.find('.import_table').find("tr._#{match_type}_match").each ->
-        $(this).find('input:checkbox').prop 'checked', false
+    checked = $(this).is(':checked')
+
+    $('checkbox#_check-all').prop 'checked', false unless checked
+    slot.find("._import-table tr._#{match_type}-match input:checkbox").prop 'checked',
+                                                                            checked
+
+
 
