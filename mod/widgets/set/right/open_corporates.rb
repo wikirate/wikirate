@@ -1,4 +1,9 @@
+def company_number
+  @company_number ||= content
+end
+
 format :html do
+  delegate :company_number, to: :card
   view :core, async: true do
     oc.valid? ? _render_table : render_oc_error
   end
@@ -33,10 +38,6 @@ format :html do
 
   def oc
     @oc ||= ::OpenCorporates::Company.new(jurisdiction_code, company_number)
-  end
-
-  def company_number
-    @company_number ||= card.content
   end
 
   def jurisdiction_code
