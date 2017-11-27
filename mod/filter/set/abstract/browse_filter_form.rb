@@ -40,10 +40,6 @@ def wql_hash
   end
 end
 
-def sort?
-  false
-end
-
 def add_sort_wql wql, sort_by
   wql.merge!(
     if sort_by == "name"

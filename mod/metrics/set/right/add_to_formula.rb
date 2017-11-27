@@ -51,6 +51,10 @@ def split_metrics
   end
 end
 
+def sort?
+  false
+end
+
 format :html do
   def filter_label field
     case field.to_sym
