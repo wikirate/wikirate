@@ -15,7 +15,9 @@ class TableRowRelationship < TableRowWithCompanyMapping
   end
 
   def render
-    super.merge class: ""
+    rendered = super
+    return rendered if match_type == related_match_type
+    rendered.tap { format.add_class super, "_#{related_match_type}_match" }
   end
 
   private
