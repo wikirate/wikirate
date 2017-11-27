@@ -23,7 +23,9 @@ namespace :deploy do
 **************************************************************
 
     EOF
-    ask :answer, 'Are you sure you want to update wikirate.org? Type "forgive me, Yoda"'
+    ask :answer, "Are you sure the current version is correct, " \
+                 "and you want to update wikirate.org? " \
+                 'Type "forgive me, Yoda"'
     exit unless fetch(:answer) == "forgive me, Yoda"
     # invoke "backup:create"
   end
@@ -57,21 +59,9 @@ namespace :deploy do
     end
   end
 
-  # # TODO: obviate this
-  # # Thanks to capistrano-passenger (presumably), the deployment is calling `passenger-config restart-app`,
-  # # which is supposed to make this old-school restart unnecessary.  However, that command has a permissions error:
-  # #
-  # #   *** ERROR: You are not authorized to query the status for this Phusion Passenger instance.
-  # #   Please try again with 'rvmsudo'.
-  # #
-  # # If/when we get around to fixing that, we can get rid of this restart task call.
-  # after :published, :restart
-  # desc "Restart application"
-  # task :restart do
-  #   on roles(:app), in: :sequence, wait: 5 do
-  #     execute :touch, release_path.join("tmp/restart.txt")
-  #   end
-  # end
-
-  after :finishing, :cleanup
+  after :finishing, :cleanup do
+    next unless fetch(:stage) == :production
+    puts "Don't forget to release the new version `rake wikirate:release` " \
+         "and add release notes"
+  end
 end
