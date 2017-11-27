@@ -36,6 +36,7 @@ format :html do
   end
 
   def edit_fields
+    return if voo.editor == :standard
     [
       [card, { title: "Answer", editor: :standard }],
       [unknown_field_card, { hide: :title }],
