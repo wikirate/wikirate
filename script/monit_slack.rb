@@ -5,7 +5,7 @@ require 'json'
 
 slack_config_path File.expand_path("../../config/slack.yml", __FILE__)
 raise "no slack config" unless File.exists? slack_config_path
-slack_config = YAML.load slack_config_path
+slack_config = YAML.load_file slack_config_path
 
 uri = URI.parse("https://hooks.slack.com/services/#{slack_config[:service_hook]}")
 http = Net::HTTP.new(uri.host, uri.port)

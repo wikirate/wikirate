@@ -75,14 +75,14 @@ namespace :deploy do
 
   after :finishing, :cleanup
 
-  after :finishing, :deploy_pt_stories do
-    pt_config_file = File.expand_path("../../../config/pivotaltracker.yml", __FILE__)
+  after :cleanup, :deploy_pt_stories do
+    pt_config_file = File.expand_path("../../../../config/pivotaltracker.yml", __FILE__)
     next if fetch(:stage) != :staging || !File.exists?(pt_config_file)
 
     require 'pivotal-tracker'
-    tracker = YAML.load pt_config_file
+    tracker = YAML.load_file pt_config_file
     %i[token project_id].each do |n|
-      raise "#{n} not set in pivotaltracker.yml"
+      raise "#{n} not set in pivotaltracker.yml" unless tracker[n]
     end
 
     PivotalTracker::Client.token = tracker[:token]
