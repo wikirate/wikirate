@@ -59,6 +59,17 @@ namespace :deploy do
     end
   end
 
+  desc "restart delayed job processes"
+  after :published, :restart_delayed_job do
+    on roles(:app) do
+      within release_path do
+        env = "env RAILS_ENV=production"
+        num_jobs = fetch :num_delayed_job_processes
+        execute env, "./bin/delayed_job" " -n", num_jobs, "restart"
+      end
+    end
+  end
+
   after :finishing, :cleanup do
     next unless fetch(:stage) == :production
     puts "Don't forget to release the new version `rake wikirate:release` " \
