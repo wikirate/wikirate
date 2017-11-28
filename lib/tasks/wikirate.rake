@@ -1,149 +1,24 @@
 require "colorize"
 
 namespace :wikirate do
-  desc "fetch json from export card on dev site and generate migration"
-  task import_from_staging: :environment do
-    import_cards do
-      json = open("http://staging.wikirate.org/export.json").read
-      JSON.parse(json).deep_symbolize_keys
-    end
+
+  task :version do
+    puts wikirate_version
   end
 
-  desc "fetch json from export card on dev site and generate migration"
-  task import_from_dev: :environment do
-    import_cards do
-      json = open("http://dev.wikirate.org/export.json").read
-      JSON.parse(json).deep_symbolize_keys
-    end
+  task :release do
+    version = wikirate_version
+    system %(
+    git tag -a v#{version} -m "WikiRate Version #{version}"
+    git push --tags wikirate
+  )
   end
 
-  desc "fetch json from local export card and generate migration"
-  task import_from_local: :environment do
-    import_cards do
-      Card["export"].format(format: :json).render_content
-    end
+  def wikirate_version
+    File.open(File.expand_path("../../../VERSION", __FILE__)).read.chomp
   end
 
-  desc "pull from decko repository to vendor/decko and commit"
-  task :decko_tick do |branch|
-    _task, branch = ARGV
-    branch ||= "wikirate"
-    psystem "cd vendor/decko && git pull origin #{branch}"
-    psystem "git commit vendor/decko -m 'decko tick'"
-    exit
-  end
-
-  def psystem cmd
-    puts cmd.green
-    system cmd
-  end
-
-  def import_cards
-    return unless (filename = import_data_filename)
-    require "card/migration"
-    require "generators/card"
-    import_data = yield
-    write_card_content! import_data
-    write_card_attributes filename, import_data[:card][:value]
-    system "bundle exec decko generate card:migration #{ENV['name']}"
-  end
-
-  def write_card_attributes filename, card_attributes
-    path = Card::Migration.data_path("#{filename}.json")
-    File.open(path, "w") do |f|
-      f.print JSON.pretty_generate(card_attributes)
-    end
-  end
-
-  # removes and writes the content field
-  def write_card_content! import_data
-    import_data[:card][:value].each do |card_attr|
-      path = File.join "cards", card_attr[:name].to_name.key
-      File.open(Card::Migration.data_path(path), "w") do |f|
-        f.puts card_attr.delete :content
-      end
-    end
-  end
-
-  def import_data_filename
-    if !ENV["name"]
-      puts "pass a name for the migration 'name=...'"
-    elsif  ENV["name"] !~ /^(?:import)_(.*)(?:\.json)?/
-      puts "invalid format: name must match /import_(.*)/"
-    else
-      Regexp.last_match(1)
-    end
-  end
-
-  desc "test the performance for a list of pages"
-  task benchmark: :environment do
-    def wbench_results_to_html results
-      list = ""
-      results.browser.each do |key, value|
-        list += %(
-                <li class="list-group-item">
-                  <span class="badge">#{value}</span>
-                  #{key}
-                </li>
-              )
-      end
-      %(
-        <ul class="list-group">
-          #{list}
-        </ul>
-      )
-    end
-
-    # host = 'http://dev.wikirate.org'
-    host = "http://localhost:3000"
-
-    test_pages = ENV["page"] ? [ENV["page"]] : ["Home"]
-    # test_pages = ENV['name'] ? [ENV['name']] : ['Home']
-    runs = ENV["run"] || 1
-    test_pages.each do |page|
-      puts page
-
-      log_args = { performance_log: {
-        output: :card, output_card: page,
-        methods: %i(
-          execute rule fetch view
-        ), details: true, min_time: 1
-      } }
-      url = "#{host}/#{page}"
-      open "#{url}?#{log_args.to_param}"
-      benchmark = WBench::Benchmark.new(url) { "" }
-      results   = benchmark.run(runs) # => WBench::Results
-      card = Card.fetch "#{page}+#{Card[:performance_log].name}",
-                        new: { type_id: Card::PointerID }
-      card.add_csv_entry page, results, runs
-    end
-
-    # results.app_server # =>
-    #   [25, 24, 24]
-    #
-    # results.browser # =>
-    #   {
-    #     "navigationStart"            => [0, 0, 0],
-    #     "fetchStart"                 => [0, 0, 0],
-    #     "domainLookupStart"          => [0, 0, 0],
-    #     "domainLookupEnd"            => [0, 0, 0],
-    #     "connectStart"               => [12, 12, 11],
-    #     "connectEnd"                 => [609, 612, 599],
-    #     "secureConnectionStart"      => [197, 195, 194],
-    #     "requestStart"               => [609, 612, 599],
-    #     "responseStart"              => [829, 858, 821],
-    #     "responseEnd"                => [1025, 1053, 1013],
-    #     "domLoading"                 => [1028, 1055, 1016],
-    #     "domInteractive"             => [1549, 1183, 1136],
-    #     "domContentLoadedEventStart" => [1549, 1183, 1136],
-    #     "domContentLoadedEventEnd"   => [1549, 1184, 1137],
-    #     "domComplete"                => [2042, 1712, 1663],
-    #     "loadEventStart"             => [2042, 1712, 1663],
-    #     "loadEventEnd"               => [2057, 1730, 1680]
-    #   }
-  end
-
-  namespace :task do
+  namespace :util do
     desc "remove empty metric value cards"
     task remove_empty_metric_value_cards: :environment do
       # require File.dirname(__FILE__) + '/../config/environment'
