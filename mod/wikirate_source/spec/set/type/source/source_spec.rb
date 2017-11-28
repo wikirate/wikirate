@@ -68,7 +68,7 @@ RSpec.describe Card::Set::Type::Source do
         expect(secondsourcepage.errors[:link]).to include(expected)
       end
     end
-    context "while creating without anything" do
+    context "without anything" do
       it do
         sourcepage = Card.new type_id: Card::SourceID
         expect(sourcepage).not_to be_valid
@@ -77,7 +77,7 @@ RSpec.describe Card::Set::Type::Source do
         expect(sourcepage.errors[:source]).to include(expected)
       end
     end
-    context "while creating with more than one source type " do
+    context "with more than one source type " do
       it do
         url = "http://www.google.com/?q=wikirate"
 
@@ -88,8 +88,8 @@ RSpec.describe Card::Set::Type::Source do
         expect(sourcepage.errors[:source]).to include(expected)
       end
     end
-    describe "while creating a source with a file link" do
-      context "link points to a file" do
+    describe "with a file link" do
+      context "pointing to a file" do
         it "downloads it and saves as a file source" do
           pdf_url = "http://wikirate.s3.amazonaws.com/files/175839/12677809.pdf"
           # "http://wikirate.org/Page-000003962+File.pdf"
@@ -135,7 +135,7 @@ RSpec.describe Card::Set::Type::Source do
         end
       end
     end
-    describe "while creating a source with a wikirate link" do
+    describe "with a wikirate link" do
       context "a source link" do
         it "return the source card" do
           url = source_url(sample_source.name.url_key)
