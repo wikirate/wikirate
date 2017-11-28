@@ -4,6 +4,7 @@ format :html do
   end
 
   view :import, cache: :never do
+    class_up "card-slot", "nodblclick"
     frame_and_form :update do
       [
         hidden_import_tags,
@@ -62,7 +63,7 @@ format :html do
         check_box_tag(
           name, "", checked,
           class: "checkbox-button _group_check",
-          data: { group: identifier }
+          data: { group: name }
         ),
         label_tag(name, label)
       ]

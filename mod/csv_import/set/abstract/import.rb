@@ -20,7 +20,8 @@ event :validate_import_format, :validate, when: :save_preliminary_upload? do
   if upload_cache_card.csv?
     validate_csv
   elsif csv_only?
-    abort :failure, "file must be CSV"
+    abort :failure,
+          "file must be CSV but was '#{upload_cache_card.attachment.content_type}'"
   end
 end
 
@@ -42,7 +43,7 @@ format :html do
   end
 
   def new_view_hidden
-    hidden_tags success: { id: "_self", soft_redirect: false, view: :import }
+    hidden_tags success: { id: "_self", soft_redirect: false, redirect: true, view: :import }
   end
 
   view :core do
