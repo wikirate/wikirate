@@ -13,9 +13,8 @@ class TableRowWithCompanyMapping < TableRow
     @company = @match.suggestion
   end
 
-  def render
-    rendered = super
-    rendered.tap { format.add_class rendered, "_#{match_type}_match" }
+  def row_css_classes
+    super << "_#{match_type}-match"
   end
 
   private

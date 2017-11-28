@@ -8,12 +8,12 @@
 .inherit-anchor {
   text-decoration: none;
   color: inherit !important;
+
   :hover {
     text-decoration: none;
     color: inherit;
   }
 }
-
 //bootstrap 3 utility used in many places
 .hidden {
   display: none !important;
@@ -30,7 +30,6 @@
 .slab:hover {
   background: #fbfbfb;
 }
-
 //Text Colors
 .company-color {
   color: $company-color;
@@ -71,7 +70,6 @@
 .request-red {
   color: $highlight-color;
 }
-
 //Text adjustments
 .text-align-left {
   text-align: left;
@@ -108,12 +106,10 @@
   line-height: 1.4em;
   margin: 10px 0;
 }
-
 //font options
 .normal-weight {
   font-weight: normal;
 }
-
 //Common adjustments
 .float-right {
   float: right;
@@ -174,7 +170,7 @@
 }
 
 .margin-no-left-15 {
-  margin: 15px 15px 15px 0px;
+  margin: 15px 15px 15px 0;
 }
 
 .padding-top-10 {
@@ -213,7 +209,6 @@
   width: 1%;
   white-space: nowrap;
 }
-
 //background and borders
 .background-white {
   background-color: #fff;
@@ -238,7 +233,6 @@
 .double-border-fix-left {
   margin-left: -1px;
 }
-
 //custom column
 .col-md-3-5 {
   width: 25.666%;
@@ -249,12 +243,10 @@
   float: none;
   margin: 0 auto;
 }
-
 //heights
 .min-page-height {
   min-height: $min-page-height;
 }
-
 //images
 .image-box {
   &.medium {
@@ -273,6 +265,7 @@
     height: 32px;
     line-height: 16px;
   }
+
   &.large {
     width: 216px;
     height: 216px;
@@ -282,13 +275,14 @@
     width: 175px;
     height: 175px;
   }
+
   &.large-2x {
     width: 256px;
     height: 256px;
   }
   width: 94px;
   height: 94px;
-  border-radius: 0px;
+  border-radius: 0;
   overflow: hidden;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -300,6 +294,7 @@
   vertical-align: middle;
   margin-right: 18px;
   text-align: center;
+
   img {
     display: block;
     max-width: 100%;
@@ -316,11 +311,11 @@
   font-size: 30px;
   color: #868686;
 }
-
 // Modal
 .modal-body > div {
   display: inline-block;
   width: 100%;
+
   .menu-slot {
     z-index: 1;
   }
@@ -333,7 +328,6 @@
 div#pdf-preview {
   margin-top: 10px;
 }
-
 //Ajax loader animation
 #ajax_loader {
   display: none;
@@ -347,6 +341,7 @@ div#pdf-preview {
   left: 0;
   z-index: 999;
   background-color: rgba(255, 255, 255, 0.8);
+
   .anime {
     position: absolute;
     left: 50%;
@@ -359,11 +354,14 @@ div#pdf-preview {
   position: relative;
 }
 
-.tagline, .edits-by, .last-edit {
+.edits-by,
+.last-edit,
+.tagline {
   // border-bottom: 1px solid $div-border-color;
   font-size: 0.8em;
   margin-bottom: 5px;
   color: #ccc;
+
   .subtitle-header {
     float: left;
     padding-right: 6px;
@@ -377,11 +375,11 @@ div#pdf-preview {
   div {
     display: inline;
   }
+
   .item-link {
-    padding: 0px;
+    padding: 0;
   }
 }
-
 // TODO: verify if this class is used anywhere
 #credit,
 #credit a {
@@ -390,19 +388,18 @@ div#pdf-preview {
   border: 0;
   margin-bottom: 15px;
   position: relative;
-
 }
 
 #credit {
   z-index: -0;
   left: 8px;
   display: block;
+
   a {
     right: 16px;
     position: relative;
     z-index: -1;
   }
-
 }
 
 .panel-default {
@@ -411,6 +408,7 @@ div#pdf-preview {
   > .panel-heading {
     background-image: none;
   }
+
   > .panel-heading {
     color: #333;
     background-color: #f5f5f5;
@@ -422,10 +420,12 @@ div#pdf-preview {
 .panel-primary-container > .card-slot > {
   .menu-slot > .vertical-card-menu.show-on-hover .btn-group.slotter a {
     color: #fff;
+
     &:hover {
       color: #fafafa;
     }
   }
+
   .panel-default > .panel-heading {
     padding: 10px !important;
   }
@@ -434,6 +434,7 @@ div#pdf-preview {
 .panel-primary,
 .panel-primary-container > .card-slot > .panel-default {
   border-color: #eaeaea;
+
   > .panel-heading {
     color: #404040;
     background-color: #ffffff;
@@ -473,12 +474,12 @@ div#pdf-preview {
 .navbar-inverse {
   background-color: #03998d;
   border-color: #03998d;
+
   .navbar-nav > li > a,
   .navbar-text {
     color: #fff;
   }
 }
-
 @media (min-width: 768px) {
   .navbar {
     border-radius: 0;
@@ -488,6 +489,7 @@ div#pdf-preview {
 .new-source-widget {
   background: #fffbe6;
   border: 1px solid #ebebeb;
+
   .tab-content {
     background: #fffbe6;
     padding: 10px 10px 0 12px;
@@ -531,14 +533,13 @@ div#pdf-preview {
 .list-group-item {
   border-radius: 3px !important;
 }
-
 //Close and Pin buttons on edit menu
 a[title='cancel'],
 button[title='pin'] {
   background: none;
 }
 
-button.pointer-item-delete.btn.btn-default {
+button.pointer-item-delete.btn.btn-outline-secondary {
   height: 34px;
   border-bottom-right-radius: 4px;
   border-top-right-radius: 4px;
@@ -556,9 +557,7 @@ button.pointer-item-delete.btn.btn-default {
   /* symbol for "collapsed" panels */
   content: "\f0d7";
 }
-
 // Voting
-
 .vote-count {
   color: #999;
 }
@@ -582,7 +581,6 @@ button.pointer-item-delete.btn.btn-default {
   white-space: nowrap;
   overflow: hidden;
 }
-
 // Bootstrap Tweak
 .media-body {
   width: inherit;
@@ -594,6 +592,7 @@ button.pointer-item-delete.btn.btn-default {
     border-bottom: 1px solid $border-color;
     margin-bottom: 10px;
   }
+
   h3 {
     margin: 10px 8px;
   }
@@ -612,6 +611,7 @@ button.pointer-item-delete.btn.btn-default {
 
 .credit .search-result-list {
   display: inline;
+
   .search-result-item {
     display: inline;
     margin-left: 0;
@@ -623,17 +623,19 @@ button.pointer-item-delete.btn.btn-default {
 .card-notice .alert {
   margin-bottom: 0; // no spacing between error messages
 }
-
 //External links
 //override wagn default
-a.external-link, .closed-content a.external-link {
+
+.closed-content a.external-link,
+a.external-link {
   color: #03998d !important;
   background: none !important;
   padding-right: 2px !important;
   position: relative;
 }
 
-a.external-link:after, .closed-content a.external-link:after {
+.closed-content a.external-link:after,
+a.external-link:after {
   content: "\f08e";
   right: -2px;
   position: relative;
@@ -643,9 +645,7 @@ a.external-link:after, .closed-content a.external-link:after {
   text-decoration: none !important;
   display: inline;
 }
-
 // Fix for tiny radio button issue
-
 li > input[type="radio"] {
   width: inherit !important;
 }
@@ -654,16 +654,16 @@ li > input[type="radio"] {
   width: 640px;
   height: 480px;
 }
-
 //All vimeo embeds
 iframe[src*="vimeo"] {
-  box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.11);
+  box-shadow: 0 0 13px 2px rgba(0, 0, 0, 0.11);
   width: 430px;
   height: 240px;
 }
 
 ul {
-  &.horizontal, &.vertical {
+  &.horizontal,
+  &.vertical {
     clear: both;
     display: block;
     content: "";
@@ -676,4 +676,19 @@ ul {
 ul.horizontal > li {
   float: left;
   margin-right: 5px;
+}
+//Responsive iframe
+.responsive-iframe {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 }

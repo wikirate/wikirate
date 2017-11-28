@@ -31,8 +31,12 @@ class TableRow
   # @return [Hash] the :content value is an array with the text/html for each cell
   def render
     res = { content: fields, data: { csv_row_index: @csv_row.row_index } }
-    res[:class] = "table-danger" unless valid?
+    format.add_class res, row_css_classes
     res
+  end
+
+  def row_css_classes
+    valid? ? [] : ["table-danger"]
   end
 
 

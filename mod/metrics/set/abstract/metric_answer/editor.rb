@@ -18,6 +18,8 @@ format :html do
     end
   end
 
+  view :source_side, template: :haml
+
   def default_new_args _args
     metric_name = Env.params[:metric]
     voo.title = "Add new value for #{metric_name}" if metric_name
