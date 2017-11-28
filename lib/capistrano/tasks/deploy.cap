@@ -77,9 +77,6 @@ namespace :deploy do
          "and add release notes"
   end
 
-end
-
-
   after :cleanup, :deploy_pt_stories do
     pt_config_file = File.expand_path("../../../../config/pivotaltracker.yml", __FILE__)
     next if fetch(:stage) != :staging || !File.exists?(pt_config_file)
@@ -94,7 +91,8 @@ end
     PivotalTracker::Client.use_ssl = true
 
     unpakt_project = PivotalTracker::Project.find(tracker[:project_id])
-    stories = unpakt_project.stories.all(:state => "finished", :story_type => ['bug', 'feature'])
+    stories =
+      unpakt_project.stories.all(:state => "finished", :story_type => ['bug', 'feature'])
 
     staging_deploy_tag = `git tag | grep staging | tail -n1`
 
@@ -109,3 +107,5 @@ end
         puts "Coult not find #{story.id} in git repo."
       end
     end
+  end
+end
