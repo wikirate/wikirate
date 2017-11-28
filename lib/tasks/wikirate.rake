@@ -3,17 +3,18 @@ require "colorize"
 namespace :wikirate do
 
   task :version do
-    puts version
+    puts wikirate_version
   end
 
   task :release do
+    version = wikirate_version
     system %(
     git tag -a v#{version} -m "WikiRate Version #{version}"
     git push --tags wikirate
   )
   end
 
-  def version
+  def wikirate_version
     File.open(File.expand_path("../../../VERSION", __FILE__)).read.chomp
   end
 
