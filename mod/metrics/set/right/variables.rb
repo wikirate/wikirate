@@ -36,6 +36,8 @@ def input_metric_name_by_index index
   item_cards.fetch(index, nil).name
 end
 
+
+
 format :html do
   view :core do |args|
     args ||= {}
@@ -65,39 +67,11 @@ format :html do
   end
 
   view :edit do |_args|
+    return super() unless card.metric_card
     voo.hide! :toolbar, :menu
     frame do
-      haml metric_list: metric_list do
-        <<-HAML
-.yinyang.nodblclick
-  .col-md-6
-    .header-row
-      .header-header
-        Metric
-    .yinyang-list.add-formula
-      = metric_list
-  .col-md-6.metric-details.light-grey-color-2.text-center
-    %br/
-    %br/
-    %br/
-    %p
-      Choose a metric to view more details here
-    %p
-      and to add it to the formula
-      HAML
-      end
+      nest [card.metric_card_name, :add_to_formula], view: :select_modal
     end
-  end
-
-  def metric_list
-    wql = { type_id: MetricID, limit: 0 }
-    if card.metric_card.metric_type_codename == :wiki_rating
-      wql[:right_plus] = ["*metric type", { refer_to: "Score" }]
-    end
-    items = Card.search(wql)
-    params[:formula_metric_key] = card.name.left_key
-    wikirate_table_with_details :metric, items, [:add_to_formula_item_view],
-                                td: { classes: %w[score details] }
   end
 
   view :missing do |args|

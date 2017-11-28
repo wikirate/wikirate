@@ -93,7 +93,7 @@ format :html do
       sections = %i[imported skipped overridden failed].map do |type|
         progress_section type
       end.compact
-      progress_bar *sections
+      progress_bar(*sections)
     end + wrap_with(:p, undo_button) + wrap_with(:p, report)
   end
 

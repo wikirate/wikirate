@@ -9,6 +9,8 @@ format :html do
     voo.hide! :edit_buttons
   end
 
+  view :source_side, template: :haml
+
   view :content_formgroup, template: :haml do
     card.add_subfield :year, content: card.year
     if card.metric_card.relationship?

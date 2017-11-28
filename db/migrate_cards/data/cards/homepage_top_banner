@@ -13,8 +13,8 @@
 			</div>
 			<br>
 			<div class="pull-right col-md-3 col-xs-12 col-sm-12 btn-group-vertical banner-buttons">
-			  <a class="btn btn-default slotter" href='/homepage: video container?layout=modal' data-toggle='modal' data-target='#modal-main-slot'><i class="fa fa-play-circle"></i>Watch Intro Video &nbsp;</a>
-			  <a class="btn btn-default" href="/{{About WikiRate|linkname}}"><i class="fa fa-arrow-circle-o-right"></i>About WikiRate &nbsp;</a>
+			  <a class="btn btn-outline-secondary slotter" href='/homepage: video container?layout=modal' data-toggle='modal' data-target='#modal-main-slot'><i class="fa fa-play-circle"></i>Watch Intro Video &nbsp;</a>
+			  <a class="btn btn-outline-secondary" href="/{{About WikiRate|linkname}}"><i class="fa fa-arrow-circle-o-right"></i>About WikiRate &nbsp;</a>
 			  <!-- <a class="btn btn-default" href="/{{Using WikiRate|linkname}}"><i class="fa fa-arrow-circle-o-right"></i>Learn More &nbsp;</a> -->
 			</div>
 			<div class="row padding-top-20"></div>

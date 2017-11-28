@@ -70,9 +70,9 @@ $.extend wikirate,
       $citedButton = ele.removeClass("_cite_button btn-highlight")
         .addClass("_cited_button btn-success").text("Cited!")
       $citedButton.hover ( ->
-        $(this).text('Uncite!').addClass('btn-default')
+        $(this).text('Uncite!').addClass('btn-secondary')
       ), ->
-        $(this).text('Cited!').removeClass('btn-default')
+        $(this).text('Cited!').removeClass('btn-secondary')
     else
       $citedButton = ele.removeClass("_cited_button btn-success")
         .addClass("_cite_button btn-highlight").text("Cite!")

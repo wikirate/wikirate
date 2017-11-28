@@ -90,6 +90,7 @@ group :test do
 end
 
 group :development do
+  gem 'html2haml'
   gem "rubocop-rspec"
 
   gem "rails-dev-tweaks"
@@ -101,12 +102,15 @@ group :development do
   gem "capistrano-maintenance", require: false
   gem "capistrano-passenger"
   gem "capistrano-rvm"
+  gem 'pivotal-tracker'
 
   gem "better_errors"
   gem "binding_of_caller"
 
   # gem "spring"
   # gem 'spring-commands-rspec'
+  #
+
 end
 
 group :test, :development do

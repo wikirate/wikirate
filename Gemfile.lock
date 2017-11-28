@@ -163,6 +163,8 @@ GEM
     colorize (0.8.1)
     company-mapping (0.2.3)
     concurrent-ruby (1.0.5)
+    crack (0.4.3)
+      safe_yaml (~> 1.0.0)
     crass (1.0.3)
     cucumber (3.1.0)
       builder (>= 2.1.2)
@@ -211,6 +213,7 @@ GEM
       mail (~> 2.6)
     equalizer (0.0.11)
     erubi (1.7.0)
+    erubis (2.7.0)
     eventmachine (1.2.5)
     excon (0.59.0)
     execjs (2.7.0)
@@ -371,6 +374,11 @@ GEM
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
+    html2haml (2.2.0)
+      erubis (~> 2.7.0)
+      haml (>= 4.0, < 6)
+      nokogiri (>= 1.6.0)
+      ruby_parser (~> 3.5)
     htmlentities (4.3.4)
     http (3.0.0)
       addressable (~> 2.3)
@@ -445,6 +453,8 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
+    nokogiri-happymapper (0.6.0)
+      nokogiri (~> 1.5)
     oga (2.11)
       ast
       ruby-ll (~> 2.1)
@@ -453,6 +463,12 @@ GEM
     parser (2.4.0.2)
       ast (~> 2.3)
     pdfkit (0.8.2)
+    pivotal-tracker (0.5.13)
+      builder
+      crack
+      nokogiri (>= 1.5.5)
+      nokogiri-happymapper (>= 0.5.4)
+      rest-client (>= 1.8.0)
     powerpack (0.1.1)
     pry (0.11.3)
       coderay (~> 1.1.0)
@@ -561,7 +577,10 @@ GEM
       ansi
       ast
     ruby-progressbar (1.9.0)
+    ruby_parser (3.10.1)
+      sexp_processor (~> 4.9)
     rubyzip (1.2.1)
+    safe_yaml (1.0.4)
     sass (3.5.3)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -571,6 +590,7 @@ GEM
     selenium-webdriver (3.6.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
+    sexp_processor (4.10.0)
     simple_oauth (0.3.1)
     simplecov (0.15.1)
       docile (~> 1.1.0)
@@ -681,6 +701,7 @@ DEPENDENCIES
   email_spec
   fog
   fog-aws
+  html2haml
   launchy
   link_thumbnailer (= 2.5.2)
   minitest
@@ -688,6 +709,7 @@ DEPENDENCIES
   newrelic_rpm
   open_uri_redirections
   pdfkit
+  pivotal-tracker
   pry
   pry-byebug
   pry-rails
