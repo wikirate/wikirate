@@ -128,7 +128,7 @@ RSpec.describe Card::Set::TypePlusRight::Source::File::ImportAnswersFromSource d
     it "renders table correctly" do
       table = import_card_with_rows(:no_match, :partial_match, :alias_match, :exact_match)
                 .format._render_import_table
-      expect(table).to have_tag("table", with: { class: "import_table" }) do
+      expect(table).to have_tag("table", with: { class: "_import-table" }) do
         with_row index: 0,
                  context: :danger,
                  checked: false,

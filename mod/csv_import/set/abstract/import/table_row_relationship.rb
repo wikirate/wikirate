@@ -14,10 +14,9 @@ class TableRowRelationship < TableRowWithCompanyMapping
     @related_company = @related_company_match.suggestion
   end
 
-  def render
-    rendered = super
-    return rendered if match_type == related_match_type
-    rendered.tap { format.add_class super, "_#{related_match_type}_match" }
+  def row_css_classes
+    return super if match_type == related_match_type
+    super << "_#{related_match_type}-match"
   end
 
   private

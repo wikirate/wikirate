@@ -146,7 +146,7 @@ RSpec.describe Card::Set::Type::SourceImportFile do
     example "shows correctly import table" do
       table = import_card_with_rows(:exact_match, :partial_match, :alias_match)
                 .format._render_import_table
-      expect(table).to have_tag("table", with: { class: "import_table" }) do
+      expect(table).to have_tag("table", with: { class: "_import-table" }) do
         with_row index: 0,
                  context: :success,
                  checked: true,

@@ -2,7 +2,7 @@
 
 require "link_thumbnailer"
 
-describe Card::Set::Self::Source do
+RSpec.describe Card::Set::Self::Source do
   let(:page_card) { Card["Source"] }
   let(:json_format) { page_card.format(format: :json) }
 
@@ -12,10 +12,7 @@ describe Card::Set::Self::Source do
     end
 
     it "has 'add source' button" do
-      is_expected.to have_tag "div.new-source-button" do
-        with_text "Add a new Source"
-        with_tag "a", with: { href: "/new/Source?layout=wikirate%20layout" }
-      end
+      is_expected.to have_tag "a.btn", text: "Add Source", with: { href: "/new/Source" }
     end
 
     it "has 'most recent' selected as sort option" do
