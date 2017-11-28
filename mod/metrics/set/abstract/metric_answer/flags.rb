@@ -37,6 +37,6 @@ format :html do
 
   def imported_flag
     return "" unless card.imported?
-    icon_tag "import", library: :glyphicon, title: "imported"
+    icon_tag "upload", library: :font_awesome, title: "imported"
   end
 end

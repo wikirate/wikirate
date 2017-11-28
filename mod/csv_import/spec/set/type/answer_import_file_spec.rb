@@ -146,7 +146,13 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
     it "imports others if one fails" do
       trigger_import :exact_match, :invalid_value
       expect_card("Jedi+disturbances in the Force+Death Star+2017+value")
-        .to exist.and have_db_content("yes")
+              .to exist.and have_db_content("yes")
+    end
+
+    it "marks import actions as import" do
+      trigger_import :exact_match
+      card = Card["Jedi+disturbances in the Force+Death Star+2017+value"]
+      expect(card.actions.last.comment).to eq "imported"
     end
 
     describe "duplicates" do
