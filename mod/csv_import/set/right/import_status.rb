@@ -1,10 +1,10 @@
-# def followable?
-#   false
-# end
-#
-# def history?
-#   false
-# end
+def followable?
+  false
+end
+
+def history?
+  false
+end
 
 def status
   @status ||= ImportManager::Status.new content

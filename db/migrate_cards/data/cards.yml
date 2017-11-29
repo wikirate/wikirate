@@ -3,35 +3,35 @@
 - :name: metric value source form
   :type: HTML
   :key: metric_value_source_form
-  :merged: 2017-11-28 21:33:09 UTC
+  :merged: 2017-10-26 10:34:10 UTC
 - :name: Research Page+Company
   :type: Session
   :key: research_page+company
-  :merged: 2017-11-28 21:33:09 UTC
+  :merged: 2017-10-26 10:34:10 UTC
 - :name: Research Page+Metric
   :type: Session
   :key: research_page+metric
-  :merged: 2017-11-28 21:33:09 UTC
+  :merged: 2017-10-26 10:34:10 UTC
 - :name: Source+*type+*structure
   :type: HTML
   :key: source+*type+*structure
-  :merged: 2017-11-28 21:33:09 UTC
+  :merged: 2017-10-26 10:34:10 UTC
 - :name: Cardtype+*metric type+*type plus right+*structure
   :type: Set
   :key: cardtype+*metric_type+*type_plu_right+*structure
-  :merged: 2017-11-28 21:33:09 UTC
+  :merged: 2017-10-26 10:34:10 UTC
 - :name: Link+*source type
   :type: Set
   :key: link+*source_type
-  :merged: 2017-11-28 21:33:09 UTC
+  :merged: 2017-10-26 10:34:10 UTC
 - :name: Text+*source type
   :type: Set
   :key: text+*source_type
-  :merged: 2017-11-28 21:33:09 UTC
+  :merged: 2017-10-26 10:34:10 UTC
 - :name: File+*source type
   :type: Set
   :key: file+*source_type
-  :merged: 2017-11-28 21:33:09 UTC
+  :merged: 2017-10-26 10:34:10 UTC
 - :name: note+*self+*structure
   :type: HTML
   :key: note+*self+*structure
@@ -240,11 +240,9 @@
   :type: HTML
   :codename: :nav_bar
   :key: nav_bar
-  :merged: 2017-11-28 21:33:06 UTC
 - :name: nav bar menu
   :type: HTML
   :key: nav_bar_menu
-  :merged: 2017-11-28 21:33:06 UTC
 - :name: Company
   :type: Cardtype
   :codename: wikirate_company
@@ -459,15 +457,15 @@
 - :name: Metric+*self+*structure
   :type: HTML
   :key: metric+*self+*structure
-  :merged: 2017-11-28 21:33:10 UTC
+  :merged: 2017-10-26 13:04:50 UTC
 - :name: Topic+*self+*structure
   :type: HTML
   :key: topic+*self+*structure
-  :merged: 2017-11-28 21:33:10 UTC
+  :merged: 2017-10-26 13:04:50 UTC
 - :name: Company+*self+*structure
   :type: HTML
   :key: company+*self+*structure
-  :merged: 2017-11-28 21:33:10 UTC
+  :merged: 2017-10-26 13:04:50 UTC
 - :name: PRME Data collection - core metrics for companies
   :type: Project
   :key: prme_datum_collection_core_metric_for_company

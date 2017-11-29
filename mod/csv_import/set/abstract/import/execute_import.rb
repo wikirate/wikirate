@@ -1,6 +1,4 @@
 event :import_csv, :integrate_with_delay, on: :update, when: :data_import? do
-  require 'pry'
-  binding.pry
   import_manager.import_rows selected_row_indices
 end
 
