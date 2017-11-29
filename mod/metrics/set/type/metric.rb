@@ -267,7 +267,7 @@ format :html do
   # USED?
 
   view :add_to_formula_item_view do |_args|
-    subtext = wrap_with :small, "Designed by" + card.metric_designer.to_s
+    subtext = wrap_with :small, "Designed by #{card.metric_designer}"
     add_to_formula_helper subtext
   end
 

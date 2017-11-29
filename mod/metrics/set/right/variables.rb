@@ -36,10 +36,8 @@ def input_metric_name_by_index index
   item_cards.fetch(index, nil).name
 end
 
-
-
 format :html do
-  view :core do |args|
+  view :core, chache: :never do |args|
     args ||= {}
     items = args[:item_list] || card.item_names(context: :raw)
     items ||= card.extract_metrics_from_formula if items.empty?
@@ -48,7 +46,26 @@ format :html do
       items.map.with_index do |item, index|
         variable_row(item, index, args)
       end
-    table(table_content, header: ["Metric", "Variable", "Example value"])
+    table(table_content, header: ["Metric", "Variable", "Example value"]) +
+      add_metric_button + add_metric_modal_slot
+  end
+
+  def add_metric_button
+    target = "#modal-add-metric-slot"
+    wrap_with :span, class: "input-group" do
+        button_tag class: "pointer-item-add slotter",
+                   situation: "outline-secondary",
+                   data: { toggle: "modal", target: target },
+                   href: path(layout: "modal", view: :edit,
+                              mark: card.name,
+                              slot: { title: "Choose Metric" }) do
+          fa_icon(:plus) + " add metric"
+        end
+    end
+  end
+
+  def add_metric_modal_slot
+    _render_modal_slot(modal_id: "add-metric-slot", dialog_class: "large").html_safe
   end
 
   def variable_row item_name, index, args
@@ -74,13 +91,14 @@ format :html do
     end
   end
 
-  view :missing do |args|
-    if @card.new_card? && (l = @card.left) &&
-       l.respond_to?(:input_names)
+  view :missing do
+    return super() unless card.new_card?
+    if card.formula_card
       card.extract_metrics_from_formula
-      render!(@denied_view, args)
+      render! @denied_view
     else
-      super(args)
+      Auth.as_bot { card.save! }
+      render! :core
     end
   end
 
