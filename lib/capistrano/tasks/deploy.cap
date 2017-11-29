@@ -61,15 +61,8 @@ namespace :deploy do
 
   desc "restart delayed job processes"
   after :published, :restart_delayed_job do
-    on roles(:app) do
-      within release_path do
-        execute "pwd"
-        env = "env RAILS_ENV=production"
-        num_jobs = fetch :num_delayed_job_processes
-        execute :rvm, "default do", env, "./bin/delayed_job -n", num_jobs, "restart"
-    end
-      end
-    end
+    invoke "delayed_job:restart"
+  end
 
   after :finishing, :cleanup do
     next unless fetch(:stage) == :production
