@@ -53,6 +53,7 @@ format :html do
   end
 
   view :edit do
+    voo.hide :toolbar
     super() +
       _render_modal_slot(modal_id: "add-metric-slot", dialog_class: "large").html_safe
   end
