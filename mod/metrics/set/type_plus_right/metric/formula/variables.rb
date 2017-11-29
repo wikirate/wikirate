@@ -16,11 +16,9 @@ event :replace_variables, :prepare_to_validate,
 end
 
 format :html do
-  view :variables do |args|
+  view :variables do |_args|
     with_nest_mode(:normal) do
-      subformat(card.variables_card)._render_open(
-        args.merge(optional_header: :hide, optional_menu: :hide)
-      ).html_safe
+      nest card.variables_card, view: :open, hide: [:header, :menu]
     end
   end
 end
