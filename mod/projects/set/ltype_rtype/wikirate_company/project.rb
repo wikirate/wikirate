@@ -31,7 +31,9 @@ end
 
 format :html do
   view :company_thumbnail do
-    nest card.company_card, view: :thumbnail_no_link
+    company_link do
+      nest card.company_card, view: :thumbnail_no_link
+    end
   end
 
   view :research_button do
@@ -39,12 +41,19 @@ format :html do
             class: "btn btn-outline-secondary btn-sm",
             path: { mark: :research_page,
                     company: card.company_card.name,
-                    project: card.project_card.name.url_key }
+                    project: project_name.url_key }
   end
 
-  view :research_progress_bar do
-    link_to_card card.company_card, _render_absolute_research_progress_bar,
-                 path: { filter: { project: card.project_card.name,
-                                   metric_value: :all } }
+  view :research_progress_bar, cache: :never do
+    research_progress_bar :company_link
+  end
+
+  def project_name
+    card.project_card.name
+  end
+
+  def company_link values = :all
+    path_args = { filter: { project: project_name, metric_value: values  } }
+    link_to_card card.company_card, yield, path: path_args
   end
 end

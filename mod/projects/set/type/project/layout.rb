@@ -1,6 +1,11 @@
 include_set Abstract::TwoColumnLayout
 include_set Abstract::Tabs
 
+TAB_MAP = { company: [:building,   :num_companies, "Companies"],
+            metric:  ["bar-chart", :num_metrics,   "Metrics"],
+            year:    [:calendar,   :num_years,     "Years"],
+            project: [:flask,      :num_projects,  "Subprojects"] }
+
 format :html do
   view :open_content do |args|
     bs_layout container: false, fluid: true, class: @container_class do
@@ -46,10 +51,11 @@ format :html do
   end
 
   def tab_list
-    {
-        company_list_tab: "#{card.num_companies} Companies",
-        metric_list_tab: "#{fa_icon 'bar-chart'} #{card.num_metrics} Metrics"
-    }
+    [:company, :metric].each_with_object({}) do |tab, hash|
+      icon, stat_method, title = TAB_MAP[tab]
+      stat = card.send stat_method
+      hash["#{tab}_list_tab".to_sym] = [fa_icon(icon), stat, title] * " "
+    end
   end
 
   view :metric_list_tab do

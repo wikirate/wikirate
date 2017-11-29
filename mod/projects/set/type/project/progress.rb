@@ -57,6 +57,10 @@ format :html do
     end
   end
 
+  view :research_progress_bar, cache: :never do
+    research_progress_bar
+  end
+
   view :progress_description do
     %(
       <div class="text-muted small text-center">
