@@ -1,14 +1,14 @@
 # for this to work, you have to define #num_records, #where_answer, and
-# #worth_counting
+# #smart_count?
 
 # currently counts as researched if metric card exists at all
 def num_researched
-  @num_researched ||= worth_counting { count_researched }
+  @num_researched ||= smart_count { count_researched }
 end
 
 # researched and has a value that is not "Unknown"
 def num_known
-  @num_known ||= worth_counting { count_known }
+  @num_known ||= smart_count { count_known }
 end
 
 def num_unknown
@@ -50,6 +50,12 @@ end
 def researched_relation
   Answer.select(:record_id).distinct.where where_answer
 end
+
+def smart_count
+  return 0 unless worth_counting?
+  yield
+end
+
 
 view :research_progress_bar, cache: :never do
   progress_bar(

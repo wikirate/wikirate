@@ -25,9 +25,8 @@ def where_answer
   { metric_id: [:in] + metric_ids, company_id: company_card.id }
 end
 
-def worth_counting
-  return 0 unless metric_ids.any?
-  yield
+def worth_counting?
+  metric_ids.any?
 end
 
 format :html do
