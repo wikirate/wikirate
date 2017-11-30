@@ -1,5 +1,7 @@
 format :html do
 
+  #~~~~~~~~~~~~~ DETAILS ON PROJECT PAGE
+
   # left column content
   def project_details
     wrap_with :div do
@@ -16,45 +18,53 @@ format :html do
     end
   end
 
+
+  #~~~~~~~~~~~ DETAILS IN PROJECT LISTING
+
   view :listing do
-    image = card.field(:image)
-    title = _render_link
-    text = row_details
+    listing_layout do
+      text_with_image image: card.field(:image),
+                      size: :medium,
+                      title: render_link,
+                      text: listing_details
+    end
+  end
+
+  def listing_layout
     bs_layout do
       row 12, class: "project-summary" do
-        col text_with_image(image: image, size: :medium,
-                            title: title, text: text)
+        col yield
       end
     end
   end
 
-  def row_details
+  def listing_details
     wrap_with :div, class: "project-details-info" do
-      [
-          wrap_with(:div, class: "organizational-details") do
-            organizational_details
-          end,
-          wrap_with(:div, class: "stat-details overall-progress-box") do
-            stats_details
-          end,
-          wrap_with(:div, topics_details, class: "topic-details")
-      ]
+      [ organizational_details, stats_details, topics_details ]
     end
   end
 
   def organizational_details
-    organized_by = wrap_with :div, class: "organized-by horizontal-list" do
-      [
-          wrap_with(:span, " | organized by "),
-          field_nest(:organizer, items: { view: :link })
-      ]
+    wrap_with :div, class: "organizational-details" do
+      [organized_by_detail, status_detail]
     end
-    status = field_nest(:wikirate_status, items: { view: :name })
-    [status, organized_by]
+  end
+
+  def organized_by_detail
+    wrap_with :div, class: "organized-by horizontal-list" do
+      [ wrap_with(:span, " | organized by "),
+        field_nest(:organizer, items: { view: :link }) ]
+    end
+  end
+
+  def status_detail
+    field_nest :wikirate_status, items: { view: :name }
   end
 
   def stats_details
-    "#{count_stats} #{card.percent_researched}% #{overall_progress_bar}"
+    wrap_with :div, class: "stat-details overall-progress-box" do
+      [count_stats, "#{card.percent_researched}%", research_progress_bar] * " "
+    end
   end
 
   def count_stats
@@ -64,8 +74,10 @@ format :html do
   end
 
   def topics_details
-    wrap_with :div, class: "horizontal-list" do
-      field_nest :wikirate_topic, items: { view: :link, type: "Topic" }
+    wrap_with :div, class: "topic-details" do
+      wrap_with :div, class: "horizontal-list" do
+        field_nest :wikirate_topic, items: { view: :link, type: "Topic" }
+      end
     end
   end
 end

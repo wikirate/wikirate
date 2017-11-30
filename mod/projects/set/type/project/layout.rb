@@ -65,5 +65,4 @@ format :html do
   view :company_list_tab do
     standard_pointer_nest :wikirate_company
   end
-
 end

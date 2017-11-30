@@ -64,6 +64,7 @@ end
 
 format :html do
   def research_progress_bar link_method=nil
+    return "" unless card.worth_counting?
     sections = [:known, :unknown, :not_researched].map do |value|
       research_progress_bar_section value, link_method
     end.compact

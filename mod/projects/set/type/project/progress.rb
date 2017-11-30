@@ -71,14 +71,6 @@ format :html do
     )
   end
 
-  def overall_progress_bar
-    progress_bar(
-        { value: card.percent_known, class: "progress-known" },
-        { value: card.percent_unknown, class: "progress-unknown" },
-        value: card.percent_not_researched, class: "progress-not-researched"
-    )
-  end
-
   def progress_legend
     bs_layout do
       row 12 do
