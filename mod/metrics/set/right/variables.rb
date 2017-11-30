@@ -47,10 +47,10 @@ format :html do
         variable_row(item, index, args)
       end
     table(table_content, header: ["Metric", "Variable", "Example value"]) +
-      add_metric_button
+      render_add_metric_button
   end
 
-  def add_metric_button
+  view :add_metric_button do
     target = "#modal-add-metric-slot"
     wrap_with :span, class: "input-group" do
       button_tag class: "pointer-item-add slotter", situation: "outline-secondary",
