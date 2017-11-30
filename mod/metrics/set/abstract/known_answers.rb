@@ -1,5 +1,8 @@
-# for this to work, you have to define #num_records, #where_answer, and
-# #smart_count?
+# for this to work, you have to define at a minimum:
+#
+# 1. #num_records returning the total number of records in the problem space
+# 2. #where_answer returning query args for an answer query
+# 3. #worth_counting? returning false if there are obviously no answers yet.
 
 CSS_CLASS = { not_researched: "progress-not-researched" }
 LINK_VALUE = { not_researched: "none" }
