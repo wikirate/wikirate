@@ -4,8 +4,8 @@
 # 2. #where_answer returning query args for an answer query
 # 3. #worth_counting? returning false if there are obviously no answers yet.
 
-CSS_CLASS = { not_researched: "progress-not-researched" }
-LINK_VALUE = { not_researched: "none" }
+CSS_CLASS = { not_researched: "progress-not-researched" }.freeze
+LINK_VALUE = { not_researched: "none" }.freeze
 
 # currently counts as researched if metric card exists at all
 def num_researched

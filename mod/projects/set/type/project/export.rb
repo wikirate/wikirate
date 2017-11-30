@@ -2,18 +2,21 @@ include_set Abstract::Export
 
 # called by self/project
 def num_policies
-  d_cnt = 0
-  c_cnt = 0
-  metric_card.item_cards.each do |mc|
-    next unless (policy = mc.try(:research_policy))
-    case policy
-      when "[[Designer Assessed]]" then d_cnt += 1
-      when "[[Community Assessed]]" then c_cnt += 1
-    end
+  count = { designer: 0, community: 0 }
+  metric_card.item_cards.each do |metric|
+    policy = metric.try :research_policy
+    tally_policy policy if policy
   end
-  [c_cnt, d_cnt]
+  [count[:designer], count[:community]]
 end
 
+def tally_policy policy, count
+  policy_type = case policy
+                when "[[Designer Assessed]]"  then :designer
+                when "[[Community Assessed]]" then :community
+                end
+  count[policy_type] += 1 if policy_type
+end
 
 format :csv do
   view :core do
@@ -34,8 +37,8 @@ format :json do
 
   def essentials
     {
-        metrics: nest(card.metric_card, view: :essentials, hide: :marks),
-        companies: nest(card.wikirate_company_card, view: :essentials, hide: :marks)
+      metrics: nest(card.metric_card, view: :essentials, hide: :marks),
+      companies: nest(card.wikirate_company_card, view: :essentials, hide: :marks)
     }
   end
 end

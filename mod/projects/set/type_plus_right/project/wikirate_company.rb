@@ -9,14 +9,10 @@ def company_project_card company_card
 end
 
 def all_company_project_cards
-  item_cards_by_name.map do |company|
+  item_cards.sort_by(&:name).map do |company|
     next unless company.type_id == WikirateCompanyID
     company_project_card company
   end.compact
-end
-
-def item_cards_by_name
-  item_cards.sort {|x,y| x.name <=> y.name }
 end
 
 format :html do

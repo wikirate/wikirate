@@ -52,7 +52,7 @@ format :html do
     card.project_card.name
   end
 
-  def company_link values = :all
+  def company_link values=:all
     path_args = { filter: { project: project_name, metric_value: values  } }
     link_to_card card.company_card, yield, path: path_args
   end

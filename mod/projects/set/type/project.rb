@@ -28,10 +28,3 @@ end
 def metrics
   metric_card.item_names
 end
-
-
-
-
-
-
-

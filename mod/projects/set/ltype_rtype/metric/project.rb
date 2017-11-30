@@ -48,7 +48,7 @@ format :html do
     card.project_card.name
   end
 
-  def metric_link values = :all
+  def metric_link values=:all
     path_args = { filter: { project: project_name, metric_value: values } }
     link_to_card card.metric_card, yield, path: path_args
   end

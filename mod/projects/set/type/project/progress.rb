@@ -29,13 +29,13 @@ format :html do
   def overall_progress_box
     wrap_with :div, class: "overall-progress-box" do
       [
-          progress_legend,
-          bs_layout do
-            row 2, 10 do
-              column { _render_percent_researched }
-              column { main_progress_bar }
-            end
+        progress_legend,
+        bs_layout do
+          row 2, 10 do
+            column { _render_percent_researched }
+            column { main_progress_bar }
           end
+        end
       ]
     end
   end
@@ -43,10 +43,10 @@ format :html do
   view :percent_researched do
     wrap_with :div, class: "percent-researched text-center" do
       [
-          wrap_with(:div, class: "lead") do
-            "<strong>#{card.percent_researched}%</strong>"
-          end,
-          "Researched"
+        wrap_with(:div, class: "lead") do
+          "<strong>#{card.percent_researched}%</strong>"
+        end,
+        "Researched"
       ]
     end
   end
@@ -88,8 +88,8 @@ format :html do
   def legend_item type
     wrap_with :div, class: "leg" do
       [
-          progress_bar(value: 100, class: "progress-" + type),
-          content_tag(:span, type.split(/ |\_|\-/).map(&:capitalize).join(" "))
+        progress_bar(value: 100, class: "progress-" + type),
+        content_tag(:span, type.split(/ |\_|\-/).map(&:capitalize).join(" "))
       ]
     end
   end

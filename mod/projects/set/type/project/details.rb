@@ -1,6 +1,5 @@
 format :html do
-
-  #~~~~~~~~~~~~~ DETAILS ON PROJECT PAGE
+  # ~~~~~~~~~~~~~ DETAILS ON PROJECT PAGE
 
   # left column content
   def project_details
@@ -18,8 +17,7 @@ format :html do
     end
   end
 
-
-  #~~~~~~~~~~~ DETAILS IN PROJECT LISTING
+  # ~~~~~~~~~~~ DETAILS IN PROJECT LISTING
 
   view :listing do
     listing_layout do
@@ -40,7 +38,7 @@ format :html do
 
   def listing_details
     wrap_with :div, class: "project-details-info" do
-      [ organizational_details, stats_details, topics_details ]
+      [organizational_details, stats_details, topics_details]
     end
   end
 
@@ -52,8 +50,10 @@ format :html do
 
   def organized_by_detail
     wrap_with :div, class: "organized-by horizontal-list" do
-      [ wrap_with(:span, " | organized by "),
-        field_nest(:organizer, items: { view: :link }) ]
+      [
+        wrap_with(:span, " | organized by "),
+        field_nest(:organizer, items: { view: :link })
+      ]
     end
   end
 
@@ -63,7 +63,11 @@ format :html do
 
   def stats_details
     wrap_with :div, class: "stat-details overall-progress-box" do
-      [count_stats, "#{card.percent_researched}%", research_progress_bar] * " "
+      [
+        count_stats,
+        "#{card.percent_researched}%",
+        research_progress_bar
+      ].join " "
     end
   end
 
