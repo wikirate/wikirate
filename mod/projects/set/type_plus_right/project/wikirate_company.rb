@@ -8,15 +8,17 @@ def company_project_card company_card
   Card.fetch company_card.name, project_name, new: {}
 end
 
-def all_company_project_cards
-  item_cards_by_name.map do |company|
-    next unless company.type_id == WikirateCompanyID
-    company_project_card company
-  end.compact
+def valid_company_cards
+  @valid_company_cards ||=
+    item_cards.sort_by(&:name).select do |company|
+      company.type_id == WikirateCompanyID
+    end
 end
 
-def item_cards_by_name
-  item_cards.sort {|x,y| x.name <=> y.name }
+def all_company_project_cards
+  valid_company_cards.map do |company|
+    company_project_card company
+  end
 end
 
 format :html do

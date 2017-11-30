@@ -24,6 +24,7 @@ format :html do
             :wikirate_status,
             :wikirate_topic,
             :description,
+            :year,
             :metric,
             :wikirate_company
         ]
@@ -50,8 +51,14 @@ format :html do
     end
   end
 
+  def active_tabs
+    tabs = [:company, :metric]
+    tabs << :year if card.years
+    tabs
+  end
+
   def tab_list
-    [:company, :metric].each_with_object({}) do |tab, hash|
+    active_tabs.each_with_object({}) do |tab, hash|
       icon, stat_method, title = TAB_MAP[tab]
       stat = card.send stat_method
       hash["#{tab}_list_tab".to_sym] = [fa_icon(icon), stat, title] * " "
@@ -64,5 +71,9 @@ format :html do
 
   view :company_list_tab do
     standard_pointer_nest :wikirate_company
+  end
+
+  view :year_list_tab do
+    standard_pointer_nest :year
   end
 end
