@@ -166,7 +166,7 @@ end
 
 def each_reference_out &block
   return super(&block) unless wiki_rating?
-  translation_table.each_key do |key|
+  translation_table.each do |key, _value|
     yield(key, Content::Chunk::Link::CODE)
   end
 end
