@@ -47,7 +47,7 @@ format :html do
                 rows: 5,
                 class: "card-content",
                 "data-card-type-code" => card.type_code),
-      _render_variables,
+      _render_variables
     ]
   end
 
@@ -60,7 +60,7 @@ format :html do
   end
 
   def add_metric_modal_slot
-          _render_modal_slot(modal_id: "add-metric-slot", dialog_class: "large").html_safe
+    _render_modal_slot(modal_id: "add-metric-slot", dialog_class: "large").html_safe
   end
 
   view :core do
@@ -166,7 +166,7 @@ end
 
 def each_reference_out &block
   return super(&block) unless wiki_rating?
-  translation_table.each do |key, _value|
+  translation_table.each_key do |key|
     yield(key, Content::Chunk::Link::CODE)
   end
 end

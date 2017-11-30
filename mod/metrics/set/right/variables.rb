@@ -53,14 +53,12 @@ format :html do
   def add_metric_button
     target = "#modal-add-metric-slot"
     wrap_with :span, class: "input-group" do
-        button_tag class: "pointer-item-add slotter",
-                   situation: "outline-secondary",
-                   data: { toggle: "modal", target: target },
-                   href: path(layout: "modal", view: :edit,
-                              mark: card.name,
-                              slot: { title: "Choose Metric" }) do
-          fa_icon(:plus) + " add metric"
-        end
+      button_tag class: "pointer-item-add slotter", situation: "outline-secondary",
+                 data: { toggle: "modal", target: target },
+                 href: path(layout: "modal", view: :edit, mark: card.name,
+                            slot: { title: "Choose Metric" }) do
+        fa_icon(:plus) + " add metric"
+      end
     end
   end
 
