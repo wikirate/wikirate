@@ -47,29 +47,20 @@ format :html do
                 rows: 5,
                 class: "card-content",
                 "data-card-type-code" => card.type_code),
-      _render_variables,
-      add_metric_button
+      _render_variables
     ]
   end
 
+  view :new do
+    super() + add_metric_modal_slot
+  end
   view :edit do
-    super() +
-      _render_modal_slot(modal_id: "add-metric-slot", dialog_class: "large").html_safe
+    voo.hide :toolbar
+    super() + add_metric_modal_slot
   end
 
-  def add_metric_button
-    target = "#modal-add-metric-slot"
-    # "#modal-#{card.name.safe_key}"
-    wrap_with :span, class: "input-group" do
-        button_tag class: "pointer-item-add btn btn-outline-secondary slotter",
-                   type: "button",
-                   data: { toggle: "modal", target: target },
-                   href: path(layout: "modal", view: :edit,
-                              mark: card.variables_card.name,
-                              slot: { title: "Choose Metric" }) do
-          glyphicon("plus") + " add metric"
-        end
-    end
+  def add_metric_modal_slot
+    _render_modal_slot(modal_id: "add-metric-slot", dialog_class: "large").html_safe
   end
 
   view :core do
@@ -175,7 +166,7 @@ end
 
 def each_reference_out &block
   return super(&block) unless wiki_rating?
-  translation_table.each do |key, _value|
+  translation_table.each_key do |key|
     yield(key, Content::Chunk::Link::CODE)
   end
 end
