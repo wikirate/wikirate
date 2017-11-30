@@ -9,20 +9,24 @@ def metric_project_card metric_card
 end
 
 format :html do
-  view :core do
-    wrap_with :div, class: "progress-bar-table" do
-      wikirate_table :metric,
-                     all_metric_project_cards,
-                     [:metric_thumbnail, :research_progress_bar],
-                     header: ["Metric", "Companies Researched"],
-                     td: { classes: ["company"] }
-    end
-  end
-
   def all_metric_project_cards
     card.item_cards.map do |metric|
       next unless metric.type_id == MetricID
-      card.metric_project_card(metric)
+      card.metric_project_card metric
     end.compact
+  end
+
+  view :core do
+    wrap_with :div, class: "progress-bar-table" do
+      metric_progress_table
+    end
+  end
+
+  def metric_progress_table
+    wikirate_table :metric,
+                   all_metric_project_cards,
+                   [:metric_thumbnail, :research_progress_bar],
+                   header: ["Metric", "Companies Researched"],
+                   td: { classes: ["company"] }
   end
 end
