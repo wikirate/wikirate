@@ -51,9 +51,16 @@ format :html do
     ]
   end
 
+  view :new do
+    super() + add_metric_modal_slot
+  end
   view :edit do
     voo.hide :toolbar
-    super()
+    super() + add_metric_modal_slot
+  end
+
+  def add_metric_modal_slot
+          _render_modal_slot(modal_id: "add-metric-slot", dialog_class: "large").html_safe
   end
 
   view :core do

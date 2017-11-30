@@ -37,7 +37,7 @@ def input_metric_name_by_index index
 end
 
 format :html do
-  view :core, chache: :never do |args|
+  view :core do |args|
     args ||= {}
     items = args[:item_list] || card.item_names(context: :raw)
     items ||= card.extract_metrics_from_formula if items.empty?
@@ -47,7 +47,7 @@ format :html do
         variable_row(item, index, args)
       end
     table(table_content, header: ["Metric", "Variable", "Example value"]) +
-      add_metric_button + add_metric_modal_slot
+      add_metric_button
   end
 
   def add_metric_button
@@ -62,10 +62,6 @@ format :html do
           fa_icon(:plus) + " add metric"
         end
     end
-  end
-
-  def add_metric_modal_slot
-    _render_modal_slot(modal_id: "add-metric-slot", dialog_class: "large").html_safe
   end
 
   def variable_row item_name, index, args
@@ -95,11 +91,10 @@ format :html do
     return super() unless card.new_card?
     if card.formula_card
       card.extract_metrics_from_formula
-      render! @denied_view
     else
       Auth.as_bot { card.save! }
-      render! :core
     end
+    render! @denied_view
   end
 
   view :new, :missing
