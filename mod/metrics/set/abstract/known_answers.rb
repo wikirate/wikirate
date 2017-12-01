@@ -79,13 +79,13 @@ def where_year
 end
 
 def smart_count
-  return 0 unless num_possible > 0
+  return 0 unless num_possible.positive?
   yield
 end
 
 format :html do
   def research_progress_bar link_method=nil
-    return "" unless card.num_possible > 0
+    return "" unless card.num_possible.positive?
     sections = [:known, :unknown, :not_researched].map do |value|
       research_progress_bar_section value, link_method
     end.compact
