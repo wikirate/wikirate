@@ -4,7 +4,7 @@ include_set Abstract::Tabs
 TAB_MAP = { company: [:building,   :num_companies, "Companies"],
             metric:  ["bar-chart", :num_metrics,   "Metrics"],
             year:    [:calendar,   :num_years,     "Years"],
-            project: [:flask,      :num_projects,  "Subprojects"] }
+            project: [:flask,      :num_projects,  "Subprojects"] }.freeze
 
 format :html do
   view :open_content do |args|
@@ -17,24 +17,23 @@ format :html do
   end
 
   def default_content_formgroup_args _args
-    voo.edit_structure =
-        [
-            :image,
-            :organizer,
-            :wikirate_status,
-            :wikirate_topic,
-            :description,
-            :year,
-            :metric,
-            :wikirate_company
-        ]
+    voo.edit_structure = [
+      :image,
+      :organizer,
+      :wikirate_status,
+      :wikirate_topic,
+      :description,
+      :year,
+      :metric,
+      :wikirate_company
+    ]
   end
 
   def header_right
     wrap_with :div, class: "header-right" do
       [
-          wrap_with(:h3, _render_title, class: "project-title"),
-          field_nest(:wikirate_status, view: :labeled)
+        wrap_with(:h3, _render_title, class: "project-title"),
+        field_nest(:wikirate_status, view: :labeled)
       ]
     end
   end
@@ -61,7 +60,7 @@ format :html do
     active_tabs.each_with_object({}) do |tab, hash|
       icon, stat_method, title = TAB_MAP[tab]
       stat = card.send stat_method
-      hash["#{tab}_list_tab".to_sym] = [fa_icon(icon), stat, title] * " "
+      hash["#{tab}_list_tab".to_sym] = [fa_icon(icon), stat, title].join " "
     end
   end
 

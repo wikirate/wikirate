@@ -46,7 +46,7 @@ format :html do
     card.project_card.name
   end
 
-  def metric_link values = :all
+  def metric_link values=:all
     filter =  { project: project_name, metric_value: values }
     filter[:year] = card.years if card.years
     link_to_card card.metric_card, yield, path: { filter: filter }

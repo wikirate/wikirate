@@ -756,3 +756,12 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 
   }
 }
+
+.new-view.TYPE-metric {
+    .nav-pills > li.pointer-radio input.pointer-radio-button {
+        display: none;
+    }
+    .card-editor span.select2.select2-container {
+        width: 100% !important;
+    }
+}

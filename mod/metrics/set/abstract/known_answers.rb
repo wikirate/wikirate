@@ -3,8 +3,8 @@
 # 1. #num_possible returning the total number of answers/records in the problem space
 # 2. #where_answer returning query args for an answer query
 
-CSS_CLASS = { not_researched: "progress-not-researched" }
-LINK_VALUE = { not_researched: "none" }
+CSS_CLASS = { not_researched: "progress-not-researched" }.freeze
+LINK_VALUE = { not_researched: "none" }.freeze
 
 # most common pattern is <TYPE>+<Project> (ltype_rtype)
 # overridden elsewhere
