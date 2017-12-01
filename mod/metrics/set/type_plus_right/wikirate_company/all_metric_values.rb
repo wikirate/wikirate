@@ -25,7 +25,7 @@ format :html do
   end
 
   view :filter do
-    #filter_form a: { input_field: "<input class='a'/>", label: "A" },
+    # filter_form a: { input_field: "<input class='a'/>", label: "A" },
     #            b: { input_field: "<formgroup><select class='b'><option value='a'>Alpha</option></select></formgroup>", label: "B" }
     field_subformat(:company_metric_filter)._render_core
   end

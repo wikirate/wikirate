@@ -2,9 +2,7 @@ include_set Abstract::ValueToggle
 
 format :html do
   view :closed_answer do
-    if card.relationship?
-      return output([value_field, _render_relationship_value_details])
-    end
+    return output([value_field, value_details]) if card.relationship?
     class_up "vis", "pull-right"
     output [row, empty_details_slot]
   end

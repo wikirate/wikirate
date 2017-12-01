@@ -57,7 +57,7 @@ format :html do
   view :import_table, cache: :never do
     return alert(:warning) { "no import file attached" } if card.file.blank?
     table_with_errors(table_rows, class: "_import-table import-table table-hover",
-                      header: column_titles)
+                                  header: column_titles)
   end
 
   def extra_data_input_name index, *subfields

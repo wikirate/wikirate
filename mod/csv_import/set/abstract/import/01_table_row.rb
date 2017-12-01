@@ -9,7 +9,7 @@ class TableRow
   attr_reader :match_type, :csv_row, :format
 
   delegate :row_index, :status, to: :csv_row
-  delegate  :corrections_input_name, to: :format
+  delegate :corrections_input_name, to: :format
 
   # @param csv_row [CSVRow] a CSVRow object
   # @param format the format of an import file. It has to respond to `column_keys`.
@@ -38,7 +38,6 @@ class TableRow
   def row_css_classes
     valid? ? [] : ["table-danger"]
   end
-
 
   # def render
   #   super.merge class: "table-#{row_context}"
@@ -71,8 +70,8 @@ class TableRow
 
   def checkbox_field
     # disable if data is invalid
-     @format.check_box_tag("import_rows[#{@csv_row.row_index}]", true, valid? && checked?,
-                           disabled: !valid?) + extra_data_tags.html_safe
+    @format.check_box_tag("import_rows[#{@csv_row.row_index}]", true, valid? && checked?,
+                          disabled: !valid?) + extra_data_tags.html_safe
   end
 
   def extra_data_tags
@@ -104,7 +103,7 @@ class TableRow
   end
 
   def field_from_method method
-    method =~ /^(\w+)_field$/ ? $1 : nil
+    method =~ /^(\w+)_field$/ ? Regexp.last_match(1) : nil
   end
 
   def field_method? method

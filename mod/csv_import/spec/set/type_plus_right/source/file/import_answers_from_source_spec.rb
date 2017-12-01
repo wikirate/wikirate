@@ -10,7 +10,7 @@ RSpec.describe Card::Set::TypePlusRight::Source::File::ImportAnswersFromSource d
         no_match:          ["Not a company", "yes"],
         alias_match:       ["amazon.com", "yes"],
         exact_match:       ["Apple Inc.", "yes"],
-        partial_match:     ["Sony", "no"],
+        partial_match:     %w[Sony no],
         duplicate_in_file: ["Apple Inc.", "no"],
         existing_value:    ["Death Star", "no"]
       }
@@ -24,7 +24,6 @@ RSpec.describe Card::Set::TypePlusRight::Source::File::ImportAnswersFromSource d
     let(:company_row) { 0 }
     let(:value_row) { 1 }
   end
-
 
   def trigger_import_with_metric_and_year *args
     args << { all: { corrections: {
@@ -82,7 +81,7 @@ RSpec.describe Card::Set::TypePlusRight::Source::File::ImportAnswersFromSource d
       it "uses the corrected name as company name" do
         trigger_import_with_metric_and_year(
           partial_match: { company_match_type: :partial,
-                           corrections: { company: "Sony Corporation" } },
+                           corrections: { company: "Sony Corporation" } }
         )
         expect_card(answer_name(company: "Sony Corporation")).to exist
           .and have_a_field(:value).with_content "no"
@@ -91,7 +90,7 @@ RSpec.describe Card::Set::TypePlusRight::Source::File::ImportAnswersFromSource d
       it "adds corrected name to company's aliases" do
         trigger_import_with_metric_and_year(
           partial_match: { company_match_type: :partial,
-                           corrections: { company: "Sony Corporation" } },
+                           corrections: { company: "Sony Corporation" } }
         )
 
         expect_card("Sony Corporation")
@@ -127,7 +126,7 @@ RSpec.describe Card::Set::TypePlusRight::Source::File::ImportAnswersFromSource d
 
     it "renders table correctly" do
       table = import_card_with_rows(:no_match, :partial_match, :alias_match, :exact_match)
-                .format._render_import_table
+              .format._render_import_table
       expect(table).to have_tag("table", with: { class: "_import-table" }) do
         with_row index: 0,
                  context: :danger,

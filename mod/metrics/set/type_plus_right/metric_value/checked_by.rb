@@ -42,7 +42,7 @@ def checkers
 end
 
 def check_requester
-  check_requested_by_card && check_requested_by_card.item_names.first
+  check_requested_by_card&.item_names&.first
 end
 
 def check_requested_by_card

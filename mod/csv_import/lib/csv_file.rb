@@ -15,14 +15,14 @@ class CSVFile
   end
 
   # yields the rows of the csv file as CSVRow objects
-  def each_row import_manager, rows=nil &block
+  def each_row import_manager, rows=nil & block
     each_row_hash rows do |row_hash, index|
       yield @row_class.new(row_hash, index, import_manager)
     end
   end
 
   # yields the rows of the csv file as simple hashes
-  def each_row_hash rows = nil, &block
+  def each_row_hash rows=nil, &block
     if rows
       selected_rows rows, &block
     else

@@ -103,7 +103,7 @@ class Answer
     end
 
     def valid_page_args? args
-      args.present? && args[:limit].to_i > 0
+      args.present? && args[:limit].to_i.positive?
     end
 
     def valid_uniq_select_args? args

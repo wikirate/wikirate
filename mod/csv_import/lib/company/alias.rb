@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+
 require_dependency "card/cache"
 
 module Company
@@ -34,7 +35,7 @@ module Company
       # iterate through every alias card
       # @yieldparam aliascard [Card]
       def all_alias_cards
-        Card.search right: { codename: "aliases" } ,
+        Card.search right: { codename: "aliases" },
                     left: { type_id: Card::WikirateCompanyID }
       end
 

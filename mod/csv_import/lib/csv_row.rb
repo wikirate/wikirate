@@ -156,7 +156,7 @@ class CSVRow
     respond_to_missing?(method_name) ? @row[method_name.to_sym] : super
   end
 
-  def respond_to_missing? method_name, _include_private = false
+  def respond_to_missing? method_name, _include_private=false
     @row.keys.include? method_name
   end
 end

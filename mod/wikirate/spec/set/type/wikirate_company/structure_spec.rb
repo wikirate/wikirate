@@ -1,4 +1,4 @@
-# 
+#
 RSpec.describe Card::Set::Type::WikirateCompany::Structure do
   describe "details tab" do
     subject { Card["Google Inc"].format(:html)._render_details_tab }

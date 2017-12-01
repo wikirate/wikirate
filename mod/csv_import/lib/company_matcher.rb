@@ -2,7 +2,7 @@
 class CompanyMatcher
   COMPANY_MAPPER_THRESHOLD = 0.5
 
-  MATCH_TYPE_ORDER= { none: 1, partial: 2, alias: 3, exact: 4 }
+  MATCH_TYPE_ORDER = { none: 1, partial: 2, alias: 3, exact: 4 }
 
   def initialize company_name
     @company_name = company_name
@@ -29,6 +29,10 @@ class CompanyMatcher
     define_method "#{key}?" do
       match_type == key
     end
+  end
+
+  def any?
+    !none?
   end
 
   def <=> b

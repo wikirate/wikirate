@@ -17,9 +17,7 @@ shared_context "table_row" do |type_id|
     Card.new(name: "I", type_id: type_id).format(:html)
   end
 
-  def row
-    @row
-  end
+  attr_reader :row
 
   def field name
     index = Card::Set::Type::AnswerImportFile::COLUMNS.keys.index(name)
