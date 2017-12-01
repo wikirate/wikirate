@@ -43,7 +43,7 @@ def metric_card
 end
 
 def metric_type
-  metric_card.metric_type.downcase.to_sym
+  metric_card.metric_type_codename
 end
 
 def value_type

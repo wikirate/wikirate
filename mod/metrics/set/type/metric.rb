@@ -95,6 +95,10 @@ def relationship?
   metric_type_codename.in? [:relationship, :inverse_relationship]
 end
 
+def inverse?
+  metric_type_codename == :inverse_relationship
+end
+
 def multi_categorical?
   value_type_code == :multi_category
 end
