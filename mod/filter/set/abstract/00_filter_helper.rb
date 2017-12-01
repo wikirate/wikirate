@@ -21,7 +21,6 @@ def sort_hash
   { sort: (Env.params[:sort].present? ? Env.params[:sort] : default_sort_option) }
 end
 
-
 def filter_param field
   filter_hash[field.to_sym]
 end

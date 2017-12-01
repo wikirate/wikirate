@@ -2,7 +2,7 @@ require_relative "../../support/shared_csv_import"
 
 RSpec.describe Card::Set::Type::SourceImportFile do
   def url name
-    "http://www.wikiwand.com/en/#{name.tr(" ", "_")}"
+    "http://www.wikiwand.com/en/#{name.tr(' ', '_')}"
   end
 
   include_context "csv import" do
@@ -29,7 +29,7 @@ RSpec.describe Card::Set::Type::SourceImportFile do
         missing_report_type: ["Monter Inc", "2014", "",
                               url("Monsters,_Inc."), "aaaaaah"],
         missing_year: ["Monter Inc", "", "Monster Report",
-                       url("Monsters,_Inc."), "aaaaaah"],
+                       url("Monsters,_Inc."), "aaaaaah"]
       }
     end
   end
@@ -46,10 +46,9 @@ RSpec.describe Card::Set::Type::SourceImportFile do
   let(:csv_path) { File.expand_path "../source_import_test.csv", __FILE__ }
 
   # TODO: do it without controller
-  describe "import action" do #, type: :controller do
-    #routes { Decko::Engine.routes }
-    #before { @controller = CardController.new }
-
+  describe "import action" do # , type: :controller do
+    # routes { Decko::Engine.routes }
+    # before { @controller = CardController.new }
 
     example "source with exact match" do
       trigger_import exact_match: { match_type: :exact }
@@ -82,8 +81,8 @@ RSpec.describe Card::Set::Type::SourceImportFile do
         it "updates existing source attributes" do
           is_expected
             .to have_a_field(:report_type).pointing_to("Monster Report")
-                  .and have_a_field(:wikirate_company).pointing_to("Monster Inc")
-                         .and have_a_field(:year).pointing_to "2014"
+            .and have_a_field(:wikirate_company).pointing_to("Monster Inc")
+            .and have_a_field(:year).pointing_to "2014"
         end
       end
 
@@ -94,7 +93,7 @@ RSpec.describe Card::Set::Type::SourceImportFile do
                                                    corrections: { title: "Anakin" } }
           Card::Env.params[:conflict_strategy] = nil
           expect(source_card(:existing_without_title))
-                   .to have_a_field(:wikirate_title).with_content "Anakin"
+            .to have_a_field(:wikirate_title).with_content "Anakin"
         end
       end
     end
@@ -145,28 +144,31 @@ RSpec.describe Card::Set::Type::SourceImportFile do
 
     example "shows correctly import table" do
       table = import_card_with_rows(:exact_match, :partial_match, :alias_match)
-                .format._render_import_table
+              .format._render_import_table
       expect(table).to have_tag("table", with: { class: "_import-table" }) do
         with_row index: 0,
                  context: :success,
                  checked: true,
                  match: :exact,
                  suggestion: "Death Star",
-                 fields: ["Death Star", "2014", "Force Report", url("Death_Star")]
+                 fields: ["Death Star", "2014", "Force Report",
+                          url("Death_Star")]
 
         with_row index: 1,
                  context: :info,
                  checked: true,
                  match: :partial,
                  suggestion: "Monster Inc",
-                 fields: ["Monster Inc", "Monster", "2014", "Monster Report", url("Monster")]
+                 fields: ["Monster Inc", "Monster", "2014", "Monster Report",
+                          url("Monster")]
 
         with_row index: 2,
                  context: :success,
                  checked: true,
                  match: :alias,
                  suggestion: "Google Inc.",
-                 fields: ["Google Inc.", "Google", "2014", "Monster Report", url("Google")]
+                 fields: ["Google Inc.", "Google", "2014", "Monster Report",
+                          url("Google")]
       end
     end
   end

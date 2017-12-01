@@ -123,11 +123,11 @@ class Card
     end
 
     def find_all?
-      @filter_args[:metric_value] && @filter_args[:metric_value].to_sym == :all
+      @filter_args[:metric_value]&.to_sym == :all
     end
 
     def find_missing?
-      @filter_args[:metric_value] && @filter_args[:metric_value].to_sym == :none
+      @filter_args[:metric_value]&.to_sym == :none
     end
 
     def run_filter_query

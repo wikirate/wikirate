@@ -33,7 +33,7 @@ end
 
 Capybara.default_max_wait_time = 20
 
-When(/^I press "([^\"]*)" within "([^\"]*)"$/) do |button, scope_selector|
+When(/^I press "([^"]*)" within "([^"]*)"$/) do |button, scope_selector|
   within(scope_selector) do
     click_button(button)
   end
@@ -72,14 +72,14 @@ When(
   fill_in(field, with: url)
 end
 
-Then(/^Within "([^\"]*)" I should not see "([^\"]*)"$/) do |section, text|
+Then(/^Within "([^"]*)" I should not see "([^"]*)"$/) do |section, text|
   # page.should have_css(, :text => "[Name]")
   within(section) do
     expect(page).not_to have_content(text)
   end
 end
 
-Then(/^I expect element "([^\"]*)" exists$/) do |selector|
+Then(/^I expect element "([^"]*)" exists$/) do |selector|
   expect(page).to have_css(selector)
 end
 
@@ -91,7 +91,7 @@ When(/^(?:|I )solocomplete "([^"]*)" within "([^"]*)"$/) do |value, scope|
   end
 end
 
-When(/^I edit card "([^\"]*)"$/) do |cardname|
+When(/^I edit card "([^"]*)"$/) do |cardname|
   visit "/card/edit/#{cardname.to_name.url_key}"
 end
 

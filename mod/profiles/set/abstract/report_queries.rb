@@ -43,31 +43,29 @@ def subvariants
   {}
 end
 
-=begin
-[ :metric_value, :metric, :wikirate_company, :project ]
-
-project
-- RG is organizer
-  (+organizer refers to _self)
-
-company
-- RG is organizer of project researching company
-  (referred to by +company on projects where +organizer refers to _self)
-
-metric
-- RG is organizer of project researching metric
-  (referred to by +metric on projects where +organizer refers to _self)
-
+# [ :metric_value, :metric, :wikirate_company, :project ]
+#
+# project
+# - RG is organizer
+#   (+organizer refers to _self)
+#
+# company
+# - RG is organizer of project researching company
+#   (referred to by +company on projects where +organizer refers to _self)
+#
+# metric
+# - RG is organizer of project researching metric
+#   (referred to by +metric on projects where +organizer refers to _self)
+#
 # -- OR --
 #
 # - metrics where RG is designer
 #   (left of metric is _self)
-
-metric value
-- company is among companies above AND metric is among metrics above
-
-
-
-
-
-=end
+#
+# metric value
+# - company is among companies above AND metric is among metrics above
+#
+#
+#
+#
+#

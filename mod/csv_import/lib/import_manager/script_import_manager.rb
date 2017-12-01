@@ -30,7 +30,7 @@ class ScriptImportManager < ImportManager
     end
   end
 
-  def row_failed csv_row
+  def row_failed _csv_row
     case error_policy
     when :fail then
       raise ImportError, @import_status[:errors].inspect
