@@ -4,11 +4,11 @@ format :html do
   end
 
   def image_src opts
-    image_card && image_card.format.render_source(size: opts[:size])
+    image_card&.format&.render_source(size: opts[:size])
   end
 
   def image_alt
-    image_card && image_card.name
+    image_card&.name
   end
 
   def text_with_image_args opts

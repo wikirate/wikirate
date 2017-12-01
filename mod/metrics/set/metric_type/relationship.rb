@@ -21,7 +21,7 @@ end
 
 def new_inverse_title
   inverse_field = subfield(:inverse_title)
-  inverse_field && inverse_field.content.present? && inverse_field.content
+  inverse_field&.content.present? && inverse_field.content
 end
 
 def add_title_inverse_pointer title, inverse

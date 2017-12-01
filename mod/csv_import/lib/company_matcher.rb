@@ -1,8 +1,7 @@
 # Match company names to companies in the database
 class CompanyMatcher
   COMPANY_MAPPER_THRESHOLD = 0.5
-
-  MATCH_TYPE_ORDER= { none: 1, partial: 2, alias: 3, exact: 4 }
+  MATCH_TYPE_ORDER = { none: 1, partial: 2, alias: 3, exact: 4 }
 
   def initialize company_name
     @company_name = company_name
@@ -29,6 +28,10 @@ class CompanyMatcher
     define_method "#{key}?" do
       match_type == key
     end
+  end
+
+  def any?
+    !none?
   end
 
   def <=> b
@@ -63,17 +66,30 @@ class CompanyMatcher
     [name, :partial]
   end
 
-  def self.mapper
-    @mapper ||= Company::Mapping::CompanyMapper.new corpus
-  end
+  class << self
+    def mapper
+      @mapper ||= Company::Mapping::CompanyMapper.new corpus
+    end
 
-  def self.corpus
-    corpus = Company::Mapping::CompanyCorpus.new
-    Card.search(type_id: Card::WikirateCompanyID, return: :id).each do |company_id|
-      company_name = Card.fetch_name(company_id)
+    def corpus
+      @corpus ||= init_corpus
+    end
+
+    def init_corpus
+      corpus = Company::Mapping::CompanyCorpus.new
+      Card.search(type_id: Card::WikirateCompanyID, return: :id).each do |company_id|
+        company_name = Card.fetch_name(company_id)
+        aliases = (a_card = Card[company_name, :aliases]) && a_card.item_names
+        corpus.add company_id, company_name, (aliases || [])
+      end
+      corpus
+    end
+
+    def add_to_mapper company_id, company_name
+      return unless @mapper # if the mapping tool is not cached, no need to update it
       aliases = (a_card = Card[company_name, :aliases]) && a_card.item_names
       corpus.add company_id, company_name, (aliases || [])
+      @mapper = Company::Mapping::CompanyMapper.new corpus
     end
-    corpus
   end
 end

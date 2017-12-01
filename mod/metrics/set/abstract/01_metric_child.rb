@@ -38,12 +38,12 @@ def metric_was
 end
 
 def metric_card
-  Card.fetch(metric) || (generation == 1 && left)
+  Card.fetch(metric) || (generation == 1 && left) || nil
   # FIXME: hack to make it work on new cards
 end
 
 def metric_type
-  metric_card.metric_type.downcase.to_sym
+  metric_card.metric_type_codename
 end
 
 def value_type

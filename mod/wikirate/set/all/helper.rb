@@ -15,4 +15,3 @@ format :html do
     link_to text, opts.merge(path: url)
   end
 end
-

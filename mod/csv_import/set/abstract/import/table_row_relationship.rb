@@ -22,9 +22,8 @@ class TableRowRelationship < TableRowWithCompanyMapping
   private
 
   def checked?
-    super || !@related_match.none?
+    super || @related_match.any?
   end
-
 
   def related_company_field
     colored_small super, @related_match
@@ -36,7 +35,7 @@ class TableRowRelationship < TableRowWithCompanyMapping
 
   def related_company_correction_field
     return @related_match.suggestion if @related_match.exact? || @related_match.alias? ||
-      !valid?
+                                        !valid?
     colored company_correction_input(:related_company, @related_match.suggestion),
             @related_match
   end

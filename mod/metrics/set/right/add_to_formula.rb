@@ -64,7 +64,6 @@ format :html do
     end
   end
 
-
   def haml_locals
     input_metric, formula_metric = card.split_metrics
     { input_metric: input_metric, formula_metric: formula_metric }
@@ -83,7 +82,7 @@ format :html do
       add_class args, "close-modal slotter"
       link_to_card varcard, link_text, args.merge(
         remote: true, known: true, "data-slot-selector" => editor_selector,
-        path: { action: :update, add_item: input_metric.name.key },
+        path: { action: :update, add_item: input_metric.name.key }
       )
     end
   end

@@ -26,8 +26,7 @@ class Card
     end
 
     def numeric_sort?
-      @sort_args[:sort_by] &&
-        @sort_args[:sort_by].to_sym == :value &&
+      @sort_args[:sort_by]&.to_sym == :value &&
         @metric_card.numeric?
     end
 
