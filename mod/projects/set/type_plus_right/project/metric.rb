@@ -22,6 +22,10 @@ def all_metric_project_cards
 end
 
 format :html do
+  def editor
+    :filtered_list
+  end
+
   view :core do
     wrap_with :div, class: "progress-bar-table" do
       metric_progress_table
@@ -30,7 +34,7 @@ format :html do
 
   def metric_progress_table
     wikirate_table :metric,
-                   card. all_metric_project_cards,
+                   card.all_metric_project_cards,
                    [:metric_thumbnail, :research_progress_bar],
                    header: ["Metric", "Companies Researched"],
                    td: { classes: ["company"] }
