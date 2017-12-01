@@ -1,12 +1,11 @@
 include_set Abstract::Table
 include_set Abstract::Paging
 
-def default_sort_option
-end
+def default_sort_option; end
 
 format do
   def values_query
-      inverse? ? inverse_relation_values_query : relation_values_query
+    inverse? ? inverse_relation_values_query : relation_values_query
   end
 
   def inverse?
@@ -18,10 +17,11 @@ format do
   end
 
   def inverse_relation_values_query
-    { left: {
-      left: { left_id: inverse_metric_id },
-      type_id: MetricValueID
-    },
+    {
+      left: {
+        left: { left_id: inverse_metric_id },
+        type_id: MetricValueID
+      },
       right_id: card.company_card.id
     }
   end
