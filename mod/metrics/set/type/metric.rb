@@ -140,7 +140,7 @@ end
 
 def analysis_names
   return [] unless (topics = fetch(trait: :wikirate_topic)) &&
-    (companies = fetch(trait: :wikirate_company))
+                   (companies = fetch(trait: :wikirate_company))
   companies.item_names.map do |company|
     topics.item_names.map do |topic|
       "#{company.to_name.tag}+#{topic}"
@@ -174,59 +174,6 @@ def metric_value_name company, year
   company_name = Card[company].name
   "#{name}+#{company_name}+#{year}"
 end
-
-module OldFetchMethods
-# This used to be a Card class method defined in All::Fetch.
-# Maybe it's no longer necessary but it was removed in Decko when
-# it was not the right time to mess with it. Putting it back here for now
-# since it's the only place where it is used.
-#
-# #fetch converts String to Card::Name. That can break in some cases.
-# For example if you fetch "Siemens" by its key "siemen", you won't get
-# "Siemens" because "siemen".to_name.key == "sieman"
-# If you have a key of a real card use this method.
-  def fetch_real_by_key key, opts = {}
-    raise Card::Error, "fetch_real_by_key called with new args" if opts[:new]
-
-    # look in cache
-    card = fetch_from_cache_by_key key, opts[:local_only]
-    # look in db if needed
-    if retrieve_from_db?(card, opts)
-      card = fetch_from_db :key, key, opts
-      write_to_cache card, opts if !card.nil? && !card.trash
-    end
-    return if card.nil?
-    card.include_set_modules unless opts[:skip_modules]
-    card
-  end
-
-  def fetch_from_cache_by_key key, local_only = false
-    fetch_from_cache key, local_only
-  end
-
-  def retrieve_from_db? card, opts
-    card.nil? || (opts[:look_in_trash] && card.new_card? && !card.trash)
-  end
-
-  def fetch_from_db mark_type, mark_key, opts
-    query = { mark_type => mark_key }
-    query[:trash] = false unless opts[:look_in_trash]
-    card = Card.where(query).take
-    card
-  end
-
-  def fetch_from_cache cache_key, local_only = false
-    return unless Card.cache
-    if local_only
-      Card.cache.soft.read cache_key
-    else
-      Card.cache.read cache_key
-    end
-  end
-end
-
-include OldFetchMethods
-
 
 def metric_value_query
   { left: { left_id: id }, type_id: MetricValueID }
@@ -287,7 +234,7 @@ format :html do
                                     remote: true,
                                     "slot-selector": ".metric-details-slot > .card-slot"
                                   }
-                                 }
+                                }
   end
 
   view :details_placeholder do

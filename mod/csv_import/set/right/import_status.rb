@@ -42,7 +42,6 @@ STATUS_CONTEXT = {
   skipped: :info
 }.freeze
 
-
 format :html do
   delegate :status, :import_counts, to: :card
   delegate :percentage, :count, :step, to: :import_counts
@@ -123,15 +122,14 @@ format :html do
         text += " - " if name.present?
         text += status[:errors][index].join("; ")
       end
-      text
     else
       text = "##{index + 1}: " + link_to_card(name)
       if status[:reports][index].present?
         text += " - " if name.present?
         text += status[:reports][index].join("; ")
       end
-      text
     end
+    text
   end
 
   def progress_section type
@@ -146,17 +144,17 @@ format :html do
     return "" unless status[:act_id] && (act = Card::Act.find(status[:act_id]))
     wrap_with :div, class: "d-flex flex-row-reverse" do
       card.left.format(:html)
-        .revert_actions_link act, "Undo",
-                             revert_to: :previous,
-                             html_args: { class: "btn btn-danger",
-                                          "data-confirm" => undo_confirm_message }
+          .revert_actions_link act, "Undo",
+                               revert_to: :previous,
+                               html_args: { class: "btn btn-danger",
+                                            "data-confirm" => undo_confirm_message }
     end
   end
 
   def undo_confirm_message
     text = "Do you really want to remove the imported #{item_label :imported}"
     if count(:overridden) > 0
-      text +=  " and restore the overridden " + item_label(:overridden)
+      text += " and restore the overridden " + item_label(:overridden)
     end
     text << "?"
   end

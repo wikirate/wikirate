@@ -5,7 +5,7 @@ class ImportManager
 
   attr_reader :conflict_strategy
 
-  def initialize csv_file, conflict_strategy = :skip, extra_data = {}
+  def initialize csv_file, conflict_strategy=:skip, extra_data={}
     @csv_file = csv_file
     @conflict_strategy = conflict_strategy
     @extra_data = integerfy_keys(extra_data || {})
@@ -15,7 +15,7 @@ class ImportManager
     @imported_keys = ::Set.new
   end
 
-  def import row_indices = nil
+  def import row_indices=nil
     import_rows row_indices
   end
 
@@ -23,9 +23,9 @@ class ImportManager
     row_count = row_indices ? row_indices.size : @csv_file&.row_count
     init_import_status row_count
     @csv_file.each_row self, row_indices do |csv_row|
-      #handle_import csv_row do
-        csv_row.execute_import
-      #end
+      # handle_import csv_row do
+      csv_row.execute_import
+      # end
     end
   end
 
@@ -129,7 +129,7 @@ class ImportManager
     end
   end
 
-  def pick_up_card_errors card = nil
+  def pick_up_card_errors card=nil
     card = yield if block_given?
     if card
       card.errors.each do |error_key, msg|
@@ -140,7 +140,7 @@ class ImportManager
     card
   end
 
-  def errors? row = nil
+  def errors? row=nil
     if row
       errors(row).present?
     else
@@ -181,7 +181,6 @@ class ImportManager
     return status if status.in? %i[failed skipped]
     @status == :overridden ? :overridden : :imported
   end
-
 
   # methods like row_imported, row_failed, etc. can be used to add additional logic
   def run_hook status

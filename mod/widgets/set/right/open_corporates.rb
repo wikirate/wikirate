@@ -54,9 +54,13 @@ format :html do
       ["Company Type", oc.company_type],
       ["Status", oc.status]
     ].map do |label, value|
-      next unless value.present?
-      [wrap_with(:strong, label), value]
+      format_table_row label, value
     end.compact
+  end
+
+  def format_table_row label, value
+    return unless value.present?
+    [wrap_with(:strong, label), value]
   end
 
   def jurisdiction
