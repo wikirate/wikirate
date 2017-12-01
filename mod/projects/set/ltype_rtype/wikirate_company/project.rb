@@ -1,32 +1,26 @@
 include_set Abstract::KnownAnswers
 include_set Abstract::Media
 
-def project_card
-  @project_card ||= right
-end
-
 def company_card
   @company_card ||= left
 end
 
 def company_image
-  company_card.fetch(trait: :image, new: {})
+  company_card.fetch trait: :image, new: {}
 end
 
 def metric_ids
   project_card.metric_ids
 end
 
-def num_records
-  @num_records ||= metric_ids.size
+def num_possible
+  @num_possible ||= metric_ids.size * project_card.year_multiplier
 end
 
 def where_answer
-  { metric_id: [:in] + metric_ids, company_id: company_card.id }
-end
-
-def worth_counting?
-  metric_ids.any?
+  where_year do
+    { metric_id: [:in] + metric_ids, company_id: company_card.id }
+  end
 end
 
 format :html do
@@ -53,7 +47,7 @@ format :html do
   end
 
   def company_link values=:all
-    path_args = { filter: { project: project_name, metric_value: values  } }
+    path_args = card.project_card.filter_path_args values
     link_to_card card.company_card, yield, path: path_args
   end
 end
