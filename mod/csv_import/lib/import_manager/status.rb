@@ -41,11 +41,7 @@ class ImportManager
       hash.keys.each do |k|
         next if k == :counts || !hash[k].is_a?(Hash)
         hash[k] = hash[k].each_with_object({}) do |(key, value), options|
-          options[(begin
-                     Integer(key.to_s)
-                   rescue
-                     key
-                   end)] = value
+          options[(Integer(key.to_s) rescue key)] = value
         end
       end
       hash

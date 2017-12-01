@@ -31,6 +31,10 @@ class CompanyMatcher
     end
   end
 
+  def any?
+    !none?
+  end
+
   def <=> b
     MATCH_TYPE_ORDER[match_type] <=> MATCH_TYPE_ORDER[b.match_type]
   end

@@ -181,7 +181,6 @@ format :html do
       wrap_with_info { _render_listing args }
     else
       with_toggle do
-        F
         wrap_with_info { _render_listing args }
       end
     end
