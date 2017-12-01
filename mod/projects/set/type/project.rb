@@ -34,7 +34,7 @@ def metrics
 end
 
 def years
-  return @years if !@years.nil?
+  return @years unless @years.nil?
   valids = year_card.valid_year_cards.map(&:name)
   @years = valids.empty? ? false : valids
 end
