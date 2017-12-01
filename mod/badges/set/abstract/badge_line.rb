@@ -50,7 +50,7 @@ class BadgeLine
 
   def earns_badge count=nil
     count ||= count_valued_actions
-    @badge[count] && @badge[count].name
+    @badge[count]&.name
   end
 
   def count_valued_actions user_id=nil
@@ -68,7 +68,7 @@ class BadgeLine
   def all_earned_badges count=nil, user_id=nil
     count ||= count_valued_actions user_id || Card::Auth.current_id
     LEVELS.map do |level|
-      next unless @badge[level] && @badge[level].threshold <= count
+      next unless @badge[level]&.threshold <= count
       @badge[level].name
     end.compact
   end
@@ -126,8 +126,8 @@ class BadgeLine
   end
 
   def badge_names_map
-    @badge_names_map ||= cache.fetch('badge_names_map') do
-      Card.select(:name, :codename).where.not(codename: nil).each_with_object({}) do |v,h|
+    @badge_names_map ||= cache.fetch("badge_names_map") do
+      Card.select(:name, :codename).where.not(codename: nil).each_with_object({}) do |v, h|
         # I was using `type_id: BadgeID` instead of `codename:nil`, but that broke some (weird?) tests
         h[v.codename.to_sym] = v.name
       end

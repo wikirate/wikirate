@@ -4,7 +4,7 @@ class CSVRow
   # A hash in extra_data[:all][:source_map] is used to handle duplicates sources in
   # the same import act.
   module SourceImport
-    def initialize row, index, import_manager = nil
+    def initialize row, index, import_manager=nil
       super
       unless @import_manager.extra_data(:all)[:source_map]
         @import_manager.add_extra_data :all, source_map: {}
@@ -102,10 +102,10 @@ class CSVRow
                                      new: { content: "[[#{content}]]" }
       if trait_card.new?
         add_card name: trait_card.name, content: trait_card.content
-        #add_subcard trait_card
+        # add_subcard trait_card
       elsif !trait_card.item_names.include?(content)
         trait_card.add_item! content
-        #trait_card.add_item content
+        # trait_card.add_item content
         # add_subcard trait_card
       else
         return false

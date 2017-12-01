@@ -3,7 +3,7 @@ describe Card::Set::Abstract::BrowseFilterForm do
   let(:card) { Card["Company"].fetch trait: :browse_topic_filter }
 
   describe "view :filter_form" do
-     subject { card.format.render_filter_form }
+    subject { card.format.render_filter_form }
 
      it "has filter widget" do
        is_expected.to have_tag("._filter-widget") do

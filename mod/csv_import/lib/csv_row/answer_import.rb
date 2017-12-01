@@ -22,15 +22,15 @@ class CSVRow
     end
 
     def check_for_duplicates
-       # TODO: handle return value of check_duplication_with_existing
-       check_duplication_with_existing
+      # TODO: handle return value of check_duplication_with_existing
+      check_duplication_with_existing
     end
 
     def check_duplication_with_existing
       return unless (source = Card[answer_name, :source])
       bucket =
         source.item_cards[0].key == @raw[:source].key ? :identical : :duplicated
-      #throw :skip_row
+      # throw :skip_row
       success.params["#{bucket}_answer".to_sym].push [@row_index, answer_name]
     end
 

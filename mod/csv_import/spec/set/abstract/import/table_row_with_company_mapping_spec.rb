@@ -5,7 +5,7 @@ RSpec.describe Card::Set::Abstract::Import::TableRowWithCompanyMapping do
   include_context "answer csv row"
 
   include_context "table_row", Card::AnswerImportFileID do
-    let(:csv_data) {answer_row}
+    let(:csv_data) { answer_row }
   end
 
   def have_match_type type
@@ -61,7 +61,7 @@ RSpec.describe Card::Set::Abstract::Import::TableRowWithCompanyMapping do
   end
 
   context "exact match" do
-    let(:row_data) {csv_row company: "Google Inc."}
+    let(:row_data) { csv_row company: "Google Inc." }
 
     around do |example|
       with_row row_data do
@@ -89,7 +89,7 @@ RSpec.describe Card::Set::Abstract::Import::TableRowWithCompanyMapping do
   end
 
   context "alias match" do
-    let(:row_data) {csv_row company: "Alphabet"}
+    let(:row_data) { csv_row company: "Alphabet" }
 
     around do |example|
       with_row row_data do
@@ -111,7 +111,6 @@ RSpec.describe Card::Set::Abstract::Import::TableRowWithCompanyMapping do
     end
   end
 
-
   context "partial match" do
     let(:row_data) { csv_row company: "Sony" }
 
@@ -132,7 +131,8 @@ RSpec.describe Card::Set::Abstract::Import::TableRowWithCompanyMapping do
     end
 
     context "invalid data" do
-      let(:row_data) {csv_row company: "Sony", metric: nil}
+      let(:row_data) { csv_row company: "Sony", metric: nil }
+
       it "has no correction field" do
         expect(field(:company_correction)[:content])
           .not_to have_tag :input,

@@ -56,14 +56,14 @@ end
 def filter_by_research_policy metric
   keep_if :research_policy, options: 2 do |filter|
     rp_card = Card[metric].fetch trait: :research_policy, new: {}
-    rp_card && rp_card.item_names.any? { |s| s.casecmp(filter[0]).zero? }
+    rp_card&.item_names&.any? { |s| s.casecmp(filter[0]).zero? }
   end
 end
 
 def filter_by_topic metric
   keep_if :wikirate_topic do |filter|
     topic_cards = Card[metric].fetch trait: :wikirate_topic
-    topic_cards && topic_cards.item_names.include?(filter)
+    topic_cards&.item_names&.include?(filter)
   end
 end
 

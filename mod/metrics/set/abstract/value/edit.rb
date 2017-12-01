@@ -71,7 +71,7 @@ format :html do
   end
 
   def free_text_metric?
-    metric_card && metric_card.value_type == "Free Text"
+    metric_card&.value_type == "Free Text"
   end
 
   def multi_select?
@@ -83,10 +83,10 @@ format :html do
   end
 
   def categorical_metric?
-    metric_card && metric_card.categorical?
+    metric_card&.categorical?
   end
 
   def multi_categorical_metric?
-    metric_card && metric_card.multi_categorical?
+    metric_card&.multi_categorical?
   end
 end

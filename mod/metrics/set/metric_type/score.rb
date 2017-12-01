@@ -122,7 +122,7 @@ format :html do
 end
 
 event :validate_score_name, :validate, changed: :name, on: :save do
-  return if basic_metric_card && basic_metric_card.type_id == MetricID
+  return if basic_metric_card&.type_id == MetricID
   errors.add :name, "#{basic_metric} is not a metric"
 end
 

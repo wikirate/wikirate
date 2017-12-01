@@ -20,7 +20,7 @@ class TableRowWithCompanyMapping < TableRow
   private
 
   def checked?
-    !@match.none?
+    @match.any?
   end
 
   def company_correction_field
@@ -55,7 +55,6 @@ class TableRowWithCompanyMapping < TableRow
   def colored content, match=@match
     { content: content, class: "table-#{row_context(match)}" }
   end
-
 
   # @return name of company in db that matches the given name and
   # the what kind of match

@@ -26,7 +26,7 @@ RSpec.describe CSVRow::Structure::AnswerCSV do
     example "creates answer card with valid data", as_bot: true do
       with_delayed_jobs do
         in_stage :validate, on: :update,
-                 trigger: -> { update "A", content: "import!" } do
+                            trigger: -> { update "A", content: "import!" } do
           im = ActImportManager.new self, nil
           allow(im).to receive(:log_status).and_return(true)
           allow(im).to receive(:row_finished).and_return(true)
@@ -37,7 +37,6 @@ RSpec.describe CSVRow::Structure::AnswerCSV do
       expect(Card[answer_name]).to be_a Card
       expect(Card["A"]).to have_acted_on answer_name
     end
-
 
     example "existing answer" do
       import existing_answer do
@@ -59,7 +58,7 @@ RSpec.describe CSVRow::Structure::AnswerCSV do
 
     example "new company" do
       import new_company do
-         expect_card(answer_name(new_company)).to exist
+        expect_card(answer_name(new_company)).to exist
       end
     end
 
@@ -85,7 +84,7 @@ RSpec.describe CSVRow::Structure::AnswerCSV do
       import answer_row year: "Google Inc", metric: "2007" do |errors|
         expect(errors)
           .to contain_exactly '"2007" is not a metric',
-                                 '"Google Inc" is not a year'
+                              '"Google Inc" is not a year'
       end
     end
 
@@ -93,7 +92,7 @@ RSpec.describe CSVRow::Structure::AnswerCSV do
       @aim ||= ActImportManager.new nil, nil
     end
 
-    def import data, row_index = 1
+    def import data, row_index=1
       with_test_events do
         test_event :validate, on: :update, for: "A" do
           row = described_class.new data, row_index, aim

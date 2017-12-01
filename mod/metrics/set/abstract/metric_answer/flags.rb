@@ -8,7 +8,7 @@ end
 
 def commented?
   disc = fetch trait: :discussion
-  disc && disc.content.present?
+  disc&.content.present?
 end
 
 format :html do

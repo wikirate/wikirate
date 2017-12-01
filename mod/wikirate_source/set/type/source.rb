@@ -69,7 +69,7 @@ def company_list
 end
 
 event :import_linked_source, :integrate_with_delay, on: :save,
-      when: proc { |c| c.source_type_codename == :wikirate_link } do
+                                                    when: proc { |c| c.source_type_codename == :wikirate_link } do
   # in theory, this should be in source_type/wikirate_link.rb, but that was causing
   # problems as detailed here: https://www.pivotaltracker.com/story/show/152409610
   generate_pdf if import? && html_link?

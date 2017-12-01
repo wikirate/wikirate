@@ -25,12 +25,12 @@ end
 
 def fetch_hash_from_params key
   case Env.params[key]
-    when Hash
-      Env.params[key]
-    when ActionController::Parameters
-      Env.params[key].to_unsafe_h
-    else
-      {}
+  when Hash
+    Env.params[key]
+  when ActionController::Parameters
+    Env.params[key].to_unsafe_h
+  else
+    {}
     end
 end
 

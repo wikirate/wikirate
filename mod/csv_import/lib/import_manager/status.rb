@@ -32,7 +32,6 @@ class ImportManager
                    {}
                  end
       unstringify_keys sym_hash
-
     rescue JSON::ParserError => _e
       {}
     end
@@ -41,9 +40,12 @@ class ImportManager
       hash.deep_symbolize_keys!
       hash.keys.each do |k|
         next if k == :counts || !hash[k].is_a?(Hash)
-        hash[k] = hash[k].inject({}) do |options, (key, value)|
-          options[(Integer(key.to_s) rescue key)] = value
-          options
+        hash[k] = hash[k].each_with_object({}) do |(key, value), options|
+          options[(begin
+                     Integer(key.to_s)
+                   rescue
+                     key
+                   end)] = value
         end
       end
       hash

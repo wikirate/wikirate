@@ -233,8 +233,7 @@ format :html do
                                   data: {
                                     remote: true,
                                     "slot-selector": ".metric-details-slot > .card-slot"
-                                  }
-                                }
+                                  } }
   end
 
   view :details_placeholder do

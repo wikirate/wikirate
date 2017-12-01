@@ -22,11 +22,7 @@ class ImportManager
   def import_rows row_indices
     row_count = row_indices ? row_indices.size : @csv_file&.row_count
     init_import_status row_count
-    @csv_file.each_row self, row_indices do |csv_row|
-      # handle_import csv_row do
-      csv_row.execute_import
-      # end
-    end
+    @csv_file.each_row self, row_indices, &:execute_import
   end
 
   def extra_data index
@@ -159,7 +155,7 @@ class ImportManager
   def error_list
     @import_status[:errors].each_with_object([]) do |(index, errors), list|
       next if errors.empty?
-      list << "##{index + 1}: #{errors.join("; ")}"
+      list << "##{index + 1}: #{errors.join('; ')}"
     end
   end
 
