@@ -2,6 +2,8 @@
 # policy. It collects all errors and provides extra data like corrections for row fields.
 class ImportManager
   require_dependency "import_manager/status"
+  include StatusLog
+  include Conflicts
 
   attr_reader :conflict_strategy
 
@@ -61,122 +63,7 @@ class ImportManager
     add_card card_args
   end
 
-  def check_for_duplicates name
-    key = name.to_name.key
-    if @imported_keys.include? key
-      report :duplicate_in_file, name
-      throw :skip_row, :skipped
-    else
-      @imported_keys << key
-    end
-  end
-
-  def with_conflict_strategy strategy
-    tmp_cs = @conflict_strategy
-    @conflict_strategy = strategy if strategy
-    yield
-  ensure
-    @conflict_strategy = tmp_cs
-  end
-
-  def handle_conflict name, strategy: nil
-    with_conflict_strategy strategy do
-      if (@dup = duplicate(name))
-        if @conflict_strategy == :skip
-          throw :skip_row, :skipped
-        elsif @conflict_strategy == :skip_card
-          return @dup
-        else
-          @status = :overridden
-        end
-      end
-      yield
-    end
-  end
-
-  def duplicate name
-    Card[name]
-  end
-
-  def log_status
-    import_status[@current_row.status] ||= {}
-    import_status[@current_row.status][@current_row.row_index] = @current_row.name
-    import_status[:counts].step @current_row.status
-  end
-
-  # used by {CSVRow} objects
-  def report_error msg
-    import_status[:errors][@current_row.row_index] ||= []
-    import_status[:errors][@current_row.row_index] << msg
-  end
-
-  def report key, msg
-    case key
-    when :duplicate_in_file
-      msg = "#{msg} duplicate in this file"
-    end
-    import_status[:reports][@current_row.row_index] ||= []
-    import_status[:reports][@current_row.row_index] << msg
-  end
-
-  def errors_by_row_index
-    @import_status[:errors].each do |index, msgs|
-      yield index, msgs
-    end
-  end
-
-  def pick_up_card_errors card=nil
-    card = yield if block_given?
-    if card
-      card.errors.each do |error_key, msg|
-        report_error "#{card.name} (#{error_key}): #{msg}"
-      end
-      card.errors.clear
-    end
-    card
-  end
-
-  def errors? row=nil
-    if row
-      errors(row).present?
-    else
-      errors.values.flatten.present?
-    end
-  end
-
-  def errors row=nil
-    if row
-      import_status.dig(:errors, row.row_index) || []
-    else
-      import_status[:errors] || {}
-    end
-  end
-
-  def error_list
-    @import_status[:errors].each_with_object([]) do |(index, errors), list|
-      next if errors.empty?
-      list << "##{index + 1}: #{errors.join('; ')}"
-    end
-  end
-
-  def override?
-    @conflict_strategy == :override
-  end
-
-  def import_status
-    @import_status || init_import_status
-  end
-
   private
-
-  def init_import_status row_count=nil
-    @import_status = ImportManager::Status.new(row_count || 0)
-  end
-
-  def specify_success_status status
-    return status if status.in? %i[failed skipped]
-    @status == :overridden ? :overridden : :imported
-  end
 
   # methods like row_imported, row_failed, etc. can be used to add additional logic
   def run_hook status
