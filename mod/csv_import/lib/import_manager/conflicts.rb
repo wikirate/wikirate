@@ -1,4 +1,5 @@
 class ImportManager
+  # Methods to deal with conflicts with existing cards
   module Conflicts
     def override?
       @conflict_strategy == :override

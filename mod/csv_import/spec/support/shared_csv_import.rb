@@ -129,6 +129,6 @@ shared_context "answer import" do
 
   def expect_answer_created key, with_value: nil
     value = with_value || data[key][value_row]
-     expect(answer_card(key)).to exist.and have_a_field(:value).with_content(value)
+    expect(answer_card(key)).to exist.and have_a_field(:value).with_content(value)
   end
 end

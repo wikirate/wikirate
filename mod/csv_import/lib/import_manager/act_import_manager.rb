@@ -33,7 +33,7 @@ class ActImportManager < ImportManager
   # end
 
   def duplicate name
-    @dup ||= Card[name] || (@act_card&.subcards[name])
+    @dup ||= Card[name] || @act_card&.subcards&.at(name)
   end
 
   def log_status

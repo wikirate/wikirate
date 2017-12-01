@@ -1,4 +1,5 @@
 class ImportManager
+  # Methods to collect errors and report the status of the import
   module StatusLog
     def log_status
       import_status[@current_row.status] ||= {}

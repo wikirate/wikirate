@@ -90,7 +90,7 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
       real_csv_file =
         File.open File.expand_path("../../../support/#{csv_file_name}.csv", __FILE__)
       card = create "test import", type_id: Card::AnswerImportFileID, answer_import_file: real_csv_file
-      expect_card("test import").to exist.and have_file.of_size(be > 0)
+      expect_card("test import").to exist.and have_file.of_size be_positive
       card
     end
 
