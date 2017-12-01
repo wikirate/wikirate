@@ -88,3 +88,7 @@ format :json do
     end
   end
 end
+
+event :update_company_matcher, :integrate_with_delay, on: :create do
+  CompanyMatcher.add_to_mapper id, name
+end
