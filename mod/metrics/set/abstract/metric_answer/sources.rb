@@ -29,9 +29,9 @@ end
 
 def source_subcard_exist? new_source_card
   file_card, text_card, link_card = source_subcards new_source_card
-  (file_card && file_card.attachment.present?) ||
-    (text_card && text_card.content.present?) ||
-    (link_card && link_card.content.present?)
+  file_card&.attachment.present? ||
+    text_card&.content.present? ||
+    link_card&.content.present?
 end
 
 def add_report_type source_name

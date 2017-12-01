@@ -14,7 +14,7 @@ def name_parts
 end
 
 def valid_related_company?
-  (related_company_card && related_company_card.type_id == WikirateCompanyID) ||
+  (related_company_card&.type_id == WikirateCompanyID) ||
     ActManager.include?(related_company)
 end
 

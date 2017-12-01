@@ -15,9 +15,9 @@ format :html do
   def text_filter field, opts={}
     name = filter_name field
     add_class opts, "form-control"
-    #formgroup filter_label(field), class: "filter-input" do
+    # formgroup filter_label(field), class: "filter-input" do
     text_field_tag name, filter_param(field), opts
-    #end
+    # end
   end
 
   def select_filter_type_based type_codename, order="asc"
@@ -28,7 +28,8 @@ format :html do
 
   def autocomplete_filter type_code, options_card=nil
     options_card ||= Card::Name[type_code, :type, :by_name]
-    text_filter type_code, class: "#{type_code}_autocomplete", "data-options-card": options_card
+    text_filter type_code, class: "#{type_code}_autocomplete",
+                           "data-options-card": options_card
   end
 
   def multiselect_filter_type_based type_codename
@@ -41,20 +42,16 @@ format :html do
     select_filter_tag field, label, default, options, html_options
   end
 
-  def select_filter_tag field, label, default, options, html_options={}
-    label ||= filter_label field
+  def select_filter_tag field, _label, default, options, html_options={}
     name = filter_name field, html_options[:multiple]
     default = filter_param(field) || default
     options = options_for_select(options, default)
 
-    # these classes make the select field a jquery chosen select field
     css_class =
       html_options[:multiple] ? "pointer-multiselect" : "pointer-select"
     add_class(html_options, css_class + " filter-input #{field} _filter_input_field")
 
-    # formgroup label, class: "filter-input #{field} _filter_input_field" do
     select_tag name, options, html_options
-    # end
   end
 
   def filter_name field, multi=false

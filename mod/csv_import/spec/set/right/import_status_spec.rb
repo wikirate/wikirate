@@ -1,4 +1,4 @@
-describe Card::Set::Right::ImportStatus do
+RSpec.describe Card::Set::Right::ImportStatus do
   let(:status) do
     { counts: { imported: 5, failed: 6, total: 17 } }
   end
@@ -21,7 +21,7 @@ describe Card::Set::Right::ImportStatus do
       end
 
       it "renders progress bar if counts in the content" do
-        expect(content_view status)
+        expect(content_view(status))
           .to have_tag "div.card-slot._refresh-timer",
                        with: { "data-refresh-url" => "/test+import_status?view=content" } do
           with_tag "div.progress" do
@@ -36,7 +36,7 @@ describe Card::Set::Right::ImportStatus do
       end
 
       it "renders progress bar if counts in the content" do
-        expect(content_view status)
+        expect(content_view(status))
           .to have_tag "div.card-slot._refresh-timer",
                        with: { "data-refresh-url" => "/test+import_status?view=content" } do
           with_tag "div.progress" do
@@ -51,7 +51,7 @@ describe Card::Set::Right::ImportStatus do
       end
 
       it "hides empty parts in progress bar if no content" do
-        expect(content_view "")
+        expect(content_view(""))
           .to have_tag "div.card-slot",
                        with: { "data-refresh-url" => "/test+import_status?view=content" } do
           with_tag "div.progress" do
@@ -66,11 +66,11 @@ describe Card::Set::Right::ImportStatus do
         { counts: { imported: 5, failed: 6, skipped: 4, total: 17 },
           imported: { 0 => "no 1", 2 => "no 3" },
           failed: { 1 => "no 2" },
-          errors: { 1 => ["invalid name", "invalid value"] }}
+          errors: { 1 => ["invalid name", "invalid value"] } }
       end
 
       it "renders list of imported entries" do
-        expect(content_view status)
+        expect(content_view(status))
           .to have_tag "div.alert.alert-success" do
           with_tag :ul do
             with_tag :li, text: "#1: no 1"
@@ -80,7 +80,7 @@ describe Card::Set::Right::ImportStatus do
       end
 
       it "renders list of errors" do
-        expect(content_view status).to have_tag "div.alert.alert-danger" do
+        expect(content_view(status)).to have_tag "div.alert.alert-danger" do
           with_tag :ul do
             with_tag :li, text: "#2: no 2 - invalid name; invalid value"
           end

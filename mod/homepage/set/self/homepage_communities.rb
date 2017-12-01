@@ -2,7 +2,7 @@ include_set Abstract::HamlFile
 
 format :html do
   COMMUNITIES = ["NGOs", "Researchers", "Education", "Companies",
-                      "Standard Bodies", "Volunteers", "Investors", "Press"].freeze
+                 "Standard Bodies", "Volunteers", "Investors", "Press"].freeze
   def haml_locals
     { communities: COMMUNITIES }
   end
@@ -19,5 +19,4 @@ format :html do
       ["WikiRate for #{com}+community", { absolute: true }]
     end
   end
-
 end

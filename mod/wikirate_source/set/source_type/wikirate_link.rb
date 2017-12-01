@@ -94,7 +94,7 @@ rescue => e
 end
 
 def url
-  @url ||= (wikirate_link && wikirate_link.strip) || ""
+  @url ||= (wikirate_link&.strip) || ""
 end
 
 def url?

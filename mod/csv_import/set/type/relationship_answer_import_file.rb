@@ -32,7 +32,6 @@ format :html do
     Abstract::Import::TableRowRelationship
   end
 
-
   def construct_import_warning_message
     msg = ""
     if (identical_metric_values = Env.params[:identical_metric_value])

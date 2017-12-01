@@ -163,11 +163,11 @@ format :html do
   end
 
   def selected_tab_pane? tab
-    if params[:tab] && params[:tab].downcase.to_sym.in?([:formula, :score, :wiki_rating])
-      tab == :calculated
-    else
-      tab == :researched
-    end
+    tab == if params[:tab]&.downcase&.to_sym&.in?([:formula, :score, :wiki_rating])
+             :calculated
+           else
+             :researched
+           end
   end
 
   def selected_subtab_pane? name

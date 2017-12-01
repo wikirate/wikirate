@@ -61,12 +61,12 @@ end
 
 def selected_subvariant
   @subvariant ||=
-    (Env.params["subvariant"] && Env.params["subvariant"].to_sym) || :all
+    (Env.params["subvariant"]&.to_sym) || :all
 end
 
 def variant
   @variant ||=
-    (Env.params["variant"] && Env.params["variant"].to_sym) || :created
+    (Env.params["variant"]&.to_sym) || :created
 end
 
 def subvariant_count subvariant
@@ -92,7 +92,7 @@ format :html do
   delegate :selected_subvariant, to: :card
 
   def variant
-    card.variant && card.variant.to_sym
+    card.variant&.to_sym
   end
 
   def subvariants
