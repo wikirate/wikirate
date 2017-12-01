@@ -25,13 +25,13 @@ class ImportManager
 
     def handle_conflict name, strategy: nil
       with_conflict_strategy strategy do
-        with_conflict_resolution do
+        with_conflict_resolution name do
           yield
         end
       end
     end
 
-    def with_conflict_resolution
+    def with_conflict_resolution name
       return yield unless (@dup = duplicate(name))
 
       case @conflict_strategy
