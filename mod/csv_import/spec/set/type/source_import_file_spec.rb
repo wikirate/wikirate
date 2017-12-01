@@ -56,9 +56,9 @@ RSpec.describe Card::Set::Type::SourceImportFile do
       expect(source_card(:exact_match))
         .to be_a(Card)
         .and have_a_field(:wikirate_title).with_content("a title")
-                                          .and have_a_field(:report_type).pointing_to("Force Report")
-                                                                         .and have_a_field(:wikirate_company).pointing_to("Death Star")
-                                                                                                             .and have_a_field(:year).pointing_to "2014"
+        .and have_a_field(:report_type).pointing_to("Force Report")
+        .and have_a_field(:wikirate_company).pointing_to("Death Star")
+        .and have_a_field(:year).pointing_to "2014"
     end
 
     context "existing sources" do
@@ -81,8 +81,8 @@ RSpec.describe Card::Set::Type::SourceImportFile do
         it "updates existing source attributes" do
           is_expected
             .to have_a_field(:report_type).pointing_to("Monster Report")
-                                          .and have_a_field(:wikirate_company).pointing_to("Monster Inc")
-                                                                              .and have_a_field(:year).pointing_to "2014"
+            .and have_a_field(:wikirate_company).pointing_to("Monster Inc")
+            .and have_a_field(:year).pointing_to "2014"
         end
       end
 
@@ -106,9 +106,9 @@ RSpec.describe Card::Set::Type::SourceImportFile do
         expect(source_card(:exact_match))
           .to be_a(Card)
           .and have_a_field(:wikirate_title).with_content("A")
-                                            .and have_a_field(:report_type).pointing_to("Force Report")
-                                                                           .and have_a_field(:wikirate_company).pointing_to("Death Star")
-                                                                                                               .and have_a_field(:year).pointing_to "2014"
+          .and have_a_field(:report_type).pointing_to("Force Report")
+          .and have_a_field(:wikirate_company).pointing_to("Death Star")
+          .and have_a_field(:year).pointing_to "2014"
         expect(status[:reports][1])
           .to contain_exactly "http://www.wikiwand.com/en/Death_Star duplicate in this file"
         expect(status[:counts][:skipped]).to eq 1
@@ -151,21 +151,24 @@ RSpec.describe Card::Set::Type::SourceImportFile do
                  checked: true,
                  match: :exact,
                  suggestion: "Death Star",
-                 fields: ["Death Star", "2014", "Force Report", url("Death_Star")]
+                 fields: ["Death Star", "2014", "Force Report",
+                          url("Death_Star")]
 
         with_row index: 1,
                  context: :info,
                  checked: true,
                  match: :partial,
                  suggestion: "Monster Inc",
-                 fields: ["Monster Inc", "Monster", "2014", "Monster Report", url("Monster")]
+                 fields: ["Monster Inc", "Monster", "2014", "Monster Report",
+                          url("Monster")]
 
         with_row index: 2,
                  context: :success,
                  checked: true,
                  match: :alias,
                  suggestion: "Google Inc.",
-                 fields: ["Google Inc.", "Google", "2014", "Monster Report", url("Google")]
+                 fields: ["Google Inc.", "Google", "2014", "Monster Report",
+                          url("Google")]
       end
     end
   end

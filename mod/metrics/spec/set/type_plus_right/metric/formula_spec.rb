@@ -2,28 +2,26 @@
 
 describe Card::Set::TypePlusRight::Metric::Formula do
   describe "#ruby_formula?" do
-    subject do
-      Card["Jedi+friendliness+formula"]
+    def formula content
+      Card["Jedi+friendliness+formula"].tap do |card|
+        card.content = content
+      end
     end
 
     it "allows math operations" do
-      subject.content = "5 * 4 / 2 - 2.3 + 5"
-      expect(subject).to be_ruby_formula
+      expect(formula("5 * 4 / 2 - 2.3 + 5")).to be_ruby_formula
     end
 
     it "allows parens" do
-      subject.content = "5 * (4 / 2) - 2"
-      expect(subject).to be_ruby_formula
+      expect(formula("5 * (4 / 2) - 2")).to be_ruby_formula
     end
 
     it "allows nests" do
-      subject.content = "5 * {{metric}} + 5"
-      expect(subject).to be_ruby_formula
+      expect(formula("5 * {{metric}} + 5")).to be_ruby_formula
     end
 
     it "denies letters" do
-      subject.content = "5 * 4*a / 2"
-      expect(subject).not_to be_ruby_formula
+      expect(formula("5 * 4*a / 2")).not_to be_ruby_formula
     end
   end
 

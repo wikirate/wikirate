@@ -31,7 +31,7 @@ def fetch_hash_from_params key
     Env.params[key].to_unsafe_h
   else
     {}
-    end
+  end
 end
 
 def data_import?
@@ -45,7 +45,7 @@ end
 def selected_row_indices
   @selected_row_indices ||=
     fetch_hash_from_params(:import_rows).each_with_object([]) do |(index, value), a|
-      next unless value == true || value == "true"
+      next unless [true, "true"].include?(value)
       a << index.to_i
     end
 end

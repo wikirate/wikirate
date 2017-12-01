@@ -79,7 +79,7 @@ format :html do
   def progress_header
     if importing?
       "Importing #{item_count_label :total} ..."
-    elsif count(:overridden) > 0
+    elsif count(:overridden).positive?
       "#{item_count_label :imported} created and " \
       "#{item_count_label :overridden} updated" \
     else
@@ -116,19 +116,11 @@ format :html do
   end
 
   def report_line index, name, type
-    if type == :failed
-      text = "##{index + 1}: #{name}"
-      if status[:errors][index].present?
-        text += " - " if name.present?
-        text += status[:errors][index].join("; ")
-      end
-    else
-      text = "##{index + 1}: " + link_to_card(name)
-      if status[:reports][index].present?
-        text += " - " if name.present?
-        text += status[:reports][index].join("; ")
-      end
-    end
+    label, status_key =
+      type == :failed ? [name, :errors] : [link_to_card(name), :reports]
+
+    text = "##{index + 1}: #{label}"
+    text += status[status_key][index].join("; ") if status[status_key][index].present?
     text
   end
 

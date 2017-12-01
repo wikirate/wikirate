@@ -39,7 +39,7 @@ class CSVRow
       def ensure_source_and_company
         import_manager.with_conflict_strategy :skip_card do
           @row[:source] = import_source
-           import_company
+          import_company
         end
       end
 

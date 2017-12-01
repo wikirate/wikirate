@@ -25,7 +25,7 @@ class Answer
       ma.answer_id = ma_card_id
       # update all fields if record is new
       fields = nil if ma.new_record?
-      ma.refresh *fields
+      ma.refresh(*fields)
     end
 
     # @return answer card objects
