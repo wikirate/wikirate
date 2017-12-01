@@ -7,7 +7,12 @@ end
 
 # the space of possible metric records
 def num_possible
-  @num_possible ||= num_possible_records * (years ? num_years : 1)
+  @num_possible ||= num_possible_records * year_multiplier
+end
+
+# used to calculate possible records/answers
+def year_multiplier
+  @year_multiplier ||= years ? num_years : 1
 end
 
 def num_possible_records

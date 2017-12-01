@@ -9,21 +9,15 @@ describe Card::Set::Type::Project do
     end
 
     it "connects metrics and companies" do
-      expect(project.num_metrics).to eq(2)
-      expect(project.num_companies).to eq(3)
+      expect_stat :num, metrics: 2, companies: 3
     end
 
-    it "counts all answers" do
-      expect(project.num_researched).to eq(2)
-      expect(project.num_unknown).to eq(0)
-      expect(project.num_not_researched).to eq(4)
+    it "counts all records" do
+      expect_stat :num, possible: 6, researched: 2, unknown: 0, not_researched: 4
     end
 
     it "calculates progress percentages based on records" do
-      expect(project.num_possible).to eq(6)
-      expect(project.percent_researched).to eq(33.3)
-      expect(project.percent_unknown).to eq(0)
-      expect(project.percent_not_researched).to eq(66.6)
+      expect_stat :percent, researched: 33.3, unknown: 0, not_researched: 66.6
     end
   end
 
@@ -39,21 +33,23 @@ describe Card::Set::Type::Project do
     end
 
     it "connects metrics and companies" do
-      expect(project.num_metrics).to eq(2)
-      expect(project.num_companies).to eq(3)
+      expect_stat :num, metrics: 2, companies: 3
     end
 
     it "counts all answers" do
-      expect(project.num_researched).to eq(3) # note: 2 for same record
-      expect(project.num_unknown).to eq(0)
-      expect(project.num_not_researched).to eq(15)
+      expect_stat :num, possible: 18, researched: 3, unknown: 0, not_researched: 15
+      # note: 2 researched for same record
     end
 
     it "calculates progress percentages based on answers" do
-      expect(project.num_possible).to eq(18)
-      expect(project.percent_researched).to eq(16.6)
-      expect(project.percent_unknown).to eq(0)
-      expect(project.percent_not_researched).to eq(83.3)
+      expect_stat :percent, researched: 16.6, unknown: 0, not_researched: 83.3
+    end
+  end
+
+  def expect_stat stat, hash
+    hash.each do |field, expected|
+      result = project.send "#{stat}_#{field}"
+      expect(result).to eq(expected)
     end
   end
 end

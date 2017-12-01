@@ -10,7 +10,7 @@ def company_ids
 end
 
 def num_possible
-  @num_possible ||= company_ids.size * (years ? project_card.num_years : 1)
+  @num_possible ||= company_ids.size * project_card.year_multiplier
 end
 
 def metric_designer_card
@@ -25,10 +25,6 @@ def where_answer
   where_year do
     { metric_id: metric_card.id, company_id: [:in] + company_ids }
   end
-end
-
-def years
-  project_card.years
 end
 
 format :html do
@@ -47,8 +43,7 @@ format :html do
   end
 
   def metric_link values=:all
-    filter = { project: project_name, metric_value: values }
-    filter[:year] = card.years if card.years
-    link_to_card card.metric_card, yield, path: { filter: filter }
+    path_args = card.project_card.filter_path_args values
+    link_to_card card.metric_card, yield, path: path_args
   end
 end

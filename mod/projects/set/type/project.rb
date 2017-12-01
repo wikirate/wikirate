@@ -38,3 +38,15 @@ def years
   valids = year_card.valid_year_cards.map(&:name)
   @years = valids.empty? ? false : valids
 end
+
+# used in filtering answers on company and project pages
+# @param values [Symbol] researched, known, not_researched
+# (need better term for this param)
+def filter_path_args values
+  filter = { project: name, metric_value: values  }
+  # show latest project year.  could consider updating answer tables
+  # to handle latest value among a group of years, but that's not yet
+  # an option
+  filter[:year] = years.first if years
+  { filter: filter }
+end
