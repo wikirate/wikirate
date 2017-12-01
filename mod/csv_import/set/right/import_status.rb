@@ -145,7 +145,7 @@ format :html do
 
   def undo_confirm_message
     text = "Do you really want to remove the imported #{item_label :imported}"
-    if count(:overridden) > 0
+    if count(:overridden).positive?
       text += " and restore the overridden " + item_label(:overridden)
     end
     text << "?"

@@ -24,11 +24,11 @@ format :html do
   end
 
   def metrics_designed?
-    card.metrics_designed_card.count > 0
+    card.metrics_designed_card.count.positive?
   end
 
   def projects_organized?
-    card.projects_organized_card.count > 0
+    card.projects_organized_card.count.positive?
   end
 
   view :metric_contributions do

@@ -2,9 +2,10 @@ include_set Abstract::Import
 
 format :html do
   def row_buckets
-    buckets = CompanyMatcher::MATCH_TYPE_ORDER.each_with_object(invalid: []) do |(k, _v), h|
-      h[k] = []
-    end
+    buckets =
+      CompanyMatcher::MATCH_TYPE_ORDER.each_with_object(invalid: []) do |(k, _v), h|
+        h[k] = []
+      end
     buckets[:imported] = []
     buckets
   end
