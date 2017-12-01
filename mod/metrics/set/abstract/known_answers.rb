@@ -1,14 +1,20 @@
-# for this to work, you have to define #num_records, #where_answer, and
-# #worth_counting
+# for this to work, you have to define at a minimum:
+#
+# 1. #num_records returning the total number of records in the problem space
+# 2. #where_answer returning query args for an answer query
+# 3. #worth_counting? returning false if there are obviously no answers yet.
+
+CSS_CLASS = { not_researched: "progress-not-researched" }.freeze
+LINK_VALUE = { not_researched: "none" }.freeze
 
 # currently counts as researched if metric card exists at all
 def num_researched
-  @num_researched ||= worth_counting { count_researched }
+  @num_researched ||= smart_count { count_researched }
 end
 
 # researched and has a value that is not "Unknown"
 def num_known
-  @num_known ||= worth_counting { count_known }
+  @num_known ||= smart_count { count_known }
 end
 
 def num_unknown
@@ -51,21 +57,36 @@ def researched_relation
   Answer.select(:record_id).distinct.where where_answer
 end
 
-view :research_progress_bar, cache: :never do
-  progress_bar(
-    { value: card.percent_known, class: "progress-known" },
-    { value: card.percent_unknown, class: "progress-unknown" },
-    value: card.percent_not_researched, class: "progress-not-researched"
-  )
+def smart_count
+  return 0 unless worth_counting?
+  yield
 end
 
-view :absolute_research_progress_bar, cache: :never do
-  progress_bar(
-    { value: card.percent_known, label: card.num_known,
-      class: "progress-known" },
-    { value: card.percent_unknown, label: card.num_unknown,
-      class: "progress-unknown" },
-    value: card.percent_not_researched, label: card.num_not_researched,
-    class: "progress-not-researched"
-  )
+format :html do
+  def research_progress_bar link_method=nil
+    return "" unless card.worth_counting?
+    sections = [:known, :unknown, :not_researched].map do |value|
+      research_progress_bar_section value, link_method
+    end.compact
+    progress_bar(*sections)
+  end
+
+  def research_progress_bar_section value, link_method
+    percent = card.send "percent_#{value}"
+    return if percent.to_i.zero?
+    hash = { value: percent, class: progress_css_class(value) }
+    link_progress_bar_section hash, value, link_method
+    hash
+  end
+
+  def progress_css_class value
+    CSS_CLASS[value] || "progress-#{value}"
+  end
+
+  def link_progress_bar_section hash, value, link_method
+    return unless link_method
+    hash[:body] = send link_method, LINK_VALUE[value] do
+      card.send "num_#{value}"
+    end
+  end
 end

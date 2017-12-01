@@ -21,5 +21,7 @@ def jurisdiction_name oc_code
 end
 
 def oc_code
-  (jur = item_cards.first) && jur.oc_code
+  jur = item_cards.first
+  return unless jur && jur.type_id == JurisdictionID
+  jur.oc_code
 end

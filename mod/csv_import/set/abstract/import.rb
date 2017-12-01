@@ -16,17 +16,26 @@ def csv_only? # for override
   true
 end
 
-event :validate_import_format, :validate, when: :save_preliminary_upload? do
-  if upload_cache_card.csv?
-    validate_csv
+event :validate_import_format_on_create, :validate,
+      on: :create, when: :save_preliminary_upload? do
+  validate_file_card upload_cache_card
+end
+
+event :validate_import_format, :validate,
+      on: :update, when: :save_preliminary_upload? do
+  validate_file_card self
+end
+
+def validate_file_card file_card
+  if file_card.csv?
+    validate_csv file_card
   elsif csv_only?
-    abort :failure,
-          "file must be CSV but was '#{upload_cache_card.attachment.content_type}'"
+    abort :failure, "file must be CSV but was '#{file_card.attachment.content_type}'"
   end
 end
 
-def validate_csv
-  CSVFile.new upload_cache_card.attachment, csv_row_class, headers: :detect
+def validate_csv file_card
+  CSVFile.new file_card.attachment, csv_row_class, headers: :detect
 rescue CSV::MalformedCSVError => e
   abort :failure, "malformed csv: #{e.message}"
 end

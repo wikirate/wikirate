@@ -29,19 +29,27 @@ def where_answer
   { metric_id: metric_card.id, company_id: [:in] + company_ids }
 end
 
-def worth_counting
-  return 0 unless company_ids.any?
-  yield
+def worth_counting?
+  company_ids.any?
 end
 
 format :html do
   view :metric_thumbnail do
-    nest card.metric_card, view: :thumbnail_no_link
+    metric_link do
+      nest card.metric_card, view: :thumbnail_no_link
+    end
   end
 
-  view :research_progress_bar do
-    link_to_card card.metric_card, _render_absolute_research_progress_bar,
-                 path: { filter: { project: card.project_card.name,
-                                   metric_value: :all } }
+  view :research_progress_bar, cache: :never do
+    research_progress_bar :metric_link
+  end
+
+  def project_name
+    card.project_card.name
+  end
+
+  def metric_link values=:all
+    path_args = { filter: { project: project_name, metric_value: values } }
+    link_to_card card.metric_card, yield, path: path_args
   end
 end
