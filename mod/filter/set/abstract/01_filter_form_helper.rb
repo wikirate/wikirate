@@ -42,7 +42,7 @@ format :html do
     select_filter_tag field, label, default, options, html_options
   end
 
-  def select_filter_tag field, label, default, options, html_options={}
+  def select_filter_tag field, _label, default, options, html_options={}
     name = filter_name field, html_options[:multiple]
     default = filter_param(field) || default
     options = options_for_select(options, default)

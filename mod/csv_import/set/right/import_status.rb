@@ -120,7 +120,10 @@ format :html do
       type == :failed ? [name, :errors] : [link_to_card(name), :reports]
 
     text = "##{index + 1}: #{label}"
-    text += status[status_key][index].join("; ") if status[status_key][index].present?
+    if status[status_key][index].present?
+      text += " - " if name.present?
+      text += status[status_key][index].join("; ")
+    end
     text
   end
 

@@ -1,4 +1,4 @@
-describe Card::Set::Right::ImportStatus do
+RSpec.describe Card::Set::Right::ImportStatus do
   let(:status) do
     { counts: { imported: 5, failed: 6, total: 17 } }
   end

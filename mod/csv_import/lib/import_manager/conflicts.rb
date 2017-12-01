@@ -25,15 +25,20 @@ class ImportManager
 
     def handle_conflict name, strategy: nil
       with_conflict_strategy strategy do
-        if (@dup = duplicate(name))
-          if @conflict_strategy == :skip
-            throw :skip_row, :skipped
-          elsif @conflict_strategy == :skip_card
-            return @dup
-          else
-            @status = :overridden
-          end
+        with_conflict_resolution do
+          yield
         end
+      end
+    end
+
+    def with_conflict_resolution
+      return yield unless (@dup = duplicate(name))
+
+      case @conflict_strategy
+      when :skip      then throw :skip_row, :skipped
+      when :skip_card then @dup
+      else
+        @status = :overridden
         yield
       end
     end
