@@ -1,12 +1,12 @@
 shared_context "answer csv row" do
   ROW_HASH =
     {
-        metric: "Jedi+disturbances in the Force",
-        company: "Google Inc",
-        year: "2017",
-        value: "yes",
-        source: "http://google.com",
-        comment: ""
+      metric: "Jedi+disturbances in the Force",
+      company: "Google Inc",
+      year: "2017",
+      value: "yes",
+      source: "http://google.com",
+      comment: ""
     }.freeze
 
   def answer_row args={}

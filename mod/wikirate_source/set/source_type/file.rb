@@ -14,5 +14,4 @@ format :html do
     link_to_card card.file_card, "Import to metric values",
                  path: { view: :import }
   end
-
 end

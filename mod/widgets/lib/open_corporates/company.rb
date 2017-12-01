@@ -44,7 +44,7 @@ module OpenCorporates
 
     def validate_jurisdiction_code
       return fail("no jurisdiction code") unless @jurisdiction_code
-      unless @jurisdiction_code =~ /^\w+$/
+      unless @jurisdiction_code.match?(/^\w+$/)
         fail "invalid jurisdiction code: #{@jurisdiction_code}"
       end
     end

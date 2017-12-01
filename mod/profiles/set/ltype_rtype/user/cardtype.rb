@@ -51,7 +51,7 @@ format :html do
 
   def show_contribution_report?
     [:created, :updated, :discussed, :voted_on].find do |action|
-      report_count(action) > 0
+      report_count(action).positive?
     end
   end
 

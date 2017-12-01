@@ -8,7 +8,7 @@ class CSVRow
     #    in extra_data[:corrections][:company].
     #    The user correction overrides the suggestion.
     class CompanyCSV < CSVRow
-      def initialize row, index, import_manager = nil, company_key=:company
+      def initialize row, index, import_manager=nil, company_key=:company
         super(row, index, import_manager)
         @company_key = company_key
         @file_company = @before_corrected[@company_key] || @row[@company_key]

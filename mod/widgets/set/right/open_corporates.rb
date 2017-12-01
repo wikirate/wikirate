@@ -54,9 +54,13 @@ format :html do
       ["Company Type", oc.company_type],
       ["Status", oc.status]
     ].map do |label, value|
-      next unless value.present?
-      [wrap_with(:strong, label), value]
+      format_table_row label, value
     end.compact
+  end
+
+  def format_table_row label, value
+    return unless value.present?
+    [wrap_with(:strong, label), value]
   end
 
   def jurisdiction
@@ -65,7 +69,7 @@ format :html do
 
   # TODO: reduce duplicated code
   def jurisdiction_name oc_code
-    oc_code = "oc_#{oc_code}" unless oc_code.to_s =~ /^oc_/
+    oc_code = "oc_#{oc_code}" unless oc_code.to_s.match?(/^oc_/)
     Card.fetch_name oc_code.to_sym
   end
 

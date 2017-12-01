@@ -24,11 +24,11 @@ def csv_row_class
 end
 
 def metric
-  extra_data.dig(:all, :corrections, :metric)&.tr("[","")&.tr("]","")
+  extra_data.dig(:all, :corrections, :metric)&.tr("[", "")&.tr("]", "")
 end
 
 def year
-  extra_data.dig(:all, :corrections, :year)&.tr("[","")&.tr("]","")
+  extra_data.dig(:all, :corrections, :year)&.tr("[", "")&.tr("]", "")
 end
 
 def normalize_extra_data

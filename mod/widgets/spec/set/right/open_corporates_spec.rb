@@ -16,7 +16,6 @@ describe Card::Set::Right::OpenCorporates do
   end
 
   describe "view: oc_search_link" do
-
     it "shows external link" do
       view = render_view :oc_search_link, name: "Los Pollos Hermanos+open corporates"
       expect(view).to have_tag(:a, with: { class: "external-link" })

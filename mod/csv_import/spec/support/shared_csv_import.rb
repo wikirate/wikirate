@@ -31,7 +31,7 @@ shared_context "csv import" do
     # in was stubbing the CSVFile.new
     allow(CSVFile).to receive(:new).and_return csv_file
     # Card.any_instance.stub(:csv_file).and_return csv_file
-    #allow(import_card).to receive(:file).and_return true
+    # allow(import_card).to receive(:file).and_return true
     Card.any_instance.stub(:file).and_return true
     import_card
   end
@@ -54,13 +54,12 @@ shared_context "csv import" do
 
   def csv_io rows=nil
     if rows
-      bad_keys = rows.select { |k| !data.key? k }
+      bad_keys = rows.reject { |k| data.key? k }
       raise StandardError, "unknown keys: #{bad_keys.inspect}" if bad_keys.present?
       StringIO.new rows.map { |key| data[key].join "," }.join "\n"
     else
       StringIO.new data.values.map { |rows| rows.join "," }.join "\n"
     end
-
   end
 
   def row_index key
@@ -93,7 +92,8 @@ shared_context "table row matcher" do
         with_tag :input, with: checkbox_with
         with_tag :input, with: {
           type: :hidden, value: match,
-                                 name: "extra_data[#{index}][company_match_type]" }
+          name: "extra_data[#{index}][company_match_type]"
+        }
         with_tag :input, with: { type: :hidden, value: suggestion,
                                  name: "extra_data[#{index}][company_suggestion]" }
       end
@@ -121,7 +121,6 @@ shared_context "answer import" do
 
   def company_name key
     key.is_a?(Symbol) ? data[key][company_row] : key[:company]
-
   end
 
   def value_card key
@@ -129,7 +128,7 @@ shared_context "answer import" do
   end
 
   def expect_answer_created key, with_value: nil
-     value = with_value || data[key][value_row]
-     expect(answer_card(key)).to exist.and have_a_field(:value).with_content(value)
+    value = with_value || data[key][value_row]
+    expect(answer_card(key)).to exist.and have_a_field(:value).with_content(value)
   end
 end

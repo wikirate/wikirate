@@ -14,7 +14,7 @@ RSpec.describe Card::Chart::RangeChart::Buckets, "bucket calculation" do
 
   def bucket_ranges min, max
     mid = be_between min, max
-    [[eq(min), mid]] + ([[mid, mid]] * 8) + [[mid, be_between(max, max+100).inclusive]]
+    [[eq(min), mid]] + ([[mid, mid]] * 8) + [[mid, be_between(max, max + 100).inclusive]]
   end
 
   describe "#each_bucket" do

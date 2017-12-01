@@ -25,4 +25,3 @@ class CSVRow
     end
   end
 end
-

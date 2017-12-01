@@ -15,7 +15,7 @@ def search args={}
 end
 
 format :html do
-  view :core, cache: :never do |args|
+  view :core, cache: :never do |_args|
     class_up "card-slot", "_filter-result-slot"
     _render_filter_form + _render_filter_result
   end

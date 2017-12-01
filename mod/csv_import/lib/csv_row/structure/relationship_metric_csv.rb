@@ -39,6 +39,5 @@ class CSVRow
           @row[:value_options].split("/").map(&:strip).to_pointer_content
       end
     end
-
   end
 end

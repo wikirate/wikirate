@@ -15,8 +15,8 @@ class ActImportManager < ImportManager
         else
           Card.create args
         end
-      #subcard = @act_card&.add_subcard args.delete(:name), args
-      #subcard.director.catch_up_to_stage :validate
+      # subcard = @act_card&.add_subcard args.delete(:name), args
+      # subcard.director.catch_up_to_stage :validate
       pick_up_card_errors do
         subcard
       end
@@ -33,7 +33,7 @@ class ActImportManager < ImportManager
   # end
 
   def duplicate name
-    @dup ||= Card[name] || (@act_card && @act_card.subcards[name])
+    @dup ||= Card[name] || @act_card&.subcards&.at(name)
   end
 
   def log_status

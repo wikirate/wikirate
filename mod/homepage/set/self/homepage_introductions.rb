@@ -9,7 +9,7 @@ format :html do
     [
       ["homepage companies", { absolute: true }],
       ["homepage topics", { absolute: true }],
-      ["homepage metrics", { absolute: true}]
+      ["homepage metrics", { absolute: true }]
     ]
   end
 end

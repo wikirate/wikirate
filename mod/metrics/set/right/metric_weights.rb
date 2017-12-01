@@ -13,7 +13,7 @@ end
 def metrics_with_weight
   formula.split("+").map do |summand|
     metric, weight = summand.split "*"
-    metric, weight = weight, metric if weight =~ /[^\s\d\.]/
+    metric, weight = weight, metric if weight.match?(/[^\s\d\.]/)
     metric = metric.scan(/\{\{([^}]+)\}\}/).flatten.first
     weight = weight.to_f
     [metric, weight]

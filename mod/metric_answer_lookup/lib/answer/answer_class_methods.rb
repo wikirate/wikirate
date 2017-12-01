@@ -25,7 +25,7 @@ class Answer
       ma.answer_id = ma_card_id
       # update all fields if record is new
       fields = nil if ma.new_record?
-      ma.refresh *fields
+      ma.refresh(*fields)
     end
 
     # @return answer card objects
@@ -108,14 +108,14 @@ class Answer
 
     def latest_answer_card metric_id, company_id
       a_id = where(metric_id: metric_id, company_id: company_id,
-                   latest: true).pluck(:answer_id)
+                   latest: true).pluck(:answer_id).first
       a_id && Card.fetch(a_id)
     end
 
     def latest_year metric_id, company_id
       where(metric_id: metric_id,
             company_id: company_id,
-            latest: true).pluck(:year)
+            latest: true).pluck(:year).first
     end
 
     def answered? metric_id, company_id

@@ -27,6 +27,6 @@ end
 
 def name_part_from_field part
   field = remove_subfield part
-  return unless field && field.content.present?
+  return unless field&.content.present?
   field.content.gsub("[[", "").gsub("]]", "")
 end

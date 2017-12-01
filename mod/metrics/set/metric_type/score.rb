@@ -18,7 +18,7 @@ end
 
 def normalize_value value
   return value if value.is_a? String
-  return "0" if value < 0
+  return "0" if value.negative?
   return "10" if value > 10
   value.to_s
 end
@@ -37,8 +37,7 @@ end
 format :html do
   delegate :scorer_card, :basic_metric_card, to: :card
 
-  def new_name_field form=nil, options={}
-    form ||= self.form
+  def new_name_field _form=nil, _options={}
     option_names = scorable_metrics
 
     options = [["-- Select --", ""]] + option_names.map { |x| [x, x] }
@@ -123,7 +122,7 @@ format :html do
 end
 
 event :validate_score_name, :validate, changed: :name, on: :save do
-  return if basic_metric_card && basic_metric_card.type_id == MetricID
+  return if basic_metric_card&.type_id == MetricID
   errors.add :name, "#{basic_metric} is not a metric"
 end
 
