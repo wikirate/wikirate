@@ -26,6 +26,10 @@ format :html do
     :filtered_list
   end
 
+  def default_item_view
+    :listing
+  end
+
   view :core do
     wrap_with :div, class: "progress-bar-table" do
       metric_progress_table
