@@ -1,16 +1,34 @@
 include_set Abstract::KnownAnswers
 
+# override
+def project_card
+  self
+end
+
 # the space of possible metric records
-def num_records
-  @num_records ||= num_companies * num_metrics
+def num_possible
+  @num_possible ||= num_possible_records * year_multiplier
+end
+
+# used to calculate possible records/answers
+def year_multiplier
+  @year_multiplier ||= years ? num_years : 1
+end
+
+def num_possible_records
+  @num_possible_records ||= num_companies * num_metrics
 end
 
 def num_companies
-  @num_companies ||= wikirate_company_card.item_names.size
+  @num_companies ||= wikirate_company_card.valid_company_cards.size
 end
 
 def num_metrics
-  @num_metrics ||= metric_card.item_names.size
+  @num_metrics ||= metric_card.valid_metric_cards.size
+end
+
+def num_years
+  @num_years ||= year_card.valid_year_cards.size
 end
 
 def num_users
@@ -21,8 +39,8 @@ def num_answers
   @num_answers ||= answers.count
 end
 
-def worth_counting?
-  metric_ids.any? && company_ids.any?
+def units
+  years ? "answers" : "records"
 end
 
 format :html do
@@ -62,13 +80,17 @@ format :html do
   end
 
   view :progress_description do
-    %(
-      <div class="text-muted small text-center">
-        Of <strong>#{card.num_records} potential records</strong>
-        (#{card.num_companies} Companies x #{card.num_metrics} Metrics),
-        #{card.num_researched} have been added so far.
-      </div>
-    )
+    %(<div class="text-muted small text-center">
+        Of <strong>#{card.num_possible} potential #{card.units}</strong>
+        (#{formula}), <strong>#{card.num_researched}</strong> have been added so far.
+      </div>)
+  end
+
+  def formula
+    [:company, :metric, (:year if card.years)].compact.map do |var|
+      icon, stat_method, title = Layout::TAB_MAP[var]
+      "#{card.send stat_method} #{title} #{fa_icon icon}"
+    end.join " x "
   end
 
   def progress_legend
