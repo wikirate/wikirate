@@ -53,3 +53,15 @@ table {
     }
   }
 }
+
+.progress{
+  .progress-known a {
+     color: #fff;
+  }
+  .progress-not-researched a{
+     color: #999;
+  }
+  .progress-unknown a{
+     color: #fff;
+  }
+}
