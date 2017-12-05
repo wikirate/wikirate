@@ -208,15 +208,15 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
       end
 
       context "alias match" do
-         it "uses suggestion" do
-           trigger_import alias_match: { company_match_type: :alias,
-                                         company_suggestion: "Google Inc." }
+        it "uses suggestion" do
+          trigger_import alias_match: { company_match_type: :alias,
+                                        company_suggestion: "Google Inc." }
 
-           expect_card(answer_name(company: "Google Inc")).to be_a Card
-           expect_card("Google").to be_unknown
-           expect_card(answer_name(company: "Google")).to be_unknown
-         end
-       end
+          expect_card(answer_name(company: "Google Inc")).to be_a Card
+          expect_card("Google").to be_unknown
+          expect_card(answer_name(company: "Google")).to be_unknown
+        end
+      end
     end
   end
 
