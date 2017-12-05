@@ -91,5 +91,10 @@ class CompanyMatcher
       corpus.add company_id, company_name, (aliases || [])
       @mapper = Company::Mapping::CompanyMapper.new corpus
     end
+
+    def reset_mapper
+      @mapper = nil
+      @corpus = nil
+    end
   end
 end
