@@ -1,6 +1,10 @@
 include_set Abstract::HamlFile
 
 format :html do
+  def edit_fields
+    [:description]
+  end
+
   def tabpanel
     tabs = [[:answer, "Metric Answer"],
             [:source, "Sources"],
