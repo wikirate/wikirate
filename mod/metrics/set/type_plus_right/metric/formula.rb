@@ -45,7 +45,7 @@ format :html do
     output [
       text_area(:content,
                 rows: 5,
-                class: "card-content",
+                class: "d0-card-content",
                 "data-card-type-code" => card.type_code),
       _render_variables
     ]
@@ -110,6 +110,7 @@ event :create_metric_values, :prepare_to_store,
   # set_names includes "Basic+formula+*type plus right"
   # reset_patterns
   # include_set_modules
+  binding.pry
   calculate_all_values do |company, year, value|
     add_value company, year, value
   end

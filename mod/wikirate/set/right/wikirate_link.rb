@@ -1,7 +1,7 @@
 require "link_thumbnailer"
 
 view :editor do
-  form.text_field :content, class: "card-content form-control",
+  form.text_field :content, class: "d0-card-content form-control",
                             placeholder: "http://example.com"
 end
 
