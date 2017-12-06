@@ -31,6 +31,10 @@ $.extend wikirate:
       return if this.isLoading()
       target.append($(loader.head).html())
       this.child().addClass("relative") if relative
+    prepend: ->
+      return if this.isLoading()
+      target.prepend($(loader.head).html())
+      this.child().addClass("relative") if relative
     remove: ->
       this.child().remove()
     child: ->
@@ -90,3 +94,8 @@ $(document).ready ->
     $('#modal-main-slot').on 'hidden.bs.modal', ->
       $(this).data 'bs.modal', null
       $(this).find('.modal-body').empty()
+
+
+  $('body').on "submit", "._filter-form", ->
+    slot = $(this).findSlot($(this).data("slot-selector"))
+    wikirate.loader($(slot), true).prepend()
