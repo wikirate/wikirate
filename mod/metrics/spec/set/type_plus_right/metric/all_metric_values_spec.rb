@@ -251,7 +251,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
              Los_Pollos_Hermanos+1977
              SPECTRE+1977
              Death_Star+1977]
-          )
+        )
       end
 
       it "sorts floats by value" do
