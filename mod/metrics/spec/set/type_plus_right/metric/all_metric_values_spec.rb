@@ -246,12 +246,11 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       it "sorts numberics by value" do
         @metric = Card["Jedi+deadliness"]
         expect(sort_by(:value)).to eq(
-          with_year(%w[Samsung
-                       Slate_Rock_and_Gravel_Company
-                       Los_Pollos_Hermanos
-                       SPECTRE
-                       Death_Star],
-                    1977)
+          %w[Samsung+1977
+             Slate_Rock_and_Gravel_Company+2005
+             Los_Pollos_Hermanos+1977
+             SPECTRE+1977
+             Death_Star+1977]
         )
       end
 
@@ -311,7 +310,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
 
       it "has table" do
         is_expected.to have_tag "table" do
-          with_text /Death Star\s*2001 =\s*yes/
+          with_text(/Death Star\s*2001 =\s*yes/)
         end
       end
     end

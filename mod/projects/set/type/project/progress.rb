@@ -45,7 +45,7 @@ end
 
 format :html do
   def overall_progress_box
-    wrap_with :div, class: "overall-progress-box" do
+    wrap_with :div, class: "default-progress-box" do
       [
         progress_legend,
         bs_layout do

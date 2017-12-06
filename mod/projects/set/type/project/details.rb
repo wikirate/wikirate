@@ -62,7 +62,7 @@ format :html do
   end
 
   def stats_details
-    wrap_with :div, class: "stat-details overall-progress-box" do
+    wrap_with :div, class: "stat-details default-progress-box" do
       [
         count_stats,
         "#{card.percent_researched}%",
