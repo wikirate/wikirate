@@ -44,6 +44,6 @@ format :html do
 
   def metric_link values=:all
     path_args = card.project_card.filter_path_args values
-    link_to_card card.metric_card, yield, path: path_args
+    link_to_card card.metric_card, yield, path: path_args, class: "metric-color"
   end
 end

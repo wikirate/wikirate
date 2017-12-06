@@ -99,7 +99,7 @@ class SharedData
         Death_Star "1977" => 100
         SPECTRE "1977" => 50
         Los_Pollos_Hermanos "1977" => 40
-        Slate_Rock_and_Gravel_Company "1977" => 20
+        Slate_Rock_and_Gravel_Company "1977" => 20, "2005" => 10
         Samsung "1977" => "Unknown"
       end
 
