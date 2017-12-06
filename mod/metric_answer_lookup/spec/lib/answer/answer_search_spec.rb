@@ -1,18 +1,20 @@
-RSpec.describe Answer, "Answer.search" do
+ RSpec.describe Answer, "Answer.search" do
   def search args
     described_class.search args
   end
 
   it "searches by title" do
     expect(search(title_name: "darkness rating", return: :record))
-      .to eq ["Jedi+darkness rating+Death Star",
-              "Jedi+darkness rating+Slate Rock and Gravel Company"]
+      .to contain_exactly "Jedi+darkness rating+Death Star",
+                          "Jedi+darkness rating+Slate Rock and Gravel Company",
+                          "Jedi+darkness rating+Slate Rock and Gravel Company"
   end
 
   it "can sort by year" do
-    expect(search(title_name: "darkness rating", return: :record, sort_by: :year))
-      .to eq ["Jedi+darkness rating+Death Star",
-              "Jedi+darkness rating+Slate Rock and Gravel Company"]
+    result = search(title_name: "darkness rating", return: :record,
+                    sort_by: :year, sort_order: :desc)
+    expect(result.size).to eq 3
+    expect(result.first).to eq "Jedi+darkness rating+Slate Rock and Gravel Company"
   end
 
   it "can sort by importance" do
@@ -30,6 +32,7 @@ RSpec.describe Answer, "Answer.search" do
               ["SPECTRE", 1977, "50"],
               ["Los_Pollos_Hermanos", 1977, "40"],
               ["Slate_Rock_and_Gravel_Company", 1977, "20"],
+              ["Slate_Rock_and_Gravel_Company", 2005, "10"],
               ["Samsung", 1977, "Unknown"]]
   end
 
