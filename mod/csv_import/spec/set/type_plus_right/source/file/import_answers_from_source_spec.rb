@@ -125,6 +125,9 @@ RSpec.describe Card::Set::TypePlusRight::Source::File::ImportAnswersFromSource d
     end
 
     it "renders table correctly" do
+      # someother test changes the corpus so that Sony no longer
+      # is mapped to Sony Corporation
+      CompanyMatcher.reset_mapper
       table = import_card_with_rows(:no_match, :partial_match, :alias_match, :exact_match)
               .format._render_import_table
       expect(table).to have_tag("table", with: { class: "_import-table" }) do
