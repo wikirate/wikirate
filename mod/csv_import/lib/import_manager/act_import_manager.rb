@@ -7,33 +7,21 @@ class ActImportManager < ImportManager
   end
 
   def add_card args
-    handle_conflict args[:name] do
+    handle_conflict args[:name] do |existing_card|
       subcard =
-        if @dup
-          @dup.update_attributes args
-          @dup
+        if existing_card
+          existing_card.tap { |card| card.update_attributes args }
         else
           Card.create args
         end
       # subcard = @act_card&.add_subcard args.delete(:name), args
       # subcard.director.catch_up_to_stage :validate
-      pick_up_card_errors do
-        subcard
-      end
+      pick_up_card_errors { subcard }
     end
   end
 
-  # def import_card card_args
-  #   i_card = add_card card_args
-  #   if i_card && @act_card
-  #     # i_card.director.catch_up_to_stage :validate
-  #     # import_card.director.transact_in_stage = :integrate
-  #   end
-  #   i_card
-  # end
-
   def duplicate name
-    @dup ||= Card[name] || @act_card&.subcards&.at(name)
+    Card[name] || @act_card&.subcards&.at(name)
   end
 
   def log_status

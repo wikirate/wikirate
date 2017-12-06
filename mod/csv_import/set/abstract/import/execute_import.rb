@@ -20,7 +20,11 @@ def conflict_strategy
 end
 
 def extra_data
-  @extra_data ||= fetch_hash_from_params(:extra_data)
+  @extra_data ||= normalize_extra_data
+end
+
+def normalize_extra_data
+  fetch_hash_from_params(:extra_data).deep_symbolize_keys
 end
 
 def fetch_hash_from_params key

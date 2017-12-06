@@ -43,12 +43,7 @@ class ImportManager
   # used by csv rows to add additional cards
   def add_card args
     pick_up_card_errors do
-      if @dup
-        @dup.update_attributes args
-        @dup
-      else
-        Card.create args
-      end
+      Card.create args
     end
   end
 
