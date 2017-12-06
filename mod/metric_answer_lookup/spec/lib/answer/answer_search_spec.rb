@@ -1,4 +1,4 @@
- RSpec.describe Answer, "Answer.search" do
+RSpec.describe Answer, "Answer.search" do
   def search args
     described_class.search args
   end
