@@ -43,7 +43,9 @@ format :html do
     args[:author] ||= link_to_card card.metric_designer
   end
 
-  view :formula_thumbnail do
+  # not cacheable beacuse formula arguments like "year=-1"
+  # produce invalid stubs
+  view :formula_thumbnail, cache: :never do
     "</span>#{_render_thumbnail}<span>"
   end
 
