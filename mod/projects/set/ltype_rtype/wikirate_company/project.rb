@@ -48,6 +48,6 @@ format :html do
 
   def company_link values=:all
     path_args = card.project_card.filter_path_args values
-    link_to_card card.company_card, yield, path: path_args
+    link_to_card card.company_card, yield, path: path_args, class: "company-color"
   end
 end
