@@ -22,6 +22,10 @@ def all_metric_project_cards
 end
 
 format :html do
+  def filter_card
+    Card.fetch :metric, :browse_metric_filter
+  end
+
   def editor
     :filtered_list
   end
