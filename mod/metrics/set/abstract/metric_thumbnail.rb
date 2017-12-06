@@ -14,7 +14,7 @@ format :html do
   end
 
   def thumbnail_title
-     voo.show?(:thumbnail_link) ? thumbnail_title_link : thumbnail_title_without_link
+    voo.show?(:thumbnail_link) ? thumbnail_title_link : thumbnail_title_without_link
   end
 
   def thumbnail_title_without_link
@@ -50,7 +50,7 @@ format :html do
     args[:author] ||= link_to_card card.metric_designer
   end
 
-  # not cacheable beacuse formula arguments like "year=-1"
+  # not cacheable because formula arguments like "year=-1"
   # produce invalid stubs
   view :formula_thumbnail, cache: :never do
     "</span>#{_render_thumbnail}<span>"
