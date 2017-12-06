@@ -7,11 +7,12 @@ class CSVRow
   #    in extra_data[:corrections][:company].
   #    The user correction overrides the suggestion.
   module CompanyImport
-    def import_company
-      row_hash = { company: original_row[:company] }
-      company_csv =
-        Structure::CompanyCSV.new(row_hash, @row_index, @import_manager)
+    def import_company company_key=:company
+      row_hash = { company_key => original_row[company_key] }
+      company_csv = Structure::CompanyCSV.new row_hash, @row_index, @import_manager,
+                                              company_key
       company_csv.import
+      company_csv.company
     end
   end
 end
