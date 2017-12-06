@@ -1,6 +1,5 @@
 include_set Abstract::Thumbnail
 
-
 format :html do
   def default_thumbnail_args _args
     class_up "thumbnail", "metric-thumbnail"
@@ -15,16 +14,24 @@ format :html do
   end
 
   def thumbnail_title
-    return thumbnail_title_text unless voo.show?(:thumbnail_link)
-    opts = { title: card.metric_title_card.name }
+     voo.show?(:thumbnail_link) ? thumbnail_title_link : thumbnail_title_without_link
+  end
+
+  def thumbnail_title_without_link
+    wrap_with(:div, thumbnail_title_text, class: "ellipsis")
+  end
+
+  def thumbnail_title_link
+    title = thumbnail_title_text
+    opts = { title: title, class: "ellipsis" }
     if voo.closest_live_option(:project)
       opts[:path] = { filter: { project: voo.closest_live_option(:project) } }
     end
-    link_to_card card, thumbnail_title_text, opts
+    link_to_card card, title, opts
   end
 
   def thumbnail_title_text
-    wrap_with(:div, nest(card.metric_title_card, view: :name), class: "ellipsis")
+    nest card.metric_title_card, view: :name
   end
 
   view :thumbnail_subtitle do |args|
@@ -57,4 +64,3 @@ format :html do
     ""
   end
 end
-
