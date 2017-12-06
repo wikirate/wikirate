@@ -20,18 +20,22 @@ def conflict_strategy
 end
 
 def extra_data
-  @extra_data ||= fetch_hash_from_params(:extra_data)
+  @extra_data ||= normalize_extra_data
+end
+
+def normalize_extra_data
+  fetch_hash_from_params(:extra_data).deep_symbolize_keys
 end
 
 def fetch_hash_from_params key
   case Env.params[key]
-    when Hash
-      Env.params[key]
-    when ActionController::Parameters
-      Env.params[key].to_unsafe_h
-    else
-      {}
-    end
+  when Hash
+    Env.params[key]
+  when ActionController::Parameters
+    Env.params[key].to_unsafe_h
+  else
+    {}
+  end
 end
 
 def data_import?
@@ -45,7 +49,7 @@ end
 def selected_row_indices
   @selected_row_indices ||=
     fetch_hash_from_params(:import_rows).each_with_object([]) do |(index, value), a|
-      next unless value == true || value == "true"
+      next unless [true, "true"].include?(value)
       a << index.to_i
     end
 end

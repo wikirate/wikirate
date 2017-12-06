@@ -26,7 +26,7 @@ format :html do
     table_content.push ["", sum]
     output [
       table_editor(table_content, %w[Metric Weight]),
-      add_metric_button
+      nest(card.variables_card, view: :add_metric_button)
     ]
   end
 

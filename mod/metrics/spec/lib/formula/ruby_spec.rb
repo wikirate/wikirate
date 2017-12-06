@@ -56,7 +56,6 @@ describe Formula::Ruby do
       expect(subject[2002]["apple_inc"]).to eq 2
       expect(subject[2012]["apple_inc"]).to eq 0
     end
-
   end
 
   describe "formula with yearly variables" do

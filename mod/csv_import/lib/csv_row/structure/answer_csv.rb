@@ -38,9 +38,17 @@ class CSVRow
 
       def ensure_source_and_company
         import_manager.with_conflict_strategy :skip_card do
-           @row[:source] = import_source
-           import_company
-         end
+          import_source
+          import_company
+        end
+      end
+
+      def import_source
+        @row[:source] = super
+      end
+
+      def import_company company_key=:company
+        @row[company_key] = super
       end
 
       def check_existence_and_type name, type_id, type_name=nil
@@ -57,4 +65,3 @@ class CSVRow
     end
   end
 end
-

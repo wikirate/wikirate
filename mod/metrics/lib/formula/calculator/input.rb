@@ -22,7 +22,7 @@ module Formula
       # @option opts [String] :year only yield input for given year
       def each opts={}
         fetch_values opts
-        fixed_company = opts[:company] && opts[:company].to_name.key
+        fixed_company = opts[:company]&.to_name&.key
         years = opts[:year] ? Array(opts[:year].to_i) : years_with_values
         years.each do |year|
           if fixed_company
@@ -106,7 +106,7 @@ module Formula
             yearly_value_fetch input_card
             @order << [input_card.key, :yearly_value]
           end
-          next unless @companies_with_values && @companies_with_values.empty?
+          next unless @companies_with_values&.empty?
           # there are no companies with values for all input cards
           @companies_with_values_by_year = Hash.new_nested ::Set
           return

@@ -29,6 +29,6 @@ format do
       number, delimiter: ",", strip_insignificant_zeros: true,
               precision: (less_than_one ? 3 : 1), significant: less_than_one
     )
-    humanized == "0" && number > 0 ? "~0" : humanized
+    humanized == "0" && number.positive? ? "~0" : humanized
   end
 end

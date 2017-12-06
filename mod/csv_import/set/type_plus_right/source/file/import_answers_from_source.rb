@@ -10,7 +10,6 @@ COLUMNS = { checkbox: "Select",
 event :validate_import, :prepare_to_validate,
       on: :update,
       when: :data_import? do
-  normalize_extra_data
   check_card metric, "Metric", Card::MetricID
   check_card year, "Year", Card::YearID
 end
@@ -24,23 +23,25 @@ def csv_row_class
 end
 
 def metric
-  extra_data.dig(:all, :corrections, :metric)&.tr("[","")&.tr("]","")
+  extra_data.dig(:all, :corrections, :metric)
 end
 
 def year
-  extra_data.dig(:all, :corrections, :year)&.tr("[","")&.tr("]","")
+  extra_data.dig(:all, :corrections, :year)
 end
 
 def normalize_extra_data
+  data = super
   %i[metric year].each do |key|
-    next unless (value = extra_data.dig(:all, :corrections, key, :content))
-    @extra_data[:all][:corrections][key] = value
+    next unless (value = data.dig(:all, :corrections, key, :content))
+    data[:all][:corrections][key] = value.tr("[", "").tr("]", "")
   end
-  add_source_to_extra_data
+  add_source data
+  data
 end
 
-def add_source_to_extra_data
-  @extra_data.deep_merge! all: { corrections: { source: left.name } }
+def add_source data
+  data.deep_merge! all: { corrections: { source: left.name } }
 end
 
 def check_card card_name, type_name, type_id

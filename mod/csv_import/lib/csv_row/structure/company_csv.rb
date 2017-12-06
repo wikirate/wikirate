@@ -8,15 +8,14 @@ class CSVRow
     #    in extra_data[:corrections][:company].
     #    The user correction overrides the suggestion.
     class CompanyCSV < CSVRow
-      def initialize row, index, import_manager = nil, company_key=:company
-        super(row, index, import_manager)
+      def initialize row, index, import_manager=nil, company_key=:company
         @company_key = company_key
-        @file_company = @before_corrected[@company_key] || @row[@company_key]
-        correct_company
+        super(row, index, import_manager)
       end
 
       def merge_corrections
         super
+        @file_company = @before_corrected[@company_key] || @row[@company_key]
         correct_company
       end
 

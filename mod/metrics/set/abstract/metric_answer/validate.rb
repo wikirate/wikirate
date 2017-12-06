@@ -4,7 +4,7 @@ end
 
 event :validate_value_type, :validate, on: :save, when: :standard? do
   # check if the value fit the value type of metric
-  if metric_card && metric_card.researched? &&
+  if metric_card&.researched? &&
      (value_type = metric_card.fetch(trait: :value_type)) &&
      (value_card = subfield(:value))
     value = value_card.value
@@ -82,17 +82,17 @@ end
 def valid_metric?
   # TODO: need better way to check if metric is part of the same act
   #       this doesn't check the type
-  (metric_card && metric_card.type_id == MetricID) ||
+  (metric_card&.type_id == MetricID) ||
     ActManager.include?(metric)
 end
 
 def valid_company?
-  (company_card && company_card.type_id == WikirateCompanyID) ||
+  (company_card&.type_id == WikirateCompanyID) ||
     ActManager.include?(company)
 end
 
 def valid_year?
-  year_card && year_card.type_id == YearID
+  year_card&.type_id == YearID
 end
 
 def year_updated?

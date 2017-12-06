@@ -8,7 +8,7 @@ format :html do
       testparam = params[:citable]
       analysis_names.each do |analysis_name|
         article = Card["#{analysis_name}+#{Card[:overview].name}"]
-        if article && article.includees.include?(card.left)
+        if article&.includees&.include?(card.left)
           cited << analysis_name
         else
           uncited << analysis_name

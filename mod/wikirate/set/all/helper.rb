@@ -5,7 +5,6 @@ format :html do
 
   def standard_pointer_nest codename
     field_nest codename, view: :titled,
-                         cache: :never,
                          title: codename.cardname,
                          variant: "plural capitalized",
                          items: { view: :link }
@@ -16,4 +15,3 @@ format :html do
     link_to text, opts.merge(path: url)
   end
 end
-

@@ -11,7 +11,7 @@ module Formula
     SYMBOLS = %w{+ - ( ) [ ] . * , /}.freeze
     FUNCTIONS = { "Sum" => "sum", "Max" => "max", "Min" => "min",
                   "Zeros" => "count(0)", "Flatten" => "flatten",
-                  "Unknowns" => "count('Unknown')"}.freeze
+                  "Unknowns" => "count('Unknown')" }.freeze
     LAMBDA_ARGS_NAME = "args".freeze
 
     INPUT_CAST = ->(val) { val.number? ? val.to_f : val }

@@ -6,7 +6,6 @@ def refresh_answer_lookup_entry answer_id
   else
     ActManager.act_card.act_based_refresh_of_answer_lookup_entry answer_id
   end
-
 end
 
 def act_finished_integrate_stage?

@@ -1,4 +1,3 @@
-#require_relative "../../support/shared_csv_data"
 require_relative "../../support/shared_csv_import"
 
 RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
@@ -90,7 +89,7 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
       real_csv_file =
         File.open File.expand_path("../../../support/#{csv_file_name}.csv", __FILE__)
       card = create "test import", type_id: Card::AnswerImportFileID, answer_import_file: real_csv_file
-      expect_card("test import").to exist.and have_file.of_size(be > 0)
+      expect_card("test import").to exist.and have_file.of_size be_positive
       card
     end
 
@@ -146,7 +145,7 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
     it "imports others if one fails" do
       trigger_import :exact_match, :invalid_value
       expect_card("Jedi+disturbances in the Force+Death Star+2017+value")
-              .to exist.and have_db_content("yes")
+        .to exist.and have_db_content("yes")
     end
 
     it "marks import actions as import" do
@@ -156,10 +155,9 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
     end
 
     describe "duplicates" do
-
     end
 
-    xcontext "company correction name is filled" do
+    context "company correction name is filled" do
       it "uses the corrected company name" do
         trigger_import no_match: { corrections: { company: "corrected company" } }
         expect(Card[metric, "corrected company", year])
@@ -172,7 +170,6 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
                                      corrections: { company: "corrected company" } }
 
           expect_card(answer_name(company: "corrected company")).to exist
-          expected_answer_created()
           expect(Card["corrected company"]).to have_type :wikirate_company
         end
 
@@ -182,7 +179,6 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
                                      corrections: { company: "Monster Inc." } }
           expect(Card["Monster Inc."]).to have_a_field(:aliases).pointing_to company_name(:no_match)
         end
-
 
         it "adds company in file to corrected company's aliases" do
           trigger_import exact_match: { company_match_type: :none,
@@ -196,7 +192,7 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
         it "adds company name in file to corrected company's aliases" do
           trigger_import partial_match: { company_match_type: :partial,
                                           corrections: { company: "corrected company" },
-                                          suggestion: { company: "Sony Corporation" } }
+                                          company_suggestion:  "Sony Corporation" }
           expect(answer_card(company: "corrected company")).to exist
           expect_card("corrected company")
             .to have_a_field(:aliases).pointing_to company_name(:partial_match)
@@ -204,16 +200,26 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
 
         it "uses suggestion if no correction" do
           trigger_import partial_match: { company_match_type: :partial,
-                                          suggestion: { company: "Sony Corporation" } }
+                                          company_suggestion: "Sony Corporation" }
           expect_card(answer_name(company: "Sony Corporation")).to be_a Card
           expect_card("Sony Corporation")
             .to have_a_field(:aliases).pointing_to company_name(:partial_match)
+        end
+      end
+
+      context "alias match" do
+        it "uses suggestion" do
+          trigger_import alias_match: { company_match_type: :alias,
+                                        company_suggestion: "Google Inc." }
+
+          expect_card(answer_name(company: "Google Inc")).to be_a Card
+          expect_card("Google").to be_unknown
+          expect_card(answer_name(company: "Google")).to be_unknown
         end
       end
     end
   end
 
   example "empty import" do
-
   end
 end

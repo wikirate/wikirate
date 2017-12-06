@@ -6,7 +6,7 @@ class ImportManager
         replace hash
       end
 
-      def default key
+      def default _key
         0
       end
 
