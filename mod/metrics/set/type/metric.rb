@@ -1,6 +1,8 @@
 require "savanna-outliers"
 
 include_set Abstract::Export
+include_set Abstract::DesignerAndTitle
+include_set Abstract::MetricThumbnail
 
 card_accessor :vote_count, type: :number, default: "0"
 card_accessor :upvote_count, type: :number, default: "0"
@@ -25,26 +27,6 @@ end
 
 def metric_type_codename
   Card[metric_type].codename.to_sym
-end
-
-def metric_designer
-  junction? ? name.parts[0] : creator.name
-end
-
-def metric_designer_card
-  junction? ? self[0] : creator
-end
-
-def designer_image_card
-  metric_designer_card.fetch(trait: :image, new: { type_id: ImageID })
-end
-
-def metric_title
-  junction? ? name.parts[1] : name
-end
-
-def metric_title_card
-  junction? ? self[1] : self
 end
 
 # @return array of metric answer lookup table
@@ -197,15 +179,6 @@ format :html do
   view :outliers do
     outs = Savanna::Outliers.get_outliers prepare_for_outlier_search, :all
     outs.inspect
-  end
-
-  def designer_image
-    nest card.metric_designer_card.field(:image, new: {}),
-         view: :core, size: :small
-  end
-
-  def designer_image_link
-    link_to_card card.metric_designer_card, designer_image
   end
 
   def css
