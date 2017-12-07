@@ -19,7 +19,7 @@ format :html do
 
   view :editor do
     if free_text_metric?
-      text_field :content, class: "card-content"
+      text_field :content, class: "d0-card-content"
     elsif categorical_metric? || multi_categorical_metric?
       super({})
     else
@@ -47,7 +47,7 @@ format :html do
   def editor_with_unit
     unit_text = wrap_with :span, nest(card.metric_card, view: :legend),
                           class: "metric-unit"
-    text_field(:content, class: "card-content short-input") + " " + unit_text
+    text_field(:content, class: "d0-card-content short-input") + " " + unit_text
   end
 
   def unknown_field_card

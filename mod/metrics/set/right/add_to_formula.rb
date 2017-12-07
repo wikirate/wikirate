@@ -56,6 +56,18 @@ def sort?
 end
 
 format :html do
+  view :metric_type_formgroup, cache: :never do
+    metric_type_select
+  end
+
+  view :research_policy_formgroup, cache: :never do
+    research_policy_select
+  end
+
+  view :wikirate_topic_formgroup, cache: :never do
+    autocomplete_filter :wikirate_topic
+  end
+
   def filter_label field
     case field.to_sym
     when :name then "Name"
@@ -101,6 +113,12 @@ format :html do
     class_up "card-slot", "_filter-result-slot"
   end
 
+  view :filter_metric_list do
+    wrap do
+      metric_list
+    end
+  end
+
   def metric_list
     wql = { type_id: MetricID, limit: 0 }
     if card.metric_card.rated?
@@ -109,7 +127,9 @@ format :html do
     # items = Card.search(wql)
     items = search_with_params
     params[:formula_metric_key] = card.name.left_key
-    wikirate_table_with_details :metric, items, [:add_to_formula_item_view],
-                                td: { classes: %w[score details] }
+    with_paging do
+      wikirate_table_with_details :metric, items, [:add_to_formula_item_view],
+                                  td: { classes: %w[score details] }
+    end
   end
 end
