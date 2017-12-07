@@ -13,7 +13,7 @@ RSpec.describe Card::Set::Right::DownvoteeSearch do
           metrics = Card.search type_id: Card::MetricID,
                                 right_plus: apple.name,
                                 limit: 3
-          puts metrics
+          #puts metrics
           # just to ensure there are enough metrics to be used
           metrics_result = metrics
           vcc0 = metrics[0].vote_count_card
