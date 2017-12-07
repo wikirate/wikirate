@@ -1,4 +1,4 @@
-describe Answer do
+RSpec.describe Answer do
   let(:answer) { described_class.find_by_answer_id answer_id }
   let(:metric) { "Joe User+researched" }
   let(:answer_name) { "#{metric}+Apple_Inc+2013" }

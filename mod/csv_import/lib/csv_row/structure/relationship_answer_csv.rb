@@ -8,11 +8,9 @@ class CSVRow
       @columns = [:designer, :title, :company, :related_company, :year, :value, :source]
       @required = :all
 
-      def import_company
-        CompanyCSV.new({ company: original_row[:company] },
-                       @row_index, @import_manager).import
-        CompanyCSV.new({ related_company: original_row[:related_company] },
-                       @row_index, @import_manager, :related_company).import
+      def import_company _company_key=:company
+        @row[:company] = super(:company)
+        @row[:related_company] = super(:related_company)
       end
     end
   end
