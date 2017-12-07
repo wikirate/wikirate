@@ -99,7 +99,8 @@ format :html do
   def research_progress_bar_section value, link_method
     num = card.send "num_#{value}"
     return if num.zero?
-    { value: card.send("percent_#{value}"),
+    {
+      value: card.send("percent_#{value}"),
       body: progress_section_body(value, link_method, num),
       class: progress_section_css_class(value)
     }
