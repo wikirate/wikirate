@@ -22,6 +22,18 @@ def all_company_project_cards
 end
 
 format :html do
+  def default_item_view
+    :link
+  end
+
+  def editor
+    :filtered_list
+  end
+
+  def filter_card
+    Card.fetch :wikirate_company, :browse_company_filter
+  end
+
   view :core do
     wrap_with :div, class: "progress-bar-table" do
       company_progress_table

@@ -22,16 +22,16 @@ def all_metric_project_cards
 end
 
 format :html do
-  def filter_card
-    Card.fetch :metric, :browse_metric_filter
+  def default_item_view
+    :link
   end
 
   def editor
     :filtered_list
   end
 
-  def default_item_view
-    :listing
+  def filter_card
+    Card.fetch :metric, :browse_metric_filter
   end
 
   view :core do
