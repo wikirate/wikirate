@@ -83,7 +83,7 @@ format :html do
   #   wrap_with :div, "No result", class: "search-no-results"
   # end
 
-  def default_checkbox_list_args _args
+  def default_select_item_args _args
     class_up "card-slot", "_filter-result-slot"
   end
 
