@@ -8,7 +8,18 @@
   }
 }
 
+.checkbox-side{
+  width: 32px;
+  padding: 10px;
+}
 
+.item-view-side {
+  max-width: 550px;
+  .value-item:hover{
+    bakground: #fafafa;
+    cursor: pointer;
+  }
+}
 .chart-zoom-out {
   position: relative;
   top: 20px;
