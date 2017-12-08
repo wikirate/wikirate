@@ -64,7 +64,7 @@ format :html do
     selected = selected_metric option_names
     editor_wrap :card do
       hidden_field_tag("card[subcards][+metric][content]", selected,
-                       class: "card-content") +
+                       class: "d0-card-content") +
         select_tag("pointer_select",
                    options_for_select(options, selected),
                    class: "pointer-select form-control") +

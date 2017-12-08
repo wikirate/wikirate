@@ -46,7 +46,7 @@
   }
 }
 
-.overall-progress-box .progress {
+.default-progress-box .progress {
   .progress-bar {
     background-color: $main-color;
   }
@@ -61,7 +61,7 @@
   color: $heading-color;
 }
 
-.overall-progress-box .row {
+.default-progress-box .row {
     padding: 8px 0px;
     border-bottom: 1px solid #ebebeb;
 }

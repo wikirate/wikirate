@@ -37,6 +37,6 @@ format :html do
                    card.all_year_project_cards,
                    [:fancy_year, :research_progress_bar],
                    header: ["Year", "Answers Researched"],
-                   td: { classes: ["year-answer", "overall-progress-box"] }
+                   td: { classes: ["year-answer", "default-progress-box"] }
   end
 end

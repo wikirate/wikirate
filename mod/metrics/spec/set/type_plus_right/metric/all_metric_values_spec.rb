@@ -310,7 +310,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
 
       it "has table" do
         is_expected.to have_tag "table" do
-          with_text /Death Star\s*2001 =\s*yes/
+          with_text(/Death Star\s*2001 =\s*yes/)
         end
       end
     end
