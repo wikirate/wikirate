@@ -8,30 +8,30 @@ RSpec.describe Card::Set::Right::DownvoteeSearch do
         # vote 3 metrics related to apple
         Card::Auth.current_id = Card["Joe Camel"].id
         apple = Card["Apple Inc"]
-        metrics_result = nil
-        Card::Auth.as_bot do
-          metrics = Card.search type_id: Card::MetricID,
-                                right_plus: apple.name,
-                                limit: 3
-          #puts metrics
-          # just to ensure there are enough metrics to be used
-          metrics_result = metrics
-          vcc0 = metrics[0].vote_count_card
-          vcc1 = metrics[1].vote_count_card
-          vcc2 = metrics[2].vote_count_card
-          vcc0.vote_down
-          vcc0.save!
-          vcc1.vote_down
-          vcc1.save!
-          vcc2.vote_down metrics[1].id
-          vcc2.save!
-        end
-        metric_downvotee_search_card =
-          apple.fetch trait: [:metric, :downvotee_search]
-        result = metric_downvotee_search_card.format.get_search_result
-        expect(Card[result[0]].id).to eq(metrics_result[0].id)
-        expect(Card[result[1]].id).to eq(metrics_result[2].id)
-        expect(Card[result[2]].id).to eq(metrics_result[1].id)
+        metrics = Card.search type_id: Card::MetricID,
+                              right_plus: apple.name,
+                              limit: 3
+        vote_down_metrics metrics
+        downvotee_search_card = apple.fetch trait: [:metric, :downvotee_search]
+        result = downvotee_search_card.format.get_search_result
+        expect(Card[result[0]].id).to eq(metrics[0].id)
+        expect(Card[result[1]].id).to eq(metrics[2].id)
+        expect(Card[result[2]].id).to eq(metrics[1].id)
+      end
+    end
+
+    def vote_down_metrics metrics
+      Card::Auth.as_bot do
+        # just to ensure there are enough metrics to be used
+        vcc0 = metrics[0].vote_count_card
+        vcc1 = metrics[1].vote_count_card
+        vcc2 = metrics[2].vote_count_card
+        vcc0.vote_down
+        vcc0.save!
+        vcc1.vote_down
+        vcc1.save!
+        vcc2.vote_down metrics[1].id
+        vcc2.save!
       end
     end
 
