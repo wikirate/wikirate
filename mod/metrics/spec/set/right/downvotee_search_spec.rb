@@ -23,15 +23,13 @@ RSpec.describe Card::Set::Right::DownvoteeSearch do
     def vote_down_metrics metrics
       Card::Auth.as_bot do
         # just to ensure there are enough metrics to be used
-        vcc0 = metrics[0].vote_count_card
-        vcc1 = metrics[1].vote_count_card
-        vcc2 = metrics[2].vote_count_card
-        vcc0.vote_down
-        vcc0.save!
-        vcc1.vote_down
-        vcc1.save!
-        vcc2.vote_down metrics[1].id
-        vcc2.save!
+        vcc = metrics.map &:vote_count_card
+        vcc[0].vote_down
+        vcc[0].save!
+        vcc[1].vote_down
+        vcc[1].save!
+        vcc[2].vote_down metrics[1].id
+        vcc[2].save!
       end
     end
 
