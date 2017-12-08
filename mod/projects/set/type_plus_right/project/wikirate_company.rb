@@ -23,7 +23,7 @@ end
 
 format :html do
   def default_item_view
-    :link
+    :listing
   end
 
   def editor

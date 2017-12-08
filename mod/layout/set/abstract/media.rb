@@ -28,7 +28,7 @@ format :html do
             %a{href: "#"}
               %img{class:"media-object #{opts[:size]}", src: src, alt: alt}
           .media-body
-            %h4.media-heading
+            %h5.media-heading
               = title
             = text
       HAML
@@ -43,11 +43,10 @@ format :html do
       <<-HAML.strip_heredoc
         .media
           .media-left.image-box
-
             %a{href: "#"}
               %img{class:"media-object #{opts[:size]}", src: src, alt: alt}
           .media-body
-            %h4.media-heading
+            %h5.media-heading
               = title
             = text
       HAML
