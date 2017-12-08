@@ -25,21 +25,24 @@ format :html do
       wrap_with :div, class: "metric-details-content" do
         [
           _render_metric_properties,
+          _render_add_value_buttons,
           wrap_with(:hr, ""),
           nest(card.about_card, view: :titled, title: "About"),
           nest(card.methodology_card, view: :titled, title: "Methodology"),
-          _render_import_button,
-          _render_add_value_buttons
+          _render_import_button
         ]
       end
     end
   end
 
   view :value_type_detail do
-    wrap_with :div do
+    voo.hide :menu
+    wrap do
       [
-        _render_value_type_edit_modal_link,
-        _render_short_view
+        field_nest(:value_type, view: :content, items: { view: :name }, show: :menu ),
+        #)_render_value_type_edit_modal_link,
+        _render_short_view,
+        #_render_menu
       ]
     end
   end
@@ -47,33 +50,43 @@ format :html do
   view :source_tab do
     tab_wrap do
       field_nest :source, view: :titled,
-                          title: "#{fa_icon :globe} Sources",
+                          title: "#{fa_icon 'globe'} Sources",
                           items: { view: :listing }
     end
   end
 
-  view :scores_tab do |args|
+  view :scores_tab do |_args|
     # TODO: move +scores to a separate card
     tab_wrap do
-      wrap_with :div, class: "list-group" do
-        card.score_cards.map do |item|
-          subformat(item)._render_score_thumbnail(args)
-        end
-      end
+      output [
+        wikirate_table(:plain, card.score_cards, [:score_thumbnail], header: ["scored by"],
+                                                                     tr_link: ->(item) { path mark: item }),
+        add_score_link
+      ]
     end
   end
 
-  def add_value_link
-    link_to_card :research_page, "#{fa_icon :plus} Add new value",
-                 path: { metric: card.name, view: :new },
+  def add_score_link
+    link_to_card :metric, "Add new score",
+                 path: { action: :new, tab: :score, metric: card.name },
                  class: "btn btn-primary"
+  end
+
+  def add_value_link
+    link_to_card :research_page, "#{fa_icon 'plus'} Research answer",
+                 path: { metric: card.name, view: :new },
+                 class: "btn btn-primary",
+                 title: "Research answer for another year"
     # "/new/metric_value?metric=" + _render_cgi_escape_name
   end
 
   view :add_value_buttons do
     return unless card.user_can_answer?
     wrap_with :div, class: "row margin-no-left-15" do
-      add_value_link
+      [
+        content_tag(:hr),
+        add_value_link
+      ]
     end
   end
 
@@ -96,10 +109,8 @@ format :html do
 end
 
 def user_can_answer?
-  policy = fetch(trait: :research_policy, new: {}).item_cards.first.name
+  # TODO: add metric designer respresentative logic here
   is_admin = Auth.always_ok?
   is_owner = Auth.current.id == creator.id
-  is_designer_assessed = policy.casecmp("designer assessed").zero?
-  # TODO: add metric designer respresentative logic here
-  !is_designer_assessed || (is_admin || is_owner)
+  (is_admin || is_owner) || !designer_assessed?
 end
