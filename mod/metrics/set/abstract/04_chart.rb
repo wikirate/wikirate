@@ -63,7 +63,7 @@ format :html do
     output [
       zoom_out_link,
       wrap_with(:div, "",
-                id: id, class: classy("vis"),
+                id: id, class: "#{classy("vis")} _load-vis",
                 data: { url: chart_load_url })
     ]
   end
