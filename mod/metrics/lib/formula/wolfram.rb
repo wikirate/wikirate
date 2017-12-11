@@ -1,7 +1,15 @@
 module Formula
   class Wolfram < Calculator
     INTERPRETER = "https://www.wolframcloud.com/objects/92f1e212-7875-49f9-888f-b5b4560b7686"
-    WHITELIST = ::Set.new(%w[Boole If Switch Map]).freeze
+    WHITELIST = ::Set.new(
+      %w[Boole If Switch Map
+         Count Pick Cases FirstCase
+         MaximalBy MinimalBy
+         AllTrue AnyTrue NoneTrue
+         Sort SortBy
+         Take TakeLargest TakeSmallest TakeLargestBy TakeSmallestBy
+         Mean Variance StandardDeviation Median Quantile Covariance]
+    ).freeze
 
     # INPUT_CAST = lambda { |val| val == 'Unknown' ? 'Unknown'.to_f }
     # To reduce the Wolfram Cloud calls the Wolfram calculator

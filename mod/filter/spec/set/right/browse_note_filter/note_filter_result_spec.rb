@@ -5,7 +5,7 @@ require File.expand_path("../../filter_spec_helper.rb", __FILE__)
 describe Card::Set::Right::BrowseNoteFilter do
   before { login_as "joe_user" }
 
-  let(:div_id) { Card.fetch(:claim, :browse_note_filter).cardname.url_key }
+  let(:div_id) { Card.fetch(:claim, :browse_note_filter).name.url_key }
   let(:filter_card) { Card.fetch :claim, :browse_note_filter }
   let(:filtered_item_names) { filter_card.item_names }
 
@@ -90,10 +90,11 @@ describe Card::Set::Right::BrowseNoteFilter do
 
     context "when sorting" do
       def create_claims
-        [create_claim("claim1"),
-         (Timecop.travel(Time.now + 10) do
-           create_claim "important_and_recent"
-         end)]
+        [[5, "claim1"], [10, "important_and_recent"]].map do |delay, claim_name|
+          Timecop.travel(Time.now + delay) do
+            create_claim claim_name
+          end
+        end
       end
 
       def create_voted_claims
@@ -119,6 +120,7 @@ describe Card::Set::Right::BrowseNoteFilter do
         create_voted_claims
         expect(filtered_item_names[0..2])
           .to eq %w[important_and_recent test_note claim1]
+
         expect(subject.index("test_note")).to be < subject.index("claim1")
       end
     end

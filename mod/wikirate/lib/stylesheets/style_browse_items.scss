@@ -10,7 +10,6 @@
 .topic-header {
     color: $topic-color;
     border-top: 3px solid $topic-color;
-    @include ellipsis();
     .topic-title {
         padding: 0 0 25px 10px;
     }
@@ -53,6 +52,13 @@
     width: 15%;
     padding: 10px 1%;
   }
+}
+
+.browse-company-item .company-header{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 4px;
 }
 
 .browse-company-item{
@@ -170,7 +176,7 @@
     }
     .vote-count {
         //color: $dark-text-color;
-        width: 15px;
+        width: 16px;
         height: 15px;
     }
     .logo {
@@ -204,6 +210,7 @@
         white-space: nowrap;
         overflow: hidden;
         color: $dark-text-color;
+        display: inline-block;
     }
     .topic {
         height: 38px;
@@ -219,6 +226,14 @@
     display: inline-block;
     min-width: 350px;
   }
+}
+
+.SELF-Xsearch .search-result-item.item-browse_item {
+    float: left;
+    display: inline-block;
+    min-width: 260px;
+    width: 18%;
+    padding: 10px 1%;
 }
 
 .SELF-Xsearch {

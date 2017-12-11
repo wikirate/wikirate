@@ -5,12 +5,13 @@
 module Formula
   # Calculate formula values using Ruby
   # It converts the formula to a ruby lambda function
-  # The formula may only consist of the numbers and the symbols and functions
+  # The formula may only consist of numbers and the symbols and functions
   # listed in SYMBOLS and FUNCTIONS
   class Ruby < Calculator
     SYMBOLS = %w{+ - ( ) [ ] . * , /}.freeze
     FUNCTIONS = { "Sum" => "sum", "Max" => "max", "Min" => "min",
-                  "Zeros" => "count(0)", "Flatten" => "flatten" }.freeze
+                  "Zeros" => "count(0)", "Flatten" => "flatten",
+                  "Unknowns" => "count('Unknown')" }.freeze
     LAMBDA_ARGS_NAME = "args".freeze
 
     INPUT_CAST = ->(val) { val.number? ? val.to_f : val }
@@ -42,17 +43,25 @@ module Formula
     end
 
     def get_value input, _company, _year
-      input.flatten.each do |i|
-        next if i.is_a?(Float)
-        if i.casecmp("unknown").zero?
-          return "Unknown"
-        elsif i.empty?
-          return nil
-        else
-          return "invalid input"
-        end
+      input.each_with_index do |inp, index|
+        valid = validate_input inp, index
+        return valid unless valid == true
       end
       @executed_lambda.call(input)
+    end
+
+    def validate_input input, index
+      return true if  @non_numeric_ok.include?(index)
+      input = Array.wrap(input)
+      if input.all? { |inp| inp.is_a?(Float) }
+        true
+      elsif input.any? { |inp| inp.to_s.casecmp("unknown").zero? }
+        "Unknown"
+      elsif input.any?(&:empty?)
+        nil
+      else
+        "invalid input"
+      end
     end
 
     def to_lambda
@@ -60,6 +69,7 @@ module Formula
         replace_nests(translate_functions(@formula.content)) do |index|
           "#{LAMBDA_ARGS_NAME}[#{index}]"
         end
+      find_allowed_non_numeric_input rb_formula
       lambda_wrap rb_formula
     end
 
@@ -94,6 +104,17 @@ module Formula
 
     def lambda_wrap code
       "lambda { |#{LAMBDA_ARGS_NAME}| #{code} }"
+    end
+
+    def find_allowed_non_numeric_input formula
+      @non_numeric_ok ||= ::Set.new
+      formula.scan(/\[([^.]+)\]\.flatten\.count/) do |match|
+        match.each do |args|
+          args.scan(/#{LAMBDA_ARGS_NAME}\[(\d+)\]/) do |num|
+            @non_numeric_ok += num.map(&:to_i)
+          end
+        end
+      end
     end
   end
 end

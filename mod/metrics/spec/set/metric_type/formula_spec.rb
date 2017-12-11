@@ -9,7 +9,7 @@ describe Card::Set::MetricType::Formula do
   end
 
   def build_formula formula
-    sprintf formula, @metric_name1, @metric_name2, @metric_name3
+    format formula, @metric_name1, @metric_name2, @metric_name3
   end
 
   describe "formula card" do
@@ -17,7 +17,7 @@ describe Card::Set::MetricType::Formula do
 
     it { is_expected.to be_instance_of(Card) }
     it "has codename" do
-      expect(subject.codename).to eq "formula"
+      expect(subject.codename).to eq :formula
     end
     it 'has type "metric type"' do
       expect(subject.type_id).to eq Card["metric type"].id
@@ -255,17 +255,16 @@ describe Card::Set::MetricType::Formula do
     end
   end
 
-  it "handles wolfram formula" do
-    pending "restoring access to Wolfram API"
-    # TODO: uncomment when Wolfram API is working again!!
-    # Card::Auth.as_bot do
-    #   Card::Metric.create(
-    #     name: "Jedi+Force formula",
-    #     type: :formula,
-    #     formula: "{{Jedi+deadliness}}/10 - 5 + " \
-    #            'Boole[{{Jedi+disturbances in the Force}} == "yes"]'
-    #   )
-    # end
+  xit "handles wolfram formula" do
+    # TODO: get Wolfram API is working again!!
+    Card::Auth.as_bot do
+      Card::Metric.create(
+        name: "Jedi+Force formula",
+        type: :formula,
+        formula: "{{Jedi+deadliness}}/10 - 5 + " \
+               'Boole[{{Jedi+disturbances in the Force}} == "yes"]'
+      )
+    end
     expect(Card["Jedi+Force formula+Death Star+1977+value"].content).to eq "6"
   end
 end

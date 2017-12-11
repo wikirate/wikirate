@@ -11,8 +11,8 @@ def metric_type card_or_name
   mt_name = "#{metric_name}+*metric type"
   mt_card = Card.fetch(mt_name, skip_modules: true, skip_type_lookup: true)
   mt_card ||= card_or_name.is_a?(Card) && card_or_name.subfield(:metric_type)
-  mt_type = mt_card && mt_card.content.scan(/\[\[([^\]]+)\]\]/).flatten.first
-
+  mt_type =
+    mt_card&.standard_content&.scan(/^(?:\[\[)?([^\]]+)(?:\]\])?$/)&.flatten&.first
   mt_type || DEFAULT_METRIC_TYPE
 end
 

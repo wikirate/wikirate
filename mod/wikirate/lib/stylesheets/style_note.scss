@@ -66,14 +66,14 @@ $card-header-color: #fff;
 
 }
 .analysis-link > a,
-.RIGHT-company.titled-view > .card-content .item-link > a,
-.RIGHT-topic.titled-view > .card-content .item-link > a {
+.RIGHT-company.titled-view > .d0-card-content .item-link > a,
+.RIGHT-topic.titled-view > .d0-card-content .item-link > a {
   // margin: 3px 10px;
 
 }
 .analysis-link > a,
-.RIGHT-company.card-content .item-link > a,
-.RIGHT-topic.card-content .item-link > a,
+.RIGHT-company.d0-card-content .item-link > a,
+.RIGHT-topic.d0-card-content .item-link > a,
 #company-and-topic .company-name,
 #company-and-topic .topic-name {
   display: inline-block;
@@ -84,8 +84,8 @@ $card-header-color: #fff;
   text-decoration: none;
 
 }
-.RIGHT-company.card-content .item-link > a,
-.RIGHT-topic.card-content .item-link > a,
+.RIGHT-company.d0-card-content .item-link > a,
+.RIGHT-topic.d0-card-content .item-link > a,
 .analysis-link > a > span {
   display: inline-block;
   padding: 3px 8px !important;
@@ -103,33 +103,33 @@ $card-header-color: #fff;
   }
 
 }
-.RIGHT-company.card-content .item-link > a,
+.RIGHT-company.d0-card-content .item-link > a,
 .analysis-link > a > .company,
 #company-and-topic .company-name {
   background: rgba($note-tag-companybg, 0.02);
   color: $note-tag-companybg;
   border: 1px solid rgba($note-tag-companybg, 0.55);
 }
-.RIGHT-company.card-content .item-link > a:hover,
+.RIGHT-company.d0-card-content .item-link > a:hover,
 .analysis-link > a:hover > .company,
 #company-and-topic .company-name:hover {
   background: $note-tag-companybg-hover;
   color: #fff;
 }
-.RIGHT-topic.card-content .item-link > a,
+.RIGHT-topic.d0-card-content .item-link > a,
 .analysis-link > a > .topic,
 #company-and-topic .topic-name {
   background: rgba($note-tag-topicbg, 0.02);
   color: $note-tag-topicbg;
   border: 1px solid rgba($note-tag-topicbg, 0.55);
 }
-.RIGHT-topic.card-content .item-link > a:hover,
+.RIGHT-topic.d0-card-content .item-link > a:hover,
 .analysis-link > a:hover > .topic,
 #company-and-topic .topic-name:hover {
   background: $note-tag-topicbg-hover;
   color: #fff;
 }
-.card-content .item-link > a.wanted-card {
+.d0-card-content .item-link > a.wanted-card {
   background: $note-tag-notexist;
   color: $wanted-card-color;
   &:hover {
@@ -158,7 +158,7 @@ $card-header-color: #fff;
   &.labeled-view {
     font-size: 0.9em;
     color: #aaa;
-    .card-content a {
+    .d0-card-content a {
       color: #aaa;
       font-style: italic;
     }
@@ -167,7 +167,7 @@ $card-header-color: #fff;
   &.missing-view,
   &.labeled-view {
     label,
-    .card-content a,
+    .d0-card-content a,
     a.missing-labeled {
       text-align: left;
       min-width: 30px;
@@ -175,7 +175,7 @@ $card-header-color: #fff;
   }
 
 }
-.TYPE-note.card-content .source-side > .RIGHT-tag {
+.TYPE-note.d0-card-content .source-side > .RIGHT-tag {
   margin-top: 20px;
 
 }
@@ -381,7 +381,7 @@ $card-header-color: #fff;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    .card-content {
+    .d0-card-content {
       white-space: nowrap;
     }
     .pointer-item.item-name {

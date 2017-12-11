@@ -1,5 +1,9 @@
 require "savanna-outliers"
 
+include_set Abstract::Export
+include_set Abstract::DesignerAndTitle
+include_set Abstract::MetricThumbnail
+
 card_accessor :vote_count, type: :number, default: "0"
 card_accessor :upvote_count, type: :number, default: "0"
 card_accessor :downvote_count, type: :number, default: "0"
@@ -25,26 +29,6 @@ def metric_type_codename
   Card[metric_type].codename.to_sym
 end
 
-def metric_designer
-  junction? ? cardname.parts[0] : creator.cardname
-end
-
-def metric_designer_card
-  junction? ? self[0] : creator
-end
-
-def designer_image_card
-  metric_designer_card.fetch(trait: :image, new: { type_id: ImageID })
-end
-
-def metric_title
-  junction? ? cardname.parts[1] : cardname
-end
-
-def metric_title_card
-  junction? ? self[1] : self
-end
-
 # @return array of metric answer lookup table
 def all_answers
   Answer.where(metric_id: id)
@@ -59,12 +43,20 @@ def question_card
 end
 
 def value_type
-  value_type_card.item_names.first || "Free Text"
+  value_type_card.item_names.first || default_value_type
+end
+
+def default_value_type
+  "Free Text"
 end
 
 def value_type_code
   ((vc = value_type_card.item_cards.first) &&
-   vc.codename && vc.codename.to_sym) || :free_text
+   vc.codename && vc.codename.to_sym) || default_value_type_code
+end
+
+def default_value_type_code
+  :free_text
 end
 
 def value_options
@@ -85,12 +77,20 @@ def relationship?
   metric_type_codename.in? [:relationship, :inverse_relationship]
 end
 
+def inverse?
+  metric_type_codename == :inverse_relationship
+end
+
 def multi_categorical?
   value_type_code == :multi_category
 end
 
-def researched?
+def standard?
   metric_type_codename == :researched
+end
+
+def researched?
+  standard? || relationship?
 end
 
 def calculated?
@@ -104,6 +104,16 @@ end
 
 def scored?
   metric_type_codename == :score || rated?
+end
+
+# @return all metric cards that score this metric
+def related_scores
+  Card.search type_id: MetricID, left_id: id
+end
+
+# @return all metrics that use this metric in their formula
+def related_calculations
+  Card.search type_id: MetricID, right_plus: ["formula", { refer_to: id }]
 end
 
 def designer_assessed?
@@ -143,7 +153,7 @@ def value_cards _opts={}
 end
 
 def metric_value_name company, year
-  company_name = Card.fetch_real_by_key(company).name
+  company_name = Card[company].name
   "#{name}+#{company_name}+#{year}"
 end
 
@@ -171,15 +181,6 @@ format :html do
     outs.inspect
   end
 
-  def designer_image
-    nest card.metric_designer_card.field(:image, new: {}),
-         view: :core, size: :small
-  end
-
-  def designer_image_link
-    link_to_card card.metric_designer_card, designer_image
-  end
-
   def css
     ""
     # css = <<-CSS
@@ -190,15 +191,22 @@ format :html do
   # USED?
 
   view :add_to_formula_item_view do |_args|
+    subtext = wrap_with :small, "Designed by #{card.metric_designer}"
+    add_to_formula_helper subtext
+  end
+
+  def add_to_formula_helper subtext
     title = card.metric_title.to_s
-    subtext = card.metric_designer.to_s
-    subtext = wrap_with :small, "Scored by " + subtext
     append = "#{params[:formula_metric_key]}+add_to_formula"
-    url = path mark: card.cardname.field(append), view: :content
+    url = path mark: card.name.field(append), view: :content
     text_with_image image: designer_image_card,
                     text: subtext, title: title, size: :icon,
-                    media_opts: { class: "tr-details-toggle",
-                                  data: { details_url: url } }
+                    media_opts: { class: "slotter _clickable",
+                                  href: url,
+                                  data: {
+                                    remote: true,
+                                    "slot-selector": ".metric-details-slot > .card-slot"
+                                  } }
   end
 
   view :details_placeholder do
@@ -232,6 +240,10 @@ format :html do
   end
 
   view :legend do
+    value_legend
+  end
+
+  def value_legend
     # depends on the type
     if card.unit.present?
       card.unit
@@ -264,19 +276,18 @@ format :html do
     end
   end
 
-  view :value_type_edit_modal_link do
-    render_modal_link(
-      link_text: vtype_edit_modal_link_text,
-      link_opts: { class: "btn btn-default slotter value-type-button",
-                   path: {
-                     slot: {
-                       hide: "title,header,menu,help,subheader",
-                       view: :edit,
-                       editor: :inline_nests,
-                       structure: "metric value type edit structure"
-                     }
-                   } }
-    )
+  view :value_type_edit_modal_link, cache: :never do
+    nest card.value_type_card,
+         view: :modal_link,
+         link_text: vtype_edit_modal_link_text,
+         link_opts: { class: "btn btn-outline-secondary slotter value-type-button",
+                      path: {
+                        slot: {
+                          hide: "header,menu,help",
+                          view: :edit,
+                          title: "Value Type"
+                        }
+                      } }
   end
 
   def vtype_edit_modal_link_text
@@ -295,8 +306,10 @@ format :html do
 
     details_field =
       case value_type.item_names[0]
-      when "Number"   then :numeric_details
-      when "Money"    then :monetary_details
+      when "Number" then
+        :numeric_details
+      when "Money" then
+        :monetary_details
       when "Category", "Multi-Category" then
         :category_details
       end
@@ -337,8 +350,8 @@ format :html do
                                            items: { view: :link }))
     ]
     if card.researched?
-      rows <<  text_row("Unit", field_nest("Unit"))
-      rows <<  text_row("Range", field_nest("Range"))
+      rows << text_row("Unit", field_nest("Unit"))
+      rows << text_row("Range", field_nest("Range"))
     end
     wrap_with :div, class: "metric-info" do
       rows
@@ -375,11 +388,11 @@ format :html do
   end
 
   def weight_content args
-    icon_class = "pull-right _remove_row btn btn-default btn-sm"
+    icon_class = "pull-right _remove_row btn btn-outline-secondary btn-sm"
     wrap_with :div do
       [
         text_field_tag("pair_value", (args[:weight] || 0)) + "%",
-        content_tag(:span, fa_icon(:remove).html_safe, class: icon_class)
+        content_tag(:span, fa_icon(:close).html_safe, class: icon_class)
       ]
     end
   end
@@ -452,8 +465,22 @@ format :html do
 end
 
 format :json do
-  view :content do
-    card.companies_with_years_and_values.to_json
+  # view :content do
+  #   card.companies_with_years_and_values.to_json
+  # end
+
+  view :core do
+    card.all_answers.map do |answer|
+      # nest answer, view: :essentials
+      subformat(answer)._render_core
+    end
+  end
+
+  def essentials
+    {
+      designer: card.metric_designer,
+      title: card.metric_title
+    }
   end
 end
 

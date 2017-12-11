@@ -12,9 +12,7 @@ def potential_numeric_metrics_wql
       { type_id: Card::WikirateCompanyID },
       right_plus: [
         { type: "year" },
-        right_plus: [
-          "value", { content: ["match", "[[:digit:]]+"] }
-        ]
+        right_plus: ["value", { content: ["match", "[[:digit:]]+"] }],
       ]
     ],
     not: {
@@ -93,8 +91,7 @@ end
 
 def normalize_metric metric, i_value_type_card=nil
   metric_values = metric_values metric.name
-  value_type_card = i_value_type_card ||
-                    Card.fetch("#{m.name}+value type", new: {})
+  value_type_card = i_value_type_card || m.fetch(trait: :value_type, new: {})
   value_type = value_type_card.item_names[0]
   if value_type == "Category"
     update_options [metric]
@@ -185,7 +182,7 @@ def convert_monetary_metric_unit
     puts "Setting #{metric} to Money"
     metric_value_type.save!
 
-    metric_currency = Card.fetch "#{metric}+Currency", new: {}
+    metric_currency = Card.fetch metric, :currency, new: {}
     metric_currency.content = "USD"
     metric_currency.save!
 

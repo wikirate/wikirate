@@ -18,18 +18,9 @@ end
 
 # tables used on a metric page
 format :html do
-  view :core do
-    bs_layout do
-      row do
-        _optional_render_filter
-      end
-      row class: "text-center" do
-        _render_chart
-      end
-      row do
-        _render_table
-      end
-    end
+  view :core do |args|
+    voo.show! :chart
+    super(args)
   end
 
   def table_args

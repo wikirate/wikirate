@@ -29,7 +29,7 @@ format :html do
   end
 
   view :research_policy_formgroup, cache: :never do
-    checkbox_filter :research_policy, "Research Policy"
+    multiselect_filter :research_policy, "Research Policy"
   end
 
   def research_policy_select
@@ -37,7 +37,7 @@ format :html do
   end
 
   view :metric_type_formgroup, cache: :never do
-    checkbox_filter :metric_type, "Metric Type"
+    multiselect_filter :metric_type, "Metric Type"
   end
 
   def metric_type_select
@@ -53,7 +53,7 @@ format :html do
   end
 
   view :importance_formgroup, cache: :never do
-    checkbox_filter :importance, "My Vote", %w[upvotes novotes]
+    multiselect_filter :importance, "My Vote", %w[upvotes novotes]
   end
 
   view :industry_formgroup, cache: :never do
@@ -63,9 +63,8 @@ format :html do
   view :sort_formgroup, cache: :never do
     selected_option = sort_param || card.default_sort_option
     options = options_for_select(sort_options, selected_option)
-    formgroup "Sort", class: "filter-input " do
-      select_tag "sort", options, class: "pointer-select"
-    end
+    select_tag "sort", options, class: "pointer-select _filter-sort",
+                                "data-minimum-results-for-search" => "Infinity"
   end
 
   def sort_options
@@ -77,14 +76,14 @@ format :html do
   end
 
   def year_options
-    type_options(:year).each_with_object(default_year_option) do |v, h|
+    type_options(:year, "desc").each_with_object(default_year_option) do |v, h|
       h[v] = v
     end
   end
 
   def metric_value_options
     opts = {
-      # "All" => "all",
+      "All" => "all",
       "Researched" => "exists",
       "Known" => "known",
       "Unknown" => "unknown",

@@ -2,20 +2,20 @@
 		<div class="col-md-12 top-banner-wrapper white-text banner-background" >
 		  <div class="row padding-top-20"></div>
 		  <div class="pull-left col-md-9 col-sm-12 col-xs-12 banner-lead">
-		    <div class="col-md-2 col-sm-12 col-xs-12 banner-image">
+		    <div class="col-md-2 col-sm-12 col-xs-12 banner-image float-left">
 		      {{wikirate_white_logo|core;size:medium}}
 		    </div>
 		    <div class="col-md-10 ">
   		    <span class="wikirate-logo-title">Wiki<strong>Rate</strong></span>
-    		  <h3 class=" white-text no-bold-text nopadding">A global collaboration to research coporate impacts.</h3>
+    		  <h3 class=" white-text no-bold-text nopadding">A global collaboration to research corporate impacts.</h3>
     			<p class="lead">Let's make companies better, together.</p> <br>
   			</div>
 			</div>
 			<br>
 			<div class="pull-right col-md-3 col-xs-12 col-sm-12 btn-group-vertical banner-buttons">
-			  <a class="btn btn-default slotter" href='/homepage: video container?layout=modal' data-toggle='modal' data-target='#modal-main-slot'>Watch How WikiRate Works &nbsp;<i class="fa fa-play-circle"></i></a>
-			  <a class="btn btn-default" href="/{{About WikiRate|linkname}}">About WikiRate &nbsp;<i class="fa fa-arrow-circle-o-right"></i></a>
-			  <a class="btn btn-default" href="/{{Using WikiRate|linkname}}">Learn More &nbsp;<i class="fa fa-arrow-circle-o-right"></i></a>
+			  <a class="btn btn-outline-secondary slotter" href='/homepage: video container?layout=modal' data-toggle='modal' data-target='#modal-main-slot'><i class="fa fa-play-circle"></i>Watch Intro Video &nbsp;</a>
+			  <a class="btn btn-outline-secondary" href="/{{About WikiRate|linkname}}"><i class="fa fa-arrow-circle-o-right"></i>About WikiRate &nbsp;</a>
+			  <!-- <a class="btn btn-default" href="/{{Using WikiRate|linkname}}"><i class="fa fa-arrow-circle-o-right"></i>Learn More &nbsp;</a> -->
 			</div>
 			<div class="row padding-top-20"></div>
 		</div>

@@ -27,7 +27,7 @@ format :html do
                 else
                   card.type_name.downcase
                 end
-    "%sd %s%s" % [action_type, ("a new " if action_type == :create), card_type]
+    format("%sd %s%s", action_type, ("a new " if action_type == :create), card_type)
   end
 
   def activity_item item

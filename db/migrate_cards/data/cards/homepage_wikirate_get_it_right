@@ -1,48 +1,59 @@
 <div class="nodblclick row nopadding transparent-background-black">
   <div class="col-md-12 banner-buttons">
-    <h2 class="text-center white-text">Community</h2>
+    <div class="row margin-top-20"></div>
+    <h2 class="text-center white-text no-bold-text">Community</h2>
     <div class="row margin-top-50"></div>
     <div class="row white-text text-center">
+      
+      
       <div class="col-md-3">
-        {{community: section 1|core}}
+        <!-- Non-profits -->
+        <a href="{{WikiRate for NGOs|url}}" class="inherit-anchor"> {{community: section 1|core}}</a>
       </div>
 
       <div class="col-md-3">
-        {{community: section 2|core}}
+        <!-- Researchers -->
+        <a href="{{WikiRate for Researchers|url}}" class="inherit-anchor">{{community: section 2|core}}</a>
       </div>
 
       <div class="col-md-3">
-        {{community: section 3|core}}
+        <!-- Teachers and Students -->
+        <a href="{{WikiRate for Education|url}}" class="inherit-anchor"> {{community: section 3|core}}</a>
       </div>
 
       <div class="col-md-3">
-        {{community: section 4|core}}
+        <!-- Companies -->
+        <a href="{{WikiRate for Companies|url}}" class="inherit-anchor">{{community: section 4|core}}</a>
       </div>
     </div>
     <br/><br/>
     <div class="row white-text text-center">
       <div class="col-md-3">
-        {{community: section 5|core}}
+        <!-- Standard Bodies -->
+        <a href="{{WikiRate for Standard Bodies|url}}" class="inherit-anchor">{{community: section 5|core}}</a>
       </div>
 
       <div class="col-md-3">
-        {{community: section 6|core}}
+        <!-- Volunteers -->
+        <a href="{{WikiRate for Volunteers|url}}" class="inherit-anchor">{{community: section 6|core}}</a>
       </div>
 
       <div class="col-md-3">
-        {{community: section 7|core}}
+        <!-- Investors -->
+        <a href="{{WikiRate for Investors|url}}" class="inherit-anchor">{{community: section 7|core}}</a>
       </div>
 
       <div class="col-md-3">
-        {{community: section 8|core}}
+        <!-- Press -->
+        <a href="{{WikiRate for Press|url}}" class="inherit-anchor">{{community: section 8|core}}</a>
       </div>
     </div>
-
+    <div class="row margin-top-50"></div>
     <h2 class="text-center white-text no-bold-text">Inspire companies to perform
       better on topics and metrics important to you</h2><br>
     <div class="text-center">
-      <a href="/new/:signup" class="btn btn-default btn-banner-info"><strong>Join
-        us</strong></a>
+      <a href="/new/:signup" class="btn btn-default btn-banner-info">Join
+        us</a>
       <a href="http://eepurl.com/LPHur" class="btn btn-default btn-banner-info"
          target="_blank">Receive Updates</a>
     </div>

@@ -1,10 +1,10 @@
-wagn.slotReady (slot) ->
+decko.slotReady (slot) ->
   if slot.hasClass('new-view') && (slot.hasClass('TYPE-source') || slot.hasClass('TYPE-metric_value'))
 # bind listener to the tab anchor
     slot.find('#myTab').find("a").click (e) ->
 # update the source type
       source_type = $(this).data('source-type')
-      source_type_subcard = slot.find(".RIGHT-Xsource_type").find("input:hidden.card-content")
+      source_type_subcard = slot.find(".RIGHT-Xsource_type").find("input:hidden.d0-card-content")
       source_type_subcard.val("[[" + source_type + "]]")
       source_type_subcard.siblings("ul").find("input[value=" + source_type + "]").prop("checked", true)
 
@@ -64,7 +64,7 @@ $(window).ready ->
     metaReqObj = {}
     metaReqObj.view = 'metadata'
     metaReqObj.url = url
-    $.ajax(wagn.rootPath + '/source.json?' + $.param(metaReqObj)).done((response) ->
+    $.ajax(decko.rootPath + '/source.json?' + $.param(metaReqObj)).done((response) ->
       titleElement.val response.title
       websiteElement.focusin().val(response.website).focusout()
       id = $('.new-view.TYPE-source .RIGHT-description').find('textarea:first').attr('id')

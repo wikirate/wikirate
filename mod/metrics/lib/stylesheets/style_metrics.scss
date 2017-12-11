@@ -132,6 +132,11 @@
 .metric-year {
     font-size: 8px;
     color: $dark-text-color;
+    white-space: nowrap;
+    max-width: 300px;
+    text-overflow: ellipsis;
+    display: inline-block;
+    overflow: hidden;
 }
 .metric-value {
     a {
@@ -145,7 +150,7 @@
     display: none;
 }
 
-.RIGHT-company.card-content .company-item .item-link > a {
+.RIGHT-company.d0-card-content .company-item .item-link > a {
     background: #03998d;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
@@ -187,16 +192,26 @@
             height: 35px;
             padding-top: 3px;
         }
+        .record-row{
+          width: 100%;
+        }
         .glyphicon-question-mark {
             font-weight: bold;
         }
         .row-data {
-            margin-left: 50px;
+            //margin-left: 50px;
         }
     }
 }
 
+//Show icon on metric properties on mousehover
+.metric-designer-info,.value_type_detail-view.TYPE-metric {
+    width: 100%;
+    float: left;
+}
+
 .metric-designer-info {
+
     a {
         color: inherit;
     }
@@ -270,15 +285,19 @@
     z-index: 1;
 }
 .TYPE-metric_value {
-    .RIGHT-discussion,
-    .TYPE_PLUS_RIGHT-metric_value-source,
-    .timeline {
-        float: left;
-        width: 100%!important;
-        .missing-view {
-            display: none;
-        }
-    }
+  &.LTYPE_RTYPE-html-year >.card-frame >.card-body {
+    padding: 0px;
+    margin-top:1px;
+  }
+  .RIGHT-discussion,
+  .TYPE_PLUS_RIGHT-metric_value-source,
+  .timeline {
+      float: left;
+      width: 100%!important;
+      .missing-view {
+          display: none;
+      }
+  }
 }
 
 .data-count {
@@ -330,7 +349,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     z-index: 0!important;
 }
 
-.titled-view.TYPE_PLUS_RIGHT-metric-formula .TYPE_PLUS_RIGHT-metric-formula.card-content {
+.titled-view.TYPE_PLUS_RIGHT-metric-formula .TYPE_PLUS_RIGHT-metric-formula.d0-card-content {
   white-space: inherit;
   display: inline-block;
   width: 100%;
@@ -348,9 +367,10 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 
 #modal-add-metric-slot{
   .modal-dialog {
+      max-width: none;
       width: 90%;
   }
-  .modal-body .yinyang>.row>.col-md-6 {
+  .modal-body .d0-card-body > .row >.col-md-6 {
       height: 1000px;
       overflow-y: scroll;
   }
@@ -415,20 +435,25 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     }
 }
 .TYPE-metric.new-view {
-    ul.nav-tabs li {
-        padding: 28px;
-        background: #eee;
-        margin: 5px;
+    //ul.nav-tabs li {
+    //    padding: 28px;
+    //    background: #eee;
+    //    margin: 5px;
+    //}
+    .help-text p:last-child {
+        margin-bottom: 5px;
     }
     fieldset.card-editor.editor {
         clear: both;
+        ul.nav-tabs {
+            margin: 0 -15px;
+        }
     }
     .name-editor {
         .RIGHT-Xtitle,
-        .RIGHT-designer {
+        .RIGHT-designer,
+        .RIGHT-inverse_title {
             &.card-editor {
-                width: 48%;
-                float: left;
                 .card-title {
                     font-size: 12px;
                 }
@@ -438,14 +463,12 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
             }
         }
         .plus {
-            float: left;
             font-size: 30px;
             font-weight: bold;
             text-align: center;
             position: relative;
             top: 16px;
-            left: 0;
-            width: 4%;
+            width: 100%;
             margin-top: 30px;
         }
     }
@@ -500,9 +523,8 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 .metric-value.small {
     font-size: 15px;
     white-space: nowrap;
-    max-width: 100px;
+    max-width: 300px;
     text-overflow: ellipsis;
-    // width: 50%;
     padding-right: 5px;
     display: inline-block;
     float: left;
@@ -621,28 +643,50 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   }
 }
 
-.core-view.SELF-research_page {
+.core-view.SELF-research_page,.research_page-view {
   .stick-left {
     left: 0px;
     top: 66px;
+    background: #fff;
   }
   .stick-right {
     top: 66px;
     left: 40.8%;
     width: 60%;
+    background: #fff;
   }
 
-  .answer_table-view.LTYPE_RTYPE-metric-company {
-    margin: 0px;
-    padding: 20px;
-    border: 1px solid #ebebeb;
-  }
+  //.answer_table-view.LTYPE_RTYPE-metric-company {
+  //  margin: 0px;
+  //  padding: 10px;
+  //  //border: 1px solid #ebebeb;
+  //}
 
   td.year {
     padding-right: 10px;
     width: 110px;
   }
 }
+.table-view{
+    width:100%;
+}
+.new-value-form {
+    border-top: 1px solid #ebebeb;
+    padding-top: 10px;
+    margin-top: 15px;
+}
+
+.row.panel-default.metric-list {
+    background: rgba(103, 78, 167, 0.06);
+}
+
+.row.panel-default.metric-list .record-row {
+    background: #fff;
+    margin-bottom: 30px;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+}
+
 
 .answer-unit {
     font-size: 13px;
@@ -651,21 +695,73 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     font-style: italic;
 }
 
-.form-group.card-editor {
-  &.RIGHT-value {
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-  &.RIGHT-unknown {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding-bottom: 0;
-    .label {
-      margin-bottom: 0;
-    }
-  }
-}
+//.form-group.card-editor {
+//  &.RIGHT-unknown {
+//    .label {
+//      margin-bottom: 0;
+//    }
+//  }
+//}
 
 .research-left {
     width: 40%;
+}
+
+.RIGHT-all_metric_value.content-view {
+    min-height: 800px;
+}
+
+//Contribution section on research group page
+.contribution-item {
+  overflow: hidden;
+  //cursor: move;
+  border: 1px solid #ebebeb;
+  clear: both;
+  margin-bottom: -1px;
+
+  .thumbnail {
+    border: 0;
+    margin: 2px
+  }
+  .header {
+    width: 70%;
+    //cursor: pointer;
+    float: left;
+    border-right: 1px solid #eee;
+    //color: #ccc !important;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+  .data {
+    width: 28%;
+    text-align: center;
+    cursor: pointer;
+    float: left;
+    color: #ccc !important;
+    padding: 6px 12px;
+    text-decoration: none;
+    &:hover {
+      //background: #fff;
+    }
+  }
+  &.metric-item .header .name {
+    color:$muted;
+  }
+  &.company-item .header .name {
+    color:$muted;
+
+  }
+  &.topic-item .header .name {
+    color:$muted;
+
+  }
+}
+
+.new-view.TYPE-metric {
+    .nav-pills > li.pointer-radio input.pointer-radio-button {
+        display: none;
+    }
+    .card-editor span.select2.select2-container {
+        width: 100% !important;
+    }
 }

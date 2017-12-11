@@ -1,19 +1,17 @@
-
 # this overrides the default git:create_release in order to run submodules
-namespace :git do
-  desc 'Copy repo to releases'
-  task create_release: :'git:update' do
-    on roles(:all) do
-      with fetch(:git_environmental_variables) do
-        within repo_path do
-          execute :git, :clone, '-b', fetch(:branch),
-                  '--recursive --depth 1 .', release_path
-        end
-      end
-    end
-  end
-end
-
+#namespace :git do
+#  desc "Copy repo to releases"
+#  task create_release: :"git:update" do
+#    on roles(:all) do
+#      with fetch(:git_environmental_variables) do
+#        within repo_path do
+#          execute :git, :clone, "-b", fetch(:branch),
+#                  "--recursive --depth 1 .", release_path
+#        end
+#      end
+#    end
+#  end
+#end
 
 namespace :deploy do
   before :starting, :backup do
@@ -25,9 +23,11 @@ namespace :deploy do
 **************************************************************
 
     EOF
-    ask :answer, "Are you sure you want to update wikirate.org? Type 'forgive me, Yoda'"
-    exit unless fetch(:answer) == 'forgive me, Yoda'
-    # invoke 'backup:create'
+    ask :answer, "Are you sure the current version is correct, " \
+                 "and you want to update wikirate.org? " \
+                 'Type "forgive me, Yoda"'
+    exit unless fetch(:answer) == "forgive me, Yoda"
+    # invoke "backup:create"
   end
 
   after :updated, :migrate do
@@ -36,9 +36,9 @@ namespace :deploy do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
       within release_path do
-        execute :mkdir, 'tmp'
-        execute :mkdir, 'log'
-        execute :rake, 'wagn:migrate'
+        # execute :mkdir, "tmp"
+        execute :mkdir, "log"
+        execute :rake, "decko:migrate"
       end
     end
   end
@@ -46,27 +46,59 @@ namespace :deploy do
   desc "Set www-data permissions on config.ru / log"
   after :updated, :deploy_chown do
     on roles(:app) do
-      execute :sudo, '/opt/bin/deploy_chown', release_path
+      execute :sudo, "/opt/bin/deploy_chown", release_path
     end
   end
 
-  desc 'clear cache'
+  desc "clear cache"
   after :published, :clear_cache do
     on roles(:app) do
       within release_path do
-        execute :rake, 'wagn:reset_cache'
+        execute :rake, "decko:reset_cache"
       end
     end
   end
 
-  after :finishing, :cleanup
-  after :published, :restart
-
-  desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      execute :touch, release_path.join('tmp/restart.txt')
-    end
+  desc "restart delayed job processes"
+  after :published, :restart_delayed_job do
+    invoke "delayed_job:restart"
   end
 
+  after :finishing, :cleanup do
+    next unless fetch(:stage) == :production
+    puts "Don't forget to release the new version `rake wikirate:release` " \
+         "and add release notes"
+  end
+
+  after :cleanup, :deploy_pt_stories do
+    pt_config_file = File.expand_path("../../../../config/pivotaltracker.yml", __FILE__)
+    next if fetch(:stage) != :staging || !File.exists?(pt_config_file)
+
+    require 'pivotal-tracker'
+    tracker = YAML.load_file pt_config_file
+    %i[token project_id].each do |n|
+      raise "#{n} not set in pivotaltracker.yml" unless tracker[n]
+    end
+
+    PivotalTracker::Client.token = tracker[:token]
+    PivotalTracker::Client.use_ssl = true
+
+    unpakt_project = PivotalTracker::Project.find(tracker[:project_id])
+    stories =
+      unpakt_project.stories.all(:state => "finished", :story_type => ['bug', 'feature'])
+
+    staging_deploy_tag = `git tag | grep staging | tail -n1`
+
+    stories.each do | story |
+      puts "Searching for #{story.id} in local git repo."
+      search_result = `git log --grep #{story.id} #{staging_deploy_tag}`
+      if search_result.length > 0
+        puts "Found #{story.id}, marking as delivered."
+        story.notes.create(:text => "Delivered by staging deploy script.")
+        story.update({"current_state" => "delivered"})
+      else
+        puts "Coult not find #{story.id} in git repo."
+      end
+    end
+  end
 end

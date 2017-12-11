@@ -1,6 +1,6 @@
 require "./test/seed"
 
-describe Card::Set::TypePlusRight::Metric::AllMetricValues do
+RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
   let(:metric) { @metric || Card["Jedi+disturbances in the Force"] }
   let(:all_metric_values) { metric.fetch trait: :all_metric_values }
   let(:latest_answers) do
@@ -10,9 +10,11 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
   let(:latest_answer_keys) do
     ::Set.new(latest_answers.map { |n| n.to_name.left_name.key })
   end
+  let(:all_companies) do
+    Card.search type_id: Card::WikirateCompanyID, return: :name
+  end
   let(:missing_companies) do
-    company_names_wql = { type_id: Card::WikirateCompanyID, return: :name }
-    Card.search(company_names_wql).reject do |name|
+    all_companies.reject do |name|
       latest_answer_keys.include? name.to_name.key
     end
   end
@@ -28,7 +30,7 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
   # return company+year
   def answers list
     list.map do |c|
-      c.cardname.parts[2..3].join "+"
+      c.name.parts[2..3].join "+"
     end
   end
 
@@ -71,19 +73,29 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       context "project" do
         it "finds exact match" do
           expect(filter_by(project: "Evil Project"))
-            .to eq %w[Death_Star+2001 SPECTRE+2000 ]
+            .to eq %w[Death_Star+2001 SPECTRE+2000]
         end
       end
       context "industry" do
         it "finds exact match" do
           expect(filter_by(industry: "Technology Hardware"))
-            .to eq %w[Death_Star+2001 SPECTRE+2000 ]
+            .to eq %w[Death_Star+2001 SPECTRE+2000]
         end
       end
       context "value" do
+        let(:all_answers) do
+          latest_answers + missing_answers
+        end
+
         it "finds missing values" do
-          expect(filter_by(metric_value: :none).sort)
-            .to eq missing_answers.sort
+          expect(filter_by(metric_value: :none))
+            .to contain_exactly(*missing_answers)
+        end
+
+        it "finds all values" do
+          filtered = filter_by(metric_value: :all)
+          expect(filtered)
+            .to include(*all_answers)
         end
 
         context "filter by update date" do
@@ -150,6 +162,29 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
             .to eq ["SPECTRE+2001"]
         end
       end
+
+      context "filter for all values and ..." do
+        it "... project" do
+          expect(filter_by(metric_value: :all, project: "Evil Project"))
+            .to contain_exactly("Death_Star+2001", "SPECTRE+2000",
+                                *with_year("Los Pollos Hermanos"))
+        end
+
+        it "... year" do
+          i = all_companies.index("Death Star")
+          all_companies[i] = "Death_Star"
+          expect(filter_by(metric_value: :all, year: "2001"))
+            .to contain_exactly(*with_year(all_companies, 2001))
+        end
+
+        it "... industry and year" do
+          expect(filter_by(metric_value: :all,
+                           industry: "Technology Hardware",
+                           year: "2001"))
+            .to contain_exactly(*with_year(%w[SPECTRE Death_Star], 2001))
+        end
+      end
+
       it "project and industry" do
         expect(filter_by(project: "Evil Project",
                          industry: "Technology Hardware"))
@@ -211,12 +246,11 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       it "sorts numberics by value" do
         @metric = Card["Jedi+deadliness"]
         expect(sort_by(:value)).to eq(
-          with_year(%w[Samsung
-                       Slate_Rock_and_Gravel_Company
-                       Los_Pollos_Hermanos
-                       SPECTRE
-                       Death_Star],
-                    1977)
+          %w[Samsung+1977
+             Slate_Rock_and_Gravel_Company+2005
+             Los_Pollos_Hermanos+1977
+             SPECTRE+1977
+             Death_Star+1977]
         )
       end
 
@@ -254,6 +288,29 @@ describe Card::Set::TypePlusRight::Metric::AllMetricValues do
         is_expected.to have_tag "table" do
           details_url = "/#{metric_value}?view=company_details_sidebar"
           with_tag :tr, with: { "data-details-url" => details_url }
+        end
+      end
+    end
+
+    describe ":core" do
+      subject do
+        Card.fetch([metric, :all_metric_values]).format(:html)._render_core
+      end
+
+      it "has filter widget" do
+        is_expected.to have_tag ".card" do
+          with_tag "._filter-widget"
+        end
+      end
+      it "has chart" do
+        is_expected.to have_tag ".row.text-center" do
+          with_tag ".vis", with: { "data-url" => "/Jedi+disturbances_in_the_Force+all_metric_values?format=json&view=vega" }
+        end
+      end
+
+      it "has table" do
+        is_expected.to have_tag "table" do
+          with_text(/Death Star\s*2001 =\s*yes/)
         end
       end
     end

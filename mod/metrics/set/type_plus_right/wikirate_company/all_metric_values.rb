@@ -1,3 +1,5 @@
+# All Answers for a given Company
+
 include_set Abstract::AllMetricValues
 
 def query_class
@@ -9,6 +11,11 @@ def default_sort_option
 end
 
 format :html do
+  view :filter_result, cache: :never do |_args|
+    voo.hide! :chart
+    super(_args)
+  end
+
   def table_args
     [:metric,
      self, # call search_with_params on self to get items
@@ -18,6 +25,8 @@ format :html do
   end
 
   view :filter do
+    # filter_form a: { input_field: "<input class='a'/>", label: "A" },
+    #            b: { input_field: "<formgroup><select class='b'><option value='a'>Alpha</option></select></formgroup>", label: "B" }
     field_subformat(:company_metric_filter)._render_core
   end
 

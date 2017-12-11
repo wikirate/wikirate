@@ -36,17 +36,17 @@ format :html do
   end
 
   def add_value_button
-    link_to_card :research_page, "Add answer",
-                 type: "button",
+    link_to_card :research_page, "Research answer",
                  target: "_blank",
                  class: "btn btn-primary btn-sm",
                  path: {
                    metric: [card.metric],
                    company: card.company
-                 }
+                 },
+                 title: "Research answer for another year"
     # <<-HTML
     #     <a type="button" target="_blank" class="btn btn-primary btn-sm"
-    #       href="#{add_value_url}">Add answer</a>
+    #       href="#{add_value_url}">Research answer</a>
     # HTML
   end
 
@@ -115,6 +115,7 @@ format :html do
 
   # used in metric values list on a company page
   view :metric_details_sidebar do
+    voo.hide! :cited_source_links
     details_sidebar :metric do
       <<-HTML
         <div class="row clearfix">
@@ -144,10 +145,10 @@ format :html do
 
   def metric_details_sidebar_header
     bs_layout do
-      row 1, 11 do
+      row 1, 11, class: "w-100" do
         column nest(card.metric_card.vote_count_card)
         column do
-          row link_to_card(card.metric_card, card.metric_card.cardname.right,
+          row link_to_card(card.metric_card, card.metric_card.name.right,
                            class: "inherit-anchor"),
               class: "name"
           row designer_info

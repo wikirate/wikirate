@@ -14,7 +14,7 @@ format :html do
 
   view :contribution_link do
     return "" unless contributions_made?
-    link_to_card card.cardname.trait(:contribution), "View Contributions",
+    link_to_card card.name.trait(:contribution), "View Contributions",
                  class: "btn btn-primary company-contribution-link"
   end
 
@@ -24,11 +24,11 @@ format :html do
   end
 
   def metrics_designed?
-    card.metrics_designed_card.count > 0
+    card.metrics_designed_card.count.positive?
   end
 
   def projects_organized?
-    card.projects_organized_card.count > 0
+    card.projects_organized_card.count.positive?
   end
 
   view :metric_contributions do

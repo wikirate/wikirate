@@ -1,6 +1,6 @@
-require "wagn/mods_spec_helper"
+require "decko/mods_spec_helper"
 require_relative "source_helper"
-require_relative "../test/seed"
+require_dependency "seed"
 
 Spork.prefork do
   RSpec.configure do |config|
@@ -30,16 +30,33 @@ def create_claim name, subcards={}
   end
 end
 
-def subcards_of_metric_value metric, company, content, year=nil, source=nil
-  year ||= "2015"
-  source ||= sample_source.name
-  content ||= "I'm fine, I'm just not happy."
+def create_answer metric: sample_metric, company: sample_company,
+                  content: "content", year: "2015", source: sample_source.name
+  #content ||= "I'm fine, I'm just not happy."
+  with_user "Joe User" do
+    Card.create type_id: Card::MetricValueID,
+                subcards: answer_subcards(metric: metric, company: company,
+                                          content: content, year: year,
+                                          source: source)
+  end
+end
+
+def build_answer metric: sample_metric, company: sample_company,
+               content: "content", year: "2015", source: sample_source.name
+  Card.new type_id: Card::MetricValueID,
+              subcards: answer_subcards(metric: metric, company: company,
+                                        content: content, year: year,
+                                        source: source)
+end
+
+def answer_subcards metric: sample_metric, company: sample_company,
+                content: "content", year: "2015", source: sample_source.name
   {
-    "+metric" => { "content" => metric.name },
-    "+company" => { "content" => "[[#{company.name}]]", :type_id => Card::PointerID },
-    "+value" => { "content" => content, :type_id => Card::PhraseID },
-    "+year" => { "content" => year, :type_id => Card::PointerID },
-    "+source" => { "content" => "[[#{source}]]\n", :type_id => Card::PointerID }
+    "+metric" => { content: metric.name },
+    "+company" => { content: company.name, :type_id => Card::PointerID },
+    "+value" => { content: content, :type_id => Card::PhraseID },
+    "+year" => { content: year, :type_id => Card::PointerID },
+    "+source" => { content: "[[#{source}]]\n", :type_id => Card::PointerID }
   }
 end
 

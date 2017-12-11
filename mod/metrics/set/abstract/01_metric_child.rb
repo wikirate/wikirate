@@ -13,15 +13,15 @@ def self.included host_class
   end
 end
 
-def metric_part full_name=cardname
+def metric_part full_name=name
   full_name.to_name.parts[0..(-1 - generation)].join("+")
 end
 
-def year_part full_name=cardname
+def year_part full_name=name
   full_name.to_name.parts[1 - generation]
 end
 
-def company_part full_name=cardname
+def company_part full_name=name
   full_name.to_name.parts[-generation]
 end
 
@@ -38,12 +38,12 @@ def metric_was
 end
 
 def metric_card
-  Card.fetch(metric) || (generation == 1 && left)
+  Card.fetch(metric) || (generation == 1 && left) || nil
   # FIXME: hack to make it work on new cards
 end
 
 def metric_type
-  metric_card.metric_type.downcase.to_sym
+  metric_card.metric_type_codename
 end
 
 def value_type
@@ -60,6 +60,14 @@ end
 
 def scored?
   (mc = metric_card) && mc.scored?
+end
+
+def relationship?
+  (mc = metric_card) && mc.relationship?
+end
+
+def standard?
+  (mc = metric_card) && mc.standard?
 end
 
 def metric_card_before_name_change
@@ -121,6 +129,14 @@ end
 
 def record_card
   Card.fetch record
+end
+
+def contextual_record_name
+  if generation == 1
+    "_self"
+  else
+    "_#{'L' * (generation - 1)}"
+  end
 end
 
 format do

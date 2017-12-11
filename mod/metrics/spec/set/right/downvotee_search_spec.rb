@@ -197,10 +197,10 @@ RSpec.describe Card::Set::Right::DownvoteeSearch do
         it "shows metric drag and drop items" do
           analysis = Card["Apple Inc+Natural_Resource_Use"]
           @metric.update_attributes! subcards:
-            { "+#{Card[:wikirate_topic].name}" => analysis.cardname.right }
+            { "+#{Card[:wikirate_topic].name}" => analysis.name.right }
           subcard = {
             "+metric"  => { content: @metric.name },
-            "+company" => { content: "[[#{analysis.cardname.left}]]",
+            "+company" => { content: "[[#{analysis.name.left}]]",
                             type_id: Card::PointerID },
             "+value"   => { content: "200",  type_id: Card::PhraseID },
             "+year"    => { content: "2015", type_id: Card::PointerID },

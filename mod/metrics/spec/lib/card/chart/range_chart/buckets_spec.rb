@@ -6,17 +6,15 @@ RSpec.describe Card::Chart::RangeChart::Buckets, "bucket calculation" do
     buck = Class.new
     buck.extend Card::Chart::RangeChart::Buckets
     buck.instance_eval { @buckets = 10 }
-    buck.define_singleton_method(:max) { upper}
+    buck.define_singleton_method(:max) { upper }
     buck.define_singleton_method(:min) { lower }
     buck.calculate_buckets
     buck
   end
 
   def bucket_ranges min, max
-    ranges =  [[be <= min, be > min]]
-    ranges += [[be > min, be > min]] * 8
-    ranges << [be > min, be_between(max, max + 100).inclusive]
-    ranges
+    mid = be_between min, max
+    [[eq(min), mid]] + ([[mid, mid]] * 8) + [[mid, be_between(max, max + 100).inclusive]]
   end
 
   describe "#each_bucket" do

@@ -5,11 +5,15 @@ format :html do
   end
 
   def default_sign_in_args _args
-    class_up "signin_link", "btn btn-default"
+    class_up "signin_link", "btn btn-outline-secondary"
     voo.title = "Log in"
   end
 
   def default_sign_out_args _args
     voo.title = "Log out"
+  end
+
+  def nav_link_class type
+    classy(type)
   end
 end

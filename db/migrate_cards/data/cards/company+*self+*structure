@@ -1,11 +1,9 @@
 <p>{{+description}}</p>
 
 <div class="filter-search-form">
-  {{+filter search company|filter_form}}
+  {{+browse company filter|filter_form}}
 </div>
 
 <div id="browse-companies">
-   {{+filter search company||content; structure:browse company item }}
+   {{+browse company filter||browse_item}}
 </div>
-
-

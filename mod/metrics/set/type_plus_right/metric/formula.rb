@@ -1,7 +1,7 @@
 include Abstract::Variable
 
 def metric_name
-  cardname.left
+  name.left
 end
 
 def metric_card
@@ -23,19 +23,15 @@ end
 
 format :html do
   def new_view_hidden
-    hidden_field_tag "success[id]", card.cardname.left
+    hidden_tags success: { id: card.name.left }
   end
 
-  def default_new_args args
-    args[:form_opts] = {
-      "data-slot-selector" => ".card-slot.TYPE-metric"
-    }
+  def new_form_opts
+    super().merge "data-slot-selector" => ".card-slot.TYPE-metric"
   end
 
-  def default_edit_args args
-    args[:form_opts] = {
-      "data-slot-selector" => ".card-slot.TYPE-metric"
-    }
+  def edit_form_opts
+    { "data-slot-selector" => ".card-slot.TYPE-metric" }
   end
 
   def edit_view_hidden
@@ -49,30 +45,22 @@ format :html do
     output [
       text_area(:content,
                 rows: 5,
-                class: "card-content",
+                class: "d0-card-content",
                 "data-card-type-code" => card.type_code),
-      _render_variables,
-      add_metric_button
+      _render_variables
     ]
   end
 
-  def add_metric_button
-    target = "#modal-add-metric-slot"
-    # "#modal-#{card.cardname.safe_key}"
-    output [
-      (wrap_with :span, class: "input-group" do
-        button_tag class: "pointer-item-add btn btn-default slotter",
-                   type: "button",
-                   data: { toggle: "modal", target: target },
-                   href: path(layout: "modal", view: :edit,
-                              mark: card.variables_card.name,
-                              slot: { title: "Choose Metric" }) do
-          glyphicon("plus") + " add metric"
-        end
-      end),
-      _render_modal_slot(modal_id: "add-metric-slot",
-                         dialog_class: "large").html_safe
-    ]
+  view :new do
+    super() + add_metric_modal_slot
+  end
+  view :edit do
+    voo.hide :toolbar
+    super() + add_metric_modal_slot
+  end
+
+  def add_metric_modal_slot
+    _render_modal_slot(modal_id: "add-metric-slot", dialog_class: "large").html_safe
   end
 
   view :core do

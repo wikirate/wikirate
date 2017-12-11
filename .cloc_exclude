@@ -1,0 +1,14 @@
+files
+vendor
+backups
+coverage
+log
+config
+public
+tmp
+./mod/metrics/lib/javascript/script_d3.js
+./mod/metrics/lib/javascript/script_vega.js
+./mod/wikirate_source/files
+./mod/wikirate_source/lib/javascript/pdf.js
+./mod/wikirate_source/lib/javascript/pdf.worker.js
+./vendor/card-mods/pdfjs/files/build/pdf.js

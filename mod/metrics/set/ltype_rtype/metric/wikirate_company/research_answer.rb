@@ -5,14 +5,15 @@ format :html do
     # voo.show! :answer_form
     voo.editor = :inline_nests
     frame do
-      render_haml :research_answer
+      haml :research_answer
     end
   end
 
   # slot for the form
   view :new_answer, cache: :never do
     wrap do
-      _optional_render :answer_form
+      _render :answer_form
+      _render_answer_table
     end
   end
 
@@ -20,11 +21,16 @@ format :html do
     nest new_answer_card, view: :table_form
   end
 
+  # placeholder
+  # that needs the correct number of parts to work
   def new_answer_card
-    card.attach_subfield "replace with year", type_id: MetricValueID
-  end
-
-  def view_template_path view
-    super(view, __FILE__)
+    if card.relationship?
+      card.attach_subfield "replace with year+replace with company",
+                           type_id: RelationshipAnswerID
+    # type_id: MetricValueID
+    else
+      card.attach_subfield "replace with year",
+                           type_id: MetricValueID
+    end
   end
 end

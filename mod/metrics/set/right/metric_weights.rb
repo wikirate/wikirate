@@ -3,7 +3,7 @@ event :update_formula, :prepare_to_store do
     weight = Env.params[i_name] || 0
     "{{#{i_name}}}*#{weight}"
   end.join "+"
-  add_subcard "#{cardname.left}+#{Card[:formula].name}", content: new_formula
+  add_subcard "#{name.left}+#{Card[:formula].name}", content: new_formula
 end
 
 def formula
@@ -13,7 +13,7 @@ end
 def metrics_with_weight
   formula.split("+").map do |summand|
     metric, weight = summand.split "*"
-    metric, weight = weight, metric if weight =~ /[^\s\d\.]/
+    metric, weight = weight, metric if weight.match?(/[^\s\d\.]/)
     metric = metric.scan(/\{\{([^}]+)\}\}/).flatten.first
     weight = weight.to_f
     [metric, weight]
@@ -32,7 +32,7 @@ format :html do
         #{text_field_tag 'pointer_item', args[:pointer_item], class: 'pointer-item-text form-control'}
 
         <span class="input-group-btn">
-          <button class="pointer-item-delete btn btn-default" type="button">
+          <button class="pointer-item-delete btn btn-outline-secondary" type="button">
             #{glyphicon 'remove'}
           </button>
         </span>

@@ -8,9 +8,9 @@ format :html do
   attr_accessor :citations
 
   view :cite, cache: :never do
-    # href_root = parent ? parent.card.cardname.trunk_name.url_key : ''
+    # href_root = parent ? parent.card.name.trunk_name.url_key : ''
     wrap_with :sup do
-      wrap_with :a, class: "citation", href: "##{card.cardname.url_key}" do
+      wrap_with :a, class: "citation", href: "##{card.name.url_key}" do
         cite!
       end
     end

@@ -63,7 +63,7 @@ format :html do
     output [
       zoom_out_link,
       wrap_with(:div, "",
-                id: id, class: classy("vis"),
+                id: id, class: "#{classy('vis')} _load-vis",
                 data: { url: chart_load_url })
     ]
   end
@@ -76,17 +76,17 @@ format :html do
   end
 
   def show_chart?
-    return if card.relationship?
-    return unless card.numeric? || card.categorical?
+    return if card.relationship? || !(card.numeric? || card.categorical?)
 
     card.filter_hash[:metric_value] != "none" &&
+      card.filter_hash[:metric_value] != "all" &&
       card.filter_hash[:metric_value] != "unknown" # &&
-      #chart_item_count > 3
+    # chart_item_count > 3
   end
 
   def zoom_out_link
     return unless zoomed_in?
-    link_to_view :content, fa_icon("search-minus"),
+    link_to_view :content, fa_icon(:zoom_out),
                  path: zoom_out_path_opts,
                  class: "slotter chart-zoom-out"
   end
@@ -120,7 +120,9 @@ format :json do
   end
 
   def chart_class
-    if card.numeric?
+    if card.scored?
+      Card::Chart::ScoreChart
+    elsif card.numeric?
       Card::Chart::NumericChart
     else
       Card::Chart::CategoryChart

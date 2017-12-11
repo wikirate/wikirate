@@ -19,7 +19,7 @@ Card.search(wql) do |company|
     analysis.save! if analysis.new_card?
     [:claim, :metric, :source].each do |attrib|
       attrib_card = analysis.fetch trait: attrib
-      next unless attrib_card.count > 0
+      next unless attrib_card.count.positive?
       begin
         attrib_card.update_cached_count
       rescue

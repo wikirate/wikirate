@@ -1,4 +1,4 @@
-describe Card::Set::Type::Image do
+RSpec.describe Card::Set::Type::Image do
   describe "missing view" do
     before do
       @file = File.open("#{Rails.root}/mod/wikirate/spec/set/right/image.jpg")

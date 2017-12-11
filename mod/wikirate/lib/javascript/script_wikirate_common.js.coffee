@@ -1,3 +1,13 @@
+# taken from card "modal window script'
+# I removed that card. Don't know what the code does -pk
+$ ->
+  $('.modal-window').dialog
+    modal: true
+    width: '46%'
+    buttons: Ok: ->
+      $(this).dialog 'close'
+
+
 # Loader animation
 $.extend wikirate:
   ajaxLoader: { head: '#ajax_loader', child: '.loader-anime'}
@@ -21,6 +31,10 @@ $.extend wikirate:
       return if this.isLoading()
       target.append($(loader.head).html())
       this.child().addClass("relative") if relative
+    prepend: ->
+      return if this.isLoading()
+      target.prepend($(loader.head).html())
+      this.child().addClass("relative") if relative
     remove: ->
       this.child().remove()
     child: ->
@@ -39,22 +53,25 @@ $.urlParam = (name) ->
 # Check if container exist
 $.fn.exists = -> return this.length>0
 
-wagn.slotReady (slot) ->
+decko.slotReady (slot) ->
   # use jQuery chosen library for select tags
-  slot.find('.pointer-multiselect').each (i) ->
-    $(this).attr 'data-placeholder', '　'
-    $(this).chosen
-      no_results_text: 'Press Enter to add new'
-      skip_no_results: true
-      width: '100%'
-
-  slot.find('.pointer-select').each (i) ->
-    $(this).attr 'data-placeholder', '　'
-    $(this).chosen
-      no_results_text: 'No Result'
-      disable_search_threshold: 10
-      skip_no_results: true
-      width: '100%'
+#  slot.find('.pointer-multiselect').each (i) ->
+#    $(this).attr 'data-placeholder', '　'
+#    unless $(this).hasClass("_no-chosen")
+#      $(this).chosen
+#        no_results_text: 'Press Enter to add new'
+#        skip_no_results: true
+#        width: '100%'
+#
+#  slot.find('.pointer-select').each (i) ->
+#    $(this).attr 'data-placeholder', '　'
+#
+#    unless $(this).hasClass("_no-chosen")
+#      $(this).chosen
+#        no_results_text: 'No Result'
+#        disable_search_threshold: 10
+#        skip_no_results: true
+#        width: '100%'
 
   slot.find('.company_autocomplete').autocomplete
     source: '/Companies+*right+*options.json?view=name_match'
@@ -77,3 +94,8 @@ $(document).ready ->
     $('#modal-main-slot').on 'hidden.bs.modal', ->
       $(this).data 'bs.modal', null
       $(this).find('.modal-body').empty()
+
+
+  $('body').on "submit", "._filter-form", ->
+    slot = $(this).findSlot($(this).data("slot-selector"))
+    wikirate.loader($(slot), true).prepend()

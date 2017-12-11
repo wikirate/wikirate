@@ -13,10 +13,10 @@ textarea {
     border: 1px solid $border-color;
     color: #555;
     // display: block;
-    font-size: 14px;
-    height: 34px;
-    line-height: 1.42857;
-    padding: 6px 12px;
+    // font-size: 14px;
+    // height: 34px;
+    // line-height: 1.42857;
+    // padding: 6px 12px;
     // width: 100%;
     @include box-shadow(0,1px,1px,rgba(0,0,0,0.075), inset);
     &:focus {
@@ -73,7 +73,7 @@ li > input[type="radio"] {
 }
 
 .conflict-view,
-.history-view > .card-content,
+.history-view > .d0-card-content,
 #tinymce {
     background: #fff;
 }

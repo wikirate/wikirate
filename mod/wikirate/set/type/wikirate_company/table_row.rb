@@ -15,8 +15,8 @@ format :html do
 
   def link_to_metric_count count, label
     text = count_with_label_cell count, label
-    link_to text, path: { mark: card.cardname,
-                          filter: { wikirate_topic: topic_card.cardname } }
+    link_to text, path: { mark: card.name,
+                          filter: { wikirate_topic: topic_card.name } }
   end
 
   def metric_box content, label

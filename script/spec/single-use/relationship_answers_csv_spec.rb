@@ -22,12 +22,14 @@ RSpec.describe "relationship answer import" do
   end
 
   it "creates inverse count" do
-    card = Card["Relationship Metric Folk+is Supplier Of+Dhakarea Limited+2016+value"]
+    card = Card["Relationship Metric Folk+is Supplier Of+"\
+                "Dhakarea Limited+2016+value"]
     expect(card.content).to eq "1"
   end
 
   it "creates answer" do
-    card = Card["Relationship Metric Folk+is Supplied By+Adidas+2016+Dhakarea Limited"]
+    card = Card["Relationship Metric Folk+is Supplied By"\
+                "+Adidas+2016+Dhakarea Limited"]
     expect(card.content).to eq "Tier 1 Supplier"
   end
 end

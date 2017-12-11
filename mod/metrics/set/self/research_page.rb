@@ -1,14 +1,14 @@
+include_set Abstract::Media
 card_accessor :metric
 card_accessor :wikirate_company
 
 format :html do
   view :new do
     voo.hide :menu
-    frame do
-      [
-        _render_landing_form,
-        render_haml(:source_container)
-      ]
+    with_nest_mode :edit do
+      frame do
+        [_render_landing_form, haml(:source_container)]
+      end
     end
   end
 
@@ -24,7 +24,7 @@ format :html do
   view :core, cache: :never do
     return _render_new unless companies && metrics
     wrap do
-      render_haml :research_form
+      haml :research_form
     end
   end
 
@@ -36,15 +36,13 @@ format :html do
 
   def metrics
     if project
-      project.metric_card.item_names
+      project.metrics
     else
       Array(params[:metric] || card.metric_card.item_names)
     end
   end
 
-  view :source_side do
-    render_haml :source_side
-  end
+  view :source_side, template: :haml
 
   view :landing_form, cache: :never do
     field_content_from_params
@@ -74,8 +72,8 @@ format :html do
     metrics.map do |metric_name|
       next not_a_metric(metric_name) unless existing_metric? metric_name
       record_card = Card.fetch metric_name, companies.first, new: {}
-      nest record_card, view: :core, hide: :chart
-    end.join "<hr/>"
+      nest record_card, view: :core, hide: [:chart, :add_answer_redirect]
+    end.join
   end
 
   def project?
@@ -127,9 +125,5 @@ format :html do
     wrap_with :div, class: "col-md-6 col-centered text-center" do
       submit_button text: "Next"
     end
-  end
-
-  def view_template_path view
-    super(view, __FILE__)
   end
 end

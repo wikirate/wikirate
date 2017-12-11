@@ -7,7 +7,7 @@ Feature: company feature
 
   Scenario: Browse through tabs
     Then I should see "disturbances in the Force"
-    And I should see "+Wikipedia"
+    And I should see "Wikipedia"
     And I wait for ajax response
     Then I should see "A number of fictional mobile space stations"
     Then I click on "Topics"
@@ -20,32 +20,38 @@ Feature: company feature
     And I should see "Visit Original"
 
   Scenario: Filter by metric
-    When I click on "more filter options"
+    When I click on "Add filter"
+    And I click on "Metric"
     And I wait for ajax response
-    And I fill in "Metric" with "Jedi+deadliness"
-    And I submit form
+    And I fill in "filter[metric]" with "Jedi+deadliness"
+    # To change focus
+    And I click on "Add filter"
+    And I wait for ajax response
     Then I should not see "disturbances in the Force"
     And I should see "deadliness"
 
   Scenario: Filter by topic
-    When I click on "more filter options"
+    When I click on "Add filter"
+    And I click on "Topic"
     And I wait for ajax response
-    And I fill in "Topic" with "Force"
-    And I submit form
+    And I fill in "filter[wikirate_topic]" with "Force"
+    # To change focus
+    And I click on "Add filter"
+    And I wait for ajax response
     Then I should not see "dinosaurlabor"
     And I should see "disturbances in the Force"
 
   Scenario: Filter by year
-    And I select "2001" from "Year"
-    And I submit form
+    And I select "2001" from "filter[year]"
+    And I wait for ajax response
     Then I should not see "dinosaurlabor"
     And I should see "disturbances in the Force"
 
   Scenario: Search for not researched values
-    And I select "Not Researched" from "Value"
-    And I submit form
+    And I select "Not Researched" from "filter[metric_value]"
+    And I wait for ajax response
     Then I should not see "disturbances in the Force"
-    And I should see "Sith Lord in Charge"
+    And I should see "Weapons"
 
   Scenario: Paging
     Then I should not see "deadliness"

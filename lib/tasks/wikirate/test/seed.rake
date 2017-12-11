@@ -1,8 +1,8 @@
 namespace :wikirate do
   namespace :test do
     namespace :seed do
-      base_dump_path = File.join Wagn.root, "test", "base_seed.db"
-      migrated_dump_path = File.join Wagn.root, "test", "migrated_seed.db"
+      base_dump_path = File.join Decko.root, "test", "base_seed.db"
+      migrated_dump_path = File.join Decko.root, "test", "migrated_seed.db"
 
       desc "update seed data using the production database"
       task :generate, [:location] do |_task, args|
@@ -11,12 +11,12 @@ namespace :wikirate do
         Rake::Task["wikirate:test:seed:migrate"].invoke
       end
 
-      desc "seed with raw wagn test db and import cards"
+      desc "seed with raw decko test db and import cards"
       task :generate_base, [:location] do |task, args|
         # init_test env uses the same db as test env
         # test env triggers stuff on load that breaks the seeding process
         ensure_env :init_test, task, args do
-          execute_command "rake wagn:seed", :test
+          execute_command "rake decko:seed_without_reset", :test
           Rake::Task["wikirate:test:import_from"].invoke(args[:location])
           Rake::Task["wikirate:test:dump"].invoke(base_dump_path)
         end
@@ -26,9 +26,10 @@ namespace :wikirate do
       task :migrate do |task|
         ensure_env :test, task do
           Rake::Task["wikirate:test:load_dump"].invoke(base_dump_path)
-          Rake::Task["wagn:migrate"].invoke
+          Rake::Task["decko:migrate"].invoke
           Rake::Task["wikirate:test:dump"].invoke(migrated_dump_path)
           Card::Cache.reset_all
+          ActiveRecord::Base.descendants.each{ |c| c.reset_column_information }
           Rake::Task["wikirate:test:seed:update"].invoke
         end
       end
@@ -47,11 +48,10 @@ namespace :wikirate do
       desc "add wikirate test data to test database"
       task add_wikirate_test_data: :environment do |task|
         ensure_env "test", task do
-          require "#{Wagn.root}/test/seed.rb"
+          require "#{Decko.root}/test/seed.rb"
           SharedData.add_wikirate_data
         end
       end
-
     end
   end
 end

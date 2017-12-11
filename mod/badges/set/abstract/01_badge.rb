@@ -39,7 +39,7 @@ format :html do
     class_up "alert", "text-center"
     alert :success, true, false do
       [
-        "<h4>#{_render :name_with_certificate}</h4>",
+        "<h4>#{_render! :name_with_certificate}</h4>",
         _render_description
       ]
     end

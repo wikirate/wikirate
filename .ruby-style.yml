@@ -1,4 +1,5 @@
 AllCops:
+  TargetRubyVersion: 2.4
   Include:
   - "**/*.gemspec"
   - "**/*.podspec"
@@ -33,12 +34,11 @@ Style/CollectionMethods:
     detect: 'find'
     find_all: 'select'
     reduce: 'inject'
-Style/DotPosition:
+Layout/DotPosition:
   EnforcedStyle: leading
 Style/Encoding:
   Description: Use UTF-8 as the source file encoding.
   Enabled: false
-  EnforcedStyle: when_needed
 Style/GuardClause:
   Description: Check for conditionals that can be replaced with guard clauses
   Enabled: true
@@ -54,7 +54,7 @@ Style/RegexpLiteral:
   Enabled: true
 Style/StringLiterals:
   EnforcedStyle: double_quotes
-Style/SpaceAroundEqualsInParameterDefault:
+Layout/SpaceAroundEqualsInParameterDefault:
   EnforcedStyle: no_space
 Style/FrozenStringLiteralComment:
   Enabled: false
@@ -62,7 +62,7 @@ Metrics/MethodLength:
   Enabled: true
   CountComments: false
   Max: 15
-Style/ExtraSpacing:
+Layout/ExtraSpacing:
   Description: Do not use unnecessary spacing.
   Enabled: false
 Lint/AssignmentInCondition:
@@ -81,7 +81,7 @@ Metrics/BlockLength:
 RSpec/ExampleLength:
   Description: Checks for long examples.
   Enabled: true
-  Max: 10
+  Max: 15
 RSpec/FilePath:
   Description: Checks that spec file paths are consistent with the test subject.
   Enabled: true
@@ -94,6 +94,8 @@ RSpec/NestedGroups:
   Description: Checks for nested example groups.
   Enabled: false
   Max: 5
+RSpec/InstanceVariable:
+  Enabled: false
 Metrics/LineLength:
   Enabled: true
   Max: 90

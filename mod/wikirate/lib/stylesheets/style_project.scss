@@ -1,5 +1,5 @@
 
-.overall-progress-box {
+.default-progress-box {
   .lead {
     margin: 0;
   }
@@ -8,25 +8,31 @@
   }
 }
 
-.TYPE_PLUS_RIGHT-project-topic.card-content .pointer-item {
+.TYPE_PLUS_RIGHT-project-topic.d0-card-content .pointer-item {
   display: inline;
 }
 
 .progress-column .thumbnail {
-  margin: 0;
   border: 0;
+  margin: 0;
 }
 
-table.company td.metric {
-  max-width: 250px;
-}
-
-table.company td.progress-column {
-  width: 30%;
-}
-
-table.metric td.company {
-  width: 70%;
+table {
+  &.company td {
+    &.metric {
+      max-width: 250px;
+    }
+    &.progress-column {
+      width: 35%;
+    }
+  }
+  &.metric td.company {
+    width: 70%;
+  }
+  &.company td.button-column {
+    border-radius: 0;
+    width: 8%;
+  }
 }
 
 .project-details-info .lead {

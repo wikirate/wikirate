@@ -17,7 +17,7 @@ attr_accessor :variant
 
 def user_plus_cardtype_name
   @user_plus_cardtype_name ||=
-    research_group? ? cardname.left_name.left_name : cardname.left_name
+    research_group? ? name.left_name.left_name : name.left_name
 end
 
 def user_card
@@ -30,7 +30,7 @@ end
 
 def research_group?
   if @research_group.nil?
-    @research_group = cardname.parts.size > 3
+    @research_group = name.parts.size > 3
   else
     @research_group
   end
@@ -38,7 +38,7 @@ end
 
 # part 3 of U+C+R
 def research_group_name
-  cardname.left_name.right_name
+  name.left_name.right_name
 end
 
 def research_group_card
@@ -61,12 +61,12 @@ end
 
 def selected_subvariant
   @subvariant ||=
-    (Env.params["subvariant"] && Env.params["subvariant"].to_sym) || :all
+    (Env.params["subvariant"]&.to_sym) || :all
 end
 
 def variant
   @variant ||=
-    (Env.params["variant"] && Env.params["variant"].to_sym) || :created
+    (Env.params["variant"]&.to_sym) || :created
 end
 
 def subvariant_count subvariant
@@ -92,7 +92,7 @@ format :html do
   delegate :selected_subvariant, to: :card
 
   def variant
-    card.variant && card.variant.to_sym
+    card.variant&.to_sym
   end
 
   def subvariants
@@ -186,7 +186,7 @@ format :html do
     :metric_value
   ].each do |cardtype|
     view "#{cardtype}_list" do
-      listing = render("#{cardtype}_sublist".to_sym)
+      listing = render!("#{cardtype}_sublist".to_sym)
       return listing if card.research_group? || !subvariants
       tab_listing listing
     end

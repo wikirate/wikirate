@@ -1,0 +1,738 @@
+oc_jurisdiction_code;oc_company_number;wikirate_number;company_name;country;headquarters_state;state_of_inc;inc_jurisdiction_code;headquarters_address
+us_fl;F06000001006;859029;Roper Technologies;united states;FLORIDA;DELAWARE;us_de;6901 PROFESSIONAL PKWY EAST SUITE 200 SARASOTA FL 34240 9415562601
+us_ny;2892988;47743;Time Warner Cable;united states;NEW YORK;NEW YORK;us_ny;60 COLUMBUS CIRCLE, 17TH FLOOR NEW YORK NY 10023 212-364-8200
+us_ma;041286950;866455;Emerson College;united states;Massachusetts;;;120 Boylston Street Boston, MA 02116
+us_ct;0272922;50426;Alexion Pharmaceuticals;united states;CONNECTICUT;DELAWARE;us_de; 100 COLLEGE STREET NEW HAVEN CT 06510 2032722596
+us_ct;0282328;430015;Doctor's Associates Inc.;united states;Connecticut;;;Milford, Connecticut
+us_ky;0437674;862653;General Cable;united states;KENTUCKY;DELAWARE;us_de; 4 TESSENEER DRIVE HIGHLAND HEIGHTS KY 41076 8595728000
+us_ca;C2059118;49792;Juniper Networks;united states;CALIFORNIA;DELAWARE;us_de; 1133 INNOVATION WAY SUNNYVALE CA 94089 4087452000
+us_mn;ae4913e5-afd4-e011-a886-001ec94ffe7f;871534;MTS Systems Corporation;united states;MINNESOTA;MINNESOTA;us_mn; 14000 TECHNOLOGY DR EDEN PRAIRIE MN 55344-2290 6129374000
+us_ma;870543688;776782;Smith & Wesson Holding Corporation;united states;MASSACHUSETTS;NEVADA;us_nv; 2100 ROOSEVELT AVENUE SPRINGFIELD MA 01104 844-363-5386
+us_tx;6522471-0142;61263;Huntsman;united states;TEXAS;DELAWARE;us_de; 10003 WOODLOCH FOREST DRIVE THE WOODLANDS TX 77380 (281) 719-6000
+us_tx;2106297;56960;Baker Hughes;united states;TEXAS;DELAWARE;us_de; 17021 ALDINE WESTFIELD ROAD HOUSTON TX 77073-5051 7134398600
+us_ky;0884986;858873;Tempur-Pedic;united states;KENTUCKY;KENTUCKY;us_ky; 1712 JAGGIE FOX WAY LEXINGTON KY 40511 8008788889
+us_nc;0452549;61104;VF;united states;NORTH CAROLINA;PENNSYLVANIA;us_pa; 105 CORPORATE CENTER BOULEVARD GREENSBORO NC 27408 (336)424-6000
+us_mn;e541eb59-7acf-e511-8164-00155d01c56d;6376;Cargill Inc.;united states;MINNESOTA;DELAWARE;us_de; 15407 MCGINTY RD. MINNETONKA MN 55391 9529843557
+us_tx;0800866809;58830;GameStop Corp.;united states;TEXAS;DELAWARE;us_de; 625 WESTPORT PARKWAY GRAPEVINE TX 76051 817-424-2000
+us_ca;C0674833;48394;Franklin Resources;united states;CALIFORNIA;DELAWARE;us_de; ONE FRANKLIN PARKWAY BUILDING 920 SAN MATEO CA 94403 650-312-2000
+us_oh;12127;61271;Goodyear Tire & Rubber Company;united states;OHIO;OHIO;us_oh; 1144 E MARKET ST AKRON OH 44316 2167962121
+us_co;19871550800;51257;CH2M HILL;united states;COLORADO;DELAWARE;us_de; 9191 S.JAMAICA STREET ENGLEWOOD CO 80112 3037710900
+us_ca;C1595386;56668;Gilead Sciences;united states;CALIFORNIA;DELAWARE;us_de; 333 LAKESIDE DR FOSTER CITY CA 94404 6505743000
+us_va;02387785;47865;Dominion Resources;united states;VIRGINIA;VIRGINIA;us_va; 120 TREDEGAR STREET RICHMOND VA 23219 8048192000
+us_wa;278012337;56169;Weyerhaeuser;united states;WASHINGTON;WASHINGTON;us_wa; 220 OCCIDENTAL AVENUE SOUTH SEATTLE WA 98104 206-539-3000
+us_or;5749114;48313;Precision Castparts;united states;OREGON;OREGON;us_or; 4650 SW MACADAM AVE STE 400 PORTLAND OR 97239 503.946.4800
+us_tn;000270913;48783;Eastman Chemical;united states;TENNESSEE;DELAWARE;us_de; PO BOX 511 200 SOUTH WILCOX DRIVE KINGSPORT TN 37660 4232292000
+us_ca;C2104656;874822;West Marine, Inc.;united states;CALIFORNIA;DELAWARE;us_de; 500 WESTRIDGE DRIVE WATSONVILLE CA 95076-4100 8317282700
+us_ne;10069961;874784;West Corporation;united states;NEBRASKA;DELAWARE;us_de; 11808 MIRACLE HILLS DR OMAHA NE 68154 4025717700
+us_ne;0298840;874594;Valmont Industries, Inc.;united states;NEBRASKA;DELAWARE;us_de; PO BOX 358 HWY 275 VALLEY NE 68064 4023592201
+us_ma;042103460;864810;UniFirst Corporation;united states;MASSACHUSETTS;MASSACHUSETTS;us_ma; 68 JONSPIN RD WILMINGTON MA 01887 (978) 658-8888
+us_ca;C1827705;874404;Ultratech, Inc.;united states;CALIFORNIA;DELAWARE;us_de; 3050 ZANKER RD SAN JOSE CA 95134 4083218835
+us_ca;C2790940;874366;TTM Technologies, Inc.;united states;CALIFORNIA;DELAWARE;us_de; 1665 SCENIC AVENUE SUITE 250 COSTA MESA CA 92626 7143273000
+us_ca;C2168031;874028;Synaptics, Inc.;united states;CALIFORNIA;DELAWARE;us_de; 1251 MCKAY DRIVE SAN JOSE CA 95131-3326 408-904-1100
+us_fl;J49665;873864;Sun Hydraulics Corporation;united states;FLORIDA;FLORIDA;us_fl; 1500 WEST UNIVERSITY PKWY SARASOTA FL 34243 9413621200
+us_fl;V16025;873826;Stein Mart Inc.;united states;FLORIDA;FLORIDA;us_fl; 1200 RIVERPLACE BLVD JACKSONVILLE FL 32207 9043461500
+us_ca;C2563693;873595;Silver Spring Networks, Inc.;united states;CALIFORNIA;DELAWARE;us_de; 230 W. TASMAN DRIVE SAN JOSE CA 95134 669-770-4000
+us_ca;C3003881;873481;ShoreTel Inc.;united states;CALIFORNIA;CALIFORNIA;us_ca; 960 STEWART DRIVE SUNNYVALE CA 94085 408 331 3300
+us_ca;C0407621;873367;Semtech Corporation;united states;CALIFORNIA;DELAWARE;us_de; 200 FLYNN ROAD CAMARILLO CA 93012-8790 8054982111
+us_ca;C1682722;776680;Sanmina Corporation;united states;CALIFORNIA;DELAWARE;us_de; 2700 N FIRST ST SAN JOSE CA 95134 4089643500
+us_ga;J450245;872991;RPC, Inc.;united states;GEORGIA;GEORGIA;ge; 2801 BUFORD HIGHWAY NE, SUITE 520 ATLANTA GA 30329 404-321-2140
+us_ca;C2219004;872766;Qualys, Inc.;united states;CALIFORNIA;DELAWARE;us_de; 1600 BRIDGE PARKWAY REDWOOD SHORES CA 94065 650-801-6100
+us_az;01730097;58754;Pinnacle West;united states;ARIZONA;ARIZONA;us_az; 400 NORTH FIFTH STREET MS8695 PHOENIX AZ 85004 602 250 1000
+us_ca;C3278247;872348;OSI Systems, Inc.;united states;CALIFORNIA;DELAWARE;us_de; 12525 CHADRON AVE HAWTHORNE CA 90250 3109780516
+us_ca;C2231215;872208;Omnicell Inc.;united states;CALIFORNIA;CALIFORNIA;us_ca; 590 E. MIDDLEFIELD ROAD MOUNTAIN VIEW CA 94043 6502516100
+us_az;R19114275;872056;Northern Tier Energy LP;united states;ARIZONA;DELAWARE;us_de; 1250 W. WASHINGTON STREET SUITE 300 TEMPE AZ 85281 (602) 302-5450
+us_ok;3412343910;871942;NGL Energy Partners LP;united states;OKLAHOMA;TEXAS;us_tx; 6120 S. YALE SUITE 805 TULSA OK 74136 918.481.1119
+us_ca;C1995909;871828;NeoPhotonics Corporation;united states;CALIFORNIA;CALIFORNIA;us_ca; 2911 ZANKER ROAD SAN JOSE CA 951342125 4082329200
+us_ca;C2930023;871649;Nanometrics Inc.;united states;CALIFORNIA;DELAWARE;us_de; 1550 BUCKEYE DRIVE MILPITAS CA 95035 408-435-9600
+us_ca;C2657571;871611;Multi-Fineline Electronix, Inc.;united states;CALIFORNIA;CALIFORNIA;us_ca; 8659 RESEARCH DR. IRVINE CA 92618 949-453-6800
+us_ny;1968027;871496;MSC Industrial Direct Co., Inc.;united states;NEW YORK;NEW YORK;us_ny; 75 MAXESS RD MELVILLE NY 11747 516-812-2000
+us_ca;C2640168;871420;Monolithic Power Systems, Inc.;united states;CALIFORNIA;CALIFORNIA;us_ca; 79 GREAT OAKS BLVD SAN JOSE CA 95119 (408) 826-0600
+us_nd;1344300;871155;MDU Resources Group Inc.;united states;NORTH DAKOTA;DELAWARE;us_de; 1200 WEST CENTURY AVENUE BISMARCK ND 58503 701-530-1059
+us_wi;1M03408;871003;Manitowoc Company, Inc.;united states;WISCONSIN;WISCONSIN;us_wi; 2400 SOUTH 44TH STREET MANITOWOC WI 54221-0066 9206522222
+us_va;F1545914;776758;Luna Innovations Incorporated;united states;VIRGINIA;DELAWARE;us_de; 301 FIRST STREET SW SUITE 200 ROANOKE VA 24011 540-769-8400
+us_ma;042833935;870835;Kopin Corporation;united states;MASSACHUSETTS;DELAWARE;us_de; 125 NORTH DRIVE WESTBOROUGH MA 01581 508-870-5959
+us_ma;521762325;870684;Kadant, Inc.;united states;MASSACHUSETTS;DELAWARE;us_de; ONE TECHNOLOGY PARK DRIVE WESTFORD MA 01886 (978) 776-2000
+us_ma;043444218;870493;IPG Photonics Corporation;united states;MASSACHUSETTS;DELAWARE;us_de; 50 OLD WEBSTER ROAD OXFORD MA 01540 5083731100
+us_fl;F07000001492;870402;Intertape Polymer Group;united states;FLORIDA;;;100 Paramount Drive  Suite 300  Sarasota, FL 34232
+us_il;2138754;869992;IDEX Corporation;united states;ILLINOIS;DELAWARE;us_de; 1925 WEST FIELD COURT LAKE FOREST IL 60045 8474987070
+us_fl;P93000006566;869801;HEICO;united states;FLORIDA;FLORIDA;us_fl; 3000 TAFT ST HOLLYWOOD FL 33021 954-987-4000
+us_ma;042882273;869687;Haemonetics Corporation;united states;MASSACHUSETTS;MASSACHUSETTS;us_ma; 400 WOOD RD BRAINTREE MA 02184 7818487100
+us_mn;0aa354a4-b0d4-e011-a886-001ec94ffe7f;869527;Graco Inc.;united states;MINNESOTA;MINNESOTA;us_mn; 88 11TH AVENUE NE MINNEAPOLIS MN 55413-1894 6126236000
+us_ca;C2949141;869326;Fluidigm Corporation;united states;CALIFORNIA;DELAWARE;us_de; 7000 SHORELINE COURT SUITE 100 SOUTH SAN FRANCISCO CA 94080 6502666000
+us_ca;C2176135;869250;Finisar Corporation;united states;CALIFORNIA;DELAWARE;us_de; 1389 MOFFETT PARK DR SUNNYVALE CA 94089 4085481000
+us_fl;P92000014247;869212;FARO Technologies;united states;FLORIDA;FLORIDA;us_fl; 125 TECHNOLOGY PARK LAKE MARY FL 32746-6204 4073339911
+us_ca;C1521239;869071;Exar Corporation;united states;CALIFORNIA;DELAWARE;us_de; 48720 KATO ROAD 48720 KATO ROAD FREMONT CA 94538 5106687000
+us_pa;2823784;868994;EnerSys;united states;PENNSYLVANIA;DELAWARE;us_de; 2366 BERNVILLE ROAD READING PA 19605 (610) 208-1600
+us_mn;11440cab-a4d4-e011-a886-001ec94ffe7f;868827;Donaldson Company, Inc.;united states;MINNESOTA;DELAWARE;us_de; 1400 W. 94TH ST. MINNEAPOLIS MN 55431 6128873131
+us_pa;2558734;856582;Dentsply International Inc.;united states;PENNSYLVANIA;PENNSYLVANIA;us_pa; 570 WEST COLLEGE AVE YORK PA 17404
+us_nj;0100573479;868674;Cytec Industries, Inc.;united states;NEW JERSEY;DELAWARE;us_de; FIVE GARRET MOUNTAIN PLAZA WOODLAND PARK NJ 07424 9733573100
+us_pa;3122203;58634;Crown Holdings;united states;PENNSYLVANIA;PENNSYLVANIA;us_pa; ONE CROWN WAY PHILADELPHIA PA 19154 2156985100
+us_nc;0211830;868598;Cree, Inc.;united states;NORTH CAROLINA;NORTH CAROLINA;us_nc; 4600 SILICON DR DURHAM NC 27703 9194075300
+us_ca;C1674014;868445;Coherent Inc.;united states;CALIFORNIA;DELAWARE;us_de; 5100 PATRICK HENRY DR SANTA CLARA CA 95054 4087644000
+us_ct;0633035;868297;Chemtura Corporation;united states;CONNECTICUT;DELAWARE;us_de; BENSON ROAD MIDDLEBURY CT 06749 2035732000
+us_ca;2648991;868094;Cerus Corporation;united states;CALIFORNIA;DELAWARE;us_de; 2550 STANWELL DRIVE CONCORD CA 94520 9252886000
+us_ca;C2249695;868056;Capstone Turbine Corporation;united states;CALIFORNIA;DELAWARE;us_de; 21211 NORDHOFF STREET CHATSWORTH CA 91311 818-734-5300
+us_fl;218668;868017;Brown & Brown, Inc.;united states;FLORIDA;FLORIDA;us_fl; 220 S. RIDGEWOOD AVE. DAYTONA BEACH FL 32114 386-252-9601
+us_wi;B034287;865246;Briggs & Stratton Corporation;united states;WISCONSIN;WISCONSIN;us_wi; 12301 W WIRTH ST WAUWATOSA WI 53222 4142595333
+us_nc;1470466;852936;Babcock & Wilcox Enterprises Inc;united states;NORTH CAROLINA;DELAWARE;us_de; 13024 BALLANTYNE CORPORATE PLACE SUITE 700 CHARLOTTE NC 28277 704-625-4900
+us_sc;187881;867788;AVX Corporation;united states;SOUTH CAROLINA;DELAWARE;us_de; 1 AVX BOULEVARD FOUNTAIN INN SC 29644 864-967-2150
+us_ca;C2411307;867686;Aruba Networks, Inc.;united states;CALIFORNIA;DELAWARE;us_de; 1344 CROSSMAN AVE. SUNNYVALE CA 94089 408-227-4500
+us_mi;639636;57854;BorgWarner;united states;MICHIGAN;DELAWARE;us_de; 3850 HAMLIN RD. AUBURN HILLS MI 48326 2487549200
+us_tx;0801338661;871458;MRC Global Inc.;united states;TEXAS;DELAWARE;us_de; FULBRIGHT TOWER 1301 MCKINNEY STREET, SUITE 2300 HOUSTON TX 77010 877.294.7574
+us_ct;0200717;865688;Amphenol Corporation;united states;CONNECTICUT;DELAWARE;us_de; 358 HALL AVE WALLINGFORD CT 06492 2032658900
+us_ca;C2727491;867317;Palo Alto Networks, Inc.;united states;CALIFORNIA;DELAWARE;us_de; 4401 GREAT AMERICA PARKWAY SANTA CLARA CA 95054 408-753-4000
+us_mo;F00236837;856397;Sigma-Aldrich Corporation;united states;MISSOURI;DELAWARE;us_de; 3050 SPRUCE ST ST LOUIS MO 63103 3147715765
+us_ma;042207613;957395;TJX;united states;MASSACHUSETTS;DELAWARE;us_de; 770 COCHITUATE RD FARMINGHAM MA 01701 5086516000
+us_nj;2916612500;47898;Chubb;united states;NEW JERSEY;NEW JERSEY;us_nj; 15 MOUNTAIN VIEW ROAD WARREN NJ 07059 9089032000
+us_az;F12100080;48298;Southern Copper;united states;ARIZONA;DELAWARE;us_de; 1440 E. MISSOURI AVENUE SUITE 160 PHOENIX AZ 85014 602-264-1375
+us_il;000556425;853114;R.R. Donnelley and Sons Company;united states;ILLINOIS;DELAWARE;us_de; 35 WEST WACKER DRIVE CHICAGO IL 60601 312.326.8000
+us_ny;271507;47351;American International Group;united states;NEW YORK;DELAWARE;us_de; 175 WATER STREET NEW YORK NY 10038 2127707000
+us_mo;F001322546;56685;Wells Fargo;united states;MISSOURI;DELAWARE;us_de; ONE NORTH JEFFERSON AVENUE MAC H0005-6D ST. LOUIS MO 63103 314-875-8731
+us_tx;0005538906;56795;Valero Energy;united states;TEXAS;DELAWARE;us_de; 530 MCCULLOUGH AVE SAN ANTONIO TX 78215 2102462000
+us_mn;ed9e76e3-f31f-e511-b14d-001ec94ffe7f;47419;UnitedHealth Group;united states;MINNESOTA;DELAWARE;us_de; UNITEDHEALTH GROUP CENTER 9900 BREN ROAD EAST MINNEAPOLIS MN 55343 9529361300
+us_tx;0002374106;47574;Occidental Petroleum;united states;TEXAS;DELAWARE;us_de; 5 GREENWAY PLAZA SUITE 110 HOUSTON TX 77046 7132157000
+us_ny;2372949;63220;Goldman Sachs Group Inc.;united states;NEW YORK;DELAWARE;us_de; 200 WEST STREET NEW YORK NY 10282 2129021000
+us_ma;140689340;37805;General Electric;united states;MASSACHUSETTS;NEW YORK;us_ny; 41 FARNSWORTH STREET BOSTON MA 02210 617-443-3000
+us_tx;0003362806;4281;Exxon Mobil;united states;TEXAS;NEW JERSEY;us_nj; 5959 LAS COLINAS BLVD IRVING TX 75039-2298 9724441000
+us_oh;535613;57135;Cardinal Health;united states;OHIO;OHIO;us_oh; 7000 CARDINAL PLACE DUBLIN OH 43017 6147573033
+us_az;F08971070;859623;ON Semiconductor;united states;ARIZONA;DELAWARE;us_de; 5005 EAST MCDOWELL ROAD PHOENIX AZ 85008 6022446600
+us_wi;6C10179;51316;CUNA Mutual Group;united states;Wisconsin;;;5910 Mineral Point Road  Madison, Wisconsin 53705, United States
+us_tx;0000981706;44399;Texas Instruments;united states;TEXAS;DELAWARE;us_de; P.O. BOX 660199 DALLAS TX 75266 9729953773
+us_wi;1P10995;872538;Plexus Corporation;united states;WISCONSIN;WISCONSIN;us_wi; PLEXUS CORP ONE PLEXUS WAY NEENAH WI 54956 9209696000
+us_ca;C2562599;862403;Marvell Technology Group;united states;California;;;5488 Marvell Lane Santa Clara, CA 95054
+us_ca;C0818303;50092;KLA-Tencor;united states;CALIFORNIA;DELAWARE;us_de; ONE TECHNOLOGY DRIVE MILPITAS CA 95035 4088756000
+us_ca;C2011006;60906;Adobe Systems;united states;CALIFORNIA;DELAWARE;us_de; 345 PARK AVE SAN JOSE CA 95110-2704 4085366000
+us_ct;0076695;56177;Xerox;united states;CONNECTICUT;NEW YORK;us_ny; 45 GLOVER AVENUE PO BOX 4505 NORWALK CT 06856 2039683000
+us_ca;C3380430;853064;Williams-Sonoma, Inc.;united states;CALIFORNIA;CALIFORNIA;us_ca; 3250 VAN NESS AVENUE SAN FRANCISCO CA 94109 415-421-7900
+us_oh;391560;428104;The Wendyβ€™s Company;united states;OHIO;;;1 Dave Thomas Boulevard Dublin, Ohio, United States
+us_ca;C1770422;9413;The Walt Disney Company;united states;CALIFORNIA;CALIFORNIA;us_ca; JAMES BRUSCH 500 S BRUNA VISTA STREET BURBANK CA 91521 8185697903
+us_ny;2090088;8868;Verizon Communications Inc.;united states;NEW YORK;DELAWARE;us_de; 1095 AVENUE OF THE AMERICAS NEW YORK NY 10036 212-395-1000
+us_ny;22220;776737;Tiffany & Co.;united states;NEW YORK;DELAWARE;us_de; 727 FIFTH AVE NEW YORK NY 10022 2122305321
+us_mn;897f2a7c-a5d4-e011-a886-001ec94ffe7f;42625;Target;united states;MINNESOTA;MINNESOTA;us_mn; 1000 NICOLLET MALL MINNEAPOLIS MN 55403 6123046073
+us_ma;042456637;56627;State Street;united states;MASSACHUSETTS;MASSACHUSETTS;us_ma; ONE LINCOLN STREET BOSTON MA 02111 617 786-3000
+us_ny;2058298;49378;Starwood Hotels and Resorts Worldwide, Inc.;united states;NEW YORK;MARYLAND;us_md; 1111 WESTCHESTER AVENUE . WHITE PLAINS NY 10604 9146408100
+us_ca;C1520131;39628;Qualcomm;united states;CALIFORNIA;DELAWARE;us_de; 5775 MOREHOUSE DR SAN DIEGO CA 92121 8585871121
+us_nj;7954610000;56481;Merck & Co;united states;NEW JERSEY;NEW JERSEY;us_nj; ONE MERCK DRIVE PO BOX 100 WS3B WHITEHOUSE STATION NJ 088890100
+us_md;D00148189;56605;McCormick & Co;united states;MARYLAND;MARYLAND;us_md; 18 LOVETON CIRCLE P O BOX 6000 SPARKS MD 21152 4107717301
+us_ca;C1595022;50738;Maxim Integrated Products;united states;CALIFORNIA;DELAWARE;us_de; 160 RIO ROBLES SAN JOSE CA 95134 408-601-1000
+us_tx;0000478606;51397;JC Penney;united states;TEXAS;DELAWARE;us_de; 6501 LEGACY DR PLANO TX 75024-3698 9724311000
+us_va;F0499196;48620;Hilton Worldwide Holdings;united states;VIRGINIA;DELAWARE;us_de; 7930 JONES BRANCH DRIVE, SUITE 1100 MCLEAN VA 22102 703-883-1000
+us_ca;C2474131;8994;Google Inc.;united states;CALIFORNIA;CALIFORNIA;us_ca; 2400 BAYSHORE PARKWAY MOUNTAIN VIEW CA 94043 650-318-0200
+us_mn;1b8f8ad1-a7d4-e011-a886-001ec94ffe7f;37907;Best Buy Co. Inc.;united states;MINNESOTA;MINNESOTA;us_mn; 7601 PENN AVE SOUTH RICHFIELD MN 55423 6122911000
+us_nj;1943801000;60910;Becton, Dickinson;united states;NEW JERSEY;NEW JERSEY;us_nj; ONE BECTON DR FRANKLIN LAKES NJ 07417-1880 2018476800
+us_wa;600456785;51324;Saltchuk Resources, Inc.;united states;Washington;;;1111 Fairview Ave N, Seattle, WA 98109
+us_ct;0789047;48206;Knights of Columbus;united states;CONNECTICUT;CONNECTICUT;us_ct; ONE COLUMBUS PLAZA NEW HAVEN CT 06510 2037722130
+us_tx;0801035982;48196;Elbit Systems of America;united states;Texas;;;4700 Marine Creek Parkway Fort Worth, TX
+us_ca;C0211998;51327;Sharp HealthCare;united states;California;;;San Diego, United States
+us_oh;869092;51304;University Hospitals;united states;OHIO;;;Cleveland, Ohio, United States
+us_in;198207-481;56255;Old National Bancorp.;united states;INDIANA;INDIANA;us_in; ONE MAIN ST EVANSVILLE IN 47708 8124641434
+us_fl;N42700;47468;Baptist Health South Florida;united states;FLORIDA;;;Florida, United States
+us_ca;C0844467;51282;Parsons Corporation;united states;California;;;100 West Walnut Street, Pasadena, CA
+us_sc;177500;47481;Milliken & Company;united states;South Carolina;;;Spartanburg, SC 29304, South Carolina, United States
+us_ca;C0397267;51330;The Aerospace Corporation;united states;California;;;2310 E. El Segundo Blvd. El Segundo, California 90245-4691, united states
+us_pa;2927487;48225;Ten Thousand Villages;united states;Pennsylvania;;;Akron, Pennsylvania, US
+us_nc;1344354;59202;Premier, Inc;united states;North Carolina;;;13034 Ballantyne Corporate Place, Charlotte, North Carolina 28277
+us_tx;0800319704;47328;NEC Corporation of America;united states;Texas;;;3929 W John Carpenter Fwy, Irving, Texas 75063, United States
+us_ma;061047163;47324;Genzyme Corporation;united states;MASSACHUSETTS;MASSACHUSETTS;us_ma; 500 KENDALL STREET CAMBRIDGE MA 02142 6172527500
+us_wa;603039225;56263;Seabourn;united states;Washington;;;Seattle, Washington, United States
+us_il;3531671;48256;Aldi Group;united states;Illinois;;;1200 North Kirk Road Batavia, IL 60510-1477 United States
+us_il;939911;56400;Akzo Nobel;united states;Illinois;;;525 West Van Buren Street Chicago, IL 60607-3835 United States
+us_oh;458715;48073;Fifth Third Bancorp;united states;OHIO;OHIO;us_oh; 38 FOUNTAIN SQ PLZ FIFTH THIRD CENTER CINCINNATI OH 45263 5135795300
+us_ny;342158;867028;Weight Watchers International Inc.;united states;NEW YORK;VIRGINIA;us_va; 675 AVENUE OF THE AMERICAS 6TH FLOOR NEW YORK NY 10010 2125892700
+us_ga;J313189;866341;Oxford Industries Inc;united states;GEORGIA;GEORGIA;ge; 999 PEACHTREE STREET NE SUITE 688 ATLANTA GA 30309 404-659-2424
+us_ca;C1863304;866194;Guess? Inc;united states;CALIFORNIA;DELAWARE;us_de; ATTN: JASON MILLER 1444 SOUTH ALAMEDA STREET LOS ANGELES CA 90021 (213) 765-3100
+us_il;0541942;116106;Fruit of the Loom;united states;ILLINOIS;ILLINOIS;us_il; 5000 SEARS TOWER 233 SOUTH WACKER DRIVE CHICAGO IL 60606 3128761724
+us_nj;8970121300;116482;Tumi, Inc.;united states;New Jersey;;;1001 Durham Ave  South Plainfield, NJ 07080
+us_sc;140819;116202;Knights Apparel;united states;South Carolina;;;5475 N Blackstock Rd Spartanburg, SC 29303 United States
+us_ca;C2462362;116403;prAna;united states;California;;;3209 Lionshead Ave, Carlsbad, CA 92010
+us_wa;578071558;116434;SanMar Corporation;united states;Washington;;;22833 SE Black Nugget Road, Suite 130 Issaquah, WA 98029
+us_wa;601222729;116010;Cutter & Buck, Inc.;united states;Washington;;;101 Elliott Ave. West, Suite 100 Seattle, WA  98119
+us_ca;C1715174;115978;Colosseum;united states;California;;;2400 S. Wilmington Avenue Compton, CA 90220 USA
+us_ca;C1666934;866090;The Wet Seal, Inc.;united states;California;;;7555 Irvine Center Drive Irvine, CA 92618 United States
+us_ga;0474983;864549;Novelis Inc.;united states;GEORGIA;;; 3560 LENOX ROAD SUITE 2000 ATLANTA GA 30326 404-760-4000
+us_mn;d73d9369-88d4-e011-a886-001ec94ffe7f;56271;Mosaic;united states;MINNESOTA;MINNESOTA;us_mn; 3033 CAMPUS DRIVE, SUITE E490 PLYMOUTH MN 55441 7635772700
+us_mn;9f861772-9ad4-e011-a886-001ec94ffe7f;864186;Patterson Companies;united states;MINNESOTA;MINNESOTA;us_mn; 1031 MENDOTA HEIGHTS RD ST PAUL MN 55120-1401 6516861600
+us_mn;7ac46c57-a4d4-e011-a886-001ec94ffe7f;53448;Watkins Incorporated;united states;Minnesota;;;150 Liberty Street PO Box 5570 Winona, MN 55987
+us_ny;1309666;56506;Blackstone Group;united states;NEW YORK;DELAWARE;us_de; 345 PARK AVENUE NEW YORK NY 10154 212-583-5000
+us_ca;C1580598;863727;Cypress Semiconductor;united states;CALIFORNIA;VIRGINIA;us_va;198 Champion Court San Jose, CA 95134 United States
+us_pa;18304;863689;Armstrong World Industries;united states;PENNSYLVANIA;PENNSYLVANIA;us_pa; 2500 COLUMBIA AVE LANCASTER PA 17603 7173970611
+us_tx;0006445900;863511;Trinity Industries;united states;TEXAS;DELAWARE;us_de; 2525 STEMMONS FREEWAY DALLAS TX 75207-2401 214-631-4420
+us_pa;376527;863473;Vishay Intertechnology;united states;PENNSYLVANIA;DELAWARE;us_de; 63 LANCASTER AVENUE MALVERN PA 19355 6106441300
+us_ca;C3795238;863311;Reliance Steel & Aluminum Co.;united states;CALIFORNIA;DELAWARE;us_de; 350 S GRAND AVE STE 5100 LOS ANGELES CA 90071 213-687-7700
+us_ct;0730553;863164;Colt Defense;united states;CONNECTICUT;DELAWARE;us_de; 547 NEW PARK AVENUE WEST HARTFORD CT 06110 860-232-4489
+us_ma;000971974;863016;Altra Industrial Motion;united states;MASSACHUSETTS;DELAWARE;us_de; 300 GRANITE STREET SUITE 201 BRAINTREE MA 02184 781-917-0600
+us_il;2163246;862942;Fortune Brands Home & Security;united states;ILLINOIS;DELAWARE;us_de; 520 LAKE COOK ROAD DEERFIELD IL 60015 847-484-4400
+us_ny;1342102;58500;Foot Locker Inc.;united states;NEW YORK;NEW YORK;us_ny; FOOT LOCKER, INC. 330 WEST 34TH STREET NEW YORK NY 10001 2127203700
+us_mn;9015dd0e-b0d4-e011-a886-001ec94ffe7f;862227;Arctic Cat;united states;MINNESOTA;MINNESOTA;us_mn; 500 NORTH 3RD STREET MINNEAPOLIS MN 55401 612-350-1800
+us_ky;0063314;19263;KFC;united states;Kentucky;;;1441 Gardiner Lane Louisville, KY 40213-1957 United States
+us_ca;C0569576;165840;Advanced Micro Devices, Inc. (AMD);united states;CALIFORNIA;DELAWARE;us_de; ONE AMD PL MS 68 SUNNYVALE CA 94085 4087495441
+us_ma;042695240;49337;Boston Scientific;united states;MASSACHUSETTS;DELAWARE;us_de; 300 BOSTON SCIENTIFIC WAY MARLBOROUGH MA 01752-1234 508-683-4000
+us_in;2007072500236;861680;Allison Transmission;united states;INDIANA;DELAWARE;us_de; ONE ALLISON WAY Indianapolis IN 46222 (317) 242-5000
+us_ca;C0971792;51336;Robert Half International;united states;California;;;2884 Sand Hill Road Suite 200 Menlo Park, CA 94025 United States
+us_ny;67444;861251;Moog Inc.;united states;NEW YORK;NEW YORK;us_ny; 400 JAMISON ROAD EAST AURORA NY 14052 716 652 2000
+us_va;F1852609;861213;Huntington Ingalls Industries;united states;VIRGINIA;DELAWARE;us_de; 4101 WASHINGTON AVENUE 909-7, 7J2 NEWPORT NEWS VA 23607 (757) 380-2000
+us_ca;C1196035;860954;Kaiser Aluminum;united states;CALIFORNIA;DELAWARE;us_de; 27422 PORTOLA PARKWAY, SUITE 200 FOOTHILL RANCH CA 92610-2831 949-614-1740
+us_nv;E0457452010-0;48244;Zappos;united states;NEVADA;CALIFORNIA;us_ca;400 East Stewart Avenue  Las Vegas, NV 89101
+us_tx;0800311038;61184;Freescale Semiconductor, Inc.;united states;TEXAS;DELAWARE;us_de; 6501 WILLIAM CANNON DRIVE AUSTIN TX 78735 5128952000
+us_ma;522296884;14396;Converse;united states;Massachusetts;;;1 Lovejoy Wharf Boston, MA 02114 United States
+us_ma;042621506;859661;Zoom Telephonics;united states;MASSACHUSETTS;DELAWARE;us_de; 99 HIGH STREET, 28TH FLOOR BOSTON MA 02110 617-423-1072
+us_ca;C2155159;859585;Brocade Communications Systems;united states;CALIFORNIA;DELAWARE;us_de; 130 HOLGER WAY SAN JOSE CA 95134-1376 (408) 333-8000
+us_wa;601058422;776656;Cray Inc;united states;WASHINGTON;WASHINGTON;us_wa;901 FIFTH AVENUE SUITE 1000 SEATTLE WA 98164 2067012000
+us_pa;636814;859389;Urban Outfitters;united states;PENNSYLVANIA;PENNSYLVANIA;us_pa; 5000 SOUTH BROAD STREET PHILADELPHIA PA 19112 2154545500
+us_pa;2926971;859362;Day & Zimmermann;united states;Pennsylvania;;;1500 Spring Garden Street Philadelphia, PA 19130 United States
+us_ut;5102118-0143;859286;Overstock.com;united states;Utah;;;6350 S. 3000 E Cottonwood Heights, UT 84121 United States
+us_mn;b9964648-9ad4-e011-a886-001ec94ffe7f;50785;Polaris Industries;united states;MINNESOTA;MINNESOTA;us_mn; 2100 HIGHWAY 55 MEDINA MN 55340 (763) 542-0500
+us_pa;938407;858764;QVC;united states;PENNSYLVANIA;DELAWARE;us_de;1200 Wilson Drive West Chester, PA 19380 United States
+us_or;16641698;53151;Good Clean Love;united states;OREGON;OREGON;us_or; 207 WEST 5TH AVENUE EUGENE OR 97401 541.344.4483
+us_pa;2889938;55994;New Dana Perfumes;united states;Pennsylvania;;;470 Oakhill Road Crestwood Industrial Park Mountain Top, PA 18707 United States
+us_ca;C1465456;60898;Natural Balance Pet Foods, Inc.;united states;California;;;100 North 1st Street Suite 200 Burbank, CA 91502 United States
+us_oh;333796;55988;Mead;united states;OHIO;OHIO;us_oh; MEAD WORLD HEADQUARTERS COURTHOUSE PLZ NORTHEAST DAYTON OH 45463 9374954439
+us_ct;0841435;55948;Bic Corporation;united states;CONNECTICUT;NEW YORK;us_ny; 500 BIC DR MILFORD CT 06460 2037832000
+us_ca;199925810049;60940;Benefit Cosmetics;united states;California;;;225 Bush Street 20th Floor San Francisco, CA 94104 United States
+us_ny;4978347;55959;Caudalie USA, Inc.;united states;New York;;;307 East 53rd Street Suite 401 New York, NY 10022 United States
+us_nv;E0362432007-9;52805;Electric Body;united states;Nevada;;;Las Vegas, Nevada
+us_ca;C0624934;60002;Jessica McClintock;united states;California;;;1400 16th Street San Francisco, CA 94103 United States
+us_ny;3216449;59774;Fair and Flawless;united states;New York;;;163 Voice Road Carle Place, New York 11514
+us_de;4657747;54170;My Lip Stuff;united states;Delaware;;;21002 Robinsonville Rd. Lewes, DE 19958 USA
+us_tx;0801061427;51224;A Wild Soap Bar;united states;Texas;;;Manor, Texas
+us_wi;B069735;52200;Brew City Botanicals;united states;Wisconsin;;;1210 E Chambers St, Milwaukee, WI 53212
+us_mi;D15882;52208;Brittanie's Thyme;united states;Michigan;;;Brittanie’s Thyme 12185 Shaner Avenue Cedar Springs, MI 49319
+us_nm;1430099;51723;Aromaland;united states;New Mexico;;;1326 Rufina Circle Santa fe, NM 87507 800-933-5267
+us_ca;C3672194;60963;Dr. Bronner's Magic Soaps;united states;California;;;Vista, California
+us_or;8622490;55652;Treat, Inc.;united states;Oregon;;;Portland, Oregon
+us_fl;P09000049544;54925;Rejuva Minerals;united states;FLORIDA;;;Orlando, FL, United States
+us_or;17309683;52102;Bob's Red Mill;united states;Oregon;;;13521 SE Pheasant Court Milwaukie, Oregon 97222 United States
+us_tx;0801174841;55760;Verb Products;united states;TEXAS;TEXAS;us_tx; 1902 SOUTH CONGRESS AVE AUSTIN TX 78704 5124450500
+us_oh;797912;60314;No Common Scents;united states;OHIO;;;Yellow Springs, Ohio 45387
+us_ca;C0707971;54024;Merle Norman;united states;California;;;Los Angeles, CA
+us_vt;0080758;54309;New Chapter Extracts;united states;VERMONT;VERMONT;us_vt; 22 HIGH STREET 4TH FL BRATTLEBORO VT 05302
+us_ky;0563011;52304;Ceela Naturals;united states;Kentucky;;;801 Barret Ave Ste 103  Louisville, KY 40204
+us_ca;C1968934;55522;Tammy Taylor Nails;united states;California;;;2001 Deere Avenue Santa Ana, CA 92705
+us_in;2012041900438;60650;Soapy Soap Company;united states;Indiana;;;903 W. 1st Street, Unit 1 Bloomington, IN 47403
+us_fl;L02000008489;51623;Anise Cosmetics;united states;FLORIDA;;;2110 KEYSTONE BLVD NORTH MIAMI, Florida 33181 United States
+us_ca;C3256732;53510;John Masters Organics;united states;California;;;30852 Huntwood Ave Hayward, California 94544 United States
+us_nj;0100520278;52735;Ecco Bella Botanicals;united states;New Jersey;;;623 Eagle Rock Ave., Suite 381  West Orange, NJ 07052
+us_ga;13409317;60158;Luv Mineral Cosmetics;united states;Georgia;;;McDonough, GA 30253
+us_wa;603453562;53668;La Bella Pink;united states;Washington;;;Spokane Valley, WA 99214
+us_in;2012080200043;60318;North Coast Organics;united states;Indiana;;;1501 E. Berry St, Fort Wayne IN 46803
+us_ny;4426491;54998;Ryan Scott;united states;New York;;;New York
+us_ct;0933224;53055;Fundamental Earth;united states;Connecticut;;;220 Albany Turnpike Building 1039, Suite 229 Canton, CT 06019
+us_tx;0006821106;51927;BeautiControl;united states;TEXAS;DELAWARE;us_de; 2121 MIDWAY CARROLLTON TX 75006 9724580601
+us_az;L17861505;55538;Tanceuticals;united states;Arizona;;;6501 E Greenway Pkwy #103-328 Scottsdale, AZ 85254
+us_tx;0801455225;60270;Natural Glow Sunless Tanning Products;united states;Texas;;;6203 N Capital TX Hwy 200 austin, tx 78731 United States
+us_fl;L99000000439;54439;OFRA Cosmetics;united states;FLORIDA;;;2141 Blount Road Pompano Beach, Florida, 33069 USA
+us_tx;0801462528;60334;OBIA Natural Hair Care;united states;Texas;;;Dallas, Texas
+us_ca;201229810425;55644;Too Faced Cosmetics;united states;CALIFORNIA;DELAWARE;us_de; 17361 ARMSTRONG AVENUE IRVINE CA 92614 415-398-0770
+us_ia;262291;51820;B4 Brands;united states;Iowa;;;Lisbon, Iowa  52253
+us_ut;9140884-0160;53139;GlyMed Plus;united states;Utah;;;867 E 2260 S, Provo, UT 84606
+us_wa;602954626;52470;Country Save;united states;Washington;;;19704 60th Ave NE, Arlington, WA 98223
+us_nj;0600306665;53554;Karma Organic Spa;united states;New Jersey;;;32 Wilsey Sq.  Ridgewood, NJ 07450
+us_ca;P99000091112;53496;Jelique Products Inc.;united states;California;;;20950 Lassen ST Chatsworth, CA  91311
+us_mi;E1565D;53368;Hygieia;united states;MICHIGAN;DELAWARE;us_de; 6276 JACKSON ROAD, SUITE G ANN ARBOR MI 48103 734-527-9160
+us_md;D05128624;60670;St. John's Botanicals;united states;Maryland;;;7711 Hillmeade Road Bowie, MD 20720
+us_va;03659760;52405;Color My Image;united states;Virginia;;;Alexandria, VA 22315
+us_fl;P08000103163;59382;Bee Mine Products, Inc.;united states;FLORIDA;;;Clearwater, FL 33766
+us_tx;0801637068;53724;Latika soap;united states;Texas;;;8906 Wall St. #708 Austin, Tx. 78754
+us_ga;08018358;54955;Rinse Bath & Body;united states;Georgia;;;101 B North Broad Street Monroe, GA. 30655 US
+us_ca;C2067992;60502;Rejuvi Laboratory, Inc.;united states;California;;;360 Swift Ave # 38, South San Francisco, CA 94080
+us_ca;C3350978;59734;Envyderm Cosmetics Company;united states;California;;;32565 B Golden Latern St. Dana Point, CA 92629 United States
+us_ca;201401410490;53090;Gemstone Organic;united states;California;;;Los Angeles, CA 90045
+us_ca;C3463523;60766;The Holistic Science Co.;united states;California;;;4852 Voltaire St, San Diego, CA 92107
+us_ny;4019112;53605;Kiss My Face;united states;New York;;;144 Main St. Gardiner, NY 12525
+us_ca;C0750928;53817;Lobob Laboratories;united states;California;;;1440 Atteberry Lane San Jose, CA
+us_fl;4572713;51518;Almo Nature;united states;FLORIDA;;;1111 Brickell Avenue, Suite 2650 FL 33131 Miami USA
+us_ca;C3629170;52833;ella+mila;united states;California;;;Los Angeles
+us_ca;C3647069;52697;E.L.F. Cosmetics;united states;California;;;570 10th Street Oakland, CA 94607 United States
+us_fl;P04000115451;52589;Devoted Creations;united states;FLORIDA;;;34677 United States
+us_ca;C0879950;60434;Premiere Products Inc.;united states;California;;;10312 Norris Ave. Suite C Pacoima, CA 91331
+us_ca;C3157020;53429;J Beverly Hills;united states;California;;;los angeles, california
+us_ca;C2488670;53207;GreenTripe.Com;united states;California;;;807 Industrial Dr. Hollister, CA, 95023
+us_tx;0800963870;51719;Shankara;united states;Texas;;;7802 RR 1051, Uvalde TX 78801
+us_wy;2004-000473130;59562;Corrective Skin Care;united states;Wyoming;;;PO Box 739 Thayne, WY 83127
+us_ca;C3326452;55083;Sea-el Corp;united states;California;;;567 Golf Glen Dr, San Marcos, CA 92069
+us_fl;L13000144409;55411;Sugar and Oats;united states;FLORIDA;;;Coral Springs, Florida 33065
+us_wa;603298634;59874;HANA Organic Skincare;united states;Washington;;;Bainbridge Island, Washington 98110
+us_fl;P13000010462;51843;Balanced Guru;united states;FLORIDA;;;5030 Champion Blvd, Suite G11, Boca Raton, FL 33496
+us_tn;000621786;59942;I Woke Up Well Distributing;united states;Tennessee;;;506 LEE ST MURFREESBORO, Tennessee 37130 United States
+us_ma;042802434;59702;Elizabeth Grady Face First;united states;Massachusetts;;;222 Boston Avenue Medford, MA 02155
+us_ca;2014-000661340;54657;Petunia Skincare;united states;California;;;Goleta, California 93117
+us_ny;2327611;51727;Aromaleigh, Inc.;united states;New York;;;180 Saint Paul St Ste 506 Rochester, New York 14604-1186 United States
+us_ga;09039524;54461;One Love Organics;united states;Georgia;;;400 Main Street Cottage 1 St. Simons Island, GA 31522 United States
+us_in;2011031100400;59266;Antonia Royale Cosmetics;united states;Indiana;;;INDIANAPOLIS, IN 46226
+us_ny;3033463;53993;MD Formulations;united states;New York;;;900 3rd Avenue, 28th Floor New York, NY 10022
+us_nj;0100482563;52300;Caswell-Massey;united states;New Jersey;;;Caswell-Massey, 29 Northfield Ave, Edison, New Jersey
+us_ut;2447403-0160;52280;CannaSmack;united states;Utah;;;CannaSmack, 17 East 6150 South, Murray, Utah
+us_co;19931092297;60230;Motherlove Herbal Company;united states;Colorado;;;Fort Collins, Colorado
+us_mt;D045013;60274;Natural Research People;united states;Montana;;;810 Dean Creek Rd Lavina, Montana 59046-7218 United States
+us_az;L12735398;53440;J.Lynne Cosmetics;united states;Arizona;;;400 N Coronado St Chandler, Arizona 85224-4183 United States
+us_fl;P14000077120;59602;Dermarose Skin Revitalized;united states;FLORIDA;;;4500 Biscayne Boulevard, Suite 320  Miami, FL 33137
+us_ca;C0955572;60993;Paul Mitchell Systems;united states;California;;;9701 Wilshire Boulevard Suite 1205 Beverly Hills, CA 90212 United States
+us_co;20101009427;54551;Osmia Organics;united states;Colorado;;;Osmia Organics, 2607 Dolores Way, Carbondale, Colorado
+us_ca;200630610122;52012;Better Botanicals;united states;California;;;600 Lawndale Road Kenwood, CA 95452
+us_ca;C2278473;53889;Lydia's Organics;united states;California;;;1390 N McDowell Blvd, Suite E, Petaluma, CA 94954
+us_mi;E36854;59346;Be Natural Organics;united states;Michigan;;;West Bloomfield Township, Michigan 48323
+us_ny;4400493;53739;Leaf & Stem Naturals;united states;New York;;;BROOKLYN, NEW YORK 11201
+us_wi;S096135;53865;LunatiCK Cosmetic Labs;united states;Wisconsin;;;P.O Box 70077 Milwaukee, WI. 53207 US
+us_mn;07cf43ee-90d4-e011-a886-001ec94ffe7f;53318;Herban Cowboy;united states;Minnesota;;;Minneapolis Minnesota 55424
+us_az;L12478488;60634;Skin Actives Scientific;united states;Arizona;;;1035 N. McQueen Rd. Suite 101 Gilbert, AZ 85233
+us_fl;P94000006321;60262;Natural Animal Health Products;united states;FLORIDA;;;7000 U.S. Highway 1 North, Suite 301  St. Augustine, FL 32095
+us_ga;14030858;54722;PNK DiGGER Cosmetics;united states;Georgia;;;Smyrna, Georgia 30080
+us_wa;603268942;52166;Booda Organics;united states;Washington;;;Bellingham, WA 98228
+us_ny;3909993;52220;Brooklyn Funk Factory;united states;New York;;;Brooklyn New York 11217 USA
+us_md;S2186692;53974;Max & Ruffy's;united states;Maryland;;;1201 New Windsor Rd. Westminster, MD 21158 410-871-1005
+us_ny;5008466;53731;Le Labo;united states;New York;;;233 Elizabeth Street New York, 10012 United States
+us_hi;49471C5;59462;Bubble Shack Hawaiian Soap Company;united states;Hawaii;;;96-1276 Waihona Street #117, Pearl City, 96782
+us_or;12098794;55052;Sappo Hill Soapworks;united states;Oregon;;;654 Tolman Creek Road   Ashland, OR 97520  US
+us_ct;1132544;54587;Palmetto Derma;united states;Connecticut;;;Avon, Connecticut 06001
+us_ma;000914946;53079;Garden Girl;united states;Massachusetts;;;Needham MA 02492
+us_ga;14116409;60114;Little Barn Apothecary;united states;Georgia;;;367 N CLARENDON AVE, SUITE J ATLANTA, GEORGIA 30079
+us_tx;0801218333;52911;Evie Evan, Inc.;united states;Texas;;;504 N. Congress Ave. Suite 100 Austin Texas 78701
+us_tn;1735108;50187;Scripps Networks Interactive;united states;TENNESSEE;OHIO;us_oh; 9721 SHERRILL BOULEVARD KNOXVILLE TN 37932 865-694-2700
+us_ct;1080291;864364;Harman International Industries;united states;CONNECTICUT;DELAWARE;us_de; 400 ATLANTIC STREET SUITE 1500 STAMFORD CT 06901 2033283500
+us_co;20111009725;60154;Lovely Lady Products;united states;Colorado;;;Fort Collins, Colorado
+us_ca;C2307455;51895;Bath Petals, Inc.;united states;California;;;17121 S Central Ave, #2E  Carson, CA 90746
+us_ut;7678548-0160;54443;Ojavan Products;united states;Utah;;;196 W. 21st Street, Suite C Ogden, UT 84401
+us_ca;C3227693;54505;Organic Beauty Now;united states;California;;;San Francisco, CA
+us_az;L13916140;51883;Bath By Bettijo;united states;Arizona;;;5913 West Grovers Avenue Glendale, AZ 85308
+us_ca;201309910285;55236;SkinDressing.com;united states;California;;;1001 Fremont Avenue P.O. Box 394 South Pasadena, CA 91031
+us_nm;4715926;55106;Seebinger Hemp;united states;New Mexico;;;Albuquerque, NM 87184
+us_ca;C3174317;59522;Coastal Classic Creations;united states;CALIFORNIA;CALIFORNIA;us_ca; 560 FRANKLIN STREET MONTARA CA 94037 650 728 729
+us_tx;0008530606;60978;Fruit of the Earth;united states;Texas;;;3101 High River Road Suite #175 Ft. Worth, Texas 76155
+us_az;05088472;59954;Innovative Formulations;united states;Arizona;;;1810 South 6th Ave. Tucson, AZ 85713
+us_ca;C1780042;51941;Beauty Treats;united states;California;;;1232 Factory Place, Los Angeles, CA 90013 USA
+us_or;7704893;59678;Earth Mama Angel Baby;united states;Oregon;;;9866 SE Empire Court Clackamas, Oregon 97015
+us_ca;C2952265;52809;Elemental Herbs;united states;California;;;Morro Bay, California 93442
+us_ny;3540442;53231;Hair Rules;united states;NEW YORK;DELAWARE;us_de; 828 9TH AVENUE, SUITE ONE NEW YORK NY 10019 646-726-4056
+us_ny;2199104;54917;Red Flower;united states;New York;;;13 prince street new york, ny 10012 United States
+us_ar;811039668;51158;Windstream;united states;ARKANSAS;ARKANSAS;us_ar; 4001 RODNEY PARHAM RD. LITTLE ROCK AR 72212 5017487000
+us_tx;0008363206;51125;Range Resources;united states;TEXAS;DELAWARE;us_de; 100 THROCKMORTON STE. 1200 FT WORTH TX 76102 817-870-2601
+us_co;20081176296;50877;Antero Resources;united states;COLORADO;COLORADO;us_co; 1615 WYNKOOP STREET DENVER CO 80202 303-357-7325
+us_ct;0880202;50815;Interactive Brokers Group;united states;CONNECTICUT;CONNECTICUT;us_ct; INTERACTIVE BROKERS GROUP LLC ONE PICKWICK PLAZA GREENWICH CT 06830 203-618-5800
+us_oh;2052054;59750;Eva Jenae Naturals;united states;OHIO;;;1209 E Dayton Yellow Springs Rd #253, Fairborn, OH 45324
+us_ny;4932493;116353;Outerstuff, Ltd.;united states;New York;;;1412 Broadway 18th floor New York, NY 10018 United States
+us_wi;T029217;60826;Trillium Herbal Company;united states;Wisconsin;;;185 E Walnut St, Sturgeon Bay, WI 54235
+us_wi;H039377;59878;Handmade Natural Beauty;united states;Wisconsin;;;200 Main St., La Crosse, WI 54601
+us_ca;C3888751;50673;Monster Beverage;united states;CALIFORNIA;CALIFORNIA;us_ca; 1 MONSTER WAY CORONA CA 92879 909-739-6200
+us_ca;C0779451;50642;Varian Medical Systems;united states;CALIFORNIA;DELAWARE;us_de; 3100 HANSEN WAY PALO ALTO CA 94304-1000 650-424-5834
+us_ca;C3795238;58746;Reliance Steel;united states;California;;;350 South Grand Avenue Suite 5100 Los Angeles, CA 90071 United States
+us_ca;C2550630;6273;Tesla Motors;united states;CALIFORNIA;DELAWARE;us_de; 3500 DEER CREEK RD PALO ALTO CA 94070 650-681-5000
+us_ar;100026210;50457;JB Hunt Transport;united states;Arkansas;;;615 JB Hunt Corporate Drive Lowell, AR 72745 United States
+us_ny;4614762;50392;Forest Laboratories;united states;NEW YORK;DELAWARE;us_de; 909 THIRD AVENUE NEW YORK NY 10022 (212)421-7850
+us_ny;2384280;50373;Harbinger Group;united states;New York;;;450 Park Avenue 29th Floor New York, NY 10022
+us_ca;C2266678;50333;Linear Technology;united states;CALIFORNIA;DELAWARE;us_de; 1630 MCCARTHY BLVD MILPITAS CA 95035 4084321900
+us_co;19981033526;50329;Chipotle Mexican Grill;united states;COLORADO;COLORADO;us_co; 1401 WYNKOOP SUITE 500 DENVER CO 80202 3035954000
+us_co;20021181326;58467;Cimarex Energy;united states;COLORADO;DELAWARE;us_de; 1700 LINCOLN STREET SUITE 3700 DENVER CO 80203-4537 303-295-3995
+us_ga;J004359;58287;AGCO;united states;GEORGIA;DELAWARE;us_de; 4205 RIVER GREEN PKWAY DULUTH GA 30096 7708139200
+us_nc;0083831;49878;LabCorp;united states;North Carolina;;;358 South Main Street Burlington, NC 27215 United States
+us_va;F1342791;49647;Avalonbay Communities;united states;VIRGINIA;MARYLAND;us_md; 671 N. GLEBE ROAD SUITE 800 ARLINGTON VA 22203 7033296300
+us_tx;0800325417;49448;Alliance Data Systems;united states;TEXAS;DELAWARE;us_de; 7500 DALLAS PARKWAY, SUITE 700 PLANO TX 75024 2144943000
+us_wi;W063958;49430;Wisconsin Energy;united states;WISCONSIN;WISCONSIN;us_wi; 231 W MICHIGAN ST P O BOX 1331 MILWAUKEE WI 53201 414-221-2345
+us_mo;FL0626395;49371;Charter Communications;united states;MISSOURI;DELAWARE;us_de; 12444 POWERSCOURT DRIVE SUITE 400 ST. LOUIS MO 63131 3149650555
+us_nj;0100680393;49353;Quest Diagnostics;united states;NEW JERSEY;DELAWARE;us_de; 3 GIRALDA FARMS MADISON NJ 07940 9735202700
+us_co;20111549363;49303;Prologis;united states;COLORADO;MARYLAND;us_md; 4545 AIRPORT WAY DENVER CO 80239 3033759292
+us_mo;01106576;49251;O'Reilly Automotive;united states;MISSOURI;MISSOURI;us_mo; 233 S PATTERSON AVE SPRINGFIELD MO 65802 417-829-5878
+us_nc;1025216;61216;Lorillard;united states;NORTH CAROLINA;DELAWARE;us_de; 401 NORTH MAIN ST. WINSTON SALEM NC 27101 336-741-2000
+us_wi;R037274;49182;Rockwell Automation;united states;WISCONSIN;DELAWARE;us_de; 1201 SOUTH 2ND STREET MILWAUKEE WI 53204 414-382-2000
+us_fl;F01000003562;49156;Fidelity National Information;united states;FLORIDA;DELAWARE;us_de; 601 RIVERSIDE AVENUE JACKSONVILLE FL 32204 904-854-8100
+us_il;3945143;48999;CF Industries Holdings;united states;ILLINOIS;DELAWARE;us_de; 4 PARKWAY NORTH SUITE 400 DEERFIELD IL 60015 (847) 405-2400
+us_tx;001065716;48983;American Tower;united states;TEXAS;DELAWARE;us_de; PO BOX 57747 SUITE 714 WEBSTER TX 77598 8006210501
+us_ma;000114309;48968;Staples;united states;MASSACHUSETTS;DELAWARE;us_de; 500 STAPLES DRIVE P O BOX 9328 FRAMINGHAM MA 01702 5082535000
+us_tx;0044435900;5113;Whole Foods Market Inc.;united states;TEXAS;TEXAS;us_tx; 550 BOWIE STREET AUSTIN TX 78703 5124774455
+us_oh;8027;48911;Sherwin-Williams;united states;OHIO;OHIO;us_oh; 101 PROSPECT AVE NW CLEVELAND OH 44115 2165662200
+us_nj;1910390000;774197;Bed Bath & Beyond Inc.;united states;NEW JERSEY;NEW YORK;us_ny; 650 LIBERTY AVENUE UNION NJ 07083 2013791520
+us_ct;0074441;48854;Stanley Black & Decker;united states;CONNECTICUT;CONNECTICUT;us_ct; 1000 STANLEY DR P O BOX 7000 NEW BRITAIN CT 06053 8602255111
+us_oh;12127;853865;Goodyear Tire and Rubber Company;united states;OHIO;OHIO;us_oh; 1144 E MARKET ST AKRON OH 44316 2167962121
+us_mi;649458;57509;TRW Automotive Holdings;united states;MICHIGAN;DELAWARE;us_de; 12001TECH CENTER DRIVE LIVONIA MI 48150 734 855 2600
+us_ca;C0815360;48704;Allergan;united states;CALIFORNIA;DELAWARE;us_de; 2525 DUPONT DRIVE IRVINE CA 92612 7142464500
+us_oh;276604;57453;KeyCorp;united states;OHIO;OHIO;us_oh; 127 PUBLIC SQ CLEVELAND OH 44114-1306 2166896300
+us_ny;2363564;48538;Annaly Capital Management;united states;NEW YORK;MARYLAND;us_md; 1211 AVENUE OF THE AMERICAS NEW YORK NY 10036 212 696 0100
+us_va;F1924184;48534;Genworth Financial;united states;VIRGINIA;DELAWARE;us_de; 6620 WEST BROAD STREET RICHMOND VA 23230 804-281-6000
+us_tn;000351611;48523;Dollar General;united states;TENNESSEE;TENNESSEE;us_tn; 100 MISSION RIDGE GOODLETTSVILLE TN 37072 6158554000
+us_nc;0705047;48454;Reynolds American;united states;NORTH CAROLINA;NORTH CAROLINA;us_nc; 401 NORTH MAIN ST WINSTON SALEM NC 27102 3367412000
+us_in;1998110626;48402;Simon Property Group;united states;INDIANA;DELAWARE;us_de; 225 WEST WASHINGTON STREET INDIANAPOLIS IN 46204-3438 317-636-1600
+us_mn;8c484113-a8d4-e011-a886-001ec94ffe7f;57195;Xcel Energy;united states;MINNESOTA;MINNESOTA;us_mn; 414 NICOLLET MALL MINNEAPOLIS MN 55401 6123305500
+us_ny;55569;57131;Omnicom Group;united states;NEW YORK;NEW YORK;us_ny; 437 MADISON AVE NEW YORK NY 10022 2124153600
+us_nj;0100267099;48171;Public Service Enterprise;united states;NEW JERSEY;NEW JERSEY;us_nj; CORPORATE ACCOUNTING SERVICES 80 PARK PLAZA, 9TH FLOOR NEWARK NJ 07102-4194 973-430-7000
+us_ny;49779;45266;Corning Inc.;united states;NEW YORK;NEW YORK;us_ny; ONE RIVERFRONT PLAZA CORNING NY 14831 6079749000
+us_ga;J507871;56977;SunTrust Banks;united states;GEORGIA;GEORGIA;ge; 303 PEACHTREE ST N E ATLANTA GA 30308 4045887711
+us_va;02080281;47999;Norfolk Southern;united states;VIRGINIA;VIRGINIA;us_va; THREE COMMERCIAL PL NORFOLK VA 23510 7576292682
+us_tx;0007128906;56904;EOG Resources;united states;TEXAS;DELAWARE;us_de; 1111 BAGBY, SKY LOBBY 2 HOUSTON TX 77002 7136517000
+us_tx;0002826206;56892;Kinder Morgan;united states;TEXAS;DELAWARE;us_de; 1001 LOUISIANA STREET SUITE 1000 HOUSTON TX 77002 713-369-9000
+us_ne;1528742;134369;Union Pacific;united states;NEBRASKA;UTAH;us_ut; 1400 DOUGLAS STREET STOP 0310 OMAHA NE 68179 402 544 5214
+us_ga;H860934;66700;United Parcel Service Inc.;united states;GEORGIA;DELAWARE;us_de; 55 GLENLAKE PARKWAY NE ATLANTA GA 30328 4048286000
+us_va;270731163;55846;Well-in-Hand;united states;Virginia;;;P.O. Box 1200, Forest, Virginia 24551 USA
+us_nj;0100992275;60346;Umbria Olii International USA;united states;New Jersey;;;580 Sylvan Ave Englewood Cliffs, NJ 07632-3121
+us_vt;0019990;53692;Lakon Herbals;united states;Vermont;;;Montpelier, VT
+us_ct;0274605;873519;Silgan Holdings Inc.;united states;CONNECTICUT;DELAWARE;us_de; 4 LANDMARK SQ STAMFORD CT 06901 2039757110
+us_ga;10067927;52492;Crazy Rumors, LLC;united states;Georgia;;;3123 Moon Station Rd. Suite B  Kennesaw, GA 30144
+us_ia;246367;54178;Mystic Wonders;united states;Iowa;;;116 North Main St. PO Box 253 Holstein, IA 51025
+us_ma;043503532;51155;TripAdvisor;united states;MASSACHUSETTS;MASSACHUSETTS;us_ma; 315A CHESTNUT STREET NEEDHAM MA 02492
+us_va;F1806860;870531;Iridium Communications, Inc.;united states;VIRGINIA;DELAWARE;us_de; 1750 TYSONS BOULEVARD SUITE 1400 MCLEAN VA 22102 301-571-6200
+us_ma;042454372;867496;Analogic Corporation;united states;MASSACHUSETTS;MASSACHUSETTS;us_ma; 8 CENTENNIAL DRIVE PEABODY MA 01960 9789773000
+us_az;F08365262;863880;Amkor Technology;united states;ARIZONA;DELAWARE;us_de; 2045 EAST INNOVATION CIRCLE TEMPE AZ 85284 480-821-5000
+us_tx;4197509;48477;Spectra Energy;united states;TEXAS;DELAWARE;us_de; 5400 WESTHEIMER COURT HOUSTON TX 77056 704-382-8160
+us_ma;042473675;49033;Boston Properties;united states;MASSACHUSETTS;DELAWARE;us_de; 800 BOYLSTON STREET SUITE 1900 BOSTON MA 02199 6172363300
+us_md;D03964756;47651;Lockheed Martin;united states;MARYLAND;MARYLAND;us_md; 6801 ROCKLEDGE DR BETHESDA MD 20817 3018976000
+us_oh;14931;42637;The Kroger Company;united states;OHIO;OHIO;us_oh; 1014 VINE ST CINCINNATI OH 45201 5137624000
+us_ny;2125545;60914;Abercrombie & Fitch;united states;NEW YORK;NEW YORK;us_ny; 441 NINTH AVE NEW YORK NY 10001
+us_ny;3026271;50077;E-Trade Financial;united states;NEW YORK;DELAWARE;us_de; 1271 AVENUE OF THE AMERICAS FL 14 NEW YORK NY 10020-1302 6465214340
+us_ca;C1955037;49628;Intuitive Surgical;united states;CALIFORNIA;DELAWARE;us_de; 1020 KIFER ROAD SUNNYVALE CA 94086 4085232100
+us_oh;337395;61073;Progressive;united states;OHIO;OHIO;us_oh; 6300 WILSON MILLS RD MAYFIELD VILLAGE OH 44143 4404615000
+us_mn;774a588c-a0d4-e011-a886-001ec94ffe7f;47947;Ameriprise Financial;united states;MINNESOTA;DELAWARE;us_de; 1099 AMERIPRISE FINANCIAL CENTER MINNEAPOLIS MN 55474 612-671-7449
+us_tx;0800042348;56940;Marathon Oil;united states;TEXAS;DELAWARE;us_de; P O BOX 3128 HOUSTON TX 77253-3128 7136296600
+us_il;3704721;867279;Hospira, Inc.;united states;ILLINOIS;DELAWARE;us_de; 275 FIELD DR LAKE FOREST IL 60045 8479376472
+us_ma;042837575;871866;NetScout Systems, Inc.;united states;MASSACHUSETTS;DELAWARE;us_de; 310 LITTLETON ROAD WESTFORD MA 01886 978-614-4000
+us_ca;C1510972;56659;SanDisk Corporation;united states;CALIFORNIA;DELAWARE;us_de; 951 SANDISK DRIVE MILPITAS CA 95035 408-801-1000
+us_wa;601058928;856435;Esterline Technologies;united states;WASHINGTON;DELAWARE;us_de; 500 - 108TH AVENUE NE SUITE 1500 BELLEVUE WA 98004 4254539400
+us_tx;0800178411;49686;Southwestern Energy;united states;TEXAS;DELAWARE;us_de; 10000 ENERGY DRIVE SPRING TX 77389 832-796-4700
+us_ca;C1585262;861938;Cadence Design Systems;united states;CALIFORNIA;DELAWARE;us_de; 2655 SEELY AVENUE BLDG 5 SAN JOSE CA 95134 4089431234
+us_ma;042277512;871343;MKS Instruments, Inc.;united states;MASSACHUSETTS;MASSACHUSETTS;us_ma; 2 TECH DRIVE SUITE 201 ANDOVER MA 01810 978-645-5500
+us_ma;043387074;873659;Sonus Networks, Inc.;united states;MASSACHUSETTS;DELAWARE;us_de; 4 TECHNOLOGY PARK DRIVE WESTFORD MA 01886 9786148100
+us_va;02429553;872310;Optical Cable Corporation;united states;VIRGINIA;VIRGINIA;us_va; 5290 CONCOURSE DR ROANOKE VA 24019 5402650690
+us_wi;L023961;875409;Lands' End, Inc.;united states;WISCONSIN;DELAWARE;us_de; ONE LANDS' END LN DODGEVILLE WI 53595 6089359341
+us_fl;P14403;48231;Office Depot;united states;FLORIDA;DELAWARE;us_de; 6600 NORTH MILITARY TRAIL BOCA RATON FL 33496 561-438-4800
+us_ne;0425737;50715;Nelnet;united states;NEBRASKA;NEBRASKA;us_ne; 121 SOUTH 13TH ST STE 201 LINCOLN NE 68508 402-458-2370
+us_mo;00375001;49134;Reinsurance Group of America;united states;MISSOURI;MISSOURI;us_mo; 16600 SWINGLEY RIDGE ROAD CHESTERFIELD MO 63017 6367367000
+us_co;20061418078;56641;Western Union;united states;COLORADO;DELAWARE;us_de; 12500 EAST BELFORD AVENUE ENGLEWOOD CO 80112 (720) 332-3361
+us_wa;600413485;7354;Microsoft Corporation;united states;WASHINGTON;WASHINGTON;us_wa; ONE MICROSOFT WAY REDMOND WA 98052-6399 425-882-8080
+us_ca;C0117531;932;Chevron Corporation;united states;CALIFORNIA;DELAWARE;us_de; 6001 BOLLINGER CANYON ROAD SAN RAMON CA 94583 925-842-2815
+us_il;2085588;56298;Caterpillar;united states;ILLINOIS;DELAWARE;us_de; 100 NE ADAMS ST PEORIA IL 61629 3096751000
+us_va;F0546426;865459;CACI International Inc.;united states;VIRGINIA;DELAWARE;us_de; 1100 N GLEBE ST ARLINGTON VA 22201 7038417800
+us_md;D05100482;49651;Host Hotels & Resorts;united states;MARYLAND;DELAWARE;us_de; 6903 ROCKLEDGE DR SUITE 1500 BETHESDA MD 20817-1109 240-744-1000
+us_tx;0006629406;47935;Anadarko Petroleum;united states;TEXAS;DELAWARE;us_de; 1201 LAKE ROBBINS DRIVE THE WOODLANDS TX 77380-1046 832-636-1000
+us_tx;0008984606;858415;Fossil Group, Inc.;united states;TEXAS;DELAWARE;us_de; 901 S CENTRAL EXPRESSWAY RICHARDSON TX 75080 9722342525
+us_mn;87aa8593-c3d2-e611-8168-00155d46d26e;57738;St Jude Medical;united states;MINNESOTA;DELAWARE;us_de; ONE ST JUDE MEDICAL DRIVE ST PAUL MN 55117 6517562000
+us_ny;2262977;48766;L-3 Communications;united states;NEW YORK;DELAWARE;us_de; 600 THIRD AVENUE 34TH FLOOR NEW YORK NY 10016 2126971111
+us_oh;983690;49553;American Financial Group;united states;OHIO;OHIO;us_oh; GREAT AMERICAN INSURANCE GROUP TOWER 301 E. 4TH STREET CINCINNATI OH 45202 5135792121
+us_nj;0100802453;48053;Prudential Financial;united states;NEW JERSEY;NEW JERSEY;us_nj; 751 BROAD ST NEWARK NJ 07102 9738026000
+us_va;01645647;48234;SRA International;united states;VIRGINIA;VIRGINIA;us_va; 4300 FAIR LAKES COURT FAIRFAX VA 22033 7038031500
+us_nj;0100956912;49991;Wyndham Worldwide;united states;NEW JERSEY;DELAWARE;us_de; 22 SYLVAN WAY PARSIPPANY NJ 07054 973-428-9700
+us_oh;175441;57336;Parker-Hannifin;united states;OHIO;OHIO;us_oh; 6035 PARKLAND BOULEVARD CLEVELAND OH 44124-4141 2168963000
+us_mn;870d8733-94d4-e011-a886-001ec94ffe7f;872386;Otter Tail Corporation;united states;MINNESOTA;MINNESOTA;us_mn; 215 S CASCADE ST PO BOX 496 FERGUS FALLS MN 56538-0496 8664108780
+us_oh;953140;57284;FirstEnergy;united states;OHIO;OHIO;us_oh; 76 SOUTH MAIN ST AKRON OH 44308-1890 330-761-7837
+us_oh;649806;50453;Cliffs Natural Resources;united states;OHIO;OHIO;us_oh; 200 PUBLIC SQUARE STE. 3300 CLEVELAND OH 44114-2315 216-694-5700
+us_tx;0125972000;48798;Cameron International;united states;TEXAS;DELAWARE;us_de; 1333 WEST LOOP SOUTH STE 1700 HOUSTON TX 77027 7135133322
+us_co;20031315478;49441;Molson Coors Brewing;united states;COLORADO;DELAWARE;us_de; 1801 CALIFORNIA STREET, SUITE 4600 DENVER CO 80202 303-927-2523
+us_co;20021056790;56614;Newmont Mining;united states;COLORADO;DELAWARE;us_de; 6363 SOUTH FIDDLERS GREEN CIRCLE GREENWOOD VILLAGE CO 80111 303-863-7414
+us_va;02675999;56547;Altria Group;united states;VIRGINIA;VIRGINIA;us_va; 6601 WEST BROAD STREET RICHMOND VA 23230 (804) 274-2200
+us_ny;31382;55971;Guerlain;united states;New York;;;19 East 57th Street 18th Floor New York, NY 10021 United States
+us_ca;C3729493;53570;Kaunis;united states;California;;;Po Box 1629, Los Angeles, CA 90078
+us_ga;0801025102;52859;Envy Tan;united states;Georgia;;;Macon, Georgia
+us_ca;200519210096;54079;Mixed Chicks;united states;California;;;21208 Vanowen Street Canoga Park CA 91303
+us_ca;C3911237;54280;NCLA;united states;California;;;355 South Grand Avenue, Suite 2450 Los Angeles, CA 90071
+us_nv;C9755-1996;52031;Bio Pac;united states;Nevada;;;Bio Pac, Inc. PO Box 5288 Incline Village, NV 89450
+us_ca;C2307404;55297;Soaptopia;united states;California;;;12228 1/2 Venice Boulevard Mar Vista, CA 90066
+us_al;270-319;53311;Herbaliz;united states;Alabama;;;4004 Wares Ferry Road Montgomery, AL 36109
+us_pa;186058;51269;Kennametal Inc.;united states;PENNSYLVANIA;PENNSYLVANIA;us_pa; 600 GRANT STREET SUITE 5100 PITTSBURGH PA 15219 4122488000
+us_ga;J520481;874328;Total System Services, Inc.;united states;GEORGIA;GEORGIA;ge; 1600 FIRST AVENUE P O BOX 1755 COLUMBUS GA 31901 7066492267
+us_wi;S101494;873239;School Specialty, Inc.;united states;WISCONSIN;DELAWARE;us_de; W6316 DESIGN DRIVE GREENVILLE WI 54942 (920) 734-5712
+us_va;00361204;867902;Bassett Furniture Industries;united states;VIRGINIA;VIRGINIA;us_va; PO BOX 626 BASSETT VA 24055 5406296209
+us_ca;C2076655;48960;Agilent Technologies;united states;CALIFORNIA;DELAWARE;us_de; 5301 STEVENS CREEK BLVD SANTA CLARA CA 95051 (408) 345-8886
+us_nj;3206562;56185;Dun & Bradstreet;united states;NEW JERSEY;DELAWARE;us_de; 103 JFK PARKWAY 103 JFK PARKWAY SHORT HILLS NJ 07078 9739215500
+us_tx;0004885406;58894;Cabot Oil & Gas;united states;TEXAS;DELAWARE;us_de; 840 GESSNER ROAD, SUITE 1400 HOUSTON TX 77024 2815894600
+us_nc;0515948;52992;Food Lion;united states;NORTH CAROLINA;NORTH CAROLINA;us_nc; PO BOX 1330 2110 EXECUTIVE DR SALISBURY NC 28145 7046338250
+us_me;19840383F;870030;IDEXX Laboratories, Inc.;united states;MAINE;DELAWARE;us_de; ONE IDEXX DRIVE WESTBROOK ME 04092-2041 2075560300
+us_la;34541031F;872652;Pool Corporation;united states;LOUISIANA;DELAWARE;us_de; 109 NORTHPARK BLVD 4TH FLOOR COVINGTON LA 70433-5001 9858925521
+us_pa;284424;57029;PPG Industries;united states;PENNSYLVANIA;PENNSYLVANIA;us_pa; ONE PPG PL 40 EAST PITTSBURGH PA 15272 4124343131
+us_il;3881360;58006;Sears Holdings;united states;ILLINOIS;DELAWARE;us_de; 3333 BEVERLY ROAD HOFFMAN ESTATES IL 60179 847-286-2500
+us_pa;3368747;48570;AmerisourceBergen;united states;PENNSYLVANIA;DELAWARE;us_de; 1300 MORRIS DRIVE CHESTERBROOK PA 19087-5594 6107277000
+us_oh;604726;56597;L Brands;united states;OHIO;DELAWARE;us_de; THREE LIMITED PKWY P O BOX 16000 COLUMBUS OH 43216 6144157000
+us_co;20091323102;48632;DaVita;united states;COLORADO;DELAWARE;us_de; 2000 16TH STREET DENVER CO 80202 310-536-2668
+us_tx;3315658;49456;FMC Technologies;united states;TEXAS;DELAWARE;us_de; 5875 N SAM HOUSTON PARKWAY W HOUSTON TX 77086 2815914000
+us_ma;000294893;868016;Brooks Automation, Inc.;united states;MASSACHUSETTS;DELAWARE;us_de; 15 ELIZABETH DRIVE CHELMSFORD MA 01824 (978) 262-2400
+us_pa;2676881;867978;Bon-Ton Stores, Inc.;united states;PENNSYLVANIA;PENNSYLVANIA;us_pa; 2801 E MARKET ST YORK PA 17402-2406 7177577660
+us_ia;283897;48110;Principal Financial Group;united states;IOWA;DELAWARE;us_de; 711 HIGH STREET DES MOINES IA 50392 5152475111
+us_nj;0100439771;54602;Pathmark Stores;united states;NEW JERSEY;DELAWARE;us_de; 2 PARAGON DRIVE MONTVALE NJ 07645 201-573-9700
+us_va;00266593;869877;Hooker Furniture Corporation;united states;VIRGINIA;VIRGINIA;us_va; 440 E COMMONWEALTH BLVD POB 4708 MARTINSVILLE VA 24115 2766322133
+us_pa;684975;49800;Universal Health;united states;PENNSYLVANIA;DELAWARE;us_de; 367 S GULPH RD KING OF PRUSSIA PA 19406 6107683300
+us_ny;2293356;50823;Cablevision Systems Corporation;united states;NEW YORK;DELAWARE;us_de; 1111 STEWART AVENUE BETHPAGE NY 11714 5163806230
+us_ny;1319068;864224;Ann Inc.;united states;NEW YORK;DELAWARE;us_de; 7 TIMES SQUARE 15TH FLOOR NEW YORK NY 10036 2125413300
+us_ma;043477276;776731;CIRCOR International, Inc.;united states;MASSACHUSETTS;DELAWARE;us_de; C/O CIRCOR INC 30 CORPORATE DR., SUITE 200 BURLINGTON MA 01803-4238 7812701200
+us_mn;43746f86-b0d4-e011-a886-001ec94ffe7f;862151;Deluxe Corporation;united states;MINNESOTA;MINNESOTA;us_mn; 3680 VICTORIA STREET NORTH SHOREVIEW MN 55126 6514837111
+us_oh;699453;865574;Owens-Illinois, Inc.;united states;OHIO;DELAWARE;us_de; ONE MICHAEL OWENS WAY PERRYSBURG OH 43551-2999 5673365000
+us_or;4441416;51286;Schnitzer Steel Industries, Inc.;united states;OREGON;OREGON;us_or; 299 SW CLAY ST. P O BOX 10047 PORTLAND OR 97210-0047 5032249900
+us_mi;610149;50479;Masco;united states;MICHIGAN;DELAWARE;us_de; 21001 VAN BORN RD TAYLOR MI 48180 3132747400
+us_mo;F01396834;47591;Express Scripts;united states;MISSOURI;DELAWARE;us_de; ONE EXPRESS WAY ST. LOUIS MO 63121 314-996-0900
+us_mn;788d5092-a0d4-e011-a886-001ec94ffe7f;57874;Hormel Foods;united states;MINNESOTA;DELAWARE;us_de; 1 HORMEL PL AUSTIN MN 55912-3680 (507) 437-5611
+us_ca;C2059959;861018;Big 5 Sporting Goods;united states;CALIFORNIA;DELAWARE;us_de; 2525 EAST EL SEGUNDO BOULEVARD EL SEGUNDO CA 90245-4632 (310) 297-7706
+us_nj;0100269457;47595;Honeywell International;united states;NEW JERSEY;DELAWARE;us_de; 115 TABOR ROAD MORRIS PLAINS NJ 07950 9734552000
+us_ne;10000776;47302;Berkshire Hathaway;united states;NEBRASKA;DELAWARE;us_de; 3555 FARNAM STREET OMAHA NE 68131 4023461400
+us_ma;000654817;56113;National Grid;united states;MASSACHUSETTS;MASSACHUSETTS;us_ma; 25 RESEARCH DR WESTBOROUGH MA 01582 508-389-2000
+us_mi;158765;51367;Dow Corning Corporation;united states;MICHIGAN;MICHIGAN;us_mi; 2200 W SALZBURG RD, MAIL #C01336 MIDLAND MI 48686-0994 5174964000
+us_mn;48754902-a9d4-e011-a886-001ec94ffe7f;874002;SurModics, Inc.;united states;MINNESOTA;MINNESOTA;us_mn; 9924 W 74TH ST EDEN PRAIRIE MN 55344 9525007000
+us_ca;C2008713;865650;Altera Corporation;united states;CALIFORNIA;DELAWARE;us_de; 101 INNOVATION DR SAN JOSE CA 95134 408.544.8790
+us_ma;043125110;868636;Cynosure, Inc.;united states;MASSACHUSETTS;MASSACHUSETTS;us_ma; 5 CARLISLE ROAD WESTFORD MA 01886 (978) 256-4200
+us_ca;C1636032;4093;Intel Corporation;united states;CALIFORNIA;DELAWARE;us_de; 2200 MISSION COLLEGE BLVD RNB-4-151 SANTA CLARA CA 95054 4087658080
+us_ct;0090070;48253;Pitney Bowes;united states;CONNECTICUT;DELAWARE;us_de; PITNEY BOWES INC 3001 SUMMER STREET STAMFORD CT 06926-0700 203-356-5000
+us_ct;0192363;57223;Hartford Financial Services;united states;CONNECTICUT;DELAWARE;us_de; ONE HARTFORD PLAZA HARTFORD CT 06155 8605475000
+us_ma;043432319;51081;Akamai Technologies;united states;MASSACHUSETTS;DELAWARE;us_de; 150 BROADWAY CAMBRIDGE MA 02142 6174443000
+us_va;F0579542;860203;Orbital Sciences Corporation;united states;VIRGINIA;DELAWARE;us_de; 45101 WARP DRIVE DULLES VA 20166 703 406 5524
+us_tx;0008629411;857369;National Oilwell Varco;united states;TEXAS;DELAWARE;us_de; 7909 PARKWOOD CIRCLE DR HOUSTON TX 77036 713-375-3700
+us_nc;0372743;867343;Laboratory Corp. of America;united states;NORTH CAROLINA;DELAWARE;us_de; 358 S MAIN ST BURLINGTON NC 27215 3362291127
+us_id;C75914;45773;Micron Technology;united states;IDAHO;DELAWARE;us_de; 8000 S FEDERAL WAY PO BOX 6 BOISE ID 83716-9632 2083684000
+us_mi;090657;862828;La-Z-Boy;united states;MICHIGAN;MICHIGAN;us_mi; ONE LA-Z-BOY DRIVE MONROE MI 48162 7342421444
+us_oh;1037038;860451;Worthington Industries;united states;OHIO;OHIO;us_oh; 200 OLD WILSON BRIDGE ROAD COLUMBUS OH 43085 6144383210
+us_ma;043197974;873265;SeaChange International, Inc.;united states;MASSACHUSETTS;DELAWARE;us_de; 50 NAGOG PARK ACTON MA 01720 9788970100
+us_ia;44181;862980;Winnebago Industries;united states;IOWA;IOWA;us_ia; P O BOX 152 FOREST CITY IA 50436 641-585-3535
+us_dc;EXTUID_2825690;47767;Danaher;united states;DISTRICT OF COLUMBIA;DELAWARE;us_de; 2200 PENNSYLVANIA AVE. N.W. SUITE 800W WASHINGTON DC 20037-1701 2028280850
+us_ny;3516671;47670;Bank of New York Mellon;united states;NEW YORK;DELAWARE;us_de; 225 LIBERTY STREET NEW YORK NY 10286 212-495-1784
+us_ma;042713778;868407;Cognex Corporation;united states;MASSACHUSETTS;MASSACHUSETTS;us_ma; ONE VISION DR NATICK MA 01760 5086503000
+us_ct;0069667;869916;Hubbell Inc.;united states;CONNECTICUT;CONNECTICUT;us_ct; 40 WATERVIEW DR SHELTON CT 06484-1000 2037994100
+us_wi;1J03577;47853;Johnson Controls;united states;WISCONSIN;WISCONSIN;us_wi; 5757 N GREEN BAY AVENUE P O BOX 591 MILWAUKEE WI 53201 4145241200
+us_wa;600337134;870569;Itron, Inc.;united states;WASHINGTON;WASHINGTON;us_wa; 2111 N MOLTER ROAD LIBERTY LAKE WA 99019 5099249900
+us_mo;00005170;46124;Emerson Electric Company;united states;MISSOURI;MISSOURI;us_mo; 8000 W FLORISSANT AVE P O BOX 4100 ST LOUIS MO 63136 3145532000
+us_va;04884193;975165;Smithfield;united states;VIRGINIA;VIRGINIA;us_va; 200 COMMERCE STREET EXECUTIVE OFFICE BUILDING SMITHFIELD VA 23430 7573653000
+us_ca;C2338280;48417;Western Digital;united states;CALIFORNIA;DELAWARE;us_de; 5601 GREAT OAKS PARKWAY SAN JOSE CA 95119 9496727000
+us_oh;1181191;872614;PolyOne Corporation;united states;OHIO;OHIO;us_oh; POLYONE CENTER 33587 WALKER ROAD AVON LAKE OH 44012 440-930-1000
+us_tx;0800648665;50017;Pioneer Natural Resources;united states;TEXAS;DELAWARE;us_de; 200 WILLIAMS SQUARE WEST 5205 N OCONNOR BLVD IRVING TX 75039 9724449001
+us_mn;dd3c4e28-b5d4-e011-a886-001ec94ffe7f;56609;Medtronic;united states;MINNESOTA;MINNESOTA;us_mn; 710 MEDTRONIC PKWY MS LC300 MINNEAPOLIS MN 55432 7635144000
+us_oh;732092;861461;Applied Industrial Technologies;united states;OHIO;OHIO;us_oh; ONE APPLIED PLAZA CLEVELAND OH 44115-5056 216-426-4753
+us_wa;602490894;863235;Zumiez;united states;WASHINGTON;WASHINGTON;us_wa; 4001 204TH STREET SW LYNNWOOD WA 98036 425-551-1500
+us_fl;847272;56944;Carnival;united states;FLORIDA;DELAWARE;us_de; 3655 N W 87TH AVE PO BOX 1347 MIAMI FL 33178-2428 3055992600
+us_va;06123699;864772;NewMarket Corporation;united states;VIRGINIA;VIRGINIA;us_va; 330 S FOURTH ST PO BOX 2189 RICHMOND VA 23218-2189 804-788-5000
+us_ny;6559;61259;Alcoa Inc.;united states;NEW YORK;PENNSYLVANIA;us_pa; 390 PARK AVENUE NEW YORK NY 10022-4608 2128362732
+us_az;F00600518;50942;Microchip Technology;united states;ARIZONA;DELAWARE;us_de; 2355 W CHANDLER BLVD CHANDLER AZ 85224-6199 480-792-7200
+us_ny;12100;55944;Avon Products;united states;NEW YORK;NEW YORK;us_ny; 601 MIDLAND AVENUE RYE NY 10580 914-935-2000
+us_mi;085536;869489;Gentex Corporation;united states;MICHIGAN;MICHIGAN;us_mi; 600 N CENTENNIAL ST ZEELAND MI 49464 6167721800
+us_ma;330112644;57288;Biogen Idec;united states;MASSACHUSETTS;DELAWARE;us_de; 225 BINNEY STREET CAMBRIDGE MA 02142 7814642000
+us_az;F15341901;48817;Republic Services;united states;ARIZONA;DELAWARE;us_de; 18500 N. ALLIED WAY PHOENIX AZ 85054 480 627 2700
+us_wa;600611109;8126;Starbucks Corporation;united states;WASHINGTON;WASHINGTON;us_wa; P O BOX 34067 SEATTLE WA 98124-1067 2064471575
+us_md;F04793998;48953;Marriott International;united states;MARYLAND;DELAWARE;us_de; 10400 FERNWOOD ROAD BETHESDA MD 20817 3013803000
+us_in;2002070200073;57938;Zimmer Holdings;united states;INDIANA;INDIANA;us_in; 56 EAST BELL DR WARSAW IN 46582 5742676639
+us_fl;P29992;56654;Citrix Systems;united states;FLORIDA;DELAWARE;us_de; 851 WEST CYPRESS CREEK ROAD FORT LAUDERDALE FL 33309 954-267-3000
+us_ma;042680009;44382;EMC;united states;MASSACHUSETTS;MASSACHUSETTS;us_ma; 176 SOUTH STREET HOPKINTON MA 01748-9103 5082937208
+us_fl;F09000003776;50588;Affiliated Managers Group;united states;FLORIDA;DELAWARE;us_de; 777 SOUTH FLAGLER DRIVE SUITE 1201 EAST TOWER WEST PALM BEACH FL 33401 (800) 345-1100
+us_ca;C0770996;867940;bebe Stores Inc.;united states;CALIFORNIA;CALIFORNIA;us_ca; 400 VALLEY DR BRISBANE CA 94005 4157153900
+us_mi;148492;57280;Stryker;united states;MICHIGAN;MICHIGAN;us_mi; 2825 AIRVIEW BLVD KALAMAZOO MI 49002 2693892600
+us_tx;0801011581;864440;COPsync;united states;TEXAS;DELAWARE;us_de; P.O. BOX 802108 DALLAS TX 75380-2108 972-865-6192
+us_ma;042209186;47972;Thermo Fisher Scientific;united states;MASSACHUSETTS;DELAWARE;us_de; 168 THIRD AVENUE WALTHAM MA 02451 7816221000
+us_ga;10063796;49178;Coca-Cola Enterprises;united states;GEORGIA;DELAWARE;us_de; 2500 WINDY RIDGE PARKWAY, NW 14TH FLOOR ATLANTA GA 30339 678-260-3000
+us_pa;2894966;860234;Allegheny Technologies;united states;PENNSYLVANIA;DELAWARE;us_de; 1000 SIX PPG PLACE PITTSBURGH PA 15222 4123942800
+us_wa;2620453;11708;Amazon.com, Inc.;united states;WASHINGTON;DELAWARE;us_de; 410 TERRY AVENUE NORTH SEATTLE WA 98109 2062661000
+us_mo;00474545;868929;Edgewell Personal Care;united states;MISSOURI;MISSOURI;us_mo; 1350 TIMBERLAKE MANOR PARKWAY CHESTERFIELD MO 63017 314-594-1900
+us_va;F1195066;47562;Capital One Financial;united states;VIRGINIA;DELAWARE;us_de; 1680 CAPITAL ONE DRIVE SUITE 1400 MCLEAN VA 22102 7037201000
+us_oh;164495;871980;Nordson Corporation;united states;OHIO;OHIO;us_oh; 28601 CLEMENS RD WESTLAKE OH 44145 4408921580
+us_mo;F00488018;9216;Monsanto Company;united states;MISSOURI;DELAWARE;us_de; 800 N LINDBERGH BLVD ST LOUIS MO 63167 3146941000
+us_ny;2783656;56601;MasterCard;united states;NEW YORK;DELAWARE;us_de; 2000 PURCHASE STREET PURCHASE NY 10577 9142492000
+us_oh;120075;869565;Greif, Inc.;united states;OHIO;DELAWARE;us_de; 425 WINTER ROAD DELAWARE OH 43015 7405496000
+us_ca;C1893790;126370;Autodesk, Inc.;united states;CALIFORNIA;DELAWARE;us_de; 111 MCINNIS PKWY SAN RAFAEL CA 94903 4155075000
+us_wi;L026714;53833;Lotus Brands;united states;Wisconsin;;;P.O. Box 325, Twin Lakes, WI 53181
+us_fl;P05000113375;864478;Water Technologies International Inc;united states;FLORIDA;;;10219 S.E. Lennard Rd Port St, Lucie, Fl. 34952-6884
+us_oh;1232564;61176;Macy's;united states;OHIO;;;Cincinnati, Ohio, United States
+us_nc;0800806811;127377;Lowe's Companies, Inc.;united states;North Carolina;;;1000 Lowe's Blvd. Mooresville, NC 28117
+us_tx;0800001823;116026;Dallas Cowboys Merchandising, Ltd.;united states;Texas;;;2500 Regent Blvd Dallas, TX, 75261 United States
+us_ca;199517210017;37353;The North Face Inc.;united states;California;;;2701 Harbor Bay Parkway Alameda, CA 94502 United States
+us_mi;652116;170632;Domino's Pizza Group plc;united states;Michigan;;;30 Frank Lloyd Wright Drive Ann Arbor, MI 48105 United States
+us_nv;C10361-2003;55553;TanTowel;united states;Nevada;;;Las Vegas, Nevada
+us_ca;201435210439;53574;Kavella;united states;California;;;Kavella Hair Care, Los Angeles, California
+us_ca;C2131777;53721;Lather;united states;California;;;17 E. Colorado Blvd. Pasadena, CA 91105
+us_fl;3024848;52080;blinc;united states;FLORIDA;;;1141 South Rogers Circle, Suite 7 Boca Raton, FL 33487
+us_fl;L12000133500;52148;BodyHonee;united states;FLORIDA;;;2030A Tigertail Blvd. Building No. 6 Dania Beach, FL 33004
+us_nv;E0125962011-1;55374;SprayTans;united states;Nevada;;;North Las Vegas, NV 89032
+us_co;20081405201;55625;Tilvee;united states;Colorado;;;Tilvee Eco-Ethical Skincare, 2211 B ford street, Golden, Colorado
+us_wi;M070826;53986;Mbeze;united states;Wisconsin;;;Wausau, WI 54402
+us_ca;C3723205;54306;New Age Products;united states;California;;;8822 Moorcroft Ave Canoga Park, California 91304-1338 United States
+us_or;56607188;54575;Pacifica;united states;Oregon;;;3135 NW Industrial St. Portland, Or 97210
+us_mn;2545f2d3-93d4-e011-a886-001ec94ffe7f;52821;Elixery;united states;Minnesota;;;2010 E Hennepin Ave Minneapolis, MN 55413
+us_ct;0904126;50934;People's United Financial;united states;Connecticut;;;850 Main Street Bridgeport, CT 06604 United States
+us_ny;1922485;50807;NASDAQ OMX Group;united states;New York;;;One Liberty Plaza 165 Broadway New York, NY 10006 United States
+us_ny;418186;923430;CA Technologies;united states;New York;;;520 Madison Avenue 22nd Floor New York, NY 10022 United States
+us_ga;A401954;8912;The Coca Cola Company;united states;GEORGIA;DELAWARE;us_de; ONE COCA COLA PLAZA ATLANTA GA 30313 404-676-2121
+us_or;8739914;5800;Nike Inc.;united states;OREGON;OREGON;us_or; ONE BOWERMAN DR BEAVERTON OR 97005-6453 5036713173
+us_ma;000693390;875052;Bruker;united states;MASSACHUSETTS;DELAWARE;us_de; 40 MANNING RD BILLERICA MA 01821 978663-3660
+us_vt;0074657;14969;Ben & Jerry's;united states;VERMONT;VERMONT;us_vt; 30 COMMUNITY DRIVE SUITE #1 SOUTH BURLINGTON VT 05403 8026519600
+us_al;927-731;48409;Regions Financial;united states;ALABAMA;DELAWARE;us_de; 417 NORTH 20TH STREET BIRMINGHAM AL 35023 2059441300
+us_fl;F12000003799;5204;Burger King Worldwide;united states;FLORIDA;FLORIDA;us_fl; 5505 BLUE LAGOON DRIVE MIAMI FL 33126 (305) 378-3000
+us_tx;2786882;50152;Quanta Services;united states;TEXAS;DELAWARE;us_de; 2800 POST OAK BLVD SUITE 2600 HOUSTON TX 77056-6175 7133506000
+us_mo;00012304;861423;Leggett & Platt;united states;MISSOURI;MISSOURI;us_mo; NO. 1 LEGGETT ROAD CARTHAGE MO 64836 (417) 358-8131
+us_ny;284484;57292;M&T Bank;united states;NEW YORK;NEW YORK;us_ny; C/O CORPORATE REPORTING ONE M&T PLAZA 5TH FLOOR BUFFALO NY 14203 7168425390
+us_nc;0105993;48616;Nucor;united states;NORTH CAROLINA;DELAWARE;us_de; 1915 REXFORD RD CHARLOTTE NC 28211 7043667000
+us_ri;000025205;48964;Textron;united states;RHODE ISLAND;DELAWARE;us_de; 40 WESTMINSTER ST PROVIDENCE RI 02903 4014212800
+us_va;F1051202;862593;Alliant Techsystems;united states;VIRGINIA;DELAWARE;us_de;45101 WARP DRIVE DULLES VA 20166 7034065000
+us_wi;H023007;59114;Joy Global;united states;WISCONSIN;DELAWARE;us_de; 100 EAST WISCONSIN AVE SUITE 2780 MILWAUKEE WI 53202 414-319-8500
+us_ar;0115105;48262;Koch Industries;united states;KANSAS;KANSAS;us_ar; 4111 EAST 37TH STREET NORTH WICHITA KS 67220 3168285500
+us_pa;1542727;874860;Westinghouse Air Brake Technologies Corporation;united states;PENNSYLVANIA;DELAWARE;us_de; 1001 AIR BRAKE AVE WILMERDING PA 15148 4128251000
+us_pa;2014662;774860;Triumph Group, Inc.;united states;PENNSYLVANIA;DELAWARE;us_de; 899 CASSATT ROAD SUITE 210 BERWYN PA 19312 (610) 251-1000
+us_co;20101504092;865421;EchoStar Corporation;united states;COLORADO;NEVADA;us_nv; 100 INVERNESS TERRACE E. ENGLEWOOD CO 80112 303-723-1277
+us_fl;F95000006203;49717;AutoNation;united states;FLORIDA;FLORIDA;us_fl; ONE FINANCIAL PLAZA 17TH FLOOR FORT LAUDERDALE FL 33394
+us_ca;C2180104;865612;Atmel Corporation;united states;CALIFORNIA;DELAWARE;us_de; 1600 TECHNOLOGY DRIVE SAN JOSE CA 95110 4084410311
+us_va;04730818;49074;CarMax;united states;VIRGINIA;VIRGINIA;us_va; 12800 TUCKAHOE CREEK PARKWAY RICHMOND VA 23238 (804) 747-0422
+us_nj;5118663;49845;Zoetis;united states;NEW JERSEY;NEW JERSEY;us_nj; 10 SYLVAN WAY PARSIPPANY NJ 07054 973-822-7000
+us_ca;C2250289;875090;Illumina, Inc.;united states;CALIFORNIA;DELAWARE;us_de; 5200 ILLUMINA WAY SAN DIEGO CA 92122 8582024500
+us_tx;0002374906;56767;Phillips 66;united states;TEXAS;DELAWARE;us_de; 2331 CITYWEST BLVD. HOUSTON TX 77042 281-293-6600
+us_mn;a09b9910-b8d4-e011-a886-001ec94ffe7f;50742;Supervalu;united states;MINNESOTA;DELAWARE;us_de; 11840 VALLEY VIEW ROAD EDEN PRAIRIE MN 55344 952-828-4000
+us_ca;C1543561;42619;Safeway Inc.;united states;CALIFORNIA;DELAWARE;us_de; 5918 STONERIDGE MALL RD PLEASANTON CA 94588 9254673000
+us_pa;306600;58291;Rite Aid;united states;PENNSYLVANIA;DELAWARE;us_de; 30 HUNTER LANE CAMP HILL OWN PA 17011 7177612633
+us_ny;2494465;967727;MetLife;united states;NEW YORK;DELAWARE;us_de; 1095 AVENUE OF AMERICAS NEW YORK NY 10036 212-578-5500
+us_ca;C1911426;47728;McKesson;united states;CALIFORNIA;DELAWARE;us_de; ONE POST ST MCKESSON PLAZA SAN FRANCISCO CA 94104 4159838300
+us_ny;59981;61288;Hess;united states;NEW YORK;DELAWARE;us_de; 1185 AVENUE OF THE AMERICAS NEW YORK NY 10036 2129978500
+us_pa;3039985;47376;Comcast;united states;PENNSYLVANIA;PENNSYLVANIA;us_pa; 1500 MARKET STREET PHILADELPHIA PA 19102-2148 2156651700
+us_ca;C1641071;858453;Avaya Inc.;united states;CALIFORNIA;DELAWARE;us_de;4655 Great America Parkway Santa Clara, California
+us_ca;2100087;856850;Plantronics, Inc.;united states;CALIFORNIA;DELAWARE;us_de; 337 ENCINAL ST PO BOX 1802 SANTA CRUZ CA 95061-1802 4084266060
+us_nj;0100832745;56622;NRG Energy;united states;NEW JERSEY;DELAWARE;us_de; 804 CARNEGIE CENTER - PRINCETON NJ 08540 609-524-4500
+us_fl;P38260;56589;Jabil Circuit;united states;FLORIDA;DELAWARE;us_de; 10560 DR. MARTIN LUTHER KING JR. ST. N. ST PETERSBURG FL 33716 7275779749
+us_nc;0453170;863651;Belk;united states;NORTH CAROLINA;NORTH CAROLINA;us_nc; 2801 WEST TYVOLA ROAD CHARLOTTE NC 28217-4500 7043571000
+us_in;194062-043;56058;Cummins;united states;INDIANA;INDIANA;us_in; 500 JACKSON ST BOX 3005 MAIL CODE 60207 COLUMBUS IN 47202-3005 8123773842
+us_oh;95560;47471;Cleveland Clinic;united states;OHIO;OHIO;us_oh; 9500 EUCLID AVENUE CLEVELAND OH 4 216-444-9921
+us_in;2011020800533;864262;Thor Industries;united states;INDIANA;DELAWARE;us_de; 601 E. BEARDSLEY AVENUE ELKHART IN 46514 (574) 970-7460
+us_wi;M039094;51273;ManpowerGroup;united states;WISCONSIN;WISCONSIN;us_wi; 100 MANPOWER PLACE MILWAUKEE WI 53212 414 961-1000
+us_in;2007050300049;852974;Berry Plastics;united states;INDIANA;DELAWARE;us_de; 101 OAKLEY STREET PO BOX 959 EVANSVILLE IN 47710 8124242904
+us_va;F1685397;918939;Leidos;united states;VIRGINIA;VIRGINIA;us_va; 11951 FREEDOM DRIVE RESTON VA 20190 571-526-6000
+us_ca;C1586442;863613;Quantum Corporation;united states;CALIFORNIA;DELAWARE;us_de; 224 AIRPORT PARKWAY SUITE 300 SAN JOSE CA 95110 408 944 4000
+us_mn;f1e614d9-a2d4-e011-a886-001ec94ffe7f;863312;Regis Corporation;united states;MINNESOTA;MINNESOTA;us_mn; 7201 METRO BLVD MINNEAPOLIS MN 55439 9529477777
+us_in;1994061014;863093;Steel Dynamics;united states;INDIANA;INDIANA;us_in; 7575 W JEFFERSON BLVD FORT WAYNE IN 46804 260 459 3553
+us_oh;1864427;862767;Dana Corporation;united states;OHIO;DELAWARE;us_de; 3939 TECHNOLOGY DRIVE MAUMEE OH 43537 419-887-3000
+us_in;1991110333;861635;Wabash National;united states;INDIANA;DELAWARE;us_de; 1000 SAGAMORE PARKWAY SOUTH LAFAYETTE IN 47905 7657715310
+us_wa;601131550;50403;Expeditors International;united states;WASHINGTON;WASHINGTON;us_wa; 1015 THIRD AVENUE 12TH FLOOR SEATTLE WA 98104 2066743400
+us_oh;692090;866988;Cintas;united states;OHIO;WASHINGTON;us_wa; 6800 CINTAS BLVD P O BOX 625737 CINCINNATI OH 45262 5134591200
+us_ca;200729010015;6576;American Apparel;united states;CALIFORNIA;DELAWARE;us_de;747 WAREHOUSE STREET LOS ANGELES CA 90021 213-488-0226
+us_va;F1951948;859918;Graham Holdings Company;united states;VIRGINIA;DELAWARE;us_de; 1300 NORTH 17TH STREET SUITE 1700 ARLINGTON VA 22209 7033456300
+us_il;2129976;57834;Ventas;united states;ILLINOIS;DELAWARE;us_de; 353 N. CLARK STREET SUITE 3300 CHICAGO IL 60654 3126603800
+us_il;2191014;51122;Stericycle;united states;ILLINOIS;DELAWARE;us_de; 28161 NORTH KEITH DRIVE - LAKE FOREST IL 60045 8473675910
+us_oh;706662;56152;Teradata;united states;OHIO;OHIO;us_oh; 10000 INNOVATION DRIVE DAYTON OH 45342 937-242-4800
+us_tx;0800569032;51129;Western Refining;united states;TEXAS;DELAWARE;us_de; 6500 TROWBRIDGE DRIVE EL PASO TX 79905 (602) 286-1401
+us_ny;5343358;51027;New Media Investment Group;united states;NEW YORK;NEW YORK;us_ny; 1345 AVENUE OF THE AMERICAS NEW YORK NY 10105 (212) 479-5312
+us_wi;1W16737;50994;Alliant Energy;united states;WISCONSIN;WISCONSIN;us_wi; 4902 NORTH BILTMORE LANE SUITE 1000 MADISON WI 53718-2148 608-458-3311
+us_ok;1900555305;58954;OGE Energy;united states;OKLAHOMA;OKLAHOMA;us_ok; 321 N HARVEY P.O. BOX 321 OKLAHOMA CITY OK 73101-0321 4055533000
+us_mi;634298;50862;Penske Automotive;united states;MICHIGAN;DELAWARE;us_de; 2555 TELEGRAPH RD BLOOMFIELD HILLS MI 48302-0954 248-648-2500
+us_va;F2006015;50709;Gannett;united states;VIRGINIA;DELAWARE;us_de; 7950 JONES BRANCH DRIVE MCLEAN VA 22107 703-854-6000
+us_in;1996011326;50755;American Equity Investment;united states;INDIANA;INDIANA;us_in; 4222 GRANTLINE ROAD NEW ALBANY IN 47150 812-945-9888
+us_ca;C2123980;50705;East West Bancorp;united states;CALIFORNIA;CALIFORNIA;us_ca; 135 N. LOS ROBLES AVE. 7TH FLOOR PASADENA CA 91101 6267686000
+us_ok;1900494658;58758;BOK Financial;united states;OKLAHOMA;OKLAHOMA;us_ok; BANK OF OKLAHOMA TOWER BOSTON AVENUE AT SECOND STREET TULSA OK 74172 9185886000
+us_ma;043234558;879752;Waters Corporation;united states;MASSACHUSETTS;DELAWARE;us_de; 34 MAPLE ST MILFORD MA 01757 5084782000
+us_fl;465173;58618;Tech Data;united states;FLORIDA;FLORIDA;us_fl; 5350 TECH DATA DR CLEARWATER FL 33760 7275397429
+us_fl;F16000001147;60990;Jarden;united states;FLORIDA;FLORIDA;us_fl; 1800 NORTH MILTARY TRAIL BOCA RATON FL 33431 561 447 2520
+us_tx;0800442869;50209;Tenet Healthcare;united states;TEXAS;NEVADA;us_nv; 1445 ROSS AVENUE SUITE 1400 DALLAS TX 75202 469-893-2200
+us_ia;254266;49874;Rockwell Collins;united states;IOWA;DELAWARE;us_de; 400 COLLINS ROAD NE CEDAR RAPIDS IA 52498 3192951000
+us_in;2003091600035;49832;CNO Financial Group;united states;INDIANA;DELAWARE;us_de; 11825 N PENNSYLVANIA ST CARMEL IN 46032 3178176100
+us_fl;F98000000016;49611;Lennar;united states;FLORIDA;DELAWARE;us_de; 700 NW 107TH AVENUE SUITE 400 MIAMI FL 33172 3055594000
+us_va;06905996;57946;Dollar Tree;united states;VIRGINIA;VIRGINIA;us_va; 500 VOLVO PARKWAY N/A CHESAPEAKE VA 23320 (757) 321-5000
+us_co;19871071914;49333;Arrow Electronics;united states;COLORADO;NEW YORK;us_ny; 9201 EAST DRY CREEK ROAD CENTENNIAL CO 80112 303-824-4000
+us_ga;J505042;57649;Genuine Parts;united states;GEORGIA;GEORGIA;ge; 2999 WILDWOOD PARKWAY ATLANTA GA 30339 6789345000
+us_tx;0800660109;56070;Fluor;united states;TEXAS;DELAWARE;us_de; 6700 LAS COLINAS BLVD IRVING TX 75039 4693987000
+us_mn;078550e8-acd4-e011-a886-001ec94ffe7f;56066;Ecolab;united states;MINNESOTA;DELAWARE;us_de; ECOLAB CORPORATE CENTER 370 WABASHA STREET NORTH SAINT PAUL MN 55102 6512502587
+us_ca;C1585456;48065;Edison International;united states;CALIFORNIA;CALIFORNIA;us_ca; 2244 WALNUT GROVE AVE, P O BOX 800 ROSEMEAD CA 91770 (626) 302-2222
+us_tx;0001941806;56852;Apache;united states;TEXAS;DELAWARE;us_de; 2000 POST OAK BLVD STE 100 HOUSTON TX 77056-4400 7132966000
+us_ne;10176679;54567;Pacha Soap Company;united states;NEBRASKA;NEBRASKA;us_ne; 800 WEST 2ND STREET HASTINGS NE 68901 7856264395
+us_ca;C2845824;49164;Public Storage;united states;CALIFORNIA;MARYLAND;us_md; 701 WESTERN AVENUE GLENDALE CA 91201-2349 818-244-8080
+us_wa;601692492;864148;F5 Networks;united states;WASHINGTON;WASHINGTON;us_wa; 401 ELLIOT AVE WEST STE 500 SEATTLE WA 98119 2062725555
+us_ca;C2346048;56050;CBRE Group;united states;CALIFORNIA;DELAWARE;us_de; 400 SOUTH HOPE STREET 25TH FLOOR LOS ANGELES CA 90071 213-613-3333
+us_wi;2S00453;858273;Snap-on Inc.;united states;WISCONSIN;DELAWARE;us_de; 2801 80TH STREET KENOSHA WI 53143 4146565200
+us_ut;571781-0142;49763;Zions Bancorp;united states;UTAH;UTAH;us_ut; ONE SOUTH MAIN STREET 15TH FLOOR SALT LAKE CITY UT 84111 8015244787
+us_in;194023-053;860878;Kimball International;united states;INDIANA;INDIANA;us_in; 1600 ROYAL ST JASPER IN 47549 8124821600
+us_wi;H025212;49234;Harley-Davidson;united states;WISCONSIN;WISCONSIN;us_wi; 3700 W JUNEAU AVE MILWAUKEE WI 53208 414-343-8553
+us_ma;042271897;861056;Cabot Corporation;united states;MASSACHUSETTS;DELAWARE;us_de; TWO SEAPORT LANE SUITE 1300 BOSTON MA 02210 6173450100
+us_ma;042052042;864033;PerkinElmer;united states;MASSACHUSETTS;MASSACHUSETTS;us_ma; 940 WINTER STREET WALTHAM MA 02451 781 663 5776
+us_fl;826966;56322;Harris;united states;FLORIDA;DELAWARE;us_de; 1025 W NASA BLVD MELBOURNE FL 32919 3217279100
+us_ky;0580261;56310;Ashland;united states;KENTUCKY;KENTUCKY;us_ky; 50 E. RIVERCENTER BOULEVARD COVINGTON KY 41012 8598153333
+us_tx;0009294006;37601;AT&T Inc.;united states;TEXAS;DELAWARE;us_de; 208 S. AKARD ST ATTN : JAMES LACY DALLAS TX 75202 2108214105
+us_va;05262076;58323;Markel;united states;VIRGINIA;VIRGINIA;us_va; 4521 HIGHWOODS PARKWAY GLEN ALLEN VA 23060-3382 8047470136
+us_pa;3045019;56161;US Steel;united states;PENNSYLVANIA;DELAWARE;us_de; 600 GRANT ST ROOM 1500 PITTSBURGH PA 15219-2800 415 433 2967
+us_va;3429632;56404;MeadWestvaco;united states;VIRGINIA;DELAWARE;us_de; 501 SOUTH 5TH STREET MWV WORLD HEADQUARTERS RICHMOND VA 23219-0501 804-444-1000
+us_ky;0154092;48037;Humana;united states;KENTUCKY;DELAWARE;us_de; 500 W MAIN ST LOUISVILLE KY 40202 5025801000
+us_ct;0226132;865497;Praxair, Inc.;united states;CONNECTICUT;DELAWARE;us_de; 10 RIVERVIEW DRIVE DANBURY CT 06810 2038372000
+us_ga;J507921;59182;Synovus Financial;united states;GEORGIA;GEORGIA;ge; 1111 BAY AVENUE STE 500 PO BOX 120 COLUMBUS GA 31901 7066446362
+us_ny;2558358;49386;Coach;united states;NEW YORK;MARYLAND;us_md; 10 HUDSON YARDS NEW YORK NY 10001 2125941850
+us_co;20031312908;50918;Whiting Petroleum;united states;COLORADO;DELAWARE;us_de; 1700 BROADWAY, SUITE 2300 DENVER CO 80290 303-837-1661
+us_in;2000042000228;56117;NiSource;united states;INDIANA;INDIANA;us_in; 801 E 86TH AVENUE MERRILLVILLE IN 46410 8776475900
+us_ct;0505803;856620;EMCOR Group;united states;CONNECTICUT;DELAWARE;us_de; 301 MERRITT SEVEN CORPORATE PK 6TH FLOOR NORWALK CT 06851 203-849-7800
+us_oh;814051;49599;Cincinnati Financial;united states;OHIO;OHIO;us_oh; 6200 S GILMORE RD FAIRFIELD OH 45014 5138702000
+us_wa;602767848;51013;Symetra Financial;united states;WASHINGTON;DELAWARE;us_de; 777 108TH AVENUE NE SUITE 1200 BELLEVUE WA 98004-5135 425-256-8000
+us_wa;177000505;776650;PACCAR Inc.;united states;WASHINGTON;DELAWARE;us_de; PACCAR BUILDING 777 106TH AVENUE NE BELLEVUE WA 98004 425 468 7383
+us_mi;485283;57922;CMS Energy;united states;MICHIGAN;MICHIGAN;us_mi; ONE ENERGY PLAZA JACKSON MI 49201 5177880550
+us_ny;1562592;49284;Ambac Financial Group;united states;NEW YORK;DELAWARE;us_de; ONE STATE ST PLZ NEW YORK NY 10004 2126680340
+us_wi;K024598;776662;KohlΠ¥s Corporation;united states;WISCONSIN;WISCONSIN;us_wi; N56 W17000 RIDGEWOOD DR MENOMONEE FALLS WI 53051 4147835800
+us_pa;3816419;50048;EQT;united states;PENNSYLVANIA;PENNSYLVANIA;us_pa; 625 LIBERTY AVENUE SUITE 1700 PITTSBURGH PA 15222 4125535700
+us_nj;0100778043;50611;Hudson City Bancorp;united states;NEW JERSEY;DELAWARE;us_de; WEST 80 CENTURY RD PARAMUS NJ 07652 2019671900
+us_wi;F024977;49414;Fiserv;united states;WISCONSIN;WISCONSIN;us_wi; 255 FISERV DR PO BOX 979 BROOKFIELD WI 53045 4148795000
+us_ca;C1696389;49138;Broadcom;united states;CALIFORNIA;CALIFORNIA;us_ca; 5300 CALIFORNIA AVENUE IRVINE CA 92617-3038 949 926 5000
+us_ny;4493958;50288;Two Harbors Investment;united states;NEW YORK;NEW YORK;us_ny; 590 MADISON AVENUE 36TH FLOOR NEW YORK NY 10022 612-629-2500
+us_tn;000346608;47762;FedEx;united states;TENNESSEE;DELAWARE;us_de; 942 SOUTH SHADY GROVE ROAD MEMPHIS TN 38120- 9018187500
+us_wi;O030102;59150;Oshkosh;united states;WISCONSIN;WISCONSIN;us_wi; 2307 OREGON ST P O BOX 2566 OSHKOSH WI 54903 920 235 9151
+us_wi;R029623;862904;Regal-Beloit;united states;WISCONSIN;WISCONSIN;us_wi; 200 STATE ST BELOIT WI 53511 6083648800
+us_ct;0977966;50025;Starwood Property Trust;united states;CONNECTICUT;CONNECTICUT;us_ct; C/O STARWOOD CAPITAL GROUP 591 WEST PUTNAM AVENUE GREENWICH CT 06830 (203) 422-7700
+us_tx;0800491952;58914;Dean Foods;united states;TEXAS;DELAWARE;us_de; 2711 N. HASKELL AVENUE SUITE 3400 DALLAS TX 75204 2143033400
+us_tx;0800286171;50922;Denbury Resources;united states;TEXAS;DELAWARE;us_de; 5320 LEGACY DRIVE PLANO TX 75024 9726732000
+us_ma;000711989;868259;Charles River Laboratories International Inc.;united states;MASSACHUSETTS;MASSACHUSETTS;us_ma; 251 BALLARDVALE ST WILMINGTON MA 01887 781-222-6000
+us_mo;00414845;49536;Ameren;united states;MISSOURI;MISSOURI;us_mo; 1901 CHOUTEAU AVE MC 1370 ST LOUIS MO 63166-6149 314-621-3222
+us_nv;C1917-5-1968;860603;Bally Technologies;united states;NEVADA;NEVADA;us_nv; 6601 S. BERMUDA RD. LAS VEGAS NV 89119 7028967700
+us_pa;243944;48839;Mylan;united states;PENNSYLVANIA;PENNSYLVANIA;us_pa; 1000 MYLAN BOULEVARD CANONSBURG PA 15317 724-514-1800
+us_oh;1339333;856217;RPM International Inc.;united states;OHIO;DELAWARE;us_de; 2628 PEARL RD P O BOX 777 MEDINA OH 44258 3302735090
+us_oh;1276;856359;Diebold Inc.;united states;OHIO;OHIO;us_oh; P.O. BOX 3077 5995 MAYFAIR RD NORTH CANTON OH 44720-8077 3304904000
+us_ca;C1548132;860138;Verifone;united states;CALIFORNIA;DELAWARE;us_de; 88 WEST PLUMERIA DRIVE SAN JOSE CA 95134 (408) 232-7800
+us_ga;J306699;51181;Equifax;united states;GEORGIA;GEORGIA;ge; 1550 PEACHTREE ST NW ATLANTA GA 30302 4048858000
+us_ny;3583335;47724;BlackRock;united states;NEW YORK;DELAWARE;us_de; 55 EAST 52ND STREET NEW YORK NY 10055 212-810-5300
+us_pa;115799;51168;FMC;united states;PENNSYLVANIA;DELAWARE;us_de; 2929 WALNUT STREET PHILADELPHIA PA 19104 215-299-6668
+us_mi;033872;874518;Universal Forest Products;united states;MICHIGAN;MICHIGAN;us_mi; 2801 EAST BELTLINE NE GRAND RAPIDS MI 49525 6163646161
+us_tx;2681775;4393;Halliburton Company;united states;TEXAS;DELAWARE;us_de; 3000 NORTH SAM HOUSTON PARKWAY EAST 3000 NORTH SAM HOUSTON PARKWAY EAST HOUSTON TX 77032 2818712699
+us_ma;042272148;858654;Teradyne, Inc.;united states;MASSACHUSETTS;MASSACHUSETTS;us_ma; 600 RIVERPARK DRIVE NORTH READING MA 01864 978-370-2700
+us_oh;672380;860980;NACCO Industries;united states;OHIO;DELAWARE;us_de; 5875 LANDERBROOK DR SUITE 220 CLEVELAND OH 44124-4069 4402295123
+us_ct;0605776;50037;United Rentals;united states;CONNECTICUT;DELAWARE;us_de; 100 FIRST STAMFORD PLACE 7TH FLOOR STAMFORD CT 06902 2036223131
+us_ar;100099311;57296;Murphy Oil;united states;ARKANSAS;DELAWARE;us_de; 300 PEACH STREET PO BOX 7000 EL DORADO AR 71731-7000 8708626411
+us_or;580795;858985;Erickson Inc.;united states;OREGON;DELAWARE;us_de; C/O ERICKSON INCORPORATED 5550 SW MACADAM AVENUE, SUITE 200 PORTLAND OR 97239 503-505-5800
+us_ar;0105585;47514;Sprint Corporation;united states;KANSAS;KANSAS;us_ar; 6200 SPRINT PARKWAY OVERLAND PARK KS 66251 855-848-3280
+us_mi;B7770R;859770;Chrysler;united states;MICHIGAN;DELAWARE;us_de; 1000 CHRYSLER DRIVE AUBURN HILLS MI 48326 800-247-9753
+us_tx;0007444706;12267;Dell Inc.;united states;TEXAS;DELAWARE;us_de; ONE DELL WAY STED ROUND ROCK TX 78682-2244 5127284737
+us_wi;1N03446;871726;National Presto Industries;united states;WISCONSIN;WISCONSIN;us_wi; 3925 N HASTINGS WAY EAU CLAIRE WI 54703 7158392121
+us_ct;0668349;47706;Aetna;united states;CONNECTICUT;PENNSYLVANIA;us_pa; 151 FARMINGTON AVENUE HARTFORD CT 06156 8602730123
+us_fl;P95000025580;50284;Darden Restaurants;united states;FLORIDA;FLORIDA;us_fl; 1000 DARDEN CENTER DRIVE ORLANDO FL 32837 4072454000
+us_wa;178071138;56618;Nordstrom;united states;WASHINGTON;WASHINGTON;us_wa; 1617 SIXTH AVENUE SEATTLE WA 98101-4407 2066282111
+us_wi;868544;49933;Manpower;united states;WISCONSIN;WISCONSIN;us_wi; 5301 N IRONWOOD RD MILWAUKEE WI 53217
+us_oh;2364486;863273;AK Steel Holding;united states;OHIO;DELAWARE;us_de; 9227 CENTRE POINTE DRIVE WEST CHESTER OH 45069 5134255000
+us_pa;155092;865948;Harsco Corporation;united states;PENNSYLVANIA;DELAWARE;us_de; 350 POPLAR CHURCH ROAD CAMP HILL PA 17011 7177637064
+us_ma;000733447;862365;iRobot;united states;MASSACHUSETTS;DELAWARE;us_de; 8 CROSBY DRIVE BEDFORD MA 01730 781-430-3000
+us_ca;C2055964;862303;TiVo Inc.;united states;CALIFORNIA;DELAWARE;us_de; 2160 GOLD STREET SAN JOSE CA 95002 408-519-9100
+us_tx;0004159600;860177;Zale Corporation;united states;TEXAS;DELAWARE;us_de; 901 W WALNUT HILL LN MS 6B-3 IRVING TX 75038 9725804000
+us_tx;0800836565;58802;CVR Energy;united states;TEXAS;DELAWARE;us_de; 2277 PLAZA DRIVE SUITE 500 SUGAR LAND TX 77479 (281) 207-7711
+us_mi;637965;50181;Visteon;united states;MICHIGAN;DELAWARE;us_de; ONE VILLAGE CENTER DRIVE VAN BUREN TOWNSHIP MI 48111 800-847-8366
+us_sc;358863;49926;SCANA;united states;SOUTH CAROLINA;SOUTH CAROLINA;us_sc; 100 SCANA PARKWAY MAIL CODE - B123 CAYCE SC 29033 8032179000
+us_oh;408542;856691;Invacare;united states;OHIO;OHIO;us_oh; ONE INVACARE WAY P O BOX 4028 ELYRIA OH 44036 4403296000
+us_ny;1220670;49330;Alleghany;united states;NEW YORK;DELAWARE;us_de; 1411 BROADWAY 34TH FLOOR NEW YORK NY 10018 212-508-8130
+us_md;D01223502;967716;Legg Mason;united states;MARYLAND;MARYLAND;us_md; 100 INTERNATIONAL DRIVE BALTIMORE MD 21202 4105390000
+us_ma;042902449;865536;Hologic, Inc.;united states;MASSACHUSETTS;DELAWARE;us_de; 250 CAMPUS DRIVE MARLBOROUGH MA 01752 5082632900
+us_ca;200221110122;47832;Directv;united states;CALIFORNIA;DELAWARE;us_de; 2260 E. IMPERIAL HIGHWAY EL SEGUNDO CA 90245 310-964-5000
+us_or;12706917;869288;FLIR Systems;united states;OREGON;OREGON;us_or; 27700 SW PARKWAY AVENUE WILSONVILLE OR 97070 5034983547
+us_nc;0210719;56888;BB&T;united states;NORTH CAROLINA;NORTH CAROLINA;us_nc; 200 WEST SECOND STREET WINSTON-SALEM NC 27101 3367332000
+us_oh;186778;859106;American Greetings;united states;OHIO;OHIO;us_oh; ONE AMERICAN BOULEVARD CLEVELAND OH 44145 2162527300
+us_va;F1397498;50658;VeriSign;united states;VIRGINIA;DELAWARE;us_de; 12061 BLUEMONT WAY ATTN: GENERAL COUNSEL RESTON VA 20190 7039483200
+us_il;4971550;60933;Beam;united states;ILLINOIS;DELAWARE;us_de; 510 LAKE COOK ROAD DEERFIELD IL 60015 8479488888
+us_ny;2394350;862189;JetBlue;united states;NEW YORK;DELAWARE;us_de; 27-01 QUEENS PLAZA NORTH LONG ISLAND CITY NY 11101 7182867900
+us_mn;942de574-aad4-e011-a886-001ec94ffe7f;873329;Select Comfort Corporation;united states;MINNESOTA;MINNESOTA;us_mn; 9800 59TH AVENUE NORTH MINNEAPOLIS MN 55442 7635517000
+us_mi;116452;865872;Steelcase Inc.;united states;MICHIGAN;MICHIGAN;us_mi; 901 44TH STREET SE GRAND RAPIDS MI 49508 6162472710
+us_ca;C3566976;872914;Restoration Hardware Holdings, Inc.;united states;CALIFORNIA;DELAWARE;us_de; 15 KOCH ROAD SUITE K CORTE MADERA CA 94925 415-924-1005
+us_tx;0008481206;871117;McDermott International, Inc.;united states;TEXAS;;; 777 N. ELDRIDGE PARKWAY HOUSTON TX 77079 281-870-5000
+us_or;3009755;869954;Hyster-Yale Materials Handling Inc.;united states;OREGON;DELAWARE;us_de; 2701 NW VAUGHN PORTLAND OR 97210 5037216000
+us_ga;12080552;869763;HD Supply Holdings Inc.;united states;GEORGIA;DELAWARE;us_de; 3100 CUMBERLAND BOULEVARD SUITE 1480 ATLANTA GA 30339 770-852-9000
+us_ga;08002502;864734;Graphic Packaging Holding Company;united states;GEORGIA;DELAWARE;us_de; 1500 RIVEREDGE PARKWAY SUITE100 ATLANTA GA 30328 (770) 240-7200
+us_mo;F00515703;56121;Novation, LLC;united states;MISSOURI;MARYLAND;us_md;500 GRAND BOULEVARD SUITE 201B KANSAS CITY MO 64106 8162377000
+us_ca;C1865635;866117;Deckers Outdoor Corporation;united states;CALIFORNIA;DELAWARE;us_de; 250 COROMAR DRIVE GOLETA CA 93117 8059677611
+us_ny;264873;864402;Lazare Kaplan International Inc.;united states;NEW YORK;DELAWARE;us_de; 529 FIFTH AVE NEW YORK NY 10017 2129729700
+us_ca;C2109133;864326;Novatel Wireless, Inc.;united states;CALIFORNIA;CALIFORNIA;us_ca; 9605 SCRANTON ROAD SUITE 300 SAN DIEGO CA 92121 8588123400
+us_mn;2b6c8602-9ed4-e011-a886-001ec94ffe7f;866303;Imation;united states;MINNESOTA;DELAWARE;us_de; 1099 HELMO AVE N SUITE 250 OAKDALE MN 55128 6517044000
+us_dc;F01088731;47505;GEICO;united states;DISTRICT OF COLUMBIA;DELAWARE;us_de; ONE GEICO PLZ WASHINGTON DC 20076-0001 4023461400
+us_ny;61475;861141;Seneca Foods;united states;NEW YORK;NEW YORK;us_ny; 3736 SOUTH MAIN STREET MARION NY 14505 315 926 8100
+us_oh;515095;859363;Olympic Steel;united states;OHIO;OHIO;us_oh; 5096 RICHMOND RD BEDFORD HEIGHTS OH 44146 2162923800
+us_mo;F00007967;872170;Olin Corporation;united states;MISSOURI;VIRGINIA;us_va; OLIN CORP 190 CARONDELET PLAZA SUITE 1530 CLAYTON MO 63105 3144801400
+us_ca;C2004351;856812;Rambus;united states;CALIFORNIA;DELAWARE;us_de; 1050 ENTERPRISE WAY, SUITE 700 SUNNYVALE CA 94089 408-462-8000
+us_ny;59466;51030;Pall;united states;NEW YORK;NEW YORK;us_ny; 25 HARBOR PARK DRIVE PORT WASHINGTON NY 11050 5164845400
+us_az;F00377155;50217;Petsmart;united states;ARIZONA;DELAWARE;us_de;19601 N 27TH AVE PHOENIX AZ 85027 6235806100
+us_tx;2638963;49909;Calpine;united states;TEXAS;DELAWARE;us_de; 717 TEXAS AVENUE SUITE 1000 HOUSTON TX 77002 7138302000
+us_al;912-987;49902;Protective Life;united states;ALABAMA;DELAWARE;us_de; 2801 HGWY 280 S BIRMINGHAM AL 35223 2052683596
+us_az;F00378806;56042;Avnet;united states;ARIZONA;NEW YORK;us_ny; 2211 SOUTH 47TH STREET PHOENIX AZ 85034 4806432000
+us_tx;0011637506;872132;Oil States International, Inc.;united states;TEXAS;DELAWARE;us_de; THREE ALLEN CENTER 333 CLAY STREET, SUITE 4620 HOUSTON TX 77002 713-652-0582
+us_sd;DB009106;862042;Daktronics;united states;SOUTH DAKOTA;SOUTH DAKOTA;us_sd; PO BOX 5128 201 DAKTRONICS DRIVE BROOKINGS SD 57006 6056974000
+us_pa;76058;861900;CDI Corporation;united states;PENNSYLVANIA;PENNSYLVANIA;us_pa; 1735 MARKET STREET SUITE 200 PHILADELPHIA PA 19103 2155692200
+us_fl;P20024;47995;CSX;united states;FLORIDA;VIRGINIA;us_va; 500 WATER STREET 15TH FLOOR JACKSONVILLE FL 32202 9043593200
+us_fl;240627;60971;Elizabeth Arden Inc.;united states;FLORIDA;FLORIDA;us_fl; 880 SW 145 AVENUE SUITE 200 PEMBROKE PINES FL 33027 954-364-6900
+us_ny;3297813;47966;Viacom;united states;NEW YORK;DELAWARE;us_de; 1515 BROADWAY NEW YORK NY 10036 (212) 258-6000
+us_pa;2069197;58842;UGI;united states;PENNSYLVANIA;PENNSYLVANIA;us_pa; 460 N GULPH RD P O BOX 858 KING OF PRUSSIA PA 19406 6103371000
+us_in;198704-099;859144;Accuride Corporation;united states;INDIANA;DELAWARE;us_de; ACCURIDE 7140 OFFICE CIRCLE EVANSVILLE IN 47715 8129625000
+us_ma;042240991;867458;American Science & Engineering, Inc.;united states;MASSACHUSETTS;MASSACHUSETTS;us_ma; C/O AS&E 829 MIDDLESEX TURNPIKE BILLERICA MA 01821 9782628700
+us_ma;042302115;874894;Skyworks Solutions, Inc.;united states;MASSACHUSETTS;DELAWARE;us_de; 20 SYLVAN ROAD WOBURN MA 01801 6179355150
+us_ca;C1579467;47603;Amgen;united states;CALIFORNIA;DELAWARE;us_de; ONE AMGEN CENTER DRIVE THOUSAND OAKS CA 91320 (805)447-1000
+us_ny;1688862;47312;Citigroup Inc.;united states;NEW YORK;DELAWARE;us_de; 388 GREENWICH STREET NEW YORK NY 10013 2125591000
+us_ri;000015908;47474;Hasbro, Inc.;united states;RHODE ISLAND;RHODE ISLAND;us_ri; 1027 NEWPORT AVE P O BOX 1059 PAWTUCKET RI 02861 4014318697
+us_ca;C3111474;49410;First Republic Bank;united states;CALIFORNIA;CALIFORNIA;us_ca; 111 PINE STREET SAN FRACISCO CA 94111
+us_or;15184518;861501;Mentor Graphics;united states;OREGON;OREGON;us_or; 8005 SW BOECKMAN RD WILSONVILLE OR 97070-7777 5036857000
+us_co;20041050906;58886;Signature Bank;united states;COLORADO;COLORADO;us_co; 5414 WEST 27TH ST GREELEY CO 80634 970-674-3604
+us_wi;1U01435;873405;Sensient Technologies Corporation;united states;WISCONSIN;WISCONSIN;us_wi; 777 EAST WISCONSIN AVENUE MILWAUKEE WI 53202 4142716755

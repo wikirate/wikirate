@@ -13,6 +13,6 @@ format :html do
   end
 
   def related_overview_card
-    Card.fetch card.cardname.left_name.trait(:related_articles)
+    Card.fetch card.name.left_name.trait(:related_articles)
   end
 end

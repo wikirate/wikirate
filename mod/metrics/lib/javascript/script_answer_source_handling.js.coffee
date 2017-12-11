@@ -30,7 +30,7 @@ $.extend wikirate,
 
   appendSourceDetails: (sourceID) ->
     $source_form_container = $("#source-form-container")
-    load_path = wagn.prepUrl(wagn.rootPath + sourceID +
+    load_path = decko.prepUrl(decko.rootPath + sourceID +
         "?view=source_and_preview")
     $loader = wikirate.loader($source_form_container)
     $loader.add()
@@ -47,7 +47,7 @@ $.extend wikirate,
   citeSource = (args) ->
     $([args.$sourceFormContr.find("._cite_button"),
       args.$sourceContainer.find("._cite_button"),]).each ->
-      sourceCiteButtons($(this), 'cite')
+        sourceCiteButtons($(this), 'cite')
 
     args.$citedSource.empty() if args.$citedSource.text().search("None") > -1
     args.$hiddenInput.attr('value', args.sourceName)
@@ -70,9 +70,9 @@ $.extend wikirate,
       $citedButton = ele.removeClass("_cite_button btn-highlight")
         .addClass("_cited_button btn-success").text("Cited!")
       $citedButton.hover ( ->
-        $(this).text('Uncite!').addClass('btn-default')
+        $(this).text('Uncite!').addClass('btn-secondary')
       ), ->
-        $(this).text('Cited!').removeClass('btn-default')
+        $(this).text('Cited!').removeClass('btn-secondary')
     else
       $citedButton = ele.removeClass("_cited_button btn-success")
         .addClass("_cite_button btn-highlight").text("Cite!")
@@ -92,7 +92,7 @@ $.extend wikirate,
 
       $.get(load_path_source, ((data) ->
         $source_form_container.prepend(data)
-        wagn.initializeEditors($source_form_container)
+        decko.initializeEditors($source_form_container)
         $sourceForm = $source_form_container.find('form')
         $sourceForm.trigger('slotReady')
         $loader.remove()

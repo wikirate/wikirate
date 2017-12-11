@@ -1,4 +1,5 @@
 $.extend wikirate,
+
 # Hides the "Add answer" button and loads the form.
 # don't know what the source stuff is doing -pk
   appendNewValueForm: ($button) ->
@@ -13,11 +14,11 @@ $.extend wikirate,
     else
       source = ''
 
-    load_path = wagn.prepUrl($button.data("url") + source)
+    load_path = decko.prepUrl($button.data("url") + source)
 
     $.get(load_path, ((data) ->
       $form_slot.prepend(data)
-      wagn.initializeEditors($form_slot)
+      decko.initializeEditors($form_slot)
       $form_slot.trigger('slotReady')
       $loader.remove()
     ), "html").fail((xhr, d, e) ->
@@ -45,12 +46,12 @@ $.extend wikirate,
   valueChecking: (ele, action) ->
     path = encodeURIComponent(ele.data('path'))
     action = '?set_flag=' + action
-    load_path = wagn.prepUrl(wagn.rootPath + '/update/' + path + action)
+    load_path = decko.prepUrl(decko.rootPath + '/update/' + path + action)
     $parent = ele.closest('.double-check')
     $parent = ele.closest('.RIGHT-checked_by') unless $parent.exists()
     $parent.html('loading...')
     $.get(load_path, ((data) ->
-      content = $(data).find('.card-body').html()
+      content = $(data).find('.d0-card-body').html()
       $parent.empty().html(content)
     ), 'html').fail((xhr, d, e) ->
       $parent.html('please <a href=/*signin>sign in</a>')
@@ -77,7 +78,7 @@ $(document).ready ->
 
   $('body').on 'click', '._add_new_value', ->
     $form = $(this).closest('.record-row')
-      .find('.card-slott.new_answer_form-view form')
+      .find('.card-slot.new_answer_form-view form')
     if $form.exists() && $form.hasClass('hide')
       $form.removeClass('hide')
       $(this).hide()
@@ -144,7 +145,7 @@ $(document).ready ->
       stickClass.remove()
 
 
-wagn.slotReady (slot) ->
+decko.slotReady (slot) ->
   add_val_form = slot.find('form.new-value-form').is(':visible')
   if add_val_form
     slot.find('._add_new_value').hide()

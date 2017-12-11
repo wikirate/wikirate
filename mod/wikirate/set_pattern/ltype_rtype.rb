@@ -14,8 +14,8 @@ def prototype_args _anchor
 end
 
 def anchor_name card
-  left = Card.quick_fetch card.cardname.left
-  right = Card.quick_fetch card.cardname.right
+  left = Card.quick_fetch card.name.left
+  right = Card.quick_fetch card.name.right
   ltype_name = left ? left.type_name : "Basic" # hardcode for speed
   rtype_name = right ? right.type_name : "Basic"
 

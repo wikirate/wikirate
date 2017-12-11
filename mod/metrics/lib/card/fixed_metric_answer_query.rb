@@ -26,8 +26,7 @@ class Card
     end
 
     def numeric_sort?
-      @sort_args[:sort_by] &&
-        @sort_args[:sort_by].to_sym == :value &&
+      @sort_args[:sort_by]&.to_sym == :value &&
         @metric_card.numeric?
     end
 
@@ -47,6 +46,10 @@ class Card
 
     def missing_answer_query_class
       FixedMetricMissingAnswerQuery
+    end
+
+    def all_answer_query_class
+      FixedMetricAllAnswerQuery
     end
 
     def outliers_query

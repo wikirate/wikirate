@@ -38,7 +38,8 @@ module ClassMethods
     args[:on] ||= [:create, :update, :delete]
     name = event_name set_of_changed_card, args
     set_of_changed_card.class_eval do
-      event name, :integrate, args.merge(after: :refresh_updated_answers) do
+      event name, :after_integrate do
+        # , args.merge(after_all: :refresh_updated_answers) do
         Array.wrap(yield(self)).compact.each do |expired_count_card|
           next unless expired_count_card.respond_to?(:recount)
           expired_count_card.update_cached_count self

@@ -15,7 +15,7 @@ format :html do
     end
   end
 
-  view :rating_editor do |args|
+  view :rating_editor, cache: :never do |args|
     table_content = editor_table_content(args)
     sum =
       if table_content.empty?
@@ -26,7 +26,7 @@ format :html do
     table_content.push ["", sum]
     output [
       table_editor(table_content, %w[Metric Weight]),
-      add_metric_button
+      nest(card.variables_card, view: :add_metric_button)
     ]
   end
 

@@ -4,7 +4,7 @@ def virtual?
   true
 end
 
-def raw_content
+def content
   %({
     "type":"_lr",
     "linked_to_by":"_user+#{Card.fetch_name vote_type_codename}",
@@ -79,7 +79,7 @@ format do
 end
 
 format :html do
-  if Card::Codename[:wikirate_topic]
+  if Card::Codename.exists? :wikirate_topic
     METHOD_PREFIX = {
       WikirateTopicID    => :topic,
       MetricID           => :metric,
@@ -196,7 +196,7 @@ format :html do
     when MetricID
       metric_plus_company = Card.fetch("#{votee.name}+#{main_name}")
       opts[:no_value] = metric_plus_company.new_card? ||
-                        metric_plus_company.latest_value_year == 0
+                        metric_plus_company.latest_value_year.zero?
       opts[:sort][:recent] = metric_plus_company.updated_at.to_i
     end
   end
@@ -215,7 +215,7 @@ format :html do
               class: "list-drag-and-drop yinyang-list "\
                      "#{args[:vote_type]}-container",
               "data-query"        => args[:query],
-              "data-update-id"    => card.cardname.url_key,
+              "data-update-id"    => card.name.url_key,
               "data-bucket-name"  => args[:vote_type],
               "data-default-sort" => args[:default_sort] do
       [
@@ -240,7 +240,7 @@ format :html do
       :class             => "drag-item yinyang-row"
     }
     html_args[:class] += " no-metric-value" if args[:no_value]
-    args[:sort].each { |k, v| html_args["data-sort-#{k}"] = v } if args[:sort]
+    args[:sort]&.each { |k, v| html_args["data-sort-#{k}"] = v }
 
     wrap_with :div, content.html_safe, html_args
   end
@@ -248,7 +248,7 @@ format :html do
   def sortable content, args
     html_args = { class: "yinyang-row" }
     html_args[:class] += " no-metric-value" if args[:no_value]
-    args[:sort].each { |k, v| html_args["data-sort-#{k}"] = v } if args[:sort]
+    args[:sort]&.each { |k, v| html_args["data-sort-#{k}"] = v }
     wrap_with :div, content.html_safe, html_args
   end
 end

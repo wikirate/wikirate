@@ -1,9 +1,9 @@
 # handle variables used in a formula card's content
 
 def variables_card
-  v_card = metric_card.fetch trait: :variables, new: { type: "session" }
-  v_card.content = input_names.to_pointer_content if v_card.content.blank?
-  v_card
+  metric_card.fetch(trait: :variables, new: { type: "session" }).tap do |v_card|
+    v_card.content = input_names.to_pointer_content if v_card.content.blank?
+  end
 end
 
 event :replace_variables, :prepare_to_validate,
@@ -16,11 +16,9 @@ event :replace_variables, :prepare_to_validate,
 end
 
 format :html do
-  view :variables do |args|
+  view :variables do |_args|
     with_nest_mode(:normal) do
-      subformat(card.variables_card)._render_open(
-        args.merge(optional_header: :hide, optional_menu: :hide)
-      ).html_safe
+      nest card.variables_card, view: :open, hide: [:header, :menu]
     end
   end
 end

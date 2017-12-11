@@ -57,10 +57,15 @@ class WikirateTable
 
   def details_tr tr, row_card
     add_class tr, "tr-details-toggle"
-    tr.deep_merge! data: {
-      details_url: @format.path(mark: row_card, view: @opts[:details_view])
-    }
+    tr.deep_merge! data: { details_url: details_url(row_card) }
     tr
+  end
+
+  def details_url row_card
+    if @format.respond_to? :details_url?
+      return "false" unless @format.details_url? row_card
+    end
+    @format.path mark: row_card, view: @opts[:details_view]
   end
 
   def link_tr tr, row_card
@@ -74,7 +79,7 @@ class WikirateTable
   end
 
   def td_content row_card, view
-    subformat(row_card)._render(view)
+    subformat(row_card)._render!(view)
   end
 
   def td_opts col_index

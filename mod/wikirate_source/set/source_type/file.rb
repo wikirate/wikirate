@@ -10,14 +10,8 @@ format :html do
   end
 
   view :metric_import_link do
-    return "" unless csv?
+    return "" unless card.file_card.csv?
     link_to_card card.file_card, "Import to metric values",
                  path: { view: :import }
-  end
-
-  def csv?
-    ["text/csv", "text/comma-separated-values"].include?(
-      card.file_card.file.content_type
-    )
   end
 end

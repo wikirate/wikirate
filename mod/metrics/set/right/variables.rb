@@ -7,7 +7,7 @@ def metric_card
 end
 
 def metric_card_name
-  cardname.left_name
+  name.left_name
 end
 
 def formula_card
@@ -46,7 +46,20 @@ format :html do
       items.map.with_index do |item, index|
         variable_row(item, index, args)
       end
-    table(table_content, header: ["Metric", "Variable", "Example value"])
+    table(table_content, header: ["Metric", "Variable", "Example value"]) +
+      render_add_metric_button
+  end
+
+  view :add_metric_button do
+    target = "#modal-add-metric-slot"
+    wrap_with :span, class: "input-group" do
+      button_tag class: "pointer-item-add slotter", situation: "outline-secondary",
+                 data: { toggle: "modal", target: target },
+                 href: path(layout: "modal", view: :edit, mark: card.name,
+                            slot: { title: "Choose Metric" }) do
+        fa_icon(:plus) + " add metric"
+      end
+    end
   end
 
   def variable_row item_name, index, args
@@ -65,53 +78,21 @@ format :html do
   end
 
   view :edit do |_args|
+    return super() unless card.metric_card
+    voo.hide! :toolbar, :menu
     frame do
-      render_haml metric_list: metric_list do
-        <<-HAML
-.yinyang.nodblclick
-  .col-md-6
-    .header-row
-      .header-header
-        Metric
-    .yinyang-list.add-formula
-      = metric_list
-  .col-md-6.metric-details.light-grey-color-2.text-center
-    %br/
-    %br/
-    %br/
-    %p
-      Choose a metric to view more details here
-    %p
-      and to add it to the formula
-      HAML
-      end
+      nest [card.metric_card_name, :add_to_formula], view: :select_modal
     end
   end
 
-  def default_edit_args args
-    args[:optional_toolbar] = :hide
-    args[:optional_menu] = :hide
-  end
-
-  def metric_list
-    wql = { type_id: MetricID, limit: 0 }
-    if card.metric_card.metric_type_codename == :wiki_rating
-      wql[:right_plus] = ["*metric type", { refer_to: "Score" }]
-    end
-    items = Card.search(wql)
-    params[:formula_metric_key] = card.cardname.left_key
-    wikirate_table_with_details :metric, items, [:add_to_formula_item_view],
-                                td: { classes: %w[score details] }
-  end
-
-  view :missing do |args|
-    if @card.new_card? && (l = @card.left) &&
-       l.respond_to?(:input_names)
+  view :missing do
+    return super() unless card.new_card?
+    if card.formula_card
       card.extract_metrics_from_formula
-      render(@denied_view, args)
     else
-      super(args)
+      Auth.as_bot { card.save! }
     end
+    render! @denied_view
   end
 
   view :new, :missing

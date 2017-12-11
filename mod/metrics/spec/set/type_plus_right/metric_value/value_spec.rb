@@ -41,4 +41,19 @@ describe Card::Set::TypePlusRight::MetricValue::Value do
 
     it { is_expected.to eq "2015" }
   end
+
+  context "when updated" do
+    METRIC = "Jedi+disturbances in the Force"
+    SCORER =  "Joe User"
+    COMPANY = "Death Star"
+    YEAR = "1977"
+    let(:researched_value_name) { "#{METRIC}+#{COMPANY}+#{YEAR}+value" }
+    let(:scored_value_name) { "#{METRIC}+#{SCORER}+#{COMPANY}+#{YEAR}+value" }
+
+    it "updates related score" do
+      expect(Card[scored_value_name].content).to eq "10.0"
+      Card[researched_value_name].update_attributes! content: "no"
+      expect(Card[scored_value_name].content).to eq "0.0"
+    end
+  end
 end

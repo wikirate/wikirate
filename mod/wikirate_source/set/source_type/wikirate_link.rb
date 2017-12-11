@@ -4,12 +4,11 @@ card_accessor :wikirate_website, type: :pointer
 
 format :html do
   view :original_link do
-    link_to (voo.title || "Visit Original"), path: card.wikirate_link
+    original_link card.wikirate_link, text: voo.title
   end
 end
 
-event :autopopulate_website,
-      :prepare_to_store, on: :create, when: proc { |c| c.populate_website? } do
+event :autopopulate_website, :prepare_to_store, on: :create, when: :populate_website? do
   link = subfield(:wikirate_link).content
   host = URI.parse(link).host
   add_subfield :wikirate_website, content: "[[#{host}]]", type_id: PointerID
@@ -17,12 +16,7 @@ event :autopopulate_website,
   add_subcard host, type_id: Card::WikirateWebsiteID
 end
 
-event :import_linked_source, :integrate_with_delay, on: :save do
-  generate_pdf if html_link? && import?
-end
-
-event :process_source_url, after: :check_source,
-                           on: :create do
+event :process_source_url, after: :check_source, on: :create do
   if !(link_card = subfield(:wikirate_link)) || link_card.content.empty?
     errors.add(:link, "does not exist.")
     return
@@ -72,7 +66,7 @@ end
 
 def duplication_check
   return unless duplicates.any?
-  duplicated_name = duplicates.first.cardname.left
+  duplicated_name = duplicates.first.name.left
   if sourcebox?
     remove_subfield(:wikirate_link)
     self.name = duplicated_name
@@ -89,7 +83,8 @@ def duplicates
 end
 
 def generate_pdf
-  kit = PDFKit.new url
+  puts "generating pdf"
+  kit = PDFKit.new url, "load-error-handling" => "ignore"
   Dir::Tmpname.create(["source", ".pdf"]) do |path|
     kit.to_file(path)
     file_card.update_attributes!(file: ::File.open(path)) if ::File.exist?(path)
@@ -99,7 +94,7 @@ rescue => e
 end
 
 def url
-  @url ||= (wikirate_link && wikirate_link.strip) || ""
+  @url ||= (wikirate_link&.strip) || ""
 end
 
 def url?
@@ -125,10 +120,10 @@ end
 
 def download_and_add_file
   return unless url.present? && within_file_size_limit?
-  file_url = Addressable::URI.escape url
+  file_url = url.include?("%") ? url : Addressable::URI.escape(url)
   add_subfield :file, remote_file_url: file_url, type_id: FileID, content: "dummy"
   source_type = subfield(:source_type)
-  source_type.content = "[[#{Card[:file].name}]]"
+  source_type.content = "[[#{:file.cardname}]]"
   remove_subfield :wikirate_link
   reset_patterns
   include_set_modules
@@ -196,4 +191,10 @@ end
 def add_description thumbnail
   return if subfield(:description) || thumbnail.description.empty?
   add_subfield :description, content: thumbnail.description
+end
+
+format :json do
+  def essentials
+    super.merge source_url: card.url
+  end
 end

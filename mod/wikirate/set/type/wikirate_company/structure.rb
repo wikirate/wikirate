@@ -2,10 +2,11 @@ include_set Abstract::WikirateTable
 include_set Abstract::TwoColumnLayout
 
 card_accessor :wikipedia
+card_accessor :open_corporates
 
 format :html do
   def default_content_formgroup_args _args
-    voo.edit_structure = [:image, :wikipedia]
+    voo.edit_structure = [:headquarters, :image, :wikipedia]
   end
 
   def active_profile_tab
@@ -32,21 +33,19 @@ format :html do
   end
 
   view :data, cache: :never do
-    if active_profile_tab == :performance
-      output [
-        _optional_render_header_tabs_mobile,
-        field_nest(:all_metric_values)
-      ]
-    else
-      contribution_data
-    end
+    active_profile_tab == :performance ? performance_data : contribution_data
+  end
+
+  def performance_data
+    output [_render_header_tabs_mobile, field_nest(:all_metric_values)]
   end
 
   def header_right
-    output [
-      wrap_with(:h3, _render_title, class: "company-color"),
-      _render_header_tabs
-    ]
+    output [header_title, _render_header_tabs]
+  end
+
+  def header_title
+    wrap_with :h3, _render_title, class: "company-color"
   end
 
   view :header_tabs, cache: :never do
@@ -54,12 +53,12 @@ format :html do
   end
 
   view :header_tabs_mobile, cache: :never do
-    wrap_header_tabs :mobile
+    wrap_header_tabs(:mobile)
   end
 
   def wrap_header_tabs device=""
-    css_class = "nav nav-tabs company-profile-tab"
-    css_class += device.to_sym == :mobile ? " visible-xs" : " hidden-xs"
+    css_class = "nav nav-tabs company-profile-tab "
+    css_class += device.to_sym == :mobile ? "d-md-none d-ls-none" : "d-sm-none d-xs-none d-md-block"
     wrap_with :ul, class: css_class do
       [performance_tab_button, contributions_tab_button]
     end
@@ -71,8 +70,9 @@ format :html do
 
   def profile_tab key, label, args={}
     add_class args, :active if active_profile_tab == key
-    wrap_with :li, args do
-      link_to_card card, label, path: { company_profile: key }
+    wrap_with :li do
+      add_class args, "nav-link"
+      link_to_card card, label, path: { company_profile: key }, class: args[:class]
     end
   end
 
@@ -85,7 +85,7 @@ format :html do
     if contributions_made?
       profile_tab :contributions, label_name
     else
-      disabled_tab = wrap_with :span, label_name
+      disabled_tab = wrap_with :span, label_name, class: "nav-link"
       wrap_with :li, disabled_tab, class: "disabled"
     end
   end
@@ -93,13 +93,39 @@ format :html do
   view :details_tab do |_args|
     bs_layout do
       row 12 do
-        column wikipedia_extract
+        column do
+          output [country_table, integrations]
+        end
       end
     end
   end
 
+  def country_table
+    table country_rows, class: "table-borderless table-condensed"
+  end
+
+  def country_rows
+    [:headquarters].map do |field|
+      [{ content: wrap_with(:strong, Card[field].name),
+         class: "no-stretch padding-right-30" },
+       field_nest(field, view: :content, show: :menu, items: { view: :name })]
+    end
+  end
+
+  def integrations
+    output [
+      "<h3>Integrations</h3>",
+      wikipedia_extract,
+      open_corporates_extract
+    ]
+  end
+
   def wikipedia_extract
-    subformat(card.wikipedia_card)._render_titled
+    nest card.wikipedia_card, view: :titled, title: "Wikipedia"
+  end
+
+  def open_corporates_extract
+    nest card.open_corporates_card, view: :titled, title: "OpenCorporates"
   end
 
   view :topics_tab do
@@ -114,11 +140,13 @@ format :html do
     field_nest :project, items: { view: :listing }
   end
 
-  view :filter do |args|
-    field_subformat(:company_metric_filter)._render_core args
-  end
+  # view :filter do |args|
+  #   filter_form  a: { input_field: "<input class='a'/>", label: "A" },
+  #                                    b: { input_field: "<select class='b'/>", label: "B" }
+  #   # field_subformat(:company_metric_filter)._render_core args
+  # end
 
   view :browse_item, template: :haml
-
   view :homepage_item, template: :haml
+  view :homepage_item_sm, template: :haml
 end

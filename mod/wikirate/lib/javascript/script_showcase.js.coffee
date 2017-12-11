@@ -1,4 +1,4 @@
-wagn.slotReady (slot) ->
+decko.slotReady (slot) ->
   target = null
   old_list = null
   no_sort = false

@@ -14,6 +14,9 @@ format do
     number = BigDecimal.new(value)
     size = number.abs > 1_000_000 ? :big : :small
     send "humanized_#{size}_number", number
+  rescue
+    Rails.logger.info "#{card.name} has bad number: #{value}"
+    value
   end
 
   def humanized_big_number number
@@ -26,6 +29,6 @@ format do
       number, delimiter: ",", strip_insignificant_zeros: true,
               precision: (less_than_one ? 3 : 1), significant: less_than_one
     )
-    humanized == "0" && number > 0 ? "~0" : humanized
+    humanized == "0" && number.positive? ? "~0" : humanized
   end
 end

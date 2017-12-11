@@ -25,7 +25,7 @@ class Answer
       ma.answer_id = ma_card_id
       # update all fields if record is new
       fields = nil if ma.new_record?
-      ma.refresh *fields
+      ma.refresh(*fields)
     end
 
     # @return answer card objects
@@ -73,11 +73,19 @@ class Answer
       end
     end
 
-    def refresh_entry fields, ma_id
-      create_or_update ma_id, *fields
-    rescue => e
-      puts "failed to refresh metric answer: #{ma_id}"
-      puts e.message
+    def refresh_entry fields, card_id
+      if Card.exists? card_id
+        create_or_update card_id, *fields
+      else
+        delete_answer_for_card_id card_id
+      end
+    rescue StandardError => e
+      raise e, "failed to refresh answer lookup table " \
+               "for card id #{card_id}: #{e.message}"
+    end
+
+    def delete_answer_for_card_id card_id
+      find_by_answer_id(card_id)&.destroy
     end
 
     def refresh_all fields
@@ -100,14 +108,14 @@ class Answer
 
     def latest_answer_card metric_id, company_id
       a_id = where(metric_id: metric_id, company_id: company_id,
-                   latest: true).pluck(:answer_id)
+                   latest: true).pluck(:answer_id).first
       a_id && Card.fetch(a_id)
     end
 
     def latest_year metric_id, company_id
       where(metric_id: metric_id,
             company_id: company_id,
-            latest: true).pluck(:year)
+            latest: true).pluck(:year).first
     end
 
     def answered? metric_id, company_id

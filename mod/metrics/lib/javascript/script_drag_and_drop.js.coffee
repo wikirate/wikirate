@@ -236,7 +236,7 @@ $(document).ready ->
     if $(list).find('.drag-item:visible').length == 0
       $(list).find('.empty-message').show()
 
-wagn.slotReady (slot) ->
+decko.slotReady (slot) ->
   handleDropEvent = ( event, ui ) ->
     drag_item = ui.item
     new_list = drag_item.parent()

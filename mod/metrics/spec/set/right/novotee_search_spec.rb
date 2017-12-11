@@ -20,7 +20,7 @@ describe Card::Set::Right::NovoteeSearch do
     end
 
     it "returns correct results without being voted" do
-      as_user "Anonymous" do
+      with_user "Anonymous" do
         vote_down metrics[1]
         is_expected.to include(metrics[0].name)
         is_expected.not_to include(metrics[1].name)

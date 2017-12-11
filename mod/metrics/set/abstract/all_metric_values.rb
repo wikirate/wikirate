@@ -15,14 +15,16 @@ def search args={}
 end
 
 format :html do
-  view :core, cache: :never do
-    bs_layout do
-      row do
-        _optional_render_filter
-      end
-      row do
-        _render_table
-      end
+  view :core, cache: :never do |_args|
+    class_up "card-slot", "_filter-result-slot"
+    _render_filter_form + _render_filter_result
+  end
+
+  view :filter_result, template: :haml, cache: :never
+
+  view :filter_form do
+    wrap_with :div, class: "row" do
+      _render_filter
     end
   end
 
@@ -30,6 +32,10 @@ format :html do
     wrap do # slot for paging links
       wikirate_table_with_details(*table_args)
     end
+  end
+
+  def details_url? row_card
+    !row_card.new_card?
   end
 end
 

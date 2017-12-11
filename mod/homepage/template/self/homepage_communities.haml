@@ -1,0 +1,26 @@
+.nodblclick.row.nopadding.transparent-background-black
+  .col-md-12.banner-buttons
+    .row.margin-top-20
+    %h2.text-center.white-text.no-bold-text Community
+    .row.margin-top-50
+    .row.white-text.text-center
+      - (0..3).each do |index|
+        .col-md-3
+          = community_link index
+    %br/
+    %br/
+    .row.white-text.text-center
+      - (4..7).each do |index|
+        .col-md-3
+          = community_link index
+
+    .row.margin-top-50
+    %h2.text-center.white-text.no-bold-text
+      Inspire companies to perform
+      better on topics and metrics important to you
+    %br/
+    .text-center
+      %a.btn.btn-outline-secondary.btn-banner-info{:href => "/new/:signup"}
+        Join us
+      %a.btn.btn-outline-secondary.btn-banner-info{:href => "http://eepurl.com/LPHur", :target => "_blank"} Receive Updates
+    .row.margin-top-50

@@ -10,7 +10,7 @@ describe Card::Set::MetricType::Score do
 
     it { is_expected.to be_truthy }
     it "has codename" do
-      expect(subject.codename).to eq "score"
+      expect(subject.codename).to eq :score
     end
     it 'has type "metric type"' do
       expect(subject.type_id).to eq Card["metric type"].id
@@ -207,6 +207,21 @@ describe Card::Set::MetricType::Score do
     it "updates dependent ratings" do
       expect(Card["Jedi+darkness rating+Death Star+1977+value"].content)
         .to eq "6.4"
+    end
+  end
+
+  describe "score for multi-categorical formula" do
+    it "sums values" do
+      @metric_title = "small multi"
+      @metric_name = "Joe User+#{@metric_title}"
+      Card::Auth.as_bot do
+        @metric = create_metric(
+          name: "#{@metric_name}+Big Brother", type: :score,
+          formula: '{"1":2, "2":4, "3":6}'
+        )
+      end
+
+      expect(score_value("Sony Corporation", "2010")).to eq "6.0"
     end
   end
 end

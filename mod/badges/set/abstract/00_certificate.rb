@@ -1,6 +1,6 @@
 format :html do
   def certificate level
-    glyphicon :certificate, level
+    fa_icon :certificate, level
   end
 
   view :count, tags: :unknown_ok do |args|

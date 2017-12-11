@@ -9,7 +9,7 @@ module Formula
     class Input
       # @param [Array<Card>] input_cards all cards that are part of the formula
       # @param [Array<String] year_options for every input card a year option
-      # @param [Proc] input_card a block that is called for every input value
+      # @param [Proc] input_cards a block that is called for every input value
       def initialize input_cards, year_options, &input_cast
         @input_cards = input_cards
         @input_cast = input_cast
@@ -22,7 +22,7 @@ module Formula
       # @option opts [String] :year only yield input for given year
       def each opts={}
         fetch_values opts
-        fixed_company = opts[:company] && opts[:company].to_name.key
+        fixed_company = opts[:company]&.to_name&.key
         years = opts[:year] ? Array(opts[:year].to_i) : years_with_values
         years.each do |year|
           if fixed_company
@@ -106,7 +106,7 @@ module Formula
             yearly_value_fetch input_card
             @order << [input_card.key, :yearly_value]
           end
-          next unless @companies_with_values && @companies_with_values.empty?
+          next unless @companies_with_values&.empty?
           # there are no companies with values for all input cards
           @companies_with_values_by_year = Hash.new_nested ::Set
           return

@@ -1,27 +1,9 @@
 include_set Abstract::WikirateTable
+include_set Abstract::ResearchedValueDetails
 
 format :html do
   def value_details
-    _render "#{card.metric_type}_value_details"
-  end
-
-  def wrap_value_details
-    output [
-      _optional_render(:credit_name),
-      yield,
-      wrap_with(:div, _render_comments, class: "comments-div")
-    ]
-  end
-
-  view :researched_value_details do
-    checked_by = card.fetch trait: :checked_by, new: {}
-    checked_by = nest(checked_by, view: :core)
-    wrap_value_details do
-      [
-        wrap_with(:div, checked_by, class: "double-check"),
-        wrap_with(:div, _render_sources, class: "cited-sources")
-      ]
-    end
+    _render! "#{card.metric_type}_value_details"
   end
 
   view :formula_value_details do
@@ -125,7 +107,7 @@ format :html do
   end
 
   view :value_details_toggle do
-    css_class = "fa fa-caret-right fa-lg margin-left-10 btn btn-default btn-sm"
+    css_class = "fa fa-caret-right fa-lg margin-left-10 btn btn-outline-secondary btn-sm"
     wrap_with(:i, "", class: css_class,
                       data: { toggle: "collapse-next",
                               parent: ".value",

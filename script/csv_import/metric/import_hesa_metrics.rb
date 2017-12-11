@@ -4,6 +4,4 @@ require_relative "../csv_file"
 
 csv_path = File.expand_path "../data/hesa_import.csv", __FILE__
 
-Card::Auth.current_id = Card.fetch_id "Philipp Kuehl"
-
-CSVFile.new(csv_path, MetricCSVRow).import
+CSVFile.new(csv_path, MetricCSVRow).import user: "Philipp Kuehl"

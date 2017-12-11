@@ -27,7 +27,7 @@ wait_for_source_adding = ->
     $("#input_box_flag").closest("form").submit()
     clearInterval(interval)
 
-wagn.slotReady (slot) ->
+decko.slotReady (slot) ->
 
   ### commenting it for now.
   $("body").on("blur", "#sourcebox", function() {
