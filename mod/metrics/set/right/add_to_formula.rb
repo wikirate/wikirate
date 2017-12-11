@@ -125,9 +125,9 @@ format :html do
       wql[:right_plus] = ["*metric type", { refer_to: "Score" }]
     end
     # items = Card.search(wql)
-    items = search_with_params
+    items = search_with_params wql
     params[:formula_metric_key] = card.name.left_key
-    with_paging do
+    with_paging view: :filter_metric_list do
       wikirate_table_with_details :metric, items, [:add_to_formula_item_view],
                                   td: { classes: %w[score details] }
     end
