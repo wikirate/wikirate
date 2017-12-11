@@ -339,6 +339,22 @@ format :html do
     )
   end
 
+  view :formula_value, cache: :never do |args|
+    return "" unless args[:company] && args[:reference_year]
+    year = case args[:year]
+           when nil then formula_value args[:company], args[:reference_year]
+           when Array
+             args[:year].map
+           else
+
+           end
+
+  end
+
+  def formula_value company, year
+    field_nest [args[:company], args[:year], :value], view: :core
+  end
+
   view :add_to_formula, template: :haml
 
   view :metric_info do |_args|

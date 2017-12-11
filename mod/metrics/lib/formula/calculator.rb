@@ -8,8 +8,9 @@ module Formula
     attr_reader :formula, :errors
 
     def initialize formula_card
-      @formula = formula_card
-      @input = Input.new(@formula.input_cards, year_options,
+      @formula_card = formula_card
+      @formula = formula_card.content.gsub(/[\r\n]+/m,"")
+      @input = Input.new(@formula_card.input_cards, year_options,
                          &self.class::INPUT_CAST)
       @errors = []
     end
@@ -26,6 +27,15 @@ module Formula
         result[year][company] = normalize_value value
       end
       result
+    end
+
+    # @return [String] the formula with nests replaced by the input values
+    #   A block can be used to format the input values
+    def formula_for company, year
+      input_enum = @input.input_for(year, company).each
+      replace_nests do
+        block_given? ? yield(input_enum.next) : input_enum.next
+      end
     end
 
     def validate_formula
@@ -50,19 +60,19 @@ module Formula
     protected
 
     def compile_formula
-      return unless safe_to_convert? @formula.content
+      return unless safe_to_convert? @formula
       @executed_lambda ||= safe_execution(to_lambda)
     end
 
     # Extracts all year options from all input nests in the formula
     def year_options
-      @formula.input_chunks.map do |chunk|
+      @formula_card.input_chunks.map do |chunk|
         chunk.options[:year]
       end
     end
 
     def replace_nests content=nil
-      content ||= @formula.content
+      content ||= @formula
       index = -1
       content.gsub(/{{[^}]*}}/) do |_match|
         index += 1
@@ -79,7 +89,7 @@ module Formula
     end
 
     def normalize_value value
-      @formula.normalize_value value
+      @formula_card.normalize_value value
     end
   end
 end
