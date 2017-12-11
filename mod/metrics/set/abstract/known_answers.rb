@@ -86,28 +86,35 @@ end
 format :html do
   def research_progress_bar link_method=nil
     return "" unless card.num_possible.positive?
-    sections = [:known, :unknown, :not_researched].map do |value|
-      research_progress_bar_section value, link_method
-    end.compact
+    sections = research_progress_bar_sections link_method
     progress_bar(*sections)
   end
 
-  def research_progress_bar_section value, link_method
-    percent = card.send "percent_#{value}"
-    return if percent.to_i.zero?
-    hash = { value: percent, class: progress_css_class(value) }
-    link_progress_bar_section hash, value, link_method
-    hash
+  def research_progress_bar_sections link_method
+    [:known, :unknown, :not_researched].map do |value|
+      research_progress_bar_section value, link_method
+    end.compact
   end
 
-  def progress_css_class value
+  def research_progress_bar_section value, link_method
+    num = card.send "num_#{value}"
+    return if num.zero?
+    {
+      value: card.send("percent_#{value}"),
+      body: progress_section_body(value, link_method, num),
+      class: progress_section_css_class(value)
+    }
+  end
+
+  def progress_section_css_class value
     CSS_CLASS[value] || "progress-#{value}"
   end
 
-  def link_progress_bar_section hash, value, link_method
-    return unless link_method
-    hash[:body] = send link_method, LINK_VALUE[value] do
-      card.send "num_#{value}"
+  def progress_section_body value, link_method, num
+    if link_method
+      send link_method, LINK_VALUE[value] { num }
+    else
+      num
     end
   end
 end

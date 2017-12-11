@@ -58,7 +58,7 @@ And(/^I click on "([^"]*)" and confirm$/) do |link|
 end
 
 When(/^I click on metric "([^"]*)"$/) do |metric|
-  find(:css, ".add-formula").find("h4", text: metric).click
+  find(:css, ".add-formula").find("h5", text: metric).click
 end
 
 When(

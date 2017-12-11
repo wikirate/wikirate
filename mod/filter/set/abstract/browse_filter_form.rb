@@ -24,7 +24,23 @@ def filter_wql
 end
 
 def extra_filter_args
-  { type_id: target_type_id }
+  ignoring_blocked_ids do
+    { type_id: target_type_id }
+  end
+end
+
+def ignoring_blocked_ids
+  hash = yield
+  if (not_ids = blocked_ids)
+    hash[:id] = ["not in", not_ids]
+  end
+  hash
+end
+
+def blocked_ids
+  not_ids = filter_param :not_ids
+  return unless not_ids.present?
+  not_ids.split ","
 end
 
 def target_type_id
@@ -66,6 +82,10 @@ format :html do
   # view :no_search_results do |_args|
   #   wrap_with :div, "No result", class: "search-no-results"
   # end
+
+  def default_select_item_args _args
+    class_up "card-slot", "_filter-result-slot"
+  end
 
   def default_content_args _args
     class_up "card-slot", "_filter-result-slot"
