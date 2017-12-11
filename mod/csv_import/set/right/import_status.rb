@@ -46,8 +46,8 @@ format :html do
   delegate :status, :import_counts, to: :card
   delegate :percentage, :count, :step, to: :import_counts
 
-  def wrap_data
-    super.merge "refresh-url" => path(view: @slot_view)
+  def wrap_data slot=true
+    super(slot).merge "refresh-url" => path(view: @slot_view)
   end
 
   def wrap_classes slot
