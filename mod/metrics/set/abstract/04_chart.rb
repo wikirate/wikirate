@@ -63,7 +63,7 @@ format :html do
     output [
       zoom_out_link,
       wrap_with(:div, "",
-                id: id, class: classy("vis"),
+                id: id, class: "#{classy('vis')} _load-vis",
                 data: { url: chart_load_url })
     ]
   end
@@ -76,8 +76,7 @@ format :html do
   end
 
   def show_chart?
-    return if card.relationship?
-    return unless card.numeric? || card.categorical?
+    return if card.relationship? || !(card.numeric? || card.categorical?)
 
     card.filter_hash[:metric_value] != "none" &&
       card.filter_hash[:metric_value] != "all" &&
@@ -127,6 +126,6 @@ format :json do
       Card::Chart::NumericChart
     else
       Card::Chart::CategoryChart
-  end
+    end
   end
 end
