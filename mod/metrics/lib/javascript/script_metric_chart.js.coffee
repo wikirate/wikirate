@@ -1,5 +1,6 @@
 decko.slotReady (slot) ->
-  for vis in slot.find('.vis')
+  for vis in slot.find('.vis._load-vis')
+    $(vis).removeClass("_load-vis")
     $.ajax
       url: $(vis).data "url"
       visID: $(vis).attr('id')
