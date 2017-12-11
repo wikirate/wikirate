@@ -12,12 +12,22 @@ format :html do
         [
           _render_formula_table,
           wrap_with(:h5, "Formula"),
-          nest(card.metric_card.formula_card,
-               view: :core, params: company_year,
-               items: { view: :fixed_value })
+          formula
         ]
       end
     end
+  end
+
+  def formula
+    calculator = Formula::Calculator.new(card.metric_card.formula_card)
+    result = calculator.formula_for card.company, card.year.to_i do |input|
+      input = input.join ", " if is_a?(Array)
+      "<span class='metric-value'>#{input.to_s}</span>"
+    end
+    "= #{result}"
+    # nest(card.metric_card.formula_card,
+    #                view: :core, params: company_year,
+    #                items: { view: :fixed_value })
   end
 
   def company_year
@@ -52,6 +62,7 @@ format :html do
         next if item_card.type_id == YearlyVariableID
         metric_row(item_card)
       end.compact
+
     table(table_content, header: ["Metric", "Raw Value", "Score"])
   end
 
