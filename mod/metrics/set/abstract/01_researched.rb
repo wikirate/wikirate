@@ -6,8 +6,8 @@ def score_cards
 end
 
 format :html do
-  def default_content_formgroup_args _args
-    super _args
+  def default_content_formgroup_args args
+    super args
     voo.edit_structure += [
       [:value_type, "Value Type"],
       [:research_policy, "Research Policy"],
@@ -39,10 +39,10 @@ format :html do
     voo.hide :menu
     wrap do
       [
-        field_nest(:value_type, view: :content, items: { view: :name }, show: :menu ),
-        #)_render_value_type_edit_modal_link,
+        field_nest(:value_type, view: :content, items: { view: :name }, show: :menu),
+        # )_render_value_type_edit_modal_link,
         _render_short_view,
-        #_render_menu
+        # _render_menu
       ]
     end
   end
@@ -59,8 +59,8 @@ format :html do
     # TODO: move +scores to a separate card
     tab_wrap do
       output [
-        wikirate_table(:plain, card.score_cards, [:score_thumbnail], header: ["scored by"],
-                                                                     tr_link: ->(item) { path mark: item }),
+        wikirate_table(:plain, card.score_cards, [:score_thumbnail],
+                       header: ["scored by"], tr_link: ->(item) { path mark: item }),
         add_score_link
       ]
     end
@@ -94,7 +94,8 @@ format :html do
     <<-HTML
       <h5>Bulk Import</h5>
         <div class="btn-group" role="group" aria-label="...">
-          <a class="btn btn-outline-secondary btn-sm" href='/new/source?layout=wikirate%20layout'>
+          <a class="btn btn-outline-secondary btn-sm"
+             href='/new/source?layout=wikirate%20layout'>
             <span class="fa fa-arrow-circle-o-down"></span>
             Import
           </a>
