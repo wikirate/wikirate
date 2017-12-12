@@ -1,4 +1,6 @@
 class Card
+  # Template class for rendering the details table of metric answer.
+  # For every metric type there is a subclass of this class.
   class AbstractAnswerDetailsTable
     class << self
       attr_accessor :columns

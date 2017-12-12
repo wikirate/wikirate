@@ -1,4 +1,5 @@
 class Card
+  # Renders the table with details for an answer of a WikiRating metric
   class WikiratingAnswerDetailsTable < AbstractAnswerDetailsTable
     @columns = ["Metric", "Raw Value", "Score", "Weight", "Points"]
 

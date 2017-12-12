@@ -48,7 +48,7 @@ format :html do
     calculator = Formula::Calculator.new(card.metric_card.formula_card)
     calculator.formula_for card.company, card.year.to_i do |input|
       input = input.join ", " if input.is_a?(Array)
-      "<span class='metric-value'>#{input.to_s}</span>"
+      "<span class='metric-value'>#{input}</span>"
     end
   end
 

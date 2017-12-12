@@ -122,7 +122,7 @@ end
 
 def analysis_names
   return [] unless (topics = fetch(trait: :wikirate_topic)) &&
-    (companies = fetch(trait: :wikirate_company))
+                   (companies = fetch(trait: :wikirate_company))
   companies.item_names.map do |company|
     topics.item_names.map do |topic|
       "#{company.to_name.tag}+#{topic}"
@@ -351,7 +351,7 @@ format :html do
   end
 
   def formula_value company, year
-    field_nest [args[:company], args[:year], :value], view: :core
+    field_nest [company, year, :value], view: :core
   end
 
   view :add_to_formula, template: :haml
@@ -361,8 +361,7 @@ format :html do
     rows = [
       icon_row("question", question, class: "metric-details-question"),
       icon_row("bar-chart", card.metric_type, class: "text-emphasized"),
-      icon_row("tag", field_nest("+topic", view: :content,
-                                 items: { view: :link }))
+      icon_row("tag", field_nest("+topic", view: :content, items: { view: :link }))
     ]
     if card.researched?
       rows << text_row("Unit", field_nest("Unit"))

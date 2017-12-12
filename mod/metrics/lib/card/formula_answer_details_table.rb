@@ -1,6 +1,7 @@
 class Card
+  # Renders the table with details for an answer of a formula metric
   class FormulaAnswerDetailsTable < AbstractAnswerDetailsTable
-    @columns = ["Metric", "Value", "Year"]
+    @columns = %w[Metric Value Year]
 
     def calculator
       @calculator ||=

@@ -1,4 +1,5 @@
 class Card
+  # Renders the table with details for an answer of a score metric
   class ScoreAnswerDetailsTable < AbstractAnswerDetailsTable
     @columns = ["Original Metric", "Value"]
 
