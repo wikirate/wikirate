@@ -29,6 +29,8 @@ def extra_filter_args
   end
 end
 
+#FIXME: blocked_ids/not_ids should be handled in decko
+
 def ignoring_blocked_ids
   hash = yield
   if (not_ids = blocked_ids)
@@ -89,14 +91,5 @@ format :html do
 
   def default_content_args _args
     class_up "card-slot", "_filter-result-slot"
-  end
-
-  def filter_action_path
-    path
-  end
-
-  view :filter_form, cache: :never do
-    filter_fields slot_selector: "._filter-result-slot",
-                  sort_field: _render(:sort_formgroup)
   end
 end
