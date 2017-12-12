@@ -99,7 +99,10 @@ class SharedData
         Death_Star "1977" => 100
         SPECTRE "1977" => 50
         Los_Pollos_Hermanos "1977" => 40
-        Slate_Rock_and_Gravel_Company "1977" => 20, "2005" => 10
+        Slate_Rock_and_Gravel_Company "1977" => 20,
+                                      "2003" =>  8,
+                                      "2004" =>  9,
+                                      "2005" => 10
         Samsung "1977" => "Unknown"
       end
 
@@ -125,6 +128,13 @@ class SharedData
       Card::Metric.create name: "Jedi+deadliness+Joe Camel",
                           type: :score,
                           formula: "{{Jedi+deadliness}}/20"
+      Card::Metric.create name: "Jedi+deadliness average",
+                          type: :formula,
+                          formula: "Sum[{{Jedi+deadliness|year:-2..0}}]/3"
+      Card::Metric.create name: "Jedi+deadlier",
+                          type: :formula,
+                          formula: "{{Jedi+deadliness}}-{{Jedi+deadliness|year:-1}}" \
+                                   "+{{half year}}"
 
       with_joe_user do
         Card::Metric.create name: "Jedi+disturbances in the Force+Joe User",

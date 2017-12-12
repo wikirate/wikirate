@@ -44,7 +44,7 @@ class SharedData
       Card::Auth.as_bot
       Cardio.config.x.import_sources = false
       add :companies, :topics, :analysis, :notes_and_sources,
-          :metrics, :yearly_variables,
+          :yearly_variables, :metrics,
           :projects, :industry,
           :profile_sections, :badges, :import_files
 
@@ -117,7 +117,10 @@ class SharedData
                                      content: "1007" } },
           "+2013" => { type_id: Card::YearlyAnswerID,
                        "+value" => { type_id: Card::YearlyValueID,
-                                     content: "1006.5" } }
+                                     content: "1006.5" } },
+          "+2004" => { type_id: Card::YearlyAnswerID,
+                       "+value" => { type_id: Card::YearlyValueID,
+                                     content: "1002" } }
         }
       )
     end

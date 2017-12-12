@@ -1,88 +1,75 @@
-describe Formula::Ruby do
-  subject { described_class.new(formula).result }
+require_relative "../../support/formula_stub"
 
-  let(:formula) do
-    formula = double(Card)
-    content_obj =
-      Card::Content.new(@formula, Card.new(name: "test"), chunk_list: :formula)
-    @chunks = content_obj.find_chunks(Card::Content::Chunk::FormulaInput)
-    allow(formula).to receive(:content).and_return @formula
-    allow(formula).to receive(:input_cards) do
-      @chunks.map(&:referee_card)
-    end
-    allow(formula).to receive(:input_chunks).and_return @chunks
-    allow(formula).to receive(:normalize_value) do |v|
-      v
-    end
-    formula
+describe Formula::Ruby do
+  include_context "formula_stub"
+
+  def calculate formula
+    described_class.new(formula_card(formula)).result
   end
 
   it "simple formula" do
-    @nests = ["{{Joe User+researched}}"]
-    @formula = "#{@nests.first}*2"
-    expect(subject[2011]["apple_inc"]).to eq 22.0
-    expect(subject[2012]["apple_inc"]).to eq 24.0
-    expect(subject[2013]["apple_inc"]).to eq 26.0
+    result = calculate "{{Joe User+researched}}*2"
+    expect(result[2011]["apple_inc"]).to eq 22.0
+    expect(result[2012]["apple_inc"]).to eq 24.0
+    expect(result[2013]["apple_inc"]).to eq 26.0
   end
+
   describe "functions" do
-    before do
-      @nest = "{{Joe User+researched|year:-2..0}}"
-    end
+    let(:nest) { "{{Joe User+researched|year:-2..0}}" }
+
     specify "sum" do
-      @formula = "Sum[#{@nest}]"
-      expect(subject[2011]).to eq({})
-      expect(subject[2012]["apple_inc"]).to eq 33.0
-      expect(subject[2013]["apple_inc"]).to eq 36.0
+      result = calculate "Sum[#{nest}]"
+      expect(result).to include 2012 => { "apple_inc" => 33.0 },
+                                2013 => { "apple_inc" => 36.0 }
+      expect(result[2011]).to eq({})
     end
     specify "max" do
-      @formula = "Max[#{@nest}]"
-      expect(subject[2011]).to eq({})
-      expect(subject[2012]["apple_inc"]).to eq 12.0
-      expect(subject[2013]["apple_inc"]).to eq 13.0
+      result = calculate "Max[#{nest}]"
+      expect(result).to include 2012 => { "apple_inc" => 12.0 },
+                                2013 => { "apple_inc" => 13.0 }
+      expect(result[2011]).to eq({})
     end
     specify "min" do
-      @formula = "Min[#{@nest}]"
-      expect(subject[2011]).to eq({})
-      expect(subject[2012]["apple_inc"]).to eq 10.0
-      expect(subject[2013]["apple_inc"]).to eq 11.0
+      result = calculate "Min[#{nest}]"
+      expect(result).to include 2012 => { "apple_inc" => 10.0 },
+                                2013 => { "apple_inc" => 11.0 }
+      expect(result[2011]).to eq({})
     end
     specify "Zeros" do
-      @formula = "Zeros[#{@nest}]"
-      expect(subject[2002]["apple_inc"]).to eq 1
-      expect(subject[2012]["apple_inc"]).to eq 0
+      result = calculate "Zeros[#{nest}]"
+      expect(result).to include 2002 => { "apple_inc" => 1 },
+                                2012 => { "apple_inc" => 0 }
     end
     specify "Unknowns" do
-      @formula = "Unknowns[#{@nest}]"
-      expect(subject[2002]["apple_inc"]).to eq 2
-      expect(subject[2012]["apple_inc"]).to eq 0
+      result = calculate "Unknowns[#{nest}]"
+      expect(result).to include 2002 => { "apple_inc" => 2 },
+                                2012 => { "apple_inc" => 0 }
     end
   end
 
   describe "formula with yearly variables" do
     it "with fixed year" do
-      @formula = "{{half year|2013}}+{{Joe User+researched}}"
-      expect(subject[2011]["apple_inc"]).to eq 1006.5 + 11
-      expect(subject[2012]["apple_inc"]).to eq 1006.5 + 12
-      expect(subject[2013]["apple_inc"]).to eq 1006.5 + 13
+      result = calculate "{{half year|2013}}+{{Joe User+researched}}"
+      expect(result).to include 2011 => { "apple_inc" => 1006.5 + 11 },
+                                2012 => { "apple_inc" => 1006.5 + 12 },
+                                2013 => { "apple_inc" => 1006.5 + 13 }
     end
     it "with relative year" do
-      @formula = "{{half year}}+{{Joe User+researched}}"
-      expect(subject[2014]["apple_inc"]).to eq 1007 + 14
-      expect(subject[2013]["apple_inc"]).to eq 1006.5 + 13
+      result = calculate "{{half year}}+{{Joe User+researched}}"
+      expect(result).to include 2014 => { "apple_inc" => 1007 + 14 },
+                                2013 => { "apple_inc" => 1006.5 + 13 }
     end
     it "with sum" do
-      @formula = "Sum[{{half year|2013..0}}]+{{Joe User+researched}}"
-      expect(subject[2012]["apple_inc"]).to eq nil
-      expect(subject[2013]["apple_inc"]).to eq 1006.5 + 13
-      expect(subject[2014]["apple_inc"]).to eq 1007 + 1006.5 + 14
-      expect(subject[2016]["apple_inc"]).to eq nil
+      result = calculate "Sum[{{half year|2013..0}}]+{{Joe User+researched}}"
+      expect(result).to include 2013 => { "apple_inc" => 1006.5 + 13 },
+                                2014 => { "apple_inc" => 1007 + 1006.5 + 14 }
+      expect(result).not_to include 2012, 2016
     end
     it "double sum" do
-      @formula = "Sum[{{half year|2013..0}}]+Sum[{{Joe User+researched|-1..0}}]"
-      expect(subject[2012]["apple_inc"]).to eq nil
-      expect(subject[2013]["apple_inc"]).to eq 1006.5 + 13 + 12
-      expect(subject[2014]["apple_inc"]).to eq 1007 + 1006.5 + 14 + 13
-      expect(subject[2016]["apple_inc"]).to eq nil
+      result = calculate "Sum[{{half year|2013..0}}]+Sum[{{Joe User+researched|-1..0}}]"
+      expect(result).to include 2013 => { "apple_inc" => 1006.5 + 13 + 12 },
+                                2014 => { "apple_inc" => 1007 + 1006.5 + 14 + 13 }
+      expect(result).not_to include 2012, 2016
     end
   end
 
@@ -94,6 +81,7 @@ describe Formula::Ruby do
 
       it { is_expected.to be_truthy }
     end
+
     context "for formula with several nests and functions" do
       let(:content) { "2*Sum[{{M1|2000..2010}}]+{{M2}} / Min[{{M3|-1..3}}]" }
 

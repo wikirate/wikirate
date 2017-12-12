@@ -2,39 +2,32 @@ include_set Abstract::WikirateTable
 include_set Abstract::ResearchedValueDetails
 
 format :html do
+  # We can't distinguish with sets between metric answers of metrics
+  # of different metric types so we have different view for every type here.
   def value_details
     _render! "#{card.metric_type}_value_details"
   end
 
-  view :formula_value_details do
+  # don't cache; view depends on formula card
+  view :formula_value_details, cache: :never do
     wrap_value_details do
       wrap_with :div do
         [
           answer_details_table,
           wrap_with(:h5, "Formula"),
-          formula
+          "= #{formula}"
         ]
       end
     end
   end
 
-  def formula
-    calculator = Formula::Calculator.new(card.metric_card.formula_card)
-    result = calculator.formula_for card.company, card.year.to_i do |input|
-      input = input.join ", " if is_a?(Array)
-      "<span class='metric-value'>#{input.to_s}</span>"
+  view :score_value_details, cache: :never do
+    wrap_value_details do
+      answer_details_table
     end
-    "= #{result}"
-    # nest(card.metric_card.formula_card,
-    #                view: :core, params: company_year,
-    #                items: { view: :fixed_value })
   end
 
-  def company_year
-    "#{card.company}+#{card.year}"
-  end
-
-  view :wikirating_value_details do
+  view :wikirating_value_details, cache: :never do
     wrap_value_details do
       wrap_with :div do
         [
@@ -47,21 +40,27 @@ format :html do
     end
   end
 
-  view :score_value_details do
-    wrap_value_details do
-      answer_details_table
-    end
-  end
-
   def answer_details_table
     AnswerDetailsTable.new(self).render
   end
 
+  def formula
+    calculator = Formula::Calculator.new(card.metric_card.formula_card)
+    calculator.formula_for card.company, card.year.to_i do |input|
+      input = input.join ", " if input.is_a?(Array)
+      "<span class='metric-value'>#{input.to_s}</span>"
+    end
+  end
+
+  def company_year
+    "#{card.company}+#{card.year}"
+  end
+
   view :value_details_toggle do
     css_class = "fa fa-caret-right fa-lg margin-left-10 btn btn-outline-secondary btn-sm"
-    wrap_with(:i, "", class: css_class,
+    wrap_with :i, "", class: css_class,
                       data: { toggle: "collapse-next",
                               parent: ".value",
-                              collapse: ".metric-value-details" })
+                              collapse: ".metric-value-details" }
   end
 end

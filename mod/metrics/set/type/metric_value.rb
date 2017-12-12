@@ -13,6 +13,8 @@ def answer
     Answer.new
 end
 
+
+
 format :json do
   view :core do
     data = _render_essentials.merge(

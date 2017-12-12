@@ -1,36 +1,25 @@
+require_relative "../../support/formula_stub"
+
 RSpec.describe Formula::Calculator do
   describe "#formula_for" do
-    let(:calculator) { described_class.new(formula) }
+    include_context "formula_stub"
 
-    let(:formula) do
-      formula = double(Card)
-      content_obj =
-        Card::Content.new(@formula, Card.new(name: "test"), chunk_list: :formula)
-      @chunks = content_obj.find_chunks(Card::Content::Chunk::FormulaInput)
-      allow(formula).to receive(:content).and_return @formula
-      allow(formula).to receive(:input_cards) do
-        @chunks.map(&:referee_card)
-      end
-      allow(formula).to receive(:input_chunks).and_return @chunks
-      allow(formula).to receive(:normalize_value) do |v|
-        v
-      end
-      formula
+    def calculator formula
+      described_class.new(formula_card(formula))
     end
 
     example "relative year expression" do
-      @nests = ["{{Joe User+researched number 1}}", "{{Joe User+researched number 2| year: -1}}" ]
-      @formula = "#{@nests.first}+#{@nests.second}"
-      rendered_formula = calculator.formula_for "Samsung", 2015
-      expect(rendered_formula).to eq "5+5"
+      formula = "{{Joe User+researched number 1}} + " \
+                "{{Joe User+researched number 2| year: -1}}"
+      rendered_formula = calculator(formula).formula_for "Samsung", 2015
+      expect(rendered_formula).to eq "5 + 5"
     end
 
     example "year range" do
-      @nests = ["{{Joe User+researched number 1|year: -1..0}}",
-                "{{Joe User+researched number 2| year: 2014..2015}}" ]
-      @formula = "Sum[#{@nests.first}]+Max[#{@nests.second}]"
-      rendered_formula = calculator.formula_for "Samsung", 2015
-      expect(rendered_formula).to eq 'Sum[["10", "5"]]+Max[["5", "2"]]'
+      formula = "Sum[{{Joe User+researched number 1|year: -1..0}}] + "\
+                "Max[{{Joe User+researched number 2| year: 2014..2015}}]"
+      rendered_formula = calculator(formula).formula_for "Samsung", 2015
+      expect(rendered_formula).to eq 'Sum[["10", "5"]] + Max[["5", "2"]]'
     end
   end
 end

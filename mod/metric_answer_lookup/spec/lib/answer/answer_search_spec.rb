@@ -28,12 +28,12 @@ RSpec.describe Answer, "Answer.search" do
     result = search metric_id: sample_metric(:number).id,
                     return: [:company, :year, :value]
     expect(result)
-      .to eq [["Death_Star", 1977, "100"],
+      .to include ["Death_Star", 1977, "100"],
               ["SPECTRE", 1977, "50"],
               ["Los_Pollos_Hermanos", 1977, "40"],
               ["Slate_Rock_and_Gravel_Company", 1977, "20"],
               ["Slate_Rock_and_Gravel_Company", 2005, "10"],
-              ["Samsung", 1977, "Unknown"]]
+              ["Samsung", 1977, "Unknown"]
   end
 
   it "can count" do

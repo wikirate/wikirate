@@ -4,11 +4,11 @@ class Card
     #    cardtype "metric value" (=answer)
     def initialize format
       table_class =
-        case format.card.metric_card.metric_type_code
+        case format.card.metric_card.metric_type_codename
         when :score
           ScoreAnswerDetailsTable
         when :formula
-          FormulAnswerDetailsTable
+          FormulaAnswerDetailsTable
         else
           WikiratingAnswerDetailsTable
         end

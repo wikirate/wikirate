@@ -1,5 +1,5 @@
 class Card
-  class CalculatedAnswerDetailsTable < AnswerDetailsTable
+  class FormulaAnswerDetailsTable < AbstractAnswerDetailsTable
     @columns = ["Metric", "Value", "Year"]
 
     def calculator
@@ -8,18 +8,25 @@ class Card
     end
 
     def table_rows
-      calculator.input_data.map do |input_card, input, year_option|
-        metric_row(input_card, input, year_option)
+      calculator.input_data(company, year).map do |input_card, input, year_option|
+        metric_row input_card, input, year_option
       end
     end
 
-    #FIXME: not ready
-    def metric_row input_card, input, year_option
-      [metric_thumbnail(input_card), input,year_option]
+    def raw_value input
+      @format.wrap_with :span, class: "metric-value" do
+        Array.wrap(input).join(", ")
+      end
     end
 
-    def format_input_values
-      kl
+    def year_column_content year_option
+      year_option.present? ? year_option : year
+    end
+
+    def metric_row input_card, input, year_option
+      [metric_thumbnail(input_card),
+       raw_value(input),
+       year_column_content(year_option)]
     end
   end
 end

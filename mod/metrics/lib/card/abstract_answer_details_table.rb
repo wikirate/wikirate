@@ -1,6 +1,8 @@
 class Card
-  class AnswerDetailsTable
-    cattr_accessor :columns
+  class AbstractAnswerDetailsTable
+    class << self
+      attr_accessor :columns
+    end
 
     # @param format [Card::Format] the format of a card of
     #    cardtype "metric value" (=answer)
@@ -21,7 +23,7 @@ class Card
     def metric_row input_card
       v_card = value_card input_card
       return unless v_card
-      [metric_thumbnail(input_card), raw_value(v_card), colorify(score_value(v_card))]
+      [metric_thumbnail(input_card), raw_value(v_card)]
     end
 
     def company
@@ -46,25 +48,19 @@ class Card
     end
 
     def raw_value value_card
-      nest value_card, view: :raw_value
-      raw_value =
-        if value_card.metric_type == :score
-          base_metric_value(value_card).value
-        else
-          value_card.value
-        end
-      wrap_with(:span, raw_value, class: "metric-value")
+      @format.wrap_with(:span, value_card.raw_value, class: "metric-value")
     end
 
-    def score_value value_card
-      return "" unless value_card.metric_type == :score
-      value_card.value
+    def base_metric_card
+      @format.card.metric_card.left
+    end
+
+    def base_metric_value
+      base_metric_card.field(company).field(year)
     end
 
     def metric_thumbnail input_card
       @format.nest input_card, view: :thumbnail
     end
-
-
   end
 end
