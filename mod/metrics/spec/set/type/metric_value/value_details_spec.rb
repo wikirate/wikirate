@@ -4,6 +4,11 @@ RSpec.describe Card::Set::Type::MetricValue::ValueDetails do
   end
 
   describe "view: formula_value_details" do
+    def format_formula string, *values
+      values = values.map { |v| "<span class='metric-value'>#{v}</span>" }
+      format(string, *values)
+    end
+
     specify do
       table = value_details("Jedi+friendliness+Death Star+1977", :formula)
       expect(table).to have_tag "table" do
@@ -19,6 +24,8 @@ RSpec.describe Card::Set::Type::MetricValue::ValueDetails do
         end
         with_tag "td", text: "1977"
       end
+
+      expect(table).to include format_formula("= 1/%s", 100)
     end
 
     example "year argument" do
@@ -30,7 +37,7 @@ RSpec.describe Card::Set::Type::MetricValue::ValueDetails do
           with_tag "a", text: "deadliness"
         end
         with_tag "td" do
-          with_tag "span.metric-value", text: "8"
+          with_tag "span.metric-value", text: "9"
         end
         with_tag "td", text: "2004"
 
@@ -50,6 +57,8 @@ RSpec.describe Card::Set::Type::MetricValue::ValueDetails do
         end
         with_tag "td", text: "2004"
       end
+
+      expect(table).to include(format_formula("= %s-%s+%s", 9, 8, 1002))
     end
 
     example "year range" do
@@ -65,6 +74,8 @@ RSpec.describe Card::Set::Type::MetricValue::ValueDetails do
         end
         with_tag "td", text: "-2..0"
       end
+
+      expect(table).to include(format_formula("= Sum[%s]", "8, 9, 10"))
     end
   end
 
