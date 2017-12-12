@@ -9,8 +9,11 @@ class TableRowRelationship < TableRowWithCompanyMapping
 
   def initialize csv_row, format
     super
+    # try to find a company in wikirate's db that matches the related company
     @related_match = match_company(:related_company)
+    # the best match found and how good the match is (exact, partial, alias, none)
     @related_wikirate_company, @related_match_type = @related_match.match
+    # the company suggested to use
     @related_company = @related_match.suggestion
   end
 
