@@ -34,7 +34,7 @@ format :html do
     nest card.metric_title_card, view: :name
   end
 
-  view :thumbnail_subtitle do |args|
+  view :thumbnail_subtitle, cache: :never do |args|
     wrap_with :div do
       <<-HTML
       <small class="text-muted">
