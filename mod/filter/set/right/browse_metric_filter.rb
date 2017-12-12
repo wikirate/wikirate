@@ -20,10 +20,10 @@ def filter_class
   MetricFilterQuery
 end
 
-def add_sort_wql wql, sort_by
-  super wql, sort_by
+def sort_wql
+  wql = super
   wql[:sort] =
-    case sort_by
+    case sort_param
     when "values"
       { right: "value", right_plus: "*cached count" }
     when "recent"
@@ -35,6 +35,7 @@ def add_sort_wql wql, sort_by
       # upvoted as default
       { right: "*vote count" }
     end
+  wql
 end
 
 def default_sort_option
