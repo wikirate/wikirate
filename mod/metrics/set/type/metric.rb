@@ -52,7 +52,7 @@ end
 
 def value_type_code
   ((vc = value_type_card.item_cards.first) &&
-   vc.codename && vc.codename.to_sym) || default_value_type_code
+    vc.codename && vc.codename.to_sym) || default_value_type_code
 end
 
 def default_value_type_code
@@ -122,7 +122,7 @@ end
 
 def analysis_names
   return [] unless (topics = fetch(trait: :wikirate_topic)) &&
-                   (companies = fetch(trait: :wikirate_company))
+    (companies = fetch(trait: :wikirate_company))
   companies.item_names.map do |company|
     topics.item_names.map do |topic|
       "#{company.to_name.tag}+#{topic}"
@@ -341,14 +341,13 @@ format :html do
 
   view :formula_value, cache: :never do |args|
     return "" unless args[:company] && args[:reference_year]
-    year = case args[:year]
-           when nil then formula_value args[:company], args[:reference_year]
-           when Array
-             args[:year].map
-           else
+    case args[:year]
+    when nil then formula_value args[:company], args[:reference_year]
+    when Array
+      args[:year].map
+    else
 
-           end
-
+    end
   end
 
   def formula_value company, year
@@ -363,7 +362,7 @@ format :html do
       icon_row("question", question, class: "metric-details-question"),
       icon_row("bar-chart", card.metric_type, class: "text-emphasized"),
       icon_row("tag", field_nest("+topic", view: :content,
-                                           items: { view: :link }))
+                                 items: { view: :link }))
     ]
     if card.researched?
       rows << text_row("Unit", field_nest("Unit"))
@@ -390,7 +389,7 @@ format :html do
             <div class="left-col">
               <strong>#{text}</strong>
             </div>
-          HTML
+    HTML
     metric_info_row left, content, opts
   end
 
@@ -399,7 +398,7 @@ format :html do
             <div class="left-col icon-muted">
               #{fa_icon icon}
             </div>
-          HTML
+    HTML
     metric_info_row left, content, opts
   end
 
@@ -447,36 +446,6 @@ format :html do
       year = args[:year] ? interpret_year(args[:year]) : "year"
       get_value_str year
     end
-  end
-
-  view :metric_row do
-    wrap do
-      metric_row metric_row_header, metric_row_data,
-                 drag_and_drop: false, item_types: [:metric, :contribution, :value]
-    end
-  end
-
-  def metric_row_header
-    <<-HTML
-      {{_+*vote count}}
-      <div class="logo">
-      <a class="inherit-anchor" href="/{{_1|name}}"> {{_1+image|core;size:small}} </a>
-              </div>
-      <div class="name">
-        {{_2|name}}
-      </div>
-    HTML
-  end
-
-  def metric_row_data
-    <<-HTML
-      <div class="contribution company-count">
-        <div class="content">
-          {{_+company count|core}}
-          <div class="name">Companies</div>
-        </div>
-      </div>
-    HTML
   end
 end
 

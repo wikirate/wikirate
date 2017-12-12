@@ -9,7 +9,7 @@ module Formula
 
     def initialize formula_card
       @formula_card = formula_card
-      @formula = formula_card.content.gsub(/[\r\n]+/m,"")
+      @formula = formula_card.content.gsub(/[\r\n]+/m, "")
       @input = Input.new(@formula_card.input_cards, year_options,
                          &self.class::INPUT_CAST)
       @errors = []
@@ -27,6 +27,12 @@ module Formula
         result[year][company] = normalize_value value
       end
       result
+    end
+
+    def input_data company, year
+      @formula_card.input_cards.zip(
+        @input.input_for(year, company), year_options
+      )
     end
 
     # @return [String] the formula with nests replaced by the input values
@@ -66,9 +72,10 @@ module Formula
 
     # Extracts all year options from all input nests in the formula
     def year_options
-      @formula_card.input_chunks.map do |chunk|
-        chunk.options[:year]
-      end
+      @year_options ||=
+        @formula_card.input_chunks.map do |chunk|
+          chunk.options[:year]
+        end
     end
 
     def replace_nests content=nil
