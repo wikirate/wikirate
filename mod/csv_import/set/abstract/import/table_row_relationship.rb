@@ -10,8 +10,8 @@ class TableRowRelationship < TableRowWithCompanyMapping
   def initialize csv_row, format
     super
     @related_match = match_company(:related_company)
-    @related_wikirate_company, @related_match_type = @related_company_match.match
-    @related_company = @related_company_match.suggestion
+    @related_wikirate_company, @related_match_type = @related_match.match
+    @related_company = @related_match.suggestion
   end
 
   def row_css_classes

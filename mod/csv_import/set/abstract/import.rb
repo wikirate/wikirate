@@ -46,6 +46,11 @@ format :html do
     voo.show! :help
   end
 
+  def default_edit_args _args
+    voo.help = help_text
+    voo.show! :help
+  end
+
   def help_text
     rows = card.csv_row_class.columns.map { |s| s.to_s.humanize }
     "expected csv format: #{rows.join ' | '}"
