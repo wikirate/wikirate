@@ -59,12 +59,16 @@ format :html do
     voo.title = "Value Type"
   end
 
-  def multi_card_edit_slot
+  def multi_card_edit
     super() + fields_form
   end
 
-  def single_card_edit_slot
-    multi_card_edit_slot
+  def single_card_edit_field
+    super() + fields_form
+  end
+
+  def editor_in_multi_card
+    super() + fields_form
   end
 
   def left_field_nest field, opts

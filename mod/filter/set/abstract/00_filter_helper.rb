@@ -5,8 +5,11 @@ end
 
 # all filter keys in the order they were selected
 def all_filter_keys
-  @all_filter_keys ||=
-    filter_hash.keys.map(&:to_sym) | filter_keys | advanced_filter_keys
+  @all_filter_keys ||= filter_keys_from_params | filter_keys | advanced_filter_keys
+end
+
+def filter_keys_from_params
+  filter_hash.keys.map(&:to_sym) - [:not_ids]
 end
 
 def filter_hash

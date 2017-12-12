@@ -21,9 +21,9 @@ view :missing do |args|
 end
 
 view :listing do
-  # TODO: 1. move this structure to code under "browse_item" view
-  #       2. create a more appropriate listing structure
-  _render_content structure: "browse company item"
+  wrap_with :div, class: "border p-2" do
+    _render_thumbnail_no_link
+  end
 end
 
 # def subcard_count_number subcard

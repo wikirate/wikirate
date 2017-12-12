@@ -219,7 +219,7 @@ format :html do
         wrap_with(:div, class: "header") do
           _render_thumbnail
         end,
-        wrap_with(:div, class: "text-center margin-15") do
+        wrap_with(:div, class: "text-center") do
           listing_data
         end
       ]
@@ -227,10 +227,10 @@ format :html do
   end
 
   def listing_data
-    wrap_with :div, class: "contribution company-count" do
+    wrap_with :div, class: "contribution company-count p-2" do
       [
-        wrap_with(:div, company_count, class: "h5"),
-        wrap_with(:div, "Companies", class: "light-grey-color")
+        wrap_with(:span, company_count, class: "badge badge-secondary"),
+        wrap_with(:span, "Companies", class: "text-muted")
       ]
     end
   end

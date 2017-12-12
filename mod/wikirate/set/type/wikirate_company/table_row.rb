@@ -32,8 +32,4 @@ format :html do
     metrics = analysis_card.fetch(trait: :metric)
     metrics ? metrics.cached_count : 0
   end
-
-  view :viggles do
-    "waiting for vignesh's new thumbnail view"
-  end
 end

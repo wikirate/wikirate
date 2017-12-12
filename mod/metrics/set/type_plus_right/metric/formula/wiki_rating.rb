@@ -2,7 +2,7 @@ format :html do
   view :rating_core do |args|
     table_content =
       card.translation_table.map do |metric, weight|
-        [subformat(metric)._render_thumbnail_plain(args), weight + "%"]
+        [subformat(metric)._render_thumbnail_plain(args), "#{weight}%"]
       end
     table table_content, header: %w[Metric Weight]
   end
