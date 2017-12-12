@@ -1,20 +1,20 @@
 format :html do
-  view :thumbnail_plain do |args|
+  view :thumbnail_plain, cache: :never do |args|
     wrap_with :div, thumbnail_content(args)
   end
 
-  view :thumbnail_minimal do |args|
+  view :thumbnail_minimal, cache: :never do |args|
     voo.hide! :thumbnail_subtitle
     voo.hide! :thumbnail_link
     _render_thumbnail_plain args
   end
 
-  view :thumbnail do |args|
+  view :thumbnail, cache: :never do |args|
     voo.show :thumbnail_link
     wrap_with :div, thumbnail_content(args), class: "thumbnail"
   end
 
-  view :thumbnail_no_link do |args|
+  view :thumbnail_no_link, cache: :never do |args|
     voo.hide :thumbnail_link
     wrap_with :div, thumbnail_content(args)
   end
@@ -57,7 +57,7 @@ format :html do
     end
   end
 
-  view :thumbnail_subtitle do |args|
+  view :thumbnail_subtitle, cache: :never do |args|
     wrap_with :div do
       <<-HTML
       <small class="text-muted">
