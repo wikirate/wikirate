@@ -27,7 +27,7 @@ format :html do
   end
 
   def editor
-    :filtered_list
+    :list
   end
 
   def filter_card
