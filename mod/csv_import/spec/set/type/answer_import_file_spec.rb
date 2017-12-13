@@ -3,18 +3,29 @@ require_relative "../../support/shared_csv_import"
 RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
   routes { Decko::Engine.routes }
   before { @controller = CardController.new }
+  let(:default_data) do
+    {
+      metric: "Jedi+disturbances in the Force",
+      company: "Death Star",
+      year: "2017",
+      value: "yes",
+      source: "http://google.com",
+      comment: ""
+    }
+  end
 
   describe "view: import_table" do
     include_context "csv import" do
       let(:csv_row_class) { CSVRow::Structure::AnswerCSV }
       let(:import_card) { Card["answer import test"] }
+
       let(:data) do
         {
-          exact_match: ["Jedi+disturbances in the Force", "Death Star", "2017", "yes", "http://google.com", ""],
-          alias_match: ["Jedi+disturbances in the Force", "Google", "2017", "yes", "http://google.com", ""],
-          partial_match: ["Jedi+disturbances in the Force", "Sony", "2017", "yes", "http://google.com", ""],
-          no_match: ["Jedi+disturbances in the Force", "New Company", "2017", "yes", "http://google.com", ""],
-          not_a_metric: ["Not a metric", "Monster Inc", "2017", "yes", "http://google.com", ""]
+          exact_match:   { company: "Death Star" },
+          alias_match:   { company: "Google"},
+          partial_match: { company: "Sony"},
+          no_match:      { company: "New Company"},
+          not_a_metric:  { metric: "Not a metric", company: "Monster Inc" }
         }
       end
     end
@@ -54,21 +65,40 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
       let(:import_card) { Card["answer import test"] }
       let(:data) do
         {
-          exact_match: ["Jedi+disturbances in the Force", "Death Star", "2017", "yes", "http://google.com/1", "chch"],
-          alias_match: ["Jedi+disturbances in the Force", "Google", "2017", "yes", "http://google.com/2", ""],
-          partial_match: ["Jedi+disturbances in the Force", "Sony", "2017", "yes", "http://google.com/3", ""],
-          no_match: ["Jedi+disturbances in the Force", "New Company", "2017", "yes", "http://google.com/4", ""],
-          not_a_metric: ["Not a metric", "Monster Inc", "2017", "yes", "http://google.com/5", ""],
-          not_a_company: ["Jedi+disturbances in the Force", "A", "2017", "yes", "http://google.com/6", ""],
-          company_missing: ["Jedi+disturbances in the Force", "", "2017", "yes", "http://google.com/7", ""],
-          missing_and_invalid: ["Not a metric", "", "2017", "yes", "http://google.com/8", ""],
-          conflict_same_value_same_source: ["Jedi+disturbances in the Force", "Death Star", "2000", "yes", "http://www.wikiwand.com/en/Opera", ""],
-          conflict_same_value_different_source: ["Jedi+disturbances in the Force", "Death Star", "2000", "yes", "http://google.com/10", ""],
-          conflict_different_value: ["Jedi+disturbances in the Force", "Death Star", "2000", "no", "http://google.com/11", "overridden"],
-          invalid_value: ["Jedi+disturbances in the Force", "Death Star", "2017", "100", "http://google.com/12", ""],
-          monster_badge_1: ["Jedi+disturbances in the Force", "Monster Inc.", "2000", "yes", "http://google.com/13", ""],
-          monster_badge_2: ["Jedi+disturbances in the Force", "Monster Inc.", "2001", "yes", "http://google.com/14", ""],
-          monster_badge_3: ["Jedi+disturbances in the Force", "Monster Inc.", "2002", "yes", "http://google.com/15", ""]
+          exact_match:
+            { company: "Death Star", source: "http://google.com/1", comment: "chch"},
+          alias_match:
+            { company: "Google", source: "http://google.com/2" },
+          partial_match:
+            { company: "Sony", source: "http://google.com/3" },
+          no_match:
+            { company: "New Company", source: "http://google.com/4" },
+          not_a_metric:
+            { metric: "Not a metric", company: "Monster Inc", source: "http://google.com/5" },
+          not_a_company:
+            { company: "A", source: "http://google.com/6" },
+          company_missing:
+            { company: "", source: "http://google.com/7" },
+          missing_and_invalid:
+            { metric: "Not a metric", company: "", source: "http://google.com/8" },
+          conflict_same_value_same_source:
+            { company: "Death Star", year: "2000",
+              source: "http://www.wikiwand.com/en/Opera" },
+          conflict_same_value_different_source:
+            { company: "Death Star", year: "2000", source: "http://google.com/10" },
+          conflict_different_value:
+            [default_data[:metric], "Death Star", "2000", "no", "http://google.com/11",
+             "overridden"],
+          invalid_value:
+            { company: "Death Star", value: "100", source: "http://google.com/12" },
+          monster_badge_1:
+            { company: "Monster Inc.", year: "2000", source: "http://google.com/13" },
+          monster_badge_2:
+            { company: "Monster Inc.", year: "2001", source: "http://google.com/14" },
+          monster_badge_3:
+            { company: "Monster Inc.", year: "2002", source: "http://google.com/15" },
+          wikirate_source:
+            { source: sample_source.name }
         }
       end
     end
@@ -154,7 +184,13 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
       expect(card.actions.last.comment).to eq "imported"
     end
 
+    example "using wikirate source name" do
+      trigger_import :wikirate_source
+      expect_answer_created :wikirate_source
+    end
+
     describe "duplicates" do
+
     end
 
     context "company correction name is filled" do

@@ -1,3 +1,11 @@
+shared_context "company matches" do
+  let(:exact_match) { "Death Star" }
+  let(:alias_match) { "Google" }
+  let(:partial_match) { "Sony" }
+  let(:no_match) { "New Company" }
+end
+
+
 shared_context "csv import" do
   # select data from the @data hash by listing the keys or add extra data
   # by using a hash
@@ -56,9 +64,9 @@ shared_context "csv import" do
     if rows
       bad_keys = rows.reject { |k| data.key? k }
       raise StandardError, "unknown keys: #{bad_keys.inspect}" if bad_keys.present?
-      StringIO.new rows.map { |key| data[key].join "," }.join "\n"
+      StringIO.new rows.map { |key| data_row(key).join "," }.join "\n"
     else
-      StringIO.new data.values.map { |rows| rows.join "," }.join "\n"
+      StringIO.new data.keys.map { |key| csv_row(key) }.join "\n"
     end
   end
 
@@ -80,6 +88,19 @@ shared_context "csv import" do
       params[:import_rows][row_index(key)] = true unless key == :all
       params[:extra_data][row_index(key)] = extra_data if extra_data
     end
+  end
+
+  def data_row key
+    if data[key].is_a?(Hash)
+      raise "no default data defined" unless default_data.is_a?(Hash)
+      default_data.merge(data[key]).values
+    else
+      data[key]
+    end
+  end
+
+  def csv_row key
+    data_row(key).join ","
   end
 end
 
@@ -116,11 +137,11 @@ shared_context "answer import" do
   end
 
   def answer_value key
-    data[key][value_row]
+    data_row(key)[value_row]
   end
 
   def company_name key
-    key.is_a?(Symbol) ? data[key][company_row] : key[:company]
+    key.is_a?(Symbol) ? data_row(key)[company_row] : key[:company]
   end
 
   def value_card key
@@ -128,7 +149,7 @@ shared_context "answer import" do
   end
 
   def expect_answer_created key, with_value: nil
-    value = with_value || data[key][value_row]
+    value = with_value || data_row(key)[value_row]
     expect(answer_card(key)).to exist.and have_a_field(:value).with_content(value)
   end
 end

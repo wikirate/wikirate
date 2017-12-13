@@ -44,22 +44,21 @@ class CSVRow
     end
 
     def create_or_update_source
-      duplicates = Card::Set::Self::Source.find_duplicates source_args[:source]
-      if duplicates.empty?
+      duplicate = find_duplicate
+      if duplicate.blank?
         create_source
       elsif @import_manager.conflict_strategy == :override
-        resolve_source_duplication duplicates.first.left
+        resolve_source_duplication duplicate
       else
-        duplicates.first.left
+        duplicate
       end
     end
 
-    def find_duplicates
-      if refers_to_existing_source_name?
-        Card[source_args[:source]]
-      else
-        Card::Set::Self::Source.find_duplicates source_args[:source]
-      end
+    def find_duplicate
+      return Card[source_args[:source]] if refers_to_existing_source_name?
+      link_duplicates = Card::Set::Self::Source.find_duplicates source_args[:source]
+      return unless link_duplicates.present?
+      link_duplicates.first.left
     end
 
     def refers_to_existing_source_name?
