@@ -180,11 +180,21 @@ format :html do
 
   def new_metric_tab_pane name
     metric_type = name == "Standard" ? "Researched" : name
+    new_metric = new_metric_of_type metric_type
+    tab_form =
+      nest(new_metric, view: :new_tab_pane, mode: :normal)
+    tab_pane tab_pane_id(name), tab_form, selected_subtab_pane?(name)
+  end
+
+  def new_metric_of_type metric_type
     new_metric = Card.new type: MetricID, "+*metric type" => "[[#{metric_type}]]"
     new_metric.reset_patterns
     new_metric.include_set_modules
-    tab_pane tab_pane_id(name), subformat(new_metric)._render_new_tab_pane,
-             selected_subtab_pane?(name)
+    new_metric
+  end
+
+  def cancel_button_new_args
+    { href: path_to_previous, redirect: true }
   end
 
   view :help_text do |_args|
@@ -195,16 +205,20 @@ format :html do
     end
   end
 
-  view :new_tab_pane do |args|
-    card_form :create, hidden: args.delete(:hidden),
-                       "main-success" => "REDIRECT" do
-      output [
-        new_tab_pane_hidden,
-        _render!(:help_text),
-        _render_new_name_formgroup,
-        _render_content_formgroup,
-        _render_new_buttons
-      ]
+  view :new_tab_pane, tags: :unknown_ok do |args|
+    with_nest_mode :edit do
+      wrap do
+        card_form :create, hidden: args.delete(:hidden),
+                           "main-success" => "REDIRECT" do
+          output [
+            new_tab_pane_hidden,
+            _render!(:help_text),
+            _render_new_name_formgroup,
+            _render_content_formgroup,
+            _render_new_buttons
+          ]
+        end
+      end
     end
   end
 
