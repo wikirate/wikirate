@@ -16,7 +16,7 @@ def filter_class
 end
 
 def content
-  { type_id: target_type_id, limit: 20 }
+  { type_id: target_type_id, limit: 20, sort: default_sort_option }
 end
 
 def target_type_id

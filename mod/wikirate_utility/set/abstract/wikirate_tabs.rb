@@ -11,46 +11,33 @@ format :html do
                  "data-tab-name" => name,
                  "data-tab-content-url" =>
                    path(mark: [card.name, "#{name}_page"])
-    # <<-HTML
-    #   <a href="/{{_|linkname}}?tab=#{name}"
-    #      data-tab-content-url="/{{_|linkname}}+#{name}_page"
-    #      data-tab-name='#{name}' >
-    #
-    #   </a>
-    # HTML
   end
 
   def tab_list tabs
     lis = tabs.map do |args|
-      list_entry *args
+      list_entry(*args)
     end
-    # lis += [<<-HTML, class: "hidden-md hidden-lg"]
-    #   <a href="#company-about" >
-    #     <span class="count-number clearfix">&nbsp;</span>
-    #     <span class="count-label">About</span>
-    #   </a>
-    # HTML
     list_tag lis, class: "nav nav-tabs with-item-count text-center"
   end
 
-  def wikirate_layout type, tabs, extra=nil
-    bs do
-      layout container: true, fluid: true, class: "yinyang nodblclick" do
-        row 6 do
-          col class: "border-right" do
-            row md: 12, xs: 12,
-                class: "clearfix #{type}-content #{type}-page-logo-container" do
-              col class: "nopadding left" do
-                wikirate_layout_link
-              end
-            end
-            html wikirate_tabs(tabs, type, extra)
-          end
-          html field_nest("right sidebar")
-        end
-      end
-    end
-  end
+  # def wikirate_layout type, tabs, extra=nil
+  #   bs do
+  #     layout container: true, fluid: true, class: "yinyang nodblclick" do
+  #       row 6 do
+  #         col class: "border-right" do
+  #           row md: 12, xs: 12,
+  #               class: "clearfix #{type}-content #{type}-page-logo-container" do
+  #             col class: "nopadding left" do
+  #               wikirate_layout_link
+  #             end
+  #           end
+  #           html wikirate_tabs(tabs, type, extra)
+  #         end
+  #         html field_nest("right sidebar")
+  #       end
+  #     end
+  #   end
+  # end#
 
   def wikirate_layout_link
     link_text = wrap_with :div, class: "row-data center-logo" do
@@ -77,20 +64,19 @@ format :html do
   end
 
   view :tab_content do
+    tab_content
+  end
+
+  def tab_content
     # show the content based on the url parameter
     # tabs: metric, topic, company, note, reference, overview
+    return "" unless (content_card = Card.fetch card_tab_name)
+    subformat(content_card).render_content
+  end
+
+  def tab_card_name
     tab = Env.params["tab"]
-    left_name = card.name.left
-    card_tab_name =
-      if !tab.nil?
-        "#{left_name}+#{tab}_page"
-      else
-        "#{left_name}+metric_page"
-      end
-    if (content_card = Card.fetch card_tab_name)
-      subformat(content_card).render_content
-    else
-      ""
-    end
+    prefix = tab.nil? ? "metric" : tab
+    "#{card.name.left}+#{prefix}_page"
   end
 end
