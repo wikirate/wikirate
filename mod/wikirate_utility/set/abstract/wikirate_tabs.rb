@@ -70,7 +70,7 @@ format :html do
   def tab_content
     # show the content based on the url parameter
     # tabs: metric, topic, company, note, reference, overview
-    return "" unless (content_card = Card.fetch card_tab_name)
+    return "" unless (content_card = Card.fetch tab_card_name)
     subformat(content_card).render_content
   end
 

@@ -13,7 +13,7 @@ describe Card::Set::Abstract::FilterFormgroups do
   end
 
   describe "industry formgroup" do
-    subject { card.format.render_industry_formgroup }
+    subject { card.format.render_filter_industry_formgroup }
 
     it "renders select form" do
       industries = Card[Card::CompanyFilterQuery::INDUSTRY_METRIC_NAME].value_options
@@ -30,7 +30,7 @@ describe Card::Set::Abstract::FilterFormgroups do
     it "renders option form" do
       Card.create! name: "Jedi+disturbances in the Force+Joe Admin",
                    type_id: Card::MetricID
-      html = card.format.render_designer_formgroup
+      html = card.format.render_filter_designer_formgroup
       # ensure score metric is return the third part as designer name
       expect(html).to have_tag(:option, with: { value: "Joe Admin" },
                                         text: "Joe Admin")
@@ -48,7 +48,7 @@ describe Card::Set::Abstract::FilterFormgroups do
       end
     end
     context "multiselect form" do
-      subject { card.format.render_research_policy_formgroup }
+      subject { card.format.render_filter_research_policy_formgroup }
 
       it "render multiselect list" do
         is_expected.to have_tag :select, with: { multiple: "multiple" } do
@@ -68,7 +68,7 @@ describe Card::Set::Abstract::FilterFormgroups do
       end
     end
     context "multiselect form" do
-      subject { card.format.render_metric_type_formgroup }
+      subject { card.format.render_filter_metric_type_formgroup }
 
       it "renders checkboxes" do
         is_expected.to have_tag :select, with: { multiple: "multiple" } do
@@ -80,7 +80,7 @@ describe Card::Set::Abstract::FilterFormgroups do
     end
   end
   describe "name formgroup" do
-    subject { card.format.render_name_formgroup }
+    subject { card.format.render_filter_name_formgroup }
 
     it "renders input tag" do
       is_expected.to have_tag(:input, with: { name: "filter[name]" })

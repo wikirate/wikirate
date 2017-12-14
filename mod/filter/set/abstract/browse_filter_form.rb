@@ -7,7 +7,7 @@ def filter_keys
   %i[metric designer wikirate_topic project year]
 end
 
-def default_sort_by_key
+def default_sort_option
   "metric"
 end
 
@@ -24,7 +24,7 @@ def target_type_id
 end
 
 def sort_wql
-  if sort_param == "name"
+  if current_sort == "name"
     { sort: "name" }
   else
     cached_count_sort_wql
@@ -32,7 +32,7 @@ def sort_wql
 end
 
 def cached_count_sort_wql
-  { sort: { right: (sort_param || default_sort_by_key),
+  { sort: { right: current_sort,
             item: "cached_count",
             return: "count" },
     sort_as: "integer",

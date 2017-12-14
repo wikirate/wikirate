@@ -3,7 +3,7 @@
 include_set Abstract::BrowseFilterForm
 
 def content
-  super.merge limit: 15
+  super.merge limit: 15, sort: default_sort_option
 end
 
 def filter_class
@@ -11,7 +11,7 @@ def filter_class
 end
 
 def sort_wql
-  if sort_param == "recent"
+  if current_sort == "recent"
     { sort: "update", dir: "desc" }
   else
     { sort: { right: "*vote count" }, sort_as: "integer", dir: "desc" }
