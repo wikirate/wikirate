@@ -17,6 +17,13 @@ class SharedData
       Card::Metric.create name: "Jedi+friendliness",
                           type: :formula,
                           formula: "1/{{Jedi+deadliness}}"
+      Card::Metric.create name: "Jedi+deadliness average",
+                          type: :formula,
+                          formula: "Sum[{{Jedi+deadliness|year:-2..0}}]/3"
+      Card::Metric.create name: "Jedi+deadlier",
+                          type: :formula,
+                          formula: "{{Jedi+deadliness}}-{{Jedi+deadliness|year:-1}}" \
+                                   "+{{half year}}"
     end
 
     def score_metrics
