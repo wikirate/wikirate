@@ -13,7 +13,7 @@ describe Card::Set::Right::BrowseMetricFilter do
     subject { card.filter_wql_from_params }
 
     def wql args
-      args #.merge type_id: Card::MetricID
+      args # .merge type_id: Card::MetricID
     end
 
     context "name argument" do

@@ -48,10 +48,10 @@ class NoteAndSourceFilterQuery < Card::FilterQuery
   # TODO: move this to NoteFilterQuery (inherit from this class)
   def cited_wql value
     case value
-      when "yes"
-        add_to_wql :referred_to_by, cited_true_query[:referred_to_by]
-      when "no"
-        add_to_wql :not, cited_true_query
+    when "yes"
+      add_to_wql :referred_to_by, cited_true_query[:referred_to_by]
+    when "no"
+      add_to_wql :not, cited_true_query
     end
   end
 
@@ -64,10 +64,10 @@ class NoteAndSourceFilterQuery < Card::FilterQuery
   # TODO: move this to SourceFilterQuery (inherit from this class)
   def claimed_wql value
     case value
-      when "yes"
-        add_to_wql :referred_to_by, claimed_true_query[:linked_to_by]
-      when "no"
-        add_to_wql :not, claimed_true_query
+    when "yes"
+      add_to_wql :referred_to_by, claimed_true_query[:linked_to_by]
+    when "no"
+      add_to_wql :not, claimed_true_query
     end
   end
 

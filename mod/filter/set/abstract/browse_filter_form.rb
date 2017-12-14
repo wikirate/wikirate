@@ -23,7 +23,6 @@ def target_type_id
   WikirateCompanyID
 end
 
-
 def sort_wql
   if sort_param == "name"
     { sort: "name" }
