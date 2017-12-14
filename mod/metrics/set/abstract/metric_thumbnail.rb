@@ -9,7 +9,7 @@ format :html do
     if voo.show? :thumbnail_link
       designer_image_link
     else
-      designer_imag
+      designer_image
     end
   end
 

@@ -1,6 +1,6 @@
 require_relative "../../support/shared_csv_import"
 
-RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
+RSpec.xdescribe Card::Set::Type::AnswerImportFile, type: :controller do
   routes { Decko::Engine.routes }
   before { @controller = CardController.new }
 

@@ -12,6 +12,7 @@ Feature: create metrics
     And I choose "Number"
     And I scroll 500 pixels down
     And I press "Submit"
+    And I wait for ajax response
     Then I should see "MyResearch"
     Then I should see "Metric Creator"
     And I should see "Awarded for adding your first metric."
@@ -22,6 +23,7 @@ Feature: create metrics
     And I choose "Number"
     And I fill in "Metric Title" with "owner of"
     And I fill in "Inverse Title" with "owned by"
+    And I scroll 500 pixels down
     And I press "Submit"
 
     Then I should see "owner of"
