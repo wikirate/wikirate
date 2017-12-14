@@ -80,9 +80,16 @@ format :html do
     HTML
   end
 
-  def default_thumbnail_subtitle_args args
-    args[:text] ||= "scored by"
-    args[:author] ||= link_to_card card.scorer
+  def thumbnail_metric_info
+    "Score"
+  end
+
+  def thumbnail_subtitle_text
+    "scored by"
+  end
+
+  def thumbnail_subtitle_author
+    link_to_card card.scorer
   end
 
   view :scorer_info do
@@ -94,12 +101,6 @@ format :html do
   end
 
   view :score_thumbnail do |_args|
-    # link_text =
-    #   subformat(card.scorer_card).author_info "#{time_ago_in_words card.created_at} ago"
-    # wrap_with :div, class: "metric-designer-info" do
-    #   link_to_card card, link_text, class: "row list-group-item"
-    # end
-    # link_to_card card, link_text
     text = "<small class=\"text-muted\">#{time_ago_in_words card.created_at} ago</small>"
     text_with_image title: card.scorer, text: text,
                     size: :icon, image: card.scorer_card.fetch(trait: :image, new: {})
