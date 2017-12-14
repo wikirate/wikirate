@@ -34,22 +34,6 @@ format :html do
     nest card.metric_title_card, view: :name
   end
 
-  view :thumbnail_subtitle, cache: :never do |args|
-    wrap_with :div do
-      <<-HTML
-      <small class="text-muted">
-        #{args[:text]}
-        #{args[:author]}
-      </small>
-      HTML
-    end
-  end
-
-  def default_thumbnail_subtitle_args args
-    args[:text] ||= [card.value_type, "designed by"].compact.join " | "
-    args[:author] ||= link_to_card card.metric_designer
-  end
-
   # not cacheable because formula arguments like "year=-1"
   # produce invalid stubs
   view :formula_thumbnail, cache: :never do
@@ -62,5 +46,17 @@ format :html do
 
   view :score_thumbnail do |_args|
     ""
+  end
+
+  def thumbnail_subtitle_text
+    [thumbnail_metric_info, "designed by"].compact.join " | "
+  end
+
+  def thumbnail_metric_info
+    card.value_type
+  end
+
+  def thumbnail_subtitle_author
+    link_to_card card.metric_designer
   end
 end

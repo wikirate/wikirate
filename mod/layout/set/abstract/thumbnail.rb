@@ -1,28 +1,28 @@
 format :html do
-  view :thumbnail_plain, cache: :never do |args|
-    wrap_with :div, thumbnail_content(args)
+  view :thumbnail_plain do
+    wrap_with :div, thumbnail_content
   end
 
-  view :thumbnail_minimal, cache: :never do |args|
+  view :thumbnail_minimal do
     voo.hide! :thumbnail_subtitle
     voo.hide! :thumbnail_link
-    _render_thumbnail_plain args
+    _render_thumbnail_plain
   end
 
-  view :thumbnail, cache: :never do |args|
+  view :thumbnail do
     voo.show :thumbnail_link
-    wrap_with :div, thumbnail_content(args), class: "thumbnail"
+    wrap_with :div, thumbnail_content, class: "thumbnail"
   end
 
-  view :thumbnail_no_link, cache: :never do |args|
+  view :thumbnail_no_link do
     voo.hide :thumbnail_link
-    wrap_with :div, thumbnail_content(args)
+    wrap_with :div, thumbnail_content
   end
 
-  def thumbnail_content args
+  def thumbnail_content
     output [
       thumbnail_image_wrap,
-      thumbnail_text_wrap(args)
+      thumbnail_text_wrap
     ]
   end
 
@@ -35,19 +35,29 @@ format :html do
     end
   end
 
-  def thumbnail_text_wrap args
+  def thumbnail_text_wrap
     wrap_with :div, class: "thumbnail-text" do
       [
         thumbnail_title,
-        _render_thumbnail_subtitle(args)
+        _render_thumbnail_subtitle
       ]
     end
   end
 
   def thumbnail_image
-    image = field_nest(:image, view: :core, size: :small)
-    return image unless voo.show?(:thumbnail_link)
-    link_to_card card, image
+    if voo.show?(:thumbnail_link)
+      thumbnail_image_with_link
+    else
+      thumbnail_image_without_link
+    end
+  end
+
+  def thumbnail_image_without_link
+    field_nest :image, view: :core, size: :small
+  end
+
+  def thumbnail_image_with_link
+    link_to_card card, thumbnail_image_without_link
   end
 
   def thumbnail_title
@@ -57,14 +67,22 @@ format :html do
     end
   end
 
-  view :thumbnail_subtitle, cache: :never do |args|
-    wrap_with :div do
-      <<-HTML
-      <small class="text-muted">
-        #{args[:text]}
-        #{args[:author]}
-      </small>
-      HTML
+  view :thumbnail_subtitle do
+    haml do
+      <<-HAML.strip_heredoc
+        %div
+          %small.text-muted
+            = thumbnail_subtitle_text
+            = thumbnail_subtitle_author
+      HAML
     end
+  end
+
+  def thumbnail_subtitle_text
+    ""
+  end
+
+  def thumbnail_subtitle_author
+    ""
   end
 end
