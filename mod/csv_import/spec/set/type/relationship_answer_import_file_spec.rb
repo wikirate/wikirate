@@ -67,8 +67,8 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
 
   describe "import csv file" do
     include_context "csv import" do
-      let(:csv_row_class) { CSVRow::Structure::AnswerCSV }
-      let(:import_card) { Card["answer import test"] }
+      let(:csv_row_class) { CSVRow::Structure::Relationship AnswerCSV }
+      let(:import_card) { Card["relationship answer import test"] }
       let(:data) do
         {
           exact_match: ["Jedi+disturbances in the Force", "Death Star", "2017", "yes", "http://google.com/1", "chch"],

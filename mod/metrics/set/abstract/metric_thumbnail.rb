@@ -9,7 +9,7 @@ format :html do
     if voo.show? :thumbnail_link
       designer_image_link
     else
-      designer_image
+      designer_imag
     end
   end
 
@@ -22,12 +22,11 @@ format :html do
   end
 
   def thumbnail_title_link
-    title = thumbnail_title_text
-    opts = { title: title, class: "ellipsis" }
+    opts = { class: "ellipsis" }
     if voo.closest_live_option(:project)
       opts[:path] = { filter: { project: voo.closest_live_option(:project) } }
     end
-    link_to_card card, title, opts
+    link_to_card card, thumbnail_title_text, opts
   end
 
   def thumbnail_title_text
