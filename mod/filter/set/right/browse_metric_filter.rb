@@ -38,10 +38,6 @@ def sort_wql
   wql
 end
 
-def default_sort_option
-  "upvoted"
-end
-
 format :html do
   def filter_label key
     key == :metric_type ? "Metric type" : super

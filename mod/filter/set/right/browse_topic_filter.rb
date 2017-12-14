@@ -14,10 +14,6 @@ class TopicFilterQuery < Card::FilterQuery
   end
 end
 
-def default_sort_option
-  "metric"
-end
-
 def filter_keys
   %i[name]
 end

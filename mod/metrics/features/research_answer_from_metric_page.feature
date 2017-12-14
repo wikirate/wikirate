@@ -59,7 +59,7 @@ Feature: Research answer from metric page
 
 
   Scenario: Adding a answer from record details on metric page
-    When I go to card "Jedi+disturbances in the Force"
+   # When I go to card "Jedi+disturbances in the Force"
     And I click on item "Death Star"
     And I click on "Research answer"
     And I wait for ajax response
