@@ -49,7 +49,6 @@ format :html do
   end
 
   def thumbnail_image
-    binding.pry
     if voo.show?(:thumbnail_link)
       thumbnail_image_with_link
     else
