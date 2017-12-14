@@ -16,13 +16,12 @@
         %p
           = data[:help]
       %ul.nav.nav-pills.grey-nav-tab{role: "tablist"}
-        - data[:subtabs].each_with_index do |metric_type, i|
+        - data[:subtabs].each do |metric_type|
           %li.pointer-radio.nav-item{role: "tab"}
-            %label.tab-primary{class: "nav-link#{' active' if selected_subtab_pane?(metric_type)}",
-                               "data-target": "##{tab_pane_id metric_type}"}
-              %input.pointer-radio-button{id: metric_type, value: metric_type,
-                                          name: "intervaltype", type: "radio", checked: i.zero?}
-                = metric_type
+            %a.tab-primary{class: "nav-link#{' active' if selected_subtab_pane?(metric_type)}",
+                           "data-toggle": "tab", href: "##{tab_pane_id metric_type}"}
+              = metric_type
       .tab-content
         - data[:subtabs].each do |metric_type|
           = new_metric_tab_pane metric_type
+.card-notice
