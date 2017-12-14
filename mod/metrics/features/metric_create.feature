@@ -12,7 +12,23 @@ Feature: create metrics
     And I choose "Number"
     And I scroll 500 pixels down
     And I press "Submit"
+    Then I should see "MyResearch"
     Then I should see "Metric Creator"
+    And I should see "Awarded for adding your first metric."
+
+  Scenario: Creating a relationship metric
+    When I go to new metric
+    And I click on "Relationship"
+    And I choose "Number"
+    And I fill in "Metric Title" with "owner of"
+    And I fill in "Inverse Title" with "owned by"
+    And I press "Submit"
+
+    Then I should see "owner of"
+    And I should see "Designed By Joe Camel"
+    And I should see "Metric Type Relationship"
+    And I should see "Value Type Number"
+    And I should see "Metric Creator"
     And I should see "Awarded for adding your first metric."
 
   Scenario: Creating a formula metric

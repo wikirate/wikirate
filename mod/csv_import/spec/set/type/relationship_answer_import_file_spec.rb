@@ -4,24 +4,25 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
   routes { Decko::Engine.routes }
   before { @controller = CardController.new }
 
-  describe "view: import_table" do
-    include_context "company matches"
+  include_context "company matches"
+  let(:default_data) do
+    {
+      designer: "Jedi",
+      title: "more evil",
+      company: "Death Star",
+      related_company: "Google Inc.",
+      year: "2017",
+      value: "yes",
+      source: "http://google.com",
+      comment: ""
+    }
+  end
 
+  describe "view: import_table" do
     include_context "csv import" do
       let(:csv_row_class) { CSVRow::Structure::AnswerCSV }
       let(:import_card) { Card["relationship answer import test"] }
-      let(:default_data) do
-        {
-          designer: "Jedi",
-          title: "more evil",
-          company: "Death Star",
-          related_company: "Google Inc.",
-          year: "2017",
-          value: "yes",
-          source: "http://google.com",
-          comment: ""
-        }
-      end
+
       let(:data) do
         [:exact, :alias, :partial, :no].repeated_permutation(2)
           .each_with_object({}) do  |(match_1, match_2), h|
@@ -51,7 +52,7 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
     end
 
     it "has no invalid alert if all data is valid" do
-      expect(table(:exact_match, :alias_match))
+      expect(table(:exact_exact_match, :alias_alias_match))
         .not_to have_tag "div.alert"
     end
 

@@ -92,8 +92,7 @@ shared_context "csv import" do
 
   def data_row key
     if data[key].is_a?(Hash)
-      raise "no default data defined" unless default_data.is_a?(Hash)
-      default_data.merge(data[key]).values
+      fill_with_default_data data[key]
     else
       data[key]
     end
@@ -101,6 +100,11 @@ shared_context "csv import" do
 
   def csv_row key
     data_row(key).join ","
+  end
+
+  def fill_with_default_data hash
+    raise "no default data defined" unless default_data.is_a?(Hash)
+    default_data.merge(hash).values
   end
 end
 
