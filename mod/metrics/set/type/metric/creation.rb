@@ -209,7 +209,8 @@ format :html do
     with_nest_mode :edit do
       wrap do
         card_form :create, hidden: args.delete(:hidden),
-                           "main-success" => "REDIRECT" do
+                           "main-success" => "REDIRECT",
+                           "data-slot-selector": ".new-view.TYPE-metric" do
           output [
             new_tab_pane_hidden,
             _render!(:help_text),
