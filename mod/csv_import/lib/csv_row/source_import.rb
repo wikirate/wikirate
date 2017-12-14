@@ -55,9 +55,7 @@ class CSVRow
     end
 
     def find_duplicate
-      if refers_to_existing_source_name?
       return Card[source_args[:source]] if refers_to_existing_source_name?
-      else
       link_duplicates = Card::Set::Self::Source.find_duplicates source_args[:source]
       return unless link_duplicates.present?
       link_duplicates.first.left

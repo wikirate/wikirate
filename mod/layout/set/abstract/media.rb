@@ -4,7 +4,8 @@ format :html do
   end
 
   def image_src opts
-    image_card&.format&.render_source(size: opts[:size])
+    return "" unless image_card
+    nest image_card, view: :source, size: opts[:size]
   end
 
   def image_alt

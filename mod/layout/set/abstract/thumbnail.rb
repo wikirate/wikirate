@@ -10,6 +10,10 @@ format :html do
   end
 
   view :thumbnail do
+    thumbnail
+  end
+
+  def thumbnail
     voo.show :thumbnail_link
     wrap_with :div, thumbnail_content, class: "thumbnail"
   end

@@ -37,14 +37,14 @@ format :html do
   # not cacheable because formula arguments like "year=-1"
   # produce invalid stubs
   view :formula_thumbnail, cache: :never do
-    "</span>#{_render_thumbnail}<span>"
+    "</span>#{thumbnail}<span>"
   end
 
   view :fixed_value do
     nest [card, voo.closest_live_option(:params)], view: :value_link
   end
 
-  view :score_thumbnail do |_args|
+  view :score_thumbnail do
     ""
   end
 
