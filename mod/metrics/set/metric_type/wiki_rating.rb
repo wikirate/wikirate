@@ -5,9 +5,8 @@ format :html do
   #   super options.merge(readonly: true)
   # end
 
-  def default_thumbnail_subtitle_args args
-    args[:text] ||= ["WikiRating", "designed by"].compact.join " | "
-    args[:author] ||= link_to_card card.metric_designer
+  def thumbnail_metric_info
+    "WikiRating"
   end
 end
 
