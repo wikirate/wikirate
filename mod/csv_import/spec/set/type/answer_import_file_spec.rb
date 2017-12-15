@@ -23,9 +23,9 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
       let(:data) do
         {
           exact_match:   { company: "Death Star" },
-          alias_match:   { company: "Google"},
-          partial_match: { company: "Sony"},
-          no_match:      { company: "New Company"},
+          alias_match:   { company: "Google" },
+          partial_match: { company: "Sony" },
+          no_match:      { company: "New Company" },
           not_a_metric:  { metric: "Not a metric", company: "Monster Inc" }
         }
       end

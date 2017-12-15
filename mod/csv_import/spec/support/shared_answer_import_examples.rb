@@ -7,7 +7,7 @@ shared_examples "answer import examples" do
     real_csv_file =
       File.open File.expand_path("../../support/#{csv_file_name}.csv", __FILE__)
     card = create "test import", type_id: import_file_type_id,
-                  attachment_name => real_csv_file
+                                 attachment_name => real_csv_file
     expect_card("test import").to exist.and have_file.of_size be_positive
     card
   end
@@ -62,14 +62,16 @@ shared_examples "answer import examples" do
       expect(Card["Monster Inc", :aliases]).not_to exist
       trigger_import no_match: { company_match_type: :none,
                                  corrections: { company: "Monster Inc." } }
-      expect(Card["Monster Inc."]).to have_a_field(:aliases).pointing_to company_name(:no_match)
+      expect(Card["Monster Inc."])
+        .to have_a_field(:aliases).pointing_to company_name(:no_match)
     end
 
     it "adds company in file to corrected company's aliases" do
       trigger_import exact_match: { company_match_type: :none,
                                     corrections: { company: "Google Inc." } }
       expect_card(answer_name(:exact_match, company: "Google Inc.")).to exist
-      expect(Card["Google Inc."]).to have_a_field(:aliases).pointing_to company_name(:exact_match)
+      expect(Card["Google Inc."])
+        .to have_a_field(:aliases).pointing_to company_name(:exact_match)
     end
   end
 

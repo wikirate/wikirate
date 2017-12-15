@@ -76,7 +76,8 @@ shared_context "csv import" do
     index
   end
 
-  # @param *args [<Symbol>, Hash] list of keys or a hash with key and extra data hash as value
+  # @param *args [<Symbol>, Hash] list of keys or a hash with key and
+  # extra data hash as value
   def import_params *args
     args = args.first if args.size == 1 && args.first.is_a?(Hash)
     args.each_with_object(import_rows: {}, extra_data: {}) do |(key, extra_data), params|
@@ -169,7 +170,7 @@ shared_context "relationship answer import" do
      related_company_name(key, override)].join "+"
   end
 
-  def related_company_name key, override
+  def related_company_name key, _override
     key.is_a?(Symbol) ? data_row(key)[company_row + 1] : key[:related_company]
   end
 
@@ -179,6 +180,7 @@ shared_context "relationship answer import" do
 
   def expect_relationship_answer_created key, with_value: nil
     value = with_value || data_row(key)[value_row]
-    expect(relationship_answer_card(key)).to exist.and have_a_field(:value).with_content(value)
+    expect(relationship_answer_card(key))
+      .to exist.and have_a_field(:value).with_content(value)
   end
 end
