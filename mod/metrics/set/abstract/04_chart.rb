@@ -19,7 +19,7 @@ format do
     chart_params[:highlight]
   end
 
-  delegate :chart_params to: :card
+  delegate :chart_params, to: :card
 end
 
 format do
