@@ -133,7 +133,7 @@ end
 # the helper to access the original import data
 shared_context "answer import" do
   def answer_name key, override={}
-    [metric, company_name(key, override), year].join "+"
+    Card::Name[metric, company_name(key, override), year]
   end
 
   def answer_card key, override={}

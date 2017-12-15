@@ -75,7 +75,8 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
           no_match:
             { company: "New Company", source: "http://google.com/4" },
           not_a_metric:
-            { metric: "Not a metric", company: "Monster Inc", source: "http://google.com/5" },
+            { metric: "Not a metric", company: "Monster Inc",
+              source: "http://google.com/5" },
           not_a_company:
             { company: "A", source: "http://google.com/6" },
           company_missing:

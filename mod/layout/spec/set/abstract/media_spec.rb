@@ -31,5 +31,11 @@ describe Card::Set::Abstract::Media do
           with_tag "img[src*='small']"
         end
     end
+
+    it "doesn't escape src argument if it's a stub" do
+      stub = "(stub)#{Card::View::Stub.escape '{"mode":"normal"}'}(/stub)"
+      allow(subject).to receive(:nest).and_return stub
+      expect(subject.text_with_image).to include %{src='(stub){"mode":"normal"}(/stub)'}
+    end
   end
 end
