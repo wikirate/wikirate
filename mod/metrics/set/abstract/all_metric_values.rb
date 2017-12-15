@@ -17,7 +17,7 @@ end
 format :html do
   view :core, cache: :never do |_args|
     class_up "card-slot", "_filter-result-slot"
-    _render_filter_form + _render_filter_result
+    output [_render_filter_form, _render_filter_result]
   end
 
   view :filter_result, template: :haml, cache: :never

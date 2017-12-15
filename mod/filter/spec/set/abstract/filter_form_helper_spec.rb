@@ -4,7 +4,7 @@ describe Card::Set::Abstract::FilterFormHelper do
   describe "#select_filter_tag" do
     it "renders single select list" do
       options = card.format.type_options :wikirate_topic
-      html = card.format.select_filter_tag "Topic", "Sidan", nil, options
+      html = card.format.select_filter_tag "Topic", nil, options
       expect(html).to have_tag :select, with: { name: "filter[Topic]" }
     end
   end

@@ -10,10 +10,10 @@ describe Card::Set::Right::BrowseTopicFilter do
   end
 
   describe "filter_wql" do
-    subject { card.filter_wql }
+    subject { card.filter_wql_from_params }
 
     def wql args
-      args.merge type_id: Card::WikirateTopicID
+      args # merge type_id: Card::WikirateTopicID
     end
 
     context "name argument" do
