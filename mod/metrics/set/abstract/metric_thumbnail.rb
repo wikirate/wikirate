@@ -22,7 +22,7 @@ format :html do
   end
 
   def thumbnail_title_link
-    opts = { class: "ellipsis" }
+    opts = { title: card.name, class: "ellipsis" }
     if voo.closest_live_option(:project)
       opts[:path] = { filter: { project: voo.closest_live_option(:project) } }
     end

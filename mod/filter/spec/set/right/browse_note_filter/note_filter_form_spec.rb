@@ -39,13 +39,13 @@ describe Card::Set::Right::BrowseNoteFilter do
 
     it "has company formgroup" do
       is_expected.to include(
-        filter_card.format(:html).render_wikirate_company_formgroup.squish
+        filter_card.format(:html).render_filter_wikirate_company_formgroup.squish
       )
     end
 
     it "has topic formgroup" do
       is_expected.to include(
-        filter_card.format(:html).render_wikirate_topic_formgroup.squish
+        filter_card.format(:html).render_filter_wikirate_topic_formgroup.squish
       )
     end
   end

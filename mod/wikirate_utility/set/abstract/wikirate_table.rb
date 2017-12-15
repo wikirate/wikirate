@@ -6,12 +6,12 @@ format :html do
     inner = wrap_with(:div, header, class: "header") +
             wrap_with(:div, data, class: "data")
 
-    if args[:append_for_details]
-      inner = wrap_with :div, class: "metric-details-toggle",
-                              "data-append" => args[:append_for_details] do
-        inner
-      end
-    end
+    # if args[:append_for_details]
+    #   inner = wrap_with :div, class: "metric-details-toggle",
+    #                           "data-append" => args[:append_for_details] do
+    #     inner
+    #   end
+    # end
 
     content = wrap_with :div, class: row_class do
       wrap_with(:div, inner, class: item_class) +

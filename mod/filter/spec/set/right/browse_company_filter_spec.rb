@@ -10,10 +10,10 @@ describe Card::Set::Right::BrowseCompanyFilter do
   end
 
   describe "filter_wql" do
-    subject { card.filter_wql }
+    subject { card.filter_wql_from_params }
 
     def wql args
-      args.merge type_id: Card::WikirateCompanyID
+      args # .merge type_id: Card::WikirateCompanyID
     end
 
     context "name argument" do

@@ -1,6 +1,6 @@
 include_set Abstract::BrowseFilterForm
 
-def default_sort_by_key
+def default_sort_option
   "upvoted"
 end
 
@@ -20,10 +20,10 @@ def filter_class
   MetricFilterQuery
 end
 
-def add_sort_wql wql, sort_by
-  super wql, sort_by
+def sort_wql
+  wql = super
   wql[:sort] =
-    case sort_by
+    case current_sort
     when "values"
       { right: "value", right_plus: "*cached count" }
     when "recent"
@@ -35,10 +35,7 @@ def add_sort_wql wql, sort_by
       # upvoted as default
       { right: "*vote count" }
     end
-end
-
-def default_sort_option
-  "upvoted"
+  wql
 end
 
 format :html do
