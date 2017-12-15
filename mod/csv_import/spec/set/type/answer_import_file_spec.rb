@@ -67,7 +67,7 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
       let(:data) do
         {
           exact_match:
-            { company: "Death Star", source: "http://google.com/1", comment: "chch"},
+            { company: "Death Star", source: "http://google.com/1", comment: "chch" },
           alias_match:
             { company: "Google", source: "http://google.com/2" },
           partial_match:

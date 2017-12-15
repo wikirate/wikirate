@@ -157,30 +157,3 @@ shared_context "answer import" do
     expect(answer_card(key)).to exist.and have_a_field(:value).with_content(value)
   end
 end
-
-shared_context "relationship answer import" do
-  include_context "answer import"
-
-  def relationship_answer_card key
-    Card[relationship_answer_name(key)]
-  end
-
-  def relationship_answer_name key, override={}
-    [metric, company_name(key, override), year,
-     related_company_name(key, override)].join "+"
-  end
-
-  def related_company_name key, _override
-    key.is_a?(Symbol) ? data_row(key)[company_row + 1] : key[:related_company]
-  end
-
-  def relationship_value_card key
-    Card[relationship_answer_name(key), :value]
-  end
-
-  def expect_relationship_answer_created key, with_value: nil
-    value = with_value || data_row(key)[value_row]
-    expect(relationship_answer_card(key))
-      .to exist.and have_a_field(:value).with_content(value)
-  end
-end

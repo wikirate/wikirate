@@ -26,10 +26,10 @@ RSpec.describe Card::Set::Type::RelationshipAnswerImportFile, type: :controller 
 
       let(:data) do
         [:exact, :alias, :partial, :no].repeated_permutation(2)
-          .each_with_object({}) do  |(match_1, match_2), h|
-          h["#{match_1}_#{match_2}_match".to_sym] = {
-            company: send("#{match_1}_match"),
-            related_company: send("#{match_2}_match")
+                                       .each_with_object({}) do  |(match1, match2), h|
+          h["#{match1}_#{match2}_match".to_sym] = {
+            company: send("#{match1}_match"),
+            related_company: send("#{match2}_match")
           }
         end.merge(
           not_a_metric: { title: "Not a metric", company: "Monster Inc" }
@@ -73,7 +73,7 @@ RSpec.describe Card::Set::Type::RelationshipAnswerImportFile, type: :controller 
       let(:data) do
         {
           exact_match:
-            { source: "http://google.com/1", comment: "chch"},
+            { source: "http://google.com/1", comment: "chch" },
           alias_match:
             { company: "Google", source: "http://google.com/2" },
           partial_match:
@@ -114,7 +114,7 @@ RSpec.describe Card::Set::Type::RelationshipAnswerImportFile, type: :controller 
     let(:metric) { "Jedi+more evil" }
     let(:year) { "2017" }
 
-    include_context "relationship answer import" do
+    include_context "answer import" do
       let(:company_row) { 2 }
       let(:value_row) { 5 }
     end
@@ -125,7 +125,7 @@ RSpec.describe Card::Set::Type::RelationshipAnswerImportFile, type: :controller 
       let(:import_file_name) { "relationship_answer_test" }
       let(:unordered_import_file_name) { "relationship_wrong_order" }
 
-      def related_company_name key, override
+      def related_company_name key, _override
         key.is_a?(Symbol) ? data_row(key)[company_row + 1] : key[:related_company]
       end
 
