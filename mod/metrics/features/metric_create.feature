@@ -31,8 +31,8 @@ Feature: create metrics
     And I should see "Designed By Joe Camel"
     And I should see "Metric Type Relationship"
     And I should see "Value Type Number"
-    And I should see "Metric Creator"
-    And I should see "Awarded for adding your first metric."
+    # And I should see "Metric Creator"
+    # And I should see "Awarded for adding your first metric."
 
   Scenario: Creating a formula metric
     When I go to new metric
@@ -46,6 +46,7 @@ Feature: create metrics
     Then I should see "MyFormula"
     And I should see "Designed By Joe Camel"
     And I should see "Metric Type Formula"
+    And I should see "Metric Creator"
     And I should see "Awarded for adding your first metric."
 
   Scenario: Creating a score metric
@@ -59,6 +60,7 @@ Feature: create metrics
     And I should see "Designed By Jedi"
     And I should see "Scored By Joe Camel"
     And I should see "Metric Type Score"
+    And I should see "Metric Creator"
     And I should see "Awarded for adding your first metric."
 
   Scenario: Creating a score metric fails
@@ -80,4 +82,5 @@ Feature: create metrics
     Then I should see "MyWikiRating"
     And I should see "Designed By Joe Camel"
     And I should see "Metric Type WikiRating"
+    And I should see "Metric Creator"
     And I should see "Awarded for adding your first metric."
