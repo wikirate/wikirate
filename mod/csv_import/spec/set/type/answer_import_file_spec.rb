@@ -190,7 +190,6 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
     end
 
     describe "duplicates" do
-
     end
 
     context "company correction name is filled" do

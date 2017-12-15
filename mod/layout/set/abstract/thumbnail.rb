@@ -84,7 +84,7 @@ format :html do
 
   def thumbnail_subtitle_text
     ""
-    end
+  end
 
   def thumbnail_subtitle_author
     ""

@@ -1,6 +1,6 @@
 require_relative "../../support/shared_csv_import"
 
-RSpec.xdescribe Card::Set::Type::AnswerImportFile, type: :controller do
+RSpec.describe Card::Set::Type::RelationshipAnswerImportFile, type: :controller do
   routes { Decko::Engine.routes }
   before { @controller = CardController.new }
 
@@ -20,7 +20,7 @@ RSpec.xdescribe Card::Set::Type::AnswerImportFile, type: :controller do
 
   describe "view: import_table" do
     include_context "csv import" do
-      let(:csv_row_class) { CSVRow::Structure::AnswerCSV }
+      let(:csv_row_class) { CSVRow::Structure::RelationshipAnswerCSV }
       let(:import_card) { Card["relationship answer import test"] }
 
       let(:data) do
@@ -31,7 +31,7 @@ RSpec.xdescribe Card::Set::Type::AnswerImportFile, type: :controller do
             related_company: send("#{match_2}_match")
           }
         end.merge(
-          not_a_metric:  { metric: "Not a metric", company: "Monster Inc" }
+          not_a_metric:  { title: "Not a metric", company: "Monster Inc" }
         )
       end
     end
@@ -67,35 +67,54 @@ RSpec.xdescribe Card::Set::Type::AnswerImportFile, type: :controller do
 
   describe "import csv file" do
     include_context "csv import" do
-      let(:csv_row_class) { CSVRow::Structure::Relationship AnswerCSV }
+      let(:csv_row_class) { CSVRow::Structure::RelationshipAnswerCSV }
       let(:import_card) { Card["relationship answer import test"] }
       let(:data) do
         {
-          exact_match: ["Jedi+disturbances in the Force", "Death Star", "2017", "yes", "http://google.com/1", "chch"],
-          alias_match: ["Jedi+disturbances in the Force", "Google", "2017", "yes", "http://google.com/2", ""],
-          partial_match: ["Jedi+disturbances in the Force", "Sony", "2017", "yes", "http://google.com/3", ""],
-          no_match: ["Jedi+disturbances in the Force", "New Company", "2017", "yes", "http://google.com/4", ""],
-          not_a_metric: ["Not a metric", "Monster Inc", "2017", "yes", "http://google.com/5", ""],
-          not_a_company: ["Jedi+disturbances in the Force", "A", "2017", "yes", "http://google.com/6", ""],
-          company_missing: ["Jedi+disturbances in the Force", "", "2017", "yes", "http://google.com/7", ""],
-          missing_and_invalid: ["Not a metric", "", "2017", "yes", "http://google.com/8", ""],
-          conflict_same_value_same_source: ["Jedi+disturbances in the Force", "Death Star", "2000", "yes", "http://www.wikiwand.com/en/Opera", ""],
-          conflict_same_value_different_source: ["Jedi+disturbances in the Force", "Death Star", "2000", "yes", "http://google.com/10", ""],
-          conflict_different_value: ["Jedi+disturbances in the Force", "Death Star", "2000", "no", "http://google.com/11", "overridden"],
-          invalid_value: ["Jedi+disturbances in the Force", "Death Star", "2017", "100", "http://google.com/12", ""],
-          monster_badge_1: ["Jedi+disturbances in the Force", "Monster Inc.", "2000", "yes", "http://google.com/13", ""],
-          monster_badge_2: ["Jedi+disturbances in the Force", "Monster Inc.", "2001", "yes", "http://google.com/14", ""],
-          monster_badge_3: ["Jedi+disturbances in the Force", "Monster Inc.", "2002", "yes", "http://google.com/15", ""]
+          exact_match:
+            { source: "http://google.com/1", comment: "chch"},
+          alias_match:
+            { company: "Google", source: "http://google.com/2" },
+          partial_match:
+            { company: "Sony", source: "http://google.com/3" },
+          no_match:
+            { company: "New Company", source: "http://google.com/4" },
+          not_a_metric:
+            { metric: "Not a metric", company: "Monster Inc", source: "http://google.com/5" },
+          not_a_company:
+            { company: "A", source: "http://google.com/6" },
+          company_missing:
+            { company: "", source: "http://google.com/7" },
+          missing_and_invalid:
+            { metric: "Not a metric", company: "", source: "http://google.com/8" },
+          conflict_same_value_same_source:
+            { company: "Death Star", year: "2000",
+              source: "http://www.wikiwand.com/en/Opera" },
+          conflict_same_value_different_source:
+            { company: "Death Star", year: "2000", source: "http://google.com/10" },
+          conflict_different_value:
+            [default_data[:metric], "Death Star", "2000", "no", "http://google.com/11",
+             "overridden"],
+          invalid_value:
+            { company: "Death Star", value: "100", source: "http://google.com/12" },
+          monster_badge_1:
+            { company: "Monster Inc.", year: "2000", source: "http://google.com/13" },
+          monster_badge_2:
+            { company: "Monster Inc.", year: "2001", source: "http://google.com/14" },
+          monster_badge_3:
+            { company: "Monster Inc.", year: "2002", source: "http://google.com/15" },
+          wikirate_source:
+            { source: sample_source.name }
         }
       end
     end
 
-    let(:metric) { "Jedi+disturbances in the Force" }
+    let(:metric) { "Jedi+more evil" }
     let(:year) { "2017" }
 
-    include_context "answer import" do
-      let(:company_row) { 1 }
-      let(:value_row) { 3 }
+    include_context "relationship answer import" do
+      let(:company_row) { 2 }
+      let(:value_row) { 5 }
     end
 
     before do
@@ -105,45 +124,48 @@ RSpec.xdescribe Card::Set::Type::AnswerImportFile, type: :controller do
     def create_import_card csv_file_name
       real_csv_file =
         File.open File.expand_path("../../../support/#{csv_file_name}.csv", __FILE__)
-      card = create "test import", type_id: Card::AnswerImportFileID, answer_import_file: real_csv_file
+      card = create "test import", type_id: Card::RelationshipAnswerImportFileID,
+                                   relationship_answer_import_file: real_csv_file
       expect_card("test import").to exist.and have_file.of_size be_positive
       card
     end
 
     example "use csv file with wrong column order but headers" do
-      import_card = create_import_card "wrong_order_with_headers"
+      import_card = create_import_card "relationship_wrong_order"
       trigger_import_with_card import_card, :exact_match
-      expect_answer_created(:exact_match)
+      expect_relationship_answer_created(:exact_match)
     end
 
     example "create new import card and import", as_bot: true do
-      import_card = create_import_card "test"
+      import_card = create_import_card "relationship_answer_test"
 
-      expect_card("Jedi+disturbances in the Force+Death Star+2017+value").not_to exist
+      expect_card(relationship_answer_name(:exact_match)).not_to exist
       params = import_params exact_match: { company_match_type: :exact }
       post :update, xhr: true, params: params.merge(id: "~#{import_card.id}")
-      expect_card("Jedi+disturbances in the Force+Death Star+2017+value").to exist
+      expect_card("#{metric}+Death Star+2017+value").to exist
     end
 
     it "imports answer" do
       trigger_import :exact_match
-      expect_answer_created :exact_match
+      expect_relationship_answer_created :exact_match
     end
 
-    it "imports comment" do
+    # Relationship answer import doesn't support comments
+    xit "imports comment" do
       trigger_import :exact_match
-      expect(Card[answer_name(:exact_match), :discussion]).to have_db_content(/chch/)
+      expect(Card[relationship_answer_name(:exact_match), :discussion])
+        .to have_db_content(/chch/)
     end
 
     it "marks value in action as imported" do
       trigger_import :exact_match
-      action_comment = value_card(:exact_match).actions.last.comment
+      action_comment = relationship_value_card(:exact_match).actions.last.comment
       expect(action_comment).to eq "imported"
     end
 
-    it "marks value in answer table as imported" do
+    xit "marks value in answer table as imported" do
       trigger_import :exact_match
-      answer_id = answer_card(:exact_match).id
+      answer_id = relationship_answer_card(:exact_match).id
       answer = Answer.find_by_answer_id(answer_id)
       expect(answer.imported).to eq true
     end
@@ -161,13 +183,15 @@ RSpec.xdescribe Card::Set::Type::AnswerImportFile, type: :controller do
 
     it "imports others if one fails" do
       trigger_import :exact_match, :invalid_value
-      expect_card("Jedi+disturbances in the Force+Death Star+2017+value")
+      expect_card("#{metric}+Death Star+2017+value")
+        .to exist.and have_db_content("1")
+      expect_card("#{metric}+Death Star+2017+Google Inc+value")
         .to exist.and have_db_content("yes")
     end
 
     it "marks import actions as import" do
       trigger_import :exact_match
-      card = Card["Jedi+disturbances in the Force+Death Star+2017+value"]
+      card = relationship_value_card(:exact_match)
       expect(card.actions.last.comment).to eq "imported"
     end
 
@@ -175,9 +199,12 @@ RSpec.xdescribe Card::Set::Type::AnswerImportFile, type: :controller do
     end
 
     context "company correction name is filled" do
-      it "uses the corrected company name" do
+       it "uses the corrected company name" do
         trigger_import no_match: { corrections: { company: "corrected company" } }
         expect(Card[metric, "corrected company", year])
+          .to exist.and have_a_field(:value).with_content("1")
+
+        expect(Card[metric, "corrected company", year, "Google Inc."])
           .to exist.and have_a_field(:value).with_content("yes")
       end
 
