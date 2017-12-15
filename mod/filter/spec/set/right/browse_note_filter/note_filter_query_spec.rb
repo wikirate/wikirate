@@ -4,7 +4,7 @@ require File.expand_path("../../filter_spec_helper.rb", __FILE__)
 
 describe Card::Set::Right::BrowseNoteFilter do
   describe "filter_wql" do
-    subject { card.filter_wql }
+    subject { card.filter_wql_from_params }
 
     let(:card) do
       card = Card.new name: "test card"
@@ -13,7 +13,7 @@ describe Card::Set::Right::BrowseNoteFilter do
     end
 
     def wql args
-      args.merge type_id: Card::ClaimID, limit: 15
+      args # .merge type_id: Card::ClaimID, limit: 15
     end
 
     context "name argument" do

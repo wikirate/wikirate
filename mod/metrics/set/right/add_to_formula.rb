@@ -23,7 +23,7 @@ def sort_hash
 end
 
 def default_sort_option
-  nil
+  "name"
 end
 
 def default_filter_option

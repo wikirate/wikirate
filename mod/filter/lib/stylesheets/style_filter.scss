@@ -1,28 +1,6 @@
-._filter-widget {
-  .input-group.sort-input-group, ._filter-container > .input-group {
-    width: auto !important;
-  }
-  select {
-    min-width: 30%;
-    max-width: 100%;
-  }
-}
-
-.checkbox-side{
-  width: 32px;
-  padding: 10px;
-}
-
-.item-view-side {
-  max-width: 550px;
-}
 
 .chart-zoom-out {
   position: relative;
   top: 20px;
   z-index: 100;
-}
-
-.filtered-list-review li {
-  clear: both;
 }

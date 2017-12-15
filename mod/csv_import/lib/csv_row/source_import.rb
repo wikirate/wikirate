@@ -54,6 +54,18 @@ class CSVRow
       end
     end
 
+    def find_duplicates
+      if refers_to_existing_source_name?
+        Card[source_args[:source]]
+      else
+        Card::Set::Self::Source.find_duplicates source_args[:source]
+      end
+    end
+
+    def refers_to_existing_source_name?
+      Card.fetch_type_id(source_args[:source]) == Card::SourceID
+    end
+
     def resolve_source_duplication existing_source
       updated = false
       updated |= update_title_card existing_source
