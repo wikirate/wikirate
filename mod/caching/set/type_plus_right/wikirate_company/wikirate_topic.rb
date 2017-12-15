@@ -21,7 +21,7 @@ recount_trigger :type_plus_right, :metric, :wikirate_topic do |changed_card|
   end
 end
 
-def content
+def wql_from_content
   metric_ids = unique_metric_ids
   if metric_ids.any?
     {

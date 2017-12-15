@@ -15,7 +15,7 @@ def filter_class
   Card::FilterQuery
 end
 
-def content
+def wql_from_content
   { type_id: target_type_id, limit: 20 }.merge sort_wql
 end
 

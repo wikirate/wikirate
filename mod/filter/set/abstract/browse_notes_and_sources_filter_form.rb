@@ -2,7 +2,7 @@
 
 include_set Abstract::BrowseFilterForm
 
-def content
+def wql_from_content
   super.merge limit: 15, sort: default_sort_option
 end
 
