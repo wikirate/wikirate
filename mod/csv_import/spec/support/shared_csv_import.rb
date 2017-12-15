@@ -131,24 +131,24 @@ end
 # define :company_row and :value_row to use
 # the helper to access the original import data
 shared_context "answer import" do
-  def answer_card key
-    Card[answer_name(key)]
+  def answer_name key, override={}
+    [metric, company_name(key, override), year].join "+"
   end
 
-  def answer_name key
-    [metric, company_name(key), year].join "+"
+  def answer_card key, override={}
+    Card[answer_name(key, override)]
   end
 
   def answer_value key
     data_row(key)[value_row]
   end
 
-  def company_name key
-    key.is_a?(Symbol) ? data_row(key)[company_row] : key[:company]
+  def company_name key, override={}
+    (override.present? && override[:company]) || data_row(key)[company_row]
   end
 
   def value_card key
-    Card[metric, company_name(key), year, :value]
+    Card[answer_name(key), :value]
   end
 
   def expect_answer_created key, with_value: nil
@@ -164,12 +164,13 @@ shared_context "relationship answer import" do
     Card[relationship_answer_name(key)]
   end
 
-  def relationship_answer_name key
-    [metric, company_name(key), year, related_company_name(key)].join "+"
+  def relationship_answer_name key, override={}
+    [metric, company_name(key, override), year,
+     related_company_name(key, override)].join "+"
   end
 
-  def related_company_name key
-    key.is_a?(Symbol) ? data_row(key)[company_row + 1] : key[:company]
+  def related_company_name key, override
+    key.is_a?(Symbol) ? data_row(key)[company_row + 1] : key[:related_company]
   end
 
   def relationship_value_card key
