@@ -2,7 +2,7 @@ require_relative "../../support/formula_stub"
 
 RSpec.describe Formula::Calculator do
   describe "#formula_for" do
-    include_context "formula_stub"
+    include_context "with formula stub"
 
     def calculator formula
       described_class.new(formula_card(formula))

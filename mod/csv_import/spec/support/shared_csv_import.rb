@@ -1,4 +1,4 @@
-shared_context "company matches" do
+shared_context "with company matches" do
   let(:exact_match) { "Death Star" }
   let(:alias_match) { "Google" }
   let(:partial_match) { "Sony" }

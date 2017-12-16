@@ -49,7 +49,7 @@ shared_examples "answer import examples" do
     expect_answer_created(:exact_match)
   end
 
-  context "no match" do
+  context "with no match" do
     it "creates company" do
       trigger_import no_match: { company_match_type: :none,
                                  corrections: { company: "corrected company" } }
@@ -75,7 +75,7 @@ shared_examples "answer import examples" do
     end
   end
 
-  context "partial match" do
+  context "with partial match" do
     it "adds company name in file to corrected company's aliases" do
       trigger_import partial_match: { company_match_type: :partial,
                                       corrections: { company: "corrected company" },
@@ -94,7 +94,7 @@ shared_examples "answer import examples" do
     end
   end
 
-  context "alias match" do
+  context "with alias match" do
     it "uses suggestion" do
       trigger_import alias_match: { company_match_type: :alias,
                                     company_suggestion: "Google Inc." }
@@ -105,7 +105,7 @@ shared_examples "answer import examples" do
     end
   end
 
-  context "company correction name is filled" do
+  context "with company correction name is filled" do
     it "uses the corrected company name" do
       trigger_import no_match: { corrections: { company: "corrected company" } }
       expect_card(answer_name(:no_match, company: "corrected company")).to exist

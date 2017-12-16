@@ -5,7 +5,7 @@ RSpec.describe Card::Set::Type::RelationshipAnswerImportFile, type: :controller 
   routes { Decko::Engine.routes }
   before { @controller = CardController.new }
 
-  include_context "company matches"
+  include_context "with company matches"
   let(:default_data) do
     {
       designer: "Jedi",

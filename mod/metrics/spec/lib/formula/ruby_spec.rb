@@ -1,7 +1,7 @@
 require_relative "../../support/formula_stub"
 
 describe Formula::Ruby do
-  include_context "formula_stub"
+  include_context "with formula stub"
 
   def calculate formula
     described_class.new(formula_card(formula)).result

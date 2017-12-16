@@ -63,7 +63,7 @@ RSpec.describe Card::Set::Type::MetricValue::ValueDetails do
 
     example "year range" do
       table =
-        value_details"Jedi+deadliness average+Slate Rock and Gravel Company+2005",
+        value_details "Jedi+deadliness average+Slate Rock and Gravel Company+2005",
                       :formula
       expect(table).to have_tag "table" do
         with_tag "td" do

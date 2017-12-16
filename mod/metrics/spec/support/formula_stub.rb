@@ -1,4 +1,4 @@
-shared_context "formula_stub" do
+shared_context "with formula stub" do
   def formula_card formula
     card = double(Card)
     stub_methods card, formula
