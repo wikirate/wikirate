@@ -68,7 +68,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::ValueType do
       context "all values are in the options" do
         before do
           metric.value_options_card.update_attributes(
-            content: %w[5 10 20 40 50 100].to_pointer_content
+            content: %w[5 8 9 10 20 40 50 100].to_pointer_content
           )
         end
 

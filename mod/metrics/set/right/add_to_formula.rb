@@ -109,11 +109,11 @@ format :html do
 
   view :select_modal, template: :haml
 
-  view :metric_list, template: :haml, tags: :unknown_ok do
+  view :metric_list, template: :haml, tags: :unknown_ok, cache: :never do
     class_up "card-slot", "_filter-result-slot"
   end
 
-  view :filter_metric_list do
+  view :filter_metric_list, cache: :never do
     wrap do
       metric_list
     end

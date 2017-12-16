@@ -100,7 +100,7 @@ format :html do
     nest scorer_card.field(:image, new: {}), view: :core, size: :small
   end
 
-  view :score_thumbnail do |_args|
+  view :score_thumbnail do
     text = "<small class=\"text-muted\">#{time_ago_in_words card.created_at} ago</small>"
     text_with_image title: card.scorer, text: text,
                     size: :icon, image: card.scorer_card.fetch(trait: :image, new: {})

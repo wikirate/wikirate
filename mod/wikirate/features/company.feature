@@ -51,7 +51,9 @@ Feature: company feature
     And I select "Not Researched" from "filter[metric_value]"
     And I wait for ajax response
     Then I should not see "disturbances in the Force"
-    And I should see "Weapons"
+    And I should see "deadlier"
+    When I click on "2"
+    Then I should see "Weapons"
 
   Scenario: Paging
     Then I should not see "deadliness"

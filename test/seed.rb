@@ -1,7 +1,9 @@
 # -*- encoding : utf-8 -*-
 require "timecop"
 require_dependency "shared_data/profile_sections"
-require_dependency "shared_data/metrics"
+require_dependency "shared_data/researched_metrics"
+require_dependency "shared_data/calculated_metrics"
+require_dependency "shared_data/relationship_metrics"
 require_dependency "shared_data/badges"
 require_dependency "shared_data/notes_and_sources"
 require_dependency "shared_data/samples"
@@ -33,7 +35,9 @@ class SharedData
     include Samples
 
     include ProfileSections
-    include Metrics
+    include ResearchedMetrics
+    include CalculatedMetrics
+    include RelationshipMetrics
     include Badges
     include NotesAndSources
 
@@ -44,7 +48,8 @@ class SharedData
       Card::Auth.as_bot
       Cardio.config.x.import_sources = false
       add :companies, :topics, :analysis, :notes_and_sources,
-          :metrics, :yearly_variables,
+          :yearly_variables,
+          :researched_metrics, :calculated_metrics, :relationship_metrics,
           :projects, :industry,
           :profile_sections, :badges, :import_files
 
@@ -117,7 +122,10 @@ class SharedData
                                      content: "1007" } },
           "+2013" => { type_id: Card::YearlyAnswerID,
                        "+value" => { type_id: Card::YearlyValueID,
-                                     content: "1006.5" } }
+                                     content: "1006.5" } },
+          "+2004" => { type_id: Card::YearlyAnswerID,
+                       "+value" => { type_id: Card::YearlyValueID,
+                                     content: "1002" } }
         }
       )
     end

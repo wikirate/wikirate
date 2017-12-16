@@ -56,14 +56,14 @@ module Formula
         @companies_with_values_by_year.keys
       end
 
-      private
-
       def input_for year, company
         fetch_values company: company, year: year unless @all_fetched
         values_for_all_years = all_values_for company.to_name.key
         values = @year_options_processor.run values_for_all_years, year
         validate_input values
       end
+
+      private
 
       def validate_input input
         return if !input || !input.is_a?(Array)

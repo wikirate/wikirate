@@ -38,9 +38,12 @@ event :check_length, :validate, on: :save, changed: :content do
   end
 end
 
-event :mark_as_imported, before: :finalize_action do
-  return unless ActManager.act_card.type_id == AnswerImportFileID
+event :mark_as_imported, before: :finalize_action, when: :answer_imported? do
   @current_action.comment = "imported"
+end
+
+def answer_imported?
+  ActManager.act_card.type_id.in? [AnswerImportFileID, RelationshipAnswerImportFileID]
 end
 
 event :update_related_scores, :finalize do

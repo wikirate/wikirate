@@ -1,3 +1,10 @@
+shared_context "with company matches" do
+  let(:exact_match) { "Death Star" }
+  let(:alias_match) { "Google" }
+  let(:partial_match) { "Sony" }
+  let(:no_match) { "New Company" }
+end
+
 shared_context "csv import" do
   # select data from the @data hash by listing the keys or add extra data
   # by using a hash
@@ -56,9 +63,9 @@ shared_context "csv import" do
     if rows
       bad_keys = rows.reject { |k| data.key? k }
       raise StandardError, "unknown keys: #{bad_keys.inspect}" if bad_keys.present?
-      StringIO.new rows.map { |key| data[key].join "," }.join "\n"
+      StringIO.new rows.map { |key| data_row(key).join "," }.join "\n"
     else
-      StringIO.new data.values.map { |rows| rows.join "," }.join "\n"
+      StringIO.new data.keys.map { |key| csv_row(key) }.join "\n"
     end
   end
 
@@ -69,7 +76,8 @@ shared_context "csv import" do
     index
   end
 
-  # @param *args [<Symbol>, Hash] list of keys or a hash with key and extra data hash as value
+  # @param *args [<Symbol>, Hash] list of keys or a hash with key and
+  # extra data hash as value
   def import_params *args
     args = args.first if args.size == 1 && args.first.is_a?(Hash)
     args.each_with_object(import_rows: {}, extra_data: {}) do |(key, extra_data), params|
@@ -80,6 +88,23 @@ shared_context "csv import" do
       params[:import_rows][row_index(key)] = true unless key == :all
       params[:extra_data][row_index(key)] = extra_data if extra_data
     end
+  end
+
+  def data_row key
+    if data[key].is_a?(Hash)
+      fill_with_default_data data[key]
+    else
+      data[key]
+    end
+  end
+
+  def csv_row key
+    data_row(key).join ","
+  end
+
+  def fill_with_default_data hash
+    raise "no default data defined" unless default_data.is_a?(Hash)
+    default_data.merge(hash).values
   end
 end
 
@@ -107,28 +132,28 @@ end
 # define :company_row and :value_row to use
 # the helper to access the original import data
 shared_context "answer import" do
-  def answer_card key
-    Card[metric, company_name(key), year]
+  def answer_name key, override={}
+    Card::Name[metric, company_name(key, override), year]
   end
 
-  def answer_name key
-    [metric, company_name(key), year].join "+"
+  def answer_card key, override={}
+    Card[answer_name(key, override)]
   end
 
   def answer_value key
-    data[key][value_row]
+    data_row(key)[value_row]
   end
 
-  def company_name key
-    key.is_a?(Symbol) ? data[key][company_row] : key[:company]
+  def company_name key, override={}
+    (override.present? && override[:company]) || data_row(key)[company_row]
   end
 
   def value_card key
-    Card[metric, company_name(key), year, :value]
+    Card[answer_name(key), :value]
   end
 
   def expect_answer_created key, with_value: nil
-    value = with_value || data[key][value_row]
+    value = with_value || data_row(key)[value_row]
     expect(answer_card(key)).to exist.and have_a_field(:value).with_content(value)
   end
 end

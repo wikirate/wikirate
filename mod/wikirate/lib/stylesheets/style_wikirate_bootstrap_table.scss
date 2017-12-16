@@ -103,9 +103,11 @@ table.wikirate-table, .table.wikirate-table {
       min-width: 180px;
     }
 
-    &:first-child .media-body h4 {
-      font-weight: normal;
-      font-size: 100%;
+    &:first-child .media-body {
+      h4, h5 {
+        font-weight: normal;
+        font-size: 100%;
+      }
     }
     &.header {
       .media {
