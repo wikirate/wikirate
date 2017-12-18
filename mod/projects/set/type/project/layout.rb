@@ -82,7 +82,7 @@ format :html do
 
   def copied_project_fields
     %i[wikirate_topic description].each_with_object({}) do |fld, hash|
-      hash["_#{fld.cardname}"] = card.fetch trait: fld, new: {}
+      hash["_#{fld.cardname}"] = card.fetch(trait: fld, new: {}).content
     end
   end
 end
