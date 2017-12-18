@@ -1,10 +1,12 @@
 include_set Abstract::TwoColumnLayout
 include_set Abstract::Tabs
 
-TAB_MAP = { company: [:building,   :num_companies, "Companies"],
-            metric:  ["bar-chart", :num_metrics,   "Metrics"],
-            year:    [:calendar,   :num_years,     "Years"],
-            project: [:flask,      :num_projects,  "Subprojects"] }.freeze
+TAB_MAP = {
+  company:    [:building,   :num_companies,    "Companies"],
+  metric:     ["bar-chart", :num_metrics,      "Metrics"],
+  year:       [:calendar,   :num_years,        "Years"],
+  subproject: [:flask,      :num_subprojects,  "Subprojects"]
+}.freeze
 
 format :html do
   view :open_content do |args|
@@ -19,8 +21,9 @@ format :html do
   def default_content_formgroup_args _args
     voo.edit_structure = [
       :image,
-      :organizer,
       :wikirate_status,
+      :parent,
+      :organizer,
       :wikirate_topic,
       :description,
       :year,
@@ -33,8 +36,9 @@ format :html do
     wrap_with :div, class: "header-right" do
       [
         wrap_with(:h3, _render_title, class: "project-title"),
-        field_nest(:wikirate_status, view: :labeled)
-      ]
+        field_nest(:wikirate_status, view: :labeled),
+        (field_nest(:parent, view: :labeled) if card.parent.present?)
+      ].compact
     end
   end
 
@@ -51,28 +55,34 @@ format :html do
   end
 
   def active_tabs
-    tabs = [:company, :metric]
-    tabs << :year if card.years
-    tabs
+    [:company, :metric, (:year if card.years), :subproject].compact
   end
 
   def tab_list
     active_tabs.each_with_object({}) do |tab, hash|
       icon, stat_method, title = TAB_MAP[tab]
       stat = card.send stat_method
-      hash["#{tab}_list_tab".to_sym] = [fa_icon(icon), stat, title].join " "
+      hash["#{tab}_tab".to_sym] = [fa_icon(icon), stat, title].join " "
     end
   end
 
-  view :metric_list_tab do
-    standard_pointer_nest :metric
+  view :metric_tab do
+    standard_nest :metric
   end
 
-  view :company_list_tab do
-    standard_pointer_nest :wikirate_company
+  view :company_tab do
+    standard_nest :wikirate_company
   end
 
-  view :year_list_tab do
-    standard_pointer_nest :year
+  view :year_tab do
+    standard_nest :year
+  end
+
+  view :subproject_tab, template: :haml
+
+  def copied_project_fields
+    %i[wikirate_topic description].each_with_object({}) do |fld, hash|
+      hash["_#{fld.cardname}"] = card.fetch trait: fld, new: {}
+    end
   end
 end

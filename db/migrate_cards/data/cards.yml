@@ -487,6 +487,38 @@
 - :name: bootstrap default skin+bootswatch theme
   :type: SCSS
   :key: bootstrap_default_skin+bootswatch_theme
+- :name: Parent
+  :type: Basic
+  :codename: :parent
+  :key: parent
+- :name: Parent+*right+*default
+  :type: Pointer
+  :key: parent+*right+*default
+- :name: Project+Parent+*type plus right+*options
+  :type: Search
+  :key: project+parent+*type_plu_right+*option
+- :name: conversation project
+  :type: Project
+  :key: conversation_project
+- :name: created project
+  :type: Project
+  :key: created_project
+- :name: discussed project
+  :type: Project
+  :key: discussed_project
+- :name: Empty Project
+  :type: Project
+  :key: empty_project
+- :name: Evil Project
+  :type: Project
+  :key: evil_project
+- :name: subproject+*right+*structure
+  :type: Search
+  :key: subproject+*right+*structure
+- :name: subproject
+  :type: Basic
+  :codename: :subproject
+  :key: subproject
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org

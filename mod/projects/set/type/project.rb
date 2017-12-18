@@ -4,6 +4,8 @@ card_reader :wikirate_company
 card_reader :metric
 card_reader :organizer
 card_reader :year
+card_reader :parent
+card_reader :subproject
 
 def answers
   @answers ||= Answer.where where_answer
