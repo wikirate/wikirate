@@ -40,7 +40,7 @@ def num_answers
 end
 
 def num_subprojects
-  @num_subprojects = subproject_card.count
+  @num_subprojects ||= subproject_card.count
 end
 
 def units
