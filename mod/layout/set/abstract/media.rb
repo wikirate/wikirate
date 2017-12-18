@@ -4,7 +4,8 @@ format :html do
   end
 
   def image_src opts
-    image_card&.format&.render_source(size: opts[:size])
+    return "" unless image_card
+    nest(image_card, view: :source, size: opts[:size])
   end
 
   def image_alt
@@ -26,7 +27,7 @@ format :html do
         .media{media_opts}
           .media-left.image-box.#{opts[:size]}
             %a{href: "#"}
-              %img{class:"media-object #{opts[:size]}", src: src, alt: alt}
+              %img{class:"media-object #{opts[:size]}", src: src.html_safe, alt: alt}
           .media-body
             %h5.media-heading
               = title

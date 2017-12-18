@@ -24,9 +24,11 @@ module Formula
         end
 
         def run value_data, year
+          year = year.to_i
           if @no_year_options
             return value_data.map { |values_by_year| values_by_year[year] }
           end
+
           map.with_index do |ip, i|
             case ip
             when Integer

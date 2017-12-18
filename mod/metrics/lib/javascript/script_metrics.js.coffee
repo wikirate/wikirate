@@ -52,8 +52,3 @@ $(document).ready ->
 
 decko.slotReady (slot) ->
   slot.find('[data-tooltip="true"]').tooltip()
-  slot.find('input[name="intervaltype"]').on 'click', () ->
-    #jQuery handles UI toggling correctly when we apply "data-target"
-    #attributes and call .tab('show')
-    #on the <li> elements' immediate children, e.g the <label> elements:
-    $(this).closest('label').tab('show')

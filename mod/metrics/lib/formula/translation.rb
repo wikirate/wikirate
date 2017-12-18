@@ -11,7 +11,7 @@ module Formula
     end
 
     def to_lambda
-      @formula.content.downcase
+      @formula_card.content.downcase
     end
 
     def self.valid_formula? formula

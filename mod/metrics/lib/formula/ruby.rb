@@ -66,7 +66,7 @@ module Formula
 
     def to_lambda
       rb_formula =
-        replace_nests(translate_functions(@formula.content)) do |index|
+        replace_nests(translate_functions(@formula)) do |index|
           "#{LAMBDA_ARGS_NAME}[#{index}]"
         end
       find_allowed_non_numeric_input rb_formula
