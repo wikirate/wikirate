@@ -5,7 +5,7 @@ class AddSubprojectCards < Card::Migration
     merge_cards %w[
                     parent
                     parent+*right+*default
-                    project+parent+*type plus right+*options
+                    project+parent+*type_plus_right+*options
                     subproject
                     subproject+*right+*structure
                   ]
