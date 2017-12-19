@@ -2,7 +2,7 @@ class Card
   class Content
     module Chunk
       class FormulaInput < Nest
-        Card::View::Options.keymap[:carditect] << :year
+        Card::View::Options.add_option :year, :carditect
         DEFAULT_OPTION = :year
 
         Card::Content::Chunk.register_class(

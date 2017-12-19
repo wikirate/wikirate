@@ -33,9 +33,7 @@ format :html do
     nest card.metric_title_card, view: :name
   end
 
-  # not cacheable because formula arguments like "year=-1"
-  # produce invalid stubs
-  view :formula_thumbnail, cache: :never do
+  view :formula_thumbnail do
     "</span>#{thumbnail}<span>"
   end
 
