@@ -15,7 +15,7 @@ format :html do
     # return "deleteme"
     wrap_with :div, class: "profile-data" do
       [
-        field_nest("+about me", view: :titled, title: "About me", hide: :menu),
+        field_nest("+about me", view: :titled, title: "About me"),
         content_tag(:hr),
         field_nest(:discussion, view: :titled, title: "Discussion", show: :comment_box),
         content_tag(:hr),
