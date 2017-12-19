@@ -18,7 +18,7 @@ format :html do
   end
 
   def thumbnail_title_without_link
-    wrap_with(:div, thumbnail_title_text, class: "ellipsis")
+    wrap_with :div, thumbnail_title_text
   end
 
   def thumbnail_title_link
