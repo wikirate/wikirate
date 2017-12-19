@@ -124,6 +124,23 @@ $(window).ready ->
   $('body').on 'change', '.SELF-company_comparison select', ->
     $(this).closest('form').submit()
 
+  # $("body").on "click", ".TYPE-project , ->
+  #   alert "add item link"
+  #   anchor = $(this)
+  #   parent = anchor.closest(".TYPE-project").
+  #   if parent
+
+decko.slotReady (slot) ->
+  return unless slot.hasClass("TYPE-project") && slot.find("form")
+  parent = slot.find(".RIGHT-parent .pointer-item-text")
+  appendParentToAddItem parent
+
+appendParentToAddItem = (parent) ->
+  return unless parent.val()
+  anchor = parent.slot().find "._add-item-link"
+  new_href =  anchor.attr("href") + "&" + $.param({ "filter[project]" : parent.val() })
+  anchor.attr "href", new_href
+
  #Moving it to newNoteJs
  # To add the source on blur event.
  #$("body").on "blur", "#sourcebox", ->

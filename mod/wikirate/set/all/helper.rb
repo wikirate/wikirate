@@ -3,7 +3,7 @@ format :html do
     output [wrap_with("h#{level}", header), yield]
   end
 
-  def standard_pointer_nest codename
+  def standard_nest codename
     field_nest codename, view: :titled,
                          title: codename.cardname,
                          variant: "plural capitalized",

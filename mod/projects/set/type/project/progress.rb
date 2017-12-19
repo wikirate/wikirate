@@ -39,6 +39,10 @@ def num_answers
   @num_answers ||= answers.count
 end
 
+def num_subprojects
+  @num_subprojects ||= subproject_card.count
+end
+
 def units
   years ? "answers" : "records"
 end
