@@ -5,12 +5,11 @@ format :html do
   def project_details
     wrap_with :div do
       [
-        field_nest(:organizer,
-                   view: :titled,
-                   title: "Organizer",
-                   items: { view: :thumbnail_plain }),
-        standard_pointer_nest(:wikirate_topic),
-        field_nest(:description, view: :titled, title: "Description"),
+        field_nest(:organizer, view: :filtered_list,
+                               title: "Organizer",
+                               items: { view: :thumbnail_plain }),
+        standard_nest(:wikirate_topic),
+        standard_nest(:description),
         field_nest(:conversation,
                    view: :project_conversation, title: "Conversation")
       ]
