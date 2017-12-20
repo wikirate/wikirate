@@ -15,7 +15,7 @@ format :html do
 
   def thumbnail
     voo.show :thumbnail_link
-    wrap_with :div, thumbnail_content, class: "thumbnail"
+    wrap_with :div, thumbnail_content, class: "thumbnail", data: wrap_data(false)
   end
 
   view :thumbnail_no_link do
@@ -66,7 +66,7 @@ format :html do
 
   def thumbnail_title
     title = _render_name
-    wrap_with :div, class: "ellipsis", title: title do
+    wrap_with :div, title: title do
       voo.show?(:thumbnail_link) ? _render_link : _render_name
     end
   end

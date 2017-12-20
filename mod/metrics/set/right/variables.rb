@@ -37,17 +37,16 @@ def input_metric_name_by_index index
 end
 
 format :html do
-  view :core do |args|
-    args ||= {}
-    items = args[:item_list] || card.item_names(context: :raw)
-    items ||= card.extract_metrics_from_formula if items.empty?
-    # items = [''] if items.empty?
-    table_content =
-      items.map.with_index do |item, index|
-        variable_row(item, index, args)
-      end
-    table(table_content, header: ["Metric", "Variable", "Example value"]) +
-      render_add_metric_button
+  view :core do
+    output [table(items.map.with_index { |item, index| variable_row item, index },
+                  header: ["Metric", "Variable", "Example value"]),
+            render_add_metric_button]
+  end
+
+  def items
+    items =  card.item_names context: :raw
+    return items if items.present?
+    card.extract_metrics_from_formula
   end
 
   view :add_metric_button do
@@ -62,7 +61,7 @@ format :html do
     end
   end
 
-  def variable_row item_name, index, args
+  def variable_row item_name, index
     item_card = Card[item_name]
     example_value =
       if (value = item_card.try(:random_value_card))
@@ -71,7 +70,7 @@ format :html do
         ""
       end
     [
-      subformat(item_card)._render_thumbnail(args),
+      subformat(item_card)._render_thumbnail,
       "M#{index}", # ("A".ord + args[:index]).chr
       example_value.html_safe
     ]

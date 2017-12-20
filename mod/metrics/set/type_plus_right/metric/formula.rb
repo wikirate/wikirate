@@ -39,16 +39,22 @@ format :html do
   end
 
   view :editor do
-    return _render_rating_editor if card.wiki_rating?
-    return _render_categorical_editor if card.categorical?
-    return super() if card.score?
-    output [
-      text_area(:content,
-                rows: 5,
-                class: "d0-card-content",
-                "data-card-type-code" => card.type_code),
-      _render_variables
-    ]
+    case
+    when card.wiki_rating? then _render_rating_editor
+    when card.categorical? then _render_categorical_editor
+    when card.score?       then super()
+    else                        _render_standard_formula_editor
+    end
+  end
+
+  view :standard_formula_editor do
+    output [formula_text_area, _render_variables]
+  end
+
+  def formula_text_area
+    text_area :content, rows: 5,
+                        class: "d0-card-content",
+                        "data-card-type-code": card.type_code
   end
 
   view :new do
