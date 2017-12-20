@@ -2,7 +2,6 @@ include_set Abstract::TwoColumnLayout
 include_set Abstract::Thumbnail
 
 format :html do
-
   def default_content_formgroup_args _args
     voo.edit_structure = [:image, "+about me", :discussion]
   end
