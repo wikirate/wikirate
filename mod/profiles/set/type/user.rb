@@ -2,6 +2,11 @@ include_set Abstract::TwoColumnLayout
 include_set Abstract::Thumbnail
 
 format :html do
+
+  def default_content_formgroup_args _args
+    voo.edit_structure = [:image, "+about me", :discussion]
+  end
+
   view :open_content do |args|
     bs_layout container: false, fluid: false, class: @container_class do
       row 5, 7, class: "panel-margin-fix" do
