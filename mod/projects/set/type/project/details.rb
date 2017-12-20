@@ -5,7 +5,7 @@ format :html do
   def project_details
     wrap_with :div do
       [
-        field_nest(:organizer, view: :filtered_list,
+        field_nest(:organizer, view: :titled,
                                title: "Organizer",
                                items: { view: :thumbnail_plain }),
         standard_nest(:wikirate_topic),

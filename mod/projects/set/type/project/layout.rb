@@ -36,7 +36,7 @@ format :html do
     wrap_with :div, class: "header-right" do
       [
         wrap_with(:h3, _render_title, class: "project-title"),
-        field_nest(:wikirate_status, view: :labeled),
+        field_nest(:wikirate_status, view: :labeled, items: { view: :name }),
         (field_nest(:parent, view: :labeled) if card.parent.present?)
       ].compact
     end
