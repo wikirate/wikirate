@@ -103,4 +103,46 @@ RSpec.describe Answer do
   describe "fetch" do
     described_class.fetch company_id: Card.fetch_id("Apple Inc")
   end
+
+  describe "calculated answers" do
+    let(:metric) { Card["Jedi+friendliness"] }
+    specify "#calculated_answer", with_user: "Joe User" do
+      a = Answer.create_calculated_answer metric, "Death Star", 2001, "50"
+      expect(a.attributes.symbolize_keys)
+        .to include answer_id: nil,
+                    record_id: be_a_integer,
+                    designer_id: be_a_integer,
+                    metric_id: be_a_integer,
+                    metric_type_id: Card::FormulaID,
+                    year: 2001,
+                    metric_name: "Jedi+friendliness",
+                    company_name: "Death Star",
+                    record_name: "Jedi+friendliness+Death Star",
+                    value: "50",
+                    numeric_value: 50,
+                    creator_id: Card.fetch_id("Joe User"),
+                    updated_at: be_within(1).of(Time.now),
+                    latest: true,
+                    imported: nil,
+                    checkers: nil,
+                    check_requester: nil,
+                    # FIXME: editor_id column is missing in test db
+                    # editor_id: nil,
+                    policy_id: nil
+    end
+
+    specify "#update_value", with_user: "Joe User" do
+      a = Answer.create_calculated_answer metric, "Death Star", 2001, "50"
+      a.update_value "100.5"
+      expect(a.attributes.symbolize_keys)
+        .to include answer_id: nil,
+                    value: "100.5",
+                    numeric_value: 100.5,
+                    creator_id: Card.fetch_id("Joe User"),
+                    updated_at: be_within(1).of(Time.now),
+                    latest: true
+                    # FIXME: editor_id column is missing in test db
+                    # editor_id: nil,
+    end
+  end
 end

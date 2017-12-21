@@ -83,48 +83,6 @@ event :validate_formula, :validate,
   end
 end
 
-# don't update if it's part of scored metric update
-event :update_metric_values, :prepare_to_store,
-      on: :update, changed: :content do
-  metric_card.value_cards.each do |value_card|
-    value_card.trash = true
-    add_subcard value_card
-  end
-  calculate_all_values do |company, year, value|
-    metric_value_name = metric_card.metric_value_name(company, year)
-    next if subcard metric_value_name
-    if (card = subcard "#{metric_value_name}+value")
-      card.trash = false
-      card.content = value
-    else
-      add_value company, year, value
-    end
-  end
-end
-
-# don't update if it's part of scored metric create
-event :create_metric_values, :prepare_to_store,
-      on: :create, changed: :content, when: proc { |c| c.content.present? }  do
-  # reload set modules seems to be no longer necessary
-  # it used to happen at this point that left has type metric but
-  # set_names includes "Basic+formula+*type plus right"
-  # reset_patterns
-  # include_set_modules
-  calculate_all_values do |company, year, value|
-    add_value company, year, value
-  end
-end
-
-def add_value company, year, value
-  return unless value.present?
-  type_id = value.number? ? NumberID : PhraseID
-  add_subcard metric_card.metric_value_name(company, year),
-              type_id: MetricValueID,
-              subcards: {
-                "+value" => { type_id: type_id, content: value }
-              }
-end
-
 event :validate_formula_input, :validate,
       on: :save, changed: :content do
   input_chunks.each do |chunk|
@@ -138,30 +96,6 @@ event :validate_formula_input, :validate,
                            "#{chunk.referee_card.type_name}"
     end
   end
-end
-
-def calculate_all_values
-  calculator.result.each_pair do |year, companies|
-    companies.each_pair do |company, value|
-      yield company, year, value if value
-    end
-  end
-end
-
-# @param [Hash] opts
-# @option opts [String] :company
-# @option opts [String] :year optional
-def calculate_values_for opts={}
-  unless opts[:company]
-    raise Card::Error, "#calculate_values_for: no company given"
-  end
-  no_value = true
-  calculator.result(opts).each_pair do |year, companies|
-    no_value = false
-    value = companies[opts[:company]]
-    yield year, value
-  end
-  yield opts[:year], nil if opts[:year] && no_value
 end
 
 def each_reference_out &block
@@ -212,23 +146,4 @@ end
 
 def wolfram_formula?
   calculator_class ==  ::Formula::Wolfram
-end
-
-private
-
-def calculator_class
-  @calculator_class ||=
-    if wiki_rating?
-      ::Formula::WikiRating
-    elsif ::Formula::Translation.valid_formula? content
-      ::Formula::Translation
-    elsif ::Formula::Ruby.valid_formula? content
-      ::Formula::Ruby
-    else
-      ::Formula::Wolfram
-    end
-end
-
-def calculator
-  @calculator ||= calculator_class.new self
 end

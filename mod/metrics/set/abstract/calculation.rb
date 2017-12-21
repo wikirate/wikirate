@@ -5,34 +5,12 @@ card_accessor :formula, type_id: PhraseID
 # @option opts [String] :year
 def update_value_for! opts
   formula_card.calculate_values_for(opts) do |year, value|
-    value_name = metric_value_name opts[:company], year
-    if (metric_value = Card[value_name])
-      if value
-        update_value_card metric_value, value
-      else
-        # FIXME: this direct validation call should not be necessary!
-        metric_value.validate_delete_children
-        metric_value.delete
-      end
+    if (ans = answer opts[:company], year)
+      value ? ans.update_value(value) : ans.delete
     elsif value
-      create_value_card value_name, value
+      Answer.create_calculated_answer card, opts[:company], year, value
     end
   end
-end
-
-# TODO: move these methods to metric_value set ?
-def update_value_card value_card, value
-  if (value_value_card = value_card.fetch trait: :value)
-    value_value_card.update_attributes content: value
-  else
-    Card.create! name: "#{value_card.name}+#{Card[:value].name}",
-                 type_id: NumberID, content: value
-  end
-end
-
-def create_value_card name, value
-  Card.create! name: name, type_id: MetricValueID,
-               subcards: { "+value" => { type_id: NumberID, content: value } }
 end
 
 def normalize_value value

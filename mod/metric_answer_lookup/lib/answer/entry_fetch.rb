@@ -14,7 +14,7 @@ class Answer
     end
 
     def fetch_record_id
-      card.left_id
+      card.left_id || card.left.id
     end
 
     def fetch_metric_name
@@ -76,9 +76,7 @@ class Answer
 
     def fetch_numeric_value
       return unless metric_card.numeric?
-      val = fetch_value
-      return if unknown?(val) || !val.number?
-      val.to_d
+      to_numeric_value fetch_value
     end
 
     def fetch_updated_at
