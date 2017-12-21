@@ -2,7 +2,8 @@ module Formula
   class Calculator
     class Input
       class YearOptionsProcessor < Array
-        attr_reader :multi_year
+        attr_reader :multi_year, :no_year_options
+
         def initialize year_options
           @fixed_years = ::Set.new
           if year_options.present?
@@ -23,6 +24,9 @@ module Formula
           end
         end
 
+        # @param value_data [Array<Hash] for every input item a hash with values for every
+        #   year
+        # @param the year we want the input data for
         def run value_data, year
           year = year.to_i
           if @no_year_options
