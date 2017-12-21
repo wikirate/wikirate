@@ -14,21 +14,12 @@ def formula_card
   metric_card.fetch trait: :formula
 end
 
-def extract_metrics_from_formula
-  metrics = formula_card.input_names
-  Auth.as_bot do
-    update_attributes! content: metrics.to_pointer_content,
-                       type_id: PointerID
-  end
-  metrics
+def content
+  @content ||= db_content.present? ? db_content : formula_card.input_names
 end
 
 def input_metric_name variable
-  index = if variable.is_a?(Integer)
-            variable
-          elsif variable_name? variable
-            variable_index variable
-          end
+  index = variable_index variable
   input_metric_name_by_index index if index
 end
 
@@ -37,51 +28,66 @@ def input_metric_name_by_index index
 end
 
 format :html do
-  view :core do
-    output [table(items.map.with_index { |item, index| variable_row item, index },
-                  header: ["Metric", "Variable", "Example value"]),
-            render_add_metric_button]
+  def default_item_view
+    :listing
   end
 
-  def items
-    items =  card.item_names context: :raw
-    return items if items.present?
-    card.extract_metrics_from_formula
+  def filter_card
+    Card.fetch :metric, :browse_metric_filter
+  end
+
+  view :edit_in_formula, tags: :unknown_ok do
+    wrap do
+      voo.live_options[:input_name] = "card[subcards][#{card.name}]"
+      reset_form
+      _render_editor
+    end
+  end
+
+  view :editor do
+    with_nest_mode :normal do
+      output [render_hidden_content_field,
+              variables_table,
+              render_add_metric_button]
+    end
+  end
+
+  def variables_table
+    items = card.item_names context: :raw
+    table items.map.with_index { |item, index| variable_row item, index },
+          header: ["Metric", "Variable", "Example value"]
   end
 
   view :add_metric_button do
-    target = "#modal-add-metric-slot"
     wrap_with :span, class: "input-group" do
-      button_tag class: "pointer-item-add slotter", situation: "outline-secondary",
-                 data: { toggle: "modal", target: target },
-                 href: path(layout: "modal", view: :edit, mark: card.name,
-                            slot: { title: "Choose Metric" }) do
+      button_tag class: "_add-metric-variable slotter",
+                 situation: "outline-secondary",
+                 data: { toggle: "modal", target: "#modal-add-metric-slot" },
+                 href:  add_metric_path do
         fa_icon(:plus) + " add metric"
       end
     end
   end
 
-  def variable_row item_name, index
-    item_card = Card[item_name]
-    example_value =
-      if (value = item_card.try(:random_value_card))
-        nest value, view: :concise, hide: :year
-      else
-        ""
-      end
-    [
-      subformat(item_card)._render_thumbnail,
-      "M#{index}", # ("A".ord + args[:index]).chr
-      example_value.html_safe
-    ]
+  def add_metric_path
+    path layout: :simple_modal,
+         view: :filter_items,
+         item: implicit_item_view,
+         filter_card: filter_card.name,
+         item_selector: "thumbnail",
+         slot_selector: card.patterns.first.safe_key,
+         slot: { hide: :modal_footer },
+         filter: { not_ids: card.item_ids.map(&:to_s).join(",") }
   end
 
-  view :edit do |_args|
-    return super() unless card.metric_card
-    voo.hide! :toolbar, :menu
-    frame do
-      nest [card.metric_card_name, :add_to_formula], view: :select_modal
-    end
+  def variable_row item_name, index
+    item_card = Card[item_name]
+    [nest(item_card, view: :thumbnail), "M#{index}", example_value(item_card).html_safe]
+  end
+
+  def example_value variable_card
+    return "" unless (value = variable_card.try(:random_value_card))
+    nest(value, view: :concise, hide: :year).html_safe # html_safe necessary?
   end
 
   view :missing do

@@ -80,8 +80,7 @@ format :html do
   end
 end
 
-event :validate_formula, :validate,
-      when: proc { |c| c.wolfram_formula? } do
+event :validate_formula, :validate, when: :wolfram_formula? do
   formula_errors = calculator.validate_formula
   return if formula_errors.empty?
   formula_errors.each do |msg|
@@ -131,15 +130,13 @@ def add_value company, year, value
               }
 end
 
-event :validate_formula_input, :validate,
-      on: :save, changed: :content do
+event :validate_formula_input, :validate, on: :save, changed: :content do
   input_chunks.each do |chunk|
     if variable_name?(chunk.referee_name)
       errors.add :formula, "invalid variable name: #{chunk.referee_name}"
     elsif !chunk.referee_card
       errors.add :formula, "input metric #{chunk.referee_name} doesn't exist"
-    elsif chunk.referee_card.type_id != MetricID &&
-          chunk.referee_card.type_id != YearlyVariableID
+    elsif ![MetricID, YearlyVariableID].include? chunk.referee_card.type_id
       errors.add :formula, "#{chunk.referee_name} has invalid type " \
                            "#{chunk.referee_card.type_name}"
     end

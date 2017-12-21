@@ -190,25 +190,6 @@ format :html do
 
   # USED?
 
-  view :add_to_formula_item_view do |_args|
-    subtext = wrap_with :small, "Designed by #{card.metric_designer}"
-    add_to_formula_helper subtext
-  end
-
-  def add_to_formula_helper subtext
-    title = card.metric_title.to_s
-    append = "#{params[:formula_metric_key]}+add_to_formula"
-    url = path mark: card.name.field(append), view: :content
-    text_with_image image: designer_image_card,
-                    text: subtext, title: title, size: :icon,
-                    media_opts: { class: "slotter _clickable",
-                                  href: url,
-                                  data: {
-                                    remote: true,
-                                    "slot-selector": ".metric-details-slot > .card-slot"
-                                  } }
-  end
-
   view :details_placeholder do
     ""
   end
@@ -338,8 +319,6 @@ format :html do
       </div>
     )
   end
-
-  view :add_to_formula, template: :haml
 
   view :metric_info do |_args|
     question = subformat(card.question_card)._render_core.html_safe
