@@ -20,8 +20,12 @@ class CSVRow
       end
 
       def import
+        ImportLog.debug "answer import: #{@row}"
+        ImportLog.debug "  source and company"
         ensure_source_and_company
+        ImportLog.debug "  answer"
         import_answer
+
       end
 
       def validate_metric metric

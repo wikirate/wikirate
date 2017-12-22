@@ -66,6 +66,7 @@ class CSVRow
   def execute_import
     @import_manager.handle_import(self) do
       prepare_import
+      ImportLog.debug "start import"
       import
     end
   end
