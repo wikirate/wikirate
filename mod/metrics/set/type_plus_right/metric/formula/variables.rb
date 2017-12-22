@@ -4,8 +4,7 @@ def variables_card
   metric_card.fetch trait: :variables, new: { type: "session" }
 end
 
-event :replace_variables, :prepare_to_validate,
-      on: :save, changed: :content do
+event :replace_variables, :prepare_to_validate, on: :save, changed: :content do
   each_nested_chunk do |chunk|
     next unless variable_name?(chunk.referee_name)
     metric_name = variables_card.input_metric_name chunk.referee_name

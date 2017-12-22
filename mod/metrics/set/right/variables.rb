@@ -15,7 +15,8 @@ def formula_card
 end
 
 def content
-  @content ||= db_content.present? ? db_content : formula_card.input_names
+  @content ||=
+    db_content.present? ? db_content : formula_card.input_names.to_pointer_content
 end
 
 def input_metric_name variable
@@ -37,19 +38,44 @@ format :html do
   end
 
   view :edit_in_formula, tags: :unknown_ok do
+    with_hidden_subcard_content_slot { _render_editor }
+  end
+
+  def with_hidden_subcard_content_slot
     wrap do
-      voo.live_options[:input_name] = "card[subcards][#{card.name}]"
-      reset_form
-      _render_editor
+      subcard_voo
+      with_nest_mode :normal do
+        output [render_hidden_content_field, yield]
+      end
     end
   end
 
-  view :editor do
-    with_nest_mode :normal do
-      output [render_hidden_content_field,
-              variables_table,
-              render_add_metric_button]
+  def subcard_voo
+    voo.live_options[:input_name] = "card[subcards][#{card.name}]"
+    reset_form
+  end
+
+  view :edit_in_wikirating, tags: :unknown_ok do
+    with_hidden_subcard_content_slot { _render_weight_variable_editor }
+  end
+
+  view :weight_variable_editor, tags: :unknown_ok  do
+    filters = %i[score wiki_rating].map { |code| Card::Name[code] }
+    button = add_metric_button "_add-wikirating-variable",
+                               metric_type: filters
+    output [weight_variable_list, button]
+  end
+
+  def weight_variable_list
+    table_content = card.item_cards.map do |metric|
+      nest metric, view: :weight_row
     end
+    table table_content, class: "weight-variable-list hidden"
+  end
+
+  view :editor do
+    output [variables_table,
+            add_metric_button("_add-formula-variable")]
   end
 
   def variables_table
@@ -58,18 +84,22 @@ format :html do
           header: ["Metric", "Variable", "Example value"]
   end
 
-  view :add_metric_button do
+  def add_formula_metric_button
+    add_metric_button "add-formula-metric"
+  end
+
+  def add_metric_button klass, filters={}
     wrap_with :span, class: "input-group" do
-      button_tag class: "_add-metric-variable slotter",
+      button_tag class: "_add-metric-variable slotter #{klass}",
                  situation: "outline-secondary",
                  data: { toggle: "modal", target: "#modal-add-metric-slot" },
-                 href:  add_metric_path do
+                 href: add_metric_path(filters) do
         fa_icon(:plus) + " add metric"
       end
     end
   end
 
-  def add_metric_path
+  def add_metric_path filters
     path layout: :simple_modal,
          view: :filter_items,
          item: implicit_item_view,
@@ -77,7 +107,11 @@ format :html do
          item_selector: "thumbnail",
          slot_selector: card.patterns.first.safe_key,
          slot: { hide: :modal_footer },
-         filter: { not_ids: card.item_ids.map(&:to_s).join(",") }
+         filter: initial_filters(filters)
+  end
+
+  def initial_filters added_filters
+    { not_ids: card.item_ids.map(&:to_s).join(",") }.merge added_filters
   end
 
   def variable_row item_name, index
@@ -89,16 +123,4 @@ format :html do
     return "" unless (value = variable_card.try(:random_value_card))
     nest(value, view: :concise, hide: :year).html_safe # html_safe necessary?
   end
-
-  view :missing do
-    return super() unless card.new_card?
-    if card.formula_card
-      card.extract_metrics_from_formula
-    else
-      Auth.as_bot { card.save! }
-    end
-    render! @denied_view
-  end
-
-  view :new, :missing
 end

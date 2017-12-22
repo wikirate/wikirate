@@ -39,11 +39,14 @@ format :html do
   end
 
   view :editor do
-    case
-    when card.wiki_rating? then _render_rating_editor
-    when card.categorical? then _render_categorical_editor
-    when card.score?       then super()
-    else                        _render_standard_formula_editor
+    if card.wiki_rating?
+      _render_rating_editor
+    elsif card.categorical?
+      _render_categorical_editor
+    elsif card.score?
+      super()
+    elsif
+      _render_standard_formula_editor
     end
   end
 

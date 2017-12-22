@@ -379,7 +379,7 @@ format :html do
     weight = weight_content args
     output(
       [
-        wrap_with(:td, _render_thumbnail_plain(args), "data-key" => card.name),
+        wrap_with(:td, _render_thumbnail_no_link),
         wrap_with(:td, weight, class: "metric-weight")
       ]
     ).html_safe

@@ -10,17 +10,17 @@ format :html do
   end
 
   view :thumbnail do
+    voo.show :thumbnail_link
     thumbnail
   end
 
   def thumbnail
-    voo.show :thumbnail_link
     wrap_with :div, thumbnail_content, class: "thumbnail", data: wrap_data(false)
   end
 
   view :thumbnail_no_link do
     voo.hide :thumbnail_link
-    wrap_with :div, thumbnail_content
+    thumbnail
   end
 
   def thumbnail_content
