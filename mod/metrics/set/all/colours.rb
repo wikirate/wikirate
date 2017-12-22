@@ -50,7 +50,7 @@ format :html do
   end
 
   def numeric? value
-   value.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) != nil
+    value.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) != nil
   end
 
   def pick_colour value, mono
