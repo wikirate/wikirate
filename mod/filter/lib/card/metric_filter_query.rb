@@ -1,6 +1,7 @@
 class Card
   class MetricFilterQuery < Card::FilterQuery
     def wikirate_topic_wql topic
+      topic = Array.wrap topic
       topic.unshift :in if topic.length > 1
       add_to_wql :right_plus, [WikirateTopicID, { refer_to: topic }]
     end
@@ -27,6 +28,7 @@ class Card
     end
 
     def metric_type_wql metric_type
+      metric_type = Array.wrap metric_type
       metric_type.unshift :in if metric_type.length > 1
       add_to_wql :right_plus, [MetricTypeID, { refer_to: metric_type }]
     end
