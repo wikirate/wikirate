@@ -18,11 +18,11 @@ format :html do
   end
 
   def thumbnail_title_without_link
-    wrap_with(:div, thumbnail_title_text, class: "ellipsis")
+    wrap_with :div, thumbnail_title_text
   end
 
   def thumbnail_title_link
-    opts = { title: card.name, class: "ellipsis" }
+    opts = { title: card.name }
     if voo.closest_live_option(:project)
       opts[:path] = { filter: { project: voo.closest_live_option(:project) } }
     end
