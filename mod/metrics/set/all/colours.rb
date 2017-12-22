@@ -35,9 +35,17 @@ format :html do
     ]
   end
 
+  # Colours for non-numbers
+  def light_colour
+    [
+      "#cccccc",
+      "#e4e9f1"
+    ]
+  end
+
   def colorify value, mono=false
     return "" if value == ""
-    colour = pick_colour(value, mono)
+    colour = value == ("?" || "!") ? light_colour[0] : pick_colour(value, mono)
     wrap_color_div(value, colour)
   end
 

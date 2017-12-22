@@ -60,7 +60,13 @@ format :html do
   end
 
   def beautify value
-    card.scored? ? colorify(value) : value
+    card.scored? ? beautify_scored(value) : value
+  end
+
+  def beautify_scored value
+   no_number = Integer(value) rescue false
+   value = value.to_sym == :Unknown ? "?" : "!" unless no_number
+   colorify(value)
   end
 
   def pretty_value
