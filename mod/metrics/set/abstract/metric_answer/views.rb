@@ -64,10 +64,10 @@ format :html do
   end
 
   def beautify_scored value
-   unless is_numeric?(value)
-    value = value.to_sym == :Unknown ? "?" : "!"
-   end
-   colorify(value)
+    unless numeric?(value)
+      value = value == "Unknown" ? "?" : "!"
+    end
+    colorify(value)
   end
 
   def pretty_value
