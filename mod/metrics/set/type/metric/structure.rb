@@ -11,8 +11,8 @@ format :html do
   view :rich_header do
     vote = field_subformat(:vote_count)._render_content
     bs_layout do
-      row 1, 11, class: "metric-header-container" do
-        column vote, class: "margin-top-20 "
+      row 1, 11, class: "metric-header-container mt-3" do
+        column vote
         column _render_title_and_question
       end
     end

@@ -565,9 +565,11 @@ button.pointer-item-delete.btn.btn-outline-secondary {
   color: #999;
 }
 
-.vote-button {
-  color: #999;
-}
+//disabling for not to override bootstrap's button styles
+
+//.vote-button {
+//  color: #999;
+//}
 
 .current-user-up {
   color: $main-color !important;
