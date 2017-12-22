@@ -64,8 +64,9 @@ format :html do
   end
 
   def beautify_scored value
-   no_number = Integer(value) rescue false
-   value = value.to_sym == :Unknown ? "?" : "!" unless no_number
+   unless is_numeric?(value)
+    value = value.to_sym == :Unknown ? "?" : "!"
+   end
    colorify(value)
   end
 

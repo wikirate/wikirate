@@ -45,9 +45,12 @@ format :html do
 
   def colorify value, mono=false
     return "" if value == ""
-    no_number = Integer(value) rescue false
-    colour = no_number ? pick_colour(value, mono) : light_colour[0]
+    colour = is_numeric?(value) ? pick_colour(value, mono) : light_colour[0]
     wrap_color_div(value, colour)
+  end
+
+  def is_numeric? value
+   value.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
   end
 
   def pick_colour value, mono
