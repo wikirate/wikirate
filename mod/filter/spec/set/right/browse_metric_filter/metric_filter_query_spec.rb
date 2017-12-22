@@ -30,7 +30,7 @@ describe Card::Set::Right::BrowseMetricFilter do
       before { filter_args wikirate_topic: "myTopic" }
       it do
         is_expected.to eq wql(
-          right_plus: [Card::WikirateTopicID, { refer_to: "myTopic" }]
+          right_plus: [Card::WikirateTopicID, { refer_to: { name: "myTopic" } }]
         )
       end
     end
@@ -46,7 +46,7 @@ describe Card::Set::Right::BrowseMetricFilter do
       before { filter_args metric_type: "researched" }
       it do
         is_expected.to eq wql(
-          right_plus: [Card::MetricTypeID, { refer_to: "researched" }]
+          right_plus: [Card::MetricTypeID, { refer_to: { name: "researched" } }]
         )
       end
     end
@@ -55,7 +55,7 @@ describe Card::Set::Right::BrowseMetricFilter do
       before { filter_args research_policy: "community assessed" }
       it do
         is_expected.to eq wql(right_plus: [Card::ResearchPolicyID,
-                                           { refer_to: "community assessed" }])
+                                           { refer_to: { name: "community assessed" } }])
       end
     end
 
@@ -94,11 +94,11 @@ describe Card::Set::Right::BrowseMetricFilter do
           name: %w[match CDP],
           and: {
             right_plus: [Card::ResearchPolicyID,
-                         { refer_to: "community assessed" }],
+                         { refer_to: { name: "community assessed" } }],
             and: {
-              right_plus: [Card::MetricTypeID, { refer_to: "researched" }],
+              right_plus: [Card::MetricTypeID, { refer_to: { name: "researched"} }],
               and: {
-                right_plus: [Card::WikirateTopicID, { refer_to: "myTopic" }],
+                right_plus: [Card::WikirateTopicID, { refer_to: { name: "myTopic" } }],
                 and: {
                   right_plus: "Apple Inc"
                 }
