@@ -45,7 +45,8 @@ format :html do
 
   def colorify value, mono=false
     return "" if value == ""
-    colour = value == ("?" || "!") ? light_colour[0] : pick_colour(value, mono)
+    no_number = Integer(value) rescue false
+    colour = no_number ? pick_colour(value, mono) : light_colour[0]
     wrap_color_div(value, colour)
   end
 
