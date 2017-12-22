@@ -14,8 +14,13 @@ class CSVRow
       end
 
       def import_company _company_key=:company
+        ImportLog.debug "  importing company:"
         @row[:company] = super(:company)
-        @row[:related_company] = super(:related_company)
+        ImportLog.debug "  #{@row[:company]}"
+        ImportLog.debug "  importing related company:"
+        @row[:related_company] = super(:related_company).tap do |ret|
+          ImportLog.debug "  #{ret}"
+        end
       end
 
       def metric

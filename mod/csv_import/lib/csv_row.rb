@@ -70,7 +70,7 @@ class CSVRow
       import
     end
   rescue => e
-    ImportLog.debug "  failed: #{e.message}"
+    ImportLog.debug "import failed: #{e.message}"
     ImportLog.debug e.backtrace
     raise e
   end
