@@ -21,11 +21,8 @@ class CSVRow
 
       def import
         ImportLog.debug "answer import: #{@row}"
-        ImportLog.debug "  source and company"
         ensure_source_and_company
-        ImportLog.debug "  answer"
         import_answer
-
       end
 
       def validate_metric metric
@@ -48,11 +45,15 @@ class CSVRow
       end
 
       def import_source
+        ImportLog.debug "  importing source:"
         @row[:source] = super
+        ImportLog.debug "  #{@row[:source]}"
       end
 
       def import_company company_key=:company
+        ImportLog.debug "  importing company:"
         @row[company_key] = super
+        ImportLog.debug "  #{@row[company_key]}"
       end
 
       def check_existence_and_type name, type_id, type_name=nil

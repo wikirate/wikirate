@@ -69,6 +69,10 @@ class CSVRow
       ImportLog.debug "start import"
       import
     end
+  rescue => e
+    ImportLog.debug "  failed: #{e.message}"
+    ImportLog.debug e.backtrace
+    raise e
   end
 
   def prepare_import

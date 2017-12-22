@@ -3,6 +3,7 @@ class CSVRow
   module AnswerImport
     def import_answer
       build_answer_create_args
+      ImportLog.debug "  create answer with args #{answer_create_args}"
       import_card answer_create_args
     end
 
