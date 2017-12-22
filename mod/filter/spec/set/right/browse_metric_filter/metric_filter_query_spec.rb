@@ -37,9 +37,7 @@ describe Card::Set::Right::BrowseMetricFilter do
 
     context "designer argument" do
       before { filter_args designer: "myDesigner" }
-      it do
-        is_expected.to eq(part: "myDesigner")
-      end
+      it { is_expected.to eq(part: "myDesigner") }
     end
 
     context "metric type" do
@@ -71,8 +69,8 @@ describe Card::Set::Right::BrowseMetricFilter do
     context "project argument" do
       before { filter_args project: "myProject" }
       it do
-        is_expected.to eq({ referred_to_by: { left: "myProject",
-                                              right_id: Card::MetricID } })
+        is_expected.to eq(referred_to_by: { left: "myProject",
+                                            right_id: Card::MetricID })
       end
     end
 
