@@ -14,4 +14,3 @@ RSpec.describe OpenCorporates::MappingAPI do
     expect(company.open_corporates).to eq "199904785Z"
   end
 end
-

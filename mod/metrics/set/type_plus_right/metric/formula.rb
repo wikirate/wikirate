@@ -45,7 +45,7 @@ format :html do
       _render_categorical_editor
     elsif card.score?
       super()
-    elsif
+    else
       _render_standard_formula_editor
     end
   end
