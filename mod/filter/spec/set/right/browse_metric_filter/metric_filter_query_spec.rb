@@ -24,9 +24,11 @@ describe Card::Set::Right::BrowseMetricFilter do
 
     context "topic argument" do
       before { filter_args wikirate_topic: "myTopic" }
-      it do
-        is_expected.to eq(simple_field_filter Card::WikirateTopicID, "myTopic")
-      end
+      it { is_expected.to eq(topic_wql) }
+    end
+
+    def topic_wql
+      simple_field_filter Card::WikirateTopicID, "myTopic"
     end
 
     def simple_field_filter field_id, value
@@ -42,30 +44,35 @@ describe Card::Set::Right::BrowseMetricFilter do
 
     context "metric type" do
       before { filter_args metric_type: "researched" }
-      it do
-        is_expected.to eq(simple_field_filter Card::MetricTypeID, "researched")
-      end
+      it { is_expected.to eq(metric_type_wql) }
     end
 
+    def metric_type_wql
+      simple_field_filter Card::MetricTypeID, "researched"
+    end
 
     context "research policy" do
       before { filter_args research_policy: "community assessed" }
-      it do
-        is_expected.to eq(simple_field_filter Card::ResearchPolicyID, "community assessed")
-      end
+      it { is_expected.to eq(policy_wql) }
+    end
+
+    def policy_wql
+      simple_field_filter Card::ResearchPolicyID, "community assessed"
     end
 
     context "year" do
       before { filter_args year: "2015" }
       it do
-        is_expected.to eq(right_plus: { type_id: Card::WikirateCompanyID, right_plus: "2015" })
+        is_expected.to eq(right_plus: { type_id: Card::WikirateCompanyID,
+                                        right_plus: "2015" })
       end
     end
 
     context "project argument" do
       before { filter_args project: "myProject" }
       it do
-        is_expected.to eq({ referred_to_by: { left: "myProject", right_id: Card::MetricID } })
+        is_expected.to eq({ referred_to_by: { left: "myProject",
+                                              right_id: Card::MetricID } })
       end
     end
 
@@ -84,16 +91,11 @@ describe Card::Set::Right::BrowseMetricFilter do
       it "joins filter conditions correctly" do
         is_expected.to eq(
           name: %w[match CDP],
-          and: {
-            right_plus: [Card::ResearchPolicyID, { refer_to: { name: "community assessed" } }],
-            and: {
-              right_plus: [Card::MetricTypeID, { refer_to: { name: "researched" } }],
-              and: {
-                right_plus: [Card::WikirateTopicID, { refer_to: { name: "myTopic" } }],
-                and: { right_plus: "Apple Inc" }
-              }
-            }
-          },
+          and: policy_wql.merge(
+            and: metric_type_wql.merge(
+              and: topic_wql.merge(and: { right_plus: "Apple Inc" })
+            )
+          ),
           right_plus: { type_id: Card::WikirateCompanyID, right_plus: "2015" },
           part: "myDesigner",
           referred_to_by: { left: "myProject", right_id: Card::MetricID }
