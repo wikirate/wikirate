@@ -6,21 +6,16 @@ module Formula
 
         def initialize year_options
           @fixed_years = ::Set.new
+          @no_year_options = true
           if year_options.present?
             year_options.each do |year_option|
-              self <<
-                if year_option
-                  interpret_year_expr normalize_year_expr(year_option)
-                else
-                  0
-                end
+              self << interpret_year_expr(year_option)
               if (cur = last) != 0
                 @multi_year = true
+                @no_year_options = false
                 @fixed_years << cur if year?(cur)
               end
             end
-          else
-            @no_year_options = true
           end
         end
 
@@ -58,6 +53,9 @@ module Formula
         end
 
         def interpret_year_expr expr
+          return 0 if expr.blank?
+          expr = normalize_year_expr expr
+
           case expr
           when /^[0?]$/ then 0
           when /^[+-]?\d+$/ then expr.to_i

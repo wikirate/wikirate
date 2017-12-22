@@ -20,6 +20,8 @@ module Formula
         @value_store = ValueStore.new @input_list
       end
 
+      # @param company_id [Integer]
+      # @param year [Integer]
       def each company_id: nil, year: nil, &block
         if company_id && year
           values = fetch company: company_id, year: year
@@ -75,6 +77,16 @@ module Formula
       def years_with_values
         fetch_values
         @companies_with_values_by_year.keys
+      end
+
+      # type of input
+      # either :yearly_variable or, if it's a metric, the value type as string
+      def type index
+        @input_list[index].type
+      end
+
+      def card_id index
+        @input_list[index].card_id
       end
 
       private
@@ -137,16 +149,6 @@ module Formula
           yield input_item
           return if no_company_with_values_for_all_input_items?
         end
-      end
-
-      # type of input
-      # either :yearly_variable or, if it's a metric, the value type as string
-      def type index
-        @input_list[index].type
-      end
-
-      def card_id index
-        @input_list[index].card_id
       end
 
       def initialize_company_lists company_id

@@ -25,8 +25,9 @@ module Formula
       def each opts={}
         company = opts[:company]
         company = Card.fetch_id(company) unless company.is_a? Integer
-        @input_values.each company_id: company,
-                           year: opts[:year] do |values, company_id, year|
+        year = opts[:year]&.to_i
+
+        @input_values.each company_id: company, year: year do |values, company_id, year|
           next unless (input_values = validate_input(values))
           yield input_values, company_id, year
         end

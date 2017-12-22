@@ -24,6 +24,10 @@ def company_key
   company.to_name.key
 end
 
+def company_id
+  company.to_name.key
+end
+
 def metric_plus_company_card
   Card.fetch metric_plus_company
 end
@@ -46,15 +50,15 @@ def answer_imported?
   ActManager.act_card.type_id.in? [AnswerImportFileID, RelationshipAnswerImportFileID]
 end
 
-event :update_related_scores, :finalize do
+event :update_related_scores, :integrate_final do
   ensure_metric(metric_card).each_dependent_score_metric do |metric|
-    metric.update_value_for! company: company_key, year: year
+    metric.update_value_for! company: company_id, year: year
   end
 end
 
-event :update_related_calculations, :finalize do
+event :update_related_calculations, :after_integrate do
   ensure_metric(metric_card).each_dependent_formula_metric do |metric|
-    metric.update_value_for! company: company_key, year: year
+    metric.update_value_for! company: company_id, year: year
   end
 end
 

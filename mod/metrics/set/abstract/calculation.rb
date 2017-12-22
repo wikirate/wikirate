@@ -8,7 +8,7 @@ def update_value_for! opts
     if (ans = answer opts[:company], year)
       value ? ans.update_value(value) : ans.delete
     elsif value
-      Answer.create_calculated_answer card, opts[:company], year, value
+      Answer.create_calculated_answer self, opts[:company], year, value
     end
   end
 end

@@ -43,13 +43,15 @@ end
 # @option opts [String] :company
 # @option opts [String] :year optional
 def calculate_values_for opts={}
-  unless opts[:company]
-    raise Card::Error, "#calculate_values_for: no company given"
-  end
+  company = opts[:company]
+  raise Card::Error, "#calculate_values_for: no company given" unless company
+  company = Card.fetch_id(company) unless company.is_a?(Integer)
+
   no_value = true
   calculator.result(opts).each_pair do |year, companies|
     no_value = false
-    value = companies[opts[:company]]
+    value = companies[company]
+    #binding.pry
     yield year, value
   end
   yield opts[:year], nil if opts[:year] && no_value
