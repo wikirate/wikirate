@@ -69,7 +69,7 @@ format :html do
   end
 
   def shorten_score value
-    return value if numeric? value 
+    return value if numeric? value
     value.to_sym == :Unknown ? "?" : "!"
   end
 
