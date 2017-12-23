@@ -64,9 +64,13 @@ format :html do
   end
 
   def beautify_scored value
-    return colorify(value) unless numeric?(value)
-    value = value.to_sym == :Unknown ? "?" : "!"
+    value = shorten_score value
     colorify(value)
+  end
+
+  def shorten_score value
+    return value if numeric? value 
+    value.to_sym == :Unknown ? "?" : "!"
   end
 
   def pretty_value
