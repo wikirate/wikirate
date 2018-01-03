@@ -491,12 +491,15 @@
   :type: Basic
   :codename: :parent
   :key: parent
+  :merged: 2017-12-20 18:37:22 UTC
 - :name: Parent+*right+*default
   :type: Pointer
   :key: parent+*right+*default
+  :merged: 2017-12-20 18:37:22 UTC
 - :name: Project+Parent+*type plus right+*options
   :type: Search
   :key: project+parent+*type_plu_right+*option
+  :merged: 2017-12-20 18:37:22 UTC
 - :name: conversation project
   :type: Project
   :key: conversation_project
@@ -515,10 +518,12 @@
 - :name: subproject+*right+*structure
   :type: Search
   :key: subproject+*right+*structure
+  :merged: 2017-12-20 18:37:22 UTC
 - :name: subproject
   :type: Basic
   :codename: :subproject
   :key: subproject
+  :merged: 2017-12-20 18:37:22 UTC
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org

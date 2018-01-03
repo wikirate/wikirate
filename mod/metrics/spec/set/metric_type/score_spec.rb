@@ -94,11 +94,14 @@ describe Card::Set::MetricType::Score do
   end
 
   def score_value company="Samsung", year="2014"
-    score_value_card(company, year).content
+    score_answer(company, year).value
+    #score_value_card(company, year).content
   end
 
-  def score_value_card company="Samsung", year="2014"
-    Card["Joe User+#{@metric_title}+Big Brother+#{company}+#{year}+value"]
+  def score_answer company="Samsung", year="2014"
+    Answer.where(metric_id: Card.fetch_id("Joe User+#{@metric_title}+Big Brother"),
+                 company_id: Card.fetch_id(company), year: year.to_i)
+          .take
   end
 
   describe "score for numerical metric" do
@@ -119,7 +122,7 @@ describe Card::Set::MetricType::Score do
         expect(score_value).to eq("10.0")
         expect(score_value("Samsung", "2015")).to eq("4.0")
         expect(score_value("Sony_Corporation")).to eq("4.0")
-        expect(score_value_card("Death_Star", "1977")).to be_falsey
+        expect(score_answer("Death_Star", "1977")).to be_falsey
       end
 
       context "and formula changes" do
@@ -140,7 +143,7 @@ describe Card::Set::MetricType::Score do
 
       context "and a input metric value is missing" do
         it "doesn't create score value" do
-          expect(score_value_card("Death Star", "1977")).to be_falsey
+          expect(score_answer("Death Star", "1977")).to be_falsey
         end
         it "creates score value if missing value is added" do
           Card::Auth.as_bot do
@@ -162,7 +165,7 @@ describe Card::Set::MetricType::Score do
           Card::Auth.as_bot do
             Card["#{@metric_name}+Samsung+2014+value"].delete
           end
-          expect(score_value_card).to be_falsey
+          expect(score_answer).to be_falsey
         end
       end
     end

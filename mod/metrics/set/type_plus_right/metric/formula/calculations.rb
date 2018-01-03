@@ -11,7 +11,7 @@ event :update_metric_values, :prepare_to_store,
       add_value company, year, value
     end
   end
-  Answer.where(answer_id: @existing.to_a).delete_all
+  Answer.where(id: @existing.to_a).delete_all
 end
 
 # don't update if it's part of scored metric create
@@ -51,7 +51,6 @@ def calculate_values_for opts={}
   calculator.result(opts).each_pair do |year, companies|
     no_value = false
     value = companies[company]
-    #binding.pry
     yield year, value
   end
   yield opts[:year], nil if opts[:year] && no_value

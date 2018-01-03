@@ -87,7 +87,7 @@ module Formula
 
       def card_id index
         @input_list[index].card_id
-      end
+        end
 
       private
 
@@ -175,6 +175,7 @@ module Formula
         update_company_list answers.map(&:company_id)
         answers.each do |a|
           @value_store.add input_card_id, a.company_id, a.year, a.value
+          @companies_with_values_by_year[a.year.to_i] ||= ::Set.new
           @companies_with_values_by_year[a.year.to_i] << a.company_id
         end
       end

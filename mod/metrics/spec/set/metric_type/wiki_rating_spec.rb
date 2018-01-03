@@ -17,7 +17,7 @@
 #    Apple_Inc       2010 => 10, '2013' => 13, '2011' => 11,
 #                    2012 => 12, '2014' => 14
 #    Death_Star      1977 => 77
-describe Card::Set::MetricType::WikiRating do
+RSpec.describe Card::Set::MetricType::WikiRating do
   let(:metric_type) { :wiki_rating }
 
   describe "formula card" do
@@ -33,11 +33,13 @@ describe Card::Set::MetricType::WikiRating do
   end
 
   def rating_value company="Samsung", year="2014"
-    rating_value_card(company, year).content
+    rating_answer(company, year).value
   end
 
-  def rating_value_card company="Samsung", year="2014"
-    Card["Joe User+#{@metric_title}+#{company}+#{year}+value"]
+  def rating_answer company="Samsung", year="2014"
+    Answer.where(metric_id: Card.fetch_id("Joe User+#{@metric_title}"),
+                 company_id: Card.fetch_id(company), year: year.to_i)
+      .take
   end
 
   context "when created with formula" do
@@ -54,7 +56,7 @@ describe Card::Set::MetricType::WikiRating do
       expect(rating_value).to eq("8.0")
       expect(rating_value("Samsung", "2015")).to eq("3.8")
       expect(rating_value("Sony_Corporation")).to eq("1.4")
-      expect(rating_value_card("Death_Star", "1977")).to be_falsey
+      expect(rating_answer("Death_Star", "1977")).to be_falsey
     end
 
     context "and formula changes" do
@@ -70,7 +72,7 @@ describe Card::Set::MetricType::WikiRating do
         update_weights "Joe User+researched number 1" => 40,
                        "Joe User+researched number 2" => 40,
                        "Joe User+researched number 3" => 20
-        expect(rating_value_card("Sony_Corporation", "2014")).to be_falsey
+        expect(rating_answer("Sony_Corporation", "2014")).to be_falsey
       end
       it "adds complete rating value" do
         # Death Star has only a value for +researched number 1
@@ -91,13 +93,13 @@ describe Card::Set::MetricType::WikiRating do
         Card::Auth.as_bot do
           Card["Joe User+researched number 1+Samsung+2014+value"].delete
         end
-        expect(rating_value_card).to be_falsey
+        expect(rating_answer).to be_falsey
       end
     end
 
     context "and input metric value is missing" do
       it "doesn't create rating value" do
-        expect(rating_value_card("Death Star", "1977")).to be_falsey
+        expect(rating_answer("Death Star", "1977")).to be_falsey
       end
       it "creates rating value if missing value is added" do
         Card::Auth.as_bot do
@@ -132,7 +134,7 @@ describe Card::Set::MetricType::WikiRating do
       expect(rating_value).to eq("8.0")
       expect(rating_value("Samsung", "2015")).to eq("3.8")
       expect(rating_value("Sony_Corporation")).to eq("1.4")
-      expect(rating_value_card("Death_Star", "1977")).to be_falsey
+      expect(rating_answer("Death_Star", "1977")).to be_falsey
     end
   end
 

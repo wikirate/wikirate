@@ -33,7 +33,7 @@ class Card
     end
 
     def node metric
-      @tree.find { |n| n.metric == metric}
+      @tree.find { |n| n.metric == metric }
     end
 
     def add_children node
@@ -60,9 +60,7 @@ class Card
 
     # add a connection between parent_node and child_node to the tree
     def relate parent_node, child_node
-      if parent_node.children.include? child_node
-        raise_loop_error parent_node, child_node
-      end
+      raise_loop_error parent_node, child_node if parent_node.children.include? child_node
       parent_node.children << child_node
     end
 

@@ -65,10 +65,10 @@ class Answer < ActiveRecord::Base
 
   def update_value value
     update_attributes! value: value,
-                      numeric_value: to_numeric_value(value),
-                      updated_at: Time.now
-                      # FIXME: editor_id column not in test db
-                      # editor_id: Card::Auth.current_id
+                       numeric_value: to_numeric_value(value),
+                       updated_at: Time.now
+                       # FIXME: editor_id column not in test db
+                       # editor_id: Card::Auth.current_id
   end
 
   def calculated_answer metric_card, company, year, value
