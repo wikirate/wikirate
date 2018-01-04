@@ -14,7 +14,6 @@ class SharedData
     end
 
     def formula_metrics
-      $stop = true
       Card::Metric.create name: "Jedi+friendliness",
                           type: :formula,
                           formula: "1/{{Jedi+deadliness}}"

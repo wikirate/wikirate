@@ -29,6 +29,10 @@ def metric_type_codename
   Card[metric_type].codename.to_sym
 end
 
+def metric_type_id
+  Card[metric_type].id
+end
+
 # @return array of metric answer lookup table
 def all_answers
   Answer.where(metric_id: id)

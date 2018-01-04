@@ -63,13 +63,23 @@ class Answer
       hash
     end
 
+    # @param ids [Integer, Array<Integer>] card ids of metric answer cards
     def refresh ids=nil, *fields
-      if ids
-        Array(ids).each do |ma_id|
+      ids = Array(ids).compact
+      if ids.present?
+        ids.each do |ma_id|
           refresh_entry fields, ma_id
         end
       else
         refresh_all fields
+      end
+    end
+
+    # @param ids [Array<Integer>] ids of answers in the answer table (NOT card ids)
+    def update_by_ids ids, *fields
+      Array.wrap(ids).each do |id|
+        next unless (answer = Answer.find_by_id(id))
+        answer.refresh(*fields)
       end
     end
 

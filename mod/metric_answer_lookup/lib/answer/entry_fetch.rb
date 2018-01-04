@@ -65,10 +65,7 @@ class Answer
     end
 
     def fetch_metric_type_id
-      binding.pry if $stop
-      return unless (metric_type_pointer = metric_card.fetch(trait: :metric_type))
-      metric_type_name = metric_type_pointer.item_names.first
-      (mtc = Card.quick_fetch(metric_type_name)) && mtc.id
+      metric_card&.metric_type_id
     end
 
     def fetch_value
