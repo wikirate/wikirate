@@ -3,7 +3,6 @@ class Answer
     NAME_COLUMNS = [:metric, :company, :designer, :title, :record].freeze
 
     def answer_cards
-      # binding.pry
       map { |a| a.card }.compact
     end
 

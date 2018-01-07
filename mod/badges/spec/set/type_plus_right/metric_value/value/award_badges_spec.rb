@@ -18,7 +18,6 @@ RSpec.describe Card::Set::TypePlusRight::MetricValue::Value::AwardBadges do
     end
 
     context "reached bronze create threshold" do
-      binding.pry
       it_behaves_like "create badges", 1, "Researcher"
     end
 
