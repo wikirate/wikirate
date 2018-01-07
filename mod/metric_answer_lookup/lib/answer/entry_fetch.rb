@@ -82,6 +82,10 @@ class Answer
       [card.updated_at, vc.updated_at].compact.max
     end
 
+    def fetch_created_at
+      card&.value_card&.created_at || created_at || Time.now
+    end
+
     def fetch_checkers
       return unless (cb = card.field(:checked_by)) && cb.checked?
       cb.checkers.join(", ")

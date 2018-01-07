@@ -2,7 +2,6 @@
 event :update_metric_values, :prepare_to_store,
       on: :update, changed: :content do
   @existing = ::Set.new metric_card.all_answers.pluck(:id)
-
   calculate_all_values do |company, year, value|
     if (answer = metric_card.answer company, year)
       @existing.delete answer.id

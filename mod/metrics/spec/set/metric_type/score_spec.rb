@@ -4,7 +4,7 @@
 # Card::Metric.create name: 'Jedi+deadliness+Joe User',
 #                     type: :score,
 #                     formula: '{{Jedi+deadliness}}/10'
-describe Card::Set::MetricType::Score do
+RSpec.describe Card::Set::MetricType::Score do
   describe "score card" do
     subject { Card[:score] }
 
@@ -203,13 +203,17 @@ describe Card::Set::MetricType::Score do
       )
     end
     it "updates scored valued" do
-      expect(Card["Jedi+deadliness+Joe User+Death Star+1977+value"].content)
-        .to eq "4.0"
+      answer =
+        Answer.where(metric_id: Card.fetch_id("Jedi+deadliness+Joe User"),
+                     company_id: Card.fetch_id("Death Star"), year: 1977).take
+      expect(answer.value).to eq "4.0"
     end
 
     it "updates dependent ratings" do
-      expect(Card["Jedi+darkness rating+Death Star+1977+value"].content)
-        .to eq "6.4"
+      answer =
+        Answer.where(metric_id: Card.fetch_id("Jedi+darkness rating"),
+                     company_id: Card.fetch_id("Death Star"), year: 1977).take
+      expect(answer.value).to eq "6.4"
     end
   end
 

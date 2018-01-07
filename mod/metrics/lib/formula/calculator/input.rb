@@ -34,6 +34,7 @@ module Formula
       end
 
       def input_for company, year
+        year = year.to_i
         values = @input_values.fetch company: company, year: year
         validate_input values
       end

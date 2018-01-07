@@ -12,6 +12,7 @@ RSpec.shared_context "award badges context" do |threshold|
   def trigger_awarded_action count=1
     with_user "John" do
       count.times do |i|
+        binding.pry
         execute_awarded_action i + 1
       end
     end

@@ -1,6 +1,6 @@
 RSpec.describe Card::Set::Type::MetricValue::ValueDetails do
   def value_details answer_name, metric_type
-    Card[answer_name].format.render "#{metric_type}_value_details".to_sym
+    Card.fetch(answer_name).format.render "#{metric_type}_value_details".to_sym
   end
 
   describe "view: formula_value_details" do
@@ -81,7 +81,7 @@ RSpec.describe Card::Set::Type::MetricValue::ValueDetails do
 
   describe "view: score_value_detais" do
     subject do
-      Card["Jedi+deadliness+Joe User+Death Star+1977"]
+      Card.fetch("Jedi+deadliness+Joe User+Death Star+1977")
         .format.render :wikirating_value_details
     end
 
@@ -102,7 +102,7 @@ RSpec.describe Card::Set::Type::MetricValue::ValueDetails do
 
   describe "view: wikirating_value_detais" do
     subject do
-      Card["Jedi+darkness rating+Death Star+1977"]
+      Card.fetch("Jedi+darkness rating+Death Star+1977")
         .format.render :wikirating_value_details
     end
 

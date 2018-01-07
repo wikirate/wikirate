@@ -46,7 +46,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
     create "Jedi+formula test+formula",
            content: "{{Jedi+deadliness}}/{{Jedi+Victims by Employees}}"
 
-    expect(answer_value "formula test").to match(/^31.0/)
+    expect(answer_value "formula test").to match(/^322/)
   end
 
   context "formula changed" do
@@ -54,13 +54,11 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
       Card::Metric.create name: "Jedi+formula test",
                           type: :formula,
                           formula: "{{Jedi+deadliness}}/{{Jedi+Victims by Employees}}"
+      expect(answer_value "formula test").to match(/^322/)
       Card["Jedi+formula test+formula"].update_attributes!(
         content: "{{Jedi+deadliness}}*{{Jedi+Victims by Employees}}"
       )
-
-      answer = Answer.where(record_name: "Jedi+formula test+Death Star", year: 1977).take
-      expect(answer).to be_present
-      expect(answer.value).to match(/^0.08/)
+      expect(answer_value "formula test").to match(/^31/)
     end
 
     it "updates values of dependent calculated metric" do
@@ -71,13 +69,13 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
       Card::Metric.create name: "Jedi+formula test double",
                           type: :formula,
                           formula: "{{Jedi+formula test}}*2"
-      expect(answer_value "formula test" ).to match(/^31/)
+      expect(answer_value "formula test" ).to match(/^322/)
 
       Card["Jedi+formula test+formula"].update_attributes!(
         content: "{{Jedi+deadliness}}*{{Jedi+Victims by Employees}}"
       )
 
-      expect(answer_value "formula test double" ).to match(/^0.16/)
+      expect(answer_value "formula test double" ).to match(/^645/)
     end
 
   end

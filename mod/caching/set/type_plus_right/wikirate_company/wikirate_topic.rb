@@ -14,12 +14,13 @@ end
 # ... when <metric>+topic is edited
 recount_trigger :type_plus_right, :metric, :wikirate_topic do |changed_card|
   metric_id = changed_card.left_id
-  Answer.select(:company_id).where(metric_id: metric_id).uniq
+  Answer.select(:company_id).where(metric_id: metric_id).distinct
         .pluck(:company_id).map do |company_id|
     # faster way to get this from company+topic?
     Card.fetch(company_id.cardname.trait(:wikirate_topic))
   end
 end
+
 
 def wql_from_content
   metric_ids = unique_metric_ids
@@ -34,15 +35,14 @@ def wql_from_content
   end
 end
 
-# turn query caching off because wql_hash varies and fetch_query doesn't recognizes
-# changes in wql_hash
-def fetch_query args={}
-  query(args.clone)
+# turn query caching off because wql_hash varies
+def cache_query?
+  false
 end
 
 # faster way to get this from company+metric?
 def unique_metric_ids
-  Answer.select(:metric_id).where(company_id: left.id).uniq.pluck :metric_id
+  Answer.select(:metric_id).where(company_id: left.id).distinct.pluck(:metric_id)
   # pluck seems dumb here, but .all isn't working (returns *all card)
 end
 

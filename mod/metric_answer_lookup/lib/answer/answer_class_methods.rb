@@ -6,9 +6,9 @@ class Answer
                     uniq: [:uniq],
                     where: [:where] }.freeze
 
-    def create card
+    def create cardish
       ma = Answer.new
-      ma.answer_id = card.id
+      ma.answer_id = card_id cardish
       ma.refresh
     end
 
@@ -72,14 +72,6 @@ class Answer
         end
       else
         refresh_all fields
-      end
-    end
-
-    # @param ids [Array<Integer>] ids of answers in the answer table (NOT card ids)
-    def update_by_ids ids, *fields
-      Array.wrap(ids).each do |id|
-        next unless (answer = Answer.find_by_id(id))
-        answer.refresh(*fields)
       end
     end
 

@@ -8,7 +8,7 @@ RSpec.describe Card::Set::TypePlusRight::MetricValue::Value::AwardBadges do
 
   describe "create badges" do
     let(:start_year) { 1990 }
-    let(:metric_card) { Card["Joe User+researched number 2"] }
+    let(:metric_card) { Card["Joe User+researched number 3"] }
 
     def execute_awarded_action count
       year = start_year + count
@@ -18,6 +18,7 @@ RSpec.describe Card::Set::TypePlusRight::MetricValue::Value::AwardBadges do
     end
 
     context "reached bronze create threshold" do
+      binding.pry
       it_behaves_like "create badges", 1, "Researcher"
     end
 

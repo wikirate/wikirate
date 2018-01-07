@@ -1,12 +1,14 @@
 # lookup table for metric answers
 
-class Answer < ActiveRecord::Base
+class Answer < ApplicationRecord
   include LookupTable
   extend AnswerClassMethods
 
+  include CardlessAnswers
   include Filter
   include Validations
   include EntryFetch
+  include Csv
 
   validates :answer_id, numericality: { only_integer: true }, presence: true,
             unless: :virtual?
@@ -19,17 +21,6 @@ class Answer < ActiveRecord::Base
   def card
     return super if answer_id
     @card ||= virtual_answer_card
-  end
-
-  def virtual_answer_card name=nil, val=nil
-    name ||= [record_name, year.to_s]
-    val ||= value
-    Card.new(name: name, type_id: Card::MetricValueID).tap do |card|
-      card.define_singleton_method(:value) { val }
-      card.define_singleton_method(:value_card) do
-        Card.new name: [name, :value], content: val
-      end
-    end
   end
 
   def delete
@@ -55,34 +46,6 @@ class Answer < ActiveRecord::Base
     super
   end
 
-  def self.csv_title
-    CSV.generate_line ["ANSWER ID", "METRIC NAME", "COMPANY NAME", "YEAR", "VALUE"]
-  end
-
-  def csv_line
-    CSV.generate_line [answer_id, metric_name, company_name, year, value]
-  end
-
-  def update_value value
-    update_attributes! value: value,
-                       numeric_value: to_numeric_value(value),
-                       updated_at: Time.now
-                       # FIXME: editor_id column not in test db
-                       # editor_id: Card::Auth.current_id
-  end
-
-  def calculated_answer metric_card, company, year, value
-    ensure_record metric_card, company
-    @card = virtual_answer_card metric_card.metric_value_name(company, year), value
-    define_singleton_method(:fetch_creator_id) { Card::Auth.current_id }
-    refresh
-    self
-  end
-
-  def self.create_calculated_answer metric_card, company, year, value
-    Answer.new.calculated_answer metric_card, company, year, value
-  end
-
   def company_key
     company_name.to_name.key
   end
@@ -95,7 +58,7 @@ class Answer < ActiveRecord::Base
 
   def ensure_record metric_card, company
     return if Card[metric_card, company]
-    Card.create! name: [metric_card, company]
+    Card.create! name: [metric_card, company], type_id: Card::RecordID
   end
 
   def metric_card
@@ -121,11 +84,6 @@ class Answer < ActiveRecord::Base
 
   def unknown? val
     val.casecmp("unknown").zero?
-  end
-
-  # true if there is no card for this answer
-  def virtual?
-    card&.new_card?
   end
 end
 
