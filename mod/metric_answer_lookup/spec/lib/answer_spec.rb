@@ -78,8 +78,8 @@ RSpec.describe Answer do
     end
 
     it "updates value" do
-      update "#{answer_name}+value", content: "85"
-      expect(answer.value).to eq "85"
+      expect { update "#{answer_name}+value", content: "85" }
+        .to change { answer_value }.from(13).to(85)
     end
 
     it "updates designer" do
