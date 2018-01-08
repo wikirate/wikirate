@@ -223,10 +223,9 @@ RSpec.describe Card::Set::MetricType::Formula do
 
     context "and input metric value changes" do
       it "updates calculated value" do
-        Card["#{@metric_name1}+Samsung+2014+value"].update_attributes!(
-          content: "1"
-        )
-        expect(calc_value).to eq "15.0"
+        card = Card["#{@metric_name1}+Samsung+2014+value"]
+        expect { card.update_attributes! content: "1" }
+          .to change { calc_value }.from("60.0").to("15.0")
       end
       it "removes incomplete calculated values" do
         Card::Auth.as_bot do

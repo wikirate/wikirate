@@ -11,7 +11,7 @@ class Answer < ApplicationRecord
   include Csv
 
   validates :answer_id, numericality: { only_integer: true }, presence: true,
-            unless: :virtual?
+                        unless: :virtual?
   validate :must_be_an_answer, :card_must_exist, :metric_must_exit
 
   def card_column

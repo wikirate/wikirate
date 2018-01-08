@@ -106,8 +106,9 @@ RSpec.describe Answer do
 
   describe "calculated answers" do
     let(:metric) { Card["Jedi+friendliness"] }
+
     specify "#calculated_answer", with_user: "Joe User" do
-      a = Answer.create_calculated_answer metric, "Death Star", 2001, "50"
+      a = described_class.create_calculated_answer metric, "Death Star", 2001, "50"
       expect(a.attributes.symbolize_keys)
         .to include answer_id: nil,
                     record_id: be_a_integer,

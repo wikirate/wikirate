@@ -5,7 +5,7 @@ def unknown?
 end
 
 def virtual?
-  answer.present?
+  unknown? && answer.present?
 end
 
 # def new_card?

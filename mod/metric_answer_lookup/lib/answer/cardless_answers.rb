@@ -1,4 +1,6 @@
 class Answer
+  # MEthods to handle answers that exist only in the the answer table
+  # and don't have a card. Used for calculated answers.
   module CardlessAnswers
     def self.included host_class
       host_class.extend ClassMethods
@@ -9,7 +11,7 @@ class Answer
       val ||= value
       Card.new(name: name, type_id: Card::MetricValueID).tap do |card|
         card.define_singleton_method(:value) { val }
-        #card.define_singleton_method(:updated_at) { updated_at }
+        # card.define_singleton_method(:updated_at) { updated_at }
         card.define_singleton_method(:value_card) do
           Card.new name: [name, :value], content: val
         end
@@ -46,6 +48,7 @@ class Answer
                          editor_id: Card::Auth.current_id
     end
 
+    # class methods for {Answer} to support creating and updating calculated answers
     module ClassMethods
       def create_calculated_answer metric_card, company, year, value
         Answer.new.calculated_answer metric_card, company, year, value

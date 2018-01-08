@@ -62,8 +62,7 @@ event :update_related_calculations, :after_integrate do
   end
 end
 
-event :update_double_check_flag, :validate, on: [:update, :delete],
-                                            changed: :content do
+event :update_double_check_flag, :validate, on: [:update, :delete], changed: :content do
   [:checked_by, :check_requested_by].each do |trait|
     next unless left.fetch trait: trait
     attach_subcard name.left_name.field_name(trait), content: ""

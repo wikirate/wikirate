@@ -29,7 +29,7 @@ module Formula
         elsif company_id
           each_year_with_value company_id, &block
         else
-          each_company_and_year_with_value &block
+          each_company_and_year_with_value(&block)
         end
       end
 
@@ -214,7 +214,9 @@ module Formula
         query = { metric_id: input_card_id }
         # search only for companies that still have a chance to reach a complete set
         # of input values for at least one year.
-        query[:company_id] = @companies_with_values.to_a if @companies_with_values.present?
+        if @companies_with_values.present?
+          query[:company_id] = @companies_with_values.to_a
+        end
         query[:year] = year.to_i if year
         query
       end

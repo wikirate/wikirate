@@ -36,7 +36,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
                         type: :formula,
                         formula: "{{Jedi+deadliness}}/{{Jedi+Victims by Employees}}"
 
-    expect(answer_value "formula test").to match(/^322/)
+    expect(answer_value("formula test")).to match(/^322/)
   end
 
   it "calculates values if formula is added" do
@@ -46,10 +46,10 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
     create "Jedi+formula test+formula",
            content: "{{Jedi+deadliness}}/{{Jedi+Victims by Employees}}"
 
-    expect(answer_value "formula test").to match(/^322/)
+    expect(answer_value("formula test")).to match(/^322/)
   end
 
-  context "formula changed" do
+  context "when formula changed" do
     it "updates values" do
       Card::Metric.create name: "Jedi+formula test",
                           type: :formula,
@@ -58,7 +58,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
       Card["Jedi+formula test+formula"].update_attributes!(
         content: "{{Jedi+deadliness}}*{{Jedi+Victims by Employees}}"
       )
-      expect(answer_value "formula test").to match(/^31/)
+      expect(answer_value("formula test")).to match(/^31/)
     end
 
     it "updates values of dependent calculated metric" do
@@ -69,13 +69,13 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
       Card::Metric.create name: "Jedi+formula test double",
                           type: :formula,
                           formula: "{{Jedi+formula test}}*2"
-      expect(answer_value "formula test" ).to match(/^322/)
+      expect(answer_value("formula test")).to match(/^322/)
 
       Card["Jedi+formula test+formula"].update_attributes!(
         content: "{{Jedi+deadliness}}*{{Jedi+Victims by Employees}}"
       )
 
-      expect(answer_value "formula test double" ).to match(/^645/)
+      expect(answer_value("formula test double")).to match(/^645/)
     end
 
   end
@@ -105,9 +105,9 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
       Card::Metric.create name: "Jedi+double friendliness",
                           type: :formula,
                           formula: "{{Jedi+friendliness}}*2"
-      expect(answer_value "double friendliness").to eq "0.02"
+      expect(answer_value("double friendliness")).to eq "0.02"
       update_card "Jedi+deadliness+Death Star+1977+value", content: "10"
-      expect(answer_value "double friendliness").to eq "0.2"
+      expect(answer_value("double friendliness")).to eq "0.2"
     end
   end
 end
