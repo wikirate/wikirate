@@ -24,7 +24,6 @@ class Answer
     def calculated_answer metric_card, company, year, value
       ensure_record metric_card, company
       @card = virtual_answer_card metric_card.metric_value_name(company, year), value
-      define_singleton_method(:fetch_creator_id) { Card::Auth.current_id }
       refresh
       update_cached_counts
       self
@@ -36,17 +35,15 @@ class Answer
         Card.fetch(mark).update_cached_count
       end
       Card::Set::TypePlusRight::WikirateTopic::WikirateCompany
-        .topic_company_type_plus_right_cards_for_metric(Card[metric_id]).each do |card|
-        card.update_cached_count
-      end
+        .topic_company_type_plus_right_cards_for_metric(Card[metric_id])
+        .each(&:update_cached_count)
     end
 
     def update_value value
       update_attributes! value: value,
                          numeric_value: to_numeric_value(value),
-                         updated_at: Time.now
-      # FIXME: editor_id column not in test db
-      # editor_id: Card::Auth.current_id
+                         updated_at: Time.now,
+                         editor_id: Card::Auth.current_id
     end
 
     module ClassMethods

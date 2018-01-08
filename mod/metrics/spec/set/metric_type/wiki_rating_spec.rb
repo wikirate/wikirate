@@ -21,14 +21,14 @@ RSpec.describe Card::Set::MetricType::WikiRating do
   let(:metric_type) { :wiki_rating }
 
   describe "formula card" do
-    subject { Card[:wiki_rating] }
+    let(:wikirating_card) { Card[:wiki_rating] }
 
     it { is_expected.to be_truthy }
     it "has codename" do
-      expect(subject.codename).to eq :wiki_rating
+      expect(wikirating_card.codename).to eq :wiki_rating
     end
     it 'has type "metric type"' do
-      expect(subject.type_id).to eq Card["metric type"].id
+      expect(wikirating_card.type_id).to eq Card["metric type"].id
     end
   end
 
@@ -39,7 +39,7 @@ RSpec.describe Card::Set::MetricType::WikiRating do
   def rating_answer company="Samsung", year="2014"
     Answer.where(metric_id: Card.fetch_id("Joe User+#{@metric_title}"),
                  company_id: Card.fetch_id(company), year: year.to_i)
-      .take
+          .take
   end
 
   context "when created with formula" do
@@ -138,6 +138,6 @@ RSpec.describe Card::Set::MetricType::WikiRating do
     end
   end
 
-  context "you are not allowed to add metrics that are no scores" do
-  end
+  # context "you are not allowed to add metrics that are no scores" do
+  # end
 end

@@ -5,22 +5,21 @@
 #                     type: :score,
 #                     formula: '{{Jedi+deadliness}}/10'
 RSpec.describe Card::Set::MetricType::Score do
+  let(:metric) { Card[@name] }
+
+  before { @name = "Jedi+deadliness+Joe User" }
+
   describe "score card" do
-    subject { Card[:score] }
+    let(:score_card) { Card[:score] }
 
     it { is_expected.to be_truthy }
     it "has codename" do
-      expect(subject.codename).to eq :score
+      expect(score_card.codename).to eq :score
     end
     it 'has type "metric type"' do
-      expect(subject.type_id).to eq Card["metric type"].id
+      expect(score_card.type_id).to eq Card["metric type"].id
     end
   end
-
-  before do
-    @name = "Jedi+deadliness+Joe User"
-  end
-  let(:metric) { Card[@name] }
 
   describe "#metric_type" do
     subject { metric.metric_type }
@@ -95,7 +94,6 @@ RSpec.describe Card::Set::MetricType::Score do
 
   def score_value company="Samsung", year="2014"
     score_answer(company, year).value
-    #score_value_card(company, year).content
   end
 
   def score_answer company="Samsung", year="2014"
@@ -196,24 +194,22 @@ RSpec.describe Card::Set::MetricType::Score do
     end
   end
 
-  context "if original value changed" do
-    before do
-      Card["Jedi+deadliness+Death Star+1977+value"].update_attributes!(
-        content: 40
-      )
+  context "when original value changed" do
+    def answer metric
+      Answer.where(metric_id: Card.fetch_id(metric),
+                   company_id: Card.fetch_id("Death Star"), year: 1977).take
     end
+
+    before do
+      Card["Jedi+deadliness+Death Star+1977+value"].update_attributes! content: 40
+    end
+
     it "updates scored valued" do
-      answer =
-        Answer.where(metric_id: Card.fetch_id("Jedi+deadliness+Joe User"),
-                     company_id: Card.fetch_id("Death Star"), year: 1977).take
-      expect(answer.value).to eq "4.0"
+      expect(answer("Jedi+deadliness+Joe User").value).to eq "4.0"
     end
 
     it "updates dependent ratings" do
-      answer =
-        Answer.where(metric_id: Card.fetch_id("Jedi+darkness rating"),
-                     company_id: Card.fetch_id("Death Star"), year: 1977).take
-      expect(answer.value).to eq "6.4"
+      expect(answer("Jedi+darkness rating").value).to eq "6.4"
     end
   end
 

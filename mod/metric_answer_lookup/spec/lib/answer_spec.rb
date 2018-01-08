@@ -10,7 +10,7 @@ RSpec.describe Answer do
         .to be > Card.search(type_id: Card::MetricValueID, return: :count)
     end
 
-    context "random example" do
+    describe "random example" do
       it "exists" do
         is_expected.to be_instance_of(described_class)
       end
@@ -100,9 +100,9 @@ RSpec.describe Answer do
     end
   end
 
-  describe "fetch" do
-    described_class.fetch company_id: Card.fetch_id("Apple Inc")
-  end
+  # describe "fetch" do
+  #   described_class.fetch company_id: Card.fetch_id("Apple Inc")
+  # end
 
   describe "calculated answers" do
     let(:metric) { Card["Jedi+friendliness"] }
@@ -126,13 +126,12 @@ RSpec.describe Answer do
                     imported: nil,
                     checkers: nil,
                     check_requester: nil,
-                    # FIXME: editor_id column is missing in test db
-                    # editor_id: nil,
+                    editor_id: nil,
                     policy_id: nil
     end
 
     specify "#update_value", with_user: "Joe User" do
-      a = Answer.create_calculated_answer metric, "Death Star", 2001, "50"
+      a = described_class.create_calculated_answer metric, "Death Star", 2001, "50"
       a.update_value "100.5"
       expect(a.attributes.symbolize_keys)
         .to include answer_id: nil,
@@ -140,9 +139,8 @@ RSpec.describe Answer do
                     numeric_value: 100.5,
                     creator_id: Card.fetch_id("Joe User"),
                     updated_at: be_within(1).of(Time.now),
-                    latest: true
-                    # FIXME: editor_id column is missing in test db
-                    # editor_id: nil,
+                    latest: true,
+                    editor_id: nil
     end
   end
 end

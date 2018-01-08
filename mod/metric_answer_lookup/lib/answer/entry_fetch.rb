@@ -47,11 +47,11 @@ class Answer
     end
 
     def fetch_creator_id
-      card.creator_id
+      card.creator_id || Card::Auth.current_id
     end
 
     def fetch_editor_id
-      card.updater_id if card.updated_at > card.created_at
+      card.updater_id if card.updated_at && card.updated_at > card.created_at
     end
 
     def fetch_designer_name

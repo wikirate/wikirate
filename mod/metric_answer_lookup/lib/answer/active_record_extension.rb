@@ -3,7 +3,7 @@ class Answer
     NAME_COLUMNS = [:metric, :company, :designer, :title, :record].freeze
 
     def answer_cards
-      map { |a| a.card }.compact
+      map(&:card).compact
     end
 
     def value_cards

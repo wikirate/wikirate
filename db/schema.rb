@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170524163333) do
+ActiveRecord::Schema.define(version: 20170524163334) do
 
   create_table "answers", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "answer_id"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20170524163333) do
     t.string "checkers"
     t.string "check_requester"
     t.integer "creator_id"
+    t.integer "editor_id"
     t.datetime "created_at"
     t.index ["answer_id"], name: "answer_id_index", unique: true
     t.index ["company_id"], name: "company_id_index"

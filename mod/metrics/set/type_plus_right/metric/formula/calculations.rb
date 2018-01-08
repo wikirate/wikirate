@@ -14,7 +14,7 @@ event :update_metric_values, :prepare_to_store,
 end
 
 # don't update if it's part of scored metric create
-event :create_metric_values, :finalize, #prepare_to_store,
+event :create_metric_values, :finalize, # prepare_to_store,
       on: :create, changed: :content, when: proc { |c| c.content.present? }  do
   # reload set modules seems to be no longer necessary
   # it used to happen at this point that left has type metric but

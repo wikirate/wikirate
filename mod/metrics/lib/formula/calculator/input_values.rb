@@ -10,8 +10,6 @@ module Formula
       InputItem = Struct.new(:card_id, :type)
 
       # @param [Array<Card>] input_cards all cards that are part of the formula
-      # @param [Boolean] multi_year input use year options that require to fetch values
-      #   for multiple year to calculate a value for one year
       def initialize input_cards
         @all_fetched = false
         @companies_with_values_by_year = Hash.new_nested ::Set
@@ -87,7 +85,7 @@ module Formula
 
       def card_id index
         @input_list[index].card_id
-        end
+      end
 
       private
 
@@ -199,12 +197,10 @@ module Formula
           end
       end
 
-      # Searches for all metric answers that are necessary to calculate all values.
-      # If a company (and a year) is given it returns only the metric value cards that
-      # are needed to calculate the value for that company (and that year)
-      # @param [Hash] opts ({})
-      # @option [String] :company
-      # @option [String] :year
+      # Searches for all metric answers for the metric given by input_card_id.
+      # If a year is given then the search will be restricted to that year
+      # @param input_card_id
+      # @param year
       def input_answers input_card_id, year
         Answer.where answer_query(input_card_id, year)
       end
@@ -216,8 +212,8 @@ module Formula
 
       def answer_query input_card_id, year
         query = { metric_id: input_card_id }
-        # search only for companies that still have a chance to reach a complete
-        # set of input values for at least one year.
+        # search only for companies that still have a chance to reach a complete set
+        # of input values for at least one year.
         query[:company_id] = @companies_with_values.to_a if @companies_with_values.present?
         query[:year] = year.to_i if year
         query

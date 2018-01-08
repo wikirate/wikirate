@@ -19,6 +19,3 @@ def directly_dependent_formula_metrics
   @dependents ||=
     Card.search type_id: MetricID, right_plus: ["formula", { refer_to: id }]
 end
-
-
-
