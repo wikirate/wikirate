@@ -82,7 +82,7 @@ RSpec.describe Card::Set::Type::MetricValue::ValueDetails do
   describe "view: score_value_detais" do
     subject do
       Card.fetch("Jedi+deadliness+Joe User+Death Star+1977")
-        .format.render :wikirating_value_details
+          .format.render :wikirating_value_details
     end
 
     specify do
@@ -103,7 +103,7 @@ RSpec.describe Card::Set::Type::MetricValue::ValueDetails do
   describe "view: wikirating_value_detais" do
     subject do
       Card.fetch("Jedi+darkness rating+Death Star+1977")
-        .format.render :wikirating_value_details
+          .format.render :wikirating_value_details
     end
 
     specify do

@@ -18,6 +18,7 @@ else
 end
 
 gem "mysql2", "~> 0.3.18"
+
 gem "bulk_insert"
 gem "descriptive_statistics" #, "2.5.1"
 gem "savanna-outliers"

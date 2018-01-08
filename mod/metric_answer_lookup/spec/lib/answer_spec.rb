@@ -1,5 +1,7 @@
 RSpec.describe Answer do
-  let(:answer) { described_class.find_by_answer_id answer_id }
+  def answer
+    described_class.find_by_answer_id answer_id
+  end
   let(:metric) { "Joe User+researched" }
   let(:answer_name) { "#{metric}+Apple_Inc+2013" }
   let(:answer_id) { Card.fetch_id answer_name }
@@ -79,7 +81,7 @@ RSpec.describe Answer do
 
     it "updates value" do
       expect { update "#{answer_name}+value", content: "85" }
-        .to change { answer_value }.from(13).to(85)
+        .to change { answer.value }.from("13").to("85")
     end
 
     it "updates designer" do
@@ -122,7 +124,7 @@ RSpec.describe Answer do
                     value: "50",
                     numeric_value: 50,
                     creator_id: Card.fetch_id("Joe User"),
-                    updated_at: be_within(1).of(Time.now),
+                    updated_at: be_within(2).of(Time.now),
                     latest: true,
                     imported: nil,
                     checkers: nil,
@@ -141,7 +143,7 @@ RSpec.describe Answer do
                     creator_id: Card.fetch_id("Joe User"),
                     updated_at: be_within(1).of(Time.now),
                     latest: true,
-                    editor_id: nil
+                    editor_id: Card.fetch_id("Joe User")
     end
   end
 end

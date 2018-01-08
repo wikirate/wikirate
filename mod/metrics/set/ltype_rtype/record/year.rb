@@ -5,12 +5,8 @@ def unknown?
 end
 
 def virtual?
-  unknown? && answer.present?
+  new_card? && answer.present?
 end
-
-# def new_card?
-#   virtual? ? false : super
-# end
 
 def answer
   @answer ||= Answer.where(record_id: left.id, year: name.right.to_i).take

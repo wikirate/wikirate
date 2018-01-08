@@ -54,7 +54,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
       Card::Metric.create name: "Jedi+formula test",
                           type: :formula,
                           formula: "{{Jedi+deadliness}}/{{Jedi+Victims by Employees}}"
-      expect(answer_value "formula test").to match(/^322/)
+      expect(answer_value("formula test")).to match(/^322/)
       Card["Jedi+formula test+formula"].update_attributes!(
         content: "{{Jedi+deadliness}}*{{Jedi+Victims by Employees}}"
       )
@@ -77,11 +77,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
 
       expect(answer_value("formula test double")).to match(/^645/)
     end
-
   end
-
-
-
 
   example "formula with formula input" do
     Card::Metric.create name: "Jedi+double friendliness",
@@ -93,7 +89,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
 
   context "when researched input changed" do
     it "updates calculated values if researched input changed" do
-      expect(answer_value "friendliness").to eq "0.01"
+      expect(answer_value("friendliness")).to eq "0.01"
       update_card "Jedi+deadliness+Death Star+1977+value", content: "10"
       researched_value = answer_value "deadliness"
       expect(researched_value).to eq "10"
