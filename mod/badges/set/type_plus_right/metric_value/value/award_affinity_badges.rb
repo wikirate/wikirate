@@ -20,11 +20,8 @@ end
 def award_create_badge_if_earned affinity, project_card=nil
   # the actions of the current act are not included
   # because we do this search before the answer table update
-  # affinity_name = affinity_name(affinity, project_card)
-  # ActManager.act_card.act_badge_count_step affinity, affinity_name
 
   count = action_count(:create, affinity, project_card) # +
-  # ActManager.act_card.act_badge_count(affinity, affinity_name)
   return unless (badge = earns_badge(:create, affinity, count))
   badge_card = fetch_badge_card badge, affinity, project_card
   award_badge badge_card
