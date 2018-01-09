@@ -17,7 +17,6 @@ module Formula
           end
         end
 
-
         # @param value_data [Array<Hash] for every input item a hash with values for every
         #   year
         # @param the year we want the input data for

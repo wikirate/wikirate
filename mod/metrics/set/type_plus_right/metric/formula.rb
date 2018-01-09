@@ -55,8 +55,7 @@ format :html do
   end
 
   def formula_text_area
-    text_area :content, rows: 5,
-                class: "d0-card-content",
+    text_area :content, rows: 5, class: "d0-card-content",
                         "data-card-type-code": card.type_code
   end
 
