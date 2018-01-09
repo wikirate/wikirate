@@ -145,7 +145,7 @@ module Formula
         initialize_company_lists company_id
         @input_list.each do |input_item|
           yield input_item
-          return if no_company_with_values_for_all_input_items?
+          break if no_company_with_values_for_all_input_items?
         end
       end
 

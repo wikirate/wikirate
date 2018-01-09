@@ -7,16 +7,16 @@ module Formula
         def initialize year_options
           @fixed_years = ::Set.new
           @no_year_options = true
-          if year_options.present?
-            year_options.each do |year_option|
-              self << interpret_year_expr(year_option)
-              next if (cur = last) == 0
-              @multi_year = true
-              @no_year_options = false
-              @fixed_years << cur if year?(cur)
-            end
+          return if year_options.blank?
+          year_options.each do |year_option|
+            self << interpret_year_expr(year_option)
+            next if (cur = last) == 0
+            @multi_year = true
+            @no_year_options = false
+            @fixed_years << cur if year?(cur)
           end
         end
+
 
         # @param value_data [Array<Hash] for every input item a hash with values for every
         #   year

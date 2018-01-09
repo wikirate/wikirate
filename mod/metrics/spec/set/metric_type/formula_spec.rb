@@ -32,7 +32,6 @@ RSpec.describe Card::Set::MetricType::Formula do
 
     let(:company_id) { Card.fetch_id "Apple Inc" }
 
-
     context "single year" do
       let(:formula) do
         "{{#{@metric_name}|year:#{@year_expr} }}+{{#{@metric_name1}}}"
