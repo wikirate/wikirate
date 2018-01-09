@@ -39,16 +39,25 @@ format :html do
   end
 
   view :editor do
-    return _render_rating_editor if card.wiki_rating?
-    return _render_categorical_editor if card.categorical?
-    return super() if card.score?
-    output [
-      text_area(:content,
-                rows: 5,
-                class: "d0-card-content",
-                "data-card-type-code" => card.type_code),
-      _render_variables
-    ]
+    if card.wiki_rating?
+      _render_rating_editor
+    elsif card.categorical?
+      _render_categorical_editor
+    elsif card.score?
+      super()
+    else
+      _render_standard_formula_editor
+    end
+  end
+
+  view :standard_formula_editor do
+    output [formula_text_area, _render_variables]
+  end
+
+  def formula_text_area
+    text_area :content, rows: 5,
+                        class: "d0-card-content",
+                        "data-card-type-code": card.type_code
   end
 
   view :new do
@@ -74,8 +83,7 @@ format :html do
   end
 end
 
-event :validate_formula, :validate,
-      when: proc { |c| c.wolfram_formula? } do
+event :validate_formula, :validate, when: :wolfram_formula? do
   formula_errors = calculator.validate_formula
   return if formula_errors.empty?
   formula_errors.each do |msg|
@@ -125,15 +133,13 @@ def add_value company, year, value
               }
 end
 
-event :validate_formula_input, :validate,
-      on: :save, changed: :content do
+event :validate_formula_input, :validate, on: :save, changed: :content do
   input_chunks.each do |chunk|
     if variable_name?(chunk.referee_name)
       errors.add :formula, "invalid variable name: #{chunk.referee_name}"
     elsif !chunk.referee_card
       errors.add :formula, "input metric #{chunk.referee_name} doesn't exist"
-    elsif chunk.referee_card.type_id != MetricID &&
-          chunk.referee_card.type_id != YearlyVariableID
+    elsif ![MetricID, YearlyVariableID].include? chunk.referee_card.type_id
       errors.add :formula, "#{chunk.referee_name} has invalid type " \
                            "#{chunk.referee_card.type_name}"
     end

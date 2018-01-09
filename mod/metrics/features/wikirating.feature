@@ -11,7 +11,7 @@ Feature: Edit wikirating
     # When I click on "Add filter"
     # And I click on "Project"
     # And I select "Evil Project" from "filter[project]"
-    And I click on metric "deadliness"
+    And I check "Jedi+deadliness+Joe Camel"
     # And I click on metric "disturbances in the Force"
     # And I wait for ajax response
     # And I press "Add this metric"

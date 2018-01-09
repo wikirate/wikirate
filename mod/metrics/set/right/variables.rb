@@ -14,21 +14,15 @@ def formula_card
   metric_card.fetch trait: :formula
 end
 
-def extract_metrics_from_formula
-  metrics = formula_card.input_names
-  Auth.as_bot do
-    update_attributes! content: metrics.to_pointer_content,
-                       type_id: PointerID
-  end
-  metrics
+def content
+  @content ||=
+    db_content.present? ? db_content : formula_card.input_names.to_pointer_content
+  # db_content should only be present when it has been set by a `card[content]`
+  # parameter. the variable card is not intended to be saved.
 end
 
 def input_metric_name variable
-  index = if variable.is_a?(Integer)
-            variable
-          elsif variable_name? variable
-            variable_index variable
-          end
+  index = variable_index variable
   input_metric_name_by_index index if index
 end
 
@@ -37,63 +31,98 @@ def input_metric_name_by_index index
 end
 
 format :html do
-  view :core do |args|
-    args ||= {}
-    items = args[:item_list] || card.item_names(context: :raw)
-    items ||= card.extract_metrics_from_formula if items.empty?
-    # items = [''] if items.empty?
-    table_content =
-      items.map.with_index do |item, index|
-        variable_row(item, index, args)
-      end
-    table(table_content, header: ["Metric", "Variable", "Example value"]) +
-      render_add_metric_button
+  def default_item_view
+    :listing
   end
 
-  view :add_metric_button do
-    target = "#modal-add-metric-slot"
+  def filter_card
+    Card.fetch :metric, :browse_metric_filter
+  end
+
+  view :edit_in_formula, tags: :unknown_ok do
+    with_hidden_subcard_content_slot { _render_editor }
+  end
+
+  def with_hidden_subcard_content_slot
+    wrap do
+      subcard_voo
+      with_nest_mode :normal do
+        output [render_hidden_content_field, yield]
+      end
+    end
+  end
+
+  def subcard_voo
+    voo.live_options[:input_name] = "card[subcards][#{card.name}]"
+    reset_form
+  end
+
+  view :edit_in_wikirating, tags: :unknown_ok do
+    with_hidden_subcard_content_slot { _render_weight_variable_editor }
+  end
+
+  view :weight_variable_editor, tags: :unknown_ok  do
+    filters = %i[score wiki_rating].map { |code| Card::Name[code] }
+    button = add_metric_button "_add-wikirating-variable",
+                               metric_type: filters
+    output [weight_variable_list, button]
+  end
+
+  def weight_variable_list
+    table_content = card.item_cards.map do |metric|
+      nest metric, view: :weight_row
+    end
+    table table_content, class: "weight-variable-list hidden"
+  end
+
+  view :editor do
+    output [variables_table,
+            add_metric_button("_add-formula-variable")]
+  end
+
+  def variables_table
+    items = card.item_names context: :raw
+    table items.map.with_index { |item, index| variable_row item, index },
+          header: ["Metric", "Variable", "Example value"]
+  end
+
+  def add_formula_metric_button
+    add_metric_button "add-formula-metric"
+  end
+
+  def add_metric_button klass, filters={}
     wrap_with :span, class: "input-group" do
-      button_tag class: "pointer-item-add slotter", situation: "outline-secondary",
-                 data: { toggle: "modal", target: target },
-                 href: path(layout: "modal", view: :edit, mark: card.name,
-                            slot: { title: "Choose Metric" }) do
+      button_tag class: "_add-metric-variable slotter #{klass}",
+                 situation: "outline-secondary",
+                 data: { toggle: "modal", target: "#modal-add-metric-slot" },
+                 href: add_metric_path(filters) do
         fa_icon(:plus) + " add metric"
       end
     end
   end
 
-  def variable_row item_name, index, args
+  def add_metric_path filters
+    path layout: :simple_modal,
+         view: :filter_items,
+         item: implicit_item_view,
+         filter_card: filter_card.name,
+         item_selector: "thumbnail",
+         slot_selector: card.patterns.first.safe_key,
+         slot: { hide: :modal_footer },
+         filter: initial_filters(filters)
+  end
+
+  def initial_filters added_filters
+    { not_ids: card.item_ids.map(&:to_s).join(",") }.merge added_filters
+  end
+
+  def variable_row item_name, index
     item_card = Card[item_name]
-    example_value =
-      if (value = item_card.try(:random_value_card))
-        nest value, view: :concise, hide: :year
-      else
-        ""
-      end
-    [
-      subformat(item_card)._render_thumbnail(args),
-      "M#{index}", # ("A".ord + args[:index]).chr
-      example_value.html_safe
-    ]
+    [nest(item_card, view: :thumbnail), "M#{index}", example_value(item_card).html_safe]
   end
 
-  view :edit do |_args|
-    return super() unless card.metric_card
-    voo.hide! :toolbar, :menu
-    frame do
-      nest [card.metric_card_name, :add_to_formula], view: :select_modal
-    end
+  def example_value variable_card
+    return "" unless (value = variable_card.try(:random_value_card))
+    nest(value, view: :concise, hide: :year).html_safe # html_safe necessary?
   end
-
-  view :missing do
-    return super() unless card.new_card?
-    if card.formula_card
-      card.extract_metrics_from_formula
-    else
-      Auth.as_bot { card.save! }
-    end
-    render! @denied_view
-  end
-
-  view :new, :missing
 end
