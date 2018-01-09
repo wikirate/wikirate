@@ -3,6 +3,7 @@ def to_variable_name index
 end
 
 def variable_index name
+  return name if name.is_a? Integer
   name.to_s =~ /^M?(\d+)$/
   Regexp.last_match(1).to_i
 end

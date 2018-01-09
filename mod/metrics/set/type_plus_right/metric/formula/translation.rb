@@ -13,7 +13,7 @@ def translation_hash
   return {} unless content.present?
   JSON.parse(content)
 rescue JSON::ParserError => _e
-  content = "{}"
+  self.content = "{}"
   return {}
   # fail Card::Error, 'fail to parse formula for categorical input'
 end

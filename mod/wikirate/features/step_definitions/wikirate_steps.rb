@@ -57,10 +57,6 @@ And(/^I click on "([^"]*)" and confirm$/) do |link|
   page.accept_confirm { click_link_or_button(link) }
 end
 
-When(/^I click on metric "([^"]*)"$/) do |metric|
-  find(:css, ".add-formula").find("h5", text: metric).click
-end
-
 When(
   /^(?:|I )fill in "([^"]*)" with card path of source with link "([^"]*)"$/
 ) do |field, value|
