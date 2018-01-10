@@ -41,6 +41,10 @@ def checkers
   check_requested? ? [] : items
 end
 
+def checker_count
+  @checker_count ||= checkers.size
+end
+
 def check_requester
   check_requested_by_card&.item_names&.first
 end
@@ -51,7 +55,7 @@ def check_requested_by_card
 end
 
 def allowed_to_check?
-  left.value_card.updater_id != Auth.current_id
+  answer.updater_id != Auth.current_id
 end
 
 def check_was_requested_before_double_check?
@@ -71,9 +75,19 @@ def option_names
   ["request"]
 end
 
+def answer
+  @answer ||= left.answer
+end
+
 format :html do
+  delegate :answer,
+           :allowed_to_check?, :checked?, :user_checked?,
+           :other_user_requested_check?, :check_requested?,
+           :checkers, :check_requester, :user, :checker_count,
+           to: :card
+
   view :edit_in_form do
-    card.other_user_requested_check? ? "" : super()
+    other_user_requested_check? ? "" : super()
   end
 
   def editor
@@ -84,71 +98,42 @@ format :html do
     "#{request_icon} Request that another researcher double check this value"
   end
 
-  view :core, cache: :never do
-    unless card.check_requested? || card.checked? || card.allowed_to_check?
-      return ""
-    end
-    wrap_with :div do
-      [
-        wrap_with(:h5, "Review"),
-        wrap_with(:p, "Does the value accurately represent its source?"),
-        check_interaction
-      ]
+  view :core, cache: :never, template: :haml
+
+  view :full_list, cache: :never do
+    with_paging do |paging_args|
+      wrap_with :div, pointer_items(paging_args.extract!(:limit, :offset)),
+                class: "pointer-list"
     end
   end
 
   view :icon, cache: :never do |args|
-    if card.checked?
+    if checked?
       double_check_icon args
-    elsif card.check_requested?
+    elsif check_requested?
       request_icon args
     else
       ""
     end
   end
 
-  def check_interaction
-    if card.user_checked?
-      user_checked_text
-    elsif card.checked?
-      _render_checked_by_list
+  def verb
+    answer.editor_id ? "last updated" : "created"
+  end
+
+  def short_checkers_list checker_view=:link
+    mention = checkers[0..2]
+    mention[0] = user.name if user_checked? && !mention.include?(user.name)
+    mention.map! { |n| nest n, view: checker_view }
+    if checker_count > 3
+      "#{mention.join ", "} and #{more_link}"
     else
-      double_check_buttons
+      mention.to_sentence
     end
   end
 
-  view :checked_by_list, cache: :never do
-    return if card.checkers.empty?
-    links = _render_shorter_search_result items: { view: :link }
-    %(
-      <div class="padding-top-10">
-        <i>#{links} <span>checked the value</span></i>
-      </div>
-    )
-  end
-
-  view :shorter_search_result, cache: :never do
-    render_view = voo.show?(:link) ? :link : :name
-    items = card.checkers
-    total_number = items.size
-    return "" if total_number.zero?
-
-    fetch_number = [total_number, 4].min
-    result = ""
-    if fetch_number > 1
-      result += items[0..(fetch_number - 2)].map do |c|
-        subformat(c).render!(render_view)
-      end.join(" , ")
-      result += " and "
-    end
-
-    result +
-      if total_number > fetch_number
-        %(<a class="known-card" href="#{card.format.render! :url}"> ) \
-          "#{total_number - 3} others</a>"
-      else
-        subformat(items[fetch_number - 1]).render!(render_view)
-      end
+  def more_link
+    link_to_view :full_list, "#{checker_count - 3} more"
   end
 
   def double_check_icon opts={}
@@ -158,53 +143,45 @@ format :html do
   end
 
   def request_icon _opts={}
-    fa_icon(:check_circle_o, class: "request-red", title: "check requested").html_safe
+    fa_icon :check_circle_o, class: "request-red", title: "check requested"
   end
 
   def data_path
     card.name.url_key
   end
 
-  def check_button_text
-    card.check_requested? ? request_text : "Double check"
-  end
-
-  def request_text
-    return unless card.check_requested?
-    "Double check #{request_icon} requested by #{card.check_requester}"
-  end
-
-  def double_check_buttons
-    output [
-      request_text,
-      check_button,
-      fix_button
-    ]
-  end
+  BTN_CLASSES = "btn btn-outline-secondary btn-sm".freeze
 
   def check_button
-    wrap_with(:button, class: "btn btn-outline-secondary btn-sm _value_check_button",
+    wrap_with(:button, class: "#{BTN_CLASSES} _value_check_button",
                        data: { path: data_path }) do
       "Yes, I checked"
     end
   end
 
+  def uncheck_button
+    wrap_with(:button, class: "#{BTN_CLASSES} _value_uncheck_button",
+              data: { path: data_path }) do
+      "Uncheck"
+    end
+  end
+
   def fix_button
-    link_to_card card.left, "No, I'll fix it", class: "btn btn-outline-secondary btn-sm", path: { view: :edit }
+    link_to_card card.left, "No, I'll fix it", class: BTN_CLASSES, path: { view: :edit }
   end
 
   def check_button_request_credit
-    return unless card.check_requested?
+    return unless check_requested?
     " #{request_icon} requested by #{card.check_requester}"
   end
 
-  def user_checked_text
-    icon_class = "fa fa-times-circle-o fa-lg cursor-p _value_uncheck_button"
-    output [
-      wrap_with(:i, '"Yes, I checked the value"'),
-      wrap_with(:i, "", class: icon_class, data: { path: data_path })
-    ]
-  end
+  # def user_checked_text
+  #   icon_class = "fa fa-times-circle-o fa-lg cursor-p _value_uncheck_button"
+  #   output [
+  #     wrap_with(:i, '"Yes, I checked the value"'),
+  #     wrap_with(:i, "", class: icon_class, data: { path: data_path })
+  #   ]
+  # end
 end
 
 event :update_answer_lookup_table_due_to_check_change, :finalize,
