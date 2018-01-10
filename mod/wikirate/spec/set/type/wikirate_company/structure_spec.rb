@@ -6,7 +6,7 @@ RSpec.describe Card::Set::Type::WikirateCompany::Structure do
     it "has jurisdiction table" do
       is_expected.to have_tag "table" do
         with_tag :tr do
-          with_tag :td, text: "Country of Headquarters"
+          with_tag :td, text: "Headquarters"
           with_tag :td, text: "California (United States)"
         end
         # with_tag :tr do

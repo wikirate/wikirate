@@ -14,7 +14,7 @@ class Answer
     end
 
     def fetch_record_id
-      card.left_id
+      card.left_id || card.left.id
     end
 
     def fetch_metric_name
@@ -47,11 +47,11 @@ class Answer
     end
 
     def fetch_creator_id
-      card.creator_id
+      card.creator_id || Card::Auth.current_id
     end
 
     def fetch_editor_id
-      card.updater_id if card.updated_at > card.created_at
+      card.updater_id if card.updated_at && card.updated_at > card.created_at
     end
 
     def fetch_designer_name
@@ -65,9 +65,7 @@ class Answer
     end
 
     def fetch_metric_type_id
-      return unless (metric_type_pointer = metric_card.fetch(trait: :metric_type))
-      metric_type_name = metric_type_pointer.item_names.first
-      (mtc = Card.quick_fetch(metric_type_name)) && mtc.id
+      metric_card&.metric_type_id
     end
 
     def fetch_value
@@ -76,14 +74,16 @@ class Answer
 
     def fetch_numeric_value
       return unless metric_card.numeric?
-      val = fetch_value
-      return if unknown?(val) || !val.number?
-      val.to_d
+      to_numeric_value fetch_value
     end
 
     def fetch_updated_at
       return card.updated_at unless (vc = card.value_card)
       [card.updated_at, vc.updated_at].compact.max
+    end
+
+    def fetch_created_at
+      card&.value_card&.created_at || created_at || Time.now
     end
 
     def fetch_checkers

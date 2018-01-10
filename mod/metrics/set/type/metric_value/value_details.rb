@@ -9,7 +9,7 @@ format :html do
   end
 
   # don't cache; view depends on formula card
-  view :formula_value_details, cache: :never do
+  view :formula_value_details, tags: :unknown_ok, cache: :never do
     wrap_value_details do
       wrap_with :div do
         [

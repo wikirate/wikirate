@@ -29,9 +29,18 @@ def metric_type_codename
   Card[metric_type].codename.to_sym
 end
 
+def metric_type_id
+  Card[metric_type].id
+end
+
 # @return array of metric answer lookup table
 def all_answers
   Answer.where(metric_id: id)
+end
+
+def answer company, year
+  company = Card.fetch_id(company) unless company.is_a? Integer
+  Answer.where(metric_id: id, company_id: company, year: year.to_i).take
 end
 
 def distinct_values
@@ -106,16 +115,6 @@ def scored?
   metric_type_codename == :score || rated?
 end
 
-# @return all metric cards that score this metric
-def related_scores
-  Card.search type_id: MetricID, left_id: id
-end
-
-# @return all metrics that use this metric in their formula
-def related_calculations
-  Card.search type_id: MetricID, right_plus: ["formula", { refer_to: id }]
-end
-
 def designer_assessed?
   research_policy.casecmp("designer assessed").zero?
 end
@@ -153,8 +152,7 @@ def value_cards _opts={}
 end
 
 def metric_value_name company, year
-  company_name = Card[company].name
-  "#{name}+#{company_name}+#{year}"
+  Card::Name[name, Card.fetch_name(company), year.to_s]
 end
 
 def metric_value_query

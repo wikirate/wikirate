@@ -6,9 +6,9 @@ class Answer
                     uniq: [:uniq],
                     where: [:where] }.freeze
 
-    def create card
+    def create cardish
       ma = Answer.new
-      ma.answer_id = card.id
+      ma.answer_id = card_id cardish
       ma.refresh
     end
 
@@ -63,9 +63,11 @@ class Answer
       hash
     end
 
+    # @param ids [Integer, Array<Integer>] card ids of metric answer cards
     def refresh ids=nil, *fields
-      if ids
-        Array(ids).each do |ma_id|
+      ids = Array(ids).compact
+      if ids.present?
+        ids.each do |ma_id|
           refresh_entry fields, ma_id
         end
       else

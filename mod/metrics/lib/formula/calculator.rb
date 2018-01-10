@@ -31,14 +31,14 @@ module Formula
 
     def input_data company, year
       @formula_card.input_cards.zip(
-        @input.input_for(year, company), year_options
+        @input.input_for(company, year), year_options
       )
     end
 
     # @return [String] the formula with nests replaced by the input values
     #   A block can be used to format the input values
     def formula_for company, year
-      input_enum = @input.input_for(year, company).each
+      input_enum = @input.input_for(company, year).each
       replace_nests do
         block_given? ? yield(input_enum.next) : input_enum.next
       end
