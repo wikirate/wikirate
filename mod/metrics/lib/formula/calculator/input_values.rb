@@ -1,7 +1,7 @@
 module Formula
   class Calculator
     # It finds all metric values and yearly values that are related to the
-    # the metrics and yearlys variables of a formula and prepares the values
+    # the metrics and yearly variables of a formula and prepares the values
     # for calculating the formula values
     # The key method is #each that iterates over all
     # company and year combination that could possible get a calculated value
