@@ -11,9 +11,19 @@ format :html do
 
   def color_class value, mono
     return "light-color-0" unless value.number?
+    value = normalize_value value
+    prefix = mono ? 'mono' : 'multi'
+    "#{prefix}-color-#{value}"
+  end
+
+  def normalize_value value
     value = value.to_i
-    value = 0 if value < 0
-    value = 9 if value > 9
-    "#{mono ? 'mono' : 'multi'}-color-#{value}"
+    if value.negative?
+      0
+    elsif value > 9
+      9
+    else
+      value
+    end
   end
 end
