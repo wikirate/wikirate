@@ -2,7 +2,7 @@
 
 require_relative "../../../support/award_badges_shared_examples"
 
-describe Card::Set::Type::Metric::AwardBadges do
+RSpec.describe Card::Set::Type::Metric::AwardBadges do
   let(:badge_action) { :create }
   let(:badge_type) { :metric }
   let(:sample_acting_card) { sample_metric }
