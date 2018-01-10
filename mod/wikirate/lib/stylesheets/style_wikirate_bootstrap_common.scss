@@ -70,6 +70,87 @@
 .request-red {
   color: $highlight-color;
 }
+
+//Colors for colorify method
+
+// Gradient generated from this url
+// https://gka.github.io/palettes
+// /#colors=,red,orange,yellow,green|steps=10|bez=1|coL=0
+
+.multi-color-0{
+  color: #ff0000;
+}
+.multi-color-1{
+  color: #ff5700;
+}
+.multi-color-2{
+  color: #ff7e00;
+}
+.multi-color-3{
+  color: #fc9b00;
+}
+.multi-color-4{
+  color: #f1b000;
+}
+.multi-color-5{
+  color: #debd00;
+}
+.multi-color-6{
+  color: #c2c000;
+}
+.multi-color-7{
+  color: #9ab700;
+}
+.multi-color-8{
+  color: #65a300;
+}
+.multi-color-9{
+  color: #008000;
+}
+
+// Gradient generated from this url
+// https://gka.github.io/palettes/
+// #colors=CornflowerBlue,LightSteelBlue|steps=10|bez=1|coL=1
+
+.mono-color-0{
+  color: #6495ed;
+}
+.mono-color-1{
+  color: #6f9aeb;
+}
+.mono-color-2{
+  color: #799fea;
+}
+.mono-color-3{
+  color: #82a4e8;
+}
+.mono-color-4{
+  color: #8aa9e7;
+}
+.mono-color-5{
+  color: #93afe5;
+}
+.mono-color-6{
+  color: #9ab4e3;
+}
+.mono-color-7{
+  color: #a2b9e2;
+}
+.mono-color-8{
+  color: #a9bfe0;
+}
+.mono-color-9{
+  color: #b0c4de;
+}
+
+// light colors
+.light-color-0{
+  color: #ccc;
+}
+.light-color-1{
+  color: #e4e9f1;
+}
+
 //Text adjustments
 .text-align-left {
   text-align: left;
