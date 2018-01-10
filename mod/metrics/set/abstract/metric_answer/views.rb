@@ -70,7 +70,7 @@ format :html do
 
   def shorten_score value
     return value if value.number?
-    value.to_sym == :Unknown ? "?" : "!"
+    unknown?(value) ? "?" : "!"
   end
 
   def pretty_value
@@ -86,13 +86,8 @@ format :html do
     end
   end
 
-  def numeric_metric?
-    (value_type = card.metric_card.fetch trait: :value_type) &&
-      %w[Number Money].include?(value_type.item_names[0])
-  end
-
   def numeric_value?
-    return false unless numeric_metric? || !card.metric_card.researched?
+    return false unless card.metric_card.numeric?
     !card.value_card.unknown_value?
   end
 

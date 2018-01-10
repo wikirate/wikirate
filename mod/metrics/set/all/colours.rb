@@ -10,10 +10,11 @@ format :html do
   end
 
   def color_class value, mono
-    return "light-color-0" unless value.number?
-    value = normalize_value value
-    prefix = mono ? "mono" : "multi"
-    "#{prefix}-color-#{value}"
+    if value.number?
+      "#{mono ? "mono" : "multi"}-color-#{normalize_value value}"
+    else
+      "light-color-0"
+    end
   end
 
   def normalize_value value
