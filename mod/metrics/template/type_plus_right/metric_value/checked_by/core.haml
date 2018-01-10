@@ -3,16 +3,10 @@
   - if checked?
     .padding-top-10
       %i
-        = short_checkers_list
+        = checkers_list
         %span checked this value
   - else
     Nobody has checked this value since it was #{verb}
   -if check_requested?
     Double check #{request_icon} requested by #{check_requester}
-  - if allowed_to_check?
-    %p Does the value accurately represent its source?
-    - if user_checked?
-      = uncheck_button
-    - else
-      = check_button
-      = fix_button
+  = render :check_interaction

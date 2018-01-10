@@ -98,14 +98,9 @@ format :html do
     "#{request_icon} Request that another researcher double check this value"
   end
 
-  view :core, cache: :never, template: :haml
+  view :core, template: :haml
 
-  view :full_list, cache: :never do
-    with_paging do |paging_args|
-      wrap_with :div, pointer_items(paging_args.extract!(:limit, :offset)),
-                class: "pointer-list"
-    end
-  end
+  view :check_interaction, cache: :never, template: :haml
 
   view :icon, cache: :never do |args|
     if checked?
@@ -121,12 +116,16 @@ format :html do
     answer.editor_id ? "last updated" : "created"
   end
 
+  def checkers_list
+    checkers.map { |n| nest n, view: :link }.to_sentence
+  end
+
   def short_checkers_list checker_view=:link
     mention = checkers[0..2]
     mention[0] = user.name if user_checked? && !mention.include?(user.name)
     mention.map! { |n| nest n, view: checker_view }
     if checker_count > 3
-      "#{mention.join ", "} and #{more_link}"
+      "#{mention.join ', '} and #{more_link}"
     else
       mention.to_sentence
     end
@@ -134,6 +133,13 @@ format :html do
 
   def more_link
     link_to_view :full_list, "#{checker_count - 3} more"
+  end
+
+  view :full_list, cache: :never do
+    with_paging do |paging_args|
+      wrap_with :div, pointer_items(paging_args.extract!(:limit, :offset)),
+                class: "pointer-list"
+    end
   end
 
   def double_check_icon opts={}
@@ -152,36 +158,18 @@ format :html do
 
   BTN_CLASSES = "btn btn-outline-secondary btn-sm".freeze
 
-  def check_button
-    wrap_with(:button, class: "#{BTN_CLASSES} _value_check_button",
-                       data: { path: data_path }) do
-      "Yes, I checked"
+  # @param text [String] linktext
+  # @param action [Symbol] :check or :uncheck
+  def check_button text, action: :check
+    wrap_with :button, class: "#{BTN_CLASSES} _value_#{action}_button",
+                       data: { path: data_path } do
+      text
     end
   end
 
-  def uncheck_button
-    wrap_with(:button, class: "#{BTN_CLASSES} _value_uncheck_button",
-              data: { path: data_path }) do
-      "Uncheck"
-    end
-  end
-
-  def fix_button
+  def fix_link
     link_to_card card.left, "No, I'll fix it", class: BTN_CLASSES, path: { view: :edit }
   end
-
-  def check_button_request_credit
-    return unless check_requested?
-    " #{request_icon} requested by #{card.check_requester}"
-  end
-
-  # def user_checked_text
-  #   icon_class = "fa fa-times-circle-o fa-lg cursor-p _value_uncheck_button"
-  #   output [
-  #     wrap_with(:i, '"Yes, I checked the value"'),
-  #     wrap_with(:i, "", class: icon_class, data: { path: data_path })
-  #   ]
-  # end
 end
 
 event :update_answer_lookup_table_due_to_check_change, :finalize,
@@ -194,7 +182,8 @@ event :user_checked_value, :prepare_to_store, on: :save, when: :add_checked_flag
   update_user_check_log.add_id left.id
 end
 
-event :user_unchecked_value, :prepare_to_store, on: :update, when: :remove_checked_flag? do
+event :user_unchecked_value, :prepare_to_store,
+      on: :update, when: :remove_checked_flag? do
   drop_checker
   update_user_check_log.drop_id left.id
 end

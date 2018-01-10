@@ -18,7 +18,7 @@ RSpec.describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
     context "when nobody checked" do
       example "creator", with_user: "WikiRate Bot" do
         is_expected.to have_tag :div do
-          with_tag :h5, text: "Checks (0)"
+          with_tag :h5, "Checks (0)"
           with_text /Nobody has checked this value since it was created/
           without_text "checked this value"
           without_tag :button
@@ -27,11 +27,11 @@ RSpec.describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
 
       example "other user" do
         is_expected.to have_tag :div do
-          with_tag :h5, text: "Checks (0)"
+          with_tag :h5, "Checks (0)"
           with_text /Nobody has checked this value since it was created/
           without_text "checked this value"
-          with_tag :button, text: "Yes, I checked"
-          with_tag :a, text: "No, I'll fix it"
+          with_tag :button, "Yes, I checked"
+          with_tag :a, "No, I'll fix it"
         end
       end
 
@@ -44,17 +44,17 @@ RSpec.describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
 
         example "creator", with_user: "Wikirate Bot" do
           is_expected.to have_tag :div do
-            with_tag :h5, text: "Checks (0)"
+            with_tag :h5, "Checks (0)"
             with_text /Nobody has checked this value since it was last updated/
             without_text "checked this value"
-            with_tag :button, text: "Yes, I checked"
-            with_tag :a, text: "No, I'll fix it"
+            with_tag :button, "Yes, I checked"
+            with_tag :a, "No, I'll fix it"
           end
         end
 
         example "updater", with_user: "John" do
           is_expected.to have_tag :div do
-            with_tag :h5, text: "Checks (0)"
+            with_tag :h5, "Checks (0)"
             with_text /Nobody has checked this value since it was last updated/
             without_text "checked this value"
             without_tag :button
@@ -70,7 +70,7 @@ RSpec.describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
         end
       end
 
-      example "creator", with_user: "Wikirate Bot" do
+      example "creator", with_user: "WikiRate Bot" do
         is_expected.to have_tag :div do
           with_tag :h5, "Checks (1)"
           with_tag :a, "John"
@@ -93,8 +93,8 @@ RSpec.describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
           with_tag :h5, "Checks (1)"
           with_tag :a, "John"
           with_text /checked this value/
-          with_tag :button, text: "Yes, I checked"
-          with_tag :a, text: "No, I'll fix it"
+          with_tag :button,"Yes, I checked"
+          with_tag :a, "No, I'll fix it"
         end
       end
     end
@@ -112,7 +112,7 @@ RSpec.describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
         is_expected.to have_tag :div do
           with_tag :h5, "Checks (4)"
           with_tag :a, "Joe Admin"
-          with_text /Joe Admin, Joe User, Joe Camel and 1 more checked this value/
+          with_text /John, Joe User, Joe Camel, and Joe Admin/
           with_tag :button, "Uncheck"
         end
       end
