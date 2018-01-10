@@ -207,8 +207,9 @@ format :html do
   end
 end
 
-event :update_answer_lookup_table_due_to_check_change, :finalize, changed: :content do
-  refresh_answer_lookup_entry left_id
+event :update_answer_lookup_table_due_to_check_change, :finalize,
+      changed: :content, on: :update do
+  update_answer answer_id: left_id
 end
 
 event :user_checked_value, :prepare_to_store, on: :save, when: :add_checked_flag? do

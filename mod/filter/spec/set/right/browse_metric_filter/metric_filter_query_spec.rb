@@ -12,69 +12,65 @@ describe Card::Set::Right::BrowseMetricFilter do
   describe "filter_wql" do
     subject { card.filter_wql_from_params }
 
-    def wql args
-      args # .merge type_id: Card::MetricID
-    end
-
     context "name argument" do
       before { filter_args name: "CDP" }
-      it { is_expected.to eq(wql(name: %w[match CDP])) }
+      it { is_expected.to eq(name: %w[match CDP]) }
     end
 
     context "company argument" do
       before { filter_args wikirate_company: "Apple Inc" }
-      it { is_expected.to eq wql(right_plus: "Apple Inc") }
+      it { is_expected.to eq(right_plus: "Apple Inc") }
     end
 
     context "topic argument" do
       before { filter_args wikirate_topic: "myTopic" }
-      it do
-        is_expected.to eq wql(
-          right_plus: [Card::WikirateTopicID, { refer_to: "myTopic" }]
-        )
-      end
+      it { is_expected.to eq(topic_wql) }
+    end
+
+    def topic_wql
+      simple_field_filter Card::WikirateTopicID, "myTopic"
+    end
+
+    def simple_field_filter field_id, value
+      { right_plus: [field_id, { refer_to: { name: value } }] }
     end
 
     context "designer argument" do
       before { filter_args designer: "myDesigner" }
-      it do
-        is_expected.to eq wql(part: "myDesigner")
-      end
+      it { is_expected.to eq(part: "myDesigner") }
     end
 
     context "metric type" do
       before { filter_args metric_type: "researched" }
-      it do
-        is_expected.to eq wql(
-          right_plus: [Card::MetricTypeID, { refer_to: "researched" }]
-        )
-      end
+      it { is_expected.to eq(metric_type_wql) }
+    end
+
+    def metric_type_wql
+      simple_field_filter Card::MetricTypeID, "researched"
     end
 
     context "research policy" do
       before { filter_args research_policy: "community assessed" }
-      it do
-        is_expected.to eq wql(right_plus: [Card::ResearchPolicyID,
-                                           { refer_to: "community assessed" }])
-      end
+      it { is_expected.to eq(policy_wql) }
+    end
+
+    def policy_wql
+      simple_field_filter Card::ResearchPolicyID, "community assessed"
     end
 
     context "year" do
       before { filter_args year: "2015" }
       it do
-        is_expected.to eq wql(
-          right_plus: { type_id: Card::WikirateCompanyID,
-                        right_plus: "2015" }
-        )
+        is_expected.to eq(right_plus: { type_id: Card::WikirateCompanyID,
+                                        right_plus: "2015" })
       end
     end
 
     context "project argument" do
       before { filter_args project: "myProject" }
       it do
-        is_expected.to eq wql(
-          referred_to_by: { left: "myProject", right_id: Card::MetricID }
-        )
+        is_expected.to eq(referred_to_by: { left: "myProject",
+                                            right_id: Card::MetricID })
       end
     end
 
@@ -89,22 +85,15 @@ describe Card::Set::Right::BrowseMetricFilter do
                     year: "2015",
                     project: "myProject"
       end
+
       it "joins filter conditions correctly" do
-        is_expected.to eq wql(
+        is_expected.to eq(
           name: %w[match CDP],
-          and: {
-            right_plus: [Card::ResearchPolicyID,
-                         { refer_to: "community assessed" }],
-            and: {
-              right_plus: [Card::MetricTypeID, { refer_to: "researched" }],
-              and: {
-                right_plus: [Card::WikirateTopicID, { refer_to: "myTopic" }],
-                and: {
-                  right_plus: "Apple Inc"
-                }
-              }
-            }
-          },
+          and: policy_wql.merge(
+            and: metric_type_wql.merge(
+              and: topic_wql.merge(and: { right_plus: "Apple Inc" })
+            )
+          ),
           right_plus: { type_id: Card::WikirateCompanyID, right_plus: "2015" },
           part: "myDesigner",
           referred_to_by: { left: "myProject", right_id: Card::MetricID }

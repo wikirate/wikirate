@@ -1,5 +1,3 @@
-event :update_answer_lookup_table_due_to_metric_type_change, :finalize do
-  left.metric_value_cards.each do |answer_card|
-    refresh_answer_lookup_entry answer_card.id
-  end
+event :update_answer_lookup_table_due_to_metric_type_change, :finalize, on: :update do
+  update_answer metric_id: left_id
 end

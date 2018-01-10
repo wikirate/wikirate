@@ -1,16 +1,18 @@
 RSpec.describe Answer do
-  let(:answer) { described_class.find_by_answer_id answer_id }
+  def answer
+    described_class.find_by_answer_id answer_id
+  end
   let(:metric) { "Joe User+researched" }
   let(:answer_name) { "#{metric}+Apple_Inc+2013" }
   let(:answer_id) { Card.fetch_id answer_name }
 
   describe "seeded metric answer table" do
-    it "has correct count" do
+    it "has more than researched values" do
       expect(described_class.count)
-        .to eq Card.search(type_id: Card::MetricValueID, return: :count)
+        .to be > Card.search(type_id: Card::MetricValueID, return: :count)
     end
 
-    context "random example" do
+    describe "random example" do
       it "exists" do
         is_expected.to be_instance_of(described_class)
       end
@@ -78,8 +80,8 @@ RSpec.describe Answer do
     end
 
     it "updates value" do
-      update "#{answer_name}+value", content: "85"
-      expect(answer.value).to eq "85"
+      expect { update "#{answer_name}+value", content: "85" }
+        .to change { answer.value }.from("13").to("85")
     end
 
     it "updates designer" do
@@ -100,7 +102,48 @@ RSpec.describe Answer do
     end
   end
 
-  describe "fetch" do
-    described_class.fetch company_id: Card.fetch_id("Apple Inc")
+  # describe "fetch" do
+  #   described_class.fetch company_id: Card.fetch_id("Apple Inc")
+  # end
+
+  describe "calculated answers" do
+    let(:metric) { Card["Jedi+friendliness"] }
+
+    specify "#calculated_answer", with_user: "Joe User" do
+      a = described_class.create_calculated_answer metric, "Death Star", 2001, "50"
+      expect(a.attributes.symbolize_keys)
+        .to include answer_id: nil,
+                    record_id: be_a_integer,
+                    designer_id: be_a_integer,
+                    metric_id: be_a_integer,
+                    metric_type_id: Card::FormulaID,
+                    year: 2001,
+                    metric_name: "Jedi+friendliness",
+                    company_name: "Death Star",
+                    record_name: "Jedi+friendliness+Death Star",
+                    value: "50",
+                    numeric_value: 50,
+                    creator_id: Card.fetch_id("Joe User"),
+                    updated_at: be_within(2).of(Time.now),
+                    latest: true,
+                    imported: nil,
+                    checkers: nil,
+                    check_requester: nil,
+                    editor_id: nil,
+                    policy_id: nil
+    end
+
+    specify "#update_value", with_user: "Joe User" do
+      a = described_class.create_calculated_answer metric, "Death Star", 2001, "50"
+      a.update_value "100.5"
+      expect(a.attributes.symbolize_keys)
+        .to include answer_id: nil,
+                    value: "100.5",
+                    numeric_value: 100.5,
+                    creator_id: Card.fetch_id("Joe User"),
+                    updated_at: be_within(1).of(Time.now),
+                    latest: true,
+                    editor_id: Card.fetch_id("Joe User")
+    end
   end
 end

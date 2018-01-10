@@ -4,23 +4,22 @@
 # Card::Metric.create name: 'Jedi+deadliness+Joe User',
 #                     type: :score,
 #                     formula: '{{Jedi+deadliness}}/10'
-describe Card::Set::MetricType::Score do
+RSpec.describe Card::Set::MetricType::Score do
+  let(:metric) { Card[@name] }
+
+  before { @name = "Jedi+deadliness+Joe User" }
+
   describe "score card" do
-    subject { Card[:score] }
+    let(:score_card) { Card[:score] }
 
     it { is_expected.to be_truthy }
     it "has codename" do
-      expect(subject.codename).to eq :score
+      expect(score_card.codename).to eq :score
     end
     it 'has type "metric type"' do
-      expect(subject.type_id).to eq Card["metric type"].id
+      expect(score_card.type_id).to eq Card["metric type"].id
     end
   end
-
-  before do
-    @name = "Jedi+deadliness+Joe User"
-  end
-  let(:metric) { Card[@name] }
 
   describe "#metric_type" do
     subject { metric.metric_type }
@@ -94,11 +93,13 @@ describe Card::Set::MetricType::Score do
   end
 
   def score_value company="Samsung", year="2014"
-    score_value_card(company, year).content
+    score_answer(company, year).value
   end
 
-  def score_value_card company="Samsung", year="2014"
-    Card["Joe User+#{@metric_title}+Big Brother+#{company}+#{year}+value"]
+  def score_answer company="Samsung", year="2014"
+    Answer.where(metric_id: Card.fetch_id("Joe User+#{@metric_title}+Big Brother"),
+                 company_id: Card.fetch_id(company), year: year.to_i)
+          .take
   end
 
   describe "score for numerical metric" do
@@ -119,7 +120,7 @@ describe Card::Set::MetricType::Score do
         expect(score_value).to eq("10.0")
         expect(score_value("Samsung", "2015")).to eq("4.0")
         expect(score_value("Sony_Corporation")).to eq("4.0")
-        expect(score_value_card("Death_Star", "1977")).to be_falsey
+        expect(score_answer("Death_Star", "1977")).to be_falsey
       end
 
       context "and formula changes" do
@@ -140,7 +141,7 @@ describe Card::Set::MetricType::Score do
 
       context "and a input metric value is missing" do
         it "doesn't create score value" do
-          expect(score_value_card("Death Star", "1977")).to be_falsey
+          expect(score_answer("Death Star", "1977")).to be_falsey
         end
         it "creates score value if missing value is added" do
           Card::Auth.as_bot do
@@ -162,7 +163,7 @@ describe Card::Set::MetricType::Score do
           Card::Auth.as_bot do
             Card["#{@metric_name}+Samsung+2014+value"].delete
           end
-          expect(score_value_card).to be_falsey
+          expect(score_answer).to be_falsey
         end
       end
     end
@@ -193,20 +194,22 @@ describe Card::Set::MetricType::Score do
     end
   end
 
-  context "if original value changed" do
-    before do
-      Card["Jedi+deadliness+Death Star+1977+value"].update_attributes!(
-        content: 40
-      )
+  context "when original value changed" do
+    def answer metric
+      Answer.where(metric_id: Card.fetch_id(metric),
+                   company_id: Card.fetch_id("Death Star"), year: 1977).take
     end
+
+    before do
+      Card["Jedi+deadliness+Death Star+1977+value"].update_attributes! content: 40
+    end
+
     it "updates scored valued" do
-      expect(Card["Jedi+deadliness+Joe User+Death Star+1977+value"].content)
-        .to eq "4.0"
+      expect(answer("Jedi+deadliness+Joe User").value).to eq "4.0"
     end
 
     it "updates dependent ratings" do
-      expect(Card["Jedi+darkness rating+Death Star+1977+value"].content)
-        .to eq "6.4"
+      expect(answer("Jedi+darkness rating").value).to eq "6.4"
     end
   end
 
