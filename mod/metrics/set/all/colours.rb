@@ -1,33 +1,19 @@
 format :html do
   def colorify value, mono=false
-    return "" if value == ""
-    color_class = number?(value) ? pick_color(value, mono) : "light-color-0"
-    wrap_color_div(value, color_class)
-  end
-
-  def pick_color value, mono
-    value = value.to_f.ceil
-    color_css = mono ? "mono-color-" : "multi-color-"
-    return color_css + "0" if value <= 1
-    return color_css + "9" if value >= 10
-    [color_css,value - 1].join
-  end
-
-  def wrap_color_div value, color
-    css_classes = "fa fa-square " + color
-    square_icon = wrap_with(:i, "", class: css_classes)
-    value = wrap_with(:span, value)
+    return "" if value.blank?
     wrap_with :div, class: "range-value" do
       [
-        value,
-        square_icon
+        wrap_with(:span, value),
+        fa_icon(:square, color_class(value, mono))
       ]
     end
   end
 
-  def number? str
-    true if Float(str)
-  rescue
-    false
+  def color_class value, mono
+    return "light-color-0" unless value.number?
+    value = value.to_i
+    value = 0 if value < 0
+    value = 9 if value > 9
+    "#{mono ? 'mono' : 'multi'}-color-#{value}"
   end
 end

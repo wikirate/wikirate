@@ -76,7 +76,7 @@
 // Gradient generated from this url
 // https://gka.github.io/palettes
 // /#colors=,red,orange,yellow,green|steps=10|bez=1|coL=0
-
+// 0 <= x < 1
 .multi-color-0{
   color: #ff0000;
 }
@@ -101,9 +101,11 @@
 .multi-color-7{
   color: #9ab700;
 }
+//8 <= x < 9
 .multi-color-8{
   color: #65a300;
 }
+//9 <= x <= 10
 .multi-color-9{
   color: #008000;
 }
