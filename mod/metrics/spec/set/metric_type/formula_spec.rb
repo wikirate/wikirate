@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-describe Card::Set::MetricType::Formula do
+RSpec.describe Card::Set::MetricType::Formula do
   before do
     @metric_name = "Joe User+researched"
     @metric_name1 = "Joe User+researched number 1"
@@ -13,30 +13,28 @@ describe Card::Set::MetricType::Formula do
   end
 
   describe "formula card" do
-    subject { Card[:formula] }
+    let(:formula_card) { Card[:formula] }
 
-    it { is_expected.to be_instance_of(Card) }
     it "has codename" do
-      expect(subject.codename).to eq :formula
+      expect(formula_card.codename).to eq :formula
     end
     it 'has type "metric type"' do
-      expect(subject.type_id).to eq Card["metric type"].id
+      expect(formula_card.type_id).to eq Card["metric type"].id
     end
   end
 
   describe "formula with year reference" do
     subject do
-      formula_metric = create_metric(
-        name: "rating1", type: :formula,
-        formula: formula
-      )
-      Card["#{formula_metric.name}+Apple Inc+2015+value"].content
+      formula_metric = create_metric name: "rating1", type: :formula, formula: formula
+      Answer.where(metric_name: formula_metric.name, company_id: company_id, year: 2015)
+            .take.value
     end
+
+    let(:company_id) { Card.fetch_id "Apple Inc" }
 
     context "single year" do
       let(:formula) do
-        "{{#{@metric_name}|year:#{@year_expr} }}+" \
-                      "{{#{@metric_name1}}}"
+        "{{#{@metric_name}|year:#{@year_expr} }}+{{#{@metric_name1}}}"
       end
 
       it "fixed year" do
@@ -55,8 +53,7 @@ describe Card::Set::MetricType::Formula do
 
     context "sum of" do
       let(:formula) do
-        "Sum[{{#{@metric_name}|year:#{@year_expr} }}]+" \
-                      "{{#{@metric_name1}}}"
+        "Sum[{{ #{@metric_name}|year:#{@year_expr} }}]+{{#{@metric_name1}}}"
       end
 
       it "relative range" do
@@ -150,11 +147,12 @@ describe Card::Set::MetricType::Formula do
   end
 
   def calc_value company="Samsung", year="2014"
-    calc_value_card(company, year).content
+    calc_answer(company, year).value
   end
 
-  def calc_value_card company="Samsung", year="2014"
-    Card["Joe User+#{@metric_title}+#{company}+#{year}+value"]
+  def calc_answer company="Samsung", year="2014"
+    Answer.where(metric_id: Card.fetch_id("Joe User+#{@metric_title}"),
+                 company_id: Card.fetch_id(company), year: year.to_i).take
   end
 
   def test_calculation input, output
@@ -176,7 +174,7 @@ describe Card::Set::MetricType::Formula do
       test_calculation [], "60.0"
       test_calculation %w[Samsung 2015], "29.0"
       test_calculation %w[Sony_Corporation], "9.0"
-      not_researched_card = calc_value_card "Death_Star", "1977"
+      not_researched_card = calc_answer "Death_Star", "1977"
       expect(not_researched_card).to be_falsey
     end
 
@@ -188,14 +186,17 @@ describe Card::Set::MetricType::Formula do
           )
         end
       end
+
       it "updates existing calculated value" do
         update_formula "{{%s}}*4+{{%s}}*2"
         expect(calc_value).to eq "50.0"
       end
+
       it "removes incomplete calculated value" do
         update_formula "{{%s}}*5+{{%s}}*2+{{%s}}"
-        expect(calc_value_card("Sony_Corporation", "2014")).to be_falsey
+        expect(calc_answer("Sony_Corporation", "2014")).to be_falsey
       end
+
       it "adds complete calculated value" do
         update_formula "{{%s}}*5"
         test_calculation %w[Death_Star 1977], "25.0"
@@ -204,7 +205,7 @@ describe Card::Set::MetricType::Formula do
 
     context "and input metric value is missing" do
       it "doesn't create calculated value" do
-        expect(calc_value_card("Death Star", "1977")).to be_falsey
+        expect(calc_answer("Death Star", "1977")).to be_falsey
       end
       it "creates calculated value if missing value is added" do
         Card::Auth.as_bot do
@@ -221,16 +222,15 @@ describe Card::Set::MetricType::Formula do
 
     context "and input metric value changes" do
       it "updates calculated value" do
-        Card["#{@metric_name1}+Samsung+2014+value"].update_attributes!(
-          content: "1"
-        )
-        expect(calc_value).to eq "15.0"
+        card = Card["#{@metric_name1}+Samsung+2014+value"]
+        expect { card.update_attributes! content: "1" }
+          .to change { calc_value }.from("60.0").to("15.0")
       end
       it "removes incomplete calculated values" do
         Card::Auth.as_bot do
           Card["#{@metric_name1}+Samsung+2014+value"].delete
         end
-        expect(calc_value_card).to be_falsey
+        expect(calc_answer).to be_falsey
       end
     end
   end
@@ -250,7 +250,7 @@ describe Card::Set::MetricType::Formula do
       test_calculation [], "60.0"
       test_calculation %w[Samsung 2015], "29.0"
       test_calculation %w[Sony_Corporation], "9.0"
-      not_researched_card = calc_value_card "Death_Star", "1977"
+      not_researched_card = calc_answer "Death_Star", "1977"
       expect(not_researched_card).to be_falsey
     end
   end

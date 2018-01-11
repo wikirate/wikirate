@@ -34,7 +34,7 @@ format :html do
   end
 
   view :formula_thumbnail do
-    "</span>#{thumbnail}<span>"
+    "</span>#{_render_thumbnail}<span>"
   end
 
   view :fixed_value do

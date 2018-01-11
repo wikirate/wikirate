@@ -51,7 +51,7 @@ end
 
 # needed for "found_by" wql searches that refer to search results
 # of these cards
-def wql_hash
+def wql_from_content
   ids = search return: :id
   if ids.any?
     { id: [:in] + ids }
@@ -60,8 +60,7 @@ def wql_hash
   end
 end
 
-# turn query caching off because wql_hash varies and fetch_query
-# doesn't recognizes changes in wql_hash
-def fetch_query args={}
-  query(args.clone)
+# turn query caching off because wql_from_content can change
+def cache_query?
+  false
 end

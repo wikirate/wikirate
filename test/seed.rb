@@ -23,11 +23,15 @@ class SharedData
     "Slate Rock and Gravel Company" => "Yabba Dabba Doo!",
     "Los Pollos Hermanos" => "I'm the one who knocks",
     "SPECTRE" => "shaken not stirred"
+    # in addition pulled from production:
+    # Google Inc, Apple Inc, Samsung, Siemens AG, Sony Corporation, Amazon.com
   }.freeze
 
   TOPICS = {
     "Force" => "A Jedi uses the Force for knowledge and defense, never for attack.",
     "Taming" => "What a cute animal"
+    # in addition pulled from production:
+    # Natural Resource Use, Community, Human Rights, Climate Change, Animal Welfare
   }.freeze
 
   class << self

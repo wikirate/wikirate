@@ -18,6 +18,7 @@ namespace :wikirate do
         ensure_env :init_test, task, args do
           execute_command "rake decko:seed_without_reset", :test
           Rake::Task["wikirate:test:import_from"].invoke(args[:location])
+          Delayed::Job.delete_all
           Rake::Task["wikirate:test:dump"].invoke(base_dump_path)
         end
       end

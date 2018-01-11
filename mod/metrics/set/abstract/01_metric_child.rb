@@ -115,6 +115,10 @@ def company_card
   Card.fetch company
 end
 
+def company_id
+  Card.fetch_id company
+end
+
 def answer_name
   "#{metric_name}+#{company_name}+#{year}"
 end
