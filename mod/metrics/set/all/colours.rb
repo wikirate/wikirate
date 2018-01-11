@@ -11,7 +11,7 @@ format :html do
 
   def color_class value, mono
     if value.number?
-      "#{mono ? "mono" : "multi"}-color-#{normalize_value value}"
+      "#{mono ? :mono : :multi}-color-#{normalize_value value}"
     else
       "light-color-0"
     end
