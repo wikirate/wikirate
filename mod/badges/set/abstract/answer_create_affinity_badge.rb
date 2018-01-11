@@ -12,7 +12,7 @@ format :html do
   delegate :affinity, :affinity_card, :affinity_type, :badge, to: :card
 
   view :badge, tags: :unknown_ok do
-    voo.title  =
+    voo.title =
       if affinity_type == :designer
         "Metric Designer"
       else
