@@ -2,6 +2,7 @@
 
 include_set Type::SearchType
 include_set Abstract::Filter
+include_set Abstract::FilterFormgroups
 
 def filter_keys
   %i[metric designer wikirate_topic project year]

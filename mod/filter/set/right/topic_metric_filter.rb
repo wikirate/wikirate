@@ -1,4 +1,5 @@
 include_set Abstract::RightFilterForm
+include_set Abstract::FilterFormgroups
 
 def filter_keys
   %i[metric research_policy metric_type]

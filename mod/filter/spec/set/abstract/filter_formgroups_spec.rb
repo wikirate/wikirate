@@ -39,7 +39,7 @@ describe Card::Set::Abstract::FilterFormgroups do
 
   describe "research_policy formgroup" do
     context "select form" do
-      subject { card.format.research_policy_select }
+      subject { card.format.render_filter_research_policy_formgroup }
 
       it "renders select list" do
         is_expected.to have_tag(
@@ -60,13 +60,6 @@ describe Card::Set::Abstract::FilterFormgroups do
   end
 
   describe "metric_type formgroup" do
-    context "select form" do
-      subject { card.format.metric_type_select }
-
-      it "renders select list" do
-        is_expected.to have_tag(:select, with: { name: "filter[metric_type]" })
-      end
-    end
     context "multiselect form" do
       subject { card.format.render_filter_metric_type_formgroup }
 
