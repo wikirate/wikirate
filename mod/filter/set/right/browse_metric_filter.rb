@@ -55,27 +55,20 @@ format :html do
     }
   end
 
-  view :metric_type_formgroup, cache: :never do
-    metric_type_select
-  end
-
-  view :research_policy_formgroup, cache: :never do
-    research_policy_select
-  end
-
-  view :wikirate_topic_formgroup, cache: :never do
-    "woot"
-  end
-
   def type_options type_codename, order="asc"
     if type_codename == :wikirate_topic
-      Card.search referred_to_by: {
-        left: { type_id: Card::MetricID },
-        right: "topic"
-      }, type_id: Card::WikirateTopicID,
-                  return: :name, sort: "name", dir: order
+      wikirate_topic_type_options order
     else
-      super type_codename, order
+      super
     end
+  end
+
+  def wikirate_topic_type_options order
+    Card.search referred_to_by: { left: { type_id: Card::MetricID },
+                                  right: "topic" },
+                type_id: Card::WikirateTopicID,
+                return: :name,
+                sort: "name",
+                dir: order
   end
 end

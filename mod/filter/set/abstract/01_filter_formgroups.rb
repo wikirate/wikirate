@@ -8,9 +8,7 @@ format :html do
   end
 
   view :filter_wikirate_topic_formgroup, cache: :never do
-    "I am fwtf"
-
-    # select_filter_type_based :wikirate_topic
+    multiselect_filter :wikirate_topic
     # autocomplete_filter :wikirate_topic
   end
 
@@ -28,17 +26,8 @@ format :html do
     multiselect_filter :research_policy, "Research Policy"
   end
 
-  def research_policy_select
-    select_filter_type_based :research_policy
-  end
-
   view :filter_metric_type_formgroup, cache: :never do
     multiselect_filter :metric_type, "Metric Type"
-  end
-
-  def metric_type_select
-    "I am metric_type_select"
-#    select_filter :metric_type, "Metric Type"
   end
 
   view :filter_metric_value_formgroup, cache: :never do
@@ -104,6 +93,10 @@ format :html do
 
   def research_policy_options
     type_options :research_policy
+  end
+
+  def wikirate_topic_options
+    type_options :wikirate_topic
   end
 
   def importance_options
