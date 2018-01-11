@@ -112,16 +112,6 @@ format :html do
       end
   end
 
-  def check_interaction_wrapper
-    return unless allowed_to_check?
-    "Does the value accurately represent its source?" +
-      if user_checked?
-        check_button "Uncheck", action: :uncheck
-      else
-        check_button("Yes, I checked", action: :check) + fix_link
-      end
-  end
-
   view :icon, cache: :never do |args|
     if checked?
       double_check_icon args
@@ -140,16 +130,16 @@ format :html do
     checkers.map { |n| nest n, view: :link }.to_sentence
   end
 
-  def short_checkers_list checker_view=:link
-    mention = checkers[0..2]
-    mention[0] = user.name if user_checked? && !mention.include?(user.name)
-    mention.map! { |n| nest n, view: checker_view }
-    if checker_count > 3
-      "#{mention.join ', '} and #{more_link}"
-    else
-      mention.to_sentence
-    end
-  end
+  # def short_checkers_list checker_view=:link
+  #   mention = checkers[0..2]
+  #   mention[0] = user.name if user_checked? && !mention.include?(user.name)
+  #   mention.map! { |n| nest n, view: checker_view }
+  #   if checker_count > 3
+  #     "#{mention.join ', '} and #{more_link}"
+  #   else
+  #     mention.to_sentence
+  #   end
+  # end
 
   def more_link
     link_to_view :full_list, "#{checker_count - 3} more"

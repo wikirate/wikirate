@@ -93,13 +93,13 @@ RSpec.describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
           with_tag :h5, "Checks (1)"
           with_tag :a, "John"
           with_text /checked this value/
-          with_tag :button,"Yes, I checked"
+          with_tag :button, "Yes, I checked"
           with_tag :a, "No, I'll fix it"
         end
       end
     end
 
-    context "more than 3 users checked" do
+    context "with more than 3 users checked" do
       before do
         ["John", "Joe User", "Joe Camel", "Joe Admin"].each do |user|
           with_user user do
