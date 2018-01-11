@@ -16,9 +16,13 @@ end
 
 def content
   @content ||=
-    db_content.present? ? db_content : formula_card.input_names.to_pointer_content
+    db_content.present? ? db_content : variables_in_use.to_pointer_content
   # db_content should only be present when it has been set by a `card[content]`
   # parameter. the variable card is not intended to be saved.
+end
+
+def variables_in_use
+  formula_card&.input_names || []
 end
 
 def input_metric_name variable
