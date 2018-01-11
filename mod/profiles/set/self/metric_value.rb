@@ -16,7 +16,7 @@ end
 def subvariants
   {
     created: [:checked_by_others, :updated_by_others, :discussed_by_others],
-    updated_on: [:checked]
+    updated: [:checked]
   }
 end
 
@@ -31,6 +31,8 @@ end
 def created_query user_id, variant=nil
   super.merge(created_query_variant(user_id, variant))
 end
+
+
 
 def created_query_variant user_id, variant=nil
   case variant

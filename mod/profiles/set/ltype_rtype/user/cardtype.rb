@@ -9,7 +9,7 @@ include_set Abstract::TwoColumnLayout
 
 ACTION_LABELS = {
   created: "Created", updated: "Updated",
-  discussed: "Discussed", voted_on: "Voted On"
+  discussed: "Discussed", voted_on: "Voted On", double_checked: "Checked"
 }.freeze
 
 def user_card
@@ -36,12 +36,23 @@ def report_card variant
 end
 
 def report_action_applies? action
-  return true unless action == :voted_on
+  puts action
+  return true unless action.to_sym.in? %i[voted_on double_checked]
   # TODO: optimize by adding a test method on the cardtype card itself
+  send "#{action}_applies?"
+end
+
+def voted_on_applies?
   Card.new(type_id: cardtype_card.id).respond_to? :vote_count
 end
 
+def double_checked_applies?
+  cardtype_card.id == MetricValueID
+end
+
 format :html do
+  VARIANTS = %i[created updated discussed voted_on double_checked]
+
   view :contribution_report, tags: :unknown_ok, cache: :never do
     return "" unless show_contribution_report?
     class_up "card-slot", "contribution-report " \
@@ -50,7 +61,7 @@ format :html do
   end
 
   def show_contribution_report?
-    [:created, :updated, :discussed, :voted_on].find do |action|
+    VARIANTS.find do |action|
       report_count(action).positive?
     end
   end
@@ -76,7 +87,7 @@ format :html do
 
   def contribution_report_action_boxes_list
     list = has_badges? ? [contribution_report_title_with_badges] : []
-    list += [:created, :updated, :discussed, :voted_on].map do |report_action|
+    list += VARIANTS.map do |report_action|
       if card.report_action_applies? report_action
         contribution_report_box report_action
       else
