@@ -65,7 +65,7 @@ format :html do
     checked_by = nest(checked_by, view: :core)
     wrap_value_details do
       [
-        wrap_with(:div, checked_by, class: "double-check"),
+        wrap_with(:div, checked_by, class: "double-check mt-3"),
         "<br/><h5>Relations</h5>",
         render_relations_table_with_details_toggle,
         # wrap_with(:div, _render_sources, class: "cited-sources")
