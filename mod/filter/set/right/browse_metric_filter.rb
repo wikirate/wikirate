@@ -64,7 +64,7 @@ format :html do
   end
 
   view :wikirate_topic_formgroup, cache: :never do
-    autocomplete_filter :wikirate_topic
+    "woot"
   end
 
   def type_options type_codename, order="asc"
