@@ -1,0 +1,7 @@
+- if allowed_to_check?
+  %p Does the value accurately represent its source?
+  - if user_checked?
+    = check_button "Uncheck", action: :uncheck
+  - else
+    = check_button "Yes, I checked", action: :check
+    = fix_link

@@ -54,6 +54,10 @@ class Answer < ApplicationRecord
     metric_name.to_name.key
   end
 
+  def updater_id
+    editor_id || creator_id
+  end
+
   private
 
   def ensure_record metric_card, company

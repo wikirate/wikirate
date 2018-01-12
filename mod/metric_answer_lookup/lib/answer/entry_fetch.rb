@@ -51,7 +51,7 @@ class Answer
     end
 
     def fetch_editor_id
-      card.updater_id if card.updated_at && card.updated_at > card.created_at
+      card.value_card.updater_id if value_updated?
     end
 
     def fetch_designer_name
@@ -100,6 +100,11 @@ class Answer
       return true unless (latest_year = latest_year_in_db)
       @new_latest = (latest_year < fetch_year)
       latest_year <= fetch_year
+    end
+
+    def value_updated?
+      return unless (vc = card.value_card)
+      vc.updated_at && vc.updated_at > vc.created_at
     end
   end
 end

@@ -31,9 +31,10 @@ format :html do
   end
 
   view :sources do
+    source_card = card.fetch trait: :source
     output [
-      wrap_with(:h5, "Cited"),
-      subformat(card.fetch(trait: :source)).render_core(items: { view: :cited })
+      wrap_with(:h5, "Citations (#{source_card.item_names.size})"),
+      nest(source_card, view: :core, items: { view: :cited })
     ]
   end
 
