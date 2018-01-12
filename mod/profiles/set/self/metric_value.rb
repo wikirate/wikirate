@@ -14,18 +14,11 @@ end
 # end
 
 def subvariants
-  {
-    created: [:checked_by_others, :updated_by_others, :discussed_by_others],
-    updated: [:checked]
-  }
+  { created: [:checked_by_others, :updated_by_others, :discussed_by_others] }
 end
 
 def updated_query user_id, variant=nil
-  if variant == :checked
-    { right_plus: [CheckedByID, { refer_to: user_id }] }
-  else
-    { right_plus: [ValueID, { updated_by: user_id }] }
-  end
+  { right_plus: [ValueID, { updated_by: user_id }] }
 end
 
 def created_query user_id, variant=nil
