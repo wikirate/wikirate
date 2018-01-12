@@ -15,7 +15,7 @@ format :html do
     nest affinity_card, view: :thumbnail
   end
 
-  view :thumnail_subtitle, tags: :unknown_ok do
+  view :thumbnail_subtitle, tags: :unknown_ok do
     if affinity_type == :designer
       "Metric Designer"
     else
