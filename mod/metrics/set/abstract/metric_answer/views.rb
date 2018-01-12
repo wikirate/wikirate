@@ -61,7 +61,17 @@ format :html do
   end
 
   def beautify value
-    card.scored? ? colorify(value) : value
+    card.scored? ? beautify_scored(value) : value
+  end
+
+  def beautify_scored value
+    value = shorten_score value
+    colorify(value)
+  end
+
+  def shorten_score value
+    return value if value.number?
+    unknown?(value) ? "?" : "!"
   end
 
   def pretty_value
@@ -77,13 +87,8 @@ format :html do
     end
   end
 
-  def numeric_metric?
-    (value_type = card.metric_card.fetch trait: :value_type) &&
-      %w[Number Money].include?(value_type.item_names[0])
-  end
-
   def numeric_value?
-    return false unless numeric_metric? || !card.metric_card.researched?
+    return false unless card.metric_card.numeric?
     !card.value_card.unknown_value?
   end
 

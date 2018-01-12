@@ -15,21 +15,21 @@ shared_examples "create badges" do |threshold, badge_name|
   end
 
   describe "badges earned pointer" do
-    # it "exists" do
-    #   expect(badge_pointer).to be_instance_of Card
-    # end
+    it "exists" do
+      expect(badge_pointer).to be_instance_of Card
+    end
     it "has general badge" do
       expect(user_badges).to include badge
     end
-    # it "has designer badge" do
-    #   expect(user_badges).to include "Joe User+#{badge}+designer badge"
-    # end
-    # it "has company badge" do
-    #   expect(user_badges).to include "Death_Star+#{badge}+company badge"
-    # end
-    # it "has project badge" do
-    #   expect(user_badges).to include "Evil Project+#{badge}+project badge"
-    # end
+    it "has designer badge" do
+      expect(user_badges).to include "Joe User+#{badge}+designer badge"
+    end
+    it "has company badge" do
+      expect(user_badges).to include "Death_Star+#{badge}+company badge"
+    end
+    it "has project badge" do
+      expect(user_badges).to include "Evil Project+#{badge}+project badge"
+    end
   end
 
   def answer number

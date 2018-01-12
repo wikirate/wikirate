@@ -623,7 +623,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     height: 40px;
     vertical-align: middle!important;
     color: #555;
-
+    position:relative; //fix for menu icon on company details page
     &:last-child {
       font-weight:bold;
     }
