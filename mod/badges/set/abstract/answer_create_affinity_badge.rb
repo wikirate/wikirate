@@ -18,9 +18,8 @@ format :html do
   def affinity_subtitle
     haml do
       <<-HAML.strip_heredoc
-        %div
-          %small.text-muted
-            = affinity_subtitle_text
+        .text-muted
+          = affinity_subtitle_text
       HAML
     end
   end
