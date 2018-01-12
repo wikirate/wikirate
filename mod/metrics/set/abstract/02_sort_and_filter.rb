@@ -1,6 +1,7 @@
 include_set Abstract::Search
 include_set Abstract::Utility
 include_set Abstract::Filter
+include_set Abstract::FilterFormgroups
 
 def virtual?
   true
