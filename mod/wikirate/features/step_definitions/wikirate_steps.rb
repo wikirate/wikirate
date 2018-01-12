@@ -241,27 +241,27 @@ When(/^I click the drop down button for "(.*)"$/) do |text|
                         .find(".fa-caret-right").click
 end
 
-def select_from_chosen item_text, selector, within
-  within(within) do
-    id = find_field(selector, visible: false)[:id]
-    option_value = page.execute_script(%(
-      val1 = $(\"##{id} option:contains('#{item_text}')\").val();
-      value = [val1];
-      if ($('##{id}').val()) {$.merge(value, $('##{id}').val())}
-      return value
-    ))
-    update_chosen_select_value id, option_value
-  end
-end
-
-def update_chosen_select_value id, value
-  page.execute_script("$('##{id}').val(#{value})")
-  page.execute_script("$('##{id}').trigger('chosen:updated')")
-end
-
-When(/^I select "(.*)" from choosen within "(.*)"$/) do |item_text, within|
-  select_from_chosen(item_text, "pointer_multiselect", within)
-end
+# def select_from_chosen item_text, selector, within
+#   within(within) do
+#     id = find_field(selector, visible: false)[:id]
+#     option_value = page.execute_script(%(
+#       val1 = $(\"##{id} option:contains('#{item_text}')\").val();
+#       value = [val1];
+#       if ($('##{id}').val()) {$.merge(value, $('##{id}').val())}
+#       return value
+#     ))
+#     update_chosen_select_value id, option_value
+#   end
+# end
+#
+# def update_chosen_select_value id, value
+#   page.execute_script("$('##{id}').val(#{value})")
+#   page.execute_script("$('##{id}').trigger('chosen:updated')")
+# end
+#
+# When(/^I select "(.*)" from choosen within "(.*)"$/) do |item_text, within|
+#   select_from_chosen(item_text, "pointer_multiselect", within)
+# end
 
 When(/^I press link button "(.*)"$/) do |name|
   find("a", text: name, visible: false).click
