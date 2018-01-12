@@ -44,7 +44,7 @@ describe Card::Set::Right::OpenCorporates do
         ["Previous Names", "BP AMOCO P.L.C., THE BRITISH PETROLEUM COMPANY P.L.C."],
         ["Jurisdiction", "California (United States)"],
         ["Registered Address", "1 ST JAMES'S SQUARE, LONDON, SW1Y 4PD"],
-        ["Incorporation date", /14 April 1909 \(over \d+ years ago\)/],
+        ["Incorporation date", /14 April 1909/],
         ["Company Type", "Public Limited Company"],
         %w[Status Active]
       ]

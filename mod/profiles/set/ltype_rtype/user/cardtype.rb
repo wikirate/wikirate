@@ -81,7 +81,7 @@ format :html do
   end
 
   def report_title_link
-    link_text = contribution_report_title + nest(badges_earned_card, view: :count)
+    link_text = report_title + nest(badges_earned_card, view: :count)
     report_link link_text, :badges
   end
 

@@ -16,8 +16,7 @@ RSpec.describe Card::Set::Self::MetricValue, "metric value report queries" do
 
   describe "updated query" do
     include_context "report query", :metric_value, :updated
-    variants all: [answer(2008), answer(2010)],
-             checked: answer(2005)
+    variants all: [answer(2008), answer(2010)]
   end
 
   describe "discussed query" do
