@@ -7,10 +7,14 @@
 include_set Abstract::WikirateTable
 include_set Abstract::TwoColumnLayout
 
+card_reader :badges_earned, default: { type_id: Card::PointerID }
+
 ACTION_LABELS = {
-  created: "Created", updated: "Updated",
-  discussed: "Discussed", voted_on: "Voted On", double_checked: "Checked"
+  created: "Created", updated: "Updated", discussed: "Discussed",
+  voted_on: "Voted On", double_checked: "Checked"
 }.freeze
+
+ACTIONS = ACTION_LABELS.keys.freeze
 
 def user_card
   @user_card ||= left
@@ -36,7 +40,6 @@ def report_card variant
 end
 
 def report_action_applies? action
-  puts action
   return true unless action.to_sym.in? %i[voted_on double_checked]
   # TODO: optimize by adding a test method on the cardtype card itself
   send "#{action}_applies?"
@@ -51,80 +54,31 @@ def double_checked_applies?
 end
 
 format :html do
-  VARIANTS = %i[created updated discussed voted_on double_checked]
+  delegate :report_card, :badges_earned_card, :report_action_applies?, to: :card
 
-  view :contribution_report, tags: :unknown_ok, cache: :never do
-    return "" unless show_contribution_report?
-    class_up "card-slot", "contribution-report " \
-                          "#{card.codename}-contribution-report"
-    wrap { [contribution_report_header, contribution_report_body] }
+  view :contribution_report, tags: :unknown_ok, cache: :never, template: :haml do
+    class_up "card-slot",
+             "contribution-report #{card.cardtype_card.codename}-contribution-report"
   end
 
   def show_contribution_report?
-    VARIANTS.find do |action|
-      report_count(action).positive?
-    end
+    valid_actions.any? { |action| report_count(action).positive? }
+  end
+
+  def valid_actions
+    vars =  %i[created updated discussed]
+    vars << (%i[voted_on double_checked].find { |a| report_action_applies? a })
+    vars
   end
 
   def has_badges?
     card.cardtype_card.codename.to_sym.in? Abstract::BadgeSquad::BADGE_TYPES
   end
 
-  def contribution_report_header
-    wrap_with :div, class: "contribution-report-header" do
-      [
-        (contribution_report_title unless has_badges?),
-        contribution_report_action_boxes
-      ]
-    end
-  end
-
-  def contribution_report_action_boxes
-    wrap_with :ul, class: "nav nav-tabs" do
-      contribution_report_action_boxes_list
-    end
-  end
-
-  def contribution_report_action_boxes_list
-    list = has_badges? ? [contribution_report_title_with_badges] : []
-    list += VARIANTS.map do |report_action|
-      if card.report_action_applies? report_action
-        contribution_report_box report_action
-      else
-        contribution_null_box
-      end
-    end.push(contribution_report_toggle)
-  end
-
-  def contribution_report_title_with_badges
-    #
-    # wrap_with :li, class: "contribution-report-title-box" do
-    #   wrap_with :a do
-    #     [
-    #       contribution_report_title,
-    #       contribution_report_badges
-    #     ]
-    #   end
-    # end
-    content = contribution_report_title + contribution_report_badges
-    wrap_with :li, class: "contribution-report-title-box" do
-      link_to_view :contribution_report,
-                   content,
-                   path: { report_tab: :badges }, class: "slotter"
-    end
-  end
-
-  def contribution_null_box
-    wrap_with :li, class:  "contribution-report-box nav-item" do
-      content_tag(:p, "")
-    end
-  end
-
-  def contribution_report_box action, extra_class=nil
-    active_tab = current_tab?(action) ? "active" : nil
-    wrap_with :li, class: css_classes("contribution-report-box nav-item", extra_class, active_tab) do
-      contribution_report_count_tab action
-    end
+  def contribution_report_link
+    content = contribution_report_title
+    content += nest badges_earned_card, view: :count
+    report_link content, :badges
   end
 
   def current_tab
@@ -135,16 +89,20 @@ format :html do
     action.to_s == current_tab
   end
 
-  def contribution_report_count_tab action
-    return "&nbsp;" unless card.report_action_applies? action
-    link_to_view :contribution_report,
-                 two_line_tab(ACTION_LABELS[action], report_count(action)),
-                 path: { report_tab: action }, class: "slotter nav-link"
+  def report_tab action
+    two_line_tab ACTION_LABELS[action], report_count(action)
+  end
+
+  def report_link text, action, nav_link=false
+    link_args = { class: "slotter#{' nav-link' if nav_link}" }
+    link_args[:path] = { report_tab: action } if action
+    link_to_view :contribution_report, text, link_args
   end
 
   def report_count action
+    return 0 unless action
     @report_count ||= {}
-    @report_count[action] ||= card.report_card(action).count
+    @report_count[action] ||= report_card(action).count
   end
 
   def contribution_report_title
@@ -153,45 +111,17 @@ format :html do
     end
   end
 
-  def contribution_report_badges
-    badges = card.field(:badges_earned, new: { type_id: PointerID })
-    nest badges, view: :count
+  def toggle_icon
+    current_tab ? fa_icon("chevron-down") : fa_icon("chevron-right")
   end
 
-  def contribution_report_badges_body
-    return unless (badges = card.field(:badges_earned, new: {}))
-    nest badges, view: :content
+  def toggle_action
+    :created unless current_tab
   end
 
-  def contribution_report_toggle
-    toggle_status = Env.params[:report_tab] ? :open : :closed
-    wrap_with :li, class: "contribution-report-toggle text-center nav-item" do
-      send "contribution_report_toggle_#{toggle_status}"
-    end
-  end
-
-  def contribution_report_toggle_closed
-    link_to_view :contribution_report, fa_icon("chevron-right"),
-                 class: "slotter nav-link", path: { report_tab: :created }
-  end
-
-  def contribution_report_toggle_open
-    link_to_view :contribution_report, fa_icon("chevron-down"),
-                 class: "slotter nav-link"
-  end
-
-  def contribution_report_body
-    return "" unless (action = current_tab)
-    return contribution_report_badges_body if action.to_sym == :badges
-    report_card = card.report_card action
-    _render_contribution_list report_card: report_card
-  end
-
-  view :contribution_list, cache: :never do |args|
-    report_card = args[:report_card]
-    nest report_card, view: contribution_list_view,
-                      structure: report_card.variant,
-                      skip_perms: true
+  def contribution_list
+    return "" unless current_tab && (rcard = report_card(current_tab))
+    nest rcard, view: contribution_list_view, structure: rcard.variant, skip_perms: true
   end
 
   def contribution_list_view

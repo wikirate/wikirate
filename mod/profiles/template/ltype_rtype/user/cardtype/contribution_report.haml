@@ -1,0 +1,23 @@
+-if show_contribution_report?
+  - haml_wrap do
+    .contribution-report-header
+      %ul.nav.nav-tabs
+        %li.contribution-report-title-box
+          -if has_badges?
+            = contribution_report_link
+          -else
+            = contribution_report_title
+
+        - valid_actions.each do |action|
+          %li.contribution-report-box.nav-item{class: [current_tab?(action) && "active"]}
+            -if action
+              = report_link report_tab(action), action, true
+            -else
+              %p
+        %li.contribution-report-toggle.text-center.nav-item
+          = report_link toggle_icon, toggle_action, true
+    - if current_tab&.to_sym == :badges
+      = nest badges_earned_card, view: :content
+    - else
+      = contribution_list
+
