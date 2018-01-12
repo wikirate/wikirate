@@ -89,6 +89,7 @@ event :validate_formula, :validate, when: :wolfram_formula? do
     errors.add :formula, msg
   end
 end
+
 event :validate_formula_input, :validate, on: :save, changed: :content do
   input_chunks.each do |chunk|
     if variable_name?(chunk.referee_name)
