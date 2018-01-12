@@ -4,9 +4,9 @@
       %ul.nav.nav-tabs
         %li.contribution-report-title-box
           -if has_badges?
-            = contribution_report_link
+            = report_title_link
           -else
-            = contribution_report_title
+            = report_title
 
         - valid_actions.each do |action|
           %li.contribution-report-box.nav-item{class: [current_tab?(action) && "active"]}
@@ -15,9 +15,6 @@
             -else
               %p
         %li.contribution-report-toggle.text-center.nav-item
-          = report_link toggle_icon, toggle_action, true
-    - if current_tab&.to_sym == :badges
-      = nest badges_earned_card, view: :content
-    - else
-      = contribution_list
+          = report_link toggle_ico, toggle_action, true
+    = contribution_list
 

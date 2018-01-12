@@ -24,10 +24,15 @@ def cardtype_card
   @cardtype_card ||= right
 end
 
+def cardtype_codename
+  cardtype_card.codename&.to_sym
+end
+
 # returns [User]+[Cardtype]+report_search, a search card that finds cards
 # for the given user/cardtype combination.
 # See right/report_search for further information
 def report_card variant
+  return if variant.blank?
   @report_cards ||= {}
   @report_cards[variant] ||= begin
     rcard = Card.new name: name.trait(:report_search),
@@ -54,11 +59,11 @@ def double_checked_applies?
 end
 
 format :html do
-  delegate :report_card, :badges_earned_card, :report_action_applies?, to: :card
+  delegate :report_card, :badges_earned_card, :report_action_applies?, :cardtype_codename,
+           to: :card
 
   view :contribution_report, tags: :unknown_ok, cache: :never, template: :haml do
-    class_up "card-slot",
-             "contribution-report #{card.cardtype_card.codename}-contribution-report"
+    class_up "card-slot", "contribution-report #{cardtype_codename}-contribution-report"
   end
 
   def show_contribution_report?
@@ -72,13 +77,18 @@ format :html do
   end
 
   def has_badges?
-    card.cardtype_card.codename.to_sym.in? Abstract::BadgeSquad::BADGE_TYPES
+    cardtype_codename.in? Abstract::BadgeSquad::BADGE_TYPES
   end
 
-  def contribution_report_link
-    content = contribution_report_title
-    content += nest badges_earned_card, view: :count
-    report_link content, :badges
+  def report_title_link
+    link_text = contribution_report_title + nest(badges_earned_card, view: :count)
+    report_link link_text, :badges
+  end
+
+  def report_title
+    wrap_with :h5, class: "contribution-report-title" do
+      card.cardtype_card.name.vary :plural
+    end
   end
 
   def current_tab
@@ -105,12 +115,6 @@ format :html do
     @report_count[action] ||= report_card(action).count
   end
 
-  def contribution_report_title
-    wrap_with :h5, class: "contribution-report-title" do
-      card.cardtype_card.name.vary :plural
-    end
-  end
-
   def toggle_icon
     current_tab ? fa_icon("chevron-down") : fa_icon("chevron-right")
   end
@@ -120,11 +124,14 @@ format :html do
   end
 
   def contribution_list
-    return "" unless current_tab && (rcard = report_card(current_tab))
-    nest rcard, view: contribution_list_view, structure: rcard.variant, skip_perms: true
+    if current_tab? :badges
+      nest badges_earned_card, view: :content
+    elsif (rcard = report_card(current_tab))
+      nest rcard, view: contribution_list_view, structure: rcard.variant, skip_perms: true
+    end
   end
 
   def contribution_list_view
-    "#{card.right.codename}_list"
+    "#{cardtype_codename}_list"
   end
 end
