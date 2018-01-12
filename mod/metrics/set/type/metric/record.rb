@@ -26,7 +26,7 @@ format :html do
 
   view :compact_question do
     <<-HTML
-      <div class="col-md-12 padding-bottom-10">
+      <div class="col-md-12">
         #{_render_question_row}
       </div>
     HTML

@@ -12,13 +12,15 @@ format :html do
   delegate :affinity, :affinity_card, :affinity_type, :badge, to: :card
 
   view :badge, tags: :unknown_ok do
-    voo.title =
-      if affinity_type == :designer
-        "Metric Designer"
-      else
-        affinity_type.to_s.capitalize
-      end
     nest affinity_card, view: :thumbnail
+  end
+
+  view :thumnail_subtitle, tags: :unknown_ok do
+    if affinity_type == :designer
+      "Metric Designer"
+    else
+      affinity_type.to_s.capitalize
+    end
   end
 
   view :level do
