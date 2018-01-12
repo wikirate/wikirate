@@ -43,7 +43,7 @@ describe Card::Set::Abstract::FilterFormgroups do
 
       it "renders select list" do
         is_expected.to have_tag(
-          :select, with: { name: "filter[research_policy]" }
+          :select, with: { name: "filter[research_policy][]" }
         )
       end
     end
