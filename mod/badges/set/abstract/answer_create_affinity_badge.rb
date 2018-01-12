@@ -12,10 +12,19 @@ format :html do
   delegate :affinity, :affinity_card, :affinity_type, :badge, to: :card
 
   view :badge, tags: :unknown_ok do
-    nest affinity_card, view: :thumbnail
+    nest(affinity_card, view: :thumbnail) + affinity_subtitle
   end
 
-  view :thumnail_subtitle, tags: :unknown_ok do
+  def affinity_subtitle
+    haml do
+      <<-HAML.strip_heredoc
+        .text-muted
+          = affinity_subtitle_text
+      HAML
+    end
+  end
+
+  def affinity_subtitle_text
     if affinity_type == :designer
       "Metric Designer"
     else
