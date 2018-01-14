@@ -78,8 +78,8 @@ group :test do
   gem "chromedriver-helper"
   gem "cucumber-rails", require: false
   # feature-driven-development suite
-  gem "capybara", "2.11.0"
-  gem "selenium-webdriver", "3.6.0"
+  gem "capybara", "2.17.0"
+  gem "selenium-webdriver", "3.8.0"
   # gem 'capybara-webkit' # lets cucumber launch browser windows
   gem "launchy"
 
