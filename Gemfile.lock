@@ -154,9 +154,6 @@ GEM
       mime-types (>= 1.16)
     childprocess (0.8.0)
       ffi (~> 1.0, >= 1.0.11)
-    chromedriver-helper (1.1.0)
-      archive-zip (~> 0.7.0)
-      nokogiri (~> 1.6)
     coderay (1.1.2)
     coffee-script (2.4.1)
       coffee-script-source
@@ -370,6 +367,8 @@ GEM
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
     formatador (0.2.5)
+    geckodriver-helper (0.0.4)
+      archive-zip (~> 0.7.0)
     gherkin (5.0.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -689,7 +688,6 @@ DEPENDENCIES
   card-mod-pdfjs!
   card-mod-voting!
   cardname!
-  chromedriver-helper
   company-mapping
   cucumber-rails
   curb
@@ -703,6 +701,7 @@ DEPENDENCIES
   email_spec
   fog
   fog-aws
+  geckodriver-helper
   html2haml
   launchy
   link_thumbnailer (= 2.5.2)
