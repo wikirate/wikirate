@@ -75,8 +75,8 @@ group :test do
   # gem 'codeclimate-test-reporter', require: nil
 
   # CUKES see features dir
-  #gem "chromedriver-helper"
-  gem "geckodriver-helper"
+  # gem "chromedriver-helper"
+  # gem "geckodriver-helper"
   gem "cucumber-rails", require: false
   # feature-driven-development suite
   gem "capybara", "2.17.0"
