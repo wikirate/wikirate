@@ -10,6 +10,9 @@ Feature: create metrics
     # And I choose "Number"
     And I fill in "Metric Title" with "MyResearch"
     And I press "Submit"
+    And I wait for ajax response
+    And I wait 2 seconds
+    # NOTE: a new card gets an ajax response followed by a redirect
     Then I should see "MyResearch"
     Then I should see "Metric Creator"
     And I should see "Awarded for adding your first metric."
