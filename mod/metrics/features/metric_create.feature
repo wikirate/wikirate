@@ -7,7 +7,7 @@ Feature: create metrics
 
   Scenario: Creating a researched metric
     When I go to new metric
-    And I choose "Number"
+    # And I choose "Number"
     And I fill in "Metric Title" with "MyResearch"
     And I press "Submit"
     Then I should see "MyResearch"
