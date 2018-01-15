@@ -67,6 +67,8 @@ class CompanyMatcher
   end
 
   class << self
+    include ::NewRelic::Agent::MethodTracer
+
     def mapper
       @mapper ||= Company::Mapping::CompanyMapper.new corpus
     end
@@ -91,6 +93,8 @@ class CompanyMatcher
       corpus.add company_id, company_name, (aliases || [])
       @mapper = Company::Mapping::CompanyMapper.new corpus
     end
+
+    add_method_tracer :add_to_mapper, "CompanyMatcher/add_to_mapper"
 
     def reset_mapper
       @mapper = nil
