@@ -72,21 +72,21 @@ def convert_potential_metrics potential_result
   potential_result.each do |m|
     puts "======== Normalizing #{m.name} ========".blue
     metric_values = metric_values m.name
-    if unknown_inside? metric_values
-      skip_metric m
-    else
+    if valid_values? metric_values
       convert_metric m, metric_values
+    else
+      skip_metric m
     end
     puts "======== Finished normalizing #{m.name} ========".blue
   end
 end
 
-def unknown_inside? metric_values
+def valid_values? metric_values
   metric_values.each do |mv|
     content = mv.content.delete(",%$ BMK")
-    return true unless number?(content) || content.casecmp("unknown") == 0
+    return false unless number?(content) || Answer.unknown?(content)
   end
-  false
+  true
 end
 
 def normalize_metric metric, i_value_type_card=nil

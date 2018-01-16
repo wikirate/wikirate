@@ -3,32 +3,39 @@ event :validate_answer_field, before: :set_answer_name, when: :standard? do
 end
 
 event :validate_value_type, :validate, on: :save, when: :standard? do
+  return unless (value, value_type = validatable_value_and_type)
   # check if the value fit the value type of metric
-  if metric_card&.researched? &&
-     (value_type = metric_card.fetch(trait: :value_type)) &&
-     (value_card = subfield(:value))
-    value = value_card.value
-    return if value.casecmp("unknown").zero?
-    case value_type.item_names[0]
-    when "Number", "Money"
-      unless number?(value)
-        errors.add :value, "Only numeric content is valid for this metric."
-      end
-    when "Category"
-      # check if the value exist in options
-      if !(option_card = Card["#{metric_card.name}+value options"]) ||
-         !option_card.item_names.include?(value)
-        url = "/#{option_card.name.url_key}?view=edit"
-        anchor = %(<a href='#{url}' target="_blank">add that option</a>)
-        errors.add :value, "#{value} is not a valid option. "\
-                           "Please #{anchor} before adding this metric value."
-      end
-    end
+  return if Answer.unknown? value
+  case value_type
+  when "Number", "Money" then validate_numeric_value value
+  when "Category"        then validate_category_value value
   end
 end
 
-event :validate_update_date, :validate,
-      on: :update, when: proc { |c| c.year_updated? } do
+def validatable_value_and_type
+  return unless metric_card&.researched? &&
+                (value_type = metric_card.fetch trait: :value_type) &&
+                (value_card = subfield :value)
+  [value_card.value, value_type.item_names.first]
+end
+
+def validate_numeric_value value
+  return true if number? value
+  errors.add :value, "Only numeric content is valid for this metric."
+end
+
+# check if the value exist in options
+def validate_category_value value
+  option_card = Card["#{metric_card.name}+value options"]
+  return true if option_card&.item_names&.include? value
+
+  url = "/#{option_card.name.url_key}?view=edit"
+  anchor = %(<a href='#{url}' target="_blank">add that option</a>)
+  errors.add :value, "#{value} is not a valid option. " \
+                     "Please #{anchor} before adding this metric value."
+end
+
+event :validate_update_date, :validate, on: :update, when: :year_updated? do
   new_year = subfield(:year).item_names.first
   new_name = "#{metric_name}+#{company_name}+#{new_year}"
   if new_year != year && Card.exists?(new_name)

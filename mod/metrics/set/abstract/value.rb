@@ -33,7 +33,7 @@ def metric_plus_company_card
 end
 
 def unknown_value?
-  content.casecmp("unknown").zero?
+  Answer.unknown? content
 end
 
 event :check_length, :validate, on: :save, changed: :content do

@@ -31,7 +31,7 @@ def validate_numeric_values
 end
 
 def valid_numeric_value? value
-  number?(value) || value.strip.casecmp("unknown").zero?
+  number?(value) || Answer.unknown?(value)
 end
 
 def add_numeric_error answer

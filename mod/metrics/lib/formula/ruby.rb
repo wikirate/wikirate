@@ -55,7 +55,7 @@ module Formula
       input = Array.wrap(input)
       if input.all? { |inp| inp.is_a?(Float) }
         true
-      elsif input.any? { |inp| inp.to_s.casecmp("unknown").zero? }
+      elsif input.any? { |inp| Answer.unknown? inp }
         "Unknown"
       elsif input.any?(&:empty?)
         nil

@@ -14,6 +14,10 @@ class Answer < ApplicationRecord
                         unless: :virtual?
   validate :must_be_an_answer, :card_must_exist, :metric_must_exit
 
+  def self.unknown? val
+    val.to_s.casecmp("unknown").zero?
+  end
+
   def card_column
     :answer_id
   end
@@ -87,7 +91,7 @@ class Answer < ApplicationRecord
   end
 
   def unknown? val
-    val.casecmp("unknown").zero?
+    self.class.unknown? val
   end
 end
 
