@@ -7,14 +7,9 @@ Feature: create metrics
 
   Scenario: Creating a researched metric
     When I go to new metric
+    # And I choose "Number"
     And I fill in "Metric Title" with "MyResearch"
-    # And I fill in "Question" with "my question"
-    And I choose "Number"
-    And I scroll 500 pixels down
     And I press "Submit"
-    And I wait for ajax response
-    And I wait 2 seconds
-    # NOTE: a new card gets an ajax response followed by a redirect
     Then I should see "MyResearch"
     Then I should see "Metric Creator"
     And I should see "Awarded for adding your first metric."

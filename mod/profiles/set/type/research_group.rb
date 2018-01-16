@@ -24,6 +24,7 @@ end
 
 def contribution_count member, cardtype, category
   return 0 if projects.empty?
+  return "" if category == :double_checked && cardtype != :metric_value
   report_card(member, cardtype, category).count
 end
 
@@ -46,8 +47,7 @@ format :html do
       _render_rich_header,
       field_nest(:description, view: :titled, title: "Description"),
       member_list,
-      field_nest(:discussion, view: :titled, show: :comment_box,
-                              title: "Discussion")
+      field_nest(:discussion, view: :titled, show: :comment_box, title: "Discussion")
     ]
   end
 
@@ -114,7 +114,7 @@ format :html do
   end
 
   def contribution_categories
-    [:created, :updated, :discussed]
+    [:created, :updated, :discussed, :double_checked]
   end
 
   def member_contribution_content member
