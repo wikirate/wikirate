@@ -2,6 +2,11 @@ include_set Type::Pointer
 include_set Abstract::Variable
 include_set Abstract::Table
 
+# FIXME: following does not prevent storage.
+event :abort_storage, :validate, on: :save do
+  abort :success
+end
+
 def metric_card
   left
 end
