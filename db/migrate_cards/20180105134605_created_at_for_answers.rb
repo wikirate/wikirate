@@ -4,10 +4,11 @@ class CreatedAtForAnswers < Card::Migration
   def up
     Answer.where(created_at: nil).each do |a|
       next unless a.card
-      if a.card.type_id == Card::MetricValueID
+      if a.card.type_id == Card::MetricValueID && a.card.researched?
         a.update_attributes! created_at: a.card.created_at
       else
         a.destroy!
+        a.card.delete! if a.card.calculated?
       end
     end
   end

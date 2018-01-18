@@ -82,11 +82,10 @@ def convert_potential_metrics potential_result
 end
 
 def valid_values? metric_values
-  metric_values.each do |mv|
+  metric_values.all? do |mv|
     content = mv.content.delete(",%$ BMK")
-    return false unless number?(content) || Answer.unknown?(content)
+    number?(content) || Answer.unknown?(content)
   end
-  true
 end
 
 def normalize_metric metric, i_value_type_card=nil

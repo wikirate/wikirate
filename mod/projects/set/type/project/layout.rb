@@ -36,10 +36,19 @@ format :html do
     wrap_with :div, class: "header-right" do
       [
         wrap_with(:h3, _render_title, class: "project-title"),
-        field_nest(:wikirate_status, view: :labeled, items: { view: :name }),
-        (field_nest(:parent, view: :labeled, items: { view: :link }) if card.parent.present?)
+        status_field,
+        parent_field
       ].compact
     end
+  end
+
+  def status_field
+    field_nest :wikirate_status, view: :labeled, items: { view: :name }
+  end
+
+  def parent_field
+    return if card.parent.blank?
+    field_nest :parent, view: :labeled, items: { view: :link }
   end
 
   view :data do
