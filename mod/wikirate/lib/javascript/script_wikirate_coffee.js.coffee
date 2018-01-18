@@ -137,9 +137,10 @@ decko.slotReady (slot) ->
 
 appendParentToAddItem = (parent) ->
   return unless parent.val()
-  anchor = parent.slot().find "._add-item-link"
-  new_href =  anchor.attr("href") + "&" + $.param({ "filter[project]" : parent.val() })
-  anchor.attr "href", new_href
+  parent.slot().find("._add-item-link").each ->
+    anchor = $(this)
+    new_href =  anchor.attr("href") + "&" + $.param({ "filter[project]" : parent.val() })
+    anchor.attr "href", new_href
 
  #Moving it to newNoteJs
  # To add the source on blur event.
