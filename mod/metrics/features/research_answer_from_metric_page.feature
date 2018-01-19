@@ -30,7 +30,7 @@ Feature: Research answer from metric page
   #   When I go to card "Death Star"
   #   Then I should see "disturbances in the Force"
   #   And I should see "yes"
-# 
+  #
   # Scenario: Adding a metric value with a file source on metric page
   #   When In the main card content I click "Research answer"
   #   And I select "Death Star" from "Company"
