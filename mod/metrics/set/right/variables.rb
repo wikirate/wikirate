@@ -2,6 +2,11 @@ include_set Type::Pointer
 include_set Abstract::Variable
 include_set Abstract::Table
 
+# FIXME: following does not prevent storage.
+# event :abort_storage, :validate, on: :save do
+#   abort :success
+# end
+
 def metric_card
   left
 end
@@ -111,7 +116,7 @@ format :html do
          item: implicit_item_view,
          filter_card: filter_card.name,
          item_selector: "thumbnail",
-         slot_selector: card.patterns.first.safe_key,
+         slot_selector: "#{card.patterns.first.safe_key}.edit_in_formula-view",
          slot: { hide: :modal_footer },
          filter: initial_filters(filters)
   end

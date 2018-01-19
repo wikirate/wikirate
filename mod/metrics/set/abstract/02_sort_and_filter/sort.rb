@@ -54,7 +54,7 @@ format do
   end
 
   def unknown_value? value
-    value.casecmp("unknown").zero?
+    Answer.unknown? value
   end
 
   def latest_year_value values

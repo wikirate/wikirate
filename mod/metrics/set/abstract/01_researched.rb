@@ -25,7 +25,7 @@ format :html do
       wrap_with :div, class: "metric-details-content" do
         [
           _render_metric_properties,
-          _render_add_value_buttons,
+          # _render_add_value_buttons,
           wrap_with(:hr, ""),
           nest(card.about_card, view: :titled, title: "About"),
           nest(card.methodology_card, view: :titled, title: "Methodology"),
@@ -72,23 +72,23 @@ format :html do
                  class: "btn btn-primary"
   end
 
-  def add_value_link
-    link_to_card :research_page, "#{fa_icon 'plus'} Research answer",
-                 path: { metric: card.name, view: :new },
-                 class: "btn btn-primary",
-                 title: "Research answer for another year"
-    # "/new/metric_value?metric=" + _render_cgi_escape_name
-  end
+  # def add_value_link
+  #   link_to_card :research_page, "#{fa_icon 'plus'} Research answer",
+  #                path: { metric: card.name, view: :new },
+  #                class: "btn btn-primary",
+  #                title: "Research answer for another year"
+  #   # "/new/metric_value?metric=" + _render_cgi_escape_name
+  # end
 
-  view :add_value_buttons do
-    return unless card.user_can_answer?
-    wrap_with :div, class: "row margin-no-left-15" do
-      [
-        content_tag(:hr),
-        add_value_link
-      ]
-    end
-  end
+  # view :add_value_buttons do
+  #   return unless card.user_can_answer?
+  #   wrap_with :div, class: "row margin-no-left-15" do
+  #     [
+  #       content_tag(:hr),
+  #       add_value_link
+  #     ]
+  #   end
+  # end
 
   view :import_button do
     <<-HTML

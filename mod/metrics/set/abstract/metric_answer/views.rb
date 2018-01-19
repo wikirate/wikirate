@@ -71,7 +71,7 @@ format :html do
 
   def shorten_score value
     return value if value.number?
-    unknown?(value) ? "?" : "!"
+    Answer.unknown?(value) ? "?" : "!"
   end
 
   def pretty_value
