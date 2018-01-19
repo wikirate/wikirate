@@ -6,7 +6,6 @@ card_accessor :organizer
 card_accessor :researcher
 card_accessor :project
 
-
 def all_members
   (organizer_card.item_cards + researcher_card.item_cards).uniq
 end
