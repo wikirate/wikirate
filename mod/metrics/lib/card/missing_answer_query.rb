@@ -23,5 +23,9 @@ class Card
     def subject_ids_of_existing_answers
       Answer.where(existing_where_args).pluck(subject_key)
     end
+
+    def new_name_year
+      @new_name_year ||= year.to_sym == :latest ? Time.now.year : year
+    end
   end
 end

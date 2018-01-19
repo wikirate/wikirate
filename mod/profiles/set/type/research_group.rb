@@ -6,6 +6,7 @@ card_accessor :organizer
 card_accessor :researcher
 card_accessor :project
 
+
 def all_members
   (organizer_card.item_cards + researcher_card.item_cards).uniq
 end
@@ -33,6 +34,15 @@ def projects
 end
 
 format :html do
+  def default_content_formgroup_args _args
+    voo.edit_structure = [
+      :image,
+      :wikirate_topic,
+      :description,
+      :organizer
+    ]
+  end
+
   view :open_content do |args|
     bs_layout container: false, fluid: true, class: @container_class do
       row 5, 7, class: "panel-margin-fix" do
@@ -65,6 +75,10 @@ format :html do
 
   view :listing do
     _render_thumbnail
+  end
+
+  view :closed_content do
+    ""
   end
 
   view :contributions_column do

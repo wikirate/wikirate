@@ -123,5 +123,14 @@ class Answer
     def answered? metric_id, company_id
       where(metric_id: metric_id, company_id: company_id).exist?
     end
+
+    def unknown? val
+      val.to_s.casecmp("unknown").zero?
+    end
+
+    def find_by_answer_id answer_id
+      return unless answer_id
+      super
+    end
   end
 end
