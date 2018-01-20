@@ -67,9 +67,7 @@ class Answer
     def refresh ids=nil, *fields
       ids = Array(ids).compact
       if ids.present?
-        ids.each do |ma_id|
-          refresh_entry fields, ma_id
-        end
+        ids.each { |ma_id| refresh_entry fields, ma_id }
       else
         refresh_all fields
       end
@@ -101,10 +99,8 @@ class Answer
 
     def card_id cardish
       case cardish
-      when Integer then
-        cardish
-      when Card then
-        cardish.id
+      when Integer then cardish
+      when Card    then cardish.id
       end
     end
 
@@ -122,6 +118,14 @@ class Answer
 
     def answered? metric_id, company_id
       where(metric_id: metric_id, company_id: company_id).exist?
+    end
+
+    def unknown? val
+      val.to_s.casecmp("unknown").zero?
+    end
+
+    def find_by_answer_id answer_id
+      answer_id ? Answer.where(answer_id: answer_id).take : nil
     end
   end
 end
