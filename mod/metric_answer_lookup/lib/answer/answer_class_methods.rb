@@ -125,7 +125,7 @@ class Answer
     end
 
     def find_by_answer_id answer_id
-      answer_id ? super : nil
+      answer_id ? Answer.where(answer_id: answer_id).take : nil
     end
   end
 end
