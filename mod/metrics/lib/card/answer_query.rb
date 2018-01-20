@@ -212,10 +212,6 @@ class Card
       end
     end
 
-    def new_name_year
-      @new_name_year ||= year.to_sym == :latest ? Time.now.year : year
-    end
-
     def timeperiod value
       case value.to_sym
       when :today then
