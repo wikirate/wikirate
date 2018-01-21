@@ -2,7 +2,7 @@
 
 class CreatedAtForAnswers < Card::Migration
   def up
-    Answer.where(created_at: nil).each do |a|
+    Answer.where(created_at: nil).find_each do |a|
       begin
         next unless a.card && a.valid?
         if a.card.type_id == Card::MetricValueID
