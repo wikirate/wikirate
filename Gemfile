@@ -78,6 +78,7 @@ group :test do
   gem "capybara", "2.17.0"
   gem "chromedriver-helper"
   # gem "geckodriver-helper"
+  gem "cucumber-expressions", "5.0.7" # this breaks at 5.0.12
   gem "cucumber-rails", require: false
   # feature-driven-development suite
   gem "selenium-webdriver", "3.8.0"

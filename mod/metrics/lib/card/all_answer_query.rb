@@ -70,6 +70,10 @@ class Card
       @paging[:limit]
     end
 
+    def new_name_year
+      @new_name_year ||= year.to_s == "latest" ? Time.now.year : year
+    end
+
     private
 
     def year
