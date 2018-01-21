@@ -12,7 +12,8 @@ class Answer < ApplicationRecord
 
   validates :answer_id, numericality: { only_integer: true }, presence: true,
                         unless: :virtual?
-  validate :must_be_an_answer, :card_must_exist, :metric_must_exit
+  validate :must_be_an_answer, :card_must_exist, unless: :virtual?
+  validate :metric_must_exit
 
   def card_column
     :answer_id
