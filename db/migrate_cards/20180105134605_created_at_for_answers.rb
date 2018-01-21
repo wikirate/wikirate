@@ -16,7 +16,7 @@ class CreatedAtForAnswers < Card::Migration
           a.destroy!
         end
       rescue
-        puts "problem updating answer: #{a}"
+        puts "problem updating answer: #{a}, #{a.errors&.messages}"
       end
     end
   end
