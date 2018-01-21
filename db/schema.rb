@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20170524163436) do
 
-  create_table "answers", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+  create_table "answers", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "answer_id"
     t.integer "metric_id"
     t.integer "designer_id"
@@ -21,18 +21,18 @@ ActiveRecord::Schema.define(version: 20170524163436) do
     t.integer "policy_id"
     t.integer "metric_type_id"
     t.integer "year"
-    t.string "metric_name"
-    t.string "company_name"
-    t.string "designer_name"
-    t.string "title_name"
-    t.string "record_name"
-    t.string "value", limit: 1024
+    t.string "metric_name", collation: "utf8_general_ci"
+    t.string "company_name", collation: "utf8_general_ci"
+    t.string "designer_name", collation: "utf8_general_ci"
+    t.string "title_name", collation: "utf8_general_ci"
+    t.string "record_name", collation: "utf8_general_ci"
+    t.string "value", limit: 1024, collation: "utf8_general_ci"
     t.decimal "numeric_value", precision: 30, scale: 5
     t.datetime "updated_at"
     t.boolean "imported"
     t.boolean "latest"
-    t.string "checkers"
-    t.string "check_requester"
+    t.string "checkers", collation: "utf8_general_ci"
+    t.string "check_requester", collation: "utf8_general_ci"
     t.integer "creator_id"
     t.integer "editor_id"
     t.datetime "created_at"
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 20170524163436) do
     t.index ["updated_at"], name: "cards_updated_at_index"
   end
 
-  create_table "counts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+  create_table "counts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "left_id"
     t.integer "right_id"
     t.integer "value"
