@@ -37,7 +37,7 @@ format :html do
 
   def listing_details
     wrap_with :div, class: "project-details-info" do
-      [organizational_details, stats_details, topics_details]
+      [organizational_details, render_stats_details, topics_details]
     end
   end
 
@@ -60,7 +60,7 @@ format :html do
     field_nest :wikirate_status, items: { view: :name }
   end
 
-  def stats_details
+  view :stats_details, cache: :never do
     wrap_with :div, class: "stat-details default-progress-box" do
       [
         count_stats,

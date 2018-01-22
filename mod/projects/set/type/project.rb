@@ -35,6 +35,10 @@ def metrics
   metric_card.valid_metric_cards.map(&:name)
 end
 
+def companies
+  wikirate_company_card.item_names
+end
+
 def years
   return @years unless @years.nil?
   valids = year_card.valid_year_cards.map(&:name)

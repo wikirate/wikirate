@@ -41,6 +41,24 @@ format :html do
     end
   end
 
+  view :titled_content do
+    voo.hide! :chart # hide it in value_field
+    bs do
+      layout do
+        row 12 do
+          column value_field
+        end
+        row 12 do
+          column _render_chart
+        end
+        row 12 do
+          column _render_answer_details
+        end
+      end
+    end
+  end
+
+
   view :listing do
     _render_titled
   end

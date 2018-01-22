@@ -10,6 +10,17 @@ format :html do
     end
   end
 
+  view :research_form, cache: :never, perms: :update, tags: :unknown_ok do
+    voo.editor = :inline_nests
+    with_nest_mode :edit do
+      card_form :create, class: "new-value-form",
+                "main-success" => "REDIRECT",
+                success: table_form_success  do
+        haml :research_form
+      end
+    end
+  end
+
   def table_form_success
     { id: card.contextual_record_name,
       soft_redirect: true,

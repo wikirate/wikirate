@@ -95,7 +95,7 @@ format :html do
   end
 
   def option_label_text _option_name
-    "#{request_icon} Request that another researcher double check this value"
+    "#{request_icon} Not sure? Ask another  researcher to double check this"
   end
 
   view :core, template: :haml
