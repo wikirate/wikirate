@@ -1,7 +1,7 @@
 format :html do
   view :new, cache: :never do
     @form_root = true
-    subformat(Card[:research_page])._render_new
+    subformat(Card[:research_page])._render_core
   end
 
   def default_edit_args _args

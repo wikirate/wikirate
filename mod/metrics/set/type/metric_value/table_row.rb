@@ -40,7 +40,7 @@ format :html do
                  target: "_blank",
                  class: "btn btn-primary btn-sm",
                  path: {
-                   metric: [card.metric],
+                   metric: card.metric,
                    company: card.company
                  },
                  title: "Research answer for another year"

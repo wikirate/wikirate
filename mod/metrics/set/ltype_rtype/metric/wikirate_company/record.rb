@@ -109,9 +109,9 @@ format :html do
   end
 
   def redirect_form_button
-    link_to_card card, "Research answer",
+    link_to_card :research_page, "working on this Research answer",
                  class: "btn btn-sm btn-primary margin-12",
-                 path: { view: "research_page", slot: { show: :answer_form } },
+                 path: { view: "slot_machine", metric: card.metric, company: card.company },
                  title: "Research answer for another year"
   end
 

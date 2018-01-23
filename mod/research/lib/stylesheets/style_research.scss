@@ -15,26 +15,43 @@
   color: inherit;
 }
 
-.SELF-research_page.slot_machine-view .tabbable {
-  margin-left: -15px;
-  margin-right: -18px;
+.large-text {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
 
-  .tab-pane {
-    padding-left: 15px;
-    padding-right: 15px;
+.SELF-research_page.slot_machine-view {
+  margin-left: -1%;
 
-    &#research_page-research_answer {
-      padding-left: 0;
-      padding-right: 0;
-      background: #fafafa;
-      form {
-        background: white;
-      }
-      > h5 {
-        padding-left: 15px;
-        padding-top: 15px;
-        padding-right: 15px;
-      }
+  form.new-value-form {
+    margin-top: 0;
+    border: none;
+
+    .form-group.card-editor.RIGHT-value {
+      padding-bottom: 0;
+    }
+
+    .form-group label .card-title {
+      font-size: 1.25rem; // make title look like h5 tag
+      margin-bottom: 0.5rem;
+      font-family: inherit;
+      font-weight: 500;
+      line-height: 1.2;
+      color: #404040;
+    }
+  }
+
+  #research_page-research_answer {
+    padding-left: 0;
+    padding-right: 0;
+    background: #fafafa;
+    form {
+      background: white;
+    }
+    > h5 {
+      padding-left: 15px;
+      padding-top: 15px;
+      padding-right: 15px;
     }
   }
 }

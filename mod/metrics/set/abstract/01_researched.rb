@@ -20,18 +20,16 @@ format :html do
                 scores_tab: "Scores"
   end
 
-  view :details_tab do
-    tab_wrap do
-      wrap_with :div, class: "metric-details-content" do
-        [
-          _render_metric_properties,
-          _render_add_value_buttons,
-          wrap_with(:hr, ""),
-          nest(card.about_card, view: :titled, title: "About"),
-          nest(card.methodology_card, view: :titled, title: "Methodology"),
-          _render_import_button
-        ]
-      end
+  view :details_tab_content do
+    wrap_with :div, class: "metric-details-content" do
+      [
+        _render_metric_properties,
+        _render_add_value_buttons,
+        wrap_with(:hr, ""),
+        nest(card.about_card, view: :titled, title: "About"),
+        nest(card.methodology_card, view: :titled, title: "Methodology"),
+        _render_import_button
+      ]
     end
   end
 
@@ -74,7 +72,7 @@ format :html do
 
   def add_value_link
     link_to_card :research_page, "#{fa_icon 'plus'} Research answer",
-                 path: { metric: card.name, view: :new },
+                 path: { metric: card.name, view: :slot_machine },
                  class: "btn btn-primary",
                  title: "Research answer for another year"
     # "/new/metric_value?metric=" + _render_cgi_escape_name

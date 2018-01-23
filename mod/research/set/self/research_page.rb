@@ -22,30 +22,11 @@ format :html do
   end
 
   view :core, cache: :never do
-    return _render_new unless companies && metrics
-    wrap do
-      haml :research_form
-    end
-  end
-
-  # TODO: support more than one company
-  #   research_form.haml picks the first one
-  def companies
-    project_card&.companies ||
-      Array(params[:company] || card.wikirate_company_card.item_names)
-  end
-
-  def metrics
-    project_card&.metrics ||
-      Array(params[:metric] || card.metric_card.item_names)
-  end
-
-  def years
-    project_card&.years || Array(params[:year]) || Time.now.year
-  end
-
-  view :year_slot do
-    nest selected_record_card
+    render_slot_machine
+    # return _render_new unless companies && metrics
+    # wrap do
+    #   haml :research_form
+    # end
   end
 
   view :source_side, template: :haml
@@ -87,7 +68,7 @@ format :html do
   end
 
   def project
-    Env.params["project"]
+    @selected_project ||= Env.params["project"]
   end
 
   def project_card

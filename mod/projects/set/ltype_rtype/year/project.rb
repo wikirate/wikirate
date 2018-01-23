@@ -23,7 +23,7 @@ format :html do
     "<BLINK>#{card.year}</BLINK>"
   end
 
-  view :research_progress_bar, cache: :never do
+  view :research_progress_bar, cache: :never, tags: :unknown_ok do
     research_progress_bar
   end
 end

@@ -46,6 +46,15 @@ format :html do
     end
   end
 
+  view :research_preview, tags: :unknown_ok do
+    wrap do
+      [
+        _render_relevant,
+        wrap_with(:div, _render_iframe_view, class: "source-iframe-container"),
+      ]
+    end
+  end
+
   def preview_url
     if @preview_url_loaded
       @preview_url

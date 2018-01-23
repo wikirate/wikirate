@@ -87,7 +87,8 @@ format :html do
            to: :card
 
   view :edit_in_form do
-    other_user_requested_check? ? "" : super()
+    return "" if other_user_requested_check?
+    wrap_with(:h5, "Checks") + super()
   end
 
   def editor

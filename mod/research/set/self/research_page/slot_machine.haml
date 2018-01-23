@@ -1,0 +1,127 @@
+.container-fluid
+  .row
+    .col-5.p-0
+      - if project?
+        .border-bottom.p-2.pl-3.d-flex.wd-100.justify-content-between.flex-nowrap.align-items-center
+          .d-flex.flex-nowrap
+            .image-box.icon
+              %span.img-helper
+                = nest [project, :image], view: :core, size: :small
+            .large-text
+              = nest project, view: :link
+          .default-progress-box.w-25
+            = nest project, view: :research_progress_bar
+
+      .metric.border-bottom.p-2.pl-3.d-flex.wd-100.justify-content-between.flex-nowrap.align-items-center
+        .large-text
+          -if !metric?
+            .d-flex.flex-nowrap.metric-color
+              .image-box.icon.bg-white
+                = fa_icon "bar-chart", class: "metric-color"
+              = autocomplete_field :metric
+          -elsif metric_pinned?
+            .metric-color.d-flex.flex-nowrap.align-items-center
+              .image-box.icon
+                %span.img-helper
+                = nest metric, view: :designer_image
+              = Card[metric].metric_title
+          - else
+            .dropdown
+              %a.metric-color.no-decoration.dropdown-toggle.d-flex.flex-nowrap.align-items-center{href:"#", data: { toggle: "dropdown" } }
+                .image-box.icon
+                  %span.img-helper
+                  = nest metric, view: :designer_image
+                = Card[metric].metric_title
+              .dropdown-menu.scrollable-menu
+                - metric_list.each do |metric|
+                  .dropdown-item.metric-dropdown-item
+                    %a.inherit-anchor.no-decoration{href: research_url(metric: metric)}
+                      %h5.metric-color= Card[metric].metric_title
+                      = nest [metric, :question], view: :core
+                      - record_card.all_answers.each do |a|
+                        %div.d-flex.flex-no-wrap
+                          %div.mr-3
+                            = a.year
+                          %div
+                            = nest a, view: :concise, hide: :year
+                  .dropdown-divider
+        - if project?
+          .w-25
+            = nest [metric, project], view: :research_progress_bar
+      - if metric?
+        .company.border-bottom.p-2.pl-3.d-flex.wd-100.justify-content-between.flex-nowrap.align-items-center
+          .large-text
+            - if company_pinned?
+              .company-color.d-flex.flex-nowrap.align-items-center
+                .image-box.icon
+                  %span.img-helper
+                  = nest [company, :image], view: :core, size: :small
+                = company
+            - elsif !company
+              .d-flex.flex-nowrap.company-color
+                .image-box.icon.bg-white
+                  = fa_icon :industry, class: "company-color"
+                = autocomplete_field :company
+            - else
+              .dropdown
+                %a.company-color.dropdown-toggle.d-flex.flex-nowrap.no-decoration.align-items-center{href:"#", data: { toggle: "dropdown" } }
+                  .image-box.icon
+                    %span.img-helper
+                    = nest [company, :image], view: :core, size: :small
+                  = company
+                .dropdown-menu.scrollable-menu
+                  - company_list.each do |company|
+                    .dropdown-item.company-color
+                      %a.inherit-anchor.no-decoration{href: research_url(company: company)}
+                        %h5
+                          = company
+                    .dropdown-divider
+          - if project?
+            .w-25
+              = nest [company, project], view: :research_progress_bar
+      - if metric? && company?
+        .year.border-bottom.p-2.pl-3.d-flex.flex-nowrap.justify-content-between.align-items-center
+          .large-text
+            - if year_pinned?
+              .d-flex.flex-nowrap
+                .image-box.icon.bg-white
+                  %span.img-helper
+                  = fa_icon :calendar, class: "text-muted"
+                = year
+            - else
+              .dropdown
+                %a.inherit-anchor.no-decoration.dropdown-toggle.d-flex.flex-nowrap.align-items-center{ href: "#", data: { toggle: "dropdown" } }
+                  .image-box.icon.bg-white
+                    %span.img-helper
+                    = fa_icon :calendar, class: "text-muted"
+                  %strong
+                    = year
+                .dropdown-menu.scrollable-menu.slab
+                  - year_list.each do |year|
+                    .dropdown-item
+                      %a.inherit-anchor.no-decoration{href: research_url(year: year)}
+                        %h5.d-flex.flex-no-wrap.text-muted
+                          %div.mr-5
+                            %strong
+                              = year
+                          -if record_card.answers_by_year[year]
+                            %div
+                              = nest record_card.answers_by_year[year], view: :concise, hide: :year
+                          -else
+                            %i
+                              add answer
+          - if project?
+            .w-25
+              = nest [year.to_s, project], view: :research_progress_bar
+
+      -if year && metric && company
+        .border-bottom.background-grey.p-2.pl-3
+          %h5
+            Question
+          .large-text
+            = nest [metric, :question], view: :core
+        .p-2.pl-3
+          = nest answer_card, view: answer_view, title: "Answer"
+
+    .col-7.border-left#research-details
+      = right_side_tabs
