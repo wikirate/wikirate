@@ -2,6 +2,6 @@
 
 class AddEditorIdToAnswerTable < Card::Migration::DeckStructure
   def up
-    # add_column :answers, :editor_id, :integer
+    add_column :answers, :editor_id, :integer
   end
 end
