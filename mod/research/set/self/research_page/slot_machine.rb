@@ -42,14 +42,13 @@ format :html do
       tabs["Source preview"] = _render_source_preview_tab
     end
     tabs["Metric details"] = nest(metric, view: :details_tab_content,
-                                      hide: [:add_value_buttons, :import_button])
+                                          hide: [:add_value_buttons, :import_button])
     tabs["How to"] = nest(:how_to_research, view: :core)
 
     static_tabs tabs, active_tab
   end
 
   def next_button type
-    binding.pry
     list = send("#{type}_list")
     index = list.index send(type)
     return if !index || index == list.size - 1
@@ -65,7 +64,8 @@ format :html do
   def autocomplete_field type, options_card=nil
     codename = type == :company ? :wikirate_company : type
     options_card ||= Card::Name[codename, :type, :by_name]
-    text_field_tag codename, "", class: "_research-select #{codename}_autocomplete form-control",
+    text_field_tag codename, "",
+                   class: "_research-select #{codename}_autocomplete form-control",
                    "data-options-card": options_card,
                    "data-url": research_url,
                    "data-key": type,
@@ -91,8 +91,8 @@ format :html do
   def list_from_project_or_params name
     list_name = "#{name}_list"
     (params[list_name] && Array(params[list_name])) ||
-        (params[name] && Array(params[name])) ||
-        (project_card && project_card.send(list_name))
+      (params[name] && Array(params[name])) ||
+      (project_card && project_card.send(list_name))
   end
 
   def research_url opts={}

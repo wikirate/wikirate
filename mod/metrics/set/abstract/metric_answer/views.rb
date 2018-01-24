@@ -79,7 +79,7 @@ format :html do
   end
 
   def grade
-    return unless (value = (card.value && card.value.to_i))
+    return unless (value = card&.value&.to_i)
     case value
     when 0, 1, 2, 3 then :low
     when 4, 5, 6, 7 then :middle

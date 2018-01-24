@@ -49,7 +49,6 @@ alias_method :metric_list, :metrics
 alias_method :company_list, :companies
 alias_method :year_list, :years
 
-
 # used in filtering answers on company and project pages
 # @param values [Symbol] researched, known, not_researched
 # (need better term for this param)
