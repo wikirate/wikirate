@@ -28,33 +28,33 @@ format :html do
   end
 
   view :value_cell do
-    if filtered_for_no_values?
-      add_value_button
+    if research_button?
+      _render_research_button
+    elsif uncalculated?
+      _render_blank
     else
       _render_concise
     end
   end
 
-  def add_value_button
+  view :research_button do
     link_to_card :research_page, "Research answer",
                  target: "_blank",
                  class: "btn btn-primary btn-sm",
                  path: {
                    metric: card.metric,
-                   company: card.company
-                 },
-                 title: "Research answer for another year"
-    # <<-HTML
-    #     <a type="button" target="_blank" class="btn btn-primary btn-sm"
-    #       href="#{add_value_url}">Research answer</a>
-    # HTML
+                   company: card.company },
+                 title: "Research answer"
   end
 
-  def filtered_for_no_values?
-    return card.new_card?
-    # FIXME: wrong place.
-    # should not need to know anything about filter param details here
-    params["filter"] && params["filter"]["value"] == "none"
+  # Metric is researchable and this answer not yet researched
+  def research_button?
+    card.researched? && card.new_card?
+  end
+
+  # Metric is calculated but this answer can't yet be calculated
+  def uncalculated?
+    !card.researched? && card.answer.new_record?
   end
 
   view :details_placeholder do

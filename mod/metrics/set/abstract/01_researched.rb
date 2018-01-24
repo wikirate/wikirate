@@ -24,7 +24,7 @@ format :html do
     wrap_with :div, class: "metric-details-content" do
       [
         _render_metric_properties,
-        _render_add_value_buttons,
+          # _render_add_value_buttons,
         wrap_with(:hr, ""),
         nest(card.about_card, view: :titled, title: "About"),
         nest(card.methodology_card, view: :titled, title: "Methodology"),

@@ -1,7 +1,8 @@
 # handle variables used in a formula card's content
 
+# FIXME: card is getting stored in database (despite being a session card)
 def variables_card
-  metric_card.fetch trait: :variables, new: { type: "session" }
+  metric_card.fetch trait: :variables, new: { type_id: Card::SessionID }
 end
 
 event :replace_variables, :prepare_to_validate, on: :save, changed: :content do

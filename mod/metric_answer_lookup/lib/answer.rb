@@ -87,7 +87,7 @@ class Answer < ApplicationRecord
   end
 
   def unknown? val
-    val.casecmp("unknown").zero?
+    self.class.unknown? val
   end
 end
 
