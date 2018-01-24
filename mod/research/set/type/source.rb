@@ -6,11 +6,11 @@ format :html do
                          "data-form-for" => "new_metric_value",
                          class: "slotter new-view TYPE-source" do
         output [
-                 new_research_hidden,
-                 new_view_type,
-                 haml(:source_form),
-                 new_research_buttons
-               ]
+          new_research_hidden,
+          new_view_type,
+          haml(:source_form),
+          new_research_buttons
+        ]
       end
     end
   end

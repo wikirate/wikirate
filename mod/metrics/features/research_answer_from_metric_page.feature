@@ -63,12 +63,11 @@ Feature: Research answer from metric page
     And I click on item "Death Star"
     And I click on "Research answer"
     And I wait for ajax response
-    And I fill in "2015" for "Year"
+    And I select year "2015"
     And I fill in "yes" for "Answer"
     And I click on "Add a new source"
     And I fill in "http://example.com" for "URL"
-    And I click on "Add and preview"
-    # if window is to small cite is hidden under the iframe
+    And I click on "Add"
     And I click! on "Cite!"
     And I click on "Submit"
     Then I should see "disturbances in the Force"

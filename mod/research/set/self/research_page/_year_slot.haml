@@ -1,0 +1,37 @@
+.year.border-bottom.p-2.pl-3.d-flex.flex-nowrap.justify-content-between.align-items-center
+  .large-text
+    - if year_pinned?
+      .d-flex.flex-nowrap
+        .image-box.icon.bg-white
+          %span.img-helper
+          = fa_icon :calendar, class: "text-muted"
+        = year
+    - else
+      .dropdown
+        %a.inherit-anchor.no-decoration.dropdown-toggle.d-flex.flex-nowrap.align-items-center{ href: "#", data: { toggle: "dropdown" } }
+          .image-box.icon.bg-white
+            %span.img-helper
+            = fa_icon :calendar, class: "text-muted"
+          - if year?
+            %strong
+              = year
+          - else
+            %span.text-muted
+              Year
+        .dropdown-menu.scrollable-menu.slab
+          - year_list.each do |year|
+            .dropdown-item
+              %a.inherit-anchor.no-decoration{ href: research_url(year: year)}
+                %h5.d-flex.flex-no-wrap.text-muted
+                  %div.mr-5
+                    %strong
+                      = year
+                  -if record_card.answers_by_year[year]
+                    %div
+                      = nest record_card.answers_by_year[year], view: :concise, hide: :year
+                  -else
+                    %i
+                      add answer
+  - if project?
+            -#.w-25
+            -#  = nest [year.to_s, project], view: :research_progress_bar

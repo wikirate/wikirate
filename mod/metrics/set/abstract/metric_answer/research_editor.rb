@@ -1,30 +1,17 @@
 format :html do
-  view :table_form, cache: :never, perms: :update, tags: :unknown_ok do
-    voo.editor = :inline_nests
-    with_nest_mode :edit do
-      card_form :create, class: "new-value-form",
-                         "main-success" => "REDIRECT",
-                         success: table_form_success  do
-        haml :new_form
-      end
-    end
-  end
-
   view :research_form, cache: :never, perms: :update, tags: :unknown_ok do
     voo.editor = :inline_nests
     with_nest_mode :edit do
       card_form :create, class: "new-value-form",
                 "main-success" => "REDIRECT",
-                success: table_form_success  do
+                success: research_form_success  do
         haml :research_form
       end
     end
   end
 
-  def table_form_success
-    { id: "_self",
-      soft_redirect: true,
-      view: :titled }
+  def research_form_success
+    { id: "_self", soft_redirect: true, view: :titled }
   end
 
   def new_buttons

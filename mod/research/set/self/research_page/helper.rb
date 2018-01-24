@@ -1,66 +1,5 @@
 
 format :html do
-  view :slot_machine, cache: :never, perms: :create do
-    slot_machine
-  end
-
-  def slot_machine opts={}
-    %i[metric company project year active_tab].each do |n|
-      if opts[n]
-        instance_variable_set "@#{n}", opts[n]
-      end
-    end
-    wrap do
-      haml :slot_machine
-    end
-  end
-
-  view :source_tab do
-    wrap do
-      haml :source_tab
-    end
-  end
-
-  view :source_preview_tab do
-    wrap do
-      nest preview_source, view: :source_and_preview
-    end
-  end
-
-  def preview_source
-    params[:preview_source] || source
-  end
-
-  def source
-    params[:source] || (answer? && answer_card.source_card.item_names.first)
-  end
-
-  def right_side_tabs
-    tabs = {}
-    if answer?
-      tabs["Source"] = _render_source_tab
-      tabs["Source preview"] = _render_source_preview_tab
-    end
-    tabs["Metric details"] = nest(metric, view: :details_tab_content,
-                                          hide: [:add_value_buttons, :import_button])
-    tabs["How to"] = nest(:how_to_research, view: :core)
-
-    static_tabs tabs, active_tab
-  end
-
-  def next_button type
-    list = send("#{type}_list")
-    index = list.index send(type)
-    return if !index || index == list.size - 1
-    link_to "Next", path: research_url(type => list[index + 1]),
-                    class: "btn btn-secondary"
-  end
-
-  def add_source_form
-    params[:company] = company
-    nest Card.new(type_id: Card::SourceID), view: :new_research
-  end
-
   def autocomplete_field type, options_card=nil
     codename = type == :company ? :wikirate_company : type
     options_card ||= Card::Name[codename, :type, :by_name]
@@ -77,11 +16,11 @@ format :html do
   end
 
   def company_list
-    list_from_project_or_params(:company) || [] #card.wikirate_company_card.item_names
+    list_from_project_or_params(:company) || []
   end
 
   def metric_list
-    list_from_project_or_params(:metric) || [] #card.metric_card.item_names
+    list_from_project_or_params(:metric) || []
   end
 
   def year_list
@@ -111,6 +50,14 @@ format :html do
       path_opts[:year_list] = year_list
     end
     path path_opts
+  end
+
+  def preview_source
+    params[:preview_source] || source
+  end
+
+  def source
+    params[:source] || (answer? && answer_card.source_card.item_names.first)
   end
 
   def years
