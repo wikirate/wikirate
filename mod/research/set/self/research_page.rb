@@ -43,10 +43,4 @@ format :html do
   def metric_field
     field_nest :metric, title: "Metrics"
   end
-
-  def next_button
-    wrap_with :div, class: "col-md-6 col-centered text-center" do
-      submit_button text: "Next"
-    end
-  end
 end

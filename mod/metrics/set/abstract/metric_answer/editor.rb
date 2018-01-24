@@ -1,15 +1,13 @@
 format :html do
   view :new, cache: :never do
-    @form_root = true
-    subformat(Card[:research_page])._render_core
+    # @form_root = true
+    subformat(Card[:research_page]).slot_machine
   end
 
   def default_edit_args _args
     # voo.hide! :toolbar
     voo.hide! :edit_buttons
   end
-
-  view :source_side, template: :haml
 
   view :content_formgroup, template: :haml do
     card.add_subfield :year, content: card.year
@@ -18,10 +16,9 @@ format :html do
     end
   end
 
-  view :source_side, template: :haml
-
-  def default_new_args _args
-    metric_name = Env.params[:metric]
-    voo.title = "Add new value for #{metric_name}" if metric_name
+  def card_form_html_opts action, opts={}
+    super
+    add_class opts, "answer-form"
+    opts
   end
 end

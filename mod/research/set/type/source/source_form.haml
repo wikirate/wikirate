@@ -2,8 +2,8 @@
   .row
     .new-source-tab
       %ul#myTab.nav.nav-pills{:role => "tablist"}
-        %li.nav-item.active{:role => "presentation"}
-          %a#url-tab.nav-link{"aria-controls" => "url", "aria-expanded" => "true", "data-source-type" => "Link", "data-toggle" => "tab", :href => "#url", :role => "tab"}
+        %li.nav-item{:role => "presentation"}
+          %a#url-tab.nav-link.active{"aria-controls" => "url", "aria-expanded" => "true", "data-source-type" => "Link", "data-toggle" => "tab", :href => "#url", :role => "tab"}
             %i.fa.fa-globe
             URL
         %li.nav-item{:role => "presentation"}

@@ -9,8 +9,8 @@
                 = nest [project, :image], view: :core, size: :small
             .large-text
               = nest project, view: :link
-          .default-progress-box.w-25
-            = nest project, view: :research_progress_bar
+          -#.default-progress-box.w-25
+          -#  = nest project, view: :research_progress_bar
 
       .metric.border-bottom.p-2.pl-3.d-flex.wd-100.justify-content-between.flex-nowrap.align-items-center
         .large-text
@@ -46,22 +46,23 @@
                             = nest a, view: :concise, hide: :year
                   .dropdown-divider
         - if project?
+          = next_button :metric
           .w-25
-            = nest [metric, project], view: :research_progress_bar
+            = nest [company, project], view: :research_progress_bar
       - if metric?
         .company.border-bottom.p-2.pl-3.d-flex.wd-100.justify-content-between.flex-nowrap.align-items-center
           .large-text
-            - if company_pinned?
+            - if !company?
+              .d-flex.flex-nowrap.company-color
+                .image-box.icon.bg-white
+                  = fa_icon :industry, class: "company-color"
+                = autocomplete_field :company
+            - elsif company_pinned?
               .company-color.d-flex.flex-nowrap.align-items-center
                 .image-box.icon
                   %span.img-helper
                   = nest [company, :image], view: :core, size: :small
                 = company
-            - elsif !company
-              .d-flex.flex-nowrap.company-color
-                .image-box.icon.bg-white
-                  = fa_icon :industry, class: "company-color"
-                = autocomplete_field :company
             - else
               .dropdown
                 %a.company-color.dropdown-toggle.d-flex.flex-nowrap.no-decoration.align-items-center{href:"#", data: { toggle: "dropdown" } }
@@ -77,8 +78,9 @@
                           = company
                     .dropdown-divider
           - if project?
-            .w-25
-              = nest [company, project], view: :research_progress_bar
+            -#= next_button :company
+            -#.w-25
+            -#  = nest [company, project], view: :research_progress_bar
       - if metric? && company?
         .year.border-bottom.p-2.pl-3.d-flex.flex-nowrap.justify-content-between.align-items-center
           .large-text
@@ -94,8 +96,12 @@
                   .image-box.icon.bg-white
                     %span.img-helper
                     = fa_icon :calendar, class: "text-muted"
-                  %strong
-                    = year
+                  - if year?
+                    %strong
+                      = year
+                  - else
+                    %span.text-muted
+                      Year
                 .dropdown-menu.scrollable-menu.slab
                   - year_list.each do |year|
                     .dropdown-item
@@ -111,8 +117,8 @@
                             %i
                               add answer
           - if project?
-            .w-25
-              = nest [year.to_s, project], view: :research_progress_bar
+            -#.w-25
+            -#  = nest [year.to_s, project], view: :research_progress_bar
 
       -if year && metric && company
         .border-bottom.background-grey.p-2.pl-3
@@ -121,7 +127,8 @@
           .large-text
             = nest [metric, :question], view: :core
         .p-2.pl-3
-          = nest answer_card, view: answer_view, title: "Answer"
+          = answer_slot
+
 
     .col-7.border-left#research-details
       = right_side_tabs

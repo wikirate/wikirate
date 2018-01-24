@@ -8,13 +8,15 @@ $.extend wikirate,
 
   toggleCitation: (ele, action) ->
     sourceID =  $(ele).closest(".TYPE-source").data("card-id")
-    citations = $("form.new-value-form .cited-sources")
-
-    toggleCiteButtons(sourceID, action)
-    if (action == 'cite')
-      citeSource(sourceID, citations)
-    else if (action == 'uncite')
-      unciteSource(sourceID, citations)
+    citations = $("form .cited-sources")
+    if citations.length == 0
+      alert "Can't change citations. Answer is not in edit mode."
+    else
+      toggleCiteButtons(sourceID, action)
+      if (action == 'cite')
+        citeSource(sourceID, citations)
+      else if (action == 'uncite')
+        unciteSource(sourceID, citations)
 
 
 #  appendSourceDetails: (sourceID) ->
@@ -36,7 +38,7 @@ $.extend wikirate,
     $(".TYPE-source[data-card-id='#{sourceID}'] .c-btn")
 
   citedSourceInForm = (sourceID) ->
-    $("form.new-value-form .relevant-view.TYPE-source[data-card-id='#{sourceID}']")
+    $("form .relevant-view.TYPE-source[data-card-id='#{sourceID}']")
 
   possibleSource = (sourceID) -> \
     $(".source_tab-view.SELF-research_page .relevant-view.TYPE-source[data-card-id='#{sourceID}']")
@@ -102,11 +104,13 @@ $.extend wikirate,
 #      $sourceDetails.addClass('hide')
 
 $(document).ready ->
-  $('body').on 'click', '._cite_button', ->
+  $('body').on 'click', '._cite_button', (event) ->
     wikirate.toggleCitation(this, 'cite')
+    event.stopPropagation() # don't open preview
 
-  $('body').on 'click', '._cited_button', ->
+  $('body').on 'click', '._cited_button', (event) ->
     wikirate.toggleCitation(this, 'uncite')
+    event.stopPropagation() # don't open previews
 
 #  $('body').on 'click', '._add_new_source', ->
 #    wikirate.appendSourceForm($(this))

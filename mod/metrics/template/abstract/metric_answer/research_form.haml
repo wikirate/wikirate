@@ -3,7 +3,6 @@
   .editor
     .year
       = hidden_field_tag "card[subcards][+Year][content]", "[[#{card.year}]]"
-      -#= field_nest :year, title: "Year"
     - if card.metric_card.relationship?
       .related-company
         = field_nest :related_company, title: "Related Company"

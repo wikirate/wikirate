@@ -10,5 +10,6 @@ def answers_by_year
   @aby ||=
     Answer.where(record_id: id).each_with_object({}) do |a, h|
       h[a.year] = a
+      h[a.year.to_s] = a
     end
 end

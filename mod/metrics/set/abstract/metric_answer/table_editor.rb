@@ -22,9 +22,9 @@ format :html do
   end
 
   def table_form_success
-    { id: card.contextual_record_name,
+    { id: "_self",
       soft_redirect: true,
-      view: :new_answer_success }
+      view: :titled }
   end
 
   def new_buttons

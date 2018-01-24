@@ -48,6 +48,15 @@ format :html do
     static_tabs tabs, active_tab
   end
 
+  def next_button type
+    binding.pry
+    list = send("#{type}_list")
+    index = list.index send(type)
+    return if !index || index == list.size - 1
+    link_to "Next", path: research_url(type => list[index + 1]),
+                    class: "btn btn-secondary"
+  end
+
   def add_source_form
     params[:company] = company
     nest Card.new(type_id: Card::SourceID), view: :new_research
@@ -90,7 +99,7 @@ format :html do
     path_opts = { view: :slot_machine }
 
     %i[metric company year].each do |i|
-      val = opts[:metric] || send(i)
+      val = opts[i] || send(i)
       path_opts[i] = val if val
     end
 
@@ -112,8 +121,11 @@ format :html do
     path action: :new, mark: :source, preview: true, company: company
   end
 
-  def answer_view
-    answer_card.new_card? ? :research_form : :titled
+  def answer_slot
+    view = answer_card.new_card? ? :research_form : :titled
+    wrap do
+      nest answer_card, view: view, title: "Answer"
+    end
   end
 
   def project?
@@ -134,7 +146,7 @@ format :html do
   end
 
   def metric?
-    Card.fetch_type_id(metric) == MetricID
+    metric && Card.fetch_type_id(metric) == MetricID
   end
 
   def metric
@@ -142,7 +154,7 @@ format :html do
   end
 
   def company?
-    Card.fetch_type_id(company) == WikirateCompanyID
+    company && Card.fetch_type_id(company) == WikirateCompanyID
   end
 
   def answer?
@@ -153,12 +165,12 @@ format :html do
     @company ||= Env.params[:company] || company_list.first
   end
 
-  def no_company?
-    !company
+  def year?
+    year && Card.fetch_type_id(year) == YearID
   end
 
   def year
-    @year ||= Env.params[:year] || year_list.first
+    @year ||= Env.params[:year] || (project? && year_list.first)
   end
 
   def record_card
