@@ -108,14 +108,29 @@ format :html do
     Card.search(type_id: YearID, return: :name, sort: :name, dir: :desc).map(&:to_i)
   end
 
-
-
   def source_form_url
     path action: :new, mark: :source, preview: true, company: company
   end
 
   def answer_view
     answer_card.new_card? ? :research_form : :titled
+  end
+
+  def project?
+    project.present?
+  end
+
+  def project
+    @selected_project ||= Env.params["project"]
+  end
+
+  def project_card
+    return unless project?
+    unless Card.exists? project
+      card.errors.add :Project, "Project does not exist"
+      return nil
+    end
+    Card.fetch(project)
   end
 
   def metric?
