@@ -50,11 +50,10 @@ format :html do
     answer_view = voo.show?(:chart) ? :closed_answer : :closed_answer_without_chart
     wrap do
       next "" unless all_answers.present?
-      output [_render_answer_form,
-              wikirate_table(:plain, all_answers,
-                             [:plain_year, answer_view],
-                             header: %w[Year Answer],
-                             td: { classes: ["text-center"] })]
+      wikirate_table(:plain, all_answers,
+                     [:plain_year, answer_view],
+                     header: %w[Year Answer],
+                     td: { classes: ["text-center"] })
     end
   end
 
