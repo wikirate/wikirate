@@ -8,37 +8,16 @@ end
 format :html do
   delegate :all_answers, to: :card
 
-  view :research_page, unknown_ok: true do
-    voo.hide! :chart
-    voo.show! :compact_header
-    voo.hide! :add_answer_redirect
-    frame do
-      [
-        _render_answer_side,
-        nest(:research_page, view: :source_side)
-      ]
-    end
-  end
-
-  view :answer_side do
-    wrap_with :div, class: "panel-default nodblclick stick-left" do
-      _render_content
-    end
-  end
-
   # used in four places:
   # 1) metric page -> company table -> item -> table on right side
   # 2) company page -> metric table -> item -> table on right side
   # 3) metric record page
   # 4) add new value page (new_metric_value view for company)
   view :core, unknown_ok: true do
-    voo.hide :answer_form
-    voo.show :add_answer_redirect
     wrap_with :div, id: card.name.url_key, class: "record-row" do
       [
         _render_metric_info,
         _render_buttons,
-        # _render_new_answer
         _render_answer_table
       ]
     end
@@ -71,48 +50,23 @@ format :html do
     answer_view = voo.show?(:chart) ? :closed_answer : :closed_answer_without_chart
     wrap do
       next "" unless all_answers.present?
-      output [_render_answer_form,
-              wikirate_table(:plain, all_answers,
-                             [:plain_year, answer_view],
-                             header: %w[Year Answer],
-                             td: { classes: ["text-center"] })]
+      wikirate_table(:plain, all_answers,
+                     [:plain_year, answer_view],
+                     header: %w[Year Answer],
+                     td: { classes: ["text-center"] })
     end
-  end
-
-  view :new_answer_success do
-    voo.hide! :chart
-    voo.hide! :answer_form
-    _render_answer_table
   end
 
   def add_answer_button
     return "" unless metric_card.researched? && metric_card.user_can_answer?
-    if voo.show?(:add_answer_redirect) && voo.hide?(:answer_form)
-      redirect_form_button
-    else
-      show_form_button
-    end
+    link_to_card :research_page, "Research answer",
+                 class: "btn btn-sm btn-primary margin-12",
+                 path: { view: "slot_machine", metric: card.metric, company: card.company },
+                 title: "Research answer for another year"
   end
 
   def default_menu_args args
     args[:optional_horizontal_menu] = :hide
-  end
-
-  def show_form_button
-    classes = "_add_new_value btn-primary"
-    classes << " hide" if voo.show?(:answer_form)
-    wrap_with :a, "Research Answer",
-              href: "#",
-              class: css_classes(button_classes, classes),
-              data: { url: path(view: :answer_form) },
-              title: "Research answer for another year"
-  end
-
-  def redirect_form_button
-    link_to_card card, "Research answer",
-                 class: "btn btn-sm btn-primary margin-12",
-                 path: { view: "research_page", slot: { show: :answer_form } },
-                 title: "Research answer for another year"
   end
 
   view :image_link do

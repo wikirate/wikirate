@@ -1,0 +1,21 @@
+.container-fluid
+  .row
+    .col-5.p-0
+      - if project?
+        = haml_partial :project_slot
+      = haml_partial :metric_slot
+      - if metric?
+        = haml_partial :company_slot
+      - if metric? && company?
+        = haml_partial :year_slot
+      -if year && metric && company
+        .border-bottom.background-grey.p-2.pl-3
+          %h5
+            Question
+          .large-text
+            = nest [metric, :question], view: :core
+        .p-2.pl-3
+          = answer_slot
+
+    .col-7.border-left#research-details
+      = right_side_tabs

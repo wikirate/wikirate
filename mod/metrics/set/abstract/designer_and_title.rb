@@ -24,6 +24,10 @@ format :html do
          view: :core, size: :small
   end
 
+  view :designer_image do
+    designer_image
+  end
+
   def designer_image_link
     link_to_card card.metric_designer_card, designer_image
   end

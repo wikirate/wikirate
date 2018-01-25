@@ -46,6 +46,15 @@ format :html do
     end
   end
 
+  view :research_preview, tags: :unknown_ok do
+    wrap do
+      [
+        _render_relevant,
+        wrap_with(:div, _render_iframe_view, class: "source-iframe-container")
+      ]
+    end
+  end
+
   def preview_url
     if @preview_url_loaded
       @preview_url
@@ -145,8 +154,10 @@ format :html do
 
   view :non_previewable, tags: :unknown_ok do |_args|
     file_card = card.fetch trait: :file
-    url, text = if file_card then [file_card.attachment.url, "Download"]
-                else [preview_url, "Visit Original Source"]
+    url, text = if file_card
+                  [file_card.attachment.url, "Download"]
+                else
+                  [preview_url, "Visit Original Source"]
                 end
     link_to text, href: url, class: "btn btn-primary", role: "button"
   end

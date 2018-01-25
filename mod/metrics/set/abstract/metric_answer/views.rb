@@ -1,7 +1,7 @@
 format :html do
   view :comments do |_args|
     disc_card = card.fetch trait: :discussion, new: {}
-    subformat(disc_card)._render_titled title: "Discussion", show: "commentbox",
+    subformat(disc_card)._render_titled title: "Comments", show: "commentbox",
                                         home_view: :titled
   end
 
@@ -79,7 +79,7 @@ format :html do
   end
 
   def grade
-    return unless (value = (card.value && card.value.to_i))
+    return unless (value = card&.value&.to_i)
     case value
     when 0, 1, 2, 3 then :low
     when 4, 5, 6, 7 then :middle

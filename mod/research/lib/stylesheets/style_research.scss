@@ -1,0 +1,59 @@
+{{style: mixins and variables|raw}}
+
+.metric-dropdown-item {
+  max-width: 500px;
+  white-space: normal !important;
+  color: $muted;
+}
+
+.titled-view.LTYPE_RTYPE-record-year > .d0-card-header > .d0-card-header-title > .card-title {
+  font-size: 1.25rem; // make title look like h5 tag
+  margin-bottom: 0.5rem;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.2;
+  color: inherit;
+}
+
+.large-text {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+form.answer-form {
+  .form-group label .card-title {
+    font-size: 1.25rem; // make title look like h5 tag
+    margin-bottom: 0.5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #404040;
+  }
+}
+
+.SELF-research_page.slot_machine-view {
+  margin-left: -1%;
+
+  form.new-value-form {
+    margin-top: 0;
+    border: none;
+
+    .form-group.card-editor.RIGHT-value {
+      padding-bottom: 0;
+    }
+  }
+
+  #research_page-research_answer {
+    padding-left: 0;
+    padding-right: 0;
+    background: #fafafa;
+    form {
+      background: white;
+    }
+    > h5 {
+      padding-left: 15px;
+      padding-top: 15px;
+      padding-right: 15px;
+    }
+  }
+}

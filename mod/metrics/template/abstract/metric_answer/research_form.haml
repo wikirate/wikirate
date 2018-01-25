@@ -1,0 +1,19 @@
+%div
+  = answer_form_hidden_tags
+  .editor
+    .year
+      = hidden_field_tag "card[subcards][+Year][content]", "[[#{card.year}]]"
+    - if card.metric_card.relationship?
+      .related-company
+        = field_nest :related_company, title: "Related Company"
+    .value
+      = field_nest :value, title: "Answer"
+      %h5 Citations
+      = haml_partial :cited_sources
+      = field_nest :discussion, title: 'Comment'
+
+  .buttons
+    = button_formgroup do
+      - submit_button(disable_with: "Adding...")
+    -#= new_buttons
+    .card-notice

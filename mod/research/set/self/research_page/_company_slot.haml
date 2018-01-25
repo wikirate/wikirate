@@ -1,0 +1,31 @@
+.company.border-bottom.p-2.pl-3.d-flex.wd-100.justify-content-between.flex-nowrap.align-items-center
+  .large-text
+    - if !company?
+      .d-flex.flex-nowrap.company-color
+        .image-box.icon.bg-white
+          = fa_icon :industry, class: "company-color"
+        = autocomplete_field :company
+    - elsif company_pinned?
+      .company-color.d-flex.flex-nowrap.align-items-center
+        .image-box.icon
+          %span.img-helper
+          = nest [company, :image], view: :core, size: :small
+        = company
+    - else
+      .dropdown
+        %a.company-color.dropdown-toggle.d-flex.flex-nowrap.no-decoration.align-items-center{href:"#", data: { toggle: "dropdown" } }
+          .image-box.icon
+            %span.img-helper
+            = nest [company, :image], view: :core, size: :small
+          = company
+        .dropdown-menu.scrollable-menu
+          - company_list.each do |company|
+            .dropdown-item.company-color
+              %a.inherit-anchor.no-decoration{href: research_url(company: company)}
+                %h5
+                  = company
+            .dropdown-divider
+  - if project?
+    -#= next_button :company
+    -#.w-25
+    -#  = nest [company, project], view: :research_progress_bar

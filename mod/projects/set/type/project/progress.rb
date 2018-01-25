@@ -48,10 +48,14 @@ def units
 end
 
 format :html do
-  def overall_progress_box
+  view :overall_progress_box, cache: :never do
+    overall_progress_box false
+  end
+
+  def overall_progress_box legend=true
     wrap_with :div, class: "default-progress-box" do
       [
-        progress_legend,
+        (progress_legend if legend),
         bs_layout do
           row 2, 10 do
             column { _render_percent_researched }
