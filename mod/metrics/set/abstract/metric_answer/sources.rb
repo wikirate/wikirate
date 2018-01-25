@@ -56,10 +56,6 @@ def report_type
 end
 
 format :html do
-  def source_form_url
-    path action: :new, mark: :source, preview: true, company: card.company
-  end
-
   def source
     Env.params[:source]
   end

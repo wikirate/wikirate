@@ -1,16 +1,5 @@
 
 format :html do
-  def autocomplete_field type, options_card=nil
-    codename = type == :company ? :wikirate_company : type
-    options_card ||= Card::Name[codename, :type, :by_name]
-    text_field_tag codename, "",
-                   class: "_research-select #{codename}_autocomplete form-control",
-                   "data-options-card": options_card,
-                   "data-url": research_url,
-                   "data-key": type,
-                   placeholder: type.to_s.capitalize
-  end
-
   def active_tab
     @active_tab ||= params[:active_tab]
   end
@@ -62,17 +51,6 @@ format :html do
 
   def years
     Card.search(type_id: YearID, return: :name, sort: :name, dir: :desc).map(&:to_i)
-  end
-
-  def source_form_url
-    path action: :new, mark: :source, preview: true, company: company
-  end
-
-  def answer_slot
-    view = answer_card.new_card? ? :research_form : :titled
-    wrap do
-      nest answer_card, view: view, title: "Answer"
-    end
   end
 
   def project?

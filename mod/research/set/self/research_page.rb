@@ -39,9 +39,16 @@ format :html do
     end
   end
 
-  def add_source_form
+  def new_source_form
     params[:company] = company
     nest Card.new(type_id: Card::SourceID), view: :new_research
+  end
+
+  def answer_slot
+    view = answer_card.new_card? ? :research_form : :titled
+    wrap do
+      nest answer_card, view: view, title: "Answer"
+    end
   end
 
   def right_side_tabs
@@ -63,6 +70,17 @@ format :html do
     return if !index || index == list.size - 1
     link_to "Next", path: research_url(type => list[index + 1]),
             class: "btn btn-secondary"
+  end
+
+  def autocomplete_field type, options_card=nil
+    codename = type == :company ? :wikirate_company : type
+    options_card ||= Card::Name[codename, :type, :by_name]
+    text_field_tag codename, "",
+                   class: "_research-select #{codename}_autocomplete form-control",
+                   "data-options-card": options_card,
+                   "data-url": research_url,
+                   "data-key": type,
+                   placeholder: type.to_s.capitalize
   end
 
   def not_a_metric name
