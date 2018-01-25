@@ -3,8 +3,8 @@ format :html do
     voo.editor = :inline_nests
     with_nest_mode :edit do
       card_form :create, class: "new-value-form",
-                "main-success" => "REDIRECT",
-                success: research_form_success  do
+                         "main-success" => "REDIRECT",
+                         success: research_form_success  do
         haml :research_form
       end
     end

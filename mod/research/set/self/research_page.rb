@@ -57,9 +57,9 @@ format :html do
       tabs["Source"] = _render_source_tab
       tabs["Source preview"] = _render_source_preview_tab
     end
-    tabs["Metric details"] = nest(metric, view: :details_tab_content,
-                                  hide: [:add_value_buttons, :import_button])
-    tabs["How to"] = nest(:how_to_research, view: :core)
+    tabs["Metric details"] = nest metric, view: :details_tab_content,
+                                          hide: [:add_value_buttons, :import_button]
+    tabs["How to"] = nest :how_to_research, view: :core
 
     static_tabs tabs, active_tab
   end
@@ -69,7 +69,7 @@ format :html do
     index = list.index send(type)
     return if !index || index == list.size - 1
     link_to "Next", path: research_url(type => list[index + 1]),
-            class: "btn btn-secondary"
+                    class: "btn btn-secondary"
   end
 
   def autocomplete_field type, options_card=nil
