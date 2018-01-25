@@ -297,3 +297,4 @@ When(/^I select year "(.*)"$/) do |year|
   selector = %{a:contains('#{year}')}
   page.execute_script "document.location = $(\"#{selector}\").attr('href')"
 end
+

@@ -10,13 +10,14 @@ Feature: Research relationship answer from record page
 
   Scenario: Adding a metric value with a link source
     When In the main card content I click "Research answer"
-    And I wait for ajax response
+    And I select year "2009"
     And I select year "2015"
+    # And I fill in "2015" for "Year"
     And I fill in "Monster Inc" for "Related Company"
     And I fill in "yes" for "Answer"
     And I click on "Add a new source"
     And I fill in "http://example.com" for "URL"
-    And I click on "Add"
+    And I click on "Add and preview"
     Then I should not see "Problems"
     And I should see "Example Domain"
     And I should see "added less than a minute ago"
