@@ -64,7 +64,7 @@ Feature: Research answer from metric page
     And I click on "Research answer"
     And I wait for ajax response
     And I select year "2015"
-    And I fill in "yes" for "Answer"
+    And I choose "yes"
     And I fill in "http://example.com" for "URL"
     And I click on "Add"
     And I click! on "Cite!"
