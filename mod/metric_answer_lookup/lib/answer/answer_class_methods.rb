@@ -65,11 +65,8 @@ class Answer
 
     # @param ids [Integer, Array<Integer>] card ids of metric answer cards
     def refresh ids=nil, *fields
-      ids = Array(ids).compact
-      if ids.present?
-        ids.each { |ma_id| refresh_entry fields, ma_id }
-      else
-        refresh_all fields
+      Array(ids).compact.each do |ma_id|
+        refresh_entry fields, ma_id
       end
     end
 
