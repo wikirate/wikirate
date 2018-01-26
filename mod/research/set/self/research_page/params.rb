@@ -25,7 +25,7 @@ format :html do
   def research_url opts={}
     path_opts = { view: :slot_machine }
 
-    %i[metric company year pinned].each do |i|
+    %i[metric company year pinned source].each do |i|
       val = opts[i] || send(i)
       path_opts[i] = val if val
     end

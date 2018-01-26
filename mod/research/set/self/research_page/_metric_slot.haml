@@ -10,7 +10,7 @@
         .image-box.icon
           %span.img-helper
           = nest metric, view: :designer_image
-        = Card[metric].metric_title
+        = link_to_card metric, Card[metric].metric_title, class: "inherit-anchor"
     - else
       .dropdown
         %a.metric-color.no-decoration.dropdown-toggle.d-flex.flex-nowrap.align-items-center{href:"#", data: { toggle: "dropdown" } }
@@ -32,7 +32,7 @@
                       = nest a, view: :concise, hide: :year
             .dropdown-divider
   - if project?
-    .d-flex.flex-nowrap.align-items-center.w-25.justify-content-between
+    .d-flex.flex-nowrap.align-items-center.ml-3.w-25.justify-content-between
       = next_button :metric
       .w-100.pl-2
         = nest [company, project], view: :research_progress_bar

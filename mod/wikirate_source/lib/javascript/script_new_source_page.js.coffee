@@ -1,14 +1,25 @@
-decko.slotReady (slot) ->
-  if slot.hasClass('new-view') && (slot.hasClass('TYPE-source') || slot.hasClass('TYPE-metric_value'))
-# bind listener to the tab anchor
-    slot.find('#myTab').find("a").click (e) ->
-# update the source type
-      source_type = $(this).data('source-type')
-      source_type_subcard = slot.find(".RIGHT-Xsource_type").find("input:hidden.d0-card-content")
-      source_type_subcard.val("[[" + source_type + "]]")
-      source_type_subcard.siblings("ul").find("input[value=" + source_type + "]").prop("checked", true)
-
 $(window).ready ->
+  $('body').on 'shown.bs.tab', 'form.TYPE-source.new-view .new-source-widget a[data-toggle="tab"]', (e) ->
+    source_type = $(e.target).data('source-type')
+    source_type_subcard = $(e.target).closest("form").find(".RIGHT-Xsource_type input:hidden.d0-card-content")
+
+    source_type_subcard.val("[[" + source_type + "]]")
+    source_type_subcard.siblings("ul").find("input[value=" + source_type + "]").prop("checked", true)
+
+  $('body').on 'submit', 'form.TYPE-source.new-view', (e) ->
+    $form = $(e.target)
+    active_tab = $form.find(".new-source-widget a.active[data-toggle=\"tab\"]")
+    source_type = $(active_tab).data("source-type")
+    removeLink($form) unless source_type == "Link"
+    removeFile($form) unless source_type == "File"
+
+removeLink = ($form) ->
+  $form.find("#card_subcards__Link_content").val("")
+
+removeFile = ($form) ->
+  $form.find(".choose-file").show()
+  $form.find(".chosen-file").empty()
+
 
   ###
     To autopopulate the meta data in the input fields in new source page

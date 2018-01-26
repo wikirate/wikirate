@@ -44,7 +44,7 @@ $.extend wikirate,
     $(".source_tab-view.SELF-research_page .relevant-view.TYPE-source[data-card-id='#{sourceID}']")
 
   citeSource = (sourceID, citations) ->
-    $source = possibleSource(sourceID).clone()
+    $source = possibleSource(sourceID).clone(true)
 
     hiddenInput = $('<input>').addClass('pointer-select')
                               .attr('type', 'hidden')
