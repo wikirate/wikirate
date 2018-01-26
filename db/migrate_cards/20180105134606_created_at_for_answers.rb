@@ -11,7 +11,7 @@ class CreatedAtForAnswers < Card::Migration
     #       else
     #         a.created_at = a.card.created_at
     #         a.answer_id = nil
-    #         a.card.delete!# 
+    #         a.card.delete!
     #         a.save!
     #         puts "successfully migrated calculated answer: #{a.id}"
     #       end
