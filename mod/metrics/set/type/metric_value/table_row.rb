@@ -41,7 +41,9 @@ format :html do
     link_to_card :research_page, "Research answer",
                  target: "_blank",
                  class: "btn btn-primary btn-sm",
-                 path: { metric: [card.metric], company: card.company },
+                 path: {
+                   metric: card.metric,
+                   company: card.company },
                  title: "Research answer"
   end
 

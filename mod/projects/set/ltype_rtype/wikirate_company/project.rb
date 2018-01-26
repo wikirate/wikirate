@@ -34,11 +34,13 @@ format :html do
     link_to "Research",
             class: "btn btn-outline-secondary btn-sm",
             path: { mark: :research_page,
-                    company: card.company_card.name,
+                    view: :slot_machine,
+                    # company: card.company_card.name,
+                    company_list: [card.company_card.name],
                     project: project_name.url_key }
   end
 
-  view :research_progress_bar, cache: :never do
+  view :research_progress_bar, cache: :never, tags: :unknown_ok do
     research_progress_bar :company_link
   end
 

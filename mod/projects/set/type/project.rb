@@ -35,11 +35,19 @@ def metrics
   metric_card.valid_metric_cards.map(&:name)
 end
 
+def companies
+  wikirate_company_card.item_names
+end
+
 def years
   return @years unless @years.nil?
   valids = year_card.valid_year_cards.map(&:name)
   @years = valids.empty? ? false : valids
 end
+
+alias_method :metric_list, :metrics
+alias_method :company_list, :companies
+alias_method :year_list, :years
 
 # used in filtering answers on company and project pages
 # @param values [Symbol] researched, known, not_researched

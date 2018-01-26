@@ -23,19 +23,22 @@ end
 
 format :html do
   view :open_content do
+    subformat(:research_page).slot_machine metric: card.metric, company: card.company,
+                                           year: card.year, active_tab: "Source preview"
+  end
+
+  view :titled_content do
     voo.hide! :chart # hide it in value_field
     bs do
       layout do
-        row 3, 9 do
+        row 12 do
           column value_field
-          column do
-            row 12 do
-              column _render_chart
-            end
-            row 12 do
-              column _render_answer_details
-            end
-          end
+        end
+        row 12 do
+          column _render_chart
+        end
+        row 12 do
+          column _render_answer_details
         end
       end
     end

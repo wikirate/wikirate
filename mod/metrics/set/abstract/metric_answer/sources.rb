@@ -56,10 +56,6 @@ def report_type
 end
 
 format :html do
-  def source_form_url
-    path action: :new, mark: :source, preview: true, company: card.company
-  end
-
   def source
     Env.params[:source]
   end
@@ -70,6 +66,10 @@ format :html do
       @sources.push(source_card)
     end
     @sources
+  end
+
+  def new_sources
+    Array(source).compact.map { |source| Card[source] }
   end
 
   def source_suggestions
@@ -88,10 +88,15 @@ format :html do
     )
   end
 
-  view :source_suggestions, cache: :never do
+  view :new_sources, cache: :never, tags: :unknown_ok do
+    return "" unless new_sources.present?
+    wrap_with :div, source_list(new_sources).html_safe,
+              class: "relevant-sources"
+  end
+
+  view :source_suggestions, cache: :never, tags: :unknown_ok do
     wrap_with :div, source_list(source_suggestions).html_safe,
-              class: "relevant-sources" do
-    end
+              class: "relevant-sources"
   end
 
   view :relevant_sources, cache: :never do
@@ -100,7 +105,7 @@ format :html do
 
   def source_list source_cards=sources
     return "None" if source_cards.empty?
-    source_cards.map do |source|
+    source_cards.compact.map do |source|
       with_nest_mode :normal do
         subformat(source).render_relevant
       end

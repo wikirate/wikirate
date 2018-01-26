@@ -7,17 +7,21 @@ format :html do
       download_tab: { html: download_tab_link }
     }
   end
+
   view :source_details, template: :haml
+
   view :details_tab do
     tab_wrap do
       _render_source_details
     end
   end
+
   view :metrics_tab do
     tab_wrap do
       field_nest "metric_search", view: :content
     end
   end
+
   view :notes_tab do
     tab_wrap do
       field_nest "source_note_list", view: :content

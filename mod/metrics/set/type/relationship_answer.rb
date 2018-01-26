@@ -92,9 +92,10 @@ format :html do
     end
   end
 
-  view :content_formgroup, template: :haml do
+  view :content_formgroup do
     card.add_subfield :year, content: card.year
     card.add_subfield :related_company, content: card.related_company
+    super()
   end
 
   def legend

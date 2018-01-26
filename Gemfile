@@ -76,7 +76,7 @@ group :test do
 
   # CUKES see features dir
   gem "capybara", "2.17.0"
-  gem "chromedriver-helper"
+  # gem "chromedriver-helper"
   # gem "geckodriver-helper"
   gem "cucumber-expressions", "5.0.7" # this breaks at 5.0.12
   gem "cucumber-rails", require: false

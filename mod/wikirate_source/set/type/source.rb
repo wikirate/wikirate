@@ -29,6 +29,13 @@ event :check_source, :validate, on: :create do
   validate_source_subfields source_cards
 end
 
+event :add_source_name_to_params, :finalize, on: :create do
+  if success.params[:view] == "source_tab"
+    success.source ||= Array(Env.params[:source]) || []
+    success.source << name
+  end
+end
+
 def assemble_source_subfields
   [:wikirate_link, :file, :text].map do |fieldname|
     subfield fieldname
@@ -93,9 +100,10 @@ format :html do
     Env.params[:preview]
   end
 
-  view :new_preview, cache: :never do
+  view :new_preview, cache: :never, tags: :unknown_ok do
     with_nest_mode :edit do
       voo.structure = "metric value source form"
+      voo.type = "source"
       card_form :create, "main-success" => "REDIRECT",
                          "data-form-for" => "new_metric_value",
                          class: "card-slot new-view TYPE-source" do

@@ -1,0 +1,37 @@
+.metric.border-bottom.p-2.pl-3.d-flex.wd-100.justify-content-between.flex-nowrap.align-items-center
+  .large-text
+    -if !metric?
+      .d-flex.flex-nowrap.metric-color
+        .image-box.icon.bg-white
+          = fa_icon "bar-chart", class: "metric-color"
+        = autocomplete_field :metric
+    -elsif metric_pinned?
+      .metric-color.d-flex.flex-nowrap.align-items-center
+        .image-box.icon
+          %span.img-helper
+          = nest metric, view: :designer_image
+        = Card[metric].metric_title
+    - else
+      .dropdown
+        %a.metric-color.no-decoration.dropdown-toggle.d-flex.flex-nowrap.align-items-center{href:"#", data: { toggle: "dropdown" } }
+          .image-box.icon
+            %span.img-helper
+            = nest metric, view: :designer_image
+          = Card[metric].metric_title
+        .dropdown-menu.scrollable-menu
+          - metric_list.each do |metric|
+            .dropdown-item.metric-dropdown-item
+              %a.inherit-anchor.no-decoration{href: research_url(metric: metric)}
+                %h5.metric-color= Card[metric].metric_title
+                = nest [metric, :question], view: :core
+                - record_card.all_answers.each do |a|
+                  %div.d-flex.flex-no-wrap
+                    %div.mr-3
+                      = a.year
+                    %div
+                      = nest a, view: :concise, hide: :year
+            .dropdown-divider
+  - if project?
+    = next_button :metric
+    .w-25
+      = nest [company, project], view: :research_progress_bar

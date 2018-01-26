@@ -1,31 +1,32 @@
 describe Card::Set::Self::ResearchPage do
-  describe "view :core" do
-    before do
-      Card::Env.params[:company] = "Death Star"
-      Card::Env.params[:metric] = "Jedi+disturbance of the force"
+  describe "#slot_machine" do
+    subject do
+      Card[:research_page].format
+                          .slot_machine metric: "Joe User+researched",
+                                        company: "Death Star",
+                                        year: "2014"
     end
-    subject { Card[:research_page].format(:html)._render_core }
 
-    it "renders metric side" do
-      is_expected.to have_tag "div#metric-container.stick-left" do
-        with_tag "div.thumbnail" do
-          with_tag "a" do
-            with_tag "img"
-          end
-        end
+    it "has metric slot" do
+      is_expected.to have_tag ".metric" do
+        with_tag ".metric-color", /researched/
       end
     end
 
-    it "renders source side" do
-      is_expected.to have_tag "div.card-slot" do
-        with_tag "div#source-preview-main.stick-right" do
-          with_tag "div#source-form-container" do
-            with_tag "div._blank_state_message" do
-              with_tag :p
-            end
-          end
-        end
+    it "has company slot" do
+      is_expected.to have_tag ".company" do
+        with_tag ".company-color", /Death Star/
       end
+    end
+
+    it "has year slot" do
+      is_expected.to have_tag ".year" do
+        with_tag :strong, /2014/
+      end
+    end
+
+    it "has answer slot" do
+      is_expected.to have_tag :div, /Answer/
     end
   end
 end

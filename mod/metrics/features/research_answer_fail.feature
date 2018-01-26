@@ -6,37 +6,20 @@ Feature: Research answer fail
   Background:
     Given I am signed in as Joe User
     And I go to  "/new metric_value"
-    And I wait for ajax response
-#     And I maximize the browser
-    And I select "Apple Inc" from "Company"
-    And I select "Joe User+researched" from "Metrics"
-    And I click on "Next"
-    And I click on "Research answer"
-    And I click on "Add a new source"
-    And I fill in "http://example.com" for "URL"
-    And I press "Add and preview"
-    And I wait for ajax response
-    And I scroll 200 pixels
-
-  Scenario: Missing year
-    When I click on "Cite!"
-    And I wait for ajax response
-    And I fill in "10" for "Answer"
-    And I fill in "Baam!" for "Comment"
-    And I press "Submit"
-    And I should see "Problems"
-    And I should see "YEAR: no year given."
+    And I fill in autocomplete "metric" with "Joe User+researched"
+    And I fill in autocomplete "wikirate_company" with "Apple Inc."
+    And I select year "2009"
 
   Scenario: Missing value
+    And I fill in "http://example.com" for "URL"
+    And I press "Add"
     When I click on "Cite!"
-    And I fill in "2009" for "Year"
     And I fill in "Baam!" for "Comment"
     And I press "Submit"
     And I should see "Problems"
-    And I should see "ANSWER: no answer given."
+    And I should see "VALUE: Only numeric content is valid for this metric."
 
   Scenario: Missing source
-    When I fill in "2009" for "Year"
     And I fill in "10" for "Answer"
     And I fill in "Baam!" for "Comment"
     And I press "Submit"

@@ -158,7 +158,7 @@ RSpec.describe Card::Set::Self::Source do
       end
     end
     context "non-existing url" do
-      let(:url) { "http://www.google.com/?q=wikirate" }
+      let(:url) { "http://www.heise.de" }
       let(:preview) { LinkThumbnailer.generate(url) }
 
       it "has correct title" do

@@ -292,3 +292,8 @@ end
 And(/^I accept alert$/) do
   page.driver.browser.switch_to.alert.accept
 end
+
+When(/^I select year "(.*)"$/) do |year|
+  selector = %{a:contains('#{year}')}
+  page.execute_script "document.location = $(\"#{selector}\").attr('href')"
+end

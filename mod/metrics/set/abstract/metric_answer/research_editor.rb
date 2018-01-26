@@ -1,19 +1,17 @@
 format :html do
-  view :table_form, cache: :never, perms: :update, tags: :unknown_ok do
+  view :research_form, cache: :never, perms: :update, tags: :unknown_ok do
     voo.editor = :inline_nests
     with_nest_mode :edit do
       card_form :create, class: "new-value-form",
                          "main-success" => "REDIRECT",
-                         success: table_form_success  do
-        haml :new_form
+                         success: research_form_success  do
+        haml :research_form
       end
     end
   end
 
-  def table_form_success
-    { id: card.contextual_record_name,
-      soft_redirect: true,
-      view: :new_answer_success }
+  def research_form_success
+    { id: "_self", soft_redirect: true, view: :titled }
   end
 
   def new_buttons
