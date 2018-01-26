@@ -44,16 +44,15 @@ $.extend wikirate,
     $(".source_tab-view.SELF-research_page .relevant-view.TYPE-source[data-card-id='#{sourceID}']")
 
   citeSource = (sourceID, citations) ->
-    $source = possibleSource(sourceID)
-    $sourceContainer = $source.parent().clone() #.detach()
+    $source = possibleSource(sourceID).clone()
 
     hiddenInput = $('<input>').addClass('pointer-select')
                               .attr('type', 'hidden')
                               .attr('value', $source.data("card-name"))
-    $sourceContainer.append(hiddenInput)
+    $source.append(hiddenInput)
 
     citations.empty() if citations.text().search("None") > -1
-    citations.append($sourceContainer)
+    citations.append($source)
 
   unciteSource = (sourceID, citations) ->
     citedSourceInForm(sourceID).remove()
@@ -116,15 +115,16 @@ $(document).ready ->
 #    wikirate.appendSourceForm($(this))
 
   $("body").on 'click', '.source-details-toggle', ->
-    $('#research-details .nav-tabs a[href="#research_page-source_preview"]').tab('show')
-    sourceID = $(this).data("source-for")
+    view_source_tab = $('#research-details .nav-tabs a[href="#research_page-view_source"]')
+    view_source_tab.removeClass("d-none").tab('show')
+    sourceID = $(this).data("card-name")
     load_path = decko.prepUrl(decko.rootPath + sourceID + "?view=source_and_preview")
-    $slot = $("#research_page-source_preview > .card-slot")
+    $slot = $("#research_page-view_source > .card-slot")
     $slot.empty()
     wikirate.loader($slot).add()
     $slot.updateSlot(load_path)
 
-  $('body').on 'ajax:error', "#research_page-source_preview > .card-slot", (event, xhr) ->
+  $('body').on 'ajax:error', "#research_page-view_source > .card-slot", (event, xhr) ->
     $(this).find(".loader-anime").remove() # remove loader
 
 

@@ -37,7 +37,7 @@ $.extend wikirate,
     if inputYear.trim() != "" && NaNi && (parseInt(inputYear) != sourceYear)
       message = 'Note: This source is for ' + inputYear +
         ' Would you like to change the year of this' +
-        ' answer to ' + sourceYear + '?'
+        " answer to #{sourceYear}?"
       response = window.confirm(message)
       if response
         updateInput()

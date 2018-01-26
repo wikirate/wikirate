@@ -1,7 +1,10 @@
 format :html do
   def year
-    return card.fetch(trait: :year).content if card.fetch(trait: :year)
-    ""
+    card.fetch(trait: :year)&.content || ""
+  end
+
+  def wrap_data slot=true
+    super.merge year: year
   end
 
   def wrap_with_info
@@ -15,10 +18,8 @@ format :html do
   def with_toggle
     # voo.hide! :links   # doesn't work with voo
     @links = false
-    wrap_with :div, class: "source-details-toggle",
-                    data: { source_for: card.name, year: year } do
-      yield.html_safe
-    end
+    class_up "card-slot", "source-details-toggle"
+    yield
   end
 
   def edit_slot
@@ -52,8 +53,7 @@ format :html do
   view :listing, template: :haml
 
   view :original_with_icon do
-    icon = wrap_with(:i, " ", class: "fa fa-external-link-square")
-    icon + _render_original_link
+    fa_icon("external-link-square") + _render_original_link
   end
 
   view :icon do
@@ -112,16 +112,15 @@ format :html do
   end
 
   view :year_with_icon do
-    return "" if year.nil? || year == ""
-    icon = wrap_with(:i, "", class: "fa fa-calendar")
-    wrap_with(:span, icon + year[/\d+/])
+    return "" if year.blank?
+    wrap_with(:span, fa_icon("calendar") + year[/\d+/])
   end
 
   view :direct_link do
     return "" unless card.source_type_codename == :wikirate_link
     link = card.fetch(trait: :wikirate_link).content
     wrap_with :a, href: link, target: "_blank" do
-      [wrap_with(:i, class: "fa fa-external-link-square cursor"), "Original"]
+      [fa_icon("external-link-square", class: "cursor"), "Original"]
     end
   end
 
@@ -156,12 +155,13 @@ format :html do
   end
 
   view :source_and_preview, cache: :never do |args|
-    wrap_with :div, class: "source-details",
-                    data: { source_for: card.name, year: year } do
-      args[:url] = source_url
-      with_cite_button +
-        render_iframe_view(args).html_safe +
+    args[:url] = source_url
+    wrap do
+      [
+        with_cite_button,
+        render_iframe_view(args).html_safe,
         render_hidden_information(args).html_safe
+      ]
     end
   end
 

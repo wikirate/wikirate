@@ -7,3 +7,7 @@ decko.slotReady (_slot) ->
       url += $target.data("key") + "=" + encodeURIComponent(ui.item.value)
       $target.updateSlot(url)
 
+$(document).ready ->
+  $("#main:has(>#Research_Page.slot_machine-view)").addClass("pl-0 pr-0")
+
+
