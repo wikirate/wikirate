@@ -283,6 +283,10 @@
   padding: 10px !important;
 }
 
+.w-150 {
+  width: 150%;
+}
+
 .min-width-300 {
   min-width: 300px;
 }
@@ -783,7 +787,7 @@ ul.horizontal > li {
 
 .scrollable-menu {
   height: auto;
-  max-height: 500px;
+  max-height: 600px;
   overflow-x: hidden;
 }
 
@@ -794,4 +798,8 @@ a.no-decoration {
     text-decoration: none !important;
     color: inherit !important;
   }
+}
+
+.select2-container--bootstrap .select2-selection--multiple .select2-selection__choice {
+  margin: 0.375rem 0 0 0.375rem !important;
 }

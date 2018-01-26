@@ -138,7 +138,7 @@ format :html do
   def cite_button cited
     text = cited ? "Cited!" : "Cite!"
     cite_class =
-      cited ? "btn-success _cited_button" : "btn-highlight _cite_button"
+      cited ? "btn-primary _cited_button" : "btn-outline-primary _cite_button"
     wrap_with(:div, class: "pull-right") do
       wrap_with :a, text, href: "#", class: "btn #{cite_class} c-btn"
     end

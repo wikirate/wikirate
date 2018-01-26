@@ -30,9 +30,19 @@ event :check_source, :validate, on: :create do
 end
 
 event :add_source_name_to_params, :finalize, on: :create do
+  special_research_page_stuff
+end
+
+def special_research_page_stuff save=false
   if success.params[:view] == "source_tab"
     success.source ||= Array(Env.params[:source]) || []
     success.source << name
+    if (company = Env.params.dig :card,:subcards,"+company", :content)
+      success.company = company
+      new_sources = add_subcard [company, :new_sources], type_id: SessionID
+      new_sources.add_item name
+      new_sources.save if save # if not in event phase we have to save
+    end
   end
 end
 

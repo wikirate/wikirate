@@ -70,7 +70,8 @@ def duplication_check
   if sourcebox?
     remove_subfield(:wikirate_link)
     self.name = duplicated_name
-    add_source_name_to_params
+    special_research_page_stuff true
+    # add_source_to_new_sources_list
     abort :success
   else
     errors.add :link,

@@ -156,7 +156,7 @@ format :html do
   def double_check_icon opts={}
     add_class opts, "verify-blue"
     opts[:title] = "Value checked"
-    icon_tag(:check_circle, opts).html_safe
+    fa_icon("check-circle", opts).html_safe
   end
 
   def request_icon _opts={}

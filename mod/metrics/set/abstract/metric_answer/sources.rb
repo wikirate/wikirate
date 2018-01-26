@@ -69,7 +69,7 @@ format :html do
   end
 
   def new_sources
-    Array(source).compact.map { |source| Card[source] }
+    Card.fetch([card.company, :new_sources])&.item_names&.map { |source| Card[source] }
   end
 
   def source_suggestions

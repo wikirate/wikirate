@@ -1,12 +1,12 @@
 include_set Abstract::Media
 
 format :html do
-  view :open do
+  view :open, cache: :never do
     voo.hide :menu
     super()
   end
 
-  view :content do
+  view :content, cache: :never do
     _render_core
   end
 
@@ -27,20 +27,26 @@ format :html do
     end
   end
 
-  view :source_tab do
+  view :source_tab, cache: :never do
     wrap do
       haml :source_tab
     end
   end
 
-  view :source_preview_tab do
+  view :source_preview_tab, cache: :never do
     wrap do
       nest preview_source, view: :source_and_preview
     end
   end
 
+  # slot means slot machine slot not card slot
+  def slot_attr
+    "border-bottom p-2 pl-4 d-flex wd-100 justify-content-between flex-nowrap " \
+    "align-items-center"
+  end
+
   def new_source_form
-    params[:company] = company
+    params[:company] ||= company
     nest Card.new(type_id: Card::SourceID), view: :new_research
   end
 

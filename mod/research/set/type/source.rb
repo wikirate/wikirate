@@ -9,8 +9,7 @@ format :html do
           output [
             new_research_hidden,
             new_view_type,
-            haml(:source_form),
-            new_research_buttons
+            haml(:source_form)
           ]
         end
       end
@@ -23,7 +22,7 @@ format :html do
   end
 
   def new_research_buttons
-    wrap_with :div, class: "form-group d-flex flex-row-reverse" do
+    wrap_with :div, class: "form-group" do
       wrap_with :div do
         wrap_with :button, "Add", class: "btn btn-primary",
                   data: { disable_with: "Adding" }

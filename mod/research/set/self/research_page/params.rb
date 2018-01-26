@@ -122,6 +122,6 @@ format :html do
   end
 
   def year_pinned?
-    year_list.empty? || year_list.one? || pinned.include?(:year)
+    year_list.one? || pinned.include?(:year)
   end
 end

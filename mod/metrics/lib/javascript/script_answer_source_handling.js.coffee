@@ -64,15 +64,16 @@ $.extend wikirate,
 
   toggleCiteButton = (ele, action) ->
     if (action == 'cite')
-      $citedButton = ele.removeClass("_cite_button btn-highlight")
-        .addClass("_cited_button btn-success").text("Cited!")
+      $citedButton = ele.removeClass("_cite_button")
+        .removeClass("btn-outline-primary")
+        .addClass("_cited_button btn-primary").text("Cited!")
       $citedButton.hover ( ->
-        $(this).text('Uncite!').addClass('btn-secondary')
+        $(this).text('Uncite!').addClass('btn-danger').removeClass('btn-primary')
       ), ->
-        $(this).text('Cited!').removeClass('btn-secondary')
+        $(this).text('Cited!').removeClass('btn-danger').addClass("btn-primary")
     else
-      $citedButton = ele.removeClass("_cited_button btn-success")
-                        .addClass("_cite_button btn-highlight")
+      $citedButton = ele.removeClass("_cited_button btn-primary")
+                        .addClass("_cite_button btn-outline-primary")
                         .text("Cite!")
       $citedButton.unbind('mouseenter mouseleave')
 
@@ -114,7 +115,7 @@ $(document).ready ->
 #  $('body').on 'click', '._add_new_source', ->
 #    wikirate.appendSourceForm($(this))
 
-  $("body").on 'click', '.source-details-toggle', ->
+  $("body").on 'click', '.slot_machine-view.SELF-research_page .cited-view.TYPE-source, .source-details-toggle', ->
     view_source_tab = $('#research-details .nav-tabs a[href="#research_page-view_source"]')
     view_source_tab.removeClass("d-none").tab('show')
     sourceID = $(this).data("card-name")

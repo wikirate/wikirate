@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::TypePlusRight::MetricValue::CheckedBy do
+RSpec.describe Card::Set::Right::CheckedBy do
   let(:answer_card) { Card["joe_user+researched+death_star+1977"] }
 
   let(:checked_by_card) { Card["joe_user+researched+death_star+1977"].checked_by_card }

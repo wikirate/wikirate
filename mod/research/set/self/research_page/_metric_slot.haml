@@ -1,5 +1,5 @@
-.metric.border-bottom.p-2.pl-3.d-flex.wd-100.justify-content-between.flex-nowrap.align-items-center
-  .large-text
+.metric{class: slot_attr}
+  %div
     -if !metric?
       .d-flex.flex-nowrap.metric-color
         .image-box.icon.bg-white
@@ -10,15 +10,17 @@
         .image-box.icon
           %span.img-helper
           = nest metric, view: :designer_image
-        = link_to_card metric, Card[metric].metric_title, class: "inherit-anchor"
+        %h5.mb-0
+          = link_to_card metric, Card[metric].metric_title, class: "inherit-anchor"
     - else
       .dropdown
         %a.metric-color.no-decoration.dropdown-toggle.d-flex.flex-nowrap.align-items-center{href:"#", data: { toggle: "dropdown" } }
           .image-box.icon
             %span.img-helper
             = nest metric, view: :designer_image
-          = Card[metric].metric_title
-        .dropdown-menu.scrollable-menu
+          %h5.mb-0
+            = Card[metric].metric_title
+        .dropdown-menu.scrollable-menu.w-150
           - metric_list.each do |metric|
             .dropdown-item.metric-dropdown-item
               %a.inherit-anchor.no-decoration{href: research_url(metric: metric)}
@@ -29,10 +31,10 @@
                     %div.mr-3
                       = a.year
                     %div
-                      = nest a, view: :concise, hide: :year
+                      = nest a, view: :conciser, hide: :year
             .dropdown-divider
   - if project?
     .d-flex.flex-nowrap.align-items-center.ml-3.w-25.justify-content-between
-      = next_button :metric
-      .w-100.pl-2
+      .w-100.pr-2
         = nest [company, project], view: :research_progress_bar
+      = next_button :metric

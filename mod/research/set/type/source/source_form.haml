@@ -1,6 +1,6 @@
 .col-md-12.col-centered.new-source-widget.new-metric-value-page
   .row
-    .new-source-tab
+    .new-source-tab.w-100
       %ul#myTab.nav.nav-pills{:role => "tablist"}
         %li.nav-item{:role => "presentation"}
           %a#url-tab.nav-link.active{"aria-controls" => "url", "aria-expanded" => "true", "data-source-type" => "Link", "data-toggle" => "tab", :href => "#url", :role => "tab"}
@@ -16,7 +16,6 @@
             Report
     #myTabContent.tab-content
       #url.tab-pane.fade.show.active.in{"aria-labelledby" => "url-tab", :role => "tabpanel"}
-
         = field_nest :wikirate_link, view: :titled, title: "URL"
         %input{:name => "sourcebox", :type => "hidden", :value => "true"}/
       #file.tab-pane.fade{"aria-labelledby" => "file-tab", :role => "tabpanel"}
@@ -44,5 +43,6 @@
         = field_nest :wikirate_topic, view: :titled,  title: "Topics", items: { view: :link }
         = field_nest :date, view: :titled, title: "Date"
         = field_nest :wikirate_website, view: :titled, title: "Website", items: { view: :link }
+  = new_research_buttons
   .d-none
     = field_nest :source_type, hide: [:title, :help]
