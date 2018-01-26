@@ -14,6 +14,14 @@ def search args={}
   end
 end
 
+def query args={}
+  if filter_hash.present?
+    query_class.new left.id, filter_hash, sort_hash, args
+  else
+    query_class.default left.id, sort_hash, args
+  end
+end
+
 format :html do
   view :core, cache: :never do |_args|
     class_up "card-slot", "_filter-result-slot"
@@ -37,17 +45,7 @@ format :html do
   def details_url? row_card
     !row_card.new_card?
   end
-end
 
-def query args={}
-  if filter_hash.present?
-    query_class.new left.id, filter_hash, sort_hash, args
-  else
-    query_class.default left.id, sort_hash, args
-  end
-end
-
-format :html do
   def paging_view
     :table
   end

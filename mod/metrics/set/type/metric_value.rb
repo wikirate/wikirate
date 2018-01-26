@@ -7,10 +7,13 @@ def filtered_item_query filter={}, sort={}, paging={}
 end
 
 def answer
-  @answer ||=
-    Answer.find_by_answer_id(id) ||
-    (Answer.refresh(id) && Answer.find_by_answer_id(id)) ||
-    Answer.new
+  @answer ||= existing_answer || Answer.new
+end
+
+def existing_answer
+  return unless id
+  Answer.find_by_answer_id(id) ||
+    (Answer.refresh(id) && Answer.find_by_answer_id(id))
 end
 
 format :json do
