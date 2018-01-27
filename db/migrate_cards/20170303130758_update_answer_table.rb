@@ -3,6 +3,6 @@
 class UpdateAnswerTable < Card::Migration
   disable_ddl_transaction!
   def up
-    Answer.refresh nil, :creator_id
+    Answer.refresh_all :creator_id
   end
 end
