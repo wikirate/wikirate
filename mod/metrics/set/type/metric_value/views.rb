@@ -51,28 +51,26 @@ format :html do
   # year, value, unit and flags
   view :concise do
     %(
-    #{"<span class=\"metric-year\">#{card.year} = </span>" if voo.show? :year}
-      <span class="metric-unit"> #{currency} </span>
-      #{_render_metric_details}
-      <span class="metric-unit"> #{legend} </span>
+      #{year_and_value}
       <div class="pull-right">
         #{_render_small_flags}
       </div>
     )
   end
 
-
   # year, value, unit and flags
   view :conciser do
-    %(
-    #{"<span class=\"metric-year\">#{card.year} = </span>" if voo.show? :year}
-    <span class="metric-unit"> #{currency} </span>
-    #{_render_metric_details}
-    <span class="metric-unit"> #{legend} </span>
-    #{_render_flags}
-  )
+    year_and_value + _render_flags
   end
 
+  def year_and_value
+    <<-HTML
+      #{"<span class=\"metric-year\">#{card.year} = </span>" if voo.show? :year}
+      <span class="metric-unit"> #{currency} </span>
+      #{_render_metric_details}
+      <span class="metric-unit"> #{legend} </span>
+    HTML
+  end
 
 
   # value, unit, and flags

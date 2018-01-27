@@ -1,18 +1,18 @@
 format :html do
   view :new_research, tags: :unknown_ok do
-      with_nest_mode :edit do
+    with_nest_mode :edit do
       voo.type = "source"
 
-        card_form :create, "main-success" => "REDIRECT",
-                           "data-form-for" => "new_metric_value",
-                           class: "slotter new-view TYPE-source" do
-          output [
-            new_research_hidden,
-            new_view_type,
-            haml(:source_form)
-          ]
-        end
+      card_form :create, "main-success" => "REDIRECT",
+                         "data-form-for" => "new_metric_value",
+                         class: "slotter new-view TYPE-source" do
+        output [
+          new_research_hidden,
+          new_view_type,
+          haml(:source_form)
+        ]
       end
+    end
   end
 
   def new_research_hidden
@@ -25,7 +25,7 @@ format :html do
     wrap_with :div, class: "form-group" do
       wrap_with :div do
         wrap_with :button, "Add", class: "btn btn-primary",
-                  data: { disable_with: "Adding" }
+                                  data: { disable_with: "Adding" }
       end
     end
   end

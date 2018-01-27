@@ -1,17 +1,24 @@
 $(window).ready ->
-  $('body').on 'shown.bs.tab', 'form.TYPE-source.new-view .new-source-widget a[data-toggle="tab"]', (e) ->
-    source_type = $(e.target).data('source-type')
-    source_type_subcard = $(e.target).closest("form").find(".RIGHT-Xsource_type input:hidden.d0-card-content")
-
-    source_type_subcard.val("[[" + source_type + "]]")
-    source_type_subcard.siblings("ul").find("input[value=" + source_type + "]").prop("checked", true)
+  $('body').on 'shown.bs.tab', '.TYPE-source.new-view .new-source-widget a[data-toggle="tab"]', (e) ->
+    updateSourceType e.target
 
   $('body').on 'submit', 'form.TYPE-source.new-view', (e) ->
-    $form = $(e.target)
-    active_tab = $form.find(".new-source-widget a.active[data-toggle=\"tab\"]")
-    source_type = $(active_tab).data("source-type")
-    removeLink($form) unless source_type == "Link"
-    removeFile($form) unless source_type == "File"
+    clearInactiveTabs e.target
+
+
+clearInactiveTabs = (form) ->
+  $form = $(form)
+  active_tab = $form.find(".new-source-widget a.active[data-toggle=\"tab\"]")
+  source_type = $(active_tab).data("source-type")
+  removeLink($form) unless source_type == "Link"
+  removeFile($form) unless source_type == "File"
+
+updateSourceType = (tab) ->
+  source_type = $(tab).data('source-type')
+  source_type_subcard = $(tab).closest("form").find(".RIGHT-Xsource_type input:hidden.d0-card-content")
+
+  source_type_subcard.val("[[" + source_type + "]]")
+  source_type_subcard.siblings("ul").find("input[value=" + source_type + "]").prop("checked", true)
 
 removeLink = ($form) ->
   $form.find("#card_subcards__Link_content").val("")
