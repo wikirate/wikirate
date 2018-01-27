@@ -71,8 +71,6 @@ format :html do
       <span class="metric-unit"> #{legend} </span>
     HTML
   end
-
-
   # value, unit, and flags
   view :value do
     wrap_with :div, class: "td value" do
