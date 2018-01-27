@@ -44,16 +44,15 @@ $.extend wikirate,
     $(".source_tab-view.SELF-research_page .relevant-view.TYPE-source[data-card-id='#{sourceID}']")
 
   citeSource = (sourceID, citations) ->
-    $source = possibleSource(sourceID)
-    $sourceContainer = $source.parent().clone() #.detach()
+    $source = possibleSource(sourceID).clone(true)
 
     hiddenInput = $('<input>').addClass('pointer-select')
                               .attr('type', 'hidden')
                               .attr('value', $source.data("card-name"))
-    $sourceContainer.append(hiddenInput)
+    $source.append(hiddenInput)
 
     citations.empty() if citations.text().search("None") > -1
-    citations.append($sourceContainer)
+    citations.append($source)
 
   unciteSource = (sourceID, citations) ->
     citedSourceInForm(sourceID).remove()
@@ -65,15 +64,16 @@ $.extend wikirate,
 
   toggleCiteButton = (ele, action) ->
     if (action == 'cite')
-      $citedButton = ele.removeClass("_cite_button btn-highlight")
-        .addClass("_cited_button btn-success").text("Cited!")
+      $citedButton = ele.removeClass("_cite_button")
+        .removeClass("btn-outline-primary")
+        .addClass("_cited_button btn-primary").text("Cited!")
       $citedButton.hover ( ->
-        $(this).text('Uncite!').addClass('btn-secondary')
+        $(this).text('Uncite!').addClass('btn-danger').removeClass('btn-primary')
       ), ->
-        $(this).text('Cited!').removeClass('btn-secondary')
+        $(this).text('Cited!').removeClass('btn-danger').addClass("btn-primary")
     else
-      $citedButton = ele.removeClass("_cited_button btn-success")
-                        .addClass("_cite_button btn-highlight")
+      $citedButton = ele.removeClass("_cited_button btn-primary")
+                        .addClass("_cite_button btn-outline-primary")
                         .text("Cite!")
       $citedButton.unbind('mouseenter mouseleave')
 
@@ -115,16 +115,17 @@ $(document).ready ->
 #  $('body').on 'click', '._add_new_source', ->
 #    wikirate.appendSourceForm($(this))
 
-  $("body").on 'click', '.source-details-toggle', ->
-    $('#research-details .nav-tabs a[href="#research_page-source_preview"]').tab('show')
-    sourceID = $(this).data("source-for")
+  $("body").on 'click', '.slot_machine-view.SELF-research_page .cited-view.TYPE-source, .source-details-toggle', ->
+    view_source_tab = $('#research-details .nav-tabs a[href="#research_page-view_source"]')
+    view_source_tab.removeClass("d-none").tab('show')
+    sourceID = $(this).data("card-name")
     load_path = decko.prepUrl(decko.rootPath + sourceID + "?view=source_and_preview")
-    $slot = $("#research_page-source_preview > .card-slot")
+    $slot = $("#research_page-view_source > .card-slot")
     $slot.empty()
     wikirate.loader($slot).add()
     $slot.updateSlot(load_path)
 
-  $('body').on 'ajax:error', "#research_page-source_preview > .card-slot", (event, xhr) ->
+  $('body').on 'ajax:error', "#research_page-view_source > .card-slot", (event, xhr) ->
     $(this).find(".loader-anime").remove() # remove loader
 
 

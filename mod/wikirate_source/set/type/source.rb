@@ -30,10 +30,22 @@ event :check_source, :validate, on: :create do
 end
 
 event :add_source_name_to_params, :finalize, on: :create do
-  if success.params[:view] == "source_tab"
-    success.source ||= Array(Env.params[:source]) || []
-    success.source << name
-  end
+  special_research_page_stuff
+end
+
+def special_research_page_stuff save=false
+  return unless  success.params[:view] == "source_tab"
+  success.source ||= Array(Env.params[:source]) || []
+  success.source << name
+  save_in_session_card save
+end
+
+def save_in_session_card save
+  return unless (company = Env.params.dig :card, :subcards, "+company", :content)
+  success.company = company
+  new_sources = add_subcard [company, :new_sources], type_id: SessionID
+  new_sources.add_item name
+  new_sources.save if save # if not in event phase we have to save
 end
 
 def assemble_source_subfields

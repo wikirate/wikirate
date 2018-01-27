@@ -38,8 +38,8 @@ format :html do
   def edit_fields
     return if voo.editor == :standard
     [
-      [card, { title: "Answer", editor: :standard }],
-      [unknown_field_card, { hide: :title }],
+      [card, { title: "Answer", editor: :standard, hide: :help }],
+      [unknown_field_card, { hide: [:title, :help] }],
       [card.left(new: {}).fetch(trait: :checked_by, new: {}), { hide: :title }]
     ]
   end

@@ -11,7 +11,7 @@ format :html do
   end
 
   def research_form_success
-    { id: "_self", soft_redirect: true, view: :titled }
+    { id: "_self", soft_redirect: true, view: :titled, slot: { title: "Answer" } }
   end
 
   def new_buttons

@@ -6,6 +6,7 @@
   color: $muted;
 }
 
+
 .titled-view.LTYPE_RTYPE-record-year > .d0-card-header > .d0-card-header-title > .card-title {
   font-size: 1.25rem; // make title look like h5 tag
   margin-bottom: 0.5rem;
@@ -17,7 +18,6 @@
 
 .large-text {
   font-size: 1.25rem;
-  font-weight: 500;
 }
 
 form.answer-form {
@@ -30,10 +30,10 @@ form.answer-form {
     color: #404040;
   }
 }
-
 .SELF-research_page.slot_machine-view {
-  margin-left: -1%;
-
+  .metric-unit {
+    font-size: 0.8rem;
+  }
   form.new-value-form {
     margin-top: 0;
     border: none;

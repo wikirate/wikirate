@@ -2,7 +2,7 @@
 
 require_relative "../../../../support/award_answer_badges_shared_examples"
 
-describe Card::Set::TypePlusRight::MetricValue::CheckedBy::AwardBadges do
+RSpec.describe Card::Set::TypePlusRight::MetricValue::CheckedBy::AwardBadges do
   describe "check badges" do
     let(:badge_action) { :check }
     let(:sample_acting_card) { sample_metric_value.field(:checked_by, new: {}) }

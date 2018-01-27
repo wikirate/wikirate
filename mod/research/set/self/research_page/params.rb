@@ -5,33 +5,32 @@ format :html do
   end
 
   def company_list
-    list_from_project_or_params(:company) || []
+    @company_list ||= list_from_project_or_params(:company) || []
   end
 
   def metric_list
-    list_from_project_or_params(:metric) || []
+    @metric_list ||= list_from_project_or_params(:metric) || []
   end
 
   def year_list
-    list_from_project_or_params(:year) || years
+    @year_list ||= list_from_project_or_params(:year) || years
   end
 
   def list_from_project_or_params name
     list_name = "#{name}_list"
     (params[list_name] && Array(params[list_name])) ||
-      (params[name] && Array(params[name])) ||
       (project_card && project_card.send(list_name))
   end
 
   def research_url opts={}
     path_opts = { view: :slot_machine }
 
-    %i[metric company year].each do |i|
+    %i[metric company year pinned source].each do |i|
       val = opts[i] || send(i)
       path_opts[i] = val if val
     end
 
-    if project
+    if project?
       path_opts[:project] = project
     else
       path_opts[:metric_list] = metric_list
@@ -58,7 +57,7 @@ format :html do
   end
 
   def project
-    @selected_project ||= Env.params["project"]
+    @project ||= Env.params["project"]
   end
 
   def project_card
@@ -72,6 +71,14 @@ format :html do
 
   def metric?
     metric && Card.fetch_type_id(metric) == MetricID
+  end
+
+  def project_year_list?
+    project? && project_card.year_list.present?
+  end
+
+  def pinned
+    @pinned ||= Array(Env.params[:pinned]).compact.map(&:to_sym)
   end
 
   def metric
@@ -95,7 +102,7 @@ format :html do
   end
 
   def year
-    @year ||= Env.params[:year] || (project? && year_list.first)
+    @year ||= Env.params[:year] || (project_year_list? && year_list.first)
   end
 
   def record_card
@@ -107,14 +114,14 @@ format :html do
   end
 
   def metric_pinned?
-    metric_list.empty? || metric_list.one?
+    metric_list.empty? || metric_list.one? || pinned.include?(:metric)
   end
 
   def company_pinned?
-    company_list.empty? || company_list.one?
+    company_list.empty? || company_list.one? || pinned.include?(:company)
   end
 
   def year_pinned?
-    year_list.empty? || year_list.one?
+    year_list.one? || pinned.include?(:year)
   end
 end

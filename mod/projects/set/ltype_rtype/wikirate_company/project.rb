@@ -35,8 +35,8 @@ format :html do
             class: "btn btn-outline-secondary btn-sm",
             path: { mark: :research_page,
                     view: :slot_machine,
-                    # company: card.company_card.name,
-                    company_list: [card.company_card.name],
+                    company: card.company_card.name,
+                    pinned: :company,
                     project: project_name.url_key }
   end
 
