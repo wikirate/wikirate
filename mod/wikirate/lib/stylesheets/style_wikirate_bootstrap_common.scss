@@ -528,9 +528,10 @@ div#pdf-preview {
   > .panel-heading {
     color: #404040;
     background-color: #ffffff;
-    padding: 13px;
-    border-top: 3px solid $main-color;
-    border-bottom: 2px solid $border-color;
+    padding-bottom: 2px;
+    border-bottom: 2px solid $main-color;
+    margin-bottom: 15px;
+    margin-top: 25px;
   }
 }
 

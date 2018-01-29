@@ -139,6 +139,16 @@ format :html do
     end
   end
 
+  view :panel_primary, template: :haml do
+    root.primary_panels << card.tag
+  end
+
+  view :panel_toc, template: :haml
+
+  def primary_panels
+    @primary_panels ||= []
+  end
+
   def main_name
     left_name = card.name.left_name
     left_name = left_name.left unless card.key.include?("limited_metric")
