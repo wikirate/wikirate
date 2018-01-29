@@ -72,6 +72,14 @@ def inverse_answer_id
   @inverse_answer_id ||= Card.fetch_id inverse_answer_name
 end
 
+def answer
+  @answer ||= Answer.new editor_id: nil
+
+end
+
+
+
+
 format :html do
   def default_value_link_args _args
     voo.show! :link if card.relationship?

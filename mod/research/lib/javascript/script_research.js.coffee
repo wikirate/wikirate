@@ -7,6 +7,8 @@ decko.slotReady (_slot) ->
       url += $target.data("key") + "=" + encodeURIComponent(ui.item.value)
       $target.updateSlot(url)
 
+  $('[data-toggle="popover"]').popover()
+
 
 
 $(document).ready ->
@@ -22,7 +24,6 @@ $(document).ready ->
       name = $form.find("#card_name").val()
       $form.find("#card_name").val(name + "+" + related_company.val())
       $form.find("#success_id").val("_left")
-
 
 
 

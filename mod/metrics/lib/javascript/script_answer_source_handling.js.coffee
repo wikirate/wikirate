@@ -128,7 +128,6 @@ $(document).ready ->
   $('body').on 'ajax:error', "#research_page-view_source > .card-slot", (event, xhr) ->
     $(this).find(".loader-anime").remove() # remove loader
 
-
 #    $source_form_container = $("#source-form-container")
 #    sourceYear = parseInt($this.data("year"))
 #    sourceSelector = "[data-source-for='" + sourceID + "']"

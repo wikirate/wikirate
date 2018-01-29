@@ -7,7 +7,7 @@ class Answer
     end
 
     def must_be_an_answer
-      return if card.type_id == Card::MetricValueID
+      return if card.type_id.in? [Card::MetricValueID, Card::RelationshipAnswerID]
       errors.add :answer_id, "not a metric answer: #{Card.fetch_name answer_id}"
     end
 
