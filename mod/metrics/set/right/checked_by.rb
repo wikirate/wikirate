@@ -108,7 +108,7 @@ format :html do
   def popover_link
     link_to fa_icon("question-circle"),
             class: "pl-1", path: "#", "data-toggle": "popover",
-            "data-content": "Not sure? Ask another researcher to double check this")
+            "data-content": "Not sure? Ask another researcher to double check this"
   end
 
   view :core, template: :haml
@@ -191,7 +191,7 @@ format :html do
   end
 
   def fix_link
-    link_to_card card.left, "No, I'll fix it", class: BTN_CLASSES + " ml-1",
+    link_to_card card.left, "No, I'll fix it", class: "#{BTN_CLASSES} ml-1",
                                                path: { view: :edit }
   end
 end
