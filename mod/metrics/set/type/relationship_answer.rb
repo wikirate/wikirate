@@ -74,11 +74,7 @@ end
 
 def answer
   @answer ||= Answer.new editor_id: nil
-
 end
-
-
-
 
 format :html do
   def default_value_link_args _args

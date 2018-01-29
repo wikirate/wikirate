@@ -64,7 +64,7 @@ format :html do
     wrap_value_details do
       [
         "<br/><h5>Relations</h5>",
-        render_relations_table_with_details_toggle,
+        render_relations_table_with_details_toggle
       ]
     end
   end
