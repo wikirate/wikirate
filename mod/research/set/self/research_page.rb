@@ -53,7 +53,7 @@ format :html do
   def answer_slot
     view = answer_card.new_card? ? :research_form : :titled
     wrap do
-      nest answer_card, view: view, title: "Answer"
+      nest answer_card, view: view, title: "Answer", hide: :cited_source_links
     end
   end
 
