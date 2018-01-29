@@ -3,7 +3,7 @@
 require File.dirname(__FILE__) + "/../config/environment"
 
 def tables
-  @tables ||= exec_query("show tables").map &:first
+  @tables ||= exec_query("show tables").map(&:first)
 end
 
 def exec_query query
