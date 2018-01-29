@@ -13,4 +13,3 @@ def raw_value
     value
   end
 end
-
