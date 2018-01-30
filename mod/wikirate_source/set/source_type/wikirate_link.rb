@@ -33,7 +33,7 @@ event :duplication_check, after: :validate_link, on: :create do
     abort :success
   else
     errors.add :link,
-               "exists already. #{link_to_card duplicated_name, 'Visit the source.'}"
+               "exists already. <a href='/#{duplicated_name}'>Visit the source.</a>"
     abort :failure
   end
 end

@@ -94,20 +94,15 @@ format :json do
 end
 
 # hash result for iframe checking
-class MetaData
-  attr_accessor :title, :description, :image_url, :website, :error
-
-  def initialize
-    @title = ""
-    @description = ""
-    @image_url = ""
-    @website = ""
-    @error = ""
+MetaData = Struct.new(:title, :description, :image_url, :website, :error) do
+  def initialize(title="", description="", image_url="", website="", error="")
+    super
   end
 
   def set_meta_data title, desc, image_url
-    @title = title
-    @description = desc
-    @image_url = image_url
+    self.title = title
+    self.description = desc
+    self.image_url = image_url
   end
 end
+
