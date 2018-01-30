@@ -140,7 +140,11 @@ format :html do
   end
 
   view :panel_primary, template: :haml, cache: :never do
-    root.primary_panels << card.tag
+    parent.primary_panels << card.tag
+  end
+
+  view :panel_toc, template: :haml, cache: :never do
+    # doesn't work without this empty block if view caching is turned on
   end
 
 
