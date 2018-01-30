@@ -1,16 +1,3 @@
-event :validate_link, after: :check_source, on: :create do
-  if !(link_card = subfield(:wikirate_link)) || link_card.content.empty?
-    errors.add(:link, "does not exist.")
-    abort :failure
-  end
-  link_card.content.strip!
-  @url = link_card.content
-
-  # used to be restricted to the sourcebox=true case
-  # I don't see why we shouldn't do this always  -pk
-  validate_url
-end
-
 def validate_url
   # url refers to a wikirate source card
   if url_card

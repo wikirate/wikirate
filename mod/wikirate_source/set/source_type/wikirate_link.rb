@@ -10,12 +10,17 @@ format :html do
   end
 end
 
-event :autopopulate_website, :prepare_to_store, on: :create, when: :populate_website? do
-  link = subfield(:wikirate_link).content
-  host = URI.parse(link).host
-  add_subfield :wikirate_website, content: "[[#{host}]]", type_id: PointerID
-  return if Card.exists?(host) || host.blank?
-  add_subcard host, type_id: Card::WikirateWebsiteID
+event :validate_link, after: :check_source, on: :create do
+  if !(link_card = subfield(:wikirate_link)) || link_card.content.empty?
+    errors.add(:link, "does not exist.")
+    abort :failure
+  end
+  link_card.content.strip!
+  @url = link_card.content
+
+  # used to be restricted to the sourcebox=true case
+  # I don't see why we shouldn't do this always  -pk
+  validate_url
 end
 
 event :duplication_check, after: :validate_link, on: :create do
@@ -40,52 +45,12 @@ event :process_link, after: :duplication_check, on: :create do
   download_and_add_file || populate_title_and_description
 end
 
-def populate_website?
-  !subfield(:wikirate_website).present? && subfield(:wikirate_link).present? &&
-    errors.empty?
-end
-
 def duplicates
   @duplicates ||= Self::Source.find_duplicates url
 end
 
-def generate_pdf
-  puts "generating pdf"
-  kit = PDFKit.new url, "load-error-handling" => "ignore"
-  Dir::Tmpname.create(["source", ".pdf"]) do |path|
-    kit.to_file(path)
-    file_card.update_attributes!(file: ::File.open(path)) if ::File.exist?(path)
-  end
-rescue => e
-  Rails.logger.info "failed to convert source page to pdf #{e.message}"
-end
-
-def html_link?
-  file_type.present? && file_type.start_with?("text/html")
-end
-
 def sourcebox?
   Card::Env.params[:sourcebox] == "true"
-end
-
-def populate_title_and_description
-  return unless sourcebox?
-  thumbnail = LinkThumbnailer.generate url
-
-  add_title thumbnail
-  add_description thumbnail
-rescue
-  Rails.logger.info "failed to extract information from #{url}"
-end
-
-def add_title thumbnail
-  return if subfield(:wikirate_title) || thumbnail.title.empty?
-  add_subfield :wikirate_title, content: thumbnail.title
-end
-
-def add_description thumbnail
-  return if subfield(:description) || thumbnail.description.empty?
-  add_subfield :description, content: thumbnail.description
 end
 
 format :json do
