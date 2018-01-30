@@ -94,8 +94,8 @@ format :json do
 end
 
 # hash result for iframe checking
-MetaData = Struct.new(:title, :description, :image_url, :website, :error) do
-  def initialize(title="", description="", image_url="", website="", error="")
+MetaData = Struct.new :title, :description, :image_url, :website, :error do
+  def initialize title="", description="", image_url="", website="", error=""
     super
   end
 
@@ -105,4 +105,3 @@ MetaData = Struct.new(:title, :description, :image_url, :website, :error) do
     self.image_url = image_url
   end
 end
-

@@ -1,5 +1,13 @@
 def download_and_add_file
   return unless downloadable?
+  after_download_success do
+    change_source_type_to_file
+  end
+rescue # if open raises errors just treat the source as a normal source
+  Rails.logger.info "failed to get the file from link"
+end
+
+def after_download_success
   file_field =
     add_subfield :file, remote_file_url: file_url, type_id: FileID, content: "dummy"
   file_field.director.catch_up_to_stage :validate
@@ -7,9 +15,7 @@ def download_and_add_file
     remove_subfield :file
     return
   end
-  change_source_type_to_file
-rescue # if open raises errors just treat the source as a normal source
-  Rails.logger.info "failed to get the file from link"
+  true.tab { yield }
 end
 
 def downloadable?
