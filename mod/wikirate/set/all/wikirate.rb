@@ -143,7 +143,6 @@ format :html do
     root.primary_panels << card.tag
   end
 
-  view :panel_toc, template: :haml, cache: :never
 
   def primary_panels
     @primary_panels ||= []
