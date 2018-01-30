@@ -57,6 +57,6 @@ def filter_path_args values
   # show latest project year.  could consider updating answer tables
   # to handle latest value among a group of years, but that's not yet
   # an option
-  filter[:year] = years.first if years
+  filter[:year] = years.first if years&.one?
   { filter: filter }
 end
