@@ -14,14 +14,14 @@ Feature: Research answer fail
     And I fill in "http://example.com" for "URL"
     And I press "Add"
     When I click on "Cite!"
-    And I fill in "Baam!" for "Comment"
+    And I fill in "Baam!" for " Comment"
     And I press "Submit"
     And I should see "Problems"
     And I should see "VALUE: Only numeric content is valid for this metric."
 
   Scenario: Missing source
     And I fill in "10" for "Answer"
-    And I fill in "Baam!" for "Comment"
+    And I fill in "Baam!" for " Comment"
     And I press "Submit"
     And I should see "Problems"
     And I should see "SOURCE: no source cited"
