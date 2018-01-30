@@ -139,11 +139,11 @@ format :html do
     end
   end
 
-  view :panel_primary, template: :haml do
+  view :panel_primary, template: :haml, cache: :never do
     root.primary_panels << card.tag
   end
 
-  view :panel_toc, template: :haml
+  view :panel_toc, template: :haml, cache: :never
 
   def primary_panels
     @primary_panels ||= []
