@@ -25,6 +25,6 @@
         = nest "homepage: #{type} intro", view: :core
       = nest "homepage #{type}", hide: [:paging, :title],
                                  items: { view: :homepage_item_sm }
-      .col-12.text-center
+      .text-center
         %a.btn.btn-sm.btn-outline-secondary.m-3{href: "/#{type}"}
           = "Browse all #{type.to_s.pluralize.capitalize}"
