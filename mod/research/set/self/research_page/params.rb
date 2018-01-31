@@ -57,7 +57,7 @@ format :html do
   end
 
   def project
-    @project ||= Env.params["project"]
+    @project ||= Env.params[:project] || Env.params["project"]
   end
 
   def project_card

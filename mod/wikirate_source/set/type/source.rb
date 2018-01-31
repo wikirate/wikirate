@@ -18,19 +18,6 @@ end
 
 require "link_thumbnailer"
 
-event :add_source_name_to_params, :finalize, on: :create do
-  return unless success.params[:view] == "source_tab"
-  save_in_session_card
-end
-
-def save_in_session_card save=false
-  return unless (company = Env.params.dig :card, :subcards, "+company", :content)
-  success.company = company
-  new_sources = add_subcard [company, :new_sources], type_id: SessionID
-  new_sources.add_item name
-  new_sources.save if save # if not in event phase we have to save
-end
-
 def source_type_codename
   source_type_card.item_cards[0].codename.to_sym
 end

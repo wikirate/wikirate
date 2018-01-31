@@ -1,3 +1,4 @@
+
 format :html do
   view :research_form, cache: :never, perms: :update, tags: :unknown_ok do
     voo.editor = :inline_nests
@@ -31,5 +32,15 @@ format :html do
       card.metric_card.relationship? ? RelationshipAnswerID : MetricValueID
     tags["card[subcards][+source][content]"] = source if source.present?
     hidden_tags tags
+  end
+
+
+  def project
+    @project ||= voo&.live_options[:project] ||
+                 Env.params[:project] || Env.params["project"]
+  end
+
+  view :source_tab, cache: :never, tags: :unknown_ok, template: :haml do
+    # unknown_ok tag doesn't work without this block
   end
 end

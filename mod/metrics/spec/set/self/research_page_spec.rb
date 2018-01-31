@@ -1,10 +1,19 @@
 describe Card::Set::Self::ResearchPage do
+  let(:format) do
+    Card[:research_page].format
+  end
+
+  def set_params opts
+    opts.each do |k, v|
+      Card::Env.params[k] = v
+    end
+  end
+
   describe "#slot_machine" do
     subject do
-      Card[:research_page].format
-                          .slot_machine metric: "Joe User+researched",
-                                        company: "Death Star",
-                                        year: "2014"
+      format.slot_machine metric: "Joe User+researched",
+                          company: "Death Star",
+                          year: "2014"
     end
 
     it "has metric slot" do
@@ -27,6 +36,24 @@ describe Card::Set::Self::ResearchPage do
 
     it "has answer slot" do
       is_expected.to have_tag :div, /Answer/
+    end
+  end
+
+  describe "#right_side_tabs" do
+    subject do
+      format.right_side_tabs
+    end
+
+    it "has source tab" do
+      set_params metric: "Joe User+researched", company: "Death Star",
+                 year: "2014", project: "Evil Project"
+      is_expected.to have_tag "#research_page-source" do
+        with_tag :form do
+          with_hidden_field "card[subcards][+company][content]", "Death Star"
+          with_hidden_field "success[view]", "new_sources"
+          with_hidden_field "success[id]", "_self"
+        end
+      end
     end
   end
 end

@@ -27,12 +27,6 @@ format :html do
     end
   end
 
-  view :source_tab, cache: :never do
-    wrap do
-      haml :source_tab
-    end
-  end
-
   view :source_preview_tab, cache: :never do
     wrap do
       nest preview_source, view: :source_and_preview
@@ -45,11 +39,6 @@ format :html do
     "align-items-center"
   end
 
-  def new_source_form
-    params[:company] ||= company
-    nest Card.new(type_id: Card::SourceID), view: :new_research
-  end
-
   def answer_slot
     view = answer_card.new_card? ? :research_form : :titled
     wrap do
@@ -60,7 +49,7 @@ format :html do
   def right_side_tabs
     tabs = {}
     if answer?
-      tabs["Source"] = _render_source_tab
+      tabs["Source"] = nest answer_card, view: :source_tab, project: project
       tabs["View Source"] = { content: _render_source_preview_tab,
                               button_attr: { class: "d-none" } }
     end

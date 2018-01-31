@@ -29,7 +29,7 @@ event :duplication_check, after: :validate_link, on: :create do
   if sourcebox?
     remove_subfield(:wikirate_link)
     self.name = duplicated_name
-    save_in_session_card true
+    save_in_session_card save: true, duplicate: true
     abort :success
   else
     errors.add :link,
