@@ -40,8 +40,8 @@ $.extend wikirate,
   citedSourceInForm = (sourceID) ->
     $("form .relevant-view.TYPE-source[data-card-id='#{sourceID}']")
 
-  possibleSource = (sourceID) -> \
-    $(".source_tab-view.SELF-research_page .relevant-view.TYPE-source[data-card-id='#{sourceID}']")
+  possibleSource = (sourceID) ->
+    $("#research_page-source.tab-pane .relevant-view.TYPE-source[data-card-id='#{sourceID}']")
 
   citeSource = (sourceID, citations) ->
     $source = possibleSource(sourceID).clone(true)

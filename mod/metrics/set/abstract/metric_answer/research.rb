@@ -5,14 +5,22 @@ format :html do
     with_nest_mode :edit do
       card_form :create, class: "new-value-form",
                          "main-success" => "REDIRECT",
+                         "data-slot-selector": ".card-slot.left_research_side-view",
                          success: research_form_success  do
         haml :research_form
       end
     end
   end
 
+  def research_params
+    voo.live_options[:research_params] ||
+      { metric: metric, company: company, year: year }
+  end
+
   def research_form_success
-    { id: "_self", soft_redirect: true, view: :titled, slot: { title: "Answer" } }
+     research_params.merge id: ":research_page", soft_redirect: true,
+                           view: :left_research_side, slot: { title: "Answer" }
+
   end
 
   def new_buttons

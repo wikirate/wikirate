@@ -56,4 +56,17 @@ describe Card::Set::Self::ResearchPage do
       end
     end
   end
+
+  describe "view: left_research_side" do
+    subject do
+      format.render_left_research_side
+    end
+
+    it "has slot" do
+      set_params metric: "Joe User+researched", company: "Death Star",
+                       year: "2014", project: "Evil Project"
+      is_expected.to have_tag ".card-slot.left_research_side-view"
+
+    end
+  end
 end

@@ -105,7 +105,7 @@ format :html do
   end
 
   def add_source_form
-    params[:company] ||= company
+    params[:company] ||= card.company
     nest Card.new(type_id: Card::SourceID),
          view: :add_source_to_research,
          answer: card.name
