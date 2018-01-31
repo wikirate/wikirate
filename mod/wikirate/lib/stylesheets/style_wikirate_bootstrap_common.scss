@@ -810,12 +810,16 @@ a.no-decoration {
 // happens for example for project filter
 // The reason is that dropdownAutoWidth in script_load_select2.js.coffee sets a fixed
 // width so that the longest entry fits in
-.input-group .select2-container {
-  position: relative;
-  z-index: 2;
-  float: left;
-  width: 80% !important;
-  margin-bottom: 0;
-  display: table;
-  table-layout: fixed;
+.filter-in-filter-form {
+  width: 100%;
+  overflow-x: hidden;
+
+  .input-group._filter-input {
+    max-width: 100% !important;
+
+    .select2-container {
+      // display: block;
+    }
+  }
 }
+

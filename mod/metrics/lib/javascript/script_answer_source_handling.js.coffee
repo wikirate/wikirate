@@ -41,7 +41,7 @@ $.extend wikirate,
     $("form .relevant-view.TYPE-source[data-card-id='#{sourceID}']")
 
   possibleSource = (sourceID) ->
-    $("#research_page-source.tab-pane .relevant-view.TYPE-source[data-card-id='#{sourceID}']")
+    $("#research_page-source.tab-pane .relevant-view.TYPE-source[data-card-id='#{sourceID}']:first")
 
   citeSource = (sourceID, citations) ->
     $source = possibleSource(sourceID).clone(true)

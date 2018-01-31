@@ -7,13 +7,18 @@ def save_in_session_card save: false, duplicate: false
   return unless (company = Env.params.dig :card, :subcards, "+company", :content) &&
                 (answer = Env.params[:answer])
   success.company = company
-  add_possible_source company, answer
+  return if duplicate && already_suggested?(answer)
+  add_possible_source company, save
 end
 
-def add_possible_source company, answer
-  return if  Card.fetch(answer, new: { type_id: MetricValueID }).already_suggested?(name)
+def already_suggested? answer
+  Card.fetch(answer, new: { type_id: MetricValueID }).already_suggested?(name)
+end
+
+def add_possible_source company, save
   new_sources = add_subcard [company, :new_sources], type_id: SessionID
   new_sources.add_item name
+  new_sources.save if save # if not in event phase we have to save
 end
 
 format :html do
