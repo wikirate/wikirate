@@ -8,10 +8,13 @@ def save_in_session_card save: false, duplicate: false
   return unless (company = Env.params.dig :card, :subcards, "+company", :content) &&
                 (answer = Env.params[:answer])
   success.company = company
+  add_possible_source company, answer
+end
 
-  Card.fetch(answer, new: { type_id: MetricValueID })
-      &.add_possible_source name, save, duplicate
-
+def add_possible_source company, answer
+  return if  Card.fetch(answer, new: { type_id: MetricValueID }).already_suggested?(name)
+  new_sources = add_subcard [company, :new_sources], type_id: SessionID
+  new_sources.add_item name
 end
 
 format :html do
