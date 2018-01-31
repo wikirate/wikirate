@@ -40,6 +40,14 @@ format :html do
     path path_opts
   end
 
+  def research_params
+    %i[metric company year pinned source
+      project metric_list company_list year_list].each_with_object({}) do |i, h|
+      val = send i
+      h[i] = val if val
+    end
+  end
+
   def preview_source
     params[:preview_source] || source
   end

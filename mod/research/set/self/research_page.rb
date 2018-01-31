@@ -27,25 +27,6 @@ format :html do
     end
   end
 
-  view :source_preview_tab, cache: :never do
-    wrap do
-      nest preview_source, view: :source_and_preview
-    end
-  end
-
-  # slot means slot machine slot not card slot
-  def slot_attr
-    "border-bottom p-2 pl-4 d-flex wd-100 justify-content-between flex-nowrap " \
-    "align-items-center"
-  end
-
-  def answer_slot
-    view = answer_card.new_card? ? :research_form : :titled
-    wrap do
-      nest answer_card, view: view, title: "Answer", hide: :cited_source_links
-    end
-  end
-
   def right_side_tabs
     tabs = {}
     if answer?
@@ -59,6 +40,36 @@ format :html do
 
     static_tabs tabs, active_tab
   end
+
+
+  view :left_research_side, cache: :never, template: :haml, slot: true do
+  end
+
+  view :source_preview_tab, cache: :never do
+    wrap do
+      nest preview_source, view: :source_and_preview
+    end
+  end
+
+  # slot means slot machine slot not card slot
+  def slot_attr
+    "border-bottom p-2 pl-4 d-flex wd-100 justify-content-between flex-nowrap " \
+    "align-items-center"
+  end
+
+  def answer_slot
+    opts = { title: "Answer", hide: :cited_source_links }
+    if answer_card.new_card?
+      opts[:view] = :research_form
+      opts[:research_params] = research_params
+    else
+      opts[:view] = :titled
+    end
+    wrap do
+      nest answer_card, opts
+    end
+  end
+
 
   def next_button type
     list = send("#{type}_list")
