@@ -1,3 +1,3 @@
 .list-group.table-of-contents.affix.floating-menu
-  - primary_panels.each do |item|
+  - root.primary_panels.each do |item|
     %a.list-group-item{:href => "##{item.name.url_key}"}= item.name

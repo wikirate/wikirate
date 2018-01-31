@@ -140,7 +140,7 @@ format :html do
   end
 
   view :panel_primary, template: :haml, cache: :never do
-    parent.primary_panels << card.tag
+    root.primary_panels << card.tag
   end
 
   view :panel_toc, template: :haml, cache: :never do
