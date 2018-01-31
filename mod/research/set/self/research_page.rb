@@ -65,9 +65,7 @@ format :html do
     else
       opts[:view] = :titled
     end
-    wrap do
-      nest answer_card, opts
-    end
+    nest answer_card, opts
   end
 
 
