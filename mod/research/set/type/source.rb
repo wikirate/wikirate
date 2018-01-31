@@ -1,5 +1,4 @@
 event :add_source_name_to_params, :finalize, on: :create do
-  binding.pry
   return unless success.params[:view] == "new_sources"
   save_in_session_card
 end
