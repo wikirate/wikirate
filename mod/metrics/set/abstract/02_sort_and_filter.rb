@@ -7,9 +7,9 @@ def virtual?
   true
 end
 
-def limit
-  20
-end
+# def limit
+#   20
+# end
 
 format do
   def paging_view

@@ -11,7 +11,7 @@ def all_members
 end
 
 def all_user_members
-  all_members.select { |m| m.type_id == UserID }
+  all_members.select { |m| m.real? && m.type_id == UserID }
 end
 
 def report_card member, cardtype, variant
@@ -81,28 +81,28 @@ format :html do
   end
 
   view :contributions_column do
-    output [group_contributions, member_contribution_section]
+    output [group_contributions, render_member_contribution_section]
   end
 
   def group_contributions
     with_header "Group Contributions" do
-      [metrics_designed, projects_organized]
+      [render_metrics_designed, render_projects_organized]
     end
   end
 
-  def metrics_designed
+  view :metrics_designed do
     field_nest :metric, view: :titled,
                         title: "Metrics Designed",
                         items: { view: :listing }
   end
 
-  def projects_organized
+  view :projects_organized do
     field_nest :project, view: :titled,
                          title: "Projects Organized",
                          items: { view: :listing }
   end
 
-  def member_contribution_section
+  view :member_contribution_section do
     with_header "Member Contributions" do
       card.all_user_members.map do |member|
         member_contribution_table member
@@ -130,6 +130,13 @@ format :html do
     [:created, :updated, :discussed, :double_checked]
   end
 
+  # It could be preferable to have this a separate view, but for that to be
+  # practical we'd probably want it to be a view of a User+Research_Group card,
+  # because this table is specifically about contributions relevant to the RG.
+  # This would probably mean refactoring the handling of report_searches, though.
+  # Currently their pattern is [User]+[Cardtype]+[Research Group]+report search.
+  # The refactor would make them [User]+[Research Group]+[Cardtype]+report search.
+  # So, for now, not a view...
   def member_contribution_content member
     contribution_cardtypes.map do |typecode|
       contribution_categories.map do |category|
