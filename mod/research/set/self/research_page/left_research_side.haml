@@ -5,12 +5,12 @@
   = haml_partial :company_slot
 - if metric? && company?
   = haml_partial :year_slot
+= render_flash
 - if answer?
   .border-bottom.background-grey.p-2.pl-4
     %h5
       Question
     .large-text
       = nest [metric, :question], view: :core
-  = render_flash
   .p-2.pl-4
     = answer_slot

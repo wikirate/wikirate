@@ -5,7 +5,7 @@ event :flash_success_message, :finalize, on: :create do
   msg =
     format(:html).alert :success, true, false, class: "text-center" do
       <<-HTML
-        <p>Success! To research another, select a different metric or year.</p>"
+        <p>Success! To research another answer select a different metric or year.</p>
       HTML
     end
   success.flash msg

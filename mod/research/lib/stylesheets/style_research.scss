@@ -34,7 +34,11 @@ form.answer-form {
     color: #404040;
   }
 }
-.SELF-research_page.slot_machine-view {
+.SELF-research_page.slot_machine-view, .TYPE-metric_value.open-view {
+  .alert {
+    margin-bottom: 0;
+  }
+
   .metric-unit {
     font-size: 0.8rem;
   }
