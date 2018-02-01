@@ -4,9 +4,22 @@ format :html do
     subformat(Card[:research_page]).slot_machine
   end
 
-  def default_edit_args _args
-    # voo.hide! :toolbar
-    voo.hide! :edit_buttons
+  # def default_edit_args _args
+  #   # voo.hide! :toolbar
+  # end
+
+  view :edit do
+    voo.hide! :edit_buttons, :title, :toolbar
+    with_nest_mode :edit do
+      wrap do
+        card_form :update, "data-slot-selector": ".card-slot.slot_machine-view.SELF-research_page" do
+          output [
+                   edit_view_hidden,
+                   _render_content_formgroup
+                 ]
+        end
+      end
+    end
   end
 
   view :content_formgroup, template: :haml do

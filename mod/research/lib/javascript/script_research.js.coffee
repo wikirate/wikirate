@@ -1,4 +1,4 @@
-decko.slotReady (_slot) ->
+decko.slotReady (slot) ->
   $('input._research-select').autocomplete
     select: (e, ui) ->
       $target = $(e.target)
@@ -7,8 +7,9 @@ decko.slotReady (_slot) ->
       url += $target.data("key") + "=" + encodeURIComponent(ui.item.value)
       $target.updateSlot(url)
 
-  $('[data-toggle="popover"]').popover()
-
+  if (slot.hasClass("edit-view") and slot.hasClass("TYPE-metric_value"))
+    enableSourceCitationButtons()
+    wikirate.showResearchDetailsTab("source")
 
 
 $(document).ready ->
@@ -25,7 +26,7 @@ $(document).ready ->
       $form.find("#card_name").val(name + "+" + related_company.val())
       $form.find("#success_id").val("_left")
 
-
-
+enableSourceCitationButtons = () ->
+  $("._cite_button, ._cited_button").removeClass "disabled"
 
 

@@ -30,9 +30,15 @@ format :html do
   def right_side_tabs
     tabs = {}
     if answer?
-      tabs["Source"] = nest answer_card, view: :source_tab, project: project
-      tabs["View Source"] = { content: _render_source_preview_tab,
-                              button_attr: { class: "d-none" } }
+      source_tab = nest answer_card, view: :source_tab, project: project
+      if answer_card.new_card?
+        tabs["Source"] = source_tab
+        tabs["View Source"] = { content: _render_source_preview_tab,
+                                button_attr: { class: "d-none" } }
+      else
+        tabs["Source"] = { content: source_tab, button_attr: { class: "d-none" } }
+        tabs["View Source"] = _render_source_preview_tab
+      end
     end
     tabs["Metric details"] = nest metric, view: :details_tab_content,
                                           hide: [:add_value_buttons, :import_button]
@@ -46,7 +52,8 @@ format :html do
 
   view :source_preview_tab, cache: :never do
     wrap do
-      nest preview_source, view: :source_and_preview
+      nest preview_source, view: :source_and_preview, cited: cited_preview_source?,
+                           disabled: existing_answer?
     end
   end
 

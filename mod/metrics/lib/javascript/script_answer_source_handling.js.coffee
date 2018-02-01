@@ -5,6 +5,9 @@ $.extend wikirate,
 #    url = $(data).find('#source_url').text()
 #    resizeIframe($source_form_container)
 #    testSameOrigin(url, pageName) if (url)
+  showResearchDetailsTab: (tab) ->
+    tab = $("#research-details .nav-tabs a[href='#research_page-#{tab}']")
+    tab.removeClass("d-none").tab('show')
 
   toggleCitation: (ele, action) ->
     sourceID =  $(ele).closest(".TYPE-source").data("card-id")
@@ -35,13 +38,13 @@ $.extend wikirate,
 #    )
 
   citeButtons = (sourceID) ->
-    $(".TYPE-source[data-card-id='#{sourceID}'] .c-btn")
+    $("._citeable-source[data-card-id='#{sourceID}'] .c-btn")
 
   citedSourceInForm = (sourceID) ->
-    $("form .relevant-view.TYPE-source[data-card-id='#{sourceID}']")
+    $("form ._citeable-source[data-card-id='#{sourceID}']")
 
   possibleSource = (sourceID) ->
-    $("#research_page-source.tab-pane .relevant-view.TYPE-source[data-card-id='#{sourceID}']:first")
+    $("#research_page-source.tab-pane ._citeable-source[data-card-id='#{sourceID}']:first")
 
   citeSource = (sourceID, citations) ->
     $source = possibleSource(sourceID).clone(true)
@@ -56,7 +59,7 @@ $.extend wikirate,
 
   unciteSource = (sourceID, citations) ->
     citedSourceInForm(sourceID).remove()
-    citations.text("None") if citations.is(':empty') || citations.text() == ""
+    citations.text("None") if citations.is(':empty') || citations.text().trim() == ""
 
   toggleCiteButtons = (sourceID, action) ->
     citeButtons(sourceID).each ->
@@ -116,8 +119,7 @@ $(document).ready ->
 #    wikirate.appendSourceForm($(this))
 
   $("body").on 'click', '.slot_machine-view.SELF-research_page .cited-view.TYPE-source, .source-details-toggle', ->
-    view_source_tab = $('#research-details .nav-tabs a[href="#research_page-view_source"]')
-    view_source_tab.removeClass("d-none").tab('show')
+    wikirate.showResearchDetailsTab("view_source")
     sourceID = $(this).data("card-name")
     load_path = decko.prepUrl(decko.rootPath + sourceID + "?view=source_and_preview")
     $slot = $("#research_page-view_source > .card-slot")
@@ -149,3 +151,7 @@ $(document).ready ->
 #        $sourcePreview.removeClass('hide')
 #      else
 #        wikirate.appendSourceDetails(sourceID)
+
+#showViewSourceTab = () ->
+#  view_source_tab = $('#research-details .nav-tabs a[href="#research_page-view_source"]')
+#  view_source_tab.removeClass("d-none").tab('show')

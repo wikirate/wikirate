@@ -14,12 +14,10 @@ event :process_sources, :prepare_to_validate,
   end
 end
 
-def add_possible_source name, save, duplicate
-  return if duplicate && already_suggested?(name)
-  new_sources = add_subcard [company, :new_sources], type_id: SessionID
-  new_sources.add_item name
-  new_sources.save if save # if not in event phase we have to save
-end
+# event :flash_success_message, :finalize, on: :create do
+#   # binding.pry
+#   # success.flash "<strong>success</strong>"
+# end
 
 def already_suggested? name
   suggested_source_ids.include? Card.fetch_id(name)
@@ -88,8 +86,17 @@ def new_sources
   Card.fetch([company, :new_sources])&.item_names&.map { |source| Card[source] }
 end
 
+def cited_source_ids
+  @cited_source_ids ||= ::Set.new source_card.item_cards.map(&:id)
+end
+
+def cited? source_card
+  return unless source_card
+  cited_source_ids.include? source_card.id
+end
+
 format :html do
-  delegate :suggested_sources, :new_sources, to: :card
+  delegate :suggested_sources, :new_sources, :cited?, to: :card
 
   view :new_sources, cache: :never, tags: :unknown_ok do
     wrap do
@@ -120,7 +127,13 @@ format :html do
     return "None" if source_cards.empty?
     with_nest_mode :normal do
       wrap_with :div, class: "relevant-sources" do
-        source_cards.compact.map { |source| subformat(source).render_relevant }
+        source_cards.compact.map do |source|
+          if cited? source
+            subformat(source).render_with_cited_button
+          else
+            subformat(source).render_relevant
+          end
+        end
       end
     end
   end
@@ -134,6 +147,4 @@ format :html do
     @sources.push(source_card) if source && (source_card = Card[source])
     @sources
   end
-
-
 end

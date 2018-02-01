@@ -25,10 +25,10 @@ format :html do
   view :open_content, cache: :never do
     voo.hide! :cited_source_links
     subformat(:research_page).slot_machine metric: card.metric, company: card.company,
-                                           year: card.year, active_tab: "Source preview"
+                                           year: card.year, active_tab: "View source"
   end
 
-  view :titled_content do
+  view :titled_content, cache: :never do
     voo.hide! :chart # hide it in value_field
     bs do
       layout do

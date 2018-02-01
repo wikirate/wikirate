@@ -131,9 +131,13 @@ $(window).ready ->
   #   if parent
 
 decko.slotReady (slot) ->
+  $('[data-toggle="popover"]').popover()
+
   return unless slot.hasClass("TYPE-project") && slot.find("form")
   parent = slot.find(".RIGHT-parent .pointer-item-text")
   appendParentToAddItem parent
+
+
 
 appendParentToAddItem = (parent) ->
   return unless parent.val()

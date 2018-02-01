@@ -1,7 +1,7 @@
 
 format :html do
   def active_tab
-    @active_tab ||= params[:active_tab]
+    @active_tab ||= params[:active_tab] || (existing_answer? && "View Source")
   end
 
   def company_list
@@ -49,7 +49,11 @@ format :html do
   end
 
   def preview_source
-    params[:preview_source] || source
+    params[:preview_source] || (answer? && answer_card.source_card.item_names.first)
+  end
+
+  def cited_preview_source?
+    answer_card.cited? Card[preview_source]
   end
 
   def source
@@ -101,6 +105,10 @@ format :html do
     metric && company && year
   end
 
+  def existing_answer?
+    answer? && answer_card.known?
+  end
+
   def company
     @company ||= Env.params[:company] || company_list.first
   end
@@ -110,7 +118,8 @@ format :html do
   end
 
   def year
-    @year ||= Env.params[:year] || (project_year_list? && year_list.first)
+    @year ||= Env.params[:year] || (project_year_list? && year_list.first) ||
+              (project? && Time.now.year.to_s)
   end
 
   def record_card
