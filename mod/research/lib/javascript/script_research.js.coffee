@@ -11,7 +11,6 @@ decko.slotReady (slot) ->
     enableSourceCitationButtons()
     wikirate.showResearchDetailsTab("source")
 
-
 $(document).ready ->
   $("#main:has(>#Research_Page.slot_machine-view)").addClass("pl-0 pr-0")
 

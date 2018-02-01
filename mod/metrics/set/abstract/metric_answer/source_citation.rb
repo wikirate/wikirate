@@ -14,11 +14,6 @@ event :process_sources, :prepare_to_validate,
   end
 end
 
-# event :flash_success_message, :finalize, on: :create do
-#   # binding.pry
-#   # success.flash "<strong>success</strong>"
-# end
-
 def already_suggested? name
   suggested_source_ids.include? Card.fetch_id(name)
 end
