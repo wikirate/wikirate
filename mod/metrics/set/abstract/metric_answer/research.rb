@@ -18,9 +18,8 @@ format :html do
   end
 
   def research_form_success
-     research_params.merge id: ":research_page", soft_redirect: true,
-                           view: :left_research_side, slot: { title: "Answer" }
-
+    research_params.merge id: ":research_page", soft_redirect: true,
+                          view: :left_research_side, slot: { title: "Answer" }
   end
 
   def new_buttons
@@ -41,7 +40,6 @@ format :html do
     # tags["card[subcards][+source][content]"] = source if source.present?
     hidden_tags tags
   end
-
 
   def project
     @project ||= voo&.live_options[:project] ||

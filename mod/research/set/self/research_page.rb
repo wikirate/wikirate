@@ -41,7 +41,6 @@ format :html do
     static_tabs tabs, active_tab
   end
 
-
   view :left_research_side, cache: :never, template: :haml, slot: true do
   end
 
@@ -67,7 +66,6 @@ format :html do
     end
     nest answer_card, opts
   end
-
 
   def next_button type
     list = send("#{type}_list")

@@ -14,7 +14,7 @@ format :json do
     end
     begin
       metadata.website = URI(url).host
-    rescue
+    rescue StandardError
     end
     unless metadata.website
       metadata.error = "invalid url"
@@ -32,7 +32,7 @@ format :json do
         preview = LinkThumbnailer.generate url
         image_url = preview.images.first.src.to_s unless preview.images.empty?
           metadata.set_meta_data preview.title, preview.description, image_url
-      rescue
+      rescue StandardError
       end
     end
     metadata.to_json
@@ -82,7 +82,7 @@ format :json do
     x_frame_options, content_type = iframable_options url
     valid_x_frame_options?(x_frame_options) &&
       valid_content_type?(content_type, user_agent)
-  rescue => error
+  rescue StandardError => error
     Rails.logger.error error.message
     return false
   end

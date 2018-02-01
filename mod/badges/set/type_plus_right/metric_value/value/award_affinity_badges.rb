@@ -85,9 +85,7 @@ def earns_badge action, affinity_type=nil, count=nil
 end
 
 def fetch_badge_card badge_name, affinity=nil, project_card=nil
-  if affinity
-    badge_name = affinity_badge_name badge_name, affinity, project_card
-  end
+  badge_name = affinity_badge_name badge_name, affinity, project_card if affinity
   super badge_name
 end
 

@@ -106,9 +106,7 @@ format :html do
       cited_in = Card.search refer_to: card.name,
                              left: { type_id: WikirateAnalysisID },
                              right: { name: Card[:overview].name }
-      if card.analysis_names.size > cited_in.size
-        "cite this note in related overviews."
-      end
+      "cite this note in related overviews." if card.analysis_names.size > cited_in.size
     end
   end
 

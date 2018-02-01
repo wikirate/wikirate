@@ -812,7 +812,7 @@ a.no-decoration {
 // width so that the longest entry fits in
 .filter-in-filter-form {
   width: 100%;
-  overflow-x: hidden;
+  // overflow-x: hidden;
 
   .input-group._filter-input {
     max-width: 100% !important;

@@ -100,9 +100,7 @@ class Card::Metric
 
     def subfield_args field, content
       type_id = subfield_type_id(field)
-      if type_id == Card::PointerID
-        content = Array.wrap(content).to_pointer_content
-      end
+      content = Array.wrap(content).to_pointer_content if type_id == Card::PointerID
       { content: content, type_id: type_id }
     end
 

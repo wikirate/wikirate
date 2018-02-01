@@ -42,7 +42,7 @@ format :html do
 
   def research_params
     %i[metric company year pinned source
-      project metric_list company_list year_list].each_with_object({}) do |i, h|
+       project metric_list company_list year_list].each_with_object({}) do |i, h|
       val = send i
       h[i] = val if val
     end

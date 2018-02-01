@@ -147,7 +147,6 @@ format :html do
     # doesn't work without this empty block if view caching is turned on
   end
 
-
   def primary_panels
     @primary_panels ||= []
   end
