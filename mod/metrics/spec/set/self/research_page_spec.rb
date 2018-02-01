@@ -3,7 +3,7 @@ describe Card::Set::Self::ResearchPage do
     Card[:research_page].format
   end
 
-  def set_params opts
+  def params opts
     opts.each do |k, v|
       Card::Env.params[k] = v
     end
@@ -45,13 +45,13 @@ describe Card::Set::Self::ResearchPage do
     end
 
     it "has source tab" do
-      set_params metric: "Joe User+researched", company: "Death Star",
-                 year: "2014", project: "Evil Project"
+      params metric: "Joe User+researched", company: "Death Star",
+             year: "2014", project: "Evil Project"
       is_expected.to have_tag "#research_page-source" do
         with_tag :form do
           with_hidden_field "card[subcards][+company][content]", "Death Star"
           with_hidden_field "success[view]", "new_sources"
-          with_hidden_field "success[id]", "_self"
+          with_hidden_field "success[id]", "Joe User+researched+Death Star+2014"
         end
       end
     end
@@ -63,10 +63,9 @@ describe Card::Set::Self::ResearchPage do
     end
 
     it "has slot" do
-      set_params metric: "Joe User+researched", company: "Death Star",
-                       year: "2014", project: "Evil Project"
+      params metric: "Joe User+researched", company: "Death Star",
+             year: "2014", project: "Evil Project"
       is_expected.to have_tag ".card-slot.left_research_side-view"
-
     end
   end
 end

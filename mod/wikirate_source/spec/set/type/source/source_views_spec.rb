@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-RSpec.describe Card::Set::Type::Source, "views" do
+RSpec.describe Card::Set::Type::Source, "#views" do
   let(:csv_file) do
     path = File.expand_path("../test.csv", __FILE__)
     File.open(path)
@@ -23,8 +23,7 @@ RSpec.describe Card::Set::Type::Source, "views" do
   end
 
   describe "original_icon_link" do
-
-    context "file source" do
+    context "with file source" do
       it "renders upload icon" do
         sourcepage = create_source file: csv_file
         html = sourcepage.format.render_original_icon_link
@@ -35,7 +34,7 @@ RSpec.describe Card::Set::Type::Source, "views" do
       end
     end
 
-    context "link source" do
+    context "with link source" do
       it "renders globe icon" do
         html = @source_page.format.render_original_icon_link
         expect(html).to have_tag("a", with: { href: @url }) do
@@ -44,15 +43,15 @@ RSpec.describe Card::Set::Type::Source, "views" do
       end
     end
 
-    context "text source" do
+    context "with text source" do
       it "renders pencil icon" do
         new_sourcepage = create_source text: "test text report"
         html = new_sourcepage.format.render_original_icon_link
         text_source = new_sourcepage.fetch trait: :text
         expected_url = "/#{text_source.name.url_key}"
         expect(html).to have_tag("a", with: {
-          href: expected_url
-        }) do
+                                   href: expected_url
+                                 }) do
           with_tag "i", with: { class: "fa fa-pencil" }
         end
       end
