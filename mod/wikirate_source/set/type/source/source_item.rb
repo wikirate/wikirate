@@ -131,7 +131,7 @@ format :html do
       [
         _render_listing,
         cite_button(cited, disabled),
-        (hidden_item_input if cited)
+        hidden_item_input
       ]
     end
   end
@@ -147,7 +147,7 @@ format :html do
   end
 
   def hidden_item_input
-    tag :input, type: "hidden", class: "pointer-select _no-chosen", value: card.name
+    tag :input, type: "hidden", class: "pointer-select", value: card.name
   end
 
   view :with_cited_button do

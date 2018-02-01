@@ -12,7 +12,10 @@ format :html do
     voo.hide! :edit_buttons, :title, :toolbar
     with_nest_mode :edit do
       wrap do
-        card_form :update, "data-slot-selector": ".card-slot.slot_machine-view.SELF-research_page" do
+        card_form :update,
+                  "main-success" => "REDIRECT",
+                  "data-slot-selector": ".card-slot.slot_machine-view",
+                  success: research_form_success.merge(view: :slot_machine) do
           output [
                    edit_view_hidden,
                    _render_content_formgroup
@@ -33,5 +36,9 @@ format :html do
     super
     add_class opts, "answer-form"
     opts
+  end
+
+  def menu_path_opts
+    super.merge research_params: research_params
   end
 end

@@ -13,8 +13,8 @@ format :html do
   end
 
   def research_params
-    voo.live_options[:research_params] ||
-      { metric: metric, company: company, year: year }
+    voo.closest_live_option(:research_params) || Env.params[:research_params]&.to_unsafe_h ||
+      { metric: card.metric, company: card.company, year: card.year }
   end
 
   def research_form_success

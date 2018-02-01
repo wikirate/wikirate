@@ -119,7 +119,7 @@ format :html do
 
   def year
     @year ||= Env.params[:year] || (project_year_list? && year_list.first) ||
-              (project? && Time.now.year.to_s)
+              (project? && (Time.now.year - 1).to_s)
   end
 
   def record_card

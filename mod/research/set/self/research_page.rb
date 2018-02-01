@@ -64,13 +64,9 @@ format :html do
   end
 
   def answer_slot
-    opts = { title: "Answer", hide: :cited_source_links }
-    if answer_card.new_card?
-      opts[:view] = :research_form
-      opts[:research_params] = research_params
-    else
-      opts[:view] = :titled
-    end
+    opts = { title: "Answer", hide: :cited_source_links,
+              research_params: research_params }
+    opts[:view] =  answer_card.new_card? ? :research_form : :titled
     nest answer_card, opts
   end
 
