@@ -45,6 +45,7 @@
 - :name: "*css"
   :type: SCSS
   :key: "*css"
+  :merged: 2018-02-02 07:15:34 UTC
 - :name: 'style: layout with sidebar'
   :type: SCSS
   :key: style_layout_with_sidebar
@@ -346,6 +347,7 @@
 - :name: Using WikiRate
   :type: HTML
   :key: using_wiki_rate
+  :merged: 2018-02-02 07:15:34 UTC
 - :name: Introduction to WikiRate
   :type: Basic
   :key: introduction_to_wiki_rate
