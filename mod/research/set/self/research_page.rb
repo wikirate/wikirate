@@ -45,8 +45,10 @@ format :html do
         tabs["View Source"] = _render_source_preview_tab
       end
     end
-    tabs["Metric details"] = nest metric, view: :details_tab_content,
-                                          hide: [:add_value_buttons, :import_button]
+    if metric?
+      tabs["Metric details"] = nest metric, view: :details_tab_content,
+                                            hide: [:add_value_buttons, :import_button]
+    end
     tabs["Help"] = nest :how_to_research, view: :core
 
     static_tabs tabs, active_tab
@@ -99,6 +101,7 @@ format :html do
                    "data-options-card": options_card,
                    "data-url": research_url,
                    "data-key": type,
+                   "data-slot-selector": ".card-slot.slot_machine-view",
                    placeholder: type.to_s.capitalize
   end
 

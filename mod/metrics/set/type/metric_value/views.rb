@@ -29,8 +29,8 @@ format :html do
   end
 
   def default_title_args _args
-    # cancel button loses title
-    voo.title = "Answer"
+    # hack to prevent cancel button on research page from loosing title
+    voo.title ||= "Answer"
   end
 
   view :titled_content, cache: :never do

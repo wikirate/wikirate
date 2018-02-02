@@ -3,8 +3,8 @@ format :html do
   RESEARCH_PARAMS_KEY = :rp
 
   view :new, cache: :never do
-    # @form_root = true
-    subformat(Card[:research_page]).slot_machine
+    #@form_root = true
+    nest :research_page, view: :slot_machine
   end
 
   view :edit do

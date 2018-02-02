@@ -12,7 +12,7 @@ format :html do
 
     define_method "#{item}_list" do
       lazy_instance_variable("#{item}_list") do
-        send("#{item}_id_list").map { |id| Card.fetch_name(id) }
+        send("#{item}_id_list").map { |id| id && Card.fetch_name(id.to_i) }.compact
       end
     end
   end

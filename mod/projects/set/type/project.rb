@@ -32,7 +32,7 @@ def metric_ids
 end
 
 def year_ids
-  @year_ids ||= year_card.valid_year_cards.map(&:id)
+  @year_ids ||= years && year_card.valid_year_cards.map(&:id)
 end
 
 def metrics
