@@ -6,6 +6,11 @@ format :html do
     super()
   end
 
+  view :edit, cache: :never do
+    @answer_view = :edit
+    render_slot_machine
+  end
+
   view :content, cache: :never do
     _render_core
   end
@@ -65,9 +70,17 @@ format :html do
 
   def answer_slot
     opts = { title: "Answer", hide: :cited_source_links,
-              research_params: research_params }
-    opts[:view] =  answer_card.new_card? ? :research_form : :titled
+             research_params: research_params }
+    opts[:view] =  answer_view
     nest answer_card, opts
+  end
+
+  def answer_view
+    if answer_card.new_card?
+      :research_form
+    else
+      @answer_view || :titled
+    end
   end
 
   def next_button type

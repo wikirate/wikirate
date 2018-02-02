@@ -125,6 +125,11 @@ format :html do
       end
   end
 
+  def research_params
+    parent.try(:research_params) || voo&.closest_live_option(:research_params) ||
+      card.left&.format&.try(:research_params) || {}
+  end
+
   view :icon, cache: :never do |args|
     if checked?
       double_check_icon args
@@ -191,8 +196,8 @@ format :html do
   end
 
   def fix_link
-    link_to_card card.left, "No, I'll fix it", class: "#{BTN_CLASSES} ml-1",
-                                               path: { view: :edit }
+    link_to_card :research_page, "No, I'll fix it", class: "#{BTN_CLASSES} ml-1",
+                                               path: { view: :edit }.merge(research_params)
   end
 end
 

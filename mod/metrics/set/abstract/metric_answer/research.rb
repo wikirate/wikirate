@@ -1,5 +1,29 @@
 
 format :html do
+  RESEARCH_PARAMS_KEY = :rp
+
+  view :new, cache: :never do
+    # @form_root = true
+    subformat(Card[:research_page]).slot_machine
+  end
+
+  view :edit do
+    voo.hide! :edit_buttons, :title, :toolbar
+    with_nest_mode :edit do
+      wrap do
+        card_form :update,
+                  "main-success" => "REDIRECT",
+                  "data-slot-selector": ".card-slot.slot_machine-view",
+                  success: research_form_success.merge(view: :slot_machine) do
+          output [
+                   edit_view_hidden,
+                   _render_content_formgroup
+                 ]
+        end
+      end
+    end
+  end
+
   view :research_form, cache: :never, perms: :update, tags: :unknown_ok do
     voo.editor = :inline_nests
     with_nest_mode :edit do
@@ -12,8 +36,26 @@ format :html do
     end
   end
 
+  view :content_formgroup, template: :haml do
+    card.add_subfield :year, content: card.year
+    if card.metric_card.relationship?
+      card.add_subfield :related_company, content: card.related_company
+    end
+  end
+
+  def card_form_html_opts action, opts={}
+    super
+    add_class opts, "answer-form"
+    opts
+  end
+
+  def menu_path_opts
+    super.merge RESEARCH_PARAMS_KEY => research_params
+  end
+
   def research_params
-    voo.closest_live_option(:research_params) || Env.params[:research_params]&.to_unsafe_h ||
+    voo&.closest_live_option(:research_params) ||
+      Env.params[RESEARCH_PARAMS_KEY]&.to_unsafe_h ||
       { metric: card.metric, company: card.company, year: card.year }
   end
 

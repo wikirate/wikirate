@@ -31,6 +31,10 @@ def metric_ids
   @metric_ids ||= metric_card.valid_metric_cards.map(&:id)
 end
 
+def year_ids
+  @year_ids ||= year_card.valid_year_cards.map(&:id)
+end
+
 def metrics
   metric_card.valid_metric_cards.map(&:name)
 end
