@@ -11,6 +11,14 @@ decko.slotReady (slot) ->
     enableSourceCitationButtons()
     wikirate.showResearchDetailsTab("source")
 
+  $("body").on "change", "#card_subcards__values_subcards__Unknown_content", ->
+    input = $(".card-editor.RIGHT-value .content-editor input")
+    return unless input[0]
+    if this.checked
+      input.attr("checked", false).attr("disabled", true).val("")
+    else
+      input.attr("disabled", false)
+
 $(document).ready ->
   $("#main:has(>#Research_Page.slot_machine-view)").addClass("pl-0 pr-0")
 
