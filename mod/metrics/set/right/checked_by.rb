@@ -196,8 +196,9 @@ format :html do
   end
 
   def fix_link
-    link_to_card :research_page, "No, I'll fix it", class: "#{BTN_CLASSES} ml-1",
-                                               path: { view: :edit }.merge(research_params)
+    link_to_card :research_page, "No, I'll fix it",
+                 class: "#{BTN_CLASSES} ml-1",
+                 path: { view: :edit }.merge(research_params)
   end
 end
 

@@ -3,26 +3,26 @@ format :html do
   RESEARCH_PARAMS_KEY = :rp
 
   view :new, cache: :never do
-    #@form_root = true
+    # @form_root = true
     nest :research_page, view: :slot_machine
   end
 
   def menu_edit_link opts
-    link_text = "#{material_icon("edit")}<span class='menu-item-label'>edit</span>"
+    link_text = "#{material_icon('edit')}<span class='menu-item-label'>edit</span>"
     add_class opts, "dropdown-item"
     link_to_card card, link_text.html_safe,
                  opts.merge(path: menu_path_opts.merge(view: :edit), remote: false)
   end
 
   view :edit do
-      Env.params[:metric] = card.metric
+    Env.params[:metric] = card.metric
       Env.params[:company] = card.company
       Env.params[:year] = card.year
       nest :research_page, view: :edit
   end
 
   view :research_edit_form, cache: :never, perms: :update, tags: :unknown_ok do
-    #voo.editor = :inline_nests
+    # voo.editor = :inline_nests
     with_nest_mode :edit do
       wrap do
         card_form :update,
@@ -30,14 +30,13 @@ format :html do
                   "data-slot-selector": ".card-slot.slot_machine-view",
                   success: research_form_success.merge(view: :slot_machine) do
           output [
-                   edit_view_hidden,
-                   _render_content_formgroup
-                 ]
+            edit_view_hidden,
+            _render_content_formgroup
+          ]
         end
       end
     end
   end
-
 
   view :research_form, cache: :never, perms: :update, tags: :unknown_ok do
     voo.editor = :inline_nests
