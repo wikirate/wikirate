@@ -7,8 +7,22 @@ format :html do
     nest :research_page, view: :slot_machine
   end
 
+  def menu_edit_link opts
+    link_text = "#{material_icon("edit")}<span class='menu-item-label'>edit</span>"
+    add_class opts, "dropdown-item"
+    link_to_card card, link_text.html_safe,
+                 opts.merge(path: menu_path_opts.merge(view: :edit), remote: false)
+  end
+
   view :edit do
-    voo.hide! :edit_buttons, :title, :toolbar
+      Env.params[:metric] = card.metric
+      Env.params[:company] = card.company
+      Env.params[:year] = card.year
+      nest :research_page, view: :edit
+  end
+
+  view :research_edit_form, cache: :never, perms: :update, tags: :unknown_ok do
+    #voo.editor = :inline_nests
     with_nest_mode :edit do
       wrap do
         card_form :update,
@@ -23,6 +37,7 @@ format :html do
       end
     end
   end
+
 
   view :research_form, cache: :never, perms: :update, tags: :unknown_ok do
     voo.editor = :inline_nests

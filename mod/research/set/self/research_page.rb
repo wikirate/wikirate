@@ -7,7 +7,7 @@ format :html do
   end
 
   view :edit, cache: :never do
-    @answer_view = :edit
+    @answer_view = :research_edit_form
     render_slot_machine
   end
 
@@ -36,7 +36,7 @@ format :html do
     tabs = {}
     if answer?
       source_tab = nest answer_card, view: :source_tab, project: project
-      if answer_card.new_card?
+      if answer_card.new_card? || @answer_view == :research_edit_form
         tabs["Source"] = source_tab
         tabs["View Source"] = { content: _render_source_preview_tab,
                                 button_attr: { class: "d-none" } }
@@ -73,7 +73,7 @@ format :html do
   def answer_slot
     opts = { title: "Answer", hide: :cited_source_links,
              research_params: research_params }
-    opts[:view] =  answer_view
+    opts[:view] = answer_view
     nest answer_card, opts
   end
 

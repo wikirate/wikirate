@@ -7,9 +7,10 @@ decko.slotReady (slot) ->
       url += $target.data("key") + "=" + encodeURIComponent(ui.item.value)
       $target.updateSlot(url)
 
-  if (slot.hasClass("edit-view") and slot.hasClass("TYPE-metric_value"))
-    enableSourceCitationButtons()
-    wikirate.showResearchDetailsTab("source")
+# now done by reloading the whole page
+#  if (slot.hasClass("edit-view") and slot.hasClass("TYPE-metric_value"))
+#    enableSourceCitationButtons()
+#    wikirate.showResearchDetailsTab("source")
 
   $("body").on "change", "#card_subcards__values_subcards__Unknown_content", ->
     input = $(".card-editor.RIGHT-value .content-editor input")

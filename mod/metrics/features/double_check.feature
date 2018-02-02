@@ -33,7 +33,6 @@ Feature: Double check
     And I go to card "Jedi+disturbances in the Force+Death Star+2000"
     And I edit "Jedi+disturbances in the Force+Death Star+2000"
     And I check "request"
-    And I scroll 300 pixels down
     And I submit
     Then I should see "Double check requested by Joe User"
 
