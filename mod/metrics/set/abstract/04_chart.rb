@@ -76,7 +76,7 @@ format :html do
   end
 
   def show_chart?
-    return if card.relationship? || !(card.numeric? || card.categorical?)
+    return if !(card.numeric? || card.categorical?)
 
     card.filter_hash[:metric_value] != "none" &&
       card.filter_hash[:metric_value] != "all" &&
@@ -122,7 +122,7 @@ format :json do
   def chart_class
     if card.scored?
       Card::Chart::ScoreChart
-    elsif card.numeric?
+    elsif card.numeric? || card.relationship?
       Card::Chart::NumericChart
     else
       Card::Chart::CategoryChart

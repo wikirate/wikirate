@@ -73,7 +73,7 @@ class Answer
     end
 
     def fetch_numeric_value
-      return unless metric_card.numeric?
+      return unless metric_card.numeric? || metric_card.relationship?
       to_numeric_value fetch_value
     end
 

@@ -8,7 +8,7 @@ class Card
       end
 
       def self.chart_type format, opts
-        if format.chart_item_count > BUCKETS &&
+        if format.chart_item_count <= BUCKETS ||
            format.chart_value_count <= BUCKETS
           NumberChart
         else
