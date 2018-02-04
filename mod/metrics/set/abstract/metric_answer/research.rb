@@ -16,9 +16,9 @@ format :html do
 
   view :edit do
     Env.params[:metric] = card.metric
-      Env.params[:company] = card.company
-      Env.params[:year] = card.year
-      nest :research_page, view: :edit
+    Env.params[:company] = card.company
+    Env.params[:year] = card.year
+    nest :research_page, view: :edit
   end
 
   view :research_edit_form, cache: :never, perms: :update, tags: :unknown_ok do
@@ -98,7 +98,7 @@ format :html do
   end
 
   def project
-    @project ||= voo&.live_options[:project] ||
+    @project ||= voo&.live_options&.dig(:project) ||
                  Env.params[:project] || Env.params["project"]
   end
 

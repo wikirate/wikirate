@@ -35,23 +35,34 @@ format :html do
   def right_side_tabs
     tabs = {}
     if answer?
-      source_tab = nest answer_card, view: :source_tab, project: project
-      if answer_card.new_card? || @answer_view == :research_edit_form
-        tabs["Source"] = source_tab
-        tabs["View Source"] = { content: _render_source_preview_tab,
-                                button_attr: { class: "d-none" } }
-      else
-        tabs["Source"] = { content: source_tab, button_attr: { class: "d-none" } }
-        tabs["View Source"] = _render_source_preview_tab
-      end
+      tabs["Source"] = cite_source_tab cite_mode?
+      tabs["View Source"] = view_source_tab !cite_mode?
     end
-    if metric?
-      tabs["Metric details"] = nest metric, view: :details_tab_content,
-                                            hide: [:add_value_buttons, :import_button]
-    end
+    tabs["Metric details"] = metric_details_tab if metric?
     tabs["Help"] = nest :how_to_research, view: :core
-
     static_tabs tabs, active_tab
+  end
+
+  def cite_mode?
+    answer_card.new_card? || @answer_view == :research_edit_form
+  end
+
+  def cite_source_tab hide=false
+    hide_tab nest(answer_card, view: :source_tab, project: project), hide
+  end
+
+  def view_source_tab hide=false
+    hide_tab _render_source_preview_tab, hide
+  end
+
+  def metric_details_tab
+    nest metric, view: :details_tab_content,
+                 hide: [:add_value_buttons, :import_button]
+  end
+
+  def hide_tab tab, hide=false
+    return tab unless hide
+    { content: tab, button_attr: { class: "d-none" } }
   end
 
   view :left_research_side, cache: :never, template: :haml, slot: true do

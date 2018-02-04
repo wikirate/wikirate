@@ -115,7 +115,7 @@ format :html do
 
   def new_sources_listing
     return "" unless new_sources.present?
-     source_list new_sources
+    source_list new_sources
   end
 
   def source_list source_cards=sources
@@ -139,7 +139,7 @@ format :html do
 
   def sources
     @sources ||= find_suggested_sources - card.source_card.item_cards
-    @sources.push(source_card) if source && (source_card = Card[source])
+    @sources.push(source_card) if source && (s  ource_card = Card[source])
     @sources
   end
 end
