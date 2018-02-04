@@ -1,47 +1,84 @@
 
 format :html do
+  PARAM_NAME = { company_id_list: :cil, metric_id_list: :mil, year_list: :yil }.freeze
   def active_tab
-    @active_tab ||= params[:active_tab]
+    @active_tab ||= params[:active_tab] || (existing_answer? && "View Source")
   end
 
-  def company_list
-    @company_list ||= list_from_project_or_params(:company) || []
+  %i[company metric year].each do |item|
+    define_method "#{item}_id_list" do
+      lazy_instance_variable("#{item}_id_list") { fetch_list(item) }
+    end
+
+    define_method "#{item}_list" do
+      lazy_instance_variable("#{item}_list") do
+        send("#{item}_id_list").map { |id| id && Card.fetch_name(id.to_i) }.compact
+      end
+    end
   end
 
-  def metric_list
-    @metric_list ||= list_from_project_or_params(:metric) || []
+  def lazy_instance_variable name
+    name = "@#{name}" unless name.start_with? "@"
+    instance_variable_get(name) || instance_variable_set(name, yield)
   end
 
-  def year_list
-    @year_list ||= list_from_project_or_params(:year) || years
+  def fetch_list name
+    list_from_project_or_params(name) || list_default(name)
+  end
+
+  def list_default key
+    key.to_sym == :year ? year_ids : []
   end
 
   def list_from_project_or_params name
-    list_name = "#{name}_list"
-    (params[list_name] && Array(params[list_name])) ||
-      (project_card && project_card.send(list_name))
+    list_from_params(name) || list_from_project(name)
+  end
+
+  def list_from_project name
+    project_card && project_card.send("#{name}_ids")
+  end
+
+  def list_from_params name
+    list_name = param_name "#{name}_id_list"
+    params[list_name] && Array(params[list_name])
+  end
+
+  def param_name name
+    PARAM_NAME[name.to_sym] || name.to_sym
   end
 
   def research_url opts={}
     path_opts = { view: :slot_machine }
-
-    %i[metric company year pinned source].each do |i|
-      val = opts[i] || send(i)
-      path_opts[i] = val if val
-    end
-
-    if project?
-      path_opts[:project] = project
-    else
-      path_opts[:metric_list] = metric_list
-      path_opts[:company_list] = company_list
-      path_opts[:year_list] = year_list
+    research_param_keys.each do |key|
+      val = opts[key] || send(key)
+      path_opts[param_name(key)] = val if val
     end
     path path_opts
   end
 
+  def research_params
+    research_param_keys.each_with_object({}) do |item, h|
+      val = send item
+      h[param_name(item)] = val if val
+    end
+  end
+
+  def research_param_keys
+    keys = %i[metric company year pinned source]
+    if project?
+      keys << :project
+    else
+      keys += %i[metric_id_list company_id_list year_id_list]
+    end
+    keys
+  end
+
   def preview_source
-    params[:preview_source] || source
+    params[:preview_source] || (answer? && answer_card.source_card.item_names.first)
+  end
+
+  def cited_preview_source?
+    answer_card.cited? Card[preview_source]
   end
 
   def source
@@ -52,12 +89,16 @@ format :html do
     Card.search(type_id: YearID, return: :name, sort: :name, dir: :desc).map(&:to_i)
   end
 
+  def year_ids
+    Card.search type_id: YearID, return: :id, sort: :name, dir: :desc
+  end
+
   def project?
     project.present?
   end
 
   def project
-    @project ||= Env.params["project"]
+    @project ||= Env.params[:project] || Env.params["project"]
   end
 
   def project_card
@@ -93,6 +134,10 @@ format :html do
     metric && company && year
   end
 
+  def existing_answer?
+    answer? && answer_card.known?
+  end
+
   def company
     @company ||= Env.params[:company] || company_list.first
   end
@@ -102,7 +147,8 @@ format :html do
   end
 
   def year
-    @year ||= Env.params[:year] || (project_year_list? && year_list.first)
+    @year ||= Env.params[:year] || (project_year_list? && year_list.first) ||
+              (project? && (Time.now.year - 1).to_s)
   end
 
   def record_card

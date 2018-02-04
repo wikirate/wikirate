@@ -110,9 +110,13 @@ format :html do
     CSS_CLASS[value] || "progress-#{value}"
   end
 
+  def link_value value
+    LINK_VALUE[value] || value
+  end
+
   def progress_section_body value, link_method, num
     if link_method
-      send link_method, LINK_VALUE[value] { num }
+      send(link_method, link_value(value)) { num }
     else
       num
     end

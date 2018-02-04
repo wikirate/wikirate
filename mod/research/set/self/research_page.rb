@@ -6,6 +6,11 @@ format :html do
     super()
   end
 
+  view :edit, cache: :never do
+    @answer_view = :research_edit_form
+    render_slot_machine
+  end
+
   view :content, cache: :never do
     _render_core
   end
@@ -27,15 +32,46 @@ format :html do
     end
   end
 
-  view :source_tab, cache: :never do
-    wrap do
-      haml :source_tab
+  def right_side_tabs
+    tabs = {}
+    if answer?
+      tabs["Source"] = cite_source_tab cite_mode?
+      tabs["View Source"] = view_source_tab !cite_mode?
     end
+    tabs["Metric details"] = metric_details_tab if metric?
+    tabs["Help"] = nest :how_to_research, view: :core
+    static_tabs tabs, active_tab
+  end
+
+  def cite_mode?
+    answer_card.new_card? || @answer_view == :research_edit_form
+  end
+
+  def cite_source_tab hide=false
+    hide_tab nest(answer_card, view: :source_tab, project: project), hide
+  end
+
+  def view_source_tab hide=false
+    hide_tab _render_source_preview_tab, hide
+  end
+
+  def metric_details_tab
+    nest metric, view: :details_tab_content,
+                 hide: [:add_value_buttons, :import_button]
+  end
+
+  def hide_tab tab, hide=false
+    return tab unless hide
+    { content: tab, button_attr: { class: "d-none" } }
+  end
+
+  view :left_research_side, cache: :never, template: :haml, slot: true do
   end
 
   view :source_preview_tab, cache: :never do
     wrap do
-      nest preview_source, view: :source_and_preview
+      nest preview_source, view: :source_and_preview, cited: cited_preview_source?,
+                           disabled: existing_answer?
     end
   end
 
@@ -45,30 +81,19 @@ format :html do
     "align-items-center"
   end
 
-  def new_source_form
-    params[:company] ||= company
-    nest Card.new(type_id: Card::SourceID), view: :new_research
-  end
-
   def answer_slot
-    view = answer_card.new_card? ? :research_form : :titled
-    wrap do
-      nest answer_card, view: view, title: "Answer"
-    end
+    opts = { title: "Answer", hide: :cited_source_links,
+             research_params: research_params }
+    opts[:view] = answer_view
+    nest answer_card, opts
   end
 
-  def right_side_tabs
-    tabs = {}
-    if answer?
-      tabs["Source"] = _render_source_tab
-      tabs["View Source"] = { content: _render_source_preview_tab,
-                              button_attr: { class: "d-none" } }
+  def answer_view
+    if answer_card.new_card?
+      :research_form
+    else
+      @answer_view || :titled
     end
-    tabs["Metric details"] = nest metric, view: :details_tab_content,
-                                          hide: [:add_value_buttons, :import_button]
-    tabs["Help"] = nest :how_to_research, view: :core
-
-    static_tabs tabs, active_tab
   end
 
   def next_button type
@@ -87,6 +112,7 @@ format :html do
                    "data-options-card": options_card,
                    "data-url": research_url,
                    "data-key": type,
+                   "data-slot-selector": ".card-slot.slot_machine-view",
                    placeholder: type.to_s.capitalize
   end
 

@@ -139,6 +139,18 @@ format :html do
     end
   end
 
+  view :panel_primary, template: :haml, cache: :never do
+    root.primary_panels << card.tag
+  end
+
+  view :panel_toc, template: :haml, cache: :never do
+    # doesn't work without this empty block if view caching is turned on
+  end
+
+  def primary_panels
+    @primary_panels ||= []
+  end
+
   def main_name
     left_name = card.name.left_name
     left_name = left_name.left unless card.key.include?("limited_metric")

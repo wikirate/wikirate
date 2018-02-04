@@ -24,11 +24,11 @@ format :html do
   view :answer_details_toggle do
     css_class = "fa fa-caret-right fa-lg margin-left-10 "\
                 "btn btn-outline-secondary btn-sm pull-right"
-    wrap_with(:i, "",
+    wrap_with(:button, "",
               class: css_class,
               data: { toggle: "collapse",
                       url: path(view: :answer_details),
-                      target: "##{collapse_id}.answer-details",
+                      target: ".answer-details##{collapse_id}",
                       collapse_icon_in: "fa-caret-down",
                       collapse_icon_out: "fa-caret-right" })
   end

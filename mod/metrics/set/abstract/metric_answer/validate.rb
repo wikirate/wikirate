@@ -47,9 +47,7 @@ event :validate_update_date, :validate, on: :update, when: :year_updated? do
 end
 
 event :validate_answer_name, after: :validate_update_date, on: :save, changed: :name do
-  if Card.fetch_type_id(year) != YearID
-    errors.add :name, "right part must be a year"
-  end
+  errors.add :name, "right part must be a year" if Card.fetch_type_id(year) != YearID
   if name.length < 4
     errors.add :name, "must have at least a metric, a company, and a year part"
   end
@@ -108,6 +106,6 @@ end
 
 def number? str
   true if Float(str)
-rescue
+rescue StandardError
   false
 end

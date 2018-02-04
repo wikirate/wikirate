@@ -8,6 +8,7 @@ format :html do
   end
 
   def wrap_with_info
+    class_up "card-slot", "_citeable-source", true
     wrap do
       wrap_with :div, class: "source-info-container" do
         yield
@@ -18,7 +19,7 @@ format :html do
   def with_toggle
     # voo.hide! :links   # doesn't work with voo
     @links = false
-    class_up "card-slot", "source-details-toggle"
+    class_up "card-slot", "source-details-toggle", true
     yield
   end
 
@@ -124,28 +125,29 @@ format :html do
     end
   end
 
-  def with_cite_button cited: false
+  def with_cite_button cited: false, disabled: false
     voo.hide :links
     wrap_with_info do
       [
         _render_listing,
-        cite_button(cited),
-        (hidden_item_input if cited)
+        cite_button(cited, disabled),
+        hidden_item_input
       ]
     end
   end
 
-  def cite_button cited
+  def cite_button cited, disabled=false
     text = cited ? "Cited!" : "Cite!"
     cite_class =
       cited ? "btn-primary _cited_button" : "btn-outline-primary _cite_button"
     wrap_with(:div, class: "pull-right") do
-      wrap_with :a, text, href: "#", class: "btn #{cite_class} c-btn"
+      wrap_with :a, text, href: "#",
+                          class: "btn #{cite_class} c-btn #{'disabled' if disabled}"
     end
   end
 
   def hidden_item_input
-    tag :input, type: "hidden", class: "pointer-select _no-chosen", value: card.name
+    tag :input, type: "hidden", class: "pointer-select", value: card.name
   end
 
   view :with_cited_button do
@@ -158,7 +160,8 @@ format :html do
     args[:url] = source_url
     wrap do
       [
-        with_cite_button,
+        with_cite_button(cited: voo.live_options[:cited],
+                         disabled: voo.live_options[:disabled]),
         render_iframe_view(args).html_safe,
         render_hidden_information(args).html_safe
       ]

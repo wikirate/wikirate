@@ -32,9 +32,11 @@ format :html do
 
   view :sources do
     source_card = card.fetch trait: :source
+    source_options = { view: :core, items: { view: :cited } }
+    source_options[:items][:hide] = :cited_source_links if voo.hide? :cited_source_links
     output [
       wrap_with(:h5, "Citations (#{source_card.item_names.size})"),
-      nest(source_card, view: :core, items: { view: :cited })
+      nest(source_card, source_options)
     ]
   end
 

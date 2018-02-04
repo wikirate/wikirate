@@ -1,6 +1,16 @@
 include_set Abstract::MetricChild, generation: 2
 include_set Abstract::MetricAnswer
 
+event :flash_success_message, :finalize, on: :create do
+  msg =
+    format(:html).alert :success, true, false, class: "text-center" do
+      <<-HTML
+        <p>Success! To research another answer select a different metric or year.</p>
+      HTML
+    end
+  success.flash msg
+end
+
 def filtered_item_query filter={}, sort={}, paging={}
   filter[:year] = year.to_i
   FixedMetricAnswerQuery.new metric_card.id, filter, sort, paging

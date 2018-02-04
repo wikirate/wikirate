@@ -55,7 +55,7 @@ format :html do
     }
   end
 
-  def type_options type_codename, order="asc"
+  def type_options type_codename, order="asc", max_length=nil
     if type_codename == :wikirate_topic
       wikirate_topic_type_options order
     else

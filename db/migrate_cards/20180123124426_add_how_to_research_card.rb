@@ -8,7 +8,7 @@ class AddHowToResearchCard < Card::Migration
           How to Research an Answer
         </p>
         <ol class="text-left">
-          <li>Choose a company, metric, and year.</li>
+          <li>Choose a metric, company, and year.</li>
           <li>Look for the answer to the metric's question in suggested (or other) sources.</li>
           <li>Enter the answer and supporting comments</li>
           <li>Cite the source</li>

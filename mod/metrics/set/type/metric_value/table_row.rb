@@ -43,7 +43,8 @@ format :html do
                  class: "btn btn-primary btn-sm",
                  path: {
                    metric: card.metric,
-                   company: card.company },
+                   company: card.company
+                 },
                  title: "Research answer"
   end
 

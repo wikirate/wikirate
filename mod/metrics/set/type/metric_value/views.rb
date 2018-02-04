@@ -22,12 +22,18 @@ format :json do
 end
 
 format :html do
-  view :open_content do
+  view :open_content, cache: :never do
+    voo.hide! :cited_source_links
     subformat(:research_page).slot_machine metric: card.metric, company: card.company,
-                                           year: card.year, active_tab: "Source preview"
+                                           year: card.year, active_tab: "View Source"
   end
 
-  view :titled_content do
+  def default_title_args _args
+    # HACK: to prevent cancel button on research page from loosing title
+    voo.title ||= "Answer"
+  end
+
+  view :titled_content, cache: :never do
     voo.hide! :chart # hide it in value_field
     bs do
       layout do

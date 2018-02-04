@@ -26,7 +26,7 @@
               %a.inherit-anchor.no-decoration{href: research_url(metric: metric)}
                 %h5.metric-color= Card[metric].metric_title
                 = nest [metric, :question], view: :core
-                - record_card.all_answers.each do |a|
+                - Card.fetch([metric, company]).all_answers.each do |a|
                   %div.d-flex.flex-no-wrap
                     %div.mr-3
                       = a.year
