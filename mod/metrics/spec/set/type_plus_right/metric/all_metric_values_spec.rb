@@ -284,6 +284,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
         subject do
           Card.fetch([metric, :all_metric_values]).format(:html)._render_table
         end
+
         it "has a bootstrap table" do
           is_expected.to have_tag "table" do
             details_url = "/#{metric_value}?view=company_details_sidebar"
@@ -295,8 +296,9 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       context "when metric researched" do
         subject do
           Card.fetch(["Jedi+friendliness", :all_metric_values])
-            .format(:html)._render_table
+              .format(:html)._render_table
         end
+
         example "formula metric" do
           metric_value = "Jedi+friendliness+Death_Star+1977"
           is_expected.to have_tag "table" do
