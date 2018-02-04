@@ -17,9 +17,9 @@ format :html do
     end
   end
 
-  def lazy_instance_variable name, &block
+  def lazy_instance_variable name
     name = "@#{name}" unless name.start_with? "@"
-    instance_variable_get(name) || instance_variable_set(name, block.call)
+    instance_variable_get(name) || instance_variable_set(name, yield)
   end
 
   def fetch_list name

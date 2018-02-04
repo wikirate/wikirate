@@ -17,7 +17,7 @@ def populate_title_and_description
 
   add_title thumbnail
   add_description thumbnail
-rescue
+rescue LinkThumbnailer::Exceptions, Net::HTTPExceptions
   Rails.logger.info "failed to extract information from #{url}"
 end
 

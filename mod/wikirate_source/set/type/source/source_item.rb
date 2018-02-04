@@ -160,7 +160,8 @@ format :html do
     args[:url] = source_url
     wrap do
       [
-        with_cite_button(cited: voo.live_options[:cited], disabled: voo.live_options[:disabled]),
+        with_cite_button(cited: voo.live_options[:cited],
+                         disabled: voo.live_options[:disabled]),
         render_iframe_view(args).html_safe,
         render_hidden_information(args).html_safe
       ]

@@ -5,7 +5,7 @@ def generate_pdf
     kit.to_file(path)
     file_card.update_attributes!(file: ::File.open(path)) if ::File.exist?(path)
   end
-rescue => e
+rescue StandardError => e
   Rails.logger.info "failed to convert source page to pdf #{e.message}"
 end
 
