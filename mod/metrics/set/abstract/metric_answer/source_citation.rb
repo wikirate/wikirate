@@ -122,13 +122,17 @@ format :html do
     return "None" if source_cards.empty?
     with_nest_mode :normal do
       wrap_with :div, class: "relevant-sources" do
-        source_cards.compact.map do |source|
-          if cited? source
-            subformat(source).render_with_cited_button
-          else
-            subformat(source).render_relevant
-          end
-        end
+        rendered_source_list source_cards
+      end
+    end
+  end
+
+  def rendered_source_list source_cards
+    source_cards.compact.map do |source|
+      if cited? source
+        subformat(source).render_with_cited_button
+      else
+        subformat(source).render_relevant
       end
     end
   end
@@ -139,7 +143,7 @@ format :html do
 
   def sources
     @sources ||= find_suggested_sources - card.source_card.item_cards
-    @sources.push(source_card) if source && (s  ource_card = Card[source])
+    @sources.push(source_card) if source && (source_card = Card[source])
     @sources
   end
 end
