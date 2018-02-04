@@ -2,7 +2,8 @@
 #
 # hash result for iframe checking
 class MetaData
-  attr_reader :title, :description, :image_url, :website, :error
+  attr_reader :title, :description, :image_url, :website
+  attr_accessor :error
 
   def initialize url
     @title = @description = @image_url = @website = @error = ""
@@ -11,9 +12,9 @@ class MetaData
   end
 
   def initialize_with_url
-    return error("empty url") if @url.blank?
+    return self.error = "empty url" if @url.blank?
     self.website = @url
-    return error("invalid url") if @website.blank?
+    return self.error = "invalid url" if @website.blank?
     if duplicates.any?
       data_from_card duplicates.first.left
     else
@@ -23,10 +24,6 @@ class MetaData
 
   def duplicates
     @duplicates ||= Source.find_duplicates @url
-  end
-
-  def error msg
-    @error = msg
   end
 
   def website= url
@@ -47,11 +44,19 @@ class MetaData
     @title = preview.title || ""
     @description = preview.description || ""
     @image_url = preview.images.first.src.to_s unless preview.images.empty?
-  rescue LinkThumbnailer::Exceptions => e
+  rescue LinkThumbnailer::Exceptions, Net::HTTPExceptions => e
     Rails.logger.debug "failed to fetch meta data with LinkThumbnailer: #{e.message}"
   end
 
   def fetch_field_content card, field
     Card[card, field]&.content || ""
+  end
+
+  def to_json
+    # I don't like this piece. The standard to_json return all instance variables
+    # but we don't want @url and @duplicates in here.
+    # There must be a better way
+    { title: title, description: description, image_url: image_url, website: website,
+      error: error }.to_json
   end
 end
