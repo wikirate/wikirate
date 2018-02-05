@@ -200,5 +200,4 @@ RSpec.describe Card::Set::Type::Source do
       end
     end
   end
-
 end

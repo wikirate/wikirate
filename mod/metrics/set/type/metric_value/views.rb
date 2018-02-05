@@ -29,7 +29,7 @@ format :html do
   end
 
   def default_title_args _args
-    # hack to prevent cancel button on research page from loosing title
+    # HACK: to prevent cancel button on research page from loosing title
     voo.title ||= "Answer"
   end
 

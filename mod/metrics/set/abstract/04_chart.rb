@@ -77,7 +77,7 @@ format :html do
 
   def show_chart?
     binding.pry
-    return if !(card.numeric? || card.categorical?)
+    return unless card.numeric? || card.categorical?
 
     card.filter_hash[:metric_value] != "none" &&
       card.filter_hash[:metric_value] != "all" &&

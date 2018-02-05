@@ -3,7 +3,7 @@ def download_and_add_file
   after_download_success do
     change_source_type_to_file
   end
-rescue # if open raises errors just treat the source as a normal source
+rescue StandardError # if open raises errors just treat the source as a normal source
   Rails.logger.info "failed to get the file from link"
 end
 
@@ -56,7 +56,7 @@ def fetch_http_header
   curl.max_redirects = 5
   curl.http_head
   curl.header_str
-rescue => error
+rescue Curl::Easy::Error => error
   Rails.logger.info "Fail to extract header from the #{url}, #{error.message}"
   ""
 end

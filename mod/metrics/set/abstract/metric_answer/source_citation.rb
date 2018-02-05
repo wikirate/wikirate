@@ -115,20 +115,24 @@ format :html do
 
   def new_sources_listing
     return "" unless new_sources.present?
-     source_list new_sources
+    source_list new_sources
   end
 
   def source_list source_cards=sources
     return "None" if source_cards.empty?
     with_nest_mode :normal do
       wrap_with :div, class: "relevant-sources" do
-        source_cards.compact.map do |source|
-          if cited? source
-            subformat(source).render_with_cited_button
-          else
-            subformat(source).render_relevant
-          end
-        end
+        rendered_source_list source_cards
+      end
+    end
+  end
+
+  def rendered_source_list source_cards
+    source_cards.compact.map do |source|
+      if cited? source
+        subformat(source).render_with_cited_button
+      else
+        subformat(source).render_relevant
       end
     end
   end
