@@ -35,8 +35,8 @@ format :html do
   def right_side_tabs
     tabs = {}
     if answer?
-      tabs["Source"] = cite_source_tab cite_mode?
-      tabs["View Source"] = view_source_tab !cite_mode?
+      tabs["Source"] = cite_source_tab hide: !cite_mode?
+      tabs["View Source"] = view_source_tab hide: cite_mode?
     end
     tabs["Metric details"] = metric_details_tab if metric?
     tabs["Help"] = nest :how_to_research, view: :core
@@ -47,11 +47,11 @@ format :html do
     answer_card.new_card? || @answer_view == :research_edit_form
   end
 
-  def cite_source_tab hide=false
+  def cite_source_tab hide: false
     hide_tab nest(answer_card, view: :source_tab, project: project), hide
   end
 
-  def view_source_tab hide=false
+  def view_source_tab hide: false
     hide_tab _render_source_preview_tab, hide
   end
 
