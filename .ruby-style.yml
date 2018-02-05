@@ -114,3 +114,6 @@ Style/PercentLiteralDelimiters:
     '%r': '{}'
     '%w': '[]'
     '%W': '[]'
+Style/Alias:
+  Enabled: false
+  AutoCorrect: false

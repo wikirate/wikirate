@@ -32,7 +32,6 @@ RSpec.describe Card::Set::Type::Source do
       url = ""
       Card::Env.params[:sourcebox] = "true"
       sourcepage = create_link_source url
-      expect(sourcepage).not_to be_valid
       expect(sourcepage.errors).to have_key :source
       expect(sourcepage.errors[:source]).to include("Source content required")
     end
@@ -54,28 +53,22 @@ RSpec.describe Card::Set::Type::Source do
         expect(firstsourcepage.name).to eq(secondsourcepage.name)
       end
     end
-    describe "while creating duplicated source on source page" do
-      it "shows error" do
-        url = "http://www.google.com/?q=wikirate"
 
-        firstsourcepage = create_link_source url
-        secondsourcepage = create_link_source url
+    example "duplicated source" do
+      url = "http://www.google.com/?q=wikirate"
+      source = create_link_source url
+      duplicate = create_link_source url
 
-        expect(secondsourcepage).not_to be_valid
-        expect(secondsourcepage.errors).to have_key :link
-        expected = "exists already. <a href='/#{firstsourcepage.name}'>"\
-                   "Visit the source.</a>"
-        expect(secondsourcepage.errors[:link]).to include(expected)
-      end
+      expect(duplicate.errors)
+        .to contain_exactly "Link exists already. <a href='/#{source.name}'>"\
+                          "Visit the source.</a>"
     end
-    context "without anything" do
-      it do
-        sourcepage = Card.new type_id: Card::SourceID
-        expect(sourcepage).not_to be_valid
-        expect(sourcepage.errors).to have_key :source
-        expected = "Source content required"
-        expect(sourcepage.errors[:source]).to include(expected)
-      end
+
+    example "without anything" do
+      sourcepage = Card.new type_id: Card::SourceID
+      expect { sourcepage.valid? }.to raise_error Card::Error::Abort
+      expect(sourcepage.errors).to have_key :source
+      expect(sourcepage.errors[:source]).to include "Source content required"
     end
     context "with more than one source type " do
       it do
@@ -84,10 +77,11 @@ RSpec.describe Card::Set::Type::Source do
         sourcepage = Card.new source_args(link: url, text: "Hello boys!")
         expect(sourcepage).not_to be_valid
         expect(sourcepage.errors).to have_key :source
-        expected = "Only one type of content is allowed"
-        expect(sourcepage.errors[:source]).to include(expected)
+        expect(sourcepage.errors[:source])
+          .to include "Only one type of content is allowed"
       end
     end
+
     describe "with a file link" do
       context "pointing to a file" do
         it "downloads it and saves as a file source" do
@@ -202,63 +196,6 @@ RSpec.describe Card::Set::Type::Source do
           expect(return_source_card.errors).to have_key :source
           expect(return_source_card.errors[:source])
             .to include("does not exist.")
-        end
-      end
-    end
-  end
-  describe "while rendering views" do
-    let(:csv_file) do
-      path = File.expand_path(
-        "../test.csv", __FILE__
-      )
-      File.open(path)
-    end
-
-    before do
-      login_as "joe_user"
-      @url = "http://www.google.com/?q=wikirate"
-      @source_page = create_page url: @url
-    end
-
-    it "renders metric_import_link" do
-      sourcepage = create_source file: csv_file
-      html = sourcepage.format.render_metric_import_link
-      source_file = sourcepage.fetch trait: :file
-      expected_url = "/#{source_file.name.url_key}?view=import"
-      expect(html).to have_tag("a",
-                               with: { href: expected_url },
-                               text: "Import to metric values")
-    end
-    describe "original_icon_link" do
-      context "file source" do
-        it "renders upload icon" do
-          sourcepage = create_source file: csv_file
-          html = sourcepage.format.render_original_icon_link
-          source_file = sourcepage.fetch trait: :file
-          expect(html).to have_tag("a", with: { href: source_file.file.url }) do
-            with_tag "i", with: { class: "fa fa-upload" }
-          end
-        end
-      end
-      context "link source" do
-        it "renders globe icon" do
-          html = @source_page.format.render_original_icon_link
-          expect(html).to have_tag("a", with: { href: @url }) do
-            with_tag "i", with: { class: "fa fa-globe" }
-          end
-        end
-      end
-      context "text source" do
-        it "renders pencil icon" do
-          new_sourcepage = create_source text: "test text report"
-          html = new_sourcepage.format.render_original_icon_link
-          text_source = new_sourcepage.fetch trait: :text
-          expected_url = "/#{text_source.name.url_key}"
-          expect(html).to have_tag("a", with: {
-                                     href: expected_url
-                                   }) do
-            with_tag "i", with: { class: "fa fa-pencil" }
-          end
         end
       end
     end

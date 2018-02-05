@@ -88,7 +88,7 @@ format :html do
 
   view :edit_in_form do
     return "" if other_user_requested_check?
-    wrap_with(:h5, "Checks") + super()
+    wrap_with(:h5, "#{fa_icon('check-circle-o', class: 'text-muted')} Checks") + super()
   end
 
   def editor
@@ -96,7 +96,19 @@ format :html do
   end
 
   def option_label_text _option_name
-    "#{request_icon} Not sure? Ask another  researcher to double check this"
+    "request"
+  end
+
+  view :editor, tags: :unknown_ok do |args|
+    wrap_with :div, class: "d-flex flex-nowrap" do
+      super(args) + popover_link
+    end
+  end
+
+  def popover_link
+    link_to fa_icon("question-circle"),
+            class: "pl-1", path: "#", "data-toggle": "popover",
+            "data-content": "Not sure? Ask another researcher to double check this"
   end
 
   view :core, template: :haml
@@ -111,6 +123,11 @@ format :html do
       else
         check_button("Yes, I checked", action: :check) + fix_link
       end
+  end
+
+  def research_params
+    parent.try(:research_params) || voo&.closest_live_option(:research_params) ||
+      card.left&.format&.try(:research_params) || {}
   end
 
   view :icon, cache: :never do |args|
@@ -179,7 +196,9 @@ format :html do
   end
 
   def fix_link
-    link_to_card card.left, "No, I'll fix it", class: BTN_CLASSES, path: { view: :edit }
+    link_to_card :research_page, "No, I'll fix it",
+                 class: "#{BTN_CLASSES} ml-1",
+                 path: { view: :edit }.merge(research_params)
   end
 end
 

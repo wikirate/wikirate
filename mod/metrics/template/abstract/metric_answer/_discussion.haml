@@ -1,0 +1,6 @@
+%p
+  - with_nest_mode :normal do
+    %h5.mb-0
+      = fa_icon(:commenting, class: "text-muted")
+      Comment
+    = field_subformat(:discussion).comment_box

@@ -1,44 +1,31 @@
 <div class="row">
-<div class="col-md-9 using-wikirate">
-
-<p>
+  <div class="col-md-9 using-wikirate">
+  <p>
+  {{Introduction to WikiRate|panel_primary}}
   
-  {{Introduction to WikiRate|structure: panel primary}}
+  {{User Accounts|panel_primary}}
   
-  {{User Accounts|structure: panel primary}}
+  {{Researching Metric Values|panel_primary|view: open}}
   
-  {{Researching Metric Values|structure: panel primary|view: open}}
+  {{Adding & Tagging New Sources|panel_primary}}
   
-  {{Adding & Tagging New Sources|structure: panel primary}}
+  {{Company Profiles|panel_primary}}
   
-  {{Company Profiles|structure: panel primary}}
+  {{Join a Research Group|panel_primary}}
   
-  {{Join a Research Group|structure: panel primary}}
+  {{Project Research|panel_primary}}
   
-  {{Project Research|structure: panel primary}}
+  {{Exporting data|panel_primary}}
   
-  {{Exporting data|structure: panel primary}}
+  {{WikiRate Support|panel_primary}}
   
-  {{WikiRate Support|structure: panel primary}}
-  
-  {{Advanced Features|structure: panel primary}}
+  {{Advanced Features|panel_primary}}
   
   </div>
   
 <div class="col-md-3 visible-md visible-lg">
    <div class="row">
-       <div class="list-group table-of-contents affix floating-menu">
-          <a class="list-group-item" href="#Introduction_to_WikiRate">Introduction to WikiRate</a>
-          <a class="list-group-item" href="#User_Accounts">User Accounts</a>
-          <a class="list-group-item" href="#Researching_Metric_Values">Researching Metric Values</a>
-          <a class="list-group-item" href="#Adding_Tagging_New_Sources">Adding & Tagging New Sources</a>
-          <a class="list-group-item" href="#Company_Profiles">Company Profiles</a>
-          <a class="list-group-item" href="#Join_a_Research_Group">Join a Research Group</a>
-          <a class="list-group-item" href="#Project_Research">Project Research</a>
-          <a class="list-group-item" href="#Exporting_data">Exporting Data</a>
-          <a class="list-group-item" href="#WikiRate_Support">WikiRate Support</a>
-          <a class="list-group-item" href="#Advanced_Features">Advanced Features</a>
-        </div>
-    </div>
+     {{_|panel_toc}}
+   </div>
 </div>
 </div>

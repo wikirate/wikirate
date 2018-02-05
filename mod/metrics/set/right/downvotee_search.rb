@@ -219,9 +219,7 @@ format :html do
               "data-bucket-name"  => args[:vote_type],
               "data-default-sort" => args[:default_sort] do
       [
-        if card.vote_label
-          wrap_with(:h5, class: "vote-title") { card.vote_label }
-        end,
+        (wrap_with(:h5, class: "vote-title") { card.vote_label } if card.vote_label),
         wrap_with(:div, class: "empty-message") { args[:empty] },
         if show_unsaved_msg
           wrap_with(:div, class: "alert alert-info unsaved-message") do

@@ -528,9 +528,10 @@ div#pdf-preview {
   > .panel-heading {
     color: #404040;
     background-color: #ffffff;
-    padding: 13px;
-    border-top: 3px solid $main-color;
-    border-bottom: 2px solid $border-color;
+    padding-bottom: 2px;
+    border-bottom: 2px solid $main-color;
+    margin-bottom: 15px;
+    margin-top: 25px;
   }
 }
 
@@ -787,7 +788,7 @@ ul.horizontal > li {
 
 .scrollable-menu {
   height: auto;
-  max-height: 600px;
+  max-height: 50vh;
   overflow-x: hidden;
 }
 
@@ -800,6 +801,25 @@ a.no-decoration {
   }
 }
 
+// center items
 .select2-container--bootstrap .select2-selection--multiple .select2-selection__choice {
   margin: 0.375rem 0 0 0.375rem !important;
 }
+
+// Fix to prevent that the dropdown becomes bigger than the area it is inside.
+// happens for example for project filter
+// The reason is that dropdownAutoWidth in script_load_select2.js.coffee sets a fixed
+// width so that the longest entry fits in
+.filter-in-filter-form {
+  width: 100%;
+  // overflow-x: hidden;
+
+  .input-group._filter-input {
+    max-width: 100% !important;
+
+    .select2-container {
+      // display: block;
+    }
+  }
+}
+

@@ -61,14 +61,10 @@ format :html do
   end
 
   view :relationship_value_details do
-    checked_by = card.fetch trait: :checked_by, new: {}
-    checked_by = nest(checked_by, view: :core)
     wrap_value_details do
       [
-        wrap_with(:div, checked_by, class: "double-check mt-3"),
         "<br/><h5>Relations</h5>",
-        render_relations_table_with_details_toggle,
-        # wrap_with(:div, _render_sources, class: "cited-sources")
+        render_relations_table_with_details_toggle
       ]
     end
   end

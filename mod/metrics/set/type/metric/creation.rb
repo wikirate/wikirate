@@ -81,9 +81,7 @@ end
 def valid_value_args? args
   error_msg = []
   check_value_card_exist args, error_msg unless args.delete(:ok_to_exist)
-  if metric_type_codename == :researched && !args[:source]
-    error_msg << "missing source"
-  end
+  error_msg << "missing source" if metric_type_codename == :researched && !args[:source]
   error_msg.each do |msg|
     errors.add "metric value", msg
   end
@@ -103,9 +101,7 @@ def create_value_args args
       type_id: (args[:value].is_a?(Integer) ? NumberID : PhraseID)
     }
   }
-  if args[:comment].present?
-    create_args["+discussion"] = { comment: args[:comment] }
-  end
+  create_args["+discussion"] = { comment: args[:comment] } if args[:comment].present?
   add_value_source_args create_args, args[:source]
   create_args
 end
@@ -147,7 +143,8 @@ format :html do
           subtabs: %w[Standard Relationship]
         },
         calculated: {
-          help: "Answer values for <strong>Calculated</strong> metrics are dynamically calculated.",
+          help: "Answer values for <strong>Calculated</strong> "\
+                "metrics are dynamically calculated.",
           subtabs: %w[Formula Score WikiRating]
         }
       }

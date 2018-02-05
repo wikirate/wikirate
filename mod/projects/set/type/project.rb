@@ -31,6 +31,10 @@ def metric_ids
   @metric_ids ||= metric_card.valid_metric_cards.map(&:id)
 end
 
+def year_ids
+  @year_ids ||= years && year_card.valid_year_cards.map(&:id)
+end
+
 def metrics
   metric_card.valid_metric_cards.map(&:name)
 end
@@ -57,6 +61,6 @@ def filter_path_args values
   # show latest project year.  could consider updating answer tables
   # to handle latest value among a group of years, but that's not yet
   # an option
-  filter[:year] = years.first if years
+  filter[:year] = years.first if years && years.one?
   { filter: filter }
 end

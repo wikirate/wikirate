@@ -8,59 +8,15 @@ add_attributes :import
 attr_accessor :import
 
 def source_title_card
-  # FIXME: needs codename, but :title is linked to *title
-  Card.fetch name.field("title"), new: {}
+  Card.fetch [name, :wikirate_title], new: {}
 end
 
 def import?
   # default (=nil) means true
-  #
   @import != false && Cardio.config.x.import_sources
 end
 
 require "link_thumbnailer"
-
-def not_bot?
-  Card::Auth.current_id == Card::WagnBotID
-end
-
-event :check_source, :validate, on: :create do
-  source_cards = assemble_source_subfields
-  validate_source_subfields source_cards
-end
-
-event :add_source_name_to_params, :finalize, on: :create do
-  special_research_page_stuff
-end
-
-def special_research_page_stuff save=false
-  return unless  success.params[:view] == "source_tab"
-  success.source ||= Array(Env.params[:source]) || []
-  success.source << name
-  save_in_session_card save
-end
-
-def save_in_session_card save
-  return unless (company = Env.params.dig :card, :subcards, "+company", :content)
-  success.company = company
-  new_sources = add_subcard [company, :new_sources], type_id: SessionID
-  new_sources.add_item name
-  new_sources.save if save # if not in event phase we have to save
-end
-
-def assemble_source_subfields
-  [:wikirate_link, :file, :text].map do |fieldname|
-    subfield fieldname
-  end.compact
-end
-
-def validate_source_subfields source_cards
-  if source_cards.length > 1
-    errors.add :source, "Only one type of content is allowed"
-  elsif source_cards.empty?
-    errors.add :source, "Source content required"
-  end
-end
 
 def source_type_codename
   source_type_card.item_cards[0].codename.to_sym

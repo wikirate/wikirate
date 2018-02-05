@@ -37,9 +37,7 @@ def unknown_value?
 end
 
 event :check_length, :validate, on: :save, changed: :content do
-  if content.size >= 1000
-    errors.add :value, "too long (not more than 1000 characters)"
-  end
+  errors.add :value, "too long (not more than 1000 characters)" if content.size >= 1000
 end
 
 event :mark_as_imported, before: :finalize_action, when: :answer_imported? do
