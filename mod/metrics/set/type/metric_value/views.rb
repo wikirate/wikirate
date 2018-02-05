@@ -78,7 +78,7 @@ format :html do
     HTML
   end
   # value, unit, and flags
-  view :value do
+  view :value, cache: :never do
     wrap_with :div, class: "td value" do
       [
         wrap_with(:span, currency, class: "metric-unit"),

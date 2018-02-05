@@ -6,6 +6,7 @@ format :html do
   end
 
   view :credit_name do |args|
+    return if card.virtual?
     wrap_with :div, class: "credit" do
       [
         "#{credit_verb} #{_render_updated_at} ago by ",
