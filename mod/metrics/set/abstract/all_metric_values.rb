@@ -43,7 +43,7 @@ format :html do
   end
 
   def details_url? row_card
-    !row_card.new_card?
+    !row_card.unknown?
   end
 
   def paging_view
