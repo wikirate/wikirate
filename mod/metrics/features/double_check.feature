@@ -34,7 +34,7 @@ Feature: Double check
     And I edit "Jedi+disturbances in the Force+Death Star+2000"
     And I check "request"
     And I submit
-    And I wait a sec
+    And I wait for ajax response
     Then I should see "Double check requested by Joe User"
 
     When I am signed in as Joe Admin
