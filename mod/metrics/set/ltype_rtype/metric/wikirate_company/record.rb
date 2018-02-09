@@ -43,6 +43,7 @@ format :html do
     nest metric_card, opts
   end
 
+  # calculated answers don't show up if we cache this
   view :answer_table, cache: :never do
     if voo.hide?(:answer_form) && voo.show?(:answer_redirect_button)
       class_up "card-slot", "_show_add_new_value_button"

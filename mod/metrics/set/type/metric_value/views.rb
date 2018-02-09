@@ -77,7 +77,9 @@ format :html do
       <span class="metric-unit"> #{legend} </span>
     HTML
   end
+
   # value, unit, and flags
+  # calculated answers don't show up if we cache this
   view :value, cache: :never do
     wrap_with :div, class: "td value" do
       [
