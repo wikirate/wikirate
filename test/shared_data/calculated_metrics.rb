@@ -22,6 +22,7 @@ class SharedData
                           formula: "Sum[{{Jedi+deadliness|year:-2..0}}]/3"
       Card::Metric.create name: "Jedi+deadlier",
                           type: :formula,
+                          hybrid: "1",
                           formula: "{{Jedi+deadliness}}-{{Jedi+deadliness|year:-1}}" \
                                    "+{{half year}}"
     end

@@ -20,6 +20,7 @@ card_accessor :all_metric_values
 card_accessor :unit
 card_accessor :range
 card_accessor :currency
+card_accessor :hybrid, type: :toggle
 
 def metric_type
   metric_type_card.item_names.first
@@ -104,6 +105,10 @@ end
 
 def calculated?
   !researched?
+end
+
+def hybrid?
+  hybrid_card.checked?
 end
 
 # value between 0 and 10?

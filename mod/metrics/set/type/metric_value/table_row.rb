@@ -18,7 +18,6 @@ format :html do
   view :company_thumbnail_minimal do
     nest card.company_card, view: :thumbnail_minimal,
                             hide: [:thumbnail_subtitle, :vote]
-    # _render_company_thumbnail
   end
 
   view :company_thumbnail do
@@ -50,7 +49,7 @@ format :html do
 
   # Metric is researchable and this answer not yet researched
   def research_button?
-    card.researched? && card.new_card?
+    (card.researched? || card.hybrid?) && card.new_card?
   end
 
   # Metric is calculated but this answer can't yet be calculated
