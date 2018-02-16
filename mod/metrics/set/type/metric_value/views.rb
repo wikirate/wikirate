@@ -77,8 +77,10 @@ format :html do
       <span class="metric-unit"> #{legend} </span>
     HTML
   end
+
   # value, unit, and flags
-  view :value do
+  # calculated answers don't show up if we cache this
+  view :value, cache: :never do
     wrap_with :div, class: "td value" do
       [
         wrap_with(:span, currency, class: "metric-unit"),
