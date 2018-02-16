@@ -35,7 +35,7 @@ def validate_category_value value
                      "Please #{anchor} before adding this metric value."
 end
 
-event :validate_update_date, :validate, on: :update, when: :year_updated? do
+event :validate_year_change, :validate, on: :update, when: :year_updated? do
   new_year = subfield(:year).item_names.first
   new_name = "#{metric_name}+#{company_name}+#{new_year}"
   if new_year != year && Card.exists?(new_name)
@@ -44,9 +44,10 @@ event :validate_update_date, :validate, on: :update, when: :year_updated? do
   end
   self.name = new_name
   detach_subfield(:year)
+  success.year = new_year if success.year
 end
 
-event :validate_answer_name, after: :validate_update_date, on: :save, changed: :name do
+event :validate_answer_name, after: :validate_year_change, on: :save, changed: :name do
   errors.add :name, "right part must be a year" if Card.fetch_type_id(year) != YearID
   if name.length < 4
     errors.add :name, "must have at least a metric, a company, and a year part"
