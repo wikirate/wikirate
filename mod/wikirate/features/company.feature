@@ -34,7 +34,7 @@ Feature: company feature
     When I click on "Add filter"
     And I click on "Topic"
     And I wait for ajax response
-    And I select "Force" from "filter[wikirate_topic][]"
+    And I select2 "Force" from "filter[wikirate_topic][]"
     # To change focus
     And I click on "Add filter"
     And I wait for ajax response
@@ -42,13 +42,13 @@ Feature: company feature
     And I should see "disturbances in the Force"
 
   Scenario: Filter by year
-    And I select "2001" from "filter[year]"
+    And I select2 "2001" from "filter[year]"
     And I wait for ajax response
     Then I should not see "dinosaurlabor"
     And I should see "disturbances in the Force"
 
   Scenario: Search for not researched values
-    And I select "Not Researched" from "filter[metric_value]"
+    And I select2 "Not Researched" from "filter[metric_value]"
     And I wait for ajax response
     Then I should not see "disturbances in the Force"
     And I should see "deadlier"
