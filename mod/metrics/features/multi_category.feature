@@ -8,6 +8,7 @@ Feature: Multi-Category
     And I check "3"
     And I uncheck "2"
     And I submit
+    And I wait for ajax response
     Then I should see "1, 3"
 
 #  FIXME: select step not working for multi-select

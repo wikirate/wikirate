@@ -89,7 +89,7 @@ format :html do
   end
 
   def answer_view
-    if answer_card.new_card?
+    if answer_card.unknown?
       :research_form
     else
       @answer_view || :titled
