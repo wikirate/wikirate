@@ -68,7 +68,7 @@ $(document).ready ->
   $("body").on 'click', '.slot_machine-view.SELF-research_page .cited-view.TYPE-source, .source-details-toggle', ->
     wikirate.showResearchDetailsTab("view_source")
     sourceID = $(this).data("card-name")
-    load_path = decko.prepUrl(decko.rootPath + sourceID + "?view=source_and_preview")
+    load_path = decko.slotPath(sourceID + "?view=source_and_preview")
     $slot = $("#research_page-view_source > .card-slot")
     $slot.empty()
     wikirate.loader($slot).add()
