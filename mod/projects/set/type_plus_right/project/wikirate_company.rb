@@ -26,9 +26,9 @@ format :html do
     :listing
   end
 
-  # def editor
-  #   :filtered_list
-  # end
+  def editor
+    :filtered_list
+  end
 
   def filter_card
     Card.fetch :wikirate_company, :browse_company_filter
