@@ -3,20 +3,26 @@ include_set Abstract::Tabs
 include_set Abstract::Media
 
 format :html do
-  def default_open_content_args args
-    args[:left_class] ||= { class: "left-col" }
-    args[:right_class] ||= { class: "right-col" }
-    # args[:grid_option] ||= { md: [6, 6] }
+  view :open_content do |args|
+    two_column_layout
   end
 
-  view :open_content do |args|
-    bs_layout container: false, fluid: true,
-              class: @container_class do
-      row 6, 6, class: "panel-margin-fix" do # args[:grid_option] do
-        column _render_content_left_col, args[:left_class]
-        column _render_content_right_col, args[:right_class]
+  def two_column_layout col1=6, col2=6, row_hash={}
+    row_hash[:class] ||= "panel-margin-fix"
+    bs_layout container: false, fluid: true, class: @container_class do
+      row col1, col2, row_hash do
+        column _render_content_left_col, left_column_class
+        column _render_content_right_col, right_column_class
       end
     end
+  end
+
+  def left_column_class
+    "left-col"
+  end
+
+  def right_column_class
+    "right-col"
   end
 
   view :rich_header do |_args|

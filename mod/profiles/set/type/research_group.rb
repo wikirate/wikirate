@@ -1,10 +1,13 @@
 include_set Abstract::TwoColumnLayout
 include_set Abstract::Thumbnail
 include_set Abstract::Table
+include_set Abstract::Tabs
 
 card_accessor :organizer
 card_accessor :researcher
 card_accessor :project
+
+
 
 def all_members
   (organizer_card.item_cards + researcher_card.item_cards).uniq
@@ -42,23 +45,15 @@ format :html do
     ]
   end
 
-  view :open_content do |args|
-    bs_layout container: false, fluid: true, class: @container_class do
-      row 5, 7, class: "panel-margin-fix" do
-        column _render_about_column, args[:left_class]
-        column _render_contributions_column, args[:right_class]
-      end
-    end
-  end
-
-  view :about_column do
+  view :data do
     output [
-      _render_rich_header,
       field_nest(:description, view: :titled, title: "Description"),
-      member_list,
       field_nest(:discussion, view: :titled, show: :comment_box, title: "Discussion")
     ]
   end
+
+
+  def tab
 
   def member_list
     with_header "Members" do
