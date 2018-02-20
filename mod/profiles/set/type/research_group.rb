@@ -1,12 +1,12 @@
 include_set Abstract::TwoColumnLayout
 include_set Abstract::Thumbnail
 include_set Abstract::Table
+include_set Abstract::Listing
 
 card_accessor :organizer
 card_accessor :researcher
 card_accessor :project
 card_accessor :wikirate_topic
-
 
 def report_card member, cardtype, variant
   rcard = Card.new name: [member, cardtype, name, :report_search].to_name
@@ -59,14 +59,6 @@ format :html do
     }
   end
 
-  view :listing do
-    _render_thumbnail
-  end
-
-  view :closed_content do
-    ""
-  end
-
   view :metric_list do
     field_nest :metric, items: { view: :listing }
   end
@@ -77,6 +69,22 @@ format :html do
 
   view :researcher_list do
     field_nest :researcher, view: :overview
+  end
+
+  view :listing_left do
+    render_thumbnail
+  end
+
+  view :listing_middle do
+    "metrics, projects"
+  end
+
+  view :listing_right do
+    "researchers"
+  end
+
+  view :closed_content do
+    ""
   end
 
 end
