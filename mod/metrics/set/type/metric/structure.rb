@@ -11,7 +11,7 @@ format :html do
   view :rich_header do
     vote = field_subformat(:vote_count)._render_content
     bs_layout do
-      row 1, 11, class: "metric-header-container mt-3" do
+      row 1, 11, class: "metric-header-container mt-3 border-bottom" do
         column vote
         column _render_title_and_question
       end
@@ -35,7 +35,7 @@ format :html do
 
   view :metric_question do
     question = subformat(card.question_card)._render_content
-    wrap_with :h5, question, class: "question"
+    wrap_with :div, question, class: "question blockquote"
   end
 
   view :designer_info do

@@ -308,17 +308,19 @@
   background: #fafafa;
 }
 
-.border-left {
-  border-left: 1px solid #e5e5e5;
-}
+// These classes already available in Bootstrap 4.x
 
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
+//.border-left {
+//  border-left: 1px solid #e5e5e5;
+//}
+//
+//.border-bottom {
+//  border-bottom: 1px solid #e5e5e5;
+//}
+//
+//.border-top {
+//  border-top: 1px solid #e5e5e5;
+//}
 
 .double-border-fix-left {
   margin-left: -1px;
@@ -649,8 +651,47 @@ button.pointer-item-delete.btn.btn-outline-secondary {
   content: "\f0d7";
 }
 // Voting
+
+.vote-button {
+  width: 24px;
+  height: 24px;
+  padding: 0 !important;
+  //override bootstrap .btn padding.
+
+}
+//.vote-link {
+//  color: #888;
+//  background-color: #eee;
+//}
+//.disabled-vote-link,
+//.disabled-vote-link:hover {
+//  color: #fff;
+//  background-color: #bbb;
+//
+//}
 .vote-count {
-  color: #999;
+  color: #555;
+  width: 24px;
+  height: 25px;
+  text-align: center;
+  padding-top: 2px;
+  font-weight: bold;
+
+}
+.vote-details {
+  color: #bbb;
+  font-size: 14px;
+  padding-top: 7px;
+}
+.vote-number {
+  font-weight: bold;
+}
+
+.header-vote {
+  border-right: solid 1px #eee;
+  float: left;
+  margin-right: 10px;
+  padding: 10px;
 }
 
 //disabling for not to override bootstrap's button styles
@@ -823,3 +864,13 @@ a.no-decoration {
   }
 }
 
+// filter above tables
+
+.table-filter-container {
+  >.card {
+    border:0;
+    > .card-body {
+      padding: 10px 0px;
+    }
+  }
+}
