@@ -61,7 +61,7 @@ $(window).ready ->
     button.html 'Adding...'
     button.attr 'disabled', true
 
-    $.ajax decko.rootPath + '/card/create', {
+    $.ajax decko.path('card/create'), {
       data : {
         success: { view : 'content' }
         slot: { structure: 'source item' } #fixme -- need codename

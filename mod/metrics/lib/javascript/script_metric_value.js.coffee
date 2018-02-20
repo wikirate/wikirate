@@ -14,7 +14,7 @@ $.extend wikirate,
 #    else
 #      source = ''
 #
-#    load_path = decko.prepUrl($button.data("url") + source)
+#    load_path = decko.slotPath($button.data("url") + source)
 #
 #    $.get(load_path, ((data) ->
 #      $form_slot.prepend(data)
@@ -46,7 +46,7 @@ $.extend wikirate,
   valueChecking: (ele, action) ->
     path = encodeURIComponent(ele.data('path'))
     action = '?set_flag=' + action
-    load_path = decko.prepUrl(decko.rootPath + '/update/' + path + action)
+    load_path = decko.slotPath('update/' + path + action)
     $parent = ele.closest('.double-check')
     $parent = ele.closest('.RIGHT-checked_by') unless $parent.exists()
     $parent.html('loading...')
