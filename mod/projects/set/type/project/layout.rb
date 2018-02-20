@@ -1,5 +1,4 @@
 include_set Abstract::TwoColumnLayout
-include_set Abstract::Tabs
 
 TAB_MAP = {
   company:    [:building,   :num_companies,    "Companies"],

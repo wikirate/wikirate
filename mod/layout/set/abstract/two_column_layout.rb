@@ -3,18 +3,22 @@ include_set Abstract::Tabs
 include_set Abstract::Media
 
 format :html do
-  view :open_content do |args|
+  view :open_content do
     two_column_layout
   end
 
   def two_column_layout col1=6, col2=6, row_hash={}
-    row_hash[:class] ||= "panel-margin-fix"
-    bs_layout container: false, fluid: true, class: @container_class do
+    bs_layout container: false, fluid: true, class: container_class do
+      row_hash[:class] ||= "panel-margin-fix"
       row col1, col2, row_hash do
-        column _render_content_left_col, left_column_class
-        column _render_content_right_col, right_column_class
+        column _render_content_left_col, class: left_column_class
+        column _render_content_right_col, class: right_column_class
       end
     end
+  end
+
+  def container_class
+    ""
   end
 
   def left_column_class

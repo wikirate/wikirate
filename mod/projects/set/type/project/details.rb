@@ -9,7 +9,7 @@ format :html do
                                title: "Organizer",
                                items: { view: :thumbnail_plain }),
         standard_nest(:wikirate_topic),
-        standard_nest(:description),
+        field_nest(:description, view: :titled, title: "Description"),
         field_nest(:conversation,
                    view: :project_conversation, title: "Conversation")
       ]
