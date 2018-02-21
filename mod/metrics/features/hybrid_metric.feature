@@ -1,5 +1,5 @@
 @javascript
-Feature: Research answer for hyprid metric
+Feature: Research answer for hybrid metric
   As signed in user I want to be able to research answers for a hybrid metric
 
   Background:
