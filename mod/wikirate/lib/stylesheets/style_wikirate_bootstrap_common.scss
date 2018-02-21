@@ -153,6 +153,21 @@
   color: #e4e9f1;
 }
 
+//badge colors
+.badge-company {
+  background-color: $company-color;
+  color: #fff;
+}
+
+.badge-topic {
+  background-color: $topic-color;
+  color: #fff;
+}
+
+.badge-metric {
+  background-color: $metric-color;
+  color: #fff;
+}
 //Text adjustments
 .text-align-left {
   text-align: left;
