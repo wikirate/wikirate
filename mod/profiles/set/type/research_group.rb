@@ -41,14 +41,14 @@ format :html do
   end
 
   view :data do
-     output [
-       field_nest(:organizer, view: :titled,
-                              title: "Organizer",
-                              items: { view: :thumbnail_plain }),
-       standard_nest(:wikirate_topic),
-       field_nest(:description, view: :titled, title: "Description"),
-       standard_nest(:conversation)
-     ]
+    output [
+      field_nest(:organizer, view: :titled,
+                             title: "Organizer",
+                             items: { view: :thumbnail_plain }),
+      standard_nest(:wikirate_topic),
+      field_nest(:description, view: :titled, title: "Description"),
+      standard_nest(:conversation)
+    ]
   end
 
   def tab_list

@@ -23,8 +23,8 @@ format :html do
   view :contributions, tags: :unknown_ok do
     return "" unless card.item_names.size.positive?
     with_paging do |paging_args|
-      table member_contribution_content(members_on_page paging_args),
-            header: member_contribution_header
+      table_content = member_contribution_content members_on_page(paging_args)
+      table table_content, header: member_contribution_header
     end
   end
 
