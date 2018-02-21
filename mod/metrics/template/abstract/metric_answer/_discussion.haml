@@ -3,4 +3,5 @@
     %h5.mb-0
       = fa_icon(:commenting, class: "text-muted")
       Comment
+    = field_nest :discussion, view: :core
     = field_subformat(:discussion).comment_box

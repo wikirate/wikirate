@@ -82,7 +82,7 @@ removeFile = ($form) ->
     metaReqObj = {}
     metaReqObj.view = 'metadata'
     metaReqObj.url = url
-    $.ajax(decko.rootPath + '/source.json?' + $.param(metaReqObj)).done((response) ->
+    $.ajax(decko.path('source.json?' + $.param(metaReqObj))).done((response) ->
       titleElement.val response.title
       websiteElement.focusin().val(response.website).focusout()
       id = $('.new-view.TYPE-source .RIGHT-description').find('textarea:first').attr('id')
