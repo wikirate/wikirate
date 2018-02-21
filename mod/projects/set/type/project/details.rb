@@ -10,8 +10,7 @@ format :html do
                                items: { view: :thumbnail_plain }),
         standard_nest(:wikirate_topic),
         field_nest(:description, view: :titled, title: "Description"),
-        field_nest(:conversation,
-                   view: :project_conversation, title: "Conversation")
+        field_nest(:conversation, view: :titled, title: "Conversation")
       ]
     end
   end

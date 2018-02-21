@@ -8,7 +8,7 @@ TAB_MAP = {
 }.freeze
 
 format :html do
-  view :open_content do |args|
+  view :open_content do
     two_column_layout 5, 7
   end
 

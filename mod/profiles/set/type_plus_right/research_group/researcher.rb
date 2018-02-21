@@ -1,5 +1,3 @@
-
-
 def ok_to_join?
   Auth.signed_in? && !current_user_is_member?
 end
@@ -42,7 +40,7 @@ format :html do
   end
 
   view :manage_button, tags: :unknown_ok do
-    link_to_view("edit", "Manage Researcher List", class:"btn slotter")
+    link_to_view("edit", "Manage Researcher List", class: "btn slotter")
   end
 
   def member_contribution_header

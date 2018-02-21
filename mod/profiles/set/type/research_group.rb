@@ -32,7 +32,7 @@ format :html do
       :image,
       :organizer,
       :wikirate_topic,
-      :description,
+      :description
     ]
   end
 
@@ -42,21 +42,19 @@ format :html do
 
   view :data do
      output [
-      field_nest(:organizer, view: :titled,
-                 title: "Organizer",
-                 items: { view: :thumbnail_plain }),
-      standard_nest(:wikirate_topic),
-      field_nest(:description, view: :titled, title: "Description") #,
-      # field_nest(:conversation,
-      #           view: :project_conversation, title: "Conversation")
+       field_nest(:organizer, view: :titled,
+                              title: "Organizer",
+                              items: { view: :thumbnail_plain }),
+       standard_nest(:wikirate_topic),
+       field_nest(:description, view: :titled, title: "Description"),
+       standard_nest(:conversation)
      ]
   end
 
   def tab_list
     { researcher_list: "Researchers",
       metric_list:     "Metrics",
-      project_list:    "Projects"
-    }
+      project_list:    "Projects" }
   end
 
   view :metric_list do
@@ -86,5 +84,4 @@ format :html do
   view :closed_content do
     ""
   end
-
 end

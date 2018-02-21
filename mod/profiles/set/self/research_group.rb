@@ -22,7 +22,7 @@ format :html do
       [
         field_nest(:description),
         render_add_button,
-        nest(card.fetch(trait:[:type, :by_name]), items: { view: :listing })
+        nest(card.fetch(trait: [:type, :by_name]), items: { view: :listing })
       ]
     end
   end
