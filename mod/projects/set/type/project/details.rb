@@ -37,7 +37,7 @@ format :html do
 
   def listing_details
     wrap_with :div, class: "project-details-info" do
-      [organizational_details, render_stats_details, topics_details, status_detail]
+      [organizational_details, render_stats_details, topics_details]
     end
   end
 
