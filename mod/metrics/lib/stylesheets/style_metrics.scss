@@ -765,3 +765,11 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
         width: 100% !important;
     }
 }
+
+.formula-with-values {
+    font-size: 18px;
+    > .metric-value {
+        margin-right: 2px;
+        margin-left: 2px;
+    }
+}

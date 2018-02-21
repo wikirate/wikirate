@@ -110,7 +110,6 @@ class Card::Metric
       when :formula, :unit, :currency, :inverse_title
         Card::PhraseID
       when :hybrid
-        binding.pry
         Card::ToggleID
       else Card::PointerID
       end

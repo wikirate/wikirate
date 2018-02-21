@@ -6,6 +6,10 @@ class Answer
       host_class.extend ClassMethods
     end
 
+    def find_answer_card
+      Card[record_name, year.to_s, :value]&.left
+    end
+
     def virtual_answer_card name=nil, val=nil
       name ||= [record_name, year.to_s]
       val ||= value

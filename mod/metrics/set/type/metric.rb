@@ -164,6 +164,14 @@ def metric_value_query
   { left: { left_id: id }, type_id: MetricValueID }
 end
 
+def user_can_answer?
+  return unless researched? || hybrid?
+  # TODO: add metric designer respresentative logic here
+  is_admin = Auth.always_ok?
+  is_owner = Auth.current.id == creator.id
+  (is_admin || is_owner) || !designer_assessed?
+end
+
 event :silence_metric_deletions, :initialize, on: :delete do
   @silent_change = true
 end

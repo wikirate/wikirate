@@ -1,7 +1,14 @@
 include_set Abstract::Media
 include_set Abstract::Table
 
+def calculation_overridden?
+
+  hybrid? && answer&.answer_id
+end
+
 format :html do
+  delegate :calculation_overridden?, to: :card
+
   view :metric_thumbnail_with_vote do
     nest card.metric_card, view: :thumbnail_with_vote
   end
@@ -49,7 +56,7 @@ format :html do
 
   # Metric is researchable and this answer not yet researched
   def research_button?
-    (card.researched? || card.hybrid?) && card.new_card?
+    (card.researched? || card.hybrid?) && card.unknown?
   end
 
   # Metric is calculated but this answer can't yet be calculated

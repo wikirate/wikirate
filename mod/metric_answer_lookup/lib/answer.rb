@@ -21,7 +21,7 @@ class Answer < ApplicationRecord
 
   def card
     return super if answer_id
-    @card ||= virtual_answer_card
+    @card ||= find_answer_card || virtual_answer_card
   end
 
   def delete
