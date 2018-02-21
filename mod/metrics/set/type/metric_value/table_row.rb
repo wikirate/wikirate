@@ -2,7 +2,6 @@ include_set Abstract::Media
 include_set Abstract::Table
 
 def calculation_overridden?
-
   hybrid? && answer&.answer_id
 end
 

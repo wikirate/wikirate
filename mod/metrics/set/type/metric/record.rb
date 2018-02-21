@@ -69,7 +69,7 @@ format :html do
   end
 
   def toggle_methodology
-    return if calculated? && !hybrid?
+    return if card.calculated? && !card.hybrid?
     toggle_button("Methodology", ".methodology-info")
   end
 
