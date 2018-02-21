@@ -10,4 +10,3 @@ format :html do
             class: "btn btn-primary"
   end
 end
-
