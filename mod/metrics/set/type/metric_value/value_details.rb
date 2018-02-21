@@ -8,12 +8,11 @@ format :html do
     _render! "#{card.metric_type}_value_details"
   end
 
-
   # don't cache; view depends on formula card
   view :formula_value_details, tags: :unknown_ok, cache: :never do
     return render_researched_value_details if calculation_overridden?
     wrap_value_details do
-      wrap_with :div, [ answer_details_table, calculation_details ]
+      wrap_with :div, [answer_details_table, calculation_details]
     end
   end
 
@@ -23,11 +22,6 @@ format :html do
       wrap_with(:div, "= #{formula}", class: "formula-with-values")
     ]
   end
-
-  def research_details
-
-  end
-
 
   view :score_value_details, cache: :never do
     wrap_value_details do

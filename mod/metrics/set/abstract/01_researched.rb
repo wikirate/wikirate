@@ -106,4 +106,3 @@ format :html do
     HTML
   end
 end
-
