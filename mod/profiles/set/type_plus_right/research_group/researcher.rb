@@ -21,13 +21,7 @@ end
 
 format :html do
   view :overview, tags: :unknown_ok do
-    wrap do
-      views :contributions, :join, :manage_button
-    end
-  end
-
-  def views *views
-    output { views.map { |view| render view }.join "\n" }
+    wrap { haml :overview }
   end
 
   view :contributions, tags: :unknown_ok do
@@ -35,7 +29,8 @@ format :html do
           header: member_contribution_header
   end
 
-  view :join, tags: :unknown_ok, denial: :blank, perms: ->(r) { r.card.ok_to_join? } do
+  view :join_button, tags: :unknown_ok, denial: :blank, cache: :never,
+                     perms: ->(r) { r.card.ok_to_join? } do
     link_to "Join", path: { action: :update, join: true, success: { view: :overview } },
                     class: "btn btn-primary slotter", remote: true
   end
