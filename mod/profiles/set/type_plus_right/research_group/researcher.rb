@@ -1,6 +1,4 @@
-def user_item_cards
-  item_cards.select { |m| m.real? && m.type_id == UserID }.sort_by &:name
-end
+
 
 def ok_to_join?
   Auth.signed_in? && !current_user_is_member?
@@ -25,8 +23,16 @@ format :html do
   end
 
   view :contributions, tags: :unknown_ok do
-    table member_contribution_content,
-          header: member_contribution_header
+    return "" unless card.item_names.size.positive?
+    with_paging do |paging_args|
+      table member_contribution_content(members_on_page paging_args),
+            header: member_contribution_header
+    end
+  end
+
+  def members_on_page paging_args
+    wql = { referred_to_by: card.name, type_id: UserID, sort: :name }
+    Card.search wql.merge! paging_args.extract!(:limit, :offset)
   end
 
   view :join_button, tags: :unknown_ok, denial: :blank, cache: :never,
@@ -49,8 +55,8 @@ format :html do
     [:created, :updated, :discussed, :double_checked]
   end
 
-  def member_contribution_content
-    card.user_item_cards.map do |member|
+  def member_contribution_content members
+    members.map do |member|
       contribution_categories.map do |category|
         card.left.contribution_count member.name, :metric_value, category
       end.unshift nest(member, view: :thumbnail)

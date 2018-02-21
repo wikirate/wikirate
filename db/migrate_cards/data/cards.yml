@@ -528,6 +528,18 @@
   :codename: :subproject
   :key: subproject
   :merged: 2018-01-08 14:00:33 UTC
+- :name: Researcher+*right+*default
+  :type: Pointer
+  :key: researcher+*right+*default
+  :merged: 2018-02-21 18:50:59 UTC
+- :name: conversation+*right+*structure
+  :type: Search
+  :key: conversation+*right+*structure
+  :merged: 2018-02-21 18:50:59 UTC
+- :name: Conversation+*type+*structure
+  :type: Basic
+  :key: conversation+*type+*structure
+  :merged: 2018-02-21 18:50:59 UTC
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org
