@@ -2,6 +2,7 @@ include_set Abstract::TwoColumnLayout
 include_set Abstract::Thumbnail
 include_set Abstract::Table
 include_set Abstract::Listing
+include_set Abstract::BsBadge
 
 card_accessor :organizer
 card_accessor :researcher
@@ -74,11 +75,18 @@ format :html do
   end
 
   view :listing_middle do
-    "metrics, projects"
+    wrap_with :span do
+      [
+        wrap_with(:span, "34", class: "badge badge-secondary"),
+        wrap_with(:span, "Companies", class: "mr-2"),
+        wrap_with(:span, "23", class: "badge badge-secondary"),
+        wrap_with(:span, "Projects", class: "mr-2")
+      ]
+    end
   end
 
   view :listing_right do
-    "researchers"
+    render_bs_badge
   end
 
   view :closed_content do

@@ -32,6 +32,6 @@ format :html do
   end
 
   view :listing_collapse_link do
-    link_to_view :listing, icon_tag(:arrow_drop_down), class: "slotter"
+    link_to_view :listing, icon_tag(:arrow_drop_down, class: "md-24"), class: "slotter"
   end
 end
