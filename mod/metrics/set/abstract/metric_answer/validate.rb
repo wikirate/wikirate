@@ -39,7 +39,7 @@ event :validate_year_change, :validate, on: :update, when: :year_updated? do
   new_year = subfield(:year).item_names.first
   new_name = "#{metric_name}+#{company_name}+#{new_year}"
   if new_year != year && Card.exists?(new_name)
-    errors.add :year, "value for year #{year} already exists"
+    errors.add :year, "value for year #{new_year} already exists"
     abort :failure
   end
   self.name = new_name

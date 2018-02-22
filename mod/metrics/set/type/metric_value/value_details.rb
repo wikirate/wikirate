@@ -10,15 +10,17 @@ format :html do
 
   # don't cache; view depends on formula card
   view :formula_value_details, tags: :unknown_ok, cache: :never do
+    return render_researched_value_details if calculation_overridden?
     wrap_value_details do
-      wrap_with :div do
-        [
-          answer_details_table,
-          wrap_with(:h5, "Formula"),
-          "= #{formula}"
-        ]
-      end
+      wrap_with :div, [answer_details_table, calculation_details]
     end
+  end
+
+  def calculation_details
+    [
+      wrap_with(:h5, "Formula"),
+      wrap_with(:div, "= #{formula}", class: "formula-with-values")
+    ]
   end
 
   view :score_value_details, cache: :never do

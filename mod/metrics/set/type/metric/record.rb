@@ -61,11 +61,16 @@ format :html do
 
   view :compact_buttons do
     output [
-      toggle_button("Methodology", ".methodology-info"),
+      toggle_methodology,
       toggle_button("About", ".about-info"),
       toggle_example_answers,
       _render_page_link_button
     ]
+  end
+
+  def toggle_methodology
+    return if card.calculated? && !card.hybrid?
+    toggle_button("Methodology", ".methodology-info")
   end
 
   def toggle_example_answers

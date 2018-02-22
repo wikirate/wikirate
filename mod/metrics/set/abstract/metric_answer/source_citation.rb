@@ -1,5 +1,5 @@
 event :process_sources, :prepare_to_validate,
-      on: :save, when: :standard? do
+      on: :save, when: :source_based? do
   if (sources = subfield(:source))
     sources.item_names.each do |source_name|
       if Card.exists? source_name
@@ -12,6 +12,10 @@ event :process_sources, :prepare_to_validate,
   elsif action == :create
     errors.add :source, "no source cited"
   end
+end
+
+def source_based?
+  standard? || hybrid?
 end
 
 def already_suggested? name

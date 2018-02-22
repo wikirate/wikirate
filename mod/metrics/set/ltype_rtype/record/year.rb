@@ -27,3 +27,9 @@ end
 def type_id
   Card::MetricValueID
 end
+
+format :html do
+  def show_menu_item_edit?
+    card.metric_card.hybrid? || super()
+  end
+end

@@ -45,7 +45,7 @@
 - :name: "*css"
   :type: SCSS
   :key: "*css"
-  :merged: 2018-02-22 17:37:37 UTC
+  :merged: 2018-02-22 19:14:15 UTC
 - :name: 'style: layout with sidebar'
   :type: SCSS
   :key: style_layout_with_sidebar
@@ -347,7 +347,7 @@
 - :name: Using WikiRate
   :type: HTML
   :key: using_wiki_rate
-  :merged: 2018-02-22 17:37:37 UTC
+  :merged: 2018-02-22 19:14:15 UTC
 - :name: Introduction to WikiRate
   :type: Basic
   :key: introduction_to_wiki_rate
@@ -531,15 +531,15 @@
 - :name: Researcher+*right+*default
   :type: Pointer
   :key: researcher+*right+*default
-  :merged: 2018-02-22 17:37:38 UTC
+  :merged: 2018-02-22 19:14:16 UTC
 - :name: conversation+*right+*structure
   :type: Search
   :key: conversation+*right+*structure
-  :merged: 2018-02-22 17:37:38 UTC
+  :merged: 2018-02-22 19:14:16 UTC
 - :name: Conversation+*type+*structure
   :type: Basic
   :key: conversation+*type+*structure
-  :merged: 2018-02-22 17:37:38 UTC
+  :merged: 2018-02-22 19:14:16 UTC
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org

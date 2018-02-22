@@ -59,7 +59,7 @@ format :html do
   end
 
   def add_answer_button
-    return "" unless metric_card.researched? && metric_card.user_can_answer?
+    return "" unless metric_card.user_can_answer?
     link_to_card :research_page, "Research answer",
                  class: "btn btn-sm btn-primary margin-12",
                  path: { view: "slot_machine", metric: card.metric, company: card.company },
