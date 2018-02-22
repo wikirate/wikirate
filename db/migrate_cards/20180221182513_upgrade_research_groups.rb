@@ -4,7 +4,8 @@ class UpgradeResearchGroups < Card::Migration
   def up
     merge_cards %w[researcher+*right+*default
                    conversation+*type+*structure
-                   conversation+*right+*structure]
+                   conversation+*right+*structure
+                   nav_bar_menu]
 
     # changes conversation cards from having +project fields to having +tag fields
     # (generalizing them)

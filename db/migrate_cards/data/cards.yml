@@ -245,7 +245,6 @@
 - :name: nav bar menu
   :type: HTML
   :key: nav_bar_menu
-  :merged: 2018-01-08 14:00:26 UTC
 - :name: Company
   :type: Cardtype
   :codename: wikirate_company
