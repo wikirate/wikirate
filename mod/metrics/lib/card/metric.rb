@@ -83,8 +83,9 @@ class Card::Metric
 
     # type is an alias for metric_type
     VALID_SUBFIELDS =
-      ::Set.new([:metric_type, :currency, :formula, :value_type,
-                 :value_options, :research_policy, :wikirate_topic, :unit, :report_type, :inverse_title])
+      ::Set.new([:metric_type, :currency, :formula, :value_type, :hybrid,
+                 :value_options, :research_policy, :wikirate_topic, :unit, :report_type,
+                 :inverse_title])
            .freeze
     ALIAS_SUBFIELDS = { type: :metric_type, topic: :wikirate_topic, inverse: :inverse_title }.freeze
 
@@ -106,7 +107,10 @@ class Card::Metric
 
     def subfield_type_id field
       case field
-      when :formula, :unit, :currency, :inverse_title then Card::PhraseID
+      when :formula, :unit, :currency, :inverse_title
+        Card::PhraseID
+      when :hybrid
+        Card::ToggleID
       else Card::PointerID
       end
     end

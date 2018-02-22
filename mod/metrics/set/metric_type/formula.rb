@@ -3,6 +3,11 @@ include Set::Abstract::Calculation
 card_accessor :variables, type_id: Card::SessionID
 
 format :html do
+  view :content_formgroup do
+    super() +
+      field_nest(:hybrid, title: "Hybrid")
+  end
+
   def value_type
     "Number"
   end

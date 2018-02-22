@@ -55,19 +55,23 @@ def value_type
 end
 
 def researched?
-  (mc = metric_card) && mc.researched?
+  metric_card&.researched?
+end
+
+def hybrid?
+  metric_card&.hybrid?
 end
 
 def scored?
-  (mc = metric_card) && mc.scored?
+  metric_card&.scored?
 end
 
 def relationship?
-  (mc = metric_card) && mc.relationship?
+  metric_card&.relationship?
 end
 
 def standard?
-  (mc = metric_card) && mc.standard?
+  metric_card&.standard?
 end
 
 def metric_card_before_name_change

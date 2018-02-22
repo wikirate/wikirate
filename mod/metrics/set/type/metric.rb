@@ -20,6 +20,7 @@ card_accessor :all_metric_values
 card_accessor :unit
 card_accessor :range
 card_accessor :currency
+card_accessor :hybrid, type: :toggle
 
 def metric_type
   metric_type_card.item_names.first
@@ -106,6 +107,10 @@ def calculated?
   !researched?
 end
 
+def hybrid?
+  hybrid_card.checked?
+end
+
 # value between 0 and 10?
 def rated?
   metric_type_codename == :wiki_rating
@@ -157,6 +162,14 @@ end
 
 def metric_value_query
   { left: { left_id: id }, type_id: MetricValueID }
+end
+
+def user_can_answer?
+  return unless researched? || hybrid?
+  # TODO: add metric designer respresentative logic here
+  is_admin = Auth.always_ok?
+  is_owner = Auth.current.id == creator.id
+  (is_admin || is_owner) || !designer_assessed?
 end
 
 event :silence_metric_deletions, :initialize, on: :delete do
