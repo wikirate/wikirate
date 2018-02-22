@@ -73,10 +73,8 @@ format :html do
 
   view :listing_left, template: :haml
   view :listing_bottom, template: :haml
+  view :listing_middle, template: :haml
 
-  view :listing_middle do
-    render :minor_bs_badges
-  end
 
   view :listing_right, cache: :never do
     bs_badge card.researcher_card.count, "Researchers"
