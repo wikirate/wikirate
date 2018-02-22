@@ -2,7 +2,9 @@
 format :html do
   PARAM_NAME = { company_id_list: :cil, metric_id_list: :mil, year_list: :yil }.freeze
   def active_tab
-    @active_tab ||= params[:active_tab] || (existing_answer? && "View Source")
+    @active_tab ||= params[:active_tab] ||
+                    (existing_answer_with_source? && "View Source") ||
+                    (cite_mode? && "Source") || "Metric details"
   end
 
   %i[company metric year].each do |item|
@@ -134,8 +136,9 @@ format :html do
     metric && company && year
   end
 
-  def existing_answer?
-    answer? && answer_card.known?
+  def existing_answer_with_source?
+    answer? && answer_card.known? &&
+      (!answer_card.hybrid? || answer_card.calculation_overridden?)
   end
 
   def company

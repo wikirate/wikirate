@@ -36,7 +36,7 @@ format :html do
     tabs = {}
     if answer?
       tabs["Source"] = cite_source_tab hide: !cite_mode?
-      tabs["View Source"] = view_source_tab hide: cite_mode?
+      tabs["View Source"] = view_source_tab hide: hide_view_source_tab?
     end
     tabs["Metric details"] = metric_details_tab if metric?
     tabs["Help"] = nest :how_to_research, view: :core
@@ -44,7 +44,11 @@ format :html do
   end
 
   def cite_mode?
-    answer_card.new_card? || @answer_view == :research_edit_form
+    answer_card.unknown? || @answer_view == :research_edit_form
+  end
+
+  def hide_view_source_tab?
+    cite_mode? || !existing_answer_with_source?
   end
 
   def cite_source_tab hide: false
@@ -71,7 +75,7 @@ format :html do
   view :source_preview_tab, cache: :never do
     wrap do
       nest preview_source, view: :source_and_preview, cited: cited_preview_source?,
-                           disabled: existing_answer?
+                           disabled: existing_answer_with_source?
     end
   end
 
