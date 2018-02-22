@@ -1,5 +1,5 @@
 class Answer
-  # MEthods to handle answers that exist only in the the answer table
+  # Methods to handle answers that exist only in the the answer table
   # and don't have a card. Used for calculated answers.
   module CardlessAnswers
     def self.included host_class
@@ -7,6 +7,9 @@ class Answer
     end
 
     def find_answer_card
+      # for unknown reasons there are cases where `Card[record_name, year.to_s]` exists
+      # for virtual answers. Fetching `Card[record_name, year.to_s, :value]` first,
+      # ensures that we don't get a card when we don't want one.
       Card[record_name, year.to_s, :value]&.left
     end
 

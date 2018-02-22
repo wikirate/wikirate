@@ -21,6 +21,7 @@ class Answer < ApplicationRecord
 
   def card
     return super if answer_id
+    # in the process of creating a hybrid answer we don't want the virtual answer card
     @card ||= find_answer_card || virtual_answer_card
   end
 
