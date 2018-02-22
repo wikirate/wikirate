@@ -7,6 +7,7 @@ include_set Abstract::BsBadge
 card_accessor :organizer
 card_accessor :researcher
 card_accessor :project
+card_accessor :metric
 card_accessor :wikirate_topic
 
 def report_card member, cardtype, variant
@@ -53,9 +54,9 @@ format :html do
   end
 
   def tab_list
-    { researcher_list: "Researchers",
-      metric_list:     "Metrics",
-      project_list:    "Projects" }
+    { researcher_list: two_line_tab("Researchers", card.researcher_card.count),
+      metric_list:     two_line_tab("Metrics",     card.metric_card.count    ),
+      project_list:    two_line_tab("Projects",    card.project_card.count   ) }
   end
 
   view :metric_list do
@@ -70,23 +71,22 @@ format :html do
     field_nest :researcher, view: :overview
   end
 
-  view :listing_left do
-    render_thumbnail
-  end
+  view :listing_left, template: :haml
+  view :listing_bottom, template: :haml
 
   view :listing_middle do
-    wrap_with :span do
-      [
-        wrap_with(:span, "34", class: "badge badge-secondary"),
-        wrap_with(:span, "Companies", class: "mr-2"),
-        wrap_with(:span, "23", class: "badge badge-secondary"),
-        wrap_with(:span, "Projects", class: "mr-2")
-      ]
-    end
+    render :minor_bs_badges
   end
 
-  view :listing_right do
-    render_bs_badge
+  view :listing_right, cache: :never do
+    bs_badge card.researcher_card.count, "Researchers"
+  end
+
+  view :minor_bs_badges, cache: :never do
+    wrap_with :span do
+      [bs_badge(card.metric_card.count, "Metrics"),
+       bs_badge(card.project_card.count, "Projects")]
+    end
   end
 
   view :closed_content do

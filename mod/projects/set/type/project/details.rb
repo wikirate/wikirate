@@ -42,17 +42,11 @@ format :html do
 
   def organizational_details
     wrap_with :div, class: "organizational-details" do
-      [organized_by_detail]
+      [field_nest(:organizer, view: :credit)]
     end
   end
 
   def organized_by_detail
-    wrap_with :div, class: "organized-by horizontal-list" do
-      [
-        wrap_with(:span, "Organized by "),
-        field_nest(:organizer, items: { view: :link })
-      ]
-    end
   end
 
   def status_detail
