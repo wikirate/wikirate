@@ -75,7 +75,6 @@ format :html do
   view :listing_bottom, template: :haml
   view :listing_middle, template: :haml
 
-
   view :listing_right, cache: :never do
     bs_badge card.researcher_card.count, "Researchers"
   end
