@@ -53,10 +53,14 @@ format :html do
     ]
   end
 
+  view :thumbnail_subtitle do
+    field_nest :organizer, view: :credit
+  end
+
   def tab_list
     { researcher_list: two_line_tab("Researchers", card.researcher_card.count),
-      metric_list:     two_line_tab("Metrics",     card.metric_card.count    ),
-      project_list:    two_line_tab("Projects",    card.project_card.count   ) }
+      metric_list:     two_line_tab("Metrics",     card.metric_card.count),
+      project_list:    two_line_tab("Projects",    card.project_card.count) }
   end
 
   view :metric_list do
@@ -76,7 +80,7 @@ format :html do
   view :listing_middle, template: :haml
 
   view :listing_right, cache: :never do
-    labeled_badge card.researcher_card.count, "Researchers"
+    labeled_badge card.researcher_card.count, "Researchers", color: 'dark'
   end
 
   view :minor_labeled_badges, cache: :never do

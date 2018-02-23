@@ -19,6 +19,10 @@
   display: none !important;
 }
 
+.disabled-o{
+  @include opacity(0.3);
+}
+
 .cursor-p {
   cursor: pointer;
 }
@@ -168,6 +172,7 @@
   background-color: $metric-color;
   color: #fff;
 }
+
 //Text adjustments
 .text-align-left {
   text-align: left;
@@ -208,6 +213,8 @@
 .normal-weight {
   font-weight: normal;
 }
+
+
 //Common adjustments
 .clearfix{
   clear:both;
@@ -223,10 +230,6 @@
 
 .nopadding {
   padding: 0 !important;
-  margin: 0 !important;
-}
-
-.no-margin {
   margin: 0 !important;
 }
 
@@ -323,23 +326,24 @@
   background: #fafafa;
 }
 
-// These classes already available in Bootstrap 4.x
+// Borders
 
-//.border-left {
-//  border-left: 1px solid #e5e5e5;
-//}
-//
-//.border-bottom {
-//  border-bottom: 1px solid #e5e5e5;
-//}
-//
-//.border-top {
-//  border-top: 1px solid #e5e5e5;
-//}
+.with-fancy-border {
+    border-left: 3px solid $border-color !important;
+}
+
+.with-fancy-border:hover {
+    border-left-color: $dark-text-color !important
+}
 
 .double-border-fix-left {
   margin-left: -1px;
 }
+
+.double-border-fix-bottom {
+  margin-bottom: -1px;
+}
+
 //custom column
 .col-md-3-5 {
   width: 25.666%;

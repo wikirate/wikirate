@@ -36,11 +36,12 @@ format :html do
   view :join_button, tags: :unknown_ok, denial: :blank, cache: :never,
                      perms: ->(r) { r.card.ok_to_join? } do
     link_to "Join", path: { action: :update, join: true, success: { view: :overview } },
-                    class: "btn btn-primary slotter", remote: true
+                    class: "btn btn-primary btn-sm slotter", remote: true
   end
 
   view :manage_button, tags: :unknown_ok do
-    link_to_view("edit", "Manage Researcher List", class: "btn slotter")
+    css_class = "btn btn-outline-primary btn-sm slotter"
+    link_to_view("edit", "Manage Researcher List", class: css_class)
   end
 
   def member_contribution_header

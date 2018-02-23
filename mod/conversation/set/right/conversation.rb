@@ -7,6 +7,6 @@ format :html do
   view :conversation_link, perms: :create do
     link_to "Add Conversation",
             path: { mark: :conversation, action: :new, _Tag: card.name.left },
-            class: "btn btn-primary"
+            class: "btn btn-primary btn-sm mt-2"
   end
 end
