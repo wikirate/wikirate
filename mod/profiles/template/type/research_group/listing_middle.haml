@@ -1,2 +1,3 @@
 = render :minor_bs_badges
-= field_nest :wikirate_topic
+.horizontal-list.mt-2
+  = field_nest :wikirate_topic, items: { view: :link, type: "Topic" }

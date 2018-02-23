@@ -24,14 +24,18 @@ format :html do
   end
 
   view :listing_page_link do
-    link_to_card card, icon_tag(:open_in_new)
+    link_to_card card, icon_tag(:open_in_new), class: "text-muted"
+  end
+
+  def toggle_class
+    "slotter btn btn-sm btn-outline-secondary p-0 border-0 rounded-0"
   end
 
   view :listing_expand_link do
-    link_to_view :expanded_listing, icon_tag(:play_arrow), class: "slotter"
+    link_to_view :expanded_listing, icon_tag(:play_arrow), class: toggle_class
   end
 
   view :listing_collapse_link do
-    link_to_view :listing, icon_tag(:arrow_drop_down, class: "md-24"), class: "slotter"
+    link_to_view :listing, icon_tag(:arrow_drop_down, class: "md-24"), class: toggle_class
   end
 end
