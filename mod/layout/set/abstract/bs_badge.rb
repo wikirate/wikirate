@@ -1,6 +1,8 @@
 format :html do
-  def bs_badge count, label, opts={}
-    return if count.zero? && !opts[:zero_ok]
-    haml :bs_badge, count: count, label: label, klass: opts[:klass]
+  def labeled_badge count, label, opts={}
+    haml :labeled_badge, count: count,
+                         label: label,
+                         klass: opts[:klass],
+                         color: opts[:color]
   end
 end

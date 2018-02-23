@@ -76,13 +76,13 @@ format :html do
   view :listing_middle, template: :haml
 
   view :listing_right, cache: :never do
-    bs_badge card.researcher_card.count, "Researchers"
+    labeled_badge card.researcher_card.count, "Researchers"
   end
 
-  view :minor_bs_badges, cache: :never do
+  view :minor_labeled_badges, cache: :never do
     wrap_with :span do
-      [bs_badge(card.metric_card.count, "Metrics"),
-       bs_badge(card.project_card.count, "Projects")]
+      [labeled_badge(card.metric_card.count, "Metrics"),
+       labeled_badge(card.project_card.count, "Projects")]
     end
   end
 

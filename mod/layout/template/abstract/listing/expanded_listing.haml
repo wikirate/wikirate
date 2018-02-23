@@ -1,9 +1,10 @@
-.expanded-listing.list-group-item.d-flex.justify-content-between.p-0
-  .listing-left.col-4.p-2
-    = render :listing_left
-  .listing-right.p-3.border-left
-    = render :listing_right
-    = render :listing_page_link
-    = render :listing_collapse_link
-.listing-bottom.border-top.col-12.border.mb-2.p-2
-  = render :listing_bottom
+.expanded-listing
+  .listing-top.list-group-item.d-flex.justify-content-between.p-0
+    .listing-left.col-4.p-2
+      = render :listing_left
+    .listing-right.p-3.border-left
+      = render :listing_right
+      = render :listing_page_link
+      = render :listing_collapse_link
+  .listing-bottom.border-top.col-12.border.mb-2.p-2
+    = render :listing_bottom
