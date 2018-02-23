@@ -80,7 +80,7 @@ format :html do
   view :listing_middle, template: :haml
 
   view :listing_right, cache: :never do
-    labeled_badge card.researcher_card.count, "Researchers", color: 'dark'
+    labeled_badge card.researcher_card.count, "Researchers", color: "dark"
   end
 
   view :minor_labeled_badges, cache: :never do
