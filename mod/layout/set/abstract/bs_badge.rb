@@ -1,7 +1,9 @@
 format :html do
-  def bs_badge count, label, opts={}
-    opts[:klass] = "disabled-o" if count.zero? && !opts[:zero_ok]
-    opts[:color] = "secondary" unless opts[:color]
-    haml :bs_badge, count: count, label: label, klass: opts[:klass], color: opts[:color]
+  def labeled_badge count, label, opts={}
+    if count.zero? && !opts[:zero_ok]
+      opts[:klass] = [opts[:klass], "disabled-o"].compact.join " "
+    end
+    color = opts[:color] || "secondary"
+    haml :labeled_badge, count: count, label: label, klass: opts[:klass], color: color
   end
 end

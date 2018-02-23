@@ -57,12 +57,17 @@ format :html do
   end
 
   def wrap_header_tabs device=""
-    css_class = "nav nav-tabs twin-tab "
-    desktop = "d-none d-md-inline company-profile-tab"
-    mobile = "d-flex d-md-none"
-    css_class += device.to_sym == :mobile ? mobile : desktop
+    css_class = "nav nav-tabs twin-tab " + header_tab_classes(device)
     wrap_with :ul, class: css_class do
       [performance_tab_button, contributions_tab_button]
+    end
+  end
+
+  def header_tab_classes device
+    if device.to_sym == :mobile
+      "d-flex d-md-none"
+    else
+      "d-none d-md-inline company-profile-tab"
     end
   end
 
@@ -103,8 +108,8 @@ format :html do
   end
 
   def country_table
-    css_class = "table-borderless table-condensed mt-3 h5 font-weight-normal"
-    table country_rows, class: css_class
+    table country_rows,
+          class: "table-borderless table-condensed mt-3 h5 font-weight-normal"
   end
 
   def country_rows

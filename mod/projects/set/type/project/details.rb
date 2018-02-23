@@ -46,9 +46,6 @@ format :html do
     end
   end
 
-  def organized_by_detail
-  end
-
   def status_detail
     wrap_with :div do
       field_nest :wikirate_status, items: { view: :name }
