@@ -217,7 +217,7 @@ GEM
     execjs (2.7.0)
     fastimage (1.9.0)
       addressable (~> 2.3.5)
-    ffi (1.9.21)
+    ffi (1.9.22)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog (1.41.0)
@@ -564,7 +564,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     rubocop-decko (0.2)
-    rubocop-rspec (1.22.2)
+    rubocop-rspec (1.23.0)
       rubocop (>= 0.52.1)
     ruby-jmeter (3.1.08)
       nokogiri

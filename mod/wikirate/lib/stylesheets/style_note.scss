@@ -195,48 +195,7 @@ $card-header-color: #fff;
   float: left;
   overflow: hidden;
 }
-.vote-button {
-  width: 30px;
-  height: 30px;
-  padding: 0 !important;
-  //override bootstrap .btn padding.
 
-}
-.vote-link {
-  color: #888;
-  background-color: #eee;
-}
-.disabled-vote-link,
-.disabled-vote-link:hover {
-  color: #fff;
-  background-color: #bbb;
-
-}
-.vote-count {
-  color: #555;
-  width: 30px;
-  height: 25px;
-  text-align: center;
-  padding-top: 4px;
-  font-weight: bold;
-
-}
-.vote-details {
-  color: #bbb;
-  font-size: 14px;
-  padding-top: 7px;
-}
-.vote-number {
-  font-weight: bold;
-
-}
-
-.header-vote {
-  border-right: solid 1px #eee;
-  float: left;
-  margin-right: 10px;
-  padding: 10px;
-}
 .header-citation {
   float: right;
   padding: 10px 1.5% 25px;

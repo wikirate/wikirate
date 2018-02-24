@@ -6,13 +6,8 @@ format :html do
     voo.edit_structure = [:image, "+about me", :discussion]
   end
 
-  view :open_content do |args|
-    bs_layout container: false, fluid: false, class: @container_class do
-      row 5, 7, class: "panel-margin-fix" do
-        column _render_content_left_col, args[:left_class]
-        column _render_contributions_column, args[:right_class]
-      end
-    end
+  view :open_content do
+    two_column_layout 5, 7
   end
 
   view :data do

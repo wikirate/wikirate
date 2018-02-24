@@ -23,7 +23,7 @@ format :html do
   end
 
   def author_image
-    wrap_with :div, class: "image-box small no-margin" do
+    wrap_with :div, class: "image-box small m-0" do
       wrap_with :span, class: "img-helper" do
         subformat(card.field(:image, new: {}))._render_core size: "small"
       end

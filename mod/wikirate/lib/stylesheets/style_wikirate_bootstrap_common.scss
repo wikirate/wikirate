@@ -19,6 +19,10 @@
   display: none !important;
 }
 
+.disabled-o {
+  @include opacity(0.3);
+}
+
 .cursor-p {
   cursor: pointer;
 }
@@ -153,6 +157,22 @@
   color: #e4e9f1;
 }
 
+//badge colors
+.badge-company {
+  background-color: $company-color;
+  color: #fff;
+}
+
+.badge-topic {
+  background-color: $topic-color;
+  color: #fff;
+}
+
+.badge-metric {
+  background-color: $metric-color;
+  color: #fff;
+}
+
 //Text adjustments
 .text-align-left {
   text-align: left;
@@ -193,6 +213,8 @@
 .normal-weight {
   font-weight: normal;
 }
+
+
 //Common adjustments
 .clearfix{
   clear:both;
@@ -208,10 +230,6 @@
 
 .nopadding {
   padding: 0 !important;
-  margin: 0 !important;
-}
-
-.no-margin {
   margin: 0 !important;
 }
 
@@ -308,21 +326,24 @@
   background: #fafafa;
 }
 
-.border-left {
-  border-left: 1px solid #e5e5e5;
+// Borders
+
+.with-fancy-border {
+    border-left: 3px solid $border-color !important;
 }
 
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
+.with-fancy-border:hover {
+    border-left-color: $dark-text-color !important
 }
 
 .double-border-fix-left {
   margin-left: -1px;
 }
+
+.double-border-fix-bottom {
+  margin-bottom: -1px;
+}
+
 //custom column
 .col-md-3-5 {
   width: 25.666%;
@@ -649,8 +670,47 @@ button.pointer-item-delete.btn.btn-outline-secondary {
   content: "\f0d7";
 }
 // Voting
+
+.vote-button {
+  width: 24px;
+  height: 24px;
+  padding: 0 !important;
+  //override bootstrap .btn padding.
+
+}
+//.vote-link {
+//  color: #888;
+//  background-color: #eee;
+//}
+//.disabled-vote-link,
+//.disabled-vote-link:hover {
+//  color: #fff;
+//  background-color: #bbb;
+//
+//}
 .vote-count {
-  color: #999;
+  color: #555;
+  width: 24px;
+  height: 25px;
+  text-align: center;
+  padding-top: 2px;
+  font-weight: bold;
+
+}
+.vote-details {
+  color: #bbb;
+  font-size: 14px;
+  padding-top: 7px;
+}
+.vote-number {
+  font-weight: bold;
+}
+
+.header-vote {
+  border-right: solid 1px #eee;
+  float: left;
+  margin-right: 10px;
+  padding: 10px;
 }
 
 //disabling for not to override bootstrap's button styles
@@ -823,3 +883,13 @@ a.no-decoration {
   }
 }
 
+// filter above tables
+
+.table-filter-container {
+  >.card {
+    border:0;
+    > .card-body {
+      padding: 10px 0px;
+    }
+  }
+}

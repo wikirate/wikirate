@@ -1,19 +1,20 @@
 include_set Abstract::TwoColumnLayout
 
 format :html do
-  def default_open_content_args args
-    super
-    @container_class = "yinyang" # TODO: check if still needed
-    add_class args[:left_class], "metric-info nopadding"
-    add_class args[:right_class], "wiki"
+  def left_column_class
+    "#{super} metric-info nopadding"
+  end
+
+  def right_column_class
+    "#{super} wiki"
   end
 
   view :rich_header do
     vote = field_subformat(:vote_count)._render_content
     bs_layout do
-      row 1, 11, class: "metric-header-container mt-3" do
-        column vote
-        column _render_title_and_question
+      row 1, 11, class: "metric-header-container border-bottom container p-0 m-0 mt-3" do
+        column vote, class: "col-1 pt-1"
+        column _render_title_and_question, class: "col-10"
       end
     end
   end
@@ -35,7 +36,7 @@ format :html do
 
   view :metric_question do
     question = subformat(card.question_card)._render_content
-    wrap_with :h5, question, class: "question"
+    wrap_with :div, question, class: "question blockquote"
   end
 
   view :designer_info do
