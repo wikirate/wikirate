@@ -48,18 +48,19 @@ format :html do
     Card.search wql.merge!(paging_args.extract!(:limit, :offset))
   end
 
-  view :join_button, tags: :unknown_ok, denial: :blank, cache: :never,
-                     perms: ->(r) { r.card.ok_to_join? } do
-    link_to "Join Group", path: { action: :update, join: true, success: { view: :overview } },
-                    class: "btn btn-primary btn-sm slotter", remote: true
+  def self.membership_button action, test, btnclass
+    view "#{action}_button".to_sym, tags: :unknown_ok, denial: :blank, cache: :never,
+                                  perms: ->(r) { r.card.send test } do
+      link_to "#{action.to_s.capitalize} Group",
+              path: { action: :update, action => true, success: { view: :overview } },
+              class: "btn #{btnclass} btn-sm slotter",
+              remote: true
+    end
   end
 
-  view :leave_button, tags: :unknown_ok, denial: :blank, cache: :never,
-       perms: ->(r) { r.card.current_user_is_member? } do
-    link_to "Leave Group", path: { action: :update, leave: true, success: { view: :overview } },
-            class: "btn btn-outline-primary btn-sm slotter", remote: true
-  end
-
+  membership_button :join, :ok_to_join?, "btn-primary"
+  membership_button :leave, :current_user_is_member?, "btn-outline-primary"
+  
   view :manage_button, tags: :unknown_ok do
     link_to_view "edit",
                  "Manage Researcher List",
