@@ -1,6 +1,9 @@
 include_set Abstract::TwoColumnLayout
 include_set Abstract::Thumbnail
 
+CONTRIBUTION_TYPES = %i[metric_value metric wikirate_company project
+                        source wikirate_topic research_group].freeze
+
 format :html do
   def default_content_formgroup_args _args
     voo.edit_structure = [:image, "+about me", :discussion]
@@ -19,31 +22,20 @@ format :html do
         field_nest(:discussion, view: :titled, title: "Discussion", show: :comment_box),
         content_tag(:hr),
         field_nest(:activity, view: :titled, title: "Activity", hide: :menu)
-        # TODO: restore following soon
-        # field_nest(:follow, view: :profile,
-        #                    hide: [:menu, :toggle],
-        #                    title: "Following",
-        #                    items: {
-        #                      view: :content,
-        #                      structure: "User following result row"
-        #                    })
       ]
     end
   end
 
-  view :contributions_column do
-    wrap_with :div, class: "contributions-column" do
-      [wrap_with(:h4, "Contributions"), contribution_reports]
-    end
+  view :right_column do
+    output [wrap_with(:h4, "Contributions"), contribution_reports]
   end
 
-  def contribution_types
-    [:metric_value, :metric, :wikirate_company, :project, :source,
-     :wikirate_topic, :research_group, :claim]
+  def right_column_class
+    "#{super} contributions-column"
   end
 
   def contribution_reports
-    contribution_types.map do |codename|
+    CONTRIBUTION_TYPES.map do |codename|
       user_and_type = card.fetch trait: codename, new: {}
       nest user_and_type, view: :contribution_report
     end

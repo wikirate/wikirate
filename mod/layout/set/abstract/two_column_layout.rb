@@ -11,10 +11,19 @@ format :html do
     bs_layout container: false, fluid: true, class: container_class do
       row_hash[:class] ||= "panel-margin-fix"
       row col1, col2, row_hash do
-        column _render_content_left_col, class: left_column_class
-        column _render_content_right_col, class: right_column_class
+        column _render_left_column, class: left_column_class
+        column _render_right_column, class: right_column_class
       end
     end
+  end
+
+  view :left_column do
+    # had slot before
+    output [_render_rich_header, _render_data]
+  end
+
+  view :right_column do
+    _render_tabs
   end
 
   def container_class
@@ -47,15 +56,6 @@ format :html do
 
   def header_right
     wrap_with :h3, _render_title, class: "header-right"
-  end
-
-  view :content_right_col do
-    _render_tabs
-  end
-
-  view :content_left_col do
-    # had slot before
-    output [_render_rich_header, _render_data]
   end
 
   view :data, cache: :never do
