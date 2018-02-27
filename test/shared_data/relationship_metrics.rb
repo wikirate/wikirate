@@ -32,7 +32,7 @@ class SharedData
         SPECTRE "1977" => { "Los_Pollos_Hermanos" => "Tier 1 Supplier" },
                 "2000" => { "Los_Pollos_Hermanos" => "Tier 1 Supplier",
                             "Google Inc." => "Tier 2 Supplier" }
-        Death_Star "1977" => { "Los_Pollos_Hermanos" => "Tier 1 Supplier" }
+        Monster_Inc "1977" => { "Los_Pollos_Hermanos" => "Tier 1 Supplier" }
       end
 
       Card::Metric.create name: "Clean Clothes Campaign+Address",
@@ -40,7 +40,7 @@ class SharedData
                           value_type: "Free Text",
                           random_source: true do
         SPECTRE "1977" => "Baker Street, London"
-        Death_Star "1977" => "Alderaan"
+        Monster_Inc "1977" => "Alderaan"
         Google_Inc 2000 => "Mountain View"
       end
     end

@@ -37,12 +37,12 @@ RSpec.describe Answer, "Answer.search" do
   end
 
   it "can count" do
-    expect(search(year: "2000", return: :count)).to eq 10
+    expect(search(year: "2000", return: :count)).to eq 14
   end
 
   it "can uniquify and return count" do
     result = search year: "2000", uniq: :company_id, return: :count
-    expect(result).to eq 5
+    expect(result).to eq 7
   end
 
   # it "can uniquify and return different column" do
