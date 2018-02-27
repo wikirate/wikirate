@@ -123,7 +123,6 @@ format :html do
   def integrations
     output [
       content_tag(:h5, "INTEGRATIONS", class: "border-bottom pb-2"),
-      content_tag(:hr),
       wikipedia_extract,
       open_corporates_extract
     ]
