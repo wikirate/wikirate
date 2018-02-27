@@ -1,7 +1,7 @@
 require_relative "samples"
 
 class SharedData
-  # test data for metrics
+  # test data for relationship metrics
   module RelationshipMetrics
     include Samples
 
@@ -20,6 +20,27 @@ class SharedData
                           inverse_title: "less evil" do
         SPECTRE "1977" => { "Los_Pollos_Hermanos" => "yes" }
         Death_Star "1977" => { "Los_Pollos_Hermanos" => "yes", "SPECTRE" => "yes" }
+      end
+
+
+      Card::Metric.create name: "Clean Clothes Campaign+Supplied by",
+                          type: :relationship,
+                          random_source: true,
+                          value_type: "Category",
+                          value_options: ["Tier 1 Supplier", "Tier 2 Supplier"],
+                          inverse_title: "Supplier of" do
+        SPECTRE "1977" => { "Los_Pollos_Hermanos" => "Tier 1 Supplier" },
+                "2000" => { "Los_Pollos_Hermanos" => "Tier 1 Supplier" }
+        Death_Star "1977" => { "Los_Pollos_Hermanos" => "Tier 1 Supplier" }
+      end
+
+      binding.pry
+      Card::Metric.create name: "Clean Clothes Campaign+Address",
+                          type: :researched,
+                          value_type: "Free Text",
+                          random_source: true do
+        SPECTRE "1977" => "Baker Street, London"
+        Death_Star "1977" => "Alderaan"
       end
     end
   end

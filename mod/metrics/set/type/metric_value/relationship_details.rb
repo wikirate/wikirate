@@ -3,17 +3,19 @@ include_set Abstract::Paging
 
 def default_sort_option; end
 
+def inverse_metric_id
+  metric_card.inverse_card.id
+end
+
 format do
+  delegate :inverse_metric_id, to: :card
+
   def values_query
     inverse? ? inverse_relation_values_query : relation_values_query
   end
 
   def inverse?
     card.metric_card.inverse?
-  end
-
-  def inverse_metric_id
-    card.metric_card.inverse_card.id
   end
 
   def inverse_relation_values_query
