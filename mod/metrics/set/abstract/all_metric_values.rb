@@ -31,7 +31,7 @@ format :html do
   view :filter_result, template: :haml, cache: :never
 
   view :filter_form do
-    wrap_with :div, class: "row" do
+    wrap_with :div, class: "row table-filter-container" do
       _render_filter
     end
   end

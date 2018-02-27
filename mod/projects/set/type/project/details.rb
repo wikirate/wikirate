@@ -9,9 +9,8 @@ format :html do
                                title: "Organizer",
                                items: { view: :thumbnail_plain }),
         standard_nest(:wikirate_topic),
-        standard_nest(:description),
-        field_nest(:conversation,
-                   view: :project_conversation, title: "Conversation")
+        field_nest(:description, view: :titled, title: "Description"),
+        field_nest(:conversation, view: :titled, title: "Conversation")
       ]
     end
   end
@@ -43,36 +42,34 @@ format :html do
 
   def organizational_details
     wrap_with :div, class: "organizational-details" do
-      [organized_by_detail, status_detail]
-    end
-  end
-
-  def organized_by_detail
-    wrap_with :div, class: "organized-by horizontal-list" do
-      [
-        wrap_with(:span, " | organized by "),
-        field_nest(:organizer, items: { view: :link })
-      ]
+      [field_nest(:organizer, view: :credit)]
     end
   end
 
   def status_detail
-    field_nest :wikirate_status, items: { view: :name }
+    wrap_with :div do
+      field_nest :wikirate_status, items: { view: :name }
+    end
   end
 
   view :stats_details, cache: :never do
     wrap_with :div, class: "stat-details default-progress-box" do
       [
         count_stats,
-        "#{card.percent_researched}%",
-        research_progress_bar
+        wrap_with(:div, research_progress_bar, class: "d-inline-flex"),
+        wrap_with(:span, card.percent_researched, class: "badge badge-secondary")
       ].join " "
     end
   end
 
   def count_stats
     wrap_with :span do
-      "#{card.num_companies} Companies, #{card.num_metrics} Metrics | "
+      [
+        wrap_with(:span, card.num_companies, class: "badge badge-company"),
+        wrap_with(:span, "Companies", class: "mr-2"),
+        wrap_with(:span, card.num_metrics, class: "badge badge-metric"),
+        wrap_with(:span, "Metrics", class: "mr-2")
+      ]
     end
   end
 

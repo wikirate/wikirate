@@ -14,7 +14,7 @@ Feature: company feature
     And I should see "Force"
     Then I click on "Projects"
     And I should see "Evil Project"
-    And I should see "3 Companies, 2 Metrics"
+    And I should see "3 Companies 2 Metrics"
     Then I click on "Sources"
     And I should see "www.wikiwand.com"
     And I should see "Visit Original"

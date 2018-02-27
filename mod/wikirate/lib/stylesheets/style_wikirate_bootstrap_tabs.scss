@@ -80,15 +80,11 @@
   bottom: 10px;
   min-width: 60%;
   text-align: center;
-  li {
-    width: 50%;
-    float:left;
-  }
 }
-.company-profile-tab.visible-xs {
-    position: relative;
-    border-top: 1px solid #ebebeb;
-    margin: 0px -15px;
+
+.twin-tab li {
+  width: 50%;
+  float:left;
 }
 
 .contribution-report-header {

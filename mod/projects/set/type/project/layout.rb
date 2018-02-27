@@ -1,5 +1,4 @@
 include_set Abstract::TwoColumnLayout
-include_set Abstract::Tabs
 
 TAB_MAP = {
   company:    [:building,   :num_companies,    "Companies"],
@@ -9,13 +8,8 @@ TAB_MAP = {
 }.freeze
 
 format :html do
-  view :open_content do |args|
-    bs_layout container: false, fluid: true, class: @container_class do
-      row 5, 7, class: "panel-margin-fix" do
-        column _render_content_left_col, args[:left_class]
-        column _render_content_right_col, args[:right_class]
-      end
-    end
+  view :open_content do
+    two_column_layout 5, 7
   end
 
   def default_content_formgroup_args _args
