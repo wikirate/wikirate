@@ -1,9 +1,9 @@
-describe Card::Set::Type::RelationshipAnswer do
+RSpec.describe Card::Set::Type::RelationshipAnswer do
   let(:metric) { "Jedi+more evil" }
   let(:inverse_metric) { "Jedi+less evil" }
   let(:year) { "1977" }
 
-  context "add first relationship answer" do
+  context "when adding first relationship answer" do
     def add_first_relationship_answer
       Card[metric].create_values true do
         Monster_Inc "1977" => { "Slate_Rock_and_Gravel_Company" => "yes" }
@@ -13,7 +13,7 @@ describe Card::Set::Type::RelationshipAnswer do
     it "increases cached answer count" do
       Card.fetch("Monster Inc+metric").cached_count
       expect { add_first_relationship_answer }
-        .to change(Card.fetch("Monster Inc+metric"), :cached_count).from(4).to(5)
+        .to change(Card.fetch("Monster Inc+metric"), :cached_count).from(6).to(7)
     end
 
     it "creates inverse answer" do
@@ -24,7 +24,7 @@ describe Card::Set::Type::RelationshipAnswer do
     end
   end
 
-  context "add another relationship answer" do
+  context "when adding another relationship answer" do
     def add_relationship_answer
       Card[metric].create_values true do
         Death_Star "1977" => { "Monster Inc" => "yes" }
@@ -55,9 +55,9 @@ describe Card::Set::Type::RelationshipAnswer do
     end
   end
 
-  context "change relationship answer name" do
-    def change_relationship_answer_name
-      Card["Jedi"]
-    end
-  end
+  # context "whan changing relationship answer name" do
+  #   def change_relationship_answer_name
+  #     Card["Jedi"]
+  #   end
+  # end
 end
