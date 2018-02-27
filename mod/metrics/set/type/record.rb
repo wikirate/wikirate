@@ -14,7 +14,6 @@ def answers_by_year
     end
 end
 
-
 def related_companies_with_year
   return {} unless metric_card.relationship?
   if metric_card.inverse?
@@ -49,5 +48,13 @@ def related_companies_of_inverse_metric
   hwa = Hash.new { |h,k| h[k] = [] }
   Card.search(wql).each_with_object(hwa) do |card, h|
     h[card.name.left_name.left_name.right_name] << card.name.left_name.right_name
+  end
+end
+
+
+
+format :json do
+  view :related_companies_with_year do
+    card.related_companies_with_year.to_json
   end
 end

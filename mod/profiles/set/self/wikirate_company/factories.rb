@@ -1,4 +1,5 @@
 format :json do
+  ADDRESS_SQL = "metric_id = ? and value LIKE ?".freeze
   view :search_factories do
     company_ids = search_by_country
     if keyword
@@ -18,11 +19,11 @@ format :json do
     return company_ids unless keyword
     address_metric_id = Card.fetch_id "Clean_Clothes_Campaign+Address"
     args = if company_ids.present?
-             ["company_id IN (?) AND (metric_id = ? and value LIKE ?)", company_ids]
+             ["company_id IN (?) AND (#{ADDRESS_SQL})", company_ids]
            else
-             ["metric_id = ? and value LIKE ?"]
+             [ADDRESS_SQL]
            end
-    Answer.where(*args, address_metric_id, keyword).pluck(:company_id)
+    Answer.where(*args, address_metric_id, "%#{keyword}%").pluck(:company_id)
   end
 
   def search_by_country

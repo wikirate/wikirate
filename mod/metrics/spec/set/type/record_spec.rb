@@ -12,4 +12,16 @@ describe Card::Set::Type::Record do
         .to eq "SPECTRE" => ["1977"], "Death_Star" => ["1977"]
     end
   end
+
+  describe "#search_supplied_companies" do
+    let(:companies) do
+      Card["Clean_Clothes_Campaign+Supplier of+Los Pollos Hermanos"]
+        .format(:json).render_related_companies_with_year
+    end
+
+    specify do
+      expect(JSON.parse(companies)).to eq "SPECTRE" => ["1977","2000"],
+                                          "Death_Star" => ["1977"]
+    end
+  end
 end
