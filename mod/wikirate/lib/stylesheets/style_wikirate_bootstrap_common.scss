@@ -415,6 +415,25 @@
   }
 }
 
+@media (max-width: 1260px) {
+  .image-box.large {
+      width: 120px;
+      height: 120px;
+  }
+}
+
+@media (max-width: 575px) {
+  .image-box {
+    &.large {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .hide-header-sm .rich-header{
+    display: none;
+  }
+}
 .homepage-lead {
   font-weight: 300;
   margin-bottom: 20px;
