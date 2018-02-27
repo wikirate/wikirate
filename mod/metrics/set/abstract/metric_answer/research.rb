@@ -68,7 +68,6 @@ format :html do
   end
 
   def research_params
-    binding.pry
     voo&.closest_live_option(:research_params) ||
       Env.params[RESEARCH_PARAMS_KEY]&.to_unsafe_h ||
       { metric: card.metric, company: card.company, year: card.year }

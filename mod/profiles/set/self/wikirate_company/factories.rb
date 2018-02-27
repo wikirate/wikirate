@@ -29,8 +29,8 @@ format :json do
   def search_by_country
     return [] unless country_code
     wql = { type_id: Card::WikirateCompanyID, return: :id,
-            right_plus: [{ codename: "headquarters"},
-                          { refer_to: { codename: country_code.to_s } }] }
+            right_plus: [{ codename: "headquarters" },
+                         { refer_to: { codename: country_code.to_s } }] }
     Card.search wql
   end
 

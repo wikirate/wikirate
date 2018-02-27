@@ -31,7 +31,7 @@ RSpec.describe Card::Set::Self::WikirateCompany::Factories do
     example "search with no result" do
       Card::Env.params[:keyword] = "empty result"
       Card::Env.params[:country_code] = "oc_us_ca"
-      is_expected.to eq '[]'
+      is_expected.to eq "[]"
     end
   end
 end

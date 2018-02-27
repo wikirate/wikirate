@@ -1,4 +1,4 @@
-describe Card::Set::Type::Record do
+RSpec.describe Card::Set::Type::Record do
   describe "#related_companies_with_year" do
     example "relationship metric" do
       card = Card.fetch "Jedi+more evil+SPECTRE"
@@ -20,7 +20,7 @@ describe Card::Set::Type::Record do
     end
 
     specify do
-      expect(JSON.parse(companies)).to eq "SPECTRE" => ["1977","2000"],
+      expect(JSON.parse(companies)).to eq "SPECTRE" => %w[1977 2000],
                                           "Death_Star" => ["1977"]
     end
   end

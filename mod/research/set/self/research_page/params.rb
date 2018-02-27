@@ -59,7 +59,7 @@ format :html do
   end
 
   def research_param key
-    Env.params.dig(:rp, key.to_sym) || Env.params.dig("rp", key.to_s)  || Env.params[key]
+    Env.params.dig(:rp, key.to_sym) || Env.params.dig("rp", key.to_s) || Env.params[key]
   end
 
   def research_params
@@ -80,7 +80,8 @@ format :html do
   end
 
   def preview_source
-    research_param(:preview_source) || (answer? && answer_card.source_card.item_names.first)
+    research_param(:preview_source) ||
+      (answer? && answer_card.source_card.item_names.first)
   end
 
   def cited_preview_source?
