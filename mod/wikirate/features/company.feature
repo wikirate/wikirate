@@ -51,7 +51,7 @@ Feature: company feature
     And I select2 "Not Researched" from "filter[metric_value]"
     And I wait for ajax response
     Then I should not see "disturbances in the Force"
-    And I should see "deadlier"
+    And I should see "BSR Member"
     When I click on "2"
     Then I should see "Weapons"
 

@@ -153,6 +153,6 @@ format do
            to: :card
 end
 
-delegate :value_options, :value_options_card, :value_type,
+delegate :value_options, :value_options_card,
          :numeric?, :categorical?, :relationship?,
          to: :metric_card

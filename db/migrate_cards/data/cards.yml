@@ -245,6 +245,7 @@
 - :name: nav bar menu
   :type: HTML
   :key: nav_bar_menu
+  :merged: 2018-02-27 17:55:36 UTC
 - :name: Company
   :type: Cardtype
   :codename: wikirate_company
@@ -530,15 +531,15 @@
 - :name: Researcher+*right+*default
   :type: Pointer
   :key: researcher+*right+*default
-  :merged: 2018-02-22 19:14:16 UTC
+  :merged: 2018-02-27 17:55:36 UTC
 - :name: conversation+*right+*structure
   :type: Search
   :key: conversation+*right+*structure
-  :merged: 2018-02-22 19:14:16 UTC
+  :merged: 2018-02-27 17:55:36 UTC
 - :name: Conversation+*type+*structure
   :type: Basic
   :key: conversation+*type+*structure
-  :merged: 2018-02-22 19:14:16 UTC
+  :merged: 2018-02-27 17:55:36 UTC
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org
