@@ -50,12 +50,16 @@ format :html do
   end
 
   def research_url opts={}
-    path_opts = { view: :slot_machine }
+    path_opts = { view: :slot_machine, rp: {} }
     research_param_keys.each do |key|
       val = opts[key] || send(key)
-      path_opts[param_name(key)] = val if val
+      path_opts[:rp][param_name(key)] = val if val
     end
     path path_opts
+  end
+
+  def research_param key
+    Env.params.dig(:rp, key.to_sym) || Env.params.dig("rp", key.to_s) || Env.params[key]
   end
 
   def research_params
@@ -76,7 +80,8 @@ format :html do
   end
 
   def preview_source
-    params[:preview_source] || (answer? && answer_card.source_card.item_names.first)
+    research_param(:preview_source) ||
+      (answer? && answer_card.source_card.item_names.first)
   end
 
   def cited_preview_source?
@@ -100,7 +105,7 @@ format :html do
   end
 
   def project
-    @project ||= Env.params[:project] || Env.params["project"]
+    @project ||= research_param :project
   end
 
   def project_card
@@ -121,11 +126,11 @@ format :html do
   end
 
   def pinned
-    @pinned ||= Array(Env.params[:pinned]).compact.map(&:to_sym)
+    @pinned ||= Array(research_param(:pinned)).compact.map(&:to_sym)
   end
 
   def metric
-    @metric ||= Env.params[:metric] || metric_list.first
+    @metric ||= research_param(:metric) || metric_list.first
   end
 
   def company?
@@ -142,7 +147,7 @@ format :html do
   end
 
   def company
-    @company ||= Env.params[:company] || company_list.first
+    @company ||= research_param(:company) || company_list.first
   end
 
   def year?
@@ -150,7 +155,7 @@ format :html do
   end
 
   def year
-    @year ||= Env.params[:year] || (project_year_list? && year_list.first) ||
+    @year ||= research_param(:year) || (project_year_list? && year_list.first) ||
               (project? && (Time.now.year - 1).to_s)
   end
 

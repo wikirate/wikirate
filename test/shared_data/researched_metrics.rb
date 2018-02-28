@@ -187,7 +187,7 @@ class SharedData
                            "2005" => 5,
                            "2004" => 4,
                            "2003" => 3
-    end
+        end
       end
     end
 
