@@ -2,7 +2,7 @@ RSpec.describe Card::Set::Self::Jurisdiction do
   let(:json_format) { Card[:jurisdiction].format(:json) }
 
   specify "#group_by_country" do
-    expect(json_format.group_by_country).to include(
+    expect(json_format.select2_option_list).to include(
       { text: "United States",
         children: include(
           { id: :oc_us_il, text: "Illinois" },

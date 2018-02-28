@@ -1,18 +1,12 @@
-format :json do
-  view :select2 do
-    { results: select2_option_list }.to_json
-  end
-
-  def select2_option_list
-    if name_query
-      wql = { type_id: JurisdictionID,
-              name:  ["match", name_query] }
-      Card.search(wql).each_with_object([]) do |i, ar|
-        ar << { id: i.codename, text: i.name }
-      end
-    else
-      group_by_country
-    end
+# Sorts and groups OpenCorporates' jurisdictions by country.
+# The resulting array has the format that the select2 library expects
+# to define a option list for a select field.
+class CountryGroups < Array
+  def initialize cards=nil
+    cards ||= Card.search(type_id: JurisdictionID)
+    @groups = Hash.new { |hash, key| hash[key] = {} }
+    process_cards cards
+    sanitize_and_sort
   end
 
   # The jurisdiction names from OpenCorporates sometimes have
@@ -21,40 +15,61 @@ format :json do
   # entries that have a clarification in brackets like "Holy See (Vatican City State)"
   # So if a group has only one child at the end we remove the group and put the "country"
   # back into brackets
-  def group_by_country
-    h = Hash.new { |hash, key| hash[key] = {} }
-    by_country = Card.search(type_id: JurisdictionID).each_with_object(h) do |i, groups|
-      if (m = i.name.match(/(?<state>.+?)\s*\((?<country>[^)]+)\)/))
-        groups[m[:country]][:text] ||= m[:country]
-        groups[m[:country]][:children] ||= []
-        groups[m[:country]][:children] << { id: i.codename, text: m[:state] }
+  def process_cards cards
+    cards.each do |card|
+      if (m = card.name.match(/(?<state>.+?)\s*\((?<country>[^)]+)\)/))
+        add_state card, m[:country], m[:state]
       else
-        groups[i.name][:text] ||= i.name
-        groups[i.name][:id] = i.codename
+        add_country card
       end
     end
-    sanitize_and_sort_grouping by_country
   end
 
-  def sanitize_and_sort_grouping by_country
-    result = []
-    by_country.keys.sort.each do |key|
-      data = by_country[key]
-      if data.key?(:children)
-        if data[:children].size > 1   # valid group
-          # group header is an item itself
-          result << { id: data.delete(:id), text: data[:text] } if data.key?(:id)
-          result << data
-        else  # just a single item
-          child = data[:children].first
-          child[:text] = "#{child[:text]} (#{key})"
-          result << child
-        end
-      else
-        result << data
-      end
+  def sanitize_and_sort
+    @groups.keys.sort.each do |country|
+      group = @groups[country]
+      group.key?(:children) ? sanitize_group(country, group) : (self << group)
     end
-    result
+  end
+
+  def add_state card, country, state
+    @groups[country][:text] ||= country
+    @groups[country][:children] ||= []
+    @groups[country][:children] << { id: card.codename, text: state }
+  end
+
+  def add_country card
+    @groups[card.name][:text] ||= card.name
+    @groups[card.name][:id] = card.codename
+  end
+
+  def sanitize_group country, group
+    if group[:children].size > 1 # valid group
+      # the group header is an item itself
+      self << { id: group.delete(:id), text: group[:text] } if group.key?(:id)
+      self << group
+    else  # just a single item; remove the group
+      child = group[:children].first
+      child[:text] = "#{child[:text]} (#{country})"
+      self << child
+    end
+  end
+end
+
+format :json do
+  view :select2 do
+    { results: select2_option_list }.to_json
+  end
+
+  def select2_option_list
+    if name_query
+      wql = { type_id: JurisdictionID, name:  ["match", name_query] }
+      Card.search(wql).each_with_object([]) do |i, ar|
+        ar << { id: i.codename, text: i.name }
+      end
+    else
+      CountryGroups.new
+    end
   end
 
   def name_query

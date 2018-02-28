@@ -15,7 +15,7 @@ format :json do
         alias: (alias_card&.item_names || []),
         oc_id: oc_card&.company_number,
         oc_jurisdiction_code: oc_card&.jurisdiction_code,
-        wikipedia: wikipedia_card&.content
+        wikipedia_title: wikipedia_card&.content
       }
     end
   end
