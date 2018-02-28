@@ -6,10 +6,10 @@ RSpec.describe Card::Set::Self::Jurisdiction do
       { text: "United States",
         children: include(
           { id: :oc_us_il, text: "Illinois" },
-          { id: :oc_us_in, text: "Indiana" }
-        )},
+          id: :oc_us_in, text: "Indiana"
+        ) },
       { id: :oc_ca, text: "Canada" },
-      { text: "Canada", children: include({ id: :oc_ca_ab, text: "Alberta" }) },
+      { text: "Canada", children: include(id: :oc_ca_ab, text: "Alberta") },
       { id: :oc_va, text: "Holy See (Vatican City State)" }
     )
   end

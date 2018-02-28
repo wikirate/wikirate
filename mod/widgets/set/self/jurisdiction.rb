@@ -1,5 +1,4 @@
 format :json do
-
   view :select2 do
     { results: select2_option_list }.to_json
   end
@@ -23,9 +22,9 @@ format :json do
   # So if a group has only one child at the end we remove the group and put the "country"
   # back into brackets
   def group_by_country
-    h = Hash.new { |h, k| h[k] = {} }
+    h = Hash.new { |hash, key| hash[key] = {} }
     by_country = Card.search(type_id: JurisdictionID).each_with_object(h) do |i, groups|
-      if (m = i.name.match(%r{(?<state>.+?)\s*\((?<country>[^)]+)\)}))
+      if (m = i.name.match(/(?<state>.+?)\s*\((?<country>[^)]+)\)/))
         groups[m[:country]][:text] ||= m[:country]
         groups[m[:country]][:children] ||= []
         groups[m[:country]][:children] << { id: i.codename, text: m[:state] }
