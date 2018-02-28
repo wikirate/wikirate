@@ -5,7 +5,6 @@ card_accessor :wikipedia
 card_accessor :open_corporates
 
 format :html do
-
   def default_content_formgroup_args _args
     voo.edit_structure = [:headquarters, :image, :wikipedia]
   end
@@ -64,9 +63,9 @@ format :html do
   view :content_right_col do
     wrap_with :div do
       [
-      _render_header_tabs_mobile,
-      _render_rich_header_mobile,
-      _render_tabs
+        _render_header_tabs_mobile,
+        _render_rich_header_mobile,
+        _render_tabs
       ]
     end
   end
