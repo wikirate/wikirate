@@ -4,7 +4,10 @@ format :json do
     if keyword
       company_ids = search_by_company_name(company_ids) | search_by_address(company_ids)
     end
-    company_ids.map { |id| Card.fetch_name(id) }.to_json
+    company_ids.map do |id|
+      company_name = Card.fetch_name(id)
+      { name: company_name, id: id, url_key: company_name.url_key }
+    end.to_json
   end
 
   def search_by_company_name company_ids
@@ -39,10 +42,10 @@ format :json do
   end
 
   def country_code
-    Env.params[:country_code]
+    Env.params[:country_code] if Env.params[:country_code].present?
   end
 
   def keyword
-    Env.params[:keyword]
+    Env.params[:keyword] if Env.params[:keyword].present?
   end
 end
