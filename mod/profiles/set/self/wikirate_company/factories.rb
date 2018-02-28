@@ -1,5 +1,5 @@
 format :json do
-  view :search_factories do
+  view :search_factories, cache: :never do
     company_ids = search_by_country
     if keyword
       company_ids = search_by_company_name(company_ids) | search_by_address(company_ids)

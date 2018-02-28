@@ -57,13 +57,13 @@ class CountryGroups < Array
 end
 
 format :json do
-  view :select2 do
+  view :select2, cache: :never do
     { results: select2_option_list }.to_json
   end
 
   def select2_option_list
     if name_query
-      wql = { type_id: JurisdictionID, name:  ["match", name_query] }
+      wql = { type_id: JurisdictionID, name: ["match", name_query] }
       Card.search(wql).each_with_object([]) do |i, ar|
         ar << { id: i.codename, text: i.name }
       end
