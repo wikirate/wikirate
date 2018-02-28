@@ -51,7 +51,7 @@ format :html do
     end
   end
 
-  view :content_right_col do
+  view :right_column do
     wrap_with :div, class: "progress-column" do
       [overall_progress_box, _render_tabs, _render_export_links]
     end

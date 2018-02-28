@@ -35,7 +35,7 @@ format :html do
     wrap { haml :overview }
   end
 
-  view :contributions, tags: :unknown_ok do
+  view :contributions, tags: :unknown_ok, cache: :never do
     return "" unless card.count.positive?
     with_paging do |paging_args|
       table_content = member_contribution_content members_on_page(paging_args)
