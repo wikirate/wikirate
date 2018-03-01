@@ -47,12 +47,17 @@ class CountryGroups < Array
     if group[:children].size > 1 # valid group
       # the group header is an item itself
       self << { id: group.delete(:id), text: group[:text] } if group.key?(:id)
+      sort_children group
       self << group
     else  # just a single item; remove the group
       child = group[:children].first
       child[:text] = "#{child[:text]} (#{country})"
       self << child
     end
+  end
+
+  def sort_children group
+    group[:children].sort! { |a, b| a[:text] <=> b[:text]}
   end
 end
 
