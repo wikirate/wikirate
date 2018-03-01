@@ -37,7 +37,7 @@ format :html do
   end
 
   def performance_data
-    output [_render_header_tabs_mobile, field_nest(:all_metric_values)]
+    field_nest(:all_metric_values)
   end
 
   def header_right
@@ -54,6 +54,28 @@ format :html do
 
   view :header_tabs_mobile, cache: :never do
     wrap_header_tabs(:mobile)
+  end
+
+  view :rich_header_mobile do
+    wrap_with :div, _render_rich_header, class: "d-block d-md-none"
+  end
+
+  view :content_right_col do
+    wrap_with :div do
+      [
+        _render_header_tabs_mobile,
+        _render_rich_header_mobile,
+        _render_tabs
+      ]
+    end
+  end
+
+  def left_column_class
+    "left-col order-2 order-md-1 hide-header-sm"
+  end
+
+  def right_column_class
+    "right-col order-1 order-md-2"
   end
 
   def wrap_header_tabs device=""
@@ -123,7 +145,6 @@ format :html do
   def integrations
     output [
       content_tag(:h5, "INTEGRATIONS", class: "border-bottom pb-2"),
-      content_tag(:hr),
       wikipedia_extract,
       open_corporates_extract
     ]

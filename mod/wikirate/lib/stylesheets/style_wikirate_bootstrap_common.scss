@@ -415,6 +415,25 @@
   }
 }
 
+@media (max-width: 1260px) {
+  .image-box.large {
+      width: 120px;
+      height: 120px;
+  }
+}
+
+@media (max-width: 575px) {
+  .image-box {
+    &.large {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .hide-header-sm .rich-header{
+    display: none;
+  }
+}
 .homepage-lead {
   font-weight: 300;
   margin-bottom: 20px;
@@ -719,12 +738,11 @@ button.pointer-item-delete.btn.btn-outline-secondary {
 //  color: #999;
 //}
 
-.current-user-up {
+.current-user-up, .current-user-down {
   color: $main-color !important;
-}
-
-.current-user-down {
-  color: $wanted-card-color !important;
+  &.vote-button {
+    background: rgba(61, 152, 140, 0.5);
+  }
 }
 
 .ellipsis,
