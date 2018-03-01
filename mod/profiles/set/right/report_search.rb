@@ -176,7 +176,6 @@ format :html do
   end
 
   [
-    :claim,
     :metric,
     :project,
     :research_group,
@@ -197,7 +196,7 @@ format :html do
   def default_listing item_view=:listing
     _render_content structure: card.variant,
                     skip_perms: true,
-                    items: { view: item_view }
+                    items: { view: item_view, hide: :listing_middle }
   end
 
   # this is a bit of a hack but a reasonably safe one
