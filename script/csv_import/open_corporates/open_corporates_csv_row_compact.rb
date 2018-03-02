@@ -1,4 +1,3 @@
-require_relative "../csv_row"
 require_relative "open_corporates_csv_row"
 
 class OpenCorporatesCSVRowCompact < OpenCorporatesCSVRow
