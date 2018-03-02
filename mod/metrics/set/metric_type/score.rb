@@ -1,5 +1,19 @@
 include Set::Abstract::Calculation
 
+# <OVERRIDES>
+def scored?
+  true
+end
+
+def needs_name?
+  false
+end
+
+def formula_editor
+  basic_metric_card.categorical?
+end
+# </OVERRIDES>
+
 def scorer
   name.tag
 end

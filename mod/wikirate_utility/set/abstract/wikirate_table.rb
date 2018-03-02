@@ -20,8 +20,6 @@ format :html do
     process_content content
   end
 
-  def item_wrapargs; end
-
   def yinyang_list args
     wrap_with :div, class: "yinyang-list" do
       field_subformat(args[:field])

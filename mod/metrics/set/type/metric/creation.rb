@@ -118,6 +118,12 @@ def create_value args
   Card.create! valid_args
 end
 
+
+# for override
+def needs_name?
+  !name.present?
+end
+
 # The new metric form has a title and a designer field instead of a name field
 # We compose the card's name here
 event :set_metric_name, :initialize, on: :create, when: :needs_name? do
@@ -145,7 +151,7 @@ format :html do
         calculated: {
           help: "Answer values for <strong>Calculated</strong> "\
                 "metrics are dynamically calculated.",
-          subtabs: %w[Formula Score WikiRating]
+          subtabs: %w[Formula Descendant Score WikiRating]
         }
       }
   end
@@ -160,11 +166,14 @@ format :html do
   end
 
   def selected_tab_pane? tab
-    tab == if params[:tab]&.downcase&.to_sym&.in?([:formula, :score, :wiki_rating])
-             :calculated
-           else
-             :researched
-           end
+    tab == current_tab
+  end
+
+  def current_tab
+    @current_tab ||= begin
+      subtab = params[:tab]&.downcase&.to_sym
+      subtab && Card[subtab].calculated? ? :calculated : :researched
+    end
   end
 
   def selected_subtab_pane? name

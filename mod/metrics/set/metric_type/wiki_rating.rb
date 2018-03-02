@@ -1,5 +1,20 @@
 include Set::Abstract::Calculation
 
+# <OVERRIDES>
+def rated?
+  true
+end
+
+def scored?
+  true
+end
+
+def formula_editor
+  :rating_editor
+end
+# </OVERRIDES>
+
+
 format :html do
   # def metric_designer_field options={}
   #   super options.merge(readonly: true)

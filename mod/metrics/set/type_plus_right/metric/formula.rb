@@ -39,15 +39,7 @@ format :html do
   end
 
   view :editor do
-    if card.wiki_rating?
-      _render_rating_editor
-    elsif card.categorical?
-      _render_categorical_editor
-    elsif card.score?
-      super()
-    else
-      _render_standard_formula_editor
-    end
+    render metric_card.formula_editor
   end
 
   view :standard_formula_editor do
@@ -62,6 +54,7 @@ format :html do
   view :new do
     super() + add_metric_modal_slot
   end
+
   view :edit do
     voo.hide :toolbar
     super() + add_metric_modal_slot

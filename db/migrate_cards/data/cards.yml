@@ -540,6 +540,16 @@
   :type: Basic
   :key: conversation+*type+*structure
   :merged: 2018-02-27 17:55:36 UTC
+- :name: Descendant
+  :type: Metric type
+  :codename: :descendant
+  :key: descendant
+- :name: Descendant+description
+  :type: Basic
+  :key: descendant+description
+- :name: Metric type
+  :type: Cardtype
+  :key: metric_type_type
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org
