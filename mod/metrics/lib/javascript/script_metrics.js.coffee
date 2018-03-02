@@ -36,6 +36,26 @@ decko.slotReady (slot) ->
   if slot.hasClass "edit_in_wikirating-view"
     addMissingVariables slot
 
+  if $(".new_tab_pane-view.METRIC_TYPE-formula").length > 0
+    show = $(".card-editor.RIGHT-hybrid input[type='checkbox']").prop "checked"
+    showResearchAttributes(show)
+
+  $('body').on 'change', ".new_tab_pane-view.METRIC_TYPE-formula .card-editor.RIGHT-hybrid input[type=\'checkbox\']", (event) ->
+    show = $(event.target).prop "checked"
+    showResearchAttributes(show)
+
+
+showResearchAttributes = (show) ->
+  if show
+    $(".card-editor.RIGHT-value_type").show()
+    $(".card-editor.RIGHT-research_policy").show()
+    $(".card-editor.RIGHT-report_type").show()
+  else
+    $(".card-editor.RIGHT-value_type").hide()
+    $(".card-editor.RIGHT-research_policy").hide()
+    $(".card-editor.RIGHT-report_type").hide()
+
+
 addMissingVariables = (slot) ->
   pairsEditor = slot.closest(".editor").find ".pairs-editor"
   slot.find(".thumbnail").each ->

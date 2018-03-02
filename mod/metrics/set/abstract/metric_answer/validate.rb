@@ -6,7 +6,7 @@ event :validate_value_type, :validate, on: :save, when: :standard? do
   return unless (value, value_type = validatable_value_and_type)
   # check if the value fit the value type of metric
   return if Answer.unknown? value
-  case value_type
+  case value_typew
   when "Number", "Money" then validate_numeric_value value
   when "Category"        then validate_category_value value
   end

@@ -33,18 +33,6 @@ format :html do
     end
   end
 
-  view :value_type_detail do
-    voo.hide :menu
-    wrap do
-      [
-        field_nest(:value_type, view: :content, items: { view: :name }, show: :menu),
-        # )_render_value_type_edit_modal_link,
-        _render_short_view,
-        # _render_menu
-      ]
-    end
-  end
-
   view :source_tab do
     tab_wrap do
       field_nest :source, view: :titled,
