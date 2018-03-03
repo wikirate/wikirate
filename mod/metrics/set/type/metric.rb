@@ -47,9 +47,10 @@ default_false :inverse?
 default_false :standard?
 default_false :researched?
 default_false :hybrid?
-default_false :rating?
 default_false :ten_scale?
+default_false :descendant?
 default_false :score?
+default_false :rating?
 
 def calculated?
   !researched?

@@ -2,8 +2,7 @@ include Abstract::Variable
 include_set Abstract::MetricChild, generation: 1
 
 def categorical?
-  metric_card.respond_to?(:basic_metric_card) &&
-    metric_card.basic_metric_card.categorical?
+  score? && metric_card.basic_metric_card.categorical?
 end
 
 format :html do
@@ -50,7 +49,7 @@ format :html do
   end
 
   view :core do
-    return _render_rating_core if card.wiki_rating?
+    return _render_rating_core if card.rating?
     return _render_categorical_core if card.categorical?
     "<span>=</span><span>#{super()}</span>"
   end
@@ -69,7 +68,7 @@ event :validate_formula, :validate, when: :wolfram_formula? do
 end
 
 def each_reference_out &block
-  return super(&block) unless wiki_rating?
+  return super(&block) unless rating?
   translation_table.each do |key, _value|
     yield(key, Content::Chunk::Link::CODE)
   end
