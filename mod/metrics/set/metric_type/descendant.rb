@@ -3,7 +3,7 @@ include_set Set::Abstract::Hybrid
 
 card_accessor :formula, type_id: PointerID
 
-# <OVERRIDES>
+# OVERRIDES
 def calculator_class
   ::Formula::Inheritance
 end
@@ -11,4 +11,3 @@ end
 def formula_editor
   :filtered_list
 end
-# </OVERRIDES>

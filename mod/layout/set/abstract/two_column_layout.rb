@@ -8,7 +8,7 @@ format :html do
   end
 
   def two_column_layout col1=6, col2=6, row_hash={}
-    bs_layout comntainer: false, fluid: true, class: container_class do
+    bs_layout container: false, fluid: true, class: container_class do
       row_hash[:class] ||= "panel-margin-fix"
       row col1, col2, row_hash do
         column _render_left_column, class: left_column_class

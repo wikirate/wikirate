@@ -57,7 +57,7 @@ class CountryGroups < Array
   end
 
   def sort_children group
-    group[:children].sort! { |a, b| a[:text] <=> b[:text]}
+    group[:children].sort! { |a, b| a[:text] <=> b[:text] }
   end
 end
 

@@ -73,6 +73,7 @@ RSpec.describe Card::Set::MetricType::Score do
   end
   describe "#score?" do
     subject { metric.score? }
+
     it { is_expected.to be_truthy }
   end
 

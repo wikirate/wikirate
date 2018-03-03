@@ -120,7 +120,6 @@ format :json do
 
   def chart_class
     if card.ten_scale?
-      binding.pry
       Card::Chart::TenScaleChart
     elsif card.numeric? || card.relationship?
       Card::Chart::NumericChart

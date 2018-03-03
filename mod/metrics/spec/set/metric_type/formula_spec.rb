@@ -136,11 +136,13 @@ RSpec.describe Card::Set::MetricType::Formula do
     end
     describe "#researched?" do
       subject { metric.researched? }
+
       it { is_expected.to be_falsey }
     end
 
     describe "#score?" do
       subject { metric.score? }
+
       it { is_expected.to be_falsey }
     end
   end
