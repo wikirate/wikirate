@@ -1,5 +1,13 @@
 VALID_INPUT_TYPE_IDS = [MetricID, YearlyVariableID].freeze
 
+def clean_formula
+  descendant? ? inheritance_formula : standard_formula
+end
+
+def standard_formula
+  content.gsub /[\r\n]+/m, ""
+end
+
 def input_chunks
   @input_chunks ||= find_input_chunks
 end

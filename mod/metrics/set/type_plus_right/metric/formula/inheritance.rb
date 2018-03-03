@@ -1,6 +1,9 @@
 include_set Abstract::Pointer
 
 def inheritance_formula
+  item_names.map do |item|
+    "{{#{item}}}"
+  end.join " || "
 end
 
 format :html do

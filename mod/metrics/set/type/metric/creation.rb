@@ -1,3 +1,5 @@
+VALID_DESIGNER_TYPE_IDS = [ResearchGroupID, UserID, WikirateCompanyID].freeze
+
 def create_value_options options
   create_args = {
     name: name.field("value options"),
@@ -28,8 +30,7 @@ event :ensure_title, :prepare_to_store, on: :save, changed: :name do
 end
 
 def valid_designer?
-  Card.fetch_type_id(metric_designer).in? [ResearchGroupID, UserID,
-                                           WikirateCompanyID]
+  Card.fetch_type_id(metric_designer).in? VALID_DESIGNER_TYPE_IDS
 end
 
 # @example

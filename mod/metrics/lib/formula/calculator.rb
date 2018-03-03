@@ -9,7 +9,7 @@ module Formula
 
     def initialize formula_card
       @formula_card = formula_card
-      @formula = formula_card.content.gsub(/[\r\n]+/m, "")
+      @formula = formula_card.clean_formula
       @input = Input.new(@formula_card.input_cards, year_options,
                          &self.class::INPUT_CAST)
       @errors = []
