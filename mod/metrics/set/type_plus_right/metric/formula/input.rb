@@ -46,8 +46,8 @@ event :validate_formula_input, :validate, on: :save, changed: :content do
 end
 
 def ok_input_name chunk
-  ok_input? variable_name?(chunk.referee_name) do
-    "invalid variable name: #{chunk.referee_name}"
+  ok_input? !variable_name?(chunk.referee_name) do
+    "invalid input name: #{chunk.referee_name}"
   end
 end
 
