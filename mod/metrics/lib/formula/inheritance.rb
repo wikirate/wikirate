@@ -1,5 +1,7 @@
 
+
 module Formula
-  class Inheritance < Ruby
+  # Calculator for dependant metrics
+  class Inheritance < Calculator
   end
 end

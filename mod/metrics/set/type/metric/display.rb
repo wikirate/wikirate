@@ -3,7 +3,7 @@ DETAILS_FIELD_MAP = {
   money: :monetary_details,
   category: :category_details,
   multi_category: :category_details
-}
+}.freeze
 
 format :html do
   view :listing do
@@ -75,7 +75,7 @@ format :html do
   end
 
   view :short_view do |_args|
-    return "" unless details_field = DETAILS_FIELD_MAP[value_type_code]
+    return "" unless (details_field = DETAILS_FIELD_MAP[value_type_code])
     detail_card = Card.fetch card, details_field, new: {}
     nest detail_card, view: :content
   end
