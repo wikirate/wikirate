@@ -5,7 +5,7 @@ def clean_formula
 end
 
 def standard_formula
-  content.gsub /[\r\n]+/m, ""
+  content.gsub(/[\r\n]+/m, "")
 end
 
 def input_chunks
