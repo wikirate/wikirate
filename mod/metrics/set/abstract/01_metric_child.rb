@@ -133,8 +133,13 @@ format do
            to: :card
 end
 
-delegate :value_options, :value_options_card,
-         :numeric?, :categorical?,
-         :researched?, :calculated?, :hybrid?,
-         :relationship?, :standard?, :score?, :ten_scale?,
-         to: :metric_card
+delegate :value_options, :value_options_card, :numeric?, :categorical?, to: :metric_card
+
+def self.delegate_to_metric_card_if_available *methods
+  methods.each do |method|
+    define_method(method) { metric_card&.send method }
+  end
+end
+
+delegate_to_metric_card_if_available :researched?, :calculated?, :hybrid?,
+                                     :relationship?, :standard?, :score?, :ten_scale?

@@ -118,7 +118,6 @@ def create_value args
   Card.create! valid_args
 end
 
-
 # for override
 def needs_name?
   !name.present?

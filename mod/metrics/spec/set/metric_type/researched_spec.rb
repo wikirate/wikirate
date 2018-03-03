@@ -77,7 +77,7 @@ describe Card::Set::MetricType::Researched do
 
   describe "#score?" do
     subject { metric.score? }
-    
+
     it { is_expected.to be_falsey }
   end
 
@@ -103,6 +103,7 @@ describe Card::Set::MetricType::Researched do
 
   describe "#random_valued_company_card" do
     subject { metric.random_valued_company_card }
+
     it { is_expected.to eq Card["Death_Star"] }
   end
 

@@ -1,14 +1,20 @@
+DETAILS_FIELD_MAP = {
+  number: :numeric_details,
+  money: :monetary_details,
+  category: :category_details,
+  multi_category: :category_details
+}
 
 format :html do
   view :listing do
     wrap_with :div, class: "contribution-item value-item no-hover" do
       [
-          wrap_with(:div, class: "header") do
-            _render_thumbnail
-          end,
-          wrap_with(:div, class: "text-center") do
-            listing_data
-          end
+        wrap_with(:div, class: "header") do
+          _render_thumbnail
+        end,
+        wrap_with(:div, class: "text-center") do
+          listing_data
+        end
       ]
     end
   end
@@ -16,8 +22,8 @@ format :html do
   def listing_data
     wrap_with :div, class: "contribution company-count p-2" do
       [
-          wrap_with(:span, company_count, class: "badge badge-secondary"),
-          wrap_with(:span, "Companies", class: "text-muted")
+        wrap_with(:span, company_count, class: "badge badge-secondary"),
+        wrap_with(:span, "Companies", class: "text-muted")
       ]
     end
   end
@@ -51,14 +57,10 @@ format :html do
     nest card.value_type_card,
          view: :modal_link,
          link_text: vtype_edit_modal_link_text,
-         link_opts: { class: "btn btn-outline-secondary slotter value-type-button",
-                      path: {
-                          slot: {
-                              hide: "header,menu,help",
-                              view: :edit,
-                              title: "Value Type"
-                          }
-                      } }
+         link_opts: {
+           class: "btn btn-outline-secondary slotter value-type-button",
+           path: { slot: { hide: "header,menu,help", view: :edit, title: "Value Type" } }
+         }
   end
 
   def vtype_edit_modal_link_text
@@ -73,20 +75,9 @@ format :html do
   end
 
   view :short_view do |_args|
-    return "" unless (value_type = card.fetch trait: :value_type)
-
-    details_field =
-        case value_type.item_names[0]
-          when "Number" then
-            :numeric_details
-          when "Money" then
-            :monetary_details
-          when "Category", "Multi-Category" then
-            :category_details
-        end
-    return "" if details_field.nil?
+    return "" unless details_field = DETAILS_FIELD_MAP[value_type_code]
     detail_card = Card.fetch card, details_field, new: {}
-    subformat(detail_card).render_content
+    nest detail_card, view: :content
   end
 
   view :handle do |_args|
@@ -113,9 +104,9 @@ format :html do
   view :metric_info do |_args|
     question = subformat(card.question_card)._render_core.html_safe
     rows = [
-        icon_row("question", question, class: "metric-details-question"),
-        icon_row("bar-chart", card.metric_type, class: "text-emphasized"),
-        icon_row("tag", field_nest("+topic", view: :content, items: { view: :link }))
+      icon_row("question", question, class: "metric-details-question"),
+      icon_row("bar-chart", card.metric_type, class: "text-emphasized"),
+      icon_row("tag", field_nest("+topic", view: :content, items: { view: :link }))
     ]
     if card.researched?
       rows << text_row("Unit", field_nest("Unit"))
@@ -158,31 +149,22 @@ format :html do
   def weight_content args
     icon_class = "pull-right _remove_row btn btn-outline-secondary btn-sm"
     wrap_with :div do
-      [
-          text_field_tag("pair_value", (args[:weight] || 0)) + "%",
-          content_tag(:span, fa_icon(:close).html_safe, class: icon_class)
-      ]
+      [text_field_tag("pair_value", (args[:weight] || 0)) + "%",
+       content_tag(:span, fa_icon(:close).html_safe, class: icon_class)]
     end
   end
 
   view :weight_row do |args|
     weight = weight_content args
-    output(
-        [
-            wrap_with(:td, _render_thumbnail_no_link),
-            wrap_with(:td, weight, class: "metric-weight")
-        ]
-    ).html_safe
+    output([wrap_with(:td, _render_thumbnail_no_link),
+            wrap_with(:td, weight, class: "metric-weight")]).html_safe
   end
 
   def interpret_year year
     case year
-      when /^[+-]\d+$/
-        "year#{args[:year]}"
-      when /^\d{4}$/
-        year
-      when "0"
-        "year"
+    when /^[+-]\d+$/ then "year#{args[:year]}"
+    when /^\d{4}$/   then year
+    when "0"         then "year"
     end
   end
 

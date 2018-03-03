@@ -13,12 +13,11 @@ format :json do
 
   def essentials
     {
-        designer: card.metric_designer,
-        title: card.metric_title
+      designer: card.metric_designer,
+      title: card.metric_title
     }
   end
 end
-
 
 format :csv do
   view :core do

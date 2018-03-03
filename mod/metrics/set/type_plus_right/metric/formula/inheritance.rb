@@ -1,7 +1,6 @@
 include_set Abstract::Pointer
 
 def inheritance_formula
-
 end
 
 format :html do

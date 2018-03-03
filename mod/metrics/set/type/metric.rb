@@ -51,7 +51,6 @@ default_false :rating?
 default_false :ten_scale?
 default_false :score?
 
-
 def calculated?
   !researched?
 end
