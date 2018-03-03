@@ -21,7 +21,7 @@ format :html do
   def tab_wrap
     bs_layout do
       row 12 do
-        col yield, class: "padding-top-10"
+        col output(yield), class: "padding-top-10"
       end
     end
   end

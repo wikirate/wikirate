@@ -1,7 +1,7 @@
 class Card
   module Chart
     # chart for score metrics with one bucket for each integer between 0 and 10
-    class ScoreChart < RangeChart
+    class TenScaleChart < RangeChart
       DEFAULT_BAR_CNT = 11
 
       def calculate_buckets

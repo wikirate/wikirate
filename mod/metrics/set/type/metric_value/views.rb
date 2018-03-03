@@ -98,7 +98,7 @@ format :html do
   # FIXME: need better name
   view :metric_details do
     span_args = { class: "metric-value" }
-    add_class span_args, grade if card.scored?
+    add_class span_args, grade if card.ten_scale?
     add_class span_args, :small if pretty_value.length > 5
     wrap_with :span, span_args do
       beautify(pretty_value).html_safe
@@ -107,7 +107,7 @@ format :html do
 
   view :modal_details, cache: :never do |args|
     span_args = { class: "metric-value" }
-    add_class span_args, grade if card.scored?
+    add_class span_args, grade if card.ten_scale?
     wrap_with :span, span_args do
       subformat(card)._render_modal_link(
         args.merge(

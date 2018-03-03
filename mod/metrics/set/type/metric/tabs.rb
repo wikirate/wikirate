@@ -11,17 +11,15 @@ format :html do
   # overridden for researched
   view :details_tab do
     tab_wrap do
-      _render_details_tab_content
+      [_render_metric_properties,
+       wrap_with(:hr, ""),
+       render_main_details]
     end
   end
 
-  view :details_tab_content do
-    output [
-      _render_metric_properties,
-      wrap_with(:hr, ""),
-      nest(card.formula_card, view: :titled, title: "Formula"),
-      nest(card.about_card, view: :titled, title: "About")
-    ]
+  view :main_details do
+    output [nest(card.formula_card, view: :titled, title: "Formula"),
+            nest(card.about_card, view: :titled, title: "About")]
   end
 
   view :discussion_tab do

@@ -1,25 +1,24 @@
 include Set::Abstract::Calculation
 
 # <OVERRIDES>
-def rated?
+def rating?
   true
 end
 
-def scored?
+def ten_scale?
   true
 end
 
 def formula_editor
   :rating_editor
 end
+
+def calculator_class
+  ::Formula::WikiRating
+end
 # </OVERRIDES>
 
-
 format :html do
-  # def metric_designer_field options={}
-  #   super options.merge(readonly: true)
-  # end
-
   def thumbnail_metric_info
     "WikiRating"
   end

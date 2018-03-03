@@ -1,6 +1,5 @@
 # don't update if it's part of scored metric update
-event :update_metric_values, :prepare_to_store,
-      on: :update, changed: :content do
+event :update_metric_values, :prepare_to_store, on: :update, changed: :content do
   @existing = ::Set.new metric_card.all_answers.pluck(:id)
   calculate_all_values do |company, year, value|
     if (answer = metric_card.answer company, year)
@@ -64,15 +63,7 @@ end
 
 def calculator_class
   @calculator_class ||=
-    if wiki_rating?
-      ::Formula::WikiRating
-    elsif ::Formula::Translation.valid_formula? content
-      ::Formula::Translation
-    elsif ::Formula::Ruby.valid_formula? content
-      ::Formula::Ruby
-    else
-      ::Formula::Wolfram
-    end
+    metric_card.calculator_class || ::Formula.calculator_class(content)
 end
 
 def calculator

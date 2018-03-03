@@ -54,26 +54,6 @@ def value_type
   nil
 end
 
-def researched?
-  metric_card&.researched?
-end
-
-def hybrid?
-  metric_card&.hybrid?
-end
-
-def scored?
-  metric_card&.scored?
-end
-
-def relationship?
-  metric_card&.relationship?
-end
-
-def standard?
-  metric_card&.standard?
-end
-
 def metric_card_before_name_change
   return unless (old_metric_name = metric_was) && old_metric_name.present?
   return unless old_metric_name != metric_name
@@ -154,5 +134,7 @@ format do
 end
 
 delegate :value_options, :value_options_card,
-         :numeric?, :categorical?, :relationship?,
+         :numeric?, :categorical?,
+         :researched?, :calculated?, :hybrid?,
+         :relationship?, :standard?, :score?, :ten_scale?,
          to: :metric_card

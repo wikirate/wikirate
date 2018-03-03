@@ -38,9 +38,19 @@ def metric_type_id
 end
 
 # these methods are overridden in at least one metric type
-%i[relationship? inverse? standard? researched? hybrid? rated? scored?].each do |test|
-  define_method(test) { false }
+def self.default_false method_name
+  define_method(method_name) { false }
 end
+
+default_false :relationship?
+default_false :inverse?
+default_false :standard?
+default_false :researched?
+default_false :hybrid?
+default_false :rating?
+default_false :ten_scale?
+default_false :score?
+
 
 def calculated?
   !researched?

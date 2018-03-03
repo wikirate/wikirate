@@ -1,7 +1,11 @@
 include Set::Abstract::Calculation
 
 # <OVERRIDES>
-def scored?
+def score?
+  true
+end
+
+def ten_scale?
   true
 end
 
@@ -39,6 +43,10 @@ end
 
 def value_type
   "Number"
+end
+
+def value_options
+  basic_metric_card.value_options
 end
 
 view :select do |_args|
