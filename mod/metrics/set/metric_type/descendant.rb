@@ -15,3 +15,7 @@ end
 def formula_editor
   :filtered_list
 end
+
+def formula_core
+  :ancestor_core
+end

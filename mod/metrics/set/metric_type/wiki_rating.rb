@@ -13,6 +13,10 @@ def formula_editor
   :rating_editor
 end
 
+def formula_core
+  :rating_core
+end
+
 def calculator_class
   ::Formula::WikiRating
 end

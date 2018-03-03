@@ -1,4 +1,3 @@
-include_set Abstract::Pointer
 
 def inheritance_formula
   item_names.map do |item|
@@ -13,5 +12,9 @@ format :html do
 
   def filter_card
     Card.fetch :metric, :browse_metric_filter
+  end
+
+  view :ancestor_core do
+    standard_pointer_core
   end
 end
