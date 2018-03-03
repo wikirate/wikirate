@@ -1,3 +1,13 @@
+# for overrides
+def formula_editor
+  :standard_formula_editor
+end
+
+# for overrides
+def calculator_class
+  nil
+end
+
 # @return all metric cards that score this metric
 def each_dependent_score_metric
   dependent_score_metrics.each do |m|

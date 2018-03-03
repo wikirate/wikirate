@@ -1,15 +1,5 @@
 card_accessor :formula, type_id: PhraseID
 
-# for overrides
-def formula_editor
-  :standard_formula_editor
-end
-
-# for overrides
-def calculator_class
-  nil
-end
-
 # @param [Hash] opts
 # @option opts [card key] :company
 # @option opts [String] :year
