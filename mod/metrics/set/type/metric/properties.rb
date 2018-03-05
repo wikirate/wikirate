@@ -18,7 +18,6 @@ format :html do
     }
   end
 
-
   view :metric_properties do
     table table_properties, class: "metric-properties"
   end
