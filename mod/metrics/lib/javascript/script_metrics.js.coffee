@@ -46,14 +46,15 @@ decko.slotReady (slot) ->
 
 
 showResearchAttributes = (show) ->
+  formula_tab = $(".new_tab_pane-view.METRIC_TYPE-formula")
   if show
-    $(".card-editor.RIGHT-value_type").show()
-    $(".card-editor.RIGHT-research_policy").show()
-    $(".card-editor.RIGHT-report_type").show()
+    formula_tab.find(".card-editor.RIGHT-value_type").show()
+    formula_tab.find(".card-editor.RIGHT-research_policy").show()
+    formula_tab.find(".card-editor.RIGHT-report_type").show()
   else
-    $(".card-editor.RIGHT-value_type").hide()
-    $(".card-editor.RIGHT-research_policy").hide()
-    $(".card-editor.RIGHT-report_type").hide()
+    formula_tab.find(".card-editor.RIGHT-value_type").hide()
+    formula_tab.find(".card-editor.RIGHT-research_policy").hide()
+    formula_tab.find(".card-editor.RIGHT-report_type").hide()
 
 
 addMissingVariables = (slot) ->

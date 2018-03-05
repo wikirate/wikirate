@@ -1,6 +1,7 @@
 require_relative "open_corporates_csv_row"
 
-class OpenCorporatesCSVRowOnlyHeadquarters< OpenCorporatesCSVRow
+# CSV import without incorporation place
+class OpenCorporatesCSVRowOnlyHeadquarters < OpenCorporatesCSVRow
   @columns = [:oc_jurisdiction_code, :oc_company_number, :wikirate_number, :company_name]
   @required = [:oc_jurisdiction_code, :oc_company_number, :wikirate_number]
 
