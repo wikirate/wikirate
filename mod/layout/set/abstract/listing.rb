@@ -7,21 +7,16 @@ format :html do
     wrap { haml :expanded_listing }
   end
 
-  view :listing_left do
-    "override listing_left view"
+  def self.view_for_override viewname
+    view viewname do
+      "override #{viewname} view"
+    end
   end
 
-  view :listing_right do
-    "override listing_right view"
-  end
-
-  view :listing_middle do
-    "override listing_middle view"
-  end
-
-  view :listing_bottom do
-    "override listing_bottom view"
-  end
+  view_for_override :listing_left
+  view_for_override :listing_right
+  view_for_override :listing_middle
+  view_for_override :listing_bottom
 
   view :listing_page_link do
     link_to_card card, icon_tag(:open_in_new), class: "text-muted"
@@ -38,4 +33,10 @@ format :html do
   view :listing_collapse_link do
     link_to_view :listing, icon_tag(:arrow_drop_down, class: "md-24"), class: toggle_class
   end
+
+  view :box, template: :haml
+
+  view_for_override :box_top
+  view_for_override :box_middle
+  view_for_override :box_bottom
 end
