@@ -1,4 +1,6 @@
 class CategoryValueValidator
+  attr_reader :keys
+
   def initialize metric_card
     @metric_card = metric_card
     @values = Answer.where(metric_id: @metric_card.id).select(:value).distinct
@@ -14,8 +16,8 @@ class CategoryValueValidator
     end
   end
 
-  def keys
-    @keys
+  def invalid_values?
+    invalid_count > 0
   end
 
   def invalid_count
@@ -28,7 +30,7 @@ class CategoryValueValidator
 
   def invalid_values
     invalid_keys.map do |k|
-      link_to_answer name(k)
+      link_to_answer(name(k)).html_safe
     end
   end
 
@@ -43,24 +45,31 @@ class CategoryValueValidator
 
   def error_msg
     msg =
-      if invalid_count.one?
-        "#{invalid_values} is not a valid option for this metric. "\
+      if invalid_count == 1
+        "#{invalid_values.to_sentence} is not a valid option for this metric. "\
         "Please add those options"
       else
-        "#{invalid_values} are not valid options for this metric. "\
+        "#{invalid_values.to_sentence} are not valid options for this metric. "\
         "Please add those option"
       end
     msg + " #{link_to_edit_options} first."
   end
 
   def link_to_answer value
-    @metric_card.format.link_to_card :search, path: { "_keyword":
-      %({"left":{"left":{"left_id":"#{@metric_id}"}}, "content":"#{value}"}) }
+    #search = %({"left":{"left":{"left_id":"#{@metric_card.id}"}}, "content":"#{value}"})
+    search = <<-JSON.strip_heredoc.delete("\n")
+      {"left":{"left_id":"#{@metric_card.id}"},
+      "right_plus":["value",{"content":"#{value}"}]}
+    JSON
+    title = "Answers with invalid option \"#{value}\""
+    @metric_card.format.link_to_card(:search, value,
+                                     path: { "_keyword": search, slot: { title: title } })
   end
 
   def link_to_edit_options
-    @metric_card.format.link_to_card value_options_card, "to the options card",
-                        path: { view: :edit }, target: "_blank"
+    @metric_card.format.link_to_card @metric_card.value_options_card,
+                                     "to the options card",
+                                     path: { view: :edit }, target: "_blank"
   end
 end
 
@@ -76,7 +85,7 @@ end
 
 def validate_categorical_values
   validator = CategoryValueValidator.new left
-  return unless validator.invalid_valued?
+  return unless validator.invalid_values?
   add_categorical_error validator
 end
 
