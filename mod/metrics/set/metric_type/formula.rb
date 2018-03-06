@@ -4,6 +4,7 @@ card_accessor :variables, type_id: Card::SessionID
 
 format :html do
   view :content_formgroup do
+    # coffeescript hides the bottom three if _hybrid_ is not selected
     voo.edit_structure += [
       [:hybrid, "Researchable"],
       [:value_type, "Value Type"],
