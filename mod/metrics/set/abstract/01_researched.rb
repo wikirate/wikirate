@@ -93,4 +93,8 @@ format :html do
         </div>
     HTML
   end
+
+  def properties
+    super.merge research_properties
+  end
 end

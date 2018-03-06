@@ -56,7 +56,6 @@ class CategoryValueValidator
   end
 
   def link_to_answer value
-    #search = %({"left":{"left":{"left_id":"#{@metric_card.id}"}}, "content":"#{value}"})
     search = <<-JSON.strip_heredoc.delete("\n")
       {"left":{"left_id":"#{@metric_card.id}"},
       "right_plus":["value",{"content":"#{value}"}]}

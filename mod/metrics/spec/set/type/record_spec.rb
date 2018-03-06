@@ -21,7 +21,7 @@ RSpec.describe Card::Set::Type::Record do
 
     specify do
       expect(JSON.parse(companies)).to eq  "Monster_Inc" => ["1977"],
-                                           "SPECTRE" => %w[2000 1977]
+                                           "SPECTRE" => %w[1977 2000]
     end
   end
 end
