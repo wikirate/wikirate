@@ -15,6 +15,18 @@ format :html do
   end
 
   view :ancestor_core do
-    standard_pointer_core
+    wrap_with(:h6) { "Inherit from:"} + raw(ancestor_thumbnails.join "<div>OR</div>")
+  end
+
+  def ancestor_thumbnails
+    card.item_cards.map do |item_card|
+      nest_item(item_card, view: :formula_thumbnail) do |rendered, item_view|
+        wrap_ancestor { wrap_item rendered, item_view }
+      end
+    end
+  end
+
+  def wrap_ancestor
+    wrap_with(:div, class: "clearfix") { yield }
   end
 end

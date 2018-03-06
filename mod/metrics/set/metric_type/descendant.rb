@@ -16,6 +16,10 @@ def formula_editor
   :filtered_list
 end
 
+def hidden_content_in_formula_editor?
+  true
+end
+
 def formula_core
   :ancestor_core
 end

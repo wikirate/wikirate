@@ -63,7 +63,7 @@ end
 
 def calculator_class
   @calculator_class ||=
-    metric_card.calculator_class || ::Formula.calculator_class(content)
+    metric_card.calculator_class || ::Formula.calculator_class(clean_formula)
 end
 
 def calculator

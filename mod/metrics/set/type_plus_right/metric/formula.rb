@@ -24,7 +24,14 @@ format :html do
   end
 
   view :editor do
-    render card.metric_card.formula_editor
+    with_hidden_content do
+      render card.metric_card.formula_editor
+    end
+  end
+
+  def with_hidden_content
+    hidden = card.metric_card.hidden_content_in_formula_editor?
+    (hidden ? _render_hidden_content_field : "") + yield
   end
 
   view :standard_formula_editor do
