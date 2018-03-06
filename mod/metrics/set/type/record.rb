@@ -52,5 +52,3 @@ def search_companies left_left:, right:, key:
     h[hkey] = (h[hkey] << card.name.left_name.right_name).sort.reverse
   end
 end
-
-

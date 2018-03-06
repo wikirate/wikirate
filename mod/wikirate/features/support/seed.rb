@@ -1,3 +1,4 @@
+# override utils method
 module Cardio
   def self.seed_test_db
     system "env RAILS_ENV=test bundle exec rake wikirate:test:seed"
