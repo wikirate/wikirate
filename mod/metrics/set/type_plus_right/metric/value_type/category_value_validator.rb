@@ -22,7 +22,7 @@ class CategoryValueValidator
   end
 
   def invalid_values?
-    invalid_count.positive? > 0
+    invalid_count.positive?
   end
 
   def invalid_count
