@@ -66,12 +66,8 @@ module Formula
         if val.is_a?(Array)
           validate_input val
         else
-          normalize_value_item val
+          val.blank? ? nil : @input_cast.call(val)
         end
-      end
-
-      def normalize_value_item v
-        v.blank? ? nil : @input_cast.call(v)
       end
     end
   end
