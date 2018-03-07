@@ -25,7 +25,7 @@ RSpec.describe Formula::Calculator::Input do
     @input = %w[Joe_User+researched_number_1 Joe_User+researched_number_2]
     @requirement = :all
     expect { |b| input.each(year: 2015, &b) }
-        .to yield_with_args([5.0, 2.0], samsung_id, 2015)
+      .to yield_with_args([5.0, 2.0], samsung_id, 2015)
   end
 
   example "two metrics with :any values" do

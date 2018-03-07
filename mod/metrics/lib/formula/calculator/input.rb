@@ -59,7 +59,7 @@ module Formula
           return if @requirement == :all && val.blank?
           val
         end
-        (@requirement == :any && input.compact.blank?) ? nil : input
+        @requirement == :any && input.compact.blank? ? nil : input
       end
 
       def normalize_value val

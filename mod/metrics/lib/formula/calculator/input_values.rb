@@ -30,7 +30,7 @@ module Formula
         elsif company_id
           each_year_with_value company_id, &block
         else
-          each_company_and_year_with_value &block
+          each_company_and_year_with_value(&block)
         end
       end
 
@@ -161,14 +161,13 @@ module Formula
         @companies_with_values = company_id ? ::Set.new([company_id]) : nil
       end
 
-      # if a company has been ruled out as possibly having years that meet input requirements,
+      # if a company definitely doesn't meet input requirements,
       # remove it completely
       def clean_companies_with_value_by_year
         @companies_with_values_by_year =
           @companies_with_values_by_year
-              .to_a.each.with_object({}) do |(year, companies_by_year), h|
+          .to_a.each.with_object({}) do |(year, companies_by_year), h|
             h[year] = applicable_companies companies_by_year, @companies_with_values
-
           end
       end
 
