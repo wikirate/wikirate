@@ -16,5 +16,6 @@ shared_context "with formula stub" do
     allow(card).to receive(:input_cards) { chunks.map(&:referee_card) }
     allow(card).to receive(:input_chunks).and_return chunks
     allow(card).to receive(:normalize_value) { |v| v }
+    allow(card).to receive(:input_requirement).and_return :all
   end
 end

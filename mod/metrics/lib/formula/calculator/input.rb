@@ -15,7 +15,7 @@ module Formula
       # @param [Proc] input_cast a block that is called for every input value
       def initialize input_cards, requirement, year_options, &input_cast
         @input_cast = input_cast
-        @requirement = @requirement
+        @requirement = requirement
         @year_options_processor = YearOptionsProcessor.new year_options
         @input_values = initialize_input_values input_cards, requirement
       end
@@ -59,13 +59,12 @@ module Formula
           return if @requirement == :all && val.blank?
           val
         end
-        @requirement == :any && input.compact.blank? ? nil : input
+        @requirement == :any && input.flatten.compact.blank? ? nil : input
       end
 
       def normalize_value val
         if val.is_a?(Array)
-          val.map! { |v| normalize_value_item v }
-          val.compact.empty? ? nil : val
+          validate_input val
         else
           normalize_value_item val
         end
