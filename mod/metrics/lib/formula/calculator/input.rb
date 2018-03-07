@@ -11,10 +11,13 @@ module Formula
 
       # @param [Array<Card>] input_cards all cards that are part of the formula
       # @param [Array<String] year_options for every input card a year option
+      # @param [Symbol] requirement either :all or :any
       # @param [Proc] input_cast a block that is called for every input value
-      def initialize input_cards, year_options, &input_cast
+      def initialize input_cards, requirement, year_options, &input_cast
         @input_cast = input_cast
-        initialize_input_values input_cards, year_options
+        @requirement = @requirement
+        @year_options_processor = YearOptionsProcessor.new year_options
+        @input_values = initialize_input_values input_cards, requirement
       end
 
       delegate :type, :card_id, to: :input_values
@@ -41,29 +44,35 @@ module Formula
 
       private
 
-      def initialize_input_values input_cards, year_options
-        @year_options_processor = YearOptionsProcessor.new year_options
-        @input_values =
-          if @year_options_processor.no_year_options
-            InputValues.new input_cards
-          else
-            InputValuesWithYearOptions.new input_cards, @year_options_processor
-          end
+      def initialize_input_values input_cards, requirement
+        if @year_options_processor.no_year_options
+          InputValues.new input_cards, requirement
+        else
+          InputValuesWithYearOptions.new input_cards, requirement, @year_options_processor
+        end
       end
 
       def validate_input input
-        return if !input || !input.is_a?(Array)
-        input.map do |val|
-          return if val.blank?
-          if val.is_a?(Array)
-            val.map do |v|
-              return if v.blank?
-              @input_cast.call v
-            end
-          else
-            @input_cast.call val
-          end
+        return unless input.is_a?(Array)
+        input.map! do |val|
+          val = normalize_value val
+          return if @requirement == :all && val.blank?
+          val
         end
+        (@requirement == :any && input.compact.blank?) ? nil : input
+      end
+
+      def normalize_value val
+        if val.is_a?(Array)
+          val.map! { |v| normalize_value_item v }
+          val.compact.empty? ? nil : val
+        else
+          normalize_value_item val
+        end
+      end
+
+      def normalize_value_item v
+        v.blank? ? nil : @input_cast.call(v)
       end
     end
   end

@@ -39,6 +39,11 @@ def input_keys
   @input_keys ||= input_names.map { |m| m.to_name.key }
 end
 
+# are values required for ALL inputs or ANY input?
+def input_requirement
+  metric_card.formula_input_requirement
+end
+
 event :validate_formula_input, :validate, on: :save, changed: :content do
   input_chunks.each do |chunk|
     ok_input_name(chunk) && ok_input_card(chunk) && ok_input_cardtype(chunk)

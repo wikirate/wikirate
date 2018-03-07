@@ -1,7 +1,8 @@
 RSpec.describe Formula::Calculator::Input do
   let :input do
+    @requirement ||= :all
     input_cards = @input.map { |i| Card.fetch i }
-    described_class.new(input_cards, @year_options, &:to_f)
+    described_class.new(input_cards, @requirement, @year_options, &:to_f)
   end
 
   let(:death_star_id) { Card.fetch_id "Death Star" }
@@ -18,6 +19,21 @@ RSpec.describe Formula::Calculator::Input do
     @input = %w[Jedi+deadliness Joe_User+researched]
     expect { |b| input.each(year: 1977, &b) }
       .to yield_with_args([100.0, 77.0], death_star_id, 1977)
+  end
+
+  example "two metrics with :all values" do
+    @input = %w[Joe_User+researched_number_1 Joe_User+researched_number_2]
+    @requirement = :all
+    expect { |b| input.each(year: 2015, &b) }
+        .to yield_with_args([5.0, 2.0], samsung_id, 2015)
+  end
+
+  example "two metrics with :any values" do
+    @input = %w[Joe_User+researched_number_1 Joe_User+researched_number_2]
+    @requirement = :any
+    expect { |b| input.each(year: 2015, &b) }
+      .to yield_successive_args([[5.0, 2.0], samsung_id, 2015],
+                                [[100.0, nil], apple_id, 2015])
   end
 
   example "yearly variable" do

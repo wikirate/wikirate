@@ -23,3 +23,7 @@ end
 def formula_core
   :ancestor_core
 end
+
+def formula_input_requirement
+  :any
+end

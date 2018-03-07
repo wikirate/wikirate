@@ -15,7 +15,7 @@ format :html do
   end
 
   view :ancestor_core do
-    wrap_with(:h6) { "Inherit from:"} + raw(ancestor_thumbnails.join "<div>OR</div>")
+    wrap_with(:h6) { "Inherit from:" } + raw(ancestor_thumbnails.join("<div>OR</div>"))
   end
 
   def ancestor_thumbnails
