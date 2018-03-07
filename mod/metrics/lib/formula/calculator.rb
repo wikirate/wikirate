@@ -17,8 +17,8 @@ module Formula
       @formula_card = formula_card
       @formula = formula_card.clean_formula
       @input = Input.new @formula_card.input_cards,
-                         year_options,
                          @formula_card.input_requirement,
+                         year_options,
                          &self.class::INPUT_CAST
       @errors = []
     end

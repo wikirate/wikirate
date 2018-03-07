@@ -9,7 +9,7 @@ def descendant?
 end
 
 def calculator_class
-  ::Formula::Ruby
+  ::Formula::Inheritance
 end
 
 def formula_editor

@@ -23,8 +23,7 @@ module Formula
       # @param year [Integer]
       def each company_id: nil, year: nil, &block
         if company_id && year
-          values = fetch company: company_id, year: year
-          yield values, company_id, year
+          result company_id, year, &block
         elsif year
           each_company_with_value year, &block
         elsif company_id
@@ -200,7 +199,7 @@ module Formula
         @companies_with_values =
           if @companies_with_values
             # remove all companies that don't have values for all input items
-            @companies_with_values & company_ids
+            applicable_companies @companies_with_values, company_ids
           else
             # first input item: add all company ids
             company_ids
@@ -224,7 +223,7 @@ module Formula
         query = { metric_id: input_card_id }
         # search only for companies that still have a chance to reach a complete set
         # of input values for at least one year.
-        if @companies_with_values.present?
+        if @companies_with_values.present? && @requirement == :all
           query[:company_id] = @companies_with_values.to_a
         end
         query[:year] = year.to_i if year
