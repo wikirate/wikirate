@@ -69,8 +69,14 @@ describe Card::Set::MetricType::Researched do
     it { is_expected.to be_truthy }
   end
 
-  describe "#scored?" do
-    subject { metric.scored? }
+  describe "#ten_scale?" do
+    subject { metric.ten_scale? }
+
+    it { is_expected.to be_falsey }
+  end
+
+  describe "#score?" do
+    subject { metric.score? }
 
     it { is_expected.to be_falsey }
   end

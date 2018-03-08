@@ -10,10 +10,11 @@ module Formula
       InputItem = Struct.new(:card_id, :type)
 
       # @param [Array<Card>] input_cards all cards that are part of the formula
-      def initialize input_cards
+      # @param [Symbol] requirement either :all or :any
+      def initialize input_cards, requirement
         @all_fetched = false
         @companies_with_values_by_year = Hash.new_nested ::Set
-
+        @requirement = requirement
         @input_list = initialize_input_list input_cards
         @value_store = ValueStore.new @input_list
       end
@@ -22,8 +23,7 @@ module Formula
       # @param year [Integer]
       def each company_id: nil, year: nil, &block
         if company_id && year
-          values = fetch company: company_id, year: year
-          yield values, company_id, year
+          result company_id, year, &block
         elsif year
           each_company_with_value year, &block
         elsif company_id
@@ -33,25 +33,30 @@ module Formula
         end
       end
 
-      def each_company_and_year_with_value
+      def each_company_and_year_with_value &block
         fetch_values
         years_with_values.each do |year|
           companies_with_value(year).each do |company_id|
-            yield fetch(company: company_id, year: year), company_id, year
+            result company_id, year, &block
           end
         end
       end
 
-      def each_year_with_value company_id
+      def each_year_with_value company_id, &block
         years_with_values.each do |year|
-          yield fetch(company: company_id, year: year), company_id, year
+          result company_id, year, &block
         end
       end
 
-      def each_company_with_value year
+      def each_company_with_value year, &block
         companies_with_value(year).each do |company_id|
-          yield fetch(company: company_id, year: year), company_id, year
+          result company_id, year, &block
         end
+      end
+
+      def result company_id, year
+        values = fetch company: company_id, year: year
+        yield values, company_id, year
       end
 
       def fetch_all
@@ -109,13 +114,6 @@ module Formula
         clean_companies_with_value_by_year
       end
 
-      # return true if there is no company that has values for all input cards
-      def no_company_with_values_for_all_input_items?
-        return false unless @companies_with_values&.empty?
-        @companies_with_values_by_year = Hash.new_nested ::Set
-        true
-      end
-
       def initialize_input_list input_cards
         input_cards.map do |input_card|
           InputItem.new(input_card.id, input_type(input_card))
@@ -134,7 +132,6 @@ module Formula
       def fetch_value input_item, year
         case input_item.type
         when :yearly_value
-          #
           yearly_value_fetch input_item.card_id
         else
           answer_fetch input_item.card_id, year
@@ -145,8 +142,15 @@ module Formula
         initialize_company_lists company_id
         @input_list.each do |input_item|
           yield input_item
-          break if no_company_with_values_for_all_input_items?
+          break if no_company_with_required_input_values?
         end
+        @companies_with_values_by_year ||= Hash.new_nested ::Set
+      end
+
+      # return true if we know no company has
+      def no_company_with_required_input_values?
+        return false unless @requirement == :all
+        @companies_with_values&.empty?
       end
 
       def initialize_company_lists company_id
@@ -156,13 +160,18 @@ module Formula
         @companies_with_values = company_id ? ::Set.new([company_id]) : nil
       end
 
-      # if a company doesn't have at least one value for all input cards
+      # if a company definitely doesn't meet input requirements,
       # remove it completely
       def clean_companies_with_value_by_year
         @companies_with_values_by_year =
-          @companies_with_values_by_year.to_a.each.with_object({}) do |(k, v), h|
-            h[k] = v & @companies_with_values
+          @companies_with_values_by_year
+          .to_a.each.with_object({}) do |(year, companies_by_year), h|
+            h[year] = applicable_companies companies_by_year, @companies_with_values
           end
+      end
+
+      def applicable_companies set1, set2
+        @requirement == :all ? set1 & set2 : set1 | set2
       end
 
       # Find answer for the given input card and cache the result.
@@ -190,7 +199,7 @@ module Formula
         @companies_with_values =
           if @companies_with_values
             # remove all companies that don't have values for all input items
-            @companies_with_values & company_ids
+            applicable_companies @companies_with_values, company_ids
           else
             # first input item: add all company ids
             company_ids
@@ -214,7 +223,7 @@ module Formula
         query = { metric_id: input_card_id }
         # search only for companies that still have a chance to reach a complete set
         # of input values for at least one year.
-        if @companies_with_values.present?
+        if @companies_with_values.present? && @requirement == :all
           query[:company_id] = @companies_with_values.to_a
         end
         query[:year] = year.to_i if year

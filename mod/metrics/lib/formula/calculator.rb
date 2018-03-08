@@ -2,6 +2,12 @@
 
 module Formula
   # Calculates the values of a formula
+  #
+  # Calculator.new(formula_card)
+  # The formula_card must respond to:
+  #   #clean_formula: a String with just nests and operators
+  #   #input_cards
+  #   #input_chunks
   class Calculator
     INPUT_CAST = ->(val) { val }
 
@@ -9,9 +15,11 @@ module Formula
 
     def initialize formula_card
       @formula_card = formula_card
-      @formula = formula_card.content.gsub(/[\r\n]+/m, "")
-      @input = Input.new(@formula_card.input_cards, year_options,
-                         &self.class::INPUT_CAST)
+      @formula = formula_card.clean_formula
+      @input = Input.new @formula_card.input_cards,
+                         @formula_card.input_requirement,
+                         year_options,
+                         &self.class::INPUT_CAST
       @errors = []
     end
 

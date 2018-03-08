@@ -39,6 +39,14 @@ namespace :wikirate do
       end
     end
 
+    def with_env_var key, value
+      old_val = ENV[key]
+      ENV[key] = value
+      result = yield
+      old_val ? ENV[key] = old_val : ENV.delete(key)
+      result
+    end
+
     def ensure_test_db
       return if testdb
       puts "no test database"

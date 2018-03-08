@@ -64,15 +64,15 @@ format :html do
   end
 
   def beautify value
-    card.scored? ? beautify_scored(value) : value
+    card.ten_scale? ? beautify_ten_scale(value) : value
   end
 
-  def beautify_scored value
-    value = shorten_score value
+  def beautify_ten_scale value
+    value = shorten_ten_scale value
     colorify(value)
   end
 
-  def shorten_score value
+  def shorten_ten_scale value
     return value if value.number?
     Answer.unknown?(value) ? "?" : "!"
   end

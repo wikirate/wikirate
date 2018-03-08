@@ -1,5 +1,4 @@
 
-
 format :html do
   def properties
     {
