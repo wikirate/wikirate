@@ -20,17 +20,12 @@ format :html do
                 scores_tab: "Scores"
   end
 
-  view :details_tab_content do
-    wrap_with :div, class: "metric-details-content" do
-      [
-        _render_metric_properties,
-        # _render_add_value_buttons,
-        wrap_with(:hr, ""),
-        nest(card.about_card, view: :titled, title: "About"),
-        nest(card.methodology_card, view: :titled, title: "Methodology"),
-        _render_import_button
-      ]
-    end
+  view :main_details do
+    output [
+      nest(card.about_card, view: :titled, title: "About"),
+      nest(card.methodology_card, view: :titled, title: "Methodology"),
+      _render_import_button
+    ]
   end
 
   view :value_type_detail do

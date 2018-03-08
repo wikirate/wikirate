@@ -1,8 +1,8 @@
 module Formula
   class Calculator
     class InputValuesWithYearOptions < InputValues
-      def initialize input_cards, year_options_processor
-        super(input_cards)
+      def initialize input_cards, requirement, year_options_processor
+        super(input_cards, requirement)
         @year_options_processor = year_options_processor
       end
 

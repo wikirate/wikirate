@@ -1,5 +1,27 @@
 include Set::Abstract::Calculation
 
+# <OVERRIDES>
+def score?
+  true
+end
+
+def ten_scale?
+  true
+end
+
+def needs_name?
+  false
+end
+
+def formula_editor
+  :categorical_editor if categorical?
+end
+
+def formula_core
+  :categorical_core if categorical?
+end
+# </OVERRIDES>
+
 def scorer
   name.tag
 end
@@ -16,6 +38,10 @@ def basic_metric_card
   left
 end
 
+def categorical?
+  basic_metric_card.categorical?
+end
+
 def normalize_value value
   return value if value.is_a? String
   return "0" if value.negative?
@@ -25,6 +51,10 @@ end
 
 def value_type
   "Number"
+end
+
+def value_options
+  basic_metric_card.value_options
 end
 
 view :select do |_args|
