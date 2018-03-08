@@ -33,9 +33,9 @@ PATH
 PATH
   remote: vendor/decko
   specs:
-    card (1.93.12)
+    card (1.93.13)
       bootstrap4-kaminari-views (~> 1.0)
-      cardname (= 0.3.12)
+      cardname (= 0.3.13)
       carrierwave (~> 1.1)
       coderay (~> 1.1)
       coffee-script (~> 2.4)
@@ -51,11 +51,11 @@ PATH
       twitter (~> 6.1)
       uglifier (~> 3.2)
       uuid (~> 2.3)
-    cardname (0.3.12)
+    cardname (0.3.13)
       activesupport (~> 5.1)
       htmlentities (~> 4.3)
-    decko (0.3.12)
-      card (= 1.93.12)
+    decko (0.3.13)
+      card (= 1.93.13)
       rails (~> 5.1)
 
 GEM
@@ -457,7 +457,7 @@ GEM
       ruby-ll (~> 2.1)
     open_uri_redirections (0.2.1)
     parallel (1.12.1)
-    parser (2.5.0.2)
+    parser (2.5.0.3)
       ast (~> 2.4.0)
     pdfkit (0.8.2)
     pivotal-tracker (0.5.13)
@@ -564,8 +564,8 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     rubocop-decko (0.2)
-    rubocop-rspec (1.23.0)
-      rubocop (>= 0.52.1)
+    rubocop-rspec (1.24.0)
+      rubocop (>= 0.53.0)
     ruby-jmeter (3.1.08)
       nokogiri
       rest-client
