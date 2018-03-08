@@ -1,20 +1,9 @@
-include Set::Abstract::Calculation
-include_set Set::Abstract::Hybrid
+include_set Abstract::Calculation
+include_set Abstract::Hybrid
 
 card_accessor :variables, type_id: Card::SessionID
 
 format :html do
-  view :content_formgroup do
-    # coffeescript hides the bottom three if _hybrid_ is not selected
-    voo.edit_structure += [
-      [:hybrid, "Researchable"],
-      [:value_type, "Value Type"],
-      [:research_policy, "Research Policy"],
-      [:report_type, "Report Type"]
-    ]
-    super()
-  end
-
   def value_type
     "Number"
   end
@@ -25,14 +14,5 @@ format :html do
 
   def thumbnail_metric_info
     "Formula"
-  end
-
-  def properties
-    props = super.merge(hybrid: "Researchable")
-    card.hybrid? ? props.merge(research_properties) : props
-  end
-
-  def hybrid_property
-    metric_property_nest :hybrid
   end
 end
