@@ -11,7 +11,6 @@ format :html do
   end
 end
 
-event :validate_category_translation, :validate,
-      when: proc { |c| c.translate_formula? } do
+event :validate_category_translation, :validate, when: :translate_formula? do
   # TODO: Check if there is a translation for all value options
 end

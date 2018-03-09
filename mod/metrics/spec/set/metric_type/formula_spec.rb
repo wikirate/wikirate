@@ -139,8 +139,9 @@ RSpec.describe Card::Set::MetricType::Formula do
 
       it { is_expected.to be_falsey }
     end
-    describe "#scored?" do
-      subject { metric.scored? }
+
+    describe "#score?" do
+      subject { metric.score? }
 
       it { is_expected.to be_falsey }
     end

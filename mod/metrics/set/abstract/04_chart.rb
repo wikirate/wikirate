@@ -119,8 +119,8 @@ format :json do
   end
 
   def chart_class
-    if card.scored?
-      Card::Chart::ScoreChart
+    if card.ten_scale?
+      Card::Chart::TenScaleChart
     elsif card.numeric? || card.relationship?
       Card::Chart::NumericChart
     else

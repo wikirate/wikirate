@@ -1,5 +1,9 @@
 include_set Abstract::Relationship
 
+def researched?
+  true
+end
+
 event :ensure_inverse, :validate, on: :create do
   return if new_inverse_title.present? || inverse_title.present?
   errors.add :name, "no inverse title given"

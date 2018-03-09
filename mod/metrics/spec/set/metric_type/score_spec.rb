@@ -71,11 +71,12 @@ RSpec.describe Card::Set::MetricType::Score do
 
     it { is_expected.to be_falsey }
   end
-  describe "#scored?" do
-    subject { metric.scored? }
+  describe "#score?" do
+    subject { metric.score? }
 
     it { is_expected.to be_truthy }
   end
+
   describe "#scorer" do
     subject { metric.scorer }
 
