@@ -1,5 +1,4 @@
 include Abstract::Variable
-include_set Abstract::Pointer
 include_set Abstract::MetricChild, generation: 1
 
 def categorical?
