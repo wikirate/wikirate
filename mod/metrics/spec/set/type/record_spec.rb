@@ -22,7 +22,7 @@ RSpec.describe Card::Set::Type::Record do
     specify do
       expect(JSON.parse(companies))
         .to match  "Monster_Inc" => ["1977"],
-                   "SPECTRE" => contain_exactly("1977", "2000"),
+                   "SPECTRE" => contain_exactly("1977", "2000")
     end
   end
 end
