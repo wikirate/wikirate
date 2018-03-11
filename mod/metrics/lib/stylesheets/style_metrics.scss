@@ -773,3 +773,9 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
         margin-left: 2px;
     }
 }
+
+.new_tab_pane-view.METRIC_TYPE-formula {
+    .card-editor.RIGHT-value_type {
+        display: none;
+    }
+}

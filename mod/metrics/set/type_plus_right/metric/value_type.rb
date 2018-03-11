@@ -9,18 +9,9 @@ event :validate_type_of_existing_values, :validate,
 end
 
 def validate_categorical_values
-  invalid_categories = existing_value_keys - valid_category_keys
-  add_categorical_error invalid_categories if invalid_categories.present?
-end
-
-def existing_value_keys
-  values = Answer.where(metric_id: left.id).select(:value).distinct
-  values.map { |n| n.value.to_name.key }
-end
-
-def valid_category_keys
-  keys = value_options.map { |n| n.to_name.key }
-  keys << "unknown"
+  validator = CategoryValueValidator.new left
+  return unless validator.invalid_values?
+  add_categorical_error validator
 end
 
 def validate_numeric_values
@@ -39,19 +30,8 @@ def add_numeric_error answer
              "'#{answer.value}' is not a numeric value."
 end
 
-def add_categorical_error invalid_options
-  errors.add :value, quoted_list(invalid_options) +
-                     " is not an option for this metric. " \
-                     "Please #{link_to_edit_options} first."
-end
-
-def link_to_edit_options
-  format.link_to_card value_options_card, "add the values to options card",
-                      path: { view: :edit }, target: "_blank"
-end
-
-def quoted_list list
-  list.map { |o| "\"#{o}\"" }.join ", "
+def add_categorical_error validator
+  errors.add :value, validator.error_msg
 end
 
 format :html do

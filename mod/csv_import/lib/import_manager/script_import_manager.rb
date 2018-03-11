@@ -4,7 +4,7 @@ end
 # {ImportManager} for scripts. Main difference is you don't have an act card and
 # you can choose a error policy. For example throw  an exception on the first error or
 # collect all errors and report in the console at the end.
-# You can also specify a user who does't the imports.
+# You can also specify a user who does the imports.
 # Unlike the other ImportManagers the ScriptImportManager import doesn't support
 # extra data to override fields.
 class ScriptImportManager < ImportManager
@@ -31,7 +31,7 @@ class ScriptImportManager < ImportManager
   end
 
   def row_failed _csv_row
-    case error_policy
+    case @error_policy
     when :fail then
       raise ImportError, @import_status[:errors].inspect
     when :report then

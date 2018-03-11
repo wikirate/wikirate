@@ -13,15 +13,16 @@ RSpec.describe Card::Set::Type::Record do
     end
   end
 
-  describe "json view #related_companiew_with_year" do
+  describe "json view #related_companies_with_year" do
     let(:companies) do
       Card["Clean_Clothes_Campaign+Supplier of+Los Pollos Hermanos"]
         .format(:json).render_related_companies_with_year
     end
 
     specify do
-      expect(JSON.parse(companies)).to eq  "Monster_Inc" => ["1977"],
-                                           "SPECTRE" => %w[2000 1977]
+      expect(JSON.parse(companies))
+        .to match  "Monster_Inc" => ["1977"],
+                   "SPECTRE" => contain_exactly("1977", "2000")
     end
   end
 end

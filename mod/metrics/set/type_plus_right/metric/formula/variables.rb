@@ -1,4 +1,4 @@
-# handle variables used in a formula card's content
+# handle variables (eg M1, M2, etc) used in a formula card's content
 
 # FIXME: card is getting stored in database (despite being a session card)
 def variables_card
