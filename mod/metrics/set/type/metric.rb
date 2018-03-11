@@ -54,9 +54,9 @@ default_false :rating?
 
 def calculated?
   !researched?
+# RESEARCH POLICY
 end
 
-# RESEARCH POLICY
 
 def designer_assessed?
   research_policy.casecmp("designer assessed").zero?

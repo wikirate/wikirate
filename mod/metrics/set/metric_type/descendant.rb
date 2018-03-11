@@ -1,5 +1,5 @@
-include_set Set::Abstract::Calculation
-include_set Set::Abstract::Hybrid
+include_set Abstract::Calculation
+include_set Abstract::Hybrid
 
 card_accessor :formula, type_id: PointerID
 

@@ -63,6 +63,18 @@ format :html do
          }
   end
 
+  view :value_type_detail do
+    voo.hide :menu
+    wrap do
+      [
+        field_nest(:value_type, view: :content, items: { view: :name }, show: :menu),
+        # )_render_value_type_edit_modal_link,
+        _render_short_view,
+        # _render_menu
+      ]
+    end
+  end
+
   def vtype_edit_modal_link_text
     # FIXME: why does value_type_card not work although value_type is registered
     #        as card accessor

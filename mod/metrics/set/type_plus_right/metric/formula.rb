@@ -1,5 +1,4 @@
 include Abstract::Variable
-include_set Abstract::Pointer
 include_set Abstract::MetricChild, generation: 1
 
 def categorical?
@@ -34,7 +33,7 @@ format :html do
     (hidden ? _render_hidden_content_field : "") + yield
   end
 
-  view :standard_formula_editor do
+  view :standard_formula_editor, tags: :unknown_ok do
     output [formula_text_area, _render_variables]
   end
 
