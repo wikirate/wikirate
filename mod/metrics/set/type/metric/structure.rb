@@ -1,4 +1,5 @@
 include_set Abstract::TwoColumnLayout
+include_set Abstract::Listing
 
 format :html do
   def left_column_class
@@ -56,6 +57,20 @@ format :html do
     HTML
   end
 
+  view :box_header, template: :haml do
+    @vote_count = voo.show?(:vote_count) ? field_nest(:vote_count) : ""
+  end
+
+  view :box_top do
+    _render_box_header
+  end
+
+  view :box_middle do
+    "haa chi haa chi haa chi hoo"
+  end
+  view :box_bottom do
+    "footer"
+  end
   view :browse_item, template: :haml do
     @vote_count = voo.show?(:vote_count) ? field_nest(:vote_count) : ""
   end
