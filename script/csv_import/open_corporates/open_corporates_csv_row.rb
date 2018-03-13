@@ -1,4 +1,5 @@
-require_relative "../csv_row"
+require_relative "../../../mod/csv_import/lib/csv_row.rb"
+require_relative "../../../mod/csv_import/lib/csv_file.rb"
 
 class OpenCorporatesCSVRow < CSVRow
   @columns =

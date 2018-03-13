@@ -20,29 +20,12 @@ format :html do
                 scores_tab: "Scores"
   end
 
-  view :details_tab_content do
-    wrap_with :div, class: "metric-details-content" do
-      [
-        _render_metric_properties,
-        # _render_add_value_buttons,
-        wrap_with(:hr, ""),
-        nest(card.about_card, view: :titled, title: "About"),
-        nest(card.methodology_card, view: :titled, title: "Methodology"),
-        _render_import_button
-      ]
-    end
-  end
-
-  view :value_type_detail do
-    voo.hide :menu
-    wrap do
-      [
-        field_nest(:value_type, view: :content, items: { view: :name }, show: :menu),
-        # )_render_value_type_edit_modal_link,
-        _render_short_view,
-        # _render_menu
-      ]
-    end
+  view :main_details do
+    output [
+      nest(card.about_card, view: :titled, title: "About"),
+      nest(card.methodology_card, view: :titled, title: "Methodology"),
+      _render_import_button
+    ]
   end
 
   view :source_tab do
@@ -104,5 +87,9 @@ format :html do
           </a>
         </div>
     HTML
+  end
+
+  def properties
+    super.merge research_properties
   end
 end
