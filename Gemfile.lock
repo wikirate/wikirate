@@ -30,6 +30,34 @@ PATH
     card-mod-voting (1.0)
       card
 
+PATH
+  remote: vendor/decko
+  specs:
+    card (1.93.13)
+      bootstrap4-kaminari-views (~> 1.0)
+      cardname (= 0.3.13)
+      carrierwave (~> 1.1)
+      coderay (~> 1.1)
+      coffee-script (~> 2.4)
+      colorize (~> 0.8)
+      delayed_job_active_record (~> 4.1)
+      diff-lcs (~> 1.3)
+      haml (~> 5.0)
+      kaminari (~> 1.0)
+      mini_magick (~> 4.2)
+      minitest (= 5.11.2)
+      recaptcha (~> 4.3)
+      sass (~> 3.4)
+      twitter (~> 6.1)
+      uglifier (~> 3.2)
+      uuid (~> 2.3)
+    cardname (0.3.13)
+      activesupport (~> 5.1)
+      htmlentities (~> 4.3)
+    decko (0.3.13)
+      card (= 1.93.13)
+      rails (~> 5.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -119,27 +147,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (>= 2.0, < 4.0)
-    card (1.93.11)
-      bootstrap4-kaminari-views (~> 1.0)
-      cardname (= 0.3.11)
-      carrierwave (~> 1.1)
-      coderay (~> 1.1)
-      coffee-script (~> 2.4)
-      colorize (~> 0.8)
-      delayed_job_active_record (~> 4.1)
-      diff-lcs (~> 1.3)
-      haml (~> 5.0)
-      kaminari (~> 1.0)
-      mini_magick (~> 4.2)
-      minitest (= 5.11.2)
-      recaptcha (~> 4.3)
-      sass (~> 3.4)
-      twitter (~> 6.1)
-      uglifier (~> 3.2)
-      uuid (~> 2.3)
-    cardname (0.3.11)
-      activesupport (~> 5.1)
-      htmlentities (~> 4.3)
     carrierwave (1.2.2)
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
@@ -184,9 +191,6 @@ GEM
     dalli (2.7.6)
     database_cleaner (1.4.1)
     debug_inspector (0.0.3)
-    decko (0.3.11)
-      card (= 1.93.11)
-      rails (~> 5.1)
     delayed_job (4.1.4)
       activesupport (>= 3.0, < 5.2)
     delayed_job_active_record (4.1.2)
@@ -673,11 +677,13 @@ DEPENDENCIES
   capistrano-passenger
   capistrano-rvm
   capybara (= 2.17.0)
+  card!
   card-mod-airbrake!
   card-mod-logger!
   card-mod-new_relic!
   card-mod-pdfjs!
   card-mod-voting!
+  cardname!
   company-mapping
   cucumber-expressions (= 5.0.7)
   cucumber-rails
@@ -685,6 +691,7 @@ DEPENDENCIES
   daemons
   dalli
   database_cleaner (~> 1.4.1)
+  decko!
   delayed_job_active_record
   delayed_job_web
   descriptive_statistics
