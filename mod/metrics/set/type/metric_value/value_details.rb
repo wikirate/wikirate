@@ -46,7 +46,6 @@ format :html do
     "(descendant answer details coming soon)"
   end
 
-
   def answer_details_table
     AnswerDetailsTable.new(self).render
   end
