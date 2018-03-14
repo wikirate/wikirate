@@ -30,6 +30,8 @@ namespace :deploy do
     # invoke "backup:create"
   end
 
+
+
   after :updated, :migrate do
     #because this creates the log and tmp files, it needs to be executed before the chown,
     # which in turn needs to happen before the restart.  not ideal.
@@ -60,8 +62,13 @@ namespace :deploy do
     end
   end
 
+  desc "stop old delayed job processes"
+  before :starting, :stop_delayed_jobs do
+    invoke "delayed_job:stop"
+  end
+
   desc "restart delayed job processes"
-  after :published, :restart_delayed_job do
+  after :published, :start_delayed_jobs do
     invoke "delayed_job:restart"
   end
 
