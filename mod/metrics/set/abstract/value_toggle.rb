@@ -1,7 +1,7 @@
 format :html do
   def empty_details_slot
     wrap_with(:div, "", id: collapse_id,
-                        class: "card-slot collapse answer-details text-muted")
+                        class: "card-slot collapse answer-details")
   end
 
   def row

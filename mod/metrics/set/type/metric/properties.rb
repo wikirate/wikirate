@@ -36,7 +36,7 @@ format :html do
 
   def scorer_property
     return unless card.metric_type_codename == :score
-    _render_scorer_info
+    nest scorer_card, view: :scorer_info_without_label
   end
 
   def metric_property_nest field, item_view: :name
