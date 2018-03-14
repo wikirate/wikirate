@@ -19,20 +19,26 @@ format :html do
     codename = "#{key}_import_file".to_sym
     output [
       "<h5 class='mt-3'>New import file</h5>",
-      nest(Card.new(type: codename),
-         view: :new, hide: [:header, :menu, :new_type_formgroup]),
-      "<h5 class='mt-3'>Recent imports</h5>",
-      list_group(recent_imports(codename))
+      new_import_form(codename),
+      "<h5 class='mt-5'>Recent imports</h5>",
+      list_group(recent_imports_list(codename))
     ]
   end
 
-  def recent_imports type
-    type_id = Card.fetch_id type
-    cards = Card.search left: { type_id: type_id }, right: { codename: "import_status" }, limit: 20,
-                        sort: "update"
+  def new_import_form import_type
+    nest(Card.new(type: import_type),
+         view: :new, hide: [:header, :menu, :new_type_formgroup])
+  end
 
-    cards.map do |item|
+  def recent_imports_list import_type
+    import_status_cards(import_type).map do |item|
       nest item, view: :compact
     end
+  end
+
+  def import_status_cards import_type, limit=20
+    type_id = Card.fetch_id import_type
+    Card.search left: { type_id: type_id }, right: { codename: "import_status" },
+                limit: limit, sort: "update"
   end
 end

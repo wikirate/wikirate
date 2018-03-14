@@ -101,7 +101,6 @@ format :html do
   end
 
   view :compact, template: :haml do
-
   end
 
   def report

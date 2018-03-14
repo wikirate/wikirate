@@ -67,9 +67,9 @@ namespace :deploy do
     invoke "delayed_job:stop"
   end
 
-  desc "restart delayed job processes"
+  desc "start delayed job processes"
   after :published, :start_delayed_jobs do
-    invoke "delayed_job:restart"
+    invoke "delayed_job:start"
   end
 
   after :finishing, :cleanup do
