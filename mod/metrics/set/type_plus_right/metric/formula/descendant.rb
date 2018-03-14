@@ -18,6 +18,10 @@ format :html do
     wrap_with(:h6) { "Inherit from:" } + raw(ancestor_thumbnails.join("<div>OR</div>"))
   end
 
+  view :descendant_value_details do
+    "(answer details coming soon)"
+  end
+
   def ancestor_thumbnails
     card.item_cards.map do |item_card|
       nest_item(item_card, view: :formula_thumbnail) do |rendered, item_view|
