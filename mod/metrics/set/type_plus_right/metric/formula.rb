@@ -1,4 +1,5 @@
 include Abstract::Variable
+include_set Abstract::Pointer
 include_set Abstract::MetricChild, generation: 1
 
 def categorical?
@@ -56,11 +57,11 @@ format :html do
   end
 
   view :core do
-    if (special_core = card.metric_card.formula_core)
-      render special_core
-    else
-      "<span>=</span><span>#{super()}</span>"
-    end
+    render card.metric_card.formula_core
+  end
+
+  view :standard_formula_core do
+    "<span>=</span><span>#{process_content _render_raw}</span>"
   end
 
   def default_nest_view

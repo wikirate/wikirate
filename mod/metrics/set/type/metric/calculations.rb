@@ -13,7 +13,7 @@ def hidden_content_in_formula_editor?
 end
 
 def formula_core
-  nil
+  :standard_formula_core
 end
 
 def formula_input_requirement
