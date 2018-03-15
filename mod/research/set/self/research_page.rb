@@ -60,7 +60,7 @@ format :html do
   end
 
   def metric_details_tab
-    nest metric, view: :details_tab_content,
+    nest metric, view: :main_details,
                  hide: [:add_value_buttons, :import_button]
   end
 

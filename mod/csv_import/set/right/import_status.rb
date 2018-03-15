@@ -89,11 +89,18 @@ format :html do
 
   view :core do
     with_header(progress_header, level: 4) do
-      sections = %i[imported skipped overridden failed].map do |type|
-        progress_section type
-      end.compact
-      progress_bar(*sections)
+      _render_progress_bar
     end + wrap_with(:p, undo_button) + wrap_with(:p, report)
+  end
+
+  view :progress_bar do
+    sections = %i[imported skipped overridden failed].map do |type|
+      progress_section type
+    end.compact
+    progress_bar(*sections)
+  end
+
+  view :compact, template: :haml do
   end
 
   def report
