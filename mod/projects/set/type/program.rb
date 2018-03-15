@@ -38,11 +38,12 @@ format :html do
 
   view :projects_tab do
     wrap_with :div do
-      [
-        field_nest(:project, view: :content, items: { view:  :listing }, title: "Projects"),
-        standard_nest(:contact_us)
-      ]
+      [projects_list, standard_nest(:contact_us)]
     end
+  end
+
+  def projects_list
+    field_nest :project, view: :content, items: { view:  :listing }, title: "Projects"
   end
 
   view :metrics_tab do
