@@ -14,7 +14,7 @@
 #end
 
 namespace :deploy do
-  before :starting, :backup do
+  before :starting, :confirm do
     next unless fetch(:stage) == :production
     puts <<-EOF
 
@@ -30,6 +30,9 @@ namespace :deploy do
     # invoke "backup:create"
   end
 
+  after :confirm, :enable_maintenance_page do
+    invoke "maintenance:enable"
+  end
 
 
   after :updated, :migrate do
@@ -108,5 +111,11 @@ namespace :deploy do
         puts "Coult not find #{story.id} in git repo."
       end
     end
+  end
+
+  after :cleanup, :disable_maintenance_page do
+    puts "waiting for machine stuff to regenerate"
+    sleep 60
+    invoke "maintenance:disable"
   end
 end
