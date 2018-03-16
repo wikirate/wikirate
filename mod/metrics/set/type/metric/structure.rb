@@ -1,5 +1,6 @@
 include_set Abstract::TwoColumnLayout
 include_set Abstract::Listing
+include_set Abstract::BsBadge
 
 format :html do
   def left_column_class
@@ -36,12 +37,19 @@ format :html do
   end
 
   view :metric_question do
-    question = subformat(card.question_card)._render_content
     wrap_with :div, question, class: "question blockquote"
+  end
+
+  def question
+    subformat(card.question_card)._render_content
   end
 
   view :designer_info do
     nest card.metric_designer_card, view: :designer_info
+  end
+
+  view :designer_info_without_label do
+    nest card.metric_designer_card, view: :designer_info_without_label
   end
 
   view :question_row do
@@ -57,20 +65,27 @@ format :html do
     HTML
   end
 
-  view :box_header, template: :haml do
+  view :box_top, template: :haml do
     @vote_count = voo.show?(:vote_count) ? field_nest(:vote_count) : ""
   end
 
-  view :box_top do
-    _render_box_header
+  view :box_middle, template: :haml do
+    @question = question
   end
 
-  view :box_middle do
-    "haa chi haa chi haa chi hoo"
+  def company_count
+    field_nest :wikirate_company, view: :count
   end
-  view :box_bottom do
-    "footer"
+
+  def metric_count
+    field_nest :all_metric_values, view: :count
   end
+
+  view :box_bottom, template: :haml do
+    @company_badge = labeled_badge company_count, "Companies", color: "company"
+    @answer_badge = labeled_badge metric_count, "Answers", color: "dark"
+  end
+
   view :browse_item, template: :haml do
     @vote_count = voo.show?(:vote_count) ? field_nest(:vote_count) : ""
   end

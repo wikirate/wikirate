@@ -7,6 +7,10 @@ format :html do
     author_info "Scored by"
   end
 
+  view :designer_info_without_label do
+    author_info
+  end
+
   view :scorer_info_without_label do
     author_info
   end

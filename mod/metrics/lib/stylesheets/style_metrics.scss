@@ -779,3 +779,8 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
         display: none;
     }
 }
+
+.box-middle canvas {
+    max-width: 300px!important;
+    max-height: 206px!important;
+}
