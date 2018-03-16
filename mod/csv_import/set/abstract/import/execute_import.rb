@@ -12,7 +12,7 @@ end
 
 def import_manager
   @import_mananger =
-    ActImportManager.new self, csv_file, conflict_strategy, extra_data
+    ::ActImportManager.new self, csv_file, conflict_strategy, extra_data
 end
 
 def conflict_strategy
