@@ -7,7 +7,7 @@ format :html do
 
   view :credit_name do |args|
     return if card.virtual?
-    wrap_with :div, class: "credit" do
+    wrap_with :div, class: "credit ml-1 pl-1" do
       [
         "#{credit_verb} #{_render_updated_at} ago by ",
         nest(card.updater, view: :link),
@@ -32,15 +32,26 @@ format :html do
   end
 
   view :sources do
-    source_card = card.fetch trait: :source
     source_options = { view: :core, items: { view: :cited } }
     source_options[:items][:hide] = :cited_source_links if voo.hide? :cited_source_links
     output [
-      wrap_with(:h5, "Citations (#{source_card.item_names.size})"),
+      citations_count,
       nest(source_card, source_options)
     ]
   end
 
+  def source_card
+    card.fetch trait: :source
+  end
+
+  def citations_count
+    wrap_with :h5 do
+      [
+        "Citations",
+        (wrap_with :span, source_card.item_names.size, class: "badge badge-light border")
+      ]
+    end
+  end
   view :sources_with_cited_button do
     with_nest_mode :normal do
       field_nest :source, view: :core, items: { view: :with_cited_button }

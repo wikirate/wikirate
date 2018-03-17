@@ -35,8 +35,7 @@ format :html do
   end
 
   view :box, template: :haml
-
-  view_for_override :box_top
+  
   view_for_override :box_middle
   view_for_override :box_bottom
 end
