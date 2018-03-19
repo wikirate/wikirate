@@ -2,9 +2,10 @@ module OpenCorporates
   class Company
     attr_reader :properties, :error
 
-    def initialize jurisdiction_code, company_number
+    def initialize jurisdiction_code, company_number, sparse=true
       @jurisdiction_code = jurisdiction_code
       @company_number = company_number
+      @sparse = sparse
       validate_jurisdiction_code
       validate_company_number
       fetch_properties
@@ -72,9 +73,11 @@ module OpenCorporates
     end
 
     def api_response
+      opts = {}
+      opts[:sparse] = true if @sparse
       @api_response ||=
-        ::OpenCorporates::API.fetch_companies @jurisdiction_code, @company_number,
-                                              sparse: true
+        ::OpenCorporates::API.fetch_companies @jurisdiction_code, @company_number, opts
+
     end
   end
 end
