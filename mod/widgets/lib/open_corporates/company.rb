@@ -77,7 +77,6 @@ module OpenCorporates
       opts[:sparse] = true if @sparse
       @api_response ||=
         ::OpenCorporates::API.fetch_companies @jurisdiction_code, @company_number, opts
-
     end
   end
 end
