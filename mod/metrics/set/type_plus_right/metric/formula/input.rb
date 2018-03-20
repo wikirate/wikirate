@@ -22,13 +22,16 @@ def input_cards
 end
 
 def input_names
-  @input_names ||=
-    case metric_card.metric_type_codename
-    when :score       then [metric_card.basic_metric]
-    when :wiki_rating then translation_hash.keys
-    when :descendant  then item_names
-    else                   standard_input_names
-    end
+  @input_names ||= item_names
+end
+
+def item_names args={}
+  case metric_card.metric_type_codename
+  when :score       then [metric_card.basic_metric]
+  when :wiki_rating then translation_hash.keys
+  when :descendant  then super
+  else                   standard_input_names
+  end
 end
 
 def standard_input_names
