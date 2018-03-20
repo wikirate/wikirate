@@ -9,7 +9,7 @@
     .value
       = field_nest :value, title: "Answer"
       = haml_partial :citations_formgroup
-      = field_nest :discussion, title: "#{fa_icon(:commenting, class: "text-muted")} Comment"
+      = field_nest :discussion, title: raw("#{fa_icon :commenting, class: "text-muted"} Comment").html_safe
 
   .buttons
     = button_formgroup do

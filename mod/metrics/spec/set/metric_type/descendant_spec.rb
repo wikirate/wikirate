@@ -54,7 +54,7 @@ RSpec.describe Card::Set::MetricType::Descendant do
       end
 
       it "renders ancestors in formula core" do
-        expect(formula_format.render(:edit)).to have_tag("h6") { "Inherit from:" }
+        expect(formula_format.render(:core)).to have_tag("h6") { "Inherit from:" }
       end
     end
   end
