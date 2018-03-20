@@ -137,7 +137,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
     end
 
     it "is added to user's +double_checked card" do
-      expect(double_checked).to include("[[~#{answer_card.id}]]")
+      expect(double_checked).to include("[[#{answer_card.name}]]")
     end
 
     context "value updated" do
