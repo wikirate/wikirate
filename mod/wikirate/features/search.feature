@@ -4,7 +4,7 @@ Feature: search feature
 
   Scenario: quick search
     Given I go to the homepage
-    And I fill in "_keyword" with "Jedi"
+    And I fill in "query_keyword" with "Jedi"
     And I press enter to search
     Then I should see "darkness rating"
     When I click on "2"
