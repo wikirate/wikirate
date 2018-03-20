@@ -49,10 +49,9 @@ module OpenCorporates
       #       :uid=>"isic_4-855"
       def fetch_industry_codes code_scheme="isic_4"
         fetch_items(:industry_codes, code_scheme,
-                    collection_selector: [:results, :industry_code_scheme, :industry_codes],
-                    item_selector: :industry_code).each do |item|
-          item.symbolize_keys!
-        end
+                    collection_selector: [:results, :industry_code_scheme,
+                                          :industry_codes],
+                    item_selector: :industry_code).each(&:symbolize_keys!)
       end
 
       # @example
@@ -64,9 +63,7 @@ module OpenCorporates
 
       def fetch_items *query_args, collection_selector:, item_selector: nil
         collection_selector = Array.wrap(collection_selector).map(&:to_s)
-        result = pick_nested_item(*collection_selector) do
-            fetch(*query_args)
-        end
+        result = pick_nested_item(*collection_selector) { fetch(*query_args) }
         return result unless item_selector
         item_selector = Array.wrap(item_selector).map(&:to_s)
         result.map do |item|
