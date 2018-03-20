@@ -22,33 +22,33 @@ RSpec.describe Card::Set::MetricType::Descendant do
                  company_id: Card.fetch_id(company), year: year.to_i).take
   end
 
-  context "two-answer example" do
+  context "with two ancestors" do
     before do
       @metric_title = "descendant1"
       @metric = create_metric(
-          name: @metric_title, type: :descendant,
-          formula: "[[Joe User+researched number 2]]\n" \
-                   "[[Joe User+researched number 1]]"
+        name: @metric_title, type: :descendant,
+        formula: "[[Joe User+researched number 2]]\n" \
+                 "[[Joe User+researched number 1]]"
       )
     end
-    
-    context "calculation" do
+
+    context "with answers" do
       it "uses first ancestor when both are present" do
         expect(inherited_value("Samsung", "2014")).to eq("5")
       end
-  
+
       it "uses second ancestor when only second is present" do
         expect(inherited_value("Death_Star", "1977")).to eq("5")
       end
-  
+
       it "has no answer when neither are present" do
         expect(inherited_value("Sony_Corporation", "1977")).to eq(nil)
       end
     end
-    
-    context "views" do
-      let (:formula_format) { @metric.fetch(trait: :formula).format }
-      
+
+    context "with views" do
+      let(:formula_format) { @metric.fetch(trait: :formula).format }
+
       it "renders pointer edit view" do
         expect(formula_format.render(:edit)).to have_tag("ul._pointer-filtered-list")
       end
