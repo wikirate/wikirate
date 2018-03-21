@@ -40,4 +40,9 @@ class ScriptImportManager < ImportManager
       nil
     end
   end
+
+  def log_status
+    puts "#{@current_row.row_index}:  #{@current_row.name}"
+    super
+  end
 end

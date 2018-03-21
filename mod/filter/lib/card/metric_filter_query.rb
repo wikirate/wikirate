@@ -1,5 +1,10 @@
 class Card
+  # Filter metrics (e.g. on company pages)
   class MetricFilterQuery < Card::FilterQuery
+    def metric_wql metric
+      name_wql metric
+    end
+
     def wikirate_topic_wql topic
       add_to_wql :right_plus, [WikirateTopicID, { refer_to: { name: topic } }]
     end
