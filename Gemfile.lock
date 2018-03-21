@@ -311,7 +311,7 @@ GEM
       multi_json (~> 1.10)
     fog-local (0.5.0)
       fog-core (>= 1.27, < 3.0)
-    fog-openstack (0.1.24)
+    fog-openstack (0.1.25)
       fog-core (~> 1.40)
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
@@ -417,7 +417,7 @@ GEM
       nokogiri (~> 1.6)
       rake (>= 0.9)
       video_info (~> 2.4)
-    loofah (2.2.0)
+    loofah (2.2.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     macaddr (1.7.1)
@@ -734,4 +734,4 @@ DEPENDENCIES
   wkhtmltopdf-binary
 
 BUNDLED WITH
-   1.16.0
+   1.16.1

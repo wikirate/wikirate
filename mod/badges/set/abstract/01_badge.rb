@@ -32,7 +32,7 @@ format :html do
   end
 
   view :badge, tags: :unknown_ok do
-    wrap_with :strong, card.name
+    wrap_with :strong, safe_name
   end
 
   view :notify do
