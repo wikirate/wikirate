@@ -21,6 +21,7 @@ event :validate_link, after: :check_source, on: :create do
   # used to be restricted to the sourcebox=true case
   # I don't see why we shouldn't do this always  -pk
   validate_url
+  abort :failure if errors.present?
 end
 
 event :duplication_check, after: :validate_link, on: :create do

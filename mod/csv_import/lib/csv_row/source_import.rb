@@ -56,6 +56,8 @@ class CSVRow
 
     def find_duplicate
       return Card[source_args[:source]] if refers_to_existing_source_name?
+      error("source #{source_args[:source]} doesn't exist") unless source_args[:source].url?
+
       link_duplicates = Card::Set::Self::Source.find_duplicates source_args[:source]
       return unless link_duplicates.present?
       link_duplicates.first.left

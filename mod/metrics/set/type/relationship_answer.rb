@@ -37,8 +37,7 @@ event :add_inverse_count_answer, :prepare_to_store do
 end
 
 def add_count name, count
-  add_subcard name, type_id: MetricValueID,
-                    subfields: { value: { content: count } }
+  add_subcard name, type_id: MetricValueID, subfields: { value: { content: count } }
 end
 
 # number of companies that have a relationship answer for this answer
