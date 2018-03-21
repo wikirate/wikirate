@@ -41,9 +41,10 @@ end
 def company_ids_by_metric_count
   Answer.group(:company_id)
         .where(metric_id: ids_of_metrics_tagged_with_topic)
-        .order("count_all desc")
+        .order("count_metric_id")
         .limit(100)
-        .count
+        .distinct
+        .count(:metric_id)
 end
 
 format :html do

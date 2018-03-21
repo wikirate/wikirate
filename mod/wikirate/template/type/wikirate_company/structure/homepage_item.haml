@@ -21,7 +21,7 @@
             .col-md-6.slab
               %a.inherit-anchor{:href => tab_url(:topic)}
                 .number
-                  = field_nest :analyses_with_articles, view: :count
+                  = field_nest :topic, view: :count
                 .number-label Topics
     .row.clearfix.padding-top-15.company-content.background-white
       = field_nest :all_metric_values, view: :homepage_table
