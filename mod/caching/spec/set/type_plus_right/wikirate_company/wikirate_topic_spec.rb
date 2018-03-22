@@ -3,7 +3,6 @@
 require_relative "../../../support/cached_count_shared_examples"
 
 RSpec.describe Card::Set::TypePlusRight::WikirateCompany::WikirateTopic do
-
   it_behaves_like "cached count", "Death Star+topics", 2 do
     let :add_one do
       Card["Jedi+disturbances in the force+topics"].add_item! "Animal Welfare"
