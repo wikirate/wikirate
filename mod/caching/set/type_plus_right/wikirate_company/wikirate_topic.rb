@@ -24,11 +24,9 @@ end
 def wql_from_content
   metric_ids = unique_metric_ids
   if metric_ids.any?
-    {
-      type_id: WikirateTopicID,
+    { type_id: WikirateTopicID,
       referred_to_by: { left_id: [:in] + metric_ids,
-                        right_id: WikirateTopicID }
-    }
+                        right_id: WikirateTopicID } }
   else
     { id: -1 } # HACK: ensure no results
   end
@@ -45,13 +43,28 @@ def unique_metric_ids
   # pluck seems dumb here, but .all isn't working (returns *all card)
 end
 
+# @returns Array [[topic_card1, num_metrics], [topic_card2...]...] }
 def topics_by_metric_count
-  topic_count_hash =
-    item_cards(limit: 0).each_with_object({}) do |topic_card, count_hash|
-      count_hash[topic_card] = topic_card.metric_card.cached_count
-      count_hash
-    end
-  topic_count_hash.sort_by { |_card, count| count }.reverse
+  topic_metric_count_hash.sort_by { |_card, count| count }.reverse
+end
+
+#
+# @returns Hash { topic_card1: num_metrics, topic_card2: ... }
+def topic_metric_count_hash
+  all_topic_cards.each_with_object({}) do |topic_card, count_hash|
+    count_hash[topic_card] = metric_count_for_topic topic_card
+  end
+end
+
+def all_topic_cards
+  item_cards limit: 0
+end
+
+def metric_count_for_topic topic_card
+  Answer.where(company_id: left.id,
+               metric_id: topic_card.metric_card.item_ids)
+        .distinct
+        .count(:metric_id)
 end
 
 format :html do
