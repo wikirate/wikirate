@@ -45,7 +45,7 @@ format :html do
   end
 
   def header_title
-    wrap_with :h3, _render_title, class: "company-color"
+    wrap_with :h3, _render_title, class: "company-color p-2"
   end
 
   view :header_tabs, cache: :never do
