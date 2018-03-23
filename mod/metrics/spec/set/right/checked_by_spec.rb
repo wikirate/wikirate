@@ -12,15 +12,19 @@ RSpec.describe Card::Set::Right::CheckedBy do
     Card::Env.params.delete "set_flag"
   end
 
+  def with_badge binding, num
+    binding.with_tag :h5 do
+      with_tag "span.badge", /#{num}/
+    end
+  end
+
   describe "view :core" do
     subject { checked_by_card.format.render_core }
 
     context "when nobody checked" do
       example "creator", with_user: "WikiRate Bot" do
         is_expected.to have_tag :div do
-          with_tag :h5 do
-            with_tag "span.badge", /0/
-          end
+          with_badge self, 0
           with_text /Nobody has checked this value since it was created/
           without_text "checked this value"
           without_tag :button
@@ -29,9 +33,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
 
       example "other user" do
         is_expected.to have_tag :div do
-          with_tag :h5 do
-            with_tag "span.badge", /0/
-          end
+          with_badge self, 0
           with_text /Nobody has checked this value since it was created/
           without_text "checked this value"
           with_tag :button, "Yes, I checked"
@@ -48,9 +50,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
 
         example "creator", with_user: "Wikirate Bot" do
           is_expected.to have_tag :div do
-            with_tag :h5 do
-              with_tag "span.badge", /0/
-            end
+            with_badge self, 0
             with_text /Nobody has checked this value since it was last updated/
             without_text "checked this value"
             with_tag :button, "Yes, I checked"
@@ -60,9 +60,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
 
         example "updater", with_user: "John" do
           is_expected.to have_tag :div do
-            with_tag :h5 do
-              with_tag "span.badge", /0/
-            end
+            with_badge self, 0
             with_text /Nobody has checked this value since it was last updated/
             without_text "checked this value"
             without_tag :button
@@ -80,9 +78,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
 
       example "creator", with_user: "WikiRate Bot" do
         is_expected.to have_tag :div do
-          with_tag :h5 do
-            with_tag "span.badge", /1/
-          end
+          with_badge self, 1
           with_tag :a, "John"
           with_text /checked this value/
           without_tag :button
@@ -91,9 +87,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
 
       example "checker", with_user: "John" do
         is_expected.to have_tag :div do
-          with_tag :h5 do
-            with_tag "span.badge", /1/
-          end
+          with_badge self, 1
           with_tag :a, "John"
           with_text /checked this value/
           with_tag :button, "Uncheck"
@@ -102,9 +96,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
 
       example "other user" do
         is_expected.to have_tag :div do
-          with_tag :h5 do
-            with_tag "span.badge", /1/
-          end
+          with_badge self, 1
           with_tag :a, "John"
           with_text /checked this value/
           with_tag :button, "Yes, I checked"
@@ -124,9 +116,7 @@ RSpec.describe Card::Set::Right::CheckedBy do
 
       example "checker", with_user: "Joe Admin" do
         is_expected.to have_tag :div do
-          with_tag :h5 do
-            with_tag "span.badge", /4/
-          end
+          with_badge self, 4
           with_tag :a, "Joe Admin"
           with_text /John, Joe User, Joe Camel, and Joe Admin/
           with_tag :button, "Uncheck"
