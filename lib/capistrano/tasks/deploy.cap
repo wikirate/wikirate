@@ -14,7 +14,7 @@
 #end
 
 namespace :deploy do
-  before :starting, :backup do
+  before :starting, :confirm do
     next unless fetch(:stage) == :production
     puts <<-EOF
 
@@ -29,8 +29,6 @@ namespace :deploy do
     exit unless fetch(:answer) == "forgive me, Yoda"
     # invoke "backup:create"
   end
-
-
 
   after :updated, :migrate do
     #because this creates the log and tmp files, it needs to be executed before the chown,
@@ -57,9 +55,19 @@ namespace :deploy do
     on roles(:app) do
       within release_path do
         execute :rake, "decko:reset_cache"
-        execute :rake, "card:reset_machine_output"
       end
     end
+  end
+
+  desc "regenerate all stuff create by machine cards (like css and javascript)"
+  after :clear_cache, :reset_machine_output do
+    # invoke "maintenance:enable"
+    on roles(:app) do
+      within release_path do
+        execute :rake, "card:refresh_machine_output"
+      end
+    end
+    # invoke "maintenance:disable"
   end
 
   desc "stop old delayed job processes"
@@ -109,4 +117,10 @@ namespace :deploy do
       end
     end
   end
+
+  # after :cleanup, :disable_maintenance_page do
+  #  puts "waiting for machine stuff to regenerate"
+  #  sleep 30
+  #  invoke "maintenance:disable"
+  # end
 end
