@@ -108,7 +108,7 @@ format :html do
     return "" unless args[:company]
     %(
       <div class="data-item hide-with-details">
-        {{#{card.name}+#{args[:company]}+latest value|concise}}
+        {{#{safe_name}+#{h args[:company]}+latest value|concise}}
       </div>
     )
   end

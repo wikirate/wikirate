@@ -17,3 +17,4 @@
 spec/examples.txt
 /**/.DS_Store
 !/**/.gitkeep
+/**/*.iml
