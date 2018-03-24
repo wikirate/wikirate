@@ -41,14 +41,14 @@ end
 def company_ids_by_metric_count
   Answer.group(:company_id)
         .where(metric_id: ids_of_metrics_tagged_with_topic)
-        .order("count_metric_id")
+        .order("count_metric_id desc")
         .limit(100)
         .distinct
         .count(:metric_id)
 end
 
 format :html do
-  view :company_list_with_metric_counts do
+  view :company_list_with_metric_counts, cache: :never do
     wrap do
       card.company_ids_by_metric_count.map do |company_id, metric_count|
         company_card = Card.fetch company_id
