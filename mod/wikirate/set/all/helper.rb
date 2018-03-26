@@ -19,7 +19,7 @@ format :html do
     class_up "d0-card-body", "pt-5", true
     field_nest codename,
                args.reverse_merge(view: :menued, items: { view: :link },
-               hide: :menu_item_discuss )
+                                  hide: :menu_item_discuss)
   end
 
   def original_link url, opts={}

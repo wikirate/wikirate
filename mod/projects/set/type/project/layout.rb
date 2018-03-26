@@ -1,10 +1,10 @@
 include_set Abstract::TwoColumnLayout
 
 TAB_MAP = {
-  company:    [ :num_companies,    "Companies",   :building ],
-  metric:     [ :num_metrics,      "Metrics",     "bar-chart"],
-  year:       [ :num_years,        "Years",       :calendar ],
-  subproject: [ :num_subprojects,  "Subprojects", :flask ]
+  company:    [:num_companies,    "Companies",   :building],
+  metric:     [:num_metrics,      "Metrics",     "bar-chart"],
+  year:       [:num_years,        "Years",       :calendar],
+  subproject: [:num_subprojects,  "Subprojects", :flask]
 }.freeze
 
 format :html do

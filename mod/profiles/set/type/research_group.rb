@@ -41,7 +41,7 @@ format :html do
   view :open_content do
     two_column_layout 5, 7
   end
-  
+
   def header_right
     wrap_with :div, class: "header-right" do
       [
