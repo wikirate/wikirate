@@ -52,7 +52,7 @@ format :html do
         #{additional}
         <div class="col-md-8">
           <h2>
-            <span class="#{color}-color">#{card.name}</span>
+            <span class="#{color}-color">#{safe_name}</span>
           </h2>
         </div>
         #{tab_list tabs}

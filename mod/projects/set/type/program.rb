@@ -20,7 +20,11 @@ format :html do
   end
 
   view :listing_bottom do
-    field_nest :description
+    field_nest :general_overview
+  end
+
+  view :listing_middle do
+    ""
   end
 
   view :data do

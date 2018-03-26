@@ -67,7 +67,8 @@ class CategoryValueValidator
     JSON
     title = "Answers with invalid option \"#{value}\""
     @metric_card.format.link_to_card(:search, value,
-                                     path: { "_keyword": search, slot: { title: title } })
+                                     path: { query: { keyword: search },
+                                             slot: { title: title } })
   end
 
   def link_to_edit_options
