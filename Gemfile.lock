@@ -457,7 +457,7 @@ GEM
       ruby-ll (~> 2.1)
     open_uri_redirections (0.2.1)
     parallel (1.12.1)
-    parser (2.5.0.4)
+    parser (2.5.0.5)
       ast (~> 2.4.0)
     pdfkit (0.8.2)
     pivotal-tracker (0.5.13)
