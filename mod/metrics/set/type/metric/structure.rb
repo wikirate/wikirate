@@ -1,4 +1,5 @@
 include_set Abstract::TwoColumnLayout
+# include_set Abstract::Listing
 include_set Abstract::BsBadge
 
 format :html do
