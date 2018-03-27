@@ -173,6 +173,24 @@
   color: #fff;
 }
 
+//Top border colors
+
+.top-border-default {
+  border-top: 3px solid $heading-color;
+}
+
+.top-border-metric {
+  border-top: 3px solid $metric-color;
+}
+
+.top-border-company {
+  border-top: 3px solid $company-color;
+}
+
+.top-border-topic {
+  border-top: 3px solid $topic-color;
+}
+
 //Text adjustments
 .text-align-left {
   text-align: left;
@@ -226,11 +244,6 @@
 .no-hover:hover {
   background-color: inherit !important;
   cursor: inherit !important;
-}
-
-.nopadding {
-  padding: 0 !important;
-  margin: 0 !important;
 }
 
 .margin-8 {
@@ -403,7 +416,7 @@
   background-color: #f8f9fa;
   line-height: 80px;
   vertical-align: middle;
-  margin-right: 18px;
+  margin-right: 10px;
   text-align: center;
 
   img {
@@ -758,17 +771,6 @@ button.pointer-item-delete.btn.btn-outline-secondary {
   padding-left: 8px;
 }
 
-.rich-header {
-  .media {
-    border-bottom: 1px solid $border-color;
-    margin-bottom: 10px;
-  }
-
-  h3 {
-    margin: 10px 8px;
-  }
-}
-
 .horizontal-list {
   .pointer-item {
     display: inline;
@@ -776,8 +778,8 @@ button.pointer-item-delete.btn.btn-outline-secondary {
   }
 }
 
-.thumbnail-text {
-  padding: 6px;
+.labeled-pointers .pointer-list {
+    padding: 0;
 }
 
 .credit .search-result-list {

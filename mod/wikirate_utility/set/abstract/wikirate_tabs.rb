@@ -27,7 +27,7 @@ format :html do
   #         col class: "border-right" do
   #           row md: 12, xs: 12,
   #               class: "clearfix #{type}-content #{type}-page-logo-container" do
-  #             col class: "nopadding left" do
+  #             col class: "m-0 p-0 left" do
   #               wikirate_layout_link
   #             end
   #           end

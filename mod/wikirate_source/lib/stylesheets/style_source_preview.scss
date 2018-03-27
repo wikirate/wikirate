@@ -52,7 +52,7 @@
     border: 1px solid #FFF1D6;
     padding: 10px;
     margin-bottom: 10px;
-    
+
     .source-icon {
         width: 1%;
         margin: 0 10px;
@@ -112,13 +112,10 @@
 }
 .source-info-container {
     margin-bottom: 0;
-    font-size: 12px;
-    // background: #FFFBE6;
     display: inline-block;
     width: 100%;
     position: relative;
     z-index: 1;
-    // padding: 6px;
     &.with-vote-button .item-content {
         padding: 16px;
     }

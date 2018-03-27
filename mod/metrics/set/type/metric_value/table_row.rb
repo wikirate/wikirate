@@ -153,25 +153,29 @@ format :html do
     bs_layout do
       row 1, 11, class: "w-100" do
         column nest(card.metric_card.vote_count_card)
-        column do
-          row link_to_card(card.metric_card, card.metric_card.name.right,
+        column class: "p-0" do
+          row link_to_card(card.metric_card, card.metric_card.metric_title,
                            class: "inherit-anchor"),
               class: "name"
-          row designer_info
+          row creator_info
         end
       end
     end
   end
 
+  def creator_info
+    output [
+      designer_info,
+      (scorer_info if card.metric_type == :score)
+    ]
+  end
+
   def designer_info
-    <<-HTML
-      <div class="metric-designer-info">
-        <a href="/{{_lllr|name}}">
-          <div><small class="text-muted">Designed by</small></div>
-          <div>#{nest card.metric_card, view: :designer_info}</div>
-        </a>
-      </div>
-    HTML
+    nest card.metric_card, view: :designer_info
+  end
+
+  def scorer_info
+    nest card.metric_card.right, view: :scorer_info
   end
 
   def details_sidebar type

@@ -1,6 +1,6 @@
 format :html do
   view :thumbnail_plain do
-    wrap_with :div, thumbnail_content
+    wrap_with :div, thumbnail_content, class: flex_css
   end
 
   view :thumbnail_minimal do
@@ -14,8 +14,13 @@ format :html do
     thumbnail
   end
 
+  def flex_css
+    "d-flex align-items-center"
+  end
+
   def thumbnail
-    wrap_with :div, thumbnail_content, class: "thumbnail", data: wrap_data(false)
+    wrap_with :div, thumbnail_content, class: "thumbnail #{flex_css}",
+                                       data: wrap_data(false)
   end
 
   view :thumbnail_no_link do
@@ -31,7 +36,7 @@ format :html do
   end
 
   def thumbnail_image_wrap
-    wrap_with :div, class: "pull-left image-box icon" do
+    wrap_with :div, class: "image-box icon mt-1 align-self-start" do
       [
         wrap_with(:span, "", class: "img-helper"),
         thumbnail_image

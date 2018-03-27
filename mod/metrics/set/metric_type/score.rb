@@ -122,10 +122,6 @@ format :html do
     link_to_card card.scorer
   end
 
-  view :scorer_info do
-    nest scorer_card, view: :designer_info
-  end
-
   view :scorer_image do |_args|
     nest scorer_card.field(:image, new: {}), view: :core, size: :small
   end

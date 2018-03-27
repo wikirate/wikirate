@@ -212,30 +212,30 @@
 
 .metric-designer-info {
 
-    a {
-        color: inherit;
-    }
-    a > div {
-        float: left;
-        > small {
-            width: 65px;
-            display: inline-block;
-            text-align: right;
-            padding-top: 10px;
-            padding-right: 10px;
-        }
-    }
+    // a {
+    //     color: inherit;
+    // }
+    // a > div {
+    //     float: left;
+    //     > small {
+    //         width: 65px;
+    //         display: inline-block;
+    //         text-align: right;
+    //         padding-top: 10px;
+    //         padding-right: 10px;
+    //     }
+    // }
 
     img {
         max-height: 100%;
         max-width: 100%;
         vertical-align: middle;
     }
-    h3 {
-      margin: 18px 5px;
-      float: left;
-      color: $heading-color;
-    }
+    // h3 {
+    //   margin: 18px 5px;
+    //   float: left;
+    //   color: $heading-color;
+    // }
 }
 .metric-details-header {
     .name {
@@ -778,4 +778,9 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     .card-editor.RIGHT-value_type {
         display: none;
     }
+}
+
+.box-middle canvas {
+    max-width: 300px!important;
+    max-height: 206px!important;
 }
