@@ -89,6 +89,7 @@ format :html do
   view :short_view do |_args|
     return "" unless (details_field = DETAILS_FIELD_MAP[card.value_type_code])
     detail_card = Card.fetch card, details_field, new: {}
+    binding.pry
     nest detail_card, view: :content
   end
 
