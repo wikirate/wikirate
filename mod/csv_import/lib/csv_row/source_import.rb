@@ -78,8 +78,8 @@ class CSVRow
       pick_up_card_errors do
         source_card = add_card name: "", type_id: Card::SourceID,
                                subcards: source_subcard_args
-        finalize_source_card source_card
-        source_card
+        # finalize_source_card source_card
+        # source_card
       end
     end
 
