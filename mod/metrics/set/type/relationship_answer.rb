@@ -40,6 +40,20 @@ def add_count name, count
   add_subcard name, type_id: MetricValueID, subfields: { value: { content: count } }
 end
 
+def update_counts!
+  update_count! answer_name, company_count
+  update_count! inverse_answer_name, inverse_company_count
+end
+
+def update_count! answer_name, count
+  puts answer_name
+  if (card = Card.fetch(answer_name))
+    card.field(:value).update_attributes! content: count.to_s if card.value.to_s != count.to_s
+  else
+    Card.create! name: answer_name, type_id: MetricValueID, subfields: { value: { content: count } }
+  end
+end
+
 # number of companies that have a relationship answer for this answer
 def company_count
   return 0 unless answer_id
