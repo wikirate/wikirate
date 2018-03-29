@@ -10,7 +10,7 @@ class Answer
     end
 
     def fetch_metric_id
-      metric_card.id
+      Card.fetch_id card.name.left_name.left
     end
 
     def fetch_record_id

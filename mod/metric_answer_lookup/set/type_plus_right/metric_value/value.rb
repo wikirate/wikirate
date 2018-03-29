@@ -16,6 +16,6 @@ event :create_answer_lookup_entry_due_to_value_change, :finalize, on: :create do
 end
 
 def answer_id
-  left ? left.id : director.parent.card.id
+  (left && left.id) || director.parent.card.id || left_id
   # FIXME: director.parent thing fixes case where metric answer is renamed.
 end
