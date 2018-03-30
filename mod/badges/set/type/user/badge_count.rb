@@ -23,7 +23,7 @@ format :html do
     wrap_with :div, class: "badges-earned" do
       [
         content_tag(:h4, "Badges earned"),
-        content_tag(:h3, _render_count(class: "vertical"))
+        content_tag(:h3, medal_counts("vertical"))
       ]
     end
   end

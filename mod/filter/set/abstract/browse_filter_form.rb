@@ -45,7 +45,7 @@ def virtual?
 end
 
 format :html do
-  # view :no_search_results do |_args|
+  # view :no_search_results do
   #   wrap_with :div, "No result", class: "search-no-results"
   # end
 

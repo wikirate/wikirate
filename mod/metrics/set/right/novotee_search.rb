@@ -64,11 +64,4 @@ format :html do
         :importance
       end
   end
-
-  def default_drag_and_drop_args args
-    default_filter_and_sort_args(args)
-    args[:query] ||= "vote=force-neutral"
-    args[:unsaved] = nil
-    super(args)
-  end
 end

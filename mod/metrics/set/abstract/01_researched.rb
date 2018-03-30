@@ -36,7 +36,7 @@ format :html do
     end
   end
 
-  view :scores_tab do |_args|
+  view :scores_tab do
     # TODO: move +scores to a separate card
     tab_wrap do
       output [

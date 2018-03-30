@@ -11,7 +11,7 @@ def default_sort_option
 end
 
 format :html do
-  view :filter_result, cache: :never do |_args|
+  view :filter_result, cache: :never do
     voo.hide! :chart
     super(_args)
   end

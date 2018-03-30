@@ -119,7 +119,7 @@ format :html do
     end
   end
 
-  view :details_tab do |_args|
+  view :details_tab do
     bs_layout do
       row 12 do
         column do
@@ -169,12 +169,6 @@ format :html do
   view :projects_tab do
     field_nest :project, items: { view: :listing }
   end
-
-  # view :filter do |args|
-  #   filter_form  a: { input_field: "<input class='a'/>", label: "A" },
-  #                                    b: { input_field: "<select class='b'/>", label: "B" }
-  #   # field_subformat(:company_metric_filter)._render_core args
-  # end
 
   view :browse_item, template: :haml
   view :homepage_item, template: :haml

@@ -99,9 +99,9 @@ format :html do
     "request"
   end
 
-  view :editor, tags: :unknown_ok do |args|
+  view :editor, tags: :unknown_ok do
     wrap_with :div, class: "d-flex flex-nowrap" do
-      super(args) + popover_link
+      super() + popover_link
     end
   end
 
@@ -130,11 +130,11 @@ format :html do
       card.left&.format&.try(:research_params) || {}
   end
 
-  view :icon, cache: :never do |args|
+  view :icon, cache: :never do
     if checked?
-      double_check_icon args
+      double_check_icon
     elsif check_requested?
-      request_icon args
+      request_icon
     else
       ""
     end
@@ -170,13 +170,11 @@ format :html do
     end
   end
 
-  def double_check_icon opts={}
-    add_class opts, "verify-blue"
-    opts[:title] = "Value checked"
-    fa_icon("check-circle", opts).html_safe
+  def double_check_icon
+    fa_icon "check-circle", class: "verify-blue", title: "value checked"
   end
 
-  def request_icon _opts={}
+  def request_icon
     fa_icon :check_circle_o, class: "request-red", title: "check requested"
   end
 

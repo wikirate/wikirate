@@ -1,17 +1,17 @@
 format :html do
-  view :comments do |_args|
+  view :comments do
     disc_card = card.fetch trait: :discussion, new: {}
     subformat(disc_card)._render_titled title: "Comments", show: "commentbox",
                                         home_view: :titled
   end
 
-  view :credit_name do |args|
+  view :credit_name do
     return if card.virtual?
     wrap_with :div, class: "credit ml-1 pl-1" do
       [
         "#{credit_verb} #{_render_updated_at} ago by ",
         nest(card.updater, view: :link),
-        _render(:source_link, args, :hide)
+        _render(:source_link, {}, :hide)
       ]
     end
   end
@@ -21,7 +21,7 @@ format :html do
     link_to_card card.value_card, verb, path: { view: :history }
   end
 
-  view :source_link do |_args|
+  view :source_link do
     if (source_card = card.fetch(trait: :source))
       source_card.item_cards.map do |i_card|
         subformat(i_card).render_original_icon_link

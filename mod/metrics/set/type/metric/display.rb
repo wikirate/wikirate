@@ -86,25 +86,25 @@ format :html do
     end
   end
 
-  view :short_view do |_args|
+  view :short_view do
     return "" unless (details_field = DETAILS_FIELD_MAP[card.value_type_code])
     detail_card = Card.fetch card, details_field, new: {}
     nest detail_card, view: :content
   end
 
-  view :handle do |_args|
+  view :handle do
     wrap_with :div, class: "handle" do
       glyphicon "option-vertical"
     end
   end
 
-  view :vote do |_args|
+  view :vote do
     %(<div class="hidden-xs hidden-md">
     #{field_nest(:vote_count)}</div>
     )
   end
 
-  view :value do |args|
+  view :value do
     return "" unless args[:company]
     %(
       <div class="data-item hide-with-details">
@@ -113,7 +113,7 @@ format :html do
     )
   end
 
-  view :metric_info do |_args|
+  view :metric_info do
     question = subformat(card.question_card)._render_core.html_safe
     rows = [
       icon_row("question", question, class: "metric-details-question"),
@@ -158,15 +158,15 @@ format :html do
     metric_info_row left, content, opts
   end
 
-  def weight_content args
+  def weight_content weight
     icon_class = "pull-right _remove_row btn btn-outline-secondary btn-sm"
     wrap_with :div do
-      [text_field_tag("pair_value", (args[:weight] || 0)) + "%",
+      [text_field_tag("pair_value", (weight || 0)) + "%",
        content_tag(:span, fa_icon(:close).html_safe, class: icon_class)]
     end
   end
 
-  view :weight_row do |args|
+  def weight_row weight
     weight = weight_content args
     output([wrap_with(:td, _render_thumbnail_no_link),
             wrap_with(:td, weight, class: "metric-weight")]).html_safe

@@ -79,7 +79,7 @@ format :html do
 
   def weight_variable_list
     table_content = card.item_cards.map do |metric|
-      nest metric, view: :weight_row
+      subformat(metric).weight_row weight
     end
     table table_content, class: "weight-variable-list hidden"
   end

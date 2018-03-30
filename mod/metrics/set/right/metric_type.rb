@@ -4,7 +4,7 @@ event :reset_metrics_set_pattern_for_metric_type, :finalize, on: :save do
 end
 
 format :html do
-  view :radio do |_args|
+  view :radio do
     input_name = "pointer_radio_button-#{card.key}"
     options = card.option_names.map do |option_name|
       checked = (option_name == card.item_names.first)
