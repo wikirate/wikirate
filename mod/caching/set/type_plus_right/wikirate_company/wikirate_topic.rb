@@ -60,6 +60,12 @@ def all_topic_cards
   item_cards limit: 0
 end
 
+# note: it would be possible to do this all in a few queries (rather than n+few) if we:
+# 1. use WQL to get a list of all Topic+Metric cards for all topics associated
+# 2. join the answer query to card_references (referee_id = answer.metric_id)
+# 3. join card_references to the card table (referer_id = id)
+# 4. limit cards to the result of #1 via ids (left_id in ids)
+# 5. group by left_id (the topic)
 def metric_count_for_topic topic_card
   Answer.where(company_id: left.id,
                metric_id: topic_card.metric_card.item_ids)
