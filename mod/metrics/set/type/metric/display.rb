@@ -167,7 +167,7 @@ format :html do
   end
 
   def weight_row weight
-    weight = weight_content args
+    weight = weight_content weight
     output([wrap_with(:td, _render_thumbnail_no_link),
             wrap_with(:td, weight, class: "metric-weight")]).html_safe
   end
@@ -184,16 +184,16 @@ format :html do
     "data[#{card.key}][#{year}]"
   end
 
-  view :ruby, cache: :never do |args|
-    if args[:sum]
-      start, stop = args[:sum].split("..").map { |y| interpret_year(y) }
-      "((#{start}..#{stop}).to_a.inject(0) " \
-      "{ |r, y| r += #{get_value_str('y')}; r })"
-    else
-      year = args[:year] ? interpret_year(args[:year]) : "year"
-      get_value_str year
-    end
-  end
+  # view :ruby, cache: :never do |args|
+  #   if args[:sum]
+  #     start, stop = args[:sum].split("..").map { |y| interpret_year(y) }
+  #     "((#{start}..#{stop}).to_a.inject(0) " \
+  #     "{ |r, y| r += #{get_value_str('y')}; r })"
+  #   else
+  #     year = args[:year] ? interpret_year(args[:year]) : "year"
+  #     get_value_str year
+  #   end
+  # end
 
   def prepare_for_outlier_search
     res = {}

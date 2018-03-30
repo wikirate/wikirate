@@ -3,6 +3,6 @@ format :json do
     return [] if card.content.empty? ||
                  card.name.include?("+*options") ||
                  card.name.include?("+*structure")
-    card.item_names(limit: 5)
+    card.item_cards
   end
 end

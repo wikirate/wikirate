@@ -37,8 +37,7 @@ format :html do
     if card.real?
       card.format.render_source
     else
-      voo.size = "large"
-      Card["*Vertical_Logo"].format.render_source
+      Card["*Vertical_Logo"].format.render_source size: "large"
     end
   end
 
