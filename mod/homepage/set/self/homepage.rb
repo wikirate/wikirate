@@ -6,7 +6,6 @@ end
 
 format :html do
   view :cacheable_core do
-    binding.pry
     output [
       render_wikirate_modal,
       nest(:homepage_top_banner),

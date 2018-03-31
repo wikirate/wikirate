@@ -6,5 +6,4 @@ format :html do
     end
     super()
   end
-
 end
