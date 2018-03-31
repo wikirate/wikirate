@@ -21,7 +21,7 @@ format :html do
     if free_text_metric?
       text_field :content, class: "d0-card-content"
     elsif categorical_metric? || multi_categorical_metric?
-      super({})
+      super()
     else
       editor_with_unit
     end
