@@ -68,9 +68,7 @@ format :html do
     wrap do
       [
         field_nest(:value_type, view: :content, items: { view: :name }, show: :menu),
-        # )_render_value_type_edit_modal_link,
-        _render_short_view,
-        # _render_menu
+        _render_short_view
       ]
     end
   end

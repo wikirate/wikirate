@@ -105,19 +105,16 @@ format :html do
     end
   end
 
-  view :modal_details, cache: :never do |args|
+  view :modal_details, cache: :never do
     span_args = { class: "metric-value" }
     add_class span_args, grade if card.ten_scale?
     wrap_with :span, span_args do
-      subformat(card)._render_modal_link(
-        args.merge(
-          link_text: pretty_value,
-          link_opts: {
-            path: { slot: { show: :menu, optional_horizontal_menu: :hide } },
-            title: value, "data-complete-number" => value,
-            "data-tooltip" => "true", "data-placement" => "top"
-          }
-        )
+      subformat(card).modal_link(
+        pretty_value, path: { slot: { show: :menu, optional_horizontal_menu: :hide } },
+                      title: value,
+                      "data-complete-number": value,
+                      "data-tooltip": "true",
+                      "data-placement" => "top"
       )
     end
   end
