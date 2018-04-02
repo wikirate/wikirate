@@ -66,8 +66,8 @@ format :html do
                  title: "Research answer for another year"
   end
 
-  def default_menu_args args
-    args[:optional_horizontal_menu] = :hide
+  def default_menu_args _args
+    voo.hide :horizontal_menu
   end
 
   view :image_link do

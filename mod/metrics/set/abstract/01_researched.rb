@@ -6,8 +6,8 @@ def score_cards
 end
 
 format :html do
-  def default_content_formgroup_args args
-    super args
+  def default_content_formgroup_args _args
+    super _args
     voo.edit_structure += [
       [:value_type, "Value Type"],
       [:research_policy, "Research Policy"],

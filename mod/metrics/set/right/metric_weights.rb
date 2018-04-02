@@ -21,27 +21,27 @@ def metrics_with_weight
 end
 
 format :html do
-  view :list_item do |args|
-    <<-HTML
-    <li class="pointer-li">
-      <div class="input-group">
-        <div class="input-group-prepend handle">
-          <span class="input-group-text">
-            #{glyphicon 'option-vertical left'}
-            #{glyphicon 'option-vertical right'}
-          </span>
-        </div>
-        #{text_field_tag 'pointer_item', args[:pointer_item], class: 'pointer-item-text form-control'}
-
-        <div class="input-group-append">
-          <button class="pointer-item-delete btn btn-outline-secondary" type="button">
-            #{glyphicon 'remove'}
-          </button>
-        </div>
-        </div>
-      </li>
-    HTML
-  end
+  # view :list_item do
+  #   <<-HTML
+  #   <li class="pointer-li">
+  #     <div class="input-group">
+  #       <div class="input-group-prepend handle">
+  #         <span class="input-group-text">
+  #           #{glyphicon 'option-vertical left'}
+  #           #{glyphicon 'option-vertical right'}
+  #         </span>
+  #       </div>
+  #       #{text_field_tag 'pointer_item', args[:pointer_item], class: 'pointer-item-text form-control'}
+  #
+  #       <div class="input-group-append">
+  #         <button class="pointer-item-delete btn btn-outline-secondary" type="button">
+  #           #{glyphicon 'remove'}
+  #         </button>
+  #       </div>
+  #       </div>
+  #     </li>
+  #   HTML
+  # end
 
   view :editor do
     metrics_with_weight.map do |_metric, _weight|
