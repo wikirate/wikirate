@@ -7,11 +7,6 @@ shared_examples_for "viewable metric" do |metric_name, value_type, detail_label|
     html = metric.format.render_short_view
     expect(html).to have_tag("div", with: { class: "RIGHT-#{detail_label}" })
   end
-
-  it "renders modal links" do
-    html = metric.format.render_value_type_edit_modal_link
-    expect(html).to have_tag("a", text: value_type)
-  end
 end
 
 RSpec.describe Card::Set::Type::Metric do

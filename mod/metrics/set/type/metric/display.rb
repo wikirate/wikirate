@@ -52,17 +52,7 @@ format :html do
   def category_legend
     card.value_options.reject { |o| o == "Unknown" }.join ","
   end
-
-  view :value_type_edit_modal_link, cache: :never do
-    nest card.value_type_card,
-         view: :modal_link,
-         link_text: vtype_edit_modal_link_text,
-         link_opts: {
-           class: "btn btn-outline-secondary slotter value-type-button",
-           path: { slot: { hide: "header,menu,help", view: :edit, title: "Value Type" } }
-         }
-  end
-
+  
   view :value_type_detail do
     voo.hide :menu
     wrap do
