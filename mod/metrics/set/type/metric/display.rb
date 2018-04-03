@@ -52,7 +52,7 @@ format :html do
   def category_legend
     card.value_options.reject { |o| o == "Unknown" }.join ","
   end
-  
+
   view :value_type_detail do
     voo.hide :menu
     wrap do
@@ -149,12 +149,12 @@ format :html do
   def weight_content weight
     icon_class = "pull-right _remove_row btn btn-outline-secondary btn-sm"
     wrap_with :div do
-      [text_field_tag("pair_value", (weight || 0)) + "%",
+      [text_field_tag("pair_value", weight) + "%",
        content_tag(:span, fa_icon(:close).html_safe, class: icon_class)]
     end
   end
 
-  def weight_row weight
+  def weight_row weight=0
     weight = weight_content weight
     output([wrap_with(:td, _render_thumbnail_no_link),
             wrap_with(:td, weight, class: "metric-weight")]).html_safe

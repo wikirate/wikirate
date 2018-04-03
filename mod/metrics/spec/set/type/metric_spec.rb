@@ -1,4 +1,4 @@
-shared_examples_for "viewable metric" do |metric_name, value_type, detail_label|
+shared_examples_for "viewable metric" do |metric_name, detail_label|
   let(:metric) do
     Card[metric_name]
   end
@@ -11,16 +11,15 @@ end
 
 RSpec.describe Card::Set::Type::Metric do
   context "Numeric type metric" do
-    it_behaves_like "viewable metric", "Jedi+deadliness",
-                    "Number", "numeric_detail"
+    it_behaves_like "viewable metric", "Jedi+deadliness", "numeric_detail"
   end
   context "Money type metric" do
     it_behaves_like "viewable metric", "Jedi+cost of planets destroyed",
-                    "Money", "monetary_detail"
+                    "monetary_detail"
   end
   context "Category type metric" do
     it_behaves_like "viewable metric", "Jedi+disturbances in the Force",
-                    "Category", "category_detail"
+                    "category_detail"
   end
 
   describe "#numeric?" do
