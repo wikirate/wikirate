@@ -31,7 +31,8 @@ format :html do
   #           #{glyphicon 'option-vertical right'}
   #         </span>
   #       </div>
-  #       #{text_field_tag 'pointer_item', args[:pointer_item], class: 'pointer-item-text form-control'}
+  #       #{text_field_tag 'pointer_item', args[:pointer_item],
+  #                        class: 'pointer-item-text form-control'}
   #
   #       <div class="input-group-append">
   #         <button class="pointer-item-delete btn btn-outline-secondary" type="button">

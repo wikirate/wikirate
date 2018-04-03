@@ -7,7 +7,7 @@ end
 
 format :html do
   def default_content_formgroup_args _args
-    super _args
+    super
     voo.edit_structure += [
       [:value_type, "Value Type"],
       [:research_policy, "Research Policy"],
