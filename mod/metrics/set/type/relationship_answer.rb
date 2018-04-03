@@ -46,11 +46,13 @@ def update_counts!
 end
 
 def update_count! answer_name, count
-  puts answer_name
   if (card = Card.fetch(answer_name))
-    card.field(:value).update_attributes! content: count.to_s if card.value.to_s != count.to_s
+    if card.value.to_s != count.to_s
+      card.field(:value).update_attributes! content: count.to_s
+    end
   else
-    Card.create! name: answer_name, type_id: MetricValueID, subfields: { value: { content: count } }
+    Card.create! name: answer_name, type_id: MetricValueID,
+                 subfields: { value: { content: count } }
   end
 end
 

@@ -55,12 +55,14 @@ class CSVRow
     end
 
     def find_duplicate
-      return Card[source_args[:source]] if refers_to_existing_source_name?
-      error("source #{source_args[:source]} doesn't exist") unless source_args[:source].url?
-
-      link_duplicates = Card::Set::Self::Source.find_duplicates source_args[:source]
-      return unless link_duplicates.present?
-      link_duplicates.first.left
+      if refers_to_existing_source_name?
+        Card[source_args[:source]]
+      elsif source_args[:source].url?
+        link_duplicates = Card::Set::Self::Source.find_duplicates source_args[:source]
+        link_duplicates.present? && link_duplicates.first.left
+      else
+        error("source #{source_args[:source]} doesn't exist")
+      end
     end
 
     def refers_to_existing_source_name?
@@ -76,8 +78,7 @@ class CSVRow
 
     def create_source
       pick_up_card_errors do
-        source_card = add_card name: "", type_id: Card::SourceID,
-                               subcards: source_subcard_args
+        add_card name: "", type_id: Card::SourceID, subcards: source_subcard_args
         # finalize_source_card source_card
         # source_card
       end

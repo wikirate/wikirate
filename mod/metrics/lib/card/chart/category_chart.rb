@@ -17,7 +17,7 @@ class Card
 
       def x_axis
         super.deep_merge title: "Categories",
-                         encode: { labels: { update: { angle: { value: 60 }}}}
+                         encode: { labels: { update: { angle: { value: 60 } } } }
       end
 
       def data_item_hash filter
