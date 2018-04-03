@@ -89,8 +89,8 @@ format :html do
   end
 
   # it is for type_search
-  view :filter_and_sort do |args|
-    with_filter_and_sort(args) do
+  view :filter_and_sort do
+    with_filter_and_sort do
       search_with_params.map do |item|
         votee = extract_votee item
         sort_opts = { sort: {} }
@@ -168,10 +168,9 @@ format :html do
     end
   end
 
-  def with_filter_and_sort args
+  def with_filter_and_sort
     # display_empty_msg = search_results.empty? ? '' : 'display: none;'
-    wrap_with :div, class: "yinyang-list",
-                    "data-default-sort" => args[:default_sort] do
+    wrap_with :div, class: "yinyang-list", "data-default-sort": @default_sort do
       yield
     end
   end
