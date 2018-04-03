@@ -1,6 +1,6 @@
 describe Card::Set::Abstract::Listing do
   let(:research_group_format) do
-    Card["Jedi"].format :html
+    Card["created research group"].format :html
   end
 
   describe "#listing" do

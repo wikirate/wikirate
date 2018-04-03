@@ -18,8 +18,8 @@ class SharedData
                           value_type: "Category",
                           value_options: %w(yes no),
                           inverse_title: "less evil" do
-        SPECTRE "1977" => { "Los_Pollos_Hermanos" => "yes" }
-        Death_Star "1977" => { "Los_Pollos_Hermanos" => "yes", "SPECTRE" => "yes" }
+        Monster_Inc "1977" => { "Los_Pollos_Hermanos" => "yes" }
+        Samsung "1977" => { "Los_Pollos_Hermanos" => "yes", "SPECTRE" => "yes" }
       end
 
 

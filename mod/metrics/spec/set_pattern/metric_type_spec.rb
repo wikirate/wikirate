@@ -9,7 +9,7 @@ describe Card::Set::MetricType do
 
   it "works with create" do
     Card::Auth.as_bot do
-      @new_metric = Card.create! name: "metriy type test",
+      @new_metric = Card.create! name: "md+mt",
                                  type_id: Card::MetricID,
                                  "+*metric type" => "[[Formula]]"
     end

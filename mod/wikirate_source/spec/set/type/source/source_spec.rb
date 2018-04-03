@@ -44,7 +44,7 @@ RSpec.describe Card::Set::Type::Source do
       it "returns exisiting url" do
         url = "http://www.google.com/?q=wikirate"
         Card::Env.params[:sourcebox] = "true"
-        firstsourcepaSge = create_link_source url
+        firstsourcepage = create_link_source url
         secondsourcepage = create_link_source url
         expect(firstsourcepage.name).to eq(secondsourcepage.name)
       end
