@@ -14,30 +14,35 @@ format :html do
   end
 
   view :data do
-    # return "deleteme"
     wrap_with :div, class: "profile-data" do
       [
         field_nest("+about me", view: :titled, title: "About me"),
         content_tag(:hr),
-        field_nest(:discussion, view: :titled, title: "Discussion", show: :comment_box),
-        content_tag(:hr),
-        field_nest(:activity, view: :titled, title: "Activity", hide: :menu)
+        field_nest(:discussion, view: :titled, title: "Discussion", show: :comment_box)
       ]
     end
   end
 
-  view :right_column do
-    output [wrap_with(:h4, "Contributions"), contribution_reports]
+  def tab_list
+    {
+        research_group_tab: "Research Groups",
+        contributions_tab: "Contributions",
+        activity_tab: "Activity"
+    }
   end
 
-  def right_column_class
-    "#{super} contributions-column"
+  view :research_group_tab do
+    "add me"
   end
 
-  def contribution_reports
+  view :contributions_tab do
     CONTRIBUTION_TYPES.map do |codename|
       user_and_type = card.fetch trait: codename, new: {}
       nest user_and_type, view: :contribution_report
-    end
+    end.join
+  end
+
+  view :activity_tab do
+    field_nest :activity
   end
 end
