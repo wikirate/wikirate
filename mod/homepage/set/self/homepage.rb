@@ -5,7 +5,7 @@ cache_expire_trigger Card::Set::All::ActiveCard do |_changed_card|
 end
 
 format :html do
-  view :cacheable_core do
+  view :core do
     output [
       render_wikirate_modal,
       nest(:homepage_top_banner),

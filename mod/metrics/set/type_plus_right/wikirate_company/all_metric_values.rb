@@ -13,7 +13,7 @@ end
 format :html do
   view :filter_result, cache: :never do
     voo.hide! :chart
-    super()
+    super({})
   end
 
   def table_args
