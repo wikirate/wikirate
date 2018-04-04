@@ -25,24 +25,24 @@ format :html do
 
   def tab_list
     {
-        research_group_tab: "Research Groups",
-        contributions_tab: "Contributions",
-        activity_tab: "Activity"
+      research_group_tab: "Research Groups",
+      contributions_tab: "Contributions",
+      activity_tab: "Activity"
     }
   end
 
-  view :research_group_tab do
-    "add me"
+  view :research_group_tab, cache: :never do
+    field_nest :research_group, items: { view: :thin_listing }
   end
 
-  view :contributions_tab do
+  view :contributions_tab, cache: :never do
     CONTRIBUTION_TYPES.map do |codename|
       user_and_type = card.fetch trait: codename, new: {}
       nest user_and_type, view: :contribution_report
     end.join
   end
 
-  view :activity_tab do
+  view :activity_tab, cache: :never do
     field_nest :activity
   end
 end
