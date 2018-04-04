@@ -2,7 +2,7 @@ describe Card::Set::Abstract::BsBadge do
   describe "#labeled_badge" do
     subject do
       # research group includes Abstract::BsBadge
-      Card["Jedi"].format(:html).labeled_badge 5, "Cats"
+      Card["created research group"].format(:html).labeled_badge 5, "Cats"
     end
 
     it "includes badge and label" do
