@@ -68,7 +68,7 @@ class Answer < ApplicationRecord
   end
 
   def metric_card
-    @metric_card ||= Card.quick_fetch(fetch_metric_name)
+    @metric_card ||= Card.fetch(fetch_metric_id)
   end
 
   def method_missing method_name, *args, &block
