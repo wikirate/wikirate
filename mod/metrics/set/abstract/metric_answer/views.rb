@@ -5,22 +5,6 @@ format :html do
                                         home_view: :titled
   end
 
-  view :credit_name do
-    return if card.virtual?
-    wrap_with :div, class: "credit ml-1 pl-1" do
-      [
-        "#{credit_verb} #{_render_updated_at} ago by ",
-        nest(card.updater, view: :link),
-        _render(:source_link, {}, :hide)
-      ]
-    end
-  end
-
-  def credit_verb
-    verb = "updated" # card.answer.editor_id ? "edited" : "added"
-    link_to_card card.value_card, verb, path: { view: :history }
-  end
-
   view :source_link do
     if (source_card = card.fetch(trait: :source))
       source_card.item_cards.map do |i_card|

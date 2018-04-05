@@ -25,7 +25,7 @@ end
 
 # MISCELLANEOUS METHODS
 def currency
-  metric_card.value_type == "Money" && metric_card.currency
+  (metric_card.value_type == "Money" && metric_card.currency) || nil
 end
 
 def history_card_ids

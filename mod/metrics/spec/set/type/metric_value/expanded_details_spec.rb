@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::Type::MetricValue::ValueDetails do
+RSpec.describe Card::Set::Type::MetricValue::ExpandedDetails do
   def expanded_details answer_name, metric_type
     Card.fetch(answer_name).format.render "expanded_#{metric_type}_details".to_sym
   end

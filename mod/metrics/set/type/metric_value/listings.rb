@@ -98,7 +98,7 @@ format :html do
 
   view :value_cell do
     if card.unknown?
-      render research_ready? ? :research_button : :blank
+      render (research_ready? ? :research_button : :blank)
     else
       render :concise
     end

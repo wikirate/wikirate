@@ -1,7 +1,7 @@
 format :html do
   def wrap_expanded_details
     output [
-      _render(:credit_name),
+      nest(card.value_card, view: :credit),
       yield,
       wrap_with(:div, _render_comments, class: "comments-div")
     ]
