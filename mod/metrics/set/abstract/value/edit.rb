@@ -16,7 +16,7 @@ format :html do
 
   # link to full action history (includes value history)
   def credit_verb
-    link_to_card left, "updated", path: { view: :history }
+    link_to_card card.left, "updated", path: { view: :history }
   end
 
   def credit_date

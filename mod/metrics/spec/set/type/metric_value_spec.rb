@@ -43,17 +43,17 @@ RSpec.describe Card::Set::Type::MetricValue do
     end
   end
 
-  #context "value type is Number" do
-  #  include_examples "create answer", :number, "33", "invalid"
-#
-  #  context "unknown value" do
-  #    subject { create_answer(content: "unknown").format.render_modal_details }
-#
-  #    it "shows unknown instead of 0 in modal_details" do
-  #      is_expected.to have_tag("a", text: "unknown")
-  #    end
-  #  end
-  #end
+  # context "value type is Number" do
+  #   include_examples "create answer", :number, "33", "invalid"
+  #
+  #   context "unknown value" do
+  #     subject { create_answer(content: "unknown").format.render_modal_details }
+  #
+  #     it "shows unknown instead of 0 in modal_details" do
+  #       is_expected.to have_tag("a", text: "unknown")
+  #     end
+  #   end
+  # end
 
   context "value type is Money" do
     include_examples "create answer", :money, "33", "invalid"

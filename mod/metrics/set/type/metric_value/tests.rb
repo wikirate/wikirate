@@ -18,5 +18,6 @@ def inverse?
 end
 
 format do
-  delegate :calculation_overridden?, :research_ready?, :uncalculated?, :inverse?, to: :card
+  delegate :calculation_overridden?, :research_ready?, :uncalculated?, :inverse?,
+           to: :card
 end

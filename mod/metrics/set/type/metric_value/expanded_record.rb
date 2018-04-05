@@ -46,13 +46,15 @@ format :html do
       row 1, 11, class: "w-100" do
         column nest(card.metric_card.vote_count_card)
         column class: "p-0" do
-          row link_to_card(card.metric_card, card.metric_card.metric_title,
-                           class: "inherit-anchor"),
-              class: "name"
+          row metric_link, class: "name"
           row creator_info
         end
       end
     end
+  end
+
+  def metric_link
+    link_to_card card.metric_card, card.metric_card.metric_title, class: "inherit-anchor"
   end
 
   def details_sidebar type
@@ -67,7 +69,7 @@ format :html do
           #{send "#{type}_answers"}
           <br>
           #{yield if block_given?}
-      #{discussion}
+          #{discussion}
         </div>
       HTML
     end
@@ -114,10 +116,7 @@ format :html do
 
   # TODO: use view of metric
   def creator_info
-    output [
-               designer_info,
-               (scorer_info if card.metric_type == :score)
-           ]
+    output [designer_info, (scorer_info if card.metric_type == :score)]
   end
 
   def designer_info
@@ -127,10 +126,4 @@ format :html do
   def scorer_info
     nest card.metric_card.right, view: :scorer_info
   end
-
-  # view :record_list do
-  #   nest card.record_card, view: :answer_table,
-  #                          hide: :chart,
-  #                          show: :add_answer_button
-  # end
 end

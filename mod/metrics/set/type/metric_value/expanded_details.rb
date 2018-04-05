@@ -16,7 +16,7 @@ format :html do
 
   # Note: RESEARCHED details are handled in Abstract::ExpandedResearchedDetails
 
-  #~~~~~ FORMULA DETAILS
+  # ~~~~~ FORMULA DETAILS
 
   # don't cache; view depends on formula card
   view :expanded_formula_details, tags: :unknown_ok, cache: :never do
@@ -43,7 +43,7 @@ format :html do
     end
   end
 
-  #~~~~~ SCORE AND WIKIRATING DETAILS
+  # ~~~~~ SCORE AND WIKIRATING DETAILS
 
   view :expanded_score_details, cache: :never do
     wrap_expanded_details do
@@ -68,13 +68,13 @@ format :html do
     AnswerDetailsTable.new(self).render
   end
 
-  #~~~~~~~ RELATIONSHIP AND INVERSE RELATIONSHIP DETAILS
+  # ~~~~~~~ RELATIONSHIP AND INVERSE RELATIONSHIP DETAILS
 
   view :expanded_relationship_details do
     wrap_expanded_details do
       [
-          "<br/><h5>Relations</h5>",
-          render_relations_table_with_details_toggle.html_safe
+        "<br/><h5>Relations</h5>",
+        render_relations_table_with_details_toggle.html_safe
       ]
     end
   end
@@ -97,7 +97,7 @@ format :html do
                    header: %w[Company Answer]
   end
 
-  #~~~~~~~~~ DESCENDANT DETAILS
+  # ~~~~~~~~~ DESCENDANT DETAILS
 
   view :expanded_descendant_details do
     "(descendant answer details coming soon)"

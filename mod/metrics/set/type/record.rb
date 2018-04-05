@@ -55,9 +55,8 @@ end
 #   view :company_listing do
 #     nest company_card, view: :listing
 #   end
-
+#
 # end
-
 
 private
 

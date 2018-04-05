@@ -16,11 +16,9 @@ RSpec.describe Card::Set::Type::Metric, "json export" do
         metric: a_hash_including(designer: "Joe User"),
         source: a_hash_including(source_url: "http://www.wikiwand.com/en/Opera")
       ),
-      a_hash_including(
-        name: "Joe User+researched number 2+Samsung+2015",
-        value: "2",
-        year: "2015"
-      )
+      a_hash_including(name: "Joe User+researched number 2+Samsung+2015",
+                       value: "2",
+                       year: "2015")
     )
   end
 end

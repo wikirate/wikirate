@@ -45,11 +45,11 @@ format :html do
   view :basic_details do
     wrap_with :div, class: "value text-align-left" do
       [
-          wrap_with(:span, currency, class: "metric-unit"),
-          _render_value_link,
-          wrap_with(:span, legend, class: "metric-unit"),
-          _render_flags,
-          _render_chart
+        wrap_with(:span, currency, class: "metric-unit"),
+        _render_value_link,
+        wrap_with(:span, legend, class: "metric-unit"),
+        _render_flags,
+        _render_chart
       ]
     end
   end
@@ -72,12 +72,12 @@ format :html do
 
   view :metric_thumbnail_minimal do
     nest card.metric_card, view: :thumbnail_minimal,
-         hide: [:thumbnail_subtitle, :vote]
+                           hide: [:thumbnail_subtitle, :vote]
   end
 
   view :company_thumbnail_minimal do
     nest card.company_card, view: :thumbnail_minimal,
-         hide: [:thumbnail_subtitle, :vote]
+                            hide: [:thumbnail_subtitle, :vote]
   end
 
   # SHARED IN VARIOUS LISTINGS
@@ -98,7 +98,8 @@ format :html do
 
   view :value_cell do
     if card.unknown?
-      render (research_ready? ? :research_button : :blank)
+      view = research_ready? ? :research_button : :blank
+      render view
     else
       render :concise
     end
@@ -145,7 +146,7 @@ format :html do
       <span class="metric-unit"> #{legend} </span>
     HTML
   end
-  
+
   view :year_equals do
     "<span class=\"metric-year\">#{card.year} = </span>"
   end
@@ -161,7 +162,7 @@ format :html do
   view :pretty_value do
     span_args = { class: "metric-value" }
     add_class span_args, grade if card.ten_scale?
-    add_class span_args, :small if pretty_value.length > 5#
+    add_class span_args, :small if pretty_value.length > 5
     wrap_with :span, span_args do
       beautify(pretty_value).html_safe
     end

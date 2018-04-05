@@ -17,7 +17,7 @@ format :html do
 
   view :sources do
     source_options = { view: :core, items: { view: :cited } }
-    source_options[:items][:hide ] = :cited_source_links if voo.hide? :cited_source_links
+    source_options[:items][:hide] = :cited_source_links if voo.hide? :cited_source_links
     output [
       citations_count,
       nest(source_card, source_options)
