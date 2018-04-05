@@ -1,16 +1,16 @@
 RSpec.describe Card::Set::Type::MetricValue::ValueDetails do
-  def value_details answer_name, metric_type
-    Card.fetch(answer_name).format.render "#{metric_type}_value_details".to_sym
+  def expanded_details answer_name, metric_type
+    Card.fetch(answer_name).format.render "expanded_#{metric_type}_details".to_sym
   end
 
-  describe "view: formula_value_details" do
+  describe "view: expanded_formula_details" do
     def format_formula string, *values
       values = values.map { |v| "<span class='metric-value'>#{v}</span>" }
       format(string, *values)
     end
 
     specify do
-      table = value_details("Jedi+friendliness+Death Star+1977", :formula)
+      table = expanded_details "Jedi+friendliness+Death Star+1977", :formula
       expect(table).to have_tag "table" do
         with_tag "th", text: "Metric"
         with_tag "th", text: "Value"
@@ -29,9 +29,8 @@ RSpec.describe Card::Set::Type::MetricValue::ValueDetails do
     end
 
     example "year argument" do
-      table =
-        value_details"Jedi+deadlier+Slate Rock and Gravel Company+2004",
-                     :formula
+      answer = "Jedi+deadlier+Slate Rock and Gravel Company+2004"
+      table = expanded_details answer, :formula
       expect(table).to have_tag "table" do
         with_tag "td" do
           with_tag "a", text: "deadliness"
@@ -62,9 +61,8 @@ RSpec.describe Card::Set::Type::MetricValue::ValueDetails do
     end
 
     example "year range" do
-      table =
-        value_details "Jedi+deadliness average+Slate Rock and Gravel Company+2005",
-                      :formula
+      answer = "Jedi+deadliness average+Slate Rock and Gravel Company+2005"
+      table = expanded_details answer, :formula
       expect(table).to have_tag "table" do
         with_tag "td" do
           with_tag "a", text: "deadliness"
@@ -79,10 +77,10 @@ RSpec.describe Card::Set::Type::MetricValue::ValueDetails do
     end
   end
 
-  describe "view: score_value_detais" do
+  describe "view: expanded_score_details" do
     subject do
       Card.fetch("Jedi+deadliness+Joe User+Death Star+1977")
-          .format.render :wikirating_value_details
+          .format.render :expanded_wikirating_details
     end
 
     specify do
@@ -100,10 +98,10 @@ RSpec.describe Card::Set::Type::MetricValue::ValueDetails do
     end
   end
 
-  describe "view: wikirating_value_detais" do
+  describe "view: expanded_wikirating_details" do
     subject do
       Card.fetch("Jedi+darkness rating+Death Star+1977")
-          .format.render :wikirating_value_details
+          .format.render :expanded_wikirating_details
     end
 
     specify do
