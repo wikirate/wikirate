@@ -22,9 +22,9 @@ RSpec.describe Card::Set::Type::MetricValue::ExpandedRecord do
         end
       end
     end
-    it "renders metric details" do
-    end
-    it "renders discussion" do
-    end
+    # it "renders metric details" do
+    # end
+    # it "renders discussion" do
+    # end
   end
 end
