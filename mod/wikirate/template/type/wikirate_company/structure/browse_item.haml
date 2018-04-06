@@ -2,7 +2,7 @@
   .text-center.company-header.ellipsis{:title => card.name}
     = link_to_card card, nest(card, view: :title), class: "inherit-anchor"
   .row.clearfix.company-content.company-page-logo-container
-    .col-md-12.col-xs-12.nopadding.left
+    .col-md-12.col-xs-12.m-0.p-0.left
       %a.inherit-anchor{:href => _render_url}
         .row-data.center-logo
           = nest(card.image_card)

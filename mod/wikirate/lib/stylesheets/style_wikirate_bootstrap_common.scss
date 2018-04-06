@@ -246,11 +246,6 @@
   cursor: inherit !important;
 }
 
-.nopadding {
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
 .margin-8 {
   margin: 8px;
 }
@@ -421,7 +416,7 @@
   background-color: #f8f9fa;
   line-height: 80px;
   vertical-align: middle;
-  margin-right: 18px;
+  margin-right: 10px;
   text-align: center;
 
   img {
@@ -776,17 +771,6 @@ button.pointer-item-delete.btn.btn-outline-secondary {
   padding-left: 8px;
 }
 
-.rich-header {
-  .media {
-    border-bottom: 1px solid $border-color;
-    margin-bottom: 10px;
-  }
-
-  h3 {
-    margin: 10px 8px;
-  }
-}
-
 .horizontal-list {
   .pointer-item {
     display: inline;
@@ -794,8 +778,8 @@ button.pointer-item-delete.btn.btn-outline-secondary {
   }
 }
 
-.thumbnail-text {
-  padding: 6px;
+.labeled-pointers .pointer-list {
+    padding: 0;
 }
 
 .credit .search-result-list {

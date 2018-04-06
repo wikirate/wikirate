@@ -41,11 +41,15 @@ format :html do
   view :rich_header do
     bs_layout do
       row 12 do
-        col class: "nopadding rich-header" do
-          text_with_image title: "", text: header_right, size: :large
+        col class: "p-0 rich-header border-bottom" do
+          _render_rich_header_body
         end
       end
     end
+  end
+
+  view :rich_header_body do
+    text_with_image title: "", text: header_right, size: :large
   end
 
   def header_image
