@@ -1,5 +1,5 @@
 format :json do
-  view :migrations, perms: :none do |_args|
+  view :migrations, perms: :none do
     %w[schema_migrations schema_migrations_core_cards
        schema_migrations_deck_cards].each_with_object({}) do |table, h|
       h[table] = migration_records table

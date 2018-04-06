@@ -1,6 +1,6 @@
 include_set Abstract::MetricChild, generation: 3
-include_set Abstract::ValueToggle
-include_set Abstract::ResearchedValueDetails
+include_set Abstract::AnswerDetailsToggle
+include_set Abstract::ExpandedResearchedDetails
 include_set Abstract::MetricAnswer
 
 format :html do
@@ -16,15 +16,11 @@ format :html do
     value
   end
 
-  view :closed_value do
-    output [row, empty_details_slot]
-  end
-
-  def value_field
+  view :basic_details do
     _render_value_link
   end
 
-  def value_details
-    _render_researched_value_details
+  view :expanded_details do
+    _render :expanded_researched_details
   end
 end

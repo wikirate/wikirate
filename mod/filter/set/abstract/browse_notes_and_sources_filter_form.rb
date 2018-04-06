@@ -19,11 +19,11 @@ def sort_wql
 end
 
 format :html do
-  view :cited_formgroup, cache: :never do |_args|
+  view :cited_formgroup, cache: :never do
     select_filter :cited, "Cited", "all"
   end
 
-  view :claimed_formgroup, cache: :never do |_args|
+  view :claimed_formgroup, cache: :never do
     select_filter :claimed, "Has Notes?", "all"
   end
 

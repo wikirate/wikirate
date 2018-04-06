@@ -3,7 +3,7 @@ def virtual?
 end
 
 format :html do
-  view :core do |_args|
+  view :core do
     Card::Act.where(
       "actor_id=#{card.left.id} and card_id is not NULL"
     ).order("acted_at DESC").limit(10).map do |act|
@@ -41,7 +41,7 @@ format :html do
     ).html_safe
   end
 
-  view :open do |args|
-    card.left.present? && card.left.account ? super(args) : ""
+  view :open do
+    card.left.present? && card.left.account ? super() : ""
   end
 end

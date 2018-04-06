@@ -1,14 +1,16 @@
 %div
   %h5.mb-0
     -# = fa_icon "check-circle-o", class: "text-muted"
-    Checks (#{checker_count})
+    Checks
+    %span.badge.badge-light.border
+      = checker_count
   - if checked?
     .padding-top-10
       %i
         = checkers_list
         %span checked this value
   - else
-    Nobody has checked this value since it was #{verb}
+    .mt-1 Nobody has checked this value since it was #{verb}.
   -if check_requested?
     %p Double check #{request_icon} requested by #{check_requester}
   = render :check_interaction

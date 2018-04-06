@@ -9,8 +9,8 @@ card_accessor :downvote_count, type: :number, default: "0"
 
 card_accessor :image, type: :image
 
-view :missing do |args|
-  _render_link args
+view :missing do
+  _render_link
 end
 
 view :listing do

@@ -73,12 +73,12 @@ format :html do
     field_nest "*creator", view: :core, items: { view: :link }
   end
 
-  view :website_link do |_args|
+  view :website_link do
     link_to_card card, website_text, class: "source-preview-link",
                                      target: "_blank"
   end
 
-  view :title_link do |_args|
+  view :title_link do
     link_to_card card, title_text,
                  target: "_blank",
                  class: "source-preview-link preview-page-link"
@@ -162,8 +162,8 @@ format :html do
       [
         with_cite_button(cited: voo.live_options[:cited],
                          disabled: voo.live_options[:disabled]),
-        render_iframe_view(args).html_safe,
-        render_hidden_information(args).html_safe
+        render_iframe_view.html_safe,
+        hidden_information(args).html_safe
       ]
     end
   end
@@ -179,12 +179,12 @@ format :html do
     end
   end
 
-  view :cited, cache: :never do |args|
+  view :cited, cache: :never do
     if voo.show? :cited_source_links
-      wrap_with_info { _render_listing args }
+      wrap_with_info { _render_listing }
     else
       with_toggle do
-        wrap_with_info { _render_listing args }
+        wrap_with_info { _render_listing }
       end
     end
   end

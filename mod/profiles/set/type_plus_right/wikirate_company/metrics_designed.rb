@@ -14,11 +14,4 @@ format :html do
                      header: %w[Metric Companies]
     end
   end
-
-  def yinyang_list
-    voo.items[:view] = :metric_row
-    wrap_with :div, class: "yinyang-list" do
-      _render_card_list
-    end
-  end
 end

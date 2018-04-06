@@ -1,27 +1,11 @@
 format :html do
-  view :comments do |_args|
+  view :comments do
     disc_card = card.fetch trait: :discussion, new: {}
     subformat(disc_card)._render_titled title: "Comments", show: "commentbox",
                                         home_view: :titled
   end
 
-  view :credit_name do |args|
-    return if card.virtual?
-    wrap_with :div, class: "credit" do
-      [
-        "#{credit_verb} #{_render_updated_at} ago by ",
-        nest(card.updater, view: :link),
-        _render(:source_link, args, :hide)
-      ]
-    end
-  end
-
-  def credit_verb
-    verb = "updated" # card.answer.editor_id ? "edited" : "added"
-    link_to_card card.value_card, verb, path: { view: :history }
-  end
-
-  view :source_link do |_args|
+  view :source_link do
     if (source_card = card.fetch(trait: :source))
       source_card.item_cards.map do |i_card|
         subformat(i_card).render_original_icon_link
@@ -32,15 +16,26 @@ format :html do
   end
 
   view :sources do
-    source_card = card.fetch trait: :source
     source_options = { view: :core, items: { view: :cited } }
     source_options[:items][:hide] = :cited_source_links if voo.hide? :cited_source_links
     output [
-      wrap_with(:h5, "Citations (#{source_card.item_names.size})"),
+      citations_count,
       nest(source_card, source_options)
     ]
   end
 
+  def source_card
+    card.fetch trait: :source
+  end
+
+  def citations_count
+    wrap_with :h5 do
+      [
+        "Citations",
+        (wrap_with :span, source_card.item_names.size, class: "badge badge-light border")
+      ]
+    end
+  end
   view :sources_with_cited_button do
     with_nest_mode :normal do
       field_nest :source, view: :core, items: { view: :with_cited_button }

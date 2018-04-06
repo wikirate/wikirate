@@ -57,7 +57,7 @@ def value_options
   basic_metric_card.value_options
 end
 
-view :select do |_args|
+view :select do
   options = [["-- Select --", ""]] + card.option_names.map { |x| [x, x] }
   select_tag("pointer_select",
              options_for_select(options, card.item_names.first),
@@ -122,11 +122,7 @@ format :html do
     link_to_card card.scorer
   end
 
-  view :scorer_info do
-    nest scorer_card, view: :designer_info
-  end
-
-  view :scorer_image do |_args|
+  view :scorer_image do
     nest scorer_card.field(:image, new: {}), view: :core, size: :small
   end
 

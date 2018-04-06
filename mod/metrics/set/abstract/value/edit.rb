@@ -7,6 +7,26 @@ def option_names
 end
 
 format :html do
+  view :credit do
+    return unless card.real?
+    wrap_with :div, class: "credit ml-1 pl-1" do
+      [credit_verb, credit_date, credit_whom].join " "
+    end
+  end
+
+  # link to full action history (includes value history)
+  def credit_verb
+    link_to_card card.left, "updated", path: { view: :history }
+  end
+
+  def credit_date
+    "#{render :updated_at} ago"
+  end
+
+  def credit_whom
+    "by #{link_to_card card.updater}"
+  end
+
   view :content_formgroup do
     voo.editor = :nests
     super()
@@ -21,7 +41,7 @@ format :html do
     if free_text_metric?
       text_field :content, class: "d0-card-content"
     elsif categorical_metric? || multi_categorical_metric?
-      super({})
+      super()
     else
       editor_with_unit
     end
