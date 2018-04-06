@@ -175,18 +175,6 @@ format :html do
     end
   end
 
-  def draggable content, args
-    html_args = {
-      "data-update-path" => args[:update_path],
-      "data-votee-id"    => args[:votee_id],
-      :class             => "drag-item yinyang-row"
-    }
-    html_args[:class] += " no-metric-value" if args[:no_value]
-    args[:sort]&.each { |k, v| html_args["data-sort-#{k}"] = v }
-
-    wrap_with :div, content.html_safe, html_args
-  end
-
   def sortable content, args
     html_args = { class: "yinyang-row" }
     html_args[:class] += " no-metric-value" if args[:no_value]

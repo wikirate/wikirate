@@ -50,8 +50,7 @@ def check_requester
 end
 
 def check_requested_by_card
-  @check_requested_by_card ||=
-    left(new: {}).fetch(trait: :check_requested_by, new: {})
+  @check_requested_by_card ||= left(new: {}).check_requested_by_card
 end
 
 def allowed_to_check?

@@ -4,8 +4,7 @@
 # Eg, Richard+Metrics is used to generate reports about Richard's metric-related
 # contributions.
 #
-include_set Abstract::WikirateTable
-include_set Abstract::TwoColumnLayout
+include_set Abstract::Header
 
 card_reader :badges_earned, default: { type_id: Card::PointerID }
 
