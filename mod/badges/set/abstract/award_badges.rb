@@ -19,6 +19,7 @@ add_method_tracer :award_badge_if_earned, "award_badge_if_earned"
 
 # @return badge name if count equals its threshold
 def earns_badge action
+  return if Card::Auth.current_id == Card::WagnBotID
   badge_squad.earns_badge action
 end
 
