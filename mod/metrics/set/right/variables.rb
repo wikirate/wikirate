@@ -79,7 +79,7 @@ format :html do
 
   def weight_variable_list
     table_content = card.item_cards.map do |metric|
-      nest metric, view: :weight_row
+      subformat(metric).weight_row
     end
     table table_content, class: "weight-variable-list hidden"
   end
@@ -132,6 +132,6 @@ format :html do
 
   def example_value variable_card
     return "" unless (value = variable_card.try(:random_value_card))
-    nest(value, view: :concise, hide: :year).html_safe # html_safe necessary?
+    nest(value, view: :concise, hide: :year_equals).html_safe # html_safe necessary?
   end
 end

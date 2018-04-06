@@ -30,9 +30,9 @@ end
 
 STATUS_HEADER = {
   failed: "Failed",
-  imported: "Successful",
+  imported: "Successfully created",
   overridden: "Overridden",
-  skipped: "Skipped"
+  skipped: "Skipped existing"
 }.freeze
 
 STATUS_CONTEXT = {

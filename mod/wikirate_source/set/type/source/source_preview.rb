@@ -40,7 +40,7 @@ format :html do
   view :preview, tags: :unknown_ok do
     wrap do
       [
-        render_hidden_information,
+        hidden_information,
         render_source_preview_container
       ]
     end
@@ -112,7 +112,7 @@ format :html do
 
   def pdf_iframe_view file_card
     wrap_with :div, id: "pdf-preview", class: "webpage-preview" do
-      _render_pdfjs_iframe pdf_url: file_card.attachment.url
+      pdfjs_iframe pdf_url: file_card.attachment.url
     end
   end
 
@@ -140,7 +140,7 @@ format :html do
     mime_type == "application/pdf" || mime_type.start_with?("image/")
   end
 
-  view :hidden_information, tags: :unknown_ok do |args|
+  def hidden_information args={}
     wrap_with :div, class: "hidden" do
       [
         wrap_with(:div, card.name.url_key, id: "source-name"),
@@ -152,7 +152,7 @@ format :html do
     end
   end
 
-  view :non_previewable, tags: :unknown_ok do |_args|
+  view :non_previewable, tags: :unknown_ok do
     file_card = card.fetch trait: :file
     url, text = if file_card
                   [file_card.attachment.url, "Download"]

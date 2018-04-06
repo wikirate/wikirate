@@ -42,21 +42,6 @@ format :html do
     end
   end
 
-  view :citation_and_content do |args|
-    output([
-             render_citation_or_cite_button(args),
-             render_content(args)
-           ])
-  end
-
-  view :citation_or_clipboard do |args|
-    args[:citation_number] || render(:clipboard, args)
-  end
-
-  view :citation_or_cite_button do |args|
-    args[:citation_number] || render(:cite_button)
-  end
-
   view :listing do
     _render_content structure: "note item"
   end
@@ -80,18 +65,18 @@ format :html do
     super
   end
 
-  view :tip, perms: :none, closed: :blank do |args|
-    # special view for prompting users with next steps
-    if Auth.signed_in? &&
-       (tip = args[:tip] || next_step_tip) &&
-       @mode != :closed
-      %(
+  def tip tip
+    return "" unless Auth.signed_in? && tip && @mode != :closed
+    %(
         <div class="note-tip">
           Tip: You can #{tip}
           <span id="close-tip" class="fa fa-times-circle"></span>
         </div>
       )
-    end.to_s
+  end
+
+  view :tip, perms: :none, closed: :blank do
+    tip next_step_tip
   end
 
   def next_step_tip
@@ -113,7 +98,7 @@ format :html do
   view :sample_citation do
     tip = "easily cite this note by pasting the following:" +
           text_area_tag(:citable_note, card.default_citation)
-    %( <div class="sample-citation">#{render! :tip, tip: tip}</div> )
+    %( <div class="sample-citation">#{tip tip}</div> )
   end
 
   view :open do
@@ -200,8 +185,8 @@ def check_source source_card
   end
 end
 
-view :missing do |args|
-  _render_link args
+view :missing do
+  _render_link
 end
 
 view :clipboard do

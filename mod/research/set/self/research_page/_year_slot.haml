@@ -30,7 +30,7 @@
                       = year
                   -if record_card.answers_by_year[year]
                     %div
-                      = nest record_card.answers_by_year[year], view: :conciser, hide: :year
+                      = nest record_card.answers_by_year[year], view: :conciser, hide: :year_equals
                   -else
                     %i
                       add answer

@@ -18,7 +18,7 @@ RSpec.describe Card::Set::Type::MetricValue, "json export" do
       id: metric.id,
       name: metric.name,
       key: metric.key,
-      url: "/#{METRIC_NAME}",
+      url: "http://wikirate.org/#{METRIC_NAME}",
       designer: "Jedi",
       title: "Sith Lord in Charge"
     }
@@ -37,7 +37,7 @@ RSpec.describe Card::Set::Type::MetricValue, "json export" do
       id: company.id,
       name: company.name,
       key: company.key,
-      url: "/#{COMPANY_NAME}"
+      url: "http://wikirate.org/#{COMPANY_NAME}"
     }
   end
   let(:answer_fields) do
@@ -45,7 +45,7 @@ RSpec.describe Card::Set::Type::MetricValue, "json export" do
       id: answer.id,
       name: answer.name,
       key: answer.key,
-      url: "/#{ANSWER_NAME}",
+      url: "http://wikirate.org/#{ANSWER_NAME}",
       comments: "",
       import: false,
       year: YEAR,

@@ -19,7 +19,7 @@ format :html do
 
   def editor_table_main_content
     table_content_with_items do |metric, weight|
-      nest metric, view: :weight_row, weight: weight
+      subformat(metric).weight_row weight
     end
   end
 

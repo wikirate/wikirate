@@ -53,7 +53,7 @@ format :html do
   end
 
   def add_metric_modal_slot
-    _render_modal_slot(modal_id: "add-metric-slot", dialog_class: "large").html_safe
+    modal_slot "add-metric-slot", "large"
   end
 
   view :core do

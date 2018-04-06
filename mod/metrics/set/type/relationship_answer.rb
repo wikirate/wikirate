@@ -37,8 +37,23 @@ event :add_inverse_count_answer, :prepare_to_store do
 end
 
 def add_count name, count
-  add_subcard name, type_id: MetricValueID,
-                    subfields: { value: { content: count } }
+  add_subcard name, type_id: MetricValueID, subfields: { value: { content: count } }
+end
+
+def update_counts!
+  update_count! answer_name, company_count
+  update_count! inverse_answer_name, inverse_company_count
+end
+
+def update_count! answer_name, count
+  if (card = Card.fetch(answer_name))
+    if card.value.to_s != count.to_s
+      card.field(:value).update_attributes! content: count.to_s
+    end
+  else
+    Card.create! name: answer_name, type_id: MetricValueID,
+                 subfields: { value: { content: count } }
+  end
 end
 
 # number of companies that have a relationship answer for this answer

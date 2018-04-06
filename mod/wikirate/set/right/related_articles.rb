@@ -1,5 +1,5 @@
 format :html do
-  view :core do |_args|
+  view :core do
     body = ""
     if (claim = card.left) && claim.type_id == Card::ClaimID && (analysis_names = claim.analysis_names) && !analysis_names.empty?
       # unnecessary if we do this as type plus right

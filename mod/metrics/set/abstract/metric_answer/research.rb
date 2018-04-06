@@ -7,7 +7,7 @@ format :html do
     nest :research_page, view: :slot_machine
   end
 
-  def menu_edit_link opts
+  def menu_item_edit opts
     link_text = "#{material_icon('edit')}<span class='menu-item-label'>edit</span>"
     add_class opts, "dropdown-item"
     link_to_card card, link_text.html_safe,

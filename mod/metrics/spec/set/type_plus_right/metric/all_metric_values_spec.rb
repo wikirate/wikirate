@@ -321,7 +321,8 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       end
       it "has chart" do
         is_expected.to have_tag ".row.text-center" do
-          with_tag ".vis", with: { "data-url" => "/Jedi+disturbances_in_the_Force+all_metric_values?format=json&view=vega" }
+          url = "/Jedi+disturbances_in_the_Force+all_metric_values.json?view=vega"
+          with_tag ".vis", with: { "data-url": url }
         end
       end
 

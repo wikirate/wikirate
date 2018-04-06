@@ -3,10 +3,6 @@
 require "link_thumbnailer"
 
 RSpec.describe Card::Set::Type::Source do
-  before do
-    @wikirate_link_prefix = "#{Card::Env[:protocol]}#{Card::Env[:host]}/"
-  end
-
   def source_url url
     "#{Card::Env[:protocol]}#{Card::Env[:host]}/#{url}"
   end

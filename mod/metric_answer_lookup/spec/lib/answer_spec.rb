@@ -17,7 +17,7 @@ RSpec.describe Answer do
         is_expected.to be_instance_of(described_class)
       end
       it "has company_id" do
-        expect(answer.company_id).to eq Card.fetch_id("Apple Inc")
+        expect(answer.company_id).to eq Card.fetch_id("Apple Inc.")
       end
       it "has year" do
         expect(answer.year).to eq 2013
@@ -38,7 +38,7 @@ RSpec.describe Answer do
         expect(answer.metric_name).to eq "Joe User+researched"
       end
       it "has company_name" do
-        expect(answer.company_name).to eq "Apple_Inc"
+        expect(answer.company_name).to eq "Apple Inc."
       end
     end
   end

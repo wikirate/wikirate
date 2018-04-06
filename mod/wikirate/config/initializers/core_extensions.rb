@@ -7,6 +7,10 @@ module CoreExtensions
     rescue
       false
     end
+
+    def url?
+      start_with?("http://", "https://")
+    end
   end
 end
 
