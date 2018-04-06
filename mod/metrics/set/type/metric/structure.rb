@@ -31,7 +31,7 @@ format :html do
     end
   end
 
-  view :metric_title do |_args|
+  view :metric_title do
     link = link_to_card card, card.metric_title, class: "inherit-anchor"
     wrap_with :h3, link, class: "metric-color"
   end

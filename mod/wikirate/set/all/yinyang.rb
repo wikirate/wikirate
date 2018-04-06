@@ -1,19 +1,4 @@
 format do
-  view :yinyang_list do |args|
-    wrap_with :div, class: "yinyang-list #{args[:yinyang_list_class]}" do
-      _render_yinyang_list_items(args)
-    end
-  end
-
-  view :yinyang_list_items do |args|
-    card.item_cards(prepend: main_name,
-                    append: "yinyang drag item").map do |icard|
-      wrap_with :div, class: "yinyang-row" do
-        nest_item icard
-      end
-    end.join(args[:joint] || " ")
-  end
-
   def enrich_result result
     result.map do |item_name|
       # 1) add the main card name on the left

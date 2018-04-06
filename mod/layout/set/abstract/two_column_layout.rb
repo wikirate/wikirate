@@ -38,7 +38,7 @@ format :html do
     "right-col"
   end
 
-  view :rich_header do |_args|
+  view :rich_header do
     bs_layout do
       row 12 do
         col class: "p-0 rich-header border-bottom" do

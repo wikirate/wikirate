@@ -16,8 +16,8 @@ def headquarters_jurisdiction_code
     jc_card.oc_code
 end
 
-view :missing do |args|
-  _render_link args
+view :missing do
+  _render_link
 end
 
 view :listing do

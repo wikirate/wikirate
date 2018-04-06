@@ -29,24 +29,24 @@ format :html do
     %( #{prompt}#{super()} )
   end
 
-  view :citation_tip, tags: :unknown_ok do |_args|
+  view :citation_tip, tags: :unknown_ok do
     tip = " easily cite this note by pasting the following: "\
           "#{text_area_tag('sample-citation-textarea')}"
-    %( <div class="sample-citation">#{render! :tip, tip: tip}</div> )
+    %( <div class="sample-citation">#{tip tip}</div> )
   end
 
-  view :tip do |args|
-    # special view for prompting users with next steps
-    if Auth.signed_in? &&
-       (tip = args[:tip] || next_step_tip) &&
-       @mode != :closed
-      %(
+  def tip tip
+    return "" unless Auth.signed_in? && tip && @mode != :closed
+    %(
         <div class="note-tip">
           Tip: You can #{tip}
           <span id="close-tip" class="fa fa-times-circle"></span>
         </div>
       )
-    end.to_s
+  end
+
+  view :tip do
+    tip next_step_tip
   end
 
   def handle_edit_general_overview

@@ -33,16 +33,16 @@ format :html do
     card.count
   end
 
-  view :og_source, tags: :unknown_ok do |args|
+  view :og_source, tags: :unknown_ok do
     if card.real?
       card.format.render_source
     else
-      Card["*Vertical_Logo"].format.render_source args.merge(size: "large")
+      Card["*Vertical_Logo"].format.render_source size: "large"
     end
   end
 
-  view :meta_preview do |args|
-    content = _render_core args
+  view :meta_preview do
+    content = _render_core
     truncated = Card::Content.smart_truncate content, 50
     ActionView::Base.full_sanitizer.sanitize truncated
   end
@@ -125,7 +125,7 @@ format :html do
     end
   end
 
-  view :showcase_list, tags: :unknown_ok do |args|
+  view :showcase_list, tags: :unknown_ok do
     item_type_name = card.name.right.split.last
     icon_card = Card.fetch("#{item_type_name}+icon")
     hidden_class = card.content.empty? ? "hidden" : ""
@@ -134,7 +134,7 @@ format :html do
       [
         subformat(icon_card)._render_core,
         item_type_name.capitalize,
-        _render_core(args)
+        _render_core
       ]
     end
   end
@@ -178,7 +178,7 @@ format :json do
     result
   end
 
-  view :id_atom, cache: :never do |_args|
+  view :id_atom, cache: :never do
     if !params["start"] || (params["start"] && (start = params["start"].to_i) &&
       card.updated_at.strftime("%Y%m%d%H%M%S").to_i >= start)
       h = _render_atom

@@ -59,7 +59,9 @@ class CSVRow
           else
             @file_company
           end
-        add_card name: card_name, content: new_content, type_id: Card::PointerID
+        import_manager.with_conflict_strategy :override do
+          add_card name: card_name, content: new_content, type_id: Card::PointerID
+        end
       end
 
       def company

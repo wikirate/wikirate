@@ -1,6 +1,6 @@
 format :html do
-  view :open_profile do |args|
-    _render_open(args)
+  view :open_profile do
+    _render_open
   end
 
   view :title do

@@ -27,6 +27,12 @@ def item_label
   "relationship answer"
 end
 
+# to get rid of the render errors that appear on relationship answer listings
+# on relationship metric pages on the first page load after an import
+event :clear_cache_after_relationship_import, after: :import_csv do
+  Card::Cache.reset_all
+end
+
 format :html do
   def import_table_row_class
     Abstract::Import::TableRowRelationship

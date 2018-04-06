@@ -1,4 +1,8 @@
 format :html do
+  view :thin_listing do
+    render_listing hide: :listing_middle
+  end
+
   view :listing do
     wrap { haml :listing }
   end
