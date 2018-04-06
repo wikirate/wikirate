@@ -15,6 +15,11 @@ class Answer < ApplicationRecord
   validate :must_be_an_answer, :card_must_exist, unless: :virtual?
   validate :metric_must_exit
 
+  def self.existing id
+    return unless id
+    find_by_answer_id(id) || (refresh(id) && find_by_answer_id(id))
+  end
+
   def card_column
     :answer_id
   end
@@ -68,7 +73,7 @@ class Answer < ApplicationRecord
   end
 
   def metric_card
-    @metric_card ||= Card.quick_fetch(fetch_metric_name)
+    @metric_card ||= Card.fetch(fetch_metric_id)
   end
 
   def method_missing method_name, *args, &block

@@ -1,5 +1,6 @@
 card_accessor :value, type: :phrase
 card_accessor :checked_by
+card_accessor :check_requested_by
 card_accessor :source
 
 def value
@@ -20,4 +21,19 @@ def raw_value
   else
     value
   end
+end
+
+# MISCELLANEOUS METHODS
+def currency
+  (metric_card.value_type == "Money" && metric_card.currency) || nil
+end
+
+def history_card_ids
+  field_card_ids << id
+end
+
+def field_card_ids
+  [:value, :checked_by, :source, :check_requested_by].map do |field|
+    fetch(trait: field, skip_virtual: true, skip_modules: true)&.id
+  end.compact
 end

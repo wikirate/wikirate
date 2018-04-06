@@ -47,14 +47,12 @@ end
 format :html do
   include Right::DownvoteeSearch::HtmlFormat
 
-  def default_filter_and_sort args
-    args[:unsaved] ||= ""
-    args[:default_sort] ||=
+  def default_filter_and_sort_args _args
+    @default_sort ||=
       if main_type_id == WikirateTopicID && searched_type_id == WikirateCompanyID
         :contributions
       else
         :importance
       end
-    super(args)
   end
 end

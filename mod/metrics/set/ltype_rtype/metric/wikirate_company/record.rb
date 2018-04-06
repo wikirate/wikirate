@@ -48,11 +48,10 @@ format :html do
     if voo.hide?(:answer_form) && voo.show?(:answer_redirect_button)
       class_up "card-slot", "_show_add_new_value_button"
     end
-    answer_view = voo.show?(:chart) ? :closed_answer : :closed_answer_without_chart
     wrap do
       next "" unless all_answers.present?
       wikirate_table(:plain, all_answers,
-                     [:plain_year, answer_view],
+                     [:plain_year, :details],
                      header: %w[Year Answer],
                      td: { classes: ["text-center"] })
     end
@@ -66,8 +65,8 @@ format :html do
                  title: "Research answer for another year"
   end
 
-  def default_menu_args args
-    args[:optional_horizontal_menu] = :hide
+  def default_menu_args _args
+    voo.hide :horizontal_menu
   end
 
   view :image_link do

@@ -1,5 +1,5 @@
 format :html do
-  view :missing do |_args|
+  view :missing do
     "wikirate.org"
   end
 end

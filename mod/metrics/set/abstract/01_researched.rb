@@ -6,8 +6,8 @@ def score_cards
 end
 
 format :html do
-  def default_content_formgroup_args args
-    super args
+  def default_content_formgroup_args _args
+    super
     voo.edit_structure += [
       [:value_type, "Value Type"],
       [:research_policy, "Research Policy"],
@@ -36,7 +36,7 @@ format :html do
     end
   end
 
-  view :scores_tab do |_args|
+  view :scores_tab do
     # TODO: move +scores to a separate card
     tab_wrap do
       output [

@@ -53,24 +53,12 @@ format :html do
     card.value_options.reject { |o| o == "Unknown" }.join ","
   end
 
-  view :value_type_edit_modal_link, cache: :never do
-    nest card.value_type_card,
-         view: :modal_link,
-         link_text: vtype_edit_modal_link_text,
-         link_opts: {
-           class: "btn btn-outline-secondary slotter value-type-button",
-           path: { slot: { hide: "header,menu,help", view: :edit, title: "Value Type" } }
-         }
-  end
-
   view :value_type_detail do
     voo.hide :menu
     wrap do
       [
         field_nest(:value_type, view: :content, items: { view: :name }, show: :menu),
-        # )_render_value_type_edit_modal_link,
-        _render_short_view,
-        # _render_menu
+        _render_short_view
       ]
     end
   end
@@ -86,25 +74,25 @@ format :html do
     end
   end
 
-  view :short_view do |_args|
+  view :short_view do
     return "" unless (details_field = DETAILS_FIELD_MAP[card.value_type_code])
     detail_card = Card.fetch card, details_field, new: {}
     nest detail_card, view: :content
   end
 
-  view :handle do |_args|
+  view :handle do
     wrap_with :div, class: "handle" do
       glyphicon "option-vertical"
     end
   end
 
-  view :vote do |_args|
+  view :vote do
     %(<div class="hidden-xs hidden-md">
     #{field_nest(:vote_count)}</div>
     )
   end
 
-  view :value do |args|
+  view :value do
     return "" unless args[:company]
     %(
       <div class="data-item hide-with-details">
@@ -113,7 +101,7 @@ format :html do
     )
   end
 
-  view :metric_info do |_args|
+  view :metric_info do
     question = subformat(card.question_card)._render_core.html_safe
     rows = [
       icon_row("question", question, class: "metric-details-question"),
@@ -158,16 +146,16 @@ format :html do
     metric_info_row left, content, opts
   end
 
-  def weight_content args
+  def weight_content weight
     icon_class = "pull-right _remove_row btn btn-outline-secondary btn-sm"
     wrap_with :div do
-      [text_field_tag("pair_value", (args[:weight] || 0)) + "%",
+      [text_field_tag("pair_value", weight) + "%",
        content_tag(:span, fa_icon(:close).html_safe, class: icon_class)]
     end
   end
 
-  view :weight_row do |args|
-    weight = weight_content args
+  def weight_row weight=0
+    weight = weight_content weight
     output([wrap_with(:td, _render_thumbnail_no_link),
             wrap_with(:td, weight, class: "metric-weight")]).html_safe
   end
@@ -184,16 +172,16 @@ format :html do
     "data[#{card.key}][#{year}]"
   end
 
-  view :ruby, cache: :never do |args|
-    if args[:sum]
-      start, stop = args[:sum].split("..").map { |y| interpret_year(y) }
-      "((#{start}..#{stop}).to_a.inject(0) " \
-      "{ |r, y| r += #{get_value_str('y')}; r })"
-    else
-      year = args[:year] ? interpret_year(args[:year]) : "year"
-      get_value_str year
-    end
-  end
+  # view :ruby, cache: :never do |args|
+  #   if args[:sum]
+  #     start, stop = args[:sum].split("..").map { |y| interpret_year(y) }
+  #     "((#{start}..#{stop}).to_a.inject(0) " \
+  #     "{ |r, y| r += #{get_value_str('y')}; r })"
+  #   else
+  #     year = args[:year] ? interpret_year(args[:year]) : "year"
+  #     get_value_str year
+  #   end
+  # end
 
   def prepare_for_outlier_search
     res = {}

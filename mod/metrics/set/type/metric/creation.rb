@@ -133,7 +133,7 @@ event :set_metric_name, :initialize, on: :create, when: :needs_name? do
 end
 
 format :html do
-  view :new do |_args|
+  view :new do
     voo.title = "New Metric"
     with_nest_mode :edit do
       frame { _render_new_form }
@@ -203,7 +203,7 @@ format :html do
     { href: path_to_previous, redirect: true }
   end
 
-  view :help_text do |_args|
+  view :help_text do
     return "" unless (help_text_card = Card[card.metric_type + "+description"])
     class_up "help-text", "help-block"
     with_nest_mode :normal do
@@ -211,11 +211,10 @@ format :html do
     end
   end
 
-  view :new_tab_pane, tags: :unknown_ok do |args|
+  view :new_tab_pane, tags: :unknown_ok do
     with_nest_mode :edit do
       wrap do
-        card_form :create, hidden: args.delete(:hidden),
-                           "main-success" => "REDIRECT",
+        card_form :create, "main-success" => "REDIRECT",
                            "data-slot-selector": ".new-view.TYPE-metric" do
           output [
             new_tab_pane_hidden,

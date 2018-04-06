@@ -10,7 +10,7 @@ class Answer
     end
 
     def fetch_metric_id
-      metric_card.id
+      Card.fetch_id card.name.left_name.left
     end
 
     def fetch_record_id
@@ -18,11 +18,13 @@ class Answer
     end
 
     def fetch_metric_name
-      card.name.left_name.left
+      Card.fetch_name(metric_id || fetch_metric_id)
+      # card.name.left_name.left
     end
 
     def fetch_company_name
-      card.name.left_name.right
+      Card.fetch_name(company_id || fetch_company_id)
+      # card.name.left_name.right
     end
 
     def fetch_title_name
