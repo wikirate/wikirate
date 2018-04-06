@@ -4,7 +4,7 @@ include_set Abstract::BsBadge
 
 format :html do
   def left_column_class
-    "#{super} metric-info nopadding"
+    "#{super} metric-info m-0 p-0"
   end
 
   def right_column_class

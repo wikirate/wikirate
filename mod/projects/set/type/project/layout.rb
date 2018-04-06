@@ -1,10 +1,10 @@
 include_set Abstract::TwoColumnLayout
 
 TAB_MAP = {
-  company:    [:building,   :num_companies,    "Companies"],
-  metric:     ["bar-chart", :num_metrics,      "Metrics"],
-  year:       [:calendar,   :num_years,        "Years"],
-  subproject: [:flask,      :num_subprojects,  "Subprojects"]
+  company:    [:num_companies,    "Companies",   :building],
+  metric:     [:num_metrics,      "Metrics",     "bar-chart"],
+  year:       [:num_years,        "Years",       :calendar],
+  subproject: [:num_subprojects,  "Subprojects", :flask]
 }.freeze
 
 format :html do
@@ -26,18 +26,37 @@ format :html do
     ]
   end
 
+  def project_type_name
+    return with_parent unless card.parent.blank?
+    card.type.upcase
+  end
+
+  def with_parent
+    parent = link_to_card(card.parent_card.item_cards.first)
+    "SUB-#{card.type.upcase} (of #{parent})"
+  end
+
   def header_right
     wrap_with :div, class: "header-right" do
       [
-        wrap_with(:h3, _render_title, class: "project-title"),
-        status_field,
-        parent_field
+        wrap_with(:h6, project_type_name, class: "text-muted border-bottom pt-2 pb-2"),
+        wrap_with(:h5, _render_title, class: "project-title font-weight-normal")
       ].compact
     end
   end
 
+  view :rich_header_body do
+    output [
+      (text_with_image title: "", text: header_right, size: :medium),
+      status_field,
+      # parent_field
+    ]
+  end
+
   def status_field
-    field_nest :wikirate_status, view: :labeled, items: { view: :name }
+    field_nest :wikirate_status, view: :labeled,
+                                 items: { view: :name },
+                                 class: "labeled-pointer"
   end
 
   def parent_field
@@ -63,22 +82,22 @@ format :html do
 
   def tab_list
     active_tabs.each_with_object({}) do |tab, hash|
-      icon, stat_method, title = TAB_MAP[tab]
+      stat_method, title, icon = TAB_MAP[tab]
       stat = card.send stat_method
-      hash["#{tab}_tab".to_sym] = [fa_icon(icon), stat, title].join " "
+      hash["#{tab}_tab".to_sym] = two_line_tab(([fa_icon(icon), title].join " "), stat)
     end
   end
 
   view :metric_tab do
-    standard_nest :metric
+    tab_nest :metric
   end
 
   view :company_tab do
-    standard_nest :wikirate_company
+    tab_nest :wikirate_company
   end
 
   view :year_tab do
-    standard_nest :year
+    tab_nest :year
   end
 
   view :subproject_tab, template: :haml

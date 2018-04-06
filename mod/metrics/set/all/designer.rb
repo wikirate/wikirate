@@ -51,7 +51,7 @@ format :html do
   # def author_text_with_subtext subtext
   #   wrap_with :div, class: "margin-8" do
   #     [
-  #       wrap_with(:h5, author, class: "nopadding"),
+  #       wrap_with(:h5, author, class: "m-0 p-0"),
   #       %(<span><small class="text-muted">#{subtext}</small></span>)
   #     ]
   #   end
