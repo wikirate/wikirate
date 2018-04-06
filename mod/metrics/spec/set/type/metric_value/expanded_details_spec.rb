@@ -93,11 +93,9 @@ RSpec.describe Card::Set::Type::MetricValue::ExpandedDetails do
 
     specify do
       is_expected.to have_tag "table" do
-        with_tag "th", text: "Metric"
-        with_tag "th", text: "Raw Value"
-        with_tag "th", text: "Score"
-        with_tag "th", text: "Weight"
-        with_tag "th", text: "Points"
+        ["Metric", "Raw Value", "Score", "Weight", "Points"].each do |text|
+          with_tag "th", text: text
+        end
         with_tag("td") { with_tag "a", text: "deadliness" }
         with_tag("td") { with_tag "span.metric-value", text: "100" }
         with_tag "td", text: "10.0"
