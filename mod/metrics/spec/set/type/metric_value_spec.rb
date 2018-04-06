@@ -25,15 +25,6 @@ RSpec.describe Card::Set::Type::MetricValue do
   end
 
   describe "views" do
-    # specify "modal_details" do
-    #   url = "/#{answer.name.url_key}?layout=modal&"\
-    #         "slot%5Boptional_horizontal_menu%5D=hide&slot%5Bshow%5D=menu"
-    #   html = answer.format.render_modal_details
-    #   expect(html).to have_tag("span.metric-value") do
-    #     with_tag "a", text: "Darth Sidious", with: { href: url }
-    #   end
-    # end
-
     specify "concise" do
       html = answer.format.render_concise
       expect(html).to have_tag("span.metric-year", text: /1977 =/)
@@ -42,18 +33,6 @@ RSpec.describe Card::Set::Type::MetricValue do
                                text: /Imperial military units/)
     end
   end
-
-  # context "value type is Number" do
-  #   include_examples "create answer", :number, "33", "invalid"
-  #
-  #   context "unknown value" do
-  #     subject { create_answer(content: "unknown").format.render_modal_details }
-  #
-  #     it "shows unknown instead of 0 in modal_details" do
-  #       is_expected.to have_tag("a", text: "unknown")
-  #     end
-  #   end
-  # end
 
   context "value type is Money" do
     include_examples "create answer", :money, "33", "invalid"
