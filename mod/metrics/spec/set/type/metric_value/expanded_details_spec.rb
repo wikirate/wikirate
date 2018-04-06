@@ -4,9 +4,9 @@ RSpec.describe Card::Set::Type::MetricValue::ExpandedDetails do
   end
 
   describe "view: expanded_formula_details" do
-    def format_formula string, *values
-      values = values.map { |v| "<span class='metric-value'>#{v}</span>" }
-      format(string, *values)
+    def format_formula string, hash
+      hash.each { |k, v| hash[k] = "<span class='metric-value'>#{v}</span>" }
+      format(string, hash)
     end
 
     specify do
