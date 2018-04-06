@@ -1,10 +1,10 @@
 %div
   .container.homepage-company-item.background-white
     .row.wiki
-      .col-md-12.col-xs-12.metric-info.metric-header.nopadding
+      .col-md-12.col-xs-12.metric-info.metric-header.m-0.p-0
         .row.mt-2
           / Main title and stuff
-          .col-md-12.col-xs-12.nopadding.metric-details-header
+          .col-md-12.col-xs-12.m-0.p-0.metric-details-header
             .row.clearfix
               .col-md-1.col-xs-1
                 = field_nest :vote_count
@@ -18,12 +18,12 @@
                       .image-box.icon
                         = nest(card.designer_image_card, view: :core, size: :small)
                       %div
-                        %h5.text-muted.nopadding.no-bold-text Designed by
-                        %h5.nopadding
+                        %h5.text-muted.m-0.p-0.no-bold-text Designed by
+                        %h5.m-0.p-0
                           = card.metric_designer
         %br/
         / Question container
-        .row.question-container.nopadding
+        .row.question-container.m-0.p-0
           .col-md-1.col-xs-11
             .row-icon
               %i.fa.fa-question

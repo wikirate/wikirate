@@ -10,6 +10,18 @@ format :html do
                          items: { view: :link }
   end
 
+  view :menued do
+    class_up "d0-card-body", "pt-5", true
+    render_titled hide: :header, show: [:menu, :horizontal_menu]
+  end
+
+  def tab_nest codename, args={}
+    class_up "d0-card-body", "pt-5", true
+    field_nest codename,
+               args.reverse_merge(view: :menued, items: { view: :link },
+                                  hide: :menu_item_discuss)
+  end
+
   def original_link url, opts={}
     text = opts.delete(:text) || "Visit Original"
     link_to text, opts.merge(path: url)
