@@ -19,19 +19,31 @@ showAndHide = (slot, value) ->
   hideAll(slot)
   showField(div_to_show)
 
-decko.slotReady (slot) ->
-  # hide the related field
-  # if no type is selected, hide all fields
-  if (slot.hasClass("edit-view") && slot.hasClass("RIGHT-value_type")) ||
-     slot.find(".card-editor.RIGHT-value_type").length
-    hideAll(slot)
-    $(slot).find('.pointer-radio input:radio').each(->
-      if $(this).is(':checked')
-        showAndHide slot, $(this).val()
-      $(this).change(->
-        showAndHide slot, $(this).val()
-      )
-    )
+initializeValueTypeRadio = (radio, slot) ->
+  if radio.is(':checked')
+    showAndHide slot, radio.val()
+  radio.change ->
+    showAndHide slot, radio.val()
+
+decko.editorInitFunctionMap['._value-type-editor'] = ->
+  slot = $(this).slot()
+  hideAll slot
+  slot.find('.pointer-radio input:radio').each ->
+    initializeValueTypeRadio($(this), slot)
+
+# decko.slotReady (slot) ->
+#   # hide the related field
+#   # if no type is selected, hide all fields
+#   if (slot.hasClass("edit-view") && slot.hasClass("RIGHT-value_type")) ||
+#      slot.find(".card-editor.RIGHT-value_type").length
+#     hideAll(slot)
+#     $(slot).find('.pointer-radio input:radio').each(->
+#       if $(this).is(':checked')
+#         showAndHide slot, $(this).val()
+#       $(this).change(->
+#         showAndHide slot, $(this).val()
+#       )
+#     )
 
 #    if slot.parent().hasClass('modal-body')
 #      # cancel-button to dismiss the modal
