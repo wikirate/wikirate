@@ -5,6 +5,7 @@ class CorrectRelationshipCounts < Card::Migration
 
   def up
     Card.search(type_id: Card::RelationshipAnswerID).each do |card|
+      puts card.name
       card.update_counts!
     end
   end
