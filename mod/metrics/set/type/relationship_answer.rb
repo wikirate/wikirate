@@ -50,7 +50,7 @@ def update_count! answer_name, count
     if card.value.to_s != count.to_s
       card.field(:value).update_column :db_content, count.to_s
       Answer.find_by_answer_id(card.id)&.update_columns value: count.to_s,
-                                                       numeric_value: count.to_i
+                                                        numeric_value: count.to_i
     end
   else
     Card.create! name: answer_name, type_id: MetricValueID,
