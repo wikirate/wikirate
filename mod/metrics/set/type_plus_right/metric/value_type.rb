@@ -39,19 +39,16 @@ format :html do
     voo.title = "Value Type"
   end
 
-  def multi_card_edit
-    super() + fields_form
+  # card-editor class here prevents setContentFieldsFromMap from setting _all_ the
+  # content fields based on changes to the main radio one.
+  # _value-type-editor is the main trigger for the custom editorInitFunctionMap stuff
+  view :editor do
+    wrapped_editor = wrap_with(:div, class: "card-editor _value-type-editor") { super() }
+    wrapped_editor + fields_form
   end
 
-  def single_card_edit_field
-    super() + fields_form
-  end
-
-  def editor_in_multi_card
-    super() + fields_form
-  end
-
-  def left_field_nest field, opts
+  def left_field_nest field, title, opts={}
+    opts = { view: :edit_in_form, title: title, type: :phrase }.merge opts
     if card.name.left_name.empty?
       parent.field_nest field, opts
     else
@@ -62,16 +59,14 @@ format :html do
   def fields_form
     <<-HTML.html_safe
       <div class='value_type_field number_details'>
-        #{left_field_nest :unit, title: 'Unit', type: :phrase}
-        #{left_field_nest :range, title: 'Range', type: :phrase}
+        #{left_field_nest :unit, 'Unit'}
+        #{left_field_nest :range, 'Range'}
       </div>
       <div class='value_type_field category_details'>
-        #{left_field_nest :value_options, view: :edit_in_form, title: 'Value Options',
-                                          type: :pointer}
+        #{left_field_nest :value_options, 'Value Options', type: :pointer}
       </div>
       <div class='value_type_field currency_details'>
-        #{left_field_nest :currency, view: :edit_in_form,
-                                     title: 'Currency', type: :phrase}
+        #{left_field_nest :currency, 'Currency'}
       </div>
     HTML
   end

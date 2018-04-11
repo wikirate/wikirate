@@ -30,7 +30,7 @@ format :html do
     end
   end
 
-  view :research_button do
+  view :research_button, tags: :unknown_ok do
     link_to "Research",
             class: "btn btn-outline-secondary btn-sm",
             path: { mark: :research_page,

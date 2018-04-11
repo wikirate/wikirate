@@ -54,9 +54,7 @@ format :html do
   end
 
   def status_field
-    field_nest :wikirate_status, view: :labeled,
-                                 items: { view: :name },
-                                 class: "labeled-pointer"
+    field_nest :wikirate_status, view: :labeled, items: { view: :name }
   end
 
   def parent_field
