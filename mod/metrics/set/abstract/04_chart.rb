@@ -47,7 +47,6 @@ format do
   end
 
   def chart_filter_hash
-    binding.pry
     card.filter_hash(zoom_in?)
   end
 
@@ -58,7 +57,6 @@ end
 
 format :html do
   view :chart, cache: :never do
-    binding.pry
     vega_chart if show_chart?
   end
 
@@ -68,7 +66,6 @@ format :html do
 
   def vega_chart
     id = unique_id.tr "+", "-"
-    binding.pry
     output [
       zoom_out_link,
       wrap_with(:div, "",
@@ -112,7 +109,6 @@ end
 format :json do
   # views requested by ajax to load chart
   view :vega, cache: :never do
-    binding.pry
     # ve = JSON.pretty_generate vega_chart_config.to_hash
     # puts ve
     vega_chart_config(value_to_highlight).to_json
