@@ -5,7 +5,7 @@ format do
      "Looks like WikiRat's been gnawing on cables. " \
      "Don't let him get away with it.",
      "Ticket the Rat: http://wikirate.org/new/Ticket"
-     ].join "\n\n"
+    ].join "\n\n"
   end
 end
 
