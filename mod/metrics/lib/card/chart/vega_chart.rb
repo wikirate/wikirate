@@ -10,7 +10,17 @@ class Card
       DEFAULT_LAYOUT = {
         width: 400,
         height: 200,
-        padding: { top: 30, left: 50, bottom: 50, right: 50 }
+        padding: { top: 30, left: 50, bottom: 50, right: 50 },
+        signals: [
+          {
+            name: "tooltip",
+            value: {},
+            on: [
+              { events: "rect:mouseover", update: "datum" },
+              { events: "rect:mouseout",  update: "{}" }
+            ]
+          }
+        ]
       }.freeze
 
       DEFAULT_MARKS = {
@@ -22,6 +32,26 @@ class Card
                 width: { scale: "x", band: true, offset: -1 },
                 y: { scale: "y", field: "y" },
                 y2: { scale: "y", value: 0 } } }
+      }.freeze
+
+      TOOLTIP_MARK = {
+        type: "text",
+        encode: {
+          enter: {
+            align: {value: "center" },
+            baseline: {value: "bottom" },
+            fill: {value: "#333" }
+          },
+          update: {
+            x: { scale: "x", signal: "tooltip.x", band: 0.5 },
+            y: { scale: "y", signal: "tooltip.y", offset: -2 },
+            text: { signal: "tooltip.y" },
+            fillOpacity: [
+              { test: "datum === tooltip", value: 0 },
+              { value: 1}
+            ]
+          }
+        }
       }.freeze
 
       Range = Struct.new(:min, :max) do
@@ -161,7 +191,7 @@ class Card
             cursor: { value: hover_cursor }
           }
         end
-        [hash]
+        [hash, TOOLTIP_MARK]
       end
 
       def hover_cursor
@@ -219,7 +249,7 @@ class Card
       # :filter has the filter options for the table
       # :chart[:filter] the filter options for the chart
       def bar_link filter_opts
-        @format.path view: :content,
+        @format.path view: :filter_result,
                      chart: bar_link_chart_params(filter_opts),
                      filter: @format.filter_hash(false)
       end
