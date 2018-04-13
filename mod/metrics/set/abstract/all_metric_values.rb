@@ -24,12 +24,13 @@ end
 
 format :html do
   view :core, cache: :never do
-    # wrap_with :div, class: "filter-form-and-result nodblclick" do
-    class_up "card-slot", "_filter-result-slot"
-    output [_render_filter_form, _render_filter_result]
-    # end
+    wrap_with :div, class: "filter-form-and-result nodblclick" do
+      class_up "card-slot", "_filter-result-slot"
+      output [_render_filter_form, _render_filter_result]
+    end
   end
-
+gs
+  
   view :filter_result, template: :haml, cache: :never
 
   view :filter_form do
