@@ -5,7 +5,7 @@ describe Card::Set::TypePlusRight::Project::WikirateCompany do
     let(:project_companies) { Card.fetch("Evil Project", :wikirate_company) }
 
     it "has researchable metrics" do
-      expect(project_companies).to have_any_researchable_metrics
+      expect(project_companies).to have_researchable_metrics
     end
 
     describe "table (core view)" do
@@ -53,7 +53,7 @@ describe Card::Set::TypePlusRight::Project::WikirateCompany do
     end
 
     it "have no researchable metrics" do
-      expect(project_companies).not_to have_any_researchable_metrics
+      expect(project_companies).not_to have_researchable_metrics
     end
 
     describe "table (core view)" do
