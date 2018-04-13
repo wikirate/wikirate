@@ -10,9 +10,9 @@ end
 # @return [Array] all of this card's items that refer to a valid metric
 def valid_metric_cards
   @valid_metric_cards ||=
-      item_cards.select do |metric|
-        metric.type_id == MetricID
-      end
+    item_cards.select do |metric|
+      metric.type_id == MetricID
+    end
 end
 
 # @return [Array] a list of Metric+Project cards (ltype rtype) that connect

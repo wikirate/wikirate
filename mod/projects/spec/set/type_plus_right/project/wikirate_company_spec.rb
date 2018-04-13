@@ -1,11 +1,11 @@
 # -*- encoding : utf-8 -*-
 
 describe Card::Set::TypePlusRight::Project::WikirateCompany do
-  context "Companies on standard project" do
+  context "when project has research metrics" do
     let(:project_companies) { Card.fetch("Evil Project", :wikirate_company) }
 
-    it "have researchable metrics" do
-      expect(project_companies.any_researchable_metrics?).to be_truthy
+    it "has researchable metrics" do
+      expect(project_companies).to be_any_researchable_metrics?
     end
 
     describe "table (core view)" do
@@ -33,7 +33,7 @@ describe Card::Set::TypePlusRight::Project::WikirateCompany do
     end
   end
 
-  context "Companies on project with only calculated metrics" do
+  context "when project only has calculated metrics" do
     let(:project_companies) do
       @project_companies ||=
         Card.fetch(project_with_only_calculated_metrics, :wikirate_company)
@@ -53,7 +53,7 @@ describe Card::Set::TypePlusRight::Project::WikirateCompany do
     end
 
     it "have no researchable metrics" do
-      expect(project_companies.any_researchable_metrics?).to be_falsey
+      expect(project_companies).not_to be_any_researchable_metrics?
     end
 
     describe "table (core view)" do

@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-describe Card::Set::TypePlusRight::Project::Metric, "metric list on project" do
+describe Card::Set::TypePlusRight::Project::Metric do
   let(:project_metrics) { Card.fetch("Evil Project", :metric) }
 
   describe "table (core view)" do

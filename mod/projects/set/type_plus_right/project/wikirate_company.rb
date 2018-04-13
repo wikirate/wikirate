@@ -33,9 +33,7 @@ end
 # user?
 # @return [True/False]
 def any_researchable_metrics?
-  Card.fetch([project_name, :metric]).item_cards.find do |metric_card|
-    metric_card.user_can_answer?
-  end
+  Card.fetch([project_name, :metric]).item_cards.find(&:user_can_answer?)
 end
 
 format :html do
