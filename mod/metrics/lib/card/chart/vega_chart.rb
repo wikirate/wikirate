@@ -34,13 +34,15 @@ class Card
                 y2: { scale: "y", value: 0 } } }
       }.freeze
 
+      # show the value on top of the bar on mouse over
+      # (needs the "signal" section in DEFAULT_LAYOUT)
       TOOLTIP_MARK = {
         type: "text",
         encode: {
           enter: {
-            align: {value: "center" },
-            baseline: {value: "bottom" },
-            fill: {value: "#333" }
+            align: { value: "center" },
+            baseline: { value: "bottom" },
+            fill: { value: "#333" }
           },
           update: {
             x: { scale: "x", signal: "tooltip.x", band: 0.5 },
