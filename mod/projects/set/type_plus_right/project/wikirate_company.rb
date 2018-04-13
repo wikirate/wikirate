@@ -21,6 +21,12 @@ def all_company_project_cards
   end
 end
 
+def any_researchable_metrics?
+  Card.fetch([project_name, :metric]).item_cards.find do |metric_card|
+    metric_card.user_can_answer?
+  end
+end
+
 format :html do
   def default_item_view
     :listing
@@ -43,10 +49,16 @@ format :html do
   def company_progress_table
     wikirate_table(
       :company, card.all_company_project_cards,
-      [:company_thumbnail, :research_button, :research_progress_bar],
-      header: ["Company", "", "Metrics Researched"],
+      ok_columns([:company_thumbnail, :research_button, :research_progress_bar]),
+      header: ok_columns(["Company", "", "Metrics Researched"]),
       table: { class: "company-research" },
-      td: { classes: ["metric", "button-column", "progress-column"] }
+      td: { classes: ok_columns(["metric", "button-column", "progress-column"]) }
     )
+  end
+
+  # leave out middle column (research buttons) if no researchable_metrics
+  def ok_columns columns
+    return columns if card.any_researchable_metrics?
+    [columns[0], columns[1]]
   end
 end
