@@ -6,10 +6,13 @@ class AddWidgetCodenames < Card::Migration
                      company_address: "Clean_Clothes_Campaign+Address" }
 
     if (supplier_card = Card["Clean Clothes Campaign+Supplier Of"])
-      supplier_card.update_attributes! name: widget_cards[:commons_supplier_of]
+      supplier_card.update_attributes! name: widget_cards[:commons_supplier_of],
+                                       update_referers: true,
+                                       silent_change: true
     end
 
     widget_cards.each do |codename, cardname|
+      puts "Card[#{cardname}] = #{Card[cardname]&.id}"
       Card[cardname]&.update_attributes! codename: codename
     end
   end
