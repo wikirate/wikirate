@@ -1,5 +1,6 @@
 format do
   view :missing do
+    # FIXME: codename (or, ideally, a better solution!)
     nest Card["missing image"], view: :core, size: voo.size
   end
 end
