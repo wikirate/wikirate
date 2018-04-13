@@ -32,7 +32,7 @@ end
 # are any of the metrics associated with this project researchable for this
 # user?
 # @return [True/False]
-def has_researchable_metrics?
+def researchable_metrics?
   Card.fetch([project_name, :metric]).item_cards.find(&:user_can_answer?)
 end
 
@@ -67,7 +67,7 @@ format :html do
 
   # leave out middle column (research buttons) if no researchable_metrics
   def ok_columns columns
-    return columns if card.has_researchable_metrics?
+    return columns if card.researchable_metrics?
     [columns[0], columns[2]]
   end
 end
