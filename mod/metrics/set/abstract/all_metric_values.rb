@@ -29,7 +29,6 @@ format :html do
       output [_render_filter_form, _render_filter_result]
     end
   end
-gs
   
   view :filter_result, template: :haml, cache: :never
 
