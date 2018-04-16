@@ -355,4 +355,16 @@ input.navbox {
 }
 
 
-//Default Images 
+//Default Images
+
+div[data-slot*="float:right"]{
+    float:right;
+    border: 2px solid $border-color;
+    margin-left: 15px;
+}
+
+.SELF-un_sustainable_development_goal-topic_list .item-browse_item {
+    float: left;
+    width: 20%;
+    padding: 10px;
+}
