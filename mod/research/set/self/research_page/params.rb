@@ -74,7 +74,7 @@ format :html do
     if project?
       keys << :project
     else
-      keys += %i[metric_id_list company_id_list year_id_list]
+      keys += %i[metric_id_list company_id_list] # year_id_list]
     end
     keys
   end

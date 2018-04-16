@@ -8,10 +8,7 @@ format :html do
   end
 
   def menu_item_edit opts
-    link_text = "#{material_icon('edit')}<span class='menu-item-label'>edit</span>"
-    add_class opts, "dropdown-item"
-    link_to_card card, link_text.html_safe,
-                 opts.merge(path: menu_path_opts.merge(view: :edit), remote: false)
+    super opts.merge(path: { RESEARCH_PARAMS_KEY => research_params }, remote: false)
   end
 
   view :edit do
@@ -63,7 +60,7 @@ format :html do
     opts
   end
 
-  def menu_path_opts
+  def menu_link_path_opts
     super.merge RESEARCH_PARAMS_KEY => research_params
   end
 

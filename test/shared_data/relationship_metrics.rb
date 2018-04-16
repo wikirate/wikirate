@@ -22,8 +22,7 @@ class SharedData
         Death_Star "1977" => { "Los_Pollos_Hermanos" => "yes", "SPECTRE" => "yes" }
       end
 
-
-      Card::Metric.create name: "Clean Clothes Campaign+Supplied by",
+      Card::Metric.create name: "Commons+Supplied by",
                           type: :relationship,
                           random_source: true,
                           value_type: "Category",
@@ -35,7 +34,8 @@ class SharedData
         Monster_Inc "1977" => { "Los_Pollos_Hermanos" => "Tier 1 Supplier" }
       end
 
-      Card::Metric.create name: "Clean Clothes Campaign+Address",
+      address_name = "Clean Clothes Campaign+Address"
+      Card::Metric.create name: address_name,
                           type: :researched,
                           value_type: "Free Text",
                           random_source: true do
@@ -43,6 +43,9 @@ class SharedData
         Monster_Inc "1977" => "Alderaan"
         Google_Inc 2000 => "Mountain View"
       end
+
+      Card["Commons+Supplier of"].update_attributes! codename: :commons_supplier_of
+      Card[address_name].update_attributes! codename: :company_address
     end
   end
 end
