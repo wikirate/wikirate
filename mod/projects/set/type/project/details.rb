@@ -57,7 +57,7 @@ format :html do
       [
         count_stats,
         wrap_with(:div, research_progress_bar, class: "d-inline-flex"),
-        wrap_with(:span, card.percent_researched, class: "badge badge-secondary")
+        wrap_with(:span, "#{card.percent_researched}%", class: "badge badge-secondary")
       ].join " "
     end
   end
