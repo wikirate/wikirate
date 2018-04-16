@@ -50,7 +50,7 @@ class Card
             text: { signal: "tooltip.y" },
             fillOpacity: [
               { test: "datum === tooltip", value: 0 },
-              { value: 1}
+              { value: 1 }
             ]
           }
         }
