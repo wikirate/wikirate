@@ -31,7 +31,7 @@ format :html do
   end
 
   def list_default key
-    @default_list_used ||= ::Set
+    @default_list_used ||= ::Set.new
     @default_list_used << key
     key.to_sym == :year ? year_ids : []
   end
