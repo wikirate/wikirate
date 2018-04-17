@@ -245,7 +245,11 @@
 - :name: nav bar menu
   :type: HTML
   :key: nav_bar_menu
+<<<<<<< HEAD
   :merged: 2018-04-17 15:09:28 UTC
+=======
+  :merged: 2018-04-13 17:44:58 UTC
+>>>>>>> wikirate/develop
 - :name: Company
   :type: Cardtype
   :codename: wikirate_company
@@ -531,6 +535,7 @@
 - :name: Researcher+*right+*default
   :type: Pointer
   :key: researcher+*right+*default
+<<<<<<< HEAD
   :merged: 2018-04-17 15:09:28 UTC
 - :name: conversation+*right+*structure
   :type: Search
@@ -540,24 +545,51 @@
   :type: Basic
   :key: conversation+*type+*structure
   :merged: 2018-04-17 15:09:28 UTC
+=======
+  :merged: 2018-04-13 17:44:58 UTC
+- :name: conversation+*right+*structure
+  :type: Search
+  :key: conversation+*right+*structure
+  :merged: 2018-04-13 17:44:58 UTC
+- :name: Conversation+*type+*structure
+  :type: Basic
+  :key: conversation+*type+*structure
+  :merged: 2018-04-13 17:44:58 UTC
+>>>>>>> wikirate/develop
 - :name: Descendant
   :type: Metric type
   :codename: :descendant
   :key: descendant
+<<<<<<< HEAD
   :merged: 2018-04-17 15:09:29 UTC
 - :name: Descendant+description
   :type: Basic
   :key: descendant+description
   :merged: 2018-04-17 15:09:29 UTC
+=======
+  :merged: 2018-04-13 17:44:59 UTC
+- :name: Descendant+description
+  :type: Basic
+  :key: descendant+description
+  :merged: 2018-04-13 17:44:59 UTC
+>>>>>>> wikirate/develop
 - :name: Metric type
   :type: Cardtype
   :codename: metric_type_type
   :key: metric_type
+<<<<<<< HEAD
   :merged: 2018-04-17 15:09:29 UTC
 - :name: User+Research_Groups+*type plus right+*structure
   :type: Search
   :key: user+research_group+*type_plu_right+*structure
   :merged: 2018-04-17 15:09:30 UTC
+=======
+  :merged: 2018-04-13 17:44:59 UTC
+- :name: User+Research_Groups+*type plus right+*structure
+  :type: Search
+  :key: user+research_group+*type_plu_right+*structure
+  :merged: 2018-04-13 17:44:59 UTC
+>>>>>>> wikirate/develop
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org
