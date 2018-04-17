@@ -29,13 +29,12 @@ format :json do
   ADDRESS_SQL = "metric_id = ? AND value LIKE ?".freeze
 
   def search_by_address_sql company_ids
-    address_metric_id = Card.fetch_id "Clean_Clothes_Campaign+Address"
     sql = if company_ids.present?
             ["company_id IN (?) AND (#{ADDRESS_SQL})", company_ids]
           else
             [ADDRESS_SQL]
           end
-    sql.push(address_metric_id).push("%#{keyword}%")
+    sql.push(Card::Codename.id(:company_address)).push("%#{keyword}%")
   end
 
   def factory_ids
@@ -44,7 +43,7 @@ format :json do
 
   def search_factory_ids
     wql = { type_id: Card::WikirateCompanyID,
-            left_plus: [{ id: Card.fetch_id("Clean Clothes Campaign+Supplier Of") }, {}],
+            left_plus: Card::Codename.id(:commons_supplier_of),
             return: :id }
     if country_code
       wql[:right_plus] = [{ codename: "headquarters" },

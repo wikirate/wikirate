@@ -147,7 +147,7 @@ format :html do
   end
 
   def hidden_item_input
-    tag :input, type: "hidden", class: "pointer-select", value: card.name
+    tag :input, type: "hidden", class: "_pointer-item", value: card.name
   end
 
   view :with_cited_button do
