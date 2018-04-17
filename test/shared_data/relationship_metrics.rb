@@ -22,8 +22,7 @@ class SharedData
         Death_Star "1977" => { "Los_Pollos_Hermanos" => "yes", "SPECTRE" => "yes" }
       end
 
-
-      Card::Metric.create name: "Clean Clothes Campaign+Supplied by",
+      Card::Metric.create name: "Commons+Supplied by",
                           type: :relationship,
                           random_source: true,
                           value_type: "Category",
