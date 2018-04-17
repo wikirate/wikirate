@@ -49,7 +49,7 @@ Feature: create metrics
     When I go to new metric
     And I click on "Calculated"
     And I click on "Score"
-    And I select "Jedi+Victims by Employees" from "Metric Name"
+    And I select2 "Jedi+Victims by Employees" from "pointer_select"
     # And I fill in "Topic" with "Animal Welfare"
     And I press "Submit"
     Then I should see "Victims by Employees"
@@ -63,7 +63,7 @@ Feature: create metrics
     When I go to new metric
     And I click on "Calculated"
     And I click on "Score"
-    And I select "Jedi+deadliness" from "Metric Name"
+    And I select2 "Jedi+deadliness" from "pointer_select"
     And I press "Submit"
     And I should see "NAME: must be unique;"
     And I should see "'Jedi+deadliness+Joe Camel' already exists."
