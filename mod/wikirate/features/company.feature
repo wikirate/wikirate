@@ -34,6 +34,7 @@ Feature: company feature
     When I click on "Add filter"
     And I click on "Topic"
     And I wait for ajax response
+    And I wait 2 seconds
     And I select2 "Force" from "filter[wikirate_topic][]"
     # To change focus
     And I click on "Add filter"
