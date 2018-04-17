@@ -16,7 +16,7 @@ class MoveCustomizedSkin < Card::Migration
     ensure_card "emergency style hacks", type_id: Card::ScssID
     update_card ["wikirate skin", :stylesheets],
                 content: "[[wikirate stylesheets]]\n[[emergency style hacks]]"
-    Card["wikirate skin", :variables].update_column :db_content, WIKIRATE_VARIABLES
+    Card["wikirate skin", :colors].update_column :db_content, WIKIRATE_VARIABLES
     update_card [:all, :style], content: "[[wikirate skin]]"
     Card.reset_all_machines
   end
