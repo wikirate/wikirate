@@ -33,6 +33,7 @@ class SharedData
                             "Google Inc." => "Tier 2 Supplier" }
         Monster_Inc "1977" => { "Los_Pollos_Hermanos" => "Tier 1 Supplier" }
       end
+      update_card "Commons+Supplied by", codename: "commons_supplier_of"
 
       Card::Metric.create name: "Clean Clothes Campaign+Address",
                           type: :researched,
@@ -42,6 +43,8 @@ class SharedData
         Monster_Inc "1977" => "Alderaan"
         Google_Inc 2000 => "Mountain View"
       end
+
+      update_card  "Clean Clothes Campaign+Address", codename: "company_address"
     end
   end
 end
