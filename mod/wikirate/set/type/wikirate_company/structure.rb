@@ -79,7 +79,7 @@ format :html do
   end
 
   def wrap_header_tabs device=""
-    css_class = "nav nav-tabs twin-tab " + header_tab_classes(device)
+    css_class = "nav nav-tabs twin-tab nodblclick " + header_tab_classes(device)
     wrap_with :ul, class: css_class do
       [performance_tab_button, contributions_tab_button]
     end

@@ -15,7 +15,7 @@ RSpec.describe Card::Set::Type::Record do
 
   describe "json view #related_companies_with_year" do
     let(:companies) do
-      Card["Clean_Clothes_Campaign+Supplier of+Los Pollos Hermanos"]
+      Card["Commons+Supplier of+Los Pollos Hermanos"]
         .format(:json).render_related_companies_with_year
     end
 
