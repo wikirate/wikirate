@@ -14,11 +14,11 @@ def needs_name?
 end
 
 def formula_editor
-  :categorical_editor if categorical?
+  categorical? ? :categorical_editor : super
 end
 
 def formula_core
-  :categorical_core if categorical?
+  categorical? ? :categorical_core : super
 end
 # </OVERRIDES>
 
