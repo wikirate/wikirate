@@ -43,6 +43,7 @@ def metric_value_query
   { left: { left_id: id }, type_id: MetricValueID }
 end
 
+# note: can return True for anonymous user if answer is generally researchable
 def user_can_answer?
   return unless researched? || hybrid?
   # TODO: add metric designer respresentative logic here
