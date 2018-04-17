@@ -37,7 +37,7 @@ format :html do
   end
 
   def default_list_used? list_key
-    @default_list_used && @default_list_used.include?(list_key)
+    @default_list_used&.include? list_key
   end
 
   def list_from_project_or_params name
