@@ -2,14 +2,10 @@
   %h1 Rats!
   %h2.alert-danger 500 Server Error
   .p-5
-    - img_src = nest :wikirat, view: :source, size: :large
-    %img.img-fluid{src: img_src}
+    %img.img-fluid{src: wikirat_image_source}
   %h4
     Looks like WikiRat's been gnawing on cables.
     Don't let him get away with it.
   %p.p-3
     %a.btn.btn-danger{href: "/new/Ticket"}
       Ticket the Rat!
-  %p.font-italic
-    Nota Bene: WikiRat has never been photographed.
-    The innocent mouse above was just washing up and was not made to feel shame.

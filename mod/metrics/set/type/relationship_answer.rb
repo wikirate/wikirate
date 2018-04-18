@@ -124,3 +124,23 @@ format :html do
     subformat(card.metric_card).value_legend
   end
 end
+
+format :json do
+  # include MetricValue::JsonFormat
+  view :from_answer do
+    _render_essentials.merge company: essentials_for_related_company
+  end
+
+  def essentials_for_related_company
+    nest card.related_company, view: :marks
+  end
+
+  def essentials
+    {
+      year: card.year.to_s,
+      value: card.value,
+      import: card.imported?,
+      comments: field_nest(:discussion, view: :core)
+    }
+  end
+end
