@@ -137,10 +137,10 @@ format :json do
 
   def essentials
     {
-        year: card.year.to_s,
-        value: card.value,
-        import: card.imported?,
-        comments: field_nest(:discussion, view: :core)
+      year: card.year.to_s,
+      value: card.value,
+      import: card.imported?,
+      comments: field_nest(:discussion, view: :core)
     }
   end
 end

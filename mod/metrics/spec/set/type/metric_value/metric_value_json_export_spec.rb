@@ -10,7 +10,6 @@ RSpec.describe Card::Set::Type::MetricValue, "json export" do
   let(:company) { Card[COMPANY_NAME] }
 
   describe "exported json researched metric answer" do
-
     let(:metric) { Card["Jedi+Sith_Lord_in_Charge"] }
     let(:source) { sample_source("Star_Wars") }
 
@@ -64,12 +63,12 @@ RSpec.describe Card::Set::Type::MetricValue, "json export" do
   end
 
   describe "exported json researched metric answer" do
-    let (:metric) { Card["Jedi+more evil"] }
+    let(:metric) { Card["Jedi+more evil"] }
 
     it "core view" do
       is_expected .to include(
         relationships: a_collection_including(
-          a_hash_including({ company: a_hash_including({ name: "SPECTRE" }) })
+          a_hash_including(company: a_hash_including(name: "SPECTRE"))
         )
       )
     end

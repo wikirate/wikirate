@@ -25,12 +25,10 @@ format :json do
   end
 
   def essentials
-    {
-        year: card.year.to_s,
-        value: card.value,
-        import: card.imported?,
-        comments: field_nest(:discussion, view: :core)
-    }
+    { year: card.year.to_s,
+      value: card.value,
+      import: card.imported?,
+      comments: field_nest(:discussion, view: :core) }
   end
 
   def essentials_for symbols, hash
