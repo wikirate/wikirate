@@ -48,15 +48,11 @@
 
 .table  {
   font-style: normal;
-  width: 100%;
-  max-width: 100%;
   margin-bottom: 20px;
   border: 1px solid $border-color;
   thead,tbody,tfoot,.thead,.tbody,.tfoot {
     > tr > th, > .tr > .th, td, .td {
-      padding: 8px;
       line-height: 1.42857;
-      vertical-align: top;
       border-top: 1px solid $border-color;
       border-right: 1px solid $border-color;
     }

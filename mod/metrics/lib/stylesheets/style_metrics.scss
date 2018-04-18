@@ -784,3 +784,27 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     max-width: 300px!important;
     max-height: 206px!important;
 }
+
+
+.filtered-answer-counts {
+  tr.known {
+    font-weight: bold;
+  }
+
+  .material-icons.small {
+    font-size: small !important;
+  }
+}
+
+.badge {
+  color: $white;
+  &.known {
+    background-color: $metric-color;
+  }
+  &.total {
+    background-color: $black;
+  }
+  &.unknown, &.none {
+    background-color: $gray-600;
+  }
+}
