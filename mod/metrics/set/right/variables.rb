@@ -54,16 +54,12 @@ format :html do
 
   def with_hidden_subcard_content_slot
     wrap do
-      subcard_voo
+      @explicit_form_prefix = "card[subcards][#{card.name}]"
+      reset_form
       with_nest_mode :normal do
         output [render_hidden_content_field, yield]
       end
     end
-  end
-
-  def subcard_voo
-    voo.live_options[:input_name] = "card[subcards][#{card.name}]"
-    reset_form
   end
 
   view :edit_in_wikirating, tags: :unknown_ok do

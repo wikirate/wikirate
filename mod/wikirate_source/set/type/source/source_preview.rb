@@ -140,14 +140,11 @@ format :html do
     mime_type == "application/pdf" || mime_type.start_with?("image/")
   end
 
-  def hidden_information args={}
+  def hidden_information
     wrap_with :div, class: "hidden" do
       [
         wrap_with(:div, card.name.url_key, id: "source-name"),
-        wrap_with(:div, preview_url, id: "source_url"),
-        wrap_with(:div, args[:year], id: "source-year"),
-        wrap_with(:div, args[:company], id: "source_company"),
-        wrap_with(:div, args[:topic], id: "source_topic")
+        wrap_with(:div, preview_url, id: "source_url")
       ]
     end
   end

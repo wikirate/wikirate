@@ -125,7 +125,9 @@ format :html do
   end
 
   def research_params
-    parent.try(:research_params) || voo&.inherit(:research_params) ||
+    @research_params =
+      inherit(:research_params) ||
+      parent.try(:research_params) ||
       card.left&.format&.try(:research_params) || {}
   end
 
