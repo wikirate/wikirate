@@ -112,7 +112,7 @@ format :html do
 
   def add_source_form
     params[:company] ||= card.company
-    @answer_for_citation
+    @answer_for_citation = card.name
     nest Card.new(type_id: Card::SourceID),
          view: :add_source_to_research
   end
