@@ -14,11 +14,11 @@ def needs_name?
 end
 
 def formula_editor
-  :categorical_editor if categorical?
+  categorical? ? :categorical_editor : super
 end
 
 def formula_core
-  :categorical_core if categorical?
+  categorical? ? :categorical_core : super
 end
 # </OVERRIDES>
 
@@ -61,7 +61,7 @@ view :select do
   options = [["-- Select --", ""]] + card.option_names.map { |x| [x, x] }
   select_tag("pointer_select",
              options_for_select(options, card.item_names.first),
-             class: "pointer-select form-control")
+             class: "pointer-select  _pointer-select")
 end
 
 format :html do
@@ -97,7 +97,7 @@ format :html do
                        class: "d0-card-content") +
         select_tag("pointer_select",
                    options_for_select(options, selected),
-                   class: "pointer-select form-control") +
+                   class: "pointer-select _pointer-select") +
         help_text.html_safe
     end
   end

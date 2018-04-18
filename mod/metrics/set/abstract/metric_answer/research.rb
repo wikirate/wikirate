@@ -65,7 +65,7 @@ format :html do
   end
 
   def research_params
-    voo&.closest_live_option(:research_params) ||
+    voo&.inherit(:research_params) ||
       Env.params[RESEARCH_PARAMS_KEY]&.to_unsafe_h ||
       { metric: card.metric, company: card.company, year: card.year }
   end

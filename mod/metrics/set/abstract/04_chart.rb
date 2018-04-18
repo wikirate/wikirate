@@ -6,7 +6,13 @@ def filter_hash with_chart_filter=true
 end
 
 def chart_params
-  Env.params[:chart].is_a?(Hash) ? Env.params[:chart] : {}
+  if Env.params[:chart].is_a?(Hash)
+    Env.params[:chart]
+  elsif Env.params[:chart].is_a?(ActionController::Parameters)
+    Env.params[:chart].to_unsafe_h
+  else
+    {}
+  end
 end
 
 def chart_filter_params

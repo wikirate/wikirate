@@ -1,6 +1,8 @@
 
 format :html do
-  PARAM_NAME = { company_id_list: :cil, metric_id_list: :mil, year_list: :yil }.freeze
+  PARAM_LIST_NAME =
+    { company_id_list: :cil, metric_id_list: :mil, year_id_list: :yil }.freeze
+
   def active_tab
     @active_tab ||= params[:active_tab] ||
                     (existing_answer_with_source? && "View Source") ||
@@ -29,7 +31,13 @@ format :html do
   end
 
   def list_default key
+    @default_list_used ||= ::Set.new
+    @default_list_used << key
     key.to_sym == :year ? year_ids : []
+  end
+
+  def default_list_used? list_key
+    @default_list_used&.include? list_key
   end
 
   def list_from_project_or_params name
@@ -46,7 +54,7 @@ format :html do
   end
 
   def param_name name
-    PARAM_NAME[name.to_sym] || name.to_sym
+    PARAM_LIST_NAME[name.to_sym] || name.to_sym
   end
 
   def research_url opts={}
@@ -74,7 +82,7 @@ format :html do
     if project?
       keys << :project
     else
-      keys += %i[metric_id_list company_id_list] # year_id_list]
+      keys += PARAM_LIST_NAME.keys.reject { |k| default_list_used? k }
     end
     keys
   end

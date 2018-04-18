@@ -72,10 +72,10 @@ end
 
 format :html do
   view :link, closed: true, perms: :none do
-    return super() unless voo.closest_live_option(:project)
+    return super() unless voo.inherit(:project)
     title = title_in_context voo.title
     opts = { known: card.known? }
-    opts[:path] = { filter: { project: voo.closest_live_option(:project) } }
+    opts[:path] = { filter: { project: voo.inherit(:project) } }
     opts[:path][:card] = { type: voo.type } if voo.type && !opts[:known]
     link_to_card card.name, title, opts
   end

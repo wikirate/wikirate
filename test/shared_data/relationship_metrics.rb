@@ -33,9 +33,9 @@ class SharedData
                             "Google Inc." => "Tier 2 Supplier" }
         Monster_Inc "1977" => { "Los_Pollos_Hermanos" => "Tier 1 Supplier" }
       end
+      update_card "Commons+Supplier of", codename: "commons_supplier_of"
 
-      address_name = "Clean Clothes Campaign+Address"
-      Card::Metric.create name: address_name,
+      Card::Metric.create name: "Clean Clothes Campaign+Address",
                           type: :researched,
                           value_type: "Free Text",
                           random_source: true do
@@ -44,8 +44,7 @@ class SharedData
         Google_Inc 2000 => "Mountain View"
       end
 
-      Card["Commons+Supplier of"].update_attributes! codename: :commons_supplier_of
-      Card[address_name].update_attributes! codename: :company_address
+      update_card  "Clean Clothes Campaign+Address", codename: "company_address"
     end
   end
 end

@@ -125,7 +125,7 @@ format :html do
   end
 
   def research_params
-    parent.try(:research_params) || voo&.closest_live_option(:research_params) ||
+    parent.try(:research_params) || voo&.inherit(:research_params) ||
       card.left&.format&.try(:research_params) || {}
   end
 

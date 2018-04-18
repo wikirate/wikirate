@@ -23,8 +23,8 @@ format :html do
 
   def thumbnail_title_link
     opts = { title: card.name }
-    if voo.closest_live_option(:project)
-      opts[:path] = { filter: { project: voo.closest_live_option(:project) } }
+    if voo.inherit(:project)
+      opts[:path] = { filter: { project: voo.inherit(:project) } }
     end
     link_to_card card, thumbnail_title_text, opts
   end
@@ -38,7 +38,7 @@ format :html do
   end
 
   view :fixed_value do
-    nest [card, voo.closest_live_option(:params)], view: :value_link
+    nest [card, voo.inherit(:params)], view: :value_link
   end
 
   view :score_thumbnail do
