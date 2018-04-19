@@ -23,6 +23,10 @@ def skin_variables?
   left&.type_id == CustomizedSkinID
 end
 
+def item_cards _args={}
+  skin_variables? ? [self] : super
+end
+
 def content
   return super() if skin_variables?
   @content ||=

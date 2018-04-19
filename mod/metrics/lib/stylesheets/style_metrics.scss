@@ -797,9 +797,9 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 }
 
 .badge {
-  color: $white;
+  color: #ffff00;
   &.known {
-    background-color: $metric-color;
+    background-color:  $metric-color;
   }
   &.total {
     background-color: $black;
