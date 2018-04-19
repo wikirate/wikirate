@@ -4,40 +4,12 @@
   background-color: rgba(92,184,149,0.34);
 }
 
-.table {
-  display: table;
-}
-
-.th {
-  display: table-cell;
-}
-
-.tr {
-  display: table-row;
-}
-
-.td {
-  display: table-cell;
-}
-
-.thead {
-  display: table-header-group;
-}
-
-.tbody {
-  display: table-row-group;
-}
-
-.tfooter {
-  display: table-footer-group;
-}
-
 
 @mixin left-color($regular, $hover) {
   .header {
     border-left: 3px solid $regular;
   }
-  tr, .tr {
+  tr {
     &.tr-details-toggle:hover, &.tr-link:hover {
       .header {
         border-left: 3px solid $hover;
@@ -50,8 +22,8 @@
   font-style: normal;
   margin-bottom: 20px;
   border: 1px solid $border-color;
-  thead,tbody,tfoot,.thead,.tbody,.tfoot {
-    > tr > th, > .tr > .th, td, .td {
+  thead,tbody,tfoot {
+    > tr > th, td {
       line-height: 1.42857;
       border-top: 1px solid $border-color;
       border-right: 1px solid $border-color;
@@ -65,8 +37,8 @@
   }
 
 
-  thead > tr >, .thead > .tr {
-    th, td, .th, .td {
+  thead > tr > {
+    th, td {
       font-style: normal;
       border-bottom: 1px solid $border-color;
     }
@@ -74,8 +46,8 @@
 }
 
 .table.import-table {
-  thead,tbody,tfoot,.thead,.tbody,.tfoot {
-    > tr > th, > .tr > .th, td, .td {
+  thead,tbody,tfoot {
+    > tr > th, td {
       border-right-style: none
     }
   }
@@ -83,7 +55,7 @@
 
 table.wikirate-table, .table.wikirate-table {
   background: #fff;
-  thead > tr > th, .thead > .tr > .th {
+  thead > tr > th {
     background: #fff;
     padding: 2px;
     font-size: $sub-text-size;
@@ -94,7 +66,7 @@ table.wikirate-table, .table.wikirate-table {
       color: $dark-text-color;
     }
   }
-  td, .td {
+  td {
     &.data {
       min-width: 180px;
     }
@@ -140,7 +112,7 @@ table.wikirate-table, .table.wikirate-table {
   }
 
 
-  tr, .tr {
+  tr {
     &.tr-details-toggle:hover, &.tr-link:hover {
       background-color: #fafafa;
       cursor: pointer;
@@ -157,7 +129,7 @@ table.wikirate-table, .table.wikirate-table {
     @include left-color(rgba(43, 126, 160, 0.14), $topic-color);
   }
 
-  tbody > tr > td.details, .tbody > .tr > .td.details {
+  tbody > tr > td.details {
       background-color: #fff;
       border-top: 1px solid $bright-text-color;
       border: 1px solid #EAEAEA;

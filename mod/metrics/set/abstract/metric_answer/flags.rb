@@ -1,5 +1,5 @@
 def imported?
-  answer.imported
+  answer.imported || false
 end
 
 def checked?
