@@ -27,7 +27,7 @@ format :html do
 
   def checked_value_flag
     return "" unless card.checked?
-    nest card.field(:checked_by), view: :icon #, class: "margin-left-10"
+    nest card.field(:checked_by), view: :icon
   end
 
   def comment_flag
