@@ -21,20 +21,45 @@ format :json do
   end
 
   view :core do
-    data = _render_essentials.merge(
-      metric: nest(card.metric, view: :essentials),
-      company: nest(card.company, view: :marks)
-    )
-    data[:source] = nest(card.source, view: :essentials) if card.source.present?
-    data.merge(checked_by: nest(card.checked_by_card, view: :essentials, hide: :marks))
+    essentials_for %i[metric company source checked_by relationships], _render_essentials
   end
 
   def essentials
-    {
-      year: card.year.to_s,
+    { year: card.year.to_s,
       value: card.value,
       import: card.imported?,
-      comments: field_nest(:discussion, view: :core)
-    }
+      comments: field_nest(:discussion, view: :core) }
+  end
+
+  def essentials_for symbols, hash
+    symbols.each do |field|
+      value = send "essentials_for_#{field}"
+      hash[field] = value if value
+    end
+    hash
+  end
+
+  def essentials_for_metric
+    nest card.metric, view: :essentials
+  end
+
+  def essentials_for_company
+    nest card.company, view: :marks
+  end
+
+  def essentials_for_source
+    return unless card.source.present?
+    nest card.source, view: :essentials
+  end
+
+  def essentials_for_checked_by
+    nest card.checked_by_card, view: :essentials, hide: :marks
+  end
+
+  def essentials_for_relationships
+    return unless card.metric_card.relationship?
+    companies.map do |relationship|
+      nest relationship, view: :from_answer
+    end
   end
 end
