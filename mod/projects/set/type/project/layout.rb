@@ -74,23 +74,10 @@ format :html do
   def tab_options
     {
       wikirate_company: { count: card.num_companies },
-      metric: { count: card.num_metrics},
+      metric: { count: card.num_metrics },
       year: { count: card.num_years }
     }
   end
-
-  # TAB_MAP = {
-  #     post: {},
-  #     subproject: { count: :num_subprojects }
-  # }.freeze
-#
-  # def tab_list
-  #   active_tabs.each_with_object({}) do |tab, hash|
-  #     options  = TAB_MAP[tab].clone
-  #     options[:count] = card.send options[:count] if options[:count]
-  #     hash["#{tab}_tab".to_sym] = tab_title tab, options
-  #   end
-  # end
 
   view :metric_tab do
     tab_nest :metric

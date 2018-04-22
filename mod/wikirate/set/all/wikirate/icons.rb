@@ -13,7 +13,7 @@ ICON_MAP = {
   research_group: [:users, { library: :font_awesome }],
   contributions: :grain,
   activity: [:plug, { library: :font_awesome }]
-}
+}.freeze
 
 format :html do
   def icon_map key
