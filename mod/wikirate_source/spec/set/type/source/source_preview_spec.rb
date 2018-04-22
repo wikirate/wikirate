@@ -92,7 +92,9 @@ describe Card::Set::Type::Source, "source preview" do
       it "shows correction options" do
         expect(@result).to have_tag("ul", with: { class: "nav-tabs" }) do
           with_source_tabs self, @existing_source
-          # with_tag "a",  with: { href: @existing_source.fetch(trait: :wikirate_link).content }
+
+          # with_tag "a",  with: {
+          # href: @existing_source.fetch(trait: :wikirate_link).content }
         end
       end
       it "shows iframe" do
@@ -103,8 +105,10 @@ describe Card::Set::Type::Source, "source preview" do
     end
 
     def with_source_tabs binding, source
-      binding.with_tag "a",  with: { "data-url": "/#{source.name.url_key}?view=details_tab" }
-      binding.with_tag "a",  with: { "data-url": "/#{source.name.url_key}?view=metric_tab" }
+      %w[details metric].each do |tab|
+        url = "/#{source.name.url_key}?view=#{tab}_tab"
+        binding.with_tag "a", with: { "data-url": url }
+      end
     end
   end
 end
