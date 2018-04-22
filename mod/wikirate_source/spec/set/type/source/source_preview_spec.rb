@@ -24,8 +24,7 @@ describe Card::Set::Type::Source, "source preview" do
 
       it "shows correction options" do
         expect(@result).to have_tag("ul", with: { class: "nav-tabs" }) do
-          with_tag "a",  with: { "data-url" => "/#{@text_source.name.url_key}?view=details_tab" }
-          with_tag "a",  with: { "data-url" => "/#{@text_source.name.url_key}?view=metric_tab" }
+          with_source_tabs self, @text_source
         end
       end
 
@@ -44,8 +43,7 @@ describe Card::Set::Type::Source, "source preview" do
       end
       it "shows correction options" do
         expect(@result).to have_tag("ul", with: { class: "nav-tabs" }) do
-          with_tag "a",  with: { "data-url" => "/#{@pdf_source.name.url_key}?view=details_tab" }
-          with_tag "a",  with: { "data-url" => "/#{@pdf_source.name.url_key}?view=metric_tab" }
+          with_source_tabs self, @pdf_source
         end
       end
       context "pdf file" do
@@ -93,9 +91,8 @@ describe Card::Set::Type::Source, "source preview" do
       end
       it "shows correction options" do
         expect(@result).to have_tag("ul", with: { class: "nav-tabs" }) do
-          with_tag "a",  with: { "data-url" => "/#{@existing_source.name.url_key}?view=details_tab" }
-          with_tag "a",  with: { "data-url" => "/#{@existing_source.name.url_key}?view=metric_tab" }
-          with_tag "a",  with: { href: @existing_source.fetch(trait: :wikirate_link).content }
+          with_source_tabs self, @existing_source
+          # with_tag "a",  with: { href: @existing_source.fetch(trait: :wikirate_link).content }
         end
       end
       it "shows iframe" do
@@ -103,6 +100,11 @@ describe Card::Set::Type::Source, "source preview" do
           with_tag "iframe", with: { id: "source-preview-iframe", src: @url }
         end
       end
+    end
+
+    def with_source_tabs binding, source
+      binding.with_tag "a",  with: { "data-url": "/#{source.name.url_key}?view=details_tab" }
+      binding.with_tag "a",  with: { "data-url": "/#{source.name.url_key}?view=metric_tab" }
     end
   end
 end
