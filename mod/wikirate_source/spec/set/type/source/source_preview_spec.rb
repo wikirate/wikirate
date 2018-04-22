@@ -25,8 +25,7 @@ describe Card::Set::Type::Source, "source preview" do
       it "shows correction options" do
         expect(@result).to have_tag("ul", with: { class: "nav-tabs" }) do
           with_tag "a",  with: { "data-url" => "/#{@text_source.name.url_key}?view=details_tab" }
-          with_tag "a",  with: { "data-url" => "/#{@text_source.name.url_key}?view=metrics_tab" }
-          with_tag "a",  with: { "data-url" => "/#{@text_source.name.url_key}?view=notes_tab" }
+          with_tag "a",  with: { "data-url" => "/#{@text_source.name.url_key}?view=metric_tab" }
         end
       end
 
@@ -46,8 +45,7 @@ describe Card::Set::Type::Source, "source preview" do
       it "shows correction options" do
         expect(@result).to have_tag("ul", with: { class: "nav-tabs" }) do
           with_tag "a",  with: { "data-url" => "/#{@pdf_source.name.url_key}?view=details_tab" }
-          with_tag "a",  with: { "data-url" => "/#{@pdf_source.name.url_key}?view=metrics_tab" }
-          with_tag "a",  with: { "data-url" => "/#{@pdf_source.name.url_key}?view=notes_tab" }
+          with_tag "a",  with: { "data-url" => "/#{@pdf_source.name.url_key}?view=metric_tab" }
         end
       end
       context "pdf file" do
@@ -96,8 +94,7 @@ describe Card::Set::Type::Source, "source preview" do
       it "shows correction options" do
         expect(@result).to have_tag("ul", with: { class: "nav-tabs" }) do
           with_tag "a",  with: { "data-url" => "/#{@existing_source.name.url_key}?view=details_tab" }
-          with_tag "a",  with: { "data-url" => "/#{@existing_source.name.url_key}?view=metrics_tab" }
-          with_tag "a",  with: { "data-url" => "/#{@existing_source.name.url_key}?view=notes_tab" }
+          with_tag "a",  with: { "data-url" => "/#{@existing_source.name.url_key}?view=metric_tab" }
           with_tag "a",  with: { href: @existing_source.fetch(trait: :wikirate_link).content }
         end
       end
