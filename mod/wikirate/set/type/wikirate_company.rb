@@ -1,5 +1,4 @@
 include_set Abstract::WikirateTable
-include_set Abstract::WikirateTabs
 include_set Abstract::Media
 include_set Abstract::Export
 

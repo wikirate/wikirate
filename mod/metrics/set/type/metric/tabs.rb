@@ -1,10 +1,6 @@
 format :html do
   def tab_list
-    {
-      details_tab: "Details",
-      discussion_tab: "#{fa_icon :comment} Discussion",
-      project_tab: "Projects"
-    }
+    %i[details project]
   end
 
   # tabs for metrics of type formula, score and WikiRating
