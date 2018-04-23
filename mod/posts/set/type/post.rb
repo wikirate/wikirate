@@ -72,10 +72,6 @@ format :html do
     labeled_badge standard_count(codename), standard_title(codename)
   end
 
-  def standard_tab codename
-    two_line_tab standard_title(codename), standard_count(codename)
-  end
-
   def standard_title codename
     nest Card[codename], view: :title
   end

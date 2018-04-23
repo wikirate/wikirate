@@ -160,7 +160,7 @@ format :html do
   end
 
   view :source_tab do
-    field_nest(:source, view: :content, items: { view: :listing })
+    field_nest :source, view: :content, items: { view: :listing }
   end
 
   view :project_tab do

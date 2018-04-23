@@ -1,5 +1,5 @@
 format :html do
-  view :posts_tab do
+  view :post_tab do
     output [field_nest(:post, items: { view: :thin_listing }),
             link_to("Add Post", path: { mark: :post,
                                         action: :new,
