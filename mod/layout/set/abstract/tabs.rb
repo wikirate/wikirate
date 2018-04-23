@@ -1,3 +1,5 @@
+include_set Abstract::BsBadge
+
 format :html do
   view :tabs, cache: :never do
     lazy_loading_tabs tab_map, default_tab do
@@ -44,8 +46,16 @@ format :html do
   def tab_title fieldcode, opts={}
     opts ||= {}
     parts = tab_title_parts fieldcode, opts
-    icon = icon_tag(*Array.wrap(parts[:icon]))
-    two_line_tab parts[:label], [parts[:count], icon].compact.join(" ")
+    two_line_tab parts[:label], tab_title_top(parts[:icon], parts[:count])
+  end
+
+  def tab_title_top icon, count
+    icon_tag = icon_tag(*Array.wrap(icon)) if icon.present?
+    if count
+      tab_badge count, icon_tag
+    else
+      icon_tag || "&nbsp;".html_safe
+    end
   end
 
   def tab_title_parts fieldcode, opts
@@ -60,7 +70,7 @@ format :html do
   end
 
   def tab_title_icon fieldcode
-    icon_map(fieldcode) || raise(Card::Error::NotFound, "no icon for #{fieldcode}")
+    icon_map fieldcode
   end
 
   def tab_title_label fieldcode

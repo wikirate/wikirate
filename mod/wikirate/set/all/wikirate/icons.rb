@@ -8,11 +8,11 @@ ICON_MAP = {
   post: :insert_comment,
   details: :info,
   source: :public,
-  score: :network_cell,
+  score: :adjust,
   year: :calendar,
   research_group: [:users, { library: :font_awesome }],
-  contributions: :grain,
-  activity: [:plug, { library: :font_awesome }]
+  contributions: [:plug, { library: :font_awesome }],
+  activity: :directions_run
 }.freeze
 
 format :html do
