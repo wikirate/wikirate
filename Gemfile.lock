@@ -379,7 +379,7 @@ GEM
       nokogiri (>= 1.6.0)
       ruby_parser (~> 3.5)
     htmlentities (4.3.4)
-    http (3.2.0)
+    http (3.2.1)
       addressable (~> 2.3)
       http-cookie (~> 1.0)
       http-form_data (~> 2.0)
