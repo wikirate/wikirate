@@ -64,7 +64,7 @@ format :html do
 
   def metric_select
     nest card.left.metric_card, { view: :edit_in_form },
-         explicit_form_prefix: corrections_input_name(:all, :year)
+         explicit_form_prefix: corrections_input_name(:all, :metric)
   end
 
   def import_table_row_class
