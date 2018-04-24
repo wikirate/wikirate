@@ -1,7 +1,7 @@
 include_set Abstract::Thumbnail
 
 format :html do
-  def default_thumbnail_args _args
+  before :thumbnail do
     class_up "thumbnail", "metric-thumbnail"
   end
 

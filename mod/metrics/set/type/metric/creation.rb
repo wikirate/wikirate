@@ -156,7 +156,7 @@ format :html do
       }
   end
 
-  def default_content_formgroup_args _args
+  before :content_formgroup do
     voo.edit_structure = [["+question", "Question"],
                           [:wikirate_topic, "Topic"]]
   end
