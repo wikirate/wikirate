@@ -50,12 +50,17 @@ format :html do
   end
 
   def tab_title_top icon, count
-    icon_tag = icon_tag(*Array.wrap(icon)) if icon.present?
+    icon_tag = tab_title_icon_tag icon
     if count
       tab_badge count, icon_tag
     else
       icon_tag || "&nbsp;".html_safe
     end
+  end
+
+  def tab_title_icon_tag icon
+    return unless icon.present?
+    icon_tag(*Array.wrap(icon))
   end
 
   def tab_title_parts fieldcode, opts

@@ -9,7 +9,7 @@ format :html do
 
   def badge_haml_opts count, label, opts
     process_badge_opts count, opts
-    { count: count, label: label, klass: opts[:klass], color: opts[:color]}
+    { count: count, label: label, klass: opts[:klass], color: opts[:color] }
   end
 
   def process_badge_opts count, opts
@@ -18,5 +18,4 @@ format :html do
     end
     opts[:color] ||= "secondary"
   end
-
 end
