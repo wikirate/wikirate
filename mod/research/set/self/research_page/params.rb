@@ -71,10 +71,11 @@ format :html do
   end
 
   def research_params
-    research_param_keys.each_with_object({}) do |item, h|
-      val = send item
-      h[param_name(item)] = val if val
-    end
+    @research_params ||=
+      research_param_keys.each_with_object({}) do |item, h|
+        val = send item
+        h[param_name(item)] = val if val
+      end
   end
 
   def research_param_keys
