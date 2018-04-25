@@ -253,16 +253,21 @@ class Card
       def bar_link filter_opts
         @format.path view: :filter_result,
                      chart: bar_link_chart_params(filter_opts),
-                     filter: @format.filter_hash(false)
+                     filter: bar_link_filter_params(filter_opts)
+      end
+
+      def bar_link_filter_params filter_opts
+        @format.filter_hash(false).merge(filter_opts)
       end
 
       def bar_link_chart_params filter_opts
-        hash = { filter: filter_opts }
         case click_action
         when :select
-          hash[:highlight] = highlight_value_from_filter_opts filter_opts
+          hash = { highlight: highlight_value_from_filter_opts(filter_opts),
+                   filter: @format.filter_hash(false) }
         when :zoom
-          hash[:zoom_out] = @format.chart_params
+          hash = { filter: filter_opts,
+                   zoom_out: @format.chart_params}
         end
         hash
       end
