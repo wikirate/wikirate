@@ -76,13 +76,17 @@ format :html do
   end
 
   def value_filter_text
-    mv = filter_hash(false).slice(:numeric_value, :category, :range)
+    mv = metric_value_filter
     return unless mv.present?
     if mv[:range]
       "#{mv[:range][:from]} < x < #{mv[:range][:to]}"
     else
       mv[:numeric_value] || mv[:category]
     end
+  end
+
+  def metric_value_filter
+    filter_hash(false).slice(:numeric_value, :category, :range)
   end
 
   def chart_load_url
