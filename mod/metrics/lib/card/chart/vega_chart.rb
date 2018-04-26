@@ -8,9 +8,9 @@ class Card
       LIGHT_AXES = "#cccccc"
 
       DEFAULT_LAYOUT = {
-        width: 400,
-        height: 200,
-        padding: { top: 30, left: 50, bottom: 50, right: 50 },
+        width: 350,
+        height: 180,
+        padding: { top: 5, left: 5, bottom: 15, right: 5 },
         signals: [
           {
             name: "tooltip",
