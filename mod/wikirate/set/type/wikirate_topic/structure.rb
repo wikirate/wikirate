@@ -2,7 +2,7 @@ include_set Abstract::WikirateTable
 include_set Abstract::TwoColumnLayout
 
 format :html do
-  def default_content_formgroup_args _args
+  before :content_formgroup do
     voo.edit_structure = [:image]
   end
 

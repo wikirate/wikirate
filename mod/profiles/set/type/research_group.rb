@@ -29,7 +29,7 @@ def projects
 end
 
 format :html do
-  def default_content_formgroup_args _args
+  before :content_formgroup do
     voo.edit_structure = [
       :image,
       :organizer,

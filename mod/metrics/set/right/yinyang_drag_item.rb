@@ -17,7 +17,7 @@ format :html do
     nil
   end
 
-  def default_content_args _args
+  before :content do
     return unless metric_card&.metric_type_codename == :score
     structure_root = case card[0].type_code
                      when :wikirate_topic then "topic"

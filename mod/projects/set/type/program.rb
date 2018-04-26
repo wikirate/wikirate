@@ -5,7 +5,7 @@ include_set Abstract::Thumbnail
 card_accessor :project, type: :pointer
 
 format :html do
-  def default_content_formgroup_args _args
+  before :content_formgroup do
     voo.edit_structure = %i[
       image general_overview description project contact_us
     ]

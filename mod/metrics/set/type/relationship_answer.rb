@@ -94,7 +94,7 @@ def answer
 end
 
 format :html do
-  def default_value_link_args _args
+  before :value_link do
     voo.show! :link if card.relationship?
   end
 

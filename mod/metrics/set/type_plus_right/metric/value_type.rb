@@ -35,7 +35,7 @@ def add_categorical_error validator
 end
 
 format :html do
-  def default_edit_args _args
+  before :edit do
     voo.title = "Value Type"
   end
 
