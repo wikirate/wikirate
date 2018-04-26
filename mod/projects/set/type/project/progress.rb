@@ -39,15 +39,23 @@ def num_answers
   @num_answers ||= answers.count
 end
 
+def num_subprojects
+  @num_subprojects ||= subproject_card.count
+end
+
 def units
   years ? "answers" : "records"
 end
 
 format :html do
-  def overall_progress_box
+  view :overall_progress_box, cache: :never do
+    overall_progress_box false
+  end
+
+  def overall_progress_box legend=true
     wrap_with :div, class: "default-progress-box" do
       [
-        progress_legend,
+        (progress_legend if legend),
         bs_layout do
           row 2, 10 do
             column { _render_percent_researched }
@@ -58,19 +66,19 @@ format :html do
     end
   end
 
-  view :percent_researched do
-    wrap_with :div, class: "percent-researched text-center" do
-      [
-        wrap_with(:div, class: "lead") do
-          "<strong>#{card.percent_researched}%</strong>"
-        end,
-        "Researched"
-      ]
-    end
-  end
+  # view :percent_researched do
+  #   wrap_with :div, class: "percent-researched text-center border rounded" do
+  #     [
+  #       wrap_with(:h4, class: "border-bottom p-2 m-0 bg-light") do
+  #         "<strong>#{card.percent_researched}%</strong>"
+  #       end,
+  #       wrap_with(:span, "Researched", class: "text-muted")
+  #     ]
+  #   end
+  # end
 
   def main_progress_bar
-    wrap_with :div, class: "main-progress-bar" do
+    wrap_with :div, class: "main-progress-bar mt-1" do
       [_render_research_progress_bar, _render_progress_description]
     end
   end
@@ -79,17 +87,28 @@ format :html do
     research_progress_bar
   end
 
-  view :progress_description do
-    %(<div class="text-muted small text-center">
-        Of <strong>#{card.num_possible} potential #{card.units}</strong>
-        (#{formula}), <strong>#{card.num_researched}</strong> have been added so far.
-      </div>)
+  # view :progress_description do
+  #   %(<div class="text-muted">
+  #       Of <strong>#{card.num_possible} potential #{card.units}</strong>
+  #       (#{formula}), <strong>#{card.num_researched}</strong> have been added so far.
+  #     </div>)
+  # end
+
+  view :percent_researched, template: :haml do
+    @percent = card.percent_researched
+  end
+
+  view :progress_description, template: :haml  do
+    @num_possible = card.num_possible
+    @units = card.units
+    @formula = formula
+    @num_researched = card.num_researched
   end
 
   def formula
     [:company, :metric, (:year if card.years)].compact.map do |var|
-      icon, stat_method, title = Layout::TAB_MAP[var]
-      "#{card.send stat_method} #{title} #{fa_icon icon}"
+      stat_method, title = Layout::TAB_MAP[var]
+      "#{card.send stat_method} #{title}"
     end.join " x "
   end
 

@@ -83,7 +83,7 @@ RSpec.describe Card::Set::TypePlusRight::Source::File::ImportAnswersFromSource d
           partial_match: { company_match_type: :partial,
                            corrections: { company: "Sony Corporation" } }
         )
-        expect_card(answer_name(company: "Sony Corporation")).to exist
+        expect_card(answer_name(:partial_match, company: "Sony Corporation")).to exist
           .and have_a_field(:value).with_content "no"
       end
 

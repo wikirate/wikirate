@@ -2,6 +2,48 @@
 
 include_set Abstract::BrowseFilterForm
 
+def wql_from_content
+  super.merge limit: 15, sort: default_sort_option
+end
+
+def filter_class
+  NoteAndSourceFilterQuery
+end
+
+def sort_wql
+  if current_sort == "recent"
+    { sort: "update", dir: "desc" }
+  else
+    { sort: { right: "*vote count" }, sort_as: "integer", dir: "desc" }
+  end
+end
+
+format :html do
+  view :cited_formgroup, cache: :never do
+    select_filter :cited, "Cited", "all"
+  end
+
+  view :claimed_formgroup, cache: :never do
+    select_filter :claimed, "Has Notes?", "all"
+  end
+
+  view :wikirate_company_formgroup, cache: :never do
+    autocomplete_filter :wikirate_company, :all_companies
+  end
+
+  view :wikirate_topic_formgroup, cache: :never do
+    multiselect_filter_type_based :wikirate_topic
+  end
+
+  def claimed_options
+    { "All" => "all", "Yes" => "yes", "No" => "no" }
+  end
+
+  def cited_options
+    { "All" => "all", "Yes" => "yes", "No" => "no" }
+  end
+end
+
 class NoteAndSourceFilterQuery < Card::FilterQuery
   # TODO: move this to NoteFilterQuery (inherit from this class)
   def cited_wql value
@@ -40,50 +82,5 @@ class NoteAndSourceFilterQuery < Card::FilterQuery
 
   def wikirate_topic_wql value
     add_to_wql :right_plus, [{ id: WikirateTopicID }, { refer_to: value }]
-  end
-end
-
-def filter_class
-  NoteAndSourceFilterQuery
-end
-
-def extra_filter_args
-  super.merge limit: 15
-end
-
-def add_sort_wql wql, sort_by
-  if sort_by == "recent"
-    wql[:sort] = "update"
-    wql[:dir] = "desc"
-  else
-    wql.merge! sort: { right: "*vote count" },
-               sort_as: "integer",
-               dir: "desc"
-  end
-end
-
-format :html do
-  view :cited_formgroup, cache: :never do |_args|
-    select_filter :cited, "Cited", "all"
-  end
-
-  view :claimed_formgroup, cache: :never do |_args|
-    select_filter :claimed, "Has Notes?", "all"
-  end
-
-  view :wikirate_company_formgroup, cache: :never do
-    autocomplete_filter :wikirate_company, :all_companies
-  end
-
-  view :wikirate_topic_formgroup, cache: :never do
-    multiselect_filter_type_based :wikirate_topic
-  end
-
-  def claimed_options
-    { "All" => "all", "Yes" => "yes", "No" => "no" }
-  end
-
-  def cited_options
-    { "All" => "all", "Yes" => "yes", "No" => "no" }
   end
 end

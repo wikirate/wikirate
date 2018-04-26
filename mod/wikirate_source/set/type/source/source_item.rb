@@ -1,10 +1,14 @@
 format :html do
   def year
-    return card.fetch(trait: :year).content if card.fetch(trait: :year)
-    ""
+    card.fetch(trait: :year)&.content || ""
+  end
+
+  def wrap_data slot=true
+    super.merge year: year
   end
 
   def wrap_with_info
+    class_up "card-slot", "_citeable-source", true
     wrap do
       wrap_with :div, class: "source-info-container" do
         yield
@@ -15,10 +19,8 @@ format :html do
   def with_toggle
     # voo.hide! :links   # doesn't work with voo
     @links = false
-    wrap_with :div, class: "source-details-toggle",
-                    data: { source_for: card.name, year: year } do
-      yield.html_safe
-    end
+    class_up "card-slot", "source-details-toggle", true
+    yield
   end
 
   def edit_slot
@@ -52,8 +54,7 @@ format :html do
   view :listing, template: :haml
 
   view :original_with_icon do
-    icon = wrap_with(:i, " ", class: "fa fa-external-link-square")
-    icon + _render_original_link
+    fa_icon("external-link-square") + _render_original_link
   end
 
   view :icon do
@@ -72,12 +73,12 @@ format :html do
     field_nest "*creator", view: :core, items: { view: :link }
   end
 
-  view :website_link do |_args|
+  view :website_link do
     link_to_card card, website_text, class: "source-preview-link",
                                      target: "_blank"
   end
 
-  view :title_link do |_args|
+  view :title_link do
     link_to_card card, title_text,
                  target: "_blank",
                  class: "source-preview-link preview-page-link"
@@ -112,41 +113,41 @@ format :html do
   end
 
   view :year_with_icon do
-    return "" if year.nil? || year == ""
-    icon = wrap_with(:i, "", class: "fa fa-calendar")
-    wrap_with(:span, icon + year[/\d+/])
+    return "" if year.blank?
+    wrap_with(:span, fa_icon("calendar") + year[/\d+/])
   end
 
   view :direct_link do
     return "" unless card.source_type_codename == :wikirate_link
     link = card.fetch(trait: :wikirate_link).content
     wrap_with :a, href: link, target: "_blank" do
-      [wrap_with(:i, class: "fa fa-external-link-square cursor"), "Original"]
+      [fa_icon("external-link-square", class: "cursor"), "Original"]
     end
   end
 
-  def with_cite_button cited: false
+  def with_cite_button cited: false, disabled: false
     voo.hide :links
     wrap_with_info do
       [
         _render_listing,
-        cite_button(cited),
-        (hidden_item_input if cited)
+        cite_button(cited, disabled),
+        hidden_item_input
       ]
     end
   end
 
-  def cite_button cited
+  def cite_button cited, disabled=false
     text = cited ? "Cited!" : "Cite!"
     cite_class =
-      cited ? "btn-success _cited_button" : "btn-highlight _cite_button"
+      cited ? "btn-primary _cited_button" : "btn-outline-primary _cite_button"
     wrap_with(:div, class: "pull-right") do
-      wrap_with :a, text, href: "#", class: "btn #{cite_class} c-btn"
+      wrap_with :a, text, href: "#",
+                          class: "btn #{cite_class} c-btn #{'disabled' if disabled}"
     end
   end
 
   def hidden_item_input
-    tag :input, type: "hidden", class: "pointer-select _no-chosen", value: card.name
+    tag :input, type: "hidden", class: "_pointer-item", value: card.name
   end
 
   view :with_cited_button do
@@ -156,12 +157,14 @@ format :html do
   end
 
   view :source_and_preview, cache: :never do |args|
-    wrap_with :div, class: "source-details",
-                    data: { source_for: card.name, year: year } do
-      args[:url] = source_url
-      with_cite_button +
-        render_iframe_view(args).html_safe +
-        render_hidden_information(args).html_safe
+    args[:url] = source_url
+    wrap do
+      [
+        with_cite_button(cited: voo.live_options[:cited],
+                         disabled: voo.live_options[:disabled]),
+        render_iframe_view.html_safe,
+        hidden_information(args).html_safe
+      ]
     end
   end
 
@@ -176,12 +179,12 @@ format :html do
     end
   end
 
-  view :cited, cache: :never do |args|
+  view :cited, cache: :never do
     if voo.show? :cited_source_links
-      wrap_with_info { _render_listing args }
+      wrap_with_info { _render_listing }
     else
       with_toggle do
-        wrap_with_info { _render_listing args }
+        wrap_with_info { _render_listing }
       end
     end
   end

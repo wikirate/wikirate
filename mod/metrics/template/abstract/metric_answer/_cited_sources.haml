@@ -1,9 +1,7 @@
-%label
-  Cited Sources
 .card-editor.form-group
   - with_nest_mode :normal do
     = field_nest :source, view: :hidden_content_field
-  .cited-sources.pointer-list-ul
+  .cited-sources._pointer-list
     - if card.source_card.item_names.empty?
       %small
         None

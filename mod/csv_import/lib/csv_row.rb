@@ -66,8 +66,13 @@ class CSVRow
   def execute_import
     @import_manager.handle_import(self) do
       prepare_import
+      ImportLog.debug "start import"
       import
     end
+  rescue => e
+    ImportLog.debug "import failed: #{e.message}"
+    ImportLog.debug e.backtrace
+    raise e
   end
 
   def prepare_import

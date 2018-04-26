@@ -12,6 +12,10 @@ def inverse_title
   (card = fetch([metric_title, :inverse])) && card.item_names.first
 end
 
+def relationship?
+  true
+end
+
 format :html do
   view :legend do
     "companies"

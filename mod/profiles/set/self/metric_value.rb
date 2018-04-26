@@ -4,7 +4,7 @@ def ids_related_to_research_group research_group
       company_id: project.company_ids,
       metric_id: project.metric_ids
     ).pluck :answer_id
-  end.flatten
+  end.flatten.compact
 end
 
 # def report_query action, user_id, subvariant
@@ -14,18 +14,11 @@ end
 # end
 
 def subvariants
-  {
-    created: [:checked_by_others, :updated_by_others, :discussed_by_others],
-    updated_on: [:checked]
-  }
+  { created: [:checked_by_others, :updated_by_others, :discussed_by_others] }
 end
 
-def updated_query user_id, variant=nil
-  if variant == :checked
-    { right_plus: [CheckedByID, { refer_to: user_id }] }
-  else
-    { right_plus: [ValueID, { updated_by: user_id }] }
-  end
+def updated_query user_id, _variant=nil
+  { right_plus: [ValueID, { updated_by: user_id }] }
 end
 
 def created_query user_id, variant=nil

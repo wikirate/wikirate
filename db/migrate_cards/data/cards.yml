@@ -3,35 +3,35 @@
 - :name: metric value source form
   :type: HTML
   :key: metric_value_source_form
-  :merged: 2017-10-26 10:34:10 UTC
+  :merged: 2018-01-08 14:00:28 UTC
 - :name: Research Page+Company
   :type: Session
   :key: research_page+company
-  :merged: 2017-10-26 10:34:10 UTC
+  :merged: 2018-01-08 14:00:28 UTC
 - :name: Research Page+Metric
   :type: Session
   :key: research_page+metric
-  :merged: 2017-10-26 10:34:10 UTC
+  :merged: 2018-01-08 14:00:28 UTC
 - :name: Source+*type+*structure
   :type: HTML
   :key: source+*type+*structure
-  :merged: 2017-10-26 10:34:10 UTC
+  :merged: 2018-01-08 14:00:28 UTC
 - :name: Cardtype+*metric type+*type plus right+*structure
   :type: Set
   :key: cardtype+*metric_type+*type_plu_right+*structure
-  :merged: 2017-10-26 10:34:10 UTC
+  :merged: 2018-01-08 14:00:28 UTC
 - :name: Link+*source type
   :type: Set
   :key: link+*source_type
-  :merged: 2017-10-26 10:34:10 UTC
+  :merged: 2018-01-08 14:00:28 UTC
 - :name: Text+*source type
   :type: Set
   :key: text+*source_type
-  :merged: 2017-10-26 10:34:10 UTC
+  :merged: 2018-01-08 14:00:28 UTC
 - :name: File+*source type
   :type: Set
   :key: file+*source_type
-  :merged: 2017-10-26 10:34:10 UTC
+  :merged: 2018-01-08 14:00:28 UTC
 - :name: note+*self+*structure
   :type: HTML
   :key: note+*self+*structure
@@ -45,6 +45,7 @@
 - :name: "*css"
   :type: SCSS
   :key: "*css"
+  :merged: 2018-02-22 19:14:15 UTC
 - :name: 'style: layout with sidebar'
   :type: SCSS
   :key: style_layout_with_sidebar
@@ -240,9 +241,11 @@
   :type: HTML
   :codename: :nav_bar
   :key: nav_bar
+  :merged: 2018-01-08 14:00:26 UTC
 - :name: nav bar menu
   :type: HTML
   :key: nav_bar_menu
+  :merged: 2018-04-17 15:09:28 UTC
 - :name: Company
   :type: Cardtype
   :codename: wikirate_company
@@ -344,6 +347,7 @@
 - :name: Using WikiRate
   :type: HTML
   :key: using_wiki_rate
+  :merged: 2018-02-22 19:14:15 UTC
 - :name: Introduction to WikiRate
   :type: Basic
   :key: introduction_to_wiki_rate
@@ -457,15 +461,15 @@
 - :name: Metric+*self+*structure
   :type: HTML
   :key: metric+*self+*structure
-  :merged: 2017-10-26 13:04:50 UTC
+  :merged: 2018-01-08 14:00:29 UTC
 - :name: Topic+*self+*structure
   :type: HTML
   :key: topic+*self+*structure
-  :merged: 2017-10-26 13:04:50 UTC
+  :merged: 2018-01-08 14:00:29 UTC
 - :name: Company+*self+*structure
   :type: HTML
   :key: company+*self+*structure
-  :merged: 2017-10-26 13:04:50 UTC
+  :merged: 2018-01-08 14:00:29 UTC
 - :name: PRME Data collection - core metrics for companies
   :type: Project
   :key: prme_datum_collection_core_metric_for_company
@@ -487,7 +491,75 @@
 - :name: bootstrap default skin+bootswatch theme
   :type: SCSS
   :key: bootstrap_default_skin+bootswatch_theme
+- :name: Parent
+  :type: Basic
+  :codename: :parent
+  :key: parent
+  :merged: 2018-01-08 14:00:33 UTC
+- :name: Parent+*right+*default
+  :type: Pointer
+  :key: parent+*right+*default
+  :merged: 2018-01-08 14:00:33 UTC
+- :name: Project+Parent+*type plus right+*options
+  :type: Search
+  :key: project+parent+*type_plu_right+*option
+  :merged: 2018-01-08 14:00:33 UTC
+- :name: conversation project
+  :type: Project
+  :key: conversation_project
+- :name: created project
+  :type: Project
+  :key: created_project
+- :name: discussed project
+  :type: Project
+  :key: discussed_project
+- :name: Empty Project
+  :type: Project
+  :key: empty_project
+- :name: Evil Project
+  :type: Project
+  :key: evil_project
+- :name: subproject+*right+*structure
+  :type: Search
+  :key: subproject+*right+*structure
+  :merged: 2018-01-08 14:00:33 UTC
+- :name: subproject
+  :type: Basic
+  :codename: :subproject
+  :key: subproject
+  :merged: 2018-01-08 14:00:33 UTC
+- :name: Researcher+*right+*default
+  :type: Pointer
+  :key: researcher+*right+*default
+  :merged: 2018-04-17 15:09:28 UTC
+- :name: conversation+*right+*structure
+  :type: Search
+  :key: conversation+*right+*structure
+  :merged: 2018-04-17 15:09:28 UTC
+- :name: Conversation+*type+*structure
+  :type: Basic
+  :key: conversation+*type+*structure
+  :merged: 2018-04-17 15:09:28 UTC
+- :name: Descendant
+  :type: Metric type
+  :codename: :descendant
+  :key: descendant
+  :merged: 2018-04-17 15:09:29 UTC
+- :name: Descendant+description
+  :type: Basic
+  :key: descendant+description
+  :merged: 2018-04-17 15:09:29 UTC
+- :name: Metric type
+  :type: Cardtype
+  :codename: metric_type_type
+  :key: metric_type
+  :merged: 2018-04-17 15:09:29 UTC
+- :name: User+Research_Groups+*type plus right+*structure
+  :type: Search
+  :key: user+research_group+*type_plu_right+*structure
+  :merged: 2018-04-17 15:09:30 UTC
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org
   :staging: http://staging.wikirate.org
+  :production: http://wikirate.org

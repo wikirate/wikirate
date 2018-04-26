@@ -1,0 +1,48 @@
+.col-md-12.col-centered.new-source-widget.new-metric-value-page
+  .row
+    .new-source-tab.w-100
+      %ul#myTab.nav.nav-pills{:role => "tablist"}
+        %li.nav-item{:role => "presentation"}
+          %a#url-tab.nav-link.active{"aria-controls" => "url", "aria-expanded" => "true", "data-source-type" => "Link", "data-toggle" => "tab", :href => "#url", :role => "tab"}
+            %i.fa.fa-globe
+            URL
+        %li.nav-item{:role => "presentation"}
+          %a#file-tab.nav-link{"aria-controls" => "file", "aria-expanded" => "false", "data-source-type" => "File", "data-toggle" => "tab", :href => "#file", :role => "tab"}
+            %i.fa.fa-upload
+            File
+        %li.nav-item{:role => "presentation"}
+          %a#text-tab.nav-link{"aria-controls" => "text", "aria-expanded" => "false", "data-source-type" => "Text", "data-toggle" => "tab", :href => "#text", :role => "tab"}
+            %i.fa.fa-pencil
+            Report
+    #myTabContent.tab-content
+      #url.tab-pane.fade.show.active.in{"aria-labelledby" => "url-tab", :role => "tabpanel"}
+        = field_nest :wikirate_link, view: :titled, title: "URL"
+        %input{:name => "sourcebox", :type => "hidden", :value => "true"}/
+      #file.tab-pane.fade{"aria-labelledby" => "file-tab", :role => "tabpanel"}
+        = field_nest :file, view: :titled, title: "File"
+      #text.tab-pane.fade{"aria-labelledby" => "text-tab", :role => "tabpanel"}
+        = field_nest :text, view: :titled, title: "Text"
+  .row
+    #source-preview-frame
+  .row{:style => "display:none"}
+    .first-meta.tab-content
+      %button#suggest_button.btn.btn-default.btn-xs{:type => "button"} Suggest Title and Description
+      = field_nest :wikirate_title, view: :titled, title: "Title"
+      = field_nest :description, view: :titled, title: "Description"
+      .row-data.first-meta
+        %a#add-company-and-topic{:href => "#"}
+          %i.fa.fa-building-o>
+          Add Company
+      #company-topic-meta{:style => "display:none;"}
+        = field_nest :wikirate_company, view: :titled, title: "Companies", items: { view: :link}
+      .row-data.first-meta
+        %a#add-tags-other{:href => "#"}
+          %i.fa.fa-tag>
+          Add Topic, Date and other
+      #tag-date-others-meta{:style => "display:none;"}
+        = field_nest :wikirate_topic, view: :titled,  title: "Topics", items: { view: :link }
+        = field_nest :date, view: :titled, title: "Date"
+        = field_nest :wikirate_website, view: :titled, title: "Website", items: { view: :link }
+  = new_research_buttons
+  .d-none
+    = field_nest :source_type, hide: [:title, :help]

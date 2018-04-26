@@ -37,8 +37,25 @@ event :add_inverse_count_answer, :prepare_to_store do
 end
 
 def add_count name, count
-  add_subcard name, type_id: MetricValueID,
-                    subfields: { value: { content: count } }
+  add_subcard name, type_id: MetricValueID, subfields: { value: { content: count } }
+end
+
+def update_counts!
+  update_count! answer_name, company_count
+  update_count! inverse_answer_name, inverse_company_count
+end
+
+def update_count! answer_name, count
+  if (card = Card.fetch(answer_name))
+    if card.value.to_s != count.to_s
+      card.field(:value).update_column :db_content, count.to_s
+      Answer.find_by_answer_id(card.id)&.update_columns value: count.to_s,
+                                                        numeric_value: count.to_i
+    end
+  else
+    Card.create! name: answer_name, type_id: MetricValueID,
+                 subfields: { value: { content: count } }
+  end
 end
 
 # number of companies that have a relationship answer for this answer
@@ -72,6 +89,10 @@ def inverse_answer_id
   @inverse_answer_id ||= Card.fetch_id inverse_answer_name
 end
 
+def answer
+  @answer ||= Answer.new editor_id: nil
+end
+
 format :html do
   def default_value_link_args _args
     voo.show! :link if card.relationship?
@@ -92,13 +113,34 @@ format :html do
     end
   end
 
-  view :content_formgroup, template: :haml do
+  view :content_formgroup do
     card.add_subfield :year, content: card.year
     card.add_subfield :related_company, content: card.related_company
+    super()
   end
 
   def legend
     return if currency.present?
     subformat(card.metric_card).value_legend
+  end
+end
+
+format :json do
+  # include MetricValue::JsonFormat
+  view :from_answer do
+    _render_essentials.merge company: essentials_for_related_company
+  end
+
+  def essentials_for_related_company
+    nest card.related_company, view: :marks
+  end
+
+  def essentials
+    {
+      year: card.year.to_s,
+      value: card.value,
+      import: card.imported?,
+      comments: field_nest(:discussion, view: :core)
+    }
   end
 end

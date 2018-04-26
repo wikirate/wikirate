@@ -1,13 +1,30 @@
 include Set::Abstract::Calculation
 
-format :html do
-  # def metric_designer_field options={}
-  #   super options.merge(readonly: true)
-  # end
+# <OVERRIDES>
+def rating?
+  true
+end
 
-  def default_thumbnail_subtitle_args args
-    args[:text] ||= ["WikiRating", "designed by"].compact.join " | "
-    args[:author] ||= link_to_card card.metric_designer
+def ten_scale?
+  true
+end
+
+def formula_editor
+  :rating_editor
+end
+
+def formula_core
+  :rating_core
+end
+
+def calculator_class
+  ::Formula::WikiRating
+end
+# </OVERRIDES>
+
+format :html do
+  def thumbnail_metric_info
+    "WikiRating"
   end
 end
 

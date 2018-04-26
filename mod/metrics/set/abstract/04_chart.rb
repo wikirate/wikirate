@@ -6,7 +6,13 @@ def filter_hash with_chart_filter=true
 end
 
 def chart_params
-  Env.params[:chart].is_a?(Hash) ? Env.params[:chart] : {}
+  if Env.params[:chart].is_a?(Hash)
+    Env.params[:chart]
+  elsif Env.params[:chart].is_a?(ActionController::Parameters)
+    Env.params[:chart].to_unsafe_h
+  else
+    {}
+  end
 end
 
 def chart_filter_params
@@ -19,7 +25,7 @@ format do
     chart_params[:highlight]
   end
 
-  delegate :chart_params, :filter_hash, to: :card
+  delegate :chart_params, to: :card
 end
 
 format do
@@ -76,10 +82,9 @@ format :html do
   end
 
   def show_chart?
-    return if card.relationship? || !(card.numeric? || card.categorical?)
+    return unless card.relationship? || card.numeric? || card.categorical?
 
     card.filter_hash[:metric_value] != "none" &&
-      card.filter_hash[:metric_value] != "all" &&
       card.filter_hash[:metric_value] != "unknown" # &&
     # chart_item_count > 3
   end
@@ -120,9 +125,9 @@ format :json do
   end
 
   def chart_class
-    if card.scored?
-      Card::Chart::ScoreChart
-    elsif card.numeric?
+    if card.ten_scale?
+      Card::Chart::TenScaleChart
+    elsif card.numeric? || card.relationship?
       Card::Chart::NumericChart
     else
       Card::Chart::CategoryChart

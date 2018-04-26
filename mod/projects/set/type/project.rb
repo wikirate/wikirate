@@ -4,6 +4,8 @@ card_reader :wikirate_company
 card_reader :metric
 card_reader :organizer
 card_reader :year
+card_reader :parent
+card_reader :subproject
 
 def answers
   @answers ||= Answer.where where_answer
@@ -29,8 +31,16 @@ def metric_ids
   @metric_ids ||= metric_card.valid_metric_cards.map(&:id)
 end
 
+def year_ids
+  @year_ids ||= years && year_card.valid_year_cards.map(&:id)
+end
+
 def metrics
   metric_card.valid_metric_cards.map(&:name)
+end
+
+def companies
+  wikirate_company_card.item_names
 end
 
 def years
@@ -38,6 +48,10 @@ def years
   valids = year_card.valid_year_cards.map(&:name)
   @years = valids.empty? ? false : valids
 end
+
+alias_method :metric_list, :metrics
+alias_method :company_list, :companies
+alias_method :year_list, :years
 
 # used in filtering answers on company and project pages
 # @param values [Symbol] researched, known, not_researched
@@ -47,6 +61,6 @@ def filter_path_args values
   # show latest project year.  could consider updating answer tables
   # to handle latest value among a group of years, but that's not yet
   # an option
-  filter[:year] = years.first if years
+  filter[:year] = years.first if years && years.one?
   { filter: filter }
 end

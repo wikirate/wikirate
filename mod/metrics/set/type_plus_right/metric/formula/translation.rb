@@ -13,18 +13,14 @@ def translation_hash
   return {} unless content.present?
   JSON.parse(content)
 rescue JSON::ParserError => _e
-  content = "{}"
+  self.content = "{}"
   return {}
   # fail Card::Error, 'fail to parse formula for categorical input'
 end
 
 def complete_translation_table
   translation = translation_table
-  all_options = if score?
-                  metric_card.basic_metric_card.value_options
-                else
-                  metric_card.value_options
-                end
+  all_options = metric_card.value_options
   if all_options
     missing_options = all_options - translation_hash.keys
     translation += missing_options.map { |opt| [opt, ""] }

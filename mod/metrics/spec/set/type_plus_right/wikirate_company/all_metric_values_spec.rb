@@ -204,7 +204,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       context "value" do
         it "finds missing values" do
           expect(filter_by(metric_value: :none))
-            .to contain_exactly *missing_answers
+            .to contain_exactly(*missing_answers)
         end
 
         let(:unknown_answers) do
@@ -241,7 +241,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
           expect(all_known).to be_truthy
         end
 
-        context "filter by update date" do
+        describe "filter by update date" do
           before do
             Timecop.freeze(SharedData::HAPPY_BIRTHDAY)
           end
@@ -312,7 +312,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
         it "... metric_type" do
           expect(filter_by(metric_value: :none, metric_type: "Researched"))
             .to contain_exactly(
-              *with_year(["Weapons",
+              *with_year(["Address", "Weapons",
                           "big multi", "big single",
                           "researched number 2", "researched number 3",
                           "small multi", "small single"])
@@ -350,7 +350,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
         it "... metric_type" do
           expect(filter_by(metric_value: :all, metric_type: "Researched"))
             .to contain_exactly(
-              *(with_year(["Weapons",
+              *(with_year(["Address", "Weapons",
                            "big multi", "big single",
                            "researched number 2", "researched number 3",
                            "small multi", "small single"]) + researched)

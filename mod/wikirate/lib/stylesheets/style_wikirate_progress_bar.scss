@@ -62,8 +62,7 @@
 }
 
 .default-progress-box .row {
-    padding: 8px 0px;
-    border-bottom: 1px solid #ebebeb;
+    padding: 4px 0px;
 }
 
 .progress-legend {
@@ -104,14 +103,14 @@
   float: left;
 }
 
-.organized-by, .stat-details {
-  float: left;
+.stat-details {
+  //float: left;
   span {
-    margin-right: 4px;
+    //margin-right: 4px;
   }
   div, span {
-    float: left;
-    margin:0;
+    //float: left;
+    //margin:0;
   }
 }
 .topic-details{
@@ -133,21 +132,29 @@
   }
 }
 .project-details-info {
-    font-size: 85%;
     color: $overview-color;
 }
 
 //TODO make this generic
-.organized-by .pointer-item {
-  padding-right: 5px;
-  padding-left: 15px;
-  &:after {
-    content: ",";
+.organized-by {
+  font-size: 85%;
+  margin-bottom: 0.5rem;
+  .pointer-item {
+    &:after {
+      content: ",";
+    }
+    &:last-child:after {
+      content: "";
+    }
   }
-  &:last-child:after {
-    content: "";
+}
+
+.organized-by.horizontal-list > {
+  div {
+    display: table-cell;
   }
-  &:first-child{
-    margin-left: 4px;
+  span {
+    display: table-cell;
+    min-width: 80px;
   }
 }

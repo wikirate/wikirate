@@ -1,5 +1,27 @@
 include Set::Abstract::Calculation
 
+# <OVERRIDES>
+def score?
+  true
+end
+
+def ten_scale?
+  true
+end
+
+def needs_name?
+  false
+end
+
+def formula_editor
+  categorical? ? :categorical_editor : super
+end
+
+def formula_core
+  categorical? ? :categorical_core : super
+end
+# </OVERRIDES>
+
 def scorer
   name.tag
 end
@@ -16,6 +38,10 @@ def basic_metric_card
   left
 end
 
+def categorical?
+  basic_metric_card.categorical?
+end
+
 def normalize_value value
   return value if value.is_a? String
   return "0" if value.negative?
@@ -27,11 +53,15 @@ def value_type
   "Number"
 end
 
-view :select do |_args|
+def value_options
+  basic_metric_card.value_options
+end
+
+view :select do
   options = [["-- Select --", ""]] + card.option_names.map { |x| [x, x] }
   select_tag("pointer_select",
              options_for_select(options, card.item_names.first),
-             class: "pointer-select form-control")
+             class: "pointer-select  _pointer-select")
 end
 
 format :html do
@@ -67,7 +97,7 @@ format :html do
                        class: "d0-card-content") +
         select_tag("pointer_select",
                    options_for_select(options, selected),
-                   class: "pointer-select form-control") +
+                   class: "pointer-select _pointer-select") +
         help_text.html_safe
     end
   end
@@ -80,26 +110,23 @@ format :html do
     HTML
   end
 
-  def default_thumbnail_subtitle_args args
-    args[:text] ||= "scored by"
-    args[:author] ||= link_to_card card.scorer
+  def thumbnail_metric_info
+    "Score"
   end
 
-  view :scorer_info do
-    nest scorer_card, view: :designer_info
+  def thumbnail_subtitle_text
+    "scored by"
   end
 
-  view :scorer_image do |_args|
+  def thumbnail_subtitle_author
+    link_to_card card.scorer
+  end
+
+  view :scorer_image do
     nest scorer_card.field(:image, new: {}), view: :core, size: :small
   end
 
-  view :score_thumbnail do |_args|
-    # link_text =
-    #   subformat(card.scorer_card).author_info "#{time_ago_in_words card.created_at} ago"
-    # wrap_with :div, class: "metric-designer-info" do
-    #   link_to_card card, link_text, class: "row list-group-item"
-    # end
-    # link_to_card card, link_text
+  view :score_thumbnail do
     text = "<small class=\"text-muted\">#{time_ago_in_words card.created_at} ago</small>"
     text_with_image title: card.scorer, text: text,
                     size: :icon, image: card.scorer_card.fetch(trait: :image, new: {})
@@ -113,11 +140,6 @@ format :html do
     link_to_card basic_metric_card,
                  "#{fa_icon 'external-link'} Original Metric",
                  class: button_classes
-  end
-
-  view :add_to_formula_item_view do |_args|
-    subtext = wrap_with :small, "Scored by " + card.scorer
-    add_to_formula_helper subtext
   end
 end
 

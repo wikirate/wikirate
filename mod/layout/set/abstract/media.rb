@@ -4,7 +4,8 @@ format :html do
   end
 
   def image_src opts
-    image_card&.format&.render_source(size: opts[:size])
+    return "" unless image_card
+    nest(image_card, view: :source, size: opts[:size])
   end
 
   def image_alt
@@ -20,37 +21,6 @@ format :html do
     @image_card = Card.cardish(opts[:image]) if opts[:image]
     opts[:media_opts] = {} unless opts[:media_opts]
     text_with_image_args opts
-
-    haml opts do
-      <<-HAML.strip_heredoc
-        .media{media_opts}
-          .media-left.image-box.#{opts[:size]}
-            %a{href: "#"}
-              %img{class:"media-object #{opts[:size]}", src: src, alt: alt}
-          .media-body
-            %h4.media-heading
-              = title
-            = text
-      HAML
-    end
-  end
-
-  def text_with_media _media, _title, _text, opts={}
-    @image_card = Card.cardish(opts[:image]) if opts[:image]
-    text_with_image_args opts
-
-    haml opts do
-      <<-HAML.strip_heredoc
-        .media
-          .media-left.image-box
-
-            %a{href: "#"}
-              %img{class:"media-object #{opts[:size]}", src: src, alt: alt}
-          .media-body
-            %h4.media-heading
-              = title
-            = text
-      HAML
-    end
+    haml :media_snippet, opts
   end
 end

@@ -1,5 +1,5 @@
-.row.nopadding.transparent-background-white.nodblclick
-  .col-md-12.nopadding.d-md-block.d-lg-block.d-none
+.row.m-0.p-0.transparent-background-white.nodblclick
+  .col-md-12.m-0.p-0.d-md-block.d-lg-block.d-none
     / tabs
     .tabbable.tabs-left
       %ul.nav.nav-tabs.intro-tabs.flex-column{role: "tablist"}
@@ -19,12 +19,12 @@
                 = "Browse #{type.to_s.pluralize.capitalize}"
 
   / for medium and mobile devices
-  .col-md-12.nopadding.d-md-none.d-lg-none.d-block
+  .col-md-12.m-0.p-0.d-md-none.d-lg-none.d-block
     - categories.each do |type|
       %h3.text-center.no-bold-text.m-2
         = nest "homepage: #{type} intro", view: :core
       = nest "homepage #{type}", hide: [:paging, :title],
                                  items: { view: :homepage_item_sm }
-      .col-12.text-center
+      .text-center
         %a.btn.btn-sm.btn-outline-secondary.m-3{href: "/#{type}"}
           = "Browse all #{type.to_s.pluralize.capitalize}"

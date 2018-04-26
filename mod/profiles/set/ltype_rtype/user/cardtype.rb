@@ -4,13 +4,16 @@
 # Eg, Richard+Metrics is used to generate reports about Richard's metric-related
 # contributions.
 #
-include_set Abstract::WikirateTable
-include_set Abstract::TwoColumnLayout
+include_set Abstract::Header
+
+card_reader :badges_earned, default: { type_id: Card::PointerID }
 
 ACTION_LABELS = {
-  created: "Created", updated: "Updated",
-  discussed: "Discussed", voted_on: "Voted On"
+  created: "Created", updated: "Updated", discussed: "Discussed",
+  voted_on: "Voted On", double_checked: "Checked"
 }.freeze
+
+ACTIONS = ACTION_LABELS.keys.freeze
 
 def user_card
   @user_card ||= left
@@ -20,10 +23,15 @@ def cardtype_card
   @cardtype_card ||= right
 end
 
+def cardtype_codename
+  cardtype_card.codename&.to_sym
+end
+
 # returns [User]+[Cardtype]+report_search, a search card that finds cards
 # for the given user/cardtype combination.
 # See right/report_search for further information
 def report_card variant
+  return if variant.blank?
   @report_cards ||= {}
   @report_cards[variant] ||= begin
     rcard = Card.new name: name.trait(:report_search),
@@ -36,83 +44,49 @@ def report_card variant
 end
 
 def report_action_applies? action
-  return true unless action == :voted_on
+  return true unless action.to_sym.in? %i[voted_on double_checked]
   # TODO: optimize by adding a test method on the cardtype card itself
+  send "#{action}_applies?"
+end
+
+def voted_on_applies?
   Card.new(type_id: cardtype_card.id).respond_to? :vote_count
 end
 
+def double_checked_applies?
+  cardtype_card.id == MetricValueID
+end
+
 format :html do
-  view :contribution_report, tags: :unknown_ok, cache: :never do
-    return "" unless show_contribution_report?
-    class_up "card-slot", "contribution-report " \
-                          "#{card.codename}-contribution-report"
-    wrap { [contribution_report_header, contribution_report_body] }
+  delegate :report_card, :badges_earned_card, :report_action_applies?, :cardtype_codename,
+           to: :card
+
+  view :contribution_report, tags: :unknown_ok, cache: :never, template: :haml do
+    class_up "card-slot", "contribution-report #{cardtype_codename}-contribution-report"
   end
 
   def show_contribution_report?
-    [:created, :updated, :discussed, :voted_on].find do |action|
-      report_count(action).positive?
-    end
+    valid_actions.any? { |action| report_count(action).positive? }
+  end
+
+  def valid_actions
+    vars =  %i[created updated discussed]
+    vars << (%i[voted_on double_checked].find { |a| report_action_applies? a })
+    vars
   end
 
   def has_badges?
-    card.cardtype_card.codename.to_sym.in? Abstract::BadgeSquad::BADGE_TYPES
+    cardtype_codename.in? Abstract::BadgeSquad::BADGE_TYPES
   end
 
-  def contribution_report_header
-    wrap_with :div, class: "contribution-report-header" do
-      [
-        (contribution_report_title unless has_badges?),
-        contribution_report_action_boxes
-      ]
-    end
+  def report_title_link
+    link_text = report_title + nest(badges_earned_card, view: :count)
+    report_link link_text, :badges
   end
 
-  def contribution_report_action_boxes
-    wrap_with :ul, class: "nav nav-tabs" do
-      contribution_report_action_boxes_list
-    end
-  end
-
-  def contribution_report_action_boxes_list
-    list = has_badges? ? [contribution_report_title_with_badges] : []
-    list += [:created, :updated, :discussed, :voted_on].map do |report_action|
-      if card.report_action_applies? report_action
-        contribution_report_box report_action
-      else
-        contribution_null_box
-      end
-    end.push(contribution_report_toggle)
-  end
-
-  def contribution_report_title_with_badges
-    #
-    # wrap_with :li, class: "contribution-report-title-box" do
-    #   wrap_with :a do
-    #     [
-    #       contribution_report_title,
-    #       contribution_report_badges
-    #     ]
-    #   end
-    # end
-    content = contribution_report_title + contribution_report_badges
-    wrap_with :li, class: "contribution-report-title-box" do
-      link_to_view :contribution_report,
-                   content,
-                   path: { report_tab: :badges }, class: "slotter"
-    end
-  end
-
-  def contribution_null_box
-    wrap_with :li, class:  "contribution-report-box nav-item" do
-      content_tag(:p, "")
-    end
-  end
-
-  def contribution_report_box action, extra_class=nil
-    active_tab = current_tab?(action) ? "active" : nil
-    wrap_with :li, class: css_classes("contribution-report-box nav-item", extra_class, active_tab) do
-      contribution_report_count_tab action
+  def report_title
+    wrap_with :h5, class: "contribution-report-title" do
+      card.cardtype_card.name.vary :plural
     end
   end
 
@@ -124,66 +98,39 @@ format :html do
     action.to_s == current_tab
   end
 
-  def contribution_report_count_tab action
-    return "&nbsp;" unless card.report_action_applies? action
-    link_to_view :contribution_report,
-                 two_line_tab(ACTION_LABELS[action], report_count(action)),
-                 path: { report_tab: action }, class: "slotter nav-link"
+  def report_tab action
+    two_line_tab ACTION_LABELS[action], report_count(action)
+  end
+
+  def report_link text, action, nav_link=false
+    link_args = { class: "slotter#{' nav-link' if nav_link}" }
+    link_args[:path] = { report_tab: action } if action
+    link_to_view :contribution_report, text, link_args
   end
 
   def report_count action
+    return 0 unless action
     @report_count ||= {}
-    @report_count[action] ||= card.report_card(action).count
+    @report_count[action] ||= report_card(action).count
   end
 
-  def contribution_report_title
-    wrap_with :h5, class: "contribution-report-title" do
-      card.cardtype_card.name.vary :plural
+  def toggle_icon
+    current_tab ? fa_icon("chevron-down") : fa_icon("chevron-right")
+  end
+
+  def toggle_action
+    :created unless current_tab
+  end
+
+  def contribution_list
+    if current_tab? :badges
+      nest badges_earned_card, view: :content
+    elsif (rcard = report_card(current_tab))
+      nest rcard, view: contribution_list_view, structure: rcard.variant, skip_perms: true
     end
-  end
-
-  def contribution_report_badges
-    badges = card.field(:badges_earned, new: { type_id: PointerID })
-    nest badges, view: :count
-  end
-
-  def contribution_report_badges_body
-    return unless (badges = card.field(:badges_earned, new: {}))
-    nest badges, view: :content
-  end
-
-  def contribution_report_toggle
-    toggle_status = Env.params[:report_tab] ? :open : :closed
-    wrap_with :li, class: "contribution-report-toggle text-center nav-item" do
-      send "contribution_report_toggle_#{toggle_status}"
-    end
-  end
-
-  def contribution_report_toggle_closed
-    link_to_view :contribution_report, fa_icon("chevron-right"),
-                 class: "slotter nav-link", path: { report_tab: :created }
-  end
-
-  def contribution_report_toggle_open
-    link_to_view :contribution_report, fa_icon("chevron-down"),
-                 class: "slotter nav-link"
-  end
-
-  def contribution_report_body
-    return "" unless (action = current_tab)
-    return contribution_report_badges_body if action.to_sym == :badges
-    report_card = card.report_card action
-    _render_contribution_list report_card: report_card
-  end
-
-  view :contribution_list, cache: :never do |args|
-    report_card = args[:report_card]
-    nest report_card, view: contribution_list_view,
-                      structure: report_card.variant,
-                      skip_perms: true
   end
 
   def contribution_list_view
-    "#{card.right.codename}_list"
+    "#{cardtype_codename}_list"
   end
 end

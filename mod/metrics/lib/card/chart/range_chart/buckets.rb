@@ -18,7 +18,7 @@ class Card
         def calculate_buckets
           return unless bucket_size > 2
           if log_bucket?
-            @bucket_size = Math.log(max * 1.000001 - min) / @buckets
+            @bucket_size = Math.log(max * 1.001 - min) / @buckets
           else
             round_bucket_size
           end

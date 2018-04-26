@@ -10,13 +10,17 @@
   color: inherit !important;
 
   :hover {
-    text-decoration: none;
-    color: inherit;
+    text-decoration: none !important;
+    color: inherit !important;
   }
 }
 //bootstrap 3 utility used in many places
 .hidden {
   display: none !important;
+}
+
+.disabled-o {
+  @include opacity(0.3);
 }
 
 .cursor-p {
@@ -70,6 +74,123 @@
 .request-red {
   color: $highlight-color;
 }
+
+//Colors for colorify method
+
+// Gradient generated from this url
+// https://gka.github.io/palettes
+// /#colors=,red,orange,yellow,green|steps=10|bez=1|coL=0
+// 0 <= x < 1
+.multi-color-0{
+  color: #ff0000;
+}
+.multi-color-1{
+  color: #ff5700;
+}
+.multi-color-2{
+  color: #ff7e00;
+}
+.multi-color-3{
+  color: #fc9b00;
+}
+.multi-color-4{
+  color: #f1b000;
+}
+.multi-color-5{
+  color: #debd00;
+}
+.multi-color-6{
+  color: #c2c000;
+}
+.multi-color-7{
+  color: #9ab700;
+}
+//8 <= x < 9
+.multi-color-8{
+  color: #65a300;
+}
+//9 <= x <= 10
+.multi-color-9{
+  color: #008000;
+}
+
+// Gradient generated from this url
+// https://gka.github.io/palettes/
+// #colors=CornflowerBlue,LightSteelBlue|steps=10|bez=1|coL=1
+
+.mono-color-0{
+  color: #6495ed;
+}
+.mono-color-1{
+  color: #6f9aeb;
+}
+.mono-color-2{
+  color: #799fea;
+}
+.mono-color-3{
+  color: #82a4e8;
+}
+.mono-color-4{
+  color: #8aa9e7;
+}
+.mono-color-5{
+  color: #93afe5;
+}
+.mono-color-6{
+  color: #9ab4e3;
+}
+.mono-color-7{
+  color: #a2b9e2;
+}
+.mono-color-8{
+  color: #a9bfe0;
+}
+.mono-color-9{
+  color: #b0c4de;
+}
+
+// light colors
+.light-color-0{
+  color: #ccc;
+}
+.light-color-1{
+  color: #e4e9f1;
+}
+
+//badge colors
+.badge-company {
+  background-color: $company-color;
+  color: #fff;
+}
+
+.badge-topic {
+  background-color: $topic-color;
+  color: #fff;
+}
+
+.badge-metric {
+  background-color: $metric-color;
+  color: #fff;
+}
+
+//Top border colors
+
+.top-border-default {
+  border-top: 3px solid $heading-color;
+}
+
+.top-border-metric {
+  border-top: 3px solid $metric-color;
+}
+
+.top-border-company {
+  border-top: 3px solid $company-color;
+}
+
+.top-border-topic {
+  border-top: 3px solid $topic-color;
+}
+
 //Text adjustments
 .text-align-left {
   text-align: left;
@@ -110,7 +231,12 @@
 .normal-weight {
   font-weight: normal;
 }
+
+
 //Common adjustments
+.clearfix{
+  clear:both;
+}
 .float-right {
   float: right;
 }
@@ -118,15 +244,6 @@
 .no-hover:hover {
   background-color: inherit !important;
   cursor: inherit !important;
-}
-
-.nopadding {
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-.no-margin {
-  margin: 0 !important;
 }
 
 .margin-8 {
@@ -197,6 +314,10 @@
   padding: 10px !important;
 }
 
+.w-150 {
+  width: 150%;
+}
+
 .min-width-300 {
   min-width: 300px;
 }
@@ -218,21 +339,24 @@
   background: #fafafa;
 }
 
-.border-left {
-  border-left: 1px solid #e5e5e5;
+// Borders
+
+.with-fancy-border {
+    border-left: 3px solid $border-color !important;
 }
 
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
+.with-fancy-border:hover {
+    border-left-color: $dark-text-color !important
 }
 
 .double-border-fix-left {
   margin-left: -1px;
 }
+
+.double-border-fix-bottom {
+  margin-bottom: -1px;
+}
+
 //custom column
 .col-md-3-5 {
   width: 25.666%;
@@ -292,7 +416,7 @@
   background-color: #f8f9fa;
   line-height: 80px;
   vertical-align: middle;
-  margin-right: 18px;
+  margin-right: 10px;
   text-align: center;
 
   img {
@@ -304,6 +428,25 @@
   }
 }
 
+@media (max-width: 1260px) {
+  .image-box.large {
+      width: 120px;
+      height: 120px;
+  }
+}
+
+@media (max-width: 575px) {
+  .image-box {
+    &.large {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .hide-header-sm .rich-header{
+    display: none;
+  }
+}
 .homepage-lead {
   font-weight: 300;
   margin-bottom: 20px;
@@ -438,9 +581,10 @@ div#pdf-preview {
   > .panel-heading {
     color: #404040;
     background-color: #ffffff;
-    padding: 13px;
-    border-top: 3px solid $main-color;
-    border-bottom: 2px solid $border-color;
+    padding-bottom: 2px;
+    border-bottom: 2px solid $main-color;
+    margin-bottom: 15px;
+    margin-top: 25px;
   }
 }
 
@@ -558,20 +702,60 @@ button.pointer-item-delete.btn.btn-outline-secondary {
   content: "\f0d7";
 }
 // Voting
-.vote-count {
-  color: #999;
-}
 
 .vote-button {
-  color: #999;
+  width: 24px;
+  height: 24px;
+  padding: 0 !important;
+  //override bootstrap .btn padding.
+
+}
+//.vote-link {
+//  color: #888;
+//  background-color: #eee;
+//}
+//.disabled-vote-link,
+//.disabled-vote-link:hover {
+//  color: #fff;
+//  background-color: #bbb;
+//
+//}
+.vote-count {
+  color: #555;
+  width: 24px;
+  height: 25px;
+  text-align: center;
+  padding-top: 2px;
+  font-weight: bold;
+
+}
+.vote-details {
+  color: #bbb;
+  font-size: 14px;
+  padding-top: 7px;
+}
+.vote-number {
+  font-weight: bold;
 }
 
-.current-user-up {
+.header-vote {
+  border-right: solid 1px #eee;
+  float: left;
+  margin-right: 10px;
+  padding: 10px;
+}
+
+//disabling for not to override bootstrap's button styles
+
+//.vote-button {
+//  color: #999;
+//}
+
+.current-user-up, .current-user-down {
   color: $main-color !important;
-}
-
-.current-user-down {
-  color: $wanted-card-color !important;
+  &.vote-button {
+    background: rgba(61, 152, 140, 0.5);
+  }
 }
 
 .ellipsis,
@@ -587,17 +771,6 @@ button.pointer-item-delete.btn.btn-outline-secondary {
   padding-left: 8px;
 }
 
-.rich-header {
-  .media {
-    border-bottom: 1px solid $border-color;
-    margin-bottom: 10px;
-  }
-
-  h3 {
-    margin: 10px 8px;
-  }
-}
-
 .horizontal-list {
   .pointer-item {
     display: inline;
@@ -605,8 +778,8 @@ button.pointer-item-delete.btn.btn-outline-secondary {
   }
 }
 
-.thumbnail-text {
-  padding: 6px;
+.labeled-pointers .pointer-list {
+    padding: 0;
 }
 
 .credit .search-result-list {
@@ -690,5 +863,53 @@ ul.horizontal > li {
     left: 0;
     width: 100%;
     height: 100%;
+  }
+}
+
+.scrollable-menu {
+  height: auto;
+  max-height: 50vh;
+  overflow-x: hidden;
+}
+
+a.no-decoration {
+  text-decoration: none !important;
+
+  :hover {
+    text-decoration: none !important;
+    color: inherit !important;
+  }
+}
+
+// center items
+.select2-container--bootstrap .select2-selection--multiple .select2-selection__choice {
+  margin: 0.375rem 0 0 0.375rem !important;
+}
+
+// Fix to prevent that the dropdown becomes bigger than the area it is inside.
+// happens for example for project filter
+// The reason is that dropdownAutoWidth in script_load_select2.js.coffee sets a fixed
+// width so that the longest entry fits in
+.filter-in-filter-form {
+  width: 100%;
+  // overflow-x: hidden;
+
+  .input-group._filter-input {
+    max-width: 100% !important;
+
+    .select2-container {
+      // display: block;
+    }
+  }
+}
+
+// filter above tables
+
+.table-filter-container {
+  >.card {
+    border:0;
+    > .card-body {
+      padding: 10px 0px;
+    }
   }
 }

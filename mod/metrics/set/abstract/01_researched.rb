@@ -6,8 +6,8 @@ def score_cards
 end
 
 format :html do
-  def default_content_formgroup_args args
-    super args
+  def default_content_formgroup_args _args
+    super
     voo.edit_structure += [
       [:value_type, "Value Type"],
       [:research_policy, "Research Policy"],
@@ -20,31 +20,12 @@ format :html do
                 scores_tab: "Scores"
   end
 
-  view :details_tab do
-    tab_wrap do
-      wrap_with :div, class: "metric-details-content" do
-        [
-          _render_metric_properties,
-          _render_add_value_buttons,
-          wrap_with(:hr, ""),
-          nest(card.about_card, view: :titled, title: "About"),
-          nest(card.methodology_card, view: :titled, title: "Methodology"),
-          _render_import_button
-        ]
-      end
-    end
-  end
-
-  view :value_type_detail do
-    voo.hide :menu
-    wrap do
-      [
-        field_nest(:value_type, view: :content, items: { view: :name }, show: :menu),
-        # )_render_value_type_edit_modal_link,
-        _render_short_view,
-        # _render_menu
-      ]
-    end
+  view :main_details do
+    output [
+      nest(card.about_card, view: :titled, title: "About"),
+      nest(card.methodology_card, view: :titled, title: "Methodology"),
+      _render_import_button
+    ]
   end
 
   view :source_tab do
@@ -55,7 +36,7 @@ format :html do
     end
   end
 
-  view :scores_tab do |_args|
+  view :scores_tab do
     # TODO: move +scores to a separate card
     tab_wrap do
       output [
@@ -74,7 +55,7 @@ format :html do
 
   def add_value_link
     link_to_card :research_page, "#{fa_icon 'plus'} Research answer",
-                 path: { metric: card.name, view: :new },
+                 path: { metric: card.name, view: :slot_machine },
                  class: "btn btn-primary",
                  title: "Research answer for another year"
     # "/new/metric_value?metric=" + _render_cgi_escape_name
@@ -107,11 +88,8 @@ format :html do
         </div>
     HTML
   end
-end
 
-def user_can_answer?
-  # TODO: add metric designer respresentative logic here
-  is_admin = Auth.always_ok?
-  is_owner = Auth.current.id == creator.id
-  (is_admin || is_owner) || !designer_assessed?
+  def properties
+    super.merge research_properties
+  end
 end

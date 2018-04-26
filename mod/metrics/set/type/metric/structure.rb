@@ -1,19 +1,22 @@
 include_set Abstract::TwoColumnLayout
+# include_set Abstract::Listing
+include_set Abstract::BsBadge
 
 format :html do
-  def default_open_content_args args
-    super
-    @container_class = "yinyang" # TODO: check if still needed
-    add_class args[:left_class], "metric-info nopadding"
-    add_class args[:right_class], "wiki"
+  def left_column_class
+    "#{super} metric-info m-0 p-0"
+  end
+
+  def right_column_class
+    "#{super} wiki"
   end
 
   view :rich_header do
     vote = field_subformat(:vote_count)._render_content
     bs_layout do
-      row 1, 11, class: "metric-header-container" do
-        column vote, class: "margin-top-20 "
-        column _render_title_and_question
+      row 1, 11, class: "metric-header-container border-bottom container p-0 m-0 mt-3" do
+        column vote, class: "col-1 pt-1"
+        column _render_title_and_question, class: "col-10"
       end
     end
   end
@@ -28,31 +31,59 @@ format :html do
     end
   end
 
-  view :metric_title do |_args|
+  view :metric_title do
     link = link_to_card card, card.metric_title, class: "inherit-anchor"
     wrap_with :h3, link, class: "metric-color"
   end
 
   view :metric_question do
-    question = subformat(card.question_card)._render_content
-    wrap_with :h5, question, class: "question"
+    wrap_with :div, question, class: "question blockquote"
+  end
+
+  def question
+    subformat(card.question_card)._render_content
   end
 
   view :designer_info do
     nest card.metric_designer_card, view: :designer_info
   end
 
+  view :designer_info_without_label do
+    nest card.metric_designer_card, view: :designer_info_without_label
+  end
+
   view :question_row do
     <<-HTML
       <div class="row metric-details-question">
-        <div class="row-icon padding-top-10">
+        <div class="row-icon">
           #{fa_icon 'question', class: 'fa-lg'}
         </div>
-        <div class="row-data padding-top-10">
+        <div class="row-data col-11">
           #{nest card.question_card, view: :core}
         </div>
       </div>
     HTML
+  end
+
+  view :box_top, template: :haml do
+    @vote_count = voo.show?(:vote_count) ? field_nest(:vote_count) : ""
+  end
+
+  view :box_middle, template: :haml do
+    @question = question
+  end
+
+  def company_count
+    field_nest :wikirate_company, view: :count
+  end
+
+  def metric_count
+    field_nest :all_metric_values, view: :count
+  end
+
+  view :box_bottom, template: :haml do
+    @company_badge = labeled_badge company_count, "Companies", color: "company"
+    @answer_badge = labeled_badge metric_count, "Answers", color: "dark"
   end
 
   view :browse_item, template: :haml do

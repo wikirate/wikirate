@@ -24,39 +24,43 @@ def company_key
   company.to_name.key
 end
 
+def company_id
+  Card.fetch_id company_key
+end
+
 def metric_plus_company_card
   Card.fetch metric_plus_company
 end
 
 def unknown_value?
-  content.casecmp("unknown").zero?
+  Answer.unknown? content
 end
 
 event :check_length, :validate, on: :save, changed: :content do
-  if content.size >= 1000
-    errors.add :value, "too long (not more than 1000 characters)"
-  end
+  errors.add :value, "too long (not more than 1000 characters)" if content.size >= 1000
 end
 
-event :mark_as_imported, before: :finalize_action do
-  return unless ActManager.act_card.type_id == AnswerImportFileID
+event :mark_as_imported, before: :finalize_action, when: :answer_imported? do
   @current_action.comment = "imported"
 end
 
-event :update_related_scores, :finalize do
-  ensure_metric(metric_card).related_scores.each do |metric|
-    metric.update_value_for! company: company_key, year: year
+def answer_imported?
+  ActManager.act_card.type_id.in? [AnswerImportFileID, RelationshipAnswerImportFileID]
+end
+
+event :update_related_scores, :after_integrate do
+  ensure_metric(metric_card).each_dependent_score_metric do |metric|
+    metric.update_value_for! company: company_id, year: year
   end
 end
 
-event :update_related_calculations, :finalize do
-  ensure_metric(metric_card).related_calculations.each do |metric|
-    metric.update_value_for! company: company_key, year: year
+event :update_related_calculations, :after_integrate do
+  ensure_metric(metric_card).each_dependent_formula_metric do |metric|
+    metric.update_value_for! company: company_id, year: year
   end
 end
 
-event :update_double_check_flag, :validate, on: [:update, :delete],
-                                            changed: :content do
+event :update_double_check_flag, :validate, on: [:update, :delete], changed: :content do
   [:checked_by, :check_requested_by].each do |trait|
     next unless left.fetch trait: trait
     attach_subcard name.left_name.field_name(trait), content: ""

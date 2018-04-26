@@ -1,48 +1,14 @@
 
 def self.find_duplicates url
-  duplicate_wql = { right: Card[:wikirate_link].name, content: url, left: { type_id: Card::SourceID } }
+  duplicate_wql = { right: Card[:wikirate_link].name, content: url,
+                    left: { type_id: Card::SourceID } }
   Card.search duplicate_wql
 end
 
 format :json do
-  view :metadata do |args|
-    metadata = MetaData.new
-    url = Card::Env.params[:url] || args[:url] || ""
-    if url.empty?
-      metadata.error = "empty url"
-      return metadata.to_json
-    end
-    begin
-      metadata.website = URI(url).host
-    rescue
-    end
-    unless metadata.website
-      metadata.error = "invalid url"
-      return metadata.to_json
-    end
-    duplicates = Source.find_duplicates url
-    if duplicates.any?
-      origin_page_card = duplicates.first.left
-      title = fetch_field_content origin_page_card, "title"
-      description = fetch_field_content origin_page_card, "description"
-      image_url = fetch_field_content origin_page_card, "image_url"
-      metadata.set_meta_data title, description, image_url
-    else
-      begin
-        preview = LinkThumbnailer.generate url
-        image_url = preview.images.first.src.to_s unless preview.images.empty?
-          metadata.set_meta_data preview.title, preview.description, image_url
-      rescue
-      end
-    end
-    metadata.to_json
-  end
-
-  def fetch_field_content card, field
-    unless (field_card = Card["#{card.name}+#{field}"])
-      return block_given? ? yield : ""
-    end
-    field_card.content
+  view :metadata do
+    url = Card::Env.params[:url] || ""
+    MetaData.new(url).to_json
   end
 
   def valid_content_type? content_type, user_agent
@@ -82,32 +48,13 @@ format :json do
     x_frame_options, content_type = iframable_options url
     valid_x_frame_options?(x_frame_options) &&
       valid_content_type?(content_type, user_agent)
-  rescue => error
+  rescue StandardError => error
     Rails.logger.error error.message
     return false
   end
 
-  view :check_iframable do |_args|
+  view :check_iframable do
     user_agent = request ? request.env["HTTP_USER_AGENT"] : nil
     { result: !!iframable?(params[:url], user_agent) }
-  end
-end
-
-# hash result for iframe checking
-class MetaData
-  attr_accessor :title, :description, :image_url, :website, :error
-
-  def initialize
-    @title = ""
-    @description = ""
-    @image_url = ""
-    @website = ""
-    @error = ""
-  end
-
-  def set_meta_data title, desc, image_url
-    @title = title
-    @description = desc
-    @image_url = image_url
   end
 end

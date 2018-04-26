@@ -1,26 +1,40 @@
 # lookup table for metric answers
 
-class Answer < ActiveRecord::Base
+class Answer < ApplicationRecord
   include LookupTable
   extend AnswerClassMethods
 
+  include CardlessAnswers
   include Filter
   include Validations
   include EntryFetch
+  include Csv
 
-  validates :answer_id, numericality: { only_integer: true }, presence: true
-  validate :must_be_an_answer, :card_must_exist, :metric_must_exit
+  validates :answer_id, numericality: { only_integer: true }, presence: true,
+                        unless: :virtual?
+  validate :must_be_an_answer, :card_must_exist, unless: :virtual?
+  validate :metric_must_exit
+
+  def self.existing id
+    return unless id
+    find_by_answer_id(id) || (refresh(id) && find_by_answer_id(id))
+  end
 
   def card_column
     :answer_id
   end
 
+  def card
+    return super if answer_id
+    # in the process of creating a hybrid answer we don't want the virtual answer card
+    @card ||= find_answer_card || virtual_answer_card
+  end
+
   def delete
     super.tap do
       if (latest_year = latest_year_in_db)
-        Answer.where(
-          record_id: record_id, year: latest_year
-        ).update_all(latest: true)
+        Answer.where(record_id: record_id, year: latest_year)
+              .update_all(latest: true)
       end
     end
   end
@@ -39,23 +53,27 @@ class Answer < ActiveRecord::Base
     super
   end
 
-  def self.csv_title
-    CSV.generate_line ["ANSWER ID", "METRIC NAME", "COMPANY NAME", "YEAR",
-                       "VALUE"]
+  def company_key
+    company_name.to_name.key
   end
 
-  def csv_line
-    CSV.generate_line [answer_id, metric_name, company_name, year, value]
+  def metric_key
+    metric_name.to_name.key
+  end
+
+  def updater_id
+    editor_id || creator_id
   end
 
   private
 
-  def unknown? val
-    val.casecmp("unknown").zero?
+  def ensure_record metric_card, company
+    return if Card[metric_card, company]
+    Card.create! name: [metric_card, company], type_id: Card::RecordID
   end
 
   def metric_card
-    @metric_card ||= Card.quick_fetch(fetch_metric_name)
+    @metric_card ||= Card.fetch(fetch_metric_id)
   end
 
   def method_missing method_name, *args, &block
@@ -68,6 +86,15 @@ class Answer < ActiveRecord::Base
 
   def is_a? klass
     klass == Card || super
+  end
+
+  def to_numeric_value val
+    return if unknown?(val) || !val.number?
+    val.to_d
+  end
+
+  def unknown? val
+    self.class.unknown? val
   end
 end
 

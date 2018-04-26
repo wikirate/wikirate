@@ -1,18 +1,14 @@
 include_set Abstract::TwoColumnLayout
 include_set Abstract::Thumbnail
 include_set Abstract::Table
+include_set Abstract::Listing
+include_set Abstract::BsBadge
 
 card_accessor :organizer
 card_accessor :researcher
 card_accessor :project
-
-def all_members
-  (organizer_card.item_cards + researcher_card.item_cards).uniq
-end
-
-def all_user_members
-  all_members.select { |m| m.type_id == UserID }
-end
+card_accessor :metric
+card_accessor :wikirate_topic
 
 def report_card member, cardtype, variant
   rcard = Card.new name: [member, cardtype, name, :report_search].to_name
@@ -24,6 +20,7 @@ end
 
 def contribution_count member, cardtype, category
   return 0 if projects.empty?
+  return "" if category == :double_checked && cardtype != :metric_value
   report_card(member, cardtype, category).count
 end
 
@@ -32,96 +29,81 @@ def projects
 end
 
 format :html do
-  view :open_content do |args|
-    bs_layout container: false, fluid: true, class: @container_class do
-      row 5, 7, class: "panel-margin-fix" do
-        column _render_about_column, args[:left_class]
-        column _render_contributions_column, args[:right_class]
-      end
-    end
-  end
-
-  view :about_column do
-    output [
-      _render_rich_header,
-      field_nest(:description, view: :titled, title: "Description"),
-      member_list,
-      field_nest(:discussion, view: :titled, show: :comment_box,
-                              title: "Discussion")
+  def default_content_formgroup_args _args
+    voo.edit_structure = [
+      :image,
+      :organizer,
+      :wikirate_topic,
+      :description
     ]
   end
 
-  def member_list
-    with_header "Members" do
-      [:organizer, :researcher].map do |fieldname|
-        field_nest fieldname, view: :titled,
-                              title: fieldname.cardname,
-                              variant: "plural capitalized",
-                              type: "Pointer",
-                              items: { view: :thumbnail_plain }
-      end
+  view :open_content do
+    two_column_layout 5, 7
+  end
+
+  def header_right
+    wrap_with :div, class: "header-right" do
+      [
+        wrap_with(:h6, card.type.upcase, class: "text-muted border-bottom pt-2 pb-2"),
+        wrap_with(:h5, _render_title, class: "project-title font-weight-normal")
+      ].compact
     end
   end
 
-  view :listing do
-    _render_thumbnail
+  view :rich_header_body do
+    text_with_image title: "", text: header_right, size: :medium
   end
 
-  view :contributions_column do
-    output [group_contributions, member_contribution_section]
+  view :data do
+    output [
+      field_nest(:organizer, view: :titled,
+                             title: "Organizer",
+                             items: { view: :thumbnail_plain }),
+      standard_nest(:wikirate_topic),
+      field_nest(:description, view: :titled, title: "Description"),
+      standard_nest(:conversation)
+    ]
   end
 
-  def group_contributions
-    with_header "Group Contributions" do
-      [metrics_designed, projects_organized]
+  view :thumbnail_subtitle do
+    field_nest :organizer, view: :credit
+  end
+
+  def tab_list
+    { researcher_list: two_line_tab("Researchers", card.researcher_card.count),
+      metric_list:     two_line_tab("Metrics",     card.metric_card.count),
+      project_list:    two_line_tab("Projects",    card.project_card.count) }
+  end
+
+  view :metric_list do
+    field_nest :metric, items: { view: :listing }
+  end
+
+  view :project_list do
+    field_nest :project, items: { view: :listing }
+  end
+
+  view :researcher_list do
+    field_nest :researcher, view: :overview
+  end
+
+  view :listing_left, template: :haml
+  view :listing_bottom, template: :haml
+  view :listing_middle, template: :haml
+
+  view :listing_right, cache: :never do
+    labeled_badge card.researcher_card.count, "Researchers", color: "dark"
+  end
+
+  view :minor_labeled_badges, cache: :never do
+    wrap_with :span do
+      [labeled_badge(card.metric_card.count, "Metrics"),
+       labeled_badge(card.project_card.count, "Projects")]
     end
   end
 
-  def metrics_designed
-    field_nest :metric, view: :titled,
-                        title: "Metrics Designed",
-                        items: { view: :listing }
-  end
-
-  def projects_organized
-    field_nest :project, view: :titled,
-                         title: "Projects Organized",
-                         items: { view: :listing }
-  end
-
-  def member_contribution_section
-    with_header "Member Contributions" do
-      card.all_user_members.map do |member|
-        member_contribution_table member
-      end
-    end
-  end
-
-  def member_contribution_table member
-    table member_contribution_content(member),
-          header: member_contribution_header(member)
-  end
-
-  def member_contribution_header member
-    contribution_categories.map do |category|
-      Card::Set::LtypeRtype::User::Cardtype::ACTION_LABELS[category]
-    end.unshift nest(member, view: :thumbnail)
-  end
-
-  def contribution_cardtypes
-    [:metric_value, :metric, :wikirate_company]
-    # TODO: consider adding source, which is connected via metric_value
-  end
-
-  def contribution_categories
-    [:created, :updated, :discussed]
-  end
-
-  def member_contribution_content member
-    contribution_cardtypes.map do |typecode|
-      contribution_categories.map do |category|
-        card.contribution_count member.name, typecode, category
-      end.unshift typecode.cardname.vary "capitalize plural"
-    end
+  view :closed_content do
+    ""
   end
 end

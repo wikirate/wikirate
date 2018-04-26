@@ -6,9 +6,9 @@ class Answer
                     uniq: [:uniq],
                     where: [:where] }.freeze
 
-    def create card
+    def create cardish
       ma = Answer.new
-      ma.answer_id = card.id
+      ma.answer_id = card_id cardish
       ma.refresh
     end
 
@@ -63,13 +63,10 @@ class Answer
       hash
     end
 
+    # @param ids [Integer, Array<Integer>] card ids of metric answer cards
     def refresh ids=nil, *fields
-      if ids
-        Array(ids).each do |ma_id|
-          refresh_entry fields, ma_id
-        end
-      else
-        refresh_all fields
+      Array(ids).compact.each do |ma_id|
+        refresh_entry fields, ma_id
       end
     end
 
@@ -99,10 +96,8 @@ class Answer
 
     def card_id cardish
       case cardish
-      when Integer then
-        cardish
-      when Card then
-        cardish.id
+      when Integer then cardish
+      when Card    then cardish.id
       end
     end
 
@@ -120,6 +115,14 @@ class Answer
 
     def answered? metric_id, company_id
       where(metric_id: metric_id, company_id: company_id).exist?
+    end
+
+    def unknown? val
+      val.to_s.casecmp("unknown").zero?
+    end
+
+    def find_by_answer_id answer_id
+      answer_id ? Answer.where(answer_id: answer_id).take : nil
     end
   end
 end

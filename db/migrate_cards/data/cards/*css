@@ -1,0 +1,16 @@
+{{style: mixins and variables}}
+
+// Note: Styles in this card are temporary fixes and should be addressed soon
+
+div[data-slot*="float:right"]{
+    float:right;
+    border: 2px solid $border-color;
+    margin-left: 15px;
+}
+
+.SELF-un_sustainable_development_goal-topic_list .item-browse_item {
+    float: left;
+    width: 20%;
+    padding: 10px;
+}
+

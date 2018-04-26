@@ -44,14 +44,29 @@ class CSVRow
     end
 
     def create_or_update_source
-      duplicates = Card::Set::Self::Source.find_duplicates source_args[:source]
-      if duplicates.empty?
+      duplicate = find_duplicate
+      if duplicate.blank?
         create_source
       elsif @import_manager.conflict_strategy == :override
-        resolve_source_duplication duplicates.first.left
+        resolve_source_duplication duplicate
       else
-        duplicates.first.left
+        duplicate
       end
+    end
+
+    def find_duplicate
+      if refers_to_existing_source_name?
+        Card[source_args[:source]]
+      elsif source_args[:source].url?
+        link_duplicates = Card::Set::Self::Source.find_duplicates source_args[:source]
+        link_duplicates.present? && link_duplicates.first.left
+      else
+        error("source #{source_args[:source]} doesn't exist")
+      end
+    end
+
+    def refers_to_existing_source_name?
+      Card.fetch_type_id(source_args[:source]) == Card::SourceID
     end
 
     def resolve_source_duplication existing_source
@@ -63,10 +78,9 @@ class CSVRow
 
     def create_source
       pick_up_card_errors do
-        source_card = add_card name: "", type_id: Card::SourceID,
-                               subcards: source_subcard_args
-        finalize_source_card source_card
-        source_card
+        add_card name: "", type_id: Card::SourceID, subcards: source_subcard_args
+        # finalize_source_card source_card
+        # source_card
       end
     end
 

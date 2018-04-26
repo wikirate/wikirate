@@ -8,12 +8,14 @@ format :json do
         .each_with_object([]) do |id, comps|
       alias_card = Card.fetch(id, :aliases)
       oc_card = Card.fetch(id, :open_corporates)
+      wikipedia_card = Card.quick_fetch(id, :wikipedia)
       comps << {
         id: id,
         name: Card.fetch_name(id),
         alias: (alias_card&.item_names || []),
         oc_id: oc_card&.company_number,
-        oc_jurisdiction_code: oc_card&.jurisdiction_code
+        oc_jurisdiction_code: oc_card&.jurisdiction_code,
+        wikipedia_title: wikipedia_card&.content
       }
     end
   end

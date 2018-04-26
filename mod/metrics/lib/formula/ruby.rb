@@ -55,7 +55,7 @@ module Formula
       input = Array.wrap(input)
       if input.all? { |inp| inp.is_a?(Float) }
         true
-      elsif input.any? { |inp| inp.to_s.casecmp("unknown").zero? }
+      elsif input.any? { |inp| Answer.unknown? inp }
         "Unknown"
       elsif input.any?(&:empty?)
         nil
@@ -66,7 +66,7 @@ module Formula
 
     def to_lambda
       rb_formula =
-        replace_nests(translate_functions(@formula.content)) do |index|
+        replace_nests(translate_functions(@formula)) do |index|
           "#{LAMBDA_ARGS_NAME}[#{index}]"
         end
       find_allowed_non_numeric_input rb_formula

@@ -38,7 +38,7 @@ def metric_was
 end
 
 def metric_card
-  Card.fetch(metric) || (generation == 1 && left) || nil
+  (generation == 1 && left) || Card.fetch(metric) || nil
   # FIXME: hack to make it work on new cards
 end
 
@@ -52,22 +52,6 @@ def value_type
     return value_type_card.item_names[0]
   end
   nil
-end
-
-def researched?
-  (mc = metric_card) && mc.researched?
-end
-
-def scored?
-  (mc = metric_card) && mc.scored?
-end
-
-def relationship?
-  (mc = metric_card) && mc.relationship?
-end
-
-def standard?
-  (mc = metric_card) && mc.standard?
 end
 
 def metric_card_before_name_change
@@ -115,6 +99,10 @@ def company_card
   Card.fetch company
 end
 
+def company_id
+  Card.fetch_id company
+end
+
 def answer_name
   "#{metric_name}+#{company_name}+#{year}"
 end
@@ -145,6 +133,14 @@ format do
            to: :card
 end
 
-delegate :value_options, :value_options_card, :value_type,
-         :numeric?, :categorical?, :relationship?,
-         to: :metric_card
+delegate :value_options, :value_options_card, :numeric?, :categorical?, to: :metric_card
+
+def self.delegate_to_metric_card_if_available *methods
+  methods.each do |method|
+    define_method(method) { metric_card&.send method }
+  end
+end
+
+delegate_to_metric_card_if_available :researched?, :calculated?, :hybrid?,
+                                     :relationship?, :standard?, :descendant?,
+                                     :score?, :ten_scale?, :rating?

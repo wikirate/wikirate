@@ -1,4 +1,5 @@
 
+
 {{style: mixins and variables|raw}}
 
 // TODO: futher cleanup and testing after review
@@ -166,6 +167,7 @@
     }
     button.vote-button {
         //color: $dark-text-color;
+        color: #999;
         width: 15px;
         height: 15px;
         padding: 0;
@@ -178,6 +180,7 @@
         //color: $dark-text-color;
         width: 16px;
         height: 15px;
+        padding-top: 4px;
     }
     .logo {
         padding-top: 5px;
@@ -240,4 +243,10 @@
   .pagination{
     width: 100%;
   }
+}
+
+//Listing
+
+.listing .missing-view {
+  display: none;
 }

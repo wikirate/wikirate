@@ -1,6 +1,6 @@
 include_set Abstract::BrowseFilterForm
 
-def default_sort_by_key
+def default_sort_option
   "upvoted"
 end
 
@@ -20,10 +20,10 @@ def filter_class
   MetricFilterQuery
 end
 
-def add_sort_wql wql, sort_by
-  super wql, sort_by
+def sort_wql
+  wql = super
   wql[:sort] =
-    case sort_by
+    case current_sort
     when "values"
       { right: "value", right_plus: "*cached count" }
     when "recent"
@@ -35,10 +35,7 @@ def add_sort_wql wql, sort_by
       # upvoted as default
       { right: "*vote count" }
     end
-end
-
-def default_sort_option
-  "upvoted"
+  wql
 end
 
 format :html do
@@ -58,27 +55,20 @@ format :html do
     }
   end
 
-  view :metric_type_formgroup, cache: :never do
-    metric_type_select
-  end
-
-  view :research_policy_formgroup, cache: :never do
-    research_policy_select
-  end
-
-  view :wikirate_topic_formgroup, cache: :never do
-    autocomplete_filter :wikirate_topic
-  end
-
-  def type_options type_codename, order="asc"
+  def type_options type_codename, order="asc", max_length=nil
     if type_codename == :wikirate_topic
-      Card.search referred_to_by: {
-        left: { type_id: Card::MetricID },
-        right: "topic"
-      }, type_id: Card::WikirateTopicID,
-                  return: :name, sort: "name", dir: order
+      wikirate_topic_type_options order
     else
-      super type_codename, order
+      super
     end
+  end
+
+  def wikirate_topic_type_options order
+    Card.search referred_to_by: { left: { type_id: Card::MetricID },
+                                  right: "topic" },
+                type_id: Card::WikirateTopicID,
+                return: :name,
+                sort: "name",
+                dir: order
   end
 end

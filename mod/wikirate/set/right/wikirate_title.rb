@@ -1,4 +1,4 @@
-view :needed, perms: :none do |_args|
+view :needed, perms: :none do
   if card.real? && !card.content.empty?
     render_core
   else

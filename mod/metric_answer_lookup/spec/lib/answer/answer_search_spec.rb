@@ -28,21 +28,21 @@ RSpec.describe Answer, "Answer.search" do
     result = search metric_id: sample_metric(:number).id,
                     return: [:company, :year, :value]
     expect(result)
-      .to eq [["Death_Star", 1977, "100"],
-              ["SPECTRE", 1977, "50"],
-              ["Los_Pollos_Hermanos", 1977, "40"],
-              ["Slate_Rock_and_Gravel_Company", 1977, "20"],
-              ["Slate_Rock_and_Gravel_Company", 2005, "10"],
-              ["Samsung", 1977, "Unknown"]]
+      .to include ["Death Star", 1977, "100"],
+                  ["SPECTRE", 1977, "50"],
+                  ["Los Pollos Hermanos", 1977, "40"],
+                  ["Slate Rock and Gravel Company", 1977, "20"],
+                  ["Slate Rock and Gravel Company", 2005, "10"],
+                  ["Samsung", 1977, "Unknown"]
   end
 
   it "can count" do
-    expect(search(year: "2000", return: :count)).to eq 10
+    expect(search(year: "2000", return: :count)).to eq 14
   end
 
   it "can uniquify and return count" do
     result = search year: "2000", uniq: :company_id, return: :count
-    expect(result).to eq 5
+    expect(result).to eq 7
   end
 
   # it "can uniquify and return different column" do

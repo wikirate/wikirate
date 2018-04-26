@@ -212,30 +212,30 @@
 
 .metric-designer-info {
 
-    a {
-        color: inherit;
-    }
-    a > div {
-        float: left;
-        > small {
-            width: 65px;
-            display: inline-block;
-            text-align: right;
-            padding-top: 10px;
-            padding-right: 10px;
-        }
-    }
+    // a {
+    //     color: inherit;
+    // }
+    // a > div {
+    //     float: left;
+    //     > small {
+    //         width: 65px;
+    //         display: inline-block;
+    //         text-align: right;
+    //         padding-top: 10px;
+    //         padding-right: 10px;
+    //     }
+    // }
 
     img {
         max-height: 100%;
         max-width: 100%;
         vertical-align: middle;
     }
-    h3 {
-      margin: 18px 5px;
-      float: left;
-      color: $heading-color;
-    }
+    // h3 {
+    //   margin: 18px 5px;
+    //   float: left;
+    //   color: $heading-color;
+    // }
 }
 .metric-details-header {
     .name {
@@ -623,7 +623,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     height: 40px;
     vertical-align: middle!important;
     color: #555;
-
+    position:relative; //fix for menu icon on company details page
     &:last-child {
       font-weight:bold;
     }
@@ -764,4 +764,23 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
     .card-editor span.select2.select2-container {
         width: 100% !important;
     }
+}
+
+.formula-with-values {
+    font-size: 18px;
+    > .metric-value {
+        margin-right: 2px;
+        margin-left: 2px;
+    }
+}
+
+.new_tab_pane-view.METRIC_TYPE-formula {
+    .card-editor.RIGHT-value_type {
+        display: none;
+    }
+}
+
+.box-middle canvas {
+    max-width: 300px!important;
+    max-height: 206px!important;
 }

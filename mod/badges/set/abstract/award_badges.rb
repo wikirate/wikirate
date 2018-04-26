@@ -8,10 +8,14 @@ def self.included host_class
   end
 end
 
+include ::NewRelic::Agent::MethodTracer
+
 def award_badge_if_earned badge_type
   return unless (badge = earns_badge(badge_type))
   award_badge fetch_badge_card(badge)
 end
+
+add_method_tracer :award_badge_if_earned, "award_badge_if_earned"
 
 # @return badge name if count equals its threshold
 def earns_badge action

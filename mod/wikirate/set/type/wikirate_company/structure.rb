@@ -37,7 +37,7 @@ format :html do
   end
 
   def performance_data
-    output [_render_header_tabs_mobile, field_nest(:all_metric_values)]
+    field_nest(:all_metric_values)
   end
 
   def header_right
@@ -45,7 +45,7 @@ format :html do
   end
 
   def header_title
-    wrap_with :h3, _render_title, class: "company-color"
+    wrap_with :h3, _render_title, class: "company-color p-2"
   end
 
   view :header_tabs, cache: :never do
@@ -56,11 +56,40 @@ format :html do
     wrap_header_tabs(:mobile)
   end
 
+  view :rich_header_mobile do
+    wrap_with :div, _render_rich_header, class: "d-block d-md-none"
+  end
+
+  view :content_right_col do
+    wrap_with :div do
+      [
+        _render_header_tabs_mobile,
+        _render_rich_header_mobile,
+        _render_tabs
+      ]
+    end
+  end
+
+  def left_column_class
+    "left-col order-2 order-md-1 hide-header-sm"
+  end
+
+  def right_column_class
+    "right-col order-1 order-md-2"
+  end
+
   def wrap_header_tabs device=""
-    css_class = "nav nav-tabs company-profile-tab "
-    css_class += device.to_sym == :mobile ? "d-md-none d-ls-none" : "d-sm-none d-xs-none d-md-block"
+    css_class = "nav nav-tabs twin-tab nodblclick " + header_tab_classes(device)
     wrap_with :ul, class: css_class do
       [performance_tab_button, contributions_tab_button]
+    end
+  end
+
+  def header_tab_classes device
+    if device.to_sym == :mobile
+      "d-flex d-md-none"
+    else
+      "d-none d-md-inline company-profile-tab"
     end
   end
 
@@ -90,7 +119,7 @@ format :html do
     end
   end
 
-  view :details_tab do |_args|
+  view :details_tab do
     bs_layout do
       row 12 do
         column do
@@ -101,20 +130,21 @@ format :html do
   end
 
   def country_table
-    table country_rows, class: "table-borderless table-condensed"
+    table country_rows,
+          class: "table-borderless table-condensed mt-3 h5 font-weight-normal"
   end
 
   def country_rows
     [:headquarters].map do |field|
       [{ content: wrap_with(:strong, Card[field].name),
-         class: "no-stretch padding-right-30" },
+         class: "no-stretch padding-right-30 pl-0" },
        field_nest(field, view: :content, show: :menu, items: { view: :name })]
     end
   end
 
   def integrations
     output [
-      "<h3>Integrations</h3>",
+      content_tag(:h5, "INTEGRATIONS", class: "border-bottom pb-2"),
       wikipedia_extract,
       open_corporates_extract
     ]
@@ -139,12 +169,6 @@ format :html do
   view :projects_tab do
     field_nest :project, items: { view: :listing }
   end
-
-  # view :filter do |args|
-  #   filter_form  a: { input_field: "<input class='a'/>", label: "A" },
-  #                                    b: { input_field: "<select class='b'/>", label: "B" }
-  #   # field_subformat(:company_metric_filter)._render_core args
-  # end
 
   view :browse_item, template: :haml
   view :homepage_item, template: :haml

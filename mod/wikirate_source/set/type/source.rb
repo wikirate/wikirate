@@ -8,40 +8,15 @@ add_attributes :import
 attr_accessor :import
 
 def source_title_card
-  # FIXME: needs codename, but :title is linked to *title
-  Card.fetch name.field("title"), new: {}
+  Card.fetch [name, :wikirate_title], new: {}
 end
 
 def import?
   # default (=nil) means true
-  #
   @import != false && Cardio.config.x.import_sources
 end
 
 require "link_thumbnailer"
-
-def not_bot?
-  Card::Auth.current_id == Card::WagnBotID
-end
-
-event :check_source, :validate, on: :create do
-  source_cards = assemble_source_subfields
-  validate_source_subfields source_cards
-end
-
-def assemble_source_subfields
-  [:wikirate_link, :file, :text].map do |fieldname|
-    subfield fieldname
-  end.compact
-end
-
-def validate_source_subfields source_cards
-  if source_cards.length > 1
-    errors.add :source, "Only one type of content is allowed"
-  elsif source_cards.empty?
-    errors.add :source, "Source content required"
-  end
-end
 
 def source_type_codename
   source_type_card.item_cards[0].codename.to_sym
@@ -93,9 +68,10 @@ format :html do
     Env.params[:preview]
   end
 
-  view :new_preview, cache: :never do
+  view :new_preview, cache: :never, tags: :unknown_ok do
     with_nest_mode :edit do
       voo.structure = "metric value source form"
+      voo.type = "source"
       card_form :create, "main-success" => "REDIRECT",
                          "data-form-for" => "new_metric_value",
                          class: "card-slot new-view TYPE-source" do

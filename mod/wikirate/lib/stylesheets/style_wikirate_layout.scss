@@ -10,7 +10,6 @@ body {
   -webkit-font-smoothing: antialiased;
   // override bootstrap 4 font
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  line-height: 1.42857;
   background-color: #fff;
 }
 body#wagn {
@@ -26,7 +25,7 @@ body#tinymce {
 }
 
 .card-menu.btn-group {
-  padding: 0.4rem 0;
+  padding: 0.5rem 0!important;
 }
 
 //Center alignment for all open-view heading
@@ -353,4 +352,19 @@ input.navbox {
 //FOR ALL 2 column layout
 .row.panel-margin-fix {
     margin-top: -15px;
+}
+
+
+//Default Images
+
+div[data-slot*="float:right"]{
+    float:right;
+    border: 2px solid $border-color;
+    margin-left: 15px;
+}
+
+.SELF-un_sustainable_development_goal-topic_list .item-browse_item {
+    float: left;
+    width: 20%;
+    padding: 10px;
 }

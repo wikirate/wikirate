@@ -30,9 +30,9 @@ end
 
 STATUS_HEADER = {
   failed: "Failed",
-  imported: "Successful",
+  imported: "Successfully created",
   overridden: "Overridden",
-  skipped: "Skipped"
+  skipped: "Skipped existing"
 }.freeze
 
 STATUS_CONTEXT = {
@@ -46,7 +46,7 @@ format :html do
   delegate :status, :import_counts, to: :card
   delegate :percentage, :count, :step, to: :import_counts
 
-  def wrap_data
+  def wrap_data _slot=true
     super.merge "refresh-url" => path(view: @slot_view)
   end
 
@@ -87,13 +87,20 @@ format :html do
     end
   end
 
-  view :core do
+  view :core, cache: :never do
     with_header(progress_header, level: 4) do
-      sections = %i[imported skipped overridden failed].map do |type|
-        progress_section type
-      end.compact
-      progress_bar(*sections)
+      _render_progress_bar
     end + wrap_with(:p, undo_button) + wrap_with(:p, report)
+  end
+
+  view :progress_bar, cache: :never do
+    sections = %i[imported skipped overridden failed].map do |type|
+      progress_section type
+    end.compact
+    progress_bar(*sections)
+  end
+
+  view :compact, cache: :never, template: :haml do
   end
 
   def report

@@ -20,7 +20,7 @@ class Card
 
     def new_name subject
       subject = Card.fetch_name(subject) if subject.is_a? Integer
-      "#{subject}+#{@base_card.name}+#{year}"
+      "#{subject}+#{@base_card.name}+#{new_name_year}"
     end
   end
 end

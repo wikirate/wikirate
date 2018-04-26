@@ -57,10 +57,6 @@ And(/^I click on "([^"]*)" and confirm$/) do |link|
   page.accept_confirm { click_link_or_button(link) }
 end
 
-When(/^I click on metric "([^"]*)"$/) do |metric|
-  find(:css, ".add-formula").find("h4", text: metric).click
-end
-
 When(
   /^(?:|I )fill in "([^"]*)" with card path of source with link "([^"]*)"$/
 ) do |field, value|
@@ -245,27 +241,27 @@ When(/^I click the drop down button for "(.*)"$/) do |text|
                         .find(".fa-caret-right").click
 end
 
-def select_from_chosen item_text, selector, within
-  within(within) do
-    id = find_field(selector, visible: false)[:id]
-    option_value = page.execute_script(%(
-      val1 = $(\"##{id} option:contains('#{item_text}')\").val();
-      value = [val1];
-      if ($('##{id}').val()) {$.merge(value, $('##{id}').val())}
-      return value
-    ))
-    update_chosen_select_value id, option_value
-  end
-end
-
-def update_chosen_select_value id, value
-  page.execute_script("$('##{id}').val(#{value})")
-  page.execute_script("$('##{id}').trigger('chosen:updated')")
-end
-
-When(/^I select "(.*)" from choosen within "(.*)"$/) do |item_text, within|
-  select_from_chosen(item_text, "pointer_multiselect", within)
-end
+# def select_from_chosen item_text, selector, within
+#   within(within) do
+#     id = find_field(selector, visible: false)[:id]
+#     option_value = page.execute_script(%(
+#       val1 = $(\"##{id} option:contains('#{item_text}')\").val();
+#       value = [val1];
+#       if ($('##{id}').val()) {$.merge(value, $('##{id}').val())}
+#       return value
+#     ))
+#     update_chosen_select_value id, option_value
+#   end
+# end
+#
+# def update_chosen_select_value id, value
+#   page.execute_script("$('##{id}').val(#{value})")
+#   page.execute_script("$('##{id}').trigger('chosen:updated')")
+# end
+#
+# When(/^I select "(.*)" from choosen within "(.*)"$/) do |item_text, within|
+#   select_from_chosen(item_text, "pointer_multiselect", within)
+# end
 
 When(/^I press link button "(.*)"$/) do |name|
   find("a", text: name, visible: false).click
@@ -295,4 +291,9 @@ end
 
 And(/^I accept alert$/) do
   page.driver.browser.switch_to.alert.accept
+end
+
+When(/^I select year "(.*)"$/) do |year|
+  selector = %{a:contains('#{year}')}
+  page.execute_script "document.location = $(\"#{selector}\").attr('href')"
 end

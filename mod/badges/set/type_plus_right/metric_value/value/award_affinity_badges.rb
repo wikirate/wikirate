@@ -2,7 +2,9 @@
 # That can cause problem if this is not the act card.
 # To be safe we count before the update
 event :award_answer_create_badges, :finalize,
-      on: :create do
+      on: :create,
+      after: :create_answer_lookup_entry_due_to_value_change,
+      when: :metric_awards_answer_badges? do
   [:general, :designer, :company].each do |affinity|
     award_create_badge_if_earned affinity
   end
@@ -11,14 +13,15 @@ event :award_answer_create_badges, :finalize,
   end
 end
 
+def metric_awards_answer_badges?
+  researched?
+end
+
 def award_create_badge_if_earned affinity, project_card=nil
   # the actions of the current act are not included
   # because we do this search before the answer table update
-  affinity_name = affinity_name(affinity, project_card)
-  ActManager.act_card.act_badge_count_step affinity, affinity_name
 
-  count = action_count(:create, affinity, project_card) +
-          ActManager.act_card.act_badge_count(affinity, affinity_name)
+  count = action_count(:create, affinity, project_card) # +
   return unless (badge = earns_badge(:create, affinity, count))
   badge_card = fetch_badge_card badge, affinity, project_card
   award_badge badge_card
@@ -82,9 +85,7 @@ def earns_badge action, affinity_type=nil, count=nil
 end
 
 def fetch_badge_card badge_name, affinity=nil, project_card=nil
-  if affinity
-    badge_name = affinity_badge_name badge_name, affinity, project_card
-  end
+  badge_name = affinity_badge_name badge_name, affinity, project_card if affinity
   super badge_name
 end
 

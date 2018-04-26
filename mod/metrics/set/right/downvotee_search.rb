@@ -88,25 +88,9 @@ format :html do
     }.freeze
   end
 
-  view :drag_and_drop, cache: :never do |args|
-    with_drag_and_drop(args) do
-      search_with_params.map do |item|
-        votee = extract_votee item
-        draggable_opts = {
-          votee_id:    votee.id,
-          update_path: votee.vote_count_card.format.vote_path,
-          sort: { importance: votee.vote_count }
-        }
-        method_prefix = METHOD_PREFIX[main_type_id]
-        send "#{method_prefix}_draggable_opts", votee, draggable_opts
-        draggable nest(item), draggable_opts unless draggable_opts[:no_value]
-      end.compact.join("\n").html_safe
-    end.html_safe
-  end
-
   # it is for type_search
-  view :filter_and_sort do |args|
-    with_filter_and_sort(args) do
+  view :filter_and_sort do
+    with_filter_and_sort do
       search_with_params.map do |item|
         votee = extract_votee item
         sort_opts = { sort: {} }
@@ -115,23 +99,6 @@ format :html do
         sortable nest(item), sort_opts
       end.join("\n").html_safe
     end.html_safe
-  end
-
-  def default_drag_and_drop_args args
-    args[:vote_type] ||= card.vote_type
-    args[:query] ||= "vote=force-down"
-    args[:empty] ||=
-      if (empty = Card[card.vote_type_codename].fetch(trait: :empty_list) ||
-                  Card[:empty_list])
-        empty.format.render_core(args)
-      else
-        ""
-      end
-    if !Card::Auth.signed_in? &&
-       ((unsaved = Card[card.vote_type_codename].fetch(trait: :unsaved_list) ||
-       Card[:unsaved_list]))
-      args[:unsaved] ||= unsaved.format.render_core(args)
-    end
   end
 
   def extract_votee item
@@ -201,48 +168,11 @@ format :html do
     end
   end
 
-  def with_filter_and_sort args
+  def with_filter_and_sort
     # display_empty_msg = search_results.empty? ? '' : 'display: none;'
-    wrap_with :div, class: "yinyang-list",
-                    "data-default-sort" => args[:default_sort] do
+    wrap_with :div, class: "yinyang-list", "data-default-sort": @default_sort do
       yield
     end
-  end
-
-  def with_drag_and_drop args
-    show_unsaved_msg = args[:unsaved].present? && !Auth.signed_in?
-    wrap_with :div,
-              class: "list-drag-and-drop yinyang-list "\
-                     "#{args[:vote_type]}-container",
-              "data-query"        => args[:query],
-              "data-update-id"    => card.name.url_key,
-              "data-bucket-name"  => args[:vote_type],
-              "data-default-sort" => args[:default_sort] do
-      [
-        if card.vote_label
-          wrap_with(:h5, class: "vote-title") { card.vote_label }
-        end,
-        wrap_with(:div, class: "empty-message") { args[:empty] },
-        if show_unsaved_msg
-          wrap_with(:div, class: "alert alert-info unsaved-message") do
-            args[:unsaved]
-          end
-        end,
-        yield
-      ].compact.join.html_safe
-    end
-  end
-
-  def draggable content, args
-    html_args = {
-      "data-update-path" => args[:update_path],
-      "data-votee-id"    => args[:votee_id],
-      :class             => "drag-item yinyang-row"
-    }
-    html_args[:class] += " no-metric-value" if args[:no_value]
-    args[:sort]&.each { |k, v| html_args["data-sort-#{k}"] = v }
-
-    wrap_with :div, content.html_safe, html_args
   end
 
   def sortable content, args

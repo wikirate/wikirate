@@ -9,12 +9,12 @@ Feature: company feature
     Then I should see "disturbances in the Force"
     And I should see "Wikipedia"
     And I wait for ajax response
-    Then I should see "A number of fictional mobile space stations"
+    Then I should see "a number of fictional mobile space stations"
     Then I click on "Topics"
     And I should see "Force"
     Then I click on "Projects"
     And I should see "Evil Project"
-    And I should see "3 Companies, 2 Metrics"
+    And I should see "3 Companies 2 Metrics"
     Then I click on "Sources"
     And I should see "www.wikiwand.com"
     And I should see "Visit Original"
@@ -34,7 +34,8 @@ Feature: company feature
     When I click on "Add filter"
     And I click on "Topic"
     And I wait for ajax response
-    And I fill in "filter[wikirate_topic]" with "Force"
+    And I wait 2 seconds
+    And I select2 "Force" from "filter[wikirate_topic][]"
     # To change focus
     And I click on "Add filter"
     And I wait for ajax response
@@ -42,16 +43,18 @@ Feature: company feature
     And I should see "disturbances in the Force"
 
   Scenario: Filter by year
-    And I select "2001" from "filter[year]"
+    And I select2 "2001" from "filter[year]"
     And I wait for ajax response
     Then I should not see "dinosaurlabor"
     And I should see "disturbances in the Force"
 
   Scenario: Search for not researched values
-    And I select "Not Researched" from "filter[metric_value]"
+    And I select2 "Not Researched" from "filter[metric_value]"
     And I wait for ajax response
     Then I should not see "disturbances in the Force"
-    And I should see "Weapons"
+    And I should see "BSR Member"
+    When I click on "2"
+    Then I should see "Weapons"
 
   Scenario: Paging
     Then I should not see "deadliness"

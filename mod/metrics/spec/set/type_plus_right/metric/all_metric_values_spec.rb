@@ -280,14 +280,31 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
     let(:metric_value) { "Jedi+disturbances_in_the_Force+Death_Star+2001" }
 
     describe ":table" do
-      subject do
-        Card.fetch([metric, :all_metric_values]).format(:html)._render_table
+      context "when metric researched" do
+        subject do
+          Card.fetch([metric, :all_metric_values]).format(:html)._render_table
+        end
+
+        it "has a bootstrap table" do
+          is_expected.to have_tag "table" do
+            details_url = "/#{metric_value}?view=company_details_sidebar"
+            with_tag :tr, with: { "data-details-url" => details_url }
+          end
+        end
       end
 
-      it "has a bootstrap table" do
-        is_expected.to have_tag "table" do
-          details_url = "/#{metric_value}?view=company_details_sidebar"
-          with_tag :tr, with: { "data-details-url" => details_url }
+      context "when metric researched" do
+        subject do
+          Card.fetch(["Jedi+friendliness", :all_metric_values])
+              .format(:html)._render_table
+        end
+
+        example "formula metric" do
+          metric_value = "Jedi+friendliness+Death_Star+1977"
+          is_expected.to have_tag "table" do
+            details_url = "/#{metric_value}?view=company_details_sidebar"
+            with_tag :tr, with: { "data-details-url" => details_url }
+          end
         end
       end
     end
@@ -304,7 +321,8 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       end
       it "has chart" do
         is_expected.to have_tag ".row.text-center" do
-          with_tag ".vis", with: { "data-url" => "/Jedi+disturbances_in_the_Force+all_metric_values?format=json&view=vega" }
+          url = "/Jedi+disturbances_in_the_Force+all_metric_values.json?view=vega"
+          with_tag ".vis", with: { "data-url": url }
         end
       end
 

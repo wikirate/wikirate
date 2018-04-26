@@ -47,13 +47,20 @@ describe Card::Set::TypePlusRight::MetricValue::Value do
     SCORER =  "Joe User"
     COMPANY = "Death Star"
     YEAR = "1977"
+
     let(:researched_value_name) { "#{METRIC}+#{COMPANY}+#{YEAR}+value" }
     let(:scored_value_name) { "#{METRIC}+#{SCORER}+#{COMPANY}+#{YEAR}+value" }
 
+    def scored_value
+      Answer.where(metric_name: "#{METRIC}+#{SCORER}", company_name: COMPANY,
+                   year: YEAR.to_i)
+            .take.value
+    end
+
     it "updates related score" do
-      expect(Card[scored_value_name].content).to eq "10.0"
+      expect(scored_value).to eq "10.0"
       Card[researched_value_name].update_attributes! content: "no"
-      expect(Card[scored_value_name].content).to eq "0.0"
+      expect(scored_value).to eq "0.0"
     end
   end
 end

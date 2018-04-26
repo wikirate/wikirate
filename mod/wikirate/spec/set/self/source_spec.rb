@@ -48,7 +48,7 @@ RSpec.describe Card::Set::Self::Source do
       "https://cdn.mozilla.net/pdfjs/helloworld.pdf"
     end
 
-    context "user agent is Firefox" do
+    context "when user agent is Firefox" do
       let(:user_agent) { "Firefox" }
 
       it "returns true" do
@@ -56,7 +56,7 @@ RSpec.describe Card::Set::Self::Source do
       end
     end
 
-    context "user agent is not Firefox" do
+    context "when user agent is not Firefox" do
       let(:user_agent) { "Chrome" }
 
       it "returns false" do
@@ -71,7 +71,7 @@ RSpec.describe Card::Set::Self::Source do
       json_format._render!(:check_iframable)[:result]
     end
 
-    context "iframable website" do
+    context "with iframable website" do
       let(:url) { "http://example.org" }
 
       it { is_expected.to be true }
@@ -82,19 +82,19 @@ RSpec.describe Card::Set::Self::Source do
       # expect(result[:result]).to be true
     end
 
-    context "non-iframable website" do
+    context "with non-iframable website" do
       let(:url) { "http://www.google.com" }
 
       it { is_expected.to be false }
     end
 
-    context "nonsense website" do
+    context "with nonsense website" do
       let(:url) { "helloworld" }
 
       it { is_expected.to be false }
     end
 
-    context "empty website" do
+    context "with empty website" do
       let(:url) { nil }
 
       it { is_expected.to be false }
@@ -107,7 +107,7 @@ RSpec.describe Card::Set::Self::Source do
       JSON.parse json_format._render!(:metadata)
     end
 
-    context "invalid url" do
+    context "with invalid url" do
       let(:url) { "abcdefg" }
 
       it "has empty title" do
@@ -121,7 +121,7 @@ RSpec.describe Card::Set::Self::Source do
       end
     end
 
-    context "empty url" do
+    context "with empty url" do
       let(:url) { nil }
 
       it "has empty title" do
@@ -135,7 +135,7 @@ RSpec.describe Card::Set::Self::Source do
       end
     end
 
-    context "existing url" do
+    context "with existing url" do
       let(:source_card) { sample_source }
       let(:source_title) { Card.fetch("#{source_card.name}+title").content }
       let(:source_desc) do
@@ -157,8 +157,8 @@ RSpec.describe Card::Set::Self::Source do
         expect(result_hash["error"]).to be_empty
       end
     end
-    context "non-existing url" do
-      let(:url) { "http://www.google.com/?q=wikirate" }
+    context "with non-existing url" do
+      let(:url) { "http://www.heise.de" }
       let(:preview) { LinkThumbnailer.generate(url) }
 
       it "has correct title" do

@@ -54,8 +54,8 @@ class BadgeLine
   end
 
   def count_valued_actions user_id=nil
-    wql = count_wql user_id || Card::Auth.current_id
-    return 0 unless wql
+    user_id ||= Card::Auth.current_id
+    return 0 unless user_id != Card::WagnBotID && (wql = count_wql user_id)
     Card.search wql
   end
 

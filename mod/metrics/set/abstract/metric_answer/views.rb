@@ -1,26 +1,11 @@
 format :html do
-  view :comments do |_args|
+  view :comments do
     disc_card = card.fetch trait: :discussion, new: {}
-    subformat(disc_card)._render_titled title: "Discussion", show: "commentbox",
+    subformat(disc_card)._render_titled title: "Comments", show: "commentbox",
                                         home_view: :titled
   end
 
-  view :credit_name do |args|
-    wrap_with :div, class: "credit" do
-      [
-        "#{credit_verb} #{_render_updated_at} ago by ",
-        nest(card.updater, view: :link),
-        _render(:source_link, args, :hide)
-      ]
-    end
-  end
-
-  def credit_verb
-    verb = "updated" # card.answer.editor_id ? "edited" : "added"
-    link_to_card card.value_card, verb, path: { view: :history }
-  end
-
-  view :source_link do |_args|
+  view :source_link do
     if (source_card = card.fetch(trait: :source))
       source_card.item_cards.map do |i_card|
         subformat(i_card).render_original_icon_link
@@ -31,12 +16,26 @@ format :html do
   end
 
   view :sources do
+    source_options = { view: :core, items: { view: :cited } }
+    source_options[:items][:hide] = :cited_source_links if voo.hide? :cited_source_links
     output [
-      wrap_with(:h5, "Cited"),
-      subformat(card.fetch(trait: :source)).render_core(items: { view: :cited })
+      citations_count,
+      nest(source_card, source_options)
     ]
   end
 
+  def source_card
+    card.fetch trait: :source
+  end
+
+  def citations_count
+    wrap_with :h5 do
+      [
+        "Citations",
+        (wrap_with :span, source_card.item_names.size, class: "badge badge-light border")
+      ]
+    end
+  end
   view :sources_with_cited_button do
     with_nest_mode :normal do
       field_nest :source, view: :core, items: { view: :with_cited_button }
@@ -60,7 +59,17 @@ format :html do
   end
 
   def beautify value
-    card.scored? ? colorify(value) : value
+    card.ten_scale? ? beautify_ten_scale(value) : value
+  end
+
+  def beautify_ten_scale value
+    value = shorten_ten_scale value
+    colorify(value)
+  end
+
+  def shorten_ten_scale value
+    return value if value.number?
+    Answer.unknown?(value) ? "?" : "!"
   end
 
   def pretty_value
@@ -68,7 +77,7 @@ format :html do
   end
 
   def grade
-    return unless (value = (card.value && card.value.to_i))
+    return unless (value = card&.value&.to_i)
     case value
     when 0, 1, 2, 3 then :low
     when 4, 5, 6, 7 then :middle
@@ -76,13 +85,8 @@ format :html do
     end
   end
 
-  def numeric_metric?
-    (value_type = card.metric_card.fetch trait: :value_type) &&
-      %w[Number Money].include?(value_type.item_names[0])
-  end
-
   def numeric_value?
-    return false unless numeric_metric? || !card.metric_card.researched?
+    return false unless card.metric_card.numeric?
     !card.value_card.unknown_value?
   end
 

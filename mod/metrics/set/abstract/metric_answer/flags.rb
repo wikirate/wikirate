@@ -1,5 +1,5 @@
 def imported?
-  answer.imported
+  answer.imported || false
 end
 
 def checked?
@@ -27,12 +27,12 @@ format :html do
 
   def checked_value_flag
     return "" unless card.checked?
-    nest card.field(:checked_by), view: :icon, class: "fa-lg margin-left-10"
+    nest card.field(:checked_by), view: :icon, class: "margin-left-10"
   end
 
   def comment_flag
     return "" unless card.commented?
-    fa_icon :commenting, title: "Has comments", class: "fa-lg margin-left-10"
+    fa_icon :commenting, title: "Has comments", class: "margin-left-10"
   end
 
   def imported_flag

@@ -1,52 +1,48 @@
 include_set Abstract::TwoColumnLayout
 include_set Abstract::Thumbnail
 
+CONTRIBUTION_TYPES = %i[metric_value metric wikirate_company project
+                        source wikirate_topic research_group].freeze
+
 format :html do
-  view :open_content do |args|
-    bs_layout container: false, fluid: false, class: @container_class do
-      row 5, 7, class: "panel-margin-fix" do
-        column _render_content_left_col, args[:left_class]
-        column _render_contributions_column, args[:right_class]
-      end
-    end
+  def default_content_formgroup_args _args
+    voo.edit_structure = [:image, "+about me", :discussion]
+  end
+
+  view :open_content do
+    two_column_layout 5, 7
   end
 
   view :data do
-    # return "deleteme"
     wrap_with :div, class: "profile-data" do
       [
-        field_nest("+about me", view: :titled, title: "About me", hide: :menu),
+        field_nest("+about me", view: :titled, title: "About me"),
         content_tag(:hr),
-        field_nest(:discussion, view: :titled, title: "Discussion", show: :comment_box),
-        content_tag(:hr),
-        field_nest(:activity, view: :titled, title: "Activity", hide: :menu)
-        # TODO: restore following soon
-        # field_nest(:follow, view: :profile,
-        #                    hide: [:menu, :toggle],
-        #                    title: "Following",
-        #                    items: {
-        #                      view: :content,
-        #                      structure: "User following result row"
-        #                    })
+        field_nest(:discussion, view: :titled, title: "Discussion", show: :comment_box)
       ]
     end
   end
 
-  view :contributions_column do
-    wrap_with :div, class: "contributions-column" do
-      [wrap_with(:h4, "Contributions"), contribution_reports]
-    end
+  def tab_list
+    {
+      research_group_tab: "Research Groups",
+      contributions_tab: "Contributions",
+      activity_tab: "Activity"
+    }
   end
 
-  def contribution_types
-    [:metric_value, :metric, :wikirate_company, :project, :source,
-     :wikirate_topic, :research_group, :claim]
+  view :research_group_tab, cache: :never do
+    field_nest :research_group, items: { view: :thin_listing }
   end
 
-  def contribution_reports
-    contribution_types.map do |codename|
+  view :contributions_tab, cache: :never do
+    CONTRIBUTION_TYPES.map do |codename|
       user_and_type = card.fetch trait: codename, new: {}
       nest user_and_type, view: :contribution_report
-    end
+    end.join
+  end
+
+  view :activity_tab, cache: :never do
+    field_nest :activity
   end
 end

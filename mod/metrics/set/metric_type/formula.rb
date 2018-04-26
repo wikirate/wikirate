@@ -1,4 +1,5 @@
-include Set::Abstract::Calculation
+include_set Abstract::Calculation
+include_set Abstract::Hybrid
 
 card_accessor :variables, type_id: Card::SessionID
 
@@ -11,8 +12,7 @@ format :html do
     :number
   end
 
-  def default_thumbnail_subtitle_args args
-    args[:text] ||= ["Formula", "designed by"].compact.join " | "
-    args[:author] ||= link_to_card card.metric_designer
+  def thumbnail_metric_info
+    "Formula"
   end
 end

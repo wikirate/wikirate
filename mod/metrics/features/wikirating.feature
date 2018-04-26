@@ -8,8 +8,12 @@ Feature: Edit wikirating
   Scenario:  Editing formula
     When I edit "Jedi+darkness rating+formula"
     And I click on "add metric"
-    And I click on metric "deadliness"
-    And I wait for ajax response
-    #And I click on "Add this metric"
-    #Then I should see "deadliness"
-    #And I should see "0"
+    # When I click on "Add filter"
+    # And I click on "Project"
+    # And I select "Evil Project" from "filter[project]"
+    And I check "Jedi+deadliness+Joe Camel"
+    # And I click on metric "disturbances in the Force"
+    # And I wait for ajax response
+    # And I press "Add this metric"
+    # Then I should see "deadliness"
+    # And I should see "0"

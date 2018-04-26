@@ -1,31 +1,17 @@
-.panel-default.nodblclick.col-md-4.float-left#metric-container
+%div.nodblclick
   = answer_form_hidden_tags
-  .row.editor
-    .col-md-11.year.col-centered
+  .editor
+    .year
       = field_nest :year, title: "Year"
     - if card.subfield(:related_company)
-      .col-md-11.related-company.col-centered
+      .related-company
         = field_nest :related_company, title: "Related Company"
-    .col-md-11.value.col-centered
+    .value
       = field_nest :value, title: "Answer"
-      = haml_partial :cited_sources
-      %label
-        Source Suggestions /
-        %a.btn.btn-sm.btn-secondary._add_new_source{ href: "#",
-                                                   data: {url: source_form_url} }
-          %small
-            %span.icon.icon-wikirate-logo-o.fa-lg
-            Add a new source
-      = _render_relevant_sources
-
-      %p
-        - with_nest_mode :normal do
-          %label
-            Comment
-          = field_subformat(:discussion).comment_box
+      = haml_partial :citations_formgroup
+      = haml_partial :discussion
 
   .row.buttons
     .col-md-11.col-centered
       = _render_edit_buttons!
       .card-notice
-= render :source_side

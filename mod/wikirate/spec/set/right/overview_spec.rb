@@ -22,7 +22,7 @@ describe Card::Set::Right::Overview do
 
     it "renders editor with empty content and citation tips" do
       is_expected.to have_citation_tips
-      is_expected.to have_tag "div.prosemirror-editor"
+      is_expected.to have_tag "textarea.tinymce-textarea"
     end
   end
 
@@ -31,9 +31,7 @@ describe Card::Set::Right::Overview do
 
     it "renders editor with content and citation tips" do
       is_expected.to have_citation_tips
-      is_expected.to have_tag("div.prosemirror-editor") do
-        with_tag "input", with: { name: "card[content]", value: content }
-      end
+      is_expected.to have_tag "textarea.tinymce-textarea", /#{content}/
     end
   end
 
@@ -42,9 +40,7 @@ describe Card::Set::Right::Overview do
 
     it "renders editor with content and citation tips" do
       is_expected.to have_citation_tips
-      is_expected.to have_tag("div.prosemirror-editor") do
-        with_tag "input", with: { name: "card[content]", value: content }
-      end
+      is_expected.to have_tag "textarea.tinymce-textarea", /#{content}/
     end
   end
 end

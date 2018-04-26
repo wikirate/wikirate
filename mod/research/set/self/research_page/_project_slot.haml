@@ -1,0 +1,9 @@
+%div{class: slot_attr}
+  .d-flex.flex-nowrap
+    .image-box.icon
+      %span.img-helper
+        = nest [project, :image], view: :core, size: :small
+    %h5.mb-0
+      = nest project, view: :link
+      -#.default-progress-box.w-25
+      -#  = nest project, view: :research_progress_bar

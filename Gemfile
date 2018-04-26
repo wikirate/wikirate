@@ -19,6 +19,7 @@ end
 
 gem "mysql2", "~> 0.3.18"
 
+gem "bulk_insert"
 gem "descriptive_statistics" #, "2.5.1"
 gem "savanna-outliers"
 gem "statistics2" #, "0.54"
@@ -74,12 +75,14 @@ group :test do
   # gem 'codeclimate-test-reporter', require: nil
 
   # CUKES see features dir
-  gem "chromedriver-helper"
+  gem "capybara", "2.17.0"
+  # gem "chromedriver-helper"
+  # gem "geckodriver-helper"
+  gem "cucumber-expressions", "5.0.7" # this breaks at 5.0.12
   gem "cucumber-rails", require: false
   # feature-driven-development suite
-  gem "capybara", "2.11.0"
-  gem "selenium-webdriver", "3.6.0"
-  # gem 'capybara-webkit' # lets cucumber launch browser windows
+  gem "selenium-webdriver", "3.8.0"
+  #gem 'capybara-webkit' # lets cucumber launch browser windows
   gem "launchy"
 
   gem "email_spec"
@@ -107,7 +110,7 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
 
-  # gem "spring"
+  # gem "nospring"
   # gem 'spring-commands-rspec'
   #
 

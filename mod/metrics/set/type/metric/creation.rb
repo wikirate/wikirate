@@ -1,3 +1,5 @@
+VALID_DESIGNER_TYPE_IDS = [ResearchGroupID, UserID, WikirateCompanyID].freeze
+
 def create_value_options options
   create_args = {
     name: name.field("value options"),
@@ -28,8 +30,7 @@ event :ensure_title, :prepare_to_store, on: :save, changed: :name do
 end
 
 def valid_designer?
-  Card.fetch_type_id(metric_designer).in? [ResearchGroupID, UserID,
-                                           WikirateCompanyID]
+  Card.fetch_type_id(metric_designer).in? VALID_DESIGNER_TYPE_IDS
 end
 
 # @example
@@ -81,9 +82,7 @@ end
 def valid_value_args? args
   error_msg = []
   check_value_card_exist args, error_msg unless args.delete(:ok_to_exist)
-  if metric_type_codename == :researched && !args[:source]
-    error_msg << "missing source"
-  end
+  error_msg << "missing source" if metric_type_codename == :researched && !args[:source]
   error_msg.each do |msg|
     errors.add "metric value", msg
   end
@@ -103,9 +102,7 @@ def create_value_args args
       type_id: (args[:value].is_a?(Integer) ? NumberID : PhraseID)
     }
   }
-  if args[:comment].present?
-    create_args["+discussion"] = { comment: args[:comment] }
-  end
+  create_args["+discussion"] = { comment: args[:comment] } if args[:comment].present?
   add_value_source_args create_args, args[:source]
   create_args
 end
@@ -122,6 +119,11 @@ def create_value args
   Card.create! valid_args
 end
 
+# for override
+def needs_name?
+  !name.present?
+end
+
 # The new metric form has a title and a designer field instead of a name field
 # We compose the card's name here
 event :set_metric_name, :initialize, on: :create, when: :needs_name? do
@@ -131,7 +133,7 @@ event :set_metric_name, :initialize, on: :create, when: :needs_name? do
 end
 
 format :html do
-  view :new do |_args|
+  view :new do
     voo.title = "New Metric"
     with_nest_mode :edit do
       frame { _render_new_form }
@@ -147,8 +149,9 @@ format :html do
           subtabs: %w[Standard Relationship]
         },
         calculated: {
-          help: "Answer values for <strong>Calculated</strong> metrics are dynamically calculated.",
-          subtabs: %w[Formula Score WikiRating]
+          help: "Answer values for <strong>Calculated</strong> "\
+                "metrics are dynamically calculated.",
+          subtabs: %w[Formula Descendant Score WikiRating]
         }
       }
   end
@@ -163,11 +166,14 @@ format :html do
   end
 
   def selected_tab_pane? tab
-    tab == if params[:tab]&.downcase&.to_sym&.in?([:formula, :score, :wiki_rating])
-             :calculated
-           else
-             :researched
-           end
+    tab == current_tab
+  end
+
+  def current_tab
+    @current_tab ||= begin
+      subtab = params[:tab]&.downcase&.to_sym
+      subtab && Card[subtab].calculated? ? :calculated : :researched
+    end
   end
 
   def selected_subtab_pane? name
@@ -180,14 +186,24 @@ format :html do
 
   def new_metric_tab_pane name
     metric_type = name == "Standard" ? "Researched" : name
+    new_metric = new_metric_of_type metric_type
+    tab_form =
+      nest(new_metric, view: :new_tab_pane, mode: :normal)
+    tab_pane tab_pane_id(name), tab_form, selected_subtab_pane?(name)
+  end
+
+  def new_metric_of_type metric_type
     new_metric = Card.new type: MetricID, "+*metric type" => "[[#{metric_type}]]"
     new_metric.reset_patterns
     new_metric.include_set_modules
-    tab_pane tab_pane_id(name), subformat(new_metric)._render_new_tab_pane,
-             selected_subtab_pane?(name)
+    new_metric
   end
 
-  view :help_text do |_args|
+  def cancel_button_new_args
+    { href: path_to_previous, redirect: true }
+  end
+
+  view :help_text do
     return "" unless (help_text_card = Card[card.metric_type + "+description"])
     class_up "help-text", "help-block"
     with_nest_mode :normal do
@@ -195,16 +211,20 @@ format :html do
     end
   end
 
-  view :new_tab_pane do |args|
-    card_form :create, hidden: args.delete(:hidden),
-                       "main-success" => "REDIRECT" do
-      output [
-        new_tab_pane_hidden,
-        _render!(:help_text),
-        _render_new_name_formgroup,
-        _render_content_formgroup,
-        _render_new_buttons
-      ]
+  view :new_tab_pane, tags: :unknown_ok do
+    with_nest_mode :edit do
+      wrap do
+        card_form :create, "main-success" => "REDIRECT",
+                           "data-slot-selector": ".new-view.TYPE-metric" do
+          output [
+            new_tab_pane_hidden,
+            _render!(:help_text),
+            _render_new_name_formgroup,
+            _render_content_formgroup,
+            _render_new_buttons
+          ]
+        end
+      end
     end
   end
 

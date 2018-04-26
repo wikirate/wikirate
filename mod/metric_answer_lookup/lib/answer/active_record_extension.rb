@@ -3,7 +3,7 @@ class Answer
     NAME_COLUMNS = [:metric, :company, :designer, :title, :record].freeze
 
     def answer_cards
-      pluck(:answer_id).map { |id| Card.fetch id }.compact
+      map(&:card).compact
     end
 
     def value_cards

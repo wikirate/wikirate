@@ -62,13 +62,15 @@ RSpec.describe Card::Set::TypePlusRight::Metric::ValueType do
         it "blocks type changing" do
           subject.update_attributes content:  "Category"
           is_expected.to be_invalid.because_of value: include("option")
+          expect(subject.errors.first[1])
+            .to have_tag :a, text: "100"
         end
       end
 
       context "all values are in the options" do
         before do
           metric.value_options_card.update_attributes(
-            content: %w[5 10 20 40 50 100].to_pointer_content
+            content: %w[5 8 9 10 20 40 50 100].to_pointer_content
           )
         end
 

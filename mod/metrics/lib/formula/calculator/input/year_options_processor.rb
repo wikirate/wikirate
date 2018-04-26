@@ -2,31 +2,30 @@ module Formula
   class Calculator
     class Input
       class YearOptionsProcessor < Array
-        attr_reader :multi_year
+        attr_reader :multi_year, :no_year_options
+
         def initialize year_options
           @fixed_years = ::Set.new
-          if year_options.present?
-            year_options.each do |year_option|
-              self <<
-                if year_option
-                  interpret_year_expr normalize_year_expr(year_option)
-                else
-                  0
-                end
-              if (cur = last) != 0
-                @multi_year = true
-                @fixed_years << cur if year?(cur)
-              end
-            end
-          else
-            @no_year_options = true
+          @no_year_options = true
+          return if year_options.blank?
+          year_options.each do |year_option|
+            self << interpret_year_expr(year_option)
+            next if (cur = last) == 0
+            @multi_year = true
+            @no_year_options = false
+            @fixed_years << cur if year?(cur)
           end
         end
 
+        # @param value_data [Array<Hash] for every input item a hash with values for every
+        #   year
+        # @param the year we want the input data for
         def run value_data, year
+          year = year.to_i
           if @no_year_options
             return value_data.map { |values_by_year| values_by_year[year] }
           end
+
           map.with_index do |ip, i|
             case ip
             when Integer
@@ -52,6 +51,9 @@ module Formula
         end
 
         def interpret_year_expr expr
+          return 0 if expr.blank?
+          expr = normalize_year_expr expr
+
           case expr
           when /^[0?]$/ then 0
           when /^[+-]?\d+$/ then expr.to_i

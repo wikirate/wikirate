@@ -9,18 +9,9 @@ event :validate_type_of_existing_values, :validate,
 end
 
 def validate_categorical_values
-  invalid_categories = existing_value_keys - valid_category_keys
-  add_categorical_error invalid_categories if invalid_categories.present?
-end
-
-def existing_value_keys
-  values = Answer.where(metric_id: left.id).select(:value).distinct
-  values.map { |n| n.value.to_name.key }
-end
-
-def valid_category_keys
-  keys = value_options.map { |n| n.to_name.key }
-  keys << "unknown"
+  validator = CategoryValueValidator.new left
+  return unless validator.invalid_values?
+  add_categorical_error validator
 end
 
 def validate_numeric_values
@@ -31,7 +22,7 @@ def validate_numeric_values
 end
 
 def valid_numeric_value? value
-  number?(value) || value.strip.casecmp("unknown").zero?
+  number?(value) || Answer.unknown?(value)
 end
 
 def add_numeric_error answer
@@ -39,19 +30,8 @@ def add_numeric_error answer
              "'#{answer.value}' is not a numeric value."
 end
 
-def add_categorical_error invalid_options
-  errors.add :value, quoted_list(invalid_options) +
-                     " is not an option for this metric. " \
-                     "Please #{link_to_edit_options} first."
-end
-
-def link_to_edit_options
-  format.link_to_card value_options_card, "add the values to options card",
-                      path: { view: :edit }, target: "_blank"
-end
-
-def quoted_list list
-  list.map { |o| "\"#{o}\"" }.join ", "
+def add_categorical_error validator
+  errors.add :value, validator.error_msg
 end
 
 format :html do
@@ -59,19 +39,16 @@ format :html do
     voo.title = "Value Type"
   end
 
-  def multi_card_edit
-    super() + fields_form
+  # card-editor class here prevents setContentFieldsFromMap from setting _all_ the
+  # content fields based on changes to the main radio one.
+  # _value-type-editor is the main trigger for the custom editorInitFunctionMap stuff
+  view :editor do
+    wrapped_editor = wrap_with(:div, class: "card-editor _value-type-editor") { super() }
+    wrapped_editor + fields_form
   end
 
-  def single_card_edit_field
-    super() + fields_form
-  end
-
-  def editor_in_multi_card
-    super() + fields_form
-  end
-
-  def left_field_nest field, opts
+  def left_field_nest field, title, opts={}
+    opts = { view: :edit_in_form, title: title, type: :phrase }.merge opts
     if card.name.left_name.empty?
       parent.field_nest field, opts
     else
@@ -82,16 +59,14 @@ format :html do
   def fields_form
     <<-HTML.html_safe
       <div class='value_type_field number_details'>
-        #{left_field_nest :unit, title: 'Unit', type: :phrase}
-        #{left_field_nest :range, title: 'Range', type: :phrase}
+        #{left_field_nest :unit, 'Unit'}
+        #{left_field_nest :range, 'Range'}
       </div>
       <div class='value_type_field category_details'>
-        #{left_field_nest :value_options, view: :edit_in_form, title: 'Value Options',
-                                          type: :pointer}
+        #{left_field_nest :value_options, 'Value Options', type: :pointer}
       </div>
       <div class='value_type_field currency_details'>
-        #{left_field_nest :currency, view: :edit_in_form,
-                                     title: 'Currency', type: :phrase}
+        #{left_field_nest :currency, 'Currency'}
       </div>
     HTML
   end

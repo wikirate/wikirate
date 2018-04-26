@@ -3,30 +3,53 @@ include_set Abstract::Tabs
 include_set Abstract::Media
 
 format :html do
-  def default_open_content_args args
-    args[:left_class] ||= { class: "left-col" }
-    args[:right_class] ||= { class: "right-col" }
-    # args[:grid_option] ||= { md: [6, 6] }
+  view :open_content do
+    two_column_layout
   end
 
-  view :open_content do |args|
-    bs_layout container: false, fluid: true,
-              class: @container_class do
-      row 6, 6, class: "panel-margin-fix" do # args[:grid_option] do
-        column _render_content_left_col, args[:left_class]
-        column _render_content_right_col, args[:right_class]
+  def two_column_layout col1=6, col2=6, row_hash={}
+    bs_layout container: false, fluid: true, class: container_class do
+      row_hash[:class] ||= "panel-margin-fix"
+      row col1, col2, row_hash do
+        column _render_left_column, class: left_column_class
+        column _render_right_column, class: right_column_class
       end
     end
   end
 
-  view :rich_header do |_args|
+  view :left_column do
+    # had slot before
+    output [_render_rich_header, _render_data]
+  end
+
+  view :right_column do
+    _render_tabs
+  end
+
+  def container_class
+    ""
+  end
+
+  def left_column_class
+    "left-col"
+  end
+
+  def right_column_class
+    "right-col"
+  end
+
+  view :rich_header do
     bs_layout do
       row 12 do
-        col class: "nopadding rich-header" do
-          text_with_image title: "", text: header_right, size: :large
+        col class: "p-0 rich-header border-bottom" do
+          _render_rich_header_body
         end
       end
     end
+  end
+
+  view :rich_header_body do
+    text_with_image title: "", text: header_right, size: :large
   end
 
   def header_image
@@ -37,15 +60,6 @@ format :html do
 
   def header_right
     wrap_with :h3, _render_title, class: "header-right"
-  end
-
-  view :content_right_col do
-    _render_tabs
-  end
-
-  view :content_left_col do
-    # had slot before
-    output [_render_rich_header, _render_data]
   end
 
   view :data, cache: :never do

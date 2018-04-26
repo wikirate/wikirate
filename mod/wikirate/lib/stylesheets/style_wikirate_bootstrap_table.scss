@@ -103,9 +103,11 @@ table.wikirate-table, .table.wikirate-table {
       min-width: 180px;
     }
 
-    &:first-child .media-body h4 {
-      font-weight: normal;
-      font-size: 100%;
+    &:first-child .media-body {
+      h4, h5 {
+        font-weight: normal;
+        font-size: 100%;
+      }
     }
     &.header {
       .media {
@@ -128,6 +130,7 @@ table.wikirate-table, .table.wikirate-table {
         box-shadow: none;
         --webkit-box-shadow: none;
         background: none;
+        color: $dark-text-color;
       }
       .vote-count {
         width: 15px;
@@ -163,10 +166,10 @@ table.wikirate-table, .table.wikirate-table {
       border-top: 1px solid $bright-text-color;
       border: 1px solid #EAEAEA;
       clear: both;
-      color: $dark-text-color;
+      // color: $dark-text-color;
       cursor: auto;
       display: none;
-      font-size: 12px;
+      // font-size: 12px;
       height: 100%;
       left: 100%;
       margin-left: 1px;
@@ -188,9 +191,6 @@ table.wikirate-table, .table.wikirate-table {
         height: 100%;
         margin-left: 0px;
         @include box-shadow(0,0px,14px,rgba(0,0,0,.22));
-      }
-      .row-data {
-        margin-left: 58px!important;
       }
     }
   .thumbnail {
