@@ -41,12 +41,12 @@ rescue CSV::MalformedCSVError => e
 end
 
 format :html do
-  def default_new_args _args
+  before :new do
     voo.help = help_text
     voo.show! :help
   end
 
-  def default_edit_args _args
+  before :edit do
     voo.help = help_text
     voo.show! :help
   end

@@ -58,15 +58,13 @@ format :html do
   end
 
   def year_select
-    @explicit_form_prefix = corrections_input_name(:all, :year)
-    nest card.left.year_card,
-         view: :edit_in_form
+    nest card.left.year_card, { view: :edit_in_form },
+         explicit_form_prefix: corrections_input_name(:all, :year)
   end
 
   def metric_select
-    @explicit_form_prefix = corrections_input_name(:all, :metric)
-    nest card.left.metric_card,
-         view: :edit_in_form
+    nest card.left.metric_card, { view: :edit_in_form },
+         explicit_form_prefix: corrections_input_name(:all, :metric)
   end
 
   def import_table_row_class

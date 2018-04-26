@@ -12,7 +12,7 @@ format do
 end
 
 format :html do
-  def default_open_args _args
+  before :open do
     voo.show :horizontal_menu if main?
   end
 
