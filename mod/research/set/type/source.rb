@@ -22,7 +22,7 @@ def add_possible_source company, save
 end
 
 format :html do
-  view :add_source_to_research, tags: :unknown_ok, perms: :create do
+  view :add_source_to_research, tags: :unknown_ok, cache: :never, perms: :create do
     with_nest_mode :edit do
       voo.type = "source"
 
@@ -39,7 +39,7 @@ format :html do
   end
 
   def answer
-    voo.live_options[:answer] || Env.params[:answer]
+    inherit(:answer_for_citation) || Env.params[:answer]
   end
 
   def new_research_hidden
