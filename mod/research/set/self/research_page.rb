@@ -52,7 +52,8 @@ format :html do
   end
 
   def cite_source_tab hide: false
-    hide_tab nest(answer_card, view: :source_tab, project: project), hide
+    project # make sure instance variable is set
+    hide_tab nest(answer_card, view: :source_tab), hide
   end
 
   def view_source_tab hide: false
@@ -74,8 +75,9 @@ format :html do
 
   view :source_preview_tab, cache: :never do
     wrap do
-      nest preview_source, view: :source_and_preview, cited: cited_preview_source?,
-                           disabled: existing_answer_with_source?
+      nest preview_source, { view: :source_and_preview },
+           source_cited: cited_preview_source?,
+           source_disabled: existing_answer_with_source?
     end
   end
 
@@ -86,8 +88,7 @@ format :html do
   end
 
   def answer_slot
-    opts = { title: "Answer", hide: :cited_source_links,
-             research_params: research_params }
+    opts = { title: "Answer", hide: :cited_source_links }
     opts[:view] = answer_view
     nest answer_card, opts
   end

@@ -1,7 +1,7 @@
 include_set Abstract::ReportQueries
 
 format do
-  def default_header_args _args
+  before :header do
     voo.variant = :plural
   end
 end

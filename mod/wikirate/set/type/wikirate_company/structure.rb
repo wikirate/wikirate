@@ -6,7 +6,7 @@ card_accessor :open_corporates
 card_accessor :post
 
 format :html do
-  def default_content_formgroup_args _args
+  before :content_formgroup do
     voo.edit_structure = [:headquarters, :image, :wikipedia]
   end
 

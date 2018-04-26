@@ -5,7 +5,7 @@ format :html do
     two_column_layout 5, 7
   end
 
-  def default_content_formgroup_args _args
+  before :content_formgroup do
     voo.edit_structure = [
       :image,
       :wikirate_status,

@@ -1,5 +1,5 @@
 format :html do
-  def default_title_args _args
+  before :title do
     voo.title ||= "Log in"
   end
 

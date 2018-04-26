@@ -42,7 +42,7 @@ format :html do
     end
   end
 
-  def default_value_link_args _args
+  before :value_link do
     voo.hide! :link if card.relationship?
   end
 

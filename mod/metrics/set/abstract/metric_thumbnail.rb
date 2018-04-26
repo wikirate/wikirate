@@ -1,7 +1,7 @@
 include_set Abstract::Thumbnail
 
 format :html do
-  def default_thumbnail_args _args
+  before :thumbnail do
     class_up "thumbnail", "metric-thumbnail"
   end
 
@@ -22,11 +22,7 @@ format :html do
   end
 
   def thumbnail_title_link
-    opts = { title: card.name }
-    if voo.closest_live_option(:project)
-      opts[:path] = { filter: { project: voo.closest_live_option(:project) } }
-    end
-    link_to_card card, thumbnail_title_text, opts
+    link_to_card card, thumbnail_title_text, title: card.name
   end
 
   def thumbnail_title_text
@@ -37,9 +33,9 @@ format :html do
     "</span>#{_render_thumbnail}<span>"
   end
 
-  view :fixed_value do
-    nest [card, voo.closest_live_option(:params)], view: :value_link
-  end
+  # view :fixed_value do
+  #   nest [card, voo.inherit(:params)], view: :value_link
+  # end
 
   view :score_thumbnail do
     ""
