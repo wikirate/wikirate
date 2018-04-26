@@ -245,7 +245,7 @@
 - :name: nav bar menu
   :type: HTML
   :key: nav_bar_menu
-  :merged: 2018-04-19 12:46:36 UTC
+  :merged: 2018-04-26 18:13:22 UTC
 - :name: Company
   :type: Cardtype
   :codename: wikirate_company
@@ -531,33 +531,33 @@
 - :name: Researcher+*right+*default
   :type: Pointer
   :key: researcher+*right+*default
-  :merged: 2018-04-19 12:46:36 UTC
+  :merged: 2018-04-26 18:13:22 UTC
 - :name: conversation+*right+*structure
   :type: Search
   :key: conversation+*right+*structure
-  :merged: 2018-04-19 12:46:36 UTC
+  :merged: 2018-04-26 18:13:22 UTC
 - :name: Conversation+*type+*structure
   :type: Basic
   :key: conversation+*type+*structure
-  :merged: 2018-04-19 12:46:36 UTC
+  :merged: 2018-04-26 18:13:22 UTC
 - :name: Descendant
   :type: Metric type
   :codename: :descendant
   :key: descendant
-  :merged: 2018-04-19 12:46:36 UTC
+  :merged: 2018-04-26 18:13:22 UTC
 - :name: Descendant+description
   :type: Basic
   :key: descendant+description
-  :merged: 2018-04-19 12:46:36 UTC
+  :merged: 2018-04-26 18:13:22 UTC
 - :name: Metric type
   :type: Cardtype
   :codename: metric_type_type
   :key: metric_type
-  :merged: 2018-04-19 12:46:36 UTC
+  :merged: 2018-04-26 18:13:22 UTC
 - :name: User+Research_Groups+*type plus right+*structure
   :type: Search
   :key: user+research_group+*type_plu_right+*structure
-  :merged: 2018-04-19 12:46:37 UTC
+  :merged: 2018-04-26 18:13:23 UTC
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org
