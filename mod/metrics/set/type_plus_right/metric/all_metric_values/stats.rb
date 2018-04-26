@@ -1,6 +1,6 @@
 format :html do
   view :stats do
-    table rows(filter_hash[:metric_value] || :exists),
+    table stat_rows(filter_hash[:metric_value] || :exists),
           class: "filtered-answer-counts table-sm table-borderless text-muted"
   end
 
@@ -8,9 +8,9 @@ format :html do
                  exists: [:known, :unknown] }.freeze
 
   LABELS = { known: "Known", unknown: "Unknown", none: "Not Researched",
-             total: "Total results" }
+             total: "Total results" }.freeze
 
-  def rows category
+  def stat_rows category
     category = category.to_sym
     rows = CATEGORIES[category] || [category]
     with_total = rows.size >= 2

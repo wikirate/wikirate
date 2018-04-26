@@ -267,7 +267,7 @@ class Card
                    filter: @format.filter_hash(false) }
         when :zoom
           hash = { filter: filter_opts,
-                   zoom_out: @format.chart_params}
+                   zoom_out: @format.chart_params }
         end
         hash
       end

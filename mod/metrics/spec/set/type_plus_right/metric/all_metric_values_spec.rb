@@ -320,12 +320,16 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
         end
       end
       it "has chart" do
-        is_expected.to have_tag ".row.text-center" do
+        is_expected.to have_tag ".row" do
           url = "/Jedi+disturbances_in_the_Force+all_metric_values.json?view=vega"
           with_tag ".vis", with: { "data-url": url }
         end
       end
-
+      it "has counts" do
+        is_expected.to have_tag "table.filtered-answer-counts" do
+          with_tag "span.known.badge", "4"
+        end
+      end
       it "has table" do
         is_expected.to have_tag "table" do
           with_text(/Death Star\s*2001 =\s*yes/)

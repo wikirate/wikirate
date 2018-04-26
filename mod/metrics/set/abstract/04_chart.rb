@@ -76,8 +76,7 @@ format :html do
   end
 
   def value_filter_text
-    mv = filter_hash(false)
-           .slice(:numeric_value, :category, :range)
+    mv = filter_hash(false).slice(:numeric_value, :category, :range)
     return unless mv.present?
     if mv[:range]
       "#{mv[:range][:from]} < x < #{mv[:range][:to]}"

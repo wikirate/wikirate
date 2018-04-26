@@ -1,6 +1,6 @@
 RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues::Stats do
   describe "view: stats" do
-    example "filtered for all" do
+    example "filtered by 'all'" do
       Card.fetch("Jedi+disturbances in the Force").create_values true do
         SPECTRE "2010" => "Unknown"
         Monster_Inc "2010" => "Unknown"
@@ -10,7 +10,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues::Stats do
         with_tag :tr, count: 4
         with_row "", :known, 11, "Known"
         with_row "+", :unknown, 2, "Unknown"
-        with_row "+", :not_researched, 14, "Not Researched"
+        with_row "+", :none, 14, "Not Researched"
         with_row "=", :total, "27", "Total results"
       end
     end
@@ -22,13 +22,12 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues::Stats do
       html = stats(year: "1977", metric_value: :all)
       expect(html).to have_tag :tr, count: 4
       expect(html)
-        .to have_table known: 3, unknown: 1, not_researched: 15, total: 18
-
+        .to have_table known: 3, unknown: 1, none: 14, total: 18
     end
 
-    example "filtered for researched" do
-      expect(stats(metric_value: :researched))
-        .to have_table known: 11, unknown: 0, not_researched: 11
+    example "filtered by 'researched'" do
+      expect(stats(metric_value: :exists))
+        .to have_table known: 11, unknown: 0, total: 11
     end
   end
 
@@ -38,9 +37,9 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues::Stats do
         .format._render_stats
   end
 
-  def with_row op, cat, count, label
+  def with_row operand, cat, count, label
     with_tag :tr do
-      with_tag :td, op
+      with_tag :td, operand
       with_tag(:td) { with_tag "span.#{cat}.badge", count.to_s }
       with_tag :td, label
     end
