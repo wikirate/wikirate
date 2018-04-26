@@ -17,12 +17,15 @@ format :json do
   end
 
   def search_by_company_name
-    wql = { type_id: WikirateCompanyID, name: ["match", keyword], return: :id }
-    wql[:id] = ["in"].concat(factory_ids) if factory_ids.present?
-    Card.search wql
+    return [] unless factory_ids.present?
+    Card.search type_id: WikirateCompanyID,
+                name: ["match", keyword],
+                id: ["in"].concat(factory_ids),
+                return: :id
   end
 
   def search_by_address
+    return [] unless factory_ids.present?
     Answer.where(*search_by_address_sql(factory_ids)).pluck(:company_id)
   end
 
@@ -53,7 +56,8 @@ format :json do
   end
 
   def country_code
-    params[:country_code] if params[:country_code].present?
+    params[:country_code] if params[:country_code].present? &&
+                             params[:country_code] != "undefined"
   end
 
   def keyword
