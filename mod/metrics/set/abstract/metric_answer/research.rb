@@ -65,7 +65,8 @@ format :html do
   end
 
   def research_params
-    voo&.closest_live_option(:research_params) ||
+    @research_params ||=
+      inherit(:research_params) ||
       Env.params[RESEARCH_PARAMS_KEY]&.to_unsafe_h ||
       { metric: card.metric, company: card.company, year: card.year }
   end
@@ -95,8 +96,8 @@ format :html do
   end
 
   def project
-    @project ||= voo&.live_options&.dig(:project) ||
-                 Env.params[:project] || Env.params["project"]
+    # FIXME: param keys should be standardized (probably symbols)
+    @project ||= inherit(:project) || Env.params[:project] || Env.params["project"]
   end
 
   view :source_tab, cache: :never, tags: :unknown_ok, template: :haml do
