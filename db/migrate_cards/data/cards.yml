@@ -245,7 +245,7 @@
 - :name: nav bar menu
   :type: HTML
   :key: nav_bar_menu
-  :merged: 2018-04-27 15:10:29 UTC
+  :merged: 2018-04-27 15:33:51 UTC
 - :name: Company
   :type: Cardtype
   :codename: wikirate_company
@@ -531,56 +531,52 @@
 - :name: Researcher+*right+*default
   :type: Pointer
   :key: researcher+*right+*default
-  :merged: 2018-04-27 15:10:29 UTC
+  :merged: 2018-04-27 15:33:51 UTC
 - :name: conversation+*right+*structure
   :type: Search
   :key: conversation+*right+*structure
-  :merged: 2018-04-27 15:10:29 UTC
+  :merged: 2018-04-27 15:33:51 UTC
 - :name: Conversation+*type+*structure
   :type: Basic
   :key: conversation+*type+*structure
-  :merged: 2018-04-27 15:10:29 UTC
+  :merged: 2018-04-27 15:33:51 UTC
 - :name: Descendant
   :type: Metric type
   :codename: :descendant
   :key: descendant
-  :merged: 2018-04-27 15:10:30 UTC
+  :merged: 2018-04-27 15:33:51 UTC
 - :name: Descendant+description
   :type: Basic
   :key: descendant+description
-  :merged: 2018-04-27 15:10:30 UTC
+  :merged: 2018-04-27 15:33:51 UTC
 - :name: Metric type
   :type: Cardtype
   :codename: metric_type_type
   :key: metric_type
-  :merged: 2018-04-27 15:10:30 UTC
+  :merged: 2018-04-27 15:33:51 UTC
 - :name: User+Research_Groups+*type plus right+*structure
   :type: Search
   :key: user+research_group+*type_plu_right+*structure
-  :merged: 2018-04-27 15:10:31 UTC
+  :merged: 2018-04-27 15:33:52 UTC
 - :name: Post
   :type: Cardtype
   :codename: post
   :key: post
-  :merged: 2018-04-27 15:10:35 UTC
+  :merged: 2018-04-27 15:33:56 UTC
 - :name: Body
   :type: Basic
   :codename: body
   :key: body
-  :merged: 2018-04-27 15:10:35 UTC
+  :merged: 2018-04-27 15:33:56 UTC
 - :name: Details
   :type: Basic
   :codename: details
   :key: detail
-  :merged: 2018-04-27 15:10:35 UTC
+  :merged: 2018-04-27 15:33:56 UTC
 - :name: post+*right+*structure
   :type: Search
   :key: post+*right+*structure
-  :merged: 2018-04-27 15:10:35 UTC
-- :name: Contact Us
-  :type: Basic
-  :codename: contact_us
-  :key: contact_u
+  :merged: 2018-04-27 15:33:56 UTC
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org

@@ -18,13 +18,13 @@ format :html do
             nest(card.about_card, view: :titled, title: "About")]
   end
 
-  view :discussion_tab do
-    tab_wrap do
-      field_nest :discussion, view: :titled,
-                              hide: [:header, :title],
-                              show: "comment_box"
-    end
-  end
+  # view :discussion_tab do
+  #   tab_wrap do
+  #     field_nest :discussion, view: :titled,
+  #                             hide: [:header, :title],
+  #                             show: "comment_box"
+  #   end
+  # end
 
   view :project_tab do
     tab_wrap do
