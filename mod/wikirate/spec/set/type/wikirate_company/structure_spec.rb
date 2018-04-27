@@ -1,7 +1,18 @@
 #
 RSpec.describe Card::Set::Type::WikirateCompany::Structure do
+  let(:company) { Card["Google Inc"] }
+
+  %i[open_content listing edit homepage_item
+     wikirate_topic_tab source_tab post_tab project_tab].each do |view|
+    describe "view: #{view}" do
+      it "has no errors" do
+        expect(company.format.render(view)).to lack_errors
+      end
+    end
+  end
+
   describe "details tab" do
-    subject { Card["Google Inc"].format(:html)._render_details_tab }
+    subject { company.format(:html)._render_details_tab }
 
     it "has jurisdiction table" do
       is_expected.to have_tag "table" do

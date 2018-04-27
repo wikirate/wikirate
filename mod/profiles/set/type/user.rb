@@ -24,10 +24,13 @@ format :html do
   end
 
   def tab_list
+    %i[research_group contributions activity]
+  end
+
+  def tab_options
     {
-      research_group_tab: "Research Groups",
-      contributions_tab: "Contributions",
-      activity_tab: "Activity"
+      contributions: { count: nil, label: "Contributions" },
+      activity: { count: nil, label: "Activity" }
     }
   end
 

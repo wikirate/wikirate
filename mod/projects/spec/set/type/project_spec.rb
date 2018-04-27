@@ -4,6 +4,15 @@ describe Card::Set::Type::Project do
   context "with no year" do
     let(:project) { Card["Evil Project"] }
 
+    %i[open_content listing edit
+       wikirate_company_tab metric_tab post_tab subproject_tab].each do |view|
+      describe "view: #{view}" do
+        it "has no errors" do
+          expect(project.format.render(view)).to lack_errors
+        end
+      end
+    end
+
     it "has no year" do
       expect(project.years).to eq(false)
     end

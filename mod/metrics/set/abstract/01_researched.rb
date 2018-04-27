@@ -16,8 +16,11 @@ format :html do
   end
 
   def tab_list
-    super.merge source_tab: "#{fa_icon :globe} Sources",
-                scores_tab: "Scores"
+    %i[details score source project]
+  end
+
+  def tab_options
+    { score: { count: card.score_cards.count } }
   end
 
   view :main_details do
@@ -36,7 +39,7 @@ format :html do
     end
   end
 
-  view :scores_tab do
+  view :score_tab do
     # TODO: move +scores to a separate card
     tab_wrap do
       output [
