@@ -7,7 +7,7 @@ end
 
 format :html do
   before :content_formgroup do
-    super
+    super()
     voo.edit_structure += [
       [:value_type, "Value Type"],
       [:research_policy, "Research Policy"],
