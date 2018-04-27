@@ -2,7 +2,7 @@
 RSpec.describe Card::Set::Type::User do
   let(:user) { Card["Joe Camel"] }
 
-  %i[open_content listing edit
+  %i[open_content edit
      research_group_tab contributions_tab activity_tab].each do |view|
     describe "view: #{view}" do
       it "has no errors" do
