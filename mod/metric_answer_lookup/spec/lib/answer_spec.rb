@@ -126,7 +126,7 @@ RSpec.describe Answer do
                     creator_id: Card.fetch_id("Joe User"),
                     updated_at: be_within(2).of(Time.now),
                     latest: true,
-                    imported: nil,
+                    imported: false,
                     checkers: nil,
                     check_requester: nil,
                     editor_id: nil,
