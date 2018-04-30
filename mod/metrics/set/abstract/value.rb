@@ -40,13 +40,13 @@ event :check_length, :validate, on: :save, changed: :content do
   errors.add :value, "too long (not more than 1000 characters)" if content.size >= 1000
 end
 
-event :mark_as_imported, before: :finalize_action, when: :answer_imported? do
+event :mark_as_imported, before: :finalize_action, when: :import_act? do
   @current_action.comment = "imported"
 end
 
-def answer_imported?
-  ActManager.act_card.type_id.in? [AnswerImportFileID, RelationshipAnswerImportFileID]
-end
+# def answer_imported?
+#   ActManager.act_card.type_id.in? [AnswerImportFileID, RelationshipAnswerImportFileID]
+# end
 
 event :update_related_scores, :after_integrate do
   ensure_metric(metric_card).each_dependent_score_metric do |metric|

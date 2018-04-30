@@ -40,7 +40,7 @@ class Answer
     end
 
     def fetch_imported
-      return unless (action = card.value_card.actions.last)
+      return false unless (action = card.value_card.actions.last)
       action.comment == "imported"
     end
 
