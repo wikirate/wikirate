@@ -3,6 +3,7 @@ include_set Abstract::Listing
 include_set Abstract::Thumbnail
 
 card_accessor :project, type: :pointer
+card_accessor :metric
 
 format :html do
   before :content_formgroup do
@@ -34,13 +35,10 @@ format :html do
   end
 
   def tab_list
-    {
-      projects_tab: "Projects",
-      metrics_tab: "#{fa_icon 'bar-chart'} Metrics"
-    }
+    %i[project metric]
   end
 
-  view :projects_tab do
+  view :project_tab do
     wrap_with :div do
       [projects_list, standard_nest(:contact_us)]
     end
@@ -50,7 +48,7 @@ format :html do
     field_nest :project, view: :content, items: { view:  :listing }, title: "Projects"
   end
 
-  view :metrics_tab do
+  view :metric_tab do
     field_nest :metric, view: :content, items: { view:  :listing }, title: "Metrics"
   end
 end

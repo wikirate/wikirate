@@ -1,11 +1,8 @@
+include_set Abstract::Header
+
 format :html do
   def tab_list
-    {
-      details_tab: "#{fa_icon :info} Details",
-      metrics_tab: "#{fa_icon 'bar-chart'} #{metric_count} Metrics",
-      notes_tab: "#{fa_icon 'quote-left'} Notes",
-      download_tab: { html: download_tab_link }
-    }
+    %i[details metric]
   end
 
   view :source_details, template: :haml
@@ -16,15 +13,9 @@ format :html do
     end
   end
 
-  view :metrics_tab do
+  view :metric_tab do
     tab_wrap do
       field_nest "metric_search", view: :content
-    end
-  end
-
-  view :notes_tab do
-    tab_wrap do
-      field_nest "source_note_list", view: :content
     end
   end
 

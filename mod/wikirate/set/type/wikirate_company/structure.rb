@@ -3,6 +3,7 @@ include_set Abstract::TwoColumnLayout
 
 card_accessor :wikipedia
 card_accessor :open_corporates
+card_accessor :post
 
 format :html do
   before :content_formgroup do
@@ -19,17 +20,13 @@ format :html do
   end
 
   def tab_list
-    list = { details_tab: two_line_tab("Details", fa_icon("info")) }
-    list.merge! performance_tabs if active_profile_tab == :performance
+    list = [:details]
+    list += performance_tabs if active_profile_tab == :performance
     list
   end
 
   def performance_tabs
-    {
-      topics_tab: tab_count_title(:wikirate_topic),
-      sources_tab: tab_count_title(:source),
-      projects_tab: tab_count_title(:project)
-    }
+    %i[wikirate_topic source post project]
   end
 
   view :data, cache: :never do
@@ -158,15 +155,15 @@ format :html do
     nest card.open_corporates_card, view: :titled, title: "OpenCorporates"
   end
 
-  view :topics_tab do
+  view :wikirate_topic_tab do
     field_nest :wikirate_topic, view: :topic_list_with_metric_counts
   end
 
-  view :sources_tab do
-    field_nest(:source, view: :content, items: { view: :listing })
+  view :source_tab do
+    field_nest :source, view: :content, items: { view: :listing }
   end
 
-  view :projects_tab do
+  view :project_tab do
     field_nest :project, items: { view: :listing }
   end
 

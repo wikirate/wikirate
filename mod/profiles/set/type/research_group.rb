@@ -71,20 +71,24 @@ format :html do
   end
 
   def tab_list
-    { researcher_list: two_line_tab("Researchers", card.researcher_card.count),
-      metric_list:     two_line_tab("Metrics",     card.metric_card.count),
-      project_list:    two_line_tab("Projects",    card.project_card.count) }
+    %i[researcher metric project]
   end
 
-  view :metric_list do
+  def tab_options
+    tab_list.each_with_object({}) do |codename, hash|
+      hash[codename] = { count: card.send("#{codename}_card").count }
+    end
+  end
+
+  view :metric_tab do
     field_nest :metric, items: { view: :listing }
   end
 
-  view :project_list do
+  view :project_tab do
     field_nest :project, items: { view: :listing }
   end
 
-  view :researcher_list do
+  view :researcher_tab do
     field_nest :researcher, view: :overview
   end
 

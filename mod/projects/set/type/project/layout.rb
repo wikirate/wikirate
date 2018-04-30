@@ -1,12 +1,5 @@
 include_set Abstract::TwoColumnLayout
 
-TAB_MAP = {
-  company:    [:num_companies,    "Companies",   :building],
-  metric:     [:num_metrics,      "Metrics",     "bar-chart"],
-  year:       [:num_years,        "Years",       :calendar],
-  subproject: [:num_subprojects,  "Subprojects", :flask]
-}.freeze
-
 format :html do
   view :open_content do
     two_column_layout 5, 7
@@ -74,23 +67,23 @@ format :html do
     end
   end
 
-  def active_tabs
-    [:company, :metric, (:year if card.years), :subproject].compact
+  def tab_list
+    [:wikirate_company, :metric, (:year if card.years), :post, :subproject].compact
   end
 
-  def tab_list
-    active_tabs.each_with_object({}) do |tab, hash|
-      stat_method, title, icon = TAB_MAP[tab]
-      stat = card.send stat_method
-      hash["#{tab}_tab".to_sym] = two_line_tab(([fa_icon(icon), title].join " "), stat)
-    end
+  def tab_options
+    {
+      wikirate_company: { count: card.num_companies },
+      metric: { count: card.num_metrics },
+      year: { count: card.num_years }
+    }
   end
 
   view :metric_tab do
     tab_nest :metric
   end
 
-  view :company_tab do
+  view :wikirate_company_tab do
     tab_nest :wikirate_company
   end
 

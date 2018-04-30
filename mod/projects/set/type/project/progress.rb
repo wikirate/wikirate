@@ -106,9 +106,9 @@ format :html do
   end
 
   def formula
-    [:company, :metric, (:year if card.years)].compact.map do |var|
-      stat_method, title = Layout::TAB_MAP[var]
-      "#{card.send stat_method} #{title}"
+    options = tab_options
+    [:wikirate_company, :metric, (:year if card.years)].compact.map do |codename|
+      "#{options[codename][:count]} #{codename.cardname.vary :plural}"
     end.join " x "
   end
 
