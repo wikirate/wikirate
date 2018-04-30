@@ -8,6 +8,15 @@ decko.slotReady (slot) ->
       type: "GET"
       success: (data) -> metric_chart(data, this.visID)
 
+    setFilterText($(vis))
+
+setFilterText = ($vis) ->
+  text = $vis.data("value-filter-text")
+  return unless text
+  $vis.closest(".filter-form-and-result")
+      .find("#select2-filter_metric_value-container").text(text)
+
+
 metric_chart = (spec, id) ->
   runtime = vega.parse spec
   view = new vega.View(runtime).initialize(document.querySelector("##{id}")).hover().run()

@@ -42,7 +42,7 @@ class Card
     end
 
     def count additional_filter={}
-      return missing_answer_query.count if find_missing?
+      return missing_answer_query.count if find_missing?(additional_filter)
       where(additional_filter).count
     end
 
@@ -126,8 +126,16 @@ class Card
       @filter_args[:metric_value]&.to_sym == :all
     end
 
-    def find_missing?
-      @filter_args[:metric_value]&.to_sym == :none
+    def find_missing? additional_filter=nil
+      metric_value_filter_value(additional_filter) == :none
+    end
+
+    def metric_value_filter_value additional_filter
+      if additional_filter&.dig(:metric_value)
+        additional_filter[:metric_value].to_sym
+      else
+        @filter_args[:metric_value]&.to_sym
+      end
     end
 
     def run_filter_query
