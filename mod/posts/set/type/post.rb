@@ -40,7 +40,7 @@ format :html do
 
   %i[wikirate_company wikirate_topic project].each do |codename|
     view :"#{codename}_tab" do
-      field_nest codename, items: { view: :thin_listing }
+      field_nest codename, items: { view: :listing }
     end
   end
 
