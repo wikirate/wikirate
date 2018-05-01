@@ -1,15 +1,15 @@
 format :html do
-  def default_sign_up_args _args
+  before :sign_up do
     class_up "signup-link", "btn btn-highlight"
     voo.title = "Join"
   end
 
-  def default_sign_in_args _args
+  before :sign_in do
     class_up "signin_link", "btn btn-outline-secondary"
     voo.title = "Log in"
   end
 
-  def default_sign_out_args _args
+  before :sign_out do
     voo.title = "Log out"
   end
 

@@ -19,7 +19,16 @@ def formula_card
   metric_card.fetch trait: :formula
 end
 
+def skin_variables?
+  left&.type_id == CustomizedSkinID
+end
+
+def item_cards _args={}
+  skin_variables? ? [self] : super
+end
+
 def content
+  return super() if skin_variables?
   @content ||=
     db_content.present? ? db_content : variables_in_use.to_pointer_content
   # db_content should only be present when it has been set by a `card[content]`
@@ -81,6 +90,7 @@ format :html do
   end
 
   view :editor do
+    return super() if card.skin_variables?
     output [variables_table,
             add_metric_button("_add-formula-variable")]
   end

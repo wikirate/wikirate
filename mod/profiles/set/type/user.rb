@@ -5,7 +5,7 @@ CONTRIBUTION_TYPES = %i[metric_value metric wikirate_company project
                         source wikirate_topic research_group].freeze
 
 format :html do
-  def default_content_formgroup_args _args
+  before :content_formgroup do
     voo.edit_structure = [:image, "+about me", :discussion]
   end
 
@@ -24,10 +24,13 @@ format :html do
   end
 
   def tab_list
+    %i[research_group contributions activity]
+  end
+
+  def tab_options
     {
-      research_group_tab: "Research Groups",
-      contributions_tab: "Contributions",
-      activity_tab: "Activity"
+      contributions: { count: nil, label: "Contributions" },
+      activity: { count: nil, label: "Activity" }
     }
   end
 

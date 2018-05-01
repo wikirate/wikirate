@@ -24,7 +24,7 @@
 # end
 #
 #
-# def default_button_formgroup_args args
+# before :button_formgroup do
 #   args[:buttons] = [
 #       button_formgroup_reset_button,
 #       button_tag("Filter", situation: "primary", disable_with: "Filtering")

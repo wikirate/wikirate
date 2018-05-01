@@ -2,16 +2,12 @@ include_set Abstract::WikirateTable
 include_set Abstract::TwoColumnLayout
 
 format :html do
-  def default_content_formgroup_args _args
+  before :content_formgroup do
     voo.edit_structure = [:image]
   end
 
   def tab_list
-    {
-      details_tab: two_line_tab("Details", fa_icon("info")),
-      companies_tab: tab_count_title(:wikirate_company),
-      projects_tab: tab_count_title(:project)
-    }
+    %i[details wikirate_company post project]
   end
 
   view :data, cache: :never do
@@ -25,11 +21,11 @@ format :html do
     field_nest :general_overview, view: :titled
   end
 
-  view :companies_tab do
+  view :wikirate_company_tab do
     field_nest :wikirate_company, view: :company_list_with_metric_counts
   end
 
-  view :projects_tab do
+  view :project_tab do
     field_nest :project, items: { view: :listing }
   end
 

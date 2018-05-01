@@ -6,8 +6,8 @@ def score_cards
 end
 
 format :html do
-  def default_content_formgroup_args _args
-    super
+  before :content_formgroup do
+    super()
     voo.edit_structure += [
       [:value_type, "Value Type"],
       [:research_policy, "Research Policy"],
@@ -16,8 +16,11 @@ format :html do
   end
 
   def tab_list
-    super.merge source_tab: "#{fa_icon :globe} Sources",
-                scores_tab: "Scores"
+    %i[details score source project]
+  end
+
+  def tab_options
+    { score: { count: card.score_cards.count } }
   end
 
   view :main_details do
@@ -36,7 +39,7 @@ format :html do
     end
   end
 
-  view :scores_tab do
+  view :score_tab do
     # TODO: move +scores to a separate card
     tab_wrap do
       output [

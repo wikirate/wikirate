@@ -49,7 +49,7 @@ format :html do
   #   wrap_with :div, "No result", class: "search-no-results"
   # end
 
-  def default_content_args _args
+  before :content do
     class_up "card-slot", "_filter-result-slot"
   end
 end

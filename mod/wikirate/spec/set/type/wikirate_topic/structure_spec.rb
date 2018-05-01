@@ -1,8 +1,19 @@
 
 RSpec.describe Card::Set::Type::WikirateTopic::Structure do
-  subject { Card["Force"].format(:html)._render_browse_item }
+  let(:topic) { Card["Force"] }
+
+  %i[open_content listing edit homepage_item
+     details_tab wikirate_company_tab post_tab project_tab].each do |view|
+    describe "view: #{view}" do
+      it "has no errors" do
+        expect(topic.format.render(view)).to lack_errors
+      end
+    end
+  end
 
   describe "view :browse_item" do
+    subject { topic.format(:html)._render_browse_item }
+
     it "has topic title" do
       is_expected.to have_tag "div.topic-header" do
         with_text "Force"
