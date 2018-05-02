@@ -7,6 +7,10 @@ include_set Abstract::Paging
 
 attr_accessor :auto_content
 
+def history?
+  false
+end
+
 def ok_to_update
   auto_content || super
 end
