@@ -21,8 +21,7 @@ format :html do
 
   view :rich_header_body do
     output [wrap_with(:h3, render_title),
-            link_to_card(card.creator),
-            render_created_at]
+            field_nest(:body, view: :last_action)]
   end
 
   view :open_content do
@@ -36,6 +35,12 @@ format :html do
 
   def tab_list
     %i[wikirate_company wikirate_topic project]
+  end
+
+  def tab_options
+    tab_list.each_with_object({}) do |tab, hash|
+      hash[tab] = { count: card.send("#{tab}_card").count }
+    end
   end
 
   %i[wikirate_company wikirate_topic project].each do |codename|
