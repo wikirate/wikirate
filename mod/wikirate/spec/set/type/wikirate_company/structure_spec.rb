@@ -1,13 +1,13 @@
 #
 RSpec.describe Card::Set::Type::WikirateCompany::Structure do
+  extend Card::SpecHelper::ViewHelper::ViewDescriber
+
   let(:company) { Card["Google Inc"] }
 
-  %i[open_content listing edit homepage_item
-     wikirate_topic_tab source_tab post_tab project_tab].each do |view|
-    describe "view: #{view}" do
-      it "has no errors" do
-        expect(company.format.render(view)).to lack_errors
-      end
+  describe_views :open_content, :listing, :edit, :homepage_item,
+                 :wikirate_topic_tab, :source_tab, :post_tab, :project_tab do |view|
+    it "has no errors" do
+      expect(company.format.render(view)).to lack_errors
     end
   end
 
