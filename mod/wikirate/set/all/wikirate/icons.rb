@@ -18,7 +18,6 @@ ICON_MAP = {
 format :html do
   def icon_map key
     val = ICON_MAP[key]
-    val[1] = val[1].clone if val.is_a? Array
-    val
+    val.is_a?(Array) ? val.map(&:clone) : val
   end
 end
