@@ -20,7 +20,7 @@ def formula_card
 end
 
 def skin_variables?
-  left&.type_id == CustomizedSkinID
+  left&.type_id == CustomizedBootswatchSkinID
 end
 
 def item_cards _args={}
