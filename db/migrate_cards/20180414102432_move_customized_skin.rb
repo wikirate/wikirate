@@ -9,7 +9,7 @@ class MoveCustomizedSkin < Card::Migration
   def up
     ensure_card "*stylesheets", codename: "stylesheets"
     Card::Cache.reset_all
-    ensure_card "wikirate skin", type_id: Card::CustomizedSkinID
+    ensure_card "wikirate skin", type_id: Card::CustomizedBootswatchSkinID
     ensure_card "wikirate stylesheets",
                 type_id: Card::SkinID, codename: "wikirate_stylesheets"
     Card::Cache.reset_all
