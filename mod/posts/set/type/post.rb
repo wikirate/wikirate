@@ -19,10 +19,7 @@ format :html do
     ]
   end
 
-  view :rich_header_body do
-    output [wrap_with(:h3, render_title),
-            field_nest(:body, view: :last_action)]
-  end
+  view :rich_header_body, template: :haml
 
   view :open_content do
     two_column_layout 7, 5
