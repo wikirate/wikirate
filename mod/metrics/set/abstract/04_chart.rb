@@ -1,8 +1,11 @@
 include_set Abstract::FilterHelper
 
-def filter_hash with_chart_filter=false
+def filter_hash with_select_filter=true
   filter = super()
-  with_chart_filter ? chart_filter_params : filter
+  if with_select_filter && chart_params[:select_filter]
+    filter.merge! chart_params[:select_filter]
+  end
+  filter
 end
 
 def chart_params
@@ -47,7 +50,7 @@ format do
   end
 
   def chart_filter_hash
-    card.filter_hash(zoom_in?)
+    card.chart_filter_params.present? ? card.chart_filter_params : card.filter_hash(false)
   end
 
   def zoom_in?
@@ -86,12 +89,12 @@ format :html do
   end
 
   def metric_value_filter
-    filter_hash(false).slice(:numeric_value, :category, :range)
+    filter_hash.slice(:numeric_value, :category, :range)
   end
 
   def chart_load_url
     path_opts = { view: :vega, format: :json,
-                  filter: filter_hash(false),
+                  filter: filter_hash,
                   chart: chart_params }
     path path_opts
   end
@@ -112,8 +115,7 @@ format :html do
   end
 
   def zoom_out_path_opts
-    { chart: chart_params[:zoom_out],
-      filter: filter_hash(false) }
+    chart_params[:zoom_out]
   end
 
   def zoomed_in?

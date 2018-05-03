@@ -21,7 +21,7 @@ $.extend wikirate,
     researchedYear = $("form.answer-form > input#success_year").val()
     years = $source.data("year") or []
     message =
-            "Please confirm that you wish to cite this source for a #{researchedYear} " +
+      "Please confirm that you wish to cite this source for a #{researchedYear} " +
             "answer (and add #{researchedYear} to the years covered by this source)."
     if years.length > 0
       if years.includes(researchedYear)
