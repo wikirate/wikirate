@@ -20,7 +20,7 @@ format :html do
 
   def row_cells cat, more_than_one
     cat = cat.to_sym
-    cells = more_than_one ? [{ content: operand(cat), class: "text-right"} ] : []
+    cells = more_than_one ? [{ content: operand(cat), class: "text-right" }] : []
     cells << { content: badge_tag(category_count(cat), class: cat),
                class: "text-right" }
     cells << LABELS[cat]

@@ -10,7 +10,7 @@ class Card
       DEFAULT_LAYOUT = {
         width: 350,
         height: 180,
-        padding: { top: 5, left: 5, bottom: 15, right: 5 },
+        padding: { top: 15, left: 5, bottom: 15, right: 5 },
         signals: [
           {
             name: "tooltip",

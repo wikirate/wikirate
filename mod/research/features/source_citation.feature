@@ -24,6 +24,7 @@ Scenario: Source has no year
   And I cite source without year confirming
     """
     Please confirm that you wish to cite this source for a 2009 answer
+    (and add 2009 to the years covered by this source).
     """
   And I press "Submit"
   Then I should see "Cited"
@@ -35,6 +36,7 @@ Scenario: Cancel citation
   And I cite source without year dismissing
     """
     Please confirm that you wish to cite this source for a 2009 answer
+    (and add 2009 to the years covered by this source).
     """
   And I press "Submit"
   Then I should see "Cite!"

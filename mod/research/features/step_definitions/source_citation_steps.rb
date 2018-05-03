@@ -11,7 +11,7 @@ end
 
 And(/^I cite source for 2008 confirming$/) do |expected_msg|
   add_source "Star_Wars"
-  confirm_citation expected_msg.gsub("\n"," ")
+  confirm_citation expected_msg.tr("\n", " ")
 end
 
 When(/^I visit cited source$/) do
@@ -34,15 +34,15 @@ end
 
 And(/^I cite source without year confirming$/) do |expected_msg|
   add_source
-  confirm_citation expected_msg.gsub("\n"," ")
+  confirm_citation expected_msg.tr("\n", " ")
 end
 
 And(/^I cite source without year dismissing$/) do |expected_msg|
   add_source
   msg = dismiss_confirm do
-          click_link_or_button "Cite!"
-        end
-  expect(msg).to eq expected_msg.gsub("\n"," ")
+    click_link_or_button "Cite!"
+  end
+  expect(msg).to eq expected_msg.tr("\n", " ")
 end
 
 def confirm_citation expected_msg=nil
@@ -62,7 +62,6 @@ def go_to_source wikipedia_article
   visit path_to("card #{source.name}")
 end
 
-
-When /^I dismiss citation$/ do
+When(/^I dismiss citation$/) do
   page.driver.browser.switch_to.alert.dismiss
 end
