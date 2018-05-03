@@ -28,7 +28,7 @@ Scenario: Source has no year
     """
   And I press "Submit"
   Then I should see "Cited"
-  When I visit cited source
+  When I visit cited source without year
   Then I should see "2009"
 
 Scenario: Cancel citation

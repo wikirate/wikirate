@@ -18,6 +18,10 @@ When(/^I visit cited source$/) do
   go_to_source "Star_Wars"
 end
 
+When(/^I visit cited source without year$/) do
+  go_to_source "Darth_Vader"
+end
+
 And(/^I cite source "([^"]*)"$/) do |wikipedia_article|
   add_source wikipedia_article
   confirm_citation

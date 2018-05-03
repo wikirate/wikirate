@@ -2,10 +2,8 @@ include_set Abstract::FilterHelper
 
 def filter_hash with_select_filter=true
   filter = super()
-  if with_select_filter && chart_params[:select_filter]
-    filter.merge! chart_params[:select_filter]
-  end
-  filter
+  return filter unless with_select_filter && chart_params[:select_filter]
+  filter.merge chart_params[:select_filter]
 end
 
 def chart_params
@@ -82,7 +80,8 @@ format :html do
     mv = metric_value_filter
     return unless mv.present?
     if mv[:range]
-      "#{mv[:range][:from]} < x < #{mv[:range][:to]}"
+      "%s < x < %s " % [number_to_human(mv[:range][:from]),
+                       number_to_human(mv[:range][:to])]
     else
       mv[:numeric_value] || mv[:category]
     end
@@ -94,7 +93,7 @@ format :html do
 
   def chart_load_url
     path_opts = { view: :vega, format: :json,
-                  filter: filter_hash,
+                  filter: filter_hash(false),
                   chart: chart_params }
     path path_opts
   end
