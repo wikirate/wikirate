@@ -10,7 +10,7 @@ class Card
       DEFAULT_LAYOUT = {
         width: 350,
         height: 180,
-        padding: { top: 5, left: 5, bottom: 15, right: 5 },
+        padding: { top: 15, left: 5, bottom: 15, right: 5 },
         signals: [
           {
             name: "tooltip",
@@ -251,25 +251,43 @@ class Card
       # :filter has the filter options for the table
       # :chart[:filter] the filter options for the chart
       def bar_link filter_opts
-        @format.path view: :filter_result,
-                     chart: bar_link_chart_params(filter_opts),
-                     filter: bar_link_filter_params(filter_opts)
+        @format.path bar_link_params(filter_opts).merge(view: :filter_result)
       end
 
-      def bar_link_filter_params filter_opts
-        @format.filter_hash(false).merge(filter_opts)
-      end
-
-      def bar_link_chart_params filter_opts
+      def bar_link_params filter_opts
         case click_action
         when :select
-          hash = { highlight: highlight_value_from_filter_opts(filter_opts),
-                   filter: @format.filter_hash(false) }
+          bar_select_link_params filter_opts
         when :zoom
-          hash = { filter: filter_opts,
-                   zoom_out: @format.chart_params }
+          bar_zoom_link_params filter_opts
+        end
+      end
+
+      def bar_select_link_params filter_opts
+        hash = {
+          filter: @format.filter_hash(false),
+          chart: {
+            highlight: highlight_value_from_filter_opts(filter_opts),
+            select_filter: filter_opts,
+            filter: @format.filter_hash(false)
+          }
+        }
+        if @format.chart_params[:zoom_out]
+          hash[:zoom_out] = @format.chart_params[:zoom_out]
         end
         hash
+      end
+
+      def bar_zoom_link_params filter_opts
+        {
+          filter: @format.filter_hash(false).merge(filter_opts),
+          chart: {
+            zoom_out: {
+              chart: @format.chart_params,
+              filter: @format.filter_hash(false)
+            }
+          }
+        }
       end
     end
   end
