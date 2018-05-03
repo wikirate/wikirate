@@ -1,13 +1,13 @@
 
 RSpec.describe Card::Set::Type::WikirateTopic::Structure do
+  extend Card::SpecHelper::ViewHelper::ViewDescriber
+
   let(:topic) { Card["Force"] }
 
-  %i[open_content listing edit homepage_item
-     details_tab wikirate_company_tab post_tab project_tab].each do |view|
-    describe "view: #{view}" do
-      it "has no errors" do
-        expect(topic.format.render(view)).to lack_errors
-      end
+  describe_views :open_content, :listing, :edit, :homepage_item,
+                 :details_tab, :wikirate_company_tab, :post_tab, :project_tab do |view|
+    it "has no errors" do
+      expect(topic.format.render(view)).to lack_errors
     end
   end
 
