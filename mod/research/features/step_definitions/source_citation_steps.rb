@@ -18,25 +18,40 @@ When(/^I visit cited source$/) do
   go_to_source "Star_Wars"
 end
 
+And(/^I cite source "([^"]*)"$/) do |wikipedia_article|
+  add_source wikipedia_article
+  confirm_citation
+end
+
+And(/^I cite source$/) do
+  add_source
+  confirm_citation
+end
+
+And(/^I click cite and confirm$/) do
+  confirm_citation
+end
+
 And(/^I cite source without year confirming$/) do |expected_msg|
-  add_source "Death_Star"
+  add_source
   confirm_citation expected_msg.gsub("\n"," ")
 end
 
 And(/^I cite source without year dismissing$/) do |expected_msg|
-  add_source "Death_Star"
+  add_source
   msg = dismiss_confirm do
           click_link_or_button "Cite!"
         end
   expect(msg).to eq expected_msg.gsub("\n"," ")
 end
 
-def confirm_citation expected_msg
+def confirm_citation expected_msg=nil
   msg = accept_confirm { click_link_or_button "Cite!" }
+  return unless expected_msg
   expect(msg).to eq expected_msg
 end
 
-def add_source wikipedia_article
+def add_source wikipedia_article="Darth_Vader"
   source = sample_source wikipedia_article
   fill_in "URL", with: source.url
   click_button "Add"

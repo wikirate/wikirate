@@ -11,9 +11,7 @@ Feature: Research answer fail
     And I select year "2009"
 
   Scenario: Missing value
-    And I fill in "http://example.com" for "URL"
-    And I press "Add"
-    When I click on "Cite!"
+    And I cite source
     And I fill in "Baam!" for " Comment"
     And I press "Submit"
     And I should see "Problems"
