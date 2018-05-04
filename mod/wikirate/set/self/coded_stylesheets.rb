@@ -1,7 +1,7 @@
 include_set Abstract::CodePointer
 
 self.item_codenames_content =
-  %i[chosen_style
+  %i[
      style_top_bar
      style_slick
      style_overview_item
@@ -12,8 +12,7 @@ self.item_codenames_content =
      style_wikirate_bootstrap_navbar
      style_wikirate_bootstrap_form
      style_wikirate_bootstrap_common
-     style_metrics
-     style_drag_and_drop
+
      style_profile_page
      style_company_header
      style_source_preview
@@ -30,3 +29,7 @@ self.item_codenames_content =
      style_badges
      style_browse_items
      style_research]
+
+
+style_metrics
+style_drag_and_drop

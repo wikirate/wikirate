@@ -1,5 +1,15 @@
 include_set Abstract::CodeFile
+Self::ScriptMods.add_to_basket :item_codenames, :script_metrics
+
+FILE_NAMES =
+  %w[
+    metrics
+    metric_value
+    value_type
+    drag_and_drop
+    metric_chart
+  ].freeze
 
 def source_files
-  %w[script_metrics.js.coffee script_value_type.js.coffee]
+  coffee_files FILE_NAMES
 end
