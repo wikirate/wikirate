@@ -1,8 +1,7 @@
 include_set Abstract::CodePointer
 
 self.item_codenames_content =
-  %i[style_layout_with_sidebar
-     chosen_style
+  %i[chosen_style
      style_top_bar
      style_slick
      style_overview_item

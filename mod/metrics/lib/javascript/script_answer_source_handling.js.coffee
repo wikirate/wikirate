@@ -9,11 +9,42 @@ $.extend wikirate,
     if citations.length == 0
       alert "Can't change citations. Answer is not in edit mode."
     else
-      toggleCiteButtons(sourceID, action)
+
       if (action == 'cite')
-        citeSource(sourceID, citations)
+        if citeSource(sourceID, citations)
+          toggleCiteButtons(sourceID, action)
       else if (action == 'uncite')
+        toggleCiteButtons(sourceID, action)
         unciteSource(sourceID, citations)
+
+  checkYearData = ($source) ->
+    researchedYear = $("form.answer-form > input#success_year").val()
+    years = $source.data("year") or []
+    message =
+      "Please confirm that you wish to cite this source for a #{researchedYear} " +
+            "answer (and add #{researchedYear} to the years covered by this source)."
+    if years.length > 0
+      if years.includes(researchedYear)
+        return true
+      else
+        message =
+          "The source you are citing is currently listed as a source for #{years.toString()}. " +
+          message
+
+    response = window.confirm message
+    addYearToSource($source, researchedYear) if response
+    return response
+
+  addYearToSource = ($source, year) ->
+    $source.append yearHiddenInput($source, year)
+
+  yearHiddenInput = ($source, year) ->
+    year_list = $source.data("year")
+    year_list.push(year)
+    year_list = year_list.map (year) -> "[[#{year}]]"
+    $("<input>").attr("type", "hidden")
+                .attr("name", "card[subcards][#{$source.data("card-name")}+year][content]")
+                .attr("value", year_list.join("\n"))
 
   citeButtons = (sourceID) ->
     $("._citeable-source[data-card-id='#{sourceID}'] .c-btn")
@@ -27,8 +58,10 @@ $.extend wikirate,
   citeSource = (sourceID, citations) ->
     $source = possibleSource(sourceID).clone(true)
 
+    return false unless checkYearData($source)
     citations.empty() if citations.text().search("None") > -1
     citations.append($source)
+    return true
 
   unciteSource = (sourceID, citations) ->
     citedSourceInForm(sourceID).remove()
