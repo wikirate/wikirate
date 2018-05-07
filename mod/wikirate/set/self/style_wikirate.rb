@@ -1,26 +1,25 @@
-include_set Abstract::CodePointer
-Self::StyleMods.add_to_basket :item_codenames, :style_wikirate
+include_set Abstract::CodeFile
+
+add_to_codepointer Self::StyleMods, :style_wikirate
+# if Card::Codename.exist? :style_wikirate
+#   Self::StyleMods.add_to_basket :item_codenames, :style_wikirate
+# end
 
 FILE_NAMES =
   %i[
      top_bar
-     slick
      overview_item
      company_and_topic_item
-     homepage_layout
      note
      user_following_list
      wikirate_bootstrap_navbar
      wikirate_bootstrap_form
      wikirate_bootstrap_common
-
      profile_page
      company_header
-     source_preview
      wikirate_layout
      wikirate_responsiveness
      wikirate_bootstrap_tabs
-     fakeloader
      wikirate_font_icon
      bootstrap_modal_fix
      wikirate_bootstrap_table
@@ -29,7 +28,6 @@ FILE_NAMES =
      project
      badges
      browse_items
-     research
   ].freeze
 
 def source_files
