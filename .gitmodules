@@ -5,3 +5,12 @@
 [submodule "vendor/card-mods"]
 	path = vendor/card-mods
 	url = https://github.com/decko-commons/card-mods
+[submodule "mod/wikirate/vendor/fakeloader"]
+	path = mod/wikirate/vendor/fakeloader
+	url = https://github.com/joaopereirawd/fakeLoader.js
+[submodule "mod/wikirate/vendor/readmore"]
+	path = mod/wikirate/vendor/readmore
+	url = https://github.com/jedfoster/Readmore.js
+[submodule "mod/homepage/slick"]
+	path = mod/homepage/slick
+	url = https://github.com/kenwheeler/slick
