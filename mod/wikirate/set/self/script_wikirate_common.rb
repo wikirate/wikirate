@@ -1,2 +1,2 @@
 include_set Abstract::CodeFile
-Self::ScriptLibraries.add_to_basket :item_codenames, :script_wikirate_common
+Self::ScriptLibraries.add_item :script_wikirate_common

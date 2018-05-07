@@ -14,3 +14,9 @@
 [submodule "mod/homepage/slick"]
 	path = mod/homepage/slick
 	url = https://github.com/kenwheeler/slick
+[submodule "mod/wikirate/vendor/slick"]
+	path = mod/wikirate/vendor/slick
+	url = https://github.com/kenwheeler/slick
+[submodule "mod/homepage/vendor/slick"]
+	path = mod/homepage/vendor/slick
+	url = https://github.com/kenwheeler/slick

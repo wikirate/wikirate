@@ -1,9 +1,6 @@
 include_set Abstract::CodeFile
 
-add_to_codepointer Self::StyleMods, :style_wikirate
-# if Card::Codename.exist? :style_wikirate
-#   Self::StyleMods.add_to_basket :item_codenames, :style_wikirate
-# end
+Self::StyleMods.add_item :style_wikirate
 
 FILE_NAMES =
   %i[

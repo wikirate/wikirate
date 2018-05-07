@@ -1,5 +1,5 @@
 include_set Abstract::CodeFile
-Self::ScriptMods.add_to_basket :item_codenames, :script_research
+Self::ScriptMods.add_item :script_research
 
 def source_files
   %w[script_research.js.coffee

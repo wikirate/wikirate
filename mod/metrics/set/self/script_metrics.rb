@@ -1,5 +1,5 @@
 include_set Abstract::CodeFile
-Self::ScriptMods.add_to_basket :item_codenames, :script_metrics
+Self::ScriptMods.add_item :script_metrics
 
 FILE_NAMES =
   %w[
