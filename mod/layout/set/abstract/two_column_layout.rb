@@ -2,7 +2,6 @@ include_set Abstract::Header
 include_set Abstract::Tabs
 include_set Abstract::Media
 
-
 format do
   view :raw do
     ""
