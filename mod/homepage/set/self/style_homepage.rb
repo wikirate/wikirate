@@ -1,4 +1,4 @@
-include_set Abstract::CodePointer
+include_set Abstract::CodeFile
 Self::StyleMods.add_item :style_homepage
 
 FILE_NAMES = %i[homepage].freeze
