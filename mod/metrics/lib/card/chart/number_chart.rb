@@ -20,6 +20,10 @@ class Card
         super.merge title: "Values"
       end
 
+      def click_action
+        :select
+      end
+
       # @return true if the bar given by its filter
       #   is supposed to be highlighted
       def highlight? filter

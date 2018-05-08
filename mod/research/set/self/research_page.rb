@@ -75,9 +75,9 @@ format :html do
 
   view :source_preview_tab, cache: :never do
     wrap do
-      @source_cited = cited_preview_source?
-      @source_disabled = existing_answer_with_source?
-      nest preview_source, view: :source_and_preview
+      nest preview_source, { view: :source_and_preview },
+           source_cited: cited_preview_source?,
+           source_disabled: existing_answer_with_source?
     end
   end
 

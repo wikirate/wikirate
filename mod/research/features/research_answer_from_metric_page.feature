@@ -65,9 +65,7 @@ Feature: Research answer from metric page
     And I wait for ajax response
     And I select year "2015"
     And I choose "yes"
-    And I fill in "http://example.com" for "URL"
-    And I click on "Add"
-    And I click! on "Cite!"
+    And I cite source
     And I click on "Submit"
     Then I should see "disturbances in the Force"
     And I should see "yes"

@@ -1,7 +1,18 @@
 RSpec.describe Card::Set::Type::Metric::Structure do
-  subject { Card["Jedi+disturbances in the Force"].format(:html)._render_browse_item }
+  extend Card::SpecHelper::ViewHelper::ViewDescriber
+
+  let(:metric) { Card["Jedi+disturbances in the Force"] }
+
+  describe_views :open_content, :listing, :edit, :homepage_item,
+                 :details_tab, :score_tab, :source_tab, :project_tab do |view|
+    it "has no errors" do
+      expect(metric.format.render(view)).to lack_errors
+    end
+  end
 
   describe "view :browse_item" do
+    subject { metric.format(:html)._render_browse_item }
+
     it "has metric title" do
       is_expected.to have_tag "div.name" do
         with_text "disturbances in the Force"

@@ -3,8 +3,12 @@ format :html do
     card.fetch(trait: :year)&.content || ""
   end
 
+  def year_list
+    (card.fetch(trait: :year)&.item_names || []).to_json
+  end
+
   def wrap_data slot=true
-    super.merge year: year
+    super.merge year: year_list
   end
 
   def wrap_with_info

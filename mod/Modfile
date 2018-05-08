@@ -1,6 +1,7 @@
 mod "wikirate_utility"
 mod "filter"
 mod "layout"
+mod "posts"
 mod "metrics"
 mod "research"
 mod "rating"

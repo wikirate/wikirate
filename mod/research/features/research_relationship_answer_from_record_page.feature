@@ -17,7 +17,7 @@ Feature: Research relationship answer from record page
     Then I should not see "Problems"
     And I should see "Example Domain"
     And I should see "added less than a minute ago"
-    And I click on "Cite!"
+    And I click cite and confirm"
     And I click on "Submit"
     Then I should see "1 companies"
     # When I click the drop down button for "2015"
