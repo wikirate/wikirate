@@ -76,7 +76,7 @@ class Importer
   def import_card_data cards
     work_on "importing data (#{cards.size} cards)" do
       Card::Auth.as_bot do
-        cards.each do |card|
+        cards.flatten.each do |card|
           update_or_create card["name"], card["codename"], card
         end
       end

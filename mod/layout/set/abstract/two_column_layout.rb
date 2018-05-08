@@ -2,6 +2,13 @@ include_set Abstract::Header
 include_set Abstract::Tabs
 include_set Abstract::Media
 
+
+format do
+  view :raw do
+    ""
+  end
+end
+
 format :html do
   view :open_content do
     two_column_layout
