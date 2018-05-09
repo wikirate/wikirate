@@ -34,7 +34,7 @@ end
 # @return [True/False]
 def researchable_metrics?
   return false unless (metric_card = Card.fetch([project_name, :metric]))
-  metric_card.item_cards.find &:user_can_answer?
+  metric_card.item_cards.find(&:user_can_answer?)
 end
 
 format :html do
