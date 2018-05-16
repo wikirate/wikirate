@@ -17,3 +17,6 @@
 [submodule "mod/homepage/vendor/slick"]
 	path = mod/homepage/vendor/slick
 	url = https://github.com/kenwheeler/slick
+[submodule "mod/wikirate/vendor/fakeloader"]
+	path = mod/wikirate/vendor/fakeloader
+	url = https://github.com/louisnelza/fakeLoader.js
