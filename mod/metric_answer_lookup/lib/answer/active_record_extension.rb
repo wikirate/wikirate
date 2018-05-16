@@ -84,7 +84,7 @@ class Answer
     end
 
     def order_by_importance args
-      args = order_args sort_by: "COALESCE(c.db_content, 0)", cast: "signed",
+      args = order_args sort_by: Arel.sql("COALESCE(c.db_content, 0)"), cast: "signed",
                         sort_order: args[:sort_order]
       joins("LEFT JOIN cards AS c " \
             "ON answers.metric_id = c.left_id AND c.right_id = #{Card::VoteCountID}")

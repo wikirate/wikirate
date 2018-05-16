@@ -717,7 +717,7 @@ DEPENDENCIES
   launchy
   link_thumbnailer (= 2.5.2)
   minitest
-  mysql2
+  mysql2 (> 0.4)
   newrelic_rpm
   open_uri_redirections
   pdfkit
