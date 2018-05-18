@@ -150,8 +150,12 @@ format :html do
     metric && company && year
   end
 
+  def existing_answer?
+    answer? && answer_card.known?
+  end
+
   def existing_answer_with_source?
-    answer? && answer_card.known? &&
+    existing_answer?  &&
       (!answer_card.hybrid? || answer_card.calculation_overridden?)
   end
 
