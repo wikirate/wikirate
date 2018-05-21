@@ -13,8 +13,7 @@ FILE_NAMES =
      suggested_source
      empty_tab_content
      note_citation
-     wikirate_coffee
-   ].freeze
+     wikirate_coffee].freeze
 
 def source_files
   coffee_files FILE_NAMES
