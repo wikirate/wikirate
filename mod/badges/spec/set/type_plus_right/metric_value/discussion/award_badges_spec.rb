@@ -2,7 +2,7 @@
 
 require_relative "../../../../support/award_answer_badges_shared_examples"
 
-describe Card::Set::TypePlusRight::MetricValue::Value::AwardBadges do
+RSpec.describe Card::Set::TypePlusRight::MetricValue::Value::AwardBadges do
   describe "discuss badges" do
     let(:badge_action) { :discuss }
     let(:sample_acting_card) { sample_metric_value.field(:discussion, new: {}) }
