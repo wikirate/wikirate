@@ -13,7 +13,7 @@ describe Card::Set::Type::Post do
     end
 
     describe_views :open_content, :listing, :edit,
-                   :wikirate_company_tab, :wikirate_topic_tab, :project_tab do |view|
+                   :wikirate_company_tab, :wikirate_topic_tab, :project_tab do
       it "has no errors" do
         expect(post.format.render(view)).to lack_errors
       end
