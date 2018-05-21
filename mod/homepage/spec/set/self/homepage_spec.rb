@@ -6,13 +6,13 @@ RSpec.describe Card::Set::Self::Homepage, type: :controller do
   end
 
   def remove_head html
-    html.gsub(/<head>.+<\/head>/m, "").gsub(/data-card-id="\d+"/, "")
+    html.gsub(%r{<head>.+<\/head>}m, "").gsub(/data-card-id="\d+"/, "")
         .gsub(/src="[^"]+"/, "").strip
   end
 
   xspecify "homepage is fine" do
     homepage = Card.fetch(:homepage).format.page CardController.new, nil, nil
-    expect(remove_head(homepage).gsub("\r",""))
+    expect(remove_head(homepage).delete("\r"))
       .to eq remove_head(golden_master)
   end
 end
