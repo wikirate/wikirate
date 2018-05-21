@@ -1,7 +1,9 @@
 class Card
-  class Query
-    require_dependency "card/query/cached_count_sorting"
+  module Query
+    class CardQuery
+      require_dependency "card/query/cached_count_sorting"
 
-    include CachedCountSorting
+      include CachedCountSorting
+    end
   end
 end

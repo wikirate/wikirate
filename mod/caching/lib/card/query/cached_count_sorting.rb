@@ -1,5 +1,5 @@
 class Card
-  class Query
+  module Query
     module CachedCountSorting
       def sort_by_count_cached_count val
         count_join = CachedCountJoin.new self, val[:right]
