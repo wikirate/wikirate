@@ -24,7 +24,6 @@ class RemoveContentOfCodedCards < Card::Migration
      style_badges
      style_browse_items
      chosen_style
-     coded_stylesheets
      style_drag_and_drop
      script_answer_source_handling
      script_metric_value
