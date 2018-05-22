@@ -11,7 +11,6 @@ FILE_NAMES =
      wikirate_bootstrap_navbar
      wikirate_bootstrap_form
      wikirate_bootstrap_common
-     profile_page
      company_header
      wikirate_layout
      wikirate_responsiveness
@@ -20,8 +19,6 @@ FILE_NAMES =
      bootstrap_modal_fix
      wikirate_bootstrap_table
      wikirate_progress_bar
-     project
-     badges
      browse_items].freeze
 
 def source_files
