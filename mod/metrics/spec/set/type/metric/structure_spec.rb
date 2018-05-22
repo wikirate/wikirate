@@ -4,7 +4,7 @@ RSpec.describe Card::Set::Type::Metric::Structure do
   let(:metric) { Card["Jedi+disturbances in the Force"] }
 
   describe_views :open_content, :listing, :edit, :homepage_item,
-                 :details_tab, :score_tab, :source_tab, :project_tab do |view|
+                 :details_tab, :score_tab, :source_tab, :project_tab do
     it "has no errors" do
       expect(metric.format.render(view)).to lack_errors
     end

@@ -1,5 +1,5 @@
 class Card
-  class Query
+  module Query
     # joins card query with cached count table
     class CachedCountJoin < Join
       def initialize cardquery, right

@@ -5,7 +5,7 @@ RSpec.describe Card::Set::Type::WikirateTopic::Structure do
   let(:topic) { Card["Force"] }
 
   describe_views :open_content, :listing, :edit, :homepage_item,
-                 :details_tab, :wikirate_company_tab, :post_tab, :project_tab do |view|
+                 :details_tab, :wikirate_company_tab, :post_tab, :project_tab do
     it "has no errors" do
       expect(topic.format.render(view)).to lack_errors
     end
