@@ -50,7 +50,8 @@ def check_requester
 end
 
 def check_requested_by_card
-  @check_requested_by_card ||= left(new: {}).check_requested_by_card
+  @check_requested_by_card ||=
+    left(new: { type_id: MetricValueID }).check_requested_by_card
 end
 
 def allowed_to_check?
