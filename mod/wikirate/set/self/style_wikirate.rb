@@ -20,7 +20,6 @@ FILE_NAMES =
      bootstrap_modal_fix
      wikirate_bootstrap_table
      wikirate_progress_bar
-     filter
      project
      badges
      browse_items].freeze
