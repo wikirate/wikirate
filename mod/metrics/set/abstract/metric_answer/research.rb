@@ -39,7 +39,6 @@ format :html do
     end
   end
 
-
   view :research_form, cache: :never, perms: :update, tags: :unknown_ok do
     research_form(:create) { haml :research_form }
   end
