@@ -28,7 +28,6 @@ PATH
   specs:
     card (1.95.0)
       bootstrap4-kaminari-views (~> 1.0)
-      bootswatch (= 4.1.1)
       cardname (= 0.5.0)
       carrierwave (~> 1.1)
       coderay (~> 1.1)
@@ -104,8 +103,6 @@ GEM
     ansi (1.5.0)
     arel (9.0.0)
     ast (2.4.0)
-    autoprefixer-rails (8.5.0)
-      execjs
     backports (3.11.3)
     better_errors (2.4.0)
       coderay (>= 1.0.0)
@@ -116,9 +113,6 @@ GEM
     bootstrap4-kaminari-views (1.0.0)
       kaminari (>= 0.13)
       rails (>= 3.1)
-    bootswatch (4.1.1)
-      autoprefixer-rails (>= 6.0.3)
-      sass (>= 3.5.2)
     buftok (0.2.0)
     builder (3.2.3)
     bulk_insert (1.6.0)
@@ -255,7 +249,7 @@ GEM
       fog-xml (~> 0.1.1)
       ipaddress (~> 0.5)
       json (>= 1.8, < 2.0)
-    fog-aliyun (0.2.1)
+    fog-aliyun (0.2.2)
       fog-core (~> 1.27)
       fog-json (~> 1.0)
       ipaddress (~> 0.8)
@@ -357,7 +351,7 @@ GEM
     fog-voxel (0.1.0)
       fog-core
       fog-xml
-    fog-vsphere (2.1.1)
+    fog-vsphere (2.2.0)
       fog-core
       rbvmomi (~> 1.9)
     fog-xenserver (0.3.0)
@@ -611,7 +605,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sshkit (1.16.0)
+    sshkit (1.16.1)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     statistics2 (0.54)
