@@ -33,17 +33,19 @@ format :html do
                   "main-success" => "REDIRECT",
                   "data-slot-selector": ".card-slot.slot_machine-view",
                   success: research_form_success.merge(view: :slot_machine) do
-          output [
-                   edit_view_hidden,
-                   _render_content_formgroup
-                 ]
+          output [edit_view_hidden, _render_content_formgroup]
         end
       end
     end
   end
 
+
+  view :research_form, cache: :never, perms: :update, tags: :unknown_ok do
+    research_form(:create) { haml :research_form }
+  end
+
   view :edit_year, cache: :never, perms: :update do
-     wrap { edit_year_form + render_titled(hide: :menu) }
+    wrap { edit_year_form + render_titled(hide: :menu) }
   end
 
   def standard_cancel_button args={}
@@ -52,25 +54,18 @@ format :html do
   end
 
   def edit_year_form
-    voo.editor = :inline_nests
-    with_nest_mode :edit do
-      card_form :update, class: "new-value-form",
-                "main-success" => "REDIRECT",
-                "data-slot-selector": ".card-slot.left_research_side-view",
-                success: research_form_success do
-        haml :edit_year_form
-      end
-    end
+    research_form(:update) { haml :edit_year_form  }
   end
 
-  view :research_form, cache: :never, perms: :update, tags: :unknown_ok do
+  def research_form action
     voo.editor = :inline_nests
     with_nest_mode :edit do
-      card_form :create, class: "new-value-form",
-                "main-success" => "REDIRECT",
+      card_form action,
+                class: "new-value-form",
+                "main-success": "REDIRECT",
                 "data-slot-selector": ".card-slot.left_research_side-view",
                 success: research_form_success do
-        haml :research_form
+        yield
       end
     end
   end
@@ -82,7 +77,7 @@ format :html do
     end
   end
 
-  def card_form_html_opts action, opts = {}
+  def card_form_html_opts action, opts={}
     super
     add_class opts, "answer-form"
     opts
@@ -95,8 +90,8 @@ format :html do
   def research_params
     @research_params ||=
       inherit(:research_params) ||
-        Env.params[RESEARCH_PARAMS_KEY]&.to_unsafe_h ||
-        { metric: card.metric, company: card.company, year: card.year }
+      Env.params[RESEARCH_PARAMS_KEY]&.to_unsafe_h ||
+      { metric: card.metric, company: card.company, year: card.year }
   end
 
   def research_form_success

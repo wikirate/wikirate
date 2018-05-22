@@ -155,7 +155,7 @@ format :html do
   end
 
   def existing_answer_with_source?
-    existing_answer?  &&
+    existing_answer? &&
       (!answer_card.hybrid? || answer_card.calculation_overridden?)
   end
 
