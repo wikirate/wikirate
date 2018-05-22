@@ -119,6 +119,7 @@ format :html do
                    "data-url": research_url,
                    "data-key": type,
                    "data-slot-selector": ".card-slot.slot_machine-view",
+                   "data-remote": true,
                    placeholder: type.to_s.capitalize
   end
 

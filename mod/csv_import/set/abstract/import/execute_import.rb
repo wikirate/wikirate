@@ -42,6 +42,10 @@ def data_import?
   Env.params[:import_rows].present?
 end
 
+def silent_change?
+  data_import? || super
+end
+
 def selected_row_count
   selected_row_indices.size
 end

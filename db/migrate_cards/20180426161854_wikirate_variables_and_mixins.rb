@@ -6,7 +6,9 @@ class WikirateVariablesAndMixins < Card::Migration
       update_card :wikirate_stylesheets, name: "coded stylesheets",
                   codename: "coded_stylesheets",
                   update_referers: true
-
+    else
+      ensure_card "coded stylesheets", codename: "coded_stylesheets",
+                                       type_id: Card::SkinIDå
     end
     item_name = Card.fetch_name(:style_mixins_and_variables)
     card = Card["wikirate skin", :stylesheets]

@@ -31,7 +31,7 @@ format :html do
 
   def designer_property
     nest card.metric_designer_card, view: :designer_slot,
-                                    show: :menu, hide: :horizontal_menu
+                                    hide: :horizontal_menu
   end
 
   def scorer_property

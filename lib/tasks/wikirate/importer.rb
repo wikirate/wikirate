@@ -1,3 +1,5 @@
+require_relative "import_card"
+
 class Importer
   attr_reader :export_location
   def initialize location
@@ -59,25 +61,11 @@ class Importer
     JSON.parse open(url, read_timeout: 50_000).read
   end
 
-  def update_or_create name, _codename, attr
-    attr = adjust_file_attributes attr
-    # card = codename ? Card.fetch(codename.to_sym) : Card.fetch(name)
-    result =
-      if (card = Card.fetch(name))
-        "updating card #{name} #{card.update_attributes!(attr)}".light_blue
-      else
-        "creating card #{name} #{Card.create!(attr)}".yellow
-      end
-    puts result
-  rescue => e
-    puts "Error in #{name}\n#{e}".red
-  end
-
   def import_card_data cards
     work_on "importing data (#{cards.size} cards)" do
       Card::Auth.as_bot do
-        cards.each do |card|
-          update_or_create card["name"], card["codename"], card
+        cards.flatten.each do |card|
+          ImportCard.new(card).update_or_create
         end
       end
     end
@@ -105,21 +93,5 @@ class Importer
     value_string = "('#{value_string}')"
     sql = "INSERT INTO #{table} (version) VALUES #{value_string}"
     ActiveRecord::Base.connection.execute(sql)
-  end
-
-  def adjust_file_attributes attr
-    return attr unless attr["type"].in? %w(Image File)
-    if bucket_file?(attr)
-      # TODO: check if the bucket is configured and only then keep it as a cloud file?
-      attr["storage_type"] = :cloud
-    else
-      attr["content"] = ""
-    end
-    attr["empty_ok"] = true
-    attr
-  end
-
-  def bucket_file? attr
-    attr["content"].match?(/^\(\w+\)/)
   end
 end
