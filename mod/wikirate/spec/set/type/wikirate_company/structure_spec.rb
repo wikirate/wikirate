@@ -5,7 +5,7 @@ RSpec.describe Card::Set::Type::WikirateCompany::Structure do
   let(:company) { Card["Google Inc"] }
 
   describe_views :open_content, :listing, :edit, :homepage_item,
-                 :wikirate_topic_tab, :source_tab, :post_tab, :project_tab do |view|
+                 :wikirate_topic_tab, :source_tab, :post_tab, :project_tab do
     it "has no errors" do
       expect(company.format.render(view)).to lack_errors
     end

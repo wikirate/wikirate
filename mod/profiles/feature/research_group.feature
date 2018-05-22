@@ -6,6 +6,6 @@ Feature: Join a Research Group
     Given I am signed in as Joe User
 
   Scenario: Research group
-    When I go to "Jedi"
+    When I go to card "Jedi"
     And I click "Join"
     Then I should see a row with "Joe User"
