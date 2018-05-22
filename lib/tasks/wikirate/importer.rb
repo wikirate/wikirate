@@ -59,11 +59,11 @@ class Importer
     JSON.parse open(url, read_timeout: 50_000).read
   end
 
-  def update_or_create name, _codename, attr
+  def update_or_create name, codename, attr
     attr = adjust_file_attributes attr
-    # card = codename ? Card.fetch(codename.to_sym) : Card.fetch(name)
+    card = (codename && Card.find_by_codename(codename)) || Card.fetch(name)
     result =
-      if (card = Card.fetch(name))
+      if card
         "updating card #{name} #{card.update_attributes!(attr)}".light_blue
       else
         "creating card #{name} #{Card.create!(attr)}".yellow
