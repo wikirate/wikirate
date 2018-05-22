@@ -13,7 +13,7 @@ format :html do
 
   def wikirat_image_source
     nest :wikirat, view: :source, size: :large
-  rescue Card::Error::UnknownCodename
+  rescue Card::Error::CodenameNotFound
     ""
   end
 end
