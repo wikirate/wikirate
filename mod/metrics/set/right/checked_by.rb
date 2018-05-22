@@ -227,7 +227,6 @@ event :user_requests_check, :prepare_to_store,
     else
       ""
     end
-
   attach_subcard check_requested_by_card.name,
                  content: requested_by_content,
                  type_id: PointerID

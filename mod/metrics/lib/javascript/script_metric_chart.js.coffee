@@ -13,9 +13,12 @@ decko.slotReady (slot) ->
 setFilterText = ($vis) ->
   text = $vis.data("value-filter-text")
   return unless text
+  showMetricValueFilter()
   $vis.closest(".filter-form-and-result")
       .find("#select2-filter_metric_value-container").text(text)
 
+showMetricValueFilter = ->
+  decko.filterCategorySelected($('a[data-category="metric_value"]'))
 
 metric_chart = (spec, id) ->
   runtime = vega.parse spec
@@ -25,3 +28,4 @@ metric_chart = (spec, id) ->
       $.ajax item.datum.link,
         success: (data) -> $(event.target).setSlotContent(data)
   )
+
