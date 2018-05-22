@@ -7,7 +7,7 @@ describe Card::Set::Type::Project do
     let(:project) { Card["Evil Project"] }
 
     describe_views :open_content, :listing, :edit, :wikirate_company_tab,
-                   :metric_tab, :post_tab, :subproject_tab do |view|
+                   :metric_tab, :post_tab, :subproject_tab do
       it "has no errors" do
         expect(project.format.render(view)).to lack_errors
       end
