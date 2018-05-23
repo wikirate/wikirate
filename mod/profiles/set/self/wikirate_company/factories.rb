@@ -10,6 +10,7 @@ format :json do
   end
 
   def country_search
+    return [].to_json unless country_code
     company_traits(factory_ids).to_json
   end
 
@@ -55,7 +56,7 @@ format :json do
   def search_factory_ids
     wql = { type_id: Card::WikirateCompanyID,
             left_plus: Card::Codename.id(:commons_supplier_of),
-            return: :name }
+            return: :id }
     if country_code
       wql[:right_plus] = [{ codename: "headquarters" },
                           { refer_to: { codename: country_code.to_s } }]
