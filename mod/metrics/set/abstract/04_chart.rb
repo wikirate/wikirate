@@ -77,18 +77,20 @@ format :html do
   end
 
   def value_filter_text
+    return "Researched" if filter_hash.empty?
     mv = metric_value_filter
     return unless mv.present?
     if mv[:range]
       "%s < x < %s " % [number_to_human(mv[:range][:from]),
                        number_to_human(mv[:range][:to])]
     else
-      mv[:numeric_value] || mv[:category]
+      mv[:numeric_value] || mv[:category] ||
+        metric_value_options.key(mv[:metric_value])
     end
   end
 
   def metric_value_filter
-    filter_hash.slice(:numeric_value, :category, :range)
+    filter_hash.slice(:numeric_value, :category, :range, :metric_value)
   end
 
   def chart_load_url
@@ -118,7 +120,7 @@ format :html do
   end
 
   def zoomed_in?
-    chart_params.present?
+    chart_params.present? && chart_params[:zoom_level].to_i > 0
   end
 end
 
