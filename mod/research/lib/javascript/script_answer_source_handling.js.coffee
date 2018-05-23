@@ -84,7 +84,7 @@ $.extend wikirate,
       $citedButton = ele.removeClass("_cited_button btn-primary")
                         .addClass("_cite_button btn-outline-primary")
                         .text("Cite!")
-      $citedButton.unbind('mouseenter mouseleave')
+      $citedButton.off('mouseenter mouseleave')
 
 $(document).ready ->
   $('body').on 'click', '._cite_button', (event) ->
