@@ -3,6 +3,10 @@ card_accessor :imported_rows
 
 delegate :mark_as_imported, :already_imported?, to: :imported_rows_card
 
+def import_file?
+  true
+end
+
 def csv_file
   # maybe we have to use file.read ?
   CSVFile.new file, csv_row_class, headers: :detect
@@ -41,12 +45,12 @@ rescue CSV::MalformedCSVError => e
 end
 
 format :html do
-  def default_new_args _args
+  before :new do
     voo.help = help_text
     voo.show! :help
   end
 
-  def default_edit_args _args
+  before :edit do
     voo.help = help_text
     voo.show! :help
   end

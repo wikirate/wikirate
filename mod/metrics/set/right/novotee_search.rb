@@ -55,7 +55,7 @@ end
 format :html do
   include Right::DownvoteeSearch::HtmlFormat
 
-  def default_filter_and_sort_args _args
+  before :filter_and_sort do
     @default_sort ||=
       if main_type_id == WikirateCompanyID &&
          searched_type_id == WikirateTopicID

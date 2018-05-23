@@ -1,8 +1,9 @@
 include_set Abstract::FilterHelper
 
-def filter_hash with_chart_filter=true
+def filter_hash with_select_filter=true
   filter = super()
-  with_chart_filter ? filter.merge(chart_filter_params) : filter
+  return filter unless with_select_filter && chart_params[:select_filter]
+  filter.merge chart_params[:select_filter]
 end
 
 def chart_params
@@ -47,7 +48,7 @@ format do
   end
 
   def chart_filter_hash
-    card.filter_hash(zoom_in?)
+    card.chart_filter_params.present? ? card.chart_filter_params : card.filter_hash(false)
   end
 
   def zoom_in?
@@ -70,8 +71,24 @@ format :html do
       zoom_out_link,
       wrap_with(:div, "",
                 id: id, class: "#{classy('vis')} _load-vis",
-                data: { url: chart_load_url })
+                data: { url: chart_load_url,
+                        value_filter_text: value_filter_text })
     ]
+  end
+
+  def value_filter_text
+    mv = metric_value_filter
+    return unless mv.present?
+    if mv[:range]
+      "%s < x < %s " % [number_to_human(mv[:range][:from]),
+                       number_to_human(mv[:range][:to])]
+    else
+      mv[:numeric_value] || mv[:category]
+    end
+  end
+
+  def metric_value_filter
+    filter_hash.slice(:numeric_value, :category, :range)
   end
 
   def chart_load_url
@@ -91,14 +108,13 @@ format :html do
 
   def zoom_out_link
     return unless zoomed_in?
-    link_to_view :content, fa_icon(:zoom_out),
+    link_to_view :filter_result, fa_icon(:zoom_out),
                  path: zoom_out_path_opts,
                  class: "slotter chart-zoom-out"
   end
 
   def zoom_out_path_opts
-    { chart: chart_params[:zoom_out],
-      filter: filter_hash(false) }
+    chart_params[:zoom_out]
   end
 
   def zoomed_in?

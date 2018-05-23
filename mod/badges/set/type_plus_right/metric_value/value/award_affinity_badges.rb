@@ -14,7 +14,7 @@ event :award_answer_create_badges, :finalize,
 end
 
 def metric_awards_answer_badges?
-  researched?
+  researched? && !import_act?
 end
 
 def award_create_badge_if_earned affinity, project_card=nil

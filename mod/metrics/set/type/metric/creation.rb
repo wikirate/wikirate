@@ -156,7 +156,7 @@ format :html do
       }
   end
 
-  def default_content_formgroup_args _args
+  before :content_formgroup do
     voo.edit_structure = [["+question", "Question"],
                           [:wikirate_topic, "Topic"]]
   end
@@ -187,8 +187,7 @@ format :html do
   def new_metric_tab_pane name
     metric_type = name == "Standard" ? "Researched" : name
     new_metric = new_metric_of_type metric_type
-    tab_form =
-      nest(new_metric, view: :new_tab_pane, mode: :normal)
+    tab_form = nest new_metric, { view: :new_tab_pane }, nest_mode: :normal
     tab_pane tab_pane_id(name), tab_form, selected_subtab_pane?(name)
   end
 

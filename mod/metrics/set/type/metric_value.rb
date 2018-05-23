@@ -24,7 +24,7 @@ format :html do
                                            year: card.year # active_tab: "View Source"
   end
 
-  def default_title_args _args
+  before :title do
     # HACK: to prevent cancel button on research page from loosing title
     voo.title ||= "Answer"
   end

@@ -51,7 +51,8 @@ class SharedData
           "+topic" => { content: "Force", type_id: Card::PointerID },
           "+report type" => { content: "Force Report" },
           "+title" => { content: "Star Wars" },
-          "+description" => { content: "Star Wars Wikipedia article" }
+          "+description" => { content: "Star Wars Wikipedia article" },
+          "+year" => { content: "2008" }
         }
       )
 

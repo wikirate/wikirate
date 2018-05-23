@@ -18,12 +18,6 @@ end
 
 format :html do
   view :core do
-    output do
-      [
-        field_nest(:description),
-        render_add_button,
-        nest(card.fetch(trait: [:type, :by_name]), items: { view: :listing })
-      ]
-    end
+    core_with_listing
   end
 end

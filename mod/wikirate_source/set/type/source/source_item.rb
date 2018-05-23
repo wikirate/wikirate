@@ -3,8 +3,12 @@ format :html do
     card.fetch(trait: :year)&.content || ""
   end
 
+  def year_list
+    (card.fetch(trait: :year)&.item_names || []).to_json
+  end
+
   def wrap_data slot=true
-    super.merge year: year
+    super.merge year: year_list
   end
 
   def wrap_with_info
@@ -156,14 +160,13 @@ format :html do
     end
   end
 
-  view :source_and_preview, cache: :never do |args|
-    args[:url] = source_url
+  view :source_and_preview, cache: :never do
     wrap do
       [
-        with_cite_button(cited: voo.live_options[:cited],
-                         disabled: voo.live_options[:disabled]),
+        with_cite_button(cited: inherit(:source_cited),
+                         disabled: inherit(:source_disabled)),
         render_iframe_view.html_safe,
-        hidden_information(args).html_safe
+        hidden_information.html_safe
       ]
     end
   end

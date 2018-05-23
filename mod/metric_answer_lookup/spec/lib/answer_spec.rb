@@ -112,25 +112,16 @@ RSpec.describe Answer do
     specify "#calculated_answer", with_user: "Joe User" do
       a = described_class.create_calculated_answer metric, "Death Star", 2001, "50"
       expect(a.attributes.symbolize_keys)
-        .to include answer_id: nil,
-                    record_id: be_a_integer,
-                    designer_id: be_a_integer,
-                    metric_id: be_a_integer,
-                    metric_type_id: Card::FormulaID,
-                    year: 2001,
-                    metric_name: "Jedi+friendliness",
-                    company_name: "Death Star",
-                    record_name: "Jedi+friendliness+Death Star",
-                    value: "50",
-                    numeric_value: 50,
-                    creator_id: Card.fetch_id("Joe User"),
-                    updated_at: be_within(2).of(Time.now),
-                    latest: true,
-                    imported: nil,
-                    checkers: nil,
-                    check_requester: nil,
-                    editor_id: nil,
-                    policy_id: nil
+        .to include(
+          metric_name: "Jedi+friendliness", company_name: "Death Star", year: 2001,
+          record_name: "Jedi+friendliness+Death Star", metric_type_id: Card::FormulaID,
+          value: "50", numeric_value: 50,
+          creator_id: Card.fetch_id("Joe User"), editor_id: nil,
+          updated_at: be_within(2).of(Time.now),
+          record_id: be_a_integer, designer_id: be_a_integer, metric_id: be_a_integer,
+          answer_id: nil, checkers: nil, check_requester: nil, policy_id: nil,
+          latest: true, imported: false
+        )
     end
 
     specify "#update_value", with_user: "Joe User" do

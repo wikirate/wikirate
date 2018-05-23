@@ -1,0 +1,569 @@
+
+
+#Home {
+  background: url({{topics collage|source; size:original}});
+}
+
+.SELF-about_wiki_rate p {
+  font-size: 1.2em;
+}
+
+/*----------- Top banner ---------*/
+.wikirate-logo-title {
+  font-weight: normal;
+  font-family: Droid Sans;
+  font-size: 50px;
+  color: #fff;
+}
+
+.banner-buttons .btn {
+  text-align: left!important;
+  background: none;
+  color: #fff;
+  font-size: 1.1em;
+  &:hover {
+      background: rgba(0, 0, 0, 0.33);
+      color: #fff;
+  }
+}
+
+.banner-image{
+  padding: 15px;
+}
+.banner-image img{
+  max-width: 100%;
+  max-height: 110px;
+  float: right;
+}
+.banner-buttons .btn>i {
+  float: right;
+}
+
+.fa-4 {
+  font-size: 7em;
+}
+
+.banner-background {
+  //background: rgba(0, 74, 68, 0.95);
+  //Proposed colour
+  background: #674ea7; /* Old browsers */
+  background: -moz-linear-gradient(-45deg,  #674ea7 0%, #2b7ea0 68%, #03998d 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg,  #674ea7 0%,#2b7ea0 68%,#03998d 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg,  #674ea7 0%,#2b7ea0 68%,#03998d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#674ea7', endColorstr='#03998d',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  opacity: 0.97
+}
+
+.transparent-background-white {
+  background: rgba(#fff, 0.97);
+}
+
+.transparent-background-black {
+  //background: rgba(22, 6, 35, 0.95);
+  //Proposed colour
+  background: #322456;
+  opacity: 0.97
+}
+
+.container-topbar {
+  max-width: $max-page-width;
+  margin: 0 auto;
+  padding: 8px 5px;
+  .navbar-right {
+    margin-right: 15px;
+  }
+
+}
+
+//div#openelectronics_slider_image {
+//  padding: 12px 25px;
+//  font-size: 14px;
+//}
+
+.metric-header {
+  border-top: 3px solid #674EA7;
+}
+
+.homepage-logo-container {
+  border-radius: 0px;
+  padding-bottom: 6px;
+  height: 154px;
+  border-color: $bright-text-color;
+  width: 100%;
+  border-bottom: 0;
+  > div {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+}
+
+.homepage-table {
+  margin-bottom: 0;
+}
+
+.homepage-company-item .company-header {
+    padding: 0px;
+    padding-top: 2px;
+}
+
+.homepage-company-item,
+.homepage-topic-item {
+    max-width: 520px;
+    @include box-shadow(0,2px,32px,rgba(0,0,0,0.14));
+    border: 1px solid $bright-text-color;
+    padding-bottom: 40px;
+    background-color: #fff;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    .header-row {
+        font-size: 10px;
+        color: #bebebe;
+        text-align: center;
+        margin-top: 10px;
+        .header-header {
+            float: left;
+            margin-left: 80px;
+        }
+        .data-header {
+            width: 146px;
+            float: right;
+            margin-right: 15px;
+        }
+    }
+    .topic-header {
+      padding: 0px;
+    }
+}
+
+.homepage-company-item .data-count > div:hover {
+  //background-color: $gray-background-color;
+}
+
+.homepage-company-item .metric-info .row .row-data {
+    margin: 0px;
+    padding-top: 5px;
+}
+
+#homepage_introductions ul.slick-dots {
+    bottom: 35px;
+}
+
+/*----------- Content Wrapper --------------*/
+
+#main .video-container {
+  visibility: hidden;
+  height: 0;
+  width: 0;
+  opacity: 0;
+}
+#page-wrapper {
+  background: #fff;
+  padding: 20px 12px;
+
+}
+#main-content-wrapper {
+  margin: 0 5px;
+
+}
+.browse-button {
+  text-align: center;
+  margin-top: 5px;
+  margin-left: 16px;
+
+}
+/*-----------  Grid  ---------*/
+.grid-row {
+  display: inline-block;
+  width: 100%;
+  .grid-column {
+    width: 49%;
+    // background: green;
+  }
+
+}
+/*----------- Companies and Topics  ---------*/
+
+.SELF-homepage_introduction {
+  .browse-button {
+    margin-left: 30%;
+    width: 100%;
+  }
+
+  .carousel {
+    position: relative;
+    min-height: 500px;
+    width: 100%;
+    margin-top: 10%;
+    margin-left: 30%;
+
+    .img-thumbnail {
+      // max-width: none;
+    }
+
+    .carousel-item {
+      justify-content: center;
+    }
+
+    .item-title {
+      min-height: 60px;
+    }
+
+    a.carousel-control-prev {
+      align-items: flex-end;
+      margin-bottom: 30px;
+      .carousel-control-prev-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23444' viewBox='0 0 8 8'%3E%3Cpath d='M4 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+      }
+    }
+
+    a.carousel-control-next {
+      align-items: flex-end;
+      margin-bottom: 30px;
+      .carousel-control-next-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23444' viewBox='0 0 8 8'%3E%3Cpath d='M1.5 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+
+      }
+    }
+
+    .carousel-indicators li {
+      background-color: #ccc;
+      &.active {
+        background-color: #333;
+      }
+    }
+  }
+}
+#company-n-topic .grid-column {
+  position: relative;
+  //for slick-js icon position
+
+}
+#company-n-topic .card-header {
+  display: none;
+  // workaround for carousel
+
+}
+#company-n-topic {
+  .company-list,
+  .topic-list {
+    .search-result-list {
+      // workaround for carousel
+      height: 220px;
+      overflow: hidden;
+      margin-left: 3.8%;
+      width: 94%;
+      max-width: 555px;
+    }
+    .search-result-item {
+      display: inline-block;
+      min-width: 130px;
+      width: 175px;
+      padding: 10px 0;
+      margin-left: 11px;
+    }
+
+  }
+  .company-list {
+    float: left;
+  }
+  .topic-list {
+    float: right;
+  }
+  .browse-button {
+    margin-top: 35px;
+  }
+
+}
+/*----------- Overviews ---------*/
+
+#overviews {
+  .search-result-item {
+    display: inline-block;
+    margin: 1.4%;
+    width: 30%;
+    float: left;
+  }
+
+}
+/*----------- Notes and Sources ---------*/
+
+#notes-sources {
+
+  .d0-card-content.SELF-homepage_note_list,
+  .d0-card-content.SELF-homepage_source_list {
+    padding: 5px 0;
+    margin: 15px 3.5%;
+    border: 1px solid #ddd;
+    @include box-shadow(0, 1px, 6px, rgba(0, 0, 0, .13));
+    height: 750px; // Temporary fix for same height , it should be dynamic at somepoint...
+    overflow: auto;
+  }
+  .d0-card-content.SELF-homepage_note_list {
+    border-top: 8px solid $note-color;
+  }
+  .d0-card-content.SELF-homepage_source_list {
+    border-top: 8px solid $source-color;
+  }
+  .note-list,
+  .source-list {
+    width: 48%;
+    .search-result-list {
+      //  padding: 0 0 1000px;
+      //same height workaround.
+      //   margin-bottom: -1000px;
+    }
+
+  }
+  .note-list {
+    float: left;
+  }
+  .source-list {
+    float: right;
+  }
+  .browse-button {
+    margin-top: 25px;
+  }
+
+}
+
+
+/*---------- Bootstrap media queries--------------*/
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+  .banner-lead {
+    text-align: left;
+    .banner-image img{
+      float: right;
+    }
+  }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
+}
+
+/*==========  Non-Mobile First Method  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+  .banner-lead {
+    text-align: center;
+    .banner-image img{
+      float: none;
+    }
+  }
+  .banner-buttons {
+    margin-bottom: 35px;
+  }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+  .vega canvas {
+      width: 100%!important;
+      height: 100%!important;
+  }
+  .details {
+      top: 65px!important;
+      position: fixed!important;
+      left: 0%!important;
+      width: 100%!important;
+  }
+  table.wikirate-table td.data{
+    min-width: 100%!important;
+  }
+  select{
+    width: 100%;
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px) {
+
+}
+
+/*---------- End of Bootstrap media queries*/
+
+
+/* TODO: Clean up the following */
+
+/*----------- Media queries ---------*/
+
+@media screen and (max-width: 48em) {
+
+  #notes-sources {
+    .note-list,
+    .source-list {
+      width: 100%;
+      clear: both;
+      margin-bottom: 30px;
+    }
+    .d0-card-content.SELF-homepage_source_list,
+    .d0-card-content.SELF-homepage_note_list {
+      height: auto;
+    }
+  }
+
+}
+
+/* TODO: Clean up the following */
+/*----------- Media queries- For mobile devices ---------*/
+
+@media screen and (max-width: 40em) {
+  h4 {
+    font-size: medium;
+  }
+
+  .metric-value {
+    font-size: 12px !important;
+  }
+  .yinyang {
+    padding: 0px !important;
+  }
+  .drag-item .value-item .header .name, .yinyang-row .value-item .header .name {
+    width: 88% !important;
+  }
+  .grid-row, .grid-column {
+    margin-bottom: 24px;
+  }
+
+  #overviews .search-result-item {
+    display: inline-block;
+    margin: 1.4%;
+    width: 97%;
+
+  }
+  #company-n-topic {
+    .company-list,
+    .topic-list {
+      width: 100%;
+    }
+
+  }
+  body#wagn {
+    min-width: 325px;
+
+  }
+  #notes-sources {
+    .d0-card-content.SELF-homepage_note_list,
+    .d0-card-content.SELF-homepage_source_list {
+      margin: 15px 0;
+    }
+
+  }
+  #top-bar {
+    .logo-bar img {
+      margin-top: 0;
+      height: 25px;
+      border: none;
+    }
+    .account-info-bar {
+      display: none;
+      float: right;
+      position: absolute;
+      top: 6%;
+      right: 35px;
+      font-size: 0.6em;
+    }
+    #logging a {
+      margin-left: 4px;
+    }
+    .search-bar-mobile {
+      display: block;
+      float: right;
+    }
+    .search-bar {
+      width: 92%;
+      display: none;
+    }
+
+  }
+  a.slicknav_btn {
+    float: left;
+    margin: 6px 0px 0 -6px;
+
+  }
+  #page-wrapper {
+    padding: 6px 4px;
+  }
+
+  #main {
+    padding: 80px 1%;
+  }
+
+  #top-bar-wrapper .slicknav_menu .slicknav_nav .account-info-bar .logged-out {
+    display: none;
+
+  }
+
+  #top-banner-wrapper .column-2 .SELF-wikirate_globe.d0-card-content {
+    display: none;
+  }
+
+  .ui-tabs .ui-tabs-panel {
+    padding: 0;
+
+  }
+  .TYPE_PLUS_RIGHT-user-Xfollowing {
+    display: none;
+
+  }
+
+  .card-slot > .card-header .card-menu-link {
+    margin: -40px -3px;
+
+  }
+  .header-vote {
+    float: left;
+    border-right: 0;
+    margin-right: 0;
+    padding: 0;
+  }
+  .header-citation {
+    float: right;
+    margin-top: -2%;
+    padding: 0;
+    border-left: 0;
+    margin-left: 0;
+  }
+  .header-title {
+    padding: 0 10px;
+    text-align: center;
+    width: 100%;
+    float: left;
+  }
+}
+
+.name-diff .label-default {
+  background-color: inherit;
+}

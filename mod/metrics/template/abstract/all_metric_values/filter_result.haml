@@ -1,7 +1,11 @@
 - haml_wrap(true) do
-  .row.text-center
+  .row
     - if voo.show? :chart
-      = _render_chart
+      .col-12.col-xl-9.p-0.text-center
+        = _render_chart
+      .col-12.col-xl-3.pt-xl-4
+        %h6 Filtered answers
+        = _render_stats
   .row
     = _render_table
   .row

@@ -94,7 +94,7 @@ def answer
 end
 
 format :html do
-  def default_value_link_args _args
+  before :value_link do
     voo.show! :link if card.relationship?
   end
 
@@ -102,10 +102,10 @@ format :html do
     bs do
       layout do
         row 3, 9 do
-          column value_field
+          column render_basic_details
           column do
             row 12 do
-              column _render_answer_details
+              column _render_expanded_details
             end
           end
         end
