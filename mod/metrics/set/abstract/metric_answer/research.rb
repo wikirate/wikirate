@@ -1,4 +1,3 @@
-
 format :html do
   RESEARCH_PARAMS_KEY = :rp
 
@@ -9,6 +8,14 @@ format :html do
 
   def menu_item_edit opts
     super opts.merge(path: { RESEARCH_PARAMS_KEY => research_params }, remote: false)
+  end
+
+  view :year_edit_link do
+    link_to_view :edit_year, fa_icon(:edit),
+                 path: { RESEARCH_PARAMS_KEY => research_params },
+                 remote: true,
+                 class: "slotter",
+                 "data-slot-selector": ".card-slot.titled-view.TYPE-metric_value"
   end
 
   view :edit do
@@ -26,23 +33,38 @@ format :html do
                   "main-success" => "REDIRECT",
                   "data-slot-selector": ".card-slot.slot_machine-view",
                   success: research_form_success.merge(view: :slot_machine) do
-          output [
-            edit_view_hidden,
-            _render_content_formgroup
-          ]
+          output [edit_view_hidden, _render_content_formgroup]
         end
       end
     end
   end
 
   view :research_form, cache: :never, perms: :update, tags: :unknown_ok do
+    research_form(:create) { haml :research_form }
+  end
+
+  view :edit_year, cache: :never, perms: :update do
+    wrap { edit_year_form + render_titled(hide: :menu) }
+  end
+
+  def standard_cancel_button args={}
+    args[:href] = path view: :titled if @slot_view == :edit_year
+    super args
+  end
+
+  def edit_year_form
+    research_form(:update) { haml :edit_year_form  }
+  end
+
+  def research_form action
     voo.editor = :inline_nests
     with_nest_mode :edit do
-      card_form :create, class: "new-value-form",
-                         "main-success" => "REDIRECT",
-                         "data-slot-selector": ".card-slot.left_research_side-view",
-                         success: research_form_success  do
-        haml :research_form
+      card_form action,
+                class: "new-value-form",
+                "main-success": "REDIRECT",
+                "data-slot-selector": ".card-slot.left_research_side-view",
+                success: research_form_success do
+        yield
       end
     end
   end

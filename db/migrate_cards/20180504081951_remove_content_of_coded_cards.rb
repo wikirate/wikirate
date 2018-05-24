@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 
 class RemoveContentOfCodedCards < Card::Migration
-  DEPRECATED =   %i[
+  DEPRECATED = %i[
      style_top_bar
      style_overview_item
      style_company_and_topic_item
@@ -23,6 +23,7 @@ class RemoveContentOfCodedCards < Card::Migration
      style_project
      style_browse_items
      chosen_style
+     coded_stylesheets
      style_drag_and_drop
      script_answer_source_handling
      script_metric_value
@@ -50,7 +51,7 @@ class RemoveContentOfCodedCards < Card::Migration
     end
 
     ensure_card "wikirate skin", codename: "wikirate_skin",
-                                 type_id: Card::CustomizedBootswatchSkinID
+                type_id: Card::CustomizedBootswatchSkinID
   end
 
   def ensure_style_cards *names
