@@ -1,8 +1,6 @@
 %div.nodblclick
   = answer_form_hidden_tags
   .editor
-    .year
-      = field_nest :year, title: "Year"
     - if card.subfield(:related_company)
       .related-company
         = field_nest :related_company, title: "Related Company"
