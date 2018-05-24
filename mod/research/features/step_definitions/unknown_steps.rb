@@ -1,6 +1,6 @@
 
-When(/^I edit answer of "([^"]*)" for "([^"]*)" for "([^"]*)"$/) do |metric, company, year|
-  visit "#{metric}+#{company}+#{year}?view=edit"
+When(/^I edit answer of "([^"]*)" for "([^"]*)" for "([^"]*)"$/) do |m, c, y|
+  visit "#{m}+#{c}+#{y}?view=edit"
 end
 
 Then(/^Unknown should not be checked$/) do
