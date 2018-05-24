@@ -1,29 +1,4 @@
 PATH
-  remote: vendor/card-mods/logger
-  specs:
-    card-mod-logger (1.0)
-      card
-
-PATH
-  remote: vendor/card-mods/new_relic
-  specs:
-    card-mod-new_relic (1.0)
-      decko
-      newrelic_rpm
-
-PATH
-  remote: vendor/card-mods/pdfjs
-  specs:
-    card-mod-pdfjs (1.0)
-      card
-
-PATH
-  remote: vendor/card-mods/voting
-  specs:
-    card-mod-voting (1.0)
-      card
-
-PATH
   remote: vendor/decko
   specs:
     card (1.95.0)
@@ -51,6 +26,31 @@ PATH
       htmlentities (~> 4.3)
     decko (0.5.0)
       card (= 1.95.0)
+
+PATH
+  remote: vendor/card-mods/logger
+  specs:
+    card-mod-logger (1.0)
+      card
+
+PATH
+  remote: vendor/card-mods/new_relic
+  specs:
+    card-mod-new_relic (1.0)
+      decko
+      newrelic_rpm
+
+PATH
+  remote: vendor/card-mods/pdfjs
+  specs:
+    card-mod-pdfjs (1.0)
+      card
+
+PATH
+  remote: vendor/card-mods/voting
+  specs:
+    card-mod-voting (1.0)
+      card
 
 GEM
   remote: http://rubygems.org/
