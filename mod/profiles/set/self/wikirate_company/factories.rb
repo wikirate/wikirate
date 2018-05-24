@@ -1,13 +1,22 @@
 format :json do
   view :search_factories, cache: :never do
-    ids = if keyword
-            search_by_company_name | search_by_address
-          elsif country_code
-            factory_ids
-          end
-    company_traits(ids).to_json
+    keyword ? search_with_keyword : country_search
   end
 
+  def search_with_keyword
+    ids = search_by_company_name | search_by_address
+    company_traits(ids).sort_by { |a| a[:name] }
+                       .to_json
+  end
+
+  def country_search
+    return [].to_json unless country_code
+    company_traits(factory_ids).to_json
+  end
+
+  # TODO: if the data grows we might want sql sorting instead of ruby sorting
+  # but that involves serious SQL work because we have to join the queries of
+  # search_by_company_name and search_by_address
   def company_traits ids
     return [] unless ids.present?
     ids.map do |id|
