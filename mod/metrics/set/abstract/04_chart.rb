@@ -82,14 +82,17 @@ format :html do
   end
 
   def value_filter_to_human
-    f = filter_hash
-    if f[:range]
-      "%s < x < %s " % [number_to_human(f[:range][:from]),
-                       number_to_human(f[:range][:to])]
+    if filter_hash[:range]
+      value_range_filter_to_human filter_hash[:range]
     else
+      f = filter_hash
       f[:numeric_value] || f[:category] ||
         (f[:metric_value] && metric_value_options.key(f[:metric_value]))
     end
+  end
+
+  def value_range_filter_to_human range
+    "%s < x < %s " % [number_to_human(range[:from]), number_to_human(range[:to])]
   end
 
   def chart_load_url
