@@ -44,7 +44,7 @@ format :html do
   end
 
   view :edit_year, cache: :never, perms: :update do
-    wrap { edit_year_form + render_titled(hide: :menu) }
+    wrap { [edit_year_form, render_titled(hide: :menu)] }
   end
 
   def standard_cancel_button args={}
