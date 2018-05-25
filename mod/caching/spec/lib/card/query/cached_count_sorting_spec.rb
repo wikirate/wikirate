@@ -12,7 +12,7 @@ RSpec.describe Card::Query::CachedCountSorting do
 
     it "joins with cached counts table" do
       is_expected.to include(
-        "JOIN counts counts_table ON c1.id = counts_table.left_id AND "\
+        "JOIN counts counts_table ON c0.id = counts_table.left_id AND "\
         "counts_table.right_id = #{Card::WikirateCompanyID}"
       )
     end
