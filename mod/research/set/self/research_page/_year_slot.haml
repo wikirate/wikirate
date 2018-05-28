@@ -34,7 +34,7 @@
                   -else
                     %i
                       add answer
-  - if existing_answer?
+  - if existing_answer? && researchable_answer?
     %div
       = nest answer_card, view: :year_edit_link
   -#- if project?

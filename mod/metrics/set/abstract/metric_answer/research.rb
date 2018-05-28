@@ -14,8 +14,9 @@ format :html do
     link_to_view :edit_year, fa_icon(:edit),
                  path: { RESEARCH_PARAMS_KEY => research_params },
                  remote: true,
-                 class: "slotter",
-                 "data-slot-selector": ".card-slot.titled-view.TYPE-metric_value"
+                 class: "slotter _edit-year-link",
+                 "data-slot-selector": ".card-slot.left_research_side-view > div > "\
+                                       ".card-slot.TYPE-metric_value"
   end
 
   view :edit do
@@ -26,6 +27,7 @@ format :html do
   end
 
   view :research_edit_form, cache: :never, perms: :update, tags: :unknown_ok do
+    return not_researchable unless card.metric_card.researchable?
     # voo.editor = :inline_nests
     with_nest_mode :edit do
       wrap do
@@ -37,6 +39,11 @@ format :html do
         end
       end
     end
+  end
+
+  def not_researchable
+    "Answers to this metric cannot be researched directly. "\
+    "They are calculated from other answers."
   end
 
   view :research_form, cache: :never, perms: :update, tags: :unknown_ok do
@@ -53,6 +60,7 @@ format :html do
   end
 
   def edit_year_form
+    return not_researchable unless card.metric_card.researchable?
     research_form(:update) { haml :edit_year_form  }
   end
 

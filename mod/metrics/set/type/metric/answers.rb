@@ -43,9 +43,13 @@ def metric_value_query
   { left: { left_id: id }, type_id: MetricValueID }
 end
 
+def researchable?
+  researched? || hybrid?
+end
+
 # note: can return True for anonymous user if answer is generally researchable
 def user_can_answer?
-  return unless researched? || hybrid?
+  return unless researchable?
   # TODO: add metric designer respresentative logic here
   is_admin = Auth.always_ok?
   is_owner = Auth.current.id == creator.id

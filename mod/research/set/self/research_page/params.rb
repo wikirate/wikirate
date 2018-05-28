@@ -156,8 +156,12 @@ format :html do
     answer? && answer_card.known?
   end
 
+  def researchable_answer?
+    answer_card&.metric_card&.researchable?
+  end
+
   def existing_answer_with_source?
-    existing_answer? &&
+    existing_answer? && researchable_answer? &&
       (!answer_card.hybrid? || answer_card.calculation_overridden?)
   end
 
