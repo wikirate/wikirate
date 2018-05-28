@@ -14,8 +14,9 @@ format :html do
     link_to_view :edit_year, fa_icon(:edit),
                  path: { RESEARCH_PARAMS_KEY => research_params },
                  remote: true,
-                 class: "slotter",
-                 "data-slot-selector": ".card-slot.titled-view.TYPE-metric_value"
+                 class: "slotter _edit-year-link",
+                 "data-slot-selector": ".card-slot.left_research_side-view > div > "\
+                                       ".card-slot.TYPE-metric_value"
   end
 
   view :edit do
