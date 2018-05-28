@@ -26,6 +26,7 @@ format :html do
   end
 
   view :research_edit_form, cache: :never, perms: :update, tags: :unknown_ok do
+    return not_researchable unless card.metric_card.researchable?
     # voo.editor = :inline_nests
     with_nest_mode :edit do
       wrap do
@@ -37,6 +38,11 @@ format :html do
         end
       end
     end
+  end
+
+  def not_researchable
+    "Answers to this metric cannot be researched directly. "\
+    "They are calculated from other answers."
   end
 
   view :research_form, cache: :never, perms: :update, tags: :unknown_ok do
@@ -53,6 +59,7 @@ format :html do
   end
 
   def edit_year_form
+    return not_researchable unless card.metric_card.researchable?
     research_form(:update) { haml :edit_year_form  }
   end
 
