@@ -46,9 +46,13 @@ describe Card::Metric do
   end
 
   describe "#create" do
-    subject { Card["MD+MT"] }
+    let(:metric) { Card["MD+MT"] }
+    let(:value) { metric.field("SPECTRE").field("2000") }
+    let(:source_link) do
+      Card["MD+MT+Death Star+2000+source"].item_cards.first.field("link")
+    end
 
-    it "small API test" do
+    def create_metric
       Card::Auth.as_bot do
         source = create_page url: "http://example.com"
         described_class.create name: "MD+MT", formula: "1", random_source: true do
@@ -56,19 +60,20 @@ describe Card::Metric do
           Death_Star 2000 => { value: 50, source: "[[#{source.name}]]" }
         end
       end
-      is_expected.to be_truthy
-      expect(subject.type_id).to eq Card::MetricID
-      expect(subject.field(:formula).content).to eq "1"
-      expect(subject.metric_type).to eq "Researched"
+    end
 
-      value = subject.field("SPECTRE").field("2000")
+    it "small API test" do
+      expect(metric).to be_truthy
+      expect(metric.type_id).to eq Card::MetricID
+      expect(metric.field(:formula).content).to eq "1"
+      expect(metric.metric_type).to eq "Researched"
+
       expect(value).to be_truthy
       expect(value.type_id).to eq Card::MetricAnswerID
       expect(value.field("value").content).to eq "50"
       expect(Card["MD+MT+SPECTRE+2001+value"].content).to eq "100"
 
-      sl = Card["MD+MT+Death Star+2000+source"].item_cards.first.field("link")
-      expect(sl.content).to eq("http://example.com")
+      expect(source_link.content).to eq("http://example.com")
       expect(Card["MD+MT+Death Star+2000+value"].content).to eq "50"
     end
 
@@ -94,7 +99,7 @@ describe Card::Metric do
       end
     end
 
-    it "creates relationship metric" do
+    def create_relationship_metric
       Card::Auth.as_bot do
         described_class.create name: "Jedi+owns",
                                type: :relationship,
@@ -104,6 +109,11 @@ describe Card::Metric do
                             "Death_Star" => "5" }
         end
       end
+    end
+
+    it "creates relationship metric" do
+      create_relationship_metric
+
       expect(Card["Jedi+owns"].type_id)
         .to eq Card::MetricID
       expect(Card["Jedi+owns+SPECTRE+2000"].type_name)
