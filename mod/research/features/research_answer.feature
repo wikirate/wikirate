@@ -4,7 +4,7 @@ Feature: Research answer
 
   Background:
     Given I am signed in as Joe User
-    And I go to  "/new metric_value"
+    And I go to  "/new metric_answer"
     And I fill in autocomplete "metric" with "Joe User+researched"
     And I fill in autocomplete "wikirate_company" with "Apple Inc."
     And I select year "2009"
