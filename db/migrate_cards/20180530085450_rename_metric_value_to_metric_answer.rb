@@ -2,7 +2,6 @@
 
 class RenameMetricValueToMetricAnswer < Card::Migration
   def up
-    update_card :metric_value,
-                name: "Metric Answer", codename: "metric_answer"
+    update_card :metric_value, name: "Answer", codename: "metric_answer"
   end
 end

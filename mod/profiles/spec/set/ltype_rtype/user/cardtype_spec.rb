@@ -1,7 +1,7 @@
 RSpec.describe Card::Set::LtypeRtype::User::Cardtype do
   describe "view :contribution_report" do
     def report_url report
-      "/Joe_User+Metric_Answer?report_tab=#{report}&view=contribution_report"
+      "/Joe_User+Answer?report_tab=#{report}&view=contribution_report"
     end
 
     example "metric values report for Joe User" do
