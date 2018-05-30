@@ -19,15 +19,15 @@ describe Card::Set::TypePlusRight::WikirateCompany::Image::AwardBadges do
       end
     end
 
-    context "reached bronze threshold" do
+    context "when reached bronze threshold" do
       it_behaves_like "award badges", 1, "Logo Adder"
     end
 
-    context "reached silver threshold" do
+    context "when reached silver threshold" do
       it_behaves_like "award badges", 2, "How Lo can you Go"
     end
 
-    context "reached gold threshold" do
+    context "when reached gold threshold" do
       it_behaves_like "award badges", 3, "Logo and Behold"
     end
   end

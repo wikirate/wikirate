@@ -1,15 +1,21 @@
 
-describe Card::Set::TypePlusRight::MetricAnswer::Value do
-  before do
-    login_as "joe_user"
-    @metric = sample_metric
-    @metric.update_attributes! subcards:
-      { "+Unit" => { content: "Imperial military units",
-                     type_id: Card::PhraseID } }
-    @company = sample_company
+RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Value do
+  let(:metric) do
+    m = sample_metric
+    Card::Auth.as_bot do
+      m.update_attributes! subcards:
+            { "+Unit" => { content: "Imperial military units",
+                           type_id: Card::PhraseID } }
+    end
+    m
+  end
+
+  let(:company) { sample_company }
+
+  let(:metric_answer) do
     subcards = {
-      "+metric"  => { content: @metric.name },
-      "+company" => { content: "[[#{@company.name}]]",
+      "+metric"  => { content: metric.name },
+      "+company" => { content: "[[#{company.name}]]",
                       type_id: Card::PointerID },
       "+value"   => { content: "I'm fine, I'm just not happy.",
                       type_id: Card::PhraseID },
@@ -19,41 +25,39 @@ describe Card::Set::TypePlusRight::MetricAnswer::Value do
                       { content: "http://www.google.com/?q=everybodylies",
                         type_id: Card::PhraseID } } } }
     }
-    @metric_answer = Card.create! type_id: Card::MetricAnswerID,
-                                 subcards: subcards
-    @card = @metric_answer.fetch trait: :value
+    Card::Auth.as_bot do
+      Card.create! type_id: Card::MetricAnswerID, subcards: subcards
+    end
   end
 
-  describe "#metric" do
-    subject { @metric_answer.fetch(trait: :value).metric }
-
-    it { is_expected.to eq @metric.name }
+  def value_card
+    metric_answer.fetch(trait: :value)
   end
 
-  describe "#company" do
-    subject { @metric_answer.fetch(trait: :value).company }
-
-    it { is_expected.to eq @company.name }
+  specify "#metric" do
+    expect(value_card.metric).to eq metric.name
   end
 
-  describe "#year" do
-    subject { @metric_answer.fetch(trait: :value).year }
+  specify "#company" do
+    expect(value_card.company).to eq company.name
+  end
 
-    it { is_expected.to eq "2015" }
+  specify "#year" do
+    expect(value_card.year).to eq "2015"
   end
 
   context "when updated" do
-    METRIC = "Jedi+disturbances in the Force"
-    SCORER =  "Joe User"
-    COMPANY = "Death Star"
-    YEAR = "1977"
+    let(:metric) { "Jedi+disturbances in the Force" }
+    let(:scorer) { "Joe User" }
+    let(:company) { "Death Star" }
+    let(:year) { "1977" }
 
-    let(:researched_value_name) { "#{METRIC}+#{COMPANY}+#{YEAR}+value" }
-    let(:scored_value_name) { "#{METRIC}+#{SCORER}+#{COMPANY}+#{YEAR}+value" }
+    let(:researched_value_name) { "#{metric}+#{company}+#{year}+value" }
+    let(:scored_value_name) { "#{metric}+#{scorer}+#{company}+#{year}+value" }
 
     def scored_value
-      Answer.where(metric_name: "#{METRIC}+#{SCORER}", company_name: COMPANY,
-                   year: YEAR.to_i)
+      Answer.where(metric_name: "#{metric}+#{scorer}", company_name: company,
+                   year: year.to_i)
             .take.value
     end
 

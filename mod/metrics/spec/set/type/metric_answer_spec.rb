@@ -34,7 +34,7 @@ RSpec.describe Card::Set::Type::MetricAnswer do
     end
   end
 
-  context "value type is Money" do
+  context "when value type is Money" do
     include_examples "create answer", :money, "33", "invalid"
 
     describe "view :concise" do
@@ -60,11 +60,11 @@ RSpec.describe Card::Set::Type::MetricAnswer do
     end
   end
 
-  context "value type is Category" do
+  context "when value type is Category" do
     include_examples "create answer", :category, "yes", "invalid"
   end
 
-  context "value type is Free Text" do
+  context "when value type is Free Text" do
     let(:source) { sample_source }
     let(:new_answer) do
       create_answer content: "hoi polloi", year: "2015", source: source.name

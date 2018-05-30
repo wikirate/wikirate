@@ -17,15 +17,15 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Value::AwardBadges do
       end
     end
 
-    context "reached bronze create threshold" do
+    context "when reached bronze create threshold" do
       it_behaves_like "create badges", 1, "Researcher"
     end
 
-    context "reached silver create threshold" do
+    context "when reached silver create threshold" do
       it_behaves_like "create badges", 2, "Research Pro"
     end
 
-    context "reached gold create threshold" do
+    context "when reached gold create threshold" do
       it_behaves_like "create badges", 3, "Research Master"
     end
   end
@@ -37,15 +37,15 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Value::AwardBadges do
       answer_card(count).value_card.update_attributes! content: count
     end
 
-    context "reached bronze update threshold" do
+    context "when reached bronze update threshold" do
       it_behaves_like "answer badges", 1, "Answer Chancer"
     end
 
-    context "reached silver create threshold" do
+    context "when reached silver create threshold" do
       it_behaves_like "answer badges", 2, "Answer Enhancer"
     end
 
-    context "reached gold create threshold" do
+    context "when reached gold create threshold" do
       it_behaves_like "answer badges", 3, "Answer Advancer"
     end
   end

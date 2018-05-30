@@ -12,15 +12,15 @@ describe Card::Set::TypePlusRight::MetricAnswer::Value::AwardBadges do
                         .update_attributes! content: "comment"
     end
 
-    context "reached bronze threshold" do
+    context "when reached bronze threshold" do
       it_behaves_like "answer badges", 1, "Commentator"
     end
 
-    context "reached silver threshold" do
+    context "when reached silver threshold" do
       it_behaves_like "answer badges", 2, "Commentary Team"
     end
 
-    context "reached gold threshold" do
+    context "when reached gold threshold" do
       it_behaves_like "answer badges", 3, "Expert Commentary"
     end
   end

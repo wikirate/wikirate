@@ -1,74 +1,55 @@
+# -*- encoding : utf-8 -*-
+
 RSpec.describe Card::Set::Type::MetricAnswer::Views do
-  # FIXME: not the right rspec syntax
-  # humanized_number doesn't change anything
   describe "#humanized_number" do
-    subject do
-      @number = Card["Jedi+deadliness+Death Star+1977"].format
-                                                       .humanized_number(@number)
+    def humanize number
+      Card["Jedi+deadliness+Death Star+1977"].format.humanized_number(number)
     end
 
     specify do
-      @number = "1_000_001"
-      expect { subject }.to change { @number }.from("1_000_001").to("1M")
+      expect(humanize("1_000_001")).to eq "1M"
     end
     specify do
-      @number = "0.00000123345"
-      expect { subject }.to change { @number }.from("0.00000123345").to("0.00000123")
+      expect(humanize("0.00000123345")).to eq "0.00000123"
     end
     specify do
-      @number = "0.001200"
-      expect { subject }.to change { @number }.from("0.001200").to("0.0012")
+      expect(humanize("0.001200")).to eq "0.0012"
     end
     specify do
-      @number = "123.4567"
-      expect { subject }.to change { @number }.from("123.4567").to("123.5")
+      expect(humanize("123.4567")).to eq "123.5"
     end
   end
 
   describe "view :concise" do
-    context "multi category metric" do
+    context "with multi category metric" do
       subject do
-        render_view :concise,
-                    name: "Joe User+big multi+Sony Corporation+2010"
+        render_view :concise, name: "Joe User+big multi+Sony Corporation+2010"
       end
 
       it "has comma separated list of values" do
-        is_expected.to have_tag "span.metric-value" do
-          with_text "1, 2"
-        end
+        is_expected.to have_tag "span.metric-value", "1, 2"
       end
       it "has correct year" do
-        is_expected.to have_tag "span.metric-year" do
-          with_text "2010 = "
-        end
+        is_expected.to have_tag "span.metric-year", "2010 = "
       end
       it "has no unit" do
-        is_expected.to have_tag "span.metric-unit" do
-          with_text "  "
-        end
+        is_expected.to have_tag "span.metric-unit", "  "
       end
     end
 
-    context "single category metric" do
+    context "with single category metric" do
       subject do
-        render_view :concise,
-                    name: "Joe User+big single+Sony Corporation+2010"
+        render_view :concise, name: "Joe User+big single+Sony Corporation+2010"
       end
 
       it "has value" do
-        is_expected.to have_tag "span.metric-value" do
-          with_text "4"
-        end
+        is_expected.to have_tag "span.metric-value", "4"
       end
       it "has correct year" do
-        is_expected.to have_tag "span.metric-year" do
-          with_text "2010 = "
-        end
+        is_expected.to have_tag "span.metric-year", "2010 = "
       end
       it "has no unit" do
-        is_expected.to have_tag "span.metric-unit" do
-          with_text "  "
-        end
+        is_expected.to have_tag "span.metric-unit", "  "
       end
     end
   end
