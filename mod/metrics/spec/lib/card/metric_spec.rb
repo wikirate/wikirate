@@ -63,6 +63,8 @@ describe Card::Metric do
     end
 
     it "small API test" do
+      create_metric
+
       expect(metric).to be_truthy
       expect(metric.type_id).to eq Card::MetricID
       expect(metric.field(:formula).content).to eq "1"
