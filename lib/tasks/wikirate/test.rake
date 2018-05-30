@@ -34,7 +34,7 @@ namespace :wikirate do
         puts "restart task in #{env} environment"
         task = "#{task}\\[#{args.to_a.join(',')}\\]" if args.to_a.present?
         execute_command "rake #{task}", env
-      else
+      elsif block_given?
         yield
       end
     end

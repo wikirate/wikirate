@@ -149,7 +149,7 @@ format :html do
     end
   end
 
-  view :metric_value_sublist do
+  view :metric_answer_sublist do
     card.variant = voo.structure if voo.structure
     wrap do
       with_paging do
@@ -168,7 +168,7 @@ format :html do
   end
 
   def self.define_tab_listing_where_applicable cardtype
-    return if cardtype.in? [:metric_value, :wikirate_company, :wikirate_topic]
+    return if cardtype.in? [:metric_answer, :wikirate_company, :wikirate_topic]
     view "#{cardtype}_sublist" do
       card.variant = voo.structure if voo.structure
       default_listing
@@ -182,7 +182,7 @@ format :html do
     :source,
     :wikirate_company,
     :wikirate_topic,
-    :metric_value
+    :metric_answer
   ].each do |cardtype|
     view "#{cardtype}_list" do
       listing = render!("#{cardtype}_sublist".to_sym)

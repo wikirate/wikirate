@@ -87,7 +87,7 @@ class Answer
 
     def refresh_all fields
       count = 0
-      Card.where(type_id: Card::MetricValueID).pluck_in_batches(:id) do |batch|
+      Card.where(type_id: Card::MetricAnswerID).pluck_in_batches(:id) do |batch|
         count += batch.size
         puts "#{batch.first} - #{count}"
         refresh(batch, *fields)

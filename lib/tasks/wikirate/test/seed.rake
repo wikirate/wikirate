@@ -34,8 +34,8 @@ namespace :wikirate do
           Rake::Task["wikirate:test:dump"].invoke(migrated_dump_path)
           Card::Cache.reset_all
           ActiveRecord::Base.descendants.each{ |c| c.reset_column_information }
-          Rake::Task["wikirate:test:seed:update"].invoke
         end
+        ensure_env :test, "wikirate:test:seed:update"
       end
 
       desc "add updated seed data"

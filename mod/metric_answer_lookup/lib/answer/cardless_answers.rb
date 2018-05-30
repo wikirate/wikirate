@@ -16,7 +16,7 @@ class Answer
     def virtual_answer_card name=nil, val=nil
       name ||= [record_name, year.to_s]
       val ||= value
-      Card.new(name: name, type_id: Card::MetricValueID).tap do |card|
+      Card.new(name: name, type_id: Card::MetricAnswerID).tap do |card|
         card.define_singleton_method(:value) { val }
         # card.define_singleton_method(:updated_at) { updated_at }
         card.define_singleton_method(:value_card) do
@@ -32,7 +32,7 @@ class Answer
 
     def calculated_answer metric_card, company, year, value
       ensure_record metric_card, company
-      @card = virtual_answer_card metric_card.metric_value_name(company, year), value
+      @card = virtual_answer_card metric_card.metric_answer_name(company, year), value
       refresh
       update_cached_counts
       self

@@ -13,15 +13,15 @@ RSpec.describe Card::Set::Type::Metric::AwardBadges do
                           type: :researched
     end
 
-    context "reached bronze threshold" do
+    context "when reached bronze threshold" do
       it_behaves_like "award badges", 1, "Metric Creator"
     end
 
-    context "reached silver threshold" do
+    context "when reached silver threshold" do
       it_behaves_like "award badges", 2, "Metric Tonnes"
     end
 
-    context "reached gold threshold" do
+    context "when reached gold threshold" do
       it_behaves_like "award badges", 3, "Research Agenda-Setter"
     end
   end

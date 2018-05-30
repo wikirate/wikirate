@@ -2,7 +2,7 @@ require_relative "../../../../test/shared_data/samples"
 include SharedData::Samples
 
 When(/^I research answer "([^"]*)" for year "([^"]*)"$/) do |answer, year|
-  visit path_to("new metric_value")
+  visit path_to("new metric_answer")
   fill_autocomplete("metric", with: "Joe User+researched")
   fill_autocomplete("wikirate_company", with: "Apple Inc")
   select_year year

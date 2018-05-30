@@ -12,7 +12,7 @@ def save_in_session_card save: false, duplicate: false
 end
 
 def already_suggested? answer
-  Card.fetch(answer, new: { type_id: MetricValueID }).already_suggested?(name)
+  Card.fetch(answer, new: { type_id: MetricAnswerID }).already_suggested?(name)
 end
 
 def add_possible_source company, save
@@ -27,7 +27,7 @@ format :html do
       voo.type = "source"
 
       card_form :create, "main-success" => "REDIRECT",
-                         "data-form-for" => "new_metric_value",
+                         "data-form-for" => "new_metric_answer",
                          class: "slotter new-view TYPE-source" do
         output [
           new_research_hidden,
@@ -43,7 +43,7 @@ format :html do
   end
 
   def new_research_hidden
-    hidden_tags success: { id: answer, type_id: MetricValueID,
+    hidden_tags success: { id: answer, type_id: MetricAnswerID,
                            soft_redirect: true, view: :new_sources },
                 card: { subcards: { "+company": { content: Env.params[:company] } } },
                 answer: answer,
