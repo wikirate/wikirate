@@ -63,7 +63,7 @@ describe Card::Metric do
 
       value = subject.field("SPECTRE").field("2000")
       expect(value).to be_truthy
-      expect(value.type_id).to eq Card::MetricValueID
+      expect(value.type_id).to eq Card::MetricAnswerID
       expect(value.field("value").content).to eq "50"
       expect(Card["MD+MT+SPECTRE+2001+value"].content).to eq "100"
 
@@ -107,7 +107,7 @@ describe Card::Metric do
       expect(Card["Jedi+owns"].type_id)
         .to eq Card::MetricID
       expect(Card["Jedi+owns+SPECTRE+2000"].type_name)
-        .to eq "Metric value"
+        .to eq "Metric Answer"
       expect(Card["Jedi+owns+SPECTRE+2000+Los Pollos Hermanos"].type_name)
         .to eq "Relationship Answer"
       expect(Card["Jedi+owns+SPECTRE+2000+Los Pollos Hermanos+value"].content)

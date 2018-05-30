@@ -108,5 +108,9 @@ class Answer
       return unless (vc = card.value_card)
       vc.updated_at && vc.updated_at > vc.created_at
     end
+
+    def fetch_calculated_value
+      card.try(:calculated_value)
+    end
   end
 end

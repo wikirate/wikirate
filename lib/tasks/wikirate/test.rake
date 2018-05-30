@@ -35,7 +35,7 @@ namespace :wikirate do
         task = "#{task}\\[#{args.to_a.join(',')}\\]" if args.to_a.present?
         execute_command "rake #{task}", env
       else
-        yield
+        yield if block_given?
       end
     end
 

@@ -11,7 +11,7 @@ describe Card::Set::Type::User::BadgeCount do
 
   it_behaves_like "badge count", 15, 6, 5, 4 do
     def badge_count level=nil
-      Card["Big Brother+Metric Values+badges earned"].badge_count level
+      Card["Big Brother+Metric Answer+badges earned"].badge_count level
     end
   end
 end

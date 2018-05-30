@@ -75,7 +75,7 @@ format :html do
 
   def contribution_counts member
     CONTRIBUTION_CATEGORIES.map do |category|
-      card.left.contribution_count member.name, :metric_value, category
+      card.left.contribution_count member.name, :metric_answer, category
     end
   end
 end
