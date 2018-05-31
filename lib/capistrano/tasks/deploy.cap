@@ -43,6 +43,7 @@ namespace :deploy do
     end
   end
 
+  # TODO: update to use https://github.com/capistrano/file-permissions
   desc "Set www-data permissions on config.ru / log"
   after :updated, :deploy_chown do
     on roles(:app) do
