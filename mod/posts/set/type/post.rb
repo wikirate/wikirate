@@ -14,8 +14,7 @@ format :html do
       :wikirate_company,
       :wikirate_topic,
       :project,
-      :body,
-      :discussion
+      :body
     ]
   end
 
