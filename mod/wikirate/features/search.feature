@@ -4,8 +4,7 @@ Feature: search feature
 
   Scenario: quick search
     Given I go to the homepage
-    And I fill in "query_keyword" with "Jedi"
-    And I press enter to search
+    And I search for "Jedi" using the navbox
     Then I should see "darkness rating"
     When I click on "2"
     Then I should see "deadliness"

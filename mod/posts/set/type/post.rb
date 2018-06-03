@@ -14,16 +14,11 @@ format :html do
       :wikirate_company,
       :wikirate_topic,
       :project,
-      :body,
-      :discussion
+      :body
     ]
   end
 
-  view :rich_header_body do
-    output [wrap_with(:h3, render_title),
-            link_to_card(card.creator),
-            render_created_at]
-  end
+  view :rich_header_body, template: :haml
 
   view :open_content do
     two_column_layout 7, 5
@@ -38,9 +33,15 @@ format :html do
     %i[wikirate_company wikirate_topic project]
   end
 
+  def tab_options
+    tab_list.each_with_object({}) do |tab, hash|
+      hash[tab] = { count: card.send("#{tab}_card").count }
+    end
+  end
+
   %i[wikirate_company wikirate_topic project].each do |codename|
     view :"#{codename}_tab" do
-      field_nest codename, items: { view: :thin_listing }
+      field_nest codename, items: { view: :listing }
     end
   end
 

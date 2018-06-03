@@ -1,8 +1,9 @@
 include_set Abstract::FilterHelper
 
-def filter_hash with_chart_filter=false
+def filter_hash with_select_filter=true
   filter = super()
-  with_chart_filter ? chart_filter_params : filter
+  return filter unless with_select_filter && chart_params[:select_filter]
+  filter.merge chart_params[:select_filter]
 end
 
 def chart_params
@@ -47,7 +48,7 @@ format do
   end
 
   def chart_filter_hash
-    card.filter_hash(zoom_in?)
+    card.chart_filter_params.present? ? card.chart_filter_params : card.filter_hash(false)
   end
 
   def zoom_in?
@@ -76,24 +77,26 @@ format :html do
   end
 
   def value_filter_text
-    mv = metric_value_filter
-    return unless mv.present?
-    if mv[:range]
-      "#{mv[:range][:from]} < x < #{mv[:range][:to]}"
+    return "Researched" if filter_hash.empty?
+    value_filter_to_human
+  end
+
+  def value_filter_to_human
+    if filter_hash[:range]
+      value_range_filter_to_human filter_hash[:range]
     else
-      mv[:numeric_value] || mv[:category]
+      f = filter_hash
+      f[:numeric_value] || f[:category] ||
+        (f[:metric_value] && metric_value_options.key(f[:metric_value]))
     end
   end
 
-  def metric_value_filter
-    filter_hash(false).slice(:numeric_value, :category, :range)
+  def value_range_filter_to_human range
+    "%s < x < %s " % [number_to_human(range[:from]), number_to_human(range[:to])]
   end
 
   def chart_load_url
-    path_opts = { view: :vega, format: :json,
-                  filter: filter_hash(false),
-                  chart: chart_params }
-    path path_opts
+    path view: :vega, format: :json, filter: filter_hash(false), chart: chart_params
   end
 
   def show_chart?
@@ -112,12 +115,11 @@ format :html do
   end
 
   def zoom_out_path_opts
-    { chart: chart_params[:zoom_out],
-      filter: filter_hash(false) }
+    chart_params[:zoom_out]
   end
 
   def zoomed_in?
-    chart_params.present?
+    chart_params.present? && chart_params[:zoom_level].to_i.positive?
   end
 end
 

@@ -294,6 +294,10 @@ And(/^I accept alert$/) do
 end
 
 When(/^I select year "(.*)"$/) do |year|
+  select_year year
+end
+
+def select_year year
   selector = %{a:contains('#{year}')}
   page.execute_script "document.location = $(\"#{selector}\").attr('href')"
 end

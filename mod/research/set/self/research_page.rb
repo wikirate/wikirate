@@ -39,8 +39,9 @@ format :html do
       tabs["View Source"] = view_source_tab hide: hide_view_source_tab?
     end
     tabs["Metric details"] = metric_details_tab if metric?
-    tabs["Help"] = nest :how_to_research, view: :core
-    static_tabs tabs, active_tab
+    tabs['Need Help? <span class="badge badge-danger">New</span>'] =
+      nest :how_to_research, view: :content
+    static_tabs tabs, active_tab, "tabs", pane: { class: "p-3" }
   end
 
   def cite_mode?
@@ -118,6 +119,7 @@ format :html do
                    "data-url": research_url,
                    "data-key": type,
                    "data-slot-selector": ".card-slot.slot_machine-view",
+                   "data-remote": true,
                    placeholder: type.to_s.capitalize
   end
 

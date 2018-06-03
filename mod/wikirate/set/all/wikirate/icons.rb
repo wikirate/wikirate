@@ -9,7 +9,7 @@ ICON_MAP = {
   details: :info,
   source: :public,
   score: :adjust,
-  year: :calendar,
+  year: [:calendar, { library: :font_awesome }],
   research_group: [:users, { library: :font_awesome }],
   contributions: [:plug, { library: :font_awesome }],
   activity: :directions_run
@@ -17,6 +17,7 @@ ICON_MAP = {
 
 format :html do
   def icon_map key
-    ICON_MAP[key]
+    val = ICON_MAP[key]
+    val.is_a?(Array) ? val.map(&:clone) : val
   end
 end

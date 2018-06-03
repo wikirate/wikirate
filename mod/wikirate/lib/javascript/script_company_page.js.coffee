@@ -39,7 +39,7 @@ showFakeLoader = ->
     bgColor: 'rgb(255,255,255,0.80)' #Hex, RGB or RGBA colors
   #imagePath:"yourPath/customizedImage.gif" //If you want can you insert your custom image
   return
-History = window.History # js include in standard head extras
+
 decko.slotReady (slot) ->
   if (slot.hasClass("TYPE-company") || slot.hasClass("TYPE-topic")) &&
       slot.hasClass("open-view") && slot.hasClass("ALL")
@@ -65,7 +65,7 @@ decko.slotReady (slot) ->
     if href == undefined
       return true
     $('#fakeLoader').fadeIn()
-    History.pushState(null, null, window.location.pathname + "?tab=" + $this.data("tab-name"))
+    history.pushState(null, null, window.location.pathname + "?tab=" + $this.data("tab-name"))
     $.get loadurl, (data) ->
       $(targ).html data
       $(targ).trigger('slotReady')

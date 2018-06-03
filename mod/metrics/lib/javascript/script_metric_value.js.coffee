@@ -26,23 +26,6 @@ $.extend wikirate,
 #      $form_slot.prepend(xhr.responseText)
 #    )
 
-  handleYearData: (ele, sourceYear) ->
-    $input = ele.find('.year input#pointer_item')
-    return unless $input.exists()
-    inputYear = $input.val()
-    NaNi = !isNaN(sourceYear)
-    updateInput = ->
-      ele.find('.year input#pointer_item').val(sourceYear) if NaNi
-    updateInput() if inputYear.trim() == ""
-    if inputYear.trim() != "" && NaNi && (parseInt(inputYear) != sourceYear)
-      message = 'Note: This source is for ' + inputYear +
-        ' Would you like to change the year of this' +
-        " answer to #{sourceYear}?"
-      response = window.confirm(message)
-      if response
-        updateInput()
-
-
   valueChecking: (ele, action) ->
     path = encodeURIComponent(ele.data('path'))
     action = '?set_flag=' + action
