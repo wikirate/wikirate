@@ -98,7 +98,13 @@ format :html do
     @research_params ||=
       inherit(:research_params) ||
       Env.params[RESEARCH_PARAMS_KEY]&.to_unsafe_h ||
-      { metric: card.metric, company: card.company, year: card.year }
+      default_research_params
+  end
+
+  def default_research_params
+    hash = { metric: card.metric, company: card.company, year: card.year }
+    hash[:project] = project if project.present?
+    hash
   end
 
   def research_form_success
