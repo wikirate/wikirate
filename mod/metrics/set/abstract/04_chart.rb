@@ -77,25 +77,26 @@ format :html do
   end
 
   def value_filter_text
-    mv = metric_value_filter
-    return unless mv.present?
-    if mv[:range]
-      "%s < x < %s " % [number_to_human(mv[:range][:from]),
-                       number_to_human(mv[:range][:to])]
+    return "Researched" if filter_hash.empty?
+    value_filter_to_human
+  end
+
+  def value_filter_to_human
+    if filter_hash[:range]
+      value_range_filter_to_human filter_hash[:range]
     else
-      mv[:numeric_value] || mv[:category]
+      f = filter_hash
+      f[:numeric_value] || f[:category] ||
+        (f[:metric_value] && metric_value_options.key(f[:metric_value]))
     end
   end
 
-  def metric_value_filter
-    filter_hash.slice(:numeric_value, :category, :range)
+  def value_range_filter_to_human range
+    "%s < x < %s " % [number_to_human(range[:from]), number_to_human(range[:to])]
   end
 
   def chart_load_url
-    path_opts = { view: :vega, format: :json,
-                  filter: filter_hash(false),
-                  chart: chart_params }
-    path path_opts
+    path view: :vega, format: :json, filter: filter_hash(false), chart: chart_params
   end
 
   def show_chart?
@@ -118,7 +119,7 @@ format :html do
   end
 
   def zoomed_in?
-    chart_params.present?
+    chart_params.present? && chart_params[:zoom_level].to_i.positive?
   end
 end
 
