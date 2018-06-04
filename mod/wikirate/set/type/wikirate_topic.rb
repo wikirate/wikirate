@@ -13,7 +13,7 @@ view :missing do
 end
 
 view :listing do
-  _render_content structure: "browse topic item"
+  render :listing_compact
 end
 
 view :listing_compact do
