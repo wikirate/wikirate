@@ -1,5 +1,7 @@
 include Set::Abstract::Calculation
 
+card_accessor :variables, type_id: Card::SessionID
+
 # <OVERRIDES>
 def rating?
   true

@@ -57,11 +57,11 @@ format :html do
     Card.fetch :metric, :browse_metric_filter
   end
 
-  view :edit_in_formula, tags: :unknown_ok do
-    with_hidden_subcard_content_slot { _render_editor }
+  view :edit_in_formula, tags: :unknown_ok, cache: :never do
+    variable_editor { _render_editor }
   end
 
-  def with_hidden_subcard_content_slot
+  def variable_editor
     wrap do
       @explicit_form_prefix = "card[subcards][#{card.name}]"
       reset_form
@@ -72,14 +72,9 @@ format :html do
   end
 
   view :edit_in_wikirating, tags: :unknown_ok do
-    with_hidden_subcard_content_slot { _render_weight_variable_editor }
-  end
-
-  view :weight_variable_editor, tags: :unknown_ok  do
-    filters = %i[score wiki_rating].map { |code| Card::Name[code] }
-    button = add_metric_button "_add-wikirating-variable",
-                               metric_type: filters
-    output [weight_variable_list, button]
+    variable_editor do
+      output [weight_variable_list, add_wikirate_variable_button]
+    end
   end
 
   def weight_variable_list
@@ -91,8 +86,7 @@ format :html do
 
   view :editor do
     return super() if card.skin_variables?
-    output [variables_table,
-            add_metric_button("_add-formula-variable")]
+    output [variables_table, add_formula_variable_button]
   end
 
   def variables_table
@@ -101,28 +95,37 @@ format :html do
           header: ["Metric", "Variable", "Example value"]
   end
 
-  def add_formula_metric_button
-    add_metric_button "add-formula-metric"
+  def add_formula_variable_button
+    add_variable_button "_add-formula-variable", slot_selector(:edit_in_formula)
   end
 
-  def add_metric_button klass, filters={}
+  def add_wikirate_variable_button
+    add_variable_button "_add-wikirating-variable", slot_selector(:edit_in_wikirating),
+                        metric_type: %i[score wiki_rating].map { |mt| Card::Name[mt] }
+  end
+
+  def slot_selector view
+    "#{card.patterns.first.safe_key}.#{view}-view"
+  end
+
+  def add_variable_button klass, slot_selector, filters={}
     wrap_with :span, class: "input-group" do
       button_tag class: "_add-metric-variable slotter #{klass}",
                  situation: "outline-secondary",
                  data: { toggle: "modal", target: "#modal-add-metric-slot" },
-                 href: add_metric_path(filters) do
+                 href: add_variable_path(slot_selector, filters) do
         fa_icon(:plus) + " add metric"
       end
     end
   end
 
-  def add_metric_path filters
+  def add_variable_path slot_selector, filters
     path layout: :simple_modal,
          view: :filter_items,
          item: implicit_item_view,
          filter_card: filter_card.name,
          item_selector: "thumbnail",
-         slot_selector: "#{card.patterns.first.safe_key}.edit_in_formula-view",
+         slot_selector: slot_selector,
          slot: { hide: :modal_footer },
          filter: initial_filters(filters)
   end

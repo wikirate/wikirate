@@ -76,7 +76,7 @@ def option_names
 end
 
 def answer
-  @answer ||= left&.answer
+  @answer ||= left.answer
 end
 
 format :html do

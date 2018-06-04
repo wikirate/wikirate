@@ -1,4 +1,4 @@
-include Abstract::Variable
+include_set Abstract::Variable
 include_set Abstract::Pointer
 include_set Abstract::MetricChild, generation: 1
 
@@ -25,7 +25,7 @@ format :html do
 
   view :editor do
     with_hidden_content do
-      render card.metric_card.formula_editor
+      _render card.metric_card.formula_editor
     end
   end
 
