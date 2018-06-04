@@ -92,6 +92,7 @@ namespace :wikirate do
           [[:all, :script],
            [:all, :style],
            [:script_html5shiv_printshiv]].each do |name_parts|
+            Card[*name_parts, :machine_output]&.delete
             Card[*name_parts].update_machine_output
             codename = "#{name_parts.join('_')}_output"
             Card[*name_parts, :machine_output].update_attributes!(
