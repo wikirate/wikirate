@@ -38,7 +38,3 @@ def created_query_variant user_id, variant=nil
     {}
   end
 end
-
-def contribution_report_title
-  "Metric values"
-end
