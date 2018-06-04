@@ -14,7 +14,7 @@
 # +checked_by but the requester stays in +check_requested_by.
 
 def unknown?
-  false
+  left.nil?
 end
 
 def user
@@ -76,7 +76,7 @@ def option_names
 end
 
 def answer
-  @answer ||= left.answer
+  @answer ||= left&.answer
 end
 
 format :html do
