@@ -1,5 +1,5 @@
 When(/^the submit button (should|should not) be disabled$/) do |should|
-  if should =~ /not/
+  if should.match?(/not/)
     expect(submit_button).not_to be_disabled
   else
     expect(submit_button).to be_disabled
@@ -17,7 +17,8 @@ end
 # assign metric weight via jQuery
 # (would be more idiomatic to use xpath)
 def assign_weight metric, weight
-  selector = "$('[data-card-name=\"#{metric}\"]').closest('tr').find('[name=\"pair_value\"]')"
+  selector = "$('[data-card-name=\"#{metric}\"]')" \
+             ".closest('tr').find('[name=\"pair_value\"]')"
   page.execute_script "#{selector}.val(#{weight});"
   page.execute_script "#{selector}.trigger('input');"
 end

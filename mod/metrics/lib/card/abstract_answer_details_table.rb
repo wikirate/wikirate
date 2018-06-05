@@ -57,7 +57,7 @@ class Card
       @format.card.metric_card.left
     end
 
-    def base_metric_value
+    def base_metric_answer
       base_metric_card.field(company).field(year)
     end
 

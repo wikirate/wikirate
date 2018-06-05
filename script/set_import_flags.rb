@@ -56,7 +56,7 @@ class ImportFlagUpdate
 
     def action_relation
       Card::Action.joins(JOIN_SQL)
-                  .where(WHERE_SQL, import_act_ids, Card::MetricValueID)
+                  .where(WHERE_SQL, import_act_ids, Card::MetricAnswerID)
     end
   end
 end

@@ -16,7 +16,7 @@ describe Card::Set::TypePlusRight::Project::Discussion::AwardBadges do
       end
     end
 
-    context "reached bronze threshold" do
+    context "when reached bronze threshold" do
       it_behaves_like "award badges", 2, "Project Q&#38;A"
     end
   end

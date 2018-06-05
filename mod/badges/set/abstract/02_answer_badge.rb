@@ -7,5 +7,5 @@ format :html do
 end
 
 def badge_type
-  :metric_value
+  :metric_answer
 end

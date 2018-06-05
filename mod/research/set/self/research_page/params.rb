@@ -183,7 +183,7 @@ format :html do
   end
 
   def answer_card
-    @sac ||= Card.fetch [metric, company, year.to_s], new: { type_id: MetricValueID }
+    @sac ||= Card.fetch [metric, company, year.to_s], new: { type_id: MetricAnswerID }
   end
 
   def metric_pinned?

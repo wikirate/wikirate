@@ -41,7 +41,7 @@ format :html do
 
   def sum_cell table_content
     if table_content.empty?
-      { content: sum_field } #, class: "hidden" }
+      { content: sum_field }
     else
       sum_field
     end

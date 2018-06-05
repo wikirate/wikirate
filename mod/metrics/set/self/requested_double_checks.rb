@@ -4,7 +4,7 @@ def wql_hash
   @wql_hash ||= begin
     answer_ids =
       Answer.where("check_requester <> '' AND checkers IS NULL").pluck(:answer_id)
-    { type_id: MetricValueID, id: answer_ids.unshift("in") }
+    { type_id: MetricAnswerID, id: answer_ids.unshift("in") }
   end
 end
 
