@@ -12,7 +12,7 @@ RSpec.describe Card::Set::LtypeRtype::User::Cardtype do
           with_tag "ul.nav.nav-tabs" do
             with_tag "li.contribution-report-title-box" do
               with_tag :a, with: { href: report_url(:badges) } do
-                with_tag "h5.contribution-report-title", "Metric values"
+                with_tag "h5.contribution-report-title", "Answers"
               end
             end
             with_tag "li.contribution-report-box.nav-item" do

@@ -41,11 +41,7 @@ RSpec.describe Card::Set::Type::Metric do
   end
 
   context "changing value type" do
-    context "from numeric" do
-      before do
-        login_as "joe_user"
-      end
-
+    context "from numeric", with_user: "Joe Admin" do
       let(:metric) { sample_metric(:number) }
 
       example "to free text" do

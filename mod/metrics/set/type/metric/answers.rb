@@ -85,7 +85,7 @@ end
 
 # TODO: adapt to Henry's value type API
 def categorical?
-  value_type_code.in? %i[category multicategory]
+  value_type_code.in? %i[category multi_category]
 end
 
 def multi_categorical?

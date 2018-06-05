@@ -26,8 +26,8 @@ RSpec.describe CompanyMatcher do
         .to eq "Samsung"
     end
 
-    it "maps Sony to Sony Corporation" do
-      expect(match("Sony")).to eq "Sony Corporation"
+    it "maps Sony to Sony Group" do
+      expect(match("Sony")).to eq "Sony Group"
     end
 
     it "maps Amazon to Amazon.com, Inc." do
@@ -49,7 +49,7 @@ RSpec.describe CompanyMatcher do
     end
 
     example "name in db if partial match" do
-      expect(match_type("Sony")).to eq "Sony Corporation"
+      expect(match_type("Sony")).to eq "Sony Group"
     end
 
     example "name in db if alias match" do
