@@ -75,7 +75,7 @@ namespace :wikirate do
             with_subitems = %w(*script *style *layout).include? setting
             import.items_of setting, subitems: with_subitems
           end
-          import.items_of :production_export, subitems: true
+          import.items_of :production_export, subitems: true, depth: 3
 
           # don't import table migrations
           # exclude = %w(20161005120800 20170118180006 20170210153241 20170303130557

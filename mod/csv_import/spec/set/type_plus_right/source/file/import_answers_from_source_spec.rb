@@ -141,8 +141,8 @@ RSpec.describe Card::Set::TypePlusRight::Source::File::ImportAnswersFromSource d
                  context: :info,
                  checked: true,
                  match: :partial,
-                 suggestion: "Sony Group",
-                 fields: ["2", "Sony", "Sony Group", "no"]
+                 suggestion: "Sony Corporation",
+                 fields: ["2", "Sony", "Sony Corporation", "no"]
         with_row index: 2,
                  context: :info,
                  checked: true,

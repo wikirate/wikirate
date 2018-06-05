@@ -123,7 +123,7 @@ RSpec.describe Card::Set::Abstract::Import::TableRowWithCompanyMapping do
     it "has correction field" do
       expect(field(:company_correction)[:content])
         .to have_tag :input, with: { name: "extra_data[0][corrections][company]",
-                                     value: "Sony Group" }
+                                     value: "Sony Corporation" }
     end
 
     it "has hidden match type field" do

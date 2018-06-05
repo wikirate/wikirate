@@ -12,8 +12,6 @@ RSpec.describe Card::Set::TypePlusRight::Metric::ValueType, with_user: "Joe Admi
     let(:metric) { Card["Jedi+Weapons"] }
     let(:value_type_card) { metric.value_type_card }
 
-    #before { login_as "joe_user" }
-
     context "some values do not fit the numeric type" do
       it "blocks type changing" do
         key = "#{metric.name}+#{sample_company.name}+2015".to_sym
@@ -24,14 +22,14 @@ RSpec.describe Card::Set::TypePlusRight::Metric::ValueType, with_user: "Joe Admi
 
     context "all values fit the numeric type" do
       it "updates the value type successfully" do
-        expect(type_change_for_value "65535", new_type, metric).to be_valid
+        expect(type_change_for_value("65535", new_type, metric)).to be_valid
         expect(metric.value_type).to eq(new_type)
       end
     end
 
     context 'some values are "unknown"' do
       it "updates the value type successfully" do
-        expect(type_change_for_value "unknown", new_type, metric).to be_valid
+        expect(type_change_for_value("unknown", new_type, metric)).to be_valid
         expect(metric.value_type).to eq(new_type)
       end
     end
