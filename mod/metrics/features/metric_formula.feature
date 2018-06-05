@@ -41,6 +41,6 @@ Feature: Edit metric formulas
     Then I should see "small multi"
     And I should see "big multi"
     And I check "Joe User+big multi"
-    And I click on  "Add Selected"
+    And I click on "Add Selected"
     Then I should see "M0"
     And I should see "M1"
