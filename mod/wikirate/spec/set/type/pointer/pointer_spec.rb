@@ -39,6 +39,7 @@ RSpec.describe Card::Set::Type::Pointer::Export do
 
     context "pointer card" do
       it "contains cards in the pointer card and its children" do
+        Card::Env.params[:max_export_depth] = 3
         json_export type: :pointer, content: [elbert.name, elbert_punchline.name]
 
         expect(json_export)
@@ -56,6 +57,7 @@ RSpec.describe Card::Set::Type::Pointer::Export do
       end
 
       it "handles multi level pointer cards" do
+        Card::Env.params[:max_export_depth] = 4
         json_export type: :pointer,
                     content: [elbert_container.name, elbert_punchline.name]
 
@@ -85,6 +87,7 @@ RSpec.describe Card::Set::Type::Pointer::Export do
 
     context "Skin card" do
       it "contains cards in the pointer card and its children" do
+        Card::Env.params[:max_export_depth] = 4
         expect(json_export(type: :skin, content: [elbert.name]))
           .to include(
             { name: "normal pointer",
@@ -103,6 +106,7 @@ RSpec.describe Card::Set::Type::Pointer::Export do
         elbert_punchline
         elbert_quote
 
+        Card::Env.params[:max_export_depth] = 4
         json_export(name: "search card", type: :search_type,
                     content: %({"left":"Elbert Hubbard"}))
         expect(json_export)
