@@ -72,16 +72,19 @@ format :html do
   end
 
   view :edit_in_wikirating, tags: :unknown_ok do
-    variable_editor do
-      output [weight_variable_list, add_wikirate_variable_button]
+    wrap do
+      with_nest_mode :normal do
+        output [weight_variable_list, add_wikirate_variable_button]
+      end
     end
   end
 
   def weight_variable_list
-    table_content = card.item_cards.map do |metric|
-      subformat(metric).weight_row
+    wrap_with :div, class: "weight-variable-list hidden" do
+      card.item_cards.map do |metric|
+        nest metric, view: :thumbnail_no_link
+      end
     end
-    table table_content, class: "weight-variable-list hidden"
   end
 
   view :editor do
@@ -131,7 +134,7 @@ format :html do
   end
 
   def initial_filters added_filters
-    { not_ids: card.item_ids.map(&:to_s).join(",") }.merge added_filters
+    { not_ids:   card.item_ids.map(&:to_s).join(",") }.merge added_filters
   end
 
   def variable_row item_name, index

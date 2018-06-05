@@ -1,51 +1,3 @@
-decko.editorContentFunctionMap['.pairs-editor'] = ->
-  hash = {}
-  @find('tbody').first().find('tr').each ->
-    cols = $(this).find('td')
-    if (key = $(cols[0]).data('key'))
-      hash[key] = $(cols[1]).find('input').val()
-  JSON.stringify(hash)
-
-$(window).ready ->
-  $('body').on 'input', '.metric-weight input', (_event) ->
-    result = tallyWeights $(this).closest('tbody')
-    updateWikiRatingSubmitButton $(this).closest('form.card-form'), result
-
-tallyWeights = (tbody) ->
-  result = 0
-  tbody.find('.metric-weight input').each ->
-    result += parseInt($(this).val())
-  tbody.find('.weight-sum').val result
-  result
-
-updateWikiRatingSubmitButton =(form, result) ->
-  form.find('button[type=submit]').prop('disabled', result != 100)
-
-$('body').on 'click', '._add-weight', (event) ->
-  url  = decko.rootPath + '/~' + $(this).data('metric-id')
-  params = { view: 'weight_row' }
-  $sum_row = $(".TYPE_PLUS_RIGHT-metric-formula.edit-view table.pairs-editor > tbody > tr:last")
-  $new_row = $("<tr></tr>")
-  $sum_row.before($new_row)
-  wikirate.loader($new_row, true).add()
-  $.ajax url, {
-    type : 'GET'
-    data : params
-    success : (data) ->
-      rows = $(".TYPE_PLUS_RIGHT-metric-formula.edit-view table.pairs-editor > tbody > tr")
-      new_row = $(rows[rows.length - 2])
-      $(new_row).html(data)
-      wikirate.initRowRemove()
-      if rows.size() == 2
-        rows.first().find('input').val(100)
-        $sum_row.find('td').removeClass('hidden')
-
-  }
-  add_metric_modal = $(this).closest('.modal')
-  add_metric_modal.modal('hide')
-  add_metric_modal.find('.modal-dialog > .modal-content').empty()
-
-
 $(document).ready ->
   $(".topic-list .RIGHT-topic").readmore(
     {
@@ -55,12 +7,9 @@ $(document).ready ->
       lessLink: '<a href="#"><small>View less</small></a>'
     })
 
+
 decko.slotReady (slot) ->
   slot.find('[data-tooltip="true"]').tooltip()
-
-  if slot.hasClass "edit_in_wikirating-view"
-    addMissingVariables slot
-    removeClass "hidden"
 
   if $(".new_tab_pane-view.METRIC_TYPE-formula").length > 0
     show = $(".card-editor.RIGHT-hybrid input[type='checkbox']").prop "checked"
@@ -70,6 +19,104 @@ decko.slotReady (slot) ->
     show = $(event.target).prop "checked"
     showResearchAttributes(show)
 
+  if slot.hasClass "edit_in_wikirating-view"
+    addMissingVariables slot
+
+# WikiRatings Formulae
+
+# WikiRating formulae are stored as a simple JSON hash:
+#
+# { metric_name: metric_weight }
+
+decko.editorContentFunctionMap['.pairs-editor'] = ->
+  JSON.stringify pairsEditorHash(this)
+
+pairsEditorHash = (table) ->
+  hash = {}
+  table.find("tbody tr").each ->
+    tr = $(this)
+    if key = tr.find(".metric-label .thumbnail").data "cardName"
+      hash[key] = tr.find(".metric-weight input").val()
+  hash
+
+$(window).ready ->
+  $('body').on 'input', '.metric-weight input', (_event) ->
+    validateWikiRating $(this).closest(".pairs-editor")
+
+  $('body').on "click", "._remove_weight", () ->
+    removeWeightRow $(this).closest("tr")
+
+validateWikiRating = (table) ->
+  hash = pairsEditorHash table
+  valid = tallyWeights table, hash
+  updateWikiRatingSubmitButton table.closest('form.card-form'), valid
+
+
+DIGITS_AFTER_DECIMAL = 2
+
+tallyWeights = (tbody, hash) ->
+  multiplier = 10**DIGITS_AFTER_DECIMAL
+  total =  0
+  valid = true
+  $.each hash, (_key, val) ->
+    num = parseFloat val
+    total += num * multiplier
+    valid = false unless num > 0
+  total = parseInt(total) / multiplier
+  publishWeightTotal(tbody, hash, total)
+  valid && total == 100
+
+publishWeightTotal = (tbody, hash, total) ->
+  sum = tbody.find('.weight-sum')
+  sum_row = sum.closest "tr"
+  if $.isEmptyObject(hash)
+    sum_row.hide()
+  else
+    sum.val total
+    sum_row.show()
+
+# only enable button if weights total 100% and there are no zero weights
+updateWikiRatingSubmitButton =(form, valid) ->
+  form.find(".submit-button").prop('disabled', !valid)
+
+addMissingVariables = (slot) ->
+  pairsEditor = slot.closest(".editor").find ".pairs-editor"
+  addNeededWeightRows pairsEditor, slot.find(".thumbnail")
+  validateWikiRating pairsEditor
+
+addNeededWeightRows = (editor, thumbnails) ->
+  thumbnails.each ->
+    nail = $(this)
+    if needsWeightRow editor, nail.data("cardId")
+      addWeightRow editor, nail
+
+needsWeightRow = (editor, cardId) ->
+  findByCardId(editor, cardId).length == 0
+
+addWeightRow = (editor, thumbnail) ->
+  templateRow = editor.slot().find ".weight-row-template tr"
+  newRow = rowWithThumbnail templateRow, thumbnail
+  editor.find("tbody tr:last-child").before newRow
+
+findByCardId = (from, cardId) ->
+  $(from).find("[data-card-id='" + cardId + "']")
+
+removeWeightRow = (formulaRow) ->
+  editor = formulaRow.closest ".pairs-editor"
+  cardId = formulaRow.find(".thumbnail").data("cardId")
+  variableItem = variableItemWithId editor.slot(), cardId
+  formulaRow.remove()
+  variableItem.remove()
+  validateWikiRating editor
+
+variableItemWithId = (slot, cardId) ->
+  variablesList = slot.find ".edit_in_wikirating-view"
+  findByCardId variablesList, cardId
+
+rowWithThumbnail = (templateRow, thumbnail) ->
+  row = templateRow.clone()
+  row.find(".metric-label").html thumbnail.clone()
+  row
 
 showResearchAttributes = (show) ->
   formula_tab = $(".new_tab_pane-view.METRIC_TYPE-formula")
@@ -81,16 +128,3 @@ showResearchAttributes = (show) ->
     formula_tab.find(".card-editor.RIGHT-value_type").hide()
     formula_tab.find(".card-editor.RIGHT-research_policy").hide()
     formula_tab.find(".card-editor.RIGHT-report_type").hide()
-
-
-addMissingVariables = (slot) ->
-  pairsEditor = slot.closest(".editor").find ".pairs-editor"
-  slot.find(".thumbnail").each ->
-    if needsWeightRow pairsEditor, $(this).data("cardId")
-      addWeightRow pairsEditor, $(this).closest("tr")
-
-needsWeightRow = (editor, cardId) ->
-  editor.find("[data-card-id='" + cardId + "']").length == 0
-
-addWeightRow = (editor, tr) ->
-  editor.find("tbody tr:last-child").before tr.clone()

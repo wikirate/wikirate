@@ -147,16 +147,17 @@ format :html do
   end
 
   def weight_content weight
-    icon_class = "pull-right _remove_row btn btn-outline-secondary btn-sm"
+    icon_class = "pull-right _remove_weight btn btn-outline-secondary btn-sm"
     wrap_with :div do
       [text_field_tag("pair_value", weight) + "%",
        content_tag(:span, fa_icon(:close).html_safe, class: icon_class)]
     end
   end
 
-  def weight_row weight=0
+  def weight_row weight=0, label=nil
+    label ||= _render_thumbnail_no_link
     weight = weight_content weight
-    output([wrap_with(:td, _render_thumbnail_no_link),
+    output([wrap_with(:td, label, class: "metric-label"),
             wrap_with(:td, weight, class: "metric-weight")]).html_safe
   end
 
