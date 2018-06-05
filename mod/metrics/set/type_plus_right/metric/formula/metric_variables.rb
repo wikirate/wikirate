@@ -2,7 +2,7 @@
 
 # FIXME: card is getting stored in database (despite being a session card)
 def variables_card
-  metric_card.variables_card
+  metric_card.metric_variables_card
 end
 
 event :replace_variables, :prepare_to_validate, on: :save, changed: :content do

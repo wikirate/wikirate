@@ -3,6 +3,13 @@ include_set Type::Pointer
 include_set Abstract::Variable
 include_set Abstract::Table
 
+# The Metric+:metric_variables card are used:
+#   A. by Formula metrics as a holder (and name shortener) for
+#      variable metrics that may or may not already be in the formula, and
+#   B. by WikiRating metrics as a hidden container that helps with state
+#      maintenance and integration of the filtered list interface
+
+# these cards are never stored.
 event :abort_storage, :validate, on: :save do
   abort :success
 end
@@ -11,16 +18,8 @@ def formula_card
   metric_card.fetch trait: :formula
 end
 
-def skin_variables?
-  left&.type_id == CustomizedBootswatchSkinID
-end
-
-def item_cards _args={}
-  skin_variables? ? [self] : super
-end
-
+# the conten
 def content
-  return super() if skin_variables?
   @content ||=
     db_content.present? ? db_content : variables_in_use.to_pointer_content
   # db_content should only be present when it has been set by a `card[content]`

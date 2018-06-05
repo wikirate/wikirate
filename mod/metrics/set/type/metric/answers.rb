@@ -52,7 +52,7 @@ def user_can_answer?
   return unless researchable?
   # TODO: add metric designer respresentative logic here
   is_admin = Auth.always_ok?
-  is_owner = Auth.current.id == creator.id
+  is_owner = Auth.current.id == creator&.id
   (is_admin || is_owner) || !designer_assessed?
 end
 
