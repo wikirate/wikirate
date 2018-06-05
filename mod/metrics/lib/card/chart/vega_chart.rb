@@ -269,11 +269,12 @@ class Card
           chart: {
             highlight: highlight_value_from_filter_opts(filter_opts),
             select_filter: filter_opts,
-            filter: @format.filter_hash(false)
+            filter: @format.filter_hash(false),
+            zoom_level: zoom_level
           }
         }
         if @format.chart_params[:zoom_out]
-          hash[:zoom_out] = @format.chart_params[:zoom_out]
+          hash[:chart][:zoom_out] = @format.chart_params[:zoom_out]
         end
         hash
       end
@@ -282,12 +283,17 @@ class Card
         {
           filter: @format.filter_hash(false).merge(filter_opts),
           chart: {
+            zoom_level: zoom_level + 1,
             zoom_out: {
               chart: @format.chart_params,
               filter: @format.filter_hash(false)
             }
           }
         }
+      end
+
+      def zoom_level
+        @format.chart_params[:zoom_level].to_i || 0
       end
     end
   end

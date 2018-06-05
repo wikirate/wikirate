@@ -245,7 +245,7 @@
 - :name: nav bar menu
   :type: HTML
   :key: nav_bar_menu
-  :merged: 2018-05-21 19:43:17 UTC
+  :merged: 2018-06-04 17:11:26 UTC
 - :name: Company
   :type: Cardtype
   :codename: wikirate_company
@@ -531,56 +531,60 @@
 - :name: Researcher+*right+*default
   :type: Pointer
   :key: researcher+*right+*default
-  :merged: 2018-05-21 19:43:17 UTC
+  :merged: 2018-06-04 17:11:26 UTC
 - :name: conversation+*right+*structure
   :type: Search
   :key: conversation+*right+*structure
-  :merged: 2018-05-21 19:43:17 UTC
+  :merged: 2018-06-04 17:11:26 UTC
 - :name: Conversation+*type+*structure
   :type: Basic
   :key: conversation+*type+*structure
-  :merged: 2018-05-21 19:43:17 UTC
+  :merged: 2018-06-04 17:11:26 UTC
 - :name: Descendant
   :type: Metric type
   :codename: :descendant
   :key: descendant
-  :merged: 2018-05-21 19:43:18 UTC
+  :merged: 2018-06-04 17:11:27 UTC
 - :name: Descendant+description
   :type: Basic
   :key: descendant+description
-  :merged: 2018-05-21 19:43:18 UTC
+  :merged: 2018-06-04 17:11:27 UTC
 - :name: Metric type
   :type: Cardtype
   :codename: metric_type_type
   :key: metric_type
-  :merged: 2018-05-21 19:43:18 UTC
+  :merged: 2018-06-04 17:11:27 UTC
 - :name: User+Research_Groups+*type plus right+*structure
   :type: Search
   :key: user+research_group+*type_plu_right+*structure
-  :merged: 2018-05-21 19:43:19 UTC
+  :merged: 2018-06-04 17:11:27 UTC
 - :name: Post
   :type: Cardtype
   :codename: post
   :key: post
-  :merged: 2018-05-21 19:43:22 UTC
+  :merged: 2018-06-04 17:11:31 UTC
 - :name: Body
   :type: Basic
   :codename: body
   :key: body
-  :merged: 2018-05-21 19:43:22 UTC
+  :merged: 2018-06-04 17:11:31 UTC
 - :name: Details
   :type: Basic
   :codename: details
   :key: detail
-  :merged: 2018-05-21 19:43:22 UTC
+  :merged: 2018-06-04 17:11:31 UTC
 - :name: post+*right+*structure
   :type: Search
   :key: post+*right+*structure
-  :merged: 2018-05-21 19:43:22 UTC
+  :merged: 2018-06-04 17:11:31 UTC
+- :name: How to research
+  :type: HTML
+  :key: how_to_research
+  :merged: 2018-06-04 17:12:21 UTC
 - :name: standard head extras
   :type: HTML
   :key: standard_head_extra
-  :merged: 2018-05-21 19:45:09 UTC
+  :merged: 2018-06-04 17:12:21 UTC
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org

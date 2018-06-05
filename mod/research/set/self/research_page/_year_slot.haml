@@ -34,6 +34,9 @@
                   -else
                     %i
                       add answer
+  - if existing_answer? && researchable_answer?
+    %div
+      = nest answer_card, view: :year_edit_link
   -#- if project?
   -#  .w-25
   -#    = nest [year.to_s, project], view: :research_progress_bar

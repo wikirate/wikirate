@@ -83,7 +83,9 @@ format :html do
     if project?
       keys << :project
     else
-      keys += PARAM_LIST_NAME.keys.reject { |k| default_list_used? k }
+      keys += PARAM_LIST_NAME.keys.reject do |k|
+        fetch_list(k).empty? || default_list_used?(k)
+      end
     end
     keys
   end
@@ -150,8 +152,16 @@ format :html do
     metric && company && year
   end
 
+  def existing_answer?
+    answer? && answer_card.known?
+  end
+
+  def researchable_answer?
+    answer_card&.metric_card&.researchable?
+  end
+
   def existing_answer_with_source?
-    answer? && answer_card.known? &&
+    existing_answer? && researchable_answer? &&
       (!answer_card.hybrid? || answer_card.calculation_overridden?)
   end
 
