@@ -4,7 +4,7 @@
 # all badges related to metric answers
 module BadgeSquad
   BADGE_TYPES =
-    [:metric, :project, :metric_value, :source, :wikirate_company].freeze
+    [:metric, :project, :metric_answer, :source, :wikirate_company].freeze
 
   def self.for_type type_code
     Card::Set::Type.const_get("#{type_code.to_s.camelcase}::BadgeSquad")

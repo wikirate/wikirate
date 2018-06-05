@@ -23,7 +23,7 @@ class AwardBadges
         award_affinity_answer_badges affinity_type
       end
       puts "answer create general badges"
-      award_create_badges :metric_value,
+      award_create_badges :metric_answer,
                           from: "answers", where: "", affinity: :general
     end
 
@@ -52,7 +52,7 @@ class AwardBadges
     end
 
     def award_badges_for_user user_id
-      { metric: :vote, metric_value: [:check, :discuss, :update],
+      { metric: :vote, metric_answer: [:check, :discuss, :update],
         project: :discuss, wikirate_company: :logo }.each do |type, actions|
         Array(actions).each do |action|
           badge_names = Card::Set::Abstract::BadgeSquad
@@ -65,7 +65,7 @@ class AwardBadges
 
     def award_affinity_answer_badges affinity_type
       return award_project_affinity_answer_badges if affinity_type == :project
-      badge_line = Card::Set::Type::MetricValue::BadgeSquad
+      badge_line = Card::Set::Type::MetricAnswer::BadgeSquad
                    .badge_line(:create, affinity_type)
       badge_levels = [:bronze, :silver, :gold].map do |level, _h|
         [badge_line.badge(level).threshold, badge_line.badge(level).name]
@@ -83,7 +83,7 @@ class AwardBadges
             next if count < threshold
             "#{an}+#{name}+#{affinity_type} badge"
           end.compact
-          award_badges! user_id, :metric_value, badge_names, true
+          award_badges! user_id, :metric_answer, badge_names, true
         end
       end
       # query("SELECT creator_id, #{affinity_type}_name, COUNT(*) FROM answers "\
@@ -111,12 +111,12 @@ class AwardBadges
 
     def award_affinity_answer_badges_if_earned! count, user_id,
                                                 affinity_type, affinity_name
-      hierarchy = Card::Set::Abstract::BadgeSquad.for_type(:metric_value)
+      hierarchy = Card::Set::Abstract::BadgeSquad.for_type(:metric_answer)
       badge_names = hierarchy.all_earned_badges(:create, affinity_type, count)
                              .map do |badge_name|
         "#{affinity_name}+#{badge_name}+#{affinity_type} badge"
       end
-      award_badges! user_id, :metric_value, badge_names
+      award_badges! user_id, :metric_answer, badge_names
     end
 
     def award_badges_if_earned! count, user_id, type_code, affinity=nil

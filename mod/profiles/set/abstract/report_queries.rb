@@ -47,7 +47,7 @@ def subvariants
   {}
 end
 
-# [ :metric_value, :metric, :wikirate_company, :project ]
+# [ :metric_answer, :metric, :wikirate_company, :project ]
 #
 # project
 # - RG is organizer

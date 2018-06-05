@@ -11,7 +11,7 @@ def topic_name
 end
 
 # when metric value is edited
-recount_trigger :type, :metric_value do |changed_card|
+recount_trigger :type, :metric_answer do |changed_card|
   next unless (metric_card = changed_card.metric_card)
   topic_company_type_plus_right_cards_for_metric metric_card
 end

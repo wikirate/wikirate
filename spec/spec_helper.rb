@@ -34,7 +34,7 @@ def create_answer metric: sample_metric, company: sample_company,
                   content: "content", year: "2015", source: sample_source.name
   #content ||= "I'm fine, I'm just not happy."
   with_user "Joe User" do
-    Card.create type_id: Card::MetricValueID,
+    Card.create type_id: Card::MetricAnswerID,
                 subcards: answer_subcards(metric: metric, company: company,
                                           content: content, year: year,
                                           source: source)
@@ -43,7 +43,7 @@ end
 
 def build_answer metric: sample_metric, company: sample_company,
                content: "content", year: "2015", source: sample_source.name
-  Card.new type_id: Card::MetricValueID,
+  Card.new type_id: Card::MetricAnswerID,
               subcards: answer_subcards(metric: metric, company: company,
                                         content: content, year: year,
                                         source: source)

@@ -5,7 +5,7 @@ def company_name
 end
 
 # when metric value is edited
-recount_trigger :type, :metric_value do |changed_card|
+recount_trigger :type, :metric_answer do |changed_card|
   if (company_name = changed_card.company_name)
     Card.fetch company_name.to_name.trait(:wikirate_topic)
   end
