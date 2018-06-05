@@ -10,8 +10,8 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues::Stats do
         with_tag :tr, count: 4
         with_row "", :known, 11, "Known"
         with_row "+", :unknown, 2, "Unknown"
-        with_row "+", :none, 14, "Not Researched"
-        with_row "=", :total, "27", "Total results"
+        with_row "+", :none, 16, "Not Researched"
+        with_row "=", :total, "29", "Total results"
       end
     end
 
@@ -22,7 +22,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues::Stats do
       html = stats(year: "1977", metric_value: :all)
       expect(html).to have_tag :tr, count: 4
       expect(html)
-        .to have_table known: 3, unknown: 1, none: 14, total: 18
+        .to have_table known: 3, unknown: 1, none: 16, total: 20
     end
 
     example "filtered by 'researched'" do
