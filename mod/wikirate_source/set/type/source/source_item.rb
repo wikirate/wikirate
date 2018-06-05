@@ -74,7 +74,7 @@ format :html do
 
   def creator
     return unless creator_card = Card[card.creator_id]
-q    field_nest creator_card, view: :core, items: { view: :link }
+    field_nest creator_card, view: :core, items: { view: :link }
   end
 
   view :website_link do
