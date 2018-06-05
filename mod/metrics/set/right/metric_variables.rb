@@ -1,18 +1,10 @@
+include_set Abstract::MetricChild, generation: 1
 include_set Type::Pointer
 include_set Abstract::Variable
 include_set Abstract::Table
 
-# FIXME: following does not prevent storage.
-# event :abort_storage, :validate, on: :save do
-#   abort :success
-# end
-
-def metric_card
-  left
-end
-
-def metric_card_name
-  name.left_name
+event :abort_storage, :validate, on: :save do
+  abort :success
 end
 
 def formula_card
@@ -58,25 +50,17 @@ format :html do
   end
 
   view :edit_in_formula, tags: :unknown_ok, cache: :never do
-    variable_editor { _render_editor }
+    @explicit_form_prefix = "card[subcards][#{card.name}]"
+    reset_form
+    output [render_hidden_content_field, variable_editor { _render_editor }]
   end
 
   def variable_editor
-    wrap do
-      @explicit_form_prefix = "card[subcards][#{card.name}]"
-      reset_form
-      with_nest_mode :normal do
-        output [render_hidden_content_field, yield]
-      end
-    end
+    wrap { with_nest_mode(:normal) { yield } }
   end
 
   view :edit_in_wikirating, tags: :unknown_ok do
-    wrap do
-      with_nest_mode :normal do
-        output [weight_variable_list, add_wikirate_variable_button]
-      end
-    end
+    variable_editor { output [weight_variable_list, add_wikirate_variable_button] }
   end
 
   def weight_variable_list
