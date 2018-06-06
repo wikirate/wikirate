@@ -71,7 +71,6 @@ format :html do
   end
 
   view :editor do
-    return super() if card.skin_variables?
     output [variables_table, add_formula_variable_button]
   end
 
