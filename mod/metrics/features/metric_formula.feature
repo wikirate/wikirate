@@ -12,7 +12,6 @@ Feature: Edit metric formulas
     And I click on "Add Selected"
     And I wait for ajax response
     Then I should see "Joe Camel"
-    And I should see "0"
     And the weight total should be "100"
     And the submit button should be disabled
     And I set weight for "Jedi+deadliness+Joe Camel" to "30"
