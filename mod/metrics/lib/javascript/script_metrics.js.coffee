@@ -36,25 +36,23 @@ decko.slotReady (slot) ->
   if slot.hasClass "edit_in_wikirating-view"
     addMissingVariables slot
 
-  if $(".new_tab_pane-view.METRIC_TYPE-formula").length > 0
-    show = $(".card-editor.RIGHT-hybrid input[type='checkbox']").prop "checked"
-    showResearchAttributes(show)
+  if $(".new-view.TYPE-metric, .edit-view.TYPE-metric").length > 0
+    checkbox = $(".card-editor.RIGHT-hybrid input[type='checkbox']")
+    showResearchAttributes(checkbox)
 
-  $('body').on 'change', ".new_tab_pane-view.METRIC_TYPE-formula .card-editor.RIGHT-hybrid input[type=\'checkbox\']", (event) ->
-    show = $(event.target).prop "checked"
-    showResearchAttributes(show)
+  $('body').on 'change', ".TYPE-metric .card-editor.RIGHT-hybrid input[type=\'checkbox\']", (event) ->
+    showResearchAttributes($(event.target))
 
-
-showResearchAttributes = (show) ->
-  formula_tab = $(".new_tab_pane-view.METRIC_TYPE-formula")
-  if show
-    formula_tab.find(".card-editor.RIGHT-value_type").show()
-    formula_tab.find(".card-editor.RIGHT-research_policy").show()
-    formula_tab.find(".card-editor.RIGHT-report_type").show()
+showResearchAttributes = (checkbox) ->
+  form = checkbox.closest("form")
+  if checkbox.prop "checked"
+    form.find(".card-editor.RIGHT-value_type").show()
+    form.find(".card-editor.RIGHT-research_policy").show()
+    form.find(".card-editor.RIGHT-report_type").show()
   else
-    formula_tab.find(".card-editor.RIGHT-value_type").hide()
-    formula_tab.find(".card-editor.RIGHT-research_policy").hide()
-    formula_tab.find(".card-editor.RIGHT-report_type").hide()
+    form.find(".card-editor.RIGHT-value_type").hide()
+    form.find(".card-editor.RIGHT-research_policy").hide()
+    form.find(".card-editor.RIGHT-report_type").hide()
 
 
 addMissingVariables = (slot) ->

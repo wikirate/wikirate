@@ -65,6 +65,7 @@ format :html do
   end
 
   def research_form action
+    return not_researchable unless card.metric_card.researchable?
     voo.editor = :inline_nests
     with_nest_mode :edit do
       card_form action,
