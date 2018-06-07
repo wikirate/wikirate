@@ -43,7 +43,7 @@ $(window).ready ->
   $('body').on 'input', '.metric-weight input', (_event) ->
     validateWikiRating $(this).closest(".pairs-editor")
 
-  $('body').on "click", "._remove_weight", () ->
+  $('body').on "click", "._remove-weight", () ->
     removeWeightRow $(this).closest("tr")
 
 validateWikiRating = (table) ->
