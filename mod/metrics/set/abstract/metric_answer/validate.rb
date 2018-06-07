@@ -54,6 +54,11 @@ event :validate_answer_name, after: :validate_year_change, on: :save, changed: :
   end
 end
 
+event :restore_calculated_value, :validate, on: :delete, when: :calculation_overridden? do
+  calculated_value_card.update_attributes! content: nil
+  answer.restore_calculated_value
+end
+
 def valid_value_name?
   name.parts.size >= (name_parts.size + 1) && valid_name_parts?
 end

@@ -57,6 +57,9 @@ def calculated?
 # RESEARCH POLICY
 end
 
+def answer_card company, year
+  field(company)&.field(year.to_s)
+end
 
 def designer_assessed?
   research_policy.casecmp("designer assessed").zero?
