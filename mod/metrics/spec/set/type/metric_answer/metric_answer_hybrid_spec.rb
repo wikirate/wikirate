@@ -43,7 +43,7 @@ RSpec.describe Card::Set::Type::MetricAnswer, "hybrid" do
     expect(answer(2010).value).to eq "5"
     expect(answer(2010).calculated_value).to eq "0.1"
     expect(answer(2010).answer.answer_id).to be_present
-    expect(answer(2010).to be_calculation_overridden
+    expect(answer(2010)).to be_calculation_overridden
   end
 
   example "uncalculate researched value" do
