@@ -20,13 +20,13 @@ describe Card::Set::TypePlusRight::Metric::VoteCount::AwardBadges do
       end
     end
 
-    context "reached bronze threshold" do
+    context "when reached bronze threshold" do
       it_behaves_like "award badges", 1, "Metric Voter"
     end
-    context "reached silver threshold" do
+    context "when reached silver threshold" do
       it_behaves_like "award badges", 2, "Metric Critic"
     end
-    context "reached gold threshold" do
+    context "when reached gold threshold" do
       it_behaves_like "award badges", 3, "Metric Connoisseur"
     end
   end

@@ -20,7 +20,7 @@ end
 
 def contribution_count member, cardtype, category
   return 0 if projects.empty?
-  return "" if category == :double_checked && cardtype != :metric_value
+  return "" if category == :double_checked && cardtype != :metric_answer
   report_card(member, cardtype, category).count
 end
 

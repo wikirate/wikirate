@@ -9,7 +9,7 @@ RSpec.describe Answer do
   describe "seeded metric answer table" do
     it "has more than researched values" do
       expect(described_class.count)
-        .to be > Card.search(type_id: Card::MetricValueID, return: :count)
+        .to be > Card.search(type_id: Card::MetricAnswerID, return: :count)
     end
 
     describe "random example" do
