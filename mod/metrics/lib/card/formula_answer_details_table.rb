@@ -14,10 +14,30 @@ class Card
       end
     end
 
-    def raw_value input
-      @format.wrap_with :span, class: "metric-value" do
-        Array.wrap(input).join(", ")
+    def value_column_content input_card, input, year_option
+      if (year = simple_year(year_option))
+        link_to_answer_card input_card, input, year
+      else
+        value_span input
       end
+    end
+
+    def link_to_answer_card input_card, input, year
+      answer = [input_card.name, company, year].to_name
+      @format.link_to_card answer, raw_value(input), class: "metric-value"
+    end
+
+    def value_span input
+      @format.wrap_with(:span, class: "metric-value") { raw_value(input) }
+    end
+
+    def simple_year year_option
+      year = year_column_content(year_option).to_s
+      year.match?(/^\d{4}$/) ? year : nil
+    end
+
+    def raw_value input
+      Array.wrap(input).join(", ")
     end
 
     def year_column_content year_option
@@ -26,7 +46,7 @@ class Card
 
     def metric_row input_card, input, year_option
       [metric_thumbnail(input_card),
-       raw_value(input),
+       value_column_content(input_card, input, year_option),
        year_column_content(year_option)]
     end
   end

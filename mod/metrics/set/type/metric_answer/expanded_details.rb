@@ -51,7 +51,7 @@ format :html do
     end
   end
 
-  view :expanded_wikirating_details, cache: :never do
+  view :expanded_wiki_rating_details, cache: :never do
     wrap_expanded_details do
       wrap_with :div do
         [
