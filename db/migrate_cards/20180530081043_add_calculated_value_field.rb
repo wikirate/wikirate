@@ -2,6 +2,6 @@
 
 class AddCalculatedValueField < Card::Migration
   def up
-    ensure_card "calculated value", codename: "calculated_value"
+    ensure_card "overridden value", codename: "overridden_value"
   end
 end

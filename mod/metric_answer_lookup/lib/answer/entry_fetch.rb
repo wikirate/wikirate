@@ -110,7 +110,7 @@ class Answer
     end
 
     def fetch_calculated_value
-      card.try(:calculated_value)
+      card.try(:overridden_value)
     end
   end
 end

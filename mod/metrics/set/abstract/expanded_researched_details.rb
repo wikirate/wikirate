@@ -34,7 +34,7 @@ format :html do
   view :overridden_calculated_value do
     <<-HTML
       <span class='metric-value'>
-        #{humanized_number card.answer.calculated_value}
+        #{humanized_number card.answer.overridden_value}
       </span>
     HTML
   end

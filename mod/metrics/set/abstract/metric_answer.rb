@@ -4,9 +4,9 @@ card_accessor :check_requested_by
 card_accessor :source
 
 # for hybrid metrics: If a calculated value is overridden by a researched value
-#   then :calculated_value holds on to that value. It also serves as flag to mark
+#   then :overridden_value holds on to that value. It also serves as flag to mark
 #   overridden answers
-card_accessor :calculated_value, type: :phrase
+card_accessor :overridden_value, type: :phrase
 
 def value
   virtual? ? content : value_card&.value

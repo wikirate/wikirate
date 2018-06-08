@@ -2,6 +2,6 @@
 
 class AddCalculatedValueToAnswerTable < Card::Migration::DeckStructure
   def up
-    add_column :answers, :calculated_value, :string
+    add_column :answers, :overridden_value, :string
   end
 end

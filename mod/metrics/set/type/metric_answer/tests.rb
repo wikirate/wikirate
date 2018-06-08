@@ -4,7 +4,7 @@ end
 
 def calculation_overridden?
   # @answer = nil
-  hybrid? && answer&.answer_id && answer.calculated_value.present?
+  hybrid? && answer&.answer_id && answer.overridden_value.present?
 end
 
 # Metric is researchable and this answer not yet researched

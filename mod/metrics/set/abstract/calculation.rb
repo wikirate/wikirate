@@ -23,7 +23,7 @@ def update_existing_answer answer, value
 end
 
 def update_overridden_calculated_value answer, value
-  answer.update_attributes! calculated_value: value
+  answer.update_attributes! overridden_value: value
   answer.calculated_value_card.update_attributes! content: value
 end
 
