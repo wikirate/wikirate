@@ -73,8 +73,8 @@ format :html do
   end
 
   def creator
-    # FIXME: codename!
-    field_nest "*creator", view: :core, items: { view: :link }
+    return unless (creator_card = Card[card.creator_id])
+    field_nest creator_card, view: :core, items: { view: :link }
   end
 
   view :website_link do
