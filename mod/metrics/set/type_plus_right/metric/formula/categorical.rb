@@ -4,7 +4,7 @@ format :html do
   end
 
   def categorical_content
-    return card.translation_table
+    card.translation_table
     # TODO: following is preferable (colorifies the scores), but there are CSS problems
     # card.translation_table.map do |value, score|
     #   [value, colorify(score.to_s)]
