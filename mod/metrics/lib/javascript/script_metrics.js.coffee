@@ -7,20 +7,29 @@ $(document).ready ->
       lessLink: '<a href="#"><small>View less</small></a>'
     })
 
-
 decko.slotReady (slot) ->
   slot.find('[data-tooltip="true"]').tooltip()
 
-  if $(".new_tab_pane-view.METRIC_TYPE-formula").length > 0
-    show = $(".card-editor.RIGHT-hybrid input[type='checkbox']").prop "checked"
-    showResearchAttributes(show)
-
-  $('body').on 'change', ".new_tab_pane-view.METRIC_TYPE-formula .card-editor.RIGHT-hybrid input[type=\'checkbox\']", (event) ->
-    show = $(event.target).prop "checked"
-    showResearchAttributes(show)
-
   if slot.hasClass "edit_in_wikirating-view"
     addMissingVariables slot
+
+  if $(".new-view.TYPE-metric, .edit-view.TYPE-metric").length > 0
+    checkbox = $(".card-editor.RIGHT-hybrid input[type='checkbox']")
+    showResearchAttributes(checkbox)
+
+  $('body').on 'change', ".TYPE-metric .card-editor.RIGHT-hybrid input[type=\'checkbox\']", (event) ->
+    showResearchAttributes($(event.target))
+
+showResearchAttributes = (checkbox) ->
+  form = checkbox.closest("form")
+  if checkbox.prop "checked"
+    form.find(".card-editor.RIGHT-value_type").show()
+    form.find(".card-editor.RIGHT-research_policy").show()
+    form.find(".card-editor.RIGHT-report_type").show()
+  else
+    form.find(".card-editor.RIGHT-value_type").hide()
+    form.find(".card-editor.RIGHT-research_policy").hide()
+    form.find(".card-editor.RIGHT-report_type").hide()
 
 # WikiRatings Formulae
 
@@ -119,14 +128,3 @@ rowWithThumbnail = (templateRow, thumbnail) ->
   row = templateRow.clone()
   row.find(".metric-label").html thumbnail.clone()
   row
-
-showResearchAttributes = (show) ->
-  formula_tab = $(".new_tab_pane-view.METRIC_TYPE-formula")
-  if show
-    formula_tab.find(".card-editor.RIGHT-value_type").show()
-    formula_tab.find(".card-editor.RIGHT-research_policy").show()
-    formula_tab.find(".card-editor.RIGHT-report_type").show()
-  else
-    formula_tab.find(".card-editor.RIGHT-value_type").hide()
-    formula_tab.find(".card-editor.RIGHT-research_policy").hide()
-    formula_tab.find(".card-editor.RIGHT-report_type").hide()
