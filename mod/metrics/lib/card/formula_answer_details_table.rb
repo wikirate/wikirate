@@ -33,7 +33,7 @@ class Card
 
     def simple_year year_option
       year = year_column_content(year_option).to_s
-      year =~ /^\d{4}$/ ? year : nil
+      year.match?(/^\d{4}$/) ? year : nil
     end
 
     def raw_value input
