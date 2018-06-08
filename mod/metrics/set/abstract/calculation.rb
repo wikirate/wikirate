@@ -24,7 +24,7 @@ end
 
 def update_overridden_calculated_value answer, value
   answer.update_attributes! overridden_value: value
-  answer.calculated_value_card.update_attributes! content: value
+  answer.overridden_value_card.update_attributes! content: value
 end
 
 def already_researched? answer

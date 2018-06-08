@@ -61,7 +61,7 @@ class Answer
       }
     end
 
-    def restore_calculated_value
+    def restore_overridden_value
       calculated_answer metric_card, company, year, overridden_value
     end
 
