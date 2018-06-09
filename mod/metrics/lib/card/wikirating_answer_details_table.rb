@@ -11,15 +11,25 @@ class Card
     end
 
     def metric_row input_card, weight
-      score = score_value input_card
-      points = (score.to_f * (weight.to_f / 100)).round(1)
-      super(input_card).push score, "x #{weight}%", "= #{points}"
+      score_card, score = score_value input_card
+      super(input_card).push score_cell(score_card, score),
+                             "x #{weight}%",
+                             "= #{row_points(score, weight)}"
+    end
+
+    def row_points score, weight
+      (score.to_f * (weight.to_f / 100)).round(1)
     end
 
     def score_value input_card
-      v_card = value_card input_card
-      return "" unless v_card.metric_type == :score
-      v_card.value
+      score_card = value_card input_card
+      return [nil, ""] unless score_card.metric_type == :score
+      [score_card, score_card.value]
+    end
+
+    def score_cell score_card, score
+      return "" unless score_card.present?
+      @format.link_to_card score_card, @format.colorify(score)
     end
   end
 end
