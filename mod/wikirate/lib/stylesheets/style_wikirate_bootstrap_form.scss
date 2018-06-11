@@ -1,7 +1,7 @@
 
 
 $brand-primary: #03998d !default; // #337ab7
-$border-color: #ccc;
+$form-input-border-color: #ccc;
 
 .form-control,
 input,
@@ -10,7 +10,7 @@ textarea {
     background-color: #fff;
     background-image: none;
     border-radius: 0;
-    border: 1px solid $border-color;
+    border: 1px solid $form-input-border-color;
     color: #555;
     // display: block;
     // font-size: 14px;
