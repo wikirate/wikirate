@@ -1,11 +1,10 @@
 $(document).ready ->
   $(".topic-list .RIGHT-topic").readmore(
-    {
-      maxHeight: 70,
-      heightMargin: 16,
-      moreLink: '<a href="#" ><small>View all</small></a>',
-      lessLink: '<a href="#"><small>View less</small></a>'
-    })
+    maxHeight: 70,
+    heightMargin: 16,
+    moreLink: '<a href="#" ><small>View all</small></a>',
+    lessLink: '<a href="#"><small>View less</small></a>'
+  )
 
 decko.slotReady (slot) ->
   slot.find('[data-tooltip="true"]').tooltip()
@@ -78,12 +77,10 @@ tallyWeights = (tbody, hash) ->
 publishWeightTotal = (tbody, hash, total) ->
   sum = tbody.find('.weight-sum')
   sum_row = sum.closest "tr"
-    form.find(".card-editor.RIGHT-value_type").show()
   if $.isEmptyObject(hash)
     sum_row.hide()
   else
     sum.val total
-    form.find(".card-editor.RIGHT-research_policy").hide()
     sum_row.show()
 
 # only enable button if weights total 100% and there are no zero weights
