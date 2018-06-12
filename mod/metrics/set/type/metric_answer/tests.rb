@@ -1,6 +1,10 @@
+def researched_value?
+  researched? || (hybrid? && answer&.answer_id)
+end
 
 def calculation_overridden?
-  hybrid? && answer&.answer_id
+  # @answer = nil
+  hybrid? && answer&.answer_id && answer.overridden_value.present?
 end
 
 # Metric is researchable and this answer not yet researched
@@ -18,6 +22,7 @@ def inverse?
 end
 
 format do
-  delegate :calculation_overridden?, :research_ready?, :uncalculated?, :inverse?,
+  delegate :calculation_overridden?, :researched_value?,
+           :research_ready?, :uncalculated?, :inverse?,
            to: :card
 end

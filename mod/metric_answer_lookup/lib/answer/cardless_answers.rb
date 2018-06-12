@@ -49,10 +49,20 @@ class Answer
     end
 
     def update_value value
-      update_attributes! value: value,
-                         numeric_value: to_numeric_value(value),
-                         updated_at: Time.now,
-                         editor_id: Card::Auth.current_id
+      update_attributes! value_attributes(value)
+    end
+
+    def value_attributes value
+      {
+        value: value,
+        numeric_value: to_numeric_value(value),
+        updated_at: Time.now,
+        editor_id: Card::Auth.current_id
+      }
+    end
+
+    def restore_overridden_value
+      calculated_answer metric_card, company, year, overridden_value
     end
 
     # class methods for {Answer} to support creating and updating calculated answers

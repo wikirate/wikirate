@@ -8,7 +8,7 @@ class Card::Metric
 
     def create_value company, year, value
       args = { company: company.to_s, year: year }
-      if @metric.researched? && @random_source
+      if @metric.researchable? && @random_source
         args[:source] ||= Card.search(type_id: Card::SourceID, limit: 1).first
       end
       if @metric.relationship?
