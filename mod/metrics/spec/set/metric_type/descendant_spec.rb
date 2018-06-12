@@ -23,7 +23,7 @@ RSpec.describe Card::Set::MetricType::Descendant do
   end
 
   context "with two ancestors" do
-    let(:metric_title) { "Joe User+descendant 1"}
+    let(:metric_title) { "Joe User+descendant 1" }
     let(:metric) { Card[metric_title] }
 
     context "with answers" do

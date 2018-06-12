@@ -149,10 +149,6 @@ format :html do
     nest scorer_card, view: :scorer_info_without_label
   end
 
- #  view :metric_properties do
- #    super() + "<hr />".html_safe + visit_original_metric_link
- #  end
-
   def visit_original_metric_link
     link_to_card basic_metric_card,
                  "#{fa_icon 'external-link'} Original Metric",
