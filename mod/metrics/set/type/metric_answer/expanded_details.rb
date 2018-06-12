@@ -100,6 +100,8 @@ format :html do
   # ~~~~~~~~~ DESCENDANT DETAILS
 
   view :expanded_descendant_details do
-    "(descendant answer details coming soon)"
+    wrap_expanded_details do
+      answer_details_table
+    end
   end
 end

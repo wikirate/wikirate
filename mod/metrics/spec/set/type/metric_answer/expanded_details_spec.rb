@@ -109,4 +109,29 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
       end
     end
   end
+
+  describe "view: expanded_descendant_details" do
+    subject do
+      Card.fetch("Joe User+descendant 1+Sony Corporation+2014")
+          .format.render :expanded_descendant_details
+    end
+
+    specify do
+      is_expected.to have_tag("table") do
+        ["Ancestor Metric", "Value", "Year"].each do |text|
+          with_tag "th", text: text
+        end
+        with_tag "tr" do
+          with_tag("td") { with_tag "a", text: "researched number 2" }
+          with_tag("td") { with_tag "a.metric-value", text: "2" }
+          with_tag "td", text: "2014"
+        end
+        with_tag "tr" do
+          with_tag("td") { with_tag "a", text: "researched number 1" }
+          with_tag("td") { with_tag "a.metric-value", text: "1" }
+          with_tag "td", text: "2014"
+        end
+      end
+    end
+  end
 end
