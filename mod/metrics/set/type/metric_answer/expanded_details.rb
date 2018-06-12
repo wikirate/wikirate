@@ -20,7 +20,11 @@ format :html do
 
   # don't cache; view depends on formula card
   view :expanded_formula_details, tags: :unknown_ok, cache: :never do
-    return render_expanded_researched_details if calculation_overridden?
+    return render_expanded_researched_details if researched_value?
+    expanded_formula_details
+  end
+
+  def expanded_formula_details
     wrap_expanded_details do
       wrap_with :div, [answer_details_table, calculation_details]
     end

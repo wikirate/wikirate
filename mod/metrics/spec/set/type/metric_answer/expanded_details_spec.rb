@@ -28,6 +28,18 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
       expect(table).to include format_formula("= 1/%<input>s", input: 100)
     end
 
+    example "hybrid metric with overriden calculated value" do
+      Card["Jedi+friendliness"].create_values true do
+        Slate_Rock_and_Gravel_Company 2004 => "10"
+      end
+      table = expanded_details "Jedi+friendliness+Slate_Rock_and_Gravel_Company+2004",
+                               :formula
+      expect(table).to have_tag "div" do
+        with_tag :h5, "Calculated answer"
+        with_tag "span.metric-value", /0\.111/
+      end
+    end
+
     example "year argument" do
       answer = "Jedi+deadlier+Slate Rock and Gravel Company+2004"
       table = expanded_details answer, :formula

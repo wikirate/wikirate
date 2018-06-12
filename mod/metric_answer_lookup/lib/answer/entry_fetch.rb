@@ -109,8 +109,8 @@ class Answer
       vc.updated_at && vc.updated_at > vc.created_at
     end
 
-    def fetch_calculated_value
-      card.try(:calculated_value)
+    def fetch_overridden_value
+      card.try(:overridden_value)
     end
   end
 end

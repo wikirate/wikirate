@@ -238,7 +238,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
         it "finds known values" do
           @company = Card["Samsung"]
           all_known = filter_by(metric_value: :known).all? do |a|
-            a.include? "researched number" || a.include? "descendant"
+            a.include?("researched number") || a.include?("descendant")
           end
           expect(all_known).to be_truthy
         end

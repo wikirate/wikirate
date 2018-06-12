@@ -162,7 +162,7 @@ format :html do
 
   def existing_answer_with_source?
     existing_answer? && researchable_answer? &&
-      (!answer_card.hybrid? || answer_card.calculation_overridden?)
+      (answer_card.researched? || answer_card.researched_value?)
   end
 
   def company
