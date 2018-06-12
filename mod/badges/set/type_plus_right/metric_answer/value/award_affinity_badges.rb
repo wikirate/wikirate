@@ -20,7 +20,6 @@ end
 def award_create_badge_if_earned affinity, project_card=nil
   # the actions of the current act are not included
   # because we do this search before the answer table update
-
   count = action_count(:create, affinity, project_card) # +
   return unless (badge = earns_badge(:create, affinity, count))
   badge_card = fetch_badge_card badge, affinity, project_card
@@ -41,7 +40,8 @@ def affinity_name affinity, project_card=nil
 end
 
 def create_count restriction={}
-  Answer.where(restriction.merge(creator_id: Auth.current_id)).count
+  Answer.where(restriction.merge(creator_id: Auth.current_id))
+        .where.not(answer_id: nil).count
 end
 
 def create_count_general

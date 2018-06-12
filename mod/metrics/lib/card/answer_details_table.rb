@@ -5,7 +5,7 @@ class Card
     # @param format [Card::Format] the format of a card of
     #    cardtype "metric value" (=answer)
     def initialize format
-      metric_type = format.card.metric_card.metric_type_codename.to_s.capitalize
+      metric_type = format.card.metric_card.metric_type_codename.to_s.camelize
       table_class = Card.const_get "#{metric_type}AnswerDetailsTable"
       @table = table_class.new format
     end
