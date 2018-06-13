@@ -21,7 +21,8 @@ card_accessor :unit
 card_accessor :range
 card_accessor :currency
 card_accessor :hybrid, type: :toggle
-card_accessor :question
+card_accessor :question, type: :plain_text
+card_accessor :score
 
 # METRIC TYPES
 

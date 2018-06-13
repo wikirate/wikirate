@@ -1,11 +1,3 @@
-def score_cards
-  # TODO: move +scores to a separate card
-  # we don't check the metric type
-  # we assume that a metric with left is a metric again is always a score
-  Card.search type_id: MetricID,
-              left_id: id
-end
-
 format :html do
   # default tab list (several metric types override)
   def tab_list
@@ -38,8 +30,14 @@ format :html do
     end
   end
 
+  def tab_options
+    opts = super
+    opts[:score] = { count: card.score_card.count } if tab_list.include?(:score)
+    opts
+  end
+
   def score_cards_table
-    wikirate_table :plain, card.score_cards, [:score_thumbnail],
+    wikirate_table :plain, card.score_card.item_cards, [:score_thumbnail],
                    header: ["scored by"], tr_link: ->(item) { path mark: item }
   end
 

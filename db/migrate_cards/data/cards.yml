@@ -585,6 +585,10 @@
   :type: HTML
   :key: standard_head_extra
   :merged: 2018-06-05 20:50:54 UTC
+- :name: Metric+Score+*type plus right+*structure
+  :type: Search
+  :key: metric+score+*type_plu_right+*structure
+  :merged: 2018-06-13 20:37:51 UTC
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org

@@ -12,10 +12,6 @@ format :html do
     %i[details score source project]
   end
 
-  def tab_options
-    { score: { count: card.score_cards.count } }
-  end
-
   view :main_details do
     output [
       nest(card.about_card, view: :titled, title: "About"),
