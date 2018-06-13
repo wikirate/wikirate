@@ -561,7 +561,7 @@ div#pdf-preview {
 }
 
 .panel-primary-container > .card-slot > {
-  .menu-slot > .vertical-card-menu.show-on-hover .btn-group.slotter a {
+  .menu-slot > .vertical-card-menu._show-on-hover .btn-group.slotter a {
     color: #fff;
 
     &:hover {
@@ -796,28 +796,7 @@ button.pointer-item-delete.btn.btn-outline-secondary {
 .card-notice .alert {
   margin-bottom: 0; // no spacing between error messages
 }
-//External links
-//override wagn default
 
-.closed-content a.external-link,
-a.external-link {
-  color: #03998d !important;
-  background: none !important;
-  padding-right: 2px !important;
-  position: relative;
-}
-
-.closed-content a.external-link:after,
-a.external-link:after {
-  content: "\f08e";
-  right: -2px;
-  position: relative;
-  bottom: 4px;
-  font-family: fontAwesome;
-  font-size: 8px;
-  text-decoration: none !important;
-  display: inline;
-}
 // Fix for tiny radio button issue
 li > input[type="radio"] {
   width: inherit !important;
