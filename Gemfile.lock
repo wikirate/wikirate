@@ -5,6 +5,13 @@ PATH
       card
 
 PATH
+  remote: vendor/card-mods/markdown
+  specs:
+    card-mod-markdown (0.1)
+      card
+      maruku
+
+PATH
   remote: vendor/card-mods/new_relic
   specs:
     card-mod-new_relic (1.0)
@@ -421,6 +428,7 @@ GEM
       mini_mime (>= 0.1.1)
     marcel (0.3.2)
       mimemagic (~> 0.3.2)
+    maruku (0.7.3)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
     method_source (0.9.0)
@@ -678,6 +686,7 @@ DEPENDENCIES
   capybara (= 2.17.0)
   card!
   card-mod-logger!
+  card-mod-markdown!
   card-mod-new_relic!
   card-mod-pdfjs!
   card-mod-voting!
