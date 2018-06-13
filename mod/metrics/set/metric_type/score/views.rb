@@ -20,10 +20,10 @@ format :html do
 
   def properties
     {
-        metric_type:   "Metric Type",
-        scored_metric: "Scored Metric",
-        scorer:        "Scored By",
-        topic:         "Topics"
+      metric_type:   "Metric Type",
+      scored_metric: "Scored Metric",
+      scorer:        "Scored By",
+      topic:         "Topics"
     }
   end
 
@@ -36,10 +36,10 @@ format :html do
 
   def scorable_metrics
     Card.search type_id: MetricID,
-                right_plus: [
-                    "*metric type",
-                    content: ["in", "[[Formula]]", "[[Researched]]", "[[Descendant]]"]
-                ], sort: "name", return: :name
+                right_plus: ["*metric type",
+                             content: scorable_metric_type_content.unshift("in")],
+                sort: "name",
+                return: :name
   end
 
   def selected_metric option_names
@@ -50,15 +50,23 @@ format :html do
     end
   end
 
+  def scorable_metric_type_content
+    scorable_metric_types.map { |type| "[[#{type}]]"}
+  end
+
+  def scorable_metric_types
+    %i[formula researched descendant]
+  end
+
   def new_name_editor_wrap options, option_names
     selected = selected_metric option_names
     editor_wrap :card do
       hidden_field_tag("card[subcards][+metric][content]", selected,
                        class: "d0-card-content") +
-          select_tag("pointer_select",
-                     options_for_select(options, selected),
-                     class: "pointer-select _pointer-select") +
-          help_text.html_safe
+        select_tag("pointer_select",
+                   options_for_select(options, selected),
+                   class: "pointer-select _pointer-select") +
+        help_text.html_safe
     end
   end
 
