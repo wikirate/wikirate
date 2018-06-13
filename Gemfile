@@ -54,9 +54,9 @@ gem "ruby-jmeter"
 # gem "card-mod-airbrake", path: "./vendor/card-mods/airbrake"
 gem "card-mod-voting", path: "./vendor/card-mods/voting"
 gem "card-mod-logger", path: "./vendor/card-mods/logger"
+gem "card-mod-markdown", path: "./vendor/card-mods/markdown"
 gem "card-mod-new_relic", path: "./vendor/card-mods/new_relic"
 gem "card-mod-pdfjs", path: "./vendor/card-mods/pdfjs"
-gem "card-mod-markdown", path: "./vendor/card-mods/markdown"
 
 group :live do
   gem "dalli"
