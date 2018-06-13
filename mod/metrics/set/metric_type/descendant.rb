@@ -27,3 +27,9 @@ end
 def formula_input_requirement
   :any
 end
+
+format :html do
+  def tab_list
+    %i[details score project]
+  end
+end
