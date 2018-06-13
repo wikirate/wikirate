@@ -9,8 +9,4 @@ format :html do
   def value_type_code
     :number
   end
-
-  def thumbnail_metric_info
-    "Formula"
-  end
 end

@@ -110,16 +110,8 @@ format :html do
     HTML
   end
 
-  def thumbnail_metric_info
-    "Score"
-  end
-
   def thumbnail_subtitle_text
-    "scored by"
-  end
-
-  def thumbnail_subtitle_author
-    link_to_card card.scorer
+    "Score | scored by #{link_to_card card.scorer}"
   end
 
   view :scorer_image do
