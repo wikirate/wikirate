@@ -45,7 +45,7 @@ decko.slotReady (slot) ->
       slot.hasClass("open-view") && slot.hasClass("ALL")
     query_string = null
     currentTab = QueryString().tab
-    if $("[data-tab-name='" + currentTab + "']").size() == 0
+    if $("[data-tab-name='" + currentTab + "']").length == 0
       currentTab = 'metric'
     currentTabAnchor = $("[data-tab-name='" + currentTab + "']")
     currentTabAnchor.closest("li").addClass("active")

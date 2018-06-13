@@ -67,6 +67,10 @@ end
 format :html do
   delegate :scorer_card, :basic_metric_card, to: :card
 
+  def tab_list
+    %i[details score project]
+  end
+
   def new_name_field _form=nil, _options={}
     option_names = scorable_metrics
 
@@ -78,7 +82,7 @@ format :html do
     Card.search type_id: MetricID,
                 right_plus: [
                   "*metric type",
-                  content: ["in", "[[Formula]]", "[[Researched]]"]
+                  content: ["in", "[[Formula]]", "[[Researched]]", "[[Descendant]]"]
                 ], sort: "name", return: :name
   end
 
