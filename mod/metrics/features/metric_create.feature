@@ -53,9 +53,8 @@ Feature: create metrics
     # And I fill in "Topic" with "Animal Welfare"
     And I press "Submit"
     Then I should see "Victims by Employees"
-    And I should see "Designed By Jedi"
-    And I should see "Scored By Joe Camel"
     And I should see "Metric Type Score"
+    And I should see "Scored By Joe Camel"
     And I should see "Metric Creator"
     And I should see "Awarded for adding your first metric."
 

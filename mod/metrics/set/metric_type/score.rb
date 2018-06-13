@@ -132,8 +132,21 @@ format :html do
                     size: :icon, image: card.scorer_card.fetch(trait: :image, new: {})
   end
 
-  view :metric_properties do
-    super() + "<hr />".html_safe + visit_original_metric_link
+  def properties
+    {
+      metric_type:   "Metric Type",
+      scored_metric: "Scored Metric",
+      scorer:        "Scored By",
+      topic:         "Topics"
+    }
+  end
+
+  def scored_metric_property
+    nest card.left, view: :thumbnail
+  end
+
+  def scorer_property
+    nest scorer_card, view: :scorer_info_without_label
   end
 
   def visit_original_metric_link

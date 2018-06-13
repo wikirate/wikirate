@@ -11,6 +11,7 @@ class SharedData
       formula_metrics
       score_metrics
       wikirating_metrics
+      descendant_metrics
     end
 
     def formula_metrics
@@ -51,6 +52,15 @@ class SharedData
         type: :wiki_rating,
         formula: { "Jedi+deadliness+Joe User" => 60,
                    "Jedi+disturbances in the Force+Joe User" => 40 }
+      )
+    end
+
+    def descendant_metrics
+      Card::Metric.create(
+        name: "Joe User+descendant 1",
+        type: :descendant,
+        formula: "[[Joe User+researched number 2]]\n" \
+                 "[[Joe User+researched number 1]]"
       )
     end
   end

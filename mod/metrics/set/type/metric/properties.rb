@@ -2,10 +2,9 @@
 format :html do
   def properties
     {
+      metric_type: "Metric Type",
       designer:    "Designed By",
-      scorer:      "Scored By",
-      topic:       "Topics",
-      metric_type: "Metric Type"
+      topic:       "Topics"
     }
   end
 
@@ -32,11 +31,6 @@ format :html do
   def designer_property
     nest card.metric_designer_card, view: :designer_slot,
                                     hide: :horizontal_menu
-  end
-
-  def scorer_property
-    return unless card.metric_type_codename == :score
-    nest scorer_card, view: :scorer_info_without_label
   end
 
   def metric_property_nest field, item_view: :name
