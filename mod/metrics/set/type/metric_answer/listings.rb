@@ -115,14 +115,7 @@ format :html do
 
   # TODO: unify with conciser
   # year, value, unit and flags
-  view :concise do
-    %(
-    #{year_and_value}
-      <div class="pull-right">
-        #{_render_small_flags}
-      </div>
-    )
-  end
+  view :concise, template: :haml
 
   # year, value, unit and flags
   view :conciser do
@@ -138,6 +131,10 @@ format :html do
     nest card.metric_card, view: :legend
   end
 
+  view :unit do
+    currency || legend
+  end
+
   def year_and_value
     <<-HTML
       #{render :year_equals}
@@ -150,14 +147,6 @@ format :html do
   view :year_equals do
     "<span class=\"metric-year\">#{card.year} = </span>"
   end
-
-  # view :expanded_details_toggle do
-  #   wrap_with :i, "", class: "fa fa-caret-right fa-lg margin-left-10 " \
-  #                            "btn btn-outline-secondary btn-sm",
-  #                     data: { toggle: "collapse-next",
-  #                             parent: ".value",
-  #                             collapse: ".metric-value-details" }
-  # end
 
   view :pretty_value do
     span_args = { class: "metric-value" }

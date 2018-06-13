@@ -1,0 +1,10 @@
+.metric-value.pull-right
+  = render_pretty_value
+.small.pt-2.w-100
+  %span.metric-year.text-muted
+    %i.fa.fa-calendar
+    = card.year
+  %span.metric-unit.text-muted
+    = render_unit
+  .pull-right
+    = render_flags

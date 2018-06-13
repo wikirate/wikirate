@@ -28,9 +28,7 @@ format :html do
 
   view :project_tab do
     tab_wrap do
-      field_nest :project, view: :titled,
-                 title: "Projects",
-                 items: { view: :listing }
+      field_nest :project, view: :titled, title: "Projects", items: { view: :listing }
     end
   end
 
