@@ -91,9 +91,7 @@ format :html do
   end
 
   view :company_thumbnail do
-    company_image = card.company_card.fetch(trait: :image)
-    title = card.company_card.name
-    text_with_image title: title, image: company_image, size: :icon
+    nest card.company_card, view: :thumbnail_no_link
   end
 
   view :value_cell do
