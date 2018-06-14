@@ -589,6 +589,9 @@
   :type: Search
   :key: metric+score+*type_plu_right+*structure
   :merged: 2018-06-13 20:37:51 UTC
+- :name: Metric+question+*type plus right+*default
+  :type: PlainText
+  :key: metric+question+*type_plu_right+*default
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org
