@@ -51,7 +51,7 @@ format :html do
   end
 
   def scorable_metric_type_content
-    scorable_metric_types.map { |type| "[[#{type}]]"}
+    scorable_metric_types.map { |type| "[[#{type}]]" }
   end
 
   def scorable_metric_types
