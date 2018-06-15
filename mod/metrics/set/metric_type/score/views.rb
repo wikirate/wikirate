@@ -18,6 +18,10 @@ format :html do
                     size: :icon, image: card.scorer_card.fetch(trait: :image, new: {})
   end
 
+  view :legend do
+    "0-10"
+  end
+
   def properties
     {
       metric_type:   "Metric Type",
