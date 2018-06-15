@@ -39,6 +39,7 @@ namespace :deploy do
         # execute :mkdir, "tmp"
         execute :mkdir, "log"
         execute :rake, "decko:migrate"
+        execute :rake, "decko:update_assets_symlink"
       end
     end
   end
