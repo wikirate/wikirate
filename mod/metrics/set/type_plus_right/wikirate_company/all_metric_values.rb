@@ -21,7 +21,8 @@ format :html do
      self, # call search_with_params on self to get items
      [:metric_thumbnail_with_vote, :value_cell],
      header: [name_sort_links, "Value"],
-     details_view: :metric_details_sidebar]
+     details_view: :metric_details_sidebar
+   ]
   end
 
   view :filter do
