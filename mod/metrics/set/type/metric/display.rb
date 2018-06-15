@@ -41,9 +41,9 @@ format :html do
     if card.unit.present?
       card.unit
     elsif card.range.present?
-      "#{card.range}"
+      card.range.to_s
     elsif card.categorical?
-      "#{category_legend}"
+      category_legend
     else
       ""
     end
