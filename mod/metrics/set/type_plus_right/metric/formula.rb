@@ -6,6 +6,10 @@ def categorical?
   score? && metric_card.categorical?
 end
 
+def help_rule_card
+  metric_card.metric_type_card.item_cards.first&.fetch trait: :help
+end
+
 format :html do
   def new_view_hidden
     hidden_tags success: { id: card.name.left }
