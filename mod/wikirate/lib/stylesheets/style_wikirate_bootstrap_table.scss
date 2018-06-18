@@ -7,6 +7,7 @@
 
 @mixin left-color($regular, $hover) {
   .header {
+    vertical-align: middle!important;
     border-left: 3px solid $regular;
   }
   tr {
@@ -69,6 +70,7 @@ table.wikirate-table, .table.wikirate-table {
   td {
     &.data {
       min-width: 180px;
+      padding-top: 0.4rem;
     }
 
     &:first-child .media-body {
@@ -85,6 +87,7 @@ table.wikirate-table, .table.wikirate-table {
         line-height: 1em;
         font-size: 11px;
         margin-right: 5px;
+        text-align: center;
       }
       .RIGHT-Xvote_count.content-view {
         margin-left: 5px;

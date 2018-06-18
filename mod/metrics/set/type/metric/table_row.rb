@@ -21,13 +21,8 @@ format :html do
   end
 
   view :thumbnail_with_vote do
-    voo.hide! :thumbnail_subtitle
-    title = card.right.name
-    output [
-      _render_vote,
-      text_with_image(title: title,
-                      image: designer_image_card, size: :icon)
-    ]
+    voo.hide! :thumbnail_link
+    output [_render_vote, thumbnail]
   end
 
   view :latest_value do

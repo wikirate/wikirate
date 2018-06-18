@@ -22,7 +22,7 @@ showMetricValueFilter = ->
 
 metric_chart = (spec, id) ->
   runtime = vega.parse spec
-  view = new vega.View(runtime).initialize($("##{id}")).hover().run()
+  view = new vega.View(runtime).initialize($("##{id}")[0]).hover().run()
   view.addEventListener('click', (event, item) ->
     if item.datum.link
       $.ajax item.datum.link,

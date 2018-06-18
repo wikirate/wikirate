@@ -86,7 +86,7 @@ format :html do
   end
 
   def metric_type_options
-    %i[researched formula wiki_rating score relationship].map do |codename|
+    %i[researched relationship formula wiki_rating score descendant].map do |codename|
       Card::Name[codename]
     end
   end

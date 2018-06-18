@@ -22,12 +22,12 @@ def calculator_class
 end
 # </OVERRIDES>
 
-format :html do
-  def thumbnail_metric_info
-    "WikiRating"
-  end
-end
-
 event :create_formula, :initialize, on: :create do
   add_subfield :formula, content: "{}" unless subfield(:formula)&.content&.present?
+end
+
+format :html do
+  view :legend do
+    "0-10"
+  end
 end
