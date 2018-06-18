@@ -6,7 +6,7 @@ $(document).ready ->
     if $_this.is('form') and $_this.attr('action').indexOf('/card/update/' + slot.attr('id')) > -1 and slot.hasClass('TYPE_PLUS_RIGHT-analysi-overview')
 #form returned
       overview_slot = $('.card-frame.TYPE-analysi')
-      if overview_slot.size() > 0
+      if overview_slot.length > 0
         jqxhr = $.ajax('/' + overview_slot.attr('id')).done((data) ->
           $('.card-frame.TYPE-analysi:first').slotSuccess data
         )

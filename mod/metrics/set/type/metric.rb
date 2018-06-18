@@ -21,7 +21,8 @@ card_accessor :unit
 card_accessor :range
 card_accessor :currency
 card_accessor :hybrid, type: :toggle
-card_accessor :question
+card_accessor :question, type: :plain_text
+card_accessor :score
 
 # METRIC TYPES
 
@@ -57,6 +58,9 @@ def calculated?
 # RESEARCH POLICY
 end
 
+def answer_card company, year
+  field(company)&.field(year.to_s)
+end
 
 def designer_assessed?
   research_policy.casecmp("designer assessed").zero?

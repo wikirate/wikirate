@@ -42,14 +42,6 @@ format :html do
   end
 
   def thumbnail_subtitle_text
-    [thumbnail_metric_info, "designed by"].compact.join " | "
-  end
-
-  def thumbnail_metric_info
-    card.value_type
-  end
-
-  def thumbnail_subtitle_author
-    link_to_card card.metric_designer
+    card.metric_type
   end
 end

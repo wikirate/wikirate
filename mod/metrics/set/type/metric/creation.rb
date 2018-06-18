@@ -171,7 +171,7 @@ format :html do
 
   def current_tab
     @current_tab ||= begin
-      subtab = params[:tab]&.downcase&.to_sym
+      subtab = params[:tab]&.underscore&.to_sym
       subtab && Card[subtab].calculated? ? :calculated : :researched
     end
   end

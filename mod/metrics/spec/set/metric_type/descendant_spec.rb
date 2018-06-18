@@ -18,19 +18,13 @@ RSpec.describe Card::Set::MetricType::Descendant do
   end
 
   def inherited_answer company, year
-    Answer.where(metric_id: Card.fetch_id("Joe User+#{@metric_title}"),
+    Answer.where(metric_id: Card.fetch_id(metric_title),
                  company_id: Card.fetch_id(company), year: year.to_i).take
   end
 
   context "with two ancestors" do
-    before do
-      @metric_title = "descendant1"
-      @metric = create_metric(
-        name: @metric_title, type: :descendant,
-        formula: "[[Joe User+researched number 2]]\n" \
-                 "[[Joe User+researched number 1]]"
-      )
-    end
+    let(:metric_title) { "Joe User+descendant 1" }
+    let(:metric) { Card[metric_title] }
 
     context "with answers" do
       it "uses first ancestor when both are present" do
@@ -47,7 +41,7 @@ RSpec.describe Card::Set::MetricType::Descendant do
     end
 
     context "with views" do
-      let(:formula_format) { @metric.fetch(trait: :formula).format }
+      let(:formula_format) { metric.fetch(trait: :formula).format }
 
       it "renders pointer edit view" do
         expect(formula_format.render(:edit)).to have_tag("ul._pointer-filtered-list")

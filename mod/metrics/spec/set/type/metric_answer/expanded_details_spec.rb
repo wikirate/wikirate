@@ -28,6 +28,18 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
       expect(table).to include format_formula("= 1/%<input>s", input: 100)
     end
 
+    example "hybrid metric with overriden calculated value" do
+      Card["Jedi+friendliness"].create_values true do
+        Slate_Rock_and_Gravel_Company 2004 => "10"
+      end
+      table = expanded_details "Jedi+friendliness+Slate_Rock_and_Gravel_Company+2004",
+                               :formula
+      expect(table).to have_tag "div" do
+        with_tag :h5, "Calculated answer"
+        with_tag "span.metric-value", /0\.111/
+      end
+    end
+
     example "year argument" do
       answer = "Jedi+deadlier+Slate Rock and Gravel Company+2004"
       table = expanded_details answer, :formula
@@ -106,6 +118,31 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         with_tag "td", text: "10.0"
         with_tag "td", text: "x 40%"
         with_tag "td", text: "= 4.0"
+      end
+    end
+  end
+
+  describe "view: expanded_descendant_details" do
+    subject do
+      Card.fetch("Joe User+descendant 1+Sony Corporation+2014")
+          .format.render :expanded_descendant_details
+    end
+
+    def ancestor_row binding, num
+      binding.with_tag "tr" do
+        with_tag("td") { with_tag "a", text: "researched number #{num}" }
+        with_tag("td") { with_tag "a.metric-value", text: num }
+        with_tag "td", text: "2014"
+      end
+    end
+
+    specify do
+      is_expected.to have_tag("table") do
+        ["Ancestor Metric", "Value", "Year"].each do |text|
+          with_tag "th", text: text
+        end
+        ancestor_row self, "2"
+        ancestor_row self, "1"
       end
     end
   end
