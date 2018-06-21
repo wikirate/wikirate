@@ -13,11 +13,7 @@ format :html do
   end
 
   view :main_details do
-    output [
-      nest(card.about_card, view: :titled, title: "About"),
-      nest(card.methodology_card, view: :titled, title: "Methodology"),
-      _render_import_button
-    ]
+    output [nest_about, nest_methodology, _render_import_button]
   end
 
   view :source_tab do

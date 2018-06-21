@@ -14,8 +14,20 @@ format :html do
 
   # overridden in Researched
   view :main_details do
-    output [nest(card.formula_card, view: :titled, title: "Formula"),
-            nest(card.about_card, view: :titled, title: "About")]
+    output [nest_formula, nest_about, nest_methodology].compact
+  end
+
+  def nest_about
+    nest card.about_card, view: :titled, title: "About"
+  end
+
+  def nest_formula
+    nest card.formula_card, view: :titled, title: "Formula"
+  end
+
+  def nest_methodology
+    return unless card.researchable?
+    nest card.methodology_card, view: :titled, title: "Methodology"
   end
 
   view :project_tab do

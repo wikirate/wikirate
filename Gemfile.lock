@@ -30,35 +30,6 @@ PATH
     card-mod-voting (1.0)
       card
 
-PATH
-  remote: vendor/decko
-  specs:
-    card (1.95.3)
-      bootstrap4-kaminari-views (~> 1.0)
-      cardname (= 0.5.3)
-      carrierwave (~> 1.1)
-      coderay (~> 1.1)
-      coffee-script (~> 2.4)
-      colorize (~> 0.8)
-      delayed_job_active_record (~> 4.1)
-      diff-lcs (~> 1.3)
-      haml (~> 5.0)
-      kaminari (~> 1.0)
-      mini_magick (~> 4.2)
-      minitest (= 5.11.2)
-      rails (~> 5.2)
-      rake (<= 12.3.0)
-      recaptcha (~> 4.3)
-      sass (~> 3.4)
-      twitter (~> 6.1)
-      uglifier (~> 3.2)
-      uuid (~> 2.3)
-    cardname (0.5.3)
-      activesupport (~> 5.1)
-      htmlentities (~> 4.3)
-    decko (0.5.3)
-      card (= 1.95.3)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -104,7 +75,8 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.3.8)
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     airbrussh (1.3.0)
       sshkit (>= 1.6.1, != 1.7.0)
     ansi (1.5.0)
@@ -149,6 +121,29 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (>= 2.0, < 4.0)
+    card (1.95.2)
+      bootstrap4-kaminari-views (~> 1.0)
+      cardname (= 0.5.2)
+      carrierwave (~> 1.1)
+      coderay (~> 1.1)
+      coffee-script (~> 2.4)
+      colorize (~> 0.8)
+      delayed_job_active_record (~> 4.1)
+      diff-lcs (~> 1.3)
+      haml (~> 5.0)
+      kaminari (~> 1.0)
+      mini_magick (~> 4.2)
+      minitest (= 5.11.2)
+      rails (~> 5.2)
+      rake (<= 12.3.0)
+      recaptcha (~> 4.3)
+      sass (~> 3.4)
+      twitter (~> 6.1)
+      uglifier (~> 3.2)
+      uuid (~> 2.3)
+    cardname (0.5.2)
+      activesupport (~> 5.1)
+      htmlentities (~> 4.3)
     carrierwave (1.2.2)
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
@@ -163,6 +158,7 @@ GEM
     colorize (0.8.1)
     company-mapping (0.2.3)
     concurrent-ruby (1.0.5)
+    connection_pool (2.2.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.4)
@@ -193,6 +189,8 @@ GEM
     dalli (2.7.8)
     database_cleaner (1.4.1)
     debug_inspector (0.0.3)
+    decko (0.5.2)
+      card (= 1.95.2)
     delayed_job (4.1.5)
       activesupport (>= 3.0, < 5.3)
     delayed_job_active_record (4.1.3)
@@ -215,15 +213,15 @@ GEM
     equalizer (0.0.11)
     erubi (1.7.1)
     erubis (2.7.0)
+    ethon (0.11.0)
+      ffi (>= 1.3.0)
     eventmachine (1.2.7)
     excon (0.62.0)
     execjs (2.7.0)
-    fastimage (1.9.0)
-      addressable (~> 2.3.5)
     ffi (1.9.25)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
-    fog (1.41.0)
+    fog (2.0.0)
       fog-aliyun (>= 0.1.0)
       fog-atmos
       fog-aws (>= 0.6.0)
@@ -240,6 +238,7 @@ GEM
       fog-json
       fog-local
       fog-openstack
+      fog-ovirt
       fog-powerdns (>= 0.1.1)
       fog-profitbricks
       fog-rackspace
@@ -256,7 +255,7 @@ GEM
       fog-xenserver
       fog-xml (~> 0.1.1)
       ipaddress (~> 0.5)
-      json (>= 1.8, < 2.0)
+      json (~> 2.0)
     fog-aliyun (0.3.0)
       fog-core (~> 1.27)
       fog-json (~> 1.0)
@@ -319,6 +318,12 @@ GEM
       fog-core (~> 1.40)
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
+    fog-ovirt (1.0.4)
+      fog-core (~> 1.45)
+      fog-json
+      fog-xml (~> 0.1.1)
+      ovirt-engine-sdk (>= 4.1.3)
+      rbovirt (~> 0.1.5)
     fog-powerdns (0.1.1)
       fog-core (~> 1.27)
       fog-json (~> 1.0)
@@ -393,12 +398,16 @@ GEM
     http_parser.rb (0.6.0)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
+    image_info (1.1.2)
+      image_size
+      typhoeus
+    image_size (2.0.0)
     inflecto (0.0.2)
     interception (0.5)
     ipaddress (0.8.3)
     iso8601 (0.9.1)
     jaro_winkler (1.5.1)
-    json (1.8.6)
+    json (2.1.0)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.1.1)
@@ -414,14 +423,14 @@ GEM
     launchy (2.4.3)
       addressable (~> 2.3)
     libv8 (3.16.14.19)
-    link_thumbnailer (2.5.2)
+    link_thumbnailer (3.3.2)
       activesupport (>= 3.0)
-      fastimage (~> 1.6)
-      json (~> 1.8, >= 1.7.7)
-      net-http-persistent (~> 2.9)
-      nokogiri (~> 1.6)
+      image_info (>= 1.0)
+      json (>= 1.7.7)
+      net-http-persistent (>= 2.9)
+      nokogiri (>= 1.6)
       rake (>= 0.9)
-      video_info (~> 2.4)
+      video_info (>= 2.6)
     loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -449,7 +458,8 @@ GEM
     mustermann (1.0.2)
     mysql2 (0.5.1)
     naught (1.1.0)
-    net-http-persistent (2.9.4)
+    net-http-persistent (3.0.0)
+      connection_pool (~> 2.2)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (5.0.2)
@@ -465,6 +475,8 @@ GEM
       ast
       ruby-ll (~> 2.1)
     open_uri_redirections (0.2.1)
+    ovirt-engine-sdk (4.2.4)
+      json (>= 1, < 3)
     parallel (1.12.1)
     parser (2.5.1.0)
       ast (~> 2.4.0)
@@ -490,6 +502,7 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
+    public_suffix (3.0.2)
     rack (2.0.5)
     rack-protection (2.0.3)
       rack
@@ -527,6 +540,9 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    rbovirt (0.1.6)
+      nokogiri
+      rest-client (> 1.7.0)
     rbvmomi (1.13.0)
       builder (~> 3.0)
       json (>= 1.8)
@@ -646,6 +662,8 @@ GEM
       multipart-post (~> 2.0)
       naught (~> 1.0)
       simple_oauth (~> 0.3.0)
+    typhoeus (1.3.0)
+      ethon (>= 0.9.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (3.2.0)
@@ -688,13 +706,11 @@ DEPENDENCIES
   capistrano-passenger
   capistrano-rvm
   capybara (= 2.17.0)
-  card!
   card-mod-logger!
   card-mod-markdown!
   card-mod-new_relic!
   card-mod-pdfjs!
   card-mod-voting!
-  cardname!
   company-mapping
   cucumber-expressions (= 5.0.7)
   cucumber-rails
@@ -702,7 +718,6 @@ DEPENDENCIES
   daemons
   dalli
   database_cleaner (~> 1.4.1)
-  decko!
   delayed_job_active_record
   delayed_job_web
   descriptive_statistics
@@ -711,7 +726,7 @@ DEPENDENCIES
   fog-aws
   html2haml
   launchy
-  link_thumbnailer (= 2.5.2)
+  link_thumbnailer
   minitest
   mysql2 (> 0.4)
   newrelic_rpm
