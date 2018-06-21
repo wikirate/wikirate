@@ -27,6 +27,7 @@ def add_title thumbnail
 end
 
 def add_description thumbnail
-  return if subfield(:description) || thumbnail.description.empty?
+  return if subfield(:description)
+  return unless thumbnail.description.present? && thumbnail.description.valid_encoding?
   add_subfield :description, content: thumbnail.description
 end
