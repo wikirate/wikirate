@@ -17,9 +17,9 @@ format :html do
 
   def wrap_expanded_details
     output [
-             yield,
-             wrap_with(:div, _render_comments, class: "comments-div")
-           ]
+      yield,
+      wrap_with(:div, _render_comments, class: "comments-div")
+    ]
   end
 
   # Note: RESEARCHED details are handled in Abstract::ExpandedResearchedDetails
@@ -48,9 +48,13 @@ format :html do
   # TODO: make item-wrapping format-specific
   def formula_details
     calculator = Formula::Calculator.new(card.metric_card.formula_card)
-    calculator.advanced_formula_for card.company, card.year.to_i do |input, input_card, index|
-      input = input.join ", " if input.is_a?(Array)
-      link_to_card [input_card, card.company, card.year], input, class: "metric-value"
+    calculator.advanced_formula_for card.company, card.year.to_i do |input, input_card|
+      link_target = [input_card, card.company]
+      link_target << card.year unless input.is_a?(Array)
+      if input.is_a?(Array)
+        input = input.join ", "
+      end
+      link_to_card link_target, input, class: "metric-value"
     end
   end
 

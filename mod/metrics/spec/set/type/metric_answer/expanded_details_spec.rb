@@ -5,8 +5,11 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
 
   describe "view: expanded_formula_details" do
     def format_formula string, hash
-      hash.each { |k, v| hash[k] = "<span class='metric-value'>#{v}</span>" }
-      format(string, hash)
+      hash.each do |k, v|
+        hash[k] = %{<a class="metric-value known-card" href="/#{v[1]}">#{v[0]}</a>}
+      end
+      formatted = format(string, hash)
+      /#{Regexp.escape formatted}/
     end
 
     specify do
@@ -25,18 +28,10 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         with_tag "td", text: "1977"
       end
 
-      expect(table).to include format_formula("= 1/%<input>s", input: 100)
-    end
-
-    example "hybrid metric with overriden calculated value" do
-      Card["Jedi+friendliness"].create_values true do
-        Slate_Rock_and_Gravel_Company 2004 => "10"
-      end
-      table = expanded_details "Jedi+friendliness+Slate_Rock_and_Gravel_Company+2004",
-                               :formula
-      expect(table).to have_tag "div" do
-        with_tag :h5, "Overridden answer"
-        with_tag "span.metric-value", /0\.111/
+      expect(table).to have_tag "div.formula-with-values",
+                                text: "= 1/100" do
+        with_tag :a, with: { href: "Jedi+deadliness+Death_Star+1977" },
+                     text: 100
       end
     end
 
@@ -55,8 +50,15 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         with_tag "td", text: "2004"
       end
 
-      expect(table).to include(format_formula("= %<input1>s-%<input2>s+%<input3>s",
-                                              input1: 9, input2: 8, input3: 1002))
+      expect(table).to have_tag "div.formula-with-values",
+                                text: "= 9-8+1002" do
+        with_tag :a, with: { href: "/Jedi+deadliness+Slate_Rock_and_Gravel_Company+2004"},
+                     text: "9"
+        with_tag :a, with: { href: "/Jedi+deadliness+Slate_Rock_and_Gravel_Company+2004"},
+                     text: "8"
+        with_tag :a, with: { href: "/half_year+Slate_Rock_and_Gravel_Company+2004"},
+                     text: "1002"
+      end
     end
 
     example "year range" do
@@ -66,13 +68,18 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         with_tag "td" do
           with_tag "a", text: "deadliness"
         end
-        with_tag "td" do
+        with_tag :td do
           with_tag "span.metric-value", text: "8, 9, 10"
         end
-        with_tag "td", text: "-2..0"
+        with_tag :td, text: "-2..0"
       end
 
-      expect(table).to include(format_formula("= Sum[%<inputs>s]", inputs: "8, 9, 10"))
+      expect(table).to have_tag "div.formula-with-values",
+                                text: "= Sum[8, 9, 10]/3" do
+        with_tag :a, with: { href: "/Jedi+deadliness+Slate_Rock_and_Gravel_Company"},
+                     text: "8, 9, 10"
+      end
+
     end
   end
 
@@ -128,29 +135,49 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
           .format.render :expanded_descendant_details
     end
 
-    def ancestor_row binding, num
+    def ancestor_row binding, num, rank
       binding.with_tag "tr" do
+        with_tag :td, rank.to_s
         with_tag("td") { with_tag "a", text: "researched number #{num}" }
         with_tag("td") { with_tag "a.metric-value", text: num }
-        with_tag "td", text: "2014"
       end
     end
 
     specify do
       is_expected.to have_tag("table") do
-        ["Ancestor Metric", "Value", "Year"].each do |text|
+        ["Rank", "Ancestor Metric", "Value"].each do |text|
           with_tag "th", text: text
         end
-        ancestor_row self, "2"
-        ancestor_row self, "1"
+        ancestor_row self, "2", 1
+        ancestor_row self, "1", 2
       end
     end
   end
 
-  context "overridden descendant metric" do
+  context "with overridden formula metric" do
+    subject do
+      Card.fetch("Jedi+friendliness+Slate_Rock_and_Gravel_Company+2003")
+          .format.render :expanded_details
+    end
+
+    it "shows overridden value" do
+      is_expected.to have_tag "div" do
+        with_tag :h5, "Overridden answer"
+        with_tag "span.metric-value", /0\.125/
+      end
+    end
+
+    it "links to input value" do
+      input_name = "/Jedi+deadliness+Slate_Rock_and_Gravel_Company+2003"
+      is_expected.to have_tag "a.metric-value",
+                              with: { href: input_name }, text: "8"
+    end
+  end
+
+  context "with overridden descendant metric" do
     subject do
       Card.fetch("Joe User+descendant hybrid+Death Star+1977")
-        .format.render :expanded_details
+          .format.render :expanded_details
     end
 
     it "shows cited source" do
