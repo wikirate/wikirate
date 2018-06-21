@@ -11,7 +11,15 @@ include_set Abstract::Paging
 
 format :html do
   view :expanded_details do
+    return render_expanded_researched_details if researched_value?
     render("expanded_#{card.metric_type}_details").html_safe
+  end
+
+  def wrap_expanded_details
+    output [
+             yield,
+             wrap_with(:div, _render_comments, class: "comments-div")
+           ]
   end
 
   # Note: RESEARCHED details are handled in Abstract::ExpandedResearchedDetails
@@ -20,7 +28,6 @@ format :html do
 
   # don't cache; view depends on formula card
   view :expanded_formula_details, tags: :unknown_ok, cache: :never do
-    return render_expanded_researched_details if researched_value?
     expanded_formula_details
   end
 
@@ -41,9 +48,9 @@ format :html do
   # TODO: make item-wrapping format-specific
   def formula_details
     calculator = Formula::Calculator.new(card.metric_card.formula_card)
-    calculator.formula_for card.company, card.year.to_i do |input|
+    calculator.advanced_formula_for card.company, card.year.to_i do |input, input_card, index|
       input = input.join ", " if input.is_a?(Array)
-      "<span class='metric-value'>#{input}</span>"
+      link_to_card [input_card, card.company, card.year], input, class: "metric-value"
     end
   end
 
@@ -75,7 +82,7 @@ format :html do
   # ~~~~~~~ RELATIONSHIP AND INVERSE RELATIONSHIP DETAILS
 
   view :expanded_relationship_details do
-    wrap_expanded_details do
+    wrap_researched_details do
       [
         "<br/><h5>Relations</h5>",
         render_relations_table_with_details_toggle.html_safe

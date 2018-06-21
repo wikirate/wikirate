@@ -5,8 +5,8 @@ RSpec.describe Card::Set::Self::Metric, "metric report queries" do
     include_context "report query", :metric, :created
     variants submitted: ["Jedi+disturbances in the Force+Joe User",
                          "Joe User+big single"],
-             designed: 9,
-             all: 10
+             designed: 10,
+             all: 11
   end
 
   describe "updated query" do

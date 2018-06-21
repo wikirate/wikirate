@@ -35,7 +35,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
       table = expanded_details "Jedi+friendliness+Slate_Rock_and_Gravel_Company+2004",
                                :formula
       expect(table).to have_tag "div" do
-        with_tag :h5, "Calculated answer"
+        with_tag :h5, "Overridden answer"
         with_tag "span.metric-value", /0\.111/
       end
     end
@@ -143,6 +143,39 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
         end
         ancestor_row self, "2"
         ancestor_row self, "1"
+      end
+    end
+  end
+
+  context "overridden descendant metric" do
+    subject do
+      Card.fetch("Joe User+descendant hybrid+Death Star+1977")
+        .format.render :expanded_details
+    end
+
+    it "shows cited source" do
+      is_expected.to have_tag "div.cited-sources" do
+        with_tag "span.source-title", "Opera"
+      end
+    end
+
+    it "shows overridden value" do
+      is_expected.to have_tag "div.overridden-answer" do
+        with_tag "h5", "Overridden answer"
+        with_tag "span.metric-value", /5/
+      end
+    end
+
+    it "shows table of ancestors" do
+      is_expected.to have_tag :table do
+        with_tag :th, "Rank"
+        with_tag :tr do
+          with_tag :td, "2"
+          with_tag :td, /researched number 1/
+          with_tag :td do
+            with_tag "a.metric-value", /5/
+          end
+        end
       end
     end
   end
