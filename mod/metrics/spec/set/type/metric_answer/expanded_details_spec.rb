@@ -6,7 +6,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
   describe "view: expanded_formula_details" do
     def format_formula string, hash
       hash.each do |k, v|
-        hash[k] = %{<a class="metric-value known-card" href="/#{v[1]}">#{v[0]}</a>}
+        hash[k] = %(<a class="metric-value known-card" href="/#{v[1]}">#{v[0]}</a>)
       end
       formatted = format(string, hash)
       /#{Regexp.escape formatted}/
@@ -30,7 +30,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
 
       expect(table).to have_tag "div.formula-with-values",
                                 text: "= 1/100" do
-        with_tag :a, with: { href: "Jedi+deadliness+Death_Star+1977" },
+        with_tag :a, with: { href: "/Jedi+deadliness+Death_Star+1977" },
                      text: 100
       end
     end
@@ -52,11 +52,13 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
 
       expect(table).to have_tag "div.formula-with-values",
                                 text: "= 9-8+1002" do
-        with_tag :a, with: { href: "/Jedi+deadliness+Slate_Rock_and_Gravel_Company+2004"},
-                     text: "9"
-        with_tag :a, with: { href: "/Jedi+deadliness+Slate_Rock_and_Gravel_Company+2004"},
-                     text: "8"
-        with_tag :a, with: { href: "/half_year+Slate_Rock_and_Gravel_Company+2004"},
+        with_tag :a,
+                 with: { href: "/Jedi+deadliness+Slate_Rock_and_Gravel_Company+2004" },
+                 text: "9"
+        with_tag :a,
+                 with: { href: "/Jedi+deadliness+Slate_Rock_and_Gravel_Company+2004" },
+                 text: "8"
+        with_tag :a, with: { href: "/half_year+Slate_Rock_and_Gravel_Company+2004" },
                      text: "1002"
       end
     end
@@ -76,7 +78,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
 
       expect(table).to have_tag "div.formula-with-values",
                                 text: "= Sum[8, 9, 10]/3" do
-        with_tag :a, with: { href: "/Jedi+deadliness+Slate_Rock_and_Gravel_Company"},
+        with_tag :a, with: { href: "/Jedi+deadliness+Slate_Rock_and_Gravel_Company" },
                      text: "8, 9, 10"
       end
 
