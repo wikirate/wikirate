@@ -25,16 +25,29 @@ showResearchAttributes = (checkbox) ->
   $.each ["value_type", "research_policy", "report_type", "methodology"], (_i, key) ->
     form.find(".card-editor.RIGHT-" + key).toggle show_or_hide
 
+
+decko.editorContentFunctionMap['.pairs-editor'] = ->
+  JSON.stringify pairsEditorHash(this)
+
+pairsEditorHash = (table) ->
+  hash = {}
+  table.find("tbody tr").each ->
+    cols = $(this).find('td')
+    if (key = $(cols[0]).data('key'))
+      hash[key] = $(cols[1]).find('input').val()
+  hash
+
 # WikiRatings Formulae
 
 # WikiRating formulae are stored as a simple JSON hash:
 #
 # { metric_name: metric_weight }
 
-decko.editorContentFunctionMap['.pairs-editor'] = ->
-  JSON.stringify pairsEditorHash(this)
+decko.editorContentFunctionMap['.wikiRating-editor'] = ->
+  JSON.stringify wikiRatingEditorHash(this)
 
-pairsEditorHash = (table) ->
+
+wikiRatingEditorHash = (table) ->
   hash = {}
   table.find("tbody tr").each ->
     tr = $(this)
@@ -44,13 +57,13 @@ pairsEditorHash = (table) ->
 
 $(window).ready ->
   $('body').on 'input', '.metric-weight input', (_event) ->
-    validateWikiRating $(this).closest(".pairs-editor")
+    validateWikiRating $(this).closest(".wikiRating-editor")
 
   $('body').on "click", "._remove-weight", () ->
     removeWeightRow $(this).closest("tr")
 
 validateWikiRating = (table) ->
-  hash = pairsEditorHash table
+  hash = wikiRatingEditorHash table
   valid = tallyWeights table, hash
   updateWikiRatingSubmitButton table.closest('form.card-form'), valid
 
@@ -83,7 +96,7 @@ updateWikiRatingSubmitButton =(form, valid) ->
   form.find(".submit-button").prop('disabled', !valid)
 
 addMissingVariables = (slot) ->
-  pairsEditor = slot.closest(".editor").find ".pairs-editor"
+  pairsEditor = slot.closest(".editor").find ".wikiRating-editor"
   addNeededWeightRows pairsEditor, slot.find(".thumbnail")
   validateWikiRating pairsEditor
 
@@ -97,7 +110,7 @@ needsWeightRow = (editor, cardId) ->
   findByCardId(editor, cardId).length == 0
 
 addWeightRow = (editor, thumbnail) ->
-  templateRow = editor.slot().find ".weight-row-template tr"
+  templateRow = editor.slot().find "._weight-row-template tr"
   newRow = rowWithThumbnail templateRow, thumbnail
   editor.find("tbody tr:last-child").before newRow
 
@@ -105,7 +118,7 @@ findByCardId = (from, cardId) ->
   $(from).find("[data-card-id='" + cardId + "']")
 
 removeWeightRow = (formulaRow) ->
-  editor = formulaRow.closest ".pairs-editor"
+  editor = formulaRow.closest ".wikiRating-editor"
   cardId = formulaRow.find(".thumbnail").data("cardId")
   variableItem = variableItemWithId editor.slot(), cardId
   formulaRow.remove()

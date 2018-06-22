@@ -71,7 +71,13 @@ format :html do
          filter: initial_filters(filters)
   end
 
+  # TODO: make sure card.metric_card.id remains in not_id filters
+  # currently it only limits the initial filter.
+  def not_ids
+    card.item_ids.push(card.metric_card.id).compact.map(&:to_s).join(",")
+  end
+
   def initial_filters added_filters
-    { not_ids:   card.item_ids.map(&:to_s).join(",") }.merge added_filters
+    { not_ids: not_ids }.merge added_filters
   end
 end
