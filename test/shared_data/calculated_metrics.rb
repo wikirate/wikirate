@@ -18,7 +18,10 @@ class SharedData
       Card::Metric.create name: "Jedi+friendliness",
                           type: :formula,
                           formula: "1/{{Jedi+deadliness}}",
-                          hybrid: 1
+                          hybrid: "1",
+                          random_source: true do
+        Slate_Rock_and_Gravel_Company 2003 => "100"
+      end
       Card::Metric.create name: "Jedi+deadliness average",
                           type: :formula,
                           formula: "Sum[{{Jedi+deadliness|year:-2..0}}]/3"
@@ -62,6 +65,15 @@ class SharedData
         formula: "[[Joe User+researched number 2]]\n" \
                  "[[Joe User+researched number 1]]"
       )
+
+      Card::Metric.create name: "Joe User+descendant hybrid",
+                          type: :descendant,
+                          formula: "[[Joe User+researched number 2]]\n" \
+                                   "[[Joe User+researched number 1]]",
+                          hybrid: "1",
+                          random_source: true do
+        Death_Star 1977 => 1000
+      end
     end
   end
 end
