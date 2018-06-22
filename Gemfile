@@ -30,7 +30,7 @@ gem "delayed_job_active_record"
 gem "delayed_job_web"
 
 gem "company-mapping"
-gem "link_thumbnailer", "2.5.2"
+gem "link_thumbnailer"
 gem "open_uri_redirections"
 gem "pdfkit"
 gem "roo"

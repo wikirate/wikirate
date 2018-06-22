@@ -22,7 +22,8 @@ class SharedData
     "Monster Inc" => "We scare because we care.",
     "Slate Rock and Gravel Company" => "Yabba Dabba Doo!",
     "Los Pollos Hermanos" => "I'm the one who knocks",
-    "SPECTRE" => "shaken not stirred"
+    "SPECTRE" => "shaken not stirred",
+
     # in addition pulled from production:
     # Google Inc, Apple Inc, Samsung, Siemens AG, Sony Corporation, Amazon.com
   }.freeze

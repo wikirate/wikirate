@@ -21,14 +21,9 @@ decko.slotReady (slot) ->
 
 showResearchAttributes = (checkbox) ->
   form = checkbox.closest("form")
-  if checkbox.prop "checked"
-    form.find(".card-editor.RIGHT-value_type").show()
-    form.find(".card-editor.RIGHT-research_policy").show()
-    form.find(".card-editor.RIGHT-report_type").show()
-  else
-    form.find(".card-editor.RIGHT-value_type").hide()
-    form.find(".card-editor.RIGHT-research_policy").hide()
-    form.find(".card-editor.RIGHT-report_type").hide()
+  show_or_hide = checkbox.prop "checked"
+  $.each ["value_type", "research_policy", "report_type", "methodology"], (_i, key) ->
+    form.find(".card-editor.RIGHT-" + key).toggle show_or_hide
 
 # WikiRatings Formulae
 
