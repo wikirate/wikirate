@@ -27,6 +27,15 @@ def add_title thumbnail
 end
 
 def add_description thumbnail
-  return if subfield(:description) || thumbnail.description.empty?
-  add_subfield :description, content: thumbnail.description
+  return if subfield :description
+  description = clean_description thumbnail.description
+  return unless description.present?
+  add_subfield :description, content: description
+end
+
+# temporary fix
+def clean_description text
+  # remove all 4-byte unicode characters
+  regex = /[\u{10000}-\u{fffff}]/
+  text.gsub! regex, ""
 end
