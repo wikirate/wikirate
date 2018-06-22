@@ -530,10 +530,10 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 
 .metric-value.small {
   font-size: 15px;
-  white-space: nowrap;
-  max-width: 300px;
-  text-overflow: ellipsis;
-  overflow: hidden;
+}
+
+.wikirate-table .data .metric-unit {
+ width: 60%;
 }
 
 //Div alignments
