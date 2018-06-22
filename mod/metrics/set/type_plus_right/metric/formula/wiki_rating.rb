@@ -19,7 +19,6 @@ format :html do
   def rating_editor_table
     table rating_editor_table_content, class: "wikiRating-editor",
                                        header: %w[Metric Weight]
-
   end
 
   def rating_editor_table_content
