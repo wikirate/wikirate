@@ -61,7 +61,7 @@ RSpec.describe Card::Set::MetricType::WikiRating do
       expect(rating_answer("Death_Star", "1977")).to be_falsey
     end
 
-    context "and formula changes" do
+    context "when formula changes" do
       def update_weights weights
         @metric.formula_card.update_attributes! content: weights.to_json
       end
@@ -85,7 +85,7 @@ RSpec.describe Card::Set::MetricType::WikiRating do
       end
     end
 
-    context "and input metric value changes" do
+    context "when input metric value changes" do
       it "updates rating value" do
         Card["Joe User+researched number 1+Samsung+2014+value"]
           .update_attributes! content: "1"
@@ -99,7 +99,7 @@ RSpec.describe Card::Set::MetricType::WikiRating do
       end
     end
 
-    context "and input metric value is missing" do
+    context "when input metric value is missing" do
       it "doesn't create rating value" do
         expect(rating_answer("Death Star", "1977")).to be_falsey
       end
@@ -118,8 +118,8 @@ RSpec.describe Card::Set::MetricType::WikiRating do
 
     context "when input metric is renamed" do
       it "changes name in formula", as_bot: true do
-        update_card "Joe User+researched number 1", name: "Joe User+invented number",
-                    update_referers: true
+        update_card "Joe User+researched number 1",
+                    name: "Joe User+invented number", update_referers: true
         expect(formula_card.content).to include "Joe User+invented number"
       end
     end
@@ -132,6 +132,7 @@ RSpec.describe Card::Set::MetricType::WikiRating do
     end
 
     let(:formula_card) { Card["#{@metric.name}+formula"] }
+
     it "has empty json hash as formula" do
       expect(formula_card.content).to eq "{}"
     end

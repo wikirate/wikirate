@@ -1,4 +1,5 @@
-event :reset_metrics_set_pattern_for_metric_type, :finalize, on: :save, changed: :content do
+event :reset_metrics_set_pattern_for_metric_type, :finalize,
+      on: :save, changed: :content do
   left.reset_patterns
   left.include_set_modules
 end
