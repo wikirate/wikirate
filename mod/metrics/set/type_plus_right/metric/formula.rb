@@ -88,6 +88,11 @@ def each_reference_out &block
   end
 end
 
+def replace_reference_syntax old_name, new_name
+  return super unless rating?
+  content.gsub old_name, new_name
+end
+
 def normalize_value value
   metric_card.normalize_value value
 end

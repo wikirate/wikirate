@@ -74,6 +74,11 @@ RSpec.describe Answer do
       expect(answer.metric_name).to eq "Joe User+researched number 2"
     end
 
+    it "updates metric when metric names changes" do
+      update metric, name: "Joe User+invented"
+      expect(answer.metric_name).to eq "Joe User+invented"
+    end
+
     it "updates year" do
       update answer_name, name: "Joe User+researched+Apple_Inc+1999"
       expect(answer.year).to eq 1999
