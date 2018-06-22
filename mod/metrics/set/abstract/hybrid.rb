@@ -5,12 +5,10 @@ end
 format :html do
   view :content_formgroup do
     # coffeescript hides the bottom three if _hybrid_ is not selected
-    voo.edit_structure += [
-      [:hybrid, "Researchable"],
-      [:value_type, "Value Type"],
-      [:research_policy, "Research Policy"],
-      [:report_type, "Report Type"]
-    ]
+    voo.edit_structure +=
+      [[:hybrid, "Researchable"]] +
+      research_properties.map { |k, v| [k, v] } +
+      [[:methodology, "Methodology"]]
     super()
   end
 
