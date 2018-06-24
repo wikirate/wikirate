@@ -2,12 +2,7 @@
 event :update_metric_values, :prepare_to_store, on: :update, changed: :content do
   @existing = ::Set.new metric_card.all_answers.pluck(:id)
   calculate_all_values do |company, year, value|
-    if (answer = metric_card.answer company, year)
-      @existing.delete answer.id
-      answer.update_value value
-    else
-      add_value company, year, value
-    end
+    update_or_add_answer company, year, value
   end
   Answer.where(id: @existing.to_a).delete_all
 end
@@ -23,6 +18,18 @@ event :create_metric_values, :finalize, # prepare_to_store,
   calculate_all_values do |company, year, value|
     add_value company, year, value
   end
+end
+
+def update_or_add_answer company, year, value
+  if (answer = metric_card.answer company, year)
+    @existing.delete answer.id
+    answer.update_value value
+  else
+    add_value company, year, value
+  end
+rescue => e
+  errors.add :answer, "Error storing calculated value: #{e.message}"
+  raise e
 end
 
 def add_value company, year, value
