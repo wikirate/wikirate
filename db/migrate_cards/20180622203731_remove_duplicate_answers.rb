@@ -2,7 +2,6 @@
 
 class RemoveDuplicateAnswers < Card::Migration
   def up
-    ENV["SKIP_UPDATE_RELATED"] = "true"
     duplicates.each do |dup|
       wipe_duplicate dup
       if researched?(dup)
@@ -18,7 +17,8 @@ class RemoveDuplicateAnswers < Card::Migration
   end
 
   def refresh_researched dup
-    Answer.create! card(dup)
+    researched = card dup
+    Answer.create! researched if researched
   end
 
   def card dup
@@ -26,7 +26,7 @@ class RemoveDuplicateAnswers < Card::Migration
   end
 
   def refresh_calculated dup
-    card(dup)&.delete!
+    card(dup)&.delete! skip_event: %i[update_related_calculations update_related_scores]
     Card[dup.metric_id].update_value_for! company: dup.company_id, year: dup.year
   end
 
