@@ -29,7 +29,7 @@ def self.topic_company_type_plus_right_cards_for_metric metric_card
     Abstract::CachedCount.pointer_card_changed_card_names(topic_pointer)
   topic_names.map do |topic_name|
     Card.fetch topic_name, :wikirate_company
-  end
+  end.compact
 end
 
 def ids_of_metrics_tagged_with_topic
