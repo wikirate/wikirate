@@ -2,6 +2,7 @@
 
 class RemoveDuplicateAnswers < Card::Migration
   def up
+    ENV["SKIP_UPDATE_RELATED"] = true
     duplicates.each do |dup|
       wipe_duplicate dup
       if researched?(dup)
