@@ -28,6 +28,7 @@ def update_or_add_answer company, year, value
     add_value company, year, value
   end
 rescue => e
+  binding.pry
   errors.add :answer, "Error storing calculated value: #{e.message}"
   raise e
 end
@@ -38,7 +39,7 @@ end
 
 def calculate_all_values
   calculator.result.each_pair do |year, companies|
-    companies.each_pair do |company, value|
+    companies.each_pair do |company, value|3
       yield company, year, value if value
     end
   end

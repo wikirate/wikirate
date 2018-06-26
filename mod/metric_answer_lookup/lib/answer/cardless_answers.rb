@@ -16,7 +16,8 @@ class Answer
     def virtual_answer_card name=nil, val=nil
       name ||= [record_name, year.to_s]
       val ||= value
-      Card.new(name: name, type_id: Card::MetricAnswerID).tap do |card|
+
+      Card.fetch(name, new: { type_id: Card::MetricAnswerID }).tap do |card|
         card.define_singleton_method(:value) { val }
         # card.define_singleton_method(:updated_at) { updated_at }
         card.define_singleton_method(:value_card) do
