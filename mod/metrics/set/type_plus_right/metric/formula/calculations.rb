@@ -38,7 +38,7 @@ end
 
 def calculate_all_values
   calculator.result.each_pair do |year, companies|
-    companies.each_pair do |company, value|3
+    companies.each_pair do |company, value|
       yield company, year, value if value
     end
   end
