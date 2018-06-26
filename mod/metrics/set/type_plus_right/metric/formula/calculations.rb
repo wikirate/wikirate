@@ -28,7 +28,6 @@ def update_or_add_answer company, year, value
     add_value company, year, value
   end
 rescue => e
-  binding.pry
   errors.add :answer, "Error storing calculated value: #{e.message}"
   raise e
 end

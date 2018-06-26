@@ -48,10 +48,8 @@ format :html do
 
   def overridden_descendant_details
     wrap_with :div do
-      [
-        wrapped_overridden_value,
-        render_expanded_descendant_details
-      ]
+      [wrapped_overridden_value,
+       render(:expanded_descendant_details, hide: :comments)]
     end
   end
 

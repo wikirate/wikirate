@@ -5,9 +5,9 @@ class RemoveRealNonResearchedAnswers < Card::Migration
     calculated_ids = [Card::WikiRatingID, Card::FormulaID, Card::ScoreID,
                       Card::DescendantID]
 
-    Answer.find_in_batches(answer_id: nil,
-                           metric_type_id: calculated_ids, overridden_value: nil) do |answer|
-      answer_card = Card[answer.record_name, answer.year.to_s]
+    Answer.where(answer_id: nil, metric_type_id: calculated_ids, overridden_value: nil)
+          .find_each do |answer|
+      next unless (answer_card = Card[answer.record_name, answer.year.to_s])
       children = answer_card&.children || []
       if children&.empty? || only_value_child?(children)
         answer_card.delete!
