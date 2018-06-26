@@ -219,7 +219,7 @@ event :user_unchecked_value, :prepare_to_store,
 end
 
 event :user_requests_check, :prepare_to_store,
-      when: :request_check_flag_update? do
+      when: :request_check_flag_update?, changed: :content do
   requested_by_content =
     if content == "[[#{request_tag}]]"
       return if check_requester.present?
