@@ -1,10 +1,6 @@
 include_set Abstract::MetricChild, generation: 2
 include_set Abstract::MetricAnswer
 
-def answer
-  @answer ||= Answer.existing(id) || Answer.new
-end
-
 # EVENTS
 event :flash_success_message, :finalize, on: :create do
   msg =
