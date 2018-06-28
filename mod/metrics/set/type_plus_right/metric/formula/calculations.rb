@@ -1,5 +1,5 @@
 # don't update if it's part of scored metric update
-event :update_metric_values, :prepare_to_store, on: :update, changed: :content do
+event :update_metric_answers, :prepare_to_store, on: :update, changed: :content do
   @existing = ::Set.new metric_card.all_answers.pluck(:id)
   calculate_all_values do |company, year, value|
     update_or_add_answer company, year, value
@@ -8,8 +8,8 @@ event :update_metric_values, :prepare_to_store, on: :update, changed: :content d
 end
 
 # don't update if it's part of scored metric create
-event :create_metric_values, :finalize, # prepare_to_store,
-      on: :create, changed: :content, when: proc { |c| c.content.present? }  do
+event :create_metric_answers, :finalize, # prepare_to_store,
+      on: :create, changed: :content, when: :content?  do
   # reload set modules seems to be no longer necessary
   # it used to happen at this point that left has type metric but
   # set_names includes "Basic+formula+*type plus right"

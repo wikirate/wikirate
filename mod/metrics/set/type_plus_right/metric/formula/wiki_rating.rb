@@ -28,8 +28,10 @@ format :html do
 
   def rating_editor_table_main_content
     card.translation_table.map do |metric, weight|
+      # FIXME: prevent bad data
+      next unless Card.fetch_type_id(metric) == Card::MetricID
       subformat(metric).weight_row weight
-    end
+    end.compact
   end
 
   # blank weight row used in JavaScript when new metric variables are added
