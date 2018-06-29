@@ -1,7 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-
-BetterErrors.editor='x-mine://open?file=%{file}&line=%{line}' if defined? BetterErrors
+BetterErrors.editor="x-mine://open?file=%{file}&line=%{line}" if defined? BetterErrors
 
 Wikirate::Application.configure do
   # Settings specified here will take precedence over those in
@@ -18,4 +17,3 @@ Wikirate::Application.configure do
   config.log_level = :debug
   # config.view_cache = true
 end
-

@@ -1,38 +1,42 @@
-require File.expand_path('../boot', __FILE__)
+require File.expand_path("../boot", __FILE__)
 
-require 'decko/all'
+require "decko/all"
 
 module Wikirate
+  # WikiRate application object. holds config options
   class Application < Decko::Application
+    # Decko inherits Rails configuration options.
+    # See http://guides.rubyonrails.org/configuring.html
 
-    # Wagn inherits Rails configuration options.  See http://guides.rubyonrails.org/configuring.html
-
-    config.recaptcha_public_key  = '6LdhRssSAAAAAFfLt1Wkw43hoaA8RTIgso9-tvtc'
-    config.recaptcha_private_key = '6LdhRssSAAAAAGwzl069pJQBdmzCZigm1nV-dmqK'
+    # config.recaptcha_public_key  = ''
+    # config.recaptcha_private_key = ''
     # config.recaptcha_proxy = ...
     #
-    # IMPORTANT: please be sure to register for your own recaptcha keys before deploying a live site
-    # It's quick and easy.  Just follow instructions at https://www.google.com/recaptcha/admin/create
+    # IMPORTANT: please be sure to register for your own recaptcha keys
+    # before deploying a live site. It's quick and easy.
+    # Just follow instructions at https://www.google.com/recaptcha/admin/create
     #
     # The below keys are fine for testing but should not be used in production sites.
 
     config.action_mailer.raise_delivery_errors = true
     config.action_mailer.delivery_method = :smtp
-    config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+    config.action_mailer.smtp_settings = { address: "localhost", port: 1025 }
     config.action_mailer.perform_deliveries = true
 
     # config.view_cache = false
 
-    #config.action_mailer.delivery_method = :smtp
-    #config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025,  :openssl_verify_mode => 'none' }
-#    config.action_mailer.smtp_settings = {}
+    # config.action_mailer.delivery_method = :smtp
+    # config.action_mailer.smtp_settings = { address: "localhost", port: 1025,
+    #                                        openssl_verify_mode: 'none' }
+    # config.action_mailer.smtp_settings = {}
 
     # config.read_only = true
     # defaults to false
     # disallows creating, updating, and deleting cards.
 
     # config.cache_store = :file_store, 'tmp/cache'
-    # determines caching mechanism.  options include: file_store, memory_store, mem_cache_store, dalli_store...
+    # determines caching mechanism.
+    # options include: file_store, memory_store, mem_cache_store, dalli_store...
     #
     # for production, we highly recommend memcache
     # here's a sample configuration for use with the dalli gem
@@ -53,7 +57,7 @@ module Wikirate
     # config.override_protocol = nil
     # don't autodetect protocol (http/https) from web requests
     # config.request_logger = false
-    #config.paths['request_log'] = 'shared/log'
+    # config.paths['request_log'] = 'shared/log'
 
     config.autoload_paths += Dir["#{root}/test/*.rb"]
     config.autoload_paths += Dir["#{root}/test/**/"]
