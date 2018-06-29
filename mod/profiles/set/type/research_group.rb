@@ -1,7 +1,6 @@
 include_set Abstract::TwoColumnLayout
 include_set Abstract::Thumbnail
 include_set Abstract::Table
-include_set Abstract::Listing
 include_set Abstract::BsBadge
 
 card_accessor :organizer
@@ -81,22 +80,22 @@ format :html do
   end
 
   view :metric_tab do
-    field_nest :metric, items: { view: :listing }
+    field_nest :metric, items: { view: :bar }
   end
 
   view :project_tab do
-    field_nest :project, items: { view: :listing }
+    field_nest :project, items: { view: :bar }
   end
 
   view :researcher_tab do
     field_nest :researcher, view: :overview
   end
 
-  view :listing_left, template: :haml
-  view :listing_bottom, template: :haml
-  view :listing_middle, template: :haml
+  view :bar_left, template: :haml
+  view :bar_bottom, template: :haml
+  view :bar_middle, template: :haml
 
-  view :listing_right, cache: :never do
+  view :bar_right, cache: :never do
     labeled_badge card.researcher_card.count, "Researchers", color: "dark"
   end
 

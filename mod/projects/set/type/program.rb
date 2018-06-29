@@ -1,5 +1,4 @@
 include_set Abstract::TwoColumnLayout
-include_set Abstract::Listing
 include_set Abstract::Thumbnail
 
 card_accessor :project, type: :pointer
@@ -12,20 +11,22 @@ format :html do
     ]
   end
 
-  view :listing_left do
+  before :bar do
+    super()
+    voo.hide! :bar_middle
+  end
+
+
+  view :bar_left do
     render :thumbnail
   end
 
-  view :listing_right do
+  view :bar_right do
     ""
   end
 
-  view :listing_bottom do
+  view :bar_bottom do
     field_nest :general_overview
-  end
-
-  view :listing_middle do
-    ""
   end
 
   view :data do
