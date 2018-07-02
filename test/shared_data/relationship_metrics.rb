@@ -35,16 +35,21 @@ class SharedData
       end
       update_card "Commons+Supplier of", codename: "commons_supplier_of"
 
-      Card::Metric.create name: "Clean Clothes Campaign+Address",
-                          type: :researched,
-                          value_type: "Free Text",
-                          random_source: true do
+      # Card::Metric.create name: "Clean Clothes Campaign+Address",
+      #                     type: :researched,
+      #                     value_type: "Free Text",
+      #                     random_source: true do
+      #   SPECTRE "1977" => "Baker Street, London"
+      #   Monster_Inc "1977" => "Alderaan"
+      #   Google_Inc 2000 => "Mountain View"
+      # end
+
+      # the Clean Clothes Campaign+Address metric
+      Card[:company_address].create_values(true) do
         SPECTRE "1977" => "Baker Street, London"
         Monster_Inc "1977" => "Alderaan"
         Google_Inc 2000 => "Mountain View"
       end
-
-      update_card  "Clean Clothes Campaign+Address", codename: "company_address"
     end
   end
 end

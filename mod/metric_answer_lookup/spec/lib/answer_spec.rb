@@ -9,7 +9,7 @@ RSpec.describe Answer do
   describe "seeded metric answer table" do
     it "has more than researched values" do
       expect(described_class.count)
-        .to be > Card.search(type_id: Card::MetricValueID, return: :count)
+        .to be > Card.search(type_id: Card::MetricAnswerID, return: :count)
     end
 
     describe "random example" do
@@ -72,6 +72,11 @@ RSpec.describe Answer do
       update answer_name, name: "Joe User+researched number 2+Apple_Inc+2013"
       expect(answer.metric_id).to eq Card.fetch_id("Joe User+researched number 2")
       expect(answer.metric_name).to eq "Joe User+researched number 2"
+    end
+
+    it "updates metric when metric names changes" do
+      update metric, name: "Joe User+invented"
+      expect(answer.metric_name).to eq "Joe User+invented"
     end
 
     it "updates year" do

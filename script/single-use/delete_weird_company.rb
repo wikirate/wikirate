@@ -4,7 +4,7 @@ weird_company_wql = {
   "not" => { "type" => "Company" },
   "left_plus" => [
     { "type" => "Metric" },
-    { "right_plus" => [{ "type" => "Year" }, { "type" => "Metric Value" }] }
+    { "right_plus" => [{ "type" => "Year" }, { "type" => "Metric Answer" }] }
   ]
 }
 Card::Auth.as_bot

@@ -63,7 +63,7 @@ class SharedData
       ).first
     end
 
-    def sample_metric_value value_type=:free_text
+    def sample_metric_answer value_type=:free_text
       Card["#{METRIC_NAMES[value_type]}+Death_Star+1977"]
     end
 

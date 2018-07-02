@@ -1,4 +1,4 @@
-include_set Type::MetricValue
+include_set Type::MetricAnswer
 
 def unknown?
   answer.blank?
@@ -25,7 +25,7 @@ def created_at
 end
 
 def type_id
-  Card::MetricValueID
+  Card::MetricAnswerID
 end
 
 format :html do

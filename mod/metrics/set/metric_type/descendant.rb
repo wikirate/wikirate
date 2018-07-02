@@ -27,3 +27,14 @@ end
 def formula_input_requirement
   :any
 end
+
+format :html do
+  def tab_list
+    %i[details score project]
+  end
+
+  def value_legend
+    return unless (ancestor = card.formula_card.input_names.first)
+    Card[ancestor]&.format&.value_legend
+  end
+end

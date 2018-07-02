@@ -14,7 +14,7 @@
 # +checked_by but the requester stays in +check_requested_by.
 
 def unknown?
-  false
+  left.nil?
 end
 
 def user
@@ -51,7 +51,7 @@ end
 
 def check_requested_by_card
   @check_requested_by_card ||=
-    left(new: { type_id: MetricValueID }).check_requested_by_card
+    left(new: { type_id: MetricAnswerID }).check_requested_by_card
 end
 
 def allowed_to_check?
@@ -76,7 +76,7 @@ def option_names
 end
 
 def answer
-  @answer ||= left.answer
+  @answer ||= left&.answer
 end
 
 format :html do
@@ -219,7 +219,7 @@ event :user_unchecked_value, :prepare_to_store,
 end
 
 event :user_requests_check, :prepare_to_store,
-      when: :request_check_flag_update? do
+      when: :request_check_flag_update?, changed: :content do
   requested_by_content =
     if content == "[[#{request_tag}]]"
       return if check_requester.present?

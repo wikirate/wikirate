@@ -6,7 +6,7 @@ format :html do
   end
 
   def badge_tables
-    [:metric_value, :metric, :wikirate_company, :project, :source].map do |type|
+    [:metric_answer, :metric, :wikirate_company, :project, :source].map do |type|
       <<-HTML
            <h4>#{Card.fetch_name type}</h4>
            #{squad_overview type}

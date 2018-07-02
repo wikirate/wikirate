@@ -14,7 +14,7 @@ class SharedData
     end
 
     def some_badges_for user
-      create [user, :metric_value, :badges_earned],
+      create [user, :metric_answer, :badges_earned],
              type: "Pointer",
              content: ["Research Master",
                        "Research Pro",
@@ -28,10 +28,10 @@ class SharedData
     end
 
     def all_badges_for user
-      [:metric, :project, :metric_value,
+      [:metric, :project, :metric_answer,
        :source, :wikirate_company].each do |type|
         content = Card::Set::Abstract::BadgeSquad.for_type(type).badge_names
-        content += SAMPLE_AFFINITY_BADGES if type == :metric_value
+        content += SAMPLE_AFFINITY_BADGES if type == :metric_answer
         create! name: [user, type, :badges_earned],
                 type: "Pointer",
                 content: content.to_pointer_content

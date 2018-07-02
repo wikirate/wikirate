@@ -4,7 +4,7 @@ require_relative "../../support/badge_count_shared_examples.rb"
 
 describe Card::Set::Right::BadgesEarned do
   let(:card) do
-    Card.fetch "Joe Camel", :metric_value, :badges_earned, new: {}
+    Card.fetch "Joe Camel", :metric_answer, :badges_earned, new: {}
   end
 
   let(:badges) do

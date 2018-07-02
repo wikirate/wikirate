@@ -138,7 +138,7 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
     end
 
     def badge_names
-      badges = Card.fetch "Joe Admin", :metric_value, :badges_earned
+      badges = Card.fetch "Joe Admin", :metric_answer, :badges_earned
       badges.item_names
     end
 

@@ -93,7 +93,7 @@ def create_value_args args
   return unless valid_value_args? args
   value_name =
     [name, args[:company], args[:year], args[:related_company]].compact.join "+"
-  type_id = args[:related_company] ? Card::RelationshipAnswerID : Card::MetricValueID
+  type_id = args[:related_company] ? Card::RelationshipAnswerID : Card::MetricAnswerID
   create_args = {
     name: value_name,
     type_id: type_id,
@@ -171,7 +171,7 @@ format :html do
 
   def current_tab
     @current_tab ||= begin
-      subtab = params[:tab]&.downcase&.to_sym
+      subtab = params[:tab]&.underscore&.to_sym
       subtab && Card[subtab].calculated? ? :calculated : :researched
     end
   end

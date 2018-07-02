@@ -16,7 +16,7 @@ format :html do
                  remote: true,
                  class: "slotter _edit-year-link",
                  "data-slot-selector": ".card-slot.left_research_side-view > div > "\
-                                       ".card-slot.TYPE-metric_value"
+                                       ".card-slot.TYPE-metric_answer"
   end
 
   view :edit do
@@ -65,6 +65,7 @@ format :html do
   end
 
   def research_form action
+    return not_researchable unless card.metric_card.researchable?
     voo.editor = :inline_nests
     with_nest_mode :edit do
       card_form action,
@@ -98,7 +99,13 @@ format :html do
     @research_params ||=
       inherit(:research_params) ||
       Env.params[RESEARCH_PARAMS_KEY]&.to_unsafe_h ||
-      { metric: card.metric, company: card.company, year: card.year }
+      default_research_params
+  end
+
+  def default_research_params
+    hash = { metric: card.metric, company: card.company, year: card.year }
+    hash[:project] = project if project.present?
+    hash
   end
 
   def research_form_success
@@ -120,7 +127,7 @@ format :html do
     tags["card[name]"] = card.name
     # tags["card[subcards][+metric][content]"] = card.metric
     tags["card[type_id]"] =
-      card.metric_card.relationship? ? RelationshipAnswerID : MetricValueID
+      card.metric_card.relationship? ? RelationshipAnswerID : MetricAnswerID
     # tags["card[subcards][+source][content]"] = source if source.present?
     hidden_tags tags
   end

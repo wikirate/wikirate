@@ -33,8 +33,8 @@ namespace :wikirate do
           right: { type: "Company" },
           not: {
             right_plus: [
-              { type: "Year" },
-              { type: "Metric Value" }
+              { type_id: Card::YearID },
+              { type_id: Card::MetricAnswerID }
             ]
           }
         )

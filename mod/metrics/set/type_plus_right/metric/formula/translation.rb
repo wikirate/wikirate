@@ -1,5 +1,5 @@
-# handles formulas that translates values, i.e. there is one-to-one
-# relation between input value and calculataed value like
+# handles formulas that translate values, i.e. there is one-to-one
+# relation between input value and calculated value like
 #  - a Score Metric for a researched metrics with value type Category
 #  - WikiRatings that assign a weight to each input value
 

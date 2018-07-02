@@ -54,7 +54,7 @@ def voted_on_applies?
 end
 
 def double_checked_applies?
-  cardtype_card.id == MetricValueID
+  cardtype_card.id == MetricAnswerID
 end
 
 format :html do
@@ -86,7 +86,8 @@ format :html do
 
   def report_title
     wrap_with :h5, class: "contribution-report-title" do
-      card.cardtype_card.name.vary :plural
+      card.cardtype_card.try(:contribution_report_title) ||
+        card.cardtype_card.name.vary(:plural)
     end
   end
 

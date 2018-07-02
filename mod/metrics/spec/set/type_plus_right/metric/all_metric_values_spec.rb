@@ -277,7 +277,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
 
   describe "view" do
     let(:metric) { "Jedi+disturbances_in_the_Force" }
-    let(:metric_value) { "Jedi+disturbances_in_the_Force+Death_Star+2001" }
+    let(:metric_answer) { "Jedi+disturbances_in_the_Force+Death_Star+2001" }
 
     describe ":table" do
       context "when metric researched" do
@@ -287,7 +287,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
 
         it "has a bootstrap table" do
           is_expected.to have_tag "table" do
-            details_url = "/#{metric_value}?view=company_details_sidebar"
+            details_url = "/#{metric_answer}?view=company_details_sidebar"
             with_tag :tr, with: { "data-details-url" => details_url }
           end
         end
@@ -300,9 +300,9 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
         end
 
         example "formula metric" do
-          metric_value = "Jedi+friendliness+Death_Star+1977"
+          metric_answer = "Jedi+friendliness+Death_Star+1977"
           is_expected.to have_tag "table" do
-            details_url = "/#{metric_value}?view=company_details_sidebar"
+            details_url = "/#{metric_answer}?view=company_details_sidebar"
             with_tag :tr, with: { "data-details-url" => details_url }
           end
         end
@@ -332,7 +332,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       end
       it "has table" do
         is_expected.to have_tag "table" do
-          with_text(/Death Star\s*2001 =\s*yes/)
+          with_text(/Death Star\s*yes\s*yes,no\s*2001/)
         end
       end
     end

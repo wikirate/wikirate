@@ -11,7 +11,7 @@ def topic_name
 end
 
 # when metric value is edited
-recount_trigger :type, :metric_value do |changed_card|
+recount_trigger :type, :metric_answer do |changed_card|
   next unless (metric_card = changed_card.metric_card)
   topic_company_type_plus_right_cards_for_metric metric_card
 end
@@ -22,13 +22,19 @@ recount_trigger :type_plus_right, :metric, :wikirate_topic do |changed_card|
   topic_company_type_plus_right_cards_for_metric metric_card
 end
 
-def self.topic_company_type_plus_right_cards_for_metric metric_card
-  topic_pointer = metric_card.fetch trait: :wikirate_topic
-  return [] unless topic_pointer
-  topic_names =
-    Abstract::CachedCount.pointer_card_changed_card_names(topic_pointer)
-  topic_names.map do |topic_name|
-    Card.fetch topic_name, :wikirate_company
+class << self
+  def topic_company_type_plus_right_cards_for_metric metric_card
+    topic_names_for_metric(metric_card).map do |topic_name|
+      # FIXME: validate topics so this is not a problem (?)
+      next unless Card.fetch_type_id(topic_name) == Card::WikirateTopicID
+      Card.fetch topic_name, :wikirate_company
+    end.compact
+  end
+
+  def topic_names_for_metric metric_card
+    topic_pointer = metric_card.fetch trait: :wikirate_topic
+    return [] unless topic_pointer
+    Abstract::CachedCount.pointer_card_changed_card_names topic_pointer
   end
 end
 

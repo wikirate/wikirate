@@ -27,20 +27,20 @@ def random_valued_company_card
   Answer.search(metric_id: id, return: :company_card, limit: 1).first
 end
 
-def metric_value_cards cached: true
-  cached ? Answer.search(metric_id: id) : Card.search(metric_value_query)
+def metric_answer_cards cached: true
+  cached ? Answer.search(metric_id: id) : Card.search(metric_answer_query)
 end
 
 def value_cards _opts={}
   Answer.search metric_id: id, return: :value_card
 end
 
-def metric_value_name company, year
+def metric_answer_name company, year
   Card::Name[name, Card.fetch_name(company), year.to_s]
 end
 
-def metric_value_query
-  { left: { left_id: id }, type_id: MetricValueID }
+def metric_answer_query
+  { left: { left_id: id }, type_id: MetricAnswerID }
 end
 
 def researchable?
@@ -52,7 +52,7 @@ def user_can_answer?
   return unless researchable?
   # TODO: add metric designer respresentative logic here
   is_admin = Auth.always_ok?
-  is_owner = Auth.current.id == creator.id
+  is_owner = Auth.current.id == creator&.id
   (is_admin || is_owner) || !designer_assessed?
 end
 
@@ -85,7 +85,7 @@ end
 
 # TODO: adapt to Henry's value type API
 def categorical?
-  value_type_code.in? %i[category multicategory]
+  value_type_code.in? %i[category multi_category]
 end
 
 def multi_categorical?
