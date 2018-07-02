@@ -132,7 +132,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
   end
 
   describe "view: expanded_relationship_details" do
-    context "inverse relationship" do
+    context "when inverse relationship" do
       let :card_subject do
         Card["Commons+Supplier_of+Los_Pollos_Hermanos+2000"]
       end
@@ -140,9 +140,9 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
       specify do
         expect_view(:expanded_relationship_details)
           .to have_tag("table.wikirate-table") do
-            with_tag("span.card-title", "SPECTRE")
-            with_tag("span.metric-value", /Tier 1 Supplier/)
-            without_tag("button.fa-caret-down")
+          with_tag("span.card-title", "SPECTRE")
+          with_tag("span.metric-value", /Tier 1 Supplier/)
+          without_tag("button.fa-caret-down")
         end
       end
     end
