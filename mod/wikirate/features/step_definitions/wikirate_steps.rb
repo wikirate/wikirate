@@ -181,14 +181,36 @@ Then(/^I check checkbox in row (\d+)$/) do |row|
 end
 
 Then(/^I check checkbox for csv row (\d+)$/) do |row|
+  check_csv_row row
+end
+
+def check_csv_row row
   table = find("table", visible: false)
   within(table) do
     row = find("tr[data-csv-row-index='#{row.to_i - 1}'", visible: false)
     within(row) do
       checkbox = find("input[type=checkbox]", visible: false)
-      checkbox.click unless checkbox.checked?
+      scroll_if_needed do
+        checkbox.click unless checkbox.checked?
+      end
     end
   end
+end
+
+And(/^I import rows ([\d,\s]+)$/) do |arg|
+  rows = arg.split(",").map { |n| n.strip.to_i }
+  check "all"
+  uncheck "all"
+  rows.each do |row|
+    check_csv_row row
+  end
+  scroll_if_needed do
+    click_button("Import")
+  end
+  sleep 1
+  Delayed::Worker.new.work_off
+  sleep 3
+  wait_for_ajax
 end
 
 Then(/^I fill in "(.*)" in row (\d+)$/) do |text, row|

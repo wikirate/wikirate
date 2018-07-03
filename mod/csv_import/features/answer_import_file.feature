@@ -33,40 +33,13 @@ Feature: import metric answers from a csv file
     And I should see "chch"
 
   Scenario: Import simple metric values with same source
-    When I check checkbox for csv row 1
-    And I check checkbox for csv row 2
-    And I check checkbox for csv row 3
-    And I check checkbox for csv row 4
-    And I check checkbox for csv row 6
-    And I check checkbox for csv row 9
-    And I check checkbox for csv row 10
-    And I check checkbox for csv row 11
-    And I check checkbox for csv row 12
-
-    And I scroll 1000 pixels down
-    And I press "Import"
-    And I wait 1 second
-    When Jobs are dispatched
-    And I wait 3 seconds
-    And I wait for ajax response
-    Then I should see " imported"
+    When I import rows 1, 2, 3, 4, 6, 9, 10, 11, 12
+    Then I should see "4 imported"
     And I should see "4 skipped"
     And I should see "1 failed"
     And I should see "#6: A is not a company"
     And I should see "#10: Jedi+disturbances in the Force+Death Star+2000 - Jedi+disturbances in the Force+Death Star+2000 duplicate in this file"
     And I should see "#4: Jedi+disturbances in the Force+New Company+2017"
-
-  Scenario: Import introduces new company alias
-    When I check checkbox for csv row 3
-    And I scroll 1000 pixels down
-    And I press "Import"
-    And I wait 1 second
-    When Jobs are dispatched
-    And I wait 3 seconds
-    And I wait for ajax response
-    Then I should see "1 imported"
-    When I go to card "Sony Corporation+aliases"
-    Then I should see "Add Sony"
 
 
     # there is no solution yet how to get the earned badges in iwd stage
