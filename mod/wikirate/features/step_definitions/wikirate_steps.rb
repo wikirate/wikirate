@@ -197,8 +197,22 @@ def check_csv_row row
   end
 end
 
-And(/^I import rows ([\d,\s]+)$/) do |arg|
+And(/^I imported rows ([\d,\s]+)$/) do |arg|
   rows = arg.split(",").map { |n| n.strip.to_i }
+  start_import rows
+  finish_import
+end
+
+When(/^I start import for rows ([\d,\s]+)$/) do
+  rows = arg.split(",").map { |n| n.strip.to_i }
+  start_imports rows
+end
+
+When(/^import is executed$/) do
+  finish_import
+end
+
+def start_import rows
   check "all"
   uncheck "all"
   rows.each do |row|
@@ -208,10 +222,14 @@ And(/^I import rows ([\d,\s]+)$/) do |arg|
     click_button("Import")
   end
   sleep 1
+end
+
+def finish_import
   Delayed::Worker.new.work_off
   sleep 3
   wait_for_ajax
 end
+
 
 Then(/^I fill in "(.*)" in row (\d+)$/) do |text, row|
   table = find("table")

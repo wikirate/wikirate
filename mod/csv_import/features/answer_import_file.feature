@@ -7,22 +7,15 @@ Feature: import metric answers from a csv file
     And I go to card "feature answer import test"
     And I follow "Import ..."
 #    And I maximize the browser
-    # And I uncheck all checkboxes
-    And I check "all"
-    And I uncheck "all"
-    And I scroll -1000 pixels
 
   Scenario: Show import table correctly
     And I should see a row with "1|Jedi+disturbances in the Force|Death Star|Death Star|Death Star|2017|yes|http://google.com/1|chch"
     And I should see a row with "11|Jedi+disturbances in the Force|Death Star|2000|no|http://google.com/10"
 
   Scenario: Import a simple metric value
-    When I check checkbox for csv row 1
-    And I scroll 1000 pixels down
-    And I press "Import"
+    When I start import for rows 1
     Then I should see "Importing 1 metric answer ..."
-    When Jobs are dispatched
-    And I wait for ajax response
+    When import is executed
     Then I should see "Imported 1 metric answer"
     And I should see "Successful"
     And I should see "#1: Jedi+disturbances in the Force+Death Star+2017"
@@ -33,7 +26,7 @@ Feature: import metric answers from a csv file
     And I should see "chch"
 
   Scenario: Import simple metric values with same source
-    When I import rows 1, 2, 3, 4, 6, 9, 10, 11, 12
+    When I imported rows 1, 2, 3, 4, 6, 9, 10, 11, 12
     Then I should see "4 imported"
     And I should see "4 skipped"
     And I should see "1 failed"

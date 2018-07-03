@@ -1,16 +1,11 @@
 @javascript @delayed-jobs
 Feature: import metric answers from a csv file
-  A user can create metric answers from a CSV file
+  A user can create metric relationship answers from a CSV file
 
   Background:
     Given I am signed in as Joe Admin
     And I go to card "feature relationship import test"
     And I follow "Import ..."
-#    And I maximize the browser
-    # And I uncheck all checkboxes
-    And I check "all"
-    And I uncheck "all"
-    And I scroll -1000 pixels
 
 #  Scenario: Show import table correctly
 #    And I should see a row with "1|Jedi+disturbances in the Force|Death Star|Death Star|Death Star|2017|yes|http://google.com/1|chch"
@@ -57,32 +52,7 @@ Feature: import metric answers from a csv file
 #    And I should see "#4: Jedi+disturbances in the Force+New Company+2017"
 
   Scenario: Import introduces new company alias
-    And I scroll 1000 pixels down
-    When I check checkbox for csv row 1
-    And I scroll 1000 pixels down
-    And I press "Import"
-    And I wait 1 second
-    When Jobs are dispatched
-    And I wait 3 seconds
-    And I wait for ajax response
+    And I imported rows 1
     Then I should see "1 imported"
     When I go to card "Sony Corporation+aliases"
     Then I should see "Add Sony"
-
-
-    # there is no solution yet how to get the earned badges in iwd stage
-#  Scenario: Award badges
-#    And I check checkbox for csv row 13
-#    And I check checkbox for csv row 14
-#    And I check checkbox for csv row 15
-#    And I press "Import"
-#    And I wait for ajax response
-#    When Jobs are dispatched
-#    Then I should see "Monster Inc Researcher"
-#    And I should see "Inside Source"
-#    And I wait 5 seconds
-#    And I go to card "Joe Admin+metric values+badges earned"
-#    Then I should see "Monster Inc Company Awarded for adding 3 answers about Monster Inc"
-#    And I go to card "Joe Admin+source+badges earned"
-#    And I should see "Inside Source"
-
