@@ -7,6 +7,7 @@ require_dependency "shared_data/relationship_metrics"
 require_dependency "shared_data/badges"
 require_dependency "shared_data/notes_and_sources"
 require_dependency "shared_data/samples"
+require_dependency "shared_data/projects"
 
 class SharedData
   require_dependency "card"
@@ -45,6 +46,7 @@ class SharedData
     include RelationshipMetrics
     include Badges
     include NotesAndSources
+    include Projects
 
     def add_wikirate_data
       puts "add wikirate data"
@@ -55,7 +57,7 @@ class SharedData
       add :companies, :topics, :analysis, :notes_and_sources,
           :yearly_variables,
           :researched_metrics, :calculated_metrics, :relationship_metrics,
-          :projects, :industry,
+          :projects, :industry, :researchers,
           :profile_sections, :badges, :import_files
 
       Card::Cache.reset_all
@@ -135,37 +137,10 @@ class SharedData
       )
     end
 
-    def add_projects
-      create "Evil Project",
-             type: :project,
-             subfields: {
-               metric: {
-                 type: :pointer,
-                 content: "[[Jedi+disturbances in the Force]]\n"\
-                          "[[Joe User+researched number 2]]"
-               },
-               wikirate_company: {
-                 type: :pointer,
-                 content: ["Death Star", "SPECTRE", "Los Pollos Hermanos"]
-               },
-               wikirate_topic: {
-                 type: :pointer,
-                 content: "Force"
-               }
-             }
-
-      create "Empty Project",
-             type: :project,
-             subfields: {
-               metric: {
-                 type: :pointer,
-                 content: ""
-               },
-               wikirate_company: {
-                 type: :pointer,
-                 content: ""
-               }
-             }
+    def add_researchers
+      researchers = Card.fetch "Jedi+Researchers", new: {}
+      researchers.add_item! "Joe User"
+      researchers.add_item! "Joe Camel"
     end
 
     def add_industry
@@ -192,6 +167,5 @@ class SharedData
       path = File.expand_path("../shared_data/file/#{name}.csv", __FILE__)
       File.open path
     end
-
   end
 end
