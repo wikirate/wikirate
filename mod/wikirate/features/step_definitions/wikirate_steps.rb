@@ -151,8 +151,6 @@ When /^(?:|I )single-select "([^"]*)" as value$/ do |value|
   find("li", text: value).click
 end
 
-
-
 Then /^(?:|I )should see "([^"]*)" or "([^"]*)"$/ do |text1, text2|
   begin
     expect(page).to have_content(text1)

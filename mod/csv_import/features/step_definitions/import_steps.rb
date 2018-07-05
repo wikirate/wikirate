@@ -35,13 +35,7 @@ def check_csv_row row
   within("table", visible: false) do
     within("tr[data-csv-row-index='#{row.to_i - 1}'", visible: false) do
       checkbox = find("input[type=checkbox]", visible: false)
-      begin
-        #page.driver.execute_script("arguments[0].scrollIntoView(true)")
-        checkbox.set(true) # unless checkbox.checked?
-      rescue Selenium::WebDriver::Error::ServerError => _e
-        binding.pry
-        checkbox.set(true)
-      end
+      checkbox.set(true) # unless checkbox.checked?
     end
   end
 end
@@ -68,9 +62,7 @@ def start_import rows
     check_csv_row row
   end
   button = find(:button, "Import", visible: false)
-  #button.scroll_if_needed do
   button.click
-  #end
   sleep 1
 end
 
@@ -79,7 +71,6 @@ def finish_import
   sleep 3
   wait_for_ajax
 end
-
 
 Then(/^I fill in "(.*)" in row (\d+)$/) do |text, row|
   table = find("table")
