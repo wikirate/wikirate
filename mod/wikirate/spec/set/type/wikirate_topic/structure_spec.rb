@@ -5,7 +5,7 @@ RSpec.describe Card::Set::Type::WikirateTopic::Structure do
   end
 
   check_views_for_errors :open_content, :listing, :edit, :homepage_item,
-                 :details_tab, :wikirate_company_tab, :post_tab, :project_tab
+                         :details_tab, :wikirate_company_tab, :post_tab, :project_tab
 
   describe "view :browse_item" do
     it "has topic title" do
