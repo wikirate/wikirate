@@ -54,7 +54,7 @@ end
 
 When(/^I start import for rows ([\d,\s]+)$/) do |arg|
   rows = arg.split(",").map { |n| n.strip.to_i }
-  start_imports rows
+  start_import rows
 end
 
 When(/^import is executed$/) do
