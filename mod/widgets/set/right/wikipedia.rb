@@ -36,7 +36,7 @@ event :update_oc_mapping_due_to_wikipedia_entry, :integrate, on: :save, when: :n
   add_subcard name.left_name.field(:open_corporates),
               content: oc.company_number, type: :phrase
   add_subcard name.left_name.field(:incorporation),
-              content: jurisdiction_name(oc.jurisdiction_code_of_incorporation),
+              content: jurisdiction_name(oc.incorporation_jurisdiction_code),
               type: :pointer
   add_subcard name.left_name.field(:headquarters),
               content: jurisdiction_name(oc.jurisdiction_code),

@@ -10,7 +10,7 @@ format :html do
 
   def basic_details
     wrap_with :div do
-      output [answer_details_toggle, render_basic_details]
+      output [render_answer_details_toggle, render_basic_details]
     end
   end
 
@@ -26,7 +26,7 @@ format :html do
     "#{card.name.safe_key}-answer-details"
   end
 
-  def answer_details_toggle
+  view :answer_details_toggle do
     wrap_with(:button, "",
               class: "fa fa-caret-right fa-lg margin-left-10 " \
                      "btn btn-outline-secondary btn-sm pull-right",
