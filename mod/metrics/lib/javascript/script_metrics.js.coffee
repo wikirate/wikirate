@@ -72,7 +72,7 @@ DIGITS_AFTER_DECIMAL = 2
 
 tallyWeights = (tbody, hash) ->
   multiplier = 10**DIGITS_AFTER_DECIMAL
-  total =  0
+  total = 0
   valid = true
   $.each hash, (_key, val) ->
     num = parseFloat val 
