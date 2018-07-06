@@ -1,3 +1,4 @@
+# This file is needed for handling virtual answers
 include_set Type::MetricAnswer
 
 def unknown?

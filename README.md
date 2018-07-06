@@ -1,12 +1,18 @@
 Decko application code used at Wikirate.org
+
+Code Organization
 =========
+Like all Decko decks, WikiRate's code is organized in
+[_mods_](https://www.rubydoc.info/gems/card/Card/Mod).
+
 
 Steps to make it work
 ----
 
 The following will help set up a functioning wikirate site with a small subset of (mostly fake) data.  Some pages will not look complete.
 
-1. clone repo: `git clone git@github.com:wikirate/wikirate.git`
+1. fork repo on github: https://github.com/wikirate/wikirate/
+1. clone repo: `git clone git@github.com:YOURNAME/wikirate.git`
 1. enter dir: `cd wikirate`
 1. init/update submodules `git submodule update -f --init --recursive`
 1. install gems: `bundle install`
