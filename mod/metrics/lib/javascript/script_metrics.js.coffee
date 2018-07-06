@@ -75,12 +75,14 @@ tallyWeights = (tbody, hash) ->
   total =  0
   valid = true
   $.each hash, (_key, val) ->
-    num = parseFloat val
+    num = parseFloat val 
     total += num * multiplier
-    valid = false unless num > 0
-  total = parseInt(total) / multiplier
+    valid = false if num < 0 || !maxDigit(val)
+  total = total / multiplier
   publishWeightTotal(tbody, hash, total)
-  valid && total == 100
+  #valid && parseInt(total) == 100
+  #valid && Math.round(total) == 100
+  valid && total > 99.90 and total <= 100.09
 
 publishWeightTotal = (tbody, hash, total) ->
   sum = tbody.find('.weight-sum')
@@ -90,6 +92,12 @@ publishWeightTotal = (tbody, hash, total) ->
   else
     sum.val total
     sum_row.show()
+
+maxDigit = (num) -> 
+  aux = true 
+  val = num.split('.')
+  aux = false if val.length > 1 && val[1].length > 2 
+  return aux; 
 
 # only enable button if weights total 100% and there are no zero weights
 updateWikiRatingSubmitButton =(form, valid) ->
