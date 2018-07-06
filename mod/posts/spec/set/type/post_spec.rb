@@ -4,7 +4,7 @@ describe Card::Set::Type::Post do
   context "with company, topic, and subject" do
     # TODO: move this post to seed data
     def card_subject
-      Card.create! type: "Post", na`me: "My Post",
+      Card.create! type: "Post", name: "My Post",
                    subcards: { "+company" => "Death Star",
                                "+topic" => "Force",
                                "+project" => "Evil Project" }
