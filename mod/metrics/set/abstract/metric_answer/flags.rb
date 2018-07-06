@@ -13,7 +13,7 @@ end
 
 format :html do
   view :flags, cache: :never do
-    output [checked_value_flag, comment_flag, imported_flag]
+    output [checked_value_flag, comment_flag, imported_flag, calculated_flag]
   end
 
   view :small_flags, cache: :never do
@@ -22,6 +22,21 @@ format :html do
         flag = send "#{flag_name}_flag"
         "<small>#{flag}</small>"
       end
+    end
+  end
+
+  def calculated_flag
+    return "" unless card.calculated?
+    return hybrid_flag if card.hybrid?
+    fa_icon :calculator, title: "Calculated metric answer", class: "text-success"
+  end
+
+  def hybrid_flag
+    wrap_with :span, class: "hybrid-icon", title: "Overriden calculated value" do
+      [
+        fa_icon(:user),
+        fa_icon(:calculator, class: "text-danger")
+      ]
     end
   end
 
