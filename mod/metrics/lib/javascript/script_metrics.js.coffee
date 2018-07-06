@@ -70,7 +70,7 @@ validateWikiRating = (table) ->
 
 DIGITS_AFTER_DECIMAL = 2
 
-tallyWeights = (tbody, hash)  ->
+tallyWeights = (tbody, hash) ->
   multiplier = 10**DIGITS_AFTER_DECIMAL
   total =  0
   valid = true
