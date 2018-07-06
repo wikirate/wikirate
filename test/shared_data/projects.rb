@@ -15,17 +15,9 @@ class SharedData
     def create_project name, subfields
       hash = { type: :project, subfields: {} }
       subfields.each do |codename, values|
-        puts "hash[:subfields][#{codename}] = #{project_subfield values}"
-        hash[:subfields][codename] = project_subfield values
+        hash[:subfields][codename] = { type: :pointer, content: values }
       end
       create name, hash
-    end
-
-    def project_subfield values
-      {
-        type: :pointer,
-        content: (Array.wrap(values).map { |v| "[[#{v}]]" }.join("\n"))
-      }
     end
   end
 end

@@ -57,7 +57,7 @@ class SharedData
       add :companies, :topics, :analysis, :notes_and_sources,
           :yearly_variables,
           :researched_metrics, :calculated_metrics, :relationship_metrics,
-          :projects, :industry, :researchers,
+          :projects, :industry, :researchers, :program,
           :profile_sections, :badges, :import_files
 
       Card::Cache.reset_all
@@ -135,6 +135,11 @@ class SharedData
                                      content: "1002" } }
         }
       )
+    end
+
+    def add_program
+      Card.create type: :cardtype, name: "Program"
+      create "Test Program", type: :program
     end
 
     def add_researchers
