@@ -55,6 +55,13 @@ wikiRatingEditorHash = (table) ->
       hash[key] = tr.find(".metric-weight input").val()
   hash
 
+toEqualize = (table) -> 
+  val = (100 / (table.find("tbody tr").length - 1)).toFixed(2)
+    
+  table.find("tbody tr").each ->
+    tr = $(this)
+    tr.find('td.metric-weight').find('input').val(val)
+
 $(window).ready ->
   $('body').on 'input', '.metric-weight input', (_event) ->
     validateWikiRating $(this).closest(".wikiRating-editor")
@@ -65,6 +72,7 @@ $(window).ready ->
 validateWikiRating = (table) ->
   hash = wikiRatingEditorHash table
   valid = tallyWeights table, hash
+  #toEqualize table 
   updateWikiRatingSubmitButton table.closest('form.card-form'), valid
 
 
