@@ -27,12 +27,15 @@ format :html do
 
   def calculated_flag
     return "" unless card.calculated?
-    return hybrid_flag if card.hybrid?
-    fa_icon :calculator, title: "Calculated metric answer", class: "text-success"
+    if card.calculation_overridden?
+      return overridden_flag
+    else
+      fa_icon :calculator, title: "Calculated metric answer", class: "text-success"
+    end
   end
 
-  def hybrid_flag
-    wrap_with :span, class: "hybrid-icon", title: "Overriden calculated value" do
+  def overridden_flag
+    wrap_with :span, class: "overridden-value-icon", title: "Overriden calculated value" do
       [
         fa_icon(:user),
         fa_icon(:calculator, class: "text-danger")
