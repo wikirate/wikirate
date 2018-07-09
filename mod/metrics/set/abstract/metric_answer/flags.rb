@@ -36,7 +36,7 @@ format :html do
   end
 
   def overridden_flag_icon
-    title =  "Overridden calculated metric answer"
+    title = "Overridden calculated metric answer"
     wrap_with :span, class: "overridden-icon", title: title do
       [
         fa_icon(:user),
