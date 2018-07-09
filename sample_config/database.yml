@@ -14,8 +14,8 @@ development:
   reconnect: false
   database: wikirate_dev
   pool: 5
-  username: eyss
-  password: Daniel123$$
+  username: root
+  password:
 #  socket: /tmp/mysql.sock
 
 # development: *remote_dev
@@ -30,8 +30,8 @@ test: &test
   reconnect: false
   database: wikirate_test
   pool: 5
-  username: eyss
-  password: Daniel123$$
+  username: root
+  password:
 #  socket: /tmp/mysql.sock
 
 cucumber: *test
@@ -42,8 +42,8 @@ production:
   reconnect: false
   database: wikirate_test
   pool: 5
-  username: eyss
-  password: Daniel123$$
+  username: root
+  password:
 #  socket: /tmp/mysql.sock
 
 init_test: *test

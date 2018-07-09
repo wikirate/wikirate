@@ -19,12 +19,19 @@ decko.slotReady (slot) ->
   $('body').on 'change', ".TYPE-metric .card-editor.RIGHT-hybrid input[type=\'checkbox\']", (event) ->
     showResearchAttributes($(event.target))
 
+  $('td.metric-weight input').on 'keypress', (event) ->
+    console.log('keypress')
+    console.log( changeValueForm( $('.wikiRating-editor') ) )
+    #console.log('change input value')
+    #
+
 showResearchAttributes = (checkbox) ->
   form = checkbox.closest("form")
+
   show_or_hide = checkbox.prop "checked"
   $.each ["value_type", "research_policy", "report_type", "methodology"], (_i, key) ->
     form.find(".card-editor.RIGHT-" + key).toggle show_or_hide
-
+    
 
 decko.editorContentFunctionMap['.pairs-editor'] = ->
   JSON.stringify pairsEditorHash(this)
@@ -35,7 +42,17 @@ pairsEditorHash = (table) ->
     cols = $(this).find('td')
     if (key = $(cols[0]).data('key'))
       hash[key] = $(cols[1]).find('input').val()
-  hash
+  hash 
+
+changeValueForm = (table) -> 
+  values = []
+  table.find("tbody tr").each -> 
+    tr = $(this) 
+    values.push( tr.find('td.metric-weight').find('input').val() )
+    
+  values = values.splice(0, values.length - 1);
+  values.every( (val, i, arr) => val == arr[0] )
+
 
 # WikiRatings Formulae
 
@@ -68,6 +85,7 @@ $(window).ready ->
 
   $('body').on "click", "._remove-weight", () ->
     removeWeightRow $(this).closest("tr")
+  
 
 validateWikiRating = (table) ->
   hash = wikiRatingEditorHash table
