@@ -126,9 +126,6 @@ format :html do
 end
 
 format :json do
-  # include MetricAnswer::JsonFormat
-
-
   def essentials_for_related_company
     nest card.related_company, view: :atom
   end

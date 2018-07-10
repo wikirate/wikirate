@@ -2,9 +2,9 @@ include_set Abstract::Chart
 
 format :json do
   def item_cards
-    %i[ source checked_by].map do |key|
+    %i[source checked_by].map do |key|
       card.send "#{key}_card"
-    end.select &:known?
+    end.select(&:known?)
   end
 
   def vega_chart_config _highlight=nil

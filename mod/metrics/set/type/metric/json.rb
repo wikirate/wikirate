@@ -2,8 +2,7 @@ format :json do
   NESTED_FIELD_CODENAMES =
     %i[metric_type about methodology value_type value_options
        report_type research_policy project unit
-       range currency hybrid question score
-      ]
+       range currency hybrid question score].freeze
 
   def item_cards
     NESTED_FIELD_CODENAMES.map do |codename|

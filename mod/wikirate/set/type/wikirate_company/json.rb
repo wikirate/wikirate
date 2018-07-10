@@ -1,5 +1,5 @@
 format :json do
-  NESTED_FIELD_CODENAMES = %i[wikipedia open_corporates]
+  NESTED_FIELD_CODENAMES = %i[wikipedia open_corporates].freeze
 
   def item_cards
     NESTED_FIELD_CODENAMES.map do |codename|
