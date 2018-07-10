@@ -1,6 +1,12 @@
 include_set Abstract::Chart
 
 format :json do
+  def item_cards
+    %i[source checked_by].map do |key|
+      card.send "#{key}_card"
+    end.select(&:known?)
+  end
+
   def vega_chart_config _highlight=nil
     @data ||= chart_class.new(self,
                               highlight: card.value,
@@ -20,8 +26,26 @@ format :json do
     super.merge year: card.year.to_i
   end
 
+  view :atom do
+    atom = super()
+    %i[metric company year].each do |key|
+      atom[key] = card.send key
+    end
+    atom[:value] = card.value
+    atom[:record_url] = path mark: card.name.left, format: :json, view: :molecule
+    atom.delete(:content)
+    atom
+  end
+
   view :core do
     essentials_for %i[metric company source checked_by relationships], _render_essentials
+  end
+
+  view :items do
+    return [] unless card.metric_card.relationship?
+    companies.map do |relationship|
+      nest relationship, view: :atom
+    end
   end
 
   def essentials
