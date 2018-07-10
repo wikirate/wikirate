@@ -32,7 +32,7 @@ format :json do
       atom[key] = card.send key
     end
     atom[:value] = card.value
-    atom[:record_url] = path mark: card.name.left, format: :json
+    atom[:record_url] = path mark: card.name.left, format: :json, view: :molecule
     atom.delete(:content)
     atom
   end
