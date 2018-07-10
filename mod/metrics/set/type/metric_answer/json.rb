@@ -32,12 +32,20 @@ format :json do
       atom[key] = card.send key
     end
     atom[:value] = card.value
+    atom[:record_url] = path mark: card.name.left, format: :json
     atom.delete(:content)
     atom
   end
 
   view :core do
     essentials_for %i[metric company source checked_by relationships], _render_essentials
+  end
+
+  view :items do
+    return [] unless card.metric_card.relationship?
+    companies.map do |relationship|
+      nest relationship, view: :atom
+    end
   end
 
   def essentials
