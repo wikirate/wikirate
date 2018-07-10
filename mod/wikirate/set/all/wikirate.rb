@@ -169,14 +169,3 @@ format :html do
     "btn btn-sm btn-outline-secondary"
   end
 end
-
-format :json do
-  view :id_atom, cache: :never do
-    if !params["start"] || (params["start"] && (start = params["start"].to_i) &&
-      card.updated_at.strftime("%Y%m%d%H%M%S").to_i >= start)
-      h = _render_atom
-      h[:id] = card.id if card.id
-      h
-    end
-  end
-end

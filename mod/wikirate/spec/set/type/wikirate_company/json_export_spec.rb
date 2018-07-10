@@ -12,7 +12,7 @@ RSpec.describe Card::Set::Type::WikirateCompany, "json export" do
         value: "5",
         year: "2014",
         company: a_hash_including(name: "Samsung"),
-        metric: a_hash_including(designer: "Joe User"),
+        metric: a_hash_including(name: "Joe User+researched number 2"),
         source: a_hash_including(source_url: "http://www.wikiwand.com/en/Opera")
       ),
       a_hash_including(

@@ -44,7 +44,7 @@ class TableRowRelationship < TableRowWithCompanyMapping
   end
 
   def extra_data
-    super.merge related_match_type: @related_match.match_type,
+    super.merge related_company_match_type: @related_match.match_type,
                 related_company_suggestion: @related_match.suggestion
   end
 end

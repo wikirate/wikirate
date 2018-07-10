@@ -158,13 +158,24 @@ class SharedData
 
     def add_import_files
       create "answer import test", type: :answer_import_file, empty_ok: true
-      create "feature answer import test", type: :answer_import_file,
+      create "feature answer import test",
+             type: :answer_import_file,
              codename: "answer_import_test_with_file",
-             answer_import_file: csv_file("answer_import"), storage_type: :coded,
+             answer_import_file: csv_file("answer_import"),
+             storage_type: :coded,
              mod: :test
+      create "feature relationship import test",
+             type: :relationship_answer_import_file,
+             codename: "relationship_import_test_with_file",
+             relationship_answer_import_file: csv_file("relationship_import"),
+             storage_type: :coded,
+             mod: :test
+
       create "source import test", type: :source_import_file, empty_ok: true
-      create "relationship answer import test", type: :relationship_answer_import_file, empty_ok: true
-      create "answer from source import test", type: :source, subfields: { wikirate_link: "http://google.com/source" }
+      create "relationship answer import test",
+             type: :relationship_answer_import_file, empty_ok: true
+      create "answer from source import test",
+             type: :source, subfields: { wikirate_link: "http://google.com/source" }
       create "answer from source import test+file", type: :file, empty_ok: true
     end
 
