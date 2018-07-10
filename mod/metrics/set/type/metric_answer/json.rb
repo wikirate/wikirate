@@ -2,7 +2,7 @@ include_set Abstract::Chart
 
 format :json do
   def item_cards
-    %i[metric company source checked_by].map do |key|
+    %i[ source checked_by].map do |key|
       card.send "#{key}_card"
     end.select &:known?
   end
@@ -31,6 +31,8 @@ format :json do
     %i[metric company year].each do |key|
       atom[key] = card.send key
     end
+    atom[:value] = card.value
+    atom.delete(:content)
     atom
   end
 

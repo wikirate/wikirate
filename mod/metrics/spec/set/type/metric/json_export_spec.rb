@@ -1,6 +1,6 @@
 RSpec.describe Card::Set::Type::Metric, "json export" do
   subject do
-    render_view :core, { name: "Joe User+researched number 2" }, format: :json
+    render_view :atom, { name: "Joe User+researched number 2" }, format: :json
   end
 
   let(:metric) { Card["Joe User+researched number 2"] }
@@ -9,7 +9,6 @@ RSpec.describe Card::Set::Type::Metric, "json export" do
     is_expected.to include(
       a_hash_including(
         name: "Joe User+researched number 2+Samsung+2014",
-        key: "joe_user+researched_number_2+samsung+2014",
         value: "5",
         year: "2014",
         company: a_hash_including(name: "Samsung"),
