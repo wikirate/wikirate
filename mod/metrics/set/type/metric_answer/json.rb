@@ -1,6 +1,12 @@
 include_set Abstract::Chart
 
 format :json do
+  def item_cards
+    %i[metric company source checked_by].map do |key|
+      card.send "#{key}_card"
+    end.select &:known?
+  end
+
   def vega_chart_config _highlight=nil
     @data ||= chart_class.new(self,
                               highlight: card.value,
@@ -18,6 +24,14 @@ format :json do
 
   def chart_filter_hash
     super.merge year: card.year.to_i
+  end
+
+  view :atom do
+    atom = super()
+    %i[metric company year].each do |key|
+      atom[key] = card.send key
+    end
+    atom
   end
 
   view :core do

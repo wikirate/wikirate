@@ -11,11 +11,9 @@ format :json do
     end
   end
 
-  def essentials
-    {
-      designer: card.metric_designer,
-      title: card.metric_title
-    }
+  view :atom do
+    super().merge designer: card.metric_designer,
+                  title: card.metric_title
   end
 end
 
