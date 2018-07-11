@@ -3,7 +3,7 @@ format :html do
     table_content = card.translation_table.map do |metric, weight|
       [nest(metric, view: :thumbnail_plain), "#{weight}%"]
     end
-    table table_content, header: ['Metric', 'Weight']
+    table table_content, header: %w[Metric Weight]
   end
 
   view :rating_editor, cache: :never do
@@ -18,8 +18,7 @@ format :html do
   # table with Metrics on left and Weight inputs on right
   def rating_editor_table
     table rating_editor_table_content, class: "wikiRating-editor",
-                                       #header: %w[Metric Weight]
-                                       header: ['Metric', checkbox_equalizer]
+                                       header: ["Metric", checkbox_equalizer]
   end
 
   def checkbox_equalizer
@@ -31,11 +30,11 @@ format :html do
       </label>
     </div>
     "
-  end 
+  end
 
   def rating_editor_table_content
     table_content = rating_editor_table_main_content
-    table_content.push [ "Total", sum_cell(table_content)]
+    table_content.push ["Total", sum_cell(table_content)]
   end
 
   def rating_editor_table_main_content

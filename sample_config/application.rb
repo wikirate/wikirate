@@ -63,38 +63,38 @@ module Wikirate
     config.autoload_paths += Dir["#{root}/test/**/"]
 
     # config.file_buckets = {
-    #      s3_live_bucket: {
-    #          proveedor: "niebla / aws",
-    #          directorio: "wikirate",
-    #          subdirectorio: "archivos",
-    #          atributos: {"Cache-Control" => "max-age = # {365.day.to_i}"},
-    #          público: cierto,
-    #          credenciales: {
-    #            proveedor: 'AWS', se requiere #
-    #            aws_access_key_id: 'XXXXXXX', # requerido
-    #            aws_secret_access_key: 'XXXXXX', # requerido
-    #            region: 'eu-central-1', # opcional, por defecto es 'us-east-1'
-    #          },
-    #          read_only: cierto,
-    #          # si public está configurado como falso, se necesita la siguiente opción:
-    #          authenticated_url_expiration: 180
-    #      },
-    #      s3_staging_bucket: {
-    #          proveedor: "niebla / aws",
-    #          directorio: "wikirate",
-    #          subdirectorio: "archivos",
-    #          atributos: {"Cache-Control" => "max-age = # {365.day.to_i}"},
-    #          público: cierto,
-    #          credenciales: {
-    #            proveedor: 'AWS', se requiere #
-    #            aws_access_key_id: 'XXXXXXX', # requerido
-    #            aws_secret_access_key: 'XXXXXX', # requerido
-    #            region: 'eu-central-1', # opcional, por defecto es 'us-east-1'
-    #          },
-    #          read_only: cierto,
-    #          # si public está configurado como falso, se necesita la siguiente opción:
-    #          authenticated_url_expiration: 180
-    #      }
+    #     s3_live_bucket: {
+    #         provider: "fog/aws",
+    #         directory: "wikirate",
+    #         subdirectory: "files",
+    #         attributes: { "Cache-Control" => "max-age=#{365.day.to_i}" },
+    #         public: true,
+    #         credentials: {
+    #           provider: 'AWS', # required
+    #           aws_access_key_id: 'XXXXXXX', # required
+    #           aws_secret_access_key: 'XXXXXX', # required
+    #           region: 'eu-central-1', # optional, defaults to 'us-east-1'
+    #         },
+    #         read_only: true,
+    #         # if public is set to false, following option is needed:
+    #         authenticated_url_expiration: 180
+    #     },
+    #     s3_staging_bucket: {
+    #         provider: "fog/aws",
+    #         directory: "wikirate",
+    #         subdirectory: "files",
+    #         attributes: { "Cache-Control" => "max-age=#{365.day.to_i}" },
+    #         public: true,
+    #         credentials: {
+    #           provider: 'AWS', # required
+    #           aws_access_key_id: 'XXXXXXX', # required
+    #           aws_secret_access_key: 'XXXXXX', # required
+    #           region: 'eu-central-1', # optional, defaults to 'us-east-1'
+    #         },
+    #         read_only: true,
+    #         # if public is set to false, following option is needed:
+    #         authenticated_url_expiration: 180
+    #     }
     # }
   end
 end
