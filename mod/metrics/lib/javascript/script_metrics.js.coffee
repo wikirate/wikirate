@@ -19,11 +19,12 @@ decko.slotReady (slot) ->
   $('body').on 'change', ".TYPE-metric .card-editor.RIGHT-hybrid input[type=\'checkbox\']", (event) ->
     showResearchAttributes($(event.target))
 
-  $('td.metric-weight input').on 'keypress', (event) ->
-    console.log('keypress')
-    console.log( changeValueForm( $('.wikiRating-editor') ) )
-    #console.log('change input value')
-    #
+  $('td.metric-weight input').on 'keyup', (event) ->
+    activeEqualize()
+
+  $('#equalizer').on 'click', (event) -> 
+    if $(this).prop('checked') == true 
+      toEqualize( $('.wikiRating-editor') )
 
 showResearchAttributes = (checkbox) ->
   form = checkbox.closest("form")
@@ -34,6 +35,7 @@ showResearchAttributes = (checkbox) ->
     
 
 decko.editorContentFunctionMap['.pairs-editor'] = ->
+  console.log('editorContentFunctionMap')
   JSON.stringify pairsEditorHash(this)
 
 pairsEditorHash = (table) ->
@@ -44,14 +46,18 @@ pairsEditorHash = (table) ->
       hash[key] = $(cols[1]).find('input').val()
   hash 
 
-changeValueForm = (table) -> 
+# if all values are equals return "true"
+valueFormEqual = (table) -> 
+  aux = false 
   values = []
   table.find("tbody tr").each -> 
     tr = $(this) 
     values.push( tr.find('td.metric-weight').find('input').val() )
     
   values = values.splice(0, values.length - 1);
-  values.every( (val, i, arr) => val == arr[0] )
+  if values.every( (val, i, arr) => val == arr[0] ) == true  
+    aux = true
+  return aux
 
 
 # WikiRatings Formulae
@@ -70,7 +76,15 @@ wikiRatingEditorHash = (table) ->
     tr = $(this)
     if key = tr.find(".metric-label .thumbnail").data "cardName"
       hash[key] = tr.find(".metric-weight input").val()
-  hash
+  hash 
+
+# if all values are equals active the equalize
+activeEqualize = () -> 
+  if !valueFormEqual( $('.wikiRating-editor') )  
+    $('#equalizer').prop('checked', false)
+  else 
+    $('#equalizer').prop('checked', true)
+    toEqualize( $('.wikiRating-editor') )
 
 toEqualize = (table) -> 
   val = (100 / (table.find("tbody tr").length - 1)).toFixed(2)
@@ -79,12 +93,15 @@ toEqualize = (table) ->
     tr = $(this)
     tr.find('td.metric-weight').find('input').val(val)
 
+  validateWikiRating(table)
+
 $(window).ready ->
   $('body').on 'input', '.metric-weight input', (_event) ->
     validateWikiRating $(this).closest(".wikiRating-editor")
 
   $('body').on "click", "._remove-weight", () ->
     removeWeightRow $(this).closest("tr")
+    toEqualize(  $('.wikiRating-editor') )
   
 
 validateWikiRating = (table) ->
@@ -133,6 +150,8 @@ addMissingVariables = (slot) ->
   pairsEditor = slot.closest(".editor").find ".wikiRating-editor"
   addNeededWeightRows pairsEditor, slot.find(".thumbnail")
   validateWikiRating pairsEditor
+  if $('#equalizer').prop('checked') == true
+    toEqualize( $('.wikiRating-editor') )
 
 addNeededWeightRows = (editor, thumbnails) ->
   thumbnails.each ->
