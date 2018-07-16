@@ -126,21 +126,21 @@ format :html do
 end
 
 format :json do
-  # include MetricAnswer::JsonFormat
-  view :from_answer do
-    _render_essentials.merge company: essentials_for_related_company
+  def essentials_for_related_company
+    nest card.related_company, view: :atom
   end
 
-  def essentials_for_related_company
-    nest card.related_company, view: :marks
+  view :atom do
+    super().merge year: card.year.to_s,
+                  value: card.value,
+                  import: card.imported?,
+                  comments: field_nest(:discussion, view: :atom),
+                  related_company: essentials_for_related_company
   end
 
   def essentials
     {
-      year: card.year.to_s,
-      value: card.value,
-      import: card.imported?,
-      comments: field_nest(:discussion, view: :core)
+
     }
   end
 end

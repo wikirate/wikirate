@@ -272,10 +272,8 @@ def request_check_flag_update?
 end
 
 format :json do
-  view :essential do
-    {
-      checks: card.checkers.count,
-      check_requested: card.check_requested?
-    }
+  view :atom do
+    super().merge checks: card.checkers.count,
+                  check_requested: card.check_requested?
   end
 end
