@@ -1,3 +1,15 @@
+
+event :transform_jurisdiction_codes, :prepare_to_validate do
+  return if oc_code
+  oc_code_from_content = item_names.first.sub(/^:/, "")
+  return unless (j_name = jurisdiction_name(oc_code_from_content))
+  self.content = j_name
+end
+
+event :validate_jurisdiction_code, :validate do
+  errors.add :content, "invalid headquarters: #{content}" unless oc_code
+end
+
 def needs_oc_mapping?
   (l = left) && l.open_corporates.blank?
 end
@@ -18,11 +30,12 @@ end
 # TODO: reduce duplicated code
 def jurisdiction_name oc_code
   oc_code = "oc_#{oc_code}" unless oc_code.to_s.match?(/^oc_/)
+  return unless Card::Codename[oc_code.to_sym]
   Card.fetch_name oc_code.to_sym
 end
 
 def oc_code
-  jur = item_cards.first
+  jur = known_item_cards.first
   return unless jur&.type_id == JurisdictionID
   jur.oc_code
 end
