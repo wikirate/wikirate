@@ -120,12 +120,11 @@ tallyWeights = (tbody, hash) ->
   $.each hash, (_key, val) ->
     num = parseFloat val 
     total += num * multiplier
-    valid = false if num < 0 || !maxDigit(val)
-  total = total / multiplier
-  publishWeightTotal(tbody, hash, total)
-  #valid && parseInt(total) == 100
-  #valid && Math.round(total) == 100
-  valid && total > 99.90 and total <= 100.09
+    valid = false if num < 0 || !isMaxDigit(val)
+  if valid 
+    total = total / multiplier
+    publishWeightTotal(tbody, hash, total)
+    valid && total > 99.90 and total <= 100.09
 
 publishWeightTotal = (tbody, hash, total) ->
   sum = tbody.find('.weight-sum')
@@ -136,7 +135,7 @@ publishWeightTotal = (tbody, hash, total) ->
     sum.val total
     sum_row.show()
 
-maxDigit = (num) -> 
+isMaxDigit = (num) -> 
   aux = true 
   val = num.split('.')
   aux = false if val.length > 1 && val[1].length > 2 

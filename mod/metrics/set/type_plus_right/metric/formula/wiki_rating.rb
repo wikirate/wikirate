@@ -22,14 +22,19 @@ format :html do
   end
 
   def checkbox_equalizer
-    "<span>Weight</span>
-    <div class='form-check checkbox-pull pull-right' >
-      <label class='form-check-label'>
-        <input type='checkbox' id='equalizer' checked >
-        <span style='font-weight: bold;' >Equalize</span>
-      </label>
-    </div>
-    "
+    content_tag :div do 
+      concat( content_tag(:span, "Weight") )
+      concat( checkbox )
+    end 
+  end
+
+  def checkbox 
+    content_tag :div, class: "form-check checkbox-pull pull-right" do
+      content_tag :label, class: "form-check-label" do
+        concat(check_box_tag 'equalizer')
+        concat(content_tag(:span, "Equalize"))
+      end
+    end
   end
 
   def rating_editor_table_content
