@@ -7,6 +7,7 @@ require_dependency "shared_data/relationship_metrics"
 require_dependency "shared_data/badges"
 require_dependency "shared_data/notes_and_sources"
 require_dependency "shared_data/samples"
+require_dependency "shared_data/projects"
 
 class SharedData
   require_dependency "card"
@@ -22,7 +23,8 @@ class SharedData
     "Monster Inc" => "We scare because we care.",
     "Slate Rock and Gravel Company" => "Yabba Dabba Doo!",
     "Los Pollos Hermanos" => "I'm the one who knocks",
-    "SPECTRE" => "shaken not stirred"
+    "SPECTRE" => "shaken not stirred",
+
     # in addition pulled from production:
     # Google Inc, Apple Inc, Samsung, Siemens AG, Sony Corporation, Amazon.com
   }.freeze
@@ -44,6 +46,7 @@ class SharedData
     include RelationshipMetrics
     include Badges
     include NotesAndSources
+    include Projects
 
     def add_wikirate_data
       puts "add wikirate data"
@@ -54,7 +57,7 @@ class SharedData
       add :companies, :topics, :analysis, :notes_and_sources,
           :yearly_variables,
           :researched_metrics, :calculated_metrics, :relationship_metrics,
-          :projects, :industry,
+          :projects, :industry, :researchers, :program,
           :profile_sections, :badges, :import_files
 
       Card::Cache.reset_all
@@ -134,37 +137,15 @@ class SharedData
       )
     end
 
-    def add_projects
-      create "Evil Project",
-             type: :project,
-             subfields: {
-               metric: {
-                 type: :pointer,
-                 content: "[[Jedi+disturbances in the Force]]\n"\
-                          "[[Joe User+researched number 2]]"
-               },
-               wikirate_company: {
-                 type: :pointer,
-                 content: ["Death Star", "SPECTRE", "Los Pollos Hermanos"]
-               },
-               wikirate_topic: {
-                 type: :pointer,
-                 content: "Force"
-               }
-             }
+    def add_program
+      Card.create type: :cardtype, name: "Program"
+      create "Test Program", type: :program
+    end
 
-      create "Empty Project",
-             type: :project,
-             subfields: {
-               metric: {
-                 type: :pointer,
-                 content: ""
-               },
-               wikirate_company: {
-                 type: :pointer,
-                 content: ""
-               }
-             }
+    def add_researchers
+      researchers = Card.fetch "Jedi+Researchers", new: {}
+      researchers.add_item! "Joe User"
+      researchers.add_item! "Joe Camel"
     end
 
     def add_industry
@@ -177,13 +158,24 @@ class SharedData
 
     def add_import_files
       create "answer import test", type: :answer_import_file, empty_ok: true
-      create "feature answer import test", type: :answer_import_file,
+      create "feature answer import test",
+             type: :answer_import_file,
              codename: "answer_import_test_with_file",
-             answer_import_file: csv_file("answer_import"), storage_type: :coded,
+             answer_import_file: csv_file("answer_import"),
+             storage_type: :coded,
              mod: :test
+      create "feature relationship import test",
+             type: :relationship_answer_import_file,
+             codename: "relationship_import_test_with_file",
+             relationship_answer_import_file: csv_file("relationship_import"),
+             storage_type: :coded,
+             mod: :test
+
       create "source import test", type: :source_import_file, empty_ok: true
-      create "relationship answer import test", type: :relationship_answer_import_file, empty_ok: true
-      create "answer from source import test", type: :source, subfields: { wikirate_link: "http://google.com/source" }
+      create "relationship answer import test",
+             type: :relationship_answer_import_file, empty_ok: true
+      create "answer from source import test",
+             type: :source, subfields: { wikirate_link: "http://google.com/source" }
       create "answer from source import test+file", type: :file, empty_ok: true
     end
 
@@ -191,6 +183,5 @@ class SharedData
       path = File.expand_path("../shared_data/file/#{name}.csv", __FILE__)
       File.open path
     end
-
   end
 end

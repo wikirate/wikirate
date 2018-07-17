@@ -39,7 +39,7 @@ class Card
     end
 
     def fetch_missing_answer id
-      Card.new name: new_name(id), type_id: MetricValueID
+      Card.new name: new_name(id), type_id: MetricAnswerID
     end
 
     def existing_where_args

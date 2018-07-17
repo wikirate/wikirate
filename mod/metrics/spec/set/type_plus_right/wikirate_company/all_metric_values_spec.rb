@@ -15,6 +15,8 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       "deadliness+Joe Camel+1977",
       "disturbances in the Force+Joe User+2001",
       "darkness rating+1977",
+      "descendant 1+1977",
+      "descendant hybrid+1977",
       "researched number 1+1977",
       "more evil+1977",
       "researched+1977",
@@ -35,6 +37,8 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       "more evil+1977",
       "Sith Lord in Charge+1977",
       "Victims by Employees+1977",
+      "descendant 1+1977",
+      "descendant hybrid+1977",
       "researched+1977",
       "researched number 1+1977"
     ]
@@ -236,7 +240,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
         it "finds known values" do
           @company = Card["Samsung"]
           all_known = filter_by(metric_value: :known).all? do |a|
-            a.include? "researched number"
+            a.include?("researched number") || a.include?("descendant")
           end
           expect(all_known).to be_truthy
         end
@@ -290,7 +294,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
             ["Victims by Employees", "cost of planets destroyed",
              "darkness rating", "deadliness", "deadliness+Joe Camel",
              "deadliness+Joe User", "dinosaurlabor", "friendliness",
-             "Sith Lord in Charge",
+             "Sith Lord in Charge", "descendant 1", "descendant hybrid",
              "researched number 1", "researched", "more evil"], 2001
           )
           missing2001.delete "disturbances in the Force+2001"
@@ -312,7 +316,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
         it "... metric_type" do
           expect(filter_by(metric_value: :none, metric_type: "Researched"))
             .to contain_exactly(
-              *with_year(["Address", "Weapons",
+              *with_year(["Weapons",
                           "big multi", "big single",
                           "researched number 2", "researched number 3",
                           "small multi", "small single"])
@@ -350,10 +354,10 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
         it "... metric_type" do
           expect(filter_by(metric_value: :all, metric_type: "Researched"))
             .to contain_exactly(
-              *(with_year(["Address", "Weapons",
+              *(with_year(["Weapons",
                            "big multi", "big single",
                            "researched number 2", "researched number 3",
-                           "small multi", "small single"]) + researched)
+                           "small multi", "small single"]) + researched )
             )
         end
       end
@@ -418,7 +422,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
            "researched number 1", "Victims by Employees"].map do |t|
             sorted.index(t)
           end
-        expect(indices).to eq [0, 1, 2, 11, 13]
+        expect(indices).to eq [0, 1, 2, 13, 15]
       end
 
       it "sorts by recently updated" do
@@ -443,7 +447,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
 
   describe "#count" do
     it "returns correct count" do
-      expect(all_metric_values.count).to eq(14)
+      expect(all_metric_values.count).to eq(16)
     end
   end
 

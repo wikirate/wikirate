@@ -93,8 +93,8 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
       update_card "Jedi+deadliness+Death Star+1977+value", content: "10"
       researched_value = answer_value "deadliness"
       expect(researched_value).to eq "10"
-      calculated_value = answer_value "friendliness"
-      expect(calculated_value).to eq "0.1"
+      overridden_value = answer_value "friendliness"
+      expect(overridden_value).to eq "0.1"
     end
 
     it "updates second level formula" do

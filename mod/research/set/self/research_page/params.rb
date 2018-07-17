@@ -162,7 +162,7 @@ format :html do
 
   def existing_answer_with_source?
     existing_answer? && researchable_answer? &&
-      (!answer_card.hybrid? || answer_card.calculation_overridden?)
+      (answer_card.researched? || answer_card.researched_value?)
   end
 
   def company
@@ -183,7 +183,7 @@ format :html do
   end
 
   def answer_card
-    @sac ||= Card.fetch [metric, company, year.to_s], new: { type_id: MetricValueID }
+    @sac ||= Card.fetch [metric, company, year.to_s], new: { type_id: MetricAnswerID }
   end
 
   def metric_pinned?

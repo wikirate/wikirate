@@ -22,11 +22,8 @@ RSpec.describe Card::Set::All::Wikirate do
     it "always shows the help text" do
       # render help text of source page
       # create a page with help text
-      login_as "WagnBot"
-      Card.create type: "Basic", name: "testhelptext",
-                  content: "<p>hello test case</p>"
-      Card.create type: "Basic", name: "testhelptext+*self+*help",
-                  content: "Can I help you?"
+      create "testhelptext", type: "Basic", content: "<p>hello test case</p>"
+      create "testhelptext+*self+*help", type: "Basic", content: "Can I help you?"
       html = render_card :edit, name: "testhelptext"
       expect(html).to include("Can I help you?")
     end
@@ -37,9 +34,7 @@ RSpec.describe Card::Set::All::Wikirate do
     end
 
     it "return html for an existing card for modal view" do
-      login_as "WagnBot"
-      card = Card.create! name: "test_basic", type: "html",
-                          content: "Hello World"
+      card = create "test_basic", type: "html", content: "Hello World"
       Card::Env.params[:show_modal] = card.name
       expect(render_card(:wikirate_modal, name: card.name)).to eq(
         "<div class='modal-window'>#{render_card :core, name: card.name} </div>"
@@ -111,87 +106,51 @@ RSpec.describe Card::Set::All::Wikirate do
     end
   end
 
-  context "while viewing id_atom in json format" do
-    it "includes id" do
-      login_as "WagnBot"
-      search_card = Card.create!(
-        type: "search", content: "{\"type\":\"company\"}", name: "id_atom_test"
-      )
-      Card::Env.params[:item] = "id_atom"
-      result = search_card.format(format: :json)._render!(:content)
-      card_array = result[:card][:value]
-      card_array.each do |card|
-        expect(card).to have_key :id
-      end
-    end
-
-    it "handles param:start " do
-      login_as "WagnBot"
-      start = 20_140_601_000_000
-      search_card = Card.create!(
-        type: "search", content: "{\"type\":\"company\"}", name: "id_atom_test"
-      )
-      Card::Env.params[:item] = "id_atom"
-      Card::Env.params["start"] = start
-      wql = { type: "Company" }
-      company_cards_list = Card.search wql
-      valid_company_cards = {}
-      company_cards_list.each do |card|
-        if card.updated_at.strftime("%Y%m%d%H%M%S").to_i >= start
-          valid_company_cards[card.id] = card.name
-        end
-      end
-      result = search_card.format(format: :json).render!(:content)
-      card_array = result[:card][:value]
-      card_array.each do |card|
-        expect(card).to have_key :id
-        expect(valid_company_cards.key?(card[:id])).to be true
-      end
-    end
-  end
-
   describe "view of shorter_search_result" do
+    let(:search_card_name) { "_search_test" }
+
     def create_dump_card number
       cards = []
       for i in 0..number - 1
-        Card.create! name: "testcard#{i + 1}", type: "Basic"
+        create "testcard#{i + 1}", type: "Basic"
         cards.push "\"testcard#{i + 1}\""
       end
       cards.join(",")
     end
-    before do
-      login_as "WagnBot"
-      @search_card_name = "_search_test"
+
+    def create_search content
+      create search_card_name, type: "search", content: content
     end
+
     it "handles only 1 result" do
       cards_name = create_dump_card 1
-      search_card = Card.create! name: @search_card_name, type: "search", content: "{\"name\":#{cards_name}}"
+      search_card = create_search "{\"name\":#{cards_name}}"
       expected_content = search_card.item_cards(limit: 0)[0].format.render!(:link)
-      html = render_card(:shorter_search_result, name: @search_card_name)
+      html = render_card(:shorter_search_result, name: search_card_name)
       expect(html).to eq(expected_content)
     end
     it "handles only 2 results" do
       cards_name = create_dump_card 2
-      search_card = Card.create! name: @search_card_name, type: "search", content: "{\"name\":[\"in\", #{cards_name}]}"
+      search_card = create_search "{\"name\":[\"in\", #{cards_name}]}"
       result_cards = search_card.item_cards(limit: 0)
       expected_content = result_cards[0].format.render!(:link) + " and " + result_cards[1].format.render!(:link)
-      html = render_card(:shorter_search_result, name: @search_card_name)
+      html = render_card(:shorter_search_result, name: search_card_name)
       expect(html).to eq(expected_content)
     end
     it "handles only 3 results" do
       cards_name = create_dump_card 3
-      search_card = Card.create! name: @search_card_name, type: "search", content: "{\"name\":[\"in\", #{cards_name}]}"
+      search_card = create_search "{\"name\":[\"in\", #{cards_name}]}"
       result_cards = search_card.item_cards(limit: 0)
       expected_content = result_cards[0].format.render!(:link) + " , " + result_cards[1].format.render!(:link) + " and " + result_cards[2].format.render!(:link)
-      html = render_card(:shorter_search_result, name: @search_card_name)
+      html = render_card(:shorter_search_result, name: search_card_name)
       expect(html).to eq(expected_content)
     end
     it "handles more than 3 results" do
       cards_name = create_dump_card 10
-      search_card = Card.create! name: @search_card_name, type: "search", content: "{\"name\":[\"in\", #{cards_name}]}"
+      search_card = create_search "{\"name\":[\"in\", #{cards_name}]}"
       result_cards = search_card.item_cards(limit: 0)
       expected_content = result_cards[0].format.render!(:link) + " , " + result_cards[1].format.render!(:link) + " , " + result_cards[2].format.render!(:link)
-      html = render_card(:shorter_search_result, name: @search_card_name)
+      html = render_card(:shorter_search_result, name: search_card_name)
       expected =
         "#{expected_content} and <a class=\"known-card\" "\
         "href=\"#{search_card.format.render!(:url)}\"> 7 others</a>"
@@ -219,7 +178,7 @@ RSpec.describe Card::Set::All::Wikirate do
     context "card content is numeric" do
       it "render progress bar" do
         value = "3.14159265"
-        numeric_card = Card.create! name: "I am a number", content: "3.14159265"
+        numeric_card = create "I am a number", content: "3.14159265"
         html = numeric_card.format.render_progress_bar
         expect(html).to have_tag("div", with: { class: "progress" }) do
           with_tag "div", with: { class: "progress-bar",

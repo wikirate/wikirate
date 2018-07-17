@@ -50,14 +50,14 @@ class Card
     end
 
     def raw_value value_card
-      @format.wrap_with(:span, value_card.raw_value, class: "metric-value")
+      @format.link_to_card value_card, value_card.raw_value, class: "metric-value"
     end
 
     def base_metric_card
       @format.card.metric_card.left
     end
 
-    def base_metric_value
+    def base_metric_answer
       base_metric_card.field(company).field(year)
     end
 

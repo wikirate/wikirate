@@ -37,7 +37,7 @@ event :add_inverse_count_answer, :prepare_to_store do
 end
 
 def add_count name, count
-  add_subcard name, type_id: MetricValueID, subfields: { value: { content: count } }
+  add_subcard name, type_id: MetricAnswerID, subfields: { value: { content: count } }
 end
 
 def update_counts!
@@ -53,7 +53,7 @@ def update_count! answer_name, count
                                                         numeric_value: count.to_i
     end
   else
-    Card.create! name: answer_name, type_id: MetricValueID,
+    Card.create! name: answer_name, type_id: MetricAnswerID,
                  subfields: { value: { content: count } }
   end
 end
@@ -126,21 +126,21 @@ format :html do
 end
 
 format :json do
-  # include MetricValue::JsonFormat
-  view :from_answer do
-    _render_essentials.merge company: essentials_for_related_company
+  def essentials_for_related_company
+    nest card.related_company, view: :atom
   end
 
-  def essentials_for_related_company
-    nest card.related_company, view: :marks
+  view :atom do
+    super().merge year: card.year.to_s,
+                  value: card.value,
+                  import: card.imported?,
+                  comments: field_nest(:discussion, view: :atom),
+                  related_company: essentials_for_related_company
   end
 
   def essentials
     {
-      year: card.year.to_s,
-      value: card.value,
-      import: card.imported?,
-      comments: field_nest(:discussion, view: :core)
+
     }
   end
 end

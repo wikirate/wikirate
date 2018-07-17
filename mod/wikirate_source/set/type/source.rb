@@ -73,7 +73,7 @@ format :html do
       voo.structure = "metric value source form"
       voo.type = "source"
       card_form :create, "main-success" => "REDIRECT",
-                         "data-form-for" => "new_metric_value",
+                         "data-form-for" => "new_metric_answer",
                          class: "card-slot new-view TYPE-source" do
         output [
           preview_hidden,

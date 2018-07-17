@@ -39,60 +39,69 @@ RSpec.describe Card::Set::Type::Pointer::Export do
 
     context "pointer card" do
       it "contains cards in the pointer card and its children" do
+        Card::Env.params[:max_export_depth] = 3
         json_export type: :pointer, content: [elbert.name, elbert_punchline.name]
 
         expect(json_export)
           .to include(
-            { name: "normal pointer",
-              type: "Pointer",
-              content: "[[Elbert Hubbard]]\n[[Elbert Hubbard+punchline]]" },
-            { name: "Elbert Hubbard",
-              type: "Basic",
-              content: "Do not take life too seriously." },
-            name: "Elbert Hubbard+punchline",
-            type: "Basic",
-            content: "You will never get out of it alive."
+            a_hash_including(
+              name: "normal pointer", type: "Pointer",
+              content: "[[Elbert Hubbard]]\n[[Elbert Hubbard+punchline]]"
+            ),
+            a_hash_including(
+              name: "Elbert Hubbard", type: "Basic",
+              content: "Do not take life too seriously."
+            ),
+            a_hash_including(
+              name: "Elbert Hubbard+punchline", type: "Basic",
+              content: "You will never get out of it alive."
+            )
           )
       end
 
       it "handles multi level pointer cards" do
+        Card::Env.params[:max_export_depth] = 4
         json_export type: :pointer,
                     content: [elbert_container.name, elbert_punchline.name]
 
         expect(json_export)
           .to include(
-            { name: "normal pointer",
+            a_hash_including(name: "normal pointer",
               type: "Pointer",
-              content: "[[elbert container]]\n[[Elbert Hubbard+punchline]]" },
-            { name: "elbert container",
+              content: "[[elbert container]]\n[[Elbert Hubbard+punchline]]"),
+            a_hash_including(name: "elbert container",
               type: "Pointer",
-              content: "[[Elbert Hubbard]]" },
-            { name: "Elbert Hubbard",
+              content: "[[Elbert Hubbard]]"),
+            a_hash_including(name: "Elbert Hubbard",
               type: "Basic",
-              content: "Do not take life too seriously." },
-            name: "Elbert Hubbard+punchline",
+              content: "Do not take life too seriously."),
+            a_hash_including(name: "Elbert Hubbard+punchline",
             type: "Basic",
-            content: "You will never get out of it alive."
+            content: "You will never get out of it alive.")
           )
       end
 
       it "stops if the depth count > 10" do
         json_export type: :pointer, name: "normal pointer", content: ["normal pointer"]
-        expect(json_export).to include(name: "normal pointer", type: "Pointer",
-                                       content: "[[normal pointer]]")
+        expect(json_export)
+          .to include(a_hash_including(name: "normal pointer", type: "Pointer",
+                                       content: "[[normal pointer]]"))
       end
     end
 
     context "Skin card" do
       it "contains cards in the pointer card and its children" do
+        Card::Env.params[:max_export_depth] = 4
         expect(json_export(type: :skin, content: [elbert.name]))
           .to include(
-            { name: "normal pointer",
-              type: "Skin",
-              content: "[[Elbert Hubbard]]" },
-            name: "Elbert Hubbard",
-            type: "Basic",
-            content: "Do not take life too seriously."
+            a_hash_including(
+              name: "normal pointer", type: "Skin",
+              content: "[[Elbert Hubbard]]"
+            ),
+            a_hash_including(
+              name: "Elbert Hubbard", type: "Basic",
+              content: "Do not take life too seriously."
+            )
           )
       end
     end
@@ -103,19 +112,21 @@ RSpec.describe Card::Set::Type::Pointer::Export do
         elbert_punchline
         elbert_quote
 
+        Card::Env.params[:max_export_depth] = 4
         json_export(name: "search card", type: :search_type,
                     content: %({"left":"Elbert Hubbard"}))
         expect(json_export)
           .to include(
-            { name: "search card",
-              type: "Search",
-              content: %({"left":"Elbert Hubbard"}) },
-            { name: "Elbert Hubbard+punchline",
-              type: "Basic",
-              content: "You will never get out of it alive." },
-            name: "Elbert Hubbard+quote",
-            type: "Basic",
-            content: "Procrastination is the art of keeping up with yesterday."
+            a_hash_including(
+              name: "search card", type: "Search",
+              content: %({"left":"Elbert Hubbard"})),
+            a_hash_including(
+              name: "Elbert Hubbard+punchline", type: "Basic",
+              content: "You will never get out of it alive."),
+            a_hash_including(
+              name: "Elbert Hubbard+quote", type: "Basic",
+              content: "Procrastination is the art of keeping up with yesterday."
+            )
           )
       end
     end

@@ -1,21 +1,15 @@
 #
 RSpec.describe Card::Set::Type::WikirateCompany::Structure do
-  extend Card::SpecHelper::ViewHelper::ViewDescriber
-
-  let(:company) { Card["Google Inc"] }
-
-  describe_views :open_content, :listing, :edit, :homepage_item,
-                 :wikirate_topic_tab, :source_tab, :post_tab, :project_tab do
-    it "has no errors" do
-      expect(company.format.render(view)).to lack_errors
-    end
+  def card_subject
+    Card["Google Inc"]
   end
 
-  describe "details tab" do
-    subject { company.format(:html)._render_details_tab }
+  check_views_for_errors :open_content, :listing, :edit, :homepage_item,
+                         :wikirate_topic_tab, :source_tab, :post_tab, :project_tab
 
+  describe "details tab" do
     it "has jurisdiction table" do
-      is_expected.to have_tag "table" do
+      expect_view(:details_tab).to have_tag "table" do
         with_tag :tr do
           with_tag :td, text: "Headquarters"
           with_tag :td, text: "California (United States)"
@@ -49,7 +43,7 @@ RSpec.describe Card::Set::Type::WikirateCompany::Structure do
       is_expected.to have_tag "div.row.data-count" do
         with_tag "div.col-md-6.slab" do
           with_tag :a, with: { href: "/Death_Star?tab=metric" } do
-            with_text /14\s*Metric/
+            with_text /16\s*Metric/
           end
         end
         with_tag "div.col-md-6.slab" do

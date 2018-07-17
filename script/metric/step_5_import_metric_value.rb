@@ -73,18 +73,18 @@ Card::Auth.as_bot do
         puts "Invalid metric card to be created #{subcard}".red
         next
       end
-      metric_value = Card.new type_id: Card::MetricValueID, subcards: subcard
-      if metric_value.errors.empty?
+      metric_answer = Card.new type_id: Card::MetricAnswerID, subcards: subcard
+      if metric_answer.errors.empty?
         puts "metric value card to be created #{subcard}"
-        metric_value.save!
+        metric_answer.save!
       else
-        puts metric_value.errors
+        puts metric_answer.errors
         next
       end
       begin
         # add sources to +source pointer
-        metric_value_source_card = metric_value.fetch(trait: :source)
-        source_cache[source_url] = metric_value_source_card.item_cards[0]
+        metric_answer_source_card = metric_answer.fetch(trait: :source)
+        source_cache[source_url] = metric_answer_source_card.item_cards[0]
         sources_to_be_added_to_plus_source = []
         unless sources.nil?
           sources.each do |source|
@@ -104,12 +104,12 @@ Card::Auth.as_bot do
             sources_to_be_added_to_plus_source.push(sourcepage.name)
           end
           sources_to_be_added_to_plus_source.each do |source|
-            metric_value_source_card << source
+            metric_answer_source_card << source
           end
-          metric_value_source_card.save!
+          metric_answer_source_card.save!
         end
       rescue => e
-        puts "Error while handling the source card of #{metric_value.name}".red
+        puts "Error while handling the source card of #{metric_answer.name}".red
         puts e.to_s.red
       end
     else

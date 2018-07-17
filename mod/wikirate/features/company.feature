@@ -57,8 +57,9 @@ Feature: company feature
     Then I should see "Weapons"
 
   Scenario: Paging
-    Then I should not see "deadliness"
+    Then I should see "Victims by Employees"
+    And I should not see "deadliness Research | community assessed"
     Then I click on "2"
-    Then I should see "deadliness"
-    And I should not see "disturbances in the Force"
+    Then I should see "deadliness Research | community assessed"
+    And I should not see "Victims by Employees"
 

@@ -11,7 +11,7 @@ card_accessor :metric
 card_accessor :wikirate_topic
 
 def report_card member, cardtype, variant
-  rcard = Card.new name: [member, cardtype, name, :report_search].to_name
+  rcard = Card.new name: [member, cardtype, name, :report_search]
   # note: #new is important here, because we want different cards
   # for different variants
   rcard.variant = variant
@@ -20,7 +20,7 @@ end
 
 def contribution_count member, cardtype, category
   return 0 if projects.empty?
-  return "" if category == :double_checked && cardtype != :metric_value
+  return "" if category == :double_checked && cardtype != :metric_answer
   report_card(member, cardtype, category).count
 end
 
