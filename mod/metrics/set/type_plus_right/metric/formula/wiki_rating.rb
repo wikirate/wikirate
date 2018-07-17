@@ -67,4 +67,4 @@ format :html do
     field = text_field_tag "weight_sum", value, class: "weight-sum", disabled: true
     "#{field}%"
   end
-end
+end 

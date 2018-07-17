@@ -2,10 +2,8 @@ module Formula
   class WikiRating < Translation
     def get_value input, _company, _year
       result = 0.0
-      total_weight = 0
       input.each.with_index do |value, index|
         weight = @executed_lambda[@input.card_id(index)]
-        total_weight += weight
         result += value.to_f * weight
       end
       result / 100
@@ -19,7 +17,7 @@ module Formula
       end
     rescue JSON::ParserError => _e
       @errors << "invalid WikiRating formula #{expr}"
-      return false
+      false
     end
   end
 end
