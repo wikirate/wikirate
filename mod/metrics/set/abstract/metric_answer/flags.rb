@@ -31,7 +31,7 @@ format :html do
   end
 
   def calculated_flag_icon
-    return overridden_flag_icon if card.calculation_overridden?
+    return overridden_flag_icon if card.researched_value?
     fa_icon :calculator, title: "Calculated metric answer", class: "text-success"
   end
 
