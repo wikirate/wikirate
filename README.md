@@ -57,10 +57,9 @@ Paths:
 
 CoffeeScript Tests
 ----
+You need [node.js](https://nodejs.org/en/) (>=6) and [ yarn ](https://yarnpkg.com/en/docs/install). 
 To set up coffeescript testing run `yarn install` 
-(if you don't have yarn [ get it here ](https://yarnpkg.com/en/docs/install) or
-use any other package manager that can handle a package.json file)
-Start tests with `jest test`.
+Start tests with `yarn jest test`.
 Jest is configured to run all `.coffee` files in `mod/**/spec` folders.
 The configuration can be changed in `package.json`. 
 The basic setup for Jest with jquery and decko's coffeescript is loaded in 
