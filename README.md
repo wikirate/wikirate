@@ -36,7 +36,7 @@ Testing
 Running Tests
 ----
 1. populate test database: `bundle exec rake wikirate:test:seed`
-1. start rspec with `decko rspec` and cucumber with `decko cucumber`.
+2. start rspec with `decko rspec`cucumber with `decko cucumber`.
 
 Alternatively, you can use the shorter commands `decko rs` and `decko cc`
 
@@ -50,10 +50,21 @@ Sample tests contained here:
 
 Paths:
 ```sh
- mod/*/spec                       # rspec tests
+ mod/*/spec                       # rspec and jest tests
  mod/*/features                   # cucumber tests
  mod/*/features/step_definitions  # cucumber step definitions
 ```
+
+CoffeeScript Tests
+----
+To set up coffeescript testing run `yarn install` 
+(if you don't have yarn [ get it here ](https://yarnpkg.com/en/docs/install) or
+use any other package manager that can handle a package.json file)
+Start tests with `jest test`.
+Jest is configured to run all `.coffee` files in `mod/**/spec` folders.
+The configuration can be changed in `package.json`. 
+The basic setup for Jest with jquery and decko's coffeescript is loaded in 
+`test/setup_jest.js`. 
 
 Site Maintenance
 ================
