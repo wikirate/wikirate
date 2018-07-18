@@ -191,6 +191,14 @@
   border-top: 3px solid $topic-color;
 }
 
+
+//alignments
+.align-to-end{
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+  width: 100%;
+}
 //Text adjustments
 .text-align-left {
   text-align: left;

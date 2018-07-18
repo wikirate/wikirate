@@ -1,26 +1,15 @@
 .nodblclick.row.m-0.p-0
-  .col-md-12.top-banner-wrapper.white-text.banner-background
-    .row.padding-top-20
-    .float-left.col-md-9.col-sm-12.col-xs-12.banner-lead
-      .col-md-2.col-sm-12.col-xs-12.banner-image.float-left
+  .col-12.top-banner-wrapper.white-text.banner-background.slide-container
+    .col-12.banner-lead.text-center.mt-4
+      .banner-image
         = nest :wikirate_white_logo, view: :core, size: :medium
-      .col-md-10
-        %span.wikirate-logo-title
-          Wiki
-          %strong> Rate
-        %h3.white-text.no-bold-text.m-0.p-0 A global collaboration to research corporate impacts.
-        %p.lead Let's make companies better, together.
-        %br/
-    %br/
-    .float-right.col-md-3.col-xs-12.col-sm-12.btn-group-vertical.banner-buttons
-      = link_to_card "homepage: video container",
-                     "#{fa_icon "play-circle"} Watch Intro Video",
-                     path: { layout: :modal },
-                     class: "btn btn-outline-secondary slotter",
-                     "data-target" => "#modal-main-slot",
-                     "data-toggle" => "modal"
-
-      = link_to_card :about,
-                     "#{fa_icon "arrow-circle-o-right"} About WikiRate",
-                     class: "btn btn-outline-secondary"
-    .row.padding-top-20
+      %span.wikirate-logo-title
+        Wiki
+        %strong> Rate
+      %p.lead.mb-5 Let's make companies better, together.
+      .pt-5.mt-5
+        %h3.white-text.font-weight-normal How does Apple perform on Climate Change?
+        %h3.white-text.font-weight-normal To know and act, you need excellent data.
+    .align-to-end.lead
+      %p Our Solution
+      %a.fa.fa-chevron-down.text-white._our_solution

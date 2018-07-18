@@ -9,8 +9,11 @@ format :html do
     output [
       render_wikirate_modal,
       nest(:homepage_top_banner),
-      nest(:homepage_introductions),
-      nest(:homepage_communities)
+      nest(:homepage_video_section),
+      nest(:homepage_numbers),
+      nest(:homepage_projects),
+      nest(:homepage_topics),
+      nest(:homepage_organizations)
     ]
   end
 

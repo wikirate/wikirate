@@ -8,6 +8,13 @@
   font-size: 1.2em;
 }
 
+
+/*----------- Slide ---------*/
+
+.slide-container {
+  height: 93vh;
+}
+
 /*----------- Top banner ---------*/
 .wikirate-logo-title {
   font-weight: normal;
@@ -33,7 +40,6 @@
 .banner-image img{
   max-width: 100%;
   max-height: 110px;
-  float: right;
 }
 .banner-buttons .btn>i {
   float: right;
@@ -346,16 +352,16 @@
 @media only screen and (min-width : 768px) {
 
 }
-
-/* Medium Devices, Desktops */
-@media only screen and (min-width : 992px) {
-  .banner-lead {
-    text-align: left;
-    .banner-image img{
-      float: right;
-    }
-  }
-}
+//
+// /* Medium Devices, Desktops */
+// @media only screen and (min-width : 992px) {
+//   .banner-lead {
+//     text-align: left;
+//     .banner-image img{
+//       float: right;
+//     }
+//   }
+// }
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width : 1200px) {
@@ -369,18 +375,18 @@
 
 }
 
-/* Medium Devices, Desktops */
-@media only screen and (max-width : 992px) {
-  .banner-lead {
-    text-align: center;
-    .banner-image img{
-      float: none;
-    }
-  }
-  .banner-buttons {
-    margin-bottom: 35px;
-  }
-}
+// /* Medium Devices, Desktops */
+// @media only screen and (max-width : 992px) {
+//   .banner-lead {
+//     text-align: center;
+//     .banner-image img{
+//       float: none;
+//     }
+//   }
+//   .banner-buttons {
+//     margin-bottom: 35px;
+//   }
+// }
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
