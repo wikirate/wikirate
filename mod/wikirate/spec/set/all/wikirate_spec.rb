@@ -105,6 +105,7 @@ RSpec.describe Card::Set::All::Wikirate do
     end
   end
 
+<<<<<<< HEAD
   context "when while viewing id_atom in json format" do
     it "includes id" do
       search_card =
@@ -141,6 +142,8 @@ RSpec.describe Card::Set::All::Wikirate do
     end
   end
 
+=======
+>>>>>>> d51dd93105a74895c42a3ae0e20c10fa9a10ad07
   describe "view of shorter_search_result" do
     let(:search_card_name) { "_search_test" }
 
