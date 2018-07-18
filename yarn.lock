@@ -537,6 +537,10 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
+coffee-script@^1.12.6:
+  version "1.12.7"
+  resolved "https://registry.yarnpkg.com/coffee-script/-/coffee-script-1.12.7.tgz#c05dae0cb79591d05b3070a8433a98c9a89ccc53"
+
 coffeescript@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/coffeescript/-/coffeescript-2.3.1.tgz#a25f69c251d25805c9842e57fc94bfc453ef6aed"
@@ -1518,6 +1522,12 @@ jest-cli@^23.4.1:
     strip-ansi "^4.0.0"
     which "^1.2.12"
     yargs "^11.0.0"
+
+jest-coffee-preprocessor@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/jest-coffee-preprocessor/-/jest-coffee-preprocessor-1.0.0.tgz#c8910ac76951c8e6d0647fe9005d028a8e9b976b"
+  dependencies:
+    coffee-script "^1.12.6"
 
 jest-config@^23.4.1:
   version "23.4.1"
