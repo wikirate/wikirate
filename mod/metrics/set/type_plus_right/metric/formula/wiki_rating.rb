@@ -22,16 +22,16 @@ format :html do
   end
 
   def checkbox_equalizer
-    content_tag :div do 
-      concat( content_tag(:span, "Weight") )
-      concat( checkbox )
-    end 
+    content_tag :div do
+      concat(content_tag(:span, "Weight"))
+      concat(checkbox)
+    end
   end
 
-  def checkbox 
+  def checkbox
     content_tag :div, class: "form-check checkbox-pull pull-right" do
       content_tag :label, class: "form-check-label" do
-        concat(check_box_tag 'equalizer')
+        concat((check_box_tag "equalizer"))
         concat(content_tag(:span, "Equalize"))
       end
     end
@@ -72,4 +72,4 @@ format :html do
     field = text_field_tag "weight_sum", value, class: "weight-sum", disabled: true
     "#{field}%"
   end
-end 
+end
