@@ -1,10 +1,3 @@
-def score_cards
-  # we don't check the metric type
-  # we assume that a metric with left is a metric again is always a score
-  Card.search type_id: MetricID,
-              left_id: id
-end
-
 format :html do
   before :content_formgroup do
     super()
@@ -19,16 +12,8 @@ format :html do
     %i[details score source project]
   end
 
-  def tab_options
-    { score: { count: card.score_cards.count } }
-  end
-
   view :main_details do
-    output [
-      nest(card.about_card, view: :titled, title: "About"),
-      nest(card.methodology_card, view: :titled, title: "Methodology"),
-      _render_import_button
-    ]
+    output [nest_about, nest_methodology, _render_import_button]
   end
 
   view :source_tab do
@@ -37,23 +22,6 @@ format :html do
                           title: "#{fa_icon 'globe'} Sources",
                           items: { view: :listing }
     end
-  end
-
-  view :score_tab do
-    # TODO: move +scores to a separate card
-    tab_wrap do
-      output [
-        wikirate_table(:plain, card.score_cards, [:score_thumbnail],
-                       header: ["scored by"], tr_link: ->(item) { path mark: item }),
-        add_score_link
-      ]
-    end
-  end
-
-  def add_score_link
-    link_to_card :metric, "Add new score",
-                 path: { action: :new, tab: :score, metric: card.name },
-                 class: "btn btn-primary"
   end
 
   def add_value_link

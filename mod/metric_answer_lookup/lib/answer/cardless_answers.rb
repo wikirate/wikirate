@@ -16,7 +16,8 @@ class Answer
     def virtual_answer_card name=nil, val=nil
       name ||= [record_name, year.to_s]
       val ||= value
-      Card.new(name: name, type_id: Card::MetricValueID).tap do |card|
+
+      Card.fetch(name, new: { type_id: Card::MetricAnswerID }).tap do |card|
         card.define_singleton_method(:value) { val }
         # card.define_singleton_method(:updated_at) { updated_at }
         card.define_singleton_method(:value_card) do
@@ -32,7 +33,7 @@ class Answer
 
     def calculated_answer metric_card, company, year, value
       ensure_record metric_card, company
-      @card = virtual_answer_card metric_card.metric_value_name(company, year), value
+      @card = virtual_answer_card metric_card.metric_answer_name(company, year), value
       refresh
       update_cached_counts
       self
@@ -49,10 +50,20 @@ class Answer
     end
 
     def update_value value
-      update_attributes! value: value,
-                         numeric_value: to_numeric_value(value),
-                         updated_at: Time.now,
-                         editor_id: Card::Auth.current_id
+      update_attributes! value_attributes(value)
+    end
+
+    def value_attributes value
+      {
+        value: value,
+        numeric_value: to_numeric_value(value),
+        updated_at: Time.now,
+        editor_id: Card::Auth.current_id
+      }
+    end
+
+    def restore_overridden_value
+      calculated_answer metric_card, company, year, overridden_value
     end
 
     # class methods for {Answer} to support creating and updating calculated answers

@@ -115,7 +115,7 @@ module Formula
       end
 
       def initialize_input_list input_cards
-        input_cards.map do |input_card|
+        input_cards.compact.map do |input_card|
           InputItem.new(input_card.id, input_type(input_card))
         end
       end

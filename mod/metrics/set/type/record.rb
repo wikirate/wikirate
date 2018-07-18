@@ -24,6 +24,10 @@ def related_companies_with_year
 end
 
 format :json do
+  def item_cards
+    card.all_answers
+  end
+
   view :related_companies_with_year do
     card.related_companies_with_year.to_json
   end
@@ -73,7 +77,7 @@ def related_companies_of_inverse_metric
 end
 
 def search_companies left_left:, right:, key:
-  wql = { left: { type_id: MetricValueID, left: left_left },
+  wql = { left: { type_id: MetricAnswerID, left: left_left },
           right: right }
   hwa = Hash.new { |h, k| h[k] = [] }
   Card.search(wql).each_with_object(hwa) do |card, h|

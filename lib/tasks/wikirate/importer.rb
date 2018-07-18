@@ -17,7 +17,7 @@ class Importer
     card_data =
       work_on "getting data from #{cardname} card" do
         if opts[:subitems]
-          json_export cardname, :export_items
+          json_export cardname, :export_items, opts[:depth]
         else
           json_export(cardname)["card"]["value"]
         end
@@ -54,10 +54,11 @@ class Importer
     result
   end
 
-  def json_export cardname, view=nil
+  def json_export cardname, view=nil, depth=nil
     name = cardname.is_a?(Symbol) ? ":#{cardname}" : cardname.to_name.key
     url = "http://#{@export_location}/#{name}.json"
-    url += "?view=#{view}" if view
+    params = [("view=#{view}" if view), ("max_export_depth=#{depth}" if depth)].compact
+    url += "?#{params.join("&")}" if params.present?
     JSON.parse open(url, read_timeout: 50_000).read
   end
 

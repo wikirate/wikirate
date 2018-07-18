@@ -76,22 +76,10 @@ format :html do
     end
   end
 
-  view :thumbnail_subtitle do
-    haml do
-      <<-HAML.strip_heredoc
-        %div
-          %small.text-muted
-            = thumbnail_subtitle_text
-            = thumbnail_subtitle_author
-      HAML
-    end
-  end
+  view :thumbnail_subtitle, template: :haml
 
+  # for override
   def thumbnail_subtitle_text
-    ""
-  end
-
-  def thumbnail_subtitle_author
     ""
   end
 end

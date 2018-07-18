@@ -1,9 +1,13 @@
-include Abstract::Variable
+include_set Abstract::Variable
 include_set Abstract::Pointer
 include_set Abstract::MetricChild, generation: 1
 
 def categorical?
   score? && metric_card.categorical?
+end
+
+def help_rule_card
+  metric_card.metric_type_card.item_cards.first&.fetch trait: :help
 end
 
 format :html do
@@ -25,7 +29,7 @@ format :html do
 
   view :editor do
     with_hidden_content do
-      render card.metric_card.formula_editor
+      _render card.metric_card.formula_editor
     end
   end
 
@@ -82,6 +86,11 @@ def each_reference_out &block
   translation_table.each do |key, _value|
     yield(key, Content::Chunk::Link::CODE)
   end
+end
+
+def replace_reference_syntax old_name, new_name
+  return super unless rating?
+  content.gsub old_name, new_name
 end
 
 def normalize_value value

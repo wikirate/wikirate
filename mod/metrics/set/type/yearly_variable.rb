@@ -1,6 +1,6 @@
 include_set Abstract::DesignerAndTitle
 include_set Abstract::MetricThumbnail
 
-def value_type
+def metric_type
   "Yearly Variable"
 end

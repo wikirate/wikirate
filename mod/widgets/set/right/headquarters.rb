@@ -11,7 +11,7 @@ event :update_oc_mapping_due_to_headquarters_entry, :integrate,
   add_subcard name.left_name.field(:open_corporates),
               content: oc.company_number, type: :phrase
   add_subcard name.left_name.field(:incorporation),
-              content: jurisdiction_name(oc.jurisdiction_code_of_incorporation),
+              content: jurisdiction_name(oc.incorporation_jurisdiction_code),
               type: :pointer
 end
 

@@ -13,15 +13,15 @@ describe Card::Set::Type::WikirateCompany::AwardBadges do
                    name: "Company #{number}"
     end
 
-    context "reached bronze threshold" do
+    context "when reached bronze threshold" do
       it_behaves_like "award badges", 1, "Company Register"
     end
 
-    context "reached silver threshold" do
+    context "when reached silver threshold" do
       it_behaves_like "award badges", 2, "The Company Store"
     end
 
-    context "reached gold threshold" do
+    context "when reached gold threshold" do
       it_behaves_like "award badges", 3, "Companies (in the) House"
     end
   end

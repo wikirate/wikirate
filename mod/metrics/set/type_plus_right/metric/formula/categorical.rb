@@ -1,6 +1,14 @@
 format :html do
   view :categorical_core do
-    table card.translation_table, header: %w[Value Score]
+    table categorical_content, header: %w[Value Score]
+  end
+
+  def categorical_content
+    card.translation_table
+    # TODO: following is preferable (colorifies the scores), but there are CSS problems
+    # card.translation_table.map do |value, score|
+    #   [value, colorify(score.to_s)]
+    # end
   end
 
   view :categorical_editor do

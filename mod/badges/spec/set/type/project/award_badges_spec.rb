@@ -13,7 +13,7 @@ describe Card::Set::Type::Project::AwardBadges do
                    name: "Project #{number}"
     end
 
-    context "reached silver threshold" do
+    context "when reached silver threshold" do
       it_behaves_like "award badges", 2, "Project Launcher"
     end
   end

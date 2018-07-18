@@ -1,20 +1,15 @@
 # don't update if it's part of scored metric update
-event :update_metric_values, :prepare_to_store, on: :update, changed: :content do
+event :update_metric_answers, :prepare_to_store, on: :update, changed: :content do
   @existing = ::Set.new metric_card.all_answers.pluck(:id)
   calculate_all_values do |company, year, value|
-    if (answer = metric_card.answer company, year)
-      @existing.delete answer.id
-      answer.update_value value
-    else
-      add_value company, year, value
-    end
+    update_or_add_answer company, year, value
   end
   Answer.where(id: @existing.to_a).delete_all
 end
 
 # don't update if it's part of scored metric create
-event :create_metric_values, :finalize, # prepare_to_store,
-      on: :create, changed: :content, when: proc { |c| c.content.present? }  do
+event :create_metric_answers, :finalize, # prepare_to_store,
+      on: :create, changed: :content, when: :content?  do
   # reload set modules seems to be no longer necessary
   # it used to happen at this point that left has type metric but
   # set_names includes "Basic+formula+*type plus right"
@@ -23,6 +18,18 @@ event :create_metric_values, :finalize, # prepare_to_store,
   calculate_all_values do |company, year, value|
     add_value company, year, value
   end
+end
+
+def update_or_add_answer company, year, value
+  if (answer = metric_card.answer company, year)
+    @existing.delete answer.id
+    answer.update_value value
+  else
+    add_value company, year, value
+  end
+rescue => e
+  errors.add :answer, "Error storing calculated value: #{e.message}"
+  raise e
 end
 
 def add_value company, year, value

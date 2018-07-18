@@ -48,13 +48,13 @@ end
 #   ActManager.act_card.type_id.in? [AnswerImportFileID, RelationshipAnswerImportFileID]
 # end
 
-event :update_related_scores, :after_integrate do
+event :update_related_scores, :after_integrate, optional: true do
   ensure_metric(metric_card).each_dependent_score_metric do |metric|
     metric.update_value_for! company: company_id, year: year
   end
 end
 
-event :update_related_calculations, :after_integrate do
+event :update_related_calculations, :after_integrate, optional: true do
   ensure_metric(metric_card).each_dependent_formula_metric do |metric|
     metric.update_value_for! company: company_id, year: year
   end
@@ -71,8 +71,8 @@ event :no_left_name_change, :prepare_to_validate,
       on: :update, changed: :name do
   return if @supercard # as part of other changes (probably) ok
   return unless name.right == "value" # ok if not a value anymore
-  return if (metric_value = Card[name.left]) &&
-            metric_value.type_id == MetricValueID
+  return if (metric_answer = Card[name.left]) &&
+            metric_answer.type_id == MetricAnswerID
   errors.add :name, "not allowed to change. " \
                     "Change #{name_was.to_name.left} instead"
 end

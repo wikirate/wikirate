@@ -52,6 +52,16 @@ module Formula
       end
     end
 
+    # provides (in contrast to formula_for) also the input metric and index for every input
+    # and not only the input value for formatting the formula
+    # @return [String] the formula with nests replaced by the result of the given block
+    def advanced_formula_for company, year
+      input_enum = @input.input_for(company, year).each
+      replace_nests do |index|
+        yield(input_enum.next, @formula_card.input_cards[index], index)
+      end
+    end
+
     def validate_formula
       compile_formula
       @errors

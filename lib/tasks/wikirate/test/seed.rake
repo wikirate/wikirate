@@ -20,7 +20,6 @@ namespace :wikirate do
           execute_command "rake decko:seed_without_reset", :test
           Rake::Task["wikirate:test:import_from"].invoke(args[:location])
           Delayed::Job.delete_all
-          resolve_codename_duplicates
           Rake::Task["wikirate:test:dump"].invoke(base_dump_path)
           # end
         end
@@ -34,8 +33,8 @@ namespace :wikirate do
           Rake::Task["wikirate:test:dump"].invoke(migrated_dump_path)
           Card::Cache.reset_all
           ActiveRecord::Base.descendants.each{ |c| c.reset_column_information }
-          Rake::Task["wikirate:test:seed:update"].invoke
         end
+        ensure_env :test, "wikirate:test:seed:update"
       end
 
       desc "add updated seed data"
@@ -55,10 +54,6 @@ namespace :wikirate do
           require "#{Decko.root}/test/seed.rb"
           SharedData.add_wikirate_data
         end
-      end
-
-      def resolve_codename_duplicates
-        CArd
       end
     end
   end

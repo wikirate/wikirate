@@ -34,7 +34,7 @@ namespace :wikirate do
         puts "restart task in #{env} environment"
         task = "#{task}\\[#{args.to_a.join(',')}\\]" if args.to_a.present?
         execute_command "rake #{task}", env
-      else
+      elsif block_given?
         yield
       end
     end
@@ -75,7 +75,7 @@ namespace :wikirate do
             with_subitems = %w(*script *style *layout).include? setting
             import.items_of setting, subitems: with_subitems
           end
-          import.items_of :production_export, subitems: true
+          import.items_of :production_export, subitems: true, depth: 3
 
           # don't import table migrations
           # exclude = %w(20161005120800 20170118180006 20170210153241 20170303130557
@@ -92,6 +92,7 @@ namespace :wikirate do
           [[:all, :script],
            [:all, :style],
            [:script_html5shiv_printshiv]].each do |name_parts|
+            Card[*name_parts, :machine_output]&.delete
             Card[*name_parts].update_machine_output
             codename = "#{name_parts.join('_')}_output"
             Card[*name_parts, :machine_output].update_attributes!(
@@ -107,7 +108,9 @@ namespace :wikirate do
       dump_path = args[:path] || full_dump_path
       mysql_login = "mysql -u #{user}"
       mysql_login += " -p#{pwd}" if pwd
-      cmd = "echo \"create database if not exists #{testdb}\" | #{mysql_login}; " \
+      cmd = "echo \"create database if not exists #{testdb} " \
+            "character set utf8mb4 COLLATE utf8mb4_unicode_ci\" "\
+            "| #{mysql_login}; " \
             "#{mysql_login} --database=#{testdb} < #{dump_path}"
       # puts "executing #{cmd}"
       system cmd
