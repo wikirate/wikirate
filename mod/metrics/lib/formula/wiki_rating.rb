@@ -17,7 +17,7 @@ module Formula
       end
     rescue JSON::ParserError => _e
       @errors << "invalid WikiRating formula #{expr}"
-      return false
+      false
     end
   end
 end

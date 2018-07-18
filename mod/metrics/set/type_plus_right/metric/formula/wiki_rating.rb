@@ -18,7 +18,23 @@ format :html do
   # table with Metrics on left and Weight inputs on right
   def rating_editor_table
     table rating_editor_table_content, class: "wikiRating-editor",
-                                       header: %w[Metric Weight]
+                                       header: ["Metric", checkbox_equalizer]
+  end
+
+  def checkbox_equalizer
+    content_tag :div do
+      concat(content_tag(:span, "Weight"))
+      concat(checkbox)
+    end
+  end
+
+  def checkbox
+    content_tag :div, class: "form-check checkbox-pull pull-right" do
+      content_tag :label, class: "form-check-label" do
+        concat((check_box_tag "equalizer"))
+        concat(content_tag(:span, "Equalize"))
+      end
+    end
   end
 
   def rating_editor_table_content
