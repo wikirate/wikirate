@@ -198,7 +198,7 @@ RSpec.describe Card::Set::All::Wikirate do
       it "renders source view" do
         file_path = "#{Rails.root}/mod/wikirate/spec/set/all/DeathStar.jpg"
         dump_card =
-          Card.create! name: "dump is dump", type_code: "image",image: File.new(file_path)
+          Card.create! name: "dump is dump", type_code: "image", image: File.new(file_path)
         expect(dump_card.format.render_og_source).to eq(dump_card.format.render_source)
       end
     end
