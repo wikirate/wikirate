@@ -40,7 +40,7 @@ decko.editorContentFunctionMap['.pairs-editor'] = ->
 
 pairsEditorHash = (table) ->
   hash = {}
-  table.find("tbody tr").each ->
+  variableMetricRows(table).each ->
     cols = $(this).find('td')
     if (key = $(cols[0]).data('key'))
       hash[key] = $(cols[1]).find('input').val()
@@ -50,7 +50,7 @@ pairsEditorHash = (table) ->
 valueFormEqual = (table) -> 
   aux = false 
   values = []
-  table.find("tbody tr").each -> 
+  variableMetricRows(table).each -> 
     tr = $(this) 
     values.push( tr.find('td.metric-weight').find('input').val() )
     
@@ -72,7 +72,7 @@ decko.editorContentFunctionMap['.wikiRating-editor'] = ->
 
 wikiRatingEditorHash = (table) ->
   hash = {}
-  table.find("tbody tr").each ->
+  variableMetricRows(table).each ->
     tr = $(this)
     if key = tr.find(".metric-label .thumbnail").data "cardName"
       hash[key] = tr.find(".metric-weight input").val()
@@ -87,13 +87,16 @@ activeEqualize = () ->
     toEqualize( $('.wikiRating-editor') )
 
 toEqualize = (table) -> 
-  val = (100 / (table.find("tbody tr").length - 1)).toFixed(2)
+  val = (100 / (variableMetricRows(table).length - 1)).toFixed(2)
     
-  table.find("tbody tr").each ->
+  variableMetricRows(table).each ->
     tr = $(this)
     tr.find('td.metric-weight').find('input').val(val)
 
   validateWikiRating(table)
+
+variableMetricRows = (table) ->
+  table.find("tbody tr")
 
 $(window).ready ->
   $('body').on 'input', '.metric-weight input', (_event) ->
