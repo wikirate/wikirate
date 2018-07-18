@@ -1,3 +1,5 @@
+# These commands are available in the console when using binding.pry for breakpoints.
+
 def create name='test card', content='some content', type='basic'
   if name.kind_of? Hash
     Card.create! name

@@ -36,7 +36,7 @@ Testing
 Running Tests
 ----
 1. populate test database: `bundle exec rake wikirate:test:seed`
-2. start rspec with `decko rspec`cucumber with `decko cucumber`.
+2. start rspec with `decko rspec` and cucumber with `decko cucumber`.
 
 Alternatively, you can use the shorter commands `decko rs` and `decko cc`
 
