@@ -15,7 +15,7 @@ def needs_oc_mapping?
 end
 
 event :update_oc_mapping_due_to_headquarters_entry, :integrate,
-      on: :save, when: :needs_oc_mapping?, optional: true do
+      on: :save, when: :needs_oc_mapping?, skip: :allowed do
   oc = ::OpenCorporates::MappingAPI.fetch_oc_company_number company_name: name.left,
                                                             jurisdiction_code: oc_code
   return unless oc.company_number.present?
