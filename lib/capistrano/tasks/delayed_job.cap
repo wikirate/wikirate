@@ -36,7 +36,7 @@ namespace :delayed_job do
   end
 
   desc "check delayed job processes"
-  after: :start, :check do
+  after :start, :check do
     on roles(:app) do
       within release_path do
         execute :ps, "$(pgrep -f delayed_job)"
