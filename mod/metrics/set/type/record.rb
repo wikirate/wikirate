@@ -24,6 +24,10 @@ def related_companies_with_year
 end
 
 format :json do
+  def item_cards
+    card.all_answers
+  end
+
   view :related_companies_with_year do
     card.related_companies_with_year.to_json
   end

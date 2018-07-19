@@ -106,42 +106,6 @@ RSpec.describe Card::Set::All::Wikirate do
     end
   end
 
-  context "while viewing id_atom in json format" do
-    it "includes id" do
-      search_card =
-        create "id_atom_test", type: "search", content: "{\"type\":\"company\"}"
-      Card::Env.params[:item] = "id_atom"
-      result = search_card.format(format: :json)._render!(:content)
-      card_array = result[:card][:value]
-      card_array.each do |card|
-        expect(card).to have_key :id
-      end
-    end
-
-    it "handles param:start " do
-      start = 20_140_601_000_000
-      search_card =
-        create "id_atom_test", type: "search", content: "{\"type\":\"company\"}"
-
-      Card::Env.params[:item] = "id_atom"
-      Card::Env.params["start"] = start
-      wql = { type: "Company" }
-      company_cards_list = Card.search wql
-      valid_company_cards = {}
-      company_cards_list.each do |card|
-        if card.updated_at.strftime("%Y%m%d%H%M%S").to_i >= start
-          valid_company_cards[card.id] = card.name
-        end
-      end
-      result = search_card.format(format: :json).render!(:content)
-      card_array = result[:card][:value]
-      card_array.each do |card|
-        expect(card).to have_key :id
-        expect(valid_company_cards.key?(card[:id])).to be true
-      end
-    end
-  end
-
   describe "view of shorter_search_result" do
     let(:search_card_name) { "_search_test" }
 
