@@ -13,7 +13,8 @@ format :html do
       nest(:homepage_numbers),
       nest(:homepage_projects),
       nest(:homepage_topics),
-      nest(:homepage_organizations)
+      nest(:homepage_organizations),
+      nest(:homepage_footer)
     ]
   end
 
