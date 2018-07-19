@@ -169,12 +169,3 @@ format :html do
     "btn btn-sm btn-outline-secondary"
   end
 end
-
-format :json do
-  view :content do
-    result = super()
-    result_card_value = result[:card] && result[:card][:value]
-    result_card_value.reject!(&:nil?) if result_card_value.is_a? Array
-    result
-  end
-end
