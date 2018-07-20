@@ -32,7 +32,7 @@ format :html do
     wrap_with :h5 do
       [
         "Citations",
-        (wrap_with :span, source_card.item_names.size, class: "badge badge-light border")
+        (wrap_with :span, source_card&.item_names&.size, class: "badge badge-light border")
       ]
     end
   end

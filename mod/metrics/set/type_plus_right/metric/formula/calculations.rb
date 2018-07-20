@@ -1,6 +1,6 @@
 # don't update if it's part of scored metric update
 event :update_metric_answers, :prepare_to_store, on: :update, changed: :content do
-  replacing_existing_answers do
+  replace_existing_answers do
     calculate_all_values do |company, year, value|
       update_or_add_answer company, year, value
     end
@@ -33,14 +33,13 @@ rescue => e
 end
 
 def regenerate_answers
-  replacing_existing_answers do
-    create_metric_answers
-  end
+  replace_existing_answers
+  create_metric_answers
 end
 
-def replacing_existing_answers
+def replace_existing_answers
   @existing = ::Set.new metric_card.all_answers.pluck(:id)
-  yield
+  yield if block_given?
   Answer.where(id: @existing.to_a).delete_all
 end
 

@@ -29,10 +29,15 @@ event :silence_metric_deletions, :initialize, on: :delete do
 end
 
 event :update_lookup_answers, :integrate,
-      on: :update, changed: :name, when: :calculated? do
+      on: :update, changed: :name do #, when: :calculated? do
   # this recalculates answers, when technically all that needs to happen is
   # for name fields to be updated.
-  # binding.pry
-  formula_card.regenerate_answers
-  # raise "remove me"
+
+  # FIXME: when renaming, the metric type gets confused at some point, and
+  # calculated? does not correctly return true for calculated metrics
+  # (which have MetricType::Researched among their singleton class's ancestors)
+  # if this were working properly it could be in the when: arg.
+  #
+  expire
+  formula_card&.regenerate_answers if refresh(true).calculated?
 end
