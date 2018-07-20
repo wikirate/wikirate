@@ -13,9 +13,8 @@ RSpec.describe Card::Set::Type::Post do
 
     let(:card_subject) { post }
 
-    check_views_for_errors :open_content, :listing, :edit,
+    check_views_for_errors :open_content, :bar, :edit,
                            :wikirate_company_tab, :wikirate_topic_tab, :project_tab
-    end
 
     specify "view bar" do
       badges_matcher = %w[1 Company 1 Topic 1 Project].join('\s*')

@@ -30,7 +30,7 @@ end
 
 format :html do
   def default_item_view
-    :listing
+    :bar
   end
 
   def editor
