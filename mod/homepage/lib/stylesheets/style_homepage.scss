@@ -295,45 +295,45 @@
 
 }
 /*----------- Notes and Sources ---------*/
-
-#notes-sources {
-
-  .d0-card-content.SELF-homepage_note_list,
-  .d0-card-content.SELF-homepage_source_list {
-    padding: 5px 0;
-    margin: 15px 3.5%;
-    border: 1px solid #ddd;
-    @include box-shadow(0, 1px, 6px, rgba(0, 0, 0, .13));
-    height: 750px; // Temporary fix for same height , it should be dynamic at somepoint...
-    overflow: auto;
-  }
-  .d0-card-content.SELF-homepage_note_list {
-    border-top: 8px solid $note-color;
-  }
-  .d0-card-content.SELF-homepage_source_list {
-    border-top: 8px solid $source-color;
-  }
-  .note-list,
-  .source-list {
-    width: 48%;
-    .search-result-list {
-      //  padding: 0 0 1000px;
-      //same height workaround.
-      //   margin-bottom: -1000px;
-    }
-
-  }
-  .note-list {
-    float: left;
-  }
-  .source-list {
-    float: right;
-  }
-  .browse-button {
-    margin-top: 25px;
-  }
-
-}
+// 
+// #notes-sources {
+//
+//   .d0-card-content.SELF-homepage_note_list,
+//   .d0-card-content.SELF-homepage_source_list {
+//     padding: 5px 0;
+//     margin: 15px 3.5%;
+//     border: 1px solid #ddd;
+//     @include box-shadow(0, 1px, 6px, rgba(0, 0, 0, .13));
+//     height: 750px; // Temporary fix for same height , it should be dynamic at somepoint...
+//     overflow: auto;
+//   }
+//   .d0-card-content.SELF-homepage_note_list {
+//     border-top: 8px solid $note-color;
+//   }
+//   .d0-card-content.SELF-homepage_source_list {
+//     border-top: 8px solid $source-color;
+//   }
+//   .note-list,
+//   .source-list {
+//     width: 48%;
+//     .search-result-list {
+//       //  padding: 0 0 1000px;
+//       //same height workaround.
+//       //   margin-bottom: -1000px;
+//     }
+//
+//   }
+//   .note-list {
+//     float: left;
+//   }
+//   .source-list {
+//     float: right;
+//   }
+//   .browse-button {
+//     margin-top: 25px;
+//   }
+//
+// }
 
 
 /*---------- Bootstrap media queries--------------*/

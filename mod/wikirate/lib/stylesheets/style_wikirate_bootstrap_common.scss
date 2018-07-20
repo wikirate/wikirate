@@ -48,7 +48,7 @@
 }
 
 .main-color {
-  color: $main-color;
+  color: $primary;
 }
 
 .white-text {
@@ -68,11 +68,11 @@
 }
 
 .verify-blue {
-  color: $verify-blue-color;
+  color: $blue;
 }
 
 .request-red {
-  color: $highlight-color;
+  color: $red;
 }
 
 //Colors for colorify method
@@ -350,11 +350,26 @@
 // Borders
 
 .with-fancy-border {
-    border-left: 3px solid $border-color !important;
+    // border-left: 3px solid $border-color !important;
 }
 
 .with-fancy-border:hover {
+    // border-left-color: $dark-text-color !important
+}
+
+//override decko css for now
+.bar-top.left-stripe, .bar.left-stripe {
+  border-left: 4px solid $border-color !important;
+  &:hover{
     border-left-color: $dark-text-color !important
+  }
+}
+
+.bar-bottom .bar.left-stripe {
+  border-left: 3px solid $border-color !important;
+  &:hover{
+    border-left-color: $dark-text-color !important
+  }
 }
 
 .double-border-fix-left {
@@ -590,19 +605,19 @@ div#pdf-preview {
     color: #404040;
     background-color: #ffffff;
     padding-bottom: 2px;
-    border-bottom: 2px solid $main-color;
+    border-bottom: 2px solid $primary;
     margin-bottom: 15px;
     margin-top: 25px;
   }
 }
 
-.titled-view,
-.titled_with_edits-view {
-  > .card-header {
-    font-size: 1.3em;
-    margin: 3px 0 !important;
-  }
-}
+// .titled-view,
+// .titled_with_edits-view {
+//   > .card-header {
+//     font-size: 1.3em;
+//     margin: 3px 0 !important;
+//   }
+// }
 
 .alert {
   border-radius: 0;
@@ -640,7 +655,7 @@ div#pdf-preview {
 
 .new-source-widget {
   background: #fffbe6;
-  border: 1px solid #ebebeb;
+  border: 1px solid $border-color;
 
   .tab-content {
     background: #fffbe6;
@@ -671,7 +686,7 @@ div#pdf-preview {
 .grey-nav-tab,
 .new-source-tab {
   background: #f5f5f5;
-  border-bottom: 1px solid #ebebeb;
+  border-bottom: 1px solid $border-color;
 }
 
 .closed-content {
@@ -760,7 +775,7 @@ button.pointer-item-delete.btn.btn-outline-secondary {
 //}
 
 .current-user-up, .current-user-down {
-  color: $main-color !important;
+  color: $primary !important;
   &.vote-button {
     background: rgba(61, 152, 140, 0.5);
   }

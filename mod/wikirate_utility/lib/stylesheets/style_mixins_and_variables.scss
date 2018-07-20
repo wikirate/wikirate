@@ -1,53 +1,55 @@
+// TODO reduce number of color variable and optimise this file
+
 $dark-text-color: #999;
-$white-text-color: #fff;
-$bright-text-color: #ededed;
-$muted: #777;
-$gray-background-color: #f3f3f3;
+// $white-text-color: #fff;
+$bright-text-color: $gray-200;//#ededed;
+$muted: $text-muted;
+// $gray-background-color: #f3f3f3;
 $metric-color: #674ea7;
 $company-color: #d3741c;
 $topic-color: #2b7ea0;
-$main-color: #03998d;
+// $main-color: #03998d;
 $company-header-bg: #d3741c;
 $shadow-rgba: rgba(0, 0, 0, .4);
 
 //----------- General Variables ---------
-$main-color:#03998d;
-$note-color: #03998d;
+// $main-color:#03998d;
+// $note-color: #03998d;
 $source-color: #ffc201;
 $overview-color: #666;
-$border-color: #ebebeb;
-$help-text: #6f777b;
+// $border-color: #ebebeb;
+$help-text: $gray-600;
 
 
 //***ALL COLOR VARS & MIXINS***//
-$heading-color: #555;
-$body-background: #fff;//#ebebeb;
-$primary-color: #555;
-$anchor-color: #03998d;
-$body-txt-color: #404040; //#4f4f4f;
+$heading-color: $gray-700;
+// $body-background: #fff;//#ebebeb;
+// $primary-color: #555;
+// $anchor-color: #03998d;
+$body-text-color: $gray-700; //#4f4f4f;
 $wanted-card-color: #b6060a;
 $closed-content-a-color: #729;
-$infographic-heading: #949494;
-$div-border-color: #f1f1f1;
-$card-text-color: #646464;
-$highlight-color: #ee5757;
-$verify-blue-color: #1e90ff;
+// $infographic-heading: #949494;
+// $div-border-color: #f1f1f1;
+// $card-text-color: #646464;
+// $highlight-color: #ee5757;
+// $verify-blue-color: #1e90ff;
 
-//button colors
-$button-color: #03998d;
-$button-color-hover: #009185;
-$button-border: #00756c;
-$cancel-button-color: #bebebe;
-$cancel-button-border: #9b9b9b;
-$cancel-button-hover: #b4b4b4;
+// //button colors
+// $button-color: #03998d;
+// $button-color-hover: #009185;
+// $button-border: #00756c;
+// $cancel-button-color: #bebebe;
+// $cancel-button-border: #9b9b9b;
+// $cancel-button-hover: #b4b4b4;
 
-//note colors
-$note-tag-companybg: #d3741c;
-$note-tag-companybg-hover: #bb5b00;
-$note-tag-topicbg: #2b7ea0;
-$note-tag-topicbg-hover: #01648d;
-$note-tag-notexist: #f0f0f0;
-$note-tag-notexist-hover: #ececec;
+// //note colors
+// $note-tag-companybg: #d3741c;
+// $note-tag-companybg-hover: #bb5b00;
+// $note-tag-topicbg: #2b7ea0;
+// $note-tag-topicbg-hover: #01648d;
+// $note-tag-notexist: #f0f0f0;
+// $note-tag-notexist-hover: #ececec;
 
 $card-header-color: #fff;
 
@@ -64,14 +66,14 @@ $sub-text-size: 0.8em;
 
 
 //card colors
-@mixin card-txt-color {
-  color: $card-text-color;
-
-  a {
-    color: $card-text-color;
-  }
-
-}
+// @mixin card-txt-color {
+//   color: $card-text-color;
+//
+//   a {
+//     color: $card-text-color;
+//   }
+//
+// }
 
 //border radius mixin
 @mixin border-radius($radius) {

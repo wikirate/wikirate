@@ -18,11 +18,20 @@ format :html do
   # ~~~~~~~~~~~ DETAILS IN PROJECT LISTING
 
   view :listing do
+    listing_container size: :medium, text: listing_details
+  end
+
+  view :listing_compact do
+    listing_container size: :small, text: listing_details_compact
+  end
+
+  def listing_container opts={}
     listing_layout do
       text_with_image image: card.field(:image),
-                      size: :medium,
+                      size: opts[:size],
                       title: render_link,
-                      text: listing_details
+                      text: opts[:text],
+                      media_opts: { class: "bar left-stripe" }
     end
   end
 
@@ -39,6 +48,13 @@ format :html do
       [organizational_details, render_stats_details, topics_details]
     end
   end
+
+  def listing_details_compact
+    wrap_with :div, class: "project-details-info" do
+      [organizational_details, topics_details]
+    end
+  end
+
 
   def organizational_details
     wrap_with :div, class: "organizational-details" do

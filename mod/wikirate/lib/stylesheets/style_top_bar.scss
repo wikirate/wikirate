@@ -9,7 +9,7 @@ $navsbmenu-anchor-color: #00ac9e;
 /*----------- General variables ---------*/
 
 $anchor_color: #03998d;
-$body-txt-color: #777;
+// $body-txt-color: #777;
 
 
 /*----------- Mixins ---------*/
@@ -50,7 +50,7 @@ $body-txt-color: #777;
   -moz-transition: 200ms linear;
   -o-transition: 200ms linear;
   transition: 200ms linear;
-  border-bottom: 1px solid #ebebeb;
+  border-bottom: 1px solid $border-color;
   z-index: 9999;
   .slicknav_menu {
     .menu-bar {
