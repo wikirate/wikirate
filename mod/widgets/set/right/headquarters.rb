@@ -3,7 +3,7 @@ event :transform_jurisdiction_codes, :prepare_to_validate do
   return if oc_code
   oc_code_from_content = item_names.first.sub(/^:/, "")
   return unless (j_name = jurisdiction_name(oc_code_from_content))
-  self.content = j_name
+  self.content = "[[#{j_name}]]"
 end
 
 event :validate_jurisdiction_code, :validate do
@@ -15,7 +15,7 @@ def needs_oc_mapping?
 end
 
 event :update_oc_mapping_due_to_headquarters_entry, :integrate,
-      on: :save, when: :needs_oc_mapping?, optional: true do
+      on: :save, when: :needs_oc_mapping?, skip: :allowed do
   oc = ::OpenCorporates::MappingAPI.fetch_oc_company_number company_name: name.left,
                                                             jurisdiction_code: oc_code
   return unless oc.company_number.present?
