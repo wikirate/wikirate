@@ -1,26 +1,20 @@
 RSpec.describe Card::Set::Type::Metric::Structure do
-  extend Card::SpecHelper::ViewHelper::ViewDescriber
-
-  let(:metric) { Card["Jedi+disturbances in the Force"] }
-
-  describe_views :open_content, :listing, :edit, :homepage_item,
-                 :details_tab, :score_tab, :source_tab, :project_tab do
-    it "has no errors" do
-      expect(metric.format.render(view)).to lack_errors
-    end
+  def card_subject
+    Card["Jedi+disturbances in the Force"]
   end
 
-  describe "view :browse_item" do
-    subject { metric.format(:html)._render_browse_item }
+  check_views_for_errors :open_content, :listing, :edit, :homepage_item,
+                         :details_tab, :score_tab, :source_tab, :project_tab
 
+  describe "view :browse_item" do
     it "has metric title" do
-      is_expected.to have_tag "div.name" do
+      expect_view(:browse_item).to have_tag "div.name" do
         with_text "disturbances in the Force"
       end
     end
 
     it "has designer link" do
-      is_expected.to have_tag "div.row-data.ellipsis.rating-designer" do
+      expect_view(:browse_item).to have_tag "div.row-data.ellipsis.rating-designer" do
         with_tag :a, with: { href: "Jedi" } do
           with_text /Jedi/
         end
@@ -28,7 +22,7 @@ RSpec.describe Card::Set::Type::Metric::Structure do
     end
 
     it "has counts" do
-      is_expected.to have_tag "div.row.data-count" do
+      expect_view(:browse_item).to have_tag "div.row.data-count" do
         with_tag "div.col-md-6.slab" do
           with_text /4\s*Companies/
         end

@@ -151,66 +151,6 @@ When /^(?:|I )single-select "([^"]*)" as value$/ do |value|
   find("li", text: value).click
 end
 
-Then(/^I should see a row with "(.+)"$/) do |value|
-  values = value.split("|")
-  html = page.body
-  expect(html).to have_tag("table") do
-    with_tag("tr") do
-      values.each do |v|
-        with_tag("td", text: v)
-      end
-    end
-  end
-end
-
-Then(/^I uncheck all checkboxes$/) do
-  all("input[type=checkbox]", visible: false).each do |checkbox|
-    checkbox.click if checkbox.checked?
-  end
-end
-
-Then(/^I check checkbox in row (\d+)$/) do |row|
-  table = find("table")
-  within(table) do
-    row = all("tr")[row.to_i]
-    within(row) do
-      checkbox = find("input[type=checkbox]")
-      checkbox.click unless checkbox.checked?
-    end
-  end
-end
-
-Then(/^I check checkbox for csv row (\d+)$/) do |row|
-  table = find("table", visible: false)
-  within(table) do
-    row = find("tr[data-csv-row-index='#{row.to_i - 1}'", visible: false)
-    within(row) do
-      checkbox = find("input[type=checkbox]", visible: false)
-      checkbox.click unless checkbox.checked?
-    end
-  end
-end
-
-Then(/^I fill in "(.*)" in row (\d+)$/) do |text, row|
-  table = find("table")
-  within(table) do
-    row = all("tr")[row.to_i]
-    within(row) do
-      find("input[type=text]").set(text)
-    end
-  end
-end
-
-Then(/^I fill in "(.*)" for csv row (\d+)$/) do |text, row|
-  table = find("table")
-  within(table) do
-    row = find("tr[data-csv-row-index='#{row}'")
-    within(row) do
-      find("input[type=text]").set(text)
-    end
-  end
-end
-
 Then /^(?:|I )should see "([^"]*)" or "([^"]*)"$/ do |text1, text2|
   begin
     expect(page).to have_content(text1)

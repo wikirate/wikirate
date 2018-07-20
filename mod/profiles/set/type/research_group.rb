@@ -10,7 +10,7 @@ card_accessor :metric
 card_accessor :wikirate_topic
 
 def report_card member, cardtype, variant
-  rcard = Card.new name: [member, cardtype, name, :report_search].to_name
+  rcard = Card.new name: [member, cardtype, name, :report_search]
   # note: #new is important here, because we want different cards
   # for different variants
   rcard.variant = variant

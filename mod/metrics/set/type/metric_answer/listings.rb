@@ -60,6 +60,7 @@ format :html do
 
   view :details do
     if card.relationship?
+      voo.hide! :answer_details_toggle
       voo.show! :expanded_details
     else
       class_up "vis", "pull-right"

@@ -1,12 +1,18 @@
 Decko application code used at Wikirate.org
+
+Code Organization
 =========
+Like all Decko decks, WikiRate's code is organized in
+[_mods_](https://www.rubydoc.info/gems/card/Card/Mod).
+
 
 Steps to make it work
 ----
 
 The following will help set up a functioning wikirate site with a small subset of (mostly fake) data.  Some pages will not look complete.
 
-1. clone repo: `git clone git@github.com:wikirate/wikirate.git`
+1. fork repo on github: https://github.com/wikirate/wikirate/
+1. clone repo: `git clone git@github.com:YOURNAME/wikirate.git`
 1. enter dir: `cd wikirate`
 1. init/update submodules `git submodule update -f --init --recursive`
 1. install gems: `bundle install`
@@ -30,7 +36,7 @@ Testing
 Running Tests
 ----
 1. populate test database: `bundle exec rake wikirate:test:seed`
-1. start rspec with `decko rspec` and cucumber with `decko cucumber`.
+2. start rspec with `decko rspec` and cucumber with `decko cucumber`.
 
 Alternatively, you can use the shorter commands `decko rs` and `decko cc`
 
@@ -44,10 +50,22 @@ Sample tests contained here:
 
 Paths:
 ```sh
- mod/*/spec                       # rspec tests
+ mod/*/spec                       # rspec and jest tests
  mod/*/features                   # cucumber tests
  mod/*/features/step_definitions  # cucumber step definitions
 ```
+
+CoffeeScript Tests
+----
+You need [node.js](https://nodejs.org/en/) (>=6) and [ yarn ](https://yarnpkg.com/en/docs/install) installed. 
+To set up CoffeeScript testing run `yarn install`. 
+Start tests with `yarn jest test`.
+Jest is configured to run all `.coffee` files in `mod/**/spec` folders.
+The configuration can be changed in `package.json`. 
+The basic setup for Jest with jquery and Decko's coffeescript is loaded in 
+`test/setup_jest.js`. 
+See `mod/wikirate/spec/lib/javascript/script_wikirate_common.test.coffee` for 
+a simple example. 
 
 Site Maintenance
 ================

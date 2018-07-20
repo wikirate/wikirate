@@ -1,17 +1,10 @@
-
 RSpec.describe Card::Set::Type::ResearchGroup do
-  extend Card::SpecHelper::ViewHelper::ViewDescriber
-
-  let(:research_group) { Card["Jedi"] }
-
-  describe_views :open_content, :bar, :edit,
-                 :researcher_tab, :metric_tab, :project_tab do
-    it "has no errors" do
-      expect(research_group.format.render(view)).to lack_errors
-    end
+  def card_subject
+    Card["Jedi"]
   end
+  check_views_for_errors :open_content, :listing, :edit,
 
-  let(:card_subject) { Card["created research group"] }
+                         :researcher_tab, :metric_tab, :project_tab
 
   specify "view :bar" do
     expect_view(:bar).to have_tag "div.bar" do

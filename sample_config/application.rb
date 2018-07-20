@@ -75,6 +75,7 @@ module Wikirate
     #           aws_secret_access_key: 'XXXXXX', # required
     #           region: 'eu-central-1', # optional, defaults to 'us-east-1'
     #         },
+    #         read_only: true,
     #         # if public is set to false, following option is needed:
     #         authenticated_url_expiration: 180
     #     },
@@ -90,6 +91,7 @@ module Wikirate
     #           aws_secret_access_key: 'XXXXXX', # required
     #           region: 'eu-central-1', # optional, defaults to 'us-east-1'
     #         },
+    #         read_only: true,
     #         # if public is set to false, following option is needed:
     #         authenticated_url_expiration: 180
     #     }
