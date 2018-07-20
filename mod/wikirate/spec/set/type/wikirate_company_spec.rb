@@ -20,7 +20,8 @@ describe Card::Set::Type::WikirateCompany do
                                                   "+:headquarters" => "us_ca" } },
                               success: { format: :json },
                               token: token.content }
-      expect_card("new company").to exist
+      expect_card("new company")
+        .to exist
         .and have_a_field(:open_corporates).with_content("C0806592")
         .and have_a_field(:headquarters).with_content("[[California (United States)]]")
     end
