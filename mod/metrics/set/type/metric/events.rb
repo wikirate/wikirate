@@ -29,7 +29,7 @@ event :silence_metric_deletions, :initialize, on: :delete do
 end
 
 event :update_lookup_answers, :integrate,
-      on: :update, changed: :name do #, when: :calculated? do
+      on: :update, changed: :name do
   # this recalculates answers, when technically all that needs to happen is
   # for name fields to be updated.
 
