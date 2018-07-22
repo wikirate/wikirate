@@ -3,7 +3,7 @@ event :transform_jurisdiction_codes, :prepare_to_validate do
   return if oc_code
   oc_code_from_content = item_names.first.sub(/^:/, "")
   return unless (j_name = jurisdiction_name(oc_code_from_content))
-  self.content = j_name
+  self.content = "[[#{j_name}]]"
 end
 
 event :validate_jurisdiction_code, :validate do
