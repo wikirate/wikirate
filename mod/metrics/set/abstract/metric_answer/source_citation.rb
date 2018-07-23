@@ -122,6 +122,7 @@ format :html do
   end
 
   def source_list source_cards=sources
+    binding.pry
     return "None" if source_cards.empty?
     with_nest_mode :normal do
       wrap_with :div, class: "relevant-sources" do

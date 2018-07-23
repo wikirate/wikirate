@@ -11,14 +11,14 @@ RSpec.describe Card::Set::Type::Post do
                                "+body" => "body text" }
     end
 
-    let(:card_subject) { post }
+    # let(:card_subject) { post }
 
     check_views_for_errors :open_content, :bar, :edit,
                            :wikirate_company_tab, :wikirate_topic_tab, :project_tab
 
-    specify "view bar" do
-      badges_matcher = %w[1 Company 1 Topic 1 Project].join('\s*')
+    let(:badges_matcher) {  %w[1 Company 1 Topic 1 Project].join('\s*') }
 
+    specify "view bar" do
       expect_view(:bar).to have_tag "div.bar" do
         with_tag "div.bar-left", "My Post"
         without_tag "div.bar-middle"
@@ -27,9 +27,9 @@ RSpec.describe Card::Set::Type::Post do
     end
 
     specify "expanded bar" do
-      expect_view(:expanded_bar).to have_tag "expanded-bar" do
-        with_tag "bar-top" do
-          with_tag "bar-left", "My Post"
+      expect_view(:expanded_bar).to have_tag ".expanded-bar" do
+        with_tag ".bar-top" do
+          with_tag ".bar-left", "My Post"
           without_tag "div.bar-middle"
           with_tag "div.bar-right", /#{badges_matcher}/
         end
