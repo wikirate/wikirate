@@ -1,5 +1,4 @@
-event :process_sources, :prepare_to_validate,
-      on: :save, when: :source_based? do
+event :process_sources, :prepare_to_validate, on: :save, when: :source_based? do
   if (sources = subfield(:source))
     sources.item_names.each do |source_name|
       if Card.exists? source_name
