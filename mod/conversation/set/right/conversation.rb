@@ -1,6 +1,6 @@
 format :html do
   view :core, tags: :unknown_ok do
-    voo.items[:view] = :listing
+    voo.items[:view] = :bar
     super() + render_conversation_link
   end
 

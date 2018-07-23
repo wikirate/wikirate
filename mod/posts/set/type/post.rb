@@ -1,5 +1,4 @@
 include_set Abstract::TwoColumnLayout
-include_set Abstract::Listing
 include_set Abstract::BsBadge
 
 card_accessor :wikirate_company, type: :pointer
@@ -41,23 +40,24 @@ format :html do
 
   %i[wikirate_company wikirate_topic project].each do |codename|
     view :"#{codename}_tab" do
-      field_nest codename, items: { view: :listing }
+      field_nest codename, items: { view: :bar }
     end
   end
 
-  view :listing_bottom do
-    nest card.body, view: :content
+  before :bar do
+    super()
+    voo.hide :bar_middle
   end
 
-  view :listing_middle do
-    ""
+  view :bar_bottom do
+    nest card.body_card, view: :content
   end
 
-  view :listing_left do
+  view :bar_left do
     render_title_link
   end
 
-  view :listing_right, cache: :never do
+  view :bar_right, cache: :never do
     wrap_with :span do
       %i[wikirate_company wikirate_topic project].map do |codename|
         standard_badge codename

@@ -1,3 +1,3 @@
 format :html do
-  view :listing, template: :haml
+  view :bar, template: :haml
 end

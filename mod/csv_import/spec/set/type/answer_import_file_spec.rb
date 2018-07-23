@@ -137,6 +137,15 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
       expect_answer_created :wikirate_source
     end
 
+    it "adds alias" do
+      expect(Card.fetch("Sony Corporation", :aliases)).to be_nil
+      trigger_import partial_match: { company_match_type: :partial,
+                                         # corrections: { company: "corrected company" },
+                                         company_suggestion:  "Sony Corporation" }
+      expect_card("Sony Corporation").to have_a_field(:aliases)
+                                           .pointing_to("Sony")
+    end
+
     def badge_names
       badges = Card.fetch "Joe Admin", :metric_answer, :badges_earned
       badges.item_names
