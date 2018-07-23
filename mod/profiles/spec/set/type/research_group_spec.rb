@@ -3,7 +3,6 @@ RSpec.describe Card::Set::Type::ResearchGroup do
     Card["Jedi"]
   end
   check_views_for_errors :open_content, :bar, :edit,
-
                          :researcher_tab, :metric_tab, :project_tab
 
   specify "view :bar" do

@@ -140,10 +140,9 @@ RSpec.describe Card::Set::Type::AnswerImportFile, type: :controller do
     it "adds alias" do
       expect(Card.fetch("Sony Corporation", :aliases)).to be_nil
       trigger_import partial_match: { company_match_type: :partial,
-                                         # corrections: { company: "corrected company" },
-                                         company_suggestion:  "Sony Corporation" }
-      expect_card("Sony Corporation").to have_a_field(:aliases)
-                                           .pointing_to("Sony")
+                                      # corrections: { company: "corrected company" },
+                                      company_suggestion:  "Sony Corporation" }
+      expect_card("Sony Corporation").to have_a_field(:aliases).pointing_to("Sony")
     end
 
     def badge_names

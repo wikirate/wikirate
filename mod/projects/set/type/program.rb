@@ -16,7 +16,6 @@ format :html do
     voo.hide! :bar_middle
   end
 
-
   view :bar_left do
     render :thumbnail
   end

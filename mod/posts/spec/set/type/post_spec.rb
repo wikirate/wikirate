@@ -8,7 +8,7 @@ RSpec.describe Card::Set::Type::Post do
                    subcards: { "+company" => "Death Star",
                                "+topic" => "Force",
                                "+project" => "Evil Project",
-                               "+body"  => "body text" }
+                               "+body" => "body text" }
     end
 
     let(:card_subject) { post }
