@@ -22,7 +22,9 @@ format :html do
   end
 
   view :listing_compact do
-    listing_container size: :small, text: listing_details_compact
+    listing_container size: :small,
+                      text: listing_details_compact,
+                      media_left_extras: media_left_progress
   end
 
   def listing_container opts={}
@@ -31,7 +33,8 @@ format :html do
                       size: opts[:size],
                       title: render_link,
                       text: opts[:text],
-                      media_opts: { class: "bar left-stripe" }
+                      media_opts: { class: "bar left-stripe" },
+                      media_left_extras: opts[:media_left_extras]
     end
   end
 
@@ -55,7 +58,6 @@ format :html do
     end
   end
 
-
   def organizational_details
     wrap_with :div, class: "organizational-details" do
       [field_nest(:organizer, view: :credit)]
@@ -75,6 +77,15 @@ format :html do
         wrap_with(:div, research_progress_bar, class: "d-inline-flex"),
         wrap_with(:span, "#{card.percent_researched}%", class: "badge badge-secondary")
       ].join " "
+    end
+  end
+
+  def media_left_progress
+    wrap_with :div, class: "media-left-extras" do
+      [
+        wrap_with(:span, "#{card.percent_researched}%", class: "text-muted badge"),
+        research_progress_bar
+      ]
     end
   end
 

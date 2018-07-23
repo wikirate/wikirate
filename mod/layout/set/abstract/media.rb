@@ -20,6 +20,7 @@ format :html do
   def text_with_image opts={}
     @image_card = Card.cardish(opts[:image]) if opts[:image]
     opts[:media_opts] = {} unless opts[:media_opts]
+    opts[:media_left_extras] = "" unless opts[:media_left_extras]
     text_with_image_args opts
     haml :media_snippet, opts
   end
