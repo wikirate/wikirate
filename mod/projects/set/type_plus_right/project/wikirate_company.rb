@@ -43,7 +43,7 @@ format :html do
   end
 
   def default_item_view
-    :listing
+    :bar
   end
 
   def filter_card

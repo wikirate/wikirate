@@ -19,7 +19,7 @@ view :missing do
   _render_link
 end
 
-view :listing do
+view :bar do
   wrap_with :div, class: "border p-2" do
     _render_thumbnail_no_link
   end
