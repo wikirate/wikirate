@@ -35,7 +35,6 @@ showResearchAttributes = (checkbox) ->
     
 
 decko.editorContentFunctionMap['.pairs-editor'] = ->
-  console.log('editorContentFunctionMap')
   JSON.stringify pairsEditorHash(this)
 
 pairsEditorHash = (table) ->
@@ -48,6 +47,7 @@ pairsEditorHash = (table) ->
 
 # if all values are equals return "true"
 valueFormEqual = (table) -> 
+  console.log('table', table)
   aux = false 
   values = []
   variableMetricRows(table).each -> 

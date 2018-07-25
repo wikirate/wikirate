@@ -1,0 +1,32 @@
+{
+  "name": "jest-coffee-preprocessor",
+  "version": "1.0.0",
+  "description": "Simple Coffee Script Preprocessor for Jest Edit",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicolindemann/jest-coffee-preprocessor.git"
+  },
+  "keywords": [
+    "coffee",
+    "coffee-script",
+    "coffeescript",
+    "jest",
+    "preprocessor"
+  ],
+  "author": "Nico Lindemann <nico.lindemann@proux.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nicolindemann/jest-coffee-preprocessor/issues"
+  },
+  "homepage": "https://github.com/nicolindemann/jest-coffee-preprocessor#readme",
+  "dependencies": {
+    "coffee-script": "^1.12.6"
+  },
+  "devDependencies": {
+    "standard": "^10.0.2"
+  }
+}
