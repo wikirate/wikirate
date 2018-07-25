@@ -8,7 +8,7 @@ describe Card::Set::Type::Project do
   let(:project) { card_subject }
 
   context "with no year" do
-    check_views_for_errors :open_content, :listing, :edit, :wikirate_company_tab,
+    check_views_for_errors :open_content, :bar, :edit, :wikirate_company_tab,
                            :metric_tab, :post_tab, :subproject_tab
 
     it "has no year" do

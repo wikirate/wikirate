@@ -32,11 +32,11 @@ format :html do
 
   def calculated_flag_icon
     return overridden_flag_icon if card.researched_value?
-    fa_icon :calculator, title: "Calculated metric answer", class: "text-success"
+    fa_icon :calculator, title: "Calculated answer", class: "text-success"
   end
 
   def overridden_flag_icon
-    title = "Overridden calculated metric answer"
+    title = "Overridden calculated answer"
     wrap_with :span, class: "overridden-icon", title: title do
       [
         fa_icon(:user),

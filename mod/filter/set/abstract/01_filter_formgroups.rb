@@ -4,7 +4,7 @@ format :html do
   end
 
   view :filter_year_formgroup, cache: :never do
-    select_filter :year, "Year", "most recent"
+    select_filter :year, "most recent"
   end
 
   view :filter_wikirate_topic_formgroup, cache: :never do
@@ -23,27 +23,27 @@ format :html do
   end
 
   view :filter_research_policy_formgroup, cache: :never do
-    multiselect_filter :research_policy, "Research Policy"
+    multiselect_filter :research_policy
   end
 
   view :filter_metric_type_formgroup, cache: :never do
-    multiselect_filter :metric_type, "Metric Type"
+    multiselect_filter :metric_type
   end
 
   view :filter_metric_value_formgroup, cache: :never do
-    select_filter :metric_value, "Value", "exists"
+    select_filter :metric_value, "exists"
   end
 
   view :filter_designer_formgroup, cache: :never do
-    select_filter :designer, "Designer"
+    select_filter :designer
   end
 
   view :filter_importance_formgroup, cache: :never do
-    multiselect_filter :importance, "My Vote", %w[upvotes novotes]
+    multiselect_filter :importance, %w[upvotes novotes]
   end
 
   view :filter_industry_formgroup, cache: :never do
-    select_filter :industry, "Industry"
+    select_filter :industry
   end
 
   def default_year_option
@@ -117,5 +117,9 @@ format :html do
       # score metric?
       names.length == 3 ? names[2] : names[0]
     end.uniq!(&:downcase).sort_by!(&:downcase)
+  end
+
+  def metric_value_filter_label
+    "Answer"
   end
 end

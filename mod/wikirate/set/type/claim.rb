@@ -42,7 +42,7 @@ format :html do
     end
   end
 
-  view :listing do
+  view :bar do
     _render_content structure: "note item"
   end
 

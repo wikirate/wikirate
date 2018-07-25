@@ -24,13 +24,13 @@ end
 
 # has to happen after :set_answer_name,
 # but always, also if :set_answer_name is not executed
-event :add_count_answer, :prepare_to_store do
+event :add_count_answer, :prepare_to_store, changed: :content do
   count = company_count
   count += 1 if @action == :create
   add_count answer_name, count
 end
 
-event :add_inverse_count_answer, :prepare_to_store do
+event :add_inverse_count_answer, :prepare_to_store, changed: :content do
   count = inverse_company_count
   count += 1 if @action == :create
   add_count inverse_answer_name, count

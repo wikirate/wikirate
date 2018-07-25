@@ -17,16 +17,16 @@ format :html do
 
   # ~~~~~~~~~~~ DETAILS IN PROJECT LISTING
 
-  view :listing do
-    listing_layout do
+  view :bar do
+    bar_layout do
       text_with_image image: card.field(:image),
                       size: :medium,
                       title: render_link,
-                      text: listing_details
+                      text: bar_details
     end
   end
 
-  def listing_layout
+  def bar_layout
     bs_layout do
       row 12, class: "project-summary" do
         col yield
@@ -34,7 +34,7 @@ format :html do
     end
   end
 
-  def listing_details
+  def bar_details
     wrap_with :div, class: "project-details-info" do
       [organizational_details, render_stats_details, topics_details]
     end

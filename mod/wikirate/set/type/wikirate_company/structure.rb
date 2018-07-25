@@ -160,11 +160,11 @@ format :html do
   end
 
   view :source_tab do
-    field_nest :source, view: :content, items: { view: :listing }
+    field_nest :source, view: :content, items: { view: :bar }
   end
 
   view :project_tab do
-    field_nest :project, items: { view: :listing }
+    field_nest :project, items: { view: :bar }
   end
 
   view :browse_item, template: :haml

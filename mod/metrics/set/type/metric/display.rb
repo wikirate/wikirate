@@ -6,20 +6,20 @@ DETAILS_FIELD_MAP = {
 }.freeze
 
 format :html do
-  view :listing do
+  view :bar do
     wrap_with :div, class: "contribution-item value-item no-hover" do
       [
         wrap_with(:div, class: "header") do
           _render_thumbnail
         end,
         wrap_with(:div, class: "text-center") do
-          listing_data
+          bar_data
         end
       ]
     end
   end
 
-  def listing_data
+  def bar_data
     wrap_with :div, class: "contribution company-count p-2" do
       [
         wrap_with(:span, company_count, class: "badge badge-secondary"),
