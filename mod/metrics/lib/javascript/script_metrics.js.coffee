@@ -123,7 +123,7 @@ tallyWeights = (tbody, hash) ->
   $.each hash, (_key, val) ->
     num = parseFloat val 
     total += num * multiplier
-    valid = false if num < 0 || !isMaxDigit(val)
+    valid = false if num <= 0 || !isMaxDigit(val)
   if valid 
     total = total / multiplier
     publishWeightTotal(tbody, hash, total)
