@@ -55,7 +55,7 @@ format :html do
     "globe"
   end
 
-  view :listing, template: :haml
+  view :bar, template: :haml
 
   view :original_with_icon do
     fa_icon("external-link-square") + _render_original_link
@@ -74,7 +74,7 @@ format :html do
 
   def creator
     return unless (creator_card = Card[card.creator_id])
-    field_nest creator_card, view: :core, items: { view: :link }
+    field_nest creator_card, view: :link
   end
 
   view :website_link do
@@ -133,7 +133,7 @@ format :html do
     voo.hide :links
     wrap_with_info do
       [
-        _render_listing,
+        _render_bar,
         cite_button(cited, disabled),
         hidden_item_input
       ]
@@ -184,10 +184,10 @@ format :html do
 
   view :cited, cache: :never do
     if voo.show? :cited_source_links
-      wrap_with_info { _render_listing }
+      wrap_with_info { _render_bar }
     else
       with_toggle do
-        wrap_with_info { _render_listing }
+        wrap_with_info { _render_bar }
       end
     end
   end

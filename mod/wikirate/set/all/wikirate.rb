@@ -147,6 +147,13 @@ format :html do
     # doesn't work without this empty block if view caching is turned on
   end
 
+  # deprecated
+  # still used in some card
+  # e.g. source+*self+*structure
+  view :listing do
+    _render_bar
+  end
+
   def primary_panels
     @primary_panels ||= []
   end

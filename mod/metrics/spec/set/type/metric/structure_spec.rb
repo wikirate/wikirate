@@ -3,7 +3,7 @@ RSpec.describe Card::Set::Type::Metric::Structure do
     Card["Jedi+disturbances in the Force"]
   end
 
-  check_views_for_errors :open_content, :listing, :edit, :homepage_item,
+  check_views_for_errors :open_content, :bar, :edit, :homepage_item,
                          :details_tab, :score_tab, :source_tab, :project_tab
 
   describe "view :browse_item" do

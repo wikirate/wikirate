@@ -39,6 +39,6 @@ format :html do
 
   view :project_contributions do
     field_nest :projects_organized, view: :titled, show: :title_badge,
-                                    items: { view: :listing }
+                                    items: { view: :bar }
   end
 end

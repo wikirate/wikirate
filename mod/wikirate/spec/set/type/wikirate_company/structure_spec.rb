@@ -4,7 +4,7 @@ RSpec.describe Card::Set::Type::WikirateCompany::Structure do
     Card["Google Inc"]
   end
 
-  check_views_for_errors :open_content, :listing, :edit, :homepage_item,
+  check_views_for_errors :open_content, :bar, :edit, :homepage_item,
                          :wikirate_topic_tab, :source_tab, :post_tab, :project_tab
 
   describe "details tab" do

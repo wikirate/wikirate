@@ -65,7 +65,3 @@ end
 def designer_assessed?
   research_policy.casecmp("designer assessed").zero?
 end
-
-event :silence_metric_deletions, :initialize, on: :delete do
-  @silent_change = true
-end
