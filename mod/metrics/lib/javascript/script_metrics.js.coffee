@@ -47,7 +47,6 @@ pairsEditorHash = (table) ->
 
 # if all values are equals return "true"
 valueFormEqual = (table) -> 
-  console.log('table', table)
   aux = false 
   values = []
   variableMetricRows(table).each -> 
@@ -127,7 +126,7 @@ tallyWeights = (tbody, hash) ->
   if valid 
     total = total / multiplier
     publishWeightTotal(tbody, hash, total)
-    valid && total > 99.90 and total <= 100.09
+    total > 99.90 and total <= 100.09
 
 publishWeightTotal = (tbody, hash, total) ->
   sum = tbody.find('.weight-sum')
