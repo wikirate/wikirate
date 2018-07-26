@@ -127,6 +127,7 @@ tallyWeights = (tbody, hash) ->
     total = total / multiplier
     publishWeightTotal(tbody, hash, total)
     total > 99.90 and total <= 100.09
+  return valid
 
 publishWeightTotal = (tbody, hash, total) ->
   sum = tbody.find('.weight-sum')
