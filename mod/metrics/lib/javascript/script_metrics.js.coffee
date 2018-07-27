@@ -46,7 +46,7 @@ pairsEditorHash = (table) ->
   hash 
 
 # if all values are equals return "true"
-valueFormEqual = (table) -> 
+variableValuesAreEqual = (table) -> 
   aux = false 
   values = []
   variableMetricRows(table).each -> 
@@ -79,7 +79,7 @@ wikiRatingEditorHash = (table) ->
 
 # if all values are equals active the equalize
 activeEqualize = () -> 
-  if !valueFormEqual( $('.wikiRating-editor') )  
+  if !variableValuesAreEqual( $('.wikiRating-editor') )  
     $('#equalizer').prop('checked', false)
   else 
     $('#equalizer').prop('checked', true)
@@ -109,7 +109,6 @@ $(window).ready ->
 validateWikiRating = (table) ->
   hash = wikiRatingEditorHash table
   valid = tallyWeights table, hash
-  #toEqualize table 
   updateWikiRatingSubmitButton table.closest('form.card-form'), valid
 
 
