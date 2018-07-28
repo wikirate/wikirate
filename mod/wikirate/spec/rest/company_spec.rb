@@ -1,10 +1,11 @@
-RSpec.describe CardController, type: :controller do
-  routes { Decko::Engine.routes }
+# -*- encoding : utf-8 -*-
+require "decko/rest_spec_helper"
 
-  include Capybara::DSL
+Decko::RestSpecHelper.describe_api do
+  let(:company_json_url) { "http://test.host/My_Company.json" }
 
   describe "create Company" do
-    before do
+    it "redirects to company json url" do
       with_token_for "Joe User" do |token|
         get :create, params: { card: { name: "My Company",
                                        type: "Company",
@@ -13,24 +14,7 @@ RSpec.describe CardController, type: :controller do
                                success: { format: "json" },
                                token: token }
       end
+      expect(response).to redirect_to(company_json_url)
     end
-
-    it "returns a success code" do
-      expect(response.status).to eq(200)
-    end
-
-    it "returns JSON" do
-      expect(response.header["Content-Type"]).to eq("json/application")
-    end
-
-    it "returns JSON with a company id" do
-      json = JSON.parse response.body
-      expect json[:card][:id].to be_a(Integer)
-    end
-
-    def with_token_for usermark
-      yield Card[usermark].account.reset_token
-    end
-
   end
 end
