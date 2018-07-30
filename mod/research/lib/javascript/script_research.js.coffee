@@ -18,6 +18,16 @@ decko.slotReady (slot) ->
 $(document).ready ->
   $("#main:has(>#Research_Page.slot_machine-view)").addClass("pl-0 pr-0")
 
+  $('#card_subcards__values_content').on "keyup", () ->  
+    if $(this).val().toLowerCase() != 'unknown'
+      $('#card_subcards__values_subcards__Unknown_content').prop('checked', false);
+    else 
+      $('#card_subcards__values_subcards__Unknown_content').prop('checked', true);
+
+   $('#card_subcards__values_subcards__Unknown_content').on "click", () -> 
+    if $(this).prop('checked') == true 
+      $('#card_subcards__values_content').val('Unknown')
+
   # add related company to name
   # otherwise the card can get the wrong type because it
   # match the ltype_rtype/record/year pattern
@@ -52,5 +62,4 @@ toggleValueInput = (input, disable) ->
 
 enableSourceCitationButtons = () ->
   $("._cite_button, ._cited_button").removeClass "disabled"
-
-
+  
