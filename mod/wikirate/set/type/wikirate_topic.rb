@@ -22,6 +22,10 @@ view :listing_compact do
   text_with_image title: title, image: topic_image, size: :icon
 end
 
+view :box_middle do
+  card.fetch(trait: :image, view: :source, size: :medium)
+end
+
 def company_card
   fetch(trait: :wikirate_company, new: {})
 end
