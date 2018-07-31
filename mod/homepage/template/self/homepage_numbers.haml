@@ -1,3 +1,15 @@
 .row.m-0.p-0.transparent-background-white.nodblclick.slide-container.border-top
   .col-12.text-center.p-3
     %h2.text-center.mb-3 WikiRate in numbers
+  .col-8.m-auto
+    .row
+      .col-6
+        - categories.each_index do |n|
+          .d-flex.m-4.justify-content-end
+            .text-right.mx-3
+              %h1.font-weight-normal 34345
+              %h3.font-weight-normal.text-muted
+                = categories[n].to_s.split("_").join(" ").capitalize
+            .drop-shadow.rounded-circle.bg-white.image-box.small.m-2{class: "#{colors[n]}-color"}
+              = icon_tag(icons[n], class: "md-36 p-2")
+      .col

@@ -47,6 +47,9 @@
   color: $topic-color;
 }
 
+.source-color {
+  color: $source-color;
+}
 .main-color {
   color: $primary;
 }
@@ -694,7 +697,7 @@ div#pdf-preview {
 }
 
 .drop-shadow {
-  @include box-shadow(0, 1px, 6px, rgba(0, 0, 0, .13));
+  @include box-shadow(0, 9px, 20px, rgba(0, 0, 0, .06));
 }
 
 .list-group-item {

@@ -1,6 +1,7 @@
 include_set Abstract::WikirateTable
 include_set Abstract::Thumbnail
 include_set Abstract::Media
+include_set Abstract::BsBadge
 
 card_accessor :vote_count, type: :number, default: "0"
 card_accessor :upvote_count, type: :number, default: "0"
@@ -22,8 +23,19 @@ view :listing_compact do
   text_with_image title: title, image: topic_image, size: :icon
 end
 
+# def image_card
+#   card.fetch(trait: :image)
+# end
+
 view :box_middle do
-  card.fetch(trait: :image, view: :source, size: :medium)
+  nest(image_card, view: :core, size: :medium)
+end
+
+view :box_bottom, template: :haml do
+  company_count = field_nest :wikirate_company, view: :count
+  metric_count = field_nest :metric, view: :count
+  @company_badge = labeled_badge company_count, "Companies", color: "company"
+  @metric_badge = labeled_badge metric_count, "Metrics", color: "metric"
 end
 
 def company_card

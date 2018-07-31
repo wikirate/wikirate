@@ -33,7 +33,7 @@ format :html do
                       size: opts[:size],
                       title: render_link,
                       text: opts[:text],
-                      media_opts: { class: "bar left-stripe" },
+                      media_opts: { class: "bar left-stripe drop-shadow bg-white" },
                       media_left_extras: opts[:media_left_extras]
     end
   end
