@@ -1,3 +1,15 @@
-%footer
-  .container-fluid.bg-light.border-top
-    .row{:style => "height: 100px"}
+%footer.container-fluid.bg-light.border-top.py-5
+  .row
+    .col-12.col-md
+      .navbar-brand.p-0.nav-logo
+        = nest "wikirate white logo"
+    .col-6.col-md
+      = nest "menu: explore"
+    .col-6.col-md
+      = nest "menu: learn"
+    .col-6.col-md
+      = nest "menu: connect"
+    .col-6.col-md
+      = nest "menu: legal"
+    .col-6.col-md
+      = nest "partner logos"

@@ -601,6 +601,11 @@
   background-color: inherit;
 }
 
+
+.vide-section-lm {
+  margin-top: -10%;
+}
+
 // Play icon on video section
 .video-play-button {
   position: absolute;
@@ -625,8 +630,8 @@
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
     display: block;
-    width: 80px;
-    height: 80px;
+    width: 64px;
+    height: 64px;
     background: $company-color;
     border-radius: 50%;
     -webkit-animation: pulse-border 4s ease-out infinite;
@@ -641,12 +646,13 @@
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
     display: block;
-    width: 80px;
-    height: 80px;
+    width: 64px;
+    height: 64px;
     background: $company-color;
     border-radius: 50%;
     -webkit-transition: all 1s;
     transition: all 1s;
+    @include box-shadow(0,0,20px,rgb(255, 230, 208));
   }
   &:hover:after {
     background-color: darken($company-color, 10%);
@@ -654,12 +660,14 @@
   span {
     display: block;
     position: relative;
+    top: 12px;
+    left: 7px;
     z-index: 3;
     width: 0;
     height: 0;
-    border-left: 32px solid $white;
-    border-top: 22px solid transparent;
-    border-bottom: 22px solid transparent;
+    border-left: 15px solid $white;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
   }
 }
 
@@ -688,4 +696,46 @@
     transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1.5);
     opacity: 0;
   }
+}
+
+// text flip styles and animations
+.animated-words {
+	display: inline;
+	color: white;
+}
+.animated-margin-fix-1 {
+  margin-left: -15%;
+}
+.animated-margin-fix-2 {
+  margin-left: 8%;
+}
+$animated-word-interval: 3s;
+$total-delay: 18s;
+
+@for $index from 2 through 6 {
+  .animated-words span:nth-child(#{$index}) {
+      -webkit-animation-delay: ($index - 1) * $animated-word-interval;
+      -ms-animation-delay: ($index - 1) * $animated-word-interval;
+      animation-delay: ($index - 1) * $animated-word-interval;
+  }
+}
+
+.animated-words span {
+    position: absolute;
+    opacity: 0;
+    overflow: hidden;
+	display: inline;
+    -webkit-animation: animateWord $total-delay linear infinite 0s;
+    -ms-animation: animateWord $total-delay linear infinite 0s;
+    animation: animateWord $total-delay linear infinite 0s;
+}
+
+@include keyframes(animateWord) {
+    0% { opacity: 0}
+    2% { opacity: 0; -webkit-transform: translateY(20%); }
+    5% { opacity: 1; -webkit-transform: translateY(0%);}
+    17% { opacity: 1; -webkit-transform: translateY(0%); }
+    20% { opacity: 0; -webkit-transform: translateY(-20%); }
+    80% { opacity: 0}
+    100% { opacity: 0}
 }
