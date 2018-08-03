@@ -8,13 +8,13 @@ format :html do
   view :core do
     output [
       render_wikirate_modal,
-      nest(:homepage_top_banner),
-      nest(:homepage_video_section),
-      nest(:homepage_numbers),
-      nest(:homepage_projects),
-      nest(:homepage_topics),
-      nest(:homepage_organizations),
-      nest(:homepage_footer)
+      nest(:homepage_top_banner, view: :core),
+      nest(:homepage_video_section, view: :core),
+      nest(:homepage_numbers, view: :core),
+      nest(:homepage_projects, view: :core),
+      nest(:homepage_topics, view: :core),
+      nest(:homepage_organizations, view: :core),
+      nest(:homepage_footer, view: :core)
     ]
   end
 

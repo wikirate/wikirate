@@ -5,6 +5,13 @@ format :html do
                                         home_view: :titled
   end
 
+  view :homepage_answer_example, template: :haml do
+    @company_image = nest company_card.image_card, size: :small
+    @company_link = nest card.answer.company, view: :link
+    @metric_image = nest metric_designer_card.image_card, size: :small
+    @metric_question = nest card.answer.metric, view: :title_and_question_compact
+  end
+
   view :source_link do
     if (source_card = card.fetch(trait: :source))
       source_card.item_cards.map do |i_card|
@@ -24,15 +31,23 @@ format :html do
     ]
   end
 
+  def metric_designer_card
+    Card.fetch metric_card.metric_designer
+  end
+
   def source_card
     card.fetch trait: :source
+  end
+
+  def citations_count_badge
+    wrap_with :span, source_card.item_names.size, class: "badge badge-light border"
   end
 
   def citations_count
     wrap_with :h5 do
       [
         "Citations",
-        (wrap_with :span, source_card.item_names.size, class: "badge badge-light border")
+        citations_count_badge
       ]
     end
   end

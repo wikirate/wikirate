@@ -375,6 +375,18 @@
   }
 }
 
+.company-border-left {
+  border-left: 3px solid $company-color !important;
+}
+
+.metric-border-left {
+  border-left: 3px solid $metric-color !important;
+}
+
+.source-border-left {
+  border-left: 3px solid $source-color !important;
+}
+
 .double-border-fix-left {
   margin-left: -1px;
 }

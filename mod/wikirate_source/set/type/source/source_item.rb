@@ -56,6 +56,7 @@ format :html do
   end
 
   view :listing, template: :haml
+  view :listing_compact, template: :haml
 
   view :original_with_icon do
     fa_icon("external-link-square") + _render_original_link
