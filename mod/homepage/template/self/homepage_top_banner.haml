@@ -8,27 +8,27 @@
         %strong> Rate
       %p.lead.mb-5 Let's make companies better, together.
       .pt-5.mt-5
-        %h3.white-text.font-weight-normal.animated-margin-fix-1
-          .animated-text
-            %span
-              How does
-            .animated-words.font-weight-bold
-              %span Apple Inc
-              %span Samsung
-              %span Alphabet
-              %span BMW Group
-              %span Coca-Cola
-              %span Barcalys
-            %span.animated-margin-fix-2.pr-2
-              perform on
-            .animated-words.font-weight-bold
-              %span Climate Change?
-              %span Environment?
-              %span Human Rights?
-              %span Digital Rights?
-              %span Corporate Governence?
-              %span SDG5: Gender Equality?
-        %h3.white-text.font-weight-normal To know and act, you need excellent data.
+        %h3.white-text.font-weight-normal
+          %span
+            How does
+          %span.font-weight-bold
+            %span._wodry_company
+              = companies.join("|")
+          %span
+            perform on
+          %span.font-weight-bold
+            %span._wodry_topic
+              = topics.join("|")
+          %span
+            ?
+        %h3.white-text.font-weight-normal
+          %span
+            To know and act, you need
+          %span.font-weight-bold
+            %span._wodry_adjective
+              = adjectives.join("|")
+          %span
+            data.
     .align-to-end.lead.our-solution
       %p Our Solution
       %a.fa.fa-chevron-down.text-white._our_solution

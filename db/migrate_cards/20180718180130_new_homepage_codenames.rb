@@ -10,6 +10,8 @@ class NewHomepageCodenames < Card::Migration
     ensure_card "homepage footer", codename: "homepage_footer"
     ensure_card "homepage featured projects", codename: "homepage_featured_projects"
     ensure_card "homepage featured topics", codename: "homepage_featured_projects"
+    ensure_card "script: wodry", codename: "script_wodry", type_id: Card::JavaScriptID
+    ensure_card "style: wodry", codename: "style_wodry", type_id: Card::CssID
     Card::Cache.reset_all
   end
 end
