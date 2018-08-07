@@ -45,19 +45,20 @@ pairsEditorHash = (table) ->
       hash[key] = $(cols[1]).find('input').val()
   hash 
 
-# if all values are equals return "true"
-variableValuesAreEqual = (table) -> 
-  aux = false 
+getValuesFromTable = (table) -> 
   values = []
   variableMetricRows(table).each -> 
     tr = $(this) 
     values.push( tr.find('td.metric-weight').find('input').val() )
-    
   values = values.splice(0, values.length - 1);
+  return variableValuesAreEqual(values)
+
+ # if all values are equals return "true"
+ variableValuesAreEqual = (values) ->
+  aux = false 
   if values.every( (val, i, arr) => val == arr[0] ) == true  
     aux = true
   return aux
-
 
 # WikiRatings Formulae
 
@@ -79,7 +80,7 @@ wikiRatingEditorHash = (table) ->
 
 # if all values are equals active the equalize
 activeEqualize = () -> 
-  if !variableValuesAreEqual( $('.wikiRating-editor') )  
+  if !getValuesFromTable( $('.wikiRating-editor') )  
     $('#equalizer').prop('checked', false)
   else 
     $('#equalizer').prop('checked', true)
@@ -116,17 +117,21 @@ DIGITS_AFTER_DECIMAL = 2
 
 tallyWeights = (tbody, hash) ->
   multiplier = 10**DIGITS_AFTER_DECIMAL
-  total = 0
+  aux = valuesAreValid(hash, multiplier)
+  if aux.valid 
+    total = aux.total / multiplier
+    publishWeightTotal(tbody, hash, total)
+    aux.valid = total > 99.90 and total <= 100.09
+  return aux.valid
+
+valuesAreValid = (hash, multiplier) ->
   valid = true
-  $.each hash, (_key, val) ->
+  total = 0
+  $.each hash, (_key, val) -> 
     num = parseFloat val 
     total += num * multiplier
-    valid = false if num <= 0 || !isMaxDigit(val)
-  if valid 
-    total = total / multiplier
-    publishWeightTotal(tbody, hash, total)
-    valid = total > 99.90 and total <= 100.09
-  return valid
+    valid = false if num <= 0 || !isMaxDigit(val) 
+  {total: total, valid: valid}
 
 publishWeightTotal = (tbody, hash, total) ->
   sum = tbody.find('.weight-sum')
