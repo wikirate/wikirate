@@ -20,11 +20,11 @@ end
 
 format :html do
   view :cited_formgroup, cache: :never do
-    select_filter :cited, "Cited", "all"
+    select_filter :cited, "all"
   end
 
   view :claimed_formgroup, cache: :never do
-    select_filter :claimed, "Has Notes?", "all"
+    select_filter :claimed, "all"
   end
 
   view :wikirate_company_formgroup, cache: :never do

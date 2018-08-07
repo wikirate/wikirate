@@ -40,7 +40,7 @@ format :html do
   end
 
   def citations_count_badge
-    wrap_with :span, source_card.item_names.size, class: "badge badge-light border"
+    wrap_with :span, source_card&.item_names&.size, class: "badge badge-light border"
   end
 
   def citations_count
@@ -51,6 +51,7 @@ format :html do
       ]
     end
   end
+
   view :sources_with_cited_button do
     with_nest_mode :normal do
       field_nest :source, view: :core, items: { view: :with_cited_button }

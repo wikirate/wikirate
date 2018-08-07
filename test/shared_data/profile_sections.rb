@@ -2,7 +2,7 @@ class SharedData
   module ProfileSections
     def add_profile_sections
       metric_section
-      metric_value_section
+      answer_section
       topic_section
       project_section
       research_group_section
@@ -13,7 +13,7 @@ class SharedData
       "Joe User+big single+Sony Corporation+#{year}+#{field}"
     end
 
-    def metric_value_section
+    def answer_section
       with_user "Joe User" do
         update_card answer_field(2010, :value),
                     content: "4"

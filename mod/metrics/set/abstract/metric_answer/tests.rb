@@ -2,9 +2,16 @@ def researched_value?
   researched? || (hybrid? && answer&.answer_id)
 end
 
+def overridden?
+  hybrid? && answer&.answer_id
+end
+
+def blank_overridden?
+  overridden? && !answer.overridden_value.present?
+end
+
 def calculation_overridden?
-  # @answer = nil
-  hybrid? && answer&.answer_id && answer.overridden_value.present?
+  overridden? && answer.overridden_value.present?
 end
 
 # Metric is researchable and this answer not yet researched

@@ -1,7 +1,16 @@
 .row.m-0.p-0.transparent-background-white.nodblclick.slide-container.border-top.text-center
-  .col-12.text-center.p-3
+  .col-8.text-center.p-3.m-auto
     %h1.font-weight-normal.m-4 Topics
-    %p.lead Universities and NGOs organize Projects on WikiRate to help thousands of students and volunteers research metric answers.
-    %a.btn.btn-sm.btn-outline-secondary.m-3{href: "#"} Learn more
+    %h3.font-weight-light
+      WikiRate's
+      %span.topic-color.font-weight-normal Topics
+      help organize
+      %span.topic-color.font-weight-normal Metric
+      answers, each addressing a
+      %span.topic-color.font-weight-normal Metric
+      question for a specific
+      %span.company-color.font-weight-normal Company
+      and a year
+    %a.btn.btn-sm.btn-outline-secondary.m-3{href: "/topics"} Explore Topics
   .col-12.topic-section
     = nest "homepage featured topics", items: { view: :box }

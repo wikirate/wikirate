@@ -147,6 +147,13 @@ format :html do
     # doesn't work without this empty block if view caching is turned on
   end
 
+  # deprecated
+  # still used in some card
+  # e.g. source+*self+*structure
+  view :listing do
+    _render_bar
+  end
+
   def primary_panels
     @primary_panels ||= []
   end
@@ -167,14 +174,5 @@ format :html do
 
   def button_classes
     "btn btn-sm btn-outline-secondary"
-  end
-end
-
-format :json do
-  view :content do
-    result = super()
-    result_card_value = result[:card] && result[:card][:value]
-    result_card_value.reject!(&:nil?) if result_card_value.is_a? Array
-    result
   end
 end

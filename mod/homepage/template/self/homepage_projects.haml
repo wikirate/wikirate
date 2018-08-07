@@ -2,7 +2,10 @@
   .col-12.text-center.p-3
     %h1.font-weight-normal.m-4 Projects
   .col-6.text-center.p-5
-    %p.lead Universities and NGOs organize Projects on WikiRate to help thousands of students and volunteers research metric answers.
-    %a.btn.btn-sm.btn-outline-secondary.m-3{href: "#"} Learn more
+    %h3.font-weight-light
+      Universities and NGOs organize Projects on WikiRate to help
+      %span.font-weight-normal thousands of students and volunteers
+      research metric answers.
+    %a.btn.btn-sm.btn-outline-secondary.m-3{href: "/projects"} Explore Projects
   .col-6
     = nest "homepage featured projects", items: { view: :listing_compact }

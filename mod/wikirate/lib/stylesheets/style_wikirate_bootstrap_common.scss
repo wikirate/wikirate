@@ -930,3 +930,19 @@ a.no-decoration {
     }
   }
 }
+
+
+//custom icons
+.overridden-icon {
+  > i {
+    &:first-child {
+      position: absolute;
+      top: -3px;
+      right: -2px;
+    }
+    &:last-child {
+      opacity: 0.5;
+    }
+  }
+  position: relative;
+}

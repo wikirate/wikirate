@@ -13,7 +13,7 @@ end
 
 format :html do
   view :flags, cache: :never do
-    output [checked_value_flag, comment_flag, imported_flag]
+    output [checked_value_flag, comment_flag, imported_flag, calculated_flag]
   end
 
   view :small_flags, cache: :never do
@@ -22,6 +22,26 @@ format :html do
         flag = send "#{flag_name}_flag"
         "<small>#{flag}</small>"
       end
+    end
+  end
+
+  def calculated_flag
+    return "" unless card.calculated?
+    calculated_flag_icon
+  end
+
+  def calculated_flag_icon
+    return overridden_flag_icon if card.researched_value?
+    fa_icon :calculator, title: "Calculated answer", class: "text-success"
+  end
+
+  def overridden_flag_icon
+    title = "Overridden calculated answer"
+    wrap_with :span, class: "overridden-icon", title: title do
+      [
+        fa_icon(:user),
+        fa_icon(:calculator, class: "text-danger")
+      ]
     end
   end
 

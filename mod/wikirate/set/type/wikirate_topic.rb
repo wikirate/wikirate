@@ -13,11 +13,11 @@ view :missing do
   _render_link
 end
 
-view :listing do
-  render :listing_compact
+view :bar do
+  render :bar_compact
 end
 
-view :listing_compact do
+view :bar_compact do
   topic_image = card.fetch(trait: :image)
   title = link_to_card card
   text_with_image title: title, image: topic_image, size: :icon
