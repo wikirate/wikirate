@@ -2,9 +2,21 @@ include_set Abstract::HamlFile
 
 format :html do
   def haml_locals
-    { companies: ["Apple", "Samsung", "Alphabet", "Novartis", "L’Oreal", "Barcalys"],
-      topics: ["Climate Change", "Environment", "Human Rights", "Digital Rights", "Corporate Governence", "SDG5: Gender Equality"],
-      adjectives: ["excellent", "open"]
+    { companies: company_names,
+      topics: topic_names,
+      adjectives: adjective_names
      }
+  end
+
+  def company_names
+    (Card.fetch "homepage companies").item_names
+  end
+
+  def topic_names
+    (Card.fetch "homepage featured topics").item_names
+  end
+
+  def adjective_names
+    (Card.fetch "homepage adjectives").item_names
   end
 end

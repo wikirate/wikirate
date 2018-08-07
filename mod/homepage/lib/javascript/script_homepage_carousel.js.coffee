@@ -1,4 +1,10 @@
 decko.slotReady (slot) ->
+  # slot.find('._metric_value_examples').slick
+  #   dots: true,
+  #   infinite: true,
+  #   speed: 500,
+  #   fade: true,
+  #   cssEase: 'linear'
   slot.find('#company-n-topic .company-list .search-result-list, #company-n-topic .topic-list .search-result-list').slick
     slidesToShow: 3
     slidesToScroll: 3
@@ -46,6 +52,7 @@ $(document).ready ->
     delay: 5000,
     animationDuration: 2000
   })
+
   # patch for bootstrap bug on homepage carousel tabs
   # After the upgrade to Bootstrap 4, the "previous" tabs were not getting deactivated properly.
   # This may be because of an interaction between the tabs and the carousels inside them (?)

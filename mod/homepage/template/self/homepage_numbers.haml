@@ -14,5 +14,8 @@
             .drop-shadow.rounded-circle.bg-white.image-box.small.m-2{class: "#{colors[n]}-color"}
               = icon_tag(icons[n], class: "md-24 p-3")
       .col.mt-4
-        - examples.each do |example|
-          = nest(example, view: :homepage_answer_example)
+        .carousel.carousel-fade.slide.drop-shadow{"data-ride" => "carousel"}
+          .carousel-inner
+            - metric_values.each_with_index do |mv, i|
+              .carousel-item{class: "#{'active' if i==0}"}
+                = nest mv, view: :homepage_answer_example

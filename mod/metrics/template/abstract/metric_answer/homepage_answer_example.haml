@@ -1,8 +1,8 @@
-.container.m-3.drop-shadow.bg-white
+.container.drop-shadow.bg-white
   .company-border-left.bg-white.thumbnail.row.align-items-center.p-2.border-top.border-right
     .image-box.small.mt-1
       = company_image
-    .col
+    .col.company-color
       = company_link
   .metric-border-left.thumbnail.row.p-2.border-top.border-right
     .image-box.small.mt-1
@@ -10,9 +10,9 @@
     .col
       = metric_question
   .metric-border-left.thumbnail.row.align-items-center.p-2.border-top.border-right
-    .image-box.small.mt-1
+    .image-box.small.mt-1.year-icon-cal
       = fa_icon("calendar-o")
-      %span
+      %span.icon-cal-text
         = card.answer.year
     .thumbnail-text.col
       %div.metric-color

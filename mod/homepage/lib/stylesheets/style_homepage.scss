@@ -8,6 +8,22 @@
   font-size: 1.2em;
 }
 
+/*----------- metric value ---------*/
+
+.year-icon-cal  {
+  position: relative;
+   .i {
+     font-size: 55px;
+     color: $border-color;
+   }
+  .icon-cal-text {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    font-size: 14px;
+    font-weight: bold;
+    }
+  }
 
 /*----------- Slide ---------*/
 
@@ -698,44 +714,36 @@
   }
 }
 
-// text flip styles and animations
-.animated-words {
-	display: inline;
-	color: white;
-}
-.animated-margin-fix-1 {
-  margin-left: -15%;
-}
-.animated-margin-fix-2 {
-  margin-left: 8%;
-}
-$animated-word-interval: 3s;
-$total-delay: 18s;
 
-@for $index from 2 through 6 {
-  .animated-words span:nth-child(#{$index}) {
-      -webkit-animation-delay: ($index - 1) * $animated-word-interval;
-      -ms-animation-delay: ($index - 1) * $animated-word-interval;
-      animation-delay: ($index - 1) * $animated-word-interval;
-  }
-}
+// fade carousel
+.carousel-fade {
+    .carousel-inner {
+        .item {
+            transition-property: opacity;
+        }
 
-.animated-words span {
-    position: absolute;
-    opacity: 0;
-    overflow: hidden;
-	display: inline;
-    -webkit-animation: animateWord $total-delay linear infinite 0s;
-    -ms-animation: animateWord $total-delay linear infinite 0s;
-    animation: animateWord $total-delay linear infinite 0s;
-}
+        .item,
+        .active.left,
+        .active.right {
+            opacity: 0;
+        }
 
-@include keyframes(animateWord) {
-    0% { opacity: 0}
-    2% { opacity: 0; -webkit-transform: translateY(20%); }
-    5% { opacity: 1; -webkit-transform: translateY(0%);}
-    17% { opacity: 1; -webkit-transform: translateY(0%); }
-    20% { opacity: 0; -webkit-transform: translateY(-20%); }
-    80% { opacity: 0}
-    100% { opacity: 0}
+        .active,
+        .next.left,
+        .prev.right {
+            opacity: 1;
+        }
+
+        .next,
+        .prev,
+        .active.left,
+        .active.right {
+            left: 0;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    .carousel-control {
+        z-index: 2;
+    }
 }

@@ -7,8 +7,12 @@ format :html do
       colors: [:company, :metric, :metric, :source],
       icons: [icon_map(:wikirate_company), :help, :check, icon_map(:source) ],
       counts: [company_count, metric_answer_count, company_count, source_count],
-      examples: ["CDP+Performance_Score+Cielo+2014"]
+      metric_values: metric_value_names.item_names
      }
+  end
+
+  def metric_value_names
+    Card.fetch "homepage metric values"
   end
 
   def metric_question_count
