@@ -41,25 +41,11 @@ decko.slotReady (slot) ->
     return
 
 $(document).ready ->
-  $('._wodry_company').wodry({
+  $('._wodry_company,._wodry_topic,._wodry_adjective').wodry({
     animation: 'rotateX',
-    delay: 2000,
-    animationDuration: 1000
+    delay: 5000,
+    animationDuration: 2000
   })
-  setInterval (->
-    $('._wodry_topic').wodry({
-      animation: 'rotateX',
-      delay: 2000,
-      animationDuration: 1000
-    })
-  ), 1000
-  setInterval (->
-    $('._wodry_adjective').wodry({
-      animation: 'rotateX',
-      delay: 2000,
-      animationDuration: 1000
-    })
-  ), 3000
   # patch for bootstrap bug on homepage carousel tabs
   # After the upgrade to Bootstrap 4, the "previous" tabs were not getting deactivated properly.
   # This may be because of an interaction between the tabs and the carousels inside them (?)
