@@ -47,7 +47,17 @@ decko.slotReady (slot) ->
     return
 
 $(document).ready ->
-  $('._wodry_company,._wodry_topic,._wodry_adjective').wodry({
+  $('._wodry_company').wodry({
+    animation: 'rotateX',
+    delay: 5000,
+    animationDuration: 2000
+  })
+  $('._wodry_topic').wodry({
+    animation: 'rotateX',
+    delay: 5000,
+    animationDuration: 2000
+  })
+  $('._wodry_adjective').wodry({
     animation: 'rotateX',
     delay: 5000,
     animationDuration: 2000

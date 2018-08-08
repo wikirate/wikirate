@@ -9,7 +9,7 @@ format :html do
   end
 
   def company_names
-    (Card.fetch "homepage companies").item_names
+    (Card.fetch "homepage featured companies").item_names
   end
 
   def topic_names

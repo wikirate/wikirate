@@ -406,6 +406,7 @@
     opacity: 0;
   }
 }
+
 // fade carousel
 .carousel-fade {
   .carousel-inner {
@@ -437,4 +438,19 @@
   .carousel-control {
     z-index: 2;
   }
+}
+
+//flipping text tweaks
+
+._wodry_topic .wodry-flipping {
+    min-width: 320px!important;
+}
+._wodry_company .wodry-flipping {
+    min-width: 100px!important;
+}
+._wodry_adjective .wodry-flipping {
+    min-width: 120px!important;
+}
+.dotted-bottom-border {
+    border-bottom: 1px dotted $white;
 }

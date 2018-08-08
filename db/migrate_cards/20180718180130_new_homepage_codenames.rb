@@ -8,6 +8,7 @@ class NewHomepageCodenames < Card::Migration
     ensure_card "homepage organizations", codename: "homepage_organizations"
     ensure_card "homepage video section", codename: "homepage_video_section"
     ensure_card "homepage footer", codename: "homepage_footer"
+    ensure_card "homepage featured companies", codename: "homepage_featured_companies"
     ensure_card "homepage featured projects", codename: "homepage_featured_projects"
     ensure_card "homepage featured topics", codename: "homepage_featured_projects"
     ensure_card "homepage adjectives", codename: "homepage_adjectives"
