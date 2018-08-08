@@ -13,4 +13,4 @@
       and a year
     %a.btn.btn-sm.btn-outline-secondary.m-3{href: "/topics"} Explore Topics
   .col-12.topic-section
-    = nest "homepage featured topics", items: { view: :box }
+    = nest :featured_topics, items: { view: :box }, wql: { limit: 4 }, hide: :paging

@@ -1,43 +1,27 @@
 include_set Abstract::HamlFile
 
 format :html do
+  Category = Struct.new "Category", :codename, :title, :count, :color, :icon
 
-  def haml_locals
-    { categories: [:company, :metric_questions, :metric_answers, :source],
-      colors: [:company, :metric, :metric, :source],
-      icons: [icon_map(:wikirate_company), :help, :check, icon_map(:source) ],
-      counts: [company_count, metric_answer_count, company_count, source_count],
-      metric_values: metric_value_names.item_names
-     }
+  def categories
+    [
+      category(:wikirate_company, "Companies", :companies),
+      category(:metric, "Metric questions", :metric, :help),
+      category(:metric_answer, "Metric Answers", :metric, :check),
+      category(:source, "Sources", :source)
+    ]
   end
 
-  def metric_value_names
-    Card.fetch "homepage metric values"
+  def category codename, title, color, icon=icon_map(codename)
+    Category.new codename, title, count(codename), color, icon
   end
 
-  def metric_question_count
-    "45"
-    # numbers(:metric)
+  def featured_answers
+    Card[:featured_answers].item_names
   end
 
-  def metric_answer_count
-    "28,776"
-    # numbers(:metric_answer)
-  end
-
-  def company_count
-    "34"
-    # numbers(:wikirate_company)
-  end
-
-  def source_count
-    "31234"
-    # numbers(:source)
-  end
-
-  def numbers card_type
-    number = nest(Card.fetch(card_type), view: :count)
+  def count card_type
+    number = nest card_type, view: :count
     number_with_delimiter(number, delimiter: ",")
   end
-
 end
