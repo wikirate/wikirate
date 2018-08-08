@@ -18,9 +18,6 @@ format :html do
   # ~~~~~~~~~~~ DETAILS IN PROJECT LISTING
 
   view :listing_compact do
-  #   listing_container size: :small,
-  #                     text: listing_details_compact,
-  #                     media_left_extras: media_left_progress
     bar_layout do
       text_with_image image: card.field(:image),
                       size: :small,
@@ -30,16 +27,6 @@ format :html do
     end
   end
 
-# <<<<<<< HEAD
-#   view :listing do
-#     listing_container size: :medium, text: listing_details
-#   end
-#
-#
-#
-#   def listing_container opts={}
-#     listing_layout do
-# =======
   view :bar do
     bar_layout do
       text_with_image image: card.field(:image),
