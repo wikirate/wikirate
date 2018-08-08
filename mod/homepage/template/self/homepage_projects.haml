@@ -8,4 +8,5 @@
       research metric answers.
     %a.btn.btn-sm.btn-outline-secondary.m-3{href: "/projects"} Explore Projects
   .col-6
-    = nest "homepage featured projects", items: { view: :listing_compact }
+    = nest :featured_projects, items: { view: :listing_compact }, wql: { limit: 3 },
+                               hide: :paging

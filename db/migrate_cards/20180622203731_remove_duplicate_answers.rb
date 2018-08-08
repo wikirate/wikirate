@@ -26,7 +26,7 @@ class RemoveDuplicateAnswers < Card::Migration
   end
 
   def refresh_calculated dup
-    card(dup)&.delete! skip_event: %i[update_related_calculations update_related_scores]
+    card(dup)&.delete! skip: %i[update_related_calculations update_related_scores]
     Card[dup.metric_id].update_value_for! company: dup.company_id, year: dup.year
   end
 

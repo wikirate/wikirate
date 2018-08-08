@@ -1,0 +1,12 @@
+
+.row.m-0.p-0.transparent-background-white.nodblclick.slide-container.border-top
+  .col-12.text-center.p-3.m-auto.d-flex.flex-column.align-items-center
+    %h4 Subscribe to our newsletter
+    %form.form-inline#mc-embedded-subscribe-form.validate{:action => "https://wikirate.us7.list-manage.com/subscribe/post?u=be57db47b40c6b1c7e9ef0b36&id=1354650004", :method => "post", :name => "mc-embedded-subscribe-form", :novalidate => "", :target => "_blank"}
+      #mc_embed_signup_scroll
+        %input.form-control#mce-EMAIL.email{:name => "EMAIL", :placeholder => "Email", :required => "", :type => "email", :value => ""}/
+        / real people should not fill this in and expect good things - do not remove this or risk form bot signups
+        %div{"aria-hidden" => "true", :style => "position: absolute; left: -5000px;"}
+          %input{:name => "b_be57db47b40c6b1c7e9ef0b36_1354650004", :tabindex => "-1", :type => "text", :value => ""}/
+        %button.btn.btn-secondary{:name => "subscribe", :type => "submit"}
+          Subscribe
