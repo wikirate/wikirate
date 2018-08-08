@@ -21,7 +21,10 @@ RSpec.describe Card::Set::Type::Metric::Events do
 
   describe "#delete answers" do
     let(:metric) { Card["Joe User+researched number 1"] }
-    let(:delete_metric) { metric.update_attributes trigger: :delete_answers }
+
+    def delete_metric
+      metric.update_attributes trigger: :delete_answers
+    end
 
     it "fails without admin permission" do
       delete_metric
