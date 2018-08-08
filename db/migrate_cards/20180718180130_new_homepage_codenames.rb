@@ -11,6 +11,7 @@ class NewHomepageCodenames < Card::Migration
     ensure_card "homepage featured companies", codename: "homepage_featured_companies"
     ensure_card "homepage featured projects", codename: "homepage_featured_projects"
     ensure_card "homepage featured topics", codename: "homepage_featured_projects"
+    ensure_card "homepage organization images", codename: "homepage_organization_images"
     ensure_card "homepage adjectives", codename: "homepage_adjectives"
     ensure_card "script: wodry", codename: "script_wodry", type_id: Card::JavaScriptID
     ensure_card "style: wodry", codename: "style_wodry", type_id: Card::CssID

@@ -454,3 +454,15 @@
 .dotted-bottom-border {
     border-bottom: 1px dotted $white;
 }
+
+// Organization section
+
+.org-images img {
+    margin-top: 50%;
+    padding: 10%;
+    transform: translateY(-50%);;
+    -webkit-transform: translateY(-50%);;
+    -moz-transform: translateY(-50%);;
+    -o-transform: translateY(-50%);;
+    -ms-transform: translateY(-50%);;
+}

@@ -1,3 +1,9 @@
-.row.m-0.p-0.transparent-background-white.nodblclick.slide-container.border-top
+.row.m-0.p-0.bg-white.nodblclick.slide-container.border-top
   .col-12.text-center.p-3
-    %h1.font-weight-normal.m-4 Organizations using WikiRate
+    %h1.font-weight-normal.m-4
+      Organizations using WikiRate
+      .d-flex.p-5.m-5.org-images
+        - (Card.fetch "homepage organization images").item_cards.each do |org_card|
+          .col
+            - if org_card.try(:image_card)
+              = nest org_card.image_card, view: :content
