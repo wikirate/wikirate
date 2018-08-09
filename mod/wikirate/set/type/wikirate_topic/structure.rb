@@ -13,7 +13,7 @@ format :html do
   view :data, cache: :never do
     with_header "Metrics" do
       field_nest :metric, view: :metric_by_company_count,
-                          items: { view: :listing }
+                          items: { view: :bar }
     end
   end
 
@@ -26,7 +26,7 @@ format :html do
   end
 
   view :project_tab do
-    field_nest :project, items: { view: :listing }
+    field_nest :project, items: { view: :bar }
   end
 
   view :browse_item, template: :haml

@@ -16,7 +16,7 @@ format :html do
   # but should arguably use a more standard "listing" view
 
   # TODO: create standard expandable listing
-  view :listing do
+  view :bar do
     _render_titled
   end
 

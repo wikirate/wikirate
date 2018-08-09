@@ -193,10 +193,10 @@ format :html do
     define_tab_listing_where_applicable cardtype
   end
 
-  def default_listing item_view=:listing
+  def default_listing item_view=:bar
     _render_content structure: card.variant,
                     skip_perms: true,
-                    items: { view: item_view, hide: :listing_middle }
+                    items: { view: item_view, hide: :bar_middle }
   end
 
   # this is a bit of a hack but a reasonably safe one

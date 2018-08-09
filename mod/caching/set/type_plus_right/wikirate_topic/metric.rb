@@ -16,7 +16,7 @@ format :html do
             .order("count_distinct_company_id desc")
             .count("distinct company_id")
             .map do |metric_id, _count|
-        nest metric_id, view: :listing
+        nest metric_id, view: :bar
       end + no_answers
     end
   end
@@ -24,7 +24,7 @@ format :html do
   def no_answers
     all_metric_ids.map do |id|
       next if Answer.exists?(metric_id: id)
-      nest id, view: :listing
+      nest id, view: :bar
     end.compact
   end
 
