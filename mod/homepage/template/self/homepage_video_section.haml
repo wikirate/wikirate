@@ -1,8 +1,9 @@
+= modal_slot "video-slot", "modal-lg"
 .row.m-0.p-0.bg-white.nodblclick.slide-container.border-top
   .p-5.text-center.col-8.mx-auto
     %h3.text-muted.font-weight-normal WikiRate is an open, collaborative tool for asking and answering important questions about corporate impacts.
     .div
-      %a#_play-video.video-play-button.drop-shadow
+      %a#_play-video.video-play-button.drop-shadow.slotter{href:'/homepage video container?layout=modal',data: { toggle: 'modal', target: '#modal-video-slot'}}
         %span
       = nest "homepage video background image", size: :original
     .text-center.vide-section-lm
