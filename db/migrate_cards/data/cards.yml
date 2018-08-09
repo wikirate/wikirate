@@ -593,6 +593,35 @@
   :type: PlainText
   :key: metric+question+*type_plu_right+*default
   :merged: 2018-08-07 22:56:59 UTC
+- :name: featured projects
+  :type: Pointer
+  :codename: :featured_projects
+  :key: featured_project
+- :name: homepage adjectives
+  :type: Pointer
+  :codename: :homepage_adjectives
+  :key: homepage_adjective
+  :merged: 2018-08-09 15:45:59 UTC
+- :name: organizations using wikirate
+  :type: Pointer
+  :codename: :organizations_using_wikirate
+  :key: organization_using_wikirate
+  :merged: 2018-08-09 15:45:59 UTC
+- :name: homepage featured companies
+  :type: Pointer
+  :key: homepage_featured_company
+- :name: homepage featured topics
+  :type: Pointer
+  :codename: :homepage_featured_projects
+  :key: homepage_featured_topic
+- :name: homepage featured projects
+  :type: Pointer
+  :codename: :homepage_featured_projects
+  :key: homepage_featured_project
+- :name: homepage featured answers
+  :type: Pointer
+  :codename: :featured_answers
+  :key: homepage_featured_answer
 :remotes:
   :live: http://wikirate.org
   :dev: http://dev.wikirate.org

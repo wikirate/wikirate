@@ -1,6 +1,6 @@
 .row.m-0.p-0.transparent-background-white.nodblclick.slide-container.border-top.text-center
   .col-8.text-center.p-3.m-auto
-    %h1.font-weight-normal.m-4 Topics
+    %h1.font-weight-light.m-4 Topics
     %h3.font-weight-light
       WikiRate's
       %span.topic-color.font-weight-normal Topics
@@ -13,4 +13,4 @@
       and a year
     %a.btn.btn-sm.btn-outline-secondary.m-3{href: "/topics"} Explore Topics
   .col-12.topic-section
-    = nest :featured_topics, items: { view: :box }, wql: { limit: 4 }, hide: :paging
+    = nest :homepage_featured_topics, items: { view: :box }, wql: { limit: 4 }, hide: :paging

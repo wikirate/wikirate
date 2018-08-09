@@ -28,7 +28,11 @@
 /*----------- Slide ---------*/
 
 .slide-container {
-  height: 44vmax;
+  // height: 44vmax;
+}
+
+.vh-90 {
+  height: 90vh;
 }
 
 .our-solution {
@@ -338,7 +342,7 @@
     display: block;
     width: 64px;
     height: 64px;
-    background: $company-color;
+    background: lighten($company-color, 10%);
     border-radius: 50%;
     -webkit-animation: pulse-border 4s ease-out infinite;
     animation: pulse-border 4s ease-out infinite;
@@ -465,4 +469,9 @@
     -moz-transform: translateY(-50%);;
     -o-transform: translateY(-50%);;
     -ms-transform: translateY(-50%);;
+}
+
+.newsletter-input {
+  font-family: FontAwesome, sans-serif;
+  width: 20rem;
 }

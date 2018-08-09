@@ -14,16 +14,17 @@ format :html do
       nest(:homepage_projects, view: :core),
       nest(:homepage_topics, view: :core),
       nest(:homepage_organizations, view: :core),
-      nest(:newsletter_signup, view: :core),
       nest(:homepage_footer, view: :core)
     ]
   end
 
   def edit_fields
-    [[:featured_companies, { absolute: true }],
-     [:featured_topics, { absolute: true }],
+    [[:homepage_featured_companies, { absolute: true }],
+     [:homepage_featured_topics, { absolute: true }],
      [:homepage_adjectives, { absolute: true }],
-     [:featured_projects, { absolute: true }],
-     [:featured_answers, { absolute: true }]]
+     [:homepage_featured_projects, { absolute: true }],
+     [:homepage_featured_answers, { absolute: true }],
+     [:organizations_using_wikirate, { absolute: true }],
+   ]
   end
 end

@@ -2,11 +2,11 @@ include_set Abstract::HamlFile
 
 format :html do
   def companies
-    Card[:featured_companies].item_names
+    Card[:homepage_featured_companies].item_names
   end
 
   def topics
-    Card[:featured_topics].item_names
+    Card[:homepage_featured_topics].item_names
   end
 
   def adjectives

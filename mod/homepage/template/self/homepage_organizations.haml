@@ -1,9 +1,11 @@
 .row.m-0.p-0.bg-white.nodblclick.slide-container.border-top
   .col-12.text-center.p-3
-    %h1.font-weight-normal.m-4
+    %h1.font-weight-light.m-4.mb-3
       Organizations using WikiRate
-      .d-flex.p-5.m-5.org-images
-        - (Card.fetch "homepage organization images").item_cards.each do |org_card|
+    .row
+      .d-flex.px-5.pt-2.mx-5.mt-5.org-images
+        - (Card.fetch :organizations_using_wikirate).item_cards.each do |org_card|
           .col
             - if org_card.try(:image_card)
               = nest org_card.image_card, view: :content
+    = nest(:newsletter_signup, view: :core)
