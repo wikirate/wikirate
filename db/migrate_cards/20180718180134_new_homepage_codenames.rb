@@ -2,14 +2,14 @@
 
 class NewHomepageCodenames < Card::Migration
   def up
-    ensure_code_card "homepage numbers"
-    ensure_code_card "homepage projects"
-    ensure_code_card "homepage topics"
-    ensure_code_card "homepage organizations"
-    ensure_code_card "homepage video section"
-    ensure_code_card "homepage footer"
+    ["homepage numbers", "homepage projects",
+     "homepage topics", "homepage organizations",
+     "homepage video section", "homepage video container",
+     "homepage footer",
+     "newsletter signup"].each do |name|
+      ensure_code_card name
+    end
     ensure_code_card "homepage adjectives", type: :pointer
-    ensure_code_card "newsletter signup"
     ensure_code_card "script: wodry", type_id: Card::JavaScriptID
     ensure_code_card "style: wodry", type_id: Card::CssID
     %w[companies projects topics answers].each do |type|
