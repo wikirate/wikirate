@@ -51,14 +51,11 @@ getValuesFromTable = (table) ->
     tr = $(this) 
     values.push( tr.find('td.metric-weight').find('input').val() )
   values = values.splice(0, values.length - 1);
-  return variableValuesAreEqual(values)
+  return values
 
  # if all values are equals return "true"
  variableValuesAreEqual = (values) ->
-  aux = false 
-  if values.every( (val, i, arr) => val == arr[0] ) == true  
-    aux = true
-  return aux
+  values.every( (val, i, arr) => val == arr[0] ) == true
 
 # WikiRatings Formulae
 
@@ -80,23 +77,21 @@ wikiRatingEditorHash = (table) ->
 
 # if all values are equals active the equalize
 activeEqualize = () -> 
-  if !getValuesFromTable( $('.wikiRating-editor') )  
-    $('#equalizer').prop('checked', false)
-  else 
-    $('#equalizer').prop('checked', true)
-    toEqualize( $('.wikiRating-editor') )
+  values = getValuesFromTable( $('.wikiRating-editor') )
+  $('#equalizer').prop 'checked', variableValuesAreEqual(values)
 
 toEqualize = (table) -> 
   val = (100 / (variableMetricRows(table).length - 1)).toFixed(2)
-    
-  variableMetricRows(table).each ->
-    tr = $(this)
-    tr.find('td.metric-weight').find('input').val(val)
-
+  setAllVariableValuesTo(table,val)
   validateWikiRating(table)
 
 variableMetricRows = (table) ->
   table.find("tbody tr")
+
+setAllVariableValuesTo = (table, val) ->
+  variableMetricRows(table).each ->
+    tr = $(this)
+    tr.find('td.metric-weight').find('input').val(val)
 
 $(window).ready ->
   $('body').on 'input', '.metric-weight input', (_event) ->
@@ -118,11 +113,10 @@ DIGITS_AFTER_DECIMAL = 2
 tallyWeights = (tbody, hash) ->
   multiplier = 10**DIGITS_AFTER_DECIMAL
   aux = valuesAreValid(hash, multiplier)
-  if aux.valid 
-    total = aux.total / multiplier
-    publishWeightTotal(tbody, hash, total)
-    aux.valid = total > 99.90 and total <= 100.09
-  return aux.valid
+  return false unless aux.valid
+  total = aux.total / multiplier
+  publishWeightTotal(tbody, hash, total)
+  total > 99.90 and total <= 100.09
 
 valuesAreValid = (hash, multiplier) ->
   valid = true
