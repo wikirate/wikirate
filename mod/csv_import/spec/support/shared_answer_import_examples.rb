@@ -22,7 +22,7 @@ shared_examples "answer import examples" do
 
     expect_card(answer_name(:exact_match)).not_to exist
     params = import_params exact_match: { company_match_type: :exact }
-    post :update, xhr: true, params: params.merge(id: "~#{import_card.id}")
+    post :update, xhr: true, params: params.merge(mark: "~#{import_card.id}")
     expect_card("#{metric}+Death Star+2017+value").to exist
   end
 
