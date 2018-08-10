@@ -30,7 +30,7 @@ format :html do
   view :bar do
     bar_layout do
       text_with_image image: card.field(:image),
-                      size: opts[:size],
+                      size: voo.size,
                       title: render_link,
                       text: bar_details
     end

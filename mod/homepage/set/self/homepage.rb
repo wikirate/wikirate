@@ -24,7 +24,6 @@ format :html do
      [:homepage_adjectives, { absolute: true }],
      [:homepage_featured_projects, { absolute: true }],
      [:homepage_featured_answers, { absolute: true }],
-     [:organizations_using_wikirate, { absolute: true }],
-   ]
+     [:organizations_using_wikirate, { absolute: true }]]
   end
 end
