@@ -1,12 +1,12 @@
-.row.m-0.p-0.transparent-background-white.nodblclick.slide-container.border-top
+.row.m-0.pb-5.transparent-background-white.nodblclick.slide-container.border-top
   .col-12.text-center.p-3
     %h1.font-weight-light.m-4 Projects
-  .col-6.text-center.p-5
+  .col-sm-6.col-12.text-center.p-5
     %h3.font-weight-light
       Universities and NGOs organize Projects on WikiRate to help
       %span.font-weight-normal thousands of students and volunteers
       research metric answers.
     %a.btn.btn-sm.btn-outline-secondary.m-3{href: "/projects"} Explore Projects
-  .col-6
+  .col-sm-6
     = nest :homepage_featured_projects, items: { view: :listing_compact }, wql: { limit: 3 },
                                hide: :paging

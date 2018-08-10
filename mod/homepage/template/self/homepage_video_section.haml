@@ -1,14 +1,16 @@
 = modal_slot "video-slot", "modal-lg"
 .row.m-0.p-0.bg-white.nodblclick.slide-container.border-top
-  .p-5.text-center.col-8.mx-auto
-    %h3.text-muted.font-weight-light
-      WikiRate is an
-      %span.font-weight-bold
-        open, collaborative tool
-      for asking and answering important questions about corporate impacts.
-    .div
+  .p-5.text-center.col-12.col-md-8.mx-auto
+    .row
+      .col-12.col-md-8.mx-auto
+        %h3.text-muted.font-weight-light
+          WikiRate is an
+          %span.font-weight-bold
+            open, collaborative tool
+          for asking and answering important questions about corporate impacts.
+    .col-12
       %a#_play-video.video-play-button.drop-shadow.slotter{href:'/homepage video container?layout=modal',data: { toggle: 'modal', target: '#modal-video-slot'}}
         %span
       = nest "homepage video background image", size: :original
-    .text-center.vide-section-lm
+    .col-12.text-center.vide-section-lm
       %a.btn.btn-sm.btn-outline-secondary.m-3{href: "#"} Learn more

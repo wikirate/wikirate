@@ -2,10 +2,9 @@
   .col-12.text-center.p-3
     %h1.font-weight-light.m-4.mb-3
       Organizations using WikiRate
-    .row
-      .d-flex.px-5.pt-2.mx-5.mt-5.org-images
-        - (Card.fetch :organizations_using_wikirate).item_cards.each do |org_card|
-          .col
-            - if org_card.try(:image_card)
-              = nest org_card.image_card, view: :content
+    .d-flex.flex-wrap.px-0.px-sm-2.px-md-5.pt-2.mx-5.mt-5.org-images.row-fluid.justify-content-center
+      - (Card.fetch :organizations_using_wikirate).item_cards.each do |org_card|
+        .col-6.col-sm-2
+          - if org_card.try(:image_card)
+            = nest org_card.image_card, view: :content
     = nest(:newsletter_signup, view: :core)

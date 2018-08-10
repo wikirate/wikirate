@@ -33,6 +33,7 @@
 
 .vh-90 {
   height: 90vh;
+  min-height: 600px;
 }
 
 .our-solution {
@@ -44,8 +45,8 @@
 .wikirate-logo-title {
   font-weight: normal;
   font-family: Droid Sans;
-  font-size: 50px;
-  color: #fff;
+  font-size: 3.5rem;
+  color: $white;
 }
 
 .banner-buttons .btn {
@@ -65,6 +66,7 @@
 .banner-image img{
   max-width: 100%;
   max-height: 110px;
+  max-height: 12vh;
 }
 .banner-buttons .btn>i {
   float: right;
@@ -456,7 +458,7 @@
     min-width: 145px!important;
 }
 .dotted-bottom-border {
-    border-bottom: 1px dotted $white;
+    border-bottom: 1px dotted rgba($white, 0.5);
 }
 
 // Organization section
@@ -474,4 +476,38 @@
 .newsletter-input {
   font-family: FontAwesome, sans-serif;
   width: 20rem;
+}
+
+
+// responsiveness
+
+
+@include media-breakpoint-down(xs) {
+  #Home {
+    ._wodry_topic .wodry-flipping {
+        min-width: 240px!important;
+    }
+    ._wodry_company .wodry-flipping {
+        min-width: 80px!important;
+    }
+    ._wodry_adjective .wodry-flipping {
+        min-width: 145px!important;
+    }
+    .wikirate-logo-title {
+      font-size: 2.5rem;
+    }
+    h1,.h1 {
+      font-size: 22pt;
+    }
+    h3, .h3{
+      font-size: 1.5rem;
+    }
+    .image-box {
+      overflow: inherit;
+    }
+    .newsletter-input {
+      width: 12rem;
+    }
+  }
+
 }
