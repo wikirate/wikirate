@@ -7,11 +7,11 @@ class NewHomepageCodenames < Card::Migration
      "homepage video section", "homepage video container",
      "homepage footer",
      "newsletter signup"].each do |name|
-      ensure_code_card name
+      ensure_card name, codename: codename(name)
     end
     merge_cards ["homepage_adjectives", "organizations_using_wikirate"]
-    ensure_code_card "script: wodry", type_id: Card::JavaScriptID
-    ensure_code_card "style: wodry", type_id: Card::CssID
+    ensure_code_card "wodry", Card::JavaScriptID, "script"
+    ensure_code_card "wodry", Card::CssID, "style"
     %w[companies projects topics answers].each do |type|
       feature_list_card type
     end
@@ -22,10 +22,19 @@ class NewHomepageCodenames < Card::Migration
   def feature_list_card type
     name = "homepage featured #{type}"
     content = File.read data_path(File.join("cards", name.to_name.key))
-    ensure_code_card name, type_id: Card::PointerID, content: content
+    ensure_card name, type_id: Card::PointerID, content: content, codename: codename(name)
     ensure_card [name, :self, :options],
                 type_id: Card::SearchTypeID,
                 content: %({"type_id":"#{Card.fetch_id type}"})
   end
 
+  def ensure_code_card name, type_id, prefix
+    ensure_card "#{prefix}: #{name}",
+                codename: "#{prefix}_#{name}",
+                type_id: type_id
+  end
+
+  def codename name
+    name.gsub " ", "_"
+  end
 end

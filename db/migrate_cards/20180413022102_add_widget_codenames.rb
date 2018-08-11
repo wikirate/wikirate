@@ -14,7 +14,7 @@ class AddWidgetCodenames < Card::Migration
 
     # add codenames to cards
     widget_cards.each do |codename, cardname|
-      Card[cardname]&.update_attributes! codename: codename
+      ensure_card cardname, codename: codename, type_id: Card::MetricID
     end
     Card::Codename.reset_cache
   end
