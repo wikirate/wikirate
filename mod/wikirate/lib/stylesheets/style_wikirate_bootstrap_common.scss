@@ -1,4 +1,10 @@
-
+// typography
+///custom line height for better readability
+@for $index from 1 through 6 {
+  h#{$index},.h#{$index} {
+    line-height: 1.5;
+  }
+}
 
 /*Common Classes*/
 .height-auto {

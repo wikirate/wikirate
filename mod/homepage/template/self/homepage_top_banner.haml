@@ -1,13 +1,13 @@
 .nodblclick.row.m-0.p-0
   .col-12.top-banner-wrapper.white-text.banner-background.slide-container.vh-90
-    .col-12.banner-lead.text-center.mt-4
+    .col-12.banner-lead.text-center.mt-0.mt-md-4
       .banner-image
         = nest :wikirate_white_logo, view: :core, size: :medium
       %span.wikirate-logo-title
         Wiki
         %strong> Rate
-      %p.lead.mb-5 Let's make companies better, together.
-      .pt-5.mt-5
+      %p.lead.mb-0.mb-md-5 Let's make companies better, together.
+      .pt-5.mt-0.mt-md-5
         %h3.white-text.font-weight-normal
           %span
             How does
@@ -29,6 +29,6 @@
               = adjectives.join("|")
           %span
             data.
-    .align-to-end.lead.our-solution
-      %p Our Solution
+    .align-to-end.h5.font-weight-normal.our-solution
+      %p.m-1 Our Solution
       %a.fa.fa-chevron-down.text-white._our_solution
