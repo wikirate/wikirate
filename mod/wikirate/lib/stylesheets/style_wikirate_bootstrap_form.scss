@@ -7,17 +7,10 @@ $form-input-border-color: #ccc;
 input,
 select,
 textarea {
-    background-color: #fff;
+    background-color: $white;
     background-image: none;
-    border-radius: 0;
     border: 1px solid $form-input-border-color;
     color: #555;
-    // display: block;
-    // font-size: 14px;
-    // height: 34px;
-    // line-height: 1.42857;
-    // padding: 6px 12px;
-    // width: 100%;
     @include box-shadow(0,1px,1px,rgba(0,0,0,0.075), inset);
     &:focus {
         border-color: #03998d;

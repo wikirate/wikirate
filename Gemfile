@@ -76,19 +76,19 @@ group :test do
   # gem 'codeclimate-test-reporter', require: nil
 
   # CUKES see features dir
-  gem "capybara", "2.17.0"
+  gem "capybara", "~> 2.14"
   # gem "chromedriver-helper"
   # gem "geckodriver-helper"
   gem "cucumber-expressions", "5.0.7" # this breaks at 5.0.12
   gem "cucumber-rails", require: false
   # feature-driven-development suite
-  gem "selenium-webdriver", "3.8.0"
+  gem "selenium-webdriver", "3.6.0"
   #gem 'capybara-webkit' # lets cucumber launch browser windows
   gem "launchy"
 
   gem "email_spec"
   # used by cucumber for db transactions
-  gem "database_cleaner", "~> 1.4.1"
+  gem "database_cleaner", "~> 1.5"
 
   gem "minitest"
 end

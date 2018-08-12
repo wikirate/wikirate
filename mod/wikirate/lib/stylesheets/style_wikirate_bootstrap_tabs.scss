@@ -8,12 +8,12 @@
       }
         &.active {
             border: 0 solid #e6e6e6;
-            border-bottom: 4px solid $main-color;
+            border-bottom: 4px solid $primary;
             border-radius: 0;
             &:focus,
             &:hover {
                 border: 0 solid #e6e6e6;
-                border-bottom: 4px solid $main-color;
+                border-bottom: 4px solid $primary;
                 border-radius: 0;
             }
         }
@@ -141,7 +141,7 @@ li.contribution-report-title-box > a {
 }
 .RIGHT-project{
   .contribution-report-header {
-      border-left: 4px solid $card-text-color;
+      border-left: 4px solid $gray-600;
   }
 }
 .RIGHT-source{
@@ -156,18 +156,18 @@ li.contribution-report-title-box > a {
 }
 .RIGHT-note{
   .contribution-report-header {
-      border-left: 4px solid $note-color;
+      border-left: 4px solid $primary;
   }
 }
 .RIGHT-research_group {
   .contribution-report-header {
-    border-left: 4px solid $card-text-color;
+    border-left: 4px solid $gray-600;
   }
 }
 
 .contribution-report-toggle {
    width: 6%!important;
-   border-left: 1px solid #ebebeb;
+   border-left: 1px solid $border-color;
    i {
      padding: 14px 0;
    }
@@ -233,7 +233,7 @@ li.contribution-report-title-box > a {
     margin-right: 20px;
     //margin-bottom: 8px;
     border-bottom: 0;
-    border-bottom: 1px solid #ebebeb;
-    border-left: 1px solid #ebebeb;
+    border-bottom: 1px solid $border-color;
+    border-left: 1px solid $border-color;
   }
 }

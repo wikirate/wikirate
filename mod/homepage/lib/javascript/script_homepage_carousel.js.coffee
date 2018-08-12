@@ -1,4 +1,10 @@
 decko.slotReady (slot) ->
+  # slot.find('._metric_value_examples').slick
+  #   dots: true,
+  #   infinite: true,
+  #   speed: 500,
+  #   fade: true,
+  #   cssEase: 'linear'
   slot.find('#company-n-topic .company-list .search-result-list, #company-n-topic .topic-list .search-result-list').slick
     slidesToShow: 3
     slidesToScroll: 3
@@ -41,6 +47,21 @@ decko.slotReady (slot) ->
     return
 
 $(document).ready ->
+  $('._wodry_company').wodry({
+    animation: 'rotateX',
+    delay: 5000,
+    animationDuration: 2000
+  })
+  $('._wodry_topic').wodry({
+    animation: 'rotateX',
+    delay: 5000,
+    animationDuration: 2000
+  })
+  $('._wodry_adjective').wodry({
+    animation: 'rotateX',
+    delay: 5000,
+    animationDuration: 2000
+  })
 
   # patch for bootstrap bug on homepage carousel tabs
   # After the upgrade to Bootstrap 4, the "previous" tabs were not getting deactivated properly.
@@ -70,4 +91,3 @@ activateIntroTab = (tab)->
     #    targetTab = $(e.target).data('target')
     #    console.log targetTab
     #    $(targetTab).find('.slick-next').trigger 'click'
-

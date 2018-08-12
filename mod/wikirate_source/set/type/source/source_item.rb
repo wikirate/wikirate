@@ -55,6 +55,8 @@ format :html do
     "globe"
   end
 
+  # view :listing, template: :haml
+  view :listing_compact, template: :haml
   view :bar, template: :haml
 
   view :original_with_icon do
