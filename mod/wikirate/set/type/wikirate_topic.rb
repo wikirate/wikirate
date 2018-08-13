@@ -32,10 +32,8 @@ view :box_middle do
 end
 
 view :box_bottom, template: :haml do
-  company_count = field_nest :wikirate_company, view: :count
-  metric_count = field_nest :metric, view: :count
-  @company_badge = labeled_badge company_count, "Companies", color: "company"
-  @metric_badge = labeled_badge metric_count, "Metrics", color: "metric"
+  @company_badge = labeled_badge company_card.cached_count, "Companies", color: "company"
+  @metric_badge = labeled_badge metric_card.cached_count, "Metrics", color: "metric"
 end
 
 def company_card
