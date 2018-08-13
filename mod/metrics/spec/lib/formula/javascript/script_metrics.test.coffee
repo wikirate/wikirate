@@ -4,8 +4,8 @@ DECKO_JS_DIR = CARD_MOD_DIR + "/machines/lib/javascript/";
 # commenting for now, because export is not working outside of Jest
 # (presumably because it's a Nod
 
-# require( DECKO_JS_DIR  +  'decko_editor.js.coffee' );
-# $.extend global, require('../../../../lib/javascript/script_metrics.js.coffee')
+require( DECKO_JS_DIR  +  'decko_editor.js.coffee' );
+$.extend global, require('../../../../lib/javascript/script_metrics.js.coffee')
 #
 # multiplier = 10**DIGITS_AFTER_DECIMAL
 #
