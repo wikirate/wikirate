@@ -47,21 +47,49 @@ decko.slotReady (slot) ->
     return
 
 $(document).ready ->
-  $('._wodry_company').wodry({
-    animation: 'rotateX',
-    delay: 5000,
-    animationDuration: 2000
-  })
-  $('._wodry_topic').wodry({
-    animation: 'rotateX',
-    delay: 5000,
-    animationDuration: 2000
-  })
-  $('._wodry_adjective').wodry({
-    animation: 'rotateX',
-    delay: 5000,
-    animationDuration: 2000
-  })
+  animateHeaderText = ->
+    $flipTexts = $('.flip-this')
+    animationDelay = 1000 # ms; delay between each flip
+    animationDuration = 500 # ms; how fast it should flip
+    staggerInterval = (animationDelay + animationDuration) / $flipTexts.length
+    fontUsed = 'bold 1.75rem Roboto' #required to calculate width of longest word
+    spanWidthAdjust = 1.1
+
+    getTextWidth = (text, font) ->
+      canvas = getTextWidth.canvas or (getTextWidth.canvas = document.createElement('canvas'))
+      context = canvas.getContext('2d')
+      context.font = font
+      metrics = context.measureText(text)
+      metrics.width
+
+    $flipTexts.each (i) ->
+      $item = $(this)
+      longest_word = $item.text().split('|').sort((a, b) ->
+        b.length - (a.length)
+      )[0]
+
+      # to prevent from displaying raw content before animation
+      spanWidth = getTextWidth(longest_word, fontUsed) * spanWidthAdjust
+      $itemSibling = $item.siblings('.flip-this-default')
+      $itemSibling.css('width': spanWidth + 'px').text longest_word
+      $item.css 'display', 'none'
+
+      # set queue for animation
+      setTimeout (->
+        $item.attr 'style', ''
+        $itemSibling.remove()
+        $item.wodry_wikirate
+          animation: 'rotateX'
+          delay: animationDelay
+          animationDuration: animationDuration
+          fontUsed: fontUsed
+          spanWidthAdjust: spanWidthAdjust
+        return
+      ), staggerInterval * i
+      return
+    return
+
+  animateHeaderText()
 
   # patch for bootstrap bug on homepage carousel tabs
   # After the upgrade to Bootstrap 4, the "previous" tabs were not getting deactivated properly.
