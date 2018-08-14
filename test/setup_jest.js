@@ -7,3 +7,5 @@ require(CARD_MOD_DIR + 'machines/vendor/jquery_rails/vendor/assets/javascripts/j
 require(DECKO_JS_DIR + 'decko_mod.js.coffee');
 require(DECKO_JS_DIR + 'decko_slot.js.coffee');
 require(DECKO_JS_DIR + 'decko.js.coffee');
+require(DECKO_JS_DIR + 'decko_editor.js.coffee');
+require(DECKO_JS_DIR + 'decko_filter.js.coffee');
