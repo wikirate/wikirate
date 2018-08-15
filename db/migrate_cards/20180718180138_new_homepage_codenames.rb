@@ -12,6 +12,7 @@ class NewHomepageCodenames < Card::Migration
     merge_cards ["homepage_adjectives", "organizations_using_wikirate"]
     ensure_code_card "wodry", Card::JavaScriptID, "script"
     ensure_code_card "wodry", Card::CssID, "style"
+    ensure_code_card "countup", Card::JavaScriptID, "script"
     %w[companies projects topics answers].each do |type|
       feature_list_card type
     end
