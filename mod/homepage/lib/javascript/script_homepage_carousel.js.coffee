@@ -5,6 +5,7 @@ decko.slotReady (slot) ->
   #   speed: 500,
   #   fade: true,
   #   cssEase: 'linear'
+
   slot.find('#company-n-topic .company-list .search-result-list, #company-n-topic .topic-list .search-result-list').slick
     slidesToShow: 3
     slidesToScroll: 3
@@ -63,10 +64,19 @@ $(document).ready ->
     animationDuration: 2000
   })
 
+  numberElements = getNumberElements() #elements for animation
+
+  animationNumbers = () ->
+    numberElements.forEach (elem) ->
+      # if the element is not animated and is visible
+      if (!isAnimate($(elem).attr('id')) && isScrolledIntoView(elem))
+        nowIsAnimate($(elem).attr('id'))
+        runAnimation(elem)
+
+  animationNumbers()
+
   $(document).on 'scroll', () ->
-    getNumbers().forEach (element) ->
-      if (isScrolledIntoView(element))
-        animation(element)
+    animationNumbers()
 
   #options = { useEasing: true, useGrouping: true, separator: ',', decimal: '.', };
   #demo = new CountUp('myTargetElement', 0, 4775, 0, 2.5, options);
@@ -94,10 +104,11 @@ activateIntroTab = (tab)->
   active_panel.find('.carousel').carousel()
   active_panel.find('.carousel-item').first().addClass 'active'
 
-getNumbers = () -> 
+getNumberElements = () -> 
   values = []
-  $('.text-right.mx-3').each -> 
-    values.push( $(this).find('h1.font-weight-normal') )
+  $('h1.font-weight-normal_count-ele').each -> 
+    values.push( $(this) )
+    controlAnimate($(this))
   values
   
 isScrolledIntoView = (elem) ->
@@ -107,8 +118,32 @@ isScrolledIntoView = (elem) ->
   elemBottom = elemTop + $(elem).height();
   ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
 
-animation = (elem) ->
-  # animation CountUp.js
+runAnimation = (elem) ->
+  options = { useEasing: true, useGrouping: true, separator: ',', decimal: '.', };
+  demo = new CountUp($(elem).attr('id'),  0, parseInt($(elem).text()), 0, 3.5, options);
+  demo.start()
+
+controlAnimate = (elem) ->
+  numberElementsControls.push( {id: $(elem).attr('id'), animated: false} )
+
+# has this element been animated?
+isAnimate = (id) ->
+  aux = false
+  numberElementsControls.forEach (elem) ->
+    if elem.id == id && elem.animated 
+      aux = true 
+      return
+  aux  
+
+# this element is already animated now
+nowIsAnimate = (id) ->
+  numberElementsControls.forEach (elem) ->
+    if elem.id == id 
+      elem.animated = true
+
+# to determine if a specific element has been animated (in this array all the elements are saved) 
+# with an "animated" property, it can be "true" or "false"
+numberElementsControls = [] 
 
 # $('.intro-tab-panels .tab-pane').not().removeClass 'active'
     #    targetTab = $(e.target).data('target')

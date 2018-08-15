@@ -4,10 +4,10 @@
   .mx-auto.mt-4
     .row
       .col-12.col-md-6
-        - categories.each do |cat|
+        - categories.each_with_index do |cat,i|
           .d-flex.mb-5.mr-4.justify-content-end
             .text-right.mx-3
-              %h1.font-weight-normal
+              %h1.font-weight-normal_count-ele{id: "count-ele-#{i}"}
                 = cat.count
               %h5.font-weight-normal.text-muted
                 = cat.title
