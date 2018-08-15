@@ -90,7 +90,7 @@ format :html do
           #{fa_icon :comment}
         </div>
         <div class="row-data">
-              #{nest [card.record, discussion],
+              #{nest [card.record, :discussion],
                      view: :titled,
                      title: 'Discussion',
                      show: 'commentbox'}

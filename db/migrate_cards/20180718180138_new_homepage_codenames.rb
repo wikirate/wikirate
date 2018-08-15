@@ -11,12 +11,12 @@ class NewHomepageCodenames < Card::Migration
      "newsletter signup"].each do |name|
       ensure_card name, codename: codename(name)
     end
-    ["homepage video background image", "wikirate grey logo",
-     "partner logos"].each do |name|
-      ensure_card name, codename: codename(name),
-                        type_id: Card::ImageID,
-                        empty_ok: true
-    end
+    # ["homepage video background image", "wikirate grey logo",
+    #  "partner logos"].each do |name|
+    #   ensure_card name, codename: codename(name),
+    #                     type_id: Card::ImageID,
+    #                     empty_ok: true
+    # end
 
     merge_cards ["homepage_adjectives", "organizations_using_wikirate"]
     ensure_code_card "wodry", Card::JavaScriptID, "script"
