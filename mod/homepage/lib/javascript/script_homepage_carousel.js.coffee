@@ -91,6 +91,15 @@ $(document).ready ->
 
   animateHeaderText()
 
+  $(document).on 'scroll', () ->
+    getNumbers().forEach (element) ->
+      if (isScrolledIntoView(element))
+        animation(element)
+
+  #options = { useEasing: true, useGrouping: true, separator: ',', decimal: '.', };
+  #demo = new CountUp('myTargetElement', 0, 4775, 0, 2.5, options);
+  #demo.start()
+
   # patch for bootstrap bug on homepage carousel tabs
   # After the upgrade to Bootstrap 4, the "previous" tabs were not getting deactivated properly.
   # This may be because of an interaction between the tabs and the carousels inside them (?)
@@ -113,7 +122,21 @@ activateIntroTab = (tab)->
   active_panel.find('.carousel').carousel()
   active_panel.find('.carousel-item').first().addClass 'active'
 
+getNumbers = () -> 
+  values = []
+  $('.text-right.mx-3').each -> 
+    values.push( $(this).find('h1.font-weight-normal') )
+  values
+  
+isScrolledIntoView = (elem) ->
+  docViewTop = $(window).scrollTop();
+  docViewBottom = docViewTop + $(window).height();
+  elemTop = $(elem).offset().top;
+  elemBottom = elemTop + $(elem).height();
+  ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
 
+animation = (elem) ->
+  # animation CountUp.js
 
 # $('.intro-tab-panels .tab-pane').not().removeClass 'active'
     #    targetTab = $(e.target).data('target')
