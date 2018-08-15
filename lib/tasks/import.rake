@@ -4,7 +4,7 @@ namespace :wikirate do
   desc "fetch json from export card on dev site and generate migration"
   task import_from_staging: :environment do
     import_cards do
-      json = open("http://staging.wikirate.org/export.json").read
+      json = open("https://staging.wikirate.org/export.json?item=export_item").read
       JSON.parse(json).deep_symbolize_keys
     end
   end
@@ -12,7 +12,7 @@ namespace :wikirate do
   desc "fetch json from export card on dev site and generate migration"
   task import_from_dev: :environment do
     import_cards do
-      json = open("http://dev.wikirate.org/export.json").read
+      json = open("https://dev.wikirate.org/export.json?item=export_item").read
       JSON.parse(json).deep_symbolize_keys
     end
   end
@@ -44,7 +44,7 @@ namespace :wikirate do
     require "generators/card"
     import_data = yield
     write_card_content! import_data
-    write_card_attributes filename, import_data[:card][:value]
+    write_card_attributes filename, import_data[:items]
     system "bundle exec decko generate card:migration #{ENV['name']}"
   end
 
@@ -57,7 +57,7 @@ namespace :wikirate do
 
   # removes and writes the content field
   def write_card_content! import_data
-    import_data[:card][:value].each do |card_attr|
+    import_data[:items].each do |card_attr|
       path = File.join "cards", card_attr[:name].to_name.key
       File.open(Card::Migration.data_path(path), "w") do |f|
         f.puts card_attr.delete :content

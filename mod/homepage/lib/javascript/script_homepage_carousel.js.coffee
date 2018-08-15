@@ -49,8 +49,8 @@ decko.slotReady (slot) ->
 $(document).ready ->
   animateHeaderText = ->
     $flipTexts = $('.flip-this')
-    animationDelay = 1000 # ms; delay between each flip
-    animationDuration = 500 # ms; how fast it should flip
+    animationDelay = 2000 # ms; delay between each flip
+    animationDuration = 1000 # ms; how fast it should flip
     staggerInterval = (animationDelay + animationDuration) / $flipTexts.length
     fontUsed = 'bold 1.75rem Roboto' #required to calculate width of longest word
     spanWidthAdjust = 1.1
