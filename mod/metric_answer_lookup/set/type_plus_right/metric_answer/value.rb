@@ -8,7 +8,6 @@ event :delete_answer_lookup_table_entry_due_to_value_change, :finalize, on: :del
 end
 
 event :create_answer_lookup_entry_due_to_value_change, :finalize, on: :create do
-  raise Card::Error
   if hybrid? && (ans = left&.answer)
     update_answer id: ans.id
   else
