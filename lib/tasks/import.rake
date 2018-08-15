@@ -68,7 +68,6 @@ namespace :wikirate do
   def import_filename_base
     return import_filename_missing unless (envname = ENV["name"])
     filename_base_from_envname(envname) || invalid_filename_in_env
-    base
   end
 
   def filename_base_from_envname envname
