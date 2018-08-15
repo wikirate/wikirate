@@ -4,14 +4,13 @@
     .row
       .col-12.col-md-8.mx-auto
         %h3.text-muted.font-weight-light
-          WikiRate is an
-          %span.font-weight-bold
-            open, collaborative tool
-          for asking and answering important questions about corporate impacts.
+          = nest :homepage_solution_text
     .col-12
-      %a#_play-video.video-play-button.drop-shadow.slotter{href:'/homepage video container?layout=modal',data: { toggle: 'modal', target: '#modal-video-slot'}}
+      %a#_play-video{class:"video-play-button.drop-shadow.slotter",
+                     href:"/homepage/ video container?layout=modal",
+                     data: { toggle: "modal", target: "#modal-video-slot"}}
         %span
-      = nest "homepage video background image", size: :original
+      = nest :homepage_video_background_image, size: :original
     .col-12.text-center.vide-section-lm
       %a.btn.btn-outline-secondary.m-3{href: "/About_WikiRate"}
         Learn more
