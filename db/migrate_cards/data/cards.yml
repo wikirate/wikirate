@@ -601,18 +601,19 @@
   :type: Pointer
   :codename: :homepage_adjectives
   :key: homepage_adjective
-  :merged: 2018-08-11 02:59:45 UTC
+  :merged: 2018-08-15 17:20:54 UTC
 - :name: organizations using wikirate
   :type: Pointer
   :codename: :organizations_using_wikirate
   :key: organization_using_wikirate
-  :merged: 2018-08-11 02:59:45 UTC
+  :merged: 2018-08-15 17:20:54 UTC
 - :name: homepage featured companies
   :type: Pointer
+  :codename: :homepage_featured_companies
   :key: homepage_featured_company
 - :name: homepage featured topics
   :type: Pointer
-  :codename: :homepage_featured_projects
+  :codename: :homepage_featured_topics
   :key: homepage_featured_topic
 - :name: homepage featured projects
   :type: Pointer

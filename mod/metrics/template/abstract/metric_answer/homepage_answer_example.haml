@@ -14,14 +14,15 @@
       = fa_icon("calendar-o")
       %span.icon-cal-text
         = card.answer.year
-    .thumbnail-text.col.font-weight-bold
-      %span.metric-color
+    .thumbnail-text.col
+      %span.metric-color.font-weight-bold
         = card.answer.value
       %span.text-muted
         = Card.fetch(card.metric).unit
   .source-border-left.row.p-2.border-top.border-right.border-bottom
     .mt-1.text-center.col-2.px-0.pt-3
-      %h5 = citations_count_badge
+      %h5
+        = citations_count_badge
       .small citations
     .col
       = nest source_card, items: { view: :listing_compact }
