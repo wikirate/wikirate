@@ -64,6 +64,9 @@ $(document).ready ->
     animationDuration: 2000
   })
 
+  $('.our-solution p, .our-solution a').on 'click', () ->
+    $('html, body').animate({ scrollTop: $($('.our-solution a')).offset().top }, 500, 'linear');
+
   numberElements = getNumberElements() #elements for animation
 
   animationNumbers = () ->
