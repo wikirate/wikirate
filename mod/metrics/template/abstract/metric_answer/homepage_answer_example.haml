@@ -2,7 +2,7 @@
   .company-border-left.bg-white.thumbnail.row.align-items-center.p-2.border-top.border-right
     .image-box.small.mt-1
       = company_image
-    .col.company-color
+    .col.company-color.font-weight-bold
       = company_link
   .metric-border-left.thumbnail.row.p-2.border-top.border-right
     .image-box.small.mt-1
@@ -14,14 +14,14 @@
       = fa_icon("calendar-o")
       %span.icon-cal-text
         = card.answer.year
-    .thumbnail-text.col
-      %div.metric-color
+    .thumbnail-text.col.font-weight-bold
+      %span.metric-color
         = card.answer.value
-      %div.text-muted
+      %span.text-muted
         = Card.fetch(card.metric).unit
   .source-border-left.row.p-2.border-top.border-right.border-bottom
-    .small.mt-1.text-center.col-2.px-0.pt-3
-      = citations_count_badge
-      %div citations
+    .mt-1.text-center.col-2.px-0.pt-3
+      %h5 = citations_count_badge
+      .small citations
     .col
       = nest source_card, items: { view: :listing_compact }
