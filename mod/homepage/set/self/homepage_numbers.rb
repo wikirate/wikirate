@@ -21,6 +21,6 @@ format :html do
   end
 
   def count card_type
-    number = nest card_type, view: :count
+    nest card_type, view: :count
   end
 end
