@@ -100,7 +100,7 @@ $(document).ready ->
   animationNumbers = () ->
     numberElements.forEach (elem) ->
       # if the element is not animated and is visible
-      if (!isAnimate($(elem).attr('id')) && isScrolledIntoView(elem))
+      if (!isAnimated($(elem).attr('id')) && isScrolledIntoView(elem))
         nowIsAnimate($(elem).attr('id'))
         runAnimation(elem)
 
@@ -137,7 +137,7 @@ activateIntroTab = (tab)->
 
 getNumberElements = () -> 
   values = []
-  $('h1.font-weight-normal._count-ele').each -> 
+  $('._count-ele').each -> 
     values.push( $(this) )
     controlAnimate($(this))
   values
@@ -158,7 +158,7 @@ controlAnimate = (elem) ->
   numberElementsControls.push( {id: $(elem).attr('id'), animated: false} )
 
 # has this element been animated?
-isAnimate = (id) ->
+isAnimated = (id) ->
   aux = false
   numberElementsControls.forEach (elem) ->
     if elem.id == id && elem.animated 
