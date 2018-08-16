@@ -17,6 +17,6 @@
 [submodule "mod/homepage/vendor/wodry"]
 	path = mod/homepage/vendor/wodry
 	url = https://github.com/srivig/wodry.git
-[submodule "mod/homepage/vendor/CountUp"]
-	path = mod/homepage/vendor/CountUp
+[submodule "mod/homepage/vendor/countUp"]
+	path = mod/homepage/vendor/countUp
 	url = https://github.com/inorganik/countUp.js.git
