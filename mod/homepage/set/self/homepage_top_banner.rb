@@ -10,7 +10,7 @@ format :html do
   end
 
   def words_after_colon string
-    string.gsub /^.*\:\s*/, ""
+    string.gsub(/^.*\:\s*/, "")
   end
 
   def adjectives
