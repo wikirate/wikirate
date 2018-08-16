@@ -1,6 +1,6 @@
 .row.m-0.p-0.transparent-background-white.nodblclick.slide-container.border-top
   .col-12.text-center.p-3
-    %h1.font-weight-light.m-4 WikiRate in numbers
+    %h1.font-weight-light.m-4 WikiRate in Numbers
   .mx-auto.mt-4
     .row
       .col-12.col-md-6
@@ -13,7 +13,7 @@
                 = cat.title
             .drop-shadow.rounded-circle.bg-white.image-box.small.m-2{class: "#{cat.color}-color"}
               = icon_tag(cat.icon, class: "md-24 p-3")
-      .d-none.d-md-inline.col-5.mt-4
+      .d-none.d-md-inline.col-5.mt-5.pt-3
         .carousel.carousel-fade.slide.drop-shadow{"data-ride" => "carousel"}
           .carousel-inner
             - featured_answers.each_with_index do |mv, i|

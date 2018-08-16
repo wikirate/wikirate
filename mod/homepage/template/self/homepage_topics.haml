@@ -10,7 +10,9 @@
       %span.topic-color.font-weight-normal Metric
       question for a specific
       %span.company-color.font-weight-normal Company
-      and a year
-    %a.btn.btn-sm.btn-outline-secondary.m-3{href: "/Topics"} Explore Topics
+      and year
   .col-12.topic-section
     = nest :homepage_featured_topics, items: { view: :box }, wql: { limit: 4 }, hide: :paging
+    %a.btn.btn-outline-secondary.m-3{href: "/Topics"}
+      Explore Topics
+      .fa.fa-arrow-circle-right.ml-1.fa-lg

@@ -20,7 +20,7 @@ $(document).ready ->
 
   $('#card_subcards__values_content').on "keyup", () ->  
     selector = '#card_subcards__values_subcards__Unknown_content'
-    checked = $(this).val().toLowerCase() != 'unknown'
+    checked = $(this).val().toLowerCase() == 'unknown'
     $(selector).prop 'checked', checked
 
    $('#card_subcards__values_subcards__Unknown_content').on "click", () -> 
