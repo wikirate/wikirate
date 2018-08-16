@@ -496,6 +496,22 @@
     display: none;
   }
 }
+
+.box-item {
+  transition: all 0.2s ease-out;
+}
+
+//for all box items
+a.box-item {
+  text-decoration: none;
+}
+
+.box-item:hover {
+  -webkit-box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
+}
+
 .homepage-lead {
   font-weight: 300;
   margin-bottom: 20px;
