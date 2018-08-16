@@ -51,7 +51,7 @@ $(document).ready ->
     $flipTexts = $('.flip-this')
     animationDelay = 2000 # ms; delay between each flip
     animationDuration = 1000 # ms; how fast it should flip
-    staggerInterval = (animationDelay + animationDuration) / $flipTexts.length
+    staggerInterval = 0 # (animationDelay + animationDuration) / $flipTexts.length
     fontUsed = 'bold 1.75rem Roboto' #required to calculate width of longest word
     spanWidthAdjust = 1.1
 
@@ -85,7 +85,7 @@ $(document).ready ->
           fontUsed: fontUsed
           spanWidthAdjust: spanWidthAdjust
         return
-      ), staggerInterval * i
+      ), 400 + staggerInterval * i
       return
     return
 

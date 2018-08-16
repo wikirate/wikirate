@@ -33,5 +33,35 @@
     "name": "homepage project text",
     "type": "HTML",
     "codename": "homepage_project_text"
+  },
+  {
+    "name": "homepage featured companies",
+    "type": "Pointer",
+    "codename": "homepage_featured_companies"
+  },
+  {
+    "name": "homepage featured answers",
+    "type": "Pointer",
+    "codename": "homepage_featured_answers"
+  },
+  {
+    "name": "homepage featured topics",
+    "type": "Pointer",
+    "codename": "homepage_featured_topics"
+  },
+  {
+    "name": "homepage featured projects",
+    "type": "Pointer",
+    "codename": "homepage_featured_projects"
+  },
+  {
+    "name": "organizations using wikirate",
+    "type": "Pointer",
+    "codename": "organizations_using_wikirate"
+  },
+  {
+    "name": "homepage adjectives",
+    "type": "Pointer",
+    "codename": "homepage_adjectives"
   }
 ]
