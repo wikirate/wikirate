@@ -5,10 +5,19 @@ class NewHomepageCodenames < Card::Migration
     ["homepage numbers", "homepage projects",
      "homepage topics", "homepage organizations",
      "homepage video section", "homepage video container",
-     "homepage footer",
+     "homepage solution text", "homepage project text",
+     "homepage topic text", "homepage footer",
+     "menu: explore", "menu: about", "menu: connect", "menu: legal",
      "newsletter signup"].each do |name|
       ensure_card name, codename: codename(name)
     end
+    # ["homepage video background image", "wikirate grey logo",
+    #  "partner logos"].each do |name|
+    #   ensure_card name, codename: codename(name),
+    #                     type_id: Card::ImageID,
+    #                     empty_ok: true
+    # end
+
     merge_cards ["homepage_adjectives", "organizations_using_wikirate"]
     ensure_code_card "wodry", Card::JavaScriptID, "script"
     ensure_code_card "wodry", Card::CssID, "style"
@@ -36,6 +45,6 @@ class NewHomepageCodenames < Card::Migration
   end
 
   def codename name
-    name.gsub " ", "_"
+    name.gsub(":", "").tr " ", "_"
   end
 end

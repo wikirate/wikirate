@@ -12,7 +12,7 @@
 
 .year-icon-cal  {
   position: relative;
-   .i {
+   i {
      font-size: 55px;
      color: $border-color;
    }
@@ -448,15 +448,6 @@
 
 //flipping text tweaks
 
-._wodry_topic .wodry-flipping {
-    min-width: 320px!important;
-}
-._wodry_company .wodry-flipping {
-    min-width: 100px!important;
-}
-._wodry_adjective .wodry-flipping {
-    min-width: 145px!important;
-}
 .dotted-bottom-border {
     border-bottom: 1px dotted rgba($white, 0.5);
 }
@@ -478,21 +469,24 @@
   width: 20rem;
 }
 
+/* footer */
+
+footer.homepage-footer ul {
+  padding-left: 0;
+  list-style: none;
+  a {
+    color: #797f84;
+  }
+  li {
+    padding: 5px 0;
+  }
+}
 
 // responsiveness
 
 
 @include media-breakpoint-down(xs) {
   #Home {
-    ._wodry_topic .wodry-flipping {
-        min-width: 240px!important;
-    }
-    ._wodry_company .wodry-flipping {
-        min-width: 80px!important;
-    }
-    ._wodry_adjective .wodry-flipping {
-        min-width: 145px!important;
-    }
     .wikirate-logo-title {
       font-size: 2.5rem;
     }
