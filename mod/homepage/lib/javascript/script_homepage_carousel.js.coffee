@@ -64,6 +64,7 @@ $(document).ready ->
 
     $flipTexts.each (i) ->
       $item = $(this)
+      $item.parent().removeClass('loading-text')
       longest_word = $item.text().split('|').sort((a, b) ->
         b.length - (a.length)
       )[0]
@@ -122,12 +123,12 @@ activateIntroTab = (tab)->
   active_panel.find('.carousel').carousel()
   active_panel.find('.carousel-item').first().addClass 'active'
 
-getNumbers = () -> 
+getNumbers = () ->
   values = []
-  $('.text-right.mx-3').each -> 
+  $('.text-right.mx-3').each ->
     values.push( $(this).find('h1.font-weight-normal') )
   values
-  
+
 isScrolledIntoView = (elem) ->
   docViewTop = $(window).scrollTop();
   docViewBottom = docViewTop + $(window).height();
