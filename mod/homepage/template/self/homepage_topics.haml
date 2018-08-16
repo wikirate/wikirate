@@ -1,0 +1,18 @@
+.row.m-0.pb-5.transparent-background-white.nodblclick.slide-container.border-top.text-center
+  .col-8.text-center.p-3.m-auto
+    %h1.font-weight-light.m-4 Topics
+    %h3.font-weight-light
+      WikiRate's
+      %span.topic-color.font-weight-normal Topics
+      help organize
+      %span.topic-color.font-weight-normal Metric
+      answers, each addressing a
+      %span.topic-color.font-weight-normal Metric
+      question for a specific
+      %span.company-color.font-weight-normal Company
+      and year
+  .col-12.topic-section
+    = nest :homepage_featured_topics, items: { view: :box }, wql: { limit: 4 }, hide: :paging
+    %a.btn.btn-outline-secondary.m-3{href: "/Topics"}
+      Explore Topics
+      .fa.fa-arrow-circle-right.ml-1.fa-lg

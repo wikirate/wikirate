@@ -1,14 +1,14 @@
 //***ALL COLOR VARS & MIXINS***//
-$anchor_color: #03998d;
+$anchor_color: $primary;
 $body-txt-color: #404040; //#4f4f4f;
 $wanted-card-color: #b6060a;
 $infographic-heading: #949494;
 $div-border-color: #f1f1f1;
 
 //note colors
-$note-tag-companybg: #d3741c;
+$note-tag-companybg: $company-color;
 $note-tag-companybg-hover: #bb5b00;
-$note-tag-topicbg: #2b7ea0;
+$note-tag-topicbg: $topic-color;
 $note-tag-topicbg-hover: #01648d;
 $note-tag-notexist: #f0f0f0;
 $note-tag-notexist-hover: #ececec;
@@ -18,48 +18,48 @@ $card-header-color: #fff;
 
 //***COLOR VARS - END***//
 
-.STRUCTURE-note_summary {
-  > h1 {
-    font-size: 1.1em;
-    padding-bottom: 0;
-  }
-  > .card-body {
-    padding: 5px 0 18px 5%;
-    margin: 0 0 5px;
-    border-bottom: 1px solid #eee;
-    font-size: 0.8em;
-    .fa {
-      padding-right: 5px;
-    }
-    > div {
-      margin-left: 5%;
-      padding: 2px 0;
-      text-indent: -3%;
-      div {
-        display: inline;
-      }
-
-    }
-    .missing-view {
-      display: none;
-    }
-    .RIGHT-source .source-title {
-      font-style: italic;
-    }
-    .pointer-item,
-    .search-result-item {
-      text-indent: 10px;
-      margin: 0;
-      padding: 2px;
-      :after {
-        content: ' ';
-      }
-    }
-  }
-
-}
+// .STRUCTURE-note_summary {
+//   > h1 {
+//     font-size: 1.1em;
+//     padding-bottom: 0;
+//   }
+//   > .card-body {
+//     padding: 5px 0 18px 5%;
+//     margin: 0 0 5px;
+//     border-bottom: 1px solid #eee;
+//     font-size: 0.8em;
+//     .fa {
+//       padding-right: 5px;
+//     }
+//     > div {
+//       margin-left: 5%;
+//       padding: 2px 0;
+//       text-indent: -3%;
+//       div {
+//         display: inline;
+//       }
+//
+//     }
+//     .missing-view {
+//       display: none;
+//     }
+//     .RIGHT-source .source-title {
+//       font-style: italic;
+//     }
+//     .pointer-item,
+//     .search-result-item {
+//       text-indent: 10px;
+//       margin: 0;
+//       padding: 2px;
+//       :after {
+//         content: ' ';
+//       }
+//     }
+//   }
+//
+// }
 #note-sourcelink .pointer-item a {
-  color: $body-txt-color;
+  // color: $body-txt-color;
   &:hover {
     color: $anchor_color;
   }
@@ -138,21 +138,21 @@ $card-header-color: #fff;
 
 }
 
-#main > .TYPE-note {
-  > .card-header {
-    background-color: #fff;
-  }
-  .header-title > .card-header > i {
-    font-size: 22px;
-  }
-  .header-with-vote .panel-title {
-    font-size: 26px;
-  }
-  .source-side {
-    border-right: 1px solid $div-border-color;
-  }
-
-}
+// #main > .TYPE-note {
+//   > .card-header {
+//     background-color: #fff;
+//   }
+//   .header-title > .card-header > i {
+//     font-size: 22px;
+//   }
+//   .header-with-vote .panel-title {
+//     font-size: 26px;
+//   }
+//   .source-side {
+//     border-right: 1px solid $div-border-color;
+//   }
+//
+// }
 .RIGHT-tag,
 .RIGHT-year {
   &.labeled-view {
@@ -175,192 +175,192 @@ $card-header-color: #fff;
   }
 
 }
-.TYPE-note.d0-card-content .source-side > .RIGHT-tag {
-  margin-top: 20px;
-
-}
+// .TYPE-note.d0-card-content .source-side > .RIGHT-tag {
+//   margin-top: 20px;
+//
+// }
 
 
 //////////
+//
+// .TYPE_PLUS_RIGHT-note-Xvote_count {
+//   padding: 5px;
+//
+// }
+// .TYPE_PLUS_RIGHT-note-Xvote_count.content-view {
+//   margin-top: 10px;
+//
+// }
+// .RIGHT-Xvote_count.content-view {
+//   float: left;
+//   overflow: hidden;
+// }
 
-.TYPE_PLUS_RIGHT-note-Xvote_count {
-  padding: 5px;
-
-}
-.TYPE_PLUS_RIGHT-note-Xvote_count.content-view {
-  margin-top: 10px;
-
-}
-.RIGHT-Xvote_count.content-view {
-  float: left;
-  overflow: hidden;
-}
-
-.header-citation {
-  float: right;
-  padding: 10px 1.5% 25px;
-  border-left: 1px solid #eee;
-  margin-left: 1%;
-  .TYPE_PLUS_RIGHT-note-citation_count {
-    &.titled-view, &.search_count-view {
-      cursor: pointer;
-      .card-header {
-        font-size: 1.2em;
-        // padding: 5px 10px;
-        line-height: 1.2em;
-      }
-      .card-body {
-        padding: 0px;
-        font-size: 2em;
-      }
-    }
-  }
-}
-.header-title {
-  padding: 0 10px;
-  text-align: center;
-}
-.clear-line {
-  clear: both;
-  border-bottom: solid 1px #eee;
-
-}
-.item-summary {
-  a.source-preview-link {
-    color: #ba8a3c;
-  }
-  i.fa-long-arrow-right {
-    color: #ffcf66;
-  }
-  .TYPE-source {
-    overflow: inherit;
-  }
-
-}
+// .header-citation {
+//   float: right;
+//   padding: 10px 1.5% 25px;
+//   border-left: 1px solid #eee;
+//   margin-left: 1%;
+//   .TYPE_PLUS_RIGHT-note-citation_count {
+//     &.titled-view, &.search_count-view {
+//       cursor: pointer;
+//       .card-header {
+//         font-size: 1.2em;
+//         // padding: 5px 10px;
+//         line-height: 1.2em;
+//       }
+//       .card-body {
+//         padding: 0px;
+//         font-size: 2em;
+//       }
+//     }
+//   }
+// }
+// .header-title {
+//   padding: 0 10px;
+//   text-align: center;
+// }
+// .clear-line {
+//   clear: both;
+//   border-bottom: solid 1px #eee;
+//
+// }
+// .item-summary {
+//   a.source-preview-link {
+//     color: #ba8a3c;
+//   }
+//   i.fa-long-arrow-right {
+//     color: #ffcf66;
+//   }
+//   .TYPE-source {
+//     overflow: inherit;
+//   }
+//
+// }
 
 ///////////
 
-.TYPE_PLUS_RIGHT-note-citation_count {
-  &.titled-view, &.search_count-view {
-    float: right;
-    cursor: pointer;
-    margin-top: 15px;
-    color: #fff;
-    text-align: center;
-    background-color: #03998d;
-    &:hover {
-      background-color: #018479;
-    }
-    .card-header {
-      margin-top: 0.5em;
-      border-bottom: solid 1px #fff;
-      .card-header-title {
-        margin: -4px 4px;
-        font-size: 0.7em;
-      }
-    }
-    h3 {
-      padding: 0 5px 4px;
-      font-size: 11px;
-      // border-bottom: solid 1px #fff;
-      margin-top: 0;
-      line-height: 0.9em;
-      color: #fff;
-
-    }
-
-    .card-header.panel-heading {
-      padding: 0;
-      margin: 6px 0 -6px;
-    }
-    .card-body {
-      padding: 3px;
-      font-size: 1.4em;
-    }
-  }
-}
-.TYPE_PLUS_RIGHT-note-citation_count.no-citations {
-  // background-color: #ba5b5b;
-  background-color: #EBEBEB;
-  color: #565656;
-  &:hover {
-    background: #e0e0e0;
-  }
-}
-
-.STRUCTURE-company_note_item .item-content {
-  position: relative;
-}
-.STRUCTURE-note_item, .STRUCTURE-company_note_item {
-  margin: 0 0 5px;
-  border-bottom: 1px dotted #eee;
-  font-size: 0.8em;
-  padding: 0 3%;
-
-  /* hack for hash jump */
-  padding-top: 60px;
-  margin-top: -60px;
-
-  div.last-edit {
-    margin-left: 18px;
-    margin-bottom: 10px;
-    color: #adadad;
-    font-size: 12px;
-    .item-link {
-      padding-left: 0;
-    }
-
-  }
-  .item-summary {
-    h4 {
-      font-size: 1.5em;
-      line-height: 1.4em;
-      font-weight: normal;
-      margin-top: 0px;
-      margin-bottom: 2px;
-    }
-    > div {
-
-      .fa {
-        padding-right: 5px;
-      }
-      #margin-left: 5%;
-      padding: 2px 0;
-      #text-indent: -3%;
-      div {
-        display: inline;
-      }
-      .RIGHT-source .source-title {
-        font-style: italic;
-      }
-    }
-
-  }
-  .note-sourcelink {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    .d0-card-content {
-      white-space: nowrap;
-    }
-    .pointer-item.item-name {
-      padding-left: 0;
-    }
-
-  }
-  .note-tag {
-    .pointer-item,
-    .search-result-item {
-      text-indent: 10px;
-      margin: 0;
-      padding: 2px;
-      :after {
-        content: ' ';
-      }
-    }
-  }
-
-}
+// .TYPE_PLUS_RIGHT-note-citation_count {
+//   &.titled-view, &.search_count-view {
+//     float: right;
+//     cursor: pointer;
+//     margin-top: 15px;
+//     color: #fff;
+//     text-align: center;
+//     background-color: #03998d;
+//     &:hover {
+//       background-color: #018479;
+//     }
+//     .card-header {
+//       margin-top: 0.5em;
+//       border-bottom: solid 1px #fff;
+//       .card-header-title {
+//         margin: -4px 4px;
+//         font-size: 0.7em;
+//       }
+//     }
+//     h3 {
+//       padding: 0 5px 4px;
+//       font-size: 11px;
+//       // border-bottom: solid 1px #fff;
+//       margin-top: 0;
+//       line-height: 0.9em;
+//       color: #fff;
+//
+//     }
+//
+//     .card-header.panel-heading {
+//       padding: 0;
+//       margin: 6px 0 -6px;
+//     }
+//     .card-body {
+//       padding: 3px;
+//       font-size: 1.4em;
+//     }
+//   }
+// }
+// .TYPE_PLUS_RIGHT-note-citation_count.no-citations {
+//   // background-color: #ba5b5b;
+//   background-color: #EBEBEB;
+//   color: #565656;
+//   &:hover {
+//     background: #e0e0e0;
+//   }
+// }
+//
+// .STRUCTURE-company_note_item .item-content {
+//   position: relative;
+// }
+// .STRUCTURE-note_item, .STRUCTURE-company_note_item {
+//   margin: 0 0 5px;
+//   border-bottom: 1px dotted #eee;
+//   font-size: 0.8em;
+//   padding: 0 3%;
+//
+//   /* hack for hash jump */
+//   padding-top: 60px;
+//   margin-top: -60px;
+//
+//   div.last-edit {
+//     margin-left: 18px;
+//     margin-bottom: 10px;
+//     color: #adadad;
+//     font-size: 12px;
+//     .item-link {
+//       padding-left: 0;
+//     }
+//
+//   }
+//   .item-summary {
+//     h4 {
+//       font-size: 1.5em;
+//       line-height: 1.4em;
+//       font-weight: normal;
+//       margin-top: 0px;
+//       margin-bottom: 2px;
+//     }
+//     > div {
+//
+//       .fa {
+//         padding-right: 5px;
+//       }
+//       #margin-left: 5%;
+//       padding: 2px 0;
+//       #text-indent: -3%;
+//       div {
+//         display: inline;
+//       }
+//       .RIGHT-source .source-title {
+//         font-style: italic;
+//       }
+//     }
+//
+//   }
+//   .note-sourcelink {
+//     white-space: nowrap;
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     .d0-card-content {
+//       white-space: nowrap;
+//     }
+//     .pointer-item.item-name {
+//       padding-left: 0;
+//     }
+//
+//   }
+//   .note-tag {
+//     .pointer-item,
+//     .search-result-item {
+//       text-indent: 10px;
+//       margin: 0;
+//       padding: 2px;
+//       :after {
+//         content: ' ';
+//       }
+//     }
+//   }
+//
+// }
 .note-next-action {
   .internal-link {
     color: red;

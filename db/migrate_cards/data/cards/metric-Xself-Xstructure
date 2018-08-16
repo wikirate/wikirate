@@ -1,0 +1,7 @@
+{{+description}}
+
+<div class="filter-search-form">
+  {{+browse metric filter|filter_form}}
+</div>
+
+<div id="browse-metrics">{{+browse metric filter||browse_item}}</div>

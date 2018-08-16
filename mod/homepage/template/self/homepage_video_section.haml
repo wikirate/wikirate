@@ -1,0 +1,17 @@
+= modal_slot "video-slot", "modal-lg"
+.row.m-0.p-0.bg-white.nodblclick.slide-container.border-top
+  .p-5.text-center.col-12.col-md-8.mx-auto
+    .row
+      .col-12.col-md-8.mx-auto
+        %h3.text-muted.font-weight-light
+          = nest :homepage_solution_text, view: :core
+    .col-12
+      %a#_play-video{class:"video-play-button.drop-shadow.slotter",
+                     href:"/homepage/video container?layout=modal",
+                     data: { toggle: "modal", target: "#modal-video-slot"}}
+        %span
+      = nest :homepage_video_background_image, size: :original
+    .col-12.text-center.vide-section-lm
+      %a.btn.btn-outline-secondary.m-3{href: "/About_WikiRate"}
+        Learn more
+        .fa.fa-arrow-circle-right.ml-1.fa-lg

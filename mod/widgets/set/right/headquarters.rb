@@ -18,7 +18,7 @@ event :update_oc_mapping_due_to_headquarters_entry, :integrate,
       on: :save, when: :needs_oc_mapping?, skip: :allowed do
   oc = ::OpenCorporates::MappingAPI.fetch_oc_company_number company_name: name.left,
                                                             jurisdiction_code: oc_code
-  return unless oc.company_number.present?
+  return unless oc&.company_number.present?
 
   add_subcard name.left_name.field(:open_corporates),
               content: oc.company_number, type: :phrase

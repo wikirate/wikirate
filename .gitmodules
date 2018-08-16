@@ -14,3 +14,9 @@
 [submodule "mod/wikirate/vendor/fakeloader"]
 	path = mod/wikirate/vendor/fakeloader
 	url = https://github.com/louisnelza/fakeLoader.js
+[submodule "mod/homepage/vendor/wodry"]
+	path = mod/homepage/vendor/wodry
+	url = https://github.com/srivig/wodry.git
+[submodule "mod/homepage/vendor/CountUp.js"]
+	path = mod/homepage/vendor/CountUp.js
+	url = https://github.com/inorganik/CountUp.js

@@ -68,10 +68,14 @@ class RemoveContentOfCodedCards < Card::Migration
 
   def ensure_code_cards names, type_id, prefix
     names.each do |name|
-      ensure_card "#{prefix}: #{name}",
-                  codename: "#{prefix}_#{name}",
-                  type_id: type_id
+      ensure_code_card name, type_id, prefix
     end
+  end
+
+  def ensure_code_card name, type_id, prefix
+    ensure_card "#{prefix}: #{name}",
+                codename: "#{prefix}_#{name}",
+                type_id: type_id
   end
 
   def remove_js_libraries

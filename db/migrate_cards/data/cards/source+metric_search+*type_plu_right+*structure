@@ -1,3 +1,0 @@
-<a  class="btn btn-primary" href='/new/metric_value?slot[source]={{_1|linkname}}'>Add a metric value from this Source</a>
-<br />
-{{_l+source metric search list||content;view:listing}}

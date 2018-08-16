@@ -54,7 +54,8 @@ getValuesFromTable = (table) ->
   return values
 
  # if all values are equals return "true"
- exports.variableValuesAreEqual = (values) ->
+ # exports.
+  variableValuesAreEqual = (values) ->
   values.every( (val, i, arr) => val == arr[0] ) == true
 
 # WikiRatings Formulae
@@ -108,7 +109,8 @@ validateWikiRating = (table) ->
   updateWikiRatingSubmitButton table.closest('form.card-form'), valid
 
 
-exports.DIGITS_AFTER_DECIMAL = 2
+# exports.
+DIGITS_AFTER_DECIMAL = 2
 
 tallyWeights = (tbody, hash) ->
   multiplier = 10**DIGITS_AFTER_DECIMAL
@@ -118,7 +120,8 @@ tallyWeights = (tbody, hash) ->
   publishWeightTotal(tbody, hash, total)
   total > 99.90 and total <= 100.09
 
-exports.valuesAreValid = (hash, multiplier) ->
+# exports
+valuesAreValid = (hash, multiplier) ->
   valid = true
   total = 0
   $.each hash, (_key, val) -> 

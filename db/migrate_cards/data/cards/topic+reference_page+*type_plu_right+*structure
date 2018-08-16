@@ -1,9 +1,0 @@
-
-					<div class="tab-pane active" id="company-metrics">
-					   <p>
-				      
-				    </p>
-					  {{_left+source||content;structure: source item }}
-					</div>
-				
-			
