@@ -109,7 +109,7 @@ activateIntroTab = (tab)->
 
 getNumberElements = () -> 
   values = []
-  $('h1.font-weight-normal_count-ele').each -> 
+  $('h1.font-weight-normal._count-ele').each -> 
     values.push( $(this) )
     controlAnimate($(this))
   values
@@ -123,8 +123,8 @@ isScrolledIntoView = (elem) ->
 
 runAnimation = (elem) ->
   options = { useEasing: true, useGrouping: true, separator: ',', decimal: '.', };
-  demo = new CountUp($(elem).attr('id'),  0, parseInt($(elem).text()), 0, 3.5, options);
-  demo.start()
+  animationNumber = new CountUp($(elem).attr('id'),  0, parseInt($(elem).text()), 0, 3.5, options);
+  animationNumber.start()
 
 controlAnimate = (elem) ->
   numberElementsControls.push( {id: $(elem).attr('id'), animated: false} )

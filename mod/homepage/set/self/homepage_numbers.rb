@@ -22,6 +22,5 @@ format :html do
 
   def count card_type
     number = nest card_type, view: :count
-    number_with_delimiter(number, delimiter: ",")
   end
 end
