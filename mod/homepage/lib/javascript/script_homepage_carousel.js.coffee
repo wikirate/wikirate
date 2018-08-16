@@ -101,7 +101,7 @@ $(document).ready ->
     numberElements.forEach (elem) ->
       # if the element is not animated and is visible
       if (!isAnimated($(elem).attr('id')) && isScrolledIntoView(elem))
-        nowIsAnimate($(elem).attr('id'))
+        animateElem($(elem).attr('id'))
         runAnimation(elem)
 
   animationNumbers()
@@ -166,8 +166,8 @@ isAnimated = (id) ->
       return
   aux  
 
-# this element is already animated now
-nowIsAnimate = (id) ->
+# animate this element
+animateElem = (id) ->
   numberElementsControls.forEach (elem) ->
     if elem.id == id 
       elem.animated = true
