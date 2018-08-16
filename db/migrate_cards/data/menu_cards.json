@@ -1,0 +1,37 @@
+[
+  {
+    "name": "menu: connect",
+    "type": "Basic",
+    "codename": "menu_connect"
+  },
+  {
+    "name": "menu: about",
+    "type": "Basic",
+    "codename": "menu_about"
+  },
+  {
+    "name": "menu explore",
+    "type": "Basic",
+    "codename": "menu_explore"
+  },
+  {
+    "name": "menu: legal",
+    "type": "Basic",
+    "codename": "menu_legal"
+  },
+  {
+    "name": "homepage solution text",
+    "type": "HTML",
+    "codename": "homepage_solution_text"
+  },
+  {
+    "name": "homepage topic text",
+    "type": "HTML",
+    "codename": "homepage_topic_text"
+  },
+  {
+    "name": "homepage project text",
+    "type": "HTML",
+    "codename": "homepage_project_text"
+  }
+]
