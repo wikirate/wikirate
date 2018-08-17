@@ -55,6 +55,21 @@ $(document).ready ->
     fontUsed = 'bold 1.75rem Roboto' #required to calculate width of longest word
     spanWidthAdjust = 1.1
 
+    iOS = ->
+      iDevices = [
+        'iPad Simulator'
+        'iPhone Simulator'
+        'iPod Simulator'
+        'iPad'
+        'iPhone'
+        'iPod'
+      ]
+      if ! !navigator.platform
+        while iDevices.length
+          if navigator.platform == iDevices.pop()
+            return true
+      false
+
     getTextWidth = (text, font) ->
       canvas = getTextWidth.canvas or (getTextWidth.canvas = document.createElement('canvas'))
       context = canvas.getContext('2d')
@@ -70,6 +85,7 @@ $(document).ready ->
       )[0]
 
       # to prevent from displaying raw content before animation
+      spanWidthAdjust *= 1.5 if iOS()
       spanWidth = getTextWidth(longest_word, fontUsed) * spanWidthAdjust
       $itemSibling = $item.siblings('.flip-this-default')
       $itemSibling.css('width': spanWidth + 'px').text longest_word
