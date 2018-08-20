@@ -6,7 +6,11 @@ format :html do
   end
 
   def topics
-    Card[:homepage_featured_topics].item_names
+    Card[:homepage_featured_topics].item_names.map { |n| words_after_colon n }
+  end
+
+  def words_after_colon string
+    string.gsub(/^.*\:\s*/, "")
   end
 
   def adjectives

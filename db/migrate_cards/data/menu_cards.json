@@ -1,0 +1,67 @@
+[
+  {
+    "name": "menu: connect",
+    "type": "Basic",
+    "codename": "menu_connect"
+  },
+  {
+    "name": "menu: about",
+    "type": "Basic",
+    "codename": "menu_about"
+  },
+  {
+    "name": "menu explore",
+    "type": "Basic",
+    "codename": "menu_explore"
+  },
+  {
+    "name": "menu: legal",
+    "type": "Basic",
+    "codename": "menu_legal"
+  },
+  {
+    "name": "homepage solution text",
+    "type": "HTML",
+    "codename": "homepage_solution_text"
+  },
+  {
+    "name": "homepage topic text",
+    "type": "HTML",
+    "codename": "homepage_topic_text"
+  },
+  {
+    "name": "homepage project text",
+    "type": "HTML",
+    "codename": "homepage_project_text"
+  },
+  {
+    "name": "homepage featured companies",
+    "type": "Pointer",
+    "codename": "homepage_featured_companies"
+  },
+  {
+    "name": "homepage featured answers",
+    "type": "Pointer",
+    "codename": "homepage_featured_answers"
+  },
+  {
+    "name": "homepage featured topics",
+    "type": "Pointer",
+    "codename": "homepage_featured_topics"
+  },
+  {
+    "name": "homepage featured projects",
+    "type": "Pointer",
+    "codename": "homepage_featured_projects"
+  },
+  {
+    "name": "organizations using wikirate",
+    "type": "Pointer",
+    "codename": "organizations_using_wikirate"
+  },
+  {
+    "name": "homepage adjectives",
+    "type": "Pointer",
+    "codename": "homepage_adjectives"
+  }
+]

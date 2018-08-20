@@ -19,11 +19,18 @@ format :html do
   end
 
   def edit_fields
-    [[:homepage_featured_companies, { absolute: true }],
+    [[:homepage_solution_text, { absolute: true }],
+     [:homepage_project_text, { absolute: true }],
+     [:homepage_topic_text, { absolute: true }],
+     [:homepage_featured_companies, { absolute: true }],
      [:homepage_featured_topics, { absolute: true }],
      [:homepage_adjectives, { absolute: true }],
      [:homepage_featured_projects, { absolute: true }],
      [:homepage_featured_answers, { absolute: true }],
-     [:organizations_using_wikirate, { absolute: true }]]
+     [:organizations_using_wikirate, { absolute: true }],
+     [:menu_explore, { absolute: true }],
+     [:menu_about, { absolute: true }],
+     [:menu_connect, { absolute: true }],
+     [:menu_legal, { absolute: true }]]
   end
 end

@@ -6,7 +6,7 @@ format :html do
   def categories
     [
       category(:wikirate_company, "Companies", :company),
-      category(:metric, "Metric questions", :metric, :help),
+      category(:metric, "Metric Questions", :metric, :help),
       category(:metric_answer, "Metric Answers", :metric, :check),
       category(:source, "Sources", :source)
     ]
@@ -21,7 +21,6 @@ format :html do
   end
 
   def count card_type
-    number = nest card_type, view: :count
-    number_with_delimiter(number, delimiter: ",")
+    nest card_type, view: :count
   end
 end

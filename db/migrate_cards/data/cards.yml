@@ -245,7 +245,7 @@
 - :name: nav bar menu
   :type: HTML
   :key: nav_bar_menu
-  :merged: 2018-08-15 19:37:44 UTC
+  :merged: 2018-08-16 16:44:43 UTC
 - :name: Company
   :type: Cardtype
   :codename: wikirate_company
@@ -531,68 +531,68 @@
 - :name: Researcher+*right+*default
   :type: Pointer
   :key: researcher+*right+*default
-  :merged: 2018-08-15 19:37:44 UTC
+  :merged: 2018-08-16 16:44:43 UTC
 - :name: conversation+*right+*structure
   :type: Search
   :key: conversation+*right+*structure
-  :merged: 2018-08-15 19:37:44 UTC
+  :merged: 2018-08-16 16:44:43 UTC
 - :name: Conversation+*type+*structure
   :type: Basic
   :key: conversation+*type+*structure
-  :merged: 2018-08-15 19:37:44 UTC
+  :merged: 2018-08-16 16:44:43 UTC
 - :name: Descendant
   :type: Metric type
   :codename: :descendant
   :key: descendant
-  :merged: 2018-08-15 19:37:45 UTC
+  :merged: 2018-08-16 16:44:43 UTC
 - :name: Descendant+description
   :type: Basic
   :key: descendant+description
-  :merged: 2018-08-15 19:37:45 UTC
+  :merged: 2018-08-16 16:44:43 UTC
 - :name: Metric type
   :type: Cardtype
   :codename: metric_type_type
   :key: metric_type
-  :merged: 2018-08-15 19:37:45 UTC
+  :merged: 2018-08-16 16:44:43 UTC
 - :name: User+Research_Groups+*type plus right+*structure
   :type: Search
   :key: user+research_group+*type_plu_right+*structure
-  :merged: 2018-08-15 19:37:45 UTC
+  :merged: 2018-08-16 16:44:44 UTC
 - :name: Post
   :type: Cardtype
   :codename: post
   :key: post
-  :merged: 2018-08-15 19:37:49 UTC
+  :merged: 2018-08-16 16:44:47 UTC
 - :name: Body
   :type: Basic
   :codename: body
   :key: body
-  :merged: 2018-08-15 19:37:49 UTC
+  :merged: 2018-08-16 16:44:47 UTC
 - :name: Details
   :type: Basic
   :codename: details
   :key: detail
-  :merged: 2018-08-15 19:37:49 UTC
+  :merged: 2018-08-16 16:44:47 UTC
 - :name: post+*right+*structure
   :type: Search
   :key: post+*right+*structure
-  :merged: 2018-08-15 19:37:49 UTC
+  :merged: 2018-08-16 16:44:47 UTC
 - :name: How to research
   :type: HTML
   :key: how_to_research
-  :merged: 2018-08-15 19:38:36 UTC
+  :merged: 2018-08-16 16:45:36 UTC
 - :name: standard head extras
   :type: HTML
   :key: standard_head_extra
-  :merged: 2018-08-15 19:38:36 UTC
+  :merged: 2018-08-16 16:45:36 UTC
 - :name: Metric+Score+*type plus right+*structure
   :type: Search
   :key: metric+score+*type_plu_right+*structure
-  :merged: 2018-08-15 19:38:48 UTC
+  :merged: 2018-08-16 16:45:48 UTC
 - :name: Metric+question+*type plus right+*default
   :type: PlainText
   :key: metric+question+*type_plu_right+*default
-  :merged: 2018-08-15 19:38:48 UTC
+  :merged: 2018-08-16 16:45:48 UTC
 - :name: featured projects
   :type: Pointer
   :codename: :featured_projects
@@ -601,12 +601,12 @@
   :type: Pointer
   :codename: :homepage_adjectives
   :key: homepage_adjective
-  :merged: 2018-08-15 19:38:49 UTC
+  :merged: 2018-08-16 16:45:50 UTC
 - :name: organizations using wikirate
   :type: Pointer
   :codename: :organizations_using_wikirate
   :key: organization_using_wikirate
-  :merged: 2018-08-15 19:38:49 UTC
+  :merged: 2018-08-16 16:45:50 UTC
 - :name: homepage featured companies
   :type: Pointer
   :codename: :homepage_featured_companies
