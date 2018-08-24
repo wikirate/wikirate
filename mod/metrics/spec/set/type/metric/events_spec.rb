@@ -18,24 +18,4 @@ RSpec.describe Card::Set::Type::Metric::Events do
       end
     end
   end
-
-  describe "#delete answers" do
-    let(:metric) { Card["Joe User+researched number 1"] }
-
-    def delete_metric
-      metric.update_attributes trigger: :delete_answers
-    end
-
-    it "fails without admin permission" do
-      delete_metric
-      expect(metric.errors).to have_key(:answers)
-    end
-
-    it "deletes all of a metric's answers" do
-      Card::Auth.as_bot do
-        delete_metric
-        expect(metric.all_answers.size).to eq(0)
-      end
-    end
-  end
 end

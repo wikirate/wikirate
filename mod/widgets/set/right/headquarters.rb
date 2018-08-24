@@ -10,6 +10,7 @@ event :validate_jurisdiction_code, :validate do
   errors.add :content, "invalid headquarters: #{content}" unless oc_code
 end
 
+# if we're assuming left is a company, this should arguably be in a type_plus_right set
 def needs_oc_mapping?
   (l = left) && l.open_corporates.blank?
 end
