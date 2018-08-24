@@ -12,7 +12,9 @@ format :html do
     {
       research_policy: "Research Policy",
       report_type:     "Report Type",
-      value_type:      "Value Type"
+      value_type:      "Value Type",
+      unit:            "Unit",
+      range:           "Range"
     }
   end
 
@@ -43,6 +45,14 @@ format :html do
 
   def metric_type_property
     field_nest :metric_type, view: :content, items: { view: :name }
+  end
+
+  def unit_property
+    field_nest :unit, view: :content, items: { view: :name }
+  end
+
+  def range_property 
+    field_nest :range, view: :content, items: { view: :name }
   end
 
   def value_type_property
