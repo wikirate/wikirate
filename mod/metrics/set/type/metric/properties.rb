@@ -51,7 +51,7 @@ format :html do
     field_nest :unit, view: :content, items: { view: :name }
   end
 
-  def range_property 
+  def range_property
     field_nest :range, view: :content, items: { view: :name }
   end
 
