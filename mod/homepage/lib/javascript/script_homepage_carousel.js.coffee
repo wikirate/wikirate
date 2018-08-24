@@ -52,9 +52,24 @@ $(document).ready ->
     $flipTexts = $('.flip-this')
     animationDelay = 2000 # ms; delay between each flip
     animationDuration = 1000 # ms; how fast it should flip
-    staggerInterval = (animationDelay + animationDuration) / $flipTexts.length
+    staggerInterval = 0 # (animationDelay + animationDuration) / $flipTexts.length
     fontUsed = 'bold 1.75rem Roboto' #required to calculate width of longest word
     spanWidthAdjust = 1.1
+
+    iOS = ->
+      iDevices = [
+        'iPad Simulator'
+        'iPhone Simulator'
+        'iPod Simulator'
+        'iPad'
+        'iPhone'
+        'iPod'
+      ]
+      if ! !navigator.platform
+        while iDevices.length
+          if navigator.platform == iDevices.pop()
+            return true
+      false
 
     getTextWidth = (text, font) ->
       canvas = getTextWidth.canvas or (getTextWidth.canvas = document.createElement('canvas'))
@@ -65,11 +80,13 @@ $(document).ready ->
 
     $flipTexts.each (i) ->
       $item = $(this)
+      $item.parent().removeClass('loading-text')
       longest_word = $item.text().split('|').sort((a, b) ->
         b.length - (a.length)
       )[0]
 
       # to prevent from displaying raw content before animation
+      spanWidthAdjust *= 1.42 if iOS()
       spanWidth = getTextWidth(longest_word, fontUsed) * spanWidthAdjust
       $itemSibling = $item.siblings('.flip-this-default')
       $itemSibling.css('width': spanWidth + 'px').text longest_word
@@ -86,7 +103,7 @@ $(document).ready ->
           fontUsed: fontUsed
           spanWidthAdjust: spanWidthAdjust
         return
-      ), staggerInterval * i
+      ), 400 + staggerInterval * i
       return
     return
 
@@ -141,7 +158,7 @@ getNumberElements = () ->
     values.push( $(this) )
     controlAnimate($(this))
   values
-  
+
 isScrolledIntoView = (elem) ->
   docViewTop = $(window).scrollTop();
   docViewBottom = docViewTop + $(window).height();

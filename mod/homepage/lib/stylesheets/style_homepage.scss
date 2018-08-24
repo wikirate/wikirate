@@ -135,6 +135,13 @@
     transform: translateY(-50%);
   }
 }
+
+/*----------- wikirate in numbers ---------*/
+
+.carousal-slide-width {
+  width: 430px;
+}
+
 /*----------- Topic section ---------*/
 .topic-section .item-box {
   display: inline-block;
@@ -454,6 +461,40 @@
 
 .dotted-bottom-border {
     border-bottom: 1px dotted rgba($white, 0.5);
+}
+
+  /* loading dots */
+.loading-text {
+  padding-right: 14px;
+  &:after {
+    content: ' .';
+    animation: dots 1s steps(5, end) infinite;
+  }
+  .flip-this {
+    display: none;
+  }
+}
+
+@keyframes dots {
+  0%,
+  20% {
+    color: rgba(0, 0, 0, 0);
+    text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0);
+  }
+
+  40% {
+    color: white;
+    text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0);
+  }
+
+  60% {
+    text-shadow: 0.25em 0 0 white, 0.5em 0 0 rgba(0, 0, 0, 0);
+  }
+
+  100%,
+  80% {
+    text-shadow: 0.25em 0 0 white, 0.5em 0 0 white;
+  }
 }
 
 // Organization section

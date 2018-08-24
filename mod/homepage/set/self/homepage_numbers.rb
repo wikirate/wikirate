@@ -6,7 +6,7 @@ format :html do
   def categories
     [
       category(:wikirate_company, "Companies", :company),
-      category(:metric, "Metric questions", :metric, :help),
+      category(:metric, "Metric Questions", :metric, :help),
       category(:metric_answer, "Metric Answers", :metric, :check),
       category(:source, "Sources", :source)
     ]
