@@ -29,8 +29,8 @@ describe Card::Set::Self::AccountLinks do
           have_tag("span", with: { id: "logging", class: "logged-in" }) do
             with_tag "a", text: "Joe User", with: { id: "my-card-link",
                                                     href: "/Joe_User" }
-#            with_tag "a", text: "Invite", with: { class: "invite-link",
-#                                                  href: "/new/Sign_up" }
+            # with_tag "a", text: "Invite", with: { class: "invite-link",
+            #                                       href: "/new/Sign_up" }
             with_tag "a", text: "Log out", with: { class: "signout-link",
                                                    href: "/delete/*signin" }
           end
