@@ -100,6 +100,6 @@ end
 def company_from_params
   return unless (company_name = Env.params[:company])
   company = Card[company_name]
-  return unless company.type_id = Card::WikirateCompanyID
+  return unless company.type_id == Card::WikirateCompanyID
   company_name
 end

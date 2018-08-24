@@ -70,7 +70,7 @@ describe Card::Set::MetricType::Relationship do
     it "deletes subject answers" do
       Card::Auth.as_bot do
         delete_answers
-        expect(Card.fetch(metric, company).real?).to be_falsey
+        expect(Card.fetch(metric, company)).not_to be_real
       end
     end
 
