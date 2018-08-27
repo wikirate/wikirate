@@ -14,7 +14,8 @@ format :html do
       report_type:     "Report Type",
       value_type:      "Value Type",
       unit:            "Unit",
-      range:           "Range"
+      range:           "Range",
+      options:         "Options"
     }
   end
 
@@ -53,6 +54,10 @@ format :html do
 
   def range_property
     field_nest :range, view: :content, items: { view: :name }
+  end
+
+  def options_property
+    field_nest :options, view: :content, items: { view: :name }
   end
 
   def value_type_property
