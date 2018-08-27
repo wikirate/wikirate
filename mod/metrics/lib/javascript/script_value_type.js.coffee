@@ -11,7 +11,7 @@ showAndHide = (slot, value) ->
       when 'Number'
         'number_details'
       when 'Money'
-        'number_details'
+        'currency_details'
       when 'Category', 'Multi-Category'
         'category_details'
       else
