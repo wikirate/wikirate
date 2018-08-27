@@ -30,13 +30,19 @@ event :delete_relationship_answers,
     # maybe something like `perms: :admin` in the event def?
     errors.add :answers, "only admins can bulk delete answers"
   else
-    company = company_from_params
-    if !company
-      errors.add :company, "params must specify valid company"
-    else
+    with_company_from_params do |company|
       delete_answers_for_company company
       true
     end
+  end
+end
+
+def with_company_from_params
+  company = company_from_params
+  if !company
+    errors.add :company, "params must specify valid company"
+  else
+    yield company
   end
 end
 
@@ -100,6 +106,6 @@ end
 def company_from_params
   return unless (company_name = Env.params[:company])
   company = Card[company_name]
-  return unless company.type_id == Card::WikirateCompanyID
+  return unless company&.type_id == Card::WikirateCompanyID
   company_name
 end

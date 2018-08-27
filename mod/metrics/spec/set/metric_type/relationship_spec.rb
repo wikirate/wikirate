@@ -67,26 +67,20 @@ describe Card::Set::MetricType::Relationship do
       expect(metric_card.errors).to have_key(:answers)
     end
 
-    it "deletes subject answers" do
-      Card::Auth.as_bot do
-        delete_answers
-        expect(Card.fetch(metric, company)).not_to be_real
-      end
+    it "deletes subject answers", as_bot: true do
+      delete_answers
+      expect(Card.fetch(metric, company)).not_to be_real
     end
 
-    it "deletes object answers" do
-      Card::Auth.as_bot do
-        delete_answers
-        expect(Card["#{metric}+Death Star+1977+#{company}"]).to be_nil
-      end
+    it "deletes object answers", as_bot: true do
+      delete_answers
+      expect(Card["#{metric}+Death Star+1977+#{company}"]).to be_nil
     end
 
-    it "does not delete unrelated object answers" do
-      Card::Auth.as_bot do
-        delete_answers
-        unrelated_answer = Card["#{metric}+Death Star+1977+Los Pollos Hermanos"]
-        expect(unrelated_answer).to be_instance_of Card
-      end
+    it "does not delete unrelated object answers", as_bot: true do
+      delete_answers
+      unrelated_answer = Card["#{metric}+Death Star+1977+Los Pollos Hermanos"]
+      expect(unrelated_answer).to be_instance_of(Card)
     end
   end
 end
