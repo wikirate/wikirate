@@ -1,4 +1,10 @@
 PATH
+  remote: vendor/card-mods/csv_import
+  specs:
+    card-mod-csv_import (0.8)
+      card
+
+PATH
   remote: vendor/card-mods/logger
   specs:
     card-mod-logger (1.0)
@@ -711,6 +717,7 @@ DEPENDENCIES
   capistrano-rvm
   capybara (= 2.17.0)
   card!
+  card-mod-csv_import!
   card-mod-logger!
   card-mod-markdown!
   card-mod-new_relic!
