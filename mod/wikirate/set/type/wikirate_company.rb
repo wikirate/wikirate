@@ -25,22 +25,6 @@ view :bar do
   end
 end
 
-# def subcard_count_number subcard
-#   subcard_count = nest(card, trait: subcard.to_sym, view: :count)
-#   content_tag(:div, subcard_count, class: "number")
-# end
-#
-# def subcard_count_with_label subcard
-#   subcard_label = nest(card, trait: subcard.to_sym, view: :name)
-#   number_label = content_tag(:div, subcard_label, class: "number-label")
-#   wrap_with :div, class: "count-view slab" do
-#     [
-#       subcard_count_number(subcard),
-#       number_label
-#     ]
-#   end
-# end
-
 view :metric_count do
   wrap_with(:div, nest(card, trait: :metric, view: :count), class: "number")
 end
@@ -69,16 +53,6 @@ format :csv do
   end
 end
 
-# format :html do
-#   view :link, closed: true, perms: :none do
-#     return super() unless voo.inherit(:project)
-#     title = title_in_context voo.title
-#     opts = { known: card.known? }
-#     opts[:path] = { filter: { project: voo.inherit(:project) } }
-#     opts[:path][:card] = { type: voo.type } if voo.type && !opts[:known]
-#     link_to_card card.name, title, opts
-#   end
-# end
 
 format :json do
   view :core do
