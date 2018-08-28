@@ -53,7 +53,6 @@ format :csv do
   end
 end
 
-
 format :json do
   view :core do
     card.all_answers.map do |answer|
