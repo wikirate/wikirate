@@ -4,11 +4,13 @@ class FixPrmeYears < Card::Migration
   def up
     duplicate_list = []
     each_broken_answer_id do |answer_id|
-      answer = Card.fetch answer_id
-      update_answer_or_track_duplicate answer, duplicate_list
+      if (answer = Card.fetch answer_id)
+        update_answer_or_track_duplicate answer, duplicate_list
+      else
+        puts "no card for answer_id: #{answer_id}"
+      end
     end
     store_duplicates duplicate_list
-    raise "blah"
   end
 
   def update_answer_or_track_duplicate answer, duplicate_list
