@@ -12,7 +12,7 @@
 
 .year-icon-cal  {
   position: relative;
-   .i {
+   i {
      font-size: 55px;
      color: $border-color;
    }
@@ -28,7 +28,12 @@
 /*----------- Slide ---------*/
 
 .slide-container {
-  height: 44vmax;
+  // height: 44vmax;
+}
+
+.vh-90 {
+  height: 90vh;
+  min-height: 600px;
 }
 
 .our-solution {
@@ -36,12 +41,16 @@
   margin-right: -15px;
 }
 
+.our-solution a, .our-solution p {
+  cursor: pointer;
+}
+
 /*----------- Top banner ---------*/
 .wikirate-logo-title {
   font-weight: normal;
   font-family: Droid Sans;
-  font-size: 50px;
-  color: #fff;
+  font-size: 3.5rem;
+  color: $white;
 }
 
 .banner-buttons .btn {
@@ -61,6 +70,7 @@
 .banner-image img{
   max-width: 100%;
   max-height: 110px;
+  max-height: 12vh;
 }
 .banner-buttons .btn>i {
   float: right;
@@ -125,6 +135,13 @@
     transform: translateY(-50%);
   }
 }
+
+/*----------- wikirate in numbers ---------*/
+
+.carousal-slide-width {
+  width: 430px;
+}
+
 /*----------- Topic section ---------*/
 .topic-section .item-box {
   display: inline-block;
@@ -338,7 +355,7 @@
     display: block;
     width: 64px;
     height: 64px;
-    background: $company-color;
+    background: lighten($company-color, 10%);
     border-radius: 50%;
     -webkit-animation: pulse-border 4s ease-out infinite;
     animation: pulse-border 4s ease-out infinite;
@@ -406,6 +423,7 @@
     opacity: 0;
   }
 }
+
 // fade carousel
 .carousel-fade {
   .carousel-inner {
@@ -437,4 +455,98 @@
   .carousel-control {
     z-index: 2;
   }
+}
+
+//flipping text tweaks
+
+.dotted-bottom-border {
+    border-bottom: 1px dotted rgba($white, 0.5);
+}
+
+  /* loading dots */
+.loading-text {
+  padding-right: 14px;
+  &:after {
+    content: ' .';
+    animation: dots 1s steps(5, end) infinite;
+  }
+  .flip-this {
+    display: none;
+  }
+}
+
+@keyframes dots {
+  0%,
+  20% {
+    color: rgba(0, 0, 0, 0);
+    text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0);
+  }
+
+  40% {
+    color: white;
+    text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0);
+  }
+
+  60% {
+    text-shadow: 0.25em 0 0 white, 0.5em 0 0 rgba(0, 0, 0, 0);
+  }
+
+  100%,
+  80% {
+    text-shadow: 0.25em 0 0 white, 0.5em 0 0 white;
+  }
+}
+
+// Organization section
+
+.org-images img {
+    margin-top: 50%;
+    padding: 10%;
+    transform: translateY(-50%);;
+    -webkit-transform: translateY(-50%);;
+    -moz-transform: translateY(-50%);;
+    -o-transform: translateY(-50%);;
+    -ms-transform: translateY(-50%);;
+}
+
+.newsletter-input {
+  font-family: FontAwesome, sans-serif;
+  width: 20rem;
+}
+
+/* footer */
+
+footer.homepage-footer ul {
+  padding-left: 0;
+  list-style: none;
+  a {
+    color: #797f84;
+  }
+  li {
+    padding: 5px 0;
+  }
+}
+
+// responsiveness
+
+
+@include media-breakpoint-down(xs) {
+  #Home {
+    .wikirate-logo-title {
+      font-size: 2.5rem;
+    }
+    h1,.h1 {
+      font-size: 22pt;
+    }
+    h3, .h3{
+      font-size: 1.5rem;
+    }
+    .image-box {
+      overflow: inherit;
+    }
+    .newsletter-input {
+      width: 12rem;
+    }
+  }
+
 }

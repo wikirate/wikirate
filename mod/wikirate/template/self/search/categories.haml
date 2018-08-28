@@ -1,7 +1,13 @@
 .col-md-12
   .row
-    = nest "Company+*search", view: :titled, title: "Companies", items: { view: "browse_item" }
+    = nest [:wikirate_company, :search], view: :titled,
+                                         title: "Companies",
+                                         items: { view: :browse_item }
   .row
-    = nest "Topic+*search", view: :titled, title: "Topics", items: { view: "browse_item"}
+    = nest [:wikirate_topic, :search], view: :titled,
+                                       title: "Topics",
+                                       items: { view: :browse_item }
   .row
-    = nest "Metric+*search", view: :titled, title: "Metrics", items: { view: "browse_item" }
+    = nest [:metric, :search], view: :titled,
+                               title: "Metrics",
+                               items: { view: :browse_item }

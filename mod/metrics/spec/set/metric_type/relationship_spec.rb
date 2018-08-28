@@ -42,4 +42,45 @@ describe Card::Set::MetricType::Relationship do
         .to contain_exactly "bigger than"
     end
   end
+
+  describe "event: delete_relationship_answers" do
+    let(:metric) { "Jedi+more evil" }
+    let(:metric_card) { Card[metric] }
+    let(:company) { "SPECTRE" }
+
+    # TODO: move to helper
+    def with_param key, value
+      Card::Env.params[key] = value
+      yield
+    ensure
+      Card::Env.params.delete key
+    end
+
+    def delete_answers
+      with_param :company, company do
+        metric_card.update_attributes trigger: :delete_relationship_answers
+      end
+    end
+
+    it "fails without admin permission" do
+      delete_answers
+      expect(metric_card.errors).to have_key(:answers)
+    end
+
+    it "deletes subject answers", as_bot: true do
+      delete_answers
+      expect(Card.fetch(metric, company)).not_to be_real
+    end
+
+    it "deletes object answers", as_bot: true do
+      delete_answers
+      expect(Card["#{metric}+Death Star+1977+#{company}"]).to be_nil
+    end
+
+    it "does not delete unrelated object answers", as_bot: true do
+      delete_answers
+      unrelated_answer = Card["#{metric}+Death Star+1977+Los Pollos Hermanos"]
+      expect(unrelated_answer).to be_instance_of(Card)
+    end
+  end
 end

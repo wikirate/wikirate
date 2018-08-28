@@ -22,6 +22,7 @@ format :html do
       text_with_image image: card.field(:image),
                       size: :small,
                       text: listing_details_compact,
+                      title: render_link,
                       media_left_extras: media_left_progress,
                       media_opts: { class: "bar left-stripe drop-shadow bg-white" }
     end
@@ -30,7 +31,7 @@ format :html do
   view :bar do
     bar_layout do
       text_with_image image: card.field(:image),
-                      size: opts[:size],
+                      size: voo.size,
                       title: render_link,
                       text: bar_details
     end
