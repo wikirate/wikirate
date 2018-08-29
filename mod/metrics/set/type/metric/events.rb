@@ -42,12 +42,9 @@ event :update_lookup_answers, :integrate,
   formula_card&.regenerate_answers if refresh(true).calculated?
 end
 
-event :delete_answers, :prepare_to_validate, on: :update, trigger: :required do
+event :delete_all_answers, :prepare_to_validate, on: :update, trigger: :required do
   if Card::Auth.always_ok? # TODO: come up with better permissions scheme for this!
-    metric_answer_cards.each do |answer_card|
-      answer_card.trash = true
-      add_subcard answer_card
-    end
+    metric_answer_cards.each { |answer_card| delete_as_subcard answer_card }
   else
     errors.add :answers, "only admins can delete all answers"
   end
