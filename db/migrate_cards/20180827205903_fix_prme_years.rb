@@ -2,29 +2,39 @@
 
 class FixPrmeYears < Card::Migration
   def up
-    duplicate_list = []
+    conflicts = []
     each_broken_answer_id do |answer_id|
       if (answer = Card.fetch answer_id)
-        update_answer_or_track_duplicate answer, duplicate_list
+        update_answer_or_track_duplicate answer, conflicts
       else
         puts "no card for answer_id: #{answer_id}"
       end
     end
-    store_duplicates duplicate_list
+    track_conflicts conflicts
   end
 
-  def update_answer_or_track_duplicate answer, duplicate_list
+  def update_answer_or_track_duplicate answer, conflicts
     new_name = answer.name.gsub /7$/, "6"
-    if Card[new_name]
-      duplicate_list << answer.name
+    if (duplicate = Card[new_name])
+      handle_duplicate duplicate, answer, conflicts
     else
       answer.update_attributes! name: new_name
     end
   end
+  
+  def handle_duplicate duplicate, answer, conflicts
+    if duplicate.value == answer.value
+      # newer answer is exact duplicate
+      answer.delete!
+    else
+      # inexact duplicate. save so we can compare
+      conflicts << answer.name
+    end
+  end
 
-  def store_duplicates duplicates
-    return if duplicates.empty?
-    Card.create name: "PRME duplicates", type_id: Card::PointerID, content: duplicates
+  def track_conflicts conflicts
+    return if conflicts.empty?
+    Card.create name: "PRME conflicts", type_id: Card::PointerID, content: conflicts
   end
 
   def each_broken_answer_id
