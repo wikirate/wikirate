@@ -55,6 +55,12 @@ RSpec.describe Answer do
       delete answer_name
       expect(answer).to be_nil
     end
+
+    it "updates latest" do
+      delete "#{metric}+Apple_Inc+2015"
+      new_latest = Answer.find_by_answer_id Card.fetch_id("#{metric}+Apple_Inc+2014")
+      expect(new_latest.latest).to be_truthy
+    end
   end
 
   describe "updates" do

@@ -2,6 +2,7 @@
 
 class FixPrmeYears < Card::Migration
   def up
+    repair_answers_without_latest
     conflicts = []
     each_broken_answer_id do |answer_id|
       if (answer = Card.fetch answer_id)
@@ -11,6 +12,11 @@ class FixPrmeYears < Card::Migration
       end
     end
     track_conflicts conflicts
+  end
+
+  def repair_answers_without_latest
+    # not the most efficient way (unless measured in dev time!)
+    Answer.where(latest: false).find_each &:latest_to_true
   end
 
   def update_answer_or_track_duplicate answer, conflicts
