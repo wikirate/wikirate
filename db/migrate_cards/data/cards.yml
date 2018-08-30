@@ -624,7 +624,7 @@
   :codename: :featured_answers
   :key: homepage_featured_answer
 :remotes:
-  :live: http://wikirate.org
-  :dev: http://dev.wikirate.org
-  :staging: http://staging.wikirate.org
-  :production: http://wikirate.org
+  :live: https://wikirate.org
+  :dev: https://dev.wikirate.org
+  :staging: https://staging.wikirate.org
+  :production: https://wikirate.org
