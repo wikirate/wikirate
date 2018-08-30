@@ -18,7 +18,7 @@ def update_existing_answer answer, value
   if already_researched? answer
     update_overridden_calculated_value answer, value
   else
-    value ? answer.update_value(value) : answer.delete
+    value ? answer.update_value(value) : answer.destroy
   end
   answer.card.instance_variable_set("@answer", nil)
 end
