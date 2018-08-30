@@ -53,3 +53,52 @@ table {
     }
   }
 }
+
+.project-summary {
+  .media{
+    border: 1px solid $border-color;
+    margin: 5px 0px;
+    padding: 10px;
+  }
+  .progress {
+    min-width: 250px;
+    margin: 0px 10px;
+  }
+  .percent-researched{
+    padding-left: 4px;
+  }
+  .media-heading a {
+    color: inherit;
+  }
+  &:hover .media-heading a {
+    color: $primary;
+  }
+  .media-left {
+    .progress {
+      min-width: 64px;
+      margin: -5px 0;
+      height: 8px;
+    }
+    .badge {
+      padding-left: 1.5rem;
+      padding-bottom: 10px;
+    }
+    .progress-bar {
+      color: transparent;
+    }
+    .progress-unknown, .progress-known {
+      background: #495057;
+    }
+  }
+  .media-left-extras {
+    margin-top: -5px;
+    .d-inline-flex {
+      display: inline !important;
+      padding-top: 5px;
+    }
+  }
+}
+
+.project-details-info {
+    color: $overview-color;
+}

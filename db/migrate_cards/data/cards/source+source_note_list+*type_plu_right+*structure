@@ -1,3 +1,0 @@
-<a  class="btn btn-primary" href='/new/Note?_Source={{_1|name}}'>Add a Note from this Source</a>
-<br>
-{{_1+source note search|| content ;structure:note item}}

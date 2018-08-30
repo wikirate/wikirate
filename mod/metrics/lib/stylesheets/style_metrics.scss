@@ -248,7 +248,7 @@
     width: 100px;
     float: left;
     height: 100px;
-    border: 1px solid #ebebeb;
+    border: 1px solid $border-color;
     margin-left: 10px;
     .TYPE-image {
       height: 100px;
@@ -281,10 +281,10 @@
 }
 
 .TYPE-metric_value {
-  &.LTYPE_RTYPE-html-year > .card-frame > .card-body {
-    padding: 0px;
-    margin-top: 1px;
-  }
+  // &.LTYPE_RTYPE-html-year > .card-frame > .card-body {
+  //   padding: 0px;
+  //   margin-top: 1px;
+  // }
   .RIGHT-discussion,
   .TYPE_PLUS_RIGHT-metric_value-source,
   .timeline {
@@ -338,7 +338,7 @@
 
 fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   display: inline-block;
-  background-color: $gray-background-color;
+  background-color: $gray-100;
   padding: 10px;
 }
 
@@ -391,7 +391,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   font-size: 0.66em;
   font-weight: normal;
   white-space: nowrap;
-  border: solid 1px #ebebeb;
+  border: solid 1px $border-color;
   display: inline-block;
   padding: 7px;
   margin-bottom: 8px;
@@ -538,17 +538,17 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 
 //Div alignments
 .left-col {
-  border-right: 1px solid #ebebeb;
+  border-right: 1px solid $border-color;
 }
 
 .right-col {
-  border-left: 1px solid #ebebeb;
+  border-left: 1px solid $border-color;
   margin-left: -1px;
 }
 
 // metric value details
 #metric-container, #source-preview-main {
-  border: 1px solid $div-border-color;
+  border: 1px solid $gray-100;
   background: #fff;
 
   .thumbnail {
@@ -664,7 +664,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   //.answer_table-view.LTYPE_RTYPE-metric-company {
   //  margin: 0px;
   //  padding: 10px;
-  //  //border: 1px solid #ebebeb;
+  //  //border: 1px solid $border-color;
   //}
 
   td.year {
@@ -678,7 +678,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 }
 
 .new-value-form {
-  border-top: 1px solid #ebebeb;
+  border-top: 1px solid $border-color;
   padding-top: 10px;
   margin-top: 15px;
 }
@@ -721,7 +721,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 .contribution-item {
   overflow: hidden;
   //cursor: move;
-  border: 1px solid #ebebeb;
+  border: 1px solid $border-color;
   clear: both;
   margin-bottom: -1px;
 

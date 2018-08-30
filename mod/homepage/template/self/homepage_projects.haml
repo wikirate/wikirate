@@ -1,0 +1,13 @@
+.row.m-0.pb-5.transparent-background-white.nodblclick.slide-container.border-top
+  .col-12.text-center.p-3
+    %h1.font-weight-light.m-4 Projects
+  .col-sm-6.col-12.text-center.p-5.d-flex.align-items-center
+    %div
+      %h3.font-weight-light
+        = nest :homepage_project_text, view: :core
+      %a.btn.btn-outline-secondary.m-3{href: "/Projects"}
+        Explore Projects
+        .fa.fa-arrow-circle-right.ml-1.fa-lg
+  .col-sm-6
+    = nest :homepage_featured_projects, items: { view: :listing_compact }, wql: { limit: 3 },
+                               hide: :paging

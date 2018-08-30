@@ -1,26 +1,37 @@
 .nodblclick.row.m-0.p-0
-  .col-md-12.top-banner-wrapper.white-text.banner-background
-    .row.padding-top-20
-    .float-left.col-md-9.col-sm-12.col-xs-12.banner-lead
-      .col-md-2.col-sm-12.col-xs-12.banner-image.float-left
+  .col-12.top-banner-wrapper.white-text.banner-background.slide-container.vh-90
+    .col-12.banner-lead.text-center.mt-0.mt-md-4
+      .banner-image
         = nest :wikirate_white_logo, view: :core, size: :medium
-      .col-md-10
-        %span.wikirate-logo-title
-          Wiki
-          %strong> Rate
-        %h3.white-text.no-bold-text.m-0.p-0 A global collaboration to research corporate impacts.
-        %p.lead Let's make companies better, together.
-        %br/
-    %br/
-    .float-right.col-md-3.col-xs-12.col-sm-12.btn-group-vertical.banner-buttons
-      = link_to_card "homepage: video container",
-                     "#{fa_icon "play-circle"} Watch Intro Video",
-                     path: { layout: :modal },
-                     class: "btn btn-outline-secondary slotter",
-                     "data-target" => "#modal-main-slot",
-                     "data-toggle" => "modal"
-
-      = link_to_card :about,
-                     "#{fa_icon "arrow-circle-o-right"} About WikiRate",
-                     class: "btn btn-outline-secondary"
-    .row.padding-top-20
+      %span.wikirate-logo-title
+        Wiki
+        %strong> Rate
+      %p.lead.mb-0.mb-md-5 Let's make companies better, together.
+      .pt-5.mt-0.mt-md-5
+        %h3.white-text.font-weight-normal
+          %span
+            How does
+          %span.font-weight-bold.dotted-bottom-border.mr-2.loading-text
+            %span.flip-this-default
+            %span.flip-this
+              = companies.join("|")
+          %span
+            perform on
+          %span.font-weight-bold.dotted-bottom-border.loading-text
+            %span.flip-this-default
+            %span.flip-this
+              = topics.join("|")
+          %span
+            ?
+        %h3.white-text.font-weight-normal
+          %span
+            To know and act, you need
+          %span.font-weight-bold.dotted-bottom-border.mr-2.loading-text
+            %span.flip-this-default
+            %span.flip-this
+              = adjectives.join("|")
+          %span
+            data.
+    .align-to-end.h5.font-weight-normal.our-solution
+      %p.m-1 Our Solution
+      %a.fa.fa-chevron-down.text-white._our_solution

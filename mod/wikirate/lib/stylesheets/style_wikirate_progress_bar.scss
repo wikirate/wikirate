@@ -17,7 +17,7 @@
 .progress {
   .progress-known, .progress-unknown {
     a {
-       color: $white-text-color;
+       color: $white;
     }
   }
   .progress-not-researched a {
@@ -47,8 +47,10 @@
 }
 
 .default-progress-box .progress {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
   .progress-bar {
-    background-color: $main-color;
+    background-color: $body-text-color;
   }
   .progress-unknown.progress-bar {
     opacity: 0.7;
@@ -57,7 +59,7 @@
 }
 
 .progress .progress-not-researched.progress-bar {
-  background-color: $div-border-color;
+  background-color: $gray-200;
   color: $heading-color;
 }
 
@@ -117,23 +119,6 @@
   clear:both;
 }
 
-.project-summary {
-  .media{
-    border: 1px solid $border-color;
-    margin: 5px 0px;
-    padding: 10px;
-  }
-  .progress {
-    min-width: 250px;
-    margin: 0px 10px;
-  }
-  .percent-researched{
-    padding-left: 4px;
-  }
-}
-.project-details-info {
-    color: $overview-color;
-}
 
 //TODO make this generic
 .organized-by {

@@ -14,7 +14,7 @@ td {
       font-size: 1.5em;
       z-index: 5;
       &.bronze, &.gold, &.silver {
-        text-shadow: 2px 2px #ebebeb;
+        text-shadow: 2px 2px $border-color;
       }
     }
   }
@@ -56,7 +56,7 @@ div.badge-certificate {
 
     .affinity-line {
       height: 100%;
-      border-left: solid 1px #ebebeb;
+      border-left: solid 1px $border-color;
       position: relative;
       bottom: 50%;
     }
@@ -68,8 +68,3 @@ div.badge-certificate {
     }
   }
 }
-
-
-
-
-
