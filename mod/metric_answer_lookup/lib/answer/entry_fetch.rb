@@ -6,11 +6,11 @@ class Answer
     end
 
     def fetch_company_id
-      card.left.right_id
+      Card.fetch_id fetch_record_name.right
     end
 
     def fetch_metric_id
-      Card.fetch_id card.name.left_name.left
+      Card.fetch_id fetch_record_name.left
     end
 
     def fetch_record_id
@@ -32,7 +32,7 @@ class Answer
     end
 
     def fetch_record_name
-      card.name.left
+      card.name.left_name
     end
 
     def fetch_year
