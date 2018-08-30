@@ -14,7 +14,7 @@ class Answer
     end
 
     def fetch_record_id
-      card.left_id || card.left.id
+      card.left_id || Card.fetch_id(fetch_record_name)
     end
 
     def fetch_metric_name
