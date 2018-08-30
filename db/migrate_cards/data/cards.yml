@@ -623,6 +623,126 @@
   :type: Pointer
   :codename: :featured_answers
   :key: homepage_featured_answer
+- :name: Industry
+  :type: Metric Title
+  :key: industry
+- :name: Commons+Industry
+  :type: Metric
+  :key: common+industry
+- :name: Commons+Industry+Formula
+  :type: PlainText
+  :key: common+industry+formula
+- :name: Commons+Industry+value type
+  :type: Pointer
+  :key: common+industry+value_type
+- :name: Commons+Industry+Research Policy
+  :type: Pointer
+  :key: common+industry+research_policy
+- :name: Commons+Industry+hybrid
+  :type: Toggle
+  :key: common+industry+hybrid
+- :name: Commons+Industry+question
+  :type: PlainText
+  :key: common+industry+question
+- :name: Commons+Industry+*metric type
+  :type: Pointer
+  :key: common+industry+*metric_type
+- :name: ISIC
+  :type: Research Group
+  :key: isic
+- :name: Industry Section
+  :type: Metric Title
+  :key: industry_section
+- :name: ISIC+Industry Section
+  :type: Metric
+  :key: isic+industry_section
+- :name: ISIC+Industry Section+*metric type
+  :type: Pointer
+  :key: isic+industry_section+*metric_type
+- :name: ISIC+Industry Section+value type
+  :type: Pointer
+  :key: isic+industry_section+value_type
+- :name: ISIC+Industry Section+question
+  :type: PlainText
+  :key: isic+industry_section+question
+- :name: ISIC+Industry Section+hybrid
+  :type: Toggle
+  :key: isic+industry_section+hybrid
+- :name: ISIC+Industry Section+Research Policy
+  :type: Pointer
+  :key: isic+industry_section+research_policy
+- :name: ISIC+Industry Section+methodology
+  :type: Basic
+  :key: isic+industry_section+methodology
+- :name: Industry Division
+  :type: Metric Title
+  :key: industry_division
+- :name: ISIC+Industry Division
+  :type: Metric
+  :key: isic+industry_division
+- :name: ISIC+Industry Division+*metric type
+  :type: Pointer
+  :key: isic+industry_division+*metric_type
+- :name: ISIC+Industry Division+value type
+  :type: Pointer
+  :key: isic+industry_division+value_type
+- :name: ISIC+Industry Division+question
+  :type: PlainText
+  :key: isic+industry_division+question
+- :name: ISIC+Industry Division+hybrid
+  :type: Toggle
+  :key: isic+industry_division+hybrid
+- :name: ISIC+Industry Division+Research Policy
+  :type: Pointer
+  :key: isic+industry_division+research_policy
+- :name: ISIC+Industry Division+methodology
+  :type: Basic
+  :key: isic+industry_division+methodology
+- :name: Industry Group
+  :type: Metric Title
+  :key: industry_group
+- :name: ISIC+Industry Group
+  :type: Metric
+  :key: isic+industry_group
+- :name: ISIC+Industry Group+*metric type
+  :type: Pointer
+  :key: isic+industry_group+*metric_type
+- :name: ISIC+Industry Group+value type
+  :type: Pointer
+  :key: isic+industry_group+value_type
+- :name: ISIC+Industry Group+question
+  :type: PlainText
+  :key: isic+industry_group+question
+- :name: ISIC+Industry Group+hybrid
+  :type: Toggle
+  :key: isic+industry_group+hybrid
+- :name: ISIC+Industry Group+Research Policy
+  :type: Pointer
+  :key: isic+industry_group+research_policy
+- :name: ISIC+Industry Group+methodology
+  :type: Basic
+  :key: isic+industry_group+methodology
+- :name: Industry Class
+  :type: Metric Title
+  :key: industry_class
+- :name: ISIC+Industry Class
+  :type: Metric
+  :key: isic+industry_class
+- :name: ISIC+Industry Class+*metric type
+  :type: Pointer
+  :key: isic+industry_class+*metric_type
+- :name: ISIC+Industry Class+methodology
+  :type: Basic
+  :key: isic+industry_class+methodology
+- :name: ISIC+Industry Class+value type
+  :type: Pointer
+  :key: isic+industry_class+value_type
+- :name: ISIC+Industry Class+Research Policy
+  :type: Pointer
+  :key: isic+industry_class+research_policy
+- :name: ISIC+Industry Class+question
+  :type: PlainText
+  :key: isic+industry_class+question
 :remotes:
   :live: https://wikirate.org
   :dev: https://dev.wikirate.org
