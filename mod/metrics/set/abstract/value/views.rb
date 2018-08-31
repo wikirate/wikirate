@@ -11,36 +11,43 @@ format :html do
   end
 
   view :pretty do
-    span_args = { class: "metric-value" }
-    add_class span_args, grade if ten_scale?
-    add_class span_args, :small if pretty_value.length > 5
-    wrap_with :span, span_args do
+    wrap_with :span, pretty_span_args do
       beautify(pretty_value).html_safe
     end
   end
 
+  # do not link to the relationship answer counts that comprise the "value" of
+  # relationship metric answers.
   before :pretty_link do
-    voo.hide! :link if metric_card.relationship? && left.type_id == Card::MetricAnswerID
+    voo.hide! :link if card.relationship_count_value?
   end
 
   view :pretty_link do
     voo.show :link
-    text = beautify(pretty_value)
     wrap_with :span, class: "metric-value", title: card.content do
-      if voo.hide? :link
-        text
-      else
-        link_to(text, path: "/#{card.name.left_name.url_key}", target: "_blank")
-      end
+      pretty_link beautify(pretty_value)
     end
   end
 
   # for override
+  # this is the simple text form of the value that will be made pretty
   def pretty_value
     @pretty_value ||= card.value
   end
 
   private
+
+  def pretty_link text
+    return text if voo.hide? :link
+    link_to text, path: "/#{card.name.left_name.url_key}", target: "_blank"
+  end
+
+  def pretty_span_args
+    span_args = { class: "metric-value" }
+    add_class span_args, grade if ten_scale?
+    add_class span_args, :small if pretty_value.length > 5
+    span_args
+  end
 
   def ten_scale?
     card.left.ten_scale?

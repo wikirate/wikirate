@@ -36,15 +36,10 @@ format :html do
   end
 
   def check_request_field_card_and_options
-    [card.left(new: {}).fetch(trait: :checked_by, new: {}), { hide: :title }]
+    [check_request_base.fetch(trait: :checked_by, new: {}), { hide: :title }]
   end
 
-  def metric_name_from_params
-    Env.params[:metric]
-  end
-
-  def metric_card
-    @metric_card = (metric_name = metric_name_from_params || card.metric) &&
-                   Card[metric_name]
+  def check_request_base
+    card.left new: {}
   end
 end
