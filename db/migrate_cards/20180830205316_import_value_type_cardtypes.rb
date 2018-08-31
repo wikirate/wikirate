@@ -20,7 +20,7 @@ class ImportValueTypeCardtypes < Card::Migration
   end
 
   def each_answer_value
-    Card.where(right_id: Card::ValueID).find_in_batches do |card|
+    Card.where(right_id: Card::ValueID).find_each do |card|
       # not super efficient querying, but without batches
       # this will probably bog down the server.
       yield card if TYPE_IDS.member? card.left.type_id

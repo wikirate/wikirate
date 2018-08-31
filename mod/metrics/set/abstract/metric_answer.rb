@@ -39,6 +39,8 @@ def currency
   (metric_card.value_type == "Money" && metric_card.currency) || nil
 end
 
+# so that all fields show up in history
+# (not needed when they can be identified via a more conventional form)
 def history_card_ids
   field_card_ids << id
 end
