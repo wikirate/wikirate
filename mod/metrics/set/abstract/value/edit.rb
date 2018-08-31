@@ -1,5 +1,5 @@
 def unknown_field_card
-  attach_subfield :unknown, content: (value_unknown? ? "1" : "0")
+  attach_subfield :unknown, content: (unknown_value? ? "1" : "0")
 end
 
 format :html do
