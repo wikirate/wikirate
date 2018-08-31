@@ -29,7 +29,7 @@ namespace :wikirate do
 
   def import_from_url url
     import_cards do
-      JSON.parse(open(url).read).map &:deep_symbolize_keys
+      JSON.parse(open(url).read).map(&:deep_symbolize_keys)
     end
   end
 
