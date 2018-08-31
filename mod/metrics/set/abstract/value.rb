@@ -39,10 +39,3 @@ end
 # def record_card
 #   Card.fetch record
 # end
-
-format :html do
-  view :core do
-    card.item_names.join(",")
-  end
-end
-

@@ -48,10 +48,6 @@ end
 
 private
 
-def unknown_subfield
-  subfield(:unknown
-end
-
 # in some cases, deleting a metric can lead to its scores getting deleted
 # and losing their metric modules before a save is finalized.
 # This (somewhat hacky) fix is to ensure that such metrics act as metrics.
