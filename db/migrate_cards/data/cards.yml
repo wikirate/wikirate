@@ -626,123 +626,163 @@
 - :name: Industry
   :type: Metric Title
   :key: industry
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: Commons+Industry
   :type: Metric
   :key: common+industry
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: Commons+Industry+Formula
   :type: PlainText
   :key: common+industry+formula
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: Commons+Industry+value type
   :type: Pointer
   :key: common+industry+value_type
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: Commons+Industry+Research Policy
   :type: Pointer
   :key: common+industry+research_policy
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: Commons+Industry+hybrid
   :type: Toggle
   :key: common+industry+hybrid
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: Commons+Industry+question
   :type: PlainText
   :key: common+industry+question
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: Commons+Industry+*metric type
   :type: Pointer
   :key: common+industry+*metric_type
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC
   :type: Research Group
   :key: isic
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: Industry Section
   :type: Metric Title
   :key: industry_section
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Section
   :type: Metric
   :key: isic+industry_section
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Section+*metric type
   :type: Pointer
   :key: isic+industry_section+*metric_type
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Section+value type
   :type: Pointer
   :key: isic+industry_section+value_type
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Section+question
   :type: PlainText
   :key: isic+industry_section+question
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Section+hybrid
   :type: Toggle
   :key: isic+industry_section+hybrid
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Section+Research Policy
   :type: Pointer
   :key: isic+industry_section+research_policy
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Section+methodology
   :type: Basic
   :key: isic+industry_section+methodology
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: Industry Division
   :type: Metric Title
   :key: industry_division
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Division
   :type: Metric
   :key: isic+industry_division
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Division+*metric type
   :type: Pointer
   :key: isic+industry_division+*metric_type
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Division+value type
   :type: Pointer
   :key: isic+industry_division+value_type
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Division+question
   :type: PlainText
   :key: isic+industry_division+question
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Division+hybrid
   :type: Toggle
   :key: isic+industry_division+hybrid
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Division+Research Policy
   :type: Pointer
   :key: isic+industry_division+research_policy
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Division+methodology
   :type: Basic
   :key: isic+industry_division+methodology
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: Industry Group
   :type: Metric Title
   :key: industry_group
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Group
   :type: Metric
   :key: isic+industry_group
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Group+*metric type
   :type: Pointer
   :key: isic+industry_group+*metric_type
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Group+value type
   :type: Pointer
   :key: isic+industry_group+value_type
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Group+question
   :type: PlainText
   :key: isic+industry_group+question
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Group+hybrid
   :type: Toggle
   :key: isic+industry_group+hybrid
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Group+Research Policy
   :type: Pointer
   :key: isic+industry_group+research_policy
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Group+methodology
   :type: Basic
   :key: isic+industry_group+methodology
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: Industry Class
   :type: Metric Title
   :key: industry_class
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Class
   :type: Metric
   :key: isic+industry_class
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Class+*metric type
   :type: Pointer
   :key: isic+industry_class+*metric_type
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Class+methodology
   :type: Basic
   :key: isic+industry_class+methodology
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Class+value type
   :type: Pointer
   :key: isic+industry_class+value_type
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Class+Research Policy
   :type: Pointer
   :key: isic+industry_class+research_policy
+  :merged: 2018-08-30 18:59:43 UTC
 - :name: ISIC+Industry Class+question
   :type: PlainText
   :key: isic+industry_class+question
+  :merged: 2018-08-30 18:59:43 UTC
 :remotes:
   :live: https://wikirate.org
   :dev: https://dev.wikirate.org
