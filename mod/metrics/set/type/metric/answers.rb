@@ -79,7 +79,6 @@ def value_options
 end
 
 def numeric?
-  # FIXME: value type options should have a codename
   calculated? || value_type_code.in?(%i[number money])
 end
 
