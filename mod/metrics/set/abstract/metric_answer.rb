@@ -1,4 +1,3 @@
-card_accessor :value, type: :phrase
 card_accessor :checked_by
 card_accessor :check_requested_by
 card_accessor :source
@@ -12,12 +11,19 @@ def value
   virtual? ? content : value_card&.value
 end
 
-alias_method :real_value_card, :value_card
+def fetch_value_card
+  new_args = new? ? { type_code: value_cardtype_code } : {}
+  fetch trait: :value, new: new_args
+end
 
 def value_card
-  vc = real_value_card
+  vc = fetch_value_card
   vc.content = value if virtual?
   vc
+end
+
+def value_cardtype_code
+  :"#{metric_card.value_type_code}_value"
 end
 
 def raw_value

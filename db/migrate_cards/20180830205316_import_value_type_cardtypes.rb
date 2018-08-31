@@ -15,11 +15,14 @@ class ImportValueTypeCardtypes < Card::Migration
   end
 
   def type_for value_card
+    # or maybe value_card.left.value_cardtype_code ?
     :"#{value_card.metric_card.value_type_code}_value"
   end
 
   def each_answer_value
     Card.where(right_id: Card::ValueID).find_in_batches do |card|
+      # not super efficient querying, but without batches
+      # this will probably bog down the server.
       yield card if TYPE_IDS.member? card.left.type_id
     end
   end
