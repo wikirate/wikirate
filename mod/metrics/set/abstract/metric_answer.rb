@@ -7,13 +7,20 @@ card_accessor :source
 #   overridden answers
 card_accessor :overridden_value, type: :phrase
 
+# virtual card's _values_ are held in the content of the _answer_ card
+# (...not that I understand why - EM)
 def value
   virtual? ? content : value_card&.value
 end
 
+# since real answers require real values, it is assumed that new answers
+# (and only new answers) will have new values
 def fetch_value_card
-  new_args = new? ? { type_code: value_cardtype_code } : {}
-  fetch trait: :value, new: new_args
+  fetch trait: :value, new: (new? ? new_value_card_args : {})
+end
+
+def new_value_card_args
+  { type_code: value_cardtype_code, supercard: self }
 end
 
 def value_card

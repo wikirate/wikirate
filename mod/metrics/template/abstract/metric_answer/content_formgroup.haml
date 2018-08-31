@@ -6,7 +6,7 @@
         = field_nest :related_company, title: "Related Company"
     .value
       -# must nest as value_card (not symbol) to get the correct value cardtype.
-      = field_nest card.value_card, title: "Answer"
+      = nest card.value_card, title: "Answer"
       = haml_partial :citations_formgroup
       = haml_partial :discussion
 
