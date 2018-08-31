@@ -23,7 +23,7 @@ def value_card
 end
 
 def value_cardtype_code
-  :"#{metric_card.value_type_code}_value"
+  metric_card.value_cardtype_code
 end
 
 def raw_value

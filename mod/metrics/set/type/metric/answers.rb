@@ -70,6 +70,10 @@ def value_type_code
   value_type_card.item_cards.first&.codename || default_value_type_code
 end
 
+def value_cardtype_code
+  :"#{value_type_code}_value"
+end
+
 def default_value_type_code
   :free_text
 end

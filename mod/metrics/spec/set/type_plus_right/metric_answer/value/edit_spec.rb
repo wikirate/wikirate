@@ -1,4 +1,4 @@
-describe Card::Set::TypePlusRight::MetricAnswer::Value::Edit do
+RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Value::Edit do
   describe "editor" do
     def editor metric
       render_view :editor, name: "Joe User+#{metric}+Sony_Corporation+2010+value"
@@ -8,7 +8,8 @@ describe Card::Set::TypePlusRight::MetricAnswer::Value::Edit do
       subject { editor "small multi" }
 
       it "has check boxes input" do
-        is_expected.to have_tag :input, with: { value: "1", checked: "checked", type: "checkbox" }
+        is_expected.to have_tag :input,
+                                with: { value: "1", checked: "checked", type: "checkbox" }
         is_expected.to have_tag :input, with: { value: "2", checked: "checked" }
         is_expected.to have_tag :input, with: { value: "3" },
                                         without: { checked: "checked" }
@@ -32,7 +33,8 @@ describe Card::Set::TypePlusRight::MetricAnswer::Value::Edit do
       subject { editor "small single" }
 
       it "has radio buttons input" do
-        is_expected.to have_tag :input, with: { type: "radio", value: "1", checked: "checked" }
+        is_expected.to have_tag :input,
+                                with: { type: "radio", value: "1", checked: "checked" }
         is_expected.to have_tag :input, with: { type: "radio", value: "2" },
                                         without: { checked: "checked" }
       end

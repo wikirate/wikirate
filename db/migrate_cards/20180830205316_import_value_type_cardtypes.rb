@@ -23,7 +23,11 @@ class ImportValueTypeCardtypes < Card::Migration
     Card.where(right_id: Card::ValueID).find_each do |card|
       # not super efficient querying, but without batches
       # this will probably bog down the server.
-      yield card if TYPE_IDS.member? card.left.type_id
+
+      # yield card if TYPE_IDS.member? card.left.type_id
+      # above not working because answers don't have the right type??
+
+      yield card if card.name.parts.size > 2
     end
   end
 end

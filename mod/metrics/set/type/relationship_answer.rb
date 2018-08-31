@@ -94,10 +94,6 @@ def answer
 end
 
 format :html do
-  before :value_link do
-    voo.show! :link if card.relationship?
-  end
-
   view :open_content do
     bs do
       layout do

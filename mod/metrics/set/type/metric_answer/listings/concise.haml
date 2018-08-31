@@ -1,5 +1,5 @@
-.metric-value.text-left.ellipsis{title: pretty_value }
-  = render_pretty_value
+.metric-value.text-left.ellipsis
+  = field_nest :value, view: :pretty
 .small.pt-1.w-100
   %span.metric-unit.text-muted.ellipsis.d-inline-block{title: render_unit }
     = render_unit
