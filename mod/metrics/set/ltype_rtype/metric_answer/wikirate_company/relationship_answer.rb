@@ -17,7 +17,7 @@ format :html do
   end
 
   view :basic_details do
-    field_nest :value, view: :pretty_link
+    nest card.value_card, view: :pretty_link
   end
 
   view :expanded_details do

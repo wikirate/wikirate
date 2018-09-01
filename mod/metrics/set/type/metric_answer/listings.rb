@@ -46,7 +46,7 @@ format :html do
     wrap_with :div, class: "value text-align-left" do
       [
         wrap_with(:span, currency, class: "metric-unit"),
-        field_nest(:value, view: :pretty_link),
+        nest(card.value_card, view: :pretty_link),
         wrap_with(:span, legend, class: "metric-unit"),
         _render_flags,
         _render_chart

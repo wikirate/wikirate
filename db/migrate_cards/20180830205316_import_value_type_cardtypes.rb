@@ -10,13 +10,18 @@ class ImportValueTypeCardtypes < Card::Migration
 
   def update_value_cardtypes
     each_answer_value do |value_card|
-      value_card.update_attributes! type_code: type_for(value_card)
+      value_card.update_attributes! type_id: type_id_for(value_card)
     end
   end
 
-  def type_for value_card
-    # or maybe value_card.left.value_cardtype_code ?
-    :"#{value_card.metric_card.value_type_code}_value"
+  def type_id_for value_card
+    Card::Codename.id type_code_for(value_card)
+  end
+
+  def type_code_for value_card
+    value_card.metric_card.value_cardtype_code
+  rescue
+    :free_text_value
   end
 
   def each_answer_value
@@ -27,7 +32,9 @@ class ImportValueTypeCardtypes < Card::Migration
       # yield card if TYPE_IDS.member? card.left.type_id
       # above not working because answers don't have the right type??
 
-      yield card if card.name.parts.size > 2
+      next unless card.name.parts.size > 2
+      card.include_set_modules
+      yield card
     end
   end
 end

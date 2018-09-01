@@ -75,7 +75,7 @@ def value_cardtype_code
 end
 
 def default_value_type_code
-  :free_text
+  calculated? ? :number : :free_text
 end
 
 def value_options
