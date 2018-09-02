@@ -1,5 +1,5 @@
-include_set Abstract::Value
 include_set Abstract::Pointer
+include_set Abstract::Value
 
 def option_card
   Card.fetch metric, :value_options, new: {}
