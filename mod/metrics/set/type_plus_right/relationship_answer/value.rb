@@ -1,4 +1,5 @@
 include_set Abstract::MetricChild, generation: 4
+include_set Abstract::Value
 
 def relationship_count_value?
   metric_card.relationship? && left.type_id == Card::MetricAnswerID

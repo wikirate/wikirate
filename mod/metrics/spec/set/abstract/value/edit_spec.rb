@@ -12,7 +12,7 @@ RSpec.describe Card::Set::Abstract::Value::Edit do
                                 with: { value: "1", checked: "checked", type: "checkbox" }
         is_expected.to have_tag :input, with: { value: "2", checked: "checked" }
         is_expected.to have_tag :input, with: { value: "3" },
-                                without: { checked: "checked" }
+                                        without: { checked: "checked" }
       end
     end
 
@@ -24,7 +24,7 @@ RSpec.describe Card::Set::Abstract::Value::Edit do
           with_tag :option, with: { value: "1", selected: "selected" }
           with_tag :option, with: { value: "2", selected: "selected" }
           with_tag :option, with: { value: "3" },
-                   without: { selected: "selected" }
+                            without: { selected: "selected" }
         end
       end
     end
@@ -36,7 +36,7 @@ RSpec.describe Card::Set::Abstract::Value::Edit do
         is_expected.to have_tag :input,
                                 with: { type: "radio", value: "1", checked: "checked" }
         is_expected.to have_tag :input, with: { type: "radio", value: "2" },
-                                without: { checked: "checked" }
+                                        without: { checked: "checked" }
       end
     end
 
@@ -47,7 +47,7 @@ RSpec.describe Card::Set::Abstract::Value::Edit do
         is_expected.to have_tag :select, without: { multiple: "multiple" } do
           with_tag :option, with: { value: "4", selected: "selected" }
           with_tag :option, with: { value: "2" },
-                   without: { selected: "selected" }
+                            without: { selected: "selected" }
         end
       end
     end

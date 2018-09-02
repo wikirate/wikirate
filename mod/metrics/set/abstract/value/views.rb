@@ -29,12 +29,6 @@ format :html do
     end
   end
 
-  # for override
-  # this is the simple text form of the value that will be made pretty
-  def pretty_value
-    card.value
-  end
-
   private
 
   def pretty_link text
