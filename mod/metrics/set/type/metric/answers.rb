@@ -59,7 +59,8 @@ end
 # VALUE TYPES
 
 def value_type
-  value_type_card.item_names.first || default_value_type
+  type_from_card = value_type_card.item_names.first
+  type_from_card.present? ? type_from_card : default_value_type
 end
 
 def default_value_type

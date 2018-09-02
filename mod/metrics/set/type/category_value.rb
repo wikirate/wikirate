@@ -1,3 +1,4 @@
+include_set Abstract::Value
 include_set Abstract::Pointer
 
 def option_card

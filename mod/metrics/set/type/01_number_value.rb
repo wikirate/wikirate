@@ -1,3 +1,5 @@
+include_set Abstract::Value
+
 format :html do
   # MOVE TO HAML
   view :editor do
@@ -7,7 +9,7 @@ format :html do
   end
 
   def pretty_value
-    @pretty_value ||= card.unknown_value? ? super : pretty_number
+    card.unknown_value? ? super : pretty_number
   end
 
   def pretty_number

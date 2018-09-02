@@ -32,7 +32,7 @@ format :html do
   # for override
   # this is the simple text form of the value that will be made pretty
   def pretty_value
-    @pretty_value ||= card.value
+    card.value
   end
 
   private
