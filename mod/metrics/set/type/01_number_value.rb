@@ -9,7 +9,7 @@ format :html do
   end
 
   def pretty_value
-    card.unknown_value? ? super : pretty_number
+    @pretty_value ||= card.unknown_value? ? super : pretty_number
   end
 
   def pretty_number

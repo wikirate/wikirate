@@ -138,7 +138,7 @@ format :html do
     <<-HTML
       #{render :year_equals}
       <span class="metric-unit"> #{currency} </span>
-      #{field_nest :value, view: :pretty}
+      #{nest card.value_card, view: :pretty}
       <span class="metric-unit"> #{legend} </span>
     HTML
   end
