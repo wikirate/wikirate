@@ -16,7 +16,7 @@ end
 # since real answers require real values, it is assumed that new answers
 # (and only new answers) will have new values
 def fetch_value_card
-  fetch trait: :value, new: (new? ? new_value_card_args : {})
+  fetch trait: :value, new: new_value_card_args
 end
 
 def new_value_card_args

@@ -63,7 +63,7 @@ class ImportValueTypeCardtypes < Card::Migration
         card.include_set_modules
         yield card
       else
-        binding.pry if card.name.parts.size > 2
+        # binding.pry if card.name.parts.size > 2
       end
     end
   end

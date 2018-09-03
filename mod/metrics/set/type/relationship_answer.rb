@@ -37,7 +37,8 @@ event :add_inverse_count_answer, :prepare_to_store, changed: :content do
 end
 
 def add_count name, count
-  add_subcard name, type_id: MetricAnswerID, subfields: { value: { content: count } }
+  add_subcard name, type_id: MetricAnswerID,
+                    subfields: { value: { content: count, type_id: NumberValueID } }
 end
 
 def update_counts!
