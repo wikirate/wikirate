@@ -141,7 +141,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
 
         it "... keyword" do
           expect(filter_by(metric_value: :none, name: "Inc").sort)
-            .to eq(with_year(["AT&T Inc.+2018", "Amazon.com, Inc.",
+            .to eq(with_year(["AT&T Inc.", "Amazon.com, Inc.",
                               "Apple Inc.", "Google Inc."]))
         end
 
