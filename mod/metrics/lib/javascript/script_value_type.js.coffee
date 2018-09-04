@@ -5,7 +5,7 @@ showField = (divName) ->
   return if divName == ''
   $("." + divName).slideDown(100)
 
-getPropertiesValueType = (value) -> 
+exports.getPropertiesValueType = (value) -> 
   properties = []
   switch value 
     when 'Number', 'Money'
