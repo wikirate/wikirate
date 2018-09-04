@@ -1,8 +1,8 @@
 include_set Abstract::MetricChild, generation: 4
-include_set Abstract::Value
+# include_set Abstract::Value
 
 event :validate_relationship_answer_value_type, :validate, on: :save do
-  errors.add :type, "not a valid +value card" unless type_code.to_s =~ /value$/
+  errors.add :type, "not a valid +value card" unless type_code.to_s.match?(/value$/)
 end
 
 def relationship_count_value?
