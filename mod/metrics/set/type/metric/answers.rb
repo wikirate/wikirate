@@ -75,6 +75,10 @@ def value_cardtype_code
   :"#{value_type_code}_value"
 end
 
+def value_cardtype_id
+  Card::Codename.id value_cardtype_code
+end
+
 def default_value_type_code
   calculated? ? :number : :free_text
 end
