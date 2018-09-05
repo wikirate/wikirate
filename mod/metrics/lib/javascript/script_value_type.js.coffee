@@ -24,14 +24,14 @@ showAndHideProsTable = (value) ->
   showOrHideProperty(properties, 'show') if properties.length > 0
 
 showOrHideProperty = (properties, option) ->
-  element = null
+  elementProperty = null
   properties.forEach (value) ->
-    selector = '#cdp-scope_2_emission-detail_tab td:contains('+value+')'
+    selector = '.metric-properties.table td:contains('+value+')'
     if $($(selector)[1]).parent().length > 0
-      element = $($(selector)[1]).parent()
+      elementProperty = $($(selector)[1]).parent()
     else 
-      element = $($(selector)[0]).parent()
-    if option == 'show' then element.show() else element.hide()
+      elementProperty = $($(selector)[0]).parent()
+    if option == 'show' then elementProperty.show() else elementProperty.hide()
 
 showAndHide = (slot, value) ->
   div_to_show =
@@ -89,5 +89,5 @@ decko.editorInitFunctionMap['._value-type-editor'] = ->
 #        location.reload()
 
 $(document).ready ->
-  valueType = $($('#cdp-scope_2_emission-detail_tab td:contains(Value Type)')).next().find('div.item-name').text()
+  valueType = $($('.metric-properties.table td:contains(Value Type)')).next().find('div.item-name').text()
   showAndHideProsTable(valueType)
