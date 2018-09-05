@@ -12,16 +12,6 @@ RSpec.describe Card::Set::Type::Source, "#views" do
     @source_page = create_page url: @url
   end
 
-  it "metric_import_link" do
-    sourcepage = create_source file: csv_file
-    html = sourcepage.format.render_metric_import_link
-    source_file = sourcepage.fetch trait: :file
-    expected_url = "/#{source_file.name.url_key}?view=import"
-    expect(html).to have_tag("a",
-                             with: { href: expected_url },
-                             text: "Import to metric values")
-  end
-
   describe "original_icon_link" do
     context "with file source" do
       it "renders upload icon" do
