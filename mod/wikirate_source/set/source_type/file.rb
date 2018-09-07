@@ -8,10 +8,4 @@ format :html do
   def icon
     "upload"
   end
-
-  view :metric_import_link do
-    return "" unless card.file_card.csv?
-    link_to_card card.file_card, "Import to metric values",
-                 path: { view: :import }
-  end
 end
