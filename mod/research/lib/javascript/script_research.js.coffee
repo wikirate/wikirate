@@ -15,6 +15,9 @@ decko.slotReady (slot) ->
   $("body").on "change", "#card_subcards__value_subcards__Unknown_content", ->
     toggleAnswerValueField $(this).is(":checked")
 
+  $("body").on "click", "._methodology-tab", ->
+    $('a[href="#research_page-methodology"]').tab("show")
+
 $(document).ready ->
   $("#main:has(>#Research_Page.slot_machine-view)").addClass("pl-0 pr-0")
 

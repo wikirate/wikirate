@@ -14,7 +14,7 @@ format :html do
     link_to_view :edit_year, fa_icon(:edit),
                  path: { RESEARCH_PARAMS_KEY => research_params },
                  remote: true,
-                 class: "slotter _edit-year-link",
+                 class: "slotter _edit-year-link text-dark",
                  "data-slot-selector": ".card-slot.left_research_side-view > div > "\
                                        ".card-slot.TYPE-metric_answer"
   end
@@ -51,17 +51,29 @@ format :html do
   end
 
   view :edit_year, cache: :never, perms: :update do
-    wrap { [edit_year_form, render_titled(hide: :menu)] }
+
+    #wrap { edit_year_form } #, render_titled(hide: :menu)] }
+    edit_year_form
   end
 
   def standard_cancel_button args={}
-    args[:href] = path view: :titled if @slot_view == :edit_year
+    args[:href] = edit_year_cancel_button_path if @slot_view == :edit_year
     super args
+  end
+
+  def edit_year_cancel_button_path
+    path research_params.merge mark: :research_page, view: :year_slot
   end
 
   def edit_year_form
     return not_researchable unless card.metric_card.researchable?
-    research_form(:update) { haml :edit_year_form  }
+    wrap do
+      research_form(:update) do
+        haml :edit_year_form,
+             slot_attr: "border-bottom p-2 pl-4 d-flex wd-100 justify-content-between "\
+                        "flex-nowrap align-items-center"
+      end
+    end
   end
 
   def research_form action

@@ -18,6 +18,7 @@ format :html do
   end
 
   def nest_about
+    return "" if card.about_card.new?
     nest card.about_card, view: :titled, title: "About"
   end
 

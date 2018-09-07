@@ -1,10 +1,13 @@
-%div.nodblclick
-  = answer_form_hidden_tags
-  .editor
-    .year
-      = field_nest :year, title: "Year"
-  .row.buttons
-    .col-md-11.col-centered
+.year{class: slot_attr}
+  .d-flex.flex-nowrap
+    .image-box.icon.bg-white
+      %span.img-helper
+      = fa_icon :calendar, class: "text-muted"
+      
+    = answer_form_hidden_tags
+    .editor
+      .year
+        = field_nest :year, title: "Year"
       = _render_edit_buttons!
       .card-notice
 

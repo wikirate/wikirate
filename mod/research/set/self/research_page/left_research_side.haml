@@ -10,6 +10,8 @@
   .border-bottom.background-grey.p-2.pl-4
     %h5
       Question
+      %span.pull-right
+        = button_tag "View Methodology", class: "_methodology-tab btn btn-sm btn-outline-secondary"
     .large-text
       = nest [metric, :question], view: :core
   .p-2.pl-4
