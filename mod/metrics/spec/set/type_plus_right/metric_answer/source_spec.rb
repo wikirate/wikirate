@@ -16,7 +16,7 @@ describe Card::Set::TypePlusRight::MetricAnswer::Source do
         "+metric" => { "content" => metric.name },
         "+company" => { "content" => "[[#{company.name}]]",
                         :type_id => Card::PointerID },
-        "+value" => { "content" => "10", :type_id => Card::PhraseID },
+        "+value" => { "content" => "10", :type_id => metric.value_cardtype_id },
         "+year" => { "content" => "2015", :type_id => Card::PointerID },
         "+source" => {
           "subcards" => {

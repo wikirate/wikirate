@@ -127,7 +127,7 @@ RSpec.describe Card::Set::MetricType::Formula do
     describe "#value_type" do
       subject { metric.value_type }
 
-      it { is_expected.to eq "Free Text" }
+      it { is_expected.to eq "Number" }
     end
     describe "#categorical?" do
       subject { metric.categorical? }

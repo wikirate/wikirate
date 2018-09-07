@@ -38,11 +38,13 @@ format :html do
       tabs["Source"] = cite_source_tab hide: !cite_mode?
       tabs["View Source"] = view_source_tab hide: hide_view_source_tab?
     end
-    tabs["Metric details"] = metric_details_tab if metric?
-    tabs['Need Help? <span class="badge badge-danger">New</span>'] =
+    tabs["Methodology"] = metric_details_tab if metric?
+    tabs['Need Help?'] =
       nest :how_to_research, view: :content
     static_tabs tabs, active_tab, "tabs", pane: { class: "p-3" }
   end
+
+  NEW_BADGE = '<span class="badge badge-danger">New</span>'.freeze
 
   def cite_mode?
     answer_card.unknown? || @answer_view == :research_edit_form
@@ -63,7 +65,7 @@ format :html do
 
   def metric_details_tab
     nest metric, view: :main_details,
-                 hide: [:add_value_buttons, :import_button]
+                 hide: [:add_value_buttons, :import_button, :about]
   end
 
   def hide_tab tab, hide=false
@@ -82,6 +84,10 @@ format :html do
     end
   end
 
+  view :year_slot, cache: :never do
+    haml_partial :year_slot
+  end
+
   # slot means slot machine slot not card slot
   def slot_attr
     "border-bottom p-2 pl-4 d-flex wd-100 justify-content-between flex-nowrap " \
@@ -89,7 +95,7 @@ format :html do
   end
 
   def answer_slot
-    opts = { title: "Answer", hide: :cited_source_links }
+    opts = { title: "Answer", hide: [:cited_source_links, :hover_link] }
     opts[:view] = answer_view
     nest answer_card, opts
   end
