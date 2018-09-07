@@ -6,25 +6,23 @@ class Answer
     end
 
     def fetch_company_id
-      card.left.right_id
+      Card.fetch_id fetch_record_name.right
     end
 
     def fetch_metric_id
-      Card.fetch_id card.name.left_name.left
+      Card.fetch_id fetch_record_name.left
     end
 
     def fetch_record_id
-      card.left_id || card.left.id
+      card.left_id || Card.fetch_id(fetch_record_name)
     end
 
     def fetch_metric_name
       Card.fetch_name(metric_id || fetch_metric_id)
-      # card.name.left_name.left
     end
 
     def fetch_company_name
       Card.fetch_name(company_id || fetch_company_id)
-      # card.name.left_name.right
     end
 
     def fetch_title_name
@@ -32,7 +30,7 @@ class Answer
     end
 
     def fetch_record_name
-      card.name.left
+      card.name.left_name
     end
 
     def fetch_year
@@ -61,9 +59,8 @@ class Answer
     end
 
     def fetch_policy_id
-      return unless (policy_pointer = metric_card.fetch(trait: :research_policy))
-      policy_name = policy_pointer.item_names.first
-      (pc = Card.quick_fetch(policy_name)) && pc.id
+      policy_name = metric_card.fetch(trait: :research_policy)&.item_names&.first
+      Card.fetch_id policy_name if policy_name
     end
 
     def fetch_metric_type_id

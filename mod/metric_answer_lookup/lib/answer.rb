@@ -15,6 +15,8 @@ class Answer < ApplicationRecord
   validate :must_be_an_answer, :card_must_exist, unless: :virtual?
   validate :metric_must_exit
 
+  after_destroy :latest_to_true
+
   def self.existing id
     return unless id
     find_by_answer_id(id) || (refresh(id) && find_by_answer_id(id))
@@ -30,22 +32,19 @@ class Answer < ApplicationRecord
     @card ||= find_answer_card || virtual_answer_card
   end
 
-  def delete
-    super.tap do
-      if (latest_year = latest_year_in_db)
-        Answer.where(record_id: record_id, year: latest_year)
-              .update_all(latest: true)
-      end
-    end
-  end
-
   def latest_year_in_db
-    Answer.where(record_id: fetch_record_id).maximum(:year)
+    self.record_id ||= fetch_record_id
+    Answer.where(record_id: record_id).maximum :year
   end
 
   def latest_to_false
-    Answer.where(record_id: record_id, latest: true)
-          .update_all(latest: false)
+    Answer.where(record_id: record_id, latest: true).update_all(latest: false)
+  end
+
+  def latest_to_true
+    return unless (latest_year = latest_year_in_db)
+    Answer.where(record_id: record_id, year: latest_year, latest: false)
+          .update_all latest: true
   end
 
   def latest= value
