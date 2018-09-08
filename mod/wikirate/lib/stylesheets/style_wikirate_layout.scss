@@ -228,3 +228,13 @@ div[data-slot*="float:right"]{
   // on company pages is not visible
   white-space: pre-wrap;
 }
+
+.home-layout.wikirate-layout > nav.navbar {
+    @include box-shadow(0, 9px, 20px, rgba(0, 0, 0, .06));
+    border: 0
+}
+
+.wikirate-layout > nav.navbar {
+    box-shadow: none;
+    border-bottom: 1px solid $border-color;
+}

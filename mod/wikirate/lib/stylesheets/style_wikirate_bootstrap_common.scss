@@ -695,48 +695,17 @@ div#pdf-preview {
   }
 }
 
-.new-source-widget {
-  background: #fffbe6;
-  border: 1px solid $border-color;
-
-  .tab-content {
-    background: #fffbe6;
-    padding: 10px 10px 0 12px;
-    float: left;
-    width: 100%;
-  }
-
-  .row-data.first-meta {
-    margin-top: 15px;
-    float: left;
-    width: 100%;
-    margin-bottom: 15px;
-  }
-
-  .first-meta {
-    a {
-      color: #bdbdbd;
-    }
-
-    i {
-      margin-right: 5px;
-      width: 15px;
-    }
-  }
-}
-
-.grey-nav-tab,
-.new-source-tab {
-  background: #f5f5f5;
-  border-bottom: 1px solid $border-color;
-}
-
 .closed-content {
   font-size: 16px !important;
 }
 
 .drop-shadow {
   @include box-shadow(0, 9px, 20px, rgba(0, 0, 0, .06));
+}
+
+.dropdown-menu {
+  @include box-shadow(0, 9px, 20px, rgba(0, 0, 0, .06));
+  border-radius: 0;
 }
 
 .list-group-item {
