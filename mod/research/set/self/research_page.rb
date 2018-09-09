@@ -135,4 +135,21 @@ format :html do
                    "#{name}"
     _render_errors
   end
+
+
+  view :metric_select do
+    wrap do
+      metric_select
+    end
+  end
+
+  def metric_select
+    select_tag :metric, metric_select_items, class: "metric-select"
+  end
+
+  def metric_select_items
+    metric_list.map do |metric|
+      haml_partial :metric_select_item, metric: metric, company: company
+    end
+  end
 end
