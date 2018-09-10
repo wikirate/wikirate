@@ -5,7 +5,6 @@ decko.slotReady (slot) ->
       url = $target.data("url")
       url += (if url.match /\?/ then '&' else '?')
       url += $target.data("key") + "=" + encodeURIComponent(ui.item.value)
-      $target.updateSlot(url)
 
 # now done by reloading the whole page
 #  if (slot.hasClass("edit-view") and slot.hasClass("TYPE-metric_value"))
@@ -18,13 +17,19 @@ decko.slotReady (slot) ->
 $(document).ready ->
   $("#main:has(>#Research_Page.slot_machine-view)").addClass("pl-0 pr-0")
 
+  $($('ul.pointer-radio-list')[0]).find('input[type="radio"]').on "click", () ->
+    uncheckOrCheckUnknow false
+  $($('div.pointer-checkbox-list')[0]).find('input[type="checkbox"]').on "click", () ->
+    uncheckOrCheckUnknow false
+
   $('#card_subcards__values_content').on "keyup", () ->  
-    selector = '#card_subcards__values_subcards__Unknown_content'
     checked = $(this).val().toLowerCase() == 'unknown'
-    $(selector).prop 'checked', checked
+    uncheckOrCheckUnknow checked
 
    $('#card_subcards__values_subcards__Unknown_content').on "click", () -> 
     if $(this).prop('checked') == true 
+      uncheckRadio()
+      uncheckCheckbox()
       $('#card_subcards__values_content').val('Unknown')
 
   # add related company to name
@@ -38,6 +43,16 @@ $(document).ready ->
       $form.find("#card_name").val(name + "+" + related_company.val())
       unless $form.find("#success_id").val() == ":research_page"
         $form.find("#success_id").val("_left")
+
+uncheckRadio = () -> 
+  $($('ul.pointer-radio-list')[0]).find('input').prop('checked', false);
+
+uncheckCheckbox = () -> 
+  $($('div.pointer-checkbox-list')[0]).find('input[type="checkbox"]').prop('checked', false);
+
+uncheckOrCheckUnknow = (val) ->
+  selector = '#card_subcards__values_subcards__Unknown_content'
+  $(selector).prop 'checked', val
 
 toggleAnswerValueField = (disable) ->
   select = $(".card-editor.RIGHT-value .content-editor select")
