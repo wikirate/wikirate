@@ -47,13 +47,13 @@ format :html do
 end
 
 format :json do
-  view :core do
+  view :content do
     card.value
   end
 end
 
 format :csv do
-  view :core do
+  view :content do
     card.value
   end
 end
