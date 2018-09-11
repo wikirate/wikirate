@@ -1,3 +1,5 @@
+JOINT = ", "
+
 def value_card
   self
 end
@@ -44,3 +46,14 @@ format :html do
   end
 end
 
+format :json do
+  view :core do
+    card.value
+  end
+end
+
+format :csv do
+  view :core do
+    card.value
+  end
+end

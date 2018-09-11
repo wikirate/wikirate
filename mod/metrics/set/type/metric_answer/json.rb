@@ -31,7 +31,7 @@ format :json do
     %i[metric company year].each do |key|
       atom[key] = card.send key
     end
-    atom[:value] = card.value
+    atom[:value] = value
     atom[:record_url] = path mark: card.name.left, format: :json
     atom.delete(:content)
     atom
@@ -48,9 +48,13 @@ format :json do
     end
   end
 
+  def value
+    nest card.value_card, view: :content
+  end
+
   def essentials
     { year: card.year.to_s,
-      value: card.value,
+      value: value,
       import: card.imported?,
       comments: field_nest(:discussion, view: :core) }
   end

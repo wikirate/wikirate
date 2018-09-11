@@ -1,8 +1,6 @@
 include_set Abstract::Value
 include_set Abstract::Pointer
 
-JOINT = ", "
-
 def value
   raw_value.join JOINT
 end
