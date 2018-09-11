@@ -51,9 +51,3 @@ format :json do
     card.value
   end
 end
-
-format :csv do
-  view :content do
-    card.value
-  end
-end
