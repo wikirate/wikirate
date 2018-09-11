@@ -1,3 +1,6 @@
+- if project?
+  .metric
+    = nest [company, project], view: :research_progress_bar
 .metric{class: slot_attr}
   %div
     -if !metric?
@@ -18,9 +21,13 @@
         = nest metric, view: :designer_image
         %h5.mb-0
           = Card[metric].metric_title
-        = metric_select
+      = render_metric_select
+  = metric_select_options
   - if project?
     .d-flex.flex-nowrap.align-items-center.ml-3.w-25.justify-content-between
-      .w-100.pr-2
-        = nest [company, project], view: :research_progress_bar
+      = previous_button :metric
+      = index(:metric) + 1
+      = "/"
+      = list_count :metric
       = next_button :metric
+      

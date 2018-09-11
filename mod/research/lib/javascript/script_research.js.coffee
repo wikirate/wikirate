@@ -7,6 +7,27 @@ decko.slotReady (slot) ->
       url += $target.data("key") + "=" + encodeURIComponent(ui.item.value)
       $target.updateSlot(url)
 
+$(window).ready ->
+  $("#metric-select").select2
+    minimumInputLength: 0
+    minimumResultsForSearch: "Infinity"
+    maximumSelectionSize: 1
+    dropdownAutoWidth: "true"
+    templateResult: formatMetricSelectItem
+    escapeMarkup: (markup) ->
+      markup
+#  $
+#  $('metric-select-options').children().each ->
+#    ajax:
+#      url: decko.path($("#metric-select").data("options-url"))
+#      dataType: 'json'
+
+formatMetricSelectItem = (i) ->
+  #if i.loading
+  #  return i.text
+  #$($('#metric-select-options').children()[0])
+  #$("#metric-select-option-#{i.id}").html()
+  i.id
 # now done by reloading the whole page
 #  if (slot.hasClass("edit-view") and slot.hasClass("TYPE-metric_value"))
 #    enableSourceCitationButtons()

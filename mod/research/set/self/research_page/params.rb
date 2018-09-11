@@ -1,5 +1,5 @@
 
-format :html do
+format do
   PARAM_LIST_NAME =
     { company_id_list: :cil, metric_id_list: :mil, year_id_list: :yil }.freeze
 
