@@ -59,7 +59,8 @@ end
 # VALUE TYPES
 
 def value_type
-  value_type_card.item_names.first || default_value_type
+  type_from_card = value_type_card.item_names.first
+  type_from_card.present? ? type_from_card : default_value_type
 end
 
 def default_value_type
@@ -70,8 +71,16 @@ def value_type_code
   value_type_card.item_cards.first&.codename || default_value_type_code
 end
 
+def value_cardtype_code
+  :"#{value_type_code}_value"
+end
+
+def value_cardtype_id
+  Card::Codename.id value_cardtype_code
+end
+
 def default_value_type_code
-  :free_text
+  calculated? ? :number : :free_text
 end
 
 def value_options
@@ -79,7 +88,6 @@ def value_options
 end
 
 def numeric?
-  # FIXME: value type options should have a codename
   calculated? || value_type_code.in?(%i[number money])
 end
 
