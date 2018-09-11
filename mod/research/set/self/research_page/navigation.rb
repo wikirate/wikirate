@@ -1,7 +1,7 @@
 format :html do
   # @param type [:metric, :company]
   def next_button type
-    navigate_button type, icon_tag(:chevron_left), next_item(type)
+    navigate_button type, icon_tag(:chevron_right), next_item(type)
   end
 
   # @param type [:metric, :company]
@@ -12,7 +12,7 @@ format :html do
   def navigate_button type, text, item
     return unless item
     link_to text, path: research_url(type => item),
-            class: "btn btn-sm btn-outline-secondary mx-2"
+            class: "btn btn-outline-secondary btn-xs-icon mx-2"
   end
 
   def next_item type

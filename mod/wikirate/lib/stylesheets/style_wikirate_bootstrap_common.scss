@@ -200,8 +200,14 @@
   border-top: 3px solid $topic-color;
 }
 
-
+.btn-xs-icon {
+  height: 20px;
+  padding: 0px 1px;
+  line-height: 16px;
+  border-radius: 2px;
+}
 //alignments
+
 .align-to-end{
   position: absolute;
   bottom: 20px;
@@ -705,7 +711,6 @@ div#pdf-preview {
 
 .dropdown-menu {
   @include box-shadow(0, 9px, 20px, rgba(0, 0, 0, .06));
-  border-radius: 0;
 }
 
 .list-group-item {
