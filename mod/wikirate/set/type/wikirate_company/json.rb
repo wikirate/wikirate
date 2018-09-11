@@ -1,20 +1,10 @@
 format :json do
   NESTED_FIELD_CODENAMES = %i[wikipedia open_corporates aliases headquarters].freeze
 
-  def item_cards
-    NESTED_FIELD_CODENAMES.map do |codename|
-      card.field codename
-    end.compact
-  end
-
   view :fields do
-    item_cards.each_with_object({}) do |i_card, h|
-      h[i_card.name.tag] = nest i_card, view: :atom
+    NESTED_FIELD_CODENAMES.each_with_object({}) do |field_name, h|
+      h[field_name] = field_nest field_name
     end
-  end
-
-  view :items do
-    []
   end
 
   view :links do

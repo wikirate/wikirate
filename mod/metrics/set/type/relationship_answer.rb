@@ -123,7 +123,7 @@ format :html do
 end
 
 format :json do
-  def essentials_for_related_company
+  def related_company_atom
     nest card.related_company, view: :atom
   end
 
@@ -132,12 +132,6 @@ format :json do
                   value: card.value,
                   import: card.imported?,
                   comments: field_nest(:discussion, view: :atom),
-                  related_company: essentials_for_related_company
-  end
-
-  def essentials
-    {
-
-    }
+                  related_company: related_company_atom
   end
 end

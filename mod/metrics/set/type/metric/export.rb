@@ -1,16 +1,5 @@
 
 format :json do
-  # view :content do
-  #   card.companies_with_years_and_values.to_json
-  # end
-
-  view :core do
-    card.all_answers.map do |answer|
-      # nest answer, view: :essentials
-      subformat(answer)._render_core
-    end
-  end
-
   view :atom do
     super().merge designer: card.metric_designer,
                   title: card.metric_title
