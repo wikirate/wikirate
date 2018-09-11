@@ -13,6 +13,7 @@ decko.slotReady (slot) ->
       #minimumResultsForSearch: 4
       maximumSelectionSize: 1
       # dropdownAutoWidth: "true"
+      width: "130%"
       templateResult: formatHtmlOptionItem
       templateSelection: formatHtmlSelectedItem
       escapeMarkup: (markup) ->
@@ -43,13 +44,13 @@ formatHtmlSelectedItem = (i) ->
 $(document).ready ->
   $("#main:has(>#Research_Page.slot_machine-view)").addClass("pl-0 pr-0")
 
-  $('#card_subcards__values_content').on "keyup", () ->  
+  $('#card_subcards__values_content').on "keyup", () ->
     selector = '#card_subcards__values_subcards__Unknown_content'
     checked = $(this).val().toLowerCase() == 'unknown'
     $(selector).prop 'checked', checked
 
-   $('#card_subcards__values_subcards__Unknown_content').on "click", () -> 
-    if $(this).prop('checked') == true 
+   $('#card_subcards__values_subcards__Unknown_content').on "click", () ->
+    if $(this).prop('checked') == true
       $('#card_subcards__values_content').val('Unknown')
 
   # add related company to name
@@ -86,4 +87,3 @@ toggleValueInput = (input, disable) ->
 
 enableSourceCitationButtons = () ->
   $("._cite_button, ._cited_button").removeClass "disabled"
-  

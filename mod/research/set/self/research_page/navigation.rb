@@ -1,18 +1,18 @@
 format :html do
   # @param type [:metric, :company]
   def next_button type
-    navigate_button type, "Next", next_item(type)
+    navigate_button type, icon_tag(:chevron_left), next_item(type)
   end
 
   # @param type [:metric, :company]
   def previous_button type
-    navigate_button type, "Previous", previous_item(type)
+    navigate_button type, icon_tag(:chevron_left), previous_item(type)
   end
 
   def navigate_button type, text, item
     return unless item
     link_to text, path: research_url(type => item),
-            class: "btn btn-sm btn-outline-secondary"
+            class: "btn btn-sm btn-outline-secondary mx-2"
   end
 
   def next_item type
