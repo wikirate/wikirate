@@ -95,8 +95,7 @@ format :html do
   end
 
   def project_slot_attr
-    "border-bottom px-2 py-3 pl-4 d-flex wd-100 justify-content-between flex-nowrap " \
-    "align-items-center"
+    "border-bottom px-2 py-2 pl-4 d-flex wd-100 flex-nowrap "
   end
 
   def answer_slot
