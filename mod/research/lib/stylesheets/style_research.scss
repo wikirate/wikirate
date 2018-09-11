@@ -70,17 +70,15 @@ form.answer-form {
 
 // select 2 customisation
 
-.metric {
-  .metric-select {
-    .select2-selection,
-    .select2-container--focus,
-    .select2-container--open {
-      padding: 0;
-      border: none;
+.metric-select, .year-select {
+  .select2-selection,
+  .select2-container--focus,
+  .select2-container--open {
+    padding: 0;
+    border: none;
     width: 100%!important;
-    }
-}
   }
+}
 
 .html-select2 {
   .select2-dropdown.select2-dropdown--below {
