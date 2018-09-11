@@ -6,7 +6,7 @@ def value
 end
 
 def raw_value
-  json_options? ? raw_values_from_hash : item_names(context:(:raw))
+  json_options? ? raw_values_from_hash : item_names(context: :raw)
 end
 
 def inverted_options_hash
