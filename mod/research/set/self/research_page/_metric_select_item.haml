@@ -1,4 +1,4 @@
-%div{id: "metric-select-option-#{option_id}"}
+%div{id: select_option_id}
   %div
     %h5.metric-color= Card[metric].metric_title
     = nest [metric, :question], view: :core
@@ -8,7 +8,7 @@
           = a.year
         %div
           = nest a, view: :conciser, hide: :year_equals
-%div{id: "metric-selected-option-#{option_id}"}
+%div{id: selected_option_id}
   .metric-color.d-flex.flex-nowrap.align-items-center
     .image-box.icon
       %span.img-helper

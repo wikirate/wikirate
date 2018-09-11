@@ -85,7 +85,13 @@ format :html do
   end
 
   view :year_slot, cache: :never do
-    haml_partial :year_slot
+    year_slot
+  end
+
+  def year_slot
+    wrap do
+      haml_partial :year_slot
+    end
   end
 
   # slot means slot machine slot not card slot
@@ -131,27 +137,6 @@ format :html do
                     "Incorrect Metric name or Metric not available: "\
                    "#{name}"
     _render_errors
-  end
-
-  def metric_select
-    metric_select_tag + metric_select_options
-  end
-
-  def metric_select_tag
-    selected = 0
-    options = metric_list.map.with_index do |m, i|
-      selected = i if m == metric
-      [m, i, { "data-url":research_url(metric: m) } ]
-    end
-    select_tag(:metric, options_for_select(options, selected), id: "metric-select", class: "_no-select2")
-  end
-
-  def metric_select_options
-    wrap_with(:div, id:"metric-select-options", class: "d-none") do
-      metric_list.map.with_index do |metric, i|
-      haml_partial :metric_select_item, metric: metric, company: company, option_id: i
-      end
-    end
   end
 end
 
