@@ -17,14 +17,14 @@ decko.slotReady (slot) ->
 $(document).ready ->
   $("#main:has(>#Research_Page.slot_machine-view)").addClass("pl-0 pr-0")
 
-  $($('ul.pointer-radio-list')[0]).find('input[type="radio"]').on "click", () ->
-    uncheckOrCheckUnknow false
-  $($('div.pointer-checkbox-list')[0]).find('input[type="checkbox"]').on "click", () ->
-    uncheckOrCheckUnknow false
+  $($('#Research_Page ul.pointer-radio-list')[0]).find('input[type="radio"]').on "click", () ->
+    uncheckOrCheckUnknown false
+  $($('#Research_Page div.pointer-checkbox-list')[0]).find('input[type="checkbox"]').on "click", () ->
+    uncheckOrCheckUnknown false
 
   $('#card_subcards__values_content').on "keyup", () ->  
     checked = $(this).val().toLowerCase() == 'unknown'
-    uncheckOrCheckUnknow checked
+    uncheckOrCheckUnknown checked
 
    $('#card_subcards__values_subcards__Unknown_content').on "click", () -> 
     if $(this).prop('checked') == true 
@@ -50,7 +50,7 @@ uncheckRadio = () ->
 uncheckCheckbox = () -> 
   $($('div.pointer-checkbox-list')[0]).find('input[type="checkbox"]').prop('checked', false);
 
-uncheckOrCheckUnknow = (val) ->
+uncheckOrCheckUnknown = (val) ->
   selector = '#card_subcards__values_subcards__Unknown_content'
   $(selector).prop 'checked', val
 
