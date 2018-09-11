@@ -1,6 +1,6 @@
 %div{id: "metric-select-option-#{option_id}"}
   %div
-    %h5.metric-color= Card[metric].metric_title
+    %h6.metric-color = Card[metric].metric_title
     = nest [metric, :question], view: :core
     - Card.fetch([metric, company]).all_answers.each do |a|
       %div.d-flex.flex-no-wrap
@@ -13,5 +13,5 @@
     .image-box.icon
       %span.img-helper
       = nest metric, view: :designer_image
-    %h5.mb-0
+    %h6.mb-0
       = Card[metric].metric_title

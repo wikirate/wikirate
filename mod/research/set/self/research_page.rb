@@ -133,17 +133,21 @@ format :html do
     _render_errors
   end
 
-  def metric_select
-    metric_select_tag + metric_select_options
+  view :metric_select do
+    wrap do
+      metric_select
+    end
   end
 
   def metric_select_tag
-    selected = 0
-    options = metric_list.map.with_index do |m, i|
-      selected = i if m == metric
-      [m, i, { "data-url":research_url(metric: m) } ]
+    options = metric_list.map.with_index do |metric, i|
+      [metric, i]
     end
-    select_tag(:metric, options_for_select(options, selected), id: "metric-select", class: "_no-select2")
+    select_tag(:metric, options_for_select(options, metric), id: "metric-select", class: "_no-select2") + metric_select_options
+  end
+
+  def metric_select
+    metric_select_tag
   end
 
   def metric_select_options
@@ -155,3 +159,26 @@ format :html do
   end
 end
 
+
+format :json do
+  view :metric_select_options do
+    results =
+      metric_list.map.with_index do |metric, i|
+        { id: i, text: metric}
+      end
+
+    { "results": [
+      {
+        "id": 1,
+        "text": "<h4>Option 1</h4>"
+
+      },
+      {
+        "id": 2,
+        "text": "Option 2",
+        "selected": true
+      }
+    ]
+    }
+  end
+end
