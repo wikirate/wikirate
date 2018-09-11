@@ -94,6 +94,11 @@ format :html do
     "align-items-center"
   end
 
+  def project_slot_attr
+    "border-bottom px-2 py-3 pl-4 d-flex wd-100 justify-content-between flex-nowrap " \
+    "align-items-center"
+  end
+
   def answer_slot
     opts = { title: "Answer", hide: [:cited_source_links, :hover_link] }
     opts[:view] = answer_view
@@ -106,14 +111,6 @@ format :html do
     else
       @answer_view || :titled
     end
-  end
-
-  def next_button type
-    list = send("#{type}_list")
-    index = list.index send(type)
-    return if !index || index == list.size - 1
-    link_to "Next", path: research_url(type => list[index + 1]),
-                    class: "btn btn-sm btn-outline-secondary"
   end
 
   def autocomplete_field type, options_card=nil
@@ -134,5 +131,54 @@ format :html do
                     "Incorrect Metric name or Metric not available: "\
                    "#{name}"
     _render_errors
+  end
+
+  view :metric_select do
+    wrap do
+      metric_select
+    end
+  end
+
+  def metric_select_tag
+    options = metric_list.map.with_index do |metric, i|
+      [metric, i]
+    end
+    select_tag(:metric, options_for_select(options, metric), id: "metric-select", class: "_no-select2") + metric_select_options
+  end
+
+  def metric_select
+    metric_select_tag
+  end
+
+  def metric_select_options
+    wrap_with(:div, id:"metric-select-options", class: "d-none") do
+      metric_list.map.with_index do |metric, i|
+      haml_partial :metric_select_item, metric: metric, company: company, option_id: i
+      end
+    end
+  end
+end
+
+
+format :json do
+  view :metric_select_options do
+    results =
+      metric_list.map.with_index do |metric, i|
+        { id: i, text: metric}
+      end
+
+    { "results": [
+      {
+        "id": 1,
+        "text": "<h4>Option 1</h4>"
+
+      },
+      {
+        "id": 2,
+        "text": "Option 2",
+        "selected": true
+      }
+    ]
+    }
   end
 end

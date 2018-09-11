@@ -1,0 +1,18 @@
+%div{id: "metric-select-option-#{option_id}"}
+  %div
+    %a.inherit-anchor.no-decoration{href: research_url(metric: metric)}
+      %h5.metric-color= Card[metric].metric_title
+      = nest [metric, :question], view: :core
+      - Card.fetch([metric, company]).all_answers.each do |a|
+        %div.d-flex.flex-no-wrap
+          %div.mr-3
+            = a.year
+          %div
+            = nest a, view: :conciser, hide: :year_equals
+%div{id: "metric-selected-option-#{option_id}"}
+  .metric-color.d-flex.flex-nowrap.align-items-center
+    .image-box.icon
+      %span.img-helper
+      = nest metric, view: :designer_image
+    %h5.mb-0
+      = Card[metric].metric_title

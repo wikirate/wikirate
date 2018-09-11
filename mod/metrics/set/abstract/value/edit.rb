@@ -28,7 +28,7 @@ format :html do
   end
 
   def value_field_card_and_options
-    [card, { title: "Answer", editor: :standard, hide: :help }]
+    [card, { title: "Answer", editor: :standard, show: :help }]
   end
 
   def unknown_field_card_and_options
