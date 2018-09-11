@@ -1,8 +1,14 @@
 include_set Abstract::Value
 include_set Abstract::Pointer
 
+JOINT = ", "
+
+def value
+  raw_value.join JOINT
+end
+
 def raw_value
-  json_options? ? raw_values_from_hash : super
+  json_options? ? raw_values_from_hash : item_names(context:(:raw))
 end
 
 def inverted_options_hash
@@ -33,9 +39,5 @@ format :html do
 
   def options_count
     card.option_names.size
-  end
-
-  def pretty_value
-    @pretty_value ||= card.value
   end
 end

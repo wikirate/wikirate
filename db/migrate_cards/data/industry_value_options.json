@@ -30,5 +30,9 @@
   {
     "name": "ISIC+Industry Section+value type",
     "type": "Pointer"
+  },
+  {
+    "name": "OpenCorporates+Industry Class+value options",
+    "type": "json"
   }
 ]

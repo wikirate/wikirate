@@ -1,15 +1,9 @@
-JOINT = ", "
-
 def value_card
   self
 end
 
 def value
-  raw_value.join JOINT
-end
-
-def raw_value
-  item_names context: :raw
+  content
 end
 
 def unknown_value?
@@ -32,10 +26,21 @@ def company_id
   Card.fetch_id company_key
 end
 
-# def record
-#   name.parts[0..-3].join "+"
-# end
-#
-# def record_card
-#   Card.fetch record
-# end
+def record
+  name.parts[0..-3].join "+"
+end
+
+def record_card
+  Card.fetch record
+end
+
+format :html do
+  def default_item_view
+    :name
+  end
+
+  def pretty_value
+    @pretty_value ||= card.value
+  end
+end
+
