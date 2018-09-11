@@ -9,3 +9,10 @@
             = a.year
           %div
             = nest a, view: :conciser, hide: :year_equals
+%div{id: "metric-selected-option-#{option_id}"}
+  .metric-color.d-flex.flex-nowrap.align-items-center
+    .image-box.icon
+      %span.img-helper
+      = nest metric, view: :designer_image
+    %h5.mb-0
+      = Card[metric].metric_title

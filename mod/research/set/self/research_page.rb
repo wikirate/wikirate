@@ -139,14 +139,21 @@ format :html do
     end
   end
 
+  def metric_select_tag
+    options = metric_list.map.with_index do |metric, i|
+      [metric, i]
+    end
+    select_tag(:metric, options_for_select(options, metric), id: "metric-select", class: "_no-select2") + metric_select_options
+  end
+
   def metric_select
-    select_tag(:metric, options_for_select(metric_list), id: "metric-select", class: "_no-select2")
+    metric_select_tag
   end
 
   def metric_select_options
     wrap_with(:div, id:"metric-select-options", class: "d-none") do
       metric_list.map.with_index do |metric, i|
-      haml_partial :metric_select_item, metric: metric, company: company, option_id: i + 1
+      haml_partial :metric_select_item, metric: metric, company: company, option_id: i
       end
     end
   end

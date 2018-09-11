@@ -2,32 +2,29 @@
   .metric
     = nest [company, project], view: :research_progress_bar
 .metric{class: slot_attr}
-  %div
-    -if !metric?
+  -if !metric?
+    %div
       .d-flex.flex-nowrap.metric-color
         .image-box.icon.bg-white
           = fa_icon "bar-chart", class: "metric-color"
         = autocomplete_field :metric
-    -elsif metric_pinned?
+  -elsif metric_pinned?
+    %div
       .metric-color.d-flex.flex-nowrap.align-items-center
         .image-box.icon
           %span.img-helper
           = nest metric, view: :designer_image
         %h5.mb-0
           = link_to_card metric, Card[metric].metric_title, class: "inherit-anchor"
-    - else
-      .image-box.icon
-        %span.img-helper
-        = nest metric, view: :designer_image
-        %h5.mb-0
-          = Card[metric].metric_title
-      = render_metric_select
-  = metric_select_options
+  - else
+    .metric-select.w-75
+      = metric_select
   - if project?
-    .d-flex.flex-nowrap.align-items-center.ml-3.w-25.justify-content-between
+    .d-flex.flex-nowrap.align-items-center.ml-3.w-25.justify-content-between.metric-nav
       = previous_button :metric
-      = index(:metric) + 1
-      = "/"
-      = list_count :metric
+      %small
+        = index(:metric) + 1
+        = "/"
+        = list_count :metric
       = next_button :metric
       

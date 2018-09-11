@@ -7,13 +7,13 @@ decko.slotReady (slot) ->
       url += $target.data("key") + "=" + encodeURIComponent(ui.item.value)
       $target.updateSlot(url)
 
-$(window).ready ->
   $("#metric-select").select2
     minimumInputLength: 0
-    minimumResultsForSearch: "Infinity"
+    #minimumResultsForSearch: "Infinity"
     maximumSelectionSize: 1
-    dropdownAutoWidth: "true"
-    templateResult: formatMetricSelectItem
+    # dropdownAutoWidth: "true"
+    templateResult: formatMetricOptionItem
+    templateSelection: formatMetricSelectedItem
     escapeMarkup: (markup) ->
       markup
 #  $
@@ -22,12 +22,6 @@ $(window).ready ->
 #      url: decko.path($("#metric-select").data("options-url"))
 #      dataType: 'json'
 
-formatMetricSelectItem = (i) ->
-  #if i.loading
-  #  return i.text
-  #$($('#metric-select-options').children()[0])
-  #$("#metric-select-option-#{i.id}").html()
-  i.id
 # now done by reloading the whole page
 #  if (slot.hasClass("edit-view") and slot.hasClass("TYPE-metric_value"))
 #    enableSourceCitationButtons()
@@ -38,6 +32,12 @@ formatMetricSelectItem = (i) ->
 
   $("body").on "click", "._methodology-tab", ->
     $('a[href="#research_page-methodology"]').tab("show")
+
+formatMetricOptionItem = (i) ->
+  $("#metric-select-option-#{i.id}").html()
+
+formatMetricSelectedItem = (i) ->
+  $("#metric-selected-option-#{i.id}").html()
 
 $(document).ready ->
   $("#main:has(>#Research_Page.slot_machine-view)").addClass("pl-0 pr-0")
