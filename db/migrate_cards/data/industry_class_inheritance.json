@@ -1,0 +1,30 @@
+[
+  {
+    "name": "OpenCorporates+Industry Class",
+    "type": "Metric"
+  },
+  {
+    "name": "OpenCorporates+Industry Class+*metric type",
+    "type": "Pointer"
+  },
+  {
+    "name": "OpenCorporates+Industry Class+value type",
+    "type": "Pointer"
+  },
+  {
+    "name": "OpenCorporates+Industry Class+Research Policy",
+    "type": "Pointer"
+  },
+  {
+    "name": "ISIC+Industry Class+*metric type",
+    "type": "Pointer"
+  },
+  {
+    "name": "ISIC+Industry Class+Formula",
+    "type": "PlainText"
+  },
+  {
+    "name": "ISIC+Industry Class+hybrid",
+    "type": "Toggle"
+  }
+]

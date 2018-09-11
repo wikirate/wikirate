@@ -1,0 +1,34 @@
+[
+  {
+    "name": "ISIC+Industry Class+value options",
+    "type": "json"
+  },
+  {
+    "name": "ISIC+Industry Class+value type",
+    "type": "Pointer"
+  },
+  {
+    "name": "ISIC+Industry Group+value options",
+    "type": "json"
+  },
+  {
+    "name": "ISIC+Industry Group+value type",
+    "type": "Pointer"
+  },
+  {
+    "name": "ISIC+Industry Division+value options",
+    "type": "json"
+  },
+  {
+    "name": "ISIC+Industry Division+value type",
+    "type": "Pointer"
+  },
+  {
+    "name": "ISIC+Industry Section+value options",
+    "type": "json"
+  },
+  {
+    "name": "ISIC+Industry Section+value type",
+    "type": "Pointer"
+  }
+]
