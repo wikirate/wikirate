@@ -135,6 +135,5 @@ format :json do
   view :molecule do
     super().merge subject_company: nest(card.company, view: :atom),
                   object_company: nest(card.related_company, view: :atom)
-
   end
 end
