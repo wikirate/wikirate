@@ -19,7 +19,6 @@ Feature: Research answer
     And I should see "www.wikiwand.com"
     And I should see "Baam!"
     When I open the year list
-    When I click on "2009"
     Then I should see "9"
 
   Scenario: Create a metric value and request check

@@ -9,7 +9,6 @@ RSpec.describe Card::Set::Type::WikirateCompany::Structure do
 
   describe "details tab" do
     it "has jurisdiction table" do
-
       expect(view(:details_tab, card: Card["Google LLC"])).to have_tag "table" do
         with_tag :tr do
           with_tag :td, text: "Headquarters"

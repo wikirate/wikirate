@@ -40,7 +40,6 @@ def company_with_plus? parts
   Card.fetch_type_id(parts[-generation - 1..-generation]) == Card::WikirateCompanyID
 end
 
-
 def name_parts full_name
   full_name.to_name.parts
 end

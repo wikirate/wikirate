@@ -46,7 +46,7 @@ RSpec.describe Card::Set::Self::ResearchPage do
 
     it "has source tab" do
       params metric: "Joe User+researched", company: "Death Star",
-               year: "2014", project: "Evil Project"
+             year: "2014", project: "Evil Project"
       is_expected.to have_tag "#research_page-source" do
         with_tag :form do
           with_hidden_field "card[subcards][+company][content]", "Death Star"

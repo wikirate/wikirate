@@ -8,7 +8,7 @@ Feature: Research answer for hybrid metric
   Scenario: Override a calculated answer
     When I go to card "Jedi+deadlier+Slate Rock and Gravel Company+2004"
     Then I should see "1,003"
-    When I click on "edit"
+    When I edit answer
     And I fill in "50" for "Answer"
     And I cite source
     And I press "Submit"
