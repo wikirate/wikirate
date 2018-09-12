@@ -14,7 +14,7 @@ def self.included host_class
 end
 
 def metric_part full_name=name
-  full_name.to_name.parts[0..(-1 - generation)].join Cardname.joint
+  full_name.to_name.parts[0..1].join Cardname.joint
 end
 
 def year_part full_name=name
