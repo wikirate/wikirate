@@ -1,10 +1,6 @@
 format :json do
   NESTED_FIELD_CODENAMES = %i[wikipedia open_corporates aliases headquarters].freeze
 
-  view :fields do
-    add_fields_to_hash({})
-  end
-
   view :links do
     []
   end
@@ -14,14 +10,15 @@ format :json do
   end
 
   view :atom do
-    hash = super().merge records_url: path(mark: card.field(:record), format: :json)
+    hash = super()
     hash.delete(:content)
     add_fields_to_hash hash, :core
     hash
   end
 
   view :molecule do
-    super().merge _render_fields
+    super().merge(add_fields_to_hash({}))
+           .merge records_url: path(mark: card.field(:record), format: :json)
   end
 
   def add_fields_to_hash hash, view=:atom
