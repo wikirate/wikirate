@@ -1,5 +1,5 @@
-include_set Abstract::Value
 include_set Abstract::Pointer
+include_set Abstract::Value
 
 def value
   raw_value.join JOINT

@@ -123,15 +123,17 @@ format :html do
 end
 
 format :json do
-  def related_company_atom
-    nest card.related_company, view: :atom
-  end
-
   view :atom do
     super().merge year: card.year.to_s,
                   value: card.value,
                   import: card.imported?,
-                  comments: field_nest(:discussion, view: :atom),
-                  related_company: related_company_atom
+                  comments: field_nest(:discussion, view: :core),
+                  subject_company: card.company,
+                  object_company: card.related_company
+  end
+
+  view :molecule do
+    super().merge subject_company: nest(card.company, view: :atom),
+                  object_company: nest(card.related_company, view: :atom)
   end
 end
