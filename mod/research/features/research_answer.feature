@@ -4,7 +4,6 @@ Feature: Research answer
 
   Background:
     Given I am signed in as Joe User
-    And I go to  "/new answer"
     And I research
       | metric              | company    | year |
       | Joe User+researched | Apple Inc. | 2009 |
@@ -19,6 +18,7 @@ Feature: Research answer
     And I should see "updated less than a minute ago by Joe User"
     And I should see "www.wikiwand.com"
     And I should see "Baam!"
+    When I open the year list
     When I click on "2009"
     Then I should see "9"
 
