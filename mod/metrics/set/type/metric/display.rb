@@ -57,8 +57,7 @@ format :html do
     voo.hide :menu
     wrap do
       [
-        field_nest(:value_type, view: :content, items: { view: :name }, show: :menu),
-        _render_short_view
+        field_nest(:value_type, view: :content, items: { view: :name }, show: :menu)
       ]
     end
   end
