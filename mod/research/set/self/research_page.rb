@@ -39,8 +39,7 @@ format :html do
       tabs["View Source"] = view_source_tab hide: hide_view_source_tab?
     end
     tabs["Methodology"] = metric_details_tab if metric?
-    tabs['Need Help?'] =
-      nest :how_to_research, view: :content
+    tabs["Need Help?"] = nest :how_to_research, view: :content
     static_tabs tabs, active_tab, "tabs", pane: { class: "p-3" }
   end
 

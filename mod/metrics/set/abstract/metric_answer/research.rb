@@ -28,6 +28,7 @@ format :html do
 
   view :research_edit_form, cache: :never, perms: :update, tags: :unknown_ok do
     return not_researchable unless card.metric_card.researchable?
+
     # voo.editor = :inline_nests
     with_nest_mode :edit do
       wrap do
@@ -51,19 +52,20 @@ format :html do
   end
 
   view :edit_year, cache: :never, perms: :update do
-
-    #wrap { edit_year_form } #, render_titled(hide: :menu)] }
+    # wrap { edit_year_form } #, render_titled(hide: :menu)] }
     edit_year_form
   end
 
   def answer_delete_button
-    confirm = "Are you sure you want to delete the #{card.metric_name} answer for #{card.company_name} for the year #{card.year}?"
+    confirm = "Are you sure you want to delete the #{card.metric_name} answer "\
+              "for #{card.company_name} for the year #{card.year}?"
     success = research_params.merge(view: :new)
     smart_link_to "Delete",
-               type: "button",
-                   path: { action: :delete, success: success },
-                   class: "btn btn-outline-danger pull-right", 'data-confirm': confirm, remote: true,
-                   "data-disable-with": "Deleting"
+                  type: "button",
+                  path: { action: :delete, success: success },
+                  class: "btn btn-outline-danger pull-right",
+                  'data-confirm': confirm, remote: true,
+                  "data-disable-with": "Deleting"
   end
 
   view :edit_buttons do
@@ -84,6 +86,7 @@ format :html do
 
   def edit_year_form
     return not_researchable unless card.metric_card.researchable?
+
     wrap do
       research_form(:update) do
         haml :edit_year_form,
@@ -95,6 +98,7 @@ format :html do
 
   def research_form action
     return not_researchable unless card.metric_card.researchable?
+
     voo.editor = :inline_nests
     with_nest_mode :edit do
       card_form action,
