@@ -145,7 +145,7 @@ format :html do
   def cite_button cited, disabled=false
     text = cited ? "Cited!" : "Cite!"
     cite_class =
-      cited ? "btn-primary _cited_button" : "btn-outline-primary _cite_button"
+      cited ? "btn-primary _cited_button" : "btn-secondary _cite_button"
     wrap_with(:div, class: "pull-right") do
       wrap_with :a, text, href: "#",
                           class: "btn #{cite_class} c-btn #{'disabled' if disabled}"
