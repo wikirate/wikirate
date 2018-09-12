@@ -14,7 +14,7 @@ namespace :wikirate do
   desc "fetch json from local export card and generate migration"
   task import_from_local: :environment do
     import_cards do
-      Card["export"].format(format: :json).render_content
+      Card["export"].format(format: :json).render_export_items
     end
   end
 
