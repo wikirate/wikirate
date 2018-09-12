@@ -27,6 +27,7 @@ Feature: Research answer
     And I fill in "Baam!" for " Comment"
     And I check "request"
     And I press "Submit"
+    And I wait for ajax response
     Then I should see "2009"
     And I should see "10"
     And I should see a "comment" icon with tooltip "Has comments"
