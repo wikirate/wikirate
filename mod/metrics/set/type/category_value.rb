@@ -6,13 +6,21 @@ def value
 end
 
 def raw_value
-  json_options? ? raw_values_from_hash : item_names(context: :raw)
+  item_names(context: :raw)
 end
 
 def inverted_options_hash
   options_hash.each_with_object({}) do |(k, v), h|
     h[v] = k
   end
+end
+
+def pretty_value
+  pretty_values.join JOINT
+end
+
+def pretty_values
+  json_options? ? raw_values_from_hash : raw_values
 end
 
 def raw_values_from_hash
