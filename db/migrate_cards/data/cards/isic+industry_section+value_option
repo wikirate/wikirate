@@ -1,0 +1,23 @@
+{
+  "A: Agriculture, forestry and fishing": "A",
+  "B: Mining and quarrying": "B",
+  "C: Manufacturing": "C",
+  "D: Energy supply": "D",
+  "E: Water and waste management": "E",
+  "F: Construction": "F",
+  "G: Wholesale and retail trade": "G",
+  "H: Transportation and storage": "H",
+  "I: Accommodation and food services": "I",
+  "J: Information and communication": "J",
+  "K: Finance and insurance": "K",
+  "L: Real estate": "L",
+  "M: Professional, scientific and technical": "M",
+  "N: Administrative and support services": "N",
+  "O: Public administration and defence": "O",
+  "P: Education": "P",
+  "Q: Human health and social work": "Q",
+  "R: Arts, entertainment and recreation": "R",
+  "S: Other service activities": "S",
+  "T: Households as employers": "T",
+  "U: Extraterritorial organizations": "U"
+}

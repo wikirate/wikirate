@@ -33,10 +33,6 @@ format :html do
     "</span>#{_render_thumbnail}<span>"
   end
 
-  # view :fixed_value do
-  #   nest [card, voo.inherit(:params)], view: :value_link
-  # end
-
   view :score_thumbnail do
     ""
   end

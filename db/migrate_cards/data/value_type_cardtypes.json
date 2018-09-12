@@ -1,0 +1,27 @@
+[
+  {
+    "name": "NumberValue",
+    "codename": "number_value",
+    "type": "Cardtype"
+  },
+  {
+    "name": "MoneyValue",
+    "codename": "money_value",
+    "type": "Cardtype"
+  },
+  {
+    "name": "CategoryValue",
+    "codename": "category_value",
+    "type": "Cardtype"
+  },
+  {
+    "name": "MultiCategoryValue",
+    "codename": "multi_category_value",
+    "type": "Cardtype"
+  },
+  {
+    "name": "FreeTextValue",
+    "codename": "free_text_value",
+    "type": "Cardtype"
+  }
+]

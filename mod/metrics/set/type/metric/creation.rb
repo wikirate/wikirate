@@ -78,7 +78,7 @@ def create_value_args args
     type_id: type_id,
     "+value" => {
       content: args[:value],
-      type_id: (args[:value].is_a?(Integer) ? NumberID : PhraseID)
+      type_code: value_cardtype_code
     }
   }
   create_args["+discussion"] = { comment: args[:comment] } if args[:comment].present?

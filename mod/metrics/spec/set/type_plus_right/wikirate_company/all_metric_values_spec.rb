@@ -316,7 +316,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
         it "... metric_type" do
           expect(filter_by(metric_value: :none, metric_type: "Researched"))
             .to contain_exactly(
-              *with_year(["Weapons",
+              *with_year(["Industry Class", "Weapons",
                           "big multi", "big single",
                           "researched number 2", "researched number 3",
                           "small multi", "small single"])
@@ -354,7 +354,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
         it "... metric_type" do
           expect(filter_by(metric_value: :all, metric_type: "Researched"))
             .to contain_exactly(
-              *(with_year(["Weapons",
+              *(with_year(["Industry Class", "Weapons",
                            "big multi", "big single",
                            "researched number 2", "researched number 3",
                            "small multi", "small single"]) + researched )

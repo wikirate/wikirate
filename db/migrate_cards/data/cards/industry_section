@@ -1,0 +1,2 @@
+<h6><strong>Metrics with metric title "{{_|name}}":</strong></h6>
+<p>{{_+metric||listing<span>}}</span></p>
