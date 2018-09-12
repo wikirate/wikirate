@@ -59,7 +59,7 @@ class ImportValueTypeCardtypes < Card::Migration
 
   def each_answer_value
     Card.where(right_id: Card::ValueID).find_each do |card|
-      if ANSWER_TYPE_IDS.member? card.left.&type_id
+      if ANSWER_TYPE_IDS.member? card.left&.type_id
         card.include_set_modules
         yield card
       else
