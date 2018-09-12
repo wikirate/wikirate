@@ -5,18 +5,45 @@ showField = (divName) ->
   return if divName == ''
   $("." + divName).slideDown(100)
 
+#exports
+getPropertiesValueType = (value) -> 
+  properties = []
+  switch value 
+    when 'Number', 'Money'
+      properties = ['Unit','Range']
+    when 'Category', 'Multi-Category'
+     properties = ['Options']
+    else 
+      properties = []
+  properties
+
+showAndHideProsTable = (value) ->
+  properties = ['Unit','Range','Options']
+  showOrHideProperty(properties, 'hide')
+  properties = getPropertiesValueType(value)
+  showOrHideProperty(properties, 'show') if properties.length > 0
+
+showOrHideProperty = (properties, option) ->
+  elementProperty = null
+  properties.forEach (value) ->
+    selector = '.metric-properties.table td:contains('+value+')'
+    if $($(selector)[1]).parent().length > 0
+      elementProperty = $($(selector)[1]).parent()
+    else 
+      elementProperty = $($(selector)[0]).parent()
+    if option == 'show' then elementProperty.show() else elementProperty.hide()
+
 showAndHide = (slot, value) ->
   div_to_show =
     switch value
-      when 'Number'
+      when 'Number', 'Money'
         'number_details'
-      when 'Money'
-        'currency_details'
       when 'Category', 'Multi-Category'
         'category_details'
       else
         ''
   hideAll(slot)
+  showAndHideProsTable(value)
   showField(div_to_show)
 
 initializeValueTypeRadio = (radio, slot) ->
@@ -30,6 +57,7 @@ decko.editorInitFunctionMap['._value-type-editor'] = ->
   hideAll slot
   slot.find('.pointer-radio input:radio').each ->
     initializeValueTypeRadio($(this), slot)
+    
 
 # decko.slotReady (slot) ->
 #   # hide the related field
@@ -59,3 +87,7 @@ decko.editorInitFunctionMap['._value-type-editor'] = ->
 #          spinner: 'spinner1'
 #          bgColor: 'rgb(255,255,255,0.80)'#Hex, RGB or RGBA colors
 #        location.reload()
+
+$(document).ready ->
+  valueType = $($('.metric-properties.table td:contains(Value Type)')).next().find('div.item-name').text()
+  showAndHideProsTable(valueType)
