@@ -54,7 +54,7 @@ def answer_subcards metric: sample_metric, company: sample_company,
   {
     "+metric" => { content: metric.name },
     "+company" => { content: company.name, :type_id => Card::PointerID },
-    "+value" => { content: content, :type_id => Card::PhraseID },
+    "+value" => { content: content, :type_id => metric.value_cardtype_id },
     "+year" => { content: year, :type_id => Card::PointerID },
     "+source" => { content: "[[#{source}]]\n", :type_id => Card::PointerID }
   }

@@ -8,7 +8,7 @@ class FixPrmeYears < Card::Migration
       if (answer = Card.fetch answer_id)
         update_answer_or_track_duplicate answer, conflicts
       else
-        puts "no card for answer_id: #{answer_id}"
+        # puts "no card for answer_id: #{answer_id}"
       end
     end
     track_conflicts conflicts

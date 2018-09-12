@@ -17,7 +17,7 @@ format :html do
   end
 
   view :basic_details do
-    _render_value_link
+    nest card.value_card, view: :pretty_link
   end
 
   view :expanded_details do

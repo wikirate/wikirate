@@ -18,7 +18,7 @@ RSpec.describe Card::Set::TypePlusRight::MetricAnswer::Value do
       "+company" => { content: "[[#{company.name}]]",
                       type_id: Card::PointerID },
       "+value"   => { content: "I'm fine, I'm just not happy.",
-                      type_id: Card::PhraseID },
+                      type_id: Card::FreeTextValueID },
       "+year"    => { content: "2015",
                       type_id: Card::PointerID },
       "+source"  => { subcards: { "new source" => { "+Link" =>
