@@ -24,6 +24,7 @@ class SharedData
     "Slate Rock and Gravel Company" => "Yabba Dabba Doo!",
     "Los Pollos Hermanos" => "I'm the one who knocks",
     "SPECTRE" => "shaken not stirred",
+    "Google LLC" => "don't be evil"
 
     # in addition pulled from production:
     # Google Inc, Apple Inc, Samsung, Siemens AG, Sony Corporation, Amazon.com
@@ -84,13 +85,13 @@ class SharedData
                type: "company",
                subcards: { "+about" => about }
       end
-      ensure_card ["Google Inc.", :headquarters],
+      ensure_card ["Google LLC", :headquarters],
                   type: :pointer, content: "California (United States)"
-      ensure_card ["Google Inc.", :aliases],
+      ensure_card ["Google LLC", :aliases],
                   type: :pointer, content: ["Google", "Alphabet"]
-      ensure_card ["Google Inc.", :incorporation],
+      ensure_card ["Google LLC", :incorporation],
                   type: :pointer, content: "Delaware (United States)"
-      ensure_card ["Google Inc.", :open_corporates], content: "3582691"
+      ensure_card ["Google LLC", :open_corporates], content: "201727810678"
     end
 
     def add_topics
