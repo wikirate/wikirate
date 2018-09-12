@@ -2,7 +2,7 @@
 
 require_relative "../../../lib/open_corporates/api"
 
-describe Card::Set::Right::OpenCorporates do
+RSpec.describe Card::Set::Right::OpenCorporates do
   let(:api_response) do
     path =
       File.expand_path("../../../support/open_corporates_api_response.json", __FILE__)
@@ -23,7 +23,7 @@ describe Card::Set::Right::OpenCorporates do
   end
 
   describe "view :core" do
-    subject { render_view :core_async_content, name: "Google Inc+open corporates" }
+    subject { render_view :core_async_content, name: "Google LLC+open corporates" }
 
     def have_table rows
       have_tag :table do

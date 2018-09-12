@@ -7,7 +7,7 @@ Feature: Research answer
     And I go to  "/new answer"
     And I fill in autocomplete "metric" with "Joe User+researched"
     And I fill in autocomplete "wikirate_company" with "Apple Inc."
-    And I select year "2009"
+    And I select2 "2009" from "Year"
 
   Scenario: Create a metric value
     When I cite source

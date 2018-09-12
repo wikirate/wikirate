@@ -32,7 +32,7 @@ format :html do
                   "data-option-selector": "##{name}-option-#{i}",
                   "data-selected-option-selector": "##{name}-selected-option-#{i}" }]
     end
-    s_tag = select_tag(:metric, options_for_select(options, selected_index),
+    s_tag = select_tag(name, options_for_select(options, selected_index),
                        class: "_html-select _no-select2",
                        id: "#{name}-html-select")
 
