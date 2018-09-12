@@ -1,6 +1,12 @@
-describe Card::Set::Self::ResearchPage do
+RSpec.describe Card::Set::Self::ResearchPage do
   let(:format) do
     Card[:research_page].format
+  end
+
+  def params opts
+    opts.each do |k, v|
+      Card::Env.params[k] = v
+    end
   end
 
   describe "#slot_machine" do
@@ -38,10 +44,9 @@ describe Card::Set::Self::ResearchPage do
       format.right_side_tabs
     end
 
-    it "has source tab", params: { metric: "Joe User+researched",
-                                   company: "Death Star",
-                                   year: "2014",
-                                   project: "Evil Project" } do
+    it "has source tab" do
+      params metric: "Joe User+researched", company: "Death Star",
+               year: "2014", project: "Evil Project"
       is_expected.to have_tag "#research_page-source" do
         with_tag :form do
           with_hidden_field "card[subcards][+company][content]", "Death Star"

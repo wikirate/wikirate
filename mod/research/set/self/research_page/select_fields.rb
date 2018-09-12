@@ -9,7 +9,7 @@ format :html do
 
   def research_select_tag name, items, selected
     select_tag_with_html_options(
-      name, items, selected: selected, url: -> (item) { research_url(name => item) }
+      name, items, selected: selected, url: ->(item) { research_url(name => item) }
     ) do |item, option_id, selected_option_id|
       option =
         wrap_with :div, id: option_id do
@@ -30,7 +30,7 @@ format :html do
       selected_index = i if item == selected
       [item, i, { "data-url": url.call(item),
                   "data-option-selector": "##{name}-option-#{i}",
-                  "data-selected-option-selector": "##{name}-selected-option-#{i}" } ]
+                  "data-selected-option-selector": "##{name}-selected-option-#{i}" }]
     end
     s_tag = select_tag(:metric, options_for_select(options, selected_index),
                        class: "_html-select _no-select2",
