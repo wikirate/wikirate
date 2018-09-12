@@ -5,3 +5,9 @@ format :html do
     options_count > 10 ? :multiselect : :checkbox
   end
 end
+
+format :json do
+  view :core do
+    card.raw_value
+  end
+end
