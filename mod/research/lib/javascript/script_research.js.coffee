@@ -17,9 +17,9 @@ decko.slotReady (slot) ->
 $(document).ready ->
   $("#main:has(>#Research_Page.slot_machine-view)").addClass("pl-0 pr-0")
 
-  $($('#Research_Page ul.pointer-radio-list')[0]).find('input[type="radio"]').on "click", () ->
+  $($('.RIGHT-value.card-editor ul.pointer-radio-list')[0]).find('input[type="radio"]').on "click", () ->
     uncheckOrCheckUnknown false
-  $($('#Research_Page div.pointer-checkbox-list')[0]).find('input[type="checkbox"]').on "click", () ->
+  $($('.RIGHT-value.card-editor  div.pointer-checkbox-list')[0]).find('input[type="checkbox"]').on "click", () ->
     uncheckOrCheckUnknown false
 
   $('#card_subcards__values_content').on "keyup", () ->  
