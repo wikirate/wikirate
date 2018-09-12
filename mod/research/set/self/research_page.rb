@@ -40,7 +40,7 @@ format :html do
     end
     tabs["Methodology"] = metric_details_tab if metric?
     tabs["Need Help?"] = nest :how_to_research, view: :content
-    static_tabs tabs, actseive_tab, "tabs", pane: { class: "p-3" }
+    static_tabs tabs, active_tab, "tabs", pane: { class: "p-3" }
   end
 
   NEW_BADGE = '<span class="badge badge-danger">New</span>'.freeze
