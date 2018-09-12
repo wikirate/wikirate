@@ -48,7 +48,7 @@ class SharedData
       Card[:company_address].create_values(true) do
         SPECTRE "1977" => "Baker Street, London"
         Monster_Inc "1977" => "Alderaan"
-        Google_Inc 2000 => "Mountain View"
+        Google_LLC 2000 => "Mountain View"
       end
     end
   end
