@@ -18,7 +18,8 @@ decko.slotReady (slot) ->
       templateSelection: formatHtmlSelectedItem
       escapeMarkup: (markup) ->
         markup
-      containerCssClass: 'html-select2'
+      containerCssClass: "html-select2"
+      dropdownCssClass: "html-select2"
 
   $("._html-select").on "select2:select", (event) ->
     url = $(event.params.data.element).data("url")

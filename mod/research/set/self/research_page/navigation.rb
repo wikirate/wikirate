@@ -10,10 +10,13 @@ format :html do
   end
 
   def navigate_button type, text, item
-    return unless item
-
-    link_to text, path: research_url(type => item),
-                  class: "btn btn-outline-secondary btn-xs-icon mx-2"
+    opts = { class: "btn btn-outline-secondary btn-xs-icon mx-2" }
+    if item
+      opts[:path] = research_url(type => item)
+    else
+      add_class opts, "disabled"
+    end
+    link_to text, opts
   end
 
   def next_item type

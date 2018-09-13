@@ -79,7 +79,6 @@ form.answer-form {
     margin: 0px 10px;
 }
 
-
 .metric-select, .year-select {
   .select2-selection,
   .select2-container--focus,
@@ -90,10 +89,8 @@ form.answer-form {
   }
 }
 
-.html-select2 {
-  .select2-container--bootstrap .select2-dropdown.select2-dropdown--below {
-    height: calc(100vh - 400px);
-  }
+.html-select2.select2-dropdown.select2-dropdown--below .select2-results__options {
+  max-height: calc(100vh - 400px);
 }
 
 .select2-container--bootstrap {
