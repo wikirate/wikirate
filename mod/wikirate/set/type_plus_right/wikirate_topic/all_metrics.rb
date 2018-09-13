@@ -17,11 +17,11 @@ def filter_by_key key
     filter_by_metric_type(key)
 end
 
-format :json do
-  view :core do
-    card.item_cards(default_query: true)
-        .each_with_object({}) do |metric_id, result|
-      result[metric_id] = true unless result.key?(metric_id)
-    end.to_json
-  end
-end
+# format :json do
+#   view :core do
+#     card.item_cards(default_query: true)
+#         .each_with_object({}) do |metric_id, result|
+#       result[metric_id] = true unless result.key?(metric_id)
+#     end.to_json
+#   end
+# end

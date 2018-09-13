@@ -1,19 +1,30 @@
 
 format :json do
-  # view :content do
-  #   card.companies_with_years_and_values.to_json
-  # end
+  NESTED_FIELD_CODENAMES =
+    %i[metric_type about methodology value_type value_options
+       report_type research_policy project unit
+       range currency hybrid question score].freeze
 
-  view :core do
-    card.all_answers.map do |answer|
-      # nest answer, view: :essentials
-      subformat(answer)._render_core
-    end
+  view :links do
+    []
   end
 
   view :atom do
-    super().merge designer: card.metric_designer,
-                  title: card.metric_title
+    hash = super().merge designer: card.metric_designer, title: card.metric_title
+    add_fields_to_hash hash, :core
+    hash
+  end
+
+  view :molecule do
+    super().merge(add_fields_to_hash({}))
+           .merge records_url: path(mark: card.field(:record), format: :json)
+  end
+
+  def add_fields_to_hash hash, view=:atom
+    NESTED_FIELD_CODENAMES.each do |fieldcode|
+      hash[fieldcode] = field_nest fieldcode, view: view
+    end
+    hash
   end
 end
 
