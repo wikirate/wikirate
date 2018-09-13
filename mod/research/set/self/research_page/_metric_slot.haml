@@ -1,40 +1,18 @@
 .metric{class: slot_attr}
-  %div
-    -if !metric?
+  -if !metric?
+    %div
       .d-flex.flex-nowrap.metric-color
         .image-box.icon.bg-white
           = fa_icon "bar-chart", class: "metric-color"
         = autocomplete_field :metric
-    -elsif metric_pinned?
+  -elsif metric_pinned?
+    %div
       .metric-color.d-flex.flex-nowrap.align-items-center
         .image-box.icon
           %span.img-helper
           = nest metric, view: :designer_image
-        %h5.mb-0
+        %h6.mb-0
           = link_to_card metric, Card[metric].metric_title, class: "inherit-anchor"
-    - else
-      .dropdown
-        %a.metric-color.no-decoration.dropdown-toggle.d-flex.flex-nowrap.align-items-center{href:"#", data: { toggle: "dropdown" } }
-          .image-box.icon
-            %span.img-helper
-            = nest metric, view: :designer_image
-          %h5.mb-0
-            = Card[metric].metric_title
-        .dropdown-menu.scrollable-menu.w-150
-          - metric_list.each do |metric|
-            .dropdown-item.metric-dropdown-item
-              %a.inherit-anchor.no-decoration{href: research_url(metric: metric)}
-                %h5.metric-color= Card[metric].metric_title
-                = nest [metric, :question], view: :core
-                - Card.fetch([metric, company]).all_answers.each do |a|
-                  %div.d-flex.flex-no-wrap
-                    %div.mr-3
-                      = a.year
-                    %div
-                      = nest a, view: :conciser, hide: :year_equals
-            .dropdown-divider
-  - if project?
-    .d-flex.flex-nowrap.align-items-center.ml-3.w-25.justify-content-between
-      .w-100.pr-2
-        = nest [company, project], view: :research_progress_bar
-      = next_button :metric
+  - else
+    .metric-select.w-75
+      = metric_select

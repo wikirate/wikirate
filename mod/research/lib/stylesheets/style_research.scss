@@ -49,6 +49,10 @@ form.answer-form {
     }
   }
 
+  .metric > .progress {
+    height: 11px;
+  }
+
   #research_page-research_answer {
     padding-left: 0;
     padding-right: 0;
@@ -61,5 +65,53 @@ form.answer-form {
       padding-top: 15px;
       padding-right: 15px;
     }
+  }
+}
+
+// select 2 customisation
+.select2-container--bootstrap {
+  .select2-container--focus {
+    border-color: $primary;
+  }
+}
+
+.metric-nav {
+    margin: 0px 10px;
+}
+
+
+.metric-select, .year-select {
+  .select2-selection,
+  .select2-container--focus,
+  .select2-container--open {
+    padding: 0;
+    border: none;
+    width: 100%!important;
+  }
+}
+
+.html-select2 {
+  .select2-container--bootstrap .select2-dropdown.select2-dropdown--below {
+    height: calc(100vh - 400px);
+  }
+}
+
+.select2-container--bootstrap {
+  .select2-dropdown.select2-dropdown--below {
+    border: 1px solid $border-color;
+    @include box-shadow(0, 9px, 20px, rgba(0, 0, 0, .06));
+  }
+
+  .select2-search--dropdown {
+    padding: 10px;
+  }
+
+  .select2-results__option {
+      padding: 15px;
+  }
+
+  .select2-results__option--highlighted[aria-selected] {
+    background-color: $gray-200;
+    color: inherit;
   }
 }

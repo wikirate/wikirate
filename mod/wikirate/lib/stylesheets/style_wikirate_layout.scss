@@ -228,5 +228,8 @@ div[data-slot*="float:right"]{
 // .card-slot.content-view.RIGHT-headquarter {
 //   // without this the slot has height 0 and the menu for the headquarters field
 //   // on company pages is not visible
-//   white-space: pre-wrap;
-// }
+
+.wikirate-layout > nav.navbar {
+    box-shadow: none;
+    border-bottom: 1px solid $border-color;
+}
