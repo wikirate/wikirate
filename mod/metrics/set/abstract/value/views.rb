@@ -23,7 +23,6 @@ format :html do
   end
 
   view :pretty_link, tags: :unknown_ok do
-    binding.pry
     voo.show :link
     wrap_with :span, class: "metric-value", title: card.content do
       pretty_link beautify(pretty_value)

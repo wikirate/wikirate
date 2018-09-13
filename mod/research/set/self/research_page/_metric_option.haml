@@ -1,0 +1,10 @@
+%div
+  %h6.metric-color
+    = Card[item].metric_title
+  = nest [item, :question], view: :core
+  - Card.fetch([item, company]).all_answers.each do |a|
+    %div.d-flex.flex-no-wrap
+      %div.mr-3
+        = a.year
+      %div
+        = nest a, view: :conciser, hide: :year_equals

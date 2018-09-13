@@ -101,14 +101,8 @@ format :html do
 
   view :editor, tags: :unknown_ok do
     wrap_with :div, class: "d-flex flex-nowrap" do
-      super() + popover_link
+      super() + popover_link("Not sure? Ask another researcher to double check this")
     end
-  end
-
-  def popover_link
-    link_to fa_icon("question-circle"),
-            class: "pl-1", path: "#", "data-toggle": "popover",
-            "data-content": "Not sure? Ask another researcher to double check this"
   end
 
   view :core, template: :haml
