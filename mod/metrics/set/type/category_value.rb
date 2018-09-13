@@ -15,6 +15,10 @@ def inverted_options_hash
   end
 end
 
+def pretty_values
+  json_options? ? raw_values_from_hash : raw_values
+end
+
 def raw_values_from_hash
   hash = inverted_options_hash
   item_names.map { |item| hash[item] }
@@ -31,6 +35,10 @@ end
 format :html do
   def editor
     options_count > 10 ? :select : :radio
+  end
+
+  def pretty_value
+    card.pretty_values.join JOINT
   end
 
   private
