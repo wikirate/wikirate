@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-RSpec.describe Card::Set::Type::MetricAnswer::Views do
+RSpec.describe Card::Set::Type::MetricAnswer::Listings do
+  # TODO: move this to where humanized_number is actually defined.
   describe "#humanized_number" do
     def humanize number
       Card["Jedi+deadliness+Death Star+1977"].format.humanized_number(number)
