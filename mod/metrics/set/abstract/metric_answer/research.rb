@@ -58,7 +58,7 @@ format :html do
 
   def answer_delete_button
     confirm = "Are you sure you want to delete the #{card.metric_name} answer "\
-              "for #{card.company_name} for the year #{card.year}?"
+              "for #{card.company_name} for #{card.year}?"
     success = research_params.merge(view: :new)
     smart_link_to "Delete",
                   type: "button",

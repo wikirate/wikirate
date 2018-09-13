@@ -101,7 +101,7 @@ format :html do
 
   view :editor, tags: :unknown_ok do
     wrap_with :div, class: "d-flex flex-nowrap" do
-      super() + popover_link("Not sure? Ask another researcher to double check this")
+      super() + popover_link("Not sure? Ask another researcher to double check this.")
     end
   end
 
