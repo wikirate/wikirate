@@ -33,7 +33,9 @@ module OpenCorporates
           raise APIError, "unexpected format, expected a hash but got #{response}"
         end
         REQUIRED_RESPONSE_FIELDS.each do |key|
-          raise APIError, "unexpected format, expected key '#{key}' in #{response}"
+          unless response.key? key
+            raise APIError, "unexpected format, expected key '#{key}' in #{response}"
+          end
         end
       end
 

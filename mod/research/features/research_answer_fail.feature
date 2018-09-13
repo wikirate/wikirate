@@ -5,10 +5,9 @@ Feature: Research answer fail
 
   Background:
     Given I am signed in as Joe User
-    And I go to  "/new answer"
-    And I fill in autocomplete "metric" with "Joe User+researched"
-    And I fill in autocomplete "wikirate_company" with "Apple Inc."
-    And I select year "2009"
+    And I research
+      | metric              | company    | year |
+      | Joe User+researched | Apple Inc. | 2009 |
 
   Scenario: Missing value
     And I cite source

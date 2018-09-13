@@ -12,7 +12,7 @@ RSpec.describe CompanyMatcher do
     end
 
     it "finds alias match" do
-      expect(match("Alphabet")).to eq "Google Inc."
+      expect(match("Alphabet")).to eq "Google LLC"
     end
 
     context "empty company" do
@@ -53,7 +53,7 @@ RSpec.describe CompanyMatcher do
     end
 
     example "name in db if alias match" do
-      expect(match_type("Alphabet")).to eq "Google Inc."
+      expect(match_type("Alphabet")).to eq "Google LLC"
     end
   end
 

@@ -30,7 +30,7 @@ class SharedData
                           inverse_title: "Supplier of" do
         SPECTRE "1977" => { "Los_Pollos_Hermanos" => "Tier 1 Supplier" },
                 "2000" => { "Los_Pollos_Hermanos" => "Tier 1 Supplier",
-                            "Google Inc." => "Tier 2 Supplier" }
+                            "Google LLC" => "Tier 2 Supplier" }
         Monster_Inc "1977" => { "Los_Pollos_Hermanos" => "Tier 1 Supplier" }
       end
       update_card "Commons+Supplier of", codename: "commons_supplier_of"
@@ -48,7 +48,7 @@ class SharedData
       Card[:company_address].create_values(true) do
         SPECTRE "1977" => "Baker Street, London"
         Monster_Inc "1977" => "Alderaan"
-        Google_Inc 2000 => "Mountain View"
+        Google_LLC 2000 => "Mountain View"
       end
     end
   end
