@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::Type::Metric, "json export" do
+RSpec.describe Card::Set::Type::Metric::Export do
   let(:metric) { Card["Joe User+researched number 2"] }
 
   describe "atom view" do

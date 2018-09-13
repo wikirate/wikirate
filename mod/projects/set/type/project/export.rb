@@ -30,6 +30,7 @@ format :json do
   end
 
   view :molecule do
-    super().merge metrics: field_nest(:metric), companies: field_nest(:wikirate_company)
+    super().merge metrics: field_nest(:metric),
+                  companies: field_nest(:wikirate_company)
   end
 end
