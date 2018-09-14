@@ -6,11 +6,12 @@ format :html do
 
   # @param type [:metric, :company]
   def previous_button type
-    navigate_button type, icon_tag(:chevron_left), previous_item(type)
+    navigate_button type, icon_tag(:chevron_left), previous_item(type), "ml-auto"
   end
 
-  def navigate_button type, text, item
-    opts = { class: "btn btn-outline-secondary btn-xs-icon mx-2" }
+  def navigate_button type, text, item, extra_class=nil
+    opts = { class: "btn btn-outline-secondary btn-xs-icon" }
+    add_class opts, extra_class if extra_class
     if item
       opts[:path] = research_url(type => item)
     else
