@@ -53,14 +53,6 @@ format :csv do
   end
 end
 
-format :json do
-  view :core do
-    card.all_answers.map do |answer|
-      subformat(answer.card)._render_core
-    end
-  end
-end
-
 event :update_company_matcher, :integrate_with_delay, on: :create do
   CompanyMatcher.add_to_mapper id, name
 end

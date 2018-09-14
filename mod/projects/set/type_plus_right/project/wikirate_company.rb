@@ -11,7 +11,7 @@ end
 # @return [Array] all of this card's items that refer to a valid company
 def valid_company_cards
   @valid_company_cards ||=
-    item_cards.sort_by(&:name).select do |company|
+    item_cards.sort_by(&:key).select do |company|
       company.type_id == WikirateCompanyID
     end
 end
