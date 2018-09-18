@@ -1,0 +1,17 @@
+[
+  {
+    "name": "ISIC+Industry Group+formula",
+    "type": "PlainText",
+    "codename": "isic_group_formula"
+  },
+  {
+    "name": "ISIC+Industry Division+Formula",
+    "type": "PlainText",
+    "codename": "isic_division_formula"
+  },
+  {
+    "name": "ISIC+Industry Section+Formula",
+    "type": "PlainText",
+    "codename": "isic_section_formula"
+  }
+]

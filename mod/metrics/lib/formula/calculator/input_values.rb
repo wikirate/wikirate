@@ -11,11 +11,12 @@ module Formula
 
       # @param [Array<Card>] input_cards all cards that are part of the formula
       # @param [Symbol] requirement either :all or :any
-      def initialize input_cards, requirement
+      def initialize input
+        @input = input
+        @requirement = input.requirement
         @all_fetched = false
         @companies_with_values_by_year = Hash.new_nested ::Set
-        @requirement = requirement
-        @input_list = initialize_input_list input_cards
+        @input_list = initialize_input_list input.input_cards
         @value_store = ValueStore.new @input_list
       end
 
@@ -123,7 +124,7 @@ module Formula
       def input_type input_card
         case input_card.type_id
         when Card::MetricID
-          input_card.value_type
+          input_card.value_type_code
         when Card::YearlyVariableID
           :yearly_value
         end
@@ -134,7 +135,7 @@ module Formula
         when :yearly_value
           yearly_value_fetch input_item.card_id
         else
-          answer_fetch input_item.card_id, year
+          answer_fetch input_item, year
         end
       end
 
@@ -176,20 +177,20 @@ module Formula
 
       # Find answer for the given input card and cache the result.
       # If year is given look only for that year
-      def answer_fetch input_card_id, year
-        answers = input_answers input_card_id, year
+      def answer_fetch input_item, year
+        answers = input_answers input_item.card_id, year
 
         update_company_list answers.map(&:company_id)
         answers.each do |a|
-          @value_store.add input_card_id, a.company_id, a.year, a.value
+          value = Answer.value_from_lookup a.value, input_item.type
+          @value_store.add input_item.card_id, a.company_id, a.year, value
           @companies_with_values_by_year[a.year.to_i] ||= ::Set.new
           @companies_with_values_by_year[a.year.to_i] << a.company_id
         end
       end
 
       def yearly_value_fetch input_card_id
-        v_cards = input_yearly_value_cards(input_card_id)
-        v_cards.each do |vc|
+        input_yearly_value_cards(input_card_id).each do |vc|
           @value_store.add input_card_id, vc.year, vc.content
         end
       end

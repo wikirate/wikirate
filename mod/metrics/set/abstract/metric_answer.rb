@@ -25,8 +25,13 @@ end
 
 def value_card
   vc = fetch_value_card
-  vc.content = value if virtual?
+  vc.content = content_from_value(value) if virtual?
   vc
+end
+
+# make sure pointer-style content works for multi-category
+def content_from_value value
+  Array.wrap(::Answer.value_from_lookup(value, value_cardtype_code)).join "\n"
 end
 
 def value_cardtype_code

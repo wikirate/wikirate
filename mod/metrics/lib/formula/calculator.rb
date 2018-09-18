@@ -11,11 +11,10 @@ module Formula
   class Calculator
     INPUT_CAST = ->(val) { val }
 
-    attr_reader :formula, :errors
+    attr_reader :errors
 
     def initialize formula_card
       @formula_card = formula_card
-      @formula = formula_card.clean_formula
       @input = Input.new @formula_card.input_cards,
                          @formula_card.input_requirement,
                          year_options,
@@ -62,6 +61,10 @@ module Formula
       end
     end
 
+    def formula
+      @formula ||= @formula_card.clean_formula
+    end
+
     def validate_formula
       compile_formula
       @errors
@@ -84,7 +87,7 @@ module Formula
     protected
 
     def compile_formula
-      return unless safe_to_convert? @formula
+      return unless safe_to_convert? formula
       @executed_lambda ||= safe_execution(to_lambda)
     end
 

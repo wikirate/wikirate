@@ -124,5 +124,28 @@ class Answer
     def find_by_answer_id answer_id
       answer_id ? Answer.where(answer_id: answer_id).take : nil
     end
+
+    # convert value format to lookup-table-suitable value
+    # @return nil or String
+    def value_to_lookup value
+      case value
+      when nil  ; nil
+      when Array; value.join joint
+      else        value.to_s
+      end
+    end
+
+    # convert value from lookup table to
+    def value_from_lookup string, value_cardtype_code
+      if value_cardtype_code == :multi_category_value
+        string.split joint
+      else
+        string
+      end
+    end
+
+    def joint
+      Card::Set::Abstract::Value::JOINT
+    end
   end
 end

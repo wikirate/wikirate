@@ -21,7 +21,9 @@ class Answer
         card.define_singleton_method(:value) { val }
         # card.define_singleton_method(:updated_at) { updated_at }
         card.define_singleton_method(:value_card) do
-          Card.new name: [name, :value], content: val, type_code: value_cardtype_code
+          Card.new name: [name, :value],
+                   content: ::Answer.value_from_lookup(val, value_cardtype_code),
+                   type_code: value_cardtype_code
         end
       end
     end
