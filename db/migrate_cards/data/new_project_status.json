@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Status",
+    "type": "Cardtype",
+    "codename": "wikirate_status"
+  },
+  {
+    "name": "Status+Project+*type plus right",
+    "type": "Set"
+  },
+  {
+    "name": "Active",
+    "type": "Basic"
+  },
+  {
+    "name": "Inactive",
+    "type": "Basic"
+  }
+]
