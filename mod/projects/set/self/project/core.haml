@@ -9,6 +9,6 @@
       %a{class: "nav-link", href: "#project-inactive", data: {toggle: "tab"}} Inactive
   .tab-content
     #project-active.tab-pane.active
-      = nest "Project+Active", title: "Active Projects", items: { view: "listing" }
+      = nest "Active+Project", title: "Active Projects", items: { view: "listing" }
     #project-inactive.tab-pane
-      = nest "Project+Inactives", title: "Inactive Projects", items: { view: "listing" }
+      = nest "Inactive+Project", title: "Inactive Projects", items: { view: "listing" }
