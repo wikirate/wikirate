@@ -13,5 +13,6 @@ When(/^I open the year list$/) do
 end
 
 When(/^I click the next button$/) do
-  click_link_or_button("chevron_right")
+  page.execute_script %{$('a:contains("chevron_right")').click()}
+  #click_link_or_button("chevron_right")
 end

@@ -37,7 +37,7 @@ format :html do
 
   def metric_details_tab
     nest metric, view: :main_details,
-         hide: [:add_value_buttons, :import_button, :about]
+                 hide: [:add_value_buttons, :import_button, :about]
   end
 
   def hide_tab tab, hide=false

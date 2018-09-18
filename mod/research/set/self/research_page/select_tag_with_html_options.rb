@@ -79,8 +79,8 @@ class SelectTagWithHtmlOptions
     options = @items.map.with_index do |item, i|
       selected_index = i if item == @selected
       [item, i, { "data-url": @url.call(item),
-                  "data-option-selector": "##{@name}-option-#{i}",
-                  "data-selected-option-selector": "##{@name}-selected-option-#{i}" }]
+                  "data-option-selector": "##{option_id(i)}",
+                  "data-selected-option-selector": "##{selected_option_id(i)}" }]
     end
     @format.options_for_select(options, selected_index)
   end
