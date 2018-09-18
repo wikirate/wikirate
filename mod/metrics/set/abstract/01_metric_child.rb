@@ -14,7 +14,13 @@ def self.included host_class
 end
 
 def metric_part full_name=name
-  full_name.to_name.parts[0..(-1 - generation)].join("+")
+  parts = full_name.to_name.parts
+  metric_parts = parts[0..(-1 - generation)]
+  if metric_parts.size > 2 && company_with_plus?(parts)
+    metric_parts[0..1].join Cardname.joint
+  else
+    metric_parts.join Cardname.joint
+  end
 end
 
 def year_part full_name=name
@@ -22,7 +28,20 @@ def year_part full_name=name
 end
 
 def company_part full_name=name
-  full_name.to_name.parts[-generation]
+  parts = full_name.to_name.parts
+  if parts.size - generation == 3 && company_with_plus?(parts)
+    parts[-generation - 1..-generation].join Cardname.joint
+  else
+    parts[-generation]
+  end
+end
+
+def company_with_plus? parts
+  Card.fetch_type_id(parts[-generation - 1..-generation]) == Card::WikirateCompanyID
+end
+
+def name_parts full_name
+  full_name.to_name.parts
 end
 
 def metric

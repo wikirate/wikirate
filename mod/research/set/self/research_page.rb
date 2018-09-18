@@ -38,11 +38,12 @@ format :html do
       tabs["Source"] = cite_source_tab hide: !cite_mode?
       tabs["View Source"] = view_source_tab hide: hide_view_source_tab?
     end
-    tabs["Metric details"] = metric_details_tab if metric?
-    tabs['Need Help? <span class="badge badge-danger">New</span>'] =
-      nest :how_to_research, view: :content
+    tabs["Methodology"] = metric_details_tab if metric?
+    tabs["Need Help?"] = nest :how_to_research, view: :content
     static_tabs tabs, active_tab, "tabs", pane: { class: "p-3" }
   end
+
+  NEW_BADGE = '<span class="badge badge-danger">New</span>'.freeze
 
   def cite_mode?
     answer_card.unknown? || @answer_view == :research_edit_form
@@ -63,11 +64,12 @@ format :html do
 
   def metric_details_tab
     nest metric, view: :main_details,
-                 hide: [:add_value_buttons, :import_button]
+                 hide: [:add_value_buttons, :import_button, :about]
   end
 
   def hide_tab tab, hide=false
     return tab unless hide
+
     { content: tab, button_attr: { class: "d-none" } }
   end
 
@@ -82,14 +84,28 @@ format :html do
     end
   end
 
+  view :year_slot, cache: :never do
+    year_slot
+  end
+
+  def year_slot
+    wrap do
+      haml_partial :year_slot
+    end
+  end
+
   # slot means slot machine slot not card slot
   def slot_attr
     "border-bottom p-2 pl-4 d-flex wd-100 justify-content-between flex-nowrap " \
     "align-items-center"
   end
 
+  def project_slot_attr
+    "border-bottom px-2 py-2 pl-4 d-flex wd-100 flex-nowrap "
+  end
+
   def answer_slot
-    opts = { title: "Answer", hide: :cited_source_links }
+    opts = { title: "Answer", hide: [:cited_source_links, :hover_link] }
     opts[:view] = answer_view
     nest answer_card, opts
   end
@@ -100,14 +116,6 @@ format :html do
     else
       @answer_view || :titled
     end
-  end
-
-  def next_button type
-    list = send("#{type}_list")
-    index = list.index send(type)
-    return if !index || index == list.size - 1
-    link_to "Next", path: research_url(type => list[index + 1]),
-                    class: "btn btn-sm btn-outline-secondary"
   end
 
   def autocomplete_field type, options_card=nil

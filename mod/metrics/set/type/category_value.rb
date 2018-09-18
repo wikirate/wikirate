@@ -1,18 +1,22 @@
-include_set Abstract::Value
 include_set Abstract::Pointer
+include_set Abstract::Value
 
 def value
   raw_value.join JOINT
 end
 
 def raw_value
-  json_options? ? raw_values_from_hash : item_names(context: :raw)
+  item_names context: :raw
 end
 
 def inverted_options_hash
   options_hash.each_with_object({}) do |(k, v), h|
     h[v] = k
   end
+end
+
+def pretty_values
+  json_options? ? raw_values_from_hash : raw_value
 end
 
 def raw_values_from_hash
@@ -31,6 +35,10 @@ end
 format :html do
   def editor
     options_count > 10 ? :select : :radio
+  end
+
+  def pretty_value
+    card.pretty_values.join JOINT
   end
 
   private

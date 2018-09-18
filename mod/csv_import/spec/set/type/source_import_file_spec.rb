@@ -166,8 +166,8 @@ RSpec.describe Card::Set::Type::SourceImportFile do
                  context: :success,
                  checked: true,
                  match: :alias,
-                 suggestion: "Google Inc.",
-                 fields: ["Google Inc.", "Google", "2014", "Monster Report",
+                 suggestion: "Google LLC",
+                 fields: ["Google LLC", "Google", "2014", "Monster Report",
                           url("Google")]
       end
     end

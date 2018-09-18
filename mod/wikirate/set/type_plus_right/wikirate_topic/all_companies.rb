@@ -14,11 +14,11 @@ def related_company_ids_to_json ids
   end.to_json
 end
 
-format :json do
-  view :core do
-    card.related_company_ids_to_json card.left.related_companies
-  end
-end
+# format :json do
+#   view :core do
+#     card.related_company_ids_to_json card.left.related_companies
+#   end
+# end
 
 format do
   def analysis_cached_count company, type
