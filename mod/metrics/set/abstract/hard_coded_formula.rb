@@ -7,7 +7,6 @@ def validate_input input, _index
   !Array.wrap(input).flatten.any? { |inp| Answer.unknown? inp }
 end
 
-
 format :html do
   view :editor do
     "Formula is hard-coded and cannot be edited"

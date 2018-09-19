@@ -1,26 +1,26 @@
 include_set Abstract::HardCodedFormula
 
-letter_start_finish = [["A",	"01", "03"],
-                       ["B",	"05", "09"],
-                       ["C",	"10", "33"],
-                       ["D",	"35", "35"],
-                       ["E",	"36", "39"],
-                       ["F",	"41", "43"],
-                       ["G",	"45", "47"],
-                       ["H",	"49", "53"],
-                       ["I",	"55", "56"],
-                       ["J",	"58", "63"],
-                       ["K",	"64", "66"],
-                       ["L",	"68", "68"],
-                       ["M",	"69", "75"],
-                       ["N",	"77", "82"],
-                       ["O",	"84", "84"],
-                       ["P",	"85", "85"],
-                       ["Q",	"86", "88"],
-                       ["R",	"90", "93"],
-                       ["S",	"94", "96"],
-                       ["T",	"97", "98"],
-                       ["U",	"99", "99"]]
+letter_start_finish = [%w[A 01 03],
+                       %w[B 05 09],
+                       %w[C 10 33],
+                       %w[D 35 35],
+                       %w[E 36 39],
+                       %w[F 41 43],
+                       %w[G 45 47],
+                       %w[H 49 53],
+                       %w[I 55 56],
+                       %w[J 58 63],
+                       %w[K 64 66],
+                       %w[L 68 68],
+                       %w[M 69 75],
+                       %w[N 77 82],
+                       %w[O 84 84],
+                       %w[P 85 85],
+                       %w[Q 86 88],
+                       %w[R 90 93],
+                       %w[S 94 96],
+                       %w[T 97 98],
+                       %w[U 99 99]]
 
 NUM_TO_LETTER =
   letter_start_finish.each_with_object({}) do |(letter, start, finish), h|
@@ -28,7 +28,7 @@ NUM_TO_LETTER =
   end.freeze
 
 def get_value input
-  input.first.map { | num| NUM_TO_LETTER[num] }.uniq
+  input.first.map { |num| NUM_TO_LETTER[num] }.uniq
 end
 
 format :html do

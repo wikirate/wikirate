@@ -1,4 +1,6 @@
 class Answer
+  VALUE_JOINT = Card::Set::Abstract::Value::JOINT
+
   module AnswerClassMethods
     SEARCH_OPTS = { sort: [:sort_by, :sort_order, :cast],
                     page: [:limit, :offset],
@@ -6,25 +8,26 @@ class Answer
                     uniq: [:uniq],
                     where: [:where] }.freeze
 
-    def create cardish
-      ma = Answer.new
-      ma.answer_id = card_id cardish
-      ma.refresh
+    def new_for_card cardish
+      ma = new # to document: why can't answer_id be assigned in new?
+      ma.answer_id = Card.id cardish
+      ma
     end
 
-    def create! card
-      ma = Answer.new
-      ma.answer_id = card.id
+    def create cardish
+      new_for_card(cardish).refresh
+    end
+
+    def create! cardish
+      ma = new_for_card cardish
       raise ActiveRecord::RecordInvalid, ma if ma.invalid?
       ma.refresh
     end
 
     def create_or_update cardish, *fields
-      ma_card_id = card_id(cardish)
-      ma = Answer.find_by_answer_id(ma_card_id) || Answer.new
-      ma.answer_id = ma_card_id
-      # update all fields if record is new
-      fields = nil if ma.new_record?
+      ma_card_id = Card.id cardish
+      ma = Answer.find_by_answer_id(ma_card_id) || new_for_card(ma_card_id)
+      fields = nil if ma.new_record? # update all fields if record is new
       ma.refresh(*fields)
     end
 
@@ -50,17 +53,6 @@ class Answer
                           .sort(args[:sort])
                           .paging(args[:page])
                           .return(args[:return])
-    end
-
-    def split_search_args args
-      hash = {}
-      SEARCH_OPTS.each do |cat, keys|
-        hash[cat] = args.extract!(*keys)
-      end
-      hash[:uniq].merge! hash[:return] if hash[:uniq] && hash[:return]
-      hash[:where] = args unless hash[:where].present?
-      hash[:where] = Array.wrap(hash[:where])
-      hash
     end
 
     # @param ids [Integer, Array<Integer>] card ids of metric answer cards
@@ -94,13 +86,6 @@ class Answer
       end
     end
 
-    def card_id cardish
-      case cardish
-      when Integer then cardish
-      when Card    then cardish.id
-      end
-    end
-
     def latest_answer_card metric_id, company_id
       a_id = where(metric_id: metric_id, company_id: company_id,
                    latest: true).pluck(:answer_id).first
@@ -108,9 +93,7 @@ class Answer
     end
 
     def latest_year metric_id, company_id
-      where(metric_id: metric_id,
-            company_id: company_id,
-            latest: true).pluck(:year).first
+      where(metric_id: metric_id, company_id: company_id, latest: true).pluck(:year).first
     end
 
     def answered? metric_id, company_id
@@ -128,24 +111,24 @@ class Answer
     # convert value format to lookup-table-suitable value
     # @return nil or String
     def value_to_lookup value
-      case value
-      when nil  ; nil
-      when Array; value.join joint
-      else        value.to_s
-      end
+      return nil unless value.present?
+      value.is_a?(Array) ? value.join(VALUE_JOINT) : value.to_s
     end
 
     # convert value from lookup table to
-    def value_from_lookup string, value_cardtype_code
-      if value_cardtype_code == :multi_category_value
-        string.split joint
-      else
-        string
-      end
+    def value_from_lookup string, type
+      type == :multi_category_value ? string.split(VALUE_JOINT) : string
     end
 
-    def joint
-      Card::Set::Abstract::Value::JOINT
+    private
+
+    def split_search_args args
+      hash = {}
+      SEARCH_OPTS.each { |cat, keys| hash[cat] = args.extract!(*keys) }
+      hash[:uniq].merge! hash[:return] if hash[:uniq] && hash[:return]
+      hash[:where] = args unless hash[:where].present?
+      hash[:where] = Array.wrap(hash[:where])
+      hash
     end
   end
 end
