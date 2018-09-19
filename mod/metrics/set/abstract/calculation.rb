@@ -33,5 +33,5 @@ def already_researched? answer
 end
 
 def normalize_value value
-  ::Answer.value_to_lookup valuese
+  ::Answer.value_to_lookup value
 end
