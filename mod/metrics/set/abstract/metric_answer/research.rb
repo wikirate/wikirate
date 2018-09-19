@@ -58,13 +58,14 @@ format :html do
 
   def answer_delete_button
     confirm = "Are you sure you want to delete the #{card.metric_name} answer "\
-              "for #{card.company_name} for the year #{card.year}?"
-    success = research_params.merge(view: :new)
+              "for #{card.company_name} for #{card.year}?"
+    success = research_params.merge(view: :slot_machine, id: Card[:research_page].name)
+
     smart_link_to "Delete",
                   type: "button",
                   path: { action: :delete, success: success },
                   class: "btn btn-outline-danger pull-right",
-                  'data-confirm': confirm, remote: true,
+                  'data-confirm': confirm,
                   "data-disable-with": "Deleting"
   end
 
@@ -76,7 +77,13 @@ format :html do
   end
 
   def standard_cancel_button args={}
-    args[:href] = edit_year_cancel_button_path if @slot_view == :edit_year
+    args[:href] =
+      if @slot_view == :edit_year
+        edit_year_cancel_button_path
+      else
+        path view: :titled
+      end
+
     super args
   end
 
