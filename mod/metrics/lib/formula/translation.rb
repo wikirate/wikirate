@@ -6,7 +6,7 @@ module Formula
         raise Card::Error,
               "translate formula with more than one metric involved"
       end
-      input.first.inject(0.0) do |res, inp|
+      Array.wrap(input.first).inject(0.0) do |res, inp|
         res + @executed_lambda[inp.to_s.downcase].to_f
       end
     end
