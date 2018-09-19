@@ -1,23 +1,38 @@
 RSpec.describe Card::Set::Type::Metric, "json export" do
-  subject do
-    render_view :core, { name: "Joe User+researched number 2" }, format: :json
-  end
-
   let(:metric) { Card["Joe User+researched number 2"] }
 
-  specify "core view" do
-    is_expected.to include(
-      a_hash_including(
-        name: "Joe User+researched number 2+Samsung+2014",
-        value: "5",
-        year: "2014",
-        company: a_hash_including(name: "Samsung"),
-        metric: a_hash_including(name: "Joe User+researched number 2"),
-        source: a_hash_including(source_url: "http://www.wikiwand.com/en/Opera")
-      ),
-      a_hash_including(name: "Joe User+researched number 2+Samsung+2015",
-                       value: "2",
-                       year: "2015")
-    )
+  describe "atom view" do
+    subject { render_view :atom, { name: metric.name }, format: :json }
+
+    specify do
+      is_expected.to include(name: "Joe User+researched number 2",
+                             id: metric.id,
+                             url: "http://wikirate.org/Joe_User+researched_number_2.json",
+                             type: "Metric",
+                             designer: "Joe User",
+                             title: "researched number 2",
+                             project: ["Evil Project"],
+                             question: nil,
+                             value_type: ["Number"])
+    end
+  end
+
+  describe "molecule view" do
+    subject { render_view :molecule, { name: metric.name }, format: :json }
+
+    specify do
+      is_expected
+        .to include(
+          name: "Joe User+researched number 2",
+          id: metric.id,
+          url: "http://wikirate.org/Joe_User+researched_number_2.json",
+          type: a_hash_including(name: "Metric"),
+          records_url: "http://wikirate.org/Joe_User+researched_number_2+Record.json",
+          ancestors: [
+            a_hash_including(name: "Joe User"),
+            a_hash_including(name: "researched number 2")
+          ]
+        )
+    end
   end
 end

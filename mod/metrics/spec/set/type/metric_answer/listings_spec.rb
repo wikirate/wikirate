@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
-RSpec.describe Card::Set::Type::MetricAnswer::Views do
+RSpec.describe Card::Set::Type::MetricAnswer::Listings do
+  # TODO: move this to where humanized_number is actually defined.
   describe "#humanized_number" do
     def humanize number
       Card["Jedi+deadliness+Death Star+1977"].format.humanized_number(number)
@@ -21,10 +22,12 @@ RSpec.describe Card::Set::Type::MetricAnswer::Views do
   end
 
   describe "view :concise" do
+    def concise_answer_for metric_title
+      render_view :concise, name: "#{metric_title}+Sony Corporation+2010"
+    end
+
     context "with multi category metric" do
-      subject do
-        render_view :concise, name: "Joe User+big multi+Sony Corporation+2010"
-      end
+      subject { concise_answer_for "Joe User+big multi" }
 
       it "has comma separated list of values" do
         is_expected.to have_tag "span.metric-value", "1, 2"
@@ -38,9 +41,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::Views do
     end
 
     context "with single category metric" do
-      subject do
-        render_view :concise, name: "Joe User+big single+Sony Corporation+2010"
-      end
+      subject { concise_answer_for "Joe User+big single" }
 
       it "has value" do
         is_expected.to have_tag "span.metric-value", "4"

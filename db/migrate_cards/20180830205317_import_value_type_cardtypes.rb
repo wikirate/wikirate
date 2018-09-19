@@ -1,8 +1,6 @@
 # -*- encoding : utf-8 -*-
 
 class ImportValueTypeCardtypes < Card::Migration
-  ANSWER_TYPE_IDS = [Card::MetricAnswerID, Card::RelationshipAnswerID]
-
   def up
     fix_bad_test_data
     fix_record_types
@@ -42,29 +40,50 @@ class ImportValueTypeCardtypes < Card::Migration
   end
 
   def update_value_cardtypes
-    each_answer_value do |value_card|
-      value_card.update_attributes! type_id: type_id_for(value_card)
-    end
-  end
-
-  def type_id_for value_card
-    Card::Codename.id type_code_for(value_card)
-  end
-
-  def type_code_for value_card
-    value_card.metric_card.value_cardtype_code
-  rescue
-    :free_text_value
-  end
-
-  def each_answer_value
-    Card.where(right_id: Card::ValueID).find_each do |card|
-      if ANSWER_TYPE_IDS.member? card.left&.type_id
-        card.include_set_modules
-        yield card
-      else
-        # binding.pry if card.name.parts.size > 2
+    Card.search(type_id: Card::MetricID) do |metric|
+      if metric.relationship?
+        bulk_update_types standard_value_ids(metric), Card::NumberValueID
       end
+      bulk_update_types value_ids_for_metric(metric), metric.value_cardtype_id
     end
+  end
+
+  def value_ids_for_metric metric_card
+    case metric_card.metric_type_codename
+    when :score                ; score_value_ids metric_card
+    when :relationship         ; relationship_value_ids metric_card
+    when :inverse_relationship ; nil
+    else                         standard_value_ids metric_card
+    end
+  end
+
+  def score_value_ids metric_card
+    value_ids_for_answers_where left: { left: { left_id: metric_card.id} },
+                                type_id: Card::MetricAnswerID
+  end
+
+  def standard_value_ids metric_card
+    value_ids_for_answers_where left: { left_id: metric_card.id },
+                                type_id: Card::MetricAnswerID
+  end
+
+  def relationship_value_ids metric_card
+    value_ids_for_answers_where left: { left: { left_id: metric_card.id} },
+                                type_id: Card::RelationshipAnswerID
+  end
+
+  def value_ids_for_answers_where wql
+    answer_ids = id_search wql
+    return if answer_ids.blank?
+    id_search right_id: Card::ValueID, left_id: answer_ids
+  end
+
+  def id_search wql
+    Card.search wql.merge(limit: 0, return: :id)
+  end
+
+  def bulk_update_types ids, type_id
+    return if ids.blank?
+    Card.where(id: ids).update_all type_id: type_id
   end
 end

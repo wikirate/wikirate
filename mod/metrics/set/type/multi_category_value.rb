@@ -7,7 +7,7 @@ format :html do
 end
 
 format :json do
-  view :core do
+  view :content do
     card.raw_value
   end
 end
