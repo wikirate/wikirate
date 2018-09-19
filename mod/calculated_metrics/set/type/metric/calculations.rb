@@ -1,3 +1,4 @@
+# <OVERRIDES>
 # note: the following only _really_ apply to calculated metrics and should arguably
 # be in Abstract::Calculation.  However that breaks an API test that assumes formulas
 # can be run on _any_ metric. If we're ok to remove that api, I'm happy to move this code

@@ -110,6 +110,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
     end
 
     it "updates second level formula" do
+
       expect(answer_value("double friendliness")).to eq "0.02"
       change_research_input
       expect(answer_value("double friendliness")).to eq "0.2"
