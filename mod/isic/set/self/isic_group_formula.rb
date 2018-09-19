@@ -1,5 +1,7 @@
 include_set Abstract::HardCodedFormula
 
+# @param input [Array of Arrays] ...of 4 digit ISIC (class) codes
+# @return [Array] ... of 3 digit group codes
 def get_value input
   input.first.map(&:chop).uniq
 end

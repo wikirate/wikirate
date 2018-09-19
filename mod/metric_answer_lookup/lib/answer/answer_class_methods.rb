@@ -117,7 +117,7 @@ class Answer
 
     # convert value from lookup table to
     def value_from_lookup string, type
-      type == :multi_category_value ? string.split(VALUE_JOINT) : string
+      type == :multi_category ? string.split(VALUE_JOINT) : string
     end
 
     private
