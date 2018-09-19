@@ -27,7 +27,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::Listings do
     end
 
     context "with multi category metric" do
-      subject { concise_answer_for "Joe User+big multi"}
+      subject { concise_answer_for "Joe User+big multi" }
 
       it "has comma separated list of values" do
         is_expected.to have_tag "span.metric-value", "1, 2"
@@ -41,7 +41,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::Listings do
     end
 
     context "with single category metric" do
-      subject { concise_answer_for "Joe User+big single"}
+      subject { concise_answer_for "Joe User+big single" }
 
       it "has value" do
         is_expected.to have_tag "span.metric-value", "4"
