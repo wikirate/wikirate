@@ -1,14 +1,14 @@
 %div
   = field_nest :description
   = nest :homepage_featured_projects, items: { view: "listing" }
-#project-tabs.tabbable
-  %ul.nav.nav-tabs
-    %li.nav-item
-      %a{class: "active nav-link", href: "#project-active", data: {toggle: "tab"}} Active
-    %li.nav-item
-      %a{class: "nav-link", href: "#project-inactive", data: {toggle: "tab"}} Inactive
-  .tab-content
-    #project-active.tab-pane.active
-      = nest "Active+Project", title: "Active Projects", items: { view: "listing" }
-    #project-inactive.tab-pane
-      = nest "Inactive+Project", title: "Inactive Projects", items: { view: "listing" }
+#project-tabs.tabbable 
+  %ul.nav.nav-tabs 
+    - Card.fetch("Project+status+*type_plus_right+*options").item_cards(limit: 0).each_with_index do |project,i|
+      %li.nav-item 
+        - classNav = i == 0 ? "active nav-link" : "nav-link"
+        %a{class: classNav, href: "#project-#{project.name}", data: {toggle: "tab"}} #{project.name}
+  .tab-content 
+    - Card.fetch("Project+status+*type_plus_right+*options").item_cards(limit: 0).each_with_index do |project,i|
+      - classTab = i == 0 ? "tab-pane active" : "tab-pane"
+      %div{class: classTab, id: "project-#{project.name}"}
+        = nest "#{project.name}+Project", title: "#{project.name} Projects", items: { view: "listing" }
