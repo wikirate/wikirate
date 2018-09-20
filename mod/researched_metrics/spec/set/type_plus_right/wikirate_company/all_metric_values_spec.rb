@@ -436,7 +436,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       end
 
       it "sorts by recently updated" do
-        expect(min_by(:updated_at))
+        expect(sort_by(:updated_at).first)
           .to eq "Fred+dinosaurlabor+Death_Star+2010"
       end
 
@@ -457,7 +457,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
 
   describe "#count" do
     it "returns correct count" do
-      expect(all_metric_values.count).to eq(17)
+      expect(all_metric_values.count).to eq(metric_count)
     end
   end
 
