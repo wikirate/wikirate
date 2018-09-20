@@ -17,6 +17,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       "darkness rating+1977",
       "descendant 1+1977",
       "descendant hybrid+1977",
+      "double friendliness+1977",
       "researched number 1+1977",
       "more evil+1977",
       "researched+1977",
@@ -33,6 +34,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
       "deadliness+Joe User+1977",
       "disturbances in the Force+2001",
       "disturbances in the Force+Joe User+2001",
+      "double friendliness+1977",
       "friendliness+1977",
       "more evil+1977",
       "Sith Lord in Charge+1977",
@@ -58,6 +60,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
     all_metrics.map do |name|
       r_name = name.to_name.parts[1..-1].to_name
       next if latest_metric_keys.include? r_name.key
+
       r_name.to_s
     end.compact
   end
@@ -108,13 +111,13 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
     end
 
     def filter_by args
-      allow(all_metric_values).to receive(:sort_by) { :metric_name }
+      allow(all_metric_values).to receive(:sort_by).and_return(:metric_name)
       allow(all_metric_values).to receive(:filter_hash) { args }
       answers all_metric_values.item_cards
     end
 
     context "with single filter condition" do
-      context "keyword" do
+      context "with keyword" do
         it "finds exact match" do
           expect(filter_by(name: "Jedi+disturbances in the Force+Joe User"))
             .to eq ["disturbances in the Force+Joe User+2001"]
@@ -132,23 +135,26 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
                               "deadliness+Joe User"], 1977)
         end
       end
-      context "year" do
+
+      context "with year" do
         it "finds exact match" do
           expect(filter_by(year: "2000"))
             .to eq with_year(["dinosaurlabor", "disturbances in the Force",
                               "disturbances in the Force+Joe User"], 2000)
         end
       end
-      context "research policy" do
+
+      context "with research policy" do
         it "finds exact match" do
           expect(filter_by(research_policy: "Designer Assessed"))
             .to eq ["dinosaurlabor+2010"]
         end
       end
-      context "metric type" do
+
+      context "with metric type" do
         it "finds formulas" do
           expect(filter_by(metric_type: "Formula"))
-            .to eq ["friendliness+1977"]
+            .to eq ["double friendliness+1977", "friendliness+1977"]
         end
         it "finds scores" do
           expect(filter_by(metric_type: "Score"))
@@ -166,18 +172,19 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
         it "finds combinations" do
           expect(filter_by(metric_type: %w[Score Formula]))
             .to eq ["deadliness+Joe Camel+1977", "deadliness+Joe User+1977",
-                    "disturbances in the Force+Joe User+2001",
+                    "disturbances in the Force+Joe User+2001", "double friendliness+1977",
                     "friendliness+1977"]
         end
       end
-      context "topic" do
+
+      context "with topic" do
         it "finds exact match" do
           expect(filter_by(topic: "Force"))
             .to eq ["disturbances in the Force+2001"]
         end
       end
 
-      context "vote" do
+      context "with vote" do
         it "finds upvoted" do
           expect(filter_by(importance: :upvotes))
             .to eq ["disturbances in the Force+2001"]
@@ -205,22 +212,21 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
         end
       end
 
-      context "value" do
-        it "finds missing values" do
-          expect(filter_by(metric_value: :none))
-            .to contain_exactly(*missing_answers)
-        end
-
-        let(:unknown_answers) do
-          with_year(
-            ["deadliness", "deadliness+Joe Camel", "deadliness+Joe User",
-             "friendliness", "Victims by Employees"], 1977
-          )
-        end
-
+      context "with value" do
         let(:all_answers) do
           latest_answers + with_year(["researched number 2", "researched number 3",
                                       "small multi", "small single"])
+        end
+        let(:unknown_answers) do
+          with_year(
+            ["deadliness", "deadliness+Joe Camel", "deadliness+Joe User",
+             "double friendliness", "friendliness", "Victims by Employees"], 1977
+           )
+        end
+
+        it "finds missing values" do
+          expect(filter_by(metric_value: :none))
+            .to contain_exactly(*missing_answers)
         end
 
         it "finds all values" do
@@ -249,9 +255,11 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
           before do
             Timecop.freeze(SharedData::HAPPY_BIRTHDAY)
           end
+
           after do
             Timecop.return
           end
+
           it "finds today's edits" do
             expect(filter_by(metric_value: :today))
               .to eq ["disturbances in the Force+1990"]
@@ -272,14 +280,15 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
           end
         end
       end
-      context "invalid filter key" do
+
+      context "with invalid filter key" do
         it "doesn't matter" do
           expect(filter_by(not_a_filter: "Death"))
             .to contain_exactly(*latest_answers)
         end
       end
 
-      context "project" do
+      context "with project" do
         it "finds exact match" do
           expect(filter_by(project: "Evil Project"))
             .to eq ["disturbances in the Force+2001"]
@@ -295,7 +304,8 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
              "darkness rating", "deadliness", "deadliness+Joe Camel",
              "deadliness+Joe User", "dinosaurlabor", "friendliness",
              "Sith Lord in Charge", "descendant 1", "descendant hybrid",
-             "researched number 1", "researched", "more evil"], 2001
+             "researched number 1", "researched", "more evil", "double friendliness"],
+            2001
           )
           missing2001.delete "disturbances in the Force+2001"
           filtered = filter_by(metric_value: :none, year: "2001")
@@ -357,7 +367,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
               *(with_year(["Industry Class", "Weapons",
                            "big multi", "big single",
                            "researched number 2", "researched number 3",
-                           "small multi", "small single"]) + researched )
+                           "small multi", "small single"]) + researched)
             )
         end
       end
@@ -422,11 +432,11 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
            "researched number 1", "Victims by Employees"].map do |t|
             sorted.index(t)
           end
-        expect(indices).to eq [0, 1, 2, 13, 15]
+        expect(indices).to eq [0, 1, 2, 14, 16]
       end
 
       it "sorts by recently updated" do
-        expect(sort_by(:updated_at).first)
+        expect(min_by(:updated_at))
           .to eq "Fred+dinosaurlabor+Death_Star+2010"
       end
 
@@ -447,7 +457,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
 
   describe "#count" do
     it "returns correct count" do
-      expect(all_metric_values.count).to eq(16)
+      expect(all_metric_values.count).to eq(17)
     end
   end
 
