@@ -220,7 +220,8 @@ RSpec.describe Card::Set::MetricType::Score do
       @metric_name = "Joe User+#{@metric_title}"
       Card::Auth.as_bot do
         @metric = create_metric(
-          name: "#{@metric_name}+Big Brother", type: :score,
+          name: "#{@metric_name}+Big Brother",
+          type: :score,
           formula: '{"1":2, "2":4, "3":6}'
         )
       end

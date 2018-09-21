@@ -68,7 +68,7 @@ end
 
 # Value Type, short name:
 # ~~~~
-#
+
 # @return String
 def value_type
   type_from_card = value_type_card.item_names.first
