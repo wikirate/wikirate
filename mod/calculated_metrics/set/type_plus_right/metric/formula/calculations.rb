@@ -1,5 +1,10 @@
+
+event :flag_metric_answer_calculation, :integrate_with_delay, on: :update, changed: :content do
+  Answer.where(id: answer_ids).update_all(calculating: true)
+end
+
 # don't update if it's part of scored metric update
-event :update_metric_answers, :prepare_to_store, on: :update, changed: :content do
+event :update_metric_answers, :integrate_with_delay, on: :update, changed: :content do
   replace_existing_answers do
     calculate_all_values do |company, year, value|
       update_or_add_answer company, year, value
@@ -38,9 +43,13 @@ def regenerate_answers
 end
 
 def replace_existing_answers
-  @existing = ::Set.new metric_card.all_answers.pluck(:id)
+  @existing = ::Set.new answer_ids
   yield if block_given?
   Answer.where(id: @existing.to_a).delete_all
+end
+
+def answer_ids
+  metric_card.all_answers.pluck(:id)
 end
 
 def add_value company, year, value

@@ -57,3 +57,7 @@ def field_card_ids
     fetch(trait: field, skip_virtual: true, skip_modules: true)&.id
   end.compact
 end
+
+def calculating?
+  answer.calculating
+end
