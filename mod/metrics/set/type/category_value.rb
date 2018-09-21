@@ -19,10 +19,6 @@ def pretty_values
   json_options? ? raw_values_from_hash : raw_value
 end
 
-def content= *args
-  super
-end
-
 def raw_values_from_hash
   hash = inverted_options_hash
   item_names.map { |item| hash[item] }

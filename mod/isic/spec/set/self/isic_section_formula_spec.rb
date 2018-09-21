@@ -1,12 +1,9 @@
 # -*- encoding : utf-8 -*-
 
 RSpec.describe Card::Set::Self::IsicSectionFormula do
-  # described_class not in scope :(
-  let(:dummy_class) { Class.new { include Card::Set::Self::IsicSectionFormula } }
-
   describe "get_value" do
     it "finds unique section letter mapping" do
-      expect(dummy_class.new.get_value([%w[64 65 99 50 49 68]])).to eq(%w[K U H L])
+      expect(card_subject.get_value([%w[64 65 99 50 49 68]])).to eq(%w[K U H L])
     end
   end
 
