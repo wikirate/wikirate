@@ -5,8 +5,6 @@ include_set Abstract::AnswerDetailsToggle
 # views used in answer listings on metric, company, and profile pages
 
 format :html do
-  delegate :currency, to: :card
-
   # ACTUAL "listing" VIEW
   # not really used in listings?
 
@@ -45,7 +43,6 @@ format :html do
   view :basic_details do
     wrap_with :div, class: "value text-align-left" do
       [
-        wrap_with(:span, currency, class: "metric-unit"),
         nest(card.value_card, view: :pretty_link),
         wrap_with(:span, legend, class: "metric-unit"),
         _render_flags,
@@ -126,18 +123,16 @@ format :html do
   end
 
   def legend
-    return if currency.present?
     nest card.metric_card, view: :legend
   end
 
   view :unit do
-    currency || legend
+    legend
   end
 
   def year_and_value
     <<-HTML
       #{render :year_equals}
-      <span class="metric-unit"> #{currency} </span>
       #{nest card.value_card, view: :pretty}
       <span class="metric-unit"> #{legend} </span>
     HTML

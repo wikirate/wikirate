@@ -85,7 +85,7 @@ class SharedData
       Card::Metric.create name: "Jedi+cost of planets destroyed",
                           random_source: true,
                           value_type: "Money",
-                          currency: "$" do
+                          unit: "USD" do
         Death_Star "1977" => 200
       end
     end

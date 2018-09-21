@@ -39,8 +39,6 @@ class MetricCSVRow < CSVRow
       new_value = "Category" if new_value == "Categorical"
       if new_value == "Category" || new_value == "Multi-Category"
         @value_details[:value_options] = comma_list_to_pointer match[:options]
-      elsif new_value == "Money"
-        @value_details[:currency] = match[:options].strip
       else
         @value_details[:unit] = match[:options].strip
       end
