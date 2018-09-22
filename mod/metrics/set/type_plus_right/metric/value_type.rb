@@ -33,4 +33,3 @@ end
 def add_categorical_error validator
   errors.add :value, validator.error_msg
 end
-
