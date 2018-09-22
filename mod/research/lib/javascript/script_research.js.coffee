@@ -1,4 +1,5 @@
 decko.slotReady (slot) ->
+  # autocomplete tag on research (new/Answer) page
   $('input._research-select').autocomplete
     select: (e, ui) ->
       $target = $(e.target)
@@ -7,6 +8,7 @@ decko.slotReady (slot) ->
       url += $target.data("key") + "=" + encodeURIComponent(ui.item.value)
       $target.updateSlot(url)
 
+  # company, metric, and year dropdowns on research page
   $("._html-select").each ->
     $(this).select2
       minimumInputLength: 0
@@ -25,9 +27,15 @@ decko.slotReady (slot) ->
     url = $(event.params.data.element).data("url")
     window.location = decko.path(url)
 
-
-  $("body").on "change", "#card_subcards__value_subcards__Unknown_content", ->
+  $("body").on "change", ".RIGHT-unknown input[type=checkbox]", ->
     toggleAnswerValueField $(this).is(":checked")
+    if $(this).prop('checked') == true
+      $('.RIGHT-value input[type=text]').val('Unknown')
+
+  $('.RIGHT-value input').on "keyup", () ->
+    selector = ".RIGHT-unknown input[type=checkbox]"
+    checked = $(this).val().toLowerCase() == 'unknown'
+    $(selector).prop 'checked', checked
 
   $("body").on "click", "._methodology-tab", ->
     $('a[href="#research_page-methodology"]').tab("show")
@@ -45,15 +53,6 @@ formatHtmlSelectedItem = (i) ->
 $(document).ready ->
   $("#main:has(>#Research_Page.slot_machine-view)").addClass("pl-0 pr-0")
 
-  $('#card_subcards__values_content').on "keyup", () ->
-    selector = '#card_subcards__values_subcards__Unknown_content'
-    checked = $(this).val().toLowerCase() == 'unknown'
-    $(selector).prop 'checked', checked
-
-   $('#card_subcards__values_subcards__Unknown_content').on "click", () ->
-    if $(this).prop('checked') == true
-      $('#card_subcards__values_content').val('Unknown')
-
   # add related company to name
   # otherwise the card can get the wrong type because it
   # match the ltype_rtype/record/year pattern
@@ -67,11 +66,11 @@ $(document).ready ->
         $form.find("#success_id").val("_left")
 
 toggleAnswerValueField = (disable) ->
-  select = $(".card-editor.RIGHT-value .content-editor select")
-  if select[0]
+  editor = $(".card-editor.RIGHT-value .content-editor")
+  if editor.find("select")[0]
     toggleValueSelect(select, disable)
   else
-    input = $(".card-editor.RIGHT-value .content-editor input:not(.current_revision_id)")
+    input = editor.find("input:not(.current_revision_id)")
     toggleValueInput(input, disable)
 
 toggleValueSelect = (select, disable) ->
