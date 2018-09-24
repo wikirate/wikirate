@@ -1,26 +1,26 @@
 AllCops:
-  TargetRubyVersion: 2.4
-  Include:
-  - "**/*.gemspec"
-  - "**/*.podspec"
-  - "**/*.jbuilder"
-  - "**/*.rake"
-  - "**/*.opal"
-  - "**/Gemfile"
-  - "**/Rakefile"
-  - "**/Capfile"
-  - "**/Guardfile"
-  - "**/Podfile"
-  - "**/Thorfile"
-  - "**/Vagrantfile"
-  - "**/Berksfile"
-  - "**/Cheffile"
-  - "**/Vagabondfile"
-  Exclude:
-  - "vendor/**/*"
-  - "db/schema.rb"
-  - "mod/wikirate_source/files/**/*"
-  - "mod/wikirate_source/lib/javascript/**/*"
+  TargetRubyVersion: 2.5
+#  Include:
+#  - "**/*.gemspec"
+#  - "**/*.podspec"
+#  - "**/*.jbuilder"
+#  - "**/*.rake"
+#  - "**/*.opal"
+#  - "**/Gemfile"
+#  - "**/Rakefile"
+#  - "**/Capfile"
+#  - "**/Guardfile"
+#  - "**/Podfile"
+#  - "**/Thorfile"
+#  - "**/Vagrantfile"
+#  - "**/Berksfile"
+#  - "**/Cheffile"
+#  - "**/Vagabondfile"
+#  Exclude:
+#  - "vendor/**/*"
+#  - "db/schema.rb"
+#  - "mod/wikirate_source/files/**/*"
+#  - "mod/wikirate_source/lib/javascript/**/*"
   DisplayCopNames: false
   StyleGuideCopsOnly: false
 Style/CommentAnnotation:

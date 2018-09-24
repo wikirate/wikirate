@@ -1,14 +1,15 @@
 # encoding: UTF-8
 
 RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
-  def answer metric_title
+
+  def calc_answer metric_title="formula test"
     Answer.where(metric_name: "Jedi+#{metric_title}",
                  company_id: Card.fetch_id("Death Star"),
                  year: 1977).take
   end
 
   def answer_value metric_title
-    answer(metric_title).value
+    calc_answer(metric_title).value
   end
 
   def create_formula formula: "{{Jedi+deadliness}}/{{Jedi+Victims by Employees}}",
@@ -17,6 +18,10 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
   end
 
   context "when formula is updated" do
+    it "marks values as beeing calculated" do
+
+    end
+
     it "updates values" do
       create_formula
       expect(answer_value("formula test")).to match(/^322/)
@@ -55,11 +60,17 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
     end
 
     it "creates dummy answers" do
-      with_delayed_jobs do
+      with_delayed_jobs(1) do
         Card::Metric.create name: "Jedi+formula test",
                             type: :formula,
                             formula: "{{Jedi+deadliness}}/{{Jedi+Victims by Employees}}"
-        expect_view(:core, card: "Jedi+formula test").to include "Death Star"
+        expect(calc_answer.calculating).to be_truthy
+        answer_card = Card.fetch("Jedi+formula test+Death Star+1977", type: :metric_answer)
+        expect(answer_card.answer.id).to eq calc_answer.id
+        expect(view(:core, card: "Jedi+formula test+all metric values")).to have_tag :tr do
+          with_text /Death Star/
+          with_tag "i.fa-refresh"
+        end
       end
       expect(answer_value("formula test")).to match(/^322/)
     end

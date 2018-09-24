@@ -12,17 +12,21 @@ end
 
 event :create_dummy_answers, :finalize,
       on: :create, changed: :content, when: :content? do
-  Answer.bulk_insert dummy_answers_attribs
+  Answer.bulk_insert values: dummy_answers_attribs
 end
 
 def dummy_answers_attribs
   calculator.answers_to_be_calculated.map do |company_id, year|
-    { metric_id: metric_card.id, company_id: company_id, year: year, calculating: true }
+    unless Card[metric_card, company_id]
+      Card.create! name: [metric_card, company_id], type_id: Card::RecordID
+    end
+    { metric_id: metric_card.id, company_id: company_id, year: year, calculating: true,
+      metric_name: metric_card.name, latest: true }
   end
 end
 
 # don't update if it's part of scored metric create
-event :create_metric_answers, :finalize, # prepare_to_store,
+event :create_metric_answers, :integrate_with_delay,
       on: :create, changed: :content, when: :content?  do
   # reload set modules seems to be no longer necessary
   # it used to happen at this point that left has type metric but
