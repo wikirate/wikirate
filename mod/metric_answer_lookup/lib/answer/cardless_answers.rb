@@ -60,7 +60,8 @@ class Answer
         value: value,
         numeric_value: to_numeric_value(value),
         updated_at: Time.now,
-        editor_id: Card::Auth.current_id
+        editor_id: Card::Auth.current_id,
+        calculating: false
       }
     end
 

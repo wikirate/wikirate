@@ -127,7 +127,7 @@ format :html do
   end
 
   def calculating
-    icon_tag :refresh
+    fa_icon :refresh, title: "calculating ..."
   end
 
   def legend
