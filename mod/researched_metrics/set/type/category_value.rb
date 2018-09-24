@@ -38,7 +38,7 @@ format :html do
   end
 
   def pretty_value
-    card.pretty_values.join JOINT
+    card.pretty_values.join ", "
   end
 
   private
