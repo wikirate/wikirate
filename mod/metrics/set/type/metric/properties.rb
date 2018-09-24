@@ -9,7 +9,7 @@ format :html do
 
   # all metrics have these properties in their editor
   def basic_edit_properties
-    { question: "Question",
+    { question:       "Question",
       wikirate_topic: "Topic" }
   end
 
