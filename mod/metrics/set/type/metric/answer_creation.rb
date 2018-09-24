@@ -1,3 +1,4 @@
+# TODO: Many of these methods should be "answer", not "value"
 
 # @example
 # create_values do
@@ -43,17 +44,17 @@ def extract_metric_value_name args, error_msg
   end
 end
 
-def check_value_card_exist args, error_msg
+def check_for_value_conflict args, error_msg
   return unless (value_name = extract_metric_value_name(args, error_msg))
   value_card = Card[value_name.to_name.field(:value)]
-  return unless value_card && value_card.content.casecmp(args[:value]).positive?
+  return unless value_card&.new_value?(args[:value])
   link = format.link_to_card value_card.metric_card, "value"
   error_msg << "#{link} '#{value_card.content}' exists"
 end
 
 def valid_value_args? args
   error_msg = []
-  check_value_card_exist args, error_msg unless args.delete(:ok_to_exist)
+  check_for_value_conflict args, error_msg unless args.delete(:ok_to_exist)
   error_msg << "missing source" if metric_type_codename == :researched && !args[:source]
   error_msg.each do |msg|
     errors.add "metric value", msg

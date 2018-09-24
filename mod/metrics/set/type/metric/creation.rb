@@ -8,7 +8,8 @@ format :html do
 
   view :new_form, template: :haml do
     @tabs =
-      { researched: {
+      {
+        researched: {
           help: "Answer values for <strong>Researched</strong> metrics are "\
                 "directly entered or imported.",
           subtabs: %w[Standard Relationship]
@@ -17,7 +18,8 @@ format :html do
           help: "Answer values for <strong>Calculated</strong> "\
                 "metrics are dynamically calculated.",
           subtabs: %w[Formula Descendant Score WikiRating]
-        } }
+        }
+      }
   end
 
   before :content_formgroup do
