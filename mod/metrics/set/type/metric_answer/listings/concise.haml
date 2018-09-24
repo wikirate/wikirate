@@ -1,12 +1,14 @@
-= calculating if card.calculating?
-.metric-value.text-left.ellipsis
-  = nest card.value_card, view: :pretty
-.small.pt-1.w-100
-  %span.metric-unit.text-muted.ellipsis.d-inline-block{title: render_unit }
-    = render_unit
-  %span.pull-right
-    %span
-      = render_flags
-    %span.metric-year.text-muted.pl-2
-      %i.fa.fa-calendar
-      = card.year
+- if card.calculating?
+  = calculating
+- else
+  .metric-value.text-left.ellipsis
+    = nest card.value_card, view: :pretty
+  .small.pt-1.w-100
+    %span.metric-unit.text-muted.ellipsis.d-inline-block{title: render_unit }
+      = render_unit
+    %span.pull-right
+      %span
+        = render_flags
+      %span.metric-year.text-muted.pl-2
+        %i.fa.fa-calendar
+        = card.year

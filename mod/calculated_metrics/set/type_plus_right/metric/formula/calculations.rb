@@ -1,14 +1,12 @@
 
-event :flag_metric_answer_calculation, :integrate_with_delay, on: :update, changed: :content do
+event :flag_metric_answer_calculation, :prepare_to_store, on: :update, changed: :content do
   Answer.where(id: answer_ids).update_all(calculating: true)
 end
 
 # don't update if it's part of scored metric update
 event :update_metric_answers, :integrate_with_delay, on: :update, changed: :content do
   replace_existing_answers do
-    calculate_all_values do |company, year, value|
-      update_or_add_answer company, year, value
-    end
+    calculate_all_values(&method(:update_or_add_answer))
   end
 end
 
@@ -20,9 +18,7 @@ event :create_metric_answers, :finalize, # prepare_to_store,
   # set_names includes "Basic+formula+*type plus right"
   # reset_patterns
   # include_set_modules
-  calculate_all_values do |company, year, value|
-    add_value company, year, value
-  end
+  calculate_all_values(&method(:add_value))
 end
 
 def update_or_add_answer company, year, value

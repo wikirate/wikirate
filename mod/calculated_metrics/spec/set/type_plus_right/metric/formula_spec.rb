@@ -32,6 +32,10 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
   end
 
   context "when formula is updated" do
+    it "marks values as beeing calculated" do
+
+    end
+
     it "updates values" do
       Card::Metric.create name: "Jedi+formula test",
                           type: :formula,
@@ -103,17 +107,15 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
     end
 
     it "updates calculated values" do
-      expect(answer_value("friendliness")).to eq "0.01"
-      change_research_input
-      overridden_value = answer_value "friendliness"
-      expect(overridden_value).to eq "0.1"
+      expect { change_research_input }
+        .to change { answer_value "friendliness" }
+        .from("0.01").to("0.1")
     end
 
     it "updates second level formula" do
-
-      expect(answer_value("double friendliness")).to eq "0.02"
-      change_research_input
-      expect(answer_value("double friendliness")).to eq "0.2"
+      expect { change_research_input }
+        .to change { answer_value("double friendliness") }
+        .from("0.02").to("0.2")
     end
   end
 end
