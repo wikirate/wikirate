@@ -12,6 +12,17 @@ event :update_metric_answers, :integrate_with_delay, on: :update, changed: :cont
   end
 end
 
+event :create_dummy_answers, :finalize,
+      on: :create, changed: :content, when: :content? do
+  Answer.bulk_insert dummy_answers_attribs
+end
+
+def dummy_answers_attribs
+  calculator.answers_to_be_calculated.map do |company_id, year|
+    { metric_id: metric_card.id, company_id: company_id, year: year, calculating: true }
+  end
+end
+
 # don't update if it's part of scored metric create
 event :create_metric_answers, :finalize, # prepare_to_store,
       on: :create, changed: :content, when: :content?  do
@@ -62,6 +73,10 @@ def calculate_all_values
       yield company, year, value if value
     end
   end
+end
+
+def all_new_answers
+  calculator
 end
 
 # @param [Hash] opts
