@@ -29,8 +29,8 @@ decko.slotReady (slot) ->
 
   $("body").on "change", ".RIGHT-unknown input[type=checkbox]", ->
     toggleAnswerValueField $(this).is(":checked")
-    if $(this).prop('checked') == true
-      $('.RIGHT-value input[type=text]').val('Unknown')
+    # if $(this).prop('checked') == true
+    #   $('.RIGHT-value input[type=text]').val('Unknown')
 
   $('.RIGHT-value input').on "keyup", () ->
     selector = ".RIGHT-unknown input[type=checkbox]"
@@ -67,7 +67,8 @@ $(document).ready ->
 
 toggleAnswerValueField = (disable) ->
   editor = $(".card-editor.RIGHT-value .content-editor")
-  if editor.find("select")[0]
+  select = editor.find "select"
+  if (select[0])
     toggleValueSelect(select, disable)
   else
     input = editor.find("input:not(.current_revision_id)")

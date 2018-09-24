@@ -250,20 +250,21 @@ format :html do
     #       autocomplete: 'off'
     #     }.merge(options))
     # else
-    designer = card.add_subfield :designer, content: Auth.current.name,
-                                            type_id: PhraseID
-    designer.reset_patterns
-    designer.include_set_modules
+    designer = card.add_subfield_and_reset :designer, content: Auth.current.name,
+                                                      type_id: PhraseID
     subformat(designer)
       ._render_edit_in_form(options.merge(title: "Metric Designer"))
     # end
   end
 
   def metric_title_field options={}
-    title = card.add_subfield :title, content: card.name.tag,
-                                      type_id: PhraseID
-    title.reset_patterns
-    title.include_set_modules
+    title = card.add_subfield_and_reset :title, content: card.name.tag, type_id: PhraseID
     subformat(title)._render_edit_in_form(options.merge(title: "Metric Title"))
   end
+end
+
+def add_subfield_and_reset field, type_id: type_id, content: content
+  subfield = add_subfield field, type_id: type_id, content: content
+  subfield.reset_patterns
+  subfield.include_set_modules
 end
