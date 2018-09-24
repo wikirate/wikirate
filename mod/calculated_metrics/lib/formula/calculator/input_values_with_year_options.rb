@@ -1,14 +1,9 @@
 module Formula
   class Calculator
     class InputValuesWithYearOptions < InputValues
-      def initialize input_cards, requirement, year_options_processor
-        super(input_cards, requirement)
-        @year_options_processor = year_options_processor
-      end
-
       def fetch company:, year:
         values_for_all_years = super company: company, year: nil
-        @year_options_processor.run values_for_all_years, year
+        @input.year_options_processor.run values_for_all_years, year
       end
 
       private
