@@ -1,5 +1,13 @@
 decko.slotReady (slot) ->
-  # autocomplete tag on research (new/Answer) page
+  slot.find(".RIGHT-unknown input[type=checkbox]").on "change", ->
+    toggleAnswerValueField $(this).is(":checked")
+    # if $(this).prop('checked') == true
+    #   $('.RIGHT-value input[type=text]').val('Unknown')
+
+  slot.find(".RIGHT-value input").on "keyup", () ->
+    updateUnknownness(slot, $(this))
+
+# autocomplete tag on research (new/Answer) page
   $('input._research-select').autocomplete
     select: (e, ui) ->
       $target = $(e.target)
@@ -26,16 +34,6 @@ decko.slotReady (slot) ->
   $("._html-select").on "select2:select", (event) ->
     url = $(event.params.data.element).data("url")
     window.location = decko.path(url)
-
-  $("body").on "change", ".RIGHT-unknown input[type=checkbox]", ->
-    toggleAnswerValueField $(this).is(":checked")
-    # if $(this).prop('checked') == true
-    #   $('.RIGHT-value input[type=text]').val('Unknown')
-
-  $('.RIGHT-value input').on "keyup", () ->
-    selector = ".RIGHT-unknown input[type=checkbox]"
-    checked = $(this).val().toLowerCase() == 'unknown'
-    $(selector).prop 'checked', checked
 
   $("body").on "click", "._methodology-tab", ->
     $('a[href="#research_page-methodology"]').tab("show")
@@ -64,6 +62,13 @@ $(document).ready ->
       $form.find("#card_name").val(name + "+" + related_company.val())
       unless $form.find("#success_id").val() == ":research_page"
         $form.find("#success_id").val("_left")
+
+updateUnknownness = (slot, value_input)->
+  unknown_checkbox = slot.find(".RIGHT-unknown input[type=checkbox]")
+  $(unknown_checkbox).prop 'checked', isUnknown(value_input.val())
+
+isUnknown = (value)->
+  value.toLowerCase() == 'unknown'
 
 toggleAnswerValueField = (disable) ->
   editor = $(".card-editor.RIGHT-value .content-editor")

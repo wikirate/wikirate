@@ -22,11 +22,6 @@ format :html do
       }
   end
 
-  before :content_formgroup do
-    voo.edit_structure = [["+question", "Question"],
-                          [:wikirate_topic, "Topic"]]
-  end
-
   def tab_pane_id name
     "#{name.downcase}Pane"
   end

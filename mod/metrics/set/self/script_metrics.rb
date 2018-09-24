@@ -4,8 +4,8 @@ Self::ScriptMods.add_item :script_metrics
 FILE_NAMES =
   %w[
     metrics
+    metric_properties
     metric_value
-    value_type
     drag_and_drop
     metric_chart
   ].freeze
