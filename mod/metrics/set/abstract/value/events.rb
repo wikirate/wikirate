@@ -1,6 +1,6 @@
 UNKNOWN = "Unknown".freeze
 
-event :unknown_value, :initialize, when: :unknown_subfield do
+event :unknown_value, :prepare_to_validate, when: :unknown_subfield do
   self.content = UNKNOWN if unknown_subfield.checked?
   detach_subfield :unknown
 end
