@@ -1,0 +1,11 @@
+= field_nest :description
+= nest :homepage_featured_projects, view: "titled",
+                                    title: "Featured Projects",
+                                    items: { view: :listing }
+.titled-view
+  .d0-card-header
+    All Projects
+= nest :project_status_tabs, view: :tabs,
+                             items: { title: "_left",
+                                      items: { view: :listing } }
+

@@ -53,33 +53,6 @@ format :html do
     card.value_options.reject { |o| o == "Unknown" }.join ","
   end
 
-  view :value_type_detail do
-    voo.hide :menu
-    wrap do
-      [
-        field_nest(:value_type, view: :content, items: { view: :name }, show: :menu),
-        _render_short_view
-      ]
-    end
-  end
-
-  def vtype_edit_modal_link_text
-    # FIXME: why does value_type_card not work although value_type is registered
-    #        as card accessor
-    v_type_card = card.fetch trait: :value_type, new: {}
-    if v_type_card.new?
-      "Update Value Type"
-    else
-      nest v_type_card, view: :shorter_pointer_content, hide: :link
-    end
-  end
-
-  view :short_view do
-    return "" unless (details_field = DETAILS_FIELD_MAP[card.value_type_code])
-    detail_card = Card.fetch card, details_field, new: {}
-    nest detail_card, view: :content
-  end
-
   view :handle do
     wrap_with :div, class: "handle" do
       glyphicon "option-vertical"

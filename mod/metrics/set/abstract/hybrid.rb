@@ -3,18 +3,16 @@ def hybrid?
 end
 
 format :html do
-  view :content_formgroup do
-    # coffeescript hides the bottom three if _hybrid_ is not selected
-    voo.edit_structure +=
-      [[:hybrid, "Researchable"]] +
-      research_properties.map { |k, v| [k, v] } +
-      [[:methodology, "Methodology"]]
-    super()
+  def researchable_properties
+    { hybrid: "Researchable" }.merge(research_properties)
   end
 
-  def properties
-      props = super.merge(hybrid: "Researchable")
-      card.hybrid? ? props.merge(research_properties) : props
+  def edit_properties
+    super.merge(value_type_properties).merge researchable_properties
+  end
+
+  def table_properties
+    super.merge(value_type_properties).merge researchable_properties
   end
 
   def hybrid_property

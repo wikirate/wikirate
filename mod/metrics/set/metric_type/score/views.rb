@@ -22,12 +22,12 @@ format :html do
     "0-10"
   end
 
-  def properties
+  def table_properties
     {
-      metric_type:   "Metric Type",
-      scored_metric: "Scored Metric",
-      scorer:        "Scored By",
-      topic:         "Topics"
+      metric_type:    "Metric Type",
+      scored_metric:  "Scored Metric",
+      scorer:         "Scored By",
+      wikirate_topic: "Topics"
     }
   end
 

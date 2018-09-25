@@ -37,10 +37,8 @@ class MetricCSVRow < CSVRow
     value.match(/(?<type>[^(]+)\((?<options>[^)]+)/) do |match|
       new_value = match[:type].strip
       new_value = "Category" if new_value == "Categorical"
-      if new_value == "Category" || new_value == "Multi-Category"
+      if new_value.in? %w[Category Multi-Category]
         @value_details[:value_options] = comma_list_to_pointer match[:options]
-      elsif new_value == "Money"
-        @value_details[:currency] = match[:options].strip
       else
         @value_details[:unit] = match[:options].strip
       end

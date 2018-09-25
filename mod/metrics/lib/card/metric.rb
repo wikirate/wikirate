@@ -68,7 +68,6 @@ class Card::Metric
     # @option opts [Array, String] :research_policy research policy
     #   (designer or community assessed)
     # @option opts [Array, String] :topic tag with topics
-    # @option opts [String] :currency
     # @option opts [String] :unit
     # @option opts [Boolean] :random_source (false) pick a random source for
     #   each value
@@ -83,7 +82,7 @@ class Card::Metric
 
     # type is an alias for metric_type
     VALID_SUBFIELDS =
-      ::Set.new([:metric_type, :currency, :formula, :value_type, :hybrid,
+      ::Set.new([:metric_type, :formula, :value_type, :hybrid,
                  :value_options, :research_policy, :wikirate_topic, :unit, :report_type,
                  :inverse_title])
            .freeze
@@ -107,7 +106,7 @@ class Card::Metric
 
     def subfield_type_id field
       case field
-      when :formula, :unit, :currency, :inverse_title
+      when :formula, :unit, :inverse_title
         Card::PhraseID
       when :hybrid
         Card::ToggleID

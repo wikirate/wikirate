@@ -12,27 +12,12 @@ decko.slotReady (slot) ->
   if slot.hasClass "edit_in_wikirating-view"
     addMissingVariables slot
 
-  if $(".new-view.TYPE-metric, .edit-view.TYPE-metric").length > 0
-    checkbox = $(".card-editor.RIGHT-hybrid input[type='checkbox']")
-    showResearchAttributes(checkbox)
-
-  $('body').on 'change', ".TYPE-metric .card-editor.RIGHT-hybrid input[type=\'checkbox\']", (event) ->
-    showResearchAttributes($(event.target))
-
   $('td.metric-weight input').on 'keyup', (event) ->
     activeEqualize()
 
   $('#equalizer').on 'click', (event) -> 
     if $(this).prop('checked') == true 
       toEqualize( $('.wikiRating-editor') )
-
-showResearchAttributes = (checkbox) ->
-  form = checkbox.closest("form")
-
-  show_or_hide = checkbox.prop "checked"
-  $.each ["value_type", "research_policy", "report_type", "methodology"], (_i, key) ->
-    form.find(".card-editor.RIGHT-" + key).toggle show_or_hide
-    
 
 decko.editorContentFunctionMap['.pairs-editor'] = ->
   JSON.stringify pairsEditorHash(this)
@@ -66,7 +51,6 @@ getValuesFromTable = (table) ->
 
 decko.editorContentFunctionMap['.wikiRating-editor'] = ->
   JSON.stringify wikiRatingEditorHash(this)
-
 
 wikiRatingEditorHash = (table) ->
   hash = {}
