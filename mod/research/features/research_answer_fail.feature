@@ -14,7 +14,7 @@ Feature: Research answer fail
     And I fill in "Baam!" for " Comment"
     And I press "Submit"
     And I should see "Problems"
-    And I should see "VALUE: Only numeric content is valid for this metric."
+    And I should see "+VALUES: content: Only numeric content is valid for this metric."
 
   Scenario: Missing source
     And I fill in "10" for "Answer"

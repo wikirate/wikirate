@@ -2,7 +2,7 @@ include_set Abstract::Value
 
 event :validate_numeric_value, :validate do
   return true if number?(value) || Answer.unknown?(value)
-  errors.add :value, "Only numeric content is valid for this metric."
+  errors.add :content, "Only numeric content is valid for this metric."
 end
 
 format :html do

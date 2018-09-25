@@ -6,7 +6,7 @@ event :validate_valid_categories, :validate do
   return true if Answer.unknown?(value) || invalid_options.empty?
   url = "/#{options_card.name.url_key}?view=edit"
   anchor = %(<a href='#{url}' target="_blank">add that option</a>)
-  errors.add :value, "invalid option(s): #{invalid_options.join ', '}. " \
+  errors.add :content, "invalid option(s): #{invalid_options.join ', '}. " \
                      "Please #{anchor} before adding this metric value."
 end
 
