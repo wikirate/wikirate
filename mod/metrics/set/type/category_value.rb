@@ -11,6 +11,7 @@ event :validate_valid_categories, :validate do
 end
 
 def illegal_items
+  option_keys = option_names.map(&:key)
   raw_value.reject { |item| option_keys.member? item.key }
 end
 
@@ -39,14 +40,6 @@ end
 
 def options_card
   Card.fetch metric, :value_options, new: {}
-end
-
-def option_names
-  options_hash.values.map(&:to_name)
-end
-
-def option_keys
-  option_names.map(&:key)
 end
 
 format :html do
