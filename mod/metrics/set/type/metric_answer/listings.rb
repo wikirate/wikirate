@@ -115,16 +115,11 @@ format :html do
 
   # year, value, unit and flags
   view :conciser do
-    return calculating if calculating?
     year_and_value + _render_flags
   end
 
   view :plain_year do
     card.name.right
-  end
-
-  def calculating
-    icon_tag :refresh
   end
 
   def legend

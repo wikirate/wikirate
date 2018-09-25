@@ -109,9 +109,5 @@ class Answer
     def fetch_overridden_value
       card.try(:overridden_value)
     end
-
-    def fetch_calculating
-      false
-    end
   end
 end
