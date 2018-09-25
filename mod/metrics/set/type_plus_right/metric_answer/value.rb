@@ -7,6 +7,7 @@ end
 # if metric is a relationship, the Relationship Answer takes the value type from
 # the metric, but the Metric answer value is always a number (a count)
 def type_code_from_metric
+  return unless metric_card
   metric_card.relationship? ? :number_value : metric_card.value_cardtype_code
 end
 

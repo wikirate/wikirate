@@ -9,7 +9,7 @@ def typed_value?
 end
 
 def type_code_from_metric
-  metric_card.value_cardtype_code
+  metric_card&.value_cardtype_code
 end
 
 def relationship_count_value?

@@ -46,7 +46,7 @@ def option_names
 end
 
 def option_keys
-  options_names.map &:key
+  options_names.map(&:key)
 end
 
 format :html do
