@@ -42,7 +42,7 @@ def options_card
 end
 
 def option_names
-  options_card.item_names context: :raw
+  options_hash.values.map(&:to_name)
 end
 
 def option_keys
