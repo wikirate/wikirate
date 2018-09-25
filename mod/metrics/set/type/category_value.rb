@@ -1,10 +1,10 @@
 include_set Abstract::Pointer
 include_set Abstract::Value
 
-event :validate_valid_categories do
+event :validate_valid_categories, :validate do
   invalid_options = illegal_items
-  return true if Answer.unknown?(value) || invalid_options.any?
-  url = "/#{option_card.name.url_key}?view=edit"
+  return true if Answer.unknown?(value) || invalid_options.empty?
+  url = "/#{options_card.name.url_key}?view=edit"
   anchor = %(<a href='#{url}' target="_blank">add that option</a>)
   errors.add :value, "invalid option(s): #{invalid_options.join ', '}. " \
                      "Please #{anchor} before adding this metric value."
@@ -46,7 +46,7 @@ def option_names
 end
 
 def option_keys
-  options_names.map(&:key)
+  option_names.map(&:key)
 end
 
 format :html do
