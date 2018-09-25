@@ -12,21 +12,21 @@ class ConvertCurrencyToUnit < Card::Migration
              "It has a currency card but its value type is not Money."
       end
     end
+  end
 
-    def standardize_money_metric metric
-      currency_card = metric.fetch trait: :currency
-      metric.fetch(trait: :unit)&.delete!
-      currency_card.update_attributes! name: metric.name.field(:unit)
-      standardize_units currency_card
-    end
+  def standardize_money_metric metric
+    currency_card = metric.fetch trait: :currency
+    metric.fetch(trait: :unit)&.delete!
+    currency_card.update_attributes! name: metric.name.field(:unit)
+    standardize_units currency_card
+  end
 
-    def standardize_units currency_card
-      old_unit = currency_card.content
-      UNITS.each do |regexp, new_unit|
-        if old_unit.match regexp
-          currency_card.update_attributes! content: new_unit
-          return
-        end
+  def standardize_units currency_card
+    old_unit = currency_card.content
+    UNITS.each do |regexp, new_unit|
+      if old_unit.match regexp
+        currency_card.update_attributes! content: new_unit
+        return
       end
     end
   end
