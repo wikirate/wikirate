@@ -51,9 +51,6 @@ def raw_value
 end
 
 # MISCELLANEOUS METHODS
-def currency
-  (metric_card.value_type == "Money" && metric_card.currency) || nil
-end
 
 # so that all fields show up in history
 # (not needed when they can be identified via a more conventional form)

@@ -42,7 +42,7 @@ RSpec.describe Card::Set::Type::MetricAnswer do
 
       it "shows currency sign" do
         is_expected.to have_tag "span.metric-unit" do
-          with_text /\$/
+          with_text /USD/
         end
       end
 

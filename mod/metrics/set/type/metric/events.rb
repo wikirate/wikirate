@@ -1,3 +1,17 @@
+VALID_DESIGNER_TYPE_IDS = [ResearchGroupID, UserID, WikirateCompanyID].freeze
+
+# The new metric form has a title and a designer field instead of a name field
+# We compose the card's name here
+event :set_metric_name, :initialize, on: :create, when: :needs_name? do
+  title = (tcard = remove_subfield(:title)) && tcard.content
+  designer = (dcard = remove_subfield(:designer)) && dcard.content
+  self.name = "#{designer}+#{title}"
+end
+
+# for override
+def needs_name?
+  !name.present?
+end
 
 event :ensure_designer, :prepare_to_store, on: :save, changed: :name do
   return if valid_designer?
@@ -6,6 +20,10 @@ event :ensure_designer, :prepare_to_store, on: :save, changed: :name do
   else
     attach_subcard metric_designer, type_id: ResearchGroupID
   end
+end
+
+def valid_designer?
+  Card.fetch_type_id(metric_designer).in? VALID_DESIGNER_TYPE_IDS
 end
 
 event :ensure_title, :prepare_to_store, on: :save, changed: :name do

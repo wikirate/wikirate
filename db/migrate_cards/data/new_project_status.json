@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Status",
+    "type": "Cardtype",
+    "codename": "wikirate_status"
+  },
+  {
+    "name": "project status tabs",
+    "type": "Search",
+    "codename": "project_status_tabs"
+  },
+  {
+    "name": "Status+Project+*type plus right+*structure",
+    "type": "Search"
+  },
+  {
+    "name": "Active",
+    "type": "Status"
+  },
+  {
+    "name": "Inactive",
+    "type": "Status"
+  }
+]
