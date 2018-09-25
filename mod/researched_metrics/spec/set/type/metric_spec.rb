@@ -1,25 +1,24 @@
-shared_examples_for "viewable metric" do |metric_name, detail_label|
+shared_examples_for "viewable metric" do |metric_name|
   let(:metric) do
     Card[metric_name]
   end
 
-  it "renders short view" do
-    html = metric.format.render_short_view
-    expect(html).to have_tag("div", with: { class: "RIGHT-#{detail_label}" })
+  it "renders metric properties" do
+    expect(metric.format.render_metric_properties).to lack_errors
   end
 end
 
 RSpec.describe Card::Set::Type::Metric do
   context "Numeric type metric" do
-    it_behaves_like "viewable metric", "Jedi+deadliness", "numeric_detail"
+    it_behaves_like "viewable metric", "Jedi+deadliness"
   end
+
   context "Money type metric" do
-    it_behaves_like "viewable metric", "Jedi+cost of planets destroyed",
-                    "monetary_detail"
+    it_behaves_like "viewable metric", "Jedi+cost of planets destroyed"
   end
+
   context "Category type metric" do
-    it_behaves_like "viewable metric", "Jedi+disturbances in the Force",
-                    "category_detail"
+    it_behaves_like "viewable metric", "Jedi+disturbances in the Force"
   end
 
   describe "#numeric?" do

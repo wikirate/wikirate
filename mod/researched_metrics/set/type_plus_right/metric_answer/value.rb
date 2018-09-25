@@ -1,5 +1,9 @@
 include_set Abstract::MetricChild, generation: 3
 
+def new_value? value
+  content.casecmp(value).positive?
+end
+
 def relationship_count_value?
   metric_card.relationship?
 end

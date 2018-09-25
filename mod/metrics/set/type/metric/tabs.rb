@@ -5,6 +5,7 @@ format :html do
   end
 
   view :details_tab do
+    add_name_context
     tab_wrap do
       [_render_metric_properties,
        wrap_with(:hr, ""),

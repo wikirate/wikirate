@@ -173,19 +173,13 @@ def convert_monetary_metric_unit
   metric_with_unit = Card.search type_id: Card::MetricID,
                                  right_plus: ["unit", content: "$"],
                                  return: "name"
-  # update's its value type and the currency
+  # update's its value type
   metric_with_unit.each do |metric|
     metric_value_type = Card.fetch metric, :value_type, new: {}
     metric_value_type.content = "[[Money]]"
     normalize_metric metric_value_type.left, metric_value_type
     puts "Setting #{metric} to Money"
     metric_value_type.save!
-
-    metric_currency = Card.fetch metric, :currency, new: {}
-    metric_currency.content = "USD"
-    metric_currency.save!
-
-    Card["#{metric}+unit"].delete!
   end
 end
 

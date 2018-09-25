@@ -1,116 +1,3 @@
-VALID_DESIGNER_TYPE_IDS = [ResearchGroupID, UserID, WikirateCompanyID].freeze
-
-def create_value_options options
-  create_args = {
-    name: name.field("value options"),
-    content: options.to_pointer_content
-  }
-  Card.create! create_args
-end
-
-def valid_designer?
-  Card.fetch_type_id(metric_designer).in? VALID_DESIGNER_TYPE_IDS
-end
-
-# @example
-# create_values do
-#   Siemens 2015 => 4, 2014 => 3
-#   Apple   2105 => 7
-# end
-def create_values random_source=false, &block
-  Card::Metric::ValueCreator.new(self, random_source, &block).add_values
-end
-
-def add_value_source_args args, source
-  case source
-  when String
-    args["+source"] = {
-      content: "[[#{source}]]",
-      type_id: Card::PointerID
-    }
-  when Hash
-    args["+source"] = source
-  when Card
-    args["+source"] = {
-      content: "[[#{source.name}]]",
-      type_id: Card::PointerID
-    }
-  end
-end
-
-def extract_metric_value_name args, error_msg
-  args[:name] || begin
-    missing = [:company, :year, :value].reject { |v| args[v] }
-    if missing.empty?
-      [name, args[:company], args[:year], args[:related_company]].compact.join "+"
-    else
-      error_msg.push("missing field(s) #{missing.join(',')}")
-      nil
-    end
-  end
-end
-
-def check_value_card_exist args, error_msg
-  return unless (value_name = extract_metric_value_name(args, error_msg))
-  return if !(value_card = Card[value_name.to_name.field(:value)]) ||
-            value_card.content.casecmp(args[:value]).zero?
-  link = format.link_to_card value_card.metric_card, "value"
-  error_msg << "#{link} '#{value_card.content}' exists"
-end
-
-def valid_value_args? args
-  error_msg = []
-  check_value_card_exist args, error_msg unless args.delete(:ok_to_exist)
-  error_msg << "missing source" if metric_type_codename == :researched && !args[:source]
-  error_msg.each do |msg|
-    errors.add "metric value", msg
-  end
-  error_msg.empty?
-end
-
-def create_value_args args
-  return unless valid_value_args? args
-  value_name =
-    [name, args[:company], args[:year], args[:related_company]].compact.join "+"
-  type_id = args[:related_company] ? Card::RelationshipAnswerID : Card::MetricAnswerID
-  create_args = {
-    name: value_name,
-    type_id: type_id,
-    "+value" => {
-      content: args[:value],
-      type_code: value_cardtype_code
-    }
-  }
-  create_args["+discussion"] = { comment: args[:comment] } if args[:comment].present?
-  add_value_source_args create_args, args[:source]
-  create_args
-end
-
-# @param [Hash] args
-# @option args [String] :company
-# @option args [String] :year
-# @option args [String] :value
-# @option args [String] :source source url
-def create_value args
-  unless (valid_args = create_value_args args)
-    raise "invalid value args: #{args}"
-  end
-  Card.create! valid_args
-end
-
-# for override
-def needs_name?
-  !name.present?
-end
-
-# The new metric form has a title and a designer field instead of a name field
-# We compose the card's name here
-event :set_metric_name, :initialize, on: :create, when: :needs_name? do
-  title = (tcard = remove_subfield(:title)) && tcard.content
-  designer = (dcard = remove_subfield(:designer)) && dcard.content
-  self.name = "#{designer}+#{title}"
-end
-
 format :html do
   view :new do
     voo.title = "New Metric"
@@ -133,11 +20,6 @@ format :html do
           subtabs: %w[Formula Descendant Score WikiRating]
         }
       }
-  end
-
-  before :content_formgroup do
-    voo.edit_structure = [["+question", "Question"],
-                          [:wikirate_topic, "Topic"]]
   end
 
   def tab_pane_id name
@@ -250,20 +132,21 @@ format :html do
     #       autocomplete: 'off'
     #     }.merge(options))
     # else
-    designer = card.add_subfield :designer, content: Auth.current.name,
-                                            type_id: PhraseID
-    designer.reset_patterns
-    designer.include_set_modules
+    designer = card.add_subfield_and_reset :designer, content: Auth.current.name,
+                                                      type_id: PhraseID
     subformat(designer)
       ._render_edit_in_form(options.merge(title: "Metric Designer"))
     # end
   end
 
   def metric_title_field options={}
-    title = card.add_subfield :title, content: card.name.tag,
-                                      type_id: PhraseID
-    title.reset_patterns
-    title.include_set_modules
+    title = card.add_subfield_and_reset :title, content: card.name.tag, type_id: PhraseID
     subformat(title)._render_edit_in_form(options.merge(title: "Metric Title"))
   end
+end
+
+def add_subfield_and_reset *args
+  subfield = add_subfield(*args)
+  subfield.reset_patterns
+  subfield.include_set_modules
 end
