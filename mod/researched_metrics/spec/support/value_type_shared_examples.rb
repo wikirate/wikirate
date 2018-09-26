@@ -3,7 +3,7 @@ shared_examples_for "create answer" do |value_type, valid_content, invalid_conte
   let(:company) { sample_company }
   let(:error_msg) do
     if value_type == :category
-      "#{invalid_content} is not a valid option. " \
+      "invalid option(s): #{invalid_content}. " \
       "Please <a href='/Jedi+disturbances_in_the_Force+value_options"\
       "?view=edit' target=\"_blank\">add that option</a>"
     else
@@ -21,7 +21,7 @@ shared_examples_for "create answer" do |value_type, valid_content, invalid_conte
 
       it "fails" do
         expect(metric_answer(invalid_content))
-          .to be_invalid.because_of(value: include(error_msg))
+          .to be_invalid.because_of("+value" => include(error_msg))
       end
     end
 

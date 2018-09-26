@@ -76,7 +76,7 @@ RSpec.describe CSVRow::Structure::AnswerCSV do
 
     example "invalid value", as_bot: true do
       import invalid_value do |errors|
-        expect(errors).to contain_exactly /5 is not a valid option/
+        expect(errors).to contain_exactly /invalid option\(s\): 5/
       end
     end
 

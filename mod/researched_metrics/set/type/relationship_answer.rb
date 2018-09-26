@@ -18,7 +18,7 @@ def valid_related_company?
     ActManager.include?(related_company)
 end
 
-def valid_value_name?
+def valid_answer_name?
   super && valid_related_company?
 end
 
