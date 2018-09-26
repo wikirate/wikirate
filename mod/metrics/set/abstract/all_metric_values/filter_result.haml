@@ -1,0 +1,12 @@
+- haml_wrap(true) do
+  .row
+    - if voo.show? :chart
+      .col-12.col-xl-9.p-0.text-center
+        = _render_chart
+      .col-12.col-xl-3.pt-xl-4
+        %h6 Filtered answers
+        = _render_stats
+  .row
+    = _render_table
+  .row
+    = nest card.left, view: :export_links

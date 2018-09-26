@@ -1,9 +1,0 @@
-.answer-comment
-  %h5.mb-0
-    = fa_icon(:commenting, class: "text-muted")
-    Comment
-  - with_nest_mode :normal do
-    - if card.field(:discussion)
-      = field_nest :discussion, view: :content
-    = field_subformat(:discussion).comment_box
-  .clearfix
