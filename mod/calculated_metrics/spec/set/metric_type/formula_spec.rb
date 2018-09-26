@@ -24,7 +24,7 @@ RSpec.describe Card::Set::MetricType::Formula do
   end
 
   describe "formula with year reference" do
-    subject do
+    subject(:answer_value) do
       formula_metric = create_metric name: "rating1", type: :formula, formula: formula
       Answer.where(metric_name: formula_metric.name, company_id: company_id, year: 2015)
             .take.value
@@ -32,53 +32,53 @@ RSpec.describe Card::Set::MetricType::Formula do
 
     let(:company_id) { Card.fetch_id "Apple Inc" }
 
-    context "single year" do
+    context "with single year" do
       let(:formula) do
         "{{#{@metric_name}|year:#{@year_expr} }}+{{#{@metric_name1}}}"
       end
 
       it "fixed year" do
         @year_expr = "2014"
-        is_expected.to eq "114.0"
+        expect(answer_value).to eq "114.0"
       end
       it "relative year" do
         @year_expr = "-2"
-        is_expected.to eq "113.0"
+        expect(answer_value).to eq "113.0"
       end
       it "current year" do
         @year_expr = "0"
-        is_expected.to eq "115.0"
+        expect(answer_value).to eq "115.0"
       end
     end
 
-    context "sum of" do
+    context "with sum of" do
       let(:formula) do
         "Sum[{{ #{@metric_name}|year:#{@year_expr} }}]+{{#{@metric_name1}}}"
       end
 
       it "relative range" do
         @year_expr = "-3..-1"
-        is_expected.to eq "139.0"
+        expect(answer_value).to eq "139.0"
       end
       it "relative range with 0" do
         @year_expr = "-3..0"
-        is_expected.to eq "154.0"
+        expect(answer_value).to eq "154.0"
       end
       it "relative range with ?" do
         @year_expr = "-3..?"
-        is_expected.to eq "154.0"
+        expect(answer_value).to eq "154.0"
       end
       it "fixed range" do
         @year_expr = "2012..2013"
-        is_expected.to eq "125.0"
+        expect(answer_value).to eq "125.0"
       end
       it "fixed start" do
         @year_expr = "2012..0"
-        is_expected.to eq "154.0"
+        expect(answer_value).to eq "154.0"
       end
       it "list of years" do
         @year_expr = "2012, 2014"
-        is_expected.to eq "126.0"
+        expect(answer_value).to eq "126.0"
       end
     end
   end
@@ -87,6 +87,7 @@ RSpec.describe Card::Set::MetricType::Formula do
     before do
       @name = "Jedi+friendliness"
     end
+
     let(:metric) { Card[@name] }
 
     describe "#metric_type" do
@@ -94,46 +95,55 @@ RSpec.describe Card::Set::MetricType::Formula do
 
       it { is_expected.to eq "Formula" }
     end
+
     describe "#metric_type_codename" do
       subject { metric.metric_type_codename }
 
       it { is_expected.to eq :formula }
     end
+
     describe "#metric_designer" do
       subject { metric.metric_designer }
 
       it { is_expected.to eq "Jedi" }
     end
+
     describe "#metric_designer_card" do
       subject { metric.metric_designer_card }
 
       it { is_expected.to eq Card["Jedi"] }
     end
+
     describe "#metric_title" do
       subject { metric.metric_title }
 
       it { is_expected.to eq "friendliness" }
     end
+
     describe "#metric_title_card" do
       subject { metric.metric_title_card }
 
       it { is_expected.to eq Card["friendliness"] }
     end
+
     describe "#question_card" do
       subject { metric.question_card.name }
 
       it { is_expected.to eq "Jedi+friendliness+Question" }
     end
+
     describe "#value_type" do
       subject { metric.value_type }
 
       it { is_expected.to eq "Number" }
     end
+
     describe "#categorical?" do
       subject { metric.categorical? }
 
       it { is_expected.to be_falsey }
     end
+
     describe "#researched?" do
       subject { metric.researched? }
 
@@ -179,7 +189,7 @@ RSpec.describe Card::Set::MetricType::Formula do
       expect(not_researched_card).to be_falsey
     end
 
-    context "and formula changes" do
+    context "when formula changes" do
       def update_formula new_formula
         Card::Auth.as_bot do
           @metric.formula_card.update_attributes!(
@@ -204,7 +214,7 @@ RSpec.describe Card::Set::MetricType::Formula do
       end
     end
 
-    context "and input metric value is missing" do
+    context "when input metric value is missing" do
       it "doesn't create calculated value" do
         expect(calc_answer("Death Star", "1977")).to be_falsey
       end
@@ -221,7 +231,7 @@ RSpec.describe Card::Set::MetricType::Formula do
       end
     end
 
-    context "and input metric value changes" do
+    context "when input metric value changes" do
       it "updates calculated value" do
         card = Card["#{@metric_name1}+Samsung+2014+value"]
         expect { card.update_attributes! content: "1" }

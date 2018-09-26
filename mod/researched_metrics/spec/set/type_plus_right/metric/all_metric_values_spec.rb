@@ -35,12 +35,12 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
   end
 
   describe "#item_cards" do
-    subject do
+    subject(:answer_list) do
       answers all_metric_values.item_cards
     end
 
     it "returns the latest values in default order" do
-      is_expected.to eq(latest_answers)
+      expect(answer_list).to eq(latest_answers)
     end
 
     def filter_by args
@@ -49,7 +49,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
     end
 
     context "with single filter condition" do
-      context "keyword" do
+      context "with keyword" do
         it "finds exact match" do
           expect(filter_by(name: "Death")).to eq ["Death_Star+2001"]
         end
@@ -64,25 +64,23 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
             .to eq ["Death_Star+2001"]
         end
       end
-      context "year" do
-        it "finds exact match" do
-          expect(filter_by(year: "2000"))
-            .to eq with_year(%w[Death_Star Monster_Inc SPECTRE], 2000)
-        end
+
+      it "finds exact match by year" do
+        expect(filter_by(year: "2000"))
+          .to eq with_year(%w[Death_Star Monster_Inc SPECTRE], 2000)
       end
-      context "project" do
-        it "finds exact match" do
-          expect(filter_by(project: "Evil Project"))
-            .to eq %w[Death_Star+2001 SPECTRE+2000]
-        end
+
+      it "finds exact match by project" do
+        expect(filter_by(project: "Evil Project"))
+          .to eq %w[Death_Star+2001 SPECTRE+2000]
       end
-      context "industry" do
-        it "finds exact match" do
-          expect(filter_by(industry: "Technology Hardware"))
-            .to eq %w[Death_Star+2001 SPECTRE+2000]
-        end
+
+      it "finds exact match by industry" do
+        expect(filter_by(industry: "Technology Hardware"))
+          .to eq %w[Death_Star+2001 SPECTRE+2000]
       end
-      context "value" do
+
+      context "with value" do
         let(:all_answers) do
           latest_answers + missing_answers
         end
@@ -209,14 +207,14 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
     end
 
     context "with sort conditions" do
-      def sort_by key, order="asc"
+      def sort_answers_by key, order="asc"
         allow(all_metric_values).to receive(:sort_by) { key }
         allow(all_metric_values).to receive(:sort_order) { order }
         answers all_metric_values.item_cards
       end
 
       it "sorts by company name (asc)" do
-        expect(sort_by(:company_name)).to eq(
+        expect(sort_answers_by(:company_name)).to eq(
           [
             "Death_Star+2001",
             "Monster_Inc+2000",
@@ -227,7 +225,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       end
 
       it "sorts by company name (desc)" do
-        expect(sort_by(:company_name, "desc")).to eq(
+        expect(sort_answers_by(:company_name, "desc")).to eq(
           [
             "Death_Star+2001",
             "Monster_Inc+2000",
@@ -238,7 +236,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
       end
 
       it "sorts categories by value" do
-        res = sort_by(:value)
+        res = sort_answers_by(:value)
         yes_index = res.index "Death_Star+2001"
         no_index = res.index "Slate_Rock_and_Gravel_Company+2005"
         expect(no_index).to be < yes_index
@@ -246,7 +244,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
 
       it "sorts numberics by value" do
         @metric = Card["Jedi+deadliness"]
-        expect(sort_by(:value)).to eq(
+        expect(sort_answers_by(:value)).to eq(
           %w[Samsung+1977
              Slate_Rock_and_Gravel_Company+2005
              Los_Pollos_Hermanos+1977
@@ -257,7 +255,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::AllMetricValues do
 
       it "sorts floats by value" do
         @metric = Card["Jedi+Victims by Employees"]
-        expect(sort_by(:value)).to eq(
+        expect(sort_answers_by(:value)).to eq(
           with_year(%w[Samsung
                        Slate_Rock_and_Gravel_Company
                        Monster_Inc
