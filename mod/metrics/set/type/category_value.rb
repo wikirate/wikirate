@@ -11,7 +11,7 @@ event :validate_valid_categories, :validate do
 end
 
 def illegal_items
-  option_keys = option_names.map(&:key)
+  option_keys = standard_option_names.map(&:key)
   raw_value.reject { |item| option_keys.member? item.key }
 end
 
