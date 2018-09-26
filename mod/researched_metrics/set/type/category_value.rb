@@ -1,6 +1,20 @@
 include_set Abstract::Pointer
 include_set Abstract::Value
 
+event :validate_valid_categories, :validate do
+  invalid_options = illegal_items
+  return true if Answer.unknown?(value) || invalid_options.empty?
+  url = "/#{options_card.name.url_key}?view=edit"
+  anchor = %(<a href='#{url}' target="_blank">add that option</a>)
+  errors.add :content, "invalid option(s): #{invalid_options.join ', '}. " \
+                     "Please #{anchor} before adding this metric value."
+end
+
+def illegal_items
+  option_keys = standard_option_names.map(&:key)
+  raw_value.reject { |item| option_keys.member? item.key }
+end
+
 def value
   raw_value.join JOINT
 end
@@ -26,10 +40,6 @@ end
 
 def options_card
   Card.fetch metric, :value_options, new: {}
-end
-
-def option_names
-  options_card.item_names context: :raw
 end
 
 format :html do
