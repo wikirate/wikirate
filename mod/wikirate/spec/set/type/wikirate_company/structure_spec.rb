@@ -43,7 +43,7 @@ RSpec.describe Card::Set::Type::WikirateCompany::Structure do
       is_expected.to have_tag "div.row.data-count" do
         with_tag "div.col-md-6.slab" do
           with_tag :a, with: { href: "/Death_Star?tab=metric" } do
-            with_text /16\s*Metric/
+            with_text /#{metric_count}\s*Metric/
           end
         end
         with_tag "div.col-md-6.slab" do

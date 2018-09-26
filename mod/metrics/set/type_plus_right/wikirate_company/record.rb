@@ -1,1 +1,0 @@
-include_set TypePlusRight::WikirateCompany::AllMetricValues

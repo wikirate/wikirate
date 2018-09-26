@@ -1,0 +1,27 @@
+%fieldset.card-editor.editor
+  %div{:role => "tabpanel"}
+    %input#card_subcards___metric_type_content.d0-card-content.form-control{name: "card[subcards][+*metric type][content]",
+                                                                         type: "hidden", value: ""}
+    %ul.nav.nav-tabs{role: "tablist"}
+      - tabs.each_key do |category|
+        %li{role: "tab", class: "nav-item"}
+          %a{"data-toggle": "tab", href: "##{category}", class: "nav-link#{' active' if selected_tab_pane?(category)}"}
+            = category.capitalize
+
+/ Tab panes
+.tab-content
+  - tabs.each_pair do |category, data|
+    .tab-pane{id: "#{category}",:role => "tabpanel", class: "#{'active' if selected_tab_pane?(category)}"}
+      .help-block.help-text
+        %p
+          = data[:help]
+      %ul.nav.nav-pills.grey-nav-tab{role: "tablist"}
+        - data[:subtabs].each do |metric_type|
+          %li.pointer-radio.nav-item{role: "tab"}
+            %a.tab-primary{class: "nav-link#{' active' if selected_subtab_pane?(metric_type)}",
+                           "data-toggle": "tab", href: "##{tab_pane_id metric_type}"}
+              = metric_type
+      .tab-content
+        - data[:subtabs].each do |metric_type|
+          = new_metric_tab_pane metric_type
+.card-notice
