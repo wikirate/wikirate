@@ -1,14 +1,10 @@
 format :html do
-  def year
-    card.fetch(trait: :year)&.content || ""
-  end
-
   def year_list
-    (card.fetch(trait: :year)&.item_names || []).to_json
+    year_card.item_names || []
   end
 
   def wrap_data slot=true
-    super.merge year: year_list
+    super.merge year: year_list.to_json
   end
 
   def wrap_with_info
@@ -45,7 +41,6 @@ format :html do
     [
       (_render_year_with_icon if year.present?),
       (_render_metric_count if with_links?),
-      (_render_note_count if with_links?),
       (_render_original_with_icon if with_links?)
     ].compact
   end
