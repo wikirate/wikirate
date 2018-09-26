@@ -52,7 +52,9 @@ def metric_was
 end
 
 def metric_card
-  (generation == 1 && left) || Card.fetch(metric) || nil
+  # in the integrate phase when updating calculations
+  # there can be a superleft without set modules
+  (generation == 1 && left&.include_set_modules) || Card.fetch(metric) || nil
   # FIXME: hack to make it work on new cards
 end
 

@@ -11,17 +11,20 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
     calc_answer(metric_title).value
   end
 
+  # values for the input answers are 100 and 0.31
   def create_formula formula: "{{Jedi+deadliness}}/{{Jedi+Victims by Employees}}",
                      title: "formula test"
     Card::Metric.create name: "Jedi+#{title}", type: :formula, formula: formula
   end
 
   def updates_answer_with_delay from: nil, to:, metric_title: "formula test"
-    with_delayed_jobs(1) do
+    with_delayed_jobs do
       expect(answer_value(metric_title)).to match(from) if from
       yield
       expect(answer_value(metric_title)).to match(from) if from
-      expect(calc_answer(metric_title).calculating).to be_truthy
+      expect(calc_answer(metric_title).calculating)
+        .to be_truthy,
+            "'Jedi+#{metric_title}+Death Star+1977' not marked as being calculated"
     end
     expect(answer_value(metric_title)).to match(to)
     expect(calc_answer(metric_title).calculating).to be_falsey
@@ -29,9 +32,10 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
 
   context "when formula is updated" do
     it "updates values" do
-      updates_answer_with_delay from: /^322/, to: /^31/ do
-        create_formula
-        expect(answer_value).to match(/^322/)
+      with_delayed_jobs { create_formula }
+      expect(answer_value).to match(/^322/)
+
+      updates_answer_with_delay to: /^31/ do
         Card["Jedi+formula test+formula"].update_attributes!(
           content: "{{Jedi+deadliness}}*{{Jedi+Victims by Employees}}"
         )
@@ -39,21 +43,18 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
     end
 
     it "updates values of dependent calculated metric" do
-      updates_answer_with_delay to: /^645/,
-                                metric_title: "formula test double" do
-        create_formula
+      with_delayed_jobs { create_formula } # create Jedi+formula test
+      with_delayed_jobs do
         create_formula title: "formula test double",
                        formula: "{{Jedi+formula test}}*2"
-        expect(answer_value).to match(/^322/)
+      end
 
+      updates_answer_with_delay from: /^645/, to: /^62/,
+                                metric_title: "formula test double" do
         Card["Jedi+formula test+formula"].update_attributes!(
           content: "{{Jedi+deadliness}}*{{Jedi+Victims by Employees}}"
           )
       end
-    end
-
-    it "updates values of other dependent calculated metrics" do
-
     end
   end
 
