@@ -2,6 +2,9 @@ def calculation_in_progress!
   Answer.where(id: all_dependent_answer_ids).update_all(calculating: true)
 end
 
+def initial_calculation_in_progress!
+  Answer.bulk_insert values: dummy_answers_attribs
+end
 
 # update all answers of this metric and the answers of all dependent metrics
 def deep_answer_update initial_update=false
@@ -75,6 +78,18 @@ def add_answer company, year, value
 end
 
 delegate :calculator, to: :formula_card
+
+private
+
+def dummy_answers_attribs
+  calculator.answers_to_be_calculated.map do |company_id, year|
+    unless Card[self, company_id]
+      Card.create! name: [self, company_id], type_id: Card::RecordID
+    end
+    { metric_id: id, company_id: company_id, year: year, calculating: true,
+      metric_name: name, latest: true }
+  end
+end
 
 def to_company_id company
   raise Card::Error, "#calculate_values_for: no company given" unless company

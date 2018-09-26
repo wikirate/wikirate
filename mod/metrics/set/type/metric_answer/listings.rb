@@ -115,7 +115,7 @@ format :html do
 
   # year, value, unit and flags
   view :conciser do
-    return calculating if calculating?
+    return calculating if card.calculating?
     year_and_value + _render_flags
   end
 

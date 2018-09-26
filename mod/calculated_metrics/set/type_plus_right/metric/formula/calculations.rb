@@ -10,7 +10,7 @@ end
 
 event :create_dummy_answers, :finalize,
       on: :create, changed: :content, when: :content? do
-  Answer.bulk_insert values: dummy_answers_attribs
+  metric_card.initial_calculation_in_progress!
 end
 
 # don't update if it's part of scored metric create
@@ -25,16 +25,6 @@ event :create_metric_answers, :integrate_with_delay,
 end
 
 delegate :calculator, to: :metric_card
-
-def dummy_answers_attribs
-  calculator.answers_to_be_calculated.map do |company_id, year|
-    unless Card[metric_card, company_id]
-      Card.create! name: [metric_card, company_id], type_id: Card::RecordID
-    end
-    { metric_id: metric_card.id, company_id: company_id, year: year, calculating: true,
-      metric_name: metric_card.name, latest: true }
-  end
-end
 
 def regenerate_answers
   replace_existing_answers

@@ -57,7 +57,7 @@ event :update_lookup_answers, :integrate,
   # if this were working properly it could be in the when: arg.
   #
   expire
-  formula_card&.regenerate_answers if refresh(true).calculated?
+  deep_answer_update if refresh(true).calculated?
 end
 
 event :delete_all_answers, :prepare_to_validate, on: :update, trigger: :required do

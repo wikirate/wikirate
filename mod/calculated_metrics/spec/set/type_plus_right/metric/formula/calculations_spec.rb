@@ -32,28 +32,25 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
 
   context "when formula is updated" do
     it "updates values" do
-      with_delayed_jobs { create_formula }
-      expect(answer_value).to match(/^322/)
+      updates_answer_with_delay from: /^0.01/, to: /^5.01/,
+                                metric_title: "friendliness" do
+        Card["Jedi+friendliness+formula"]
+          .update_attributes! content: "1/{{Jedi+deadliness}}+5"
+      end
+    end
 
-      updates_answer_with_delay to: /^31/ do
-        Card["Jedi+formula test+formula"].update_attributes!(
-          content: "{{Jedi+deadliness}}*{{Jedi+Victims by Employees}}"
-        )
+    it "shows refresh icon while calculating" do
+      with_delayed_jobs do
+        Card["Jedi+friendliness+formula"]
+                  .update_attributes! content: "1/{{Jedi+deadliness}}+5"
       end
     end
 
     it "updates values of dependent calculated metric" do
-      with_delayed_jobs { create_formula } # create Jedi+formula test
-      with_delayed_jobs do
-        create_formula title: "formula test double",
-                       formula: "{{Jedi+formula test}}*2"
-      end
-
-      updates_answer_with_delay from: /^645/, to: /^62/,
-                                metric_title: "formula test double" do
-        Card["Jedi+formula test+formula"].update_attributes!(
-          content: "{{Jedi+deadliness}}*{{Jedi+Victims by Employees}}"
-          )
+      updates_answer_with_delay from: /^0.02/, to: /^10.02/,
+                                metric_title: "double friendliness" do
+        Card["Jedi+friendliness+formula"]
+          .update_attributes! content: "1/{{Jedi+deadliness}}+5"
       end
     end
   end
@@ -62,7 +59,6 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
     it "creates dummy answers" do
       updates_answer_with_delay to: /^322/ do
         create_formula
-        expect(calc_answer.calculating).to be_truthy
         answer_card = Card.fetch("Jedi+formula test+Death Star+1977", type: :metric_answer)
         expect(answer_card.answer.id).to eq calc_answer.id
         expect(view(:core, card: "Jedi+formula test+all metric values")).to have_tag :tr do
@@ -71,9 +67,18 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
         end
       end
     end
+
+    it "replaces dummy answers after calculation" do
+      with_delayed_jobs { create_formula }
+      expect(view(:core, card: "Jedi+formula test+all metric values")).to have_tag :tr do
+        with_text /Death Star/
+        without_tag "i.fa-refresh"
+        with_text /322/
+      end
+    end
   end
 
-  it "calculates values if formula is added" do
+  it "calculates values if formula is added after creation" do
     updates_answer_with_delay to: /^322/ do
       Card::Metric.create name: "Jedi+formula test", type: :formula
       create "Jedi+formula test+formula",
