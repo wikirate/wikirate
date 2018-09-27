@@ -57,13 +57,13 @@ def update_or_add_answer company, year, value
   else
     add_answer company, year, value
   end
-rescue => e
+rescue StandardError => e
   errors.add :answer, "Error storing calculated value: #{e.message}"
   raise e
 end
 
 def update_answer answer, company, year, value
-  @existing.delete answer.id if @existing
+  @existing&.delete answer.id
   if @initial_update
     answer.calculated_answer self, company, year, value
   elsif already_researched? answer
@@ -94,5 +94,6 @@ end
 def to_company_id company
   raise Card::Error, "#calculate_values_for: no company given" unless company
   return company if company.is_a?(Integer)
+
   Card.fetch_id(company)
 end

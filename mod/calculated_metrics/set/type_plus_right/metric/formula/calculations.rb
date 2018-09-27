@@ -26,18 +26,10 @@ end
 
 delegate :calculator, to: :metric_card
 
-def regenerate_answers
-  replace_existing_answers
-  create_metric_answers
-end
-
 def calculator
   @calculator ||= calculator_class.new self
 end
 
 def calculator_class
-  ::Formula.calculator_class(clean_formula)
+  metric_card&.calculator_class || ::Formula.calculator_class(clean_formula)
 end
-
-
-

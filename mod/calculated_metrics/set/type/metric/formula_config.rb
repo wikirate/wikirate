@@ -22,7 +22,7 @@ def formula_input_requirement
 end
 
 def calculator_class
-  @calculator_class ||= formula_card&.calculator_class
+  nil
 end
 
 # </OVERRIDES>

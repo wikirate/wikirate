@@ -17,17 +17,21 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
     Card::Metric.create name: "Jedi+#{title}", type: :formula, formula: formula
   end
 
-  def updates_answer_with_delay from: nil, to:, metric_title: "formula test"
+  def updates_answer_with_delay from: nil, to:, metric_title: "formula test", &block
     with_delayed_jobs do
-      expect(answer_value(metric_title)).to match(from) if from
-      yield
-      expect(answer_value(metric_title)).to match(from) if from
+      expect_answer_not_to_change from, metric_title, &block
       expect(calc_answer(metric_title).calculating)
         .to be_truthy,
             "'Jedi+#{metric_title}+Death Star+1977' not marked as being calculated"
     end
     expect(answer_value(metric_title)).to match(to)
     expect(calc_answer(metric_title).calculating).to be_falsey
+  end
+
+  def expect_answer_not_to_change value, metric_title
+    expect(answer_value(metric_title)).to match(value) if value
+    yield
+    expect(answer_value(metric_title)).to match(value) if value
   end
 
   context "when formula is updated" do
@@ -42,7 +46,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
     it "shows refresh icon while calculating" do
       with_delayed_jobs do
         Card["Jedi+friendliness+formula"]
-                  .update_attributes! content: "1/{{Jedi+deadliness}}+5"
+          .update_attributes! content: "1/{{Jedi+deadliness}}+5"
       end
     end
 
@@ -59,9 +63,10 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula::Calculations do
     it "creates dummy answers" do
       updates_answer_with_delay to: /^322/ do
         create_formula
-        answer_card = Card.fetch("Jedi+formula test+Death Star+1977", type: :metric_answer)
+        answer_card = Card.fetch "Jedi+formula test+Death Star+1977", type: :metric_answer
         expect(answer_card.answer.id).to eq calc_answer.id
-        expect(view(:core, card: "Jedi+formula test+all metric values")).to have_tag :tr do
+        expect(view(:core, card: "Jedi+formula test+all metric values"))
+          .to have_tag :tr do
           with_text /Death Star/
           with_tag "i.fa-refresh"
         end
