@@ -34,18 +34,6 @@ event :mark_as_imported, before: :finalize_action, when: :import_act? do
   @current_action.comment = "imported"
 end
 
-event :update_related_scores, :after_integrate, skip: :allowed do
-  ensure_metric(metric_card).each_dependent_score_metric do |metric|
-    metric.update_value_for! company: company_id, year: year
-  end
-end
-
-event :update_related_calculations, :after_integrate, skip: :allowed do
-  ensure_metric(metric_card).each_dependent_formula_metric do |metric|
-    metric.update_value_for! company: company_id, year: year
-  end
-end
-
 private
 
 # in some cases, deleting a metric can lead to its scores getting deleted

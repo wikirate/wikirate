@@ -22,6 +22,11 @@ class SharedData
                           random_source: true do
         Slate_Rock_and_Gravel_Company 2003 => "100"
       end
+
+      Card::Metric.create name: "Jedi+double friendliness",
+                                type: :formula,
+                                formula: "{{Jedi+friendliness}}*2"
+
       Card::Metric.create name: "Jedi+deadliness average",
                           type: :formula,
                           formula: "Sum[{{Jedi+deadliness|year:-2..0}}]/3"
@@ -30,7 +35,9 @@ class SharedData
                           hybrid: "1",
                           formula: "{{Jedi+deadliness}}-{{Jedi+deadliness|year:-1}}" \
                                    "+{{half year}}"
+
       # calculated value: "Slate Rock and Gravel Company+2004"
+
 
     end
 
