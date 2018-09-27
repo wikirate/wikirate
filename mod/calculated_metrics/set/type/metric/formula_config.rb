@@ -4,7 +4,6 @@
 # can be run on _any_ metric. If we're ok to remove that api, I'm happy to move this code
 # -efm
 
-
 def formula_editor
   :standard_formula_editor
 end

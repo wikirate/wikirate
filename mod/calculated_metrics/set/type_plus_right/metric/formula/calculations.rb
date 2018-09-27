@@ -1,5 +1,5 @@
-
-event :flag_metric_answer_calculation, :prepare_to_store, on: :update, changed: :content do
+event :flag_metric_answer_calculation, :prepare_to_store,
+      on: :update, changed: :content do
   metric_card.calculation_in_progress!
 end
 
@@ -24,10 +24,8 @@ event :create_metric_answers, :integrate_with_delay,
   metric_card.deep_answer_update true
 end
 
-delegate :calculator, to: :metric_card
-
 def calculator
-  @calculator ||= calculator_class.new self
+  calculator_class.new self
 end
 
 def calculator_class
