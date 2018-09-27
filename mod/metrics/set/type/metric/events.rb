@@ -46,20 +46,6 @@ event :silence_metric_deletions, :initialize, on: :delete do
   @silent_change = true
 end
 
-event :update_lookup_answers, :integrate,
-      on: :update, changed: :name do
-  # this recalculates answers, when technically all that needs to happen is
-  # for name fields to be updated.
-
-  # FIXME: when renaming, the metric type gets confused at some point, and
-  # calculated? does not correctly return true for calculated metrics
-  # (which have MetricType::Researched among their singleton class's ancestors)
-  # if this were working properly it could be in the when: arg.
-  #
-  expire
-  deep_answer_update if refresh(true).calculated?
-end
-
 event :delete_all_answers, :prepare_to_validate, on: :update, trigger: :required do
   if Card::Auth.always_ok? # TODO: come up with better permissions scheme for this!
     metric_answer_cards.each { |answer_card| delete_as_subcard answer_card }

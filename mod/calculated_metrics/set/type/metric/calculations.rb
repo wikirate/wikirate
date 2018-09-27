@@ -1,3 +1,14 @@
+event :update_lookup_answers, :integrate,
+      on: :update, changed: :name do
+  # FIXME: when renaming, the metric type gets confused at some point, and
+  # calculated? does not correctly return true for calculated metrics
+  # (which have MetricType::Researched among their singleton class's ancestors)
+  # if this were working properly it could be in the when: arg.
+  #
+  expire
+  rename_answers if refresh(true).calculated?
+end
+
 def calculation_in_progress!
   Answer.where(id: all_dependent_answer_ids).update_all(calculating: true)
 end
@@ -11,6 +22,16 @@ def deep_answer_update initial_update=false
   @initial_update = initial_update
   recalculate_answers
   each_dependent_formula_metric(&:recalculate_answers)
+end
+
+def rename_answers
+  Answer.where(metric_id: id).update_all metric_name: name,
+                                          designer_name: name.parts.first,
+                                          title_name: name.parts.second
+
+  all_answers.each do |answer|
+    answer.refresh :record_name
+  end
 end
 
 def recalculate_answers
@@ -74,7 +95,7 @@ def update_answer answer, company, year, value
 end
 
 def add_answer company, year, value
-  Answer.create_calculated_answer metric_card, company, year, value
+  Answer.create_calculated_answer self, company, year, value
 end
 
 delegate :calculator, to: :formula_card
