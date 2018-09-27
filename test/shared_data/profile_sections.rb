@@ -18,7 +18,7 @@ class SharedData
         update_card answer_field(2010, :value),
                     content: "4"
         update_card answer_field(2008, :value),
-                    content: "4.1"
+                    content: "5"
 
         ensure_card answer_field(2007, :discussion),
                     content: "comment"
@@ -34,7 +34,7 @@ class SharedData
         update_card answer_field(2009, :value),
                     content: "5"
         update_card answer_field(2008, :value),
-                    content: "4.2"
+                    content: "6"
 
         ensure_card answer_field(2006, :discussion),
                     content: "comment"
