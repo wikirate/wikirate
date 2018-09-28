@@ -51,10 +51,6 @@ format :html do
     end
   end
 
-  view :details_placeholder do
-    ""
-  end
-
   view :details do
     if card.relationship?
       voo.hide! :answer_details_toggle

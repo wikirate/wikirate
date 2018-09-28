@@ -171,8 +171,4 @@ format :html do
     outs = Savanna::Outliers.get_outliers prepare_for_outlier_search, :all
     outs.inspect
   end
-
-  view :details_placeholder do
-    ""
-  end
 end
