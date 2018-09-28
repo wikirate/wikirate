@@ -54,12 +54,7 @@ Card::Auth.as_bot do
     Card.cache.reset
   end
   puts "Finished type updates!".green
-  puts "Getting all claim + tag cards".green
-  note_cards_with_tag = Card.search type_id: Card::ClaimID, right_plus: "tag"
-  puts "#{note_cards_with_tag.size} claim+tag cards found. Start Praying".green
-  put_things_in_tag_to_correct_position note_cards_with_tag, false
-  puts "Finished claim+tag updates!".green
-  puts "Getting all note + tag cards".green
+  puts "Getting all source + tag cards".green
   source_cards_with_tag = Card.search type_id: Card::SourceID,
                                       right_plus: "tag"
   puts "#{source_cards_with_tag.size} note+tag cards found. Start Praying".green

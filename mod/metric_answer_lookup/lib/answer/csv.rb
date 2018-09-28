@@ -16,7 +16,8 @@ class Answer
     # class methods for {Answer}
     module ClassMethods
       def csv_title
-        CSV.generate_line ["ANSWER ID", "ANSWER_LINK", "METRIC NAME", "COMPANY NAME", "YEAR", "VALUE"]
+        CSV.generate_line ["ANSWER ID", "ANSWER_LINK", "METRIC NAME",
+                           "COMPANY NAME", "YEAR", "VALUE"]
       end
     end
   end

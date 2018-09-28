@@ -1,6 +1,6 @@
 format :html do
   def year_list
-    year_card.item_names || []
+    card.year_card.item_names || []
   end
 
   def wrap_data slot=true
@@ -39,7 +39,7 @@ format :html do
 
   def source_item_footer
     [
-      (_render_year_with_icon if year.present?),
+      (_render_year_with_icon if card.year.present?),
       (_render_metric_count if with_links?),
       (_render_original_with_icon if with_links?)
     ].compact
@@ -108,14 +108,14 @@ format :html do
   end
 
   view :year_helper do
-    return "" if year.nil? || year == ""
+    return "" if card.year.nil? || year == ""
     wrap_with(:small, "year:" + year[/\d+/], class: "source-year")
     # _render_original_link << year_helper.html_safe
   end
 
   view :year_with_icon do
-    return "" if year.blank?
-    wrap_with(:span, fa_icon("calendar") + year[/\d+/])
+    return "" if card.year.blank?
+    wrap_with(:span, fa_icon("calendar") + card.year[/\d+/])
   end
 
   view :direct_link do
