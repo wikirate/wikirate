@@ -43,16 +43,20 @@ format :html do
     elsif card.range.present?
       card.range.to_s
     elsif card.categorical?
-      wrap_with :div, class: "small" do
-        [
-          fa_icon("list"),
-          category_legend[0..40],
-          " ",
-          popover_link_custom(category_legend)
-        ]
-      end
+      category_legend_div
     else
       ""
+    end
+  end
+
+  def category_legend_div
+    wrap_with :div, class: "small" do
+      [
+        fa_icon("list"),
+        category_legend[0..40],
+        " ",
+        popover_link_custom(category_legend)
+      ]
     end
   end
 
