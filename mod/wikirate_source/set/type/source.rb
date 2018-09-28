@@ -7,7 +7,6 @@ card_accessor :wikirate_topic, type: :pointer
 card_accessor :wikirate_company, type: :pointer
 card_accessor :title
 
-
 add_attributes :import
 attr_accessor :import
 
@@ -29,7 +28,6 @@ end
 def wikirate_link?
   source_type_codename == :wikirate_link
 end
-
 
 format :html do
   view :new do
