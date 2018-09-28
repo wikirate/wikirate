@@ -5,7 +5,7 @@ card_accessor :metric_variables
 # @option opts [card key] :company
 # @option opts [String] :year
 def update_value_for! opts
-  formula_card.calculate_values_for(opts) do |year, value|
+  calculate_values_for(opts) do |year, value|
     if (ans = answer opts[:company], year)
       update_existing_answer ans, value
     elsif value

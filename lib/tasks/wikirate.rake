@@ -41,14 +41,12 @@ namespace :wikirate do
 
         puts "deleting #{value_groups.size} empty value cards"
         value_groups.each do |group_card|
-          begin
-            group_card.descendants.each do |desc|
-              desc.update_column :trash, true
-            end
-            group_card.update_column :trash, true
-          rescue
-            puts "FAILED TO DELETE: #{group_card.name}"
+          group_card.descendants.each do |desc|
+            desc.update_column :trash, true
           end
+          group_card.update_column :trash, true
+        rescue
+          puts "FAILED TO DELETE: #{group_card.name}"
         end
       end
       puts "empty trash"

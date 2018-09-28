@@ -14,7 +14,7 @@ class Answer
     end
 
     def virtual_answer_card name=nil, val=nil
-      name ||= [record_name, year.to_s]
+      name ||= record_name ? [record_name, year.to_s] : [metric_id, company_id, year.to_s]
       val ||= value
 
       Card.fetch(name, new: { type_id: Card::MetricAnswerID }).tap do |card|
@@ -60,7 +60,8 @@ class Answer
         value: value,
         numeric_value: to_numeric_value(value),
         updated_at: Time.now,
-        editor_id: Card::Auth.current_id
+        editor_id: Card::Auth.current_id,
+        calculating: false
       }
     end
 

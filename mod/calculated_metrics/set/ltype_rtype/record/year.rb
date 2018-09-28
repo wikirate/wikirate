@@ -1,4 +1,5 @@
 # This file is needed for handling virtual answers
+
 include_set Type::MetricAnswer
 
 def unknown?
@@ -10,7 +11,7 @@ def virtual?
 end
 
 def answer
-  @answer ||= Answer.where(record_id: left.id, year: name.right.to_i).take
+  @answer ||= find_answer_by_record || find_answer_by_metric_and_company
 end
 
 def content
@@ -33,4 +34,15 @@ format :html do
   def show_menu_item_edit?
     card.metric_card.hybrid? || super()
   end
+end
+
+private
+
+def find_answer_by_record
+  Answer.where(record_id: left.id, year: name.right.to_i).take
+end
+
+def find_answer_by_metric_and_company
+  Answer.where(metric_id: left.left.id, company_id: left.right.id,
+               year: name.right.to_i).take
 end

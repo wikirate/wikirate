@@ -6,12 +6,10 @@ view :editor do
 end
 
 event :validate_content, :validate, on: :save do
-  begin
-    @host = nil
-    @host = URI(content).host
-  rescue
-    errors.add :link, "invalid uri #{content}" unless @host
-  end
+  @host = nil
+  @host = URI(content).host
+rescue
+  errors.add :link, "invalid uri #{content}" unless @host
 end
 
 # event :block_url_changing, :validate, on: :update, changed: :content,
