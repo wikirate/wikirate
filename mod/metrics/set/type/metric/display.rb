@@ -61,7 +61,7 @@ format :html do
     wrap_with :div, class: "small" do
       [
         fa_icon("list"),
-        category_legend[0..40],
+        category_legend.gsub!("<br>", "")[0..40],
         " ",
         popover_link_custom(category_legend)
       ]
