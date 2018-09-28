@@ -47,10 +47,14 @@ format :html do
     elsif card.range.present?
       card.range.to_s
     elsif card.categorical?
-      html ? category_legend_div : category_legend.gsub!("<br>","")
+      category_legend_display html
     else
       ""
     end
+  end
+
+  def category_legend_display html
+    html ? category_legend_div : category_legend.gsub!("<br>", "")
   end
 
   def category_legend_div
@@ -74,10 +78,6 @@ format :html do
 
   def category_legend
     card.value_options.reject { |o| o == "Unknown" }.join ", <br>"
-  end
-
-  def category_legend_core
-
   end
 
   view :handle do
