@@ -2,14 +2,14 @@
 
 RSpec.describe Card::Set::Type::Metric::Events do
   describe "#update_lookup_answers" do
-    context "when renaming calculated metrics" do
+    context "when renaming calculated metrics", as_bot: true do
       let(:oldname) { "Jedi+friendliness" }
       let(:newname) { "Jedi+flakiness" }
       let(:newcard) { Card[newname] }
 
       before { Card[oldname].update_attributes! name: newname, update_referers: true }
 
-      it "updates metric names in lookup table", as_bot: true do
+      it "updates metric names in lookup table" do
         expect(newcard.all_answers.first.metric_name).to eq(newname)
       end
 
