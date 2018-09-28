@@ -43,14 +43,29 @@ format :html do
     elsif card.range.present?
       card.range.to_s
     elsif card.categorical?
-      category_legend
+      wrap_with :div, class: "small" do
+        [
+          fa_icon("list"),
+          category_legend[0..40],
+          " ",
+          popover_link_custom(category_legend)
+        ]
+      end
     else
       ""
     end
   end
 
+  def popover_link_custom text, title=nil
+    opts = { class: "pl-1 text-muted-link border text-muted px-1",
+             path: "#", "data-toggle": "popover",
+             "data-trigger": :focus, "data-content": text, "data-html": "true" }
+    opts["data-title"] = title if title
+    link_to fa_icon("ellipsis-h"), opts
+  end
+
   def category_legend
-    card.value_options.reject { |o| o == "Unknown" }.join ","
+    card.value_options.reject { |o| o == "Unknown" }.join ", <br>"
   end
 
   view :handle do

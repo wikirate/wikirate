@@ -945,3 +945,10 @@ a.no-decoration {
   }
   position: relative;
 }
+
+//popover
+
+.popover-body {
+    overflow-y: auto;
+    max-height: 200px;
+}
