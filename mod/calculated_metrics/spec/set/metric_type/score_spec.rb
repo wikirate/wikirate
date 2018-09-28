@@ -26,51 +26,61 @@ RSpec.describe Card::Set::MetricType::Score do
 
     it { is_expected.to eq "Score" }
   end
+
   describe "#metric_type_codename" do
     subject { metric.metric_type_codename }
 
     it { is_expected.to eq :score }
   end
+
   describe "#metric_designer" do
     subject { metric.metric_designer }
 
     it { is_expected.to eq "Jedi" }
   end
+
   describe "#metric_designer_card" do
     subject { metric.metric_designer_card }
 
     it { is_expected.to eq Card["Jedi"] }
   end
+
   describe "#metric_title" do
     subject { metric.metric_title }
 
     it { is_expected.to eq "deadliness" }
   end
+
   describe "#metric_title_card" do
     subject { metric.metric_title_card }
 
     it { is_expected.to eq Card["deadliness"] }
   end
+
   describe "#question_card" do
     subject { metric.question_card.name }
 
     it { is_expected.to eq "Jedi+deadliness+Joe User+Question" }
   end
+
   describe "#value_type" do
     subject { metric.value_type }
 
     it { is_expected.to eq "Number" }
   end
+
   describe "#categorical?" do
     subject { metric.categorical? }
 
     it { is_expected.to be_falsey }
   end
+
   describe "#researched?" do
     subject { metric.researched? }
 
     it { is_expected.to be_falsey }
   end
+
   describe "#score?" do
     subject { metric.score? }
 
@@ -82,11 +92,13 @@ RSpec.describe Card::Set::MetricType::Score do
 
     it { is_expected.to eq "Joe User" }
   end
+
   describe "#scorer_card" do
     subject { metric.scorer_card }
 
     it { is_expected.to eq Card["Joe User"] }
   end
+
   describe "#basic_metric" do
     subject { metric.basic_metric }
 
@@ -124,7 +136,7 @@ RSpec.describe Card::Set::MetricType::Score do
         expect(score_answer("Death_Star", "1977")).to be_falsey
       end
 
-      context "and formula changes" do
+      context "when formula changes" do
         def update_formula formula
           Card::Auth.as_bot do
             @metric.formula_card.update_attributes! content: formula
@@ -140,7 +152,7 @@ RSpec.describe Card::Set::MetricType::Score do
         # end
       end
 
-      context "and a input metric value is missing" do
+      context "when a input metric value is missing" do
         it "doesn't create score value" do
           expect(score_answer("Death Star", "1977")).to be_falsey
         end
@@ -155,7 +167,7 @@ RSpec.describe Card::Set::MetricType::Score do
         end
       end
 
-      context "and input metric value changes" do
+      context "when input metric value changes" do
         it "updates score value" do
           Card["#{@metric_name}+Samsung+2014+value"].update_attributes! content: "1"
           expect(score_value).to eq "2.0"
@@ -177,10 +189,12 @@ RSpec.describe Card::Set::MetricType::Score do
                                   type: :score
         end
       end
+
       it "has basic metric as formula" do
         expect(Card["#{@metric.name}+formula"].content)
           .to eq "{{Joe User+#{@metric_title}}}"
       end
+
       it "creates score values if formula updated" do
         Card::Auth.as_bot do
           @metric.formula_card.update_attributes!(

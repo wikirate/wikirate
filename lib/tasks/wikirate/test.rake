@@ -105,7 +105,7 @@ namespace :wikirate do
 
     desc "load db dump into test db"
     task :load_dump, [:path] do |_task, args|
-      dump_path = args[:path] || full_dump_path
+      dump_path = args[:path] || ARGV[1] || full_dump_path
       mysql_login = "mysql -u #{user}"
       mysql_login += " -p#{pwd}" if pwd
       cmd = "echo \"create database if not exists #{testdb} " \
