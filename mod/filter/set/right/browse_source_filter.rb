@@ -52,6 +52,7 @@ format :html do
   end
 end
 
+# cardql query to filter sources
 class SourceFilterQuery < Card::FilterQuery
   def wikirate_company_wql value
     add_to_wql :right_plus, [{ id: WikirateCompanyID }, { refer_to: value }]
