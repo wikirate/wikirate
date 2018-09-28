@@ -39,11 +39,11 @@ RSpec.describe Card::Set::Type::MetricAnswer::Listings do
         with_tag :a, with: { href: "/half_year+Slate_Rock_and_Gravel_Company+2004" },
                      text: "1002"
         is_expected.to have_tag "span.metric-unit" do
-          with_tag "small",
-          text: "1, <br>2, <br>3, <br>4, <br>5, <br>6, <br>7, <br>8, <br>9, <br>10, <br>11" do
-            with_tag "i.fa.fa-list"
-            with_tag "a.pl-1.text-muted-link.border.text-muted.px-1" do
-              with_tag "i.fa.fa-ellipsis-h"
+           with_tag "div.small",
+           text: "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11" do
+             with_tag "i.fa.fa-list", text: ""
+             with_tag "a.pl-1.text-muted-link.border.text-muted.px-1" do
+               with_tag "i.fa.fa-ellipsis-h", text: ""
             end
           end
         end
@@ -61,11 +61,11 @@ RSpec.describe Card::Set::Type::MetricAnswer::Listings do
       end
       it "has options" do
         is_expected.to have_tag "span.metric-unit" do
-          with_tag "small",
-          text: "1, <br>2, <br>3, <br>4, <br>5, <br>6, <br>7, <br>8, <br>9, <br>10, <br>11" do
-            with_tag "i.fa.fa-list"
+          with_tag "div.small",
+          text: "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11" do
+            with_tag "i.fa.fa-list", text: ""
             with_tag "a.pl-1.text-muted-link.border.text-muted.px-1" do
-              with_tag "i.fa.fa-ellipsis-h"
+              with_tag "i.fa.fa-ellipsis-h", text: ""
             end
           end
         end
