@@ -36,7 +36,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::Listings do
         is_expected.to have_tag "span.metric-year", /2010/
       end
       it "has options" do
-        is_expected.to have_selector title: '1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11'
+        is_expected.to have_selector title: "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11"
       end
     end
 
@@ -50,7 +50,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::Listings do
         is_expected.to have_tag "span.metric-year", /2010/
       end
       it "has options" do
-        is_expected.to have_selector title: '1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11'
+        is_expected.to have_selector title: "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11"
       end
     end
   end
