@@ -36,6 +36,14 @@ module Formula
       result
     end
 
+    def answers_to_be_calculated opts={}
+      res = []
+      @input.each(opts) do |_input, company_id, year|
+        res << [company_id, year]
+      end
+      res
+    end
+
     def input_data company, year
       @formula_card.input_cards.zip(
         @input.input_for(company, year), year_options

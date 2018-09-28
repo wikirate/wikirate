@@ -4,6 +4,10 @@ def all_answers
   Answer.where(metric_id: id)
 end
 
+def answer_ids
+  all_answers.pluck(:id)
+end
+
 def answer company, year
   company = Card.fetch_id(company) unless company.is_a? Integer
   Answer.where(metric_id: id, company_id: company, year: year.to_i).take
@@ -50,6 +54,7 @@ end
 # note: can return True for anonymous user if answer is generally researchable
 def user_can_answer?
   return unless researchable?
+
   # TODO: add metric designer respresentative logic here
   is_admin = Auth.always_ok?
   is_owner = Auth.current.id == creator&.id

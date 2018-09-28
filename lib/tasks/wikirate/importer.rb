@@ -75,12 +75,10 @@ class Importer
   def import_migration_data data, exclude
     exclude = Array(exclude).flatten.map(&:to_s)
     data.each do |table, values|
-      begin
-        truncate table
-        insert_into table, (values - exclude)
-      rescue => e
-        puts "Error in #{table},#{values} #{e}".red
-      end
+      truncate table
+      insert_into table, (values - exclude)
+    rescue => e
+      puts "Error in #{table},#{values} #{e}".red
     end
   end
 
