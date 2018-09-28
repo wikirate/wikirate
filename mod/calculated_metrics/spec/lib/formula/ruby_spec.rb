@@ -19,8 +19,8 @@ describe Formula::Ruby do
   describe "functions" do
     let(:nest) { "{{Joe User+researched|year:-2..0}}" }
 
-    specify "sum" do
-      result = calculate "Sum[#{nest}]"
+    specify "total" do
+      result = calculate "Total[#{nest}]"
       expect(result).to include 2012 => { apple_id => 33.0 },
                                 2013 => { apple_id => 36.0 }
       expect(result[2011]).to eq({})

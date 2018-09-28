@@ -9,7 +9,7 @@ module Formula
   # listed in SYMBOLS and FUNCTIONS
   class Ruby < Calculator
     SYMBOLS = %w{+ - ( ) [ ] . * , /}.freeze
-    FUNCTIONS = { "Sum" => "sum", "Max" => "max", "Min" => "min",
+    FUNCTIONS = { "Total" => "sum", "Max" => "max", "Min" => "min",
                   "Zeros" => "count(0)", "Flatten" => "flatten",
                   "Unknowns" => "count('Unknown')" }.freeze
     LAMBDA_ARGS_NAME = "args".freeze

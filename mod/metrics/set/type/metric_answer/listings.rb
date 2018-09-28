@@ -115,7 +115,7 @@ format :html do
 
   # year, value, unit and flags
   view :conciser do
-    return calculating if card.calculating?
+    return calculating_icon if card.calculating?
     year_and_value + _render_flags
   end
 
@@ -123,7 +123,7 @@ format :html do
     card.name.right
   end
 
-  def calculating
+  def calculating_icon
     fa_icon :refresh, title: "calculating ..."
   end
 

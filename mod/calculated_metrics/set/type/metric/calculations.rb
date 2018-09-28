@@ -60,14 +60,14 @@ end
 # @option opts [String] :company
 # @option opts [String] :year optional
 def calculate_values_for opts={}
-  values = calculator.result(opts)
+  values = calculator.result(opts)  # values by year and company
   if values.present?
     company_id = to_company_id opts[:company]
     values.each_pair do |year, companies|
       value = companies[company_id]
       yield year, value
     end
-  elsif opts[:year]
+  elsif opts[:year] # yield with nil value to trigger deletion
     yield opts[:year], nil
   end
 end
