@@ -131,6 +131,10 @@ format :html do
     legend
   end
 
+  view :unit_core do
+    nest card.metric_card, view: :legend_core
+  end
+
   def year_and_value
     <<-HTML
       #{render :year_equals}
