@@ -36,14 +36,18 @@ format :html do
     value_legend
   end
 
-  def value_legend
+  view :legend_core do
+    value_legend false
+  end
+
+  def value_legend html=true
     # depends on the type
     if card.unit.present?
       card.unit
     elsif card.range.present?
       card.range.to_s
     elsif card.categorical?
-      category_legend_div
+      html ? category_legend_div : category_legend.gsub!("<br>","")
     else
       ""
     end
@@ -62,7 +66,7 @@ format :html do
 
   def popover_link_custom text, title=nil
     opts = { class: "pl-1 text-muted-link border text-muted px-1",
-             path: "#", "data-toggle": "popover",
+             path: "javascript:", "data-toggle": "popover",
              "data-trigger": :focus, "data-content": text, "data-html": "true" }
     opts["data-title"] = title if title
     link_to fa_icon("ellipsis-h"), opts
@@ -70,6 +74,10 @@ format :html do
 
   def category_legend
     card.value_options.reject { |o| o == "Unknown" }.join ", <br>"
+  end
+
+  def category_legend_core
+
   end
 
   view :handle do
