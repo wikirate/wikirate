@@ -51,10 +51,6 @@ format :html do
     end
   end
 
-  view :details_placeholder do
-    ""
-  end
-
   view :details do
     if card.relationship?
       voo.hide! :answer_details_toggle
@@ -133,6 +129,10 @@ format :html do
 
   view :unit do
     legend
+  end
+
+  view :unit_core do
+    nest card.metric_card, view: :legend_core
   end
 
   def year_and_value

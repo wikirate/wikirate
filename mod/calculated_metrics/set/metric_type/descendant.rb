@@ -33,8 +33,8 @@ format :html do
     %i[details score project]
   end
 
-  def value_legend
+  def value_legend html=true
     return unless (ancestor = card.formula_card.input_names.first)
-    Card[ancestor]&.format&.value_legend
+    Card[ancestor]&.format&.value_legend html
   end
 end

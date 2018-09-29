@@ -1,7 +1,7 @@
 class SharedData
-  # test data for notes and sources
-  module NotesAndSources
-    def add_notes_and_sources
+  # test data for sources
+  module Sources
+    def add_sources
       Timecop.freeze(Time.now + 1.day) do
         Card.create!(
           type_id: Card::SourceID,
@@ -42,7 +42,7 @@ class SharedData
         }
       )
 
-      source1 = Card.create!(
+      Card.create!(
         type_id: Card::SourceID,
         import: false,
         subcards: {
@@ -56,7 +56,7 @@ class SharedData
         }
       )
 
-      source2 = Card.create!(
+      Card.create!(
         type_id: Card::SourceID,
         import: false,
         subcards: {
@@ -65,26 +65,6 @@ class SharedData
           "+topic" => { content: "", type_id: Card::PointerID },
           "+title" => { content: "Apple" },
           "+description" => { content: "What is an apple?" }
-        }
-      )
-
-      Card.create!(
-        name: "Death Star uses dark side of the Force",
-        type_id: Card::ClaimID,
-        subcards: {
-          "+source" => { content: "[[#{source1.name}]]", type_id: Card::PointerID },
-          "+company" => { content: "[[Death Star]]", type_id: Card::PointerID },
-          "+topic" => { content: "[[Force]]", type_id: Card::PointerID }
-        }
-      )
-
-      Card.create!(
-        name: "Fruits are round",
-        type_id: Card::ClaimID,
-        subcards: {
-          "+source" => { content: "[[#{source2.name}]]", type_id: Card::PointerID },
-          "+company" => { content: "", type_id: Card::PointerID },
-          "+topic" => { content: "[[Taming]]", type_id: Card::PointerID }
         }
       )
     end
