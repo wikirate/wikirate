@@ -6,7 +6,6 @@ FILE_NAMES =
     metrics
     metric_properties
     metric_value
-    drag_and_drop
     metric_chart
   ].freeze
 

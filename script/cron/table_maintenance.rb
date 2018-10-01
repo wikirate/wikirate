@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require File.dirname(__FILE__) + "/../config/environment"
+require File.expand_path("../../../config/environment", __FILE__)
 
 def tables
   @tables ||= exec_query("show tables").map(&:first)

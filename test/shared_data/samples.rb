@@ -40,10 +40,6 @@ class SharedData
       search_samples Card::MetricID, num, args
     end
 
-    def sample_analysis
-      Card["Death Star+Force"]
-    end
-
     def sample_metric value_type=:free_text
       Card[METRIC_NAMES[value_type]]
     end

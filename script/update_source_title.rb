@@ -9,7 +9,7 @@ Card.search(type: Card::SourceID).each do |card|
   cardname = card.name
 
   next unless Card[cardname + "+link"] && (!Card[cardname + "+title"] || !Card[cardname + "+description"] || !Card[cardname + "+image url"])
- begin
+  begin
     url = Card[cardname + "+link"].content
     preview = LinkThumbnailer.generate url
     unless Card[cardname + "+image url"]

@@ -36,7 +36,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::Listings do
         is_expected.to have_tag "span.metric-year", /2010/
       end
       it "has options" do
-        is_expected.to have_tag "span.metric-unit", /1,2,3,4,5,6,7,8,9,10,11/
+        is_expected.to have_options_in_metric_unit(self)
       end
     end
 
@@ -50,7 +50,19 @@ RSpec.describe Card::Set::Type::MetricAnswer::Listings do
         is_expected.to have_tag "span.metric-year", /2010/
       end
       it "has options" do
-        is_expected.to have_tag "span.metric-unit", /1,2,3,4,5,6,7,8,9,10,11/
+        is_expected.to have_options_in_metric_unit(self)
+      end
+    end
+
+    def have_options_in_metric_unit binding
+      binding.have_tag "span.metric-unit" do
+        with_tag "div.small" do
+          with_tag "i.fa.fa-list", text: ""
+          with_text /1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11/
+          with_tag "a.pl-1.text-muted-link.border.text-muted.px-1" do
+            with_tag "i.fa.fa-ellipsis-h", text: ""
+          end
+        end
       end
     end
   end
