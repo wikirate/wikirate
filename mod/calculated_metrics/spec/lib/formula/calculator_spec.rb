@@ -16,10 +16,10 @@ RSpec.describe Formula::Calculator do
     end
 
     example "year range" do
-      formula = "Sum[{{Joe User+researched number 1|year: -1..0}}] + "\
+      formula = "Total[{{Joe User+researched number 1|year: -1..0}}] + "\
                 "Max[{{Joe User+researched number 2| year: 2014..2015}}]"
       rendered_formula = calculator(formula).formula_for "Samsung", 2015
-      expect(rendered_formula).to eq 'Sum[["10", "5"]] + Max[["5", "2"]]'
+      expect(rendered_formula).to eq 'Total[["10", "5"]] + Max[["5", "2"]]'
     end
   end
 end

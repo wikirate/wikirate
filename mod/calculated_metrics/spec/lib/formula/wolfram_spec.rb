@@ -64,13 +64,14 @@ RSpec.describe Formula::Wolfram do
                                 2013 => { apple_id => 1006.5 + 13 }
     end
     it "with sum" do
-      result = calculate "Sum[{{half year|2013..0}}]+{{Joe User+researched}}"
+      result = calculate "Total[{{half year|2013..0}}]+{{Joe User+researched}}"
       expect(result).to include 2013 => { apple_id => 1006.5 + 13 },
                                 2014 => { apple_id => 1007 + 1006.5 + 14 }
       expect(result).not_to include 2012, 2016
     end
     it "double sum" do
-      result = calculate "Sum[{{half year|2013..0}}]+Sum[{{Joe User+researched|-1..0}}]"
+      result =
+        calculate "Total[{{half year|2013..0}}]+Totl[{{Joe User+researched|-1..0}}]"
       expect(result).to include 2013 => { apple_id => 1006.5 + 13 + 12 },
                                 2014 => { apple_id => 1007 + 1006.5 + 14 + 13 }
       expect(result).not_to include 2012, 2016
@@ -80,14 +81,14 @@ RSpec.describe Formula::Wolfram do
   describe ".valid_formula?" do
     subject { ::Formula::Ruby.valid_formula? content }
 
-    context "for formula with simple symbols" do
+    context "with formula with simple symbols" do
       let(:content) { "1/{{Jedi+deadliness}}" }
 
       it { is_expected.to be_truthy }
     end
 
-    context "for formula with several nests and functions" do
-      let(:content) { "2*Sum[{{M1|2000..2010}}]+{{M2}} / Min[{{M3|-1..3}}]" }
+    context "with formula with several nests and functions" do
+      let(:content) { "2*Total[{{M1|2000..2010}}]+{{M2}} / Min[{{M3|-1..3}}]" }
 
       it { is_expected.to be_truthy }
     end

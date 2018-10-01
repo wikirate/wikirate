@@ -4,7 +4,8 @@ module Formula
   class Wolfram < Calculator
     include Unknowns
 
-    INTERPRETER = "https://www.wolframcloud.com/objects/92f1e212-7875-49f9-888f-b5b4560b7686"
+    INTERPRETER =
+      "https://www.wolframcloud.com/objects/92f1e212-7875-49f9-888f-b5b4560b7686".freeze
     WHITELIST = ::Set.new(
       %w[Boole If Switch Map
          Count Pick Cases FirstCase
@@ -19,7 +20,7 @@ module Formula
     FUNC_DEFS = ["Zeros[x_] := Count[x, 0]",
                  'Unknowns[x_] := Count[x, "Unknown"]'].freeze
 
-    COMMAND_JOINT = ";"
+    COMMAND_JOINT = ";".freeze
 
     # INPUT_CAST = lambda { |val| val == 'Unknown' ? 'Unknown'.to_f }
     # To reduce the Wolfram Cloud calls the Wolfram calculator
