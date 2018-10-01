@@ -1,0 +1,9 @@
+<p>{{+description}}</p>
+<p> </p>
+<p>{{_|add_button}}</p>
+<p> </p>
+<h1>{{_self|name}} Cards</h1>
+<blockquote>
+<p>{{+*type+by name}}</p>
+</blockquote>
+<p> </p>

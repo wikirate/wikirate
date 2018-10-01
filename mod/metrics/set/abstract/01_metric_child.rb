@@ -14,7 +14,7 @@ def self.included host_class
 end
 
 def metric_part full_name=name
-  full_name.to_name.parts[0..(-1 - generation)].join("+")
+  parts_for_metric(full_name).join Cardname.joint
 end
 
 def year_part full_name=name
@@ -22,7 +22,21 @@ def year_part full_name=name
 end
 
 def company_part full_name=name
-  full_name.to_name.parts[-generation]
+  parts = full_name.to_name.parts
+  if company_with_plus?(parts)
+    parts[-generation - 1..-generation].join Cardname.joint
+  else
+    parts[-generation]
+  end
+end
+
+def company_with_plus? parts
+  parts.size - generation > 2 &&
+    Card.fetch_type_id(parts[-generation - 1..-generation]) == Card::WikirateCompanyID
+end
+
+def name_parts full_name
+  full_name.to_name.parts
 end
 
 def metric
@@ -38,7 +52,9 @@ def metric_was
 end
 
 def metric_card
-  (generation == 1 && left) || Card.fetch(metric) || nil
+  # in the integrate phase when updating calculations
+  # there can be a superleft without set modules
+  (generation == 1 && left&.include_set_modules) || Card.fetch(metric) || nil
   # FIXME: hack to make it work on new cards
 end
 
@@ -124,6 +140,19 @@ def contextual_record_name
     "_self"
   else
     "_#{'L' * (generation - 1)}"
+  end
+end
+
+def parts_for_metric full_name
+  parts = full_name.to_name.parts
+
+  # Check if the last part of the metric belongs to the company.
+  # That can happen if the company has a "+" in its name.
+  # But can also be a score with 3 parts.
+  if company_with_plus?(parts)
+    parts[0..1]
+  else
+    parts[0..(-1 - generation)]
   end
 end
 

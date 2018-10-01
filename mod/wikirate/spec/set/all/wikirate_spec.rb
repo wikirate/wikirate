@@ -51,45 +51,6 @@ RSpec.describe Card::Set::All::Wikirate do
       expect(html).to eq("")
     end
 
-    it "shows correct cite number and content for claim cite view" do
-      # create 2 claims
-      # create an card with claim cite contents
-      # check the number and the content
-      sourcepage = create_page box: false
-      Card.create! type_id: Card::ClaimID, name: "test1",
-                   subcards: {
-                     "+source" => {
-                       content: "[[#{sourcepage.name}]]",
-                       type_id: Card::PointerID
-                     }
-                   }
-      Card.create! type_id: Card::ClaimID, name: "test2",
-                   subcards: {
-                     "+source" => {
-                       content: "[[#{sourcepage.name}]]",
-                       type_id: Card::PointerID
-                     }
-                   }
-      content = ""
-      for i in 0..10
-        content += if i.even?
-                     "{{test1|cite}}"
-                   else
-                     "{{test2|cite}}"
-                   end
-      end
-      html = render_card :content, name: "test_basic", content: content
-      for i in 1..11
-        if (i - 1).even?
-          expected = %(<sup><a class="citation" href="#test1">#{i}</a></sup>)
-          expect(html).to include(expected)
-        else
-          expected = %(<sup><a class="citation" href="#test2">#{i}</a></sup>)
-          expect(html).to include(expected)
-        end
-      end
-    end
-
     it "shows correct html for the menu_link view" do
       html = render_card :menu_link, name: "non-exisiting-card"
       expect(html).to include("fa fa-pencil-square-o")

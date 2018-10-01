@@ -4,12 +4,14 @@
 - if metric?
   = haml_partial :company_slot
 - if metric? && company?
-  = haml_partial :year_slot
+  = year_slot
 = render_flash
 - if answer?
   .border-bottom.background-grey.p-2.pl-4
     %h5
       Question
+      %span.pull-right
+        = button_tag "View Methodology", class: "_methodology-tab btn btn-sm btn-outline-secondary"
     .large-text
       = nest [metric, :question], view: :core
   .p-2.pl-4

@@ -1,112 +1,45 @@
-include_set Abstract::Pointer
+def unknown_subfield
+  subfield :unknown
+end
 
-def option_names
-  # value options
-  option_card = Card.fetch "#{metric}+value options", new: {}
-  option_card.item_names context: :raw
+def attach_unknown
+  attach_subfield :unknown, content: (unknown_value? ? "1" : "0")
 end
 
 format :html do
-  view :credit do
-    return unless card.real?
-    wrap_with :div, class: "credit ml-1 pl-1 text-muted" do
-      [credit_verb, credit_date, credit_whom].join " "
-    end
-  end
+  # When editing +value cards, whether independently or within a form,
+  # there is an "unknown" field, which is implemented as a card but never stored.
 
-  # link to full action history (includes value history)
-  def credit_verb
-    link_to_card card.left, "updated", path: { view: :history }, rel: "nofollow"
-  end
-
-  def credit_date
-    "#{render :updated_at} ago"
-  end
-
-  def credit_whom
-    "by #{link_to_card card.updater}"
-  end
-
-  view :content_formgroup do
-    voo.editor = :nests
-    super()
-  end
-
-  view :edit_in_form, cache: :never, perms: :update, tags: :unknown_ok do
-    voo.editor ||= :nests
-    super()
-  end
-
-  view :editor do
-    if free_text_metric?
-      text_field :content, class: "d0-card-content"
-    elsif categorical_metric? || multi_categorical_metric?
-      super()
-    else
-      editor_with_unit
-    end
-  end
-
-  def editor
-    if multi_select?
-      options_count > 10 ? :multiselect : :checkbox
-    else
-      options_count > 10 ? :select : :radio
-    end
-  end
+  # The check request card, which is a field of the answer, is also connected
+  # to the value form.  (Note: it should probably either be moved to a field
+  # of the value or moved out of the +value form.
 
   def edit_fields
-    return if voo.editor == :standard
     [
-      [card, { title: "Answer", editor: :standard, hide: :help }],
-      [unknown_field_card, { hide: [:title, :help] }],
-      [card.left(new: {}).fetch(trait: :checked_by, new: {}), { hide: :title }]
+      value_field_card_and_options,
+      unknown_field_card_and_options,
+      check_request_field_card_and_options
     ]
   end
 
-  def editor_with_unit
-    unit_text = wrap_with :span, nest(card.metric_card, view: :legend),
-                          class: "metric-unit"
-    text_field(:content, class: "d0-card-content short-input") + " " + unit_text
+  # prevents multi-edit recursion on value field
+  def edit_fields?
+    voo.editor != :standard
   end
 
-  def unknown_field_card
-    field = card.attach_subfield :unknown
-    field.content = card.value_unknown? ? "1" : "0"
-    field
+  def value_field_card_and_options
+    [card, { title: "Answer", editor: :standard, show: :help }]
   end
 
-  def check_request_checkbox
-    nest card.left.fetch(trait: :checked_by),
-         hide: :title, view: :edit_in_form
+  def unknown_field_card_and_options
+    [card.attach_unknown, { hide: [:title, :help] }]
   end
 
-  def metric_name_from_params
-    Env.params[:metric]
+  def check_request_field_card_and_options
+    [check_request_base.fetch(trait: :checked_by, new: {}), { hide: :title }]
   end
 
-  def metric_card
-    @metric_card = (metric_name = metric_name_from_params || card.metric) &&
-                   Card[metric_name]
-  end
-
-  def free_text_metric?
-    metric_card&.value_type == "Free Text"
-  end
-
-  def multi_select?
-    multi_categorical_metric?
-  end
-
-  def options_count
-    card.option_names.size
-  end
-
-  def categorical_metric?
-    metric_card&.categorical?
-  end
-
-  def multi_categorical_metric?
-    metric_card&.multi_categorical?
+  def check_request_base
+    card.left new: {}
   end
 end

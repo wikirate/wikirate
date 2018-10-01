@@ -4,9 +4,9 @@ RSpec.describe Card::Set::Self::WikirateCompany::Factories do
 
     let(:google_fields) do
       {
-        "name" => "Google Inc.",
-        "id" => Card.fetch_id("Google Inc."),
-        "url_key" => "Google_Inc"
+        "name" => "Google LLC",
+        "id" => Card.fetch_id("Google LLC"),
+        "url_key" => "Google_LLC"
       }
     end
 

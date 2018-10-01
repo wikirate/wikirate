@@ -152,11 +152,9 @@ When /^(?:|I )single-select "([^"]*)" as value$/ do |value|
 end
 
 Then /^(?:|I )should see "([^"]*)" or "([^"]*)"$/ do |text1, text2|
-  begin
-    expect(page).to have_content(text1)
-  rescue
-    expect(page).to have_content(text2)
-  end
+  expect(page).to have_content(text1)
+rescue
+  expect(page).to have_content(text2)
 end
 
 Then(/^I should see a "(.*)" icon$/) do |icon|
@@ -238,6 +236,7 @@ When(/^I select year "(.*)"$/) do |year|
 end
 
 def select_year year
-  selector = %{a:contains('#{year}')}
-  page.execute_script "document.location = $(\"#{selector}\").attr('href')"
+  select_from_select2(year, from: "year")
+  # selector = %{a:contains('#{year}')}
+  # page.execute_script "document.location = $(\"#{selector}\").attr('href')"
 end

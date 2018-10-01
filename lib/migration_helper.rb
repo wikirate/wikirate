@@ -1,5 +1,6 @@
 module MigrationHelper
   BATCH_SIZE = 500
+  # TODO: refactor!
   def rename old_name, new_name
     cap_old  = old_name.capitalize
     cap_new  = new_name.capitalize
@@ -9,8 +10,8 @@ module MigrationHelper
     Card[cap_old].update_attributes! name: cap_new,
                                      update_referers: true,
                                      silent_change: true
-    # don't change claim/note names
-    ids = Card.search name: ["match", down_old], not: { type: "Note" }, return: :id
+
+    ids = Card.search name: ["match", down_old], return: :id
     Rails.logger.info "Update #{ids.size} cards with '#{cap_old}' in the name"
     count = 0
     ids.each do |id|

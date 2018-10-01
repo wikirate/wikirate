@@ -36,5 +36,5 @@ def value_select_field
 end
 
 def unknown_checkbox
-  find("input#card_subcards__value_subcards__Unknown_content")
+  find(".RIGHT-unknown input[type=checkbox]")
 end

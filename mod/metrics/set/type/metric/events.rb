@@ -1,3 +1,17 @@
+VALID_DESIGNER_TYPE_IDS = [ResearchGroupID, UserID, WikirateCompanyID].freeze
+
+# The new metric form has a title and a designer field instead of a name field
+# We compose the card's name here
+event :set_metric_name, :initialize, on: :create, when: :needs_name? do
+  title = (tcard = remove_subfield(:title)) && tcard.content
+  designer = (dcard = remove_subfield(:designer)) && dcard.content
+  self.name = "#{designer}+#{title}"
+end
+
+# for override
+def needs_name?
+  !name.present?
+end
 
 event :ensure_designer, :prepare_to_store, on: :save, changed: :name do
   return if valid_designer?
@@ -6,6 +20,10 @@ event :ensure_designer, :prepare_to_store, on: :save, changed: :name do
   else
     attach_subcard metric_designer, type_id: ResearchGroupID
   end
+end
+
+def valid_designer?
+  Card.fetch_type_id(metric_designer).in? VALID_DESIGNER_TYPE_IDS
 end
 
 event :ensure_title, :prepare_to_store, on: :save, changed: :name do
@@ -26,20 +44,6 @@ end
 
 event :silence_metric_deletions, :initialize, on: :delete do
   @silent_change = true
-end
-
-event :update_lookup_answers, :integrate,
-      on: :update, changed: :name do
-  # this recalculates answers, when technically all that needs to happen is
-  # for name fields to be updated.
-
-  # FIXME: when renaming, the metric type gets confused at some point, and
-  # calculated? does not correctly return true for calculated metrics
-  # (which have MetricType::Researched among their singleton class's ancestors)
-  # if this were working properly it could be in the when: arg.
-  #
-  expire
-  formula_card&.regenerate_answers if refresh(true).calculated?
 end
 
 event :delete_all_answers, :prepare_to_validate, on: :update, trigger: :required do

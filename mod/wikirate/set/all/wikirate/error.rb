@@ -1,5 +1,5 @@
 format do
-  view :server_error, perms: :none, error_code: 500 do
+  view :server_error, perms: :none do
     ["Rats!",
      "500 Server Error",
      "Looks like WikiRat's been gnawing on cables. " \

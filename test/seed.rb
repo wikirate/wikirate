@@ -5,7 +5,7 @@ require_dependency "shared_data/researched_metrics"
 require_dependency "shared_data/calculated_metrics"
 require_dependency "shared_data/relationship_metrics"
 require_dependency "shared_data/badges"
-require_dependency "shared_data/notes_and_sources"
+require_dependency "shared_data/sources"
 require_dependency "shared_data/samples"
 require_dependency "shared_data/projects"
 
@@ -24,6 +24,7 @@ class SharedData
     "Slate Rock and Gravel Company" => "Yabba Dabba Doo!",
     "Los Pollos Hermanos" => "I'm the one who knocks",
     "SPECTRE" => "shaken not stirred",
+    "Google LLC" => "don't be evil"
 
     # in addition pulled from production:
     # Google Inc, Apple Inc, Samsung, Siemens AG, Sony Corporation, Amazon.com
@@ -45,7 +46,7 @@ class SharedData
     include CalculatedMetrics
     include RelationshipMetrics
     include Badges
-    include NotesAndSources
+    include Sources
     include Projects
 
     def add_wikirate_data
@@ -54,7 +55,7 @@ class SharedData
       Card::Env.reset
       Card::Auth.as_bot
       Cardio.config.x.import_sources = false
-      add :companies, :topics, :analysis, :notes_and_sources,
+      add :companies, :topics, :sources,
           :yearly_variables,
           :researched_metrics, :calculated_metrics, :relationship_metrics,
           :projects, :industry, :researchers, :program,
@@ -84,13 +85,13 @@ class SharedData
                type: "company",
                subcards: { "+about" => about }
       end
-      ensure_card ["Google Inc.", :headquarters],
+      ensure_card ["Google LLC", :headquarters],
                   type: :pointer, content: "California (United States)"
-      ensure_card ["Google Inc.", :aliases],
+      ensure_card ["Google LLC", :aliases],
                   type: :pointer, content: ["Google", "Alphabet"]
-      ensure_card ["Google Inc.", :incorporation],
+      ensure_card ["Google LLC", :incorporation],
                   type: :pointer, content: "Delaware (United States)"
-      ensure_card ["Google Inc.", :open_corporates], content: "3582691"
+      ensure_card ["Google LLC", :open_corporates], content: "201727810678"
     end
 
     def add_topics
@@ -99,14 +100,6 @@ class SharedData
                type: "topic",
                subcards: { "+about" => about }
       end
-    end
-
-    def add_analysis
-      create "Death Star+Force",
-             type: "analysis",
-             subfields: { overview: {
-               content: "I am your father! {{Death Star uses dark side of the Force|cite}}"
-             } }
     end
 
     def vote name, direction

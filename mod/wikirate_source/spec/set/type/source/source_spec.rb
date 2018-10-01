@@ -40,7 +40,7 @@ RSpec.describe Card::Set::Type::Source do
       expect(website_card.last_action).to be
     end
 
-    describe "while creating duplicated source on claim page" do
+    describe "while creating duplicated source" do
       it "returns exisiting url" do
         url = "http://www.google.com/?q=wikirate"
         Card::Env.params[:sourcebox] = "true"
