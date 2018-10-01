@@ -26,8 +26,8 @@ end
 
 def rename_answers
   Answer.where(metric_id: id).update_all metric_name: name,
-                                          designer_name: name.parts.first,
-                                          title_name: name.parts.second
+                                         designer_name: name.parts.first,
+                                         title_name: name.parts.second
 
   all_answers.each do |answer|
     answer.refresh :record_name

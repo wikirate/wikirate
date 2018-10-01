@@ -45,9 +45,11 @@ RSpec.describe Formula::Wolfram do
       Formula::Wolfram::Unknowns::UNKNOWN_STRATEGY = :reject
     end
     specify "Unknowns" do
+      Formula::Wolfram::Unknowns::UNKNOWN_STRATEGY = :pass
       result = calculate "Unknowns[#{nest}]"
       expect(result).to include 2002 => { apple_id => 2 },
                                 2012 => { apple_id => 0 }
+      Formula::Wolfram::Unknowns::UNKNOWN_STRATEGY = :reject
     end
   end
 
@@ -71,7 +73,7 @@ RSpec.describe Formula::Wolfram do
     end
     it "double sum" do
       result =
-        calculate "Total[{{half year|2013..0}}]+Totl[{{Joe User+researched|-1..0}}]"
+        calculate "Total[{{half year|2013..0}}]+Total[{{Joe User+researched|-1..0}}]"
       expect(result).to include 2013 => { apple_id => 1006.5 + 13 + 12 },
                                 2014 => { apple_id => 1007 + 1006.5 + 14 + 13 }
       expect(result).not_to include 2012, 2016

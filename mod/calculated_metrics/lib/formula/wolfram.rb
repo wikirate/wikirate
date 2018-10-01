@@ -147,7 +147,7 @@ module Formula
       elsif value == "Unknown"
         unknown_strategy == :pass ? "\"#{value}\"" : throw(:unknown)
       else
-        @input.type(index) == :number ? value : "\"#{value}\""
+        @input.type(index).in?(%i[number yearly_value]) ? value : "\"#{value}\""
       end
     end
 
