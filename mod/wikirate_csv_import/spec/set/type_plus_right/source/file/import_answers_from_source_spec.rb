@@ -55,7 +55,7 @@ RSpec.describe Card::Set::TypePlusRight::Source::File::ImportAnswersFromSource d
 
     it "reports error if value type doesn't fit" do
       trigger_import_with_metric_and_year(:wrong_value)
-      expect(errors).to contain_exactly(/5 is not a valid option/)
+      expect(errors).to contain_exactly(/invalid option\(s\): 5/)
     end
 
     it "reports duplicated value in file" do
