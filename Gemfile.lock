@@ -1,4 +1,10 @@
 PATH
+  remote: vendor/card-mods/csv_import
+  specs:
+    card-mod-csv_import (0.8)
+      card
+
+PATH
   remote: vendor/card-mods/logger
   specs:
     card-mod-logger (1.0)
@@ -319,8 +325,8 @@ GEM
       multi_json (~> 1.10)
     fog-local (0.6.0)
       fog-core (>= 1.27, < 3.0)
-    fog-openstack (0.2.4)
-      fog-core (~> 1.45.0)
+    fog-openstack (0.3.5)
+      fog-core (>= 1.45, <= 2.1.0)
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
     fog-ovirt (1.1.2)
@@ -713,6 +719,7 @@ DEPENDENCIES
   capistrano-rvm
   capybara (~> 2.14)
   card!
+  card-mod-csv_import!
   card-mod-logger!
   card-mod-markdown!
   card-mod-new_relic!
