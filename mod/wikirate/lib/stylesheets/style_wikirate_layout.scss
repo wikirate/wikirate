@@ -223,8 +223,13 @@ div[data-slot*="float:right"]{
     padding: 10px;
 }
 
-.card-slot.content-view.RIGHT-headquarter {
-  // without this the slot has height 0 and the menu for the headquarters field
-  // on company pages is not visible
-  white-space: pre-wrap;
+// Commenting this because the following add too much space around the text.
+
+// .card-slot.content-view.RIGHT-headquarter {
+//   // without this the slot has height 0 and the menu for the headquarters field
+//   // on company pages is not visible
+
+.wikirate-layout > nav.navbar {
+    box-shadow: none;
+    border-bottom: 1px solid $border-color;
 }

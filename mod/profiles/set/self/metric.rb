@@ -15,7 +15,7 @@ def updated_query user_id, _variant=nil
     right_plus: [
       { name: ["in", "methodology", "about", "topics", "*metric type",
                "research policy", "report type",
-               "value type", "value options", "unit", "range", "currency"] },
+               "value type", "value options", "unit", "range"] },
       { updated_by: user_id }
     ]
   } }

@@ -4,10 +4,9 @@ Feature: Research answer
 
   Background:
     Given I am signed in as Joe User
-    And I go to  "/new answer"
-    And I fill in autocomplete "metric" with "Joe User+researched"
-    And I fill in autocomplete "wikirate_company" with "Apple Inc."
-    And I select year "2009"
+    And I research
+      | metric              | company    | year |
+      | Joe User+researched | Apple Inc. | 2009 |
 
   Scenario: Create a metric value
     When I cite source
@@ -19,7 +18,7 @@ Feature: Research answer
     And I should see "updated less than a minute ago by Joe User"
     And I should see "www.wikiwand.com"
     And I should see "Baam!"
-    When I click on "2009"
+    When I open the year list
     Then I should see "9"
 
   Scenario: Create a metric value and request check
@@ -28,6 +27,7 @@ Feature: Research answer
     And I fill in "Baam!" for " Comment"
     And I check "request"
     And I press "Submit"
+    And I wait for ajax response
     Then I should see "2009"
     And I should see "10"
     And I should see a "comment" icon with tooltip "Has comments"

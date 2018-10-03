@@ -9,7 +9,7 @@ RSpec.describe Card::Set::Type::WikirateCompany::Structure do
 
   describe "details tab" do
     it "has jurisdiction table" do
-      expect_view(:details_tab).to have_tag "table" do
+      expect(view(:details_tab, card: Card["Google LLC"])).to have_tag "table" do
         with_tag :tr do
           with_tag :td, text: "Headquarters"
           with_tag :td, text: "California (United States)"
@@ -43,7 +43,7 @@ RSpec.describe Card::Set::Type::WikirateCompany::Structure do
       is_expected.to have_tag "div.row.data-count" do
         with_tag "div.col-md-6.slab" do
           with_tag :a, with: { href: "/Death_Star?tab=metric" } do
-            with_text /16\s*Metric/
+            with_text /#{metric_count}\s*Metric/
           end
         end
         with_tag "div.col-md-6.slab" do

@@ -36,48 +36,48 @@ format :html do
     value_legend
   end
 
-  def value_legend
+  view :legend_core do
+    value_legend false
+  end
+
+  def value_legend html=true
     # depends on the type
     if card.unit.present?
       card.unit
     elsif card.range.present?
       card.range.to_s
     elsif card.categorical?
-      category_legend
+      category_legend_display html
     else
       ""
     end
   end
 
-  def category_legend
-    card.value_options.reject { |o| o == "Unknown" }.join ","
+  def category_legend_display html
+    html ? category_legend_div : category_legend.gsub!("<br>", "")
   end
 
-  view :value_type_detail do
-    voo.hide :menu
-    wrap do
+  def category_legend_div
+    wrap_with :div, class: "small" do
       [
-        field_nest(:value_type, view: :content, items: { view: :name }, show: :menu),
-        _render_short_view
+        fa_icon("list"),
+        category_legend.gsub!("<br>", "")[0..40],
+        " ",
+        popover_link_custom(category_legend)
       ]
     end
   end
 
-  def vtype_edit_modal_link_text
-    # FIXME: why does value_type_card not work although value_type is registered
-    #        as card accessor
-    v_type_card = card.fetch trait: :value_type, new: {}
-    if v_type_card.new?
-      "Update Value Type"
-    else
-      nest v_type_card, view: :shorter_pointer_content, hide: :link
-    end
+  def popover_link_custom text, title=nil
+    opts = { class: "pl-1 text-muted-link border text-muted px-1",
+             path: "javascript:", "data-toggle": "popover",
+             "data-trigger": :focus, "data-content": text, "data-html": "true" }
+    opts["data-title"] = title if title
+    link_to fa_icon("ellipsis-h"), opts
   end
 
-  view :short_view do
-    return "" unless (details_field = DETAILS_FIELD_MAP[card.value_type_code])
-    detail_card = Card.fetch card, details_field, new: {}
-    nest detail_card, view: :content
+  def category_legend
+    card.value_options.reject { |o| o == "Unknown" }.join ", <br>"
   end
 
   view :handle do
@@ -197,9 +197,5 @@ format :html do
   view :outliers do
     outs = Savanna::Outliers.get_outliers prepare_for_outlier_search, :all
     outs.inspect
-  end
-
-  view :details_placeholder do
-    ""
   end
 end

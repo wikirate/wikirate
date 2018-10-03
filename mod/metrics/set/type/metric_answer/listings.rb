@@ -5,8 +5,6 @@ include_set Abstract::AnswerDetailsToggle
 # views used in answer listings on metric, company, and profile pages
 
 format :html do
-  delegate :currency, to: :card
-
   # ACTUAL "listing" VIEW
   # not really used in listings?
 
@@ -45,17 +43,12 @@ format :html do
   view :basic_details do
     wrap_with :div, class: "value text-align-left" do
       [
-        wrap_with(:span, currency, class: "metric-unit"),
-        _render_value_link,
+        nest(card.value_card, view: :pretty_link),
         wrap_with(:span, legend, class: "metric-unit"),
         _render_flags,
         _render_chart
       ]
     end
-  end
-
-  view :details_placeholder do
-    ""
   end
 
   view :details do
@@ -118,6 +111,7 @@ format :html do
 
   # year, value, unit and flags
   view :conciser do
+    return calculating if card.calculating?
     year_and_value + _render_flags
   end
 
@@ -125,34 +119,31 @@ format :html do
     card.name.right
   end
 
+  def calculating
+    fa_icon :refresh, title: "calculating ..."
+  end
+
   def legend
-    return if currency.present?
     nest card.metric_card, view: :legend
   end
 
   view :unit do
-    currency || legend
+    legend
+  end
+
+  view :unit_core do
+    nest card.metric_card, view: :legend_core
   end
 
   def year_and_value
     <<-HTML
       #{render :year_equals}
-      <span class="metric-unit"> #{currency} </span>
-      #{render :pretty_value}
+      #{nest card.value_card, view: :pretty}
       <span class="metric-unit"> #{legend} </span>
     HTML
   end
 
   view :year_equals do
     "<span class=\"metric-year\">#{card.year} = </span>"
-  end
-
-  view :pretty_value do
-    span_args = { class: "metric-value" }
-    add_class span_args, grade if card.ten_scale?
-    add_class span_args, :small if pretty_value.length > 5
-    wrap_with :span, span_args do
-      beautify(pretty_value).html_safe
-    end
   end
 end

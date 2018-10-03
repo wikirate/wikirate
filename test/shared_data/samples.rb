@@ -1,12 +1,18 @@
 
 class SharedData
   module Samples
+    METRIC_COUNT = 17
+
     METRIC_NAMES = {
       free_text: "Jedi+Sith Lord in Charge",
       number: "Jedi+deadliness",
       category: "Jedi+disturbances in the Force",
       money: "Jedi+cost of planets destroyed"
     }.freeze
+
+    def metric_count
+      SharedData::Samples::METRIC_COUNT
+    end
 
     # cards only exist in testing db
     def sample_note num=1
@@ -32,10 +38,6 @@ class SharedData
 
     def sample_metrics num=1, args={}
       search_samples Card::MetricID, num, args
-    end
-
-    def sample_analysis
-      Card["Death Star+Force"]
     end
 
     def sample_metric value_type=:free_text

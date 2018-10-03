@@ -3,6 +3,9 @@ require "curb"
 card_accessor :metric, type: :pointer
 card_accessor :year, type: :pointer
 card_accessor :source_type, type: :pointer, default: "[[Link]]"
+card_accessor :wikirate_topic, type: :pointer
+card_accessor :wikirate_company, type: :pointer
+card_accessor :title
 
 add_attributes :import
 attr_accessor :import
@@ -22,35 +25,8 @@ def source_type_codename
   source_type_card.item_cards[0].codename.to_sym
 end
 
-def analysis_names
-  return [] unless topic_list && company_list
-  company_list.item_names.map do |company|
-    topic_list.item_names.map do |topic|
-      "#{company}+#{topic}"
-    end
-  end.flatten
-end
-
-def analysis_cards
-  analysis_names.map { |aname| Card.fetch aname }
-end
-
-def topic_list
-  @topic_list ||= fetch trait: :wikirate_topic
-end
-
-def company_list
-  @company_list ||= fetch trait: :wikirate_company
-end
-
 def wikirate_link?
   source_type_codename == :wikirate_link
-end
-
-event :import_linked_source, :integrate_with_delay, on: :save, when: :wikirate_link? do
-  # in theory, this should be in source_type/wikirate_link.rb, but that was causing
-  # problems as detailed here: https://www.pivotaltracker.com/story/show/152409610
-  generate_pdf if import? && html_link?
 end
 
 format :html do

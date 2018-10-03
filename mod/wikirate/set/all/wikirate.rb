@@ -16,6 +16,8 @@ format :html do
     voo.show :horizontal_menu if main?
   end
 
+  NEW_BADGE = '<span class="badge badge-danger">New</span>'.freeze
+
   def menu_icon
     fa_icon "pencil-square-o"
   end

@@ -16,20 +16,6 @@ end
 include SourceHelper
 include SharedData::Samples
 
-def create_claim name, subcards={}
-  Card::Auth.as_bot do
-    # url = "http://www.google.com/?q=wikirate"
-    # sourcepage = create_page url
-    Card.create! type_id: Card::ClaimID, name: name,
-                 subcards: {
-                   "+source" => {
-                     content: sample_source.name,
-                     type_id: Card::PointerID
-                   }
-                 }.merge(subcards)
-  end
-end
-
 def create_answer metric: sample_metric, company: sample_company,
                   content: "content", year: "2015", source: sample_source.name
   #content ||= "I'm fine, I'm just not happy."
@@ -54,7 +40,7 @@ def answer_subcards metric: sample_metric, company: sample_company,
   {
     "+metric" => { content: metric.name },
     "+company" => { content: company.name, :type_id => Card::PointerID },
-    "+value" => { content: content, :type_id => Card::PhraseID },
+    "+value" => { content: content, :type_id => metric.value_cardtype_id },
     "+year" => { content: year, :type_id => Card::PointerID },
     "+source" => { content: "[[#{source}]]\n", :type_id => Card::PointerID }
   }

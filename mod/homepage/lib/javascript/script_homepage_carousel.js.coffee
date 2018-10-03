@@ -70,6 +70,7 @@ $(document).ready ->
           if navigator.platform == iDevices.pop()
             return true
       false
+    isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
     getTextWidth = (text, font) ->
       canvas = getTextWidth.canvas or (getTextWidth.canvas = document.createElement('canvas'))
@@ -86,7 +87,7 @@ $(document).ready ->
       )[0]
 
       # to prevent from displaying raw content before animation
-      spanWidthAdjust *= 1.42 if iOS()
+      spanWidthAdjust *= 1.42 if iOS() || isSafari
       spanWidth = getTextWidth(longest_word, fontUsed) * spanWidthAdjust
       $itemSibling = $item.siblings('.flip-this-default')
       $itemSibling.css('width': spanWidth + 'px').text longest_word
@@ -152,9 +153,9 @@ activateIntroTab = (tab)->
   active_panel.find('.carousel').carousel()
   active_panel.find('.carousel-item').first().addClass 'active'
 
-getNumberElements = () -> 
+getNumberElements = () ->
   values = []
-  $('._count-ele').each -> 
+  $('._count-ele').each ->
     values.push( $(this) )
     controlAnimate($(this))
   values
@@ -178,20 +179,20 @@ controlAnimate = (elem) ->
 isAnimated = (id) ->
   aux = false
   numberElementsControls.forEach (elem) ->
-    if elem.id == id && elem.animated 
-      aux = true 
+    if elem.id == id && elem.animated
+      aux = true
       return
-  aux  
+  aux
 
 # animate this element
 animateElem = (id) ->
   numberElementsControls.forEach (elem) ->
-    if elem.id == id 
+    if elem.id == id
       elem.animated = true
 
-# to determine if a specific element has been animated (in this array all the elements are saved) 
+# to determine if a specific element has been animated (in this array all the elements are saved)
 # with an "animated" property, it can be "true" or "false"
-numberElementsControls = [] 
+numberElementsControls = []
 
 # $('.intro-tab-panels .tab-pane').not().removeClass 'active'
     #    targetTab = $(e.target).data('target')

@@ -35,6 +35,7 @@ end
 
 # temporary fix
 def clean_description text
+  return if text.blank?
   # remove all 4-byte unicode characters
   regex = /[\u{10000}-\u{fffff}]/
   text.gsub! regex, ""

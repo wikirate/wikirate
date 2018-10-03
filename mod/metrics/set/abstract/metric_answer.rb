@@ -1,4 +1,3 @@
-card_accessor :value, type: :phrase
 card_accessor :checked_by
 card_accessor :check_requested_by
 card_accessor :source
@@ -8,16 +7,39 @@ card_accessor :source
 #   overridden answers
 card_accessor :overridden_value, type: :phrase
 
+# virtual card's _values_ are held in the content of the _answer_ card
+# (...not that I understand why - EM)
 def value
   virtual? ? content : value_card&.value
 end
 
-alias_method :real_value_card, :value_card
+# since real answers require real values, it is assumed that new answers
+# (and only new answers) will have new values
+def fetch_value_card
+  fetch trait: :value, new: new_value_card_args
+end
+
+def new_value_card_args
+  { type_code: value_cardtype_code, supercard: self }
+end
 
 def value_card
-  vc = real_value_card
-  vc.content = value if virtual?
+  vc = fetch_value_card
+  vc.content = content_from_value(value) if virtual?
   vc
+end
+
+# make sure pointer-style content works for multi-category
+def content_from_value value
+  Array.wrap(::Answer.value_from_lookup(value, value_type_code)).join "\n"
+end
+
+def value_type_code
+  metric_card.value_type_code
+end
+
+def value_cardtype_code
+  metric_card.value_cardtype_code
 end
 
 def raw_value
@@ -29,10 +51,9 @@ def raw_value
 end
 
 # MISCELLANEOUS METHODS
-def currency
-  (metric_card.value_type == "Money" && metric_card.currency) || nil
-end
 
+# so that all fields show up in history
+# (not needed when they can be identified via a more conventional form)
 def history_card_ids
   field_card_ids << id
 end
@@ -41,4 +62,8 @@ def field_card_ids
   [:value, :checked_by, :source, :check_requested_by].map do |field|
     fetch(trait: field, skip_virtual: true, skip_modules: true)&.id
   end.compact
+end
+
+def calculating?
+  answer.calculating
 end

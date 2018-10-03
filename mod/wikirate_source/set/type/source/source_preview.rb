@@ -2,39 +2,15 @@ include_set Abstract::Pdfjs
 include_set Abstract::Tabs
 
 format :html do
-  def related_claim_wql
-    {
-      left: {
-        type_id: Card::ClaimID
-      },
-      right: "source",
-      link_to: card.name,
-      return: "count"
-    }
-  end
-
   def related_metric_wql
-    {
-      type_id: Card::MetricID,
-      right_plus: [
-        { type_id: Card::WikirateCompanyID },
-        right_plus: [
-          { type: "year" },
-          right_plus: [
-            "source", { link_to: card.name }
-          ]
-        ]
-      ],
-      return: "count"
-    }
-  end
-
-  def note_count
-    Card.search related_claim_wql
+    { type_id: Card::MetricID,
+      right_plus: [{ type_id: Card::WikirateCompanyID },
+                   { right_plus: [{ type: "year" },
+                                  { right_plus: ["source", { link_to: card.name }] }] }] }
   end
 
   def metric_count
-    Card.search related_metric_wql
+    Card.search related_metric_wql.merge(return: :count)
   end
 
   view :preview, tags: :unknown_ok do
@@ -42,15 +18,6 @@ format :html do
       [
         hidden_information,
         render_source_preview_container
-      ]
-    end
-  end
-
-  view :research_preview, tags: :unknown_ok do
-    wrap do
-      [
-        _render_relevant,
-        wrap_with(:div, _render_iframe_view, class: "source-iframe-container")
       ]
     end
   end

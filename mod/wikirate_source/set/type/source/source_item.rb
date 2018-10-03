@@ -1,14 +1,10 @@
 format :html do
-  def year
-    card.fetch(trait: :year)&.content || ""
-  end
-
   def year_list
-    (card.fetch(trait: :year)&.item_names || []).to_json
+    card.year_card.item_names || []
   end
 
   def wrap_data slot=true
-    super.merge year: year_list
+    super.merge year: year_list.to_json
   end
 
   def wrap_with_info
@@ -43,9 +39,8 @@ format :html do
 
   def source_item_footer
     [
-      (_render_year_with_icon if year.present?),
+      (_render_year_with_icon if card.year.present?),
       (_render_metric_count if with_links?),
-      (_render_note_count if with_links?),
       (_render_original_with_icon if with_links?)
     ].compact
   end
@@ -113,14 +108,14 @@ format :html do
   end
 
   view :year_helper do
-    return "" if year.nil? || year == ""
+    return "" if card.year.nil? || year == ""
     wrap_with(:small, "year:" + year[/\d+/], class: "source-year")
     # _render_original_link << year_helper.html_safe
   end
 
   view :year_with_icon do
-    return "" if year.blank?
-    wrap_with(:span, fa_icon("calendar") + year[/\d+/])
+    return "" if card.year.blank?
+    wrap_with(:span, fa_icon("calendar") + card.year[/\d+/])
   end
 
   view :direct_link do
@@ -145,7 +140,7 @@ format :html do
   def cite_button cited, disabled=false
     text = cited ? "Cited!" : "Cite!"
     cite_class =
-      cited ? "btn-primary _cited_button" : "btn-outline-primary _cite_button"
+      cited ? "btn-primary _cited_button" : "btn-secondary _cite_button"
     wrap_with(:div, class: "pull-right") do
       wrap_with :a, text, href: "#",
                           class: "btn #{cite_class} c-btn #{'disabled' if disabled}"
