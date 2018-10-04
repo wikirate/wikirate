@@ -18,8 +18,7 @@ FILE_NAMES =
      wikirate_font_icon
      bootstrap_modal_fix
      wikirate_bootstrap_table
-     wikirate_progress_bar
-     browse_items].freeze
+     wikirate_progress_bar].freeze
 
 def source_files
   scss_files FILE_NAMES

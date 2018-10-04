@@ -29,7 +29,7 @@ format :html do
   end
 
   def performance_tabs
-    %i[wikirate_topic sourctopicopitopie post project]
+    %i[wikirate_topic source post project]
   end
 
   def active_profile_tab

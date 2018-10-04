@@ -5,6 +5,27 @@ format :json do
     MetaData.new(url).to_json
   end
 
+  view :check_iframable do
+    user_agent = request ? request.env["HTTP_USER_AGENT"] : nil
+    { result: iframable?(params[:url], user_agent) }
+  end
+
+  def iframable? url, user_agent
+    rescuing_iframe_errors url do
+      x_frame_options, content_type = iframable_options url
+      valid_x_frame_options?(x_frame_options) &&
+        valid_content_type?(content_type, user_agent)
+    end
+  end
+
+  def rescuing_iframe_errors url
+    return false unless url.present?
+    yield
+  rescue StandardError => error
+    Rails.logger.error error.message
+    return false
+  end
+
   def valid_content_type? content_type, user_agent
     allow_content_type = ["image/png", "image/jpeg"]
     # for case, "text/html; charset=iso-8859-1"
@@ -34,21 +55,6 @@ format :json do
   end
 
   def firefox? user_agent
-    user_agent ? user_agent =~ /Firefox/ : false
-  end
-
-  def iframable? url, user_agent
-    return false unless url.present?
-    x_frame_options, content_type = iframable_options url
-    valid_x_frame_options?(x_frame_options) &&
-      valid_content_type?(content_type, user_agent)
-  rescue StandardError => error
-    Rails.logger.error error.message
-    return false
-  end
-
-  view :check_iframable do
-    user_agent = request ? request.env["HTTP_USER_AGENT"] : nil
-    { result: !!iframable?(params[:url], user_agent) }
+    user_agent ? user_agent.match?(/Firefox/) : false
   end
 end

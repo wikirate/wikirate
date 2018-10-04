@@ -3,33 +3,22 @@ RSpec.describe Card::Set::Type::Metric::Structure do
     Card["Jedi+disturbances in the Force"]
   end
 
-  check_views_for_errors :open_content, :bar, :edit, :homepage_item,
+  check_views_for_errors :open_content, :bar, :box, :edit,
                          :details_tab, :score_tab, :source_tab, :project_tab
-
-  describe "view :browse_item" do
+  
+  describe "view: bar_left" do
     it "has metric title" do
-      expect_view(:browse_item).to have_tag "div.name" do
-        with_text "disturbances in the Force"
+      expect_view(:bar_left).to have_tag "div.thumbnail" do
+        with_tag "div.image-box"
+        with_tag "div.thumbnail-text", text: /disturbances in the Force/
       end
     end
+  end
 
-    it "has designer link" do
-      expect_view(:browse_item).to have_tag "div.row-data.ellipsis.rating-designer" do
-        with_tag :a, with: { href: "Jedi" } do
-          with_text /Jedi/
-        end
-      end
-    end
-
+  describe "view: bar_right" do
     it "has counts" do
-      expect_view(:browse_item).to have_tag "div.row.data-count" do
-        with_tag "div.col-md-6.slab" do
-          with_text /4\s*Companies/
-        end
-        with_tag "div.col-md-6.slab" do
-          with_text /1\s*Topics/
-        end
-      end
+      expect_view(:bar_right)
+        .to have_badge_count(4, "RIGHT-company", "Companies")
     end
   end
 end

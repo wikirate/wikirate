@@ -41,15 +41,15 @@ format :html do
   def file_iframe_view
     mime = card.file_card&.file&.content_type
     if valid_mime_type? mime
-      previewable_iframe_view mime, file_card
+      previewable_iframe_view mime
     else
       nonpreviewable_iframe_view
     end
   end
 
-  def previewable_iframe_view mime, file_card
+  def previewable_iframe_view mime
     method_prefix = mime == "application/pdf" ? :pdf : :standard_file
-    send "#{method_prefix}_iframe_view", file_card
+    send "#{method_prefix}_iframe_view"
   end
 
   def nonpreviewable_iframe_view
@@ -61,16 +61,16 @@ format :html do
     end
   end
 
-  def standard_file_iframe_view file_card
+  def standard_file_iframe_view
     wrap_with :div, id: "pdf-preview", class: "webpage-preview" do
       wrap_with :img, "", id: "source-preview-iframe",
-                          src: file_card.attachment.url
+                          src: card.file_card.attachment.url
     end
   end
 
-  def pdf_iframe_view file_card
+  def pdf_iframe_view
     wrap_with :div, id: "pdf-preview", class: "webpage-preview" do
-      pdfjs_iframe pdf_url: file_card.attachment.url
+      pdfjs_iframe pdf_url: card.file_card.attachment.url
     end
   end
 

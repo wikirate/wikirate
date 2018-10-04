@@ -21,7 +21,6 @@ class RemoveContentOfCodedCards < Card::Migration
      style_wikirate_bootstrap_table
      style_wikirate_progress_bar
      style_project
-     style_browse_items
      chosen_style
      coded_stylesheets
      style_drag_and_drop
