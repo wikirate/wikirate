@@ -6,13 +6,10 @@ card_accessor :source_type, type: :pointer, default: "[[Link]]"
 card_accessor :wikirate_topic, type: :pointer
 card_accessor :wikirate_company, type: :pointer
 card_accessor :title
+card_accessor :file
 
 add_attributes :import
 attr_accessor :import
-
-def icon
-  "globe"
-end
 
 def source_title_card
   Card.fetch [name, :wikirate_title], new: {}
@@ -43,6 +40,12 @@ end
 
 def metric_count
   Card.search related_metric_wql.merge(return: :count)
+end
+
+format :html do
+  def icon
+    "globe"
+  end
 end
 
 format :json do

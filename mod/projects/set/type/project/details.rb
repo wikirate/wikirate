@@ -45,7 +45,7 @@ format :html do
 
   view :bar_bottom do
     output [topics_details,
-            field_nest(:description, view: :titled, title: "Description") ]
+            field_nest(:description, view: :titled, title: "Description")]
   end
 
   def bar_layout

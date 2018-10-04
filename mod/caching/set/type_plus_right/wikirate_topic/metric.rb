@@ -10,10 +10,10 @@ end
 # FIXME: this has nothing to do with topics and should be somewhere more general
 def metric_ids_with_answers_by_company_count
   Answer.group(:metric_id)
-    .where(metric_id: metric_ids)
-    .order("count_distinct_company_id desc")
-    .count("distinct company_id")
-    .map(&:first)
+        .where(metric_id: metric_ids)
+        .order("count_distinct_company_id desc")
+        .count("distinct company_id")
+        .map(&:first)
 end
 
 def metric_ids_by_company_count

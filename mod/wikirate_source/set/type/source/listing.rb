@@ -114,7 +114,6 @@ format :html do
     end
   end
 
-
   view :original_icon_link do
     voo.title = fa_icon icon
     _render_original_link

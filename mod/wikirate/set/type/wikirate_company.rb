@@ -32,4 +32,3 @@ format :csv do
     Answer.csv_title + card.all_answers.map(&:csv_line).join
   end
 end
-

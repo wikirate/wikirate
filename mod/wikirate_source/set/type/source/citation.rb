@@ -44,17 +44,15 @@ format :html do
   end
 
   def cite_button cited, disabled=false
-    text = cited ? "Cited!" : "Cite!"
-    cite_class =
-      cited ? "btn-primary _cited_button" : "btn-secondary _cite_button"
-    wrap_with(:div, class: "pull-right") do
-      wrap_with :a, text, href: "#",
-                class: "btn #{cite_class} c-btn #{'disabled' if disabled}"
+    klass = cited ? "btn-primary _cited_button" : "btn-secondary _cite_button"
+    wrap_with :div, class: "pull-right" do
+      wrap_with :a, href: "#", class: "btn #{klass} c-btn #{'disabled' if disabled}" do
+        cited ? "Cited!" : "Cite!"
+      end
     end
   end
 
   def hidden_item_input
     tag :input, type: "hidden", class: "_pointer-item", value: card.name
   end
-
 end

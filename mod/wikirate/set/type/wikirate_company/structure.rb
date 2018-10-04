@@ -11,7 +11,7 @@ format :html do
   end
 
   view :wikirate_topic_tab do
-    field_nest :wikirate_topic, view: :topi
+    field_nest :wikirate_topic, items: { view: :mini_bar }
   end
 
   view :source_tab do

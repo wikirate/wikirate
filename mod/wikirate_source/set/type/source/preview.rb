@@ -12,16 +12,12 @@ format :html do
   end
 
   def preview_url
-    if @preview_url_loaded
-      @preview_url
-    else
-      url_card = card.fetch(trait: :wikirate_link)
-      @preview_url = url_card ? url_card.item_names.first : nil
-    end
+    @preview_url_loaded ? @preview_url : load_preview_url
   end
 
-  def file_card
-    card.fetch trait: :file
+  def load_preview_url
+    @preview_url_loaded = true
+    @preview_url = card.fetch(trait: :wikirate_link)&.item_names&.first
   end
 
   view :source_preview_container, tags: :unknown_ok do
@@ -43,9 +39,15 @@ format :html do
   end
 
   def file_iframe_view
-    file_card = card.fetch trait: :file
-    mime = file_card.file.content_type
-    return nonpreviewable_iframe_view unless mime && valid_mime_type?(mime)
+    mime = card.file_card&.file&.content_type
+    if valid_mime_type? mime
+      previewable_iframe_view mime, file_card
+    else
+      nonpreviewable_iframe_view
+    end
+  end
+
+  def previewable_iframe_view mime, file_card
     method_prefix = mime == "application/pdf" ? :pdf : :standard_file
     send "#{method_prefix}_iframe_view", file_card
   end
@@ -93,6 +95,7 @@ format :html do
   end
 
   def valid_mime_type? mime_type
+    return false unless mime_type
     mime_type == "application/pdf" || mime_type.start_with?("image/")
   end
 
@@ -106,12 +109,15 @@ format :html do
   end
 
   view :non_previewable, tags: :unknown_ok do
-    file_card = card.fetch trait: :file
-    url, text = if file_card
-                  [file_card.attachment.url, "Download"]
-                else
-                  [preview_url, "Visit Original Source"]
-                end
+    url, text = nonpreviewable_url_and_text
     link_to text, href: url, class: "btn btn-primary", role: "button"
+  end
+
+  def nonpreviewable_url_and_text
+    if (file_card = card.file_card)
+      [file_card.attachment.url, "Download"]
+    else
+      [preview_url, "Visit Original Source"]
+    end
   end
 end

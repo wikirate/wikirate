@@ -56,7 +56,7 @@ format :html do
   end
 
   view :wikirate_company_tab do
-    field_nest :wikirate_company, title: "Companies", items: { view: :mini_bar}
+    field_nest :wikirate_company, title: "Companies", items: { view: :mini_bar }
   end
 
   view :project_tab do

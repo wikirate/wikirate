@@ -17,16 +17,14 @@ format :html do
     with_nest_mode :edit do
       voo.structure = "metric value source form"
       voo.type = "source"
-      card_form :create, "main-success" => "REDIRECT",
-                "data-form-for" => "new_metric_answer",
-                class: "card-slot new-view TYPE-source" do
-        output [
-                 preview_hidden,
-                 new_view_hidden,
-                 new_view_type,
-                 _render_content_formgroup,
-                 _render_preview_buttons
-               ]
+      card_form :create, "main-success": "REDIRECT",
+                         "data-form-for": "new_metric_answer",
+                         class: "card-slot new-view TYPE-source" do
+        output [preview_hidden,
+                new_view_hidden,
+                new_view_type,
+                _render_content_formgroup,
+                _render_preview_buttons]
       end
     end
   end

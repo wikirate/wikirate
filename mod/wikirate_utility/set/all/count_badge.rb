@@ -4,7 +4,7 @@ format :html do
   end
 
   def count_badges *fields
-    output fields.map { |f| count_badge f }
+    output(fields.map { |f| count_badge f })
   end
 
   def count

@@ -15,23 +15,16 @@ format :html do
   end
 
   view :bar_middle do
-    output [# count_badge(:score),
-            count_badge(:source),
+    output [count_badge(:source),
             count_badge(:project)]
   end
 
   view :bar_bottom do
     add_name_context
-    output [
-             render_bar_middle,
-             field_nest(:wikirate_topic, view: :content, items: { view: :link }),
-             field_nest(:question, view: :content, hide: :menu)
-           ]
+    output [render_bar_middle,
+            field_nest(:wikirate_topic, view: :content, items: { view: :link }),
+            field_nest(:question, view: :content, hide: :menu)]
   end
-#
-  #def company_count
-  #  card.fetch(trait: :wikirate_company).cached_count
-  #end
 
   view :legend do
     value_legend
