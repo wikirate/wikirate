@@ -67,37 +67,13 @@ end
 # 4. limit cards to the result of #1 via ids (left_id in ids)
 # 5. group by left_id (the topic)
 def metric_count_for_topic topic_card
-  Answer.where(company_id: left.id,
-               metric_id: topic_card.metric_card.item_ids)
+  Answer.where(company_id: left.id, metric_id: topic_card.metric_card.item_ids)
         .distinct
         .count(:metric_id)
 end
 
 format :html do
-  view :topic_list_with_metric_counts do
-    wrap do
-      card.topics_by_metric_count.map do |topic_card, metric_count|
-        wrap_with :div, class: "topic-item contribution-item" do
-          [wrap_with(:div, topic_detail(topic_card), class: "header"),
-           wrap_with(:div, class: "data") do
-             metric_count_detail(topic_card, metric_count)
-           end]
-        end
-      end
-    end
-  end
-
-  def topic_detail topic_card
-    nest topic_card, view: :thumbnail
-  end
-
-  def metric_count_detail topic_card, metric_count
-    wrap_with :span, class: "metric-count-link" do
-      link_to_card(
-        card.company_name,
-        "#{metric_count} #{:metric.cardname.vary :plural}",
-        path: { filter: { wikirate_topic: topic_card.name } }
-      )
-    end
+  def search_with_params
+    card.topics_by_metric_count.map(&:first)
   end
 end

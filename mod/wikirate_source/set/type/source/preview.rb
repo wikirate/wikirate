@@ -2,17 +2,6 @@ include_set Abstract::Pdfjs
 include_set Abstract::Tabs
 
 format :html do
-  def related_metric_wql
-    { type_id: Card::MetricID,
-      right_plus: [{ type_id: Card::WikirateCompanyID },
-                   { right_plus: [{ type: "year" },
-                                  { right_plus: ["source", { link_to: card.name }] }] }] }
-  end
-
-  def metric_count
-    Card.search related_metric_wql.merge(return: :count)
-  end
-
   view :preview, tags: :unknown_ok do
     wrap do
       [

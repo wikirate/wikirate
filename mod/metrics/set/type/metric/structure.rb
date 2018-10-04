@@ -91,14 +91,9 @@ format :html do
     field_nest :all_metric_values, view: :count
   end
 
-  view :box_bottom, template: :haml do
-    @company_badge = labeled_badge company_count, "Companies", color: "company"
-    @answer_badge = labeled_badge metric_count, "Answers", color: "dark"
-  end
+  view :box_bottom, template: :haml
 
   view :browse_item, template: :haml do
     @vote_count = voo.show?(:vote_count) ? field_nest(:vote_count) : ""
   end
-  view :homepage_item, template: :haml
-  view :homepage_item_sm, template: :haml
 end

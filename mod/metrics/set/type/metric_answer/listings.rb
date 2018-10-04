@@ -5,17 +5,16 @@ include_set Abstract::AnswerDetailsToggle
 # views used in answer listings on metric, company, and profile pages
 
 format :html do
-  # ACTUAL "listing" VIEW
-  # not really used in listings?
+  view :bar_left do
+    output [render_metric_thumbnail, render_company_thumbnail]
+  end
 
-  # NOTE: answer listings on profile pages need to provide light detail but
-  # full "context": company, metric, year, value, etc
-  # they currently use [:metric_thumbnail, :company_thumbnail, :concise]
-  # but should arguably use a more standard "listing" view
+  view :bar_right do
+    render_concise
+  end
 
-  # TODO: create standard expandable listing
-  view :bar do
-    _render_titled
+  view :bar_bottom do
+    output [render_chart, render_expanded_details]
   end
 
   view :titled_content, cache: :never do

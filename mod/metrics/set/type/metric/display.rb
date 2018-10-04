@@ -6,31 +6,32 @@ DETAILS_FIELD_MAP = {
 }.freeze
 
 format :html do
-  view :bar do
-    wrap_with :div, class: "contribution-item value-item no-hover" do
-      [
-        wrap_with(:div, class: "header") do
-          _render_thumbnail
-        end,
-        wrap_with(:div, class: "text-center") do
-          bar_data
-        end
-      ]
-    end
+  view :bar_left do
+    render :thumbnail_with_vote
   end
 
-  def bar_data
-    wrap_with :div, class: "contribution company-count p-2" do
-      [
-        wrap_with(:span, company_count, class: "badge badge-secondary"),
-        wrap_with(:span, "Companies", class: "text-muted")
-      ]
-    end
+  view :bar_right do
+    count_badge :wikirate_company
   end
 
-  def company_count
-    card.fetch(trait: :wikirate_company).cached_count
+  view :bar_middle do
+    output [# count_badge(:score),
+            count_badge(:source),
+            count_badge(:project)]
   end
+
+  view :bar_bottom do
+    add_name_context
+    output [
+             render_bar_middle,
+             field_nest(:wikirate_topic, view: :content, items: { view: :link }),
+             field_nest(:question, view: :content, hide: :menu)
+           ]
+  end
+#
+  #def company_count
+  #  card.fetch(trait: :wikirate_company).cached_count
+  #end
 
   view :legend do
     value_legend

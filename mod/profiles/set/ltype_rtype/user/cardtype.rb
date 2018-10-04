@@ -127,11 +127,7 @@ format :html do
     if current_tab? :badges
       nest badges_earned_card, view: :content
     elsif (rcard = report_card(current_tab))
-      nest rcard, view: contribution_list_view, structure: rcard.variant, skip_perms: true
+      nest rcard, view: :list_with_subtabs, structure: rcard.variant, skip_perms: true
     end
-  end
-
-  def contribution_list_view
-    "#{cardtype_codename}_list"
   end
 end
