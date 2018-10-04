@@ -1,5 +1,4 @@
 describe Card::Set::Type::WikirateTopic do
-
   def card_subject
     Card["Force"]
   end

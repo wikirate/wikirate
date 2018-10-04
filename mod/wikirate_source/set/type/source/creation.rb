@@ -38,7 +38,7 @@ format :html do
   view :preview_buttons do
     button_formgroup do
       wrap_with :button, "Add and preview", class: "btn btn-primary pull-right",
-                data: { disable_with: "Adding" }
+                                            data: { disable_with: "Adding" }
     end
   end
 

@@ -92,8 +92,4 @@ format :html do
   end
 
   view :box_bottom, template: :haml
-
-  view :browse_item, template: :haml do
-    @vote_count = voo.show?(:vote_count) ? field_nest(:vote_count) : ""
-  end
 end

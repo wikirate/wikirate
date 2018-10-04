@@ -44,12 +44,18 @@ format :html do
   end
 
   def cite_button cited, disabled=false
-    klass = cited ? "btn-primary _cited_button" : "btn-secondary _cite_button"
     wrap_with :div, class: "pull-right" do
-      wrap_with :a, href: "#", class: "btn #{klass} c-btn #{'disabled' if disabled}" do
+      wrap_with :a, href: "#", class: cite_anchor_class(cited, disabled) do
         cited ? "Cited!" : "Cite!"
       end
     end
+  end
+
+  def cite_anchor_class cited, disabled
+    klasses = ["btn c-btn"]
+    klasses += cited ? "btn-primary _cited_button" : "btn-secondary _cite_button"
+    klasses << "disabled" if disabled
+    css_classes klasses
   end
 
   def hidden_item_input
