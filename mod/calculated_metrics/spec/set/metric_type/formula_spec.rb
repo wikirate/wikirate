@@ -51,9 +51,9 @@ RSpec.describe Card::Set::MetricType::Formula do
       end
     end
 
-    context "with sum of" do
+    context "with total of" do
       let(:formula) do
-        "Sum[{{ #{@metric_name}|year:#{@year_expr} }}]+{{#{@metric_name1}}}"
+        "Total[{{ #{@metric_name}|year:#{@year_expr} }}]+{{#{@metric_name1}}}"
       end
 
       it "relative range" do
