@@ -2,15 +2,16 @@ format :html do
   view :bar_left, template: :haml
 
   view :bar_middle do
-    output [year_list, field_nest(:report_type), render_creator_credit]
+    count_badges :wikirate_company
   end
 
   view :bar_right do
-    count_badges :wikirate_company
+    output [year_list, render_creator_credit, render_original_with_icon]
   end
 
   view :bar_bottom do
     output [render_bar_middle,
+            field_nest(:report_type),
             render_original_with_icon,
             field_nest(:description, view: :titled, title: "Description")]
   end
