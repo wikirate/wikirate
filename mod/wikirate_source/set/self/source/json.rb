@@ -19,8 +19,12 @@ format :json do
   end
 
   def rescuing_iframe_errors url
-    url.present ? yield : false
+    url.present? ? yield : false
   rescue StandardError => error
+    handle_iframe_error error
+  end
+
+  def handle_iframe_error error
     Rails.logger.error error.message
     false
   end

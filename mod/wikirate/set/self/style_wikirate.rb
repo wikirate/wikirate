@@ -3,8 +3,7 @@ include_set Abstract::CodeFile
 Self::StyleMods.add_item :style_wikirate
 
 FILE_NAMES =
-  %i[
-     top_bar
+  %i[top_bar
      overview_item
      company_and_topic_item
      user_following_list
