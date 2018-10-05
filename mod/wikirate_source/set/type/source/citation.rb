@@ -53,7 +53,7 @@ format :html do
 
   def cite_anchor_class cited, disabled
     klasses = ["btn c-btn"]
-    klasses << cited ? "btn-primary _cited_button" : "btn-secondary _cite_button"
+    klasses << (cited ? "btn-primary _cited_button" : "btn-secondary _cite_button")
     klasses << "disabled" if disabled
     css_classes klasses
   end
