@@ -129,34 +129,9 @@ li.contribution-report-title-box > a {
   color: inherit;
 }
 
-.RIGHT-metric, .RIGHT-metric_value{
+.RIGHT-metric_value{
   .contribution-report-header {
       border-left: 4px solid $metric-color;
-  }
-}
-.RIGHT-company{
-  .contribution-report-header {
-      border-left: 4px solid $company-color;
-  }
-}
-.RIGHT-project{
-  .contribution-report-header {
-      border-left: 4px solid $gray-600;
-  }
-}
-.RIGHT-source{
-  .contribution-report-header {
-      border-left: 4px solid $source-color;
-  }
-}
-.RIGHT-topic{
-  .contribution-report-header {
-      border-left: 4px solid $topic-color;
-  }
-}
-.RIGHT-note{
-  .contribution-report-header {
-      border-left: 4px solid $primary;
   }
 }
 .RIGHT-research_group {

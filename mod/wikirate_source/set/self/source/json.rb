@@ -19,11 +19,10 @@ format :json do
   end
 
   def rescuing_iframe_errors url
-    return false unless url.present?
-    yield
+    url.present ? yield : false
   rescue StandardError => error
     Rails.logger.error error.message
-    return false
+    false
   end
 
   def valid_content_type? content_type, user_agent

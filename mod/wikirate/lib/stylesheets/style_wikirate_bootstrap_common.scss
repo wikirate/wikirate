@@ -40,22 +40,7 @@
 .slab:hover {
   background: #fbfbfb;
 }
-//Text Colors
-.company-color {
-  color: $company-color;
-}
 
-.metric-color {
-  color: $metric-color;
-}
-
-.topic-color {
-  color: $topic-color;
-}
-
-.source-color {
-  color: $source-color;
-}
 .main-color {
   color: $primary;
 }
@@ -164,40 +149,6 @@
 }
 .light-color-1{
   color: #e4e9f1;
-}
-
-//badge colors
-.badge-company {
-  background-color: $company-color;
-  color: #fff;
-}
-
-.badge-topic {
-  background-color: $topic-color;
-  color: #fff;
-}
-
-.badge-metric {
-  background-color: $metric-color;
-  color: #fff;
-}
-
-//Top border colors
-
-.top-border-default {
-  border-top: 3px solid $heading-color;
-}
-
-.top-border-metric {
-  border-top: 3px solid $metric-color;
-}
-
-.top-border-company {
-  border-top: 3px solid $company-color;
-}
-
-.top-border-topic {
-  border-top: 3px solid $topic-color;
 }
 
 .btn-xs-icon {
@@ -372,32 +323,6 @@
     // border-left-color: $dark-text-color !important
 }
 
-//override decko css for now
-.bar-top.left-stripe, .bar.left-stripe {
-  border-left: 4px solid $border-color !important;
-  &:hover{
-    border-left-color: $dark-text-color !important
-  }
-}
-
-.bar-bottom .bar.left-stripe {
-  border-left: 3px solid $border-color !important;
-  &:hover{
-    border-left-color: $dark-text-color !important
-  }
-}
-
-.company-border-left {
-  border-left: 3px solid $company-color !important;
-}
-
-.metric-border-left {
-  border-left: 3px solid $metric-color !important;
-}
-
-.source-border-left {
-  border-left: 3px solid $source-color !important;
-}
 
 .double-border-fix-left {
   margin-left: -1px;
@@ -501,21 +426,6 @@
   .hide-header-sm .rich-header{
     display: none;
   }
-}
-
-.box-item {
-  transition: all 0.2s ease-out;
-}
-
-//for all box items
-a.box-item {
-  text-decoration: none;
-}
-
-.box-item:hover {
-  -webkit-box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
 }
 
 .homepage-lead {

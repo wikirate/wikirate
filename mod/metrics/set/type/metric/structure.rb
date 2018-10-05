@@ -47,11 +47,9 @@ format :html do
   end
 
   view :metric_question do
-    wrap_with :div, question, class: "question blockquote"
-  end
-
-  def question
-    subformat(card.question_card)._render_content
+    wrap_with :div, class: "question blockquote" do
+      nest card.question_card, view: :content
+    end
   end
 
   view :designer_info do
@@ -75,14 +73,6 @@ format :html do
     HTML
   end
 
-  view :box_top, template: :haml do
-    @vote_count = voo.show?(:vote_count) ? field_nest(:vote_count) : ""
-  end
-
-  view :box_middle, template: :haml do
-    @question = question
-  end
-
   def company_count
     field_nest :wikirate_company, view: :count
   end
@@ -90,6 +80,4 @@ format :html do
   def metric_count
     field_nest :all_metric_values, view: :count
   end
-
-  view :box_bottom, template: :haml
 end

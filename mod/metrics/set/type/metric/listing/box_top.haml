@@ -1,5 +1,5 @@
-.mr-2
-  = vote_count
+// .mr-2
+= # voo.show?(:vote_count) ? field_nest(:vote_count) : ""
 .header
   %h5.metric-color
     = link_to_card card, card.metric_title, class: "inherit-anchor"

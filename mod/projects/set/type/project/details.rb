@@ -93,7 +93,7 @@ format :html do
   end
 
   def count_stats
-    output(count_badge(:wikirate_company), count_badge(:metric))
+    count_badges :wikirate_company, :metric
   end
 
   def topics_details
