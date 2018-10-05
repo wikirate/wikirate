@@ -337,7 +337,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
           expect(filter_by(metric_value: :none,
                            research_policy: "Designer Assessed",
                            year: "2001"))
-            .to eq ["dinosaurlabor+2001"]
+            .to eq ["dinosaurlabor+2001", "Industry Class+2001"]
         end
       end
 
@@ -358,7 +358,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::AllMetricValues do
           expect(filter_by(metric_value: :all,
                            research_policy: "Designer Assessed",
                            year: "2001"))
-            .to eq ["dinosaurlabor+2001"]
+            .to eq ["dinosaurlabor+2001", "Industry Class+2001"]
         end
 
         it "... metric_type" do

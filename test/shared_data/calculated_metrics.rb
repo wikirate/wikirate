@@ -29,7 +29,7 @@ class SharedData
 
       Card::Metric.create name: "Jedi+deadliness average",
                           type: :formula,
-                          formula: "Sum[{{Jedi+deadliness|year:-2..0}}]/3"
+                          formula: "Total[{{Jedi+deadliness|year:-2..0}}]/3"
       Card::Metric.create name: "Jedi+deadlier",
                           type: :formula,
                           hybrid: "1",
