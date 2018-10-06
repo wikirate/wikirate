@@ -4,7 +4,6 @@ Self::StyleMods.add_item :style_wikirate
 
 FILE_NAMES =
   %i[top_bar
-     overview_item
      company_and_topic_item
      user_following_list
      wikirate_bootstrap_navbar

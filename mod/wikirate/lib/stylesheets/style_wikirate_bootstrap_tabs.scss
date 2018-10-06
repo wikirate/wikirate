@@ -1,81 +1,64 @@
 
-    .nav-tabs {
-      border-bottom: 4px solid $border-color;
+.nav-tabs {
+  border-bottom: 4px solid $border-color;
+}
+.nav-tabs .nav-link{
+  &:hover{
+    background:#fafafa;;
+  }
+  &.active {
+    border: 0 solid #e6e6e6;
+    border-bottom: 4px solid $primary;
+    border-radius: 0;
+    &:focus,
+    &:hover {
+      border: 0 solid #e6e6e6;
+      border-bottom: 4px solid $primary;
+      border-radius: 0;
     }
-    .nav-tabs .nav-link{
-      &:hover{
-        background:#fafafa;;
-      }
-        &.active {
-            border: 0 solid #e6e6e6;
-            border-bottom: 4px solid $primary;
-            border-radius: 0;
-            &:focus,
-            &:hover {
-                border: 0 solid #e6e6e6;
-                border-bottom: 4px solid $primary;
-                border-radius: 0;
-            }
-        }
-        &.disabled > span {
-            border: 0 solid #e6e6e6;
-            border-bottom: 4px solid $border-color;
-            border-radius: 0;
-            @include opacity(0.3);
-            margin: 3px -1px;
-            padding: 18px 20px;
-            font-size: 15px;
-            color: #8e8e8e;
-            line-height: 1.42857;
-            position: relative;
-            display: block;
-            &:focus,
-            &:hover {
-                cursor: not-allowed;
-            }
-        }
-          background-color: #fff;
-          border-radius: 0;
-          border: 0 solid #e6e6e6;
-          border-bottom: 4px solid $border-color;
-          margin: 3px -1px;
-          padding: 18px 20px;
-          font-size: 15px;
-          color: #8e8e8e;
-          margin-bottom: -3px;
+  }
+  &.disabled > span {
+    border: 0 solid #e6e6e6;
+    border-bottom: 4px solid $border-color;
+    border-radius: 0;
+    @include opacity(0.3);
+    margin: 3px -1px;
+    padding: 18px 20px;
+    font-size: 15px;
+    color: #8e8e8e;
+    line-height: 1.42857;
+    position: relative;
+    display: block;
+    &:focus,
+    &:hover {
+        cursor: not-allowed;
     }
+  }
+  background-color: #fff;
+  border-radius: 0;
+  border: 0 solid #e6e6e6;
+  border-bottom: 4px solid $border-color;
+  margin: 3px -1px;
+  padding: 18px 20px;
+  font-size: 15px;
+  color: #8e8e8e;
+  margin-bottom: -3px;
+}
 
-    .tabbable {
-        margin: 1px;
-        .nav-tabs {
-            border-bottom: 4px solid $border-color;
-        }
-    }
+.tabbable {
+  margin: 1px;
+  .nav-tabs {
+    border-bottom: 4px solid $border-color;
+  }
+}
 
-    .with-item-count {
-        &.nav-tabs > li > a {
-            padding: 18px 4px;
-        }
-        &.nav-tabs > li.active > a > .count-label {
-            font-weight: bold;
-        }
-
-        .count-number {
-            font-size: 16px;
-        }
-
-        .count-label {
-            font-size: 14px;
-        }
-    }
-
-    .TYPE-source.preview-view .navbar .nav-tabs > li {
-        margin-bottom: 0;
-    }
+.TYPE-source.preview-view .navbar .nav-tabs > li {
+    margin-bottom: 0;
+}
 
 //Custom Tabs
 
-.company-profile-tab{
+.company-profile-tab {
   position: absolute;
   bottom: 10px;
   min-width: 60%;
@@ -119,96 +102,18 @@
 li.contribution-report-title-box {
   float: left !important;
   width: 30% !important;
-
-}
-
-li.contribution-report-title-box > a {
-  padding-bottom: 27px;
-  padding-left: 0px;
-  padding-top: 12px;
-  color: inherit;
-}
-
-.RIGHT-metric_value{
-  .contribution-report-header {
-      border-left: 4px solid $metric-color;
-  }
-}
-.RIGHT-research_group {
-  .contribution-report-header {
-    border-left: 4px solid $gray-600;
+  > a {
+    padding-bottom: 27px;
+    padding-left: 0px;
+    padding-top: 12px;
+    color: inherit;
   }
 }
 
 .contribution-report-toggle {
-   width: 6%!important;
-   border-left: 1px solid $border-color;
-   i {
-     padding: 14px 0;
-   }
-}
-
-//Custom tab positions
-.tabs-left > .nav-tabs .nav-item{
-  float: none;
-}
-
-.tabs-left .tab-content{
-  float: left;
-  width: 50%;
-}
-
-.tabs-left > .nav-tabs {
-  float: left;
-  border-bottom: 0;
-  &.intro-tabs > li {
-    &.company-tab > a{
-      border-right: 3px solid $company-color;
-      padding: 80px 60px 80px 40px;
-      line-height: 20px;
-    }
-    &.metric-tab > a{
-      border-right: 3px solid $metric-color;
-    }
-    &.topic-tab > a{
-      border-right: 3px solid $topic-color;
-    }
-    > a{
-      font-size: 24px;
-      //font-weight: 300;
-      padding: 90px 60px 90px 40px;
-      text-align: center;
-      background: none;
-      -webkit-transition: all 0.3s ease-out;
-      -moz-transition: all 0.3s ease-out;
-      -ms-transition: all 0.3s ease-out;
-      -o-transition: all 0.3s ease-out;
-      transition: all 0.3s ease-out;
-      &:hover, &:focus,&:active,&.active {
-        border-left: 1px solid $border-color;
-        border-bottom: 1px solid $border-color;
-        @include box-shadow(-11px, 0px, 20px, rgba(0,0,0,0.12));
-        background: none;
-        position: relative;
-        z-index: 2;
-      }
-      &:hover{
-          background: rgba(255, 255, 255, 0.55);
-          color: inherit;
-      }
-      &.active > a {
-          border-right: 3px solid $border-color;
-          @include box-shadow(-11px, 0px, 20px, rgba(0,0,0,0.12));
-          position: relative;
-          z-index: 2;
-      }
-    }
-  }
-  > li > a {
-    margin-right: 20px;
-    //margin-bottom: 8px;
-    border-bottom: 0;
-    border-bottom: 1px solid $border-color;
-    border-left: 1px solid $border-color;
+  width: 6%!important;
+  border-left: 1px solid $border-color;
+  i {
+    padding: 14px 0;
   }
 }

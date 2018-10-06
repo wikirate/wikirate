@@ -220,6 +220,8 @@
   cursor: inherit !important;
 }
 
+// TODO: get rid of these; use bs classes
+
 .margin-8 {
   margin: 8px;
 }
@@ -840,7 +842,6 @@ a.no-decoration {
   }
 }
 
-
 //custom icons
 .overridden-icon {
   > i {
@@ -859,6 +860,6 @@ a.no-decoration {
 //popover
 
 .popover-body {
-    overflow-y: auto;
-    max-height: 200px;
+  overflow-y: auto;
+  max-height: 200px;
 }
