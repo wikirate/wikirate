@@ -4,7 +4,7 @@
 
 RSpec.describe Card::Set::SourceType::WikirateLink do
   PDF_URL =
-    "http://github.com/mozilla/pdf.js-sample-files/raw/master/helloworld.pdf".freeze
+    "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf".freeze
   HTML_URL = "https://www.lipsum.com".freeze
   before do
     Cardio.config.x.import_sources = true
@@ -16,7 +16,7 @@ RSpec.describe Card::Set::SourceType::WikirateLink do
 
   it "imports pdf link" do
     page = create_page url: PDF_URL, import: true
-    expect(page).to have_file_trait.of_size(1296)
+    expect(page).to have_file_trait.of_size(1288)
   end
 
   it "imports html link as pdf" do
