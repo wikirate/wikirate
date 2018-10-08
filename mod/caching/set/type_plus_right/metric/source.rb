@@ -5,8 +5,13 @@ def wql_hash
   { referred_to_by: { right_id: Card::SourceID, left_id: [:in] + answer_ids } }
 end
 
+def skip_search?
+  answer_ids.blank?
+end
+
 def answer_ids
-  Answer.where(metric_id: left.id).where.not(answer_id: :nil).pluck :answer_id
+  @answer_ids ||=
+    Answer.where(metric_id: left.id).where.not(answer_id: :nil).pluck :answer_id
 end
 
 # recount no. of sources on metric

@@ -7,7 +7,7 @@ class Card::Metric
     end
 
     def create_value company, year, value
-      variant =  @metric.relationship? ? :relationship : :standard
+      variant = @metric.relationship? ? :relationship : :standard
       send "create_#{variant}_value", value, create_value_args(company, year)
     end
 

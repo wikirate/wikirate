@@ -6,9 +6,13 @@ def search_anchor
 end
 
 def answer_ids
-  Card.search type_id: MetricAnswerID,
-              right_plus: [{ id: Card::SourceID }, { link_to: name.left }],
-              return: :id
+  @answers_ids ||=
+    Card.search type_id: MetricAnswerID, return: :id,
+                right_plus: [{ id: Card::SourceID }, { link_to: name.left }]
+end
+
+def skip_search?
+  answer_ids.blank?
 end
 
 # recount no. of sources on metric

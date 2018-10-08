@@ -38,7 +38,6 @@ def uniquify query, return_field
   query.merge! uniq: (return_field == :name ? target_name : target_id)
 end
 
-
 def target_id
   "#{target_type}_id".to_sym
 end
