@@ -19,7 +19,7 @@ class SharedData
                           type: :formula,
                           formula: "1/{{Jedi+deadliness}}",
                           hybrid: "1",
-                          random_source: true do
+                          test_source: true do
         Slate_Rock_and_Gravel_Company 2003 => "100"
       end
 
@@ -78,7 +78,7 @@ class SharedData
                           formula: "[[Joe User+researched number 2]]\n" \
                                    "[[Joe User+researched number 1]]",
                           hybrid: "1",
-                          random_source: true do
+                          test_source: true do
         Death_Star 1977 => 1000
       end
     end
