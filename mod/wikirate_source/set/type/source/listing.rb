@@ -2,7 +2,7 @@ format :html do
   view :bar_left, template: :haml
 
   view :bar_middle do
-    count_badges :wikirate_company
+    count_badges :wikirate_company, :metric
   end
 
   view :bar_right do

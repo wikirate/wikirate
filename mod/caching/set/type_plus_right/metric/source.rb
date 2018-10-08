@@ -2,14 +2,16 @@
 include_set Abstract::SearchCachedCount
 
 def wql_hash
-  { referred_to_by: {
-    right: "source",
-    left: {           # answer
-      left: {         # record
-        left: "_left" # metric
+  {
+    referred_to_by: {
+      right: "source",
+      left: {           # answer
+        left: {         # record
+          left: "_left" # metric
+        }
       }
     }
-  } }
+  }
 end
 
 # recount no. of sources on metric

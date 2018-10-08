@@ -36,7 +36,7 @@ format :html do
     voo.hide :links
     wrap_with_info do
       [
-        _render_bar,
+        _render_mini_bar,
         cite_button(cited, disabled),
         hidden_item_input
       ]

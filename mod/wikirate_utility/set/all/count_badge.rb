@@ -16,7 +16,7 @@ format :html do
   end
 
   # TODO: override and turn off caching in cacheable sets (eg pointers)
-  view :count_badge, cache: :never do
+  view :count_badge, cache: :never, tags: :unknown_ok do
     labeled_badge count, render_title, klass: card.safe_set_keys
   end
 end

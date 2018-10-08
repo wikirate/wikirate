@@ -29,7 +29,7 @@ end
 def search args={}
   return [] unless (anchor = search_anchor)
   uniq_field = args[:return] == :name ? target_name : target_id
-  Answer.search anchor.merge(uniq: uniq_field, return: return_arg(args[:return]))
+  ::Answer.search anchor.merge(uniq: uniq_field, return: return_arg(args[:return]))
 end
 
 def target_id
