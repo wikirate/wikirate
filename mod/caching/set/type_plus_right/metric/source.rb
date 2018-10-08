@@ -10,8 +10,7 @@ def skip_search?
 end
 
 def answer_ids
-  @answer_ids ||=
-    Answer.where(metric_id: left.id).where.not(answer_id: :nil).pluck :answer_id
+  Answer.where(metric_id: left.id).where.not(answer_id: :nil).pluck :answer_id
 end
 
 # recount no. of sources on metric

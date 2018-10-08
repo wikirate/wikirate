@@ -6,9 +6,8 @@ def search_anchor
 end
 
 def answer_ids
-  @answers_ids ||=
-    Card.search type_id: MetricAnswerID, return: :id,
-                right_plus: [{ id: Card::SourceID }, { link_to: name.left }]
+  Card.search type_id: MetricAnswerID, return: :id,
+              right_plus: [{ id: Card::SourceID }, { link_to: name.left }]
 end
 
 def skip_search?
