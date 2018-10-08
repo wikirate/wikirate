@@ -24,7 +24,7 @@ format :html do
     when :wikirate_link
       tab_link preview_url, "external-link-square", " Visit Original"
     when :file
-      tab_link file_card.attachment.url, :download, " Download"
+      tab_link card.file_card.attachment.url, :download, " Download"
     else
       ""
     end

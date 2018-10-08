@@ -54,31 +54,7 @@ def company_ids_by_metric_count
 end
 
 format :html do
-  view :company_list_with_metric_counts, cache: :never do
-    wrap do
-      card.company_ids_by_metric_count.map do |company_id, metric_count|
-        company_card = Card.fetch company_id
-        wrap_with :div, class: "company-item contribution-item" do
-          [wrap_with(:div, company_detail(company_card), class: "header"),
-           wrap_with(:div, class: "data") do
-             metric_count_detail(company_card, metric_count)
-           end]
-        end
-      end
-    end
-  end
-
-  def company_detail company_card
-    nest company_card, view: :thumbnail
-  end
-
-  def metric_count_detail company_card, metric_count
-    wrap_with :span, class: "metric-count-link" do
-      link_to_card(
-        company_card,
-        "#{metric_count} #{:metric.cardname.vary :plural}",
-        path: { filter: { wikirate_topic: card.topic_name.s } }
-      )
-    end
+  def search_with_params
+    card.company_ids_by_metric_count.map { |company_id| Card[company_id] }
   end
 end

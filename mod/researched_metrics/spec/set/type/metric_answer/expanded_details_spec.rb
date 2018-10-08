@@ -201,7 +201,7 @@ RSpec.describe Card::Set::Type::MetricAnswer::ExpandedDetails do
 
     it "shows cited source" do
       is_expected.to have_tag "div.cited-sources" do
-        with_tag "span.source-title", "Opera"
+        with_tag "div.source-title", /Opera/
       end
     end
 

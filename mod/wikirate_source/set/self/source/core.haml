@@ -1,0 +1,7 @@
+#popup-window{style: "display:none"}
+= field_nest :description
+.filter-search-form
+  = field_nest :browse_source_filter, view: :filter_form
+#browse-sources
+  = field_nest :browse_source_filter, items: { view: :bar }
+= render_add_button

@@ -1,4 +1,4 @@
-describe Card::Set::Self::Project do
+RSpec.describe Card::Set::Self::Project do
   describe "view core" do
     it "has a description card" do
       expect_view(:core).to have_tag("div.RIGHT-description")
@@ -6,7 +6,7 @@ describe Card::Set::Self::Project do
 
     it "has a featured projects section" do
       expect_view(:core).to have_tag("div.SELF-homepage_featured_project") do
-        with_tag "div.item-listing"
+        with_tag "div.item-bar"
       end
     end
 
@@ -16,7 +16,7 @@ describe Card::Set::Self::Project do
           with_tag "span.card-title", "Active"
         end
         with_tag "div.tab-content" do
-          with_tag "div.item-listing"
+          with_tag "div.item-bar"
         end
       end
     end

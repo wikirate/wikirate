@@ -42,8 +42,4 @@ format :html do
   view :filter do
     field_subformat(:metric_company_filter)._render_core
   end
-
-  view :homepage_table do
-    homepage_table :company
-  end
 end
