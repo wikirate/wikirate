@@ -12,7 +12,7 @@ RSpec.describe Card::Set::TypePlusRight::WikirateCompany::WikirateTopic do
     end
   end
 
-  it_behaves_like "cached count", "SPECTRE+topics", 1 do
+  it_behaves_like "cached count", "SPECTRE+topics", 1, 1 do
     let :add_one do
       Card["Fred+dinosaurlabor"].create_values true do
         SPECTRE "1977" => "no"

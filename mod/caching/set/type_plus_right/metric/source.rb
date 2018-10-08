@@ -9,6 +9,11 @@ def skip_search?
   answer_ids.blank?
 end
 
+# turn query caching off because wql_hash varies
+def cache_query?
+  false
+end
+
 def answer_ids
   Answer.where(metric_id: left.id).where.not(answer_id: :nil).pluck :answer_id
 end
