@@ -21,8 +21,8 @@ recount_trigger :type_plus_right, :metric_answer, :source do |changed_card|
   end.compact
 end
 
-format :html do
-  def search_with_params
+format do
+  def search_with_params _args={}
     card.search return: :card
   end
 end

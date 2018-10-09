@@ -91,7 +91,7 @@ format :html do
   end
 
   def current_tab
-    @current_tab ||= Env.params[:report_tab].to_sym
+    @current_tab ||= Env.params[:report_tab]&.to_sym
   end
 
   def current_tab? action

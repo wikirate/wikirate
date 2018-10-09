@@ -73,7 +73,7 @@ def metric_count_for_topic topic_card
 end
 
 format :html do
-  def search_with_params
+  def search_with_params _args={}
     card.topics_by_metric_count.map(&:first)
   end
 end

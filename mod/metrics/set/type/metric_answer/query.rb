@@ -39,7 +39,7 @@ format do
     Card.search inverse_relation_values_query
   end
 
-  def search_with_params
+  def search_with_params _args={}
     Card.search values_query.merge(limit: limit, offset: offset)
   end
 

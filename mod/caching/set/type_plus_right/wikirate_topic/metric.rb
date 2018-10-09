@@ -24,8 +24,8 @@ def metrics_by_company_count
   metric_ids_by_company_count.map { |id| Card[id] }
 end
 
-format :html do
-  def search_with_params
+format do
+  def search_with_params _args={}
     card.metrics_by_company_count
   end
 end

@@ -53,8 +53,8 @@ def company_ids_by_metric_count
         .count(:metric_id)
 end
 
-format :html do
-  def search_with_params
+format do
+  def search_with_params _args={}
     card.company_ids_by_metric_count.map { |company_id| Card[company_id] }
   end
 end

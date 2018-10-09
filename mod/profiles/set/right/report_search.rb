@@ -86,7 +86,7 @@ format :html do
   # (so that it can be passed around via slot options)
 
   def variant
-    card.variant ||= voo.structure if voo.structure
+    card.variant = voo.structure if voo.structure
     card.variant&.to_sym
   end
 

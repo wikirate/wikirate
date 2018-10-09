@@ -120,6 +120,8 @@ format :html do
     _render_original_link
   end
 
+  view :listing_compact, template: :haml
+
   view :content do
     add_name_context
     super()
