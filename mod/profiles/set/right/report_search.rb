@@ -119,11 +119,7 @@ format :html do
   end
 
   view :list, cache: :never do
-    wrap do
-      with_paging do
-        _render_content structure: variant, items: { view: :mini_bar }
-      end
-    end
+    _render_content structure: variant, items: { view: :mini_bar }
   end
 
   # this is a bit of a hack but a reasonably safe one

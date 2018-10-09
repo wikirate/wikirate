@@ -34,8 +34,7 @@ def report_card variant
   return if variant.blank?
   @report_cards ||= {}
   @report_cards[variant] ||= begin
-    rcard = Card.new name: name.trait(:report_search),
-                     type_id: SearchTypeID
+    rcard = Card.new name: name.trait(:report_search), type_id: SearchTypeID
     # note: #new is important here, because we want different cards
     # for different variants
     rcard.variant = variant
@@ -92,11 +91,11 @@ format :html do
   end
 
   def current_tab
-    @current_tab ||= Env.params[:report_tab]
+    @current_tab ||= Env.params[:report_tab].to_sym
   end
 
   def current_tab? action
-    action.to_s == current_tab
+    action == current_tab
   end
 
   def report_tab action
@@ -104,9 +103,16 @@ format :html do
   end
 
   def report_link text, action, nav_link=false
-    link_args = { class: "slotter#{' nav-link' if nav_link}" }
+    link_args = { class: report_link_classes(nav_link, action) }
     link_args[:path] = { report_tab: action } if action
     link_to_view :contribution_report, text, link_args
+  end
+
+  def report_link_classes nav_link, action
+    klasses = ["slotter"]
+    klasses << "nav-link" if nav_link
+    klasses << "active" if current_tab? action
+    css_classes klasses
   end
 
   def report_count action
