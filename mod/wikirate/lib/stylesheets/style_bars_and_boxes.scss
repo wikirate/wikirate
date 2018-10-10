@@ -80,6 +80,7 @@ $colorMap: (
     .contribution-report-header {
       border-left: 4px solid $color;
     }
+    &.tab-badge .badge,
     &.labeled-badge .badge {
       background-color: $color
     }
