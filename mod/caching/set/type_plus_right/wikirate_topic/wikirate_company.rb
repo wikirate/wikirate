@@ -3,7 +3,7 @@
 include_set Abstract::AnswerTableCachedCount, target_type: :company
 
 def search_anchor
-  { metric_id: ids_of_metrics_tagged_with_topic }
+  { metric_id: metrics_tagged_with_topic }
 end
 
 def topic_name
@@ -38,23 +38,27 @@ class << self
   end
 end
 
-def ids_of_metrics_tagged_with_topic
+def metrics_tagged_with_topic return_field=:id
   Card.search type_id: MetricID,
               right_plus: [WikirateTopicID, { refer_to: name.left }],
-              return: :id
+              return: return_field
 end
 
 def company_ids_by_metric_count
   Answer.group(:company_id)
-        .where(metric_id: ids_of_metrics_tagged_with_topic)
+        .where(metric_id: metrics_tagged_with_topic)
         .order("count_metric_id desc")
         .limit(100)
         .distinct
         .count(:metric_id)
 end
 
-format do
+format :html do
   def search_with_params _args={}
     card.company_ids_by_metric_count.map { |company_id| Card[company_id] }
+  end
+
+  def count_with_params _args={}
+    card.metrics_tagged_with_topic :count
   end
 end

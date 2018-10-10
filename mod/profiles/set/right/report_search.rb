@@ -34,6 +34,10 @@ def research_group?
   end
 end
 
+def cache_query?
+  false
+end
+
 # part 3 of U+C+R
 def research_group_name
   name.left_name.right_name
@@ -44,11 +48,16 @@ def research_group_card
 end
 
 def wql_hash
-  research_group? ? research_group_report_query : standard_report_query
+  hash = research_group? ? research_group_report_query : standard_report_query
+  Rails.logger.info "wql hash = #{hash}"
+  hash
 end
 
 def standard_report_query
+  Rails.logger.info "@variant = #{@variant}; variant = #{variant}"
+
   cardtype_card.report_query variant, user_card.id, subvariant
+
 end
 
 def research_group_report_query
@@ -78,6 +87,15 @@ end
 format :html do
   delegate :subvariant, to: :card
 
+  # FIXME: shouldn't have to specify limit so many times!
+  def limit
+    5
+  end
+
+  def default_limit
+    5
+  end
+
   def extra_paging_path_args
     { variant: variant, subvariant: subvariant, view: :list }
   end
@@ -87,6 +105,7 @@ format :html do
 
   def variant
     card.variant = voo.structure if voo.structure
+    Rails.logger.info "card.variant = #{card.variant}; strucure = #{voo.structure}"
     card.variant&.to_sym
   end
 
@@ -110,7 +129,13 @@ format :html do
     path subvariant: key, variant: variant, view: :list
   end
 
-  view :list_with_subtabs, cache: :never do
+  view :core do
+    # without this, variant is lost with view caching on.
+    variant
+    super()
+  end
+
+  view :list_with_subtabs do
     if subvariants
       lazy_loading_tabs subvariant_tabs, subvariant, render_list, type: "pills"
     else
@@ -118,7 +143,8 @@ format :html do
     end
   end
 
-  view :list, cache: :never do
+  view :list do
+    Rails.logger.info "rendering list. name=#{card.name}, variant = #{variant}"
     _render_content structure: variant, items: { view: :mini_bar }
   end
 

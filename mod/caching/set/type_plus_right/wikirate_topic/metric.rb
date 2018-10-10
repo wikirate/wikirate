@@ -24,8 +24,12 @@ def metrics_by_company_count
   metric_ids_by_company_count.map { |id| Card[id] }
 end
 
-format do
+format :html do
   def search_with_params _args={}
     card.metrics_by_company_count
+  end
+
+  def count_with_params _args={}
+    card.search return: :count, limit: 0
   end
 end
