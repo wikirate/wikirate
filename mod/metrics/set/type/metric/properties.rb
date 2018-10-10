@@ -14,10 +14,10 @@ format :html do
   end
 
   def value_type_properties
-    { value_type: "Value Type",
-      unit:       "Unit",
-      range:      "Range",
-      options:    "Options" }
+    { value_type:    "Value Type",
+      unit:          "Unit",
+      range:         "Range",
+      value_options: "Options" }
   end
 
   def research_properties
@@ -89,8 +89,8 @@ format :html do
     metric_property_nest :range
   end
 
-  def options_property
-    metric_property_nest :options
+  def value_options_property
+    metric_property_nest :value_options
   end
 
   private
