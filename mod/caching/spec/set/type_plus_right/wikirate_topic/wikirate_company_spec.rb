@@ -23,13 +23,13 @@ RSpec.describe Card::Set::TypePlusRight::WikirateTopic::WikirateCompany do
     end
   end
 
-  describe "#company_ids_by_metric_count" do
-    it "builds an array of arrays of companies/counts" do
-      result = Card.fetch("Taming+company").company_ids_by_metric_count
-      result_ids = result.map { |company_id, _count| company_id }.compact.sort
-      expected = %w[samsung death_star monster_inc slate_rock_and_gravel_company]
-      expected_ids = expected.map { |name| Card.fetch_id name }.sort
-      expect(result_ids).to eq(expected_ids)
-    end
-  end
+  # describe "#item_ids" do
+  #   it "builds an array of arrays of companies/counts" do
+  #     result = Card.fetch("Taming+company").item_ids
+  #     result_ids = result.map { |company_id, _count| company_id }.compact.sort
+  #     expected = %w[samsung death_star monster_inc slate_rock_and_gravel_company]
+  #     expected_ids = expected.map { |name| Card.fetch_id name }.sort
+  #     expect(result_ids).to eq(expected_ids)
+  #   end
+  # end
 end

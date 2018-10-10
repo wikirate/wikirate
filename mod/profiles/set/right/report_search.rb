@@ -48,16 +48,11 @@ def research_group_card
 end
 
 def wql_hash
-  hash = research_group? ? research_group_report_query : standard_report_query
-  Rails.logger.info "wql hash = #{hash}"
-  hash
+  research_group? ? research_group_report_query : standard_report_query
 end
 
 def standard_report_query
-  Rails.logger.info "@variant = #{@variant}; variant = #{variant}"
-
   cardtype_card.report_query variant, user_card.id, subvariant
-
 end
 
 def research_group_report_query
@@ -105,7 +100,6 @@ format :html do
 
   def variant
     card.variant = voo.structure if voo.structure
-    Rails.logger.info "card.variant = #{card.variant}; strucure = #{voo.structure}"
     card.variant&.to_sym
   end
 
@@ -116,8 +110,7 @@ format :html do
 
   def subvariant_tabs
     subvariants.unshift(:all).each_with_object({}) do |key, h|
-      h[key] = { title: subvariant_tab_title(key),
-                 path: subvariant_tab_path(key) }
+      h[key] = { title: subvariant_tab_title(key), path: subvariant_tab_path(key) }
     end
   end
 
@@ -144,7 +137,6 @@ format :html do
   end
 
   view :list do
-    Rails.logger.info "rendering list. name=#{card.name}, variant = #{variant}"
     _render_content structure: variant, items: { view: :mini_bar }
   end
 

@@ -8,7 +8,8 @@ def metric_ids
 end
 
 # FIXME: this has nothing to do with topics and should be somewhere more general
-def metric_ids_with_answers_by_company_count
+def metric_ids_with_answers_by_company_count metric_ids
+  return [] unless metric_ids.present?
   Answer.group(:metric_id)
         .where(metric_id: metric_ids)
         .order("count_distinct_company_id desc")
@@ -16,20 +17,23 @@ def metric_ids_with_answers_by_company_count
         .map(&:first)
 end
 
-def metric_ids_by_company_count
-  metric_ids_with_answers_by_company_count | metric_ids
+# NOTE: this hard-codes handling so that metrics can _only_ be sorted by company count.
+# A better solution would make a special sort case in #search
+def item_ids _args={}
+  mids = metric_ids
+  metric_ids_with_answers_by_company_count(mids) | mids
 end
 
-def metrics_by_company_count
-  metric_ids_by_company_count.map { |id| Card[id] }
+def item_cards _args={}
+  item_ids.map { |id| Card[id] }
 end
 
 format :html do
-  def search_with_params _args={}
-    card.metrics_by_company_count
+  def search_with_params
+    card.item_cards
   end
 
-  def count_with_params _args={}
-    card.search return: :count, limit: 0
+  def count_with_params
+    card.count
   end
 end

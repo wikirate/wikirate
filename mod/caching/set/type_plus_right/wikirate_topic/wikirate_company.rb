@@ -44,21 +44,14 @@ def metrics_tagged_with_topic return_field=:id
               return: return_field
 end
 
-def company_ids_by_metric_count
-  Answer.group(:company_id)
-        .where(metric_id: metrics_tagged_with_topic)
-        .order("count_metric_id desc")
-        .limit(100)
-        .distinct
-        .count(:metric_id)
-end
-
-format :html do
-  def search_with_params _args={}
-    card.company_ids_by_metric_count.map { |company_id| Card[company_id] }
-  end
-
-  def count_with_params _args={}
-    card.metrics_tagged_with_topic :count
-  end
-end
+# # company ids by metric count
+# def item_ids _args={}
+#   Answer.group(:company_id)
+#         .where(metric_id: metrics_tagged_with_topic)
+#         .order("count_metric_id desc")
+#         .limit(100)
+#         .distinct
+#         .count(:metric_id)
+#         .map &:first
+# end
+#
