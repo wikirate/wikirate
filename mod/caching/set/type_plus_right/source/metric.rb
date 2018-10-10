@@ -20,4 +20,3 @@ recount_trigger :type_plus_right, :metric_answer, :source do |changed_card|
     source_card.fetch trait: :metric
   end.compact
 end
-
