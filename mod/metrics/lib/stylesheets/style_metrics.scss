@@ -336,6 +336,12 @@
   display: none;
 }
 
+.RIGHT-Xvote_count.content-view {
+    overflow: hidden;
+    text-align: center;
+    padding-right: 1rem;
+}
+
 fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
   display: inline-block;
   background-color: $gray-100;
