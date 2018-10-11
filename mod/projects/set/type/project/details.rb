@@ -17,6 +17,7 @@ format :html do
 
   # ~~~~~~~~~~~ DETAILS IN PROJECT LISTING
 
+  # TODO: create version of bar to use on homepage and get rid of listing_compact
   view :listing_compact do
     bar_layout do
       text_with_image image: card.field(:image),
@@ -31,7 +32,7 @@ format :html do
   view :bar_left do
     text_with_image image: card.field(:image),
                     size: voo.size,
-                    title: render_title,
+                    title: render_title_link,
                     text: bar_left_details
   end
 

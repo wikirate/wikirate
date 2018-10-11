@@ -62,7 +62,7 @@ format :html do
     klass = nil
     if count.is_a? Card
       klass = css_classes count.safe_set_keys
-      count = count.cached_count
+      count = count.count
     end
     tab_badge count, icon_tag, klass: klass
   end
@@ -80,7 +80,7 @@ format :html do
 
   def tab_title_count fieldcode
     field_card = card.fetch trait: fieldcode
-    field_card if field_card.respond_to? :cached_count
+    field_card if field_card.respond_to? :count
   end
 
   def tab_title_icon fieldcode

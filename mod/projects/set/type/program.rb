@@ -21,7 +21,7 @@ format :html do
   end
 
   view :bar_right do
-    ""
+    count_badges :project, :metric
   end
 
   view :bar_bottom do

@@ -6,7 +6,7 @@ include_set Abstract::AnswerDetailsToggle
 
 format :html do
   view :bar_left do
-    output [render_metric_thumbnail, render_company_thumbnail]
+    output [render_metric_thumbnail_minimal, render_company_thumbnail_minimal]
   end
 
   view :bar_right do
