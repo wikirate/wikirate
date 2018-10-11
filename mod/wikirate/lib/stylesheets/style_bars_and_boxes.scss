@@ -52,6 +52,15 @@ $colorMap: (
       color: $color
     }
   }
+  &.bar:hover{
+    .bar-left a {
+      color: $color;
+    }
+  }
+}
+
+.bar-left a {
+  color: inherit;
 }
 
 @each $type, $color in $colorMap {
@@ -88,9 +97,10 @@ $colorMap: (
       border-left: 4px solid $color;
     }
   }
-  .bar:hover{
+  .bar:hover {
     @include box-shadow(0,2px,6px,rgba(0,0,0,0.06));
   }
+
   box:hover {
     @include box-shadow(0,9px,20px,rgba(0,0,0,0.16));
   }

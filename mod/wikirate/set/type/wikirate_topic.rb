@@ -18,7 +18,7 @@ format :html do
   end
 
   view :bar_left do
-    render_thumbnail_no_link
+    render_thumbnail
   end
 
   view :bar_middle do
