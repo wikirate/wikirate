@@ -40,7 +40,7 @@ $colorMap: (
 // border color for bars and boxes
 @mixin barbox($color) {
   &.bar, &.bar-bottom {
-    border-left-color: lighten($color, 45%) !important;
+    border-left-color: rgba($color, 0.2) !important;
 
     &:hover {
       border-left-color: $color !important;
@@ -75,7 +75,7 @@ $colorMap: (
     }
   }
   .labeled-badge {
-    padding: 0 15px;
+    padding: 0 12px;
   }
   .TYPE-#{$type} {
     @include barbox($color);
@@ -97,16 +97,21 @@ $colorMap: (
       border-left: 4px solid $color;
     }
   }
+  .nav-item:hover{
+    .RIGHT-#{$type} {
+      &.tab-badge .badge {
+        background-color: $color
+      }
+    }
+  }
   .bar:hover {
     @include box-shadow(0,2px,6px,rgba(0,0,0,0.06));
   }
-
   box:hover {
     @include box-shadow(0,9px,20px,rgba(0,0,0,0.16));
   }
   .bar, .box {
     &:hover {
-
       .RIGHT-#{$type} {
         &.labeled-badge .badge {
           background-color: $color

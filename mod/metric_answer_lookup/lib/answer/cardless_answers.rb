@@ -42,8 +42,11 @@ class Answer
     end
 
     def update_cached_counts
-      [[metric_id, :value], [metric_id, :wikirate_company],
-       [company_id, :metric], [company_id, :wikirate_topic]].each do |mark|
+      [[metric_id, :metric_answer],
+       [metric_id, :wikirate_company],
+       [company_id, :metric],
+       [company_id, :metric_answer],
+       [company_id, :wikirate_topic]].each do |mark|
         Card.fetch(mark).update_cached_count
       end
       Card::Set::TypePlusRight::WikirateTopic::WikirateCompany

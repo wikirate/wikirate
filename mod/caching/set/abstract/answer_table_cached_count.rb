@@ -27,9 +27,15 @@ def search_anchor
 end
 
 def search args={}
-  return [] unless (anchor = search_anchor)
-  uniq_field = args[:return] == :name ? target_name : target_id
-  Answer.search anchor.merge(uniq: uniq_field, return: return_arg(args[:return]))
+  return [] unless (query = search_anchor)
+  return_field = args[:return]
+  uniquify query, return_field
+  ::Answer.search query.merge(return: return_arg(return_field))
+end
+
+def uniquify query, return_field
+  return if target_type == :answer
+  query.merge! uniq: (return_field == :name ? target_name : target_id)
 end
 
 def target_id

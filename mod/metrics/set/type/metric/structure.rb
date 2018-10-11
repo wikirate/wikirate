@@ -34,10 +34,8 @@ format :html do
   view :title_and_question_compact do
     link = link_to_card card, card.metric_title, class: "inherit-anchor"
     wrap_with :div, class: "bg-white" do
-      [
-        wrap_with(:div, link, class: "metric-color font-weight-bold"),
-        wrap_with(:div, question, class: "question")
-      ]
+      [wrap_with(:div, link, class: "metric-color font-weight-bold"),
+       render_metric_question]
     end
   end
 

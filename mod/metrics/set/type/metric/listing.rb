@@ -4,7 +4,7 @@ format :html do
   end
 
   view :bar_right do
-    count_badge :wikirate_company
+    count_badges :wikirate_company, :metric_answer
   end
 
   view :bar_middle do

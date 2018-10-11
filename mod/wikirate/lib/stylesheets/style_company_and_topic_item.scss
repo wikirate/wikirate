@@ -1,10 +1,18 @@
 $topic-tag-bg: $topic-color;
 $topic-tag-bg-hover: #01648d;
 
-// Topic tags
+$company-tag-bg: $company-color;
+$company-tag-bg-hover: #bb5b00;
 
-.RIGHT-topic.d0-card-content .item-link {
-  > a {
+$tagColorMap: (
+  topic: ($topic-tag-bg, $topic-tag-bg-hover),
+  company: ($company-tag-bg, $company-tag-bg-hover)
+);
+
+// Topic and company tags
+
+.RIGHT-topic, .RIGHT-company {
+  &.d0-card-content .item-link > a {
     display: inline-block;
     text-indent: 0;
     border-radius: 0px;
@@ -14,12 +22,21 @@ $topic-tag-bg-hover: #01648d;
     display: inline-block;
     padding: 3px 8px !important;
     margin-bottom: 6px;
-    background: rgba($topic-tag-bg, 0.02);
-    color: $topic-tag-bg;
-    border: 1px solid rgba($topic-tag-bg, 0.55);
   }
-  > a:hover {
-    background: $topic-tag-bg-hover;
-    color: #fff;
+}
+
+@each $type, $color in $tagColorMap {
+  $bg: nth($color, 1);
+  $bg-hover: nth($color, 2);
+  .RIGHT-#{$type}.d0-card-content .item-link {
+    > a {
+      background: rgba($bg, 0.02);
+      color: $bg;
+      border: 1px solid rgba($bg, 0.55);
+    }
+    > a:hover {
+      background: $bg-hover;
+      color: #fff;
+    }
   }
 }

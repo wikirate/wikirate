@@ -21,7 +21,7 @@ format :html do
   end
 
   view :thumbnail_with_vote do
-    voo.hide! :thumbnail_link
+    # voo.hide! :thumbnail_link
     output [_render_vote, thumbnail]
   end
 

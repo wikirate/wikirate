@@ -15,7 +15,7 @@ format :html do
   end
 
   view :bar_right do
-    count_badge :metric
+    count_badges :metric, :metric_answer
   end
 
   view :bar_middle do

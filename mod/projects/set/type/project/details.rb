@@ -80,7 +80,7 @@ format :html do
 
   view :stats_details, cache: :never do
     wrap_with :div, class: "stat-details default-progress-box" do
-      [wrap_with(:div, research_progress_bar, class: "d-inline-flex"),
+      [wrap_with(:div, research_progress_bar, class: "float-left w-75 p-1"),
        wrap_with(:span, "#{card.percent_researched}%", class: "badge badge-secondary")]
     end
   end
