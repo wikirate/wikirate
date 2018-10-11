@@ -30,18 +30,6 @@ def wikirate_link?
   source_type_codename == :wikirate_link
 end
 
-# TODO: move this wql to a +metric card and cache the counts.
-def related_metric_wql
-  { type_id: Card::MetricID,
-    right_plus: [{ type_id: Card::WikirateCompanyID },
-                 { right_plus: [{ type: "year" },
-                                { right_plus: ["source", { link_to: card.name }] }] }] }
-end
-
-def metric_count
-  Card.search related_metric_wql.merge(return: :count)
-end
-
 format :html do
   def icon
     "globe"

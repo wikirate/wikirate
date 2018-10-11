@@ -34,6 +34,10 @@ def research_group?
   end
 end
 
+def cache_query?
+  false
+end
+
 # part 3 of U+C+R
 def research_group_name
   name.left_name.right_name
@@ -78,6 +82,15 @@ end
 format :html do
   delegate :subvariant, to: :card
 
+  # FIXME: shouldn't have to specify limit so many times!
+  def limit
+    5
+  end
+
+  def default_limit
+    5
+  end
+
   def extra_paging_path_args
     { variant: variant, subvariant: subvariant, view: :list }
   end
@@ -86,7 +99,7 @@ format :html do
   # (so that it can be passed around via slot options)
 
   def variant
-    card.variant ||= voo.structure if voo.structure
+    card.variant = voo.structure if voo.structure
     card.variant&.to_sym
   end
 
@@ -97,8 +110,7 @@ format :html do
 
   def subvariant_tabs
     subvariants.unshift(:all).each_with_object({}) do |key, h|
-      h[key] = { title: subvariant_tab_title(key),
-                 path: subvariant_tab_path(key) }
+      h[key] = { title: subvariant_tab_title(key), path: subvariant_tab_path(key) }
     end
   end
 
@@ -110,7 +122,13 @@ format :html do
     path subvariant: key, variant: variant, view: :list
   end
 
-  view :list_with_subtabs, cache: :never do
+  view :core do
+    # without this, variant is lost with view caching on.
+    variant
+    super()
+  end
+
+  view :list_with_subtabs do
     if subvariants
       lazy_loading_tabs subvariant_tabs, subvariant, render_list, type: "pills"
     else
@@ -118,12 +136,8 @@ format :html do
     end
   end
 
-  view :list, cache: :never do
-    wrap do
-      with_paging do
-        _render_content structure: variant, items: { view: :mini_bar }
-      end
-    end
+  view :list do
+    _render_content structure: variant, items: { view: :mini_bar }
   end
 
   # this is a bit of a hack but a reasonably safe one

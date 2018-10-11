@@ -24,10 +24,10 @@ format :html do
 
   view :cited, cache: :never do
     if voo.show? :cited_source_links
-      wrap_with_info { _render_bar }
+      wrap_with_info { _render_mini_bar }
     else
       with_toggle do
-        wrap_with_info { _render_bar }
+        wrap_with_info { _render_mini_bar }
       end
     end
   end
@@ -36,7 +36,7 @@ format :html do
     voo.hide :links
     wrap_with_info do
       [
-        _render_bar,
+        _render_mini_bar,
         cite_button(cited, disabled),
         hidden_item_input
       ]

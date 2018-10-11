@@ -2,7 +2,7 @@ format :html do
   view :bar_left, template: :haml
 
   view :bar_middle do
-    count_badges :wikirate_company
+    count_badges :wikirate_company, :metric
   end
 
   view :bar_right do
@@ -119,6 +119,8 @@ format :html do
     voo.title = fa_icon icon
     _render_original_link
   end
+
+  view :listing_compact, template: :haml
 
   view :content do
     add_name_context

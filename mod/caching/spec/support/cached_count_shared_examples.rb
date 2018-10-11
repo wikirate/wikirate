@@ -7,7 +7,7 @@ shared_examples "check count" do |count|
   end
 end
 
-shared_examples "cached count" do |name, count|
+shared_examples "cached count" do |name, count, increment|
   let(:card) { Card.fetch name }
 
   include_examples "check count", count
@@ -16,13 +16,13 @@ shared_examples "cached count" do |name, count|
     before do
       Card::Auth.as_bot { add_one }
     end
-    include_examples "check count", count + 1
+    include_examples "check count", count + increment
   end
 
   context "when item deleted" do
     before do
       Card::Auth.as_bot { delete_one }
     end
-    include_examples "check count", count - 1
+    include_examples "check count", count - increment
   end
 end
