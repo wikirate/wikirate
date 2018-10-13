@@ -8,12 +8,18 @@ describe Formula::Ruby do
   end
 
   let(:apple_id) { Card.fetch_id "Apple Inc" }
+  let(:death_star_id) { Card.fetch_id "Death Star" }
 
-  it "simple formula" do
+  example "simple formula" do
     result = calculate "{{Joe User+researched}}*2"
     expect(result[2011][apple_id]).to eq 22.0
     expect(result[2012][apple_id]).to eq 24.0
     expect(result[2013][apple_id]).to eq 26.0
+  end
+
+  example "networrk aware" do
+    result = calculate 'Total[{{Jedi+deadliness|company:Related[Jedi+more evil="yes"]}}*2'
+    expect(result[1977][death_star_id]).to eq 60
   end
 
   describe "functions" do

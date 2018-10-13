@@ -107,6 +107,13 @@ module Formula
         end
     end
 
+    def company_options
+      @company_options ||=
+        @formula_card.input_chunks.map do |chunk|
+          chunk.options[:company]
+        end
+    end
+
     def replace_nests content=nil
       content ||= formula
       index = -1
