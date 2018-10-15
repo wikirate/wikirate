@@ -121,6 +121,12 @@ $colorMap: (
   }
 }
 
+// project link color
+
+.TYPE-project .bar-left:hover .media-heading a {
+    color:  $teal;
+}
+
 // for metric items
 .TYPE-metric.box {
   .box-top {

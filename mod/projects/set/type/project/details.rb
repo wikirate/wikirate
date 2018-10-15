@@ -31,7 +31,7 @@ format :html do
   view :bar_left do
     text_with_image image: card.field(:image),
                     size: voo.size,
-                    title: render_title,
+                    title: render_title_link,
                     text: bar_left_details
   end
 
