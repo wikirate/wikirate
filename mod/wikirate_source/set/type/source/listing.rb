@@ -6,7 +6,7 @@ format :html do
   end
 
   view :bar_right do
-    output [year_list, render_creator_credit, render_original_with_icon]
+    output [year_list, download_tab_link]
   end
 
   view :bar_bottom do
@@ -17,7 +17,13 @@ format :html do
   end
 
   def year_list
-    card.year_card.item_names || []
+    icon = wrap_with(:span, fa_icon("calendar"), class: "pr-1")
+    wrap_with :div do
+      [
+        card.year_card.item_names.any? ? icon : "",
+        card.year_card.item_names || []
+      ]
+    end
   end
 
   def wrap_data slot=true
@@ -86,10 +92,10 @@ format :html do
   end
 
   view :source_link do
-    wrap_with :div, class: "source-link" do
+    wrap_with :div, class: "source-link d-flex align-items-center" do
       [
         wrap_with(:span, source_website, class: "source-website"),
-        wrap_with(:i, "", class: "fa fa-long-arrow-right"),
+        wrap_with(:i, "", class: "fa fa-long-arrow-right px-2"),
         wrap_with(:span, source_title, class: "source-title")
       ]
     end

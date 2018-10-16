@@ -34,7 +34,8 @@ $colorMap: (
   source: $source-color,
   project: $project-color,
   answer: $answer-color,
-  research_group: $research-group-color
+  research_group: $research-group-color,
+  post: $research-group-color
 );
 
 // border color for bars and boxes
@@ -56,7 +57,11 @@ $colorMap: (
     .bar-left a {
       color: $color;
     }
+    .bar-left .company-link a {
+      color: $company-color;
+    }
   }
+
 }
 
 .bar-left a {
@@ -138,5 +143,8 @@ $colorMap: (
   }
   .box-middle .question {
     font-size: 105%;
+  }
+  .box-bottom .labeled-badge {
+    padding: 0!important;
   }
 }

@@ -6,11 +6,13 @@ include_set Abstract::AnswerDetailsToggle
 
 format :html do
   view :bar_left do
-    output [render_metric_thumbnail, render_company_thumbnail]
+    wrap_with :div, class: "d-block" do
+      [render_metric_thumbnail, render_company_thumbnail]
+    end
   end
 
-  view :bar_right do
-    render_concise
+  view :bar_middle do
+    wrap_with :div, render_concise, class: "d-block w-100"
   end
 
   view :bar_bottom do
@@ -84,7 +86,7 @@ format :html do
   end
 
   view :company_thumbnail do
-    nest card.company_card, view: :thumbnail_no_link
+    wrap_with :div, (nest card.company_card, view: :thumbnail), class: "company-link"
   end
 
   view :value_cell do

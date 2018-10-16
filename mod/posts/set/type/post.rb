@@ -44,11 +44,6 @@ format :html do
     end
   end
 
-  before :bar do
-    super()
-    voo.hide :bar_middle
-  end
-
   view :bar_bottom do
     nest card.body_card, view: :content
   end
@@ -57,10 +52,10 @@ format :html do
     render_title_link
   end
 
-  view :bar_right, cache: :never do
+  view :bar_middle, cache: :never do
     wrap_with :span do
       %i[wikirate_company wikirate_topic project].map do |codename|
-        standard_badge codename
+        count_badge codename
       end
     end
   end
