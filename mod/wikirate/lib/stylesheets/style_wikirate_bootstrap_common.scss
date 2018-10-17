@@ -696,7 +696,9 @@ button.pointer-item-delete.btn.btn-outline-secondary {
 .current-user-up, .current-user-down {
   color: $primary !important;
   &.vote-button {
-    background: rgba(61, 152, 140, 0.5);
+    // background: rgba(61, 152, 140, 0.5);
+    background: none;
+    border: 0;
   }
 }
 

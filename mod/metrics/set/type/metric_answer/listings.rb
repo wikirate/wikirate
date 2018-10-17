@@ -12,7 +12,8 @@ format :html do
   end
 
   view :bar_middle do
-    wrap_with :div, render_concise, class: "d-block w-100"
+    value = wrap_with :div, render_concise, class: "d-block w-100"
+    link_to_card card.value_card, value
   end
 
   view :bar_bottom do
