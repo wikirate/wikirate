@@ -16,6 +16,7 @@
   transition: all 0.2s ease-out;
 }
 //for all box items
+
 a.box-item {
   text-decoration: none;
 }
@@ -33,10 +34,9 @@ $colorMap: (
   source: $source-color,
   project: $project-color,
   answer: $answer-color,
-  research_group: $research-group-color,
-  post: $research-group-color
-);
-// border color for bars and boxes
+  research_group: $default-cardtype-color,
+  post: $default-cardtype-color
+); // border color for bars and boxes
 @mixin barbox($color) {
   &.bar,
   &.bar-bottom {
@@ -69,7 +69,6 @@ $colorMap: (
 .bar-left a {
   color: inherit;
 }
-
 @each $type, $color in $colorMap {
   #main > .TYPE-#{$type} > .card {
     > .card-header {
@@ -113,11 +112,9 @@ $colorMap: (
     }
   }
 
-  .nav-item:hover {
-    .RIGHT-#{$type} {
-      &.tab-badge .badge {
-        background-color: $color;
-      }
+  .nav-item:hover .RIGHT-#{$type} {
+    &.tab-badge .badge {
+      background-color: $color;
     }
   }
 
@@ -139,14 +136,17 @@ $colorMap: (
   }
 }
 // project link color
+
 .TYPE-project .bar-left:hover .media-heading a {
   color: $teal;
 }
 // for metric items
+
 .TYPE-metric.box {
   .box-top {
     height: auto;
     text-align: left !important;
+
     h5 {
       font-size: 110%;
     }
