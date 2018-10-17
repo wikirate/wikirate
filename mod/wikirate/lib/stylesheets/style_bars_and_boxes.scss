@@ -160,3 +160,8 @@ $colorMap: (
     padding: 0!important !important;
   }
 }
+
+// tweak citable source minibar
+.source_and_preview-view .source-info-container .bar-right {
+    padding-right: 70px;
+}

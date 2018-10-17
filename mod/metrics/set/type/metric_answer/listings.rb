@@ -12,8 +12,9 @@ format :html do
   end
 
   view :bar_middle do
+    binding.pry
     value = wrap_with :div, render_concise, class: "d-block w-100"
-    link_to_card card.value_card, value
+    link_to_card card, value
   end
 
   view :bar_bottom do
