@@ -1,7 +1,9 @@
 // defaults
+
 .bar {
   border-left-color: $border-color !important;
-  &:hover{
+
+  &:hover {
     border-left-color: $dark-text-color !important;
   }
 }
@@ -13,7 +15,6 @@
 .box-item {
   transition: all 0.2s ease-out;
 }
-
 //for all box items
 a.box-item {
   text-decoration: none;
@@ -24,9 +25,7 @@ a.box-item {
   -moz-box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
   box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
 }
-
 // type specific colors
-
 $colorMap: (
   metric: $metric-color,
   company: $company-color,
@@ -37,31 +36,34 @@ $colorMap: (
   research_group: $research-group-color,
   post: $research-group-color
 );
-
 // border color for bars and boxes
 @mixin barbox($color) {
-  &.bar, &.bar-bottom {
+  &.bar,
+  &.bar-bottom {
     border-left-color: rgba($color, 0.2) !important;
 
     &:hover {
       border-left-color: $color !important;
     }
   }
+
   &.box {
     border-top-color: $color !important;
+
     .box-top a {
-      color: $color
+      color: $color;
     }
   }
-  &.bar:hover{
+
+  &.bar:hover {
     .bar-left a {
       color: $color;
     }
+
     .bar-left .company-link a {
       color: $company-color;
     }
   }
-
 }
 
 .bar-left a {
@@ -75,63 +77,71 @@ $colorMap: (
       background: $color;
       text-align: center;
     }
+
     > .menu-slot {
       color: #fff;
     }
   }
+
   .labeled-badge {
     padding: 0 12px;
   }
+
   .TYPE-#{$type} {
     @include barbox($color);
   }
+
   .#{$type}-color {
-    color: $color
+    color: $color;
   }
+
   .badge-#{$type} {
     background-color: $color;
   }
+
   .top-border-#{$type} {
     border-top: 3px solid $color;
   }
+
   .#{$type}-border-left {
     border-left: 3px solid $color !important;
   }
+
   .RIGHT-#{$type} {
     .contribution-report-header {
       border-left: 4px solid $color;
     }
   }
-  .nav-item:hover{
+
+  .nav-item:hover {
     .RIGHT-#{$type} {
       &.tab-badge .badge {
-        background-color: $color
+        background-color: $color;
       }
     }
   }
+
   .bar:hover {
     @include box-shadow(0,2px,6px,rgba(0,0,0,0.06));
   }
+
   box:hover {
     @include box-shadow(0,9px,20px,rgba(0,0,0,0.16));
   }
-  .bar, .box {
-    &:hover {
-      .RIGHT-#{$type} {
-        &.labeled-badge .badge {
-          background-color: $color
-        }
+
+  .bar,
+  .box {
+    &:hover .RIGHT-#{$type} {
+      &.labeled-badge .badge {
+        background-color: $color;
       }
     }
   }
 }
-
 // project link color
-
 .TYPE-project .bar-left:hover .media-heading a {
-    color:  $teal;
+  color: $teal;
 }
-
 // for metric items
 .TYPE-metric.box {
   .box-top {
@@ -141,10 +151,12 @@ $colorMap: (
       font-size: 110%;
     }
   }
+
   .box-middle .question {
     font-size: 105%;
   }
+
   .box-bottom .labeled-badge {
-    padding: 0!important;
+    padding: 0!important !important;
   }
 }
