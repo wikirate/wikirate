@@ -6,7 +6,13 @@ format :html do
   end
 
   view :bar_right do
-    output [year_list, download_tab_link]
+    wrap_with :div, class: "align-items-center w-100 text-left d-flex" do
+       [year_list, download_link]
+    end
+  end
+
+  def download_link
+    wrap_with :small, download_tab_link
   end
 
   view :bar_bottom do

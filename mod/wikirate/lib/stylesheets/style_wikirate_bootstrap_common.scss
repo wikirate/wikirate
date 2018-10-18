@@ -860,10 +860,12 @@ a.no-decoration {
 }
 
 //global transitions for smooth interactions
-
-* {
-  -webkit-transition: all 0.1s ease;
-  -moz-transition:    all 0.1s ease;
-  -ms-transition:     all 0.1s ease;
-  -o-transition:      all 0.1s ease;
+$transition-speed: 0.08s;
+//div selector for performance
+div {
+  -webkit-transition: all $transition-speed ease;
+  -moz-transition:    all $transition-speed ease;
+  -ms-transition:     all $transition-speed ease;
+  -o-transition:      all $transition-speed ease;
+  transition:      all $transition-speed ease;
 }

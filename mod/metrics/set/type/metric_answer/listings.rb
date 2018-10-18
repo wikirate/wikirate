@@ -20,6 +20,10 @@ format :html do
     output [render_chart, render_expanded_details]
   end
 
+  view :bar_right do
+    output [citations_count]
+  end
+
   view :titled_content, cache: :never do
     voo.hide! :chart # hide it in value_field
     bs do
@@ -34,6 +38,16 @@ format :html do
           column render_expanded_details
         end
       end
+    end
+  end
+
+  def citations_count_badge
+    wrap_with :span, card.source_card&.item_names&.size, class: "badge badge-light border"
+  end
+
+  def citations_count
+    wrap_with :div, class: "w-100 text-left" do
+      [citations_count_badge, "Citations"]
     end
   end
 
