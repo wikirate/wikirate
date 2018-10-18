@@ -859,10 +859,9 @@ a.no-decoration {
   max-height: 200px;
 }
 
-//global transitions for smooth interactions
+//global transitions for smooth links
 $transition-speed: 0.08s;
-//div selector for performance
-div {
+a {
   -webkit-transition: all $transition-speed ease;
   -moz-transition:    all $transition-speed ease;
   -ms-transition:     all $transition-speed ease;
