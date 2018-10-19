@@ -40,7 +40,11 @@ $colorMap: (
 // border color for bars and boxes
 @mixin barbox($color) {
   &.bar, &.bar-bottom {
-    border-left-color: $color !important;
+    border-left-color: rgba($color, 0.2) !important;
+
+    &:hover {
+      border-left-color: $color !important;
+    }
   }
   &.box {
     border-top-color: $color !important;
@@ -48,6 +52,15 @@ $colorMap: (
       color: $color
     }
   }
+  &.bar:hover{
+    .bar-left a {
+      color: $color;
+    }
+  }
+}
+
+.bar-left a {
+  color: inherit;
 }
 
 @each $type, $color in $colorMap {
@@ -60,6 +73,9 @@ $colorMap: (
     > .menu-slot {
       color: #fff;
     }
+  }
+  .labeled-badge {
+    padding: 0 12px;
   }
   .TYPE-#{$type} {
     @include barbox($color);
@@ -80,9 +96,41 @@ $colorMap: (
     .contribution-report-header {
       border-left: 4px solid $color;
     }
-    &.tab-badge .badge,
-    &.labeled-badge .badge {
-      background-color: $color
+  }
+  .nav-item:hover{
+    .RIGHT-#{$type} {
+      &.tab-badge .badge {
+        background-color: $color
+      }
     }
+  }
+  .bar:hover {
+    @include box-shadow(0,2px,6px,rgba(0,0,0,0.06));
+  }
+  box:hover {
+    @include box-shadow(0,9px,20px,rgba(0,0,0,0.16));
+  }
+  .bar, .box {
+    &:hover {
+      .RIGHT-#{$type} {
+        &.labeled-badge .badge {
+          background-color: $color
+        }
+      }
+    }
+  }
+}
+
+// for metric items
+.TYPE-metric.box {
+  .box-top {
+    height: auto;
+    text-align: left !important;
+    h5 {
+      font-size: 110%;
+    }
+  }
+  .box-middle .question {
+    font-size: 105%;
   }
 }

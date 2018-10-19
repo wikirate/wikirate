@@ -17,6 +17,7 @@ format :html do
 
   # ~~~~~~~~~~~ DETAILS IN PROJECT LISTING
 
+  # TODO: create version of bar to use on homepage and get rid of listing_compact
   view :listing_compact do
     bar_layout do
       text_with_image image: card.field(:image),
@@ -31,7 +32,7 @@ format :html do
   view :bar_left do
     text_with_image image: card.field(:image),
                     size: voo.size,
-                    title: render_title,
+                    title: render_title_link,
                     text: bar_left_details
   end
 
@@ -80,7 +81,7 @@ format :html do
 
   view :stats_details, cache: :never do
     wrap_with :div, class: "stat-details default-progress-box" do
-      [wrap_with(:div, research_progress_bar, class: "d-inline-flex"),
+      [wrap_with(:div, research_progress_bar, class: "float-left w-75 p-1"),
        wrap_with(:span, "#{card.percent_researched}%", class: "badge badge-secondary")]
     end
   end

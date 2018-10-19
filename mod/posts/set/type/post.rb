@@ -32,15 +32,9 @@ format :html do
     %i[wikirate_company wikirate_topic project]
   end
 
-  def tab_options
-    tab_list.each_with_object({}) do |tab, hash|
-      hash[tab] = { count: card.send("#{tab}_card").count }
-    end
-  end
-
   %i[wikirate_company wikirate_topic project].each do |codename|
     view :"#{codename}_tab" do
-      field_nest codename, items: { view: :bar }
+      field_nest codename, items: { view: :mini_bar }
     end
   end
 
@@ -60,24 +54,12 @@ format :html do
   view :bar_right, cache: :never do
     wrap_with :span do
       %i[wikirate_company wikirate_topic project].map do |codename|
-        standard_badge codename
+        count_badge codename
       end
     end
   end
 
   view :closed_content do
     ""
-  end
-
-  def standard_badge codename
-    labeled_badge standard_count(codename), standard_title(codename)
-  end
-
-  def standard_title codename
-    nest Card[codename], view: :title
-  end
-
-  def standard_count codename
-    card.send("#{codename}_card").count
   end
 end
