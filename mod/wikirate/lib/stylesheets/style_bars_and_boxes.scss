@@ -1,16 +1,61 @@
 // defaults
 
-.bar {
-  border-left-color: $border-color !important;
+$bar_stripe_color: $gray-700;
+$box_stripe_color: $gray-700;
 
-  &:hover {
-    border-left-color: $dark-text-color !important;
+/*----------- Bars and Boxes -------------*/
+
+.bar, .box {
+  .missing-view {
+    // TODO: obviate in ruby with better unknown API
+    display: none;
   }
 }
 
-.box {
-  border-top-color: $border-color;
+.item-box {
+  display: inline-block;
+  min-width: 260px;
+  width: 15%;
+  padding: 10px 1%;
+  vertical-align: top;
 }
+
+.box-top {
+    display: flex;
+    height: 60px;
+    flex-direction: column;
+    justify-content: center;
+    overflow: auto;
+}
+
+.box-middle {
+    height: 180px;
+    img {
+        object-fit: contain;
+        height: 130px;
+        width: 190px;
+    }
+}
+
+
+.box {
+  border-top: 3px solid $border-color;
+}
+
+.badge {
+  vertical-align: text-top!important;
+}
+
+.bar {
+  border-left: 3px solid $border-color;
+  &:hover {
+    border-left-color: $dark-text-color;
+    .bar-left .company-link a {
+      color: $company-color;
+    }
+  }
+}
+
 
 .box-item {
   transition: all 0.2s ease-out;
@@ -37,6 +82,7 @@ $colorMap: (
   research_group: $default-cardtype-color,
   post: $default-cardtype-color
 ); // border color for bars and boxes
+
 @mixin barbox($color) {
   &.bar,
   &.bar-bottom {
@@ -59,16 +105,21 @@ $colorMap: (
     .bar-left a {
       color: $color;
     }
-
-    .bar-left .company-link a {
-      color: $company-color;
-    }
   }
 }
 
 .bar-left a {
   color: inherit;
 }
+
+.labeled-badge {
+  padding: 0 12px;
+}
+
+.box:hover {
+  @include box-shadow(0,9px,20px,rgba(0,0,0,0.16));
+}
+
 @each $type, $color in $colorMap {
   #main > .TYPE-#{$type} > .card {
     > .card-header {
@@ -80,10 +131,6 @@ $colorMap: (
     > .menu-slot {
       color: #fff;
     }
-  }
-
-  .labeled-badge {
-    padding: 0 12px;
   }
 
   .TYPE-#{$type} {
@@ -118,14 +165,6 @@ $colorMap: (
     }
   }
 
-  // .bar:hover {
-  //   @include box-shadow(0,2px,6px,rgba(0,0,0,0.06));
-  // }
-
-  box:hover {
-    @include box-shadow(0,9px,20px,rgba(0,0,0,0.16));
-  }
-
   .bar,
   .box {
     &:hover .RIGHT-#{$type} {
@@ -143,6 +182,7 @@ $colorMap: (
 // for metric items
 
 .TYPE-metric.box {
+  height: auto;
   .box-top {
     height: auto;
     text-align: left !important;
@@ -157,7 +197,7 @@ $colorMap: (
   }
 
   .box-bottom .labeled-badge {
-    padding: 0!important !important;
+    padding: 0!important;
   }
 }
 
