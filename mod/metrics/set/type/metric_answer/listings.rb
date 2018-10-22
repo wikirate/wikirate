@@ -7,7 +7,7 @@ include_set Abstract::AnswerDetailsToggle
 format :html do
   view :bar_left do
     wrap_with :div, class: "d-block" do
-      [render_metric_thumbnail, render_company_thumbnail]
+      [render_metric_thumbnail, company_thumbnail]
     end
   end
 
@@ -93,7 +93,7 @@ format :html do
   # SHARED IN VARIOUS LISTINGS
 
   view :metric_thumbnail_with_vote do
-    nest card.metric_card, view: :thumbnail_with_vote
+    nest card.metric_card, view: :thumbnail_with_vote, hide: :thumbnail_link
   end
 
   view :metric_thumbnail do
@@ -101,7 +101,13 @@ format :html do
   end
 
   view :company_thumbnail do
-    wrap_with :div, (nest card.company_card, view: :thumbnail), class: "company-link"
+    company_thumbnail with_link=false
+  end
+
+  def company_thumbnail with_link=true
+    nest_args = { view: :thumbnail }
+    nest_args[:hide] = :thumbnail_link unless with_link
+    wrap_with :div, (nest card.company_card, nest_args), class: "company-link"
   end
 
   view :value_cell do
