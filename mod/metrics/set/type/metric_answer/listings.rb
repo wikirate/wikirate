@@ -21,7 +21,7 @@ format :html do
   end
 
   view :bar_right do
-    output [citations_count]
+    citations_count
   end
 
   view :titled_content, cache: :never do
