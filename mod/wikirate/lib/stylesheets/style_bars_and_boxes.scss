@@ -49,7 +49,7 @@ $box_stripe_color: $gray-700;
 .bar {
   border-left: 3px solid $border-color;
   &:hover {
-    border-left-color: $dark-text-color;
+    border-left:3px solid $dark-text-color;
     .bar-left .company-link a {
       color: $company-color;
     }
@@ -86,10 +86,10 @@ $colorMap: (
 @mixin barbox($color) {
   &.bar,
   &.bar-bottom {
-    border-left-color: rgba($color, 0.2) !important;
+    border-left: 3px solid rgba($color, 0.2) !important;
 
     &:hover {
-      border-left-color: $color !important;
+      border-left: 3px solid $color !important;
     }
   }
 
