@@ -45,7 +45,8 @@ RSpec.describe Card::Set::Self::Source do
     subject { json_format.iframable? pdf_url, user_agent }
 
     let(:pdf_url) do
-      "https://cdn.mozilla.net/pdfjs/helloworld.pdf"
+      "https://brendanzagaeski.appspot.com/minimal.pdf"
+      #"https://cdn.mozilla.net/pdfjs/helloworld.pdf"
     end
 
     context "when user agent is Firefox" do
