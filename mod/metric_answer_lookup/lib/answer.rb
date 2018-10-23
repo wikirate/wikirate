@@ -66,13 +66,21 @@ class Answer < ApplicationRecord
 
   private
 
+  def delete_on_refresh?
+    self.record_name = nil
+    # forces regeneration of answer name on refresh.
+    super || (!metric_card&.hybrid? && invalid?)
+    # when we override a hybrid metric the answer is invalid because of the
+    # missing answer_id, so we check `invalid?` only for non-hybrid metrics)
+  end
+
   def ensure_record metric_card, company
     return if Card[metric_card, company]
     Card.create! name: [metric_card, company], type_id: Card::RecordID
   end
 
   def metric_card
-    @metric_card ||= Card.fetch(fetch_metric_id)
+    @metric_card ||= Card.fetch(fetch_metric_id || fetch_metric_name)
   end
 
   def method_missing method_name, *args, &block

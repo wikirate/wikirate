@@ -23,13 +23,18 @@ format :html do
   end
 
   def year_list
-    icon = wrap_with(:span, fa_icon("calendar"), class: "pr-1")
+    card.year_card.item_names || []
+  end
+
+  def fancy_year_list
+    years = year_list
     wrap_with :div do
-      [
-        card.year_card.item_names.any? ? icon : "",
-        card.year_card.item_names || []
-      ]
+      years.any? ? years.unshift(year_icon) : []
     end
+  end
+
+  def year_icon
+    wrap_with :span, fa_icon("calendar"), class: "pr-1"
   end
 
   def wrap_data slot=true
