@@ -46,7 +46,7 @@ RSpec.describe Card::Set::Self::Source do
 
     let(:pdf_url) do
       "https://brendanzagaeski.appspot.com/minimal.pdf"
-      #"https://cdn.mozilla.net/pdfjs/helloworld.pdf"
+      # "https://cdn.mozilla.net/pdfjs/helloworld.pdf"
     end
 
     context "when user agent is Firefox" do

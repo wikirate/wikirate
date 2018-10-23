@@ -64,15 +64,15 @@ class Answer < ApplicationRecord
     editor_id || creator_id
   end
 
-  private
-
   def delete_on_refresh?
-    self.record_name = nil
+    # self.record_name = nil unless record_name.to_name.key.match(metric_key)
     # forces regeneration of answer name on refresh.
-    super || (!metric_card&.hybrid? && invalid?)
+    super() || (!metric_card&.hybrid? && invalid?)
     # when we override a hybrid metric the answer is invalid because of the
     # missing answer_id, so we check `invalid?` only for non-hybrid metrics)
   end
+
+  private
 
   def ensure_record metric_card, company
     return if Card[metric_card, company]

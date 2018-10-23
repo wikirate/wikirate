@@ -101,7 +101,7 @@ format :html do
   end
 
   view :company_thumbnail do
-    company_thumbnail with_link=false
+    company_thumbnail false
   end
 
   def company_thumbnail with_link=true
