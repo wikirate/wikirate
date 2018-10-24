@@ -64,9 +64,13 @@ class Answer < ApplicationRecord
     editor_id || creator_id
   end
 
+  def refresh *fields
+    self.record_name = nil if :record_name.in? fields
+    # forces regeneration of name of virtual answer card
+    super
+  end
+
   def delete_on_refresh?
-    # self.record_name = nil unless record_name.to_name.key.match(metric_key)
-    # forces regeneration of answer name on refresh.
     super() || (!metric_card&.hybrid? && invalid?)
     # when we override a hybrid metric the answer is invalid because of the
     # missing answer_id, so we check `invalid?` only for non-hybrid metrics)
