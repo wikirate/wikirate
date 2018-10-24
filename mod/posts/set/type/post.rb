@@ -39,23 +39,15 @@ format :html do
   end
 
   view :bar_bottom do
-    output [main_count_badges, "<br>", nest(card.body_card, view: :content)]
+    nest card.body_card, view: :content
   end
 
   view :bar_left do
     render_title_link
   end
 
-  view :bar_middle, cache: :never do
-    main_count_badges
-  end
-
-  def main_count_badges
-    wrap_with :span do
-      %i[wikirate_company wikirate_topic project].map do |codename|
-        count_badge codename
-      end
-    end
+  view :bar_right do
+    count_badges *tab_list
   end
 
   view :closed_content do

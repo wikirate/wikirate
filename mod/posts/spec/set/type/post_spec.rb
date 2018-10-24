@@ -21,8 +21,8 @@ RSpec.describe Card::Set::Type::Post do
     specify "view bar" do
       expect_view(:bar).to have_tag "div.bar" do
         with_tag "div.bar-left", "My Post"
-        with_tag "div.bar-middle", /#{badges_matcher}/
-        with_tag "div.bar-right"
+        with_tag "div.bar-middle"
+        with_tag "div.bar-right", /#{badges_matcher}/
       end
     end
 
@@ -31,7 +31,7 @@ RSpec.describe Card::Set::Type::Post do
         with_tag ".bar-top" do
           with_tag ".bar-left", "My Post"
           without_tag "div.bar-middle"
-          with_tag "div.bar-right"
+          with_tag "div.bar-right", /#{badges_matcher}/
         end
         with_tag "div.bar-bottom", /body text/
       end
