@@ -7,7 +7,7 @@ format :html do
 
   view :bar_right do
     wrap_with :div, class: "align-items-center w-100 text-left d-flex" do
-      [year_list, download_link]
+      [fancy_year_list, download_link]
     end
   end
 
