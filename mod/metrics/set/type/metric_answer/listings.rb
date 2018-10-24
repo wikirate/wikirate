@@ -7,21 +7,22 @@ include_set Abstract::AnswerDetailsToggle
 format :html do
   view :bar_left do
     wrap_with :div, class: "d-block" do
-      [render_metric_thumbnail, company_thumbnail]
+      [company_thumbnail(hide: :thumbnail_subtitle), render_metric_thumbnail]
     end
   end
 
   view :bar_middle do
-    value = wrap_with :div, render_concise, class: "d-block w-100"
-    link_to_card card, value
+    citations_count
+  end
+
+  view :bar_right do
+    wrap_with :div, class: "d-block w-100" do
+      render_concise
+    end
   end
 
   view :bar_bottom do
     output [render_chart, render_expanded_details]
-  end
-
-  view :bar_right do
-    citations_count
   end
 
   view :titled_content, cache: :never do
@@ -101,12 +102,11 @@ format :html do
   end
 
   view :company_thumbnail do
-    company_thumbnail false
+    company_thumbnail hide: :thumbnail_link
   end
 
-  def company_thumbnail with_link=true
-    nest_args = { view: :thumbnail }
-    nest_args[:hide] = :thumbnail_link unless with_link
+  def company_thumbnail nest_args={}
+    nest_args.reverse_merge! view: :thumbnail
     wrap_with :div, (nest card.company_card, nest_args), class: "company-link"
   end
 
