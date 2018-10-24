@@ -28,6 +28,10 @@ format :html do
             field_nest(:discussion, view: :titled, title: "Discussion")]
   end
 
+  def bar_side_cols
+    voo.show?(:bar_middle) ? [4, 4] : [6, 6]
+  end
+
   def tab_list
     %i[wikirate_company wikirate_topic project]
   end
