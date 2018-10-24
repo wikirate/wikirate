@@ -51,7 +51,7 @@ format :html do
   end
 
   view :bar_right do
-    count_badges *tab_list
+    count_badges(*tab_list)
   end
 
   view :closed_content do
