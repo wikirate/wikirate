@@ -6,8 +6,8 @@ format :html do
   end
 
   view :bar_right do
-    wrap_with :div, class: "align-items-center w-100 text-left d-flex" do
-      [fancy_year_list, download_link]
+    wrap_with :div, class: "align-items-center w-100 text-left d-block" do
+      [download_link, fancy_year_list]
     end
   end
 
@@ -28,7 +28,7 @@ format :html do
 
   def fancy_year_list
     years = year_list
-    wrap_with :div do
+    wrap_with :div, class: "text-align-right" do
       years.any? ? years.unshift(year_icon) : []
     end
   end
@@ -63,8 +63,7 @@ format :html do
   end
 
   def website_text
-    website_field = card.field :wikirate_website, new: {}
-    nest website_field, view: :content, items: { view: :name }
+    field_nest :wikirate_website, view: :content, items: { view: :name }
   end
 
   def title_text
@@ -91,10 +90,10 @@ format :html do
     field_nest creator_card, view: :link
   end
 
-  view :website_link do
-    link_to_card card, website_text, class: "source-preview-link",
-                                     target: "_blank"
-  end
+  # view :website_link do
+  #   link_to_card card, website_text, class: "source-preview-link",
+  #                                    target: "_blank"
+  # end
 
   view :title_link do
     link_to_card card, title_text,
@@ -103,12 +102,9 @@ format :html do
   end
 
   view :source_link do
-    wrap_with :div, class: "source-link d-flex align-items-center" do
-      [
-        wrap_with(:span, source_website, class: "source-website"),
-        wrap_with(:i, "", class: "fa fa-long-arrow-right px-2"),
-        wrap_with(:span, source_title, class: "source-title")
-      ]
+    wrap_with :div, class: "source-link d-block" do
+      [wrap_with(:div, source_title, class: "source-title"),
+       wrap_with(:div, website_text, class: "source-website")]
     end
   end
 
