@@ -19,7 +19,7 @@ format :html do
     tab_wrap do
       field_nest :source, view: :titled,
                           title: "#{fa_icon 'globe'} Sources",
-                          items: { view: :bar }
+                          items: { view: :mini_bar }
     end
   end
 

@@ -1,20 +1,83 @@
 // defaults
-.bar {
-  border-left-color: $border-color !important;
-  &:hover{
-    border-left-color: $dark-text-color !important;
+
+$bar_stripe_color: $gray-700;
+$box_stripe_color: $gray-700;
+
+/*------ Badges ---------*/
+
+.badge {
+  vertical-align: text-top !important;
+}
+
+.labeled-badge {
+  display: inline-block;
+  text-align: center;
+  padding: 0 12px;
+}
+
+/*----------- Bars and Boxes -------------*/
+
+.bar, .box {
+  .missing-view {
+    // TODO: obviate in ruby with better unknown API
+    display: none;
   }
 }
 
+.bar-left a {
+  color: inherit;
+}
+
+.bar > div {
+  overflow: hidden;
+}
+
 .box {
-  border-top-color: $border-color;
+  border-top: 3px solid $border-color;
+}
+
+.bar {
+  border-left: 3px solid $border-color;
+  &:hover {
+    border-left-color: $dark-text-color;
+    // Following needed on answer bars
+    .bar-left .company-link a {
+      color: $company-color !important;
+    }
+  }
+}
+
+// box wrapper in collection
+.item-box {
+  display: inline-block;
+  min-width: 260px;
+  width: 15%;
+  padding: 10px 1%;
+  vertical-align: top;
+}
+
+.box-top {
+  display: flex;
+  min-height: 60px;
+  flex-direction: column;
+  justify-content: center;
+  overflow: auto;
+}
+
+.box-middle {
+  min-height: 180px;
+  img {
+    object-fit: contain;
+    height: 130px;
+    width: 190px;
+  }
 }
 
 .box-item {
   transition: all 0.2s ease-out;
 }
-
 //for all box items
+
 a.box-item {
   text-decoration: none;
 }
@@ -25,8 +88,38 @@ a.box-item {
   box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
 }
 
-// type specific colors
+.box:hover {
+  @include box-shadow(0,9px,20px,rgba(0,0,0,0.16));
+}
 
+// set consistent colors for a group of bars/boxes
+@mixin barbox($color) {
+  &.bar,
+  &.bar-bottom {
+    border-left-color: rgba($color, 0.2) !important;
+
+    &:hover {
+      border-left-color: $color !important;
+    }
+  }
+
+  &.box {
+    border-top-color: $color !important;
+
+    .box-top a {
+      color: $color;
+    }
+  }
+
+  &.bar:hover {
+    .bar-left a {
+      color: $color;
+    }
+  }
+}
+
+
+// type specific colors
 $colorMap: (
   metric: $metric-color,
   company: $company-color,
@@ -34,34 +127,9 @@ $colorMap: (
   source: $source-color,
   project: $project-color,
   answer: $answer-color,
-  research_group: $research-group-color
-);
-
-// border color for bars and boxes
-@mixin barbox($color) {
-  &.bar, &.bar-bottom {
-    border-left-color: rgba($color, 0.2) !important;
-
-    &:hover {
-      border-left-color: $color !important;
-    }
-  }
-  &.box {
-    border-top-color: $color !important;
-    .box-top a {
-      color: $color
-    }
-  }
-  &.bar:hover{
-    .bar-left a {
-      color: $color;
-    }
-  }
-}
-
-.bar-left a {
-  color: inherit;
-}
+  research_group: $default-cardtype-color,
+  post: $default-cardtype-color
+); // border color for bars and boxes
 
 @each $type, $color in $colorMap {
   #main > .TYPE-#{$type} > .card {
@@ -70,67 +138,83 @@ $colorMap: (
       background: $color;
       text-align: center;
     }
+
     > .menu-slot {
       color: #fff;
     }
   }
-  .labeled-badge {
-    padding: 0 12px;
-  }
+
   .TYPE-#{$type} {
     @include barbox($color);
   }
+
   .#{$type}-color {
-    color: $color
+    color: $color;
   }
+
   .badge-#{$type} {
     background-color: $color;
   }
+
   .top-border-#{$type} {
     border-top: 3px solid $color;
   }
+
   .#{$type}-border-left {
     border-left: 3px solid $color !important;
   }
+
   .RIGHT-#{$type} {
     .contribution-report-header {
       border-left: 4px solid $color;
     }
   }
-  .nav-item:hover{
-    .RIGHT-#{$type} {
-      &.tab-badge .badge {
-        background-color: $color
-      }
+
+  .nav-item:hover .RIGHT-#{$type} {
+    &.tab-badge .badge {
+      background-color: $color;
     }
   }
-  .bar:hover {
-    @include box-shadow(0,2px,6px,rgba(0,0,0,0.06));
-  }
-  box:hover {
-    @include box-shadow(0,9px,20px,rgba(0,0,0,0.16));
-  }
-  .bar, .box {
-    &:hover {
-      .RIGHT-#{$type} {
-        &.labeled-badge .badge {
-          background-color: $color
-        }
+
+  .bar,
+  .box {
+    &:hover .RIGHT-#{$type} {
+      &.labeled-badge .badge {
+        background-color: $color;
       }
     }
   }
 }
+// project link color
 
+.TYPE-project .bar-left:hover .media-heading a {
+  color: $teal;
+}
 // for metric items
+
 .TYPE-metric.box {
+  min-height: 360px;
+  .box-middle {
+    min-height: auto;
+  }
   .box-top {
-    height: auto;
     text-align: left !important;
+
     h5 {
       font-size: 110%;
     }
   }
+
   .box-middle .question {
     font-size: 105%;
   }
+
+  .box-bottom .labeled-badge {
+    padding: 0!important;
+  }
+}
+
+// tweak citable source minibar
+.source_and_preview-view .source-info-container .bar-right {
+  padding-right: 70px;
 }

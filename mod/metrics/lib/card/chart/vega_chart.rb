@@ -2,8 +2,8 @@ class Card
   module Chart
     class VegaChart
       BAR_COLOR = "#eeeeee"
-      HIGHLIGHT_COLOR = "#674ea7"
-      HOVER_COLOR = "#b3a7d3"
+      HIGHLIGHT_COLOR = "#d3741c"
+      HOVER_COLOR = "#bb5b00"
       DARK_AXES = "#333333"
       LIGHT_AXES = "#cccccc"
 

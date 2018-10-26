@@ -51,14 +51,14 @@ format :html do
   end
 
   def category_legend_display html
-    html ? category_legend_div : category_legend.gsub!("<br>", "")
+    html ? category_legend_div : category_legend(", ")
   end
 
   def category_legend_div
     wrap_with :div, class: "small" do
       [
         fa_icon("list"),
-        category_legend.gsub!("<br>", "")[0..40],
+        category_legend(", ")[0..40],
         " ",
         popover_link_custom(category_legend)
       ]
@@ -73,8 +73,8 @@ format :html do
     link_to fa_icon("ellipsis-h"), opts
   end
 
-  def category_legend
-    card.value_options.reject { |o| o == "Unknown" }.join ", <br>"
+  def category_legend joint=", <br>"
+    card.value_options.reject { |o| o == "Unknown" }.join joint
   end
 
   # view :value do

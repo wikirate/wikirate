@@ -1,6 +1,8 @@
 class Answer
   # Methods to format answer for csv output
   module Csv
+    include Card::Env::Location
+
     def self.included host_class
       host_class.extend ClassMethods
     end

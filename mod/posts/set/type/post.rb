@@ -28,6 +28,10 @@ format :html do
             field_nest(:discussion, view: :titled, title: "Discussion")]
   end
 
+  def bar_side_cols
+    voo.show?(:bar_middle) ? [4, 4] : [6, 6]
+  end
+
   def tab_list
     %i[wikirate_company wikirate_topic project]
   end
@@ -38,11 +42,6 @@ format :html do
     end
   end
 
-  before :bar do
-    super()
-    voo.hide :bar_middle
-  end
-
   view :bar_bottom do
     nest card.body_card, view: :content
   end
@@ -51,12 +50,8 @@ format :html do
     render_title_link
   end
 
-  view :bar_right, cache: :never do
-    wrap_with :span do
-      %i[wikirate_company wikirate_topic project].map do |codename|
-        count_badge codename
-      end
-    end
+  view :bar_right do
+    count_badges(*tab_list)
   end
 
   view :closed_content do

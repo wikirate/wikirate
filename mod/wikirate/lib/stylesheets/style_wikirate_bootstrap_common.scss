@@ -696,7 +696,9 @@ button.pointer-item-delete.btn.btn-outline-secondary {
 .current-user-up, .current-user-down {
   color: $primary !important;
   &.vote-button {
-    background: rgba(61, 152, 140, 0.5);
+    // background: rgba(61, 152, 140, 0.5);
+    background: none;
+    border: 0;
   }
 }
 
@@ -857,11 +859,12 @@ a.no-decoration {
   max-height: 200px;
 }
 
-//global transitions for smooth interactions
-
-* {
-  -webkit-transition: all 0.2s ease;
-  -moz-transition:    all 0.2s ease;
-  -ms-transition:     all 0.2s ease;
-  -o-transition:      all 0.2s ease;
+//global transitions for smooth links
+$transition-speed: 0.08s;
+a {
+  -webkit-transition: all $transition-speed ease;
+  -moz-transition:    all $transition-speed ease;
+  -ms-transition:     all $transition-speed ease;
+  -o-transition:      all $transition-speed ease;
+  transition:      all $transition-speed ease;
 }

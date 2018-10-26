@@ -9,6 +9,9 @@ class SharedData
                      wikirate_status: "Active",
                      organizer: "Jedi"
 
+      create_project "Son of Evil Project",
+                     parent: "Evil Project", metric: [], wikirate_company: []
+
       create_project "Empty Project", metric: [], wikirate_company: []
     end
 
