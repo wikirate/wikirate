@@ -78,7 +78,6 @@ group :test do
 
   # CUKES see features dir
   gem "capybara", "~> 2.14"
-  gem "nokogiri", "1.8.4"
   # gem "chromedriver-helper"
   # gem "geckodriver-helper"
   gem "cucumber-expressions", "5.0.7" # this breaks at 5.0.12
