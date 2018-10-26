@@ -478,7 +478,7 @@ GEM
     netrc (0.11.0)
     newrelic_rpm (5.4.0.347)
     nio4r (2.3.1)
-    nokogiri (1.8.4)
+    nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     nokogiri-happymapper (0.8.0)
       nokogiri (~> 1.5)
@@ -593,14 +593,14 @@ GEM
       rspec-mocks (~> 3.6.0)
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
-    rubocop (0.59.2)
+    rubocop (0.60.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.5, != 2.5.1.1)
       powerpack (~> 0.1)
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
-      unicode-display_width (~> 1.0, >= 1.0.1)
+      unicode-display_width (~> 1.4.0)
     rubocop-decko (0.2)
     rubocop-rspec (1.30.0)
       rubocop (>= 0.58.0)
@@ -746,7 +746,6 @@ DEPENDENCIES
   minitest
   mysql2 (> 0.4)
   newrelic_rpm
-  nokogiri (= 1.8.4)
   open_uri_redirections
   pdfkit
   pivotal-tracker
