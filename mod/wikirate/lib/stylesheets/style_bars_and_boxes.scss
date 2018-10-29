@@ -44,6 +44,7 @@ $box_stripe_color: $gray-700;
 .box-item {
   transition: all 0.2s ease-out;
 }
+
 //for all box items
 
 a.box-item {
@@ -160,13 +161,13 @@ $colorMap: (
 // for metric items
 
 .TYPE-metric.box {
-  min-height: 360px;
+  height: 360px;
   .box-middle {
     min-height: auto;
   }
   .box-top {
     text-align: left !important;
-
+    min-height: 80px;
     h5 {
       font-size: 110%;
     }
