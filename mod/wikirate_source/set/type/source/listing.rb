@@ -17,8 +17,7 @@ format :html do
 
   view :bar_bottom do
     output [render_bar_middle,
-            field_nest(:report_type),
-            render_original_with_icon,
+            field_nest(:report_type, view: :labeled, items: { view: :link }),
             field_nest(:description, view: :titled, title: "Description")]
   end
 
